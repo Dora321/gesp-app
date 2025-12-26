@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { Link } from 'react-router-dom';
 import { Book, Calculator, Code, AlertTriangle, Play, ChevronRight, CheckCircle, Info, Copy, Check, Star, Zap, Trophy, RefreshCw, XCircle, MousePointerClick, Unlock, Lightbulb, Target, Clock, Award, FileCode, ArrowRightLeft, Eye, SkipForward, Menu, X } from 'lucide-react';
 
 const GESPCourseware = () => {
@@ -37,6 +38,11 @@ const GESPCourseware = () => {
       {/* Mobile Menu Button - Fixed Top */}
       <div className="md:hidden fixed top-0 left-0 w-full z-50 bg-white border-b border-slate-200 p-4 flex items-center justify-between shadow-sm">
         <h1 className="text-lg font-bold text-indigo-600 flex items-center gap-2">
+          <Link to="/" className="hover:opacity-80 transition-opacity">
+            <div className="w-8 h-8 bg-white rounded-lg flex items-center justify-center overflow-hidden border border-slate-200 shadow-sm">
+              <img src={`${import.meta.env.BASE_URL}logo.jpg`} alt="Logo" className="w-full h-full object-cover" />
+            </div>
+          </Link>
           <span className="bg-indigo-600 text-white px-2 py-0.5 rounded text-xs">C++</span>
           GESP 一级
         </h1>
@@ -64,6 +70,11 @@ const GESPCourseware = () => {
       `}>
         <div className="p-6 border-b border-slate-100 hidden md:block">
           <h1 className="text-xl font-bold text-indigo-600 flex items-center gap-2">
+            <Link to="/" className="hover:opacity-80 transition-opacity">
+              <div className="w-8 h-8 bg-white rounded-lg flex items-center justify-center overflow-hidden border border-slate-200 shadow-sm">
+                <img src={`${import.meta.env.BASE_URL}logo.jpg`} alt="Logo" className="w-full h-full object-cover" />
+              </div>
+            </Link>
             <span className="bg-indigo-600 text-white p-1 rounded text-sm">C++</span>
             GESP 一级
           </h1>

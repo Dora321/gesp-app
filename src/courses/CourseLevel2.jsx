@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import { Link } from 'react-router-dom';
 import { BookOpen, Code, Calculator, Grid, Play, ChevronRight, Lightbulb, AlertTriangle, CheckCircle, ArrowRight, Bug, AlertOctagon, Trophy, Eye, Clock, Target, Zap, RefreshCw, XCircle, Copy, Check, Unlock, Award, FileCode, ArrowRightLeft, SkipForward, Info, MousePointerClick, Book, Menu, X } from 'lucide-react';
 
 // -----------------------------------------------------------------------------
@@ -1604,6 +1605,11 @@ export default function GESP_Level2_Courseware() {
       {/* Mobile Menu Button - Fixed Top */}
       <div className="md:hidden fixed top-0 left-0 w-full z-50 bg-white border-b border-slate-200 p-4 flex items-center justify-between shadow-sm">
         <h1 className="text-lg font-bold text-slate-800 flex items-center gap-2">
+          <Link to="/" className="hover:opacity-80 transition-opacity">
+            <div className="w-8 h-8 bg-white rounded-lg flex items-center justify-center overflow-hidden border border-slate-200 shadow-sm">
+              <img src={`${import.meta.env.BASE_URL}logo.jpg`} alt="Logo" className="w-full h-full object-cover" />
+            </div>
+          </Link>
           <span className="bg-blue-600 text-white px-2 py-0.5 rounded text-xs">C++</span>
           GESP 二级
         </h1>
@@ -1631,9 +1637,11 @@ export default function GESP_Level2_Courseware() {
       `}>
         <div className="p-6 border-b border-slate-100">
           <div className="flex items-center gap-2 mb-2">
-            <div className="w-8 h-8 bg-blue-600 rounded-lg flex items-center justify-center text-white font-bold shadow-md">
-              C++
-            </div>
+            <Link to="/" className="hover:opacity-80 transition-opacity">
+              <div className="w-8 h-8 bg-white rounded-lg flex items-center justify-center overflow-hidden border border-slate-200 shadow-sm">
+                <img src={`${import.meta.env.BASE_URL}logo.jpg`} alt="Logo" className="w-full h-full object-cover" />
+              </div>
+            </Link>
             <h1 className="text-xl font-bold text-slate-800">GESP 二级</h1>
           </div>
           <p className="text-xs text-slate-500">交互式备考讲义</p>

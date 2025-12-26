@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import { Link } from 'react-router-dom';
 import {
   Backpack,
   Box,
@@ -457,6 +458,11 @@ function App() {
       {/* Mobile Menu Button - Fixed Top */}
       <div className="md:hidden fixed top-0 left-0 w-full z-50 bg-white border-b border-slate-200 p-4 flex items-center justify-between shadow-sm">
         <h1 className="text-lg font-bold text-blue-700 flex items-center gap-2">
+          <Link to="/" className="hover:opacity-80 transition-opacity">
+            <div className="w-8 h-8 bg-white rounded-lg flex items-center justify-center overflow-hidden border border-slate-200 shadow-sm">
+              <img src={`${import.meta.env.BASE_URL}logo.jpg`} alt="Logo" className="w-full h-full object-cover" />
+            </div>
+          </Link>
           <span className="bg-blue-600 text-white px-2 py-0.5 rounded text-xs">C++</span>
           <span>一级趣味课堂</span>
         </h1>
@@ -483,11 +489,16 @@ function App() {
         ${isMobileMenuOpen ? 'translate-x-0' : '-translate-x-full'}
       `}>
         <div className="p-5 border-b border-slate-100 bg-gradient-to-br from-blue-50 to-white">
-          <h1 className="text-xl font-bold flex items-center gap-2 text-blue-700">
-            <Trophy size={24} className="text-yellow-500" />
-            <span>GESP C++ 一级</span>
+          <h1 className="text-lg font-bold flex items-center gap-2 text-blue-700">
+            <Link to="/" className="hover:opacity-80 transition-opacity">
+              <div className="w-8 h-8 bg-white rounded-lg flex items-center justify-center overflow-hidden border border-slate-200 shadow-sm">
+                <img src={`${import.meta.env.BASE_URL}logo.jpg`} alt="Logo" className="w-full h-full object-cover" />
+              </div>
+            </Link>
+            <span className="bg-blue-600 text-white p-1 rounded">C++</span>
+            <span>一级趣味课堂</span>
           </h1>
-          <p className="text-xs text-blue-400 mt-1 ml-8 font-medium">第 2 课：变量的小秘密</p>
+          <p className="text-xs text-blue-400 mt-2 font-medium pl-1">第 2 课：变量与数据 📦</p>
         </div>
 
         <div className="flex-1 overflow-y-auto w-full py-2 custom-scrollbar">
