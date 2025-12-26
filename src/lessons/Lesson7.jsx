@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import { Link } from 'react-router-dom';
 import {
   Siren,
   GitBranch,
@@ -538,14 +539,19 @@ export default function App() {
       `}</style>
 
       {/* Mobile Menu Button - Fixed Top */}
-      <div className="md:hidden fixed top-0 left-0 w-full z-50 bg-white border-b border-gray-200 p-4 flex items-center justify-between shadow-sm">
-        <h1 className="text-lg font-bold text-blue-600 flex items-center gap-2">
-          <Icon name="code" size={24} />
-          GESP C++ 一级
+      <div className="md:hidden fixed top-0 left-0 w-full z-50 bg-white border-b border-slate-200 p-4 flex items-center justify-between shadow-sm">
+        <h1 className="text-lg font-bold text-blue-700 flex items-center gap-2">
+          <Link to="/" className="hover:opacity-80 transition-opacity">
+            <div className="w-8 h-8 bg-white rounded-lg flex items-center justify-center overflow-hidden border border-slate-200 shadow-sm">
+              <img src={`${import.meta.env.BASE_URL}logo.jpg`} alt="Logo" className="w-full h-full object-cover" />
+            </div>
+          </Link>
+          <span className="bg-blue-600 text-white px-2 py-0.5 rounded text-xs">C++</span>
+          <span>一级趣味课堂</span>
         </h1>
         <button
           onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-          className="p-2 text-gray-600 hover:bg-gray-100 rounded-lg"
+          className="p-2 text-slate-600 hover:bg-slate-100 rounded-lg"
         >
           {isMobileMenuOpen ? <X size={24} /> : <Menu size={24} />}
         </button>
@@ -565,12 +571,17 @@ export default function App() {
         md:relative md:translate-x-0
         ${isMobileMenuOpen ? 'translate-x-0' : '-translate-x-full'}
       `}>
-        <div className="p-4 border-b border-gray-100 sticky top-0 bg-white z-10">
-          <h1 className="font-bold text-xl text-blue-600 flex items-center gap-2">
-            <Icon name="code" size={24} />
-            GESP C++ 一级
+        <div className="p-5 border-b border-slate-100 bg-gradient-to-br from-blue-50 to-white">
+          <h1 className="text-lg font-bold flex items-center gap-2 text-blue-700">
+            <Link to="/" className="hover:opacity-80 transition-opacity">
+              <div className="w-8 h-8 bg-white rounded-lg flex items-center justify-center overflow-hidden border border-slate-200 shadow-sm">
+                <img src={`${import.meta.env.BASE_URL}logo.jpg`} alt="Logo" className="w-full h-full object-cover" />
+              </div>
+            </Link>
+            <span className="bg-blue-600 text-white p-1 rounded">C++</span>
+            <span>一级趣味课堂</span>
           </h1>
-          <p className="text-xs text-gray-500 mt-1">第7课：分支结构</p>
+          <p className="text-xs text-blue-400 mt-2 font-medium pl-1">第 7 课：复杂逻辑 🧩</p>
         </div>
         <nav className="flex-1 p-2 space-y-1">
           {sections.map(section => (

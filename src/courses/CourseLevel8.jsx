@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import { Link } from 'react-router-dom';
 import { BookOpen, Code, Terminal, CheckCircle, AlertTriangle, Play, ChevronRight, Calculator, Cpu, Hash, Trophy, Eye, Lightbulb, Copy, Check, Unlock, ArrowRight, Grid, Info, ArrowRightLeft, RefreshCw, Clock, Target, XCircle, Layout, GitBranch, Share2, Search, Map, Network, Route, Database, Box, Menu, X } from 'lucide-react';
 
 // --- Shared Components ---
@@ -712,6 +713,11 @@ export default function CourseLevel8() {
       {/* Mobile Menu Button - Fixed Top */}
       <div className="md:hidden fixed top-0 left-0 w-full z-50 bg-white border-b border-slate-200 p-4 flex items-center justify-between shadow-sm">
         <h1 className="text-lg font-bold text-slate-800 flex items-center gap-2">
+          <Link to="/" className="hover:opacity-80 transition-opacity">
+            <div className="w-8 h-8 bg-white rounded-lg flex items-center justify-center overflow-hidden border border-slate-200 shadow-sm">
+              <img src={`${import.meta.env.BASE_URL}logo.jpg`} alt="Logo" className="w-full h-full object-cover" />
+            </div>
+          </Link>
           <span className="bg-indigo-600 text-white px-2 py-0.5 rounded text-xs">C++</span>
           GESP 八级
         </h1>
@@ -739,12 +745,14 @@ export default function CourseLevel8() {
       `}>
         <div className="p-6 border-b border-slate-100">
           <div className="flex items-center gap-2 mb-2">
-            <div className="w-8 h-8 bg-indigo-600 rounded-lg flex items-center justify-center text-white font-bold shadow-md">
-              G
-            </div>
+            <Link to="/" className="hover:opacity-80 transition-opacity">
+              <div className="w-8 h-8 bg-white rounded-lg flex items-center justify-center overflow-hidden border border-slate-200 shadow-sm">
+                <img src={`${import.meta.env.BASE_URL}logo.jpg`} alt="Logo" className="w-full h-full object-cover" />
+              </div>
+            </Link>
             <h1 className="text-xl font-bold text-slate-800">GESP 八级</h1>
           </div>
-          <p className="text-xs text-slate-500">进阶提升 2025版</p>
+          <p className="text-xs text-slate-500">巅峰指南 2025版</p>
         </div>
 
         <nav className="flex-1 overflow-y-auto p-4 space-y-2">
