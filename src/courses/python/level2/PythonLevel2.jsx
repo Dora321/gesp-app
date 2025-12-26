@@ -3,8 +3,9 @@ import {
     Grid, ArrowUp, ArrowDown, ArrowLeft, ArrowRight,
     RotateCw, RefreshCw, Play, Code, Box,
     ChevronDown, Layers, Hash, HelpCircle, Trophy,
-    CheckCircle, XCircle, MousePointer
+    CheckCircle, XCircle, MousePointer, Menu, X
 } from 'lucide-react';
+import { Link } from 'react-router-dom';
 
 // --- 辅助组件 ---
 const Icon = ({ name, size = 20, className = "" }) => {
@@ -955,25 +956,74 @@ const sections = [
 
 const Lesson4 = () => {
     const [activeSection, setActiveSection] = useState(1);
+    const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
     const ActiveComponent = sections.find(s => s.id === activeSection)?.component || (() => <div>Coming Soon</div>);
 
     return (
         <div className="flex h-screen overflow-hidden bg-slate-50 font-sans text-slate-800">
             {/* 侧边栏 */}
-            <div className="w-64 bg-white border-r border-slate-200 flex flex-col h-full shadow-lg z-20 flex-shrink-0">
-                <div className="p-5 border-b border-slate-100 bg-gradient-to-br from-orange-50 to-white">
+            {/* Mobile Menu Button - Fixed Top */}
+            <div className="md:hidden fixed top-0 left-0 w-full z-50 bg-white border-b border-orange-100 p-4 flex items-center justify-between shadow-sm">
+                <div className="flex items-center gap-2">
+                    <Link to="/" className="block">
+                        <div className="w-8 h-8 bg-white rounded-lg flex items-center justify-center overflow-hidden border border-slate-200 shadow-sm">
+                            <img src={`${import.meta.env.BASE_URL}logo.jpg`} alt="Logo" className="w-full h-full object-cover" />
+                        </div>
+                    </Link>
                     <h1 className="text-lg font-bold flex items-center gap-2 text-orange-700">
+                        <span className="bg-orange-500 text-white px-2 py-0.5 rounded text-xs">Python</span>
+                        <span>实战课堂</span>
+                    </h1>
+                </div>
+                <button
+                    onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
+                    className="p-2 text-slate-600 hover:bg-slate-100 rounded-lg transition-colors"
+                >
+                    {isMobileMenuOpen ? <X size={24} /> : <Menu size={24} />}
+                </button>
+            </div>
+
+            {/* Mobile Overlay */}
+            {isMobileMenuOpen && (
+                <div
+                    className="fixed inset-0 bg-black/50 z-40 md:hidden"
+                    onClick={() => setIsMobileMenuOpen(false)}
+                />
+            )}
+
+            {/* 侧边栏 */}
+            <div className={`
+                fixed md:relative top-0 left-0 h-full w-64 bg-white border-r border-slate-200 flex flex-col shadow-lg z-50 transition-transform duration-300 ease-in-out md:translate-x-0
+                ${isMobileMenuOpen ? 'translate-x-0' : '-translate-x-full'}
+            `}>
+                <div className="p-5 border-b border-slate-100 bg-gradient-to-br from-orange-50 to-white hidden md:block">
+                    <h1 className="text-lg font-bold flex items-center gap-2 text-orange-700">
+                        <Link to="/" className="hover:opacity-80 transition-opacity">
+                            <div className="w-8 h-8 bg-white rounded-lg flex items-center justify-center overflow-hidden border border-slate-200 shadow-sm">
+                                <img src={`${import.meta.env.BASE_URL}logo.jpg`} alt="Logo" className="w-full h-full object-cover" />
+                            </div>
+                        </Link>
                         <span className="bg-orange-500 text-white p-1 rounded">Python</span>
                         <span>实战课堂</span>
                     </h1>
                     <p className="text-xs text-orange-400 mt-2 font-medium pl-1">第 4 课：2048 大作战 🎮</p>
+                </div>
+                {/* Mobile Header in Sidebar (visible only on mobile when menu open) */}
+                <div className="p-4 border-b border-slate-100 md:hidden flex justify-between items-center bg-orange-50">
+                    <span className="font-bold text-orange-700">课程目录</span>
+                    <button onClick={() => setIsMobileMenuOpen(false)}>
+                        <X size={20} className="text-slate-500" />
+                    </button>
                 </div>
 
                 <div className="flex-1 overflow-y-auto w-full py-2 custom-scrollbar">
                     {sections.map((section) => (
                         <button
                             key={section.id}
-                            onClick={() => setActiveSection(section.id)}
+                            onClick={() => {
+                                setActiveSection(section.id);
+                                setIsMobileMenuOpen(false);
+                            }}
                             className={`w-full text-left px-5 py-3 transition-all duration-200 flex items-center gap-3 border-l-4 group relative
                 ${activeSection === section.id
                                     ? 'bg-orange-50 border-orange-500 text-orange-700 font-bold shadow-sm'
@@ -993,7 +1043,7 @@ const Lesson4 = () => {
             </div>
 
             {/* 主内容区 */}
-            <div className="flex-1 flex flex-col h-full overflow-hidden relative bg-slate-50">
+            <div className="flex-1 flex flex-col h-full overflow-hidden relative bg-slate-50 pt-16 md:pt-0">
                 {/* Header */}
                 <header className="bg-white border-b border-slate-200 shadow-sm h-16 flex items-center justify-between px-6 z-10 flex-shrink-0">
                     <div className="flex items-center gap-3">
