@@ -13,7 +13,8 @@ import {
   Key,
   Lightbulb,
   DoorOpen,
-  Info
+  Info,
+  Menu
 } from 'lucide-react';
 
 // --- 图标映射 ---
@@ -292,6 +293,7 @@ const Quiz = ({ question, options, correctIndex, explanation, type = "normal" })
 // --- 主应用 ---
 export default function App() {
   const [activeSection, setActiveSection] = useState(1);
+  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
 
   const nextSection = () => {
     if (activeSection < sections.length) setActiveSection(activeSection + 1);
@@ -534,8 +536,34 @@ export default function App() {
         @keyframes slideIn { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
       `}</style>
 
+      {/* Mobile Menu Button - Fixed Top */}
+      <div className="md:hidden fixed top-0 left-0 w-full z-50 bg-white border-b border-gray-200 p-4 flex items-center justify-between shadow-sm">
+        <h1 className="text-lg font-bold text-blue-600 flex items-center gap-2">
+          <Icon name="brain" size={24} />
+          GESP C++ 一级
+        </h1>
+        <button
+          onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
+          className="p-2 text-gray-600 hover:bg-gray-100 rounded-lg"
+        >
+          {isMobileMenuOpen ? <X size={24} /> : <Menu size={24} />}
+        </button>
+      </div>
+
+      {/* Sidebar Overlay (Mobile) */}
+      {isMobileMenuOpen && (
+        <div
+          className="fixed inset-0 bg-black/50 z-40 md:hidden"
+          onClick={() => setIsMobileMenuOpen(false)}
+        />
+      )}
+
       {/* 侧边栏 */}
-      <div className="w-64 bg-white border-r border-gray-200 flex flex-col h-full overflow-y-auto">
+      <div className={`
+        fixed inset-y-0 left-0 z-50 w-64 bg-white border-r border-gray-200 flex flex-col h-full overflow-y-auto transition-transform duration-300
+        md:relative md:translate-x-0
+        ${isMobileMenuOpen ? 'translate-x-0' : '-translate-x-full'}
+      `}>
         <div className="p-4 border-b border-gray-100 sticky top-0 bg-white z-10">
           <h1 className="font-bold text-xl text-blue-600 flex items-center gap-2">
             <Icon name="brain" size={24} />
@@ -547,7 +575,10 @@ export default function App() {
           {sections.map(section => (
             <button
               key={section.id}
-              onClick={() => setActiveSection(section.id)}
+              onClick={() => {
+                setActiveSection(section.id);
+                setIsMobileMenuOpen(false);
+              }}
               className={`w-full text-left px-3 py-2 rounded-lg text-sm transition-colors flex items-center gap-2
                 ${activeSection === section.id
                   ? 'bg-blue-50 text-blue-700 font-semibold shadow-sm'
@@ -561,7 +592,7 @@ export default function App() {
       </div>
 
       {/* 主内容区 */}
-      <div className="flex-1 flex flex-col h-full overflow-hidden">
+      <div className="flex-1 flex flex-col h-full overflow-hidden pt-16 md:pt-0">
         <header className="h-16 bg-white border-b border-gray-200 flex items-center justify-between px-8 shadow-sm z-10">
           <h2 className="text-lg font-bold text-gray-800 truncate">
             {sections.find(s => s.id === activeSection)?.title}

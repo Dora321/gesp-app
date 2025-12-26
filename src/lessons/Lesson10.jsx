@@ -13,7 +13,9 @@ import {
   Play,
   RotateCcw,
   Zap,
-  Ghost
+  Ghost,
+  Menu,
+  X
 } from 'lucide-react';
 
 // --- 图标映射组件 ---
@@ -605,6 +607,7 @@ const SumAccumulator = () => {
 // --- 主应用 ---
 function App() {
   const [activeSection, setActiveSection] = useState(1);
+  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
 
   const nextSection = () => {
     if (activeSection < sections.length) setActiveSection(activeSection + 1);
@@ -876,39 +879,68 @@ cout << cnt;`}
         @keyframes slideIn { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
       `}</style>
 
-      {/* 侧边栏 */}
-      <div className="w-64 bg-white border-r border-gray-200 flex flex-col h-full shadow-lg z-20">
-        <div className="p-5 border-b border-gray-100 sticky top-0 bg-white z-10">
-          <h1 className="font-bold text-xl text-orange-600 flex items-center gap-2">
-            <Icon name="repeat" size={24} />
+      {/* Mobile Menu Button */}
+      <div className="md:hidden fixed top-0 left-0 w-full z-50 bg-white border-b border-gray-200 p-4 flex items-center justify-between shadow-sm">
+        <div className="flex items-center gap-2 font-bold text-gray-800">
+          <Icon name="cookie" className="text-orange-500" />
+          <span>第10课：while循环</span>
+        </div>
+        <button
+          onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
+          className="p-2 text-gray-600 hover:bg-gray-100 rounded-lg transition-colors"
+        >
+          {isMobileMenuOpen ? <X size={24} /> : <Menu size={24} />}
+        </button>
+      </div>
+
+      {/* Mobile Overlay */}
+      {isMobileMenuOpen && (
+        <div
+          className="fixed inset-0 bg-black/50 z-40 md:hidden"
+          onClick={() => setIsMobileMenuOpen(false)}
+        />
+      )}
+
+      {/* Sidebar */}
+      <div className={`
+        fixed inset-y-0 left-0 z-50 w-64 bg-white border-r border-gray-200 flex flex-col h-full overflow-y-auto transition-transform duration-300 shadow-lg md:shadow-none
+        md:relative md:translate-x-0
+        ${isMobileMenuOpen ? 'translate-x-0' : '-translate-x-full'}
+      `}>
+        <div className="p-6 border-b border-gray-100 bg-orange-50/50 hidden md:block">
+          <h1 className="font-bold text-xl text-gray-800 flex items-center gap-2">
+            <Icon name="cookie" className="text-orange-500" />
             GESP C++ 一级
           </h1>
-          <p className="text-xs text-gray-500 mt-2 bg-orange-50 inline-block px-2 py-1 rounded">第10课：while 循环</p>
+          <p className="text-sm text-gray-500 mt-2">第10课：while 循环</p>
         </div>
-        <nav className="flex-1 p-3 space-y-1 overflow-y-auto">
+        <nav className="flex-1 p-4 space-y-2">
           {sections.map(section => (
             <button
               key={section.id}
-              onClick={() => setActiveSection(section.id)}
-              className={`w-full text-left px-4 py-3 rounded-xl text-sm transition-all flex items-center gap-3
+              onClick={() => {
+                setActiveSection(section.id);
+                setIsMobileMenuOpen(false);
+              }}
+              className={`w-full text-left px-4 py-3 rounded-lg text-sm transition-all flex items-center gap-3 font-medium
                 ${activeSection === section.id
-                  ? 'bg-orange-100 text-orange-800 font-bold shadow-sm ring-1 ring-orange-200'
-                  : 'text-gray-600 hover:bg-gray-100 hover:text-gray-900'}`}
+                  ? 'bg-orange-100 text-orange-700 shadow-sm'
+                  : 'text-gray-600 hover:bg-gray-50 hover:text-gray-900'}`}
             >
-              <span className={`${activeSection === section.id ? 'opacity-100' : 'opacity-60'}`}>
-                <Icon name={section.icon} size={18} />
-              </span>
-              <span className="truncate">{section.title.split('：')[0]}</span>
+              <i className={`p-1 rounded ${activeSection === section.id ? 'bg-white/50' : 'bg-gray-100'}`}>
+                <Icon name={section.icon} size={16} />
+              </i>
+              {section.title}
             </button>
           ))}
         </nav>
         <div className="p-4 border-t border-gray-100 text-xs text-center text-gray-400">
-          逻辑一号老师 © 2025
+          逻辑一号老师 © 2024
         </div>
       </div>
 
-      {/* 主内容区 */}
-      <div className="flex-1 flex flex-col h-full overflow-hidden bg-slate-50 relative">
+      {/* Main Content */}
+      <div className="flex-1 flex flex-col h-full overflow-hidden w-full relative pt-16 md:pt-0">
         {/* 背景装饰 */}
         <div className="absolute top-0 right-0 w-96 h-96 bg-orange-200/20 rounded-full blur-3xl pointer-events-none"></div>
         <div className="absolute bottom-0 left-0 w-96 h-96 bg-indigo-200/20 rounded-full blur-3xl pointer-events-none"></div>

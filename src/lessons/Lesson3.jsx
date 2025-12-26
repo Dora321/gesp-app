@@ -12,7 +12,9 @@ import {
   CheckCircle,
   XCircle,
   Play,
-  Trophy
+  Trophy,
+  Menu,
+  X
 } from 'lucide-react';
 
 // --- 课件内容数据 ---
@@ -46,14 +48,41 @@ const Icon = ({ name, size = 20, className = "" }) => {
 
 export default function Lesson3() {
   const [activeSection, setActiveSection] = useState(1);
+  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
 
   // 获得当前组件
   const ActiveComponent = sections.find(s => s.id === activeSection)?.component || (() => <div>Coming Soon</div>);
 
   return (
     <div className="flex h-screen overflow-hidden bg-slate-50 font-sans text-slate-800">
+      {/* Mobile Menu Button - Fixed Top */}
+      <div className="md:hidden fixed top-0 left-0 w-full z-50 bg-white border-b border-slate-200 p-4 flex items-center justify-between shadow-sm">
+        <h1 className="text-lg font-bold text-blue-700 flex items-center gap-2">
+          <span className="bg-blue-600 text-white px-2 py-0.5 rounded text-xs">C++</span>
+          <span>一级趣味课堂</span>
+        </h1>
+        <button
+          onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
+          className="p-2 text-slate-600 hover:bg-slate-100 rounded-lg"
+        >
+          {isMobileMenuOpen ? <X size={24} /> : <Menu size={24} />}
+        </button>
+      </div>
+
+      {/* Sidebar Overlay (Mobile) */}
+      {isMobileMenuOpen && (
+        <div
+          className="fixed inset-0 bg-black/50 z-40 md:hidden"
+          onClick={() => setIsMobileMenuOpen(false)}
+        />
+      )}
+
       {/* 侧边栏 */}
-      <div className="w-64 bg-white border-r border-slate-200 flex flex-col h-full shadow-lg z-10">
+      <div className={`
+        fixed inset-y-0 left-0 z-50 w-64 bg-white border-r border-slate-200 flex flex-col h-full shadow-lg z-40 transition-transform duration-300
+        md:relative md:translate-x-0
+        ${isMobileMenuOpen ? 'translate-x-0' : '-translate-x-full'}
+      `}>
         <div className="p-5 border-b border-slate-100 bg-gradient-to-br from-blue-50 to-white">
           <h1 className="text-xl font-bold flex items-center gap-2 text-blue-700">
             <Trophy size={24} className="text-yellow-500" />
@@ -66,7 +95,10 @@ export default function Lesson3() {
           {sections.map((section) => (
             <button
               key={section.id}
-              onClick={() => setActiveSection(section.id)}
+              onClick={() => {
+                setActiveSection(section.id);
+                setIsMobileMenuOpen(false);
+              }}
               className={`w-full text-left px-5 py-3 rounded-lg transition-all duration-200 flex items-center gap-3 group
                 ${activeSection === section.id
                   ? 'bg-blue-100 text-blue-800 font-bold shadow-sm ring-1 ring-blue-200'
@@ -90,7 +122,7 @@ export default function Lesson3() {
       </div>
 
       {/* 主内容区 */}
-      <div className="flex-1 flex flex-col h-full overflow-hidden relative">
+      <div className="flex-1 flex flex-col h-full overflow-hidden relative pt-16 md:pt-0">
         {/* 顶部导航 */}
         <header className="bg-white border-b border-slate-200 shadow-sm h-16 flex items-center justify-between px-6 z-10 absolute top-0 left-0 right-0 w-full bg-opacity-90 backdrop-blur-sm">
           <div className="flex items-center gap-3">

@@ -4,7 +4,7 @@ import {
   Cpu, Save, FileText, Terminal, CheckCircle, XCircle,
   Brain, BookOpen, User, ChevronDown, ChevronRight,
   RefreshCw, Coffee, HardDrive, AppWindow, Calculator,
-  AlertTriangle, ArrowRight, Sparkles, Layout, X
+  AlertTriangle, ArrowRight, Sparkles, Layout, X, Menu
 } from 'lucide-react';
 
 // --- 辅助组件 (保留原 Lesson1 的核心交互组件) ---
@@ -651,14 +651,41 @@ const sections = [
 // --- 主组件 ---
 const Lesson1 = () => {
   const [activeSection, setActiveSection] = useState(1);
+  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
 
   // 获取当前组件
   const ActiveComponent = sections.find(s => s.id === activeSection)?.component || (() => <div className="p-10">内容建设中...</div>);
 
   return (
     <div className="flex h-screen overflow-hidden bg-slate-50 font-sans text-slate-800">
+      {/* Mobile Menu Button - Fixed Top */}
+      <div className="md:hidden fixed top-0 left-0 w-full z-50 bg-white border-b border-slate-200 p-4 flex items-center justify-between shadow-sm">
+        <h1 className="text-lg font-bold text-blue-700 flex items-center gap-2">
+          <span className="bg-blue-600 text-white px-2 py-0.5 rounded text-xs">C++</span>
+          <span>一级趣味课堂</span>
+        </h1>
+        <button
+          onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
+          className="p-2 text-slate-600 hover:bg-slate-100 rounded-lg"
+        >
+          {isMobileMenuOpen ? <X size={24} /> : <Menu size={24} />}
+        </button>
+      </div>
+
+      {/* Sidebar Overlay (Mobile) */}
+      {isMobileMenuOpen && (
+        <div
+          className="fixed inset-0 bg-black/50 z-40 md:hidden"
+          onClick={() => setIsMobileMenuOpen(false)}
+        />
+      )}
+
       {/* 侧边栏 */}
-      <div className="w-64 bg-white border-r border-slate-200 flex flex-col h-full shadow-lg z-20 flex-shrink-0">
+      <div className={`
+        fixed inset-y-0 left-0 z-50 w-64 bg-white border-r border-slate-200 flex flex-col h-full shadow-lg flex-shrink-0 transition-transform duration-300
+        md:relative md:translate-x-0
+        ${isMobileMenuOpen ? 'translate-x-0' : '-translate-x-full'}
+      `}>
         <div className="p-5 border-b border-slate-100 bg-gradient-to-br from-blue-50 to-white">
           <h1 className="text-lg font-bold flex items-center gap-2 text-blue-700">
             <span className="bg-blue-600 text-white p-1 rounded">C++</span>
@@ -671,7 +698,10 @@ const Lesson1 = () => {
           {sections.map((section) => (
             <button
               key={section.id}
-              onClick={() => setActiveSection(section.id)}
+              onClick={() => {
+                setActiveSection(section.id);
+                setIsMobileMenuOpen(false);
+              }}
               className={`w-full text-left px-5 py-3 rounded-lg transition-all duration-200 flex items-center gap-3 group relative
                 ${activeSection === section.id
                   ? 'bg-blue-100 text-blue-800 font-bold shadow-sm ring-1 ring-blue-200'
@@ -695,7 +725,7 @@ const Lesson1 = () => {
       </div>
 
       {/* 主内容区 */}
-      <div className="flex-1 flex flex-col h-full overflow-hidden relative">
+      <div className="flex-1 flex flex-col h-full overflow-hidden relative pt-16 md:pt-0">
         {/* 顶部导航 */}
         <header className="bg-white border-b border-slate-200 shadow-sm h-16 flex items-center justify-between px-6 z-10 flex-shrink-0">
           <div className="flex items-center gap-3">

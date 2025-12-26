@@ -19,7 +19,9 @@ import {
     Binary,
     Radar,
     AlertTriangle,
-    Search
+    Search,
+    Menu,
+    X
 } from 'lucide-react';
 
 // --- 图标映射组件 ---
@@ -549,6 +551,7 @@ const PitfallGuide = () => {
 // --- 主应用 ---
 export default function App() {
     const [activeSection, setActiveSection] = useState(1);
+    const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
 
     const nextSection = () => {
         if (activeSection < sections.length) setActiveSection(activeSection + 1);
@@ -844,8 +847,8 @@ export default function App() {
                 </div>
             </div>
 
-            {/* 主内容区 */}
-            <div className="flex-1 flex flex-col h-full overflow-hidden bg-slate-50 relative">
+            {/* Main Content */}
+            <div className="flex-1 flex flex-col h-full overflow-hidden w-full relative pt-16 md:pt-0">
                 {/* 背景装饰 */}
                 <div className="absolute top-0 right-0 w-96 h-96 bg-blue-200/20 rounded-full blur-3xl pointer-events-none"></div>
                 <div className="absolute bottom-0 left-0 w-96 h-96 bg-indigo-200/20 rounded-full blur-3xl pointer-events-none"></div>

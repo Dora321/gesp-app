@@ -13,7 +13,9 @@ import {
   Code,
   HelpCircle,
   Thermometer,
-  ArrowDown
+  ArrowDown,
+  Menu,
+  X
 } from 'lucide-react';
 
 // --- 图标映射组件 ---
@@ -406,6 +408,7 @@ const Quiz = ({ question, options, correctIndex, explanation }) => {
 // --- 主应用 ---
 export default function App() {
   const [activeSection, setActiveSection] = useState(1);
+  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
 
   const nextSection = () => {
     if (activeSection < sections.length) setActiveSection(activeSection + 1);
@@ -712,8 +715,34 @@ export default function App() {
         @keyframes slideIn { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
       `}</style>
 
+      {/* Mobile Menu Button - Fixed Top */}
+      <div className="md:hidden fixed top-0 left-0 w-full z-50 bg-white border-b border-gray-200 p-4 flex items-center justify-between shadow-sm">
+        <h1 className="text-lg font-bold text-orange-600 flex items-center gap-2">
+          <Icon name="book" size={24} />
+          GESP C++ 一级
+        </h1>
+        <button
+          onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
+          className="p-2 text-gray-600 hover:bg-gray-100 rounded-lg"
+        >
+          {isMobileMenuOpen ? <X size={24} /> : <Menu size={24} />}
+        </button>
+      </div>
+
+      {/* Sidebar Overlay (Mobile) */}
+      {isMobileMenuOpen && (
+        <div
+          className="fixed inset-0 bg-black/50 z-40 md:hidden"
+          onClick={() => setIsMobileMenuOpen(false)}
+        />
+      )}
+
       {/* 侧边栏 */}
-      <div className="w-64 bg-white border-r border-gray-200 flex flex-col h-full shadow-lg z-20">
+      <div className={`
+        fixed inset-y-0 left-0 z-50 w-64 bg-white border-r border-gray-200 flex flex-col h-full shadow-lg z-20 transition-transform duration-300
+        md:relative md:translate-x-0
+        ${isMobileMenuOpen ? 'translate-x-0' : '-translate-x-full'}
+      `}>
         <div className="p-5 border-b border-gray-100 sticky top-0 bg-white z-10">
           <h1 className="font-bold text-xl text-orange-600 flex items-center gap-2">
             <Icon name="book" size={24} />
@@ -725,7 +754,10 @@ export default function App() {
           {sections.map(section => (
             <button
               key={section.id}
-              onClick={() => setActiveSection(section.id)}
+              onClick={() => {
+                setActiveSection(section.id);
+                setIsMobileMenuOpen(false);
+              }}
               className={`w-full text-left px-4 py-3 rounded-xl text-sm transition-all flex items-center gap-3
                 ${activeSection === section.id
                   ? 'bg-orange-50 text-orange-700 font-bold shadow-sm ring-1 ring-orange-200'
@@ -744,7 +776,7 @@ export default function App() {
       </div>
 
       {/* 主内容区 */}
-      <div className="flex-1 flex flex-col h-full overflow-hidden bg-slate-50 relative">
+      <div className="flex-1 flex flex-col h-full overflow-hidden bg-slate-50 relative pt-16 md:pt-0">
         {/* 背景装饰 */}
         <div className="absolute top-0 right-0 w-96 h-96 bg-orange-200/20 rounded-full blur-3xl pointer-events-none"></div>
         <div className="absolute bottom-0 left-0 w-96 h-96 bg-purple-200/20 rounded-full blur-3xl pointer-events-none"></div>
