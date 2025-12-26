@@ -1,9 +1,10 @@
 import React, { useState } from 'react';
-import { Book, Calculator, Code, AlertTriangle, Play, ChevronRight, CheckCircle, Info, Copy, Check, Star, Zap, Trophy, RefreshCw, XCircle, MousePointerClick, Unlock, Lightbulb, Target, Clock, Award, FileCode, ArrowRightLeft, Eye, SkipForward } from 'lucide-react';
+import { Book, Calculator, Code, AlertTriangle, Play, ChevronRight, CheckCircle, Info, Copy, Check, Star, Zap, Trophy, RefreshCw, XCircle, MousePointerClick, Unlock, Lightbulb, Target, Clock, Award, FileCode, ArrowRightLeft, Eye, SkipForward, Menu, X } from 'lucide-react';
 
 const GESPCourseware = () => {
   const [activeTab, setActiveTab] = useState('overview');
   const [selectedTopic, setSelectedTopic] = useState(0);
+  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
 
   // Navigation Items
   const navItems = [
@@ -33,8 +34,35 @@ const GESPCourseware = () => {
   return (
     <div className="flex h-screen bg-slate-50 text-slate-800 font-sans">
       {/* Sidebar */}
-      <div className="w-64 bg-white border-r border-slate-200 flex-shrink-0 flex flex-col">
-        <div className="p-6 border-b border-slate-100">
+      {/* Mobile Menu Button - Fixed Top */}
+      <div className="md:hidden fixed top-0 left-0 w-full z-50 bg-white border-b border-slate-200 p-4 flex items-center justify-between shadow-sm">
+        <h1 className="text-lg font-bold text-indigo-600 flex items-center gap-2">
+          <span className="bg-indigo-600 text-white px-2 py-0.5 rounded text-xs">C++</span>
+          GESP 一级
+        </h1>
+        <button
+          onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
+          className="p-2 text-slate-600 hover:bg-slate-100 rounded-lg"
+        >
+          {isMobileMenuOpen ? <X size={24} /> : <Menu size={24} />}
+        </button>
+      </div>
+
+      {/* Sidebar Overlay (Mobile) */}
+      {isMobileMenuOpen && (
+        <div
+          className="fixed inset-0 bg-black/50 z-40 md:hidden"
+          onClick={() => setIsMobileMenuOpen(false)}
+        />
+      )}
+
+      {/* Sidebar */}
+      <div className={`
+        fixed inset-y-0 left-0 z-50 w-64 bg-white border-r border-slate-200 flex flex-col transition-transform duration-300
+        md:relative md:translate-x-0
+        ${isMobileMenuOpen ? 'translate-x-0' : '-translate-x-full'}
+      `}>
+        <div className="p-6 border-b border-slate-100 hidden md:block">
           <h1 className="text-xl font-bold text-indigo-600 flex items-center gap-2">
             <span className="bg-indigo-600 text-white p-1 rounded text-sm">C++</span>
             GESP 一级
@@ -45,7 +73,10 @@ const GESPCourseware = () => {
           {navItems.map((item) => (
             <button
               key={item.id}
-              onClick={() => setActiveTab(item.id)}
+              onClick={() => {
+                setActiveTab(item.id);
+                setIsMobileMenuOpen(false);
+              }}
               className={`w-full flex items-center gap-3 px-4 py-3 rounded-lg transition-colors ${activeTab === item.id
                 ? 'bg-indigo-50 text-indigo-700 font-medium'
                 : 'text-slate-600 hover:bg-slate-50'
@@ -62,8 +93,9 @@ const GESPCourseware = () => {
       </div>
 
       {/* Main Content */}
-      <main className="flex-1 overflow-y-auto">
-        <div className="max-w-5xl mx-auto p-8">
+      {/* Main Content */}
+      <main className="flex-1 overflow-y-auto pt-16 md:pt-0">
+        <div className="max-w-5xl mx-auto p-4 md:p-8">
           {renderContent()}
         </div>
       </main>

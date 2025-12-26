@@ -512,21 +512,19 @@ export default function Home() {
                                 {lessons.map((lesson, index) => {
                                     const isEven = index % 2 === 0;
                                     // Calculate position for winding effect
-                                    const style = {
-                                        top: `${index * 120}px`,
-                                        left: isEven ? '5%' : '55%',
-                                    };
-
                                     return (
                                         <div
                                             key={lesson.id}
                                             onClick={() => lesson.status !== 'locked' && navigate(lesson.path)}
                                             className={`
-                      relative flex items-center gap-6 md:absolute md:w-[400px] transition-all duration-500 group
+                      flex items-center gap-6 transition-all duration-500 group
+                      relative md:absolute md:w-[400px]
+                      md:top-[var(--desktop-top)]
+                      ${isEven ? 'md:left-[5%]' : 'md:left-[55%]'}
                       ${lesson.status === 'locked' ? 'cursor-not-allowed opacity-60 grayscale' : 'cursor-pointer hover:scale-105 z-10'}
                     `}
                                             style={{
-                                                ...(window.innerWidth >= 768 ? style : {})
+                                                '--desktop-top': `${index * 120}px`
                                             }}
                                         >
                                             {/* Node Circle */}
