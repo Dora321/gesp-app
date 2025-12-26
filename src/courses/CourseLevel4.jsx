@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { BookOpen, Code, Terminal, CheckCircle, AlertTriangle, Play, ChevronRight, Calculator, Cpu, Hash, Trophy, Eye, Lightbulb, Copy, Check, Unlock, ArrowRight, Grid, Info, ArrowRightLeft, RefreshCw, Clock, Target, XCircle, Layout, GitCommit, Layers, Box, AlignJustify } from 'lucide-react';
+import { BookOpen, Code, Terminal, CheckCircle, AlertTriangle, Play, ChevronRight, Calculator, Cpu, Hash, Trophy, Eye, Lightbulb, Copy, Check, Unlock, ArrowRight, Grid, Info, ArrowRightLeft, RefreshCw, Clock, Target, XCircle, Layout, GitCommit, Layers, Box, AlignJustify, Menu, X } from 'lucide-react';
 
 // --- Shared Components ---
 const Card = ({ children, className = "" }) => (
@@ -853,6 +853,7 @@ const PracticeModule = () => {
 
 export default function CourseLevel4() {
   const [activeTab, setActiveTab] = useState('overview');
+  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
 
   const menuItems = [
     { id: 'overview', label: '知识体系', icon: BookOpen },
@@ -870,8 +871,34 @@ export default function CourseLevel4() {
 
   return (
     <div className="flex h-screen bg-slate-50 overflow-hidden font-sans text-slate-900">
+      {/* Mobile Menu Button - Fixed Top */}
+      <div className="md:hidden fixed top-0 left-0 w-full z-50 bg-white border-b border-slate-200 p-4 flex items-center justify-between shadow-sm">
+        <h1 className="text-lg font-bold text-slate-800 flex items-center gap-2">
+          <span className="bg-indigo-600 text-white px-2 py-0.5 rounded text-xs">C++</span>
+          GESP 四级
+        </h1>
+        <button
+          onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
+          className="p-2 text-slate-600 hover:bg-slate-100 rounded-lg"
+        >
+          {isMobileMenuOpen ? <X size={24} /> : <Menu size={24} />}
+        </button>
+      </div>
+
+      {/* Sidebar Overlay (Mobile) */}
+      {isMobileMenuOpen && (
+        <div
+          className="fixed inset-0 bg-black/50 z-40 md:hidden"
+          onClick={() => setIsMobileMenuOpen(false)}
+        />
+      )}
+
       {/* Sidebar */}
-      <aside className="w-64 bg-white border-r border-slate-200 flex flex-col shrink-0">
+      <aside className={`
+        fixed inset-y-0 left-0 z-50 w-64 bg-white border-r border-slate-200 flex flex-col shrink-0 transition-transform duration-300
+        md:relative md:translate-x-0
+        ${isMobileMenuOpen ? 'translate-x-0' : '-translate-x-full'}
+      `}>
         <div className="p-6 border-b border-slate-100">
           <div className="flex items-center gap-2 mb-2">
             <div className="w-8 h-8 bg-indigo-600 rounded-lg flex items-center justify-center text-white font-bold shadow-md">
@@ -886,7 +913,10 @@ export default function CourseLevel4() {
           {menuItems.map(item => (
             <button
               key={item.id}
-              onClick={() => setActiveTab(item.id)}
+              onClick={() => {
+                setActiveTab(item.id);
+                setIsMobileMenuOpen(false);
+              }}
               className={`w-full flex items-center gap-3 px-4 py-3 rounded-lg text-sm font-medium transition-all duration-200
                                 ${activeTab === item.id
                   ? 'bg-indigo-50 text-indigo-700 shadow-sm border border-indigo-100'
@@ -906,7 +936,7 @@ export default function CourseLevel4() {
       </aside>
 
       {/* Main Content Area */}
-      <div className="flex-1 flex flex-col min-w-0">
+      <div className="flex-1 flex flex-col min-w-0 pt-16 md:pt-0">
         <header className="h-16 bg-white border-b border-slate-200 flex items-center px-8 justify-between shrink-0">
           <h2 className="text-lg font-bold text-slate-800 flex items-center gap-2">
             {activeTabInfo?.icon && <activeTabInfo.icon className="text-indigo-600" size={24} />}
