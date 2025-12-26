@@ -30,6 +30,7 @@ import PythonLevel1 from './courses/python/level1/PythonLevel1';
 import PythonLevel2 from './courses/python/level2/PythonLevel2';
 import PythonAI from './courses/python/ai/PythonAI';
 import PythonCrawler from './courses/python/crawler/PythonCrawler';
+import ClassroomPoints from './components/ClassroomPoints';
 
 function App() {
   return (
@@ -71,6 +72,7 @@ function App() {
         <Route path="/lesson15" element={<Lesson15 />} />
         <Route path="/lesson16" element={<Lesson16 />} />
       </Routes>
+      <ClassroomPoints />
     </BrowserRouter>
   );
 }

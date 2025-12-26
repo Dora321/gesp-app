@@ -324,7 +324,9 @@ export default function Home() {
                     >
                         <img src={`${import.meta.env.BASE_URL}logo.jpg`} alt="Logo" className="w-full h-full object-cover" />
                     </div>
-                    <h1 className="font-bold text-xl text-slate-100 tracking-tight cursor-pointer" onClick={() => navigate('/')}>代码冒险岛</h1>
+                    <h1 className="font-bold text-xl text-slate-100 tracking-tight cursor-pointer mr-auto" onClick={() => navigate('/')}>代码冒险岛</h1>
+
+
                 </div>
             </header>
 
