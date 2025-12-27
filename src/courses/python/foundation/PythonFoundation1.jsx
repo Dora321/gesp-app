@@ -1033,7 +1033,271 @@ const StorySlide = () => {
     );
 };
 
-// 11. Challenge
+
+
+// 12. Coding Practice (NEW - Hands-on Programming)
+const CodingPracticeSlide = () => {
+    const exercises = [
+        {
+            id: 1,
+            title: '打印问候语',
+            description: '编写代码打印 "你好，Python！"',
+            starterCode: '# 在这里写你的代码\n',
+            solution: 'print("你好，Python!")',
+            testCases: [
+                { input: '', expected: '你好，Python!', description: '输出问候语' }
+            ],
+            hint: '使用 print() 函数，括号内用引号包裹文字'
+        },
+        {
+            id: 2,
+            title: '变量赋值',
+            description: '创建一个名字叫 name 的变量，值为你的名字，然后打印它',
+            starterCode: '# 创建变量并打印\n',
+            solution: 'name = "小明"\nprint(name)',
+            testCases: [
+                { input: '', expected: /^.+$/, description: '打印任意非空字符串' }
+            ],
+            hint: '使用 = 赋值，例如：name = "你的名字"'
+        },
+        {
+            id: 3,
+            title: '简单计算',
+            description: '计算 10 + 20 并打印结果',
+            starterCode: '# 计算并打印\n',
+            solution: 'print(10 + 20)',
+            testCases: [
+                { input: '', expected: '30', description: '输出 30' }
+            ],
+            hint: 'print() 里面可以直接写算式'
+        },
+        {
+            id: 4,
+            title: '条件判断',
+            description: '如果变量 age 大于等于 18，打印 "成年"，否则打印 "未成年"',
+            starterCode: 'age = 20\n# 写条件判断\n',
+            solution: 'age = 20\nif age >= 18:\n    print("成年")\nelse:\n    print("未成年")',
+            testCases: [
+                { input: '', expected: '成年', description: 'age=20 应输出 "成年"' }
+            ],
+            hint: '使用 if-else 结构，注意缩进（4个空格）'
+        }
+    ];
+
+    const [currentExercise, setCurrentExercise] = useState(0);
+    const [code, setCode] = useState(exercises[0].starterCode);
+    const [output, setOutput] = useState('');
+    const [status, setStatus] = useState('idle'); // idle, running, success, error
+    const [showHint, setShowHint] = useState(false);
+
+    const exercise = exercises[currentExercise];
+
+    const runCode = () => {
+        setStatus('running');
+        setOutput('');
+
+        setTimeout(() => {
+            try {
+                // 模拟 Python 执行（简化版）
+                let result = '';
+
+                // 简单的输出捕获（这是一个简化的模拟）
+                if (code.includes('print')) {
+                    const printMatches = code.match(/print\((.*?)\)/g);
+                    if (printMatches) {
+                        printMatches.forEach(match => {
+                            const content = match.match(/print\((.*?)\)/)[1];
+                            // 移除引号并求值简单表达式
+                            let value = content.replace(/["']/g, '');
+
+                            // 简单计算
+                            if (/^\d+\s*[\+\-\*\/]\s*\d+$/.test(value)) {
+                                try {
+                                    value = eval(value).toString();
+                                } catch (e) {
+                                    // if eval fails, keep original value
+                                }
+                            }
+
+                            result += value + '\n';
+                        });
+                        result = result.trim();
+                    }
+                }
+
+                setOutput(result);
+
+                // 检查测试用例
+                const testCase = exercise.testCases[0];
+                let passed = false;
+
+                if (testCase.expected instanceof RegExp) {
+                    passed = testCase.expected.test(result);
+                } else {
+                    passed = result === testCase.expected;
+                }
+
+                setStatus(passed ? 'success' : 'error');
+            } catch (error) {
+                setOutput('❌ 代码执行出错');
+                setStatus('error');
+            }
+        }, 500);
+    };
+
+    const nextExercise = () => {
+        if (currentExercise < exercises.length - 1) {
+            const next = currentExercise + 1;
+            setCurrentExercise(next);
+            setCode(exercises[next].starterCode);
+            setOutput('');
+            setStatus('idle');
+            setShowHint(false);
+        }
+    };
+
+    const resetCode = () => {
+        setCode(exercise.starterCode);
+        setOutput('');
+        setStatus('idle');
+    };
+
+    return (
+        <div className="space-y-6 animate-in fade-in slide-in-from-bottom-4 duration-500">
+            <div className="bg-gradient-to-r from-green-100 to-emerald-100 p-6 rounded-2xl border-2 border-green-200 text-green-900">
+                <h2 className="text-2xl font-bold mb-4 flex items-center gap-2">
+                    <Code className="text-green-600" />
+                    动手编程 - 实战练习
+                </h2>
+                <p className="text-lg">
+                    💻 现在轮到你写代码了！完成下面的编程练习，巩固学到的知识。
+                </p>
+            </div>
+
+            {/* Progress */}
+            <div className="flex items-center justify-between bg-white p-4 rounded-xl border border-slate-200">
+                <div className="flex items-center gap-3">
+                    <div className="text-sm font-bold text-slate-600">
+                        练习进度: {currentExercise + 1} / {exercises.length}
+                    </div>
+                    <div className="flex gap-2">
+                        {exercises.map((_, idx) => (
+                            <div
+                                key={idx}
+                                className={`w-3 h-3 rounded-full ${idx === currentExercise ? 'bg-green-600' :
+                                    idx < currentExercise ? 'bg-green-300' : 'bg-slate-200'
+                                    }`}
+                            />
+                        ))}
+                    </div>
+                </div>
+                {status === 'success' && currentExercise < exercises.length - 1 && (
+                    <Button onClick={nextExercise} variant="success">
+                        下一题 →
+                    </Button>
+                )}
+            </div>
+
+            <div className="grid md:grid-cols-2 gap-6">
+                {/* Exercise Description */}
+                <div className="space-y-4">
+                    <div className="bg-white p-6 rounded-2xl shadow-lg border border-slate-100">
+                        <h3 className="font-bold text-lg text-slate-800 mb-2">
+                            📝 {exercise.title}
+                        </h3>
+                        <p className="text-slate-600 mb-4">{exercise.description}</p>
+
+                        <div className="bg-blue-50 p-3 rounded-lg text-sm">
+                            <div className="font-bold text-blue-700 mb-1">✓ 测试要求:</div>
+                            <div className="text-blue-600">{exercise.testCases[0].description}</div>
+                        </div>
+
+                        {showHint && (
+                            <div className="mt-3 bg-yellow-50 border-l-4 border-yellow-400 p-3 rounded-r-lg animate-in fade-in">
+                                <div className="font-bold text-yellow-700 text-sm">💡 提示:</div>
+                                <div className="text-yellow-600 text-sm">{exercise.hint}</div>
+                            </div>
+                        )}
+
+                        <button
+                            onClick={() => setShowHint(!showHint)}
+                            className="mt-3 text-sm text-blue-600 hover:text-blue-700 font-medium"
+                        >
+                            {showHint ? '隐藏' : '显示'}提示
+                        </button>
+                    </div>
+
+                    {/* Controls */}
+                    <div className="flex gap-2">
+                        <Button onClick={runCode} disabled={status === 'running'} variant="primary" className="flex-1">
+                            {status === 'running' ? '运行中...' : '▶ 运行代码'}
+                        </Button>
+                        <Button onClick={resetCode} variant="secondary">
+                            🔄 重置
+                        </Button>
+                    </div>
+                </div>
+
+                {/* Code Editor */}
+                <div className="space-y-4">
+                    <div className="bg-slate-900 rounded-2xl overflow-hidden shadow-2xl">
+                        <div className="bg-slate-800 px-4 py-2 flex items-center justify-between border-b border-slate-700">
+                            <span className="text-xs text-green-400 font-mono">editor.py</span>
+                            <span className="text-xs text-slate-400">Python</span>
+                        </div>
+                        <textarea
+                            value={code}
+                            onChange={(e) => setCode(e.target.value)}
+                            className="w-full h-64 p-4 bg-slate-900 text-green-400 font-mono text-sm resize-none focus:outline-none"
+                            placeholder="在这里写代码..."
+                            spellCheck={false}
+                        />
+                    </div>
+
+                    {/* Output */}
+                    <div className="bg-black rounded-2xl overflow-hidden shadow-2xl">
+                        <div className="bg-slate-800 px-4 py-2 border-b border-slate-700">
+                            <span className="text-xs text-green-400 font-mono">输出</span>
+                        </div>
+                        <div className="h-32 p-4 font-mono text-sm overflow-y-auto">
+                            {status === 'idle' && (
+                                <div className="text-slate-500 italic">点击"运行代码"查看输出...</div>
+                            )}
+                            {status === 'running' && (
+                                <div className="text-yellow-400">执行中...</div>
+                            )}
+                            {output && (
+                                <div className={status === 'success' ? 'text-green-400' : 'text-red-400'}>
+                                    {output}
+                                </div>
+                            )}
+                            {status === 'success' && (
+                                <div className="text-green-400 mt-2">
+                                    ✓ 测试通过！做得很好！
+                                </div>
+                            )}
+                            {status === 'error' && output && (
+                                <div className="text-orange-400 mt-2">
+                                    ✗ 输出不符合预期，再试试看
+                                </div>
+                            )}
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            {currentExercise === exercises.length - 1 && status === 'success' && (
+                <div className="bg-gradient-to-r from-yellow-50 to-orange-50 border-2 border-yellow-300 rounded-2xl p-6 text-center animate-in zoom-in">
+                    <div className="text-6xl mb-3">🎉</div>
+                    <h3 className="text-2xl font-bold text-yellow-800 mb-2">恭喜完成所有练习！</h3>
+                    <p className="text-yellow-700">你已经掌握了基础编程技能，继续保持！</p>
+                </div>
+            )}
+        </div>
+    );
+};
+
+// 13. Challenge
 const ChallengeSlide = () => {
     const [answers, setAnswers] = useState({});
     const [score, setScore] = useState(null);
@@ -1239,7 +1503,8 @@ const sections = [
     { id: 9, title: '捉虫特工队', icon: Bug, component: BugHuntSlide },
     { id: 10, title: 'ASCII 艺术', icon: Palette, component: ASCIIArtSlide },
     { id: 11, title: '故事生成器', icon: BookOpen, component: StorySlide },
-    { id: 12, title: '萌新毕业考', icon: HelpCircle, component: ChallengeSlide },
+    { id: 12, title: '动手编程', icon: Code, component: CodingPracticeSlide },
+    { id: 13, title: '萌新毕业考', icon: HelpCircle, component: ChallengeSlide },
 ];
 
 

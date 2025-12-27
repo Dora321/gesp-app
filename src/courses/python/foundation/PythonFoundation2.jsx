@@ -791,6 +791,277 @@ const ChallengeSlide = () => {
     );
 }
 
+
+
+// 7. Coding Practice (NEW)
+const CodingPracticeSlide = () => {
+    const exercises = [
+        {
+            id: 1,
+            title: '比较大小',
+            description: '判断 10 是否大于 5，打印结果 (True/False)',
+            starterCode: '# 打印比较结果\n',
+            solution: 'print(10 > 5)',
+            testCases: [
+                { input: '', expected: 'True', description: '输出 True' }
+            ],
+            hint: '直接使用 > 符号，如 print(a > b)'
+        },
+        {
+            id: 2,
+            title: '正数判断',
+            description: '如果 num > 0 打印 "正数"，否则打印 "非正数"',
+            starterCode: 'num = -5\n# 写条件判断\n',
+            solution: 'num = -5\nif num > 0:\n    print("正数")\nelse:\n    print("非正数")',
+            testCases: [
+                { input: '', expected: '非正数', description: 'num=-5 应输出 "非正数"' }
+            ],
+            hint: '使用 if-else 结构，注意冒号和缩进'
+        },
+        {
+            id: 3,
+            title: '循环计数',
+            description: '使用 for 循环打印 0 到 4 (共5个数字)',
+            starterCode: '# 使用 range()\n',
+            solution: 'for i in range(5):\n    print(i)',
+            testCases: [
+                { input: '', expected: '0\n1\n2\n3\n4', description: '依次输出 0-4' }
+            ],
+            hint: 'range(5) 会生成 0,1,2,3,4'
+        },
+        {
+            id: 4,
+            title: '倒计时',
+            description: '使用 while 循环打印 3, 2, 1',
+            starterCode: 'count = 3\n# while 循环\n',
+            solution: 'count = 3\nwhile count > 0:\n    print(count)\n    count = count - 1',
+            testCases: [
+                { input: '', expected: '3\n2\n1', description: '倒序输出 3,2,1' }
+            ],
+            hint: '每次循环记得减少 count 的值'
+        }
+    ];
+
+    const [currentExercise, setCurrentExercise] = useState(0);
+    const [code, setCode] = useState(exercises[0].starterCode);
+    const [output, setOutput] = useState('');
+    const [status, setStatus] = useState('idle');
+    const [showHint, setShowHint] = useState(false);
+
+    const exercise = exercises[currentExercise];
+
+    const runCode = () => {
+        setStatus('running');
+        setOutput('');
+
+        setTimeout(() => {
+            try {
+                // 模拟 Python 执行
+                let result = '';
+
+                // 简单的代码解析和执行模拟
+                const lines = code.split('\n');
+                let outputBuffer = [];
+                let loopLimit = 100; // 防止死循环
+
+                // 解析器状态
+                let variables = {};
+
+                // 极简 Python 解释器模拟 (针对预设题型优化)
+                // 注意：这是一个非常简单的模拟，仅用于演示教学目的，不能处理复杂逻辑
+                // 实际生产环境应该使用 Skulpt 或 Pyodide
+
+                if (code.includes('print(10 > 5)')) {
+                    outputBuffer.push('True');
+                } else if (code.includes('if num > 0')) {
+                    // 提取变量 num
+                    const numMatch = code.match(/num\s*=\s*(-?\d+)/);
+                    const num = numMatch ? parseInt(numMatch[1]) : 0;
+                    if (num > 0) outputBuffer.push('正数');
+                    else outputBuffer.push('非正数');
+                } else if (code.includes('range(5)')) {
+                    outputBuffer.push('0\n1\n2\n3\n4');
+                } else if (code.includes('while count > 0')) {
+                    // 检查是否包含递减逻辑
+                    if (code.includes('count = count - 1') || code.includes('count -= 1')) {
+                        outputBuffer.push('3\n2\n1');
+                    } else {
+                        outputBuffer.push('Error: 死循环! 记得更新 count');
+                    }
+                } else {
+                    // 通用 print 处理
+                    const printMatches = code.matchAll(/print\((.*?)\)/g);
+                    for (const match of printMatches) {
+                        let val = match[1].replace(/["']/g, '');
+                        outputBuffer.push(val);
+                    }
+                }
+
+                result = outputBuffer.join('\n');
+                setOutput(result);
+
+                // 验证结果
+                const testCase = exercise.testCases[0];
+                let passed = false;
+                if (testCase.expected instanceof RegExp) {
+                    passed = testCase.expected.test(result);
+                } else {
+                    passed = result.trim() === testCase.expected.trim();
+                }
+
+                setStatus(passed ? 'success' : 'error');
+
+            } catch (error) {
+                setOutput('执行出错');
+                setStatus('error');
+            }
+        }, 600);
+    };
+
+    const nextExercise = () => {
+        if (currentExercise < exercises.length - 1) {
+            const next = currentExercise + 1;
+            setCurrentExercise(next);
+            setCode(exercises[next].starterCode);
+            setOutput('');
+            setStatus('idle');
+            setShowHint(false);
+        }
+    };
+
+    const resetCode = () => {
+        setCode(exercise.starterCode);
+        setOutput('');
+        setStatus('idle');
+    };
+
+    return (
+        <div className="space-y-6 animate-in fade-in slide-in-from-bottom-4 duration-500">
+            <div className="bg-gradient-to-r from-blue-100 to-cyan-100 p-6 rounded-2xl border-2 border-blue-200 text-blue-900">
+                <h2 className="text-2xl font-bold mb-4 flex items-center gap-2">
+                    <Code className="text-blue-600" />
+                    代码练兵场
+                </h2>
+                <p className="text-lg">
+                    🧠 logic 只有写成代码才有用！完成挑战，证明你的逻辑能力。
+                </p>
+            </div>
+
+            {/* Progress */}
+            <div className="flex items-center justify-between bg-white p-4 rounded-xl border border-slate-200">
+                <div className="flex items-center gap-3">
+                    <div className="text-sm font-bold text-slate-600">
+                        练习进度: {currentExercise + 1} / {exercises.length}
+                    </div>
+                    <div className="flex gap-2">
+                        {exercises.map((_, idx) => (
+                            <div
+                                key={idx}
+                                className={`w-3 h-3 rounded-full ${idx === currentExercise ? 'bg-blue-600' :
+                                    idx < currentExercise ? 'bg-blue-300' : 'bg-slate-200'
+                                    }`}
+                            />
+                        ))}
+                    </div>
+                </div>
+                {status === 'success' && currentExercise < exercises.length - 1 && (
+                    <Button onClick={nextExercise} variant="success">
+                        下一题 →
+                    </Button>
+                )}
+            </div>
+
+            <div className="grid md:grid-cols-2 gap-6">
+                <div className="space-y-4">
+                    <div className="bg-white p-6 rounded-2xl shadow-lg border border-slate-100">
+                        <h3 className="font-bold text-lg text-slate-800 mb-2">
+                            📝 {exercise.title}
+                        </h3>
+                        <p className="text-slate-600 mb-4">{exercise.description}</p>
+
+                        <div className="bg-blue-50 p-3 rounded-lg text-sm">
+                            <div className="font-bold text-blue-700 mb-1">✓ 预期输出:</div>
+                            <pre className="text-blue-600 font-mono text-xs">{exercise.testCases[0].expected.toString()}</pre>
+                        </div>
+
+                        {showHint && (
+                            <div className="mt-3 bg-yellow-50 border-l-4 border-yellow-400 p-3 rounded-r-lg animate-in fade-in">
+                                <div className="font-bold text-yellow-700 text-sm">💡 提示:</div>
+                                <div className="text-yellow-600 text-sm">{exercise.hint}</div>
+                            </div>
+                        )}
+
+                        <button
+                            onClick={() => setShowHint(!showHint)}
+                            className="mt-3 text-sm text-blue-600 hover:text-blue-700 font-medium"
+                        >
+                            {showHint ? '隐藏' : '显示'}提示
+                        </button>
+                    </div>
+
+                    <div className="flex gap-2">
+                        <Button onClick={runCode} disabled={status === 'running'} variant="primary" className="flex-1">
+                            {status === 'running' ? '运行中...' : '▶ 运行代码'}
+                        </Button>
+                        <Button onClick={resetCode} variant="secondary">
+                            🔄 重置
+                        </Button>
+                    </div>
+                </div>
+
+                <div className="space-y-4">
+                    <div className="bg-slate-900 rounded-2xl overflow-hidden shadow-2xl">
+                        <div className="bg-slate-800 px-4 py-2 flex items-center justify-between border-b border-slate-700">
+                            <span className="text-xs text-blue-400 font-mono">script.py</span>
+                            <span className="text-xs text-slate-400">Python 3.10</span>
+                        </div>
+                        <textarea
+                            value={code}
+                            onChange={(e) => setCode(e.target.value)}
+                            className="w-full h-64 p-4 bg-slate-900 text-blue-400 font-mono text-sm resize-none focus:outline-none"
+                            placeholder="Type your code here..."
+                            spellCheck={false}
+                        />
+                    </div>
+
+                    <div className="bg-black rounded-2xl overflow-hidden shadow-2xl">
+                        <div className="bg-slate-800 px-4 py-2 border-b border-slate-700">
+                            <span className="text-xs text-green-400 font-mono">Terminal Output</span>
+                        </div>
+                        <div className="h-32 p-4 font-mono text-sm overflow-y-auto w-full">
+                            {status === 'idle' && <div className="text-slate-500 italic">Ready usually...</div>}
+                            {status === 'running' && <div className="text-yellow-400">Running...</div>}
+                            {output && (
+                                <pre className={status === 'success' ? 'text-green-400' : 'text-red-400'}>
+                                    {output}
+                                </pre>
+                            )}
+                            {status === 'success' && (
+                                <div className="text-green-400 mt-2 font-bold">
+                                    ✓ Passed!
+                                </div>
+                            )}
+                            {status === 'error' && output && (
+                                <div className="text-orange-400 mt-2 text-xs">
+                                    ✗ Output mismatch
+                                </div>
+                            )}
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            {currentExercise === exercises.length - 1 && status === 'success' && (
+                <div className="bg-gradient-to-r from-green-50 to-emerald-50 border-2 border-green-300 rounded-2xl p-6 text-center animate-in zoom-in">
+                    <div className="text-6xl mb-3">🎓</div>
+                    <h3 className="text-2xl font-bold text-green-800 mb-2">编程练习完成！</h3>
+                    <p className="text-green-700">你已经准备好接受最终挑战了！</p>
+                </div>
+            )}
+        </div>
+    );
+};
+
 // 8. Quiz Slide
 const QuizSlide = () => {
     const [answers, setAnswers] = useState({});
@@ -933,7 +1204,8 @@ const sections = [
     { id: 4, title: '嵌套条件', icon: TreePine, component: NestedConditionSlide },
     { id: 5, title: 'For 循环', icon: Repeat, component: LoopSlide },
     { id: 6, title: 'While 火箭', icon: AlertTriangle, component: ChallengeSlide },
-    { id: 7, title: '逻辑大师', icon: HelpCircle, component: QuizSlide },
+    { id: 7, title: '代码练兵场', icon: Code, component: CodingPracticeSlide },
+    { id: 8, title: '逻辑大师', icon: HelpCircle, component: QuizSlide },
 ];
 
 export default function PythonFoundation2() {
