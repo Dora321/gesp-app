@@ -26,10 +26,15 @@ import Lesson14 from './lessons/Lesson14';
 import Lesson15 from './lessons/Lesson15';
 import Lesson16 from './lessons/Lesson16';
 
-import PythonLevel1 from './courses/python/level1/PythonLevel1';
-import PythonLevel2 from './courses/python/level2/PythonLevel2';
-import PythonAI from './courses/python/ai/PythonAI';
-import PythonCrawler from './courses/python/crawler/PythonCrawler';
+import PythonFoundation1 from './courses/python/foundation/PythonFoundation1';
+import PythonFoundation2 from './courses/python/foundation/PythonFoundation2';
+import PythonFoundation3 from './courses/python/foundation/PythonFoundation3';
+import PythonFoundation4 from './courses/python/foundation/PythonFoundation4';
+
+import PythonAdvanced1 from './courses/python/advanced/PythonAdvanced1';
+import PythonAdvanced2 from './courses/python/advanced/PythonAdvanced2';
+import PythonAI from './courses/python/advanced/PythonAI';
+import PythonCrawler from './courses/python/advanced/PythonCrawler';
 import ClassroomPoints from './components/ClassroomPoints';
 
 function App() {
@@ -48,9 +53,15 @@ function App() {
         <Route path="/level7" element={<CourseLevel7 />} />
         <Route path="/level8" element={<CourseLevel8 />} />
 
-        {/* Python Courses */}
-        <Route path="/python/level1" element={<PythonLevel1 />} />
-        <Route path="/python/level2" element={<PythonLevel2 />} />
+        {/* Python Foundation */}
+        <Route path="/python/f1" element={<PythonFoundation1 />} />
+        <Route path="/python/f2" element={<PythonFoundation2 />} />
+        <Route path="/python/f3" element={<PythonFoundation3 />} />
+        <Route path="/python/f4" element={<PythonFoundation4 />} />
+
+        {/* Python Advanced */}
+        <Route path="/python/a1" element={<PythonAdvanced1 />} />
+        <Route path="/python/a2" element={<PythonAdvanced2 />} />
         <Route path="/python/ai" element={<PythonAI />} />
         <Route path="/python/crawler" element={<PythonCrawler />} />
 

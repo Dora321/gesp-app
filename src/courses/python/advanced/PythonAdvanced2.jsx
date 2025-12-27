@@ -954,7 +954,7 @@ const sections = [
     { id: 6, title: '课间小测验', icon: 'trophy', component: QuizSlide }, // Added QuizSlide
 ];
 
-const Lesson4 = () => {
+const PythonAdvanced2 = () => {
     const [activeSection, setActiveSection] = useState(1);
     const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
     const ActiveComponent = sections.find(s => s.id === activeSection)?.component || (() => <div>Coming Soon</div>);
@@ -1006,7 +1006,7 @@ const Lesson4 = () => {
                         <span className="bg-orange-500 text-white p-1 rounded">Python</span>
                         <span>实战课堂</span>
                     </h1>
-                    <p className="text-xs text-orange-400 mt-2 font-medium pl-1">第 4 课：2048 大作战 🎮</p>
+                    <p className="text-xs text-orange-400 mt-2 font-medium pl-1">进阶第 2 课：2048 大作战 🎮</p>
                 </div>
                 {/* Mobile Header in Sidebar (visible only on mobile when menu open) */}
                 <div className="p-4 border-b border-slate-100 md:hidden flex justify-between items-center bg-orange-50">
@@ -1099,4 +1099,4 @@ const Lesson4 = () => {
     );
 };
 
-export default Lesson4;
+export default PythonAdvanced2;

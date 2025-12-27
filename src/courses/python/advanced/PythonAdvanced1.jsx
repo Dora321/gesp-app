@@ -678,7 +678,7 @@ const sections = [
     { id: 6, title: '小侦探测验', icon: 'trophy', component: QuizSlide },
 ];
 
-const Lesson3 = () => {
+const PythonAdvanced1 = () => {
     const [activeSection, setActiveSection] = useState(1);
     const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
     const ActiveComponent = sections.find(s => s.id === activeSection)?.component || (() => <div>Coming Soon</div>);
@@ -730,7 +730,7 @@ const Lesson3 = () => {
                         <span className="bg-indigo-600 text-white p-1 rounded">Python</span>
                         <span>趣味魔法</span>
                     </h1>
-                    <p className="text-xs text-indigo-400 mt-2 font-medium pl-1">第 3 课：无限套娃 🪆</p>
+                    <p className="text-xs text-indigo-400 mt-2 font-medium pl-1">进阶第 1 课：无限套娃 🪆</p>
                 </div>
                 {/* Mobile Header in Sidebar (visible only on mobile when menu open) */}
                 <div className="p-4 border-b border-slate-100 md:hidden flex justify-between items-center bg-indigo-50">
@@ -839,4 +839,4 @@ const CheckCircle = ({ className }) => (
     </svg>
 );
 
-export default Lesson3;
+export default PythonAdvanced1;

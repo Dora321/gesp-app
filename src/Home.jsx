@@ -404,8 +404,38 @@ export default function Home() {
                     </div>
                 </section>
 
-                {/* Python Section (Full Band) */}
-                <section className="relative py-24 bg-slate-900 border-y border-yellow-900/30 overflow-hidden">
+                {/* Python Foundation Section */}
+                <section className="relative py-16 bg-slate-900 border-y border-indigo-900/30 overflow-hidden">
+                    {/* Background Decor */}
+                    <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_left,_var(--tw-gradient-stops))] from-indigo-900/20 via-slate-900 to-slate-900 pointer-events-none"></div>
+                    <div className="relative max-w-5xl mx-auto px-4">
+                        <div className="flex items-center gap-3 mb-8">
+                            <div className="p-2 bg-indigo-500/10 rounded-lg">
+                                <BookOpen className="text-indigo-400" size={24} />
+                            </div>
+                            <h3 className="text-2xl font-bold text-slate-100">Python 基础体系</h3>
+                        </div>
+                        <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
+                            {[
+                                { id: 'py_f1', title: 'F1: 语法启蒙', desc: '变量、IO与运算', icon: <Terminal />, path: '/python/f1', status: 'ready', color: 'text-indigo-400 bg-indigo-500/10' },
+                                { id: 'py_f2', title: 'F2: 流程控制', desc: '条件判断与循环', icon: <Repeat />, path: '/python/f2', status: 'ready', color: 'text-blue-400 bg-blue-500/10' },
+                                { id: 'py_f3', title: 'F3: 数据结构', desc: '列表、字典与集合', icon: <Layers />, path: '/python/f3', status: 'ready', color: 'text-cyan-400 bg-cyan-500/10' },
+                                { id: 'py_f4', title: 'F4: 函数模块', desc: '函数封装与库调用', icon: <Box />, path: '/python/f4', status: 'ready', color: 'text-teal-400 bg-teal-500/10' },
+                            ].map((course) => (
+                                <div key={course.id} onClick={() => navigate(course.path)} className="bg-slate-800/50 p-6 rounded-xl border border-slate-700 hover:border-indigo-500 cursor-pointer transition-all hover:-translate-y-1 hover:shadow-lg group">
+                                    <div className={`w-12 h-12 rounded-lg flex items-center justify-center mb-4 ${course.color} group-hover:scale-110 transition-transform`}>
+                                        {React.cloneElement(course.icon, { size: 24 })}
+                                    </div>
+                                    <h4 className="text-lg font-bold text-slate-200 mb-2 group-hover:text-white transition-colors">{course.title}</h4>
+                                    <p className="text-slate-400 text-sm">{course.desc}</p>
+                                </div>
+                            ))}
+                        </div>
+                    </div>
+                </section>
+
+                {/* Python Advanced Section */}
+                <section className="relative py-24 bg-slate-900 border-b border-yellow-900/30 overflow-hidden">
                     {/* Background Decor */}
                     <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_right,_var(--tw-gradient-stops))] from-yellow-900/20 via-slate-900 to-slate-900 pointer-events-none"></div>
                     <div className="absolute -left-20 top-20 w-96 h-96 bg-yellow-600/10 rounded-full blur-[100px] pointer-events-none"></div>
@@ -413,12 +443,49 @@ export default function Home() {
                     <div className="relative max-w-5xl mx-auto px-4">
                         <div className="flex items-center gap-3 mb-8">
                             <div className="p-2 bg-yellow-500/10 rounded-lg">
-                                <Terminal className="text-yellow-400" size={24} />
+                                <Sparkles className="text-yellow-400" size={24} />
                             </div>
-                            <h3 className="text-2xl font-bold text-slate-100">Python 创意编程</h3>
+                            <h3 className="text-2xl font-bold text-slate-100">Python 进阶项目</h3>
                         </div>
                         <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
-                            {pythonCourses.map((course) => (
+                            {[
+                                {
+                                    id: 'py_a1',
+                                    title: 'A1: 算法思维',
+                                    description: '零基础通过游戏化项目掌握编程核心逻辑（原Level 1）',
+                                    icon: <Terminal className="w-8 h-8 text-yellow-400" />,
+                                    color: 'bg-yellow-500/20 text-yellow-400 border border-yellow-500/30 shadow-lg shadow-yellow-500/20',
+                                    path: '/python/a1',
+                                    status: 'ready'
+                                },
+                                {
+                                    id: 'py_a2',
+                                    title: 'A2: 游戏工坊',
+                                    description: '2048、贪吃蛇等游戏实战开发（原Level 2）',
+                                    icon: <Sparkles className="w-8 h-8 text-yellow-400" />,
+                                    color: 'bg-yellow-500/20 text-yellow-400 border border-yellow-500/30 shadow-lg shadow-yellow-500/20',
+                                    path: '/python/a2',
+                                    status: 'ready'
+                                },
+                                {
+                                    id: 'py_ai',
+                                    title: 'A3: AI 初探',
+                                    description: '揭开人工智能的神秘面纱，训练你的第一个模型',
+                                    icon: <Monitor className="w-8 h-8 text-yellow-400" />,
+                                    color: 'bg-yellow-500/20 text-yellow-400 border border-yellow-500/30 shadow-lg shadow-yellow-500/20',
+                                    path: '/python/ai',
+                                    status: 'ready'
+                                },
+                                {
+                                    id: 'py_crawler',
+                                    title: 'A4: 网络爬虫',
+                                    description: '编写聪明的爬虫助手，自动收集全网数据',
+                                    icon: <Map className="w-8 h-8 text-yellow-400" />,
+                                    color: 'bg-yellow-500/20 text-yellow-400 border border-yellow-500/30 shadow-lg shadow-yellow-500/20',
+                                    path: '/python/crawler',
+                                    status: 'ready'
+                                }
+                            ].map((course) => (
                                 <div
                                     key={course.id}
                                     onClick={() => course.status === 'ready' && navigate(course.path)}
