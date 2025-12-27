@@ -1037,336 +1037,156 @@ const StorySlide = () => {
 
 // 12. Coding Practice (NEW - Hands-on Programming)
 const CodingPracticeSlide = () => {
+    const [currentExercise, setCurrentExercise] = useState(0);
+    const [showHint, setShowHint] = useState(false);
+
     const exercises = [
         {
-            id: 1,
-            title: '打印问候语',
-            description: '编写代码打印 "你好，Python！"',
-            starterCode: '# 在这里写你的代码\n',
-            solution: 'print("你好，Python!")',
-            testCases: [
-                { input: '', expected: '你好，Python!', description: '输出问候语' }
-            ],
-            hint: '使用 print() 函数，括号内用引号包裹文字'
+            title: "变量变变变",
+            description: "创建一个变量 `magic_box`，给它赋值为 \"Empty\"，然后打印出来。接着把它的值改为 \"Gold\"，再次打印。",
+            solution: 'magic_box = "Empty"\nprint(magic_box)\nmagic_box = "Gold"\nprint(magic_box)',
+            hint: "记得使用 print() 函数输出变量的值。"
         },
         {
-            id: 2,
-            title: '变量赋值',
-            description: '创建一个名字叫 name 的变量，值为你的名字，然后打印它',
-            starterCode: '# 创建变量并打印\n',
-            solution: 'name = "小明"\nprint(name)',
-            testCases: [
-                { input: '', expected: /^.+$/, description: '打印任意非空字符串' }
-            ],
-            hint: '使用 = 赋值，例如：name = "你的名字"'
+            title: "计算器助手",
+            description: "定义两个变量 `a = 10` 和 `b = 5`。计算它们的和、差、积、商，并分别打印出来。",
+            solution: 'a = 10\nb = 5\nprint(a + b)\nprint(a - b)\nprint(a * b)\nprint(a / b)',
+            hint: "加减乘除的符号分别是 +, -, *, /"
         },
         {
-            id: 3,
-            title: '简单计算',
-            description: '计算 10 + 20 并打印结果',
-            starterCode: '# 计算并打印\n',
-            solution: 'print(10 + 20)',
-            testCases: [
-                { input: '', expected: '30', description: '输出 30' }
-            ],
-            hint: 'print() 里面可以直接写算式'
+            title: "打招呼",
+            description: "定义一个变量 `name` 存储你的名字，然后打印 \"Hello, \" 加上你的名字。",
+            solution: 'name = "Python"\nprint("Hello, " + name)',
+            hint: "字符串可以用 + 号拼接哦！"
         },
         {
-            id: 4,
-            title: '条件判断',
-            description: '如果变量 age 大于等于 18，打印 "成年"，否则打印 "未成年"',
-            starterCode: 'age = 20\n# 写条件判断\n',
-            solution: 'age = 20\nif age >= 18:\n    print("成年")\nelse:\n    print("未成年")',
-            testCases: [
-                { input: '', expected: '成年', description: 'age=20 应输出 "成年"' }
-            ],
-            hint: '使用 if-else 结构，注意缩进（4个空格）'
+            title: "判断大小",
+            description: "定义 `score = 85`。使用 if 语句判断：如果分数大于等于 60，打印 \"Pass\"，否则打印 \"Fail\"。",
+            solution: 'score = 85\nif score >= 60:\n    print("Pass")\nelse:\n    print("Fail")',
+            hint: "注意 if 和 else 后面要有冒号，下一行要缩进！"
         }
     ];
 
-    const [currentExercise, setCurrentExercise] = useState(0);
-    const [code, setCode] = useState(exercises[0].starterCode);
-    const [output, setOutput] = useState('');
-    const [status, setStatus] = useState('idle'); // idle, running, success, error
-    const [showHint, setShowHint] = useState(false);
-
     const exercise = exercises[currentExercise];
 
-    const runCode = () => {
-        setStatus('running');
-        setOutput('');
-
-        setTimeout(() => {
-            try {
-                // Mini-Python Interpreter (Simulated) for Foundation 1
-                const lines = code.split('\n').filter(l => l.trim() && !l.trim().startsWith('#'));
-                let outputBuffer = [];
-                let variables = {};
-                let i = 0;
-                let steps = 0;
-                let loopLimit = 500;
-
-                const evaluate = (expr, scope) => {
-                    expr = expr.trim();
-                    if ((expr.startsWith('"') && expr.endsWith('"')) || (expr.startsWith("'") && expr.endsWith("'"))) {
-                        return expr.slice(1, -1);
-                    }
-                    if (scope.hasOwnProperty(expr)) return scope[expr];
-                    if (!isNaN(expr)) return Number(expr);
-
-                    Object.keys(scope).forEach(key => {
-                        const regex = new RegExp(`\\b${key}\\b`, 'g');
-                        if (typeof scope[key] === 'string') {
-                            expr = expr.replace(regex, `"${scope[key]}"`);
-                        } else {
-                            expr = expr.replace(regex, scope[key]);
-                        }
-                    });
-                    // Handle logical operators
-                    expr = expr.replace(/\band\b/g, '&&').replace(/\bor\b/g, '||').replace(/\bnot\b/g, '!');
-                    expr = expr.replace(/\bTrue\b/g, 'true').replace(/\bFalse\b/g, 'false');
-
-                    try {
-                        // eslint-disable-next-line no-eval
-                        return eval(expr);
-                    } catch (e) {
-                        return expr;
-                    }
-                };
-
-                while (i < lines.length && steps < loopLimit) {
-                    steps++;
-                    let line = lines[i].trim();
-
-                    if (line.includes('=') && !line.includes('if') && !line.includes('==')) {
-                        const parts = line.split('=');
-                        const name = parts[0].trim();
-                        const valFunc = parts.slice(1).join('=').trim();
-                        variables[name] = evaluate(valFunc, variables);
-                        i++;
-                        continue;
-                    }
-
-                    if (line.startsWith('print')) {
-                        const match = line.match(/print\s*\((.*?)\)/);
-                        if (match) {
-                            const content = match[1].trim();
-                            if ((content.startsWith('"') && content.endsWith('"')) || (content.startsWith("'") && content.endsWith("'"))) {
-                                outputBuffer.push(content.slice(1, -1));
-                            } else {
-                                outputBuffer.push(evaluate(content, variables));
-                            }
-                        }
-                        i++;
-                        continue;
-                    }
-
-                    if (line.startsWith('if ')) {
-                        const condition = line.substring(3, line.indexOf(':'));
-                        const res = evaluate(condition, variables);
-                        const isTrue = res === true || res === 'True';
-
-                        if (isTrue) {
-                            i++;
-                        } else {
-                            i++;
-                            while (i < lines.length && (lines[i].startsWith('    ') || lines[i].startsWith('\t'))) {
-                                i++;
-                            }
-                            if (i < lines.length && lines[i].startsWith('else:')) {
-                                i++;
-                            } else {
-                                while (i < lines.length && (lines[i].startsWith('    ') || lines[i].startsWith('\t'))) {
-                                    i++;
-                                }
-                            }
-                        }
-                        continue;
-                    }
-
-                    if (line.startsWith('else:')) {
-                        i++;
-                        while (i < lines.length && (lines[i].startsWith('    ') || lines[i].startsWith('\t'))) {
-                            i++;
-                        }
-                        continue;
-                    }
-
-                    i++;
-                }
-
-                const result = outputBuffer.join('\n');
-                setOutput(result);
-
-                const testCase = exercise.testCases[0];
-                let passed = false;
-                if (testCase.expected instanceof RegExp) {
-                    passed = testCase.expected.test(result);
-                } else {
-                    // Normalize newlines and trim for robust comparison
-                    const normalizedResult = result.replace(/\r\n/g, '\n').trim();
-                    const normalizedExpected = testCase.expected.replace(/\r\n/g, '\n').trim();
-                    passed = normalizedResult === normalizedExpected;
-                }
-
-                setStatus(passed ? 'success' : 'error');
-
-            } catch (error) {
-                console.error(error);
-                setOutput('执行出错');
-                setStatus('error');
-            }
-        }, 500);
-    };
-
-    const nextExercise = () => {
-        if (currentExercise < exercises.length - 1) {
-            const next = currentExercise + 1;
-            setCurrentExercise(next);
-            setCode(''); // Clean slate
-            setOutput('');
-            setStatus('idle');
-            setShowHint(false);
-        }
-    };
-
-    const resetCode = () => {
-        setCode(''); // Reset to empty
-        setOutput('');
-        setStatus('idle');
-    };
+    const navigationDots = exercises.map((_, idx) => (
+        <button
+            key={idx}
+            onClick={() => {
+                setCurrentExercise(idx);
+                setShowHint(false);
+            }}
+            className={`w-8 h-8 rounded-full flex items-center justify-center text-sm font-bold transition-all ${idx === currentExercise
+                    ? 'bg-green-600 text-white scale-110 shadow-lg'
+                    : 'bg-green-100 text-green-600 hover:bg-green-200'
+                }`}
+        >
+            {idx + 1}
+        </button>
+    ));
 
     return (
-        <div className="space-y-6 animate-in fade-in slide-in-from-bottom-4 duration-500">
-            <div className="bg-gradient-to-r from-green-100 to-emerald-100 p-6 rounded-2xl border-2 border-green-200 text-green-900">
-                <h2 className="text-2xl font-bold mb-4 flex items-center gap-2">
-                    <Code className="text-green-600" />
-                    动手编程 - 实战练习
+        <div className="space-y-6 animate-in fade-in slide-in-from-bottom-4 duration-500 max-w-4xl mx-auto">
+            <div className="bg-gradient-to-r from-green-100 to-emerald-100 p-8 rounded-2xl border-2 border-green-200 text-green-900 text-center">
+                <h2 className="text-3xl font-bold mb-4 flex items-center justify-center gap-3">
+                    <Code className="text-green-600 w-8 h-8" />
+                    代码练兵场
                 </h2>
-                <p className="text-lg">
-                    💻 现在轮到你写代码了！完成下面的编程练习，巩固学到的知识。
+                <p className="text-xl opacity-90">
+                    动手思考，动脑编程！请在本地编辑器中尝试解决以下问题。
                 </p>
             </div>
 
-            {/* Progress */}
-            <div className="flex items-center justify-between bg-white p-4 rounded-xl border border-slate-200">
-                <div className="flex items-center gap-3">
-                    <div className="text-sm font-bold text-slate-600">
-                        练习进度: {currentExercise + 1} / {exercises.length}
-                    </div>
-                    <div className="flex gap-2">
-                        {exercises.map((_, idx) => (
-                            <div
-                                key={idx}
-                                className={`w-3 h-3 rounded-full ${idx === currentExercise ? 'bg-green-600' :
-                                    idx < currentExercise ? 'bg-green-300' : 'bg-slate-200'
-                                    }`}
-                            />
-                        ))}
-                    </div>
-                </div>
-                {status === 'success' && currentExercise < exercises.length - 1 && (
-                    <Button onClick={nextExercise} variant="success">
-                        下一题 →
-                    </Button>
-                )}
+            {/* Navigation */}
+            <div className="flex justify-center gap-3 py-4">
+                {navigationDots}
             </div>
 
-            <div className="grid md:grid-cols-2 gap-6">
-                {/* Exercise Description */}
+            <div className="bg-white p-8 rounded-3xl shadow-xl border border-slate-100 ring-1 ring-slate-100">
+                <div className="flex justify-between items-start mb-6 border-b border-slate-100 pb-4">
+                    <h3 className="font-bold text-2xl text-slate-800 flex items-center gap-3">
+                        <span className="bg-green-100 text-green-700 w-8 h-8 rounded-lg flex items-center justify-center text-sm">
+                            {currentExercise + 1}
+                        </span>
+                        {exercise.title}
+                    </h3>
+                </div>
+
+                <div className="prose prose-slate max-w-none mb-8">
+                    <p className="text-lg text-slate-600 leading-relaxed bg-slate-50 p-6 rounded-xl border border-slate-200">
+                        {exercise.description}
+                    </p>
+                </div>
+
                 <div className="space-y-4">
-                    <div className="bg-white p-6 rounded-2xl shadow-lg border border-slate-100">
-                        <h3 className="font-bold text-lg text-slate-800 mb-2">
-                            📝 {exercise.title}
-                        </h3>
-                        <p className="text-slate-600 mb-4">{exercise.description}</p>
-
-                        <div className="bg-blue-50 p-3 rounded-lg text-sm">
-                            <div className="font-bold text-blue-700 mb-1">✓ 测试要求:</div>
-                            <div className="text-blue-600">{exercise.testCases[0].description}</div>
-                        </div>
-
-                        {showHint && (
-                            <div className="mt-3 bg-yellow-50 border-l-4 border-yellow-400 p-3 rounded-r-lg animate-in fade-in">
-                                <div className="font-bold text-yellow-700 text-sm">💡 提示:</div>
-                                <div className="text-yellow-600 text-sm">{exercise.hint}</div>
-                            </div>
-                        )}
-
+                    <div className="flex justify-center">
                         <button
                             onClick={() => setShowHint(!showHint)}
-                            className="mt-3 text-sm text-blue-600 hover:text-blue-700 font-medium"
+                            className="flex items-center gap-2 px-6 py-3 bg-indigo-50 text-indigo-600 rounded-full hover:bg-indigo-100 transition-colors font-semibold"
                         >
-                            {showHint ? '隐藏' : '显示'}提示
+                            {showHint ? <EyeOff size={20} /> : <Eye size={20} />}
+                            {showHint ? '隐藏参考答案' : '查看参考答案'}
                         </button>
                     </div>
 
-                    {/* Controls */}
-                    <div className="flex gap-2">
-                        <Button onClick={runCode} disabled={status === 'running'} variant="primary" className="flex-1">
-                            {status === 'running' ? '运行中...' : '▶ 运行代码'}
-                        </Button>
-                        <Button onClick={resetCode} variant="secondary">
-                            🔄 重置
-                        </Button>
-                    </div>
-                </div>
-
-                {/* Code Editor */}
-                <div className="space-y-4">
-                    <div className="bg-slate-900 rounded-2xl overflow-hidden shadow-2xl">
-                        <div className="bg-slate-800 px-4 py-2 flex items-center justify-between border-b border-slate-700">
-                            <span className="text-xs text-green-400 font-mono">editor.py</span>
-                            <span className="text-xs text-slate-400">Python</span>
-                        </div>
-                        <textarea
-                            value={code}
-                            onChange={(e) => setCode(e.target.value)}
-                            className="w-full h-64 p-4 bg-slate-900 text-green-400 font-mono text-sm resize-none focus:outline-none"
-                            placeholder="在这里写代码..."
-                            spellCheck={false}
-                        />
-                    </div>
-
-                    {/* Output */}
-                    <div className="bg-black rounded-2xl overflow-hidden shadow-2xl">
-                        <div className="bg-slate-800 px-4 py-2 border-b border-slate-700">
-                            <span className="text-xs text-green-400 font-mono">输出</span>
-                        </div>
-                        <div className="h-32 p-4 font-mono text-sm overflow-y-auto">
-                            {status === 'idle' && (
-                                <div className="text-slate-500 italic">点击"运行代码"查看输出...</div>
-                            )}
-                            {status === 'running' && (
-                                <div className="text-yellow-400">执行中...</div>
-                            )}
-                            {output && (
-                                <div className={status === 'success' ? 'text-green-400' : 'text-red-400'}>
-                                    {output}
+                    {showHint && (
+                        <div className="mt-6 animate-in fade-in slide-in-from-top-4 duration-300">
+                            <div className="bg-slate-900 rounded-xl overflow-hidden shadow-2xl ring-4 ring-slate-100">
+                                <div className="bg-slate-800 px-4 py-2 flex items-center justify-between border-b border-slate-700">
+                                    <div className="flex gap-1.5">
+                                        <div className="w-3 h-3 rounded-full bg-red-400" />
+                                        <div className="w-3 h-3 rounded-full bg-yellow-400" />
+                                        <div className="w-3 h-3 rounded-full bg-green-400" />
+                                    </div>
+                                    <span className="text-slate-400 text-xs font-mono">solution.py</span>
                                 </div>
-                            )}
-                            {status === 'success' && (
-                                <div className="text-green-400 mt-2">
-                                    ✓ 测试通过！做得很好！
+                                <pre className="p-6 text-green-400 font-mono text-base overflow-x-auto selection:bg-green-900">
+                                    <code>{exercise.solution}</code>
+                                </pre>
+                            </div>
+                            <div className="mt-4 bg-yellow-50 border-l-4 border-yellow-400 p-4 rounded-r-lg">
+                                <div className="flex items-start gap-3">
+                                    <div className="mt-1 text-yellow-500">
+                                        <HelpCircle size={20} />
+                                    </div>
+                                    <div>
+                                        <div className="font-bold text-yellow-800 mb-1">小提示</div>
+                                        <p className="text-yellow-700">{exercise.hint}</p>
+                                    </div>
                                 </div>
-                            )}
-                            {status === 'error' && output && (
-                                <div className="text-orange-400 mt-2">
-                                    ✗ 输出不符合预期，再试试看
-                                </div>
-                            )}
+                            </div>
                         </div>
-                    </div>
+                    )}
                 </div>
             </div>
 
-            {currentExercise === exercises.length - 1 && status === 'success' && (
-                <div className="bg-gradient-to-r from-yellow-50 to-orange-50 border-2 border-yellow-300 rounded-2xl p-6 text-center animate-in zoom-in">
-                    <div className="text-6xl mb-3">🎉</div>
-                    <h3 className="text-2xl font-bold text-yellow-800 mb-2">恭喜完成所有练习！</h3>
-                    <p className="text-yellow-700">你已经掌握了基础编程技能，继续保持！</p>
+            <div className="flex justify-between items-center text-slate-400 text-sm px-4">
+                <span>题目 {currentExercise + 1} / {exercises.length}</span>
+                <div className="flex gap-4">
+                    <button
+                        onClick={() => {
+                            const prev = Math.max(0, currentExercise - 1);
+                            setCurrentExercise(prev);
+                            setShowHint(false);
+                        }}
+                        disabled={currentExercise === 0}
+                        className={`hover:text-slate-600 transition-colors ${currentExercise === 0 ? 'opacity-30 cursor-not-allowed' : ''}`}
+                    >
+                        ← 上一题
+                    </button>
+                    <button
+                        onClick={() => {
+                            const next = Math.min(exercises.length - 1, currentExercise + 1);
+                            setCurrentExercise(next);
+                            setShowHint(false);
+                        }}
+                        disabled={currentExercise === exercises.length - 1}
+                        className={`hover:text-slate-600 transition-colors ${currentExercise === exercises.length - 1 ? 'opacity-30 cursor-not-allowed' : ''}`}
+                    >
+                        下一题 →
+                    </button>
                 </div>
-            )}
+            </div>
         </div>
     );
 };
