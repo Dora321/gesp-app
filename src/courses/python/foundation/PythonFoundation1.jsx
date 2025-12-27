@@ -356,9 +356,14 @@ const EmojiMathSlide = () => {
             case '+': return num1 + num2;
             case '-': return num1 - num2;
             case '*': return num1 * num2;
-            case '/': return num2 !== 0 ? Math.floor(num1 / num2) : 0;
+            case '//': return num2 !== 0 ? Math.floor(num1 / num2) : 0;
             default: return 0;
         }
+    };
+
+    const getIntResult = () => {
+        const res = calculate();
+        return typeof res === 'string' ? parseFloat(res) : res;
     };
 
     const result = calculate();
@@ -391,7 +396,7 @@ const EmojiMathSlide = () => {
                         <div>
                             <label className="block text-sm font-bold text-slate-600 mb-2">运算符</label>
                             <div className="grid grid-cols-4 gap-2">
-                                {['+', '-', '*', '/'].map(op => (
+                                {['+', '-', '*', '//'].map(op => (
                                     <button
                                         key={op}
                                         onClick={() => setOperation(op)}
@@ -454,12 +459,13 @@ const EmojiMathSlide = () => {
                         <div>
                             <div className="text-xs text-slate-500 mb-1">结果 = {result}:</div>
                             <div className="flex flex-wrap gap-1">
-                                {Array(Math.max(0, result)).fill(0).map((_, i) => (
+                                {Array(Math.max(0, Math.floor(getIntResult()))).fill(0).map((_, i) => (
                                     <span key={i} className="text-2xl animate-in zoom-in" style={{ animationDelay: `${i * 50}ms` }}>
                                         {emoji}
                                     </span>
                                 ))}
                                 {result === 0 && <span className="text-slate-400 text-sm">无</span>}
+                                {result < 0 && <span className="text-red-500 text-sm">负数无法用 emoji 表示</span>}
                             </div>
                         </div>
                     </div>
