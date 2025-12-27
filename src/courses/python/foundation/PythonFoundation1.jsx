@@ -1235,142 +1235,140 @@ const CodingPracticeSlide = () => {
         setOutput('');
         setStatus('idle');
     };
-    setStatus('idle');
-};
 
-return (
-    <div className="space-y-6 animate-in fade-in slide-in-from-bottom-4 duration-500">
-        <div className="bg-gradient-to-r from-green-100 to-emerald-100 p-6 rounded-2xl border-2 border-green-200 text-green-900">
-            <h2 className="text-2xl font-bold mb-4 flex items-center gap-2">
-                <Code className="text-green-600" />
-                动手编程 - 实战练习
-            </h2>
-            <p className="text-lg">
-                💻 现在轮到你写代码了！完成下面的编程练习，巩固学到的知识。
-            </p>
-        </div>
+    return (
+        <div className="space-y-6 animate-in fade-in slide-in-from-bottom-4 duration-500">
+            <div className="bg-gradient-to-r from-green-100 to-emerald-100 p-6 rounded-2xl border-2 border-green-200 text-green-900">
+                <h2 className="text-2xl font-bold mb-4 flex items-center gap-2">
+                    <Code className="text-green-600" />
+                    动手编程 - 实战练习
+                </h2>
+                <p className="text-lg">
+                    💻 现在轮到你写代码了！完成下面的编程练习，巩固学到的知识。
+                </p>
+            </div>
 
-        {/* Progress */}
-        <div className="flex items-center justify-between bg-white p-4 rounded-xl border border-slate-200">
-            <div className="flex items-center gap-3">
-                <div className="text-sm font-bold text-slate-600">
-                    练习进度: {currentExercise + 1} / {exercises.length}
+            {/* Progress */}
+            <div className="flex items-center justify-between bg-white p-4 rounded-xl border border-slate-200">
+                <div className="flex items-center gap-3">
+                    <div className="text-sm font-bold text-slate-600">
+                        练习进度: {currentExercise + 1} / {exercises.length}
+                    </div>
+                    <div className="flex gap-2">
+                        {exercises.map((_, idx) => (
+                            <div
+                                key={idx}
+                                className={`w-3 h-3 rounded-full ${idx === currentExercise ? 'bg-green-600' :
+                                    idx < currentExercise ? 'bg-green-300' : 'bg-slate-200'
+                                    }`}
+                            />
+                        ))}
+                    </div>
                 </div>
-                <div className="flex gap-2">
-                    {exercises.map((_, idx) => (
-                        <div
-                            key={idx}
-                            className={`w-3 h-3 rounded-full ${idx === currentExercise ? 'bg-green-600' :
-                                idx < currentExercise ? 'bg-green-300' : 'bg-slate-200'
-                                }`}
+                {status === 'success' && currentExercise < exercises.length - 1 && (
+                    <Button onClick={nextExercise} variant="success">
+                        下一题 →
+                    </Button>
+                )}
+            </div>
+
+            <div className="grid md:grid-cols-2 gap-6">
+                {/* Exercise Description */}
+                <div className="space-y-4">
+                    <div className="bg-white p-6 rounded-2xl shadow-lg border border-slate-100">
+                        <h3 className="font-bold text-lg text-slate-800 mb-2">
+                            📝 {exercise.title}
+                        </h3>
+                        <p className="text-slate-600 mb-4">{exercise.description}</p>
+
+                        <div className="bg-blue-50 p-3 rounded-lg text-sm">
+                            <div className="font-bold text-blue-700 mb-1">✓ 测试要求:</div>
+                            <div className="text-blue-600">{exercise.testCases[0].description}</div>
+                        </div>
+
+                        {showHint && (
+                            <div className="mt-3 bg-yellow-50 border-l-4 border-yellow-400 p-3 rounded-r-lg animate-in fade-in">
+                                <div className="font-bold text-yellow-700 text-sm">💡 提示:</div>
+                                <div className="text-yellow-600 text-sm">{exercise.hint}</div>
+                            </div>
+                        )}
+
+                        <button
+                            onClick={() => setShowHint(!showHint)}
+                            className="mt-3 text-sm text-blue-600 hover:text-blue-700 font-medium"
+                        >
+                            {showHint ? '隐藏' : '显示'}提示
+                        </button>
+                    </div>
+
+                    {/* Controls */}
+                    <div className="flex gap-2">
+                        <Button onClick={runCode} disabled={status === 'running'} variant="primary" className="flex-1">
+                            {status === 'running' ? '运行中...' : '▶ 运行代码'}
+                        </Button>
+                        <Button onClick={resetCode} variant="secondary">
+                            🔄 重置
+                        </Button>
+                    </div>
+                </div>
+
+                {/* Code Editor */}
+                <div className="space-y-4">
+                    <div className="bg-slate-900 rounded-2xl overflow-hidden shadow-2xl">
+                        <div className="bg-slate-800 px-4 py-2 flex items-center justify-between border-b border-slate-700">
+                            <span className="text-xs text-green-400 font-mono">editor.py</span>
+                            <span className="text-xs text-slate-400">Python</span>
+                        </div>
+                        <textarea
+                            value={code}
+                            onChange={(e) => setCode(e.target.value)}
+                            className="w-full h-64 p-4 bg-slate-900 text-green-400 font-mono text-sm resize-none focus:outline-none"
+                            placeholder="在这里写代码..."
+                            spellCheck={false}
                         />
-                    ))}
+                    </div>
+
+                    {/* Output */}
+                    <div className="bg-black rounded-2xl overflow-hidden shadow-2xl">
+                        <div className="bg-slate-800 px-4 py-2 border-b border-slate-700">
+                            <span className="text-xs text-green-400 font-mono">输出</span>
+                        </div>
+                        <div className="h-32 p-4 font-mono text-sm overflow-y-auto">
+                            {status === 'idle' && (
+                                <div className="text-slate-500 italic">点击"运行代码"查看输出...</div>
+                            )}
+                            {status === 'running' && (
+                                <div className="text-yellow-400">执行中...</div>
+                            )}
+                            {output && (
+                                <div className={status === 'success' ? 'text-green-400' : 'text-red-400'}>
+                                    {output}
+                                </div>
+                            )}
+                            {status === 'success' && (
+                                <div className="text-green-400 mt-2">
+                                    ✓ 测试通过！做得很好！
+                                </div>
+                            )}
+                            {status === 'error' && output && (
+                                <div className="text-orange-400 mt-2">
+                                    ✗ 输出不符合预期，再试试看
+                                </div>
+                            )}
+                        </div>
+                    </div>
                 </div>
             </div>
-            {status === 'success' && currentExercise < exercises.length - 1 && (
-                <Button onClick={nextExercise} variant="success">
-                    下一题 →
-                </Button>
+
+            {currentExercise === exercises.length - 1 && status === 'success' && (
+                <div className="bg-gradient-to-r from-yellow-50 to-orange-50 border-2 border-yellow-300 rounded-2xl p-6 text-center animate-in zoom-in">
+                    <div className="text-6xl mb-3">🎉</div>
+                    <h3 className="text-2xl font-bold text-yellow-800 mb-2">恭喜完成所有练习！</h3>
+                    <p className="text-yellow-700">你已经掌握了基础编程技能，继续保持！</p>
+                </div>
             )}
         </div>
-
-        <div className="grid md:grid-cols-2 gap-6">
-            {/* Exercise Description */}
-            <div className="space-y-4">
-                <div className="bg-white p-6 rounded-2xl shadow-lg border border-slate-100">
-                    <h3 className="font-bold text-lg text-slate-800 mb-2">
-                        📝 {exercise.title}
-                    </h3>
-                    <p className="text-slate-600 mb-4">{exercise.description}</p>
-
-                    <div className="bg-blue-50 p-3 rounded-lg text-sm">
-                        <div className="font-bold text-blue-700 mb-1">✓ 测试要求:</div>
-                        <div className="text-blue-600">{exercise.testCases[0].description}</div>
-                    </div>
-
-                    {showHint && (
-                        <div className="mt-3 bg-yellow-50 border-l-4 border-yellow-400 p-3 rounded-r-lg animate-in fade-in">
-                            <div className="font-bold text-yellow-700 text-sm">💡 提示:</div>
-                            <div className="text-yellow-600 text-sm">{exercise.hint}</div>
-                        </div>
-                    )}
-
-                    <button
-                        onClick={() => setShowHint(!showHint)}
-                        className="mt-3 text-sm text-blue-600 hover:text-blue-700 font-medium"
-                    >
-                        {showHint ? '隐藏' : '显示'}提示
-                    </button>
-                </div>
-
-                {/* Controls */}
-                <div className="flex gap-2">
-                    <Button onClick={runCode} disabled={status === 'running'} variant="primary" className="flex-1">
-                        {status === 'running' ? '运行中...' : '▶ 运行代码'}
-                    </Button>
-                    <Button onClick={resetCode} variant="secondary">
-                        🔄 重置
-                    </Button>
-                </div>
-            </div>
-
-            {/* Code Editor */}
-            <div className="space-y-4">
-                <div className="bg-slate-900 rounded-2xl overflow-hidden shadow-2xl">
-                    <div className="bg-slate-800 px-4 py-2 flex items-center justify-between border-b border-slate-700">
-                        <span className="text-xs text-green-400 font-mono">editor.py</span>
-                        <span className="text-xs text-slate-400">Python</span>
-                    </div>
-                    <textarea
-                        value={code}
-                        onChange={(e) => setCode(e.target.value)}
-                        className="w-full h-64 p-4 bg-slate-900 text-green-400 font-mono text-sm resize-none focus:outline-none"
-                        placeholder="在这里写代码..."
-                        spellCheck={false}
-                    />
-                </div>
-
-                {/* Output */}
-                <div className="bg-black rounded-2xl overflow-hidden shadow-2xl">
-                    <div className="bg-slate-800 px-4 py-2 border-b border-slate-700">
-                        <span className="text-xs text-green-400 font-mono">输出</span>
-                    </div>
-                    <div className="h-32 p-4 font-mono text-sm overflow-y-auto">
-                        {status === 'idle' && (
-                            <div className="text-slate-500 italic">点击"运行代码"查看输出...</div>
-                        )}
-                        {status === 'running' && (
-                            <div className="text-yellow-400">执行中...</div>
-                        )}
-                        {output && (
-                            <div className={status === 'success' ? 'text-green-400' : 'text-red-400'}>
-                                {output}
-                            </div>
-                        )}
-                        {status === 'success' && (
-                            <div className="text-green-400 mt-2">
-                                ✓ 测试通过！做得很好！
-                            </div>
-                        )}
-                        {status === 'error' && output && (
-                            <div className="text-orange-400 mt-2">
-                                ✗ 输出不符合预期，再试试看
-                            </div>
-                        )}
-                    </div>
-                </div>
-            </div>
-        </div>
-
-        {currentExercise === exercises.length - 1 && status === 'success' && (
-            <div className="bg-gradient-to-r from-yellow-50 to-orange-50 border-2 border-yellow-300 rounded-2xl p-6 text-center animate-in zoom-in">
-                <div className="text-6xl mb-3">🎉</div>
-                <h3 className="text-2xl font-bold text-yellow-800 mb-2">恭喜完成所有练习！</h3>
-                <p className="text-yellow-700">你已经掌握了基础编程技能，继续保持！</p>
-            </div>
-        )}
-    </div>
-);
+    );
 };
 
 // 13. Challenge
