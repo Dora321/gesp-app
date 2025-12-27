@@ -704,21 +704,6 @@ else:
                     </div>
                 </div>
             </div>
-
-            <div className="bg-amber-50 border-l-4 border-amber-400 p-4 rounded-r-xl">
-                <div className="flex items-start gap-3">
-                    <Sparkles className="text-amber-600 flex-shrink-0 mt-1" size={20} />
-                    <div>
-                        <h4 className="font-bold text-amber-900 mb-1">💡 试试这些：</h4>
-                        <ul className="text-sm text-amber-800 space-y-1">
-                            <li>• 修改代码中的文字或数字</li>
-                            <li>• 改变循环的次数</li>
-                            <li>• 添加你自己的 emoji</li>
-                            <li>• 组合不同的例子创造新效果</li>
-                        </ul>
-                    </div>
-                </div>
-            </div>
         </div>
     );
 };
