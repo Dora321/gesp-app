@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
-import { Terminal, Box, Calculator, MessageSquare, ArrowRight, Play, RefreshCw, CheckCircle } from 'lucide-react';
+import { Terminal, Box, Calculator, MessageSquare, ArrowRight, Play, RefreshCw, CheckCircle, Tag, Bug, BookOpen, HelpCircle, Menu, X } from 'lucide-react';
 
 // --- Shared Components (will move to separate files later if needed) ---
 const Button = ({ onClick, children, className, variant = 'primary' }) => {
@@ -233,6 +233,279 @@ const MathSlide = () => {
         </div>
     )
 }
+// 5. Data Types Detective
+const DataTypeSlide = () => {
+    const [mystery, setMystery] = useState({ val: "123", type: "str" });
+
+    const samples = [
+        { val: "123", type: "str", hint: "被引号包围的都是字符串" },
+        { val: 123, type: "int", hint: "没有小数点在这个整数" },
+        { val: 3.14, type: "float", hint: "带小数点的数字" },
+        { val: '"Hello"', type: "str", hint: "文字当然是字符串" },
+    ];
+
+    const checkType = (guess) => {
+        if (guess === mystery.type) {
+            alert("答对了！🎉 " + mystery.hint);
+            setMystery(samples[Math.floor(Math.random() * samples.length)]);
+        } else {
+            alert("再想想... 🤔");
+        }
+    };
+
+    return (
+        <div className="space-y-6 animate-in fade-in slide-in-from-bottom-4 duration-500">
+            <div className="bg-pink-100 p-6 rounded-2xl border border-pink-200 text-pink-900">
+                <h2 className="text-2xl font-bold mb-4 flex items-center gap-2">
+                    <Tag className="text-pink-600" />
+                    数据类型侦探
+                </h2>
+                <p>
+                    电脑看世界的方式和我们不一样。它把数据分成不同的<strong>类型(Type)</strong>。
+                    <br />最常见的三种：<strong>整数(int)</strong>、<strong>小数(float)</strong>、<strong>字符串(str)</strong>。
+                </p>
+            </div>
+
+            <div className="grid md:grid-cols-2 gap-8 items-center">
+                <div className="bg-white p-8 rounded-2xl shadow-lg border border-slate-100 flex flex-col items-center">
+                    <div className="text-sm text-slate-400 font-bold uppercase mb-4">Mystery Box</div>
+                    <div className="text-5xl font-mono font-bold text-indigo-600 bg-indigo-50 px-8 py-4 rounded-xl border-2 border-indigo-100 mb-6">
+                        {typeof mystery.val === 'string' && !mystery.val.startsWith('"') ? `"${mystery.val}"` : mystery.val}
+                    </div>
+                    <p className="text-slate-500 text-center">它是哪种类型？</p>
+                </div>
+
+                <div className="grid gap-4">
+                    <Button onClick={() => checkType('int')} className="h-16 text-lg bg-blue-500 hover:bg-blue-600">
+                        🔢 整数 (int)
+                    </Button>
+                    <Button onClick={() => checkType('float')} className="h-16 text-lg bg-green-500 hover:bg-green-600">
+                        🌊 小数 (float)
+                    </Button>
+                    <Button onClick={() => checkType('str')} className="h-16 text-lg bg-purple-500 hover:bg-purple-600">
+                        🔤 字符串 (str)
+                    </Button>
+                </div>
+            </div>
+        </div>
+    );
+};
+
+// 6. Bug Hunter
+const BugHuntSlide = () => {
+    const [fixed, setFixed] = useState(false);
+    const [code, setCode] = useState('print("Hello World)'); // Error: missing quote
+
+    const fixCode = () => {
+        setCode('print("Hello World")');
+        setFixed(true);
+    };
+
+    return (
+        <div className="space-y-6 animate-in fade-in slide-in-from-bottom-4 duration-500">
+            <div className="bg-red-50 p-6 rounded-2xl border border-red-200 text-red-900">
+                <h2 className="text-2xl font-bold mb-4 flex items-center gap-2">
+                    <Bug className="text-red-600" />
+                    捉虫特工队
+                </h2>
+                <p>
+                    程序里的错误叫做 <strong>Bug (臭虫)</strong>。哪怕只少了一个引号，程序也会罢工！
+                    <br />作为程序员，我们的工作就是找到并消灭它们。
+                </p>
+            </div>
+
+            <div className="bg-slate-900 p-6 rounded-2xl shadow-xl relative overflow-hidden">
+                <div className="flex items-center gap-2 mb-4 border-b border-slate-700 pb-2">
+                    <div className="w-3 h-3 rounded-full bg-red-500"></div>
+                    <div className="w-3 h-3 rounded-full bg-yellow-500"></div>
+                    <div className="w-3 h-3 rounded-full bg-green-500"></div>
+                    <span className="text-xs text-slate-500 ml-2">broken_code.py</span>
+                </div>
+
+                <div className="font-mono text-lg mb-4">
+                    <div className="text-slate-500">1</div>
+                    <div className="flex items-center">
+                        <span className="text-purple-400">print</span>
+                        <span className="text-slate-100">(</span>
+                        <span className="text-green-300">"Hello World</span>
+                        <span className={fixed ? "text-green-300 transition-all" : "text-red-500 bg-red-500/20 px-1 rounded animate-pulse"}>
+                            {fixed ? '"' : '?'}
+                        </span>
+                        <span className="text-slate-100">)</span>
+                    </div>
+                </div>
+
+                {!fixed ? (
+                    <div className="bg-red-900/50 border border-red-500/50 p-4 rounded text-red-200 font-mono text-sm mb-4">
+                        SyntaxError: EOL while scanning string literal
+                    </div>
+                ) : (
+                    <div className="bg-green-900/50 border border-green-500/50 p-4 rounded text-green-200 font-mono text-sm mb-4">
+                        &gt; Hello World
+                        <br />
+                        Process finished with exit code 0
+                    </div>
+                )}
+
+                <Button onClick={fixCode} disabled={fixed} variant={fixed ? "success" : "primary"}>
+                    {fixed ? "Bug 已修复！🎉" : "🛠️ 修复 Bug"}
+                </Button>
+            </div>
+        </div>
+    );
+};
+
+// 7. Story Maker (Mad Libs)
+const StorySlide = () => {
+    const [name, setName] = useState("");
+    const [place, setPlace] = useState("");
+    const [food, setFood] = useState("");
+    const [age, setAge] = useState("");
+    const [showStory, setShowStory] = useState(false);
+
+    // Casting age to number for math
+    const nextAge = Number(age) + 10;
+
+    return (
+        <div className="space-y-6 animate-in fade-in slide-in-from-bottom-4 duration-500">
+            <div className="bg-cyan-100 p-6 rounded-2xl border border-cyan-200 text-cyan-900">
+                <h2 className="text-2xl font-bold mb-4 flex items-center gap-2">
+                    <BookOpen className="text-cyan-600" />
+                    故事生成器
+                </h2>
+                <p>
+                    让我们把<strong>变量</strong>(名字)、<strong>数字</strong>(年龄)和<strong>输出</strong>结合在一起！
+                </p>
+            </div>
+
+            <div className="grid md:grid-cols-2 gap-8">
+                <div className="bg-white p-6 rounded-xl shadow-sm border border-slate-100 space-y-4">
+                    <h3 className="font-bold text-slate-700">1. 输入信息</h3>
+                    <input
+                        placeholder="名字 (如: 小明)"
+                        value={name} onChange={e => setName(e.target.value)}
+                        className="w-full px-4 py-2 border rounded-lg focus:ring-2 focus:ring-cyan-500 outline-none"
+                    />
+                    <input
+                        placeholder="今年几岁? (数字)"
+                        type="number"
+                        value={age} onChange={e => setAge(e.target.value)}
+                        className="w-full px-4 py-2 border rounded-lg focus:ring-2 focus:ring-cyan-500 outline-none"
+                    />
+                    <input
+                        placeholder="地点 (如: 火星)"
+                        value={place} onChange={e => setPlace(e.target.value)}
+                        className="w-full px-4 py-2 border rounded-lg focus:ring-2 focus:ring-cyan-500 outline-none"
+                    />
+                    <input
+                        placeholder="食物 (如: 薯片)"
+                        value={food} onChange={e => setFood(e.target.value)}
+                        className="w-full px-4 py-2 border rounded-lg focus:ring-2 focus:ring-cyan-500 outline-none"
+                    />
+                    <Button onClick={() => setShowStory(true)} disabled={!name || !place || !food || !age} className="w-full">
+                        生成故事！
+                    </Button>
+                </div>
+
+                <div className={`bg-amber-100 p-8 rounded-xl shadow-lg transform transition-all duration-500 rotate-1
+                    ${showStory ? 'opacity-100 translate-y-0' : 'opacity-50 translate-y-4 blur-sm'}
+                `}>
+                    <h3 className="font-bold text-amber-800 mb-4 text-xl">📜 你的专属故事</h3>
+                    <p className="text-lg leading-loose text-amber-900 font-serif">
+                        10年后，
+                        <span className="bg-white px-2 py-1 rounded mx-1 font-bold text-indigo-600 shadow-sm">{name || "___"}</span>
+                        已经
+                        <span className="bg-white px-2 py-1 rounded mx-1 font-bold text-red-600 shadow-sm">{age ? nextAge : "___"}</span>
+                        岁了。
+                        <br />
+                        通过努力，他/她成功登陆了
+                        <span className="bg-white px-2 py-1 rounded mx-1 font-bold text-purple-600 shadow-sm">{place || "___"}</span>
+                        。
+                        <br />
+                        大家一起开心地吃着
+                        <span className="bg-white px-2 py-1 rounded mx-1 font-bold text-orange-600 shadow-sm">{food || "___"}</span>
+                        庆祝！
+                        <br />
+                        <span className="text-sm opacity-60 mt-2 block">(看！程序帮你算出了10年后的年龄：{age} + 10 = {nextAge})</span>
+                    </p>
+                </div>
+            </div>
+        </div>
+    );
+};
+
+// 8. Challenge
+const ChallengeSlide = () => {
+    const [answers, setAnswers] = useState({});
+    const [score, setScore] = useState(null);
+
+    const questions = [
+        { id: 'q1', text: 'print("Hello") 的作用是？', options: ['打印纸张', '在屏幕显示文字', '保存文件'], correct: '在屏幕显示文字' },
+        { id: 'q2', text: '10 + 20 * 2 的结果是？(注意优先级)', options: ['60', '50', '30'], correct: '50' },
+        { id: 'q3', text: 'name = "Python"，print(name) 输出？', options: ['name', 'Python', '"Python"'], correct: 'Python' },
+    ];
+
+    const checkAnswers = () => {
+        let correctCount = 0;
+        questions.forEach(q => {
+            if (answers[q.id] === q.correct) correctCount++;
+        });
+        setScore(correctCount);
+    };
+
+    return (
+        <div className="space-y-6 animate-in fade-in slide-in-from-bottom-4 duration-500">
+            <div className="bg-yellow-100 p-6 rounded-2xl border border-yellow-200 text-yellow-900">
+                <h2 className="text-2xl font-bold mb-4 flex items-center gap-2">
+                    <HelpCircle className="text-yellow-600" />
+                    小测验：萌新毕业考
+                </h2>
+                <p>
+                    完成下面的挑战，看看你掌握了多少知识！
+                </p>
+            </div>
+
+            <div className="bg-white p-6 rounded-2xl shadow-lg border border-slate-100 space-y-6">
+                {questions.map((q, idx) => (
+                    <div key={q.id} className="pb-4 border-b border-slate-100 last:border-0">
+                        <p className="font-bold text-slate-700 mb-3">{idx + 1}. {q.text}</p>
+                        <div className="flex flex-wrap gap-2">
+                            {q.options.map(opt => (
+                                <button
+                                    key={opt}
+                                    onClick={() => setAnswers(prev => ({ ...prev, [q.id]: opt }))}
+                                    className={`px-4 py-2 rounded-lg text-sm border transition-all
+                                        ${answers[q.id] === opt
+                                            ? 'bg-indigo-600 text-white border-indigo-600'
+                                            : 'bg-slate-50 text-slate-600 border-slate-200 hover:bg-slate-100'}
+                                    `}
+                                >
+                                    {opt}
+                                </button>
+                            ))}
+                        </div>
+                    </div>
+                ))}
+
+                {score === null ? (
+                    <Button onClick={checkAnswers} className="w-full">提交答案</Button>
+                ) : (
+                    <div className="text-center animate-in zoom-in">
+                        <div className="text-4xl mb-2">{score === questions.length ? '🎉' : '💪'}</div>
+                        <h3 className="text-xl font-bold text-slate-800">
+                            你答对了 {score} / {questions.length} 题
+                        </h3>
+                        {score === questions.length ? (
+                            <p className="text-green-500 mt-2">太棒了！你已经准备好进入下一章了！</p>
+                        ) : (
+                            <Button onClick={() => setScore(null)} variant="secondary" className="mt-4">再试一次</Button>
+                        )}
+                    </div>
+                )}
+            </div>
+        </div>
+    );
+}
 
 
 const sections = [
@@ -240,32 +513,58 @@ const sections = [
     { id: 2, title: '变量魔法', icon: Box, component: VariableSlide },
     { id: 3, title: '与电脑对话', icon: MessageSquare, component: IOSlide },
     { id: 4, title: '运算游乐场', icon: Calculator, component: MathSlide },
+    { id: 5, title: '数据侦探', icon: Tag, component: DataTypeSlide },
+    { id: 6, title: '捉虫特工队', icon: Bug, component: BugHuntSlide },
+    { id: 7, title: '故事生成器', icon: BookOpen, component: StorySlide },
+    { id: 8, title: '萌新毕业考', icon: HelpCircle, component: ChallengeSlide },
 ];
 
 export default function PythonFoundation1() {
     const [activeSection, setActiveSection] = useState(1);
+    const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
     const ActiveComponent = sections.find(s => s.id === activeSection)?.component || (() => <div>Coming Soon</div>);
 
     return (
-        <div className="flex h-screen bg-slate-50 font-sans text-slate-800 selection:bg-indigo-100">
+        <div className="flex flex-col md:flex-row h-screen bg-slate-50 font-sans text-slate-800 selection:bg-indigo-100">
+            {/* Mobile Header */}
+            <div className="md:hidden bg-white border-b border-slate-200 p-4 flex justify-between items-center sticky top-0 z-20">
+                <div className="font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-indigo-600 to-purple-600 flex items-center gap-2">
+                    <span className="text-lg">F1: 语法启蒙</span>
+                </div>
+                <button onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)} className="p-2 text-slate-600">
+                    {isMobileMenuOpen ? <X /> : <Menu />}
+                </button>
+            </div>
+
             {/* Sidebar */}
-            <div className="w-64 bg-white border-r border-slate-200 flex flex-col flex-shrink-0">
-                <div className="p-6 border-b border-slate-100">
-                    <h1 className="text-xl font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-indigo-600 to-purple-600 flex items-center gap-2">
-                        <Link to="/" className="hover:opacity-80 transition-opacity">
-                            <div className="w-8 h-8 bg-indigo-100 rounded-lg flex items-center justify-center overflow-hidden border border-indigo-200">
-                                <span className="text-lg">🏠</span>
-                            </div>
-                        </Link>
-                        F1: 语法启蒙
-                    </h1>
-                    <p className="text-xs text-slate-400 mt-2 font-medium">Python 基础体系</p>
+            <div className={`
+                fixed inset-0 z-30 bg-white md:static md:w-64 border-r border-slate-200 flex flex-col flex-shrink-0 transition-transform duration-300 md:translate-x-0
+                ${isMobileMenuOpen ? 'translate-x-0' : '-translate-x-full'}
+            `}>
+                <div className="p-6 border-b border-slate-100 flex justify-between items-center">
+                    <div>
+                        <h1 className="text-xl font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-indigo-600 to-purple-600 flex items-center gap-2">
+                            <Link to="/" className="hover:opacity-80 transition-opacity">
+                                <div className="w-8 h-8 bg-indigo-100 rounded-lg flex items-center justify-center overflow-hidden border border-indigo-200">
+                                    <span className="text-lg">🏠</span>
+                                </div>
+                            </Link>
+                            F1: 语法启蒙
+                        </h1>
+                        <p className="text-xs text-slate-400 mt-2 font-medium">Python 基础体系</p>
+                    </div>
+                    <button onClick={() => setIsMobileMenuOpen(false)} className="md:hidden p-2 text-slate-400">
+                        <X size={20} />
+                    </button>
                 </div>
                 <div className="flex-1 overflow-y-auto p-4 space-y-2">
                     {sections.map(section => (
                         <button
                             key={section.id}
-                            onClick={() => setActiveSection(section.id)}
+                            onClick={() => {
+                                setActiveSection(section.id);
+                                setIsMobileMenuOpen(false);
+                            }}
                             className={`w-full text-left px-4 py-3 rounded-xl transition-all duration-200 flex items-center gap-3 font-medium
                         ${activeSection === section.id
                                     ? 'bg-indigo-50 text-indigo-700 shadow-sm ring-1 ring-indigo-200'
@@ -290,10 +589,10 @@ export default function PythonFoundation1() {
             </div>
 
             {/* Main Content */}
-            <div className="flex-1 overflow-y-auto p-8">
+            <div className="flex-1 overflow-y-auto p-4 md:p-8">
                 <div className="max-w-4xl mx-auto">
-                    <header className="mb-8">
-                        <h2 className="text-3xl font-bold text-slate-800 mb-2">
+                    <header className="mb-6 md:mb-8">
+                        <h2 className="text-2xl md:text-3xl font-bold text-slate-800 mb-2">
                             {sections.find(s => s.id === activeSection)?.title}
                         </h2>
                         <div className="h-1 w-20 bg-indigo-500 rounded-full"></div>
@@ -301,7 +600,7 @@ export default function PythonFoundation1() {
 
                     <ActiveComponent />
 
-                    <div className="mt-12 flex justify-between border-t border-slate-200 pt-8">
+                    <div className="mt-8 md:mt-12 flex justify-between border-t border-slate-200 pt-6 md:pt-8 pb-8">
                         <Button
                             variant="secondary"
                             onClick={() => setActiveSection(prev => Math.max(1, prev - 1))}
