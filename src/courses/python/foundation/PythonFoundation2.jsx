@@ -29,6 +29,14 @@ const CodeBlock = ({ code }) => (
 // 1. Boolean Logic Slide (True/False Gates)
 const BooleanSlide = () => {
     const [switches, setSwitches] = useState({ a: false, b: false });
+    const [showTruthTable, setShowTruthTable] = useState(false);
+
+    const truthTableData = [
+        { a: false, b: false },
+        { a: false, b: true },
+        { a: true, b: false },
+        { a: true, b: true },
+    ];
 
     return (
         <div className="space-y-6 animate-in fade-in slide-in-from-bottom-4 duration-500">
@@ -92,6 +100,66 @@ const BooleanSlide = () => {
                         </span>
                     </div>
                 </div>
+            </div>
+
+            {/* Truth Table */}
+            <div className="bg-gradient-to-r from-blue-50 to-indigo-50 p-6 rounded-2xl border-2 border-blue-200">
+                <div className="flex items-center justify-between mb-4">
+                    <h3 className="font-bold text-blue-900 flex items-center gap-2">
+
+                        <Grid3x3 className="text-blue-600" />
+                        真值表
+                    </h3>
+                    <button
+                        onClick={() => setShowTruthTable(!showTruthTable)}
+                        className="text-sm font-bold text-blue-600 hover:text-blue-700"
+                    >
+                        {showTruthTable ? '隐藏 ▲' : '显示 ▼'}
+                    </button>
+                </div>
+
+                {showTruthTable && (
+                    <div className="overflow-x-auto animate-in fade-in slide-in-from-top-4 duration-300">
+                        <table className="w-full text-sm bg-white rounded-lg overflow-hidden shadow-sm">
+                            <thead className="bg-blue-600 text-white">
+                                <tr>
+                                    <th className="p-3 font-bold">A</th>
+                                    <th className="p-3 font-bold">B</th>
+                                    <th className="p-3 font-bold">A AND B</th>
+                                    <th className="p-3 font-bold">A OR B</th>
+                                    <th className="p-3 font-bold">NOT A</th>
+                                </tr>
+                            </thead>
+                            <tbody className="font-mono">
+                                {truthTableData.map((row, idx) => (
+                                    <tr key={idx} className={`
+                                        border-b border-blue-100 transition-colors
+                                        ${switches.a === row.a && switches.b === row.b ? 'bg-blue-100 font-bold' : 'hover:bg-blue-50'}
+                                    `}>
+                                        <td className={`p-3 text-center ${row.a ? 'text-green-600' : 'text-red-600'}`}>
+                                            {row.a ? 'T' : 'F'}
+                                        </td>
+                                        <td className={`p-3 text-center ${row.b ? 'text-green-600' : 'text-red-600'}`}>
+                                            {row.b ? 'T' : 'F'}
+                                        </td>
+                                        <td className={`p-3 text-center ${row.a && row.b ? 'text-green-600' : 'text-red-600'}`}>
+                                            {row.a && row.b ? 'T' : 'F'}
+                                        </td>
+                                        <td className={`p-3 text-center ${row.a || row.b ? 'text-green-600' : 'text-red-600'}`}>
+                                            {row.a || row.b ? 'T' : 'F'}
+                                        </td>
+                                        <td className={`p-3 text-center ${!row.a ? 'text-green-600' : 'text-red-600'}`}>
+                                            {!row.a ? 'T' : 'F'}
+                                        </td>
+                                    </tr>
+                                ))}
+                            </tbody>
+                        </table>
+                        <div className="mt-3 text-xs text-blue-700 text-center">
+                            💡 当前选择的行会高亮显示
+                        </div>
+                    </div>
+                )}
             </div>
         </div>
     );
@@ -516,7 +584,126 @@ for i in range(${targetSteps}):
     );
 };
 
-// 4. While/Break Challenge
+// 6. List Operations Visualizer
+const ListOpsSlide = () => {
+    const [items, setItems] = useState(['🍎', '🍌', '🍇', '🍊', '🍓']);
+    const [currentIndex, setCurrentIndex] = useState(-1);
+    const [isAnimating, setIsAnimating] = useState(false);
+    const [operation, setOperation] = useState('iterate');
+
+    const runAnimation = async () => {
+        setIsAnimating(true);
+        setCurrentIndex(-1);
+
+        if (operation === 'iterate') {
+            for (let i = 0; i < items.length; i++) {
+                await new Promise(r => setTimeout(r, 700));
+                setCurrentIndex(i);
+            }
+        } else if (operation === 'filter') {
+            for (let i = 0; i < items.length; i++) {
+                await new Promise(r => setTimeout(r, 700));
+                setCurrentIndex(i);
+            }
+            await new Promise(r => setTimeout(r, 500));
+            setItems(prev => prev.filter((_, i) => i % 2 === 0));
+        }
+
+        setIsAnimating(false);
+        setCurrentIndex(-1);
+    };
+
+    const reset = () => {
+        setItems(['🍎', '🍌', '🍇', '🍊', '🍓']);
+        setCurrentIndex(-1);
+    };
+
+    return (
+        <div className="space-y-6 animate-in fade-in slide-in-from-bottom-4 duration-500">
+            <div className="bg-violet-100 p-6 rounded-2xl border border-violet-200 text-violet-900">
+                <h2 className="text-2xl font-bold mb-4 flex items-center gap-2">
+                    <List className="text-violet-600" />
+                    列表操作：批量处理
+                </h2>
+                <p>
+                    <strong>for 循环 + 列表</strong>是黄金搭档！我们可以遍历列表中的每个元素，
+                    或者根据条件筛选、修改它们。
+                </p>
+            </div>
+
+            <div className="grid md:grid-cols-2 gap-8">
+                <div className="bg-white p-6 rounded-2xl shadow-lg border border-slate-100 space-y-4">
+                    <h3 className="font-bold text-slate-700">选择操作</h3>
+
+                    <div className="grid grid-cols-1 gap-2">
+                        {[
+                            { value: 'iterate', label: '遍历所有', desc: 'for item in list:' },
+                            { value: 'filter', label: '筛选偶数位', desc: 'filter(list, condition)' }
+                        ].map(op => (
+                            <button
+                                key={op.value}
+                                onClick={() => setOperation(op.value)}
+                                disabled={isAnimating}
+                                className={`p-4 rounded-xl text-left transition-all ${operation === op.value
+                                    ? 'bg-violet-600 text-white shadow-lg scale-105'
+                                    : 'bg-slate-100 text-slate-600 hover:bg-slate-200'
+                                    } ${isAnimating ? 'opacity-50 cursor-not-allowed' : ''}`}
+                            >
+                                <div className="font-bold">{op.label}</div>
+                                <div className="text-xs opacity-75 font-mono">{op.desc}</div>
+                            </button>
+                        ))}
+                    </div>
+
+                    <div className="flex gap-2">
+                        <Button onClick={runAnimation} disabled={isAnimating} variant="primary" className="flex-1">
+                            {isAnimating ? '运行中...' : '开始运行 ▶️'}
+                        </Button>
+                        <Button onClick={reset} variant="secondary">重置</Button>
+                    </div>
+
+                    <div className="bg-slate-900 p-4 rounded-xl text-green-400 font-mono text-sm whitespace-pre">
+                        <div className="text-slate-400 mb-2"># Python 代码</div>
+                        {operation === 'iterate' && 'for fruit in fruits:\n  print(fruit)'}
+                        {operation === 'filter' && 'fruits = [f for i, f in\n  enumerate(fruits) if i % 2 == 0]'}
+                    </div>
+                </div>
+
+                <div className="bg-gradient-to-br from-violet-50 to-purple-50 p-6 rounded-2xl border-2 border-violet-200">
+                    <h3 className="text-sm font-bold text-violet-600 mb-6 text-center">列表可视化</h3>
+
+                    <div className="flex flex-wrap gap-3 justify-center min-h-[200px] items-start">
+                        {items.map((item, idx) => (
+                            <div
+                                key={`${item}-${idx}`}
+                                className={`
+                                    w-20 h-20 rounded-xl flex flex-col items-center justify-center text-3xl
+                                    transition-all duration-300
+                                    ${currentIndex === idx
+                                        ? 'bg-violet-600 text-white scale-125 shadow-2xl rotate-6'
+                                        : 'bg-white shadow-md hover:scale-105'
+                                    }
+                                `}
+                            >
+                                <div>{item}</div>
+                                <div className={`text-xs font-bold mt-1 ${currentIndex === idx ? 'text-white' : 'text-slate-500'}`}>[{idx}]</div>
+                            </div>
+                        ))}
+                    </div>
+
+                    {currentIndex >= 0 && (
+                        <div className="mt-6 bg-white p-4 rounded-lg text-center animate-in fade-in">
+                            <div className="text-sm text-violet-600 font-bold">当前处理:</div>
+                            <div className="text-2xl">索引 {currentIndex}: {items[currentIndex]}</div>
+                        </div>
+                    )}
+                </div>
+            </div>
+        </div>
+    );
+};
+
+// 7. While/Break Challenge
 const ChallengeSlide = () => {
     const [fuel, setFuel] = useState(10);
     const [status, setStatus] = useState('ready'); // ready, running, success, fail
@@ -604,15 +791,19 @@ const ChallengeSlide = () => {
     );
 }
 
-// 5. Quiz Slide
+// 8. Quiz Slide
 const QuizSlide = () => {
     const [answers, setAnswers] = useState({});
     const [score, setScore] = useState(null);
+    const [showHints, setShowHints] = useState({});
 
     const questions = [
-        { id: 'q1', text: 'True and False 的结果是？', options: ['True', 'False', 'Unknown'], correct: 'False' },
-        { id: 'q2', text: 'if 5 > 3: print("A") else: print("B") 输出？', options: ['A', 'B', 'Error'], correct: 'A' },
-        { id: 'q3', text: 'for i in range(3): print(i) 最后输出？', options: ['1', '2', '3'], correct: '2' },
+        { id: 'q1', text: 'True and False 的结果是？', options: ['True', 'False', 'Unknown'], correct: 'False', difficulty: '简单', hint: 'and 要求两个都是 True 才返回 True' },
+        { id: 'q2', text: 'if 5 > 3: print("A") else: print("B") 输出？', options: ['A', 'B', 'Error'], correct: 'A', difficulty: '简单', hint: '5 确实大于 3，所以条件为 True' },
+        { id: 'q3', text: 'for i in range(3): print(i) 最后输出？', options: ['0', '1', '2'], correct: '2', difficulty: '中等', hint: 'range(3) 生成 0, 1, 2，最后输出的是2' },
+        { id: 'q4', text: '18 >= 18 的结果是？', options: ['True', 'False'], correct: 'True', difficulty: '简单', hint: '>= 表示大于或等于' },
+        { id: 'q5', text: 'not True or False 的结果是？', options: ['True', 'False'], correct: 'False', difficulty: '中等', hint: 'not True 是 False，False or False 是 False' },
+        { id: 'q6', text: 'while 条件为 False 时，循环体会执行吗？', options: ['会', '不会', '报错'], correct: '不会', difficulty: '中等', hint: 'while 只在条件为 True 时才执行' },
     ];
 
     const checkAnswers = () => {
@@ -622,6 +813,20 @@ const QuizSlide = () => {
         });
         setScore(correctCount);
     };
+
+    const getAchievement = () => {
+        const percentage = (score / questions.length) * 100;
+        if (percentage === 100) return { emoji: '🏆', text: '完美大师', color: 'text-yellow-600' };
+        if (percentage >= 80) return { emoji: '🌟', text: '优秀学员', color: 'text-blue-600' };
+        if (percentage >= 60) return { emoji: '👍', text: '继续加油', color: 'text-green-600' };
+        return { emoji: '💪', text: '再接再厉', color: 'text-orange-600' };
+    };
+
+    const toggleHint = (qid) => {
+        setShowHints(prev => ({ ...prev, [qid]: !prev[qid] }));
+    };
+
+    const allAnswered = questions.every(q => answers[q.id]);
 
     return (
         <div className="space-y-6 animate-in fade-in slide-in-from-bottom-4 duration-500">
@@ -638,37 +843,81 @@ const QuizSlide = () => {
             <div className="bg-white p-6 rounded-2xl shadow-lg border border-slate-100 space-y-6">
                 {questions.map((q, idx) => (
                     <div key={q.id} className="pb-4 border-b border-slate-100 last:border-0">
-                        <p className="font-bold text-slate-700 mb-3">{idx + 1}. {q.text}</p>
-                        <div className="flex flex-wrap gap-2">
+                        <div className="flex items-start justify-between mb-3">
+                            <p className="font-bold text-slate-700">{idx + 1}. {q.text}</p>
+                            <span className={`text-xs px-2 py-1 rounded-full font-bold ${q.difficulty === '简单' ? 'bg-green-100 text-green-700' :
+                                q.difficulty === '中等' ? 'bg-yellow-100 text-yellow-700' :
+                                    'bg-red-100 text-red-700'
+                                }`}>
+                                {q.difficulty}
+                            </span>
+                        </div>
+                        <div className="flex flex-wrap gap-2 mb-2">
                             {q.options.map(opt => (
                                 <button
                                     key={opt}
                                     onClick={() => setAnswers(prev => ({ ...prev, [q.id]: opt }))}
+                                    disabled={score !== null}
                                     className={`px-4 py-2 rounded-lg text-sm border transition-all
                                         ${answers[q.id] === opt
                                             ? 'bg-purple-600 text-white border-purple-600'
                                             : 'bg-slate-50 text-slate-600 border-slate-200 hover:bg-slate-100'}
+                                        ${score !== null ? 'cursor-not-allowed opacity-60' : ''}
                                     `}
                                 >
                                     {opt}
                                 </button>
                             ))}
                         </div>
+                        {showHints[q.id] && (
+                            <div className="mt-2 text-xs bg-blue-50 text-blue-700 p-2 rounded-lg">
+                                💡 提示: {q.hint}
+                            </div>
+                        )}
+                        {score === null && (
+                            <button
+                                onClick={() => toggleHint(q.id)}
+                                className="text-xs text-blue-600 hover:text-blue-700 mt-1"
+                            >
+                                {showHints[q.id] ? '隐藏提示' : '显示提示'}
+                            </button>
+                        )}
                     </div>
                 ))}
 
                 {score === null ? (
-                    <Button onClick={checkAnswers} variant="primary" className="w-full bg-purple-600 hover:bg-purple-700">提交答案</Button>
+                    <Button
+                        onClick={checkAnswers}
+                        variant="primary"
+                        disabled={!allAnswered}
+                        className="w-full bg-purple-600 hover:bg-purple-700"
+                    >
+                        {allAnswered ? '提交答案' : `请回答所有问题 (${Object.keys(answers).length}/${questions.length})`}
+                    </Button>
                 ) : (
-                    <div className="text-center animate-in zoom-in">
-                        <div className="text-4xl mb-2">{score === questions.length ? '🧠' : '🤔'}</div>
-                        <h3 className="text-xl font-bold text-slate-800">
-                            你答对了 {score} / {questions.length} 题
+                    <div className="text-center animate-in zoom-in space-y-4">
+                        <div className="text-6xl">{getAchievement().emoji}</div>
+                        <h3 className={`text-2xl font-bold ${getAchievement().color}`}>
+                            {getAchievement().text}
                         </h3>
-                        {score === questions.length ? (
-                            <p className="text-green-500 mt-2">完美！逻辑回路正常运转！</p>
-                        ) : (
-                            <Button onClick={() => setScore(null)} variant="secondary" className="mt-4">再试一次</Button>
+                        <div className="text-xl text-slate-700">
+                            你答对了 <span className="font-bold text-purple-600">{score}</span> / {questions.length} 题
+                        </div>
+                        <div className="w-full bg-slate-200 rounded-full h-3 overflow-hidden">
+                            <div
+                                className="bg-gradient-to-r from-purple-500 to-pink-600 h-full transition-all duration-1000"
+                                style={{ width: `${(score / questions.length) * 100}%` }}
+                            ></div>
+                        </div>
+                        {score < questions.length && (
+                            <Button onClick={() => { setScore(null); setAnswers({}); setShowHints({}); }} variant="secondary" className="mt-4">
+                                再试一次
+                            </Button>
+                        )}
+                        {score === questions.length && (
+                            <div className="bg-green-50 border-2 border-green-200 rounded-xl p-4 mt-4">
+                                <div className="text-green-700 font-bold">🎉 完美通关！你已经掌握了流程控制的精髓！</div>
+                            </div>
                         )}
                     </div>
                 )}
@@ -683,8 +932,9 @@ const sections = [
     { id: 3, title: '条件判断', icon: GitBranch, component: ConditionSlide },
     { id: 4, title: '嵌套条件', icon: TreePine, component: NestedConditionSlide },
     { id: 5, title: 'For 循环', icon: Repeat, component: LoopSlide },
-    { id: 6, title: 'While 火箭', icon: AlertTriangle, component: ChallengeSlide },
-    { id: 7, title: '逻辑大师', icon: HelpCircle, component: QuizSlide },
+    { id: 6, title: '列表操作', icon: List, component: ListOpsSlide },
+    { id: 7, title: 'While 火箭', icon: AlertTriangle, component: ChallengeSlide },
+    { id: 8, title: '逻辑大师', icon: HelpCircle, component: QuizSlide },
 ];
 
 export default function PythonFoundation2() {
