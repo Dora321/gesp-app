@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
-import { GitBranch, Repeat, HelpCircle, CheckCircle, AlertTriangle, ArrowRight, Play, RefreshCw, XCircle, Menu, X } from 'lucide-react';
+import { GitBranch, Repeat, HelpCircle, CheckCircle, AlertTriangle, ArrowRight, Play, RefreshCw, XCircle, Menu, X, Zap, List, Grid3x3, TreePine, TrendingUp } from 'lucide-react';
 
 // --- Shared Components ---
 const Button = ({ onClick, children, className, variant = 'primary', disabled = false }) => {
@@ -97,7 +97,142 @@ const BooleanSlide = () => {
     );
 };
 
-// 2. Conditionals Slide (Traffic Light)
+// 2. Comparison Operators Playground
+const ComparisonSlide = () => {
+    const [num1, setNum1] = useState(18);
+    const [num2, setNum2] = useState(21);
+    const [selectedOp, setSelectedOp] = useState('>');
+
+    const operators = [
+        { symbol: '>', name: '大于', example: (a, b) => a > b },
+        { symbol: '<', name: '小于', example: (a, b) => a < b },
+        { symbol: '>=', name: '大于等于', example: (a, b) => a >= b },
+        { symbol: '<=', name: '小于等于', example: (a, b) => a <= b },
+        { symbol: '==', name: '等于', example: (a, b) => a === b },
+        { symbol: '!=', name: '不等于', example: (a, b) => a !== b },
+    ];
+
+    const currentOp = operators.find(op => op.symbol === selectedOp);
+    const result = currentOp.example(num1, num2);
+
+    return (
+        <div className="space-y-6 animate-in fade-in slide-in-from-bottom-4 duration-500">
+            <div className="bg-emerald-100 p-6 rounded-2xl border border-emerald-200 text-emerald-900">
+                <h2 className="text-2xl font-bold mb-4 flex items-center gap-2">
+                    <Zap className="text-emerald-600" />
+                    比较运算符：谁大谁小？
+                </h2>
+                <p className="text-lg mb-4">
+                    比较运算符用来比较两个值的大小或是否相等。
+                    结果总是 <strong>True</strong> 或 <strong>False</strong>。
+                </p>
+            </div>
+
+            <div className="grid md:grid-cols-2 gap-8">
+                {/* Number Controls */}
+                <div className="bg-white p-6 rounded-2xl shadow-lg border border-slate-100 space-y-6">
+                    <h3 className="font-bold text-slate-700 mb-4">选择数字</h3>
+
+                    <div className="space-y-4">
+                        <div>
+                            <label className="block text-sm font-bold text-slate-600 mb-2">第一个数字: {num1}</label>
+                            <input
+                                type="range"
+                                min="0"
+                                max="100"
+                                value={num1}
+                                onChange={(e) => setNum1(Number(e.target.value))}
+                                className="w-full"
+                            />
+                        </div>
+                        <div>
+                            <label className="block text-sm font-bold text-slate-600 mb-2">第二个数字: {num2}</label>
+                            <input
+                                type="range"
+                                min="0"
+                                max="100"
+                                value={num2}
+                                onChange={(e) => setNum2(Number(e.target.value))}
+                                className="w-full"
+                            />
+                        </div>
+                    </div>
+
+                    <div className="grid grid-cols-3 gap-2">
+                        {operators.map(op => (
+                            <button
+                                key={op.symbol}
+                                onClick={() => setSelectedOp(op.symbol)}
+                                className={`p-3 rounded-lg text-sm font-bold transition-all ${selectedOp === op.symbol
+                                    ? 'bg-emerald-600 text-white shadow-lg scale-105'
+                                    : 'bg-slate-100 text-slate-600 hover:bg-slate-200'
+                                    }`}
+                            >
+                                {op.symbol}
+                            </button>
+                        ))}
+                    </div>
+
+                    <div className="bg-slate-800 p-4 rounded-xl text-white font-mono">
+                        <div className="text-sm text-slate-400 mb-2">Python 代码:</div>
+                        <div className="text-lg">
+                            {num1} {selectedOp} {num2}
+                        </div>
+                    </div>
+                </div>
+
+                {/* Visual Comparison */}
+                <div className="bg-gradient-to-br from-emerald-50 to-cyan-50 p-6 rounded-2xl border-2 border-emerald-200">
+                    <h3 className="text-sm font-bold text-emerald-600 mb-4 text-center">{currentOp.name}</h3>
+
+                    <div className="flex items-end justify-around h-64 mb-6">
+                        {/* Bar 1 */}
+                        <div className="flex flex-col items-center gap-2">
+                            <div className="text-2xl font-bold text-indigo-600">{num1}</div>
+                            <div
+                                className="w-20 bg-gradient-to-t from-indigo-500 to-indigo-400 rounded-t-lg transition-all duration-300 shadow-lg"
+                                style={{ height: `${(num1 / 100) * 200}px` }}
+                            ></div>
+                        </div>
+
+                        {/* Operator */}
+                        <div className="text-4xl font-bold text-emerald-600 mb-20">
+                            {selectedOp}
+                        </div>
+
+                        {/* Bar 2 */}
+                        <div className="flex flex-col items-center gap-2">
+                            <div className="text-2xl font-bold text-purple-600">{num2}</div>
+                            <div
+                                className="w-20 bg-gradient-to-t from-purple-500 to-purple-400 rounded-t-lg transition-all duration-300 shadow-lg"
+                                style={{ height: `${(num2 / 100) * 200}px` }}
+                            ></div>
+                        </div>
+                    </div>
+
+                    {/* Result */}
+                    <div className={`text-center p-4 rounded-xl text-white font-bold text-2xl transition-all ${result ? 'bg-green-500' : 'bg-red-500'
+                        }`}>
+                        结果: {result ? 'True ✓' : 'False ✗'}
+                    </div>
+
+                    {/* Real-world Example */}
+                    <div className="mt-4 bg-white p-3 rounded-lg text-sm text-slate-600">
+                        <div className="font-bold text-emerald-600 mb-1">💡 实际应用:</div>
+                        {selectedOp === '>' && `年龄 ${num1} > ${num2} 吗？${result ? '是' : '否'}，${result ? '第一个人年龄更大' : '第一个人年龄不大于第二个'}`}
+                        {selectedOp === '<' && `价格 ¥${num1} < ¥${num2} 吗？${result ? '是' : '否'}，${result ? '第一个更便宜' : '第一个不便宜'}`}
+                        {selectedOp === '>=' && `分数 ${num1} >= ${num2} 吗？${result ? '达标' : '未达标'}`}
+                        {selectedOp === '<=' && `库存 ${num1} <= ${num2} 吗？${result ? '库存充足' : '库存不足'}`}
+                        {selectedOp === '==' && `密码 ${num1} == ${num2} 吗？${result ? '密码正确！' : '密码错误！'}`}
+                        {selectedOp === '!=' && `ID ${num1} != ${num2} 吗？${result ? '不是同一个人' : '是同一个人'}`}
+                    </div>
+                </div>
+            </div>
+        </div>
+    );
+};
+
+// 3. Conditionals Slide (Traffic Light)
 const ConditionSlide = () => {
     const [light, setLight] = useState('red'); // red, yellow, green
 
@@ -166,7 +301,131 @@ else:
     );
 };
 
-// 3. Loop Strategy (Robot)
+// 4. Nested Conditionals Decision Tree
+const NestedConditionSlide = () => {
+    const [weather, setWeather] = useState('sunny');
+    const [temperature, setTemperature] = useState(25);
+
+    const getRecommendation = () => {
+        if (weather === 'sunny') {
+            if (temperature > 30) return { emoji: '🏖️', text: '太热了！去游泳吧！', color: 'from-orange-400 to-red-500' };
+            if (temperature > 20) return { emoji: '🚴', text: '天气不错，骑车出去玩！', color: 'from-yellow-400 to-orange-400' };
+            return { emoji: '🧥', text: '有点凉，穿件外套吧', color: 'from-blue-300 to-cyan-400' };
+        } else if (weather === 'rainy') {
+            if (temperature > 20) return { emoji: '☔', text: '带伞！穿轻便的雨衣', color: 'from-gray-400 to-blue-500' };
+            return { emoji: '🌧️', text: '又冷又湿，在家看书吧', color: 'from-gray-500 to-blue-600' };
+        } else { // cloudy
+            if (temperature > 25) return { emoji: '⛅', text: '多云，适合散步', color: 'from-slate-300 to-gray-400' };
+            return { emoji: '☁️', text: '有点阴冷，穿暖和点', color: 'from-gray-400 to-slate-500' };
+        }
+    };
+
+    const recommendation = getRecommendation();
+
+    return (
+        <div className="space-y-6 animate-in fade-in slide-in-from-bottom-4 duration-500">
+            <div className="bg-sky-100 p-6 rounded-2xl border border-sky-200 text-sky-900">
+                <h2 className="text-2xl font-bold mb-4 flex items-center gap-2">
+                    <TreePine className="text-sky-600" />
+                    嵌套条件：决策树
+                </h2>
+                <p>
+                    当一个 if 里面还有 if，就是<strong>嵌套条件</strong>。
+                    就像走迷宫，每个岔路口都要做选择！
+                </p>
+            </div>
+
+            <div className="grid md:grid-cols-2 gap-8">
+                {/* Controls */}
+                <div className="bg-white p-6 rounded-2xl shadow-lg border border-slate-100 space-y-6">
+                    <h3 className="font-bold text-slate-700">选择天气条件</h3>
+
+                    <div>
+                        <label className="block text-sm font-bold text-slate-600 mb-3">天气:</label>
+                        <div className="grid grid-cols-3 gap-2">
+                            {[
+                                { value: 'sunny', emoji: '☀️', label: '晴天' },
+                                { value: 'rainy', emoji: '🌧️', label: '雨天' },
+                                { value: 'cloudy', emoji: '☁️', label: '多云' }
+                            ].map(w => (
+                                <button
+                                    key={w.value}
+                                    onClick={() => setWeather(w.value)}
+                                    className={`p-4 rounded-xl transition-all ${weather === w.value
+                                        ? 'bg-sky-600 text-white shadow-lg scale-105'
+                                        : 'bg-slate-100 text-slate-600 hover:bg-slate-200'
+                                        }`}
+                                >
+                                    <div className="text-2xl mb-1">{w.emoji}</div>
+                                    <div className="text-xs font-bold">{w.label}</div>
+                                </button>
+                            ))}
+                        </div>
+                    </div>
+
+                    <div>
+                        <label className="block text-sm font-bold text-slate-600 mb-2">
+                            温度: {temperature}°C
+                        </label>
+                        <input
+                            type="range"
+                            min="0"
+                            max="40"
+                            value={temperature}
+                            onChange={(e) => setTemperature(Number(e.target.value))}
+                            className="w-full"
+                        />
+                    </div>
+
+                    <div className="bg-slate-900 p-4 rounded-xl text-green-400 font-mono text-sm">
+                        <div className="text-slate-400 mb-2"># Python 嵌套条件</div>
+                        if weather == '{weather}':<br />
+                        &nbsp;&nbsp;if temperature &gt; 30:<br />
+                        &nbsp;&nbsp;&nbsp;&nbsp;print("去游泳")<br />
+                        &nbsp;&nbsp;elif temperature &gt; 20:<br />
+                        &nbsp;&nbsp;&nbsp;&nbsp;print("去骑车")<br />
+                        &nbsp;&nbsp;else:<br />
+                        &nbsp;&nbsp;&nbsp;&nbsp;print("穿外套")
+                    </div>
+                </div>
+
+                {/* Decision Tree Visualization */}
+                <div className={`p-6 rounded-2xl shadow-xl text-white bg-gradient-to-br ${recommendation.color}`}>
+                    <h3 className="text-sm font-bold mb-6 text-center opacity-90">决策结果</h3>
+
+                    {/* Decision Path */}
+                    <div className="space-y-4 mb-8">
+                        <div className="flex items-center gap-3 bg-white/20 p-3 rounded-lg backdrop-blur-sm">
+                            <div className="w-8 h-8 rounded-full bg-white/30 flex items-center justify-center font-bold">1</div>
+                            <div>
+                                <div className="text-xs opacity-75">天气判断</div>
+                                <div className="font-bold">
+                                    {weather === 'sunny' ? '☀️ 晴天' : weather === 'rainy' ? '🌧️ 雨天' : '☁️ 多云'}
+                                </div>
+                            </div>
+                        </div>
+
+                        <div className="flex items-center gap-3 bg-white/20 p-3 rounded-lg backdrop-blur-sm">
+                            <div className="w-8 h-8 rounded-full bg-white/30 flex items-center justify-center font-bold">2</div>
+                            <div>
+                                <div className="text-xs opacity-75">温度判断</div>
+                                <div className="font-bold">{temperature}°C</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    {/* Final Recommendation */}
+                    <div className="text-center bg-white/30 p-6 rounded-2xl backdrop-blur-sm">
+                        <div className="text-6xl mb-3">{recommendation.emoji}</div>
+                        <div className="text-xl font-bold">{recommendation.text}</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    );
+};
+
+// 5. Loop Strategy (Robot)
 const LoopSlide = () => {
     const [steps, setSteps] = useState(0);
     const [targetSteps, setTargetSteps] = useState(5);
@@ -420,16 +679,33 @@ const QuizSlide = () => {
 
 const sections = [
     { id: 1, title: '布尔逻辑', icon: CheckCircle, component: BooleanSlide },
-    { id: 2, title: '条件判断', icon: GitBranch, component: ConditionSlide },
-    { id: 3, title: 'For 循环', icon: Repeat, component: LoopSlide },
-    { id: 4, title: 'While 火箭', icon: AlertTriangle, component: ChallengeSlide },
-    { id: 5, title: '逻辑大师', icon: HelpCircle, component: QuizSlide },
+    { id: 2, title: '比较运算', icon: Zap, component: ComparisonSlide },
+    { id: 3, title: '条件判断', icon: GitBranch, component: ConditionSlide },
+    { id: 4, title: '嵌套条件', icon: TreePine, component: NestedConditionSlide },
+    { id: 5, title: 'For 循环', icon: Repeat, component: LoopSlide },
+    { id: 6, title: 'While 火箭', icon: AlertTriangle, component: ChallengeSlide },
+    { id: 7, title: '逻辑大师', icon: HelpCircle, component: QuizSlide },
 ];
 
 export default function PythonFoundation2() {
     const [activeSection, setActiveSection] = useState(1);
     const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+    const [completedSections, setCompletedSections] = useState(() => {
+        const saved = localStorage.getItem('pythonF2Progress');
+        return saved ? JSON.parse(saved) : [];
+    });
+
     const ActiveComponent = sections.find(s => s.id === activeSection)?.component || (() => <div>Coming Soon</div>);
+
+    const markSectionComplete = (sectionId) => {
+        if (!completedSections.includes(sectionId)) {
+            const updated = [...completedSections, sectionId];
+            setCompletedSections(updated);
+            localStorage.setItem('pythonF2Progress', JSON.stringify(updated));
+        }
+    };
+
+    const progressPercentage = Math.round((completedSections.length / sections.length) * 100);
 
     return (
         <div className="flex flex-col md:flex-row h-screen bg-slate-50 font-sans text-slate-800 selection:bg-blue-100">
@@ -465,6 +741,23 @@ export default function PythonFoundation2() {
                     </button>
                 </div>
                 <div className="flex-1 overflow-y-auto p-4 space-y-2">
+                    {/* Progress Bar */}
+                    <div className="mb-4 p-3 bg-gradient-to-r from-blue-50 to-cyan-50 rounded-xl border border-blue-100">
+                        <div className="flex items-center justify-between mb-2">
+                            <span className="text-xs font-bold text-blue-600">学习进度</span>
+                            <span className="text-xs font-bold text-blue-600">{progressPercentage}%</span>
+                        </div>
+                        <div className="w-full bg-slate-200 rounded-full h-2 overflow-hidden">
+                            <div
+                                className="bg-gradient-to-r from-blue-500 to-cyan-600 h-full transition-all duration-500"
+                                style={{ width: `${progressPercentage}%` }}
+                            ></div>
+                        </div>
+                        <div className="text-xs text-slate-500 mt-1">
+                            {completedSections.length} / {sections.length} 章节完成
+                        </div>
+                    </div>
+
                     {sections.map(section => (
                         <button
                             key={section.id}
@@ -479,7 +772,10 @@ export default function PythonFoundation2() {
                     `}
                         >
                             <section.icon size={18} className={activeSection === section.id ? 'text-blue-600' : 'text-slate-400'} />
-                            {section.title}
+                            <span className="flex-1">{section.title}</span>
+                            {completedSections.includes(section.id) && (
+                                <CheckCircle size={16} className="text-green-500" />
+                            )}
                         </button>
                     ))}
                 </div>
@@ -510,13 +806,34 @@ export default function PythonFoundation2() {
                     <div className="mt-8 md:mt-12 flex justify-between border-t border-slate-200 pt-6 md:pt-8 pb-8">
                         <Button
                             variant="secondary"
-                            onClick={() => setActiveSection(prev => Math.max(1, prev - 1))}
+                            onClick={() => {
+                                setActiveSection(prev => Math.max(1, prev - 1));
+                                window.scrollTo(0, 0);
+                            }}
                             className={activeSection === 1 ? 'opacity-0 pointer-events-none' : ''}
                         >
                             上一章
                         </Button>
+
+                        {!completedSections.includes(activeSection) && (
+                            <Button
+                                variant="success"
+                                onClick={() => markSectionComplete(activeSection)}
+                                className="mx-4"
+                            >
+                                <CheckCircle size={18} />
+                                标记完成
+                            </Button>
+                        )}
+
                         <Button
-                            onClick={() => setActiveSection(prev => Math.min(sections.length, prev + 1))}
+                            onClick={() => {
+                                if (!completedSections.includes(activeSection)) {
+                                    markSectionComplete(activeSection);
+                                }
+                                setActiveSection(prev => Math.min(sections.length, prev + 1));
+                                window.scrollTo(0, 0);
+                            }}
                             className={activeSection === sections.length ? 'opacity-0 pointer-events-none' : ''}
                         >
                             继续学习 <ArrowRight size={18} />
