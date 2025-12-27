@@ -16,8 +16,35 @@ import {
   Zap,
   Ghost,
   Menu,
-  X
+  X,
+  Calculator,
+  CheckCircle
 } from 'lucide-react';
+
+const Button = ({ children, onClick, variant = 'primary', className = '', disabled = false }) => {
+  const variants = {
+    primary: 'bg-blue-600 text-white hover:bg-blue-700 shadow-blue-200',
+    secondary: 'bg-white text-slate-600 border border-slate-200 hover:bg-slate-50',
+    success: 'bg-green-600 text-white hover:bg-green-700 shadow-green-200',
+    warning: 'bg-orange-500 text-white hover:bg-orange-600 shadow-orange-200',
+    ghost: 'hover:bg-slate-100 text-slate-600'
+  };
+
+  return (
+    <button
+      onClick={onClick}
+      disabled={disabled}
+      className={`
+        px-4 py-2 rounded-xl font-bold transition-all active:scale-95 flex items-center justify-center gap-2
+        ${variants[variant]}
+        ${disabled ? 'opacity-50 cursor-not-allowed grayscale' : 'hover:shadow-lg hover:-translate-y-0.5'}
+        ${className}
+      `}
+    >
+      {children}
+    </button>
+  );
+};
 
 // --- 图标映射组件 ---
 const Icon = ({ name, size = 24, color = "currentColor" }) => {
@@ -45,14 +72,14 @@ const Icon = ({ name, size = 24, color = "currentColor" }) => {
 const sections = [
   { id: 1, title: "课程导入：吃不完的饼干", icon: "cookie" },
   { id: 2, title: "语法解密：守门员 while", icon: "repeat" },
-  { id: 9, title: "深度剖析：流程图解", icon: "arrow" }, // New Section
-  { id: 3, title: "核心技能：数位分离术", icon: "scissors" },
-  { id: 10, title: "常见套路：累加器", icon: "calculator" }, // New Section
-  { id: 4, title: "危险警报：死循环", icon: "stop" },
-  { id: 5, title: "实战：贪吃蛇数数", icon: "ghost" },
-  { id: 6, title: "实战：带刹车的循环", icon: "zap" },
-  { id: 7, title: "对比：For vs While", icon: "help" },
-  { id: 8, title: "总结与作业", icon: "check" }
+  { id: 3, title: "深度剖析：流程图解", icon: "arrow" },
+  { id: 4, title: "核心技能：数位分离术", icon: "scissors" },
+  { id: 5, title: "常见套路：累加器", icon: "calculator" },
+  { id: 6, title: "危险警报：死循环", icon: "stop" },
+  { id: 7, title: "实战：贪吃蛇数数", icon: "ghost" },
+  { id: 8, title: "实战：带刹车的循环", icon: "zap" },
+  { id: 9, title: "对比：For vs While", icon: "help" },
+  { id: 10, title: "总结与作业", icon: "check" }
 ];
 
 // --- 互动组件 1：吃饼干模拟器 (While 概念) ---
@@ -663,7 +690,7 @@ function App() {
                 <div className="text-gray-500 mb-2">// 咒语格式</div>
                 <div><span className="text-purple-400">while</span> ( 条件 ) &#123;</div>
                 <div className="pl-4 text-green-400">// 只要条件是真的</div>
-                <div className="pl-4 text-green-400">// 就一直做这里的事</div>
+                <div className="pl-4 text-green-400">//就一直做这里的事</div>
                 <div className="pl-4 text-yellow-400">// 做完回到门口再问一次</div>
                 <div>&#125;</div>
               </div>
@@ -678,7 +705,21 @@ function App() {
             </div>
           </div>
         );
-      case 3:
+      case 3: // Flowchart Section
+        return (
+          <div className="slide-enter">
+            <h2 className="text-3xl font-bold text-gray-800 mb-6 flex items-center gap-3">
+              <ArrowRight className="text-blue-500" size={32} /> 深度剖析：循环的骨架
+            </h2>
+            <div className="bg-white p-6 rounded-xl shadow-sm border border-gray-100 mb-6">
+              <p className="text-lg text-gray-600 mb-4">
+                代码不仅是字符，更是<strong className="text-indigo-600">流动的逻辑</strong>。让我们透过 X 光，看看 while 循环内部的骨架是如何连接的。
+              </p>
+              <FlowchartVisualizer />
+            </div>
+          </div>
+        );
+      case 4:
         return (
           <div className="slide-enter">
             <h2 className="text-3xl font-bold text-gray-800 mb-6 flex items-center gap-3">
@@ -694,7 +735,22 @@ function App() {
             <DigitSplitter />
           </div>
         );
-      case 4:
+      case 5: // Accumulator Section
+        return (
+          <div className="slide-enter">
+            <h2 className="text-3xl font-bold text-gray-800 mb-6 flex items-center gap-3">
+              <Calculator className="text-green-500" size={32} /> 常见套路：累加器
+            </h2>
+            <div className="bg-white p-6 rounded-xl shadow-sm border border-gray-100 mb-6">
+              <p className="text-lg text-gray-600 mb-4">
+                <strong className="text-green-600">累加器</strong>是编程中最常用的模式之一。就像存钱罐，每次往里丢一个硬币，总额就会增加。
+              </p>
+              <p className="text-gray-500 text-sm mb-4">场景：计算 1+2+3+...+100，或者计算全班同学的总分。</p>
+              <SumAccumulator />
+            </div>
+          </div>
+        );
+      case 6:
         return (
           <div className="slide-enter">
             <h2 className="text-3xl font-bold text-gray-800 mb-6 flex items-center gap-3">
@@ -716,14 +772,14 @@ function App() {
             </div>
           </div>
         );
-      case 5:
+      case 7:
         return (
           <div className="slide-enter">
             <h2 className="text-3xl font-bold text-gray-800 mb-6">👻 实战演练 1：贪吃蛇数数</h2>
             <BugFixer />
           </div>
         );
-      case 6:
+      case 8:
         return (
           <div className="slide-enter">
             <h2 className="text-3xl font-bold text-gray-800 mb-6">⚡ 实战演练 2：带刹车的循环</h2>
@@ -764,36 +820,7 @@ cout << cnt;`}
             />
           </div>
         );
-      case 9: // Flowchart Section
-        return (
-          <div className="slide-enter">
-            <h2 className="text-3xl font-bold text-gray-800 mb-6 flex items-center gap-3">
-              <ArrowRight className="text-blue-500" size={32} /> 深度剖析：循环的骨架
-            </h2>
-            <div className="bg-white p-6 rounded-xl shadow-sm border border-gray-100 mb-6">
-              <p className="text-lg text-gray-600 mb-4">
-                代码不仅是字符，更是<strong className="text-indigo-600">流动的逻辑</strong>。让我们透过 X 光，看看 while 循环内部的骨架是如何连接的。
-              </p>
-              <FlowchartVisualizer />
-            </div>
-          </div>
-        );
-      case 10: // Accumulator Section
-        return (
-          <div className="slide-enter">
-            <h2 className="text-3xl font-bold text-gray-800 mb-6 flex items-center gap-3">
-              <Calculator className="text-green-500" size={32} /> 常见套路：累加器
-            </h2>
-            <div className="bg-white p-6 rounded-xl shadow-sm border border-gray-100 mb-6">
-              <p className="text-lg text-gray-600 mb-4">
-                <strong className="text-green-600">累加器</strong>是编程中最常用的模式之一。就像存钱罐，每次往里丢一个硬币，总额就会增加。
-              </p>
-              <p className="text-gray-500 text-sm mb-4">场景：计算 1+2+3+...+100，或者计算全班同学的总分。</p>
-              <SumAccumulator />
-            </div>
-          </div>
-        );
-      case 7:
+      case 9:
         return (
           <div className="slide-enter">
             <h2 className="text-3xl font-bold text-gray-800 mb-6">⚖️ For vs While：该选谁？</h2>
@@ -822,7 +849,7 @@ cout << cnt;`}
             </div>
           </div>
         );
-      case 8:
+      case 10:
         return (
           <div className="slide-enter">
             <h2 className="text-3xl font-bold text-gray-800 mb-6">🎓 总结与作业</h2>
@@ -923,7 +950,7 @@ cout << cnt;`}
             <span className="bg-blue-600 text-white p-1 rounded">C++</span>
             <span>一级趣味课堂</span>
           </h1>
-          <p className="text-xs text-blue-400 mt-2 font-medium pl-1">第 10 课：循环进阶 (Do-While) 🔁</p>
+          <p className="text-xs text-blue-400 mt-2 font-medium pl-1">第 10 课：while 循环 🔁</p>
         </div>
         <nav className="flex-1 p-4 space-y-2">
           {sections.map(section => (
