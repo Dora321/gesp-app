@@ -932,9 +932,8 @@ const sections = [
     { id: 3, title: '条件判断', icon: GitBranch, component: ConditionSlide },
     { id: 4, title: '嵌套条件', icon: TreePine, component: NestedConditionSlide },
     { id: 5, title: 'For 循环', icon: Repeat, component: LoopSlide },
-    { id: 6, title: '列表操作', icon: List, component: ListOpsSlide },
-    { id: 7, title: 'While 火箭', icon: AlertTriangle, component: ChallengeSlide },
-    { id: 8, title: '逻辑大师', icon: HelpCircle, component: QuizSlide },
+    { id: 6, title: 'While 火箭', icon: AlertTriangle, component: ChallengeSlide },
+    { id: 7, title: '逻辑大师', icon: HelpCircle, component: QuizSlide },
 ];
 
 export default function PythonFoundation2() {
