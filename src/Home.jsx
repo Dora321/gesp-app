@@ -336,7 +336,7 @@ export default function Home() {
                     {/* Hero Section */}
                     <div className="text-center mb-20 animate-fade-in relative">
                         <h2 className="text-5xl md:text-6xl font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-blue-400 via-indigo-400 to-yellow-400 mb-6 tracking-tight drop-shadow-sm">
-                            C++ 全程互动可视化课程
+                            C++ & Python 互动可视化课程
                         </h2>
                         <p className="text-slate-400 max-w-2xl mx-auto text-lg leading-relaxed">
                             拒绝枯燥，让算法"动"起来！从入门到精通，每一步都有交互式动画伴你前行。
