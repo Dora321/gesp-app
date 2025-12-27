@@ -1098,48 +1098,116 @@ const CodingPracticeSlide = () => {
 
         setTimeout(() => {
             try {
-                // 模拟 Python 执行（简化版）
-                let result = '';
+                // Mini-Python Interpreter (Simulated) for Foundation 1
+                const lines = code.split('\n').map(l => l.trim()).filter(l => l && !l.startsWith('#'));
+                let outputBuffer = [];
+                let variables = {};
+                let i = 0;
+                let steps = 0;
+                let loopLimit = 500;
 
-                // 简单的输出捕获（这是一个简化的模拟）
-                if (code.includes('print')) {
-                    const printMatches = code.match(/print\((.*?)\)/g);
-                    if (printMatches) {
-                        printMatches.forEach(match => {
-                            const content = match.match(/print\((.*?)\)/)[1];
-                            // 移除引号并求值简单表达式
-                            let value = content.replace(/["']/g, '');
+                const evaluate = (expr, scope) => {
+                    expr = expr.trim();
+                    if ((expr.startsWith('"') && expr.endsWith('"')) || (expr.startsWith("'") && expr.endsWith("'"))) {
+                        return expr.slice(1, -1);
+                    }
+                    if (scope.hasOwnProperty(expr)) return scope[expr];
+                    if (!isNaN(expr)) return Number(expr);
 
-                            // 简单计算
-                            if (/^\d+\s*[\+\-\*\/]\s*\d+$/.test(value)) {
-                                try {
-                                    value = eval(value).toString();
-                                } catch (e) {
-                                    // if eval fails, keep original value
+                    Object.keys(scope).forEach(key => {
+                        const regex = new RegExp(`\\b${key}\\b`, 'g');
+                        if (typeof scope[key] === 'string') {
+                            expr = expr.replace(regex, `"${scope[key]}"`);
+                        } else {
+                            expr = expr.replace(regex, scope[key]);
+                        }
+                    });
+                    // Handle logical operators
+                    expr = expr.replace(/\band\b/g, '&&').replace(/\bor\b/g, '||').replace(/\bnot\b/g, '!');
+                    expr = expr.replace(/\bTrue\b/g, 'true').replace(/\bFalse\b/g, 'false');
+
+                    try {
+                        // eslint-disable-next-line no-eval
+                        return eval(expr);
+                    } catch (e) {
+                        return expr;
+                    }
+                };
+
+                while (i < lines.length && steps < loopLimit) {
+                    steps++;
+                    let line = lines[i];
+
+                    if (line.includes('=') && !line.includes('if') && !line.includes('==')) {
+                        const parts = line.split('=');
+                        const name = parts[0].trim();
+                        const valFunc = parts.slice(1).join('=').trim();
+                        variables[name] = evaluate(valFunc, variables);
+                        i++;
+                        continue;
+                    }
+
+                    if (line.startsWith('print(')) {
+                        const content = line.match(/print\((.*?)\)/)[1];
+                        if ((content.startsWith('"') && content.endsWith('"')) || (content.startsWith("'") && content.endsWith("'"))) {
+                            outputBuffer.push(content.slice(1, -1));
+                        } else {
+                            outputBuffer.push(evaluate(content, variables));
+                        }
+                        i++;
+                        continue;
+                    }
+
+                    if (line.startsWith('if ')) {
+                        const condition = line.substring(3, line.indexOf(':'));
+                        const res = evaluate(condition, variables);
+                        const isTrue = res === true || res === 'True';
+
+                        if (isTrue) {
+                            i++;
+                        } else {
+                            i++;
+                            while (i < lines.length && (lines[i].startsWith('    ') || lines[i].startsWith('\t'))) {
+                                i++;
+                            }
+                            if (i < lines.length && lines[i].startsWith('else:')) {
+                                i++;
+                            } else {
+                                while (i < lines.length && (lines[i].startsWith('    ') || lines[i].startsWith('\t'))) {
+                                    i++;
                                 }
                             }
-
-                            result += value + '\n';
-                        });
-                        result = result.trim();
+                        }
+                        continue;
                     }
+
+                    if (line.startsWith('else:')) {
+                        i++;
+                        while (i < lines.length && (lines[i].startsWith('    ') || lines[i].startsWith('\t'))) {
+                            i++;
+                        }
+                        continue;
+                    }
+
+                    i++;
                 }
 
+                const result = outputBuffer.join('\n');
                 setOutput(result);
 
-                // 检查测试用例
                 const testCase = exercise.testCases[0];
                 let passed = false;
-
                 if (testCase.expected instanceof RegExp) {
                     passed = testCase.expected.test(result);
                 } else {
-                    passed = result === testCase.expected;
+                    passed = result.trim() === testCase.expected.trim();
                 }
 
                 setStatus(passed ? 'success' : 'error');
+
             } catch (error) {
-                setOutput('❌ 代码执行出错');
+                console.error(error);
+                setOutput('执行出错');
                 setStatus('error');
             }
         }, 500);

@@ -856,51 +856,182 @@ const CodingPracticeSlide = () => {
 
         setTimeout(() => {
             try {
-                // 模拟 Python 执行
-                let result = '';
-
-                // 简单的代码解析和执行模拟
-                const lines = code.split('\n');
+                // Mini-Python Interpreter (Simulated)
+                const lines = code.split('\n').map(l => l.trim()).filter(l => l && !l.startsWith('#'));
                 let outputBuffer = [];
-                let loopLimit = 100; // 防止死循环
-
-                // 解析器状态
                 let variables = {};
+                let i = 0;
+                let loopLimit = 1000;
+                let steps = 0;
 
-                // 极简 Python 解释器模拟 (针对预设题型优化)
-                // 注意：这是一个非常简单的模拟，仅用于演示教学目的，不能处理复杂逻辑
-                // 实际生产环境应该使用 Skulpt 或 Pyodide
+                // Helper to evaluate simple expressions
+                const evaluate = (expr, scope) => {
+                    expr = expr.trim();
+                    // Handle range(x)
+                    if (expr.startsWith('range(')) {
+                        const max = parseInt(expr.match(/range\((\d+)\)/)[1]);
+                        return Array.from({ length: max }, (_, i) => i);
+                    }
+                    // Replace variables with values
+                    Object.keys(scope).forEach(key => {
+                        const regex = new RegExp(`\\b${key}\\b`, 'g');
+                        if (typeof scope[key] === 'string') {
+                            expr = expr.replace(regex, `"${scope[key]}"`);
+                        } else {
+                            expr = expr.replace(regex, scope[key]);
+                        }
+                    });
 
-                if (code.includes('print(10 > 5)')) {
-                    outputBuffer.push('True');
-                } else if (code.includes('if num > 0')) {
-                    // 提取变量 num
-                    const numMatch = code.match(/num\s*=\s*(-?\d+)/);
-                    const num = numMatch ? parseInt(numMatch[1]) : 0;
-                    if (num > 0) outputBuffer.push('正数');
-                    else outputBuffer.push('非正数');
-                } else if (code.includes('range(5)')) {
-                    outputBuffer.push('0\n1\n2\n3\n4');
-                } else if (code.includes('while count > 0')) {
-                    // 检查是否包含递减逻辑
-                    if (code.includes('count = count - 1') || code.includes('count -= 1')) {
-                        outputBuffer.push('3\n2\n1');
-                    } else {
-                        outputBuffer.push('Error: 死循环! 记得更新 count');
+                    // Handle logical operators
+                    expr = expr.replace(/\band\b/g, '&&').replace(/\bor\b/g, '||').replace(/\bnot\b/g, '!');
+                    // Handle python booleans
+                    expr = expr.replace(/\bTrue\b/g, 'true').replace(/\bFalse\b/g, 'false');
+
+                    try {
+                        // eslint-disable-next-line no-eval
+                        let result = eval(expr);
+                        if (result === true) return 'True';
+                        if (result === false) return 'False';
+                        return result;
+                    } catch (e) {
+                        return expr;
                     }
-                } else {
-                    // 通用 print 处理
-                    const printMatches = code.matchAll(/print\((.*?)\)/g);
-                    for (const match of printMatches) {
-                        let val = match[1].replace(/["']/g, '');
-                        outputBuffer.push(val);
+                };
+
+                while (i < lines.length && steps < loopLimit) {
+                    steps++;
+                    let line = lines[i];
+
+                    // Handle Variable Assignment: x = 10
+                    if (line.includes('=') && !line.includes('if') && !line.includes('while')) {
+                        const [name, val] = line.split('=').map(s => s.trim());
+                        variables[name] = evaluate(val, variables);
+                        i++;
+                        continue;
                     }
+
+                    // Handle Print: print(x)
+                    if (line.startsWith('print(')) {
+                        const content = line.match(/print\((.*?)\)/)[1];
+                        if ((content.startsWith('"') && content.endsWith('"')) || (content.startsWith("'") && content.endsWith("'"))) {
+                            outputBuffer.push(content.slice(1, -1));
+                        } else {
+                            outputBuffer.push(evaluate(content, variables));
+                        }
+                        i++;
+                        continue;
+                    }
+
+                    // Handle If-Else
+                    if (line.startsWith('if ')) {
+                        const condition = line.substring(3, line.indexOf(':'));
+                        const res = evaluate(condition, variables);
+                        const isTrue = res === 'True' || res === true;
+
+                        if (isTrue) {
+                            i++; // Enter block
+                        } else {
+                            i++;
+                            while (i < lines.length && (lines[i].startsWith('    ') || lines[i].startsWith('\t'))) {
+                                i++; // Skip if block
+                            }
+                            if (i < lines.length && lines[i].startsWith('else:')) {
+                                i++; // Enter else logic
+                            } else {
+                                while (i < lines.length && (lines[i].startsWith('    ') || lines[i].startsWith('\t'))) {
+                                    i++; // Skip else block
+                                }
+                            }
+                        }
+                        continue;
+                    }
+
+                    if (line.startsWith('else:')) {
+                        i++;
+                        while (i < lines.length && (lines[i].startsWith('    ') || lines[i].startsWith('\t'))) {
+                            i++;
+                        }
+                        continue;
+                    }
+
+                    // Handle For Loop: for i in range(5):
+                    if (line.startsWith('for ')) {
+                        const match = line.match(/for\s+(\w+)\s+in\s+(.+):/);
+                        if (match) {
+                            const iterator = match[1];
+                            const iterable = evaluate(match[2], variables);
+
+                            let loopStart = i + 1;
+                            let loopEnd = loopStart;
+                            let loopLines = [];
+
+                            // Collect indented lines
+                            while (loopEnd < lines.length && (lines[loopEnd].startsWith('    ') || lines[loopEnd].startsWith('\t'))) {
+                                loopLines.push(lines[loopEnd]);
+                                loopEnd++;
+                            }
+
+                            if (Array.isArray(iterable)) {
+                                for (const item of iterable) {
+                                    variables[iterator] = item;
+                                    for (let loopLine of loopLines) {
+                                        loopLine = loopLine.trim();
+                                        if (loopLine.startsWith('print(')) {
+                                            const content = loopLine.match(/print\((.*?)\)/)[1];
+                                            outputBuffer.push(evaluate(content, variables));
+                                        }
+                                        if (loopLine.includes('=')) {
+                                            const [name, val] = loopLine.split('=').map(s => s.trim());
+                                            variables[name] = evaluate(val, variables);
+                                        }
+                                    }
+                                }
+                            }
+                            i = loopEnd;
+                            continue;
+                        }
+                    }
+
+                    // Handle While Loop: while count > 0:
+                    if (line.startsWith('while ')) {
+                        const conditionStr = line.substring(6, line.indexOf(':'));
+
+                        let loopStart = i + 1;
+                        let loopEnd = loopStart;
+                        let loopLines = [];
+                        while (loopEnd < lines.length && (lines[loopEnd].startsWith('    ') || lines[loopEnd].startsWith('\t'))) {
+                            loopLines.push(lines[loopEnd]);
+                            loopEnd++;
+                        }
+
+                        let whileSteps = 0;
+                        let check = evaluate(conditionStr, variables);
+                        while ((check === 'True' || check === true || check > 0) && whileSteps < 100) {
+                            whileSteps++;
+                            for (let loopLine of loopLines) {
+                                loopLine = loopLine.trim();
+                                if (loopLine.startsWith('print(')) {
+                                    const content = loopLine.match(/print\((.*?)\)/)[1];
+                                    outputBuffer.push(evaluate(content, variables));
+                                }
+                                if (loopLine.includes('=')) {
+                                    const [name, val] = loopLine.split('=').map(s => s.trim());
+                                    variables[name] = evaluate(val, variables);
+                                }
+                            }
+                            check = evaluate(conditionStr, variables);
+                        }
+                        if (whileSteps >= 100) outputBuffer.push('Error: Infinite Loop Detected');
+                        i = loopEnd;
+                        continue;
+                    }
+
+                    i++;
                 }
 
-                result = outputBuffer.join('\n');
+                const result = outputBuffer.join('\n');
                 setOutput(result);
 
-                // 验证结果
                 const testCase = exercise.testCases[0];
                 let passed = false;
                 if (testCase.expected instanceof RegExp) {
@@ -912,7 +1043,8 @@ const CodingPracticeSlide = () => {
                 setStatus(passed ? 'success' : 'error');
 
             } catch (error) {
-                setOutput('执行出错');
+                console.error(error);
+                setOutput('Simulated Execution Error');
                 setStatus('error');
             }
         }, 600);
