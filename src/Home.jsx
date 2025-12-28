@@ -500,6 +500,15 @@ export default function Home() {
                                     color: 'bg-yellow-500/20 text-yellow-400 border border-yellow-500/30 shadow-lg shadow-yellow-500/20',
                                     path: '/python/crawler',
                                     status: 'ready'
+                                },
+                                {
+                                    id: 'py_bs',
+                                    title: 'A5: 猜数字专家',
+                                    description: '挑战二分查找！亲身体会什么叫“对半劈”的效率之美',
+                                    icon: <Search className="w-8 h-8 text-yellow-400" />,
+                                    color: 'bg-yellow-500/20 text-yellow-400 border border-yellow-500/30 shadow-lg shadow-yellow-500/20',
+                                    path: '/python/binary-search',
+                                    status: 'ready'
                                 }
                             ].map((course) => (
                                 <div
