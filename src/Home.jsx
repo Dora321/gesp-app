@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { BookOpen, Award, Star, ChevronRight, FileText, Monitor, Lock, CheckCircle, PlayCircle, Flag, Sparkles, Map, Zap, Scissors, ArrowRight, Box, Key, Terminal, Shield, Repeat, Layers, AlignJustify, Scan, Type, Package, Trophy, ArrowUp } from 'lucide-react';
+import { BookOpen, Award, Star, ChevronRight, FileText, Monitor, Lock, CheckCircle, PlayCircle, Flag, Sparkles, Map, Zap, Scissors, ArrowRight, Box, Key, Terminal, Shield, Repeat, Layers, AlignJustify, Scan, Type, Package, Trophy, ArrowUp, Megaphone } from 'lucide-react';
 
 export default function Home() {
     const navigate = useNavigate();
@@ -341,6 +341,22 @@ export default function Home() {
                         <p className="text-slate-400 max-w-2xl mx-auto text-lg leading-relaxed">
                             拒绝枯燥，让算法"动"起来！从入门到精通，每一步都有交互式动画伴你前行。
                         </p>
+
+                        {/* Recent Notices */}
+                        <div className="mt-12 max-w-3xl mx-auto">
+                            <div className="bg-slate-800/30 backdrop-blur-sm border border-slate-700/50 rounded-2xl p-6 flex flex-col md:flex-row items-center gap-6 text-left">
+                                <div className="flex-shrink-0 w-12 h-12 bg-indigo-500/20 rounded-xl flex items-center justify-center">
+                                    <Megaphone className="w-6 h-6 text-indigo-400" />
+                                </div>
+                                <div className="flex-grow">
+                                    <h4 className="text-slate-200 font-bold mb-1">站点公告</h4>
+                                    <p className="text-slate-400 text-sm">魔丸聚集地正式上线！Python 2048 趣味项目现已支持交互式地图，欢迎前往体验。</p>
+                                </div>
+                                <div className="flex-shrink-0 text-slate-500 text-xs font-mono">
+                                    2025-12-28
+                                </div>
+                            </div>
+                        </div>
                     </div>
 
                     {/* Core Courses Card */}

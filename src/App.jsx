@@ -36,10 +36,12 @@ import PythonAdvanced2 from './courses/python/advanced/PythonAdvanced2';
 import PythonAI from './courses/python/advanced/PythonAI';
 import PythonCrawler from './courses/python/advanced/PythonCrawler';
 import ClassroomPoints from './components/ClassroomPoints';
+import AnnouncementBar from './components/AnnouncementBar';
 
 function App() {
   return (
     <BrowserRouter basename={import.meta.env.BASE_URL}>
+      <AnnouncementBar />
       <Routes>
         <Route path="/" element={<Home />} />
 
