@@ -324,7 +324,7 @@ export default function Home() {
                     >
                         <img src={`${import.meta.env.BASE_URL}logo.jpg`} alt="Logo" className="w-full h-full object-cover" />
                     </div>
-                    <h1 className="font-bold text-xl text-slate-100 tracking-tight cursor-pointer mr-auto" onClick={() => navigate('/')}>代码冒险岛</h1>
+                    <h1 className="font-bold text-xl text-slate-100 tracking-tight cursor-pointer mr-auto" onClick={() => navigate('/')}>魔丸聚集地</h1>
 
 
                 </div>
@@ -655,7 +655,7 @@ export default function Home() {
                         <Monitor size={20} className="hover:text-blue-400 transition-colors cursor-pointer" />
                         <BookOpen size={20} className="hover:text-emerald-400 transition-colors cursor-pointer" />
                     </div>
-                    <p className="text-slate-300 font-bold text-base mb-2">代码冒险岛</p>
+                    <p className="text-slate-300 font-bold text-base mb-2">魔丸聚集地</p>
                     <p className="text-slate-500 text-sm">沐新青少年科创活动中心 出品</p>
                 </div>
             </footer>
