@@ -28,6 +28,8 @@ const TurtleCanvas = ({ commands = [], width = 400, height = 300, isRunning = fa
         ctx.strokeStyle = color;
         ctx.fillStyle = fillColor;
 
+        let currentSpeed = 20;
+
         const sleep = (ms) => new Promise(r => setTimeout(r, ms));
 
         ctx.beginPath();
@@ -64,7 +66,7 @@ const TurtleCanvas = ({ commands = [], width = 400, height = 300, isRunning = fa
                 x = newX;
                 y = newY;
                 if (isFilling) fillPath.push({ x, y });
-                if (isRunning) await sleep(20); // Animate if running
+                if (isRunning && currentSpeed > 0) await sleep(currentSpeed); // Animate if running
             } else if (cmd === 'bk' || cmd === 'backward') {
                 const dist = parseFloat(val);
                 const rad = (angle * Math.PI) / 180;
@@ -81,13 +83,13 @@ const TurtleCanvas = ({ commands = [], width = 400, height = 300, isRunning = fa
                 x = newX;
                 y = newY;
                 if (isFilling) fillPath.push({ x, y });
-                if (isRunning) await sleep(20);
+                if (isRunning && currentSpeed > 0) await sleep(currentSpeed);
             } else if (cmd === 'rt' || cmd === 'right') {
                 angle += parseFloat(val);
-                if (isRunning) await sleep(10);
+                if (isRunning && currentSpeed > 0) await sleep(currentSpeed / 2);
             } else if (cmd === 'lt' || cmd === 'left') {
                 angle -= parseFloat(val);
-                if (isRunning) await sleep(10);
+                if (isRunning && currentSpeed > 0) await sleep(currentSpeed / 2);
             } else if (cmd === 'pu' || cmd === 'penup') {
                 isDown = false;
             } else if (cmd === 'pd' || cmd === 'pendown') {
@@ -136,8 +138,37 @@ const TurtleCanvas = ({ commands = [], width = 400, height = 300, isRunning = fa
                     if (isDown) { ctx.lineTo(newX, newY); ctx.stroke(); } else { ctx.moveTo(newX, newY); }
                     x = newX; y = newY;
                     angle += turn;
-                    if (isRunning) await sleep(5);
+                    if (isRunning && currentSpeed > 0) await sleep(currentSpeed);
                 }
+            } else if (cmd === 'goto' || cmd === 'setpos') {
+                const targetX = parseFloat(val) + width / 2; // Adjust for center origin
+                const targetY = height / 2 - parseFloat(parts[2]); // Adjust for center origin and y-flip
+
+                if (isDown) {
+                    ctx.lineTo(targetX, targetY);
+                    ctx.stroke();
+                } else {
+                    ctx.moveTo(targetX, targetY);
+                }
+                x = targetX;
+                y = targetY;
+                if (isRunning && currentSpeed > 0) await sleep(currentSpeed);
+            } else if (cmd === 'dot') {
+                const size = parseFloat(val) || 5;
+                const dotColor = parts.length > 2 ? parts[2] : color;
+                ctx.save();
+                ctx.fillStyle = dotColor;
+                ctx.beginPath();
+                ctx.arc(x, y, size / 2, 0, 2 * Math.PI);
+                ctx.fill();
+                ctx.restore();
+                ctx.beginPath(); // Reset path to avoid connecting
+                ctx.moveTo(x, y);
+            } else if (cmd === 'speed') {
+                const s = parseInt(val);
+                // speed 0 = instant (0ms), speed 1 = slow (50ms), speed 10 = fast (5ms)
+                if (s === 0) currentSpeed = 0;
+                else currentSpeed = Math.max(1, 50 - s * 4);
             }
 
             // Update turtle icon position for UI
