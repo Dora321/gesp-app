@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { BookOpen, Award, Star, ChevronRight, FileText, Monitor, Lock, CheckCircle, PlayCircle, Flag, Sparkles, Map, Zap, Scissors, ArrowRight, Box, Key, Terminal, Shield, Repeat, Layers, AlignJustify, Scan, Type, Package, Trophy, ArrowUp, Megaphone, Search } from 'lucide-react';
+import { BookOpen, Award, Star, ChevronRight, FileText, Monitor, Lock, CheckCircle, PlayCircle, Flag, Sparkles, Map, Zap, Scissors, ArrowRight, Box, Key, Terminal, Shield, Repeat, Layers, AlignJustify, Scan, Type, Package, Trophy, ArrowUp, Megaphone, Search, MousePointer2 } from 'lucide-react';
 
 export default function Home() {
     const navigate = useNavigate();
@@ -437,6 +437,7 @@ export default function Home() {
                                 { id: 'py_f2', title: 'F2: 流程控制', desc: '条件判断与循环', icon: <Repeat />, path: '/python/f2', status: 'ready', color: 'text-blue-400 bg-blue-500/10' },
                                 { id: 'py_f3', title: 'F3: 数据结构', desc: '列表、字典与集合', icon: <Layers />, path: '/python/f3', status: 'ready', color: 'text-cyan-400 bg-cyan-500/10' },
                                 { id: 'py_f4', title: 'F4: 函数模块', desc: '函数封装与库调用', icon: <Box />, path: '/python/f4', status: 'ready', color: 'text-teal-400 bg-teal-500/10' },
+                                { id: 'py_f5', title: 'F5: 绘图魔法', desc: '海龟绘图与几何', icon: <MousePointer2 />, path: '/python/f5', status: 'ready', color: 'text-emerald-400 bg-emerald-500/10' },
                             ].map((course) => (
                                 <div key={course.id} onClick={() => navigate(course.path)} className="bg-slate-800/50 p-6 rounded-xl border border-slate-700 hover:border-indigo-500 cursor-pointer transition-all hover:-translate-y-1 hover:shadow-lg group">
                                     <div className={`w-12 h-12 rounded-lg flex items-center justify-center mb-4 ${course.color} group-hover:scale-110 transition-transform`}>
