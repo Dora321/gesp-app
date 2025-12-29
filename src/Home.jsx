@@ -509,6 +509,15 @@ export default function Home() {
                                     color: 'bg-yellow-500/20 text-yellow-400 border border-yellow-500/30 shadow-lg shadow-yellow-500/20',
                                     path: '/python/binary-search',
                                     status: 'ready'
+                                },
+                                {
+                                    id: 'py_enc',
+                                    title: 'A6: 加密大师',
+                                    description: '化身特工 007！掌握凯撒密码，守护最高机密',
+                                    icon: <Shield className="w-8 h-8 text-yellow-400" />,
+                                    color: 'bg-yellow-500/20 text-yellow-400 border border-yellow-500/30 shadow-lg shadow-yellow-500/20',
+                                    path: '/python/encryption',
+                                    status: 'ready'
                                 }
                             ].map((course) => (
                                 <div

@@ -36,6 +36,7 @@ import PythonAdvanced2 from './courses/python/advanced/PythonAdvanced2';
 import PythonAI from './courses/python/advanced/PythonAI';
 import PythonCrawler from './courses/python/advanced/PythonCrawler';
 import BinarySearchProject from './courses/python/advanced/BinarySearchProject';
+import PythonEncryptionProject from './courses/python/advanced/PythonEncryptionProject';
 import ClassroomPoints from './components/ClassroomPoints';
 import AnnouncementBar from './components/AnnouncementBar';
 
@@ -68,6 +69,7 @@ function App() {
         <Route path="/python/ai" element={<PythonAI />} />
         <Route path="/python/crawler" element={<PythonCrawler />} />
         <Route path="/python/binary-search" element={<BinarySearchProject />} />
+        <Route path="/python/encryption" element={<PythonEncryptionProject />} />
 
         {/* Fun Lessons */}
         <Route path="/lesson1" element={<Lesson1 />} />
