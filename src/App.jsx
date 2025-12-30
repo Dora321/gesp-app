@@ -44,7 +44,7 @@ import AnnouncementBar from './components/AnnouncementBar';
 
 function App() {
   return (
-    <BrowserRouter basename={import.meta.env.BASE_URL}>
+    <BrowserRouter basename={import.meta.env.DEV ? '/' : '/gesp-app/'}>
       <AnnouncementBar />
       <Routes>
         <Route path="/" element={<Home />} />
