@@ -298,6 +298,101 @@ export default function Home() {
         }
     ];
 
+
+    // Level 2 Lessons (derived from CourseLevel2.jsx)
+    const advancedLessons = [
+        {
+            id: 'adv_lesson1',
+            title: '第 1 关：双层循环之门',
+            description: '通过嵌套循环打印图形，叩开进阶之路',
+            icon: <Grid className="w-6 h-6 text-white" />,
+            color: 'bg-gradient-to-br from-indigo-500 to-violet-600 shadow-indigo-500/50',
+            path: '/level2', // Using generic level2 path for now
+            status: 'ready'
+        },
+        {
+            id: 'adv_lesson2',
+            title: '第 2 关：H 字矩阵',
+            description: '精准控制行列条件，绘制字母H',
+            icon: <Type className="w-6 h-6 text-white" />,
+            color: 'bg-gradient-to-br from-purple-500 to-fuchsia-600 shadow-purple-500/50',
+            path: '/level2',
+            status: 'locked'
+        },
+        {
+            id: 'adv_lesson3',
+            title: '第 3 关：X 字封印',
+            description: '对角线规律探索，解除交叉封印',
+            icon: <XCircle className="w-6 h-6 text-white" />,
+            color: 'bg-gradient-to-br from-fuchsia-500 to-pink-600 shadow-fuchsia-500/50',
+            path: '/level2',
+            status: 'locked'
+        },
+        {
+            id: 'adv_lesson4',
+            title: '第 4 关：数位拆解术',
+            description: '掌握 % 和 / 运算，精细操作每一位数字',
+            icon: <Scissors className="w-6 h-6 text-white" />,
+            color: 'bg-gradient-to-br from-pink-500 to-rose-600 shadow-pink-500/50',
+            path: '/level2',
+            status: 'locked'
+        },
+        {
+            id: 'adv_lesson5',
+            title: '第 5 关：水仙花数',
+            description: '寻找神奇的自幂数，体验数学之美',
+            icon: <Sparkles className="w-6 h-6 text-white" />,
+            color: 'bg-gradient-to-br from-rose-500 to-red-600 shadow-rose-500/50',
+            path: '/level2',
+            status: 'locked'
+        },
+        {
+            id: 'adv_lesson6',
+            title: '第 6 关：黑洞陷阱',
+            description: '模拟 495 数字黑洞，while 循环的终极试炼',
+            icon: <AlertOctagon className="w-6 h-6 text-white" />,
+            color: 'bg-gradient-to-br from-orange-500 to-amber-600 shadow-orange-500/50',
+            path: '/level2',
+            status: 'locked'
+        },
+        {
+            id: 'adv_lesson7',
+            title: '第 7 关：质数迷宫',
+            description: '因子筛选法，寻找独一无二的素数',
+            icon: <Search className="w-6 h-6 text-white" />,
+            color: 'bg-gradient-to-br from-amber-500 to-yellow-600 shadow-amber-500/50',
+            path: '/level2',
+            status: 'locked'
+        },
+        {
+            id: 'adv_lesson8',
+            title: '第 8 关：函数之力',
+            description: '封装代码魔法，学会 max, min, sqrt',
+            icon: <Box className="w-6 h-6 text-white" />,
+            color: 'bg-gradient-to-br from-lime-500 to-green-600 shadow-lime-500/50',
+            path: '/level2',
+            status: 'locked'
+        },
+        {
+            id: 'adv_lesson9',
+            title: '第 9 关：逻辑模拟',
+            description: '复杂规则的代码实现，锻炼计算思维',
+            icon: <Monitor className="w-6 h-6 text-white" />,
+            color: 'bg-gradient-to-br from-emerald-500 to-teal-600 shadow-emerald-500/50',
+            path: '/level2',
+            status: 'locked'
+        },
+        {
+            id: 'adv_lesson10',
+            title: '第 10 关：真题挑战',
+            description: '直面 GESP 二级真题，从容应对考试',
+            icon: <Trophy className="w-6 h-6 text-white" />,
+            color: 'bg-gradient-to-br from-cyan-500 to-sky-600 shadow-cyan-500/50',
+            path: '/level2',
+            status: 'locked'
+        }
+    ];
+
     return (
         <div className="min-h-screen bg-slate-900 font-sans text-slate-100 pb-20 overflow-x-hidden selection:bg-indigo-500 selection:text-white">
             {/* 回到顶部按钮 */}
@@ -584,7 +679,7 @@ export default function Home() {
                             <div className="p-2 bg-indigo-500/10 rounded-lg">
                                 <Map className="text-indigo-400" size={24} />
                             </div>
-                            <h3 className="text-2xl font-bold text-slate-100">一级趣味闯关地图</h3>
+                            <h3 className="text-2xl font-bold text-slate-100">C++初级闯关地图</h3>
                         </div>
 
                         <div className="relative max-w-4xl mx-auto px-4 pb-20">
@@ -682,6 +777,206 @@ export default function Home() {
                                                         <div className="bg-blue-500 h-full w-1/3 animate-[shimmer_2s_infinite]"></div>
                                                     </div>
                                                 )}
+                                            </div>
+                                        </div>
+                                    );
+                                })}
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <section className="relative z-10 max-w-5xl mx-auto px-4 py-12">
+                    {/* Advanced Map Section */}
+                    <div className="relative">
+                        <div className="flex items-center gap-3 mb-16 justify-center md:justify-start">
+                            <div className="p-2 bg-purple-500/10 rounded-lg">
+                                <Award className="text-purple-400" size={24} />
+                            </div>
+                            <h3 className="text-2xl font-bold text-slate-100">C++进阶闯关地图</h3>
+                        </div>
+
+                        <div className="relative max-w-4xl mx-auto px-4 pb-20">
+                            {/* The Winding Path Line (SVG) for Advanced */}
+                            <svg className="absolute top-0 left-0 w-full h-full pointer-events-none hidden md:block" style={{ zIndex: 0 }}>
+                                <defs>
+                                    <linearGradient id="pathGradientAdv" x1="0%" y1="0%" x2="0%" y2="100%">
+                                        <stop offset="0%" stopColor="#8b5cf6" stopOpacity="0.8" />
+                                        <stop offset="100%" stopColor="#d946ef" stopOpacity="0.2" />
+                                    </linearGradient>
+                                </defs>
+                                <path
+                                    d="M 150 60 Q 400 60 650 180 T 150 300 T 650 420 T 150 540 T 650 660 T 150 780 T 650 900 T 150 1020 T 650 1140"
+                                    fill="none"
+                                    stroke="url(#pathGradientAdv)"
+                                    strokeWidth="6"
+                                    strokeLinecap="round"
+                                    filter="url(#glow)"
+                                    className="opacity-60"
+                                />
+                                {/* Animated Dash */}
+                                <path
+                                    d="M 150 60 Q 400 60 650 180 T 150 300 T 650 420 T 150 540 T 650 660 T 150 780 T 650 900 T 150 1020 T 650 1140"
+                                    fill="none"
+                                    stroke="#c084fc"
+                                    strokeWidth="2"
+                                    strokeDasharray="20 20"
+                                    className="animate-[dash_20s_linear_infinite] opacity-80"
+                                />
+                            </svg>
+
+                            {/* Mobile Vertical Line */}
+                            <div className="absolute top-4 bottom-4 left-8 w-1 bg-gradient-to-b from-purple-500 to-slate-800 md:hidden -z-10"></div>
+
+                            <div className="space-y-16 md:space-y-0 md:relative md:h-[1200px]">
+                                {advancedLessons.map((lesson, index) => {
+                                    const isEven = index % 2 === 0;
+                                    return (
+                                        <div
+                                            key={lesson.id}
+                                            onClick={() => lesson.status !== 'locked' && navigate(lesson.path)}
+                                            className={`
+                      flex items-center gap-6 transition-all duration-500 group
+                      relative md:absolute md:w-[400px]
+                      md:top-[var(--desktop-top)]
+                      ${isEven ? 'md:left-[5%]' : 'md:left-[55%]'}
+                      ${lesson.status === 'locked' ? 'cursor-not-allowed opacity-60 grayscale' : 'cursor-pointer hover:scale-105 z-10'}
+                    `}
+                                            style={{
+                                                '--desktop-top': `${index * 120}px`
+                                            }}
+                                        >
+                                            {/* Node Circle */}
+                                            <div className={`
+                      w-16 h-16 rounded-full flex items-center justify-center shrink-0 shadow-2xl border-4 border-slate-900 relative z-10
+                      ${lesson.color}
+                      ${lesson.status === 'current' ? 'animate-bounce shadow-purple-500/50' : ''}
+                      group-hover:rotate-12 transition-transform
+                    `}>
+                                                {lesson.icon}
+                                                {lesson.status === 'current' && (
+                                                    <div className="absolute inset-0 rounded-full bg-purple-400/30 animate-ping"></div>
+                                                )}
+                                            </div>
+
+                                            {/* Content Card */}
+                                            <div className={`
+                      flex-1 p-5 rounded-2xl border backdrop-blur-md transition-all duration-300
+                      ${lesson.status === 'current'
+                                                    ? 'bg-slate-800/80 border-purple-500/50 shadow-lg shadow-purple-900/30'
+                                                    : 'bg-slate-800/40 border-slate-700 hover:bg-slate-800/60 hover:border-slate-600'}
+                    `}>
+                                                <div className="flex justify-between items-start mb-2">
+                                                    <h4 className={`font-bold text-lg ${lesson.status === 'locked' ? 'text-slate-500' : 'text-slate-200 group-hover:text-purple-400'}`}>
+                                                        {lesson.title}
+                                                    </h4>
+                                                    {lesson.status === 'completed' && <CheckCircle size={16} className="text-emerald-500" />}
+                                                    {lesson.status === 'locked' && <Lock size={16} className="text-slate-600" />}
+                                                </div>
+
+                                                <p className="text-sm text-slate-400 line-clamp-2 mb-3 leading-relaxed">
+                                                    {lesson.description}
+                                                </p>
+                                            </div>
+                                        </div>
+                                    );
+                                })}
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <section className="relative z-10 max-w-5xl mx-auto px-4 py-12">
+                    {/* Advanced Map Section */}
+                    <div className="relative">
+                        <div className="flex items-center gap-3 mb-16 justify-center md:justify-start">
+                            <div className="p-2 bg-purple-500/10 rounded-lg">
+                                <Award className="text-purple-400" size={24} />
+                            </div>
+                            <h3 className="text-2xl font-bold text-slate-100">C++进阶闯关地图</h3>
+                        </div>
+
+                        <div className="relative max-w-4xl mx-auto px-4 pb-20">
+                            {/* The Winding Path Line (SVG) for Advanced */}
+                            <svg className="absolute top-0 left-0 w-full h-full pointer-events-none hidden md:block" style={{ zIndex: 0 }}>
+                                <defs>
+                                    <linearGradient id="pathGradientAdv" x1="0%" y1="0%" x2="0%" y2="100%">
+                                        <stop offset="0%" stopColor="#8b5cf6" stopOpacity="0.8" />
+                                        <stop offset="100%" stopColor="#d946ef" stopOpacity="0.2" />
+                                    </linearGradient>
+                                </defs>
+                                <path
+                                    d="M 150 60 Q 400 60 650 180 T 150 300 T 650 420 T 150 540 T 650 660 T 150 780 T 650 900 T 150 1020 T 650 1140"
+                                    fill="none"
+                                    stroke="url(#pathGradientAdv)"
+                                    strokeWidth="6"
+                                    strokeLinecap="round"
+                                    filter="url(#glow)"
+                                    className="opacity-60"
+                                />
+                                {/* Animated Dash */}
+                                <path
+                                    d="M 150 60 Q 400 60 650 180 T 150 300 T 650 420 T 150 540 T 650 660 T 150 780 T 650 900 T 150 1020 T 650 1140"
+                                    fill="none"
+                                    stroke="#c084fc"
+                                    strokeWidth="2"
+                                    strokeDasharray="20 20"
+                                    className="animate-[dash_20s_linear_infinite] opacity-80"
+                                />
+                            </svg>
+
+                            {/* Mobile Vertical Line */}
+                            <div className="absolute top-4 bottom-4 left-8 w-1 bg-gradient-to-b from-purple-500 to-slate-800 md:hidden -z-10"></div>
+
+                            <div className="space-y-16 md:space-y-0 md:relative md:h-[1200px]">
+                                {advancedLessons.map((lesson, index) => {
+                                    const isEven = index % 2 === 0;
+                                    return (
+                                        <div
+                                            key={lesson.id}
+                                            onClick={() => lesson.status !== 'locked' && navigate(lesson.path)}
+                                            className={`
+                      flex items-center gap-6 transition-all duration-500 group
+                      relative md:absolute md:w-[400px]
+                      md:top-[var(--desktop-top)]
+                      ${isEven ? 'md:left-[5%]' : 'md:left-[55%]'}
+                      ${lesson.status === 'locked' ? 'cursor-not-allowed opacity-60 grayscale' : 'cursor-pointer hover:scale-105 z-10'}
+                    `}
+                                            style={{
+                                                '--desktop-top': `${index * 120}px`
+                                            }}
+                                        >
+                                            {/* Node Circle */}
+                                            <div className={`
+                      w-16 h-16 rounded-full flex items-center justify-center shrink-0 shadow-2xl border-4 border-slate-900 relative z-10
+                      ${lesson.color}
+                      ${lesson.status === 'current' ? 'animate-bounce shadow-purple-500/50' : ''}
+                      group-hover:rotate-12 transition-transform
+                    `}>
+                                                {lesson.icon}
+                                                {lesson.status === 'current' && (
+                                                    <div className="absolute inset-0 rounded-full bg-purple-400/30 animate-ping"></div>
+                                                )}
+                                            </div>
+
+                                            {/* Content Card */}
+                                            <div className={`
+                      flex-1 p-5 rounded-2xl border backdrop-blur-md transition-all duration-300
+                      ${lesson.status === 'current'
+                                                    ? 'bg-slate-800/80 border-purple-500/50 shadow-lg shadow-purple-900/30'
+                                                    : 'bg-slate-800/40 border-slate-700 hover:bg-slate-800/60 hover:border-slate-600'}
+                    `}>
+                                                <div className="flex justify-between items-start mb-2">
+                                                    <h4 className={`font-bold text-lg ${lesson.status === 'locked' ? 'text-slate-500' : 'text-slate-200 group-hover:text-purple-400'}`}>
+                                                        {lesson.title}
+                                                    </h4>
+                                                    {lesson.status === 'completed' && <CheckCircle size={16} className="text-emerald-500" />}
+                                                    {lesson.status === 'locked' && <Lock size={16} className="text-slate-600" />}
+                                                </div>
+
+                                                <p className="text-sm text-slate-400 line-clamp-2 mb-3 leading-relaxed">
+                                                    {lesson.description}
+                                                </p>
                                             </div>
                                         </div>
                                     );

@@ -3,7 +3,8 @@ import {
     Layers, Repeat, AlertOctagon, Play, RotateCcw,
     Trophy, Code, ArrowRight, ChevronDown, Box,
     Rocket, Mic, HelpCircle, StopCircle, Sparkles,
-    TrendingUp, Footprints, Menu, X
+    TrendingUp, Footprints, Menu, X, Lock, Unlock,
+    Search, Binary, Key
 } from 'lucide-react';
 import { Link } from 'react-router-dom';
 
@@ -19,12 +20,45 @@ const Icon = ({ name, size = 20, className = "" }) => {
         "rocket": <Rocket size={size} className={className} />,
         "mic": <Mic size={size} className={className} />,
         "help": <HelpCircle size={size} className={className} />,
-        "stairs": <TrendingUp size={size} className={className} />
+        "stairs": <TrendingUp size={size} className={className} />,
+        "lock": <Lock size={size} className={className} />,
+        "coin": <Box size={size} className={className} />, // Using Box as generic if Coins not avail, but let's try to match style
+        "search": <Search size={size} className={className} />
     };
     return icons[name] || null;
 };
 
 // --- Slide 组件 ---
+
+// 0. 课程简介
+const IntroSlide = () => (
+    <div className="flex flex-col items-center justify-center h-full text-center p-8">
+        <h1 className="text-4xl font-black text-slate-800 mb-6 bg-clip-text text-transparent bg-gradient-to-r from-blue-600 to-purple-600">
+            编程的三种“超能力”
+        </h1>
+        <p className="text-xl text-slate-600 max-w-3xl leading-relaxed">
+            写代码不只是打字，更是解决问题的艺术。在这一章，我们将解锁三种最核心的算法思维，哪怕是未来的 AI 专家，也离不开它们！
+        </p>
+        <div className="grid md:grid-cols-3 gap-6 mt-12 w-full max-w-4xl">
+            <div className="bg-red-50 p-6 rounded-2xl border border-red-100 hover:scale-105 transition-transform">
+                <div className="text-4xl mb-4">💪</div>
+                <h3 className="font-bold text-lg text-slate-800">枚举 (Enumeration)</h3>
+                <p className="text-sm text-slate-500 mt-2">大力出奇迹！只要试的够快，没有解不开的锁。</p>
+            </div>
+            <div className="bg-yellow-50 p-6 rounded-2xl border border-yellow-100 hover:scale-105 transition-transform">
+                <div className="text-4xl mb-4">🦊</div>
+                <h3 className="font-bold text-lg text-slate-800">贪心 (Greedy)</h3>
+                <p className="text-sm text-slate-500 mt-2">活在当下！每次都选眼前看起来最好的。</p>
+            </div>
+            <div className="bg-indigo-50 p-6 rounded-2xl border border-indigo-100 hover:scale-105 transition-transform">
+                <div className="text-4xl mb-4">🪆</div>
+                <h3 className="font-bold text-lg text-slate-800">递归 (Recursion)</h3>
+                <p className="text-sm text-slate-500 mt-2">无限套娃！把大问题把变成小问题。</p>
+            </div>
+        </div>
+        <div className="mt-12 animate-bounce text-slate-400 text-sm">点击“下一步”开始修炼 👇</div>
+    </div>
+);
 
 // 1. 故事导入：从前有座山
 const StorySlide = () => {
@@ -486,7 +520,578 @@ const StairsSlide = () => {
     );
 };
 
-// 6. 课间小测验
+// 6. Enumeration Sub-slides
+
+// 6.1 概念: 寻找宝藏
+const EnumConceptSlide = () => (
+    <div className="flex flex-col items-center justify-center h-full text-center p-8">
+        <h3 className="text-3xl font-bold text-slate-800 mb-6">什么是枚举？</h3>
+        <p className="text-xl text-slate-600 mb-12 max-w-2xl">
+            枚举 (Enumeration) 就是<span className="text-indigo-600 font-bold mx-1">逐个尝试</span>所有可能的答案，直到找到正确的那个。
+            虽然看起来很“笨”，但对于计算机来说，这往往是最简单有效的方法！
+        </p>
+
+        <div className="grid grid-cols-4 gap-4 max-w-md mx-auto mb-12">
+            {Array.from({ length: 12 }).map((_, i) => (
+                <div key={i} className="w-16 h-16 bg-slate-100 rounded-xl flex items-center justify-center text-3xl animate-in zoom-in duration-500" style={{ animationDelay: `${i * 100}ms` }}>
+                    {i === 7 ? '💎' : '📦'}
+                </div>
+            ))}
+        </div>
+        <div className="bg-indigo-50 px-6 py-3 rounded-full text-indigo-700 font-bold animate-bounce">
+            一个个通过，绝对不会漏掉宝藏！
+        </div>
+    </div>
+);
+
+// 6.2 暴力破解 (Original EnumerationSlide)
+const EnumCrackerSlide = () => {
+    const [password, setPassword] = useState([7, 3, 9]); // 目标密码
+    const [currentTry, setCurrentTry] = useState([0, 0, 0]);
+    const [isCracking, setIsCracking] = useState(false);
+    const [found, setFound] = useState(false);
+    const [attempts, setAttempts] = useState(0);
+
+    const startCracking = async () => {
+        if (isCracking) return;
+        setIsCracking(true);
+        setFound(false);
+        setAttempts(0);
+
+        for (let i = 0; i <= 999; i++) {
+            const d1 = Math.floor(i / 100);
+            const d2 = Math.floor((i % 100) / 10);
+            const d3 = i % 10;
+            const current = [d1, d2, d3];
+
+            setCurrentTry(current);
+            setAttempts(i + 1);
+
+            if (d1 === password[0] && d2 === password[1] && d3 === password[2]) {
+                setFound(true);
+                setIsCracking(false);
+                return;
+            }
+
+            if (i % 3 === 0) await new Promise(r => setTimeout(r, 10)); // UI Throttle
+        }
+        setIsCracking(false);
+    };
+
+    const reset = () => {
+        setIsCracking(false);
+        setFound(false);
+        setCurrentTry([0, 0, 0]);
+        setAttempts(0);
+        const newPass = [Math.floor(Math.random() * 10), Math.floor(Math.random() * 10), Math.floor(Math.random() * 10)];
+        setPassword(newPass);
+    };
+
+    return (
+        <div className="flex flex-col h-full items-center gap-6">
+            <div className="text-center max-w-2xl">
+                <h3 className="text-2xl font-bold text-slate-800 flex items-center justify-center gap-2">
+                    <Lock className="text-red-500" /> 暴力破解 (枚举算法)
+                </h3>
+            </div>
+
+            <div className="grid md:grid-cols-2 gap-12 items-center w-full max-w-4xl flex-1">
+                {/* 密码锁展示 */}
+                <div className="bg-slate-800 p-8 rounded-2xl shadow-2xl flex flex-col items-center justify-center relative border-4 border-slate-600">
+                    <div className="text-slate-400 mb-4 font-mono text-sm">SECURE VAULT v1.0</div>
+                    <div className="flex gap-4 mb-8 bg-black/30 p-4 rounded-xl">
+                        {currentTry.map((num, i) => (
+                            <div key={i} className="w-16 h-20 bg-gradient-to-b from-slate-100 to-slate-300 rounded-lg flex items-center justify-center text-4xl font-mono font-bold text-slate-800 shadow-inner border border-slate-400 relative overflow-hidden">
+                                <div className="absolute inset-0 bg-white/20"></div>
+                                {num}
+                            </div>
+                        ))}
+                    </div>
+                    {found && (
+                        <div className="bg-green-500 text-white px-6 py-2 rounded-full font-bold animate-bounce flex items-center gap-2">
+                            <Unlock size={20} /> 破解成功!
+                        </div>
+                    )}
+                    {/* Stats Overlay */}
+                    <div className="absolute bottom-4 right-4 text-xs font-mono text-green-400">
+                        Attempts: {attempts}
+                    </div>
+                </div>
+
+                {/* Control Panel */}
+                <div className="space-y-6">
+                    <div className="bg-white p-5 rounded-xl shadow border border-slate-200 font-mono text-sm">
+                        <div className="text-slate-400"># 暴力枚举脚本</div>
+                        <div><span className="text-purple-600">for</span> i <span className="text-purple-600">in</span> range(<span className="text-orange-500">1000</span>):</div>
+                        <div className="pl-4">keyword = try_unlock(i)</div>
+                        <div className="pl-4"><span className="text-purple-600">if</span> keyword == <span className="text-green-600">True</span>:</div>
+                        <div className="pl-8"><span className="text-blue-600">print</span>("Open!")</div>
+                    </div>
+
+                    <div className="flex flex-col gap-4">
+                        <button onClick={startCracking} disabled={isCracking || found} className="w-full py-3 bg-red-600 text-white rounded-xl font-bold shadow-lg hover:bg-red-700 disabled:opacity-50 transition-all flex items-center justify-center gap-2">
+                            {!isCracking ? <><Play size={20} /> 开始破解</> : '破解进行中...'}
+                        </button>
+                        <button onClick={reset} disabled={isCracking} className="w-full py-3 bg-slate-200 text-slate-700 rounded-xl font-bold hover:bg-slate-300 disabled:opacity-50 transition-colors flex items-center justify-center gap-2">
+                            <RotateCcw size={18} /> 重置
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    );
+};
+
+// 6.3 鸡兔同笼 (Chickens and Rabbits)
+const EnumChickenSlide = () => {
+    const [heads, setHeads] = useState(35);
+    const [feet, setFeet] = useState(94);
+    const [solution, setSolution] = useState(null); // {chickens, rabbits}
+    const [currentCheck, setCurrentCheck] = useState(null); // {c, r}
+    const [isSolving, setIsSolving] = useState(false);
+
+    const solve = async () => {
+        if (isSolving) return;
+        setIsSolving(true);
+        setSolution(null);
+        setCurrentCheck(null);
+
+        // 枚举循环：假设鸡有 i 只
+        // 那么兔就有 heads - i 只
+        // 检查脚的总数是否匹配
+        for (let c = 0; c <= heads; c++) {
+            let r = heads - c;
+            setCurrentCheck({ c, r });
+
+            if (c * 2 + r * 4 === feet) {
+                setSolution({ c, r });
+                setIsSolving(false);
+                return;
+            }
+            // Visualization Delay
+            await new Promise(res => setTimeout(res, 50));
+        }
+        setIsSolving(false);
+    };
+
+    return (
+        <div className="flex flex-col h-full items-center gap-6">
+            <div className="text-center">
+                <h3 className="text-2xl font-bold text-slate-800">鸡兔同笼问题</h3>
+                <p className="text-slate-600">如果有 {heads} 个头，{feet} 只脚，其实不用列方程，计算机可以<span className="font-bold text-indigo-600">一个个试</span>出来！</p>
+            </div>
+
+            <div className="flex-1 w-full max-w-4xl grid md:grid-cols-2 gap-8 items-center">
+                {/* Visual Area */}
+                <div className="bg-green-50 rounded-2xl p-8 border border-green-200 relative min-h-[300px] flex flex-col items-center justify-center">
+                    {currentCheck ? (
+                        <div className="text-center animate-in zoom-in duration-100">
+                            <div className="text-6xl mb-4 font-black text-slate-800 flex justify-center gap-8">
+                                <div className="flex flex-col items-center">
+                                    <span>🐔</span>
+                                    <span className="text-xl mt-2">{currentCheck.c} 只</span>
+                                </div>
+                                <div className="flex flex-col items-center">
+                                    <span>🐇</span>
+                                    <span className="text-xl mt-2">{currentCheck.r} 只</span>
+                                </div>
+                            </div>
+                            <div className="bg-white px-6 py-2 rounded-full shadow-sm inline-block">
+                                <span className="font-bold text-slate-500">脚的数量: </span>
+                                <span className={`font-mono font-bold text-xl ${solution ? 'text-green-600' : 'text-orange-500'}`}>
+                                    {currentCheck.c * 2 + currentCheck.r * 4}
+                                </span>
+                                <span className="text-slate-400 mx-2">/</span>
+                                <span className="text-slate-400">{feet}</span>
+                            </div>
+                        </div>
+                    ) : (
+                        <div className="text-slate-400 text-center">
+                            <div className="text-6xl mb-4 opacity-50">🐔🐇❓</div>
+                            点击“开始计算”找出答案
+                        </div>
+                    )}
+
+                    {solution && (
+                        <div className="absolute inset-0 bg-green-500/10 flex items-center justify-center backdrop-blur-[1px] rounded-2xl">
+                            <div className="bg-white p-6 rounded-2xl shadow-xl border-4 border-green-500 animate-bounce">
+                                <h4 className="text-2xl font-bold text-green-700 mb-2">找到啦！🎉</h4>
+                                <div className="text-lg">鸡: <strong>{solution.c}</strong>, 兔: <strong>{solution.r}</strong></div>
+                            </div>
+                        </div>
+                    )}
+                </div>
+
+                {/* Control Area */}
+                <div className="space-y-6">
+                    <div className="bg-white p-5 rounded-xl shadow border border-slate-200 font-mono text-sm">
+                        <div><span className="text-purple-600">for</span> chicken <span className="text-purple-600">in</span> range(<span className="text-orange-500">{heads + 1}</span>):</div>
+                        <div className="pl-4">rabbit = {heads} - chicken</div>
+                        <div className="pl-4"><span className="text-purple-600">if</span> (chicken*2 + rabbit*4) == <span className="text-blue-600">{feet}</span>:</div>
+                        <div className="pl-8"><span className="text-green-600">print</span>("Found it!")</div>
+                    </div>
+
+                    <button
+                        onClick={solve}
+                        disabled={isSolving}
+                        className="w-full py-3 bg-indigo-600 text-white rounded-xl font-bold shadow-lg hover:bg-indigo-700 disabled:opacity-50 flex items-center justify-center gap-2"
+                    >
+                        {isSolving ? '正在一个个试...' : <><Play size={18} /> 开始枚举计算</>}
+                    </button>
+                </div>
+            </div>
+        </div>
+    );
+};
+
+// 6.4 枚举综合页 (Enum Tabbed Slide)
+const EnumerationSlide = () => {
+    const [activeTab, setActiveTab] = useState('concept');
+    const tabs = [
+        { id: 'concept', label: '🔍 什么是枚举', icon: 'search' },
+        { id: 'cracker', label: '🔓 暴力破解', icon: 'lock' },
+        { id: 'chicken', label: '🐇 鸡兔同笼', icon: 'help' }
+    ];
+
+    return (
+        <div className="flex flex-col h-full gap-4">
+            <div className="flex justify-center mb-2">
+                <div className="bg-white p-1 rounded-xl shadow-sm border border-slate-200 inline-flex">
+                    {tabs.map(tab => (
+                        <button
+                            key={tab.id}
+                            onClick={() => setActiveTab(tab.id)}
+                            className={`px-4 py-2 rounded-lg text-sm font-bold flex items-center gap-2 transition-all ${activeTab === tab.id ? 'bg-red-100 text-red-700 shadow-sm' : 'text-slate-500 hover:text-slate-700 hover:bg-slate-50'}`}
+                        >
+                            <Icon name={tab.icon} size={16} />
+                            {tab.label}
+                        </button>
+                    ))}
+                </div>
+            </div>
+            <div className="flex-1 min-h-0 overflow-hidden">
+                <div key={activeTab} className="h-full animate-in fade-in zoom-in duration-300">
+                    {activeTab === 'concept' && <EnumConceptSlide />}
+                    {activeTab === 'cracker' && <EnumCrackerSlide />}
+                    {activeTab === 'chicken' && <EnumChickenSlide />}
+                </div>
+            </div>
+        </div>
+    );
+};
+
+// 7. Greedy Sub-slides
+
+// 7.1 概念: 贪吃的小老鼠
+const GreedyConceptSlide = () => (
+    <div className="flex flex-col items-center justify-center h-full text-center p-8">
+        <h3 className="text-3xl font-bold text-slate-800 mb-6">什么是贪心？</h3>
+        <p className="text-xl text-slate-600 mb-12 max-w-2xl">
+            贪心算法 (Greedy) 就像一只<span className="text-orange-500 font-bold mx-1">贪吃的小老鼠</span>，
+            每次只看眼前，哪块蛋糕最大就拿哪块，从来不考虑以后。
+        </p>
+
+        <div className="flex items-end justify-center gap-2 h-40 mb-12">
+            {[20, 40, 60, 100, 30].map((h, i) => (
+                <div key={i} className={`w-12 bg-yellow-200 rounded-t-lg relative border-2 border-yellow-400 transition-all hover:bg-yellow-300 ${h === 100 ? 'animate-bounce shadow-xl bg-yellow-400' : 'opacity-70'}`} style={{ height: `${h}%` }}>
+                    {h === 100 && (
+                        <div className="absolute -top-10 left-1/2 -translate-x-1/2 text-4xl">🐭</div>
+                    )}
+                </div>
+            ))}
+        </div>
+        <div className="bg-orange-50 px-6 py-3 rounded-full text-orange-700 font-bold">
+            "我就要最大的！现在就要！"
+        </div>
+    </div>
+);
+
+// 7.2 找零钱 (Original GreedySlide)
+const GreedyCoinsSlide = () => {
+    const [amount, setAmount] = useState(46);
+    const [coins, setCoins] = useState([]);
+    const availableCoins = [25, 10, 5, 1];
+
+    const currentTotal = coins.reduce((a, b) => a + b, 0);
+    const remaining = amount - currentTotal;
+    const isComplete = remaining === 0;
+
+    const addCoin = (value) => {
+        if (remaining >= value) {
+            setCoins([...coins, value]);
+        }
+    };
+
+    const autoGreedy = async () => {
+        setCoins([]);
+        let rem = amount;
+        let newCoins = [];
+        const delay = (ms) => new Promise(r => setTimeout(r, ms));
+
+        while (rem > 0) {
+            for (let coin of availableCoins) {
+                if (rem >= coin) {
+                    newCoins.push(coin);
+                    setCoins([...newCoins]);
+                    rem -= coin;
+                    await delay(500);
+                    break;
+                }
+            }
+        }
+    };
+
+    const reset = () => {
+        setCoins([]);
+        setAmount(Math.floor(Math.random() * 50) + 20);
+    };
+
+    return (
+        <div className="flex flex-col h-full items-center gap-6">
+            <div className="text-center">
+                <h3 className="text-2xl font-bold text-slate-800 flex items-center justify-center gap-2">
+                    <Box className="text-yellow-500" /> 贪心算法: 找零钱
+                </h3>
+            </div>
+
+            <div className="flex-1 w-full max-w-4xl grid md:grid-cols-2 gap-8 items-start">
+                {/* 交互区 */}
+                <div className="bg-white p-6 rounded-2xl shadow-lg border border-slate-200">
+                    <div className="flex justify-between items-center mb-6">
+                        <div>
+                            <div className="text-sm text-slate-500">目标金额</div>
+                            <div className="text-4xl font-black text-slate-800">{amount}</div>
+                        </div>
+                        <div className="text-right">
+                            <div className="text-sm text-slate-500">还需要凑</div>
+                            <div className={`text-4xl font-black ${remaining === 0 ? 'text-green-500' : 'text-red-500'}`}>
+                                {remaining}
+                            </div>
+                        </div>
+                    </div>
+
+                    <div className="mb-8">
+                        <div className="flex gap-4 justify-center">
+                            {availableCoins.map(coin => (
+                                <button
+                                    key={coin}
+                                    onClick={() => addCoin(coin)}
+                                    disabled={remaining < coin}
+                                    className={`
+                                        w-16 h-16 rounded-full flex items-center justify-center text-xl font-bold shadow-md border-4 transition-all
+                                        ${remaining >= coin ? 'bg-yellow-100 border-yellow-400 text-yellow-700 hover:scale-110 active:scale-95' : 'bg-slate-100 border-slate-200 text-slate-300 opacity-50'}
+                                    `}
+                                >
+                                    {coin}
+                                </button>
+                            ))}
+                        </div>
+                    </div>
+
+                    <div className="bg-slate-50 p-4 rounded-xl border-2 border-dashed border-slate-300 min-h-[120px] flex flex-wrap gap-2 justify-center content-start">
+                        {coins.map((c, i) => (
+                            <div key={i} className="w-10 h-10 rounded-full bg-yellow-400 text-yellow-900 border-2 border-yellow-600 flex items-center justify-center font-bold text-sm shadow-sm animate-in zoom-in">
+                                {c}
+                            </div>
+                        ))}
+                    </div>
+                </div>
+
+                {/* 说明与自动演示 */}
+                <div className="space-y-6">
+                    <div className="bg-indigo-50 p-5 rounded-xl border border-indigo-100">
+                        <h4 className="font-bold text-indigo-800 mb-2 flex items-center gap-2">
+                            <Sparkles size={18} /> 贪心策略
+                        </h4>
+                        <p className="text-sm text-indigo-900">
+                            只要能拿大面值的，绝不拿小的。这种策略在找零钱问题中通常是最优的。
+                        </p>
+                    </div>
+
+                    <div className="flex gap-4">
+                        <button
+                            onClick={autoGreedy}
+                            disabled={coins.length > 0 && !isComplete}
+                            className="flex-1 py-3 bg-indigo-600 text-white rounded-xl font-bold shadow-lg hover:bg-indigo-700 disabled:opacity-50 transition-all flex items-center justify-center gap-2"
+                        >
+                            <Rocket size={18} /> 自动演示
+                        </button>
+                        <button onClick={reset} className="px-6 py-3 bg-white border border-slate-300 text-slate-600 rounded-xl font-bold hover:bg-slate-50 transition-colors">
+                            <RotateCcw size={18} />
+                        </button>
+                    </div>
+
+                    {isComplete && (
+                        <div className="bg-green-100 text-green-800 p-4 rounded-xl border border-green-200 flex items-center gap-3 animate-in slide-in-from-bottom">
+                            <Trophy className="text-green-600" size={24} />
+                            <div>
+                                <div className="font-bold">完成！</div>
+                                <div className="text-sm">共用了 {coins.length} 枚硬币。</div>
+                            </div>
+                        </div>
+                    )}
+                </div>
+            </div>
+        </div>
+    );
+};
+
+// 7.3 贪心的陷阱 (The Trap)
+const GreedyTrapSlide = () => {
+    const [path, setPath] = useState(null); // 'greedy' or 'smart'
+
+    return (
+        <div className="flex flex-col items-center justify-center h-full text-center p-4">
+            <h3 className="text-2xl font-bold text-slate-800 mb-2">贪心总是对的吗？</h3>
+            <p className="text-slate-600 mb-8">有时候，只顾眼前的利益，反而会错过更长远的目标。</p>
+
+            <div className="relative w-full max-w-2xl h-64 bg-slate-100 rounded-2xl border-4 border-slate-300 p-4 flex items-center justify-between">
+
+                {/* Start */}
+                <div className="w-16 h-16 bg-blue-500 rounded-full text-white flex items-center justify-center font-bold z-10 shadow-lg">Start</div>
+
+                {/* Path A (Greedy) */}
+                <div
+                    onClick={() => setPath('greedy')}
+                    className={`absolute top-1/4 left-1/4 w-1/2 h-2 rounded-full cursor-pointer transition-all ${path === 'greedy' ? 'bg-red-500 h-4' : 'bg-slate-300 hover:bg-red-200'}`}
+                >
+                    <div className="absolute -top-8 left-1/2 -translate-x-1/2 bg-white px-2 rounded border border-slate-200 text-xs text-slate-500">
+                        消耗 1
+                    </div>
+                </div>
+
+                {/* Path B (Smart) */}
+                <div
+                    onClick={() => setPath('smart')}
+                    className={`absolute bottom-1/4 left-1/4 w-1/2 h-2 rounded-full cursor-pointer transition-all ${path === 'smart' ? 'bg-green-500 h-4' : 'bg-slate-300 hover:bg-green-200'}`}
+                >
+                    <div className="absolute -bottom-8 left-1/2 -translate-x-1/2 bg-white px-2 rounded border border-slate-200 text-xs text-slate-500">
+                        消耗 10
+                    </div>
+                </div>
+
+                {/* Midpoints */}
+                <div className="absolute inset-y-0 left-3/4 flex flex-col justify-around py-8">
+                    <div className="w-12 h-12 bg-red-100 rounded-full border-2 border-red-500 flex items-center justify-center text-xs font-bold text-red-700">Trap</div>
+                    <div className="w-12 h-12 bg-green-100 rounded-full border-2 border-green-500 flex items-center justify-center text-xs font-bold text-green-700">Safe</div>
+                </div>
+
+                {/* Goal */}
+                <div className="w-16 h-16 bg-yellow-400 rounded-full text-white flex items-center justify-center font-bold z-10 shadow-lg border-4 border-yellow-600">Goal</div>
+            </div>
+
+            {/* Explanations */}
+            <div className="grid grid-cols-2 gap-8 mt-8 w-full max-w-2xl">
+                <div className={`p-4 rounded-xl border-2 transition-all ${path === 'greedy' ? 'border-red-500 bg-red-50 opacity-100' : 'border-dashed border-slate-200 opacity-50'}`}>
+                    <h4 className="font-bold text-red-700 mb-2">贪心选择</h4>
+                    <p className="text-sm text-slate-600">
+                        开头真的很便宜 (消耗1)，但是后面遇到了巨大的坑 (消耗100)！<br />
+                        <strong>总消耗: 101</strong>
+                    </p>
+                </div>
+                <div className={`p-4 rounded-xl border-2 transition-all ${path === 'smart' ? 'border-green-500 bg-green-50 opacity-100' : 'border-dashed border-slate-200 opacity-50'}`}>
+                    <h4 className="font-bold text-green-700 mb-2">智慧选择</h4>
+                    <p className="text-sm text-slate-600">
+                        开头虽然有点贵 (消耗10)，但后面一路顺风 (消耗10)。<br />
+                        <strong>总消耗: 20</strong>
+                    </p>
+                </div>
+            </div>
+        </div>
+    );
+};
+
+// 7.4 贪心综合页 (Greedy Tabbed Slide)
+const GreedySlide = () => {
+    const [activeTab, setActiveTab] = useState('concept');
+    const tabs = [
+        { id: 'concept', label: '🍰 什么是贪心', icon: 'search' },
+        { id: 'coins', label: '💰 找零钱', icon: 'coin' },
+        { id: 'trap', label: '⚠️ 贪心的陷阱', icon: 'alert' }
+    ];
+
+    return (
+        <div className="flex flex-col h-full gap-4">
+            <div className="flex justify-center mb-2">
+                <div className="bg-white p-1 rounded-xl shadow-sm border border-slate-200 inline-flex">
+                    {tabs.map(tab => (
+                        <button
+                            key={tab.id}
+                            onClick={() => setActiveTab(tab.id)}
+                            className={`px-4 py-2 rounded-lg text-sm font-bold flex items-center gap-2 transition-all ${activeTab === tab.id ? 'bg-yellow-100 text-yellow-700 shadow-sm' : 'text-slate-500 hover:text-slate-700 hover:bg-slate-50'}`}
+                        >
+                            <Icon name={tab.icon} size={16} />
+                            {tab.label}
+                        </button>
+                    ))}
+                </div>
+            </div>
+            <div className="flex-1 min-h-0 overflow-hidden">
+                <div key={activeTab} className="h-full animate-in fade-in zoom-in duration-300">
+                    {activeTab === 'concept' && <GreedyConceptSlide />}
+                    {activeTab === 'coins' && <GreedyCoinsSlide />}
+                    {activeTab === 'trap' && <GreedyTrapSlide />}
+                </div>
+            </div>
+        </div>
+    );
+};
+
+// 7.5. 递归综合页 (Recursion Tabbed Slide)
+const RecursionSlide = () => {
+    const [activeTab, setActiveTab] = useState('story');
+
+    const tabs = [
+        { id: 'story', label: '📜 听故事', icon: 'repeat' },
+        { id: 'concept', label: '🪆 套娃', icon: 'layers' },
+        { id: 'code', label: '⚠️ 死循环', icon: 'alert' },
+        { id: 'rocket', label: '🚀 倒计时', icon: 'rocket' },
+        { id: 'stairs', label: '🪜 爬楼梯', icon: 'stairs' }
+    ];
+
+    const renderContent = () => {
+        switch (activeTab) {
+            case 'story': return <StorySlide />;
+            case 'concept': return <MatryoshkaSlide />;
+            case 'code': return <CodeSlide />;
+            case 'rocket': return <RocketSlide />;
+            case 'stairs': return <StairsSlide />;
+            default: return <StorySlide />;
+        }
+    };
+
+    return (
+        <div className="flex flex-col h-full gap-4">
+            <div className="flex justify-center mb-2">
+                <div className="bg-white p-1 rounded-xl shadow-sm border border-slate-200 inline-flex">
+                    {tabs.map(tab => (
+                        <button
+                            key={tab.id}
+                            onClick={() => setActiveTab(tab.id)}
+                            className={`
+                                px-4 py-2 rounded-lg text-sm font-bold flex items-center gap-2 transition-all
+                                ${activeTab === tab.id
+                                    ? 'bg-indigo-100 text-indigo-700 shadow-sm'
+                                    : 'text-slate-500 hover:text-slate-700 hover:bg-slate-50'}
+                            `}
+                        >
+                            <Icon name={tab.icon} size={16} />
+                            {tab.label}
+                        </button>
+                    ))}
+                </div>
+            </div>
+
+            <div className="flex-1 min-h-0 overflow-hidden">
+                <div key={activeTab} className="h-full animate-in fade-in zoom-in duration-300">
+                    {renderContent()}
+                </div>
+            </div>
+        </div>
+    );
+};
+
+// 8. 课间小测验 (Original QuizSlide)
 const QuizSlide = () => {
     const [currentQIndex, setCurrentQIndex] = useState(0);
     const [selectedOption, setSelectedOption] = useState(null);
@@ -497,47 +1102,47 @@ const QuizSlide = () => {
     const questions = [
         {
             id: 1,
-            question: "如果写递归函数忘记写“出口条件”（Base Case），会发生什么？",
+            question: "如果不知道密码，把 000 到 999 所有的组合都试一遍，这种方法叫什么？",
             options: [
-                "A. 电脑会关机睡觉",
-                "B. 程序会一直运行，直到报错（死循环）",
-                "C. 电脑会爆炸 💥"
+                "A. 贪心算法 (Greedy)",
+                "B. 枚举算法 / 暴力破解 (Enumeration)",
+                "C. 递归算法 (Recursion)"
             ],
             correct: 1,
-            explanation: "答对啦！无限调用会耗尽内存，导致 Stack Overflow（栈溢出）。"
+            explanation: "正确！枚举就是如果不确定答案，就列举出所有可能的候选者，逐一验证。"
         },
         {
             id: 2,
-            question: "在这个课程的“跳楼梯”问题中，跳到第 4 层一共有多少种跳法？",
+            question: "玩“凑硬币”游戏时，为了硬币数量最少，每次都尽量拿面值最大的，这是什么思维？",
             options: [
-                "A. 3 种",
-                "B. 5 种",
-                "C. 8 种"
+                "A. 贪心思维 (Greedy)",
+                "B. 犹豫不决",
+                "C. 回溯思维"
             ],
-            correct: 1,
-            explanation: "bingo！还记得公式吗？f(4) = f(3) + f(2) = 3 + 2 = 5。"
+            correct: 0,
+            explanation: "宾果！贪心算法的核心就是：只顾眼前的最佳选择（局部最优）。"
         },
         {
             id: 3,
-            question: "下面哪个成语最能体现“递归”的思想？",
+            question: "关于“递归”的描述，哪一项是错误的？",
             options: [
-                "A. 愚公移山 (子又生孙，孙又生子)",
-                "B. 刻舟求剑",
-                "C. 掩耳盗铃"
+                "A. 递归函数必须要有“出口”",
+                "B. 递归就是函数自己调用自己",
+                "C. 递归永远比循环快"
             ],
-            correct: 0,
-            explanation: "没错！愚公移山中“子子孙孙无穷匮也”就是一种递归的延续。"
+            correct: 2,
+            explanation: "注意坑！递归虽然代码简洁，但因为要不断压栈，往往比循环更慢，甚至会导致栈溢出。"
         },
         {
             id: 4,
-            question: "在编程中，递归函数必须包含的两个部分是？",
+            question: "在编程中，遇到问题应该优先使用哪种思维？",
             options: [
-                "A. 循环和判断",
-                "B. 变量和常量",
-                "C. 终止条件(出口) 和 自身调用"
+                "A. 必须用递归，因为它高级",
+                "B. 先分析问题特点，适合什么用什么",
+                "C. 永远用暴力枚举"
             ],
-            correct: 2,
-            explanation: "非常关键！没有出口就是死循环，没有自身调用就不是递归。"
+            correct: 1,
+            explanation: "没有最好的算法，只有最合适的算法！枚举适合小数据，贪心适合特定策略，递归适合分治结构。"
         }
     ];
 
@@ -670,12 +1275,11 @@ const QuizSlide = () => {
 // --- Main Layout Component ---
 
 const sections = [
-    { id: 1, title: '听不完的故事', icon: 'repeat', component: StorySlide },
-    { id: 2, title: '套娃玩具', icon: 'layers', component: MatryoshkaSlide },
-    { id: 3, title: '晕倒的电脑', icon: 'alert', component: CodeSlide },
-    { id: 4, title: '火箭发射实战', icon: 'rocket', component: RocketSlide },
-    { id: 5, title: '魔法楼梯挑战', icon: 'stairs', component: StairsSlide }, // 新增章节
-    { id: 6, title: '小侦探测验', icon: 'trophy', component: QuizSlide },
+    { id: 1, title: '课程简介: 算法思维', icon: 'search', component: IntroSlide },
+    { id: 2, title: '枚举: 暴力破解', icon: 'lock', component: EnumerationSlide },
+    { id: 3, title: '贪心: 最佳策略', icon: 'coin', component: GreedySlide },
+    { id: 4, title: '递归: 分治之美', icon: 'layers', component: RecursionSlide },
+    { id: 5, title: '结业测验', icon: 'trophy', component: QuizSlide },
 ];
 
 const PythonAdvanced1 = () => {
@@ -728,9 +1332,9 @@ const PythonAdvanced1 = () => {
                             </div>
                         </Link>
                         <span className="bg-indigo-600 text-white p-1 rounded">Python</span>
-                        <span>趣味魔法</span>
+                        <span>算法思维</span>
                     </h1>
-                    <p className="text-xs text-indigo-400 mt-2 font-medium pl-1">进阶第 1 课：无限套娃 🪆</p>
+                    <p className="text-xs text-indigo-400 mt-2 font-medium pl-1">A1: 核心算法思维入门</p>
                 </div>
                 {/* Mobile Header in Sidebar (visible only on mobile when menu open) */}
                 <div className="p-4 border-b border-slate-100 md:hidden flex justify-between items-center bg-indigo-50">
