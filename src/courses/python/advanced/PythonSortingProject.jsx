@@ -4,7 +4,7 @@ import {
     Trophy, Code, ArrowRight, Sparkles,
     BarChart2, Layers, Brain, ChevronRight,
     Zap, Menu, X, ArrowDown, Repeat,
-    CheckCircle, StopCircle, Smartphone, Globe,
+    CheckCircle, StopCircle, Smartphone, Globe, Target,
     ShoppingCart, Gamepad2, ListOrdered, Timer, Star
 } from 'lucide-react';
 import { Link } from 'react-router-dom';
@@ -21,7 +21,9 @@ const Icon = ({ name, size = 20, className = "" }) => {
         layers: <Layers size={size} />,
         brain: <Brain size={size} />,
         zap: <Zap size={size} />,
-        arrowUp: <ArrowUp size={size} />
+        arrowUp: <ArrowUp size={size} />,
+        target: <Target size={size} />,
+        globe: <Globe size={size} />
     };
     return <span className={className}>{icons[name] || icons.help}</span>;
 };
@@ -956,7 +958,7 @@ const sections = [
     { id: 3, title: '选择排序', icon: 'target', component: SelectionSortSlide },
     { id: 4, title: '算法对决', icon: 'zap', component: AlgorithmBattleSlide },
     { id: 5, title: '代码魔法书', icon: 'code', component: CodeSlide },
-    { id: 6, title: '真实应用', icon: 'layers', component: ApplicationSlide },
+    { id: 6, title: '真实应用', icon: 'globe', component: ApplicationSlide },
     { id: 7, title: '挑战：排序大师', icon: 'trophy', component: HumanSortSlide },
     { id: 8, title: '知识测验', icon: 'help', component: QuizSlide },
 ];
