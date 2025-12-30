@@ -1,10 +1,12 @@
 import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { BookOpen, Award, Star, ChevronRight, FileText, Monitor, Lock, CheckCircle, PlayCircle, Flag, Sparkles, Map, Zap, Scissors, ArrowRight, Box, Key, Terminal, Shield, Repeat, Layers, AlignJustify, Scan, Type, Package, Trophy, ArrowUp, Megaphone, Search, MousePointer2, Grid, XCircle, AlertOctagon } from 'lucide-react';
+import { BookOpen, Award, Star, ChevronRight, ChevronDown, ChevronUp, FileText, Monitor, Lock, CheckCircle, PlayCircle, Flag, Sparkles, Map, Zap, Scissors, ArrowRight, Box, Key, Terminal, Shield, Repeat, Layers, AlignJustify, Scan, Type, Package, Trophy, ArrowUp, Megaphone, Search, MousePointer2, Grid, XCircle, AlertOctagon, Compass } from 'lucide-react';
 
 export default function Home() {
     const navigate = useNavigate();
     const [showBackToTop, setShowBackToTop] = useState(false);
+    const [showAllLessons, setShowAllLessons] = useState(false);
+    const [showAllAdvLessons, setShowAllAdvLessons] = useState(false);
 
     // 监听滚动事件，显示/隐藏回到顶部按钮
     useEffect(() => {
@@ -25,23 +27,23 @@ export default function Home() {
             id: 'level1',
             title: 'GESP C++ 一级',
             description: '知识体系 + 逻辑游乐场 + 互动陷阱卡，零基础轻松入门',
-            icon: <Star className="w-8 h-8 text-blue-400" />,
-            color: 'bg-blue-500/20 text-blue-400 border border-blue-500/30 shadow-lg shadow-blue-500/20',
+            icon: <Star className="w-8 h-8 text-emerald-400" />,
+            color: 'bg-emerald-500/20 text-emerald-400 border border-emerald-500/30 shadow-lg shadow-emerald-500/20',
             path: '/level1',
             status: 'ready',
             badge: '入门',
-            badgeColor: 'from-green-500 to-emerald-500'
+            badgeColor: 'from-emerald-500 to-teal-500'
         },
         {
             id: 'level2',
             title: 'GESP C++ 二级',
             description: '代码执行可视化跟踪 + 万能模板库 + 考前满分秘籍',
-            icon: <Star className="w-8 h-8 text-blue-400" />,
-            color: 'bg-blue-500/20 text-blue-400 border border-blue-500/30 shadow-lg shadow-blue-500/20',
+            icon: <Star className="w-8 h-8 text-emerald-400" />,
+            color: 'bg-emerald-500/20 text-emerald-400 border border-emerald-500/30 shadow-lg shadow-emerald-500/20',
             path: '/level2',
             status: 'ready',
             badge: '基础',
-            badgeColor: 'from-blue-500 to-indigo-500'
+            badgeColor: 'from-teal-500 to-cyan-500'
         },
         {
             id: 'level3',
@@ -52,7 +54,7 @@ export default function Home() {
             path: '/level3',
             status: 'ready',
             badge: '进阶',
-            badgeColor: 'from-indigo-500 to-violet-500'
+            badgeColor: 'from-cyan-500 to-blue-500'
         },
         {
             id: 'level4',
@@ -63,51 +65,51 @@ export default function Home() {
             path: '/level4',
             status: 'ready',
             badge: '核心',
-            badgeColor: 'from-violet-500 to-purple-500'
+            badgeColor: 'from-blue-500 to-indigo-500'
         },
         {
             id: 'level5',
             title: 'GESP C++ 五级',
             description: '贪心策略模拟 + 二分查找动画 + 动规入门可视化',
-            icon: <Star className="w-8 h-8 text-blue-400" />,
-            color: 'bg-blue-500/20 text-blue-400 border border-blue-500/30 shadow-lg shadow-blue-500/20',
+            icon: <Star className="w-8 h-8 text-purple-400" />,
+            color: 'bg-purple-500/20 text-purple-400 border border-purple-500/30 shadow-lg shadow-purple-500/20',
             path: '/level5',
             status: 'ready',
             badge: '提高',
-            badgeColor: 'from-purple-500 to-fuchsia-500'
+            badgeColor: 'from-indigo-500 to-purple-500'
         },
         {
             id: 'level6',
             title: 'GESP C++ 六级',
             description: '广搜/深搜迷宫寻路实战 + 树结构动态可视化',
-            icon: <Star className="w-8 h-8 text-blue-400" />,
-            color: 'bg-blue-500/20 text-blue-400 border border-blue-500/30 shadow-lg shadow-blue-500/20',
+            icon: <Star className="w-8 h-8 text-purple-400" />,
+            color: 'bg-purple-500/20 text-purple-400 border border-purple-500/30 shadow-lg shadow-purple-500/20',
             path: '/level6',
             status: 'ready',
             badge: '挑战',
-            badgeColor: 'from-fuchsia-500 to-pink-500'
+            badgeColor: 'from-purple-500 to-fuchsia-500'
         },
         {
             id: 'level7',
             title: 'GESP C++ 七级',
             description: '高级图论算法 + 复杂搜索模拟 + 竞赛万能模板',
-            icon: <Star className="w-8 h-8 text-blue-400" />,
-            color: 'bg-blue-500/20 text-blue-400 border border-blue-500/30 shadow-lg shadow-blue-500/20',
+            icon: <Star className="w-8 h-8 text-rose-400" />,
+            color: 'bg-rose-500/20 text-rose-400 border border-rose-500/30 shadow-lg shadow-rose-500/20',
             path: '/level7',
             status: 'ready',
             badge: '专家',
-            badgeColor: 'from-pink-500 to-rose-500'
+            badgeColor: 'from-fuchsia-500 to-pink-500'
         },
         {
             id: 'level8',
             title: 'GESP C++ 八级',
             description: '最短路/MST 动画 + 组合数学 + 动规表格推演',
-            icon: <Star className="w-8 h-8 text-blue-400" />,
-            color: 'bg-blue-500/20 text-blue-400 border border-blue-500/30 shadow-lg shadow-blue-500/20',
+            icon: <Star className="w-8 h-8 text-rose-400" />,
+            color: 'bg-rose-500/20 text-rose-400 border border-rose-500/30 shadow-lg shadow-rose-500/20',
             path: '/level8',
             status: 'ready',
             badge: '大师',
-            badgeColor: 'from-rose-500 to-red-500'
+            badgeColor: 'from-pink-500 to-rose-500'
         },
     ];
 
@@ -413,15 +415,31 @@ export default function Home() {
 
             <header className="bg-slate-900/80 backdrop-blur-md border-b border-slate-800 sticky top-0 z-50">
                 <div className="max-w-5xl mx-auto px-4 h-16 flex items-center gap-3">
-                    <div
-                        onClick={() => navigate('/')}
-                        className="w-10 h-10 bg-white rounded-lg flex items-center justify-center overflow-hidden cursor-pointer hover:scale-105 transition-transform shadow-lg shadow-blue-900/50"
-                    >
-                        <img src={`${import.meta.env.BASE_URL}logo.jpg`} alt="Logo" className="w-full h-full object-cover" />
+                    <div className="flex items-center gap-3 cursor-pointer" onClick={() => navigate('/')}>
+                        <div className="w-10 h-10 bg-white rounded-lg flex items-center justify-center overflow-hidden shadow-lg shadow-blue-900/50 hover:scale-105 transition-transform">
+                            <img src={`${import.meta.env.BASE_URL}logo.jpg`} alt="Logo" className="w-full h-full object-cover" />
+                        </div>
+                        <h1 className="font-bold text-xl text-slate-100 tracking-tight">魔丸聚集地</h1>
                     </div>
-                    <h1 className="font-bold text-xl text-slate-100 tracking-tight cursor-pointer mr-auto" onClick={() => navigate('/')}>魔丸聚集地</h1>
 
+                    {/* Desktop Navigation */}
+                    <nav className="hidden md:flex items-center gap-8 mx-auto font-medium text-slate-400 text-sm">
+                        <button onClick={() => navigate('/')} className="hover:text-white transition-colors">首页</button>
+                        <button onClick={() => navigate('/level1')} className="hover:text-blue-400 transition-colors">C++ 考级</button>
+                        <button onClick={() => navigate('/python/f1')} className="hover:text-yellow-400 transition-colors">Python 课程</button>
+                        <button onClick={() => {
+                            const el = document.getElementById('maps-section');
+                            if (el) el.scrollIntoView({ behavior: 'smooth' });
+                        }} className="hover:text-emerald-400 transition-colors">闯关地图</button>
+                    </nav>
 
+                    <button
+                        onClick={() => navigate('/navigation')}
+                        className="p-2 rounded-full bg-slate-800/50 hover:bg-indigo-600 text-slate-400 hover:text-white transition-all duration-300 border border-slate-700/50 hover:shadow-lg hover:shadow-indigo-500/30 group"
+                        title="全站导航"
+                    >
+                        <Compass className="w-5 h-5 group-hover:rotate-45 transition-transform" />
+                    </button>
                 </div>
             </header>
 
@@ -671,7 +689,7 @@ export default function Home() {
                     </div>
                 </section>
 
-                <section className="relative z-10 max-w-5xl mx-auto px-4 py-12">
+                <section id="maps-section" className="relative z-10 max-w-5xl mx-auto px-4 py-12 scroll-mt-24">
 
                     {/* Knowledge Map Section */}
                     <div className="relative">
@@ -721,8 +739,8 @@ export default function Home() {
                             {/* Mobile Vertical Line */}
                             <div className="absolute top-4 bottom-4 left-8 w-1 bg-gradient-to-b from-blue-500 to-slate-800 md:hidden -z-10"></div>
 
-                            <div className="space-y-16 md:space-y-0 md:relative md:h-[1920px]">
-                                {lessons.map((lesson, index) => {
+                            <div className={`space-y-16 md:space-y-0 md:relative transition-[height] duration-500 ease-in-out ${showAllLessons ? 'md:h-[1920px]' : 'md:h-[600px] overflow-hidden'}`}>
+                                {lessons.slice(0, showAllLessons ? lessons.length : 5).map((lesson, index) => {
                                     const isEven = index % 2 === 0;
                                     // Calculate position for winding effect
                                     return (
@@ -782,6 +800,20 @@ export default function Home() {
                                     );
                                 })}
                             </div>
+
+                            {/* Show More Button */}
+                            <div className="absolute bottom-0 left-0 w-full flex justify-center pt-20 pb-8 bg-gradient-to-t from-slate-900 via-slate-900/90 to-transparent z-20">
+                                <button
+                                    onClick={() => setShowAllLessons(!showAllLessons)}
+                                    className="flex items-center gap-2 px-6 py-3 rounded-full bg-slate-800 border border-slate-700 text-slate-300 hover:text-white hover:bg-slate-700 hover:border-blue-500/50 transition-all shadow-lg"
+                                >
+                                    {showAllLessons ? (
+                                        <>收起地图 <ChevronUp size={20} /></>
+                                    ) : (
+                                        <>展开完整地图 ({lessons.length} 关) <ChevronDown size={20} /></>
+                                    )}
+                                </button>
+                            </div>
                         </div>
                     </div>
                 </section>
@@ -828,8 +860,8 @@ export default function Home() {
                             {/* Mobile Vertical Line */}
                             <div className="absolute top-4 bottom-4 left-8 w-1 bg-gradient-to-b from-purple-500 to-slate-800 md:hidden -z-10"></div>
 
-                            <div className="space-y-16 md:space-y-0 md:relative md:h-[1200px]">
-                                {advancedLessons.map((lesson, index) => {
+                            <div className={`space-y-16 md:space-y-0 md:relative transition-[height] duration-500 ease-in-out ${showAllAdvLessons ? 'md:h-[1200px]' : 'md:h-[600px] overflow-hidden'}`}>
+                                {advancedLessons.slice(0, showAllAdvLessons ? advancedLessons.length : 5).map((lesson, index) => {
                                     const isEven = index % 2 === 0;
                                     return (
                                         <div
@@ -882,105 +914,19 @@ export default function Home() {
                                     );
                                 })}
                             </div>
-                        </div>
-                    </div>
-                </section>
 
-                <section className="relative z-10 max-w-5xl mx-auto px-4 py-12">
-                    {/* Advanced Map Section */}
-                    <div className="relative">
-                        <div className="flex items-center gap-3 mb-16 justify-center md:justify-start">
-                            <div className="p-2 bg-purple-500/10 rounded-lg">
-                                <Award className="text-purple-400" size={24} />
-                            </div>
-                            <h3 className="text-2xl font-bold text-slate-100">C++进阶闯关地图</h3>
-                        </div>
-
-                        <div className="relative max-w-4xl mx-auto px-4 pb-20">
-                            {/* The Winding Path Line (SVG) for Advanced */}
-                            <svg className="absolute top-0 left-0 w-full h-full pointer-events-none hidden md:block" style={{ zIndex: 0 }}>
-                                <defs>
-                                    <linearGradient id="pathGradientAdv" x1="0%" y1="0%" x2="0%" y2="100%">
-                                        <stop offset="0%" stopColor="#8b5cf6" stopOpacity="0.8" />
-                                        <stop offset="100%" stopColor="#d946ef" stopOpacity="0.2" />
-                                    </linearGradient>
-                                </defs>
-                                <path
-                                    d="M 150 60 Q 400 60 650 180 T 150 300 T 650 420 T 150 540 T 650 660 T 150 780 T 650 900 T 150 1020 T 650 1140"
-                                    fill="none"
-                                    stroke="url(#pathGradientAdv)"
-                                    strokeWidth="6"
-                                    strokeLinecap="round"
-                                    filter="url(#glow)"
-                                    className="opacity-60"
-                                />
-                                {/* Animated Dash */}
-                                <path
-                                    d="M 150 60 Q 400 60 650 180 T 150 300 T 650 420 T 150 540 T 650 660 T 150 780 T 650 900 T 150 1020 T 650 1140"
-                                    fill="none"
-                                    stroke="#c084fc"
-                                    strokeWidth="2"
-                                    strokeDasharray="20 20"
-                                    className="animate-[dash_20s_linear_infinite] opacity-80"
-                                />
-                            </svg>
-
-                            {/* Mobile Vertical Line */}
-                            <div className="absolute top-4 bottom-4 left-8 w-1 bg-gradient-to-b from-purple-500 to-slate-800 md:hidden -z-10"></div>
-
-                            <div className="space-y-16 md:space-y-0 md:relative md:h-[1200px]">
-                                {advancedLessons.map((lesson, index) => {
-                                    const isEven = index % 2 === 0;
-                                    return (
-                                        <div
-                                            key={lesson.id}
-                                            onClick={() => lesson.status !== 'locked' && navigate(lesson.path)}
-                                            className={`
-                      flex items-center gap-6 transition-all duration-500 group
-                      relative md:absolute md:w-[400px]
-                      md:top-[var(--desktop-top)]
-                      ${isEven ? 'md:left-[5%]' : 'md:left-[55%]'}
-                      ${lesson.status === 'locked' ? 'cursor-not-allowed opacity-60 grayscale' : 'cursor-pointer hover:scale-105 z-10'}
-                    `}
-                                            style={{
-                                                '--desktop-top': `${index * 120}px`
-                                            }}
-                                        >
-                                            {/* Node Circle */}
-                                            <div className={`
-                      w-16 h-16 rounded-full flex items-center justify-center shrink-0 shadow-2xl border-4 border-slate-900 relative z-10
-                      ${lesson.color}
-                      ${lesson.status === 'current' ? 'animate-bounce shadow-purple-500/50' : ''}
-                      group-hover:rotate-12 transition-transform
-                    `}>
-                                                {lesson.icon}
-                                                {lesson.status === 'current' && (
-                                                    <div className="absolute inset-0 rounded-full bg-purple-400/30 animate-ping"></div>
-                                                )}
-                                            </div>
-
-                                            {/* Content Card */}
-                                            <div className={`
-                      flex-1 p-5 rounded-2xl border backdrop-blur-md transition-all duration-300
-                      ${lesson.status === 'current'
-                                                    ? 'bg-slate-800/80 border-purple-500/50 shadow-lg shadow-purple-900/30'
-                                                    : 'bg-slate-800/40 border-slate-700 hover:bg-slate-800/60 hover:border-slate-600'}
-                    `}>
-                                                <div className="flex justify-between items-start mb-2">
-                                                    <h4 className={`font-bold text-lg ${lesson.status === 'locked' ? 'text-slate-500' : 'text-slate-200 group-hover:text-purple-400'}`}>
-                                                        {lesson.title}
-                                                    </h4>
-                                                    {lesson.status === 'completed' && <CheckCircle size={16} className="text-emerald-500" />}
-                                                    {lesson.status === 'locked' && <Lock size={16} className="text-slate-600" />}
-                                                </div>
-
-                                                <p className="text-sm text-slate-400 line-clamp-2 mb-3 leading-relaxed">
-                                                    {lesson.description}
-                                                </p>
-                                            </div>
-                                        </div>
-                                    );
-                                })}
+                            {/* Show More Button */}
+                            <div className="absolute bottom-0 left-0 w-full flex justify-center pt-20 pb-8 bg-gradient-to-t from-slate-900 via-slate-900/90 to-transparent z-20">
+                                <button
+                                    onClick={() => setShowAllAdvLessons(!showAllAdvLessons)}
+                                    className="flex items-center gap-2 px-6 py-3 rounded-full bg-slate-800 border border-slate-700 text-slate-300 hover:text-white hover:bg-slate-700 hover:border-purple-500/50 transition-all shadow-lg"
+                                >
+                                    {showAllAdvLessons ? (
+                                        <>收起地图 <ChevronUp size={20} /></>
+                                    ) : (
+                                        <>展开完整地图 ({advancedLessons.length} 关) <ChevronDown size={20} /></>
+                                    )}
+                                </button>
                             </div>
                         </div>
                     </div>

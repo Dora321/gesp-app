@@ -42,11 +42,14 @@ import PythonSortingProject from './courses/python/advanced/PythonSortingProject
 import ClassroomPoints from './components/ClassroomPoints';
 import AnnouncementBar from './components/AnnouncementBar';
 
+import Navigation from './Navigation'; // Import Navigation component
+
 function App() {
   return (
     <BrowserRouter basename={import.meta.env.DEV ? '/' : '/gesp-app'}>
       <AnnouncementBar />
       <Routes>
+        <Route path="/navigation" element={<Navigation />} />
         <Route path="/" element={<Home />} />
 
         {/* Course Levels */}
