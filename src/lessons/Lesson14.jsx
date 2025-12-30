@@ -44,10 +44,7 @@ const Icon = ({ name, size = 24, color = "currentColor", className = "" }) => {
         "pencil": <Pencil size={size} color={color} className={className} />,
         "ruler": <Ruler size={size} color={color} className={className} />,
         "notebook": <Notebook size={size} color={color} className={className} />,
-        "store": <Store size={size} color={color} className={className} />,
-        "bag": <ShoppingBag size={size} color={color} className={className} />,
         "bot": <Bot size={size} color={color} className={className} />,
-
         "alert": <AlertTriangle size={size} color={color} className={className} />,
         "timer": <Timer size={size} color={color} className={className} />
     };
