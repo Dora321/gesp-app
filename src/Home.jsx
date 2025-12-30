@@ -519,6 +519,15 @@ export default function Home() {
                                     color: 'bg-yellow-500/20 text-yellow-400 border border-yellow-500/30 shadow-lg shadow-yellow-500/20',
                                     path: '/python/encryption',
                                     status: 'ready'
+                                },
+                                {
+                                    id: 'py_sort',
+                                    title: 'A7: 排序大师',
+                                    description: '冒泡排序全景动画 + 动手整理乱序数字，体验秩序之美',
+                                    icon: <ArrowUp className="w-8 h-8 text-yellow-400" />,
+                                    color: 'bg-yellow-500/20 text-yellow-400 border border-yellow-500/30 shadow-lg shadow-yellow-500/20',
+                                    path: '/python/sorting',
+                                    status: 'ready'
                                 }
                             ].map((course) => (
                                 <div
