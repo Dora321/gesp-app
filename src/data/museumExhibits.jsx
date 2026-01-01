@@ -1,5 +1,5 @@
 import React from 'react';
-import { Bug, Cpu, Globe, Binary, Search, Sparkles, X, Database, Zap, Lock, RefreshCw, Box, Palette, Ban, MapPin, LockKeyhole, Swords, ToggleRight, Fingerprint, Dices, Network, Minimize2, Terminal, MousePointer2, Monitor, Gamepad2, Smartphone, Usb, Camera, Code2, Braces, Command, Layout, Server, Layers, Workflow, FileCode, AppWindow, Play, GitBranch, Cloud, Shield, Hash, Wifi, Radio, ShoppingCart, Video, MessageCircle, Link, Globe2, Share2, Rss, Eye, HardDrive, Brain, Rocket, Glasses, Gem, Ghost, Skull, Bot, Lightbulb, Satellite, Fingerprint as Fingerprint2, QrCode } from 'lucide-react';
+import { Bug, Cpu, Globe, Binary, Search, Sparkles, X, Database, Zap, Lock, RefreshCw, Box, Palette, Ban, MapPin, LockKeyhole, Swords, ToggleRight, Fingerprint, Dices, Network, Minimize2, Terminal, MousePointer2, Monitor, Gamepad2, Smartphone, Usb, Camera, Code2, Braces, Command, Layout, Server, Layers, Workflow, FileCode, AppWindow, Play, GitBranch, Cloud, Shield, Hash, Wifi, Radio, ShoppingCart, Video, MessageCircle, Link, Globe2, Share2, Rss, Eye, HardDrive, Brain, Rocket, Glasses, Gem, Ghost, Skull, Bot, Lightbulb, Satellite, Fingerprint as Fingerprint2, QrCode, Map as Map2, HelpCircle, Puzzle, Grid as Grid2, Skull as Skull2, AlertTriangle, Infinity } from 'lucide-react';
 
 export const allExhibits = [
     {
@@ -1509,7 +1509,7 @@ export const allExhibits = [
         details: (
             <div className="space-y-4">
                 <div className="bg-black/30 p-4 rounded-xl text-center text-orange-300 italic mb-4">
-                    "Weblog -> Blog"
+                    "Weblog → Blog"
                 </div>
                 <ul className="list-disc pl-5 space-y-2 marker:text-orange-400">
                     <li><strong>去中心化出版：</strong>不需要编辑审核，不需要印刷厂，只要有网，人人都是作家。</li>
@@ -2069,6 +2069,236 @@ export const allExhibits = [
                     <li><strong>传承：</strong>计算的历史是由人书写的，现在笔在你手里。</li>
                 </ul>
                 <p className="text-right font-bold text-white mt-4">——Go Create!</p>
+            </div>
+        )
+    },
+    {
+        id: 'four_color',
+        title: '四色定理',
+        rarity: '稀有',
+        year: '1976',
+        icon: <Palette className="w-12 h-12 text-pink-500" />,
+        color: 'from-pink-500/20 to-rose-600/20 border-pink-500/50',
+        accent: 'text-pink-500',
+        description: '地图只需四种颜色。',
+        details: (
+            <div className="space-y-4">
+                <div className="bg-black/30 p-4 rounded-xl text-center text-pink-300 italic mb-4">
+                    "这是第一个主要由计算机证明的数学定理。"
+                </div>
+                <ul className="list-disc pl-5 space-y-2 marker:text-pink-500">
+                    <li><strong>难题：</strong>困扰数学家100多年的涂色问题。</li>
+                    <li><strong>暴力穷举：</strong>肯尼斯·阿佩尔用电脑跑了1200小时，检查了1936种情况。</li>
+                    <li><strong>争议：</strong>"如果人类无法验证其过程，这还算证明吗？"</li>
+                </ul>
+                <p className="text-right font-bold text-white mt-4">——人脑的边界。</p>
+            </div>
+        )
+    },
+    {
+        id: 'tsp',
+        title: '旅行商问题',
+        rarity: '史诗',
+        year: '1930s',
+        icon: <Map2 className="w-12 h-12 text-amber-500" />,
+        color: 'from-amber-500/20 to-orange-600/20 border-amber-500/50',
+        accent: 'text-amber-500',
+        description: '最短的路径在哪里？',
+        details: (
+            <div className="space-y-4">
+                <div className="bg-black/30 p-4 rounded-xl text-center text-amber-300 italic mb-4">
+                    "想去遍所有城市不走回头路？祝你好运。"
+                </div>
+                <ul className="list-disc pl-5 space-y-2 marker:text-amber-500">
+                    <li><strong>NP-hard：</strong>随着城市数量增加，计算量呈指数级爆炸。</li>
+                    <li><strong>应用：</strong>物流配送、电路板钻孔、DNA测序都离不开它。</li>
+                    <li><strong>优化：</strong>我们找不到绝对最优解，但可以用蚁群算法找到"足够好"的解。</li>
+                </ul>
+                <p className="text-right font-bold text-white mt-4">——计算的迷宫。</p>
+            </div>
+        )
+    },
+    {
+        id: 'game_of_life',
+        title: '生命游戏',
+        rarity: '传说',
+        year: '1970',
+        icon: <Grid2 className="w-12 h-12 text-green-400" />,
+        color: 'from-green-500/20 to-emerald-600/20 border-green-500/50',
+        accent: 'text-green-400',
+        description: '零玩家游戏。',
+        details: (
+            <div className="space-y-4">
+                <div className="bg-black/30 p-4 rounded-xl text-center text-green-300 italic mb-4">
+                    "简单规则衍生出无限复。"
+                </div>
+                <ul className="list-disc pl-5 space-y-2 marker:text-green-500">
+                    <li><strong>康威：</strong>数学家约翰·霍顿·康威发明的细胞自动机。</li>
+                    <li><strong>规则：</strong>孤单死，拥挤死，刚刚好就活。</li>
+                    <li><strong>滑翔机：</strong>这些像素点仿佛有了生命，能够移动、繁殖、构建逻辑门。</li>
+                </ul>
+                <p className="text-right font-bold text-white mt-4">——上帝的沙盒。</p>
+            </div>
+        )
+    },
+    {
+        id: 'mandelbrot',
+        title: '曼德勃罗集',
+        rarity: '传世',
+        year: '1980',
+        icon: <Infinity className="w-12 h-12 text-violet-500" />,
+        color: 'from-violet-500/20 to-fuchsia-600/20 border-violet-500/50',
+        accent: 'text-violet-500',
+        description: '上帝的指纹。',
+        details: (
+            <div className="space-y-4">
+                <div className="bg-black/30 p-4 rounded-xl text-center text-violet-300 italic mb-4">
+                    "Z = Z² + C"
+                </div>
+                <ul className="list-disc pl-5 space-y-2 marker:text-violet-500">
+                    <li><strong>分形：</strong>无限缩放，永远能看到新的细节，且与整体相似。</li>
+                    <li><strong>混沌：</strong>在确定性的公式中，诞生了不可预测的美。</li>
+                    <li><strong>自然：</strong>海岸线、云朵、树叶、血管...大自然就是分形的。</li>
+                </ul>
+                <p className="text-right font-bold text-white mt-4">——无限之美。</p>
+            </div>
+        )
+    },
+    {
+        id: 'p_vs_np',
+        title: 'P vs NP',
+        rarity: '唯一',
+        year: '1971',
+        icon: <HelpCircle className="w-12 h-12 text-red-500" />,
+        color: 'from-red-500/20 to-rose-600/20 border-red-500/50',
+        accent: 'text-red-500',
+        description: '直觉能被计算吗？',
+        details: (
+            <div className="space-y-4">
+                <div className="bg-black/30 p-4 rounded-xl text-center text-red-300 italic mb-4">
+                    "如果 P = NP，那么只要能欣赏莫扎特的音乐，你就能写出它。"
+                </div>
+                <ul className="list-disc pl-5 space-y-2 marker:text-red-500">
+                    <li><strong>千禧年大奖难题：</strong>七大数学难题之首，赏金100万美元。</li>
+                    <li><strong>核心：</strong>容易验证答案的问题，是否也容易找到答案？</li>
+                    <li><strong>现状：</strong>绝大多数科学家相信 P ≠ NP，但还没人能证明。</li>
+                </ul>
+                <p className="text-right font-bold text-white mt-4">——终极谜题。</p>
+            </div>
+        )
+    },
+    {
+        id: 'captcha',
+        title: '验证码',
+        rarity: '普通',
+        year: '2003',
+        icon: <Puzzle className="w-12 h-12 text-slate-400" />,
+        color: 'from-slate-500/20 to-gray-600/20 border-slate-500/50',
+        accent: 'text-slate-400',
+        description: '全自动区分计算机和人类的图灵测试。',
+        details: (
+            <div className="space-y-4">
+                <div className="bg-black/30 p-4 rounded-xl text-center text-slate-300 italic mb-4">
+                    "请找出所有的红绿灯。"
+                </div>
+                <ul className="list-disc pl-5 space-y-2 marker:text-slate-500">
+                    <li><strong>反向图灵测试：</strong>这次是机器出题，人类来做。</li>
+                    <li><strong>免费劳力：</strong>你输入的每一次验证码，都在帮谷歌训练自动驾驶AI。</li>
+                    <li><strong>失效：</strong>现在的AI识别图片比人类还准，所以验证码越来越变态了。</li>
+                </ul>
+                <p className="text-right font-bold text-white mt-4">——证明你是人。</p>
+            </div>
+        )
+    },
+    {
+        id: 'bsod',
+        title: '蓝屏死机',
+        rarity: '常见',
+        year: '1993',
+        icon: <Skull2 className="w-12 h-12 text-blue-600" />,
+        color: 'from-blue-600/20 to-indigo-700/20 border-blue-600/50',
+        accent: 'text-blue-600',
+        description: ':( 您的设备遇到问题。',
+        details: (
+            <div className="space-y-4">
+                <div className="bg-black/30 p-4 rounded-xl text-center text-blue-300 italic mb-4">
+                    "CRITICAL_PROCESS_DIED"
+                </div>
+                <ul className="list-disc pl-5 space-y-2 marker:text-blue-600">
+                    <li><strong>恐惧：</strong>未保存文档时的噩梦。</li>
+                    <li><strong>比尔·盖茨：</strong>在演示Win98时当场蓝屏，成为了永恒的经典。</li>
+                    <li><strong>保护：</strong>其实它是操作系统为了自我保护，防止数据损坏而选择的"自杀"行为。</li>
+                </ul>
+                <p className="text-right font-bold text-white mt-4">——致命错误。</p>
+            </div>
+        )
+    },
+    {
+        id: 'stackoverflow',
+        title: 'Stack Overflow',
+        rarity: '传世',
+        year: '2008',
+        icon: <Layers className="w-12 h-12 text-orange-500" />,
+        color: 'from-orange-500/20 to-amber-600/20 border-orange-500/50',
+        accent: 'text-orange-500',
+        description: '全栈工程师的真正后盾。',
+        details: (
+            <div className="space-y-4">
+                <div className="bg-black/30 p-4 rounded-xl text-center text-orange-300 italic mb-4">
+                    "Ctrl+C, Ctrl+V"
+                </div>
+                <ul className="list-disc pl-5 space-y-2 marker:text-orange-500">
+                    <li><strong>圣地：</strong>全球程序员解决报错的百科全书。</li>
+                    <li><strong>复制粘贴：</strong>承认吧，你的代码有一半是从这里抄的。</li>
+                    <li><strong>互助：</strong>这里有的不仅是答案，还有乐于助人的极客精神。</li>
+                </ul>
+                <p className="text-right font-bold text-white mt-4">——知无不言。</p>
+            </div>
+        )
+    },
+    {
+        id: 'alphago',
+        title: 'AlphaGo',
+        rarity: '传说',
+        year: '2016',
+        icon: <Brain className="w-12 h-12 text-cyan-500" />,
+        color: 'from-cyan-500/20 to-sky-600/20 border-cyan-500/50',
+        accent: 'text-cyan-500',
+        description: '神之一手。',
+        details: (
+            <div className="space-y-4">
+                <div className="bg-black/30 p-4 rounded-xl text-center text-cyan-300 italic mb-4">
+                    "Move 37."
+                </div>
+                <ul className="list-disc pl-5 space-y-2 marker:text-cyan-500">
+                    <li><strong>围棋：</strong>人类最后的智力堡垒，被认为至少要几十年才能被攻克。</li>
+                    <li><strong>李世石：</strong>1:4落败，但那唯一的胜局，是人类尊严的闪光。</li>
+                    <li><strong>深度学习：</strong>它不靠死记硬背，它靠的是直觉和自我对弈。</li>
+                </ul>
+                <p className="text-right font-bold text-white mt-4">——AI的加冕礼。</p>
+            </div>
+        )
+    },
+    {
+        id: 'glitch',
+        title: '故障艺术',
+        rarity: '普通',
+        year: '20??',
+        icon: <AlertTriangle className="w-12 h-12 text-rose-400" />,
+        color: 'from-rose-500/20 to-pink-600/20 border-rose-500/50',
+        accent: 'text-rose-400',
+        description: '破碎也是一种美。',
+        details: (
+            <div className="space-y-4">
+                <div className="bg-black/30 p-4 rounded-xl text-center text-rose-300 italic mb-4">
+                    "It's not a bug, it's a feature."
+                </div>
+                <ul className="list-disc pl-5 space-y-2 marker:text-rose-500">
+                    <li><strong>Glitch Art：</strong>故意利用数字错误（马赛克、花屏、失真）来创作艺术。</li>
+                    <li><strong>赛博朋克：</strong>高科技与低生活的视觉象征。</li>
+                    <li><strong>隐喻：</strong>在一个追求完美精度的数字世界里，错误反而显得真实而有人情味。</li>
+                </ul>
+                <p className="text-right font-bold text-white mt-4">——崩坏之美。</p>
             </div>
         )
     }
