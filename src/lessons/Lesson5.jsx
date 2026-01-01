@@ -3,17 +3,17 @@ import { Link } from 'react-router-dom';
 import { Terminal, Key, Cpu, Shield, ArrowRight, CheckCircle, XCircle, RefreshCw, Lock, Unlock, Quote, ArrowDownUp, AlertTriangle, Play, BookOpen, User, Binary, Menu, X } from 'lucide-react';
 
 const sections = [
-  { id: 1, title: '任务简报', icon: 'shield', component: (props) => <WelcomeStage {...props} /> },
-  { id: 2, title: '第一条军规：单引号法则', icon: 'quote', component: () => <QuoteRuleStage /> },
-  { id: 3, title: '字符解码器', icon: 'key', component: () => <CharDecoderStage /> },
-  { id: 4, title: '情报局密码本', icon: 'book', component: () => <AsciiTableStage /> },
-  { id: 5, title: '字符运算实验室', icon: 'cpu', component: () => <CharMathStage /> },
-  { id: 6, title: '大小写转换密室', icon: 'refresh', component: () => <CaseSwitcherStage /> },
-  { id: 7, title: '传奇特工档案', icon: 'user', component: () => <BooleScientistStage /> },
-  { id: 8, title: '布尔测谎仪', icon: 'lock', component: () => <BoolDetectorStage /> },
-  { id: 9, title: '真题挑战 1', icon: 'check', component: () => <QuizStage1 /> },
-  { id: 10, title: '真题挑战 2', icon: 'check', component: () => <QuizStage2 /> },
-  { id: 11, title: '任务总结', icon: 'flag', component: () => <SummaryStage /> },
+  { id: 1, title: '任务简报', icon: 'shield', component: (props) => <WelcomeStage {...props} />, category: "概念引入" },
+  { id: 2, title: '第一条军规：单引号法则', icon: 'quote', component: () => <QuoteRuleStage />, category: "字符奥秘" },
+  { id: 3, title: '字符解码器', icon: 'key', component: () => <CharDecoderStage />, category: "字符奥秘" },
+  { id: 4, title: '情报局密码本', icon: 'book', component: () => <AsciiTableStage />, category: "字符奥秘" },
+  { id: 5, title: '字符运算实验室', icon: 'cpu', component: () => <CharMathStage />, category: "字符奥秘" },
+  { id: 6, title: '大小写转换密室', icon: 'refresh', component: () => <CaseSwitcherStage />, category: "字符奥秘" },
+  { id: 7, title: '传奇特工档案', icon: 'user', component: () => <BooleScientistStage />, category: "布尔逻辑" },
+  { id: 8, title: '布尔测谎仪', icon: 'lock', component: () => <BoolDetectorStage />, category: "布尔逻辑" },
+  { id: 9, title: '真题挑战 1', icon: 'check', component: () => <QuizStage1 />, category: "实战演练" },
+  { id: 10, title: '真题挑战 2', icon: 'check', component: () => <QuizStage2 />, category: "实战演练" },
+  { id: 11, title: '任务总结', icon: 'flag', component: () => <SummaryStage />, category: "实战演练" },
 ];
 
 export default function Lesson5() {
@@ -78,40 +78,57 @@ export default function Lesson5() {
 
       {/* 侧边栏 */}
       <div className={`
-        fixed inset-y-0 left-0 z-50 w-64 bg-white border-r border-gray-200 flex flex-col h-full overflow-y-auto shrink-0 transition-transform duration-300
+        fixed inset-y-0 left-0 z-50 w-64 bg-white border-r border-slate-200 flex flex-col h-full shadow-lg z-40 transition-transform duration-300
         md:relative md:translate-x-0
         ${isMobileMenuOpen ? 'translate-x-0' : '-translate-x-full'}
       `}>
-        <div className="p-5 border-b border-slate-100 bg-gradient-to-br from-blue-50 to-white">
-          <h1 className="text-lg font-bold flex items-center gap-2 text-blue-700">
-            <Link to="/" className="hover:opacity-80 transition-opacity">
-              <div className="w-8 h-8 bg-white rounded-lg flex items-center justify-center overflow-hidden border border-slate-200 shadow-sm">
-                <img src={`${import.meta.env.BASE_URL}logo.jpg`} alt="Logo" className="w-full h-full object-cover" />
-              </div>
-            </Link>
-            <span className="bg-blue-600 text-white p-1 rounded">C++</span>
-            <span>一级趣味课堂</span>
-          </h1>
-          <p className="text-xs text-blue-400 mt-2 font-medium pl-1">第 5 课：字符与ASCII码 🔤</p>
+        <div className="p-6 border-b border-slate-100 bg-gradient-to-br from-blue-50/50 to-white/50 backdrop-blur-sm">
+          <Link to="/" className="flex items-center gap-3 hover:opacity-80 transition-opacity group">
+            <div className="w-10 h-10 bg-white rounded-xl flex items-center justify-center overflow-hidden border border-slate-200 shadow-sm group-hover:scale-105 transition-transform">
+              <img src={`${import.meta.env.BASE_URL}logo.jpg`} alt="Logo" className="w-full h-full object-cover" />
+            </div>
+            <div>
+              <h1 className="text-base font-bold text-slate-800 leading-tight">C++ 趣味课堂</h1>
+              <p className="text-xs text-blue-500 font-medium">第 5 课：字符与ASCII码</p>
+            </div>
+          </Link>
         </div>
-        <nav className="flex-1 p-2 space-y-1">
-          {sections.map(section => (
-            <button
-              key={section.id}
-              onClick={() => {
-                setActiveSection(section.id);
-                setIsMobileMenuOpen(false);
-              }}
-              className={`w-full text-left px-3 py-2 rounded-lg text-sm transition-colors flex items-center gap-2
-                ${activeSection === section.id
-                  ? 'bg-blue-100 text-blue-800 font-bold shadow-sm ring-1 ring-blue-200'
-                  : 'text-gray-600 hover:bg-gray-100'}`}
-            >
-              <span className="opacity-70">{getIcon(section.icon)}</span>
-              <span className="truncate">{section.title}</span>
-            </button>
-          ))}
-        </nav>
+
+        <div className="flex-1 overflow-y-auto w-full py-4 custom-scrollbar">
+          {sections.map((section, index) => {
+            const showCategory = index === 0 || sections[index - 1].category !== section.category;
+            return (
+              <React.Fragment key={section.id}>
+                {showCategory && (
+                  <div className="px-6 pb-2 pt-4 first:pt-0">
+                    <h3 className="text-xs font-bold text-slate-400 uppercase tracking-wider">{section.category}</h3>
+                  </div>
+                )}
+                <div className="px-3">
+                  <button
+                    onClick={() => {
+                      setActiveSection(section.id);
+                      setIsMobileMenuOpen(false);
+                    }}
+                    className={`w-full text-left px-3 py-2.5 rounded-lg transition-all duration-200 flex items-center gap-3 group relative mb-1
+                    ${activeSection === section.id
+                        ? 'bg-blue-50 text-blue-700 font-medium shadow-sm ring-1 ring-blue-100'
+                        : 'text-slate-600 hover:bg-slate-50 hover:text-slate-900'
+                      }`}
+                  >
+                    <div className={`
+                    p-1.5 rounded-md transition-colors flex-shrink-0
+                    ${activeSection === section.id ? 'bg-blue-100 text-blue-600' : 'bg-slate-100 text-slate-400 group-hover:bg-white group-hover:text-slate-500'}
+                  `}>
+                      {getIcon(section.icon)}
+                    </div>
+                    <span className="truncate text-sm">{section.title}</span>
+                  </button>
+                </div>
+              </React.Fragment>
+            );
+          })}
+        </div>
       </div>
 
       {/* 主内容区 Outer Wrapper */}

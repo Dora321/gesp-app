@@ -42,15 +42,15 @@ const Icon = ({ name, size = 24, color = "currentColor" }) => {
 
 // --- 章节数据 ---
 const sections = [
-  { id: 1, title: "课程导入：智慧交警", icon: "police" },
-  { id: 2, title: "情景：十字路口", icon: "stop" },
-  { id: 3, title: "单行道：只有 if", icon: "arrow-right" },
-  { id: 4, title: "双岔路：if 和 else", icon: "branch" },
-  { id: 5, title: "隐形炸弹：分号陷阱", icon: "alert" },
-  { id: 6, title: "侦探工具：比较符号", icon: "scale" },
-  { id: 7, title: "实战：奇偶数审判", icon: "terminal" },
-  { id: 8, title: "实战：严厉的安检", icon: "check" },
-  { id: 9, title: "总结与作业", icon: "book" }
+  { id: 1, title: "课程导入：智慧交警", icon: "police", category: "分支逻辑" },
+  { id: 2, title: "情景：十字路口", icon: "stop", category: "分支逻辑" },
+  { id: 3, title: "单行道：只有 if", icon: "arrow-right", category: "分支逻辑" },
+  { id: 4, title: "双岔路：if 和 else", icon: "branch", category: "分支逻辑" },
+  { id: 5, title: "隐形炸弹：分号陷阱", icon: "alert", category: "避坑指南" },
+  { id: 6, title: "侦探工具：比较符号", icon: "scale", category: "避坑指南" },
+  { id: 7, title: "实战：奇偶数审判", icon: "terminal", category: "实战演练" },
+  { id: 8, title: "实战：严厉的安检", icon: "check", category: "实战演练" },
+  { id: 9, title: "总结与作业", icon: "book", category: "实战演练" }
 ];
 
 // --- 互动组件：红绿灯模拟器 ---
@@ -567,40 +567,57 @@ export default function App() {
 
       {/* 侧边栏 */}
       <div className={`
-        fixed inset-y-0 left-0 z-50 w-64 bg-white border-r border-gray-200 flex flex-col h-full overflow-y-auto transition-transform duration-300
+        fixed inset-y-0 left-0 z-50 w-64 bg-white border-r border-slate-200 flex flex-col h-full shadow-lg z-40 transition-transform duration-300
         md:relative md:translate-x-0
         ${isMobileMenuOpen ? 'translate-x-0' : '-translate-x-full'}
       `}>
-        <div className="p-5 border-b border-slate-100 bg-gradient-to-br from-blue-50 to-white">
-          <h1 className="text-lg font-bold flex items-center gap-2 text-blue-700">
-            <Link to="/" className="hover:opacity-80 transition-opacity">
-              <div className="w-8 h-8 bg-white rounded-lg flex items-center justify-center overflow-hidden border border-slate-200 shadow-sm">
-                <img src={`${import.meta.env.BASE_URL}logo.jpg`} alt="Logo" className="w-full h-full object-cover" />
-              </div>
-            </Link>
-            <span className="bg-blue-600 text-white p-1 rounded">C++</span>
-            <span>一级趣味课堂</span>
-          </h1>
-          <p className="text-xs text-blue-400 mt-2 font-medium pl-1">第 7 课：复杂逻辑 🧩</p>
+        <div className="p-6 border-b border-slate-100 bg-gradient-to-br from-blue-50/50 to-white/50 backdrop-blur-sm">
+          <Link to="/" className="flex items-center gap-3 hover:opacity-80 transition-opacity group">
+            <div className="w-10 h-10 bg-white rounded-xl flex items-center justify-center overflow-hidden border border-slate-200 shadow-sm group-hover:scale-105 transition-transform">
+              <img src={`${import.meta.env.BASE_URL}logo.jpg`} alt="Logo" className="w-full h-full object-cover" />
+            </div>
+            <div>
+              <h1 className="text-base font-bold text-slate-800 leading-tight">C++ 趣味课堂</h1>
+              <p className="text-xs text-blue-500 font-medium">第 7 课：复杂逻辑</p>
+            </div>
+          </Link>
         </div>
-        <nav className="flex-1 p-2 space-y-1">
-          {sections.map(section => (
-            <button
-              key={section.id}
-              onClick={() => {
-                setActiveSection(section.id);
-                setIsMobileMenuOpen(false);
-              }}
-              className={`w-full text-left px-3 py-2 rounded-lg text-sm transition-colors flex items-center gap-2
-                ${activeSection === section.id
-                  ? 'bg-blue-100 text-blue-800 font-bold shadow-sm ring-1 ring-blue-200'
-                  : 'text-gray-600 hover:bg-gray-100'}`}
-            >
-              <span className="opacity-70"><Icon name={section.icon} size={16} /></span>
-              <span className="truncate">{section.title.split('：')[0]}</span>
-            </button>
-          ))}
-        </nav>
+
+        <div className="flex-1 overflow-y-auto w-full py-4 custom-scrollbar">
+          {sections.map((section, index) => {
+            const showCategory = index === 0 || sections[index - 1].category !== section.category;
+            return (
+              <React.Fragment key={section.id}>
+                {showCategory && (
+                  <div className="px-6 pb-2 pt-4 first:pt-0">
+                    <h3 className="text-xs font-bold text-slate-400 uppercase tracking-wider">{section.category}</h3>
+                  </div>
+                )}
+                <div className="px-3">
+                  <button
+                    onClick={() => {
+                      setActiveSection(section.id);
+                      setIsMobileMenuOpen(false);
+                    }}
+                    className={`w-full text-left px-3 py-2.5 rounded-lg transition-all duration-200 flex items-center gap-3 group relative mb-1
+                    ${activeSection === section.id
+                        ? 'bg-blue-50 text-blue-700 font-medium shadow-sm ring-1 ring-blue-100'
+                        : 'text-slate-600 hover:bg-slate-50 hover:text-slate-900'
+                      }`}
+                  >
+                    <div className={`
+                    p-1.5 rounded-md transition-colors flex-shrink-0
+                    ${activeSection === section.id ? 'bg-blue-100 text-blue-600' : 'bg-slate-100 text-slate-400 group-hover:bg-white group-hover:text-slate-500'}
+                  `}>
+                      <Icon name={section.icon} size={18} />
+                    </div>
+                    <span className="truncate text-sm">{section.title}</span>
+                  </button>
+                </div>
+              </React.Fragment>
+            );
+          })}
+        </div>
       </div>
 
       {/* 主内容区 */}

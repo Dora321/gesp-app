@@ -42,16 +42,16 @@ const Icon = ({ name, size = 24, color = "currentColor", className = "" }) => {
 
 // --- 章节数据 ---
 const sections = [
-    { id: 1, title: "封面：发射日", icon: "rocket" },
-    { id: 2, title: "导入：发射前安检", icon: "shield" },
-    { id: 3, title: "安检1：变量饭盒", icon: "book" },
-    { id: 4, title: "安检2：运算交警", icon: "zap" },
-    { id: 5, title: "安检3：循环跑道", icon: "timer" },
-    { id: 6, title: "任务1：逻辑陷阱", icon: "calc" },
-    { id: 7, title: "任务2：吃书的老鼠", icon: "mouse" },
-    { id: 8, title: "任务2：代码实现", icon: "terminal" },
-    { id: 9, title: "发射口诀", icon: "cpu" },
-    { id: 10, title: "最后叮嘱", icon: "check" }
+    { id: 1, title: "封面：发射日", icon: "rocket", category: "考点总复习" },
+    { id: 2, title: "导入：发射前安检", icon: "shield", category: "考点总复习" },
+    { id: 3, title: "安检1：变量饭盒", icon: "book", category: "考点总复习" },
+    { id: 4, title: "安检2：运算交警", icon: "zap", category: "考点总复习" },
+    { id: 5, title: "安检3：循环跑道", icon: "timer", category: "考点总复习" },
+    { id: 6, title: "任务1：逻辑陷阱", icon: "calc", category: "真题实战" },
+    { id: 7, title: "任务2：吃书的老鼠", icon: "mouse", category: "真题实战" },
+    { id: 8, title: "任务2：代码实现", icon: "terminal", category: "真题实战" },
+    { id: 9, title: "发射口诀", icon: "cpu", category: "考前锦囊" },
+    { id: 10, title: "最后叮嘱", icon: "check", category: "考前锦囊" }
 ];
 
 // --- 互动组件 1：变量饭盒检测器 ---
@@ -596,44 +596,56 @@ export default function App() {
 
             {/* Sidebar */}
             <div className={`
-                fixed inset-y-0 left-0 z-50 w-64 bg-white border-r border-gray-200 flex flex-col h-full overflow-y-auto transition-transform duration-300 shadow-lg md:shadow-none
+                fixed inset-y-0 left-0 z-50 w-64 bg-white border-r border-slate-200 flex flex-col h-full shadow-lg z-40 transition-transform duration-300
                 md:relative md:translate-x-0
                 ${isMobileMenuOpen ? 'translate-x-0' : '-translate-x-full'}
             `}>
-                <div className="p-5 border-b border-slate-100 bg-gradient-to-br from-blue-50 to-white">
-                    <h1 className="text-lg font-bold flex items-center gap-2 text-blue-700">
-                        <Link to="/" className="hover:opacity-80 transition-opacity">
-                            <div className="w-8 h-8 bg-white rounded-lg flex items-center justify-center overflow-hidden border border-slate-200 shadow-sm">
-                                <img src={`${import.meta.env.BASE_URL}logo.jpg`} alt="Logo" className="w-full h-full object-cover" />
-                            </div>
-                        </Link>
-                        <span className="bg-blue-600 text-white p-1 rounded">C++</span>
-                        <span>一级趣味课堂</span>
-                    </h1>
-                    <p className="text-xs text-blue-400 mt-2 font-medium pl-1">第 16 课：考前冲刺 🚩</p>
+                <div className="p-6 border-b border-slate-100 bg-gradient-to-br from-blue-50/50 to-white/50 backdrop-blur-sm">
+                    <Link to="/" className="flex items-center gap-3 hover:opacity-80 transition-opacity group">
+                        <div className="w-10 h-10 bg-white rounded-xl flex items-center justify-center overflow-hidden border border-slate-200 shadow-sm group-hover:scale-105 transition-transform">
+                            <img src={`${import.meta.env.BASE_URL}logo.jpg`} alt="Logo" className="w-full h-full object-cover" />
+                        </div>
+                        <div>
+                            <h1 className="text-base font-bold text-slate-800 leading-tight">C++ 趣味课堂</h1>
+                            <p className="text-xs text-blue-500 font-medium">第 16 课：考前冲刺</p>
+                        </div>
+                    </Link>
                 </div>
-                <nav className="flex-1 p-4 space-y-2">
-                    {sections.map(section => (
-                        <button
-                            key={section.id}
-                            onClick={() => {
-                                setActiveSection(section.id);
-                                setIsMobileMenuOpen(false);
-                            }}
-                            className={`w-full text-left px-4 py-3 rounded-lg text-sm transition-all flex items-center gap-3 font-medium
-                ${activeSection === section.id
-                                    ? 'bg-blue-100 text-blue-800 shadow-sm'
-                                    : 'text-gray-600 hover:bg-gray-50 hover:text-gray-900'}`}
-                        >
-                            <i className={`p-1 rounded ${activeSection === section.id ? 'bg-white/50' : 'bg-gray-100'}`}>
-                                <Icon name={section.icon} size={16} />
-                            </i>
-                            {section.title}
-                        </button>
-                    ))}
-                </nav>
-                <div className="p-4 border-t border-gray-100 text-xs text-center text-gray-400">
-                    逻辑一号老师 © 2025
+
+                <div className="flex-1 overflow-y-auto w-full py-4 custom-scrollbar">
+                    {sections.map((section, index) => {
+                        const showCategory = index === 0 || sections[index - 1].category !== section.category;
+                        return (
+                            <React.Fragment key={section.id}>
+                                {showCategory && (
+                                    <div className="px-6 pb-2 pt-4 first:pt-0">
+                                        <h3 className="text-xs font-bold text-slate-400 uppercase tracking-wider">{section.category}</h3>
+                                    </div>
+                                )}
+                                <div className="px-3">
+                                    <button
+                                        onClick={() => {
+                                            setActiveSection(section.id);
+                                            setIsMobileMenuOpen(false);
+                                        }}
+                                        className={`w-full text-left px-3 py-2.5 rounded-lg transition-all duration-200 flex items-center gap-3 group relative mb-1
+                                        ${activeSection === section.id
+                                                ? 'bg-blue-50 text-blue-700 font-medium shadow-sm ring-1 ring-blue-100'
+                                                : 'text-slate-600 hover:bg-slate-50 hover:text-slate-900'
+                                            }`}
+                                    >
+                                        <div className={`
+                                        p-1.5 rounded-md transition-colors flex-shrink-0
+                                        ${activeSection === section.id ? 'bg-blue-100 text-blue-600' : 'bg-slate-100 text-slate-400 group-hover:bg-white group-hover:text-slate-500'}
+                                        `}>
+                                            <Icon name={section.icon} size={18} />
+                                        </div>
+                                        <span className="truncate text-sm">{section.title}</span>
+                                    </button>
+                                </div>
+                            </React.Fragment>
+                        );
+                    })}
                 </div>
             </div>
 

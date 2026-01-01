@@ -636,17 +636,17 @@ const SummarySlide = () => (
 
 // --- 章节数据配置 ---
 const sections = [
-  { id: 1, title: '热身：外星生物？', icon: "user", component: WarmupSlide },
-  { id: 2, title: '计算机的眼耳口鼻', icon: "keyboard", component: IOSlide },
-  { id: 3, title: "真题：谁是卧底？", icon: "check-circle", component: QuizSpySlide },
-  { id: 4, title: "计算机家谱", icon: "book-open", component: HistorySlide },
-  { id: 5, title: "谁是管家？操作系统", icon: "app-window", component: OSSlide },
-  { id: 6, title: "课间休息", icon: "coffee", component: BreakSlide },
-  { id: 7, title: "魔法工坊：咒语结构", icon: "terminal", component: StructureSlide },
-  { id: 8, title: "实战：Hello World", icon: "sparkles", component: HelloWorldSlide },
-  { id: 9, title: "侦探找茬：代码纠错", icon: "alert-triangle", component: DebugSlide },
-  { id: 10, title: "进阶挑战：数学计算", icon: "calculator", component: MathSlide },
-  { id: 11, title: "总结与作业", icon: "save", component: SummarySlide }
+  { id: 1, title: '热身：外星生物？', icon: "user", component: WarmupSlide, category: "计算机基础" },
+  { id: 2, title: '计算机的眼耳口鼻', icon: "keyboard", component: IOSlide, category: "计算机基础" },
+  { id: 3, title: "真题：谁是卧底？", icon: "check-circle", component: QuizSpySlide, category: "计算机基础" },
+  { id: 4, title: "计算机家谱", icon: "book-open", component: HistorySlide, category: "计算机基础" },
+  { id: 5, title: "谁是管家？操作系统", icon: "app-window", component: OSSlide, category: "计算机基础" },
+  { id: 6, title: "课间休息", icon: "coffee", component: BreakSlide, category: "休息时刻" },
+  { id: 7, title: "魔法工坊：咒语结构", icon: "terminal", component: StructureSlide, category: "C++ 初体验" },
+  { id: 8, title: "实战：Hello World", icon: "sparkles", component: HelloWorldSlide, category: "C++ 初体验" },
+  { id: 9, title: "侦探找茬：代码纠错", icon: "alert-triangle", component: DebugSlide, category: "C++ 初体验" },
+  { id: 10, title: "进阶挑战：数学计算", icon: "calculator", component: MathSlide, category: "C++ 初体验" },
+  { id: 11, title: "总结与作业", icon: "save", component: SummarySlide, category: "C++ 初体验" }
 ];
 
 // --- 主组件 ---
@@ -692,42 +692,52 @@ const Lesson1 = () => {
         md:relative md:translate-x-0
         ${isMobileMenuOpen ? 'translate-x-0' : '-translate-x-full'}
       `}>
-        <div className="p-5 border-b border-slate-100 bg-gradient-to-br from-blue-50 to-white">
-          <h1 className="text-lg font-bold flex items-center gap-2 text-blue-700">
-            <Link to="/" className="hover:opacity-80 transition-opacity">
-              <div className="w-8 h-8 bg-white rounded-lg flex items-center justify-center overflow-hidden border border-slate-200 shadow-sm">
-                <img src={`${import.meta.env.BASE_URL}logo.jpg`} alt="Logo" className="w-full h-full object-cover" />
-              </div>
-            </Link>
-            <span className="bg-blue-600 text-white p-1 rounded">C++</span>
-            <span>一级趣味课堂</span>
-          </h1>
-          <p className="text-xs text-blue-400 mt-2 font-medium pl-1">第 1 课：你好，计算机 🤖</p>
+        <div className="p-6 border-b border-slate-100 bg-gradient-to-br from-blue-50/50 to-white/50 backdrop-blur-sm">
+          <Link to="/" className="flex items-center gap-3 hover:opacity-80 transition-opacity group">
+            <div className="w-10 h-10 bg-white rounded-xl flex items-center justify-center overflow-hidden border border-slate-200 shadow-sm group-hover:scale-105 transition-transform">
+              <img src={`${import.meta.env.BASE_URL}logo.jpg`} alt="Logo" className="w-full h-full object-cover" />
+            </div>
+            <div>
+              <h1 className="text-base font-bold text-slate-800 leading-tight">C++ 趣味课堂</h1>
+              <p className="text-xs text-blue-500 font-medium">第 1 课：你好，计算机</p>
+            </div>
+          </Link>
         </div>
 
-        <div className="flex-1 overflow-y-auto w-full py-2 custom-scrollbar">
-          {sections.map((section) => (
-            <button
-              key={section.id}
-              onClick={() => {
-                setActiveSection(section.id);
-                setIsMobileMenuOpen(false);
-              }}
-              className={`w-full text-left px-5 py-3 rounded-lg transition-all duration-200 flex items-center gap-3 group relative
-                ${activeSection === section.id
-                  ? 'bg-blue-100 text-blue-800 font-bold shadow-sm ring-1 ring-blue-200'
-                  : 'text-gray-600 hover:bg-gray-100 hover:text-gray-900'
-                }`}
-            >
-              <div className={`
-                p-1.5 rounded-lg transition-colors flex-shrink-0
-                ${activeSection === section.id ? 'bg-white text-blue-500 shadow-sm' : 'bg-slate-100 text-slate-400 group-hover:bg-white group-hover:text-slate-600'}
-              `}>
-                <Icon name={section.icon} size={16} />
-              </div>
-              <span className="truncate text-sm font-medium">{section.title}</span>
-            </button>
-          ))}
+        <div className="flex-1 overflow-y-auto w-full py-4 custom-scrollbar">
+          {sections.map((section, index) => {
+            const showCategory = index === 0 || sections[index - 1].category !== section.category;
+            return (
+              <React.Fragment key={section.id}>
+                {showCategory && (
+                  <div className="px-6 pb-2 pt-4 first:pt-0">
+                    <h3 className="text-xs font-bold text-slate-400 uppercase tracking-wider">{section.category}</h3>
+                  </div>
+                )}
+                <div className="px-3">
+                  <button
+                    onClick={() => {
+                      setActiveSection(section.id);
+                      setIsMobileMenuOpen(false);
+                    }}
+                    className={`w-full text-left px-3 py-2.5 rounded-lg transition-all duration-200 flex items-center gap-3 group relative mb-1
+                    ${activeSection === section.id
+                        ? 'bg-blue-50 text-blue-700 font-medium shadow-sm ring-1 ring-blue-100'
+                        : 'text-slate-600 hover:bg-slate-50 hover:text-slate-900'
+                      }`}
+                  >
+                    <div className={`
+                    p-1.5 rounded-md transition-colors flex-shrink-0
+                    ${activeSection === section.id ? 'bg-blue-100 text-blue-600' : 'bg-slate-100 text-slate-400 group-hover:bg-white group-hover:text-slate-500'}
+                  `}>
+                      <Icon name={section.icon} size={16} />
+                    </div>
+                    <span className="truncate text-sm">{section.title}</span>
+                  </button>
+                </div>
+              </React.Fragment>
+            );
+          })}
         </div>
 
         <div className="p-4 border-t border-slate-100 text-xs text-center text-slate-400 bg-slate-50">

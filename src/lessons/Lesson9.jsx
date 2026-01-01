@@ -42,15 +42,15 @@ const Icon = ({ name, size = 24, className = "" }) => {
 
 // --- 章节数据 ---
 const sections = [
-  { id: 1, title: "课程导入：超级跑圈机器人", icon: "bot" },
-  { id: 2, title: "情景：体育课噩梦", icon: "foot" },
-  { id: 3, title: "语法：代码咒语", icon: "book" },
-  { id: 4, title: "流程：手指舞模拟", icon: "rotate" },
-  { id: 5, title: "实战：简单的计数器", icon: "hash" },
-  { id: 6, title: "实战：谁是大陷阱？", icon: "alert" },
-  { id: 7, title: "难点：循环结束那一刻", icon: "calc" },
-  { id: 8, title: "避坑指南", icon: "x" },
-  { id: 9, title: "总结与作业", icon: "check" }
+  { id: 1, title: "课程导入：超级跑圈机器人", icon: "bot", category: "循环奥秘" },
+  { id: 2, title: "情景：体育课噩梦", icon: "foot", category: "循环奥秘" },
+  { id: 3, title: "语法：代码咒语", icon: "book", category: "循环奥秘" },
+  { id: 4, title: "流程：手指舞模拟", icon: "rotate", category: "循环奥秘" },
+  { id: 5, title: "实战：简单的计数器", icon: "hash", category: "实战与难点" },
+  { id: 6, title: "实战：谁是大陷阱？", icon: "alert", category: "实战与难点" },
+  { id: 7, title: "难点：循环结束那一刻", icon: "calc", category: "实战与难点" },
+  { id: 8, title: "避坑指南", icon: "x", category: "避坑与总结" },
+  { id: 9, title: "总结与作业", icon: "check", category: "避坑与总结" }
 ];
 
 // --- 互动组件：无限跑圈机器人 ---
@@ -658,44 +658,56 @@ cout << (N + i);`}
 
       {/* 侧边栏 */}
       <div className={`
-        fixed inset-y-0 left-0 z-50 w-64 bg-white border-r border-gray-200 flex flex-col h-full shadow-lg z-20 transition-transform duration-300
+        fixed inset-y-0 left-0 z-50 w-64 bg-white border-r border-slate-200 flex flex-col h-full shadow-lg z-40 transition-transform duration-300
         md:relative md:translate-x-0
         ${isMobileMenuOpen ? 'translate-x-0' : '-translate-x-full'}
       `}>
-        <div className="p-5 border-b border-slate-100 bg-gradient-to-br from-blue-50 to-white">
-          <h1 className="text-lg font-bold flex items-center gap-2 text-blue-700">
-            <Link to="/" className="hover:opacity-80 transition-opacity">
-              <div className="w-8 h-8 bg-white rounded-lg flex items-center justify-center overflow-hidden border border-slate-200 shadow-sm">
-                <img src={`${import.meta.env.BASE_URL}logo.jpg`} alt="Logo" className="w-full h-full object-cover" />
-              </div>
-            </Link>
-            <span className="bg-blue-600 text-white p-1 rounded">C++</span>
-            <span>一级趣味课堂</span>
-          </h1>
-          <p className="text-xs text-blue-400 mt-2 font-medium pl-1">第 9 课：While 循环 🌀</p>
+        <div className="p-6 border-b border-slate-100 bg-gradient-to-br from-blue-50/50 to-white/50 backdrop-blur-sm">
+          <Link to="/" className="flex items-center gap-3 hover:opacity-80 transition-opacity group">
+            <div className="w-10 h-10 bg-white rounded-xl flex items-center justify-center overflow-hidden border border-slate-200 shadow-sm group-hover:scale-105 transition-transform">
+              <img src={`${import.meta.env.BASE_URL}logo.jpg`} alt="Logo" className="w-full h-full object-cover" />
+            </div>
+            <div>
+              <h1 className="text-base font-bold text-slate-800 leading-tight">C++ 趣味课堂</h1>
+              <p className="text-xs text-blue-500 font-medium">第 9 课：循环魔法</p>
+            </div>
+          </Link>
         </div>
-        <nav className="flex-1 p-3 space-y-1 overflow-y-auto">
-          {sections.map(section => (
-            <button
-              key={section.id}
-              onClick={() => {
-                setActiveSection(section.id);
-                setIsMobileMenuOpen(false);
-              }}
-              className={`w-full text-left px-4 py-3 rounded-xl text-sm transition-all flex items-center gap-3
-                ${activeSection === section.id
-                  ? 'bg-blue-50 text-blue-700 font-bold shadow-sm ring-1 ring-blue-200'
-                  : 'text-gray-600 hover:bg-gray-100 hover:text-gray-900'}`}
-            >
-              <span className={`${activeSection === section.id ? 'opacity-100' : 'opacity-60'}`}>
-                <Icon name={section.icon} size={18} />
-              </span>
-              <span className="truncate">{section.title.split('：')[0]}</span>
-            </button>
-          ))}
-        </nav>
-        <div className="p-4 border-t border-gray-100 text-xs text-center text-gray-400">
-          逻辑一号老师 © 2025
+
+        <div className="flex-1 overflow-y-auto w-full py-4 custom-scrollbar">
+          {sections.map((section, index) => {
+            const showCategory = index === 0 || sections[index - 1].category !== section.category;
+            return (
+              <React.Fragment key={section.id}>
+                {showCategory && (
+                  <div className="px-6 pb-2 pt-4 first:pt-0">
+                    <h3 className="text-xs font-bold text-slate-400 uppercase tracking-wider">{section.category}</h3>
+                  </div>
+                )}
+                <div className="px-3">
+                  <button
+                    onClick={() => {
+                      setActiveSection(section.id);
+                      setIsMobileMenuOpen(false);
+                    }}
+                    className={`w-full text-left px-3 py-2.5 rounded-lg transition-all duration-200 flex items-center gap-3 group relative mb-1
+                    ${activeSection === section.id
+                        ? 'bg-blue-50 text-blue-700 font-medium shadow-sm ring-1 ring-blue-100'
+                        : 'text-slate-600 hover:bg-slate-50 hover:text-slate-900'
+                      }`}
+                  >
+                    <div className={`
+                    p-1.5 rounded-md transition-colors flex-shrink-0
+                    ${activeSection === section.id ? 'bg-blue-100 text-blue-600' : 'bg-slate-100 text-slate-400 group-hover:bg-white group-hover:text-slate-500'}
+                  `}>
+                      <Icon name={section.icon} size={18} />
+                    </div>
+                    <span className="truncate text-sm">{section.title}</span>
+                  </button>
+                </div>
+              </React.Fragment>
+            );
+          })}
         </div>
       </div>
 

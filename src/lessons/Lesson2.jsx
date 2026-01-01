@@ -19,15 +19,15 @@ import {
 
 // --- 课件内容数据 ---
 const sections = [
-  { id: 1, title: '乱糟糟的书包', icon: 'backpack', component: () => <IntroSlide /> },
-  { id: 2, title: '造盒子：变量定义', icon: 'box', component: () => <DefinitionSlide /> },
-  { id: 3, title: '起名纪律一：白名单', icon: 'alert', component: () => <RuleSlide data={{ title: '起名纪律一：白名单', rule: '只能用：英文字母、数字、下划线', forbidden: '空格、标点符号 (@, #, -)' }} /> },
-  { id: 4, title: '起名纪律二：排头兵', icon: 'alert', component: () => <RuleSlide data={{ title: '起名纪律二：排头兵', rule: '数字不能当排头兵！', example: '1box (❌) vs box1 (✅)' }} /> },
-  { id: 5, title: '起名纪律三：关键字', icon: 'alert', component: () => <RuleSlide data={{ title: '起名纪律三：关键字', rule: '不能抢系统的“专用词”', example: 'int, if, return, class' }} /> },
-  { id: 6, title: '侦探眼力大挑战', icon: 'search', component: () => <GameSlide /> },
-  { id: 7, title: '真题实战 (2023.12)', icon: 'trophy', component: () => <QuizSlide data={{ question: '以下 C++ 不可以作为变量的名称的是（ ）。', options: ['CCF GESP', 'ccfGESP', 'CCFgesp', 'CCF_GESP'], correct: 0, analysis: 'A选项中间有空格，变量名必须连在一起！D选项下划线是合法的。' }} /> },
-  { id: 8, title: '真题实战 (2024.06)', icon: 'trophy', component: () => <QuizSlide data={{ question: '在 C++ 中，下列不可做变量的是（ ）。', options: ['five-Star', 'five_star', 'fiveStar', '_fiveStar'], correct: 0, analysis: 'A选项包含减号(-)，计算机认为是减法运算。B选项下划线是合法的。' }} /> },
-  { id: 9, title: '上机实操 & 总结', icon: 'code', component: () => <SummarySlide /> }
+  { id: 1, title: '乱糟糟的书包', icon: 'backpack', component: () => <IntroSlide />, category: "概念引入" },
+  { id: 2, title: '造盒子：变量定义', icon: 'box', component: () => <DefinitionSlide />, category: "概念引入" },
+  { id: 3, title: '起名纪律一：白名单', icon: 'alert', component: () => <RuleSlide data={{ title: '起名纪律一：白名单', rule: '只能用：英文字母、数字、下划线', forbidden: '空格、标点符号 (@, #, -)' }} />, category: "变量规则" },
+  { id: 4, title: '起名纪律二：排头兵', icon: 'alert', component: () => <RuleSlide data={{ title: '起名纪律二：排头兵', rule: '数字不能当排头兵！', example: '1box (❌) vs box1 (✅)' }} />, category: "变量规则" },
+  { id: 5, title: '起名纪律三：关键字', icon: 'alert', component: () => <RuleSlide data={{ title: '起名纪律三：关键字', rule: '不能抢系统的“专用词”', example: 'int, if, return, class' }} />, category: "变量规则" },
+  { id: 6, title: '侦探眼力大挑战', icon: 'search', component: () => <GameSlide />, category: "实战演练" },
+  { id: 7, title: '真题实战 (2023.12)', icon: 'trophy', component: () => <QuizSlide data={{ question: '以下 C++ 不可以作为变量的名称的是（ ）。', options: ['CCF GESP', 'ccfGESP', 'CCFgesp', 'CCF_GESP'], correct: 0, analysis: 'A选项中间有空格，变量名必须连在一起！D选项下划线是合法的。' }} />, category: "实战演练" },
+  { id: 8, title: '真题实战 (2024.06)', icon: 'trophy', component: () => <QuizSlide data={{ question: '在 C++ 中，下列不可做变量的是（ ）。', options: ['five-Star', 'five_star', 'fiveStar', '_fiveStar'], correct: 0, analysis: 'A选项包含减号(-)，计算机认为是减法运算。B选项下划线是合法的。' }} />, category: "实战演练" },
+  { id: 9, title: '上机实操 & 总结', icon: 'code', component: () => <SummarySlide />, category: "实战演练" }
 ];
 
 // --- 组件部分 ---
@@ -488,42 +488,52 @@ function App() {
         md:relative md:translate-x-0
         ${isMobileMenuOpen ? 'translate-x-0' : '-translate-x-full'}
       `}>
-        <div className="p-5 border-b border-slate-100 bg-gradient-to-br from-blue-50 to-white">
-          <h1 className="text-lg font-bold flex items-center gap-2 text-blue-700">
-            <Link to="/" className="hover:opacity-80 transition-opacity">
-              <div className="w-8 h-8 bg-white rounded-lg flex items-center justify-center overflow-hidden border border-slate-200 shadow-sm">
-                <img src={`${import.meta.env.BASE_URL}logo.jpg`} alt="Logo" className="w-full h-full object-cover" />
-              </div>
-            </Link>
-            <span className="bg-blue-600 text-white p-1 rounded">C++</span>
-            <span>一级趣味课堂</span>
-          </h1>
-          <p className="text-xs text-blue-400 mt-2 font-medium pl-1">第 2 课：变量与数据 📦</p>
+        <div className="p-6 border-b border-slate-100 bg-gradient-to-br from-blue-50/50 to-white/50 backdrop-blur-sm">
+          <Link to="/" className="flex items-center gap-3 hover:opacity-80 transition-opacity group">
+            <div className="w-10 h-10 bg-white rounded-xl flex items-center justify-center overflow-hidden border border-slate-200 shadow-sm group-hover:scale-105 transition-transform">
+              <img src={`${import.meta.env.BASE_URL}logo.jpg`} alt="Logo" className="w-full h-full object-cover" />
+            </div>
+            <div>
+              <h1 className="text-base font-bold text-slate-800 leading-tight">C++ 趣味课堂</h1>
+              <p className="text-xs text-blue-500 font-medium">第 2 课：变量与数据</p>
+            </div>
+          </Link>
         </div>
 
-        <div className="flex-1 overflow-y-auto w-full py-2 custom-scrollbar">
-          {sections.map((section) => (
-            <button
-              key={section.id}
-              onClick={() => {
-                setActiveSection(section.id);
-                setIsMobileMenuOpen(false);
-              }}
-              className={`w-full text-left px-5 py-3 rounded-lg transition-all duration-200 flex items-center gap-3 group
-                ${activeSection === section.id
-                  ? 'bg-blue-100 text-blue-800 font-bold shadow-sm ring-1 ring-blue-200'
-                  : 'text-gray-600 hover:bg-gray-100 hover:text-gray-900'
-                }`}
-            >
-              <div className={`
-                p-1.5 rounded-lg transition-colors
-                ${activeSection === section.id ? 'bg-white text-blue-500 shadow-sm' : 'bg-slate-100 text-slate-400 group-hover:bg-white group-hover:text-slate-600'}
-              `}>
-                <Icon name={section.icon} size={18} />
-              </div>
-              <span className="truncate">{section.title}</span>
-            </button>
-          ))}
+        <div className="flex-1 overflow-y-auto w-full py-4 custom-scrollbar">
+          {sections.map((section, index) => {
+            const showCategory = index === 0 || sections[index - 1].category !== section.category;
+            return (
+              <React.Fragment key={section.id}>
+                {showCategory && (
+                  <div className="px-6 pb-2 pt-4 first:pt-0">
+                    <h3 className="text-xs font-bold text-slate-400 uppercase tracking-wider">{section.category}</h3>
+                  </div>
+                )}
+                <div className="px-3">
+                  <button
+                    onClick={() => {
+                      setActiveSection(section.id);
+                      setIsMobileMenuOpen(false);
+                    }}
+                    className={`w-full text-left px-3 py-2.5 rounded-lg transition-all duration-200 flex items-center gap-3 group relative mb-1
+                    ${activeSection === section.id
+                        ? 'bg-blue-50 text-blue-700 font-medium shadow-sm ring-1 ring-blue-100'
+                        : 'text-slate-600 hover:bg-slate-50 hover:text-slate-900'
+                      }`}
+                  >
+                    <div className={`
+                    p-1.5 rounded-md transition-colors flex-shrink-0
+                    ${activeSection === section.id ? 'bg-blue-100 text-blue-600' : 'bg-slate-100 text-slate-400 group-hover:bg-white group-hover:text-slate-500'}
+                  `}>
+                      <Icon name={section.icon} size={18} />
+                    </div>
+                    <span className="truncate text-sm">{section.title}</span>
+                  </button>
+                </div>
+              </React.Fragment>
+            );
+          })}
         </div>
 
         <div className="p-4 border-t border-slate-100 text-xs text-center text-slate-400 bg-slate-50">
