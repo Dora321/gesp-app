@@ -45,14 +45,31 @@ import ComputingMuseum from './pages/ComputingMuseum'; // New Import
 
 import Navigation from './Navigation'; // Import Navigation component
 
+// E-Kart Imports
+import EkartLayout from './ekart/EkartLayout';
+import EkartHome from './ekart/pages/Home';
+import EkartRoadmap from './ekart/pages/Roadmap';
+import EkartToolbox from './ekart/pages/Toolbox';
+import EkartGallery from './ekart/pages/Gallery';
+import EkartParentPortal from './ekart/pages/ParentPortal';
+
 function App() {
   return (
     <BrowserRouter basename={import.meta.env.DEV ? '/' : '/gesp-app'}>
-      <AnnouncementBar />
       <Routes>
         <Route path="/navigation" element={<Navigation />} />
         <Route path="/museum" element={<ComputingMuseum />} />
         <Route path="/" element={<Home />} />
+
+
+        {/* E-Kart Lab Routes */}
+        <Route path="/ekart" element={<EkartLayout />}>
+          <Route index element={<EkartHome />} />
+          <Route path="roadmap" element={<EkartRoadmap />} />
+          <Route path="toolbox" element={<EkartToolbox />} />
+          <Route path="gallery" element={<EkartGallery />} />
+          <Route path="parent-portal" element={<EkartParentPortal />} />
+        </Route>
 
         {/* Course Levels */}
         <Route path="/level1" element={<CourseLevel1 />} />

@@ -429,19 +429,40 @@ export default function Home() {
                             拒绝枯燥，让算法"动"起来！从入门到精通，每一步都有交互式动画伴你前行。
                         </p>
 
-                        {/* Recent Notices */}
-                        <div className="mt-12 max-w-3xl mx-auto">
-                            <div className="bg-slate-800/30 backdrop-blur-sm border border-slate-700/50 rounded-2xl p-6 flex flex-col md:flex-row items-center gap-6 text-left">
-                                <div className="flex-shrink-0 w-12 h-12 bg-indigo-500/20 rounded-xl flex items-center justify-center">
-                                    <Megaphone className="w-6 h-6 text-indigo-400" />
+                    </div>
+
+                    {/* E-Kart Lab Promo Section */}
+                    <div className="mb-24 relative overflow-hidden rounded-3xl bg-gradient-to-r from-gray-900 to-slate-900 border border-cyan-500/30 shadow-2xl shadow-cyan-900/20 group cursor-pointer" onClick={() => navigate('/ekart')}>
+                        <div className="absolute inset-0 bg-[url('https://images.unsplash.com/photo-1547754980-3df97fed72a8?ixlib=rb-1.2.1&auto=format&fit=crop&w=1600&q=80')] bg-cover bg-center opacity-20 group-hover:opacity-30 transition-opacity duration-700"></div>
+                        <div className="absolute inset-0 bg-gradient-to-r from-gray-900 via-gray-900/80 to-transparent"></div>
+
+                        <div className="relative z-10 p-10 md:p-16 flex flex-col md:flex-row items-center justify-between gap-8">
+                            <div className="max-w-2xl">
+                                <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-cyan-500/20 text-cyan-400 text-xs font-bold border border-cyan-500/30 mb-6">
+                                    <span className="relative flex h-2 w-2">
+                                        <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-cyan-400 opacity-75"></span>
+                                        <span className="relative inline-flex rounded-full h-2 w-2 bg-cyan-500"></span>
+                                    </span>
+                                    NEW: 寒假特别营
                                 </div>
-                                <div className="flex-grow">
-                                    <h4 className="text-slate-200 font-bold mb-1">站点公告</h4>
-                                    <p className="text-slate-400 text-sm">魔丸聚集地正式上线！Python 2048 趣味项目现已支持交互式地图，欢迎前往体验。</p>
+                                <h3 className="text-4xl md:text-5xl font-extrabold text-white mb-4 tracking-tight">
+                                    <span className="bg-clip-text text-transparent bg-gradient-to-r from-cyan-400 to-blue-500">E-Kart Lab</span>
+                                    <span className="block text-2xl md:text-3xl mt-2 text-slate-300">电动卡丁车实验室</span>
+                                </h3>
+                                <p className="text-slate-400 text-lg mb-8 leading-relaxed">
+                                    10天，从零打造你的第一台电动卡丁车。结合机械工程、电子动力与智能编程的硬核 PBL 营队。
+                                </p>
+                                <button className="flex items-center gap-2 px-8 py-4 rounded-full bg-cyan-600 hover:bg-cyan-500 text-white font-bold transition-all shadow-[0_0_20px_rgba(8,145,178,0.5)] hover:shadow-[0_0_30px_rgba(34,211,238,0.6)] group-hover:translate-x-2">
+                                    立即加入车队 <ArrowRight size={20} />
+                                </button>
+                            </div>
+
+                            <div className="relative">
+                                <div className="w-64 h-40 md:w-80 md:h-52 rounded-xl bg-slate-800 border-2 border-slate-700 flex items-center justify-center relative transform rotate-3 shadow-2xl group-hover:rotate-6 transition-transform duration-500">
+                                    <div className="absolute -left-4 -top-4 w-12 h-12 bg-cyan-500 rounded-lg flex items-center justify-center text-2xl font-bold shadow-lg">⚡</div>
+                                    <span className="text-slate-600 font-mono text-xs">[Kart 3D Model Placeholder]</span>
                                 </div>
-                                <div className="flex-shrink-0 text-slate-500 text-xs font-mono">
-                                    2025-12-28
-                                </div>
+                                <div className="absolute -z-10 top-10 -right-10 w-64 h-64 bg-cyan-500/20 rounded-full blur-3xl"></div>
                             </div>
                         </div>
                     </div>
