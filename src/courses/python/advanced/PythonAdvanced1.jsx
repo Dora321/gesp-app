@@ -6,7 +6,7 @@ import {
     TrendingUp, Footprints, Menu, X, Lock, Unlock,
     Search, Binary, Key
 } from 'lucide-react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 
 // --- 辅助组件 ---
 const Icon = ({ name, size = 20, className = "" }) => {
@@ -1282,9 +1282,15 @@ const sections = [
     { id: 5, title: '结业测验', icon: 'trophy', component: QuizSlide },
 ];
 
-const PythonAdvanced1 = () => {
-    const [activeSection, setActiveSection] = useState(1);
+export default function PythonAdvanced1() {
+    const navigate = useNavigate();
+    const [activeSection, setActiveSection] = useState(1); // 1-based index
     const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+    const scrollRef = useRef(null);
+
+    useEffect(() => {
+        scrollRef.current?.scrollTo(0, 0);
+    }, [activeSection]);
     const ActiveComponent = sections.find(s => s.id === activeSection)?.component || (() => <div>Coming Soon</div>);
 
     return (
@@ -1372,43 +1378,51 @@ const PythonAdvanced1 = () => {
 
             {/* 主内容区 */}
             <div className="flex-1 flex flex-col h-full overflow-hidden relative bg-slate-50 pt-16 md:pt-0">
-                {/* Header */}
-                <header className="bg-white border-b border-slate-200 shadow-sm h-16 flex items-center justify-between px-6 z-10 flex-shrink-0">
-                    <div className="flex items-center gap-3">
-                        <div className="p-2 bg-indigo-100 text-indigo-600 rounded-lg">
-                            <Icon name={sections.find(s => s.id === activeSection)?.icon} size={20} />
-                        </div>
-                        <h2 className="text-lg font-bold text-slate-800 truncate">
-                            {sections.find(s => s.id === activeSection)?.title}
-                        </h2>
-                    </div>
-
-                    <div className="flex gap-3">
-                        <button
-                            onClick={() => setActiveSection(Math.max(1, activeSection - 1))}
-                            disabled={activeSection === 1}
-                            className="px-4 py-2 text-sm rounded-lg border border-slate-200 text-slate-600 hover:bg-slate-50 disabled:opacity-50 disabled:cursor-not-allowed transition-colors font-medium flex items-center gap-1"
-                        >
-                            <ChevronDown className="rotate-90" size={16} /> 上一步
-                        </button>
-                        <button
-                            onClick={() => setActiveSection(Math.min(sections.length, activeSection + 1))}
-                            disabled={activeSection === sections.length}
-                            className="px-4 py-2 text-sm rounded-lg bg-indigo-600 text-white hover:bg-indigo-700 shadow-md shadow-indigo-200 disabled:opacity-50 disabled:cursor-not-allowed transition-all hover:-translate-y-0.5 font-medium flex items-center gap-1"
-                        >
-                            下一步 <ArrowRight size={16} />
-                        </button>
-                    </div>
-                </header>
-
-                {/* Content */}
-                <main className="flex-1 overflow-y-auto p-6 md:p-10 custom-scrollbar">
+                {/* Header - now just a label or removed if we want to clean it up. Keeping it simple */}
+                <div ref={scrollRef} className="flex-1 overflow-y-auto p-6 md:p-10 custom-scrollbar">
                     <div className="max-w-5xl mx-auto h-full flex flex-col">
+                        <header className="mb-8">
+                            <div className="flex items-center gap-3 mb-2">
+                                <div className="p-2 bg-indigo-100 text-indigo-600 rounded-lg">
+                                    <Icon name={sections.find(s => s.id === activeSection)?.icon} size={20} />
+                                </div>
+                                <h2 className="text-2xl font-bold text-slate-800 truncate">
+                                    {sections.find(s => s.id === activeSection)?.title}
+                                </h2>
+                            </div>
+                            <div className="h-1 w-20 bg-indigo-500 rounded-full"></div>
+                        </header>
+
                         <div className="flex-1 animate-in fade-in slide-in-from-bottom-4 duration-500 h-full">
                             <ActiveComponent />
                         </div>
                     </div>
-                </main>
+                </div>
+
+                {/* Sticky Footer */}
+                <div className="h-20 bg-white border-t border-slate-200 flex items-center justify-between px-8 z-20 flex-shrink-0">
+                    <button
+                        onClick={() => setActiveSection(prev => Math.max(1, prev - 1))}
+                        disabled={activeSection === 1}
+                        className={`px-5 py-2.5 rounded-lg flex items-center gap-2 font-bold transition-all
+                            ${activeSection === 1 ? 'text-gray-300 cursor-not-allowed' : 'text-gray-600 hover:bg-gray-100 hover:shadow-sm'}`}
+                    >
+                        <ChevronDown className="rotate-90" size={18} /> 上一节
+                    </button>
+
+                    <button
+                        onClick={() => {
+                            if (activeSection < sections.length) {
+                                setActiveSection(prev => prev + 1);
+                            } else {
+                                navigate('/python/a2');
+                            }
+                        }}
+                        className={`px-6 py-2.5 rounded-lg flex items-center gap-2 font-bold transition-all shadow-sm bg-indigo-600 text-white hover:bg-indigo-700 hover:shadow-md hover:-translate-y-0.5`}
+                    >
+                        {activeSection === sections.length ? '下一课' : '下一节'} <ArrowRight size={18} />
+                    </button>
+                </div>
             </div>
 
             <style>{`
@@ -1442,5 +1456,3 @@ const CheckCircle = ({ className }) => (
         <polyline points="22 4 12 14.01 9 11.01"></polyline>
     </svg>
 );
-
-export default PythonAdvanced1;

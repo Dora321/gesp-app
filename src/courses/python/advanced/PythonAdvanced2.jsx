@@ -1,11 +1,11 @@
-import React, { useState, useEffect, useCallback } from 'react';
+import React, { useState, useEffect, useCallback, useRef } from 'react';
 import {
     Grid, ArrowUp, ArrowDown, ArrowLeft, ArrowRight,
     RotateCw, RefreshCw, Play, Code, Box,
     ChevronDown, Layers, Hash, HelpCircle, Trophy,
     CheckCircle, XCircle, MousePointer, Menu, X
 } from 'lucide-react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 
 // --- 辅助组件 ---
 const Icon = ({ name, size = 20, className = "" }) => {
@@ -954,9 +954,16 @@ const sections = [
     { id: 6, title: '课间小测验', icon: 'trophy', component: QuizSlide }, // Added QuizSlide
 ];
 
-const PythonAdvanced2 = () => {
+export default function PythonAdvanced2() {
+    const navigate = useNavigate();
     const [activeSection, setActiveSection] = useState(1);
     const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+    const scrollRef = useRef(null);
+
+    useEffect(() => {
+        scrollRef.current?.scrollTo(0, 0);
+    }, [activeSection]);
+
     const ActiveComponent = sections.find(s => s.id === activeSection)?.component || (() => <div>Coming Soon</div>);
 
     return (
@@ -1044,43 +1051,60 @@ const PythonAdvanced2 = () => {
 
             {/* 主内容区 */}
             <div className="flex-1 flex flex-col h-full overflow-hidden relative bg-slate-50 pt-16 md:pt-0">
-                {/* Header */}
-                <header className="bg-white border-b border-slate-200 shadow-sm h-16 flex items-center justify-between px-6 z-10 flex-shrink-0">
-                    <div className="flex items-center gap-3">
-                        <div className="p-2 bg-orange-100 text-orange-600 rounded-lg">
-                            <Icon name={sections.find(s => s.id === activeSection)?.icon} size={20} />
-                        </div>
-                        <h2 className="text-lg font-bold text-slate-800 truncate">
-                            {sections.find(s => s.id === activeSection)?.title}
-                        </h2>
-                    </div>
-
-                    <div className="flex gap-3">
-                        <button
-                            onClick={() => setActiveSection(Math.max(1, activeSection - 1))}
-                            disabled={activeSection === 1}
-                            className="px-4 py-2 text-sm rounded-lg border border-slate-200 text-slate-600 hover:bg-slate-50 disabled:opacity-50 disabled:cursor-not-allowed transition-colors font-medium flex items-center gap-1"
-                        >
-                            <ChevronDown className="rotate-90" size={16} /> 上一步
-                        </button>
-                        <button
-                            onClick={() => setActiveSection(Math.min(sections.length, activeSection + 1))}
-                            disabled={activeSection === sections.length}
-                            className="px-4 py-2 text-sm rounded-lg bg-orange-600 text-white hover:bg-orange-700 shadow-md shadow-orange-200 disabled:opacity-50 disabled:cursor-not-allowed transition-all hover:-translate-y-0.5 font-medium flex items-center gap-1"
-                        >
-                            下一步 <ArrowRight size={16} />
-                        </button>
-                    </div>
-                </header>
-
                 {/* Content */}
-                <main className="flex-1 overflow-y-auto p-6 md:p-10 custom-scrollbar">
+                <div ref={scrollRef} className="flex-1 overflow-y-auto p-6 md:p-10 custom-scrollbar">
                     <div className="max-w-5xl mx-auto h-full flex flex-col">
+                        <header className="mb-8">
+                            <div className="flex items-center gap-3 mb-2">
+                                <div className="p-2 bg-orange-100 text-orange-600 rounded-lg">
+                                    <Icon name={sections.find(s => s.id === activeSection)?.icon} size={20} />
+                                </div>
+                                <h2 className="text-2xl font-bold text-slate-800 truncate">
+                                    {sections.find(s => s.id === activeSection)?.title}
+                                </h2>
+                            </div>
+                            <div className="h-1 w-20 bg-orange-500 rounded-full"></div>
+                        </header>
+
                         <div className="flex-1 animate-in fade-in slide-in-from-bottom-4 duration-500 h-full">
                             <ActiveComponent />
                         </div>
                     </div>
-                </main>
+                </div>
+
+                {/* Sticky Footer */}
+                <div className="h-20 bg-white border-t border-slate-200 flex items-center justify-between px-8 z-20 flex-shrink-0">
+                    <button
+                        onClick={() => setActiveSection(prev => Math.max(1, prev - 1))} // activeSection logic here seems to rely on ID which might be 1-based or float (1.5). Let's check sections IDs.
+                        // Wait, IDs are 1, 1.5, 2 etc. Simpler numeric buttons won't iterate correctly if I just +1/-1.
+                        // I should iterate through the sections array index.
+                        // Let's refactor state to use index instead of ID, or just find index.
+                        // The original code used IDs, but IDs are 1.5. 
+                        // Let's change state to activeSectionIndex
+                        // BUT, sections finding logic depends on activeSection being an ID.
+                        // I will stick to iterating indices for next/prev.
+                        // Actually, I can use sections[currentIndex +/- 1].id
+                        disabled={activeSection === sections[0].id}
+                        className={`px-5 py-2.5 rounded-lg flex items-center gap-2 font-bold transition-all
+                            ${activeSection === sections[0].id ? 'text-gray-300 cursor-not-allowed' : 'text-gray-600 hover:bg-gray-100 hover:shadow-sm'}`}
+                    >
+                        <ChevronDown className="rotate-90" size={18} /> 上一步
+                    </button>
+
+                    <button
+                        onClick={() => {
+                            const currentIndex = sections.findIndex(s => s.id === activeSection);
+                            if (currentIndex < sections.length - 1) {
+                                setActiveSection(sections[currentIndex + 1].id);
+                            } else {
+                                navigate('/python/ai');
+                            }
+                        }}
+                        className={`px-6 py-2.5 rounded-lg flex items-center gap-2 font-bold transition-all shadow-sm bg-orange-600 text-white hover:bg-orange-700 hover:shadow-md hover:-translate-y-0.5`}
+                    >
+                        {activeSection === sections[sections.length - 1].id ? '下一课' : '下一节'} <ArrowRight size={18} />
+                    </button>
+                </div>
             </div>
 
             <style>{`
@@ -1099,4 +1123,3 @@ const PythonAdvanced2 = () => {
     );
 };
 
-export default PythonAdvanced2;

@@ -1,5 +1,5 @@
-import React, { useState } from 'react';
-import { Link } from 'react-router-dom';
+import React, { useState, useRef, useEffect } from 'react';
+import { Link, useNavigate } from 'react-router-dom';
 import { MousePointer2, Move, Square, Palette, Sparkles, ChevronRight, Home, PenTool, Trophy, BookOpen, Zap, Star, Target, Award, Menu, X, CheckCircle, RefreshCw, ArrowRight, Repeat, Terminal, Network } from 'lucide-react';
 import TurtleCanvas from '../../../components/TurtleCanvas';
 
@@ -975,24 +975,15 @@ const sections = [
 ];
 
 export default function PythonFoundation5() {
+    const navigate = useNavigate();
     const [activeSection, setActiveSection] = useState(1);
     const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
-    const [completedSections, setCompletedSections] = useState(() => {
-        const saved = localStorage.getItem('pythonF5Progress');
-        return saved ? JSON.parse(saved) : [];
-    });
+    const scrollRef = useRef(null);
 
+    useEffect(() => {
+        scrollRef.current?.scrollTo(0, 0);
+    }, [activeSection]);
     const ActiveComponent = sections.find(s => s.id === activeSection)?.component || (() => <div>Coming Soon</div>);
-
-    const markSectionComplete = (sectionId) => {
-        if (!completedSections.includes(sectionId)) {
-            const updated = [...completedSections, sectionId];
-            setCompletedSections(updated);
-            localStorage.setItem('pythonF5Progress', JSON.stringify(updated));
-        }
-    };
-
-    const progressPercentage = Math.round((completedSections.length / sections.length) * 100);
 
     return (
         <div className="flex flex-col md:flex-row h-screen bg-slate-50 font-sans text-slate-800 selection:bg-indigo-100">
@@ -1028,19 +1019,7 @@ export default function PythonFoundation5() {
                     </button>
                 </div>
                 <div className="flex-1 overflow-y-auto p-4 space-y-2">
-                    {/* Progress Bar */}
-                    <div className="mb-4 p-3 bg-gradient-to-r from-indigo-50 to-purple-50 rounded-xl border border-indigo-100">
-                        <div className="flex items-center justify-between mb-2">
-                            <span className="text-xs font-bold text-indigo-600">进度</span>
-                            <span className="text-xs font-bold text-indigo-600">{progressPercentage}%</span>
-                        </div>
-                        <div className="w-full bg-slate-200 rounded-full h-2 overflow-hidden">
-                            <div
-                                className="bg-gradient-to-r from-indigo-500 to-purple-600 h-full transition-all duration-500"
-                                style={{ width: `${progressPercentage}%` }}
-                            ></div>
-                        </div>
-                    </div>
+
 
                     {sections.map(section => (
                         <button
@@ -1057,62 +1036,49 @@ export default function PythonFoundation5() {
                         >
                             <section.icon size={18} className={activeSection === section.id ? 'text-indigo-600' : 'text-slate-400'} />
                             <span className="flex-1">{section.title}</span>
-                            {completedSections.includes(section.id) && (
-                                <CheckCircle size={16} className="text-green-500" />
-                            )}
+
                         </button>
                     ))}
                 </div>
             </div>
 
             {/* Main Content */}
-            <div className="flex-1 overflow-y-auto p-4 md:p-8">
-                <div className="max-w-4xl mx-auto">
-                    <header className="mb-6 md:mb-8">
-                        <h2 className="text-2xl md:text-3xl font-bold text-slate-800 mb-2">
-                            {sections.find(s => s.id === activeSection)?.title}
-                        </h2>
-                        <div className="h-1 w-20 bg-indigo-500 rounded-full"></div>
-                    </header>
+            <div className="flex-1 flex flex-col h-full overflow-hidden relative">
+                <div ref={scrollRef} className="flex-1 overflow-y-auto p-4 md:p-8">
+                    <div className="max-w-4xl mx-auto">
+                        <header className="mb-6 md:mb-8">
+                            <h2 className="text-2xl md:text-3xl font-bold text-slate-800 mb-2">
+                                {sections.find(s => s.id === activeSection)?.title}
+                            </h2>
+                            <div className="h-1 w-20 bg-indigo-500 rounded-full"></div>
+                        </header>
 
-                    <ActiveComponent />
-
-                    <div className="mt-8 md:mt-12 flex justify-between border-t border-slate-200 pt-6 md:pt-8 pb-8">
-                        <Button
-                            variant="secondary"
-                            onClick={() => {
-                                setActiveSection(prev => Math.max(1, prev - 1));
-                                window.scrollTo(0, 0);
-                            }}
-                            className={activeSection === 1 ? 'opacity-0 pointer-events-none' : ''}
-                        >
-                            上一章
-                        </Button>
-
-                        {!completedSections.includes(activeSection) && (
-                            <Button
-                                variant="success"
-                                onClick={() => markSectionComplete(activeSection)}
-                                className="mx-4"
-                            >
-                                <CheckCircle size={18} />
-                                标记完成
-                            </Button>
-                        )}
-
-                        <Button
-                            onClick={() => {
-                                if (!completedSections.includes(activeSection)) {
-                                    markSectionComplete(activeSection);
-                                }
-                                setActiveSection(prev => Math.min(sections.length, prev + 1));
-                                window.scrollTo(0, 0);
-                            }}
-                            className={activeSection === sections.length ? 'opacity-0 pointer-events-none' : ''}
-                        >
-                            下一章 <ArrowRight size={18} />
-                        </Button>
+                        <ActiveComponent />
                     </div>
+                </div>
+
+                <div className="h-20 bg-white border-t border-slate-200 flex items-center justify-between px-8 z-20 flex-shrink-0">
+                    <button
+                        onClick={() => setActiveSection(prev => Math.max(1, prev - 1))}
+                        disabled={activeSection === 1}
+                        className={`px-5 py-2.5 rounded-lg flex items-center gap-2 font-bold transition-all
+                            ${activeSection === 1 ? 'text-gray-300 cursor-not-allowed' : 'text-gray-600 hover:bg-gray-100 hover:shadow-sm'}`}
+                    >
+                        <ArrowRight className="rotate-180" size={18} /> 上一节
+                    </button>
+
+                    <button
+                        onClick={() => {
+                            if (activeSection < sections.length) {
+                                setActiveSection(prev => prev + 1);
+                            } else {
+                                navigate('/python/a1');
+                            }
+                        }}
+                        className={`px-6 py-2.5 rounded-lg flex items-center gap-2 font-bold transition-all shadow-sm bg-blue-600 text-white hover:bg-blue-700 hover:shadow-md hover:-translate-y-0.5`}
+                    >
+                        {activeSection === sections.length ? '下一课' : '下一节'} <ArrowRight size={18} />
+                    </button>
                 </div>
             </div>
         </div>

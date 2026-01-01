@@ -2,12 +2,13 @@ import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { BookOpen, Award, Star, ChevronRight, ChevronDown, ChevronUp, FileText, Monitor, Lock, CheckCircle, PlayCircle, Flag, Sparkles, Map, Zap, Scissors, ArrowRight, Box, Key, Terminal, Shield, Repeat, Layers, AlignJustify, Scan, Type, Package, Trophy, ArrowUp, Megaphone, Search, MousePointer2, Grid, XCircle, AlertOctagon, Compass, Menu, X, Home as HomeIcon } from 'lucide-react';
 
+import Navigation from './components/Navigation';
+
 export default function Home() {
     const navigate = useNavigate();
     const [showBackToTop, setShowBackToTop] = useState(false);
     const [showAllLessons, setShowAllLessons] = useState(false);
     const [showAllAdvLessons, setShowAllAdvLessons] = useState(false);
-    const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
 
     // 监听滚动事件，显示/隐藏回到顶部按钮
     useEffect(() => {
@@ -414,129 +415,7 @@ export default function Home() {
                 <div className="absolute bottom-[-10%] left-[-10%] w-[500px] h-[500px] bg-blue-600/20 rounded-full blur-[120px] animate-pulse delay-1000"></div>
             </div>
 
-            <header className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${window.scrollY > 20 ? 'bg-slate-900/90 backdrop-blur-md shadow-lg border-b border-indigo-500/20' : 'bg-transparent'}`}>
-                <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-                    <div className="flex items-center justify-between h-20">
-                        {/* Logo Area */}
-                        <div className="flex items-center gap-3 cursor-pointer group" onClick={() => navigate('/')}>
-                            <div className="w-10 h-10 bg-gradient-to-br from-blue-500 to-indigo-600 rounded-xl flex items-center justify-center overflow-hidden shadow-lg shadow-blue-500/30 group-hover:scale-105 transition-transform duration-300 ring-2 ring-white/10">
-                                <img src={`${import.meta.env.BASE_URL}logo.jpg`} alt="Logo" className="w-full h-full object-cover opacity-90 group-hover:opacity-100" />
-                            </div>
-                            <h1 className="font-bold text-2xl tracking-tight text-white group-hover:text-transparent group-hover:bg-clip-text group-hover:bg-gradient-to-r group-hover:from-blue-400 group-hover:to-indigo-400 transition-all duration-300">
-                                魔丸聚集地
-                            </h1>
-                        </div>
-
-                        {/* Desktop Navigation */}
-                        <nav className="hidden md:flex items-center gap-1">
-                            {[
-                                { name: '首页', path: '/', icon: <HomeIcon size={18} /> },
-                                { name: 'C++ 考级', path: '/level1', icon: <Award size={18} /> },
-                                { name: 'Python 课程', path: '/python/f1', icon: <Terminal size={18} /> },
-                            ].map((item) => (
-                                <button
-                                    key={item.path}
-                                    onClick={() => navigate(item.path)}
-                                    className="px-4 py-2 rounded-full text-slate-300 hover:text-white hover:bg-white/10 font-medium transition-all duration-300 flex items-center gap-2 group relative overflow-hidden"
-                                >
-                                    <span className="relative z-10">{item.name}</span>
-                                </button>
-                            ))}
-                            <button
-                                onClick={() => {
-                                    const el = document.getElementById('maps-section');
-                                    if (el) el.scrollIntoView({ behavior: 'smooth' });
-                                }}
-                                className="px-4 py-2 rounded-full text-slate-300 hover:text-white hover:bg-white/10 font-medium transition-all duration-300 flex items-center gap-2"
-                            >
-                                闯关地图
-                            </button>
-                            <button
-                                onClick={() => navigate('/museum')}
-                                className="px-4 py-2 rounded-full text-slate-300 hover:text-white hover:bg-white/10 font-medium transition-all duration-300 flex items-center gap-2"
-                            >
-                                <Zap size={18} className="text-yellow-400" />
-                                <span className="relative z-10">奇闻馆</span>
-                            </button>
-                        </nav>
-
-                        {/* Right Side Actions */}
-                        <div className="hidden md:flex items-center gap-4">
-                            <div className="h-6 w-px bg-slate-700 mx-2"></div>
-                            <button
-                                onClick={() => navigate('/navigation')}
-                                className="flex items-center gap-2 px-4 py-2 rounded-full bg-gradient-to-r from-indigo-500/20 to-blue-500/20 hover:from-indigo-500/30 hover:to-blue-500/30 border border-indigo-500/30 text-indigo-300 hover:text-white transition-all duration-300 shadow-lg shadow-indigo-500/10 group"
-                            >
-                                <Compass size={18} className="group-hover:rotate-45 transition-transform duration-500" />
-                                <span className="text-sm font-semibold">全站导航</span>
-                            </button>
-                        </div>
-
-                        {/* Mobile Menu Button */}
-                        <button
-                            className="md:hidden p-2 text-slate-300 hover:text-white transition-colors relative z-50"
-                            onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-                        >
-                            {isMobileMenuOpen ? <X size={28} /> : <Menu size={28} />}
-                        </button>
-                    </div>
-                </div>
-
-                {/* Mobile Menu Overlay */}
-                <div className={`md:hidden fixed inset-0 z-40 bg-slate-950/95 backdrop-blur-xl transition-all duration-300 flex flex-col items-center justify-center gap-8 ${isMobileMenuOpen ? 'opacity-100 visible' : 'opacity-0 invisible pointer-events-none'}`}>
-                    <div className="flex flex-col items-center gap-6 w-full px-8">
-                        {[
-                            { name: '首页', path: '/', icon: <HomeIcon size={24} />, color: 'text-blue-400' },
-                            { name: 'C++ 考级', path: '/level1', icon: <Award size={24} />, color: 'text-emerald-400' },
-                            { name: 'Python 课程', path: '/python/f1', icon: <Terminal size={24} />, color: 'text-yellow-400' },
-                        ].map((item, idx) => (
-                            <button
-                                key={item.path}
-                                onClick={() => {
-                                    navigate(item.path);
-                                    setIsMobileMenuOpen(false);
-                                }}
-                                className="w-full max-w-xs py-4 rounded-xl bg-white/5 border border-white/10 hover:bg-white/10 hover:border-white/20 transition-all flex items-center justify-center gap-4 text-xl font-bold text-slate-200"
-                                style={{ transitionDelay: `${idx * 50}ms` }}
-                            >
-                                <span className={item.color}>{item.icon}</span>
-                                {item.name}
-                            </button>
-                        ))}
-                        <button
-                            onClick={() => {
-                                const el = document.getElementById('maps-section');
-                                if (el) el.scrollIntoView({ behavior: 'smooth' });
-                                setIsMobileMenuOpen(false);
-                            }}
-                            className="w-full max-w-xs py-4 rounded-xl bg-white/5 border border-white/10 hover:bg-white/10 hover:border-white/20 transition-all flex items-center justify-center gap-4 text-xl font-bold text-slate-200"
-                        >
-                            <Map size={24} className="text-emerald-400" />
-                            闯关地图
-                        </button>
-                        <button
-                            onClick={() => {
-                                navigate('/museum');
-                                setIsMobileMenuOpen(false);
-                            }}
-                            className="w-full max-w-xs py-4 rounded-xl bg-white/5 border border-white/10 hover:bg-white/10 hover:border-white/20 transition-all flex items-center justify-center gap-4 text-xl font-bold text-slate-200"
-                        >
-                            <Zap size={24} className="text-yellow-400" />
-                            奇闻馆
-                        </button>
-                        <button
-                            onClick={() => {
-                                navigate('/navigation');
-                                setIsMobileMenuOpen(false);
-                            }}
-                            className="w-full max-w-xs py-4 rounded-xl bg-gradient-to-r from-indigo-600 to-blue-600 text-white shadow-lg shadow-indigo-500/30 flex items-center justify-center gap-4 text-xl font-bold mt-4"
-                        >
-                            <Compass size={24} />
-                            全站导航
-                        </button>
-                    </div>
-                </div>
-            </header>
+            <Navigation />
 
             <main className="relative z-10 w-full">
                 <section className="max-w-5xl mx-auto px-4 pt-32 pb-12">

@@ -1,6 +1,6 @@
-import React, { useState } from 'react';
-import { Globe, Search, Database, Code, Shield, Download, ArrowRight, Play, RefreshCw, Smartphone, Key } from 'lucide-react';
-import { Link } from 'react-router-dom';
+import React, { useState, useEffect, useRef } from 'react';
+import { Globe, Search, Database, Code, Shield, Download, ArrowRight, Play, RefreshCw, Smartphone, Key, ChevronDown } from 'lucide-react';
+import { Link, useNavigate } from 'react-router-dom';
 
 // --- Shared Components ---
 const Button = ({ onClick, children, className, variant = 'primary', disabled = false }) => {
@@ -203,7 +203,14 @@ const sections = [
 ];
 
 export default function PythonCrawler() {
+    const navigate = useNavigate();
     const [activeSection, setActiveSection] = useState(1);
+    const scrollRef = useRef(null);
+
+    useEffect(() => {
+        scrollRef.current?.scrollTo(0, 0);
+    }, [activeSection]);
+
     const ActiveComponent = sections.find(s => s.id === activeSection)?.component || (() => <div>Coming Soon</div>);
 
     return (
@@ -250,39 +257,52 @@ export default function PythonCrawler() {
             </div>
 
             {/* Main Content */}
-            <div className="flex-1 overflow-y-auto p-8 relative">
-                {/* Background Decor */}
-                <div className="absolute top-0 left-0 w-full h-full bg-[radial-gradient(circle_at_50%_50%,rgba(17,24,39,1),rgba(0,0,0,1))] -z-10"></div>
-                <div className="absolute bottom-0 right-0 w-96 h-96 bg-cyan-600/5 rounded-full blur-[100px] pointer-events-none"></div>
+            <div className="flex-1 flex flex-col h-full overflow-hidden relative">
+                <div ref={scrollRef} className="flex-1 overflow-y-auto p-8 relative custom-scrollbar">
+                    {/* Background Decor */}
+                    <div className="absolute top-0 left-0 w-full h-full bg-[radial-gradient(circle_at_50%_50%,rgba(17,24,39,1),rgba(0,0,0,1))] -z-10"></div>
+                    <div className="absolute bottom-0 right-0 w-96 h-96 bg-cyan-600/5 rounded-full blur-[100px] pointer-events-none"></div>
 
-                <div className="max-w-4xl mx-auto">
-                    <header className="mb-8">
-                        <h2 className="text-3xl font-bold text-white mb-2 flex items-center gap-3">
-                            <span className="p-2 bg-cyan-500/10 rounded-lg">
-                                {React.createElement(sections.find(s => s.id === activeSection)?.icon, { size: 32, className: 'text-cyan-400' })}
-                            </span>
-                            {sections.find(s => s.id === activeSection)?.title}
-                        </h2>
-                        <div className="h-1 w-20 bg-gradient-to-r from-cyan-500 to-blue-500 rounded-full mt-4"></div>
-                    </header>
+                    <div className="max-w-4xl mx-auto">
+                        <header className="mb-8">
+                            <h2 className="text-3xl font-bold text-white mb-2 flex items-center gap-3">
+                                <span className="p-2 bg-cyan-500/10 rounded-lg">
+                                    {React.createElement(sections.find(s => s.id === activeSection)?.icon, { size: 32, className: 'text-cyan-400' })}
+                                </span>
+                                {sections.find(s => s.id === activeSection)?.title}
+                            </h2>
+                            <div className="h-1 w-20 bg-gradient-to-r from-cyan-500 to-blue-500 rounded-full mt-4"></div>
+                        </header>
 
-                    <ActiveComponent />
-
-                    <div className="mt-12 flex justify-between border-t border-slate-800 pt-8">
-                        <Button
-                            variant="secondary"
-                            onClick={() => setActiveSection(prev => Math.max(1, prev - 1))}
-                            className={activeSection === 1 ? 'opacity-0 pointer-events-none' : ''}
-                        >
-                            上一章
-                        </Button>
-                        <Button
-                            onClick={() => setActiveSection(prev => Math.min(sections.length, prev + 1))}
-                            className={activeSection === sections.length ? 'opacity-0 pointer-events-none' : ''}
-                        >
-                            恭喜通关 🎉
-                        </Button>
+                        <div className="animate-in fade-in slide-in-from-bottom-4 duration-500 pb-10">
+                            <ActiveComponent />
+                        </div>
                     </div>
+                </div>
+
+                {/* Sticky Footer */}
+                <div className="h-20 bg-slate-900 border-t border-slate-800 flex items-center justify-between px-8 z-20 flex-shrink-0">
+                    <button
+                        onClick={() => setActiveSection(prev => Math.max(1, prev - 1))}
+                        disabled={activeSection === 1}
+                        className={`px-5 py-2.5 rounded-lg flex items-center gap-2 font-bold transition-all
+                            ${activeSection === 1 ? 'text-slate-600 cursor-not-allowed' : 'text-slate-400 hover:bg-slate-800 hover:text-white'}`}
+                    >
+                        <ChevronDown className="rotate-90" size={18} /> 上一节
+                    </button>
+
+                    <button
+                        onClick={() => {
+                            if (activeSection < sections.length) {
+                                setActiveSection(prev => prev + 1);
+                            } else {
+                                navigate('/python/binary-search');
+                            }
+                        }}
+                        className={`px-6 py-2.5 rounded-lg flex items-center gap-2 font-bold transition-all shadow-sm bg-cyan-500 text-black hover:bg-cyan-400 hover:shadow-[0_0_15px_rgba(6,182,212,0.4)] hover:-translate-y-0.5`}
+                    >
+                        {activeSection === sections.length ? '下一课' : '下一节'} <ArrowRight size={18} />
+                    </button>
                 </div>
             </div>
         </div>

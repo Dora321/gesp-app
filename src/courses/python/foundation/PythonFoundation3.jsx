@@ -1,5 +1,5 @@
-import React, { useState } from 'react';
-import { Link } from 'react-router-dom';
+import React, { useState, useRef, useEffect } from 'react';
+import { Link, useNavigate } from 'react-router-dom';
 import { Layers, List, Box, Key, Search, ArrowRight, RefreshCw, Plus, Trash2, Edit3 } from 'lucide-react';
 
 // --- Shared Components ---
@@ -256,7 +256,13 @@ const sections = [
 ];
 
 export default function PythonFoundation3() {
+    const navigate = useNavigate();
     const [activeSection, setActiveSection] = useState(1);
+    const scrollRef = useRef(null);
+
+    useEffect(() => {
+        scrollRef.current?.scrollTo(0, 0);
+    }, [activeSection]);
     const ActiveComponent = sections.find(s => s.id === activeSection)?.component || (() => <div>Coming Soon</div>);
 
     return (
@@ -303,32 +309,42 @@ export default function PythonFoundation3() {
             </div>
 
             {/* Main Content */}
-            <div className="flex-1 overflow-y-auto p-8">
-                <div className="max-w-4xl mx-auto">
-                    <header className="mb-8">
-                        <h2 className="text-3xl font-bold text-slate-800 mb-2">
-                            {sections.find(s => s.id === activeSection)?.title}
-                        </h2>
-                        <div className="h-1 w-20 bg-teal-500 rounded-full"></div>
-                    </header>
+            <div className="flex-1 flex flex-col h-full overflow-hidden relative">
+                <div ref={scrollRef} className="flex-1 overflow-y-auto p-4 md:p-8">
+                    <div className="max-w-4xl mx-auto">
+                        <header className="mb-6 md:mb-8">
+                            <h2 className="text-2xl md:text-3xl font-bold text-slate-800 mb-2">
+                                {sections.find(s => s.id === activeSection)?.title}
+                            </h2>
+                            <div className="h-1 w-20 bg-teal-500 rounded-full"></div>
+                        </header>
 
-                    <ActiveComponent />
-
-                    <div className="mt-12 flex justify-between border-t border-slate-200 pt-8">
-                        <Button
-                            variant="secondary"
-                            onClick={() => setActiveSection(prev => Math.max(1, prev - 1))}
-                            className={activeSection === 1 ? 'opacity-0 pointer-events-none' : ''}
-                        >
-                            上一章
-                        </Button>
-                        <Button
-                            onClick={() => setActiveSection(prev => Math.min(sections.length, prev + 1))}
-                            className={activeSection === sections.length ? 'opacity-0 pointer-events-none' : ''}
-                        >
-                            继续学习 <ArrowRight size={18} />
-                        </Button>
+                        <ActiveComponent />
                     </div>
+                </div>
+
+                <div className="h-20 bg-white border-t border-slate-200 flex items-center justify-between px-8 z-20 flex-shrink-0">
+                    <button
+                        onClick={() => setActiveSection(prev => Math.max(1, prev - 1))}
+                        disabled={activeSection === 1}
+                        className={`px-5 py-2.5 rounded-lg flex items-center gap-2 font-bold transition-all
+                            ${activeSection === 1 ? 'text-gray-300 cursor-not-allowed' : 'text-gray-600 hover:bg-gray-100 hover:shadow-sm'}`}
+                    >
+                        <ArrowRight className="rotate-180" size={18} /> 上一节
+                    </button>
+
+                    <button
+                        onClick={() => {
+                            if (activeSection < sections.length) {
+                                setActiveSection(prev => prev + 1);
+                            } else {
+                                navigate('/python/f4');
+                            }
+                        }}
+                        className={`px-6 py-2.5 rounded-lg flex items-center gap-2 font-bold transition-all shadow-sm bg-teal-600 text-white hover:bg-teal-700 hover:shadow-md hover:-translate-y-0.5`}
+                    >
+                        {activeSection === sections.length ? '下一课' : '下一节'} <ArrowRight size={18} />
+                    </button>
                 </div>
             </div>
         </div>

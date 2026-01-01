@@ -1,11 +1,11 @@
-import React, { useState, useEffect, useCallback } from 'react';
+import React, { useState, useEffect, useCallback, useRef } from 'react';
 import {
     Target, Play, RotateCcw, HelpCircle,
     Trophy, Code, ArrowRight, Sparkles,
     Search, Gauge, Brain, ChevronRight,
     SearchCheck, Zap, Menu, X
 } from 'lucide-react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 
 // --- 辅助组件 ---
 const Icon = ({ name, size = 20, className = "" }) => {
@@ -537,17 +537,15 @@ const sections = [
     { id: 5, title: '代码大解密', icon: 'code', component: LogicSlide },
 ];
 
-const BinarySearchProject = () => {
+export default function BinarySearchProject() {
+    const navigate = useNavigate();
     const [activeSection, setActiveSection] = useState(1);
     const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+    const scrollRef = useRef(null);
 
-    const nextSection = () => {
-        if (activeSection < sections.length) setActiveSection(activeSection + 1);
-    };
-
-    const prevSection = () => {
-        if (activeSection > 1) setActiveSection(activeSection - 1);
-    };
+    useEffect(() => {
+        scrollRef.current?.scrollTo(0, 0);
+    }, [activeSection]);
 
     const currentSection = sections.find(s => s.id === activeSection);
 
@@ -604,68 +602,67 @@ const BinarySearchProject = () => {
             </div>
 
             {/* Main Content */}
-            <div className="flex-1 flex flex-col h-full relative overflow-hidden">
-                {/* Header */}
-                <header className="h-20 bg-white/80 backdrop-blur-md border-b border-slate-200 flex items-center justify-between px-8 z-20">
-                    <div className="flex items-center gap-4">
-                        <button
-                            onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-                            className="p-2 bg-slate-100 rounded-lg md:hidden"
-                        >
-                            {isMobileMenuOpen ? <X size={24} /> : <Menu size={24} />}
+            <div className="flex-1 flex flex-col h-full overflow-hidden relative">
+                {/* Header with Mobile Menu Button */}
+                <header className="h-16 bg-white border-b border-slate-200 flex items-center justify-between px-6 md:px-8 flex-shrink-0 z-20">
+                    <div className="flex items-center gap-3 md:hidden">
+                        <button onClick={() => setIsMobileMenuOpen(true)} className="p-2 -ml-2 text-slate-500 hover:bg-slate-100 rounded-lg">
+                            <Menu size={24} />
                         </button>
-                        <h2 className="text-xl font-black text-slate-800 tracking-tight">
-                            {currentSection.title}
+                    </div>
+
+                    <div className="flex items-center gap-3">
+                        <div className={`p-2 rounded-lg ${activeSection === sections.length ? 'bg-yellow-100 text-yellow-600' : 'bg-indigo-100 text-indigo-600'}`}>
+                            <Icon name={currentSection?.icon} size={20} />
+                        </div>
+                        <h2 className="font-bold text-slate-800 text-lg sm:text-lg truncate max-w-[200px] sm:max-w-md">
+                            {currentSection?.title}
                         </h2>
                     </div>
-                    <div className="flex items-center gap-3">
-                        <div className="hidden sm:flex h-2 w-32 bg-slate-100 rounded-full overflow-hidden">
-                            <div
-                                className="h-full bg-indigo-600 transition-all duration-500"
-                                style={{ width: `${(activeSection / sections.length) * 100}%` }}
-                            ></div>
-                        </div>
-                        <span className="text-xs font-bold text-slate-400">
-                            {activeSection} / {sections.length}
-                        </span>
+
+                    <div className="hidden md:flex text-xs font-bold text-slate-400 uppercase tracking-widest">
+                        Section {activeSection} / {sections.length}
                     </div>
                 </header>
 
-                {/* Scrollable Area */}
-                <main className="flex-1 overflow-y-auto p-6 md:p-12">
-                    <div className="max-w-5xl mx-auto">
-                        <currentSection.component />
+                <main ref={scrollRef} className="flex-1 overflow-y-auto p-4 md:p-8 custom-scrollbar relative">
+                    <div className="max-w-4xl mx-auto pb-10">
+                        {/* Dynamic Component */}
+                        {currentSection && React.createElement(currentSection.component)}
                     </div>
                 </main>
 
-                {/* Footer Controls */}
-                <footer className="h-24 bg-white border-t border-slate-200 px-8 flex items-center justify-between z-20">
+                {/* Sticky Footer */}
+                <div className="h-20 bg-white border-t border-slate-200 flex items-center justify-between px-8 z-20 flex-shrink-0">
                     <button
-                        onClick={prevSection}
+                        onClick={() => setActiveSection(prev => Math.max(1, prev - 1))}
                         disabled={activeSection === 1}
-                        className={`flex items-center gap-2 px-6 py-3 rounded-xl font-bold transition-all
+                        className={`flex items-center gap-2 px-6 py-2.5 rounded-xl font-bold transition-all
                             ${activeSection === 1
-                                ? 'text-slate-300'
-                                : 'text-slate-600 hover:bg-slate-50'}`}
+                                ? 'text-slate-300 cursor-not-allowed'
+                                : 'text-slate-600 hover:bg-slate-100 hover:text-slate-900'}`}
                     >
-                        <ArrowRight className="rotate-180" size={20} /> 上一步
+                        <ArrowRight className="rotate-180" size={20} /> 上一节
                     </button>
 
                     <button
-                        onClick={nextSection}
-                        disabled={activeSection === sections.length}
-                        className={`flex items-center gap-2 px-8 py-3 rounded-xl font-bold transition-all shadow-lg
-                            ${activeSection === sections.length
-                                ? 'bg-slate-100 text-slate-400'
-                                : 'bg-indigo-600 text-white hover:bg-indigo-700 hover:translate-x-1'}`}
+                        onClick={() => {
+                            if (activeSection < sections.length) {
+                                setActiveSection(prev => prev + 1);
+                            } else {
+                                navigate('/python/encryption');
+                            }
+                        }}
+                        className={`flex items-center gap-2 px-8 py-3 rounded-xl font-bold transition-all shadow-lg text-white hover:translate-x-1
+                            ${activeSection === sections.length ? 'bg-indigo-600 hover:bg-indigo-700' : 'bg-indigo-600 hover:bg-indigo-700'}`}
                     >
-                        {activeSection === sections.length ? '学习完成' : '下一步'}
+                        {activeSection === sections.length ? '下一课' : '下一节'}
                         <ArrowRight size={20} />
                     </button>
-                </footer>
+                </div>
             </div>
         </div>
     );
 };
 
-export default BinarySearchProject;
+

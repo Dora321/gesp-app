@@ -1,6 +1,6 @@
-import React, { useState } from 'react';
-import { Link } from 'react-router-dom';
-import { Box, Code, Package, Zap, ArrowRight, RefreshCw, Sparkles, BookOpen, AlertCircle } from 'lucide-react';
+import React, { useState, useRef, useEffect } from 'react';
+import { Link, useNavigate } from 'react-router-dom';
+import { Box, Code, Package, Zap, ArrowRight, RefreshCw, Sparkles, BookOpen, AlertCircle, Menu, X, Play } from 'lucide-react';
 
 // --- Shared Components ---
 const Button = ({ onClick, children, className, variant = 'primary', disabled = false }) => {
@@ -233,29 +233,47 @@ const sections = [
 ];
 
 export default function PythonFoundation4() {
+    const navigate = useNavigate();
     const [activeSection, setActiveSection] = useState(1);
+    const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+    const scrollRef = useRef(null);
+
+    useEffect(() => {
+        scrollRef.current?.scrollTo(0, 0);
+    }, [activeSection]);
     const ActiveComponent = sections.find(s => s.id === activeSection)?.component || (() => <div>Coming Soon</div>);
 
     return (
         <div className="flex h-screen bg-slate-50 font-sans text-slate-800 selection:bg-indigo-100">
             {/* Sidebar */}
-            <div className="w-64 bg-white border-r border-slate-200 flex flex-col flex-shrink-0">
-                <div className="p-6 border-b border-slate-100">
-                    <h1 className="text-xl font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-indigo-500 to-purple-600 flex items-center gap-2">
-                        <Link to="/" className="hover:opacity-80 transition-opacity">
-                            <div className="w-8 h-8 bg-indigo-100 rounded-lg flex items-center justify-center overflow-hidden border border-indigo-200">
-                                <span className="text-lg">🏠</span>
-                            </div>
-                        </Link>
-                        F4: 函数模块
-                    </h1>
-                    <p className="text-xs text-slate-400 mt-2 font-medium">Python 基础体系</p>
+            <div className={`
+                fixed inset-y-0 left-0 z-50 w-64 bg-white border-r border-slate-200 flex flex-col flex-shrink-0 transition-transform duration-300 md:relative md:translate-x-0 shadow-2xl md:shadow-none
+                ${isMobileMenuOpen ? 'translate-x-0' : '-translate-x-full'}
+            `}>
+                <div className="p-6 border-b border-slate-100 flex justify-between items-center">
+                    <div className="flex flex-col">
+                        <h1 className="text-xl font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-indigo-500 to-purple-600 flex items-center gap-2">
+                            <Link to="/" className="hover:opacity-80 transition-opacity">
+                                <div className="w-8 h-8 bg-indigo-100 rounded-lg flex items-center justify-center overflow-hidden border border-indigo-200">
+                                    <span className="text-lg">🏠</span>
+                                </div>
+                            </Link>
+                            F4: 函数模块
+                        </h1>
+                        <p className="text-xs text-slate-400 mt-2 font-medium">Python 基础体系</p>
+                    </div>
+                    <button onClick={() => setIsMobileMenuOpen(false)} className="md:hidden p-2 text-slate-400 hover:text-slate-600">
+                        <X size={20} />
+                    </button>
                 </div>
                 <div className="flex-1 overflow-y-auto p-4 space-y-2">
                     {sections.map(section => (
                         <button
                             key={section.id}
-                            onClick={() => setActiveSection(section.id)}
+                            onClick={() => {
+                                setActiveSection(section.id);
+                                setIsMobileMenuOpen(false);
+                            }}
                             className={`w-full text-left px-4 py-3 rounded-xl transition-all duration-200 flex items-center gap-3 font-medium
                         ${activeSection === section.id
                                     ? 'bg-indigo-50 text-indigo-700 shadow-sm ring-1 ring-indigo-200'
@@ -280,32 +298,55 @@ export default function PythonFoundation4() {
             </div>
 
             {/* Main Content */}
-            <div className="flex-1 overflow-y-auto p-8">
-                <div className="max-w-4xl mx-auto">
-                    <header className="mb-8">
-                        <h2 className="text-3xl font-bold text-slate-800 mb-2">
-                            {sections.find(s => s.id === activeSection)?.title}
-                        </h2>
-                        <div className="h-1 w-20 bg-indigo-500 rounded-full"></div>
-                    </header>
+            <div className="flex-1 flex flex-col h-full overflow-hidden relative">
+                {/* Mobile Header */}
+                <header className="h-16 bg-white border-b border-slate-200 flex items-center justify-between px-6 md:hidden flex-shrink-0 z-20">
+                    <button onClick={() => setIsMobileMenuOpen(true)} className="p-2 -ml-2 text-slate-500 hover:bg-slate-100 rounded-lg">
+                        <Menu size={24} />
+                    </button>
+                    <span className="font-bold text-slate-700">Section {activeSection}</span>
+                </header>
 
-                    <ActiveComponent />
+                <main ref={scrollRef} className="flex-1 overflow-y-auto p-8 relative">
+                    <div className="max-w-4xl mx-auto pb-10">
+                        <header className="mb-8">
+                            <h2 className="text-3xl font-bold text-slate-800 mb-2">
+                                {sections.find(s => s.id === activeSection)?.title}
+                            </h2>
+                            <div className="h-1 w-20 bg-indigo-500 rounded-full"></div>
+                        </header>
 
-                    <div className="mt-12 flex justify-between border-t border-slate-200 pt-8">
-                        <Button
-                            variant="secondary"
-                            onClick={() => setActiveSection(prev => Math.max(1, prev - 1))}
-                            className={activeSection === 1 ? 'opacity-0 pointer-events-none' : ''}
-                        >
-                            上一章
-                        </Button>
-                        <Button
-                            onClick={() => setActiveSection(prev => Math.min(sections.length, prev + 1))}
-                            className={activeSection === sections.length ? 'opacity-0 pointer-events-none' : ''}
-                        >
-                            完成基础篇 🎉
-                        </Button>
+                        <ActiveComponent />
                     </div>
+                </main>
+
+                {/* Sticky Footer */}
+                <div className="h-20 bg-white border-t border-slate-200 flex items-center justify-between px-8 z-20 flex-shrink-0">
+                    <button
+                        onClick={() => setActiveSection(prev => Math.max(1, prev - 1))}
+                        disabled={activeSection === 1}
+                        className={`flex items-center gap-2 px-6 py-2.5 rounded-xl font-bold transition-all
+                            ${activeSection === 1
+                                ? 'text-slate-300 cursor-not-allowed'
+                                : 'text-slate-600 hover:bg-slate-100 hover:text-slate-900'}`}
+                    >
+                        <ArrowRight className="rotate-180" size={20} /> 上一节
+                    </button>
+
+                    <button
+                        onClick={() => {
+                            if (activeSection < sections.length) {
+                                setActiveSection(prev => prev + 1);
+                            } else {
+                                navigate('/python/f5');
+                            }
+                        }}
+                        className={`flex items-center gap-2 px-8 py-3 rounded-xl font-bold transition-all shadow-lg text-white hover:translate-x-1
+                             bg-indigo-600 hover:bg-indigo-700`}
+                    >
+                        {activeSection === sections.length ? '下一课' : '下一节'}
+                        <ArrowRight size={20} />
+                    </button>
                 </div>
             </div>
         </div>

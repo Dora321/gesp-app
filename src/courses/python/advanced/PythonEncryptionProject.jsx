@@ -1,5 +1,5 @@
-import React, { useState, useEffect } from 'react';
-import { Link } from 'react-router-dom';
+import React, { useState, useEffect, useRef } from 'react';
+import { Link, useNavigate } from 'react-router-dom';
 import { Shield, Lock, Unlock, Key, FileText, ArrowRight, RotateCcw, Check, X, Terminal, Binary, Hash, Eye, EyeOff, Menu, RefreshCw } from 'lucide-react';
 
 const Icon = ({ name, className }) => {
@@ -768,10 +768,10 @@ const CodeChallengeSlide = () => {
                                 <div
                                     key={idx}
                                     className={`flex items-center justify-between p-2 rounded text-xs ${testsPassed[idx] === true
-                                            ? 'bg-green-900/30 border border-green-500/30'
-                                            : testsPassed[idx] === false
-                                                ? 'bg-red-900/30 border border-red-500/30'
-                                                : 'bg-slate-800 border border-slate-700'
+                                        ? 'bg-green-900/30 border border-green-500/30'
+                                        : testsPassed[idx] === false
+                                            ? 'bg-red-900/30 border border-red-500/30'
+                                            : 'bg-slate-800 border border-slate-700'
                                         }`}
                                 >
                                     <span className="font-mono text-slate-300">
@@ -835,17 +835,15 @@ const sections = [
     { id: 6, title: '特工实战', icon: 'shield', component: PracticeSlide },
 ];
 
-const PythonEncryptionProject = () => {
+export default function PythonEncryptionProject() {
+    const navigate = useNavigate();
     const [activeSection, setActiveSection] = useState(1);
     const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+    const scrollRef = useRef(null);
 
-    const nextSection = () => {
-        if (activeSection < sections.length) setActiveSection(activeSection + 1);
-    };
-
-    const prevSection = () => {
-        if (activeSection > 1) setActiveSection(activeSection - 1);
-    };
+    useEffect(() => {
+        scrollRef.current?.scrollTo(0, 0);
+    }, [activeSection]);
 
     const currentSection = sections.find(s => s.id === activeSection);
 
@@ -913,67 +911,62 @@ const PythonEncryptionProject = () => {
 
             {/* Main Content */}
             <div className="flex-1 flex flex-col h-full relative overflow-hidden bg-slate-950">
-                {/* Header */}
-                <header className="h-20 bg-slate-900/80 backdrop-blur-md border-b border-green-500/20 flex items-center justify-between px-8 z-20">
-                    <div className="flex items-center gap-4">
-                        <button
-                            onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-                            className="p-2 bg-slate-100 rounded-lg md:hidden text-slate-600"
-                        >
-                            {isMobileMenuOpen ? <X size={24} /> : <Menu size={24} />}
+                {/* Header with Mobile Menu Button */}
+                <header className="h-16 bg-slate-900/80 backdrop-blur-md border-b border-green-500/20 flex items-center justify-between px-6 md:px-8 flex-shrink-0 z-20">
+                    <div className="flex items-center gap-3 md:hidden">
+                        <button onClick={() => setIsMobileMenuOpen(true)} className="p-2 -ml-2 text-slate-600 hover:bg-slate-800 rounded-lg">
+                            <Menu size={24} />
                         </button>
+                    </div>
+
+                    <div className="flex items-center gap-3">
                         <h2 className="text-xl font-black text-green-400 tracking-tight flex items-center gap-2">
                             <span className="text-green-600">MISSION:</span> {currentSection.title}
                         </h2>
                     </div>
-                    <div className="flex items-center gap-3">
-                        <span className="text-xs font-mono font-bold text-green-400">
-                            STEP {activeSection}/{sections.length}
-                        </span>
-                        <div className="hidden sm:flex h-1.5 w-32 bg-slate-200 rounded-full overflow-hidden">
-                            <div
-                                className="h-full bg-green-500 transition-all duration-500"
-                                style={{ width: `${(activeSection / sections.length) * 100}%` }}
-                            ></div>
-                        </div>
+
+                    <div className="hidden md:flex text-xs font-mono font-bold text-green-600 uppercase tracking-widest">
+                        STEP {activeSection} / {sections.length}
                     </div>
                 </header>
 
-                {/* Content Area */}
-                <main className="flex-1 overflow-y-auto p-6 md:p-12">
-                    <div className="max-w-4xl mx-auto">
+                {/* Scrollable Content Area */}
+                <main ref={scrollRef} className="flex-1 overflow-y-auto p-4 md:p-8 custom-scrollbar relative">
+                    <div className="max-w-4xl mx-auto pb-10">
+                        {/* Dynamic Component */}
                         <currentSection.component />
                     </div>
                 </main>
 
-                {/* Footer Controls */}
-                <footer className="h-24 bg-slate-900/80 backdrop-blur-md border-t border-green-500/20 px-8 flex items-center justify-between z-20">
+                {/* Sticky Footer */}
+                <div className="h-20 bg-slate-900/80 backdrop-blur-md border-t border-green-500/20 flex items-center justify-between px-8 z-20 flex-shrink-0">
                     <button
-                        onClick={prevSection}
+                        onClick={() => setActiveSection(prev => Math.max(1, prev - 1))}
                         disabled={activeSection === 1}
-                        className={`flex items-center gap-2 px-6 py-3 rounded-xl font-bold transition-all
+                        className={`flex items-center gap-2 px-6 py-2.5 rounded-xl font-bold transition-all
                             ${activeSection === 1
                                 ? 'text-slate-600 cursor-not-allowed'
                                 : 'text-green-400 hover:bg-slate-800/50'}`}
                     >
-                        <ArrowRight className="rotate-180" size={20} /> 上一步
+                        <ArrowRight className="rotate-180" size={20} /> 上一节
                     </button>
 
                     <button
-                        onClick={nextSection}
-                        disabled={activeSection === sections.length}
-                        className={`flex items-center gap-2 px-8 py-3 rounded-xl font-bold transition-all shadow-lg
-                            ${activeSection === sections.length
-                                ? 'bg-slate-100 text-slate-400 cursor-not-allowed'
-                                : 'bg-green-500 text-white hover:bg-green-600 hover:translate-x-1 shadow-green-200'}`}
+                        onClick={() => {
+                            if (activeSection < sections.length) {
+                                setActiveSection(prev => prev + 1);
+                            } else {
+                                navigate('/python/sorting');
+                            }
+                        }}
+                        className={`flex items-center gap-2 px-8 py-3 rounded-xl font-bold transition-all shadow-lg text-white hover:translate-x-1
+                            ${activeSection === sections.length ? 'bg-green-500 hover:bg-green-600 shadow-green-200' : 'bg-green-500 hover:bg-green-600 shadow-green-200'}`}
                     >
-                        {activeSection === sections.length ? '任务完成' : '下一步'}
+                        {activeSection === sections.length ? '下一课' : '下一节'}
                         <ArrowRight size={20} />
                     </button>
-                </footer>
+                </div>
             </div>
         </div>
     );
 };
-
-export default PythonEncryptionProject;
