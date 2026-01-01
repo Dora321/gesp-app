@@ -1003,19 +1003,19 @@ export default function PythonAdvanced2() {
                 fixed md:relative top-0 left-0 h-full w-64 bg-white border-r border-slate-200 flex flex-col shadow-lg z-50 transition-transform duration-300 ease-in-out md:translate-x-0
                 ${isMobileMenuOpen ? 'translate-x-0' : '-translate-x-full'}
             `}>
-                <div className="p-5 border-b border-slate-100 bg-gradient-to-br from-orange-50 to-white hidden md:block">
+                <div className="p-5 border-b border-slate-100 hidden md:block">
                     <h1 className="text-lg font-bold flex items-center gap-2 text-orange-700">
                         <Link to="/" className="hover:opacity-80 transition-opacity">
                             <div className="w-8 h-8 bg-white rounded-lg flex items-center justify-center overflow-hidden border border-slate-200 shadow-sm">
-                                <img src={`${import.meta.env.BASE_URL}logo.jpg`} alt="Logo" className="w-full h-full object-cover" />
+                                <span className="text-lg">🎮</span>
                             </div>
                         </Link>
-                        <span className="bg-orange-500 text-white p-1 rounded">Python</span>
-                        <span>实战课堂</span>
+                        <span className="bg-orange-500 text-white p-1 rounded text-sm">Python</span>
+                        A2: 2048
                     </h1>
-                    <p className="text-xs text-orange-400 mt-2 font-medium pl-1">进阶第 2 课：2048 大作战 🎮</p>
+                    <p className="text-xs text-slate-500 mt-2">实战项目：2048 大作战</p>
                 </div>
-                {/* Mobile Header in Sidebar (visible only on mobile when menu open) */}
+                {/* Mobile Header in Sidebar */}
                 <div className="p-4 border-b border-slate-100 md:hidden flex justify-between items-center bg-orange-50">
                     <span className="font-bold text-orange-700">课程目录</span>
                     <button onClick={() => setIsMobileMenuOpen(false)}>
@@ -1023,29 +1023,81 @@ export default function PythonAdvanced2() {
                     </button>
                 </div>
 
-                <div className="flex-1 overflow-y-auto w-full py-2 custom-scrollbar">
-                    {sections.map((section) => (
-                        <button
-                            key={section.id}
-                            onClick={() => {
-                                setActiveSection(section.id);
-                                setIsMobileMenuOpen(false);
-                            }}
-                            className={`w-full text-left px-5 py-3 transition-all duration-200 flex items-center gap-3 border-l-4 group relative
-                ${activeSection === section.id
-                                    ? 'bg-orange-50 border-orange-500 text-orange-700 font-bold shadow-sm'
-                                    : 'border-transparent text-slate-500 hover:bg-slate-50 hover:text-slate-700 hover:border-slate-300'
-                                }`}
-                        >
-                            <div className={`
-                p-1.5 rounded-lg transition-colors flex-shrink-0
-                ${activeSection === section.id ? 'bg-white text-orange-500 shadow-sm' : 'bg-slate-100 text-slate-400 group-hover:bg-white group-hover:text-slate-600'}
-              `}>
-                                <Icon name={section.icon} size={16} />
-                            </div>
-                            <span className="truncate text-sm font-medium">{section.title}</span>
-                        </button>
-                    ))}
+                <div className="flex-1 overflow-y-auto p-4 space-y-6">
+                    {/* Group 1: 游戏体验 */}
+                    <div>
+                        <div className="px-4 mb-2 text-xs font-bold text-slate-400 uppercase tracking-wider">🎮 游戏体验</div>
+                        <div className="space-y-1">
+                            {sections.slice(0, 2).map((section) => (
+                                <button
+                                    key={section.id}
+                                    onClick={() => {
+                                        setActiveSection(section.id);
+                                        setIsMobileMenuOpen(false);
+                                    }}
+                                    className={`w-full flex items-center gap-3 px-4 py-2.5 rounded-lg transition-colors text-sm ${activeSection === section.id
+                                        ? 'bg-orange-50 text-orange-700 font-medium'
+                                        : 'text-slate-600 hover:bg-slate-50'
+                                        }`}
+                                >
+                                    <div className={`p-1.5 rounded-lg ${activeSection === section.id ? 'bg-white text-orange-500' : 'bg-slate-100 text-slate-400'}`}>
+                                        <Icon name={section.icon} size={16} />
+                                    </div>
+                                    <span className="truncate">{section.title}</span>
+                                </button>
+                            ))}
+                        </div>
+                    </div>
+
+                    {/* Group 2: 核心开发 */}
+                    <div>
+                        <div className="px-4 mb-2 text-xs font-bold text-slate-400 uppercase tracking-wider">🧩 核心开发</div>
+                        <div className="space-y-1">
+                            {sections.slice(2, 5).map((section) => (
+                                <button
+                                    key={section.id}
+                                    onClick={() => {
+                                        setActiveSection(section.id);
+                                        setIsMobileMenuOpen(false);
+                                    }}
+                                    className={`w-full flex items-center gap-3 px-4 py-2.5 rounded-lg transition-colors text-sm ${activeSection === section.id
+                                        ? 'bg-orange-50 text-orange-700 font-medium'
+                                        : 'text-slate-600 hover:bg-slate-50'
+                                        }`}
+                                >
+                                    <div className={`p-1.5 rounded-lg ${activeSection === section.id ? 'bg-white text-orange-500' : 'bg-slate-100 text-slate-400'}`}>
+                                        <Icon name={section.icon} size={16} />
+                                    </div>
+                                    <span className="truncate">{section.title}</span>
+                                </button>
+                            ))}
+                        </div>
+                    </div>
+
+                    {/* Group 3: 总结与测验 */}
+                    <div>
+                        <div className="px-4 mb-2 text-xs font-bold text-slate-400 uppercase tracking-wider">🏆 总结测验</div>
+                        <div className="space-y-1">
+                            {sections.slice(5, 7).map((section) => (
+                                <button
+                                    key={section.id}
+                                    onClick={() => {
+                                        setActiveSection(section.id);
+                                        setIsMobileMenuOpen(false);
+                                    }}
+                                    className={`w-full flex items-center gap-3 px-4 py-2.5 rounded-lg transition-colors text-sm ${activeSection === section.id
+                                        ? 'bg-orange-50 text-orange-700 font-medium'
+                                        : 'text-slate-600 hover:bg-slate-50'
+                                        }`}
+                                >
+                                    <div className={`p-1.5 rounded-lg ${activeSection === section.id ? 'bg-white text-orange-500' : 'bg-slate-100 text-slate-400'}`}>
+                                        <Icon name={section.icon} size={16} />
+                                    </div>
+                                    <span className="truncate">{section.title}</span>
+                                </button>
+                            ))}
+                        </div>
+                    </div>
                 </div>
             </div>
 

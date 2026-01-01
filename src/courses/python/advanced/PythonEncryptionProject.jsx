@@ -870,7 +870,7 @@ export default function PythonEncryptionProject() {
 
             {/* Sidebar similar to BinarySearchProject but with Agent Theme */}
             <div className={`
-                fixed inset-y-0 left-0 z-50 w-72 bg-slate-900 border-r border-slate-700 text-slate-100 shadow-2xl transition-transform duration-300 md:relative md:translate-x-0 md:shadow-none
+                fixed inset-y-0 left-0 z-50 w-64 bg-slate-900 border-r border-slate-700 text-slate-100 shadow-2xl transition-transform duration-300 md:relative md:translate-x-0 md:shadow-none
                 ${isMobileMenuOpen ? 'translate-x-0' : '-translate-x-full'}
             `}>
                 <div className="p-6 border-b border-slate-800 flex items-center gap-3">
@@ -878,33 +878,85 @@ export default function PythonEncryptionProject() {
                         <Lock size={24} />
                     </div>
                     <div>
-                        <h1 className="font-bold text-white leading-none tracking-wider">TOP SECRET</h1>
+                        <h1 className="font-bold text-white leading-none tracking-wider">特工加密</h1>
                         <p className="text-[10px] text-green-500 mt-1 uppercase tracking-widest font-bold">Encryption Master</p>
                     </div>
                 </div>
 
-                <nav className="p-4 space-y-2">
-                    {sections.map(section => (
-                        <button
-                            key={section.id}
-                            onClick={() => {
-                                setActiveSection(section.id);
-                                setIsMobileMenuOpen(false);
-                            }}
-                            className={`w-full text-left px-4 py-3 rounded-xl text-sm transition-all flex items-center gap-4 font-bold border
-                                ${activeSection === section.id
-                                    ? 'bg-green-500/10 text-green-400 border-green-500/50 shadow-[0_0_15px_rgba(34,197,94,0.1)]'
-                                    : 'border-transparent text-slate-400 hover:bg-slate-800 hover:text-white'}`}
-                        >
-                            <Icon name={section.icon} className={activeSection === section.id ? 'text-green-400' : 'text-slate-500'} />
-                            {section.title}
-                        </button>
-                    ))}
+                <nav className="flex-1 overflow-y-auto p-4 space-y-6">
+                    {/* Group 1: 基础 */}
+                    <div>
+                        <div className="px-4 mb-2 text-xs font-bold text-slate-500 uppercase tracking-wider">🔰 任务入门</div>
+                        <div className="space-y-1">
+                            {sections.slice(0, 2).map(section => (
+                                <button
+                                    key={section.id}
+                                    onClick={() => {
+                                        setActiveSection(section.id);
+                                        setIsMobileMenuOpen(false);
+                                    }}
+                                    className={`w-full flex items-center gap-3 px-4 py-2.5 rounded-lg transition-colors text-sm ${activeSection === section.id
+                                        ? 'bg-green-500/10 text-green-400 font-medium'
+                                        : 'text-slate-400 hover:bg-slate-800 hover:text-white'
+                                        }`}
+                                >
+                                    <Icon name={section.icon} className={activeSection === section.id ? 'text-green-400' : 'text-slate-500'} />
+                                    {section.title}
+                                </button>
+                            ))}
+                        </div>
+                    </div>
+
+                    {/* Group 2: 加密算法 */}
+                    <div>
+                        <div className="px-4 mb-2 text-xs font-bold text-slate-500 uppercase tracking-wider">🔐 加密算法</div>
+                        <div className="space-y-1">
+                            {sections.slice(2, 5).map(section => (
+                                <button
+                                    key={section.id}
+                                    onClick={() => {
+                                        setActiveSection(section.id);
+                                        setIsMobileMenuOpen(false);
+                                    }}
+                                    className={`w-full flex items-center gap-3 px-4 py-2.5 rounded-lg transition-colors text-sm ${activeSection === section.id
+                                        ? 'bg-green-500/10 text-green-400 font-medium'
+                                        : 'text-slate-400 hover:bg-slate-800 hover:text-white'
+                                        }`}
+                                >
+                                    <Icon name={section.icon} className={activeSection === section.id ? 'text-green-400' : 'text-slate-500'} />
+                                    {section.title}
+                                </button>
+                            ))}
+                        </div>
+                    </div>
+
+                    {/* Group 3: 实战 */}
+                    <div>
+                        <div className="px-4 mb-2 text-xs font-bold text-slate-500 uppercase tracking-wider">🏆 特工实战</div>
+                        <div className="space-y-1">
+                            {sections.slice(5, 6).map(section => (
+                                <button
+                                    key={section.id}
+                                    onClick={() => {
+                                        setActiveSection(section.id);
+                                        setIsMobileMenuOpen(false);
+                                    }}
+                                    className={`w-full flex items-center gap-3 px-4 py-2.5 rounded-lg transition-colors text-sm ${activeSection === section.id
+                                        ? 'bg-green-500/10 text-green-400 font-medium'
+                                        : 'text-slate-400 hover:bg-slate-800 hover:text-white'
+                                        }`}
+                                >
+                                    <Icon name={section.icon} className={activeSection === section.id ? 'text-green-400' : 'text-slate-500'} />
+                                    {section.title}
+                                </button>
+                            ))}
+                        </div>
+                    </div>
                 </nav>
 
-                <div className="absolute bottom-0 left-0 w-full p-6 border-t border-slate-800">
+                <div className="p-6 border-t border-slate-800">
                     <Link to="/" className="flex items-center gap-2 text-slate-500 hover:text-green-400 transition-colors text-sm font-bold">
-                        <RotateCcw size={16} /> 返回总部 (Home)
+                        <RotateCcw size={16} /> 返回总部
                     </Link>
                 </div>
             </div>

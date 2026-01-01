@@ -196,10 +196,154 @@ const ParserSlide = () => {
     );
 };
 
+// 3. Robots Protocol Slide
+const RobotsSlide = () => {
+    const [path, setPath] = useState('/private/data');
+    const [result, setResult] = useState(null);
+
+    const robotsTxt = "User-agent: *\n" +
+        "Disallow: /private/\n" +
+        "Disallow: /admin/\n" +
+        "Allow: /public/\n";
+
+    const checkRobots = () => {
+        const isAllowed = !path.startsWith('/private/') && !path.startsWith('/admin/');
+        setResult({
+            allowed: isAllowed,
+            message: isAllowed ? 'Access Allowed' : 'Access Denied by robots.txt'
+        });
+    };
+
+    return (
+        <div className="space-y-6 animate-in fade-in slide-in-from-bottom-4 duration-500">
+            <div className="bg-slate-800 p-6 rounded-2xl border border-slate-700">
+                <h3 className="text-xl font-bold text-yellow-400 mb-4 flex items-center gap-2">
+                    <Shield size={20} /> 爬虫协议 (Robots.txt)
+                </h3>
+                <p className="text-slate-300 mb-6">
+                    在抓取网站之前，有礼貌的爬虫会先检查 `robots.txt`，看看主人允许进入哪些房间。
+                </p>
+
+                <div className="grid md:grid-cols-2 gap-6">
+                    <div className="space-y-2">
+                        <div className="text-sm text-slate-400 font-bold">https://example.com/robots.txt</div>
+                        <CodeBlock code={robotsTxt} />
+                    </div>
+
+                    <div className="bg-slate-900 p-6 rounded-xl border border-slate-700 flex flex-col justify-center space-y-4">
+                        <div className="space-y-2">
+                            <label className="text-sm text-slate-400">尝试访问的路径:</label>
+                            <div className="flex gap-2">
+                                <input
+                                    value={path}
+                                    onChange={(e) => setPath(e.target.value)}
+                                    className="flex-1 bg-slate-800 border border-slate-600 rounded px-3 py-2 text-slate-200 outline-none focus:border-yellow-500"
+                                    placeholder="/path/to/check"
+                                />
+                                <Button onClick={checkRobots} variant="primary" className="bg-yellow-500 hover:bg-yellow-400 text-black shadow-none">
+                                    检查
+                                </Button>
+                            </div>
+                        </div>
+
+                        {result && (
+                            <div className={`p-4 rounded-lg border flex items-center gap-3 ${result.allowed
+                                ? 'bg-green-900/30 border-green-500/50 text-green-400'
+                                : 'bg-red-900/30 border-red-500/50 text-red-400'
+                                }`}>
+                                {result.allowed ? <ArrowRight className="bg-green-500 text-black rounded-full p-0.5" size={16} /> : <Shield size={16} />}
+                                <span className="font-bold">{result.message}</span>
+                            </div>
+                        )}
+                    </div>
+                </div>
+            </div>
+        </div>
+    );
+};
+
+// 4. Headers & User-Agent Slide
+const HeadersSlide = () => {
+    const [userAgent, setUserAgent] = useState('python-requests/2.28.1');
+    const [status, setStatus] = useState(null); // 'idle', 'blocked', 'success'
+
+    const tryAccess = () => {
+        if (userAgent.includes('python')) {
+            setStatus('blocked');
+        } else {
+            setStatus('success');
+        }
+    };
+
+    const switchToBrowser = () => {
+        setUserAgent('Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36...');
+        setStatus('idle');
+    };
+
+    return (
+        <div className="space-y-6 animate-in fade-in slide-in-from-bottom-4 duration-500">
+            <div className="bg-slate-800 p-6 rounded-2xl border border-slate-700">
+                <h3 className="text-xl font-bold text-pink-400 mb-4 flex items-center gap-2">
+                    <Key size={20} /> 伪装头部 (User-Agent)
+                </h3>
+                <p className="text-slate-300 mb-6">
+                    有些网站拒绝机器访问。我们需要把爬虫“伪装”成普通的浏览器。
+                </p>
+
+                <div className="bg-slate-900 p-6 rounded-xl border border-slate-700 space-y-6">
+                    <div className="space-y-2">
+                        <label className="text-sm text-slate-400">Current User-Agent:</label>
+                        <div className="bg-black/50 p-3 rounded-lg font-mono text-xs text-slate-300 break-all border border-slate-800 flex justify-between items-center gap-4">
+                            {userAgent}
+                            {userAgent.includes('python') && (
+                                <button
+                                    onClick={switchToBrowser}
+                                    className="px-2 py-1 bg-slate-700 text-cyan-400 rounded text-xs hover:bg-slate-600 whitespace-nowrap transition-colors"
+                                >
+                                    切换为浏览器
+                                </button>
+                            )}
+                        </div>
+                    </div>
+
+                    <div className="flex items-center justify-center p-8 bg-slate-800/50 rounded-xl relative overflow-hidden">
+                        {status === 'blocked' && (
+                            <div className="text-center animate-in zoom-in-50 duration-300">
+                                <div className="text-6xl mb-2">🚫</div>
+                                <div className="text-red-400 font-bold text-lg">403 Forbidden</div>
+                                <div className="text-slate-500 text-sm">检测到爬虫脚本，拒绝访问</div>
+                            </div>
+                        )}
+                        {status === 'success' && (
+                            <div className="text-center animate-in zoom-in-50 duration-300">
+                                <div className="text-6xl mb-2">✅</div>
+                                <div className="text-green-400 font-bold text-lg">200 OK</div>
+                                <div className="text-slate-500 text-sm">欢迎访问，尊贵的浏览器用户</div>
+                            </div>
+                        )}
+                        {!status && (
+                            <div className="text-center text-slate-600">
+                                <div className="text-4xl mb-2">🔒</div>
+                                <div>点击下方按钮尝试访问</div>
+                            </div>
+                        )}
+                    </div>
+
+                    <Button onClick={tryAccess} className={`w-full ${status === 'success' ? 'bg-green-500 hover:bg-green-600' : 'bg-pink-500 hover:bg-pink-600'}`}>
+                        {status === 'success' ? '访问成功' : '发起访问'}
+                    </Button>
+                </div>
+            </div>
+        </div>
+    );
+};
+
 
 const sections = [
     { id: 1, title: '发送请求 (Requests)', icon: Globe, component: RequestSlide },
     { id: 2, title: '解析数据 (BeautifulSoup)', icon: Search, component: ParserSlide },
+    { id: 3, title: '爬虫协议 (Robots.txt)', icon: Shield, component: RobotsSlide },
+    { id: 4, title: '伪装头部 (Headers)', icon: Key, component: HeadersSlide },
 ];
 
 export default function PythonCrawler() {

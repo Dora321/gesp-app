@@ -562,7 +562,7 @@ export default function BinarySearchProject() {
             {/* Layout follows common patterns in the app */}
             {/* Sidebar */}
             <div className={`
-                fixed inset-y-0 left-0 z-50 w-72 bg-white border-r border-slate-200 shadow-2xl transition-transform duration-300 md:relative md:translate-x-0 md:shadow-none
+                fixed inset-y-0 left-0 z-50 w-64 bg-white border-r border-slate-200 shadow-2xl transition-transform duration-300 md:relative md:translate-x-0 md:shadow-none
                 ${isMobileMenuOpen ? 'translate-x-0' : '-translate-x-full'}
             `}>
                 <div className="p-6 border-b border-slate-100 flex items-center gap-3">
@@ -570,31 +570,83 @@ export default function BinarySearchProject() {
                         <SearchCheck size={24} />
                     </div>
                     <div>
-                        <h1 className="font-bold text-slate-800 leading-none">猜数字专家</h1>
-                        <p className="text-[10px] text-slate-400 mt-1 uppercase tracking-widest font-bold">Binary Search AI</p>
+                        <h1 className="font-bold text-slate-800 leading-none">二分搜索</h1>
+                        <p className="text-[10px] text-slate-400 mt-1 uppercase tracking-widest font-bold">Binary Search</p>
                     </div>
                 </div>
 
-                <nav className="p-4 space-y-2">
-                    {sections.map(section => (
-                        <button
-                            key={section.id}
-                            onClick={() => {
-                                setActiveSection(section.id);
-                                setIsMobileMenuOpen(false);
-                            }}
-                            className={`w-full text-left px-4 py-3 rounded-2xl text-sm transition-all flex items-center gap-4 font-bold
-                                ${activeSection === section.id
-                                    ? 'bg-indigo-600 text-white shadow-lg shadow-indigo-100 scale-105'
-                                    : 'text-slate-500 hover:bg-slate-50 hover:text-slate-800'}`}
-                        >
-                            <Icon name={section.icon} className={activeSection === section.id ? 'text-white' : 'text-slate-400'} />
-                            {section.title}
-                        </button>
-                    ))}
+                <nav className="flex-1 overflow-y-auto p-4 space-y-6">
+                    {/* Group 1: 入门 */}
+                    <div>
+                        <div className="px-4 mb-2 text-xs font-bold text-slate-400 uppercase tracking-wider">🚀 入门体验</div>
+                        <div className="space-y-1">
+                            {sections.slice(0, 2).map(section => (
+                                <button
+                                    key={section.id}
+                                    onClick={() => {
+                                        setActiveSection(section.id);
+                                        setIsMobileMenuOpen(false);
+                                    }}
+                                    className={`w-full flex items-center gap-3 px-4 py-2.5 rounded-lg transition-colors text-sm ${activeSection === section.id
+                                        ? 'bg-indigo-50 text-indigo-700 font-medium'
+                                        : 'text-slate-600 hover:bg-slate-50'
+                                        }`}
+                                >
+                                    <Icon name={section.icon} className={activeSection === section.id ? 'text-indigo-600' : 'text-slate-400'} />
+                                    {section.title}
+                                </button>
+                            ))}
+                        </div>
+                    </div>
+
+                    {/* Group 2: 互动练习 */}
+                    <div>
+                        <div className="px-4 mb-2 text-xs font-bold text-slate-400 uppercase tracking-wider">🎮 互动练习</div>
+                        <div className="space-y-1">
+                            {sections.slice(2, 4).map(section => (
+                                <button
+                                    key={section.id}
+                                    onClick={() => {
+                                        setActiveSection(section.id);
+                                        setIsMobileMenuOpen(false);
+                                    }}
+                                    className={`w-full flex items-center gap-3 px-4 py-2.5 rounded-lg transition-colors text-sm ${activeSection === section.id
+                                        ? 'bg-indigo-50 text-indigo-700 font-medium'
+                                        : 'text-slate-600 hover:bg-slate-50'
+                                        }`}
+                                >
+                                    <Icon name={section.icon} className={activeSection === section.id ? 'text-indigo-600' : 'text-slate-400'} />
+                                    {section.title}
+                                </button>
+                            ))}
+                        </div>
+                    </div>
+
+                    {/* Group 3: 总结 */}
+                    <div>
+                        <div className="px-4 mb-2 text-xs font-bold text-slate-400 uppercase tracking-wider">🏆 代码解密</div>
+                        <div className="space-y-1">
+                            {sections.slice(4, 5).map(section => (
+                                <button
+                                    key={section.id}
+                                    onClick={() => {
+                                        setActiveSection(section.id);
+                                        setIsMobileMenuOpen(false);
+                                    }}
+                                    className={`w-full flex items-center gap-3 px-4 py-2.5 rounded-lg transition-colors text-sm ${activeSection === section.id
+                                        ? 'bg-indigo-50 text-indigo-700 font-medium'
+                                        : 'text-slate-600 hover:bg-slate-50'
+                                        }`}
+                                >
+                                    <Icon name={section.icon} className={activeSection === section.id ? 'text-indigo-600' : 'text-slate-400'} />
+                                    {section.title}
+                                </button>
+                            ))}
+                        </div>
+                    </div>
                 </nav>
 
-                <div className="absolute bottom-0 left-0 w-full p-6 border-t border-slate-50">
+                <div className="p-6 border-t border-slate-50">
                     <Link to="/" className="flex items-center gap-2 text-slate-400 hover:text-indigo-600 transition-colors text-sm font-bold">
                         <RotateCcw size={16} /> 返回课程中心
                     </Link>

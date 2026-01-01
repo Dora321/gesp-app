@@ -999,46 +999,114 @@ export default function PythonFoundation5() {
 
             {/* Sidebar */}
             <div className={`
-                fixed inset-0 z-30 bg-white md:static md:w-64 border-r border-slate-200 flex flex-col flex-shrink-0 transition-transform duration-300 md:translate-x-0
+                fixed inset-y-0 left-0 z-50 w-64 bg-white border-r border-slate-200 flex flex-col transition-transform duration-300
+                md:relative md:translate-x-0
                 ${isMobileMenuOpen ? 'translate-x-0' : '-translate-x-full'}
             `}>
-                <div className="p-6 border-b border-slate-100 flex justify-between items-center">
-                    <div>
-                        <h1 className="text-xl font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-indigo-600 to-purple-600 flex items-center gap-2">
-                            <Link to="/" className="hover:opacity-80 transition-opacity">
-                                <div className="w-8 h-8 bg-indigo-100 rounded-lg flex items-center justify-center overflow-hidden border border-indigo-200">
-                                    <span className="text-lg">🏠</span>
-                                </div>
-                            </Link>
-                            F5: 绘图魔法
-                        </h1>
-                        <p className="text-xs text-slate-400 mt-2 font-medium">Python 海龟绘图</p>
-                    </div>
-                    <button onClick={() => setIsMobileMenuOpen(false)} className="md:hidden p-2 text-slate-400">
-                        <X size={20} />
-                    </button>
+                <div className="p-6 border-b border-slate-100 hidden md:block">
+                    <h1 className="text-xl font-bold text-emerald-600 flex items-center gap-2">
+                        <Link to="/" className="hover:opacity-80 transition-opacity">
+                            <div className="w-8 h-8 bg-white rounded-lg flex items-center justify-center overflow-hidden border border-slate-200 shadow-sm">
+                                <span className="text-lg">🐢</span>
+                            </div>
+                        </Link>
+                        <span className="bg-emerald-600 text-white p-1 rounded text-sm">Python</span>
+                        F5: 绘图魔法
+                    </h1>
+                    <p className="text-xs text-slate-500 mt-2">Python 海龟绘图</p>
                 </div>
-                <div className="flex-1 overflow-y-auto p-4 space-y-2">
+                <div className="flex-1 overflow-y-auto p-4 space-y-6">
+                    {/* Group 1: 入门 */}
+                    <div>
+                        <div className="px-4 mb-2 text-xs font-bold text-slate-400 uppercase tracking-wider">🚀 海龟入门</div>
+                        <div className="space-y-1">
+                            {sections.slice(0, 3).map(section => (
+                                <button
+                                    key={section.id}
+                                    onClick={() => {
+                                        setActiveSection(section.id);
+                                        setIsMobileMenuOpen(false);
+                                    }}
+                                    className={`w-full flex items-center gap-3 px-4 py-2.5 rounded-lg transition-colors text-sm ${activeSection === section.id
+                                        ? 'bg-emerald-50 text-emerald-700 font-medium'
+                                        : 'text-slate-600 hover:bg-slate-50'
+                                        }`}
+                                >
+                                    <section.icon size={18} className={activeSection === section.id ? 'text-emerald-600' : 'text-slate-400'} />
+                                    {section.title}
+                                </button>
+                            ))}
+                        </div>
+                    </div>
 
+                    {/* Group 2: 绘图技法 */}
+                    <div>
+                        <div className="px-4 mb-2 text-xs font-bold text-slate-400 uppercase tracking-wider">🎨 绘图技法</div>
+                        <div className="space-y-1">
+                            {sections.slice(3, 7).map(section => (
+                                <button
+                                    key={section.id}
+                                    onClick={() => {
+                                        setActiveSection(section.id);
+                                        setIsMobileMenuOpen(false);
+                                    }}
+                                    className={`w-full flex items-center gap-3 px-4 py-2.5 rounded-lg transition-colors text-sm ${activeSection === section.id
+                                        ? 'bg-emerald-50 text-emerald-700 font-medium'
+                                        : 'text-slate-600 hover:bg-slate-50'
+                                        }`}
+                                >
+                                    <section.icon size={18} className={activeSection === section.id ? 'text-emerald-600' : 'text-slate-400'} />
+                                    {section.title}
+                                </button>
+                            ))}
+                        </div>
+                    </div>
 
-                    {sections.map(section => (
-                        <button
-                            key={section.id}
-                            onClick={() => {
-                                setActiveSection(section.id);
-                                setIsMobileMenuOpen(false);
-                            }}
-                            className={`w-full text-left px-4 py-3 rounded-xl transition-all duration-200 flex items-center gap-3 font-medium
-                        ${activeSection === section.id
-                                    ? 'bg-indigo-50 text-indigo-700 shadow-sm ring-1 ring-indigo-200'
-                                    : 'text-slate-500 hover:bg-slate-50 hover:text-slate-700'}
-                    `}
-                        >
-                            <section.icon size={18} className={activeSection === section.id ? 'text-indigo-600' : 'text-slate-400'} />
-                            <span className="flex-1">{section.title}</span>
+                    {/* Group 3: 实验室 */}
+                    <div>
+                        <div className="px-4 mb-2 text-xs font-bold text-slate-400 uppercase tracking-wider">🧪 实验项目</div>
+                        <div className="space-y-1">
+                            {sections.slice(7, 11).map(section => (
+                                <button
+                                    key={section.id}
+                                    onClick={() => {
+                                        setActiveSection(section.id);
+                                        setIsMobileMenuOpen(false);
+                                    }}
+                                    className={`w-full flex items-center gap-3 px-4 py-2.5 rounded-lg transition-colors text-sm ${activeSection === section.id
+                                        ? 'bg-emerald-50 text-emerald-700 font-medium'
+                                        : 'text-slate-600 hover:bg-slate-50'
+                                        }`}
+                                >
+                                    <section.icon size={18} className={activeSection === section.id ? 'text-emerald-600' : 'text-slate-400'} />
+                                    {section.title}
+                                </button>
+                            ))}
+                        </div>
+                    </div>
 
-                        </button>
-                    ))}
+                    {/* Group 4: 总结 */}
+                    <div>
+                        <div className="px-4 mb-2 text-xs font-bold text-slate-400 uppercase tracking-wider">🏆 总结</div>
+                        <div className="space-y-1">
+                            {sections.slice(11, 12).map(section => (
+                                <button
+                                    key={section.id}
+                                    onClick={() => {
+                                        setActiveSection(section.id);
+                                        setIsMobileMenuOpen(false);
+                                    }}
+                                    className={`w-full flex items-center gap-3 px-4 py-2.5 rounded-lg transition-colors text-sm ${activeSection === section.id
+                                        ? 'bg-emerald-50 text-emerald-700 font-medium'
+                                        : 'text-slate-600 hover:bg-slate-50'
+                                        }`}
+                                >
+                                    <section.icon size={18} className={activeSection === section.id ? 'text-emerald-600' : 'text-slate-400'} />
+                                    {section.title}
+                                </button>
+                            ))}
+                        </div>
+                    </div>
                 </div>
             </div>
 
