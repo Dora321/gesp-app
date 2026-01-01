@@ -539,7 +539,7 @@ export default function Home() {
             </header>
 
             <main className="relative z-10 w-full">
-                <section className="max-w-5xl mx-auto px-4 py-12">
+                <section className="max-w-5xl mx-auto px-4 pt-32 pb-12">
 
                     {/* Hero Section */}
                     <div className="text-center mb-20 animate-fade-in relative">
