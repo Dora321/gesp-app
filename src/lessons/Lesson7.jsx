@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import {
   Siren,
   GitBranch,
@@ -295,11 +295,16 @@ const Quiz = ({ question, options, correctIndex, explanation, type = "normal" })
 
 // --- 主应用 ---
 export default function App() {
+  const navigate = useNavigate();
   const [activeSection, setActiveSection] = useState(1);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
 
   const nextSection = () => {
-    if (activeSection < sections.length) setActiveSection(activeSection + 1);
+    if (activeSection < sections.length) {
+      setActiveSection(activeSection + 1);
+    } else {
+      navigate('/lesson8');
+    }
   };
 
   const prevSection = () => {
@@ -656,11 +661,10 @@ export default function App() {
 
           <button
             onClick={nextSection}
-            disabled={activeSection === sections.length}
             className={`px-4 py-2 rounded flex items-center gap-2 font-medium transition
-              ${activeSection === sections.length ? 'text-gray-300 cursor-not-allowed' : 'bg-blue-600 text-white hover:bg-blue-700 shadow-sm'}`}
+              ${activeSection === sections.length ? 'bg-green-600 text-white hover:bg-green-700 shadow-sm' : 'bg-blue-600 text-white hover:bg-blue-700 shadow-sm'}`}
           >
-            下一步 <Icon name="arrow-right" size={16} color="white" />
+            {activeSection === sections.length ? '下一课' : '下一步'} <Icon name="arrow-right" size={16} color="white" />
           </button>
         </footer>
       </div>

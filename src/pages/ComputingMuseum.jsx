@@ -75,13 +75,6 @@ export default function ComputingMuseum() {
             {/* Header */}
             <header className="fixed top-0 left-0 right-0 z-50 bg-black/50 backdrop-blur-md border-b border-white/10">
                 <div className="max-w-7xl mx-auto px-4 h-20 flex items-center justify-between">
-                    <button
-                        onClick={() => navigate('/')}
-                        className="flex items-center gap-2 text-slate-400 hover:text-white transition-colors group"
-                    >
-                        <ArrowLeft className="group-hover:-translate-x-1 transition-transform" />
-                        <span>退出档案馆</span>
-                    </button>
                     <div className="flex items-center gap-3">
                         <Box className="text-cyan-400" />
                         <h1 className="text-2xl font-bold font-mono tracking-widest text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 to-blue-500">
@@ -256,6 +249,16 @@ export default function ComputingMuseum() {
                     </div>
                 </div>
             )}
+
+            {/* Footer */}
+            <footer className="fixed bottom-0 left-0 right-0 z-50 bg-black/80 backdrop-blur-md border-t border-white/10 h-20 flex items-center justify-between px-8">
+                <button
+                    onClick={() => navigate('/')}
+                    className="flex items-center gap-2 px-6 py-2 rounded-full border border-slate-700 hover:bg-slate-800 hover:text-white text-slate-400 transition-all font-mono text-sm"
+                >
+                    <ArrowLeft size={16} /> 退出档案馆
+                </button>
+            </footer>
 
             <style jsx>{`
                 @keyframes float {

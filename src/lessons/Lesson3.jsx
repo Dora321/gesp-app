@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import {
   Pizza,
   Scissors,
@@ -48,6 +48,7 @@ const Icon = ({ name, size = 20, className = "" }) => {
 };
 
 export default function Lesson3() {
+  const navigate = useNavigate();
   const [activeSection, setActiveSection] = useState(1);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
 
@@ -155,21 +156,8 @@ export default function Lesson3() {
             </h2>
           </div>
 
-          <div className="flex gap-2">
-            <button
-              onClick={() => setActiveSection(Math.max(1, activeSection - 1))}
-              disabled={activeSection === 1}
-              className="px-4 py-2 text-sm rounded-lg border border-slate-200 text-slate-600 hover:bg-slate-50 disabled:opacity-50 disabled:cursor-not-allowed transition-colors font-medium"
-            >
-              上一节
-            </button>
-            <button
-              onClick={() => setActiveSection(Math.min(sections.length, activeSection + 1))}
-              disabled={activeSection === sections.length}
-              className="px-4 py-2 text-sm rounded-lg bg-blue-600 text-white hover:bg-blue-700 shadow-md shadow-blue-200 disabled:opacity-50 disabled:cursor-not-allowed transition-all hover:-translate-y-0.5 font-medium flex items-center gap-1"
-            >
-              下一节 <ArrowRight size={16} />
-            </button>
+          <div className="flex gap-2 text-sm text-slate-500">
+            <span>{activeSection}</span> / <span>{sections.length}</span>
           </div>
         </header>
 
@@ -179,6 +167,31 @@ export default function Lesson3() {
             <ActiveComponent />
           </div>
         </main>
+
+        <footer className="h-20 bg-white border-t border-slate-200 flex items-center justify-between px-8 z-20 flex-shrink-0">
+          <button
+            onClick={() => setActiveSection(Math.max(1, activeSection - 1))}
+            disabled={activeSection === 1}
+            className={`px-5 py-2.5 rounded-lg flex items-center gap-2 font-bold transition-all
+              ${activeSection === 1 ? 'text-gray-300 cursor-not-allowed' : 'text-gray-600 hover:bg-gray-100 hover:shadow-sm'}`}
+          >
+            <ChevronLeft size={18} /> 上一节
+          </button>
+
+          <button
+            onClick={() => {
+              if (activeSection < sections.length) {
+                setActiveSection(activeSection + 1);
+              } else {
+                navigate('/lesson4');
+              }
+            }}
+            className={`px-6 py-2.5 rounded-lg flex items-center gap-2 font-bold transition-all shadow-sm
+              ${activeSection === sections.length ? 'bg-green-600 text-white hover:bg-green-700 hover:shadow-md hover:-translate-y-0.5' : 'bg-blue-600 text-white hover:bg-blue-700 hover:shadow-md hover:-translate-y-0.5'}`}
+          >
+            {activeSection === sections.length ? '下一课' : '下一节'} <ArrowRight size={18} />
+          </button>
+        </footer>
       </div>
 
       <style>{`

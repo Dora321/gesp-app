@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import {
   Backpack,
   Box,
@@ -434,11 +434,16 @@ const Icon = ({ name, size = 20, className = "" }) => {
 };
 
 function App() {
+  const navigate = useNavigate();
   const [activeSection, setActiveSection] = useState(1);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
 
   const nextSection = () => {
-    if (activeSection < sections.length) setActiveSection(activeSection + 1);
+    if (activeSection < sections.length) {
+      setActiveSection(activeSection + 1);
+    } else {
+      navigate('/lesson3');
+    }
   };
 
   const prevSection = () => {
@@ -586,11 +591,10 @@ function App() {
 
           <button
             onClick={nextSection}
-            disabled={activeSection === sections.length}
             className={`px-6 py-2.5 rounded-lg flex items-center gap-2 font-bold transition-all shadow-sm
-              ${activeSection === sections.length ? 'bg-gray-100 text-gray-400 cursor-not-allowed' : 'bg-blue-600 text-white hover:bg-blue-700 hover:shadow-md hover:-translate-y-0.5'}`}
+              ${activeSection === sections.length ? 'bg-green-600 text-white hover:bg-green-700 hover:shadow-md hover:-translate-y-0.5' : 'bg-blue-600 text-white hover:bg-blue-700 hover:shadow-md hover:-translate-y-0.5'}`}
           >
-            下一步 <ArrowRight size={18} />
+            {activeSection === sections.length ? '下一课' : '下一步'} <ArrowRight size={18} />
           </button>
         </footer>
       </div>

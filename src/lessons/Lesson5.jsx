@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { Terminal, Key, Cpu, Shield, ArrowRight, CheckCircle, XCircle, RefreshCw, Lock, Unlock, Quote, ArrowDownUp, AlertTriangle, Play, BookOpen, User, Binary, Menu, X } from 'lucide-react';
 
 const sections = [
@@ -17,11 +17,16 @@ const sections = [
 ];
 
 export default function Lesson5() {
+  const navigate = useNavigate();
   const [activeSection, setActiveSection] = useState(1);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
 
   const nextSection = () => {
-    if (activeSection < sections.length) setActiveSection(activeSection + 1);
+    if (activeSection < sections.length) {
+      setActiveSection(activeSection + 1);
+    } else {
+      navigate('/lesson6');
+    }
   };
 
   const prevSection = () => {
@@ -176,11 +181,10 @@ export default function Lesson5() {
 
           <button
             onClick={nextSection}
-            disabled={activeSection === sections.length}
             className={`px-4 py-2 rounded flex items-center gap-2 font-medium transition
-              ${activeSection === sections.length ? 'text-gray-300 cursor-not-allowed' : 'bg-blue-600 text-white hover:bg-blue-700 shadow-sm'}`}
+              ${activeSection === sections.length ? 'bg-green-600 text-white hover:bg-green-700 shadow-sm' : 'bg-blue-600 text-white hover:bg-blue-700 shadow-sm'}`}
           >
-            下一步 <ArrowRight size={16} />
+            {activeSection === sections.length ? '下一课' : '下一步'} <ArrowRight size={16} />
           </button>
         </footer>
       </div>
