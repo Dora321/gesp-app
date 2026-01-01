@@ -52,6 +52,15 @@ export default function Navigation() {
                 title: `第 ${i + 1} 课`,
                 path: `/lesson${i + 1}`
             }))
+        },
+        {
+            title: '特色展馆',
+            color: 'text-purple-400',
+            bg: 'bg-purple-500/10 border-purple-500/20',
+            icon: <Zap className="w-6 h-6" />,
+            items: [
+                { title: '计算奇闻馆', path: '/museum', icon: <Sparkles className="text-yellow-400" /> }
+            ]
         }
     ];
 

@@ -41,6 +41,7 @@ import PythonEncryptionProject from './courses/python/advanced/PythonEncryptionP
 import PythonSortingProject from './courses/python/advanced/PythonSortingProject';
 import ClassroomPoints from './components/ClassroomPoints';
 import AnnouncementBar from './components/AnnouncementBar';
+import ComputingMuseum from './pages/ComputingMuseum'; // New Import
 
 import Navigation from './Navigation'; // Import Navigation component
 
@@ -50,6 +51,7 @@ function App() {
       <AnnouncementBar />
       <Routes>
         <Route path="/navigation" element={<Navigation />} />
+        <Route path="/museum" element={<ComputingMuseum />} />
         <Route path="/" element={<Home />} />
 
         {/* Course Levels */}

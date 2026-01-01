@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { BookOpen, Award, Star, ChevronRight, ChevronDown, ChevronUp, FileText, Monitor, Lock, CheckCircle, PlayCircle, Flag, Sparkles, Map, Zap, Scissors, ArrowRight, Box, Key, Terminal, Shield, Repeat, Layers, AlignJustify, Scan, Type, Package, Trophy, ArrowUp, Megaphone, Search, MousePointer2, Grid, XCircle, AlertOctagon, Compass, Menu, X, Home } from 'lucide-react';
+import { BookOpen, Award, Star, ChevronRight, ChevronDown, ChevronUp, FileText, Monitor, Lock, CheckCircle, PlayCircle, Flag, Sparkles, Map, Zap, Scissors, ArrowRight, Box, Key, Terminal, Shield, Repeat, Layers, AlignJustify, Scan, Type, Package, Trophy, ArrowUp, Megaphone, Search, MousePointer2, Grid, XCircle, AlertOctagon, Compass, Menu, X, Home as HomeIcon } from 'lucide-react';
 
 export default function Home() {
     const navigate = useNavigate();
@@ -430,7 +430,7 @@ export default function Home() {
                         {/* Desktop Navigation */}
                         <nav className="hidden md:flex items-center gap-1">
                             {[
-                                { name: '首页', path: '/', icon: <Home size={18} /> },
+                                { name: '首页', path: '/', icon: <HomeIcon size={18} /> },
                                 { name: 'C++ 考级', path: '/level1', icon: <Award size={18} /> },
                                 { name: 'Python 课程', path: '/python/f1', icon: <Terminal size={18} /> },
                             ].map((item) => (
@@ -450,6 +450,13 @@ export default function Home() {
                                 className="px-4 py-2 rounded-full text-slate-300 hover:text-white hover:bg-white/10 font-medium transition-all duration-300 flex items-center gap-2"
                             >
                                 闯关地图
+                            </button>
+                            <button
+                                onClick={() => navigate('/museum')}
+                                className="px-4 py-2 rounded-full text-slate-300 hover:text-white hover:bg-white/10 font-medium transition-all duration-300 flex items-center gap-2"
+                            >
+                                <Zap size={18} className="text-yellow-400" />
+                                <span className="relative z-10">奇闻馆</span>
                             </button>
                         </nav>
 
@@ -479,7 +486,7 @@ export default function Home() {
                 <div className={`md:hidden fixed inset-0 z-40 bg-slate-950/95 backdrop-blur-xl transition-all duration-300 flex flex-col items-center justify-center gap-8 ${isMobileMenuOpen ? 'opacity-100 visible' : 'opacity-0 invisible pointer-events-none'}`}>
                     <div className="flex flex-col items-center gap-6 w-full px-8">
                         {[
-                            { name: '首页', path: '/', icon: <Home size={24} />, color: 'text-blue-400' },
+                            { name: '首页', path: '/', icon: <HomeIcon size={24} />, color: 'text-blue-400' },
                             { name: 'C++ 考级', path: '/level1', icon: <Award size={24} />, color: 'text-emerald-400' },
                             { name: 'Python 课程', path: '/python/f1', icon: <Terminal size={24} />, color: 'text-yellow-400' },
                         ].map((item, idx) => (
@@ -506,6 +513,16 @@ export default function Home() {
                         >
                             <Map size={24} className="text-emerald-400" />
                             闯关地图
+                        </button>
+                        <button
+                            onClick={() => {
+                                navigate('/museum');
+                                setIsMobileMenuOpen(false);
+                            }}
+                            className="w-full max-w-xs py-4 rounded-xl bg-white/5 border border-white/10 hover:bg-white/10 hover:border-white/20 transition-all flex items-center justify-center gap-4 text-xl font-bold text-slate-200"
+                        >
+                            <Zap size={24} className="text-yellow-400" />
+                            奇闻馆
                         </button>
                         <button
                             onClick={() => {
