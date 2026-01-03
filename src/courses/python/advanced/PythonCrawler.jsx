@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useRef } from 'react';
-import { Globe, Search, Database, Code, Shield, Download, ArrowRight, Play, RefreshCw, Smartphone, Key, ChevronDown } from 'lucide-react';
+import { Globe, Search, Database, Code, Shield, Download, ArrowRight, Play, RefreshCw, Smartphone, Key, ChevronDown, FileText, Layers, Cpu, Bug, CheckCircle, XCircle, AlertTriangle, AlertCircle, Info, Film, Terminal, User, Lock, Unlock } from 'lucide-react';
 import { Link, useNavigate } from 'react-router-dom';
 
 // --- Shared Components ---
@@ -25,7 +25,82 @@ const CodeBlock = ({ code }) => (
 
 // --- Sections ---
 
-// 1. HTTP Request Simulator
+// 1. Introduction Slide
+const IntroSlide = () => {
+    return (
+        <div className="space-y-8 animate-in fade-in slide-in-from-bottom-4 duration-500">
+            <div className="bg-slate-800 p-8 rounded-2xl border border-slate-700 relative overflow-hidden">
+                <div className="absolute top-0 right-0 w-64 h-64 bg-cyan-500/10 rounded-full blur-3xl -z-10"></div>
+
+                <h3 className="text-2xl font-bold text-cyan-400 mb-6 flex items-center gap-3">
+                    <Bug size={28} /> 什么是网络爬虫？
+                </h3>
+
+                <div className="grid md:grid-cols-2 gap-8 items-center">
+                    <div className="space-y-6">
+                        <p className="text-lg text-slate-300 leading-relaxed">
+                            网络爬虫（Web Crawler），也叫网络蜘蛛（Spider），是一种按照一定规则，自动抓取万维网信息的程序。
+                        </p>
+                        <ul className="space-y-4">
+                            <li className="flex items-start gap-4 text-slate-300 bg-slate-900/50 p-3 rounded-lg border border-slate-700/50">
+                                <div className="mt-1 bg-cyan-500/20 p-2 rounded text-cyan-400 flex-shrink-0"><Globe size={18} /></div>
+                                <div>
+                                    <strong className="block text-cyan-100 mb-1">像蜘蛛一样</strong>
+                                    <span className="text-sm opacity-80">顺着链接（网线）在巨大的互联网网络上爬行，访问一个又一个节点。</span>
+                                </div>
+                            </li>
+                            <li className="flex items-start gap-4 text-slate-300 bg-slate-900/50 p-3 rounded-lg border border-slate-700/50">
+                                <div className="mt-1 bg-purple-500/20 p-2 rounded text-purple-400 flex-shrink-0"><Database size={18} /></div>
+                                <div>
+                                    <strong className="block text-purple-100 mb-1">搬运工</strong>
+                                    <span className="text-sm opacity-80">把网页上的数据（文字、图片、视频）批量搬运回本地数据库，供我们分析使用。</span>
+                                </div>
+                            </li>
+                            <li className="flex items-start gap-4 text-slate-300 bg-slate-900/50 p-3 rounded-lg border border-slate-700/50">
+                                <div className="mt-1 bg-yellow-500/20 p-2 rounded text-yellow-400 flex-shrink-0"><Search size={18} /></div>
+                                <div>
+                                    <strong className="block text-yellow-100 mb-1">搜索引擎的基础</strong>
+                                    <span className="text-sm opacity-80">Google 和百度每天运行着数亿只爬虫，把全世界的网页都“爬”下来建立索引。</span>
+                                </div>
+                            </li>
+                        </ul>
+                    </div>
+
+                    <div className="relative h-80 bg-slate-900/80 rounded-xl border border-slate-700 flex items-center justify-center overflow-hidden p-8 shadow-2xl">
+                        {/* Network Web Visual */}
+                        <div className="absolute inset-0 opacity-20" style={{ backgroundImage: 'radial-gradient(circle at center, #22d3ee 1px, transparent 1px)', backgroundSize: '20px 20px' }}></div>
+
+                        <div className="relative z-10 w-full h-full flex items-center justify-center">
+                            {/* Central Hub */}
+                            <div className="absolute w-24 h-24 bg-cyan-900/30 rounded-full blur-xl animate-pulse"></div>
+
+                            {/* Spider Node */}
+                            <div className="flex flex-col items-center z-20 animate-bounce" style={{ animationDuration: '3s' }}>
+                                <Bug size={64} className="text-cyan-400 drop-shadow-[0_0_25px_rgba(34,211,238,0.6)]" />
+                                <div className="mt-4 px-3 py-1 bg-cyan-900/80 border border-cyan-500/30 rounded-full text-xs font-mono text-cyan-300">
+                                    SPIDER_BOT_v1.0
+                                </div>
+                            </div>
+
+                            {/* Connected Nodes */}
+                            {[0, 72, 144, 216, 288].map((deg, i) => (
+                                <div key={i} className="absolute w-full h-full animate-[spin_10s_linear_infinite]" style={{ animationDelay: `-${i * 2}s` }}>
+                                    <div className="absolute top-10 left-1/2 -translate-x-1/2 w-2 h-32 bg-gradient-to-b from-cyan-500/20 to-transparent origin-bottom" style={{ transform: `rotate(${deg}deg)` }}></div>
+                                    <div className="absolute top-0 left-1/2 -translate-x-1/2 w-12 h-12 bg-slate-800 border border-slate-600 rounded-lg flex items-center justify-center text-xs text-slate-500 shadow-lg"
+                                        style={{ transform: `rotate(${deg}deg) translateY(20px)` }}>
+                                        <Code size={16} />
+                                    </div>
+                                </div>
+                            ))}
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    );
+};
+
+// 2. HTTP Request Simulator (Requests)
 const RequestSlide = () => {
     const [url, setUrl] = useState('https://news.fake/tech');
     const [status, setStatus] = useState('idle'); // idle, loading, success, error
@@ -262,7 +337,91 @@ const RobotsSlide = () => {
     );
 };
 
-// 4. Headers & User-Agent Slide
+// 4. HTTP Status Codes Slide
+const StatusSlide = () => {
+    const [selectedCode, setSelectedCode] = useState(null);
+    const [response, setResponse] = useState(null);
+
+    const codes = [
+        { code: 200, status: 'OK', color: 'green', desc: '请求成功', detail: '服务器成功处理了请求。这是我们最想看到的结果。' },
+        { code: 403, status: 'Forbidden', color: 'orange', desc: '禁止访问', detail: '服务器理解请求，但是拒绝执行。通常是因为反爬虫机制（如缺少 User-Agent）。' },
+        { code: 404, status: 'Not Found', color: 'yellow', desc: '未找到', detail: '服务器找不到请求的网页。检查 URL 是否写对，或者页面是否已删除。' },
+        { code: 500, status: 'Server Error', color: 'red', desc: '服务器错误', detail: '服务器内部出错了。这通常不是爬虫的问题，是网站挂了。' },
+    ];
+
+    const testCode = (item) => {
+        setSelectedCode(item);
+        setResponse(null);
+        setTimeout(() => {
+            setResponse(item);
+        }, 300);
+    };
+
+    return (
+        <div className="space-y-6 animate-in fade-in slide-in-from-bottom-4 duration-500">
+            <div className="bg-slate-800 p-6 rounded-2xl border border-slate-700">
+                <h3 className="text-xl font-bold text-blue-400 mb-4 flex items-center gap-2">
+                    <Info size={20} /> HTTP 状态码 (Status Codes)
+                </h3>
+                <p className="text-slate-300 mb-6">
+                    服务器通过状态码告诉我们请求的结果。就像红绿灯一样，指导爬虫的下一步行动。
+                </p>
+
+                <div className="grid md:grid-cols-2 gap-6">
+                    <div className="grid grid-cols-2 gap-4 h-min">
+                        {codes.map(item => (
+                            <button
+                                key={item.code}
+                                onClick={() => testCode(item)}
+                                className={`p-4 rounded-xl border flex flex-col items-center justify-center gap-2 transition-all duration-200
+                                    ${selectedCode?.code === item.code
+                                        ? `bg-${item.color}-500/20 border-${item.color}-500 shadow-[0_0_15px_rgba(var(--${item.color}-500),0.3)] transform scale-105`
+                                        : 'bg-slate-900 border-slate-700 hover:bg-slate-800 text-slate-400 hover:text-slate-200'}
+                                `}
+                            >
+                                <div className={`text-2xl font-black ${selectedCode?.code === item.code ? `text-${item.color}-400` : ''}`}>{item.code}</div>
+                                <div className="text-xs font-bold">{item.status}</div>
+                            </button>
+                        ))}
+                    </div>
+
+                    <div className="bg-slate-900 p-6 rounded-xl border border-slate-700 flex items-center justify-center min-h-[250px] relative overflow-hidden">
+                        {response ? (
+                            <div className="text-center space-y-4 animate-in zoom-in duration-300 relative z-10 p-4">
+                                <div className={`w-20 h-20 mx-auto rounded-full flex items-center justify-center border-4 border-${response.color}-500 shadow-xl bg-slate-800`}>
+                                    {response.code === 200 && <CheckCircle size={40} className={`text-${response.color}-500`} />}
+                                    {response.code === 403 && <Shield size={40} className={`text-${response.color}-500`} />}
+                                    {response.code === 404 && <Search size={40} className={`text-${response.color}-500`} />}
+                                    {response.code === 500 && <AlertCircle size={40} className={`text-${response.color}-500`} />}
+                                </div>
+                                <div>
+                                    <div className={`text-3xl font-bold text-${response.color}-400 mb-2`}>
+                                        {response.code} {response.desc}
+                                    </div>
+                                    <p className="text-slate-300 text-sm leading-relaxed max-w-xs mx-auto bg-slate-800/50 p-3 rounded-lg border border-slate-700">
+                                        {response.detail}
+                                    </p>
+                                </div>
+                            </div>
+                        ) : (
+                            <div className="text-center text-slate-600">
+                                <div className="text-6xl mb-4 opacity-20">?</div>
+                                <div>点击左侧按钮查看状态码含义</div>
+                            </div>
+                        )}
+
+                        {/* Background Effect */}
+                        {response && (
+                            <div className={`absolute inset-0 bg-${response.color}-500/5 pointer-events-none transition-colors duration-500`}></div>
+                        )}
+                    </div>
+                </div>
+            </div>
+        </div>
+    );
+};
+
+// 5. Headers & User-Agent Slide
 const HeadersSlide = () => {
     const [userAgent, setUserAgent] = useState('python-requests/2.28.1');
     const [status, setStatus] = useState(null); // 'idle', 'blocked', 'success'
@@ -339,11 +498,593 @@ const HeadersSlide = () => {
 };
 
 
+// 5. Pagination Slide
+const PaginationSlide = () => {
+    const [page, setPage] = useState(1);
+    const [crawledData, setCrawledData] = useState([]);
+    const [isCrawling, setIsCrawling] = useState(false);
+
+    // Simulate data for 3 pages
+    const pageData = {
+        1: [{ id: 101, title: 'Python Basics' }, { id: 102, title: 'Advanced Loops' }],
+        2: [{ id: 103, title: 'Data Structures' }, { id: 104, title: 'OOP Design' }],
+        3: [{ id: 105, title: 'Web Scraping' }, { id: 106, title: 'Async IO' }],
+    };
+
+    const crawlAll = async () => {
+        setIsCrawling(true);
+        setCrawledData([]);
+
+        for (let p = 1; p <= 3; p++) {
+            setPage(p);
+            // Simulate network delay
+            await new Promise(r => setTimeout(r, 800));
+            setCrawledData(prev => [...prev, ...pageData[p]]);
+        }
+
+        setIsCrawling(false);
+    };
+
+    return (
+        <div className="space-y-6 animate-in fade-in slide-in-from-bottom-4 duration-500">
+            <div className="bg-slate-800 p-6 rounded-2xl border border-slate-700">
+                <h3 className="text-xl font-bold text-violet-400 mb-4 flex items-center gap-2">
+                    <Layers size={20} /> 分页处理 (Pagination)
+                </h3>
+                <p className="text-slate-300 mb-6">
+                    真正的数据通常分布在多页及其它页面。我们需要分析 URL 规律 (例如 `page=1, page=2`)，用循环来遍历抓取。
+                </p>
+
+                <div className="bg-slate-900 p-6 rounded-xl border border-slate-700 space-y-6">
+                    <div className="flex items-center justify-between bg-black/40 p-4 rounded-lg border border-slate-800">
+                        <div className="font-mono text-cyan-300 text-sm">
+                            url = f"https://kjs.cn/course?page=<span className="text-yellow-400 font-bold">{page}</span>"
+                        </div>
+                        <Button onClick={crawlAll} disabled={isCrawling} variant="primary" className="bg-violet-600 text-white hover:bg-violet-500 shadow-none">
+                            {isCrawling ? <RefreshCw className="animate-spin" /> : <span className="flex items-center gap-2"><Play size={16} /> 自动翻页抓取</span>}
+                        </Button>
+                    </div>
+
+                    <div className="space-y-2">
+                        <div className="flex justify-between text-sm text-slate-400 mb-1">
+                            <span>Crawling Progress</span>
+                            <span>Page {page} / 3</span>
+                        </div>
+                        <div className="h-2 bg-slate-800 rounded-full overflow-hidden">
+                            <div
+                                className="h-full bg-gradient-to-r from-violet-500 to-cyan-500 transition-all duration-300"
+                                style={{ width: `${(page / 3) * 100}%` }}
+                            ></div>
+                        </div>
+                    </div>
+
+                    <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mt-4">
+                        {[1, 2, 3].map(p => (
+                            <div key={p} className={`p-4 rounded-xl border transition-all duration-300 ${p < page || (p === page && !isCrawling && crawledData.length > 0)
+                                ? 'bg-green-900/20 border-green-500/30 opacity-100'
+                                : p === page && isCrawling
+                                    ? 'bg-violet-900/20 border-violet-500/50 animate-pulse'
+                                    : 'bg-slate-800/50 border-slate-700 opacity-50'
+                                }`}>
+                                <div className="text-xs font-bold text-slate-500 mb-2 uppercase tracking-wider">Page {p}</div>
+                                {pageData[p].map(item => (
+                                    <div key={item.id} className="flex items-center gap-2 text-sm text-slate-300 mb-1">
+                                        <FileText size={14} className="text-slate-500" />
+                                        {item.title}
+                                    </div>
+                                ))}
+                            </div>
+                        ))}
+                    </div>
+
+                    {crawledData.length > 0 && (
+                        <div className="mt-4 p-3 bg-slate-800 rounded-lg border border-slate-700 text-center">
+                            <span className="text-sm text-slate-400">Total Items Collected: </span>
+                            <span className="text-xl font-bold text-white ml-2">{crawledData.length}</span>
+                        </div>
+                    )}
+                </div>
+            </div>
+        </div>
+    );
+};
+
+// 6. Data Storage Slide
+const StorageSlide = () => {
+    const [format, setFormat] = useState('csv'); // csv, json
+
+    const sampleData = [
+        { title: 'The Matrix', year: 1999, rating: 8.7 },
+        { title: 'Inception', year: 2010, rating: 8.8 },
+        { title: 'Interstellar', year: 2014, rating: 8.6 },
+    ];
+
+    const getCode = () => {
+        if (format === 'csv') {
+            return `import csv
+
+with open('movies.csv', 'w', newline='') as f:
+    writer = csv.writer(f)
+    writer.writerow(['Title', 'Year', 'Rating'])
+    for movie in movies:
+        writer.writerow([movie['title'], movie['year'], movie['rating']])`;
+        } else {
+            return `import json
+
+with open('movies.json', 'w') as f:
+    json.dump(movies, f, indent=4)`;
+        }
+    };
+
+    return (
+        <div className="space-y-6 animate-in fade-in slide-in-from-bottom-4 duration-500">
+            <div className="bg-slate-800 p-6 rounded-2xl border border-slate-700">
+                <h3 className="text-xl font-bold text-emerald-400 mb-4 flex items-center gap-2">
+                    <Database size={20} /> 数据存储 (Storage)
+                </h3>
+                <p className="text-slate-300 mb-6">
+                    爬取的数据通常需要保存保存下来。常用的格式有 CSV (表格) 和 JSON (结构化数据)。
+                </p>
+
+                <div className="grid md:grid-cols-2 gap-6">
+                    <div className="space-y-4">
+                        <div className="flex gap-2 mb-2">
+                            <button
+                                onClick={() => setFormat('csv')}
+                                className={`flex-1 py-2 rounded-lg font-bold text-sm border transition-all ${format === 'csv' ? 'bg-green-500 text-black border-green-500' : 'bg-slate-800 text-slate-400 border-slate-600 hover:bg-slate-700'
+                                    }`}
+                            >
+                                Save as CSV
+                            </button>
+                            <button
+                                onClick={() => setFormat('json')}
+                                className={`flex-1 py-2 rounded-lg font-bold text-sm border transition-all ${format === 'json' ? 'bg-yellow-500 text-black border-yellow-500' : 'bg-slate-800 text-slate-400 border-slate-600 hover:bg-slate-700'
+                                    }`}
+                            >
+                                Save as JSON
+                            </button>
+                        </div>
+                        <CodeBlock code={getCode()} />
+                    </div>
+
+                    <div className="bg-slate-900 p-5 rounded-xl border border-slate-700 relative overflow-hidden">
+                        <div className="absolute top-2 right-2 px-2 py-1 bg-slate-800 rounded text-xs font-mono text-slate-400 border border-slate-700">
+                            movies.{format}
+                        </div>
+
+                        <div className="mt-8 font-mono text-sm text-slate-300 overflow-x-auto">
+                            {format === 'csv' ? (
+                                <table className="w-full text-left border-collapse">
+                                    <thead>
+                                        <tr className="border-b border-slate-600 text-emerald-400">
+                                            <th className="py-1">Title</th>
+                                            <th className="py-1">Year</th>
+                                            <th className="py-1">Rating</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        {sampleData.map((row, i) => (
+                                            <tr key={i} className="border-b border-slate-800/50">
+                                                <td className="py-1">{row.title}</td>
+                                                <td className="py-1">{row.year}</td>
+                                                <td className="py-1">{row.rating}</td>
+                                            </tr>
+                                        ))}
+                                    </tbody>
+                                </table>
+                            ) : (
+                                <pre className="text-yellow-100">
+                                    {`[
+  {
+    "title": "The Matrix",
+    "year": 1999,
+    "rating": 8.7
+  },
+  {
+    "title": "Inception",
+    "year": 2010,
+    "rating": 8.8
+  },
+  ...
+]`}
+                                </pre>
+                            )}
+                        </div>
+
+                        <div className="mt-6 flex justify-end">
+                            <div className="flex items-center gap-2 text-xs text-slate-500">
+                                <CheckCircle size={14} className="text-emerald-500" /> File Saved Successfully
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    );
+};
+
+// 7. Practice Challenge
+const PracticeSlide = () => {
+    const [steps, setSteps] = useState([
+        { id: 1, type: 'import', code: 'import requests', correct: true, selected: false },
+        { id: 2, type: 'req', code: 'requests.get(url)', correct: true, selected: false },
+        { id: 3, type: 'soup', code: 'BeautifulSoup(res.text)', correct: true, selected: false },
+        { id: 4, type: 'find', code: 'soup.find_all("h1")', correct: true, selected: false },
+    ]);
+    const [isComplete, setIsComplete] = useState(false);
+
+    const toggleStep = (id) => {
+        setSteps(prev => prev.map(s => s.id === id ? { ...s, selected: !s.selected } : s));
+    };
+
+    const checkSolution = () => {
+        if (steps.every(s => s.selected)) {
+            setIsComplete(true);
+        }
+    };
+
+    return (
+        <div className="space-y-6 animate-in fade-in slide-in-from-bottom-4 duration-500">
+            <div className="bg-slate-800 p-6 rounded-2xl border border-slate-700">
+                <h3 className="text-xl font-bold text-white mb-4 flex items-center gap-2">
+                    <Cpu size={20} /> 实战挑战 (Challenge)
+                </h3>
+                <p className="text-slate-300 mb-6">
+                    任务：组装一个完整的爬虫，抓取网页标题。请按正确顺序点亮代码块。
+                </p>
+
+                <div className="grid md:grid-cols-2 gap-8">
+                    <div className="space-y-3">
+                        {steps.map((step, index) => (
+                            <div
+                                key={step.id}
+                                onClick={() => toggleStep(step.id)}
+                                className={`p-4 rounded-xl border border-slate-700 cursor-pointer transition-all duration-200 flex items-center gap-4
+                                    ${step.selected
+                                        ? 'bg-cyan-900/30 border-cyan-500 text-cyan-200 shadow-[0_0_15px_rgba(6,182,212,0.1)]'
+                                        : 'bg-slate-900 hover:bg-slate-800 text-slate-400 hover:border-slate-600'}
+                                `}
+                            >
+                                <div className={`w-8 h-8 rounded-full flex items-center justify-center font-bold text-sm ${step.selected ? 'bg-cyan-500 text-black' : 'bg-slate-800 text-slate-500'}`}>
+                                    {index + 1}
+                                </div>
+                                <code className="font-mono text-sm">{step.code}</code>
+                                {step.selected && <CheckCircle size={18} className="ml-auto text-cyan-400" />}
+                            </div>
+                        ))}
+                    </div>
+
+                    <div className="bg-black/40 p-6 rounded-xl border border-slate-800 flex flex-col items-center justify-center text-center relative overflow-hidden">
+                        {isComplete ? (
+                            <div className="space-y-4 animate-in zoom-in duration-500">
+                                <div className="w-20 h-20 bg-green-500 rounded-full flex items-center justify-center mx-auto shadow-[0_0_30px_rgba(34,197,94,0.4)]">
+                                    <CheckCircle size={40} className="text-white" />
+                                </div>
+                                <h4 className="text-2xl font-bold text-white">挑战成功!</h4>
+                                <p className="text-green-400">你已经掌握了爬虫的基本流程。</p>
+                            </div>
+                        ) : (
+                            <div className="space-y-4">
+                                <div className="w-20 h-20 bg-slate-800 rounded-full flex items-center justify-center mx-auto border border-slate-700">
+                                    <Bug size={32} className="text-slate-600" />
+                                </div>
+                                <h4 className="text-xl font-bold text-slate-500">等待运行...</h4>
+                                <Button onClick={checkSolution} variant="primary" className="w-full">
+                                    运行爬虫
+                                </Button>
+                            </div>
+                        )}
+                    </div>
+                </div>
+            </div>
+        </div>
+    );
+};
+
+// 8. Project: Douban Top 250
+const DoubanProjectSlide = () => {
+    const [stage, setStage] = useState(1); // 1: Recon, 2: Camouflage, 3: Crawl
+
+    // Stage 1: Recon State
+    const [hoveredItem, setHoveredItem] = useState(null);
+
+    // Stage 2: Camouflage State
+    const [useHeaders, setUseHeaders] = useState(false);
+    const [camouStatus, setCamouStatus] = useState('idle'); // idle, loading, success, fail
+
+    // Stage 3: Crawl State
+    const [logs, setLogs] = useState([]);
+    const [isRunning, setIsRunning] = useState(false);
+
+    // --- Helpers ---
+    const runCamouTest = () => {
+        setCamouStatus('loading');
+        setTimeout(() => {
+            if (useHeaders) {
+                setCamouStatus('success');
+            } else {
+                setCamouStatus('fail');
+            }
+        }, 1200);
+    };
+
+    const runCrawler = async () => {
+        setIsRunning(true);
+        setLogs([]);
+
+        const addLog = (msg) => setLogs(prev => [...prev, msg]);
+
+        addLog("🕷️ 小蜘蛛正在出发...");
+        await new Promise(r => setTimeout(r, 800));
+
+        addLog("✅ 成功进入豆瓣！开始解析数据...");
+        await new Promise(r => setTimeout(r, 800));
+
+        addLog("📦 这一页一共找到了 3 部电影。\n");
+        addLog("------------------------------");
+
+        const movies = [
+            { title: "肖申克的救赎", score: "9.7", quote: "希望让人自由。" },
+            { title: "霸王别姬", score: "9.6", quote: "风华绝代。" },
+            { title: "阿甘正传", score: "9.5", quote: "生活就像一盒巧克力。" }
+        ];
+
+        for (const m of movies) {
+            await new Promise(r => setTimeout(r, 600));
+            addLog(`🎬 电影：${m.title}`);
+            addLog(`⭐ 评分：${m.score}`);
+            addLog(`💬 简评：${m.quote}`);
+            addLog("------------------------------");
+        }
+
+        addLog("\n✨ 抓取完成！");
+        setIsRunning(false);
+    };
+
+    return (
+        <div className="space-y-6 animate-in fade-in slide-in-from-bottom-4 duration-500">
+            <div className="bg-slate-800 p-6 rounded-2xl border border-slate-700">
+                <div className="flex items-center justify-between mb-6">
+                    <h3 className="text-xl font-bold text-green-400 flex items-center gap-2">
+                        <Film size={20} /> 实战案例：豆瓣电影 Top 250
+                    </h3>
+                    <div className="flex gap-1 bg-slate-900 p-1 rounded-lg border border-slate-700">
+                        {[1, 2, 3].map(s => (
+                            <button
+                                key={s}
+                                onClick={() => setStage(s)}
+                                className={`px-3 py-1 rounded text-xs font-bold transition-all ${stage === s ? 'bg-green-500 text-black' : 'text-slate-500 hover:text-slate-300'
+                                    }`}
+                            >
+                                Step {s}
+                            </button>
+                        ))}
+                    </div>
+                </div>
+
+                {/* Stage 1: Reconnaissance */}
+                {stage === 1 && (
+                    <div className="space-y-4 animate-in fade-in slide-in-from-right-4">
+                        <div className="bg-orange-500/10 border border-orange-500/30 p-4 rounded-xl text-orange-200 text-sm mb-4">
+                            <strong className="block mb-1 text-orange-400 flex items-center gap-2"><Search size={16} /> 侦察任务</strong>
+                            也就是 F12 开发者工具。我们需要找到装着电影数据的那个<span>"快递包裹"</span> (<code className="bg-black/30 px-1 rounded">class="item"</code>)。
+                        </div>
+
+                        <div className="grid md:grid-cols-2 gap-6">
+                            {/* Mock Browser View */}
+                            <div className="bg-white rounded-lg overflow-hidden shadow-xl border border-slate-600">
+                                <div className="bg-slate-100 px-3 py-2 border-b flex items-center gap-2">
+                                    <div className="flex gap-1"><div className="w-3 h-3 rounded-full bg-red-400"></div><div className="w-3 h-3 rounded-full bg-yellow-400"></div><div className="w-3 h-3 rounded-full bg-green-400"></div></div>
+                                    <div className="bg-white px-2 py-0.5 rounded text-xs text-slate-500 flex-1 text-center border">movie.douban.com</div>
+                                </div>
+                                <div className="p-4 space-y-4">
+                                    <div className="text-xl font-bold text-slate-800 border-b pb-2">豆瓣电影 Top 250</div>
+                                    <div className="space-y-3">
+                                        {[
+                                            { title: "肖申克的救赎", score: 9.7 },
+                                            { title: "霸王别姬", score: 9.6 }
+                                        ].map((m, i) => (
+                                            <div
+                                                key={i}
+                                                onMouseEnter={() => setHoveredItem(i)}
+                                                onMouseLeave={() => setHoveredItem(null)}
+                                                className={`flex gap-3 p-2 rounded transition-all cursor-crosshair border-2 ${hoveredItem === i ? 'border-blue-500 bg-blue-50 scale-[1.02]' : 'border-transparent hover:bg-slate-50'
+                                                    }`}
+                                            >
+                                                <div className="w-16 h-24 bg-slate-200 rounded flex items-center justify-center text-xs text-slate-400">Cover</div>
+                                                <div className="flex-1">
+                                                    <div className="font-bold text-blue-600 flex gap-2">
+                                                        {m.title}
+                                                        {hoveredItem === i && <span className="bg-red-500 text-white text-[10px] px-1 rounded ml-auto animate-pulse">Selected</span>}
+                                                    </div>
+                                                    <div className="text-xs text-slate-500 mt-1">1994 / 美国 / 犯罪</div>
+                                                    <div className="mt-2 text-orange-400 font-bold text-sm">★ {m.score}</div>
+                                                </div>
+                                            </div>
+                                        ))}
+                                    </div>
+                                </div>
+                            </div>
+
+                            {/* Code Inspector View */}
+                            <div className="bg-slate-900 rounded-lg p-4 font-mono text-sm border border-slate-700 flex flex-col">
+                                <div className="text-slate-500 mb-2 border-b border-slate-800 pb-2 text-xs">Elements Console</div>
+                                <div className="space-y-1 overflow-y-auto flex-1 text-slate-400">
+                                    <div className="pl-4 text-purple-400">&lt;div id="content"&gt;</div>
+                                    <div className="pl-8 text-purple-400">&lt;h1&gt;<span className="text-white">豆瓣电影 Top 250</span>&lt;/h1&gt;</div>
+                                    <div className="pl-8 text-purple-400">&lt;ol class="grid_view"&gt;</div>
+
+                                    {[0, 1].map(i => (
+                                        <div key={i} className={`pl-12 transition-all duration-200 ${hoveredItem === i ? 'bg-blue-900/40 text-blue-200 -mx-4 pl-16 py-1 border-l-2 border-blue-500' : ''}`}>
+                                            <span className="text-purple-400">&lt;div class="<span className="text-yellow-400 font-bold">item</span>"&gt;</span>
+                                            {hoveredItem === i && (
+                                                <div className="pl-4 text-xs text-slate-500 my-1 animate-in fade-in">
+                                                    &lt;!-- 这里装着 {i === 0 ? "肖申克的救赎" : "霸王别姬"} 的所有信息 --&gt;
+                                                </div>
+                                            )}
+                                            <div className="pl-4">...</div>
+                                            <span className="text-purple-400">&lt;/div&gt;</span>
+                                        </div>
+                                    ))}
+
+                                    <div className="pl-8 text-purple-400">&lt;/ol&gt;</div>
+                                    <div className="pl-4 text-purple-400">&lt;/div&gt;</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                )}
+
+                {/* Stage 2: Camouflage */}
+                {stage === 2 && (
+                    <div className="space-y-6 animate-in fade-in slide-in-from-right-4">
+                        <div className="bg-purple-500/10 border border-purple-500/30 p-4 rounded-xl text-purple-200 text-sm mb-4">
+                            <strong className="block mb-1 text-purple-400 flex items-center gap-2"><Shield size={16} /> 伪装术 (User-Agent)</strong>
+                            直接访问会被服务器认出是 Python 脚本。我们要给爬虫戴上“浏览器面具”。
+                        </div>
+
+                        <div className="grid md:grid-cols-2 gap-8 items-center">
+                            <div className="space-y-4">
+                                <div
+                                    onClick={() => setUseHeaders(!useHeaders)}
+                                    className={`p-4 rounded-xl border-2 cursor-pointer transition-all flex items-center justify-between ${useHeaders ? 'bg-green-900/20 border-green-500' : 'bg-slate-900 border-slate-700 hover:border-slate-500'
+                                        }`}
+                                >
+                                    <div className="flex items-center gap-3">
+                                        <div className={`p-2 rounded-lg ${useHeaders ? 'bg-green-500 text-black' : 'bg-slate-800 text-slate-400'}`}>
+                                            {useHeaders ? <User size={20} /> : <Bug size={20} />}
+                                        </div>
+                                        <div>
+                                            <div className="font-bold text-white">{useHeaders ? "伪装：浏览器 (Browser)" : "默认：Python 脚本"}</div>
+                                            <div className="text-xs text-slate-400 font-mono mt-1">
+                                                {useHeaders ? "User-Agent: Mozilla/5.0..." : "User-Agent: python-requests/2.28"}
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div className={`w-6 h-6 rounded-full border flex items-center justify-center ${useHeaders ? 'bg-green-500 border-green-500' : 'border-slate-600'}`}>
+                                        {useHeaders && <CheckCircle size={14} className="text-black" />}
+                                    </div>
+                                </div>
+
+                                <Button
+                                    onClick={runCamouTest}
+                                    disabled={camouStatus === 'loading'}
+                                    className="w-full"
+                                    variant={camouStatus === 'fail' ? 'primary' : 'primary'} // Keep simplified
+                                >
+                                    {camouStatus === 'loading' ? <RefreshCw className="animate-spin" /> : '发送请求 (requests.get)'}
+                                </Button>
+                            </div>
+
+                            <div className="bg-slate-900 rounded-xl p-8 border border-slate-700 min-h-[200px] flex items-center justify-center relative overflow-hidden">
+                                {camouStatus === 'idle' && (
+                                    <div className="text-slate-600 text-center">
+                                        <Download size={48} className="mx-auto mb-2 opacity-20" />
+                                        等待请求...
+                                    </div>
+                                )}
+
+                                {camouStatus === 'fail' && (
+                                    <div className="text-center animate-in zoom-in duration-300">
+                                        <div className="text-5xl mb-2">🚫</div>
+                                        <div className="text-red-400 font-bold text-lg">418 I'm a teapot</div>
+                                        <div className="text-slate-500 text-sm mt-1">服务器拒绝了你的访问</div>
+                                        <div className="text-red-900/50 text-xs mt-2 border border-red-900/30 px-2 py-1 rounded">Error: Anti-Crawler mechanism triggered</div>
+                                    </div>
+                                )}
+
+                                {camouStatus === 'success' && (
+                                    <div className="text-center animate-in zoom-in duration-300">
+                                        <div className="text-5xl mb-2">✅</div>
+                                        <div className="text-green-400 font-bold text-lg">200 OK</div>
+                                        <div className="text-slate-500 text-sm mt-1">成功获取网页数据</div>
+                                        <div className="flex gap-2 justify-center mt-3">
+                                            <span className="text-xs bg-slate-800 px-2 py-1 rounded text-slate-400 font-mono">&lt;html&gt;...</span>
+                                            <span className="text-xs bg-slate-800 px-2 py-1 rounded text-slate-400 font-mono">25 items</span>
+                                        </div>
+                                    </div>
+                                )}
+                            </div>
+                        </div>
+                    </div>
+                )}
+
+                {/* Stage 3: Coding & Execution */}
+                {stage === 3 && (
+                    <div className="space-y-6 animate-in fade-in slide-in-from-right-4">
+                        <div className="bg-blue-500/10 border border-blue-500/30 p-4 rounded-xl text-blue-200 text-sm mb-4">
+                            <strong className="block mb-1 text-blue-400 flex items-center gap-2"><Code size={16} /> 编写代码 (Coding)</strong>
+                            将“请求”、“熬汤”、“找包裹”、“拆包裹”组合起来，就是完整的爬虫。
+                        </div>
+
+                        <div className="grid md:grid-cols-2 gap-6 h-[400px]">
+                            <div className="relative group h-full">
+                                <div className="absolute top-2 right-2 z-10">
+                                    <Button
+                                        onClick={runCrawler}
+                                        disabled={isRunning}
+                                        className="bg-green-600 hover:bg-green-500 text-white text-xs px-3 py-1 h-8"
+                                    >
+                                        {isRunning ? <RefreshCw className="animate-spin w-4 h-4" /> : <Play className="w-4 h-4 mr-1" />}
+                                        运行代码
+                                    </Button>
+                                </div>
+                                <div className="h-full overflow-hidden rounded-xl border border-slate-700 bg-slate-900">
+                                    <CodeBlock code={`import requests
+from bs4 import BeautifulSoup
+
+def scrape_douban():
+    # 1. 伪装
+    headers = { "User-Agent": "Mozilla/5.0..." }
+    
+    # 2. 请求
+    resp = requests.get(url, headers=headers)
+    
+    # 3. 熬汤 & 找包裹
+    soup = BeautifulSoup(resp.text, "html.parser")
+    movie_list = soup.find_all("div", class_="item")
+    
+    # 4. 拆包裹
+    for movie in movie_list:
+        title = movie.find("span", class_="title").text
+        score = movie.find("span", class_="rating_num").text
+        print(f"🎬 {title} ⭐ {score}")`} />
+                                </div>
+                            </div>
+
+                            <div className="bg-black rounded-xl border border-slate-700 p-4 font-mono text-xs overflow-y-auto custom-scrollbar h-full flex flex-col shadow-inner">
+                                <div className="text-slate-500 border-b border-white/10 pb-2 mb-2 flex items-center gap-2">
+                                    <Terminal size={14} /> Output Console
+                                </div>
+                                <div className="space-y-1 flex-1">
+                                    {logs.length === 0 && !isRunning && <span className="text-slate-600 italic">Click "运行代码" to start...</span>}
+                                    {logs.map((log, i) => (
+                                        <div key={i} className={`animate-in fade-in slide-in-from-left-2 ${log.includes('❌') ? 'text-red-400' : 'text-slate-300'}`}>
+                                            {log}
+                                        </div>
+                                    ))}
+                                    {isRunning && <div className="w-2 h-4 bg-slate-500 animate-pulse inline-block align-middle ml-1"></div>}
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                )}
+            </div>
+        </div>
+    );
+};
+
 const sections = [
-    { id: 1, title: '发送请求 (Requests)', icon: Globe, component: RequestSlide },
-    { id: 2, title: '解析数据 (BeautifulSoup)', icon: Search, component: ParserSlide },
-    { id: 3, title: '爬虫协议 (Robots.txt)', icon: Shield, component: RobotsSlide },
-    { id: 4, title: '伪装头部 (Headers)', icon: Key, component: HeadersSlide },
+    { id: 1, title: '课程介绍 (Intro)', icon: Bug, component: IntroSlide },
+    { id: 2, title: '爬虫协议 (Robots.txt)', icon: Shield, component: RobotsSlide },
+    { id: 3, title: '发送请求 (Requests)', icon: Globe, component: RequestSlide },
+    { id: 4, title: 'HTTP 状态码 (Status)', icon: Info, component: StatusSlide },
+    { id: 5, title: '伪装头部 (Headers)', icon: Key, component: HeadersSlide },
+    { id: 6, title: '解析数据 (BeautifulSoup)', icon: Search, component: ParserSlide },
+    { id: 7, title: '实战: 豆瓣 Top 250', icon: Film, component: DoubanProjectSlide },
+    { id: 8, title: '分页处理 (Pagination)', icon: Layers, component: PaginationSlide },
+    { id: 9, title: '数据存储 (Storage)', icon: Database, component: StorageSlide },
+    { id: 10, title: '实战挑战 (Challenge)', icon: Cpu, component: PracticeSlide },
 ];
 
 export default function PythonCrawler() {
