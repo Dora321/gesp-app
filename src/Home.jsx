@@ -636,6 +636,15 @@ export default function Home() {
                                     color: 'bg-yellow-500/20 text-yellow-400 border border-yellow-500/30 shadow-lg shadow-yellow-500/20',
                                     path: '/python/sorting',
                                     status: 'ready'
+                                },
+                                {
+                                    id: 'py_morse',
+                                    title: 'A8: 摩斯密码',
+                                    description: '化身情报特工！用字典编译滴滴答答的秘密电报',
+                                    icon: <Key className="w-8 h-8 text-yellow-400" />,
+                                    color: 'bg-yellow-500/20 text-yellow-400 border border-yellow-500/30 shadow-lg shadow-yellow-500/20',
+                                    path: '/python/morse',
+                                    status: 'ready'
                                 }
                             ].map((course) => (
                                 <div

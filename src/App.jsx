@@ -39,6 +39,7 @@ import PythonCrawler from './courses/python/advanced/PythonCrawler';
 import BinarySearchProject from './courses/python/advanced/BinarySearchProject';
 import PythonEncryptionProject from './courses/python/advanced/PythonEncryptionProject';
 import PythonSortingProject from './courses/python/advanced/PythonSortingProject';
+import PythonMorseProject from './courses/python/advanced/PythonMorseProject';
 import ClassroomPoints from './components/ClassroomPoints';
 import AnnouncementBar from './components/AnnouncementBar';
 import ComputingMuseum from './pages/ComputingMuseum'; // New Import
@@ -96,6 +97,7 @@ function App() {
         <Route path="/python/binary-search" element={<BinarySearchProject />} />
         <Route path="/python/encryption" element={<PythonEncryptionProject />} />
         <Route path="/python/sorting" element={<PythonSortingProject />} />
+        <Route path="/python/morse" element={<PythonMorseProject />} />
 
         {/* Fun Lessons */}
         <Route path="/lesson1" element={<Lesson1 />} />

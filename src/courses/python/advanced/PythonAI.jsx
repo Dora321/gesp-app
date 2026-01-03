@@ -229,9 +229,197 @@ const NNDemo = () => {
 };
 
 
+
+// 3. Linear Regression Demo
+const LinearRegressionDemo = () => {
+    const [points, setPoints] = useState([]);
+    const [line, setLine] = useState(null); // { m, b }
+
+    const handlePlace = (e) => {
+        const rect = e.target.getBoundingClientRect();
+        const x = ((e.clientX - rect.left) / rect.width) * 100;
+        const y = 100 - ((e.clientY - rect.top) / rect.height) * 100; // Flip Y for cartesian-like feel
+        setPoints([...points, { x, y }]);
+        setLine(null); // Reset line on new point
+    };
+
+    const trainModel = () => {
+        if (points.length < 2) return;
+
+        // Simple Least Squares
+        const n = points.length;
+        let sumX = 0, sumY = 0, sumXY = 0, sumXX = 0;
+
+        points.forEach(p => {
+            sumX += p.x;
+            sumY += p.y;
+            sumXY += p.x * p.y;
+            sumXX += p.x * p.x;
+        });
+
+        const m = (n * sumXY - sumX * sumY) / (n * sumXX - sumX * sumX);
+        const b = (sumY - m * sumX) / n;
+
+        setLine({ m, b });
+    };
+
+    return (
+        <div className="space-y-6 animate-in fade-in slide-in-from-bottom-4 duration-500">
+            <div className="bg-slate-800 p-6 rounded-2xl border border-slate-700">
+                <h3 className="text-xl font-bold text-blue-400 mb-4 flex items-center gap-2">
+                    <Activity size={20} /> 线性回归 (Linear Regression)
+                </h3>
+                <p className="text-slate-300 mb-4">
+                    点击屏幕放置数据点。AI 会尝试画一条直线来“拟合”这些点，找出它们之间的规律。
+                    <br /><span className="text-xs text-slate-500">原理：最小二乘法 (Least Squares)</span>
+                </p>
+
+                <div className="relative w-full h-80 bg-slate-900 rounded-xl border-2 border-slate-700 overflow-hidden cursor-crosshair" onClick={handlePlace}>
+                    {/* Grid lines */}
+                    <div className="absolute inset-0 grid grid-cols-4 grid-rows-4 opacity-10 pointer-events-none">
+                        {[...Array(16)].map((_, i) => <div key={i} className="border border-slate-500"></div>)}
+                    </div>
+
+                    {/* Points */}
+                    {points.map((p, i) => (
+                        <div
+                            key={i}
+                            className="absolute w-3 h-3 bg-blue-500 rounded-full shadow-lg border border-white"
+                            style={{ left: `${p.x}%`, bottom: `${p.y}%`, transform: 'translate(-50%, 50%)' }}
+                        ></div>
+                    ))}
+
+                    {/* Regression Line */}
+                    {line && (
+                        <svg className="absolute inset-0 w-full h-full pointer-events-none">
+                            <line
+                                x1="0%"
+                                y1={`${100 - (line.m * 0 + line.b)}%`}
+                                x2="100%"
+                                y2={`${100 - (line.m * 100 + line.b)}%`}
+                                stroke="#3b82f6"
+                                strokeWidth="4"
+                                strokeDasharray="10,5"
+                                className="animate-in fade-in duration-1000"
+                            />
+                        </svg>
+                    )}
+                </div>
+
+                <div className="mt-4 flex justify-between items-center h-12">
+                    <div className="text-slate-400 text-sm">
+                        {points.length > 0 ? `已有点数: ${points.length}` : '请点击上方区域添加数据点...'}
+                    </div>
+                    <Button onClick={trainModel} disabled={points.length < 2} variant="primary" className="bg-blue-500 hover:bg-blue-600 shadow-blue-500/20 text-white">
+                        {line ? '⚡ 已拟合' : '📐 训练模型'}
+                    </Button>
+                </div>
+            </div>
+        </div>
+    );
+};
+
+// 4. Quiz Section
+const Quiz = () => {
+    const questions = [
+        {
+            q: "KNN (K-Nearest Neighbors) 主要是用来做什么的？",
+            options: ["分类 (Classification)", "回归 (Regression)", "聚类 (Clustering)"],
+            a: 0
+        },
+        {
+            q: "在神经网络中，Loss (损失) 代表什么？",
+            options: ["网络的层数", "模型的准确度", "模型预测与真实值的误差"],
+            a: 2
+        },
+        {
+            q: "线性回归试图找到什么样的线？",
+            options: ["连接所有点的折线", "拟合数据趋势的直线", "任意曲线"],
+            a: 1
+        }
+    ];
+
+    const [answers, setAnswers] = useState({});
+    const [submitted, setSubmitted] = useState(false);
+
+    const handleSelect = (qIdx, oIdx) => {
+        if (submitted) return;
+        setAnswers(prev => ({ ...prev, [qIdx]: oIdx }));
+    };
+
+    const getScore = () => {
+        let score = 0;
+        questions.forEach((q, i) => {
+            if (answers[i] === q.a) score++;
+        });
+        return score;
+    };
+
+    return (
+        <div className="space-y-6 animate-in fade-in slide-in-from-bottom-4 duration-500">
+            <div className="bg-slate-800 p-8 rounded-2xl border border-slate-700">
+                <h3 className="text-2xl font-bold text-yellow-400 mb-6 flex items-center gap-2">
+                    <Brain size={24} /> 知识小测验
+                </h3>
+
+                <div className="space-y-8">
+                    {questions.map((q, i) => (
+                        <div key={i} className="space-y-3">
+                            <p className="font-semibold text-lg text-white">{i + 1}. {q.q}</p>
+                            <div className="space-y-2">
+                                {q.options.map((opt, oIdx) => {
+                                    const isSelected = answers[i] === oIdx;
+                                    const isCorrect = q.a === oIdx;
+                                    const showResult = submitted;
+
+                                    let btnClass = "w-full text-left p-3 rounded-lg border transition-all ";
+                                    if (showResult) {
+                                        if (isCorrect) btnClass += "bg-green-500/20 border-green-500 text-green-300";
+                                        else if (isSelected) btnClass += "bg-red-500/20 border-red-500 text-red-300";
+                                        else btnClass += "border-slate-700 text-slate-500 opacity-50";
+                                    } else {
+                                        if (isSelected) btnClass += "bg-yellow-500/20 border-yellow-500 text-yellow-300";
+                                        else btnClass += "bg-slate-900/50 border-slate-700 hover:bg-slate-700";
+                                    }
+
+                                    return (
+                                        <button
+                                            key={oIdx}
+                                            onClick={() => handleSelect(i, oIdx)}
+                                            className={btnClass}
+                                            disabled={submitted}
+                                        >
+                                            {opt}
+                                        </button>
+                                    );
+                                })}
+                            </div>
+                        </div>
+                    ))}
+                </div>
+
+                <div className="mt-8 pt-6 border-t border-slate-700 flex justify-between items-center">
+                    <div className="text-slate-300">
+                        {submitted && <span className="font-bold text-xl">得分: {getScore()} / {questions.length}</span>}
+                    </div>
+                    <Button
+                        onClick={() => setSubmitted(true)}
+                        disabled={Object.keys(answers).length < questions.length || submitted}
+                        className={submitted ? 'opacity-50' : ''}
+                    >
+                        {submitted ? '🎉 完成' : '提交答案'}
+                    </Button>
+                </div>
+            </div>
+        </div>
+    );
+};
+
 const sections = [
     { id: 1, title: '机器学习基础 (KNN)', icon: Target, component: KNNDemo },
     { id: 2, title: '神经网络可视化', icon: Activity, component: NNDemo },
+    { id: 3, title: '线性回归 (Regression)', icon: Activity, component: LinearRegressionDemo },
+    { id: 4, title: '课后测验 (Quiz)', icon: Brain, component: Quiz },
 ];
 
 export default function PythonAI() {

@@ -41,6 +41,7 @@ export default function Navigation() {
                 { title: 'A5: 二分查找', path: '/python/binary-search' },
                 { title: 'A6: 加密大师', path: '/python/encryption' },
                 { title: 'A7: 排序大师', path: '/python/sorting' },
+                { title: 'A8: 摩斯密码', path: '/python/morse' },
             ]
         },
         {
