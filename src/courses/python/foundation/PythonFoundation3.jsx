@@ -1073,6 +1073,7 @@ export default function PythonFoundation3() {
     useEffect(() => {
         scrollRef.current?.scrollTo(0, 0);
     }, [activeSection]);
+
     const ActiveComponent = sections.find(s => s.id === activeSection)?.component || (() => <div>Coming Soon</div>);
 
     return (
