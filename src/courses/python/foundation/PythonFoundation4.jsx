@@ -1,6 +1,6 @@
 import React, { useState, useRef, useEffect } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
-import { Box, Code, Package, Zap, ArrowRight, RefreshCw, Sparkles, BookOpen, AlertCircle, Menu, X, Play, Trophy, CheckCircle, XCircle, Star } from 'lucide-react';
+import { Box, Code, Package, Zap, ArrowRight, RefreshCw, Sparkles, BookOpen, AlertCircle, Menu, X, Play, Trophy, CheckCircle, XCircle, Star, Calculator, Dices, Clock } from 'lucide-react';
 
 // --- Shared Components ---
 const Button = ({ onClick, children, className, variant = 'primary', disabled = false }) => {
@@ -726,13 +726,130 @@ const QuizSlide = () => {
     );
 };
 
+
+
+// 3.5 Library Interface - The Tool Shed
+const LibrarySlide = () => {
+    const [output, setOutput] = useState(null);
+    const [activeLib, setActiveLib] = useState('math');
+
+    const labs = {
+        math: {
+            icon: <Calculator className="text-blue-400" size={24} />,
+            color: 'bg-blue-500',
+            desc: '数学工具箱',
+            tools: [
+                { name: 'math.pi', val: '3.14159...', type: 'const' },
+                { name: 'math.ceil(4.2)', val: '5', type: 'func' },
+                { name: 'math.sqrt(16)', val: '4.0', type: 'func' }
+            ]
+        },
+        random: {
+            icon: <Dices className="text-orange-400" size={24} />,
+            color: 'bg-orange-500',
+            desc: '随机制造机',
+            tools: [
+                { name: 'random.randint(1,6)', val: () => Math.floor(Math.random() * 6) + 1, type: 'func' },
+                { name: 'random.choice(["A","B"])', val: () => Math.random() > 0.5 ? 'A' : 'B', type: 'func' },
+                { name: 'random.random()', val: () => Math.random().toFixed(2), type: 'func' }
+            ]
+        },
+        time: {
+            icon: <Clock className="text-green-400" size={24} />,
+            color: 'bg-green-500',
+            desc: '时间控制器',
+            tools: [
+                { name: 'time.time()', val: () => Math.floor(Date.now() / 1000), type: 'func' },
+                { name: 'time.sleep(1)', val: 'Waiting...', action: 'wait', type: 'func' }
+            ]
+        }
+    };
+
+    const runTool = (tool) => {
+        if (tool.action === 'wait') {
+            setOutput('Sleeping...');
+            setTimeout(() => setOutput('Done! (1s later)'), 1000);
+        } else {
+            const val = typeof tool.val === 'function' ? tool.val() : tool.val;
+            setOutput(val);
+        }
+    };
+
+    return (
+        <div className="space-y-8 animate-in fade-in slide-in-from-bottom-4 duration-500">
+            <div className="bg-gradient-to-r from-slate-800 to-slate-900 p-6 rounded-2xl text-white shadow-lg border border-slate-700">
+                <h2 className="text-2xl font-bold mb-2 flex items-center gap-2">
+                    <Package className="text-emerald-400" />
+                    Batteries Included: 常用外部库
+                </h2>
+                <p className="opacity-90 text-slate-300">
+                    Python 号称 "自带电池"，意味着它预装了大量强大的库，无需下载即可直接使用(`import`)。
+                </p>
+            </div>
+
+            <div className="grid md:grid-cols-3 gap-4">
+                {Object.entries(labs).map(([key, lib]) => (
+                    <button
+                        key={key}
+                        onClick={() => { setActiveLib(key); setOutput(null); }}
+                        className={`p-4 rounded-xl border-2 transition-all flex flex-col items-center gap-2
+                            ${activeLib === key
+                                ? `${lib.color}/10 border-${lib.color.split('-')[1]}-500 shadow-md scale-105`
+                                : 'bg-white border-slate-100 text-slate-400 hover:border-slate-300'}`}
+                    >
+                        {lib.icon}
+                        <span className="font-bold capitalize">{key}</span>
+                    </button>
+                ))}
+            </div>
+
+            <div className="bg-white rounded-2xl border-2 border-slate-200 p-6 shadow-sm">
+                <div className="flex items-center gap-2 mb-4">
+                    <div className="text-sm font-bold text-slate-500 uppercase tracking-wider">
+                        import {activeLib}
+                    </div>
+                    <div className="flex-1 h-px bg-slate-100"></div>
+                </div>
+
+                <div className="grid md:grid-cols-2 gap-8">
+                    <div className="space-y-3">
+                        {labs[activeLib].tools.map((tool, i) => (
+                            <button
+                                key={i}
+                                onClick={() => runTool(tool)}
+                                className="w-full flex items-center justify-between p-3 rounded-lg bg-slate-50 hover:bg-indigo-50 hover:text-indigo-600 transition-colors group border border-slate-100"
+                            >
+                                <code className="font-mono text-sm font-bold">{tool.name}</code>
+                                <Play size={14} className="opacity-0 group-hover:opacity-100 transition-opacity" />
+                            </button>
+                        ))}
+                    </div>
+
+                    <div className="bg-slate-900 rounded-xl p-4 flex flex-col justify-center items-center min-h-[120px] relative overflow-hidden">
+                        <div className="absolute top-2 left-3 text-xs text-slate-500 font-mono">Console Output</div>
+                        {output !== null ? (
+                            <div className="text-xl font-mono text-emerald-400 animate-in zoom-in duration-200">
+                                {activeLib === 'math' && '>> '}
+                                {output}
+                            </div>
+                        ) : (
+                            <div className="text-slate-600 text-sm italic">Running...</div>
+                        )}
+                    </div>
+                </div>
+            </div>
+        </div>
+    );
+};
+
 const sections = [
     { id: 1, title: '函数 Function', icon: BookOpen, component: FunctionSlide },
     { id: 2, title: '作用域 Scope', icon: Box, component: ScopeSlide },
     { id: 3, title: '模块 Module', icon: Package, component: ModuleSlide },
-    { id: 4, title: '进阶 Advanced', icon: Zap, component: AdvancedFunctionSlide },
-    { id: 5, title: 'Lambda 魔法', icon: Sparkles, component: LambdaSlide },
-    { id: 6, title: '挑战 Challenge', icon: Star, component: QuizSlide },
+    { id: 4, title: '常用库 Library', icon: Box, component: LibrarySlide },
+    { id: 5, title: '进阶 Advanced', icon: Zap, component: AdvancedFunctionSlide },
+    { id: 6, title: 'Lambda 魔法', icon: Sparkles, component: LambdaSlide },
+    { id: 7, title: '挑战 Challenge', icon: Star, component: QuizSlide },
 ];
 
 export default function PythonFoundation4() {
