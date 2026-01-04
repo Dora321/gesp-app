@@ -3,7 +3,8 @@ import { useNavigate } from 'react-router-dom';
 import { BookOpen, Award, Star, ChevronRight, ChevronDown, ChevronUp, FileText, Monitor, Lock, CheckCircle, PlayCircle, Flag, Sparkles, Map, Zap, Scissors, ArrowRight, Box, Key, Terminal, Shield, Repeat, Layers, AlignJustify, Scan, Type, Package, Trophy, ArrowUp, Megaphone, Search, MousePointer2, Grid, XCircle, AlertOctagon, Compass, Menu, X, Home as HomeIcon } from 'lucide-react';
 
 import Navigation from './components/Navigation';
-import ekartPromo from './assets/ekart_promo.jpg';
+import ekartPromo from './assets/ekart_promo.png';
+
 
 export default function Home() {
     const navigate = useNavigate();
@@ -460,7 +461,7 @@ export default function Home() {
 
                             <div className="relative">
                                 <div className="w-64 h-40 md:w-80 md:h-52 rounded-xl border-2 border-slate-700 flex items-center justify-center relative transform rotate-3 shadow-2xl group-hover:rotate-6 transition-transform duration-500 overflow-hidden bg-black">
-                                    <div className="absolute -left-4 -top-4 w-12 h-12 bg-cyan-500 rounded-lg flex items-center justify-center text-2xl font-bold shadow-lg z-20">⚡</div>
+
                                     <img src={ekartPromo} alt="E-Kart Model" className="w-full h-full object-cover opacity-90 group-hover:opacity-100 transition-opacity" />
                                 </div>
                                 <div className="absolute -z-10 top-10 -right-10 w-64 h-64 bg-cyan-500/20 rounded-full blur-3xl"></div>
