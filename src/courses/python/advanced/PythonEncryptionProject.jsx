@@ -875,7 +875,7 @@ export default function PythonEncryptionProject() {
             `}>
                 <div className="p-6 border-b border-slate-800 flex items-center gap-3">
                     <Link to="/" className="hover:opacity-80 transition-opacity">
-                        <img src="/logo.jpg" alt="Logo" className="w-10 h-10 rounded-xl object-cover shadow-lg shadow-green-900/50" />
+                        <img src={`${import.meta.env.BASE_URL}logo.jpg`} alt="Logo" className="w-10 h-10 rounded-xl object-cover shadow-lg shadow-green-900/50" />
                     </Link>
                     <div>
                         <h1 className="font-bold text-white leading-none tracking-wider">特工加密</h1>

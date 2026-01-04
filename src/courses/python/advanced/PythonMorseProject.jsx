@@ -398,7 +398,7 @@ const PythonMorseProject = () => {
             <div className="h-16 bg-slate-900/80 backdrop-blur-md border-b border-slate-800 flex items-center justify-between px-6 sticky top-0 z-10">
                 <h1 className="font-bold text-lg flex items-center gap-2 text-cyan-400">
                     <Link to="/" className="hover:opacity-80 transition-opacity">
-                        <img src="/logo.jpg" alt="Logo" className="w-8 h-8 rounded-lg object-cover border border-slate-700" />
+                        <img src={`${import.meta.env.BASE_URL}logo.jpg`} alt="Logo" className="w-8 h-8 rounded-lg object-cover border border-slate-700" />
                     </Link>
                     Project: Morse Translator
                 </h1>

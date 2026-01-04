@@ -2230,7 +2230,7 @@ export default function PythonSortingProject() {
             `}>
                 <div className="p-6 border-b border-slate-100 flex items-center gap-3">
                     <Link to="/" className="hover:opacity-80 transition-opacity">
-                        <img src="/logo.jpg" alt="Logo" className="w-10 h-10 rounded-xl object-cover shadow-lg shadow-orange-100" />
+                        <img src={`${import.meta.env.BASE_URL}logo.jpg`} alt="Logo" className="w-10 h-10 rounded-xl object-cover shadow-lg shadow-orange-100" />
                     </Link>
                     <div>
                         <h1 className="font-bold text-slate-800 leading-none">排序大师</h1>

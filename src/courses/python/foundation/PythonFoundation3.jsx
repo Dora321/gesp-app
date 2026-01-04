@@ -1083,7 +1083,7 @@ export default function PythonFoundation3() {
                 <div className="p-6 border-b border-slate-100">
                     <h1 className="text-xl font-bold text-teal-600 flex items-center gap-2">
                         <Link to="/" className="hover:opacity-80 transition-opacity">
-                            <img src="/logo.jpg" alt="Logo" className="w-8 h-8 rounded-lg object-cover border border-slate-200 shadow-sm" />
+                            <img src={`${import.meta.env.BASE_URL}logo.jpg`} alt="Logo" className="w-8 h-8 rounded-lg object-cover border border-slate-200 shadow-sm" />
                         </Link>
                         <span className="bg-teal-600 text-white p-1 rounded text-sm">Python</span>
                         F3: 数据结构
