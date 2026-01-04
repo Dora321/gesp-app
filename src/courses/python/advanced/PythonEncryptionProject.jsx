@@ -874,9 +874,9 @@ export default function PythonEncryptionProject() {
                 ${isMobileMenuOpen ? 'translate-x-0' : '-translate-x-full'}
             `}>
                 <div className="p-6 border-b border-slate-800 flex items-center gap-3">
-                    <div className="w-10 h-10 bg-green-500 rounded-xl flex items-center justify-center text-slate-900 font-bold shadow-lg shadow-green-900/50">
-                        <Lock size={24} />
-                    </div>
+                    <Link to="/" className="hover:opacity-80 transition-opacity">
+                        <img src="/logo.jpg" alt="Logo" className="w-10 h-10 rounded-xl object-cover shadow-lg shadow-green-900/50" />
+                    </Link>
                     <div>
                         <h1 className="font-bold text-white leading-none tracking-wider">特工加密</h1>
                         <p className="text-[10px] text-green-500 mt-1 uppercase tracking-widest font-bold">Encryption Master</p>

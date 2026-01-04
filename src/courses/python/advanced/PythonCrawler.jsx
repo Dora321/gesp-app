@@ -1105,9 +1105,7 @@ export default function PythonCrawler() {
                 <div className="p-6 border-b border-slate-800">
                     <h1 className="text-xl font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 to-blue-500 flex items-center gap-2">
                         <Link to="/" className="hover:opacity-80 transition-opacity">
-                            <div className="w-8 h-8 bg-slate-800 rounded-lg flex items-center justify-center overflow-hidden border border-slate-700">
-                                <span className="text-lg">🕸️</span>
-                            </div>
+                            <img src="/logo.jpg" alt="Logo" className="w-8 h-8 rounded-lg object-cover border border-slate-700" />
                         </Link>
                         A4: 网络爬虫
                     </h1>

@@ -969,9 +969,7 @@ export default function PythonFoundation2() {
                 <div className="p-6 border-b border-slate-100 hidden md:block">
                     <h1 className="text-xl font-bold text-blue-600 flex items-center gap-2">
                         <Link to="/" className="hover:opacity-80 transition-opacity">
-                            <div className="w-8 h-8 bg-white rounded-lg flex items-center justify-center overflow-hidden border border-slate-200 shadow-sm">
-                                <span className="text-lg">🐍</span>
-                            </div>
+                            <img src="/logo.jpg" alt="Logo" className="w-8 h-8 rounded-lg object-cover border border-slate-200 shadow-sm" />
                         </Link>
                         <span className="bg-blue-600 text-white p-1 rounded text-sm">Python</span>
                         F2: 流程控制

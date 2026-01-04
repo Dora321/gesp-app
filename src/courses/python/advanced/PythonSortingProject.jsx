@@ -2229,9 +2229,9 @@ export default function PythonSortingProject() {
                 ${isMobileMenuOpen ? 'translate-x-0' : '-translate-x-full'}
             `}>
                 <div className="p-6 border-b border-slate-100 flex items-center gap-3">
-                    <div className="w-10 h-10 bg-orange-600 rounded-xl flex items-center justify-center text-white shadow-lg shadow-orange-100">
-                        <ArrowDown size={24} />
-                    </div>
+                    <Link to="/" className="hover:opacity-80 transition-opacity">
+                        <img src="/logo.jpg" alt="Logo" className="w-10 h-10 rounded-xl object-cover shadow-lg shadow-orange-100" />
+                    </Link>
                     <div>
                         <h1 className="font-bold text-slate-800 leading-none">排序大师</h1>
                         <p className="text-[10px] text-slate-400 mt-1 uppercase tracking-widest font-bold">Sorting Algorithms</p>

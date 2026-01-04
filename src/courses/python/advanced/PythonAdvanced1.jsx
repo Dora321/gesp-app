@@ -1333,9 +1333,7 @@ export default function PythonAdvanced1() {
                 <div className="p-5 border-b border-slate-100 hidden md:block">
                     <h1 className="text-lg font-bold flex items-center gap-2 text-indigo-700">
                         <Link to="/" className="hover:opacity-80 transition-opacity">
-                            <div className="w-8 h-8 bg-white rounded-lg flex items-center justify-center overflow-hidden border border-slate-200 shadow-sm">
-                                <span className="text-lg">🧠</span>
-                            </div>
+                            <img src="/logo.jpg" alt="Logo" className="w-8 h-8 rounded-lg object-cover border border-slate-200 shadow-sm" />
                         </Link>
                         <span className="bg-indigo-600 text-white p-1 rounded text-sm">Python</span>
                         A1: 算法思维
