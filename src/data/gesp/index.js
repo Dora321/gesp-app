@@ -6,18 +6,18 @@
 // 2023.12 - 2025.12: Level 1-8
 
 // ========== 一级 (Level 1) ==========
-import { paperData as p202303 } from './2023-03';
-import { paperData as p202306 } from './2023-06';
-import { paperData as p202309 } from './2023-09';
-import { paperData as p202312 } from './2023-12';
-import { paperData as p202403 } from './2024-03';
-import { paperData as p202406 } from './2024-06';
-import { paperData as p202409 } from './2024-09';
-import { paperData as p202412 } from './2024-12';
-import { paperData as p202503 } from './2025-03';
-import { paperData as p202506 } from './2025-06';
-import { paperData as p202509 } from './2025-09';
-import { paperData as p202512 } from './2025-12';
+import { paperData as p202303 } from './level1/2023-03-l1';
+import { paperData as p202306 } from './level1/2023-06-l1';
+import { paperData as p202309 } from './level1/2023-09-l1';
+import { paperData as p202312 } from './level1/2023-12-l1';
+import { paperData as p202403 } from './level1/2024-03-l1';
+import { paperData as p202406 } from './level1/2024-06-l1';
+import { paperData as p202409 } from './level1/2024-09-l1';
+import { paperData as p202412 } from './level1/2024-12-l1';
+import { paperData as p202503 } from './level1/2025-03-l1';
+import { paperData as p202506 } from './level1/2025-06-l1';
+import { paperData as p202509 } from './level1/2025-09-l1';
+import { paperData as p202512 } from './level1/2025-12-l1';
 
 // ========== 二级 (Level 2) ==========
 // 2023-03 had no Level 2
