@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { Search, Terminal, Award, BookOpen, ChevronRight, Home, Grid, Sparkles, Map, Lock, Zap } from 'lucide-react';
+import { Search, Terminal, Award, BookOpen, ChevronRight, Home, Grid, Sparkles, Map, Lock, Zap, Trophy } from 'lucide-react';
 
 export default function Navigation() {
     const navigate = useNavigate();
@@ -21,6 +21,15 @@ export default function Navigation() {
                 { title: '六级：挑战难题', path: '/level6', icon: <StarIcon color="text-purple-400" /> },
                 { title: '七级：专家图论', path: '/level7', icon: <StarIcon color="text-fuchsia-400" /> },
                 { title: '八级：大师综合', path: '/level8', icon: <StarIcon color="text-rose-400" /> },
+            ]
+        },
+        {
+            title: '真题题库中心',
+            color: 'text-rose-400',
+            bg: 'bg-rose-500/10 border-rose-500/20',
+            icon: <Trophy className="w-6 h-6" />,
+            items: [
+                { title: 'GESP 历年真题库', path: '/question-bank', icon: <BookOpen className="text-rose-400" /> },
             ]
         },
         {

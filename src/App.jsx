@@ -44,6 +44,9 @@ import ClassroomPoints from './components/ClassroomPoints';
 import AnnouncementBar from './components/AnnouncementBar';
 import ComputingMuseum from './pages/ComputingMuseum'; // New Import
 
+import QuestionBankHome from './pages/QuestionBankHome';
+import ExamPaper from './pages/ExamPaper';
+
 import Navigation from './Navigation'; // Import Navigation component
 
 // E-Kart Imports
@@ -60,6 +63,8 @@ function App() {
       <Routes>
         <Route path="/navigation" element={<Navigation />} />
         <Route path="/museum" element={<ComputingMuseum />} />
+        <Route path="/question-bank" element={<QuestionBankHome />} />
+        <Route path="/question-bank/:level/:paperId" element={<ExamPaper />} />
         <Route path="/" element={<Home />} />
 
 
