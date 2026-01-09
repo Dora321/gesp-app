@@ -20,10 +20,13 @@ export default function ComputingMuseum() {
 
     // Helper to get rarity visuals
     const getRarityColor = (rarity) => {
+        if (rarity?.includes('顶级')) return 'text-purple-400 shadow-purple-500/50';
         switch (rarity) {
-            case '传说': return 'text-yellow-400 shadow-yellow-500/50';
-            case '史诗': return 'text-purple-400 shadow-purple-500/50';
-            case '稀有': return 'text-blue-400 shadow-blue-500/50';
+            case '夯': return 'text-yellow-400 shadow-yellow-500/50';
+            case '顶级': return 'text-purple-400 shadow-purple-500/50';
+            case '人上人': return 'text-blue-400 shadow-blue-500/50';
+            case 'NPC': return 'text-emerald-400 shadow-emerald-500/50';
+            case '拉完了': return 'text-slate-400 shadow-slate-500/50';
             default: return 'text-slate-400 shadow-slate-500/50';
         }
     };
