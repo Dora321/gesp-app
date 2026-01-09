@@ -25,6 +25,7 @@ import Lesson13 from './lessons/Lesson13';
 import Lesson14 from './lessons/Lesson14';
 import Lesson15 from './lessons/Lesson15';
 import Lesson16 from './lessons/Lesson16';
+import GESP2_2025_12 from './data/gesp/level2/GESP2_2025_12';
 
 import PythonFoundation1 from './courses/python/foundation/PythonFoundation1';
 import PythonFoundation2 from './courses/python/foundation/PythonFoundation2';
@@ -121,6 +122,7 @@ function App() {
         <Route path="/lesson14" element={<Lesson14 />} />
         <Route path="/lesson15" element={<Lesson15 />} />
         <Route path="/lesson16" element={<Lesson16 />} />
+        <Route path="/gesp/2025-12-l2" element={<GESP2_2025_12 />} />
       </Routes>
       <ClassroomPoints />
     </BrowserRouter>

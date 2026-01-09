@@ -390,12 +390,12 @@ export default function Home() {
         },
         {
             id: 'adv_lesson10',
-            title: '第 10 关：真题挑战',
-            description: '直面 GESP 二级真题，从容应对考试',
+            title: '第 10 关：2025-12真题',
+            description: '直面 GESP 二级真题（2025年12月卷），含交互式编程题解析',
             icon: <Trophy className="w-6 h-6 text-white" />,
             color: 'bg-gradient-to-br from-cyan-500 to-sky-600 shadow-cyan-500/50',
-            path: '/level2',
-            status: 'locked'
+            path: '/gesp/2025-12-l2',
+            status: 'ready'
         }
     ];
 

@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
-import { BookOpen, Code, Calculator, Grid, Play, ChevronRight, Lightbulb, AlertTriangle, CheckCircle, ArrowRight, Bug, AlertOctagon, Trophy, Eye, Clock, Target, Zap, RefreshCw, XCircle, Copy, Check, Unlock, Award, FileCode, ArrowRightLeft, SkipForward, Info, MousePointerClick, Book, Menu, X } from 'lucide-react';
+import { BookOpen, Code, Calculator, Grid, Play, ChevronRight, Lightbulb, AlertTriangle, CheckCircle, ArrowRight, Bug, AlertOctagon, Trophy, Eye, Clock, Target, Zap, RefreshCw, XCircle, Copy, Check, Unlock, Award, FileCode, ArrowRightLeft, SkipForward, Info, MousePointerClick, Book, Menu, X, FileText } from 'lucide-react';
+import GESP2_2025_12 from '../data/gesp/level2/GESP2_2025_12';
 
 // -----------------------------------------------------------------------------
 // Component: Navigation
@@ -1580,6 +1581,7 @@ export default function GESP_Level2_Courseware() {
     { id: 'templates', label: '万能代码模板', icon: Code },
     { id: 'tips', label: '考试秘籍攻略', icon: Lightbulb },
     { id: 'practice', label: '真题实战演练', icon: Trophy },
+    { id: 'exam202512', label: '2025-12 真题解析', icon: FileText },
   ];
 
   const renderContent = () => {
@@ -1594,6 +1596,7 @@ export default function GESP_Level2_Courseware() {
       case 'templates': return <TemplatesModule />;
       case 'tips': return <ExamTipsModule />;
       case 'practice': return <PracticeModule />;
+      case 'exam202512': return <GESP2_2025_12 />;
       default: return <OverviewModule />;
     }
   };

@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import { Clock, ChevronLeft, Save, PlayCircle, CheckCircle, AlertTriangle, X, ChevronRight, Menu, Trophy, BookOpen, FileText, Lightbulb } from 'lucide-react';
 import { paperRegistry } from '../data/gesp/index';
+import GESP2_2025_12 from '../data/gesp/level2/GESP2_2025_12';
 
 const ExamPaper = () => {
     const { paperId } = useParams();
@@ -198,6 +199,10 @@ const ExamPaper = () => {
         );
     }
 
+    if (mode === 'analysis' && paperId === '2025-12-l2') {
+        return <GESP2_2025_12 />;
+    }
+
     return (
         <div className="min-h-screen bg-slate-100 flex flex-col font-sans">
             {/* Top Bar */}
@@ -378,8 +383,8 @@ const ExamPaper = () => {
                                             onClick={() => handleRevealAnswer(currentQ.id)}
                                             disabled={answers[currentQ.id] === undefined}
                                             className={`w-full py-3 rounded-xl font-bold flex items-center justify-center gap-2 transition-all ${answers[currentQ.id] === undefined
-                                                    ? 'bg-slate-100 text-slate-400 cursor-not-allowed'
-                                                    : 'bg-green-600 text-white hover:bg-green-700'
+                                                ? 'bg-slate-100 text-slate-400 cursor-not-allowed'
+                                                : 'bg-green-600 text-white hover:bg-green-700'
                                                 }`}
                                         >
                                             <Lightbulb size={18} />
