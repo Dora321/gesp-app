@@ -105,9 +105,7 @@ export default function Navigation() {
                                             {item.icon}
                                         </span>
                                         {item.name}
-                                        {isActive(item.path) && (
-                                            <span className="absolute bottom-0 left-1/2 -translate-x-1/2 w-1 h-1 bg-blue-400 rounded-full mb-1"></span>
-                                        )}
+
                                     </button>
                                 ))}
                             </div>
