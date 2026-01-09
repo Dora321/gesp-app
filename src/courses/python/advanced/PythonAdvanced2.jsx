@@ -942,6 +942,50 @@ const QuizSlide = () => {
     );
 };
 
+// 7. 打包发布
+const PackagingSlide = () => {
+    return (
+        <div className="flex flex-col items-center h-full gap-6">
+            <div className="text-center">
+                <div className="text-sm font-bold text-indigo-500 mb-1">额外技能：分享你的游戏</div>
+                <h3 className="text-2xl font-bold text-slate-800">将 Python 程序打包成 exe</h3>
+                <p className="text-slate-500 mt-2">做好了游戏，怎么发给没装 Python 的朋友玩呢？打包成 exe 吧！</p>
+            </div>
+
+            <div className="w-full max-w-3xl space-y-6">
+                <div className="bg-white p-6 rounded-xl shadow-md border-l-4 border-indigo-500">
+                    <h4 className="text-lg font-bold text-slate-800 mb-2 flex items-center gap-2">
+                        <Box className="text-indigo-500" size={24} />
+                        方法一：使用 PyInstaller（推荐）
+                    </h4>
+                    <p className="text-slate-600 mb-4">这是行业标准工具，功能强大且支持大多数 Python 库。</p>
+
+                    <div className="space-y-4">
+                        <div>
+                            <div className="font-bold text-slate-700 mb-1">1. 安装 PyInstaller</div>
+                            <div className="bg-slate-800 text-green-400 p-3 rounded-lg font-mono text-sm">
+                                pip install pyinstaller
+                            </div>
+                        </div>
+
+                        <div>
+                            <div className="font-bold text-slate-700 mb-1">2. 基本打包命令</div>
+                            <p className="text-sm text-slate-500 mb-2">进入你的 Python 脚本所在的文件夹，运行：</p>
+                            <div className="bg-slate-800 text-green-400 p-3 rounded-lg font-mono text-sm">
+                                pyinstaller -F 你的文件名.py
+                            </div>
+                            <div className="mt-2 text-sm text-slate-600 bg-orange-50 p-2 rounded border border-orange-100">
+                                <span className="font-bold text-orange-600">结果：</span>
+                                生成的 .exe 文件会在自动创建的 <code>dist</code> 文件夹中。
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    );
+};
+
 // --- 主布局 ---
 
 const sections = [
@@ -951,7 +995,8 @@ const sections = [
     { id: 3, title: '核心魔法', icon: 'arrow-up', component: MergeLogicSlide }, // Arrow left icon fallback to up if not precise match
     { id: 4, title: '空间变换', icon: 'rotate', component: TransformSlide },
     { id: 5, title: '代码全览', icon: 'code', component: SummarySlide },
-    { id: 6, title: '课间小测验', icon: 'trophy', component: QuizSlide }, // Added QuizSlide
+    { id: 6, title: '课间小测验', icon: 'trophy', component: QuizSlide },
+    { id: 7, title: '打包发布', icon: 'box', component: PackagingSlide },
 ];
 
 export default function PythonAdvanced2() {
@@ -1076,7 +1121,7 @@ export default function PythonAdvanced2() {
                     <div>
                         <div className="px-4 mb-2 text-xs font-bold text-slate-400 uppercase tracking-wider">🏆 总结测验</div>
                         <div className="space-y-1">
-                            {sections.slice(5, 7).map((section) => (
+                            {sections.slice(5).map((section) => (
                                 <button
                                     key={section.id}
                                     onClick={() => {
