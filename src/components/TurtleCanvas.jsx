@@ -137,6 +137,7 @@ const TurtleCanvas = ({ commands = [], width = 400, height = 300, isRunning = fa
                     const newY = y + stepLen * Math.sin(rad);
                     if (isDown) { ctx.lineTo(newX, newY); ctx.stroke(); } else { ctx.moveTo(newX, newY); }
                     x = newX; y = newY;
+                    if (isFilling) fillPath.push({ x, y });
                     angle += turn;
                     if (isRunning && currentSpeed > 0) await sleep(currentSpeed);
                 }
@@ -152,6 +153,7 @@ const TurtleCanvas = ({ commands = [], width = 400, height = 300, isRunning = fa
                 }
                 x = targetX;
                 y = targetY;
+                if (isFilling) fillPath.push({ x, y });
                 if (isRunning && currentSpeed > 0) await sleep(currentSpeed);
             } else if (cmd === 'dot') {
                 const size = parseFloat(val) || 5;

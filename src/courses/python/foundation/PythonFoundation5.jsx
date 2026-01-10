@@ -970,7 +970,7 @@ const sections = [
     { id: 8, title: '挑战', icon: Trophy, component: ChallengeSlide },
     { id: 9, title: '自由', icon: Terminal, component: PlaygroundSlide },
     { id: 10, title: '分形树', icon: Network, component: FractalTreeSlide },
-    { id: 11, title: '求派', icon: Target, component: MonteCarloSlide },
+    { id: 11, title: '带派', icon: Target, component: MonteCarloSlide },
     { id: 12, title: '总结', icon: Star, component: SummarySlide },
 ];
 
