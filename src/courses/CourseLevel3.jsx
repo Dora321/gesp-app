@@ -204,9 +204,14 @@ const StringModule = () => {
 
     return (
         <div className="space-y-6">
-            <div className="bg-blue-50 p-4 rounded-lg border border-blue-100">
-                <h3 className="font-bold text-blue-800 mb-2">核心心法</h3>
-                <p className="text-blue-700">熟练掌握 <code>string</code> 类。注意 <code>getline(cin, s)</code> 读取带空格字符串，以及字符与 ASCII 码的转换（'0' 与 0 的区别）。</p>
+            <div className="bg-blue-50 p-4 rounded-lg border border-blue-100 flex justify-between items-start">
+                <div>
+                    <h3 className="font-bold text-blue-800 mb-2">核心心法</h3>
+                    <p className="text-blue-700 leading-relaxed">熟练掌握 <code>string</code> 类。注意 <code>getline(cin, s)</code> 读取带空格字符串，以及字符与 ASCII 码的转换（'0' 与 0 的区别）。</p>
+                </div>
+                <div className="hidden md:block bg-white p-2 rounded shadow-sm border border-blue-200 text-[10px] font-mono whitespace-pre text-slate-400">
+                    {'cin.ignore(); // 扫除换行'}
+                </div>
             </div>
 
             <div className="grid md:grid-cols-2 gap-6">
@@ -256,12 +261,38 @@ for (int i = 0; i < s.length(); i++) {
                 </Card>
             </div>
 
+            {/* 新增：缓冲区陷阱 */}
+            <Card className="p-5 border-l-4 border-red-500 bg-red-50/30">
+                <h4 className="font-bold text-red-800 mb-3 flex items-center gap-2">
+                    <AlertTriangle size={18} /> 致命陷阱：输入缓冲区残留
+                </h4>
+                <div className="grid md:grid-cols-2 gap-6">
+                    <div className="text-sm text-slate-700 space-y-3 leading-relaxed">
+                        <p><strong>场景：</strong>在 <code>cin &gt;&gt; n;</code> 之后，如果立即使用 <code>getline(cin, s);</code>，你会发现程序竟然直接跳过了读取字符串的步骤！</p>
+                        <p><strong>原因：</strong><code>cin &gt;&gt; n</code> 只读取了数字，而你按下的【回车键】(\n) 依然留在缓冲区。<code>getline</code> 看到这个回车符，就会认为你已经输入了一个空字符串并结束读取。</p>
+                        <div className="bg-red-100 p-2 rounded border border-red-200 font-bold text-red-700">
+                            ✨ 解决方案：在 getline 之前加一句 <code>cin.ignore();</code>
+                        </div>
+                    </div>
+                    <CodeBlock
+                        title="正确处理姿势"
+                        code={`int n;
+cin >> n;
+cin.ignore(); // ⚡ 核心步骤：扫掉残留回车符
+
+string s;
+getline(cin, s); // 此时才能正常读取字符串`}
+                    />
+                </div>
+            </Card>
+
             <div className="bg-yellow-50 p-4 rounded-lg border border-yellow-100 flex items-start gap-3">
                 <AlertTriangle className="text-yellow-600 shrink-0 mt-1" />
                 <div>
                     <h4 className="font-bold text-yellow-800">易错点警示</h4>
                     <ul className="list-disc list-inside text-yellow-700 text-sm space-y-1 mt-1">
                         <li>遇到空格会停止读取？用 <code>getline(cin, s)</code> 别用 <code>cin &gt;&gt; s</code>。</li>
+                        <li><strong>清理缓冲区</strong>：在 <code>cin &gt;&gt; n</code> 之后紧接着用 <code>getline</code>，务必先用 <code>cin.ignore()</code> 吃掉换行符。</li>
                         <li>访问 <code>s[i+1]</code> 时，务必确保 <code>i+1 &lt; s.length()</code>。</li>
                         <li>字符转整数：<code>int num = s[i] - '0';</code> 别忘了减 '0'！</li>
                     </ul>
@@ -764,7 +795,11 @@ const TemplatesModule = () => (
             <TemplateBlock
                 title="1. 字符串读取与遍历"
                 desc="处理带空格字符串，遍历每一位"
-                code={`string s;
+                code={`int n;
+cin >> n;
+cin.ignore(); // ⚡ 重要：清除缓冲区残留回车
+
+string s;
 getline(cin, s);
 for(int i=0; i<s.length(); i++) {
     // 处理 s[i]
