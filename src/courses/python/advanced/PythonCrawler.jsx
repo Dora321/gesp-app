@@ -849,14 +849,14 @@ const DoubanProjectSlide = () => {
                         <Film size={20} /> 实战案例：豆瓣电影 Top 250
                     </h3>
                     <div className="flex gap-1 bg-slate-900 p-1 rounded-lg border border-slate-700">
-                        {[1, 2, 3].map(s => (
+                        {[1, 2, 3, 4].map(s => (
                             <button
                                 key={s}
                                 onClick={() => setStage(s)}
                                 className={`px-3 py-1 rounded text-xs font-bold transition-all ${stage === s ? 'bg-green-500 text-black' : 'text-slate-500 hover:text-slate-300'
                                     }`}
                             >
-                                Step {s}
+                                {s === 4 ? "完整代码" : `Step ${s}`}
                             </button>
                         ))}
                     </div>
@@ -1026,7 +1026,7 @@ const DoubanProjectSlide = () => {
                                         className="bg-green-600 hover:bg-green-500 text-white text-xs px-3 py-1 h-8"
                                     >
                                         {isRunning ? <RefreshCw className="animate-spin w-4 h-4" /> : <Play className="w-4 h-4 mr-1" />}
-                                        运行代码
+                                        点运行看效果
                                     </Button>
                                 </div>
                                 <div className="h-full overflow-hidden rounded-xl border border-slate-700 bg-slate-900">
@@ -1057,7 +1057,7 @@ def scrape_douban():
                                     <Terminal size={14} /> Output Console
                                 </div>
                                 <div className="space-y-1 flex-1">
-                                    {logs.length === 0 && !isRunning && <span className="text-slate-600 italic">Click "运行代码" to start...</span>}
+                                    {logs.length === 0 && !isRunning && <span className="text-slate-600 italic">Click "点运行看效果" to start...</span>}
                                     {logs.map((log, i) => (
                                         <div key={i} className={`animate-in fade-in slide-in-from-left-2 ${log.includes('❌') ? 'text-red-400' : 'text-slate-300'}`}>
                                             {log}
@@ -1065,6 +1065,85 @@ def scrape_douban():
                                     ))}
                                     {isRunning && <div className="w-2 h-4 bg-slate-500 animate-pulse inline-block align-middle ml-1"></div>}
                                 </div>
+                            </div>
+                        </div>
+                    </div>
+                )}
+
+                {/* Stage 4: Full Code */}
+                {stage === 4 && (
+                    <div className="space-y-6 animate-in fade-in slide-in-from-right-4">
+                        <div className="bg-emerald-500/10 border border-emerald-500/30 p-4 rounded-xl text-emerald-200 text-sm mb-4">
+                            <strong className="block mb-1 text-emerald-400 flex items-center gap-2"><CheckCircle size={16} /> 完整 Python 脚本</strong>
+                            您可以直接点击右上角“复制”，粘贴到你的本地编辑器（如 PyCharm 或 VS Code）中直接运行。
+                        </div>
+
+                        <div className="bg-slate-900 rounded-xl border border-slate-700 relative overflow-hidden">
+                            <div className="bg-black/40 px-4 py-2 border-b border-slate-800 flex justify-between items-center">
+                                <span className="text-xs font-mono text-slate-500">douban_spider.py</span>
+                                <div className="flex gap-2">
+                                    <div className="w-2.5 h-2.5 rounded-full bg-slate-700"></div>
+                                    <div className="w-2.5 h-2.5 rounded-full bg-slate-700"></div>
+                                    <div className="w-2.5 h-2.5 rounded-full bg-slate-700"></div>
+                                </div>
+                            </div>
+                            <div className="max-h-[500px] overflow-y-auto custom-scrollbar">
+                                <CodeBlock code={`# -*- coding: utf-8 -*-
+import requests
+from bs4 import BeautifulSoup
+import time
+
+def get_douban_top250():
+    # 豆瓣电影 Top 250 地址
+    base_url = "https://movie.douban.com/top250"
+    
+    # 伪装浏览器头部，否则会被豆瓣屏蔽 (返回 418)
+    headers = {
+        "User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/118.0.0.0 Safari/537.36"
+    }
+
+    try:
+        print("正在抓取豆瓣电影数据，请稍候...")
+        # 发起 HTTP GET 请求
+        response = requests.get(base_url, headers=headers)
+        
+        # 检查是否成功 (200 表示成功)
+        if response.status_code == 200:
+            # 使用 BeautifulSoup 解析 HTML 源码
+            soup = BeautifulSoup(response.text, "html.parser")
+            
+            # 找到所有电影条目的包裹层
+            items = soup.find_all("div", class_="item")
+            
+            print(f"--- 抓取成功，本页共找到 {len(items)} 部电影 ---")
+            print("-" * 50)
+            
+            for item in items:
+                # 提取标题 (第一个 span.title)
+                title = item.find("span", class_="title").text
+                # 提取评分
+                rating = item.find("span", class_="rating_num").text
+                # 提取简评 (有些电影没有简评，需要做判断)
+                quote_node = item.find("span", class_="inq")
+                quote = quote_node.text if quote_node else "暂无简评"
+                
+                print(f"🎬 电影：{title}")
+                print(f"⭐ 评分：{rating}")
+                print(f"💬 简评：{quote}")
+                print("-" * 50)
+                
+                # 适当暂停，做一个有礼貌的爬虫
+                time.sleep(0.1)
+        else:
+            print(f"❌ 抓取失败！状态码：{response.status_code}")
+            if response.status_code == 418:
+                print("警报：你被豆瓣认出是爬虫了！请检查 Headers 伪装。")
+
+    except Exception as e:
+        print(f"❌ 发生异常错误: {e}")
+
+if __name__ == "__main__":
+    get_douban_top250()`} />
                             </div>
                         </div>
                     </div>
