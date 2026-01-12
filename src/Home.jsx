@@ -307,7 +307,7 @@ export default function Home() {
 
     // Level 2 Lessons (derived from CourseLevel2.jsx)
     const advancedLessons = [
-        { id: 'adv_lesson1', title: '第 1 关：双层循环之门', description: '通过嵌套循环打印图形，叩开进阶之路', icon: <Grid className="w-6 h-6 text-white" />, color: 'bg-gradient-to-br from-indigo-50 to-violet-600 shadow-indigo-500/50', path: '/adv-lesson1', status: 'ready' },
+        { id: 'adv_lesson1', title: '第 1 关：计算机的记忆', description: '揭秘存储器与网络的奥秘，与“健忘”的电脑共舞', icon: <Cpu className="w-6 h-6 text-white" />, color: 'bg-gradient-to-br from-indigo-500 to-purple-600 shadow-indigo-500/50', path: '/adv-lesson1', status: 'ready' },
         { id: 'adv_lesson2', title: '第 2 关：H 字矩阵', description: '精准控制行列条件，绘制字母H', icon: <Type className="w-6 h-6 text-white" />, color: 'bg-gradient-to-br from-purple-500 to-fuchsia-600 shadow-purple-500/50', path: '/adv-lesson2', status: 'ready' },
         { id: 'adv_lesson3', title: '第 3 关：X 字封印', description: '对角线规律探索，解除交叉封印', icon: <XCircle className="w-6 h-6 text-white" />, color: 'bg-gradient-to-br from-fuchsia-500 to-pink-600 shadow-fuchsia-500/50', path: '/adv-lesson3', status: 'ready' },
         { id: 'adv_lesson4', title: '第 4 关：数位拆解术', description: '掌握 % 和 / 运算，精细操作每一位数字', icon: <Scissors className="w-6 h-6 text-white" />, color: 'bg-gradient-to-br from-pink-500 to-rose-600 shadow-pink-500/50', path: '/adv-lesson4', status: 'ready' },
