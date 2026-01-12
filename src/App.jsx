@@ -25,6 +25,23 @@ import Lesson13 from './lessons/Lesson13';
 import Lesson14 from './lessons/Lesson14';
 import Lesson15 from './lessons/Lesson15';
 import Lesson16 from './lessons/Lesson16';
+import AdvLesson1 from './lessons/AdvLesson1';
+import AdvLesson2 from './lessons/AdvLesson2';
+import AdvLesson3 from './lessons/AdvLesson3';
+import AdvLesson4 from './lessons/AdvLesson4';
+import AdvLesson5 from './lessons/AdvLesson5';
+import AdvLesson6 from './lessons/AdvLesson6';
+import AdvLesson7 from './lessons/AdvLesson7';
+import AdvLesson8 from './lessons/AdvLesson8';
+import AdvLesson9 from './lessons/AdvLesson9';
+import AdvLesson10 from './lessons/AdvLesson10';
+import AdvLesson11 from './lessons/AdvLesson11';
+import AdvLesson12 from './lessons/AdvLesson12';
+import AdvLesson13 from './lessons/AdvLesson13';
+import AdvLesson14 from './lessons/AdvLesson14';
+import AdvLesson15 from './lessons/AdvLesson15';
+import AdvLesson16 from './lessons/AdvLesson16';
+
 import GESP2_2025_12 from './data/gesp/level2/GESP2_2025_12';
 
 import PythonFoundation1 from './courses/python/foundation/PythonFoundation1';
@@ -122,6 +139,23 @@ function App() {
         <Route path="/lesson14" element={<Lesson14 />} />
         <Route path="/lesson15" element={<Lesson15 />} />
         <Route path="/lesson16" element={<Lesson16 />} />
+        <Route path="/adv-lesson1" element={<AdvLesson1 />} />
+        <Route path="/adv-lesson2" element={<AdvLesson2 />} />
+        <Route path="/adv-lesson3" element={<AdvLesson3 />} />
+        <Route path="/adv-lesson4" element={<AdvLesson4 />} />
+        <Route path="/adv-lesson5" element={<AdvLesson5 />} />
+        <Route path="/adv-lesson6" element={<AdvLesson6 />} />
+        <Route path="/adv-lesson7" element={<AdvLesson7 />} />
+        <Route path="/adv-lesson8" element={<AdvLesson8 />} />
+        <Route path="/adv-lesson9" element={<AdvLesson9 />} />
+        <Route path="/adv-lesson10" element={<AdvLesson10 />} />
+        <Route path="/adv-lesson11" element={<AdvLesson11 />} />
+        <Route path="/adv-lesson12" element={<AdvLesson12 />} />
+        <Route path="/adv-lesson13" element={<AdvLesson13 />} />
+        <Route path="/adv-lesson14" element={<AdvLesson14 />} />
+        <Route path="/adv-lesson15" element={<AdvLesson15 />} />
+        <Route path="/adv-lesson16" element={<AdvLesson16 />} />
+
         <Route path="/gesp/2025-12-l2" element={<GESP2_2025_12 />} />
       </Routes>
       <ClassroomPoints />

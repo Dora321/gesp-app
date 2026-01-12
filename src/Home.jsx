@@ -307,96 +307,22 @@ export default function Home() {
 
     // Level 2 Lessons (derived from CourseLevel2.jsx)
     const advancedLessons = [
-        {
-            id: 'adv_lesson1',
-            title: '第 1 关：双层循环之门',
-            description: '通过嵌套循环打印图形，叩开进阶之路',
-            icon: <Grid className="w-6 h-6 text-white" />,
-            color: 'bg-gradient-to-br from-indigo-500 to-violet-600 shadow-indigo-500/50',
-            path: '/level2', // Using generic level2 path for now
-            status: 'ready'
-        },
-        {
-            id: 'adv_lesson2',
-            title: '第 2 关：H 字矩阵',
-            description: '精准控制行列条件，绘制字母H',
-            icon: <Type className="w-6 h-6 text-white" />,
-            color: 'bg-gradient-to-br from-purple-500 to-fuchsia-600 shadow-purple-500/50',
-            path: '/level2',
-            status: 'locked'
-        },
-        {
-            id: 'adv_lesson3',
-            title: '第 3 关：X 字封印',
-            description: '对角线规律探索，解除交叉封印',
-            icon: <XCircle className="w-6 h-6 text-white" />,
-            color: 'bg-gradient-to-br from-fuchsia-500 to-pink-600 shadow-fuchsia-500/50',
-            path: '/level2',
-            status: 'locked'
-        },
-        {
-            id: 'adv_lesson4',
-            title: '第 4 关：数位拆解术',
-            description: '掌握 % 和 / 运算，精细操作每一位数字',
-            icon: <Scissors className="w-6 h-6 text-white" />,
-            color: 'bg-gradient-to-br from-pink-500 to-rose-600 shadow-pink-500/50',
-            path: '/level2',
-            status: 'locked'
-        },
-        {
-            id: 'adv_lesson5',
-            title: '第 5 关：水仙花数',
-            description: '寻找神奇的自幂数，体验数学之美',
-            icon: <Sparkles className="w-6 h-6 text-white" />,
-            color: 'bg-gradient-to-br from-rose-500 to-red-600 shadow-rose-500/50',
-            path: '/level2',
-            status: 'locked'
-        },
-        {
-            id: 'adv_lesson6',
-            title: '第 6 关：黑洞陷阱',
-            description: '模拟 495 数字黑洞，while 循环的终极试炼',
-            icon: <AlertOctagon className="w-6 h-6 text-white" />,
-            color: 'bg-gradient-to-br from-orange-500 to-amber-600 shadow-orange-500/50',
-            path: '/level2',
-            status: 'locked'
-        },
-        {
-            id: 'adv_lesson7',
-            title: '第 7 关：质数迷宫',
-            description: '因子筛选法，寻找独一无二的素数',
-            icon: <Search className="w-6 h-6 text-white" />,
-            color: 'bg-gradient-to-br from-amber-500 to-yellow-600 shadow-amber-500/50',
-            path: '/level2',
-            status: 'locked'
-        },
-        {
-            id: 'adv_lesson8',
-            title: '第 8 关：函数之力',
-            description: '封装代码魔法，学会 max, min, sqrt',
-            icon: <Box className="w-6 h-6 text-white" />,
-            color: 'bg-gradient-to-br from-lime-500 to-green-600 shadow-lime-500/50',
-            path: '/level2',
-            status: 'locked'
-        },
-        {
-            id: 'adv_lesson9',
-            title: '第 9 关：逻辑模拟',
-            description: '复杂规则的代码实现，锻炼计算思维',
-            icon: <Monitor className="w-6 h-6 text-white" />,
-            color: 'bg-gradient-to-br from-emerald-500 to-teal-600 shadow-emerald-500/50',
-            path: '/level2',
-            status: 'locked'
-        },
-        {
-            id: 'adv_lesson10',
-            title: '第 10 关：2025-12真题',
-            description: '直面 GESP 二级真题（2025年12月卷），含交互式编程题解析',
-            icon: <Trophy className="w-6 h-6 text-white" />,
-            color: 'bg-gradient-to-br from-cyan-500 to-sky-600 shadow-cyan-500/50',
-            path: '/gesp/2025-12-l2',
-            status: 'ready'
-        }
+        { id: 'adv_lesson1', title: '第 1 关：双层循环之门', description: '通过嵌套循环打印图形，叩开进阶之路', icon: <Grid className="w-6 h-6 text-white" />, color: 'bg-gradient-to-br from-indigo-50 to-violet-600 shadow-indigo-500/50', path: '/adv-lesson1', status: 'ready' },
+        { id: 'adv_lesson2', title: '第 2 关：H 字矩阵', description: '精准控制行列条件，绘制字母H', icon: <Type className="w-6 h-6 text-white" />, color: 'bg-gradient-to-br from-purple-500 to-fuchsia-600 shadow-purple-500/50', path: '/adv-lesson2', status: 'ready' },
+        { id: 'adv_lesson3', title: '第 3 关：X 字封印', description: '对角线规律探索，解除交叉封印', icon: <XCircle className="w-6 h-6 text-white" />, color: 'bg-gradient-to-br from-fuchsia-500 to-pink-600 shadow-fuchsia-500/50', path: '/adv-lesson3', status: 'ready' },
+        { id: 'adv_lesson4', title: '第 4 关：数位拆解术', description: '掌握 % 和 / 运算，精细操作每一位数字', icon: <Scissors className="w-6 h-6 text-white" />, color: 'bg-gradient-to-br from-pink-500 to-rose-600 shadow-pink-500/50', path: '/adv-lesson4', status: 'ready' },
+        { id: 'adv_lesson5', title: '第 5 关：水仙花数', description: '寻找神奇的自幂数，体验数学之美', icon: <Sparkles className="w-6 h-6 text-white" />, color: 'bg-gradient-to-br from-rose-500 to-red-600 shadow-rose-500/50', path: '/adv-lesson5', status: 'ready' },
+        { id: 'adv_lesson6', title: '第 6 关：黑洞陷阱', description: '模拟 495 数字黑洞，while 循环的终极试炼', icon: <AlertOctagon className="w-6 h-6 text-white" />, color: 'bg-gradient-to-br from-orange-500 to-amber-600 shadow-orange-500/50', path: '/adv-lesson6', status: 'ready' },
+        { id: 'adv_lesson7', title: '第 7 关：质数迷宫', description: '因子筛选法，寻找独一无二的素数', icon: <Search className="w-6 h-6 text-white" />, color: 'bg-gradient-to-br from-amber-500 to-yellow-600 shadow-amber-500/50', path: '/adv-lesson7', status: 'ready' },
+        { id: 'adv_lesson8', title: '第 8 关：函数之力', description: '封装代码魔法，学会 max, min, sqrt', icon: <Box className="w-6 h-6 text-white" />, color: 'bg-gradient-to-br from-lime-500 to-green-600 shadow-lime-500/50', path: '/adv-lesson8', status: 'ready' },
+        { id: 'adv_lesson9', title: '第 9 关：逻辑模拟', description: '复杂规则的代码实现，锻炼计算思维', icon: <Monitor className="w-6 h-6 text-white" />, color: 'bg-gradient-to-br from-emerald-500 to-teal-600 shadow-emerald-500/50', path: '/adv-lesson9', status: 'ready' },
+        { id: 'adv_lesson10', title: '第 10 关：2025-12真题', description: '直面 GESP 二级真题（2025年12月卷），含交互式编程题解析', icon: <Trophy className="w-6 h-6 text-white" />, color: 'bg-gradient-to-br from-cyan-500 to-sky-600 shadow-cyan-500/50', path: '/adv-lesson10', status: 'ready' },
+        { id: 'adv_lesson11', title: '第 11 关：内容准备中', description: '即将解锁...', icon: <Lock className="w-6 h-6 text-white" />, color: 'bg-slate-700', path: '/adv-lesson11', status: 'ready' },
+        { id: 'adv_lesson12', title: '第 12 关：内容准备中', description: '即将解锁...', icon: <Lock className="w-6 h-6 text-white" />, color: 'bg-slate-700', path: '/adv-lesson12', status: 'ready' },
+        { id: 'adv_lesson13', title: '第 13 关：内容准备中', description: '即将解锁...', icon: <Lock className="w-6 h-6 text-white" />, color: 'bg-slate-700', path: '/adv-lesson13', status: 'ready' },
+        { id: 'adv_lesson14', title: '第 14 关：内容准备中', description: '即将解锁...', icon: <Lock className="w-6 h-6 text-white" />, color: 'bg-slate-700', path: '/adv-lesson14', status: 'ready' },
+        { id: 'adv_lesson15', title: '第 15 关：内容准备中', description: '即将解锁...', icon: <Lock className="w-6 h-6 text-white" />, color: 'bg-slate-700', path: '/adv-lesson15', status: 'ready' },
+        { id: 'adv_lesson16', title: '第 16 关：内容准备中', description: '即将解锁...', icon: <Lock className="w-6 h-6 text-white" />, color: 'bg-slate-700', path: '/adv-lesson16', status: 'ready' }
     ];
 
     return (
