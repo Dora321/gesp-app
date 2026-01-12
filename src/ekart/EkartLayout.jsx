@@ -20,17 +20,19 @@ const EkartLayout = () => {
             <nav className="sticky top-0 z-50 bg-gray-900/80 backdrop-blur-md border-b border-gray-800">
                 <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
                     <div className="flex items-center justify-between h-16">
-                        <div className="flex items-center gap-3">
+                        {/* Left: Logo Section */}
+                        <div className="flex items-center gap-3 md:flex-1">
                             <div className="w-8 h-8 bg-gradient-to-tr from-cyan-400 to-blue-600 rounded-lg flex items-center justify-center">
-                                <span className="text-xl font-bold">E</span>
+                                <span className="text-xl font-bold text-white">E</span>
                             </div>
                             <span className="text-xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-cyan-400 to-blue-500">
                                 E-Kart Lab
                             </span>
                         </div>
 
-                        <div className="hidden md:block">
-                            <div className="ml-10 flex items-baseline space-x-4">
+                        {/* Center: Navigation Items */}
+                        <div className="hidden md:flex md:flex-[2] justify-center">
+                            <div className="flex items-baseline space-x-6 lg:space-x-8">
                                 {navItems.map((item) => {
                                     const isActive = location.pathname === item.path || (item.path !== '/ekart' && location.pathname.startsWith(item.path));
                                     return (
@@ -38,8 +40,8 @@ const EkartLayout = () => {
                                             key={item.id}
                                             to={item.path}
                                             className={`px-3 py-2 rounded-md text-sm font-medium transition-all duration-200 ${isActive
-                                                    ? 'bg-gray-800 text-cyan-400 shadow-[0_0_10px_rgba(34,211,238,0.2)]'
-                                                    : 'text-gray-300 hover:text-white hover:bg-gray-700'
+                                                ? 'bg-gray-800 text-cyan-400 shadow-[0_0_10px_rgba(34,211,238,0.2)]'
+                                                : 'text-gray-300 hover:text-white hover:bg-gray-700'
                                                 }`}
                                         >
                                             {item.label}
@@ -49,11 +51,8 @@ const EkartLayout = () => {
                             </div>
                         </div>
 
-                        <div className="hidden md:block">
-                            <button className="bg-cyan-600 hover:bg-cyan-500 text-white px-4 py-2 rounded-full text-sm font-bold transition-all shadow-[0_0_15px_rgba(8,145,178,0.4)] hover:shadow-[0_0_20px_rgba(34,211,238,0.6)]">
-                                学员登录
-                            </button>
-                        </div>
+                        {/* Right: Balanced Spacer (previously Student Login) */}
+                        <div className="hidden md:block md:flex-1"></div>
                     </div>
                 </div>
             </nav>
