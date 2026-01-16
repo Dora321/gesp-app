@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { Search, Terminal, Award, BookOpen, ChevronRight, Home, Grid, Sparkles, Map, Lock, Zap, Trophy } from 'lucide-react';
+import { Search, Terminal, Award, BookOpen, ChevronRight, Home, Grid, Sparkles, Map, Lock, Zap, Trophy, Cpu } from 'lucide-react';
 
 export default function Navigation() {
     const navigate = useNavigate();
@@ -62,6 +62,15 @@ export default function Navigation() {
                 title: `第 ${i + 1} 课`,
                 path: `/lesson${i + 1}`
             }))
+        },
+        {
+            title: '科创硬件工坊',
+            color: 'text-cyan-400',
+            bg: 'bg-cyan-500/10 border-cyan-500/20',
+            icon: <Cpu className="w-6 h-6" />,
+            items: [
+                { title: '硬件启蒙站', path: '/hardware', icon: <Cpu className="text-cyan-400" /> }
+            ]
         },
         {
             title: '特色展馆',

@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { BookOpen, Award, Star, ChevronRight, ChevronDown, ChevronUp, FileText, Monitor, Lock, CheckCircle, PlayCircle, Flag, Sparkles, Map, Zap, Scissors, ArrowRight, Box, Key, Terminal, Shield, Repeat, Layers, AlignJustify, Scan, Type, Package, Trophy, ArrowUp, Megaphone, Search, MousePointer2, Grid, XCircle, AlertOctagon, Compass, Menu, X, Cpu, Home as HomeIcon } from 'lucide-react';
+import { BookOpen, Award, Star, ChevronRight, ChevronDown, ChevronUp, FileText, Monitor, Lock, CheckCircle, PlayCircle, Flag, Sparkles, Map, Zap, Scissors, ArrowRight, Box, Key, Terminal, Shield, Repeat, Layers, AlignJustify, Scan, Type, Package, Trophy, ArrowUp, Megaphone, Search, MousePointer2, Grid, XCircle, AlertOctagon, Compass, Menu, X, Cpu, Home as HomeIcon, CircuitBoard, Lightbulb } from 'lucide-react';
 
 import Navigation from './components/Navigation';
 import ekartPromo from './assets/ekart_promo.png';
@@ -394,6 +394,8 @@ export default function Home() {
                             </div>
                         </div>
                     </div>
+
+
 
                     {/* Core Courses Card */}
                     <div className="mb-24">

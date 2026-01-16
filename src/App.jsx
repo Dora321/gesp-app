@@ -75,6 +75,11 @@ import EkartToolbox from './ekart/pages/Toolbox';
 import EkartGallery from './ekart/pages/Gallery';
 import EkartParentPortal from './ekart/pages/ParentPortal';
 
+// Hardware Module Imports
+import HardwareLayout from './hardware/HardwareLayout';
+import HardwareLanding from './hardware/pages/HardwareLanding';
+import HardwareLessonDetail from './hardware/pages/HardwareLessonDetail';
+
 function App() {
   return (
     <BrowserRouter basename={import.meta.env.DEV ? '/' : '/gesp-app'}>
@@ -93,6 +98,12 @@ function App() {
           <Route path="toolbox" element={<EkartToolbox />} />
           <Route path="gallery" element={<EkartGallery />} />
           <Route path="parent-portal" element={<EkartParentPortal />} />
+        </Route>
+
+        {/* Hardware Module Routes */}
+        <Route path="/hardware" element={<HardwareLayout />}>
+          <Route index element={<HardwareLanding />} />
+          <Route path="lesson/:id" element={<HardwareLessonDetail />} />
         </Route>
 
         {/* Course Levels */}
