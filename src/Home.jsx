@@ -3,7 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import { BookOpen, Award, Star, ChevronRight, ChevronDown, ChevronUp, FileText, Monitor, Lock, CheckCircle, PlayCircle, Flag, Sparkles, Map, Zap, Scissors, ArrowRight, Box, Key, Terminal, Shield, Repeat, Layers, AlignJustify, Scan, Type, Package, Trophy, ArrowUp, Megaphone, Search, MousePointer2, Grid, XCircle, AlertOctagon, Compass, Menu, X, Cpu, Home as HomeIcon, CircuitBoard, Lightbulb } from 'lucide-react';
 
 import Navigation from './components/Navigation';
-import ekartPromo from './assets/ekart_promo.png';
+
 
 
 export default function Home() {
@@ -359,41 +359,7 @@ export default function Home() {
 
                     </div>
 
-                    {/* E-Kart Lab Promo Section */}
-                    <div className="mb-24 relative overflow-hidden rounded-3xl bg-gradient-to-r from-gray-900 to-slate-900 border border-cyan-500/30 shadow-2xl shadow-cyan-900/20 group cursor-pointer" onClick={() => navigate('/ekart')}>
-                        <div className="absolute inset-0 bg-[url('https://images.unsplash.com/photo-1547754980-3df97fed72a8?ixlib=rb-1.2.1&auto=format&fit=crop&w=1600&q=80')] bg-cover bg-center opacity-20 group-hover:opacity-30 transition-opacity duration-700"></div>
-                        <div className="absolute inset-0 bg-gradient-to-r from-gray-900 via-gray-900/80 to-transparent"></div>
 
-                        <div className="relative z-10 p-10 md:p-16 flex flex-col md:flex-row items-center justify-between gap-8">
-                            <div className="max-w-2xl">
-                                <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-cyan-500/20 text-cyan-400 text-xs font-bold border border-cyan-500/30 mb-6">
-                                    <span className="relative flex h-2 w-2">
-                                        <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-cyan-400 opacity-75"></span>
-                                        <span className="relative inline-flex rounded-full h-2 w-2 bg-cyan-500"></span>
-                                    </span>
-                                    NEW: 寒假特别营
-                                </div>
-                                <h3 className="text-4xl md:text-5xl font-extrabold text-white mb-4 tracking-tight">
-                                    <span className="bg-clip-text text-transparent bg-gradient-to-r from-cyan-400 to-blue-500">E-Kart Lab</span>
-                                    <span className="block text-2xl md:text-3xl mt-2 text-slate-300">电动卡丁车实验室</span>
-                                </h3>
-                                <p className="text-slate-400 text-lg mb-8 leading-relaxed">
-                                    10天，从零打造你的第一台电动卡丁车。结合机械工程、电子动力与智能编程的硬核 PBL 营队。
-                                </p>
-                                <button className="flex items-center gap-2 px-8 py-4 rounded-full bg-cyan-600 hover:bg-cyan-500 text-white font-bold transition-all shadow-[0_0_20px_rgba(8,145,178,0.5)] hover:shadow-[0_0_30px_rgba(34,211,238,0.6)] group-hover:translate-x-2">
-                                    立即加入车队 <ArrowRight size={20} />
-                                </button>
-                            </div>
-
-                            <div className="relative">
-                                <div className="w-64 h-40 md:w-80 md:h-52 rounded-xl border-2 border-slate-700 flex items-center justify-center relative transform rotate-3 shadow-2xl group-hover:rotate-6 transition-transform duration-500 overflow-hidden bg-black">
-
-                                    <img src={ekartPromo} alt="E-Kart Model" className="w-full h-full object-cover opacity-90 group-hover:opacity-100 transition-opacity" />
-                                </div>
-                                <div className="absolute -z-10 top-10 -right-10 w-64 h-64 bg-cyan-500/20 rounded-full blur-3xl"></div>
-                            </div>
-                        </div>
-                    </div>
 
 
 

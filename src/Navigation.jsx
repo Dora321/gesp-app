@@ -69,7 +69,8 @@ export default function Navigation() {
             bg: 'bg-cyan-500/10 border-cyan-500/20',
             icon: <Cpu className="w-6 h-6" />,
             items: [
-                { title: '硬件启蒙站', path: '/hardware', icon: <Cpu className="text-cyan-400" /> }
+                { title: '硬件启蒙站', path: '/hardware', icon: <Cpu className="text-cyan-400" /> },
+                { title: '电动卡丁车实验室', path: '/ekart', icon: <Zap className="text-yellow-400" /> }
             ]
         },
         {
