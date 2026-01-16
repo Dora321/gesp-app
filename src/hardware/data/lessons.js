@@ -39,7 +39,15 @@ export const hardwareLessons = [
         ],
         path: '/hardware/lesson/1',
         hardware: 'LED (HS-F08A)',
-        tags: ['Arduino Uno', '扩展板', 'LED (HS-F08A)']
+        tags: ['Arduino Uno', '扩展板', 'LED (HS-F08A)'],
+        mindPlus: [
+            { type: 'event', text: '当 绿旗 被点击' },
+            { type: 'control', text: '重复执行', indent: 0 },
+            { type: 'action', text: '设置数字引脚 13 输出 高电平 (亮)', indent: 1 },
+            { type: 'time', text: '等待 1 秒', indent: 1 },
+            { type: 'action', text: '设置数字引脚 13 输出 低电平 (灭)', indent: 1 },
+            { type: 'time', text: '等待 1 秒', indent: 1 }
+        ]
     },
     {
         id: 2,
@@ -60,7 +68,15 @@ export const hardwareLessons = [
         ],
         path: '/hardware/lesson/2',
         hardware: '按钮 (HS-KEY1B)',
-        tags: ['按钮开关', '数字输入']
+        tags: ['按钮开关', '数字输入'],
+        mindPlus: [
+            { type: 'event', text: '当 绿旗 被点击' },
+            { type: 'control', text: '重复执行', indent: 0 },
+            { type: 'control', text: '如果 <数字引脚 2 (按下)> 那么', indent: 1 },
+            { type: 'action', text: '造型切换为 [panda-a]', indent: 2 },
+            { type: 'control', text: '否则', indent: 1 },
+            { type: 'action', text: '造型切换为 [panda-b]', indent: 2 }
+        ]
     },
     {
         id: 3,
@@ -81,7 +97,20 @@ export const hardwareLessons = [
         ],
         path: '/hardware/lesson/3',
         hardware: '交通灯 (HS-F05A)',
-        tags: ['顺序结构', '交通灯']
+        tags: ['顺序结构', '交通灯'],
+        mindPlus: [
+            { type: 'event', text: '当 绿旗 被点击' },
+            { type: 'control', text: '重复执行', indent: 0 },
+            { type: 'action', text: '设置数字引脚 13 输出 高 (红亮)', indent: 1 },
+            { type: 'time', text: '等待 3 秒', indent: 1 },
+            { type: 'action', text: '设置数字引脚 13 输出 低 (红灭)', indent: 1 },
+            { type: 'action', text: '设置数字引脚 12 输出 高 (黄亮)', indent: 1 },
+            { type: 'time', text: '等待 1 秒', indent: 1 },
+            { type: 'action', text: '设置数字引脚 12 输出 低 (黄灭)', indent: 1 },
+            { type: 'action', text: '设置数字引脚 11 输出 高 (绿亮)', indent: 1 },
+            { type: 'time', text: '等待 3 秒', indent: 1 },
+            { type: 'action', text: '设置数字引脚 11 输出 低 (绿灭)', indent: 1 }
+        ]
     },
     {
         id: 4,
@@ -102,7 +131,12 @@ export const hardwareLessons = [
         ],
         path: '/hardware/lesson/4',
         hardware: '旋钮 (HS-S28A)',
-        tags: ['模拟输入', 'PWM调光']
+        tags: ['模拟输入', 'PWM调光'],
+        mindPlus: [
+            { type: 'event', text: '当 绿旗 被点击' },
+            { type: 'control', text: '重复执行', indent: 0 },
+            { type: 'action', text: '设置 PWM引脚 5 输出 <读取模拟引脚 A0> / 4', indent: 1 }
+        ]
     },
     {
         id: 5,
@@ -123,7 +157,15 @@ export const hardwareLessons = [
         ],
         path: '/hardware/lesson/5',
         hardware: '声音传感器 (HS-S05A)',
-        tags: ['模拟输入', '声音传感']
+        tags: ['模拟输入', '声音传感'],
+        mindPlus: [
+            { type: 'event', text: '当 绿旗 被点击' },
+            { type: 'control', text: '重复执行', indent: 0 },
+            { type: 'control', text: '如果 <读取模拟引脚 A2> > 500 那么', indent: 1 },
+            { type: 'action', text: '将 [角色] 大小设为 200', indent: 2 },
+            { type: 'control', text: '否则', indent: 1 },
+            { type: 'action', text: '将 [角色] 大小设为 100', indent: 2 }
+        ]
     },
     {
         id: 6,
@@ -144,7 +186,13 @@ export const hardwareLessons = [
         ],
         path: '/hardware/lesson/6',
         hardware: '风扇驱动 (HS-F04A)',
-        tags: ['电机控制', 'PWM']
+        tags: ['电机控制', 'PWM'],
+        mindPlus: [
+            { type: 'event', text: '当 绿旗 被点击' },
+            { type: 'control', text: '重复执行', indent: 0 },
+            { type: 'variable', text: '变量 fan_speed = 映射(读取A0, 0, 1023, 0, 255)', indent: 1 },
+            { type: 'action', text: '设置 PWM引脚 5 输出 fan_speed', indent: 1 }
+        ]
     },
     {
         id: 7,
@@ -165,7 +213,15 @@ export const hardwareLessons = [
         ],
         path: '/hardware/lesson/7',
         hardware: '9g舵机 (SG90)',
-        tags: ['舵机控制', '角度']
+        tags: ['舵机控制', '角度'],
+        mindPlus: [
+            { type: 'event', text: '当 绿旗 被点击' },
+            { type: 'control', text: '重复执行', indent: 0 },
+            { type: 'action', text: '舵机引脚 9 转动到 45 度', indent: 1 },
+            { type: 'time', text: '等待 1 秒', indent: 1 },
+            { type: 'action', text: '舵机引脚 9 转动到 135 度', indent: 1 },
+            { type: 'time', text: '等待 1 秒', indent: 1 }
+        ]
     },
     {
         id: 8,
@@ -186,7 +242,12 @@ export const hardwareLessons = [
         ],
         path: '/hardware/lesson/8',
         hardware: '光敏传感器 (HS-S20A)',
-        tags: ['模拟输入', '光敏']
+        tags: ['模拟输入', '光敏'],
+        mindPlus: [
+            { type: 'event', text: '当 绿旗 被点击' },
+            { type: 'control', text: '重复执行', indent: 0 },
+            { type: 'action', text: '说 <读取模拟引脚 A1>', indent: 1 }
+        ]
     },
     {
         id: 9,
@@ -207,7 +268,15 @@ export const hardwareLessons = [
         ],
         path: '/hardware/lesson/9',
         hardware: 'LED (HS-F08A)',
-        tags: ['上传模式', '脱机运行']
+        tags: ['上传模式', '脱机运行'],
+        mindPlus: [
+            { type: 'event', text: 'Arduino 程序 (主程序)' },
+            { type: 'control', text: '循环执行', indent: 0 },
+            { type: 'action', text: '设置数字引脚 13 输出 高', indent: 1 },
+            { type: 'time', text: '等待 1000 毫秒', indent: 1 },
+            { type: 'action', text: '设置数字引脚 13 输出 低', indent: 1 },
+            { type: 'time', text: '等待 1000 毫秒', indent: 1 }
+        ]
     },
     {
         id: 10,
@@ -228,7 +297,15 @@ export const hardwareLessons = [
         ],
         path: '/hardware/lesson/10',
         hardware: '光敏+按钮',
-        tags: ['逻辑判断', '智能控制']
+        tags: ['逻辑判断', '智能控制'],
+        mindPlus: [
+            { type: 'event', text: 'Arduino 程序' },
+            { type: 'control', text: '循环执行', indent: 0 },
+            { type: 'control', text: '如果 <(读取A1 < 300) 且 (数字引脚2 按下)> 那么', indent: 1 },
+            { type: 'action', text: '设置数字引脚 13 输出 高', indent: 2 },
+            { type: 'control', text: '否则', indent: 1 },
+            { type: 'action', text: '设置数字引脚 13 输出 低', indent: 2 }
+        ]
     },
     {
         id: 11,
@@ -249,7 +326,15 @@ export const hardwareLessons = [
         ],
         path: '/hardware/lesson/11',
         hardware: '蜂鸣器 (HS-F07A)',
-        tags: ['报警系统', '逻辑运算']
+        tags: ['报警系统', '逻辑运算'],
+        mindPlus: [
+            { type: 'event', text: 'Arduino 程序' },
+            { type: 'control', text: '循环执行', indent: 0 },
+            { type: 'control', text: '如果 <(读取A1 < 100) 或 (数字引脚2 按下)> 那么', indent: 1 },
+            { type: 'action', text: '设置数字引脚 8 输出 高 (响)', indent: 2 },
+            { type: 'control', text: '否则', indent: 1 },
+            { type: 'action', text: '设置数字引脚 8 输出 低 (静)', indent: 2 }
+        ]
     },
     {
         id: 12,
@@ -270,7 +355,16 @@ export const hardwareLessons = [
         ],
         path: '/hardware/lesson/12',
         hardware: '温控风扇',
-        tags: ['自动控制', '滞回区间']
+        tags: ['自动控制', '滞回区间'],
+        mindPlus: [
+            { type: 'event', text: 'Arduino 程序' },
+            { type: 'control', text: '循环执行', indent: 0 },
+            { type: 'variable', text: 'temp = 读取模拟引脚 A0', indent: 1 },
+            { type: 'control', text: '如果 <temp > 600> 那么', indent: 1 },
+            { type: 'action', text: '设置数字引脚 5 输出 高 (风扇转)', indent: 2 },
+            { type: 'control', text: '如果 <temp < 550> 那么', indent: 1 },
+            { type: 'action', text: '设置数字引脚 5 输出 低 (风扇停)', indent: 2 }
+        ]
     },
     {
         id: 13,
@@ -291,7 +385,16 @@ export const hardwareLessons = [
         ],
         path: '/hardware/lesson/13',
         hardware: '超声波 (HS-SR04)',
-        tags: ['超声波', '舵机联动']
+        tags: ['超声波', '舵机联动'],
+        mindPlus: [
+            { type: 'event', text: 'Arduino 程序' },
+            { type: 'control', text: '循环执行', indent: 0 },
+            { type: 'variable', text: 'dist = 读取超声波距离(T:6, E:7)', indent: 1 },
+            { type: 'control', text: '如果 <dist < 10> 那么', indent: 1 },
+            { type: 'action', text: '舵机(9) 转到 90 度 (抬杆)', indent: 2 },
+            { type: 'control', text: '否则', indent: 1 },
+            { type: 'action', text: '舵机(9) 转到 0 度 (落杆)', indent: 2 }
+        ]
     },
     {
         id: 14,
@@ -312,7 +415,18 @@ export const hardwareLessons = [
         ],
         path: '/hardware/lesson/14',
         hardware: '超声波+蜂鸣器',
-        tags: ['多级判断', '倒车雷达']
+        tags: ['多级判断', '倒车雷达'],
+        mindPlus: [
+            { type: 'event', text: 'Arduino 程序' },
+            { type: 'control', text: '循环执行', indent: 0 },
+            { type: 'variable', text: 'dist = 超声波距离', indent: 1 },
+            { type: 'control', text: '如果 <dist < 10> 那么', indent: 1 },
+            { type: 'action', text: '蜂鸣器(8) 播放 1000Hz, 0.1秒', indent: 2 },
+            { type: 'time', text: '等待 0.1 秒', indent: 2 },
+            { type: 'control', text: '否则如果 <dist < 20> 那么', indent: 1 },
+            { type: 'action', text: '蜂鸣器(8) 播放 500Hz, 0.5秒', indent: 2 },
+            { type: 'time', text: '等待 0.5 秒', indent: 2 }
+        ]
     },
     {
         id: 15,
@@ -333,7 +447,15 @@ export const hardwareLessons = [
         ],
         path: '/hardware/lesson/15',
         hardware: '声音传感+音乐',
-        tags: ['声音触发', '音乐编程']
+        tags: ['声音触发', '音乐编程'],
+        mindPlus: [
+            { type: 'event', text: 'Arduino 程序' },
+            { type: 'control', text: '循环执行', indent: 0 },
+            { type: 'control', text: '如果 <读取模拟A2 > 600> 那么', indent: 1 },
+            { type: 'action', text: '蜂鸣器(8) 播放音符 C4 (Do) 0.5拍', indent: 2 },
+            { type: 'action', text: '蜂鸣器(8) 播放音符 D4 (Re) 0.5拍', indent: 2 },
+            { type: 'action', text: '蜂鸣器(8) 播放音符 E4 (Mi) 0.5拍', indent: 2 }
+        ]
     },
     {
         id: 16,
@@ -354,6 +476,11 @@ export const hardwareLessons = [
         ],
         path: '/hardware/lesson/16',
         hardware: '综合项目',
-        tags: ['期末项目', '工程设计']
+        tags: ['期末项目', '工程设计'],
+        mindPlus: [
+            { type: 'event', text: 'Mind+ 主程序 (自定义)' },
+            { type: 'comment', text: '// 请根据你的设计图编写程序', indent: 0 },
+            { type: 'comment', text: '// 包含：输入传感器 logic -> 输出执行器 action', indent: 0 }
+        ]
     }
 ];

@@ -1,7 +1,7 @@
 import React, { useEffect } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import {
-    ChevronLeft, Lightbulb, Cpu, Zap, AlertTriangle, Quote,
+    ChevronLeft, Lightbulb, Cpu, Zap, AlertTriangle, Quote, Code,
     MousePointer2, Play, RotateCcw, ArrowRight, BookOpen
 } from 'lucide-react';
 import { hardwareLessons } from '../data/lessons';
@@ -61,8 +61,8 @@ export default function HardwareLessonDetail() {
                     <div className="flex-1">
                         <div className="flex items-center gap-3 mb-3">
                             <span className={`px-2.5 py-1 rounded text-[10px] font-bold border tracking-wide uppercase ${isRealtime
-                                    ? 'bg-blue-500/10 border-blue-500/20 text-blue-400'
-                                    : 'bg-purple-500/10 border-purple-500/20 text-purple-400'
+                                ? 'bg-blue-500/10 border-blue-500/20 text-blue-400'
+                                : 'bg-purple-500/10 border-purple-500/20 text-purple-400'
                                 }`}>
                                 {lesson.mode === 'realtime' ? 'Realtime Mode' : 'Upload Mode'}
                             </span>
@@ -128,6 +128,34 @@ export default function HardwareLessonDetail() {
 
                     {/* Right Column: Knowledge */}
                     <div className="lg:col-span-2 space-y-6">
+                        {/* Mind+ Core Code Logic */}
+                        {lesson.mindPlus && lesson.mindPlus.length > 0 && (
+                            <div className="bg-[#12141F] border border-slate-800 rounded-2xl p-8 hover:bg-[#151824] transition-colors relative overflow-hidden group/code">
+                                <div className="absolute top-0 right-0 w-64 h-64 bg-cyan-500/5 rounded-full blur-3xl -mr-32 -mt-32 pointer-events-none transition-opacity opacity-50 group-hover/code:opacity-100"></div>
+                                <h3 className="text-cyan-400 font-bold mb-6 flex items-center gap-2 text-sm uppercase tracking-wider relative z-10">
+                                    <Code size={16} /> Mind+ 核心代码逻辑
+                                </h3>
+
+                                <div className="bg-[#08090F] rounded-xl p-6 border border-slate-800/50 font-mono text-sm relative z-10 shadow-inner">
+                                    <div className="space-y-4">
+                                        {lesson.mindPlus.map((block, i) => (
+                                            <div key={i} className="flex items-center group/line">
+                                                <span className="text-slate-700 select-none w-6 text-right mr-4 text-xs font-mono group-hover/line:text-slate-500 transition-colors">{i + 1}</span>
+                                                <div className="flex-shrink-0" style={{ width: `${(block.indent || 0) * 24}px` }} />
+                                                <div className={`
+                                                    font-mono text-sm tracking-wide transition-colors
+                                                    ${block.type === 'comment' ? 'text-slate-500' : 'text-emerald-400'}
+                                                    hover:text-emerald-300
+                                                `}>
+                                                    {block.text}
+                                                </div>
+                                            </div>
+                                        ))}
+                                    </div>
+                                </div>
+                            </div>
+                        )}
+
                         {/* Core Knowledge */}
                         <div className="bg-[#12141F] border border-slate-800 rounded-2xl p-8 hover:bg-[#151824] transition-colors">
                             <h3 className="text-blue-400 font-bold mb-4 flex items-center gap-2 text-sm uppercase tracking-wider">
@@ -182,8 +210,8 @@ export default function HardwareLessonDetail() {
                         onClick={() => navigate(lesson.id < 16 ? `/hardware/lesson/${lesson.id + 1}` : '#')}
                         disabled={lesson.id === 16}
                         className={`px-6 py-3 rounded-xl font-bold flex items-center gap-2 transition-all ${lesson.id === 16
-                                ? 'bg-slate-800 text-slate-500 opacity-50 cursor-not-allowed'
-                                : 'bg-emerald-600 hover:bg-emerald-500 text-white shadow-lg shadow-emerald-900/20'
+                            ? 'bg-slate-800 text-slate-500 opacity-50 cursor-not-allowed'
+                            : 'bg-emerald-600 hover:bg-emerald-500 text-white shadow-lg shadow-emerald-900/20'
                             }`}
                     >
                         {lesson.id === 16 ? '课程结束' : '下一课'}
