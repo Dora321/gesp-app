@@ -73,11 +73,15 @@ export default function Navigation() {
                             onClick={() => navigate('/')}
                         >
                             <div className={`
-                                relative flex items-center justify-center overflow-hidden rounded-xl bg-brand-blue shadow-lg shadow-brand-blue/20 transition-all duration-500
+                                relative flex items-center justify-center overflow-hidden rounded-xl bg-white shadow-lg shadow-blue-600/20 transition-all duration-500
                                 ${isScrolled ? 'w-8 h-8' : 'w-10 h-10 group-hover:scale-110'}
                             `}>
                                 <div className="absolute inset-0 bg-white/20 opacity-0 group-hover:opacity-100 transition-opacity"></div>
-                                <span className="text-white font-bold text-lg">M</span>
+                                <img
+                                    src={`${import.meta.env.BASE_URL}logo.jpg`}
+                                    alt="Logo"
+                                    className="w-full h-full object-cover"
+                                />
                             </div>
                             <h1 className={`
                                 font-bold tracking-tight text-brand-slate transition-all duration-300 font-sans
