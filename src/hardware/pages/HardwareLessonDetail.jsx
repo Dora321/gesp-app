@@ -78,6 +78,19 @@ export default function HardwareLessonDetail() {
                     </div>
                 </div>
 
+                {/* Hero Feature Image */}
+                {lesson.heroImage && (
+                    <div className="mb-12 rounded-3xl overflow-hidden border border-slate-800 shadow-2xl relative group/hero">
+                        <img
+                            src={lesson.heroImage}
+                            alt={lesson.title}
+                            className="w-full h-[400px] object-cover transition-transform duration-1000 group-hover/hero:scale-105"
+                            onError={(e) => e.target.parentElement.style.display = 'none'}
+                        />
+                        <div className="absolute inset-0 bg-gradient-to-t from-[#0B0C15] via-transparent to-transparent opacity-60"></div>
+                    </div>
+                )}
+
                 {/* Scenario / Story Card */}
                 <div className="mb-10 bg-gradient-to-br from-[#13111C] to-[#0F1016] border border-indigo-500/20 rounded-2xl p-8 relative overflow-hidden group hover:border-indigo-500/40 transition-colors">
                     <div className="absolute top-0 left-0 w-1 h-full bg-indigo-500"></div>
@@ -120,9 +133,19 @@ export default function HardwareLessonDetail() {
                             <h3 className="text-orange-400 font-bold mb-4 flex items-center gap-2 text-sm">
                                 <Zap size={16} /> 接线指南
                             </h3>
-                            <div className="bg-black/30 rounded-lg p-3 font-mono text-sm text-orange-200/80 border border-orange-500/10">
+                            <div className="bg-black/30 rounded-lg p-3 font-mono text-sm text-orange-200/80 border border-orange-500/10 mb-4">
                                 {lesson.wiring}
                             </div>
+                            {lesson.wiringDiagram && (
+                                <div className="rounded-xl overflow-hidden border border-slate-700/50 bg-black/20 p-2">
+                                    <img
+                                        src={lesson.wiringDiagram}
+                                        alt="Wiring Diagram"
+                                        className="w-full h-auto rounded-lg"
+                                        onError={(e) => e.target.parentNode.style.display = 'none'}
+                                    />
+                                </div>
+                            )}
                         </div>
                     </div>
 

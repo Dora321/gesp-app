@@ -40,6 +40,8 @@ export const hardwareLessons = [
         path: '/hardware/lesson/1',
         hardware: 'LED (HS-F08A)',
         tags: ['Arduino Uno', '扩展板', 'LED (HS-F08A)'],
+        heroImage: 'https://cdn.jsdelivr.net/gh/Dora321/gesp-assets/images/hardware/scenarios/l1_hero.webp',
+        wiringDiagram: 'https://cdn.jsdelivr.net/gh/Dora321/gesp-assets/images/hardware/diagrams/l1_wiring.png',
         mindPlus: [
             { type: 'event', text: '当 绿旗 被点击' },
             { type: 'control', text: '重复执行', indent: 0 },
@@ -69,6 +71,8 @@ export const hardwareLessons = [
         path: '/hardware/lesson/2',
         hardware: '按钮 (HS-KEY1L)',
         tags: ['按钮开关', '数字输入'],
+        heroImage: 'https://cdn.jsdelivr.net/gh/Dora321/gesp-assets/images/hardware/scenarios/l2_hero.webp',
+        wiringDiagram: 'https://cdn.jsdelivr.net/gh/Dora321/gesp-assets/images/hardware/diagrams/l2_wiring.png',
         mindPlus: [
             { type: 'event', text: '当 绿旗 被点击' },
             { type: 'control', text: '重复执行', indent: 0 },
@@ -98,6 +102,8 @@ export const hardwareLessons = [
         path: '/hardware/lesson/3',
         hardware: '交通灯 (HS-F05A)',
         tags: ['顺序结构', '交通灯'],
+        heroImage: 'https://cdn.jsdelivr.net/gh/Dora321/gesp-assets/images/hardware/scenarios/l3_hero.webp',
+        wiringDiagram: 'https://cdn.jsdelivr.net/gh/Dora321/gesp-assets/images/hardware/diagrams/l3_wiring.png',
         mindPlus: [
             { type: 'event', text: '当 绿旗 被点击' },
             { type: 'control', text: '重复执行', indent: 0 },
@@ -132,6 +138,8 @@ export const hardwareLessons = [
         path: '/hardware/lesson/4',
         hardware: '旋钮 (HS-S28A)',
         tags: ['模拟输入', 'PWM调光'],
+        heroImage: 'https://cdn.jsdelivr.net/gh/Dora321/gesp-assets/images/hardware/scenarios/l4_hero.webp',
+        wiringDiagram: 'https://cdn.jsdelivr.net/gh/Dora321/gesp-assets/images/hardware/diagrams/l4_wiring.png',
         mindPlus: [
             { type: 'event', text: '当 绿旗 被点击' },
             { type: 'control', text: '重复执行', indent: 0 },
@@ -158,6 +166,8 @@ export const hardwareLessons = [
         path: '/hardware/lesson/5',
         hardware: '声音传感器 (HS-S05A)',
         tags: ['模拟输入', '声音传感'],
+        heroImage: 'https://cdn.jsdelivr.net/gh/Dora321/gesp-assets/images/hardware/scenarios/l5_hero.webp',
+        wiringDiagram: 'https://cdn.jsdelivr.net/gh/Dora321/gesp-assets/images/hardware/diagrams/l5_wiring.png',
         mindPlus: [
             { type: 'event', text: '当 绿旗 被点击' },
             { type: 'control', text: '重复执行', indent: 0 },
@@ -187,6 +197,8 @@ export const hardwareLessons = [
         path: '/hardware/lesson/6',
         hardware: '风扇驱动 (HS-F04A)',
         tags: ['电机控制', 'PWM'],
+        heroImage: 'https://cdn.jsdelivr.net/gh/Dora321/gesp-assets/images/hardware/scenarios/l6_hero.webp',
+        wiringDiagram: 'https://cdn.jsdelivr.net/gh/Dora321/gesp-assets/images/hardware/diagrams/l6_wiring.png',
         mindPlus: [
             { type: 'event', text: '当 绿旗 被点击' },
             { type: 'control', text: '重复执行', indent: 0 },
@@ -214,6 +226,8 @@ export const hardwareLessons = [
         path: '/hardware/lesson/7',
         hardware: '9g舵机 (SG90)',
         tags: ['舵机控制', '角度'],
+        heroImage: 'https://cdn.jsdelivr.net/gh/Dora321/gesp-assets/images/hardware/scenarios/l7_hero.webp',
+        wiringDiagram: 'https://cdn.jsdelivr.net/gh/Dora321/gesp-assets/images/hardware/diagrams/l7_wiring.png',
         mindPlus: [
             { type: 'event', text: '当 绿旗 被点击' },
             { type: 'control', text: '重复执行', indent: 0 },
@@ -243,6 +257,8 @@ export const hardwareLessons = [
         path: '/hardware/lesson/8',
         hardware: '光敏传感器 (HS-S20A)',
         tags: ['模拟输入', '光敏'],
+        heroImage: 'https://cdn.jsdelivr.net/gh/Dora321/gesp-assets/images/hardware/scenarios/l8_hero.webp',
+        wiringDiagram: 'https://cdn.jsdelivr.net/gh/Dora321/gesp-assets/images/hardware/diagrams/l8_wiring.png',
         mindPlus: [
             { type: 'event', text: '当 绿旗 被点击' },
             { type: 'control', text: '重复执行', indent: 0 },
@@ -269,6 +285,8 @@ export const hardwareLessons = [
         path: '/hardware/lesson/9',
         hardware: 'LED (HS-F08A)',
         tags: ['上传模式', '脱机运行'],
+        heroImage: 'https://cdn.jsdelivr.net/gh/Dora321/gesp-assets/images/hardware/scenarios/l9_hero.webp',
+        wiringDiagram: 'https://cdn.jsdelivr.net/gh/Dora321/gesp-assets/images/hardware/diagrams/l9_wiring.png',
         mindPlus: [
             { type: 'event', text: 'Arduino 程序 (主程序)' },
             { type: 'control', text: '循环执行', indent: 0 },
@@ -298,6 +316,8 @@ export const hardwareLessons = [
         path: '/hardware/lesson/10',
         hardware: '光敏+按钮',
         tags: ['逻辑判断', '智能控制'],
+        heroImage: 'https://cdn.jsdelivr.net/gh/Dora321/gesp-assets/images/hardware/scenarios/l10_hero.webp',
+        wiringDiagram: 'https://cdn.jsdelivr.net/gh/Dora321/gesp-assets/images/hardware/diagrams/l10_wiring.png',
         mindPlus: [
             { type: 'event', text: 'Arduino 程序' },
             { type: 'control', text: '循环执行', indent: 0 },
@@ -327,6 +347,8 @@ export const hardwareLessons = [
         path: '/hardware/lesson/11',
         hardware: '蜂鸣器 (HS-F07A)',
         tags: ['报警系统', '逻辑运算'],
+        heroImage: 'https://cdn.jsdelivr.net/gh/Dora321/gesp-assets/images/hardware/scenarios/l11_hero.webp',
+        wiringDiagram: 'https://cdn.jsdelivr.net/gh/Dora321/gesp-assets/images/hardware/diagrams/l11_wiring.png',
         mindPlus: [
             { type: 'event', text: 'Arduino 程序' },
             { type: 'control', text: '循环执行', indent: 0 },
@@ -356,6 +378,8 @@ export const hardwareLessons = [
         path: '/hardware/lesson/12',
         hardware: '温控风扇',
         tags: ['自动控制', '滞回区间'],
+        heroImage: 'https://cdn.jsdelivr.net/gh/Dora321/gesp-assets/images/hardware/scenarios/l12_hero.webp',
+        wiringDiagram: 'https://cdn.jsdelivr.net/gh/Dora321/gesp-assets/images/hardware/diagrams/l12_wiring.png',
         mindPlus: [
             { type: 'event', text: 'Arduino 程序' },
             { type: 'control', text: '循环执行', indent: 0 },
@@ -386,6 +410,8 @@ export const hardwareLessons = [
         path: '/hardware/lesson/13',
         hardware: '超声波 (HS-SR04)',
         tags: ['超声波', '舵机联动'],
+        heroImage: 'https://cdn.jsdelivr.net/gh/Dora321/gesp-assets/images/hardware/scenarios/l13_hero.webp',
+        wiringDiagram: 'https://cdn.jsdelivr.net/gh/Dora321/gesp-assets/images/hardware/diagrams/l13_wiring.png',
         mindPlus: [
             { type: 'event', text: 'Arduino 程序' },
             { type: 'control', text: '循环执行', indent: 0 },
@@ -416,6 +442,8 @@ export const hardwareLessons = [
         path: '/hardware/lesson/14',
         hardware: '超声波+蜂鸣器',
         tags: ['多级判断', '倒车雷达'],
+        heroImage: 'https://cdn.jsdelivr.net/gh/Dora321/gesp-assets/images/hardware/scenarios/l14_hero.webp',
+        wiringDiagram: 'https://cdn.jsdelivr.net/gh/Dora321/gesp-assets/images/hardware/diagrams/l14_wiring.png',
         mindPlus: [
             { type: 'event', text: 'Arduino 程序' },
             { type: 'control', text: '循环执行', indent: 0 },
@@ -448,6 +476,8 @@ export const hardwareLessons = [
         path: '/hardware/lesson/15',
         hardware: '声音传感+音乐',
         tags: ['声音触发', '音乐编程'],
+        heroImage: 'https://cdn.jsdelivr.net/gh/Dora321/gesp-assets/images/hardware/scenarios/l15_hero.webp',
+        wiringDiagram: 'https://cdn.jsdelivr.net/gh/Dora321/gesp-assets/images/hardware/diagrams/l15_wiring.png',
         mindPlus: [
             { type: 'event', text: 'Arduino 程序' },
             { type: 'control', text: '循环执行', indent: 0 },
@@ -477,6 +507,8 @@ export const hardwareLessons = [
         path: '/hardware/lesson/16',
         hardware: '综合项目',
         tags: ['期末项目', '工程设计'],
+        heroImage: 'https://cdn.jsdelivr.net/gh/Dora321/gesp-assets/images/hardware/scenarios/l16_hero.webp',
+        wiringDiagram: 'https://cdn.jsdelivr.net/gh/Dora321/gesp-assets/images/hardware/diagrams/l16_wiring.png',
         mindPlus: [
             { type: 'event', text: 'Mind+ 主程序 (自定义)' },
             { type: 'comment', text: '// 请根据你的设计图编写程序', indent: 0 },
