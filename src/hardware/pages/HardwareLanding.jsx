@@ -1,303 +1,334 @@
-
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { motion } from 'framer-motion';
+import { motion, AnimatePresence } from 'framer-motion';
 import {
-    Monitor, Upload, Download, BookOpen, FlaskConical, Hammer,
-    ChevronRight, Lock, Play, Cpu, Zap, Box, Activity, Layers, PenTool
+    Play, ChevronRight, Download, Box,
+    BookOpen, FlaskConical, Hammer,
+    Star, Lock, CheckCircle2,
+    Zap, Code, Cpu, Settings
 } from 'lucide-react';
 import { hardwareLessons } from '../data/lessons';
+import hardwareHero from '../../assets/hardware-hero.png';
 
-export default function HardwareLanding() {
-    const navigate = useNavigate();
-    const [activeTab, setActiveTab] = useState('realtime'); // 'realtime' or 'upload'
+// --- Colors & Theme Constants (Tech-Playful) ---
+const THEME = {
+    primary: 'bg-blue-500',
+    primaryHover: 'hover:bg-blue-600',
+    secondary: 'bg-orange-500',
+    secondaryHover: 'hover:bg-orange-600',
+    success: 'text-emerald-500',
+    bg: 'bg-slate-50',
+    text: 'text-slate-800',
+    textMuted: 'text-slate-500'
+};
 
-    // Filter lessons based on active tab
-    const displayedLessons = hardwareLessons.filter(l => l.mode === activeTab);
+const Navbar = () => (
+    <nav className="fixed top-0 left-0 right-0 h-16 bg-white/80 backdrop-blur-md border-b border-slate-200 z-50 px-6 flex items-center justify-between">
+        <div className="flex items-center gap-2 font-black text-xl text-slate-800">
+            <div className="w-8 h-8 bg-blue-500 rounded-lg flex items-center justify-center text-white">
+                <Cpu size={20} />
+            </div>
+            Hardware<span className="text-blue-500">Station</span>
+        </div>
+        <div className="hidden md:flex items-center gap-8 font-bold text-sm text-slate-600">
+            <a href="#missions" className="hover:text-blue-500 transition-colors">闯关地图</a>
+            <a href="#3e-model" className="hover:text-blue-500 transition-colors">探索模型</a>
+            <a href="#resources" className="hover:text-blue-500 transition-colors">装备库</a>
+        </div>
+        <button className={`px-5 py-2 ${THEME.primary} ${THEME.primaryHover} text-white font-bold rounded-full text-sm shadow-lg shadow-blue-500/20 transition-all hover:-translate-y-0.5`}>
+            开始学习
+        </button>
+    </nav>
+);
 
-    return (
-        <div className="min-h-screen bg-[#0f172a] text-slate-200 font-sans selection:bg-emerald-500/30 overflow-hidden relative">
-
-            {/* Background Circuit Effects */}
-            <div className="absolute inset-0 z-0 pointer-events-none">
-                <div className="absolute top-0 left-0 w-full h-full bg-[linear-gradient(rgba(16,185,129,0.03)_1px,transparent_1px),linear-gradient(90deg,rgba(16,185,129,0.03)_1px,transparent_1px)] bg-[size:40px_40px] [mask-image:radial-gradient(circle_at_top,black,transparent_80%)]" />
-                <div className="absolute top-20 right-20 w-96 h-96 bg-emerald-500/10 rounded-full blur-[100px] animate-pulse-slow" />
-                <div className="absolute bottom-20 left-20 w-96 h-96 bg-blue-500/10 rounded-full blur-[100px] animate-pulse-slow" />
+const Hero = ({ onStart }) => (
+    <section className="pt-32 pb-20 px-6 max-w-7xl mx-auto grid lg:grid-cols-2 gap-12 items-center">
+        <div className="space-y-8">
+            <div className="inline-flex items-center gap-2 px-3 py-1 bg-orange-100 text-orange-600 rounded-full text-xs font-bold uppercase tracking-wider">
+                <Star size={12} className="fill-current" /> 新学期招募中
+            </div>
+            <h1 className="text-5xl lg:text-7xl font-black text-slate-900 leading-tight">
+                在比特魔法中<br />
+                <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-500 to-cyan-400">创造未来</span>
+            </h1>
+            <p className="text-lg text-slate-600 max-w-lg leading-relaxed">
+                专为小学生设计的硬件启蒙之旅。像工程师一样思考，用 Arduino 和 Mind+ 点亮你的第一个创意作品。
+            </p>
+            <div className="flex flex-wrap gap-4">
+                <button onClick={onStart} className={`px-8 py-4 ${THEME.primary} ${THEME.primaryHover} text-white text-lg font-bold rounded-2xl shadow-xl shadow-blue-500/30 flex items-center gap-3 transition-all hover:-translate-y-1`}>
+                    <Play size={24} className="fill-current" /> 开启闯关
+                </button>
+                <button className="px-8 py-4 bg-white text-slate-700 border-2 border-slate-200 text-lg font-bold rounded-2xl hover:border-blue-500 hover:text-blue-500 transition-all flex items-center gap-3">
+                    <div className="w-8 h-8 bg-blue-100 rounded-full flex items-center justify-center">
+                        <Play size={14} className="ml-0.5 text-blue-600 fill-current" />
+                    </div>
+                    1分钟演示
+                </button>
             </div>
 
-            {/* Header / Nav Placeholder */}
-            <div className="h-16 relative z-50"></div>
+            {/* Trust Badges */}
+            <div className="flex items-center gap-6 pt-4 text-sm font-bold text-slate-400">
+                <span className="flex items-center gap-1"><CheckCircle2 size={16} className="text-emerald-500" /> 无需代码基础</span>
+                <span className="flex items-center gap-1"><CheckCircle2 size={16} className="text-emerald-500" /> 配套硬件盒子</span>
+            </div>
+        </div>
 
-            {/* Hero Section */}
-            <section className="relative z-10 pt-12 pb-24">
-                <div className="max-w-7xl mx-auto px-6 grid lg:grid-cols-2 gap-16 items-center">
+        {/* Hero Visual - 3D Illustration */}
+        <div className="relative h-[400px] lg:h-[500px] flex items-center justify-center">
+            {/* Background Blob */}
+            <div className="absolute inset-0 bg-blue-100 rounded-[3rem] opacity-50 blur-3xl transform rotate-3 scale-90" />
+
+            <motion.div
+                initial={{ opacity: 0, scale: 0.8, y: 20 }}
+                animate={{ opacity: 1, scale: 1, y: 0 }}
+                transition={{ duration: 0.8, ease: "easeOut" }}
+                className="relative z-10 w-full h-full flex items-center justify-center"
+            >
+                <img
+                    src={hardwareHero}
+                    alt="Hardware Enlightenment Robot"
+                    className="w-full h-full object-contain drop-shadow-2xl hover:scale-105 transition-transform duration-700 filter saturate-110"
+                />
+            </motion.div>
+        </div>
+    </section>
+);
+
+const ThreeEModel = () => (
+    <section id="3e-model" className="py-20 bg-white">
+        <div className="max-w-7xl mx-auto px-6">
+            <div className="text-center mb-16">
+                <h2 className="text-3xl lg:text-4xl font-black text-slate-900 mb-4">3E 探究模型</h2>
+                <p className="text-slate-500 text-lg">我们的学习像科学家一样严谨，像游戏一样有趣</p>
+            </div>
+
+            <div className="grid md:grid-cols-3 gap-8 relative">
+                {/* Connector Line */}
+                <div className="hidden md:block absolute top-12 left-0 right-0 h-1 bg-slate-100 -z-10" />
+
+                {[
+                    {
+                        icon: BookOpen,
+                        title: "Explore 探索",
+                        desc: "发现生活中的问题，激发好奇心",
+                        color: "text-blue-500",
+                        bg: "bg-blue-100",
+                        step: "01"
+                    },
+                    {
+                        icon: FlaskConical,
+                        title: "Experiment 实验",
+                        desc: "动手连接电路，验证你的猜想",
+                        color: "text-purple-500",
+                        bg: "bg-purple-100",
+                        step: "02"
+                    },
+                    {
+                        icon: Hammer,
+                        title: "Engineer 工程",
+                        desc: "编写程序，创造能够工作的原型",
+                        color: "text-orange-500",
+                        bg: "bg-orange-100",
+                        step: "03"
+                    }
+                ].map((item, i) => (
                     <motion.div
-                        initial={{ opacity: 0, x: -50 }}
-                        animate={{ opacity: 1, x: 0 }}
-                        transition={{ duration: 0.8 }}
-                        className="relative"
+                        key={i}
+                        whileHover={{ y: -5 }}
+                        className="bg-white p-8 rounded-3xl border-2 border-slate-100 shadow-xl shadow-slate-200/50 text-center relative overflow-hidden group"
                     >
-                        {/* Status Badge */}
-                        <div className="inline-flex items-center gap-2 px-3 py-1 rounded-sm bg-emerald-900/30 border border-emerald-500/30 text-emerald-400 text-xs font-mono mb-8">
-                            <span className="w-2 h-2 bg-emerald-500 rounded-sm animate-ping" />
-                            <span>系统就绪 :: 第一阶段</span>
+                        <div className={`w-24 h-24 mx-auto ${item.bg} rounded-full flex items-center justify-center mb-6 relative z-10 border-4 border-white shadow-sm`}>
+                            <item.icon size={40} className={item.color} />
                         </div>
+                        <div className="text-xs font-black text-slate-300 uppercase tracking-widest mb-2">Step {item.step}</div>
+                        <h3 className="text-2xl font-black text-slate-800 mb-3">{item.title}</h3>
+                        <p className="text-slate-500 leading-relaxed font-medium">{item.desc}</p>
+                    </motion.div>
+                ))}
+            </div>
+        </div>
+    </section>
+);
 
-                        {/* Title */}
-                        <h1 className="text-5xl md:text-7xl font-black mb-6 leading-none tracking-tighter text-white">
-                            硬件 <br />
-                            <span className="text-transparent bg-clip-text bg-gradient-to-r from-emerald-400 to-cyan-400">
-                                启蒙工作站
+const MissionMap = ({ navigate }) => {
+    const [activeTab, setActiveTab] = useState('realtime');
+    const missions = hardwareLessons.filter(l => l.mode === activeTab);
+
+    return (
+        <section id="missions" className="py-24 bg-slate-50">
+            <div className="max-w-7xl mx-auto px-6">
+                <div className="flex flex-col md:flex-row md:items-center justify-between gap-8 mb-12">
+                    <div>
+                        <h2 className="text-3xl font-black text-slate-900 flex items-center gap-3">
+                            <span className="w-10 h-10 bg-orange-500 rounded-xl flex items-center justify-center text-white shadow-lg shadow-orange-500/30">
+                                <Settings size={24} className="animate-spin-slow" />
                             </span>
-                        </h1>
-
-                        {/* Description */}
-                        <p className="text-slate-400 text-lg mb-10 max-w-lg leading-relaxed border-l-4 border-emerald-500/50 pl-6">
-                            专为小学低年级设计。通过 Arduino Uno 与 Mind+ 的结合，在趣味故事中开启你的第一次<span className="text-white font-bold">比特魔法</span>实验。
-                        </p>
-
-                        {/* Buttons */}
-                        <div className="flex flex-wrap gap-4">
-                            <button
-                                onClick={() => navigate('/hardware/lesson/1')}
-                                className="group relative px-8 py-4 bg-emerald-500 hover:bg-emerald-400 text-black font-bold rounded-sm clip-path-polygon transition-all hover:translate-x-1"
-                            >
-                                <div className="absolute inset-0 bg-white/20 translate-x-[-100%] group-hover:translate-x-[100%] transition-transform duration-500 skew-x-12" />
-                                <span className="flex items-center gap-2 relative z-10">
-                                    <Play size={20} fill="currentColor" /> 开始探索
-                                </span>
-                            </button>
-                            <button className="px-8 py-4 bg-slate-800/50 border border-slate-700 text-slate-300 font-bold rounded-sm hover:bg-slate-800 hover:text-white transition-colors flex items-center gap-2">
-                                <Monitor size={20} /> 观看演示
-                            </button>
-                        </div>
-                    </motion.div>
-
-                    {/* Hero Visual - Cyberpunk Board */}
-                    <motion.div
-                        initial={{ opacity: 0, scale: 0.9 }}
-                        animate={{ opacity: 1, scale: 1 }}
-                        transition={{ duration: 0.8, delay: 0.2 }}
-                        className="relative h-[500px] flex items-center justify-center"
-                    >
-                        {/* Floating Layers */}
-                        <div className="absolute inset-0 bg-gradient-to-tr from-slate-900/80 to-slate-800/80 backdrop-blur-md rounded-xl border border-slate-700/50 flex flex-col items-center justify-center p-8 shadow-2xl overflow-hidden group">
-                            {/* Animated Grid Background inside card */}
-                            <div className="absolute inset-0 bg-[linear-gradient(rgba(255,255,255,0.02)_1px,transparent_1px),linear-gradient(90deg,rgba(255,255,255,0.02)_1px,transparent_1px)] bg-[size:20px_20px]" />
-
-                            {/* Central Chip */}
-                            <div className="relative z-20 bg-slate-900 p-8 rounded-lg border border-emerald-500/30 shadow-[0_0_50px_rgba(16,185,129,0.2)] group-hover:shadow-[0_0_80px_rgba(16,185,129,0.4)] transition-shadow duration-500">
-                                <Cpu size={80} className="text-emerald-400" />
-                                <div className="absolute -bottom-3 -right-3 bg-emerald-500 text-black text-[10px] font-black px-2 py-1 rounded-sm">UNO_R3</div>
-                            </div>
-
-                            {/* Connecting Lines */}
-                            <div className="absolute z-10 w-full h-full pointer-events-none">
-                                {[0, 90, 180, 270].map((deg, i) => (
-                                    <div key={i} className="absolute left-1/2 top-1/2 w-[200px] h-[2px] bg-gradient-to-r from-emerald-500/50 to-transparent origin-left" style={{ transform: `rotate(${deg}deg) translateY(-1px)` }}>
-                                        <div className="absolute top-0 left-0 w-10 h-full bg-emerald-400 blur-[2px] animate-slide-right" style={{ animationDelay: `${i * 0.5}s` }} />
-                                    </div>
-                                ))}
-                            </div>
-
-                            {/* Floating Elements */}
-                            <motion.div
-                                animate={{ y: [0, -10, 0] }}
-                                transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}
-                                className="absolute top-10 right-10 p-3 bg-slate-800/80 border border-slate-600 rounded-lg flex items-center gap-3 backdrop-blur-sm z-30"
-                            >
-                                <Activity className="text-blue-400" size={20} />
-                                <div>
-                                    <div className="text-[10px] text-slate-400 uppercase">Input Signal</div>
-                                    <div className="text-sm font-bold text-white">模拟_A0</div>
-                                </div>
-                            </motion.div>
-
-                            <motion.div
-                                animate={{ y: [0, 10, 0] }}
-                                transition={{ duration: 5, repeat: Infinity, ease: "easeInOut", delay: 1 }}
-                                className="absolute bottom-10 left-10 p-3 bg-slate-800/80 border border-slate-600 rounded-lg flex items-center gap-3 backdrop-blur-sm z-30"
-                            >
-                                <Zap className="text-yellow-400" size={20} />
-                                <div>
-                                    <div className="text-[10px] text-slate-400 uppercase">Output Voltage</div>
-                                    <div className="text-sm font-bold text-white">5.0V 稳定输出</div>
-                                </div>
-                            </motion.div>
-                        </div>
-                    </motion.div>
-                </div>
-            </section>
-
-            {/* 3E Model Section - Pipeline Visual */}
-            <section className="py-24 bg-slate-900/50 relative">
-                <div className="max-w-7xl mx-auto px-6">
-                    <div className="text-center mb-16">
-                        <h2 className="text-3xl font-black text-white mb-4 tracking-tight"><span className="text-emerald-500">3E</span> 探究模型</h2>
-                        <p className="text-slate-400">遵循科学认知规律，像工程师一样思考</p>
+                            闯关地图
+                        </h2>
+                        <p className="text-slate-500 mt-2 font-medium">完成 16 个挑战，从新手晋升为小小工程师</p>
                     </div>
 
-                    <div className="relative grid md:grid-cols-3 gap-8">
-                        {/* Connecting Line (Desktop) */}
-                        <div className="hidden md:block absolute top-1/2 left-0 w-full h-[2px] bg-slate-700/50 -translate-y-1/2 z-0" />
-
+                    <div className="bg-white p-1.5 rounded-2xl shadow-sm border border-slate-200 inline-flex">
                         {[
-                            {
-                                id: '01',
-                                icon: BookOpen,
-                                title: "EXPLORE",
-                                subtitle: "探索",
-                                desc: "发现问题，激发好奇心",
-                                color: "text-blue-400",
-                                bg: "bg-blue-500/10",
-                                border: "border-blue-500/30"
-                            },
-                            {
-                                id: '02',
-                                icon: FlaskConical,
-                                title: "EXPERIMENT",
-                                subtitle: "实验",
-                                desc: "动手实践，验证猜想",
-                                color: "text-purple-400",
-                                bg: "bg-purple-500/10",
-                                border: "border-purple-500/30"
-                            },
-                            {
-                                id: '03',
-                                icon: Hammer,
-                                title: "ENGINEER",
-                                subtitle: "工程",
-                                desc: "解决问题，创造作品",
-                                color: "text-orange-400",
-                                bg: "bg-orange-500/10",
-                                border: "border-orange-500/30"
-                            }
-                        ].map((item, i) => (
-                            <motion.div
-                                key={i}
-                                initial={{ opacity: 0, y: 30 }}
-                                whileInView={{ opacity: 1, y: 0 }}
-                                viewport={{ once: true }}
-                                transition={{ delay: i * 0.2 }}
-                                className={`
-                                    relative z-10 bg-[#0f172a] border ${item.border} p-8 rounded-xl
-                                    hover:-translate-y-2 transition-transform duration-300 group
-                                `}
+                            { id: 'realtime', label: '阶段一：魔法入门' },
+                            { id: 'upload', label: '阶段二：创造大师' }
+                        ].map(tab => (
+                            <button
+                                key={tab.id}
+                                onClick={() => setActiveTab(tab.id)}
+                                className={`px-6 py-3 rounded-xl text-sm font-bold transition-all ${activeTab === tab.id
+                                    ? 'bg-blue-500 text-white shadow-md'
+                                    : 'text-slate-500 hover:bg-slate-50'
+                                    }`}
                             >
-                                <div className={`w-14 h-14 ${item.bg} rounded-lg flex items-center justify-center mb-6 group-hover:scale-110 transition-transform`}>
-                                    <item.icon className={item.color} size={28} />
-                                </div>
-                                <div className="absolute top-4 right-4 text-3xl font-black text-slate-800 select-none group-hover:text-slate-700 transition-colors">{item.id}</div>
-                                <h3 className="text-xl font-bold text-white mb-1 tracking-wider">{item.subtitle}</h3>
-                                <div className={`text-sm font-bold mb-3 ${item.color}`}>{item.title}</div>
-                                <p className="text-slate-400 text-sm">{item.desc}</p>
-                            </motion.div>
+                                {tab.label}
+                            </button>
                         ))}
                     </div>
                 </div>
-            </section>
 
-            {/* Course Outline */}
-            <section className="py-24">
-                <div className="max-w-7xl mx-auto px-6">
-                    <div className="flex flex-col md:flex-row md:items-center justify-between gap-8 mb-12">
-                        <div>
-                            <h2 className="text-3xl font-bold text-white mb-2">任务清单</h2>
-                            <p className="text-slate-400 text-sm">16个精心设计的挑战，从入门到精通</p>
-                        </div>
-
-                        {/* Tabs */}
-                        <div className="bg-slate-800/50 p-1 rounded-lg inline-flex border border-slate-700/50 backdrop-blur-sm">
-                            {[
-                                { id: 'realtime', label: '实时模式 (1-8)' },
-                                { id: 'upload', label: '上传模式 (9-16)' }
-                            ].map(tab => (
-                                <button
-                                    key={tab.id}
-                                    onClick={() => setActiveTab(tab.id)}
-                                    className={`px-6 py-2 rounded-md text-sm font-bold transition-all ${activeTab === tab.id
-                                        ? 'bg-emerald-500 text-black shadow-lg shadow-emerald-500/20'
-                                        : 'text-slate-400 hover:text-white hover:bg-slate-700/50'
-                                        }`}
-                                >
-                                    {tab.label}
-                                </button>
-                            ))}
-                        </div>
-                    </div>
-
-                    {/* Grid */}
-                    <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
-                        {displayedLessons.map((lesson, idx) => {
-                            const IconComponent = lesson.icon;
-                            // const isReady = true;
-
-                            return (
-                                <motion.div
-                                    layout
-                                    initial={{ opacity: 0, scale: 0.95 }}
-                                    animate={{ opacity: 1, scale: 1 }}
-                                    key={lesson.id}
-                                    onClick={() => navigate(`/hardware/lesson/${lesson.id}`)}
-                                    className="group relative bg-slate-800/20 border border-slate-700/50 hover:border-emerald-500/50 rounded-xl p-6 cursor-pointer transition-all hover:bg-slate-800/40"
-                                >
-                                    {/* Connection Line decoration */}
-                                    <div className="absolute top-0 left-6 w-[1px] h-4 bg-slate-700 group-hover:bg-emerald-500/50 transition-colors" />
-
-                                    <div className="flex justify-between items-start mb-6 mt-2">
-                                        <div className="text-slate-500 font-mono text-xs">
-                                            任务_{lesson.id.toString().padStart(2, '0')}
-                                        </div>
-                                        <div className={`p-2 rounded-lg bg-slate-800 group-hover:bg-emerald-500/20 transition-colors`}>
-                                            <IconComponent size={18} className="text-slate-300 group-hover:text-emerald-400" />
-                                        </div>
+                <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
+                    <AnimatePresence mode='wait'>
+                        {missions.map((mission, idx) => (
+                            <motion.div
+                                key={mission.id}
+                                layout
+                                initial={{ opacity: 0, scale: 0.9 }}
+                                animate={{ opacity: 1, scale: 1 }}
+                                exit={{ opacity: 0, scale: 0.9 }}
+                                onClick={() => navigate(`/hardware/lesson/${mission.id}`)}
+                                className="group bg-white rounded-3xl border-2 border-slate-100 p-6 cursor-pointer hover:border-blue-400 hover:shadow-xl hover:shadow-blue-500/10 transition-all relative overflow-hidden"
+                            >
+                                {/* Level Badge */}
+                                <div className="flex justify-between items-start mb-4">
+                                    <div className="text-xs font-black text-slate-400 uppercase tracking-wider bg-slate-100 px-2 py-1 rounded-md">
+                                        Level {mission.id.toString().padStart(2, '0')}
                                     </div>
+                                    <div className="flex text-amber-400">
+                                        {[1, 2, 3].map(i => (
+                                            <Star key={i} size={14} className={i <= (mission.difficulty || 2) ? "fill-current" : "text-slate-200"} />
+                                        ))}
+                                    </div>
+                                </div>
 
-                                    <h3 className="text-white font-bold text-lg mb-3 line-clamp-1 group-hover:text-emerald-400 transition-colors">
-                                        {lesson.title.split('：')[1] || lesson.title}
-                                    </h3>
+                                {/* Icon Block */}
+                                <div className="w-16 h-16 bg-blue-50 rounded-2xl flex items-center justify-center mb-6 group-hover:scale-110 transition-transform duration-300 group-hover:bg-blue-100">
+                                    <mission.icon size={32} className="text-blue-500" />
+                                </div>
 
-                                    <p className="text-slate-400 text-xs leading-relaxed line-clamp-2 mb-6 min-h-[32px]">
-                                        {lesson.description}
-                                    </p>
+                                <h3 className="text-lg font-black text-slate-800 mb-2 line-clamp-1 group-hover:text-blue-600 transition-colors">
+                                    {mission.title.split('：')[1] || mission.title}
+                                </h3>
 
-                                    {/* Tech Tags */}
-                                    <div className="flex flex-wrap gap-2 pt-4 border-t border-slate-700/50">
-                                        {(lesson.tags || [lesson.hardware]).slice(0, 2).map((tag, i) => (
-                                            <span key={i} className="text-[10px] uppercase font-bold text-slate-500 bg-slate-900/50 px-2 py-1 rounded border border-slate-800">
+                                <p className="text-slate-500 text-sm leading-relaxed line-clamp-2 h-10 mb-4">
+                                    {mission.description}
+                                </p>
+
+                                {/* Bottom Status */}
+                                <div className="pt-4 border-t border-slate-100 flex items-center justify-between">
+                                    <div className="flex gap-2">
+                                        {(mission.tags || []).slice(0, 1).map((tag, t) => (
+                                            <span key={t} className="text-[10px] font-bold bg-slate-100 text-slate-500 px-2 py-1 rounded">
                                                 {tag}
                                             </span>
                                         ))}
                                     </div>
-                                </motion.div>
-                            );
-                        })}
+                                    <div className="w-8 h-8 rounded-full bg-slate-50 flex items-center justify-center text-slate-300 group-hover:bg-blue-500 group-hover:text-white transition-colors">
+                                        <ChevronRight size={18} />
+                                    </div>
+                                </div>
+                            </motion.div>
+                        ))}
+                    </AnimatePresence>
+                </div>
+            </div>
+        </section>
+    );
+};
+
+const Resources = () => (
+    <section id="resources" className="py-24 bg-white">
+        <div className="max-w-6xl mx-auto px-6">
+            <div className="text-center mb-16">
+                <h2 className="text-3xl font-black text-slate-900 mb-4">装备与补给站</h2>
+                <p className="text-slate-500">工欲善其事，必先利其器</p>
+            </div>
+
+            <div className="grid md:grid-cols-2 gap-12">
+                {/* Software Card */}
+                <div className="bg-blue-50 rounded-[2.5rem] p-10 border-4 border-white shadow-2xl shadow-blue-500/10 flex flex-col items-center text-center">
+                    <div className="w-20 h-20 bg-white rounded-3xl flex items-center justify-center shadow-md mb-6 rotate-3">
+                        <Code size={40} className="text-blue-500" />
+                    </div>
+                    <h3 className="text-2xl font-black text-slate-900 mb-2">软件中心</h3>
+                    <p className="text-slate-500 text-sm mb-8 px-8">编程所需的 Mind+ 软件及驱动程序，支持 Windows 与 Mac 系统。</p>
+
+                    <div className="space-y-3 w-full max-w-xs">
+                        <button className="w-full flex items-center justify-between px-6 py-4 bg-white rounded-xl shadow-sm hover:shadow-md border border-blue-100 transition-all group">
+                            <span className="font-bold text-slate-700">下载 Mind+ (V1.7.2)</span>
+                            <Download size={20} className="text-slate-400 group-hover:text-blue-500 transition-colors" />
+                        </button>
+                        <button className="w-full flex items-center justify-between px-6 py-4 bg-white rounded-xl shadow-sm hover:shadow-md border border-blue-100 transition-all group">
+                            <span className="font-bold text-slate-700">CH340 驱动程序</span>
+                            <Download size={20} className="text-slate-400 group-hover:text-blue-500 transition-colors" />
+                        </button>
                     </div>
                 </div>
-            </section>
 
-            {/* Footer / CTA - Blueprint Style */}
-            <section className="py-24 relative overflow-hidden">
-                <div className="absolute inset-0 bg-emerald-900/10" />
-                <div className="absolute inset-0 bg-[url('https://grainy-gradients.vercel.app/noise.svg')] opacity-10" />
-
-                <div className="relative z-10 max-w-4xl mx-auto text-center px-6 border-t border-b border-emerald-500/30 py-16 bg-[#0f172a]/80 backdrop-blur-sm">
-                    <h2 className="text-3xl font-black text-white mb-6">准备好装备了吗？</h2>
-                    <p className="text-slate-300 mb-10 max-w-xl mx-auto">
-                        下载全套任务简报与核心软件，开始你的创造之旅。
-                    </p>
-                    <div className="flex flex-wrap justify-center gap-4">
-                        <button className="px-8 py-3 bg-white text-black font-bold rounded-sm border-2 border-transparent hover:border-emerald-500 hover:text-emerald-600 transition-all flex items-center gap-2">
-                            <Download size={18} />
-                            下载任务简报 (PDF)
-                        </button>
-                        <button className="px-8 py-3 bg-transparent border-2 border-slate-600 text-white font-bold rounded-sm hover:border-emerald-500 hover:bg-emerald-500/10 hover:text-emerald-400 transition-all flex items-center gap-2">
-                            <Box size={18} />
-                            获取 Mind+
-                        </button>
+                {/* Hardware Card */}
+                <div className="bg-orange-50 rounded-[2.5rem] p-10 border-4 border-white shadow-2xl shadow-orange-500/10 flex flex-col items-center text-center">
+                    <div className="w-20 h-20 bg-white rounded-3xl flex items-center justify-center shadow-md mb-6 -rotate-3">
+                        <Box size={40} className="text-orange-500" />
                     </div>
+                    <h3 className="text-2xl font-black text-slate-900 mb-2">硬件清单</h3>
+                    <p className="text-slate-500 text-sm mb-8 px-8">本课程配套的 Arduino 魔法盒子，包含所有只需的传感器与模块。</p>
+
+                    <div className="grid grid-cols-2 gap-3 w-full max-w-xs text-left">
+                        {['Uno 主板', '扩展板 V5', 'LED 模块', '声音传感器', '舵机 9g', '杜邦线 x20'].map((item, i) => (
+                            <div key={i} className="flex items-center gap-2 text-sm font-bold text-slate-600 bg-white px-3 py-2 rounded-lg border border-orange-100">
+                                <span className="w-2 h-2 rounded-full bg-orange-400" /> {item}
+                            </div>
+                        ))}
+                    </div>
+                    <button className="mt-6 text-orange-600 font-bold text-sm hover:underline flex items-center gap-1">
+                        查看完整清单 <ChevronRight size={14} />
+                    </button>
                 </div>
-            </section>
+            </div>
+        </div>
+    </section>
+);
+
+const Footer = () => (
+    <footer className="bg-slate-900 text-slate-400 py-12 text-center text-sm">
+        <div className="max-w-7xl mx-auto px-6">
+            <div className="flex justify-center items-center gap-2 mb-4 font-black text-xl text-white">
+                <div className="w-6 h-6 bg-blue-600 rounded flex items-center justify-center text-white">
+                    <Cpu size={14} />
+                </div>
+                HardwareStation
+            </div>
+            <p>做最好的少儿科创教育内容</p>
+            <div className="mt-8 pt-8 border-t border-slate-800 flex justify-center gap-8">
+                <a href="#" className="hover:text-white transition-colors">课程反馈</a>
+                <a href="#" className="hover:text-white transition-colors">联系老师</a>
+                <a href="#" className="hover:text-white transition-colors">常见问题</a>
+            </div>
+        </div>
+    </footer>
+);
+
+export default function HardwareLanding() {
+    const navigate = useNavigate();
+
+    return (
+        <div className="bg-slate-50 min-h-screen font-sans selection:bg-orange-200 selection:text-orange-900">
+            <Navbar />
+            <Hero onStart={() => navigate('/hardware/lesson/1')} />
+            <ThreeEModel />
+            <MissionMap navigate={navigate} />
+            <Resources />
+            <Footer />
         </div>
     );
 }
