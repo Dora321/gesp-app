@@ -4,31 +4,64 @@ import { Rocket, Play, Code2, ChevronRight } from 'lucide-react';
 
 const SortingVisualizer = () => {
     const [array, setArray] = useState([]);
+    const [sortingIdx, setSortingIdx] = useState([-1, -1]);
 
-    // Generate random array
+    const resetArray = () => {
+        const arr = [];
+        for (let i = 0; i < 15; i++) {
+            arr.push(Math.floor(Math.random() * 80) + 10);
+        }
+        setArray(arr);
+        setSortingIdx([-1, -1]);
+    };
+
     useEffect(() => {
-        const resetArray = () => {
-            const arr = [];
-            for (let i = 0; i < 15; i++) {
-                arr.push(Math.floor(Math.random() * 80) + 10);
-            }
-            setArray(arr);
-        };
-
         resetArray();
-        const interval = setInterval(resetArray, 3000);
-        return () => clearInterval(interval);
     }, []);
 
+    useEffect(() => {
+        let isCancelled = false;
+
+        const bubbleSort = async () => {
+            let arr = [...array];
+            if (arr.length === 0) return;
+
+            for (let i = 0; i < arr.length; i++) {
+                for (let j = 0; j < arr.length - i - 1; j++) {
+                    if (isCancelled) return;
+                    setSortingIdx([j, j + 1]);
+                    if (arr[j] > arr[j + 1]) {
+                        [arr[j], arr[j + 1]] = [arr[j + 1], arr[j]];
+                        setArray([...arr]);
+                    }
+                    await new Promise(resolve => setTimeout(resolve, 100));
+                }
+            }
+
+            // Wait and reset
+            await new Promise(resolve => setTimeout(resolve, 2000));
+            if (!isCancelled) resetArray();
+        };
+
+        if (array.length > 0 && sortingIdx[0] === -1) {
+            bubbleSort();
+        }
+
+        return () => { isCancelled = true; };
+    }, [array.length === 0]); // Trigger when array is reset
+
     return (
-        <div className="w-full h-full flex items-end justify-center gap-1 p-6 pb-0">
+        <div className="w-full h-full flex items-end justify-center gap-1.5 p-6 pb-4">
             {array.map((value, idx) => (
                 <div
                     key={idx}
-                    className="w-4 bg-brand-blue/80 rounded-t-sm transition-all duration-300 hover:bg-brand-orange"
+                    className={`
+                        w-4 rounded-t-lg transition-all duration-200
+                        ${sortingIdx.includes(idx) ? 'bg-orange-500 shadow-lg shadow-orange-500/50 scale-x-110' : 'bg-blue-600/80'}
+                    `}
                     style={{
                         height: `${value}%`,
-                        opacity: 0.6 + (value / 200)
+                        opacity: sortingIdx.includes(idx) ? 1 : 0.6 + (value / 200)
                     }}
                 ></div>
             ))}
