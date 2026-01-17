@@ -19,7 +19,18 @@ export default {
             animation: {
                 'fade-in': 'fadeIn 0.5s ease-out forwards',
                 'bounce-short': 'bounceShort 0.5s ease-in-out',
-            }
+            },
+            colors: {
+                brand: {
+                    blue: '#2563EB',   // Royal Blue - Primary
+                    orange: '#F97316', // Vibrant Orange - Accent
+                    slate: '#1E293B',  // Slate - Neutral/Text
+                }
+            },
+            fontFamily: {
+                sans: ['"PingFang SC"', '"Noto Sans SC"', 'ui-sans-serif', 'system-ui', 'sans-serif'],
+                mono: ['"JetBrains Mono"', '"Fira Code"', 'ui-monospace', 'monospace'],
+            },
         },
     },
     plugins: [],

@@ -45,7 +45,7 @@ const RoadmapNode = ({ level, title, desc, status, delay }) => {
                     <span className={`text-xs font-mono font-bold px-2 py-1 rounded ${isActive ? 'bg-cyan-500/20 text-cyan-400' : 'bg-white/5 text-gray-500'}`}>
                         LEVEL_0{level}
                     </span>
-                    {isActive && <span className="text-[10px] font-mono text-green-400 animate-pulse">>>> CURRENT_MISSION</span>}
+                    {isActive && <span className="text-[10px] font-mono text-green-400 animate-pulse">&gt;&gt;&gt; CURRENT_MISSION</span>}
                 </div>
 
                 <h3 className={`text-2xl font-black italic uppercase mb-2 ${isActive ? 'text-white' : 'text-gray-300'}`}>{title}</h3>
