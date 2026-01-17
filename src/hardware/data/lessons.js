@@ -40,7 +40,7 @@ export const hardwareLessons = [
         path: '/hardware/lesson/1',
         hardware: 'LED (HS-F08A)',
         tags: ['Arduino Uno', '扩展板', 'LED (HS-F08A)'],
-        heroImage: 'https://cdn.jsdelivr.net/gh/Dora321/gesp-assets@main/images/hardware/scenarios/l1_hero.jpg',
+        heroImage: 'https://raw.githubusercontent.com/Dora321/gesp-assets/main/images/hardware/scenarios/l1_hero.jpg',
         wiringDiagram: 'https://cdn.jsdelivr.net/gh/Dora321/gesp-assets@main/images/hardware/diagrams/l1_wiring.png',
         mindPlus: [
             { type: 'event', text: '当 绿旗 被点击' },
