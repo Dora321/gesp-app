@@ -84,7 +84,7 @@ export default function HardwareLessonDetail() {
                         <img
                             src={lesson.heroImage}
                             alt={lesson.title}
-                            className="w-full h-[400px] object-cover transition-transform duration-1000 group-hover/hero:scale-105"
+                            className="w-full h-auto aspect-[1200/896] object-contain bg-[#08090F] transition-transform duration-1000 group-hover/hero:scale-105"
                             onError={(e) => e.target.parentElement.style.display = 'none'}
                         />
                         <div className="absolute inset-0 bg-gradient-to-t from-[#0B0C15] via-transparent to-transparent opacity-60"></div>
