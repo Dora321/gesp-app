@@ -14,7 +14,8 @@ import {
     BookOpen,
     Trophy,
     Gamepad2,
-    Rocket
+    Rocket,
+    Cpu
 } from 'lucide-react';
 
 export default function Navigation() {
@@ -36,6 +37,7 @@ export default function Navigation() {
         { name: '全部课程', path: '/', scrollTo: 'lesson-catalog', icon: <BookOpen size={18} /> },
         { name: '赛博博物馆', path: '/museum', icon: <Trophy size={18} /> },
         { name: '游乐场', path: '/ekart', icon: <Gamepad2 size={18} /> },
+        { name: '硬件工坊', path: '/hardware', icon: <Cpu size={18} /> },
     ];
 
     const handleNavClick = (item) => {
