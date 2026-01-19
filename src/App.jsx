@@ -60,6 +60,7 @@ import PythonSortingProject from './courses/python/advanced/PythonSortingProject
 import PythonMorseProject from './courses/python/advanced/PythonMorseProject';
 import ClassroomPoints from './components/ClassroomPoints';
 import AnnouncementBar from './components/AnnouncementBar';
+import ScrollToTop from './components/ScrollToTop';
 import ComputingMuseum from './pages/ComputingMuseum'; // New Import
 
 import QuestionBankHome from './pages/QuestionBankHome';
@@ -170,6 +171,7 @@ function App() {
         <Route path="/gesp/2025-12-l2" element={<GESP2_2025_12 />} />
       </Routes>
       <ClassroomPoints />
+      <ScrollToTop />
     </BrowserRouter>
   );
 }
