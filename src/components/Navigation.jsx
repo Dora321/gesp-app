@@ -34,7 +34,7 @@ export default function Navigation() {
     const navItems = [
         { name: '探索挑战', path: '/', scrollTo: 'projects-section', icon: <Map size={18} /> },
         { name: '全部课程', path: '/', scrollTo: 'lesson-catalog', icon: <BookOpen size={18} /> },
-        { name: '英雄榜', path: '/museum', icon: <Trophy size={18} /> },
+        { name: '赛博博物馆', path: '/museum', icon: <Trophy size={18} /> },
         { name: '游乐场', path: '/ekart', icon: <Gamepad2 size={18} /> },
     ];
 
