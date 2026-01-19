@@ -18,7 +18,7 @@ import {
     Cpu
 } from 'lucide-react';
 
-export default function Navigation() {
+export default function Navigation({ darkMode = false, afterLogo = null, className = '' }) {
     const navigate = useNavigate();
     const location = useLocation();
     const [isScrolled, setIsScrolled] = useState(false);
@@ -62,8 +62,8 @@ export default function Navigation() {
         <>
             <header
                 className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${isScrolled
-                    ? 'bg-white/80 backdrop-blur-md border-b border-brand-blue/10 shadow-sm h-16'
-                    : 'bg-transparent border-transparent h-20'
+                    ? 'bg-white/80 backdrop-blur-md border-b border-blue-600/10 shadow-sm h-16'
+                    : `bg-transparent border-transparent h-20 ${className}`
                     }`}
             >
                 <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-full">
@@ -85,14 +85,17 @@ export default function Navigation() {
                                     className="w-full h-full object-cover"
                                 />
                             </div>
+
                             <h1 className={`
-                                font-bold tracking-tight text-brand-slate transition-all duration-300 font-sans
+                                font-bold tracking-tight transition-all duration-300 font-sans
                                 ${isScrolled ? 'text-lg' : 'text-2xl'}
+                                ${isScrolled ? 'text-slate-900' : (darkMode ? 'text-white' : 'text-slate-900')}
                             `}>
-                                <span className="text-brand-slate group-hover:text-brand-blue transition-colors">
+                                <span className={`${isScrolled ? 'text-slate-900' : (darkMode ? 'text-white' : 'text-slate-900')} group-hover:text-blue-600 transition-colors`}>
                                     魔丸聚集地
                                 </span>
                             </h1>
+                            {afterLogo}
                         </div>
 
                         {/* Desktop Navigation */}
@@ -104,8 +107,8 @@ export default function Navigation() {
                                     className={`
                                         px-4 py-2 rounded-full text-sm font-bold transition-all duration-300 flex items-center gap-2 relative group
                                         ${isActive(item.path)
-                                            ? 'text-brand-blue bg-blue-50'
-                                            : 'text-slate-500 hover:text-brand-blue hover:bg-slate-50'}
+                                            ? (darkMode && !isScrolled ? 'text-blue-400' : 'text-blue-600')
+                                            : (darkMode && !isScrolled ? 'text-slate-200 hover:text-white hover:bg-white/10' : 'text-slate-600 hover:text-blue-600 hover:bg-slate-100')}
                                     `}
                                 >
                                     {item.name}
@@ -128,7 +131,10 @@ export default function Navigation() {
 
                         {/* Mobile Menu Button */}
                         <button
-                            className="md:hidden p-2 text-slate-600 hover:text-brand-blue transition-colors relative z-50 rounded-lg hover:bg-slate-100"
+                            className={`md:hidden p-2 transition-colors relative z-50 rounded-lg ${darkMode && !isScrolled
+                                ? 'text-white hover:bg-white/10'
+                                : 'text-slate-600 hover:text-blue-600 hover:bg-slate-100'
+                                }`}
                             onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
                         >
                             {isMobileMenuOpen ? <X size={24} /> : <Menu size={24} />}
