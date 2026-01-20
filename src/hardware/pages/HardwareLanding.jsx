@@ -8,7 +8,7 @@ import {
     Code, Cpu, Settings, ArrowRight, Sparkles
 } from 'lucide-react';
 import { hardwareLessons } from '../data/lessons';
-import hardwareHero from '../../assets/hardware-hero.png';
+const hardwareHero = 'https://cdn.jsdelivr.net/gh/Dora321/gesp-assets@main/images/hardware/hardware-hero.png';
 import Navigation from '../../components/Navigation';
 import Footer from '../../components/Footer';
 
