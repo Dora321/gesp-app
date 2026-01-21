@@ -43,6 +43,7 @@ export default function Navigation() {
                 { title: 'F3: 数据结构', path: '/python/f3' },
                 { title: 'F4: 函数模块', path: '/python/f4' },
                 { title: 'F5: 绘图魔法', path: '/python/f5' },
+                { title: 'F6: 随机世界', path: '/python/f6' },
                 { title: 'A1: 算法思维', path: '/python/a1' },
                 { title: 'A2: 游戏工坊', path: '/python/a2' },
                 { title: 'A3: AI 初探', path: '/python/ai' },

@@ -58,7 +58,7 @@ export default function LessonCatalog() {
         {
             id: 'python-basic',
             title: 'Python 基础课程',
-            subtitle: '5 节课 · 趣味编程',
+            subtitle: '6 节课 · 趣味编程',
             color: 'yellow',
             lessons: [
                 { id: 1, title: 'Python 入门', path: '/python/f1' },
@@ -66,6 +66,7 @@ export default function LessonCatalog() {
                 { id: 3, title: '列表与字典', path: '/python/f3' },
                 { id: 4, title: '函数与模块', path: '/python/f4' },
                 { id: 5, title: '绘图魔法', path: '/python/f5' },
+                { id: 6, title: '随机世界', path: '/python/f6' },
             ]
         },
         {

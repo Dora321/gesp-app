@@ -1,5 +1,5 @@
 import React from 'react';
-import { Terminal, Repeat, Layers, Box, MousePointer2, Star, Award, Search, Key, ArrowUp, Zap, Map } from 'lucide-react';
+import { Terminal, Repeat, Layers, Box, MousePointer2, Star, Award, Search, Key, ArrowUp, Zap, Map, Dices } from 'lucide-react';
 
 export const courseCategories = [
     {
@@ -25,6 +25,14 @@ export const courseCategories = [
                 tags: ['Python', 'Art'],
                 path: '/python/f5',
                 icon: <MousePointer2 className="text-emerald-400" />
+            },
+            {
+                id: 'py_f6',
+                title: 'Python 随机世界',
+                desc: '探索随机数的奥秘。制作掷骰子、猜数字和石头剪刀布游戏。',
+                tags: ['Python', 'Random'],
+                path: '/python/f6',
+                icon: <Dices className="text-indigo-400" />
             },
             {
                 id: 'c_l1',
