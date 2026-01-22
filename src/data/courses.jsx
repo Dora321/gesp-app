@@ -35,6 +35,14 @@ export const courseCategories = [
                 icon: <Dices className="text-indigo-400" />
             },
             {
+                id: 'py_f7',
+                title: 'Python 集合宝藏',
+                desc: '探索唯一性的魔法。掌握集合的去重技巧与交并补运算。',
+                tags: ['Python', 'Sets'],
+                path: '/python/f7',
+                icon: <Box className="text-purple-400" />
+            },
+            {
                 id: 'c_l1',
                 title: 'C++ 逻辑游乐场',
                 desc: '零基础入门。在“陷阱卡”游戏中掌握变量与运算。',

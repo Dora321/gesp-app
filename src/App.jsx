@@ -50,6 +50,7 @@ import PythonFoundation3 from './courses/python/foundation/PythonFoundation3';
 import PythonFoundation4 from './courses/python/foundation/PythonFoundation4';
 import PythonFoundation5 from './courses/python/foundation/PythonFoundation5';
 import PythonFoundation6 from './courses/python/foundation/PythonFoundation6';
+import PythonFoundation7 from './courses/python/foundation/PythonFoundation7';
 
 import PythonAdvanced1 from './courses/python/advanced/PythonAdvanced1';
 import PythonAdvanced2 from './courses/python/advanced/PythonAdvanced2';
@@ -125,6 +126,7 @@ function App() {
         <Route path="/python/f4" element={<PythonFoundation4 />} />
         <Route path="/python/f5" element={<PythonFoundation5 />} />
         <Route path="/python/f6" element={<PythonFoundation6 />} />
+        <Route path="/python/f7" element={<PythonFoundation7 />} />
 
         {/* Python Advanced */}
         <Route path="/python/a1" element={<PythonAdvanced1 />} />
