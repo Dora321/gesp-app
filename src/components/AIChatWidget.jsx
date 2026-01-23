@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useRef } from 'react';
-import { MessageCircle, X, Send, Settings, Trash2, Loader2, Bot, User, Key, UserCircle2, Plus, GripHorizontal } from 'lucide-react';
+import { MessageCircle, X, Send, Settings, Trash2, Loader2, Bot, User, Key, UserCircle2, Plus, GripHorizontal, BrainCircuit, Sparkles } from 'lucide-react';
 import ReactMarkdown from 'react-markdown';
 import remarkGfm from 'remark-gfm';
 import rehypeHighlight from 'rehype-highlight';
@@ -60,6 +60,7 @@ const AIChatWidget = () => {
     const [inputValue, setInputValue] = useState('');
     const [isLoading, setIsLoading] = useState(false);
     const [selectedPersona, setSelectedPersona] = useState('default');
+    const [selectedModel, setSelectedModel] = useState('deepseek-chat'); // 'deepseek-chat' or 'deepseek-reasoner'
     const [size, setSize] = useState({ width: 360, height: 500 });
     const isResizing = useRef(false);
     const messagesEndRef = useRef(null);
@@ -161,7 +162,7 @@ const AIChatWidget = () => {
                     'Authorization': `Bearer ${apiKey}`
                 },
                 body: JSON.stringify({
-                    model: 'deepseek-chat',
+                    model: selectedModel,
                     messages: apiMessages,
                     stream: true // Enable streaming
                 })
@@ -178,6 +179,7 @@ const AIChatWidget = () => {
             const reader = response.body.getReader();
             const decoder = new TextDecoder('utf-8');
             let assistantContent = '';
+            let assistantReasoning = '';
 
             // Add placeholder for assistant message
             setMessages(prev => [...prev, { role: 'assistant', content: '' }]);
@@ -193,18 +195,26 @@ const AIChatWidget = () => {
                     if (line.startsWith('data: ') && line !== 'data: [DONE]') {
                         try {
                             const data = JSON.parse(line.slice(6));
-                            const content = data.choices[0]?.delta?.content || '';
-                            assistantContent += content;
+                            const delta = data.choices[0]?.delta;
 
-                            // Update last message with new content
-                            setMessages(prev => {
-                                const updatedMessages = [...prev];
-                                const lastMessage = updatedMessages[updatedMessages.length - 1];
-                                if (lastMessage.role === 'assistant') {
-                                    lastMessage.content = assistantContent;
-                                }
-                                return updatedMessages;
-                            });
+                            if (delta) {
+                                const content = delta.content || '';
+                                const reasoning = delta.reasoning_content || '';
+
+                                assistantContent += content;
+                                assistantReasoning += reasoning;
+
+                                // Update last message
+                                setMessages(prev => {
+                                    const updatedMessages = [...prev];
+                                    const lastMessage = updatedMessages[updatedMessages.length - 1];
+                                    if (lastMessage.role === 'assistant') {
+                                        lastMessage.content = assistantContent;
+                                        lastMessage.reasoning = assistantReasoning;
+                                    }
+                                    return updatedMessages;
+                                });
+                            }
                         } catch (e) {
                             console.error('Error parsing stream chunk', e);
                         }
@@ -325,6 +335,41 @@ const AIChatWidget = () => {
                         </div>
                     </div>
 
+                    {/* Model Selection */}
+                    <div className="mb-4">
+                        <div className="flex items-center gap-2 mb-2">
+                            <BrainCircuit size={16} className="text-slate-500" />
+                            <span className="text-sm font-medium text-slate-700">选择模型</span>
+                        </div>
+                        <div className="grid grid-cols-2 gap-2">
+                            <button
+                                onClick={() => setSelectedModel('deepseek-chat')}
+                                className={`flex items-center justify-center gap-2 p-2 rounded-lg border text-sm transition-all ${selectedModel === 'deepseek-chat'
+                                    ? 'bg-indigo-50 border-indigo-500 text-indigo-700 ring-1 ring-indigo-500'
+                                    : 'bg-white border-slate-200 text-slate-600 hover:border-indigo-300'
+                                    }`}
+                            >
+                                <Sparkles size={14} />
+                                <span>DeepSeek V3</span>
+                            </button>
+                            <button
+                                onClick={() => setSelectedModel('deepseek-reasoner')}
+                                className={`flex items-center justify-center gap-2 p-2 rounded-lg border text-sm transition-all ${selectedModel === 'deepseek-reasoner'
+                                    ? 'bg-purple-50 border-purple-500 text-purple-700 ring-1 ring-purple-500'
+                                    : 'bg-white border-slate-200 text-slate-600 hover:border-purple-300'
+                                    }`}
+                            >
+                                <BrainCircuit size={14} />
+                                <span>DeepSeek R1</span>
+                            </button>
+                        </div>
+                        <p className="text-xs text-slate-400 mt-1.5 px-1">
+                            {selectedModel === 'deepseek-chat'
+                                ? '🚀 V3: 速度快，适合日常对话和编程'
+                                : '🧠 R1: 深度推理，适合复杂逻辑 (会展示思考过程)'}
+                        </p>
+                    </div>
+
                     {/* Persona Section */}
                     <div>
                         <div className="flex items-center gap-2 mb-2">
@@ -404,45 +449,60 @@ const AIChatWidget = () => {
                             {msg.role === 'user' ? (
                                 <div className="whitespace-pre-wrap break-words">{msg.content}</div>
                             ) : (
-                                msg.content ? (
-                                    <ReactMarkdown
-                                        remarkPlugins={[remarkGfm]}
-                                        rehypePlugins={[rehypeHighlight]}
-                                        components={{
-                                            code({ node, inline, className, children, ...props }) {
-                                                const match = /language-(\w+)/.exec(className || '')
-                                                return !inline ? (
-                                                    <div className="rounded-md overflow-hidden my-2">
-                                                        <div className="bg-slate-800 text-slate-200 text-xs px-3 py-1 flex justify-between items-center">
-                                                            <span>{match ? match[1] : 'code'}</span>
+                                msg.content || msg.reasoning ? (
+                                    <>
+                                        {msg.reasoning && (
+                                            <div className="mb-3 bg-slate-50 rounded-lg border border-slate-200 overflow-hidden">
+                                                <div className="bg-slate-100 px-3 py-1.5 text-xs font-semibold text-slate-500 flex items-center gap-1 border-b border-slate-200">
+                                                    <BrainCircuit size={12} />
+                                                    深度思考过程
+                                                </div>
+                                                <div className="p-3 text-xs text-slate-600 font-mono whitespace-pre-wrap leading-relaxed max-h-60 overflow-y-auto bg-slate-50/50">
+                                                    {msg.reasoning}
+                                                </div>
+                                            </div>
+                                        )}
+                                        <ReactMarkdown
+                                            remarkPlugins={[remarkGfm]}
+                                            rehypePlugins={[rehypeHighlight]}
+                                            components={{
+                                                code({ node, inline, className, children, ...props }) {
+                                                    const match = /language-(\w+)/.exec(className || '')
+                                                    return !inline ? (
+                                                        <div className="rounded-md overflow-hidden my-2">
+                                                            <div className="bg-slate-800 text-slate-200 text-xs px-3 py-1 flex justify-between items-center">
+                                                                <span>{match ? match[1] : 'code'}</span>
+                                                            </div>
+                                                            <code className={`${className} block bg-slate-900 p-3 text-white overflow-x-auto`} {...props}>
+                                                                {children}
+                                                            </code>
                                                         </div>
-                                                        <code className={`${className} block bg-slate-900 p-3 text-white overflow-x-auto`} {...props}>
+                                                    ) : (
+                                                        <code className="bg-slate-100 px-1 py-0.5 rounded text-indigo-600 font-mono text-xs" {...props}>
                                                             {children}
                                                         </code>
-                                                    </div>
-                                                ) : (
-                                                    <code className="bg-slate-100 px-1 py-0.5 rounded text-indigo-600 font-mono text-xs" {...props}>
-                                                        {children}
-                                                    </code>
-                                                )
-                                            },
-                                            p: ({ children }) => <p className="mb-2 last:mb-0">{children}</p>,
-                                            ul: ({ children }) => <ul className="list-disc pl-4 mb-2">{children}</ul>,
-                                            ol: ({ children }) => <ol className="list-decimal pl-4 mb-2">{children}</ol>,
-                                            li: ({ children }) => <li className="mb-1">{children}</li>,
-                                            h1: ({ children }) => <h1 className="text-lg font-bold mb-2 mt-2">{children}</h1>,
-                                            h2: ({ children }) => <h2 className="text-base font-bold mb-2 mt-2">{children}</h2>,
-                                            h3: ({ children }) => <h3 className="text-sm font-bold mb-1 mt-1">{children}</h3>,
-                                            blockquote: ({ children }) => <blockquote className="border-l-4 border-slate-300 pl-3 italic text-slate-500 my-2">{children}</blockquote>,
-                                            a: ({ href, children }) => <a href={href} target="_blank" rel="noopener noreferrer" className="text-indigo-600 hover:underline">{children}</a>
-                                        }}
-                                    >
-                                        {msg.content}
-                                    </ReactMarkdown>
+                                                    )
+                                                },
+                                                p: ({ children }) => <p className="mb-2 last:mb-0">{children}</p>,
+                                                ul: ({ children }) => <ul className="list-disc pl-4 mb-2">{children}</ul>,
+                                                ol: ({ children }) => <ol className="list-decimal pl-4 mb-2">{children}</ol>,
+                                                li: ({ children }) => <li className="mb-1">{children}</li>,
+                                                h1: ({ children }) => <h1 className="text-lg font-bold mb-2 mt-2">{children}</h1>,
+                                                h2: ({ children }) => <h2 className="text-base font-bold mb-2 mt-2">{children}</h2>,
+                                                h3: ({ children }) => <h3 className="text-sm font-bold mb-1 mt-1">{children}</h3>,
+                                                blockquote: ({ children }) => <blockquote className="border-l-4 border-slate-300 pl-3 italic text-slate-500 my-2">{children}</blockquote>,
+                                                a: ({ href, children }) => <a href={href} target="_blank" rel="noopener noreferrer" className="text-indigo-600 hover:underline">{children}</a>
+                                            }}
+                                        >
+                                            {msg.content}
+                                        </ReactMarkdown>
+                                    </>
                                 ) : (
                                     <div className="flex items-center gap-2 text-slate-400">
                                         <Loader2 size={16} className="animate-spin" />
-                                        <span className="text-xs">思考中...</span>
+                                        <span className="text-xs">
+                                            {selectedModel === 'deepseek-reasoner' ? '深度思考中...' : '思考中...'}
+                                        </span>
                                     </div>
                                 )
                             )}
