@@ -59,7 +59,9 @@ const AIChatWidget = () => {
     const [messages, setMessages] = useState([]);
     const [inputValue, setInputValue] = useState('');
     const [isLoading, setIsLoading] = useState(false);
-    const [selectedPersona, setSelectedPersona] = useState('default');
+    const [selectedPersona, setSelectedPersona] = useState(() => {
+        return localStorage.getItem('ai_selected_persona_id') || 'default';
+    });
     const [selectedModel, setSelectedModel] = useState('deepseek-chat'); // 'deepseek-chat' or 'deepseek-reasoner'
     const [customPersona, setCustomPersona] = useState(null);
     const [editingCustomPersona, setEditingCustomPersona] = useState(null);
@@ -148,6 +150,11 @@ const AIChatWidget = () => {
         setMessages([]);
         sessionStorage.removeItem('ai_chat_messages');
     };
+
+    // Save selected persona to localStorage
+    useEffect(() => {
+        localStorage.setItem('ai_selected_persona_id', selectedPersona);
+    }, [selectedPersona]);
 
     const saveCustomPersona = () => {
         if (!editingCustomPersona?.name || !editingCustomPersona?.systemPrompt) return;
