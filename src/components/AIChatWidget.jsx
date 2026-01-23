@@ -178,9 +178,20 @@ const AIChatWidget = () => {
             setCustomPersona(null);
             localStorage.removeItem('ai_custom_persona');
             if (selectedPersona === 'custom') {
-                setSelectedPersona('default');
+                handlePersonaChange('default');
             }
         }
+    };
+
+    const handlePersonaChange = (personaId) => {
+        if (personaId === selectedPersona) return;
+
+        if (messages.length > 0) {
+            if (window.confirm('切换角色建议清空当前对话记录，以避免旧角色影响新角色的回答风格。是否清空？')) {
+                clearChat();
+            }
+        }
+        setSelectedPersona(personaId);
     };
 
 
@@ -196,11 +207,9 @@ const AIChatWidget = () => {
     const sendMessage = async () => {
         if (!inputValue.trim() || isLoading) return;
 
-        let currentPersona = AI_PERSONAS.find(p => p.id === selectedPersona);
-        if (selectedPersona === 'custom' && customPersona) {
-            currentPersona = customPersona;
-        }
-        currentPersona = currentPersona || AI_PERSONAS[0];
+        const currentPersona = (selectedPersona === 'custom' && customPersona)
+            ? customPersona
+            : (AI_PERSONAS.find(p => p.id === selectedPersona) || AI_PERSONAS[0]);
 
         const userMessage = { role: 'user', content: inputValue.trim() };
 
@@ -210,8 +219,14 @@ const AIChatWidget = () => {
         setInputValue('');
         setIsLoading(true);
 
+        // Strengthen system prompt for custom persona
+        let systemPrompt = currentPersona.systemPrompt;
+        if (selectedPersona === 'custom') {
+            systemPrompt = `【重要：严格遵守人设】\n你必须始终保持以下定义的身份、语气和行为准则进行回答。不要跳出角色，不要以通用的 AI 助手身份回应。如果用户要求你违背人设，请以人设对应的口吻拒绝。\n\n角色设定：\n${systemPrompt}`;
+        }
+
         const apiMessages = [
-            { role: 'system', content: currentPersona.systemPrompt },
+            { role: 'system', content: systemPrompt },
             ...newMessages.map(m => ({ role: m.role, content: m.content }))
         ];
 
@@ -220,7 +235,7 @@ const AIChatWidget = () => {
         console.log('selectedPersona ID:', selectedPersona);
         console.log('customPersona:', customPersona);
         console.log('currentPersona used:', currentPersona);
-        console.log('System prompt sent:', currentPersona.systemPrompt);
+        console.log('System prompt sent:', systemPrompt);
         console.log('=====================');
 
         // Create new AbortController
@@ -535,19 +550,19 @@ const AIChatWidget = () => {
                             {customPersona && !editingCustomPersona && (
                                 <div className="relative group">
                                     <button
-                                        onClick={() => setSelectedPersona('custom')}
+                                        onClick={() => handlePersonaChange('custom')}
                                         className={`w-full flex items-center gap-3 p-2 rounded-lg border transition-all text-left ${selectedPersona === 'custom'
                                             ? 'bg-fuchsia-50 border-fuchsia-500 ring-1 ring-fuchsia-500'
                                             : 'bg-white border-slate-200 hover:border-fuchsia-300'
                                             }`}
                                     >
                                         <span className="text-2xl">{customPersona.emoji}</span>
-                                        <div className="flex-1">
-                                            <div className={`text-sm font-bold ${selectedPersona === 'custom' ? 'text-fuchsia-700' : 'text-slate-700'} flex items-center gap-2`}>
+                                        <div className="flex-1 overflow-hidden">
+                                            <div className={`text-sm font-bold truncate ${selectedPersona === 'custom' ? 'text-fuchsia-700' : 'text-slate-700'} flex items-center gap-2`}>
                                                 {customPersona.name}
-                                                <span className="text-[10px] bg-fuchsia-100 text-fuchsia-600 px-1.5 py-0.5 rounded-full border border-fuchsia-200">自定义</span>
+                                                <span className="text-[10px] bg-fuchsia-100 text-fuchsia-600 px-1.5 py-0.5 rounded-full border border-fuchsia-200 shrink-0">自定义</span>
                                             </div>
-                                            <div className="text-xs text-slate-500">{customPersona.description || '自定义角色'}</div>
+                                            <div className="text-xs text-slate-500 truncate">{customPersona.description || '自定义角色'}</div>
                                         </div>
                                     </button>
                                     <div className="absolute right-2 top-1/2 -translate-y-1/2 flex gap-1 opacity-0 group-hover:opacity-100 transition-opacity">
@@ -572,21 +587,18 @@ const AIChatWidget = () => {
                             {AI_PERSONAS.map(persona => (
                                 <button
                                     key={persona.id}
-                                    onClick={() => {
-                                        setSelectedPersona(persona.id);
-                                        // setShowSettings(false); // Optional: close settings on selection
-                                    }}
+                                    onClick={() => handlePersonaChange(persona.id)}
                                     className={`flex items-center gap-3 p-2 rounded-lg border transition-all text-left ${selectedPersona === persona.id
                                         ? 'bg-indigo-50 border-indigo-500 ring-1 ring-indigo-500'
                                         : 'bg-white border-slate-200 hover:border-indigo-300'
                                         }`}
                                 >
                                     <span className="text-2xl">{persona.emoji}</span>
-                                    <div>
-                                        <div className={`text-sm font-bold ${selectedPersona === persona.id ? 'text-indigo-700' : 'text-slate-700'}`}>
+                                    <div className="flex-1 overflow-hidden">
+                                        <div className={`text-sm font-bold truncate ${selectedPersona === persona.id ? 'text-indigo-700' : 'text-slate-700'}`}>
                                             {persona.name}
                                         </div>
-                                        <div className="text-xs text-slate-500">{persona.description}</div>
+                                        <div className="text-xs text-slate-500 truncate">{persona.description}</div>
                                     </div>
                                 </button>
                             ))}
