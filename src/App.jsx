@@ -70,6 +70,7 @@ import QuestionBankHome from './pages/QuestionBankHome';
 import ExamPaper from './pages/ExamPaper';
 
 import Navigation from './Navigation'; // Import Navigation component
+import AIChatWidget from './components/AIChatWidget'; // AI Chat Widget
 
 // E-Kart Imports
 import EkartLayout from './ekart/EkartLayout';
@@ -177,6 +178,7 @@ function App() {
         <Route path="/gesp/2025-12-l2" element={<GESP2_2025_12 />} />
       </Routes>
       <ClassroomPoints />
+      <AIChatWidget />
       <ScrollToTop />
     </BrowserRouter>
   );
