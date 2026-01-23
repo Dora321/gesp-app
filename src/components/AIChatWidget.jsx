@@ -215,6 +215,14 @@ const AIChatWidget = () => {
             ...newMessages.map(m => ({ role: m.role, content: m.content }))
         ];
 
+        // Debug log - 调试用
+        console.log('=== AI Chat Debug ===');
+        console.log('selectedPersona ID:', selectedPersona);
+        console.log('customPersona:', customPersona);
+        console.log('currentPersona used:', currentPersona);
+        console.log('System prompt sent:', currentPersona.systemPrompt);
+        console.log('=====================');
+
         // Create new AbortController
         abortControllerRef.current = new AbortController();
 
