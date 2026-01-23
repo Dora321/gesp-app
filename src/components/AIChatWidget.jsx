@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useRef } from 'react';
-import { MessageCircle, X, Send, Settings, Trash2, Loader2, Bot, User, Key, UserCircle2, Plus, GripHorizontal, BrainCircuit, Sparkles } from 'lucide-react';
+import { MessageCircle, X, Send, Settings, Trash2, Loader2, Bot, User, Key, UserCircle2, Plus, GripHorizontal, BrainCircuit, Sparkles, Pencil, Save, Square } from 'lucide-react';
 import ReactMarkdown from 'react-markdown';
 import remarkGfm from 'remark-gfm';
 import rehypeHighlight from 'rehype-highlight';
@@ -61,9 +61,12 @@ const AIChatWidget = () => {
     const [isLoading, setIsLoading] = useState(false);
     const [selectedPersona, setSelectedPersona] = useState('default');
     const [selectedModel, setSelectedModel] = useState('deepseek-chat'); // 'deepseek-chat' or 'deepseek-reasoner'
+    const [customPersona, setCustomPersona] = useState(null);
+    const [editingCustomPersona, setEditingCustomPersona] = useState(null);
     const [size, setSize] = useState({ width: 360, height: 500 });
     const isResizing = useRef(false);
     const messagesEndRef = useRef(null);
+    const abortControllerRef = useRef(null);
 
     // Initial resize handler
     const startResize = (e) => {
@@ -103,6 +106,15 @@ const AIChatWidget = () => {
         if (savedKey) {
             setApiKey(savedKey);
         }
+
+        const savedPersona = localStorage.getItem('ai_custom_persona');
+        if (savedPersona) {
+            try {
+                setCustomPersona(JSON.parse(savedPersona));
+            } catch (e) {
+                console.error("Failed to parse custom persona", e);
+            }
+        }
     }, []);
 
     // Load messages from sessionStorage
@@ -137,10 +149,52 @@ const AIChatWidget = () => {
         sessionStorage.removeItem('ai_chat_messages');
     };
 
+    const saveCustomPersona = () => {
+        if (!editingCustomPersona?.name || !editingCustomPersona?.systemPrompt) return;
+
+        const newPersona = {
+            ...editingCustomPersona,
+            id: 'custom',
+            // Ensure emoji has a default if missing
+            emoji: editingCustomPersona.emoji || '👤'
+        };
+
+        setCustomPersona(newPersona);
+        localStorage.setItem('ai_custom_persona', JSON.stringify(newPersona));
+        setEditingCustomPersona(null);
+        setSelectedPersona('custom');
+    };
+
+    const deleteCustomPersona = (e) => {
+        e.stopPropagation();
+        if (window.confirm('确定要删除自定义角色吗？')) {
+            setCustomPersona(null);
+            localStorage.removeItem('ai_custom_persona');
+            if (selectedPersona === 'custom') {
+                setSelectedPersona('default');
+            }
+        }
+    };
+
+
+
+    const stopGeneration = () => {
+        if (abortControllerRef.current) {
+            abortControllerRef.current.abort();
+            abortControllerRef.current = null;
+            setIsLoading(false);
+        }
+    };
+
     const sendMessage = async () => {
         if (!inputValue.trim() || isLoading) return;
 
-        const currentPersona = AI_PERSONAS.find(p => p.id === selectedPersona) || AI_PERSONAS[0];
+        let currentPersona = AI_PERSONAS.find(p => p.id === selectedPersona);
+        if (selectedPersona === 'custom' && customPersona) {
+            currentPersona = customPersona;
+        }
+        currentPersona = currentPersona || AI_PERSONAS[0];
+
         const userMessage = { role: 'user', content: inputValue.trim() };
 
         // Optimistically add user message and empty assistant message placeholder
@@ -154,6 +208,9 @@ const AIChatWidget = () => {
             ...newMessages.map(m => ({ role: m.role, content: m.content }))
         ];
 
+        // Create new AbortController
+        abortControllerRef.current = new AbortController();
+
         try {
             const response = await fetch('https://api.deepseek.com/chat/completions', {
                 method: 'POST',
@@ -165,7 +222,8 @@ const AIChatWidget = () => {
                     model: selectedModel,
                     messages: apiMessages,
                     stream: true // Enable streaming
-                })
+                }),
+                signal: abortControllerRef.current.signal
             });
 
             if (!response.ok) {
@@ -223,12 +281,25 @@ const AIChatWidget = () => {
             }
 
         } catch (error) {
-            setMessages(prev => [...prev, {
-                role: 'assistant',
-                content: `❌ 错误: ${error.message}。请检查 API Key 是否正确。`
-            }]);
+            if (error.name === 'AbortError') {
+                console.log('Generation stopped by user');
+                setMessages(prev => {
+                    const updatedMessages = [...prev];
+                    const lastMessage = updatedMessages[updatedMessages.length - 1];
+                    if (lastMessage.role === 'assistant') {
+                        lastMessage.content += " *(已停止)*";
+                    }
+                    return updatedMessages;
+                });
+            } else {
+                setMessages(prev => [...prev, {
+                    role: 'assistant',
+                    content: `❌ 错误: ${error.message}。请检查 API Key 是否正确。`
+                }]);
+            }
         } finally {
             setIsLoading(false);
+            abortControllerRef.current = null;
         }
     };
 
@@ -250,7 +321,9 @@ const AIChatWidget = () => {
         );
     }
 
-    const currentPersonaInfo = AI_PERSONAS.find(p => p.id === selectedPersona);
+    const currentPersonaInfo = selectedPersona === 'custom' && customPersona
+        ? customPersona
+        : AI_PERSONAS.find(p => p.id === selectedPersona);
 
     // Chat window when open
     return (
@@ -372,11 +445,115 @@ const AIChatWidget = () => {
 
                     {/* Persona Section */}
                     <div>
-                        <div className="flex items-center gap-2 mb-2">
-                            <UserCircle2 size={16} className="text-slate-500" />
-                            <span className="text-sm font-medium text-slate-700">选择角色风格</span>
+                        <div className="flex items-center justify-between mb-2">
+                            <div className="flex items-center gap-2">
+                                <UserCircle2 size={16} className="text-slate-500" />
+                                <span className="text-sm font-medium text-slate-700">选择角色风格</span>
+                            </div>
+                            {!editingCustomPersona && !customPersona && (
+                                <button
+                                    onClick={() => setEditingCustomPersona({ name: '', emoji: '👤', description: '自定义角色', systemPrompt: '' })}
+                                    className="text-xs text-indigo-600 hover:underline flex items-center gap-1"
+                                >
+                                    <Plus size={12} /> 创建自定义角色
+                                </button>
+                            )}
                         </div>
+
+                        {/* Custom Persona Editor */}
+                        {editingCustomPersona && (
+                            <div className="mb-4 bg-white p-3 rounded-lg border border-indigo-200 shadow-sm animate-in slide-in-from-top-2">
+                                <h4 className="text-xs font-bold text-slate-500 mb-2 uppercase">编辑自定义角色</h4>
+                                <div className="space-y-2">
+                                    <div className="flex gap-2">
+                                        <div className="w-12">
+                                            <input
+                                                type="text"
+                                                value={editingCustomPersona.emoji}
+                                                onChange={e => setEditingCustomPersona({ ...editingCustomPersona, emoji: e.target.value })}
+                                                placeholder="表情"
+                                                className="w-full px-2 py-1 text-center text-lg border rounded focus:border-indigo-500 outline-none"
+                                            />
+                                        </div>
+                                        <input
+                                            type="text"
+                                            value={editingCustomPersona.name}
+                                            onChange={e => setEditingCustomPersona({ ...editingCustomPersona, name: e.target.value })}
+                                            placeholder="角色名称 (如: 喵星人)"
+                                            className="flex-1 px-2 py-1 text-sm border rounded focus:border-indigo-500 outline-none font-bold"
+                                        />
+                                    </div>
+                                    <input
+                                        type="text"
+                                        value={editingCustomPersona.description}
+                                        onChange={e => setEditingCustomPersona({ ...editingCustomPersona, description: e.target.value })}
+                                        placeholder="简短描述 (选填)"
+                                        className="w-full px-2 py-1 text-xs border rounded focus:border-indigo-500 outline-none"
+                                    />
+                                    <textarea
+                                        value={editingCustomPersona.systemPrompt}
+                                        onChange={e => setEditingCustomPersona({ ...editingCustomPersona, systemPrompt: e.target.value })}
+                                        placeholder="系统提示词 (System Prompt)... 设置你的角色设定! 比如: 你是一只住在火星的猫..."
+                                        className="w-full px-2 py-1 text-xs border rounded focus:border-indigo-500 outline-none h-20 resize-none"
+                                    />
+                                    <div className="flex gap-2 justify-end">
+                                        <button
+                                            onClick={() => setEditingCustomPersona(null)}
+                                            className="px-3 py-1 text-xs text-slate-500 hover:bg-slate-100 rounded"
+                                        >
+                                            取消
+                                        </button>
+                                        <button
+                                            onClick={saveCustomPersona}
+                                            disabled={!editingCustomPersona.name || !editingCustomPersona.systemPrompt}
+                                            className="px-3 py-1 text-xs bg-indigo-600 text-white rounded hover:bg-indigo-700 disabled:opacity-50 flex items-center gap-1"
+                                        >
+                                            <Save size={12} /> 保存角色
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                        )}
+
                         <div className="grid grid-cols-1 gap-2">
+                            {/* Custom Persona Button */}
+                            {customPersona && !editingCustomPersona && (
+                                <div className="relative group">
+                                    <button
+                                        onClick={() => setSelectedPersona('custom')}
+                                        className={`w-full flex items-center gap-3 p-2 rounded-lg border transition-all text-left ${selectedPersona === 'custom'
+                                            ? 'bg-fuchsia-50 border-fuchsia-500 ring-1 ring-fuchsia-500'
+                                            : 'bg-white border-slate-200 hover:border-fuchsia-300'
+                                            }`}
+                                    >
+                                        <span className="text-2xl">{customPersona.emoji}</span>
+                                        <div className="flex-1">
+                                            <div className={`text-sm font-bold ${selectedPersona === 'custom' ? 'text-fuchsia-700' : 'text-slate-700'} flex items-center gap-2`}>
+                                                {customPersona.name}
+                                                <span className="text-[10px] bg-fuchsia-100 text-fuchsia-600 px-1.5 py-0.5 rounded-full border border-fuchsia-200">自定义</span>
+                                            </div>
+                                            <div className="text-xs text-slate-500">{customPersona.description || '自定义角色'}</div>
+                                        </div>
+                                    </button>
+                                    <div className="absolute right-2 top-1/2 -translate-y-1/2 flex gap-1 opacity-0 group-hover:opacity-100 transition-opacity">
+                                        <button
+                                            onClick={(e) => { e.stopPropagation(); setEditingCustomPersona(customPersona); }}
+                                            className="p-1.5 bg-white border border-slate-200 rounded text-slate-500 hover:text-indigo-600 hover:border-indigo-300 shadow-sm"
+                                            title="编辑"
+                                        >
+                                            <Pencil size={14} />
+                                        </button>
+                                        <button
+                                            onClick={deleteCustomPersona}
+                                            className="p-1.5 bg-white border border-slate-200 rounded text-slate-500 hover:text-red-600 hover:border-red-300 shadow-sm"
+                                            title="删除"
+                                        >
+                                            <Trash2 size={14} />
+                                        </button>
+                                    </div>
+                                </div>
+                            )}
+
                             {AI_PERSONAS.map(persona => (
                                 <button
                                     key={persona.id}
@@ -526,11 +703,16 @@ const AIChatWidget = () => {
                         className="flex-1 px-4 py-2.5 border border-slate-300 rounded-xl focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 outline-none transition-all disabled:bg-slate-100 disabled:cursor-not-allowed"
                     />
                     <button
-                        onClick={sendMessage}
-                        disabled={!apiKey || !inputValue.trim() || isLoading}
-                        className="px-4 py-2.5 bg-indigo-600 hover:bg-indigo-700 disabled:bg-slate-300 disabled:cursor-not-allowed text-white rounded-xl font-medium transition-colors flex items-center gap-1"
+                        onClick={isLoading ? stopGeneration : sendMessage}
+                        disabled={!apiKey || (!inputValue.trim() && !isLoading)}
+                        className={`px-4 py-2.5 rounded-xl font-medium transition-colors flex items-center gap-1 text-white
+                            ${isLoading
+                                ? 'bg-red-500 hover:bg-red-600'
+                                : 'bg-indigo-600 hover:bg-indigo-700 disabled:bg-slate-300 disabled:cursor-not-allowed'
+                            }`}
+                        title={isLoading ? "停止生成" : "发送"}
                     >
-                        <Send size={18} />
+                        {isLoading ? <Square size={18} fill="currentColor" /> : <Send size={18} />}
                     </button>
                 </div>
             </div>
