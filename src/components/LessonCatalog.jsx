@@ -73,7 +73,7 @@ export default function LessonCatalog() {
         {
             id: 'python-advanced',
             title: 'Python 进阶项目',
-            subtitle: '8 个项目 · 实战演练',
+            subtitle: '9 个项目 · 实战演练',
             color: 'blue',
             lessons: [
                 { id: 1, title: '文件与异常', path: '/python/a1' },
@@ -84,6 +84,7 @@ export default function LessonCatalog() {
                 { id: 6, title: '加密解密', path: '/python/encryption' },
                 { id: 7, title: '排序可视化', path: '/python/sorting' },
                 { id: 8, title: '摩斯密码', path: '/python/morse' },
+                { id: 9, title: '文件操作', path: '/python/file-ops' },
             ]
         }
     ];

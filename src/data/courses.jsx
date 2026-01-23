@@ -1,5 +1,5 @@
 import React from 'react';
-import { Terminal, Repeat, Layers, Box, MousePointer2, Star, Award, Search, Key, ArrowUp, Zap, Map, Dices } from 'lucide-react';
+import { Terminal, Repeat, Layers, Box, MousePointer2, Star, Award, Search, Key, ArrowUp, Zap, Map, Dices, HardDrive } from 'lucide-react';
 
 export const courseCategories = [
     {
@@ -101,6 +101,14 @@ export const courseCategories = [
                 tags: ['Python', 'Core'],
                 path: '/python/f4',
                 icon: <Box className="text-teal-400" />
+            },
+            {
+                id: 'py_file',
+                title: 'Python 文件秘籍',
+                desc: '进阶第九讲：掌握文件读写与持久化存储。',
+                tags: ['Python', 'File I/O'],
+                path: '/python/file-ops',
+                icon: <HardDrive className="text-indigo-400" />
             },
             {
                 id: 'c_l8',

@@ -54,6 +54,7 @@ import PythonFoundation7 from './courses/python/foundation/PythonFoundation7';
 
 import PythonAdvanced1 from './courses/python/advanced/PythonAdvanced1';
 import PythonAdvanced2 from './courses/python/advanced/PythonAdvanced2';
+import PythonFileOps from './courses/python/advanced/PythonFileOps';
 import PythonAI from './courses/python/advanced/PythonAI';
 import PythonCrawler from './courses/python/advanced/PythonCrawler';
 import BinarySearchProject from './courses/python/advanced/BinarySearchProject';
@@ -131,6 +132,7 @@ function App() {
         {/* Python Advanced */}
         <Route path="/python/a1" element={<PythonAdvanced1 />} />
         <Route path="/python/a2" element={<PythonAdvanced2 />} />
+        <Route path="/python/file-ops" element={<PythonFileOps />} />
         <Route path="/python/ai" element={<PythonAI />} />
         <Route path="/python/crawler" element={<PythonCrawler />} />
         <Route path="/python/binary-search" element={<BinarySearchProject />} />
