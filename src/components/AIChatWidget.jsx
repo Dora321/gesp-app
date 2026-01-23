@@ -404,55 +404,51 @@ const AIChatWidget = () => {
                             {msg.role === 'user' ? (
                                 <div className="whitespace-pre-wrap break-words">{msg.content}</div>
                             ) : (
-                                <ReactMarkdown
-                                    remarkPlugins={[remarkGfm]}
-                                    rehypePlugins={[rehypeHighlight]}
-                                    components={{
-                                        code({ node, inline, className, children, ...props }) {
-                                            const match = /language-(\w+)/.exec(className || '')
-                                            return !inline ? (
-                                                <div className="rounded-md overflow-hidden my-2">
-                                                    <div className="bg-slate-800 text-slate-200 text-xs px-3 py-1 flex justify-between items-center">
-                                                        <span>{match ? match[1] : 'code'}</span>
+                                msg.content ? (
+                                    <ReactMarkdown
+                                        remarkPlugins={[remarkGfm]}
+                                        rehypePlugins={[rehypeHighlight]}
+                                        components={{
+                                            code({ node, inline, className, children, ...props }) {
+                                                const match = /language-(\w+)/.exec(className || '')
+                                                return !inline ? (
+                                                    <div className="rounded-md overflow-hidden my-2">
+                                                        <div className="bg-slate-800 text-slate-200 text-xs px-3 py-1 flex justify-between items-center">
+                                                            <span>{match ? match[1] : 'code'}</span>
+                                                        </div>
+                                                        <code className={`${className} block bg-slate-900 p-3 text-white overflow-x-auto`} {...props}>
+                                                            {children}
+                                                        </code>
                                                     </div>
-                                                    <code className={`${className} block bg-slate-900 p-3 text-white overflow-x-auto`} {...props}>
+                                                ) : (
+                                                    <code className="bg-slate-100 px-1 py-0.5 rounded text-indigo-600 font-mono text-xs" {...props}>
                                                         {children}
                                                     </code>
-                                                </div>
-                                            ) : (
-                                                <code className="bg-slate-100 px-1 py-0.5 rounded text-indigo-600 font-mono text-xs" {...props}>
-                                                    {children}
-                                                </code>
-                                            )
-                                        },
-                                        p: ({ children }) => <p className="mb-2 last:mb-0">{children}</p>,
-                                        ul: ({ children }) => <ul className="list-disc pl-4 mb-2">{children}</ul>,
-                                        ol: ({ children }) => <ol className="list-decimal pl-4 mb-2">{children}</ol>,
-                                        li: ({ children }) => <li className="mb-1">{children}</li>,
-                                        h1: ({ children }) => <h1 className="text-lg font-bold mb-2 mt-2">{children}</h1>,
-                                        h2: ({ children }) => <h2 className="text-base font-bold mb-2 mt-2">{children}</h2>,
-                                        h3: ({ children }) => <h3 className="text-sm font-bold mb-1 mt-1">{children}</h3>,
-                                        blockquote: ({ children }) => <blockquote className="border-l-4 border-slate-300 pl-3 italic text-slate-500 my-2">{children}</blockquote>,
-                                        a: ({ href, children }) => <a href={href} target="_blank" rel="noopener noreferrer" className="text-indigo-600 hover:underline">{children}</a>
-                                    }}
-                                >
-                                    {msg.content}
-                                </ReactMarkdown>
+                                                )
+                                            },
+                                            p: ({ children }) => <p className="mb-2 last:mb-0">{children}</p>,
+                                            ul: ({ children }) => <ul className="list-disc pl-4 mb-2">{children}</ul>,
+                                            ol: ({ children }) => <ol className="list-decimal pl-4 mb-2">{children}</ol>,
+                                            li: ({ children }) => <li className="mb-1">{children}</li>,
+                                            h1: ({ children }) => <h1 className="text-lg font-bold mb-2 mt-2">{children}</h1>,
+                                            h2: ({ children }) => <h2 className="text-base font-bold mb-2 mt-2">{children}</h2>,
+                                            h3: ({ children }) => <h3 className="text-sm font-bold mb-1 mt-1">{children}</h3>,
+                                            blockquote: ({ children }) => <blockquote className="border-l-4 border-slate-300 pl-3 italic text-slate-500 my-2">{children}</blockquote>,
+                                            a: ({ href, children }) => <a href={href} target="_blank" rel="noopener noreferrer" className="text-indigo-600 hover:underline">{children}</a>
+                                        }}
+                                    >
+                                        {msg.content}
+                                    </ReactMarkdown>
+                                ) : (
+                                    <div className="flex items-center gap-2 text-slate-400">
+                                        <Loader2 size={16} className="animate-spin" />
+                                        <span className="text-xs">思考中...</span>
+                                    </div>
+                                )
                             )}
                         </div>
                     </div>
                 ))}
-
-                {isLoading && (
-                    <div className="flex gap-2">
-                        <div className="w-8 h-8 rounded-full bg-slate-200 flex items-center justify-center">
-                            <Bot size={16} className="text-slate-600" />
-                        </div>
-                        <div className="bg-white p-3 rounded-2xl rounded-bl-sm border border-slate-200 shadow-sm">
-                            <Loader2 size={18} className="animate-spin text-indigo-500" />
-                        </div>
-                    </div>
-                )}
 
                 <div ref={messagesEndRef} />
             </div>
