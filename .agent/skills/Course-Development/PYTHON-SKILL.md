@@ -1,129 +1,75 @@
-# 🎓 互动式编程课件开发技能手册（GESP/Python 版）
-
-**核心差异**：与 C++ 的“严谨工匠”风格不同，Python 课件应强调“魔法师”的灵活性和“自动化”的便捷感。
-
+---
+name: python-visual-pedagogy
+description: Guidelines and patterns for designing Python educational content using Turtle graphics. Focuses on visual pedagogy to teach loops, state management, geometry, and algorithms.
 ---
 
-## 1. 🎯 教学设计思维（Instructional Design）
+# Python Visual Pedagogy (Turtle Graphics)
 
-### 1.1 情景化导入（Storytelling Hook）
+This skill outlines the methodology for designing Python lessons that leverage "Learning by Seeing." It uses the Turtle graphics module as a vehicle to translate abstract programming concepts into immediate, concrete visual feedback.
 
-**技能描述**：利用 Python 强大的应用场景（AI、大数据、自动化）构建故事。
+## Core Pedagogical Principles
 
-**应用实例**：
-- 变量与赋值 → “给魔法药水贴标签”（强调 Python 变量是标签/引用）
-- 列表（List） → “超市购物清单” 或 “贪吃蛇的身体”
-- 循环（Loop） → “只会复读的机器人” 或 “自动发牌机”
-- Turtle 画图 → “指挥一只听话的小海龟寻宝”
+1.  **Immediate Visual Feedback**: ensuring every logic structure (loop, function, variable change) produces a distinct visual result.
+2.  **Scaffolded Complexity**: Moving from imperative commands -> control structures -> parametrized abstraction -> algorithmic thinking.
+3.  **Interdisciplinary Bridging**: Explicitly connecting Code with Math (Geometry, Coordinate Systems) and Art (Color Theory, Composition).
 
-**Checklist**：
-- [ ] 故事是否体现了 Python “简洁高效”的特点？
-- [ ] 是否避免了过度底层的内存概念（除非是 GESP 高级考点）？
+## Key Curriculum Concepts & Design Patterns
 
-### 1.2 隐喻与类比（Metaphor & Analogy）- Python 特供版
+### 1. Sequential Logic & State (The Actor Model)
+Introduce the program as a sequence of instructions changing the state of an "actor" (the Turtle).
+*   **Concepts**: Sequence, State (Position `x,y`, Heading `angle`, Pen `up/down`).
+*   **Design Pattern**: "The Navigation"
+    ```python
+    t.forward(100)  # Change Position
+    t.right(90)     # Change Heading
+    ```
 
-**技能描述**：解释 Python 特有的语法特性。
+### 2. Control Flow & Geometry (Pattern Recognition)
+Use geometric regularities to motivate the need for loops, replacing repetitive code.
+*   **Concepts**: `for` loops, `range()`, Arithmetic (`/`).
+*   **Design Pattern**: "The Polygon Formula"
+    *   To draw an n-sided polygon:
+    ```python
+    sides = n
+    angle = 360 / sides
+    for i in range(sides):
+        t.forward(length)
+        t.right(angle)
+    ```
 
-**应用实例**：
-- 缩进（Indentation） → “阶梯” 或 “族谱”  
-  - 话术：“Python 代码有洁癖，必须对齐才是一家人（属于同一个代码块）。”
-- 动态类型 → “万能魔法盒”  
-  - 对比：C++ 的变量是定做的模具（只能装方块），Python 的变量是贴纸（贴在什么上就是什么）。
-- 库（Import） → “召唤技能书” 或 “工具箱”  
-  - 话术：“不用自己造轮子，import 一下，直接从工具箱里拿来用。”
-- 列表切片（Slicing） → “切吐司面包”  
-  - 话术：“从第几片切到第几片（包头不包尾）。”
+### 3. Variables & Variation (Generative Art)
+Demonstrate variable power by creating variations within loops.
+*   **Concepts**: Loop variables (`i`), Incrementing/Accumulating.
+*   **Design Pattern**: "The Spiral"
+    *   Using the loop index `i` to dynamic change attributes (length, color, angle).
+    ```python
+    for i in range(50):
+        t.forward(i * 2)  # Length grows with i
+        t.right(90)
+    ```
 
-### 1.3 支架式教学（Scaffolding）
+### 4. Abstraction & Recursion (Visual Metaphors)
+Use visual self-similarity to explain complex concepts like Recursion.
+*   **Concepts**: Base case, Recursive step, Call stack.
+*   **Design Pattern**: "The Fractal Tree"
+    *   *Metaphor*: A branch is just a smaller version of the trunk, rotated.
+    ```python
+    def tree(length):
+        if length < 5: return       # Base case
+        t.forward(length)
+        t.left(30); tree(length*0.7)  # Recursive step (Left subtree)
+        t.right(60); tree(length*0.7) # Recursive step (Right subtree)
+        t.left(30); t.backward(length)# Return to state
+    ```
 
-**流程**：
-1. **填空（Parsons Problems）**：给出打乱顺序的代码块，让学生拖拽并正确缩进  
-2. **半成品（Modify）**：给出一个画了一半的 Turtle 图形，让学生修改参数画完  
-3. **创作（Create）**：利用学到的逻辑解决一个新的小问题  
+### 5. Algorithmic Thinking (Simulation)
+Use visual simulations to solve mathematical problems.
+*   **Concepts**: Randomness, Coordinate Geometry, Probability.
+*   **Design Pattern**: "Monte Carlo Simulation"
+    *   Visualizing `random.uniform()` points within a square vs. circle to estimate Area/Pi.
 
----
+## Implementation Guidelines for Interactive Lessons
 
-## 2. 🛠 技术实现栈（Technical Stack）
-
-> 注意：课件本身仍是 Web App（React），但演示的内容是 Python。
-
-### 2.1 核心框架（不变）
-
-- **React + Tailwind CSS**：构建交互界面
-- **Lucide React**：图标库（如用 Indent 图标强调缩进，Box 图标代表变量）
-
-### 2.2 Python 特有的交互模式
-
-**缩进可视化（Indentation Visualizer）**：
-- 场景：讲解 `if/else` 或 `for` 循环  
-- 设计：在代码块左侧绘制淡色的竖线（辅助线），用不同颜色的背景块包裹从属代码段
-
-**代码执行模拟（Execution Flow）**：
-- 场景：演示代码是一行一行执行的  
-- 设计：高亮当前执行行，旁边显示变量当前的值（Trace Table）
-
-**即时绘图反馈**：
-- 场景：Turtle 或简单的绘图题  
-- 实现：使用 Canvas 模拟 Turtle 的笔触路径，实时响应参数变化
-
----
-
-## 3. 🧩 组件化开发规范（Component Library）
-
-除了通用的 `SectionCard` 和 `Quiz`，Python 版需要增加：
-
-| 组件名称 | 用途 | 关键 Props |
-|---|---|---|
-| IndentBlock | 可拖拽并支持缩进的代码拼图 | `blocks`（代码片段）, `correctOrder` |
-| TurtleSim | 模拟海龟绘图的画布 | `commands`（如 `forward`, `left`） |
-| SlicingVisualizer | 列表/字符串切片演示器 | `data`（数组）, `start`, `end`, `step` |
-| TypeTag | 显示变量类型的动态标签 | `varName`, `currentType` |
-
----
-
-## 4. 📝 课件结构模板（Structure Template）
-
-每一节标准的 GESP Python 互动课结构：
-
-### 封面
-- 强调本课能做出什么好玩的东西（如：做一个计算器、画一个星星）
-
-### 魔法导入
-- 展示一段 Python “黑科技”（如 3 行代码实现的一个功能），激发兴趣
-
-### 核心咒语（Syntax）
-- 重点讲解语法格式，特别是冒号和缩进
-- 必须包含“缩进纠错”环节
-
-### 实战演练（Dojo）
-- 填空题、改错题（Debug）、预测输出题
-
-### 总结回顾（Cheat Sheet）
-- 提供“小抄”形式的语法速查表
-
-### 挑战任务
-- 结合 GESP 真题进行变式训练
-
----
-
-## 5. 🚀 质量控制（QA Checklist）
-
-在发布前，请特别检查：
-- [ ] 缩进显示：在移动端或小屏幕上，代码缩进是否清晰，没有换行导致的歧义？
-- [ ] 版本兼容：代码是否符合 Python 3.x 标准（如 `print()` 必须带括号，除法 `/` 结果是浮点数）？
-- [ ] 符号清晰：中英文符号（特别是冒号 `:` 和括号 `()`）是否有明显区分提示？
-- [ ] 变量命名：是否遵循了 Python 的蛇形命名法（`user_name`）而非驼峰法？
-
----
-
-## 6. 💡 进阶技巧：如何体现 Python 的优雅？
-
-- **强调“一行胜千言”**：对比 C++ 的繁琐，展示 Python 的列表推导式或内置函数的强大
-
-**可视化数据结构**：
-- 列表（list）：画成一节节的车厢，索引 `0, 1, 2` 标在车厢上，`-1` 标在最后一个车厢  
-- 字典（dict）：画成有标签的储物柜（Key 是标签，Value 是柜子里的东西）
-
-**陷阱演示**：
-- 缩进错误：演示 `IndentationError`，并在界面上模拟“程序崩溃”的动画  
-- 赋值混淆：演示 `==`（判断相等）和 `=`（赋值）的区别  
+*   **Expose Parameters**: When building UI components (like React wrappers for Turtle), always bind sliders/inputs to key variables (e.g., `iteration_count`, `angle`, `depth`) to allow exploration.
+*   **Code-preview Sync**: Display the Python code alongside the visual canvas. Highlighting the currently executing line helps mental mapping.
+*   **Creative Challenges**: Always include an "Art Challenge" (e.g., "Draw a Snowflake", "Olympic Rings") that requires combining multiple concepts (Positioning + Loops + Color).

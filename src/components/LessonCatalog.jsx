@@ -67,6 +67,7 @@ export default function LessonCatalog() {
                 { id: 4, title: '函数与模块', path: '/python/f4' },
                 { id: 5, title: '绘图魔法', path: '/python/f5' },
                 { id: 6, title: '随机世界', path: '/python/f6' },
+                { id: 7, title: '集合宝藏', path: '/python/f7' },
             ]
         },
         {

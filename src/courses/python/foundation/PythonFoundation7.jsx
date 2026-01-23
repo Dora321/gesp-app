@@ -38,31 +38,58 @@ const CodeBlock = ({ code, highlightLine = -1 }) => (
 
 // --- Slides ---
 
-const IntroSlide = () => (
-    <div className="space-y-6 animate-in fade-in slide-in-from-bottom-4 duration-500">
-        <div className="bg-gradient-to-br from-indigo-500 to-violet-600 p-8 rounded-3xl text-white shadow-xl relative overflow-hidden">
-            <Sparkles className="absolute top-[-20px] right-[-20px] text-white/10 w-40 h-40 rotate-12" />
-            <h2 className="text-3xl font-bold mb-4 flex items-center gap-2">
-                <Box className="text-yellow-300" />
-                欢迎来到“唯一之境”
-            </h2>
-            <p className="text-lg leading-relaxed opacity-90">
-                在 Python 的世界里，有一个神奇的袋子叫 <strong>集合 (Set)</strong>。
-                <br /><br />
-                它有两个绝对规则：
-                <br />
-                1. 🚫 <strong>拒绝重复</strong>：任何东西在袋子里只能有一份。放进去两个一样的？一个会自动消失！
-                <br />
-                2. 🔀 <strong>无序</strong>：袋子里的东西没有固定的位置 1, 2, 3... 它们是乱序的。
-            </p>
+const IntroSlide = () => {
+    const [items, setItems] = useState([
+        { id: 1, val: '🍎', x: 0 },
+        { id: 2, val: '🍌', x: 50 },
+        { id: 3, val: '🍎', x: 100 }, // Duplicate
+    ]);
+
+    return (
+        <div className="space-y-6 animate-in fade-in slide-in-from-bottom-4 duration-500">
+            <div className="bg-gradient-to-br from-indigo-500 to-violet-600 p-8 rounded-3xl text-white shadow-xl relative overflow-hidden">
+                <Sparkles className="absolute top-[-20px] right-[-20px] text-white/10 w-40 h-40 rotate-12" />
+                <h2 className="text-3xl font-bold mb-4 flex items-center gap-2">
+                    <Box className="text-yellow-300" />
+                    欢迎来到“唯一之境”
+                </h2>
+                <p className="text-lg leading-relaxed opacity-90">
+                    在 Python 的世界里，有一个神奇的袋子叫 <strong>集合 (Set)</strong>。
+                    <br /><br />
+                    它有两个绝对规则：
+                    <br />
+                    1. 🚫 <strong>拒绝重复</strong>：任何东西在袋子里只能有一份。放进去两个一样的？一个会自动消失！
+                    <br />
+                    2. 🔀 <strong>无序</strong>：袋子里的东西没有固定的位置 1, 2, 3... 它们是乱序的。
+                </p>
+            </div>
+
+            <div className="bg-white p-8 rounded-2xl shadow-sm border border-slate-200">
+                <div className="flex justify-center items-center gap-8 h-40 relative">
+                    {/* Visual metaphor of a "Filter/Bag" */}
+                    <div className="absolute inset-0 flex items-center justify-center pointer-events-none opacity-10">
+                        <div className="w-64 h-64 rounded-full bg-indigo-500 blur-3xl"></div>
+                    </div>
+
+                    <div className="z-10 flex gap-4 items-center">
+                        <div className="bg-slate-100 p-4 rounded-xl border border-slate-300 flex gap-2">
+                            <span className="text-4xl animate-bounce">🍎</span>
+                            <span className="text-4xl animate-bounce delay-100">🍌</span>
+                            <span className="text-4xl animate-bounce delay-200">🍎</span>
+                        </div>
+                        <ArrowRight className="text-slate-400" size={32} />
+                        <div className="bg-indigo-100 p-6 rounded-full border-4 border-indigo-200 w-32 h-32 flex items-center justify-center gap-2 shadow-inner relative overflow-hidden group">
+                            <div className="absolute inset-0 bg-indigo-500/10 animate-pulse"></div>
+                            <span className="text-4xl relative z-10 group-hover:scale-110 transition-transform">🍎</span>
+                            <span className="text-4xl relative z-10 group-hover:scale-110 transition-transform delay-75">🍌</span>
+                        </div>
+                    </div>
+                </div>
+                <p className="text-center text-slate-500 text-sm mt-4">看！第二个苹果被魔法袋“吃掉”了，只保留了一个。</p>
+            </div>
         </div>
-        <div className="flex justify-center gap-8 py-4">
-            <span className="text-7xl animate-bounce">🍎</span>
-            <span className="text-7xl animate-bounce delay-100">🚫</span>
-            <span className="text-7xl animate-bounce delay-200">🍎</span>
-        </div>
-    </div>
-);
+    );
+};
 
 const CreateSetSlide = () => {
     const [magicBag, setMagicBag] = useState([]);
@@ -128,61 +155,23 @@ const CreateSetSlide = () => {
 };
 
 const OperationsSlide = () => {
-    const [setA] = useState(['🔥', '💧', '⚡']);
-    const [setB] = useState(['💧', '🌿', '⚡']);
     const [mode, setMode] = useState('union'); // union, intersection, difference
 
-    const renderVennLike = () => {
-        let result = [];
-        let symbol = '';
-        let desc = '';
+    // Venn Diagram Data
+    const setA = ['🔥', '💧', '⚡'];
+    const setB = ['💧', '🌿', '⚡'];
 
-        if (mode === 'union') {
-            result = [...new Set([...setA, ...setB])];
-            symbol = '|';
-            desc = '并集 (Union): 所有出现过的元素';
-        } else if (mode === 'intersection') {
-            result = setA.filter(x => setB.includes(x));
-            symbol = '&';
-            desc = '交集 (Intersection): 两个集合都有的元素';
-        } else if (mode === 'difference') {
-            result = setA.filter(x => !setB.includes(x));
-            symbol = '-';
-            desc = '差集 (Difference): 只在 A 中有的元素';
-        }
+    // Calculated zones
+    const onlyA = setA.filter(x => !setB.includes(x));
+    const onlyB = setB.filter(x => !setA.includes(x));
+    const both = setA.filter(x => setB.includes(x));
 
-        return (
-            <div className="space-y-4">
-                <div className="flex justify-center gap-2 mb-4">
-                    <Button variant={mode === 'union' ? 'primary' : 'secondary'} onClick={() => setMode('union')} size="sm">并集 |</Button>
-                    <Button variant={mode === 'intersection' ? 'primary' : 'secondary'} onClick={() => setMode('intersection')} size="sm">交集 &</Button>
-                    <Button variant={mode === 'difference' ? 'primary' : 'secondary'} onClick={() => setMode('difference')} size="sm">差集 -</Button>
-                </div>
-
-                <div className="bg-white p-6 rounded-2xl shadow-sm border border-slate-200 text-center">
-                    <div className="flex justify-center items-center gap-8 mb-6 text-xl">
-                        <div className="bg-red-50 p-4 rounded-xl border border-red-100">
-                            <div className="text-xs text-red-500 mb-1">Set A</div>
-                            {setA.join(' ')}
-                        </div>
-                        <div className="font-bold text-slate-400 text-2xl">{symbol}</div>
-                        <div className="bg-blue-50 p-4 rounded-xl border border-blue-100">
-                            <div className="text-xs text-blue-500 mb-1">Set B</div>
-                            {setB.join(' ')}
-                        </div>
-                    </div>
-
-                    <div className="text-4xl mb-2">=</div>
-
-                    <div className="bg-emerald-50 p-6 rounded-xl border border-emerald-100 inline-block min-w-[150px]">
-                        <div className="text-xs text-emerald-500 mb-2">{desc}</div>
-                        <div className="text-3xl animate-in zoom-in duration-300 flex gap-2 justify-center">
-                            {result.length > 0 ? result.map((r, i) => <span key={i}>{r}</span>) : <span className="text-slate-400 text-lg">Empty Set</span>}
-                        </div>
-                    </div>
-                </div>
-            </div>
-        );
+    const getHighlight = (zone) => {
+        // zone: 'A', 'B', 'Intersection'
+        if (mode === 'union') return true;
+        if (mode === 'intersection') return zone === 'Intersection';
+        if (mode === 'difference') return zone === 'A'; // A - B
+        return false;
     };
 
     return (
@@ -190,14 +179,88 @@ const OperationsSlide = () => {
             <div className="bg-purple-100 p-6 rounded-2xl border border-purple-200 text-purple-900">
                 <h2 className="text-2xl font-bold mb-4 flex items-center gap-2">
                     <Combine className="text-purple-600" />
-                    集合运算
+                    集合运算 (Venn Diagram)
                 </h2>
                 <p>
-                    像数学课一样，集合可以进行 并集、交集 和 差集 运算。这也是 Python 处理数据最强大的地方！
+                    集合最强大的功能是处理它们之间的关系。通过 <strong>韦恩图</strong> 可以直观地看到！
                 </p>
             </div>
-            {renderVennLike()}
-            <CodeBlock code={`A = {${setA.map(s => `'${s}'`).join(', ')}}\nB = {${setB.map(s => `'${s}'`).join(', ')}}\n\n# ${mode === 'union' ? '并集' : mode === 'intersection' ? '交集' : '差集'}\nresult = A ${mode === 'union' ? '|' : mode === 'intersection' ? '&' : '-'} B\nprint(result)`} />
+
+            <div className="flex justify-center gap-4 mb-4">
+                <Button variant={mode === 'union' ? 'primary' : 'secondary'} onClick={() => setMode('union')} className="w-32">
+                    并集 (|)
+                </Button>
+                <Button variant={mode === 'intersection' ? 'primary' : 'secondary'} onClick={() => setMode('intersection')} className="w-32">
+                    交集 (&)
+                </Button>
+                <Button variant={mode === 'difference' ? 'primary' : 'secondary'} onClick={() => setMode('difference')} className="w-32">
+                    差集 (-)
+                </Button>
+            </div>
+
+            <div className="grid md:grid-cols-2 gap-8 items-center">
+                <div className="bg-white p-6 rounded-2xl shadow-sm border border-slate-200 flex justify-center items-center min-h-[300px] relative overflow-hidden">
+                    {/* SVG Venn Diagram */}
+                    <svg viewBox="0 0 400 300" className="w-full h-full max-w-[400px]">
+                        {/* Circle A - Left */}
+                        <circle cx="140" cy="150" r="100"
+                            fill={getHighlight('A') || getHighlight('Intersection') ? "rgba(239, 68, 68, 0.2)" : "rgba(226, 232, 240, 0.3)"}
+                            stroke={getHighlight('A') ? "#ef4444" : "#cbd5e1"}
+                            strokeWidth="3"
+                        />
+                        {/* Circle B - Right */}
+                        <circle cx="260" cy="150" r="100"
+                            fill={getHighlight('B') || getHighlight('Intersection') ? "rgba(59, 130, 246, 0.2)" : "rgba(226, 232, 240, 0.3)"}
+                            stroke={getHighlight('B') ? "#3b82f6" : "#cbd5e1"}
+                            strokeWidth="3"
+                        />
+
+                        {/* Labels */}
+                        <text x="90" y="80" className="text-sm font-bold opacity-50" fill="#ef4444">Set A</text>
+                        <text x="310" y="80" className="text-sm font-bold opacity-50" fill="#3b82f6">Set B</text>
+
+                        {/* Content: Only A */}
+                        <foreignObject x="60" y="100" width="80" height="100" className="pointer-events-none">
+                            <div className={`text-2xl flex flex-wrap justify-center content-center h-full transition-opacity ${getHighlight('A') ? 'opacity-100' : 'opacity-30'}`}>
+                                {onlyA.map((x, i) => <span key={i}>{x}</span>)}
+                            </div>
+                        </foreignObject>
+
+                        {/* Content: Intersection */}
+                        <foreignObject x="160" y="100" width="80" height="100" className="pointer-events-none">
+                            <div className={`text-2xl flex flex-wrap justify-center content-center h-full transition-opacity font-bold ${getHighlight('Intersection') ? 'opacity-100 scale-125' : 'opacity-30'}`}>
+                                {both.map((x, i) => <span key={i}>{x}</span>)}
+                            </div>
+                        </foreignObject>
+
+                        {/* Content: Only B */}
+                        <foreignObject x="260" y="100" width="80" height="100" className="pointer-events-none">
+                            <div className={`text-2xl flex flex-wrap justify-center content-center h-full transition-opacity ${getHighlight('B') ? 'opacity-100' : 'opacity-30'}`}>
+                                {onlyB.map((x, i) => <span key={i}>{x}</span>)}
+                            </div>
+                        </foreignObject>
+                    </svg>
+
+                    {/* Result Description */}
+                    <div className="absolute bottom-4 left-0 right-0 text-center text-sm font-bold text-slate-500 bg-white/80 py-2">
+                        {mode === 'union' && 'Result: { ' + [...onlyA, ...both, ...onlyB].join(', ') + ' }'}
+                        {mode === 'intersection' && 'Result: { ' + both.join(', ') + ' }'}
+                        {mode === 'difference' && 'Result: { ' + onlyA.join(', ') + ' }'}
+                    </div>
+                </div>
+
+                <div className="space-y-4">
+                    <CodeBlock
+                        code={`A = {${setA.map(s => `'${s}'`).join(', ')}}\nB = {${setB.map(s => `'${s}'`).join(', ')}}\n\n# ${mode === 'union' ? '并集 (Union)' : mode === 'intersection' ? '交集 (Intersection)' : '差集 (Difference)'}\nresult = A ${mode === 'union' ? '|' : mode === 'intersection' ? '&' : '-'} B\nprint(result)`}
+                        highlightLine={3}
+                    />
+                    <div className="bg-slate-50 p-4 rounded-xl text-sm text-slate-600">
+                        {mode === 'union' && "A | B ：包含A和B中所有的元素（自动去重）。"}
+                        {mode === 'intersection' && "A & B ：只保留A和B都有的元素。"}
+                        {mode === 'difference' && "A - B ：从A中“减去”B中有的元素，只留下A独有的。"}
+                    </div>
+                </div>
+            </div>
         </div>
     );
 };
@@ -542,6 +605,75 @@ const SummarySlide = () => (
     </div>
 );
 
+const ChallengeSlide = () => {
+    const [pantry] = useState(['🥕', '🥔', '🥕', '🥩', '🥔', '🥬', '🥕']);
+    const [cleaned, setCleaned] = useState([]);
+    const [step, setStep] = useState(0);
+
+    const runChallenge = () => {
+        setStep(1);
+        setTimeout(() => {
+            const unique = [...new Set(pantry)];
+            setCleaned(unique);
+            setStep(2);
+        }, 800);
+    };
+
+    return (
+        <div className="space-y-6 animate-in fade-in slide-in-from-bottom-4 duration-500">
+            <div className="bg-yellow-100 p-6 rounded-2xl border border-yellow-200 text-yellow-900">
+                <h2 className="text-2xl font-bold mb-4 flex items-center gap-2">
+                    <Star className="text-yellow-600" />
+                    厨师的挑战 (Chef's Challenge)
+                </h2>
+                <p>
+                    糊涂厨师买重复了好多食材！<br />
+                    请你使用 <strong>集合魔法</strong> 帮他整理一份“不重复”的食材清单。
+                </p>
+            </div>
+
+            <div className="grid md:grid-cols-2 gap-8">
+                <div className="bg-white p-6 rounded-2xl shadow-lg border border-slate-100 flex flex-col items-center">
+                    <div className="text-sm font-bold text-slate-500 mb-4 w-full text-left">🛒 杂乱的购物篮</div>
+                    <div className="flex flex-wrap gap-3 mb-8 p-4 bg-slate-50 rounded-xl w-full justify-center min-h-[80px]">
+                        {pantry.map((item, i) => (
+                            <div key={i} className={`text-4xl transition-all duration-500 ${step === 2 && pantry.indexOf(item) !== i ? 'scale-0 opacity-0 w-0' : 'scale-100'}`}>
+                                {item}
+                            </div>
+                        ))}
+                    </div>
+
+                    <div className="w-full space-y-2">
+                        <div className="text-xs font-mono text-slate-500 mb-1">写下你的魔法咒语:</div>
+                        <div className="bg-slate-900 p-3 rounded-lg text-white font-mono text-sm flex items-center gap-2">
+                            <span>clean_list =</span>
+                            <button
+                                onClick={runChallenge}
+                                disabled={step > 0}
+                                className="bg-indigo-600 hover:bg-indigo-500 px-3 py-1 rounded text-xs font-bold transition-colors disabled:opacity-50 disabled:cursor-not-allowed">
+                                list(set(pantry))
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <div className="flex flex-col justify-center items-center gap-4">
+                    {step === 0 && <div className="text-6xl animate-bounce">👨‍🍳</div>}
+                    {step === 1 && <div className="text-6xl animate-spin">🪄</div>}
+                    {step === 2 && (
+                        <div className="bg-emerald-100 p-6 rounded-3xl border-4 border-emerald-200 text-center animate-in zoom-in">
+                            <div className="text-sm font-bold text-emerald-800 mb-4">✨ 完美的清单 ✨</div>
+                            <div className="flex gap-2 text-4xl">
+                                {cleaned.map((item, i) => <span key={i}>{item}</span>)}
+                            </div>
+                        </div>
+                    )}
+                </div>
+            </div>
+        </div>
+    );
+};
+
 // --- Main Course Component ---
 
 const sections = [
@@ -550,8 +682,9 @@ const sections = [
     { id: 3, title: '闪电查找', icon: Zap, component: MembershipSlide },
     { id: 4, title: '集合运算', icon: Combine, component: OperationsSlide },
     { id: 5, title: '去重技巧', icon: Scissors, component: DeduplicateSlide },
-    { id: 6, title: '小测验', icon: FileQuestion, component: QuizSlide },
-    { id: 7, title: '魔法笔记', icon: BookOpen, component: SummarySlide },
+    { id: 6, title: '厨师挑战', icon: Star, component: ChallengeSlide },
+    { id: 7, title: '小测验', icon: FileQuestion, component: QuizSlide },
+    { id: 8, title: '魔法笔记', icon: BookOpen, component: SummarySlide },
 ];
 
 export default function PythonFoundation7() {
