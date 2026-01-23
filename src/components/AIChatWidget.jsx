@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useRef } from 'react';
-import { MessageCircle, X, Send, Settings, Trash2, Loader2, Bot, User, Key, UserCircle2, Plus } from 'lucide-react';
+import { MessageCircle, X, Send, Settings, Trash2, Loader2, Bot, User, Key, UserCircle2, Plus, GripHorizontal } from 'lucide-react';
 import ReactMarkdown from 'react-markdown';
 import remarkGfm from 'remark-gfm';
 import rehypeHighlight from 'rehype-highlight';
@@ -60,7 +60,41 @@ const AIChatWidget = () => {
     const [inputValue, setInputValue] = useState('');
     const [isLoading, setIsLoading] = useState(false);
     const [selectedPersona, setSelectedPersona] = useState('default');
+    const [size, setSize] = useState({ width: 360, height: 500 });
+    const isResizing = useRef(false);
     const messagesEndRef = useRef(null);
+
+    // Initial resize handler
+    const startResize = (e) => {
+        isResizing.current = true;
+        document.addEventListener('mousemove', handleResize);
+        document.addEventListener('mouseup', stopResize);
+    };
+
+    const handleResize = (e) => {
+        if (!isResizing.current) return;
+
+        // Calculate new size based on mouse position
+        // Since it's bottom-right anchored:
+        // Width increases as mouse moves left (startX - currentX)
+        // Height increases as mouse moves up (startY - currentY) 
+        // BUT actually it's easier to just use window dimensions minus mouse coordinates
+        // because the element is fixed to bottom-right.
+
+        const newWidth = window.innerWidth - e.clientX - 24; // 24px right margin
+        const newHeight = window.innerHeight - e.clientY - 96; // 96px bottom margin (bottom-24)
+
+        setSize({
+            width: Math.max(300, Math.min(newWidth, 800)),
+            height: Math.max(400, Math.min(newHeight, window.innerHeight - 150))
+        });
+    };
+
+    const stopResize = () => {
+        isResizing.current = false;
+        document.removeEventListener('mousemove', handleResize);
+        document.removeEventListener('mouseup', stopResize);
+    };
 
     // Load API key from localStorage
     useEffect(() => {
@@ -210,10 +244,23 @@ const AIChatWidget = () => {
 
     // Chat window when open
     return (
-        <div className="fixed bottom-24 right-6 z-[100] w-[360px] max-w-[calc(100vw-48px)] h-[500px] max-h-[calc(100vh-120px)] bg-white rounded-2xl shadow-2xl flex flex-col overflow-hidden animate-in zoom-in-95 duration-200 border border-slate-200">
+        <div
+            className="fixed bottom-24 right-6 z-[100] bg-white rounded-2xl shadow-2xl flex flex-col overflow-hidden animate-in zoom-in-95 duration-200 border border-slate-200"
+            style={{
+                width: `${size.width}px`,
+                height: `${size.height}px`,
+                maxWidth: 'calc(100vw - 48px)',
+                maxHeight: 'calc(100vh - 120px)'
+            }}
+        >
             {/* Header */}
-            <header className="flex justify-between items-center p-3 bg-gradient-to-r from-indigo-500 to-purple-600 text-white shrink-0">
-                <div className="flex items-center gap-2">
+            <header
+                className="flex justify-between items-center p-3 bg-gradient-to-r from-indigo-500 to-purple-600 text-white shrink-0 cursor-move"
+                onMouseDown={(e) => {
+                    // Optional: Add drag to move logic here if needed later
+                }}
+            >
+                <div className="flex items-center gap-2 select-none">
                     <span className="text-xl">{currentPersonaInfo?.emoji}</span>
                     <span className="font-bold">{currentPersonaInfo?.name || 'AI 问答助手'}</span>
                 </div>
@@ -429,6 +476,16 @@ const AIChatWidget = () => {
                     >
                         <Send size={18} />
                     </button>
+                </div>
+            </div>
+            {/* Resize Handle */}
+            <div
+                className="absolute left-0 top-0 w-6 h-6 cursor-nwse-resize z-50 flex items-center justify-center opacity-0 hover:opacity-100 transition-opacity"
+                onMouseDown={startResize}
+                title="拖动调整大小"
+            >
+                <div className="w-full h-full relative">
+                    <div className="absolute top-2 left-2 w-2 h-2 border-t-2 border-l-2 border-slate-400 rounded-tl-sm"></div>
                 </div>
             </div>
         </div>
