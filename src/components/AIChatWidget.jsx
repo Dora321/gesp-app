@@ -107,12 +107,13 @@ const AIChatWidget = () => {
 
         const currentPersona = AI_PERSONAS.find(p => p.id === selectedPersona) || AI_PERSONAS[0];
         const userMessage = { role: 'user', content: inputValue.trim() };
+
+        // Optimistically add user message and empty assistant message placeholder
         const newMessages = [...messages, userMessage];
-        setMessages(newMessages);
+        setMessages(newMessages); // Set messages with user message first
         setInputValue('');
         setIsLoading(true);
 
-        // Construct messages with system prompt
         const apiMessages = [
             { role: 'system', content: currentPersona.systemPrompt },
             ...newMessages.map(m => ({ role: m.role, content: m.content }))
@@ -128,7 +129,7 @@ const AIChatWidget = () => {
                 body: JSON.stringify({
                     model: 'deepseek-chat',
                     messages: apiMessages,
-                    stream: false
+                    stream: true // Enable streaming
                 })
             });
 
@@ -136,14 +137,49 @@ const AIChatWidget = () => {
                 throw new Error(`API 请求失败: ${response.status}`);
             }
 
-            const data = await response.json();
-            const assistantMessage = {
-                role: 'assistant',
-                content: data.choices[0].message.content
-            };
-            setMessages([...newMessages, assistantMessage]);
+            if (!response.body) {
+                throw new Error('ReadableStream not supported in this browser.');
+            }
+
+            const reader = response.body.getReader();
+            const decoder = new TextDecoder('utf-8');
+            let assistantContent = '';
+
+            // Add placeholder for assistant message
+            setMessages(prev => [...prev, { role: 'assistant', content: '' }]);
+
+            while (true) {
+                const { done, value } = await reader.read();
+                if (done) break;
+
+                const chunk = decoder.decode(value, { stream: true });
+                const lines = chunk.split('\n');
+
+                for (const line of lines) {
+                    if (line.startsWith('data: ') && line !== 'data: [DONE]') {
+                        try {
+                            const data = JSON.parse(line.slice(6));
+                            const content = data.choices[0]?.delta?.content || '';
+                            assistantContent += content;
+
+                            // Update last message with new content
+                            setMessages(prev => {
+                                const updatedMessages = [...prev];
+                                const lastMessage = updatedMessages[updatedMessages.length - 1];
+                                if (lastMessage.role === 'assistant') {
+                                    lastMessage.content = assistantContent;
+                                }
+                                return updatedMessages;
+                            });
+                        } catch (e) {
+                            console.error('Error parsing stream chunk', e);
+                        }
+                    }
+                }
+            }
+
         } catch (error) {
-            setMessages([...newMessages, {
+            setMessages(prev => [...prev, {
                 role: 'assistant',
                 content: `❌ 错误: ${error.message}。请检查 API Key 是否正确。`
             }]);
