@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useRef } from 'react';
-import { MessageCircle, X, Send, Settings, Trash2, Loader2, Bot, User, Key, UserCircle2 } from 'lucide-react';
+import { MessageCircle, X, Send, Settings, Trash2, Loader2, Bot, User, Key, UserCircle2, Plus } from 'lucide-react';
 import ReactMarkdown from 'react-markdown';
 import remarkGfm from 'remark-gfm';
 import rehypeHighlight from 'rehype-highlight';
@@ -183,6 +183,13 @@ const AIChatWidget = () => {
                 </div>
                 <div className="flex items-center gap-1">
                     <button
+                        onClick={clearChat}
+                        className="p-1.5 hover:bg-white/20 rounded-lg transition-colors"
+                        title="新对话"
+                    >
+                        <Plus size={18} />
+                    </button>
+                    <button
                         onClick={() => {
                             setShowSettings(!showSettings);
                             setTempApiKey(apiKey);
@@ -195,7 +202,7 @@ const AIChatWidget = () => {
                     <button
                         onClick={clearChat}
                         className="p-1.5 hover:bg-white/20 rounded-lg transition-colors"
-                        title="清空对话"
+                        title="清空记录"
                     >
                         <Trash2 size={18} />
                     </button>
