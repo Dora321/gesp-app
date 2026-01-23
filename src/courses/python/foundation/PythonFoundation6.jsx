@@ -1055,6 +1055,131 @@ const CoinFlipStatsSlide = () => {
     );
 };
 
+const MonkeySortSlide = () => {
+    const [deck, setDeck] = useState([1, 2, 3, 4, 5]);
+    const [shuffled, setShuffled] = useState([...deck].sort(() => Math.random() - 0.5));
+    const [attempts, setAttempts] = useState(0);
+    const [sorting, setSorting] = useState(false);
+    const [isSorted, setIsSorted] = useState(false);
+
+    // Auto sorter
+    useEffect(() => {
+        if (!sorting) return;
+
+        const interval = setInterval(() => {
+            setShuffled(prev => {
+                const next = [...prev].sort(() => Math.random() - 0.5);
+                // Check sorted
+                const sorted = next.every((val, i) => val === deck[i]);
+                if (sorted) {
+                    setIsSorted(true);
+                    setSorting(false);
+                }
+                return next;
+            });
+            setAttempts(a => a + 1);
+        }, 50);
+
+        return () => clearInterval(interval);
+    }, [sorting, deck]);
+
+    const handleSort = () => {
+        if (isSorted) {
+            // Reset
+            setShuffled([...deck].sort(() => Math.random() - 0.5));
+            setAttempts(0);
+            setIsSorted(false);
+            setSorting(false);
+        } else {
+            setSorting(!sorting);
+        }
+    };
+
+    return (
+        <div className="space-y-6 animate-in fade-in slide-in-from-bottom-4 duration-500">
+            <div className="bg-fuchsia-100 p-6 rounded-2xl border border-fuchsia-200 text-fuchsia-900">
+                <h2 className="text-2xl font-bold mb-4 flex items-center gap-2">
+                    <Shuffle className="text-fuchsia-600" />
+                    趣味挑战：猴子排序 (Bogo Sort)
+                </h2>
+                <p>
+                    如果给一只无限寿命的猴子一个打字机，它最终能敲出《莎士比亚全集》。<br />
+                    同理，如果我们<strong>随机打乱</strong>一组数字足够多次，它们最终也会<strong>恰好排好序</strong>！
+                    这就是著名的（极其低效的）<strong>猴子排序</strong>。
+                </p>
+            </div>
+
+            <div className="grid md:grid-cols-2 gap-8">
+                <div className="space-y-4">
+                    <CodeBlock code={`import random
+
+def is_sorted(arr):
+    for i in range(len(arr) - 1):
+        if arr[i] > arr[i+1]:
+            return False
+    return True
+
+nums = [1, 2, 3, 4, 5]
+random.shuffle(nums)
+count = 0
+
+while not is_sorted(nums):
+    random.shuffle(nums)
+    count += 1
+    print(f"第 {count} 次尝试: {nums}")
+
+print("终于排好序了！🎉")`} />
+                    <div className="bg-amber-50 p-4 rounded-xl border border-amber-200 text-sm text-amber-800 flex items-start gap-2">
+                        <Zap size={18} className="text-amber-500 flex-shrink-0" />
+                        <p><strong>警告：</strong> 只要数字稍微多一点（比如10个），你可能要等到宇宙毁灭才能排好序！</p>
+                    </div>
+                </div>
+
+                <div className="bg-white p-6 rounded-2xl shadow-lg border border-slate-100 flex flex-col items-center justify-center">
+                    <div className="text-sm font-bold text-slate-400 mb-6">目标顺序: 1, 2, 3, 4, 5</div>
+
+                    <div className="flex gap-2 mb-8">
+                        {shuffled.map((num, i) => (
+                            <div
+                                key={i}
+                                className={`w-12 h-12 flex items-center justify-center text-xl font-bold rounded-xl transition-all duration-200
+                                ${isSorted
+                                        ? 'bg-emerald-500 text-white scale-110 shadow-lg'
+                                        : num === deck[i]
+                                            ? 'bg-fuchsia-100 text-fuchsia-600 border border-fuchsia-200'
+                                            : 'bg-slate-100 text-slate-400'}`}
+                            >
+                                {num}
+                            </div>
+                        ))}
+                    </div>
+
+                    <div className="text-center mb-6">
+                        <div className="text-3xl font-black text-slate-700 font-mono">
+                            {attempts}
+                        </div>
+                        <div className="text-xs text-slate-400 uppercase tracking-widest">尝试次数</div>
+                    </div>
+
+                    <Button
+                        onClick={handleSort}
+                        variant={isSorted ? 'success' : sorting ? 'danger' : 'primary'}
+                        className="w-full py-4 text-lg"
+                    >
+                        {isSorted ? "太棒了！重置" : sorting ? "停止尝试" : "开始猴子排序 🐵"}
+                    </Button>
+
+                    {isSorted && (
+                        <div className="mt-4 text-emerald-600 font-bold animate-bounce">
+                            🎉 运气爆棚！排序完成！
+                        </div>
+                    )}
+                </div>
+            </div>
+        </div>
+    );
+};
+
 const SummarySlide = () => {
     return (
         <div className="space-y-8 animate-in fade-in slide-in-from-bottom-4 duration-500">
@@ -1122,7 +1247,8 @@ const sections = [
     { id: 10, title: '密码', icon: Key, component: PasswordGeneratorSlide },
     { id: 11, title: '统计', icon: Coins, component: CoinFlipStatsSlide },
     { id: 12, title: '纠错', icon: AlertTriangle, component: DebugSlide },
-    { id: 13, title: '总结', icon: Trophy, component: SummarySlide },
+    { id: 13, title: '猴子', icon: Shuffle, component: MonkeySortSlide },
+    { id: 14, title: '总结', icon: Trophy, component: SummarySlide },
 ];
 
 export default function PythonFoundation6() {
