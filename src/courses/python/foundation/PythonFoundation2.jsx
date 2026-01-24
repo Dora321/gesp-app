@@ -953,7 +953,7 @@ export default function PythonFoundation2() {
             {/* Mobile Header */}
             <div className="md:hidden bg-white border-b border-slate-200 p-4 flex justify-between items-center sticky top-0 z-20">
                 <div className="font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-blue-600 to-cyan-600 flex items-center gap-2">
-                    <span className="text-lg">F2: 流程控制</span>
+                    <span className="text-lg">F2: 控制流程</span>
                 </div>
                 <button onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)} className="p-2 text-slate-600">
                     {isMobileMenuOpen ? <X /> : <Menu />}
@@ -972,7 +972,7 @@ export default function PythonFoundation2() {
                             <img src={`${import.meta.env.BASE_URL}logo.jpg`} alt="Logo" className="w-8 h-8 rounded-lg object-cover border border-slate-200 shadow-sm" />
                         </Link>
                         <span className="bg-blue-600 text-white p-1 rounded text-sm">Python</span>
-                        F2: 流程控制
+                        F2: 控制流程
                     </h1>
                     <p className="text-xs text-slate-500 mt-2">Python 基础体系</p>
                 </div>

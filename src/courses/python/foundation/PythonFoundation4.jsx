@@ -876,7 +876,7 @@ export default function PythonFoundation4() {
                             <img src={`${import.meta.env.BASE_URL}logo.jpg`} alt="Logo" className="w-8 h-8 rounded-lg object-cover border border-slate-200 shadow-sm" />
                         </Link>
                         <span className="bg-indigo-600 text-white p-1 rounded text-sm">Python</span>
-                        F4: 函数模块
+                        F4: 函数与模块
                     </h1>
                     <p className="text-xs text-slate-500 mt-2">Python 基础体系</p>
                 </div>

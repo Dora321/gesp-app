@@ -704,7 +704,7 @@ export default function PythonFoundation7() {
             {/* Mobile Header */}
             <div className="md:hidden bg-white border-b border-slate-200 p-4 flex justify-between items-center sticky top-0 z-20">
                 <div className="font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-indigo-600 to-purple-600 flex items-center gap-2">
-                    <span className="text-lg">F7: 集合魔法</span>
+                    <span className="text-lg">F7: 集合宝藏</span>
                 </div>
                 <button onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)} className="p-2 text-slate-600">
                     {isMobileMenuOpen ? <X /> : <Menu />}
@@ -723,7 +723,7 @@ export default function PythonFoundation7() {
                             <Box className="w-8 h-8 text-indigo-600" />
                         </Link>
                         <span className="bg-indigo-600 text-white p-1 rounded text-sm">Python</span>
-                        F7: 集合魔法
+                        F7: 集合宝藏
                     </h1>
                     <p className="text-xs text-slate-500 mt-2">Python 集合 (Set)</p>
                 </div>

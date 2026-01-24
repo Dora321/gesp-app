@@ -96,7 +96,7 @@ export const courseCategories = [
         courses: [
             {
                 id: 'py_f4',
-                title: 'Python 函数模块',
+                title: 'Python 函数与模块',
                 desc: '掌握代码封装与复用。像搭积木一样构建程序。',
                 tags: ['Python', 'Core'],
                 path: '/python/f4',
@@ -104,7 +104,7 @@ export const courseCategories = [
             },
             {
                 id: 'py_file',
-                title: 'Python 文件秘籍',
+                title: 'Python 文件操作',
                 desc: '进阶第九讲：掌握文件读写与持久化存储。',
                 tags: ['Python', 'File I/O'],
                 path: '/python/file-ops',

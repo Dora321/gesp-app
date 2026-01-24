@@ -1268,7 +1268,7 @@ export default function PythonFoundation6() {
             {/* Mobile Header */}
             <div className="md:hidden bg-white border-b border-slate-200 p-4 flex justify-between items-center sticky top-0 z-20">
                 <div className="font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-indigo-600 to-purple-600 flex items-center gap-2">
-                    <span className="text-lg">F6: 幸运咒语</span>
+                    <span className="text-lg">F6: 随机世界</span>
                 </div>
                 <button onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)} className="p-2 text-slate-600">
                     {isMobileMenuOpen ? <X /> : <Menu />}
@@ -1287,7 +1287,7 @@ export default function PythonFoundation6() {
                             <img src={`${import.meta.env.BASE_URL}logo.jpg`} alt="Logo" className="w-8 h-8 rounded-lg object-cover border border-slate-200 shadow-sm" />
                         </Link>
                         <span className="bg-emerald-600 text-white p-1 rounded text-sm">Python</span>
-                        F6: 幸运咒语
+                        F6: 随机世界
                     </h1>
                 </div>
                 <div className="flex-1 overflow-y-auto p-4 space-y-2">

@@ -674,7 +674,7 @@ cout << (N + i);`}
             </div>
             <div>
               <h1 className="text-base font-bold text-slate-800 leading-tight">C++ 趣味课堂</h1>
-              <p className="text-xs text-blue-500 font-medium">第 9 课：循环魔法</p>
+              <p className="text-xs text-blue-500 font-medium">第 9 课：for 循环</p>
             </div>
           </Link>
         </div>

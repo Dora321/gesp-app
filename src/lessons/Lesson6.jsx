@@ -582,7 +582,7 @@ export default function App() {
             </div>
             <div>
               <h1 className="text-base font-bold text-slate-800 leading-tight">C++ 趣味课堂</h1>
-              <p className="text-xs text-blue-500 font-medium">第 6 课：条件判断</p>
+              <p className="text-xs text-blue-500 font-medium">第 6 课：逻辑运算</p>
             </div>
           </Link>
         </div>

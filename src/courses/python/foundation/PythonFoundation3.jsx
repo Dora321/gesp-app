@@ -1086,7 +1086,7 @@ export default function PythonFoundation3() {
                             <img src={`${import.meta.env.BASE_URL}logo.jpg`} alt="Logo" className="w-8 h-8 rounded-lg object-cover border border-slate-200 shadow-sm" />
                         </Link>
                         <span className="bg-teal-600 text-white p-1 rounded text-sm">Python</span>
-                        F3: 数据结构
+                        F3: 列表与字典
                     </h1>
                     <p className="text-xs text-slate-500 mt-2">Python 基础体系</p>
                 </div>
