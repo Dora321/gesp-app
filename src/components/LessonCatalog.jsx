@@ -1,10 +1,11 @@
 import React, { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { ChevronRight, ChevronDown, BookOpen, Zap, Star, Play, Lock, CheckCircle } from 'lucide-react';
+import { BookOpen, Play, Code, Cpu, Database, Binary, Brain, Layers, ChevronRight } from 'lucide-react';
+import { motion, AnimatePresence } from 'framer-motion';
 
 export default function LessonCatalog() {
     const navigate = useNavigate();
-    const [expandedSection, setExpandedSection] = useState('basic');
+    const [activeTab, setActiveTab] = useState('basic');
 
     const lessonSections = [
         {
@@ -12,6 +13,7 @@ export default function LessonCatalog() {
             title: 'C++ 基础闯关',
             subtitle: '16 节课 · 入门必备',
             color: 'emerald',
+            icon: Code,
             lessons: [
                 { id: 1, title: '你好，计算机', path: '/lesson1' },
                 { id: 2, title: '变量与数据', path: '/lesson2' },
@@ -36,6 +38,7 @@ export default function LessonCatalog() {
             title: 'C++ 进阶闯关',
             subtitle: '16 课时 · GESP 二级',
             color: 'purple',
+            icon: Cpu,
             lessons: [
                 { id: 1, title: '计算机通识 (RAM/IP)', path: '/adv-lesson1' },
                 { id: 2, title: '字符的密码 (ASCII)', path: '/adv-lesson2' },
@@ -60,6 +63,7 @@ export default function LessonCatalog() {
             title: 'C++ 高阶闯关',
             subtitle: '16 课时 · GESP 三级',
             color: 'rose',
+            icon: Binary,
             lessons: [
                 { id: 1, title: '变身数字魔术师 (进制)', path: '/expert-lesson1' },
                 { id: 2, title: '负数的真面目 (补码)', path: '/expert-lesson2' },
@@ -84,6 +88,7 @@ export default function LessonCatalog() {
             title: 'C++ 资深闯关',
             subtitle: '16 课时 · GESP 四级',
             color: 'indigo',
+            icon: Database,
             lessons: [
                 { id: 1, title: '代码的积木：自定义函数', path: '/senior-lesson1' },
                 { id: 2, title: '数据的替身：传值与传参', path: '/senior-lesson2' },
@@ -108,6 +113,7 @@ export default function LessonCatalog() {
             title: 'C++ 专家闯关',
             subtitle: '16 课时 · GESP 五级',
             color: 'amber',
+            icon: Brain,
             lessons: [
                 { id: 1, title: '素数大筛选 (埃氏/线性)', path: '/expert5-lesson1' },
                 { id: 2, title: '公约数与公倍数 (GCD)', path: '/expert5-lesson2' },
@@ -132,6 +138,7 @@ export default function LessonCatalog() {
             title: 'C++ 大师闯关',
             subtitle: '16 课时 · GESP 六级',
             color: 'teal',
+            icon: Layers,
             lessons: [
                 { id: 1, title: '树的初相识 (性质/存储)', path: '/master-lesson1' },
                 { id: 2, title: '树的遍历 (前/中/后序)', path: '/master-lesson2' },
@@ -153,9 +160,10 @@ export default function LessonCatalog() {
         },
         {
             id: 'python-basic',
-            title: 'Python 基础课程',
+            title: 'Python 基础',
             subtitle: '6 节课 · 趣味编程',
             color: 'yellow',
+            icon: BookOpen,
             lessons: [
                 { id: 1, title: 'Python 入门', path: '/python/f1' },
                 { id: 2, title: '控制流程', path: '/python/f2' },
@@ -168,9 +176,10 @@ export default function LessonCatalog() {
         },
         {
             id: 'python-advanced',
-            title: 'Python 进阶项目',
+            title: 'Python 进阶',
             subtitle: '9 个项目 · 实战演练',
             color: 'blue',
+            icon: Code,
             lessons: [
                 { id: 1, title: '算法思维', path: '/python/a1' },
                 { id: 2, title: '游戏工坊', path: '/python/a2' },
@@ -186,82 +195,109 @@ export default function LessonCatalog() {
     ];
 
     const colorMap = {
-        emerald: { bg: 'bg-emerald-500', text: 'text-emerald-500', light: 'bg-emerald-50', border: 'border-emerald-200' },
-        purple: { bg: 'bg-purple-500', text: 'text-purple-500', light: 'bg-purple-50', border: 'border-purple-200' },
-        yellow: { bg: 'bg-yellow-500', text: 'text-yellow-600', light: 'bg-yellow-50', border: 'border-yellow-200' },
-        blue: { bg: 'bg-blue-500', text: 'text-blue-500', light: 'bg-blue-50', border: 'border-blue-200' },
-        rose: { bg: 'bg-rose-500', text: 'text-rose-500', light: 'bg-rose-50', border: 'border-rose-200' },
-        indigo: { bg: 'bg-indigo-500', text: 'text-indigo-500', light: 'bg-indigo-50', border: 'border-indigo-200' },
-        amber: { bg: 'bg-amber-500', text: 'text-amber-600', light: 'bg-amber-50', border: 'border-amber-200' },
-        teal: { bg: 'bg-teal-500', text: 'text-teal-500', light: 'bg-teal-50', border: 'border-teal-200' },
+        emerald: { bg: 'bg-emerald-500', text: 'text-emerald-500', light: 'bg-emerald-50', border: 'border-emerald-200', ring: 'ring-emerald-200' },
+        purple: { bg: 'bg-purple-500', text: 'text-purple-500', light: 'bg-purple-50', border: 'border-purple-200', ring: 'ring-purple-200' },
+        yellow: { bg: 'bg-yellow-500', text: 'text-yellow-600', light: 'bg-yellow-50', border: 'border-yellow-200', ring: 'ring-yellow-200' },
+        blue: { bg: 'bg-blue-500', text: 'text-blue-500', light: 'bg-blue-50', border: 'border-blue-200', ring: 'ring-blue-200' },
+        rose: { bg: 'bg-rose-500', text: 'text-rose-500', light: 'bg-rose-50', border: 'border-rose-200', ring: 'ring-rose-200' },
+        indigo: { bg: 'bg-indigo-500', text: 'text-indigo-500', light: 'bg-indigo-50', border: 'border-indigo-200', ring: 'ring-indigo-200' },
+        amber: { bg: 'bg-amber-500', text: 'text-amber-600', light: 'bg-amber-50', border: 'border-amber-200', ring: 'ring-amber-200' },
+        teal: { bg: 'bg-teal-500', text: 'text-teal-500', light: 'bg-teal-50', border: 'border-teal-200', ring: 'ring-teal-200' },
     };
+
+    const activeSection = lessonSections.find(s => s.id === activeTab);
+    const activeColors = colorMap[activeSection?.color || 'emerald'];
 
     return (
         <section id="lesson-catalog" className="py-24 bg-white">
-            <div className="max-w-5xl mx-auto px-4">
-                <div className="text-center mb-16">
+            <div className="max-w-6xl mx-auto px-4">
+                <div className="text-center mb-12">
                     <h2 className="text-4xl font-extrabold text-brand-slate mb-4">
                         全部课程目录
                     </h2>
                     <p className="text-xl text-slate-500">
-                        选择你想要学习的课程，开始你的编程之旅。
+                        体系化课程设计，从入门到精通的进阶之路
                     </p>
                 </div>
 
-                <div className="space-y-4">
+                {/* Mobile & Desktop Tabs */}
+                <div className="flex overflow-x-auto pb-4 mb-8 gap-2 no-scrollbar snap-x">
                     {lessonSections.map((section) => {
                         const colors = colorMap[section.color];
-                        const isExpanded = expandedSection === section.id;
+                        const isActive = activeTab === section.id;
+                        const Icon = section.icon;
 
                         return (
-                            <div key={section.id} className={`rounded-2xl border overflow-hidden transition-all ${isExpanded ? colors.border : 'border-slate-200'}`}>
-                                {/* Section Header */}
-                                <button
-                                    onClick={() => setExpandedSection(isExpanded ? null : section.id)}
-                                    className={`w-full p-6 flex items-center justify-between transition-colors ${isExpanded ? colors.light : 'bg-white hover:bg-slate-50'}`}
-                                >
-                                    <div className="flex items-center gap-4">
-                                        <div className={`w-12 h-12 rounded-xl ${colors.bg} flex items-center justify-center text-white`}>
-                                            <BookOpen size={24} />
-                                        </div>
-                                        <div className="text-left">
-                                            <h3 className="text-xl font-bold text-brand-slate">{section.title}</h3>
-                                            <p className="text-sm text-slate-400">{section.subtitle}</p>
-                                        </div>
-                                    </div>
-                                    <ChevronDown
-                                        size={24}
-                                        className={`text-slate-400 transition-transform ${isExpanded ? 'rotate-180' : ''}`}
-                                    />
-                                </button>
-
-                                {/* Lessons Grid */}
-                                <div className={`transition-all duration-300 overflow-hidden ${isExpanded ? 'max-h-[2000px] opacity-100' : 'max-h-0 opacity-0'}`}>
-                                    <div className="p-6 pt-0 grid sm:grid-cols-2 md:grid-cols-4 gap-3">
-                                        {section.lessons.map((lesson) => (
-                                            <button
-                                                key={lesson.id}
-                                                onClick={() => navigate(lesson.path)}
-                                                className="group p-4 rounded-xl bg-white border border-slate-100 hover:border-blue-300 hover:shadow-md transition-all text-left"
-                                            >
-                                                <div className="flex items-center gap-3">
-                                                    <div className={`w-8 h-8 rounded-lg ${colors.light} ${colors.text} flex items-center justify-center font-bold text-sm group-hover:scale-110 transition-transform`}>
-                                                        {lesson.id}
-                                                    </div>
-                                                    <span className="text-sm font-medium text-slate-600 group-hover:text-brand-slate truncate flex-1">
-                                                        {lesson.title}
-                                                    </span>
-                                                    <Play size={14} className="text-slate-300 group-hover:text-blue-500 transition-colors" />
-                                                </div>
-                                            </button>
-                                        ))}
-                                    </div>
-                                </div>
-                            </div>
+                            <button
+                                key={section.id}
+                                onClick={() => setActiveTab(section.id)}
+                                className={`
+                                    flex items-center gap-2 px-5 py-3 rounded-full text-sm font-bold whitespace-nowrap transition-all snap-start
+                                    ${isActive
+                                        ? `${colors.bg} text-white shadow-lg shadow-${section.color}-200 transform scale-105`
+                                        : 'bg-slate-50 text-slate-500 hover:bg-slate-100'
+                                    }
+                                `}
+                            >
+                                <Icon size={18} />
+                                {section.title}
+                            </button>
                         );
                     })}
                 </div>
+
+                {/* Content Area */}
+                <AnimatePresence mode="wait">
+                    <motion.div
+                        key={activeTab}
+                        initial={{ opacity: 0, y: 10 }}
+                        animate={{ opacity: 1, y: 0 }}
+                        exit={{ opacity: 0, y: -10 }}
+                        transition={{ duration: 0.2 }}
+                        className={`rounded-3xl border p-8 ${activeColors.border} bg-white shadow-sm`}
+                    >
+                        <div className="flex items-center gap-4 mb-8">
+                            <div className={`w-14 h-14 rounded-2xl ${activeColors.bg} flex items-center justify-center text-white shadow-md`}>
+                                {React.createElement(activeSection.icon, { size: 28 })}
+                            </div>
+                            <div>
+                                <h3 className="text-2xl font-bold text-brand-slate">{activeSection.title}</h3>
+                                <p className="text-slate-500">{activeSection.subtitle}</p>
+                            </div>
+                        </div>
+
+                        <div className="grid sm:grid-cols-2 lg:grid-cols-4 gap-4">
+                            {activeSection.lessons.map((lesson) => (
+                                <button
+                                    key={lesson.id}
+                                    onClick={() => navigate(lesson.path)}
+                                    className={`
+                                        group p-4 rounded-xl border border-slate-100 bg-slate-50/50 hover:bg-white
+                                        hover:shadow-md hover:border-${activeSection.color}-200 transition-all text-left flex items-start gap-3
+                                    `}
+                                >
+                                    <div className={`
+                                        w-8 h-8 rounded-lg shrink-0 flex items-center justify-center font-bold text-sm transition-transform group-hover:scale-110
+                                        ${activeColors.light} ${activeColors.text}
+                                    `}>
+                                        {lesson.id}
+                                    </div>
+                                    <div className="min-w-0 flex-1">
+                                        <h4 className="font-bold text-brand-slate text-sm truncate w-full mb-1 group-hover:text-blue-600 transition-colors">
+                                            {lesson.title}
+                                        </h4>
+                                        <div className="flex items-center text-xs text-slate-400 group-hover:text-slate-500">
+                                            <span>点击开始学习</span>
+                                            <ChevronRight size={12} className="ml-1 opacity-0 -translate-x-2 group-hover:opacity-100 group-hover:translate-x-0 transition-all" />
+                                        </div>
+                                    </div>
+                                </button>
+                            ))}
+                        </div>
+                    </motion.div>
+                </AnimatePresence>
             </div>
         </section>
     );
 }
+
