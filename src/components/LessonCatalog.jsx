@@ -80,6 +80,30 @@ export default function LessonCatalog() {
             ]
         },
         {
+            id: 'senior',
+            title: 'C++ 资深闯关',
+            subtitle: '16 课时 · GESP 四级',
+            color: 'indigo',
+            lessons: [
+                { id: 1, title: '代码的积木：自定义函数', path: '/senior-lesson1' },
+                { id: 2, title: '数据的替身：传值与传参', path: '/senior-lesson2' },
+                { id: 3, title: '特殊的参数：数组进函数', path: '/senior-lesson3' },
+                { id: 4, title: '递归初探 (函数调用自己)', path: '/senior-lesson4' },
+                { id: 5, title: '神秘的门牌号：指针入门', path: '/senior-lesson5' },
+                { id: 6, title: '指针与数组的纠葛', path: '/senior-lesson6' },
+                { id: 7, title: '超级档案袋：结构体 (Struct)', path: '/senior-lesson7' },
+                { id: 8, title: '二维数组与矩阵', path: '/senior-lesson8' },
+                { id: 9, title: '排队的智慧：冒泡排序', path: '/senior-lesson9' },
+                { id: 10, title: '打扑克牌：插入排序', path: '/senior-lesson10' },
+                { id: 11, title: '挑选最大的：选择排序', path: '/senior-lesson11' },
+                { id: 12, title: '找规律高手：递推算法', path: '/senior-lesson12' },
+                { id: 13, title: '文件小管家 (freopen)', path: '/senior-lesson13' },
+                { id: 14, title: '异常处理与复杂度', path: '/senior-lesson14' },
+                { id: 15, title: '综合编程实战 (1)', path: '/senior-lesson15' },
+                { id: 16, title: '全真模拟与避坑 (2)', path: '/senior-lesson16' },
+            ]
+        },
+        {
             id: 'python-basic',
             title: 'Python 基础课程',
             subtitle: '6 节课 · 趣味编程',
@@ -119,6 +143,7 @@ export default function LessonCatalog() {
         yellow: { bg: 'bg-yellow-500', text: 'text-yellow-600', light: 'bg-yellow-50', border: 'border-yellow-200' },
         blue: { bg: 'bg-blue-500', text: 'text-blue-500', light: 'bg-blue-50', border: 'border-blue-200' },
         rose: { bg: 'bg-rose-500', text: 'text-rose-500', light: 'bg-rose-50', border: 'border-rose-200' },
+        indigo: { bg: 'bg-indigo-500', text: 'text-indigo-500', light: 'bg-indigo-50', border: 'border-indigo-200' },
     };
 
     return (
