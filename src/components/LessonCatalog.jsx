@@ -128,6 +128,30 @@ export default function LessonCatalog() {
             ]
         },
         {
+            id: 'master',
+            title: 'C++ 大师闯关',
+            subtitle: '16 课时 · GESP 六级',
+            color: 'teal',
+            lessons: [
+                { id: 1, title: '树的初相识 (性质/存储)', path: '/master-lesson1' },
+                { id: 2, title: '树的遍历 (前/中/后序)', path: '/master-lesson2' },
+                { id: 3, title: '最优二叉树 (哈夫曼)', path: '/master-lesson3' },
+                { id: 4, title: '地毯式搜索 (BFS)', path: '/master-lesson4' },
+                { id: 5, title: '不撞南墙不回头 (DFS)', path: '/master-lesson5' },
+                { id: 6, title: '类的蓝图 (封装/构造)', path: '/master-lesson6' },
+                { id: 7, title: '家族传承 (继承/保护)', path: '/master-lesson7' },
+                { id: 8, title: '千变万化 (多态/虚函数)', path: '/master-lesson8' },
+                { id: 9, title: '特殊的编码 (格雷码)', path: '/master-lesson9' },
+                { id: 10, title: 'OOP 综合实战', path: '/master-lesson10' },
+                { id: 11, title: '记忆的魔法 (DP 基础)', path: '/master-lesson11' },
+                { id: 12, title: '背包问题 (0/1 背包)', path: '/master-lesson12' },
+                { id: 13, title: '完全背包与简单 DP', path: '/master-lesson13' },
+                { id: 14, title: '编程实战：矩阵与路径', path: '/master-lesson14' },
+                { id: 15, title: '易错题诊疗室', path: '/master-lesson15' },
+                { id: 16, title: '全真模拟考试', path: '/master-lesson16' },
+            ]
+        },
+        {
             id: 'python-basic',
             title: 'Python 基础课程',
             subtitle: '6 节课 · 趣味编程',
@@ -169,6 +193,7 @@ export default function LessonCatalog() {
         rose: { bg: 'bg-rose-500', text: 'text-rose-500', light: 'bg-rose-50', border: 'border-rose-200' },
         indigo: { bg: 'bg-indigo-500', text: 'text-indigo-500', light: 'bg-indigo-50', border: 'border-indigo-200' },
         amber: { bg: 'bg-amber-500', text: 'text-amber-600', light: 'bg-amber-50', border: 'border-amber-200' },
+        teal: { bg: 'bg-teal-500', text: 'text-teal-500', light: 'bg-teal-50', border: 'border-teal-200' },
     };
 
     return (
