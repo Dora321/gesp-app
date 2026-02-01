@@ -1,15 +1,18 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { BookOpen, Play, Code, Cpu, Database, Binary, Brain, Layers, ChevronRight } from 'lucide-react';
+import { BookOpen, Play, Code, Cpu, Database, Binary, Brain, Layers, ChevronRight, Terminal } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
 
 export default function LessonCatalog() {
     const navigate = useNavigate();
+    const [activeSubject, setActiveSubject] = useState('cpp');
     const [activeTab, setActiveTab] = useState('basic');
 
     const lessonSections = [
+        // C++ Series
         {
             id: 'basic',
+            subject: 'cpp',
             title: 'C++ 基础闯关',
             subtitle: '16 节课 · 入门必备',
             color: 'emerald',
@@ -35,6 +38,7 @@ export default function LessonCatalog() {
         },
         {
             id: 'advanced',
+            subject: 'cpp',
             title: 'C++ 进阶闯关',
             subtitle: '16 课时 · GESP 二级',
             color: 'purple',
@@ -60,6 +64,7 @@ export default function LessonCatalog() {
         },
         {
             id: 'expert',
+            subject: 'cpp',
             title: 'C++ 高阶闯关',
             subtitle: '16 课时 · GESP 三级',
             color: 'rose',
@@ -85,6 +90,7 @@ export default function LessonCatalog() {
         },
         {
             id: 'senior',
+            subject: 'cpp',
             title: 'C++ 资深闯关',
             subtitle: '16 课时 · GESP 四级',
             color: 'indigo',
@@ -110,6 +116,7 @@ export default function LessonCatalog() {
         },
         {
             id: 'expert5',
+            subject: 'cpp',
             title: 'C++ 专家闯关',
             subtitle: '16 课时 · GESP 五级',
             color: 'amber',
@@ -135,6 +142,7 @@ export default function LessonCatalog() {
         },
         {
             id: 'master',
+            subject: 'cpp',
             title: 'C++ 大师闯关',
             subtitle: '16 课时 · GESP 六级',
             color: 'teal',
@@ -158,8 +166,11 @@ export default function LessonCatalog() {
                 { id: 16, title: '全真模拟考试', path: '/master-lesson16' },
             ]
         },
+
+        // Python Series
         {
             id: 'python-basic',
+            subject: 'python',
             title: 'Python 基础',
             subtitle: '6 节课 · 趣味编程',
             color: 'yellow',
@@ -176,10 +187,11 @@ export default function LessonCatalog() {
         },
         {
             id: 'python-advanced',
+            subject: 'python',
             title: 'Python 进阶',
             subtitle: '9 个项目 · 实战演练',
             color: 'blue',
-            icon: Code,
+            icon: Terminal,
             lessons: [
                 { id: 1, title: '算法思维', path: '/python/a1' },
                 { id: 2, title: '游戏工坊', path: '/python/a2' },
@@ -205,6 +217,16 @@ export default function LessonCatalog() {
         teal: { bg: 'bg-teal-500', text: 'text-teal-500', light: 'bg-teal-50', border: 'border-teal-200', ring: 'ring-teal-200' },
     };
 
+    // Filter sections based on active subject
+    const filteredSections = lessonSections.filter(section => section.subject === activeSubject);
+
+    // Auto-select first tab when subject changes
+    useEffect(() => {
+        if (filteredSections.length > 0) {
+            setActiveTab(filteredSections[0].id);
+        }
+    }, [activeSubject]);
+
     const activeSection = lessonSections.find(s => s.id === activeTab);
     const activeColors = colorMap[activeSection?.color || 'emerald'];
 
@@ -215,14 +237,44 @@ export default function LessonCatalog() {
                     <h2 className="text-4xl font-extrabold text-brand-slate mb-4">
                         全部课程目录
                     </h2>
-                    <p className="text-xl text-slate-500">
+                    <p className="text-xl text-slate-500 mb-8">
                         体系化课程设计，从入门到精通的进阶之路
                     </p>
+
+                    {/* Tier 1: Subject Switcher */}
+                    <div className="inline-flex bg-slate-100 p-1.5 rounded-2xl mb-8">
+                        <button
+                            onClick={() => setActiveSubject('cpp')}
+                            className={`
+                                flex items-center gap-2 px-6 py-3 rounded-xl text-sm font-bold transition-all
+                                ${activeSubject === 'cpp'
+                                    ? 'bg-white text-brand-slate shadow-sm'
+                                    : 'text-slate-500 hover:text-slate-700'
+                                }
+                            `}
+                        >
+                            <Code size={18} className={activeSubject === 'cpp' ? 'text-blue-500' : ''} />
+                            C++ 体系
+                        </button>
+                        <button
+                            onClick={() => setActiveSubject('python')}
+                            className={`
+                                flex items-center gap-2 px-6 py-3 rounded-xl text-sm font-bold transition-all
+                                ${activeSubject === 'python'
+                                    ? 'bg-white text-brand-slate shadow-sm'
+                                    : 'text-slate-500 hover:text-slate-700'
+                                }
+                            `}
+                        >
+                            <Terminal size={18} className={activeSubject === 'python' ? 'text-yellow-500' : ''} />
+                            Python 体系
+                        </button>
+                    </div>
                 </div>
 
-                {/* Mobile & Desktop Tabs */}
-                <div className="flex overflow-x-auto pb-4 mb-8 gap-2 no-scrollbar snap-x">
-                    {lessonSections.map((section) => {
+                {/* Tier 2: Level Tabs */}
+                <div className="flex overflow-x-auto pb-4 mb-8 gap-2 no-scrollbar snap-x justify-center">
+                    {filteredSections.map((section) => {
                         const colors = colorMap[section.color];
                         const isActive = activeTab === section.id;
                         const Icon = section.icon;
@@ -300,4 +352,3 @@ export default function LessonCatalog() {
         </section>
     );
 }
-
