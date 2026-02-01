@@ -104,6 +104,30 @@ export default function LessonCatalog() {
             ]
         },
         {
+            id: 'expert5',
+            title: 'C++ 专家闯关',
+            subtitle: '16 课时 · GESP 五级',
+            color: 'amber',
+            lessons: [
+                { id: 1, title: '素数大筛选 (埃氏/线性)', path: '/expert5-lesson1' },
+                { id: 2, title: '公约数与公倍数 (GCD)', path: '/expert5-lesson2' },
+                { id: 3, title: '超级计算器 (高精加减)', path: '/expert5-lesson3' },
+                { id: 4, title: '超级计算器 (高精乘除)', path: '/expert5-lesson4' },
+                { id: 5, title: '数论综合实战', path: '/expert5-lesson5' },
+                { id: 6, title: '链表的诞生 (节点/指针)', path: '/expert5-lesson6' },
+                { id: 7, title: '链表的增删改 (先连后断)', path: '/expert5-lesson7' },
+                { id: 8, title: '复杂的链表 (双向/循环)', path: '/expert5-lesson8' },
+                { id: 9, title: '链表综合应用 (约瑟夫环)', path: '/expert5-lesson9' },
+                { id: 10, title: '猜数字的艺术 (二分查找)', path: '/expert5-lesson10' },
+                { id: 11, title: '分而治之 (分治思想)', path: '/expert5-lesson11' },
+                { id: 12, title: '眼下的最优 (贪心策略)', path: '/expert5-lesson12' },
+                { id: 13, title: '递归的进阶 (记忆化)', path: '/expert5-lesson13' },
+                { id: 14, title: '算法有多快？(复杂度)', path: '/expert5-lesson14' },
+                { id: 15, title: '编程题专项训练', path: '/expert5-lesson15' },
+                { id: 16, title: '全真模拟与技巧', path: '/expert5-lesson16' },
+            ]
+        },
+        {
             id: 'python-basic',
             title: 'Python 基础课程',
             subtitle: '6 节课 · 趣味编程',
@@ -144,6 +168,7 @@ export default function LessonCatalog() {
         blue: { bg: 'bg-blue-500', text: 'text-blue-500', light: 'bg-blue-50', border: 'border-blue-200' },
         rose: { bg: 'bg-rose-500', text: 'text-rose-500', light: 'bg-rose-50', border: 'border-rose-200' },
         indigo: { bg: 'bg-indigo-500', text: 'text-indigo-500', light: 'bg-indigo-50', border: 'border-indigo-200' },
+        amber: { bg: 'bg-amber-500', text: 'text-amber-600', light: 'bg-amber-50', border: 'border-amber-200' },
     };
 
     return (
