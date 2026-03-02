@@ -11,8 +11,8 @@ export const paperData = {
         {
             id: 1,
             type: 'single',
-            question: "第1题（提取待人工校对）",
-            options: ["A", "B", "C", "D"],
+            question: "（原卷题面缺失：第1题，待补录）",
+            options: ["（原卷A待补）", "（原卷B待补）", "（原卷C待补）", "（原卷D待补）"],
             answer: 3,
             score: 2,
             explanation: '答案依据官方答案。',
@@ -72,7 +72,7 @@ export const paperData = {
             id: 7,
             type: 'single',
             question: "下⾯的C++代码执行后其输出是（ ）。",
-            options: ["145 int N, M, div=1; cout << \"请输入一个正整数：\"; cin >> N; cout <<\"请输入从右到左取第几位数：\"; cin >> M; for (int i =0; i < (M - 1); i++) div *= 10; cout << (_…", "（选项提取异常）", "（选项提取异常）", "（选项提取异常）"],
+            options: ["145 int N, M, div=1; cout << \"请输入一个正整数：\"; cin >> N; cout <<\"请输入从右到左取第几位数：\"; cin >> M; for (int i =0; i < (M - 1); i++) div *= 10; cout << (_…", "（该选项文本提取异常，待按原卷补录）", "（该选项文本提取异常，待按原卷补录）", "（该选项文本提取异常，待按原卷补录）"],
             answer: 3,
             score: 2,
             explanation: '答案依据官方答案。',
@@ -82,7 +82,7 @@ export const paperData = {
             id: 8,
             type: 'single',
             question: "下⾯C++代码执行后其输出是（ ）。",
-            options: ["（选项提取异常）", "（选项提取异常）", "不确定", "⽆输出"],
+            options: ["（该选项文本提取异常，待按原卷补录）", "（该选项文本提取异常，待按原卷补录）", "不确定", "⽆输出"],
             answer: 1,
             score: 2,
             explanation: '答案依据官方答案。',
@@ -132,7 +132,7 @@ export const paperData = {
             id: 13,
             type: 'single',
             question: "下⾯C++代码实现输出如下图形，应该在横线处填入的代码是（ ）。 cin >> now_num; _ _ _ while (now_num != -999) min num = max num = now num; { if (max_num < now_num) max_num = now_num; if (min_num > now_num) min_num = now_num; cin >> now_num; } cout << min_num << ' ' << ma…",
-            options: ["（选项提取异常）", "（选项提取异常）", "（选项提取异常）", "（选项提取异常）"],
+            options: ["（该选项文本提取异常，待按原卷补录）", "（该选项文本提取异常，待按原卷补录）", "（该选项文本提取异常，待按原卷补录）", "（该选项文本提取异常，待按原卷补录）"],
             answer: 0,
             score: 2,
             explanation: '答案依据官方答案。',
@@ -151,8 +151,8 @@ export const paperData = {
         {
             id: 15,
             type: 'single',
-            question: "第15题（提取待人工校对）",
-            options: ["A", "B", "C", "D"],
+            question: "（原卷题面缺失：第15题，待补录）",
+            options: ["（原卷A待补）", "（原卷B待补）", "（原卷C待补）", "（原卷D待补）"],
             answer: 3,
             score: 2,
             explanation: '答案依据官方答案。',
@@ -161,11 +161,11 @@ export const paperData = {
         {
             id: 16,
             type: 'judge',
-            question: "第1题（提取待人工校对）",
+            question: "（原卷题面缺失：第1题，待补录）",
             options: ['正确', '错误'],
             answer: 0,
             score: 2,
-            explanation: "判断题答案待复核（待复核）。",
+            explanation: "该判断题题面或选项存在缺失，答案需按原卷复核。",
             tags: ["判断题"]
         },
         {
@@ -175,7 +175,7 @@ export const paperData = {
             options: ['正确', '错误'],
             answer: 0,
             score: 2,
-            explanation: "判断题答案待复核（待复核）。",
+            explanation: "该判断题题面或选项存在缺失，答案需按原卷复核。",
             tags: ["判断题", "输入输出", "程序分析"]
         },
         {
@@ -185,7 +185,7 @@ export const paperData = {
             options: ['正确', '错误'],
             answer: 0,
             score: 2,
-            explanation: "判断题答案待复核（待复核）。",
+            explanation: "该判断题题面或选项存在缺失，答案需按原卷复核。",
             tags: ["判断题", "输入输出", "程序分析"]
         },
         {
@@ -195,7 +195,7 @@ export const paperData = {
             options: ['正确', '错误'],
             answer: 0,
             score: 2,
-            explanation: "判断题答案待复核（待复核）。",
+            explanation: "该判断题题面或选项存在缺失，答案需按原卷复核。",
             tags: ["判断题", "输入输出", "变量与标识符"]
         },
         {
@@ -205,7 +205,7 @@ export const paperData = {
             options: ['正确', '错误'],
             answer: 0,
             score: 2,
-            explanation: "判断题答案待复核（待复核）。",
+            explanation: "该判断题题面或选项存在缺失，答案需按原卷复核。",
             tags: ["判断题", "输入输出", "程序分析"]
         },
         {
@@ -215,7 +215,7 @@ export const paperData = {
             options: ['正确', '错误'],
             answer: 0,
             score: 2,
-            explanation: "判断题答案待复核（待复核）。",
+            explanation: "该判断题题面或选项存在缺失，答案需按原卷复核。",
             tags: ["判断题", "条件判断", "输入输出"]
         },
         {
@@ -225,7 +225,7 @@ export const paperData = {
             options: ['正确', '错误'],
             answer: 0,
             score: 2,
-            explanation: "判断题答案待复核（待复核）。",
+            explanation: "该判断题题面或选项存在缺失，答案需按原卷复核。",
             tags: ["判断题", "输入输出", "程序分析"]
         },
         {
@@ -235,7 +235,7 @@ export const paperData = {
             options: ['正确', '错误'],
             answer: 0,
             score: 2,
-            explanation: "判断题答案待复核（待复核）。",
+            explanation: "该判断题题面或选项存在缺失，答案需按原卷复核。",
             tags: ["判断题", "输入输出", "程序分析"]
         },
         {
@@ -245,17 +245,17 @@ export const paperData = {
             options: ['正确', '错误'],
             answer: 0,
             score: 2,
-            explanation: "判断题答案待复核（待复核）。",
+            explanation: "该判断题题面或选项存在缺失，答案需按原卷复核。",
             tags: ["判断题", "条件判断", "输入输出"]
         },
         {
             id: 25,
             type: 'judge',
-            question: "第10题（提取待人工校对）",
+            question: "（原卷题面缺失：第10题，待补录）",
             options: ['正确', '错误'],
             answer: 0,
             score: 2,
-            explanation: "判断题答案待复核（待复核）。",
+            explanation: "该判断题题面或选项存在缺失，答案需按原卷复核。",
             tags: ["判断题"]
         }
     ]
