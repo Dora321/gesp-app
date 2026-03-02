@@ -8,7 +8,9 @@
     "dev": "vite",
     "build": "vite build",
     "lint": "eslint .",
-    "preview": "vite preview"
+    "preview": "vite preview",
+    "check:objective": "node scripts/check-objective-level123.js",
+    "qa:objective": "node scripts/qa-objective-level123.js"
   },
   "dependencies": {
     "@tailwindcss/postcss": "^4.1.18",
