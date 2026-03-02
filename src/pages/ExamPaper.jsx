@@ -105,6 +105,12 @@ const ExamPaper = () => {
         return `${m.toString().padStart(2, '0')}:${s.toString().padStart(2, '0')}`;
     };
 
+    // Remove leading numbering from question text to avoid duplicated index display (e.g. "1.1.")
+    const stripLeadingNumber = (questionText) => {
+        if (typeof questionText !== 'string') return questionText;
+        return questionText.replace(/^\s*\d+[\.。、]\s*/, '');
+    };
+
     const handleOptionSelect = (qId, optionIdx) => {
         if (isSubmitted) return;
         // In analysis mode, don't allow changing answer after reveal
@@ -338,7 +344,7 @@ const ExamPaper = () => {
 
                             <h2 className="text-xl md:text-2xl font-bold text-slate-800 mt-6 mb-8 leading-relaxed">
                                 <span className="text-blue-500 mr-2">{currentQuestionIndex + 1}.</span>
-                                {currentQ.question}
+                                {stripLeadingNumber(currentQ.question)}
                             </h2>
 
                             <div className="space-y-3">
