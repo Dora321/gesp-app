@@ -13,40 +13,16 @@ const ExamPaper = () => {
     const [isSubmitted, setIsSubmitted] = useState(false);
     const [showResult, setShowResult] = useState(false);
     const [showSidebar, setShowSidebar] = useState(false);
+    const [showSubmitConfirm, setShowSubmitConfirm] = useState(false);
 
     // Mode: 'exam' for timed test with final score, 'analysis' for immediate feedback
     const [mode, setMode] = useState(null); // null means mode not selected yet
     const [revealedAnswers, setRevealedAnswers] = useState({}); // Track revealed answers in analysis mode
 
-    /* 
-   * Dynamic Data Loading
-   * The user requested separate files for each paper.
-   * We will dynamically import them based on the paperId.
-   */
-    const [paperData, setPaperData] = useState(null);
-    const [loading, setLoading] = useState(true);
-    const [error, setError] = useState(null);
-
-    // Registry lookup
-
-
-    useEffect(() => {
-        // Simulating async load to keep existing logic structure (optional, but good for consistency)
-        setLoading(true);
-        setError(null);
-
-        const data = paperRegistry[paperId];
-
-        if (data) {
-            setPaperData(data);
-            setTimeLeft(data.timeLimit || 90 * 60);
-            setLoading(false);
-        } else {
-            console.error(`Paper ID ${paperId} not found in registry. Available:`, Object.keys(paperRegistry));
-            setError("在此题库中未找到该试卷 (Registry Lookup Failed)");
-            setLoading(false);
-        }
-    }, [paperId]);
+    // Registry lookup (derived state to avoid unnecessary effect-driven state sync)
+    const paperData = paperRegistry[paperId] || null;
+    const loading = false;
+    const error = paperData ? null : "在此题库中未找到该试卷 (Registry Lookup Failed)";
 
     // Timer Logic - MUST be before any early returns to satisfy React hooks rules
     // Only run timer in exam mode
@@ -108,7 +84,7 @@ const ExamPaper = () => {
     // Remove leading numbering from question text to avoid duplicated index display (e.g. "1.1.")
     const stripLeadingNumber = (questionText) => {
         if (typeof questionText !== 'string') return questionText;
-        return questionText.replace(/^\s*\d+[\.。、]\s*/, '');
+        return questionText.replace(/^\s*\d+[.。、]\s*/, '');
     };
 
     const handleOptionSelect = (qId, optionIdx) => {
@@ -133,17 +109,32 @@ const ExamPaper = () => {
         return total;
     };
 
+    const getKnowledgeTags = (q) => {
+        if (Array.isArray(q?.tags) && q.tags.length) return q.tags;
+        const text = `${q?.question || ''} ${q?.explanation || ''}`;
+        const tags = [];
+        if (/处理器|CPU/i.test(text)) tags.push('处理器');
+        if (/内存|存储/i.test(text)) tags.push('内存');
+        if (/运算符|自增|\+\+|表达式/.test(text)) tags.push('运算符');
+        if (/输入|输出|设备/.test(text)) tags.push('输入输出设备');
+        if (/判断|逻辑|布尔|真|假/.test(text)) tags.push('逻辑判断');
+        return tags.length ? tags : ['基础概念'];
+    };
+
     const handleSubmit = () => {
-        const confirmSubmit = window.confirm("确定要交卷吗？交卷后将无法修改答案。");
-        if (confirmSubmit) {
-            setIsSubmitted(true);
-            setShowResult(true);
-            // Determine invalid attempts (unanswered)
-        }
+        setShowSubmitConfirm(true);
+    };
+
+    const confirmSubmitExam = () => {
+        setIsSubmitted(true);
+        setShowResult(true);
+        setShowSubmitConfirm(false);
     };
 
     const currentQ = questions[currentQuestionIndex];
-    const progress = (Object.keys(answers).length / questions.length) * 100;
+    const answeredCount = Object.keys(answers).length;
+    const unansweredCount = questions.length - answeredCount;
+    const progress = (answeredCount / questions.length) * 100;
 
     // Check if current question answer is revealed (analysis mode)
     const isCurrentRevealed = mode === 'analysis' && revealedAnswers[currentQ?.id];
@@ -161,7 +152,10 @@ const ExamPaper = () => {
                     <div className="grid md:grid-cols-2 gap-6">
                         {/* Exam Mode */}
                         <button
-                            onClick={() => setMode('exam')}
+                            onClick={() => {
+                                setTimeLeft(paperData.timeLimit || 90 * 60);
+                                setMode('exam');
+                            }}
                             className="bg-white/10 backdrop-blur-sm border border-white/20 rounded-2xl p-8 text-left hover:bg-white/20 hover:border-indigo-400 transition-all group"
                         >
                             <div className="w-14 h-14 rounded-xl bg-indigo-500 flex items-center justify-center mb-4 group-hover:scale-110 transition-transform">
@@ -269,6 +263,15 @@ const ExamPaper = () => {
           ${showSidebar ? 'translate-x-0' : '-translate-x-full md:translate-x-0'}
         `}>
                     <div className="p-4 border-b border-slate-100">
+                        <div className="flex items-center justify-between mb-2">
+                            <div className="text-sm font-bold text-slate-700">题号面板</div>
+                            <button
+                                className="md:hidden text-xs px-2 py-1 rounded bg-slate-100 text-slate-600"
+                                onClick={() => setShowSidebar(false)}
+                            >
+                                收起
+                            </button>
+                        </div>
                         <div className="text-sm font-bold text-slate-700 mb-2">答题进度</div>
                         <div className="w-full bg-slate-100 rounded-full h-2 mb-1">
                             <div
@@ -277,7 +280,7 @@ const ExamPaper = () => {
                             ></div>
                         </div>
                         <div className="text-xs text-slate-400 text-right">
-                            {Object.keys(answers).length} / {questions.length}
+                            {answeredCount} / {questions.length}
                         </div>
                     </div>
 
@@ -308,11 +311,13 @@ const ExamPaper = () => {
                                             setShowSidebar(false); // Close on mobile
                                         }}
                                         className={`
-                      aspect-square rounded-lg border flex items-center justify-center text-sm font-semibold transition-all
+                      relative aspect-square rounded-lg border flex items-center justify-center text-sm font-semibold transition-all
                       ${statusColor}
                     `}
                                     >
                                         {idx + 1}
+                                        {isCurrent && <span className="absolute top-1 right-1 text-[10px]">•</span>}
+                                        {!isCurrent && isAnswered && <span className="absolute top-1 right-1 text-[10px]">✔︎</span>}
                                     </button>
                                 );
                             })}
@@ -320,9 +325,9 @@ const ExamPaper = () => {
                     </div>
 
                     <div className="p-4 bg-slate-50 text-xs text-slate-400 space-y-1">
-                        <div className="flex items-center gap-2"><div className="w-3 h-3 rounded bg-blue-50 border border-blue-200"></div> 已答</div>
+                        <div className="flex items-center gap-2"><div className="w-3 h-3 rounded bg-blue-50 border border-blue-200"></div> 已答（✔︎）</div>
                         <div className="flex items-center gap-2"><div className="w-3 h-3 rounded bg-white border border-slate-200"></div> 未答</div>
-                        <div className="flex items-center gap-2"><div className="w-3 h-3 rounded bg-blue-600"></div> 当前</div>
+                        <div className="flex items-center gap-2"><div className="w-3 h-3 rounded bg-blue-600"></div> 当前（•）</div>
                     </div>
                 </aside>
 
@@ -397,14 +402,37 @@ const ExamPaper = () => {
                                             查看答案解析
                                         </button>
                                     ) : (
-                                        <div className="bg-blue-50 border border-blue-200 rounded-xl p-4">
-                                            <div className="flex items-center gap-2 text-blue-700 font-bold mb-2">
+                                        <div className="bg-blue-50 border border-blue-200 rounded-xl p-4 space-y-3">
+                                            <div className="flex items-center gap-2 text-blue-700 font-bold">
                                                 <Lightbulb size={18} />
                                                 答案解析
                                             </div>
+
+                                            <div className="text-sm">
+                                                <span className="font-bold text-green-700">正确答案：</span>
+                                                <span className="ml-1 text-slate-700">
+                                                    {String.fromCharCode(65 + currentQ.answer)}. {currentQ.options[currentQ.answer]}
+                                                </span>
+                                            </div>
+
                                             <p className="text-slate-600 text-sm leading-relaxed">
                                                 {currentQ.explanation || `正确答案是 ${String.fromCharCode(65 + currentQ.answer)}。`}
                                             </p>
+
+                                            <div className="flex flex-wrap gap-2">
+                                                {getKnowledgeTags(currentQ).map((tag) => (
+                                                    <span key={tag} className="text-xs px-2 py-1 rounded-full bg-white border border-blue-200 text-blue-700">
+                                                        #{tag}
+                                                    </span>
+                                                ))}
+                                            </div>
+
+                                            <button
+                                                onClick={() => navigate('/question-bank')}
+                                                className="text-sm px-3 py-2 rounded-lg bg-white border border-blue-300 text-blue-700 hover:bg-blue-100"
+                                            >
+                                                去题库找同类题
+                                            </button>
                                         </div>
                                     )}
                                 </div>
@@ -439,6 +467,42 @@ const ExamPaper = () => {
                     </div>
                 </main>
             </div>
+
+            {/* Submit Confirm Modal */}
+            {showSubmitConfirm && (
+                <div className="fixed inset-0 bg-black/60 z-50 flex items-center justify-center p-4 backdrop-blur-sm animate-in fade-in">
+                    <div className="bg-white rounded-2xl shadow-2xl max-w-md w-full p-6">
+                        <h3 className="text-xl font-bold text-slate-800 mb-2">确认交卷？</h3>
+                        <p className="text-sm text-slate-500 mb-4">交卷后将无法修改答案，请确认后提交。</p>
+
+                        <div className="grid grid-cols-2 gap-3 mb-6">
+                            <div className="bg-blue-50 rounded-lg p-3">
+                                <div className="text-xs text-blue-600">已答</div>
+                                <div className="text-2xl font-bold text-blue-700">{answeredCount}</div>
+                            </div>
+                            <div className="bg-amber-50 rounded-lg p-3">
+                                <div className="text-xs text-amber-700">未答</div>
+                                <div className="text-2xl font-bold text-amber-700">{unansweredCount}</div>
+                            </div>
+                        </div>
+
+                        <div className="flex gap-3">
+                            <button
+                                onClick={() => setShowSubmitConfirm(false)}
+                                className="flex-1 py-3 bg-slate-100 text-slate-700 rounded-xl font-bold hover:bg-slate-200 transition-colors"
+                            >
+                                返回继续答题
+                            </button>
+                            <button
+                                onClick={confirmSubmitExam}
+                                className="flex-1 py-3 bg-indigo-600 text-white rounded-xl font-bold hover:bg-indigo-700 transition-colors"
+                            >
+                                确认交卷
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            )}
 
             {/* Result Modal */}
             {showResult && (
