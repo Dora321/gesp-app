@@ -16,7 +16,8 @@ export const paperData = {
             options: ["A", "B", "C", "D"],
             answer: 0,
             score: 2,
-            explanation: '答案依据官方答案。'
+            explanation: '答案依据官方答案。',
+            tags: ["基础语法"]
         },
         {
             id: 2,
@@ -25,7 +26,8 @@ export const paperData = {
             options: ["A", "B", "C", "D"],
             answer: 0,
             score: 2,
-            explanation: '答案依据官方答案。'
+            explanation: '答案依据官方答案。',
+            tags: ["基础语法"]
         },
         {
             id: 3,
@@ -34,7 +36,8 @@ export const paperData = {
             options: ["A", "B", "C", "D"],
             answer: 0,
             score: 2,
-            explanation: '答案依据官方答案。'
+            explanation: '答案依据官方答案。',
+            tags: ["基础语法"]
         },
         {
             id: 4,
@@ -43,7 +46,8 @@ export const paperData = {
             options: ["A", "B", "C", "D"],
             answer: 0,
             score: 2,
-            explanation: '答案依据官方答案。'
+            explanation: '答案依据官方答案。',
+            tags: ["基础语法"]
         },
         {
             id: 5,
@@ -52,7 +56,8 @@ export const paperData = {
             options: ["A", "B", "C", "D"],
             answer: 0,
             score: 2,
-            explanation: '答案依据官方答案。'
+            explanation: '答案依据官方答案。',
+            tags: ["基础语法"]
         },
         {
             id: 6,
@@ -61,7 +66,8 @@ export const paperData = {
             options: ["A", "B", "C", "D"],
             answer: 0,
             score: 2,
-            explanation: '答案依据官方答案。'
+            explanation: '答案依据官方答案。',
+            tags: ["基础语法"]
         },
         {
             id: 7,
@@ -70,7 +76,8 @@ export const paperData = {
             options: ["A", "B", "C", "D"],
             answer: 0,
             score: 2,
-            explanation: '答案依据官方答案。'
+            explanation: '答案依据官方答案。',
+            tags: ["基础语法"]
         },
         {
             id: 8,
@@ -79,7 +86,8 @@ export const paperData = {
             options: ["A", "B", "C", "D"],
             answer: 0,
             score: 2,
-            explanation: '答案依据官方答案。'
+            explanation: '答案依据官方答案。',
+            tags: ["基础语法"]
         },
         {
             id: 9,
@@ -88,7 +96,8 @@ export const paperData = {
             options: ["A", "B", "C", "D"],
             answer: 0,
             score: 2,
-            explanation: '答案依据官方答案。'
+            explanation: '答案依据官方答案。',
+            tags: ["基础语法"]
         },
         {
             id: 10,
@@ -97,7 +106,8 @@ export const paperData = {
             options: ["A", "B", "C", "D"],
             answer: 0,
             score: 2,
-            explanation: '答案依据官方答案。'
+            explanation: '答案依据官方答案。',
+            tags: ["基础语法"]
         },
         {
             id: 11,
@@ -106,7 +116,8 @@ export const paperData = {
             options: ["A", "B", "C", "D"],
             answer: 0,
             score: 2,
-            explanation: '答案依据官方答案。'
+            explanation: '答案依据官方答案。',
+            tags: ["基础语法"]
         },
         {
             id: 12,
@@ -115,7 +126,8 @@ export const paperData = {
             options: ["A", "B", "C", "D"],
             answer: 0,
             score: 2,
-            explanation: '答案依据官方答案。'
+            explanation: '答案依据官方答案。',
+            tags: ["基础语法"]
         },
         {
             id: 13,
@@ -124,7 +136,8 @@ export const paperData = {
             options: ["A", "B", "C", "D"],
             answer: 0,
             score: 2,
-            explanation: '答案依据官方答案。'
+            explanation: '答案依据官方答案。',
+            tags: ["基础语法"]
         },
         {
             id: 14,
@@ -133,7 +146,8 @@ export const paperData = {
             options: ["A", "B", "C", "D"],
             answer: 0,
             score: 2,
-            explanation: '答案依据官方答案。'
+            explanation: '答案依据官方答案。',
+            tags: ["基础语法"]
         },
         {
             id: 15,
@@ -142,7 +156,8 @@ export const paperData = {
             options: ["A", "B", "C", "D"],
             answer: 0,
             score: 2,
-            explanation: '答案依据官方答案。'
+            explanation: '答案依据官方答案。',
+            tags: ["基础语法"]
         },
         {
             id: 16,
@@ -151,7 +166,8 @@ export const paperData = {
             options: ['正确', '错误'],
             answer: 0,
             score: 2,
-            explanation: '判断题答案待依据官方答案表人工复核。'
+            explanation: "判断题答案待复核（待复核）。",
+            tags: ["判断题"]
         },
         {
             id: 17,
@@ -160,7 +176,8 @@ export const paperData = {
             options: ['正确', '错误'],
             answer: 0,
             score: 2,
-            explanation: '判断题答案待依据官方答案表人工复核。'
+            explanation: "判断题答案待复核（待复核）。",
+            tags: ["判断题"]
         },
         {
             id: 18,
@@ -169,7 +186,8 @@ export const paperData = {
             options: ['正确', '错误'],
             answer: 0,
             score: 2,
-            explanation: '判断题答案待依据官方答案表人工复核。'
+            explanation: "判断题答案待复核（待复核）。",
+            tags: ["判断题"]
         },
         {
             id: 19,
@@ -178,7 +196,8 @@ export const paperData = {
             options: ['正确', '错误'],
             answer: 0,
             score: 2,
-            explanation: '判断题答案待依据官方答案表人工复核。'
+            explanation: "判断题答案待复核（待复核）。",
+            tags: ["判断题"]
         },
         {
             id: 20,
@@ -187,7 +206,8 @@ export const paperData = {
             options: ['正确', '错误'],
             answer: 0,
             score: 2,
-            explanation: '判断题答案待依据官方答案表人工复核。'
+            explanation: "判断题答案待复核（待复核）。",
+            tags: ["判断题"]
         },
         {
             id: 21,
@@ -196,7 +216,8 @@ export const paperData = {
             options: ['正确', '错误'],
             answer: 0,
             score: 2,
-            explanation: '判断题答案待依据官方答案表人工复核。'
+            explanation: "判断题答案待复核（待复核）。",
+            tags: ["判断题"]
         },
         {
             id: 22,
@@ -205,7 +226,8 @@ export const paperData = {
             options: ['正确', '错误'],
             answer: 0,
             score: 2,
-            explanation: '判断题答案待依据官方答案表人工复核。'
+            explanation: "判断题答案待复核（待复核）。",
+            tags: ["判断题"]
         },
         {
             id: 23,
@@ -214,7 +236,8 @@ export const paperData = {
             options: ['正确', '错误'],
             answer: 0,
             score: 2,
-            explanation: '判断题答案待依据官方答案表人工复核。'
+            explanation: "判断题答案待复核（待复核）。",
+            tags: ["判断题"]
         },
         {
             id: 24,
@@ -223,7 +246,8 @@ export const paperData = {
             options: ['正确', '错误'],
             answer: 0,
             score: 2,
-            explanation: '判断题答案待依据官方答案表人工复核。'
+            explanation: "判断题答案待复核（待复核）。",
+            tags: ["判断题"]
         },
         {
             id: 25,
@@ -232,7 +256,8 @@ export const paperData = {
             options: ['正确', '错误'],
             answer: 0,
             score: 2,
-            explanation: '判断题答案待依据官方答案表人工复核。'
+            explanation: "判断题答案待复核（待复核）。",
+            tags: ["判断题"]
         }
     ]
 };
