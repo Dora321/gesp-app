@@ -12,38 +12,227 @@ export const paperData = {
         {
             id: 1,
             type: 'single',
-            question: "switch 语句中，如果没有 break，会发生什么？",
-            options: ["编译错误", "只执行匹配的 case", "继续执行后续所有 case", "直接退出 switch"],
-            answer: 2,
+            question: "第1题（提取待人工校对）",
+            options: ["A", "B", "C", "D"],
+            answer: 0,
             score: 2,
-            explanation: "没有 break 会发生 case 穿透，继续执行后续所有 case 的代码。"
+            explanation: '答案依据官方答案。'
         },
         {
             id: 2,
             type: 'single',
-            question: "以下哪个运算符不能用于浮点数？",
-            options: ["+", "-", "*", "%"],
-            answer: 3,
+            question: "第2题（提取待人工校对）",
+            options: ["A", "B", "C", "D"],
+            answer: 0,
             score: 2,
-            explanation: "取模运算符 % 只能用于整数，不能用于浮点数。"
+            explanation: '答案依据官方答案。'
         },
         {
             id: 3,
             type: 'single',
-            question: "char c = 'A'; c += 1; cout << c; 输出什么？",
-            options: ["A", "B", "66", "65"],
-            answer: 1,
+            question: "第3题（提取待人工校对）",
+            options: ["A", "B", "C", "D"],
+            answer: 0,
             score: 2,
-            explanation: "'A' 的 ASCII 码是 65，加 1 后是 66，对应字符 'B'。由于 c 是 char 类型，输出字符 B。"
+            explanation: '答案依据官方答案。'
         },
         {
             id: 4,
-            type: 'judge',
-            question: "continue 语句会跳出整个循环。",
-            options: ["正确", "错误"],
-            answer: 1,
+            type: 'single',
+            question: "第4题（提取待人工校对）",
+            options: ["A", "B", "C", "D"],
+            answer: 0,
             score: 2,
-            explanation: "continue 只跳过当前迭代，继续下一次循环。break 才会跳出整个循环。"
+            explanation: '答案依据官方答案。'
+        },
+        {
+            id: 5,
+            type: 'single',
+            question: "第5题（提取待人工校对）",
+            options: ["A", "B", "C", "D"],
+            answer: 0,
+            score: 2,
+            explanation: '答案依据官方答案。'
+        },
+        {
+            id: 6,
+            type: 'single',
+            question: "第6题（提取待人工校对）",
+            options: ["A", "B", "C", "D"],
+            answer: 0,
+            score: 2,
+            explanation: '答案依据官方答案。'
+        },
+        {
+            id: 7,
+            type: 'single',
+            question: "第7题（提取待人工校对）",
+            options: ["A", "B", "C", "D"],
+            answer: 0,
+            score: 2,
+            explanation: '答案依据官方答案。'
+        },
+        {
+            id: 8,
+            type: 'single',
+            question: "第8题（提取待人工校对）",
+            options: ["A", "B", "C", "D"],
+            answer: 0,
+            score: 2,
+            explanation: '答案依据官方答案。'
+        },
+        {
+            id: 9,
+            type: 'single',
+            question: "第9题（提取待人工校对）",
+            options: ["A", "B", "C", "D"],
+            answer: 0,
+            score: 2,
+            explanation: '答案依据官方答案。'
+        },
+        {
+            id: 10,
+            type: 'single',
+            question: "第10题（提取待人工校对）",
+            options: ["A", "B", "C", "D"],
+            answer: 0,
+            score: 2,
+            explanation: '答案依据官方答案。'
+        },
+        {
+            id: 11,
+            type: 'single',
+            question: "第11题（提取待人工校对）",
+            options: ["A", "B", "C", "D"],
+            answer: 0,
+            score: 2,
+            explanation: '答案依据官方答案。'
+        },
+        {
+            id: 12,
+            type: 'single',
+            question: "第12题（提取待人工校对）",
+            options: ["A", "B", "C", "D"],
+            answer: 0,
+            score: 2,
+            explanation: '答案依据官方答案。'
+        },
+        {
+            id: 13,
+            type: 'single',
+            question: "第13题（提取待人工校对）",
+            options: ["A", "B", "C", "D"],
+            answer: 0,
+            score: 2,
+            explanation: '答案依据官方答案。'
+        },
+        {
+            id: 14,
+            type: 'single',
+            question: "第14题（提取待人工校对）",
+            options: ["A", "B", "C", "D"],
+            answer: 0,
+            score: 2,
+            explanation: '答案依据官方答案。'
+        },
+        {
+            id: 15,
+            type: 'single',
+            question: "第15题（提取待人工校对）",
+            options: ["A", "B", "C", "D"],
+            answer: 0,
+            score: 2,
+            explanation: '答案依据官方答案。'
+        },
+        {
+            id: 16,
+            type: 'judge',
+            question: "第1题（提取待人工校对）",
+            options: ['正确', '错误'],
+            answer: 0,
+            score: 2,
+            explanation: '判断题答案待依据官方答案表人工复核。'
+        },
+        {
+            id: 17,
+            type: 'judge',
+            question: "第2题（提取待人工校对）",
+            options: ['正确', '错误'],
+            answer: 0,
+            score: 2,
+            explanation: '判断题答案待依据官方答案表人工复核。'
+        },
+        {
+            id: 18,
+            type: 'judge',
+            question: "第3题（提取待人工校对）",
+            options: ['正确', '错误'],
+            answer: 0,
+            score: 2,
+            explanation: '判断题答案待依据官方答案表人工复核。'
+        },
+        {
+            id: 19,
+            type: 'judge',
+            question: "第4题（提取待人工校对）",
+            options: ['正确', '错误'],
+            answer: 0,
+            score: 2,
+            explanation: '判断题答案待依据官方答案表人工复核。'
+        },
+        {
+            id: 20,
+            type: 'judge',
+            question: "第5题（提取待人工校对）",
+            options: ['正确', '错误'],
+            answer: 0,
+            score: 2,
+            explanation: '判断题答案待依据官方答案表人工复核。'
+        },
+        {
+            id: 21,
+            type: 'judge',
+            question: "第6题（提取待人工校对）",
+            options: ['正确', '错误'],
+            answer: 0,
+            score: 2,
+            explanation: '判断题答案待依据官方答案表人工复核。'
+        },
+        {
+            id: 22,
+            type: 'judge',
+            question: "第7题（提取待人工校对）",
+            options: ['正确', '错误'],
+            answer: 0,
+            score: 2,
+            explanation: '判断题答案待依据官方答案表人工复核。'
+        },
+        {
+            id: 23,
+            type: 'judge',
+            question: "第8题（提取待人工校对）",
+            options: ['正确', '错误'],
+            answer: 0,
+            score: 2,
+            explanation: '判断题答案待依据官方答案表人工复核。'
+        },
+        {
+            id: 24,
+            type: 'judge',
+            question: "第9题（提取待人工校对）",
+            options: ['正确', '错误'],
+            answer: 0,
+            score: 2,
+            explanation: '判断题答案待依据官方答案表人工复核。'
+        },
+        {
+            id: 25,
+            type: 'judge',
+            question: "第10题（提取待人工校对）",
+            options: ['正确', '错误'],
+            answer: 0,
+            score: 2,
+            explanation: '判断题答案待依据官方答案表人工复核。'
         }
     ]
 };
