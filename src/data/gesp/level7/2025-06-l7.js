@@ -6,16 +6,25 @@ export const paperData = {
     year: 2025,
     month: 6,
     session: 10,
-    timeLimit: 90 * 60,
+    timeLimit: 5400,
     questions: [
         {
             id: 1,
             type: 'single',
-            question: "二分图最小点覆盖数等于？",
-            options: ["最大匹配数", "最大独立集数", "顶点数 - 最大匹配数", "边数 - 最大匹配数"],
+            question: '二分图最小点覆盖数等于？',
+            options: [
+                '最大匹配数',
+                '最大独立集数',
+                '顶点数 - 最大匹配数',
+                '边数 - 最大匹配数'
+            ],
             answer: 0,
             score: 2,
-            explanation: "根据柯尼希（König）定理，二分图的最小点覆盖数等于其最大匹配数。"
+            explanation: '根据柯尼希（König）定理，二分图的最小点覆盖数等于其最大匹配数。',
+            tags: [
+                '图论',
+                '算法策略'
+            ]
         }
     ]
 };

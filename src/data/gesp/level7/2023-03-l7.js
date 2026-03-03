@@ -7,16 +7,24 @@ export const paperData = {
     month: 3,
     session: 1,
     note: '首次认证',
-    timeLimit: 90 * 60,
+    timeLimit: 5400,
     questions: [
         {
             id: 1,
             type: 'single',
-            question: "在图论中，强连通分量（SCC）是针对哪种图定义的？",
-            options: ["无向图", "有向图", "连通图", "完全图"],
+            question: '在图论中，强连通分量（SCC）是针对哪种图定义的？',
+            options: [
+                '无向图',
+                '有向图',
+                '连通图',
+                '完全图'
+            ],
             answer: 1,
             score: 2,
-            explanation: "强连通分量是有向图中极大强连通子图。无向图中对应的概念是连通分量。"
+            explanation: '强连通分量是有向图中极大强连通子图。无向图中对应的概念是连通分量。',
+            tags: [
+                '图论'
+            ]
         }
     ]
 };

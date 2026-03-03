@@ -7,16 +7,25 @@ export const paperData = {
     month: 12,
     session: 4,
     note: '年度收官',
-    timeLimit: 90 * 60,
+    timeLimit: 5400,
     questions: [
         {
             id: 1,
             type: 'single',
-            question: "莫比乌斯反演（Mobius Inversion）常用于？",
-            options: ["求最短路", "数论函数求和与约束转化", "字符串匹配", "排序优化"],
+            question: '莫比乌斯反演（Mobius Inversion）常用于？',
+            options: [
+                '求最短路',
+                '数论函数求和与约束转化',
+                '字符串匹配',
+                '排序优化'
+            ],
             answer: 1,
             score: 2,
-            explanation: "莫比乌斯反演是数论中处理 gcd 相关求和问题的有力工具。"
+            explanation: '莫比乌斯反演是数论中处理 gcd 相关求和问题的有力工具。',
+            tags: [
+                '图论',
+                '字符串与哈希'
+            ]
         }
     ]
 };

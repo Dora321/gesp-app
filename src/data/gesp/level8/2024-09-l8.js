@@ -6,16 +6,25 @@ export const paperData = {
     year: 2024,
     month: 9,
     session: 7,
-    timeLimit: 90 * 60,
+    timeLimit: 5400,
     questions: [
         {
             id: 1,
             type: 'single',
-            question: "二叉索引树（Fenwick Tree）在求二维区间和时的复杂度是？",
-            options: ["O(log n)", "O(log² n)", "O(n log n)", "O(√n)"],
+            question: '二叉索引树（Fenwick Tree）在求二维区间和时的复杂度是？',
+            options: [
+                'O(log n)',
+                'O(log² n)',
+                'O(n log n)',
+                'O(√n)'
+            ],
             answer: 1,
             score: 2,
-            explanation: "二维树状数组的单点修改和区间查询均为 O(log n * log m)，即 O(log² n)。"
+            explanation: '二维树状数组的单点修改和区间查询均为 O(log n * log m)，即 O(log² n)。',
+            tags: [
+                '复杂度分析',
+                '树与数据结构'
+            ]
         }
     ]
 };

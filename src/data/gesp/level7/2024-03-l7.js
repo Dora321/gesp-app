@@ -7,16 +7,26 @@ export const paperData = {
     month: 3,
     session: 5,
     note: '2024年首场',
-    timeLimit: 90 * 60,
+    timeLimit: 5400,
     questions: [
         {
             id: 1,
             type: 'single',
-            question: "二分图最大匹配可以转化为什么问题求解？",
-            options: ["最短路", "最大流", "最小生成树", "拓扑排序"],
+            question: '二分图最大匹配可以转化为什么问题求解？',
+            options: [
+                '最短路',
+                '最大流',
+                '最小生成树',
+                '拓扑排序'
+            ],
             answer: 1,
             score: 2,
-            explanation: "通过建立超级源点和超级汇点，将边权设为1，二分图最大匹配等价于该网络的最大流。"
+            explanation: '通过建立超级源点和超级汇点，将边权设为1，二分图最大匹配等价于该网络的最大流。',
+            tags: [
+                '图论',
+                '树与数据结构',
+                '算法策略'
+            ]
         }
     ]
 };

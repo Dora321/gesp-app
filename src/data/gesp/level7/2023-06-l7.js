@@ -7,16 +7,24 @@ export const paperData = {
     month: 6,
     session: 2,
     note: '首次开启5-8级',
-    timeLimit: 90 * 60,
+    timeLimit: 5400,
     questions: [
         {
             id: 1,
             type: 'single',
-            question: "Tarjan 算法求强连通分量的时间复杂度是？",
-            options: ["O(V²)", "O(V+E)", "O(E log V)", "O(V log V)"],
+            question: 'Tarjan 算法求强连通分量的时间复杂度是？',
+            options: [
+                'O(V²)',
+                'O(V+E)',
+                'O(E log V)',
+                'O(V log V)'
+            ],
             answer: 1,
             score: 2,
-            explanation: "Tarjan 算法通过一次 DFS 遍历所有点和边，因此时间复杂度为 O(V+E)。"
+            explanation: 'Tarjan 算法通过一次 DFS 遍历所有点和边，因此时间复杂度为 O(V+E)。',
+            tags: [
+                '复杂度分析'
+            ]
         }
     ]
 };

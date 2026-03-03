@@ -7,16 +7,25 @@ export const paperData = {
     month: 9,
     session: 3,
     note: '体系趋于稳定',
-    timeLimit: 90 * 60,
+    timeLimit: 5400,
     questions: [
         {
             id: 1,
             type: 'single',
-            question: "Dijkstra 算法求单源最短路径时，要求？",
-            options: ["图中不能有环", "图中不能有负权边", "图必须是连通的", "图必须是有向图"],
+            question: 'Dijkstra 算法求单源最短路径时，要求？',
+            options: [
+                '图中不能有环',
+                '图中不能有负权边',
+                '图必须是连通的',
+                '图必须是有向图'
+            ],
             answer: 1,
             score: 2,
-            explanation: "Dijkstra 算法基于贪心策略，无法贪心地处理负权边（一旦确定一个点的最短路就不会再更新，但负权边可能导致后续路径更短）。"
+            explanation: 'Dijkstra 算法基于贪心策略，无法贪心地处理负权边（一旦确定一个点的最短路就不会再更新，但负权边可能导致后续路径更短）。',
+            tags: [
+                '图论',
+                '算法策略'
+            ]
         }
     ]
 };

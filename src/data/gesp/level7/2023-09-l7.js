@@ -7,16 +7,24 @@ export const paperData = {
     month: 9,
     session: 3,
     note: '体系趋于稳定',
-    timeLimit: 90 * 60,
+    timeLimit: 5400,
     questions: [
         {
             id: 1,
             type: 'single',
-            question: "在网络流中，一个可行流是最大流的充要条件是？",
-            options: ["所有边都满流", "不存在增广路", "流量等于源点出度", "没有负权边"],
+            question: '在网络流中，一个可行流是最大流的充要条件是？',
+            options: [
+                '所有边都满流',
+                '不存在增广路',
+                '流量等于源点出度',
+                '没有负权边'
+            ],
             answer: 1,
             score: 2,
-            explanation: "根据最大流最小割定理，不存在增广路是最大流的必要充分条件。"
+            explanation: '根据最大流最小割定理，不存在增广路是最大流的必要充分条件。',
+            tags: [
+                '算法综合'
+            ]
         }
     ]
 };
