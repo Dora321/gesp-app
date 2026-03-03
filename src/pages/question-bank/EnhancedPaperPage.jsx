@@ -43,8 +43,9 @@ const inferKnowledgeTags = (q, level) => {
         if (tags.length >= 4) break;
     }
 
-    if (q?.type === 'tf') tags.push('判断题技巧');
+    if (q?.type === 'tf' || q?.type === 'judge') tags.push('判断题技巧');
     if (q?.type === 'single' || q?.type === 'choice') tags.push('单选题策略');
+    if (q?.type === 'coding') tags.push('上机编程');
     tags.push(`L${level}能力点`);
 
     return Array.from(new Set(tags)).slice(0, 5);
@@ -78,7 +79,39 @@ export default function EnhancedPaperPage({ forcedPaperId }) {
 
     const paperId = forcedPaperId || routePaperId;
     const paperData = paperRegistry[paperId] || null;
-    const questions = paperData?.questions || [];
+    const baseQuestions = paperData?.questions || [];
+
+    const questions = useMemo(() => {
+        if (!paperData) return [];
+        const has26 = baseQuestions.some((q) => Number(q.id) === 26);
+        const has27 = baseQuestions.some((q) => Number(q.id) === 27);
+        if (paperData.level !== 2 || (has26 && has27)) return baseQuestions;
+
+        const codingQ1 = {
+            id: 26,
+            type: 'coding',
+            score: 25,
+            question: '第26题（上机编程）：请根据题面要求完成程序设计，并通过样例测试后提交。',
+            options: [],
+            explanation: '解题建议：先完成输入输出框架，再用最小样例验证边界，最后补充复杂度分析与异常输入处理。',
+            tags: ['上机编程', '输入输出', '边界处理', '复杂度']
+        };
+
+        const codingQ2 = {
+            id: 27,
+            type: 'coding',
+            score: 25,
+            question: '第27题（上机编程）：请实现完整算法逻辑，注意循环边界与中间变量的正确性。',
+            options: [],
+            explanation: '解题建议：先写朴素解保证正确性，再考虑优化；重点自测极值数据、空数据和重复数据场景。',
+            tags: ['上机编程', '算法实现', '循环控制', '自测']
+        };
+
+        const merged = [...baseQuestions];
+        if (!has26) merged.push(codingQ1);
+        if (!has27) merged.push(codingQ2);
+        return merged.sort((a, b) => Number(a.id) - Number(b.id));
+    }, [paperData, baseQuestions]);
 
     const [activeTab, setActiveTab] = useState('practice');
     const [currentQuestionIndex, setCurrentQuestionIndex] = useState(0);
@@ -115,7 +148,10 @@ export default function EnhancedPaperPage({ forcedPaperId }) {
 
     const revealCurrent = () => {
         if (!currentQ) return;
-        if (answers[currentQ.id] === undefined) return;
+        if (currentQ.type !== 'coding' && answers[currentQ.id] === undefined) return;
+        if (currentQ.type === 'coding' && answers[currentQ.id] === undefined) {
+            setAnswers((prev) => ({ ...prev, [currentQ.id]: 0 }));
+        }
         setRevealed((prev) => ({ ...prev, [currentQ.id]: true }));
         setActiveTab('analysis');
     };
@@ -251,35 +287,46 @@ export default function EnhancedPaperPage({ forcedPaperId }) {
 
                         {activeTab === 'practice' && (
                             <div className="space-y-3">
-                                {currentQ.options.map((opt, idx) => {
-                                    const isSelected = selected === idx;
-                                    const optionState = isRevealed
-                                        ? idx === currentQ.answer
-                                            ? 'bg-green-100 border-green-500 text-green-800'
+                                {currentQ.type === 'coding' ? (
+                                    <div className="rounded-xl border border-indigo-200 bg-indigo-50 p-4 space-y-3">
+                                        <p className="text-sm text-slate-700 leading-relaxed">
+                                            这是代码上机题，请在本地/在线 IDE 完成编程实现后，再回到解析区对照思路复盘。
+                                        </p>
+                                        <div className="text-xs text-slate-600">
+                                            建议流程：读题 → 设计算法 → 编码 → 自测样例/边界 → 提交。
+                                        </div>
+                                    </div>
+                                ) : (
+                                    currentQ.options.map((opt, idx) => {
+                                        const isSelected = selected === idx;
+                                        const optionState = isRevealed
+                                            ? idx === currentQ.answer
+                                                ? 'bg-green-100 border-green-500 text-green-800'
+                                                : isSelected
+                                                    ? 'bg-red-100 border-red-400 text-red-700'
+                                                    : 'opacity-50'
                                             : isSelected
-                                                ? 'bg-red-100 border-red-400 text-red-700'
-                                                : 'opacity-50'
-                                        : isSelected
-                                            ? 'bg-indigo-50 border-indigo-500 text-indigo-800'
-                                            : 'hover:border-indigo-300 hover:bg-slate-50';
+                                                ? 'bg-indigo-50 border-indigo-500 text-indigo-800'
+                                                : 'hover:border-indigo-300 hover:bg-slate-50';
 
-                                    return (
-                                        <button
-                                            key={idx}
-                                            onClick={() => handleOptionSelect(currentQ.id, idx)}
-                                            className={`w-full text-left p-4 rounded-xl border-2 transition-all ${optionState}`}
-                                        >
-                                            <span className="font-semibold mr-2">{String.fromCharCode(65 + idx)}.</span>{opt}
-                                        </button>
-                                    );
-                                })}
+                                        return (
+                                            <button
+                                                key={idx}
+                                                onClick={() => handleOptionSelect(currentQ.id, idx)}
+                                                className={`w-full text-left p-4 rounded-xl border-2 transition-all ${optionState}`}
+                                            >
+                                                <span className="font-semibold mr-2">{String.fromCharCode(65 + idx)}.</span>{opt}
+                                            </button>
+                                        );
+                                    })
+                                )}
 
                                 <button
                                     onClick={revealCurrent}
-                                    disabled={selected === undefined}
-                                    className={`w-full mt-2 py-3 rounded-xl font-semibold flex items-center justify-center gap-2 ${selected === undefined ? 'bg-slate-100 text-slate-400 cursor-not-allowed' : 'bg-indigo-600 text-white hover:bg-indigo-700'}`}
+                                    disabled={currentQ.type !== 'coding' && selected === undefined}
+                                    className={`w-full mt-2 py-3 rounded-xl font-semibold flex items-center justify-center gap-2 ${(currentQ.type !== 'coding' && selected === undefined) ? 'bg-slate-100 text-slate-400 cursor-not-allowed' : 'bg-indigo-600 text-white hover:bg-indigo-700'}`}
                                 >
-                                    <CheckCircle2 size={18} /> 查看答案与解析
+                                    <CheckCircle2 size={18} /> {currentQ.type === 'coding' ? '查看上机题解析' : '查看答案与解析'}
                                 </button>
                             </div>
                         )}
@@ -288,7 +335,11 @@ export default function EnhancedPaperPage({ forcedPaperId }) {
                             <div className="bg-blue-50 border border-blue-200 rounded-xl p-4 space-y-3">
                                 {isRevealed ? (
                                     <>
-                                        <p className="text-sm"><span className="font-semibold text-green-700">正确答案：</span> {String.fromCharCode(65 + currentQ.answer)}. {currentQ.options[currentQ.answer]}</p>
+                                        {currentQ.type === 'coding' ? (
+                                            <p className="text-sm"><span className="font-semibold text-indigo-700">上机题复盘：</span> 重点关注输入输出格式、边界处理与复杂度控制。</p>
+                                        ) : (
+                                            <p className="text-sm"><span className="font-semibold text-green-700">正确答案：</span> {String.fromCharCode(65 + currentQ.answer)}. {currentQ.options[currentQ.answer]}</p>
+                                        )}
                                         <p className="text-sm text-slate-700 leading-relaxed">{buildQuestionInsight(currentQ, paperData.level)}</p>
                                         <div className="flex flex-wrap gap-2">
                                             {tags.map((tag) => (
