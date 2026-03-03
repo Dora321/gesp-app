@@ -1,8 +1,12 @@
-import GESP2_2025_12 from '../../data/gesp/level2/GESP2_2025_12';
+import { paperRegistry } from '../../data/gesp';
+import EnhancedPaperPage from './EnhancedPaperPage';
 
-const enhancedPaperRegistry = {
-    '2025-12-l2': GESP2_2025_12,
-};
+const sharedEnhancedComponent = EnhancedPaperPage;
+
+const enhancedPaperRegistry = Object.keys(paperRegistry).reduce((acc, paperId) => {
+    acc[paperId] = sharedEnhancedComponent;
+    return acc;
+}, {});
 
 export const getEnhancedPaperComponent = (paperId) => enhancedPaperRegistry[paperId] || null;
 
