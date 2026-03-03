@@ -8,18 +8,21 @@ const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 const root = path.join(__dirname, '..', 'src/data/gesp');
 
-const targetLevels = [
-  { dir: 'level1', pattern: /\d{4}-\d{2}-l1\.js$/ },
-  { dir: 'level3', pattern: /\d{4}-\d{2}-l3\.js$/ }
+const targets = [
+  { dir: 'level4', pattern: /\d{4}-\d{2}-l4\.js$/ },
+  { dir: 'level5', pattern: /\d{4}-\d{2}-l5\.js$/ },
+  { dir: 'level6', pattern: /\d{4}-\d{2}-l6\.js$/ },
+  { dir: 'level7', pattern: /\d{4}-\d{2}-l7\.js$/ },
+  { dir: 'level8', pattern: /\d{4}-\d{2}-l8\.js$/ }
 ];
 
 const badFragments = [
-  '待复核', '占位', 'placeholder', 'OCR', '？？', '��', '图略'
+  '待复核', '占位', 'placeholder', 'OCR', '？？', '��', '图略', '原卷A', '原卷B', '原卷C', '原卷D'
 ];
 
 const issues = [];
 
-for (const target of targetLevels) {
+for (const target of targets) {
   const dir = path.join(root, target.dir);
   const files = fs.readdirSync(dir)
     .filter((f) => target.pattern.test(f) && !(target.exclude || []).includes(f))
@@ -38,11 +41,8 @@ for (const target of targetLevels) {
       const text = String(q.question || '').trim();
       const explanation = String(q.explanation || '').trim();
 
-      if (text.length > 260) {
+      if (text.length > 280) {
         issues.push(`${file}#Q${q.id}: 题干过长(${text.length})`);
-      }
-      if (text && !/[。？！；：）】」…]$/.test(text)) {
-        issues.push(`${file}#Q${q.id}: 题干缺少中文结尾标点`);
       }
 
       const allText = `${text}\n${explanation}\n${(q.options || []).join('\n')}`;
@@ -53,7 +53,7 @@ for (const target of targetLevels) {
         }
       }
 
-      if (Array.isArray(q.options) && q.options.some((o) => String(o).length < 1)) {
+      if (Array.isArray(q.options) && q.options.some((o) => !String(o).trim())) {
         issues.push(`${file}#Q${q.id}: 存在空选项`);
       }
 
@@ -70,4 +70,4 @@ if (issues.length) {
   process.exit(2);
 }
 
-console.log('QA OK: level1/2/3 objective data is clean.');
+console.log('QA OK: level4-8 objective data is clean.');

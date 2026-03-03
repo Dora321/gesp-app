@@ -9,9 +9,14 @@ const __dirname = path.dirname(__filename);
 const root = path.join(__dirname, '..', 'src/data/gesp');
 
 const levelConfigs = [
-  { level: 1, dir: 'level1', pattern: /\d{4}-\d{2}-l1\.js$/, expected: 25 },
-  { level: 2, dir: 'level2', pattern: /\d{4}-\d{2}-l2\.js$/, expected: 25, exclude: ['2023-03-l2.js'] },
-  { level: 3, dir: 'level3', pattern: /\d{4}-\d{2}-l3\.js$/, expected: 25 }
+  { level: 1, dir: 'level1', pattern: /\d{4}-\d{2}-l1\.js$/, expected: 25, expectedSingle: 15, expectedJudge: 10 },
+  { level: 2, dir: 'level2', pattern: /\d{4}-\d{2}-l2\.js$/, expected: 25, expectedSingle: 15, expectedJudge: 10, exclude: ['2023-03-l2.js'] },
+  { level: 3, dir: 'level3', pattern: /\d{4}-\d{2}-l3\.js$/, expected: 25, expectedSingle: 15, expectedJudge: 10 },
+  { level: 4, dir: 'level4', pattern: /\d{4}-\d{2}-l4\.js$/, minQuestions: 4 },
+  { level: 5, dir: 'level5', pattern: /\d{4}-\d{2}-l5\.js$/, minQuestions: 4 },
+  { level: 6, dir: 'level6', pattern: /\d{4}-\d{2}-l6\.js$/, minQuestions: 1 },
+  { level: 7, dir: 'level7', pattern: /\d{4}-\d{2}-l7\.js$/, minQuestions: 1 },
+  { level: 8, dir: 'level8', pattern: /\d{4}-\d{2}-l8\.js$/, minQuestions: 1 },
 ];
 
 const issues = [];
@@ -44,8 +49,11 @@ for (const cfg of levelConfigs) {
       continue;
     }
 
-    if (paper.questions.length !== cfg.expected) {
+    if (cfg.expected && paper.questions.length !== cfg.expected) {
       issues.push(`${file}: total questions = ${paper.questions.length}, expected ${cfg.expected}`);
+    }
+    if (cfg.minQuestions && paper.questions.length < cfg.minQuestions) {
+      issues.push(`${file}: total questions = ${paper.questions.length}, expected at least ${cfg.minQuestions}`);
     }
 
     let single = 0;
@@ -76,8 +84,10 @@ for (const cfg of levelConfigs) {
       }
     }
 
-    if (single !== 15 || judge !== 10) {
-      issues.push(`${file}: single/judge count mismatch => ${single}/${judge}`);
+    if (cfg.expectedSingle !== undefined && cfg.expectedJudge !== undefined) {
+      if (single !== cfg.expectedSingle || judge !== cfg.expectedJudge) {
+        issues.push(`${file}: single/judge count mismatch => ${single}/${judge}, expected ${cfg.expectedSingle}/${cfg.expectedJudge}`);
+      }
     }
   }
 }
@@ -87,4 +97,4 @@ if (issues.length) {
   process.exit(1);
 }
 
-console.log('OK: level1/2/3 objective checks passed.');
+console.log('OK: level1-8 objective checks passed.');
