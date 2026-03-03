@@ -1,4 +1,6 @@
 import React, { useMemo, useState } from 'react';
+import ReactMarkdown from 'react-markdown';
+import remarkGfm from 'remark-gfm';
 import { useNavigate, useParams } from 'react-router-dom';
 import {
     ChevronLeft,
@@ -13,6 +15,7 @@ import {
     Tags
 } from 'lucide-react';
 import { paperRegistry } from '../../data/gesp';
+import { luoguCodingByLevel } from '../../data/gesp/luoguCodingByLevel';
 
 const stripLeadingNumber = (questionText) => {
     if (typeof questionText !== 'string') return questionText;
@@ -87,24 +90,43 @@ export default function EnhancedPaperPage({ forcedPaperId }) {
         const has27 = baseQuestions.some((q) => Number(q.id) === 27);
         if (has26 && has27) return baseQuestions;
 
+        const pool = luoguCodingByLevel[String(paperData.level)] || luoguCodingByLevel[paperData.level] || [];
+        const pairCount = Math.floor(pool.length / 2);
+        const session = Number(paperData.session || 1);
+        const pairIndex = pairCount > 0 ? Math.max(0, Math.min(session - 1, pairCount - 1)) : 0;
+        const p1 = pool[pairIndex * 2] || null;
+        const p2 = pool[pairIndex * 2 + 1] || null;
+
+        const toMarkdown = (p) => {
+            if (!p) return '题面暂缺，请稍后补齐。';
+            const sections = [];
+            sections.push(`## ${p.pid} ${p.title}`);
+            if (p.background) sections.push(`### 题目背景\n${p.background}`);
+            if (p.description) sections.push(`### 题目描述\n${p.description}`);
+            if (p.inputFormat) sections.push(`### 输入格式\n${p.inputFormat}`);
+            if (p.outputFormat) sections.push(`### 输出格式\n${p.outputFormat}`);
+            sections.push(`### 原题链接\n${p.url}`);
+            return sections.join('\n\n');
+        };
+
         const codingQ1 = {
             id: 26,
             type: 'coding',
             score: 25,
-            question: '第26题（上机编程）：请根据题面要求完成程序设计，并通过样例测试后提交。',
+            question: p1 ? `第26题（上机编程）：${p1.pid} ${p1.title}` : '第26题（上机编程）',
             options: [],
-            explanation: '解题建议：先完成输入输出框架，再用最小样例验证边界，最后补充复杂度分析与异常输入处理。',
-            tags: ['上机编程', '输入输出', '边界处理', '复杂度']
+            explanation: toMarkdown(p1),
+            tags: ['上机编程', '洛谷原题', p1?.pid || '题面待补']
         };
 
         const codingQ2 = {
             id: 27,
             type: 'coding',
             score: 25,
-            question: '第27题（上机编程）：请实现完整算法逻辑，注意循环边界与中间变量的正确性。',
+            question: p2 ? `第27题（上机编程）：${p2.pid} ${p2.title}` : '第27题（上机编程）',
             options: [],
-            explanation: '解题建议：先写朴素解保证正确性，再考虑优化；重点自测极值数据、空数据和重复数据场景。',
-            tags: ['上机编程', '算法实现', '循环控制', '自测']
+            explanation: toMarkdown(p2),
+            tags: ['上机编程', '洛谷原题', p2?.pid || '题面待补']
         };
 
         const merged = [...baseQuestions];
@@ -336,11 +358,18 @@ export default function EnhancedPaperPage({ forcedPaperId }) {
                                 {isRevealed ? (
                                     <>
                                         {currentQ.type === 'coding' ? (
-                                            <p className="text-sm"><span className="font-semibold text-indigo-700">上机题复盘：</span> 重点关注输入输出格式、边界处理与复杂度控制。</p>
+                                            <div className="space-y-2">
+                                                <p className="text-sm"><span className="font-semibold text-indigo-700">上机题原题面（Markdown）：</span></p>
+                                                <div className="prose prose-sm max-w-none bg-white rounded-lg border border-blue-100 p-3">
+                                                    <ReactMarkdown remarkPlugins={[remarkGfm]}>{currentQ.explanation || ''}</ReactMarkdown>
+                                                </div>
+                                            </div>
                                         ) : (
-                                            <p className="text-sm"><span className="font-semibold text-green-700">正确答案：</span> {String.fromCharCode(65 + currentQ.answer)}. {currentQ.options[currentQ.answer]}</p>
+                                            <>
+                                                <p className="text-sm"><span className="font-semibold text-green-700">正确答案：</span> {String.fromCharCode(65 + currentQ.answer)}. {currentQ.options[currentQ.answer]}</p>
+                                                <p className="text-sm text-slate-700 leading-relaxed">{buildQuestionInsight(currentQ, paperData.level)}</p>
+                                            </>
                                         )}
-                                        <p className="text-sm text-slate-700 leading-relaxed">{buildQuestionInsight(currentQ, paperData.level)}</p>
                                         <div className="flex flex-wrap gap-2">
                                             {tags.map((tag) => (
                                                 <span key={tag} className="text-xs px-2 py-1 rounded-full bg-white border border-blue-200 text-blue-700">#{tag}</span>
