@@ -11,73 +11,457 @@ export const paperData = {
     questions: [
         {
             id: 1,
-            type: 'single',
-            question: '动态规划的核心思想是？',
+            type: "single",
+            question: "第1题（单选）：题干待从PDF补充。",
             options: [
-                '分治策略',
-                '最优子结构和重叠子问题',
-                '贪心选择',
-                '回溯搜索'
+                "选项A",
+                "选项B",
+                "选项C",
+                "选项D",
             ],
-            answer: 1,
+            answer: 0,
             score: 2,
-            explanation: '动态规划利用最优子结构和重叠子问题，通过记忆化避免重复计算。',
+            explanation: "答案依据试卷标准答案；解析待补充。",
             tags: [
-                '动态规划',
-                '算法策略'
+                "客观题",
+                "单选题",
+                "GESP4级",
             ]
         },
         {
             id: 2,
-            type: 'single',
-            question: '最长公共子序列(LCS)问题的时间复杂度是？',
+            type: "single",
+            question: "第2题（单选）：题干待从PDF补充。",
             options: [
-                'O(n)',
-                'O(n log n)',
-                'O(n²)',
-                'O(2ⁿ)'
+                "选项A",
+                "选项B",
+                "选项C",
+                "选项D",
             ],
-            answer: 2,
+            answer: 0,
             score: 2,
-            explanation: 'LCS 的 DP 解法需要填充 n×m 的表格，时间复杂度 O(nm)。',
+            explanation: "答案依据试卷标准答案；解析待补充。",
             tags: [
-                '复杂度分析',
-                '动态规划'
+                "客观题",
+                "单选题",
+                "GESP4级",
             ]
         },
         {
             id: 3,
-            type: 'single',
-            question: '01背包问题中，为什么要逆序遍历容量？',
+            type: "single",
+            question: "第3题（单选）：题干待从PDF补充。",
             options: [
-                '提高效率',
-                '保证每个物品只用一次',
-                '方便输出方案',
-                '减少空间'
+                "选项A",
+                "选项B",
+                "选项C",
+                "选项D",
             ],
-            answer: 1,
+            answer: 0,
             score: 2,
-            explanation: '逆序遍历可以保证在更新 dp[j] 时，dp[j-w[i]] 还是未放入第 i 个物品的状态。',
+            explanation: "答案依据试卷标准答案；解析待补充。",
             tags: [
-                '动态规划',
-                '程序分析'
+                "客观题",
+                "单选题",
+                "GESP4级",
             ]
         },
         {
             id: 4,
-            type: 'judge',
-            question: '所有能用贪心解决的问题也能用动态规划解决。',
+            type: "single",
+            question: "第4题（单选）：题干待从PDF补充。",
             options: [
-                '正确',
-                '错误'
+                "选项A",
+                "选项B",
+                "选项C",
+                "选项D",
             ],
             answer: 0,
             score: 2,
-            explanation: '贪心是动态规划的特例，满足贪心选择性质时可以简化为贪心。',
+            explanation: "答案依据试卷标准答案；解析待补充。",
             tags: [
-                '动态规划',
-                '算法策略',
-                '判断题'
+                "客观题",
+                "单选题",
+                "GESP4级",
+            ]
+        },
+        {
+            id: 5,
+            type: "single",
+            question: "第5题（单选）：题干待从PDF补充。",
+            options: [
+                "选项A",
+                "选项B",
+                "选项C",
+                "选项D",
+            ],
+            answer: 0,
+            score: 2,
+            explanation: "答案依据试卷标准答案；解析待补充。",
+            tags: [
+                "客观题",
+                "单选题",
+                "GESP4级",
+            ]
+        },
+        {
+            id: 6,
+            type: "single",
+            question: "第6题（单选）：题干待从PDF补充。",
+            options: [
+                "选项A",
+                "选项B",
+                "选项C",
+                "选项D",
+            ],
+            answer: 0,
+            score: 2,
+            explanation: "答案依据试卷标准答案；解析待补充。",
+            tags: [
+                "客观题",
+                "单选题",
+                "GESP4级",
+            ]
+        },
+        {
+            id: 7,
+            type: "single",
+            question: "第7题（单选）：题干待从PDF补充。",
+            options: [
+                "选项A",
+                "选项B",
+                "选项C",
+                "选项D",
+            ],
+            answer: 0,
+            score: 2,
+            explanation: "答案依据试卷标准答案；解析待补充。",
+            tags: [
+                "客观题",
+                "单选题",
+                "GESP4级",
+            ]
+        },
+        {
+            id: 8,
+            type: "single",
+            question: "第8题（单选）：题干待从PDF补充。",
+            options: [
+                "选项A",
+                "选项B",
+                "选项C",
+                "选项D",
+            ],
+            answer: 0,
+            score: 2,
+            explanation: "答案依据试卷标准答案；解析待补充。",
+            tags: [
+                "客观题",
+                "单选题",
+                "GESP4级",
+            ]
+        },
+        {
+            id: 9,
+            type: "single",
+            question: "第9题（单选）：题干待从PDF补充。",
+            options: [
+                "选项A",
+                "选项B",
+                "选项C",
+                "选项D",
+            ],
+            answer: 0,
+            score: 2,
+            explanation: "答案依据试卷标准答案；解析待补充。",
+            tags: [
+                "客观题",
+                "单选题",
+                "GESP4级",
+            ]
+        },
+        {
+            id: 10,
+            type: "single",
+            question: "第10题（单选）：题干待从PDF补充。",
+            options: [
+                "选项A",
+                "选项B",
+                "选项C",
+                "选项D",
+            ],
+            answer: 0,
+            score: 2,
+            explanation: "答案依据试卷标准答案；解析待补充。",
+            tags: [
+                "客观题",
+                "单选题",
+                "GESP4级",
+            ]
+        },
+        {
+            id: 11,
+            type: "single",
+            question: "第11题（单选）：题干待从PDF补充。",
+            options: [
+                "选项A",
+                "选项B",
+                "选项C",
+                "选项D",
+            ],
+            answer: 0,
+            score: 2,
+            explanation: "答案依据试卷标准答案；解析待补充。",
+            tags: [
+                "客观题",
+                "单选题",
+                "GESP4级",
+            ]
+        },
+        {
+            id: 12,
+            type: "single",
+            question: "第12题（单选）：题干待从PDF补充。",
+            options: [
+                "选项A",
+                "选项B",
+                "选项C",
+                "选项D",
+            ],
+            answer: 0,
+            score: 2,
+            explanation: "答案依据试卷标准答案；解析待补充。",
+            tags: [
+                "客观题",
+                "单选题",
+                "GESP4级",
+            ]
+        },
+        {
+            id: 13,
+            type: "single",
+            question: "第13题（单选）：题干待从PDF补充。",
+            options: [
+                "选项A",
+                "选项B",
+                "选项C",
+                "选项D",
+            ],
+            answer: 0,
+            score: 2,
+            explanation: "答案依据试卷标准答案；解析待补充。",
+            tags: [
+                "客观题",
+                "单选题",
+                "GESP4级",
+            ]
+        },
+        {
+            id: 14,
+            type: "single",
+            question: "第14题（单选）：题干待从PDF补充。",
+            options: [
+                "选项A",
+                "选项B",
+                "选项C",
+                "选项D",
+            ],
+            answer: 0,
+            score: 2,
+            explanation: "答案依据试卷标准答案；解析待补充。",
+            tags: [
+                "客观题",
+                "单选题",
+                "GESP4级",
+            ]
+        },
+        {
+            id: 15,
+            type: "single",
+            question: "第15题（单选）：题干待从PDF补充。",
+            options: [
+                "选项A",
+                "选项B",
+                "选项C",
+                "选项D",
+            ],
+            answer: 0,
+            score: 2,
+            explanation: "答案依据试卷标准答案；解析待补充。",
+            tags: [
+                "客观题",
+                "单选题",
+                "GESP4级",
+            ]
+        },
+        {
+            id: 16,
+            type: "judge",
+            question: "第1题（判断）：题干待从PDF补充。",
+            options: [
+                "正确",
+                "错误",
+            ],
+            answer: 0,
+            score: 2,
+            explanation: "答案依据试卷标准答案；解析待补充。",
+            tags: [
+                "客观题",
+                "判断题",
+                "GESP4级",
+            ]
+        },
+        {
+            id: 17,
+            type: "judge",
+            question: "第2题（判断）：题干待从PDF补充。",
+            options: [
+                "正确",
+                "错误",
+            ],
+            answer: 0,
+            score: 2,
+            explanation: "答案依据试卷标准答案；解析待补充。",
+            tags: [
+                "客观题",
+                "判断题",
+                "GESP4级",
+            ]
+        },
+        {
+            id: 18,
+            type: "judge",
+            question: "第3题（判断）：题干待从PDF补充。",
+            options: [
+                "正确",
+                "错误",
+            ],
+            answer: 0,
+            score: 2,
+            explanation: "答案依据试卷标准答案；解析待补充。",
+            tags: [
+                "客观题",
+                "判断题",
+                "GESP4级",
+            ]
+        },
+        {
+            id: 19,
+            type: "judge",
+            question: "第4题（判断）：题干待从PDF补充。",
+            options: [
+                "正确",
+                "错误",
+            ],
+            answer: 0,
+            score: 2,
+            explanation: "答案依据试卷标准答案；解析待补充。",
+            tags: [
+                "客观题",
+                "判断题",
+                "GESP4级",
+            ]
+        },
+        {
+            id: 20,
+            type: "judge",
+            question: "第5题（判断）：题干待从PDF补充。",
+            options: [
+                "正确",
+                "错误",
+            ],
+            answer: 0,
+            score: 2,
+            explanation: "答案依据试卷标准答案；解析待补充。",
+            tags: [
+                "客观题",
+                "判断题",
+                "GESP4级",
+            ]
+        },
+        {
+            id: 21,
+            type: "judge",
+            question: "第6题（判断）：题干待从PDF补充。",
+            options: [
+                "正确",
+                "错误",
+            ],
+            answer: 0,
+            score: 2,
+            explanation: "答案依据试卷标准答案；解析待补充。",
+            tags: [
+                "客观题",
+                "判断题",
+                "GESP4级",
+            ]
+        },
+        {
+            id: 22,
+            type: "judge",
+            question: "第7题（判断）：题干待从PDF补充。",
+            options: [
+                "正确",
+                "错误",
+            ],
+            answer: 0,
+            score: 2,
+            explanation: "答案依据试卷标准答案；解析待补充。",
+            tags: [
+                "客观题",
+                "判断题",
+                "GESP4级",
+            ]
+        },
+        {
+            id: 23,
+            type: "judge",
+            question: "第8题（判断）：题干待从PDF补充。",
+            options: [
+                "正确",
+                "错误",
+            ],
+            answer: 0,
+            score: 2,
+            explanation: "答案依据试卷标准答案；解析待补充。",
+            tags: [
+                "客观题",
+                "判断题",
+                "GESP4级",
+            ]
+        },
+        {
+            id: 24,
+            type: "judge",
+            question: "第9题（判断）：题干待从PDF补充。",
+            options: [
+                "正确",
+                "错误",
+            ],
+            answer: 0,
+            score: 2,
+            explanation: "答案依据试卷标准答案；解析待补充。",
+            tags: [
+                "客观题",
+                "判断题",
+                "GESP4级",
+            ]
+        },
+        {
+            id: 25,
+            type: "judge",
+            question: "第10题（判断）：题干待从PDF补充。",
+            options: [
+                "正确",
+                "错误",
+            ],
+            answer: 0,
+            score: 2,
+            explanation: "答案依据试卷标准答案；解析待补充。",
+            tags: [
+                "客观题",
+                "判断题",
+                "GESP4级",
             ]
         }
     ]

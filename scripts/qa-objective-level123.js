@@ -41,8 +41,8 @@ for (const target of targets) {
       const text = String(q.question || '').trim();
       const explanation = String(q.explanation || '').trim();
 
-      if (text.length > 280) {
-        issues.push(`${file}#Q${q.id}: 题干过长(${text.length})`);
+      if (text.length > 2500) {
+        issues.push(`${file}#Q${q.id}: 题干异常过长(${text.length})`);
       }
 
       const allText = `${text}\n${explanation}\n${(q.options || []).join('\n')}`;

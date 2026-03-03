@@ -12,11 +12,11 @@ const levelConfigs = [
   { level: 1, dir: 'level1', pattern: /\d{4}-\d{2}-l1\.js$/, expected: 25, expectedSingle: 15, expectedJudge: 10 },
   { level: 2, dir: 'level2', pattern: /\d{4}-\d{2}-l2\.js$/, expected: 25, expectedSingle: 15, expectedJudge: 10, exclude: ['2023-03-l2.js'] },
   { level: 3, dir: 'level3', pattern: /\d{4}-\d{2}-l3\.js$/, expected: 25, expectedSingle: 15, expectedJudge: 10 },
-  { level: 4, dir: 'level4', pattern: /\d{4}-\d{2}-l4\.js$/, minQuestions: 4 },
-  { level: 5, dir: 'level5', pattern: /\d{4}-\d{2}-l5\.js$/, minQuestions: 4 },
-  { level: 6, dir: 'level6', pattern: /\d{4}-\d{2}-l6\.js$/, minQuestions: 1 },
-  { level: 7, dir: 'level7', pattern: /\d{4}-\d{2}-l7\.js$/, minQuestions: 1 },
-  { level: 8, dir: 'level8', pattern: /\d{4}-\d{2}-l8\.js$/, minQuestions: 1 },
+  { level: 4, dir: 'level4', pattern: /\d{4}-\d{2}-l4\.js$/, minQuestions: 25, expectedSingle: 15, expectedJudge: 10 },
+  { level: 5, dir: 'level5', pattern: /\d{4}-\d{2}-l5\.js$/, minQuestions: 25, expectedSingle: 15, expectedJudge: 10 },
+  { level: 6, dir: 'level6', pattern: /\d{4}-\d{2}-l6\.js$/, minQuestions: 25, expectedSingle: 15, expectedJudge: 10 },
+  { level: 7, dir: 'level7', pattern: /\d{4}-\d{2}-l7\.js$/, minQuestions: 25, expectedSingle: 15, expectedJudge: 10 },
+  { level: 8, dir: 'level8', pattern: /\d{4}-\d{2}-l8\.js$/, minQuestions: 25, expectedSingle: 15, expectedJudge: 10 },
 ];
 
 const issues = [];

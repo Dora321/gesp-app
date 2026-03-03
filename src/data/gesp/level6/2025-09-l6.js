@@ -10,20 +10,457 @@ export const paperData = {
     questions: [
         {
             id: 1,
-            type: 'single',
-            question: '广度优先搜索（BFS）常使用的辅助数据结构是？',
+            type: "single",
+            question: "下列关于类的说法，错误的是( )。",
             options: [
-                '栈 (Stack)',
-                '队列 (Queue)',
-                '哈希表',
-                '并查集'
+                "构造函数不能声明为虚函数，但析构函数可以。",
+                "函数参数如声明为类的引用类型，调用时不会调用该类的复制构造函数。",
+                "静态方法属于类而不是某个具体对象，因此推荐用 类名::方法(...) 调用。",
+                "不管基类的析构函数是否是虚函数，都可以通过基类指针/引用正确删除派生类对象。",
+            ],
+            answer: 3,
+            score: 2,
+            explanation: "答案依据试卷标准答案；解析待补充。",
+            tags: [
+                "客观题",
+                "单选题",
+                "GESP6级",
+            ]
+        },
+        {
+            id: 2,
+            type: "single",
+            question: "假设变量 veh 是类 Car 的一个实例，我们可以调用 veh.move() ，是因为面向对象编程有（ ）性质。",
+            options: [
+                "继承 (Inheritance)",
+                "封装 (Encapsulation)",
+                "多态 (Polymorphism)",
+                "链接 (Linking) class Vehicle { private: string brand; public: Vehicle(string b) : brand(b) {} void setBrand(const string& b) { brand = b; } string getBrand() const { return brand; } void move() const { cout << brand << \" is moving...\" << endl; } }; class Car : public Vehicle { private: int seatCount; public: Car(string b, int seats) : Vehicle(b), seatCount(seats) {} void showInfo() const { cout << \"This car is a \" << getBrand() << \" with \" << seatCount << \" seats.\" << endl; } }; 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27",
+            ],
+            answer: 0,
+            score: 2,
+            explanation: "答案依据试卷标准答案；解析待补充。",
+            tags: [
+                "客观题",
+                "单选题",
+                "GESP6级",
+            ]
+        },
+        {
+            id: 3,
+            type: "single",
+            question: "下面代码中v1和v2调用了相同接⼝ move()，但输出结果不同，这体现了面向对象编程的（ ）特性。",
+            options: [
+                "继承 (Inheritance)",
+                "封装 (Encapsulation)",
+                "多态 (Polymorphism)",
+                "链接 (Linking)",
+            ],
+            answer: 2,
+            score: 2,
+            explanation: "答案依据试卷标准答案；解析待补充。",
+            tags: [
+                "客观题",
+                "单选题",
+                "GESP6级",
+            ]
+        },
+        {
+            id: 4,
+            type: "single",
+            question: "栈的操作特点是（ ）。 class Vehicle { private: string brand; public: Vehicle(string b) : brand(b) {} void setBrand(const string& b) { brand = b; } string getBrand() const { return brand; } virtual void move() const { cout << brand << \" is moving...\" << endl; } }; class Car : public Vehicle { private: int seatCount; public: Car(string b, int seats) : Vehicle(b), seatCount(seats) {} void showInfo() const { cout << \"This car is a \" << getBrand() << \" with \" << seatCount << \" seats.\" << endl; } void move() const override { cout << getBrand() << \" car is driving on the road!\" << endl; } }; class Bike : public Vehicle { public: Bike(string b) : Vehicle(b) {} void move() const override { cout << getBrand() << \" bike is cycling on the path!\" << endl; } }; int main() { Vehicle* v1 = new Car(\"Toyota\", 5); Vehicle* v2 = new Bike(\"Giant\"); v1->move(); v2->move(); delete v1; delete v2; return 0; } 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27 28 29 30 31 32 33 34 35 36 37 38 39 40 41 42 43 44 45 46 47 48 49 50 51 52",
+            options: [
+                "先进先出",
+                "先进后出",
+                "随机访问",
+                "双端进出",
             ],
             answer: 1,
             score: 2,
-            explanation: 'BFS 逐层扩展，利用先进先出（FIFO）的队列来存储待访问的相邻节点。',
+            explanation: "答案依据试卷标准答案；解析待补充。",
             tags: [
-                '图论',
-                '字符串与哈希'
+                "客观题",
+                "单选题",
+                "GESP6级",
+            ]
+        },
+        {
+            id: 5,
+            type: "single",
+            question: "循环队列常用于实现数据缓冲。假设一个循环队列容量为 5（即最多存放 4 个元素，留一个位置区分空与 满），依次进⾏操作：入队数据 1 ， 2 ， 3 ，出队 1 个数据，再入队数据 4 和 5 ，此时队⾸到队尾的元素顺序是（ ）。",
+            options: [
+                "[2, 3, 4, 5]",
+                "[1, 2, 3, 4]",
+                "[3, 4, 5, 2]",
+                "[2, 3, 5, 4]",
+            ],
+            answer: 0,
+            score: 2,
+            explanation: "答案依据试卷标准答案；解析待补充。",
+            tags: [
+                "客观题",
+                "单选题",
+                "GESP6级",
+            ]
+        },
+        {
+            id: 6,
+            type: "single",
+            question: "以下函数createTree()构造的树是什么类型？",
+            options: [
+                "满二叉树",
+                "完全二叉树",
+                "二叉排序树",
+                "其他都不对",
+            ],
+            answer: 1,
+            score: 2,
+            explanation: "答案依据试卷标准答案；解析待补充。",
+            tags: [
+                "客观题",
+                "单选题",
+                "GESP6级",
+            ]
+        },
+        {
+            id: 7,
+            type: "single",
+            question: "已知二叉树的 中序遍历 是 [D, B, E, A, F, C] ，先序遍历 是 [A, B, D, E, C, F] 。请问该二叉树的后序遍历结果 是（ ）。",
+            options: [
+                "[D, E, B, F, C, A]",
+                "[D, B, E, F, C, A]",
+                "[D, E, B, C, F, A]",
+                "[B, D, E, F, C, A]",
+            ],
+            answer: 0,
+            score: 2,
+            explanation: "答案依据试卷标准答案；解析待补充。",
+            tags: [
+                "客观题",
+                "单选题",
+                "GESP6级",
+            ]
+        },
+        {
+            id: 8,
+            type: "single",
+            question: "完全二叉树可以用数组连续高效存储，如果节点从1开始编号，则对有两个孩子节点的节点i，（ ）。",
+            options: [
+                "左孩子位于2i，右孩子位于2i+1",
+                "完全二叉树的叶子节点可以出现在最后一层的任意位置",
+                "所有节点都有两个孩子",
+                "左孩子位于2i+1，右孩子位于2i+2 struct TreeNode { int val; TreeNode* left; TreeNode* right; TreeNode(int x) : val(x), left(nullptr), right(nullptr) {} }; TreeNode* createTree() { TreeNode* root = new TreeNode(1); root->left = new TreeNode(2); root->right = new TreeNode(3); root->left->left = new TreeNode(4); root->left->right = new TreeNode(5); return root; } 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15",
+            ],
+            answer: 0,
+            score: 2,
+            explanation: "答案依据试卷标准答案；解析待补充。",
+            tags: [
+                "客观题",
+                "单选题",
+                "GESP6级",
+            ]
+        },
+        {
+            id: 9,
+            type: "single",
+            question: "设有字符集 {a, b, c, d, e, f} ，其出现频率分别为 {5, 9, 12, 13, 16, 45} 。哈夫曼算法构造最优 前缀编码，以下哪一组可能是对应的哈夫曼编码？（非叶子节点左边分支记作 0，右边分支记作 1，左右互换不影响 正确性）。",
+            options: [
+                "a: 00；b: 01；c: 10；d: 110；e: 111；f: 0",
+                "a: 1100；b: 1101；c: 100；d: 101；e: 111；f: 0",
+                "a: 000；b: 001；c: 01；d: 10；e: 110；f: 111",
+                "a: 10；b: 01；c: 100；d: 101；e: 111；f: 0",
+            ],
+            answer: 1,
+            score: 2,
+            explanation: "答案依据试卷标准答案；解析待补充。",
+            tags: [
+                "客观题",
+                "单选题",
+                "GESP6级",
+            ]
+        },
+        {
+            id: 10,
+            type: "single",
+            question: "下面代码生成格雷编码，则横线上应填写（ ）。",
+            options: [
+                "int i = 0; i < prev.size(); i++",
+                "int i = prev.size()-1; i >= 0; i--",
+                "auto s : prev",
+                "int i = prev.size()/2; i < prev.size(); i++",
+            ],
+            answer: 1,
+            score: 2,
+            explanation: "答案依据试卷标准答案；解析待补充。",
+            tags: [
+                "客观题",
+                "单选题",
+                "GESP6级",
+            ]
+        },
+        {
+            id: 11,
+            type: "single",
+            question: "请将下列树的深度优先遍历代码补充完整，横线处应填入（ ）。",
+            options: [
+                "vector",
+                "list",
+                "queue",
+                "stack vector<string> grayCode(int n) { if (n == 0) return {\"0\"}; if (n == 1) return {\"0\", \"1\"}; vector<string> prev = grayCode(n-1); vector<string> result; for (string s : prev) { result.push_back(\"0\" + s); } for (_______________) { // 在此处填写代码 result.push_back(\"1\" + prev[i]); } return result; } 1 2 3 4 5 6 7 8 9 10 11 12 13 14 struct TreeNode { int val; TreeNode* left; TreeNode* right; TreeNode(int x): val(x), left(nullptr), right(nullptr) {} }; void dfs(TreeNode* root) { if (!root) return; ______<TreeNode*> temp; // 在此处填写代码 temp.push(root); while (!temp.empty()) { TreeNode* node = temp.top(); temp.pop(); cout << node->val << \" \"; if (node->right) temp.push(node->right); if (node->left) temp.push(node->left); } } 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19",
+            ],
+            answer: 3,
+            score: 2,
+            explanation: "答案依据试卷标准答案；解析待补充。",
+            tags: [
+                "客观题",
+                "单选题",
+                "GESP6级",
+            ]
+        },
+        {
+            id: 12,
+            type: "single",
+            question: "令 是树的节点数目，下列代码实现了树的⼴度优先遍历，其时间复杂度是（ ）。",
+            options: [
+                "选项A",
+                "选项B",
+                "选项C",
+                "选项D",
+            ],
+            answer: 0,
+            score: 2,
+            explanation: "答案依据试卷标准答案；解析待补充。",
+            tags: [
+                "客观题",
+                "单选题",
+                "GESP6级",
+            ]
+        },
+        {
+            id: 13,
+            type: "single",
+            question: "在二叉排序树（Binary Search Tree, BST）中查找元素 50 ，从根节点开始：若根值为 60 ，则下一步应去 搜索：",
+            options: [
+                "左子树",
+                "右子树",
+                "随机",
+                "根节点",
+            ],
+            answer: 0,
+            score: 2,
+            explanation: "答案依据试卷标准答案；解析待补充。",
+            tags: [
+                "客观题",
+                "单选题",
+                "GESP6级",
+            ]
+        },
+        {
+            id: 14,
+            type: "single",
+            question: "删除二叉排序树中的节点时，如果节点有两个孩子，则横线处应填入（ ），其中 findMax 和 findMin 分 别为寻找树的最大值和最小值的函数。",
+            options: [
+                "root->left",
+                "root->right void bfs(TreeNode* root) { if (!root) return; queue<TreeNode*> q; q.push(root); while (!q.empty()) { TreeNode* node = q.front(); q.pop(); cout << node->val << \" \"; if (node->left) q.push(node->left); if (node->right) q.push(node->right); } } 1 2 3 4 5 6 7 8 9 10 11 12 struct TreeNode { int val; TreeNode* left; TreeNode* right; TreeNode(int x): val(x), left(nullptr), right(nullptr) {} }; TreeNode* deleteNode(TreeNode* root, int key) { if (!root) return nullptr; if (key < root->val) { root->left = deleteNode(root->left, key); } else if (key > root->val) { root->right = deleteNode(root->right, key); } else { if (!root->left) return root->right; if (!root->right) return root->left; TreeNode* temp = ____________; // 在此处填写代码 root->val = temp->val; root->right = deleteNode(root->right, temp->val); } return root; } 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 题 号 1 2 3 4 5 6 7 8 9 10 答案",
+                "findMin(root->right)",
+                "findMax(root->left)",
+            ],
+            answer: 2,
+            score: 2,
+            explanation: "答案依据试卷标准答案；解析待补充。",
+            tags: [
+                "客观题",
+                "单选题",
+                "GESP6级",
+            ]
+        },
+        {
+            id: 15,
+            type: "single",
+            question: "给定 个物品和一个最大承重为 的背包，每个物品有一个重量 和价值 ，每个物品只能选择放或 不放。目标是选择若⼲个物品放入背包，使得总价值最大，且总重量不超过 ，则横线上应填写（ ）。",
+            options: [
+                "dp[w] = max(dp[w], dp[w] + val[i]);",
+                "dp[w] = dp[w - wt[i]] + val[i];",
+                "dp[w] = max(dp[w - 1], dp[w - wt[i]] + val[i]);",
+                "dp[w] = max(dp[w], dp[w - wt[i]] + val[i]);",
+            ],
+            answer: 3,
+            score: 2,
+            explanation: "答案依据试卷标准答案；解析待补充。",
+            tags: [
+                "客观题",
+                "单选题",
+                "GESP6级",
+            ]
+        },
+        {
+            id: 16,
+            type: "judge",
+            question: "当基类可能被多态使用，其析构函数应该声明为虚函数。",
+            options: [
+                "正确",
+                "错误",
+            ],
+            answer: 0,
+            score: 2,
+            explanation: "答案依据试卷标准答案；解析待补充。",
+            tags: [
+                "客观题",
+                "判断题",
+                "GESP6级",
+            ]
+        },
+        {
+            id: 17,
+            type: "judge",
+            question: "哈夫曼编码是最优前缀码，且编码结果唯一。",
+            options: [
+                "正确",
+                "错误",
+            ],
+            answer: 0,
+            score: 2,
+            explanation: "答案依据试卷标准答案；解析待补充。",
+            tags: [
+                "客观题",
+                "判断题",
+                "GESP6级",
+            ]
+        },
+        {
+            id: 18,
+            type: "judge",
+            question: "一个含有 个节点的完全二叉树，高度为 。",
+            options: [
+                "正确",
+                "错误",
+            ],
+            answer: 0,
+            score: 2,
+            explanation: "答案依据试卷标准答案；解析待补充。",
+            tags: [
+                "客观题",
+                "判断题",
+                "GESP6级",
+            ]
+        },
+        {
+            id: 19,
+            type: "judge",
+            question: "在 C++ STL 中，栈（ std::stack ）的 pop 操作返回栈顶元素并移除它。",
+            options: [
+                "正确",
+                "错误",
+            ],
+            answer: 0,
+            score: 2,
+            explanation: "答案依据试卷标准答案；解析待补充。",
+            tags: [
+                "客观题",
+                "判断题",
+                "GESP6级",
+            ]
+        },
+        {
+            id: 20,
+            type: "judge",
+            question: "循环队列通过模运算循环使用空间。",
+            options: [
+                "正确",
+                "错误",
+            ],
+            answer: 0,
+            score: 2,
+            explanation: "答案依据试卷标准答案；解析待补充。",
+            tags: [
+                "客观题",
+                "判断题",
+                "GESP6级",
+            ]
+        },
+        {
+            id: 21,
+            type: "judge",
+            question: "一棵有 个节点的二叉树一定有 条边。",
+            options: [
+                "正确",
+                "错误",
+            ],
+            answer: 0,
+            score: 2,
+            explanation: "答案依据试卷标准答案；解析待补充。",
+            tags: [
+                "客观题",
+                "判断题",
+                "GESP6级",
+            ]
+        },
+        {
+            id: 22,
+            type: "judge",
+            question: "以下代码实现了二叉树的中序遍历。输入以下二叉树，中序遍历结果是 4 2 5 1 3 6 。 int knapsack(int W, vector<int>& wt, vector<int>& val, int n) { vector<int> dp(W+1, 0); for (int i = 0; i < n; ++i) { for (int w = W; w >= wt[i]; --w) { ________________________ // 在此处填写代码 } } return dp[W]; } 1 2 3 4 5 6 7 8 9 10 // 1 // / \ // 2 3 // / \ \ // 4 5 6 struct TreeNode { int val; TreeNode* left; TreeNode* right; TreeNode(int x) : val(x), left(nullptr), right(nullptr) {} }; void inorderIterative(TreeNode* root) { stack<TreeNode*> st; TreeNode* curr = root; 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17",
+            options: [
+                "正确",
+                "错误",
+            ],
+            answer: 0,
+            score: 2,
+            explanation: "答案依据试卷标准答案；解析待补充。",
+            tags: [
+                "客观题",
+                "判断题",
+                "GESP6级",
+            ]
+        },
+        {
+            id: 23,
+            type: "judge",
+            question: "下面代码实现的二叉排序树的查找操作时间复杂度是 ，其中 为树高。",
+            options: [
+                "正确",
+                "错误",
+            ],
+            answer: 0,
+            score: 2,
+            explanation: "答案依据试卷标准答案；解析待补充。",
+            tags: [
+                "客观题",
+                "判断题",
+                "GESP6级",
+            ]
+        },
+        {
+            id: 24,
+            type: "judge",
+            question: "下面代码实现了动态规划版本的斐波那契数列计算，其时间复杂度是 。",
+            options: [
+                "正确",
+                "错误",
+            ],
+            answer: 0,
+            score: 2,
+            explanation: "答案依据试卷标准答案；解析待补充。",
+            tags: [
+                "客观题",
+                "判断题",
+                "GESP6级",
+            ]
+        },
+        {
+            id: 25,
+            type: "judge",
+            question: "有一排⾹蕉，每个⾹蕉有不同的甜度值。小猴子想吃⾹蕉，但不能吃相邻的⾹蕉。以下代码能找到小猴子 吃到最甜的⾹蕉组合。 while (curr || !st.empty()) { while (curr) { st.push(curr); curr = curr->left; } curr = st.top(); st.pop(); cout << curr->val << \" \"; curr = curr->right; } } 18 19 20 21 22 23 24 25 26 27 TreeNode* searchBST(TreeNode* root, int val) { while (root && root->val != val) { root = (val < root->val) ? root->left : root->right; } return root; } 1 2 3 4 5 6 int fib_dp(int n) { if (n <= 1) return n; vector<int> dp(n+1); dp[0] = 0; dp[1] = 1; for (int i = 2; i <= n; i++) { dp[i] = dp[i-1] + dp[i-2]; } return dp[n]; } 1 2 3 4 5 6 7 8 9 10 // bananas：香蕉的甜度 void findSelectedBananas(vector<int>& bananas, vector<int>& dp) { vector<int> selected; int i = bananas.size() - 1; while (i >= 0) { if (i == 0) { selected.push_back(0); break; } if (dp[i] == dp[i-1]) { i--; } else { selected.push_back(i); i -= 2; } } reverse(selected.begin(), selected.end()); cout << \"小猴子吃了第: \"; for (int idx : selected) cout << idx+1 << \" \"; cout << \"个香蕉\" << endl; } int main() { 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27",
+            options: [
+                "正确",
+                "错误",
+            ],
+            answer: 1,
+            score: 2,
+            explanation: "答案依据试卷标准答案；解析待补充。",
+            tags: [
+                "客观题",
+                "判断题",
+                "GESP6级",
             ]
         }
     ]
