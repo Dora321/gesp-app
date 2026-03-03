@@ -55,6 +55,18 @@ const inferKnowledgeTags = (q, level) => {
     return Array.from(new Set(tags)).slice(0, 5);
 };
 
+const formatProblemMarkdown = (md = '') => {
+    return String(md)
+        .replace(/\$([^$]+)\$/g, '`$1`')
+        .replace(/\\times/g, '×')
+        .replace(/\\leq/g, '≤')
+        .replace(/\\geq/g, '≥')
+        .replace(/\\neq/g, '≠')
+        .replace(/\\cdot/g, '·')
+        .replace(/\\\(/g, '(')
+        .replace(/\\\)/g, ')');
+};
+
 const buildQuestionInsight = (q, level) => {
     const explanation = q?.explanation?.trim();
     if (explanation) return explanation;
@@ -315,7 +327,7 @@ export default function EnhancedPaperPage({ forcedPaperId }) {
                                             代码上机题题面如下（Markdown 原文），可直接在此阅读后开始实现：
                                         </p>
                                         <div className="prose prose-sm max-w-none bg-white rounded-lg border border-indigo-100 p-3">
-                                            <ReactMarkdown remarkPlugins={[remarkGfm]}>{currentQ.explanation || ''}</ReactMarkdown>
+                                            <ReactMarkdown remarkPlugins={[remarkGfm]}>{formatProblemMarkdown(currentQ.explanation || '')}</ReactMarkdown>
                                         </div>
                                     </div>
                                 ) : (
@@ -361,7 +373,7 @@ export default function EnhancedPaperPage({ forcedPaperId }) {
                                             <div className="space-y-2">
                                                 <p className="text-sm"><span className="font-semibold text-indigo-700">上机题原题面（Markdown）：</span></p>
                                                 <div className="prose prose-sm max-w-none bg-white rounded-lg border border-blue-100 p-3">
-                                                    <ReactMarkdown remarkPlugins={[remarkGfm]}>{currentQ.explanation || ''}</ReactMarkdown>
+                                                    <ReactMarkdown remarkPlugins={[remarkGfm]}>{formatProblemMarkdown(currentQ.explanation || '')}</ReactMarkdown>
                                                 </div>
                                             </div>
                                         ) : (
