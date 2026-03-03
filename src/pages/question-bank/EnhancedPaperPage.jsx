@@ -16,6 +16,7 @@ import {
 } from 'lucide-react';
 import { paperRegistry } from '../../data/gesp';
 import { luoguCodingByLevel } from '../../data/gesp/luoguCodingByLevel';
+import { paperCodingMap } from '../../data/gesp/paperCodingMap';
 
 const stripLeadingNumber = (questionText) => {
     if (typeof questionText !== 'string') return questionText;
@@ -91,11 +92,10 @@ export default function EnhancedPaperPage({ forcedPaperId }) {
         if (has26 && has27) return baseQuestions;
 
         const pool = luoguCodingByLevel[String(paperData.level)] || luoguCodingByLevel[paperData.level] || [];
-        const pairCount = Math.floor(pool.length / 2);
-        const session = Number(paperData.session || 1);
-        const pairIndex = pairCount > 0 ? Math.max(0, Math.min(session - 1, pairCount - 1)) : 0;
-        const p1 = pool[pairIndex * 2] || null;
-        const p2 = pool[pairIndex * 2 + 1] || null;
+        const byPid = new Map(pool.map((p) => [p.pid, p]));
+        const mapped = paperCodingMap[paperId] || {};
+        const p1 = byPid.get(mapped.q26) || null;
+        const p2 = byPid.get(mapped.q27) || null;
 
         const toMarkdown = (p) => {
             if (!p) return '题面暂缺，请稍后补齐。';
@@ -133,7 +133,7 @@ export default function EnhancedPaperPage({ forcedPaperId }) {
         if (!has26) merged.push(codingQ1);
         if (!has27) merged.push(codingQ2);
         return merged.sort((a, b) => Number(a.id) - Number(b.id));
-    }, [paperData, baseQuestions]);
+    }, [paperData, baseQuestions, paperId]);
 
     const [activeTab, setActiveTab] = useState('practice');
     const [currentQuestionIndex, setCurrentQuestionIndex] = useState(0);
