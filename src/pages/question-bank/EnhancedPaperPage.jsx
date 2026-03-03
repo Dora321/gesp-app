@@ -59,6 +59,30 @@ const inferKnowledgeTags = (q, level) => {
 
 const formatProblemMarkdown = (md = '') => String(md);
 
+const buildCodingGuide = (q) => {
+    const text = `${q?.question || ''} ${q?.explanation || ''}`;
+    const isGrid = /矩阵|网格|坐标|格|H\s*行|W\s*列/.test(text);
+    const isNumberTheory = /取模|整除|质数|最大公约数|闰年|年份/.test(text);
+
+    const idea = isGrid
+        ? '把问题转成“遍历每个格子并判定是否满足条件”，统计满足条件的数量。'
+        : isNumberTheory
+            ? '先写判断函数，再按范围枚举并累加答案。'
+            : '先抽象状态与转移，再通过循环/函数逐步求解。';
+
+    const steps = isGrid
+        ? ['读入 H、W、x', '双层循环遍历 (r,c)', '按公式判定是否满足', '满足则计数 +1', '输出计数']
+        : ['读入输入参数', '确定核心判定/转移', '循环或递归求解', '处理边界与特判', '输出结果'];
+
+    const complexity = isGrid ? '时间复杂度 O(H×W)，空间复杂度 O(1)。' : '优先保证正确性，再评估复杂度并优化。';
+
+    const pitfalls = isGrid
+        ? ['行列索引从 1 开始还是 0 开始要统一', '公式中开方比较建议注意浮点误差', '边界格子也要参与判定']
+        : ['输入范围可能很大，注意类型溢出', '边界值（0/1/空）要单独验证', '输出格式要与题面完全一致'];
+
+    return { idea, steps, complexity, pitfalls, isGrid };
+};
+
 const buildQuestionInsight = (q, level) => {
     const explanation = q?.explanation?.trim();
     if (explanation) return explanation;
@@ -202,6 +226,7 @@ export default function EnhancedPaperPage({ forcedPaperId }) {
     const selected = answers[currentQ.id];
     const isRevealed = !!revealed[currentQ.id];
     const tags = inferKnowledgeTags(currentQ, paperData.level);
+    const codingGuide = currentQ?.type === 'coding' ? buildCodingGuide(currentQ) : null;
 
     return (
         <div className="min-h-screen bg-slate-100">
@@ -362,10 +387,40 @@ export default function EnhancedPaperPage({ forcedPaperId }) {
                                 {isRevealed ? (
                                     <>
                                         {currentQ.type === 'coding' ? (
-                                            <div className="space-y-2">
+                                            <div className="space-y-3">
                                                 <p className="text-sm"><span className="font-semibold text-indigo-700">上机题原题面（Markdown）：</span></p>
                                                 <div className="prose prose-sm max-w-none bg-white rounded-lg border border-blue-100 p-3">
                                                     <ReactMarkdown remarkPlugins={[remarkGfm, remarkMath]} rehypePlugins={[rehypeKatex]}>{formatProblemMarkdown(currentQ.explanation || '')}</ReactMarkdown>
+                                                </div>
+
+                                                <div className="grid md:grid-cols-2 gap-3">
+                                                    <div className="bg-white border border-blue-100 rounded-lg p-3">
+                                                        <div className="text-sm font-semibold text-slate-800 mb-1">解题思路</div>
+                                                        <p className="text-sm text-slate-700 leading-relaxed">{codingGuide?.idea}</p>
+                                                    </div>
+                                                    <div className="bg-white border border-blue-100 rounded-lg p-3">
+                                                        <div className="text-sm font-semibold text-slate-800 mb-1">复杂度评估</div>
+                                                        <p className="text-sm text-slate-700 leading-relaxed">{codingGuide?.complexity}</p>
+                                                    </div>
+                                                </div>
+
+                                                <div className="bg-white border border-blue-100 rounded-lg p-3">
+                                                    <div className="text-sm font-semibold text-slate-800 mb-2">图解流程（可视化）</div>
+                                                    <div className="flex flex-wrap items-center gap-2 text-xs">
+                                                        {codingGuide?.steps?.map((step, idx) => (
+                                                            <React.Fragment key={step}>
+                                                                <span className="px-2 py-1 rounded bg-indigo-50 border border-indigo-200 text-indigo-700">{idx + 1}. {step}</span>
+                                                                {idx < codingGuide.steps.length - 1 && <span className="text-indigo-400">→</span>}
+                                                            </React.Fragment>
+                                                        ))}
+                                                    </div>
+                                                </div>
+
+                                                <div className="bg-white border border-amber-100 rounded-lg p-3">
+                                                    <div className="text-sm font-semibold text-amber-800 mb-1">易错点</div>
+                                                    <ul className="list-disc pl-5 text-sm text-slate-700 space-y-1">
+                                                        {(codingGuide?.pitfalls || []).map((it) => <li key={it}>{it}</li>)}
+                                                    </ul>
                                                 </div>
                                             </div>
                                         ) : (
