@@ -85,7 +85,7 @@ export default function EnhancedPaperPage({ forcedPaperId }) {
         if (!paperData) return [];
         const has26 = baseQuestions.some((q) => Number(q.id) === 26);
         const has27 = baseQuestions.some((q) => Number(q.id) === 27);
-        if (paperData.level !== 2 || (has26 && has27)) return baseQuestions;
+        if (has26 && has27) return baseQuestions;
 
         const codingQ1 = {
             id: 26,
