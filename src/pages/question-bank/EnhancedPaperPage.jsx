@@ -312,10 +312,10 @@ export default function EnhancedPaperPage({ forcedPaperId }) {
                                 {currentQ.type === 'coding' ? (
                                     <div className="rounded-xl border border-indigo-200 bg-indigo-50 p-4 space-y-3">
                                         <p className="text-sm text-slate-700 leading-relaxed">
-                                            这是代码上机题，请在本地/在线 IDE 完成编程实现后，再回到解析区对照思路复盘。
+                                            代码上机题题面如下（Markdown 原文），可直接在此阅读后开始实现：
                                         </p>
-                                        <div className="text-xs text-slate-600">
-                                            建议流程：读题 → 设计算法 → 编码 → 自测样例/边界 → 提交。
+                                        <div className="prose prose-sm max-w-none bg-white rounded-lg border border-indigo-100 p-3">
+                                            <ReactMarkdown remarkPlugins={[remarkGfm]}>{currentQ.explanation || ''}</ReactMarkdown>
                                         </div>
                                     </div>
                                 ) : (
@@ -348,7 +348,7 @@ export default function EnhancedPaperPage({ forcedPaperId }) {
                                     disabled={currentQ.type !== 'coding' && selected === undefined}
                                     className={`w-full mt-2 py-3 rounded-xl font-semibold flex items-center justify-center gap-2 ${(currentQ.type !== 'coding' && selected === undefined) ? 'bg-slate-100 text-slate-400 cursor-not-allowed' : 'bg-indigo-600 text-white hover:bg-indigo-700'}`}
                                 >
-                                    <CheckCircle2 size={18} /> {currentQ.type === 'coding' ? '查看上机题解析' : '查看答案与解析'}
+                                    <CheckCircle2 size={18} /> {currentQ.type === 'coding' ? '标记已阅读并查看复盘' : '查看答案与解析'}
                                 </button>
                             </div>
                         )}
