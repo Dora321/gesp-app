@@ -86,6 +86,15 @@ export default function Navigation({ darkMode = false, afterLogo = null, classNa
                                 />
                             </div>
 
+                            <h1 className={`
+                                font-bold tracking-tight transition-all duration-300 font-sans
+                                ${isScrolled ? 'text-lg' : 'text-2xl'}
+                                ${isScrolled ? 'text-slate-900' : (darkMode ? 'text-white' : 'text-slate-900')}
+                            `}>
+                                <span className={`${isScrolled ? 'text-slate-900' : (darkMode ? 'text-white' : 'text-slate-900')} group-hover:text-blue-600 transition-colors`}>
+                                    魔丸聚集地
+                                </span>
+                            </h1>
                             {afterLogo}
                         </div>
 

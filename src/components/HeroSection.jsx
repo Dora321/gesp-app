@@ -89,13 +89,6 @@ export default function HeroSection() {
 
                 {/* Left Content */}
                 <div className="space-y-8 text-center lg:text-left pt-20 lg:pt-0">
-                    <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-blue-100/50 text-brand-blue font-bold text-sm border border-blue-200 animate-fade-in text-brand-blue">
-                        <span className="relative flex h-2 w-2">
-                            <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-blue-400 opacity-75"></span>
-                            <span className="relative inline-flex rounded-full h-2 w-2 bg-blue-500"></span>
-                        </span>
-                        Gesp 2025 考级冲刺班开启
-                    </div>
 
                     <h1 className="text-5xl lg:text-7xl font-extrabold tracking-tight text-brand-slate leading-tight">
                         这里的代码，<br />
