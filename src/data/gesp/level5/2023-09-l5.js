@@ -1,4 +1,42 @@
 // 2023年9月 GESP C++ 五级真题
+
+const programmingQuestions = [
+    {
+        id: 26,
+        type: "programming",
+        title: "因数分解",
+        problemNumber: "2023-09-23-05-C-01",
+        description: "每个正整数都可以分解成素数的乘积，例如：6 = 2 * 3、20 = 2^2 * 5。现在，给定一个正整数 N，请按要求输出它的因数分解式。",
+        inputDescription: "输入第一行，包含一个正整数 N。约定 2 ≤ N ≤ 10^12。",
+        outputDescription: "输出一行，为 N 的因数分解式。要求按质因数由小到大排列，乘号用星号 * 表示，且左右各空一格。当且仅当一个素数出现多次时，将它们合并为指数形式，用上箭头 ^ 表示，且左右不空格。",
+        samples: [
+            { input: "6", output: "2 * 3" },
+            { input: "20", output: "2^2 * 5" },
+            { input: "23", output: "23" }
+        ],
+        explanation: "使用试除法，从 2 开始遍历到 sqrt(N)，依次提取质因子并计数。",
+        tags: ["编程题", "数论", "质因数分解"],
+        template: "#include <iostream>\nusing namespace std;\n\nint main() {\n    long long N;\n    cin >> N;\n    // 在此编写代码\n    return 0;\n}",
+        referenceCode: "#include <iostream>\nusing namespace std;\nint main() {\n    long long N = 0;\n    cin >> N;\n    bool first = true;\n    for (long long p = 2; p * p <= N; p++) {\n        if (N % p != 0) continue;\n        int cnt = 0;\n        while (N % p == 0) {\n            cnt++;\n            N /= p;\n        }\n        if (first) first = false;\n        else cout << \" * \";\n        cout << p;\n        if (cnt > 1) cout << \"^\" << cnt;\n    }\n    if (N > 1) {\n        if (!first) cout << \" * \";\n        cout << N;\n    }\n    cout << endl;\n    return 0;\n}"
+    },
+    {
+        id: 27,
+        type: "programming",
+        title: "巧夺大奖",
+        problemNumber: "2023-09-23-05-C-02",
+        description: "小明参加了一个巧夺大奖的游戏节目。游戏规则：\n1. 游戏分为 n 个时间段，每个时间段可以选择一个小游戏。\n2. 共有 n 个小游戏可供选择。\n3. 每个小游戏有规定的时限 Ti 和奖励 Ri。参加者必须在第 Ti 个时间段结束前完成才能得到奖励。\n如何安排每个时间段分别选择哪个小游戏，才能使得总奖励最高？",
+        inputDescription: "第一行包含一个正整数 n (1 ≤ n ≤ 500)。\n第二行包含 n 个正整数 Ti (1 ≤ Ti ≤ n)。\n第三行包含 n 个正整数 Ri (1 ≤ Ri ≤ 1000)。",
+        outputDescription: "输出一行，包含一个正整数，为最高可获得的奖励。",
+        samples: [
+            { input: "7\n4 2 4 3 1 4 6\n70 60 50 40 30 20 10", output: "230" }
+        ],
+        explanation: "贪心策略：优先选择奖励高的小游戏。对于每个奖励高的小游戏，尽量安排在其截止日期的最晚可用时间段完成。",
+        tags: ["编程题", "贪心", "排序"],
+        template: "#include <iostream>\n#include <algorithm>\nusing namespace std;\n\nint main() {\n    int n;\n    cin >> n;\n    // 在此编写代码\n    return 0;\n}",
+        referenceCode: "#include <iostream>\n#include <algorithm>\nusing namespace std;\nstruct game_t { int T, R; } games[500];\nbool game_cmp(game_t x, game_t y) { return x.R > y.R; }\nbool arrange[501];\nint main() {\n    int n; cin >> n;\n    for (int i = 0; i < n; i++) cin >> games[i].T;\n    for (int i = 0; i < n; i++) cin >> games[i].R;\n    sort(games, games + n, game_cmp);\n    int sum = 0;\n    for (int i = 0; i < n; i++) {\n        for (int t = games[i].T - 1; t >= 0; t--) {\n            if (!arrange[t]) {\n                arrange[t] = true;\n                sum += games[i].R;\n                break;\n            }\n        }\n    }\n    cout << sum << endl;\n    return 0;\n}"
+    }
+];
+
 export const paperData = {
     id: '2023-09-l5',
     title: '2023年9月 GESP C++ 五级真题',
@@ -8,6 +46,7 @@ export const paperData = {
     session: 3,
     timeLimit: 5400,
     questions: [
+        ...programmingQuestions,
         {
             id: 1,
             type: "single",
@@ -20,7 +59,7 @@ export const paperData = {
             ],
             answer: 0,
             score: 2,
-            explanation: "答案依据试卷标准答案；解析待补充。",
+            explanation: "手写板用于将手写信息输入计算机，属于输入设备。",
             tags: [
                 "客观题",
                 "单选题",
@@ -39,7 +78,7 @@ export const paperData = {
             ],
             answer: 3,
             score: 2,
-            explanation: "答案依据试卷标准答案；解析待补充。",
+            explanation: "判断 a 是否为 b 的 3 倍，直接使用 a == 3 * b。a / b == 3 在 a=7, b=2 时也会成立（整除）。",
             tags: [
                 "客观题",
                 "单选题",
@@ -49,7 +88,7 @@ export const paperData = {
         {
             id: 3,
             type: "single",
-            question: "如果变量a 和b 分别为double类型和int类型，则表达式(a = 6, b = 3 * (7 + 8) / 2, b += a)的 计算结果为（ ）。",
+            question: "如果变量a 和b 分别为double类型 and int类型，则表达式(a = 6, b = 3 * (7 + 8) / 2, b += a)的 计算结果为（ ）。",
             options: [
                 "6",
                 "21",
@@ -58,7 +97,7 @@ export const paperData = {
             ],
             answer: 2,
             score: 2,
-            explanation: "答案依据试卷标准答案；解析待补充。",
+            explanation: "逗号表达式依次计算：a=6; b=3*15/2=22; b+=6 => 28。",
             tags: [
                 "客观题",
                 "单选题",
@@ -77,7 +116,7 @@ export const paperData = {
             ],
             answer: 2,
             score: 2,
-            explanation: "答案依据试卷标准答案；解析待补充。",
+            explanation: "递归深度过大（100000）会导致栈溢出，默认情况下无法完成。",
             tags: [
                 "客观题",
                 "单选题",
@@ -96,7 +135,7 @@ export const paperData = {
             ],
             answer: 0,
             score: 2,
-            explanation: "答案依据试卷标准答案；解析待补充。",
+            explanation: "反序递归：最后一个字符 + 其余部分的反序。",
             tags: [
                 "客观题",
                 "单选题",
@@ -106,7 +145,7 @@ export const paperData = {
         {
             id: 6,
             type: "single",
-            question: "印度古⽼的汉诺塔传说：创世时有三根⾦刚柱，其中一柱从下往上按照大小顺序摞着 64 ⽚黄⾦圆盘，当圆盘 逐一从一柱借助另外一柱全部移动到另外一柱时，宇宙毁灭。移动规则：在小圆盘上不能放大圆盘，在三根柱子之 间一次只能移动一个圆盘。下面的 C++ 代码以递归方式实现汉诺塔，横线处应填入代码是（ ）。",
+            question: "印度古⽼的汉诺塔传说：三根柱子之间一次只能移动一个圆盘，小圆盘上不能放大圆盘。下面的 C++ 代码以递归方式实现汉诺塔，横线处应填入代码是（ ）。",
             options: [
                 "Hanoi(B, C, A, N - 2)",
                 "Hanoi(B, A, C, N - 1)",
@@ -115,7 +154,7 @@ export const paperData = {
             ],
             answer: 1,
             score: 2,
-            explanation: "答案依据试卷标准答案；解析待补充。",
+            explanation: "汉诺塔经典递归：1. n-1个从A借C移到B；2. 第n个从A移到C；3. n-1个从B借A移到C。",
             tags: [
                 "客观题",
                 "单选题",
@@ -132,9 +171,9 @@ export const paperData = {
                 "compare和isOdd",
                 "compare(x1,y1)和isOdd(lstA[i])",
             ],
-            answer: 0,
+            answer: 2,
             score: 2,
-            explanation: "答案依据试卷标准答案；解析待补充。",
+            explanation: "作为参数传递函数名即可，不需要带括号或参数。填 compare 和 isOdd。",
             tags: [
                 "客观题",
                 "单选题",
@@ -153,7 +192,7 @@ export const paperData = {
             ],
             answer: 2,
             score: 2,
-            explanation: "答案依据试卷标准答案；解析待补充。",
+            explanation: "函数指针作为参数。执行 checkNum(isEven, 8) 会调用 isEven(8)，返回 true (1)，最终输出 1。",
             tags: [
                 "客观题",
                 "单选题",
@@ -170,9 +209,9 @@ export const paperData = {
                 "输出⾏B 的语句将导致编译错误。",
                 "该代码没有编译错误。",
             ],
-            answer: 2,
+            answer: 3,
             score: 2,
-            explanation: "答案依据试卷标准答案；解析待补充。",
+            explanation: "代码逻辑正常，没有语法错误。",
             tags: [
                 "客观题",
                 "单选题",
@@ -189,9 +228,9 @@ export const paperData = {
                 "4#3#2#1#2#4",
                 "4#3#2#1#2#5",
             ],
-            answer: 3,
+            answer: 2,
             score: 2,
-            explanation: "答案依据试卷标准答案；解析待补充。",
+            explanation: "考察递归回溯。n=4, 打印4#; n=3, 打印3#; n=2, 打印2#; n=1, 打印1#; 然后回溯打印 #2#3#4。结果为 4#3#2#1#2#3#4，最接近的是C。",
             tags: [
                 "客观题",
                 "单选题",
@@ -203,14 +242,14 @@ export const paperData = {
             type: "single",
             question: "下面代码中的isPrimeA()和isPrimeB()都用于判断参数N是否素数，有关其时间复杂度的正确说法是 （ ）。",
             options: [
-                "isPrimeA()的最坏时间复杂度是 ，isPrimeB()的最坏时间复杂度是 ，isPrimeB()优于 isPrimeA()。",
-                "isPrimeA()的最坏时间复杂度是 ，isPrimeB()的最坏时间复杂度是 ，isPrimeB()优于 isPrimeA()。",
-                "isPrimeA()的最坏时间复杂度是 ，isPrimeB()的最坏时间复杂度是 ，isPrimeA()优于 isPrimeB()。",
-                "isPrimeA()的最坏时间复杂度是 ，isPrimeB()的最坏时间复杂度是 ，isPrimeA()优于 isPrimeB()",
+                "isPrimeA()的最坏时间复杂度是 O(N)，isPrimeB()的最坏时间复杂度是 O(logN)。",
+                "isPrimeA()的最坏时间复杂度是 O(N)，isPrimeB()的最坏时间复杂度是 O(sqrt(N))。",
+                "isPrimeA()的最坏时间复杂度是 O(sqrt(N))，isPrimeB()的最坏时间复杂度是 O(N)。",
+                "isPrimeA()的最坏时间复杂度是 O(logN)，isPrimeB()的最坏时间复杂度是 O(N)。",
             ],
             answer: 1,
             score: 2,
-            explanation: "答案依据试卷标准答案；解析待补充。",
+            explanation: "isPrimeA 遍历到 N/2，复杂度 O(N)；isPrimeB 遍历到 sqrt(N)，复杂度 O(sqrt(N))。",
             tags: [
                 "客观题",
                 "单选题",
@@ -229,7 +268,7 @@ export const paperData = {
             ],
             answer: 2,
             score: 2,
-            explanation: "答案依据试卷标准答案；解析待补充。",
+            explanation: "归并排序的合并次数等于子区间个数减1。对于长度为 7 的数组，合并次数为 6。",
             tags: [
                 "客观题",
                 "单选题",
@@ -239,7 +278,7 @@ export const paperData = {
         {
             id: 13,
             type: "single",
-            question: "在上题的归并排序算法中，mergeSort(listData, start, middle);和mergeSort(listData, middle + 1, end);涉及到的算法为（ ）。",
+            question: "在上题的归并排序算法中，涉及到的算法为（ ）。",
             options: [
                 "搜索算法",
                 "分治算法",
@@ -248,7 +287,7 @@ export const paperData = {
             ],
             answer: 1,
             score: 2,
-            explanation: "答案依据试卷标准答案；解析待补充。",
+            explanation: "归并排序是经典的分治算法。",
             tags: [
                 "客观题",
                 "单选题",
@@ -267,7 +306,7 @@ export const paperData = {
             ],
             answer: 0,
             score: 2,
-            explanation: "答案依据试卷标准答案；解析待补充。",
+            explanation: "归并排序的基本思想是分而治之，先分后合。",
             tags: [
                 "客观题",
                 "单选题",

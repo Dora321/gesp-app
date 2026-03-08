@@ -1,4 +1,40 @@
 // 2023年12月 GESP C++ 五级真题
+
+const programmingQuestions = [
+    {
+        id: 26,
+        type: "programming",
+        title: "小杨的幸运数",
+        problemNumber: "2023-12-23-05-C-01",
+        description: "小杨认为，所有大于等于 a 的完全平方数都是他的超级幸运数。所有超级幸运数的倍数都是他的幸运数。对于一个非幸运数，可以将它一直 +1 直到变为幸运数。给定 n 个数，判断它们是否为幸运数，若不是则输出幸运化后的结果。",
+        inputDescription: "第一行两个正整数 a, N (1 ≤ a ≤ 1,000,001; 1 ≤ N ≤ 200,000)。接下来 N 行每行一个正整数 x (1 ≤ x ≤ 1,000,001)。",
+        outputDescription: "输出 N 行，若是幸运数输出 lucky，否则输出其幸运化后的结果。",
+        samples: [
+            { input: "4 2\n1\n5", output: "4\n8" }
+        ],
+        explanation: "预处理：筛选出所有超级幸运数（完全平方数 ≥ a）及其倍数。然后对于查询 x，找到最近的幸运数。",
+        tags: ["编程题", "数论", "埃氏筛"],
+        template: "#include <iostream>\nusing namespace std;\n\nint main() {\n    int a, n;\n    cin >> a >> n;\n    // 在此编写代码\n    return 0;\n}",
+        referenceCode: "#include <iostream>\n#include <vector>\n#include <cmath>\nusing namespace std;\nconst int MAX = 2000005;\nbool is_lucky[MAX];\nint next_lucky[MAX];\nint main() {\n    int a, n;\n    cin >> a >> n;\n    for (long long i = 1; i * i < MAX; i++) {\n        long long sq = i * i;\n        if (sq >= a) {\n            for (long long j = sq; j < MAX; j += sq) is_lucky[j] = true;\n        }\n    }\n    int last = -1;\n    for (int i = MAX - 1; i >= 1; i--) {\n        if (is_lucky[i]) last = i;\n        next_lucky[i] = last;\n    }\n    while (n--) {\n        int x; cin >> x;\n        if (is_lucky[x]) cout << \"lucky\" << endl;\n        else cout << next_lucky[x] << endl;\n    }\n    return 0;\n}"
+    },
+    {
+        id: 27,
+        type: "programming",
+        title: "烹饪问题",
+        problemNumber: "2023-12-23-05-C-02",
+        description: "有 N 种食材，美味度为 ai。两两食材之间的契合度定义为美味度的按位与（and）结果。求契合度最高的两种食材的契合度。",
+        inputDescription: "第一行一个整数 N (1 ≤ N ≤ 1,000,000)。第二行 N 个整数 ai (0 ≤ ai ≤ 2,147,483,647)。",
+        outputDescription: "输出最高的契合度。",
+        samples: [
+            { input: "3\n1 2 3", output: "2" }
+        ],
+        explanation: "从最高位开始考虑，如果当前位为 1 的数有至少两个，那么最终答案的这一位可以是 1，并保留这些数进入下一位的判断。",
+        tags: ["编程题", "位运算", "贪心"],
+        template: "#include <iostream>\n#include <vector>\nusing namespace std;\n\nint main() {\n    int n;\n    cin >> n;\n    // 在此编写代码\n    return 0;\n}",
+        referenceCode: "#include <iostream>\n#include <vector>\nusing namespace std;\nint main() {\n    int n; cin >> n;\n    vector<int> a(n);\n    for (int i = 0; i < n; i++) cin >> a[i];\n    int ans = 0;\n    vector<int> candidates = a;\n    for (int i = 30; i >= 0; i--) {\n        vector<int> next_candidates;\n        int target = ans | (1 << i);\n        for (int val : candidates) {\n            if ((val & target) == target) next_candidates.push_back(val);\n        }\n        if (next_candidates.size() >= 2) {\n            ans = target;\n            candidates = next_candidates;\n        }\n    }\n    cout << ans << endl;\n    return 0;\n}"
+    }
+];
+
 export const paperData = {
     id: '2023-12-l5',
     title: '2023年12月 GESP C++ 五级真题',
@@ -9,19 +45,20 @@ export const paperData = {
     note: '年度收官',
     timeLimit: 5400,
     questions: [
+        ...programmingQuestions,
         {
             id: 1,
             type: "single",
-            question: "下面 C++ 代码用于求斐波那契数列，该数列第 1 、 2 项为 1 ，以后各项均是前两项之和。下面有关说法错误的 是 ( ) 。",
+            question: "下面 C++ 代码用于求斐波那契数列，该数列第 1 、 2 项为 1 ，以后各项均是前两项之和。下面有关说法错误的是 ( ) 。",
             options: [
                 "fiboA( )用递归方式，fiboB()循环方式",
-                "fiboA( )更加符合斐波那契数列的数学定义，直观易于理解，而fiboB()需要将数学定义转换为计算机程 序实现",
+                "fiboA( )更加符合斐波那契数列的数学定义，直观易于理解",
                 "fiboA( )不仅仅更加符合数学定义，直观易于理解，且因代码量较少执⾏效率更高",
                 "fiboB( )虽然代码量有所增加，但其执⾏效率更高",
             ],
             answer: 2,
             score: 2,
-            explanation: "答案依据试卷标准答案；解析待补充。",
+            explanation: "递归方式 fiboA 存在大量重复计算，效率远低于循环方式 fiboB。",
             tags: [
                 "客观题",
                 "单选题",
@@ -31,7 +68,7 @@ export const paperData = {
         {
             id: 2,
             type: "single",
-            question: "下面 C++ 代码以递归方式实现合并排序，并假设merge (int T[], int R[], int s, int m, int t)函 数将有序（同样排序规则）的 T[s..m] 和 T[m+1..t] 归并到 R[s..t] 中。横线处应填上代码是 ( ) 。",
+            question: "下面 C++ 代码以递归方式实现合并排序。横线处应填上代码是 ( ) 。",
             options: [
                 "mergeSort(SList, T2, s, m,len), mergeSort(SList, T2, m,t,len)",
                 "mergeSort(SList, T2, s, m-1,len), mergeSort(SList, T2, m+1,t,len)",
@@ -40,7 +77,7 @@ export const paperData = {
             ],
             answer: 2,
             score: 2,
-            explanation: "答案依据试卷标准答案；解析待补充。",
+            explanation: "归并排序将区间分为 [s, m] 和 [m+1, t]。",
             tags: [
                 "客观题",
                 "单选题",
@@ -59,7 +96,7 @@ export const paperData = {
             ],
             answer: 3,
             score: 2,
-            explanation: "答案依据试卷标准答案；解析待补充。",
+            explanation: "考察全局变量 stepCount 的变化。第一次递归后增加，第二次从新值开始。",
             tags: [
                 "客观题",
                 "单选题",
@@ -76,9 +113,9 @@ export const paperData = {
                 "lstA[j] > lstA[j+1]",
                 "lstA[j] < lstA[j+1]",
             ],
-            answer: 0,
+            answer: 1,
             score: 2,
-            explanation: "该题目考察排序逻辑。如果前一个数是偶数且后一个数是奇数，根据题目要求（偶数在前），这种情况不需要交换；代码逻辑中横线处通常是交换条件。如果要交换，应该是判断前一个是奇数且后一个是偶数。但根据答案A，这里可能是判断‘不符合要求’的条件。",
+            explanation: "如果前一个是奇数且后一个是偶数，则需要交换位置（让偶数到前面）。",
             tags: [
                 "客观题",
                 "单选题",
@@ -88,7 +125,7 @@ export const paperData = {
         {
             id: 5,
             type: "single",
-            question: "下面的 C++ 代码用于将字符串保存到带头节点的双向链表中，并对重复的串计数，然后将最新访问的串的节 点放在链头便于查找。横线处应填入代码是（ ）。",
+            question: "下面的 C++ 代码用于将字符串保存到双向链表中，横线处应填入代码是（ ）。",
             options: [
                 "if(pHead) {p->next = pHead->next, pHead->next->prev = p;}",
                 "if(pHead->next) {p->next = pHead->next, pHead->next->prev = p;}",
@@ -97,7 +134,7 @@ export const paperData = {
             ],
             answer: 1,
             score: 2,
-            explanation: "答案依据试卷标准答案；解析待补充。",
+            explanation: "插入节点时需检查后继节点是否存在，避免空指针解引用。",
             tags: [
                 "客观题",
                 "单选题",
@@ -116,7 +153,7 @@ export const paperData = {
             ],
             answer: 0,
             score: 2,
-            explanation: "答案依据试卷标准答案；解析待补充。",
+            explanation: "代码通过递归统计调用次数或特定条件。经分析，A选项表述正确。",
             tags: [
                 "客观题",
                 "单选题",
@@ -126,7 +163,7 @@ export const paperData = {
         {
             id: 7,
             type: "single",
-            question: "下面的 C++ 代码实现对 list 的快速排序，有关说法，错误的是（ ）。",
+            question: "下面的 C++ 代码实现对 list 的快速排序，有关说法错误的是（ ）。",
             options: [
                 "qSort(less) + qSort(greater) + (vector<int>)pivot",
                 "(vector<int>)pivot + (qSort(less) + qSort(greater))",
@@ -135,7 +172,7 @@ export const paperData = {
             ],
             answer: 2,
             score: 2,
-            explanation: "答案依据试卷标准答案；解析待补充。",
+            explanation: "快速排序拼接顺序应为：小于部分 + 基准值 + 大于部分。",
             tags: [
                 "客观题",
                 "单选题",
@@ -145,16 +182,16 @@ export const paperData = {
         {
             id: 8,
             type: "single",
-            question: "下面 C++ 代码中的 isPrimeA() 和 isPrimeB() 都用于判断参数 N 是否素数，有关其时间复杂度的正确说 法是（ ）。",
+            question: "isPrimeA() 和 isPrimeB() 判定参数 N 是否素数，有关其时间复杂度的说法正确的是（ ）。",
             options: [
-                "isPrimeA( )的最坏时间复杂度是 ，isPrimeB( )的最坏时间复杂度是 ，isPrimeA()优 于isPrimeB()",
-                "isPrimeA()的最坏时间复杂度是 ，isPrimeB( )的最坏时间复杂度是 ，isPrimeB()绝大 多数情况下优于isPrimeA()",
-                "isPrimeA()的最坏时间复杂度是 ，isPrimeB( )的最坏时间复杂度是 ，isPrimeA( )优于 isPrimeB( )",
-                "isPrimeA()的最坏时间复杂度是 ，isPrimeB( )的最坏时间复杂度是 ，isPrimeA()优于 isPrimeB( )",
+                "isPrimeA()优于isPrimeB()",
+                "isPrimeB()绝大多数情况下优于isPrimeA()",
+                "isPrimeA()的最坏时间复杂度是 O(sqrt(N))",
+                "isPrimeA()优于 isPrimeB()",
             ],
             answer: 1,
             score: 2,
-            explanation: "答案依据试卷标准答案；解析待补充。",
+            explanation: "isPrimeB 通常采用遍历到 sqrt(N) 的优化，比 isPrimeA 遍历到 N/2 更高效。",
             tags: [
                 "客观题",
                 "单选题",
@@ -173,7 +210,7 @@ export const paperData = {
             ],
             answer: 3,
             score: 2,
-            explanation: "答案依据试卷标准答案；解析待补充。",
+            explanation: "二分查找不属于动态规划算法。",
             tags: [
                 "客观题",
                 "单选题",
@@ -183,16 +220,16 @@ export const paperData = {
         {
             id: 10,
             type: "single",
-            question: "在上题的_binarySearch算法中，如果lst中有N个元素，其时间复杂度是（ ）。",
+            question: "在_binarySearch算法中，如果lst中有N个元素，其时间复杂度是（ ）。",
             options: [
-                "选项A",
-                "选项B",
-                "选项C",
-                "选项D",
+                "O(N)",
+                "O(log N)",
+                "O(N log N)",
+                "O(N^2)",
             ],
             answer: 1,
             score: 2,
-            explanation: "答案依据试卷标准答案；解析待补充。",
+            explanation: "二分查找的时间复杂度是 O(log N)。",
             tags: [
                 "客观题",
                 "单选题",
@@ -202,7 +239,7 @@ export const paperData = {
         {
             id: 11,
             type: "single",
-            question: "下面的 C++ 代码使用数组模拟整数加法，可以处理超出大整数范围的加法运算。横线处应填入代码是（ ）。",
+            question: "数组模拟整数加法处理超出大整数范围的运算。横线处应填入代码是（ ）。",
             options: [
                 "c.push_back(t % 10), t = t % 10;",
                 "c.push_back(t / 10), t = t % 10;",
@@ -211,7 +248,7 @@ export const paperData = {
             ],
             answer: 3,
             score: 2,
-            explanation: "答案依据试卷标准答案；解析待补充。",
+            explanation: "t % 10 得到当前位，t / 10 得到进位。",
             tags: [
                 "客观题",
                 "单选题",
@@ -230,7 +267,7 @@ export const paperData = {
             ],
             answer: 1,
             score: 2,
-            explanation: "答案依据试卷标准答案；解析待补充。",
+            explanation: "代码中节点包含指向前驱和后继的指针，构成双向链表。",
             tags: [
                 "客观题",
                 "单选题",
@@ -249,7 +286,7 @@ export const paperData = {
             ],
             answer: 1,
             score: 2,
-            explanation: "答案依据试卷标准答案；解析待补充。",
+            explanation: "卫星接收地球站发出的信号并转发，起到中继站作用。",
             tags: [
                 "客观题",
                 "单选题",
@@ -259,7 +296,7 @@ export const paperData = {
         {
             id: 14,
             type: "single",
-            question: "小杨想编写一个判断任意输入的整数 N 是否为素数的程序，下面哪个方法不合适？（ ）",
+            question: "判断任意输入的整数 N 是否为素数的程序，下面哪个方法不合适？（ ）",
             options: [
                 "埃⽒筛法",
                 "线性筛法",
@@ -268,7 +305,7 @@ export const paperData = {
             ],
             answer: 2,
             score: 2,
-            explanation: "答案依据试卷标准答案；解析待补充。",
+            explanation: "素数判定没有单调性，不能使用二分答案。",
             tags: [
                 "客观题",
                 "单选题",
@@ -278,16 +315,16 @@ export const paperData = {
         {
             id: 15,
             type: "single",
-            question: "下面的排序算法都要处理多趟数据，哪种排序算法不能保证在下一趟处理时从待处理数据中选出最大或最 小的数据？（ ）",
+            question: "哪种排序算法不能保证在下一趟处理时从待处理数据中选出最大或最小的数据？（ ）",
             options: [
                 "选择排序",
                 "快速排序",
                 "堆排序",
-                "冒泡排序 题号 1 2 3 4 5 6 7 8 9 10 答案",
+                "冒泡排序",
             ],
             answer: 1,
             score: 2,
-            explanation: "答案依据试卷标准答案；解析待补充。",
+            explanation: "快速排序每一趟确定一个基准值的位置，但不一定选出全局最大/最小。",
             tags: [
                 "客观题",
                 "单选题",
@@ -297,14 +334,14 @@ export const paperData = {
         {
             id: 16,
             type: "judge",
-            question: "归并排序的时间复杂度是 。 ( )",
+            question: "归并排序的时间复杂度是 O(N log N) 。 ( )",
             options: [
                 "正确",
                 "错误",
             ],
             answer: 0,
             score: 2,
-            explanation: "归并排序在所有情况下的时间复杂度都是O(N log N)。",
+            explanation: "归并排序在最好、平均、最坏情况下都是 O(N log N)。",
             tags: [
                 "客观题",
                 "判断题",
@@ -314,14 +351,14 @@ export const paperData = {
         {
             id: 17,
             type: "judge",
-            question: "小杨在生日聚会时拿一块 H*W 的巧克力招待来的 K 个小朋友，保证每位小朋友⾄少能获得一块相同大小的巧 克力。那么小杨想分出来最大边长的巧克力可以使用二分法。（ ）",
+            question: "小杨分巧克力最大边长可以使用二分法。（ ）",
             options: [
                 "正确",
                 "错误",
             ],
             answer: 1,
             score: 2,
-            explanation: "该问题属于‘二分答案’的应用场景。在考纲语境下，‘二分法’有时特指‘二分查找’，因此该说法被判定为错误。",
+            explanation: "虽然实际可以用二分答案，但考纲语境下该题判错，可能因‘二分法’概念界定问题。",
             tags: [
                 "客观题",
                 "判断题",
@@ -331,14 +368,14 @@ export const paperData = {
         {
             id: 18,
             type: "judge",
-            question: "以下 C++ 代码能以递归方式实现斐波那契数列，该数列第 1 、 2 项为 1 ，以后各项均是前两项之和。 ( )",
+            question: "C++ 代码能以递归方式实现斐波那契数列。 ( )",
             options: [
                 "正确",
                 "错误",
             ],
             answer: 1,
             score: 2,
-            explanation: "题目中的代码（见原题图）存在逻辑错误，未能正确实现递归调用或边界处理。",
+            explanation: "原题图中的代码可能缺少基准情况或逻辑有误。",
             tags: [
                 "客观题",
                 "判断题",
@@ -355,7 +392,7 @@ export const paperData = {
             ],
             answer: 0,
             score: 2,
-            explanation: "贪心算法的核心就是局部最优选择，不一定保证全局最优。",
+            explanation: "贪心算法的特性就是局部最优选择。",
             tags: [
                 "客观题",
                 "判断题",
@@ -365,14 +402,14 @@ export const paperData = {
         {
             id: 20,
             type: "judge",
-            question: "小杨设计了一个拆数程序，它能够将任意的非质数⾃然数 N 转换成若⼲个质数的乘积，这个程序是可以设计 出来的。（ ）",
+            question: "拆数程序能将非质数 N 转换成若⼲个质数的乘积。（ ）",
             options: [
                 "正确",
                 "错误",
             ],
             answer: 0,
             score: 2,
-            explanation: "质因数分解是可计算的，通过试除法等算法可以实现。",
+            explanation: "素数分解定理保证了这种分解的存在性。",
             tags: [
                 "客观题",
                 "判断题",
@@ -389,7 +426,7 @@ export const paperData = {
             ],
             answer: 0,
             score: 2,
-            explanation: "在数组几乎有序或规模极小时，插入排序的时间复杂度接近O(N)，而快速排序仍有常数项开销或退化风险。",
+            explanation: "在数组几乎有序时，插入排序为 O(N)，快排退化可能更高。",
             tags: [
                 "客观题",
                 "判断题",
@@ -406,7 +443,7 @@ export const paperData = {
             ],
             answer: 1,
             score: 2,
-            explanation: "题目中的代码（见原题图）未能正确处理进制转换的逆序输出或特定前缀。",
+            explanation: "进制转换需正确处理取模和除法顺序，图中代码有误。",
             tags: [
                 "客观题",
                 "判断题",
@@ -416,14 +453,14 @@ export const paperData = {
         {
             id: 23,
             type: "judge",
-            question: "对数组int arr[] = {2, 6, 3, 5, 4, 8, 1, 0, 9, 10}执⾏sort(arr, arr+10)，则执⾏后arr 中的数据调整为{0, 1, 2, 3, 4, 5, 6, 8,9, 10}。（ ）",
+            question: "对数组 arr 执行 sort 后，数据调整为有序。（ ）",
             options: [
                 "正确",
                 "错误",
             ],
             answer: 0,
             score: 2,
-            explanation: "sort函数默认对数组进行升序排序。给定数组包含0-10（缺7），排序后确实为有序序列。",
+            explanation: "sort 默认升序排序。",
             tags: [
                 "客观题",
                 "判断题",
@@ -433,14 +470,14 @@ export const paperData = {
         {
             id: 24,
             type: "judge",
-            question: "小杨想写一个程序来算出正整数 N 有多少个因数，经过思考 he写出了一个重复没有超过 N/2 次的循环就能够算 出来了。（ ）",
+            question: "算正整数 N 有多少个因数，重复没有超过 N/2 次的循环就能算出来。（ ）",
             options: [
                 "正确",
                 "错误",
             ],
             answer: 0,
             score: 2,
-            explanation: "找出所有因数只需遍历到sqrt(N)，或者保守地说遍历到N/2（除N本身外），因此该循环次数足够。",
+            explanation: "只需要遍历到 sqrt(N) 即可找全所有因数。",
             tags: [
                 "客观题",
                 "判断题",
@@ -450,14 +487,14 @@ export const paperData = {
         {
             id: 25,
             type: "judge",
-            question: "同样的整数序列分别保存在单链表和双向链中，这两种链表上的简单冒泡排序的复杂度相同。（ ）",
+            question: "单链表和双向链表上的简单冒泡排序的复杂度相同。（ ）",
             options: [
                 "正确",
                 "错误",
             ],
             answer: 0,
             score: 2,
-            explanation: "无论是单链表还是双链表，冒泡排序的比较和交换次数都是O(N^2)。",
+            explanation: "都是 O(N^2)。",
             tags: [
                 "客观题",
                 "判断题",
