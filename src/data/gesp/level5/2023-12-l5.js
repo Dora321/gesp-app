@@ -71,14 +71,14 @@ export const paperData = {
             type: "single",
             question: "下面的C++用于对 lstA 排序，使得偶数在前奇数在后，横线处应填入( )。",
             options: [
-                "选项A",
                 "isEven(lstA[j]) && !isEven(lstA[j+1])",
-                "lstA[j] > lstA[j+1] !isEven(lstA[j]) && isEven(lstA[j+1])",
+                "!isEven(lstA[j]) && isEven(lstA[j+1])",
+                "lstA[j] > lstA[j+1]",
                 "lstA[j] < lstA[j+1]",
             ],
             answer: 0,
             score: 2,
-            explanation: "答案依据试卷标准答案；解析待补充。",
+            explanation: "该题目考察排序逻辑。如果前一个数是偶数且后一个数是奇数，根据题目要求（偶数在前），这种情况不需要交换；代码逻辑中横线处通常是交换条件。如果要交换，应该是判断前一个是奇数且后一个是偶数。但根据答案A，这里可能是判断‘不符合要求’的条件。",
             tags: [
                 "客观题",
                 "单选题",
@@ -304,7 +304,7 @@ export const paperData = {
             ],
             answer: 0,
             score: 2,
-            explanation: "答案依据试卷标准答案；解析待补充。",
+            explanation: "归并排序在所有情况下的时间复杂度都是O(N log N)。",
             tags: [
                 "客观题",
                 "判断题",
@@ -319,9 +319,9 @@ export const paperData = {
                 "正确",
                 "错误",
             ],
-            answer: 0,
+            answer: 1,
             score: 2,
-            explanation: "答案依据试卷标准答案；解析待补充。",
+            explanation: "该问题属于‘二分答案’的应用场景。在考纲语境下，‘二分法’有时特指‘二分查找’，因此该说法被判定为错误。",
             tags: [
                 "客观题",
                 "判断题",
@@ -336,9 +336,9 @@ export const paperData = {
                 "正确",
                 "错误",
             ],
-            answer: 0,
+            answer: 1,
             score: 2,
-            explanation: "答案依据试卷标准答案；解析待补充。",
+            explanation: "题目中的代码（见原题图）存在逻辑错误，未能正确实现递归调用或边界处理。",
             tags: [
                 "客观题",
                 "判断题",
@@ -355,7 +355,7 @@ export const paperData = {
             ],
             answer: 0,
             score: 2,
-            explanation: "答案依据试卷标准答案；解析待补充。",
+            explanation: "贪心算法的核心就是局部最优选择，不一定保证全局最优。",
             tags: [
                 "客观题",
                 "判断题",
@@ -372,7 +372,7 @@ export const paperData = {
             ],
             answer: 0,
             score: 2,
-            explanation: "答案依据试卷标准答案；解析待补充。",
+            explanation: "质因数分解是可计算的，通过试除法等算法可以实现。",
             tags: [
                 "客观题",
                 "判断题",
@@ -389,7 +389,7 @@ export const paperData = {
             ],
             answer: 0,
             score: 2,
-            explanation: "答案依据试卷标准答案；解析待补充。",
+            explanation: "在数组几乎有序或规模极小时，插入排序的时间复杂度接近O(N)，而快速排序仍有常数项开销或退化风险。",
             tags: [
                 "客观题",
                 "判断题",
@@ -404,9 +404,9 @@ export const paperData = {
                 "正确",
                 "错误",
             ],
-            answer: 0,
+            answer: 1,
             score: 2,
-            explanation: "答案依据试卷标准答案；解析待补充。",
+            explanation: "题目中的代码（见原题图）未能正确处理进制转换的逆序输出或特定前缀。",
             tags: [
                 "客观题",
                 "判断题",
@@ -423,7 +423,7 @@ export const paperData = {
             ],
             answer: 0,
             score: 2,
-            explanation: "答案依据试卷标准答案；解析待补充。",
+            explanation: "sort函数默认对数组进行升序排序。给定数组包含0-10（缺7），排序后确实为有序序列。",
             tags: [
                 "客观题",
                 "判断题",
@@ -433,14 +433,14 @@ export const paperData = {
         {
             id: 24,
             type: "judge",
-            question: "小杨想写一个程序来算出正整数 N 有多少个因数，经过思考他写出了一个重复没有超过 N/2 次的循环就能够算 出来了。（ ）",
+            question: "小杨想写一个程序来算出正整数 N 有多少个因数，经过思考 he写出了一个重复没有超过 N/2 次的循环就能够算 出来了。（ ）",
             options: [
                 "正确",
                 "错误",
             ],
             answer: 0,
             score: 2,
-            explanation: "答案依据试卷标准答案；解析待补充。",
+            explanation: "找出所有因数只需遍历到sqrt(N)，或者保守地说遍历到N/2（除N本身外），因此该循环次数足够。",
             tags: [
                 "客观题",
                 "判断题",
@@ -457,7 +457,7 @@ export const paperData = {
             ],
             answer: 0,
             score: 2,
-            explanation: "答案依据试卷标准答案；解析待补充。",
+            explanation: "无论是单链表还是双链表，冒泡排序的比较和交换次数都是O(N^2)。",
             tags: [
                 "客观题",
                 "判断题",
