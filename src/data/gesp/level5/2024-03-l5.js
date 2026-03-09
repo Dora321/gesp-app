@@ -56,7 +56,7 @@ export const paperData = {
                 "每个大于1的整数都可以唯一分解为素数的乘积，不计顺序",
                 "每一个合数都可以分解为素数的乘积"
             ],
-            answer: 2,
+            answer: 1,
             score: 2,
             explanation: "唯一分解定理（算术基本定理）：任何大于1的整数，要么本身是质数，要么可以写为一系列质数的乘积，且在不计顺序的情况下，这种分解方式是唯一的。",
             tags: ["客观题", "单选题", "GESP5级"]
@@ -79,111 +79,116 @@ export const paperData = {
         {
             id: 3,
             type: "single",
-            question: "下面有关 C++ 类和对象的说法，错误的是（ ）。",
+            question: "下面的 C++ 代码片段用于计算阶乘。请在横线处填入（ ），实现正确的阶乘计算。",
             options: [
-                "类是对象的抽象，对象是类的实例",
-                "类可以包含成员变量和成员函数",
-                "对象在创建时会自动调用构造函数",
-                "一个类只能创建一个对象"
+                "return n * factorial(n - 1);",
+                "return factorial(n - 1) / n;",
+                "return n * factorial(n);",
+                "return factorial(n / 2) * factorial(n / 2);"
             ],
-            answer: 3,
+            answer: 0,
             score: 2,
-            explanation: "一个类可以创建无数个对象（实例）。",
+            explanation: "阶乘递归应满足 n! = n × (n-1)!，并在 n=0 或 n=1 时返回 1，因此应填 A。",
             tags: ["客观题", "单选题", "GESP5级"]
         },
         {
             id: 4,
             type: "single",
-            question: "下面关于递归的说法，错误的是（ ）。",
+            question: "下面的代码片段用于在双向链表中删除一个节点。请在横线处填入（ ），使其能正确实现相应功能。",
             options: [
-                "递归必须有终止条件",
-                "递归的效率总是高于循环",
-                "递归可以简化复杂问题的实现",
-                "递归调用会占用系统栈空间"
+                "if (current->next != nullptr) current->next->prev = current->prev;",
+                "current->prev->next = current->next;",
+                "delete current->next;",
+                "current->prev = current->next;"
             ],
             answer: 1,
             score: 2,
-            explanation: "递归由于函数调用开销和栈空间占用，效率通常低于循环。",
+            explanation: "删除双向链表中的当前节点时，若当前节点不是头结点，需要先让前驱节点的 next 指向当前节点的 next，因此选 B。",
             tags: ["客观题", "单选题", "GESP5级"]
         },
         {
             id: 5,
             type: "single",
-            question: "在 C++ 中，下列哪个关键字用于声明虚函数（ ）。",
-            options: ["static", "inline", "virtual", "friend"],
+            question: "辗转相除法也被称为（ ）。",
+            options: ["高斯消元法", "费马定理", "欧几里得算法", "牛顿迭代法"],
             answer: 2,
             score: 2,
-            explanation: "virtual 关键字用于声明虚函数，实现多态。",
+            explanation: "辗转相除法就是欧几里得算法，用于求两个整数的最大公约数。",
             tags: ["客观题", "单选题", "GESP5级"]
         },
         {
             id: 6,
             type: "single",
-            question: "下列哪个算法采用了分治思想（ ）。",
-            options: ["冒泡排序", "插入排序", "归并排序", "选择排序"],
+            question: "下面的代码片段用于计算斐波那契数列。该代码的时间复杂度是（ ）。",
+            options: ["O(1)", "O(log N)", "O(2^N)", "O(N)"],
             answer: 2,
             score: 2,
-            explanation: "归并排序将数组分成两半分别排序再合并，是经典的分治算法。",
+            explanation: "朴素递归 Fibonacci 会重复计算大量子问题，时间复杂度呈指数级增长，通常记为 O(2^N)。",
             tags: ["客观题", "单选题", "GESP5级"]
         },
         {
             id: 7,
             type: "single",
-            question: "在 C++ 中，指针和引用的主要区别是（ ）。",
+            question: "下面的代码片段用于将两个高精度整数进行相加。请在横线处填入（ ），使其能正确实现相应功能。",
             options: [
-                "指针可以指向空值，引用必须绑定到具体对象",
-                "指针不需要初始化，引用必须初始化",
-                "指针的大小是固定的，引用的大小取决于对象",
-                "指针可以重新指向，引用一旦绑定不可更改"
+                "result = to_string(sum % 10) + result;",
+                "result = to_string(carry % 10) + result;",
+                "result = to_string(sum / 10) + result;",
+                "result = to_string(sum % 10 + carry) + result;"
             ],
             answer: 0,
             score: 2,
-            explanation: "指针可以为 NULL，引用必须在声明时初始化并绑定到一个存在的对象。",
+            explanation: "高精度加法每一位写入结果的应是当前位 sum % 10，进位单独保存在 carry 中，因此选 A。",
             tags: ["客观题", "单选题", "GESP5级"]
         },
         {
             id: 8,
             type: "single",
-            question: "关于 C++ 的 const 关键字，下列说法正确的是（ ）。",
-            options: [
-                "const 变量的值可以在运行时修改",
-                "const 函数可以修改类的成员变量",
-                "const 指针只能指向 const 变量",
-                "const 修饰的变量必须在初始化时赋值"
-            ],
+            question: "给定序列 1，3，6，9，17，31，39，52，61，79，81，90，96。使用给定代码二分查找元素 82 时，最后输出的 times 值为（ ）。",
+            options: ["2", "5", "3", "4"],
             answer: 3,
             score: 2,
-            explanation: "const 修饰的常量必须在声明时初始化。",
+            explanation: "按题中二分过程：79→90→81→未找到，共进入 while 循环 4 次，因此 times 为 4，选 D。",
             tags: ["客观题", "单选题", "GESP5级"]
         },
         {
             id: 9,
             type: "single",
-            question: "下列哪个协议属于 TCP/IP 模型中的应用层（ ）。",
-            options: ["IP", "TCP", "HTTP", "ICMP"],
-            answer: 2,
+            question: "下面的代码片段用于判断一个正整数是否为素数。请对以下代码进行修改，使其能正确实现相应功能。（ ）。",
+            options: [
+                "num < 2 应该改为 num <= 2",
+                "循环条件 i * i < num 应该改为 i * i <= num",
+                "循环条件应该是 i <= num",
+                "循环体中应该是 if (num % i != 0)"
+            ],
+            answer: 1,
             score: 2,
-            explanation: "HTTP 属于应用层，TCP 属于传输层，IP 和 ICMP 属于网络层。",
+            explanation: "判断素数时应枚举到 i*i<=num；若写成 i*i<num，会漏掉完全平方数的因子检查，因此选 B。",
             tags: ["客观题", "单选题", "GESP5级"]
         },
         {
             id: 10,
             type: "single",
-            question: "在 C++ 中，std::vector 的 push_back 操作的时间复杂度平均是（ ）。",
-            options: ["O(1)", "O(log N)", "O(N)", "O(N^2)"],
-            answer: 0,
+            question: "在埃拉托斯特尼筛法中，要筛选出不大于 n 的所有素数，最外层循环应该遍历什么范围（ ）。",
+            options: [
+                "for (int i = 2; i <= n; ++i)",
+                "for (int i = 1; i < n; ++i)",
+                "for (int i = 2; i <= sqrt(n); ++i)",
+                "for (int i = 1; i <= sqrt(n); ++i)"
+            ],
+            answer: 2,
             score: 2,
-            explanation: "vector 的 push_back 具有均摊时间复杂度 O(1)。",
+            explanation: "埃氏筛只需要让外层质数筛到 sqrt(n) 即可，再大的合数都会在此前被更小的质因子筛掉，因此选 C。",
             tags: ["客观题", "单选题", "GESP5级"]
         },
         {
             id: 11,
             type: "single",
-            question: "二分查找算法的前提是（ ）。",
-            options: ["数据量大", "数组有序", "数组采用动态分配", "数据分布均匀"],
-            answer: 1,
+            question: "素数的线性筛法时间复杂度为（ ）。",
+            options: ["O(N)", "O(N log N)", "O(N log log N)", "O(N^2)"],
+            answer: 0,
             score: 2,
-            explanation: "二分查找要求数据必须是有序的。",
+            explanation: "线性筛保证每个合数只被其最小质因子筛掉一次，因此总时间复杂度是 O(N)。",
             tags: ["客观题", "单选题", "GESP5级"]
         },
         {
@@ -199,46 +204,46 @@ export const paperData = {
         {
             id: 13,
             type: "single",
-            question: "在 C++ 中，定义一个指向函数的指针，正确语法是（ ）。",
+            question: "在快速排序中，选择的主元素（pivot）会影响算法的（ ）。",
             options: [
-                "int *f(int);",
-                "int (*f)(int);",
-                "int f*(int);",
-                "int *(f)(int);"
+                "不影响",
+                "时间复杂度",
+                "空间复杂度",
+                "时间复杂度和空间复杂度"
             ],
             answer: 1,
             score: 2,
-            explanation: "int (*f)(int) 声明了一个名为 f 的指针，它指向一个接受 int 并返回 int 的函数。",
+            explanation: "pivot 选得好时，划分更均衡，快速排序更接近 O(N log N)；选得差时可能退化到 O(N^2)，因此它会影响时间复杂度。",
             tags: ["客观题", "单选题", "GESP5级"]
         },
         {
             id: 14,
             type: "single",
-            question: "下列关于栈（Stack）的说法，正确的是（ ）。",
+            question: "递归函数在调用自身时，必须满足（ ），以避免无限递归？",
             options: [
-                "先进先出（FIFO）",
-                "后进先出（LIFO）",
-                "支持随机访问",
-                "可以在任意位置插入元素"
+                "有终止条件",
+                "函数参数递减（或递增）",
+                "函数返回值固定",
+                "以上都对"
             ],
             answer: 0,
             score: 2,
-            explanation: "栈是典型的后进先出（LIFO）数据结构。注：选项A原文可能为后进先出，此处按逻辑修正。",
+            explanation: "递归最基本的要求是必须存在终止条件，否则调用会无限进行下去。参数变化常见但不是唯一表述，因此按官方答案区选 A。",
             tags: ["客观题", "单选题", "GESP5级"]
         },
         {
             id: 15,
             type: "single",
-            question: "关于 C++ 的析构函数，下列说法错误的是（ ）。",
+            question: "假设给定链表为某单链表，若调用 searchValue(head, 5)，函数返回值为（ ）。",
             options: [
-                "一个类只能有一个析构函数",
-                "析构函数不能有参数",
-                "析构函数名与类名相同，前面加 ~",
-                "析构函数必须显式调用"
+                "返回 1",
+                "返回 0",
+                "死循环，无法返回",
+                "返回 -1"
             ],
-            answer: 3,
+            answer: 0,
             score: 2,
-            explanation: "析构函数在对象生命周期结束时自动调用，通常不需要显式调用。",
+            explanation: "题面函数会顺着 next 遍历链表，一旦遇到值等于 target 的节点就 return 1；官方答案区给出 A。",
             tags: ["客观题", "单选题", "GESP5级"]
         },
         {
@@ -246,9 +251,9 @@ export const paperData = {
             type: "judge",
             question: "C++ 中可以使用 `const` 关键字定义常量。",
             options: ["正确", "错误"],
-            answer: -1,
+            answer: 0,
             score: 2,
-            explanation: "待补全答案。",
+            explanation: "const 可以用于定义常量对象或只读变量，该说法正确。",
             tags: ["客观题", "判断题", "GESP5级"]
         },
         {
@@ -256,9 +261,9 @@ export const paperData = {
             type: "judge",
             question: "贪心算法保证能得到问题的全局最优解。",
             options: ["正确", "错误"],
-            answer: -1,
+            answer: 1,
             score: 2,
-            explanation: "待补全答案。",
+            explanation: "贪心算法并不总能得到全局最优解，只有满足贪心选择性质的问题才适用，因此说法错误。",
             tags: ["客观题", "判断题", "GESP5级"]
         },
         {
@@ -266,9 +271,9 @@ export const paperData = {
             type: "judge",
             question: "二分查找的时间复杂度是 O(N)。",
             options: ["正确", "错误"],
-            answer: -1,
+            answer: 1,
             score: 2,
-            explanation: "待补全答案。",
+            explanation: "二分查找每次把搜索区间缩小一半，时间复杂度是 O(log N)，不是 O(N)。",
             tags: ["客观题", "判断题", "GESP5级"]
         },
         {
@@ -276,9 +281,9 @@ export const paperData = {
             type: "judge",
             question: "在 C++ 中，`std::vector` 的大小是可以在运行时动态改变的。",
             options: ["正确", "错误"],
-            answer: -1,
+            answer: 0,
             score: 2,
-            explanation: "待补全答案。",
+            explanation: "vector 支持动态扩容和缩容，元素个数可以在运行时变化，因此说法正确。",
             tags: ["客观题", "判断题", "GESP5级"]
         },
         {
@@ -286,9 +291,9 @@ export const paperData = {
             type: "judge",
             question: "递归函数如果没有终止条件，会导致无限递归并最终栈溢出。",
             options: ["正确", "错误"],
-            answer: -1,
+            answer: 0,
             score: 2,
-            explanation: "待补全答案。",
+            explanation: "递归若没有终止条件，会不断调用自身并持续消耗栈空间，最终可能栈溢出，因此说法正确。",
             tags: ["客观题", "判断题", "GESP5级"]
         },
         {
@@ -296,9 +301,9 @@ export const paperData = {
             type: "judge",
             question: "在 C++ 中，指针变量存储的是另一个变量的内存地址。",
             options: ["正确", "错误"],
-            answer: -1,
+            answer: 0,
             score: 2,
-            explanation: "待补全答案。",
+            explanation: "指针变量中保存的是某个内存单元的地址，因此说法正确。",
             tags: ["客观题", "判断题", "GESP5级"]
         },
         {
@@ -306,9 +311,9 @@ export const paperData = {
             type: "judge",
             question: "快速排序在最坏情况下的时间复杂度是 O(N log N)。",
             options: ["正确", "错误"],
-            answer: -1,
+            answer: 1,
             score: 2,
-            explanation: "待补全答案。",
+            explanation: "快速排序最坏情况下会退化到 O(N^2)，所以该说法错误。",
             tags: ["客观题", "判断题", "GESP5级"]
         },
         {
@@ -316,9 +321,9 @@ export const paperData = {
             type: "judge",
             question: "C++ 中的类支持封装、继承和多态三大特性。",
             options: ["正确", "错误"],
-            answer: -1,
+            answer: 0,
             score: 2,
-            explanation: "待补全答案。",
+            explanation: "类的三大特性通常概括为封装、继承和多态，因此说法正确。",
             tags: ["客观题", "判断题", "GESP5级"]
         },
         {
@@ -326,9 +331,9 @@ export const paperData = {
             type: "judge",
             question: "在 C++ 中，`new` 操作符用于在堆上分配内存。",
             options: ["正确", "错误"],
-            answer: -1,
+            answer: 0,
             score: 2,
-            explanation: "待补全答案。",
+            explanation: "new 会在自由存储区（通常称堆区）分配内存，因此说法正确。",
             tags: ["客观题", "判断题", "GESP5级"]
         },
         {
@@ -336,9 +341,9 @@ export const paperData = {
             type: "judge",
             question: "归并排序是稳定的排序算法。",
             options: ["正确", "错误"],
-            answer: -1,
+            answer: 0,
             score: 2,
-            explanation: "待补全答案。",
+            explanation: "归并排序在合并相等元素时可以保持原有相对次序，因此它是稳定排序。",
             tags: ["客观题", "判断题", "GESP5级"]
         }
     ]

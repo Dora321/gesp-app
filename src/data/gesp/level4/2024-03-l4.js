@@ -60,7 +60,7 @@ export const paperData = {
             type: "single",
             question: "下面 C++ 代码执行后，输出的是 ( ) 。\n```cpp\nint main() {\n    char *p = \"GESP\";\n    cout << *(p+2) << endl;\n    return 0;\n}\n```",
             options: ["G", "e", "n", "S"],
-            answer: 3,
+            answer: 2,
             score: 2,
             explanation: "p 指向字符串 \"GESP\"。p+2 指向字符 'S'（下标从0开始），解引用得到 'S'。注：样例选项 D 原文为 P 可能有误，应为 S。",
             tags: ["客观题", "单选题", "GESP4级"]
@@ -110,7 +110,7 @@ export const paperData = {
             type: "single",
             question: "下面 C++ 代码执行以后输出的是（ ）。\n```cpp\nint foo(float *f) { return int(*f * 2); }\nint main() {\n    float fnum[10] = {1.1};\n    fnum[1] = foo(fnum);\n    cout << fnum[0] + fnum[1] << endl;\n    return 0;\n}\n```",
             options: ["1.1", "3.1", "3.3", "不确定"],
-            answer: 1,
+            answer: 3,
             score: 2,
             explanation: "foo(fnum) 传入 fnum[0]=1.1，返回 int(1.1*2) = 2。fnum[1]=2.0。输出 1.1 + 2.0 = 3.1。",
             tags: ["客观题", "单选题", "GESP4级"]
@@ -130,7 +130,7 @@ export const paperData = {
             type: "single",
             question: "插入排序在最好情况下的时间复杂度是（ ）。",
             options: ["O(1)", "O(N)", "O(N log N)", "O(N^2)"],
-            answer: 1,
+            answer: 2,
             score: 2,
             explanation: "插入排序在数组已经有序时，只需比较 N-1 次，复杂度为 O(N)。",
             tags: ["客观题", "单选题", "GESP4级"]
@@ -160,7 +160,7 @@ export const paperData = {
             type: "single",
             question: "执行下列 C++ 代码时输出的第 2 行是（ ）。\n```cpp\nint main() {\n    char *s[]={(char*)\"2024\",(char*)\"3.16\",(char*)\"GESP\"};\n    for (int i=0; i<2; i++) cout << *s+i << endl;\n    return 0;\n}\n```",
             options: ["2024", "024", "3.16", "16"],
-            answer: 1,
+            answer: 2,
             score: 2,
             explanation: "s 是指针数组。*s 指向 \"2024\"。i=0 输出 *s+0 (\"2024\"); i=1 输出 *s+1 (\"024\")。",
             tags: ["客观题", "单选题", "GESP4级"]
@@ -200,9 +200,9 @@ export const paperData = {
             type: "judge",
             question: "对int a[]={2,0,2,4,3,1,6}，执行第一趟选择排序处理后a中数据变为{0,2,2,4,3,1,6}。 ( )",
             options: ["正确", "错误"],
-            answer: -1,
+            answer: 0,
             score: 2,
-            explanation: "待补全答案。",
+            explanation: "第一趟选择排序会把最小值 0 交换到首位，数组变为 {0,2,2,4,3,1,6}，说法正确。",
             tags: ["客观题", "判断题", "GESP4级"]
         },
         {
@@ -210,9 +210,9 @@ export const paperData = {
             type: "judge",
             question: "如果待排序数据不能都装进内存，需要使用外排序算法。（ ）",
             options: ["正确", "错误"],
-            answer: -1,
+            answer: 0,
             score: 2,
-            explanation: "待补全答案。",
+            explanation: "当数据规模大到无法一次性全部装入内存时，需要借助磁盘等外存进行外排序，说法正确。",
             tags: ["客观题", "判断题", "GESP4级"]
         },
         {
@@ -220,9 +220,9 @@ export const paperData = {
             type: "judge",
             question: "定义变量int a=5, 则cout << &++a会输出6。 ( )",
             options: ["正确", "错误"],
-            answer: -1,
+            answer: 1,
             score: 2,
-            explanation: "待补全答案。",
+            explanation: "++a 的结果是变量 a 本身的左值，对它取地址得到的是地址，不会输出数值 6，因此说法错误。",
             tags: ["客观题", "判断题", "GESP4级"]
         },
         {
@@ -230,9 +230,9 @@ export const paperData = {
             type: "judge",
             question: "两个函数之间可以使用全局变量来传递数据。 ( )",
             options: ["正确", "错误"],
-            answer: -1,
+            answer: 0,
             score: 2,
-            explanation: "待补全答案。",
+            explanation: "全局变量具有更大的作用域，不同函数都可以访问它，因此可以用来在函数之间传递数据。",
             tags: ["客观题", "判断题", "GESP4级"]
         },
         {
@@ -240,9 +240,9 @@ export const paperData = {
             type: "judge",
             question: "定义数组int a[2024][3][16]={2,0,2,4,3,1,6}，则cout << a[2023][2][15]的结果不确定。（ ）",
             options: ["正确", "错误"],
-            answer: -1,
+            answer: 1,
             score: 2,
-            explanation: "待补全答案。",
+            explanation: "部分初始化时，未显式赋值的数组元素会被自动初始化为 0，所以 a[2023][2][15] 的值确定为 0，该说法错误。",
             tags: ["客观题", "判断题", "GESP4级"]
         },
         {
@@ -250,9 +250,9 @@ export const paperData = {
             type: "judge",
             question: "在 C++ 语言中，函数的参数为指针时，可以在函数内部修改该参数的值。（ ）",
             options: ["正确", "错误"],
-            answer: -1,
+            answer: 0,
             score: 2,
-            explanation: "待补全答案。",
+            explanation: "参数是指针时，可以通过指针间接修改它所指向对象的值，因此说法正确。",
             tags: ["客观题", "判断题", "GESP4级"]
         },
         {
@@ -260,9 +260,9 @@ export const paperData = {
             type: "judge",
             question: "在 C++ 语言中try子句里抛出的结构体等类型的异常无法被catch捕获。（ ）",
             options: ["正确", "错误"],
-            answer: -1,
+            answer: 1,
             score: 2,
-            explanation: "待补全答案。",
+            explanation: "C++ 可以抛出并捕获结构体、类等各种类型的异常对象，该说法错误。",
             tags: ["客观题", "判断题", "GESP4级"]
         },
         {
@@ -270,9 +270,9 @@ export const paperData = {
             type: "judge",
             question: "C++ 语言中cout << 9^2 << endl;会输出 81 。（ ）",
             options: ["正确", "错误"],
-            answer: -1,
+            answer: 1,
             score: 2,
-            explanation: "待补全答案。",
+            explanation: "^ 在 C++ 中是按位异或运算，不是乘方。9 ^ 2 的结果是 11，不是 81，所以说法错误。",
             tags: ["客观题", "判断题", "GESP4级"]
         },
         {
@@ -280,9 +280,9 @@ export const paperData = {
             type: "judge",
             question: "小杨今年春节回奶奶家了，奶奶家的数字电视要设置 ip 地址并接入到 WIFI 盒子才能收看节目，那这个 WIFI 盒子具有路由器的功能。（ ）",
             options: ["正确", "错误"],
-            answer: -1,
+            answer: 1,
             score: 2,
-            explanation: "待补全答案。",
+            explanation: "WIFI 盒子主要负责无线接入/联网转换，并不等同于具备完整路由功能，因此该说法错误。",
             tags: ["客观题", "判断题", "GESP4级"]
         },
         {
@@ -290,9 +290,9 @@ export const paperData = {
             type: "judge",
             question: "任何一个for循环都可以转化为等价的while循环（ ）。",
             options: ["正确", "错误"],
-            answer: -1,
+            answer: 0,
             score: 2,
-            explanation: "待补全答案。",
+            explanation: "for 循环本质上都能改写为初始化 + 条件判断 + 循环体 + 更新语句组成的 while 循环，说法正确。",
             tags: ["客观题", "判断题", "GESP4级"]
         }
     ]
