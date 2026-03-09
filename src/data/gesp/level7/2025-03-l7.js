@@ -1,4 +1,60 @@
 // 2025年3月 GESP C++ 七级真题
+
+const programmingQuestions = [
+    {
+        "id": 26,
+        "type": "programming",
+        "title": "图上移动",
+        "problemNumber": "2025-03-l7-Q26",
+        "description": "给定一张包含 n 个节点、m 条边的无向图，节点编号为 1..n。小 A 会任选一个节点作为起点，每一步都必须沿一条边移动到当前节点的相邻节点。对每个起点 i，以及每个步数 t=1..k，你需要求出：从节点 i 出发恰好移动 t 步后，可能停留在哪些节点上；题目只要求输出这些节点的数量。",
+        "inputDescription": "第一行三个正整数 n、m、k，分别表示节点数、边数和最多移动的步数。接下来 m 行，每行两个正整数 u、v，表示一条连接 u 与 v 的无向边。",
+        "outputDescription": "输出 n 行。第 i 行输出 k 个整数，其中第 t 个整数表示从节点 i 出发恰好走 t 步后可能到达的节点数量。",
+        "samples": [
+            {
+                "input": "4 4 3\n1 2\n1 3\n2 3\n3 4",
+                "output": "2 4 4\n2 4 4\n3 3 4\n1 3 3"
+            }
+        ],
+        "explanation": "把“走若干步后可能到达的点集”直接做状态转移。设 reach[t][s] 为从起点 s 出发恰好走 t 步后可能到达的点集（用 bitset 维护），初始 reach[0][s]={s}。若已知 reach[t-1][s]，则对其中每个节点 y，把 y 的邻接点集合并起来，就得到 reach[t][s]。最后统计 bitset 中 1 的个数即可。由于 n 规模不大，bitset 按位并能明显加快转移。",
+        "tags": [
+            "编程题",
+            "图论",
+            "动态规划",
+            "bitset"
+        ],
+        "template": "#include <bits/stdc++.h>\nusing namespace std;\n\nint main() {\n    ios::sync_with_stdio(false);\n    cin.tie(nullptr);\n\n    int n, m, k;\n    cin >> n >> m >> k;\n    // 在此编写代码\n    return 0;\n}",
+        "referenceCode": "#include <bits/stdc++.h>\nusing namespace std;\n\nconst int MAXN = 505;\n\nint main() {\n    ios::sync_with_stdio(false);\n    cin.tie(nullptr);\n\n    int n, m, k;\n    cin >> n >> m >> k;\n\n    vector<bitset<MAXN>> adj(n + 1);\n    for (int i = 0; i < m; ++i) {\n        int u, v;\n        cin >> u >> v;\n        adj[u].set(v);\n        adj[v].set(u);\n    }\n\n    vector<vector<bitset<MAXN>>> reach(k + 1, vector<bitset<MAXN>>(n + 1));\n    for (int s = 1; s <= n; ++s) reach[0][s].set(s);\n\n    for (int step = 1; step <= k; ++step) {\n        for (int s = 1; s <= n; ++s) {\n            bitset<MAXN> cur;\n            for (int y = 1; y <= n; ++y) {\n                if (reach[step - 1][s].test(y)) cur |= adj[y];\n            }\n            reach[step][s] = cur;\n        }\n    }\n\n    for (int s = 1; s <= n; ++s) {\n        for (int step = 1; step <= k; ++step) {\n            cout << reach[step][s].count() << (step == k ? '\n' : ' ');\n        }\n    }\n    return 0;\n}"
+    },
+    {
+        "id": 27,
+        "type": "programming",
+        "title": "等价消除",
+        "problemNumber": "2025-03-l7-Q27",
+        "description": "给定一个仅由小写英文字母组成的字符串 s。若一个字符串能够通过反复删除其中两个相同字符，最终变成空串，则称它可以被等价消除。请统计 s 的所有子串中，有多少个子串是可以被等价消除的。",
+        "inputDescription": "第一行一个正整数 n，表示字符串长度。第二行一个长度为 n、只包含小写英文字母的字符串 s。",
+        "outputDescription": "输出一个整数，表示满足条件的子串数量。",
+        "samples": [
+            {
+                "input": "7\naaaaabb",
+                "output": "9"
+            },
+            {
+                "input": "9\nbabacabab",
+                "output": "21"
+            }
+        ],
+        "explanation": "一个字符串能被成对删除为空，当且仅当其中每种字符出现次数都是偶数。于是只要比较前缀奇偶状态：设 mask[i] 表示前 i 个字符中每个字母出现次数的奇偶性，那么子串 s[l..r] 可消除等价于 mask[r]=mask[l-1]。遍历前缀时用哈希表统计每种 mask 已出现的次数，当前前缀就能与之前所有相同 mask 的前缀配对产生答案。",
+        "tags": [
+            "编程题",
+            "前缀异或",
+            "哈希表",
+            "字符串"
+        ],
+        "template": "#include <bits/stdc++.h>\nusing namespace std;\n\nint main() {\n    ios::sync_with_stdio(false);\n    cin.tie(nullptr);\n\n    int n;\n    string s;\n    cin >> n >> s;\n    // 在此编写代码\n    return 0;\n}",
+        "referenceCode": "#include <bits/stdc++.h>\nusing namespace std;\n\nint main() {\n    ios::sync_with_stdio(false);\n    cin.tie(nullptr);\n\n    int n;\n    string s;\n    cin >> n >> s;\n\n    unordered_map<int, long long> cnt;\n    cnt.reserve(n * 2 + 10);\n    cnt.max_load_factor(0.7f);\n\n    long long ans = 0;\n    int mask = 0;\n    cnt[0] = 1;\n    for (char ch : s) {\n        mask ^= 1 << (ch - 'a');\n        ans += cnt[mask];\n        cnt[mask]++;\n    }\n\n    cout << ans << '\n';\n    return 0;\n}"
+    }
+];
+
 export const paperData = {
     id: '2025-03-l7',
     title: '2025年3月 GESP C++ 七级真题',
@@ -8,6 +64,7 @@ export const paperData = {
     session: 9,
     timeLimit: 5400,
     questions: [
+        ...programmingQuestions,
         {
             id: 1,
             type: "single",

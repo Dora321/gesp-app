@@ -1,4 +1,63 @@
 // 2025年6月 GESP C++ 七级真题
+
+const programmingQuestions = [
+    {
+        "id": 26,
+        "type": "programming",
+        "title": "线图",
+        "problemNumber": "2025-06-l7-Q26",
+        "description": "给定一个由 n 个节点、m 条边构成的简单无向图 G（无重边、无自环）。它的线图 L(G) 的构造方式为：G 中每条边对应 L(G) 中一个节点；若 G 中两条不同的边有公共端点，则在线图中连接这两个对应节点。请你求出线图 L(G) 中无向边的数量。",
+        "inputDescription": "第一行两个正整数 n、m，表示原图的点数与边数。接下来 m 行，每行两个正整数 u、v，表示 G 中一条连接 u 与 v 的无向边。",
+        "outputDescription": "输出一行一个整数，表示线图中的边数。",
+        "samples": [
+            {
+                "input": "5 4\n1 2\n2 3\n3 1\n4 5",
+                "output": "3"
+            },
+            {
+                "input": "5 10\n1 2\n1 3\n1 4\n1 5\n2 3\n2 4\n2 5\n3 4\n3 5\n4 5",
+                "output": "30"
+            }
+        ],
+        "explanation": "原图中一个顶点 v 若度数为 deg(v)，则所有与 v 相连的边两两之间都会在线图中形成相邻关系，一共贡献 C(deg(v),2) 条边。因为原图是简单图，两条不同边至多只有一个公共端点，所以不会重复计数。答案就是所有顶点贡献之和 Σ C(deg(v),2)。",
+        "tags": [
+            "编程题",
+            "图论",
+            "计数",
+            "度数统计"
+        ],
+        "template": "#include <bits/stdc++.h>\nusing namespace std;\n\nint main() {\n    ios::sync_with_stdio(false);\n    cin.tie(nullptr);\n\n    int n, m;\n    cin >> n >> m;\n    // 在此编写代码\n    return 0;\n}",
+        "referenceCode": "#include <bits/stdc++.h>\nusing namespace std;\n\nint main() {\n    ios::sync_with_stdio(false);\n    cin.tie(nullptr);\n\n    int n, m;\n    cin >> n >> m;\n    vector<long long> deg(n + 1, 0);\n    for (int i = 0; i < m; ++i) {\n        int u, v;\n        cin >> u >> v;\n        deg[u]++;\n        deg[v]++;\n    }\n\n    long long ans = 0;\n    for (int i = 1; i <= n; ++i) {\n        ans += deg[i] * (deg[i] - 1) / 2;\n    }\n    cout << ans << '\n';\n    return 0;\n}"
+    },
+    {
+        "id": 27,
+        "type": "programming",
+        "title": "调味平衡",
+        "problemNumber": "2025-06-l7-Q27",
+        "description": "小 A 有 n 种食材，第 i 种食材的酸度为 a_i、甜度为 b_i。每种食材可以选或不选，料理的总酸度 S 为被选食材酸度之和，总甜度 T 为被选食材甜度之和。若 S=T，则称料理调味平衡。在满足调味平衡的前提下，请求出 S+T 的最大值。",
+        "inputDescription": "第一行一个正整数 n。接下来 n 行，每行两个正整数 a_i、b_i，表示一种食材的酸度与甜度。",
+        "outputDescription": "输出一行一个整数，表示在调味平衡前提下酸度与甜度之和的最大值。",
+        "samples": [
+            {
+                "input": "3\n1 2\n2 4\n3 2",
+                "output": "8"
+            },
+            {
+                "input": "5\n1 1\n2 3\n6 1\n8 2\n5 7",
+                "output": "2"
+            }
+        ],
+        "explanation": "把每种食材看成“差值”为 d_i=a_i-b_i、“价值”为 w_i=a_i+b_i 的物品。选择若干食材后若总差值为 0，就恰好满足总酸度等于总甜度；同时我们要最大化总价值。因此可做一个以“差值”为维度的 0/1 背包：dp[delta] 表示达到该差值时最大的 S+T。差值可能为负，所以用偏移量把下标平移到非负区间。最后读取差值 0 对应的状态即可。",
+        "tags": [
+            "编程题",
+            "动态规划",
+            "0/1背包"
+        ],
+        "template": "#include <bits/stdc++.h>\nusing namespace std;\n\nint main() {\n    ios::sync_with_stdio(false);\n    cin.tie(nullptr);\n\n    int n;\n    cin >> n;\n    // 在此编写代码\n    return 0;\n}",
+        "referenceCode": "#include <bits/stdc++.h>\nusing namespace std;\n\nint main() {\n    ios::sync_with_stdio(false);\n    cin.tie(nullptr);\n\n    int n;\n    cin >> n;\n    vector<pair<int, int>> items(n);\n    int sumDiff = 0;\n    for (int i = 0; i < n; ++i) {\n        int a, b;\n        cin >> a >> b;\n        items[i] = {a, b};\n        sumDiff += abs(a - b);\n    }\n\n    const int NEG = -1000000000;\n    int offset = sumDiff;\n    vector<int> dp(offset * 2 + 1, NEG);\n    dp[offset] = 0;\n\n    for (auto [a, b] : items) {\n        int diff = a - b;\n        int val = a + b;\n        vector<int> ndp = dp;\n        for (int i = 0; i <= offset * 2; ++i) {\n            if (dp[i] <= NEG / 2) continue;\n            int ni = i + diff;\n            if (0 <= ni && ni <= offset * 2) {\n                ndp[ni] = max(ndp[ni], dp[i] + val);\n            }\n        }\n        dp.swap(ndp);\n    }\n\n    cout << max(0, dp[offset]) << '\n';\n    return 0;\n}"
+    }
+];
+
 export const paperData = {
     id: '2025-06-l7',
     title: '2025年6月 GESP C++ 七级真题',
@@ -8,6 +67,7 @@ export const paperData = {
     session: 10,
     timeLimit: 5400,
     questions: [
+        ...programmingQuestions,
         {
             id: 1,
             type: "single",

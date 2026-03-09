@@ -1,4 +1,54 @@
 // 2024年6月 GESP C++ 六级真题
+
+const programmingQuestions = [
+    {
+        "id": 26,
+        "type": "programming",
+        "title": "计算得分",
+        "problemNumber": "2024-06-23-06-C-01",
+        "description": "若某个子串恰好由 k 个连续的 abc 首尾相接组成，则可获得分数 a_k，且字符不能重复计分。求字符串的最大总得分。",
+        "inputDescription": "第一行 n。第二行 n 个整数 a_i。第三行 m。第四行字符串 s。",
+        "outputDescription": "输出最大总得分。",
+        "samples": [
+            {
+                "input": "3\n3 1 2\n13\ndabcabcabcabz",
+                "output": "9"
+            }
+        ],
+        "explanation": "设 dp[i] 为前 i 个字符的最大得分。若某一段恰好是 k 个连续的 abc，则它的长度一定是 3k，且末尾三字符为 abc。先求出每个位置结尾连续接了多少个 abc 块，再在 dp 中枚举最后取多少块。",
+        "tags": [
+            "编程题",
+            "动态规划",
+            "字符串"
+        ],
+        "template": "#include <bits/stdc++.h>\nusing namespace std;\n\nint main() {\n    // 在此编写代码\n    return 0;\n}",
+        "referenceCode": "#include <bits/stdc++.h>\nusing namespace std;\n\nint main() {\n    ios::sync_with_stdio(false);\n    cin.tie(nullptr);\n\n    int n;\n    cin >> n;\n    vector<long long> a(n + 1);\n    for (int i = 1; i <= n; ++i) cin >> a[i];\n    int m;\n    string s;\n    cin >> m >> s;\n    s = \" \" + s;\n\n    vector<int> cnt(m + 1, 0);\n    for (int i = 3; i <= m; ++i) {\n        if (s[i - 2] == 'a' && s[i - 1] == 'b' && s[i] == 'c') {\n            cnt[i] = 1;\n            if (i >= 6) cnt[i] += cnt[i - 3];\n        }\n    }\n\n    vector<long long> dp(m + 1, 0);\n    for (int i = 1; i <= m; ++i) {\n        dp[i] = dp[i - 1];\n        for (int k = 1; k <= cnt[i] && k <= n; ++k) {\n            dp[i] = max(dp[i], dp[i - 3 * k] + a[k]);\n        }\n    }\n\n    cout << dp[m] << '\\n';\n    return 0;\n}"
+    },
+    {
+        "id": 27,
+        "type": "programming",
+        "title": "二叉树",
+        "problemNumber": "2024-06-23-06-C-02",
+        "description": "给定一棵二叉树和初始黑白颜色，进行若干次“翻转某节点整棵子树颜色”的操作，求最终颜色串。",
+        "inputDescription": "第一行 n。第二行 n-1 个父节点。第三行长度为 n 的 01 串。第四行 q，之后 q 行每行一个节点。",
+        "outputDescription": "输出最终颜色串。",
+        "samples": [
+            {
+                "input": "6\n3 1 1 3 4\n100101\n3\n1\n3\n2",
+                "output": "010000"
+            }
+        ],
+        "explanation": "对子树翻转而言，一个节点最终是否翻色，只取决于从根到它这条链上被操作了多少次。先把每次操作记到对应节点，再 DFS 传递翻转次数的奇偶性，奇数次就把该点颜色取反。",
+        "tags": [
+            "编程题",
+            "树",
+            "DFS"
+        ],
+        "template": "#include <bits/stdc++.h>\nusing namespace std;\n\nint main() {\n    // 在此编写代码\n    return 0;\n}",
+        "referenceCode": "#include <bits/stdc++.h>\nusing namespace std;\n\nint main() {\n    ios::sync_with_stdio(false);\n    cin.tie(nullptr);\n\n    int n;\n    cin >> n;\n    vector<vector<int>> g(n + 1);\n    for (int i = 2; i <= n; ++i) {\n        int p;\n        cin >> p;\n        g[p].push_back(i);\n    }\n\n    string s;\n    cin >> s;\n    s = \" \" + s;\n\n    int q;\n    cin >> q;\n    vector<int> mark(n + 1, 0);\n    while (q--) {\n        int x;\n        cin >> x;\n        mark[x] ^= 1;\n    }\n\n    string ans(n, '0');\n    function<void(int,int)> dfs = [&](int u, int flip) {\n        flip ^= mark[u];\n        int color = s[u] - '0';\n        if (flip) color ^= 1;\n        ans[u - 1] = char('0' + color);\n        for (int v : g[u]) dfs(v, flip);\n    };\n    dfs(1, 0);\n    cout << ans << '\\n';\n    return 0;\n}"
+    }
+];
+
 export const paperData = {
     id: '2024-06-l6',
     title: '2024年6月 GESP C++ 六级真题',
@@ -8,6 +58,7 @@ export const paperData = {
     session: 6,
     timeLimit: 5400,
     questions: [
+        ...programmingQuestions,
         {
             id: 1,
             type: "single",

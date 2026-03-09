@@ -1,4 +1,54 @@
 // 2024年3月 GESP C++ 六级真题
+
+const programmingQuestions = [
+    {
+        "id": 26,
+        "type": "programming",
+        "title": "游戏",
+        "problemNumber": "2024-03-23-06-C-01",
+        "description": "给定四个正整数 n,a,b,mod。每次可以把当前值减去 a 或 b；当值不大于 0 时结束。求不同操作序列数对 mod 取模。若 a=b，两种选择仍视为不同。",
+        "inputDescription": "输入一行四个正整数 n,a,b,mod。",
+        "outputDescription": "输出答案对 mod 取模后的结果。",
+        "samples": [
+            {
+                "input": "7 2 3 1000000007",
+                "output": "3"
+            }
+        ],
+        "explanation": "记 f[x] 为当前值为 x 时的方案数。若一步减到 0 或负数就立刻结束，这对应一个完整方案，所以边界可视作 f[x]=1（x<=0）；于是对正整数有 f[x]=f[x-a]+f[x-b]，顺推到 n 即可。",
+        "tags": [
+            "编程题",
+            "动态规划",
+            "递推"
+        ],
+        "template": "#include <bits/stdc++.h>\nusing namespace std;\n\nint main() {\n    // 在此编写代码\n    return 0;\n}",
+        "referenceCode": "#include <bits/stdc++.h>\nusing namespace std;\n\nint main() {\n    ios::sync_with_stdio(false);\n    cin.tie(nullptr);\n\n    long long n, a, b, mod;\n    cin >> n >> a >> b >> mod;\n    vector<long long> f(n + 1, 0);\n    for (long long x = 1; x <= n; ++x) {\n        long long v1 = (x <= a ? 1 : f[x - a]);\n        long long v2 = (x <= b ? 1 : f[x - b]);\n        f[x] = (v1 + v2) % mod;\n    }\n    cout << f[n] % mod << '\\n';\n    return 0;\n}"
+    },
+    {
+        "id": 27,
+        "type": "programming",
+        "title": "好斗的牛",
+        "problemNumber": "2024-03-23-06-C-02",
+        "description": "有 n 头牛，第 i 头牛的攻击范围为 a_i。你只保留一段连续牛棚，问最少保留多少个牛棚，才能存在一种摆放方案使所有牛互不挑事。",
+        "inputDescription": "第一行 n。第二行 n 个整数 a_i。",
+        "outputDescription": "输出最少需要保留的牛棚数量。",
+        "samples": [
+            {
+                "input": "3\n1 2 1",
+                "output": "6"
+            }
+        ],
+        "explanation": "若两头相邻的牛分别是 i、j，则它们之间至少要空出 max(a_i,a_j) 个牛棚，整段长度就是 n 加上相邻空棚数之和。把攻击范围从小到大排列即可使这部分和最小，答案化为 n + (a_1+...+a_n) - min(a_i)。",
+        "tags": [
+            "编程题",
+            "贪心",
+            "构造"
+        ],
+        "template": "#include <bits/stdc++.h>\nusing namespace std;\n\nint main() {\n    // 在此编写代码\n    return 0;\n}",
+        "referenceCode": "#include <bits/stdc++.h>\nusing namespace std;\n\nint main() {\n    ios::sync_with_stdio(false);\n    cin.tie(nullptr);\n\n    int n;\n    cin >> n;\n    long long sum = 0;\n    int mn = INT_MAX;\n    for (int i = 0; i < n; ++i) {\n        int x;\n        cin >> x;\n        sum += x;\n        mn = min(mn, x);\n    }\n    cout << sum - mn + n << '\\n';\n    return 0;\n}"
+    }
+];
+
 export const paperData = {
     id: '2024-03-l6',
     title: '2024年3月 GESP C++ 六级真题',
@@ -9,6 +59,7 @@ export const paperData = {
     note: '2024年首场',
     timeLimit: 5400,
     questions: [
+        ...programmingQuestions,
         {
             id: 1,
             type: "single",

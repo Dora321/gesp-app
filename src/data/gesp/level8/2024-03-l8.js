@@ -1,4 +1,59 @@
 // 2024年3月 GESP C++ 八级真题
+
+const programmingQuestions = [
+    {
+        "type": "programming",
+        "tags": [
+            "编程题",
+            "数论",
+            "约数统计"
+        ],
+        "id": 26,
+        "title": "公倍数问题",
+        "problemNumber": "2024-03-l8-Q26",
+        "description": "存在一个 N×M 的矩阵 A，每个位置 A[i][j] 一定同时是 i 和 j 的公倍数。现在对 x=1..K，统计矩阵中最多有多少个元素可以等于 x，并输出 ∑ x*cnt_x。",
+        "inputDescription": "输入一行三个正整数 N、M、K。",
+        "outputDescription": "输出一个整数，表示所求总和。",
+        "samples": [
+            {
+                "input": "2 5 21",
+                "output": "91"
+            },
+            {
+                "input": "100 100 1001",
+                "output": "1852331"
+            }
+        ],
+        "explanation": "若某位置能取值为 x，则该位置的行号和列号都必须是 x 的约数。分别统计 1..N 和 1..M 中各有多少数整除 x，即得可行位置数。",
+        "template": "#include <bits/stdc++.h>\nusing namespace std;int main(){ios::sync_with_stdio(false);cin.tie(nullptr);int N,M,K;cin>>N>>M>>K;return 0;}",
+        "referenceCode": "#include <bits/stdc++.h>\nusing namespace std;vector<int> count_divisors(int limit,int num){vector<int>s(num+1,0);for(int i=1;i<=limit;++i)for(int j=i;j<=num;j+=i)s[j]++;return s;}int main(){ios::sync_with_stdio(false);cin.tie(nullptr);int N,M,K;cin>>N>>M>>K;vector<int>sN=count_divisors(N,1000000),sM=count_divisors(M,1000000);long long ans=0;for(int x=1;x<=K;++x)ans+=1LL*x*sN[x]*sM[x];cout<<ans<<\"\\n\";return 0;}"
+    },
+    {
+        "type": "programming",
+        "tags": [
+            "编程题",
+            "倍增",
+            "模拟",
+            "区间查询"
+        ],
+        "id": 27,
+        "title": "接竹竿",
+        "problemNumber": "2024-03-l8-Q27",
+        "description": "给定一个长度为 n 的卡牌序列。按顺序放牌；若新牌点数与队列中已有某张相同，则把两张相同牌之间的所有牌（含两端）全部移除。多次询问区间 [l,r]，问只使用该区间的牌按顺序游戏后最后剩余多少张牌。",
+        "inputDescription": "第一行 T。每组数据先输入 n，再输入长度为 n 的牌面序列，随后输入 q 和 q 个区间询问。",
+        "outputDescription": "对每个询问输出最终剩余牌数。",
+        "samples": [
+            {
+                "input": "1\n6\n1 2 2 3 1 3\n4\n1 3\n1 6\n1 5\n5 6",
+                "output": "1\n1\n0\n2"
+            }
+        ],
+        "explanation": "预处理每个位置第一次形成消去时会跳到哪里，并做倍增。回答询问时一边统计无法消去的牌，一边尽量用倍增跳过可整体消去的段。",
+        "template": "#include <bits/stdc++.h>\nusing namespace std;int main(){ios::sync_with_stdio(false);cin.tie(nullptr);int T;cin>>T;while(T--){}return 0;}",
+        "referenceCode": "#include <bits/stdc++.h>\nusing namespace std;const int N=100000+10;int a[N],nxt[N][30],pos[25];int main(){ios::sync_with_stdio(false);cin.tie(nullptr);int T;cin>>T;while(T--){int n;cin>>n;memset(pos,0,sizeof(pos));for(int i=1;i<=n;++i){cin>>a[i];for(int j=0;j<=20;++j)nxt[i][j]=n+1;}for(int i=n;i>=1;--i){if(!pos[a[i]]){nxt[i][0]=n+1;pos[a[i]]=i;}else{nxt[i][0]=pos[a[i]];pos[a[i]]=i;}}for(int i=n;i>=1;--i)for(int j=1;j<=20;++j)if(nxt[i][j-1]+1<=n)nxt[i][j]=nxt[nxt[i][j-1]+1][j-1];int q;cin>>q;while(q--){int l,r;cin>>l>>r;int i=l,ans=0;while(i<=r){while(i<=r&&nxt[i][0]>r)++i,++ans;if(i>r)break;for(int j=20;j>=0;--j)if(nxt[i][j]<=r){i=nxt[i][j];break;}++i;}cout<<ans<<\"\\n\";}}return 0;}"
+    }
+];
+
 export const paperData = {
     id: '2024-03-l8',
     title: '2024年3月 GESP C++ 八级真题',
@@ -9,6 +64,7 @@ export const paperData = {
     note: '2024年首场',
     timeLimit: 5400,
     questions: [
+        ...programmingQuestions,
         {
             id: 1,
             type: "single",

@@ -1,4 +1,41 @@
 // 2025年3月 GESP C++ 五级真题
+
+const programmingQuestions = [
+    {
+        id: 26,
+        type: "programming",
+        title: "平均分配",
+        problemNumber: "2025-03-23-05-C-01",
+        description: "小 A 有 2n 件物品，小 B 和小 C 想从小 A 手上买走这些物品。对于第 i 件物品，小 B 会以 b_i 的价格购买，而小 C 会以 c_i 的价格购买。为了平均分配这 2n 件物品，小 A 决定小 B 和小 C 各自只能买走恰好 n 件物品。你能帮小 A 求出他卖出这 2n 件物品所能获得的最大收入吗？",
+        inputDescription: "第一行，一个正整数 n。第二行，2n 个整数 b_1,b_2,...,b_{2n}。第三行，2n 个整数 c_1,c_2,...,c_{2n}。",
+        outputDescription: "一行，一个整数，表示答案。",
+        samples: [
+            { input: "3\n1 3 5 6 8 10\n2 4 6 7 9 11", output: "36" },
+            { input: "2\n6 7 9 9\n1 2 10 12", output: "35" }
+        ],
+        explanation: "先假设全部卖给小 B，得到基础收入 sum(b_i)。再计算每件物品若改卖给小 C 的增量 d_i = c_i - b_i。为了让小 C 恰好买走 n 件物品，只需选择增量最大的 n 件改卖给小 C。",
+        tags: ["编程题", "贪心", "排序"],
+        template: "#include <bits/stdc++.h>\nusing namespace std;\n\nint main() {\n    int n;\n    cin >> n;\n    // 在此编写代码\n    return 0;\n}",
+        referenceCode: "#include <bits/stdc++.h>\nusing namespace std;\nconst int N = 2e5 + 5;\nint n;\nlong long b[N], c[N], d[N];\nlong long ans;\nint main() {\n    scanf(\"%d\", &n);\n    for (int i = 1; i <= 2 * n; i++) scanf(\"%lld\", &b[i]);\n    for (int i = 1; i <= 2 * n; i++) scanf(\"%lld\", &c[i]);\n    for (int i = 1; i <= 2 * n; i++) {\n        ans += b[i];\n        d[i] = c[i] - b[i];\n    }\n    sort(d + 1, d + 2 * n + 1);\n    for (int i = n + 1; i <= 2 * n; i++) ans += d[i];\n    printf(\"%lld\\n\", ans);\n    return 0;\n}"
+    },
+    {
+        id: 27,
+        type: "programming",
+        title: "原根判断",
+        problemNumber: "2025-03-23-05-C-02",
+        description: "小 A 知道，对于质数 p 而言，p 的原根 g 是满足以下条件的正整数：g 与 p 互质；g^(p-1) ≡ 1 (mod p)；并且对于任意 1 ≤ x < p-1，均有 g^x mod p ≠ 1。小 A 现在有一个整数 a，请你帮他判断 a 是不是 p 的原根。",
+        inputDescription: "第一行，一个正整数 T，表示测试数据组数。每组测试数据包含一行，两个正整数 a,p。",
+        outputDescription: "对于每组测试数据，输出一行，如果 a 是 p 的原根则输出 Yes，否则输出 No。",
+        samples: [
+            { input: "3\n3 998244353\n5 998244353\n7 998244353", output: "Yes\nYes\nNo" }
+        ],
+        explanation: "对质数 p，只需验证对于 p-1 的每个不同质因子 q，都有 a^((p-1)/q) mod p != 1。若全部成立，则 a 是 p 的原根。",
+        tags: ["编程题", "数论", "快速幂", "原根"],
+        template: "#include <bits/stdc++.h>\nusing namespace std;\n\nint main() {\n    int T;\n    cin >> T;\n    // 在此编写代码\n    return 0;\n}",
+        referenceCode: "#include <cstdio>\nusing namespace std;\nint a, p;\nint ans;\nint fpw(int b, int e) {\n    if (e == 0) return 1;\n    int r = fpw(b, e >> 1);\n    r = 1ll * r * r % p;\n    if (e & 1) r = 1ll * r * b % p;\n    return r;\n}\nvoid check(int e) {\n    if (fpw(a, e) == 1) ans = 0;\n}\nint main() {\n    int T;\n    scanf(\"%d\", &T);\n    while (T--) {\n        scanf(\"%d%d\", &a, &p);\n        ans = 1;\n        int phi = p - 1, r = phi;\n        for (int i = 2; i * i <= phi; i++)\n            if (phi % i == 0) {\n                check(phi / i);\n                while (r % i == 0) r /= i;\n            }\n        if (r > 1) check(phi / r);\n        printf(ans ? \"Yes\\n\" : \"No\\n\");\n    }\n    return 0;\n}"
+    }
+];
+
 export const paperData = {
     id: '2025-03-l5',
     title: '2025年3月 GESP C++ 五级真题',
@@ -8,6 +45,7 @@ export const paperData = {
     session: 9,
     timeLimit: 5400,
     questions: [
+        ...programmingQuestions,
         {
             id: 1,
             type: "single",

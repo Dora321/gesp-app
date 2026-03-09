@@ -1,4 +1,53 @@
 // 2025年6月 GESP C++ 六级真题
+
+const programmingQuestions = [
+    {
+        "id": 26,
+        "type": "programming",
+        "title": "学习小组",
+        "problemNumber": "2025-06-22-06-C-01",
+        "description": "将 n 名同学划分为若干组。若某组恰好有 i 人，则该组贡献 a_i。求最大总积极度。",
+        "inputDescription": "第一行 n。第二行 n 个非负整数 a_i。",
+        "outputDescription": "输出最大总积极度。",
+        "samples": [
+            {
+                "input": "3\n1 2 3",
+                "output": "3"
+            }
+        ],
+        "explanation": "设 dp[i] 为前 i 名同学最优分组后的最大积极度。最后一组人数可以是任意 j（1<=j<=i），于是转移为 dp[i]=max(dp[i-j]+a_j)。",
+        "tags": [
+            "编程题",
+            "动态规划"
+        ],
+        "template": "#include <bits/stdc++.h>\nusing namespace std;\n\nint main() {\n    // 在此编写代码\n    return 0;\n}",
+        "referenceCode": "#include <bits/stdc++.h>\nusing namespace std;\n\nint main() {\n    ios::sync_with_stdio(false);\n    cin.tie(nullptr);\n\n    int n;\n    cin >> n;\n    vector<long long> a(n + 1), dp(n + 1, 0);\n    for (int i = 1; i <= n; ++i) cin >> a[i];\n    for (int i = 1; i <= n; ++i) {\n        for (int j = 1; j <= i; ++j) {\n            dp[i] = max(dp[i], dp[i - j] + a[j]);\n        }\n    }\n    cout << dp[n] << '\\n';\n    return 0;\n}"
+    },
+    {
+        "id": 27,
+        "type": "programming",
+        "title": "最大因数",
+        "problemNumber": "2025-06-22-06-C-02",
+        "description": "构造一棵有根树：1 为根，x>1 的父节点是 x 的最大真因数。多次询问两节点之间的距离。",
+        "inputDescription": "第一行 q。接下来 q 行每行两个正整数 x,y。",
+        "outputDescription": "每组询问输出一行距离。",
+        "samples": [
+            {
+                "input": "3\n1 3\n2 5\n4 8",
+                "output": "2\n1\n2"
+            }
+        ],
+        "explanation": "结点 x 的父亲是 x 除以其最小质因子，因此向上走一步就是删去一个最小质因子。先记 depth(x) 为删到 1 需要几步（即质因子个数，按重数计），查询时先把更深的点抬到同层，再同步上跳直到相遇。",
+        "tags": [
+            "编程题",
+            "数论",
+            "树"
+        ],
+        "template": "#include <bits/stdc++.h>\nusing namespace std;\n\nint main() {\n    // 在此编写代码\n    return 0;\n}",
+        "referenceCode": "#include <bits/stdc++.h>\nusing namespace std;\n\nvector<int> primes;\n\nint smallestPrimeFactor(int x) {\n    for (int p : primes) {\n        if (1LL * p * p > x) break;\n        if (x % p == 0) return p;\n    }\n    return x;\n}\n\nint parentOf(int x) {\n    if (x == 1) return 1;\n    return x / smallestPrimeFactor(x);\n}\n\nunordered_map<int, int> depthMemo;\nint getDepth(int x) {\n    auto it = depthMemo.find(x);\n    if (it != depthMemo.end()) return it->second;\n    int res = (x == 1 ? 0 : getDepth(parentOf(x)) + 1);\n    depthMemo[x] = res;\n    return res;\n}\n\nint main() {\n    ios::sync_with_stdio(false);\n    cin.tie(nullptr);\n\n    const int LIM = 31623;\n    vector<bool> isPrime(LIM + 1, true);\n    isPrime[0] = isPrime[1] = false;\n    for (int i = 2; i <= LIM; ++i) {\n        if (!isPrime[i]) continue;\n        primes.push_back(i);\n        if (1LL * i * i <= LIM) {\n            for (int j = i * i; j <= LIM; j += i) isPrime[j] = false;\n        }\n    }\n    depthMemo[1] = 0;\n\n    int q;\n    cin >> q;\n    while (q--) {\n        int x, y;\n        cin >> x >> y;\n        int dx = getDepth(x), dy = getDepth(y);\n        int ans = 0;\n        while (dx > dy) {\n            x = parentOf(x);\n            --dx;\n            ++ans;\n        }\n        while (dy > dx) {\n            y = parentOf(y);\n            --dy;\n            ++ans;\n        }\n        while (x != y) {\n            x = parentOf(x);\n            y = parentOf(y);\n            ans += 2;\n        }\n        cout << ans << '\\n';\n    }\n    return 0;\n}"
+    }
+];
+
 export const paperData = {
     id: '2025-06-l6',
     title: '2025年6月 GESP C++ 六级真题',
@@ -8,6 +57,7 @@ export const paperData = {
     session: 10,
     timeLimit: 5400,
     questions: [
+        ...programmingQuestions,
         {
             id: 1,
             type: "single",

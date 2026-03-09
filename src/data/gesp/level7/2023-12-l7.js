@@ -1,4 +1,40 @@
 // 2023年12月 GESP C++ 七级真题
+
+const programmingQuestions = [
+    {
+        id: 26,
+        type: "programming",
+        title: "商品交易",
+        problemNumber: "2023-12-l7-Q26",
+        description: "市场上有 n 种商品，每种商品有固定价值。共有 m 个商人，第 i 个商人允许你用商品 x_i 换商品 y_i，并按两种商品的价值差结算差价，同时额外收取 1 元手续费。你一开始持有商品 s，希望获得商品 t，求最小总花费；答案可能为负，表示最终还能赚钱。若无法达成则输出 No solution。",
+        inputDescription: "第一行四个整数 n,m,s,t。第二行 n 个整数表示每种商品的价值。接下来 m 行每行两个整数 x,y，表示可从 x 交换到 y。",
+        outputDescription: "输出最小花费；若无法获得目标商品则输出 No solution。",
+        samples: [
+            { input: "3 5 0 2\n1 2 4\n1 0\n2 0\n0 1\n2 1\n1 2", output: "5" }
+        ],
+        explanation: "把每种商品看作图上的点，每次交易看作一条有向边，边权为手续费加上换货需要补的差价（若得到更贵商品则补差，得到更便宜商品则相当于负代价）。答案就是从 s 到 t 的最短路。",
+        tags: ["编程题", "图论", "最短路"],
+        template: "#include <bits/stdc++.h>\nusing namespace std;\n\nint main() {\n    ios::sync_with_stdio(false);\n    cin.tie(nullptr);\n    return 0;\n}",
+        referenceCode: "#include <bits/stdc++.h>\nusing namespace std;\n\nint main() {\n    ios::sync_with_stdio(false);\n    cin.tie(nullptr);\n\n    int n, m, s, t;\n    cin >> n >> m >> s >> t;\n    vector<long long> val(n);\n    for (int i = 0; i < n; ++i) cin >> val[i];\n    vector<vector<pair<int,long long>>> g(n);\n    for (int i = 0; i < m; ++i) {\n        int x, y;\n        cin >> x >> y;\n        long long w = 1 + val[y] - val[x];\n        g[x].push_back({y, w});\n    }\n\n    const long long INF = (1LL << 60);\n    vector<long long> dist(n, INF);\n    vector<int> inq(n, 0), cnt(n, 0);\n    queue<int> q;\n    dist[s] = 0;\n    q.push(s);\n    inq[s] = 1;\n    while (!q.empty()) {\n        int u = q.front(); q.pop();\n        inq[u] = 0;\n        for (auto [v, w] : g[u]) {\n            if (dist[u] != INF && dist[v] > dist[u] + w) {\n                dist[v] = dist[u] + w;\n                if (!inq[v]) {\n                    q.push(v);\n                    inq[v] = 1;\n                }\n            }\n        }\n    }\n    if (dist[t] == INF) cout << \"No solution\\n\";\n    else cout << dist[t] << '\\n';\n    return 0;\n}"
+    },
+    {
+        id: 27,
+        type: "programming",
+        title: "纸牌游戏",
+        problemNumber: "2023-12-l7-Q27",
+        description: "你和小杨进行 n 轮猜拳式纸牌游戏，牌只有 0、1、2 三种，规则是 1 胜 0、2 胜 1、0 胜 2；每轮获胜得 a_i 分，平局得 a_i 中给定的平局分。小杨全部 n 轮的出牌序列已知。你从第 2 轮开始只能保持上一轮的出牌，或执行一次换牌；若总共换了 j 次，需要额外扣 b_j 分。求你最多能得到多少分。",
+        inputDescription: "第一行 n。第二行 n 个整数 a_i，表示每轮获胜/平局记分所需数据。第三行 n-1 个整数 b_i，表示换牌次数对应的罚分。第四行 n 个整数 c_i，表示小杨每轮出的牌。",
+        outputDescription: "输出你能获得的最大总分。",
+        samples: [
+            { input: "4\n1 2 10 100\n1 100 1\n1 1 2 0", output: "19" }
+        ],
+        explanation: "设 dp[k][j] 表示当前手牌为 k、已经换了 j 次时的最大得分。每轮可以继续沿用上一轮的牌，或者从其他状态换牌过来，多出的罚分在最后统一扣除或在转移时体现。",
+        tags: ["编程题", "动态规划"],
+        template: "#include <bits/stdc++.h>\nusing namespace std;\n\nint main() {\n    ios::sync_with_stdio(false);\n    cin.tie(nullptr);\n    return 0;\n}",
+        referenceCode: "#include <bits/stdc++.h>\nusing namespace std;\n\nint score(int me, int he, int winScore) {\n    if ((me == 1 && he == 0) || (me == 2 && he == 1) || (me == 0 && he == 2)) return 2 * winScore;\n    if (me == he) return winScore;\n    return 0;\n}\n\nint main() {\n    ios::sync_with_stdio(false);\n    cin.tie(nullptr);\n\n    int n;\n    cin >> n;\n    vector<int> a(n + 1), b(n + 1, 0), c(n + 1);\n    for (int i = 1; i <= n; ++i) cin >> a[i];\n    for (int i = 1; i < n; ++i) cin >> b[i];\n    for (int i = 1; i <= n; ++i) cin >> c[i];\n\n    const int NEG = -1e9;\n    vector<vector<int>> dp(3, vector<int>(n + 1, NEG));\n    for (int k = 0; k < 3; ++k) dp[k][0] = score(k, c[1], a[1]);\n\n    for (int i = 2; i <= n; ++i) {\n        vector<vector<int>> ndp(3, vector<int>(n + 1, NEG));\n        for (int last = 0; last < 3; ++last) {\n            for (int j = 0; j <= i - 2; ++j) if (dp[last][j] > NEG / 2) {\n                ndp[last][j] = max(ndp[last][j], dp[last][j] + score(last, c[i], a[i]));\n                for (int now = 0; now < 3; ++now) if (now != last) {\n                    ndp[now][j + 1] = max(ndp[now][j + 1], dp[last][j] + score(now, c[i], a[i]));\n                }\n            }\n        }\n        dp.swap(ndp);\n    }\n\n    int ans = 0;\n    for (int k = 0; k < 3; ++k) {\n        for (int j = 0; j < n; ++j) ans = max(ans, dp[k][j] - b[j]);\n    }\n    cout << ans << '\\n';\n    return 0;\n}"
+    }
+];
+
 export const paperData = {
     id: '2023-12-l7',
     title: '2023年12月 GESP C++ 七级真题',
@@ -9,6 +45,7 @@ export const paperData = {
     note: '年度收官',
     timeLimit: 5400,
     questions: [
+        ...programmingQuestions,
         {
             id: 1,
             type: "single",

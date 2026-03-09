@@ -1,3 +1,5 @@
+import { l8ProgrammingByPaper } from './programming';
+
 // 2025年12月 GESP C++ 八级真题
 export const paperData = {
     id: '2025-12-l8',
@@ -9,6 +11,7 @@ export const paperData = {
     note: '刚结束不久',
     timeLimit: 5400,
     questions: [
+        ...l8ProgrammingByPaper['2025-12-l8'],
         {
             id: 1,
             type: "single",

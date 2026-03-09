@@ -1,4 +1,57 @@
 // 2023年12月 GESP C++ 六级真题
+
+const programmingQuestions = [
+    {
+        "id": 26,
+        "type": "programming",
+        "title": "闯关游戏",
+        "problemNumber": "2023-12-23-06-C-01",
+        "description": "共有 n 关，每关有 m 个通道。第 j 个通道可前进 a_j 关，离开第 i 关可获得 b_i 分；若前进后超过第 n 关则通关。求最多得分。",
+        "inputDescription": "第一行 n,m。第二行 m 个整数 a_j。第三行 n 个整数 b_i。",
+        "outputDescription": "输出最大总分。",
+        "samples": [
+            {
+                "input": "6 2\n2 3\n1 0 30 100 30 30",
+                "output": "131"
+            },
+            {
+                "input": "6 2\n2 3\n1 0 30 100 30 -1",
+                "output": "101"
+            }
+        ],
+        "explanation": "设 dp[i] 为“站在第 i 关开始闯关时，最终最多能得到多少分”。离开第 i 关一定会拿到 b_i 分，然后任选一个通道跳到 i+a_j（越界则直接通关），故可从后往前线性转移。",
+        "tags": [
+            "编程题",
+            "动态规划"
+        ],
+        "template": "#include <bits/stdc++.h>\nusing namespace std;\n\nint main() {\n    // 在此编写代码\n    return 0;\n}",
+        "referenceCode": "#include <bits/stdc++.h>\nusing namespace std;\n\nint main() {\n    ios::sync_with_stdio(false);\n    cin.tie(nullptr);\n\n    int n, m;\n    cin >> n >> m;\n    vector<int> a(m + 1), b(n + 1);\n    for (int i = 1; i <= m; ++i) cin >> a[i];\n    for (int i = 1; i <= n; ++i) cin >> b[i];\n\n    vector<long long> dp(n + 2, 0);\n    for (int i = n; i >= 1; --i) {\n        long long bestNext = LLONG_MIN;\n        for (int j = 1; j <= m; ++j) {\n            int to = i + a[j];\n            bestNext = max(bestNext, to > n ? 0LL : dp[to]);\n        }\n        dp[i] = b[i] + bestNext;\n    }\n\n    cout << dp[1] << '\\n';\n    return 0;\n}"
+    },
+    {
+        "id": 27,
+        "type": "programming",
+        "title": "工作沟通",
+        "problemNumber": "2023-12-23-06-C-02",
+        "description": "给定公司管理树。每场合作给出若干员工，主持人必须能管理所有参与者；若有多个可选，取编号最大的。",
+        "inputDescription": "第一行 n。第二行 n-1 个整数表示 1..n-1 号员工的直接领导。第三行 q。接下来 q 行每行先给人数 k，再给 k 个员工编号。",
+        "outputDescription": "每场合作输出一行主持人编号。",
+        "samples": [
+            {
+                "input": "5\n0 0 2 2\n3\n2 3 4\n3 2 3 4\n2 1 4",
+                "output": "2\n2\n0"
+            }
+        ],
+        "explanation": "先把每次合作中的所有参与者求出公共祖先的最深点 lca。所有能管理全部参与者的人，正好是根到 lca 路径上的节点；题目要求编号最大的那个，因此预处理 root→u 路径上的最大编号即可。",
+        "tags": [
+            "编程题",
+            "树",
+            "LCA"
+        ],
+        "template": "#include <bits/stdc++.h>\nusing namespace std;\n\nint main() {\n    // 在此编写代码\n    return 0;\n}",
+        "referenceCode": "#include <bits/stdc++.h>\nusing namespace std;\n\nint main() {\n    ios::sync_with_stdio(false);\n    cin.tie(nullptr);\n\n    int n;\n    cin >> n;\n    vector<vector<int>> g(n);\n    vector<int> parent(n, -1);\n    parent[0] = 0;\n    for (int i = 1; i < n; ++i) {\n        cin >> parent[i];\n        g[parent[i]].push_back(i);\n    }\n\n    int LOG = 1;\n    while ((1 << LOG) <= n) ++LOG;\n    vector<vector<int>> up(LOG, vector<int>(n, 0));\n    vector<int> depth(n, 0), bestOnPath(n, 0);\n\n    queue<int> q;\n    q.push(0);\n    bestOnPath[0] = 0;\n    while (!q.empty()) {\n        int u = q.front(); q.pop();\n        up[0][u] = parent[u];\n        for (int k = 1; k < LOG; ++k) up[k][u] = up[k - 1][up[k - 1][u]];\n        for (int v : g[u]) {\n            depth[v] = depth[u] + 1;\n            bestOnPath[v] = max(bestOnPath[u], v);\n            q.push(v);\n        }\n    }\n\n    auto lca = [&](int a, int b) {\n        if (depth[a] < depth[b]) swap(a, b);\n        int diff = depth[a] - depth[b];\n        for (int k = 0; k < LOG; ++k) {\n            if (diff >> k & 1) a = up[k][a];\n        }\n        if (a == b) return a;\n        for (int k = LOG - 1; k >= 0; --k) {\n            if (up[k][a] != up[k][b]) {\n                a = up[k][a];\n                b = up[k][b];\n            }\n        }\n        return up[0][a];\n    };\n\n    int Q;\n    cin >> Q;\n    while (Q--) {\n        int k;\n        cin >> k;\n        int x;\n        cin >> x;\n        int cur = x;\n        for (int i = 1; i < k; ++i) {\n            cin >> x;\n            cur = lca(cur, x);\n        }\n        cout << bestOnPath[cur] << '\\n';\n    }\n    return 0;\n}"
+    }
+];
+
 export const paperData = {
     id: '2023-12-l6',
     title: '2023年12月 GESP C++ 六级真题',
@@ -9,6 +62,7 @@ export const paperData = {
     note: '年度收官',
     timeLimit: 5400,
     questions: [
+        ...programmingQuestions,
         {
             id: 1,
             type: "single",

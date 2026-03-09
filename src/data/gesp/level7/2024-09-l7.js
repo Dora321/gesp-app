@@ -1,4 +1,55 @@
 // 2024年9月 GESP C++ 七级真题
+
+const programmingQuestions = [
+    {
+        "id": 26,
+        "type": "programming",
+        "title": "小杨寻宝",
+        "problemNumber": "2024-09-l7-Q26",
+        "description": "小杨有一棵包含 n 个节点的树，部分节点上放有宝物。你可以任选一个节点作为起点在树上移动，但每条边最多只能经过一次；一旦经过某条边，这条边就会消失。每经过一个放有宝物的节点，就会获得该节点上的宝物。请判断是否存在一种出发点和移动方案，使得能拿到树上全部宝物。",
+        "inputDescription": "第一行一个正整数 T，表示测试用例组数。每组数据第一行一个正整数 n。第二行包含 n 个非负整数 a_1..a_n，其中 a_i=1 表示节点 i 有宝物，a_i=0 表示没有宝物。接下来 n-1 行每行两个正整数 u,v，表示树上一条无向边。题目保证每组数据至少有一个节点放置宝物。",
+        "outputDescription": "对每组测试数据输出一行。如果能够取得所有宝物输出 Yes，否则输出 No。",
+        "samples": [
+            {
+                "input": "2\n5\n0 1 0 1 0\n1 2\n1 3\n3 4\n3 5\n5\n1 1 1 1 1\n1 2\n1 3\n3 4\n3 5",
+                "output": "Yes\nNo"
+            }
+        ],
+        "explanation": "把所有有宝物的节点连成的最小连通子树取出来。由于每条边最多走一次，整条行走轨迹必须是一条不重复边的路径；因此只有当这棵“宝物子树”本身是一条简单路径时，才可能一次性经过所有宝物节点。实现时可先 DFS 统计每条边两侧是否都含宝物，只把确实属于宝物子树的边计入度数；若子树中存在度数大于 2 的节点，则答案为 No，否则为 Yes。",
+        "tags": [
+            "编程题",
+            "树",
+            "DFS",
+            "构造判定"
+        ],
+        "template": "#include <bits/stdc++.h>\nusing namespace std;\n\nint main() {\n    ios::sync_with_stdio(false);\n    cin.tie(nullptr);\n\n    int T;\n    cin >> T;\n    while (T--) {\n        // 在此编写代码\n    }\n    return 0;\n}",
+        "referenceCode": "#include <bits/stdc++.h>\nusing namespace std;\n\nint main() {\n    ios::sync_with_stdio(false);\n    cin.tie(nullptr);\n\n    int T;\n    cin >> T;\n    while (T--) {\n        int n;\n        cin >> n;\n        vector<int> treasure(n + 1);\n        int totalTreasure = 0;\n        for (int i = 1; i <= n; ++i) {\n            cin >> treasure[i];\n            totalTreasure += treasure[i];\n        }\n\n        vector<vector<int>> g(n + 1);\n        for (int i = 1; i < n; ++i) {\n            int u, v;\n            cin >> u >> v;\n            g[u].push_back(v);\n            g[v].push_back(u);\n        }\n\n        vector<int> sub(n + 1, 0), degree(n + 1, 0);\n        function<void(int, int)> dfs = [&](int u, int parent) {\n            sub[u] = treasure[u];\n            for (int v : g[u]) {\n                if (v == parent) continue;\n                dfs(v, u);\n                if (sub[v] > 0 && totalTreasure - sub[v] > 0) {\n                    degree[u]++;\n                    degree[v]++;\n                }\n                sub[u] += sub[v];\n            }\n        };\n\n        dfs(1, 0);\n\n        bool ok = true;\n        for (int i = 1; i <= n; ++i) {\n            if (degree[i] > 2) {\n                ok = false;\n                break;\n            }\n        }\n        cout << (ok ? \"Yes\" : \"No\") << '\n';\n    }\n    return 0;\n}"
+    },
+    {
+        "id": 27,
+        "type": "programming",
+        "title": "矩阵移动",
+        "problemNumber": "2024-09-l7-Q27",
+        "description": "给定一个 n×m 的字符矩阵，矩阵中的字符只可能是 0、1、?。小杨从左上角 (1,1) 出发，只能向右或向下移动，最终到达右下角 (n,m)。路径上每经过一个字符 1 的格子就获得 1 分，经过 0 不加分，起点和终点也计入路径。你还可以在出发前把矩阵中不超过 k 个 ? 改成 1。请计算修改后采取最优路径时，小杨最多能得到多少分。",
+        "inputDescription": "第一行一个正整数 T，表示测试用例组数。每组数据第一行包含三个正整数 n、m、k。接下来 n 行，每行是一个长度为 m、只含 0/1/? 的字符串。题目保证所有测试用例的矩阵规模总和在可接受范围内。",
+        "outputDescription": "对每组测试数据输出一行一个整数，表示最大得分。",
+        "samples": [
+            {
+                "input": "2\n3 3 1\n000\n111\n01?\n3 3 1\n000\n?0?\n01?",
+                "output": "4\n2"
+            }
+        ],
+        "explanation": "设 dp[i][j][c] 表示走到格子 (i,j) 且恰好把 c 个问号改成 1 时，能够得到的最大分数。由于转移只来自上方和左方，可以把第一维滚动掉，只保留当前行状态。遇到 1 时分数直接加 1；遇到 0 时只做普通转移；遇到 ? 时既可以不修改，也可以在还可修改时把它改成 1 再额外加 1。最终在终点位置的所有 c≤k 的状态中取最大值即可。",
+        "tags": [
+            "编程题",
+            "动态规划",
+            "网格DP"
+        ],
+        "template": "#include <bits/stdc++.h>\nusing namespace std;\n\nint main() {\n    ios::sync_with_stdio(false);\n    cin.tie(nullptr);\n\n    int T;\n    cin >> T;\n    while (T--) {\n        // 在此编写代码\n    }\n    return 0;\n}",
+        "referenceCode": "#include <bits/stdc++.h>\nusing namespace std;\n\nint main() {\n    ios::sync_with_stdio(false);\n    cin.tie(nullptr);\n\n    int T;\n    cin >> T;\n    while (T--) {\n        int n, m, k;\n        cin >> n >> m >> k;\n        vector<string> a(n + 1);\n        for (int i = 1; i <= n; ++i) {\n            cin >> a[i];\n            a[i] = \" \" + a[i];\n        }\n\n        const int NEG = -1000000000;\n        vector<vector<int>> prev(m + 1, vector<int>(k + 1, NEG));\n        for (int i = 1; i <= n; ++i) {\n            vector<vector<int>> cur(m + 1, vector<int>(k + 1, NEG));\n            for (int j = 1; j <= m; ++j) {\n                for (int used = 0; used <= k; ++used) {\n                    int best = NEG;\n                    if (i == 1 && j == 1) best = 0;\n                    if (i > 1) best = max(best, prev[j][used]);\n                    if (j > 1) best = max(best, cur[j - 1][used]);\n                    if (best <= NEG / 2) continue;\n\n                    char ch = a[i][j];\n                    if (ch == '1') {\n                        cur[j][used] = max(cur[j][used], best + 1);\n                    } else if (ch == '0') {\n                        cur[j][used] = max(cur[j][used], best);\n                    } else {\n                        cur[j][used] = max(cur[j][used], best);\n                        if (used < k) cur[j][used + 1] = max(cur[j][used + 1], best + 1);\n                    }\n                }\n            }\n            prev.swap(cur);\n        }\n\n        int ans = 0;\n        for (int used = 0; used <= k; ++used) ans = max(ans, prev[m][used]);\n        cout << ans << '\n';\n    }\n    return 0;\n}"
+    }
+];
+
 export const paperData = {
     id: '2024-09-l7',
     title: '2024年9月 GESP C++ 七级真题',
@@ -8,6 +59,7 @@ export const paperData = {
     session: 7,
     timeLimit: 5400,
     questions: [
+        ...programmingQuestions,
         {
             id: 1,
             type: "single",

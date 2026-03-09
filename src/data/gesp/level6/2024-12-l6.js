@@ -1,4 +1,54 @@
 // 2024年12月 GESP C++ 六级真题
+
+const programmingQuestions = [
+    {
+        "id": 26,
+        "type": "programming",
+        "title": "树上游走",
+        "problemNumber": "2024-12-22-06-C-01",
+        "description": "在无限二叉树中，节点 x 的左儿子是 2x、右儿子是 2x+1。给定起点和操作串 U/L/R，求最终所在节点。",
+        "inputDescription": "第一行 n,s。第二行长度为 n 的字符串，仅含 U/L/R。",
+        "outputDescription": "输出最终节点编号。",
+        "samples": [
+            {
+                "input": "3 2\nURR",
+                "output": "7"
+            }
+        ],
+        "explanation": "按操作串直接模拟即可：U 表示走到父节点 x/2，L/R 分别走到 2x 和 2x+1。",
+        "tags": [
+            "编程题",
+            "模拟",
+            "栈"
+        ],
+        "template": "#include <bits/stdc++.h>\nusing namespace std;\n\nint main() {\n    // 在此编写代码\n    return 0;\n}",
+        "referenceCode": "#include <bits/stdc++.h>\nusing namespace std;\n\nint main() {\n    ios::sync_with_stdio(false);\n    cin.tie(nullptr);\n\n    int n;\n    long long x;\n    cin >> n >> x;\n    string s;\n    cin >> s;\n    for (char ch : s) {\n        if (ch == 'U') x /= 2;\n        else if (ch == 'L') x = x * 2;\n        else x = x * 2 + 1;\n    }\n    cout << x << '\\n';\n    return 0;\n}"
+    },
+    {
+        "id": 27,
+        "type": "programming",
+        "title": "运送物资",
+        "problemNumber": "2024-12-22-06-C-02",
+        "description": "A 市在 0，B 市在 x。给定若干运输站点及容量、若干货车去 A/B 的次数，给每辆货车分配一个初始站点，求最短总路程。",
+        "inputDescription": "第一行 n,m,x。接下来 n 行站点位置与容量。接下来 m 行每辆货车去 A/B 的次数。",
+        "outputDescription": "输出最短总路程。",
+        "samples": [
+            {
+                "input": "3 4 10\n1 1\n2 1\n8 3\n5 3\n7 2\n9 0\n1 10000",
+                "output": "40186"
+            }
+        ],
+        "explanation": "若一辆货车被放在位置 p 的站点，总代价是 a·p + b·(x-p) = b·x + (a-b)·p。常数项 b·x 与分配无关，因此只需按 a-b 的大小排序：更偏向 A 的货车配给更靠近 A 的站点，更偏向 B 的配给更靠近 B 的站点。",
+        "tags": [
+            "编程题",
+            "贪心",
+            "排序"
+        ],
+        "template": "#include <bits/stdc++.h>\nusing namespace std;\n\nint main() {\n    // 在此编写代码\n    return 0;\n}",
+        "referenceCode": "#include <bits/stdc++.h>\nusing namespace std;\n\nint main() {\n    ios::sync_with_stdio(false);\n    cin.tie(nullptr);\n\n    int n, m;\n    long long x;\n    cin >> n >> m >> x;\n    vector<pair<long long, int>> stations;\n    for (int i = 0; i < n; ++i) {\n        long long p;\n        int c;\n        cin >> p >> c;\n        stations.push_back({p, c});\n    }\n    vector<pair<long long, long long>> trucks(m);\n    long long ans = 0;\n    for (int i = 0; i < m; ++i) {\n        long long a, b;\n        cin >> a >> b;\n        trucks[i] = {a - b, b};\n        ans += b * x;\n    }\n\n    sort(stations.begin(), stations.end());\n    sort(trucks.begin(), trucks.end());\n\n    vector<long long> pos;\n    for (auto [p, c] : stations) {\n        for (int i = 0; i < c; ++i) pos.push_back(p);\n    }\n\n    for (int i = 0; i < m; ++i) {\n        ans += trucks[i].first * pos[i];\n    }\n    cout << ans << '\\n';\n    return 0;\n}"
+    }
+];
+
 export const paperData = {
     id: '2024-12-l6',
     title: '2024年12月 GESP C++ 六级真题',
@@ -8,6 +58,7 @@ export const paperData = {
     session: 8,
     timeLimit: 5400,
     questions: [
+        ...programmingQuestions,
         {
             id: 1,
             type: "single",

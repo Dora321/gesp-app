@@ -1,4 +1,42 @@
 // 2025年6月 GESP C++ 五级真题
+
+const programmingQuestions = [
+    {
+        id: 26,
+        type: "programming",
+        title: "奖品兑换",
+        problemNumber: "2025-06-22-05-C-01",
+        description: "班主任给上课专心听讲、认真完成作业的同学们分别发放了若干张课堂优秀券和作业优秀券。同学们可以使用这两种券找班主任兑换奖品。具体来说，可以使用 a 张课堂优秀券和 b 张作业优秀券兑换一份奖品，或者使用 b 张课堂优秀券和 a 张作业优秀券兑换一份奖品。现在小 A 有 n 张课堂优秀券和 m 张作业优秀券，他最多能兑换多少份奖品呢？",
+        inputDescription: "第一行，两个正整数 n,m，分别表示小 A 持有的课堂优秀券和作业优秀券的数量。第二行，两个正整数 a,b，表示兑换一份奖品所需的两种券的数量。",
+        outputDescription: "输出共一行，一个整数，表示最多能兑换的奖品份数。",
+        samples: [
+            { input: "8 8\n2 1", output: "5" },
+            { input: "314159 2653589\n27 1828", output: "1599" }
+        ],
+        explanation: "答案具有单调性：若能兑换 v 份，则一定也能兑换更少的份数。可以二分答案 v，再检查是否能把这 v 份分成两种兑换方式，使两类券都不超出持有数量。",
+        tags: ["编程题", "二分答案", "数学"],
+        template: "#include <bits/stdc++.h>\nusing namespace std;\n\nint main() {\n    int n, m, a, b;\n    cin >> n >> m >> a >> b;\n    // 在此编写代码\n    return 0;\n}",
+        referenceCode: "#include <cstdio>\n#include <algorithm>\nusing namespace std;\nint n, m, a, b;\nint l, r;\nint check(int v) {\n    long long x, y, t;\n    x = 1ll * v * a;\n    y = 1ll * v * b;\n    if (y > m) {\n        t = (y - m + (b - a) - 1) / (b - a);\n        y -= t * (b - a);\n        x += t * (b - a);\n    }\n    return x <= n && y <= m;\n}\nint main() {\n    scanf(\"%d%d\", &n, &m);\n    scanf(\"%d%d\", &a, &b);\n    if (n > m) swap(n, m);\n    if (a > b) swap(a, b);\n    if (a == b) {\n        printf(\"%d\\n\", n / a);\n        return 0;\n    }\n    l = 0;\n    r = n;\n    while (l < r) {\n        int mid = (l + r + 1) >> 1;\n        if (check(mid)) l = mid;\n        else r = mid - 1;\n    }\n    printf(\"%d\\n\", r);\n    return 0;\n}"
+    },
+    {
+        id: 27,
+        type: "programming",
+        title: "最大公因数",
+        problemNumber: "2025-06-22-05-C-02",
+        description: "对于两个正整数 a,b，他们的最大公因数记为 gcd(a,b)。对于 k 个正整数 c_1,c_2,...,c_k，它们的最大公因数可以递归定义。给定 n 个正整数 a_1,a_2,...,a_n 以及 q 组询问。对于第 i 组询问，请求出 gcd(a_1+i,a_2+i,...,a_n+i)。",
+        inputDescription: "第一行，两个正整数 n,q，分别表示给定正整数的数量，以及询问组数。第二行，n 个正整数 a_1,a_2,...,a_n。",
+        outputDescription: "输出共 q 行，第 i 行包含一个正整数，表示 a_1+i,a_2+i,...,a_n+i 的最大公因数。",
+        samples: [
+            { input: "5 3\n6 9 12 18 30", output: "1\n1\n3" },
+            { input: "3 5\n31 47 59", output: "1\n1\n1\n1\n1" }
+        ],
+        explanation: "将数组排序后，设所有相邻差值的 gcd 为 g，则 gcd(a_1+i,a_2+i,...,a_n+i) = gcd(g, a_1+i)。因此预处理一次差分 gcd 后，每次询问只需再求一次 gcd。",
+        tags: ["编程题", "数论", "最大公因数"],
+        template: "#include <bits/stdc++.h>\nusing namespace std;\n\nint main() {\n    int n, q;\n    cin >> n >> q;\n    // 在此编写代码\n    return 0;\n}",
+        referenceCode: "#include <cstdio>\n#include <algorithm>\nusing namespace std;\nconst int N = 1e5 + 5;\nint n, q, a[N], g;\nint gcd(int a, int b) {\n    if (a == 0 || b == 0) return a + b;\n    return gcd(b, a % b);\n}\nint main() {\n    scanf(\"%d%d\", &n, &q);\n    for (int i = 1; i <= n; i++) scanf(\"%d\", &a[i]);\n    sort(a + 1, a + n + 1);\n    for (int i = 2; i <= n; i++) g = gcd(g, a[i] - a[i - 1]);\n    for (int i = 1; i <= q; i++) printf(\"%d\\n\", gcd(g, a[1] + i));\n    return 0;\n}"
+    }
+];
+
 export const paperData = {
     id: '2025-06-l5',
     title: '2025年6月 GESP C++ 五级真题',
@@ -8,6 +46,7 @@ export const paperData = {
     session: 10,
     timeLimit: 5400,
     questions: [
+        ...programmingQuestions,
         {
             id: 1,
             type: "single",

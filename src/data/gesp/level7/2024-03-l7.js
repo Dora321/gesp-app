@@ -1,4 +1,40 @@
 // 2024年3月 GESP C++ 七级真题
+
+const programmingQuestions = [
+    {
+        id: 26,
+        type: "programming",
+        title: "交流问题",
+        problemNumber: "2024-03-l7-Q26",
+        description: "A 校和 B 校共有 n 名同学参加交流会，只会发生跨校交流。给出 m 次交流关系，每次交流都会在两名同学之间连一条边。已知输入一定合法，求 B 校人数的最小可能值与最大可能值。",
+        inputDescription: "第一行 n,m。接下来 m 行每行两个整数 u,v，表示 u 与 v 交流。",
+        outputDescription: "输出两个整数，分别表示 B 校人数的最小值和最大值。",
+        samples: [
+            { input: "4 3\n1 2\n2 3\n4 2", output: "1 3" }
+        ],
+        explanation: "交流图一定是二分图。对每个连通块二染色后，两侧人数分别为 x 和 y。由于两校身份可以整体对调，所以该连通块对 B 校人数的贡献最少为 min(x,y)，最多为 max(x,y)。把各连通块贡献相加即可。",
+        tags: ["编程题", "图论", "二分图", "DFS"],
+        template: "#include <bits/stdc++.h>\nusing namespace std;\n\nint main() {\n    ios::sync_with_stdio(false);\n    cin.tie(nullptr);\n    return 0;\n}",
+        referenceCode: "#include <bits/stdc++.h>\nusing namespace std;\n\nint main() {\n    ios::sync_with_stdio(false);\n    cin.tie(nullptr);\n\n    int n, m;\n    cin >> n >> m;\n    vector<vector<int>> g(n + 1);\n    for (int i = 0; i < m; ++i) {\n        int u, v;\n        cin >> u >> v;\n        g[u].push_back(v);\n        g[v].push_back(u);\n    }\n\n    vector<int> color(n + 1, -1);\n    int mn = 0, mx = 0;\n    for (int i = 1; i <= n; ++i) if (color[i] == -1) {\n        queue<int> q;\n        q.push(i);\n        color[i] = 0;\n        int cnt[2] = {1, 0};\n        while (!q.empty()) {\n            int u = q.front(); q.pop();\n            for (int v : g[u]) if (color[v] == -1) {\n                color[v] = color[u] ^ 1;\n                cnt[color[v]]++;\n                q.push(v);\n            }\n        }\n        mn += min(cnt[0], cnt[1]);\n        mx += max(cnt[0], cnt[1]);\n    }\n    cout << mn << ' ' << mx << '\\n';\n    return 0;\n}"
+    },
+    {
+        id: 27,
+        type: "programming",
+        title: "俄罗斯方块",
+        problemNumber: "2024-03-l7-Q27",
+        description: "给定一个 n×m 的彩色方格图。四连通且颜色相同的一整块视为一个俄罗斯方块。若两个俄罗斯方块经过平移后可以完全重合，则认为是同一种类型；颜色不同也仍视作同一类型。求整张图中一共有多少种不同类型的俄罗斯方块。",
+        inputDescription: "第一行两个整数 n,m。接下来 n 行每行 m 个整数，表示每个格子的颜色。",
+        outputDescription: "输出不同俄罗斯方块类型的数量。",
+        samples: [
+            { input: "5 6\n1 2 3 4 4 5\n1 2 3 3 4 5\n1 2 2 3 4 5\n1 6 6 7 7 8\n6 6 7 7 8 8", output: "7" }
+        ],
+        explanation: "先按颜色做 flood fill 提取每个连通块，再把块内所有坐标平移到左上角作为规范形状，用集合去重即可。",
+        tags: ["编程题", "搜索", "连通块", "哈希"],
+        template: "#include <bits/stdc++.h>\nusing namespace std;\n\nint main() {\n    ios::sync_with_stdio(false);\n    cin.tie(nullptr);\n    return 0;\n}",
+        referenceCode: "#include <bits/stdc++.h>\nusing namespace std;\n\nint main() {\n    ios::sync_with_stdio(false);\n    cin.tie(nullptr);\n\n    int n, m;\n    cin >> n >> m;\n    vector<vector<int>> a(n, vector<int>(m));\n    for (int i = 0; i < n; ++i) for (int j = 0; j < m; ++j) cin >> a[i][j];\n    vector<vector<int>> vis(n, vector<int>(m, 0));\n    set<vector<pair<int,int>>> shapes;\n    int dx[4] = {-1,1,0,0};\n    int dy[4] = {0,0,-1,1};\n    for (int i = 0; i < n; ++i) for (int j = 0; j < m; ++j) if (!vis[i][j]) {\n        int color = a[i][j];\n        queue<pair<int,int>> q;\n        vector<pair<int,int>> cells;\n        q.push({i,j}); vis[i][j]=1;\n        while(!q.empty()){\n            auto [x,y]=q.front(); q.pop();\n            cells.push_back({x,y});\n            for(int d=0;d<4;++d){\n                int nx=x+dx[d], ny=y+dy[d];\n                if(nx<0||nx>=n||ny<0||ny>=m||vis[nx][ny]||a[nx][ny]!=color) continue;\n                vis[nx][ny]=1; q.push({nx,ny});\n            }\n        }\n        int minx = n, miny = m;\n        for (auto [x,y]: cells) minx=min(minx,x), miny=min(miny,y);\n        vector<pair<int,int>> norm;\n        for (auto [x,y]: cells) norm.push_back({x-minx,y-miny});\n        sort(norm.begin(), norm.end());\n        shapes.insert(norm);\n    }\n    cout << shapes.size() << '\\n';\n    return 0;\n}"
+    }
+];
+
 export const paperData = {
     id: '2024-03-l7',
     title: '2024年3月 GESP C++ 七级真题',
@@ -9,6 +45,7 @@ export const paperData = {
     note: '2024年首场',
     timeLimit: 5400,
     questions: [
+        ...programmingQuestions,
         {
             id: 1,
             type: "single",
