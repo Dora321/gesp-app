@@ -59,7 +59,6 @@ export const paperData = {
     note: '2024年首场',
     timeLimit: 5400,
     questions: [
-        ...programmingQuestions,
         {
             id: 1,
             type: "single",
@@ -514,6 +513,7 @@ export const paperData = {
                 "判断题",
                 "GESP6级",
             ]
-        }
+        },
+        ...programmingQuestions
     ]
 };

@@ -44,7 +44,6 @@ export const paperData = {
     session: 3,
     timeLimit: 5400,
     questions: [
-        ...programmingQuestions,
         {
             id: 1,
             type: "single",
@@ -324,6 +323,7 @@ export const paperData = {
             score: 2,
             explanation: "符合考纲要求。",
             tags: ["客观题", "判断题", "GESP4级"]
-        }
+        },
+        ...programmingQuestions
     ]
 };

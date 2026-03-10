@@ -44,7 +44,6 @@ export const paperData = {
     session: 4,
     timeLimit: 5400,
     questions: [
-        ...programmingQuestions,
         {
             id: 1,
             type: "single",
@@ -314,6 +313,7 @@ export const paperData = {
             score: 2,
             explanation: "函数调用的栈开销。",
             tags: ["客观题", "判断题", "GESP5级"]
-        }
+        },
+        ...programmingQuestions
     ]
 };

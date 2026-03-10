@@ -44,7 +44,6 @@ export const paperData = {
     session: 2,
     timeLimit: 5400,
     questions: [
-        ...programmingQuestions,
         {
             id: 1,
             type: "single",
@@ -294,6 +293,7 @@ export const paperData = {
             score: 2,
             explanation: "悬挂指针（Dangling Pointer）问题。",
             tags: ["客观题", "判断题", "GESP5级"]
-        }
+        },
+        ...programmingQuestions
     ]
 };

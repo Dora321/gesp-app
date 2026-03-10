@@ -45,7 +45,6 @@ export const paperData = {
     session: 1,
     timeLimit: 5400,
     questions: [
-        ...programmingQuestions,
         {
             id: 1,
             type: "single",
@@ -345,6 +344,7 @@ export const paperData = {
             score: 2,
             explanation: "归并排序在合并相等元素时可以保持原有相对次序，因此它是稳定排序。",
             tags: ["客观题", "判断题", "GESP5级"]
-        }
+        },
+        ...programmingQuestions
     ]
 };

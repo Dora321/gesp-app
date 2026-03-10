@@ -61,7 +61,6 @@ export const paperData = {
     note: '年度收官',
     timeLimit: 5400,
     questions: [
-        ...programmingQuestions,
         {
             id: 1,
             type: "single",
@@ -516,6 +515,7 @@ export const paperData = {
                 "判断题",
                 "GESP8级",
             ]
-        }
+        },
+        ...programmingQuestions
     ]
 };

@@ -69,7 +69,6 @@ export const paperData = {
     note: '刚结束不久',
     timeLimit: 5400,
     questions: [
-        ...programmingQuestions,
         {
             id: 1,
             type: "single",
@@ -524,6 +523,7 @@ export const paperData = {
                 "判断题",
                 "GESP7级",
             ]
-        }
+        },
+        ...programmingQuestions
     ]
 };

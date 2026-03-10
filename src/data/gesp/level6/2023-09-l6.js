@@ -67,7 +67,6 @@ export const paperData = {
     note: '体系趋于稳定',
     timeLimit: 5400,
     questions: [
-        ...programmingQuestions,
         {
             id: 1,
             type: "single",
@@ -522,6 +521,7 @@ export const paperData = {
                 "判断题",
                 "GESP6级",
             ]
-        }
+        },
+        ...programmingQuestions
     ]
 };

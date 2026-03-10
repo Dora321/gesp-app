@@ -44,7 +44,6 @@ export const paperData = {
     session: 1,
     timeLimit: 5400,
     questions: [
-        ...programmingQuestions,
         {
             id: 1,
             type: "single",
@@ -294,6 +293,7 @@ export const paperData = {
             score: 2,
             explanation: "for 循环本质上都能改写为初始化 + 条件判断 + 循环体 + 更新语句组成的 while 循环，说法正确。",
             tags: ["客观题", "判断题", "GESP4级"]
-        }
+        },
+        ...programmingQuestions
     ]
 };
