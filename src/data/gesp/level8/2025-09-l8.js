@@ -92,14 +92,14 @@ export const paperData = {
             type: "single",
             question: "一对夫妻生男生女的概率相同。这对夫妻希望儿女双全。请问这对夫妻生下三个孩子时，实现儿女双全的概率是多少？（ ）。",
             options: [
-                "选项A",
-                "选项B",
-                "选项C",
-                "选项D",
+                "1/4",
+                "1/2",
+                "3/4",
+                "7/8",
             ],
             answer: 2,
             score: 2,
-            explanation: "答案依据试卷标准答案；解析待补充。",
+            explanation: "三个孩子共有 8 种等可能性别序列，其中只有“全男”和“全女”两种不满足儿女双全，因此概率为 1 - 2/8 = 3/4。",
             tags: [
                 "客观题",
                 "单选题",
@@ -130,14 +130,14 @@ export const paperData = {
             type: "single",
             question: "对一个包含 n 个顶点、m 条边的图，执行广度优先搜索，其最优时间复杂度是（ ）。",
             options: [
-                "选项A",
-                "选项B",
-                "选项C",
-                "选项D",
+                "O(1)",
+                "O(n + m)",
+                "O(nm)",
+                "O(n²)",
             ],
             answer: 1,
             score: 2,
-            explanation: "答案依据试卷标准答案；解析待补充。",
+            explanation: "使用邻接表实现 BFS 时，每个顶点至多入队出队一次，每条边至多被扫描常数次，因此时间复杂度为 O(n + m)。",
             tags: [
                 "客观题",
                 "单选题",
@@ -187,14 +187,14 @@ export const paperData = {
             type: "single",
             question: "下面程序的时间复杂度为（设 N 为给定常量）（ ）。", 
             options: [
-                "选项A",
-                "选项B",
-                "选项C",
-                "选项D",
+                "O(N)",
+                "O(N log N)",
+                "O(N²)",
+                "O(N³)",
             ],
             answer: 2,
             score: 2,
-            explanation: "答案依据试卷标准答案；解析待补充。",
+            explanation: "三层循环分别枚举 x、y、z，虽然边界带有约束，但总体迭代次数仍与满足 x + y + z ≤ N 的三元组数量同阶，为 O(N²)。",
             tags: [
                 "客观题",
                 "单选题",
@@ -242,16 +242,16 @@ export const paperData = {
         {
             id: 13,
             type: "single",
-            question: "下面merge_sort函数试图实现归并排序算法，横线处应该填入的是（ ）。",
+            question: "下面 merge_sort 函数试图实现归并排序算法，横线处应该填入的是（ ）。",
             options: [
                 "arr, left, mid；arr, mid, right",
-                "选项B",
+                "arr, left, mid - 1；arr, mid, right - 1",
                 "arr, left, mid + 1；arr, mid + 1, right",
-                "选项D",
+                "arr, left + 1, mid；arr, mid, right + 1",
             ],
             answer: 0,
             score: 2,
-            explanation: "答案依据试卷标准答案；解析待补充。",
+            explanation: "该实现使用左闭右开区间 [left, right)，因此应递归处理 [left, mid) 和 [mid, right)，即传入 arr, left, mid 与 arr, mid, right。",
             tags: [
                 "客观题",
                 "单选题",
@@ -333,14 +333,14 @@ export const paperData = {
         {
             id: 18,
             type: "judge",
-            question: "对 个元素的数组进行排序，最差情况的时间复杂度为 。",
+            question: "对 n 个元素的数组进行排序，归并排序在最差情况下的时间复杂度为 O(n log n)。",
             options: [
                 "正确",
                 "错误",
             ],
             answer: 0,
             score: 2,
-            explanation: "答案依据试卷标准答案；解析待补充。",
+            explanation: "归并排序递归分治，每层处理总工作量为 O(n)，递归层数为 O(log n)，因此最差复杂度为 O(n log n)。",
             tags: [
                 "客观题",
                 "判断题",
@@ -401,14 +401,14 @@ export const paperData = {
         {
             id: 22,
             type: "judge",
-            question: "存在一个简单无向图满⾜：顶点数为 6 ，边数为 8 ， 6 个顶点的度数分别为 3 、 3 、 3 、 3 、 2 、 2 。",
+            question: "存在一个简单无向图满足：顶点数为 6，边数为 8，6 个顶点的度数分别为 3、3、3、3、2、2。",
             options: [
                 "正确",
                 "错误",
             ],
             answer: 0,
             score: 2,
-            explanation: "答案依据试卷标准答案；解析待补充。",
+            explanation: "度数和为 3 + 3 + 3 + 3 + 2 + 2 = 16，恰好等于 2m = 16，满足握手定理；该度数序列也是可图的，因此这样的简单无向图存在。",
             tags: [
                 "客观题",
                 "判断题",
@@ -435,14 +435,14 @@ export const paperData = {
         {
             id: 24,
             type: "judge",
-            question: "Dijkstra 算法的时间复杂度为 ，其中 为图中顶点的数量。",
+            question: "在使用邻接矩阵并每次线性扫描选最小未确定顶点的实现下，Dijkstra 算法的时间复杂度为 O(n²)，其中 n 为图中顶点的数量。",
             options: [
                 "正确",
                 "错误",
             ],
             answer: 0,
             score: 2,
-            explanation: "答案依据试卷标准答案；解析待补充。",
+            explanation: "这种朴素实现每轮需要 O(n) 找最小点，共进行 n 轮，因此总复杂度为 O(n²)。",
             tags: [
                 "客观题",
                 "判断题",
@@ -452,14 +452,14 @@ export const paperData = {
         {
             id: 25,
             type: "judge",
-            question: "从 32 名学生中选出 2 ⼈分别担任男生班长和⼥生班长（男生班长必须是男生，⼥生班长必须是⼥生），则共 有 种不同的选法。",
+            question: "从 32 名学生中选出 2 人分别担任男生班长和女生班长（男生班长必须是男生，女生班长必须是女生），若班级中男生和女生各 16 人，则共有 16 × 16 = 256 种不同的选法。",
             options: [
                 "正确",
                 "错误",
             ],
             answer: 0,
             score: 2,
-            explanation: "答案依据试卷标准答案；解析待补充。",
+            explanation: "男生班长有 16 种选法，女生班长有 16 种选法，二者独立，因此总数为 16 × 16 = 256。",
             tags: [
                 "客观题",
                 "判断题",

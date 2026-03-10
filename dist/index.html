@@ -6,6 +6,16 @@
   <link rel="icon" type="image/jpeg" href="/gesp-app/logo.jpg" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>魔丸聚集地</title>
+  <script>
+    (function () {
+      var redirect = window.location.search.match(/[?&]p=([^&]+)/);
+      if (!redirect) return;
+      var target = decodeURIComponent(redirect[1]);
+      var extra = window.location.search.replace(/[?&]p=[^&]*/, '').replace(/^&/, '?');
+      var hash = window.location.hash || '';
+      window.history.replaceState(null, '', target + extra + hash);
+    })();
+  </script>
 
   <!-- Google tag (gtag.js) -->
   <script async src="https://www.googletagmanager.com/gtag/js?id=G-T8HZPB84S8"></script>
@@ -16,7 +26,7 @@
 
     gtag('config', 'G-T8HZPB84S8');
   </script>
-  <script type="module" crossorigin src="/gesp-app/assets/index-C-G3mgDh.js"></script>
+  <script type="module" crossorigin src="/gesp-app/assets/index-asykoZxM.js"></script>
   <link rel="stylesheet" crossorigin href="/gesp-app/assets/index-DxRnvtLK.css">
 </head>
 

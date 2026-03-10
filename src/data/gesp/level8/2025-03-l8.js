@@ -270,7 +270,7 @@ export const paperData = {
             ],
             answer: 1,
             score: 2,
-            explanation: "答案依据试卷标准答案；解析待补充。",
+            explanation: "杨辉三角满足当前元素等于左上方与右上方元素之和。数组从右向左更新时，应写成 a[j] += a[j - 1]。",
             tags: [
                 "客观题",
                 "单选题",
@@ -282,14 +282,14 @@ export const paperData = {
             type: "single",
             question: "下列程序实现了输出杨辉三角形，其时间复杂度为（ ）。",
             options: [
-                "选项A",
-                "选项B",
-                "选项C",
-                "选项D",
+                "O(n)",
+                "O(n log n)",
+                "O(n²)",
+                "O(n³)",
             ],
             answer: 2,
             score: 2,
-            explanation: "答案依据试卷标准答案；解析待补充。",
+            explanation: "外层循环执行 n 次；两段内层循环的总迭代次数都在 1 + 2 + ... + n 这一量级，因此整体时间复杂度为 O(n²)。",
             tags: [
                 "客观题",
                 "单选题",
