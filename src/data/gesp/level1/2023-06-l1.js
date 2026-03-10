@@ -258,5 +258,53 @@ export const paperData = {
             explanation: "continue 仅跳过本次循环后续语句。",
             tags: ["判断题","循环"]
         }
-    ]
+    ],
+    programmingQuestions: [
+    {
+        "id": 26,
+        "type": "programming",
+        "title": "时间规划",
+        "problemNumber": "B3838",
+        "description": "小明在为自己规划学习时间。现在他想知道两个时刻之间有多少分钟，你能通过编程帮他做到吗？",
+        "inputDescription": "输入 4 行，第一行为开始时刻的小时，第二行为开始时刻的分钟，第三行为结束时刻的小时，第四行为结束时刻的分钟。输入保证两个时刻是同一天，开始时刻一定在结束时刻之前。时刻使用 24 小时制，即小时在 0 到 23 之间，分钟在 0 到 59 之间。",
+        "outputDescription": "输出一行，包含一个整数，从开始时刻到结束时刻之间有多少分钟。",
+        "samples": [
+            {
+                "input": "8\n30\n10\n5",
+                "output": "95"
+            }
+        ],
+        "explanation": "把两个时刻都换算成“从 0:00 开始经过的分钟数”，结束时刻减去开始时刻即可。",
+        "tags": [
+            "编程题",
+            "时间",
+            "模拟"
+        ],
+        "template": "#include <bits/stdc++.h>\nusing namespace std;\n\nint main() {\n    ios::sync_with_stdio(false);\n    cin.tie(nullptr);\n\n    // 在此编写代码\n    return 0;\n}",
+        "referenceCode": "#include <bits/stdc++.h>\nusing namespace std;\n\nint main() {\n    ios::sync_with_stdio(false);\n    cin.tie(nullptr);\n\n    int h1, m1, h2, m2;\n    cin >> h1 >> m1 >> h2 >> m2;\n    cout << h2 * 60 + m2 - (h1 * 60 + m1) << '\\n';\n    return 0;\n}"
+    },
+    {
+        "id": 27,
+        "type": "programming",
+        "title": "累计相加",
+        "problemNumber": "B3839",
+        "description": "输入一个正整数 n，求形如： 1+(1+2)+(1+2+3)+(1+2+3+4)+ ... +(1+2+3+4+5+ ... +n) 的累计相加。",
+        "inputDescription": "输入一个正整数 n。约定 1",
+        "outputDescription": "输出累计相加的结果。",
+        "samples": [
+            {
+                "input": "4",
+                "output": "20"
+            }
+        ],
+        "explanation": "第 i 项 1+2+...+i 等于 i(i+1)/2，再把这些前缀和继续累加即可，也可直接用循环逐步维护。",
+        "tags": [
+            "编程题",
+            "循环",
+            "数学"
+        ],
+        "template": "#include <bits/stdc++.h>\nusing namespace std;\n\nint main() {\n    ios::sync_with_stdio(false);\n    cin.tie(nullptr);\n\n    // 在此编写代码\n    return 0;\n}",
+        "referenceCode": "#include <bits/stdc++.h>\nusing namespace std;\n\nint main() {\n    ios::sync_with_stdio(false);\n    cin.tie(nullptr);\n\n    long long n;\n    cin >> n;\n    long long ans = 0, cur = 0;\n    for (long long i = 1; i <= n; ++i) {\n        cur += i;\n        ans += cur;\n    }\n    cout << ans << '\\n';\n    return 0;\n}"
+    }
+]
 };

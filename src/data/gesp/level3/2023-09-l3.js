@@ -258,5 +258,53 @@ export const paperData = {
             explanation: "边界样例对发现缺陷非常关键。",
             tags: ["判断题","程序分析"]
         }
-    ]
+    ],
+    programmingQuestions: [
+    {
+        "id": 26,
+        "type": "programming",
+        "title": "小杨的储蓄",
+        "problemNumber": "B3867",
+        "description": "小杨共有 N 个储蓄罐，编号从 0 到 N-1。从第 1 天开始，小杨每天都会往存钱罐里存钱。具体来说，第 i 天他会挑选一个存钱罐 a_i，并存入 i 元钱。过了 D 天后，他已经忘记每个储蓄罐里都存了多少钱了，你能帮帮他吗？",
+        "inputDescription": "输入 2 行，第一行两个整数 N,D；第二行 D 个整数，其中第 i 个整数为 {a_i}（保证 0 \\le a_i \\le N-1）。 每行的各个整数之间用单个空格分隔。 保证 1 \\le N \\le 1,000；1 \\le D \\le 1,000。",
+        "outputDescription": "输出 N 个用单个空格隔开的整数，其中第 i 个整数表示编号为 i-1 的存钱罐中有多少钱（i=1, ... ,N）。",
+        "samples": [
+            {
+                "input": "3 5\n0 1 0 2 1",
+                "output": "4 7 4"
+            }
+        ],
+        "explanation": "第 i 天向编号 a_i 的储蓄罐中加入 i 元。直接开数组累计即可，最后按编号顺序输出每个储蓄罐的金额。",
+        "tags": [
+            "编程题",
+            "模拟",
+            "数组"
+        ],
+        "template": "#include <bits/stdc++.h>\nusing namespace std;\n\nint main() {\n    ios::sync_with_stdio(false);\n    cin.tie(nullptr);\n\n    // 在此编写代码\n    return 0;\n}",
+        "referenceCode": "#include <bits/stdc++.h>\nusing namespace std;\n\nint main() {\n    ios::sync_with_stdio(false);\n    cin.tie(nullptr);\n\n    int N, D;\n    cin >> N >> D;\n    vector<long long> sum(N, 0);\n    for (int i = 1; i <= D; ++i) {\n        int a;\n        cin >> a;\n        sum[a] += i;\n    }\n    for (int i = 0; i < N; ++i) {\n        if (i) cout << ' ';\n        cout << sum[i];\n    }\n    cout << '\\n';\n    return 0;\n}"
+    },
+    {
+        "id": 27,
+        "type": "programming",
+        "title": "进制判断",
+        "problemNumber": "B3868",
+        "description": "N 进制数指的是逢 N 进一的计数制。例如，人们日常生活中大多使用十进制计数，而计算机底层则一般使用二进制。除此之外，八进制和十六进制在一些场合也是常用的计数制（十六进制中，一般使用字母 A 至 F 表示十至十五）。 现在有 N 个数，请你分别判断他们是否可能是二进制、八进制、十进制、十六进制。例如，`15A6F` 就只可能是十六进制，而 `1011` 则是四种进制皆有可能。",
+        "inputDescription": "输入的第一行为一个十进制表示的整数 N。接下来 N 行，每行一个字符串，表示需要判断的数。保证所有字符串均由数字和大写字母组成，**可能以 0 开头**。保证不会出现空行。 保证 1 \\le N \\le 1000，保证所有字符串长度不超过 10。",
+        "outputDescription": "输出 N 行，每行 4 个数，用空格隔开，分别表示给定的字符串是否可能表示一个二进制数、八进制数、十进制数、十六进制数。使用 1 表示可能，使用 0 表示不可能。 例如，对于只可能是十六进制数的 `15A6F`，就需要输出 `0 0 0 1`；而对于四者皆有可能的 `1011`，则需要输出 `1 1 1 1`。",
+        "samples": [
+            {
+                "input": "3\n1011\n15A6F\n089",
+                "output": "1 1 1 1\n0 0 0 1\n0 0 1 1"
+            }
+        ],
+        "explanation": "依次检查字符串中的字符是否合法：二进制只能有 0/1，八进制只能有 0~7，十进制只能有 0~9，十六进制还允许 A~F。",
+        "tags": [
+            "编程题",
+            "字符串",
+            "模拟"
+        ],
+        "template": "#include <bits/stdc++.h>\nusing namespace std;\n\nint main() {\n    ios::sync_with_stdio(false);\n    cin.tie(nullptr);\n\n    // 在此编写代码\n    return 0;\n}",
+        "referenceCode": "#include <bits/stdc++.h>\nusing namespace std;\n\nbool okBase(const string& s, int base) {\n    for (char c : s) {\n        int v;\n        if ('0' <= c && c <= '9') v = c - '0';\n        else if ('A' <= c && c <= 'F') v = c - 'A' + 10;\n        else return false;\n        if (v >= base) return false;\n    }\n    return true;\n}\n\nint main() {\n    ios::sync_with_stdio(false);\n    cin.tie(nullptr);\n\n    int N;\n    cin >> N;\n    while (N--) {\n        string s;\n        cin >> s;\n        cout << okBase(s, 2) << ' ' << okBase(s, 8) << ' ' << okBase(s, 10) << ' ' << okBase(s, 16) << '\\n';\n    }\n    return 0;\n}"
+    }
+]
 };

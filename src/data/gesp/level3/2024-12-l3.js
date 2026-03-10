@@ -258,5 +258,53 @@ export const paperData = {
             explanation: "边界样例对发现缺陷非常关键。",
             tags: ["判断题","程序分析"]
         }
-    ]
+    ],
+    programmingQuestions: [
+    {
+        "id": 26,
+        "type": "programming",
+        "title": "数字替换",
+        "problemNumber": "B4066",
+        "description": "小杨有一个包含 n 个数字的序列 A，即 A=[a_1,a_2,\\ldots,a_n]，他想将其中大于 k 的数字都替换为序列的最大值，将其中小于 k 的数字都替换为序列的最小值，请你帮他计算出替换后的序列。",
+        "inputDescription": "第一行包含两个正整数 n,k，含义如题面所示。 第二行包含 n 个数字，代表序列 A。",
+        "outputDescription": "输出 n 个整数，代表替换后的结果。",
+        "samples": [
+            {
+                "input": "5 10\n3 10 14 7 11",
+                "output": "3 10 14 3 14"
+            }
+        ],
+        "explanation": "先求出原序列最大值和最小值，再按规则逐个替换：大于 k 的变成最大值，小于 k 的变成最小值，等于 k 的保持不变。",
+        "tags": [
+            "编程题",
+            "模拟",
+            "数组"
+        ],
+        "template": "#include <bits/stdc++.h>\nusing namespace std;\n\nint main() {\n    ios::sync_with_stdio(false);\n    cin.tie(nullptr);\n\n    // 在此编写代码\n    return 0;\n}",
+        "referenceCode": "#include <bits/stdc++.h>\nusing namespace std;\n\nint main() {\n    ios::sync_with_stdio(false);\n    cin.tie(nullptr);\n\n    int n; long long k;\n    cin >> n >> k;\n    vector<long long> a(n);\n    for (int i = 0; i < n; ++i) cin >> a[i];\n    long long mn = *min_element(a.begin(), a.end());\n    long long mx = *max_element(a.begin(), a.end());\n    for (int i = 0; i < n; ++i) {\n        long long v = a[i];\n        if (v > k) v = mx;\n        else if (v < k) v = mn;\n        if (i) cout << ' ';\n        cout << v;\n    }\n    cout << '\\n';\n    return 0;\n}"
+    },
+    {
+        "id": 27,
+        "type": "programming",
+        "title": "打印数字",
+        "problemNumber": "B4067",
+        "description": "小杨为数字 0,1,2 和 3 设计了一款表示形式，每个数字占用了 5× 5 的网格。数字 0,1,2 和 3 的表示形式如下： ..... ****. ..... ..... .***. ****. ****. ****. .***. ****. ..... ..... .***. ****. .**** ****. ..... ****. ..... ..... 小杨想请你将给定的数字 n 转换为对应的表示形式。",
+        "inputDescription": "第一行包含一个非负整数代表 n。",
+        "outputDescription": "输出对应的表示形式。",
+        "samples": [
+            {
+                "input": "1203",
+                "output": ".....****..***.****.\n....*...*.....*....*\n....*...*..***..****\n....*...*.*.........*\n....*****.****..***."
+            }
+        ],
+        "explanation": "把 0~3 的 5×5 字符画预先存下来。读入数字串后按行输出，每一行依次拼接对应数字的这一行图案。",
+        "tags": [
+            "编程题",
+            "字符画",
+            "字符串"
+        ],
+        "template": "#include <bits/stdc++.h>\nusing namespace std;\n\nint main() {\n    ios::sync_with_stdio(false);\n    cin.tie(nullptr);\n\n    // 在此编写代码\n    return 0;\n}",
+        "referenceCode": "#include <bits/stdc++.h>\nusing namespace std;\n\nint main() {\n    ios::sync_with_stdio(false);\n    cin.tie(nullptr);\n\n    vector<vector<string>> pat = {\n        {\".....\", \"....*\", \"....*\", \"....*\", \".....\"},\n        {\"****.\", \"...*.\", \".***.\", \"*....\", \"****.\"},\n        {\".***.\", \"....*\", \".***.\", \"*....\", \".***.\"},\n        {\"****.\", \"....*\", \"****.\", \"....*\", \"****.\"}\n    };\n    string s;\n    cin >> s;\n    for (int row = 0; row < 5; ++row) {\n        for (char ch : s) cout << pat[ch - '0'][row];\n        cout << '\\n';\n    }\n    return 0;\n}"
+    }
+]
 };

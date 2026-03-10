@@ -35,5 +35,53 @@ export const paperData = {
         { id: 23, type: 'judge', question: '++ 和 == 是 C++ 运算符，但 += 不是。', options: ['正确', '错误'], answer: 1, score: 2, explanation: '+= 也是运算符。', tags: ['判断题'] },
         { id: 24, type: 'judge', question: '若 a 为 char 且值为大写字母 F，执行 a = a + 1 后，a 变为 G。', options: ['正确', '错误'], answer: 0, score: 2, explanation: 'ASCII 顺延一位。', tags: ['判断题'] },
         { id: 25, type: 'judge', question: '表达式 sqrt(9.0) 的结果为 3，且结果类型为 int。', options: ['正确', '错误'], answer: 1, score: 2, explanation: 'sqrt 返回 double。', tags: ['判断题'] }
-    ]
+    ],
+    programmingQuestions: [
+    {
+        "id": 26,
+        "type": "programming",
+        "title": "找素数",
+        "problemNumber": "B3840",
+        "description": "小明刚刚学习了素数的概念：如果一个大于 1 的正整数，除了 1 和它自身外，不能被其他正整数整除，则这个正整数是素数。现在，小明想找到两个正整数 A 和 B 之间（包括 A 和 B）有多少个素数。",
+        "inputDescription": "输入只有一行两个正整数 A, B。约定 2 \\le A \\le B \\le 1000。",
+        "outputDescription": "输出一行，包含一个整数 C，表示找到 C 个素数。",
+        "samples": [
+            {
+                "input": "2 10",
+                "output": "4"
+            }
+        ],
+        "explanation": "在区间 [A,B] 中枚举每个整数，判断它是否是素数；若是素数就把答案加一。",
+        "tags": [
+            "编程题",
+            "枚举",
+            "素数"
+        ],
+        "template": "#include <bits/stdc++.h>\nusing namespace std;\n\nint main() {\n    ios::sync_with_stdio(false);\n    cin.tie(nullptr);\n\n    // 在此编写代码\n    return 0;\n}",
+        "referenceCode": "#include <bits/stdc++.h>\nusing namespace std;\n\nbool isPrime(int x) {\n    if (x < 2) return false;\n    for (int d = 2; d * d <= x; ++d) {\n        if (x % d == 0) return false;\n    }\n    return true;\n}\n\nint main() {\n    ios::sync_with_stdio(false);\n    cin.tie(nullptr);\n\n    int A, B;\n    cin >> A >> B;\n    int ans = 0;\n    for (int x = A; x <= B; ++x) if (isPrime(x)) ++ans;\n    cout << ans << '\\n';\n    return 0;\n}"
+    },
+    {
+        "id": 27,
+        "type": "programming",
+        "title": "自幂数判断",
+        "problemNumber": "B3841",
+        "description": "自幂数是指，一个 N 位数，满足各位数字 N 次方之和是本身。例如，153 是 3 位数，其每位数的 3 次方之和，1^3+5^3+3^3=153，因此 153 是自幂数；1634 是 4 位数，其每位数的 4 次方之和，1^4+6^4+3^4+4^4=1634，因此 1634 是自幂数。现在，输入若干个正整数，请判断它们是否是自幂数。",
+        "inputDescription": "输入第一行是一个正整数 M，表示有 M 个待判断的正整数。约定 1 \\le M \\le 100。 从第 2 行开始的 M 行，每行一个待判断的正整数。约定这些正整数均小于 10^8。",
+        "outputDescription": "输出 M 行，如果对应的待判断正整数为自幂数，则输出英文大写字母 \\texttt T，否则输出英文大写字母 \\texttt F。 提示：不需要等到所有输入结束在依次输出，可以输入一个数就判断一个数并输出，再输入下一个数。",
+        "samples": [
+            {
+                "input": "3\n153\n154\n1634",
+                "output": "T\nF\nT"
+            }
+        ],
+        "explanation": "设整数有 len 位，拆出它的每一位并累加 digit^len。若结果恰好等于原数，就是自幂数。",
+        "tags": [
+            "编程题",
+            "模拟",
+            "数位分解"
+        ],
+        "template": "#include <bits/stdc++.h>\nusing namespace std;\n\nint main() {\n    ios::sync_with_stdio(false);\n    cin.tie(nullptr);\n\n    // 在此编写代码\n    return 0;\n}",
+        "referenceCode": "#include <bits/stdc++.h>\nusing namespace std;\n\nlong long ipow(long long a, int b) {\n    long long r = 1;\n    while (b--) r *= a;\n    return r;\n}\n\nbool ok(long long x) {\n    string s = to_string(x);\n    int len = (int)s.size();\n    long long sum = 0, t = x;\n    while (t > 0) {\n        sum += ipow(t % 10, len);\n        t /= 10;\n    }\n    return sum == x;\n}\n\nint main() {\n    ios::sync_with_stdio(false);\n    cin.tie(nullptr);\n\n    int M;\n    cin >> M;\n    while (M--) {\n        long long x;\n        cin >> x;\n        cout << (ok(x) ? 'T' : 'F') << '\\n';\n    }\n    return 0;\n}"
+    }
+]
 };

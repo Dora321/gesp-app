@@ -258,5 +258,53 @@ export const paperData = {
             explanation: "边界样例对发现缺陷非常关键。",
             tags: ["判断题","程序分析"]
         }
-    ]
+    ],
+    programmingQuestions: [
+    {
+        "id": 26,
+        "type": "programming",
+        "title": "2025",
+        "problemNumber": "B4261",
+        "description": "小 A 有一个整数 x，他想找到最小的正整数 y 使得下式成立： (x \\ and \\ y) + (x \\ or \\ y) = 2025 其中 and 表示二进制按位与运算，or 表示二进制按位或运算。如果不存在满足条件的 y，则输出 -1。",
+        "inputDescription": "一行，一个整数 x。",
+        "outputDescription": "一行，一个整数，若满足条件的 y 存在则输出 y，否则输出 -1。",
+        "samples": [
+            {
+                "input": "2024",
+                "output": "1"
+            }
+        ],
+        "explanation": "利用恒等式 (x&y)+(x|y)=x+y，所以问题等价于寻找最小正整数 y 使 x+y=2025。若 2025-x 为正，则它就是答案，否则无解。",
+        "tags": [
+            "编程题",
+            "位运算",
+            "数学"
+        ],
+        "template": "#include <bits/stdc++.h>\nusing namespace std;\n\nint main() {\n    ios::sync_with_stdio(false);\n    cin.tie(nullptr);\n\n    // 在此编写代码\n    return 0;\n}",
+        "referenceCode": "#include <bits/stdc++.h>\nusing namespace std;\n\nint main() {\n    ios::sync_with_stdio(false);\n    cin.tie(nullptr);\n\n    long long x;\n    cin >> x;\n    long long y = 2025 - x;\n    if (y > 0) cout << y << '\\n';\n    else cout << -1 << '\\n';\n    return 0;\n}"
+    },
+    {
+        "id": 27,
+        "type": "programming",
+        "title": "词频统计",
+        "problemNumber": "B4262",
+        "description": "在文本处理中，统计单词出现的频率是一个常见的任务。现在，给定 n 个单词，你需要找出其中出现次数最多的单词。在本题中，忽略单词中字母的大小写（即 `Apple`、`apple`、`APPLE`、`aPPle` 等均视为同一个单词）。 请你编写一个程序，输入 n 个单词，输出其中出现次数最多的单词。",
+        "inputDescription": "第一行，一个整数 n，表示单词的个数； 接下来 n 行，每行包含一个单词，单词由大小写英文字母组成。 输入保证，出现次数最多的单词只会有一个。",
+        "outputDescription": "输出一行，包含出现次数最多的单词（输出单词为小写形式）。",
+        "samples": [
+            {
+                "input": "5\nApple\nbanana\napple\nBANANA\nAPPLE",
+                "output": "apple"
+            }
+        ],
+        "explanation": "把所有单词统一转成小写后统计出现次数，最后输出出现次数最多的那个小写单词。",
+        "tags": [
+            "编程题",
+            "字符串",
+            "哈希表"
+        ],
+        "template": "#include <bits/stdc++.h>\nusing namespace std;\n\nint main() {\n    ios::sync_with_stdio(false);\n    cin.tie(nullptr);\n\n    // 在此编写代码\n    return 0;\n}",
+        "referenceCode": "#include <bits/stdc++.h>\nusing namespace std;\n\nint main() {\n    ios::sync_with_stdio(false);\n    cin.tie(nullptr);\n\n    int n;\n    cin >> n;\n    map<string, int> cnt;\n    string ans; int best = -1;\n    while (n--) {\n        string s;\n        cin >> s;\n        for (char &c : s) c = tolower(c);\n        int cur = ++cnt[s];\n        if (cur > best) { best = cur; ans = s; }\n    }\n    cout << ans << '\\n';\n    return 0;\n}"
+    }
+]
 };

@@ -34,5 +34,53 @@ export const paperData = {
         { id: 23, type: 'judge', question: '给定双层循环代码执行后将输出 18 行“OK”。', options: ['正确', '错误'], answer: 0, score: 2, explanation: '判断题答案依据官方答案。', tags: ['判断题', '输入输出', '程序分析'] },
         { id: 24, type: 'judge', question: '将给定代码中的 i=1 改为 i=0，输出结果相同。', options: ['正确', '错误'], answer: 0, score: 2, explanation: '判断题答案依据官方答案。', tags: ['判断题', '输入输出', '程序分析'] },
         { id: 25, type: 'judge', question: 'for 循环和 while 循环通常可相互改写，给定两段“求 1 到 10 的和”代码运行结果相同。', options: ['正确', '错误'], answer: 0, score: 2, explanation: '判断题答案依据官方答案。', tags: ['判断题'] }
-    ]
+    ],
+    programmingQuestions: [
+    {
+        "id": 26,
+        "type": "programming",
+        "title": "寻找数字",
+        "problemNumber": "B4064",
+        "description": "小杨有一个正整数 a，小杨想知道是否存在一个正整数 b 满足 a=b^4。",
+        "inputDescription": "第一行包含一个正整数 t，代表测试数据组数。 对于每组测试数据，第一行包含一个正整数代表 a。",
+        "outputDescription": "对于每组测试数据，如果存在满足条件的正整数 b，则输出 b，否则输出 -1。",
+        "samples": [
+            {
+                "input": "3\n16\n81\n20",
+                "output": "2\n3\n-1"
+            }
+        ],
+        "explanation": "对每个 a，计算其整数四次方根候选值 b，检查 b^4 是否恰好等于 a。若相等输出 b，否则输出 -1。",
+        "tags": [
+            "编程题",
+            "数学",
+            "判定"
+        ],
+        "template": "#include <bits/stdc++.h>\nusing namespace std;\n\nint main() {\n    ios::sync_with_stdio(false);\n    cin.tie(nullptr);\n\n    // 在此编写代码\n    return 0;\n}",
+        "referenceCode": "#include <bits/stdc++.h>\nusing namespace std;\n\nlong long pow4(long long x) { return x * x * x * x; }\n\nint main() {\n    ios::sync_with_stdio(false);\n    cin.tie(nullptr);\n\n    int t;\n    cin >> t;\n    while (t--) {\n        long long a;\n        cin >> a;\n        long long b = sqrt(sqrt((long double)a));\n        while (pow4(b) < a) ++b;\n        while (b > 0 && pow4(b) > a) --b;\n        cout << (pow4(b) == a ? b : -1) << '\\n';\n    }\n    return 0;\n}"
+    },
+    {
+        "id": 27,
+        "type": "programming",
+        "title": "数位和",
+        "problemNumber": "B4065",
+        "description": "小杨有 n 个正整数，小杨想知道这些正整数的数位和中最大值是多少。“数位和”指的是一个数字中所有数位的和。例如:对于数字 12345，它的各个数位分别是 1,2,3,4,5。将这些数位相加，得到 1+2+3+4+5=15 因此，12345 的数位和是 15。",
+        "inputDescription": "第一行包含一个正整数 n，代表正整数个数。 之后 n 行，每行包含一个正整数。",
+        "outputDescription": "输出这些正整数的数位和的最大值。",
+        "samples": [
+            {
+                "input": "3\n123\n999\n1000",
+                "output": "27"
+            }
+        ],
+        "explanation": "逐个计算每个整数的数位和，并维护其中的最大值。",
+        "tags": [
+            "编程题",
+            "统计",
+            "数位分解"
+        ],
+        "template": "#include <bits/stdc++.h>\nusing namespace std;\n\nint main() {\n    ios::sync_with_stdio(false);\n    cin.tie(nullptr);\n\n    // 在此编写代码\n    return 0;\n}",
+        "referenceCode": "#include <bits/stdc++.h>\nusing namespace std;\n\nint digitSum(long long x) {\n    int s = 0;\n    while (x > 0) { s += x % 10; x /= 10; }\n    return s;\n}\n\nint main() {\n    ios::sync_with_stdio(false);\n    cin.tie(nullptr);\n\n    int n;\n    cin >> n;\n    int ans = 0;\n    while (n--) {\n        long long x;\n        cin >> x;\n        ans = max(ans, digitSum(x));\n    }\n    cout << ans << '\\n';\n    return 0;\n}"
+    }
+]
 };

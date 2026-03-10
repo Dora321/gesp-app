@@ -258,5 +258,53 @@ export const paperData = {
             explanation: "该判断题题面或选项存在缺失，答案需按原卷复核。",
             tags: ["判断题"]
         }
-    ]
+    ],
+    programmingQuestions: [
+    {
+        "id": 26,
+        "type": "programming",
+        "title": "数位之和",
+        "problemNumber": "B4036",
+        "description": "小杨有 n 个正整数，他认为一个正整数是美丽数字当且仅当该正整数每一位数字的总和是 7 的倍数。 小杨想请你编写一个程序判断 n 个正整数哪些是美丽数字。",
+        "inputDescription": "第一行包含一个正整数 n，表示正整数个数。 之后 n 行，每行一个包含一个正整数 a_i。",
+        "outputDescription": "对于每个正整数输出一行一个字符串，如果是美丽数字则输出 `Yes`，否则输出 `No`。",
+        "samples": [
+            {
+                "input": "3\n16\n25\n34",
+                "output": "Yes\nYes\nNo"
+            }
+        ],
+        "explanation": "对每个数求十进制数位和，若数位和是 7 的倍数则输出 Yes，否则输出 No。",
+        "tags": [
+            "编程题",
+            "模拟",
+            "数位分解"
+        ],
+        "template": "#include <bits/stdc++.h>\nusing namespace std;\n\nint main() {\n    ios::sync_with_stdio(false);\n    cin.tie(nullptr);\n\n    // 在此编写代码\n    return 0;\n}",
+        "referenceCode": "#include <bits/stdc++.h>\nusing namespace std;\n\nint digitSum(long long x) {\n    int s = 0;\n    while (x > 0) { s += x % 10; x /= 10; }\n    return s;\n}\n\nint main() {\n    ios::sync_with_stdio(false);\n    cin.tie(nullptr);\n\n    int n;\n    cin >> n;\n    while (n--) {\n        long long x;\n        cin >> x;\n        cout << (digitSum(x) % 7 == 0 ? \"Yes\" : \"No\") << '\\n';\n    }\n    return 0;\n}"
+    },
+    {
+        "id": 27,
+        "type": "programming",
+        "title": "小杨的 N 字矩阵",
+        "problemNumber": "B4037",
+        "description": "小杨想要构造一个 m × m 的 N 字矩阵（m 为奇数），这个矩阵的从左上角到右下角的对角线、第 1 列和第 m 列都是半角加号 `+` ，其余都是半角减号 `-` 。例如，一个 5 × 5 的 N 字矩阵如下： +---+ ++--+ +-+-+ +--++ +---+ 请你帮小杨根据给定的 m 打印出对应的 N 字矩阵。",
+        "inputDescription": "输入只有一行包含一个正整数 m。",
+        "outputDescription": "输出对应的 N 字矩阵。",
+        "samples": [
+            {
+                "input": "5",
+                "output": "+---+\n++--+\n+-+-+\n+--++\n+---+"
+            }
+        ],
+        "explanation": "第 1 列、第 m 列和主对角线位置输出 +，其余位置输出 -，逐行打印即可。",
+        "tags": [
+            "编程题",
+            "字符画",
+            "模拟"
+        ],
+        "template": "#include <bits/stdc++.h>\nusing namespace std;\n\nint main() {\n    ios::sync_with_stdio(false);\n    cin.tie(nullptr);\n\n    // 在此编写代码\n    return 0;\n}",
+        "referenceCode": "#include <bits/stdc++.h>\nusing namespace std;\n\nint main() {\n    ios::sync_with_stdio(false);\n    cin.tie(nullptr);\n\n    int m;\n    cin >> m;\n    for (int i = 0; i < m; ++i) {\n        for (int j = 0; j < m; ++j) {\n            if (j == 0 || j == m - 1 || i == j) cout << '+';\n            else cout << '-';\n        }\n        cout << '\\n';\n    }\n    return 0;\n}"
+    }
+]
 };

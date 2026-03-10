@@ -258,5 +258,53 @@ export const paperData = {
             explanation: "边界样例对发现缺陷非常关键。",
             tags: ["判断题","程序分析"]
         }
-    ]
+    ],
+    programmingQuestions: [
+    {
+        "id": 26,
+        "type": "programming",
+        "title": "小猫分鱼",
+        "problemNumber": "B3925",
+        "description": "海滩上有一堆鱼，N 只小猫来分。第一只小猫把这堆鱼平均分为 N 份，多了 i",
+        "inputDescription": "总共 2 行。第一行一个整数 N，第二行一个整数 i。 保证 0",
+        "outputDescription": "一行一个整数，表示满足要求的海滩上最少的鱼数。",
+        "samples": [
+            {
+                "input": "5\n1",
+                "output": "3121"
+            }
+        ],
+        "explanation": "设初始鱼数为 x，模拟 N 只猫依次分鱼：每次都要求当前鱼数除以 N 余 i，取走一条后剩余部分还能被 N 整除。不断从小到大枚举 x，找到第一个满足条件的即为答案。",
+        "tags": [
+            "编程题",
+            "模拟",
+            "枚举"
+        ],
+        "template": "#include <bits/stdc++.h>\nusing namespace std;\n\nint main() {\n    ios::sync_with_stdio(false);\n    cin.tie(nullptr);\n\n    // 在此编写代码\n    return 0;\n}",
+        "referenceCode": "#include <bits/stdc++.h>\nusing namespace std;\n\nbool check(long long x, int N, int i) {\n    long long cur = x;\n    for (int t = 0; t < N; ++t) {\n        if (cur % N != i) return false;\n        cur = cur - i;\n        if (cur < 0 || cur % N != 0) return false;\n        cur = cur / N * (N - 1);\n    }\n    return true;\n}\n\nint main() {\n    ios::sync_with_stdio(false);\n    cin.tie(nullptr);\n\n    int N, i;\n    cin >> N >> i;\n    for (long long x = 1; ; ++x) {\n        if (check(x, N, i)) {\n            cout << x << '\\n';\n            break;\n        }\n    }\n    return 0;\n}"
+    },
+    {
+        "id": 27,
+        "type": "programming",
+        "title": "单位转换",
+        "problemNumber": "B3926",
+        "description": "小杨这周的数学作业是做单位转换，喜欢编程的小杨决定编程帮他解决这些问题。 小杨只学了长度单位和重量单位，具体来说： - 长度单位包括千米（`km`）、米（`m`）、毫米（`mm`），它们之间的关系是：1km = 1000m = 1000000mm。 - 重量单位包括千克（`kg`）、克（`g`）、毫克（`mg`），它们之间的关系是：1kg = 1000g = 1000000mg。 小杨的作业只涉及将更大的单位转换为更小的单位，也就是说，小杨的作业只会包含如下题型：米转换为毫米，千米转换为毫米，千米转换为米，克转换为毫克，千克转换为毫克，千克转换为克。 现在，请你帮忙完成单位转换的程序。",
+        "inputDescription": "输入的第一行为一个整数，表示题目数量。 接下来 N 行，每行一个字符串，表示转换单位的题目，格式为 x 单位 1 = ? 单位 2。其中，x 为一个不超过 1000 的非负整数， 单位 1 和 单位 2 分别为两个单位的英文缩写，保证它们都是长度单位或都是重量单位，且 **单位 1** 比 **单位 2** 更大。 例如，如果题目需要你将 1km 转换为 mm，则输入为 `1 km = ? mm`。 保证 1\\le N \\le 1000。",
+        "outputDescription": "输出 N 行，依次输出所有题目的答案，输出时，只需要将输入中的 ? 代入答案，其余部分一字不差地输出即可。由于小杨的题目只涉及将更大的单位转换为更小的单位，并且输入的 x 是整数，因此答案一定也是整数。 例如，如果题目需要你将 1km 转换为 mm，则输入为 `1 km = ? mm`。则你需要输出 `1 km = 1000000 mm`。",
+        "samples": [
+            {
+                "input": "2\n1 km = ? mm\n3 kg = ? g",
+                "output": "1 km = 1000000 mm\n3 kg = 3000 g"
+            }
+        ],
+        "explanation": "读入每道转换题，识别源单位和目标单位，乘上对应倍数后按原格式输出即可。",
+        "tags": [
+            "编程题",
+            "字符串",
+            "模拟"
+        ],
+        "template": "#include <bits/stdc++.h>\nusing namespace std;\n\nint main() {\n    ios::sync_with_stdio(false);\n    cin.tie(nullptr);\n\n    // 在此编写代码\n    return 0;\n}",
+        "referenceCode": "#include <bits/stdc++.h>\nusing namespace std;\n\nint main() {\n    ios::sync_with_stdio(false);\n    cin.tie(nullptr);\n\n    int N;\n    cin >> N;\n    map<pair<string,string>, long long> mp;\n    mp[{\"m\",\"mm\"}] = 1000;\n    mp[{\"km\",\"mm\"}] = 1000000;\n    mp[{\"km\",\"m\"}] = 1000;\n    mp[{\"g\",\"mg\"}] = 1000;\n    mp[{\"kg\",\"mg\"}] = 1000000;\n    mp[{\"kg\",\"g\"}] = 1000;\n    while (N--) {\n        long long x; string u1, eq, ques, u2;\n        cin >> x >> u1 >> eq >> ques >> u2;\n        cout << x << ' ' << u1 << \" = \" << x * mp[{u1, u2}] << ' ' << u2 << '\\n';\n    }\n    return 0;\n}"
+    }
+]
 };

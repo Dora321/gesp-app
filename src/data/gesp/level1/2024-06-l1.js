@@ -258,5 +258,53 @@ export const paperData = {
             explanation: "continue 仅跳过本次循环后续语句。",
             tags: ["判断题","循环"]
         }
-    ]
+    ],
+    programmingQuestions: [
+    {
+        "id": 26,
+        "type": "programming",
+        "title": "休息时间",
+        "problemNumber": "B4000",
+        "description": "小杨计划在某个时刻开始学习，并决定在学习 k 秒后开始休息。 小杨想知道自己开始休息的时刻是多少。",
+        "inputDescription": "前三行每行包含一个整数，分别表示小杨开始学习时刻的时 h、分 m、秒 s（h,m, s 的值符合 1 \\le h \\le 12,0 \\le m\\le 59,0 \\le s\\le59）。 第四行包含一个整数 k，表示小杨学习的总秒数（注：k 的值符合 1 \\le k \\le 3600）。",
+        "outputDescription": "输出一行，包含三个整数，分别表示小杨开始休息时刻的时、分、秒。",
+        "samples": [
+            {
+                "input": "10\n59\n50\n15",
+                "output": "11 0 5"
+            }
+        ],
+        "explanation": "先把起始时刻换算成总秒数，加上学习秒数 k，再反向拆回时、分、秒。",
+        "tags": [
+            "编程题",
+            "时间",
+            "模拟"
+        ],
+        "template": "#include <bits/stdc++.h>\nusing namespace std;\n\nint main() {\n    ios::sync_with_stdio(false);\n    cin.tie(nullptr);\n\n    // 在此编写代码\n    return 0;\n}",
+        "referenceCode": "#include <bits/stdc++.h>\nusing namespace std;\n\nint main() {\n    ios::sync_with_stdio(false);\n    cin.tie(nullptr);\n\n    int h, m, s, k;\n    cin >> h >> m >> s >> k;\n    int total = h * 3600 + m * 60 + s + k;\n    h = total / 3600;\n    total %= 3600;\n    m = total / 60;\n    s = total % 60;\n    cout << h << ' ' << m << ' ' << s << '\\n';\n    return 0;\n}"
+    },
+    {
+        "id": 27,
+        "type": "programming",
+        "title": "立方数",
+        "problemNumber": "B4001",
+        "description": "小杨有一个正整数 n，他想知道 n 是否是一个立方数。一个正整数 n 是立方数当且仅当存在一个正整数 x 满足 x× x× x=n 。",
+        "inputDescription": "第一行包含一个正整数 n。",
+        "outputDescription": "如果正整数 n 是一个立方数，输出 `Yes`，否则输出 `No`。",
+        "samples": [
+            {
+                "input": "27",
+                "output": "Yes"
+            }
+        ],
+        "explanation": "枚举正整数 x，只要 x^3 等于 n 就输出 Yes；若超过 n 仍未找到，说明不是立方数。",
+        "tags": [
+            "编程题",
+            "枚举",
+            "数学"
+        ],
+        "template": "#include <bits/stdc++.h>\nusing namespace std;\n\nint main() {\n    ios::sync_with_stdio(false);\n    cin.tie(nullptr);\n\n    // 在此编写代码\n    return 0;\n}",
+        "referenceCode": "#include <bits/stdc++.h>\nusing namespace std;\n\nint main() {\n    ios::sync_with_stdio(false);\n    cin.tie(nullptr);\n\n    long long n;\n    cin >> n;\n    for (long long x = 1; x * x * x <= n; ++x) {\n        if (x * x * x == n) {\n            cout << \"Yes\\n\";\n            return 0;\n        }\n    }\n    cout << \"No\\n\";\n    return 0;\n}"
+    }
+]
 };

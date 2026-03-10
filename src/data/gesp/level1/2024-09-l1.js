@@ -258,5 +258,53 @@ export const paperData = {
             explanation: "continue 仅跳过本次循环后续语句。",
             tags: ["判断题","循环"]
         }
-    ]
+    ],
+    programmingQuestions: [
+    {
+        "id": 26,
+        "type": "programming",
+        "title": "小杨购物",
+        "problemNumber": "B4034",
+        "description": "小杨有 n 元钱用于购物。商品 A 的单价是 a 元，商品 B 的单价是 b 元。小杨想购买**相同数量**的商品 A 和商品 B。 请你编写程序帮助小杨计算出他最多能够购买多少个商品 A 和商品 B。",
+        "inputDescription": "第一行包含一个正整数 n，代表小杨用于购物的金额。 第二行包含一个正整数 a，代表商品 A 的单价。 第三行包含一个正整数 b，代表商品 B 的单价。",
+        "outputDescription": "输出一行，包含一个整数，代表小杨最多能够购买的商品 A 和商品 B 的数量。",
+        "samples": [
+            {
+                "input": "30\n4\n5",
+                "output": "3"
+            }
+        ],
+        "explanation": "若要同时买同样数量的 A 和 B，每买一组要花 a+b 元，因此答案就是 n/(a+b)。",
+        "tags": [
+            "编程题",
+            "模拟",
+            "整数除法"
+        ],
+        "template": "#include <bits/stdc++.h>\nusing namespace std;\n\nint main() {\n    ios::sync_with_stdio(false);\n    cin.tie(nullptr);\n\n    // 在此编写代码\n    return 0;\n}",
+        "referenceCode": "#include <bits/stdc++.h>\nusing namespace std;\n\nint main() {\n    ios::sync_with_stdio(false);\n    cin.tie(nullptr);\n\n    long long n, a, b;\n    cin >> n >> a >> b;\n    cout << n / (a + b) << '\\n';\n    return 0;\n}"
+    },
+    {
+        "id": 27,
+        "type": "programming",
+        "title": "美丽数字",
+        "problemNumber": "B4035",
+        "description": "小杨有 n 个正整数，他认为一个正整数是美丽数字当且仅当该正整数是 9 的倍数但不是 8 的倍数。 小杨想请你编写一个程序计算 n 个正整数中美丽数字的数量。",
+        "inputDescription": "第一行包含一个整数 n，代表正整数个数。 第二行有 n 个正整数 a_1, a_2, \\dots a_n。",
+        "outputDescription": "输出一个整数，表示其中美丽数字的数量。",
+        "samples": [
+            {
+                "input": "5\n9 16 18 72 81",
+                "output": "3"
+            }
+        ],
+        "explanation": "枚举每个数，判断它是否满足“9 的倍数且不是 8 的倍数”，统计满足条件的个数。",
+        "tags": [
+            "编程题",
+            "枚举",
+            "整除"
+        ],
+        "template": "#include <bits/stdc++.h>\nusing namespace std;\n\nint main() {\n    ios::sync_with_stdio(false);\n    cin.tie(nullptr);\n\n    // 在此编写代码\n    return 0;\n}",
+        "referenceCode": "#include <bits/stdc++.h>\nusing namespace std;\n\nint main() {\n    ios::sync_with_stdio(false);\n    cin.tie(nullptr);\n\n    int n;\n    cin >> n;\n    int ans = 0;\n    for (int i = 0; i < n; ++i) {\n        long long x;\n        cin >> x;\n        if (x % 9 == 0 && x % 8 != 0) ++ans;\n    }\n    cout << ans << '\\n';\n    return 0;\n}"
+    }
+]
 };

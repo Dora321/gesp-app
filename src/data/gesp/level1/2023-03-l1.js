@@ -258,5 +258,53 @@ export const paperData = {
             explanation: "continue 仅跳过本次循环后续语句。",
             tags: ["判断题","循环"]
         }
-    ]
+    ],
+    programmingQuestions: [
+    {
+        "id": 26,
+        "type": "programming",
+        "title": "长方形面积",
+        "problemNumber": "B3834",
+        "description": "小明刚刚学习了如何计算长方形面积。他发现，如果一个长方形的长和宽都是整数，它的面积一定也是整数。现在，小明想知道如果给定长方形的面积，有多少种可能的长方形，满足长和宽都是整数？如果两个长方形的长相等、宽也相等，则认为是同一种长方形。约定长方形的长大于等于宽。正方形是长方形的特例，即长方形的长和宽可以相等。",
+        "inputDescription": "输入一行，包含一个整数 A，表示长方形的面积。约定 2 ≤ A ≤ 1000。",
+        "outputDescription": "输出一行，包含一个整数 C，表示有 C 种可能的长方形。",
+        "samples": [
+            {
+                "input": "12",
+                "output": "3"
+            }
+        ],
+        "explanation": "枚举宽 w，只要 w 能整除面积 A，就得到一种长宽均为整数的方案。由于要求长 >= 宽，只需枚举到 sqrt(A) 即可。",
+        "tags": [
+            "编程题",
+            "枚举",
+            "数学"
+        ],
+        "template": "#include <bits/stdc++.h>\nusing namespace std;\n\nint main() {\n    ios::sync_with_stdio(false);\n    cin.tie(nullptr);\n\n    // 在此编写代码\n    return 0;\n}",
+        "referenceCode": "#include <bits/stdc++.h>\nusing namespace std;\n\nint main() {\n    ios::sync_with_stdio(false);\n    cin.tie(nullptr);\n\n    int A;\n    cin >> A;\n    int ans = 0;\n    for (int w = 1; w * w <= A; ++w) {\n        if (A % w == 0) ++ans;\n    }\n    cout << ans << '\\n';\n    return 0;\n}"
+    },
+    {
+        "id": 27,
+        "type": "programming",
+        "title": "每月天数",
+        "problemNumber": "B3835",
+        "description": "小明刚刚学习了每月有多少天，以及如何判断平年和闰年，想到可以使用编程方法求出给定的月份有多少天。你能做到吗？",
+        "inputDescription": "输入一行，包含两个整数 A, B，分别表示一个日期的年、月。约定 2000 ≤ A ≤ 3000，1 ≤ B ≤ 12。",
+        "outputDescription": "输出一行，包含一个整数，表示输入月份有多少天。",
+        "samples": [
+            {
+                "input": "2024 2",
+                "output": "29"
+            }
+        ],
+        "explanation": "先判断是否为闰年，再根据月份分类输出天数。2 月在闰年为 29 天，否则为 28 天。",
+        "tags": [
+            "编程题",
+            "模拟",
+            "日期"
+        ],
+        "template": "#include <bits/stdc++.h>\nusing namespace std;\n\nint main() {\n    ios::sync_with_stdio(false);\n    cin.tie(nullptr);\n\n    // 在此编写代码\n    return 0;\n}",
+        "referenceCode": "#include <bits/stdc++.h>\nusing namespace std;\n\nbool leap(int y) {\n    return (y % 400 == 0) || (y % 4 == 0 && y % 100 != 0);\n}\n\nint main() {\n    ios::sync_with_stdio(false);\n    cin.tie(nullptr);\n\n    int y, m;\n    cin >> y >> m;\n    if (m == 2) cout << (leap(y) ? 29 : 28) << '\\n';\n    else if (m == 4 || m == 6 || m == 9 || m == 11) cout << 30 << '\\n';\n    else cout << 31 << '\\n';\n    return 0;\n}"
+    }
+]
 };

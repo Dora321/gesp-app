@@ -258,5 +258,53 @@ export const paperData = {
             explanation: "continue 仅跳过本次循环后续语句。",
             tags: ["判断题","循环"]
         }
-    ]
+    ],
+    programmingQuestions: [
+    {
+        "id": 26,
+        "type": "programming",
+        "title": "商店折扣",
+        "problemNumber": "B4409",
+        "description": "商店正在开展促销活动，给出了两种方案的折扣优惠。第一种方案是购物满 x 元减 y 元；第二种方案是直接打 n 折，也就是说价格变为原先的 n÷ 10。这里的 x, y, n 均是正整数，并且 1 ≤ y < x，1 ≤ n < 10。 需要注意的是，第一种方案中满减优惠只能使用一次。例如购物满 10 元减 3 元时，若挑选了价格总和为 33 元的物品，只能减免 3 元，需要支付 30 元。 小明在商店挑选了价格总和为 p 元的物品，结账时只能使用一种优惠方案。小明最少需要支付多少钱呢？",
+        "inputDescription": "四行，四个正整数 x, y, n, p，含义见题目描述。",
+        "outputDescription": "一行，一个小数，表示小明最少需要支付多少钱，保留两位小数。",
+        "samples": [
+            {
+                "input": "100\n20\n8\n150",
+                "output": "120.00"
+            }
+        ],
+        "explanation": "分别计算两种优惠后的价格：满减价是 p>=x ? p-y : p，打折价是 p*n/10，取较小值并按要求保留两位小数。",
+        "tags": [
+            "编程题",
+            "模拟",
+            "浮点数"
+        ],
+        "template": "#include <bits/stdc++.h>\nusing namespace std;\n\nint main() {\n    ios::sync_with_stdio(false);\n    cin.tie(nullptr);\n\n    // 在此编写代码\n    return 0;\n}",
+        "referenceCode": "#include <bits/stdc++.h>\nusing namespace std;\n\nint main() {\n    ios::sync_with_stdio(false);\n    cin.tie(nullptr);\n\n    double x, y, n, p;\n    cin >> x >> y >> n >> p;\n    double cost1 = p >= x ? p - y : p;\n    double cost2 = p * n / 10.0;\n    cout << fixed << setprecision(2) << min(cost1, cost2) << '\\n';\n    return 0;\n}"
+    },
+    {
+        "id": 27,
+        "type": "programming",
+        "title": "金字塔",
+        "problemNumber": "B4410",
+        "description": "金字塔由 n 层石块垒成。从塔底向上，每层依次需要 n × n, (n-1) × (n-1), ..., 2 × 2, 1 × 1 块石块。请问搭建金字塔总共需要多少块石块？",
+        "inputDescription": "一行，一个正整数 n，表示金字塔的层数。",
+        "outputDescription": "一行，一个正整数，表示搭建金字塔所需的石块数量。",
+        "samples": [
+            {
+                "input": "3",
+                "output": "14"
+            }
+        ],
+        "explanation": "总石块数就是 1^2+2^2+...+n^2。可直接循环累加平方和。",
+        "tags": [
+            "编程题",
+            "循环",
+            "数学"
+        ],
+        "template": "#include <bits/stdc++.h>\nusing namespace std;\n\nint main() {\n    ios::sync_with_stdio(false);\n    cin.tie(nullptr);\n\n    // 在此编写代码\n    return 0;\n}",
+        "referenceCode": "#include <bits/stdc++.h>\nusing namespace std;\n\nint main() {\n    ios::sync_with_stdio(false);\n    cin.tie(nullptr);\n\n    long long n, ans = 0;\n    cin >> n;\n    for (long long i = 1; i <= n; ++i) ans += i * i;\n    cout << ans << '\\n';\n    return 0;\n}"
+    }
+]
 };

@@ -258,5 +258,52 @@ export const paperData = {
             explanation: "continue 仅跳过本次循环后续语句。",
             tags: ["判断题","循环"]
         }
-    ]
+    ],
+    programmingQuestions: [
+    {
+        "id": 26,
+        "type": "programming",
+        "title": "假期阅读",
+        "problemNumber": "B4354",
+        "description": "小 A 有一本厚厚的书。这本书总共有 n 页，小 A 一天中最多只能阅读完其中的 k 页。小 A 的假期总共有 t 天，他想知道在假期中最多能阅读完这本书的多少页。",
+        "inputDescription": "第一行，一个正整数 n，表示书的页数。 第二行，一个正整数 k，表示小 A 每天最多阅读的页数。 第三行，一个正整数 t，表示小 A 假期的天数。",
+        "outputDescription": "一行，一个整数，表示假期中所能阅读的最多页数。",
+        "samples": [
+            {
+                "input": "120\n25\n4",
+                "output": "100"
+            }
+        ],
+        "explanation": "假期里最多能读 k*t 页，但总页数只有 n 页，因此答案是 min(n,k*t)。",
+        "tags": [
+            "编程题",
+            "模拟"
+        ],
+        "template": "#include <bits/stdc++.h>\nusing namespace std;\n\nint main() {\n    ios::sync_with_stdio(false);\n    cin.tie(nullptr);\n\n    // 在此编写代码\n    return 0;\n}",
+        "referenceCode": "#include <bits/stdc++.h>\nusing namespace std;\n\nint main() {\n    ios::sync_with_stdio(false);\n    cin.tie(nullptr);\n\n    long long n, k, t;\n    cin >> n >> k >> t;\n    cout << min(n, k * t) << '\\n';\n    return 0;\n}"
+    },
+    {
+        "id": 27,
+        "type": "programming",
+        "title": "值日",
+        "problemNumber": "B4355",
+        "description": "小杨和小红是值日生，负责打扫教室。小杨每 m 天值日一次，小红每 n 天值日一次。今天他们两个一起值日，请问至少多少天后，他们会再次同一天值日？",
+        "inputDescription": "第一行，一个正整数 m，表示小杨的值日周期； 第二行，一个正整数 n，表示小红的值日周期。",
+        "outputDescription": "一行，一个整数，表示至少多少天后他们会再次同一天值日。",
+        "samples": [
+            {
+                "input": "6\n8",
+                "output": "24"
+            }
+        ],
+        "explanation": "两人再次同一天值日的最早时间就是 m 和 n 的最小公倍数 lcm(m,n)。",
+        "tags": [
+            "编程题",
+            "数学",
+            "最小公倍数"
+        ],
+        "template": "#include <bits/stdc++.h>\nusing namespace std;\n\nint main() {\n    ios::sync_with_stdio(false);\n    cin.tie(nullptr);\n\n    // 在此编写代码\n    return 0;\n}",
+        "referenceCode": "#include <bits/stdc++.h>\nusing namespace std;\n\nlong long gcdll(long long a, long long b) {\n    return b == 0 ? a : gcdll(b, a % b);\n}\n\nint main() {\n    ios::sync_with_stdio(false);\n    cin.tie(nullptr);\n\n    long long m, n;\n    cin >> m >> n;\n    cout << m / gcdll(m, n) * n << '\\n';\n    return 0;\n}"
+    }
+]
 };

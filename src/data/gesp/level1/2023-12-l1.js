@@ -258,5 +258,53 @@ export const paperData = {
             explanation: "continue 仅跳过本次循环后续语句。",
             tags: ["判断题","循环"]
         }
-    ]
+    ],
+    programmingQuestions: [
+    {
+        "id": 26,
+        "type": "programming",
+        "title": "小杨的考试",
+        "problemNumber": "B3921",
+        "description": "今天是星期 X，小杨还有 N 天就要考试了，你能推算出小杨考试那天是星期几吗？（本题中使用 7 表示星期日）",
+        "inputDescription": "输入 2 行，第一行一个整数 X(1\\le X \\le 7)；第二行一个整数 N(1≤N≤364)。",
+        "outputDescription": "输出一个整数，表示小杨考试那天是星期几。",
+        "samples": [
+            {
+                "input": "5\n10",
+                "output": "1"
+            }
+        ],
+        "explanation": "星期按 7 天循环，把 N 天后的结果写成 (X-1+N)%7+1 即可，其中 7 表示星期日。",
+        "tags": [
+            "编程题",
+            "模拟",
+            "取模"
+        ],
+        "template": "#include <bits/stdc++.h>\nusing namespace std;\n\nint main() {\n    ios::sync_with_stdio(false);\n    cin.tie(nullptr);\n\n    // 在此编写代码\n    return 0;\n}",
+        "referenceCode": "#include <bits/stdc++.h>\nusing namespace std;\n\nint main() {\n    ios::sync_with_stdio(false);\n    cin.tie(nullptr);\n\n    int x, n;\n    cin >> x >> n;\n    cout << (x - 1 + n) % 7 + 1 << '\\n';\n    return 0;\n}"
+    },
+    {
+        "id": 27,
+        "type": "programming",
+        "title": "小杨报数",
+        "problemNumber": "B3922",
+        "description": "小杨需要从 1 到 N 报数。在报数过程中，小杨希望跳过 M 的倍数。例如，如果 N=5， M=2 ，那么小杨就需要依次报出 1、3、5。 现在，请你依次输出小杨报的数。",
+        "inputDescription": "输入 2 行，第一行一个整数 N（1 \\le N \\le 1,000）；第二行一个整数 M（2 \\le M \\le 100）。",
+        "outputDescription": "输出若干行，依次表示小杨报的数。",
+        "samples": [
+            {
+                "input": "7\n3",
+                "output": "1\n2\n4\n5\n7"
+            }
+        ],
+        "explanation": "从 1 枚举到 N，跳过所有 M 的倍数，其余数字按顺序逐行输出。",
+        "tags": [
+            "编程题",
+            "循环",
+            "模拟"
+        ],
+        "template": "#include <bits/stdc++.h>\nusing namespace std;\n\nint main() {\n    ios::sync_with_stdio(false);\n    cin.tie(nullptr);\n\n    // 在此编写代码\n    return 0;\n}",
+        "referenceCode": "#include <bits/stdc++.h>\nusing namespace std;\n\nint main() {\n    ios::sync_with_stdio(false);\n    cin.tie(nullptr);\n\n    int N, M;\n    cin >> N >> M;\n    for (int i = 1; i <= N; ++i) {\n        if (i % M != 0) cout << i << '\\n';\n    }\n    return 0;\n}"
+    }
+]
 };

@@ -258,5 +258,53 @@ export const paperData = {
             explanation: "边界样例对发现缺陷非常关键。",
             tags: ["判断题","程序分析"]
         }
-    ]
+    ],
+    programmingQuestions: [
+    {
+        "id": 26,
+        "type": "programming",
+        "title": "密码强度",
+        "problemNumber": "B4449",
+        "description": "小杨是学校网络安全小组的成员，今天他的任务是设计一个“密码强度检测器”，帮助同学们检查自己的密码是否足够安全。一个安全的密码需要满足以下条件： - 密码至少包含 8 个字符（太短的密码容易被猜出来哦！）。 - 密码至少包含一个大写字母（A、B、C、...、Z 都可以）。 - 密码至少包含一个数字（0、1、2、3、...、9 都可以）。 例如： - 密码 `PAs1s2an` 是安全密码（有 8 位、包含大写字母 `P`、`A` 和数字 `1`、`2`）。 - 密码 `ab1da3cd` 不是安全密码（没有大写字母）。 - 密码 `Paabdbcd` 不是安全密码（没有数字）。 - 密码 `Pa2` 不是安全密码（只有 3 位，太短了）。",
+        "inputDescription": "第一行一个正整数 T，代表需要安全检测的密码组数。 对于每组密码，一行包含一个字符串，代表需要安全检测的密码。",
+        "outputDescription": "对于每组密码，输出一行，如果满足强度要求输出 Y，否则输出 N。",
+        "samples": [
+            {
+                "input": "3\nPAs1s2an\nab1da3cd\nPa2",
+                "output": "Y\nN\nN"
+            }
+        ],
+        "explanation": "逐个检查密码：长度是否至少为 8、是否含有大写字母、是否含有数字。三个条件同时满足时输出 Y。",
+        "tags": [
+            "编程题",
+            "字符串",
+            "模拟"
+        ],
+        "template": "#include <bits/stdc++.h>\nusing namespace std;\n\nint main() {\n    ios::sync_with_stdio(false);\n    cin.tie(nullptr);\n\n    // 在此编写代码\n    return 0;\n}",
+        "referenceCode": "#include <bits/stdc++.h>\nusing namespace std;\n\nint main() {\n    ios::sync_with_stdio(false);\n    cin.tie(nullptr);\n\n    int T;\n    cin >> T;\n    while (T--) {\n        string s;\n        cin >> s;\n        bool up = false, dig = false;\n        for (char c : s) {\n            if ('A' <= c && c <= 'Z') up = true;\n            if ('0' <= c && c <= '9') dig = true;\n        }\n        cout << ((s.size() >= 8 && up && dig) ? 'Y' : 'N') << '\\n';\n    }\n    return 0;\n}"
+    },
+    {
+        "id": 27,
+        "type": "programming",
+        "title": "小杨的智慧购物",
+        "problemNumber": "B4450",
+        "description": "小杨的班级要举办一个环保手工作品展览，老师请小杨去文具店购买 M 种不同的文具（例如：铅笔、橡皮、尺子等）。 商店里共有 N 件文具，每件文具都有一个种类编号（从 1 到 M）和价格。 小杨的预算有限，他想了一个聪明的办法：对于每种文具，他只买最便宜的那一件（如果同种文具有多件价格相同且都是最便宜的，他只会购买其中的一件）。请你帮小杨计算出，买齐这 M 种文具一共需要花费多少钱。",
+        "inputDescription": "第一行两个正整数 M, N，代表文具的种类数和总数。 之后 N 行，每行两个正整数 K_i 和 P_i，分别代表第 i 件文具的种类编号和它的价格。数据保证每个种类至少有一件文具可供购买。",
+        "outputDescription": "输出一行，代表购买文具的总价。",
+        "samples": [
+            {
+                "input": "3 5\n1 10\n2 8\n1 6\n3 12\n2 5",
+                "output": "23"
+            }
+        ],
+        "explanation": "对每个种类维护当前最低价格，最后把 1..M 各类的最小值累加即可。",
+        "tags": [
+            "编程题",
+            "哈希表",
+            "最值统计"
+        ],
+        "template": "#include <bits/stdc++.h>\nusing namespace std;\n\nint main() {\n    ios::sync_with_stdio(false);\n    cin.tie(nullptr);\n\n    // 在此编写代码\n    return 0;\n}",
+        "referenceCode": "#include <bits/stdc++.h>\nusing namespace std;\n\nint main() {\n    ios::sync_with_stdio(false);\n    cin.tie(nullptr);\n\n    int M, N;\n    cin >> M >> N;\n    const long long INF = (1LL << 60);\n    vector<long long> best(M + 1, INF);\n    for (int i = 0; i < N; ++i) {\n        int k; long long p;\n        cin >> k >> p;\n        best[k] = min(best[k], p);\n    }\n    long long ans = 0;\n    for (int i = 1; i <= M; ++i) ans += best[i];\n    cout << ans << '\\n';\n    return 0;\n}"
+    }
+]
 };

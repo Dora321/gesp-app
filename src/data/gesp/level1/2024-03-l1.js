@@ -258,5 +258,52 @@ export const paperData = {
             explanation: "continue 仅跳过本次循环后续语句。",
             tags: ["判断题","循环"]
         }
-    ]
+    ],
+    programmingQuestions: [
+    {
+        "id": 26,
+        "type": "programming",
+        "title": "小杨买书",
+        "problemNumber": "B3952",
+        "description": "小杨同学积攒了一部分零用钱想要用来购买书籍，已知一本书的单价是 13 元，请根据小杨零用钱的金额，编写程序计算可以购买多少本书，还剩多少零用钱。",
+        "inputDescription": "输入一个正整数 m，表示小杨拥有的零用钱数。",
+        "outputDescription": "输出包含两行，第一行，购买图书的本数；第二行，剩余的零用钱数。",
+        "samples": [
+            {
+                "input": "100",
+                "output": "7\n9"
+            }
+        ],
+        "explanation": "书单价固定为 13 元，能买的本数是 m/13，剩余零用钱是 m%13。",
+        "tags": [
+            "编程题",
+            "模拟"
+        ],
+        "template": "#include <bits/stdc++.h>\nusing namespace std;\n\nint main() {\n    ios::sync_with_stdio(false);\n    cin.tie(nullptr);\n\n    // 在此编写代码\n    return 0;\n}",
+        "referenceCode": "#include <bits/stdc++.h>\nusing namespace std;\n\nint main() {\n    ios::sync_with_stdio(false);\n    cin.tie(nullptr);\n\n    int m;\n    cin >> m;\n    cout << m / 13 << '\\n' << m % 13 << '\\n';\n    return 0;\n}"
+    },
+    {
+        "id": 27,
+        "type": "programming",
+        "title": "找因数",
+        "problemNumber": "B3953",
+        "description": "小 A 最近刚刚学习了因数的概念，具体来说，如果一个正整数 a 可以被另一个正整数 b 整除，那么我们就说 b 是 a 的因数。 请你帮忙写一个程序，从小到大输出正整数 a 的所有因数。",
+        "inputDescription": "输入一行一个正整数 a。保证 a≤1000。",
+        "outputDescription": "输出若干行，为 a 的所有约数，从小到大排序。",
+        "samples": [
+            {
+                "input": "12",
+                "output": "1\n2\n3\n4\n6\n12"
+            }
+        ],
+        "explanation": "从 1 到 a 枚举所有整数，能整除 a 的就是它的因数，按枚举顺序输出即可。",
+        "tags": [
+            "编程题",
+            "枚举",
+            "因数"
+        ],
+        "template": "#include <bits/stdc++.h>\nusing namespace std;\n\nint main() {\n    ios::sync_with_stdio(false);\n    cin.tie(nullptr);\n\n    // 在此编写代码\n    return 0;\n}",
+        "referenceCode": "#include <bits/stdc++.h>\nusing namespace std;\n\nint main() {\n    ios::sync_with_stdio(false);\n    cin.tie(nullptr);\n\n    int a;\n    cin >> a;\n    for (int i = 1; i <= a; ++i) {\n        if (a % i == 0) cout << i << '\\n';\n    }\n    return 0;\n}"
+    }
+]
 };

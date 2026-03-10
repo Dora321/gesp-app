@@ -258,5 +258,52 @@ export const paperData = {
             explanation: "continue 仅跳过本次循环后续语句。",
             tags: ["判断题","循环"]
         }
-    ]
+    ],
+    programmingQuestions: [
+    {
+        "id": 26,
+        "type": "programming",
+        "title": "买文具",
+        "problemNumber": "B3863",
+        "description": "开学了，小明来到文具店选购文具。签字笔 2 元一支，他需要 X 支；记事本 5 元一本，他需要 Y 本；直尺 3 元一把，他需要 Z 把。小明手里有 Q 元钱。请你通过编程帮小明算算，他手里的钱是否够买他需要的文具。",
+        "inputDescription": "第一行包含一个正整数，是小明购买签字笔的数量。约定 1 \\le X \\le 10。 第二行包含一个正整数，是小明购买记事本的数量。约定 1 \\le Y \\le 10。 第三行包含一个正整数，是小明购买直尺的数量。约定 1 \\le Z \\le 10。 第四行包含一个正整数 Q，是小明手里的钱数（单位：元）。",
+        "outputDescription": "输出 2 行。如果小明手里的钱够买他需要的文具，则第一行输出 `Yes`，第二行输出小明会剩下的钱数（单位：元）；否则，第一行输出 `No`，第二行输出小明缺少的钱数（单位：元）。",
+        "samples": [
+            {
+                "input": "2\n1\n3\n20",
+                "output": "Yes\n2"
+            }
+        ],
+        "explanation": "先计算总价 cost=2X+5Y+3Z，再与手中金额 Q 比较：若够买则输出剩余，否则输出缺少的金额。",
+        "tags": [
+            "编程题",
+            "模拟"
+        ],
+        "template": "#include <bits/stdc++.h>\nusing namespace std;\n\nint main() {\n    ios::sync_with_stdio(false);\n    cin.tie(nullptr);\n\n    // 在此编写代码\n    return 0;\n}",
+        "referenceCode": "#include <bits/stdc++.h>\nusing namespace std;\n\nint main() {\n    ios::sync_with_stdio(false);\n    cin.tie(nullptr);\n\n    int x, y, z, q;\n    cin >> x >> y >> z >> q;\n    int cost = 2 * x + 5 * y + 3 * z;\n    if (q >= cost) {\n        cout << \"Yes\\n\" << q - cost << '\\n';\n    } else {\n        cout << \"No\\n\" << cost - q << '\\n';\n    }\n    return 0;\n}"
+    },
+    {
+        "id": 27,
+        "type": "programming",
+        "title": "小明的幸运数",
+        "problemNumber": "B3864",
+        "description": "所有个位数为 k 的正整数，以及所有 k 的倍数，都被小明称为“ k 幸运数”。小明想知道正整数 L 和 R 之间（包括 L 和 R）所有 k 幸运数的和，你能帮帮他吗？",
+        "inputDescription": "输入 3 行。第一行包含一个正整数 k，第二行包含一个正整数 L，第三行包含一个正整数 R。约定 2 \\le k \\le 9，1 \\le L \\le R \\le 1000。",
+        "outputDescription": "输出 1 行，符合题意的幸运数之和。",
+        "samples": [
+            {
+                "input": "3\n1\n20",
+                "output": "84"
+            }
+        ],
+        "explanation": "在区间 [L,R] 中枚举每个整数 x，只要它个位是 k 或者它是 k 的倍数，就把它加入答案。",
+        "tags": [
+            "编程题",
+            "枚举",
+            "模拟"
+        ],
+        "template": "#include <bits/stdc++.h>\nusing namespace std;\n\nint main() {\n    ios::sync_with_stdio(false);\n    cin.tie(nullptr);\n\n    // 在此编写代码\n    return 0;\n}",
+        "referenceCode": "#include <bits/stdc++.h>\nusing namespace std;\n\nint main() {\n    ios::sync_with_stdio(false);\n    cin.tie(nullptr);\n\n    long long k, L, R;\n    cin >> k >> L >> R;\n    long long ans = 0;\n    for (long long x = L; x <= R; ++x) {\n        if (x % 10 == k || x % k == 0) ans += x;\n    }\n    cout << ans << '\\n';\n    return 0;\n}"
+    }
+]
 };

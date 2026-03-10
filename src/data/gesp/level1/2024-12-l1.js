@@ -257,5 +257,53 @@ export const paperData = {
             explanation: "continue 仅跳过本次循环后续语句。",
             tags: ["判断题","循环"]
         }
-    ]
+    ],
+    programmingQuestions: [
+    {
+        "id": 26,
+        "type": "programming",
+        "title": "温度转换",
+        "problemNumber": "B4062",
+        "description": "小杨最近学习了开尔文温度、摄氏温度和华氏温度的转换。令符号 K 表开尔文温度，符号 C 表摄氏温度，符号 F 表华氏温度，这三者的转换公式如下： C=K-273.15\\\\ F=C× 1.8+32 现在小杨想编写一个程序计算某一开尔文温度对应的摄氏温度和华氏温度，你能帮帮他吗?",
+        "inputDescription": "一行，一个实数 K，表示开尔文温度。",
+        "outputDescription": "一行，若输入开尔文温度对应的华氏温度高于 212，输出 `Temperature is too high!`； 否则，输出两个由空格分隔的实数 C 和 F，分别表示摄氏温度和华氏度，保留两位小数。",
+        "samples": [
+            {
+                "input": "300",
+                "output": "26.85 80.33"
+            }
+        ],
+        "explanation": "按照公式先算摄氏温度 C，再算华氏温度 F。若 F>212，按题意输出提示，否则保留两位小数输出 C 和 F。",
+        "tags": [
+            "编程题",
+            "模拟",
+            "浮点数"
+        ],
+        "template": "#include <bits/stdc++.h>\nusing namespace std;\n\nint main() {\n    ios::sync_with_stdio(false);\n    cin.tie(nullptr);\n\n    // 在此编写代码\n    return 0;\n}",
+        "referenceCode": "#include <bits/stdc++.h>\nusing namespace std;\n\nint main() {\n    ios::sync_with_stdio(false);\n    cin.tie(nullptr);\n\n    double K;\n    cin >> K;\n    double C = K - 273.15;\n    double F = C * 1.8 + 32;\n    if (F > 212.0) {\n        cout << \"Temperature is too high!\\n\";\n    } else {\n        cout << fixed << setprecision(2) << C << ' ' << F << '\\n';\n    }\n    return 0;\n}"
+    },
+    {
+        "id": 27,
+        "type": "programming",
+        "title": "奇数和偶数",
+        "problemNumber": "B4063",
+        "description": "小杨有 n 个正整数，他想知道其中的奇数有多少个，偶数有多少个。",
+        "inputDescription": "第一行包含一个正整数 n，代表正整数个数。 之后 n 行，每行包含一个正整数。",
+        "outputDescription": "输出两个正整数（英文空格间隔），代表奇数的个数和偶数的个数。如奇数或偶数的个数为 0，则对应输出 0。",
+        "samples": [
+            {
+                "input": "5\n1\n2\n3\n4\n5",
+                "output": "3 2"
+            }
+        ],
+        "explanation": "逐个读入整数，按奇偶性分别统计个数，最后输出奇数个数和偶数个数。",
+        "tags": [
+            "编程题",
+            "统计",
+            "模拟"
+        ],
+        "template": "#include <bits/stdc++.h>\nusing namespace std;\n\nint main() {\n    ios::sync_with_stdio(false);\n    cin.tie(nullptr);\n\n    // 在此编写代码\n    return 0;\n}",
+        "referenceCode": "#include <bits/stdc++.h>\nusing namespace std;\n\nint main() {\n    ios::sync_with_stdio(false);\n    cin.tie(nullptr);\n\n    int n, odd = 0, even = 0;\n    cin >> n;\n    for (int i = 0; i < n; ++i) {\n        long long x;\n        cin >> x;\n        if (x % 2) ++odd;\n        else ++even;\n    }\n    cout << odd << ' ' << even << '\\n';\n    return 0;\n}"
+    }
+]
 };

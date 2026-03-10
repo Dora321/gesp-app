@@ -258,5 +258,53 @@ export const paperData = {
             explanation: "边界样例对发现缺陷非常关键。",
             tags: ["判断题","程序分析"]
         }
-    ]
+    ],
+    programmingQuestions: [
+    {
+        "id": 26,
+        "type": "programming",
+        "title": "数组清零",
+        "problemNumber": "B4413",
+        "description": "小 A 有一个由 n 个非负整数构成的数组 a = [a_1, a_2, \\ldots, a_n]。他会对阵组 a 重复进行以下操作，直到数组 a 只包含 0。在一次操作中，小 A 会依次完成以下三个步骤： 1. 在数组 a 中找到最大的整数，记其下标为 k。如果有多个最大值，那么选择其中下标最大的。 2. 从数组 a 所有不为零的整数中找到最小的整数 a_j。 3. 将第一步找出的 a_k 减去 a_j。 例如，数组 a = [2, 3, 4] 需要 7 次操作变成 [0, 0, 0]： [2, 3, 4] \\rightarrow [2, 3, 2] \\rightarrow [2, 1, 2] \\rightarrow [2, 1, 1] \\rightarrow [1, 1, 1] \\rightarrow [1, 1, 0] \\rightarrow [1, 0, 0] \\rightarrow [0, 0, 0] 小 A 想知道，对于给定的数组 a，需要多少次操作才能使得 a 中的整数全部变成 0。可以证明，a 中整数必然可以在有限次操作后全部变成 0。你能帮他计算出答案吗？",
+        "inputDescription": "第一行，一个正整数 n，表示数组 a 的长度。 第二行，n 个非负整数 a_1, a_2, \\ldots, a_n，表示数组 a 中的整数。",
+        "outputDescription": "一行，一个正整数，表示 a 中整数全部变成 0 所需要的操作次数。",
+        "samples": [
+            {
+                "input": "3\n2 3 4",
+                "output": "7"
+            }
+        ],
+        "explanation": "每次操作都会把当前某个正数减去当前所有正数中的最小值。若把数组排序为 b1<=b2<=...<=bn，答案等于 b1*n + (b2-b1)*(n-1) + ... + (bn-b{n-1})。",
+        "tags": [
+            "编程题",
+            "排序",
+            "数学"
+        ],
+        "template": "#include <bits/stdc++.h>\nusing namespace std;\n\nint main() {\n    ios::sync_with_stdio(false);\n    cin.tie(nullptr);\n\n    // 在此编写代码\n    return 0;\n}",
+        "referenceCode": "#include <bits/stdc++.h>\nusing namespace std;\n\nint main() {\n    ios::sync_with_stdio(false);\n    cin.tie(nullptr);\n\n    int n;\n    cin >> n;\n    vector<long long> a;\n    for (int i = 0; i < n; ++i) {\n        long long x; cin >> x;\n        if (x > 0) a.push_back(x);\n    }\n    sort(a.begin(), a.end());\n    long long ans = 0, prev = 0;\n    int m = a.size();\n    for (int i = 0; i < m; ++i) {\n        ans += (a[i] - prev) * 1LL * (m - i);\n        prev = a[i];\n    }\n    cout << ans << '\\n';\n    return 0;\n}"
+    },
+    {
+        "id": 27,
+        "type": "programming",
+        "title": "日历制作",
+        "problemNumber": "B4414",
+        "description": "小 A 想制作 2025 年每个月的日历。他希望你能编写一个程序，按照格式输出给定月份的日历。 具体来说，第一行需要输出 MON TUE WED THU FRI SAT SUN，分别表示星期一到星期日。接下来若干行中依次输出这个月所包含的日期，日期的个位需要和对应星期几的缩写最后一个字母对齐。例如，2025 年 9 月 1 日是星期一，在输出九月的日历时，1 号的个位 1 就需要与星期一 MON 的最后一个字母 N 对齐。九月的日历输出效果如下: MON TUE WED THU FRI SAT SUN 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27 28 29 30 你能帮助小 A 完成日历的制作吗?",
+        "inputDescription": "一行，一个正整数 m，表示需要按照格式输出 2025 年 m 月的日历。",
+        "outputDescription": "输出包含若干行，表示 2025 年 m 月的日历。",
+        "samples": [
+            {
+                "input": "9",
+                "output": "MON TUE WED THU FRI SAT SUN\n 1  2  3  4  5  6  7\n 8  9 10 11 12 13 14\n15 16 17 18 19 20 21\n22 23 24 25 26 27 28\n29 30"
+            }
+        ],
+        "explanation": "已知 2025 年各月第一天的星期可以通过逐月累加天数得到。打印时先输出表头，再在第一周前补足空位，每个日期按宽度 3 右对齐。",
+        "tags": [
+            "编程题",
+            "日期",
+            "格式化输出"
+        ],
+        "template": "#include <bits/stdc++.h>\nusing namespace std;\n\nint main() {\n    ios::sync_with_stdio(false);\n    cin.tie(nullptr);\n\n    // 在此编写代码\n    return 0;\n}",
+        "referenceCode": "#include <bits/stdc++.h>\nusing namespace std;\n\nint main() {\n    ios::sync_with_stdio(false);\n    cin.tie(nullptr);\n\n    int m;\n    cin >> m;\n    vector<int> days = {0,31,28,31,30,31,30,31,31,30,31,30,31};\n    int start = 3; // 2025-01-01 is Wednesday, Monday=1\n    for (int month = 1; month < m; ++month) {\n        start = (start + days[month] - 1) % 7 + 1;\n    }\n    cout << \"MON TUE WED THU FRI SAT SUN\\n\";\n    int weekday = 1;\n    for (; weekday < start; ++weekday) cout << \"   \";\n    for (int day = 1; day <= days[m]; ++day) {\n        cout << setw(3) << day;\n        if (weekday == 7) {\n            cout << '\\n';\n            weekday = 1;\n        } else {\n            ++weekday;\n        }\n    }\n    if (weekday != 1) cout << '\\n';\n    return 0;\n}"
+    }
+]
 };

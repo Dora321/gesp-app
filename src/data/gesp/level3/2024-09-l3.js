@@ -258,5 +258,53 @@ export const paperData = {
             explanation: "边界样例对发现缺陷非常关键。",
             tags: ["判断题","程序分析"]
         }
-    ]
+    ],
+    programmingQuestions: [
+    {
+        "id": 26,
+        "type": "programming",
+        "title": "平衡序列",
+        "problemNumber": "B4038",
+        "description": "小杨有一个包含 n 个正整数的序列 a。他认为一个序列是平衡的当且仅当存在一个正整数 i（1 ≤ i < n）使得序列第 1 到第 i 个数字的总和等于第 i + 1 到第 n 个数字的总和。 小杨想请你判断序列 a 是否是平衡的。",
+        "inputDescription": "**本题单个测试点内包含多组测试数据**。第一行是一个正整数 t，表示测试用例组数。 接下来是 t 组测试用例。对每组测试用例，一共两行。 第一行包含一个正整数 n，表示序列长度。 第二行包含 n 个正整数，代表序列 a。",
+        "outputDescription": "对每组测试用例输出一行一个字符串。如果 a 是平衡的，输出 \\texttt{Yes}，否则输出 \\texttt{No}。",
+        "samples": [
+            {
+                "input": "2\n4\n1 2 3 6\n3\n1 2 4",
+                "output": "Yes\nNo"
+            }
+        ],
+        "explanation": "先求整个序列总和 total，再从左到右维护前缀和 pre。若某处满足 pre == total-pre，则序列平衡。",
+        "tags": [
+            "编程题",
+            "前缀和",
+            "模拟"
+        ],
+        "template": "#include <bits/stdc++.h>\nusing namespace std;\n\nint main() {\n    ios::sync_with_stdio(false);\n    cin.tie(nullptr);\n\n    // 在此编写代码\n    return 0;\n}",
+        "referenceCode": "#include <bits/stdc++.h>\nusing namespace std;\n\nint main() {\n    ios::sync_with_stdio(false);\n    cin.tie(nullptr);\n\n    int t;\n    cin >> t;\n    while (t--) {\n        int n;\n        cin >> n;\n        vector<long long> a(n);\n        long long total = 0;\n        for (int i = 0; i < n; ++i) { cin >> a[i]; total += a[i]; }\n        long long pre = 0;\n        bool ok = false;\n        for (int i = 0; i + 1 < n; ++i) {\n            pre += a[i];\n            if (pre == total - pre) ok = true;\n        }\n        cout << (ok ? \"Yes\" : \"No\") << '\\n';\n    }\n    return 0;\n}"
+    },
+    {
+        "id": 27,
+        "type": "programming",
+        "title": "回文拼接",
+        "problemNumber": "B4039",
+        "description": "一个字符串是回文串，当且仅当该字符串从前往后读和从后往前读是一样的，例如，\\texttt{aabaa} 和 \\texttt{ccddcc} 都是回文串，但 \\texttt{abcd} 不是。 小杨有 n 个仅包含小写字母的字符串，他想请你编写程序判断每个字符串是否由两个长度至少为 2 的回文串前后拼接而成。",
+        "inputDescription": "第一行包含一个正整数 n，代表字符串数量。 接下来 n 行，每行一个仅包含小写字母的字符串。",
+        "outputDescription": "对于每个字符串输出一行，如果该字符串由两个长度至少为 2 的回文串前后拼接而成则输出 Yes，否则输出 No。",
+        "samples": [
+            {
+                "input": "3\naabbaa\naabb\nabcd",
+                "output": "Yes\nYes\nNo"
+            }
+        ],
+        "explanation": "枚举分割点，把字符串分成左右两段，要求两段长度都至少为 2，并且分别都是回文串。只要存在一种切法即可。",
+        "tags": [
+            "编程题",
+            "字符串",
+            "回文"
+        ],
+        "template": "#include <bits/stdc++.h>\nusing namespace std;\n\nint main() {\n    ios::sync_with_stdio(false);\n    cin.tie(nullptr);\n\n    // 在此编写代码\n    return 0;\n}",
+        "referenceCode": "#include <bits/stdc++.h>\nusing namespace std;\n\nbool isPal(const string& s, int l, int r) {\n    while (l < r) if (s[l++] != s[r--]) return false;\n    return true;\n}\n\nint main() {\n    ios::sync_with_stdio(false);\n    cin.tie(nullptr);\n\n    int n;\n    cin >> n;\n    while (n--) {\n        string s;\n        cin >> s;\n        bool ok = false;\n        for (int cut = 1; cut + 1 < (int)s.size(); ++cut) {\n            if (cut + 1 >= 2 && (int)s.size() - cut - 1 + 1 >= 2) {\n                if (cut >= 1 && (int)s.size() - cut >= 2 && isPal(s, 0, cut - 1) && isPal(s, cut, (int)s.size() - 1)) {\n                    ok = true;\n                    break;\n                }\n            }\n        }\n        cout << (ok ? \"Yes\" : \"No\") << '\\n';\n    }\n    return 0;\n}"
+    }
+]
 };

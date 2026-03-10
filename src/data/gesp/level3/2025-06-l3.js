@@ -258,5 +258,53 @@ export const paperData = {
             explanation: "边界样例对发现缺陷非常关键。",
             tags: ["判断题","程序分析"]
         }
-    ]
+    ],
+    programmingQuestions: [
+    {
+        "id": 26,
+        "type": "programming",
+        "title": "奇偶校验",
+        "problemNumber": "B4358",
+        "description": "数据在传输过程中可能出错，因此接收方收到数据后通常会校验传输的数据是否正确，奇偶校验是经典的校验方式之一。 给定 n 个非负整数 c_1, c_2, \\ldots, c_n 代表所传输的数据，它们的校验码取决于这些整数在二进制下 1 的数量之和的奇偶性。如果这些整数在二进制下共有奇数个 1，那么校验码为 1；否则校验码为 0。你能求出这些整数的校验码吗？",
+        "inputDescription": "第一行，一个正整数 n，表示所传输的数据量。 第二行，n 个非负整数 c_1, c_2, \\ldots, c_n，表示所传输的数据。",
+        "outputDescription": "输出一行，两个整数，以一个空格分隔： 第一个整数表示 c_1, c_2, \\ldots, c_n 在二进制下 1 的总数量； 第二个整数表示校验码（0 或 1）。",
+        "samples": [
+            {
+                "input": "3\n1 2 3",
+                "output": "4 0"
+            }
+        ],
+        "explanation": "把所有数的二进制中 1 的个数加起来，设总数为 s，则校验码就是 s%2。",
+        "tags": [
+            "编程题",
+            "位运算",
+            "统计"
+        ],
+        "template": "#include <bits/stdc++.h>\nusing namespace std;\n\nint main() {\n    ios::sync_with_stdio(false);\n    cin.tie(nullptr);\n\n    // 在此编写代码\n    return 0;\n}",
+        "referenceCode": "#include <bits/stdc++.h>\nusing namespace std;\n\nint main() {\n    ios::sync_with_stdio(false);\n    cin.tie(nullptr);\n\n    int n;\n    cin >> n;\n    long long sum = 0;\n    for (int i = 0; i < n; ++i) {\n        unsigned long long x;\n        cin >> x;\n        sum += __builtin_popcountll(x);\n    }\n    cout << sum << ' ' << (sum % 2) << '\\n';\n    return 0;\n}"
+    },
+    {
+        "id": 27,
+        "type": "programming",
+        "title": "分糖果",
+        "problemNumber": "B4359",
+        "description": "有 n 位小朋友排成一队等待老师分糖果。第 i 位小朋友想要至少 a_i 颗糖果，并且分给他的糖果数量必须比分给前一位小朋友的糖果数量更多，不然他就会不开心。 老师想知道至少需要准备多少颗糖果才能让所有小朋友都开心。你能帮帮老师吗？",
+        "inputDescription": "第一行，一个正整数 n，表示小朋友的人数。 第二行，n 个正整数 a_1, a_2, \\ldots, a_n，依次表示每位小朋友至少需要的糖果数量。",
+        "outputDescription": "输出一行，一个整数，表示最少需要准备的糖果数量。",
+        "samples": [
+            {
+                "input": "4\n1 1 3 2",
+                "output": "10"
+            }
+        ],
+        "explanation": "为了让糖果数严格递增且不少于 a_i，从左到右贪心即可：第 i 人拿 max(a_i, 上一人糖果数+1)。",
+        "tags": [
+            "编程题",
+            "贪心",
+            "数组"
+        ],
+        "template": "#include <bits/stdc++.h>\nusing namespace std;\n\nint main() {\n    ios::sync_with_stdio(false);\n    cin.tie(nullptr);\n\n    // 在此编写代码\n    return 0;\n}",
+        "referenceCode": "#include <bits/stdc++.h>\nusing namespace std;\n\nint main() {\n    ios::sync_with_stdio(false);\n    cin.tie(nullptr);\n\n    int n;\n    cin >> n;\n    long long ans = 0, prev = 0;\n    for (int i = 0; i < n; ++i) {\n        long long a;\n        cin >> a;\n        long long cur = max(a, prev + 1);\n        ans += cur;\n        prev = cur;\n    }\n    cout << ans << '\\n';\n    return 0;\n}"
+    }
+]
 };

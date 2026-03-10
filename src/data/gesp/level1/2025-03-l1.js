@@ -257,5 +257,53 @@ export const paperData = {
             explanation: "continue 仅跳过本次循环后续语句。",
             tags: ["判断题","循环"]
         }
-    ]
+    ],
+    programmingQuestions: [
+    {
+        "id": 26,
+        "type": "programming",
+        "title": "图书馆里的老鼠",
+        "problemNumber": "B4257",
+        "description": "图书馆里有 n 本书，不幸的是，还混入了一只老鼠，老鼠每 x 小时能啃光一本书，假设老鼠在啃光一本书之前，不会啃另一本。请问 y 小时后图书馆里还剩下多少本完整的书。",
+        "inputDescription": "三行，第一行一个正整数 n，表示图书馆里书的数量； 第二行，一个正整数 x，表示老鼠啃光一本书需要的时间； 第三行，一个正整数 y，表示经过的总时间； 输入数据保证 y 小时后至少会剩下一本完整的书。",
+        "outputDescription": "一行，一个整数，表示 y 小时后图书馆里还剩下多少本完整的书。",
+        "samples": [
+            {
+                "input": "10\n3\n8",
+                "output": "8"
+            }
+        ],
+        "explanation": "y 小时里老鼠完整啃掉的书本数是 floor(y/x)，剩余完整书本数就是 n-floor(y/x)。",
+        "tags": [
+            "编程题",
+            "模拟",
+            "整数除法"
+        ],
+        "template": "#include <bits/stdc++.h>\nusing namespace std;\n\nint main() {\n    ios::sync_with_stdio(false);\n    cin.tie(nullptr);\n\n    // 在此编写代码\n    return 0;\n}",
+        "referenceCode": "#include <bits/stdc++.h>\nusing namespace std;\n\nint main() {\n    ios::sync_with_stdio(false);\n    cin.tie(nullptr);\n\n    long long n, x, y;\n    cin >> n >> x >> y;\n    cout << n - y / x << '\\n';\n    return 0;\n}"
+    },
+    {
+        "id": 27,
+        "type": "programming",
+        "title": "四舍五入",
+        "problemNumber": "B4258",
+        "description": "四舍五入是一种常见的近似计算方法。现在，给定 n 个整数，你需要将每个整数四舍五入到最接近的整十数。例如，43 四舍五入后为 40，58 四舍五入后为 60。",
+        "inputDescription": "共 n+1 行，第一行，一个整数 n，表示接下来输入的整数个数。 接下来 n 行，每行一个整数 a_1, ..., a_n，表示需要四舍五入的整数。",
+        "outputDescription": "n 行，每行一个整数，表示每个整数四舍五入后的结果。",
+        "samples": [
+            {
+                "input": "3\n43\n58\n50",
+                "output": "40\n60\n50"
+            }
+        ],
+        "explanation": "对每个整数 a，先看个位数字。若个位小于 5 就向下取整到整十数，否则向上进到下一个整十数。",
+        "tags": [
+            "编程题",
+            "模拟",
+            "四舍五入"
+        ],
+        "template": "#include <bits/stdc++.h>\nusing namespace std;\n\nint main() {\n    ios::sync_with_stdio(false);\n    cin.tie(nullptr);\n\n    // 在此编写代码\n    return 0;\n}",
+        "referenceCode": "#include <bits/stdc++.h>\nusing namespace std;\n\nint round10(int x) {\n    int d = x % 10;\n    if (d < 5) return x - d;\n    return x + (10 - d);\n}\n\nint main() {\n    ios::sync_with_stdio(false);\n    cin.tie(nullptr);\n\n    int n;\n    cin >> n;\n    while (n--) {\n        int x;\n        cin >> x;\n        cout << round10(x) << '\\n';\n    }\n    return 0;\n}"
+    }
+]
 };

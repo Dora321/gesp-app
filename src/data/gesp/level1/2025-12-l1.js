@@ -258,5 +258,53 @@ export const paperData = {
             explanation: "continue 仅跳过本次循环后续语句。",
             tags: ["判断题","循环"]
         }
-    ]
+    ],
+    programmingQuestions: [
+    {
+        "id": 26,
+        "type": "programming",
+        "title": "小杨的爱心快递",
+        "problemNumber": "B4445",
+        "description": "小杨是“爱心社区”的小志愿者，每周他都会帮助邻居们寄送捐赠给山区小学的文具和书籍。快递公司为了支持公益行动，制定了特殊的运费规则，鼓励大家合理包装： 假设快递的体积为 V，重量为 G。 - 按体积计算：运费按体积计算，公式是 0.5 × V 元。 - 按重量计算：为了鼓励减轻包裹重量，规则是：当重量小于 300 克，即 G < 300 时，运费为 M 元；当重量达到或超过 300 克，即 G ≥ 300 时，运费为 N 元。 快递公司的叔叔说：“我们应该选择最公平合理的计费方式。” 所以，最终的运费会取按体积计算和按重量计算这两种方式中**价格较低**的那一个，这样对寄件人最公道。",
+        "inputDescription": "四行，每行一个一位小数的浮点数，分别代表，快递的体积 V，快递的重量 G，第一档重量运费 M，第二档重量运费 N。",
+        "outputDescription": "一行一个一位小数，代表实际快递运费。",
+        "samples": [
+            {
+                "input": "10.0\n280.0\n8.0\n12.0",
+                "output": "5.0"
+            }
+        ],
+        "explanation": "先算体积计费 0.5*V，再根据重量是否小于 300 选择重量计费 M 或 N，最后输出两种方式中的较小值。",
+        "tags": [
+            "编程题",
+            "模拟",
+            "浮点数"
+        ],
+        "template": "#include <bits/stdc++.h>\nusing namespace std;\n\nint main() {\n    ios::sync_with_stdio(false);\n    cin.tie(nullptr);\n\n    // 在此编写代码\n    return 0;\n}",
+        "referenceCode": "#include <bits/stdc++.h>\nusing namespace std;\n\nint main() {\n    ios::sync_with_stdio(false);\n    cin.tie(nullptr);\n\n    double V, G, M, N;\n    cin >> V >> G >> M >> N;\n    double byVolume = 0.5 * V;\n    double byWeight = (G < 300.0 ? M : N);\n    cout << fixed << setprecision(1) << min(byVolume, byWeight) << '\\n';\n    return 0;\n}"
+    },
+    {
+        "id": 27,
+        "type": "programming",
+        "title": "手机电量显示",
+        "problemNumber": "B4446",
+        "description": "小杨的手机就像一个聪明的小助手，当电量变化时，它会用不同的方式来提醒我们，假设当前的电量百分比为 P： - 当电量非常低（不超过 10，即 P ≤ 10），它会显示一个大写字母 R，就像在说：“快给我充电吧！（Red 警告色）” - 当电量有点低（超过 10 但不超过 20，即 10 20），它就会直接显示具体的数字，比如直接显示 50，表示还有 50 的电量。",
+        "inputDescription": "第一行一个正整数 T，代表数据组数。 对于每组数据，一行包含一个正整数 P，代表手机电量百分比。",
+        "outputDescription": "对于每组数据，输出一行，代表当前手机显示的电量信息。",
+        "samples": [
+            {
+                "input": "4\n8\n16\n20\n50",
+                "output": "R\nW\nW\n50"
+            }
+        ],
+        "explanation": "按电量区间分类：P<=10 输出 R，10<P<=20 输出 W，其余直接输出百分比数字。",
+        "tags": [
+            "编程题",
+            "分类讨论",
+            "模拟"
+        ],
+        "template": "#include <bits/stdc++.h>\nusing namespace std;\n\nint main() {\n    ios::sync_with_stdio(false);\n    cin.tie(nullptr);\n\n    // 在此编写代码\n    return 0;\n}",
+        "referenceCode": "#include <bits/stdc++.h>\nusing namespace std;\n\nint main() {\n    ios::sync_with_stdio(false);\n    cin.tie(nullptr);\n\n    int T;\n    cin >> T;\n    while (T--) {\n        int P;\n        cin >> P;\n        if (P <= 10) cout << \"R\\n\";\n        else if (P <= 20) cout << \"W\\n\";\n        else cout << P << '\\n';\n    }\n    return 0;\n}"
+    }
+]
 };

@@ -258,5 +258,53 @@ export const paperData = {
             explanation: "边界样例对发现缺陷非常关键。",
             tags: ["判断题","程序分析"]
         }
-    ]
+    ],
+    programmingQuestions: [
+    {
+        "id": 26,
+        "type": "programming",
+        "title": "移位",
+        "problemNumber": "B4003",
+        "description": "小杨学习了加密技术移位，所有大写字母都向后按照⼀个固定数目进行偏移。偏移过程会将字母表视作首尾相接的环，例如，当偏移量是 3 的时候，大写字母 A 会替换成 D，大写字母 Z 会替换成 C，总体来看，大写字母表 ABCDEFGHIJKLMNOPQRSTUVWXYZ 会被替换成 DEFGHIJKLMNOPQRSTUVWXYZABC。 注：当偏移量是 26 的倍数时，每个大写字母经过偏移后会恰好回到原来的位置，即大写字母表 ABCDEFGHIJKLMNOPQRSTUVWXYZ 经过偏移后会保持不变。",
+        "inputDescription": "第一行包含一个正整数 n。",
+        "outputDescription": "输出在偏移量为 n 的情况下，大写字母表 ABCDEFGHIJKLMNOPQRSTUVWXYZ 移位替换后的结果。",
+        "samples": [
+            {
+                "input": "3",
+                "output": "DEFGHIJKLMNOPQRSTUVWXYZABC"
+            }
+        ],
+        "explanation": "偏移量按 26 取模即可。对字母表中的每个字母加上偏移量，超过 Z 时循环回到 A。",
+        "tags": [
+            "编程题",
+            "字符串",
+            "模拟"
+        ],
+        "template": "#include <bits/stdc++.h>\nusing namespace std;\n\nint main() {\n    ios::sync_with_stdio(false);\n    cin.tie(nullptr);\n\n    // 在此编写代码\n    return 0;\n}",
+        "referenceCode": "#include <bits/stdc++.h>\nusing namespace std;\n\nint main() {\n    ios::sync_with_stdio(false);\n    cin.tie(nullptr);\n\n    long long n;\n    cin >> n;\n    int shift = n % 26;\n    for (int i = 0; i < 26; ++i) {\n        cout << char('A' + (i + shift) % 26);\n    }\n    cout << '\\n';\n    return 0;\n}"
+    },
+    {
+        "id": 27,
+        "type": "programming",
+        "title": "寻找倍数",
+        "problemNumber": "B4004",
+        "description": "小杨有一个包含 n 个正整数的序列 A=[a_1,a_2,\\dots,a_n]，他想知道是否存在 i(1≤ i≤ n) 使得 a_i 是序列 A 中所有数的倍数。",
+        "inputDescription": "第一行包含一个正整数 t，代表测试用例组数。 接下来是 t 组测试用例。对于每组测试用例，一共两行。 其中，第一行包含一个正整数 n；第二行包含 n 个正整数，代表序列 A。",
+        "outputDescription": "对于每组测试用例，如果存在 i(1≤ i≤ n) ，满足对于所有 k(1≤ k≤ n) a_i 是 a_k 的倍数，输出 `Yes`，否则输出 `No`。",
+        "samples": [
+            {
+                "input": "2\n3\n2 4 8\n3\n2 3 6",
+                "output": "Yes\nNo"
+            }
+        ],
+        "explanation": "若某个元素是所有元素的倍数，那么它必须等于数组最大值。只要检查最大值能否被数组中每个数整除即可。",
+        "tags": [
+            "编程题",
+            "数组",
+            "整除"
+        ],
+        "template": "#include <bits/stdc++.h>\nusing namespace std;\n\nint main() {\n    ios::sync_with_stdio(false);\n    cin.tie(nullptr);\n\n    // 在此编写代码\n    return 0;\n}",
+        "referenceCode": "#include <bits/stdc++.h>\nusing namespace std;\n\nint main() {\n    ios::sync_with_stdio(false);\n    cin.tie(nullptr);\n\n    int t;\n    cin >> t;\n    while (t--) {\n        int n;\n        cin >> n;\n        vector<long long> a(n);\n        long long mx = 0;\n        for (int i = 0; i < n; ++i) { cin >> a[i]; mx = max(mx, a[i]); }\n        bool ok = true;\n        for (long long x : a) if (mx % x != 0) ok = false;\n        cout << (ok ? \"Yes\" : \"No\") << '\\n';\n    }\n    return 0;\n}"
+    }
+]
 };

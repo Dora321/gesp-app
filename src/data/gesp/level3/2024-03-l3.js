@@ -258,5 +258,53 @@ export const paperData = {
             explanation: "边界样例对发现缺陷非常关键。",
             tags: ["判断题","程序分析"]
         }
-    ]
+    ],
+    programmingQuestions: [
+    {
+        "id": 26,
+        "type": "programming",
+        "title": "字母求和",
+        "problemNumber": "B3956",
+        "description": "小杨同学发明了一种新型密码，对于每一个小写英文字母，该小写字母代表了一个正整数，即该字母在字母顺序中的位置，例如字母 `a` 代表了正整数 1，字母 `b` 代表了正整数 2；对于每一个大写英文字母，该大写字母代表了一个负整数，即该字母的 ASCII 码的相反数，例如字母 `A` 代表了负整数 -65。小杨同学利用这种放缩对一个整数进行了加密并得到了一个由大写字母和小写字母组成的字符串，该字符串中每个字母所代表数字的总和即为加密前的整数，例如 `aAc` 对应的加密前的整数为 1+(-65)+3=-61。 对于给定的字符串，请你计算出它对应的加密前的整数是多少。",
+        "inputDescription": "第一行一个正整数 n，表示字符串中字母的个数。 第二行一个由大写字母和小写字母的字符串 `T`，代表加密后得到的字符串。",
+        "outputDescription": "输出一行一个整数，代表加密前的整数。",
+        "samples": [
+            {
+                "input": "3\naAc",
+                "output": "-61"
+            }
+        ],
+        "explanation": "小写字母按字母序映射为 1~26，大写字母映射为其 ASCII 码的相反数。把所有字符对应的值累加即可。",
+        "tags": [
+            "编程题",
+            "字符串",
+            "模拟"
+        ],
+        "template": "#include <bits/stdc++.h>\nusing namespace std;\n\nint main() {\n    ios::sync_with_stdio(false);\n    cin.tie(nullptr);\n\n    // 在此编写代码\n    return 0;\n}",
+        "referenceCode": "#include <bits/stdc++.h>\nusing namespace std;\n\nint main() {\n    ios::sync_with_stdio(false);\n    cin.tie(nullptr);\n\n    int n; string T;\n    cin >> n >> T;\n    long long ans = 0;\n    for (char c : T) {\n        if ('a' <= c && c <= 'z') ans += c - 'a' + 1;\n        else ans -= int(c);\n    }\n    cout << ans << '\\n';\n    return 0;\n}"
+    },
+    {
+        "id": 27,
+        "type": "programming",
+        "title": "完全平方数",
+        "problemNumber": "B3957",
+        "description": "小杨同学有一个包含 n 个非负整数的序列 A，他想要知道其中有多少对下标组合 \\langle i,j\\rangle（1 ≤ i < j ≤ n），使得 A_i + A_j 是完全平方数。 如果 x 是完全平方数，则存在非负整数 y 使得 y × y = x。",
+        "inputDescription": "第一行一个非负整数 n，表示非负整数个数。 第二入行包含 n 个非负整数 A_1, A_2, \\dots A_n，表示序列 A 包含的非负整数。",
+        "outputDescription": "输出一行一个整数表示答案。",
+        "samples": [
+            {
+                "input": "4\n0 1 3 8",
+                "output": "2"
+            }
+        ],
+        "explanation": "两数之和若是完全平方数，就计入答案。直接枚举所有下标对 (i,j)，判断 a_i+a_j 是否为完全平方数。",
+        "tags": [
+            "编程题",
+            "枚举",
+            "完全平方数"
+        ],
+        "template": "#include <bits/stdc++.h>\nusing namespace std;\n\nint main() {\n    ios::sync_with_stdio(false);\n    cin.tie(nullptr);\n\n    // 在此编写代码\n    return 0;\n}",
+        "referenceCode": "#include <bits/stdc++.h>\nusing namespace std;\n\nbool isSquare(long long x) {\n    long long r = sqrt((long double)x);\n    while (r * r < x) ++r;\n    while (r * r > x) --r;\n    return r * r == x;\n}\n\nint main() {\n    ios::sync_with_stdio(false);\n    cin.tie(nullptr);\n\n    int n;\n    cin >> n;\n    vector<long long> a(n);\n    for (int i = 0; i < n; ++i) cin >> a[i];\n    long long ans = 0;\n    for (int i = 0; i < n; ++i) {\n        for (int j = i + 1; j < n; ++j) {\n            if (isSquare(a[i] + a[j])) ++ans;\n        }\n    }\n    cout << ans << '\\n';\n    return 0;\n}"
+    }
+]
 };
