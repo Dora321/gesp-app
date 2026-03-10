@@ -1,5 +1,5 @@
 import React from 'react';
-import { BrowserRouter, Routes, Route } from 'react-router-dom';
+import { BrowserRouter, HashRouter, Routes, Route } from 'react-router-dom';
 import Home from './Home';
 import CourseLevel1 from './courses/CourseLevel1';
 import CourseLevel2 from './courses/CourseLevel2';
@@ -156,8 +156,10 @@ import HardwareLanding from './hardware/pages/HardwareLanding';
 import HardwareLessonDetail from './hardware/pages/HardwareLessonDetail';
 
 function App() {
+  const Router = import.meta.env.DEV ? BrowserRouter : HashRouter;
+
   return (
-    <BrowserRouter basename={import.meta.env.DEV ? '/' : '/gesp-app'}>
+    <Router basename={import.meta.env.DEV ? '/' : '/'}>
       <Routes>
         <Route path="/navigation" element={<Navigation />} />
         <Route path="/museum" element={<ComputingMuseum />} />
@@ -324,7 +326,7 @@ function App() {
       <ClassroomPoints />
       <AIChatWidget />
       <ScrollToTop />
-    </BrowserRouter>
+    </Router>
   );
 }
 
