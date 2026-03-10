@@ -68,7 +68,9 @@ const ExamPaper = () => {
         );
     }
 
-    const questions = paperData.questions;
+    const allQuestions = paperData.questions || [];
+    const objectiveQuestions = allQuestions.filter((q) => q && q.type !== 'programming');
+    const questions = mode === 'exam' ? objectiveQuestions : allQuestions;
 
     const formatTime = (seconds) => {
         const m = Math.floor(seconds / 60);
@@ -102,10 +104,10 @@ const ExamPaper = () => {
         setShowSubmitConfirm(false);
     };
 
-    const currentQ = questions[currentQuestionIndex];
+    const currentQ = questions[currentQuestionIndex] || questions[0] || null;
     const answeredCount = Object.keys(answers).length;
-    const unansweredCount = questions.length - answeredCount;
-    const progress = (answeredCount / questions.length) * 100;
+    const unansweredCount = Math.max(questions.length - answeredCount, 0);
+    const progress = questions.length ? (answeredCount / questions.length) * 100 : 0;
 
     if (mode === null) {
         return (
@@ -119,6 +121,7 @@ const ExamPaper = () => {
                     <div className="grid md:grid-cols-2 gap-6">
                         <button
                             onClick={() => {
+                                setCurrentQuestionIndex(0);
                                 setTimeLeft(paperData.timeLimit || 90 * 60);
                                 setMode('exam');
                             }}
@@ -133,7 +136,10 @@ const ExamPaper = () => {
                         </button>
 
                         <button
-                            onClick={() => setMode('analysis')}
+                            onClick={() => {
+                                setCurrentQuestionIndex(0);
+                                setMode('analysis');
+                            }}
                             className="bg-white/10 backdrop-blur-sm border border-white/20 rounded-2xl p-8 text-left hover:bg-white/20 hover:border-green-400 transition-all group"
                         >
                             <div className="w-14 h-14 rounded-xl bg-green-500 flex items-center justify-center mb-4 group-hover:scale-110 transition-transform">
@@ -157,6 +163,22 @@ const ExamPaper = () => {
         const EnhancedPaperComponent = getEnhancedPaperComponent(paperId);
         if (EnhancedPaperComponent) return <EnhancedPaperComponent />;
         return <InteractiveAnalysisPage paperData={paperData} paperId={paperId} />;
+    }
+
+    if (!currentQ || !Array.isArray(currentQ.options)) {
+        return (
+            <div className="min-h-screen flex items-center justify-center bg-slate-50 text-slate-500">
+                <div className="text-center max-w-lg p-6">
+                    <AlertTriangle size={48} className="mx-auto text-red-400 mb-4" />
+                    <h2 className="text-xl font-bold text-slate-700">试卷数据暂不兼容考试模式</h2>
+                    <p className="mb-4">这份试卷的当前题目不是标准客观题结构，已自动避免白屏。你可以先使用解析模式。</p>
+                    <div className="flex gap-3 justify-center">
+                        <button onClick={() => setMode('analysis')} className="px-6 py-2 bg-indigo-600 text-white rounded-lg">进入解析模式</button>
+                        <button onClick={() => setMode(null)} className="px-6 py-2 bg-slate-200 text-slate-700 rounded-lg">返回</button>
+                    </div>
+                </div>
+            </div>
+        );
     }
 
     return (
