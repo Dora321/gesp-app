@@ -20,14 +20,15 @@ const inferTags = (q) => {
 
 export default function InteractiveAnalysisPage({ paperData, paperId }) {
     const navigate = useNavigate();
-    const questions = paperData?.questions || [];
+    const allQuestions = paperData?.questions || [];
+    const questions = allQuestions.filter((q) => q && q.type !== 'programming');
 
     const [activeTab, setActiveTab] = useState('practice');
     const [currentQuestionIndex, setCurrentQuestionIndex] = useState(0);
     const [answers, setAnswers] = useState({});
     const [revealed, setRevealed] = useState({});
 
-    const currentQ = questions[currentQuestionIndex];
+    const currentQ = questions[currentQuestionIndex] || questions[0] || null;
 
     const answeredCount = useMemo(() => Object.keys(answers).length, [answers]);
     const revealedCount = useMemo(() => Object.keys(revealed).length, [revealed]);
