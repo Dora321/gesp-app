@@ -49,12 +49,12 @@ export const paperData = {
         {
             id: 1,
             type: "single",
-            question: "对如下定义的循环单链表，横线处填写（ ）。",
+            question: "对如下定义的循环单链表，printList 函数横线处应填写（ ）。",
             options: [
-                "// 循环单链表的结点 struct Node { int data; // 数据域 Node* next; // 指针域 Node(int d) : data(d), next(nullptr) {} }; // 创建一个只有一个结点的循环单链表 Node* createList(int value) { Node* head = new Node(value); head->next = head; return head; } // 在循环单链表尾部插入新结点 void insertTail(Node* head, int value) { Node* p = head; while (p->next != head) { p = p->next; } Node* node = new Node(value); node->next = head; p->next = node; } // 遍历并输出循环单链表 void printList(Node* head) { if (head == nullptr) return; Node* p = head; _______________________ // 在此处填入代码 cout << endl; } 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27 28 29 30 31 32 33 34 while (p != nullptr){ cout << p->data << \" \"; p = p->next; } 1 2 3 4 第 1 页 / 共 13 页",
-                "选项B",
-                "选项C",
-                "选项D",
+                "while (p != nullptr) { cout << p->data << \" \"; p = p->next; }",
+                "while (p->next != nullptr) { cout << p->data << \" \"; p = p->next; }",
+                "do { cout << p->data << \" \"; p = p->next; } while (p != head);",
+                "for (; p; p = p->next) { cout << p->data << \" \"; }",
             ],
             answer: 2,
             score: 2,
@@ -68,12 +68,12 @@ export const paperData = {
         {
             id: 2,
             type: "single",
-            question: "区块链技术是比特币的基础。在区块链中，每个区块指向前一个区块，构成链式列表，新区块只能接在链 尾，不允许在中间插入或删除。下面代码实现插入区块添加函数，则横线处填写（ ）。",
+            question: "区块链中每个区块都指向前一个区块，新区块只能接在链尾。下面 addBlock 函数横线处应填写（ ）。",
             options: [
-                "while (p->next != nullptr){ cout << p->data << \" \"; p = p->next; } 1 2 3 4 do { cout << p->data << \" \"; p = p->next; } while (p != head); 1 2 3 4 for(; p; p=p->next){ cout << p->data << \" \"; } 1 2 3 // 区块（节点） struct Block { int index; // 区块编号（高度） string data; // 区块里保存的数据 Block* prev; // 指向前一个区块 Block(int idx, const string& d, Block* p) : index(idx), data(d), prev(p) {} }; // 区块链 struct Blockchain { Block* tail; // 初始化 void init() { tail = new Block(0, \"Genesis Block\", nullptr); } // 插入新区块 void addBlock(const string& data) { _______________________ // 在此处填入代码 } // 释放内存 void clear() { Block* cur = tail; while (cur != nullptr) { Block* p = cur->prev; delete cur; cur = p; } tail = nullptr; } }; 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27 28 29 30 31 32 33 34 Block* newBlock = new Block(tail->index + 1, data, tail); tail = newBlock->prev; 1 2 第 2 页 / 共 13 页",
-                "选项B",
-                "选项C",
-                "选项D",
+                "Block* newBlock = new Block(tail->index + 1, data, tail); tail = newBlock->prev;",
+                "Block* newBlock = new Block(tail->index + 1, data, tail); tail = newBlock;",
+                "Block* newBlock = new Block(tail->index + 1, data, tail->prev); tail = newBlock;",
+                "Block* newBlock = new Block(tail->index + 1, data, tail->prev); tail = newBlock->prev;",
             ],
             answer: 1,
             score: 2,
@@ -89,10 +89,10 @@ export const paperData = {
             type: "single",
             question: "下面关于单链表和双链表的描述中，正确的是（ ）。",
             options: [
-                "双链表删除指定节点是 ，单链表是",
-                "双链表删除指定节点是 ，单链表是",
-                "双链表删除指定节点是 ，单链表是",
-                "双链表删除指定节点是 ，单链表是",
+                "双链表删除指定结点通常是 O(n)，单链表也是 O(n)。",
+                "双链表删除指定结点通常是 O(1)，单链表也是 O(1)。",
+                "双链表删除指定结点通常是 O(1)，单链表若需先找前驱通常是 O(n)。",
+                "双链表删除指定结点通常是 O(n)，单链表若已知前驱则是 O(1)。",
             ],
             answer: 2,
             score: 2,
@@ -106,11 +106,11 @@ export const paperData = {
         {
             id: 4,
             type: "single",
-            question: "假设我们有两个数 和 ，它们对模 同余，即 。以下哪个值不可能是 ？",
+            question: "假设我们有两个数 a 和 b，它们对模 m 同余，即 a ≡ b (mod m)。以下哪个值不可能是 m？",
             options: [
                 "3",
                 "4",
-                "6 Block* newBlock = new Block(tail->index + 1, data, tail); tail = newBlock; 1 2 Block* newBlock = new Block(tail->index + 1, data, tail->prev); tail = newBlock; 1 2 Block* newBlock = new Block(tail->index + 1, data, tail->prev); tail = newBlock->prev; 1 2 struct DNode { int data; DNode* prev; DNode* next; }; // 在双链表中删除指定节点 void deleteNode(DNode* node) { if (node->prev) { node->prev->next = node->next; } if (node->next) { node->next->prev = node->prev; } delete node; } struct SNode { int data; SNode* next; }; // 在单链表中删除指定节点 void deleteSNode(SNode* head, SNode* node) { SNode* prev = head; while (prev->next != node) { prev = prev->next; } prev->next = node->next; delete node; } 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27 28 29 30 31 第 3 页 / 共 13 页",
+                "6",
                 "9",
             ],
             answer: 3,
@@ -125,12 +125,12 @@ export const paperData = {
         {
             id: 5,
             type: "single",
-            question: "下面代码实现了欧⼏⾥得算法。下面有关说法，错误的是（ ）。",
+            question: "下面代码实现了欧几里得算法。下面有关说法，错误的是（ ）。",
             options: [
                 "gcd1() 实现为递归方式。",
                 "gcd2() 实现为迭代方式。",
-                "当 较大时，gcd1() 实现会多次调用⾃⾝，需要较多额外的辅助空间。",
-                "当 较大时，gcd1() 的实现比 gcd2() 执⾏效率更高。",
+                "当输入较大时，gcd1() 会多次递归调用自身，需要额外的栈空间。",
+                "当输入较大时，gcd1() 的实现一定比 gcd2() 的迭代实现更高效。",
             ],
             answer: 3,
             score: 2,
@@ -163,7 +163,7 @@ export const paperData = {
         {
             id: 7,
             type: "single",
-            question: "下述代码实现素数表的线性筛法，筛选出所有小于等于 的素数，则横线上应填的代码是 ( ) 。",
+            question: "下述代码实现素数表的线性筛法，筛选出所有小于等于 n 的素数，则横线上应填的代码是（ ）。",
             options: [
                 "for (int j = 0; j < primes.size() && i * primes[j] <= n; j++)",
                 "for(int j = sqrt(n); j <= n && i * primes[j] <= n; j++)",
@@ -182,7 +182,7 @@ export const paperData = {
         {
             id: 8,
             type: "single",
-            question: "下列关于排序的说法，正确的是 ( ) 。 int gcd1(int a, int b) { return b == 0 ? a : gcd1(b, a % b); } int gcd2(int a, int b) { while (b != 0) { int temp = b; b = a % b; a = temp; } return a; } 1 2 3 4 5 6 7 8 9 10 11 12 vector<int> linear_sieve(int n) { vector<bool> is_prime(n +1, true); vector<int> primes; is_prime[0] = is_prime[1] = 0; //0 和 1 两个数特殊处理 for (int i = 2; i <= n; ++i) { if (is_prime[i]) { primes.push_back(i); } ________________________________ { // 在此处填入代码 is_prime[ i * primes[j] ] = 0; if (i % primes[j] == 0) break; } } return primes; } 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 第 4 页 / 共 13 页",
+            question: "下列关于排序的说法，正确的是（ ）。",
             options: [
                 "快速排序是稳定排序",
                 "归并排序通常是稳定的",
@@ -203,9 +203,9 @@ export const paperData = {
             type: "single",
             question: "下面代码实现了归并排序。下述关于归并排序的说法中，不正确的是（ ）。",
             options: [
-                "归并排序的平均复杂度是 。",
-                "归并排序需要 的额外空间。",
-                "归并排序在最坏情况的时间复杂度是 。",
+                "归并排序的平均时间复杂度是 O(n log n)。",
+                "归并排序通常需要 O(n) 的额外空间。",
+                "归并排序在最坏情况下的时间复杂度是 O(n^2)。",
                 "归并排序适合大规模数据。",
             ],
             answer: 2,
@@ -222,10 +222,10 @@ export const paperData = {
             type: "single",
             question: "下述 C++ 代码实现了快速排序算法，最坏情况的时间复杂度是（ ）。",
             options: [
-                "选项A",
-                "选项B",
-                "选项C",
-                "void merge(vector<int>& arr, vector<int>& temp, int l, int mid, int r) { int i = l, j = mid + 1, k = l; while (i <= mid && j <= r) { if (arr[i] <= arr[j]) temp[k++] = arr[i++]; else temp[k++] = arr[j++]; } while (i <= mid) temp[k++] = arr[i++]; while (j <= r) temp[k++] = arr[j++]; for (int p = l; p <= r; p++) arr[p] = temp[p]; } void mergeSort(vector<int>& arr, vector<int>& temp, int l, int r) { if (l >= r) return; int mid = l + (r - l) / 2; mergeSort(arr, temp, l, mid); mergeSort(arr, temp, mid + 1, r); merge(arr, temp, l, mid, r); } 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 int partition(vector<int>& arr, int low, int high) { int i = low, j = high; int pivot = arr[low]; // 以首元素为基准 while (i < j) { while (i < j && arr[j] >= pivot) j--; while (i < j && arr[i] <= pivot) i++; if (i < j) swap(arr[i], arr[j]); } swap(arr[i], arr[low]); return i; } void quickSort(vector<int>& arr, int low, int high) { if (low >= high) return; int p = partition(arr, low, high); quickSort(arr, low, p - 1); quickSort(arr, p + 1, high); } 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 第 5 页 / 共 13 页",
+                "O(log n)",
+                "O(n)",
+                "O(n^2)",
+                "O(n log n)",
             ],
             answer: 2,
             score: 2,
@@ -258,12 +258,12 @@ export const paperData = {
         {
             id: 12,
             type: "single",
-            question: "小杨要把一根长度为 L 的⽊头切成 K 段，使得每段长度小于等于 x。已知每切一⼑只能把一段⽊头分成 两段，他用二分法找到满⾜条件的最小 x（x 为正整数），则横线处应填写（ ）。",
+            question: "小杨要把一根长度为 L 的木头切成 K 段，使得每段长度小于等于 x。已知每切一刀只能把一段木头分成两段，他用二分法找到满足条件的最小 x（x 为正整数），则横线处应填写（ ）。",
             options: [
-                "选项A",
-                "int lower_bound(vector<int>& arr, int x) { int l = 0, r = arr.size(); while(l < r) { int mid = l + (r - l) / 2; if(arr[mid] >= x) r = mid; else l = mid + 1; } return l; } 1 2 3 4 5 6 7 8 9 // 判断：在不超过 K 次切割内，是否能让每段长度 <= x bool check(int L, int K, int x) { int cuts = (L - 1) / x; return cuts <= K; } // 二分查找最小可行的 x int binary_cut(int L, int K) { int l = 1, r = L; while (l < r) { int mid = l + (r - l) / 2; ________________________________ // 在此处填入代码 } return l; } int main() { int L = 10; // 木头长度 int K = 2; // 最多切 K 刀 cout << binary_cut(L, K) << endl; return 0; } 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 if (check(L, K, mid)) r = mid; else l = mid + 1; 1 2 3 4 if (check(L, K, mid)) r = mid+1; else l = mid + 1; 1 2 3 4 第 6 页 / 共 13 页",
-                "选项C",
-                "选项D",
+                "if (check(L, K, mid)) r = mid; else l = mid + 1;",
+                "if (check(L, K, mid)) r = mid + 1; else l = mid + 1;",
+                "if (check(L, K, mid)) r = mid + 1; else l = mid - 1;",
+                "if (check(L, K, mid)) r = mid + 1; else l = mid;",
             ],
             answer: 0,
             score: 2,
@@ -277,12 +277,12 @@ export const paperData = {
         {
             id: 13,
             type: "single",
-            question: "下面给出了阶乘计算的两种方式。以下说法正确的是（ ）。",
+            question: "下面给出了阶乘计算的递归与迭代两种方式。以下说法正确的是（ ）。",
             options: [
-                "上面两种实现方式的时间复杂度相同，都为",
-                "上面两种实现方式的空间复杂度相同，都为",
-                "上面两种实现方式的空间复杂度相同，都为",
-                "函数 factorial1() 的时间复杂度为 ，函数 factorial2() 的时间复杂度为",
+                "两种实现方式的时间复杂度相同，都是 O(n)。",
+                "两种实现方式的空间复杂度相同，都是 O(1)。",
+                "两种实现方式的空间复杂度相同，都是 O(n)。",
+                "factorial1() 的时间复杂度为 O(1)，factorial2() 的时间复杂度为 O(n)。",
             ],
             answer: 0,
             score: 2,
@@ -296,12 +296,12 @@ export const paperData = {
         {
             id: 14,
             type: "single",
-            question: "给定有 个任务，每个任务有截⽌时间和利润，每个任务耗时 1 个时间单位、必须在截⽌时间前完成，且每 个时间槽最多做 1 个任务。为了在规定时间内获得最大利润，可以采用贪⼼策略，即按利润从高到低排序，尽量安 排，则横线处应填写（ ）。 if (check(L, K, mid)) r = mid + 1; else l = mid - 1; 1 2 3 4 if (check(L, K, mid)) r = mid + 1; else l = mid; 1 2 3 4 int factorial1(int n) { if (n <= 1) return 1; return n * factorial1(n - 1); } int factorial2(int n) { int acc = 1; while (n > 1) { acc = n * acc; n = n - 1; } return acc; } 1 2 3 4 5 6 7 8 9 10 11 12 13 第 7 页 / 共 13 页",
+            question: "任务调度问题中，按利润从高到低排序后，若找到可用时间槽 t，则横线处应填写（ ）。",
             options: [
-                "选项A",
-                "选项B",
-                "选项C",
-                "选项D",
+                "slot[t] = true; totalProfit += task.profit;",
+                "slot[t] = false; totalProfit += task.profit;",
+                "slot[t] = true; totalProfit = task.profit;",
+                "slot[t] = false; totalProfit = task.profit;",
             ],
             answer: 0,
             score: 2,
@@ -315,12 +315,12 @@ export const paperData = {
         {
             id: 15,
             type: "single",
-            question: "下面代码实现了对两个数组表⽰的正整数的高精度加法（数组低位在前），则横线上应填写（ ）。 struct Task { int deadline; // 截止时间 int profit; // 利润 }; void sortByProfit(vector<Task>& tasks) { sort(tasks.begin(), tasks.end(), [](const Task& a, const Task& b) { return a.profit > b.profit; }); } int maxProfit(vector<Task>& tasks) { sortByProfit(tasks); int maxTime = 0; for (auto& t : tasks) { maxTime = max(maxTime, t.deadline); } vector<bool> slot(maxTime + 1, false); int totalProfit = 0; for (auto& task : tasks) { for (int t = task.deadline; t >= 1; t--) { if (!slot[t]) { _______________________ // 在此处填入代码 break; } } } return totalProfit; } 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27 28 29 30 31 32 33 34 35 slot[t] = true; totalProfit += task.profit; 1 2 slot[t] = false; totalProfit += task.profit; 1 2 slot[t] = true; totalProfit = task.profit; 1 2 slot[t] = false; totalProfit = task.profit; 1 2 3 第 8 页 / 共 13 页 题号 1 2 3 4 5 6 7 8 9 10 答案",
+            question: "下面代码实现两个数组表示的正整数高精度加法（数组低位在前），则横线处应填写（ ）。",
             options: [
-                "选项A",
-                "选项B",
-                "选项C",
-                "选项D",
+                "c.push_back(carry / 10); carry %= 10;",
+                "c.push_back(carry % 10); carry /= 10;",
+                "c.push_back(carry % 10);",
+                "c.push_back(carry); carry /= 10;",
             ],
             answer: 1,
             score: 2,
@@ -351,7 +351,7 @@ export const paperData = {
         {
             id: 17,
             type: "judge",
-            question: "假设函数 gcd() 函数能正确求两个正整数的最大公约数，则下面的 lcm(a ， b) 函数能正确找到两个正整 数 a 和 b 的最小公倍数。",
+            question: "假设函数 gcd() 能正确求两个正整数的最大公约数，则下面的 lcm(a, b) 函数能正确求出正整数 a 和 b 的最小公倍数。",
             options: [
                 "正确",
                 "错误",
@@ -368,7 +368,7 @@ export const paperData = {
         {
             id: 18,
             type: "judge",
-            question: "在单链表中，已知指针 p 指向要删除的结点（非尾结点），想在 删除 p，可⾏做法是用 p->next 覆盖 p 的值与 next，然后删除 p->next。",
+            question: "在单链表中，已知指针 p 指向要删除的结点（非尾结点），若想在不知道头结点的情况下删除 p，可行做法是用 p->next 的值和 next 覆盖当前结点，再删除 p->next。",
             options: [
                 "正确",
                 "错误",
@@ -385,7 +385,7 @@ export const paperData = {
         {
             id: 19,
             type: "judge",
-            question: "在求解所有不大于 n 的素数时，线性筛法（欧拉筛）都应当优先于埃⽒筛法使用，因为线性筛法的时间复 杂度为 ，低于埃⽒筛法的 。",
+            question: "在求解所有不大于 n 的素数时，线性筛法（欧拉筛）总应优先于埃氏筛法，因为它的理论时间复杂度为 O(n)，低于埃氏筛法的 O(n log log n)。",
             options: [
                 "正确",
                 "错误",
@@ -419,7 +419,7 @@ export const paperData = {
         {
             id: 21,
             type: "judge",
-            question: "通过在数组的第一个、最中间和最后一个这 3 个数据中选择中间值作为枢轴（比较基准），快速排序算法可 降低落入最坏情况的概率。 vector<int> add(vector<int> a, vector<int> b) { vector<int> c; int carry = 0; for (int i = 0; i < a.size() || i < b.size(); i++) { if (i < a.size()) carry += a[i]; if (i < b.size()) carry += b[i]; _______________________ // 在此处填入代码 } if (carry) c.push_back(carry); return c; } 1 2 3 4 5 6 7 8 9 10 11 12 13 c.push_back(carry / 10); carry %= 10; 1 2 c.push_back(carry % 10); carry /= 10; 1 2 c.push_back(carry % 10);1 c.push_back(carry); carry /= 10; 1 2 int lcm(int a, int b) { return a / gcd(a, b) * b; } 1 2 3 第 9 页 / 共 13 页",
+            question: "通过在数组的第一个、最中间和最后一个这 3 个数据中选择中间值作为枢轴（比较基准），快速排序算法可降低落入最坏情况的概率。",
             options: [
                 "正确",
                 "错误",
@@ -453,7 +453,7 @@ export const paperData = {
         {
             id: 23,
             type: "judge",
-            question: "以下 fib 函数计算第 n 项斐波那契数（fib(0)=0, fib(1)=1），其时间复杂度为 。",
+            question: "以下 fib 函数计算第 n 项斐波那契数（fib(0)=0, fib(1)=1），其时间复杂度为指数级。",
             options: [
                 "正确",
                 "错误",
@@ -470,7 +470,7 @@ export const paperData = {
         {
             id: 24,
             type: "judge",
-            question: "递归函数一定要有终⽌条件，否则可能会造成栈溢出。",
+            question: "递归函数一定要有终止条件，否则可能会造成栈溢出。",
             options: [
                 "正确",
                 "错误",
@@ -487,7 +487,7 @@ export const paperData = {
         {
             id: 25,
             type: "judge",
-            question: "使用贪⼼算法解决问题时，通过对每一步求局部最优解，最终一定能找到全局最优解。",
+            question: "使用贪心算法解决问题时，只做每一步的局部最优选择，并不一定能得到全局最优解。",
             options: [
                 "正确",
                 "错误",

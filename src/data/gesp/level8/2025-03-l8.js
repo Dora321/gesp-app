@@ -166,7 +166,7 @@ export const paperData = {
         {
             id: 9,
             type: "single",
-            question: "是个神奇的数字，因为它是由两个数 和 拼接而成，而且 。小杨决定写个程序找找 小于 的正整数中共有多少这样神奇的数字。下面程序横线处应填入的是（ ）。 #include <string> int count_miracle(int N) { 1 2",
+            question: "下面程序横线处应填入的是（ ）。",
             options: [
                 "选项A",
                 "选项B",
@@ -185,7 +185,7 @@ export const paperData = {
         {
             id: 10,
             type: "single",
-            question: "是个神奇的数字，因为它是由两个数 和 拼接而成，而且 。小杨决定写个程序找 找小于 的正整数中共有多少这样神奇的数字。该函数的时间复杂度为（ ）。 int cnt = 0; for (int n = 1; n * n < N; n++) { int n2 = n * n; std::string s = std::to_string(n2); for (int i = 1; i < s.length(); i++) if (s[i] != '0') { std::string sl = s.substr(0, i); std::string sr = s.substr(i); int nl = std::stoi(sl); int nr = std::stoi(sr); if (_________) // 在此处填入选项 cnt++; } } return cnt; } 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 nl + nr == n1 nl + nr == n21 (nl + nr) * (nl + nr) == n1 (nl + nr) ^ 2 == n21 #include <string> int count_miracle(int N) { int cnt = 0; for (int n = 1; n * n < N; n++) { int n2 = n * n; std::string s = std::to_string(n2); for (int i = 1; i < s.length(); i++) if (s[i] != '0') { std::string sl = s.substr(0, i); std::string sr = s.substr(i); int nl = std::stoi(sl); int nr = std::stoi(sr); if (_________) // 在此处填入选项 cnt++; } } return cnt; } 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18",
+            question: "下面程序的时间复杂度为（ ）。",
             options: [
                 "选项A",
                 "选项B",
@@ -223,7 +223,7 @@ export const paperData = {
         {
             id: 12,
             type: "single",
-            question: "下面 Floyd 算法中，横线处应该填入的是（ ）。 int primes[MAXP], num = 0; bool isPrime[MAXN + 1] = {false}; void sieve() { for (int n = 2; n <= MAXN; n++) { if (!isPrime[n]) primes[num++] = n; for (int i = 0; i < num && ________; i++) { // 在此处填入选项 isPrime[n * primes[i]] = true; if (________) // 在此处填入选项 break; } } } 1 2 3 4 5 6 7 8 9 10 11 12 13 n * primes[i] < MAXN n % primes[i] == 0 1 2 n * primes[i] < MAXN primes[i] > n 1 2 n * primes[i] <= MAXN n % primes[i] == 0 1 2 n * primes[i] <= MAXN primes[i] > n 1 2 #include <iostream> using namespace std; #define N 21 #define INF 99999999 int map[N][N]; int main() { int n, m, t1, t2, t3; cin >> n >> m; 1 2 3 4 5 6 7 8 9",
+            question: "下面欧拉筛程序中，两个横线处应填入的分别是（ ）。",
             options: [
                 "选项A",
                 "选项B",
@@ -242,7 +242,7 @@ export const paperData = {
         {
             id: 13,
             type: "single",
-            question: "下面 Floyd 算法程序的时间复杂度为（ ）。 for (int i = 1; i <= n; i++) { for (int j = 1; j <= n; j++) { if (i == j) map[i][j] = 0; else map[i][j] = INF; } } for (int i = 1; i <= m; i++) { cin >> t1 >> t2 >> t3; map[t1][t2] = t3; } for (int k = 1; k <= n; k++) for (int i = 1; i <= n; i++) for (int j = 1; j <= n; j++) if (map[i][j] > map[i][k] + map[k][j]) ________; // 在此处填入选项 for (int i = 1; i <= n; i++) { for (int j = 1; j <= n; j++) { cout.width(4); cout << map[i][j]; } cout << endl; } } 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27 28 29 30 31 32 33 34 map[i][j] = map[i][k] + map[k][j]1 map[i][k] = map[i][j] - map[k][j]1 map[i][j] = map[i][k] - map[k][j]1 map[k][j] = map[i][j] - map[i][k]1 #include <iostream> using namespace std; #define N 21 #define INF 99999999 int map[N][N]; int main() { int n, m, t1, t2, t3; cin >> n >> m; for (int i = 1; i <= n; i++) { for (int j = 1; j <= n; j++) { 1 2 3 4 5 6 7 8 9 10 11",
+            question: "下面 Floyd 算法程序的时间复杂度为（ ）。",
             options: [
                 "选项A",
                 "选项B",
@@ -367,7 +367,7 @@ export const paperData = {
         {
             id: 20,
             type: "judge",
-            question: "使用math.h或cmath头文件中的函数，表达式pow(2, 5)的结果类型为int、值为32。 a[j] += a[j - 1]1 a[j - 1] += a[j]1 a[j + 1] += a[j]1 #include <iostream> using namespace std; #define N 35 int a[N]; int main() { int n; cin >> n; for (int i = 0; i < n; i++) { a[i] = 1; for (int j = i - 1; j > 0; j--) ________; // 在此处填入选项 for (int j = 0; j <= i; j++) cout << a[j] << \" \"; cout << endl; } return 0; } 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17",
+            question: "使用 math.h 或 cmath 头文件中的函数，表达式 pow(2, 5) 的结果类型为 int、值为 32。",
             options: [
                 "正确",
                 "错误",

@@ -100,7 +100,7 @@ export const paperData = {
         {
             id: 3,
             type: "single",
-            question: "关于以下代码，说法正确的是（ ）。 class Instrument { public: virtual void play() { cout << \" 乐器在演奏声音 \" << endl; } virtual ~Instrument() {} }; class Piano : public Instrument { public: void play() override { cout << \" 钢琴：叮咚叮咚 \" << endl; } }; class Guitar : public Instrument { public: void play() override { cout << \" 吉他：咚咚当当 \" << endl; } }; int main() { Instrument* instruments[2]; instruments[0] = new Piano(); instruments[1] = new Guitar(); for (int i = 0; i < 2; ++i) { instruments[i]->play(); } for (int i = 0; i < 3; ++i) { delete instruments[i]; } return 0; } 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27 28 29 30 31 32 33 34 35 36 37 第 2 页 / 共 13 页",
+            question: "关于以下代码，说法正确的是（ ）。",
             options: [
                 "执⾏代码会输出两⾏，内容分别为：钢琴：叮咚叮咚 和 吉他：咚咚当当",
                 "执⾏代码会输出两⾏，内容分别为：乐器在演奏声音 和 乐器在演奏声音",
@@ -140,7 +140,7 @@ export const paperData = {
             type: "single",
             question: "假设循环队列数组长度为 N，其中队空判断条件为：front == rear，队满判断条件为：(rear + 1) % N == front，出队对应的操作为：front = (front + 1) % N，入队对于的操作为：rear = (rear + 1) % N。循环队列长度 N = 6，初始 front = 1, rear = 1，执⾏操作序列为：入队 , 入队 , 入队 , 出队 , 入队 , 入队， 则最终 (front, rear) 的值是（ ）。",
             options: [
-                "(2, 5) class Instrument { public: void play() { cout << \" 乐器在演奏声音 \" << endl; } virtual ~Instrument() {} }; class Piano : public Instrument { public: void play() override { cout << \" 钢琴：叮咚叮咚 \" << endl; } }; class Guitar : public Instrument { public: void play() override { cout << \" 吉他：咚咚当当 \" << endl; } }; int main() { Instrument* instruments[2]; instruments[0] = new Piano(); instruments[1] = new Guitar(); for (int i = 0; i < 2; ++i) { instruments[i]->play(); } for (int i = 0; i < 3; ++i) { delete instruments[i]; } return 0; } 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27 28 29 30 31 32 33 34 35 36 37 第 3 页 / 共 13 页",
+                "(2, 5)",
                 "(2, 0)",
                 "(3, 5)",
                 "(3, 0)",
@@ -195,7 +195,7 @@ export const paperData = {
         {
             id: 8,
             type: "single",
-            question: "下面代码实现了哈夫曼编码，则横线处应填写的代码是（ ）。 bool check(TreeNode* root) { if (!root) return true; queue<TreeNode*> q; q.push(root); bool hasNull = false; while (!q.empty()) { TreeNode* cur = q.front(); q.pop(); if (!cur) { hasNull = true; } else { if (hasNull) return false; q.push(cur->left); q.push(cur->right); } } return true; } 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 void traverse(TreeNode* root) { if (!root) return; traverse(root->left); traverse(root->right); cout << root->val << \" \"; } 1 2 3 4 5 6 第 4 页 / 共 13 页 struct Symbol { char ch; // 字符 long long freq; // 频率 string code; // 哈夫曼编码 }; struct Node { long long w; // 权值 int l, r; // 左右孩子（节点下标）， -1 表示空 int sym; // 叶子对应符号下标；内部节点为 -1 Node(long long _w=0, int _l=-1, int _r=-1, int _sym=-1) : w(_w), l(_l), r(_r), sym(_sym) {} }; // 从 A(leafIdx) 和 B(internalIdx) 的队首取最小的一个节点下标 static int PopMinNode(const vector<Node>& nodes, const vector<int>& leafIdx, int n, int& pA, const vector<int>& internalIdx, int& pB) { if (pA < n && (pB >= (int)internalIdx.size() || nodes[leafIdx[pA]].w <= nodes[internalIdx[pB]].w)) { return leafIdx[pA++]; } else { return internalIdx[pB++]; } } // DFS 生成编码（左 0 ，右 1 ） static void DFSBuildCodes(int u, const vector<Node>& nodes, Symbol sym[], string& path) { if (u == -1) return; if (nodes[u].sym != -1) { // 叶子 sym[nodes[u].sym].code = path; return; } path.push_back('0'); DFSBuildCodes(nodes[u].l, nodes, sym, path); path.pop_back(); path.push_back('1'); DFSBuildCodes(nodes[u].r, nodes, sym, path); path.pop_back(); } int BuildHuffmanCodes(Symbol sym[], int n) { for (int i = 0; i < n; i++) sym[i].code.clear(); if (n <= 0) return -1; // 只有一个字符：约定编码为 \"0\" if (n == 1) { sym[0].code = \"0\"; return 0; } vector<Node> nodes; nodes.reserve(2 * n); // 1) 建立叶子节点 vector<int> leafIdx(n); for (int i = 0; i < n; i++) { leafIdx[i] = (int)nodes.size(); nodes.push_back(Node(sym[i].freq, -1, -1, i)); } 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27 28 29 30 31 32 33 34 35 36 37 38 39 40 41 42 43 44 45 46 47 48 49 50 51 52 53 54 55 56 57 58 59 60 61 62 63 64 第 5 页 / 共 13 页",
+            question: "下面代码实现了哈夫曼编码，则横线处应填写的代码是（ ）。",
             options: [
                 "选项A",
                 "选项B",
@@ -233,7 +233,7 @@ export const paperData = {
         {
             id: 10,
             type: "single",
-            question: "以下函数实现了二叉排序树（ BST ）的（ ）操作。 // 2) 叶子按权值排序（ A 队列） sort(leafIdx.begin(), leafIdx.end(), [&](int a, int b) { if (nodes[a].w != nodes[b].w) return nodes[a].w < nodes[b].w; return nodes[a].sym < nodes[b].sym; // 稳定一下 }); // B 队列（内部节点下标队列） vector<int> internalIdx; internalIdx.reserve(n); int pA = 0, pB = 0; // 3) 合并 n-1 次 for (int k = 1; k < n; k++) { int x = PopMinNode(nodes, leafIdx, n, pA, internalIdx, pB); int y = PopMinNode(nodes, leafIdx, n, pA, internalIdx, pB); int z = (int)nodes.size(); ________________________ // 在此处填写代码 } int root = internalIdx.back(); // 4) DFS 生成编码 string path; DFSBuildCodes(root, nodes, sym, path); return root; } 65 66 67 68 69 70 71 72 73 74 75 76 77 78 79 80 81 82 83 84 85 86 87 88 89 90 91 92 93 94 nodes.push_back(Node(nodes[x].w + nodes[y].w, x, y, -1)); internalIdx.push_back(z); 1 2 nodes.push_back(Node(nodes[x].w + nodes[y].w, x, y, -1)); leafIdx.push_back(z); 1 2 internalIdx.push_back(z); nodes.push_back(Node(nodes[x].w + nodes[y].w, x, y, x+y)); 1 2 nodes.push_back(Node(nodes[x].w + nodes[y].w, x, y, x+y)); leafIdx.push_back(z); 1 2 第 6 页 / 共 13 页",
+            question: "以下函数实现了二叉排序树（BST）的（ ）操作。",
             options: [
                 "查找",
                 "插入",

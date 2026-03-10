@@ -180,7 +180,7 @@ export const paperData = {
         {
             id: 7,
             type: "single",
-            question: "关于动态规划的描述，正确的是（ ）。 if (root == nullptr) return true; queue<TreeNode*> q; q.push(root); bool hasNull = false; while (!q.empty()) { TreeNode* node = q.front(); q.pop(); if (node == nullptr) { hasNull = true; } else { if (hasNull) return false; q.push(node->left); q.push(node->right); } } return true; } 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 TreeNode* op(TreeNode* root, int val) { if (root == nullptr) return new TreeNode(val); if (val < root->val) { root->left = op(root->left, val); } else { root->right = op(root->right, val); } return root; } 1 2 3 4 5 6 7 8 9",
+            question: "关于动态规划的描述，正确的是（ ）。",
             options: [
                 "动态规划算法的时间复杂度总是低于贪⼼算法。",
                 "动态规划要求问题必须具有最优子结构和重叠子问题两个性质。",
@@ -294,7 +294,7 @@ export const paperData = {
         {
             id: 13,
             type: "single",
-            question: "以下代码实现了 0/1 背包问题的动态规划解法。假设物品重量为weights[]，价值为values[]，背包容 量为W，横线上应填写（ ）。 if (current->left) q.pop(current->left); if (current->right) q.pop(current->right); 1 2 if (current->left) q.front(current->left); if (current->right) q.front(current->right); 1 2 if (current->left) q.push(current->right); if (current->right) q.push(current->left); 1 2 vector<string> generateGrayCode(int n) { if (n == 0) return {\"0\"}; if (n == 1) return {\"0\", \"1\"}; vector<string> prev = generateGrayCode(n - 1); vector<string> result; for (string s : prev) { result.push_back(\"0\" + s); // 在前缀添加 0 } for (int i = prev.size() - 1; i >= 0; i--) { ———————————————————————— // 在此处填入代码 } return result; } 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 int knapsack(int W, vector<int>& weights, vector<int>& values) { int n = weights.size(); vector<vector<int>> dp(n + 1, vector<int>(W + 1, 0)); for (int i = 1; i <= n; i++) { for (int j = 1; j <= W; j++) { if (weights[i-1] > j) { dp[i][j] = dp[i-1][j]; // 当前物品装不下 } else { dp[i][j] = max(_________________________); // 在此处填入代码 } } } 1 2 3 4 5 6 7 8 9 10 11 12 13",
+            question: "以下代码实现了 0/1 背包问题的动态规划解法。假设物品重量为 weights[]，价值为 values[]，背包容量为 W，横线上应填写（ ）。",
             options: [
                 "dp[i-1][j], values[i-1]",
                 "dp[i-1][j], dp[i-1][j - weights[i-1]] + values[i-1]",
@@ -332,7 +332,7 @@ export const paperData = {
         {
             id: 15,
             type: "single",
-            question: "关于下面代码，说法错误的是（ ）。 return dp[n][W]; } 14 15 bool isBalanced(string s) { stack<char> st; for (char c : s) { if (c == '(' || c == '[' || c == '{') { st.push(c); } else { if (st.empty()) return false; // 无左括号匹配 char top = st.top(); st.pop(); if ((c == ')' && top != '(') || (c == ']' && top != '[') || (c == '}' && top != '{')) { return false; } } } return ________________; // 在此处填入代码 } 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 class Shape { protected: string name; public: Shape(const string& n) : name(n) {} virtual double area() const { return 0.0; } }; class Circle : public Shape { private: double radius; // 半径 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 题号 1 2 3 4 5 6 7 8 9 10 答案",
+            question: "关于下面代码，说法错误的是（ ）。",
             options: [
                 "语句Shape* shapePtr = &circle;和shapePtr = &rectangle;出现编译错误",
                 "Shape为基类， Circle 和 Rectangle是派生类",

@@ -119,7 +119,7 @@ export const paperData = {
         {
             id: 4,
             type: "single",
-            question: "栈的操作特点是（ ）。 class Vehicle { private: string brand; public: Vehicle(string b) : brand(b) {} void setBrand(const string& b) { brand = b; } string getBrand() const { return brand; } virtual void move() const { cout << brand << \" is moving...\" << endl; } }; class Car : public Vehicle { private: int seatCount; public: Car(string b, int seats) : Vehicle(b), seatCount(seats) {} void showInfo() const { cout << \"This car is a \" << getBrand() << \" with \" << seatCount << \" seats.\" << endl; } void move() const override { cout << getBrand() << \" car is driving on the road!\" << endl; } }; class Bike : public Vehicle { public: Bike(string b) : Vehicle(b) {} void move() const override { cout << getBrand() << \" bike is cycling on the path!\" << endl; } }; int main() { Vehicle* v1 = new Car(\"Toyota\", 5); Vehicle* v2 = new Bike(\"Giant\"); v1->move(); v2->move(); delete v1; delete v2; return 0; } 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27 28 29 30 31 32 33 34 35 36 37 38 39 40 41 42 43 44 45 46 47 48 49 50 51 52",
+            question: "栈的操作特点是（ ）。",
             options: [
                 "先进先出",
                 "先进后出",
@@ -200,7 +200,7 @@ export const paperData = {
                 "左孩子位于2i，右孩子位于2i+1",
                 "完全二叉树的叶子节点可以出现在最后一层的任意位置",
                 "所有节点都有两个孩子",
-                "左孩子位于2i+1，右孩子位于2i+2 struct TreeNode { int val; TreeNode* left; TreeNode* right; TreeNode(int x) : val(x), left(nullptr), right(nullptr) {} }; TreeNode* createTree() { TreeNode* root = new TreeNode(1); root->left = new TreeNode(2); root->right = new TreeNode(3); root->left->left = new TreeNode(4); root->left->right = new TreeNode(5); return root; } 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15",
+                "左孩子位于 2i，右孩子位于 2i+1",
             ],
             answer: 0,
             score: 2,
@@ -449,7 +449,7 @@ export const paperData = {
         {
             id: 22,
             type: "judge",
-            question: "以下代码实现了二叉树的中序遍历。输入以下二叉树，中序遍历结果是 4 2 5 1 3 6 。 int knapsack(int W, vector<int>& wt, vector<int>& val, int n) { vector<int> dp(W+1, 0); for (int i = 0; i < n; ++i) { for (int w = W; w >= wt[i]; --w) { ________________________ // 在此处填写代码 } } return dp[W]; } 1 2 3 4 5 6 7 8 9 10 // 1 // / \ // 2 3 // / \ \ // 4 5 6 struct TreeNode { int val; TreeNode* left; TreeNode* right; TreeNode(int x) : val(x), left(nullptr), right(nullptr) {} }; void inorderIterative(TreeNode* root) { stack<TreeNode*> st; TreeNode* curr = root; 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17",
+            question: "以下代码实现了二叉树的中序遍历。输入以下二叉树，中序遍历结果是 4 2 5 1 3 6。",
             options: [
                 "正确",
                 "错误",

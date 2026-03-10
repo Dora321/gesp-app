@@ -110,7 +110,7 @@ export const paperData = {
             options: [
                 "10",
                 "20",
-                "地址值 int main() { int a = 5, b = 2; cout << (a >> b) << endl; } 1 2 3 4 int main() { int a = 10; int *p = &a; int *&q = p; *q = 20; cout << a << endl; return 0; } 1 2 3 4 5 6 7 8",
+                "地址值",
                 "编译错误",
             ],
             answer: 1,
@@ -201,7 +201,7 @@ export const paperData = {
         {
             id: 8,
             type: "single",
-            question: "是个神奇的数字，因为它是由两个数 和 拼接而成，而且 。小杨决定写个程序找找 小于 的正整数中共有多少这样神奇的数字。下面程序横线处应填入的是（ ）。 int main() { int arr[5] = {1, 2, 3, 4, 5}; int *p = arr + 2; cout << *p << endl; return 0; } 1 2 3 4 5 6 #include <string> int count_miracle(int N) { int cnt = 0; for (int n = 1; n * n < N; n++) { int n2 = n * n; std::string s = std::to_string(n2); for (int i = 1; i < s.length(); i++) 1 2 3 4 5 6 7",
+            question: "是个神奇的数字，因为它是由两个数和拼接而成，而且满足特定条件。小杨决定写个程序找找小于 N 的正整数中共有多少这样神奇的数字。下面程序横线处应填入的是（ ）。",
             options: [
                 "选项A",
                 "选项B",
@@ -220,7 +220,7 @@ export const paperData = {
         {
             id: 9,
             type: "single",
-            question: "给定一个无向图，图的节点编号从 0 到 n-1 ，图的边以邻接表的形式给出。下面的程序使用深度优先搜索 （ DFS ）遍历该图，并输出遍历的节点顺序。横线处应该填入的是（） if (s[i] != '0') { std::string sl = s.substr(0, i); std::string sr = s.substr(i); int nl = std::stoi(sl); int nr = std::stoi(sr); if (_________) // 在此处填入选项 cnt++; } } return cnt; } 8 9 10 11 12 13 14 15 16 17 18 nl + nr == n1 nl + nr == n21 (nl + nr) * (nl + nr) == n1 (nl + nr) ^ 2 == n21 #include <iostream> #include <vector> #include <stack> using namespace std; void DFS(int start, vector<vector<int>>& graph, vector<bool>& visited) { stack<int> s; s.push(start); visited[start] = true; while (!s.empty()) { int node = s.top(); s.pop(); cout << node << \" \"; // 输出当前节点 // 遍历邻接节点 for (int neighbor : graph[node]) { if (!visited[neighbor]) { __________________ __________________ } } } 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24",
+            question: "给定一个无向图，图的节点编号从 0 到 n-1，图的边以邻接表的形式给出。下面程序使用深度优先搜索（DFS）遍历该图，并输出遍历的节点顺序。横线处应该填入的是（ ）。",
             options: [
                 "选项A",
                 "选项B",
@@ -239,7 +239,7 @@ export const paperData = {
         {
             id: 10,
             type: "single",
-            question: "给定一个整数数组 nums ，找到其中最长的严格上升子序列的长度。 子序列是指从原数组中删除一些元素（或不删除）后，剩余元素保持原有顺序的序列。 下面的程序横线处应该填入的是（） } int main() { int n, m; cin >> n >> m; vector<vector<int>> graph(n); for (int i = 0; i < m; i++) { int u, v; cin >> u >> v; graph[u].push_back(v); graph[v].push_back(u); } vector<bool> visited(n, false); // 从节点 0 开始 DFS 遍历 DFS(0, graph, visited); return 0; } 25 26 27 28 29 30 31 32 33 34 35 36 37 38 39 40 41 42 43 44 45 46 visited[neighbor] = true; s.push(neighbor-1); 1 2 visited[neighbor] = true; s.push(neighbor+1); 1 2 visited[neighbor] = false; s.push(neighbor); 1 2 visited[neighbor] = true; s.push(neighbor); 1 2 #include <iostream> #include <vector> #include <algorithm> using namespace std; int lengthOfLIS(vector<int>& nums) { int n = nums.size(); 1 2 3 4 5 6 7",
+            question: "给定一个整数数组 nums，找到其中最长的严格上升子序列的长度。子序列是指从原数组中删除一些元素（或不删除）后，剩余元素保持原有顺序的序列。下面的程序横线处应该填入的是（ ）。",
             options: [
                 "dp[i] = max(dp[i], dp[j]);",
                 "dp[i] = max(dp[i+1], dp[j] + 1);",
@@ -258,7 +258,7 @@ export const paperData = {
         {
             id: 11,
             type: "single",
-            question: "给定一个整数数组 nums ，找到其中最长的严格上升子序列的长度。 子序列是指从原数组中删除一些元素（或不删除）后，剩余元素保持原有顺序的序列。 该程序的时间复杂度为（） if (n == 0) return 0; vector<int> dp(n, 1); for (int i = 1; i < n; i++) { for (int j = 0; j < i; j++) { if (nums[i] > nums[j]) { _________________________ } } } return *max_element(dp.begin(), dp.end()); } int main() { int n; cin >> n; vector<int> nums(n); for (int i = 0; i < n; i++) { cin >> nums[i]; } int result = lengthOfLIS(nums); cout << result << endl; return 0; } 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27 28 29 30 31 32 33 #include <iostream> #include <vector> #include <algorithm> using namespace std; int lengthOfLIS(vector<int>& nums) { int n = nums.size(); if (n == 0) return 0; vector<int> dp(n, 1); for (int i = 1; i < n; i++) { for (int j = 0; j < i; j++) { if (nums[i] > nums[j]) { _________________________ } } } 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17",
+            question: "给定一个整数数组 nums，找到其中最长的严格上升子序列的长度。子序列是指从原数组中删除一些元素（或不删除）后，剩余元素保持原有顺序的序列。该程序的时间复杂度为（ ）。",
             options: [
                 "选项A",
                 "选项B",
@@ -277,7 +277,7 @@ export const paperData = {
         {
             id: 12,
             type: "single",
-            question: "给定两个无向图 G1 和 G2 ，判断它们是否同构。图的同构是指两个图的节点可以通过某种重新编号的方式完全匹配，且边的连接关 系一致。 为了简化问题，假设图的节点编号从 0 到 n-1 ，并且图的边以邻接表的形式给出。下面程序中横线处应该给出的是 （） return *max_element(dp.begin(), dp.end()); } int main() { int n; cin >> n; vector<int> nums(n); for (int i = 0; i < n; i++) { cin >> nums[i]; } int result = lengthOfLIS(nums); cout << result << endl; return 0; } 18 19 20 21 22 23 24 25 26 27 28 29 30 31 32 33 #include <iostream> #include <vector> #include <map> #include <algorithm> using namespace std; string graphHash(vector<vector<int>>& graph) { vector<string> nodeHashes(graph.size()); for (int i = 0; i < graph.size(); i++) { vector<int> neighbors = graph[i]; sort(neighbors.begin(), neighbors.end()); string hash; for (int neighbor : neighbors) { —————————————————————————— } nodeHashes[i] = hash; } sort(nodeHashes.begin(), nodeHashes.end()); string finalHash; for (string h : nodeHashes) { finalHash += h + \";\"; } return finalHash; } 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25",
+            question: "给定两个无向图 G1 和 G2，判断它们是否同构。图的同构是指两个图的节点可以通过某种重新编号的方式完全匹配，且边的连接关系一致。为了简化问题，假设图的节点编号从 0 到 n-1，并且图的边以邻接表形式给出。下面程序中横线处应该填入的是（ ）。",
             options: [
                 "hash += to_string(neighbor);",
                 "hash += to_string(neighbors);",
@@ -296,7 +296,7 @@ export const paperData = {
         {
             id: 13,
             type: "single",
-            question: "给定一个 m×n 的二维⽹格 grid ，每个格子中有一个非负整数。请找出一条从左上角 (0, 0) 到右下角 (m-1, n- 1) 的路径，使得路径上的数字总和最小。每次只能向右或向下移动。横线处应该填入的是（） int main() { int n; cin >> n; vector<vector<int>> G1(n); for (int i = 0; i < n; i++) { int k; while (cin >> k) { G1[i].push_back(k); if (cin.get() == '\n') break; } } vector<vector<int>> G2(n); for (int i = 0; i < n; i++) { int k; while (cin >> k) { G2[i].push_back(k); if (cin.get() == '\n') break; } } string hash1 = graphHash(G1); string hash2 = graphHash(G2); if (hash1 == hash2) { cout << \"YES\" << endl; } else { cout << \"NO\" << endl; } return 0; } 26 27 28 29 30 31 32 33 34 35 36 37 38 39 40 41 42 43 44 45 46 47 48 49 50 51 52 53 54 55 56 57 58 #include <iostream> #include <vector> #include <algorithm> using namespace std; int minPathSum(vector<vector<int>>& grid) { int m = grid.size(); int n = grid[0].size(); vector<vector<int>> dp(m, vector<int>(n, 0)); 1 2 3 4 5 6 7 8 9 10 11",
+            question: "给定一个 m×n 的二维网格 grid，每个格子中有一个非负整数。请找出一条从左上角 (0, 0) 到右下角 (m-1, n-1) 的路径，使得路径上的数字总和最小。每次只能向右或向下移动。横线处应该填入的是（ ）。",
             options: [
                 "dp[i][j] = min(dp[i - 1][j], dp[i][j - 1]) + grid[i][1];",
                 "dp[i][j] = min(dp[i - 1][j], dp[i][j - 1]) + grid[i][j];",
@@ -315,7 +315,7 @@ export const paperData = {
         {
             id: 14,
             type: "single",
-            question: "给定一个整数数组 nums ，找到一个具有最大和的连续子数组（子数组最少包含一个元素），返回其最大 和。下面横线处应该填入的是（） dp[0][0] = grid[0][0]; for (int j = 1; j < n; j++) { dp[0][j] = dp[0][j - 1] + grid[0][j]; } for (int i = 1; i < m; i++) { dp[i][0] = dp[i - 1][0] + grid[i][0]; } for (int i = 1; i < m; i++) { for (int j = 1; j < n; j++) { ———————————————————————————————— } } return dp[m - 1][n - 1]; } int main() { int m, n; cin >> m >> n; vector<vector<int>> grid(m, vector<int>(n)); for (int i = 0; i < m; i++) { for (int j = 0; j < n; j++) { cin >> grid[i][j]; } } int result = minPathSum(grid); cout << result << endl; return 0; } 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27 28 29 30 31 32 33 34 35 36 37 38 39 40 #include <iostream> #include <vector> #include <algorithm> using namespace std; int maxSubArray(vector<int>& nums) { int n = nums.size(); if (n == 0) return 0; vector<int> dp(n, 0); dp[0] = nums[0]; int maxSum = dp[0]; for (int i = 1; i < n; i++) { _____________________________________ 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 题号 1 2 3 4 5 6 7 8 9 10 答案",
+            question: "给定一个整数数组 nums，找到一个具有最大和的连续子数组（子数组最少包含一个元素），返回其最大和。下面横线处应该填入的是（ ）。",
             options: [
                 "dp[i] = max(nums[i+1], dp[i - 1] + nums[i]);",
                 "dp[i] = max(nums[i], dp[i - 1] + nums[i]);",

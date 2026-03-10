@@ -149,7 +149,7 @@ export const paperData = {
         {
             id: 5,
             type: "single",
-            question: "一棵深度为 6 （根节点深度为 1 ）的完全二叉树，节点总数最少有（ ）。 第 1 页 / 共 9 页",
+            question: "一棵深度为 6（根节点深度为 1）的完全二叉树，节点总数最少有（ ）。",
             options: [
                 "31",
                 "32",
@@ -206,7 +206,7 @@ export const paperData = {
         {
             id: 8,
             type: "single",
-            question: "下面程序中，函数 query 的时间复杂度是（ ）。 #include <iostream> int query(int n, int *a, int x) { int l = 0, r = n; while (l < r) { int mid = l + (r - l) / 2; if (a[mid] >= x) r = mid; else l = mid + 1; } if (l == n) return -1; return l; } int main() { int n = 10; int x = 3; int num[] = {1, 2, 2, 3, 3, 4, 5, 5, 6, 7}; std::cout << query(n, num, x) << \"\n\"; return 0; } 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 第 2 页 / 共 9 页",
+            question: "下面程序中，函数 query 的时间复杂度是（ ）。",
             options: [
                 "选项A",
                 "选项B",
@@ -263,7 +263,7 @@ export const paperData = {
         {
             id: 11,
             type: "single",
-            question: "一个简单无向图 有 36 条边，且每个顶点的度数都为 4 ，则图 的顶点个数为（ ）。 #include <iostream> int query(int n, int *a, int x) { int l = 0, r = n; while (l < r) { int mid = l + (r - l) / 2; if (a[mid] >= x) r = mid; else l = mid + 1; } if (l == n) return -1; return l; } int main() { int n = 10; int x = 3; int num[] = {1, 2, 2, 3, 3, 4, 5, 5, 6, 7}; std::cout << query(n, num, x) << \"\n\"; return 0; } 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 #include <iostream> using namespace std; int f(int n) { if (n <= 2) return n * 2; return f(n - 1) + f(n - 2); } int main() { cout << f(5) << endl; return 0; } 1 2 3 4 5 6 7 8 9 10 第 3 页 / 共 9 页",
+            question: "一个简单无向图有 36 条边，且每个顶点的度数都为 4，则图的顶点个数为（ ）。",
             options: [
                 "9",
                 "12",
@@ -344,7 +344,7 @@ export const paperData = {
                 "3",
                 "4",
                 "5",
-                "6 第 4 页 / 共 9 页 题号 1 2 3 4 5 6 7 8 9 10 答案",
+                "6",
             ],
             answer: 2,
             score: 2,
