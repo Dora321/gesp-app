@@ -66,7 +66,7 @@ export const paperData = {
             options: [
                 "构造函数不能声明为虚函数，但析构函数可以。",
                 "函数参数如声明为类的引用类型，调用时不会调用该类的复制构造函数。",
-                "静态方法属于类而不是某个具体对象，因此推荐用 类名::方法(...) 调用。",
+                "静态方法属于类而不是某个具体对象，因此推荐用类名::方法(...)调用。",
                 "不管基类的析构函数是否是虚函数，都可以通过基类指针/引用正确删除派生类对象。",
             ],
             answer: 3,
@@ -86,7 +86,7 @@ export const paperData = {
                 "继承 (Inheritance)",
                 "封装 (Encapsulation)",
                 "多态 (Polymorphism)",
-                "链接 (Linking) class Vehicle { private: string brand; public: Vehicle(string b) : brand(b) {} void setBrand(const string& b) { brand = b; } string getBrand() const { return brand; } void move() const { cout << brand << \" is moving...\" << endl; } }; class Car : public Vehicle { private: int seatCount; public: Car(string b, int seats) : Vehicle(b), seatCount(seats) {} void showInfo() const { cout << \"This car is a \" << getBrand() << \" with \" << seatCount << \" seats.\" << endl; } }; 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27",
+                "链接 (Linking)",
             ],
             answer: 0,
             score: 2,
@@ -257,7 +257,7 @@ export const paperData = {
                 "vector",
                 "list",
                 "queue",
-                "stack vector<string> grayCode(int n) { if (n == 0) return {\"0\"}; if (n == 1) return {\"0\", \"1\"}; vector<string> prev = grayCode(n-1); vector<string> result; for (string s : prev) { result.push_back(\"0\" + s); } for (_______________) { // 在此处填写代码 result.push_back(\"1\" + prev[i]); } return result; } 1 2 3 4 5 6 7 8 9 10 11 12 13 14 struct TreeNode { int val; TreeNode* left; TreeNode* right; TreeNode(int x): val(x), left(nullptr), right(nullptr) {} }; void dfs(TreeNode* root) { if (!root) return; ______<TreeNode*> temp; // 在此处填写代码 temp.push(root); while (!temp.empty()) { TreeNode* node = temp.top(); temp.pop(); cout << node->val << \" \"; if (node->right) temp.push(node->right); if (node->left) temp.push(node->left); } } 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19",
+                "stack",
             ],
             answer: 3,
             score: 2,
@@ -312,7 +312,7 @@ export const paperData = {
             question: "删除二叉排序树中的节点时，如果节点有两个孩子，则横线处应填入（ ），其中 findMax 和 findMin 分 别为寻找树的最大值和最小值的函数。",
             options: [
                 "root->left",
-                "root->right void bfs(TreeNode* root) { if (!root) return; queue<TreeNode*> q; q.push(root); while (!q.empty()) { TreeNode* node = q.front(); q.pop(); cout << node->val << \" \"; if (node->left) q.push(node->left); if (node->right) q.push(node->right); } } 1 2 3 4 5 6 7 8 9 10 11 12 struct TreeNode { int val; TreeNode* left; TreeNode* right; TreeNode(int x): val(x), left(nullptr), right(nullptr) {} }; TreeNode* deleteNode(TreeNode* root, int key) { if (!root) return nullptr; if (key < root->val) { root->left = deleteNode(root->left, key); } else if (key > root->val) { root->right = deleteNode(root->right, key); } else { if (!root->left) return root->right; if (!root->right) return root->left; TreeNode* temp = ____________; // 在此处填写代码 root->val = temp->val; root->right = deleteNode(root->right, temp->val); } return root; } 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 题 号 1 2 3 4 5 6 7 8 9 10 答案",
+                "root->right",
                 "findMin(root->right)",
                 "findMax(root->left)",
             ],
@@ -500,7 +500,7 @@ export const paperData = {
         {
             id: 25,
             type: "judge",
-            question: "有一排⾹蕉，每个⾹蕉有不同的甜度值。小猴子想吃⾹蕉，但不能吃相邻的⾹蕉。以下代码能找到小猴子 吃到最甜的⾹蕉组合。 while (curr || !st.empty()) { while (curr) { st.push(curr); curr = curr->left; } curr = st.top(); st.pop(); cout << curr->val << \" \"; curr = curr->right; } } 18 19 20 21 22 23 24 25 26 27 TreeNode* searchBST(TreeNode* root, int val) { while (root && root->val != val) { root = (val < root->val) ? root->left : root->right; } return root; } 1 2 3 4 5 6 int fib_dp(int n) { if (n <= 1) return n; vector<int> dp(n+1); dp[0] = 0; dp[1] = 1; for (int i = 2; i <= n; i++) { dp[i] = dp[i-1] + dp[i-2]; } return dp[n]; } 1 2 3 4 5 6 7 8 9 10 // bananas：香蕉的甜度 void findSelectedBananas(vector<int>& bananas, vector<int>& dp) { vector<int> selected; int i = bananas.size() - 1; while (i >= 0) { if (i == 0) { selected.push_back(0); break; } if (dp[i] == dp[i-1]) { i--; } else { selected.push_back(i); i -= 2; } } reverse(selected.begin(), selected.end()); cout << \"小猴子吃了第: \"; for (int idx : selected) cout << idx+1 << \" \"; cout << \"个香蕉\" << endl; } int main() { 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27",
+            question: "有一排香蕉，每个香蕉有不同的甜度值。小猴子想吃香蕉，但不能吃相邻的香蕉。以下代码能找到小猴子吃到最甜的香蕉组合。", 
             options: [
                 "正确",
                 "错误",

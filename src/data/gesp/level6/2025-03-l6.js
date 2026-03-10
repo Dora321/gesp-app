@@ -222,8 +222,8 @@ export const paperData = {
             options: [
                 "入队",
                 "出队",
-                "查看队⾸元素",
-                "判断队列是否为空 class MyClass { public: MyClass() { cout << \"Constructor called!\" << endl; } }; int main() { MyClass obj1; MyClass obj2 = obj1; return 0; } 1 2 3 4 5 6 7 8 9 10 11 class CircularQueue { int* arr; int front, rear, size; public: CircularQueue(int k) { size = k; arr = new int[k]; front = rear = -1; } bool enQueue(int value) { if (isFull()) return false; if (isEmpty()) front = 0; rear = (rear + 1) % size; arr[rear] = value; return true; } }; 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17",
+                "查看队首元素",
+                "判断队列是否为空",
             ],
             answer: 0,
             score: 2,
@@ -258,10 +258,10 @@ export const paperData = {
             type: "single",
             question: "以下代码实现了二叉树的⼴度优先搜索（ BFS ），并查找特定值的节点，则横线上应填写（ ）。",
             options: [
-                "选项A",
-                "int countLeafNodes(TreeNode* root) { if (root == nullptr) return 0; stack<TreeNode*> s; s.push(root); int count = 0; while (!s.empty()) { TreeNode* node = s.top(); s.pop(); if (node->left == nullptr && node->right == nullptr) { count++; } if (node->right) s.push(node->right); ———————————————————————— // 在此处填入代码 } return count; } 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 TreeNode* findNode(TreeNode* root, int target) { if (root == nullptr) return nullptr; queue<TreeNode*> q; q.push(root); while (!q.empty()) { TreeNode* current = q.front(); q.pop(); if (current->val == target) { return current; // 找到目标节点 } ———————————————————————— // 在此处填入代码 } return nullptr; // 未找到目标节点 } 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 if (current->left) q.push(current->left); if (current->right) q.push(current->right); 1 2",
-                "选项C",
-                "选项D",
+                "if (current->left) q.push(current->left); if (current->right) q.push(current->right);",
+                "if (current->left) q.pop(current->left); if (current->right) q.pop(current->right);",
+                "if (current->left) q.front(current->left); if (current->right) q.front(current->right);",
+                "if (current->left) q.push(current->right); if (current->right) q.push(current->left);",
             ],
             answer: 0,
             score: 2,
@@ -402,7 +402,7 @@ export const paperData = {
         {
             id: 19,
             type: "judge",
-            question: "以下代码实现的是二叉树的中序遍历： public: Circle(const string& n, double r) : Shape(n), radius(r) {} double area() const override { return 3.14159 * radius * radius; } }; class Rectangle : public Shape { private: double width; // 宽度 double height; // 高度 public: Rectangle(const string& n, double w, double h) : Shape(n), width(w), height(h) {} double area() const override { return width * height; } }; int main() { Circle circle(\"MyCircle\", 5.0); Rectangle rectangle(\"MyRectangle\", 4.0, 6.0); Shape* shapePtr = &circle; cout << \"Area: \" << shapePtr->area() << endl; shapePtr = &rectangle; cout << \"Area: \" << shapePtr->area() << endl; return 0; } 16 17 18 19 20 21 22 23 24 25 26 27 28 29 30 31 32 33 34 35 36 37 38 39 40 41 42 43 44 45 46 47 48 49",
+            question: "以下代码实现的是二叉树的中序遍历。", 
             options: [
                 "正确",
                 "错误",
