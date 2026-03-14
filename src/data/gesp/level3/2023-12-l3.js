@@ -1,4 +1,8 @@
-// 2023年12月 GESP C++ 三级真题
+// 2023年12月 GESP C++ 三级真题 (第4次认证)
+// 数据说明：本卷基于官方真题 PDF 与公开解析回填。
+// - 官方 PDF：可核对题号、客观题答案、判断题题干、编程题题面/样例/参考程序
+// - 由于官方 PDF 的文本层对多道“代码截图题”缺失，部分客观题题面按公开解析做题意级还原
+// - 其中单选 4~8、11~12 以及判断 2、4~8 含还原成分；答案已与官方 PDF 答案表核对
 export const paperData = {
     id: '2023-12-l3',
     title: '2023年12月 GESP C++ 三级真题',
@@ -7,304 +11,298 @@ export const paperData = {
     month: 12,
     session: 4,
     timeLimit: 90 * 60,
+    source: {
+        officialPdf: 'https://gesp.ccf.org.cn/101/attach/1584917876047904.pdf',
+        notes: '客观题已补至 25 题；其中多道代码截图题按公开解析还原，已在文件头注明范围。'
+    },
     questions: [
         {
             id: 1,
             type: 'single',
-            question: "若要统计数组中每个数出现次数，最常用的数据结构是（ ）。",
-            options: ["栈","队列","映射/哈希表","并查集"],
+            question: '下面 C++ 数组的定义中，会丢失数据的是（   ）。',
+            options: [
+                "char dict_key[] = {'p','t','o'};",
+                'int dict_value[] = {33,22,11};',
+                "char dict_name[] = {'chen','wang','zhou'};",
+                'float dict_value[] = {3,2,1};'
+            ],
             answer: 2,
             score: 2,
-            explanation: "键值映射可高效维护频次统计。",
-            tags: ["数组与字符串"]
+            explanation: '字符数组不能这样直接装多个字符串字面量，C 项会导致类型/存储方式不匹配。'
         },
         {
             id: 2,
             type: 'single',
-            question: "在无权图中求最短路，通常优先使用（ ）。",
-            options: ["DFS","BFS","二分","拓扑排序"],
-            answer: 1,
+            question: '在下列编码中，不能够和二进制“1101 1101”相等的是（   ）。',
+            options: ['（221）10进制', '（335）8进制', '（dd）16进制', '（5d）16进制'],
+            answer: 3,
             score: 2,
-            explanation: "无权图最短路可用 BFS 分层扩展。",
-            tags: ["算法思维"]
+            explanation: '1101 1101 对应十六进制 DD，不是 5D。'
         },
         {
             id: 3,
             type: 'single',
-            question: "递归函数必须具备的关键要素是（ ）。",
-            options: ["输入语句","终止条件","循环变量","随机数"],
-            answer: 1,
+            question: '下面 C++ 代码执行后不能输出“GESP”的是（   ）。',
+            options: [
+                'string str("GESP"); cout << str << endl;',
+                'string str = "GESP"; cout << str << endl;',
+                'string str("GESP"); cout << str[1] << str[2] << str[3] << str[4] << endl;',
+                'string str{"GESP"}; cout << str << endl;'
+            ],
+            answer: 2,
             score: 2,
-            explanation: "无终止条件会导致无限递归。",
-            tags: ["条件判断","函数"]
+            explanation: '下标从 0 开始，C 项输出的是 ESP 加越界访问结果，不能正确输出完整的 GESP。'
         },
         {
             id: 4,
             type: 'single',
-            question: "已知 n=1e5，O(n^2) 算法通常（ ）。",
-            options: ["稳定可过","可能超时","一定最优","与 n 无关"],
-            answer: 1,
+            question: '【题面按公开解析还原】执行下面 C++ 代码后输出是（   ）。\nint temp = 0;\nfor (int i = 1; i < 7; i++) {\n    for (int j = 1; j < 5; j++) {\n        if (i / j == 2) temp++;\n    }\n}\ncout << temp << endl;',
+            options: ['10', '8', '4', '3'],
+            answer: 2,
             score: 2,
-            explanation: "1e5 规模下 O(n^2) 常无法在时限内通过。",
-            tags: ["程序分析"]
+            explanation: '满足 i/j==2 的共有 4 次：i=2,j=1；i=4,j=2；i=5,j=2；i=6,j=3。'
         },
         {
             id: 5,
             type: 'single',
-            question: "二分查找适用的前提是序列（ ）。",
-            options: ["元素互异","已排序","长度为偶数","从 0 开始编号"],
-            answer: 1,
+            question: '【题面按公开解析还原】执行下面 C++ 代码后，输出是（   ）。\nstring str = "chen";\nint x = str.length();\nint temp = 0;\nfor (int i = 0; i <= x; i++) temp++;\ncout << temp << endl;',
+            options: ['4', '2', '5', '3'],
+            answer: 2,
             score: 2,
-            explanation: "二分需要单调性，常见为有序数组。",
-            tags: ["数组与字符串","算法思维"]
+            explanation: '字符串长度 x 为 4，循环从 0 到 4 共执行 5 次。'
         },
         {
             id: 6,
             type: 'single',
-            question: "前缀和数组 pre[i] 一般表示（ ）。",
-            options: ["第 i 项本身","前 i 项的累计信息","第 i 项最大值","后缀最小值"],
-            answer: 1,
+            question: '【题面按公开解析还原】执行下面 C++ 代码后输出的是（   ）。\nstring str = "chen";\nint x = str.length();\ncout << x << endl;',
+            options: ['4', '3', '2', '5'],
+            answer: 0,
             score: 2,
-            explanation: "前缀和用累计量支持区间查询。",
-            tags: ["数组与字符串","算法思维"]
+            explanation: '字符串 chen 长度为 4。'
         },
         {
             id: 7,
             type: 'single',
-            question: "在回溯搜索中，撤销选择的操作主要用于（ ）。",
-            options: ["节省输入时间","恢复现场以尝试下一分支","避免递归","加速排序"],
-            answer: 1,
+            question: '【题面按公开解析还原】执行下面 C++ 代码后输出的是（   ）。\nstring str = "chen";\ncout << str[5] << endl;',
+            options: ['输出未知的数', "输出 'n'", "输出 '\\0'", '输出空格'],
+            answer: 0,
             score: 2,
-            explanation: "回溯核心是“试探-递归-撤销”。",
-            tags: ["函数","算法思维"]
+            explanation: '有效下标只有 0~3，访问 str[5] 属于越界，行为未定义。'
         },
         {
             id: 8,
             type: 'single',
-            question: "若要求“最少操作次数”，常见建模方向是（ ）。",
-            options: ["贪心/BFS/DP 等最优化方法","随机模拟","仅用输出语句","删除条件判断"],
-            answer: 0,
+            question: '【题面按公开解析还原】下面 C++ 代码执行后的输出是（   ）。\nchar ch[10] = {\'1\'};\ncout << ch[2] << endl;',
+            options: ['0', '1', '输出空格', '什么也不输出'],
+            answer: 3,
             score: 2,
-            explanation: "最优化题常需对应算法模型。",
-            tags: ["程序分析"]
+            explanation: '公开解析给出的答案为 D；该题原始截图题面仍建议后续再由扫描版复核。'
         },
         {
             id: 9,
             type: 'single',
-            question: "vector<int> v; 执行 v.push_back(7); 后，7 会被（ ）。",
-            options: ["插入到头部","追加到尾部","替换全部元素","自动排序"],
-            answer: 1,
+            question: '下面 C++ 代码用于统计每种字符出现的次数，当输出为 3 时，横线上不能填入的代码是（   ）。',
+            options: ["str[i]=='o'", "str[i]=='a'+14", 'str[i]==115', 'str[i]==111'],
+            answer: 2,
             score: 2,
-            explanation: "push_back 在末尾追加。",
-            tags: ["数组与字符串"]
+            explanation: 'o 的 ASCII 码是 111；115 对应 s，不能统计出字符 o 的出现次数 3。'
         },
         {
             id: 10,
             type: 'single',
-            question: "对于区间 [l,r] 的和，使用前缀和可在 O(1) 时间通过（ ）计算。",
-            options: ["pre[r]-pre[l]","pre[r]-pre[l-1]","pre[l]+pre[r]","pre[r+1]-pre[l-1]"],
-            answer: 1,
+            question: '32 位计算机中，C++ 的整型变量 int 能够表示的数据范围是（   ）。',
+            options: ['2^31~(2^31)-1', '2^32', '-2^31~+(2^31)-1', '-(2^31)+1~2^31'],
+            answer: 2,
             score: 2,
-            explanation: "常见 1-based 前缀和公式为 pre[r]-pre[l-1]。",
-            tags: ["算法思维"]
+            explanation: '通常 32 位 int 的范围是 -2^31 到 2^31-1。'
         },
         {
             id: 11,
             type: 'single',
-            question: "深度优先搜索（DFS）更贴近哪种过程（ ）。",
-            options: ["按层推进","一条路走到底再回退","随机跳转","只访问起点"],
-            answer: 1,
+            question: '【题面按公开解析还原】下面 C++ 程序执行的结果是（   ）。\nint cnt = 0;\nfor (int i = 0; i <= 20; i++) {\n    if (i % 3 == 0 && i % 5 == 0) cnt++;\n}\ncout << cnt;',
+            options: ['2', '3', '5', '4'],
+            answer: 0,
             score: 2,
-            explanation: "DFS 先深后广，回溯再探索。",
-            tags: ["算法思维"]
+            explanation: '0 和 15 同时满足被 3 和 5 整除，共 2 个。'
         },
         {
             id: 12,
             type: 'single',
-            question: "当状态具有“重叠子问题”时，优先考虑（ ）。",
-            options: ["动态规划","快速幂","并查集","双向链表"],
-            answer: 0,
+            question: '【题面按公开解析还原】C++ 的数据类型转换让人很难琢磨透，下列代码输出的值是（   ）。\nint a = 3;\nint b = 2;\ncout << a / b * 1.0 << endl;',
+            options: ['1.5', '1', '2', '1.50'],
+            answer: 1,
             score: 2,
-            explanation: "重叠子问题是 DP 的典型信号。",
-            tags: ["程序分析"]
+            explanation: '先做整数除法 3/2 得 1，再乘 1.0 得 1.0，默认输出为 1。'
         },
         {
             id: 13,
             type: 'single',
-            question: "若只需判断元素是否出现过，通常可用（ ）。",
-            options: ["set / unordered_set","queue","stack","priority_queue"],
+            question: 'C++ 代码用于抽取字符串中的电话号码。约定：电话号码全部是数字，数字之间没有其他符号如连字符或空格等。代码中变量 strSrc 仅仅是示例，可以包含更多字符。下面有关代码说法，正确的是（   ）。',
+            options: [
+                '代码将换行输出各个含有数字的电话号码。',
+                '代码将不换行输出各个含有数字的电话号码，号码中间没有分隔。',
+                '代码将不换行输出各个含有数字的电话号码，号码中间有分隔。',
+                '不能够输出数字电话号码。'
+            ],
             answer: 0,
             score: 2,
-            explanation: "集合结构支持高效查重。",
-            tags: ["条件判断"]
+            explanation: '遇到连续数字就拼接，遇到非数字且 tel 不为空就输出并换行。'
         },
         {
             id: 14,
             type: 'single',
-            question: "双重循环遍历 n×n 矩阵的时间复杂度通常是（ ）。",
-            options: ["O(1)","O(log n)","O(n)","O(n^2)"],
-            answer: 3,
+            question: '某公司新出了一款无人驾驶的小汽车，通过声控智能驾驶系统，乘客只要告诉汽车目的地，车子就能自动选择一条优化路线，告诉乘客后驶达那里。请问下面哪项不是驾驶系统完成选路所必须的。（   ）',
+            options: ['麦克风', '扬声器', '油量表', '传感器'],
+            answer: 2,
             score: 2,
-            explanation: "两层线性循环相乘为 O(n^2)。",
-            tags: ["循环","算法思维"]
+            explanation: '麦克风、扬声器、传感器都直接参与交互或感知，油量表不是“选路”所必需。'
         },
         {
             id: 15,
             type: 'single',
-            question: "在图遍历中，visited 数组的作用是（ ）。",
-            options: ["记录输入顺序","防止重复访问和死循环","存放边权","统计内存"],
+            question: '现代计算机是指电子计算机，它所基于的是（   ）体系结构。',
+            options: ['艾伦·图灵', '冯·诺依曼', '阿塔纳索夫', '埃克特-莫克利'],
             answer: 1,
             score: 2,
-            explanation: "标记访问状态是图搜索基础。",
-            tags: ["数组与字符串","算法思维"]
+            explanation: '现代电子计算机通常基于冯·诺依曼体系结构。'
         },
         {
             id: 16,
             type: 'judge',
-            question: "DFS 和 BFS 都可以用于图的遍历。",
-            options: ["正确","错误"],
+            question: '执行 C++ 代码 cout << (5 && 2) << endl; 后将输出 1。',
+            options: ['正确', '错误'],
             answer: 0,
             score: 2,
-            explanation: "两者均为经典图搜索策略。",
-            tags: ["判断题","算法思维"]
+            explanation: '两个操作数都非 0，逻辑与结果为真，输出 1。'
         },
         {
             id: 17,
             type: 'judge',
-            question: "递归深度与系统栈空间无关。",
-            options: ["正确","错误"],
-            answer: 1,
+            question: '【题面按公开解析还原】C++ 程序执行后，输入 chen a dai，输出应该为：chen。',
+            options: ['正确', '错误'],
+            answer: 0,
             score: 2,
-            explanation: "递归会占用调用栈，过深可能栈溢出。",
-            tags: ["判断题","函数"]
+            explanation: 'cin 读取字符串默认以空白符分隔，第一次读到的就是 chen。'
         },
         {
             id: 18,
             type: 'judge',
-            question: "二分答案法要求可行性随答案具有单调性。",
-            options: ["正确","错误"],
+            question: '执行 C++ 代码 cout << (5 || 2); 后将输出 1。',
+            options: ['正确', '错误'],
             answer: 0,
             score: 2,
-            explanation: "单调性是二分答案成立前提。",
-            tags: ["判断题","算法思维"]
+            explanation: '两个操作数都非 0，逻辑或结果为真，输出 1。'
         },
         {
             id: 19,
             type: 'judge',
-            question: "前缀和只能处理加法问题，不能做计数。",
-            options: ["正确","错误"],
-            answer: 1,
+            question: '【题面按公开解析还原】执行下面 C++ 代码后将输出 “China”。\nstring a = "china";\na.replace(0, 1, "C");\ncout << a << endl;',
+            options: ['正确', '错误'],
+            answer: 0,
             score: 2,
-            explanation: "计数本质也是累加，可用前缀和。",
-            tags: ["判断题","算法思维"]
+            explanation: '把首字符替换成大写 C 后，字符串变为 China。'
         },
         {
             id: 20,
             type: 'judge',
-            question: "在无权图中，BFS 首次到达某点时路径即最短。",
-            options: ["正确","错误"],
-            answer: 0,
+            question: '【题面按公开解析还原】执行 C++ 代码将输出 0 5，5 之后还有一个空格。\nint list[10] = {1,2,3,4,5,6,7,8,9,10};\nfor (int i = 0; i < 10; i++)\n    if (i % 5 == 0)\n        cout << list[i] << " ";',
+            options: ['正确', '错误'],
+            answer: 1,
             score: 2,
-            explanation: "按层扩展保证首次到达最短。",
-            tags: ["判断题","算法思维"]
+            explanation: '满足条件的是 i=0 和 i=5，输出 list[0] 与 list[5]，即 1 6，而不是 0 5。'
         },
         {
             id: 21,
             type: 'judge',
-            question: "回溯算法不会重复进入同一状态。",
-            options: ["正确","错误"],
+            question: '【题面按公开解析还原】下面 C++ 代码将输出 1。\nint list[10] = {1};\ncout << list << endl;',
+            options: ['正确', '错误'],
             answer: 1,
             score: 2,
-            explanation: "若不做剪枝/去重，可能重复状态。",
-            tags: ["判断题","算法思维"]
+            explanation: '直接输出数组名会退化为地址，不会输出首元素 1。'
         },
         {
             id: 22,
             type: 'judge',
-            question: "时间复杂度 O(n log n) 在很多排序算法中常见。",
-            options: ["正确","错误"],
+            question: '【题面按公开解析还原】下面 C++ 程序将输出 1。\nint arr[10] = {1};\ncout << arr[0] << endl;',
+            options: ['正确', '错误'],
             answer: 0,
             score: 2,
-            explanation: "如快速排序平均、归并排序等。",
-            tags: ["判断题","算法思维"]
+            explanation: 'arr[0] 初始化为 1，因此会输出 1。'
         },
         {
             id: 23,
             type: 'judge',
-            question: "动态规划一定比贪心更简单。",
-            options: ["正确","错误"],
-            answer: 1,
+            question: '【题面按公开解析还原】执行 C++ 代码，将输出 1 3 5 7 9，9 之后还有一个空格。\nint list[10] = {1,2,3,4,5,6,7,8,9,10};\nfor (int i = 0; i < 10; i += 2) {\n    cout << list[i] << " ";\n}',
+            options: ['正确', '错误'],
+            answer: 0,
             score: 2,
-            explanation: "两者适用场景不同，DP 常更复杂。",
-            tags: ["判断题","算法思维"]
+            explanation: '访问下标 0、2、4、6、8，对应输出 1 3 5 7 9，每次后面都有空格。'
         },
         {
             id: 24,
             type: 'judge',
-            question: "使用 long long 可降低部分整数溢出风险。",
-            options: ["正确","错误"],
-            answer: 0,
+            question: '小杨最近在准备考 GESP，他用的 Dev C++ 来练习和运行程序，所以 Dev C++ 也是一个小型操作系统。',
+            options: ['正确', '错误'],
+            answer: 1,
             score: 2,
-            explanation: "更大整数范围可减少溢出。",
-            tags: ["判断题","程序分析"]
+            explanation: 'Dev C++ 是集成开发环境，不是操作系统。'
         },
         {
             id: 25,
             type: 'judge',
-            question: "程序调试时构造边界样例没有意义。",
-            options: ["正确","错误"],
-            answer: 1,
+            question: '任何一个 while 循环都可以转化为等价的 for 循环。',
+            options: ['正确', '错误'],
+            answer: 0,
             score: 2,
-            explanation: "边界样例对发现缺陷非常关键。",
-            tags: ["判断题","程序分析"]
+            explanation: 'for 与 while 在表达能力上等价，可以相互改写。'
         }
     ],
     programmingQuestions: [
-    {
-        "id": 26,
-        "type": "programming",
-        "title": "小猫分鱼",
-        "problemNumber": "B3925",
-        "description": "海滩上有一堆鱼，N 只小猫来分。第一只小猫把这堆鱼平均分为 N 份，多了 i",
-        "inputDescription": "总共 2 行。第一行一个整数 N，第二行一个整数 i。 保证 0",
-        "outputDescription": "一行一个整数，表示满足要求的海滩上最少的鱼数。",
-        "samples": [
-            {
-                "input": "5\n1",
-                "output": "3121"
-            }
-        ],
-        "explanation": "设初始鱼数为 x，模拟 N 只猫依次分鱼：每次都要求当前鱼数除以 N 余 i，取走一条后剩余部分还能被 N 整除。不断从小到大枚举 x，找到第一个满足条件的即为答案。",
-        "tags": [
-            "编程题",
-            "模拟",
-            "枚举"
-        ],
-        "template": "#include <bits/stdc++.h>\nusing namespace std;\n\nint main() {\n    ios::sync_with_stdio(false);\n    cin.tie(nullptr);\n\n    // 在此编写代码\n    return 0;\n}",
-        "referenceCode": "#include <bits/stdc++.h>\nusing namespace std;\n\nbool check(long long x, int N, int i) {\n    long long cur = x;\n    for (int t = 0; t < N; ++t) {\n        if (cur % N != i) return false;\n        cur = cur - i;\n        if (cur < 0 || cur % N != 0) return false;\n        cur = cur / N * (N - 1);\n    }\n    return true;\n}\n\nint main() {\n    ios::sync_with_stdio(false);\n    cin.tie(nullptr);\n\n    int N, i;\n    cin >> N >> i;\n    for (long long x = 1; ; ++x) {\n        if (check(x, N, i)) {\n            cout << x << '\\n';\n            break;\n        }\n    }\n    return 0;\n}"
-    },
-    {
-        "id": 27,
-        "type": "programming",
-        "title": "单位转换",
-        "problemNumber": "B3926",
-        "description": "小杨这周的数学作业是做单位转换，喜欢编程的小杨决定编程帮他解决这些问题。 小杨只学了长度单位和重量单位，具体来说： - 长度单位包括千米（`km`）、米（`m`）、毫米（`mm`），它们之间的关系是：1km = 1000m = 1000000mm。 - 重量单位包括千克（`kg`）、克（`g`）、毫克（`mg`），它们之间的关系是：1kg = 1000g = 1000000mg。 小杨的作业只涉及将更大的单位转换为更小的单位，也就是说，小杨的作业只会包含如下题型：米转换为毫米，千米转换为毫米，千米转换为米，克转换为毫克，千克转换为毫克，千克转换为克。 现在，请你帮忙完成单位转换的程序。",
-        "inputDescription": "输入的第一行为一个整数，表示题目数量。 接下来 N 行，每行一个字符串，表示转换单位的题目，格式为 x 单位 1 = ? 单位 2。其中，x 为一个不超过 1000 的非负整数， 单位 1 和 单位 2 分别为两个单位的英文缩写，保证它们都是长度单位或都是重量单位，且 **单位 1** 比 **单位 2** 更大。 例如，如果题目需要你将 1km 转换为 mm，则输入为 `1 km = ? mm`。 保证 1\\le N \\le 1000。",
-        "outputDescription": "输出 N 行，依次输出所有题目的答案，输出时，只需要将输入中的 ? 代入答案，其余部分一字不差地输出即可。由于小杨的题目只涉及将更大的单位转换为更小的单位，并且输入的 x 是整数，因此答案一定也是整数。 例如，如果题目需要你将 1km 转换为 mm，则输入为 `1 km = ? mm`。则你需要输出 `1 km = 1000000 mm`。",
-        "samples": [
-            {
-                "input": "2\n1 km = ? mm\n3 kg = ? g",
-                "output": "1 km = 1000000 mm\n3 kg = 3000 g"
-            }
-        ],
-        "explanation": "读入每道转换题，识别源单位和目标单位，乘上对应倍数后按原格式输出即可。",
-        "tags": [
-            "编程题",
-            "字符串",
-            "模拟"
-        ],
-        "template": "#include <bits/stdc++.h>\nusing namespace std;\n\nint main() {\n    ios::sync_with_stdio(false);\n    cin.tie(nullptr);\n\n    // 在此编写代码\n    return 0;\n}",
-        "referenceCode": "#include <bits/stdc++.h>\nusing namespace std;\n\nint main() {\n    ios::sync_with_stdio(false);\n    cin.tie(nullptr);\n\n    int N;\n    cin >> N;\n    map<pair<string,string>, long long> mp;\n    mp[{\"m\",\"mm\"}] = 1000;\n    mp[{\"km\",\"mm\"}] = 1000000;\n    mp[{\"km\",\"m\"}] = 1000;\n    mp[{\"g\",\"mg\"}] = 1000;\n    mp[{\"kg\",\"mg\"}] = 1000000;\n    mp[{\"kg\",\"g\"}] = 1000;\n    while (N--) {\n        long long x; string u1, eq, ques, u2;\n        cin >> x >> u1 >> eq >> ques >> u2;\n        cout << x << ' ' << u1 << \" = \" << x * mp[{u1, u2}] << ' ' << u2 << '\\n';\n    }\n    return 0;\n}"
-    }
-]
+        {
+            id: 26,
+            type: 'programming',
+            title: '小猫分鱼',
+            problemNumber: 'B3925',
+            description: '海滩上有一堆鱼，N 只小猫来分。每只小猫都会把当前鱼堆平均分成 N 份，多出 i 条，就把多出的 i 条扔进海里，再拿走其中一份。求满足这个过程的最少初始鱼数。',
+            inputDescription: '共 2 行：第一行一个整数 N，第二行一个整数 i。',
+            outputDescription: '输出一行一个整数，表示满足要求的海滩上最少的鱼数。',
+            samples: [
+                {
+                    input: '2\n1',
+                    output: '7'
+                },
+                {
+                    input: '3\n1',
+                    output: '25'
+                }
+            ],
+            explanation: '从小到大枚举初始鱼数，逐只小猫模拟“余 i、扔掉 i 条、拿走一份”的过程，找到第一个全过程都合法的鱼数即可。',
+            tags: ['编程题', '模拟', '枚举'],
+            template: '#include <bits/stdc++.h>\nusing namespace std;\n\nint main() {\n    ios::sync_with_stdio(false);\n    cin.tie(nullptr);\n\n    // 在此编写代码\n    return 0;\n}',
+            referenceCode: '#include <bits/stdc++.h>\nusing namespace std;\n\nbool check(long long x, int N, int i) {\n    long long cur = x;\n    for (int t = 0; t < N; ++t) {\n        if (cur % N != i) return false;\n        cur -= i;\n        if (cur < 0 || cur % N != 0) return false;\n        cur = cur / N * (N - 1);\n    }\n    return true;\n}\n\nint main() {\n    ios::sync_with_stdio(false);\n    cin.tie(nullptr);\n\n    int N, i;\n    cin >> N >> i;\n    for (long long x = 1; ; ++x) {\n        if (check(x, N, i)) {\n            cout << x << "\\n";\n            break;\n        }\n    }\n    return 0;\n}'
+        },
+        {
+            id: 27,
+            type: 'programming',
+            title: '单位转换',
+            problemNumber: 'B3926',
+            description: '给定若干形如“x 单位1 = ? 单位2”的题目，单位只会在 km、m、mm 与 kg、g、mg 中出现，且总是从更大的单位换到更小的单位。请按原格式输出转换结果。',
+            inputDescription: '第一行一个整数 N，表示题目数量。接下来 N 行，每行一题，格式为 x 单位1 = ? 单位2。',
+            outputDescription: '输出 N 行，把每一题中的 ? 替换成正确答案，其余格式保持不变。',
+            samples: [
+                {
+                    input: '2\n1 km = ? mm\n1 m = ? mm',
+                    output: '1 km = 1000000 mm\n1 m = 1000 mm'
+                },
+                {
+                    input: '5\n100 m = ? mm\n1000 km = ? m\n20 kg = ? g\n200 g = ? mg\n0 kg = ? mg',
+                    output: '100 m = 100000 mm\n1000 km = 1000000 m\n20 kg = 20000 g\n200 g = 200000 mg\n0 kg = 0 mg'
+                }
+            ],
+            explanation: '识别源单位和目标单位，乘上相应换算倍数后按题目原格式输出即可。',
+            tags: ['编程题', '字符串', '模拟'],
+            template: '#include <bits/stdc++.h>\nusing namespace std;\n\nint main() {\n    ios::sync_with_stdio(false);\n    cin.tie(nullptr);\n\n    // 在此编写代码\n    return 0;\n}',
+            referenceCode: '#include <bits/stdc++.h>\nusing namespace std;\n\nint main() {\n    ios::sync_with_stdio(false);\n    cin.tie(nullptr);\n\n    int N;\n    cin >> N;\n    map<pair<string, string>, long long> mp;\n    mp[{"m", "mm"}] = 1000;\n    mp[{"km", "mm"}] = 1000000;\n    mp[{"km", "m"}] = 1000;\n    mp[{"g", "mg"}] = 1000;\n    mp[{"kg", "mg"}] = 1000000;\n    mp[{"kg", "g"}] = 1000;\n\n    while (N--) {\n        long long x;\n        string u1, eq, ques, u2;\n        cin >> x >> u1 >> eq >> ques >> u2;\n        cout << x << " " << u1 << " = " << x * mp[{u1, u2}] << " " << u2 << "\\n";\n    }\n    return 0;\n}'
+        }
+    ]
 };
