@@ -22,6 +22,17 @@ const ExamPaper = () => {
     const error = paperData ? null : '在此题库中未找到该试卷 (Registry Lookup Failed)';
 
     useEffect(() => {
+        setCurrentQuestionIndex(0);
+        setAnswers({});
+        setTimeLeft((paperData?.timeLimit) || 90 * 60);
+        setIsSubmitted(false);
+        setShowResult(false);
+        setShowSidebar(false);
+        setShowSubmitConfirm(false);
+        setMode(null);
+    }, [paperId, paperData?.timeLimit]);
+
+    useEffect(() => {
         if (isSubmitted || !paperData || mode !== 'exam') return;
         const timer = setInterval(() => {
             setTimeLeft((prev) => {

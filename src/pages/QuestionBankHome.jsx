@@ -1,6 +1,7 @@
-import React, { useState } from 'react';
+import React, { useMemo, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { BookOpen, Star, Trophy, Clock, ChevronRight, Filter, Search, Award } from 'lucide-react';
+import { BookOpen, Star, Trophy, Clock, ChevronRight, Search, Award } from 'lucide-react';
+import { paperRegistry } from '../data/gesp';
 
 const QuestionBankHome = () => {
     const navigate = useNavigate();
@@ -19,74 +20,32 @@ const QuestionBankHome = () => {
         { id: 8, name: '八级', desc: '大师综合', color: 'purple' },
     ];
 
-    // List of sessions to generate (ordered from newest to oldest)
-    const sessionConfig = [
-        { year: 2025, months: [12, 9, 6, 3] },
-        { year: 2024, months: [12, 9, 6, 3] },
-        { year: 2023, months: [12, 9, 6, 3] },
-    ];
+    const papers = useMemo(() => {
+        return Object.values(paperRegistry)
+            .map((paper) => {
+                const questionCount = Array.isArray(paper.questions) ? paper.questions.length : 0;
+                const isPlaceholder = paper.level >= 3 && questionCount <= 4;
+                const displayTitle = isPlaceholder
+                    ? paper.title.replace('真题', '练习卷（待补全）')
+                    : paper.title;
 
-    const generatePapers = () => {
-        const result = [];
-        // Loop through each level (1-8)
-        levels.forEach(levelInfo => {
-            let sessionCounter = 12; // Nominal session count for this level
-
-            sessionConfig.forEach(yearGroup => {
-                yearGroup.months.forEach(month => {
-                    const yearStr = yearGroup.year;
-                    const monthStr = month < 10 ? `0${month}` : `${month}`;
-                    const levelId = levelInfo.id;
-
-                    // Historical Level Availability Check
-                    let isAvailable = true;
-                    if (yearStr === 2023) {
-                        if (month === 3 && levelId > 1) isAvailable = false;
-                        if (month === 6 && levelId > 2) isAvailable = false;
-                        if (month === 9 && levelId > 6) isAvailable = false;
-                    }
-
-                    if (!isAvailable) {
-                        sessionCounter--;
-                        return;
-                    }
-
-                    const levelSuffix = levelId === 1 ? '' : `-l${levelId}`;
-                    const id = `${yearStr}-${monthStr}${levelSuffix}`;
-
-                    // Difficulty roughly based on level
-                    const difficulty = Math.max(1, Math.min(5, Math.floor(levelId / 2) + (month > 6 ? 1 : 0)));
-
-                    // Special notes
-                    let note = '';
-                    if (yearStr === 2025 && month === 12) note = '刚结束不久';
-                    if (yearStr === 2024 && month === 3) note = '2024年首场';
-                    if (yearStr === 2023 && month === 12) note = '年度收官';
-                    if (yearStr === 2023 && month === 9) note = (levelId === 6 ? '首开 5-6 级' : '体系渐稳');
-                    if (yearStr === 2023 && month === 6) note = (levelId === 2 ? '新增 2 级' : '');
-                    if (yearStr === 2023 && month === 3) note = '首次认证';
-
-                    result.push({
-                        id,
-                        title: `${yearStr}年${month}月 GESP C++ ${levelInfo.name}真题`,
-                        level: levelId,
-                        questions: 27,
-                        time: '90分钟',
-                        year: yearGroup.year,
-                        month: month,
-                        difficulty: difficulty,
-                        session: sessionCounter,
-                        note: note
-                    });
-
-                    sessionCounter--;
-                });
-            });
-        });
-        return result;
-    };
-
-    const papers = generatePapers();
+                return {
+                    id: paper.id,
+                    title: displayTitle,
+                    originalTitle: paper.title,
+                    level: paper.level,
+                    questions: questionCount,
+                    time: `${Math.round((paper.timeLimit || 90 * 60) / 60)}分钟`,
+                    year: paper.year,
+                    month: paper.month,
+                    difficulty: Math.max(1, Math.min(5, Math.floor(paper.level / 2) + (paper.month > 6 ? 1 : 0))),
+                    session: paper.session,
+                    note: isPlaceholder ? (paper.note ? `${paper.note} · 当前仅 ${questionCount} 题` : `当前仅 ${questionCount} 题`) : (paper.note || ''),
+                    isPlaceholder,
+                };
+            })
+            .sort((a, b) => b.year - a.year || b.month - a.month || a.level - b.level);
+    }, []);
 
     const filteredPapers = papers.filter(p =>
         p.level === selectedLevel &&
@@ -183,12 +142,18 @@ const QuestionBankHome = () => {
                                     className="bg-white rounded-xl border border-slate-200 p-5 hover:shadow-md hover:border-blue-300 transition-all group cursor-pointer"
                                     onClick={() => navigate(`/question-bank/${paper.level}/${paper.id}`)}
                                 >
-                                    <div className="flex items-start justify-between mb-4">
-                                        <div className="bg-blue-50 text-blue-700 px-3 py-1 rounded text-xs font-bold font-mono">
-                                            {paper.year} 年 {paper.month} 月
+                                    <div className="flex items-start justify-between mb-4 gap-3">
+                                        <div className="flex flex-col gap-2">
+                                            <div className="bg-blue-50 text-blue-700 px-3 py-1 rounded text-xs font-bold font-mono w-fit">
+                                                {paper.year} 年 {paper.month} 月
+                                            </div>
+                                            {paper.note && (
+                                                <div className={`px-2 py-1 rounded text-[11px] font-medium w-fit ${paper.isPlaceholder ? 'bg-amber-50 text-amber-700' : 'bg-slate-100 text-slate-600'}`}>
+                                                    {paper.note}
+                                                </div>
+                                            )}
                                         </div>
-                                        {/* Difficulty Stars */}
-                                        <div className="flex gap-0.5">
+                                        <div className="flex gap-0.5 shrink-0">
                                             {Array.from({ length: 3 }).map((_, i) => (
                                                 <Star
                                                     key={i}
