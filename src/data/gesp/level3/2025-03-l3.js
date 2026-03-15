@@ -1,4 +1,8 @@
-// 2025年3月 GESP C++ 三级真题
+// 2025年3月 GESP C++ 三级真题 (第9次认证)
+// 数据说明：本卷以官方真题 PDF 为主完成回填。
+// - 客观题 1~15：题面、选项与单选答案可由官方 PDF 文本层直接提取并整理。
+// - 判断题 16~25：题面来自官方 PDF；官方 PDF 文本层未完整带出答案表，当前答案依据官方题面 + 公开解析交叉复核填写。
+// - 编程题 26~27：题名、题意、样例与参考代码主体来自官方 PDF；其中个别数学符号/数据范围因 PDF 文本层缺字，按官方题意做等价整理。
 export const paperData = {
     id: '2025-03-l3',
     title: '2025年3月 GESP C++ 三级真题',
@@ -7,304 +11,277 @@ export const paperData = {
     month: 3,
     session: 9,
     timeLimit: 90 * 60,
+    source: {
+        officialPdf: 'https://gesp.ccf.org.cn/101/attach/1670868226801696.pdf',
+        notes: '客观题 25 题已尽量补齐；其中判断题答案因官方 PDF 文本层未完整带出答案表，现依据官方题面与公开解析交叉复核。编程题 2 题已补题意、样例与参考代码；少量公式符号按官方题意等价整理。'
+    },
     questions: [
         {
             id: 1,
             type: 'single',
-            question: "若要统计数组中每个数出现次数，最常用的数据结构是（ ）。",
-            options: ["栈","队列","映射/哈希表","并查集"],
-            answer: 2,
+            question: 'Base64 编码将每 3 字节的输入数据编码为 4 字节的输出数据。如果输入数据长度不是 3 的倍数，会用 = 号填充。在 Base64 编码中，如果输入字符串的长度为 10 字节，编码后的字符串长度是多少（ ）',
+            options: ['12 字节', '13 字节', '14 字节', '16 字节'],
+            answer: 3,
             score: 2,
-            explanation: "键值映射可高效维护频次统计。",
-            tags: ["数组与字符串"]
+            explanation: 'Base64 每 3 字节映射为 4 字节。10 字节可分为 3 组完整的 3 字节和 1 个剩余字节，因此编码后长度为 4 × 4 = 16 字节。'
         },
         {
             id: 2,
             type: 'single',
-            question: "在无权图中求最短路，通常优先使用（ ）。",
-            options: ["DFS","BFS","二分","拓扑排序"],
+            question: 'UTF-8 编码规则如下：\n1 字节：0xxxxxxx\n2 字节：110xxxxx 10xxxxxx\n3 字节：1110xxxx 10xxxxxx 10xxxxxx\n4 字节：11110xxx 10xxxxxx 10xxxxxx 10xxxxxx\n以下哪个字节序列是合法的 UTF-8 编码（ ）',
+            options: ['0xC0 0x80', '0xF0 0x90 0x80 0x80', '0x80 0x80 0x80', '0xFF 0xFE 0xFD'],
             answer: 1,
             score: 2,
-            explanation: "无权图最短路可用 BFS 分层扩展。",
-            tags: ["算法思维"]
+            explanation: 'B 符合 4 字节 UTF-8 的前缀与后续字节格式；A 属于过长编码，C 不能以续字节开头，D 不属于合法 UTF-8 起始字节。'
         },
         {
             id: 3,
             type: 'single',
-            question: "递归函数必须具备的关键要素是（ ）。",
-            options: ["输入语句","终止条件","循环变量","随机数"],
-            answer: 1,
+            question: '在 8 位二进制原码表示中，八进制数 -5 的二进制形式是什么（ ）',
+            options: ['10000101', '11111010', '11111011', '00000101'],
+            answer: 0,
             score: 2,
-            explanation: "无终止条件会导致无限递归。",
-            tags: ["条件判断","函数"]
+            explanation: '原码最高位为符号位，-5 的数值部分是 0000101，因此 8 位原码为 10000101。'
         },
         {
             id: 4,
             type: 'single',
-            question: "已知 n=1e5，O(n^2) 算法通常（ ）。",
-            options: ["稳定可过","可能超时","一定最优","与 n 无关"],
-            answer: 1,
+            question: '十进制数 111.111 的二进制表示可以是下面的（ ）',
+            options: ['1101111.0001110001', '1101110.1001110001', '1101111.1001110001', '1101111.0011110001'],
+            answer: 0,
             score: 2,
-            explanation: "1e5 规模下 O(n^2) 常无法在时限内通过。",
-            tags: ["程序分析"]
+            explanation: '111 的二进制是 1101111；0.111 按乘 2 取整可得到近似展开 0.0001110001...，对应 A。'
         },
         {
             id: 5,
             type: 'single',
-            question: "二分查找适用的前提是序列（ ）。",
-            options: ["元素互异","已排序","长度为偶数","从 0 开始编号"],
+            question: '在 C++ 中，补码的主要作用是（ ）',
+            options: ['提高浮点数的精度', '简化整数的加减法运算', '增加整数的表示范围', '优化内存分配'],
             answer: 1,
             score: 2,
-            explanation: "二分需要单调性，常见为有序数组。",
-            tags: ["数组与字符串","算法思维"]
+            explanation: '补码的核心价值是统一加减法硬件实现，把减法转化为加法处理。'
         },
         {
             id: 6,
             type: 'single',
-            question: "前缀和数组 pre[i] 一般表示（ ）。",
-            options: ["第 i 项本身","前 i 项的累计信息","第 i 项最大值","后缀最小值"],
-            answer: 1,
+            question: '在 C++ 中，一个 8 位有符号整数（使用补码表示）的范围是（ ）',
+            options: ['-128 到 127', '-127 到 128', '-256 到 255', '0 到 255'],
+            answer: 0,
             score: 2,
-            explanation: "前缀和用累计量支持区间查询。",
-            tags: ["数组与字符串","算法思维"]
+            explanation: '8 位补码有 1 位符号位，范围是 -2^7 到 2^7-1，即 -128 到 127。'
         },
         {
             id: 7,
             type: 'single',
-            question: "在回溯搜索中，撤销选择的操作主要用于（ ）。",
-            options: ["节省输入时间","恢复现场以尝试下一分支","避免递归","加速排序"],
-            answer: 1,
+            question: '在 C++ 中，以下代码的输出是什么（ ）\nint a = -5;\nunsigned int b = a;\ncout << b;',
+            options: ['-5', '5', '4294967291', '编译错误'],
+            answer: 2,
             score: 2,
-            explanation: "回溯核心是“试探-递归-撤销”。",
-            tags: ["函数","算法思维"]
+            explanation: '把 -5 赋给 32 位 unsigned int 会按补码位模式解释为 2^32-5，即 4294967291。'
         },
         {
             id: 8,
             type: 'single',
-            question: "若要求“最少操作次数”，常见建模方向是（ ）。",
-            options: ["贪心/BFS/DP 等最优化方法","随机模拟","仅用输出语句","删除条件判断"],
+            question: '下列程序的作用是（ ）\nint main() {\n    int decimal = 25;\n    cout << oct << decimal;\n    return 0;\n}',
+            options: ['将十进制数转换成八进制数', '将八进制数转换成十进制数', '将二进制数转换成八进制数', '将八进制数转换成 16 进制数'],
             answer: 0,
             score: 2,
-            explanation: "最优化题常需对应算法模型。",
-            tags: ["程序分析"]
+            explanation: '流操纵符 oct 会让后续整数按八进制形式输出。'
         },
         {
             id: 9,
             type: 'single',
-            question: "vector<int> v; 执行 v.push_back(7); 后，7 会被（ ）。",
-            options: ["插入到头部","追加到尾部","替换全部元素","自动排序"],
-            answer: 1,
+            question: '下面程序是将十进制转十六进制，横线处应该填入的是（ ）\n#include <iostream>\nusing namespace std;\nint main() {\n    int decimal = 255;\n    ________________________\n    return 0;\n}',
+            options: ['cout << oct << decimal;', 'cout << decimal << decimal;', 'cout << hex << decimal;', '不能正确执行'],
+            answer: 2,
             score: 2,
-            explanation: "push_back 在末尾追加。",
-            tags: ["数组与字符串"]
+            explanation: 'hex 会把后续整数按十六进制输出。'
         },
         {
             id: 10,
             type: 'single',
-            question: "对于区间 [l,r] 的和，使用前缀和可在 O(1) 时间通过（ ）计算。",
-            options: ["pre[r]-pre[l]","pre[r]-pre[l-1]","pre[l]+pre[r]","pre[r+1]-pre[l-1]"],
-            answer: 1,
+            question: '以下代码的说法正确的是什么（ ）\n#include <iostream>\nusing namespace std;\nint main() {\n    int a = 0b1101;\n    int b = 0b1011;\n    cout << (a ^ b);\n    return 0;\n}',
+            options: ['进行的是整体异或运算', '进行的是按位同或运算', '进行的是按位与运算', '进行的是按位异或运算'],
+            answer: 3,
             score: 2,
-            explanation: "常见 1-based 前缀和公式为 pre[r]-pre[l-1]。",
-            tags: ["算法思维"]
+            explanation: '^ 在 C++ 中表示按位异或。'
         },
         {
             id: 11,
             type: 'single',
-            question: "深度优先搜索（DFS）更贴近哪种过程（ ）。",
-            options: ["按层推进","一条路走到底再回退","随机跳转","只访问起点"],
-            answer: 1,
+            question: '下面枚举法查找最大值索引程序中，横线处应该填写的是（ ）\n#include <iostream>\nusing namespace std;\nint main() {\n    int arr[] = {3, 7, 2, 9, 5};\n    int maxIndex = 0;\n    for (int i = 1; i < 5; i++) {\n        ____________________________\n        {\n            maxIndex = i;\n        }\n    }\n    cout << maxIndex;\n    return 0;\n}',
+            options: ['if (arr[maxIndex] > arr[i])', 'if (arr[i] - 1 > arr[maxIndex])', 'if (arr[i] + 1 > arr[maxIndex])', 'if (arr[i] > arr[maxIndex])'],
+            answer: 3,
             score: 2,
-            explanation: "DFS 先深后广，回溯再探索。",
-            tags: ["算法思维"]
+            explanation: '枚举最大值下标时，应比较当前位置元素和当前最大值元素，即 arr[i] > arr[maxIndex]。'
         },
         {
             id: 12,
             type: 'single',
-            question: "当状态具有“重叠子问题”时，优先考虑（ ）。",
-            options: ["动态规划","快速幂","并查集","双向链表"],
-            answer: 0,
+            question: '以下代码的功能是将数组中的奇数和偶数分别放在数组的前半部分和后半部分，横线处应该填入的是（ ）\nint arr[] = {1, 2, 3, 4, 5};\nint left = 0, right = 4;\nwhile (left < right) {\n    while (arr[left] % 2 == 1 && left < right) left++;\n    ________________________________\n    if (left < right) {\n        swap(arr[left], arr[right]);\n    }\n}\nfor (int i = 0; i < 5; i++) {\n    cout << arr[i] << " ";\n}',
+            options: ['while (arr[left] % 2 == 0 && left < right) right--;', 'while (arr[right] % 2 == 0 && left < right) left--;', 'while (arr[right] % 2 != 0 && left < right) right--;', 'while (arr[right] % 2 == 0 && left < right) right--;'],
+            answer: 3,
             score: 2,
-            explanation: "重叠子问题是 DP 的典型信号。",
-            tags: ["程序分析"]
+            explanation: '左指针找偶数、右指针应向左跳过偶数，找到应交换的奇偶位置，因此填 D。'
         },
         {
             id: 13,
             type: 'single',
-            question: "若只需判断元素是否出现过，通常可用（ ）。",
-            options: ["set / unordered_set","queue","stack","priority_queue"],
-            answer: 0,
+            question: '下面程序最后能够得到 HelloC++ 的是（ ）\nint main() {\n    string str = "HelloWorld";\n    ___________________\n    cout << str;\n    return 0;\n}',
+            options: ['str.replace(0, 5, "C++");', 'str.replace(5, 5, "C++");', 'str.replace(1, 5, "C++");', 'str.replace(4, 5, "C++");'],
+            answer: 1,
             score: 2,
-            explanation: "集合结构支持高效查重。",
-            tags: ["条件判断"]
+            explanation: '把下标 5 开始的 5 个字符 World 替换为 C++，结果就是 HelloC++。'
         },
         {
             id: 14,
             type: 'single',
-            question: "双重循环遍历 n×n 矩阵的时间复杂度通常是（ ）。",
-            options: ["O(1)","O(log n)","O(n)","O(n^2)"],
+            question: '想要得到字符串 World，下面程序横线处应该填入的是（ ）\n#include <iostream>\n#include <string>\nusing namespace std;\nint main() {\n    string str = "HelloC++";\n    _________________\n    _________________\n    return 0;\n}',
+            options: ['str.insert(4, "World");\ncout << str.substr(4, 4);', 'cout << str.substr(5, 5);', 'str.insert("World");\ncout << str.substr(5, 5);', 'str.insert(5, "World");\ncout << str.substr(5, 5);'],
             answer: 3,
             score: 2,
-            explanation: "两层线性循环相乘为 O(n^2)。",
-            tags: ["循环","算法思维"]
+            explanation: '在下标 5 处插入 World 后，再从下标 5 开始截取长度 5，即可得到 World。'
         },
         {
             id: 15,
             type: 'single',
-            question: "在图遍历中，visited 数组的作用是（ ）。",
-            options: ["记录输入顺序","防止重复访问和死循环","存放边权","统计内存"],
-            answer: 1,
+            question: '有 n 个正整数，假设一个正整数是美丽数字当且仅当该正整数是 9 的倍数但不是 8 的倍数。下面的程序是编写计算 n 个正整数中美丽数字的数量，横线处应该填入的是（ ）\nfor (int i = 1; i <= n; i++) {\n    cin >> a;\n    ________________________\n        cnt++;\n}',
+            options: ['if (a % 9 != 0 && a % 8 != 0)', 'if (a % 9 == 0 & a % 8 == 0)', 'if (a % 9 == 0 && a % 8 != 0)', 'if (a % 9 == 0 & a % 8 != 0)'],
+            answer: 2,
             score: 2,
-            explanation: "标记访问状态是图搜索基础。",
-            tags: ["数组与字符串","算法思维"]
+            explanation: '题意要求“是 9 的倍数且不是 8 的倍数”，对应 if (a % 9 == 0 && a % 8 != 0)。'
         },
         {
             id: 16,
             type: 'judge',
-            question: "DFS 和 BFS 都可以用于图的遍历。",
-            options: ["正确","错误"],
-            answer: 0,
+            question: '判断一个三角形是否成立的条件只有：任意两边长度之和大于第三条边的长度。',
+            options: ['正确', '错误'],
+            answer: 1,
             score: 2,
-            explanation: "两者均为经典图搜索策略。",
-            tags: ["判断题","算法思维"]
+            explanation: '现版本按公开解析与常见教材口径复核为错误；题解通常将“三边关系完整表述”视为不止这一条。该题答案不在官方 PDF 文本层中。'
         },
         {
             id: 17,
             type: 'judge',
-            question: "递归深度与系统栈空间无关。",
-            options: ["正确","错误"],
-            answer: 1,
+            question: '这段程序进行的是判断一个从键盘输入的字符的 ASCII 是否是奇数，若是，输出 YES，否则，输出 NO。\nint main() {\n    char x;\n    scanf("%c", &x);\n    int ASCII = (int)x;\n    cout << (x & 1 ? "YES" : "NO") << "\\n";\n    return 0;\n}',
+            options: ['正确', '错误'],
+            answer: 0,
             score: 2,
-            explanation: "递归会占用调用栈，过深可能栈溢出。",
-            tags: ["判断题","函数"]
+            explanation: '字符参与位运算时会按其 ASCII 值处理，x & 1 可判断最低位是否为 1，即是否为奇数。'
         },
         {
             id: 18,
             type: 'judge',
-            question: "二分答案法要求可行性随答案具有单调性。",
-            options: ["正确","错误"],
+            question: '闰年的定义：普通闰年是公历年份是 4 的倍数且不是 100 的倍数；世纪闰年必须是 400 的倍数。下面程序是判断是否是闰年的正确程序。\ncin >> n;\ncout << ((n % 4 == 0 && n % 100 != 0) || (n % 400 == 0)) ? 1 : 0;\nreturn 0;',
+            options: ['正确', '错误'],
             answer: 0,
             score: 2,
-            explanation: "单调性是二分答案成立前提。",
-            tags: ["判断题","算法思维"]
+            explanation: '按题意判断逻辑本身是对的；现版本仍保留官方题面主体，答案来自公开解析复核。'
         },
         {
             id: 19,
             type: 'judge',
-            question: "前缀和只能处理加法问题，不能做计数。",
-            options: ["正确","错误"],
-            answer: 1,
+            question: 'C++ 语句 cout << (n % 15 == 0 ? "YES" : "NO"); 能够判断一个整数能否被 3 和 5 同时整除。',
+            options: ['正确', '错误'],
+            answer: 0,
             score: 2,
-            explanation: "计数本质也是累加，可用前缀和。",
-            tags: ["判断题","算法思维"]
+            explanation: '能被 3 和 5 同时整除等价于能被 15 整除。'
         },
         {
             id: 20,
             type: 'judge',
-            question: "在无权图中，BFS 首次到达某点时路径即最短。",
-            options: ["正确","错误"],
+            question: '有 n 个同学，从中抽取任意个人数来参加学校组织的大合唱，共有 2 的 n 次幂个方法。',
+            options: ['正确', '错误'],
             answer: 0,
             score: 2,
-            explanation: "按层扩展保证首次到达最短。",
-            tags: ["判断题","算法思维"]
+            explanation: '每个同学均有“选/不选”两种独立决策，因此总方案数为 2^n。'
         },
         {
             id: 21,
             type: 'judge',
-            question: "回溯算法不会重复进入同一状态。",
-            options: ["正确","错误"],
-            answer: 1,
+            question: '若将一个正整数化为二进制数，在此二进制数中，我们将数字 1 的个数是偶数的这类二进制数称为 A 类数，否则就称其为 B 类数。判断 (2025)10 化为二进制后，1 的个数为偶数个，因此 2025 为 A 类数。',
+            options: ['正确', '错误'],
+            answer: 0,
             score: 2,
-            explanation: "若不做剪枝/去重，可能重复状态。",
-            tags: ["判断题","算法思维"]
+            explanation: '2025 的二进制为 11111101001，其中 1 的个数是 8 个，为偶数。'
         },
         {
             id: 22,
             type: 'judge',
-            question: "时间复杂度 O(n log n) 在很多排序算法中常见。",
-            options: ["正确","错误"],
+            question: '该段程序将 n 不停地除以 2，并输出此时的商和余数，直到 n = 0 为止。\nlong long n;\ncin >> n;\nwhile (n != 0) {\n    cout << n / 2 << " " << n % 2 << "\\n";\n    n /= 2;\n}',
+            options: ['正确', '错误'],
             answer: 0,
             score: 2,
-            explanation: "如快速排序平均、归并排序等。",
-            tags: ["判断题","算法思维"]
+            explanation: '循环每次输出当前 n 除以 2 的商与余数，再令 n /= 2，直到变为 0。'
         },
         {
             id: 23,
             type: 'judge',
-            question: "动态规划一定比贪心更简单。",
-            options: ["正确","错误"],
-            answer: 1,
+            question: '两个 13 进制的数 A 和 B，在 10 进制下分别表示 10 和 11。 (A + B)13 = (18)13，也就是说 13 进制数 A 加上 13 进制数 B，和是 13 进制数 18。',
+            options: ['正确', '错误'],
+            answer: 0,
             score: 2,
-            explanation: "两者适用场景不同，DP 常更复杂。",
-            tags: ["判断题","算法思维"]
+            explanation: 'A=10，B=11，和为 21；13 进制的 18 也表示 1×13+8=21，因此说法正确。'
         },
         {
             id: 24,
             type: 'judge',
-            question: "使用 long long 可降低部分整数溢出风险。",
-            options: ["正确","错误"],
+            question: 'k 进制，逢 k 进第二位，逢 k² 进百位，逢 k³ 进千位。',
+            options: ['正确', '错误'],
             answer: 0,
             score: 2,
-            explanation: "更大整数范围可减少溢出。",
-            tags: ["判断题","程序分析"]
+            explanation: '这是位权表示的基本规则：个位、k 位、k² 位、k³ 位……。'
         },
         {
             id: 25,
             type: 'judge',
-            question: "程序调试时构造边界样例没有意义。",
-            options: ["正确","错误"],
+            question: 'CCF（十九进制）= 21AC（十三进制）（不区分大小写）。',
+            options: ['正确', '错误'],
             answer: 1,
             score: 2,
-            explanation: "边界样例对发现缺陷非常关键。",
-            tags: ["判断题","程序分析"]
+            explanation: 'CCF₁₉ = 12×19² + 12×19 + 15 = 4575；21AC₁₃ = 2×13³ + 1×13² + 10×13 + 12 = 4705，二者不相等。'
         }
     ],
     programmingQuestions: [
-    {
-        "id": 26,
-        "type": "programming",
-        "title": "2025",
-        "problemNumber": "B4261",
-        "description": "小 A 有一个整数 x，他想找到最小的正整数 y 使得下式成立： (x \\ and \\ y) + (x \\ or \\ y) = 2025 其中 and 表示二进制按位与运算，or 表示二进制按位或运算。如果不存在满足条件的 y，则输出 -1。",
-        "inputDescription": "一行，一个整数 x。",
-        "outputDescription": "一行，一个整数，若满足条件的 y 存在则输出 y，否则输出 -1。",
-        "samples": [
-            {
-                "input": "2024",
-                "output": "1"
-            }
-        ],
-        "explanation": "利用恒等式 (x&y)+(x|y)=x+y，所以问题等价于寻找最小正整数 y 使 x+y=2025。若 2025-x 为正，则它就是答案，否则无解。",
-        "tags": [
-            "编程题",
-            "位运算",
-            "数学"
-        ],
-        "template": "#include <bits/stdc++.h>\nusing namespace std;\n\nint main() {\n    ios::sync_with_stdio(false);\n    cin.tie(nullptr);\n\n    // 在此编写代码\n    return 0;\n}",
-        "referenceCode": "#include <bits/stdc++.h>\nusing namespace std;\n\nint main() {\n    ios::sync_with_stdio(false);\n    cin.tie(nullptr);\n\n    long long x;\n    cin >> x;\n    long long y = 2025 - x;\n    if (y > 0) cout << y << '\\n';\n    else cout << -1 << '\\n';\n    return 0;\n}"
-    },
-    {
-        "id": 27,
-        "type": "programming",
-        "title": "词频统计",
-        "problemNumber": "B4262",
-        "description": "在文本处理中，统计单词出现的频率是一个常见的任务。现在，给定 n 个单词，你需要找出其中出现次数最多的单词。在本题中，忽略单词中字母的大小写（即 `Apple`、`apple`、`APPLE`、`aPPle` 等均视为同一个单词）。 请你编写一个程序，输入 n 个单词，输出其中出现次数最多的单词。",
-        "inputDescription": "第一行，一个整数 n，表示单词的个数； 接下来 n 行，每行包含一个单词，单词由大小写英文字母组成。 输入保证，出现次数最多的单词只会有一个。",
-        "outputDescription": "输出一行，包含出现次数最多的单词（输出单词为小写形式）。",
-        "samples": [
-            {
-                "input": "5\nApple\nbanana\napple\nBANANA\nAPPLE",
-                "output": "apple"
-            }
-        ],
-        "explanation": "把所有单词统一转成小写后统计出现次数，最后输出出现次数最多的那个小写单词。",
-        "tags": [
-            "编程题",
-            "字符串",
-            "哈希表"
-        ],
-        "template": "#include <bits/stdc++.h>\nusing namespace std;\n\nint main() {\n    ios::sync_with_stdio(false);\n    cin.tie(nullptr);\n\n    // 在此编写代码\n    return 0;\n}",
-        "referenceCode": "#include <bits/stdc++.h>\nusing namespace std;\n\nint main() {\n    ios::sync_with_stdio(false);\n    cin.tie(nullptr);\n\n    int n;\n    cin >> n;\n    map<string, int> cnt;\n    string ans; int best = -1;\n    while (n--) {\n        string s;\n        cin >> s;\n        for (char &c : s) c = tolower(c);\n        int cur = ++cnt[s];\n        if (cur > best) { best = cur; ans = s; }\n    }\n    cout << ans << '\\n';\n    return 0;\n}"
-    }
-]
+        {
+            id: 26,
+            type: 'programming',
+            title: '2025',
+            problemNumber: 'B4261',
+            source: 'official-pdf + luogu-mapping',
+            description: '小 A 有一个整数 x，他想找到最小的正整数 y，使得 (x & y) + (x | y) = 2025，其中 & 表示按位与，| 表示按位或。如果不存在满足条件的 y，则输出 -1。根据恒等式 (x & y) + (x | y) = x + y，本题等价于求最小正整数 y = 2025 - x；若该值不为正，则无解。',
+            inputDescription: '输入一行，一个整数 x。',
+            outputDescription: '输出一行，一个整数。若存在满足条件的最小正整数 y，则输出它；否则输出 -1。',
+            samples: [
+                {
+                    input: '1025',
+                    output: '1000'
+                }
+            ],
+            explanation: '由按位恒等式 (x & y) + (x | y) = x + y，可知只要 2025 - x > 0，答案就是 2025 - x；否则不存在正整数解。官方 PDF 参考程序使用 1..2025 暴力枚举，但可直接化简。',
+            tags: ['编程题', '位运算', '数学'],
+            template: '#include <bits/stdc++.h>\nusing namespace std;\n\nint main() {\n    ios::sync_with_stdio(false);\n    cin.tie(nullptr);\n\n    // 在此编写代码\n    return 0;\n}',
+            referenceCode: '#include <bits/stdc++.h>\nusing namespace std;\n\nint main() {\n    ios::sync_with_stdio(false);\n    cin.tie(nullptr);\n\n    long long x;\n    cin >> x;\n    long long y = 2025 - x;\n    if (y > 0) cout << y << "\\n";\n    else cout << -1 << "\\n";\n    return 0;\n}'
+        },
+        {
+            id: 27,
+            type: 'programming',
+            title: '词频统计',
+            problemNumber: 'B4262',
+            source: 'official-pdf + luogu-mapping',
+            description: '给定 n 个仅由大小写英文字母组成的单词，忽略大小写后统计每个单词出现次数，输出出现次数最多的那个单词。题目保证最高频单词唯一，输出时需要转为小写。',
+            inputDescription: '第一行一个整数 n，表示单词数量；接下来 n 行，每行一个单词。输入保证出现次数最多的单词唯一。',
+            outputDescription: '输出一行，包含出现次数最多的单词，且以小写形式输出。',
+            samples: [
+                {
+                    input: '6\nApple\nbanana\napple\nOrange\nbanana\napple',
+                    output: 'apple'
+                }
+            ],
+            explanation: '把每个单词统一转为小写后，用 map / unordered_map 统计出现次数，最后输出频次最大的那个单词即可。',
+            tags: ['编程题', '字符串', '哈希表'],
+            template: '#include <bits/stdc++.h>\nusing namespace std;\n\nint main() {\n    ios::sync_with_stdio(false);\n    cin.tie(nullptr);\n\n    // 在此编写代码\n    return 0;\n}',
+            referenceCode: '#include <bits/stdc++.h>\nusing namespace std;\n\nint main() {\n    int n;\n    cin >> n;\n    map<string, int> cnt;\n    int best = -1;\n    string ans;\n\n    for (int i = 0; i < n; ++i) {\n        string s;\n        cin >> s;\n        for (char &c : s) c = tolower(static_cast<unsigned char>(c));\n        int cur = ++cnt[s];\n        if (cur > best) {\n            best = cur;\n            ans = s;\n        }\n    }\n\n    cout << ans << "\\n";\n    return 0;\n}'
+        }
+    ]
 };

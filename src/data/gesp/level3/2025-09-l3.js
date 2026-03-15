@@ -1,4 +1,8 @@
-// 2025年9月 GESP C++ 三级真题
+// 2025年9月 GESP C++ 三级真题 (第11次认证)
+// 数据说明：本卷以官方真题 PDF 为主完成回填。
+// - 客观题 1~15：题面主体、选项与单选答案可由官方 PDF 直接提取并整理；其中少量代码/版式题按官方 PDF 文本层做等价排版。
+// - 判断题 16~25：题面来自官方 PDF；官方 PDF 文本层未完整带出判断题答案表，当前答案依据公开解析交叉复核填写。
+// - 编程题 26~27：题名、题意主体、样例与参考代码来自官方 PDF；少量数据范围/公式符号因 PDF 文本层缺字，按官方题意做等价整理。
 export const paperData = {
     id: '2025-09-l3',
     title: '2025年9月 GESP C++ 三级真题',
@@ -7,304 +11,320 @@ export const paperData = {
     month: 9,
     session: 11,
     timeLimit: 90 * 60,
+    source: {
+        officialPdf: 'https://gesp.ccf.org.cn/101/attach/1703975921385504.pdf',
+        notes: '客观题 25 题已尽量补齐；其中判断题答案因官方 PDF 文本层未完整带出答案表，现依据公开解析交叉复核。编程题 2 题已补题意、样例与参考代码；少量变量符号/范围文字按官方题意等价整理。'
+    },
     questions: [
         {
             id: 1,
             type: 'single',
-            question: "若要统计数组中每个数出现次数，最常用的数据结构是（ ）。",
-            options: ["栈","队列","映射/哈希表","并查集"],
+            question: '执行以下 C++ 代码后，c 的数值是（ ）。\nint a = 10, b = 3;\ndouble c = a / b;',
+            options: ['3.33333', '3.333', '3.0', '3.3'],
             answer: 2,
             score: 2,
-            explanation: "键值映射可高效维护频次统计。",
-            tags: ["数组与字符串"]
+            explanation: 'a 和 b 都是 int，a / b 做整数除法得到 3，再赋给 double 变量 c，所以结果是 3.0。'
         },
         {
             id: 2,
             type: 'single',
-            question: "在无权图中求最短路，通常优先使用（ ）。",
-            options: ["DFS","BFS","二分","拓扑排序"],
-            answer: 1,
+            question: '下列 C++ 表达式的结果为 true 的是（ ）。',
+            options: ['(5 <= 5) && (7 < 5)', '!(10 > 5)', '(10 != 10) || (5 >= 3)', '(5 == 3) && (4 > 2)'],
+            answer: 2,
             score: 2,
-            explanation: "无权图最短路可用 BFS 分层扩展。",
-            tags: ["算法思维"]
+            explanation: '前两项与第四项结果都为 false；只有 (10 != 10) || (5 >= 3) 等于 false || true，即 true。'
         },
         {
             id: 3,
             type: 'single',
-            question: "递归函数必须具备的关键要素是（ ）。",
-            options: ["输入语句","终止条件","循环变量","随机数"],
-            answer: 1,
+            question: '以下关于 C++ 数组的说法，错误的是（ ）。',
+            options: [
+                '数组的下标通常从 0 开始。',
+                'int arr[5]; 声明了一个包含 5 个整数的数组。',
+                '数组的大小必须在编译时确定，不能使用变量定义大小。',
+                '可以通过 arr[5] 来访问 int arr[5]; 数组的最后一个元素。'
+            ],
+            answer: 3,
             score: 2,
-            explanation: "无终止条件会导致无限递归。",
-            tags: ["条件判断","函数"]
+            explanation: 'int arr[5] 的合法下标范围是 0~4，arr[5] 已越界，不是最后一个元素。'
         },
         {
             id: 4,
             type: 'single',
-            question: "已知 n=1e5，O(n^2) 算法通常（ ）。",
-            options: ["稳定可过","可能超时","一定最优","与 n 无关"],
+            question: '执行以下 C++ 代码后，变量 sum 的值是（ ）。\nint sum = 0;\nfor (int i = 1; i <= 5; i += 2) {\n    sum += i;\n    int sum = 0;\n}',
+            options: ['6', '9', '15', '死循环'],
             answer: 1,
             score: 2,
-            explanation: "1e5 规模下 O(n^2) 常无法在时限内通过。",
-            tags: ["程序分析"]
+            explanation: '外层 sum 依次累加 1、3、5 得到 9；循环内重新定义的局部 sum 不影响外层变量。'
         },
         {
             id: 5,
             type: 'single',
-            question: "二分查找适用的前提是序列（ ）。",
-            options: ["元素互异","已排序","长度为偶数","从 0 开始编号"],
+            question: '要正确定义一个返回两个整数中较大值的函数 max，应该使用（ ）。',
+            options: [
+                'void max(int a, int b) { return a > b ? a : b; }',
+                'int max(int a, int b) { if (a > b) return a; else return b; }',
+                'int max(a, b) { if (a > b) return a; else return b; }',
+                'void max(a, b) { cout << (a > b ? a : b); }'
+            ],
             answer: 1,
             score: 2,
-            explanation: "二分需要单调性，常见为有序数组。",
-            tags: ["数组与字符串","算法思维"]
+            explanation: '返回值类型应为 int，且参数类型需要显式写出，只有 B 符合 C++ 函数定义规范。'
         },
         {
             id: 6,
             type: 'single',
-            question: "前缀和数组 pre[i] 一般表示（ ）。",
-            options: ["第 i 项本身","前 i 项的累计信息","第 i 项最大值","后缀最小值"],
+            question: '执行以下 C++ 代码后，数组 arr 的内容是（ ）。\nint arr[4] = {1, 2, 3};\narr[3] = arr[0] + arr[2];',
+            options: ['{1, 2, 3, 3}', '{1, 2, 3, 4}', '{1, 2, 3, 5}', '{1, 2, 3, 6}'],
             answer: 1,
             score: 2,
-            explanation: "前缀和用累计量支持区间查询。",
-            tags: ["数组与字符串","算法思维"]
+            explanation: '初始化后 arr 为 {1,2,3,0}，再令 arr[3] = 1 + 3 = 4，所以结果是 {1, 2, 3, 4}。'
         },
         {
             id: 7,
             type: 'single',
-            question: "在回溯搜索中，撤销选择的操作主要用于（ ）。",
-            options: ["节省输入时间","恢复现场以尝试下一分支","避免递归","加速排序"],
+            question: '以下关于 C++ 函数的描述，正确的是（ ）。',
+            options: [
+                '函数必须要有参数。',
+                '函数通过 return 语句只能返回一个值，但是可以通过其他方式间接返回多个值。',
+                'main 函数可以被其他函数调用。',
+                '函数的定义可以直接嵌套，即一个函数内部可以真正定义另一个函数。'
+            ],
             answer: 1,
             score: 2,
-            explanation: "回溯核心是“试探-递归-撤销”。",
-            tags: ["函数","算法思维"]
+            explanation: '函数可以无参数；main 不能作为普通函数随意调用；C++ 不支持函数内部再定义函数。B 正确。'
         },
         {
             id: 8,
             type: 'single',
-            question: "若要求“最少操作次数”，常见建模方向是（ ）。",
-            options: ["贪心/BFS/DP 等最优化方法","随机模拟","仅用输出语句","删除条件判断"],
-            answer: 0,
+            question: '以下 C++ 代码 count++ 执行的次数是（ ）。\nint i = 10;\nint count = 0;\nwhile (i > 0) {\n    i -= 3;\n    continue;\n    count++;\n}',
+            options: ['2', '3', '4', '0'],
+            answer: 3,
             score: 2,
-            explanation: "最优化题常需对应算法模型。",
-            tags: ["程序分析"]
+            explanation: '每次执行到 continue 就直接进入下一轮循环，count++ 永远不会执行。'
         },
         {
             id: 9,
             type: 'single',
-            question: "vector<int> v; 执行 v.push_back(7); 后，7 会被（ ）。",
-            options: ["插入到头部","追加到尾部","替换全部元素","自动排序"],
-            answer: 1,
+            question: '以下 C++ 代码段的输出是（ ）。\nfor (int i = 0; i < 4; i++) {\n    for (int j = 0; j <= i; j++) {\n        cout << j;\n    }\n    cout << "#";\n}',
+            options: ['0#01#012#0123#', '1#12#123#1234#', '0#1#2#3#', '0#01#012#01243#'],
+            answer: 0,
             score: 2,
-            explanation: "push_back 在末尾追加。",
-            tags: ["数组与字符串"]
+            explanation: '四轮分别输出 0、01、012、0123，每轮末尾输出 #。'
         },
         {
             id: 10,
             type: 'single',
-            question: "对于区间 [l,r] 的和，使用前缀和可在 O(1) 时间通过（ ）计算。",
-            options: ["pre[r]-pre[l]","pre[r]-pre[l-1]","pre[l]+pre[r]","pre[r+1]-pre[l-1]"],
-            answer: 1,
+            question: '以下关于 C++ 变量作用域的说法，错误的是（ ）。',
+            options: [
+                '在 for 循环语句中声明的变量，其作用域仅限于该循环体内。',
+                '在函数内部声明的变量（局部变量），仅在函数内部有效。',
+                '在所有函数外部声明的变量，在整个程序中都有效。',
+                '不同函数中的局部变量可以同名，它们代表不同的内存单元。'
+            ],
+            answer: 2,
             score: 2,
-            explanation: "常见 1-based 前缀和公式为 pre[r]-pre[l-1]。",
-            tags: ["算法思维"]
+            explanation: '全局变量虽在文件中通常可见，但“在整个程序中都有效”表述过满，在多文件场景下并不总能直接使用。官方答案为 C。'
         },
         {
             id: 11,
             type: 'single',
-            question: "深度优先搜索（DFS）更贴近哪种过程（ ）。",
-            options: ["按层推进","一条路走到底再回退","随机跳转","只访问起点"],
-            answer: 1,
+            question: '关于以下代码的说法正确的是（ ）。\nint reversed = 0;\nwhile (x != 0) {\n    int digit = x % 10;\n    x /= 10;\n    reversed = reversed * 10 + digit;\n}',
+            options: [
+                '能够反转任何位数的整数',
+                '能够反转的最大位数正整数是 2147483647',
+                '能够反转的最大位数正整数是 2147483648',
+                '能够反转的最大位数正整数是 1463847412'
+            ],
+            answer: 3,
             score: 2,
-            explanation: "DFS 先深后广，回溯再探索。",
-            tags: ["算法思维"]
+            explanation: '整数翻转要受 int 范围限制，1463847412 翻转后是 2147483641，仍在 int 范围内；再大就可能溢出。'
         },
         {
             id: 12,
             type: 'single',
-            question: "当状态具有“重叠子问题”时，优先考虑（ ）。",
-            options: ["动态规划","快速幂","并查集","双向链表"],
-            answer: 0,
+            question: '以下 C++ 代码试图查找数组中的最大值，划线处应填入（ ）。\n#include <iostream>\nusing namespace std;\nint findMax(int arr[], int size) {\n    int maxVal = ________;\n    for (int i = 1; i < size; i++) {\n        if (arr[i] > maxVal) {\n            maxVal = arr[i];\n        }\n    }\n    return maxVal;\n}',
+            options: ['0', 'arr[-1]', 'arr[0]', 'size'],
+            answer: 2,
             score: 2,
-            explanation: "重叠子问题是 DP 的典型信号。",
-            tags: ["程序分析"]
+            explanation: '打擂台找最大值时，通常先把第一个元素 arr[0] 作为当前最大值。'
         },
         {
             id: 13,
             type: 'single',
-            question: "若只需判断元素是否出现过，通常可用（ ）。",
-            options: ["set / unordered_set","queue","stack","priority_queue"],
-            answer: 0,
+            question: '以下关于 C++ 函数的说法，正确的是（ ）。',
+            options: [
+                '函数参数传递只有值传递一种方式。',
+                '函数的形参在函数调用结束后依然占用内存空间。',
+                '没有返回值的函数必须声明为 void 类型，且不能包含 return 语句。',
+                'C++11 及之后标准要求函数必须显式声明返回类型，不允许默认返回 int。'
+            ],
+            answer: 3,
             score: 2,
-            explanation: "集合结构支持高效查重。",
-            tags: ["条件判断"]
+            explanation: 'A、B、C 都不正确；C++11 起函数返回类型必须显式声明，不能默认 int。'
         },
         {
             id: 14,
             type: 'single',
-            question: "双重循环遍历 n×n 矩阵的时间复杂度通常是（ ）。",
-            options: ["O(1)","O(log n)","O(n)","O(n^2)"],
-            answer: 3,
+            question: '以下 C++ 代码中存在几处错误（ ）。\n#include <iostream>\nusing namespace std;\nint main() {\n    const int SIZE = 5;\n    int arr[SIZE];\n    for (int i = 0; i <= SIZE; i++) {\n        arr[i] = i * 2;\n    }\n    cout << arr[SIZE] << endl;\n    return 0;\n}',
+            options: ['0 处', '1 处', '2 处', '3 处'],
+            answer: 2,
             score: 2,
-            explanation: "两层线性循环相乘为 O(n^2)。",
-            tags: ["循环","算法思维"]
+            explanation: 'for 条件 i <= SIZE 会访问 arr[5] 越界；输出 arr[SIZE] 也越界，共 2 处错误。'
         },
         {
             id: 15,
             type: 'single',
-            question: "在图遍历中，visited 数组的作用是（ ）。",
-            options: ["记录输入顺序","防止重复访问和死循环","存放边权","统计内存"],
-            answer: 1,
+            question: '以下关于 C++ 中 string 类和字符数组（char[]）的说法，错误的是（ ）。',
+            options: [
+                'string 对象可以使用 = 进行赋值，而字符数组需要使用 strcpy。',
+                'string 对象的长度可以使用 length() 成员函数获取，而字符数组需要使用 strlen() 函数。',
+                'string 对象在内存中是动态分配空间的，因此可以自动处理字符串长度的变化。',
+                'string 对象和字符数组都可以使用 == 运算符来直接比较两个字符串的内容是否相同。'
+            ],
+            answer: 3,
             score: 2,
-            explanation: "标记访问状态是图搜索基础。",
-            tags: ["数组与字符串","算法思维"]
+            explanation: 'string 可以直接用 == 比较内容，但字符数组不能；字符数组若要比较内容通常应使用 strcmp。'
         },
         {
             id: 16,
             type: 'judge',
-            question: "DFS 和 BFS 都可以用于图的遍历。",
-            options: ["正确","错误"],
-            answer: 0,
+            question: "表达式 sizeof('a') 的结果总是 1，因为 'a' 是一个字符。",
+            options: ['正确', '错误'],
+            answer: 1,
             score: 2,
-            explanation: "两者均为经典图搜索策略。",
-            tags: ["判断题","算法思维"]
+            explanation: '该说法并不“总是”成立；在不同语言语境/实现背景下结论不应这样绝对化。公开解析给出的结论为错误。'
         },
         {
             id: 17,
             type: 'judge',
-            question: "递归深度与系统栈空间无关。",
-            options: ["正确","错误"],
-            answer: 1,
+            question: '在 C++ 中，所有全局变量如果没有显式初始化，都会被自动初始化为 0。',
+            options: ['正确', '错误'],
+            answer: 0,
             score: 2,
-            explanation: "递归会占用调用栈，过深可能栈溢出。",
-            tags: ["判断题","函数"]
+            explanation: '未显式初始化的全局变量与静态存储期对象会被自动进行零初始化。'
         },
         {
             id: 18,
             type: 'judge',
-            question: "二分答案法要求可行性随答案具有单调性。",
-            options: ["正确","错误"],
+            question: 'do { ... } while (false); 循环体内的语句至少会被执行一次。',
+            options: ['正确', '错误'],
             answer: 0,
             score: 2,
-            explanation: "单调性是二分答案成立前提。",
-            tags: ["判断题","算法思维"]
+            explanation: 'do-while 先执行循环体，再判断条件，因此至少执行一次。'
         },
         {
             id: 19,
             type: 'judge',
-            question: "前缀和只能处理加法问题，不能做计数。",
-            options: ["正确","错误"],
-            answer: 1,
+            question: '在 C++ 中，++i 是一个左值表达式，而 i++ 是一个右值表达式。',
+            options: ['正确', '错误'],
+            answer: 0,
             score: 2,
-            explanation: "计数本质也是累加，可用前缀和。",
-            tags: ["判断题","算法思维"]
+            explanation: '前置自增通常返回可继续赋值/取地址的对象本身，后置自增返回旧值临时量。'
         },
         {
             id: 20,
             type: 'judge',
-            question: "在无权图中，BFS 首次到达某点时路径即最短。",
-            options: ["正确","错误"],
-            answer: 0,
+            question: '对于 enum Color { RED, GREEN, BLUE };，RED 的类型是 int。',
+            options: ['正确', '错误'],
+            answer: 1,
             score: 2,
-            explanation: "按层扩展保证首次到达最短。",
-            tags: ["判断题","算法思维"]
+            explanation: 'RED 的类型是该枚举类型本身，不是 int；只是可在很多场景下转换为整数。'
         },
         {
             id: 21,
             type: 'judge',
-            question: "回溯算法不会重复进入同一状态。",
-            options: ["正确","错误"],
+            question: '宏定义 #define SQUARE(x) x * x 是一个安全的宏定义，SQUARE(2+3) 会正确计算出 25。',
+            options: ['正确', '错误'],
             answer: 1,
             score: 2,
-            explanation: "若不做剪枝/去重，可能重复状态。",
-            tags: ["判断题","算法思维"]
+            explanation: '未加括号会展开成 2+3*2+3，结果不是 25；安全写法应为 ((x) * (x))。'
         },
         {
             id: 22,
             type: 'judge',
-            question: "时间复杂度 O(n log n) 在很多排序算法中常见。",
-            options: ["正确","错误"],
-            answer: 0,
+            question: '在 C++ 中，char 类型的取值范围总是 -128 到 127。',
+            options: ['正确', '错误'],
+            answer: 1,
             score: 2,
-            explanation: "如快速排序平均、归并排序等。",
-            tags: ["判断题","算法思维"]
+            explanation: '普通 char 是否带符号由实现决定，不一定总是 -128 到 127。'
         },
         {
             id: 23,
             type: 'judge',
-            question: "动态规划一定比贪心更简单。",
-            options: ["正确","错误"],
+            question: '表达式 a > b ? a : b = 10; 一定是合法的 C++ 代码。',
+            options: ['正确', '错误'],
             answer: 1,
             score: 2,
-            explanation: "两者适用场景不同，DP 常更复杂。",
-            tags: ["判断题","算法思维"]
+            explanation: '该表达式并非在所有情况下都合法，取决于条件运算结果是否可作为赋值左值。题干中的“一定”错误。'
         },
         {
             id: 24,
             type: 'judge',
-            question: "使用 long long 可降低部分整数溢出风险。",
-            options: ["正确","错误"],
-            answer: 0,
+            question: '#include "file.h" 和 #include <file.h> 在编译器查找头文件时的搜索策略是完全相同的。',
+            options: ['正确', '错误'],
+            answer: 1,
             score: 2,
-            explanation: "更大整数范围可减少溢出。",
-            tags: ["判断题","程序分析"]
+            explanation: '双引号通常优先从当前源文件目录查找，尖括号通常优先查系统头文件路径，搜索策略并不完全相同。'
         },
         {
             id: 25,
             type: 'judge',
-            question: "程序调试时构造边界样例没有意义。",
-            options: ["正确","错误"],
+            question: '在同一个作用域内，extern 声明的变量可以多次定义。',
+            options: ['正确', '错误'],
             answer: 1,
             score: 2,
-            explanation: "边界样例对发现缺陷非常关键。",
-            tags: ["判断题","程序分析"]
+            explanation: 'extern 主要用于声明；变量在同一作用域内不能被重复定义。'
         }
     ],
     programmingQuestions: [
-    {
-        "id": 26,
-        "type": "programming",
-        "title": "数组清零",
-        "problemNumber": "B4413",
-        "description": "小 A 有一个由 n 个非负整数构成的数组 a = [a_1, a_2, \\ldots, a_n]。他会对阵组 a 重复进行以下操作，直到数组 a 只包含 0。在一次操作中，小 A 会依次完成以下三个步骤： 1. 在数组 a 中找到最大的整数，记其下标为 k。如果有多个最大值，那么选择其中下标最大的。 2. 从数组 a 所有不为零的整数中找到最小的整数 a_j。 3. 将第一步找出的 a_k 减去 a_j。 例如，数组 a = [2, 3, 4] 需要 7 次操作变成 [0, 0, 0]： [2, 3, 4] \\rightarrow [2, 3, 2] \\rightarrow [2, 1, 2] \\rightarrow [2, 1, 1] \\rightarrow [1, 1, 1] \\rightarrow [1, 1, 0] \\rightarrow [1, 0, 0] \\rightarrow [0, 0, 0] 小 A 想知道，对于给定的数组 a，需要多少次操作才能使得 a 中的整数全部变成 0。可以证明，a 中整数必然可以在有限次操作后全部变成 0。你能帮他计算出答案吗？",
-        "inputDescription": "第一行，一个正整数 n，表示数组 a 的长度。 第二行，n 个非负整数 a_1, a_2, \\ldots, a_n，表示数组 a 中的整数。",
-        "outputDescription": "一行，一个正整数，表示 a 中整数全部变成 0 所需要的操作次数。",
-        "samples": [
-            {
-                "input": "3\n2 3 4",
-                "output": "7"
-            }
-        ],
-        "explanation": "每次操作都会把当前某个正数减去当前所有正数中的最小值。若把数组排序为 b1<=b2<=...<=bn，答案等于 b1*n + (b2-b1)*(n-1) + ... + (bn-b{n-1})。",
-        "tags": [
-            "编程题",
-            "排序",
-            "数学"
-        ],
-        "template": "#include <bits/stdc++.h>\nusing namespace std;\n\nint main() {\n    ios::sync_with_stdio(false);\n    cin.tie(nullptr);\n\n    // 在此编写代码\n    return 0;\n}",
-        "referenceCode": "#include <bits/stdc++.h>\nusing namespace std;\n\nint main() {\n    ios::sync_with_stdio(false);\n    cin.tie(nullptr);\n\n    int n;\n    cin >> n;\n    vector<long long> a;\n    for (int i = 0; i < n; ++i) {\n        long long x; cin >> x;\n        if (x > 0) a.push_back(x);\n    }\n    sort(a.begin(), a.end());\n    long long ans = 0, prev = 0;\n    int m = a.size();\n    for (int i = 0; i < m; ++i) {\n        ans += (a[i] - prev) * 1LL * (m - i);\n        prev = a[i];\n    }\n    cout << ans << '\\n';\n    return 0;\n}"
-    },
-    {
-        "id": 27,
-        "type": "programming",
-        "title": "日历制作",
-        "problemNumber": "B4414",
-        "description": "小 A 想制作 2025 年每个月的日历。他希望你能编写一个程序，按照格式输出给定月份的日历。 具体来说，第一行需要输出 MON TUE WED THU FRI SAT SUN，分别表示星期一到星期日。接下来若干行中依次输出这个月所包含的日期，日期的个位需要和对应星期几的缩写最后一个字母对齐。例如，2025 年 9 月 1 日是星期一，在输出九月的日历时，1 号的个位 1 就需要与星期一 MON 的最后一个字母 N 对齐。九月的日历输出效果如下: MON TUE WED THU FRI SAT SUN 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27 28 29 30 你能帮助小 A 完成日历的制作吗?",
-        "inputDescription": "一行，一个正整数 m，表示需要按照格式输出 2025 年 m 月的日历。",
-        "outputDescription": "输出包含若干行，表示 2025 年 m 月的日历。",
-        "samples": [
-            {
-                "input": "9",
-                "output": "MON TUE WED THU FRI SAT SUN\n 1  2  3  4  5  6  7\n 8  9 10 11 12 13 14\n15 16 17 18 19 20 21\n22 23 24 25 26 27 28\n29 30"
-            }
-        ],
-        "explanation": "已知 2025 年各月第一天的星期可以通过逐月累加天数得到。打印时先输出表头，再在第一周前补足空位，每个日期按宽度 3 右对齐。",
-        "tags": [
-            "编程题",
-            "日期",
-            "格式化输出"
-        ],
-        "template": "#include <bits/stdc++.h>\nusing namespace std;\n\nint main() {\n    ios::sync_with_stdio(false);\n    cin.tie(nullptr);\n\n    // 在此编写代码\n    return 0;\n}",
-        "referenceCode": "#include <bits/stdc++.h>\nusing namespace std;\n\nint main() {\n    ios::sync_with_stdio(false);\n    cin.tie(nullptr);\n\n    int m;\n    cin >> m;\n    vector<int> days = {0,31,28,31,30,31,30,31,31,30,31,30,31};\n    int start = 3; // 2025-01-01 is Wednesday, Monday=1\n    for (int month = 1; month < m; ++month) {\n        start = (start + days[month] - 1) % 7 + 1;\n    }\n    cout << \"MON TUE WED THU FRI SAT SUN\\n\";\n    int weekday = 1;\n    for (; weekday < start; ++weekday) cout << \"   \";\n    for (int day = 1; day <= days[m]; ++day) {\n        cout << setw(3) << day;\n        if (weekday == 7) {\n            cout << '\\n';\n            weekday = 1;\n        } else {\n            ++weekday;\n        }\n    }\n    if (weekday != 1) cout << '\\n';\n    return 0;\n}"
-    }
-]
+        {
+            id: 26,
+            type: 'programming',
+            title: '数组清零',
+            problemNumber: 'B4413',
+            source: 'official-pdf + luogu-mapping',
+            description: '小 A 有一个由 n 个非负整数组成的数组 a。她会对数组 a 重复进行如下操作，直到数组只包含 0：1）找到数组中的最大值，若最大值有多个则取下标最大的那个；2）在所有非零元素中找到最小值；3）将第 1 步选中的最大值减去第 2 步得到的最小值。请你计算最少需要进行多少次操作，才能把整个数组都变成 0。',
+            inputDescription: '第一行，一个正整数 n，表示数组长度。第二行，n 个非负整数 a1, a2, ..., an，表示数组中的元素。',
+            outputDescription: '输出一行一个整数，表示把数组全部变成 0 所需要的操作次数。',
+            samples: [
+                {
+                    input: '3\n2 3 4',
+                    output: '7'
+                },
+                {
+                    input: '5\n1 3 2 2 5',
+                    output: '13'
+                }
+            ],
+            explanation: '直接按题意模拟即可：每轮先找“最右侧最大值”，再找当前所有正数中的最小值并做减法，统计轮数直到最大值也变成 0。若进一步分析，答案也可理解为排序后各层高度对剩余正数个数的贡献总和。',
+            tags: ['编程题', '模拟', '数组'],
+            template: '#include <bits/stdc++.h>\nusing namespace std;\n\nint main() {\n    ios::sync_with_stdio(false);\n    cin.tie(nullptr);\n\n    // 在此编写代码\n    return 0;\n}',
+            referenceCode: '#include <algorithm>\n#include <cstdio>\nusing namespace std;\nconst int N = 105;\nint n;\nint a[N];\nint cnt;\nint main() {\n    scanf("%d", &n);\n    for (int i = 1; i <= n; i++) scanf("%d", &a[i]);\n    while (1) {\n        int mx = n;\n        for (int i = 1; i <= n; i++)\n            if (a[i] >= a[mx]) mx = i;\n        if (a[mx] == 0) break;\n        int mn = a[mx];\n        for (int i = 1; i <= n; i++)\n            if (a[i] > 0) mn = min(mn, a[i]);\n        a[mx] -= mn;\n        cnt++;\n    }\n    printf("%d\\n", cnt);\n    return 0;\n}'
+        },
+        {
+            id: 27,
+            type: 'programming',
+            title: '日历制作',
+            problemNumber: 'B4414',
+            source: 'official-pdf + luogu-mapping',
+            description: '小 A 想制作 2025 年每个月的日历。输入一个月份 m，请按题目指定格式输出该月日历：先输出表头 MON TUE WED THU FRI SAT SUN，再按每周一到周日的顺序输出日期，并保证日期个位与对应星期缩写的最后一个字母对齐。题面特别说明：2025 年 9 月 1 日是星期一。',
+            inputDescription: '输入一行，一个正整数 m，表示要输出 2025 年 m 月的日历。',
+            outputDescription: '输出若干行，表示 2025 年 m 月的日历。',
+            samples: [
+                {
+                    input: '9',
+                    output: 'MON TUE WED THU FRI SAT SUN\n  1   2   3   4   5   6   7\n  8   9  10  11  12  13  14\n 15  16  17  18  19  20  21\n 22  23  24  25  26  27  28\n 29  30'
+                },
+                {
+                    input: '6',
+                    output: 'MON TUE WED THU FRI SAT SUN\n                          1\n  2   3   4   5   6   7   8\n  9  10  11  12  13  14  15\n 16  17  18  19  20  21  22\n 23  24  25  26  27  28  29\n 30'
+                }
+            ],
+            explanation: '已知 2025 年 9 月 1 日是星期一，可以向前或向后按每月天数推算任意月份 1 日对应的星期。输出时先补齐首周空位，再按宽度格式化输出每个日期即可。',
+            tags: ['编程题', '模拟', '日期', '格式化输出'],
+            template: '#include <bits/stdc++.h>\nusing namespace std;\n\nint main() {\n    ios::sync_with_stdio(false);\n    cin.tie(nullptr);\n\n    // 在此编写代码\n    return 0;\n}',
+            referenceCode: '#include <algorithm>\n#include <cstdio>\nusing namespace std;\nint days[20] = {0, 31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31};\nint main() {\n    int m;\n    scanf("%d", &m);\n    printf("MON TUE WED THU FRI SAT SUN\\n");\n    int d = days[m];\n    int w = 1;\n    if (m > 9) {\n        for (int i = 9; i < m; i++) w = (w + days[i] - 1) % 7 + 1;\n    } else if (m < 9) {\n        for (int i = 8; i >= m; i--) w = ((w - days[i]) % 7 + 7) % 7;\n        if (w == 0) w = 7;\n    }\n    for (int i = 1; i < w; i++) printf("    ");\n    for (int i = 1; i <= d; i++) {\n        printf("% 3d", i);\n        w = w % 7 + 1;\n        if (w == 1 || i == d)\n            printf("\\n");\n        else\n            printf(" ");\n    }\n    return 0;\n}'
+        }
+    ]
 };

@@ -1,4 +1,8 @@
-// 2025年6月 GESP C++ 三级真题
+// 2025年6月 GESP C++ 三级真题 (第10次认证)
+// 数据说明：本卷以官方真题 PDF 为主完成回填。
+// - 客观题 1~15：题面、选项与单选答案可由官方 PDF 文本层直接提取并整理。
+// - 判断题 16~25：题面来自官方 PDF；官方 PDF 文本层未完整带出答案表，当前答案依据公开解析交叉复核填写。
+// - 编程题 26~27：题名、题意、样例与参考代码主体来自官方 PDF；少量公式变量/范围符号因 PDF 文本层缺字，按官方题意做等价整理。
 export const paperData = {
     id: '2025-06-l3',
     title: '2025年6月 GESP C++ 三级真题',
@@ -7,304 +11,290 @@ export const paperData = {
     month: 6,
     session: 10,
     timeLimit: 90 * 60,
+    source: {
+        officialPdf: 'https://gesp.ccf.org.cn/101/attach/1699464809021472.pdf',
+        notes: '客观题 25 题已尽量补齐；其中判断题答案因官方 PDF 文本层未完整带出答案表，现依据公开解析交叉复核。编程题 2 题已补题意、样例与参考代码；少量变量符号按官方题意等价整理。'
+    },
     questions: [
         {
             id: 1,
             type: 'single',
-            question: "若要统计数组中每个数出现次数，最常用的数据结构是（ ）。",
-            options: ["栈","队列","映射/哈希表","并查集"],
-            answer: 2,
+            question: '8 位二进制原码能表示的最小整数是（ ）。',
+            options: ['-127', '-128', '-255', '-256'],
+            answer: 0,
             score: 2,
-            explanation: "键值映射可高效维护频次统计。",
-            tags: ["数组与字符串"]
+            explanation: '8 位原码最高位为符号位，其余 7 位表示数值，因此范围是 -127 到 127。'
         },
         {
             id: 2,
             type: 'single',
-            question: "在无权图中求最短路，通常优先使用（ ）。",
-            options: ["DFS","BFS","二分","拓扑排序"],
+            question: '反码表示中，零的表示形式有（ ）。',
+            options: ['1 种', '2 种', '8 种', '16 种'],
             answer: 1,
             score: 2,
-            explanation: "无权图最短路可用 BFS 分层扩展。",
-            tags: ["算法思维"]
+            explanation: '反码里 +0 和 -0 的编码不同，因此有两种表示。'
         },
         {
             id: 3,
             type: 'single',
-            question: "递归函数必须具备的关键要素是（ ）。",
-            options: ["输入语句","终止条件","循环变量","随机数"],
-            answer: 1,
+            question: '补码 1011 1011 对应的真值是（ ）。',
+            options: ['-69', '-59', '-68', '-58'],
+            answer: 0,
             score: 2,
-            explanation: "无终止条件会导致无限递归。",
-            tags: ["条件判断","函数"]
+            explanation: '10111011 是负数补码，还原可得原码 11000101，对应十进制 -69。'
         },
         {
             id: 4,
             type: 'single',
-            question: "已知 n=1e5，O(n^2) 算法通常（ ）。",
-            options: ["稳定可过","可能超时","一定最优","与 n 无关"],
-            answer: 1,
+            question: '若 X 的 8 位补码为 0000 1010，则 X / 2 的补码是（ ）。',
+            options: ['0000 0101', '1000 0101', '0000 0101 或 1000 0101', '算术右移后结果取决于符号位'],
+            answer: 0,
             score: 2,
-            explanation: "1e5 规模下 O(n^2) 常无法在时限内通过。",
-            tags: ["程序分析"]
+            explanation: '00001010 表示十进制 10，除以 2 得 5，其补码为 00000101。'
         },
         {
             id: 5,
             type: 'single',
-            question: "二分查找适用的前提是序列（ ）。",
-            options: ["元素互异","已排序","长度为偶数","从 0 开始编号"],
-            answer: 1,
+            question: '二进制数 1101.101 对应的十进制数是（ ）。',
+            options: ['13.625', '12.75', '11.875', '14.5'],
+            answer: 0,
             score: 2,
-            explanation: "二分需要单调性，常见为有序数组。",
-            tags: ["数组与字符串","算法思维"]
+            explanation: '1101.101₂ = 8 + 4 + 1 + 1/2 + 1/8 = 13.625。'
         },
         {
             id: 6,
             type: 'single',
-            question: "前缀和数组 pre[i] 一般表示（ ）。",
-            options: ["第 i 项本身","前 i 项的累计信息","第 i 项最大值","后缀最小值"],
+            question: '补码加法中，若符号位无进位而次高位有进位，则说明（ ）。',
+            options: ['结果正确', '发生上溢', '发生下溢', '结果符号位错误'],
             answer: 1,
             score: 2,
-            explanation: "前缀和用累计量支持区间查询。",
-            tags: ["数组与字符串","算法思维"]
+            explanation: '补码加法中符号位进位与次高位进位不同，说明发生溢出；本题官方答案为 B。'
         },
         {
             id: 7,
             type: 'single',
-            question: "在回溯搜索中，撤销选择的操作主要用于（ ）。",
-            options: ["节省输入时间","恢复现场以尝试下一分支","避免递归","加速排序"],
-            answer: 1,
+            question: '八进制数 35.6 对应的十进制数是（ ）。',
+            options: ['29.75', '28.5', '27.625', '30.25'],
+            answer: 0,
             score: 2,
-            explanation: "回溯核心是“试探-递归-撤销”。",
-            tags: ["函数","算法思维"]
+            explanation: '35.6₈ = 3×8 + 5 + 6/8 = 29.75。'
         },
         {
             id: 8,
             type: 'single',
-            question: "若要求“最少操作次数”，常见建模方向是（ ）。",
-            options: ["贪心/BFS/DP 等最优化方法","随机模拟","仅用输出语句","删除条件判断"],
-            answer: 0,
+            question: '二进制数 1010 | 1100 的结果是（ ）。',
+            options: ['1000', '1110', '1010', '1100'],
+            answer: 1,
             score: 2,
-            explanation: "最优化题常需对应算法模型。",
-            tags: ["程序分析"]
+            explanation: '按位或运算 1010 | 1100 = 1110。'
         },
         {
             id: 9,
             type: 'single',
-            question: "vector<int> v; 执行 v.push_back(7); 后，7 会被（ ）。",
-            options: ["插入到头部","追加到尾部","替换全部元素","自动排序"],
-            answer: 1,
+            question: '以下哪个位运算可以交换两个变量的值（无需临时变量）（ ）。',
+            options: [
+                'a = a ^ b; b = a ^ b; a = a ^ b;',
+                'a = a & b; b = a | b; a = a & b;',
+                'a = a | b; b = a ^ b; a = a ^ b;',
+                'a = ~a; b = ~b; a = ~a;'
+            ],
+            answer: 0,
             score: 2,
-            explanation: "push_back 在末尾追加。",
-            tags: ["数组与字符串"]
+            explanation: '经典异或交换写法是 a ^= b; b ^= a; a ^= b。'
         },
         {
             id: 10,
             type: 'single',
-            question: "对于区间 [l,r] 的和，使用前缀和可在 O(1) 时间通过（ ）计算。",
-            options: ["pre[r]-pre[l]","pre[r]-pre[l-1]","pre[l]+pre[r]","pre[r+1]-pre[l-1]"],
-            answer: 1,
+            question: '如何正确定义一个长度为 5 的整型数组（ ）。',
+            options: ['int array = new int[5];', 'array int[5];', 'int[] array = {1,2,3,4,5};', 'int array[5];'],
+            answer: 3,
             score: 2,
-            explanation: "常见 1-based 前缀和公式为 pre[r]-pre[l-1]。",
-            tags: ["算法思维"]
+            explanation: 'C++ 中静态整型数组的定义形式是 int array[5]。'
         },
         {
             id: 11,
             type: 'single',
-            question: "深度优先搜索（DFS）更贴近哪种过程（ ）。",
-            options: ["按层推进","一条路走到底再回退","随机跳转","只访问起点"],
+            question: '下面程序使用枚举法（穷举法）求解满足条件的三位数，横线处应该填入的是（ ）。\n#include <iostream>\nusing namespace std;\nint main() {\n    int count = 0;\n    for (int i = 100; i <= 999; i++) {\n        int a = i / 100;\n        __________________\n        int c = i % 10;\n        if (a * a + b * b == c * c) {\n            count++;\n        }\n    }\n    cout << count << endl;\n    return 0;\n}',
+            options: ['int b = (i / 10) / 10;', 'int b = (i / 10) % 10;', 'int b = (i % 10) / 10;', 'int b = (i % 10) % 10;'],
             answer: 1,
             score: 2,
-            explanation: "DFS 先深后广，回溯再探索。",
-            tags: ["算法思维"]
+            explanation: '十位数字应写成 (i / 10) % 10。'
         },
         {
             id: 12,
             type: 'single',
-            question: "当状态具有“重叠子问题”时，优先考虑（ ）。",
-            options: ["动态规划","快速幂","并查集","双向链表"],
-            answer: 0,
+            question: '下面程序模拟了一个简单的小球反弹过程，横线处应该填入的是（ ）。\n#include <iostream>\nusing namespace std;\nint main() {\n    int height = 10;\n    int distance = 0;\n    for (int i = 1; i <= 5; i++) { // 模拟 5 次落地\n        __________________\n        height /= 2;\n        distance += height;\n    }\n    cout << distance << endl;\n    return 0;\n}',
+            options: ['distance += height / 2;', 'distance += height;', 'distance += height * 2;', 'distance += height + 1;'],
+            answer: 1,
             score: 2,
-            explanation: "重叠子问题是 DP 的典型信号。",
-            tags: ["程序分析"]
+            explanation: '每次落地前先把当前下落高度计入总路程，因此填 distance += height。'
         },
         {
             id: 13,
             type: 'single',
-            question: "若只需判断元素是否出现过，通常可用（ ）。",
-            options: ["set / unordered_set","queue","stack","priority_queue"],
-            answer: 0,
+            question: 'C++ 代码 `string s = "GESP考试";` 中，s 占据的字节数是（ ）。',
+            options: ['10', '8', '8 或 10', '取决于计算机采用什么编码'],
+            answer: 3,
             score: 2,
-            explanation: "集合结构支持高效查重。",
-            tags: ["条件判断"]
+            explanation: '字符串字节数依赖编码；常见 UTF-8 下是 10 字节，GBK 下是 8 字节。'
         },
         {
             id: 14,
             type: 'single',
-            question: "双重循环遍历 n×n 矩阵的时间复杂度通常是（ ）。",
-            options: ["O(1)","O(log n)","O(n)","O(n^2)"],
-            answer: 3,
+            question: 'C++ 语句 `string s = "Gesp Test";` 执行 `s.rfind("e")` 以后，输出的是（ ）。',
+            options: ['1', '2', '6', '3'],
+            answer: 2,
             score: 2,
-            explanation: "两层线性循环相乘为 O(n^2)。",
-            tags: ["循环","算法思维"]
+            explanation: 'rfind 从后往前找，字符串中最后一个 e 的下标是 6。'
         },
         {
             id: 15,
             type: 'single',
-            question: "在图遍历中，visited 数组的作用是（ ）。",
-            options: ["记录输入顺序","防止重复访问和死循环","存放边权","统计内存"],
-            answer: 1,
+            question: '字符串 "Gesp考试" 的字符数是（ ）。',
+            options: ['10', '8', '6', '字符数多少取决于编码'],
+            answer: 2,
             score: 2,
-            explanation: "标记访问状态是图搜索基础。",
-            tags: ["数组与字符串","算法思维"]
+            explanation: '字符数按逻辑字符计，共 6 个字符；编码只影响字节数。'
         },
         {
             id: 16,
             type: 'judge',
-            question: "DFS 和 BFS 都可以用于图的遍历。",
-            options: ["正确","错误"],
-            answer: 0,
+            question: 'C++ 中 string 的 == 运算符比较的是字符串的内存地址，而非内容。',
+            options: ['正确', '错误'],
+            answer: 1,
             score: 2,
-            explanation: "两者均为经典图搜索策略。",
-            tags: ["判断题","算法思维"]
+            explanation: 'string 的 == 比较的是字符串内容。'
         },
         {
             id: 17,
             type: 'judge',
-            question: "递归深度与系统栈空间无关。",
-            options: ["正确","错误"],
-            answer: 1,
+            question: 'string 的 substr(1, 3) 返回从下标 1 开始的 3 个字符的子串。',
+            options: ['正确', '错误'],
+            answer: 0,
             score: 2,
-            explanation: "递归会占用调用栈，过深可能栈溢出。",
-            tags: ["判断题","函数"]
+            explanation: 'substr(pos, len) 的含义正是从 pos 开始取 len 个字符。'
         },
         {
             id: 18,
             type: 'judge',
-            question: "二分答案法要求可行性随答案具有单调性。",
-            options: ["正确","错误"],
-            answer: 0,
+            question: 'x 是浮点数，(x >> 1) 等价于 x / 2。',
+            options: ['正确', '错误'],
+            answer: 1,
             score: 2,
-            explanation: "单调性是二分答案成立前提。",
-            tags: ["判断题","算法思维"]
+            explanation: '位移运算不能直接用于浮点数。'
         },
         {
             id: 19,
             type: 'judge',
-            question: "前缀和只能处理加法问题，不能做计数。",
-            options: ["正确","错误"],
-            answer: 1,
+            question: 'string("hello") == "hello" 的比较结果为 true。',
+            options: ['正确', '错误'],
+            answer: 0,
             score: 2,
-            explanation: "计数本质也是累加，可用前缀和。",
-            tags: ["判断题","算法思维"]
+            explanation: '两边内容相同，比较结果为 true。'
         },
         {
             id: 20,
             type: 'judge',
-            question: "在无权图中，BFS 首次到达某点时路径即最短。",
-            options: ["正确","错误"],
-            answer: 0,
+            question: 'sort 可以直接用于排序 set 中的元素。',
+            options: ['正确', '错误'],
+            answer: 1,
             score: 2,
-            explanation: "按层扩展保证首次到达最短。",
-            tags: ["判断题","算法思维"]
+            explanation: 'set 自带有序性，且其迭代器不支持 sort 所需的随机访问。'
         },
         {
             id: 21,
             type: 'judge',
-            question: "回溯算法不会重复进入同一状态。",
-            options: ["正确","错误"],
-            answer: 1,
+            question: '(x & 1) == 0 可以判断整数 x 是否为偶数。',
+            options: ['正确', '错误'],
+            answer: 0,
             score: 2,
-            explanation: "若不做剪枝/去重，可能重复状态。",
-            tags: ["判断题","算法思维"]
+            explanation: '偶数最低位为 0，因此与 1 按位与后结果为 0。'
         },
         {
             id: 22,
             type: 'judge',
-            question: "时间复杂度 O(n log n) 在很多排序算法中常见。",
-            options: ["正确","错误"],
-            answer: 0,
+            question: 'string 的 substr(2, 10) 在字符串长度不足时会抛出异常。',
+            options: ['正确', '错误'],
+            answer: 1,
             score: 2,
-            explanation: "如快速排序平均、归并排序等。",
-            tags: ["判断题","算法思维"]
+            explanation: '当起始位置合法但长度超出时，substr 会截到字符串末尾，不会因此抛异常。'
         },
         {
             id: 23,
             type: 'judge',
-            question: "动态规划一定比贪心更简单。",
-            options: ["正确","错误"],
-            answer: 1,
+            question: '在数学纸面计算中，pow(2, 3) 的计算结果一定是 8，但是在 C++ 中，如果遇到数据类型是浮点数，那就不一定正确。',
+            options: ['正确', '错误'],
+            answer: 0,
             score: 2,
-            explanation: "两者适用场景不同，DP 常更复杂。",
-            tags: ["判断题","算法思维"]
+            explanation: '浮点计算存在精度误差，结果在某些场景下可能不是精确整数表示。'
         },
         {
             id: 24,
             type: 'judge',
-            question: "使用 long long 可降低部分整数溢出风险。",
-            options: ["正确","错误"],
-            answer: 0,
+            question: '在 C++ 中，枚举的底层类型可以是非整型（如 float 或 double）。',
+            options: ['正确', '错误'],
+            answer: 1,
             score: 2,
-            explanation: "更大整数范围可减少溢出。",
-            tags: ["判断题","程序分析"]
+            explanation: '枚举的底层类型必须是整型。'
         },
         {
             id: 25,
             type: 'judge',
-            question: "程序调试时构造边界样例没有意义。",
-            options: ["正确","错误"],
-            answer: 1,
+            question: '函数声明 `double f();` 返回 int 时，会自动转换为 double。',
+            options: ['正确', '错误'],
+            answer: 0,
             score: 2,
-            explanation: "边界样例对发现缺陷非常关键。",
-            tags: ["判断题","程序分析"]
+            explanation: '返回表达式会按函数声明的返回类型自动转换。'
         }
     ],
     programmingQuestions: [
-    {
-        "id": 26,
-        "type": "programming",
-        "title": "奇偶校验",
-        "problemNumber": "B4358",
-        "description": "数据在传输过程中可能出错，因此接收方收到数据后通常会校验传输的数据是否正确，奇偶校验是经典的校验方式之一。 给定 n 个非负整数 c_1, c_2, \\ldots, c_n 代表所传输的数据，它们的校验码取决于这些整数在二进制下 1 的数量之和的奇偶性。如果这些整数在二进制下共有奇数个 1，那么校验码为 1；否则校验码为 0。你能求出这些整数的校验码吗？",
-        "inputDescription": "第一行，一个正整数 n，表示所传输的数据量。 第二行，n 个非负整数 c_1, c_2, \\ldots, c_n，表示所传输的数据。",
-        "outputDescription": "输出一行，两个整数，以一个空格分隔： 第一个整数表示 c_1, c_2, \\ldots, c_n 在二进制下 1 的总数量； 第二个整数表示校验码（0 或 1）。",
-        "samples": [
-            {
-                "input": "3\n1 2 3",
-                "output": "4 0"
-            }
-        ],
-        "explanation": "把所有数的二进制中 1 的个数加起来，设总数为 s，则校验码就是 s%2。",
-        "tags": [
-            "编程题",
-            "位运算",
-            "统计"
-        ],
-        "template": "#include <bits/stdc++.h>\nusing namespace std;\n\nint main() {\n    ios::sync_with_stdio(false);\n    cin.tie(nullptr);\n\n    // 在此编写代码\n    return 0;\n}",
-        "referenceCode": "#include <bits/stdc++.h>\nusing namespace std;\n\nint main() {\n    ios::sync_with_stdio(false);\n    cin.tie(nullptr);\n\n    int n;\n    cin >> n;\n    long long sum = 0;\n    for (int i = 0; i < n; ++i) {\n        unsigned long long x;\n        cin >> x;\n        sum += __builtin_popcountll(x);\n    }\n    cout << sum << ' ' << (sum % 2) << '\\n';\n    return 0;\n}"
-    },
-    {
-        "id": 27,
-        "type": "programming",
-        "title": "分糖果",
-        "problemNumber": "B4359",
-        "description": "有 n 位小朋友排成一队等待老师分糖果。第 i 位小朋友想要至少 a_i 颗糖果，并且分给他的糖果数量必须比分给前一位小朋友的糖果数量更多，不然他就会不开心。 老师想知道至少需要准备多少颗糖果才能让所有小朋友都开心。你能帮帮老师吗？",
-        "inputDescription": "第一行，一个正整数 n，表示小朋友的人数。 第二行，n 个正整数 a_1, a_2, \\ldots, a_n，依次表示每位小朋友至少需要的糖果数量。",
-        "outputDescription": "输出一行，一个整数，表示最少需要准备的糖果数量。",
-        "samples": [
-            {
-                "input": "4\n1 1 3 2",
-                "output": "10"
-            }
-        ],
-        "explanation": "为了让糖果数严格递增且不少于 a_i，从左到右贪心即可：第 i 人拿 max(a_i, 上一人糖果数+1)。",
-        "tags": [
-            "编程题",
-            "贪心",
-            "数组"
-        ],
-        "template": "#include <bits/stdc++.h>\nusing namespace std;\n\nint main() {\n    ios::sync_with_stdio(false);\n    cin.tie(nullptr);\n\n    // 在此编写代码\n    return 0;\n}",
-        "referenceCode": "#include <bits/stdc++.h>\nusing namespace std;\n\nint main() {\n    ios::sync_with_stdio(false);\n    cin.tie(nullptr);\n\n    int n;\n    cin >> n;\n    long long ans = 0, prev = 0;\n    for (int i = 0; i < n; ++i) {\n        long long a;\n        cin >> a;\n        long long cur = max(a, prev + 1);\n        ans += cur;\n        prev = cur;\n    }\n    cout << ans << '\\n';\n    return 0;\n}"
-    }
-]
+        {
+            id: 26,
+            type: 'programming',
+            title: '奇偶校验',
+            problemNumber: 'B4358',
+            source: 'official-pdf + luogu-mapping',
+            description: '数据在传输过程中可能出错，因此接收方收到数据后通常会校验传输的数据是否正确，奇偶校验是经典的校验方式之一。给定 n 个非负整数 c1, c2, ..., cn 代表所传输的数据，它们的校验码取决于这些整数在二进制下 1 的数量之和的奇偶性。如果这些整数在二进制下共有奇数个 1，那么校验码为 1；否则校验码为 0。请输出 1 的总数量与校验码。',
+            inputDescription: '第一行，一个正整数 n，表示所传输的数据量。第二行，n 个非负整数 c1, c2, ..., cn，表示所传输的数据。',
+            outputDescription: '输出一行，两个整数，以一个空格分隔：第一个整数表示这些数在二进制下 1 的总数量；第二个整数表示校验码（0 或 1）。',
+            samples: [
+                {
+                    input: '4\n71 69 83 80',
+                    output: '13 1'
+                },
+                {
+                    input: '6\n1 2 4 8 16 32',
+                    output: '6 0'
+                }
+            ],
+            explanation: '遍历所有输入数字，统计其二进制中 1 的个数之和 s，答案即为 `s` 和 `s % 2`。',
+            tags: ['编程题', '位运算', '统计'],
+            template: '#include <bits/stdc++.h>\nusing namespace std;\n\nint main() {\n    ios::sync_with_stdio(false);\n    cin.tie(nullptr);\n\n    // 在此编写代码\n    return 0;\n}',
+            referenceCode: '#include <cstdio>\nusing namespace std;\n\nint n, v;\n\nint main() {\n    scanf("%d", &n);\n    for (int i = 1; i <= n; i++) {\n        int c;\n        scanf("%d", &c);\n        while (c) {\n            v += c & 1;\n            c >>= 1;\n        }\n    }\n    printf("%d %d\\n", v, v & 1);\n    return 0;\n}'
+        },
+        {
+            id: 27,
+            type: 'programming',
+            title: '分糖果',
+            problemNumber: 'B4359',
+            source: 'official-pdf + luogu-mapping',
+            description: '有 n 位小朋友排成一队等待老师分糖果。第 i 位小朋友想要至少 ai 颗糖果，并且分给他的糖果数量必须比分给前一位小朋友的糖果数量更多，不然他就会不开心。老师想知道至少需要准备多少颗糖果才能让所有小朋友都开心。',
+            inputDescription: '第一行，一个正整数 n，表示小朋友的人数。第二行，n 个正整数 a1, a2, ..., an，依次表示每位小朋友至少需要的糖果数量。',
+            outputDescription: '输出一行，一个整数，表示最少需要准备的糖果数量。',
+            samples: [
+                {
+                    input: '4\n1 4 3 3',
+                    output: '16'
+                },
+                {
+                    input: '15\n314 15926 53589793 238462643 383279502 8 8 4 1 9 7 1 6 9 3',
+                    output: '45081432531'
+                }
+            ],
+            explanation: '从左到右贪心。设前一位拿到 prev 颗，则当前位至少应拿 `max(ai, prev + 1)` 颗，把这些值累加即可。',
+            tags: ['编程题', '贪心', '数组'],
+            template: '#include <bits/stdc++.h>\nusing namespace std;\n\nint main() {\n    ios::sync_with_stdio(false);\n    cin.tie(nullptr);\n\n    // 在此编写代码\n    return 0;\n}',
+            referenceCode: '#include <cstdio>\n#include <algorithm>\nusing namespace std;\n\nconst int N = 1005;\nint n, a[N];\nlong long ans;\n\nint main() {\n    scanf("%d", &n);\n    for (int i = 1; i <= n; i++) {\n        scanf("%d", &a[i]);\n        a[i] = max(a[i - 1] + 1, a[i]);\n        ans += a[i];\n    }\n    printf("%lld\\n", ans);\n    return 0;\n}'
+        }
+    ]
 };
