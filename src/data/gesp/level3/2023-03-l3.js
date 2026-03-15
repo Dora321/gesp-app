@@ -1,11 +1,14 @@
-// 2023年3月 GESP C++ 三级真题
+// 历史占位文件：2023年3月并无正式 GESP C++ 三级认证。
+// 保留此文件仅为兼容早期整理过程，勿作为正式真题卷使用。
 export const paperData = {
     id: '2023-03-l3',
-    title: '2023年3月 GESP C++ 三级真题',
+    title: '2023年3月 GESP C++ 三级（历史占位，非正式真题）',
     level: 3,
     year: 2023,
     month: 3,
     session: 1,
+    note: '历史占位文件；2023-03 无正式三级认证，不应纳入正式题库入口。',
+    isHistoricalPlaceholder: true,
     timeLimit: 90 * 60,
     questions: [
         {
