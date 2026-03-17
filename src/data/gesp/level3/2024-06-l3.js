@@ -47,7 +47,7 @@ export const paperData = {
         {
             id: 4,
             type: 'single',
-            question: '下列代码将十进制转化成八进制，则横线上应填入（   ）。\n#include <iostream>\nusing namespace std;\nvoid decimal2octal(int decimal) {\n    int oct_number[100];\n    int i = 0;\n    while (decimal > 0) {\n        __________________________\n    }\n    for (int j = i - 1; j >= 0; j--) cout << oct_number[j];\n    cout << endl;\n}',
+            question: '下列代码将十进制转化成八进制，则横线上应填入（   ）。\n```cpp\n#include <iostream>\nusing namespace std;\nvoid decimal2octal(int decimal) {\n    int oct_number[100];\n    int i = 0;\n    while (decimal > 0) {\n        __________________________\n    }\n    for (int j = i - 1; j >= 0; j--) cout << oct_number[j];\n    cout << endl;\n}\n```cpp',
             options: ['oct_number[i] = decimal % 8;    decimal /= 8;', 'oct_number[i] = decimal / 8;    decimal %/= 8;', 'oct_number[i++] = decimal % 8;    decimal /= 8;', 'oct_number[i++] = decimal / 8;    decimal %= 8;'],
             answer: 2,
             score: 2,
@@ -74,7 +74,7 @@ export const paperData = {
         {
             id: 7,
             type: 'single',
-            question: '下列代码的输出结果是（   ）。\n#include <iostream>\nusing namespace std;\nint main() {\n    int a = 12;\n    int result = a >> 2;\n    cout << result << endl;\n    return 0;\n}',
+            question: '下列代码的输出结果是（   ）。\n```cpp\n#include <iostream>\nusing namespace std;\nint main() {\n    int a = 12;\n    int result = a >> 2;\n    cout << result << endl;\n    return 0;\n}\n```cpp',
             options: ['12', '6', '3', '1'],
             answer: 2,
             score: 2,
@@ -83,7 +83,7 @@ export const paperData = {
         {
             id: 8,
             type: 'single',
-            question: '下列代码的输出结果是（   ）。\n#include <iostream>\nusing namespace std;\nint main() {\n    int a = 5;\n    int b = 10;\n    a = a ^ b;\n    b = a ^ b;\n    a = a ^ b;\n    cout << "a = " << a << ", b = " << b << endl;\n    return 0;\n}',
+            question: '下列代码的输出结果是（   ）。\n```cpp\n#include <iostream>\nusing namespace std;\nint main() {\n    int a = 5;\n    int b = 10;\n    a = a ^ b;\n    b = a ^ b;\n    a = a ^ b;\n    cout << "a = " << a << ", b = " << b << endl;\n    return 0;\n}\n```cpp',
             options: ['a = 5, b = 10', 'a = 5, b = 5', 'a = 10, b = 5', 'a = 10, b = 10'],
             answer: 2,
             score: 2,
@@ -101,7 +101,7 @@ export const paperData = {
         {
             id: 10,
             type: 'single',
-            question: '在下列代码的横线处填写（   ），可以使得输出是“7”。\n#include <iostream>\nusing namespace std;\nint main() {\n    int array[5] = {3, 7, 5, 2, 4};\n    int max = 0;\n    for (int i = 0; i < 5; i++)\n        if (______________)\n            max = array[i];\n    cout << max << endl;\n    return 0;\n}',
+            question: '在下列代码的横线处填写（   ），可以使得输出是“7”。\n```cpp\n#include <iostream>\nusing namespace std;\nint main() {\n    int array[5] = {3, 7, 5, 2, 4};\n    int max = 0;\n    for (int i = 0; i < 5; i++)\n        if (______________)\n            max = array[i];\n    cout << max << endl;\n    return 0;\n}\n```cpp',
             options: ['max > array[i]', 'max < array[i]', 'max = array[i]', '以上均不对'],
             answer: 1,
             score: 2,
@@ -110,7 +110,7 @@ export const paperData = {
         {
             id: 11,
             type: 'single',
-            question: '小杨在做数学题，题目要求找出从 1 到 35 中能被 7 整除的数字，即 [7, 14, 21, 28, 35]，则横线处应填入哪个代码？（   ）\n#include <iostream>\nusing namespace std;\nint main() {\n    int arr[35];\n    int count = 0;\n    for (int i = 1; i <= 35; i++) {\n        if (i % 7 == 0)\n            __________________________\n    }\n    for (int i = 0; i < count; i++) cout << arr[i] << endl;\n    return 0;\n}',
+            question: '小杨在做数学题，题目要求找出从 1 到 35 中能被 7 整除的数字，即 [7, 14, 21, 28, 35]，则横线处应填入哪个代码？（   ）\n```cpp\n#include <iostream>\nusing namespace std;\nint main() {\n    int arr[35];\n    int count = 0;\n    for (int i = 1; i <= 35; i++) {\n        if (i % 7 == 0)\n            __________________________\n    }\n    for (int i = 0; i < count; i++) cout << arr[i] << endl;\n    return 0;\n}\n```cpp',
             options: ['arr[count++] = i;', 'arr[i] = count++;', 'arr[i] = count;', 'arr[count] = count++;'],
             answer: 0,
             score: 2,
@@ -128,7 +128,7 @@ export const paperData = {
         {
             id: 13,
             type: 'single',
-            question: '某小学男子篮球队招募新成员，要求加入球队的成员身高在 135 厘米以上（不含 135 厘米）。本次报名的人员有 10 人，他们的身高分别是 125、127、136、134、137、138、126、135、140、145。完善以下代码，求出本次球队能够招募到新成员的人数？（   ）\n#include <iostream>\nusing namespace std;\nint main() {\n    int arr[10] = {125, 127, 136, 134, 137, 138, 126, 135, 140, 145};\n    int count = 0;\n    for (int i = 0; i < 10; i++)\n        __________________________\n    cout << count << endl;\n    return 0;\n}',
+            question: '某小学男子篮球队招募新成员，要求加入球队的成员身高在 135 厘米以上（不含 135 厘米）。本次报名的人员有 10 人，他们的身高分别是 125、127、136、134、137、138、126、135、140、145。完善以下代码，求出本次球队能够招募到新成员的人数？（   ）\n```cpp\n#include <iostream>\nusing namespace std;\nint main() {\n    int arr[10] = {125, 127, 136, 134, 137, 138, 126, 135, 140, 145};\n    int count = 0;\n    for (int i = 0; i < 10; i++)\n        __________________________\n    cout << count << endl;\n    return 0;\n}\n```cpp',
             options: ['count = arr[i] > 135 ? 1 : 0;', 'count += arr[i] > 135 ? 1 : 0;', 'count++;', '以上都不对'],
             answer: 1,
             score: 2,
@@ -146,7 +146,7 @@ export const paperData = {
         {
             id: 15,
             type: 'single',
-            question: '如果执行下面 C++ 代码后，输出的结果是“gesp ccf org cn ”，则横线上应填入哪个代码？（   ）\n#include <iostream>\nusing namespace std;\nint main() {\n    string str = "gesp.ccf.org.cn";\n    string delimiter = ".";\n    string result = "";\n    string token;\n    size_t found = str.find(delimiter);\n    while (found != string::npos) {\n        token = str.substr(0, found);\n        result += token;\n        result += " ";\n        __________________________\n        found = str.find(delimiter);\n    }\n    result += str;\n    result += " ";\n    cout << result << endl;\n    return 0;\n}',
+            question: '如果执行下面 C++ 代码后，输出的结果是“gesp ccf org cn ”，则横线上应填入哪个代码？（   ）\n```cpp\n#include <iostream>\nusing namespace std;\nint main() {\n    string str = "gesp.ccf.org.cn";\n    string delimiter = ".";\n    string result = "";\n    string token;\n    size_t found = str.find(delimiter);\n    while (found != string::npos) {\n        token = str.substr(0, found);\n        result += token;\n        result += " ";\n        __________________________\n        found = str.find(delimiter);\n    }\n    result += str;\n    result += " ";\n    cout << result << endl;\n    return 0;\n}\n```cpp',
             options: ['str = str.substr(found + delimiter.length(), str.length() - 1);', 'str = str.substr(found, str.length());', 'str = str.substr(found, str.length() - 1);', '以上都不对'],
             answer: 0,
             score: 2,
@@ -218,7 +218,7 @@ export const paperData = {
         {
             id: 23,
             type: 'judge',
-            question: '执行下面 C++ 代码后，输出的结果是 8。\nint a = 0b1010;\nint b = 01100;\nint c = a & b;\ncout << c << endl;',
+            question: '执行下面 C++ 代码后，输出的结果是 8。\n```cpp\nint a = 0b1010;\nint b = 01100;\nint c = a & b;\ncout << c << endl;\n```cpp',
             options: ['正确', '错误'],
             answer: 1,
             score: 2,
@@ -227,7 +227,7 @@ export const paperData = {
         {
             id: 24,
             type: 'judge',
-            question: '执行下面 C++ 代码后，输出的结果不可能是 89781。\n#include <iostream>\n#include <cstdlib>\n#include <ctime>\nusing namespace std;\nint main() {\n    srand(time(NULL));\n    int i = 1;\n    int s[5];\n    while (i <= 5) {\n        int a = rand() % 10;\n        if (a % 3 == (i + 1) % 3)\n            s[i++] = a;\n    }\n    for (int i = 1; i <= 5; i++) cout << s[i];\n    cout << endl;\n    return 0;\n}',
+            question: '执行下面 C++ 代码后，输出的结果不可能是 89781。\n```cpp\n#include <iostream>\n#include <cstdlib>\n#include <ctime>\nusing namespace std;\nint main() {\n    srand(time(NULL));\n    int i = 1;\n    int s[5];\n    while (i <= 5) {\n        int a = rand() % 10;\n        if (a % 3 == (i + 1) % 3)\n            s[i++] = a;\n    }\n    for (int i = 1; i <= 5; i++) cout << s[i];\n    cout << endl;\n    return 0;\n}\n```cpp',
             options: ['正确', '错误'],
             answer: 0,
             score: 2,

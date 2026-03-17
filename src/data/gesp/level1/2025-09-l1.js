@@ -41,7 +41,7 @@ export const paperData = {
     {
       id: 3,
       type: 'single',
-      question: '关于下边的C++代码用于输入姓名，然后输出姓名，正确的说法是( )。\n```cpp\nstring XingMing;\ncout << "请输入您的姓名：";\ncin >> XingMing;\ncout << XingMing;\n```',
+      question: '关于下边的C++代码用于输入姓名，然后输出姓名，正确的说法是( )。\n```cpp\nstring XingMing;\ncout << "请输入您的姓名：";\ncin >> XingMing;\ncout << XingMing;\n```cpp',
       options: [
         'XingMing 是汉语拼音，不能作为变量名',
         '可以将 XingMing 改为 Xing Ming',
@@ -56,7 +56,7 @@ export const paperData = {
     {
       id: 4,
       type: 'single',
-      question: '下列C++代码中a和b都是整型变量，执行后，其结果是( )。\n```cpp\na = 13;\nb = 5;\ncout << a / b << a % a * b;\n```',
+      question: '下列C++代码中a和b都是整型变量，执行后，其结果是( )。\n```cpp\na = 13;\nb = 5;\ncout << a / b << a % a * b;\n```cpp',
       options: ['2.60', '23', '20', '以上都不准确'],
       answer: 2,
       score: 2,
@@ -76,7 +76,7 @@ export const paperData = {
     {
       id: 6,
       type: 'single',
-      question: '下面的C++代码中变量 N 和 M 都是整型，则执行时如果先输入10并输入1个空格后输入20并回车，其输出的数值是( )。\n```cpp\nscanf("%d", &N);\nscanf("%d", &M);\nprintf("%d", N + M);\n```',
+      question: '下面的C++代码中变量 N 和 M 都是整型，则执行时如果先输入10并输入1个空格后输入20并回车，其输出的数值是( )。\n```cpp\nscanf("%d", &N);\nscanf("%d", &M);\nprintf("%d", N + M);\n```cpp',
       options: ['30', '1020', '{N+M}', '不输出，继续等待输入'],
       answer: 0,
       score: 2,
@@ -86,7 +86,7 @@ export const paperData = {
     {
       id: 7,
       type: 'single',
-      question: '当前是9月，编写C++代码求 N 个月后的月份。横线处应填入的代码是 ( )。\n```cpp\nint N, M;\ncin >> N;\nM = ________;\nif (M == 0) printf("%d个月后是12月", N);\nelse printf("%d个月后是%d月", N, M);\n```',
+      question: '当前是9月，编写C++代码求 N 个月后的月份。横线处应填入的代码是 ( )。\n```cpp\nint N, M;\ncin >> N;\nM = ________;\nif (M == 0) printf("%d个月后是12月", N);\nelse printf("%d个月后是%d月", N, M);\n```cpp',
       options: ['N % 12', '9 + N % 12', '(9 + N) / 12', '(9 + N) % 12'],
       answer: 3,
       score: 2,
@@ -96,7 +96,7 @@ export const paperData = {
     {
       id: 8,
       type: 'single',
-      question: '下面C++代码执行后的输出是 ( )。\n```cpp\nint n = 0;\nfor (int i = 0; i < 100; i++)\n  n += i % 2;\ncout << n;\n```',
+      question: '下面C++代码执行后的输出是 ( )。\n```cpp\nint n = 0;\nfor (int i = 0; i < 100; i++)\n  n += i % 2;\ncout << n;\n```cpp',
       options: ['5050', '4950', '50', '49'],
       answer: 2,
       score: 2,
@@ -116,7 +116,7 @@ export const paperData = {
     {
       id: 10,
       type: 'single',
-      question: '代码执行后的输出是 ( )。\n```cpp\nint a, b;\ncin >> a >> b;\nif (a > b) a = b;\nb = a;\ncout << a << " " << b;\n```\n如果输入 10 20：',
+      question: '代码执行后的输出是 ( )。\n```cpp\nint a, b;\ncin >> a >> b;\nif (a > b) a = b;\nb = a;\ncout << a << " " << b;\n```cpp\n如果输入 10 20：',
       options: ['10 20', '10 10', '20 20', '20 10'],
       answer: 1,
       score: 2,
@@ -126,7 +126,7 @@ export const paperData = {
     {
       id: 11,
       type: 'single',
-      question: '代码执行后的输出是 ( )。\n```cpp\nint n, ans = 0;\ncin >> n;\nwhile (n > 0) {\n  ans = ans * 10 + n % 10;\n  n /= 10;\n}\ncout << ans;\n```\n如果输入 123：',
+      question: '代码执行后的输出是 ( )。\n```cpp\nint n, ans = 0;\ncin >> n;\nwhile (n > 0) {\n  ans = ans * 10 + n % 10;\n  n /= 10;\n}\ncout << ans;\n```cpp\n如果输入 123：',
       options: ['123', '3', '321', '6'],
       answer: 2,
       score: 2,
@@ -136,7 +136,7 @@ export const paperData = {
     {
       id: 12,
       type: 'single',
-      question: '代码执行后的输出是 ( )。\n```cpp\nfor (int i = 1; i <= 5; i++) {\n  if (i % 2 == 0) continue;\n  cout << i;\n}\n```',
+      question: '代码执行后的输出是 ( )。\n```cpp\nfor (int i = 1; i <= 5; i++) {\n  if (i % 2 == 0) continue;\n  cout << i;\n}\n```cpp',
       options: ['12345', '24', '135', '13'],
       answer: 2,
       score: 2,
@@ -156,7 +156,7 @@ export const paperData = {
     {
       id: 14,
       type: 'single',
-      question: '代码执行后的输出是 ( )。\n```cpp\nint n = 10, sum = 0;\nwhile (n > 0) {\n  if (n % 3 == 0) break;\n  sum += n;\n  n--;\n}\ncout << sum;\n```',
+      question: '代码执行后的输出是 ( )。\n```cpp\nint n = 10, sum = 0;\nwhile (n > 0) {\n  if (n % 3 == 0) break;\n  sum += n;\n  n--;\n}\ncout << sum;\n```cpp',
       options: ['55', '19', '45', '10'],
       answer: 3,
       score: 2,

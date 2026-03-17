@@ -51,7 +51,7 @@ export const paperData = {
         {
             id: 4,
             type: 'single',
-            question: '执行以下程序段，输出值是（ ）。\nint x = 5;\nif (x == 3 >> 2) x = 8 >> 3;\ncout << x << endl;',
+            question: '执行以下程序段，输出值是（ ）。\n```cpp\nint x = 5;\nif (x == 3 >> 2) x = 8 >> 3;\ncout << x << endl;\n```cpp',
             options: ['0', '5', '120', '1'],
             answer: 1,
             score: 2,
@@ -60,7 +60,7 @@ export const paperData = {
         {
             id: 5,
             type: 'single',
-            question: '已知字符串 s = "C++ Programming"，下列程序运行的结果是（ ）。\ncout << (int)(s.length() | 3) << endl;',
+            question: '已知字符串 s = "C++ Programming"，下列程序运行的结果是（ ）。\n```cpp\ncout << (int)(s.length() | 3) << endl;\n```cpp',
             options: ['14', '15', '16', '17'],
             answer: 1,
             score: 2,
@@ -69,7 +69,7 @@ export const paperData = {
         {
             id: 6,
             type: 'single',
-            question: '以下代码是一个程序的部分代码，能够正确执行，输出的结果是（ ）。\nint arr[5] = {1, 2, 3, 4, 5};\nint p = arr[1];\ncout << (p + 2) << endl;',
+            question: '以下代码是一个程序的部分代码，能够正确执行，输出的结果是（ ）。\n```cpp\nint arr[5] = {1, 2, 3, 4, 5};\nint p = arr[1];\ncout << (p + 2) << endl;\n```cpp',
             options: ['1', '2', '3', '4'],
             answer: 3,
             score: 2,
@@ -101,7 +101,7 @@ export const paperData = {
         {
             id: 9,
             type: 'single',
-            question: '以下代码执行后，数组 arr 的内容是（ ）。\nint arr[6] = {1, 2, 3, 4, 5, 6};\nfor (int i = 0; i < 6; i += 2) {\n    arr[i] = arr[i] + arr[i+1];\n    arr[i+1] = arr[i] - arr[i+1];\n    arr[i] = arr[i] - arr[i+1];\n}',
+            question: '以下代码执行后，数组 arr 的内容是（ ）。\n```cpp\nint arr[6] = {1, 2, 3, 4, 5, 6};\nfor (int i = 0; i < 6; i += 2) {\n    arr[i] = arr[i] + arr[i+1];\n    arr[i+1] = arr[i] - arr[i+1];\n    arr[i] = arr[i] - arr[i+1];\n}\n```cpp',
             options: ['{2,1,4,3,6,5}', '{1,2,3,4,5,6}', '{3,1,4,2,5,3}', '{1,3,2,5,4,6}'],
             answer: 0,
             score: 2,
@@ -119,7 +119,7 @@ export const paperData = {
         {
             id: 11,
             type: 'single',
-            question: '整型变量 x 的初始值为 10，以下代码的输出结果是（ ）。\nint t = x--;\nt -= x;\ncout << t << endl;',
+            question: '整型变量 x 的初始值为 10，以下代码的输出结果是（ ）。\n```cpp\nint t = x--;\nt -= x;\ncout << t << endl;\n```cpp',
             options: ['0', '-1', '1', '死循环'],
             answer: 2,
             score: 2,
@@ -137,7 +137,7 @@ export const paperData = {
         {
             id: 13,
             type: 'single',
-            question: '以下代码运行后，sum 的结果是（ ）。\nint arr[5] = {2, 4, 6, 8, 10};\nint sum = 0;\nfor (int i = 0; i < 5; i++) {\n    switch (arr[i] % (1 | 2)) {\n        case 0: sum += 1; break;\n        case 1: sum += 2; break;\n        case 2: sum += 3; break;\n    }\n}',
+            question: '以下代码运行后，sum 的结果是（ ）。\n```cpp\nint arr[5] = {2, 4, 6, 8, 10};\nint sum = 0;\nfor (int i = 0; i < 5; i++) {\n    switch (arr[i] % (1 | 2)) {\n        case 0: sum += 1; break;\n        case 1: sum += 2; break;\n        case 2: sum += 3; break;\n    }\n}\n```cpp',
             options: ['10', '11', '14', '15'],
             answer: 1,
             score: 2,
@@ -160,7 +160,7 @@ export const paperData = {
         {
             id: 15,
             type: 'single',
-            question: '如果字符串 s 的值是 GESP，以下代码 s 的最后结果是（ ）。\nfor (int i = 0; i < s.length(); i++) {\n    s[i] = toupper(s[i] + i);\n}',
+            question: '如果字符串 s 的值是 GESP，以下代码 s 的最后结果是（ ）。\n```cpp\nfor (int i = 0; i < s.length(); i++) {\n    s[i] = toupper(s[i] + i);\n}\n```cpp',
             options: ['GESP', 'HFTR', 'hesp', 'GFUS'],
             answer: 3,
             score: 2,
@@ -196,7 +196,7 @@ export const paperData = {
         {
             id: 19,
             type: 'judge',
-            question: '以下代码输出结果为 8。\nint a = 5, b = 3;\nint c = a++ + ++b;\ncout << c << endl;',
+            question: '以下代码输出结果为 8。\n```cpp\nint a = 5, b = 3;\nint c = a++ + ++b;\ncout << c << endl;\n```cpp',
             options: ['正确', '错误'],
             answer: 1,
             score: 2,
@@ -223,7 +223,7 @@ export const paperData = {
         {
             id: 22,
             type: 'judge',
-            question: 'C++ 表达式 z = a > b ? x : y 等同于：\nif (a > b) {\n    z = x;\n} else {\n    z = y;\n}',
+            question: 'C++ 表达式 z = a > b ? x : y 等同于：\n```cpp\nif (a > b) {\n    z = x;\n} else {\n    z = y;\n}\n```cpp',
             options: ['正确', '错误'],
             answer: 0,
             score: 2,
@@ -250,7 +250,7 @@ export const paperData = {
         {
             id: 25,
             type: 'judge',
-            question: '以下代码中，Hello 将被输出 5 次。\nfor (int i = 0; i < 5; i++);\n{\n    cout << "Hello" << endl;\n}',
+            question: '以下代码中，Hello 将被输出 5 次。\n```cpp\nfor (int i = 0; i < 5; i++);\n{\n    cout << "Hello" << endl;\n}\n```cpp',
             options: ['正确', '错误'],
             answer: 1,
             score: 2,

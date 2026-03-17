@@ -19,7 +19,7 @@ export const paperData = {
         {
             id: 1,
             type: 'single',
-            question: '执行以下 C++ 代码后，c 的数值是（ ）。\nint a = 10, b = 3;\ndouble c = a / b;',
+            question: '执行以下 C++ 代码后，c 的数值是（ ）。\n```cpp\nint a = 10, b = 3;\ndouble c = a / b;\n```cpp',
             options: ['3.33333', '3.333', '3.0', '3.3'],
             answer: 2,
             score: 2,
@@ -51,7 +51,7 @@ export const paperData = {
         {
             id: 4,
             type: 'single',
-            question: '执行以下 C++ 代码后，变量 sum 的值是（ ）。\nint sum = 0;\nfor (int i = 1; i <= 5; i += 2) {\n    sum += i;\n    int sum = 0;\n}',
+            question: '执行以下 C++ 代码后，变量 sum 的值是（ ）。\n```cpp\nint sum = 0;\nfor (int i = 1; i <= 5; i += 2) {\n    sum += i;\n    int sum = 0;\n}\n```cpp',
             options: ['6', '9', '15', '死循环'],
             answer: 1,
             score: 2,
@@ -74,7 +74,7 @@ export const paperData = {
         {
             id: 6,
             type: 'single',
-            question: '执行以下 C++ 代码后，数组 arr 的内容是（ ）。\nint arr[4] = {1, 2, 3};\narr[3] = arr[0] + arr[2];',
+            question: '执行以下 C++ 代码后，数组 arr 的内容是（ ）。\n```cpp\nint arr[4] = {1, 2, 3};\narr[3] = arr[0] + arr[2];\n```cpp',
             options: ['{1, 2, 3, 3}', '{1, 2, 3, 4}', '{1, 2, 3, 5}', '{1, 2, 3, 6}'],
             answer: 1,
             score: 2,
@@ -97,7 +97,7 @@ export const paperData = {
         {
             id: 8,
             type: 'single',
-            question: '以下 C++ 代码 count++ 执行的次数是（ ）。\nint i = 10;\nint count = 0;\nwhile (i > 0) {\n    i -= 3;\n    continue;\n    count++;\n}',
+            question: '以下 C++ 代码 count++ 执行的次数是（ ）。\n```cpp\nint i = 10;\nint count = 0;\nwhile (i > 0) {\n    i -= 3;\n    continue;\n    count++;\n}\n```cpp',
             options: ['2', '3', '4', '0'],
             answer: 3,
             score: 2,
@@ -106,7 +106,7 @@ export const paperData = {
         {
             id: 9,
             type: 'single',
-            question: '以下 C++ 代码段的输出是（ ）。\nfor (int i = 0; i < 4; i++) {\n    for (int j = 0; j <= i; j++) {\n        cout << j;\n    }\n    cout << "#";\n}',
+            question: '以下 C++ 代码段的输出是（ ）。\n```cpp\nfor (int i = 0; i < 4; i++) {\n    for (int j = 0; j <= i; j++) {\n        cout << j;\n    }\n    cout << "#";\n}\n```cpp',
             options: ['0#01#012#0123#', '1#12#123#1234#', '0#1#2#3#', '0#01#012#01243#'],
             answer: 0,
             score: 2,
@@ -129,7 +129,7 @@ export const paperData = {
         {
             id: 11,
             type: 'single',
-            question: '关于以下代码的说法正确的是（ ）。\nint reversed = 0;\nwhile (x != 0) {\n    int digit = x % 10;\n    x /= 10;\n    reversed = reversed * 10 + digit;\n}',
+            question: '关于以下代码的说法正确的是（ ）。\n```cpp\nint reversed = 0;\nwhile (x != 0) {\n    int digit = x % 10;\n    x /= 10;\n    reversed = reversed * 10 + digit;\n}\n```cpp',
             options: [
                 '能够反转任何位数的整数',
                 '能够反转的最大位数正整数是 2147483647',
@@ -143,7 +143,7 @@ export const paperData = {
         {
             id: 12,
             type: 'single',
-            question: '以下 C++ 代码试图查找数组中的最大值，划线处应填入（ ）。\n#include <iostream>\nusing namespace std;\nint findMax(int arr[], int size) {\n    int maxVal = ________;\n    for (int i = 1; i < size; i++) {\n        if (arr[i] > maxVal) {\n            maxVal = arr[i];\n        }\n    }\n    return maxVal;\n}',
+            question: '以下 C++ 代码试图查找数组中的最大值，划线处应填入（ ）。\n```cpp\n#include <iostream>\nusing namespace std;\nint findMax(int arr[], int size) {\n    int maxVal = ________;\n    for (int i = 1; i < size; i++) {\n        if (arr[i] > maxVal) {\n            maxVal = arr[i];\n        }\n    }\n    return maxVal;\n}\n```cpp',
             options: ['0', 'arr[-1]', 'arr[0]', 'size'],
             answer: 2,
             score: 2,
@@ -166,7 +166,7 @@ export const paperData = {
         {
             id: 14,
             type: 'single',
-            question: '以下 C++ 代码中存在几处错误（ ）。\n#include <iostream>\nusing namespace std;\nint main() {\n    const int SIZE = 5;\n    int arr[SIZE];\n    for (int i = 0; i <= SIZE; i++) {\n        arr[i] = i * 2;\n    }\n    cout << arr[SIZE] << endl;\n    return 0;\n}',
+            question: '以下 C++ 代码中存在几处错误（ ）。\n```cpp\n#include <iostream>\nusing namespace std;\nint main() {\n    const int SIZE = 5;\n    int arr[SIZE];\n    for (int i = 0; i <= SIZE; i++) {\n        arr[i] = i * 2;\n    }\n    cout << arr[SIZE] << endl;\n    return 0;\n}\n```cpp',
             options: ['0 处', '1 处', '2 处', '3 处'],
             answer: 2,
             score: 2,

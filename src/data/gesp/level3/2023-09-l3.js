@@ -146,7 +146,7 @@ export const paperData = {
         {
             id: 14,
             type: 'single',
-            question: '如果要使得下面代码输出 120，则横线处应填入（   ）。\n```cpp\n#include <iostream>\nusing namespace std;\n\nint main() {\n    int array[5] = {1, 2, 3, 4, 5};\n    int res = 0;\n    for (int i = 0; i < 5; i++)\n        _______; // 在此处填入代码\n    cout << res << endl;\n    return 0;\n}\n```',
+            question: '如果要使得下面代码输出 120，则横线处应填入（   ）。\n```cpp\n#include <iostream>\nusing namespace std;\n\nint main() {\n    int array[5] = {1, 2, 3, 4, 5};\n    int res = 0;\n    for (int i = 0; i < 5; i++)\n        _______; // 在此处填入代码\n    cout << res << endl;\n    return 0;\n}\n```cpp',
             options: ['res += array[i];', 'res *= array[i]', 'res = array[i]', '以上均不对'],
             answer: 3,
             score: 2,
@@ -155,7 +155,7 @@ export const paperData = {
         {
             id: 15,
             type: 'single',
-            question: '下面代码执行后的输出是（   ）。\n```cpp\n#include <iostream>\nusing namespace std;\n\nint main() {\n    int array[10];\n    for (int i = 0; i < 10; i++)\n        array[i] = i;\n    for (int p = 2; p < 10; p++)\n        if (array[p] == p)\n            for (int n = p; n < 10; n += p)\n                array[n] = array[n] / p * (p - 1);\n    int res = 0;\n    for (int n = 1; n < 10; n++)\n        res += array[n];\n    cout << res << endl;\n    return 0;\n}\n```',
+            question: '下面代码执行后的输出是（   ）。\n```cpp\n#include <iostream>\nusing namespace std;\n\nint main() {\n    int array[10];\n    for (int i = 0; i < 10; i++)\n        array[i] = i;\n    for (int p = 2; p < 10; p++)\n        if (array[p] == p)\n            for (int n = p; n < 10; n += p)\n                array[n] = array[n] / p * (p - 1);\n    int res = 0;\n    for (int n = 1; n < 10; n++)\n        res += array[n];\n    cout << res << endl;\n    return 0;\n}\n```cpp',
             options: ['15', '28', '45', '55'],
             answer: 1,
             score: 2,

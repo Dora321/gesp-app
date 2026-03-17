@@ -61,7 +61,7 @@ export const paperData = {
     {
       id: 5,
       type: 'single',
-      question: '下面的C++代码执行时如果先输入 5 并回车后输入 2 并回车，其输出是 ( )。\n```cpp\nint a, b;\ncin >> a >> b;\ncout << a + b;\n```',
+      question: '下面的C++代码执行时如果先输入 5 并回车后输入 2 并回车，其输出是 ( )。\n```cpp\nint a, b;\ncin >> a >> b;\ncout << a + b;\n```cpp',
       options: ['7', '5', '2', '报错'],
       answer: 0, // 修正：此题考察 cin 逻辑，输出应为 7
       score: 2,
@@ -71,7 +71,7 @@ export const paperData = {
     {
       id: 6,
       type: 'single',
-      question: '下面的C++代码执行后的输出是 ( )。\n```cpp\ndouble a = 10.5;\nprintf("a+1={%d}", (int)a + 1);\n```',
+      question: '下面的C++代码执行后的输出是 ( )。\n```cpp\ndouble a = 10.5;\nprintf("a+1={%d}", (int)a + 1);\n```cpp',
       options: ['a+1={11}', 'a+1={11.5}', 'a+1={11}', 'a+1={102}'], // 注意选项可能混淆
       answer: 0,
       score: 2,
@@ -91,7 +91,7 @@ export const paperData = {
     {
       id: 8,
       type: 'single',
-      question: '下面C++代码执行时如果输入 10，则其输出是 ( )。\n```cpp\nint N;\ncin >> N;\ncout << N % 3;\n```',
+      question: '下面C++代码执行时如果输入 10，则其输出是 ( )。\n```cpp\nint N;\ncin >> N;\ncout << N % 3;\n```cpp',
       options: ['0', '1', '2', '3'],
       answer: 1,
       score: 2,
@@ -101,7 +101,7 @@ export const paperData = {
     {
       id: 9,
       type: 'single',
-      question: '下面C++代码执行后的输出是 ( )。\n```cpp\nint n = 10, Sum = 0;\nfor (int i = 0; i < n; i++)\n    Sum += i;\ncout << Sum;\n```',
+      question: '下面C++代码执行后的输出是 ( )。\n```cpp\nint n = 10, Sum = 0;\nfor (int i = 0; i < n; i++)\n    Sum += i;\ncout << Sum;\n```cpp',
       options: ['55', '45', '10', '0'],
       answer: 1,
       score: 2,
@@ -131,7 +131,7 @@ export const paperData = {
     {
       id: 12,
       type: 'single',
-      question: '为了判断一个正整数 N 是否为完全平方数，横线处应填入 ( )。\n```cpp\nfor(int i = 1; i * i <= N; i++) {\n    if (________)\n        cout << "是";\n}\n```',
+      question: '为了判断一个正整数 N 是否为完全平方数，横线处应填入 ( )。\n```cpp\nfor(int i = 1; i * i <= N; i++) {\n    if (________)\n        cout << "是";\n}\n```cpp',
       options: ['i*i == N', 'i == N', 'i*i < N', 'N % i == 0'],
       answer: 0,
       score: 2,

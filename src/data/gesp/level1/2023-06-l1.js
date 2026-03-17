@@ -156,7 +156,7 @@ export const paperData = {
     {
       id: 13,
       type: 'single',
-      question: '在 C++ 代码中，执行后输出 “20 10” 的横线处填写：\n```cpp\nint a = 10, b = 20;\na = b;\n__________;\ncout << a << " " << b << endl;\n```',
+      question: '在 C++ 代码中，执行后输出 “20 10” 的横线处填写：\n```cpp\nint a = 10, b = 20;\na = b;\n__________;\ncout << a << " " << b << endl;\n```cpp',
       options: ['b = a;', 'b = 10;', 'b = a - b;', 'b = 20;'],
       answer: 1, // 修正：a 已经变成了 20，要输出 20 10，则 b 必须赋值为 10。
       score: 2,
@@ -166,7 +166,7 @@ export const paperData = {
     {
       id: 14,
       type: 'single',
-      question: '在 C++ 代码中，执行后输出 “147” 的横线处填写：\n```cpp\nfor (int i = 1; i <= 9; i++) {\n    if (________) cout << i;\n}\n```',
+      question: '在 C++ 代码中，执行后输出 “147” 的横线处填写：\n```cpp\nfor (int i = 1; i <= 9; i++) {\n    if (________) cout << i;\n}\n```cpp',
       options: ['i % 2 == 1', 'i % 3 == 1', 'i % 4 == 1', 'i % 7 == 1'],
       answer: 1,
       score: 2,
@@ -176,7 +176,7 @@ export const paperData = {
     {
       id: 15,
       type: 'single',
-      question: '未初始化 sum 变量的输出：\n```cpp\nint sum;\nfor (int i = 1; i <= 10; i++) sum += i;\ncout << sum << endl;\n```',
+      question: '未初始化 sum 变量的输出：\n```cpp\nint sum;\nfor (int i = 1; i <= 10; i++) sum += i;\ncout << sum << endl;\n```cpp',
       options: ['55', '0', '45', '无法确定'],
       answer: 3,
       score: 2,

@@ -114,7 +114,7 @@ export const paperData = {
         {
             id: 11,
             type: 'single',
-            question: '下面程序使用枚举法（穷举法）求解满足条件的三位数，横线处应该填入的是（ ）。\n#include <iostream>\nusing namespace std;\nint main() {\n    int count = 0;\n    for (int i = 100; i <= 999; i++) {\n        int a = i / 100;\n        __________________\n        int c = i % 10;\n        if (a * a + b * b == c * c) {\n            count++;\n        }\n    }\n    cout << count << endl;\n    return 0;\n}',
+            question: '下面程序使用枚举法（穷举法）求解满足条件的三位数，横线处应该填入的是（ ）。\n```cpp\n#include <iostream>\nusing namespace std;\nint main() {\n    int count = 0;\n    for (int i = 100; i <= 999; i++) {\n        int a = i / 100;\n        __________________\n        int c = i % 10;\n        if (a * a + b * b == c * c) {\n            count++;\n        }\n    }\n    cout << count << endl;\n    return 0;\n}\n```cpp',
             options: ['int b = (i / 10) / 10;', 'int b = (i / 10) % 10;', 'int b = (i % 10) / 10;', 'int b = (i % 10) % 10;'],
             answer: 1,
             score: 2,
@@ -123,7 +123,7 @@ export const paperData = {
         {
             id: 12,
             type: 'single',
-            question: '下面程序模拟了一个简单的小球反弹过程，横线处应该填入的是（ ）。\n#include <iostream>\nusing namespace std;\nint main() {\n    int height = 10;\n    int distance = 0;\n    for (int i = 1; i <= 5; i++) { // 模拟 5 次落地\n        __________________\n        height /= 2;\n        distance += height;\n    }\n    cout << distance << endl;\n    return 0;\n}',
+            question: '下面程序模拟了一个简单的小球反弹过程，横线处应该填入的是（ ）。\n```cpp\n#include <iostream>\nusing namespace std;\nint main() {\n    int height = 10;\n    int distance = 0;\n    for (int i = 1; i <= 5; i++) { // 模拟 5 次落地\n        __________________\n        height /= 2;\n        distance += height;\n    }\n    cout << distance << endl;\n    return 0;\n}\n```cpp',
             options: ['distance += height / 2;', 'distance += height;', 'distance += height * 2;', 'distance += height + 1;'],
             answer: 1,
             score: 2,

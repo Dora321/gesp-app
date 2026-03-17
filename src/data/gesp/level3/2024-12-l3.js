@@ -74,7 +74,7 @@ export const paperData = {
         {
             id: 7,
             type: 'single',
-            question: '下列代码输出的是（ ）。\nstring s = "1234@@chenadai";\nstring str = "12345";\ns.replace(1, 5, str);\ncout << s << endl;',
+            question: '下列代码输出的是（ ）。\nstring s = "1234@@chenadai";\nstring str = "12345";\ns.replace(1, 5, str);\n```cpp\ncout << s << endl;\n```cpp',
             options: ['12345', '2345@', '112345chenadai', '12345chenadai'],
             answer: 2,
             score: 2,
@@ -92,7 +92,7 @@ export const paperData = {
         {
             id: 9,
             type: 'single',
-            question: '下列程序输出的是（ ）。\nstring ch = "hello";\nif (ch[5] == NULL) {\n    cout << "right" << endl;\n} else if (ch[5] == \'\\0\') {\n    cout << "wrong" << endl;\n} else {\n    cout << "hello" << endl;\n}',
+            question: '下列程序输出的是（ ）。\nstring ch = "hello";\n```cpp\nif (ch[5] == NULL) {\n    cout << "right" << endl;\n} else if (ch[5] == \\n```cpp'\\0\') {\n    cout << "wrong" << endl;\n} else {\n    cout << "hello" << endl;\n}',
             options: ['right', 'wrong', 'hello', '不能正确执行'],
             answer: 0,
             score: 2,
@@ -101,7 +101,7 @@ export const paperData = {
         {
             id: 10,
             type: 'single',
-            question: '下列程序中，假设一个字符占用的内存空间是 1，下列程序中，ch 占用的内存空间是（ ）。\nchar ch[] = "hello world";\nsize_t ret = strlen(ch);\ncout << ret << endl;',
+            question: '下列程序中，假设一个字符占用的内存空间是 1，下列程序中，ch 占用的内存空间是（ ）。\n```cpp\nchar ch[] = "hello world";\nsize_t ret = strlen(ch);\ncout << ret << endl;\n```cpp',
             options: ['11', '10', '13', '12'],
             answer: 3,
             score: 2,
@@ -110,7 +110,7 @@ export const paperData = {
         {
             id: 11,
             type: 'single',
-            question: '下列程序最后输出的是（ ）。\nint a = 65;\ncout << tolower(a) << endl;',
+            question: '下列程序最后输出的是（ ）。\n```cpp\nint a = 65;\ncout << tolower(a) << endl;\n```cpp',
             options: ['65', 'A', 'a', '97'],
             answer: 3,
             score: 2,
@@ -206,7 +206,7 @@ export const paperData = {
         {
             id: 20,
             type: 'judge',
-            question: '下列程序输出的是 A。\nchar x = 65;\nx = x & 00001111;\ncout << x << endl;',
+            question: '下列程序输出的是 A。\n```cpp\nchar x = 65;\nx = x & 00001111;\ncout << x << endl;\n```cpp',
             options: ['正确', '错误'],
             answer: 1,
             score: 2,
@@ -215,7 +215,7 @@ export const paperData = {
         {
             id: 21,
             type: 'judge',
-            question: '下列可执行程序段中，最后 pos 的值是 4。\nstring str = "chenADai";\nint pos = str.find(\'D\');\n--pos & 11;',
+            question: '下列可执行程序段中，最后 pos 的值是 4。\nstring str = "chenADai";\n```cpp\nint pos = str.find(\\n```cpp'D\');\n--pos & 11;',
             options: ['正确', '错误'],
             answer: 1,
             score: 2,
@@ -224,7 +224,7 @@ export const paperData = {
         {
             id: 22,
             type: 'judge',
-            question: '下列程序将不能正确执行。\nstring ch = "chen";\ncout << ch[4] << endl;',
+            question: '下列程序将不能正确执行。\nstring ch = "chen";\n```cpp\ncout << ch[4] << endl;\n```cpp',
             options: ['正确', '错误'],
             answer: 1,
             score: 2,
@@ -233,7 +233,7 @@ export const paperData = {
         {
             id: 23,
             type: 'judge',
-            question: '将输出 97。\nchar a = \'A\';\na = a + 32;\ncout << (int)a << endl;',
+            question: '将输出 97。\n```cpp\nchar a = \\n```cpp'A\';\na = a + 32;\ncout << (int)a << endl;',
             options: ['正确', '错误'],
             answer: 0,
             score: 2,

@@ -41,7 +41,7 @@ export const paperData = {
     {
       id: 3,
       type: 'single',
-      question: '下面的C++代码执行时如果输入 5 并回车后输入 2 并回车，其输出是 ( )。\n```cpp\nint a, b;\ncin >> a >> b;\ncout << a + b;\n```',
+      question: '下面的C++代码执行时如果输入 5 并回车后输入 2 并回车，其输出是 ( )。\n```cpp\nint a, b;\ncin >> a >> b;\ncout << a + b;\n```cpp',
       options: ['5', '2', '7', '报错'],
       answer: 2,
       score: 2,
@@ -51,7 +51,7 @@ export const paperData = {
     {
       id: 4,
       type: 'single',
-      question: '下面的C++代码执行后的输出是 ( )。\n```cpp\nint a = 1;\ncout << a + 1 << endl;\n```',
+      question: '下面的C++代码执行后的输出是 ( )。\n```cpp\nint a = 1;\ncout << a + 1 << endl;\n```cpp',
       options: ['2', '1', 'a+1', '报错'],
       answer: 0,
       score: 2,
@@ -71,7 +71,7 @@ export const paperData = {
     {
       id: 6,
       type: 'single',
-      question: '下面的C++代码用于判断 N 是否能被 3 整除，如果输入 21，其输出是 ( )。\n```cpp\nint N;\ncin >> N;\nif (N % 3 == 0)\n    cout << "YES";\nelse\n    cout << "NO";\n```',
+      question: '下面的C++代码用于判断 N 是否能被 3 整除，如果输入 21，其输出是 ( )。\n```cpp\nint N;\ncin >> N;\nif (N % 3 == 0)\n    cout << "YES";\nelse\n    cout << "NO";\n```cpp',
       options: ['YES', 'NO', '21', '报错'],
       answer: 0,
       score: 2,
@@ -91,7 +91,7 @@ export const paperData = {
     {
       id: 8,
       type: 'single',
-      question: '代码执行后的输出是 ( )。\n```cpp\nint Sum = 0;\nfor (int i = 1; i < 10; i++) {\n    if (i % 3 == 0 || i % 7 == 0)\n        Sum += i;\n}\ncout << Sum;\n```',
+      question: '代码执行后的输出是 ( )。\n```cpp\nint Sum = 0;\nfor (int i = 1; i < 10; i++) {\n    if (i % 3 == 0 || i % 7 == 0)\n        Sum += i;\n}\ncout << Sum;\n```cpp',
       options: ['10', '15', '18', '20'],
       answer: 2, // 修正：3+6+9+7 = 25? No, i < 10. So 3, 6, 9, 7. Sum = 3+6+9+7 = 25. Wait, 3+6+9=18, plus 7 is 25.
       // Subagent says Answer is D (20). Let's check: i=1,2,3(S=3),4,5,6(S=9),7(S=16),8,9(S=25). 
@@ -115,7 +115,7 @@ export const paperData = {
     {
       id: 9,
       type: 'single',
-      question: '代码执行后的输出是 ( )。\n```cpp\nint N = 10;\nwhile (N > 0) {\n    N -= 1;\n    if (N % 3 == 0) cout << N << "#";\n}\n```',
+      question: '代码执行后的输出是 ( )。\n```cpp\nint N = 10;\nwhile (N > 0) {\n    N -= 1;\n    if (N % 3 == 0) cout << N << "#";\n}\n```cpp',
       options: ['10#7#4#1#', '9#6#3#0#', '9#6#3#', '10#9#6#3#'],
       answer: 1,
       score: 2,
@@ -125,7 +125,7 @@ export const paperData = {
     {
       id: 10,
       type: 'single',
-      question: '判断质数代码描述中，横线处应填入 ( )。\n```cpp\nif (N % i == 0) ________;\n```',
+      question: '判断质数代码描述中，横线处应填入 ( )。\n```cpp\nif (N % i == 0) ________;\n```cpp',
       options: ['continue', 'break', 'return', 'exit'],
       answer: 1,
       score: 2,

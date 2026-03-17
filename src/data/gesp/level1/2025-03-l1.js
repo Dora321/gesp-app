@@ -176,7 +176,7 @@ export const paperData = {
     {
       id: 15,
       type: 'single',
-      question: '下列 C++ 嵌套循环中，共会执行多少次 printf("*"); 操作？\n```cpp\nfor(int i = 0; i < 3; i++)\n  for(int j = 0; j < 4; j++)\n    printf("*");\n```',
+      question: '下列 C++ 嵌套循环中，共会执行多少次 printf("*"); 操作？\n```cpp\nfor(int i = 0; i < 3; i++)\n  for(int j = 0; j < 4; j++)\n    printf("*");\n```cpp',
       options: ['7', '12', '4', '3'],
       answer: 1,
       score: 2,

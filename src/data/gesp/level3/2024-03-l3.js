@@ -37,7 +37,7 @@ export const paperData = {
         {
             id: 3,
             type: 'single',
-            question: '下面 C++ 代码执行后的输出是（   ）。\nint main() {\n    cout << (3 | 16) << endl;\n    return 0;\n}',
+            question: '下面 C++ 代码执行后的输出是（   ）。\n```cpp\nint main() {\n    cout << (3 | 16) << endl;\n    return 0;\n}\n```cpp',
             options: ['3', '16', '19', '48'],
             answer: 2,
             score: 2,
@@ -55,7 +55,7 @@ export const paperData = {
         {
             id: 5,
             type: 'single',
-            question: '已知字符 \"0\" 的 ASCII 编码的十进制表示为 48，则执行下面 C++ 代码后，输出是（   ）。\nint main() {\n    string s = "316";\n    int n = s.length();\n    int x = 0;\n    for (int i = 0; i < n; i++) x += s[i];\n    cout << x << endl;\n    return 0;\n}',
+            question: '已知字符 \"0\" 的 ASCII 编码的十进制表示为 48，则执行下面 C++ 代码后，输出是（   ）。\n```cpp\nint main() {\n    string s = "316";\n    int n = s.length();\n    int x = 0;\n    for (int i = 0; i < n; i++) x += s[i];\n    cout << x << endl;\n    return 0;\n}\n```cpp',
             options: ['10', '58', '154', '316'],
             answer: 2,
             score: 2,
@@ -64,7 +64,7 @@ export const paperData = {
         {
             id: 6,
             type: 'single',
-            question: '下面 C++ 代码执行后数组中大于 0 的数的特征是（   ）。\nint main() {\n    int a[20], i;\n    for (i = 0; i < 20; i++) a[i] = i + 1;\n    for (int i = 0; i < 20; i++)\n        if ((a[i] % 2) && (a[i] % 3)) a[i] = 0;\n    for (i = 0; i < 20; i++)\n        if (a[i]) cout << a[i] << " ";\n    return 0;\n}',
+            question: '下面 C++ 代码执行后数组中大于 0 的数的特征是（   ）。\n```cpp\nint main() {\n    int a[20], i;\n    for (i = 0; i < 20; i++) a[i] = i + 1;\n    for (int i = 0; i < 20; i++)\n        if ((a[i] % 2) && (a[i] % 3)) a[i] = 0;\n    for (i = 0; i < 20; i++)\n        if (a[i]) cout << a[i] << " ";\n    return 0;\n}\n```cpp',
             options: ['2 的倍数', '3 的倍数', '能被 2 或 3 整除的数', '能被 2 和 3 同时整除的数'],
             answer: 2,
             score: 2,
@@ -73,7 +73,7 @@ export const paperData = {
         {
             id: 7,
             type: 'single',
-            question: '执行下面 C++ 代码后输出的第一个数是（   ）。\nint main() {\n    int a[20], i;\n    for (i = 0; i < 20; i++) a[i] = i + 1;\n    for (; i > 0; i--) cout << a[i - 1] << " ";\n    return 0;\n}',
+            question: '执行下面 C++ 代码后输出的第一个数是（   ）。\n```cpp\nint main() {\n    int a[20], i;\n    for (i = 0; i < 20; i++) a[i] = i + 1;\n    for (; i > 0; i--) cout << a[i - 1] << " ";\n    return 0;\n}\n```cpp',
             options: ['20', '19', '1', '不确定'],
             answer: 0,
             score: 2,
@@ -82,7 +82,7 @@ export const paperData = {
         {
             id: 8,
             type: 'single',
-            question: '在下列代码的横线处填写（   ），可以使得输出是 GESP IS INTERESTING。\nint main() {\n    string str = "gEsP is Interesting";\n    int x = str.length();\n    for (int i = 0; i < x; i++)\n        if ((str[i] >= \"a\"[0]) && (str[i] <= \"z\"[0]))\n            ________________________;\n    cout << str << endl;\n    return 0;\n}',
+            question: '在下列代码的横线处填写（   ），可以使得输出是 GESP IS INTERESTING。\n```cpp\nint main() {\n    string str = "gEsP is Interesting";\n    int x = str.length();\n    for (int i = 0; i < x; i++)\n        if ((str[i] >= \"a\"[0]) && (str[i] <= \"z\"[0]))\n            ________________________;\n    cout << str << endl;\n    return 0;\n}\n```cpp',
             options: ["str[i] += 'a' - 'A'", 'str[i] += 20', "str[i] += 'A' - 'a'", '无法实现'],
             answer: 2,
             score: 2,
@@ -91,7 +91,7 @@ export const paperData = {
         {
             id: 9,
             type: 'single',
-            question: '假设英文句子由若干词构成。下面 C++ 代码统计输出的词数是（   ）。\nint main() {\n    string str = "gEsP is  Interesting  !";\n    int x = str.length();\n    int nwords = 0;\n    for (int i = 0; i < x; i++)\n        if (str[i] == \" \"[0]) {\n            nwords++;\n            while (str[++i] == \" \"[0]);\n        }\n    cout << nwords << endl;\n    return 0;\n}',
+            question: '假设英文句子由若干词构成。下面 C++ 代码统计输出的词数是（   ）。\n```cpp\nint main() {\n    string str = "gEsP is  Interesting  !";\n    int x = str.length();\n    int nwords = 0;\n    for (int i = 0; i < x; i++)\n        if (str[i] == \" \"[0]) {\n            nwords++;\n            while (str[++i] == \" \"[0]);\n        }\n    cout << nwords << endl;\n    return 0;\n}\n```cpp',
             options: ['1', '2', '3', '4'],
             answer: 2,
             score: 2,
@@ -109,7 +109,7 @@ export const paperData = {
         {
             id: 11,
             type: 'single',
-            question: '下面 C++ 程序执行的结果是（   ）。\nint main() {\n    int a[20], i;\n    int cnt = 0;\n    for (i = 0; i < 20; i++) a[i] = i + 1;\n    for (; i > 1; i--)\n        if ((a[i - 1] + a[i - 2]) % 3) cnt++;\n    cout << cnt << endl;\n    return 0;\n}',
+            question: '下面 C++ 程序执行的结果是（   ）。\n```cpp\nint main() {\n    int a[20], i;\n    int cnt = 0;\n    for (i = 0; i < 20; i++) a[i] = i + 1;\n    for (; i > 1; i--)\n        if ((a[i - 1] + a[i - 2]) % 3) cnt++;\n    cout << cnt << endl;\n    return 0;\n}\n```cpp',
             options: ['5', '6', '10', '12'],
             answer: 3,
             score: 2,
@@ -172,7 +172,7 @@ export const paperData = {
         {
             id: 18,
             type: 'judge',
-            question: '下面 C++ 代码可以计算 1 到 100 的累加和，采用的是穷举法。\nint main() {\n    int i, sum = 0;\n    for (int i = 1; i <= 100; i++) sum += i;\n    cout << sum << endl;\n    return 0;\n}',
+            question: '下面 C++ 代码可以计算 1 到 100 的累加和，采用的是穷举法。\n```cpp\nint main() {\n    int i, sum = 0;\n    for (int i = 1; i <= 100; i++) sum += i;\n    cout << sum << endl;\n    return 0;\n}\n```cpp',
             options: ['正确', '错误'],
             answer: 0,
             score: 2,
@@ -199,7 +199,7 @@ export const paperData = {
         {
             id: 21,
             type: 'judge',
-            question: '执行下面 C++ 代码后将输出 2。\nint main() {\n    string str = "gEsP is Interesting";\n    int x = str.find("s");\n    cout << x << endl;\n    return 0;\n}',
+            question: '执行下面 C++ 代码后将输出 2。\n```cpp\nint main() {\n    string str = "gEsP is Interesting";\n    int x = str.find("s");\n    cout << x << endl;\n    return 0;\n}\n```cpp',
             options: ['正确', '错误'],
             answer: 0,
             score: 2,
