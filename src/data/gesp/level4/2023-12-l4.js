@@ -466,3 +466,40 @@ export const paperData = {
         }
     ]
 };
+
+const programmingQuestions = [
+    {
+        id: 26,
+        type: "programming",
+        title: "小杨的字典",
+        problemNumber: "2023-12-23-04-C-01",
+        description: "在小杨的字典中，共有 n 个单词。这些单词仅由小写字母组成。单词的长度不超过 10。请你协助小杨实现字典的两个功能：1. 向字典中添加一个未曾出现过的单词；2. 查询字典中是否存在某个单词。",
+        inputDescription: "第一行包含一个正整数 n (1 ≤ n ≤ 1000)。接下来的 n 行，每行首先包含一个整数 op (1 或 2)，表示操作类型。如果 op = 1，后面跟着一个单词 s，表示添加操作；如果 op = 2，后面跟着一个单词 s，表示查询操作。",
+        outputDescription: "对于每个查询操作，如果单词存在输出 1，否则输出 0。",
+        samples: [
+            { input: "4\n1 apple\n2 apple\n2 banana\n1 banana", output: "1\n0" }
+        ],
+        explanation: "使用 std::set<string> 或 std::unordered_set<string> 可以方便地实现添加和查询操作。",
+        tags: ["编程题", "哈希", "集合"],
+        template: "#include <iostream>\n#include <string>\n#include <set>\nusing namespace std;\n\nint main() {\n    int n;\n    cin >> n;\n    // 在此编写代码\n    return 0;\n}",
+        referenceCode: "#include <iostream>\n#include <string>\n#include <set>\nusing namespace std;\nint main() {\n    int n; cin >> n;\n    set<string> dict;\n    while (n--) {\n        int op; string s; cin >> op >> s;\n        if (op == 1) dict.insert(s);\n        else {\n            if (dict.count(s)) cout << 1 << endl;\n            else cout << 0 << endl;\n        }\n    }\n    return 0;\n}"
+    },
+    {
+        id: 27,
+        type: "programming",
+        title: "田忌赛马",
+        problemNumber: "2023-12-23-04-C-02",
+        description: "田忌和齐王赛马。他们各有 n 匹马，每匹马都有一个速度值。赛马规则如下：每场比赛双方各出一匹马，速度快者获胜；如果速度相同，则为平局。赢一场得 1 分，平一场得 0 分，输一场扣 1 分。请问田忌最高能得多少分？",
+        inputDescription: "第一行一个正整数 n (1 ≤ n ≤ 2000)。第二行 n 个整数，表示田忌马的速度。第三行 n 个整数，表示齐王马的速度。",
+        outputDescription: "输出一个整数，代表田忌最高能得多少分。",
+        samples: [
+            { input: "3\n9 2 1\n8 5 0", output: "1" }
+        ],
+        explanation: "贪心策略：1. 如果田忌最快的马比齐王最快的快，则比赛；2. 如果田忌最慢的马比齐王最慢的快，则比赛；3. 否则，用田忌最慢的马去消耗齐王最快的马。",
+        tags: ["编程题", "贪心", "双指针"],
+        template: "#include <iostream>\n#include <vector>\n#include <algorithm>\nusing namespace std;\n\nint main() {\n    int n;\n    cin >> n;\n    // 在此编写代码\n    return 0;\n}",
+        referenceCode: "#include <iostream>\n#include <vector>\n#include <algorithm>\nusing namespace std;\nint main() {\n    int n; cin >> n;\n    vector<int> a(n), b(n);\n    for (int i = 0; i < n; i++) cin >> a[i];\n    for (int i = 0; i < n; i++) cin >> b[i];\n    sort(a.begin(), a.end());\n    sort(b.begin(), b.end());\n    int la = 0, ra = n - 1, lb = 0, rb = n - 1;\n    int ans = 0;\n    while (la <= ra) {\n        if (a[ra] > b[rb]) { ans++; ra--; rb--; }\n        else if (a[la] > b[lb]) { ans++; la++; lb++; }\n        else {\n            if (a[la] < b[rb]) ans--;\n            la++; rb--;\n        }\n    }\n    cout << ans << endl;\n    return 0;\n}"
+    }
+];
+
+paperData.questions.push(...programmingQuestions);

@@ -1,4 +1,4 @@
-import { l8ProgrammingByPaper } from './programming';
+import { l8ProgrammingByPaper } from './programming.js';
 
 // 2025年12月 GESP C++ 八级真题
 export const paperData = {

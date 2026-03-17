@@ -335,3 +335,40 @@ export const paperData = {
         }
     ]
 };
+
+const programmingQuestions = [
+    {
+        id: 26,
+        type: "programming",
+        title: "幸运数",
+        problemNumber: "2023-06-23-04-C-01",
+        description: "小杨认为，如果一个正整数 n 满足其各位数字之和是 7 的倍数，那么这个数就是“幸运数”。给定 n 个正整数，请你依次判断它们是否为幸运数。",
+        inputDescription: "第一行包含一个正整数 n (1 ≤ n ≤ 100)。接下来的 n 行，每行包含一个正整数 x (1 ≤ x ≤ 10^18)。",
+        outputDescription: "对于每个输入的正整数，如果是幸运数输出 1，否则输出 0。",
+        samples: [
+            { input: "2\n7\n16", output: "1\n1" }
+        ],
+        explanation: "对每个数计算各位数字之和，判断 sum % 7 == 0。注意输入可能达到 10^18，需要用 long long。",
+        tags: ["编程题", "模拟"],
+        template: "#include <iostream>\nusing namespace std;\n\nint main() {\n    int n;\n    cin >> n;\n    // 在此编写代码\n    return 0;\n}",
+        referenceCode: "#include <iostream>\nusing namespace std;\nvoid solve() {\n    long long x; cin >> x;\n    int sum = 0;\n    while (x > 0) {\n        sum += x % 10;\n        x /= 10;\n    }\n    if (sum % 7 == 0) cout << 1 << endl;\n    else cout << 0 << endl;\n}\nint main() {\n    int n; cin >> n;\n    while (n--) solve();\n    return 0;\n}"
+    },
+    {
+        id: 27,
+        type: "programming",
+        title: "图像压缩",
+        problemNumber: "2023-06-23-04-C-02",
+        description: "小杨有一张 n x n 的灰度图像，每个像素的灰度值为 0-255。为了压缩图像，小杨决定将灰度值映射到更小的集合。如果映射规则是将 [0, 255] 平分为 k 个区间（每个区间长度为 256/k，k 保证是 2 的幂），则原值 x 映射为 floor(x / (256/k))。请输出映射后的图像。",
+        inputDescription: "第一行两个正整数 n, k (1 ≤ n ≤ 100, k ∈ {1, 2, 4, 8, 16, 32, 64, 128, 256})。之后 n 行，每行 n 个整数，代表像素灰度值。",
+        outputDescription: "输出 n 行，每行 n 个整数，代表映射后的灰度值。",
+        samples: [
+            { input: "2 2\n127 128\n0 255", output: "0 1\n0 1" }
+        ],
+        explanation: "每个像素值除以 (256 / k) 即可得到映射值。",
+        tags: ["编程题", "二维数组", "模拟"],
+        template: "#include <iostream>\n#include <vector>\nusing namespace std;\n\nint main() {\n    int n, k;\n    cin >> n >> k;\n    // 在此编写代码\n    return 0;\n}",
+        referenceCode: "#include <iostream>\n#include <vector>\nusing namespace std;\nint main() {\n    int n, k; cin >> n >> k;\n    int step = 256 / k;\n    for (int i = 0; i < n; i++) {\n        for (int j = 0; j < n; j++) {\n            int x; cin >> x;\n            cout << x / step << (j == n - 1 ? \"\" : \" \");\n        }\n        cout << endl;\n    }\n    return 0;\n}"
+    }
+];
+
+paperData.questions.push(...programmingQuestions);

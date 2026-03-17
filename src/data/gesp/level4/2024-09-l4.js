@@ -6,32 +6,32 @@ const programmingQuestions = [
         type: "programming",
         title: "黑白方块",
         problemNumber: "2024-09-23-04-C-01",
-        description: "小杨有一个 n 行 m 列的网格图，其中每个格子要么是白色，要么是黑色。小杨想知道网格图中是否存在一个满足如下条件的子矩形：1. 子矩形由 2 行 2 列组成；2. 子矩形的第 1 行和第 2 行只包含白色格子；3. 对于子矩形的第 1 行和第 2 行，只有第 1 个和第 2 个格子是白色的，其余格子都是黑色的（注：此处原文描述可能有误，通常是指 2x2 的全白或特定模式）。根据样例，题目要求判断是否存在一个 2x2 的全白子矩形。",
-        inputDescription: "第一行包含一个正整数 T (1 ≤ T ≤ 10)，代表测试用例组数。接下来是 T 组测试用例。每组第一行包含两个正整数 n, m (1 ≤ n, m ≤ 50)。之后 n 行，每行一个长度为 m 的 01 串，0 代表白色，1 代表黑色。",
-        outputDescription: "对于每组测试用例，如果存在满足条件的 2x2 子矩形，输出 Yes，否则输出 No。",
+        description: "小杨有一个 n 行 m 列的网格图，其中每个格子要么是白色，要么是黑色。小杨想知道网格图中是否存在一个 2x2 的子矩形，使得该子矩形内的四个格子全部为白色（0 代表白色，1 代表黑色）。",
+        inputDescription: "第一行包含一个正整数 T，代表测试用例组数。之后是 T 组测试用例。每组第一行包含两个正整数 n, m (1 ≤ n, m ≤ 50)。之后 n 行，每行一个长度为 m 的 01 串。",
+        outputDescription: "对于每组测试用例，如果存在输出 Yes，否则输出 No。",
         samples: [
-            { input: "3\n1 4\n0110\n5 5\n00000\n01100\n01100\n00001\n01100\n5 5\n00000\n01100\n01110\n00001\n01100", output: "No\nYes\nNo" }
+            { input: "1\n3 3\n001\n001\n111", output: "Yes" }
         ],
-        explanation: "遍历所有可能的 2x2 子矩形，检查四个格子是否全为 0。",
-        tags: ["编程题", "模拟", "二维数组"],
+        explanation: "由于网格规模较小，可以直接枚举所有可能的 2x2 子矩形左上角坐标 (i, j)，检查四个顶点格子是否均为 '0'。",
+        tags: ["编程题", "二维数组", "模拟"],
         template: "#include <iostream>\n#include <vector>\n#include <string>\nusing namespace std;\n\nint main() {\n    int T;\n    cin >> T;\n    // 在此编写代码\n    return 0;\n}",
-        referenceCode: "#include <iostream>\n#include <vector>\n#include <string>\nusing namespace std;\nvoid solve() {\n    int n, m; cin >> n >> m;\n    vector<string> g(n);\n    for (int i = 0; i < n; i++) cin >> g[i];\n    if (n < 2 || m < 2) { cout << \"No\" << endl; return; }\n    for (int i = 0; i < n - 1; i++) {\n        for (int j = 0; j < m - 1; j++) {\n            if (g[i][j] == '0' && g[i][j+1] == '0' && g[i+1][j] == '0' && g[i+1][j+1] == '0') {\n                cout << \"Yes\" << endl; return;\n            }\n        }\n    }\n    cout << \"No\" << endl;\n}\nint main() {\n    int T; cin >> T;\n    while (T--) solve();\n    return 0;\n}"
+        referenceCode: "#include <iostream>\n#include <vector>\n#include <string>\nusing namespace std;\nvoid solve() {\n    int n, m; cin >> n >> m;\n    vector<string> g(n);\n    for (int i = 0; i < n; i++) cin >> g[i];\n    bool ok = false;\n    if (n >= 2 && m >= 2) {\n        for (int i = 0; i < n - 1; i++) {\n            for (int j = 0; j < m - 1; j++) {\n                if (g[i][j] == '0' && g[i][j+1] == '0' && g[i+1][j] == '0' && g[i+1][j+1] == '0') {\n                    ok = true; break;\n                }\n            }\n            if (ok) break;\n        }\n    }\n    if (ok) cout << \"Yes\" << endl; else cout << \"No\" << endl;\n}\nint main() {\n    int T; cin >> T;\n    while (T--) solve();\n    return 0;\n}"
     },
     {
         id: 27,
         type: "programming",
-        title: "小杨的成绩榜",
+        title: "区间排序",
         problemNumber: "2024-09-23-04-C-02",
-        description: "小杨同学参加了 n 门考试，每门考试都有一个成绩。现在需要将这些成绩按照从大到小排序。如果成绩相同，则按考试编号从小到大排序。",
-        inputDescription: "第一行一个整数 n (1 ≤ n ≤ 1000)。第二行 n 个整数，代表每门考试的成绩。",
-        outputDescription: "输出 n 行，每行两个整数，分别是成绩和原始考试编号。",
+        description: "给定一个长度为 n 的序列 a。有 m 次操作，每次操作指定一个区间 [l, r]，你需要将 a[l...r] 内的元素进行升序排序。请输出最终得到的序列。",
+        inputDescription: "第一行两个整数 n, m (1 ≤ n, m ≤ 1000)。第二行 n 个整数 ai。接下来的 m 行，每行两个整数 l, r (1 ≤ l ≤ r ≤ n)。",
+        outputDescription: "输出一行 n 个整数，表示最终的序列。",
         samples: [
-            { input: "3\n90 100 90", output: "100 2\n90 1\n90 3" }
+            { input: "5 2\n5 4 3 2 1\n1 3\n2 4", output: "3 2 4 5 1" }
         ],
-        explanation: "使用结构体保存成绩和编号，自定义排序规则：成绩降序，编号升序。",
-        tags: ["编程题", "排序", "结构体"],
-        template: "#include <iostream>\n#include <algorithm>\n#include <vector>\nusing namespace std;\n\nint main() {\n    int n;\n    cin >> n;\n    // 在此编写代码\n    return 0;\n}",
-        referenceCode: "#include <iostream>\n#include <algorithm>\n#include <vector>\nusing namespace std;\nstruct Exam { int score, id; };\nbool cmp(Exam a, Exam b) {\n    if (a.score != b.score) return a.score > b.score;\n    return a.id < b.id;\n}\nint main() {\n    int n; cin >> n;\n    vector<Exam> a(n);\n    for (int i = 0; i < n; i++) {\n        cin >> a[i].score;\n        a[i].id = i + 1;\n    }\n    sort(a.begin(), a.end(), cmp);\n    for (int i = 0; i < n; i++) cout << a[i].score << \" \" << a[i].id << endl;\n    return 0;\n}"
+        explanation: "直接按照题目要求，依次执行 m 次排序操作即可。每次操作使用 std::sort 进行区间排序。",
+        tags: ["编程题", "排序", "模拟"],
+        template: "#include <iostream>\n#include <vector>\n#include <algorithm>\nusing namespace std;\n\nint main() {\n    int n, m;\n    cin >> n >> m;\n    // 在此编写代码\n    return 0;\n}",
+        referenceCode: "#include <iostream>\n#include <vector>\n#include <algorithm>\nusing namespace std;\nint main() {\n    int n, m; cin >> n >> m;\n    vector<int> a(n);\n    for (int i = 0; i < n; i++) cin >> a[i];\n    while (m--) {\n        int l, r; cin >> l >> r;\n        sort(a.begin() + l - 1, a.begin() + r);\n    }\n    for (int i = 0; i < n; i++) cout << a[i] << (i == n - 1 ? \"\" : \" \");\n    cout << endl;\n    return 0;\n}"
     }
 ];
 
@@ -90,7 +90,7 @@ export const paperData = {
             question: "下列关于 C++ 中常量的说法，错误的是（ ）。",
             options: [
                 "常量的值在程序运行期间不能改变",
-                "可以使用 const 关键字定义常量",
+                "可以使用 const 关键字 define 常量",
                 "可以使用 #define 预处理器定义常量",
                 "常量必须在全局作用域定义"
             ],

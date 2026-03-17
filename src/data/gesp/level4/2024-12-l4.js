@@ -21,18 +21,19 @@ const programmingQuestions = [
     {
         id: 27,
         type: "programming",
-        title: "小杨的数字序列",
+        title: "字符排序",
         problemNumber: "2024-12-23-04-C-02",
-        description: "给定一个长度为 n 的序列 a，求其中最长的连续上升子序列的长度。连续上升子序列定义为：ai, ai+1, ..., aj 且 ai < ai+1 < ... < aj。",
-        inputDescription: "第一行一个整数 n (1 ≤ n ≤ 100,000)。第二行 n 个整数 ai (1 ≤ ai ≤ 10^9)。",
-        outputDescription: "输出最长连续上升子序列的长度。",
+        description: "给定 n 个仅由小写字母组成的字符串。请你将它们按某种顺序排列并拼接起来，使得拼接后的字符串 t 满足：对于任意 j < i，t_j 的字典序不大于 t_i（即 t 是一个不降序列）。判断是否存在这样的排列方式。",
+        inputDescription: "第一行一个整数 T 表示测试用例数。每组测试用例第一行一个整数 n。接下来的 n 行每行一个字符串。",
+        outputDescription: "对于每组测试用例，如果存在输出 1，否则输出 0。",
         samples: [
-            { input: "5\n1 2 3 1 2", output: "3" }
+            { input: "1\n2\nabc\ndef", output: "1" },
+            { input: "1\n2\nb\na", output: "0" }
         ],
-        explanation: "一次遍历序列。维护当前连续上升的长度，如果 a[i] > a[i-1]，长度加 1；否则长度重置为 1。过程中记录最大长度。",
-        tags: ["编程题", "模拟", "线性扫描"],
-        template: "#include <iostream>\n#include <vector>\n#include <algorithm>\nusing namespace std;\n\nint main() {\n    int n;\n    cin >> n;\n    // 在此编写代码\n    return 0;\n}",
-        referenceCode: "#include <iostream>\n#include <vector>\n#include <algorithm>\nusing namespace std;\nint main() {\n    int n; cin >> n;\n    if (n == 0) { cout << 0 << endl; return 0; }\n    vector<int> a(n);\n    for (int i = 0; i < n; i++) cin >> a[i];\n    int max_len = 1, curr_len = 1;\n    for (int i = 1; i < n; i++) {\n        if (a[i] > a[i-1]) curr_len++;\n        else curr_len = 1;\n        max_len = max(max_len, curr_len);\n    }\n    cout << max_len << endl;\n    return 0;\n}"
+        explanation: "由于拼接后的字符串必须是不降序列，那么每个单独的字符串本身也必须是不降序列。如果所有字符串内部都是不降的，我们将它们按首字母升序排序并拼接，检查拼接后的总字符串是否依然是不降的即可。",
+        tags: ["编程题", "字符串", "排序", "贪心"],
+        template: "#include <iostream>\n#include <string>\n#include <vector>\n\nusing namespace std;\n\nint main() {\n    int T;\n    cin >> T;\n    // 在此编写代码\n    return 0;\n}",
+        referenceCode: "#include <iostream>\n#include <string>\n#include <vector>\n#include <algorithm>\nusing namespace std;\nbool isNonDescending(string s) {\n    for (int i = 1; i < s.size(); i++) if (s[i] < s[i-1]) return false;\n    return true;\n}\nvoid solve() {\n    int n; cin >> n;\n    vector<string> s(n);\n    bool possible = true;\n    for (int i = 0; i < n; i++) {\n        cin >> s[i];\n        if (!isNonDescending(s[i])) possible = false;\n    }\n    if (!possible) { cout << 0 << endl; return; }\n    sort(s.begin(), s.end());\n    string t = \"\";\n    for (auto x : s) t += x;\n    if (isNonDescending(t)) cout << 1 << endl;\n    else cout << 0 << endl;\n}\nint main() {\n    int T; cin >> T;\n    while (T--) solve();\n    return 0;\n}"
     }
 ];
 

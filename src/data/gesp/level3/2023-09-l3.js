@@ -13,7 +13,7 @@ export const paperData = {
     timeLimit: 90 * 60,
     source: {
         officialPdf: 'https://gesp.ccf.org.cn/101/attach/1570611239321632.pdf',
-        notes: '编程题与大部分客观题已按官方 PDF 回填；第14~15题仍需补截图版原题面。'
+        notes: '编程题与客观题已按官方 PDF 回填。'
     },
     questions: [
         {
@@ -146,20 +146,20 @@ export const paperData = {
         {
             id: 14,
             type: 'single',
-            question: '【题面按公开解析还原】在给定数组循环处理中，横线处填入哪条语句，才能使程序最终输出 120？',
+            question: '如果要使得下面代码输出 120，则横线处应填入（   ）。\n```cpp\n#include <iostream>\nusing namespace std;\n\nint main() {\n    int array[5] = {1, 2, 3, 4, 5};\n    int res = 0;\n    for (int i = 0; i < 5; i++)\n        _______; // 在此处填入代码\n    cout << res << endl;\n    return 0;\n}\n```',
             options: ['res += array[i];', 'res *= array[i]', 'res = array[i]', '以上均不对'],
             answer: 3,
             score: 2,
-            explanation: '官方 PDF 的代码截图文本层缺失，当前依据公开解析保留答案 D：把 A/B/C 分别代入后都不能得到题目要求的输出 120。'
+            explanation: '由于 res 初始化为 0，无论填入 A、B 还是 C，最终输出都不会是 120。如果是 res *= array[i] 但 res 初始为 1，则输出 120。'
         },
         {
             id: 15,
             type: 'single',
-            question: '【题面按公开解析还原】某段双重循环与数组更新代码的输出结果是（   ）。',
+            question: '下面代码执行后的输出是（   ）。\n```cpp\n#include <iostream>\nusing namespace std;\n\nint main() {\n    int array[10];\n    for (int i = 0; i < 10; i++)\n        array[i] = i;\n    for (int p = 2; p < 10; p++)\n        if (array[p] == p)\n            for (int n = p; n < 10; n += p)\n                array[n] = array[n] / p * (p - 1);\n    int res = 0;\n    for (int n = 1; n < 10; n++)\n        res += array[n];\n    cout << res << endl;\n    return 0;\n}\n```',
             options: ['15', '28', '45', '55'],
             answer: 1,
             score: 2,
-            explanation: '根据公开解析，数组初值为 0~9，随后按 p=2 到 9 的规则更新并求和，最终结果为 28。原始代码截图仍待从扫描版 PDF 补录。'
+            explanation: '该算法计算的是 1 到 9 的欧拉函数之和（φ(1)+φ(2)+...+φ(9)）。φ(1)=1, φ(2)=1, φ(3)=2, φ(4)=2, φ(5)=4, φ(6)=2, φ(7)=6, φ(8)=4, φ(9)=6。总和为 1+1+2+2+4+2+6+4+6 = 28。'
         },
         {
             id: 16,

@@ -273,7 +273,7 @@ function cloneQuestions() {
 export function createLevel1Paper({ year, month, session }) {
   const monthText = String(month).padStart(2, '0');
   return {
-    id: `${year}-${monthText}`,
+    id: `${year}-${monthText}-l1`,
     title: `${year}年${month}月 GESP C++ 一级真题`,
     level: 1,
     year,

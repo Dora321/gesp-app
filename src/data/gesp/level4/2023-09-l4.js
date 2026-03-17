@@ -465,3 +465,41 @@ export const paperData = {
         }
     ]
 };
+
+const programmingQuestions = [
+    {
+        id: 26,
+        type: "programming",
+        title: "进制转换",
+        problemNumber: "2023-09-23-04-C-01",
+        description: "小杨最近在学习进制转换。他发现对于一个正整数 N，如果将其转换为 B 进制（2 ≤ B ≤ 36），则 N 在 B 进制下的表示由若干个字符组成。请你编写一个程序，输出 N 在 B 进制下的表示（10-35 分别用 A-Z 表示）。",
+        inputDescription: "第一行包含一个正整数 N (1 ≤ N ≤ 2^31-1)。第二行包含一个正整数 B (2 ≤ B ≤ 36)。",
+        outputDescription: "输出 N 在 B 进制下的表示。",
+        samples: [
+            { input: "10\n16", output: "A" }
+        ],
+        explanation: "利用辗转相除法，每次取 N % B 的余数，然后 N = N / B，直到 N 为 0。余数对应的字符逆序排列即为结果。",
+        tags: ["编程题", "进制转换"],
+        template: "#include <iostream>\n#include <string>\n#include <algorithm>\nusing namespace std;\n\nint main() {\n    long long n;\n    int b;\n    cin >> n >> b;\n    // 在此编写代码\n    return 0;\n}",
+        referenceCode: "#include <iostream>\n#include <string>\n#include <algorithm>\nusing namespace std;\nchar getChar(int x) {\n    if (x < 10) return x + '0';\n    return x - 10 + 'A';\n}\nint main() {\n    long long n; int b; cin >> n >> b;\n    if (n == 0) { cout << 0 << endl; return 0; }\n    string res = \"\";\n    while (n > 0) {\n        res += getChar(n % b);\n        n /= b;\n    }\n    reverse(res.begin(), res.end());\n    cout << res << endl;\n    return 0;\n}"
+    },
+    {
+        id: 27,
+        type: "programming",
+        title: "变长编码",
+        problemNumber: "2023-09-23-04-C-02",
+        description: "小杨最近在学习编码。他发现变长编码是一种节省空间的编码方式。假设我们要对一个非负整数 x 进行变长编码，规则如下：如果 x < 128，则编码为一个字节 [x]；如果 x ≥ 128，则将其表示为 B 进制，其中 B=128，即 x = a_k*128^k + ... + a_1*128 + a_0。编码为 k+1 个字节，每个字节最高位为标志位（1 代表后面还有字节，0 代表最后一个字节），低 7 位为 a_i。编码顺序为从 a_0 到 a_k。",
+        inputDescription: "第一行一个非负整数 N (0 ≤ N ≤ 2^63-1)。",
+        outputDescription: "输出 N 的变长编码。每个字节用两位十六进制表示（大写），中间用空格隔开。",
+        samples: [
+            { input: "127", output: "7F" },
+            { input: "128", output: "80 01" }
+        ],
+        explanation: "按照 128 进制分解，每个字节的低 7 位是余数。除最后一个字节外，最高位补 1（即加上 128）。",
+        tags: ["编程题", "位运算", "模拟"],
+        template: "#include <iostream>\n#include <vector>\n#include <iomanip>\nusing namespace std;\n\nint main() {\n    unsigned long long n;\n    cin >> n;\n    // 在此编写代码\n    return 0;\n}",
+        referenceCode: "#include <iostream>\n#include <vector>\n#include <iomanip>\nusing namespace std;\nint main() {\n    unsigned long long n; cin >> n;\n    if (n == 0) { cout << \"00\" << endl; return 0; }\n    vector<int> res;\n    while (n >= 128) {\n        res.push_back((n % 128) + 128);\n        n /= 128;\n    }\n    res.push_back(n);\n    for (int i = 0; i < res.size(); i++) {\n        cout << hex << uppercase << setw(2) << setfill('0') << res[i] << (i == res.size() - 1 ? \"\" : \" \");\n    }\n    cout << endl;\n    return 0;\n}"
+    }
+];
+
+paperData.questions.push(...programmingQuestions);

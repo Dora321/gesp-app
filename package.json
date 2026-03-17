@@ -10,8 +10,9 @@
     "lint": "eslint .",
     "preview": "vite preview",
     "check:level1": "node scripts/check-level1-objective.js",
-    "check:objective": "node scripts/check-objective-level123.js",
-    "qa:objective": "node scripts/qa-objective-level123.js"
+    "legacy:check:objective": "node scripts/check-objective-level123.js",
+    "legacy:qa:objective": "node scripts/qa-objective-level123.js",
+    "validate:bank": "node scripts/validate-question-bank.js"
   },
   "dependencies": {
     "@tailwindcss/postcss": "^4.1.18",
