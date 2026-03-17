@@ -3,6 +3,9 @@ import ReactMarkdown from 'react-markdown';
 import remarkGfm from 'remark-gfm';
 import remarkMath from 'remark-math';
 import rehypeKatex from 'rehype-katex';
+import rehypeHighlight from 'rehype-highlight';
+import 'katex/dist/katex.min.css';
+import 'highlight.js/styles/github-dark.css';
 import { useNavigate, useParams } from 'react-router-dom';
 import {
     ChevronLeft,
@@ -104,6 +107,17 @@ const sectionMetaByLevel = {
     7: { tone: '竞赛视角', focus: '抽象化与高效实现', color: 'from-rose-500 to-pink-500' },
     8: { tone: '高阶压轴', focus: '综合算法与工程稳健性', color: 'from-slate-700 to-slate-900' },
 };
+
+const MarkdownRenderer = ({ content, className = "" }) => (
+    <div className={`markdown-body ${className}`}>
+        <ReactMarkdown 
+            remarkPlugins={[remarkGfm, remarkMath]} 
+            rehypePlugins={[rehypeKatex, [rehypeHighlight, { detect: true }]]}
+        >
+            {content}
+        </ReactMarkdown>
+    </div>
+);
 
 export default function EnhancedPaperPage({ forcedPaperId }) {
     const { paperId: routePaperId } = useParams();
@@ -333,7 +347,7 @@ export default function EnhancedPaperPage({ forcedPaperId }) {
                         </div>
 
                         <h2 className="text-lg md:text-xl font-bold text-slate-800 mb-5 leading-relaxed">
-                            {stripLeadingNumber(currentQ.question)}
+                            <MarkdownRenderer content={stripLeadingNumber(currentQ.question)} />
                         </h2>
 
                         {activeTab === 'practice' && (
@@ -344,7 +358,7 @@ export default function EnhancedPaperPage({ forcedPaperId }) {
                                             代码上机题题面如下（Markdown 原文），可直接在此阅读后开始实现：
                                         </p>
                                         <div className="prose prose-sm max-w-none bg-white rounded-lg border border-indigo-100 p-3">
-                                            <ReactMarkdown remarkPlugins={[remarkGfm, remarkMath]} rehypePlugins={[rehypeKatex]}>{formatProblemMarkdown(currentQ.explanation || '')}</ReactMarkdown>
+                                            <MarkdownRenderer content={currentQ.explanation || ''} />
                                         </div>
                                     </div>
                                 ) : (
@@ -390,7 +404,7 @@ export default function EnhancedPaperPage({ forcedPaperId }) {
                                             <div className="space-y-3">
                                                 <p className="text-sm"><span className="font-semibold text-indigo-700">上机题原题面（Markdown）：</span></p>
                                                 <div className="prose prose-sm max-w-none bg-white rounded-lg border border-blue-100 p-3">
-                                                    <ReactMarkdown remarkPlugins={[remarkGfm, remarkMath]} rehypePlugins={[rehypeKatex]}>{formatProblemMarkdown(currentQ.explanation || '')}</ReactMarkdown>
+                                                    <MarkdownRenderer content={currentQ.explanation || ''} />
                                                 </div>
 
                                                 <div className="grid md:grid-cols-2 gap-3">
