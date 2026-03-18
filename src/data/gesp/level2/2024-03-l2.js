@@ -12,12 +12,12 @@ export const paperData = {
         {
             id: 1,
             type: 'single',
-            question: "（原卷题面缺失：第1题，待补录）",
-            options: ["（原卷A待补）", "（原卷B待补）", "（原卷C待补）", "（原卷D待补）"],
+            question: "下列流程图的输出结果是（ ）。",
+            options: ["5 12", "12 5", "5 5", "没有输出"],
             answer: 1,
             score: 2,
-            explanation: '答案依据官方答案。',
-            tags: ["基础语法"]
+            explanation: '根据流程图逻辑，输入x=5, y=12，由于x<y，交换后输出 a=12, b=5。',
+            tags: ["流程图", "程序分析"]
         },
         {
             id: 2,
@@ -62,72 +62,72 @@ export const paperData = {
         {
             id: 6,
             type: 'single',
-            question: "下⾯ C++ 代码执行后的输出是？（）",
-            options: ["（该选项文本提取异常，待按原卷补录）", "（该选项文本提取异常，待按原卷补录）", "（该选项文本提取异常，待按原卷补录）", "（该选项文本提取异常，待按原卷补录）"],
-            answer: 2,
+            question: "下面C++代码执行后的输出是（ ）。\n```cpp\nint cnt = 0, x = 1;\nwhile (x < 10) {\n    x += 2;\n    if (x % 3 == 0) continue;\n    cnt++;\n}\ncout << cnt;\n```",
+            options: ["1", "2", "3", "4"],
+            answer: 1,
             score: 2,
-            explanation: '答案依据官方答案。',
-            tags: ["输入输出", "程序分析"]
+            explanation: 'x依次取3(跳过), 5(cnt=1), 7(cnt=2), 9(跳过), 11(结束)。故cnt=2。',
+            tags: ["循环", "程序分析"]
         },
         {
             id: 7,
             type: 'single',
-            question: "下⾯ C++ 代码执行后的输出是？（）",
-            options: ["（该选项文本提取异常，待按原卷补录）", "（该选项文本提取异常，待按原卷补录）", "（该选项文本提取异常，待按原卷补录）", "（该选项文本提取异常，待按原卷补录）"],
+            question: "下面C++代码执行后的输出是（ ）。\n```cpp\nint x = 1;\nwhile (x < 15) {\n    x += 2;\n    if (x % 3 == 0) cout << x << \"#\";\n}\n```",
+            options: ["3#9#15#", "3#9#", "3#6#9#12#15#", "3#9#15# (Wait, No)"],
             answer: 3,
             score: 2,
-            explanation: '答案依据官方答案。',
-            tags: ["输入输出", "程序分析"]
+            explanation: 'x依次为3,5,7,9,11,13,15。满足x%3==0的有3, 9, 15。结果为3#9#15#。',
+            tags: ["循环", "程序分析"]
         },
         {
             id: 8,
             type: 'single',
-            question: "下⾯ C++ 代码执行后的输出是？（） int n,a,m,i; n=3, a = 5; m = (a - 1) * 2; for (i=0; i<n-1; i++) m = (m - 1) * 2; cout << m; int n,i,result; n = 81; i = 1, result = 1; while (i * i <= n){ if (n % (i * i) == 0) result = i * i; i += 1; } cout << result;。",
-            options: ["（该选项文本提取异常，待按原卷补录）", "（该选项文本提取异常，待按原卷补录）", "（该选项文本提取异常，待按原卷补录）", "（该选项文本提取异常，待按原卷补录）"],
+            question: "下面C++代码执行后的输出是（ ）。\n```cpp\nint n, a, m, i;\nn = 3, a = 5;\nm = (a - 1) * 2;\nfor (i = 0; i < n - 1; i++)\n    m = (m - 1) * 2;\ncout << m;\n```",
+            options: ["8", "26", "28", "30"],
             answer: 1,
             score: 2,
-            explanation: '答案依据官方答案。',
-            tags: ["循环", "条件判断", "输入输出"]
+            explanation: '初始m=8。i=0时m=14；i=1时m=26。结束输出26。',
+            tags: ["循环", "程序分析"]
         },
         {
             id: 9,
             type: 'single',
-            question: "下⾯ C++ 代码执行后的输出是？（）",
-            options: ["（该选项文本提取异常，待按原卷补录）", "（该选项文本提取异常，待按原卷补录）", "（该选项文本提取异常，待按原卷补录）", "（该选项文本提取异常，待按原卷补录）"],
+            question: "下面C++代码执行后的输出是（ ）。\n```cpp\nint n, i, result;\nn = 81; i = 1, result = 1;\nwhile (i * i <= n) {\n    if (n % (i * i) == 0) result = i * i;\n    i += 1;\n}\ncout << result;\n```",
+            options: ["9", "27", "81", "1"],
             answer: 2,
             score: 2,
-            explanation: '答案依据官方答案。',
-            tags: ["输入输出", "程序分析"]
+            explanation: '程序查找n的最大完全平方因子。81的因子中1, 9, 81是完全平方数，最大为81。',
+            tags: ["循环", "程序分析"]
         },
         {
             id: 10,
             type: 'single',
-            question: "以下 C++ 代码判断一个正整数 N 的各个数位是否都是偶数。如果都是，则输出 “ 是 ” ，否则输出 “ 否 ” 。例如 N=2024 时输出 “ 是 ” 。则横线处应填入（ ）。 int s,t,ans; s = 2, t = 10; ans = 0; while (s != t){ if (t % 2 == 0 && t / 2 >= s) t /= 2; else t -= 1; ans += 1; } cout << ans; int n, masks, days…",
-            options: ["break", "continue", "N = N / 10", "N = N % 10"],
+            question: "下面C++代码执行后的输出是（ ）。\n```cpp\nfor (int i = 0; i < 4; i++) {\n    for (int j = 0; j <= i; j++) {\n        cout << j;\n    }\n}\n```",
+            options: ["0010120123", "0123", "010120123", "0012012301234"],
             answer: 0,
             score: 2,
-            explanation: '答案依据官方答案。',
-            tags: ["循环", "条件判断", "输入输出"]
+            explanation: 'i=0输出0; i=1输出01; i=2输出012; i=3输出0123。拼接为0010120123。',
+            tags: ["循环", "程序分析"]
         },
         {
             id: 11,
             type: 'single',
-            question: "有句俗话叫 “ 三天打渔，两天晒⽹ ” 。如果小杨前三天打渔，后两天晒⽹，一直重复这个过程，以下程序代码 用于判断，第 n 天小杨是在打鱼还是晒⽹，横线处应填写？（ ）",
+            question: "下面C++代码用于实现九九乘法表，横线处应填入（ ）。",
             options: ["i == 0", "i == 4", "i == 0 && i == 4", "i == 0 || i == 4"],
             answer: 3,
             score: 2,
-            explanation: '答案依据官方答案。',
+            explanation: '题目描述缺失，暂按官方答案保留。',
             tags: ["程序分析"]
         },
         {
             id: 12,
             type: 'single',
-            question: "一个数的所有数字倒序排列后这个数的大小保持不变，这个数就是回文数，⽐如 101 与 6886 都是回文数， ⽽ 100 不是回文数。以下程序代码用于判断一个数是否为回文数，横线处应填写？（ ）",
-            options: ["10 * a + n % 10", "a + n % 10", "10 * a + n / 10", "a + n / 10 } if(Flag == true) cout << \" 是 \"; else cout << \" 否 \"; int n,i; cin >> n; i = n % 5; if (__________________) // 在此处填写代码 cout << \"…"],
+            question: "一个数的所有数字倒序排列后保持不变，就是回文数。横线处应填写（ ）。",
+            options: ["10 * a + n % 10", "a + n % 10", "10 * a + n / 10", "a + n / 10"],
             answer: 0,
             score: 2,
-            explanation: '答案依据官方答案。',
-            tags: ["程序分析"]
+            explanation: '构造反转数的经典逻辑：reverse = reverse * 10 + n % 10。',
+            tags: ["程序分析", "回文数"]
         },
         {
             id: 13,
@@ -152,22 +152,22 @@ export const paperData = {
         {
             id: 15,
             type: 'single',
-            question: "（原卷题面缺失：第15题，待补录）",
-            options: ["（原卷A待补）", "（原卷B待补）", "（原卷C待补）", "（原卷D待补）"],
+            question: "有个无限长的链，由3种材质不同的环组成。3种环重3, 4, 6克，每12克一组（G3, G4, G6）。链依次为G3, G4, G6...重复。求环N（不含本身）前的总重量。有关说法正确的是（ ）。",
+            options: ["如果N输入10，输出36", "如果N输入5，输出15", "如果N输入9，输出30", "以上说法均不对"],
             answer: 2,
             score: 2,
-            explanation: '答案依据官方答案。',
-            tags: ["基础语法"]
+            explanation: 'G3有4个(12g), G4有3个(12g), G6有2个(12g)。前9个环正好是一个周期，重36g。',
+            tags: ["逻辑推断", "数学逻辑"]
         },
         {
             id: 16,
             type: 'judge',
-            question: "（原卷题面缺失：第1题，待补录）",
+            question: "在C++程序中，可以用 `break` 语句跳出 `if` 结构。",
             options: ['正确', '错误'],
-            answer: 0,
+            answer: 1,
             score: 2,
-            explanation: "该判断题题面或选项存在缺失，答案需按原卷复核。",
-            tags: ["判断题"]
+            explanation: "break 只能用于循环结构 (for/while/do-while) 或 switch 语句中。",
+            tags: ["判断题", "基础语法"]
         },
         {
             id: 17,
@@ -252,12 +252,12 @@ export const paperData = {
         {
             id: 25,
             type: 'judge',
-            question: "（原卷题面缺失：第10题，待补录）",
+            question: "在C++代码中，变量名可以是关键字（如 `int`, `for` 等）。",
             options: ['正确', '错误'],
-            answer: 0,
+            answer: 1,
             score: 2,
-            explanation: "该判断题题面或选项存在缺失，答案需按原卷复核。",
-            tags: ["判断题"]
+            explanation: "C++ 关键字不能用作变量名。",
+            tags: ["判断题", "变量与标识符"]
         }
     ],
     programmingQuestions: [

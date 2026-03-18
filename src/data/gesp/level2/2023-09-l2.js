@@ -12,12 +12,12 @@ export const paperData = {
         {
             id: 1,
             type: 'single',
-            question: "（原卷题面缺失：第1题，待补录）",
-            options: ["（原卷A待补）", "（原卷B待补）", "（原卷C待补）", "（原卷D待补）"],
+            question: "我国第一台大型通用电子计算机使用的逻辑部件是（ ）。",
+            options: ["集成电路", "大规模集成电路", "晶体管", "电子管"],
             answer: 3,
             score: 2,
-            explanation: '答案依据官方答案。',
-            tags: ["基础语法"]
+            explanation: '中国第一台通用数字电子计算机于1958年由中科院计算所研制成功，逻辑部件是电子管。',
+            tags: ["基础语法", "历史知识"]
         },
         {
             id: 2,
@@ -102,32 +102,32 @@ export const paperData = {
         {
             id: 10,
             type: 'single',
-            question: "下⾯ C++ 代码执行后的输出是（ ）。",
-            options: ["（该选项文本提取异常，待按原卷补录）", "（该选项文本提取异常，待按原卷补录）", "（该选项文本提取异常，待按原卷补录）", "（该选项文本提取异常，待按原卷补录）"],
+            question: "下面C++代码执行后的输出是（ ）。\n```cpp\nint cnt = 0;\nfor (int i = 1; i < 8; i++)\n    for (int j = 1; j <= i; j += 2)\n        cnt++;\ncout << cnt;\n```",
+            options: ["16", "28", "35", "36"],
             answer: 0,
             score: 2,
-            explanation: '答案依据官方答案。',
-            tags: ["输入输出", "程序分析"]
+            explanation: '追踪循环次数：i=1,2(各1次); i=3,4(各2次); i=5,6(各3次); i=7(4次)。总计 1+1+2+2+3+3+4 = 16。',
+            tags: ["循环", "程序分析"]
         },
         {
             id: 11,
             type: 'single',
-            question: "下⾯ C++ 代码执行后的输出是（ ）。",
-            options: ["（该选项文本提取异常，待按原卷补录）", "（该选项文本提取异常，待按原卷补录）", "（该选项文本提取异常，待按原卷补录）", "没有输出"],
+            question: "下面C++代码执行后的输出是（ ）。\n```cpp\nint cnt = 0;\nfor (int i = 1; i <= 12; i += 3) {\n    if (i % 2 != 0) {\n        for (int j = 1; j < i; j += 2) {\n            cnt++;\n        }\n    }\n}\ncout << cnt;\n```",
+            options: ["1", "3", "15", "没有输出"],
             answer: 1,
             score: 2,
-            explanation: '答案依据官方答案。',
-            tags: ["输入输出", "程序分析"]
+            explanation: 'i的取值为1, 4, 7, 10。其中只有1和7是奇数。i=1时内层循环不执行；i=7时，j=1,3,5，cnt共增加3次。',
+            tags: ["循环", "程序分析"]
         },
         {
             id: 12,
             type: 'single',
-            question: "下⾯ C++ 代码执行后的输出是（ ）。",
-            options: ["（该选项文本提取异常，待按原卷补录）", "3,9,11", "3,6,9,10", "1,5,7,11,13,15"],
+            question: "下面C++代码执行后的输出是（ ）。\n```cpp\nint x = 1;\nwhile (x < 15) {\n    x += 2;\n    if (x % 3 == 0 || x == 11) {\n        if (x / 10) cout << x;\n        else cout << x << \",\";\n    }\n}\n```",
+            options: ["3,9,15", "3,9,11", "3,6,9,12", "1,5,7,11,13,15"],
             answer: 1,
             score: 2,
-            explanation: '答案依据官方答案。',
-            tags: ["输入输出", "程序分析"]
+            explanation: 'x依次为3,5,7,9,11,13,15。满足条件的有：x=3(输出3,)，x=9(输出9,)，x=11(输出11)。结果为3,9,11。',
+            tags: ["循环", "程序分析"]
         },
         {
             id: 13,
@@ -152,112 +152,112 @@ export const paperData = {
         {
             id: 15,
             type: 'single',
-            question: "（原卷题面缺失：第15题，待补录）",
-            options: ["（原卷A待补）", "（原卷B待补）", "（原卷C待补）", "（原卷D待补）"],
-            answer: 0,
+            question: "一个数如果能被某个数（比如 7）整除，或者含有该数，则说该数是该数的相关数。如果 N 为 1 到 9 之间的整数，M 为正整数，则下面 C++ 代码用于判断 M 是否为 N 的相关数。有关说法错误的是（ ）。\n```cpp\nint N, M;\ncin >> N >> M;\nbool flag = false;\nif (M % N == 0) flag = true;\nelse {\n    int temp = M;\n    while (temp > 0) {\n        if (temp % 10 == N) {\n            flag = true;\n            break;\n        }\n        temp /= 10;\n    }\n}\nif (flag) cout << \"Yes\";\n```",
+            options: ["该段代码可以正确判断 M 是否为 N 的相关数。", "如果 M 是 N 的整倍数，flag 将被设为 true。", "如果 M 的某一位数字是 N，则 flag 将被设为 true。", "以上说法均正确。"],
+            answer: 3,
             score: 2,
-            explanation: '答案依据官方答案。',
-            tags: ["基础语法"]
+            explanation: "该代码先检查整除，再通过循环检查数位中是否包含 N，逻辑完整正确。",
+            tags: ["单选题", "程序分析"]
         },
         {
             id: 16,
             type: 'judge',
-            question: "（原卷题面缺失：第1题，待补录）",
+            question: "二进制数 101.101 在十进制下是 5.005。",
             options: ['正确', '错误'],
-            answer: 0,
+            answer: 1,
             score: 2,
-            explanation: "该判断题题面或选项存在缺失，答案需按原卷复核。",
-            tags: ["判断题"]
+            explanation: "101.101(2) = 5 + 1/2 + 1/8 = 5.625。",
+            tags: ["判断题", "数制转换"]
         },
         {
             id: 17,
             type: 'judge',
-            question: "神威 · 太湖之光超级计算机是中国⾃主研制的超级计算机，在全球超级计算机 TOP500 排行榜中多次荣膺榜 ⾸。",
+            question: "“神威·太湖之光”超级计算机是中国自主研制的超级计算机，在全球超级计算机 TOP500 排行榜中多次荣膺榜首。",
             options: ['正确', '错误'],
             answer: 0,
             score: 2,
-            explanation: "该判断题题面或选项存在缺失，答案需按原卷复核。",
-            tags: ["判断题"]
+            explanation: "神威·太湖之光是著名的中国超级计算机，曾在 2016-2018 年间多次获得世界第一。",
+            tags: ["判断题", "历史知识"]
         },
         {
             id: 18,
             type: 'judge',
-            question: "C++ 表达式7.8 / 2的值为3.9，类型为float。",
+            question: "C++ 表达式 `7.8 / 2` 的值为 3.9，类型为 `float`。",
             options: ['正确', '错误'],
-            answer: 0,
+            answer: 1,
             score: 2,
-            explanation: "该判断题题面或选项存在缺失，答案需按原卷复核。",
-            tags: ["判断题"]
+            explanation: "7.8 是字面量，默认类型是 double，所以计算结果类型也是 double 而非 float。",
+            tags: ["判断题", "数据类型"]
         },
         {
             id: 19,
             type: 'judge',
-            question: "C++ 表达式(2 * 3) || (2 + 5)的值为67。",
+            question: "C++ 表达式 `(2 * 3) || (2 + 5)` 的值为 67。",
             options: ['正确', '错误'],
-            answer: 0,
+            answer: 1,
             score: 2,
-            explanation: "该判断题题面或选项存在缺失，答案需按原卷复核。",
-            tags: ["判断题", "条件判断"]
+            explanation: "逻辑或运算符 || 的结果只能是 true (1) 或 false (0)，不会是 67。",
+            tags: ["判断题", "逻辑运算"]
         },
         {
             id: 20,
             type: 'judge',
-            question: "如果m 和n为int类型变量，则执行for (m = 0, n = 1; n < 9; ) n = ((m = 3 * n, m + 1), m - 1);之后n的值为偶数。",
+            question: "如果 m 和 n 为 int 类型变量，则执行 `for (m = 0, n = 1; n < 9; ) n = ((m = 3 * n, m + 1), m - 1);` 之后 n 的值为偶数。",
             options: ['正确', '错误'],
             answer: 0,
             score: 2,
-            explanation: "该判断题题面或选项存在缺失，答案需按原卷复核。",
-            tags: ["判断题", "循环", "变量与标识符"]
+            explanation: "该循环执行 3 次：n=1->2->5->14。14 是偶数，正确。",
+            tags: ["判断题", "逗号运算符"]
         },
         {
             id: 21,
             type: 'judge',
-            question: "如果a为int类型的变量，则表达式(a >= 5 && a <= 10)与(5 <= a <= 10)的值总是相同的。",
+            question: "如果 a 为 int 类型的变量，则表达式 `(a >= 5 && a <= 10)` 与 `(5 <= a <= 10)` 的值总是相同的。",
             options: ['正确', '错误'],
-            answer: 0,
+            answer: 1,
             score: 2,
-            explanation: "该判断题题面或选项存在缺失，答案需按原卷复核。",
-            tags: ["判断题", "条件判断", "变量与标识符"]
+            explanation: "后者是链式比较，逻辑上不等价于前者。例如 a=2 时，前者为假，后者为真（5<=2 是 0，0<=10 是真）。",
+            tags: ["判断题", "逻辑运算"]
         },
         {
             id: 22,
             type: 'judge',
-            question: "下⾯ C++ 代码执行后的输出为10。",
+            question: "在 C++ 中，`while` 循环和 `for` 循环在所有情况下都可以互相转换实现相同的功能。",
             options: ['正确', '错误'],
             answer: 0,
             score: 2,
-            explanation: "该判断题题面或选项存在缺失，答案需按原卷复核。",
-            tags: ["判断题", "输入输出", "程序分析"]
+            explanation: "for 循环和 while 循环是等价的，可以互相转换。",
+            tags: ["判断题", "循环结构"]
         },
         {
             id: 23,
             type: 'judge',
-            question: "执行以下 C++ 代码后的输出为0。",
+            question: "下⾯ C++ 代码执行后的输出为 0。\n```cpp\nint cnt = 0;\nfor (int i = 0; i < 10; i++) {\n    if (i % 2 == 0) continue;\n    cnt++;\n}\ncout << cnt % 2;\n```",
             options: ['正确', '错误'],
-            answer: 0,
+            answer: 1,
             score: 2,
-            explanation: "该判断题题面或选项存在缺失，答案需按原卷复核。",
-            tags: ["判断题", "输入输出", "程序分析"]
+            explanation: "i 为 1, 3, 5, 7, 9 时 cnt 增加，最终 cnt 为 5。5 % 2 = 1，输出为 1。",
+            tags: ["判断题", "循环控制"]
         },
         {
             id: 24,
             type: 'judge',
-            question: "执行以下 C++ 代码后的输出为30。",
+            question: "下⾯ C++ 代码执行后的输出为 30。\n```cpp\nint sum = 0;\nfor (int i = 1; i <= 10; i++) {\n    if (i % 3 == 0) sum += i;\n}\ncout << sum;\n```",
             options: ['正确', '错误'],
-            answer: 0,
+            answer: 1,
             score: 2,
-            explanation: "该判断题题面或选项存在缺失，答案需按原卷复核。",
-            tags: ["判断题", "输入输出", "程序分析"]
+            explanation: "1-10 之间能被 3 整除的数有 3, 6, 9。其和为 18。输出为 18。",
+            tags: ["判断题", "循环控制"]
         },
         {
             id: 25,
             type: 'judge',
-            question: "（原卷题面缺失：第10题，待补录）",
+            question: "下面C++代码执行时如果输入 2024，则输出是 4202。\n```cpp\nint n, m = 0;\ncin >> n;\nwhile (n > 0) {\n    m = m * 10 + n % 10;\n    n /= 10;\n}\ncout << m;\n```",
             options: ['正确', '错误'],
             answer: 0,
             score: 2,
-            explanation: "该判断题题面或选项存在缺失，答案需按原卷复核。",
-            tags: ["判断题"]
+            explanation: "该程序实现数字反转，2024 反转后为 4202。",
+            tags: ["判断题", "循环", "程序分析"]
         }
     ],
     programmingQuestions: [

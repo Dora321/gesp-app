@@ -12,12 +12,12 @@ export const paperData = {
         {
             id: 1,
             type: 'single',
-            question: "（原卷题面缺失：第1题，待补录）",
-            options: ["（原卷A待补）", "（原卷B待补）", "（原卷C待补）", "（原卷D待补）"],
+            question: "C++语言中，以下哪个变量命名是错误的？（ ）。",
+            options: ["my_var", "_var1", "123var", "var_123"],
             answer: 2,
             score: 2,
-            explanation: '答案依据官方答案。',
-            tags: ["基础语法"]
+            explanation: 'C++ 变量名不能以数字开头。',
+            tags: ["基础语法", "变量与标识符"]
         },
         {
             id: 2,
@@ -72,42 +72,42 @@ export const paperData = {
         {
             id: 7,
             type: 'single',
-            question: "下⾯ C++ 代码执行后的输出是（ ）。",
-            options: ["（该选项文本提取异常，待按原卷补录）", "8#8", "（该选项文本提取异常，待按原卷补录）", "4#4"],
+            question: "下面C++代码执行后的输出是（ ）。\n```cpp\nint cnt = 0;\nfor (int i = 1; i < 10; i++) {\n    if (i % 2 == 0) cnt++;\n}\ncout << cnt << \"#\";\n```",
+            options: ["5#", "8#", "9#", "4#"],
             answer: 3,
             score: 2,
-            explanation: '答案依据官方答案。',
-            tags: ["输入输出", "程序分析"]
+            explanation: 'i在1到9之间，偶数有2, 4, 6, 8，共4个。所以输出4#。',
+            tags: ["循环", "程序分析"]
         },
         {
             id: 8,
             type: 'single',
-            question: "下⾯ C++ 代码执行后的输出是（ ）。",
-            options: ["（该选项文本提取异常，待按原卷补录）", "（该选项文本提取异常，待按原卷补录）", "（该选项文本提取异常，待按原卷补录）", "（该选项文本提取异常，待按原卷补录）"],
+            question: "下面C++代码执行后的输出是（ ）。\n```cpp\nint N = 100;\nwhile (N % 2 == 0) {\n    if (N % 3 == 0) N -= 5;\n    else N -= 20;\n}\ncout << N;\n```",
+            options: ["100", "80", "55", "40"],
             answer: 2,
             score: 2,
-            explanation: '答案依据官方答案。',
-            tags: ["输入输出", "程序分析"]
+            explanation: 'N初始100(非3倍数)->80(非3倍数)->60(3倍数)->55。55是奇数，循环结束。',
+            tags: ["循环", "程序分析"]
         },
         {
             id: 9,
             type: 'single',
-            question: "下⾯ C++ 代码执行后的输出是（ ）。",
-            options: ["（该选项文本提取异常，待按原卷补录）", "1,3", "15,17", "1,10,12"],
+            question: "下面C++代码执行后的输出是（ ）。\n```cpp\nint x = 1;\nwhile (x < 10) {\n    if (x % 3 != 0) cout << x << \",\";\n    if (x % 3 == 0) x = x + 5 + 2;\n    else x += 2;\n}\n```",
+            options: ["1,3,", "1,3,10,", "1,7,", "1,10,"],
             answer: 3,
             score: 2,
-            explanation: '答案依据官方答案。',
-            tags: ["输入输出", "程序分析"]
+            explanation: 'x从1开始。1不是3倍数输出1,，x变3；3是3倍数x变10；10不是3倍数输出10,，x变12。结果为1,10,。',
+            tags: ["循环", "程序分析"]
         },
         {
             id: 10,
             type: 'single',
-            question: "下⾯ C++ 代码执行后的输出是（ ）。",
-            options: ["（该选项文本提取异常，待按原卷补录）", "（该选项文本提取异常，待按原卷补录）", "（该选项文本提取异常，待按原卷补录）", "（该选项文本提取异常，待按原卷补录）"],
+            question: "下面C++代码执行后的输出是（ ）。\n```cpp\nint cnt = 0;\nfor (int i = 0; i < 4; i++) {\n    for (int j = 0; j <= i; j++) {\n        cnt++;\n    }\n}\ncout << cnt;\n```",
+            options: ["5", "10", "15", "20"],
             answer: 1,
             score: 2,
-            explanation: '答案依据官方答案。',
-            tags: ["输入输出", "程序分析"]
+            explanation: '双重循环执行次数为 1 + 2 + 3 + 4 = 10。',
+            tags: ["循环", "程序分析"]
         },
         {
             id: 11,
@@ -152,112 +152,112 @@ export const paperData = {
         {
             id: 15,
             type: 'single',
-            question: "（原卷题面缺失：第15题，待补录）",
-            options: ["（原卷A待补）", "（原卷B待补）", "（原卷C待补）", "（原卷D待补）"],
+            question: "在下面的C++代码中，N必须是小于10大于1的整数，M为正整数。如果M被N整除则M为幸运数，如果M中含有N且能被N整除，则为超级幸运数。有关说法正确的是（ ）。",
+            options: ["如果N输入3，M输入36则将输出：36是3的超级幸运数", "如果N输入7，M输入21则将输出：21是7的幸运数", "如果N输入8，M输入36则将输出：36非8的超级幸运数", "如果N输入3，M输入63则将输出：63是3的超级幸运数"],
             answer: 1,
             score: 2,
-            explanation: '答案依据官方答案。',
-            tags: ["基础语法"]
+            explanation: '21可以被7整除，且不含数字7，所以是7的幸运数。',
+            tags: ["程序分析", "逻辑推断"]
         },
         {
             id: 16,
             type: 'judge',
-            question: "（原卷题面缺失：第1题，待补录）",
+            question: "计算机硬件主要包括运算器、控制器、存储器、输入设备和输出设备。",
             options: ['正确', '错误'],
             answer: 0,
             score: 2,
-            explanation: "该判断题题面或选项存在缺失，答案需按原卷复核。",
-            tags: ["判断题"]
+            explanation: "五大基本组成部分是经典的冯·诺依曼结构。",
+            tags: ["判断题", "计算机基础"]
         },
         {
             id: 17,
             type: 'judge',
-            question: "C++表达式 2*int('9')*2 的值为36。",
+            question: "C++ 表达式 `2 * int('9') * 2` 的值为 36。",
             options: ['正确', '错误'],
-            answer: 0,
+            answer: 1,
             score: 2,
-            explanation: "该判断题题面或选项存在缺失，答案需按原卷复核。",
-            tags: ["判断题"]
+            explanation: "字符 '9' 的 ASCII 码是 57，故表达式值为 2 * 57 * 2 = 228。",
+            tags: ["判断题", "数据类型"]
         },
         {
             id: 18,
             type: 'judge',
-            question: "C++表达式 3+2 && 5-5 的值为false。",
+            question: "C++ 表达式 `3 + 2 && 5 - 5` 的值为 `false`。",
             options: ['正确', '错误'],
             answer: 0,
             score: 2,
-            explanation: "该判断题题面或选项存在缺失，答案需按原卷复核。",
-            tags: ["判断题", "条件判断"]
+            explanation: "3 + 2 = 5 (true)，5 - 5 = 0 (false)。true && false 为 false。",
+            tags: ["判断题", "逻辑运算"]
         },
         {
             id: 19,
             type: 'judge',
-            question: "在C++代码中，执行 srand(0) 后连续两次执行 rand 的结果相等。",
+            question: "在 C++ 代码中，执行 `srand(0)` 后连续两次执行 `rand()` 的结果相等。",
             options: ['正确', '错误'],
-            answer: 0,
+            answer: 1,
             score: 2,
-            explanation: "该判断题题面或选项存在缺失，答案需按原卷复核。",
-            tags: ["判断题", "程序分析"]
+            explanation: "srand 设定随机种子，rand 每次调用都会返回随机数序列中的下一个值，通常不相等。",
+            tags: ["判断题", "随机数"]
         },
         {
             id: 20,
             type: 'judge',
-            question: "C++代码中 while(1){...} 的判断条件不是逻辑值，将导致语法错误。（ ）",
+            question: "C++ 代码中 `while(1){...}` 的判断条件不是逻辑值，将导致语法错误。",
             options: ['正确', '错误'],
-            answer: 0,
+            answer: 1,
             score: 2,
-            explanation: "该判断题题面或选项存在缺失，答案需按原卷复核。",
-            tags: ["判断题", "循环", "条件判断"]
+            explanation: "在 C++ 中，整数可以隐式转换为逻辑值，非零为真，零为假。while(1) 是合法的死循环。",
+            tags: ["判断题", "循环结构"]
         },
         {
             id: 21,
             type: 'judge',
-            question: "执行以下C++代码后将输出0。（ ）",
+            question: "执行以下 C++ 代码后将输出 0。\n```cpp\nint cnt = 0;\nfor (int i = 1; i <= 10; i++) {\n    if (i % 3 == 0) continue;\n    cnt++;\n}\ncout << cnt % 3;\n```",
             options: ['正确', '错误'],
-            answer: 0,
+            answer: 1,
             score: 2,
-            explanation: "该判断题题面或选项存在缺失，答案需按原卷复核。",
-            tags: ["判断题", "输入输出", "程序分析"]
+            explanation: "1-10 间非 3 倍数有 1, 2, 4, 5, 7, 8, 10，共 7 个。7 % 3 = 1。",
+            tags: ["判断题", "循环控制"]
         },
         {
             id: 22,
             type: 'judge',
-            question: "在C++代码中，运算符只能处理相同的数据类型，不同类型之间必须转换为相同的数据类型。（ ）",
+            question: "在 C++ 代码中，运算符只能处理相同的数据类型，不同类型之间必须转换为相同的数据类型。",
             options: ['正确', '错误'],
-            answer: 0,
+            answer: 1,
             score: 2,
-            explanation: "该判断题题面或选项存在缺失，答案需按原卷复核。",
-            tags: ["判断题", "程序分析"]
+            explanation: "C++ 支持隐式类型转换（如 int + double），不一定要手动转换。",
+            tags: ["判断题", "数据类型"]
         },
         {
             id: 23,
             type: 'judge',
-            question: "在C++代码中，虽然变量都有数据类型，但同一个变量也可以先后用不同类型的值赋值。（ ）",
+            question: "在 C++ 代码中，虽然变量都有数据类型，但同一个变量也可以先后用不同类型的值赋值。",
             options: ['正确', '错误'],
             answer: 0,
             score: 2,
-            explanation: "该判断题题面或选项存在缺失，答案需按原卷复核。",
-            tags: ["判断题", "变量与标识符", "程序分析"]
+            explanation: "C++ 是静态强类型语言，变量类型固定，但支持赋值时的自动类型转换。",
+            tags: ["判断题", "变量赋值"]
         },
         {
             id: 24,
             type: 'judge',
-            question: "小杨最近在准备考GESP，他用的Dev C++来练习和运行程序，所以Dev C++也是一个小型操作系统。（ ）",
+            question: "小杨最近在准备考 GESP，他用的 Dev C++ 来练习和运行程序，所以 Dev C++ 也是一个小型操作系统。",
             options: ['正确', '错误'],
-            answer: 0,
+            answer: 1,
             score: 2,
-            explanation: "该判断题题面或选项存在缺失，答案需按原卷复核。",
-            tags: ["判断题", "程序分析"]
+            explanation: "Dev C++ 是集成开发环境（IDE），不是操作系统。",
+            tags: ["判断题", "基础知识"]
         },
         {
             id: 25,
             type: 'judge',
-            question: "（原卷题面缺失：第10题，待补录）",
+            question: "表达式 `sqrt(9.0)` 的计算结果为 3，且结果类型为 int。",
             options: ['正确', '错误'],
-            answer: 0,
+            answer: 1,
             score: 2,
-            explanation: "该判断题题面或选项存在缺失，答案需按原卷复核。",
-            tags: ["判断题"]
+            explanation: "sqrt() 函数返回类型是 double。",
+            tags: ["判断题", "基础语法"]
         }
     ],
     programmingQuestions: [

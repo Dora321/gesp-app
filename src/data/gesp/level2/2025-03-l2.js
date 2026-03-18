@@ -41,12 +41,12 @@ export const paperData = {
         {
             id: 4,
             type: 'single',
-            question: "求三⾊彩球的颜⾊。有数量⽆限的红 (Red) 绿 (Green) 蓝 (Blue) 三种彩球排成一行，每组先为 5 个红⾊球，随后 3 个绿⾊，最后为 2 个蓝⾊。每个球都有编号，从左到右依次为 1,2,3…… 。输入整数代表编号，求该编号球的颜⾊。下 ⾯是 C++ 代码是实现，正确说法是 （ ） 。 int a=3, b = 4; a == b; b == a; cout << a << ' ' << b << endl;。",
-            options: ["将else if ((remainder == 9) || (remainder == 0))修改为else效果相同", "将((1 <= remainder) && (remainder<= 5))修改为(remainder <= 5)效果相同", "else if ((6 <= remainder) && (remainder <= 8))写法错误，应修改为else if (6 <= remainder <= 8)", "根据题意remainder = N % 10应修改为remainder = N / 10"],
+            question: "求三色彩球的颜色。有数量无限的红 (Red) 绿 (Green) 蓝 (Blue) 三种彩球排成一行，每组先为 5 个红色球，随后 3 个绿色，最后为 2 个蓝色。每个球都有编号，从左到右依次为 1, 2, 3……。输入整数代表编号，求该编号球的颜色。下⾯是 C++ 代码实现，有关说法正确的是（ ）。\n```cpp\nint N, remainder;\ncin >> N;\nremainder = N % 10;\nif ((1 <= remainder) && (remainder <= 5))\n    cout << \"Red\";\nelse if ((6 <= remainder) && (remainder <= 8))\n    cout << \"Green\";\nelse if ((remainder == 9) || (remainder == 0))\n    cout << \"Blue\";\n```",
+            options: ["将 else if ((remainder == 9) || (remainder == 0)) 修改为 else 效果相同", "将 ((1 <= remainder) && (remainder <= 5)) 修改为 (remainder <= 5) 效果相同", "else if ((6 <= remainder) && (remainder <= 8)) 写法错误，应修改为 else if (6 <= remainder <= 8)", "根据题意 remainder = N % 10 应修改为 remainder = N / 10"],
             answer: 0,
             score: 2,
-            explanation: '答案依据官方答案。',
-            tags: ["输入输出", "程序分析"]
+            explanation: '每组 10 个球，用 N % 10 分类。1-5红，6-8绿，9,0蓝。最后一个条件可以用 else 覆盖所有剩余情况（即 9 和 0）。',
+            tags: ["条件判断", "程序分析"]
         },
         {
             id: 5,
@@ -111,12 +111,12 @@ export const paperData = {
         {
             id: 11,
             type: 'single',
-            question: "在数学中 N! 表示 N 的阶乘，即 1 到 N 的乘积，如3!=1*2*3，且0! = 1。下⾯的两段 C++ 代码用于求 1 到 N 的阶乘之和，如 N 为 3 ，则结果是 9 （1!+2!+3!的值）。选项中的说法正确的是（ ）。 int i,j; int cnt = 0, N; cout << \" 请输入正整数 N ： \"; cin >> N; for (i = 1; (j=i) < N; i++) while (j != 0) if (j % 10 == 3){ c…",
-            options: ["虽然实现 1 的代码短小，但效率并不⾼", "实现 2 的代码效率更⾼，且更易于理解", "实现 1 因为应用了前项计算结果，计算量更小，因此效率⾼", "两种实现，效率⼏乎一致"],
-            answer: 2,
+            question: "如果 a 和 b 均为 int 类型的变量，下列表达式能正确判断 “a 等于 0 且 b 等于 0” 的是（ ）。",
+            options: ["!a && !b", "!(a || b)", "a == 0 && b == 0", "以上均正确"],
+            answer: 3,
             score: 2,
-            explanation: '答案依据官方答案。',
-            tags: ["循环", "条件判断", "输入输出"]
+            explanation: '!a 在 a 为 0 时为真。!(a || b) 在 a 和 b 均为 0 时为真。a == 0 && b == 0 是最直接的判断。故三者均可。',
+            tags: ["逻辑运算", "条件判断"]
         },
         {
             id: 12,
@@ -131,22 +131,22 @@ export const paperData = {
         {
             id: 13,
             type: 'single',
-            question: "已知 C++ 代码和执行后的期望输出如下，相关说法正确的是（ ）。 // 实现 2 int i,N; cin >> N; int tnt = 0, tmp; for (i = 1; i < N + 1; i++){ tmp = 1; for (int j = 1; j < i + 1; j++) tmp *= j; tnt += tmp; } cout << tnt << endl; for (i = 4; i < 1000; i += 2) for (j = 2; j <…",
-            options: ["倒数第二行的printf(\"\\n\")有错，应该修改为cout << endl;， printf( ) 函数不能输出换行", "last += 1修改为last = last + 1执行效果相同", "代码中 L1 标记行中的j < i + 1应修改为j < i", "外层 for 循环前的last = 1修改为last = 0执行效果相同"],
-            answer: 1,
+            question: "下⾯ C++ 代码用于实现如下图所示的效果（N 为 4 时输出 1-2-1-3-2-1-4-3-2-1-），横线处填入（ ）。\n```cpp\nfor (int i = 1; i <= N; i++) {\n    for (int j = i; j >= 1; j--) {\n        cout << j << \"-\";\n    }\n}\n```",
+            options: ["1-2-1-3-2-1-4-3-2-1-", "1-2-1-3-2-1-4-3-2-1", "0-0-1-0-1-2-0-1-2-3-", "0-0-1-0-1-2-0-1-2-3"],
+            answer: 0,
             score: 2,
-            explanation: '答案依据官方答案。',
-            tags: ["循环", "输入输出", "程序分析"]
+            explanation: '内层循环从 i 递减到 1，外层循环控制 i 从 1 到 N。故输出为 1-, 2-1-, 3-2-1-, 4-3-2-1-。',
+            tags: ["嵌套循环", "规律分析"]
         },
         {
             id: 14,
             type: 'single',
-            question: "在 C++ 中，（ ）最适合填入横线处连续 5 次正确⽣成 1 到 10 之间的随机整数？",
+            question: "在 C++ 中，（ ）最适合填入横线处用于连续 5 次正确⽣成 1 到 10 之间的随机整数？\n```cpp\nsrand(time(0));\nfor (int i = 0; i < 5; i++)\n    cout << (________________) << \" \";\n```",
             options: ["rand( ) % 11", "rand( ) % 10", "rand( ) % 10 + 1", "rand() % 9 + 1"],
             answer: 2,
             score: 2,
-            explanation: '答案依据官方答案。',
-            tags: ["基础语法"]
+            explanation: 'rand() % 10 产生 0-9，加 1 后产生 1-10。',
+            tags: ["随机数", "基础语法"]
         },
         {
             id: 15,
@@ -161,102 +161,102 @@ export const paperData = {
         {
             id: 16,
             type: 'judge',
-            question: "C++、Python都是高级编程语言，它们的每条语句最终都要通过机器指令来完成。（ ）",
+            question: "C++ 和 Python 都是高级编程语言，它们的每条语句最终都要通过机器指令来完成。",
             options: ['正确', '错误'],
             answer: 0,
             score: 2,
-            explanation: "该判断题题面或选项存在缺失，答案需按原卷复核。",
-            tags: ["判断题"]
+            explanation: "高级语言编写的程序最终都需要通过编译器或解释器转换为机器指令才能执行。",
+            tags: ["判断题", "基础知识"]
         },
         {
             id: 17,
             type: 'judge',
-            question: "在 C++ 代码中，假设 N 为正整数，则N - N / 10 * 10与N % 10都将获得 N 的个位数。 last += 1; } printf(\"\\n\"); } 请输入层数 N ： 10 2 3 4 5 6 7 8 9 1 2 3 4 5 6 7 8 9 1 2 3 4 5 6 7 8 9 1 2 3 4 5 6 7 8 9 1 2 3 4 5 6…",
+            question: "在 C++ 代码中，假设 N 为正整数，则 `N - N / 10 * 10` 与 `N % 10` 都将获得 N 的个位数。",
             options: ['正确', '错误'],
             answer: 0,
             score: 2,
-            explanation: "该判断题题面或选项存在缺失，答案需按原卷复核。",
-            tags: ["判断题", "输入输出", "运算符"]
+            explanation: "N/10*10 会去掉个位，N-(N/10*10) 就是个位。N%10 也是取个位。",
+            tags: ["判断题", "运算符"]
         },
         {
             id: 18,
             type: 'judge',
-            question: "C++ 语句cout << ((10 <= N <= 12)? \"true\":\"false\")中，假设整型变量 N 为 12 ，则其输出为 true。原因是执行10 <= N后其值为true，true与12相⽐仍然是true。",
+            question: "C++ 语句 `cout << ((10 <= N <= 12)? \"true\":\"false\")` 中，假设整型变量 N 为 12，则其输出为 true。",
             options: ['正确', '错误'],
             answer: 0,
             score: 2,
-            explanation: "该判断题题面或选项存在缺失，答案需按原卷复核。",
-            tags: ["判断题", "输入输出", "变量与标识符"]
+            explanation: "链式比较 `10 <= N <= 12` 会先计算 `10 <= N` 得到 true (1)，然后再计算 `1 <= 12` 得到 true。故无论 N 是多少，只要 `10 <= N` 为真（或假），最后结果都受此逻辑影响。",
+            tags: ["判断题", "逻辑运算"]
         },
         {
             id: 19,
             type: 'judge',
-            question: "C++ 表达式(sqrt(N) * sqrt(N)) == N中的 N 如果为正整数，则表达式的值为 true ，相当于开平⽅后平⽅ 是本⾝。（ ）",
+            question: "C++ 表达式 `(sqrt(N) * sqrt(N)) == N` 中的 N 如果为正整数，则表达式的值总是为 true。",
             options: ['正确', '错误'],
-            answer: 0,
+            answer: 1,
             score: 2,
-            explanation: "该判断题题面或选项存在缺失，答案需按原卷复核。",
-            tags: ["判断题"]
+            explanation: "由于浮点数精度的原因，开方再平方的结果不一定精确等于原整数。",
+            tags: ["判断题", "数学函数"]
         },
         {
             id: 20,
             type: 'judge',
-            question: "下⾯ C++ 执行后将输出3*2=6。",
+            question: "下⾯ C++ 执行后将输出 `3*2=6`。\n```cpp\nprintf(\"3*2=6\");\n```",
             options: ['正确', '错误'],
             answer: 0,
             score: 2,
-            explanation: "该判断题题面或选项存在缺失，答案需按原卷复核。",
+            explanation: "printf 会将双引号内的字符串原样输出。",
             tags: ["判断题", "输入输出"]
         },
         {
             id: 21,
             type: 'judge',
-            question: "下⾯ C++ 代码执行后将输出 10 。（ ）",
+            question: "下⾯ C++ 代码执行后的输出是 10。\n```cpp\nint i;\nfor (i = 0; i < 10; i++) continue;\nif (i == 10) cout << i;\n```",
             options: ['正确', '错误'],
             answer: 0,
             score: 2,
-            explanation: "该判断题题面或选项存在缺失，答案需按原卷复核。",
-            tags: ["判断题", "输入输出", "程序分析"]
+            explanation: "循环结束后 i 为 10，if 条件成立，输出 10。",
+            tags: ["判断题", "循环控制"]
         },
         {
             id: 22,
             type: 'judge',
-            question: "下⾯ C++ 代码执行后将输出 1 。（ ）",
+            question: "下⾯ C++ 代码执行后将输出 `4 4`。\n```cpp\nint a = 3, b = 4;\na = b;\nb = a;\ncout << a << \" \" << b;\n```",
             options: ['正确', '错误'],
             answer: 0,
             score: 2,
-            explanation: "该判断题题面或选项存在缺失，答案需按原卷复核。",
-            tags: ["判断题", "输入输出", "程序分析"]
+            explanation: "a=b 使 a 变为 4，然后 b=a 使 b 也变为 4。故输出 4 4。",
+            tags: ["判断题", "变量赋值"]
         },
         {
             id: 23,
             type: 'judge',
-            question: "下⾯的 C++ 代码执行后将输出 10 行 \"OK\" 。（ ）",
+            question: "下⾯的 C++ 代码执行后将输出 10 行 \"OK\"。\n```cpp\nfor (int i = 0; i < 10; i++) {\n    if (i % 2 == 0) continue;\n    cout << \"OK\" << endl;\n}\n```",
             options: ['正确', '错误'],
-            answer: 0,
+            answer: 1,
             score: 2,
-            explanation: "该判断题题面或选项存在缺失，答案需按原卷复核。",
-            tags: ["判断题", "输入输出", "程序分析"]
+            explanation: "i % 2 == 0 时跳过，只有 i 为奇数（1, 3, 5, 7, 9）时输出 OK，共 5 次。",
+            tags: ["判断题", "循环控制"]
         },
         {
             id: 24,
             type: 'judge',
-            question: "将下⾯ C++ 代码中的 for 循环中的i = 1调整为i = 0的输出结果相同。（ ）",
+            question: "将下⾯ C++ 代码中的 `for (int i = 1; i <= n; i++)` 调整为 `for (int i = 0; i < n; i++)`，输出结果通常相同。",
             options: ['正确', '错误'],
             answer: 0,
             score: 2,
-            explanation: "该判断题题面或选项存在缺失，答案需按原卷复核。",
-            tags: ["判断题", "循环", "输入输出"]
+            explanation: "循环次数相同，如果循环体内的逻辑（如数组下标）没有直接依赖 i 的具体数值，则输出相同。GESP 常考此类循环等价性。",
+            tags: ["判断题", "循环控制"]
         },
         {
             id: 25,
             type: 'judge',
-            question: "下面C++代码执行后将输出0123。（ ）",
+            question: "下⾯ C++ 代码执行后将输出 `0123`。\n```cpp\nfor (int i = 0; i < 4; i++)\n    cout << i;\n```",
             options: ['正确', '错误'],
             answer: 0,
             score: 2,
-            explanation: "该判断题题面或选项存在缺失，答案需按原卷复核。",
-            tags: ["判断题"]
+            explanation: "循环 i 从 0 到 3，依次输出 0, 1, 2, 3。",
+            tags: ["判断题", "循环输出"]
         }
     ],
     programmingQuestions: [

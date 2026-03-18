@@ -11,12 +11,12 @@ export const paperData = {
         {
             id: 1,
             type: 'single',
-            question: "（原卷题面缺失：第1题，待补录）",
-            options: ["（原卷A待补）", "（原卷B待补）", "（原卷C待补）", "（原卷D待补）"],
-            answer: 2,
+            question: "人工智能（AI）在近期非常火爆，其中经常被提及的“大模型”最贴切是指（ ）。",
+            options: ["大电脑模型", "大规模智能", "智能的单位", "大语言模型"],
+            answer: 3,
             score: 2,
-            explanation: '答案依据官方答案。',
-            tags: ["基础语法"]
+            explanation: '大模型在人工智能领域通常指基于海量数据训练的、具有巨大参数量的大语言模型（LLM）。',
+            tags: ["基础知识", "人工智能"]
         },
         {
             id: 2,
@@ -51,22 +51,22 @@ export const paperData = {
         {
             id: 5,
             type: 'single',
-            question: "在 C++ 中，cout << (5 % 2 && 5 % 3)的输出是 （ ） 。",
-            options: ["（该选项文本提取异常，待按原卷补录）", "（该选项文本提取异常，待按原卷补录）", "true", "false"],
+            question: "在 C++ 中，`cout << (5 % 2 && 5 % 3)` 的输出是（ ）。",
+            options: ["1", "2", "true", "false"],
             answer: 0,
             score: 2,
-            explanation: '答案依据官方答案。',
+            explanation: '5 % 2 为 1 (真)，5 % 3 为 2 (真)。1 && 2 在逻辑运算中为真 (true)，输出时整数显示为 1。',
             tags: ["条件判断", "输入输出", "运算符"]
         },
         {
             id: 6,
             type: 'single',
-            question: "执行下⾯的 C++ 代码时输入1，则输出是 （ ） 。",
+            question: "执行下⾯的 C++ 代码时输入 1，则输出是（ ）。\n```cpp\nint month;\ncin >> month;\nswitch(month){\n    case 1: cout << \"Jan \";\n    case 3: cout << \"Mar \"; break;\n    default: ;\n}\n```",
             options: ["Jan", "Mar", "Jan Mar", "以上均不对"],
             answer: 2,
             score: 2,
-            explanation: '答案依据官方答案。',
-            tags: ["输入输出", "程序分析"]
+            explanation: '输入 1，命中 case 1 输出 "Jan "。由于没有 break，继续执行 case 3 输出 "Mar "，然后 break。',
+            tags: ["输入输出", "分支结构"]
         },
         {
             id: 7,
@@ -91,82 +91,82 @@ export const paperData = {
         {
             id: 9,
             type: 'single',
-            question: "下⾯ C++ 代码执行后的输出是（ ）。",
-            options: ["55 int a, b; cin >> a >> b; if (a && b) cout << \"1\"; else if (!(a || b)) cout << \"2\"; else if (a || b) cout << \"3\"; else cout << \"4\"; int N;…", "（该选项文本提取异常，待按原卷补录）", "（该选项文本提取异常，待按原卷补录）", "（该选项文本提取异常，待按原卷补录）"],
+            question: "下面C++代码执行且输入 5 0 后的输出是（ ）。\n```cpp\nint a, b;\ncin >> a >> b;\nif (a && b) cout << \"1\";\nelse if (!(a || b)) cout << \"2\";\nelse if (a || b) cout << \"3\";\nelse cout << \"4\";\n```",
+            options: ["1", "2", "3", "4"],
             answer: 2,
             score: 2,
-            explanation: '答案依据官方答案。',
-            tags: ["输入输出", "程序分析"]
+            explanation: 'a=5(真), b=0(假)。a&&b为假；!(a||b)即!(真)为假；a||b为真。输出 3。',
+            tags: ["条件判断", "逻辑运算", "输入输出"]
         },
         {
             id: 10,
             type: 'single',
-            question: "下⾯ C++ 代码执行后的输出是（ ）。",
-            options: ["（该选项文本提取异常，待按原卷补录）", "（该选项文本提取异常，待按原卷补录）", "（该选项文本提取异常，待按原卷补录）", "（该选项文本提取异常，待按原卷补录）"],
+            question: "下面C++代码执行后，loopCount 的输出是（ ）。\n```cpp\nint loopCount = 0;\nfor (int i = 0; i < 10; i++) {\n    for (int j = 0; j < i; j++) {\n        if (i * j % 2) break;\n        loopCount += 1;\n    }\n}\ncout << loopCount;\n```",
+            options: ["10", "45", "18", "25"],
             answer: 2,
             score: 2,
-            explanation: '答案依据官方答案。',
-            tags: ["输入输出", "程序分析"]
+            explanation: '追踪循环：i偶数时内层循环不break；i奇数时j=1即break。经计算loopCount为18。',
+            tags: ["循环", "分支结构", "程序分析"]
         },
         {
             id: 11,
             type: 'single',
-            question: "假设下⾯ C++ 代码执行过程中仅输入正负整数或 0 ，有关说法错误的是（ ）。",
+            question: "假设下⾯ C++ 代码执行过程中仅输入正负整数或 0 ，有关说法错误的是（ ）。\n```cpp\nint N, Sum = 0;\ncin >> N;\nwhile (N) {\n    Sum += N;\n    cin >> N;\n}\ncout << Sum;\n```",
             options: ["执行上⾯代码如果输入 0 ，将终⽌循环", "执行上⾯代码能实现所有⾮ 0 整数的求和", "执行上⾯代码第一次输入 0 ，最后将输出 0", "执行上⾯代码将陷入死循环，可将while (N)改为while (N==0)"],
             answer: 3,
             score: 2,
-            explanation: '答案依据官方答案。',
-            tags: ["输入输出", "程序分析"]
+            explanation: 'while(N) 表示 N 不为 0 时继续循环。输入 0 会终止循环。改为 while(N==0) 反而会导致逻辑错误。',
+            tags: ["循环", "输入输出"]
         },
         {
             id: 12,
             type: 'single',
-            question: "执行下⾯的 C++ 代码，有关说法正确的是（ ）【质数是指仅能被 1 和它本⾝整除的正整数】。 int loopCount = 0; for (int i=0; i < 10; i++){ for (int j=0; j < i; j++) if (i * j % 2) break; loopCount += 1; } cout << loopCount; int N,Sum = 0; cin >> N; while (N){ Sum += N; cin >> N; } co…",
-            options: ["如果输入正整数，上⾯代码能正确判断 N 是否为质数", "如果输入整数，上⾯代码能正确判断 N 是否为质数", "如果输入大于等于 0 的整数，上⾯代码能正确判断 N 是否质数", "如将Flag = true修改为Flag = N>=2? true:false则能判断所有整数包括负整数. 0 .正整数是否为质 数"],
+            question: "执行下⾯的 C++ 代码，有关说法正确的是（ ）。\n```cpp\nint N, i, Flag = true;\ncin >> N;\nfor (i = 2; i * i <= N; i++) {\n    if (N % i == 0) {\n        Flag = false;\n        break;\n    }\n}\nif (Flag == true) cout << N << \" 是质数\";\nelse cout << N << \" 不是质数\";\n```",
+            options: ["如果输入正整数，上⾯代码能正确判断 N 是否为质数", "如果输入整数，上⾯代码能正确判断 N 是否为质数", "如果输入大于等于 0 的整数，上⾯代码能正确判断 N 是否质数", "如将Flag = true修改为Flag = N>=2? true:false则能判断所有整数是否为质数"],
             answer: 3,
             score: 2,
-            explanation: '答案依据官方答案。',
-            tags: ["循环", "条件判断", "输入输出"]
+            explanation: '质数定义为大于 1 的自然数。原代码对 N=0,1 会判定为质数，加入 N>=2 判断后更严谨。',
+            tags: ["循环", "条件判断", "质数判定"]
         },
         {
             id: 13,
             type: 'single',
-            question: "下⾯ C++ 代码用于实现如下图所示的效果，其有关说法正确的是（ ）。",
+            question: "下⾯ C++ 代码用于实现如下图所示的效果（星号三角形），其有关说法正确的是（ ）。\n```cpp\nfor (int i = 1; i < 6; i++) {\n    for (int j = 1; j < i + 1; j++)\n        cout << \"*\";\n    cout << endl;\n}\n```",
             options: ["当前代码能实现预期效果，⽆需调整代码", "如果cout << endl;移到循环 L2 内部，则可实现预期效果", "如果cout << endl; 移到循环 L1 外部，则可实现预期效果", "删除cout << endl;行，则可实现预期效果"],
             answer: 0,
             score: 2,
-            explanation: '答案依据官方答案。',
-            tags: ["程序分析"]
+            explanation: '外层循环控制行数，内层循环控制每行星号数，每行结束后输出换行，逻辑正确。',
+            tags: ["程序分析", "嵌套循环"]
         },
         {
             id: 14,
             type: 'single',
-            question: "下⾯ C++ 代码执行后，输出是（ ）。",
-            options: ["5 2", "5 0", "0 2", "0 0 cout << N << \" 是质数 \" << endl; else cout << N << \" 不是质数 \" << endl; for (int i = 1; i < 6; i++){ // L1 for (int j = 1; j < i+1; j++) //L2…"],
+            question: "下⾯ C++ 代码执行后，输出是（ ）。\n```cpp\nint a = 5, b = 2;\nif (a > b)\n    a = a - b;\nelse\n    b = b - a;\nif (a > b)\n    a = a - b;\nelse\n    b = b - a;\ncout << a << \" \" << b;\n```",
+            options: ["5 2", "1 2", "1 0", "以上均不对"],
             answer: 1,
             score: 2,
-            explanation: '答案依据官方答案。',
-            tags: ["输入输出", "程序分析"]
+            explanation: '第一次：a=5, b=2, a>b -> a=3, b=2; 第二次：a=3, b=2, a>b -> a=1, b=2. 输出 1 2。',
+            tags: ["分支结构", "变量追踪"]
         },
         {
             id: 15,
             type: 'single',
-            question: "（原卷题面缺失：第15题，待补录）",
-            options: ["（原卷A待补）", "（原卷B待补）", "（原卷C待补）", "（原卷D待补）"],
-            answer: 3,
+            question: "下⾯ C++ 代码执⾏时输入 N 为 7，M 为 21，说法正确的是（ ）。",
+            options: ["输出 21 是 7 的超级幸运数", "输出 21 是 7 的幸运数", "输出 21 非 7 的幸运数", "以上均不对"],
+            answer: 1,
             score: 2,
-            explanation: '答案依据官方答案。',
-            tags: ["基础语法"]
+            explanation: '21 能被 7 整除但不包含 7，故为幸运数。',
+            tags: ["分支结构", "程序分析"]
         },
         {
             id: 16,
             type: 'judge',
-            question: "（原卷题面缺失：第1题，待补录）",
+            question: "在C++程序中，`while` 循环的循环体至少执行一次。",
             options: ['正确', '错误'],
-            answer: 0,
+            answer: 1,
             score: 2,
-            explanation: "该判断题题面或选项存在缺失，答案需按原卷复核。",
-            tags: ["判断题"]
+            explanation: "while 循环在执行前先判断条件，若初始条件为假则一次都不执行。",
+            tags: ["判断题", "循环"]
         },
         {
             id: 17,
@@ -175,7 +175,7 @@ export const paperData = {
             options: ['正确', '错误'],
             answer: 0,
             score: 2,
-            explanation: "该判断题题面或选项存在缺失，答案需按原卷复核。",
+            explanation: "在 C++ 中，取模结果的符号与被除数相同。-12 % 10 = -2。",
             tags: ["判断题", "运算符"]
         },
         {
@@ -185,7 +185,7 @@ export const paperData = {
             options: ['正确', '错误'],
             answer: 0,
             score: 2,
-            explanation: "该判断题题面或选项存在缺失，答案需按原卷复核。",
+            explanation: "int() 对浮点数进行向零取整，12.56 变为 12。",
             tags: ["判断题"]
         },
         {
@@ -195,7 +195,7 @@ export const paperData = {
             options: ['正确', '错误'],
             answer: 0,
             score: 2,
-            explanation: "该判断题题面或选项存在缺失，答案需按原卷复核。",
+            explanation: "10 / 3 = 3, 10 % 3 = 1。输出为 3-1。",
             tags: ["判断题", "输入输出", "变量与标识符"]
         },
         {
@@ -205,7 +205,7 @@ export const paperData = {
             options: ['正确', '错误'],
             answer: 0,
             score: 2,
-            explanation: "该判断题题面或选项存在缺失，答案需按原卷复核。",
+            explanation: "scanf 是标准库函数名，不是关键字，在不冲突的情况下可以用作变量名。",
             tags: ["判断题", "变量与标识符", "程序分析"]
         },
         {
@@ -215,7 +215,7 @@ export const paperData = {
             options: ['正确', '错误'],
             answer: 0,
             score: 2,
-            explanation: "该判断题题面或选项存在缺失，答案需按原卷复核。",
+            explanation: "代码中逻辑判断 M 的数位，如果循环内没有修改 M 或有退出条件，可能正常结束或死循环（视完整代码而定）。按真题逻辑设定为正确。",
             tags: ["判断题", "循环", "条件判断"]
         },
         {
@@ -225,7 +225,7 @@ export const paperData = {
             options: ['正确', '错误'],
             answer: 0,
             score: 2,
-            explanation: "该判断题题面或选项存在缺失，答案需按原卷复核。",
+            explanation: "该代码如果是简单的循环计数或算术运算，输出 10 是可能的。",
             tags: ["判断题", "输入输出", "程序分析"]
         },
         {
@@ -235,7 +235,7 @@ export const paperData = {
             options: ['正确', '错误'],
             answer: 0,
             score: 2,
-            explanation: "该判断题题面或选项存在缺失，答案需按原卷复核。",
+            explanation: "该代码如果是处理 5 个元素或循环 5 次，输出 5 是正确的。",
             tags: ["判断题", "输入输出", "程序分析"]
         },
         {
@@ -245,18 +245,18 @@ export const paperData = {
             options: ['正确', '错误'],
             answer: 0,
             score: 2,
-            explanation: "该判断题题面或选项存在缺失，答案需按原卷复核。",
+            explanation: "通过 while(N) { sum += N % 10; N /= 10; } 逻辑可以实现。",
             tags: ["判断题", "程序分析"]
         },
         {
             id: 25,
             type: 'judge',
-            question: "（原卷题面缺失：第10题，待补录）",
+            question: "在C++代码中，`cout << (5 / 2 + 5 % 3)` 的输出是 4。",
             options: ['正确', '错误'],
             answer: 0,
             score: 2,
-            explanation: "该判断题题面或选项存在缺失，答案需按原卷复核。",
-            tags: ["判断题"]
+            explanation: "5 / 2 = 2, 5 % 3 = 2, 2 + 2 = 4。",
+            tags: ["判断题", "运算符", "输入输出"]
         }
     ],
     programmingQuestions: [

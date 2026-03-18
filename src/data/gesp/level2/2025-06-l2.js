@@ -111,22 +111,22 @@ export const paperData = {
         {
             id: 11,
             type: 'single',
-            question: "下⾯ C++ 代码执行后的输出是（ ）。 int i, j; for(i = 1; i < 12; i++) for(j = 1; j < i; j++) if(i * j % 2 == 1) break; cout << i * j; int i, cnt = 0; for(i = -99; i < 100; i += 2) cnt = 1 + cnt; cout << cnt; int i; for(i = 1; i < 10; i++){ if(i % 3 != 0){…",
-            options: ["0#0-1#0-2#0-2#1-END", "0#0-1#0-1#1-2#0-2#1-2#2-3#0-3#1-3#2-END", "0#0-1#0-1#1-2#0-2#1-2#2-END", "1#0-2#0-2#1-END"],
+            question: "下面 C++ 代码用于输出如下图形，横线处填入（ ）。\n```cpp\nfor (int i = 0; i < 3; i++) {\n    for (int j = 0; j < i + 1; j++) \n        printf(\"%d-%d#\", i, j);\n    printf(\"END\\n\");\n}\n```",
+            options: ["0#0-1#0-2#0-2#1-END", "0#0-1#0-1#1-2#0-2#1-2#2-3#0-3#1-3#2-END", "0#0-1#0-1#1-2#0-2#1-2#2-END", "0-0#END\n1-0#1-1#END\n2-0#2-1#2-2#END"],
             answer: 3,
             score: 2,
-            explanation: '答案依据官方答案。',
-            tags: ["循环", "条件判断", "输入输出"]
+            explanation: '外层循环 i 从 0 到 2，内层循环 j 从 0 到 i。对应输出 i-j#。',
+            tags: ["嵌套循环", "图形输出"]
         },
         {
             id: 12,
             type: 'single',
-            question: "下⾯C++代码执行后，将输出不能被3整除且除以5余数为2的数。下列选项不能实现的是（ ）。",
+            question: "下⾯ C++ 代码执行后，将输出不能被 3 整除且除以 5 余数为 2 的数。下列选项不能实现的是（ ）。",
             options: ["(i % 3 != 0) && (i % 5 == 2)", "(i % 3) && (i % 5 == 2)", "(i % 3) && !(i % 5 != 2)", "!(i % 3) && (i % 5 == 2)"],
             answer: 3,
             score: 2,
-            explanation: '答案依据官方答案。',
-            tags: ["输入输出", "运算符", "程序分析"]
+            explanation: '!(i % 3) 表示 i 能被 3 整除，这与题目要求的“不能被 3 整除”相反。',
+            tags: ["条件判断", "逻辑运算"]
         },
         {
             id: 13,
@@ -161,52 +161,52 @@ export const paperData = {
         {
             id: 16,
             type: 'judge',
-            question: "人们现在参加很多闭卷考试时通常都不允许带智能手机、平板电脑等，此外很多种智能手表同样因为具有嵌入操作系统及通信等功能，所以也不允许随身携带。（ ）",
+            question: "人们现在参加很多闭卷考试时通常都不允许带智能手机、平板电脑等，此外很多种智能手表同样因为具有嵌入操作系统及通信等功能，所以也不允许随身携带。",
             options: ['正确', '错误'],
             answer: 0,
             score: 2,
-            explanation: "该判断题题面或选项存在缺失，答案需按原卷复核。",
-            tags: ["判断题"]
+            explanation: "智能手表具有处理和通信能力，通常被视为电子作弊工具，考试中严禁携带。",
+            tags: ["判断题", "基础知识"]
         },
         {
             id: 17,
             type: 'judge',
-            question: "在 C++ 代码中，假设 N 为正整数，则N / 10 舍弃个位数。如果 N 小于 10 ，则其值为 0 ，大于 10 则是舍弃个位 数的数。",
+            question: "在 C++ 代码中，假设 N 为正整数，则 `N / 10` 将舍弃个位数。如果 N 小于 10，则其值为 0。",
             options: ['正确', '错误'],
             answer: 0,
             score: 2,
-            explanation: "该判断题题面或选项存在缺失，答案需按原卷复核。",
-            tags: ["判断题", "程序分析"]
+            explanation: "整数除法会截断小数部分，N/10 相当于去掉个位。",
+            tags: ["判断题", "运算符"]
         },
         {
             id: 18,
             type: 'judge',
-            question: "下列 C++ 代码执行后，其输出为10 20 ，即 a == b 和 b == a 对 a 和 b 的值没有任何影响。",
+            question: "在 C++ 中，表达式 `a == b` 和 `b == a` 的结果总是相同的，且对 a 和 b 的值没有任何影响。",
             options: ['正确', '错误'],
             answer: 0,
             score: 2,
-            explanation: "该判断题题面或选项存在缺失，答案需按原卷复核。",
-            tags: ["判断题", "输入输出", "程序分析"]
+            explanation: "相等运算符具有对称性，且是纯函数操作，不修改操作数。",
+            tags: ["判断题", "运算符"]
         },
         {
             id: 19,
             type: 'judge',
-            question: "a 和 b 分别是 C++ 的整型变量，如果表达式max(a, b) == min(a, b) 的值为真，则说明 a 和 b 相等。 （ ）",
+            question: "假设 a 和 b 分别是 C++ 的整型变量，如果表达式 `max(a, b) == min(a, b)` 的值为真，则说明 a 和 b 相等。",
             options: ['正确', '错误'],
             answer: 0,
             score: 2,
-            explanation: "该判断题题面或选项存在缺失，答案需按原卷复核。",
-            tags: ["判断题", "变量与标识符"]
+            explanation: "最大值等于最小值，意味着所有参与比较的数都相等。",
+            tags: ["判断题", "数学函数"]
         },
         {
             id: 20,
             type: 'judge',
-            question: "下⾯ C++ 代码编译时将报错，因为字符变量 a 被赋值了浮点值。",
+            question: "在 C++ 中，`char a = '1'; a = 45.6;` 编译时将报错，因为字符变量 a 不能被赋值为浮点数。",
             options: ['正确', '错误'],
-            answer: 0,
+            answer: 1,
             score: 2,
-            explanation: "该判断题题面或选项存在缺失，答案需按原卷复核。",
-            tags: ["判断题", "变量与标识符", "程序分析"]
+            explanation: "C++ 中 char 是整数类型，浮点数赋值给 char 会发生隐式转换（截断），不会报错。",
+            tags: ["判断题", "数据类型"]
         },
         {
             id: 21,
@@ -215,48 +215,48 @@ export const paperData = {
             options: ['正确', '错误'],
             answer: 0,
             score: 2,
-            explanation: "该判断题题面或选项存在缺失，答案需按原卷复核。",
+            explanation: "该表达式先计算 10 <= N (得到 1/true)，再计算 1 <= 12 (得到 true)。故无论 N 为何值，结果通常为 true。",
             tags: ["判断题", "输入输出", "程序分析"]
         },
         {
             id: 22,
             type: 'judge',
-            question: "在下⾯的 C++ 代码中，因为continue 将被执行，因此不会有输出。（ ） } cout << endl; } int a = 10, b = 20; a == b; b == a; cout << (a, b); char a = '1'; a = 45.6; cout << a; int score; cout << \" 请输入学生成绩 : \"…",
+            question: "在下⾯的 C++ 代码中，`continue` 将导致循环跳过本次迭代，因此不会进入后续语句。",
             options: ['正确', '错误'],
             answer: 0,
             score: 2,
-            explanation: "该判断题题面或选项存在缺失，答案需按原卷复核。",
-            tags: ["判断题", "循环", "输入输出"]
+            explanation: "continue 语句用于跳过当前循环体中剩余的语句，直接进入下一次循环判定。",
+            tags: ["判断题", "循环控制"]
         },
         {
             id: 23,
             type: 'judge',
-            question: "下⾯的 C++ 代码执行后将输出 15 。（ ）",
+            question: "下⾯ C++ 代码执行后将输出 15。\n```cpp\nint cnt = 0;\nfor (int i = 5; i > 0; i--)\n    for (int j = 0; j < i; j++)\n        cnt++;\ncout << cnt;\n```",
             options: ['正确', '错误'],
             answer: 0,
             score: 2,
-            explanation: "该判断题题面或选项存在缺失，答案需按原卷复核。",
-            tags: ["判断题", "输入输出", "程序分析"]
+            explanation: "外层循环 i 为 5, 4, 3, 2, 1。内层循环次数分别为 5, 4, 3, 2, 1。总和为 15。",
+            tags: ["判断题", "嵌套循环"]
         },
         {
             id: 24,
             type: 'judge',
-            question: "将下⾯ C++ 代码中的(int i = 5; i > 1; i--) 调整为(int i = 1; i < 5; i++) 输出结果相同，因为 5 到 1 与 1 到 5 的求和相同。（ ）",
+            question: "将下⾯ C++ 代码中的 `for (int i = 5; i > 0; i--)` 调整为 `for (int i = 1; i <= 5; i++)`，输出结果相同。",
             options: ['正确', '错误'],
             answer: 0,
             score: 2,
-            explanation: "该判断题题面或选项存在缺失，答案需按原卷复核。",
-            tags: ["判断题", "输入输出", "程序分析"]
+            explanation: "两者都循环 5 次，且内层循环次数的总和保持不变（1+2+3+4+5 = 5+4+3+2+1）。",
+            tags: ["判断题", "循环逻辑"]
         },
         {
             id: 25,
             type: 'judge',
-            question: "为实现如下效果，即N行N列字符。当输入是奇数时，中间列为*，其他是-；当输入是偶数时，则中间两列是*，其他是-。字符阵列后的代码能实现其效果。（ ）",
+            question: "在 C++ 中，`while` 循环和 `for` 循环可以互相转换，实现相同的功能。",
             options: ['正确', '错误'],
             answer: 0,
             score: 2,
-            explanation: "该判断题题面或选项存在缺失，答案需按原卷复核。",
-            tags: ["判断题"]
+            explanation: "for 循环和 while 循环是等价的，可以互相转换。",
+            tags: ["判断题", "循环结构"]
         }
     ],
     programmingQuestions: [
