@@ -22,7 +22,7 @@ const inferTags = (q) => {
 export default function InteractiveAnalysisPage({ paperData, paperId }) {
     const navigate = useNavigate();
     const allQuestions = paperData?.questions || [];
-    const questions = allQuestions.filter((q) => q && q.type !== 'programming');
+    const questions = allQuestions; // No longer filter out programming questions
 
     const [activeTab, setActiveTab] = useState('practice');
     const [currentQuestionIndex, setCurrentQuestionIndex] = useState(0);

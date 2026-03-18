@@ -48,7 +48,7 @@ const inferKnowledgeTags = (q, level) => {
 
     if (q?.type === 'tf' || q?.type === 'judge') tags.push('判断题技巧');
     if (q?.type === 'single' || q?.type === 'choice') tags.push('单选题策略');
-    if (q?.type === 'coding') tags.push('上机编程');
+    if (q?.type === 'coding' || q?.type === 'programming') tags.push('上机编程');
     tags.push(`L${level}能力点`);
 
     return Array.from(new Set(tags)).slice(0, 5);
@@ -197,8 +197,9 @@ export default function EnhancedPaperPage({ forcedPaperId }) {
 
     const revealCurrent = () => {
         if (!currentQ) return;
-        if (currentQ.type !== 'coding' && answers[currentQ.id] === undefined) return;
-        if (currentQ.type === 'coding' && answers[currentQ.id] === undefined) {
+        const isProgramming = currentQ.type === 'coding' || currentQ.type === 'programming';
+        if (!isProgramming && answers[currentQ.id] === undefined) return;
+        if (isProgramming && answers[currentQ.id] === undefined) {
             setAnswers((prev) => ({ ...prev, [currentQ.id]: 0 }));
         }
         setRevealed((prev) => ({ ...prev, [currentQ.id]: true }));
@@ -337,17 +338,17 @@ export default function EnhancedPaperPage({ forcedPaperId }) {
 
                         {activeTab === 'practice' && (
                             <div className="space-y-3">
-                                {currentQ.type === 'coding' ? (
+                                {(currentQ.type === 'coding' || currentQ.type === 'programming') ? (
                                     <div className="rounded-xl border border-indigo-200 bg-indigo-50 p-4 space-y-3">
                                         <p className="text-sm text-slate-700 leading-relaxed">
                                             代码上机题题面如下（Markdown 原文），可直接在此阅读后开始实现：
                                         </p>
                                         <div className="prose prose-sm max-w-none bg-white rounded-lg border border-indigo-100 p-3">
-                                            <MarkdownRenderer content={currentQ.explanation || ''} />
+                                            <MarkdownRenderer content={currentQ.explanation || currentQ.question || ''} />
                                         </div>
                                     </div>
                                 ) : (
-                                    currentQ.options.map((opt, idx) => {
+                                    (currentQ.options || []).map((opt, idx) => {
                                         const isSelected = selected === idx;
                                         const optionState = isRevealed
                                             ? idx === currentQ.answer
@@ -365,7 +366,8 @@ export default function EnhancedPaperPage({ forcedPaperId }) {
                                                 onClick={() => handleOptionSelect(currentQ.id, idx)}
                                                 className={`w-full text-left p-4 rounded-xl border-2 transition-all ${optionState}`}
                                             >
-                                                <span className="font-semibold mr-2">{String.fromCharCode(65 + idx)}.</span>{opt}
+                                                <span className="font-semibold mr-2">{String.fromCharCode(65 + idx)}.</span>
+                                                <MarkdownRenderer content={opt} inline={true} className="inline-block" />
                                             </button>
                                         );
                                     })
@@ -373,10 +375,10 @@ export default function EnhancedPaperPage({ forcedPaperId }) {
 
                                 <button
                                     onClick={revealCurrent}
-                                    disabled={currentQ.type !== 'coding' && selected === undefined}
-                                    className={`w-full mt-2 py-3 rounded-xl font-semibold flex items-center justify-center gap-2 ${(currentQ.type !== 'coding' && selected === undefined) ? 'bg-slate-100 text-slate-400 cursor-not-allowed' : 'bg-indigo-600 text-white hover:bg-indigo-700'}`}
+                                    disabled={(currentQ.type !== 'coding' && currentQ.type !== 'programming') && selected === undefined}
+                                    className={`w-full mt-2 py-3 rounded-xl font-semibold flex items-center justify-center gap-2 ${((currentQ.type !== 'coding' && currentQ.type !== 'programming') && selected === undefined) ? 'bg-slate-100 text-slate-400 cursor-not-allowed' : 'bg-indigo-600 text-white hover:bg-indigo-700'}`}
                                 >
-                                    <CheckCircle2 size={18} /> {currentQ.type === 'coding' ? '标记已阅读并查看复盘' : '查看答案与解析'}
+                                    <CheckCircle2 size={18} /> {(currentQ.type === 'coding' || currentQ.type === 'programming') ? '标记已阅读并查看复盘' : '查看答案与解析'}
                                 </button>
                             </div>
                         )}
@@ -385,11 +387,11 @@ export default function EnhancedPaperPage({ forcedPaperId }) {
                             <div className="bg-blue-50 border border-blue-200 rounded-xl p-4 space-y-3">
                                 {isRevealed ? (
                                     <>
-                                        {currentQ.type === 'coding' ? (
+                                        {(currentQ.type === 'coding' || currentQ.type === 'programming') ? (
                                             <div className="space-y-3">
                                                 <p className="text-sm"><span className="font-semibold text-indigo-700">上机题原题面（Markdown）：</span></p>
                                                 <div className="prose prose-sm max-w-none bg-white rounded-lg border border-blue-100 p-3">
-                                                    <MarkdownRenderer content={currentQ.explanation || ''} />
+                                                    <MarkdownRenderer content={currentQ.explanation || currentQ.question || ''} />
                                                 </div>
 
                                                 <div className="grid md:grid-cols-2 gap-3">
