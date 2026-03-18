@@ -77,7 +77,7 @@ export const paperData = {
         {
             id: 3,
             type: "single",
-            question: "运行以下代码，屏幕上将输出（ ）。\n```cpp\nint var = 100;\nvoid function() {\n    int var = 200;\n    cout << var << \" \" << ::var << endl;\n}\n```cpp",
+            question: "运行以下代码，屏幕上将输出（ ）。\n```cpp\nint var = 100;\nvoid function() {\n    int var = 200;\n    cout << var << \" \" << ::var << endl;\n}\n```",
             options: ["100 100", "200 100", "200 200", "100 200"],
             answer: 1,
             score: 2,

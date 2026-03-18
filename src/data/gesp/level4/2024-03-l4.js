@@ -57,7 +57,7 @@ export const paperData = {
         {
             id: 2,
             type: "single",
-            question: "下面 C++ 代码执行后，输出的是 ( ) 。\n```cpp\nint main() {\n    char *p = \"GESP\";\n    cout << *(p+2) << endl;\n    return 0;\n}\n```cpp",
+            question: "下面 C++ 代码执行后，输出的是 ( ) 。\n```cpp\nint main() {\n    char *p = \"GESP\";\n    cout << *(p+2) << endl;\n    return 0;\n}\n```",
             options: ["G", "e", "n", "S"],
             answer: 2,
             score: 2,
@@ -67,7 +67,7 @@ export const paperData = {
         {
             id: 3,
             type: "single",
-            question: "下面 C++ 代码执行后输出是 ( ) 。\n```cpp\nint main() {\n    int x[]={2, 0, 2, 4};\n    char geSP[]=\"Grade Examination of SP\";\n    cout << geSP[sizeof(x)] << endl;\n    return 0;\n}\n```cpp",
+            question: "下面 C++ 代码执行后输出是 ( ) 。\n```cpp\nint main() {\n    int x[]={2, 0, 2, 4};\n    char geSP[]=\"Grade Examination of SP\";\n    cout << geSP[sizeof(x)] << endl;\n    return 0;\n}\n```",
             options: ["G", "r", "a", "E"],
             answer: 3,
             score: 2,
@@ -97,7 +97,7 @@ export const paperData = {
         {
             id: 6,
             type: "single",
-            question: "下面 C++ 代码执行后输出是（ ）。\n```cpp\nint main() {\n    char *p = \"I love GESP!\";\n    cout << p + 7 << endl;\n    return 0;\n}\n```cpp",
+            question: "下面 C++ 代码执行后输出是（ ）。\n```cpp\nint main() {\n    char *p = \"I love GESP!\";\n    cout << p + 7 << endl;\n    return 0;\n}\n```",
             options: ["e", "I lov", "e GESP!", "GESP!"],
             answer: 2,
             score: 2,
@@ -107,7 +107,7 @@ export const paperData = {
         {
             id: 7,
             type: "single",
-            question: "下面 C++ 代码执行以后输出的是（ ）。\n```cpp\nint foo(float *f) { return int(*f * 2); }\nint main() {\n    float fnum[10] = {1.1};\n    fnum[1] = foo(fnum);\n    cout << fnum[0] + fnum[1] << endl;\n    return 0;\n}\n```cpp",
+            question: "下面 C++ 代码执行以后输出的是（ ）。\n```cpp\nint foo(float *f) { return int(*f * 2); }\nint main() {\n    float fnum[10] = {1.1};\n    fnum[1] = foo(fnum);\n    cout << fnum[0] + fnum[1] << endl;\n    return 0;\n}\n```",
             options: ["1.1", "3.1", "3.3", "不确定"],
             answer: 3,
             score: 2,
@@ -117,7 +117,7 @@ export const paperData = {
         {
             id: 8,
             type: "single",
-            question: "下面 C++ 函数中采用的算法是（ ）。\n```cpp\nint fib(int n) {\n    int i, f[n]={0, 1};\n    for(int i=2; i<=n; i++) f[i]=f[i-1]+f[i-2];\n    return f[n];\n}\n```cpp",
+            question: "下面 C++ 函数中采用的算法是（ ）。\n```cpp\nint fib(int n) {\n    int i, f[n]={0, 1};\n    for(int i=2; i<=n; i++) f[i]=f[i-1]+f[i-2];\n    return f[n];\n}\n```",
             options: ["递推", "递归", "迭代", "分治"],
             answer: 0,
             score: 2,
@@ -137,7 +137,7 @@ export const paperData = {
         {
             id: 10,
             type: "single",
-            question: "在如下的 C++ 代码执行后，设第 11 和 12 行的输出地址值分别为X和Y，则下面正确的是（ ）。\n```cpp\nstruct pass {\n    int no;\n    char name[20];\n    int level;\n};\nint main() {\n    struct pass XiaoYang;\n    cout << &XiaoYang << endl; // 第 11 行\n    cout << &(XiaoYang.no) << endl; // 第 12 行\n    return 0;\n}\n```cpp",
+            question: "在如下的 C++ 代码执行后，设第 11 和 12 行的输出地址值分别为X和Y，则下面正确的是（ ）。\n```cpp\nstruct pass {\n    int no;\n    char name[20];\n    int level;\n};\nint main() {\n    struct pass XiaoYang;\n    cout << &XiaoYang << endl; // 第 11 行\n    cout << &(XiaoYang.no) << endl; // 第 12 行\n    return 0;\n}\n```",
             options: ["X > Y", "X == Y", "X < Y", "不确定"],
             answer: 1,
             score: 2,
@@ -147,7 +147,7 @@ export const paperData = {
         {
             id: 11,
             type: "single",
-            question: "如果文件 1.txt 中的内容为 `50 2024 3.16 I love GESP!`，则执行下面 C++ 代码时输出的 x 的值为（ ）。\n```cpp\nint main() {\n    ifstream fin;\n    string line; int x;\n    fin.open(\"1.txt\", ios::in);\n    for (int i=0; i<2; i++) fin >> line;\n    fin >> x;\n    cout << x << endl;\n    return 0;\n}\n```cpp",
+            question: "如果文件 1.txt 中的内容为 `50 2024 3.16 I love GESP!`，则执行下面 C++ 代码时输出的 x 的值为（ ）。\n```cpp\nint main() {\n    ifstream fin;\n    string line; int x;\n    fin.open(\"1.txt\", ios::in);\n    for (int i=0; i<2; i++) fin >> line;\n    fin >> x;\n    cout << x << endl;\n    return 0;\n}\n```",
             options: ["50", "2024", "3", "0"],
             answer: 2,
             score: 2,
@@ -157,7 +157,7 @@ export const paperData = {
         {
             id: 12,
             type: "single",
-            question: "执行下列 C++ 代码时输出的第 2 行是（ ）。\n```cpp\nint main() {\n    char *s[]={(char*)\"2024\",(char*)\"3.16\",(char*)\"GESP\"};\n    for (int i=0; i<2; i++) cout << *s+i << endl;\n    return 0;\n}\n```cpp",
+            question: "执行下列 C++ 代码时输出的第 2 行是（ ）。\n```cpp\nint main() {\n    char *s[]={(char*)\"2024\",(char*)\"3.16\",(char*)\"GESP\"};\n    for (int i=0; i<2; i++) cout << *s+i << endl;\n    return 0;\n}\n```",
             options: ["2024", "024", "3.16", "16"],
             answer: 2,
             score: 2,

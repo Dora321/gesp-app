@@ -21,7 +21,7 @@ export const paperData = {
         {
             id: 1,
             type: 'single',
-            question: '下列代码中，输出结果是（ ）。\n```cpp\n#include <iostream>\nusing namespace std;\nint main() {\n    double a = 0.9;\n    double b = 1.0;\n    if ((b - a) == 0.1) cout << "Equal" << endl;\n    else cout << "Not equal" << endl;\n}\n```cpp',
+            question: '下列代码中，输出结果是（ ）。\n```cpp\n#include <iostream>\nusing namespace std;\nint main() {\n    double a = 0.9;\n    double b = 1.0;\n    if ((b - a) == 0.1) cout << "Equal" << endl;\n    else cout << "Not equal" << endl;\n}\n```',
             options: ['Equal', 'Not equal', '程序不能正确执行', '没有输出'],
             answer: 1,
             score: 2,
@@ -102,7 +102,7 @@ export const paperData = {
         {
             id: 10,
             type: 'single',
-            question: '下列程序中，result 和 result2 输出分别是（ ）。\nlong a = 123;\n```cpp\nint b = 1;\nlong result = a & b;\ncout << result << endl;\n\nlong a2 = -123;\nunsigned int b2 = -1;\nlong result2 = a2 & b2;\ncout << result2 << endl;\n```cpp',
+            question: '下列程序中，result 和 result2 输出分别是（ ）。\nlong a = 123;\n```cpp\nint b = 1;\nlong result = a & b;\ncout << result << endl;\n\nlong a2 = -123;\nunsigned int b2 = -1;\nlong result2 = a2 & b2;\ncout << result2 << endl;\n```',
             options: ['123 -1', '123 -123', '1 -1', '1 -123'],
             answer: 3,
             score: 2,
@@ -152,7 +152,7 @@ export const paperData = {
         {
             id: 15,
             type: 'single',
-            question: '下列程序输出的是（ ）。\nstring str = "Hello,CHAD";\n```cpp\ncout << str.find("A") << "\\n";\n```cpp',
+            question: '下列程序输出的是（ ）。\nstring str = "Hello,CHAD";\n```cpp\ncout << str.find("A") << "\\n";\n```',
             options: ['9', '8', '7', '6'],
             answer: 1,
             score: 2,
@@ -197,7 +197,7 @@ export const paperData = {
         {
             id: 20,
             type: 'judge',
-            question: '下列程序输出的是 A。\n```cpp\nchar x = 65;\nx++;\ncout << x++ << endl;\n```cpp',
+            question: '下列程序输出的是 A。\n```cpp\nchar x = 65;\nx++;\ncout << x++ << endl;\n```',
             options: ['正确', '错误'],
             answer: 1,
             score: 2,
@@ -215,7 +215,7 @@ export const paperData = {
         {
             id: 22,
             type: 'judge',
-            question: '下列程序将输出 1。\n```cpp\nint a[10] = {1};\ncout << a[1] << endl;\n```cpp',
+            question: '下列程序将输出 1。\n```cpp\nint a[10] = {1};\ncout << a[1] << endl;\n```',
             options: ['正确', '错误'],
             answer: 1,
             score: 2,
@@ -224,7 +224,7 @@ export const paperData = {
         {
             id: 23,
             type: 'judge',
-            question: '下列程序将输出 A。\n```cpp\nint a = 65;\ncout << (char)a << endl;\n```cpp',
+            question: '下列程序将输出 A。\n```cpp\nint a = 65;\ncout << (char)a << endl;\n```',
             options: ['正确', '错误'],
             answer: 0,
             score: 2,

@@ -64,7 +64,7 @@ export const paperData = {
         {
             id: 2,
             type: "single",
-            question: "下面代码的描述中，正确的是（ ）。\n```cpp\nint main() {\n    int a = 10, b = 20;\n    int *p1 = &a, *p2 = &b;\n    *p1 = *p2;\n    cout << a << \" \" << b << endl;\n    return 0;\n}\n```cpp",
+            question: "下面代码的描述中，正确的是（ ）。\n```cpp\nint main() {\n    int a = 10, b = 20;\n    int *p1 = &a, *p2 = &b;\n    *p1 = *p2;\n    cout << a << \" \" << b << endl;\n    return 0;\n}\n```",
             options: ["输出 10 20", "输出 20 20", "输出 10 10", "输出 20 10"],
             answer: 1,
             score: 2,
@@ -89,7 +89,7 @@ export const paperData = {
         {
             id: 4,
             type: "single",
-            question: "有关下面代码，说法错误的是（ ）。\n```cpp\nvoid swap(int &a, int &b) {\n    int temp = a;\n    a = b;\n    b = temp;\n}\n```cpp",
+            question: "有关下面代码，说法错误的是（ ）。\n```cpp\nvoid swap(int &a, int &b) {\n    int temp = a;\n    a = b;\n    b = temp;\n}\n```",
             options: [
                 "该函数使用引用传递参数。",
                 "调用该函数后，实参的值会发生交换。",

@@ -74,7 +74,7 @@ export const paperData = {
         {
             id: 7,
             type: 'single',
-            question: '下列代码输出的是（ ）。\nstring s = "1234@@chenadai";\nstring str = "12345";\ns.replace(1, 5, str);\n```cpp\ncout << s << endl;\n```cpp',
+            question: '下列代码输出的是（ ）。\nstring s = "1234@@chenadai";\nstring str = "12345";\ns.replace(1, 5, str);\n```cpp\ncout << s << endl;\n```',
             options: ['12345', '2345@', '112345chenadai', '12345chenadai'],
             answer: 2,
             score: 2,
@@ -101,7 +101,7 @@ export const paperData = {
         {
             id: 10,
             type: 'single',
-            question: '下列程序中，假设一个字符占用的内存空间是 1，下列程序中，ch 占用的内存空间是（ ）。\n```cpp\nchar ch[] = "hello world";\nsize_t ret = strlen(ch);\ncout << ret << endl;\n```cpp',
+            question: '下列程序中，假设一个字符占用的内存空间是 1，下列程序中，ch 占用的内存空间是（ ）。\n```cpp\nchar ch[] = "hello world";\nsize_t ret = strlen(ch);\ncout << ret << endl;\n```',
             options: ['11', '10', '13', '12'],
             answer: 3,
             score: 2,
@@ -110,7 +110,7 @@ export const paperData = {
         {
             id: 11,
             type: 'single',
-            question: '下列程序最后输出的是（ ）。\n```cpp\nint a = 65;\ncout << tolower(a) << endl;\n```cpp',
+            question: '下列程序最后输出的是（ ）。\n```cpp\nint a = 65;\ncout << tolower(a) << endl;\n```',
             options: ['65', 'A', 'a', '97'],
             answer: 3,
             score: 2,
@@ -206,7 +206,7 @@ export const paperData = {
         {
             id: 20,
             type: 'judge',
-            question: '下列程序输出的是 A。\n```cpp\nchar x = 65;\nx = x & 00001111;\ncout << x << endl;\n```cpp',
+            question: '下列程序输出的是 A。\n```cpp\nchar x = 65;\nx = x & 00001111;\ncout << x << endl;\n```',
             options: ['正确', '错误'],
             answer: 1,
             score: 2,
@@ -224,7 +224,7 @@ export const paperData = {
         {
             id: 22,
             type: 'judge',
-            question: '下列程序将不能正确执行。\nstring ch = "chen";\n```cpp\ncout << ch[4] << endl;\n```cpp',
+            question: '下列程序将不能正确执行。\nstring ch = "chen";\n```cpp\ncout << ch[4] << endl;\n```',
             options: ['正确', '错误'],
             answer: 1,
             score: 2,

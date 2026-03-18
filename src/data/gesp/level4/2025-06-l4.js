@@ -26,7 +26,7 @@ export const paperData = {
         {
             id: 2,
             type: "single",
-            question: "下面的函数接收一个 3 行 4 列的二维数组并输出其中元素，则横线上不能填写（ ）。\n```cpp\nvoid printArray(________) {\n    for (int i = 0; i < 3; ++i)\n        for (int j = 0; j < 4; ++j)\n            std::cout << arr[i][j] << \" \";\n}\n```cpp",
+            question: "下面的函数接收一个 3 行 4 列的二维数组并输出其中元素，则横线上不能填写（ ）。\n```cpp\nvoid printArray(________) {\n    for (int i = 0; i < 3; ++i)\n        for (int j = 0; j < 4; ++j)\n            std::cout << arr[i][j] << \" \";\n}\n```",
             options: [
                 "int arr[3][4]",
                 "int arr[][4]",
@@ -56,7 +56,7 @@ export const paperData = {
         {
             id: 4,
             type: "single",
-            question: "关于以下 C++ 代码，说法正确的是（ ）。\n```cpp\nint main() {\n    greet();\n    return 0;\n}\nvoid greet() {\n    cout << \"Hello!\" << endl;\n}\n```cpp",
+            question: "关于以下 C++ 代码，说法正确的是（ ）。\n```cpp\nint main() {\n    greet();\n    return 0;\n}\nvoid greet() {\n    cout << \"Hello!\" << endl;\n}\n```",
             options: [
                 "正确编译并输出 Hello!",
                 "编译错误：找不到函数 greet()",
@@ -101,7 +101,7 @@ export const paperData = {
         {
             id: 7,
             type: "single",
-            question: "运行如下代码会输出（ ）。\n```cpp\nint value = 100;\nvoid print1() {\n    int value = 50;\n    cout << value << \" \";\n    cout << ::value << \" \";\n}\nvoid print2() {\n    cout << value << \" \";\n}\nint main() {\n    print1();\n    print2();\n    return 0;\n}\n```cpp",
+            question: "运行如下代码会输出（ ）。\n```cpp\nint value = 100;\nvoid print1() {\n    int value = 50;\n    cout << value << \" \";\n    cout << ::value << \" \";\n}\nvoid print2() {\n    cout << value << \" \";\n}\nint main() {\n    print1();\n    print2();\n    return 0;\n}\n```",
             options: [
                 "100 100 100",
                 "50 50 50",
@@ -161,7 +161,7 @@ export const paperData = {
         {
             id: 11,
             type: "single",
-            question: "给定如下算法，当输入 n=10 时，其时间复杂度为（ ）。\n```cpp\nbool f(int arr[], int n, int target) {\n    for (int i = 0; i < (1 << n); i++) {\n        int sum = 0;\n        for (int j = 0; j < n; j++) {\n            if (i & (1 << j)) {\n                sum += arr[j];\n            }\n        }\n        if (sum == target) return true;\n    }\n    return false;\n}\n```cpp",
+            question: "给定如下算法，当输入 n=10 时，其时间复杂度为（ ）。\n```cpp\nbool f(int arr[], int n, int target) {\n    for (int i = 0; i < (1 << n); i++) {\n        int sum = 0;\n        for (int j = 0; j < n; j++) {\n            if (i & (1 << j)) {\n                sum += arr[j];\n            }\n        }\n        if (sum == target) return true;\n    }\n    return false;\n}\n```",
             options: [
                 "O(n)",
                 "O(n * 2^n)",
@@ -176,7 +176,7 @@ export const paperData = {
         {
             id: 12,
             type: "single",
-            question: "下述斐波那契数列计算的时间复杂度是（ ）。\n```cpp\nint fibonacci(int n) {\n    if (n == 0) return 0;\n    if (n == 1) return 1;\n    return fibonacci(n - 1) + fibonacci(n - 2);\n}\n```cpp",
+            question: "下述斐波那契数列计算的时间复杂度是（ ）。\n```cpp\nint fibonacci(int n) {\n    if (n == 0) return 0;\n    if (n == 1) return 1;\n    return fibonacci(n - 1) + fibonacci(n - 2);\n}\n```",
             options: [
                 "O(n)",
                 "O(n^2)",
@@ -191,7 +191,7 @@ export const paperData = {
         {
             id: 13,
             type: "single",
-            question: "关于下面 C++ 程序的描述，（ ）最准确。\n```cpp\nifstream in(\"data.txt\");\nstring line;\nwhile (getline(in, line)) {\n    cout << line << endl;\n}\n```cpp",
+            question: "关于下面 C++ 程序的描述，（ ）最准确。\n```cpp\nifstream in(\"data.txt\");\nstring line;\nwhile (getline(in, line)) {\n    cout << line << endl;\n}\n```",
             options: [
                 "将从标准输入读取每行，并输出到屏幕",
                 "程序无法运行，因为 getline 只能读取 cin",
@@ -221,7 +221,7 @@ export const paperData = {
         {
             id: 15,
             type: "single",
-            question: "为了提高冒泡排序的效率，如果某轮“冒泡”中没有执行任何交换操作，说明数组已经完成排序，可直接返回结果，则两条横线上分别应该填写（ ）。\n```cpp\nvoid bubbleSortWithFlag(vector<int> &nums) {\n    for (int i = nums.size() - 1; i > 0; i--) {\n        bool flag = false; // 横线 1\n        for (int j = 0; j < i; j++) {\n            if (nums[j] > nums[j + 1]) {\n                swap(nums[j], nums[j + 1]);\n                flag = true; // 横线 2\n            }\n        }\n        if (!flag) break;\n    }\n}\n```cpp",
+            question: "为了提高冒泡排序的效率，如果某轮“冒泡”中没有执行任何交换操作，说明数组已经完成排序，可直接返回结果，则两条横线上分别应该填写（ ）。\n```cpp\nvoid bubbleSortWithFlag(vector<int> &nums) {\n    for (int i = nums.size() - 1; i > 0; i--) {\n        bool flag = false; // 横线 1\n        for (int j = 0; j < i; j++) {\n            if (nums[j] > nums[j + 1]) {\n                swap(nums[j], nums[j + 1]);\n                flag = true; // 横线 2\n            }\n        }\n        if (!flag) break;\n    }\n}\n```",
             options: [
                 "flag = true; flag = false;",
                 "flag = false; flag = true;",
@@ -286,7 +286,7 @@ export const paperData = {
         {
             id: 21,
             type: "judge",
-            question: "执行以下代码后，变量 `res` 的值将为 `n` 的阶乘。\n```cpp\nint res = 1;\nfor (int i = 0; i < n; i++) {\n    res *= i;\n}\n```cpp",
+            question: "执行以下代码后，变量 `res` 的值将为 `n` 的阶乘。\n```cpp\nint res = 1;\nfor (int i = 0; i < n; i++) {\n    res *= i;\n}\n```",
             options: ["正确", "错误"],
             answer: 1,
             score: 2,
@@ -306,7 +306,7 @@ export const paperData = {
         {
             id: 23,
             type: "judge",
-            question: "以下代码实现了选择排序的逻辑（升序）。\n```cpp\nfor (int i = 0; i < n - 1; i++) {\n    int minIdx = i;\n    for (int j = i + 1; j < n; j++)\n        if (arr[j] < arr[minIdx]) minIdx = j;\n    swap(arr[i], arr[minIdx]);\n}\n```cpp",
+            question: "以下代码实现了选择排序的逻辑（升序）。\n```cpp\nfor (int i = 0; i < n - 1; i++) {\n    int minIdx = i;\n    for (int j = i + 1; j < n; j++)\n        if (arr[j] < arr[minIdx]) minIdx = j;\n    swap(arr[i], arr[minIdx]);\n}\n```",
             options: ["正确", "错误"],
             answer: 0,
             score: 2,

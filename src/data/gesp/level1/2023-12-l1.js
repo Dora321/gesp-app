@@ -41,7 +41,7 @@ export const paperData = {
     {
       id: 3,
       type: 'single',
-      question: '小杨同学现在是上午10点，求 N 小时后的时间是几点（24小时制）。横线处应选 ( )。\n```cpp\nint N;\ncin >> N;\ncout << ____________;\n```cpp',
+      question: '小杨同学现在是上午10点，求 N 小时后的时间是几点（24小时制）。横线处应选 ( )。\n```cpp\nint N;\ncin >> N;\ncout << ____________;\n```',
       options: ['(10 + N) % 12', '(10 + N) % 24', '(10 + N) / 24', '10 + N'],
       answer: 1,
       score: 2,
@@ -81,7 +81,7 @@ export const paperData = {
     {
       id: 7,
       type: 'single',
-      question: '代码执行后的输出是 ( )。\n```cpp\nint Sum = 0;\nfor (int i = 1; i <= 10; i++)\n    Sum += i;\ncout << Sum;\n```cpp',
+      question: '代码执行后的输出是 ( )。\n```cpp\nint Sum = 0;\nfor (int i = 1; i <= 10; i++)\n    Sum += i;\ncout << Sum;\n```',
       options: ['45', '50', '55', '60'],
       answer: 2,
       score: 2,
@@ -111,7 +111,7 @@ export const paperData = {
     {
       id: 10,
       type: 'single',
-      question: '代码执行后的输出是 ( )。\n```cpp\nint a = 5, b = 2;\nif (a / b > 2) cout << "OK";\nelse cout << "KO";\n```cpp',
+      question: '代码执行后的输出是 ( )。\n```cpp\nint a = 5, b = 2;\nif (a / b > 2) cout << "OK";\nelse cout << "KO";\n```',
       options: ['OK', 'KO', '2.5', '报错'],
       answer: 1,
       score: 2,

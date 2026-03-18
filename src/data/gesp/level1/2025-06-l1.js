@@ -31,7 +31,7 @@ export const paperData = {
     {
       id: 2,
       type: 'single',
-      question: '关于计算机编程环境及断点调试，下列说法是错误的是( )。\n```cpp\n1  int N = 0; // L1\n2  cin >> N;  // L2\n3  if (N < 9) \n4    printf("N不能大于等于9"); // L4\n```cpp',
+      question: '关于计算机编程环境及断点调试，下列说法是错误的是( )。\n```cpp\n1  int N = 0; // L1\n2  cin >> N;  // L2\n3  if (N < 9) \n4    printf("N不能大于等于9"); // L4\n```',
       options: [
         '断点不可以设置在L1标记的代码行',
         '执行暂停在L2标记的代码行时，可以检测N的值',
@@ -46,7 +46,7 @@ export const paperData = {
     {
       id: 3,
       type: 'single',
-      question: '对于下列C++的代码，描述准确的是 ( )。\n```cpp\nint first = 10;\nprintf("%d", First);\n```cpp',
+      question: '对于下列C++的代码，描述准确的是 ( )。\n```cpp\nint first = 10;\nprintf("%d", First);\n```',
       options: [
         '执行后输出10',
         '执行后输出{First}',
@@ -81,7 +81,7 @@ export const paperData = {
     {
       id: 6,
       type: 'single',
-      question: '下面的C++代码执行后，其输出是 ( )。\n```cpp\nint x = 10, y = 20;\nx = x + y;\ny = x - y;\nx = x - y;\ncout << x << " " << y;\n```cpp',
+      question: '下面的C++代码执行后，其输出是 ( )。\n```cpp\nint x = 10, y = 20;\nx = x + y;\ny = x - y;\nx = x - y;\ncout << x << " " << y;\n```',
       options: ['10 20', '20 10', '10 10', '20 20'],
       answer: 1,
       score: 2,
@@ -111,7 +111,7 @@ export const paperData = {
     {
       id: 9,
       type: 'single',
-      question: '下面 C++ 代码执行后的输出是 ( )。\n```cpp\nint a = 3, b = 4;\nprintf("a+b=%d2#a+b={a+b}", a, b, a + b);\n```cpp',
+      question: '下面 C++ 代码执行后的输出是 ( )。\n```cpp\nint a = 3, b = 4;\nprintf("a+b=%d2#a+b={a+b}", a, b, a + b);\n```',
       options: [
         'a+b=07#a+b={a+b}',
         'a+b=34#a+b=7',
@@ -126,7 +126,7 @@ export const paperData = {
     {
       id: 10,
       type: 'single',
-      question: '下面 C++ 代码用于判断 N 是否为偶数，横线处应填入代码是 ( )。\n```cpp\nint N;\ncin >> N;\nif (________)\n  cout << N << "是偶数";\nelse\n  cout << N << "是奇数";\n```cpp',
+      question: '下面 C++ 代码用于判断 N 是否为偶数，横线处应填入代码是 ( )。\n```cpp\nint N;\ncin >> N;\nif (________)\n  cout << N << "是偶数";\nelse\n  cout << N << "是奇数";\n```',
       options: ['N % 2 = 0', 'N % 2 == 0', 'N / 2 == 0', 'N % 2 != 1'],
       answer: 1,
       score: 2,
@@ -136,7 +136,7 @@ export const paperData = {
     {
       id: 11,
       type: 'single',
-      question: '下面 C++ 代码执行后的输出是 ( )。\n```cpp\nint n = 10, i = 1;\nwhile (i < n) {\n  n--;\n  i++;\n}\ncout << n << " " << i;\n```cpp',
+      question: '下面 C++ 代码执行后的输出是 ( )。\n```cpp\nint n = 10, i = 1;\nwhile (i < n) {\n  n--;\n  i++;\n}\ncout << n << " " << i;\n```',
       options: ['5 6', '6 5', '6 6', '5 5'],
       answer: 0,
       score: 2,
@@ -156,7 +156,7 @@ export const paperData = {
     {
       id: 13,
       type: 'single',
-      question: '下面 C++ 代码执行后的输出是 ( )。\n```cpp\nint n = 10, sum = 0;\nfor (int i = 1; i <= n; i++) {\n  if (i % 3 == 0) continue;\n  sum += i;\n}\ncout << sum;\n\n```cpp',
+      question: '下面 C++ 代码执行后的输出是 ( )。\n```cpp\nint n = 10, sum = 0;\nfor (int i = 1; i <= n; i++) {\n  if (i % 3 == 0) continue;\n  sum += i;\n}\ncout << sum;\n\n```',
       options: ['37', '45', '55', '18'],
       answer: 0,
       score: 2,

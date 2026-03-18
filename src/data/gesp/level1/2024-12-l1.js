@@ -166,7 +166,7 @@ export const paperData = {
     {
       id: 15,
       type: 'single',
-      question: '下列代码中存在哪种错误？\n```cpp\nint main() {\n  int a = 10\n  return 0;\n}\n```cpp',
+      question: '下列代码中存在哪种错误？\n```cpp\nint main() {\n  int a = 10\n  return 0;\n}\n```',
       options: ['逻辑错误', '运行错误', '内存溢出', '语法错误'],
       answer: 3,
       score: 2,

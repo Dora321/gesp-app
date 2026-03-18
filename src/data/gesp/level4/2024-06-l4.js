@@ -47,7 +47,7 @@ export const paperData = {
         {
             id: 1,
             type: "single",
-            question: "下列代码中，输出结果是（ ）。\n```cpp\nint a = 12, b = 24;\nint *p1 = &a, *p2 = &b;\n*p1 = *p2;\n*p2 = *p1;\ncout << a << \" \" << b << \" \" << *p1 << \" \" << *p2 << endl;\n```cpp",
+            question: "下列代码中，输出结果是（ ）。\n```cpp\nint a = 12, b = 24;\nint *p1 = &a, *p2 = &b;\n*p1 = *p2;\n*p2 = *p1;\ncout << a << \" \" << b << \" \" << *p1 << \" \" << *p2 << endl;\n```",
             options: ["12 24 24 12", "24 24 24 24", "12 12 24 24", "24 12 12 24"],
             answer: 1,
             score: 2,
@@ -67,7 +67,7 @@ export const paperData = {
         {
             id: 3,
             type: "single",
-            question: "下面程序输出的是（ ）。\n```cpp\nint a = 2, b = 10;\nint &r = a;\nr = b;\nb = r * r;\ncout << a << \" \" << b << \" \" << r << endl;\n```cpp",
+            question: "下面程序输出的是（ ）。\n```cpp\nint a = 2, b = 10;\nint &r = a;\nr = b;\nb = r * r;\ncout << a << \" \" << b << \" \" << r << endl;\n```",
             options: ["2 10 10", "10 100 10", "10 10 10", "2 100 10"],
             answer: 1,
             score: 2,
@@ -77,7 +77,7 @@ export const paperData = {
         {
             id: 4,
             type: "single",
-            question: "假设变量 a 的地址是 0x6ffe14，下面程序的输出是（ ）。\n```cpp\nint a = 10;\nint *p = &a;\ncout << p << \" \" << p + 1 << endl;\n```cpp",
+            question: "假设变量 a 的地址是 0x6ffe14，下面程序的输出是（ ）。\n```cpp\nint a = 10;\nint *p = &a;\ncout << p << \" \" << p + 1 << endl;\n```",
             options: ["0x6ffe14 0x6ffe15", "0x6ffe14 0x6ffe18", "0x6ffe14 0x6ffe14", "0x6ffe14 0x6ffe1c"],
             answer: 1,
             score: 2,
@@ -177,7 +177,7 @@ export const paperData = {
         {
             id: 14,
             type: "single",
-            question: "下面代码输出的是（ ）。\n```cpp\nint a = 5;\nconst int *p = &a;\na = 10;\ncout << *p << endl;\n```cpp",
+            question: "下面代码输出的是（ ）。\n```cpp\nint a = 5;\nconst int *p = &a;\na = 10;\ncout << *p << endl;\n```",
             options: ["5", "10", "编译错误", "运行错误"],
             answer: 1,
             score: 2,

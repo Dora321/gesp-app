@@ -86,7 +86,7 @@ export const paperData = {
     {
       id: 7,
       type: 'single',
-      question: '下面的C++代码执行时如果先输入 5 并回车后输入 2 并回车，其输出是 ( )。\n```cpp\nint a, b;\nscanf("%d", &a);\nscanf("%d", &b);\nprintf("%d", a + b);\n```cpp',
+      question: '下面的C++代码执行时如果先输入 5 并回车后输入 2 并回车，其输出是 ( )。\n```cpp\nint a, b;\nscanf("%d", &a);\nscanf("%d", &b);\nprintf("%d", a + b);\n```',
       options: ['7', '52', '10', '不输出'],
       answer: 0,
       score: 2,
@@ -96,7 +96,7 @@ export const paperData = {
     {
       id: 8,
       type: 'single',
-      question: '下面C++代码执行后的输出是 ( )。\n```cpp\nint n = 0, Sum = 0;\nfor (int i = 0; i < 10; i++)\n    Sum += i;\ncout << Sum;\n```cpp',
+      question: '下面C++代码执行后的输出是 ( )。\n```cpp\nint n = 0, Sum = 0;\nfor (int i = 0; i < 10; i++)\n    Sum += i;\ncout << Sum;\n```',
       options: ['55', '45', '10', '0'],
       answer: 1,
       score: 2,
@@ -106,7 +106,7 @@ export const paperData = {
     {
       id: 9,
       type: 'single',
-      question: '下面C++代码执行后的输出是 ( )。\n```cpp\nint N = 0;\nfor (int i = 0; i < 10; i++)\n    N += 1;\ncout << N;\n```cpp',
+      question: '下面C++代码执行后的输出是 ( )。\n```cpp\nint N = 0;\nfor (int i = 0; i < 10; i++)\n    N += 1;\ncout << N;\n```',
       options: ['0', '9', '10', '11'],
       answer: 2,
       score: 2,
@@ -116,7 +116,7 @@ export const paperData = {
     {
       id: 10,
       type: 'single',
-      question: '下面 C++ 代码执行后的输出是 ( )。\n```cpp\nint N = 0;\nfor (int i = 1; i < 10; i += 2) {\n    if (i % 2 == 1) continue;\n    N += 1;\n}\ncout << N;\n```cpp',
+      question: '下面 C++ 代码执行后的输出是 ( )。\n```cpp\nint N = 0;\nfor (int i = 1; i < 10; i += 2) {\n    if (i % 2 == 1) continue;\n    N += 1;\n}\ncout << N;\n```',
       options: ['5', '4', '1', '0'],
       answer: 3,
       score: 2,
@@ -126,7 +126,7 @@ export const paperData = {
     {
       id: 11,
       type: 'single',
-      question: '代码执行后的输出是 ( )。\n```cpp\nint P = 14 + 7;\nif (P % 3 || P % 7) cout << "OK";\nelse cout << "KO";\n```cpp',
+      question: '代码执行后的输出是 ( )。\n```cpp\nint P = 14 + 7;\nif (P % 3 || P % 7) cout << "OK";\nelse cout << "KO";\n```',
       options: ['OK', 'KO', '21', '报错'],
       answer: 1,
       score: 2,
@@ -136,7 +136,7 @@ export const paperData = {
     {
       id: 12,
       type: 'single',
-      question: '代码执行后的输出是 ( )。\n```cpp\nint i = 0, s = 0, count = 0;\nwhile (i < 20) {\n    s += i++;\n    count++;\n}\ncout << s << " " << count;\n```cpp',
+      question: '代码执行后的输出是 ( )。\n```cpp\nint i = 0, s = 0, count = 0;\nwhile (i < 20) {\n    s += i++;\n    count++;\n}\ncout << s << " " << count;\n```',
       options: ['210 20', '190 20', '190 19', '210 19'],
       answer: 1,
       score: 2,

@@ -76,7 +76,7 @@ export const paperData = {
     {
       id: 7,
       type: 'single',
-      question: '下面 C++ 代码执行后的输出是（ ）。\n```cpp\nint a = 12, b = 20;\nint c = a - b;\nif (c > 0) cout << a;\nelse cout << b;\n```cpp',
+      question: '下面 C++ 代码执行后的输出是（ ）。\n```cpp\nint a = 12, b = 20;\nint c = a - b;\nif (c > 0) cout << a;\nelse cout << b;\n```',
       options: ['12', '20', '8', '-8'],
       answer: 1,
       score: 2,
@@ -86,7 +86,7 @@ export const paperData = {
     {
       id: 8,
       type: 'single',
-      question: '下面 C++ 代码执行后的输出是（ ）。\n```cpp\nint m = 14;\nint n = 12;\nif (m % 2 && n % 2) cout << "A";\nelse if (m % 2 == 1 && n % 2 == 1) cout << "B";\nelse cout << "C";\n```cpp',
+      question: '下面 C++ 代码执行后的输出是（ ）。\n```cpp\nint m = 14;\nint n = 12;\nif (m % 2 && n % 2) cout << "A";\nelse if (m % 2 == 1 && n % 2 == 1) cout << "B";\nelse cout << "C";\n```',
       options: ['A', 'B', 'C', '程序运行错误'],
       answer: 2,
       score: 2,
@@ -96,7 +96,7 @@ export const paperData = {
     {
       id: 9,
       type: 'single',
-      question: '下面 C++ 代码执行后的输出是（ ）。\n```cpp\nint n = 7;\nif (n / 5 != 0) cout << 0;\nelse if (n / 3 != 0) cout << 1;\nelse if (n % 2 != 0) cout << 2;\nelse cout << 3;\n```cpp',
+      question: '下面 C++ 代码执行后的输出是（ ）。\n```cpp\nint n = 7;\nif (n / 5 != 0) cout << 0;\nelse if (n / 3 != 0) cout << 1;\nelse if (n % 2 != 0) cout << 2;\nelse cout << 3;\n```',
       options: ['0', '1', '2', '3'],
       answer: 0,
       score: 2,
@@ -106,7 +106,7 @@ export const paperData = {
     {
       id: 10,
       type: 'single',
-      question: '下面 C++ 代码段执行后的输出是（ ）。\n```cpp\nint s = 0;\nfor (int i = 1; i <= 5; i++) s += i;\ncout << s;\n```cpp',
+      question: '下面 C++ 代码段执行后的输出是（ ）。\n```cpp\nint s = 0;\nfor (int i = 1; i <= 5; i++) s += i;\ncout << s;\n```',
       options: ['1', '5', '15', '10'],
       answer: 2,
       score: 2,
@@ -116,7 +116,7 @@ export const paperData = {
     {
       id: 11,
       type: 'single',
-      question: '下面 C++ 代码段执行后的输出是（ ）。\n```cpp\nint n = 5;\nwhile (n < 5) n += 2;\ncout << n;\n```cpp',
+      question: '下面 C++ 代码段执行后的输出是（ ）。\n```cpp\nint n = 5;\nwhile (n < 5) n += 2;\ncout << n;\n```',
       options: ['7', '5', '4', '6'],
       answer: 1,
       score: 2,
@@ -126,7 +126,7 @@ export const paperData = {
     {
       id: 12,
       type: 'single',
-      question: '下面 C++ 代码段执行后的输出是（ ）。\n```cpp\nint n = 5; int cnt = 1;\nwhile (n >= 0) {\n    cnt += 1;\n    n -= 2;\n}\ncout << cnt;\n```cpp',
+      question: '下面 C++ 代码段执行后的输出是（ ）。\n```cpp\nint n = 5; int cnt = 1;\nwhile (n >= 0) {\n    cnt += 1;\n    n -= 2;\n}\ncout << cnt;\n```',
       options: ['3', '4', '5', '2'],
       answer: 1,
       score: 2,
@@ -136,7 +136,7 @@ export const paperData = {
     {
       id: 13,
       type: 'single',
-      question: '下面C++代码用于求正整数的所有因数。在横线处应填写（ ）。\n```cpp\nint n; cin >> n;\nfor (______) {\n    if (n % i == 0) cout << i << endl;\n}\n```cpp',
+      question: '下面C++代码用于求正整数的所有因数。在横线处应填写（ ）。\n```cpp\nint n; cin >> n;\nfor (______) {\n    if (n % i == 0) cout << i << endl;\n}\n```',
       options: ['int i = 1; i < n; i + 1', 'int i = 1; i < n + 1; i + 1', 'int i = 1; i < n; i = i + 1', 'int i = 1; i <= n; i = i + 1'],
       answer: 3,
       score: 2,
@@ -146,7 +146,7 @@ export const paperData = {
     {
       id: 14,
       type: 'single',
-      question: '下面 C++ 代码段执行后的输出是（ ）。\n```cpp\nint n = 10;\nwhile (n > 0) {\n    if (n % 3 == 0) break;\n    n -= 2;\n}\ncout << n;\n```cpp',
+      question: '下面 C++ 代码段执行后的输出是（ ）。\n```cpp\nint n = 10;\nwhile (n > 0) {\n    if (n % 3 == 0) break;\n    n -= 2;\n}\ncout << n;\n```',
       options: ['10', '8', '4', '6'],
       answer: 3,
       score: 2,
@@ -156,7 +156,7 @@ export const paperData = {
     {
       id: 15,
       type: 'single',
-      question: '下面 C++ 代码段执行后的输出是（ ）。\n```cpp\nint s = 0;\nfor (int i = 1; i <= 10; i++) {\n    if (i % 2 == 0) continue;\n    s = s + i;\n}\ncout << s;\n```cpp',
+      question: '下面 C++ 代码段执行后的输出是（ ）。\n```cpp\nint s = 0;\nfor (int i = 1; i <= 10; i++) {\n    if (i % 2 == 0) continue;\n    s = s + i;\n}\ncout << s;\n```',
       options: ['25', '10', '55', '30'],
       answer: 0,
       score: 2,

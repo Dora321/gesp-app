@@ -56,7 +56,7 @@ export const paperData = {
         {
             id: 4,
             type: 'single',
-            question: '【题面按公开解析还原】执行下面 C++ 代码后输出是（   ）。\n```cpp\nint temp = 0;\nfor (int i = 1; i < 7; i++) {\n    for (int j = 1; j < 5; j++) {\n        if (i / j == 2) temp++;\n    }\n}\ncout << temp << endl;\n```cpp',
+            question: '【题面按公开解析还原】执行下面 C++ 代码后输出是（   ）。\n```cpp\nint temp = 0;\nfor (int i = 1; i < 7; i++) {\n    for (int j = 1; j < 5; j++) {\n        if (i / j == 2) temp++;\n    }\n}\ncout << temp << endl;\n```',
             options: ['10', '8', '4', '3'],
             answer: 2,
             score: 2,
@@ -65,7 +65,7 @@ export const paperData = {
         {
             id: 5,
             type: 'single',
-            question: '【题面按公开解析还原】执行下面 C++ 代码后，输出是（   ）。\nstring str = "chen";\n```cpp\nint x = str.length();\nint temp = 0;\nfor (int i = 0; i <= x; i++) temp++;\ncout << temp << endl;\n```cpp',
+            question: '【题面按公开解析还原】执行下面 C++ 代码后，输出是（   ）。\nstring str = "chen";\n```cpp\nint x = str.length();\nint temp = 0;\nfor (int i = 0; i <= x; i++) temp++;\ncout << temp << endl;\n```',
             options: ['4', '2', '5', '3'],
             answer: 2,
             score: 2,
@@ -74,7 +74,7 @@ export const paperData = {
         {
             id: 6,
             type: 'single',
-            question: '【题面按公开解析还原】执行下面 C++ 代码后输出的是（   ）。\nstring str = "chen";\n```cpp\nint x = str.length();\ncout << x << endl;\n```cpp',
+            question: '【题面按公开解析还原】执行下面 C++ 代码后输出的是（   ）。\nstring str = "chen";\n```cpp\nint x = str.length();\ncout << x << endl;\n```',
             options: ['4', '3', '2', '5'],
             answer: 0,
             score: 2,
@@ -83,7 +83,7 @@ export const paperData = {
         {
             id: 7,
             type: 'single',
-            question: '【题面按公开解析还原】执行下面 C++ 代码后输出的是（   ）。\nstring str = "chen";\n```cpp\ncout << str[5] << endl;\n```cpp',
+            question: '【题面按公开解析还原】执行下面 C++ 代码后输出的是（   ）。\nstring str = "chen";\n```cpp\ncout << str[5] << endl;\n```',
             options: ['输出未知的数', "输出 'n'", "输出 '\\0'", '输出空格'],
             answer: 0,
             score: 2,
@@ -119,7 +119,7 @@ export const paperData = {
         {
             id: 11,
             type: 'single',
-            question: '【题面按公开解析还原】下面 C++ 程序执行的结果是（   ）。\n```cpp\nint cnt = 0;\nfor (int i = 0; i <= 20; i++) {\n    if (i % 3 == 0 && i % 5 == 0) cnt++;\n}\ncout << cnt;\n```cpp',
+            question: '【题面按公开解析还原】下面 C++ 程序执行的结果是（   ）。\n```cpp\nint cnt = 0;\nfor (int i = 0; i <= 20; i++) {\n    if (i % 3 == 0 && i % 5 == 0) cnt++;\n}\ncout << cnt;\n```',
             options: ['2', '3', '5', '4'],
             answer: 0,
             score: 2,
@@ -128,7 +128,7 @@ export const paperData = {
         {
             id: 12,
             type: 'single',
-            question: '【题面按公开解析还原】C++ 的数据类型转换让人很难琢磨透，下列代码输出的值是（   ）。\n```cpp\nint a = 3;\nint b = 2;\ncout << a / b * 1.0 << endl;\n```cpp',
+            question: '【题面按公开解析还原】C++ 的数据类型转换让人很难琢磨透，下列代码输出的值是（   ）。\n```cpp\nint a = 3;\nint b = 2;\ncout << a / b * 1.0 << endl;\n```',
             options: ['1.5', '1', '2', '1.50'],
             answer: 1,
             score: 2,
@@ -196,7 +196,7 @@ export const paperData = {
         {
             id: 19,
             type: 'judge',
-            question: '【题面按公开解析还原】执行下面 C++ 代码后将输出 “China”。\nstring a = "china";\na.replace(0, 1, "C");\n```cpp\ncout << a << endl;\n```cpp',
+            question: '【题面按公开解析还原】执行下面 C++ 代码后将输出 “China”。\nstring a = "china";\na.replace(0, 1, "C");\n```cpp\ncout << a << endl;\n```',
             options: ['正确', '错误'],
             answer: 0,
             score: 2,
@@ -205,7 +205,7 @@ export const paperData = {
         {
             id: 20,
             type: 'judge',
-            question: '【题面按公开解析还原】执行 C++ 代码将输出 0 5，5 之后还有一个空格。\n```cpp\nint list[10] = {1,2,3,4,5,6,7,8,9,10};\nfor (int i = 0; i < 10; i++)\n    if (i % 5 == 0)\n        cout << list[i] << " ";\n```cpp',
+            question: '【题面按公开解析还原】执行 C++ 代码将输出 0 5，5 之后还有一个空格。\n```cpp\nint list[10] = {1,2,3,4,5,6,7,8,9,10};\nfor (int i = 0; i < 10; i++)\n    if (i % 5 == 0)\n        cout << list[i] << " ";\n```',
             options: ['正确', '错误'],
             answer: 1,
             score: 2,
@@ -214,7 +214,7 @@ export const paperData = {
         {
             id: 21,
             type: 'judge',
-            question: '【题面按公开解析还原】下面 C++ 代码将输出 1。\n```cpp\nint list[10] = {1};\ncout << list << endl;\n```cpp',
+            question: '【题面按公开解析还原】下面 C++ 代码将输出 1。\n```cpp\nint list[10] = {1};\ncout << list << endl;\n```',
             options: ['正确', '错误'],
             answer: 1,
             score: 2,
@@ -223,7 +223,7 @@ export const paperData = {
         {
             id: 22,
             type: 'judge',
-            question: '【题面按公开解析还原】下面 C++ 程序将输出 1。\n```cpp\nint arr[10] = {1};\ncout << arr[0] << endl;\n```cpp',
+            question: '【题面按公开解析还原】下面 C++ 程序将输出 1。\n```cpp\nint arr[10] = {1};\ncout << arr[0] << endl;\n```',
             options: ['正确', '错误'],
             answer: 0,
             score: 2,
@@ -232,7 +232,7 @@ export const paperData = {
         {
             id: 23,
             type: 'judge',
-            question: '【题面按公开解析还原】执行 C++ 代码，将输出 1 3 5 7 9，9 之后还有一个空格。\n```cpp\nint list[10] = {1,2,3,4,5,6,7,8,9,10};\nfor (int i = 0; i < 10; i += 2) {\n    cout << list[i] << " ";\n}\n```cpp',
+            question: '【题面按公开解析还原】执行 C++ 代码，将输出 1 3 5 7 9，9 之后还有一个空格。\n```cpp\nint list[10] = {1,2,3,4,5,6,7,8,9,10};\nfor (int i = 0; i < 10; i += 2) {\n    cout << list[i] << " ";\n}\n```',
             options: ['正确', '错误'],
             answer: 0,
             score: 2,

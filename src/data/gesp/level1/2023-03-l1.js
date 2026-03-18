@@ -161,7 +161,7 @@ export const paperData = {
     {
       id: 14,
       type: 'single',
-      question: '代码执行后的输出是 ( )。\n```cpp\nint a = 0;\nfor (int i = 1; i <= 4; i++)\n    a = a + i;\ncout << a;\n```cpp',
+      question: '代码执行后的输出是 ( )。\n```cpp\nint a = 0;\nfor (int i = 1; i <= 4; i++)\n    a = a + i;\ncout << a;\n```',
       options: ['4', '10', '15', '0'],
       answer: 1,
       score: 2,
@@ -171,7 +171,7 @@ export const paperData = {
     {
       id: 15,
       type: 'single',
-      question: '代码执行后的输出是 ( )。\n```cpp\nint a = 5, b = 10;\nif (a > b) a = a + b;\nelse a = b - a;\ncout << a;\n```cpp',
+      question: '代码执行后的输出是 ( )。\n```cpp\nint a = 5, b = 10;\nif (a > b) a = a + b;\nelse a = b - a;\ncout << a;\n```',
       options: ['15', '10', '5', '0'],
       answer: 2,
       score: 2,
