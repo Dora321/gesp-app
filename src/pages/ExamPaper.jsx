@@ -4,6 +4,7 @@ import { Clock, ChevronLeft, CheckCircle, AlertTriangle, X, ChevronRight, Menu, 
 import { paperRegistry } from '../data/gesp/index';
 import InteractiveAnalysisPage from './question-bank/InteractiveAnalysisPage';
 import { getEnhancedPaperComponent } from './question-bank/enhancedPaperRegistry';
+import MarkdownRenderer from '../components/MarkdownRenderer';
 
 const ExamPaper = () => {
     const { paperId } = useParams();
@@ -273,7 +274,7 @@ const ExamPaper = () => {
 
                             <h2 className="text-xl md:text-2xl font-bold text-slate-800 mt-6 mb-8 leading-relaxed">
                                 <span className="text-blue-500 mr-2">{currentQuestionIndex + 1}.</span>
-                                {stripLeadingNumber(currentQ.question)}
+                                <MarkdownRenderer content={stripLeadingNumber(currentQ.question)} className="inline-markdown" inline={true} />
                             </h2>
 
                             <div className="space-y-3">
@@ -294,7 +295,7 @@ const ExamPaper = () => {
                                             <div className={`w-8 h-8 rounded-full flex items-center justify-center text-sm font-bold border ${isSelected || (showAnswer && idx === currentQ.answer) ? 'border-current' : 'border-slate-300 text-slate-400'}`}>
                                                 {String.fromCharCode(65 + idx)}
                                             </div>
-                                            <span>{opt}</span>
+                                            <MarkdownRenderer content={opt} inline={true} className="flex-1" />
                                             {showAnswer && idx === currentQ.answer && <CheckCircle className="ml-auto text-green-600" />}
                                             {showAnswer && isSelected && idx !== currentQ.answer && <X className="ml-auto text-red-500" />}
                                         </div>

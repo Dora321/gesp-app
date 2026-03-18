@@ -1,12 +1,6 @@
 import React, { useMemo, useState } from 'react';
-import ReactMarkdown from 'react-markdown';
-import remarkGfm from 'remark-gfm';
-import remarkMath from 'remark-math';
-import rehypeKatex from 'rehype-katex';
-import rehypeHighlight from 'rehype-highlight';
-import 'katex/dist/katex.min.css';
-import 'highlight.js/styles/github-dark.css';
 import { useNavigate, useParams } from 'react-router-dom';
+import MarkdownRenderer from '../../components/MarkdownRenderer';
 import {
     ChevronLeft,
     ChevronRight,
@@ -108,16 +102,7 @@ const sectionMetaByLevel = {
     8: { tone: '高阶压轴', focus: '综合算法与工程稳健性', color: 'from-slate-700 to-slate-900' },
 };
 
-const MarkdownRenderer = ({ content, className = "" }) => (
-    <div className={`markdown-body ${className}`}>
-        <ReactMarkdown 
-            remarkPlugins={[remarkGfm, remarkMath]} 
-            rehypePlugins={[rehypeKatex, [rehypeHighlight, { detect: true }]]}
-        >
-            {content}
-        </ReactMarkdown>
-    </div>
-);
+// Local MarkdownRenderer removed in favor of shared component
 
 export default function EnhancedPaperPage({ forcedPaperId }) {
     const { paperId: routePaperId } = useParams();

@@ -92,7 +92,7 @@ export const paperData = {
         {
             id: 9,
             type: 'single',
-            question: '下列程序输出的是（ ）。\nstring ch = "hello";\n```cpp\nif (ch[5] == NULL) {\n    cout << "right" << endl;\n} else if (ch[5] == \\n```cpp'\\0\') {\n    cout << "wrong" << endl;\n} else {\n    cout << "hello" << endl;\n}',
+            question: '下列程序输出的是（ ）。\nstring ch = "hello";\n```cpp\nif (ch[5] == NULL) {\n    cout << "right" << endl;\n} else if (ch[5] == \'\\0\') {\n    cout << "wrong" << endl;\n} else {\n    cout << "hello" << endl;\n}',
             options: ['right', 'wrong', 'hello', '不能正确执行'],
             answer: 0,
             score: 2,
@@ -215,7 +215,7 @@ export const paperData = {
         {
             id: 21,
             type: 'judge',
-            question: '下列可执行程序段中，最后 pos 的值是 4。\nstring str = "chenADai";\n```cpp\nint pos = str.find(\\n```cpp'D\');\n--pos & 11;',
+            question: '下列可执行程序段中，最后 pos 的值是 4。\nstring str = "chenADai";\n```cpp\nint pos = str.find(\'D\');\n--pos & 11;',
             options: ['正确', '错误'],
             answer: 1,
             score: 2,
@@ -233,7 +233,7 @@ export const paperData = {
         {
             id: 23,
             type: 'judge',
-            question: '将输出 97。\n```cpp\nchar a = \\n```cpp'A\';\na = a + 32;\ncout << (int)a << endl;',
+            question: '将输出 97。\n```cpp\nchar a = \'A\';\na = a + 32;\ncout << (int)a << endl;',
             options: ['正确', '错误'],
             answer: 0,
             score: 2,

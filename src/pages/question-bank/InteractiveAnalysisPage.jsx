@@ -1,6 +1,7 @@
 import React, { useMemo, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { ChevronLeft, ChevronRight, RefreshCw, BookOpen, CheckCircle2, Lightbulb, RotateCcw } from 'lucide-react';
+import MarkdownRenderer from '../../components/MarkdownRenderer';
 
 const stripLeadingNumber = (questionText) => {
     if (typeof questionText !== 'string') return questionText;
@@ -145,7 +146,7 @@ export default function InteractiveAnalysisPage({ paperData, paperId }) {
                         </div>
 
                         <h2 className="text-lg md:text-xl font-bold text-slate-800 mb-5 leading-relaxed">
-                            {stripLeadingNumber(currentQ.question)}
+                            <MarkdownRenderer content={stripLeadingNumber(currentQ.question)} inline={true} />
                         </h2>
 
                         {activeTab === 'practice' ? (
@@ -165,9 +166,10 @@ export default function InteractiveAnalysisPage({ paperData, paperId }) {
                                         <button
                                             key={idx}
                                             onClick={() => handleOptionSelect(currentQ.id, idx)}
-                                            className={`w-full text-left p-4 rounded-xl border-2 transition-all ${optionState}`}
+                                            className={`w-full text-left p-4 rounded-xl border-2 transition-all flex items-center gap-4 ${optionState}`}
                                         >
-                                            <span className="font-semibold mr-2">{String.fromCharCode(65 + idx)}.</span>{opt}
+                                            <div className="flex-shrink-0 font-semibold">{String.fromCharCode(65 + idx)}.</div>
+                                            <MarkdownRenderer content={opt} inline={true} className="flex-1" />
                                         </button>
                                     );
                                 })}

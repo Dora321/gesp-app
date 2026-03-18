@@ -290,20 +290,20 @@ export const paperData = {
     {
       id: 26,
       type: 'programming',
-      question: '【编程题1】时间规划\n输入开始的小时 $h1$、分钟 $m1$ 和持续的分钟数 $d$，输出结束的时间（$h2$ 和 $m2$）。',
-      answer: '',
+      question: '## [GESP202306 一级] 时间规划\n\n**题目描述**\n\n小明在为自己规划学习时间。他想知道两个时刻之间有多少分钟，你需要通过编程帮助他实现。\n\n**输入格式**\n\n输入共 4 行。第一行为开始时刻的小时，第二行为开始时刻的分钟，第三行为结束时刻的小时，第四行为结束时刻的分钟。\n\n输入保证两个时刻是同一天，且开始时刻一定在结束时刻之前。时刻使用 24 小时制，即小时在 0 到 23 之间，分钟在 0 到 59 之间。\n\n**输出格式**\n\n输出一行，包含一个整数，表示从开始时刻到结束时刻之间有多少分钟。\n\n**输入样例 1**\n\n```\n9\n0\n10\n0\n```\n\n**输出样例 1**\n\n```\n60\n```\n\n**输入样例 2**\n\n```\n23\n59\n23\n59\n```\n\n**输出样例 2**\n\n```\n0\n```\n\n(注：输入保证开始时刻在结束时刻之前，样例 2 仅为边界参考)',
+      answer: '#include <iostream>\nusing namespace std;\nint main() {\n    int h1, m1, h2, m2;\n    cin >> h1 >> m1 >> h2 >> m2;\n    cout << (h2 * 60 + m2) - (h1 * 60 + m1) << endl;\n    return 0;\n}',
       score: 25,
-      explanation: '时间累计与单位转换。LuoGu B3846。',
+      explanation: '将小时统一转换为分钟后再求差值。LuoGu B3838。',
       tags: [LEVEL1_TAGS.basics, LEVEL1_TAGS.operator]
     },
     {
       id: 27,
       type: 'programming',
-      question: '【编程题2】累计相加\n输入两个正整数 $a$ 和 $b$，计算 $a$ 到 $b$ 之间所有整数的累加和。',
-      answer: '',
+      question: '## [GESP202306 一级] 找最小数\n\n**题目描述**\n\n给出 $n$ 和 $n$ 个整数 $a_i$，求这 $n$ 个整数中的最小值是什么。\n\n**输入格式**\n\n第一行输入一个正整数 $n$。\n\n第二行输入 $n$ 个非负整数，表示 $a_1, a_2, \\dots, a_n$，以空格隔开。\n\n**输出格式**\n\n输出一个非负整数，表示这 $n$ 个非负整数中的最小值。\n\n**数据范围**\n\n数据保证，$n \\le 100$ 且 $0 \\le a_i \\le 1000$。\n\n**输入样例**\n\n```\n5\n10 5 8 2 7\n```\n\n**输出样例**\n\n```\n2\n```',
+      answer: '#include <iostream>\nusing namespace std;\nint main() {\n    int n, x, min_val = 1001;\n    cin >> n;\n    for (int i = 0; i < n; i++) {\n        cin >> x;\n        if (x < min_val) {\n            min_val = x;\n        }\n    }\n    cout << min_val << endl;\n    return 0;\n}',
       score: 25,
-      explanation: '标准循环累计题。LuoGu B3847。',
-      tags: [LEVEL1_TAGS.loop, LEVEL1_TAGS.operator]
+      explanation: '标准最小值遍历。LuoGu B3839。',
+      tags: [LEVEL1_TAGS.loop, LEVEL1_TAGS.condition]
     }
   ]
 };

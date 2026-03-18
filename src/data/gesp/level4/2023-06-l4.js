@@ -348,7 +348,8 @@ const programmingQuestions = [
         samples: [
             { input: "2\n7\n16", output: "1\n1" }
         ],
-        explanation: "对每个数计算各位数字之和，判断 sum % 7 == 0。注意输入可能达到 10^18，需要用 long long。",
+        answer: "#include <iostream>\nusing namespace std;\nvoid solve() {\n    long long x; cin >> x;\n    int sum = 0;\n    while (x > 0) {\n        sum += x % 10;\n        x /= 10;\n    }\n    if (sum % 7 == 0) cout << 1 << endl;\n    else cout << 0 << endl;\n}\nint main() {\n    int n; cin >> n;\n    while (n--) solve();\n    return 0;\n}",
+        explanation: "对每个数计算各位数字之和，判断 sum % 7 == 0。注意输入可能达到 10^18，需要用 long long。LuoGu B3850。",
         tags: ["编程题", "模拟"],
         template: "#include <iostream>\nusing namespace std;\n\nint main() {\n    int n;\n    cin >> n;\n    // 在此编写代码\n    return 0;\n}",
         referenceCode: "#include <iostream>\nusing namespace std;\nvoid solve() {\n    long long x; cin >> x;\n    int sum = 0;\n    while (x > 0) {\n        sum += x % 10;\n        x /= 10;\n    }\n    if (sum % 7 == 0) cout << 1 << endl;\n    else cout << 0 << endl;\n}\nint main() {\n    int n; cin >> n;\n    while (n--) solve();\n    return 0;\n}"
@@ -364,7 +365,8 @@ const programmingQuestions = [
         samples: [
             { input: "2 2\n127 128\n0 255", output: "0 1\n0 1" }
         ],
-        explanation: "每个像素值除以 (256 / k) 即可得到映射值。",
+        answer: "#include <iostream>\n#include <vector>\nusing namespace std;\nint main() {\n    int n, k; cin >> n >> k;\n    int step = 256 / k;\n    for (int i = 0; i < n; i++) {\n        for (int j = 0; j < n; j++) {\n            int x; cin >> x;\n            cout << x / step << (j == n - 1 ? \"\" : \" \");\n        }\n        cout << endl;\n    }\n    return 0;\n}",
+        explanation: "每个像素值除以 (256 / k) 即可得到映射值。LuoGu B3851。",
         tags: ["编程题", "二维数组", "模拟"],
         template: "#include <iostream>\n#include <vector>\nusing namespace std;\n\nint main() {\n    int n, k;\n    cin >> n >> k;\n    // 在此编写代码\n    return 0;\n}",
         referenceCode: "#include <iostream>\n#include <vector>\nusing namespace std;\nint main() {\n    int n, k; cin >> n >> k;\n    int step = 256 / k;\n    for (int i = 0; i < n; i++) {\n        for (int j = 0; j < n; j++) {\n            int x; cin >> x;\n            cout << x / step << (j == n - 1 ? \"\" : \" \");\n        }\n        cout << endl;\n    }\n    return 0;\n}"

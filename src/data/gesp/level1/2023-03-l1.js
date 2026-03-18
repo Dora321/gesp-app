@@ -285,20 +285,20 @@ export const paperData = {
     {
       id: 26,
       type: 'programming',
-      question: '【编程题1】每月天数\n输入年份和月份，输出该月共有多少天（考虑闰年）。',
-      answer: '',
+      question: '## [GESP202303 一级] 长方形面积\n\n**题目描述**\n\n小明刚刚学习了如何计算长方形面积。他发现，如果一个长方形的长和宽都是整数，它的面积一定也也是整数。现在，小明想知道如果给定长方形的面积，有多少种可能的长方形，满足长和宽都是整数？\n\n如果两个长方形的长相等、宽也相等，则认为是同一种长方形。约定长方形的长大于等于宽。正方形是长方形的特例，即长和宽可以相等。\n\n**输入格式**\n\n输入一行，包含一个正整数 $N$ ($2 \\le N \\le 1000$)，表示长方形的面积。\n\n**输出格式**\n\n输出一行为满足条件的方案数。\n\n**输入样例**\n\n```\n4\n```\n\n**输出样例**\n\n```\n2\n```\n\n**样例解释**\n\n面积为 4 的长方形有：1×4，2×2。共 2 种。',
+      answer: '#include <iostream>\nusing namespace std;\nint main() {\n    int n, count = 0;\n    cin >> n;\n    for (int i = 1; i * i <= n; i++) {\n        if (n % i == 0) {\n            count++;\n        }\n    }\n    cout << count << endl;\n    return 0;\n}',
       score: 25,
-      explanation: '条件判定配合逻辑或。LuoGu B3834。',
-      tags: [LEVEL1_TAGS.basics, LEVEL1_TAGS.condition]
+      explanation: '枚举宽 $i$ 从 1 到 $\\sqrt{N}$，如果 $N$ 能被 $i$ 整除，则对应一种长和宽都为整数的方案。LuoGu B3834。',
+      tags: [LEVEL1_TAGS.basics, LEVEL1_TAGS.operator, LEVEL1_TAGS.loop]
     },
     {
       id: 27,
       type: 'programming',
-      question: '【编程题2】长方形面积\n输入正整数 $n$ 和 $m$，输出由 $n$ 和 $m$ 作为长和宽的长方形的面积。',
-      answer: '',
+      question: '## [GESP202303 一级] 每月天数\n\n**题目描述**\n\n输入一个年份（大于 0 的整数，例如 2023），以及一个月份（1 到 12 之间的整数，例如 10），输出该月有多少天。\n\n提示：一年有 12 个月，大月有 31 天（1, 3, 5, 7, 8, 10, 12 月），小月有 30 天（4, 6, 9, 11 月），2 月比较特殊，平年 2 月有 28 天，闰年 2 月有 29 天。\n\n判断闰年的方法：年号是 4 的倍数而不是 100 的倍数，或者年号是 400 的倍数，满足这两个条件之一就是闰年。\n\n**输入格式**\n\n输入两个整数，分别表示年份和月份。\n\n**输出格式**\n\n输出一个整数，表示该月的天数。\n\n**输入样例 1**\n\n```\n2023 10\n```\n\n**输出样例 1**\n\n```\n31\n```\n\n**输入样例 2**\n\n```\n2024 2\n```\n\n**输出样例 2**\n\n```\n29\n```',
+      answer: '#include <iostream>\nusing namespace std;\nint main() {\n    int y, m;\n    cin >> y >> m;\n    if (m == 1 || m == 3 || m == 5 || m == 7 || m == 8 || m == 10 || m == 12) {\n        cout << 31 << endl;\n    } else if (m == 4 || m == 6 || m == 9 || m == 11) {\n        cout << 30 << endl;\n    } else {\n        if ((y % 4 == 0 && y % 100 != 0) || (y % 400 == 0)) {\n            cout << 29 << endl;\n        } else {\n            cout << 28 << endl;\n        }\n    }\n    return 0;\n}',
       score: 25,
-      explanation: '简单乘法运算。LuoGu B3835。',
-      tags: [LEVEL1_TAGS.basics, LEVEL1_TAGS.operator]
+      explanation: '考查条件判断与逻辑运算。需要特殊处理 2 月并判断闰年。LuoGu B3835。',
+      tags: [LEVEL1_TAGS.basics, LEVEL1_TAGS.condition]
     }
   ]
 };

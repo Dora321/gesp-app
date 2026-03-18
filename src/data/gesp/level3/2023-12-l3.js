@@ -92,7 +92,7 @@ export const paperData = {
         {
             id: 8,
             type: 'single',
-            question: '【题面按公开解析还原】下面 C++ 代码执行后的输出是（   ）。\n```cpp\nchar ch[10] = {\\n```cpp'1\'};\ncout << ch[2] << endl;',
+            question: '【题面按公开解析还原】下面 C++ 代码执行后的输出是（   ）。\n```cpp\nchar ch[10] = {\'1\'};\ncout << ch[2] << endl;',
             options: ['0', '1', '输出空格', '什么也不输出'],
             answer: 3,
             score: 2,
