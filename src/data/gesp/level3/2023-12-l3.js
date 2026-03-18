@@ -101,11 +101,12 @@ export const paperData = {
         {
             id: 9,
             type: 'single',
-            question: '下面 C++ 代码用于统计每种字符出现的次数，当输出为 3 时，横线上不能填入的代码是（   ）。',
+            question: '下面 C++ 代码用于统计每种字符出现的次数，当输出为 3 时，横线上不能填入的代码是（   ）。\n```cpp\nstring str = "GESP is a good programming test!";\nint cnt = 0;\nfor (int i = 0; i < str.length(); i++) {\n    if (_______) cnt++;\n}\ncout << cnt << endl;\n```',
             options: ["str[i]=='o'", "str[i]=='a'+14", 'str[i]==115', 'str[i]==111'],
             answer: 2,
             score: 2,
-            explanation: 'o 的 ASCII 码是 111；115 对应 s，不能统计出字符 o 的出现次数 3。'
+            explanation: '字符串中 "o" 出现 3 次（good 中两个，programming 中一个）。"o" 的 ASCII 码是 111，a+14 也是 111。而 115 是 "s"，在字符串中（以小写计）仅出现 2 次（is, test），不符合输出 3 的条件。',
+            tags: ['字符串', 'ASCII 码']
         },
         {
             id: 10,

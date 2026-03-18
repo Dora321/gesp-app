@@ -252,32 +252,107 @@ export const paperData = {
             explanation: '整数最低位为 0 表示偶数，利用 a & 1 可以快速判断奇偶性。'
         }
     ],
-    codingQuestions: [
+    programmingQuestions: [
         {
-            id: '2023-09-23-03-C-01',
+            id: 26,
+            type: 'programming',
             title: '小杨的储蓄',
-            score: 25,
-            source: 'official-pdf',
-            summary: '有 n 个储蓄罐，编号 0 到 n-1。第 i 天会向编号为 a_i 的储蓄罐存入 i 元。给定连续 d 天的选择记录，输出每个储蓄罐最终金额。',
-            input: '第一行两个整数 n, d；第二行 d 个整数 a_i，表示第 i 天选择的储蓄罐编号。',
-            output: '输出 n 个整数，第 j 个整数表示编号 j 的储蓄罐中的钱数。',
+            description: '小杨拥有 N 个储蓄罐，它们的编号从 0 到 N-1。从第 1 天开始，小杨每天都会往其中的一个储蓄罐里存钱。具体来说，在第 i 天，他会选择一个储蓄罐 a_i，并存入 i 元钱。D 天过后，小杨已经记不清每个储蓄罐里具体存了多少钱。你需要编写程序帮助他计算出每个储蓄罐当前的存款总额。',
+            inputDescription: '输入包含两行。第一行包含两个整数 N 和 D，用单个空格分隔（1 ≤ N, D ≤ 1,000）。第二行包含 D 个整数，每个整数代表 a_i，表示第 i 天小杨选择存钱的储蓄罐编号（0 ≤ a_i ≤ N-1）。',
+            outputDescription: '输出一行 N 个整数，用单个空格隔开。其中，第 i 个整数表示编号为 i-1 的储蓄罐中的总金额。',
             samples: [
-                { input: '2 3\n0 1 0', output: '4 2' },
-                { input: '4 5\n0 0 0 2 0', output: '11 0 4 0' }
-            ]
+                {
+                    input: '2 3\n0 1 0',
+                    output: '4 2',
+                    explanation: '第 1 天向罐 0 存 1 元；第 2 天向罐 1 存 2 元；第 3 天向罐 0 存 3 元。最终罐 0 有 1+3=4 元，罐 1 有 2 元。'
+                },
+                {
+                    input: '4 5\n0 0 0 2 0',
+                    output: '11 0 4 0',
+                    explanation: '第 1, 2, 3, 5 天向罐 0 存钱，总计 1+2+3+5=11 元。第 4 天向罐 2 存 4 元。'
+                }
+            ],
+            score: 25,
+            explanation: '使用一个数组记录每个储蓄罐的余额。循环 D 天，累加金额到对应编号的数组元素中。',
+            tags: ['数组', '模拟'],
+            referenceCode: `
+#include <iostream>
+#include <vector>
+using namespace std;
+
+long long savings[1005];
+
+int main() {
+    int N, D;
+    cin >> N >> D;
+    for (int i = 1; i <= D; i++) {
+        int a;
+        cin >> a;
+        savings[a] += i;
+    }
+    for (int i = 0; i < N; i++) {
+        cout << savings[i] << (i == N - 1 ? "" : " ");
+    }
+    cout << endl;
+    return 0;
+}
+`
         },
         {
-            id: '2023-09-23-03-C-02',
+            id: 27,
+            type: 'programming',
             title: '进制判断',
-            score: 25,
-            source: 'official-pdf',
-            summary: '给出若干仅由数字和大写字母组成的字符串，判断每个字符串是否可能表示二进制、八进制、十进制、十六进制数。',
-            input: '第一行一个整数 n；接下来 n 行，每行一个字符串。',
-            output: '输出 n 行，每行 4 个 0/1，分别表示是否可能为二进制、八进制、十进制、十六进制数。',
+            description: 'N 进制数是一种逢 N 进一的计数制度。题目将给出一些字符串，需要判断每个字符串是否能分别作为二进制、八进制、十进制或十六进制数。\n- 二进制：仅包含 0, 1。\n- 八进制：包含 0-7。\n- 十进制：包含 0-9。\n- 十六进制：包含 0-9 和 A-F。',
+            inputDescription: '第一行包含一个正整数 n，表示接下来需要判断的字符串数量。随后的 n 行，每行包含一个由数字和大写字母组成的字符串。',
+            outputDescription: '输出共 n 行。每一行应包含 4 个用空格分隔的数字，依次表示该字符串是否可以作为二进制数、八进制数、十进制数和十六进制数。如果可以，则输出 1；如果不能，则输出 0。',
             samples: [
-                { input: '2\n15A6F\n1011', output: '0 0 0 1\n1 1 1 1' },
-                { input: '4\n1234567\n12345678\nFF\nGG', output: '0 1 1 1\n0 0 1 1\n0 0 0 1\n0 0 0 0' }
-            ]
+                {
+                    input: '2\n15A6F\n1011',
+                    output: '0 0 0 1\n1 1 1 1',
+                    explanation: '15A6F 含有 A 和 F，只能是十六进制。1011 仅含 0 和 1，四种进制皆有可能。'
+                },
+                {
+                    input: '4\n1234567\n12345678\nFF\nGG',
+                    output: '0 1 1 1\n0 0 1 1\n0 0 0 1\n0 0 0 0',
+                    explanation: '1234567 无 8, 9, A-F，可能是八、十、十六进制。12345678 含 8，可能是十、十六进制。FF 含 F，只能是十六进制。GG 含 G，不属于任何一种。'
+                }
+            ],
+            score: 25,
+            explanation: '遍历字符串的每个字符，找出其中最大的字符等级。如果最大字符是 0-1，则四种都行；如果是 0-7，则后三种行；如果是 0-9，则后两种行；如果是 0-F，则只有十六进制行。否则都不行。',
+            tags: ['字符串', '位运算', '逻辑判断'],
+            referenceCode: `
+#include <iostream>
+#include <string>
+#include <vector>
+using namespace std;
+
+void solve() {
+    string s;
+    cin >> s;
+    bool b2 = true, b8 = true, b10 = true, b16 = true;
+    for (char c : s) {
+        int val;
+        if (c >= '0' && c <= '9') val = c - '0';
+        else if (c >= 'A' && c <= 'F') val = 10 + (c - 'A');
+        else val = 100; // 非法
+
+        if (val >= 2) b2 = false;
+        if (val >= 8) b8 = false;
+        if (val >= 10) b10 = false;
+        if (val >= 16) b16 = false;
+    }
+    cout << (b2 ? 1 : 0) << " " << (b8 ? 1 : 0) << " " << (b10 ? 1 : 0) << " " << (b16 ? 1 : 0) << endl;
+}
+
+int main() {
+    int n;
+    cin >> n;
+    while (n--) {
+        solve();
+    }
+    return 0;
+}
+`
         }
     ]
 };

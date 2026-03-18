@@ -258,7 +258,7 @@ export const paperData = {
       tags: ['计算机基础']
     },
     {
-      id: 11,
+      id: 24,
       type: 'judge',
       question: '在 C++语言中，表达式 (0xf == 015) 的值为 true。',
       options: ['正确', '错误'],
@@ -283,21 +283,106 @@ export const paperData = {
       id: 26,
       type: 'programming',
       title: '春游',
-      question: '【春游】班级有 N 位同学，编号 0 到 N-1。报号 M 次。从小到大输出未到同学编号。若全到输出 N。',
-      answer: '',
+      description: '老师带领同学们春游。已知班上有 N 位同学，每位同学有从 0 到 N-1 的唯一编号。到了集合时间，老师确认是否所有同学都到达了集合地点，就让同学们报出自己的编号。到达的同学都会报出自己的编号，不会报出别人的编号，但有的同学很顽皮，会多次报出。你能帮老师找出有哪些同学没有到达吗？',
+      inputDescription: '输入包含 2 行。第一行包含两个整数 N 和 M，表示班级有 N 位同学，同学们共有 M 次报出编号。约定 2 ≤ N, M ≤ 1000。\n第二行包含 M 个整数，分别为 M 次报出的编号。约定所有编号都在合理范围内（即小于 N 的非负整数）。',
+      outputDescription: '输出一行。如果所有同学都到达，则输出 N；否则由小到大输出所有未到达的同学编号，空格分隔。',
+      samples: [
+        {
+          input: '3 3\n0 2 2',
+          output: '1',
+          explanation: '班级共有 3 位同学（0, 1, 2），报数三次分别是 0, 2, 2。只有 1 号同学没有报数。'
+        },
+        {
+          input: '3 5\n0 1 2 1 0',
+          output: '3',
+          explanation: '班级共有 3 位同学（0, 1, 2），所有同学都到齐了，所以输出 3。'
+        }
+      ],
       score: 25,
-      explanation: '使用 bool 数组标记。',
-      tags: ['数组', '算法']
+      explanation: '使用布尔数组或 set 记录已到达的同学，最后遍历检查缺失项。如果缺失列表为空，则输出总人数 N。',
+      tags: ['数组', '模拟'],
+      referenceCode: `
+#include <iostream>
+#include <vector>
+using namespace std;
+
+bool arrived[1005];
+
+int main() {
+    int N, M;
+    cin >> N >> M;
+    for (int i = 0; i < M; i++) {
+        int id;
+        cin >> id;
+        arrived[id] = true;
+    }
+    bool all = true;
+    bool first = true;
+    for (int i = 0; i < N; i++) {
+        if (!arrived[i]) {
+            if (!first) cout << " ";
+            cout << i;
+            first = false;
+            all = false;
+        }
+    }
+    if (all) cout << N;
+    cout << endl;
+    return 0;
+}
+`
     },
     {
       id: 27,
       type: 'programming',
       title: '密码合规检测',
-      question: '【密码合规检测】检测密码：6-12位，包含特殊字符(!@#$)，且(大写/小写/数字)至少两种。',
-      answer: '',
+      description: '网站注册时需要用户名和密码。本题的任务是编写程序检查用户输入密码的有效性。合规的密码需满足以下条件：\n1. 只能由 a-z 之间 26 个小写字母、A-Z 之间 26 个大写字母、0-9 之间 10 个数字以及 !@#$ 这四个特殊字符构成。\n2. 密码最短长度为 6 个字符，最长长度为 12 个字符。\n3. 大写字母、小写字母 and 数字这三类字符中，必须至少包含其中两种，并且至少包含一个 !@#$ 中的特殊字符。',
+      inputDescription: '输入一行不含空格的字符串，约定其长度不超过 100。该字符串会通过英文逗号分隔为多段，每一段都作为一个待检测的密码。',
+      outputDescription: '程序将输出若干行，每行输出一个合规的密码。输出顺序应与输入顺序保持一致，即先输入的合规密码先输出。',
+      samples: [
+        {
+          input: 'seHJ12!@,sjdkffH$123,sdf!@&12HDHa!,123&^YUhg@!',
+          output: 'seHJ12!@\nsjdkffH$123',
+          explanation: '第一、二个密码符合所有规则。第三个长度超过 12。第四个含有非法特殊字符 "^"。'
+        }
+      ],
       score: 25,
-      explanation: '字符串遍历与分类统计。',
-      tags: ['字符串', '逻辑']
+      explanation: '通过 stringstream 或手动查找逗号来拆分字符串。对每个子串，检查长度、字符合法性、大写/小写/数字种数以及是否包含指定特殊字符。',
+      tags: ['字符串', '逻辑判断'],
+      referenceCode: `
+#include <iostream>
+#include <string>
+#include <vector>
+#include <sstream>
+using namespace std;
+
+bool check(string s) {
+    if (s.length() < 6 || s.length() > 12) return false;
+    bool hasUpper = false, hasLower = false, hasDigit = false, hasSpecial = false;
+    for (char c : s) {
+        if (c >= 'A' && c <= 'Z') hasUpper = true;
+        else if (c >= 'a' && c <= 'z') hasLower = true;
+        else if (c >= '0' && c <= '9') hasDigit = true;
+        else if (c == '!' || c == '@' || c == '#' || c == '$') hasSpecial = true;
+        else return false; // 非法字符
+    }
+    int types = (hasUpper ? 1 : 0) + (hasLower ? 1 : 0) + (hasDigit ? 1 : 0);
+    return (types >= 2 && hasSpecial);
+}
+
+int main() {
+    string line;
+    getline(cin, line);
+    stringstream ss(line);
+    string pass;
+    while (getline(ss, pass, ',')) {
+        if (check(pass)) {
+            cout << pass << endl;
+        }
+    }
+    return 0;
+}
+`
     }
   ]
 };
