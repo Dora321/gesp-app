@@ -18,12 +18,17 @@ import { luoguCodingByLevel } from '../../data/gesp/luoguCodingByLevel';
 import { paperCodingMap } from '../../data/gesp/paperCodingMap';
 
 const stripLeadingNumber = (questionText) => {
-    if (typeof questionText !== 'string') return questionText;
+    if (typeof questionText !== 'string') return questionText || '';
     return questionText.replace(/^\s*\d+[.。、]\s*/, '');
 };
 
+const getQuestionContent = (q) => {
+    if (!q) return '';
+    return q.question || q.description || q.summary || q.title || '';
+};
+
 const inferKnowledgeTags = (q, level) => {
-    const merged = `${q?.question || ''} ${q?.explanation || ''} ${(q?.options || []).join(' ')}`;
+    const merged = `${getQuestionContent(q)} ${q?.explanation || ''} ${(q?.options || []).join(' ')}`;
     const tags = [];
 
     const ruleMap = [
@@ -110,13 +115,20 @@ export default function EnhancedPaperPage({ forcedPaperId }) {
 
     const paperId = forcedPaperId || routePaperId;
     const paperData = paperRegistry[paperId] || null;
-    const baseQuestions = paperData?.questions || [];
+    const baseQuestions = useMemo(() => {
+        if (!paperData) return [];
+        return [
+            ...(paperData.questions || []),
+            ...(paperData.programmingQuestions || []).map(q => ({ ...q, type: q.type || 'programming' })),
+            ...(paperData.codingQuestions || []).map(q => ({ ...q, type: q.type || 'programming' }))
+        ];
+    }, [paperData]);
 
     const questions = useMemo(() => {
         if (!paperData) return [];
-        const has26 = baseQuestions.some((q) => Number(q.id) === 26);
-        const has27 = baseQuestions.some((q) => Number(q.id) === 27);
-        if (has26 && has27) return baseQuestions;
+        const has26 = baseQuestions.some((q) => Number(q.id) === 26 || String(q.id) === '26');
+        const has27 = baseQuestions.some((q) => Number(q.id) === 27 || String(q.id) === '27');
+        if (has26 && has27) return baseQuestions.sort((a, b) => Number(a.id) - Number(b.id));
 
         const pool = luoguCodingByLevel[String(paperData.level)] || luoguCodingByLevel[paperData.level] || [];
         const byPid = new Map(pool.map((p) => [p.pid, p]));
@@ -333,7 +345,7 @@ export default function EnhancedPaperPage({ forcedPaperId }) {
                         </div>
 
                         <h2 className="text-lg md:text-xl font-bold text-slate-800 mb-5 leading-relaxed">
-                            <MarkdownRenderer content={stripLeadingNumber(currentQ.question)} />
+                            <MarkdownRenderer content={stripLeadingNumber(getQuestionContent(currentQ))} />
                         </h2>
 
                         {activeTab === 'practice' && (

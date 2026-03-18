@@ -80,7 +80,11 @@ const ExamPaper = () => {
         );
     }
 
-    const allQuestions = paperData.questions || [];
+    const allQuestions = [
+        ...(paperData.questions || []),
+        ...(paperData.programmingQuestions || []).map(q => ({ ...q, type: q.type || 'programming' })),
+        ...(paperData.codingQuestions || []).map(q => ({ ...q, type: q.type || 'programming' }))
+    ];
     const objectiveQuestions = allQuestions.filter((q) => q && q.type !== 'programming');
     const questions = mode === 'exam' ? objectiveQuestions : allQuestions;
 
@@ -91,8 +95,13 @@ const ExamPaper = () => {
     };
 
     const stripLeadingNumber = (questionText) => {
-        if (typeof questionText !== 'string') return questionText;
+        if (typeof questionText !== 'string') return questionText || '';
         return questionText.replace(/^\s*\d+[.。、]\s*/, '');
+    };
+
+    const getQuestionContent = (q) => {
+        if (!q) return '';
+        return q.question || q.description || q.summary || q.title || '';
     };
 
     const handleOptionSelect = (qId, optionIdx) => {
@@ -274,7 +283,7 @@ const ExamPaper = () => {
 
                             <h2 className="text-xl md:text-2xl font-bold text-slate-800 mt-6 mb-8 leading-relaxed">
                                 <span className="text-blue-500 mr-2">{currentQuestionIndex + 1}.</span>
-                                <MarkdownRenderer content={stripLeadingNumber(currentQ.question)} className="inline-markdown" inline={true} />
+                                <MarkdownRenderer content={stripLeadingNumber(getQuestionContent(currentQ))} className="inline-markdown" inline={true} />
                             </h2>
 
                             <div className="space-y-3">

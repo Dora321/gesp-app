@@ -4,13 +4,18 @@ import { ChevronLeft, ChevronRight, RefreshCw, BookOpen, CheckCircle2, Lightbulb
 import MarkdownRenderer from '../../components/MarkdownRenderer';
 
 const stripLeadingNumber = (questionText) => {
-    if (typeof questionText !== 'string') return questionText;
+    if (typeof questionText !== 'string') return questionText || '';
     return questionText.replace(/^\s*\d+[.。、]\s*/, '');
+};
+
+const getQuestionContent = (q) => {
+    if (!q) return '';
+    return q.question || q.description || q.summary || q.title || '';
 };
 
 const inferTags = (q) => {
     if (Array.isArray(q?.tags) && q.tags.length) return q.tags;
-    const text = `${q?.question || ''} ${q?.explanation || ''}`;
+    const text = `${getQuestionContent(q)} ${q?.explanation || ''}`;
     const tags = [];
     if (/循环|for|while/i.test(text)) tags.push('循环');
     if (/条件|判断|if|逻辑/i.test(text)) tags.push('条件判断');
@@ -21,8 +26,15 @@ const inferTags = (q) => {
 
 export default function InteractiveAnalysisPage({ paperData, paperId }) {
     const navigate = useNavigate();
-    const allQuestions = paperData?.questions || [];
-    const questions = allQuestions; // No longer filter out programming questions
+    const allQuestions = useMemo(() => {
+        if (!paperData) return [];
+        return [
+            ...(paperData.questions || []),
+            ...(paperData.programmingQuestions || []).map(q => ({ ...q, type: q.type || 'programming' })),
+            ...(paperData.codingQuestions || []).map(q => ({ ...q, type: q.type || 'programming' }))
+        ].sort((a, b) => Number(a.id) - Number(b.id));
+    }, [paperData]);
+    const questions = allQuestions; 
 
     const [activeTab, setActiveTab] = useState('practice');
     const [currentQuestionIndex, setCurrentQuestionIndex] = useState(0);
@@ -146,7 +158,7 @@ export default function InteractiveAnalysisPage({ paperData, paperId }) {
                         </div>
 
                         <h2 className="text-lg md:text-xl font-bold text-slate-800 mb-5 leading-relaxed">
-                            <MarkdownRenderer content={stripLeadingNumber(currentQ.question)} inline={true} />
+                            <MarkdownRenderer content={stripLeadingNumber(getQuestionContent(currentQ))} inline={true} />
                         </h2>
 
                         {activeTab === 'practice' ? (
