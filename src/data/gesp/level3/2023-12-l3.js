@@ -65,7 +65,7 @@ export const paperData = {
         {
             id: 5,
             type: 'single',
-            question: '【题面按公开解析还原】执行下面 C++ 代码后，输出是（   ）。\nstring str = "chen";\n```cpp\nint x = str.length();\nint temp = 0;\nfor (int i = 0; i <= x; i++) temp++;\ncout << temp << endl;\n```',
+            question: '【题面按公开解析还原】执行下面 C++ 代码后，输出是（   ）。\n```cpp\nstring str = "chen";\nint x = str.length();\nint temp = 0;\nfor (int i = 0; i <= x; i++) temp++;\ncout << temp << endl;\n```',
             options: ['4', '2', '5', '3'],
             answer: 2,
             score: 2,
@@ -74,7 +74,7 @@ export const paperData = {
         {
             id: 6,
             type: 'single',
-            question: '【题面按公开解析还原】执行下面 C++ 代码后输出的是（   ）。\nstring str = "chen";\n```cpp\nint x = str.length();\ncout << x << endl;\n```',
+            question: '【题面按公开解析还原】执行下面 C++ 代码后输出是（   ）。\n```cpp\nstring str = "chen";\nint x = str.length();\ncout << x << endl;\n```',
             options: ['4', '3', '2', '5'],
             answer: 0,
             score: 2,
@@ -83,7 +83,7 @@ export const paperData = {
         {
             id: 7,
             type: 'single',
-            question: '【题面按公开解析还原】执行下面 C++ 代码后输出的是（   ）。\nstring str = "chen";\n```cpp\ncout << str[5] << endl;\n```',
+            question: '【题面按公开解析还原】执行下面 C++ 代码后输出的是（   ）。\n```cpp\nstring str = "chen";\ncout << str[5] << endl;\n```',
             options: ['输出未知的数', "输出 'n'", "输出 '\\0'", '输出空格'],
             answer: 0,
             score: 2,
@@ -92,7 +92,7 @@ export const paperData = {
         {
             id: 8,
             type: 'single',
-            question: '【题面按公开解析还原】下面 C++ 代码执行后的输出是（   ）。\n```cpp\nchar ch[10] = {\'1\'};\ncout << ch[2] << endl;',
+            question: '【题面按公开解析还原】下面 C++ 代码执行后的输出是（   ）。\n```cpp\nchar ch[10] = {\'1\'};\ncout << ch[2] << endl;\n```',
             options: ['0', '1', '输出空格', '什么也不输出'],
             answer: 3,
             score: 2,

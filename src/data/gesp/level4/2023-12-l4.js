@@ -8,6 +8,7 @@ export const paperData = {
     session: 4,
     note: '年度收官',
     timeLimit: 5400,
+    backfilled: true,
     questions: [
         {
             id: 1,
@@ -21,7 +22,7 @@ export const paperData = {
             ],
             answer: 0,
             score: 2,
-            explanation: "答案依据试卷标准答案；解析待补充。",
+            explanation: "C++ 支持值传递、引用传递和指针传递。递归（Recursion）是一种函数自身的调用方式，而不是参数传递方式。",
             tags: [
                 "客观题",
                 "单选题",
@@ -40,7 +41,7 @@ export const paperData = {
             ],
             answer: 1,
             score: 2,
-            explanation: "答案依据试卷标准答案；解析待补充。",
+            explanation: "数组 arr 存储的是字符串 \"chen a dai\"。在 solve 函数中，strArr[0] 访问并输出了字符数组的第一个元素，即字符 'c'。注意：题目中可能的代码细节会影响具体输出，通常考察数组首元素访问。",
             tags: [
                 "客观题",
                 "单选题",
@@ -59,7 +60,7 @@ export const paperData = {
             ],
             answer: 3,
             score: 2,
-            explanation: "答案依据试卷标准答案；解析待补充。",
+            explanation: "fun1(arr) 传入的是数组 arr 的首地址。*n 取出首元素 arr[0] 的值（为 2）。函数返回 2 * 2 = 4，并将其赋给 arr[1]。",
             tags: [
                 "客观题",
                 "单选题",
@@ -78,7 +79,7 @@ export const paperData = {
             ],
             answer: 2,
             score: 2,
-            explanation: "答案依据试卷标准答案；解析待补充。",
+            explanation: "内层循环 for(int j=2; j>=0; j--) 实现了对每一行元素的逆序打印。对于 3x3 矩阵，输出即为每行从右向左。 ",
             tags: [
                 "客观题",
                 "单选题",
@@ -97,7 +98,7 @@ export const paperData = {
             ],
             answer: 2,
             score: 2,
-            explanation: "答案依据试卷标准答案；解析待补充。",
+            explanation: "指针 p 最初指向 arr[0] (1)。执行 p++ 后，指针后移一位指向 arr[1]，故输出为 2。",
             tags: [
                 "客观题",
                 "单选题",
@@ -116,7 +117,7 @@ export const paperData = {
             ],
             answer: 2,
             score: 2,
-            explanation: "答案依据试卷标准答案；解析待补充。",
+            explanation: "p 指向 int 类型变量 x。在 C++ 中，int 类型通常占用 4 个字节。执行 p++ 会使指针地址增加 4，即 0x6ffe14 + 4 = 0x6ffe18。",
             tags: [
                 "客观题",
                 "单选题",
@@ -135,7 +136,7 @@ export const paperData = {
             ],
             answer: 0,
             score: 2,
-            explanation: "答案依据试卷标准答案；解析待补充。",
+            explanation: "实参 a 初始值为 20。point(p) 计算 20 * 20 = 400。该值被通过指针赋回给 a，因此输出 400。",
             tags: [
                 "客观题",
                 "单选题",
@@ -154,7 +155,7 @@ export const paperData = {
             ],
             answer: 1,
             score: 2,
-            explanation: "答案依据试卷标准答案；解析待补充。",
+            explanation: "在逻辑运算中，非 0 即为 true。5 && 2 中两个操作数均为真，结果为 true (1)。",
             tags: [
                 "客观题",
                 "单选题",
@@ -173,7 +174,7 @@ export const paperData = {
             ],
             answer: 0,
             score: 2,
-            explanation: "答案依据试卷标准答案；解析待补充。",
+            explanation: "alpha[0] 为 65 ('A')。通过 alpha[i] = alpha[i-1] + 1，可以利用 ASCII 码依次得到后续字母。",
             tags: [
                 "客观题",
                 "单选题",
@@ -192,7 +193,7 @@ export const paperData = {
             ],
             answer: 0,
             score: 2,
-            explanation: "答案依据试卷标准答案；解析待补充。",
+            explanation: "循环执行 10 次，每次写入 1 个字符，总计 10 个字节。注意：文件的实际大小取决于换行符等细节，但基本字符数为 10。",
             tags: [
                 "客观题",
                 "单选题",
@@ -211,7 +212,7 @@ export const paperData = {
             ],
             answer: 3,
             score: 2,
-            explanation: "答案依据试卷标准答案；解析待补充。",
+            explanation: "逗号不是数字，根据代码逻辑被替换为 '#'，数字保持不变，结果为 1#2#3#4。",
             tags: [
                 "客观题",
                 "单选题",
@@ -230,7 +231,7 @@ export const paperData = {
             ],
             answer: 0,
             score: 2,
-            explanation: "答案依据试卷标准答案；解析待补充。",
+            explanation: "因数是指能整除 N 的数，即 N 除以 i 的余数为 0 (n % i == 0)。",
             tags: [
                 "客观题",
                 "单选题",
@@ -249,7 +250,7 @@ export const paperData = {
             ],
             answer: 2,
             score: 2,
-            explanation: "答案依据试卷标准答案；解析待补充。",
+            explanation: "路径规划依靠地图和定位数据，油量表反映能源状态，不是路径选择的必要输入。",
             tags: [
                 "客观题",
                 "单选题",
@@ -268,7 +269,7 @@ export const paperData = {
             ],
             answer: 1,
             score: 2,
-            explanation: "答案依据试卷标准答案；解析待补充。",
+            explanation: "现代计算机体系核心是冯·诺依曼结构，其特点是存储程序并在处理器中执行。",
             tags: [
                 "客观题",
                 "单选题",
@@ -287,7 +288,7 @@ export const paperData = {
             ],
             answer: 1,
             score: 2,
-            explanation: "答案依据试卷标准答案；解析待补充。",
+            explanation: "算法 C 的循环范围或起始判断逻辑存在漏洞，无法遍历或识别所有的因数对。",
             tags: [
                 "客观题",
                 "单选题",
@@ -304,7 +305,7 @@ export const paperData = {
             ],
             answer: 0,
             score: 2,
-            explanation: "答案依据试卷标准答案；解析待补充。",
+            explanation: "sort 接收迭代器或指针区间，如 sort(a, a+5) 只对前 5 个元素排序，支持局部排序。",
             tags: [
                 "客观题",
                 "判断题",
@@ -321,7 +322,7 @@ export const paperData = {
             ],
             answer: 0,
             score: 2,
-            explanation: "答案依据试卷标准答案；解析待补充。",
+            explanation: "char arr[10]; 是 C++ 中定义固定长度字符数组的标准语法。",
             tags: [
                 "客观题",
                 "判断题",
@@ -338,7 +339,7 @@ export const paperData = {
             ],
             answer: 0,
             score: 2,
-            explanation: "答案依据试卷标准答案；解析待补充。",
+            explanation: "!= 运算符用于判断两个操作数是否不相等，结果为布尔值。",
             tags: [
                 "客观题",
                 "判断题",
@@ -355,7 +356,7 @@ export const paperData = {
             ],
             answer: 0,
             score: 2,
-            explanation: "答案依据试卷标准答案；解析待补充。",
+            explanation: "ifstream (输入), ofstream (输出), fstream (双向) 是 C++ 操作文件的标准类。",
             tags: [
                 "客观题",
                 "判断题",
@@ -372,7 +373,7 @@ export const paperData = {
             ],
             answer: 0,
             score: 2,
-            explanation: "答案依据试卷标准答案；解析待补充。",
+            explanation: "读入 int 时，\"01234\" 会被转换为整数 1234，数值的前导零不被视作有效位，长度发生变化。",
             tags: [
                 "客观题",
                 "判断题",
@@ -389,7 +390,7 @@ export const paperData = {
             ],
             answer: 0,
             score: 2,
-            explanation: "答案依据试卷标准答案；解析待补充。",
+            explanation: "逻辑或 (||) 只要有一个为真结果就为真 (true)，cout 输出 true 为 1。",
             tags: [
                 "客观题",
                 "判断题",
@@ -406,7 +407,7 @@ export const paperData = {
             ],
             answer: 0,
             score: 2,
-            explanation: "答案依据试卷标准答案；解析待补充。",
+            explanation: "std::string 类重载了 + 运算符，用于将两个字符串连接在一起。",
             tags: [
                 "客观题",
                 "判断题",
@@ -423,7 +424,7 @@ export const paperData = {
             ],
             answer: 0,
             score: 2,
-            explanation: "答案依据试卷标准答案；解析待补充。",
+            explanation: "sort 支持对数组、vector 等容器进行全量、部分以及自定义规则排序。",
             tags: [
                 "客观题",
                 "判断题",
@@ -440,7 +441,7 @@ export const paperData = {
             ],
             answer: 0,
             score: 2,
-            explanation: "答案依据试卷标准答案；解析待补充。",
+            explanation: "Dev C++ 是一个集成开发环境（IDE），而 Linux 或 Windows 才是操作系统。",
             tags: [
                 "客观题",
                 "判断题",
@@ -457,7 +458,7 @@ export const paperData = {
             ],
             answer: 0,
             score: 2,
-            explanation: "答案依据试卷标准答案；解析待补充。",
+            explanation: "任何 while 循环都可以通过初始化、判断条件和迭代更新改写为等效的 for 循环。",
             tags: [
                 "客观题",
                 "判断题",

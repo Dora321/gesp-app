@@ -7,49 +7,42 @@ export const paperData = {
     month: 3,
     session: 9,
     timeLimit: 5400,
+    backfilled: true,
     questions: [
         {
             id: 1,
             type: "single",
-            question: "关于下述代码，说法错误的是（ ）。",
+            question: "关于下述代码，说法错误的是（ ）。\n```cpp\nint multiply(int x, int y);\nint main() {\n    int a = 4;\n    int b = 5;\n    int result = multiply(a, b);\n    std::cout << \"The result is: \" << result << std::endl;\n    return 0;\n}\nint multiply(int x, int y) {\n    return x * y;\n}\n```",
             options: [
                 "函数multiply的定义应该放到函数main之前。",
                 "函数声明int multiply(int x, int y);中明确指定了函数multiply()的返回值为整数类型。",
-                "在main函数中，函数multiply通过multiply(a, b)被调用，其中a和b是定义在main函数中的变 量，它们作为实参传递给了multiply函数的形参x和y。",
+                "在main函数中，函数multiply通过multiply(a, b)被调用，其中a和b是定义在main函数中的变量，它们作为实参传递给了multiply函数的形参x and y。",
                 "运⾏上述代码，将输出The result is: 20。",
             ],
             answer: 0,
             score: 2,
-            explanation: "答案依据试卷标准答案；解析待补充。",
-            tags: [
-                "客观题",
-                "单选题",
-                "GESP4级",
-            ]
+            explanation: "C++ 支持函数声明与定义分离。只要在调用之前有函数原型声明，定义可以放在 main 之后。因此选项 A 说法错误。",
+            tags: ["客观题", "单选题", "GESP4级"]
         },
         {
             id: 2,
             type: "single",
-            question: "执⾏下述代码将输出（ ）。",
+            question: "执⾏下述代码将输出（ ）。\n```cpp\nint x = 10;\nvoid func() {\n    int x = 20;\n    std::cout << x;\n}\nint main() {\n    func();\n    std::cout << x;\n    return 0;\n}\n```",
             options: [
                 "2020",
                 "2010",
-                "1010 int multiply(int x, int y); int main() { int a = 4; int b = 5; int result = multiply(a, b); std::cout << \"The result is: \" << result << std::endl; return 0; } int multiply(int x, int y) { return x * y; } 1 2 3 4 5 6 7 8 9 10 11 12 13 int x = 10; void func() { int x = 20; std::cout << x; } int main() { func(); std::cout << x; return 0; } 1 2 3 4 5 6 7",
+                "1010",
                 "编译错误",
             ],
             answer: 1,
             score: 2,
-            explanation: "答案依据试卷标准答案；解析待补充。",
-            tags: [
-                "客观题",
-                "单选题",
-                "GESP4级",
-            ]
+            explanation: "func() 内部定义了局部变量 x 并赋值 20，屏蔽了全局变量，故输出 20；main 函数中输出的是全局变量 x，值为 10。因此输出 2010。",
+            tags: ["客观题", "单选题", "GESP4级"]
         },
         {
             id: 3,
             type: "single",
-            question: "执⾏下述代码后，变量a的值为（ ）。",
+            question: "执⾏下述代码后，变量a的值为（ ）。\n```cpp\nint a = 10;\nint* p = &a;\n*p = 20;\n```",
             options: [
                 "10",
                 "20",
@@ -58,12 +51,8 @@ export const paperData = {
             ],
             answer: 1,
             score: 2,
-            explanation: "答案依据试卷标准答案；解析待补充。",
-            tags: [
-                "客观题",
-                "单选题",
-                "GESP4级",
-            ]
+            explanation: "指针 p 指向变量 a 的地址，*p = 20 通过解引用直接修改了 a 所在内存的值为 20。",
+            tags: ["客观题", "单选题", "GESP4级"]
         },
         {
             id: 4,
@@ -77,17 +66,13 @@ export const paperData = {
             ],
             answer: 3,
             score: 2,
-            explanation: "答案依据试卷标准答案；解析待补充。",
-            tags: [
-                "客观题",
-                "单选题",
-                "GESP4级",
-            ]
+            explanation: "引用传递和指针传递本质上都是传递地址（或别名），不需要复制整个对象的数据副本，因此可以避免大型对象的拷贝开销。",
+            tags: ["客观题", "单选题", "GESP4级"]
         },
         {
             id: 5,
             type: "single",
-            question: "执⾏下述代码，将输出（ ）。",
+            question: "执⾏下述代码，将输出（ ）。\n```cpp\nvoid swap(int a, int &b) {\n    int temp = a;\n    a = b;\n    b = temp;\n}\nint main() {\n    int x = 1, y = 2;\n    swap(x, y);\n    std::cout << x << y;\n    return 0;\n}\n```",
             options: [
                 "12",
                 "21",
@@ -96,36 +81,28 @@ export const paperData = {
             ],
             answer: 3,
             score: 2,
-            explanation: "答案依据试卷标准答案；解析待补充。",
-            tags: [
-                "客观题",
-                "单选题",
-                "GESP4级",
-            ]
+            explanation: "swap 函数中 a 是值传递，形参改变不影响实参 x；b 是引用传递，形参改变会影响实参 y。y 被赋值为 a 的初始值 1，因此 x 仍为 1，y 变为 1。输出 11。",
+            tags: ["客观题", "单选题", "GESP4级"]
         },
         {
             id: 6,
             type: "single",
             question: "下面的描述中，（ ）正确定义一个名为Person的结构体并正确初始化了一个Person结构体的变量p。",
             options: [
-                "int a = 10; int* p = &a; *p = 20 1 2 3 void swap(int a, int &b) { int temp = a; a = b; b = temp; } int main() { int x = 1, y = 2; swap(x, y); std::cout << x << y; return 0; } 1 2 3 4 5 6 7 8 9 10 11 struct Person { string name; int age; }; Person p(\"Yang\", 10); 1 2 3 4 5",
-                "选项B",
-                "选项C",
-                "选项D",
+                "struct Person { string name; int age; }; Person p(\"Yang\", 10);",
+                "struct Person { string name, int age; }; Person p; p.name = \"Yang\"; p.age = 10;",
+                "struct Person { string name; int age; }; Person p = { \"Yang\", 10 };",
+                "struct Person { string name; int age; }; Person p = new Person(\"Yang\", 10);",
             ],
             answer: 2,
             score: 2,
-            explanation: "答案依据试卷标准答案；解析待补充。",
-            tags: [
-                "客观题",
-                "单选题",
-                "GESP4级",
-            ]
+            explanation: "选项 C 使用大括号 {} 进行初始化是 C++ 标准结构体聚合初始化的正确方式。选项 A 缺少构造函数，选项 B 逗号语法错误，选项 D 是指针动态分配语法。",
+            tags: ["客观题", "单选题", "GESP4级"]
         },
         {
             id: 7,
             type: "single",
-            question: "给定如下代码， 下面描述错误的是（ ）。",
+            question: "给定如下代码， 下面描述错误的是（ ）。\n```cpp\nstruct Person {\n    std::string name;\n    int age;\n    struct Address {\n        std::string street;\n        std::string city;\n    };\n    Address address;\n};\n```",
             options: [
                 "结构Person内嵌套结构Address",
                 "Person 有一个Address 类型的 address 成员",
@@ -134,12 +111,8 @@ export const paperData = {
             ],
             answer: 3,
             score: 2,
-            explanation: "答案依据试卷标准答案；解析待补充。",
-            tags: [
-                "客观题",
-                "单选题",
-                "GESP4级",
-            ]
+            explanation: "结构嵌套确实可以减少全局命名空间污染，但嵌套层次过深会使代码难以理解和维护，因此必须合理控制嵌套层次。选项 D 说法太绝对。",
+            tags: ["客观题", "单选题", "GESP4级"]
         },
         {
             id: 8,
@@ -148,17 +121,13 @@ export const paperData = {
             options: [
                 "2",
                 "3",
-                "5 struct Person { string name, int age; }; Person p; p.name = \"Yang\"; p.age = 10; 1 2 3 4 5 6 7 struct Person { string name; int age; }; Person p = { \"Yang\", 10 }; 1 2 3 4 5 struct Person { string name; int age; }; Person p = new Person(\"Yang\", 10); 1 2 3 4 5 struct Person { std::string name; int age; struct Address { std::string street; std::string city; }; Address address; }; 1 2 3 4 5 6 7 8 9",
+                "5",
                 "6",
             ],
             answer: 3,
             score: 2,
-            explanation: "答案依据试卷标准答案；解析待补充。",
-            tags: [
-                "客观题",
-                "单选题",
-                "GESP4级",
-            ]
+            explanation: "arr[1][2] 表示第 2 行（索引 1）第 3 列（索引 2）的元素，即 6。",
+            tags: ["客观题", "单选题", "GESP4级"]
         },
         {
             id: 9,
@@ -172,50 +141,38 @@ export const paperData = {
             ],
             answer: 1,
             score: 2,
-            explanation: "答案依据试卷标准答案；解析待补充。",
-            tags: [
-                "客观题",
-                "单选题",
-                "GESP4级",
-            ]
+            explanation: "C++ 中定义二维数组的正确语法是使用两个中括号，分别指定行数和列数：arr[rows][cols]。",
+            tags: ["客观题", "单选题", "GESP4级"]
         },
         {
             id: 10,
             type: "single",
-            question: "小杨正在爬楼梯，需要爬 阶才能到达楼顶。如果每次可以爬 个或 个台阶，下面代码采用递推算法来计算 一共有多少种不同的方法可以爬到楼顶，则横线上应填写（ ）。",
+            question: "小杨正在爬楼梯，需要爬 n 阶才能到达楼顶。如果每次可以爬 1 个或 2 个台阶，下面代码采用递推算法来计算一共有多少种不同的方法可以爬到楼顶，则横线上应填写（ ）。\n```cpp\nint f(int n) {\n    if (n == 1 || n == 2) return n;\n    int f1 = 1;\n    int f2 = 2;\n    int res = 0;\n    for (int i = 3; i <= n; i++) {\n        ________________________________ // 在此处填入代码\n    }\n    return res;\n}\n```",
             options: [
-                "选项A",
-                "选项B",
-                "选项C",
-                "选项D",
+                "res += f1 + f2; f1 = f2; f2 = res;",
+                "res = f1 + f2; f1 = f2; f2 = res;",
+                "res += f1 + f2; f2 = res; f1 = f2;",
+                "res = f1 + f2; f2 = res; f1 = f2;",
             ],
             answer: 1,
             score: 2,
-            explanation: "答案依据试卷标准答案；解析待补充。",
-            tags: [
-                "客观题",
-                "单选题",
-                "GESP4级",
-            ]
+            explanation: "斐波那契数列式的递推。当前阶数的方法数等于前两阶方法数之和 (res = f1 + f2)，然后更新前两项的值以供下次循环：f1 变为旧的 f2，f2 变为新的 res。",
+            tags: ["客观题", "单选题", "GESP4级"]
         },
         {
             id: 11,
             type: "single",
-            question: "给定如下算法，其时间复杂度为（ ）。 int f(int n) { if (n == 1 || n == 2) return n; int f1 = 1; int f2 = 2; int res = 0; for (int i = 3; i <= n; i++) { ________________________________ // 在此处填入代码 } return res; } 1 2 3 4 5 6 7 8 9 10 11 12 res += f1 + f2; f1 = f2; f2 = res; 1 2 3 res = f1 + f2; f1 = f2; f2 = res; 1 2 3 res += f1 + f2; f2 = res; f1 = f2; 1 2 3 res = f1 + f2; f2 = res; f1 = f2; 1 2 3",
+            question: "给定如下算法，其时间复杂度为（ ）。\n```cpp\nbool f(int arr[], int n, int target) {\n    for (int i = 0; i < (1 << n); i++) {\n        int sum = 0;\n        for (int j = 0; j < n; j++) {\n            if (i & (1 << j)) {\n                sum += arr[j];\n            }\n        }\n        if (sum == target) return true;\n    }\n    return false;\n}\n```",
             options: [
-                "选项A",
-                "选项B",
-                "选项C",
-                "选项D",
+                "O(2^n)",
+                "O(n * 2^n)",
+                "O(n^2)",
+                "O(n)",
             ],
             answer: 1,
             score: 2,
-            explanation: "答案依据试卷标准答案；解析待补充。",
-            tags: [
-                "客观题",
-                "单选题",
-                "GESP4级",
-            ]
+            explanation: "外层循环次数为 2^n (由 1 << n 决定)，内层循环次数为 n。因此总时间复杂度为 O(n * 2^n)。",
+            tags: ["客观题", "单选题", "GESP4级"]
         },
         {
             id: 12,
@@ -229,12 +186,8 @@ export const paperData = {
             ],
             answer: 1,
             score: 2,
-            explanation: "答案依据试卷标准答案；解析待补充。",
-            tags: [
-                "客观题",
-                "单选题",
-                "GESP4级",
-            ]
+            explanation: "排序稳定性的定义是：如果在待排序的序列中存在多个记录具有相同的关键字，经过排序后，这些记录的相对次序保持不变，则称该排序算法是稳定的。选择排序不稳定，插入排序稳定。",
+            tags: ["客观题", "单选题", "GESP4级"]
         },
         {
             id: 13,
@@ -248,243 +201,154 @@ export const paperData = {
             ],
             answer: 0,
             score: 2,
-            explanation: "答案依据试卷标准答案；解析待补充。",
-            tags: [
-                "客观题",
-                "单选题",
-                "GESP4级",
-            ]
+            explanation: "冒泡第一轮：5和3交换得到 {3, 5, 8, 1}；5和8比较不交换；8和1交换得到 {3, 5, 1, 8}。因此结果为 3, 5, 1, 8。",
+            tags: ["客观题", "单选题", "GESP4级"]
         },
         {
             id: 14,
             type: "single",
-            question: "运⾏下面的代码，将出现（ ）。 bool f(int arr[], int n, int target) { for (int i = 0; i < (1 << n); i++) { int sum = 0; for (int j = 0; j < n; j++) { if (i & (1 << j)) { sum += arr[j]; } } if (sum == target) return true; } return false; } 1 2 3 4 5 6 7 8 9 10 11 12 double hmean(double a, double b) { if (a == -b ) throw runtime_error(\"Runtime error occurred.\"); return 2.0*a*b/(a + b); } int main() { double x = 10; double y = -10; try { int result = hmean(x, y); cout << \"hmean: \" << result << endl; } 1 2 3 4 5 6 7 8 9 10 11 12 13 14 题号 1 2 3 4 5 6 7 8 9 10 答案",
+            question: "运⾏下面的代码，将输出（ ）。\n```cpp\ndouble hmean(double a, double b) {\n    if (a == -b) throw std::runtime_error(\"Runtime error occurred.\");\n    return 2.0*a*b/(a + b);\n}\nint main() {\n    double x = 10;\n    double y = -10;\n    try {\n        int result = hmean(x, y);\n        std::cout << \"hmean: \" << result << std::endl;\n    } catch (const std::runtime_error& e) {\n        std::cout << \"Caught: \" << e.what() << std::endl;\n    } catch (...) {\n        std::cout << \"Caught an unknown exception.\" << std::endl;\n    }\n    return 0;\n}\n```",
             options: [
-                "屏幕上输出Caught: Runtime error occurred.",
-                "屏幕上输出Caught an unknown exception.",
-                "程序调用 std::terminate()",
+                "Caught: Runtime error occurred.",
+                "Caught an unknown exception.",
+                "hmean: 0",
                 "编译错误",
             ],
             answer: 0,
             score: 2,
-            explanation: "答案依据试卷标准答案；解析待补充。",
-            tags: [
-                "客观题",
-                "单选题",
-                "GESP4级",
-            ]
+            explanation: "x 为 10，y 为 -10，满足 a == -b 条件，函数抛出 std::runtime_error 异常。该异常被 catch (const std::runtime_error& e) 捕获，并输出 \"Caught: \" 加上 e.what() 的内容。",
+            tags: ["客观题", "单选题", "GESP4级"]
         },
         {
             id: 15,
             type: "single",
             question: "下面哪种方式不能实现将字符串\"Happy Spring!\"输出重定向到文件log.txt（ ）。",
             options: [
-                "选项A",
-                "选项B",
-                "选项C",
-                "选项D",
+                "freopen(\"log.txt\", \"w\", stdout); std::cout << \"Happy Spring!\" << std::endl;",
+                "std::ofstream outFile(\"log.txt\"); outFile << \"Happy Spring!\"; outFile.close();",
+                "std::ofstream outFile(\"log.txt\"); std::cout << \"Happy Spring!\"; outFile.close();",
+                "使用 rdbuf() 将 cout 的缓冲区重定向到文件的缓冲区。",
             ],
             answer: 2,
             score: 2,
-            explanation: "答案依据试卷标准答案；解析待补充。",
-            tags: [
-                "客观题",
-                "单选题",
-                "GESP4级",
-            ]
+            explanation: "选项 C 只是创建了一个文件输出流 outFile，但 std::cout 仍然默认输出到标准输出设备（屏幕），并没有重定向到 outFile 关联的文件。因此选项 C 无法实现重定向输出。",
+            tags: ["客观题", "单选题", "GESP4级"]
         },
         {
             id: 16,
             type: "judge",
             question: "函数是 C++ 中的核⼼概念，用于封装可重用的代码块。",
-            options: [
-                "正确",
-                "错误",
-            ],
+            options: ["正确", "错误"],
             answer: 0,
             score: 2,
-            explanation: "答案依据试卷标准答案；解析待补充。",
-            tags: [
-                "客观题",
-                "判断题",
-                "GESP4级",
-            ]
+            explanation: "正确。函数的基本作用就是封装逻辑以实现代码复用。",
+            tags: ["客观题", "判断题", "GESP4级"]
         },
         {
             id: 17,
             type: "judge",
             question: "在 C++ 中，函数的返回类型可以省略，默认为int。",
-            options: [
-                "正确",
-                "错误",
-            ],
-            answer: 0,
+            options: ["正确", "错误"],
+            answer: 1,
             score: 2,
-            explanation: "答案依据试卷标准答案；解析待补充。",
-            tags: [
-                "客观题",
-                "判断题",
-                "GESP4级",
-            ]
+            explanation: "错误。在现代 C++ 标准中，函数返回类型必须明确指定，不能省略。老的 C 语言标准曾支持隐式 int，但在 C++ 中是不允许的。",
+            tags: ["客观题", "判断题", "GESP4级"]
         },
         {
             id: 18,
             type: "judge",
-            question: "结构体的成员默认是public访问权限。 catch (const runtime_error& e) { cout << \"Caught: \" << e.what() << endl; } catch (...) { cout << \"Caught an unknown exception.\" << endl; } return 0; } 15 16 17 18 19 20 21 freopen(\"log.txt\", \"w\", stdout); cout << \"Happy Spring!\" << endl; fclose(stdout); 1 2 3 std::ofstream outFile(\"log.txt\"); outFile << \"Happy Spring!\" << endl; outFile.close(); 1 2 3 std::ofstream outFile(\"log.txt\"); cout << \"Happy Spring!\" << endl; outFile.close(); 1 2 3 ofstream log_file(\"log.txt\"); streambuf* org_cout = cout.rdbuf(); cout.rdbuf(log_file.rdbuf()); cout << \"Happy Spring!\" << endl; cout.rdbuf(org_cout); 1 2 3 4 5",
-            options: [
-                "正确",
-                "错误",
-            ],
+            question: "结构体的成员默认是public访问权限。",
+            options: ["正确", "错误"],
             answer: 0,
             score: 2,
-            explanation: "答案依据试卷标准答案；解析待补充。",
-            tags: [
-                "客观题",
-                "判断题",
-                "GESP4级",
-            ]
+            explanation: "正确。这是 struct 与 class 的主要区别之一（class 成员默认是 private）。",
+            tags: ["客观题", "判断题", "GESP4级"]
         },
         {
             id: 19,
             type: "judge",
             question: "假设整数数组arr[4]= {0, 1, 2, 3};的第一个元素在内存中的地址为0x7ffee4065820, 经过int* p = arr; p += 1;后，指针p的值是 1 。",
-            options: [
-                "正确",
-                "错误",
-            ],
-            answer: 0,
+            options: ["正确", "错误"],
+            answer: 1,
             score: 2,
-            explanation: "答案依据试卷标准答案；解析待补充。",
-            tags: [
-                "客观题",
-                "判断题",
-                "GESP4级",
-            ]
+            explanation: "错误。p += 1 之后，p 指向的是数组的第二个元素地址（原地址加上 int 类型占用的字节数），即地址变为 0x7ffee4065824（假设 int 占 4 字节），而不是变为整数 1。",
+            tags: ["客观题", "判断题", "GESP4级"]
         },
         {
             id: 20,
             type: "judge",
             question: "二维数组作为函数参数时，必须显式指定所有维度的大小。",
-            options: [
-                "正确",
-                "错误",
-            ],
-            answer: 0,
+            options: ["正确", "错误"],
+            answer: 1,
             score: 2,
-            explanation: "答案依据试卷标准答案；解析待补充。",
-            tags: [
-                "客观题",
-                "判断题",
-                "GESP4级",
-            ]
+            explanation: "错误。二维数组作为参数传递时，第二维的大小必须指定，但第一维的大小可以省略。例如 void func(int arr[][10]) 是合法的。",
+            tags: ["客观题", "判断题", "GESP4级"]
         },
         {
             id: 21,
             type: "judge",
             question: "递推是一种通过已知的初始值和递推公式，逐步求解目标值的算法。",
-            options: [
-                "正确",
-                "错误",
-            ],
+            options: ["正确", "错误"],
             answer: 0,
             score: 2,
-            explanation: "答案依据试卷标准答案；解析待补充。",
-            tags: [
-                "客观题",
-                "判断题",
-                "GESP4级",
-            ]
+            explanation: "正确。这是递推算法的基本定义。",
+            tags: ["客观题", "判断题", "GESP4级"]
         },
         {
             id: 22,
             type: "judge",
-            question: "考虑最坏情况下冒泡排序算法的时间复杂度， 为待排序数字的数目为 的复杂度，则其递推关系式为 ， 。",
-            options: [
-                "正确",
-                "错误",
-            ],
+            question: "考虑最坏情况下冒泡排序算法的时间复杂度， T(n) 为待排序数字的数目为 n 的复杂度，则其递推关系式为 T(n) = T(n-1) + (n-1)，T(1) = 0。",
+            options: ["正确", "错误"],
             answer: 0,
             score: 2,
-            explanation: "答案依据试卷标准答案；解析待补充。",
-            tags: [
-                "客观题",
-                "判断题",
-                "GESP4级",
-            ]
+            explanation: "正确。冒泡排序每一趟将一个元素排好序。n 个元素的一趟冒泡需要比较 n-1 次，随后剩下 n-1 个元素继续排序。其复杂度递推式正确反映了这一过程。",
+            tags: ["客观题", "判断题", "GESP4级"]
         },
         {
             id: 23,
             type: "judge",
-            question: "插入排序在最好情况（已有序）下的时间复杂度是 。",
-            options: [
-                "正确",
-                "错误",
-            ],
-            answer: 0,
+            question: "插入排序在最好情况（已有序）下的时间复杂度是 O(n^2)。",
+            options: ["正确", "错误"],
+            answer: 1,
             score: 2,
-            explanation: "答案依据试卷标准答案；解析待补充。",
-            tags: [
-                "客观题",
-                "判断题",
-                "GESP4级",
-            ]
+            explanation: "错误。插入排序在已完全有序的情况下，内层循环每次只需比较一次即可停止，因此最好情况下的时间复杂度是 O(n)。",
+            tags: ["客观题", "判断题", "GESP4级"]
         },
         {
             id: 24,
             type: "judge",
             question: "对数组arr[]={4, 3, 1, 5, 2}进⾏升序排序，执⾏第一轮选择排序后数组 arr 中的内容是{1, 4, 3, 5, 2}。",
-            options: [
-                "正确",
-                "错误",
-            ],
-            answer: 0,
+            options: ["正确", "错误"],
+            answer: 1,
             score: 2,
-            explanation: "答案依据试卷标准答案；解析待补充。",
-            tags: [
-                "客观题",
-                "判断题",
-                "GESP4级",
-            ]
+            explanation: "错误。第一轮选择排序会扫描全数组找到最小元素 1，并将其与第一个元素 4 交换。结果应为 {1, 3, 4, 5, 2}。题目给出的结果中 4 被挤到了第二位，不符合简单选择排序的交换逻辑。",
+            tags: ["客观题", "判断题", "GESP4级"]
         },
         {
             id: 25,
             type: "judge",
             question: "未捕获异常会调用 std::terminate 终⽌程序。",
-            options: [
-                "正确",
-                "错误",
-            ],
+            options: ["正确", "错误"],
             answer: 0,
             score: 2,
-            explanation: "答案依据试卷标准答案；解析待补充。",
-            tags: [
-                "客观题",
-                "判断题",
-                "GESP4级",
-            ]
+            explanation: "正确。如果程序中抛出了异常但没有被任何 catch 块捕获，C++ 运行库会调用 std::terminate 来异常中止程序运行。",
+            tags: ["客观题", "判断题", "GESP4级"]
         },
         {
             id: 26,
             type: "programming",
             question: "【问题描述】\n给定一个 n x m 的矩阵 A，你需要统计其中“优秀”的 2 x 2 子矩阵的数量。一个 2 x 2 子矩阵（左上角坐标为 (i, j)）被认为是“优秀”的，当且仅当其主对角线上两个元素的乘积等于副对角线上两个元素的乘积。即：A[i, j] * A[i+1, j+1] = A[i, j+1] * A[i+1, j]。\n【输入描述】\n第一行包含两个整数 n 和 m (1 ≤ n, m ≤ 500)。\n接下来 n 行，每行包含 m 个整数 A[i, j] (|A[i, j]| ≤ 100)。\n【输出描述】\n输出一个整数，代表“优秀”子矩阵的总数。\n【样例输入1】\n3 4\n1 2 1 0\n2 4 2 1\n0 3 3 0\n【样例输出1】\n2",
             score: 25,
-            explanation: "遍历矩阵中所有可能的 2x2 子矩阵的左上角位置 (i, j)，范围是 1 ≤ i < n 且 1 ≤ j < m。对于每个位置，验证主对角线乘积是否等于副对角线乘积。如果相等，则计数器加一。",
-            tags: [
-                "编程题",
-                "GESP4级",
-            ]
+            explanation: "遍历矩阵中所有可能的 2x2 子矩阵的左上角位置 (i, j)，范围是 0 ≤ i < n-1 且 0 ≤ j < m-1。对于每个位置，验证主对角线乘积 (A[i][j] * A[i+1][j+1]) 是否等于副对角线乘积 (A[i][j+1] * A[i+1][j])。如果相等，则计数器加一。",
+            tags: ["编程题", "GESP4级"]
         },
         {
             id: 27,
             type: "programming",
             question: "【问题描述】\n小杨有一块 n x m 的荒地。荒地中的每个格子要么是荒地（`.`），要么是障碍物（`#`）。一个荒地格子 (i, j) 是“可开垦的”，如果它是荒地且它的所有上下左右邻居（如果存在）都不是障碍物。小杨被允许移除最多一个障碍物（`#`）。\n请问在最多移除一个障碍物后，小杨最多能获得多少个可开垦的格子？\n【输入描述】\n第一行包含两个整数 n 和 m (1 ≤ n, m ≤ 1000)。\n接下来 n 行，每行包含 m 个字符（`.` 或 `#`）。\n【输出描述】\n输出一个整数，代表在移除最多一个障碍物后，最大的可开垦格子数量。\n【样例输入1】\n3 5\n.....\n..#..\n.....\n【样例输出1】\n11",
             score: 25,
-            explanation: "首先计算初始状态下可开垦格子的数量。然后枚举每一个障碍物，计算如果移除该障碍物会新增多少个可开垦格子。新增的可开垦格子只可能是该障碍物本身（如果它变成了可开垦的）以及与它相邻的那些原本受它限制的荒地格子。最后取最大值即可。",
-            tags: [
-                "编程题",
-                "GESP4级",
-            ]
+            explanation: "1. 预处理：判断每个点是否受邻居障碍物影响。2. 计算初始可开垦数量。3. 枚举每个障碍物，计算移除它后新增的可开垦格子（其自身及受其单方面影响的邻居）。4. 取最大值。",
+            tags: ["编程题", "GESP4级"]
         }
     ]
 };
-

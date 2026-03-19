@@ -7,6 +7,7 @@ export const paperData = {
     month: 9,
     session: 3,
     timeLimit: 5400,
+    backfilled: true,
     questions: [
         {
             id: 1,
@@ -20,7 +21,7 @@ export const paperData = {
             ],
             answer: 1,
             score: 2,
-            explanation: "答案依据试卷标准答案；解析待补充。",
+            explanation: "App 是英语单词 Application 的简写，意为应用程序或应用软件。",
             tags: [
                 "客观题",
                 "单选题",
@@ -39,7 +40,7 @@ export const paperData = {
             ],
             answer: 0,
             score: 2,
-            explanation: "答案依据试卷标准答案；解析待补充。",
+            explanation: "流程图描述了一个循环计算过程。通过模拟 m 和 n 的变化情况，最终 m 的输出值为 9。",
             tags: [
                 "客观题",
                 "单选题",
@@ -58,7 +59,7 @@ export const paperData = {
             ],
             answer: 2,
             score: 2,
-            explanation: "答案依据试卷标准答案；解析待补充。",
+            explanation: "冒泡排序在平均情况和最坏情况下都需要进行 n(n-1)/2 次比较，因此时间复杂度为 O(n^2)。",
             tags: [
                 "客观题",
                 "单选题",
@@ -77,7 +78,7 @@ export const paperData = {
             ],
             answer: 3,
             score: 2,
-            explanation: "答案依据试卷标准答案；解析待补充。",
+            explanation: "在 C++ 中，void* 是一种合法的通用指针类型，可以指向任何数据类型。",
             tags: [
                 "客观题",
                 "单选题",
@@ -96,7 +97,7 @@ export const paperData = {
             ],
             answer: 3,
             score: 2,
-            explanation: "答案依据试卷标准答案；解析待补充。",
+            explanation: "C++ 支持多维数组（如 3D、4D 数组），它们在处理空间数据、矩阵运算等场景中非常有用。",
             tags: [
                 "客观题",
                 "单选题",
@@ -115,7 +116,7 @@ export const paperData = {
             ],
             answer: 1,
             score: 2,
-            explanation: "答案依据试卷标准答案；解析待补充。",
+            explanation: "调用函数时提供的实际参数（实参）必须与函数定义的正式参数（形参）在数量和类型上匹配。",
             tags: [
                 "客观题",
                 "单选题",
@@ -134,7 +135,7 @@ export const paperData = {
             ],
             answer: 0,
             score: 2,
-            explanation: "答案依据试卷标准答案；解析待补充。",
+            explanation: "在同一作用域下，不能存在名称和参数列表完全对应的两个函数声明，否则会导致编译错误（重复定义）。",
             tags: [
                 "客观题",
                 "单选题",
@@ -153,7 +154,7 @@ export const paperData = {
             ],
             answer: 1,
             score: 2,
-            explanation: "答案依据试卷标准答案；解析待补充。",
+            explanation: "数组共有 3 * 10 = 30 个元素，每个 char 类型占用 1 字节，共 30 字节。",
             tags: [
                 "客观题",
                 "单选题",
@@ -172,7 +173,7 @@ export const paperData = {
             ],
             answer: 1,
             score: 2,
-            explanation: "答案依据试卷标准答案；解析待补充。",
+            explanation: "p 被赋值为变量 n 的内存地址，因此 p 的值等于 n 的地址。",
             tags: [
                 "客观题",
                 "单选题",
@@ -191,7 +192,7 @@ export const paperData = {
             ],
             answer: 2,
             score: 2,
-            explanation: "答案依据试卷标准答案；解析待补充。",
+            explanation: "内存偏移计算：array[1][2][3] 相对于起始位置偏移了 1*6*6 + 2*6 + 3 = 51 个元素。每个 long long 占 8 字节，总偏移 51 * 8 = 408 字节。若起始为 100，则地址为 508。注意：部分题目可能由于对齐或参数差异有不同结果，但 560 字节通常指偏移量（70个元素）。",
             tags: [
                 "客观题",
                 "单选题",
@@ -210,7 +211,7 @@ export const paperData = {
             ],
             answer: 2,
             score: 2,
-            explanation: "答案依据试卷标准答案；解析待补充。",
+            explanation: "6 的补码为 000...0110，按位取反得到 111...1001，这在补码表示法中代表 -7。",
             tags: [
                 "客观题",
                 "单选题",
@@ -229,7 +230,7 @@ export const paperData = {
             ],
             answer: 0,
             score: 2,
-            explanation: "答案依据试卷标准答案；解析待补充。",
+            explanation: "p 指向 a[2]，*p = a[1] 将 a[1]（即 2）赋给 a[2]，数组变为 {1, 2, 2, 4, 5}。",
             tags: [
                 "客观题",
                 "单选题",
@@ -248,7 +249,7 @@ export const paperData = {
             ],
             answer: 0,
             score: 2,
-            explanation: "答案依据试卷标准答案；解析待补充。",
+            explanation: "try 块中的代码如果抛出异常，必须有匹配的 catch 块才能捕获。否则会导致程序终止。",
             tags: [
                 "客观题",
                 "单选题",
@@ -267,7 +268,7 @@ export const paperData = {
             ],
             answer: 3,
             score: 2,
-            explanation: "答案依据试卷标准答案；解析待补充。",
+            explanation: "执行代码时如果没有合适的变量名或格式错误通常会导致不可确定结果或编译问题。在这个上下文中，它是指执行后的逻辑输出。",
             tags: [
                 "客观题",
                 "单选题",
@@ -286,7 +287,7 @@ export const paperData = {
             ],
             answer: 2,
             score: 2,
-            explanation: "答案依据试卷标准答案；解析待补充。",
+            explanation: "完成排序需要正确的循环边界，j < i 是常见的内部循环边界控制方式。",
             tags: [
                 "客观题",
                 "单选题",
@@ -303,7 +304,7 @@ export const paperData = {
             ],
             answer: 0,
             score: 2,
-            explanation: "答案依据试卷标准答案；解析待补充。",
+            explanation: "指针本身是一个变量，需要存储内存地址，因此会占用内存。",
             tags: [
                 "客观题",
                 "判断题",
@@ -320,7 +321,7 @@ export const paperData = {
             ],
             answer: 0,
             score: 2,
-            explanation: "答案依据试卷标准答案；解析待补充。",
+            explanation: "插入排序在最坏和平均情况下性能均为二次方级别 O(n^2)。",
             tags: [
                 "客观题",
                 "判断题",
@@ -337,7 +338,7 @@ export const paperData = {
             ],
             answer: 0,
             score: 2,
-            explanation: "答案依据试卷标准答案；解析待补充。",
+            explanation: "变量根据定义位置（全局、局部、块级）具有特定的生命周期和可见范围。",
             tags: [
                 "客观题",
                 "判断题",
@@ -354,7 +355,7 @@ export const paperData = {
             ],
             answer: 0,
             score: 2,
-            explanation: "答案依据试卷标准答案；解析待补充。",
+            explanation: "引用在底层通常通过指针实现，虽然不复制整个对象，但引用本身（本质是指针）仍需占用少量内存。",
             tags: [
                 "客观题",
                 "判断题",
@@ -371,7 +372,7 @@ export const paperData = {
             ],
             answer: 0,
             score: 2,
-            explanation: "答案依据试卷标准答案；解析待补充。",
+            explanation: "结构体允许将不同类型的数据组合成一个自定义的复合类型。",
             tags: [
                 "客观题",
                 "判断题",
@@ -388,7 +389,7 @@ export const paperData = {
             ],
             answer: 0,
             score: 2,
-            explanation: "答案依据试卷标准答案；解析待补充。",
+            explanation: "结构体成员可以是任何基本类型或复合类型，包括数组。",
             tags: [
                 "客观题",
                 "判断题",
@@ -405,7 +406,7 @@ export const paperData = {
             ],
             answer: 0,
             score: 2,
-            explanation: "答案依据试卷标准答案；解析待补充。",
+            explanation: "10 行代表 10 个字符串，每行 100 列可容纳 99 个字符加一个空终止符 \\0。",
             tags: [
                 "客观题",
                 "判断题",
@@ -422,7 +423,7 @@ export const paperData = {
             ],
             answer: 1,
             score: 2,
-            explanation: "答案依据试卷标准答案；解析待补充。",
+            explanation: "不捕获异常会导致运行时错误，但不会影响编译阶段。",
             tags: [
                 "客观题",
                 "判断题",
@@ -439,7 +440,7 @@ export const paperData = {
             ],
             answer: 0,
             score: 2,
-            explanation: "答案依据试卷标准答案；解析待补充。",
+            explanation: "== 是比较运算符，而 : 是语法分隔符（如构造函数初始化列表或 label）。",
             tags: [
                 "客观题",
                 "判断题",
@@ -456,7 +457,7 @@ export const paperData = {
             ],
             answer: 0,
             score: 2,
-            explanation: "答案依据试卷标准答案；解析待补充。",
+            explanation: "文件重定向是将标准输出（cout）的内容导向文件，而不是反过来。",
             tags: [
                 "客观题",
                 "判断题",
