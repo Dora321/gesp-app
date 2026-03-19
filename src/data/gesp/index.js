@@ -87,6 +87,7 @@ import { paperData as p202503l6 } from './level6/2025-03-l6';
 import { paperData as p202506l6 } from './level6/2025-06-l6';
 import { paperData as p202509l6 } from './level6/2025-09-l6';
 import { paperData as p202512l6 } from './level6/2025-12-l6';
+import { paperData as p202603l6 } from './level6/2026-03-l6';
 
 // ========== 七级 (Level 7) ==========
 // 2023-03, 06, 09 had no Level 7
@@ -139,6 +140,7 @@ export const paperRegistry = {
     '2023-09-l6': p202309l6, '2023-12-l6': p202312l6,
     '2024-03-l6': p202403l6, '2024-06-l6': p202406l6, '2024-09-l6': p202409l6, '2024-12-l6': p202412l6,
     '2025-03-l6': p202503l6, '2025-06-l6': p202506l6, '2025-09-l6': p202509l6, '2025-12-l6': p202512l6,
+    '2026-03-l6': p202603l6,
     // ===== 七级 =====
     '2023-12-l7': p202312l7,
     '2024-03-l7': p202403l7, '2024-06-l7': p202406l7, '2024-09-l7': p202409l7, '2024-12-l7': p202412l7,
