@@ -100,6 +100,7 @@ import { paperData as p202503l7 } from './level7/2025-03-l7';
 import { paperData as p202506l7 } from './level7/2025-06-l7';
 import { paperData as p202509l7 } from './level7/2025-09-l7';
 import { paperData as p202512l7 } from './level7/2025-12-l7';
+import { paperData as p202603l7 } from './level7/2026-03-l7';
 
 // ========== 八级 (Level 8) ==========
 // 2023-03, 06, 09 had no Level 8
@@ -112,6 +113,7 @@ import { paperData as p202503l8 } from './level8/2025-03-l8';
 import { paperData as p202506l8 } from './level8/2025-06-l8';
 import { paperData as p202509l8 } from './level8/2025-09-l8';
 import { paperData as p202512l8 } from './level8/2025-12-l8';
+import { paperData as p202603l8 } from './level8/2026-03-l8';
 
 export const paperRegistry = {
     // ===== 一级 =====
