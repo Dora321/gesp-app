@@ -47,4 +47,35 @@ export const l8ProgrammingByPaper = {
     { type: 'programming', id: 26, title: '猫和老鼠', problemNumber: '2025-12-l8-Q26', description: '庄园是一张带权无向连通图，猫从结点 a 出发，老鼠洞在结点 b。若某结点到老鼠洞的最短路长度严格小于猫窝到老鼠洞的最短路长度，则老鼠可安全取得该结点奶酪。求安全结点奶酪总价值。', inputDescription: '第一行两个正整数 n、m。第二行两个正整数 a、b。第三行 n 个正整数 c_i。接下来 m 行每行三个正整数 u、v、w。', outputDescription: '输出一个整数。', samples: [{ input: '5 5\n1 2\n1 2 4 8 16\n1 2 4\n2 3 3\n3 4 1\n2 5 2\n3 1 8', output: '22' }, { input: '6 10\n3 4\n1 1 1 1 1 1\n1 2 6\n2 3 3\n3 1 4\n3 4 5\n4 5 8\n5 6 2\n6 4 1\n3 2 4\n5 4 4\n3 3 6', output: '3' }], explanation: '从老鼠洞出发做最短路，若某点到洞的最短时间小于猫窝到洞的最短时间，则该点安全。', tags: ['编程题', '最短路', '图论'], template: '#include <bits/stdc++.h>\nusing namespace std;int main(){ios::sync_with_stdio(false);cin.tie(nullptr);int n,m;cin>>n>>m;return 0;}', referenceCode: '#include <bits/stdc++.h>\nusing namespace std; const long long INF=4e18; int main(){ios::sync_with_stdio(false);cin.tie(nullptr);int n,m,a,b;cin>>n>>m>>a>>b; vector<int> c(n+1); for(int i=1;i<=n;i++) cin>>c[i]; vector<vector<pair<int,int>>> g(n+1); for(int i=0,u,v,w;i<m;i++){cin>>u>>v>>w; g[u].push_back({v,w}); g[v].push_back({u,w});} vector<long long> d(n+1,INF); priority_queue<pair<long long,int>,vector<pair<long long,int>>,greater<pair<long long,int>>> pq; d[b]=0; pq.push({0,b}); while(!pq.empty()){auto [du,u]=pq.top();pq.pop(); if(du!=d[u]) continue; for(auto [v,w]:g[u]) if(d[v]>du+w){d[v]=du+w; pq.push({d[v],v});}} long long ans=0; for(int i=1;i<=n;i++) if(d[i]<d[a]) ans+=c[i]; cout<<ans<<"\\n"; return 0;}' },
     { type: 'programming', id: 27, title: '宝石项链', problemNumber: '2025-12-l8-Q27', description: '有一条长度为 n 的项链，宝石种类共有 m 种。需要把项链划分成若干连续段，且每一段都包含全部 m 种宝石。求最多能划分多少段。', inputDescription: '第一行两个正整数 n、m。第二行 n 个正整数 t_i。', outputDescription: '输出一个整数。', samples: [{ input: '6 2\n1 2 1 2 1 2', output: '3' }, { input: '7 3\n3 1 3 1 2 1 2', output: '2' }], explanation: '先对每个起点求出包含全部种类的最短段长，再在环上倍增连续跳段。', tags: ['编程题', '双指针', '倍增'], template: '#include <bits/stdc++.h>\nusing namespace std;int main(){ios::sync_with_stdio(false);cin.tie(nullptr);int n,m;cin>>n>>m;return 0;}', referenceCode: '// 参考做法：双指针求 jump[0]，倍增求最大段数。' }
   ]
+,
+  '2026-03-l8': [
+    {
+      type: 'programming',
+      id: 26,
+      title: '消息查找',
+      problemNumber: '2026-03-l8-Q26',
+      description: '有 n 条消息，编号 1..n。每条消息 i 可能引用一条编号小于 i 的消息 r_i。从消息 i 可一步移动到 i-1 或 r_i。给定多组询问，求从 x 到 y 的最少操作次数。',
+      inputDescription: '第一行两个正整数 n、q。第二行给出 r_1..r_n（若无引用可为 0）。接下来 q 行每行两个整数 x、y。',
+      outputDescription: '每个询问输出一个整数，表示最少操作次数。',
+      samples: [],
+      explanation: '可建反向跳边并结合倍增/LCA 或最短路思想处理多询问。',
+      tags: ['编程题', '图论', '最短路/倍增'],
+      template: '#include <bits/stdc++.h>\nusing namespace std;int main(){ios::sync_with_stdio(false);cin.tie(nullptr);int n,q;cin>>n>>q;return 0;}',
+      referenceCode: '// 参考官方题意实现。'
+    },
+    {
+      type: 'programming',
+      id: 27,
+      title: '子图最短路',
+      problemNumber: '2026-03-l8-Q27',
+      description: '给定 n 点 m 边无向带权图。对所有区间 [l,r] 构造只含编号在区间内节点的子图，累加每个子图中所有点对最短路长度（不连通记 0），结果对 1e9 取模。',
+      inputDescription: '第一行两个正整数 n、m。接下来 m 行每行 u、v、w。',
+      outputDescription: '输出总和对 1e9 取模的结果。',
+      samples: [],
+      explanation: '可考虑按区间增量维护最短路（如 Floyd 增点思想）并累计贡献。',
+      tags: ['编程题', '最短路', '图论'],
+      template: '#include <bits/stdc++.h>\nusing namespace std;int main(){ios::sync_with_stdio(false);cin.tie(nullptr);int n,m;cin>>n>>m;return 0;}',
+      referenceCode: '// 参考官方题意实现。'
+    }
+  ]
 };
