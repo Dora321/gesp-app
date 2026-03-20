@@ -252,7 +252,7 @@ export const paperData = {
       options: ['正确', '错误'],
       answer: 0,
       score: 2,
-      explanation: '这是数组的核心特征，支持 O(1) 随机访问。',
+      explanation: '这是数组的核心特征，支持 $$O(1)$$ 随机访问。',
       tags: [LEVEL1_TAGS.judge, LEVEL1_TAGS.array]
     },
     {

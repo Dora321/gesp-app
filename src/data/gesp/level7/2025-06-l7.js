@@ -27,7 +27,7 @@ const programmingQuestions = [
             "度数统计"
         ],
         "template": "#include <bits/stdc++.h>\nusing namespace std;\n\nint main() {\n    ios::sync_with_stdio(false);\n    cin.tie(nullptr);\n\n    int n, m;\n    cin >> n >> m;\n    // 在此编写代码\n    return 0;\n}",
-        "referenceCode": "#include <bits/stdc++.h>\nusing namespace std;\n\nint main() {\n    ios::sync_with_stdio(false);\n    cin.tie(nullptr);\n\n    int n, m;\n    cin >> n >> m;\n    vector<long long> deg(n + 1, 0);\n    for (int i = 0; i < m; ++i) {\n        int u, v;\n        cin >> u >> v;\n        deg[u]++;\n        deg[v]++;\n    }\n\n    long long ans = 0;\n    for (int i = 1; i <= n; ++i) {\n        ans += deg[i] * (deg[i] - 1) / 2;\n    }\n    cout << ans << '\n';\n    return 0;\n}"
+        "referenceCode": "#include <bits/stdc++.h>\nusing namespace std;\n\nint main() {\n    ios::sync_with_stdio(false);\n    cin.tie(nullptr);\n\n    int n, m;\n    cin >> n >> m;\n    vector<long long> deg($n+1$, 0);\n    for (int i = 0; i < m; ++i) {\n        int u, v;\n        cin >> u >> v;\n        deg[u]++;\n        deg[v]++;\n    }\n\n    long long ans = 0;\n    for (int i = 1; i <= n; ++i) {\n        ans += deg[i] * (deg[i] - 1) / 2;\n    }\n    cout << ans << '\n';\n    return 0;\n}"
     },
     {
         "id": 27,

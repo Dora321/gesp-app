@@ -72,9 +72,9 @@ export const paperData = {
         {
             id: 4,
             type: "single",
-            question: "二项式 的展开式中 项的系数为（ ）。",
+            question: "二项式 $(x - 2)^8$ 的展开式中 $x^6$ 项的系数为（ ）。",
             options: [
-                "-7168 void merge_sort(int a[], int left, int right) { if (left >= right) return; int mid = (left + right) / 2; merge_sort(a, left, mid); ________; // 在此处填入选项 merge(a, left, mid, right); // 合并操作 } 1 2 3 4 5 6 7 第 1 页 / 共 9 页",
+                "-7168",
                 "7168",
                 "-1792",
                 "1792",
@@ -148,7 +148,7 @@ export const paperData = {
         {
             id: 8,
             type: "single",
-            question: "已知 int a = 10;，执⾏ int &b = a; b = 20; 后，变量 a 的值是（ ）。 for (int j = 1; j <= n; j++) { if (!visited[j] && graph[u][j] < INF) { if (________) { // 在此处填入选项 dis[j] = dis[u] + graph[u][j]; } } } 1 2 3 4 5 6 7 #include <algorithm> #include <string> #include <vector> using namespace std; int lcs_len(const string &a, const string &b) { int n = (int)a.size(), m = (int)b.size(); vector<vector<int>> dp(n + 1, vector<int>(m + 1, 0)); for (int i = 1; i <= n; i++) for (int j = 1; j <= m; j++) if (a[i - 1] == b[j - 1]) dp[i][j] = dp[i - 1][j - 1] + 1; else ________; // 在此处填入选项 return dp[n][m]; } 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 第 2 页 / 共 9 页",
+            question: "已知 int a = 10;，执⾏ int &b = a; b = 20; 后，变量 a 的值是（ ）。",
             options: [
                 "10",
                 "20",
@@ -224,7 +224,7 @@ export const paperData = {
         {
             id: 12,
             type: "single",
-            question: "当输入 6 时，下列程序的输出结果为（ ）。 long long s = 0; for (int i = 1; i <= n; i++) { for (int j = 1; j * j <= i; j++) { s += j; } } 1 2 3 4 5 6 for (int i = 2; i <= n; i++) { if (!not_prime[i]) primes[++cnt] = i; for (int j = 1; j <= cnt && i * primes[j] <= n; j++) { not_prime[i * primes[j]] = true; if (________) break; // 在此处填入选项 } } 1 2 3 4 5 6 7 第 3 页 / 共 9 页",
+            question: "当输入 6 时，下列程序的输出结果为（ ）。",
             options: [
                 "14",
                 "27",
@@ -286,7 +286,7 @@ export const paperData = {
                 "必须选入 MST ，否则可能不连通。",
                 "一定不能选入 MST （在此扫描顺序下）。",
                 "若后续出现更大的边权，可以回溯改选 。",
-                "只有当 是当前最小边时才能舍弃。 #include <iostream> using namespace std; int f(int n) { if (n <= 3) return n; return f(n - 1) + f(n - 2) + 2 * f(n - 3); } int main() { int n; cin >> n; cout << f(n) << endl; return 0; } 1 2 3 4 5 6 7 8 9 10 11 12 #include <iostream> using namespace std; int main() { int x, ans = 0; cin >> x; while (x != 0) { x -= x & -x; ans++; } cout << ans << endl; return 0; } 1 2 3 4 5 6 7 8 9 10 11 12 13 第 4 页 / 共 9 页 题号 1 2 3 4 5 6 7 8 9 10 答案",
+                "只有当 是当前最小边时才能舍弃。",
             ],
             answer: 1,
             score: 2,
@@ -300,7 +300,7 @@ export const paperData = {
         {
             id: 16,
             type: "judge",
-            question: "若一项任务可用两种互斥方案完成：方案 A 有 种做法，方案 B 有 种做法，则总做法数为 。",
+            question: "若一项任务可用两种互斥方案完成：方案 A 有 $n$ 种做法，方案 B 有 $m$ 种做法，则总做法数为 $n+m$。",
             options: [
                 "正确",
                 "错误",
@@ -334,7 +334,7 @@ export const paperData = {
         {
             id: 18,
             type: "judge",
-            question: "快速排序和归并排序的平均时间复杂度都是 ，但快速排序是不稳定的排序算法，归并排序是稳定 的排序算法。",
+            question: "快速排序和归并排序的平均时间复杂度都是 $O(n \\log n)$，但快速排序是不稳定的排序算法，归并排序是稳定的排序算法。",
             options: [
                 "正确",
                 "错误",
@@ -368,7 +368,7 @@ export const paperData = {
         {
             id: 20,
             type: "judge",
-            question: "在杨辉三角形中，第 ⾏（从 0 开始计数，即第 ⾏有 个数）的所有数字之和等于 。",
+            question: "在杨辉三角形中，第 $n$ 行（从 0 开始计数，即第 $n$ 行有 $n+1$ 个数）的所有数字之和等于 $$$2^n$$$。",
             options: [
                 "正确",
                 "错误",
@@ -385,7 +385,7 @@ export const paperData = {
         {
             id: 21,
             type: "judge",
-            question: "使用二叉堆优化的 Dijkstra 最短路算法，在某些特殊情况下时间复杂度不如朴素实现的 。",
+            question: "使用二叉堆优化的 Dijkstra 最短路算法，在某些特殊情况下时间复杂度不如朴素实现的 $O(v^2)$。",
             options: [
                 "正确",
                 "错误",
@@ -402,7 +402,7 @@ export const paperData = {
         {
             id: 22,
             type: "judge",
-            question: "个不同元素依次入栈的出栈序列数与将 个不同元素划分成若⼲非空子集的方案数相等。",
+            question: "$n$ 个不同元素依次入栈的出栈序列数与将 $n$ 个不同元素划分成若干非空子集的方案数不相等。",
             options: [
                 "正确",
                 "错误",
@@ -419,7 +419,7 @@ export const paperData = {
         {
             id: 23,
             type: "judge",
-            question: "快速排序在最坏情况下的时间复杂度为 ，可以通过随机化选择基准值（ pivot ）的方法完全避免退 化。",
+            question: "快速排序在最坏情况下的时间复杂度为 $$$$O(N^2)$$$$，可以通过随机化选择基准值（pivot）的方法完全避免退化。",
             options: [
                 "正确",
                 "错误",

@@ -194,7 +194,7 @@ export const paperData = {
             options: ['正确', '错误'],
             answer: 0,
             score: 2,
-            explanation: '每个同学均有“选/不选”两种独立决策，因此总方案数为 2^n。'
+            explanation: '每个同学均有“选/不选”两种独立决策，因此总方案数为 $$2^n$$。'
         },
         {
             id: 21,

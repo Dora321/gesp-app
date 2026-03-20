@@ -70,9 +70,9 @@ export const paperData = {
             question: "下面 C++ 代码以递归方式实现合并排序。横线处应填上代码是 ( ) 。",
             options: [
                 "mergeSort(SList, T2, s, m,len), mergeSort(SList, T2, m,t,len)",
-                "mergeSort(SList, T2, s, m-1,len), mergeSort(SList, T2, m+1,t,len)",
+                "mergeSort(SList, T2, s, $$m-1$$,len), mergeSort(SList, T2, m+1,t,len)",
                 "mergeSort(SList, T2, s, m,len), mergeSort(SList, T2, m+1,t,len)",
-                "mergeSort(SList, T2, s, m-1,len), mergeSort(SList, T2, m-1,t,len)",
+                "mergeSort(SList, T2, s, $$m-1$$,len), mergeSort(SList, T2, $$m-1$$,t,len)",
             ],
             answer: 2,
             score: 2,
@@ -221,14 +221,14 @@ export const paperData = {
             type: "single",
             question: "在_binarySearch算法中，如果lst中有N个元素，其时间复杂度是（ ）。",
             options: [
-                "O(N)",
-                "O(log N)",
-                "O(N log N)",
-                "O(N^2)",
+                "$$$O(N)$$$",
+                "$O(\log n)$",
+                "$O(n \log n)$",
+                "$$$O(N^2)$$$",
             ],
             answer: 1,
             score: 2,
-            explanation: "二分查找的时间复杂度是 O(log N)。",
+            explanation: "二分查找的时间复杂度是 $O(\log n)$。",
             tags: [
                 "客观题",
                 "单选题",
@@ -333,14 +333,14 @@ export const paperData = {
         {
             id: 16,
             type: "judge",
-            question: "归并排序的时间复杂度是 O(N log N) 。 ( )",
+            question: "归并排序的时间复杂度是 $O(n \log n)$ 。 ( )",
             options: [
                 "正确",
                 "错误",
             ],
             answer: 0,
             score: 2,
-            explanation: "归并排序在最好、平均、最坏情况下都是 O(N log N)。",
+            explanation: "归并排序在最好、平均、最坏情况下都是 $O(n \log n)$。",
             tags: [
                 "客观题",
                 "判断题",
@@ -425,7 +425,7 @@ export const paperData = {
             ],
             answer: 0,
             score: 2,
-            explanation: "在数组几乎有序时，插入排序为 O(N)，快排退化可能更高。",
+            explanation: "在数组几乎有序时，插入排序为 $$$O(N)$$$，快排退化可能更高。",
             tags: [
                 "客观题",
                 "判断题",
@@ -493,7 +493,7 @@ export const paperData = {
             ],
             answer: 0,
             score: 2,
-            explanation: "都是 O(N^2)。",
+            explanation: "都是 $$$O(N^2)$$$。",
             tags: [
                 "客观题",
                 "判断题",

@@ -136,10 +136,10 @@ export const paperData = {
             id: 7,
             type: "single",
             question: "选择排序在最坏情况下的比较次数是（ ）。",
-            options: ["O(log N)", "O(N)", "O(N log N)", "O(N^2)"],
+            options: ["$O(\log n)$", "$$$O(N)$$$", "$O(n \log n)$", "$$$O(N^2)$$$"],
             answer: 3,
             score: 2,
-            explanation: "选择排序无论何种情况都需两层循环，复杂度 O(N^2)。",
+            explanation: "选择排序无论何种情况都需两层循环，复杂度 $$$O(N^2)$$$。",
             tags: ["客观题", "单选题", "GESP4级"]
         },
         {
@@ -280,11 +280,11 @@ export const paperData = {
         {
             id: 21,
             type: "judge",
-            question: "冒泡排序的平均时间复杂度为 O(N^2)，但最优情况下为 O(N)。",
+            question: "冒泡排序的平均时间复杂度为 $$$O(N^2)$$$，但最优情况下为 $$$O(N)$$$。",
             options: ["正确", "错误"],
             answer: 0,
             score: 2,
-            explanation: "经过优化的冒泡排序在已有序时可达到 O(N)。",
+            explanation: "经过优化的冒泡排序在已有序时可达到 $$$O(N)$$$。",
             tags: ["客观题", "判断题", "GESP4级"]
         },
         {

@@ -194,14 +194,14 @@ export const paperData = {
             type: "single",
             question: "给定如下算法，其时间复杂度为（ ）。\n```cpp\nbool f(int arr[], int n, int target) {\n    for (int i = 0; i < n; i++) {\n        int sum = 0;\n        for (int j = 0; j < n; j++) {\n            if (i & (1 << j)) {\n                sum += arr[j];\n            }\n        }\n        if (sum == target) return true;\n    }\n    return false;\n}\n```",
             options: [
-                "O(n)",
-                "O(n^2)",
-                "O(2^n)",
-                "O(n * 2^n)",
+                "$$$O(N)$$$",
+                "$$$O(N^2)$$$",
+                "O($$2^n$$)",
+                "O(n * $$2^n$$)",
             ],
             answer: 1,
             score: 2,
-            explanation: "代码中包含两层嵌套循环，每层循环次数均为 n。因此时间复杂度为 O(n^2)。注意外层循环不再是 2^n。",
+            explanation: "代码中包含两层嵌套循环，每层循环次数均为 n。因此时间复杂度为 $$$O(N^2)$$$。注意外层循环不再是 $$2^n$$。",
             tags: ["客观题", "单选题", "GESP4级"]
         },
         {
@@ -287,11 +287,11 @@ export const paperData = {
         {
             id: 21,
             type: "judge",
-            question: "考虑用如下递推方式计算斐波那契数列，时间复杂度是 O(n)。\n```cpp\nint f[20]; f[0] = 0; f[1] = 1;\nfor (int i = 2; i <= n; i++) f[i] = f[i - 1] + f[i - 2];\n```",
+            question: "考虑用如下递推方式计算斐波那契数列，时间复杂度是 $$$O(N)$$$。\n```cpp\nint f[20]; f[0] = 0; f[1] = 1;\nfor (int i = 2; i <= n; i++) f[i] = f[i - 1] + f[i - 2];\n```",
             options: ["正确", "错误"],
             answer: 0,
             score: 2,
-            explanation: "正确。单层循环线性增加，复杂度为 O(n)。",
+            explanation: "正确。单层循环线性增加，复杂度为 $$$O(N)$$$。",
             tags: ["客观题", "判断题", "GESP4级"]
         },
         {

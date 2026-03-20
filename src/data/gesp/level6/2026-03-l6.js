@@ -6,8 +6,8 @@ const programmingQuestions = [
         "type": "programming",
         "title": "路径覆盖",
         "problemNumber": "2026-03-15-06-C-01",
-        "description": "给定一棵有根树，把若干节点染黑，使每条叶子到根的路径上至少有一个黑点。节点 i 染黑代价为 c_i，求最小总代价。",
-        "inputDescription": "第一行 n。第二行 n-1 个父节点。第三行 n 个代价 c_i。",
+        "description": "给定一棵有根树，把若干节点染黑，使每条叶子到根的路径上至少有一个黑点。节点 $i$ 染黑代价为 $c_i$，求最小总代价。",
+        "inputDescription": "第一行 $n$。第二行 $$$n-1$$$ 个父节点。第三行 $n$ 个代价 $c_i$。",
         "outputDescription": "输出最小总代价。",
         "samples": [
             {
@@ -15,21 +15,21 @@ const programmingQuestions = [
                 "output": "7"
             }
         ],
-        "explanation": "树形 DP。设 f[u] 表示覆盖 u 子树内所有叶根路径的最小代价：要么直接把 u 染黑，花 c_u；要么不染 u，而把责任交给所有儿子分别完成，代价为 sum f[v]。叶子必须被染黑，所以叶子答案就是 c_u。",
+        "explanation": "树形 DP。设 $f[u]$ 表示覆盖 $u$ 子树内所有叶根路径的最小代价：要么直接把 $u$ 染黑，花 $c_u$；要么不染 $u$，而把责任交给所有儿子分别完成，代价为 $\\sum f[v]$。叶子必须被染黑，所以叶子答案就是 $c_u$。",
         "tags": [
             "编程题",
             "树形DP"
         ],
         "template": "#include <bits/stdc++.h>\nusing namespace std;\n\nint main() {\n    // 在此编写代码\n    return 0;\n}",
-        "referenceCode": "#include <bits/stdc++.h>\nusing namespace std;\n\nint main() {\n    ios::sync_with_stdio(false);\n    cin.tie(nullptr);\n\n    int n;\n    cin >> n;\n    vector<vector<int>> g(n + 1);\n    for (int i = 2; i <= n; ++i) {\n        int p;\n        cin >> p;\n        g[p].push_back(i);\n    }\n    vector<long long> c(n + 1);\n    for (int i = 1; i <= n; ++i) cin >> c[i];\n\n    vector<long long> dp(n + 1, 0);\n    function<void(int)> dfs = [&](int u) {\n        if (g[u].empty()) {\n            dp[u] = c[u];\n            return;\n        }\n        long long sum = 0;\n        for (int v : g[u]) {\n            dfs(v);\n            sum += dp[v];\n        }\n        dp[u] = min(c[u], sum);\n    };\n    dfs(1);\n    cout << dp[1] << '\\n';\n    return 0;\n}"
+        "referenceCode": "#include <bits/stdc++.h>\nusing namespace std;\n\nint main() {\n    ios::sync_with_stdio(false);\n    cin.tie(nullptr);\n\n    int n;\n    cin >> n;\n    vector<vector<int>> g($n+1$);\n    for (int i = 2; i <= n; ++i) {\n        int p;\n        cin >> p;\n        g[p].push_back(i);\n    }\n    vector<long long> c($n+1$);\n    for (int i = 1; i <= n; ++i) cin >> c[i];\n\n    vector<long long> dp($n+1$, 0);\n    function<void(int)> dfs = [&](int u) {\n        if (g[u].empty()) {\n            dp[u] = c[u];\n            return;\n        }\n        long long sum = 0;\n        for (int v : g[u]) {\n            dfs(v);\n            sum += dp[v];\n        }\n        dp[u] = min(c[u], sum);\n    };\n    dfs(1);\n    cout << dp[1] << '\\n';\n    return 0;\n}"
     },
     {
         "id": 27,
         "type": "programming",
         "title": "道具商店",
         "problemNumber": "2026-03-15-06-C-02",
-        "description": "有 n 件道具，第 i 件可提升 a_i 点攻击力，花费 c_i 金币，每件最多买一次。给定金币上限 m，求最大攻击力。",
-        "inputDescription": "第一行 n,m。接下来 n 行每行两个整数 a_i,c_i。",
+        "description": "有 $n$ 件道具，第 $i$ 件可提升 $a_i$ 点攻击力，花费 $c_i$ 金币，每件最多买一次。给定金币上限 $m$，求最大攻击力。",
+        "inputDescription": "第一行 $n, m$。接下来 $n$ 行每行两个整数 $a_i, c_i$。",
         "outputDescription": "输出最大攻击力。",
         "samples": [
             {
@@ -37,7 +37,7 @@ const programmingQuestions = [
                 "output": "5"
             }
         ],
-        "explanation": "把“总攻击力”当作背包容量：dp[j] 表示达到总攻击力恰为 j 的最小花费，做一遍 0/1 背包；最后找所有花费不超过 m 的最大 j。这样即使金币上限很大、攻击力总和较小，也能稳定求解。",
+        "explanation": "把“总攻击力”当作背包容量：$dp[j]$ 表示达到总攻击力恰为 $j$ 的最小花费，做一遍 $0/1$ 背包；最后找所有花费不超过 $m$ 的最大 $j$。这样即使金币上限很大、攻击力总和较小，也能稳定求解。",
         "tags": [
             "编程题",
             "动态规划",
@@ -80,7 +80,7 @@ export const paperData = {
         {
             id: 2,
             type: "single",
-            question: "执⾏如下代码，会输出 钢琴：叮咚叮咚 和 吉他：咚咚当当。这体现了面向对象编程的（ ）特性。 第 1 页 / 共 13 页",
+            question: "执行如下代码，会输出 钢琴：叮咚叮咚 和 吉他：咚咚当当。这体现了面向对象编程的（ ）特性。",
             options: [
                 "继承",
                 "封装",

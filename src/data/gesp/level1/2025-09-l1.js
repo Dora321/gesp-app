@@ -252,7 +252,7 @@ export const paperData = {
       options: ['正确', '错误'],
       answer: 0,
       score: 2,
-      explanation: '斐波那契数列规律：F(n) = F(n-1) + F(n-2)。1+1=2。',
+      explanation: '斐波那契数列规律：F(n) = F($$n-1$$) + F(n-2)。1+1=2。',
       tags: [LEVEL1_TAGS.judge, LEVEL1_TAGS.basics]
     },
     {

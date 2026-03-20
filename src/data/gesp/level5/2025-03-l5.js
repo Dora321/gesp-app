@@ -16,7 +16,7 @@ const programmingQuestions = [
         explanation: "先假设全部卖给小 B，得到基础收入 sum(b_i)。再计算每件物品若改卖给小 C 的增量 d_i = c_i - b_i。为了让小 C 恰好买走 n 件物品，只需选择增量最大的 n 件改卖给小 C。",
         tags: ["编程题", "贪心", "排序"],
         template: "#include <bits/stdc++.h>\nusing namespace std;\n\nint main() {\n    int n;\n    cin >> n;\n    // 在此编写代码\n    return 0;\n}",
-        referenceCode: "#include <bits/stdc++.h>\nusing namespace std;\nconst int N = 2e5 + 5;\nint n;\nlong long b[N], c[N], d[N];\nlong long ans;\nint main() {\n    scanf(\"%d\", &n);\n    for (int i = 1; i <= 2 * n; i++) scanf(\"%lld\", &b[i]);\n    for (int i = 1; i <= 2 * n; i++) scanf(\"%lld\", &c[i]);\n    for (int i = 1; i <= 2 * n; i++) {\n        ans += b[i];\n        d[i] = c[i] - b[i];\n    }\n    sort(d + 1, d + 2 * n + 1);\n    for (int i = n + 1; i <= 2 * n; i++) ans += d[i];\n    printf(\"%lld\\n\", ans);\n    return 0;\n}"
+        referenceCode: "#include <bits/stdc++.h>\nusing namespace std;\nconst int N = 2e5 + 5;\nint n;\nlong long b[N], c[N], d[N];\nlong long ans;\nint main() {\n    scanf(\"%d\", &n);\n    for (int i = 1; i <= 2 * n; i++) scanf(\"%lld\", &b[i]);\n    for (int i = 1; i <= 2 * n; i++) scanf(\"%lld\", &c[i]);\n    for (int i = 1; i <= 2 * n; i++) {\n        ans += b[i];\n        d[i] = c[i] - b[i];\n    }\n    sort(d + 1, d + 2 * $n+1$);\n    for (int i = $n+1$; i <= 2 * n; i++) ans += d[i];\n    printf(\"%lld\\n\", ans);\n    return 0;\n}"
     },
     {
         id: 27,
@@ -184,7 +184,7 @@ export const paperData = {
             question: "对下面两个求阶乘的函数，说法错误的是（ ）。",
             options: [
                 "两个函数的实现的功能相同。",
-                "两个函数的时间复杂度均为 O(n)。",
+                "两个函数的时间复杂度均为 $$$O(N)$$$。",
                 "factorialA采用递归方式。",
                 "factorialB采用递归方式。",
             ],
@@ -435,7 +435,7 @@ export const paperData = {
         {
             id: 22,
             type: "judge",
-            question: "归并排序算法的时间复杂度与输入是否有序无关，始终稳定在 O(n log n)。",
+            question: "归并排序算法的时间复杂度与输入是否有序无关，始终稳定在 $O(n \log n)$。",
             options: [
                 "正确",
                 "错误",

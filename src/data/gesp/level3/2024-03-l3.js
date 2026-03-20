@@ -278,7 +278,7 @@ export const paperData = {
                     output: '3'
                 }
             ],
-            explanation: '直接双重循环枚举所有下标对，计算两数之和后判断其是否为完全平方数；三级数据范围下，O(n^2) 的直接枚举即可通过。',
+            explanation: '直接双重循环枚举所有下标对，计算两数之和后判断其是否为完全平方数；三级数据范围下，$$$O(N^2)$$$ 的直接枚举即可通过。',
             tags: ['编程题', '枚举', '数学'],
             template: '#include <bits/stdc++.h>\nusing namespace std;\n\nint main() {\n    ios::sync_with_stdio(false);\n    cin.tie(nullptr);\n\n    // 在此编写代码\n    return 0;\n}',
             referenceCode: '#include <bits/stdc++.h>\nusing namespace std;\nconst int N = 1010;\nint a[N];\nint main(){\n    int n;\n    cin >> n;\n    for(int i = 1; i <= n; i++) cin >> a[i];\n    int ans = 0;\n    for(int i = 1; i <= n; i++){\n        for(int j = i + 1; j <= n; j++){\n            int m = a[i] + a[j];\n            int t = sqrt(m + 1e-7);\n            if(t * t == m) ans++;\n        }\n    }\n    cout << ans << "\\n";\n}'

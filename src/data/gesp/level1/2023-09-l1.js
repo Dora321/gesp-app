@@ -137,7 +137,7 @@ export const paperData = {
       id: 13,
       type: 'single',
       question: '下面C++代码用于求正整数的所有因数。在横线处应填写（ ）。\n```cpp\nint n; cin >> n;\nfor (______) {\n    if (n % i == 0) cout << i << endl;\n}\n```',
-      options: ['int i = 1; i < n; i + 1', 'int i = 1; i < n + 1; i + 1', 'int i = 1; i < n; i = i + 1', 'int i = 1; i <= n; i = i + 1'],
+      options: ['int i = 1; i < n; i + 1', 'int i = 1; i < $n+1$; i + 1', 'int i = 1; i < n; i = i + 1', 'int i = 1; i <= n; i = i + 1'],
       answer: 3,
       score: 2,
       explanation: '循环变量应从 1 遍历到 n。',

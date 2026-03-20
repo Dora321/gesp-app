@@ -330,7 +330,7 @@ export const paperData = {
         {
             id: 15,
             type: "single",
-            question: "阅读以下用动态规划解决的 0-1 背包问题的函数，假设背包的容量 是 10kg ，假设输入 4 个物品的重量 分别为 （单位为 kg ），每个物品对应的价值 分别为 ，则函数的输出为（ ）。 if (val > root->val) root->left = insert(root, val); else root->right = insert(root, val); 1 2 3 4 #include <iostream> using namespace std; // 遍历二叉搜索树，输出结点值 void traversal(tree_node* root) { if (root == nullptr) { return; } traversal(root->left); cout << root->val << \" \"; traversal(root->right); } 1 2 3 4 5 6 7 8 9 10 11 12 13 #include <iostream> #include <vector> using namespace std; // 0/1 背包问题 int knapsack(int W, const vector<int>& weights, const vector<int>& values, int n) { vector<vector<int>> dp(n + 1, vector<int>(W + 1, 0)); for (int i = 1; i <= n; ++i) { for (int w = 0; w <= W; ++w) { if (weights[i - 1] <= w) { 1 2 3 4 5 6 7 8 9 10 11 题号 1 2 3 4 5 6 7 8 9 10 答案",
+            question: "阅读以下用动态规划解决的 0-1 背包问题的函数，假设背包的容量 是 10kg ，假设输入 4 个物品的重量 分别为 （单位为 kg ），每个物品对应的价值 分别为 ，则函数的输出为（ ）。 if (val > root->val) root->left = insert(root, val); else root->right = insert(root, val); 1 2 3 4 #include <iostream> using namespace std; // 遍历二叉搜索树，输出结点值 void traversal(tree_node* root) { if (root == nullptr) { return; } traversal(root->left); cout << root->val << \" \"; traversal(root->right); } 1 2 3 4 5 6 7 8 9 10 11 12 13 #include <iostream> #include <vector> using namespace std; // 0/1 背包问题 int knapsack(int W, const vector<int>& weights, const vector<int>& values, int n) { vector<vector<int>> dp($n+1$, vector<int>(W + 1, 0)); for (int i = 1; i <= n; ++i) { for (int w = 0; w <= W; ++w) { if (weights[i - 1] <= w) { 1 2 3 4 5 6 7 8 9 10 11 题号 1 2 3 4 5 6 7 8 9 10 答案",
             options: [
                 "90",
                 "100",

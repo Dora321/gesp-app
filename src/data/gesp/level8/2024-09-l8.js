@@ -132,7 +132,7 @@ export const paperData = {
             options: [
                 "选项A",
                 "选项B",
-                "#include <iostream> using namespace std; int sum = 0; void swap(int & a, int & b) { int temp = a; a = b; b = temp; } void pailie(int begin, int end, int a[]) { if (begin == end) { for (int i = 0; i < end; i++) cout << a[i]; cout << endl; } for (int i = begin; i < end; i++) { __________ // 在此处填入选项 } } 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 swap(a[begin + 1], a[i]); pailie(begin + 1, end, a); swap(a[i], a[begin]); 1 2 3 swap(a[begin], a[i]); pailie(begin, end, a); swap(a[i], a[begin]); 1 2 3",
+                "#include <iostream> using namespace std; int sum = 0; void swap(int & a, int & b) { int temp = a; a = b; b = temp; } void pailie(int begin, int end, int a[]) { if (begin == end) { for (int i = 0; i < end; i++) cout << a[i]; cout << endl; } for (int i = begin; i < end; i++) { __________ // 在此处填入选项 } } 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 swap(a[begi$n+1$], a[i]); pailie(begi$n+1$, end, a); swap(a[i], a[begin]); 1 2 3 swap(a[begin], a[i]); pailie(begin, end, a); swap(a[i], a[begin]); 1 2 3",
                 "选项D",
             ],
             answer: 2,
@@ -170,7 +170,7 @@ export const paperData = {
             options: [
                 "a[i][j] = a[i - 1][j - 1] + a[i - 1][j];",
                 "a[i][j] = a[i][j - 1] + a[i - 1][j];",
-                "a[i][j] = a[i - 1][j] + a[i - 1][j]; swap(a[begin], a[i]); pailie(begin + 1, end, a); swap(a[i], a[begin]); 1 2 3 swap(a[begin] + 1, a[i]); pailie(begin + 1, end, a); swap(a[i], a[begin + 1]); 1 2 3 int main() { int a[5] = {1, 2, 3, 4, 5}; pailie(0, 5, a); return 0; } 1 2 3 4 5 #include <iostream> using namespace std; #define N 35 int a[N][N]; int main() { int n; cin >> n; for (int i = 1; i <= n; i++) for (int j = 1; j <= i; j++) { if (j == 1 || j == i) a[i][j] = 1; else __________ // 在此处填入选项 } for (int i = 1; i <= n; i++) { for (int j = 1; j <= i; j++) cout << a[i][j]; cout<<endl; } return 0; } 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21",
+                "a[i][j] = a[i - 1][j] + a[i - 1][j]; swap(a[begin], a[i]); pailie(begi$n+1$, end, a); swap(a[i], a[begin]); 1 2 3 swap(a[begin] + 1, a[i]); pailie(begi$n+1$, end, a); swap(a[i], a[begi$n+1$]); 1 2 3 int main() { int a[5] = {1, 2, 3, 4, 5}; pailie(0, 5, a); return 0; } 1 2 3 4 5 #include <iostream> using namespace std; #define N 35 int a[N][N]; int main() { int n; cin >> n; for (int i = 1; i <= n; i++) for (int j = 1; j <= i; j++) { if (j == 1 || j == i) a[i][j] = 1; else __________ // 在此处填入选项 } for (int i = 1; i <= n; i++) { for (int j = 1; j <= i; j++) cout << a[i][j]; cout<<endl; } return 0; } 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21",
                 "a[i][j] = a[i - 1][j - 1] + a[i][j];",
             ],
             answer: 0,
@@ -223,7 +223,7 @@ export const paperData = {
         {
             id: 12,
             type: "single",
-            question: "下列 Dijkstra 算法中，横线处应该填入的是（ ）。 key[0] = 0; for (int i = 0; i < n; i++) { int u = min_element(key.begin(), key.end()) - key.begin(); if (key[u] == INT_MAX) break; for (int v = 0; v < n; v++) { if (__________) { // 在此处填入选项 key[v] = graph[u][v]; parent[v] = u; } } } int sum = 0; for (int i = 0; i < n; i++) { if (parent[i] != -1) { cout << \"Edge: \" << parent[i] << \" - \" << i << \" Weight: \" << key[i] << endl; sum += key[i]; } } return sum; } int main() { int n, m; cin >> n >> m; vector<vector<int>> graph(n, vector<int>(n, 0)); for (int i = 0; i < m; i++) { int u, v, w; cin >> u >> v >> w; graph[u][v] = w; graph[v][u] = w; } int result = prim(graph, n); cout << \"Total weight of the minimum spanning tree: \" << result << endl; return 0; } 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27 28 29 30 31 32 33 34 35 36 37 38 39 40 41 42 #include <iostream> using namespace std; #define N 100 int n, e, s; const int inf = 0x7fffff; int dis[N + 1]; int cheak[N + 1]; int graph[N + 1][N + 1]; 1 2 3 4 5 6 7 8 9",
+            question: "下列 Dijkstra 算法中，横线处应该填入的是（ ）。 key[0] = 0; for (int i = 0; i < n; i++) { int u = min_element(key.begin(), key.end()) - key.begin(); if (key[u] == INT_MAX) break; for (int v = 0; v < n; v++) { if (__________) { // 在此处填入选项 key[v] = graph[u][v]; parent[v] = u; } } } int sum = 0; for (int i = 0; i < n; i++) { if (parent[i] != -1) { cout << \"Edge: \" << parent[i] << \" - \" << i << \" Weight: \" << key[i] << endl; sum += key[i]; } } return sum; } int main() { int n, m; cin >> n >> m; vector<vector<int>> graph(n, vector<int>(n, 0)); for (int i = 0; i < m; i++) { int u, v, w; cin >> u >> v >> w; graph[u][v] = w; graph[v][u] = w; } int result = prim(graph, n); cout << \"Total weight of the minimum spanning tree: \" << result << endl; return 0; } 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27 28 29 30 31 32 33 34 35 36 37 38 39 40 41 42 #include <iostream> using namespace std; #define N 100 int n, e, s; const int inf = 0x7fffff; int dis[$N+1$]; int cheak[$N+1$]; int graph[$N+1$][$N+1$]; 1 2 3 4 5 6 7 8 9",
             options: [
                 "dis[j] > minn && cheak[j] == 0",
                 "dis[j] < minn && cheak[j] == 0",

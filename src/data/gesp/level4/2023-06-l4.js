@@ -222,7 +222,7 @@ export const paperData = {
         {
             id: 15,
             type: "single",
-            question: "在下列代码的横线处填写（ ），完成对有n个int类型元素的数组array由小到大排序。\nvoid SelectionSort(int array[], int n) { int i, j, min, temp; for(i=0; i<n-1; i++) { min = i; for(j=i+1; j<n; j++) if(______) min = j; temp=array[min]; array[min]=array[i]; array[i]=temp; } }",
+            question: "在下列代码的横线处填写（ ），完成对有n个int类型元素的数组array由小到大排序。\nvoid SelectionSort(int array[], int n) { int i, j, min, temp; for(i=0; i<$$n-1$$; i++) { min = i; for(j=i+1; j<n; j++) if(______) min = j; temp=array[min]; array[min]=array[i]; array[i]=temp; } }",
             options: [
                 "array[min] > array[j]",
                 "array[min] > array[i]",

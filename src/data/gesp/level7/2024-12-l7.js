@@ -12,7 +12,7 @@ const programmingQuestions = [
         "samples": [
             {
                 "input": "3\n3 2 3\n1 2\n1 2\n2 3\n3 3 4\n1 2\n1 2\n2 3\n3 1000 1000\n1 2\n1 2\n2 3",
-                "output": "3\n-1\n-1"
+                "output": "3\$$n-1$$\$$n-1$$"
             }
         ],
         "explanation": "这是一个 0/1 背包问题。令 dp[c] 表示总花费恰为 c 时能够达到的最大总强度，初始 dp[0]=0，其余为负无穷。依次枚举武器并倒序枚举花费完成转移。最后从小到大扫描 c=0..Q，第一个满足 dp[c]≥P 的花费就是答案；若不存在则输出 -1。",
@@ -30,7 +30,7 @@ const programmingQuestions = [
         "title": "燃烧",
         "problemNumber": "2024-12-l7-Q27",
         "description": "给定一棵 n 个节点的树，节点编号为 1..n，第 i 个节点的权值为 a_i。你可以任选一个初始节点点燃它。每个已经燃烧的节点会继续点燃与其相邻、且权值严格小于自身权值的节点，扩散会一直持续到没有新节点可被点燃。请问通过合理选择初始节点，最多能燃烧多少个节点。",
-        "inputDescription": "第一行一个正整数 n。第二行包含 n 个正整数 a_1..a_n，表示各节点权值。接下来 n-1 行每行两个正整数 u,v，表示树上一条无向边。",
+        "inputDescription": "第一行一个正整数 n。第二行包含 n 个正整数 a_1..a_n，表示各节点权值。接下来 $$n-1$$ 行每行两个正整数 u,v，表示树上一条无向边。",
         "outputDescription": "输出一个整数，表示最多可以被燃烧的节点数。",
         "samples": [
             {
@@ -46,7 +46,7 @@ const programmingQuestions = [
             "动态规划"
         ],
         "template": "#include <bits/stdc++.h>\nusing namespace std;\n\nint main() {\n    ios::sync_with_stdio(false);\n    cin.tie(nullptr);\n\n    int n;\n    cin >> n;\n    // 在此编写代码\n    return 0;\n}",
-        "referenceCode": "#include <bits/stdc++.h>\nusing namespace std;\n\nint main() {\n    ios::sync_with_stdio(false);\n    cin.tie(nullptr);\n\n    int n;\n    cin >> n;\n    vector<int> a(n + 1);\n    for (int i = 1; i <= n; ++i) cin >> a[i];\n\n    vector<vector<int>> g(n + 1);\n    for (int i = 1; i < n; ++i) {\n        int u, v;\n        cin >> u >> v;\n        g[u].push_back(v);\n        g[v].push_back(u);\n    }\n\n    vector<int> dp(n + 1, -1);\n    function<int(int)> solve = [&](int u) -> int {\n        if (dp[u] != -1) return dp[u];\n        int res = 1;\n        for (int v : g[u]) {\n            if (a[v] < a[u]) res += solve(v);\n        }\n        return dp[u] = res;\n    };\n\n    int ans = 0;\n    for (int i = 1; i <= n; ++i) ans = max(ans, solve(i));\n    cout << ans << '\n';\n    return 0;\n}"
+        "referenceCode": "#include <bits/stdc++.h>\nusing namespace std;\n\nint main() {\n    ios::sync_with_stdio(false);\n    cin.tie(nullptr);\n\n    int n;\n    cin >> n;\n    vector<int> a($n+1$);\n    for (int i = 1; i <= n; ++i) cin >> a[i];\n\n    vector<vector<int>> g($n+1$);\n    for (int i = 1; i < n; ++i) {\n        int u, v;\n        cin >> u >> v;\n        g[u].push_back(v);\n        g[v].push_back(u);\n    }\n\n    vector<int> dp($n+1$, -1);\n    function<int(int)> solve = [&](int u) -> int {\n        if (dp[u] != -1) return dp[u];\n        int res = 1;\n        for (int v : g[u]) {\n            if (a[v] < a[u]) res += solve(v);\n        }\n        return dp[u] = res;\n    };\n\n    int ans = 0;\n    for (int i = 1; i <= n; ++i) ans = max(ans, solve(i));\n    cout << ans << '\n';\n    return 0;\n}"
     }
 ];
 
@@ -214,11 +214,11 @@ export const paperData = {
         {
             id: 9,
             type: "single",
-            question: "一个哈希表，包括 n 个位置（分别编号 0~(n-1) ），每个位置最多仅能存储一个元素。该哈希表只有插入元素 和查询两种操作，没有删除或修改元素的操作。以下说法错误的是（ ）。",
+            question: "一个哈希表，包括 n 个位置（分别编号 0~($$n-1$$) ），每个位置最多仅能存储一个元素。该哈希表只有插入元素 和查询两种操作，没有删除或修改元素的操作。以下说法错误的是（ ）。",
             options: [
-                "如果哈希函数取值范围为 0 ~ (n-1) ，且当发生哈希函数碰撞时循环向后寻找空位，则查询操作的最差时间复杂 度为 。（ “ 循环向后 ” 指： 0 向后一位为 1 ， 1 向后一位为 2 ， …… ， (n-2) 向后一位为 (n-1) ， (n-1) 向后一位为 0 ）",
-                "如果哈希函数取值范围为 0 ~ (n-1) ，且当发生哈希函数碰撞时仅循环向后一个位置寻找空位，则查询操作的最 差时间复杂度为 。",
-                "如果哈希函数取值范围为 0 ~ (m-1) （ m < n ），且当发生哈希函数碰撞时仅在 m ~ (n-1) 的范围内寻找空位，则 查询操作的最差时间复杂度为 。",
+                "如果哈希函数取值范围为 0 ~ ($$n-1$$) ，且当发生哈希函数碰撞时循环向后寻找空位，则查询操作的最差时间复杂 度为 。（ “ 循环向后 ” 指： 0 向后一位为 1 ， 1 向后一位为 2 ， …… ， (n-2) 向后一位为 ($$n-1$$) ， ($$n-1$$) 向后一位为 0 ）",
+                "如果哈希函数取值范围为 0 ~ ($$n-1$$) ，且当发生哈希函数碰撞时仅循环向后一个位置寻找空位，则查询操作的最 差时间复杂度为 。",
+                "如果哈希函数取值范围为 0 ~ ($$m-1$$) （ m < n ），且当发生哈希函数碰撞时仅在 m ~ ($$n-1$$) 的范围内寻找空位，则 查询操作的最差时间复杂度为 。",
                 "查询操作时，如果发现查询元素经哈希函数对应的位置为空位，该查询元素仍可能出现在哈希表内。",
             ],
             answer: 3,
@@ -415,7 +415,7 @@ export const paperData = {
         {
             id: 20,
             type: "judge",
-            question: "使用math.h或cmath头文件中的函数，表达式log2(32)的结果为5、类型为int。 int sieve[MAX_N]; void init_sieve(int n) { for (int i = 1; i <= n; i++) sieve[i] = i; for (int i = 2; i <= n; i++) for (int j = i; j <= n; j += i) sieve[j]--; } 1 2 3 4 5 6 7 8",
+            question: "使用math.h或cmath头文件中的函数，表达式$\log_2$(32)的结果为5、类型为int。 int sieve[MAX_N]; void init_sieve(int n) { for (int i = 1; i <= n; i++) sieve[i] = i; for (int i = 2; i <= n; i++) for (int j = i; j <= n; j += i) sieve[j]--; } 1 2 3 4 5 6 7 8",
             options: [
                 "正确",
                 "错误",

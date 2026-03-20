@@ -141,7 +141,7 @@ export const paperData = {
             ],
             answer: 2,
             score: 2,
-            explanation: "插入排序在数据“几乎有序”的情况下表现极佳，时间复杂度接近 O(N)。",
+            explanation: "插入排序在数据“几乎有序”的情况下表现极佳，时间复杂度接近 $$$O(N)$$$。",
             tags: ["客观题", "单选题", "插入排序", "GESP4级"]
         },
         {
@@ -164,14 +164,14 @@ export const paperData = {
             type: "single",
             question: "给定如下算法，当输入 n=10 时，其时间复杂度为（ ）。\n```cpp\nbool f(int arr[], int n, int target) {\n    for (int i = 0; i < (1 << n); i++) {\n        int sum = 0;\n        for (int j = 0; j < n; j++) {\n            if (i & (1 << j)) {\n                sum += arr[j];\n            }\n        }\n        if (sum == target) return true;\n    }\n    return false;\n}\n```",
             options: [
-                "O(n)",
-                "O(n * 2^n)",
-                "O(2^n)",
-                "O(n^2)"
+                "$$$O(N)$$$",
+                "O(n * $$2^n$$)",
+                "O($$2^n$$)",
+                "$$$O(N^2)$$$"
             ],
             answer: 1,
             score: 2,
-            explanation: "外层循环运行 2^n 次，内层循环运行 n 次，因此总复杂度为 O(n * 2^n)。",
+            explanation: "外层循环运行 $$2^n$$ 次，内层循环运行 n 次，因此总复杂度为 O(n * $$2^n$$)。",
             tags: ["客观题", "单选题", "时间复杂度", "GESP4级"]
         },
         {
@@ -179,14 +179,14 @@ export const paperData = {
             type: "single",
             question: "下述斐波那契数列计算的时间复杂度是（ ）。\n```cpp\nint fibonacci(int n) {\n    if (n == 0) return 0;\n    if (n == 1) return 1;\n    return fibonacci(n - 1) + fibonacci(n - 2);\n}\n```",
             options: [
-                "O(n)",
-                "O(n^2)",
-                "O(log n)",
-                "O(2^n)"
+                "$$$O(N)$$$",
+                "$$$O(N^2)$$$",
+                "$O(\log n)$",
+                "O($$2^n$$)"
             ],
             answer: 3,
             score: 2,
-            explanation: "简单的递归求斐波那契数列，不含记忆化，每一层都会分裂成两个子调用，复杂度呈指数级上升，约为 O(2^n)。",
+            explanation: "简单的递归求斐波那契数列，不含记忆化，每一层都会分裂成两个子调用，复杂度呈指数级上升，约为 O($$2^n$$)。",
             tags: ["客观题", "单选题", "递归", "时间复杂度", "GESP4级"]
         },
         {
@@ -301,7 +301,7 @@ export const paperData = {
             options: ["正确", "错误"],
             answer: 0,
             score: 2,
-            explanation: "选择排序的基本逻辑是每次在未排序区间找到最小值，无论数据分布如何，比较次数始终为 (N-1) + (N-2) + ... + 1 = O(N^2)。",
+            explanation: "选择排序的基本逻辑是每次在未排序区间找到最小值，无论数据分布如何，比较次数始终为 ($N-1$) + (N-2) + ... + 1 = $$$O(N^2)$$$。",
             tags: ["客观题", "判断题", "选择排序", "GESP4级"]
         },
         {

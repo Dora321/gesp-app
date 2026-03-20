@@ -185,7 +185,7 @@ export const paperData = {
         {
             id: 10,
             type: "single",
-            question: "下面程序的时间复杂度为（ ）。 #include <iostream> using namespace std; int main() { int N = 15, cnt = 0; for (int x = 1; x + x + x <= N; x++) for (int y = x; x + y + y <= N; y++) for (int z = y; x + y + z <= N; z++) cnt++; cout << cnt << endl; return 0; } 1 2 3 4 5 6 7 8 9 10 11",
+            question: "下面程序的时间复杂度为（ ）。",
             options: [
                 "选项A",
                 "选项B",
@@ -223,7 +223,7 @@ export const paperData = {
         {
             id: 12,
             type: "single",
-            question: "下面 count_triple 函数的时间复杂度为( )。 int primes[MAXP], num = 0; bool isPrime[MAXN] = {false}; void sieve() { for (int n = 2; n <= MAXN; n++) { if (!isPrime[n]) primes[num++] = n; for (int i = 0; i < num && n * primes[i] <= MAXN; i++) { isPrime[n * primes[i]] = true; if (n % primes[i] == 0) break; } } } 1 2 3 4 5 6 7 8 9 10 11 12 13 typedef struct Edge { int in, out; // 从下标in顶点到下标out顶点的边 int len; // 边长度 struct Edge * next; } Edge; // v：顶点个数，graph：出边邻接表，start：起点下标，dis：输出每个顶点的最短距离 void dijkstra(int v, Edge * graph[], int start, int * dis) { const int MAX_DIS = 0x7fffff; for (int i = 0; i < v; i++) dis[i] = MAX_DIS; dis[start] = 0; int * visited = new int[v]; for (int i = 0; i < v; i++) visited[i] = 0; visited[start] = 1; for (int t = 0; ; t++) { int min = MAX_DIS, minv = -1; for (int i = 0; i < v; i++) { if (visited[i] == 0 && min > dis[i]) { min = dis[i]; minv = i; } } if (minv < 0) break; visited[minv] = 1; for (Edge * e = graph[minv]; e != NULL; e = e->next) if (dis[e->out] > e->len) dis[e->out] = e->len; } delete[] visited; } 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27 28 29 30 31 32",
+            question: "下面 count_triple 函数的时间复杂度为( )。",
             options: [
                 "选项A",
                 "选项B",
@@ -246,7 +246,7 @@ export const paperData = {
             options: [
                 "选项A",
                 "选项B",
-                "int gcd(int m, int n) { if (m == 0) return n; return gcd(n % m, m); } int count_triple(int n) { int cnt = 0; for (int v = 1; v * v * 4 <= n; v++) for (int u = v + 1; u * (u + v) * 2 <= n; u += 2) if (gcd(u, v) == 1) { int a = u * u - v * v; int b = u * v * 2; int c = u * u + v * v; cnt += n / (a + b + c); } return cnt; } 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 #include <vector> using namespace std; void merge_sort(vector<int> & arr, int left, int right) { if (right - left <= 1) return; int mid = (left + right) / 2; merge_sort(________); // 在此处填入选项 merge_sort(________); // 在此处填入选项 vector<int> temp(right - left); int i = left, j = mid, k = 0; while (i < mid && j < right) if (arr[i] <= arr[j]) temp[k++] = arr[i++]; else temp[k++] = arr[j++]; while (i < mid) temp[k++] = arr[i++]; while (j < right) temp[k++] = arr[j++]; for (i = left, k = 0; i < right; ++i, ++k) arr[i] = temp[k]; } 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 arr, left, mid arr, mid, right 1 2 arr, left, mid + 1 arr, mid + 1, right 1 2",
+                "选项C",
                 "选项D",
             ],
             answer: 0,
@@ -265,7 +265,7 @@ export const paperData = {
             options: [
                 "选项A",
                 "选项B",
-                "arr, left, mid arr, mid + 1, right 1 2 arr, left, mid + 1 arr, mid + 1, right + 1 1 2 #include <iostream> #include <vector> #include <algorithm> using namespace std; int prim(vector<vector<int>> & graph, int n) { vector<int> key(n, INT_MAX); vector<int> parent(n, -1); key[0] = 0; for (int i = 0; i < n; i++) { int u = min_element(key.begin(), key.end()) - key.begin(); if (key[u] == INT_MAX) break; for (int v = 0; v < n; v++) { if (__________) { // 在此处填入选项 key[v] = graph[u][v]; parent[v] = u; } } } int sum = 0; for (int i = 0; i < n; i++) { if (parent[i] != -1) { cout << \"Edge: \" << parent[i] << \" - \" << i << \" Weight: \" << key[i] << endl; sum += key[i]; } } return sum; } int main() { int n, m; cin >> n >> m; vector<vector<int>> graph(n, vector<int>(n, 0)); for (int i = 0; i < m; i++) { int u, v, w; cin >> u >> v >> w; graph[u][v] = w; graph[v][u] = w; } int result = prim(graph, n); cout << \"Total weight of the minimum spanning tree: \" << result << endl; return 0; } 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27 28 29 30 31 32 33 34 35 36 37 38 39 40 41 42 graph[u][v] >= 0 && key[v] > graph[u][v]1 graph[u][v] <= 0 && key[v] > graph[u][v]1 graph[u][v] == 0 && key[v] > graph[u][v]1 题 号 1 2 3 4 5 6 7 8 9 10 答案",
+                "选项C",
                 "选项D",
             ],
             answer: 3,
@@ -367,7 +367,7 @@ export const paperData = {
         {
             id: 20,
             type: "judge",
-            question: "使用 math.h 或 cmath 头文件中的函数，对于 int 类型的变量 x ，表达式 fabs(x) 和 sqrt(x * x) 的结 果总是近似相等的。 graph[u][v] != 0 && key[v] > graph[u][v]1 #include <vector> using namespace std; class Edge { public: int dest; int weight; Edge(int d, int w) : dest(d), weight(w) {} }; class Graph { private: int num_vertex; vector<vector<Edge>> vve; public: Graph(int v) : num_vertex(v), vve(v) {} void addEdge(int s, int d, int w) { vve[s].emplace_back(d, w); vve[d].emplace_back(s, w) } }; int main() { Graph g(4); g.addEdge(0, 1, 8); g.addEdge(0, 2, 5); g.addEdge(1, 2, 1); g.addEdge(1, 3, 3); g.addEdge(2, 3, 7); return 0; } 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27 28 int n = 5; int arr[n] = {1, 2, 3}; std::cout << arr[5]; 1 2 3",
+            question: "使用 math.h 或 cmath 头文件中的函数，对于 int 类型的变量 x ，表达式 fabs(x) 和 sqrt(x * x) 的结果总是近似相等的。",
             options: [
                 "正确",
                 "错误",

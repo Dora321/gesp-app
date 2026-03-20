@@ -7,7 +7,7 @@ const programmingQuestions = [
         title: "小杨的武器",
         problemNumber: "2024-09-23-05-C-01",
         description: "小杨有 n 种不同的武器，对第 i 种武器的初始熟练度为 ai。会依次参加 m 场战斗，每场战斗必须且只能选择一种武器。如果选择了第 i 种武器参加第 j 场战斗，战斗后熟练度变为 ai + cj（cj 可正可负）。求 m 场战斗后熟练度最大值的最大可能结果。",
-        inputDescription: "第一行两个正整数 n, m (1 ≤ n, m ≤ 100,000)。第二行 n 个整数 ai (-10^9 ≤ ai ≤ 10^9)。第三行 m 个整数 cj (-10^9 ≤ cj ≤ 10^9)。",
+        inputDescription: "第一行两个正整数 n, m (1 ≤ n, m ≤ 100,000)。第二行 n 个整数 ai (-$10^9$ ≤ ai ≤ $10^9$)。第三行 m 个整数 cj (-$10^9$ ≤ cj ≤ $10^9$)。",
         outputDescription: "输出一个整数，代表 m 场战斗后熟练度的最大可能结果。",
         samples: [
             { input: "2 2\n9 9\n1 -1", output: "10" }
@@ -107,11 +107,11 @@ export const paperData = {
         {
             id: 5,
             type: "single",
-            question: "下列哪个算法的时间复杂度是 O(N log N)（ ）。",
+            question: "下列哪个算法的时间复杂度是 $O(n \log n)$（ ）。",
             options: ["冒泡排序", "选择排序", "归并排序", "插入排序"],
             answer: 2,
             score: 2,
-            explanation: "归并排序的最好、最坏、平均时间复杂度均为 O(N log N)。",
+            explanation: "归并排序的最好、最坏、平均时间复杂度均为 $O(n \log n)$。",
             tags: ["客观题", "单选题", "GESP5级"]
         },
         {
@@ -241,7 +241,7 @@ export const paperData = {
             options: ["正确", "错误"],
             answer: 0,
             score: 2,
-            explanation: "线性筛（欧拉筛）确保每个合数只被其最小质因子筛一次，复杂度 O(N)。",
+            explanation: "线性筛（欧拉筛）确保每个合数只被其最小质因子筛一次，复杂度 $$$O(N)$$$。",
             tags: ["客观题", "判断题", "GESP5级"]
         },
         {
@@ -267,7 +267,7 @@ export const paperData = {
         {
             id: 20,
             type: "judge",
-            question: "快速排序和归并排序的平均时间复杂度均为 O(N log N)，且都是稳定排序。",
+            question: "快速排序和归并排序的平均时间复杂度均为 $O(n \log n)$，且都是稳定排序。",
             options: ["正确", "错误"],
             answer: 1,
             score: 2,

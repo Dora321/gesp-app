@@ -87,7 +87,7 @@ export const paperData = {
             ],
             answer: 0,
             score: 2,
-            explanation: "阶乘递归应满足 n! = n × (n-1)!，并在 n=0 或 n=1 时返回 1，因此应填 A。",
+            explanation: "阶乘递归应满足 n! = n × ($$n-1$$)!，并在 n=0 或 n=1 时返回 1，因此应填 A。",
             tags: ["客观题", "单选题", "GESP5级"]
         },
         {
@@ -119,10 +119,10 @@ export const paperData = {
             id: 6,
             type: "single",
             question: "下面的代码片段用于计算斐波那契数列。该代码的时间复杂度是（ ）。",
-            options: ["O(1)", "O(log N)", "O(2^N)", "O(N)"],
+            options: ["$$O(1)$$", "$O(\log n)$", "O($2^N$)", "$$$O(N)$$$"],
             answer: 2,
             score: 2,
-            explanation: "朴素递归 Fibonacci 会重复计算大量子问题，时间复杂度呈指数级增长，通常记为 O(2^N)。",
+            explanation: "朴素递归 Fibonacci 会重复计算大量子问题，时间复杂度呈指数级增长，通常记为 O($2^N$)。",
             tags: ["客观题", "单选题", "GESP5级"]
         },
         {
@@ -184,10 +184,10 @@ export const paperData = {
             id: 11,
             type: "single",
             question: "素数的线性筛法时间复杂度为（ ）。",
-            options: ["O(N)", "O(N log N)", "O(N log log N)", "O(N^2)"],
+            options: ["$$$O(N)$$$", "$O(n \log n)$", "O(N log log N)", "$$$O(N^2)$$$"],
             answer: 0,
             score: 2,
-            explanation: "线性筛保证每个合数只被其最小质因子筛掉一次，因此总时间复杂度是 O(N)。",
+            explanation: "线性筛保证每个合数只被其最小质因子筛掉一次，因此总时间复杂度是 $$$O(N)$$$。",
             tags: ["客观题", "单选题", "GESP5级"]
         },
         {
@@ -212,7 +212,7 @@ export const paperData = {
             ],
             answer: 1,
             score: 2,
-            explanation: "pivot 选得好时，划分更均衡，快速排序更接近 O(N log N)；选得差时可能退化到 O(N^2)，因此它会影响时间复杂度。",
+            explanation: "pivot 选得好时，划分更均衡，快速排序更接近 $O(n \log n)$；选得差时可能退化到 $$$O(N^2)$$$，因此它会影响时间复杂度。",
             tags: ["客观题", "单选题", "GESP5级"]
         },
         {
@@ -268,11 +268,11 @@ export const paperData = {
         {
             id: 18,
             type: "judge",
-            question: "二分查找的时间复杂度是 O(N)。",
+            question: "二分查找的时间复杂度是 $$$O(N)$$$。",
             options: ["正确", "错误"],
             answer: 1,
             score: 2,
-            explanation: "二分查找每次把搜索区间缩小一半，时间复杂度是 O(log N)，不是 O(N)。",
+            explanation: "二分查找每次把搜索区间缩小一半，时间复杂度是 $O(\log n)$，不是 $$$O(N)$$$。",
             tags: ["客观题", "判断题", "GESP5级"]
         },
         {
@@ -308,11 +308,11 @@ export const paperData = {
         {
             id: 22,
             type: "judge",
-            question: "快速排序在最坏情况下的时间复杂度是 O(N log N)。",
+            question: "快速排序在最坏情况下的时间复杂度是 $O(n \log n)$。",
             options: ["正确", "错误"],
             answer: 1,
             score: 2,
-            explanation: "快速排序最坏情况下会退化到 O(N^2)，所以该说法错误。",
+            explanation: "快速排序最坏情况下会退化到 $$$O(N^2)$$$，所以该说法错误。",
             tags: ["客观题", "判断题", "GESP5级"]
         },
         {

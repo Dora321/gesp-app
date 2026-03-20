@@ -59,7 +59,7 @@ export const paperData = {
             ],
             answer: 2,
             score: 2,
-            explanation: "冒泡排序在平均情况和最坏情况下都需要进行 n(n-1)/2 次比较，因此时间复杂度为 O(n^2)。",
+            explanation: "冒泡排序在平均情况和最坏情况下都需要进行 n($$n-1$$)/2 次比较，因此时间复杂度为 $$$O(N^2)$$$。",
             tags: [
                 "客观题",
                 "单选题",
@@ -321,7 +321,7 @@ export const paperData = {
             ],
             answer: 0,
             score: 2,
-            explanation: "插入排序在最坏和平均情况下性能均为二次方级别 O(n^2)。",
+            explanation: "插入排序在最坏和平均情况下性能均为二次方级别 $$$O(N^2)$$$。",
             tags: [
                 "客观题",
                 "判断题",

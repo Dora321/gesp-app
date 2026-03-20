@@ -21,7 +21,7 @@ const programmingQuestions = [
             "动态规划"
         ],
         "template": "#include <bits/stdc++.h>\nusing namespace std;\n\nint main() {\n    // 在此编写代码\n    return 0;\n}",
-        "referenceCode": "#include <bits/stdc++.h>\nusing namespace std;\n\nint main() {\n    ios::sync_with_stdio(false);\n    cin.tie(nullptr);\n\n    int n;\n    cin >> n;\n    vector<long long> a(n + 1), dp(n + 1, 0);\n    for (int i = 1; i <= n; ++i) cin >> a[i];\n    for (int i = 1; i <= n; ++i) {\n        for (int j = 1; j <= i; ++j) {\n            dp[i] = max(dp[i], dp[i - j] + a[j]);\n        }\n    }\n    cout << dp[n] << '\\n';\n    return 0;\n}"
+        "referenceCode": "#include <bits/stdc++.h>\nusing namespace std;\n\nint main() {\n    ios::sync_with_stdio(false);\n    cin.tie(nullptr);\n\n    int n;\n    cin >> n;\n    vector<long long> a($n+1$), dp($n+1$, 0);\n    for (int i = 1; i <= n; ++i) cin >> a[i];\n    for (int i = 1; i <= n; ++i) {\n        for (int j = 1; j <= i; ++j) {\n            dp[i] = max(dp[i], dp[i - j] + a[j]);\n        }\n    }\n    cout << dp[n] << '\\n';\n    return 0;\n}"
     },
     {
         "id": 27,

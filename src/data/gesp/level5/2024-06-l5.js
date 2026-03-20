@@ -15,7 +15,7 @@ const programmingQuestions = [
         explanation: "由于 n, m 较小（最大 100），可以枚举子矩形的上下边界 (r1, r2)，然后利用双指针或暴力枚举左右边界 (c1, c2)。利用二维前缀和快速计算子矩形内 1 的个数。",
         tags: ["编程题", "二维前缀和", "双指针"],
         template: "#include <iostream>\n#include <string>\n#include <vector>\nusing namespace std;\n\nint main() {\n    int n, m, k;\n    cin >> n >> m >> k;\n    // 在此编写代码\n    return 0;\n}",
-        referenceCode: "#include <iostream>\n#include <vector>\n#include <string>\n#include <algorithm>\nusing namespace std;\nint main() {\n    int n, m, k; cin >> n >> m >> k;\n    vector<vector<int>> s(n + 1, vector<int>(m + 1, 0));\n    for (int i = 1; i <= n; i++) {\n        string row; cin >> row;\n        for (int j = 1; j <= m; j++) {\n            s[i][j] = s[i-1][j] + s[i][j-1] - s[i-1][j-1] + (row[j-1] - '0');\n        }\n    }\n    int min_area = 1e9;\n    for (int r1 = 1; r1 <= n; r1++) {\n        for (int r2 = r1; r2 <= n; r2++) {\n            for (int c1 = 1; c1 <= m; c1++) {\n                for (int c2 = c1; c2 <= m; c2++) {\n                    int count = s[r2][c2] - s[r1-1][c2] - s[r2][c1-1] + s[r1-1][c1-1];\n                    if (count >= k) min_area = min(min_area, (r2 - r1 + 1) * (c2 - c1 + 1));\n                }\n            }\n        }\n    }\n    if (min_area == 1e9) cout << 0 << endl;\n    else cout << min_area << endl;\n    return 0;\n}"
+        referenceCode: "#include <iostream>\n#include <vector>\n#include <string>\n#include <algorithm>\nusing namespace std;\nint main() {\n    int n, m, k; cin >> n >> m >> k;\n    vector<vector<int>> s($n+1$, vector<int>(m + 1, 0));\n    for (int i = 1; i <= n; i++) {\n        string row; cin >> row;\n        for (int j = 1; j <= m; j++) {\n            s[i][j] = s[i-1][j] + s[i][j-1] - s[i-1][j-1] + (row[j-1] - '0');\n        }\n    }\n    int min_area = 1e9;\n    for (int r1 = 1; r1 <= n; r1++) {\n        for (int r2 = r1; r2 <= n; r2++) {\n            for (int c1 = 1; c1 <= m; c1++) {\n                for (int c2 = c1; c2 <= m; c2++) {\n                    int count = s[r2][c2] - s[r1-1][c2] - s[r2][c1-1] + s[r1-1][c1-1];\n                    if (count >= k) min_area = min(min_area, (r2 - r1 + 1) * (c2 - c1 + 1));\n                }\n            }\n        }\n    }\n    if (min_area == 1e9) cout << 0 << endl;\n    else cout << min_area << endl;\n    return 0;\n}"
     },
     {
         id: 27,
@@ -68,20 +68,20 @@ export const paperData = {
             id: 3,
             type: "single",
             question: "关于双向链表，下列说法错误的是（ ）。",
-            options: ["每个节点包含指向前驱和后继的指针", "可以在 O(1) 时间内删除已知节点", "支持随机访问", "支持双向遍历"],
+            options: ["每个节点包含指向前驱和后继的指针", "可以在 $$O(1)$$ 时间内删除已知节点", "支持随机访问", "支持双向遍历"],
             answer: 2,
             score: 2,
-            explanation: "链表不支持随机访问（即无法在 O(1) 时间内访问任意下标的元素）。",
+            explanation: "链表不支持随机访问（即无法在 $$O(1)$$ 时间内访问任意下标的元素）。",
             tags: ["客观题", "单选题", "GESP5级"]
         },
         {
             id: 4,
             type: "single",
             question: "下列哪个时间复杂度最低（ ）。",
-            options: ["O(N log N)", "O(N^2)", "O(log N)", "O(N)"],
+            options: ["$O(n \log n)$", "$$$O(N^2)$$$", "$O(\log n)$", "$$$O(N)$$$"],
             answer: 2,
             score: 2,
-            explanation: "常见复杂度排序：O(1) < O(log N) < O(N) < O(N log N) < O(N^2)。",
+            explanation: "常见复杂度排序：$$O(1)$$ < $O(\log n)$ < $$$O(N)$$$ < $O(n \log n)$ < $$$O(N^2)$$$。",
             tags: ["客观题", "单选题", "GESP5级"]
         },
         {
@@ -118,10 +118,10 @@ export const paperData = {
             id: 8,
             type: "single",
             question: "归并排序合并两个长度为 N 的有序数组，最坏情况下的比较次数是（ ）。",
-            options: ["O(1)", "O(log N)", "O(N)", "O(N log N)"],
+            options: ["$$O(1)$$", "$O(\log n)$", "$$$O(N)$$$", "$O(n \log n)$"],
             answer: 2,
             score: 2,
-            explanation: "合并操作的时间复杂度是 O(N)。",
+            explanation: "合并操作的时间复杂度是 $$$O(N)$$$。",
             tags: ["客观题", "单选题", "GESP5级"]
         },
         {
@@ -231,7 +231,7 @@ export const paperData = {
             options: ["正确", "错误"],
             answer: 1,
             score: 2,
-            explanation: "线性筛法（欧拉筛）效率更高，时间复杂度为 O(N)。",
+            explanation: "线性筛法（欧拉筛）效率更高，时间复杂度为 $$$O(N)$$$。",
             tags: ["客观题", "判断题", "GESP5级"]
         },
         {
@@ -271,7 +271,7 @@ export const paperData = {
             options: ["正确", "错误"],
             answer: 0,
             score: 2,
-            explanation: "在数组几乎有序时，插入排序为 O(N)，优于快排。",
+            explanation: "在数组几乎有序时，插入排序为 $$$O(N)$$$，优于快排。",
             tags: ["客观题", "判断题", "GESP5级"]
         },
         {

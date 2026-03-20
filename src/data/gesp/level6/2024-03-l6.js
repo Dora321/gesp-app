@@ -22,7 +22,7 @@ const programmingQuestions = [
             "递推"
         ],
         "template": "#include <bits/stdc++.h>\nusing namespace std;\n\nint main() {\n    // 在此编写代码\n    return 0;\n}",
-        "referenceCode": "#include <bits/stdc++.h>\nusing namespace std;\n\nint main() {\n    ios::sync_with_stdio(false);\n    cin.tie(nullptr);\n\n    long long n, a, b, mod;\n    cin >> n >> a >> b >> mod;\n    vector<long long> f(n + 1, 0);\n    for (long long x = 1; x <= n; ++x) {\n        long long v1 = (x <= a ? 1 : f[x - a]);\n        long long v2 = (x <= b ? 1 : f[x - b]);\n        f[x] = (v1 + v2) % mod;\n    }\n    cout << f[n] % mod << '\\n';\n    return 0;\n}"
+        "referenceCode": "#include <bits/stdc++.h>\nusing namespace std;\n\nint main() {\n    ios::sync_with_stdio(false);\n    cin.tie(nullptr);\n\n    long long n, a, b, mod;\n    cin >> n >> a >> b >> mod;\n    vector<long long> f($n+1$, 0);\n    for (long long x = 1; x <= n; ++x) {\n        long long v1 = (x <= a ? 1 : f[x - a]);\n        long long v2 = (x <= b ? 1 : f[x - b]);\n        f[x] = (v1 + v2) % mod;\n    }\n    cout << f[n] % mod << '\\n';\n    return 0;\n}"
     },
     {
         "id": 27,

@@ -174,21 +174,21 @@ export const paperData = {
         {
             id: 13,
             type: "single",
-            question: "下列哪个算法的时间复杂度是 O(N log N)？",
+            question: "下列哪个算法的时间复杂度是 $O(n \log n)$？",
             options: ["计数排序", "快速排序（平均情况）", "冒泡排序", "顺序查找"],
             answer: 1,
             score: 2,
-            explanation: "快速排序平均时间复杂度为 O(N log N)。",
+            explanation: "快速排序平均时间复杂度为 $O(n \log n)$。",
             tags: ["客观题", "单选题", "GESP4级"]
         },
         {
             id: 14,
             type: "single",
             question: "一个长度为 N 的序列，使用选择排序进行排序，比较次数的数量级是（ ）。",
-            options: ["O(N)", "O(N^2)", "O(log N)", "O(N log N)"],
+            options: ["$$$O(N)$$$", "$$$O(N^2)$$$", "$O(\log n)$", "$O(n \log n)$"],
             answer: 1,
             score: 2,
-            explanation: "选择排序无论何种情况，比较次数均为 N(N-1)/2，即 O(N^2) 量级。",
+            explanation: "选择排序无论何种情况，比较次数均为 N($N-1$)/2，即 $$$O(N^2)$$$ 量级。",
             tags: ["客观题", "单选题", "GESP4级"]
         },
         {
@@ -284,7 +284,7 @@ export const paperData = {
         {
             id: 24,
             type: "judge",
-            question: "由于选择排序和插入排序的时间复杂度均为 $O(n^2)$，在任何实际场景下两者的性能表现几乎相同，可以互相替代。",
+            question: "由于选择排序和插入排序的时间复杂度均为 $$$$O(N^2)$$$$，在任何实际场景下两者的性能表现几乎相同，可以互相替代。",
             options: ["正确", "错误"],
             answer: 1,
             score: 2,
@@ -294,11 +294,11 @@ export const paperData = {
         {
             id: 25,
             type: "judge",
-            question: "下面用递归方式计算斐波那契数列第 n 项的程序，时间复杂度是 $O(2^n)$。\n```cpp\nint fib(int n) {\n    if (n <= 1) return n;\n    int f0 = 0, f1 = 1, cur = 0;\n    for (int i = 2; i <= n; i++) {\n        cur = f0 + f1;\n        f0 = f1;\n        f1 = cur;\n    }\n    return cur;\n}\n```",
+            question: "下面用递归方式计算斐波那契数列第 n 项的程序，时间复杂度是 $O($$2^n$$)$。\n```cpp\nint fib(int n) {\n    if (n <= 1) return n;\n    int f0 = 0, f1 = 1, cur = 0;\n    for (int i = 2; i <= n; i++) {\n        cur = f0 + f1;\n        f0 = f1;\n        f1 = cur;\n    }\n    return cur;\n}\n```",
             options: ["正确", "错误"],
             answer: 1,
             score: 2,
-            explanation: "该程序实际上是使用循环（递推）实现的，而不是递归。其时间复杂度是 O(n)。",
+            explanation: "该程序实际上是使用循环（递推）实现的，而不是递归。其时间复杂度是 $$$O(N)$$$。",
             tags: ["客观题", "判断题", "GESP4级"]
         },
         ...programmingQuestions

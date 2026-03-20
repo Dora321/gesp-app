@@ -7,7 +7,7 @@ const programmingQuestions = [
         "title": "路径覆盖",
         "problemNumber": "2025-12-21-06-C-01",
         "description": "给定一棵有根树，把若干节点染黑，使每条叶子到根的路径上至少有一个黑点。节点 i 染黑代价为 c_i，求最小总代价。",
-        "inputDescription": "第一行 n。第二行 n-1 个父节点。第三行 n 个代价 c_i。",
+        "inputDescription": "第一行 n。第二行 $$n-1$$ 个父节点。第三行 n 个代价 c_i。",
         "outputDescription": "输出最小总代价。",
         "samples": [
             {
@@ -21,7 +21,7 @@ const programmingQuestions = [
             "树形DP"
         ],
         "template": "#include <bits/stdc++.h>\nusing namespace std;\n\nint main() {\n    // 在此编写代码\n    return 0;\n}",
-        "referenceCode": "#include <bits/stdc++.h>\nusing namespace std;\n\nint main() {\n    ios::sync_with_stdio(false);\n    cin.tie(nullptr);\n\n    int n;\n    cin >> n;\n    vector<vector<int>> g(n + 1);\n    for (int i = 2; i <= n; ++i) {\n        int p;\n        cin >> p;\n        g[p].push_back(i);\n    }\n    vector<long long> c(n + 1);\n    for (int i = 1; i <= n; ++i) cin >> c[i];\n\n    vector<long long> dp(n + 1, 0);\n    function<void(int)> dfs = [&](int u) {\n        if (g[u].empty()) {\n            dp[u] = c[u];\n            return;\n        }\n        long long sum = 0;\n        for (int v : g[u]) {\n            dfs(v);\n            sum += dp[v];\n        }\n        dp[u] = min(c[u], sum);\n    };\n    dfs(1);\n    cout << dp[1] << '\\n';\n    return 0;\n}"
+        "referenceCode": "#include <bits/stdc++.h>\nusing namespace std;\n\nint main() {\n    ios::sync_with_stdio(false);\n    cin.tie(nullptr);\n\n    int n;\n    cin >> n;\n    vector<vector<int>> g($n+1$);\n    for (int i = 2; i <= n; ++i) {\n        int p;\n        cin >> p;\n        g[p].push_back(i);\n    }\n    vector<long long> c($n+1$);\n    for (int i = 1; i <= n; ++i) cin >> c[i];\n\n    vector<long long> dp($n+1$, 0);\n    function<void(int)> dfs = [&](int u) {\n        if (g[u].empty()) {\n            dp[u] = c[u];\n            return;\n        }\n        long long sum = 0;\n        for (int v : g[u]) {\n            dfs(v);\n            sum += dp[v];\n        }\n        dp[u] = min(c[u], sum);\n    };\n    dfs(1);\n    cout << dp[1] << '\\n';\n    return 0;\n}"
     },
     {
         "id": 27,
@@ -80,7 +80,7 @@ export const paperData = {
         {
             id: 2,
             type: "single",
-            question: "执⾏如下代码，会输出 钢琴：叮咚叮咚 和 吉他：咚咚当当。这体现了面向对象编程的（ ）特性。 第 1 页 / 共 13 页",
+            question: "执⾏如下代码，会输出 钢琴：叮咚叮咚 和 吉他：咚咚当当。这体现了面向对象编程的（ ）特性。",
             options: [
                 "继承",
                 "封装",
@@ -270,7 +270,7 @@ export const paperData = {
         {
             id: 12,
             type: "single",
-            question: "给定一棵普通二叉树（节点值没有大小规律），下面代码判断是否存在值为 x 的结点，则横线处应填入（ ）。 TreeNode* op(TreeNode* root, int x) { if (!root) return new TreeNode(x); if (x < root->val) root->left = op(root->left, x); else root->right = op(root->right, x); return root; } 1 2 3 4 5 6 7 8 struct TreeNode { int val; TreeNode* left; TreeNode* right; TreeNode(int x): val(x), left(nullptr), right(nullptr) {} }; void dfs(TreeNode* root) { if (!root) return; stack<TreeNode*> st; st.push(root); while (!st.empty()) { TreeNode* node = st.top(); st.pop(); cout << node->val << \" \"; if (node->right) st.push(node->right); ________________________ } } 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 第 7 页 / 共 13 页",
+            question: "给定一棵普通二叉树（节点值没有大小规律），下面代码判断是否存在值为 x 的结点，则横线处应填入（ ）。",
             options: [
                 "q.push(cur);",
                 "if (cur->right) q.push(cur->right);",
@@ -291,8 +291,8 @@ export const paperData = {
             type: "single",
             question: "在二叉排序树（ Binary Search Tree, BST ）中，假设节点值互不相同。给定如下搜索函数，以下说法一定正 确的是（ ）。",
             options: [
-                "最坏情况下，访问结点数是",
-                "最坏情况下，访问结点数是",
+                "最坏情况下，访问结点数是 $$$$O(N)$$$$",
+                "最坏情况下，访问结点数是 $O(h)$",
                 "无论如何，访问结点数都不超过树高的一半",
                 "一定比在普通二叉树中搜索快",
             ],
@@ -308,7 +308,7 @@ export const paperData = {
         {
             id: 14,
             type: "single",
-            question: "0/1 背包（每件物品最多选一次）问题通常可用一维动态规划求解，核⼼代码如下。则下面说法正确的是（ ）。 struct TreeNode { int val; TreeNode* left; TreeNode* right; TreeNode(int x): val(x), left(nullptr), right(nullptr) {} }; TreeNode* bfsFind(TreeNode* root, int x) { if (!root) return nullptr; queue<TreeNode*> q; q.push(root); while (!q.empty()) { TreeNode* cur = q.front(); q.pop(); if (cur->val == x) return cur; ________________________ } return nullptr; } 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 if (cur->left) q.push(cur->left); if (cur->right) q.push(cur->right); 1 2 3 4 q.push(cur->left); q.push(cur->right); 1 2 bool find(Node* root, int x) { while (root) { if (root->val == x) return true; root = (x < root->val) ? root->left : root->right; } return false; } 1 2 3 4 5 6 7 for each item (w, v): for (int j = W; j >= w; --j) dp[j] = max(dp[j], dp[j-w] + v); 1 2 3 第 8 页 / 共 13 页 题号 1 2 3 4 5 6 7 8 9 10 答案",
+            question: "0/1 背包（每件物品最多选一次）问题通常可用一维动态规划求解，核⼼代码如下。则下面说法正确的是（ ）。",
             options: [
                 "内层 j 必须从小到大，否则会漏解",
                 "内层 j 必须从大到小，否则同一件物品会被用多次",
@@ -448,7 +448,7 @@ export const paperData = {
         {
             id: 22,
             type: "judge",
-            question: "下面的函数能正确判断一棵树是不是二叉排序树（左边的数字要比当前数字小，右边的数字要比当前数字 大）。 class Test { public: Test() { cout << \"T \"; } }; int main() { Test a; Test b = a; } 1 2 3 4 5 6 7 8 9 int countLeaf(TreeNode* root) { if (!root) return 0; if (!root->left && !root->right) return 1; return countLeaf(root->left) + countLeaf(root->right); } 1 2 3 4 5 bool isBST(TreeNode* root, int minVal, int maxVal) { if (!root) return true; if (root->val <= minVal || root->val >= maxVal) return false; return isBST(root->left, minVal, root->val) && isBST(root->right, root->val, maxVal); } 1 2 3 4 5 6 7 第 9 页 / 共 13 页",
+            question: "下面的函数能正确判断一棵树是不是二叉排序树（左边的数字要比当前数字小，右边的数字要比当前数字大）。",
             options: [
                 "正确",
                 "错误",
@@ -499,7 +499,7 @@ export const paperData = {
         {
             id: 25,
             type: "judge",
-            question: "假定只有一个根节点的树的深度为 1 ，则一棵有 个节点的完全二叉树，则树的深度为 。",
+            question: "假定只有一个根节点的树的深度为 1 ，则一棵有 $n$ 个节点的完全二叉树，则树的深度为 $\\lfloor \log_2 n \\rfloor + 1$。",
             options: [
                 "正确",
                 "错误",

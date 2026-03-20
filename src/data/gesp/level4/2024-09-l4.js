@@ -119,20 +119,20 @@ export const paperData = {
             id: 6,
             type: "single",
             question: "选择排序的时间复杂度是（ ）。",
-            options: ["O(N)", "O(N log N)", "O(N^2)", "O(log N)"],
+            options: ["$$$O(N)$$$", "$O(n \log n)$", "$$$O(N^2)$$$", "$O(\log n)$"],
             answer: 2,
             score: 2,
-            explanation: "选择排序平均和最坏情况均为 O(N^2)。",
+            explanation: "选择排序平均和最坏情况均为 $$$O(N^2)$$$。",
             tags: ["客观题", "单选题", "GESP4级"]
         },
         {
             id: 7,
             type: "single",
             question: "插入排序在最好情况下的时间复杂度是（ ）。",
-            options: ["O(1)", "O(N)", "O(N^2)", "O(N log N)"],
+            options: ["$$O(1)$$", "$$$O(N)$$$", "$$$O(N^2)$$$", "$O(n \log n)$"],
             answer: 1,
             score: 2,
-            explanation: "当数组已有序时，插入排序仅需比较 N-1 次。",
+            explanation: "当数组已有序时，插入排序仅需比较 $N-1$ 次。",
             tags: ["客观题", "单选题", "GESP4级"]
         },
         {
@@ -292,7 +292,7 @@ export const paperData = {
             options: ["正确", "错误"],
             answer: 1,
             score: 2,
-            explanation: "两者平均和最坏情况均为 O(N^2)。",
+            explanation: "两者平均和最坏情况均为 $$$O(N^2)$$$。",
             tags: ["客观题", "判断题", "GESP4级"]
         },
         {
@@ -308,7 +308,7 @@ export const paperData = {
         {
             id: 24,
             type: "judge",
-            question: "求斐波那契数列第 n 项，递推法的时间复杂度为 O(N)。",
+            question: "求斐波那契数列第 n 项，递推法的时间复杂度为 $$$O(N)$$$。",
             options: ["正确", "错误"],
             answer: 0,
             score: 2,

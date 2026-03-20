@@ -47,7 +47,7 @@ export const paperData = {
         "samples": [
             {
                 "input": "3\n16\n81\n20",
-                "output": "2\n3\n-1"
+                "output": "2\n3\$$n-1$$"
             }
         ],
         "explanation": "对每个 a，检查其整数四次方根。b = pow(a, 0.25) 附近寻找。",

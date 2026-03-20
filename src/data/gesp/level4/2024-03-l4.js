@@ -129,10 +129,10 @@ export const paperData = {
             id: 9,
             type: "single",
             question: "插入排序在最好情况下的时间复杂度是（ ）。",
-            options: ["O(1)", "O(N)", "O(N log N)", "O(N^2)"],
+            options: ["$$O(1)$$", "$$$O(N)$$$", "$O(n \log n)$", "$$$O(N^2)$$$"],
             answer: 2,
             score: 2,
-            explanation: "插入排序在数组已经有序时，只需比较 N-1 次，复杂度为 O(N)。",
+            explanation: "插入排序在数组已经有序时，只需比较 $N-1$ 次，复杂度为 $$$O(N)$$$。",
             tags: ["客观题", "单选题", "GESP4级"]
         },
         {

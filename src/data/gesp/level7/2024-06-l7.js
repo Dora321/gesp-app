@@ -7,7 +7,7 @@ const programmingQuestions = [
         title: "黑白翻转",
         problemNumber: "2024-06-l7-Q26",
         description: "给定一棵树，每个节点是黑色或白色。若删除全部白色节点后，剩余黑色节点仍然连成一棵树，则称其为美丽树。每次操作可以把一个白点翻成黑点，求最少操作次数。",
-        inputDescription: "第一行 n。第二行 n 个 0/1，1 表示黑色、0 表示白色。接下来 n-1 行每行一条边。",
+        inputDescription: "第一行 n。第二行 n 个 0/1，1 表示黑色、0 表示白色。接下来 $$n-1$$ 行每行一条边。",
         outputDescription: "输出最少操作次数。",
         samples: [
             { input: "5\n0 1 0 1 0\n1 2\n1 3\n3 4\n3 5", output: "2" }
@@ -15,7 +15,7 @@ const programmingQuestions = [
         explanation: "最终保留下来的黑点必须覆盖原有所有黑点，并且形成一棵连通子树，所以需要把原黑点最小连通子树上的白点全部染黑。答案就是这棵 Steiner 子树中的白点数。",
         tags: ["编程题", "树", "DFS"],
         template: "#include <bits/stdc++.h>\nusing namespace std;\n\nint main() {\n    ios::sync_with_stdio(false);\n    cin.tie(nullptr);\n    return 0;\n}",
-        referenceCode: "#include <bits/stdc++.h>\nusing namespace std;\n\nint n, ans = 0;\nvector<vector<int>> g;\nvector<int> col;\n\nint dfs(int u, int fa) {\n    int has = col[u];\n    for (int v : g[u]) if (v != fa) has += dfs(v, u);\n    if (has > 0 && has < accumulate(col.begin()+1, col.end(), 0) && col[u] == 0) ans++;\n    return has;\n}\n\nint main() {\n    ios::sync_with_stdio(false);\n    cin.tie(nullptr);\n\n    cin >> n;\n    g.assign(n + 1, {});\n    col.assign(n + 1, 0);\n    int tot = 0, root = 1;\n    for (int i = 1; i <= n; ++i) { cin >> col[i]; if (col[i]) tot++, root = i; }\n    for (int i = 0; i < n - 1; ++i) {\n        int u, v; cin >> u >> v;\n        g[u].push_back(v); g[v].push_back(u);\n    }\n    if (tot <= 1) { cout << 0 << '\\n'; return 0; }\n    function<int(int,int)> solve = [&](int u, int fa) {\n        int cnt = col[u];\n        for (int v : g[u]) if (v != fa) cnt += solve(v, u);\n        if (cnt > 0 && cnt < tot && col[u] == 0) ans++;\n        return cnt;\n    };\n    solve(root, 0);\n    cout << ans << '\\n';\n    return 0;\n}"
+        referenceCode: "#include <bits/stdc++.h>\nusing namespace std;\n\nint n, ans = 0;\nvector<vector<int>> g;\nvector<int> col;\n\nint dfs(int u, int fa) {\n    int has = col[u];\n    for (int v : g[u]) if (v != fa) has += dfs(v, u);\n    if (has > 0 && has < accumulate(col.begin()+1, col.end(), 0) && col[u] == 0) ans++;\n    return has;\n}\n\nint main() {\n    ios::sync_with_stdio(false);\n    cin.tie(nullptr);\n\n    cin >> n;\n    g.assign($n+1$, {});\n    col.assign($n+1$, 0);\n    int tot = 0, root = 1;\n    for (int i = 1; i <= n; ++i) { cin >> col[i]; if (col[i]) tot++, root = i; }\n    for (int i = 0; i < n - 1; ++i) {\n        int u, v; cin >> u >> v;\n        g[u].push_back(v); g[v].push_back(u);\n    }\n    if (tot <= 1) { cout << 0 << '\\n'; return 0; }\n    function<int(int,int)> solve = [&](int u, int fa) {\n        int cnt = col[u];\n        for (int v : g[u]) if (v != fa) cnt += solve(v, u);\n        if (cnt > 0 && cnt < tot && col[u] == 0) ans++;\n        return cnt;\n    };\n    solve(root, 0);\n    cout << ans << '\\n';\n    return 0;\n}"
     },
     {
         id: 27,

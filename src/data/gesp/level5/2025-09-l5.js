@@ -33,7 +33,7 @@ const programmingQuestions = [
         explanation: "设 f(n) 表示 [1,n] 中所有二进制中 1 的个数为奇数的数之和。可按最高位递归统计：先处理完整的 [0,2^k-1] 块，再递归处理剩余部分，同时根据最高位翻转奇偶性。最终答案为 f(r)-f(l-1)。",
         tags: ["编程题", "位运算", "递归", "数位DP"],
         template: "#include <bits/stdc++.h>\nusing namespace std;\n\nint main() {\n    int l, r;\n    cin >> l >> r;\n    // 在此编写代码\n    return 0;\n}",
-        referenceCode: "#include <algorithm>\n#include <cstdio>\nusing namespace std;\nint l, r;\nlong long ans;\npair<int, long long> cal2(int n, int p) {\n    if (n == 0) return {1 - p, 0};\n    if (n == 1) return {1, p};\n    return {(n + 1) / 2, 1ll * n * (n + 1) / 4};\n}\npair<int, long long> cal(int n, int p) {\n    if (n <= 1) return cal2(n, p);\n    long long x = 1ll << (31 - __builtin_clz(n));\n    auto l = cal2(x - 1, p);\n    auto r = cal(n - x, 1 - p);\n    return {l.first + r.first, l.second + r.second + x * r.first};\n}\nint main() {\n    scanf(\"%d%d\", &l, &r);\n    ans -= cal(l - 1, 1).second;\n    ans += cal(r, 1).second;\n    printf(\"%lld\\n\", ans);\n    return 0;\n}"
+        referenceCode: "#include <algorithm>\n#include <cstdio>\nusing namespace std;\nint l, r;\nlong long ans;\npair<int, long long> cal2(int n, int p) {\n    if (n == 0) return {1 - p, 0};\n    if (n == 1) return {1, p};\n    return {($n+1$) / 2, 1ll * n * ($n+1$) / 4};\n}\npair<int, long long> cal(int n, int p) {\n    if (n <= 1) return cal2(n, p);\n    long long x = 1ll << (31 - __builtin_clz(n));\n    auto l = cal2(x - 1, p);\n    auto r = cal(n - x, 1 - p);\n    return {l.first + r.first, l.second + r.second + x * r.first};\n}\nint main() {\n    scanf(\"%d%d\", &l, &r);\n    ans -= cal(l - 1, 1).second;\n    ans += cal(r, 1).second;\n    printf(\"%lld\\n\", ans);\n    return 0;\n}"
     }
 ];
 
@@ -242,8 +242,8 @@ export const paperData = {
             question: "下述 C++ 代码实现了快速排序算法，下面说法错误的是（ ）。",
             options: [
                 "快速排序平均情况下速度较快、常数较小，且属于原地排序，实践中通常较高效。",
-                "平均情况下递归层数约为 O(log n)，每层总工作量为 O(n)，总时间复杂度为 O(n log n)。",
-                "最坏情况下会不断分成 0 和 n-1 两部分，递归层数达 O(n)，每层工作量为 O(n)，总时间复杂度为 O(n^2)。",
+                "平均情况下递归层数约为 $O(\log n)$，每层总工作量为 $$$O(N)$$$，总时间复杂度为 $O(n \log n)$。",
+                "最坏情况下会不断分成 0 和 $$n-1$$ 两部分，递归层数达 $$$O(N)$$$，每层工作量为 $$$O(N)$$$，总时间复杂度为 $$$O(N^2)$$$。",
                 "partition 中“先从右往左找”与“先从左往右找”的顺序可以随意交换，算法仍然完全等价。",
             ],
             answer: 3,
@@ -300,7 +300,7 @@ export const paperData = {
             options: [
                 "上述代码采用分治算法实现",
                 "上述代码采用贪⼼算法",
-                "上述代码的时间复杂度为 O(n log n)",
+                "上述代码的时间复杂度为 $O(n \log n)$",
                 "上述代码采用递归方式实现",
             ],
             answer: 1,
@@ -419,7 +419,7 @@ export const paperData = {
         {
             id: 21,
             type: "judge",
-            question: "线性筛的关键性质是“每个合数只会被其最小质因子筛到一次”，因此其时间复杂度为 O(n)。",
+            question: "线性筛的关键性质是“每个合数只会被其最小质因子筛到一次”，因此其时间复杂度为 $$$O(N)$$$。",
             options: [
                 "正确",
                 "错误",
@@ -453,7 +453,7 @@ export const paperData = {
         {
             id: 23,
             type: "judge",
-            question: "下面代码采用分治算法求解标准 3 柱汉诺塔问题，其时间复杂度为 O(2^n)。",
+            question: "下面代码采用分治算法求解标准 3 柱汉诺塔问题，其时间复杂度为 O($$2^n$$)。",
             options: [
                 "正确",
                 "错误",

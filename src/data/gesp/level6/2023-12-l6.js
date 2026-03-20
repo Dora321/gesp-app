@@ -25,7 +25,7 @@ const programmingQuestions = [
             "动态规划"
         ],
         "template": "#include <bits/stdc++.h>\nusing namespace std;\n\nint main() {\n    // 在此编写代码\n    return 0;\n}",
-        "referenceCode": "#include <bits/stdc++.h>\nusing namespace std;\n\nint main() {\n    ios::sync_with_stdio(false);\n    cin.tie(nullptr);\n\n    int n, m;\n    cin >> n >> m;\n    vector<int> a(m + 1), b(n + 1);\n    for (int i = 1; i <= m; ++i) cin >> a[i];\n    for (int i = 1; i <= n; ++i) cin >> b[i];\n\n    vector<long long> dp(n + 2, 0);\n    for (int i = n; i >= 1; --i) {\n        long long bestNext = LLONG_MIN;\n        for (int j = 1; j <= m; ++j) {\n            int to = i + a[j];\n            bestNext = max(bestNext, to > n ? 0LL : dp[to]);\n        }\n        dp[i] = b[i] + bestNext;\n    }\n\n    cout << dp[1] << '\\n';\n    return 0;\n}"
+        "referenceCode": "#include <bits/stdc++.h>\nusing namespace std;\n\nint main() {\n    ios::sync_with_stdio(false);\n    cin.tie(nullptr);\n\n    int n, m;\n    cin >> n >> m;\n    vector<int> a(m + 1), b($n+1$);\n    for (int i = 1; i <= m; ++i) cin >> a[i];\n    for (int i = 1; i <= n; ++i) cin >> b[i];\n\n    vector<long long> dp(n + 2, 0);\n    for (int i = n; i >= 1; --i) {\n        long long bestNext = LLONG_MIN;\n        for (int j = 1; j <= m; ++j) {\n            int to = i + a[j];\n            bestNext = max(bestNext, to > n ? 0LL : dp[to]);\n        }\n        dp[i] = b[i] + bestNext;\n    }\n\n    cout << dp[1] << '\\n';\n    return 0;\n}"
     },
     {
         "id": 27,
@@ -33,7 +33,7 @@ const programmingQuestions = [
         "title": "工作沟通",
         "problemNumber": "2023-12-23-06-C-02",
         "description": "给定公司管理树。每场合作给出若干员工，主持人必须能管理所有参与者；若有多个可选，取编号最大的。",
-        "inputDescription": "第一行 n。第二行 n-1 个整数表示 1..n-1 号员工的直接领导。第三行 q。接下来 q 行每行先给人数 k，再给 k 个员工编号。",
+        "inputDescription": "第一行 n。第二行 $$n-1$$ 个整数表示 1..$$n-1$$ 号员工的直接领导。第三行 q。接下来 q 行每行先给人数 k，再给 k 个员工编号。",
         "outputDescription": "每场合作输出一行主持人编号。",
         "samples": [
             {

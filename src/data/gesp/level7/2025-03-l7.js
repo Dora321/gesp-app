@@ -23,7 +23,7 @@ const programmingQuestions = [
             "bitset"
         ],
         "template": "#include <bits/stdc++.h>\nusing namespace std;\n\nint main() {\n    ios::sync_with_stdio(false);\n    cin.tie(nullptr);\n\n    int n, m, k;\n    cin >> n >> m >> k;\n    // 在此编写代码\n    return 0;\n}",
-        "referenceCode": "#include <bits/stdc++.h>\nusing namespace std;\n\nconst int MAXN = 505;\n\nint main() {\n    ios::sync_with_stdio(false);\n    cin.tie(nullptr);\n\n    int n, m, k;\n    cin >> n >> m >> k;\n\n    vector<bitset<MAXN>> adj(n + 1);\n    for (int i = 0; i < m; ++i) {\n        int u, v;\n        cin >> u >> v;\n        adj[u].set(v);\n        adj[v].set(u);\n    }\n\n    vector<vector<bitset<MAXN>>> reach(k + 1, vector<bitset<MAXN>>(n + 1));\n    for (int s = 1; s <= n; ++s) reach[0][s].set(s);\n\n    for (int step = 1; step <= k; ++step) {\n        for (int s = 1; s <= n; ++s) {\n            bitset<MAXN> cur;\n            for (int y = 1; y <= n; ++y) {\n                if (reach[step - 1][s].test(y)) cur |= adj[y];\n            }\n            reach[step][s] = cur;\n        }\n    }\n\n    for (int s = 1; s <= n; ++s) {\n        for (int step = 1; step <= k; ++step) {\n            cout << reach[step][s].count() << (step == k ? '\n' : ' ');\n        }\n    }\n    return 0;\n}"
+        "referenceCode": "#include <bits/stdc++.h>\nusing namespace std;\n\nconst int MAXN = 505;\n\nint main() {\n    ios::sync_with_stdio(false);\n    cin.tie(nullptr);\n\n    int n, m, k;\n    cin >> n >> m >> k;\n\n    vector<bitset<MAXN>> adj($n+1$);\n    for (int i = 0; i < m; ++i) {\n        int u, v;\n        cin >> u >> v;\n        adj[u].set(v);\n        adj[v].set(u);\n    }\n\n    vector<vector<bitset<MAXN>>> reach(k + 1, vector<bitset<MAXN>>($n+1$));\n    for (int s = 1; s <= n; ++s) reach[0][s].set(s);\n\n    for (int step = 1; step <= k; ++step) {\n        for (int s = 1; s <= n; ++s) {\n            bitset<MAXN> cur;\n            for (int y = 1; y <= n; ++y) {\n                if (reach[step - 1][s].test(y)) cur |= adj[y];\n            }\n            reach[step][s] = cur;\n        }\n    }\n\n    for (int s = 1; s <= n; ++s) {\n        for (int step = 1; step <= k; ++step) {\n            cout << reach[step][s].count() << (step == k ? '\n' : ' ');\n        }\n    }\n    return 0;\n}"
     },
     {
         "id": 27,
@@ -219,7 +219,7 @@ export const paperData = {
         {
             id: 9,
             type: "single",
-            question: "给定一个无向图，图的节点编号从 0 到 n-1，图的边以邻接表的形式给出。下面程序使用深度优先搜索（DFS）遍历该图，并输出遍历的节点顺序。横线处应该填入的是（ ）。",
+            question: "给定一个无向图，图的节点编号从 0 到 $$n-1$$，图的边以邻接表的形式给出。下面程序使用深度优先搜索（DFS）遍历该图，并输出遍历的节点顺序。横线处应该填入的是（ ）。",
             options: [
                 "选项A",
                 "选项B",
@@ -276,7 +276,7 @@ export const paperData = {
         {
             id: 12,
             type: "single",
-            question: "给定两个无向图 G1 和 G2，判断它们是否同构。图的同构是指两个图的节点可以通过某种重新编号的方式完全匹配，且边的连接关系一致。为了简化问题，假设图的节点编号从 0 到 n-1，并且图的边以邻接表形式给出。下面程序中横线处应该填入的是（ ）。",
+            question: "给定两个无向图 G1 和 G2，判断它们是否同构。图的同构是指两个图的节点可以通过某种重新编号的方式完全匹配，且边的连接关系一致。为了简化问题，假设图的节点编号从 0 到 $$n-1$$，并且图的边以邻接表形式给出。下面程序中横线处应该填入的是（ ）。",
             options: [
                 "hash += to_string(neighbor);",
                 "hash += to_string(neighbors);",
@@ -295,7 +295,7 @@ export const paperData = {
         {
             id: 13,
             type: "single",
-            question: "给定一个 m×n 的二维网格 grid，每个格子中有一个非负整数。请找出一条从左上角 (0, 0) 到右下角 (m-1, n-1) 的路径，使得路径上的数字总和最小。每次只能向右或向下移动。横线处应该填入的是（ ）。",
+            question: "给定一个 m×n 的二维网格 grid，每个格子中有一个非负整数。请找出一条从左上角 (0, 0) 到右下角 ($$m-1$$, $$n-1$$) 的路径，使得路径上的数字总和最小。每次只能向右或向下移动。横线处应该填入的是（ ）。",
             options: [
                 "dp[i][j] = min(dp[i - 1][j], dp[i][j - 1]) + grid[i][1];",
                 "dp[i][j] = min(dp[i - 1][j], dp[i][j - 1]) + grid[i][j];",
@@ -352,7 +352,7 @@ export const paperData = {
         {
             id: 16,
             type: "judge",
-            question: "在 C++ 语法中，表达式1e6、1000000和10^6的值是相同的。",
+            question: "在 C++ 语法中，表达式1e6、1000000和$10^6$的值是相同的。",
             options: [
                 "正确",
                 "错误",
