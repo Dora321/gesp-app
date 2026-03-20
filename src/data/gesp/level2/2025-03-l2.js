@@ -142,7 +142,7 @@ export const paperData = {
             id: 14,
             type: 'single',
             question: "在 C++ 中，（ ）最适合填入横线处用于连续 5 次正确⽣成 1 到 10 之间的随机整数？\n```cpp\nsrand(time(0));\nfor (int i = 0; i < 5; i++)\n    cout << (________________) << \" \";\n```",
-            options: ["rand( ) % 11", "rand( ) % 10", "rand( ) % 10 + 1", "rand() % 9 + 1"],
+            options: ["rand( ) % 11", "rand( ) % 10", "rand( ) % 10+1", "rand() % 9+1"],
             answer: 2,
             score: 2,
             explanation: 'rand() % 10 产生 0-9，加 1 后产生 1-10。',
@@ -171,7 +171,7 @@ export const paperData = {
         {
             id: 17,
             type: 'judge',
-            question: "在 C++ 代码中，假设 N 为正整数，则 `N - N / 10 * 10` 与 `N % 10` 都将获得 N 的个位数。",
+            question: "在 C++ 代码中，假设 N 为正整数，则 `N-N / 10 * 10` 与 `N % 10` 都将获得 N 的个位数。",
             options: ['正确', '错误'],
             answer: 0,
             score: 2,

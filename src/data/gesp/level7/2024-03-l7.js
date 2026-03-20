@@ -72,7 +72,7 @@ export const paperData = {
                 "贪⼼算法",
                 "动态规划",
                 "深度优先搜索",
-                "⼴度优先搜索 int pos[8]; void queen(int n) { for (int i = 0; i < 8; i++) { pos[n] = i; bool attacked = false; for (int j = 0; j < n; j++) if (pos[n] == pos[j] || pos[n] + n == pos[j] + j || pos[n] - n == pos[j] - j) { attacked = true; break; } if (attacked) continue; if (n == 7) { return; } else { queen($n+1$); } } } 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19",
+                "⼴度优先搜索 int pos[8]; void queen(int n) { for (int i = 0; i < 8; i++) { pos[n] = i; bool attacked = false; for (int j = 0; j < n; j++) if (pos[n] == pos[j] || pos[n]+n == pos[j]+j || pos[n]-n == pos[j]-j) { attacked = true; break; } if (attacked) continue; if (n == 7) { return; } else { queen($n+1$); } } } 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19",
             ],
             answer: 2,
             score: 2,
@@ -184,9 +184,9 @@ export const paperData = {
             question: "已知x为double类型的变量，且值大于 0 ，则下列表达式的值一定大于 0 的是 ( ) 。",
             options: [
                 "sin(x) / x",
-                "exp(x) - x",
-                "log(x) - x",
-                "x * x - x",
+                "exp(x)-x",
+                "log(x)-x",
+                "x * x-x",
             ],
             answer: 1,
             score: 2,
@@ -257,7 +257,7 @@ export const paperData = {
         {
             id: 12,
             type: "single",
-            question: "下面search函数的平均时间复杂度为 ( ) 。 #include <algorithm> using namespace std; struct activity { int id, start, end; }; bool compare(activity a, activity b) { return a.end < b.end; } int schedule(int n, activity * p) { sort(p, p + n, compare); int cnt = 0, end = 0; for (int i = 0; i < n; i++) { if (p[i].start >= end) { end = p[i].end; cnt++; } } return cnt; } 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19",
+            question: "下面search函数的平均时间复杂度为 ( ) 。 #include <algorithm> using namespace std; struct activity { int id, start, end; }; bool compare(activity a, activity b) { return a.end < b.end; } int schedule(int n, activity * p) { sort(p, p+n, compare); int cnt = 0, end = 0; for (int i = 0; i < n; i++) { if (p[i].start >= end) { end = p[i].end; cnt++; } } return cnt; } 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19",
             options: [
                 "选项A",
                 "选项B",
@@ -295,7 +295,7 @@ export const paperData = {
         {
             id: 14,
             type: "single",
-            question: "下面程序的输出为（ ）。 int search(int n, int * p, int target) { int low = 0, high = n; while (low <= high) { int middle = (low + high) / 2; if (target == p[middle]) { return middle; } else if (target > p[middle]) { low = middle + 1; } else { high = middle - 1; } } return -1; } 1 2 3 4 5 6 7 8 9 10 11 12 13 14 int count_triple(int n) { int cnt = 0; for (int a = 1; a <= n; a++) for (int b = a; a + b <= n; b++) for (int c = b; a + b + c <= n; c++) if (a * a + b * b == c * c) cnt++; return cnt; } 1 2 3 4 5 6 7 8 9 #include <iostream> using namespace std; int down(int n) { if (n <= 1) return n; return down(n - 1) + down(n - 2) + down(n - 3); } int main() { cout << down(6) << endl; return 0; } 1 2 3 4 5 6 7 8 9 10 11 题号 1 2 3 4 5 6 7 8 9 10 答案",
+            question: "下面程序的输出为（ ）。 int search(int n, int * p, int target) { int low = 0, high = n; while (low <= high) { int middle = (low+high) / 2; if (target == p[middle]) { return middle; } else if (target > p[middle]) { low = middle+1; } else { high = middle-1; } } return -1; } 1 2 3 4 5 6 7 8 9 10 11 12 13 14 int count_triple(int n) { int cnt = 0; for (int a = 1; a <= n; a++) for (int b = a; a+b <= n; b++) for (int c = b; a+b+c <= n; c++) if (a * a+b * b == c * c) cnt++; return cnt; } 1 2 3 4 5 6 7 8 9 #include <iostream> using namespace std; int down(int n) { if (n <= 1) return n; return down(n-1)+down(n-2)+down(n-3); } int main() { cout << down(6) << endl; return 0; } 1 2 3 4 5 6 7 8 9 10 11 题号 1 2 3 4 5 6 7 8 9 10 答案",
             options: [
                 "6",
                 "13",

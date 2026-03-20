@@ -15,7 +15,7 @@ const programmingQuestions = [
         explanation: "由于 n, m 较小（最大 50），可以枚举所有可能的子矩形（左上角 (r1, c1) 和右下角 (r2, c2)），然后利用二维前缀和快速计算子矩形内 1 的个数。如果 1 的个数正好等于矩形面积的一半，则该矩形平衡。",
         tags: ["编程题", "二维前缀和", "暴力枚举"],
         template: "#include <iostream>\n#include <string>\n#include <vector>\nusing namespace std;\n\nint main() {\n    int n, m;\n    cin >> n >> m;\n    // 在此编写代码\n    return 0;\n}",
-        referenceCode: "#include <iostream>\n#include <vector>\n#include <string>\nusing namespace std;\nint main() {\n    int n, m; cin >> n >> m;\n    vector<vector<int>> s($n+1$, vector<int>(m + 1, 0));\n    for (int i = 1; i <= n; i++) {\n        string row; cin >> row;\n        for (int j = 1; j <= m; j++) {\n            s[i][j] = s[i-1][j] + s[i][j-1] - s[i-1][j-1] + (row[j-1] - '0');\n        }\n    }\n    int max_area = 0;\n    for (int r1 = 1; r1 <= n; r1++) {\n        for (int c1 = 1; c1 <= m; c1++) {\n            for (int r2 = r1; r2 <= n; r2++) {\n                for (int c2 = c1; c2 <= m; c2++) {\n                    int area = (r2 - r1 + 1) * (c2 - c1 + 1);\n                    if (area % 2 != 0) continue;\n                    int ones = s[r2][c2] - s[r1-1][c2] - s[r2][c1-1] + s[r1-1][c1-1];\n                    if (ones * 2 == area) max_area = max(max_area, area);\n                }\n            }\n        }\n    }\n    cout << max_area << endl;\n    return 0;\n}"
+        referenceCode: "#include <iostream>\n#include <vector>\n#include <string>\nusing namespace std;\nint main() {\n    int n, m; cin >> n >> m;\n    vector<vector<int>> s($n+1$, vector<int>(m+1, 0));\n    for (int i = 1; i <= n; i++) {\n        string row; cin >> row;\n        for (int j = 1; j <= m; j++) {\n            s[i][j] = s[i-1][j]+s[i][j-1]-s[i-1][j-1]+(row[j-1]-'0');\n        }\n    }\n    int max_area = 0;\n    for (int r1 = 1; r1 <= n; r1++) {\n        for (int c1 = 1; c1 <= m; c1++) {\n            for (int r2 = r1; r2 <= n; r2++) {\n                for (int c2 = c1; c2 <= m; c2++) {\n                    int area = (r2-r1+1) * (c2-c1+1);\n                    if (area % 2 != 0) continue;\n                    int ones = s[r2][c2]-s[r1-1][c2]-s[r2][c1-1]+s[r1-1][c1-1];\n                    if (ones * 2 == area) max_area = max(max_area, area);\n                }\n            }\n        }\n    }\n    cout << max_area << endl;\n    return 0;\n}"
     },
     {
         id: 27,
@@ -31,7 +31,7 @@ const programmingQuestions = [
         explanation: "贪心策略：排序后，从小到大匹配每一天所需的题目数量。如果当前题单满足当前天数要求，则进入下一天。",
         tags: ["编程题", "贪心", "排序"],
         template: "#include <iostream>\n#include <algorithm>\n#include <vector>\nusing namespace std;\n\nint main() {\n    int n;\n    cin >> n;\n    // 在此编写代码\n    return 0;\n}",
-        referenceCode: "#include <iostream>\n#include <algorithm>\n#include <vector>\nusing namespace std;\nint main() {\n    int n; cin >> n;\n    vector<int> a(n);\n    for (int i = 0; i < n; i++) cin >> a[i];\n    sort(a.begin(), a.end());\n    int day = 0;\n    for (int i = 0; i < n; i++) {\n        if (a[i] >= day + 1) day++;\n    }\n    cout << day << endl;\n    return 0;\n}"
+        referenceCode: "#include <iostream>\n#include <algorithm>\n#include <vector>\nusing namespace std;\nint main() {\n    int n; cin >> n;\n    vector<int> a(n);\n    for (int i = 0; i < n; i++) cin >> a[i];\n    sort(a.begin(), a.end());\n    int day = 0;\n    for (int i = 0; i < n; i++) {\n        if (a[i] >= day+1) day++;\n    }\n    cout << day << endl;\n    return 0;\n}"
     }
 ];
 
@@ -78,11 +78,11 @@ export const paperData = {
         {
             id: 4,
             type: "single",
-            question: "假设变量 a 的地址是 0x6ffe14，下面程序的输出是（ ）。\n```cpp\nint a = 10;\nint *p = &a;\ncout << p << \" \" << p + 1 << endl;\n```",
+            question: "假设变量 a 的地址是 0x6ffe14，下面程序的输出是（ ）。\n```cpp\nint a = 10;\nint *p = &a;\ncout << p << \" \" << p+1 << endl;\n```",
             options: ["0x6ffe14 0x6ffe15", "0x6ffe14 0x6ffe18", "0x6ffe14 0x6ffe14", "0x6ffe14 0x6ffe1c"],
             answer: 1,
             score: 2,
-            explanation: "p+1 在地址上增加的是指针所指向类型的大小。int 占 4 字节，0x6ffe14 + 4 = 0x6ffe18。",
+            explanation: "p+1 在地址上增加的是指针所指向类型的大小。int 占 4 字节，0x6ffe14+4 = 0x6ffe18。",
             tags: ["客观题", "单选题", "GESP4级"]
         },
         {
@@ -139,10 +139,10 @@ export const paperData = {
             id: 10,
             type: "single",
             question: "选择排序在最坏情况下的时间复杂度是（ ）。",
-            options: ["$$$O(N)$$$", "$O(n \log n)$", "$$$O(N^2)$$$", "$$O(1)$$"],
+            options: ["$O(N)$", "$O(n \log n)$", "$O(N^2)$", "$O(1)$"],
             answer: 2,
             score: 2,
-            explanation: "选择排序无论最好还是最坏情况，都需要进行两层循环，复杂度均为 $$$O(N^2)$$$。",
+            explanation: "选择排序无论最好还是最坏情况，都需要进行两层循环，复杂度均为 $O(N^2)$。",
             tags: ["客观题", "单选题", "GESP4级"]
         },
         {
@@ -258,11 +258,11 @@ export const paperData = {
         {
             id: 22,
             type: "judge",
-            question: "冒泡排序的时间复杂度总是 $$$O(N^2)$$$。",
+            question: "冒泡排序的时间复杂度总是 $O(N^2)$。",
             options: ["正确", "错误"],
             answer: 1,
             score: 2,
-            explanation: "优化后的冒泡排序在最好情况下（数组已有序）的时间复杂度可以达到 $$$O(N)$$$。",
+            explanation: "优化后的冒泡排序在最好情况下（数组已有序）的时间复杂度可以达到 $O(N)$。",
             tags: ["客观题", "判断题", "GESP4级"]
         },
         {

@@ -27,7 +27,7 @@ const programmingQuestions = [
             "度数统计"
         ],
         "template": "#include <bits/stdc++.h>\nusing namespace std;\n\nint main() {\n    ios::sync_with_stdio(false);\n    cin.tie(nullptr);\n\n    int n, m;\n    cin >> n >> m;\n    // 在此编写代码\n    return 0;\n}",
-        "referenceCode": "#include <bits/stdc++.h>\nusing namespace std;\n\nint main() {\n    ios::sync_with_stdio(false);\n    cin.tie(nullptr);\n\n    int n, m;\n    cin >> n >> m;\n    vector<long long> deg($n+1$, 0);\n    for (int i = 0; i < m; ++i) {\n        int u, v;\n        cin >> u >> v;\n        deg[u]++;\n        deg[v]++;\n    }\n\n    long long ans = 0;\n    for (int i = 1; i <= n; ++i) {\n        ans += deg[i] * (deg[i] - 1) / 2;\n    }\n    cout << ans << '\n';\n    return 0;\n}"
+        "referenceCode": "#include <bits/stdc++.h>\nusing namespace std;\n\nint main() {\n    ios::sync_with_stdio(false);\n    cin.tie(nullptr);\n\n    int n, m;\n    cin >> n >> m;\n    vector<long long> deg($n+1$, 0);\n    for (int i = 0; i < m; ++i) {\n        int u, v;\n        cin >> u >> v;\n        deg[u]++;\n        deg[v]++;\n    }\n\n    long long ans = 0;\n    for (int i = 1; i <= n; ++i) {\n        ans += deg[i] * (deg[i]-1) / 2;\n    }\n    cout << ans << '\n';\n    return 0;\n}"
     },
     {
         "id": 27,
@@ -54,7 +54,7 @@ const programmingQuestions = [
             "0/1背包"
         ],
         "template": "#include <bits/stdc++.h>\nusing namespace std;\n\nint main() {\n    ios::sync_with_stdio(false);\n    cin.tie(nullptr);\n\n    int n;\n    cin >> n;\n    // 在此编写代码\n    return 0;\n}",
-        "referenceCode": "#include <bits/stdc++.h>\nusing namespace std;\n\nint main() {\n    ios::sync_with_stdio(false);\n    cin.tie(nullptr);\n\n    int n;\n    cin >> n;\n    vector<pair<int, int>> items(n);\n    int sumDiff = 0;\n    for (int i = 0; i < n; ++i) {\n        int a, b;\n        cin >> a >> b;\n        items[i] = {a, b};\n        sumDiff += abs(a - b);\n    }\n\n    const int NEG = -1000000000;\n    int offset = sumDiff;\n    vector<int> dp(offset * 2 + 1, NEG);\n    dp[offset] = 0;\n\n    for (auto [a, b] : items) {\n        int diff = a - b;\n        int val = a + b;\n        vector<int> ndp = dp;\n        for (int i = 0; i <= offset * 2; ++i) {\n            if (dp[i] <= NEG / 2) continue;\n            int ni = i + diff;\n            if (0 <= ni && ni <= offset * 2) {\n                ndp[ni] = max(ndp[ni], dp[i] + val);\n            }\n        }\n        dp.swap(ndp);\n    }\n\n    cout << max(0, dp[offset]) << '\n';\n    return 0;\n}"
+        "referenceCode": "#include <bits/stdc++.h>\nusing namespace std;\n\nint main() {\n    ios::sync_with_stdio(false);\n    cin.tie(nullptr);\n\n    int n;\n    cin >> n;\n    vector<pair<int, int>> items(n);\n    int sumDiff = 0;\n    for (int i = 0; i < n; ++i) {\n        int a, b;\n        cin >> a >> b;\n        items[i] = {a, b};\n        sumDiff += abs(a-b);\n    }\n\n    const int NEG = -1000000000;\n    int offset = sumDiff;\n    vector<int> dp(offset * 2+1, NEG);\n    dp[offset] = 0;\n\n    for (auto [a, b] : items) {\n        int diff = a-b;\n        int val = a+b;\n        vector<int> ndp = dp;\n        for (int i = 0; i <= offset * 2; ++i) {\n            if ($dp[i]$ <= NEG / 2) continue;\n            int ni = i+diff;\n            if (0 <= ni && ni <= offset * 2) {\n                ndp[ni] = max(ndp[ni], $dp[i]$+val);\n            }\n        }\n        dp.swap(ndp);\n    }\n\n    cout << max(0, dp[offset]) << '\n';\n    return 0;\n}"
     }
 ];
 
@@ -91,10 +91,10 @@ export const paperData = {
             type: "single",
             question: "已知a 为int 类型变量，p 为int * 类型变量，下列赋值语句不符合语法的是（ ）。",
             options: [
-                "*(p + a) = *p;",
-                "*(p - a) = a;",
-                "p + a = p;",
-                "p = p + a;",
+                "*(p+a) = *p;",
+                "*(p-a) = a;",
+                "p+a = p;",
+                "p = p+a;",
             ],
             answer: 2,
             score: 2,
@@ -205,7 +205,7 @@ export const paperData = {
             type: "single",
             question: "一个连通的简单有向图，共有28条边，则该图⾄少有( )个顶点。",
             options: [
-                "5 #include <iostream> using namespace std; int main() { int arr[5] = {2, 4, 6, 8, 10}; int * p = arr + 2; cout << p[3] << endl; return 0; } 1 2 3 4 5 6 7 8",
+                "5 #include <iostream> using namespace std; int main() { int arr[5] = {2, 4, 6, 8, 10}; int * p = arr+2; cout << p[3] << endl; return 0; } 1 2 3 4 5 6 7 8",
                 "6",
                 "7",
                 "8",
@@ -279,7 +279,7 @@ export const paperData = {
         {
             id: 12,
             type: "single",
-            question: "下面程序的时间复杂度为（ ）。 #include <iostream> using namespace std; int rec_fib[100]; int fib(int n) { if (n <= 1) return n; if (rec_fib[n] == 0) rec_fib[n] = fib(n - 1) + fib(n - 2); return rec_fib[n]; } int main() { cout << fib(6) << endl; return 0; } 1 2 3 4 5 6 7 8 9 10 11 12 13 14 int rec_fib[MAX_N]; int fib(int n) { if (n <= 1) return n; if (rec_fib[n] == 0) rec_fib[n] = fib(n - 1) + fib(n - 2); return rec_fib[n]; } 1 2 3 4 5 6 7 8",
+            question: "下面程序的时间复杂度为（ ）。 #include <iostream> using namespace std; int rec_fib[100]; int fib(int n) { if (n <= 1) return n; if (rec_fib[n] == 0) rec_fib[n] = fib(n-1)+fib(n-2); return rec_fib[n]; } int main() { cout << fib(6) << endl; return 0; } 1 2 3 4 5 6 7 8 9 10 11 12 13 14 int rec_fib[MAX_N]; int fib(int n) { if (n <= 1) return n; if (rec_fib[n] == 0) rec_fib[n] = fib(n-1)+fib(n-2); return rec_fib[n]; } 1 2 3 4 5 6 7 8",
             options: [
                 "选项A",
                 "选项B",
@@ -336,7 +336,7 @@ export const paperData = {
         {
             id: 15,
             type: "single",
-            question: "下列选项中，哪个不可能是下图的⼴度优先遍历序列（ ）。 int search(int n, int * p, int target) { int low = 0, high = n; while (low < high) { int middle = (low + high) / 2; if (target == p[middle]) { return middle; } else if (target > p[middle]) { low = middle + 1; } else { high = middle; } } return -1; } 1 2 3 4 5 6 7 8 9 10 11 12 13 14 int primes[MAXP], num = 0; bool isPrime[MAXN] = {false}; void sieve() { for (int n = 2; n <= MAXN; n++) { if (!isPrime[n]) primes[num++] = n; for (int i = 0; i < num && n * primes[i] <= MAXN; i++) { isPrime[n * primes[i]] = true; if (n % primes[i] == 0) break; } } } 1 2 3 4 5 6 7 8 9 10 11 12 13 题号 1 2 3 4 5 6 7 8 9 10 答案",
+            question: "下列选项中，哪个不可能是下图的⼴度优先遍历序列（ ）。 int search(int n, int * p, int target) { int low = 0, high = n; while (low < high) { int middle = (low+high) / 2; if (target == p[middle]) { return middle; } else if (target > p[middle]) { low = middle+1; } else { high = middle; } } return -1; } 1 2 3 4 5 6 7 8 9 10 11 12 13 14 int primes[MAXP], num = 0; bool isPrime[MAXN] = {false}; void sieve() { for (int n = 2; n <= MAXN; n++) { if (!isPrime[n]) primes[num++] = n; for (int i = 0; i < num && n * primes[i] <= MAXN; i++) { isPrime[n * primes[i]] = true; if (n % primes[i] == 0) break; } } } 1 2 3 4 5 6 7 8 9 10 11 12 13 题号 1 2 3 4 5 6 7 8 9 10 答案",
             options: [
                 "1, 2, 4, 5, 3, 7, 6, 8, 9",
                 "1, 2, 5, 4, 3, 7, 8, 6, 9",

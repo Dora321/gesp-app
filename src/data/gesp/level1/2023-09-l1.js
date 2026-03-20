@@ -36,7 +36,7 @@ export const paperData = {
     {
       id: 3,
       type: 'single',
-      question: 'C++ 表达式 2 - 1 && 2 % 10 的值是（ ）。',
+      question: 'C++ 表达式 2-1 && 2 % 10 的值是（ ）。',
       options: ['0', '1', '2', '3'],
       answer: 1,
       score: 2,
@@ -46,7 +46,7 @@ export const paperData = {
     {
       id: 4,
       type: 'single',
-      question: '假设 a = 3, b = 4，执行 cout << "a+b=" << a + b; 后输出为（ ）。',
+      question: '假设 a = 3, b = 4，执行 cout << "a+b=" << a+b; 后输出为（ ）。',
       options: ['3+4=7', '3+4=7', 'a+b=7', 'a+b=a+b'],
       answer: 2,
       score: 2,
@@ -57,7 +57,7 @@ export const paperData = {
       id: 5,
       type: 'single',
       question: '在 C++ 语言中，int 类型的变量 x、y、z 的值分别为 2、4、6，以下表达式的值为真的是（ ）。',
-      options: ['x > y || x > z', 'x != z - y', 'z > y + x', 'x < y || ! (x < z)'],
+      options: ['x > y || x > z', 'x != z-y', 'z > y+x', 'x < y || ! (x < z)'],
       answer: 3,
       score: 2,
       explanation: 'x < y (2 < 4) 已经是 true。',
@@ -67,7 +67,7 @@ export const paperData = {
       id: 6,
       type: 'single',
       question: '对 int 类型的变量 a、b、c，下列语句不符合 C++ 语法的是（ ）。',
-      options: ['c += 5;', 'b = c % 2.5;', 'a = (b = 3, c = 4, b + c);', 'a -= a = (b = 6) / (c = 2);'],
+      options: ['c += 5;', 'b = c % 2.5;', 'a = (b = 3, c = 4, b+c);', 'a -= a = (b = 6) / (c = 2);'],
       answer: 1,
       score: 2,
       explanation: '取模运算 % 的操作数必须为整数。',
@@ -76,7 +76,7 @@ export const paperData = {
     {
       id: 7,
       type: 'single',
-      question: '下面 C++ 代码执行后的输出是（ ）。\n```cpp\nint a = 12, b = 20;\nint c = a - b;\nif (c > 0) cout << a;\nelse cout << b;\n```',
+      question: '下面 C++ 代码执行后的输出是（ ）。\n```cpp\nint a = 12, b = 20;\nint c = a-b;\nif (c > 0) cout << a;\nelse cout << b;\n```',
       options: ['12', '20', '8', '-8'],
       answer: 1,
       score: 2,
@@ -137,7 +137,7 @@ export const paperData = {
       id: 13,
       type: 'single',
       question: '下面C++代码用于求正整数的所有因数。在横线处应填写（ ）。\n```cpp\nint n; cin >> n;\nfor (______) {\n    if (n % i == 0) cout << i << endl;\n}\n```',
-      options: ['int i = 1; i < n; i + 1', 'int i = 1; i < $n+1$; i + 1', 'int i = 1; i < n; i = i + 1', 'int i = 1; i <= n; i = i + 1'],
+      options: ['int i = 1; i < n; i+1', 'int i = 1; i < $n+1$; i+1', 'int i = 1; i < n; i = i+1', 'int i = 1; i <= n; i = i+1'],
       answer: 3,
       score: 2,
       explanation: '循环变量应从 1 遍历到 n。',
@@ -156,7 +156,7 @@ export const paperData = {
     {
       id: 15,
       type: 'single',
-      question: '下面 C++ 代码段执行后的输出是（ ）。\n```cpp\nint s = 0;\nfor (int i = 1; i <= 10; i++) {\n    if (i % 2 == 0) continue;\n    s = s + i;\n}\ncout << s;\n```',
+      question: '下面 C++ 代码段执行后的输出是（ ）。\n```cpp\nint s = 0;\nfor (int i = 1; i <= 10; i++) {\n    if (i % 2 == 0) continue;\n    s = s+i;\n}\ncout << s;\n```',
       options: ['25', '10', '55', '30'],
       answer: 0,
       score: 2,
@@ -216,7 +216,7 @@ export const paperData = {
     {
       id: 21,
       type: 'judge',
-      question: 'C++ 表达式 (\'1\' + \'1\') 的值为 \'2\'。',
+      question: 'C++ 表达式 (\'1\'+\'1\') 的值为 \'2\'。',
       options: ['正确', '错误'],
       answer: 1,
       score: 2,
@@ -266,8 +266,8 @@ export const paperData = {
     {
       id: 26,
       type: 'programming',
-      question: '## [GESP202309 一级] 小杨买文具\n\n**题目描述**\n\n小杨还有 $x$ 元钱，他想购买签字笔、记事本和直尺。已知签字笔 $a$ 元一支，记事本 $b$ 元一本，直尺 $c$ 元一把。小杨想买 $n$ 支签字笔，$m$ 本记事本和 $k$ 把直尺。\n\n请你编写程序，判断小杨手中的钱是否够买这些文具。如果够买，输出剩余的钱数；如果不够买，输出还差多少钱（以负数形式表示）。\n\n**输入格式**\n\n输入共四行：\n- 第一行包含一个正整数 $x$，表示小杨手中的钱数。\n- 第二行包含三个正整数 $a, b, c$，分别表示签字笔、记事本和直尺的单价。\n- 第三行包含三个正整数 $n, m, k$，分别表示小杨想买的文具数量。\n\n**输出格式**\n\n输出一个整数。如果钱够买，输出剩余钱数；如果不够买，输出还差多少钱的负数。\n\n**输入样例**\n\n```\n100\n5 10 2\n10 3 5\n```\n\n**输出样例**\n\n```\n10\n```\n\n**样例解释**\n\n总花费为 $5 \\times 10 + 10 \\times 3 + 2 \\times 5 = 50 + 30 + 10 = 90$ 元。小杨有 100 元，剩余 $100 - 90 = 10$ 元。',
-      answer: '#include <iostream>\nusing namespace std;\nint main() {\n    long long x, a, b, c, n, m, k;\n    cin >> x >> a >> b >> c >> n >> m >> k;\n    long long total = a * n + b * m + c * k;\n    cout << x - total << endl;\n    return 0;\n}',
+      question: '## [GESP202309 一级] 小杨买文具\n\n**题目描述**\n\n小杨还有 $x$ 元钱，他想购买签字笔、记事本和直尺。已知签字笔 $a$ 元一支，记事本 $b$ 元一本，直尺 $c$ 元一把。小杨想买 $n$ 支签字笔，$m$ 本记事本和 $k$ 把直尺。\n\n请你编写程序，判断小杨手中的钱是否够买这些文具。如果够买，输出剩余的钱数；如果不够买，输出还差多少钱（以负数形式表示）。\n\n**输入格式**\n\n输入共四行：\n- 第一行包含一个正整数 $x$，表示小杨手中的钱数。\n- 第二行包含三个正整数 $a, b, c$，分别表示签字笔、记事本和直尺的单价。\n- 第三行包含三个正整数 $n, m, k$，分别表示小杨想买的文具数量。\n\n**输出格式**\n\n输出一个整数。如果钱够买，输出剩余钱数；如果不够买，输出还差多少钱的负数。\n\n**输入样例**\n\n```\n100\n5 10 2\n10 3 5\n```\n\n**输出样例**\n\n```\n10\n```\n\n**样例解释**\n\n总花费为 $5 \\times 10+10 \\times 3+2 \\times 5 = 50+30+10 = 90$ 元。小杨有 100 元，剩余 $100-90 = 10$ 元。',
+      answer: '#include <iostream>\nusing namespace std;\nint main() {\n    long long x, a, b, c, n, m, k;\n    cin >> x >> a >> b >> c >> n >> m >> k;\n    long long total = a * n+b * m+c * k;\n    cout << x-total << endl;\n    return 0;\n}',
       score: 25,
       explanation: '简单的四则运算。注意使用 long long 以防溢出（虽然一级范围通常较小）。LuoGu B3862。',
       tags: [LEVEL1_TAGS.basics, LEVEL1_TAGS.operator]

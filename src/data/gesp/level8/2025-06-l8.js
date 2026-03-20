@@ -111,10 +111,10 @@ export const paperData = {
             type: "single",
             question: "已定义变量 double a, b; ，下列哪个表达式可以用来判断一元二次方程 是否有实根？（ ）。",
             options: [
-                "4 * b - a * a < 0",
+                "4 * b-a * a < 0",
                 "4 * b <= a * a",
-                "a * a - 4 * b",
-                "b * 4 - a * a",
+                "a * a-4 * b",
+                "b * 4-a * a",
             ],
             answer: 1,
             score: 2,
@@ -207,7 +207,7 @@ export const paperData = {
             question: "下面 count_triple 函数的时间复杂度为( )。",
             options: [
                 "选项A",
-                "#include <iostream> const int N = 10; int ch[N][N][N]; int main() { for (int x = 0; x < N; x++) for (int y = 0; y < N; y++) for (int z = 0; z < N; z++) if (x == 0 && y == 0 && z == 0) ch[x][y][z] = 1; else { if (x > 0) ch[x][y][z] += ch[x - 1][y][z]; if (y > 0) ch[x][y][z] += ch[x][y - 1][z]; if (z > 0) ch[x][y][z] += ch[x][y][z - 1]; } std::cout << ch[1][2][3] << std::endl; return 0; } 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 int gcd(int a, int b) { if (a == 0) return b; return gcd(b % a, a); } int count_triple(int n) { int cnt = 0; for (int v = 1; v * v * 4 <= n; v++) for (int u = v + 1; u * (u + v) * 2 <= n; u += 2) if (gcd(u, v) == 1) { int a = u * u - v * v; int b = u * v * 2; int c = u * u + v * v; cnt += n / (a + b + c); } return cnt; } 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17",
+                "#include <iostream> const int N = 10; int ch[N][N][N]; int main() { for (int x = 0; x < N; x++) for (int y = 0; y < N; y++) for (int z = 0; z < N; z++) if (x == 0 && y == 0 && z == 0) ch[x][y][z] = 1; else { if (x > 0) ch[x][y][z] += ch[x-1][y][z]; if (y > 0) ch[x][y][z] += ch[x][y-1][z]; if (z > 0) ch[x][y][z] += ch[x][y][z-1]; } std::cout << ch[1][2][3] << std::endl; return 0; } 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 int gcd(int a, int b) { if (a == 0) return b; return gcd(b % a, a); } int count_triple(int n) { int cnt = 0; for (int v = 1; v * v * 4 <= n; v++) for (int u = v+1; u * (u+v) * 2 <= n; u += 2) if (gcd(u, v) == 1) { int a = u * u-v * v; int b = u * v * 2; int c = u * u+v * v; cnt += n / (a+b+c); } return cnt; } 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17",
                 "选项C",
                 "选项D",
             ],
@@ -242,7 +242,7 @@ export const paperData = {
         {
             id: 13,
             type: "single",
-            question: "下面 LIS 函数试图求出最长上升子序列的长度，横线处应该填入的是（ ）。 void swap(int & a, int & b) { int temp = a; a = b; b = temp; } int partition(int a[], int l, int r) { int pivot = a[l], i = l + 1, j = r; while (i <= j) { while (i <= j && a[j] >= pivot) j--; while (i <= j && a[i] <= pivot) i++; if (i < j) swap(a[i], a[j]); } ________; // 在此处填入选项 return ________; // 在此处填入选项 } void quick_sort(int a[], int l, int r) { if (l < r) { int pivot = partition(a, l, r); quick_sort(a, l, pivot - 1); quick_sort(a, pivot + 1, r); } } 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 swap(a[l], a[i]) i 1 2 swap(a[l], a[j]) i 1 2 swap(a[l], a[i]) j 1 2 swap(a[l], a[j]) j 1 2 int max(int a, int b) { return (a > b) ? a : b; } int LIS(vector<int> & nums) { int n = nums.size(); if (n == 0) return 0; vector<int> dp(n, 1); int maxLen = 1; 1 2 3 4 5 6 7 8 9",
+            question: "下面 LIS 函数试图求出最长上升子序列的长度，横线处应该填入的是（ ）。 void swap(int & a, int & b) { int temp = a; a = b; b = temp; } int partition(int a[], int l, int r) { int pivot = a[l], i = l+1, j = r; while (i <= j) { while (i <= j && a[j] >= pivot) j--; while (i <= j && a[i] <= pivot) i++; if (i < j) swap(a[i], a[j]); } ________; // 在此处填入选项 return ________; // 在此处填入选项 } void quick_sort(int a[], int l, int r) { if (l < r) { int pivot = partition(a, l, r); quick_sort(a, l, pivot-1); quick_sort(a, pivot+1, r); } } 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 swap(a[l], a[i]) i 1 2 swap(a[l], a[j]) i 1 2 swap(a[l], a[i]) j 1 2 swap(a[l], a[j]) j 1 2 int max(int a, int b) { return (a > b) ? a : b; } int LIS(vector<int> & nums) { int n = nums.size(); if (n == 0) return 0; vector<int> dp(n, 1); int maxLen = 1; 1 2 3 4 5 6 7 8 9",
             options: [
                 "选项A",
                 "选项B",
@@ -280,7 +280,7 @@ export const paperData = {
         {
             id: 15,
             type: "single",
-            question: "下面的程序使用邻接矩阵表达的带权无向图，则从顶点 0 到顶点 3 的最短距离为（ ）。 for (int i = 1; i < n; i++) { for (int j = 0; j < i; j++) if (nums[j] < nums[i]) ________; // 在此处填入选项 maxLen = max(maxLen, dp[i]); } return maxLen; } 10 11 12 13 14 15 16 17 dp[j] = max(dp[j] + 1, dp[i])1 dp[j] = max(dp[j], dp[i] + 1)1 dp[i] = max(dp[i] + 1, dp[j])1 dp[i] = max(dp[i], dp[j] + 1)1 #define INT_MIN (-1000) int LIS(vector<int> & nums) { int n = nums.size(); vector<int> tail; tail.push_back(INT_MIN); for (int i = 0; i < n; i++) { int x = nums[i], l = 0, r = tail.size(); while (l < r) { int mid = (l + r) / 2; if (tail[mid] < x) l = mid + 1; else r = mid; } if (r == tail.size()) tail.push_back(x); else tail[r] = x; } return tail.size() - 1; } 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 题号 1 2 3 4 5 6 7 8 9 10 答案",
+            question: "下面的程序使用邻接矩阵表达的带权无向图，则从顶点 0 到顶点 3 的最短距离为（ ）。 for (int i = 1; i < n; i++) { for (int j = 0; j < i; j++) if (nums[j] < nums[i]) ________; // 在此处填入选项 maxLen = max(maxLen, $dp[i]$); } return maxLen; } 10 11 12 13 14 15 16 17 $dp[j]$ = max($dp[j]$+1, $dp[i]$)1 $dp[j]$ = max($dp[j]$, $dp[i]$+1)1 $dp[i]$ = max($dp[i]$+1, $dp[j]$)1 $dp[i]$ = max($dp[i]$, $dp[j]$+1)1 #define INT_MIN (-1000) int LIS(vector<int> & nums) { int n = nums.size(); vector<int> tail; tail.push_back(INT_MIN); for (int i = 0; i < n; i++) { int x = nums[i], l = 0, r = tail.size(); while (l < r) { int mid = (l+r) / 2; if (tail[mid] < x) l = mid+1; else r = mid; } if (r == tail.size()) tail.push_back(x); else tail[r] = x; } return tail.size()-1; } 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 题号 1 2 3 4 5 6 7 8 9 10 答案",
             options: [
                 "9",
                 "10",
@@ -418,7 +418,7 @@ export const paperData = {
         {
             id: 23,
             type: "judge",
-            question: "已知三个double 类型的变量a 、b 和theta 分别表⽰一个三角形的两条边长及二者的夹角（弧度），则三 角形的周长可以通过表达式sqrt(a * a + b * b - 2 * a * b * cos(theta)) 求得。",
+            question: "已知三个double 类型的变量a 、b 和theta 分别表⽰一个三角形的两条边长及二者的夹角（弧度），则三 角形的周长可以通过表达式sqrt(a * a+b * b-2 * a * b * cos(theta)) 求得。",
             options: [
                 "正确",
                 "错误",

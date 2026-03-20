@@ -32,7 +32,7 @@ const programmingQuestions = [
         explanation: "将所有牌的点数转换成数字（A为1和14），去重后排序。检查是否存在连续的 5 个数字。",
         tags: ["编程题", "搜索", "模拟"],
         template: "#include <iostream>\n#include <string>\n#include <vector>\n#include <algorithm>\nusing namespace std;\n\nint main() {\n    int n;\n    cin >> n;\n    // 在此编写代码\n    return 0;\n}",
-        referenceCode: "#include <iostream>\n#include <string>\n#include <vector>\n#include <algorithm>\n#include <set>\nusing namespace std;\nint get_val(string s) {\n    string t = s.substr(1);\n    if (t == \"A\") return 1;\n    if (t == \"J\") return 11;\n    if (t == \"Q\") return 12;\n    if (t == \"K\") return 13;\n    return stoi(t);\n}\nint main() {\n    int n; cin >> n;\n    set<int> st;\n    for (int i = 0; i < n; i++) {\n        string s; cin >> s;\n        int v = get_val(s);\n        st.insert(v);\n        if (v == 1) st.insert(14);\n    }\n    vector<int> v(st.begin(), st.end());\n    bool ok = false;\n    if (v.size() >= 5) {\n        for (int i = 0; i <= (int)v.size() - 5; i++) {\n            if (v[i+4] - v[i] == 4) { ok = true; break; }\n        }\n    }\n    if (ok) cout << \"YES\" << endl;\n    else cout << \"NO\" << endl;\n    return 0;\n}"
+        referenceCode: "#include <iostream>\n#include <string>\n#include <vector>\n#include <algorithm>\n#include <set>\nusing namespace std;\nint get_val(string s) {\n    string t = s.substr(1);\n    if (t == \"A\") return 1;\n    if (t == \"J\") return 11;\n    if (t == \"Q\") return 12;\n    if (t == \"K\") return 13;\n    return stoi(t);\n}\nint main() {\n    int n; cin >> n;\n    set<int> st;\n    for (int i = 0; i < n; i++) {\n        string s; cin >> s;\n        int v = get_val(s);\n        st.insert(v);\n        if (v == 1) st.insert(14);\n    }\n    vector<int> v(st.begin(), st.end());\n    bool ok = false;\n    if (v.size() >= 5) {\n        for (int i = 0; i <= (int)v.size()-5; i++) {\n            if (v[i+4]-v[i] == 4) { ok = true; break; }\n        }\n    }\n    if (ok) cout << \"YES\" << endl;\n    else cout << \"NO\" << endl;\n    return 0;\n}"
     }
 ];
 
@@ -80,14 +80,14 @@ export const paperData = {
             type: "single",
             question: "下面的 C++ 代码片段用于计算阶乘。请在横线处填入（ ），实现正确的阶乘计算。",
             options: [
-                "return n * factorial(n - 1);",
-                "return factorial(n - 1) / n;",
+                "return n * factorial(n-1);",
+                "return factorial(n-1) / n;",
                 "return n * factorial(n);",
                 "return factorial(n / 2) * factorial(n / 2);"
             ],
             answer: 0,
             score: 2,
-            explanation: "阶乘递归应满足 n! = n × ($$n-1$$)!，并在 n=0 或 n=1 时返回 1，因此应填 A。",
+            explanation: "阶乘递归应满足 n! = n × ($n-1$)!，并在 n=0 或 n=1 时返回 1，因此应填 A。",
             tags: ["客观题", "单选题", "GESP5级"]
         },
         {
@@ -119,7 +119,7 @@ export const paperData = {
             id: 6,
             type: "single",
             question: "下面的代码片段用于计算斐波那契数列。该代码的时间复杂度是（ ）。",
-            options: ["$$O(1)$$", "$O(\log n)$", "O($2^N$)", "$$$O(N)$$$"],
+            options: ["$O(1)$", "$O(\log n)$", "O($2^N$)", "$O(N)$"],
             answer: 2,
             score: 2,
             explanation: "朴素递归 Fibonacci 会重复计算大量子问题，时间复杂度呈指数级增长，通常记为 O($2^N$)。",
@@ -130,10 +130,10 @@ export const paperData = {
             type: "single",
             question: "下面的代码片段用于将两个高精度整数进行相加。请在横线处填入（ ），使其能正确实现相应功能。",
             options: [
-                "result = to_string(sum % 10) + result;",
-                "result = to_string(carry % 10) + result;",
-                "result = to_string(sum / 10) + result;",
-                "result = to_string(sum % 10 + carry) + result;"
+                "result = to_string(sum % 10)+result;",
+                "result = to_string(carry % 10)+result;",
+                "result = to_string(sum / 10)+result;",
+                "result = to_string(sum % 10+carry)+result;"
             ],
             answer: 0,
             score: 2,
@@ -172,22 +172,22 @@ export const paperData = {
             options: [
                 "for (int i = 2; i <= n; ++i)",
                 "for (int i = 1; i < n; ++i)",
-                "for (int i = 2; i <= sqrt(n); ++i)",
-                "for (int i = 1; i <= sqrt(n); ++i)"
+                "for (int i = 2; i <= $\sqrt{n}$; ++i)",
+                "for (int i = 1; i <= $\sqrt{n}$; ++i)"
             ],
             answer: 2,
             score: 2,
-            explanation: "埃氏筛只需要让外层质数筛到 sqrt(n) 即可，再大的合数都会在此前被更小的质因子筛掉，因此选 C。",
+            explanation: "埃氏筛只需要让外层质数筛到 $\sqrt{n}$ 即可，再大的合数都会在此前被更小的质因子筛掉，因此选 C。",
             tags: ["客观题", "单选题", "GESP5级"]
         },
         {
             id: 11,
             type: "single",
             question: "素数的线性筛法时间复杂度为（ ）。",
-            options: ["$$$O(N)$$$", "$O(n \log n)$", "O(N log log N)", "$$$O(N^2)$$$"],
+            options: ["$O(N)$", "$O(n \log n)$", "O(N log log N)", "$O(N^2)$"],
             answer: 0,
             score: 2,
-            explanation: "线性筛保证每个合数只被其最小质因子筛掉一次，因此总时间复杂度是 $$$O(N)$$$。",
+            explanation: "线性筛保证每个合数只被其最小质因子筛掉一次，因此总时间复杂度是 $O(N)$。",
             tags: ["客观题", "单选题", "GESP5级"]
         },
         {
@@ -212,7 +212,7 @@ export const paperData = {
             ],
             answer: 1,
             score: 2,
-            explanation: "pivot 选得好时，划分更均衡，快速排序更接近 $O(n \log n)$；选得差时可能退化到 $$$O(N^2)$$$，因此它会影响时间复杂度。",
+            explanation: "pivot 选得好时，划分更均衡，快速排序更接近 $O(n \log n)$；选得差时可能退化到 $O(N^2)$，因此它会影响时间复杂度。",
             tags: ["客观题", "单选题", "GESP5级"]
         },
         {
@@ -268,11 +268,11 @@ export const paperData = {
         {
             id: 18,
             type: "judge",
-            question: "二分查找的时间复杂度是 $$$O(N)$$$。",
+            question: "二分查找的时间复杂度是 $O(N)$。",
             options: ["正确", "错误"],
             answer: 1,
             score: 2,
-            explanation: "二分查找每次把搜索区间缩小一半，时间复杂度是 $O(\log n)$，不是 $$$O(N)$$$。",
+            explanation: "二分查找每次把搜索区间缩小一半，时间复杂度是 $O(\log n)$，不是 $O(N)$。",
             tags: ["客观题", "判断题", "GESP5级"]
         },
         {
@@ -312,7 +312,7 @@ export const paperData = {
             options: ["正确", "错误"],
             answer: 1,
             score: 2,
-            explanation: "快速排序最坏情况下会退化到 $$$O(N^2)$$$，所以该说法错误。",
+            explanation: "快速排序最坏情况下会退化到 $O(N^2)$，所以该说法错误。",
             tags: ["客观题", "判断题", "GESP5级"]
         },
         {

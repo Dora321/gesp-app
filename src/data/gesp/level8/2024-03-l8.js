@@ -167,7 +167,7 @@ export const paperData = {
                 "一个无向连通图可以有多个生成树。",
                 "一个无向图，只要连通，就一定有生成树。",
                 "n个顶点的无向完全图，有 棵生成树。",
-                "n个顶点的无向图，生成树包含$$n-1$$条边。",
+                "n个顶点的无向图，生成树包含$n-1$条边。",
             ],
             answer: 3,
             score: 2,
@@ -184,9 +184,9 @@ export const paperData = {
             question: "已知三个double类型的变量a、b和theta分别表⽰一个三角形的两条边长及二者的夹角（弧度），则 下列哪个表达式可以计算这个三角形的周长？（ ）。",
             options: [
                 "a * b * sin(theta) / 2",
-                "a + b + (a + b) * sin(theta) / 2",
+                "a+b+(a+b) * sin(theta) / 2",
                 "a * b * cos(theta) / 2",
-                "a + b + sqrt(a * a + b * b - 2 * a * b * cos(theta))",
+                "a+b+sqrt(a * a+b * b-2 * a * b * cos(theta))",
             ],
             answer: 3,
             score: 2,
@@ -223,8 +223,8 @@ export const paperData = {
             options: [
                 "r * r * sin(t) / 2",
                 "r * r * t / 2",
-                "r * r * (t - sin(t))",
-                "r * r * (t - sin(t)) / 2",
+                "r * r * (t-sin(t))",
+                "r * r * (t-sin(t)) / 2",
             ],
             answer: 3,
             score: 2,
@@ -278,7 +278,7 @@ export const paperData = {
             type: "single",
             question: "下面程序的时间复杂度为（ ）。",
             options: [
-                "int fib(int n) { if (n <= 1) return 1; return fib(n - 1) + fib(n - 2); } 1 2 3 4 5 int choose(int n, int m) { if (m == 0 || m == n) return 1; return choose(n - 1, m - 1) + choose(n - 1, m); } 1 2 3 4 5 int primes[MAXP], num = 0; bool isPrime[MAXN] = {false}; void sieve() { for (int n = 2; n <= MAXN; n++) { if (!isPrime[n]) primes[num++] = n; for (int i = 0; i < num && n * primes[i] <= MAXN; i++) { isPrime[n * primes[i]] = true; if (n % primes[i] == 0) break; } } } 1 2 3 4 5 6 7 8 9 10 11 12 13",
+                "int fib(int n) { if (n <= 1) return 1; return fib(n-1)+fib(n-2); } 1 2 3 4 5 int choose(int n, int m) { if (m == 0 || m == n) return 1; return choose(n-1, m-1)+choose(n-1, m); } 1 2 3 4 5 int primes[MAXP], num = 0; bool isPrime[MAXN] = {false}; void sieve() { for (int n = 2; n <= MAXN; n++) { if (!isPrime[n]) primes[num++] = n; for (int i = 0; i < num && n * primes[i] <= MAXN; i++) { isPrime[n * primes[i]] = true; if (n % primes[i] == 0) break; } } } 1 2 3 4 5 6 7 8 9 10 11 12 13",
                 "选项B",
                 "选项C",
                 "选项D",
@@ -319,7 +319,7 @@ export const paperData = {
                 "90",
                 "91",
                 "96",
-                "100 #include <iostream> using namespace std; int a[10][10]; int main() { int m = 5, n = 4; for (int x = 0; x <= m; x++) a[x][0] = 1; for (int y = 1; y <= n; y++) a[0][y] = 1; for (int x = 1; x <= m; x++) for (int y = 1; y <= n; y++) a[x][y] = a[x - 1][y] + a[x][y - 1]; cout << a[m][n] << endl; return 0; } 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 #include <iostream> using namespace std; int main() { int cnt = 0; for (int x = 0; x <= 10; x++) for (int y = 0; y <= 10; y++) for (int z = 0; z <= 10; z++) if (x + y + z == 15) cnt++; cout << cnt << endl; return 0; } 1 2 3 4 5 6 7 8 9 10 11 12 13 题号 1 2 3 4 5 6 7 8 9 10 答案",
+                "100 #include <iostream> using namespace std; int a[10][10]; int main() { int m = 5, n = 4; for (int x = 0; x <= m; x++) a[x][0] = 1; for (int y = 1; y <= n; y++) a[0][y] = 1; for (int x = 1; x <= m; x++) for (int y = 1; y <= n; y++) a[x][y] = a[x-1][y]+a[x][y-1]; cout << a[m][n] << endl; return 0; } 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 #include <iostream> using namespace std; int main() { int cnt = 0; for (int x = 0; x <= 10; x++) for (int y = 0; y <= 10; y++) for (int z = 0; z <= 10; z++) if (x+y+z == 15) cnt++; cout << cnt << endl; return 0; } 1 2 3 4 5 6 7 8 9 10 11 12 13 题号 1 2 3 4 5 6 7 8 9 10 答案",
             ],
             answer: 1,
             score: 2,
@@ -454,7 +454,7 @@ export const paperData = {
         {
             id: 22,
             type: "judge",
-            question: "已知int类型的变量a、b和c中分别存储着一个三角形的三条边长，则这个三角形的面积可以通过表达 式sqrt((a + b + c) * (b + c - a) * (a + c - b) * (a + b - c)) / 4求得。",
+            question: "已知int类型的变量a、b和c中分别存储着一个三角形的三条边长，则这个三角形的面积可以通过表达 式sqrt((a+b+c) * (b+c-a) * (a+c-b) * (a+b-c)) / 4求得。",
             options: [
                 "正确",
                 "错误",

@@ -21,11 +21,11 @@ export const paperData = {
     {
       id: 1,
       type: 'single',
-      question: '表达式 (3 - 2) * 3 + 5 的值是( )。',
+      question: '表达式 (3-2) * 3+5 的值是( )。',
       options: ['7', '8', '9', '10'],
       answer: 1,
       score: 2,
-      explanation: '1 * 3 + 5 = 8。',
+      explanation: '1 * 3+5 = 8。',
       tags: [LEVEL1_TAGS.operator]
     },
     {
@@ -41,7 +41,7 @@ export const paperData = {
     {
       id: 3,
       type: 'single',
-      question: '下面的C++代码执行时如果输入 5 并回车后输入 2 并回车，其输出是 ( )。\n```cpp\nint a, b;\ncin >> a >> b;\ncout << a + b;\n```',
+      question: '下面的C++代码执行时如果输入 5 并回车后输入 2 并回车，其输出是 ( )。\n```cpp\nint a, b;\ncin >> a >> b;\ncout << a+b;\n```',
       options: ['5', '2', '7', '报错'],
       answer: 2,
       score: 2,
@@ -51,11 +51,11 @@ export const paperData = {
     {
       id: 4,
       type: 'single',
-      question: '下面的C++代码执行后的输出是 ( )。\n```cpp\nint a = 1;\ncout << a + 1 << endl;\n```',
+      question: '下面的C++代码执行后的输出是 ( )。\n```cpp\nint a = 1;\ncout << a+1 << endl;\n```',
       options: ['2', '1', 'a+1', '报错'],
       answer: 0,
       score: 2,
-      explanation: '1 + 1 = 2。',
+      explanation: '1+1 = 2。',
       tags: [LEVEL1_TAGS.io, LEVEL1_TAGS.basics]
     },
     {

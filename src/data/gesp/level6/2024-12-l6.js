@@ -22,7 +22,7 @@ const programmingQuestions = [
             "栈"
         ],
         "template": "#include <bits/stdc++.h>\nusing namespace std;\n\nint main() {\n    // 在此编写代码\n    return 0;\n}",
-        "referenceCode": "#include <bits/stdc++.h>\nusing namespace std;\n\nint main() {\n    ios::sync_with_stdio(false);\n    cin.tie(nullptr);\n\n    int n;\n    long long x;\n    cin >> n >> x;\n    string s;\n    cin >> s;\n    for (char ch : s) {\n        if (ch == 'U') x /= 2;\n        else if (ch == 'L') x = x * 2;\n        else x = x * 2 + 1;\n    }\n    cout << x << '\\n';\n    return 0;\n}"
+        "referenceCode": "#include <bits/stdc++.h>\nusing namespace std;\n\nint main() {\n    ios::sync_with_stdio(false);\n    cin.tie(nullptr);\n\n    int n;\n    long long x;\n    cin >> n >> x;\n    string s;\n    cin >> s;\n    for (char ch : s) {\n        if (ch == 'U') x /= 2;\n        else if (ch == 'L') x = x * 2;\n        else x = x * 2+1;\n    }\n    cout << x << '\\n';\n    return 0;\n}"
     },
     {
         "id": 27,
@@ -38,14 +38,14 @@ const programmingQuestions = [
                 "output": "40186"
             }
         ],
-        "explanation": "若一辆货车被放在位置 p 的站点，总代价是 a·p + b·(x-p) = b·x + (a-b)·p。常数项 b·x 与分配无关，因此只需按 a-b 的大小排序：更偏向 A 的货车配给更靠近 A 的站点，更偏向 B 的配给更靠近 B 的站点。",
+        "explanation": "若一辆货车被放在位置 p 的站点，总代价是 a·p+b·(x-p) = b·x+(a-b)·p。常数项 b·x 与分配无关，因此只需按 a-b 的大小排序：更偏向 A 的货车配给更靠近 A 的站点，更偏向 B 的配给更靠近 B 的站点。",
         "tags": [
             "编程题",
             "贪心",
             "排序"
         ],
         "template": "#include <bits/stdc++.h>\nusing namespace std;\n\nint main() {\n    // 在此编写代码\n    return 0;\n}",
-        "referenceCode": "#include <bits/stdc++.h>\nusing namespace std;\n\nint main() {\n    ios::sync_with_stdio(false);\n    cin.tie(nullptr);\n\n    int n, m;\n    long long x;\n    cin >> n >> m >> x;\n    vector<pair<long long, int>> stations;\n    for (int i = 0; i < n; ++i) {\n        long long p;\n        int c;\n        cin >> p >> c;\n        stations.push_back({p, c});\n    }\n    vector<pair<long long, long long>> trucks(m);\n    long long ans = 0;\n    for (int i = 0; i < m; ++i) {\n        long long a, b;\n        cin >> a >> b;\n        trucks[i] = {a - b, b};\n        ans += b * x;\n    }\n\n    sort(stations.begin(), stations.end());\n    sort(trucks.begin(), trucks.end());\n\n    vector<long long> pos;\n    for (auto [p, c] : stations) {\n        for (int i = 0; i < c; ++i) pos.push_back(p);\n    }\n\n    for (int i = 0; i < m; ++i) {\n        ans += trucks[i].first * pos[i];\n    }\n    cout << ans << '\\n';\n    return 0;\n}"
+        "referenceCode": "#include <bits/stdc++.h>\nusing namespace std;\n\nint main() {\n    ios::sync_with_stdio(false);\n    cin.tie(nullptr);\n\n    int n, m;\n    long long x;\n    cin >> n >> m >> x;\n    vector<pair<long long, int>> stations;\n    for (int i = 0; i < n; ++i) {\n        long long p;\n        int c;\n        cin >> p >> c;\n        stations.push_back({p, c});\n    }\n    vector<pair<long long, long long>> trucks(m);\n    long long ans = 0;\n    for (int i = 0; i < m; ++i) {\n        long long a, b;\n        cin >> a >> b;\n        trucks[i] = {a-b, b};\n        ans += b * x;\n    }\n\n    sort(stations.begin(), stations.end());\n    sort(trucks.begin(), trucks.end());\n\n    vector<long long> pos;\n    for (auto [p, c] : stations) {\n        for (int i = 0; i < c; ++i) pos.push_back(p);\n    }\n\n    for (int i = 0; i < m; ++i) {\n        ans += trucks[i].first * pos[i];\n    }\n    cout << ans << '\\n';\n    return 0;\n}"
     }
 ];
 
@@ -482,7 +482,7 @@ export const paperData = {
         {
             id: 24,
             type: "judge",
-            question: "在解决简单背包问题时，动态规划的状态转移方程如下： 该方程表⽰：在考虑第 i 个物品时，当前背包容量为 w，如果不放物品 i，则最大价值是 dp[i-1][w]；如果 放入物品 i，则最大价值是 dp[i-1][w - weights[i-1]] + values[i-1]，其中数组weights和values分 别表⽰所有物品的重量和价值，数组下标从0开始。",
+            question: "在解决简单背包问题时，动态规划的状态转移方程如下： 该方程表⽰：在考虑第 i 个物品时，当前背包容量为 w，如果不放物品 i，则最大价值是 dp[i-1][w]；如果 放入物品 i，则最大价值是 dp[i-1][w-weights[i-1]]+values[i-1]，其中数组weights和values分 别表⽰所有物品的重量和价值，数组下标从0开始。",
             options: [
                 "正确",
                 "错误",

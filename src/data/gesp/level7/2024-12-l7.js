@@ -12,7 +12,7 @@ const programmingQuestions = [
         "samples": [
             {
                 "input": "3\n3 2 3\n1 2\n1 2\n2 3\n3 3 4\n1 2\n1 2\n2 3\n3 1000 1000\n1 2\n1 2\n2 3",
-                "output": "3\$$n-1$$\$$n-1$$"
+                "output": "3\$n-1$\$n-1$"
             }
         ],
         "explanation": "这是一个 0/1 背包问题。令 dp[c] 表示总花费恰为 c 时能够达到的最大总强度，初始 dp[0]=0，其余为负无穷。依次枚举武器并倒序枚举花费完成转移。最后从小到大扫描 c=0..Q，第一个满足 dp[c]≥P 的花费就是答案；若不存在则输出 -1。",
@@ -22,7 +22,7 @@ const programmingQuestions = [
             "0/1背包"
         ],
         "template": "#include <bits/stdc++.h>\nusing namespace std;\n\nint main() {\n    ios::sync_with_stdio(false);\n    cin.tie(nullptr);\n\n    int T;\n    cin >> T;\n    while (T--) {\n        // 在此编写代码\n    }\n    return 0;\n}",
-        "referenceCode": "#include <bits/stdc++.h>\nusing namespace std;\n\nint main() {\n    ios::sync_with_stdio(false);\n    cin.tie(nullptr);\n\n    int T;\n    cin >> T;\n    while (T--) {\n        int n, P, Q;\n        cin >> n >> P >> Q;\n        vector<long long> dp(Q + 1, -(1LL << 60));\n        dp[0] = 0;\n\n        for (int i = 0; i < n; ++i) {\n            int p, c;\n            cin >> p >> c;\n            for (int cost = Q; cost >= c; --cost) {\n                if (dp[cost - c] > -(1LL << 50)) {\n                    dp[cost] = max(dp[cost], dp[cost - c] + p);\n                }\n            }\n        }\n\n        int ans = -1;\n        for (int cost = 0; cost <= Q; ++cost) {\n            if (dp[cost] >= P) {\n                ans = cost;\n                break;\n            }\n        }\n        cout << ans << '\n';\n    }\n    return 0;\n}"
+        "referenceCode": "#include <bits/stdc++.h>\nusing namespace std;\n\nint main() {\n    ios::sync_with_stdio(false);\n    cin.tie(nullptr);\n\n    int T;\n    cin >> T;\n    while (T--) {\n        int n, P, Q;\n        cin >> n >> P >> Q;\n        vector<long long> dp(Q+1, -(1LL << 60));\n        dp[0] = 0;\n\n        for (int i = 0; i < n; ++i) {\n            int p, c;\n            cin >> p >> c;\n            for (int cost = Q; cost >= c; --cost) {\n                if (dp[cost-c] > -(1LL << 50)) {\n                    dp[cost] = max(dp[cost], dp[cost-c]+p);\n                }\n            }\n        }\n\n        int ans = -1;\n        for (int cost = 0; cost <= Q; ++cost) {\n            if (dp[cost] >= P) {\n                ans = cost;\n                break;\n            }\n        }\n        cout << ans << '\n';\n    }\n    return 0;\n}"
     },
     {
         "id": 27,
@@ -30,7 +30,7 @@ const programmingQuestions = [
         "title": "燃烧",
         "problemNumber": "2024-12-l7-Q27",
         "description": "给定一棵 n 个节点的树，节点编号为 1..n，第 i 个节点的权值为 a_i。你可以任选一个初始节点点燃它。每个已经燃烧的节点会继续点燃与其相邻、且权值严格小于自身权值的节点，扩散会一直持续到没有新节点可被点燃。请问通过合理选择初始节点，最多能燃烧多少个节点。",
-        "inputDescription": "第一行一个正整数 n。第二行包含 n 个正整数 a_1..a_n，表示各节点权值。接下来 $$n-1$$ 行每行两个正整数 u,v，表示树上一条无向边。",
+        "inputDescription": "第一行一个正整数 n。第二行包含 n 个正整数 a_1..a_n，表示各节点权值。接下来 $n-1$ 行每行两个正整数 u,v，表示树上一条无向边。",
         "outputDescription": "输出一个整数，表示最多可以被燃烧的节点数。",
         "samples": [
             {
@@ -85,8 +85,8 @@ export const paperData = {
             options: [
                 "+a = *p;",
                 "*p = +a;",
-                "a = *(p + a);",
-                "*(p + a) = a;",
+                "a = *(p+a);",
+                "*(p+a) = a;",
             ],
             answer: 0,
             score: 2,
@@ -121,7 +121,7 @@ export const paperData = {
             type: "single",
             question: "下列关于 C++ 类的说法，错误的是 ( ) 。",
             options: [
-                "构造函数不能声明为虚函数，但析构函数可以。 #include <iostream> using namespace std; int main() { char a = 'b'; cout << a + 1; return 0; } 1 2 3 4 5 6 7",
+                "构造函数不能声明为虚函数，但析构函数可以。 #include <iostream> using namespace std; int main() { char a = 'b'; cout << a+1; return 0; } 1 2 3 4 5 6 7",
                 "函数参数如声明为类的引用类型，调用时不会调用该类的复制构造函数。",
                 "静态方法属于类、不属于对象，因此不能使用对象 . 方法 (...)的形式调用静态方法。",
                 "析构派生类的对象时，一定会调用基类的析构函数。",
@@ -214,11 +214,11 @@ export const paperData = {
         {
             id: 9,
             type: "single",
-            question: "一个哈希表，包括 n 个位置（分别编号 0~($$n-1$$) ），每个位置最多仅能存储一个元素。该哈希表只有插入元素 和查询两种操作，没有删除或修改元素的操作。以下说法错误的是（ ）。",
+            question: "一个哈希表，包括 n 个位置（分别编号 0~($n-1$) ），每个位置最多仅能存储一个元素。该哈希表只有插入元素 和查询两种操作，没有删除或修改元素的操作。以下说法错误的是（ ）。",
             options: [
-                "如果哈希函数取值范围为 0 ~ ($$n-1$$) ，且当发生哈希函数碰撞时循环向后寻找空位，则查询操作的最差时间复杂 度为 。（ “ 循环向后 ” 指： 0 向后一位为 1 ， 1 向后一位为 2 ， …… ， (n-2) 向后一位为 ($$n-1$$) ， ($$n-1$$) 向后一位为 0 ）",
-                "如果哈希函数取值范围为 0 ~ ($$n-1$$) ，且当发生哈希函数碰撞时仅循环向后一个位置寻找空位，则查询操作的最 差时间复杂度为 。",
-                "如果哈希函数取值范围为 0 ~ ($$m-1$$) （ m < n ），且当发生哈希函数碰撞时仅在 m ~ ($$n-1$$) 的范围内寻找空位，则 查询操作的最差时间复杂度为 。",
+                "如果哈希函数取值范围为 0 ~ ($n-1$) ，且当发生哈希函数碰撞时循环向后寻找空位，则查询操作的最差时间复杂 度为 。（ “ 循环向后 ” 指： 0 向后一位为 1 ， 1 向后一位为 2 ， …… ， (n-2) 向后一位为 ($n-1$) ， ($n-1$) 向后一位为 0 ）",
+                "如果哈希函数取值范围为 0 ~ ($n-1$) ，且当发生哈希函数碰撞时仅循环向后一个位置寻找空位，则查询操作的最 差时间复杂度为 。",
+                "如果哈希函数取值范围为 0 ~ ($m-1$) （ m < n ），且当发生哈希函数碰撞时仅在 m ~ ($n-1$) 的范围内寻找空位，则 查询操作的最差时间复杂度为 。",
                 "查询操作时，如果发现查询元素经哈希函数对应的位置为空位，该查询元素仍可能出现在哈希表内。",
             ],
             answer: 3,
@@ -293,7 +293,7 @@ export const paperData = {
             question: "上题中程序的时间复杂度为（ ）。",
             options: [
                 "选项A",
-                "#include <iostream> #include <cmath> using namespace std; int main() { cout << (int)exp(2) << endl; return 0; } 1 2 3 4 5 6 7 #include <iostream> #define N 10 using namespace std; int h[N]; int main() { h[0] = h[1] = 1; for (int n = 2; n < N; n++) for (int j = 0; j < n; j++) h[n] += h[j] * h[n - j - 1]; cout << h[6] << endl; return 0; } 1 2 3 4 5 6 7 8 9 10 11 12 题号 1 2 3 4 5 6 7 8 9 10 答案",
+                "#include <iostream> #include <cmath> using namespace std; int main() { cout << (int)exp(2) << endl; return 0; } 1 2 3 4 5 6 7 #include <iostream> #define N 10 using namespace std; int h[N]; int main() { h[0] = h[1] = 1; for (int n = 2; n < N; n++) for (int j = 0; j < n; j++) h[n] += h[j] * h[n-j-1]; cout << h[6] << endl; return 0; } 1 2 3 4 5 6 7 8 9 10 11 12 题号 1 2 3 4 5 6 7 8 9 10 答案",
                 "选项C",
                 "选项D",
             ],

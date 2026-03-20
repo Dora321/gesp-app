@@ -12,8 +12,8 @@ export const paperData = {
         { id: 1, type: 'single', question: '飞行控制系统中执行“判断与决策”的核心部件最可能是（ ）。', options: ['辐射传感器', '处理器', '内存单元', '输出设备'], answer: 1, score: 2, explanation: '处理器（CPU）是计算机的核心，负责执行指令和逻辑判断。', tags: ['计算机基础'] },
         { id: 2, type: 'single', question: '教学楼内局域范围使用的网络类型通常是（ ）。', options: ['PAN', 'LAN', 'MAN', 'WAN'], answer: 1, score: 2, explanation: 'LAN (Local Area Network) 指局域网，覆盖范围通常是一栋楼或校园。', tags: ['网络基础'] },
         { id: 3, type: 'single', question: '关于 C++ 变量命名说法正确的是（ ）。', options: ['for 不能作变量名，因为它是关键字', '_tnt 不能作变量名', '_tnt_ 不能作变量名', 'printf 是关键字，所以不建议作变量名'], answer: 0, score: 2, explanation: 'for 是 C++ 的关键字，绝对不能作为变量名。标识符可以以下划线开头。', tags: ['变量与标识符'] },
-        { id: 4, type: 'single', question: '小数 0.123123123... 的第 N 位数字可由下列哪一表达式得到（ ）。', options: ['N % 3', '(N - 1) % 3', 'N / 3', '(N - 1) / 3'], answer: 1, score: 2, explanation: 'N=1时对应1, N=2时对应2, N=3时对应3。使用 ($N-1$)%3 得到 0, 1, 2，分别对应 1, 2, 3。', tags: ['数学', '循环'] },
-        { id: 5, type: 'single', question: 'printf("%g", 3 + 3.1415926535) 输出 6.14159 的最可能原因是（ ）。', options: ['整数与浮点运算存在精度误差', 'printf 的 %g 默认控制显示位数', '3.1415926535 是无限循环小数', 'CPU 运算错误'], answer: 1, score: 2, explanation: '%g 格式说明符默认通常显示 6 位有效数字。', tags: ['输入输出', '数据类型'] },
+        { id: 4, type: 'single', question: '小数 0.123123123... 的第 N 位数字可由下列哪一表达式得到（ ）。', options: ['N % 3', '(N-1) % 3', 'N / 3', '(N-1) / 3'], answer: 1, score: 2, explanation: 'N=1时对应1, N=2时对应2, N=3时对应3。使用 ($N-1$)%3 得到 0, 1, 2，分别对应 1, 2, 3。', tags: ['数学', '循环'] },
+        { id: 5, type: 'single', question: 'printf("%g", 3+3.1415926535) 输出 6.14159 的最可能原因是（ ）。', options: ['整数与浮点运算存在精度误差', 'printf 的 %g 默认控制显示位数', '3.1415926535 是无限循环小数', 'CPU 运算错误'], answer: 1, score: 2, explanation: '%g 格式说明符默认通常显示 6 位有效数字。', tags: ['输入输出', '数据类型'] },
         { id: 6, type: 'single', question: '工号校验题中，两处横线应分别填写（ ）。\n```cpp\nfor (int i=0; i<4; i++) { cin >> N; rst += ______; } cout << ______;\n```', options: ['N % 3；rst / 10', 'N % 3；rst % 10', 'N / 3；rst / 10', 'N / 3；rst % 10'], answer: 3, score: 2, explanation: 'L1填 N/3 实现整除以3，L2填 rst%10 实现取10的余数。', tags: ['程序分析', '运算符'] },
         { id: 7, type: 'single', question: '给定代码执行后的输出是（ ）。\n```cpp\nfor (int i=-2; i<2; i++) if (i % 2) printf("%d#", i);\n```', options: ['-1#1#', '-1#0#1#', '-2#-1#1#', '-2#-1#1#2#'], answer: 0, score: 2, explanation: '循环 i 为 -2, -1, 0, 1。-1%2 非零，1%2 非零，输出 -1#1#。', tags: ['循环', '条件判断'] },
         { id: 8, type: 'single', question: '给定 C++ 代码执行后的输出是（ ）。\n```cpp\nint cnt=0; for (int i=1; i<10; i+=2) for (int j=0; j<i; j++) cnt += 1; cout << cnt;\n```', options: ['100', '55', '45', '25'], answer: 3, score: 2, explanation: '外层 i 为 1, 3, 5, 7, 9，总次数 = 1+3+5+7+9 = 25。', tags: ['循环', '程序分析'] },
@@ -48,7 +48,7 @@ export const paperData = {
         "title": "环保能量球",
         "problemNumber": "B4447",
         "description": "小杨最近在玩一个环保主题的游戏。在游戏中，小杨每行走 1 公里就可以获得 1 点“环保能量”。 为了激励玩家，游戏设置了“里程奖励”：小杨每行走 x 公里，游戏就会额外奖励 1 点能量。 现在已知小杨总共行走了 n 公里，请你帮 he 计算，他一共能获得多少点环保能量？",
-        "inputDescription": "第一行包含一个正整数 t，代表测试数据组数。 对于每组测试数据： - 第一行包含一个正整数 n，代表行走的公里数。 - 第二行包含一个正整数 x，代表奖励触发的间隔。",
+        "inputDescription": "第一行包含一个正整数 t，代表测试数据组数。 对于每组测试数据：-第一行包含一个正整数 n，代表行走的公里数。-第二行包含一个正整数 x，代表奖励触发的间隔。",
         "outputDescription": "对于每组测试数据，输出一个整数，代表小杨获得的环保能量总数。",
         "samples": [
             {
@@ -63,14 +63,14 @@ export const paperData = {
             "整数除法"
         ],
         "template": "#include <bits/stdc++.h>\nusing namespace std;\n\nint main() {\n    ios::sync_with_stdio(false);\n    cin.tie(nullptr);\n\n    int t;\n    cin >> t;\n    while (t--) {\n        long long n, x;\n        // 在此编写代码\n    }\n    return 0;\n}",
-        "referenceCode": "#include <bits/stdc++.h>\nusing namespace std;\n\nint main() {\n    ios::sync_with_stdio(false);\n    cin.tie(nullptr);\n\n    int t;\n    cin >> t;\n    while (t--) {\n        long long n, x;\n        cin >> n >> x;\n        cout << n + n / x << '\\n';\n    }\n    return 0;\n}"
+        "referenceCode": "#include <bits/stdc++.h>\nusing namespace std;\n\nint main() {\n    ios::sync_with_stdio(false);\n    cin.tie(nullptr);\n\n    int t;\n    cin >> t;\n    while (t--) {\n        long long n, x;\n        cin >> n >> x;\n        cout << n+n / x << '\\n';\n    }\n    return 0;\n}"
     },
     {
         "id": 27,
         "type": "programming",
         "title": "黄金格",
         "problemNumber": "B4448",
-        "description": "小杨听说地图中隐藏着一些“黄金格”，这些格子满足条件：sqrt(r^2 + c^2) ≤ x + r - c。 其中 H 行 W 列，坐标 (r, c) 满足 1 ≤ r ≤ H, 1 ≤ c ≤ W。 给定 H, W, x，求满足条件的黄金格数量。",
+        "description": "小杨听说地图中隐藏着一些“黄金格”，这些格子满足条件：sqrt(r^2+c^2) ≤ x+r-c。 其中 H 行 W 列，坐标 (r, c) 满足 1 ≤ r ≤ H, 1 ≤ c ≤ W。 给定 H, W, x，求满足条件的黄金格数量。",
         "inputDescription": "三行，每行一个正整数，分别表示 H, W, x。",
         "outputDescription": "一行一个整数，代表黄金格数量。",
         "samples": [
@@ -79,14 +79,14 @@ export const paperData = {
                 "output": "17"
             }
         ],
-        "explanation": "枚举每个格子 (r, c)，判断 sqrt(r*r + c*c) <= x + r - c。注意浮点数开方。",
+        "explanation": "枚举每个格子 (r, c)，判断 sqrt(r*r+c*c) <= x+r-c。注意浮点数开方。",
         "tags": [
             "编程题",
             "枚举",
             "数学"
         ],
         "template": "#include <bits/stdc++.h>\nusing namespace std;\n\nint main() {\n    long long H, W, x;\n    // 在此编写代码\n    return 0;\n}",
-        "referenceCode": "#include <bits/stdc++.h>\nusing namespace std;\n\nint main() {\n    long long H, W, x;\n    cin >> H >> W >> x;\n    long long ans = 0;\n    for (long long r = 1; r <= H; ++r) {\n        for (long long c = 1; c <= W; ++c) {\n            double left = sqrt((double)r * r + (double)c * c);\n            if (left <= (double)x + r - c) ++ans;\n        }\n    }\n    cout << ans << endl;\n    return 0;\n}"
+        "referenceCode": "#include <bits/stdc++.h>\nusing namespace std;\n\nint main() {\n    long long H, W, x;\n    cin >> H >> W >> x;\n    long long ans = 0;\n    for (long long r = 1; r <= H; ++r) {\n        for (long long c = 1; c <= W; ++c) {\n            double left = sqrt((double)r * r+(double)c * c);\n            if (left <= (double)x+r-c) ++ans;\n        }\n    }\n    cout << ans << endl;\n    return 0;\n}"
     }
 ]
 };

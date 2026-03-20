@@ -149,14 +149,14 @@ export const paperData = {
             type: "single",
             question: "小杨正在爬楼梯，需要爬 n 阶才能到达楼顶。如果每次可以爬 1 个或 2 个台阶，下面代码采用递推算法来计算一共有多少种不同的方法可以爬到楼顶，则横线上应填写（ ）。\n```cpp\nint f(int n) {\n    if (n == 1 || n == 2) return n;\n    int f1 = 1;\n    int f2 = 2;\n    int res = 0;\n    for (int i = 3; i <= n; i++) {\n        ________________________________ // 在此处填入代码\n    }\n    return res;\n}\n```",
             options: [
-                "res += f1 + f2; f1 = f2; f2 = res;",
-                "res = f1 + f2; f1 = f2; f2 = res;",
-                "res += f1 + f2; f2 = res; f1 = f2;",
-                "res = f1 + f2; f2 = res; f1 = f2;",
+                "res += f1+f2; f1 = f2; f2 = res;",
+                "res = f1+f2; f1 = f2; f2 = res;",
+                "res += f1+f2; f2 = res; f1 = f2;",
+                "res = f1+f2; f2 = res; f1 = f2;",
             ],
             answer: 1,
             score: 2,
-            explanation: "斐波那契数列式的递推。当前阶数的方法数等于前两阶方法数之和 (res = f1 + f2)，然后更新前两项的值以供下次循环：f1 变为旧的 f2，f2 变为新的 res。",
+            explanation: "斐波那契数列式的递推。当前阶数的方法数等于前两阶方法数之和 (res = f1+f2)，然后更新前两项的值以供下次循环：f1 变为旧的 f2，f2 变为新的 res。",
             tags: ["客观题", "单选题", "GESP4级"]
         },
         {
@@ -164,14 +164,14 @@ export const paperData = {
             type: "single",
             question: "给定如下算法，其时间复杂度为（ ）。\n```cpp\nbool f(int arr[], int n, int target) {\n    for (int i = 0; i < (1 << n); i++) {\n        int sum = 0;\n        for (int j = 0; j < n; j++) {\n            if (i & (1 << j)) {\n                sum += arr[j];\n            }\n        }\n        if (sum == target) return true;\n    }\n    return false;\n}\n```",
             options: [
-                "O($$2^n$$)",
-                "O(n * $$2^n$$)",
-                "$$$O(N^2)$$$",
-                "$$$O(N)$$$",
+                "O($2^n$)",
+                "O(n * $2^n$)",
+                "$O(N^2)$",
+                "$O(N)$",
             ],
             answer: 1,
             score: 2,
-            explanation: "外层循环次数为 $$2^n$$ (由 1 << n 决定)，内层循环次数为 n。因此总时间复杂度为 O(n * $$2^n$$)。",
+            explanation: "外层循环次数为 $2^n$ (由 1 << n 决定)，内层循环次数为 n。因此总时间复杂度为 O(n * $2^n$)。",
             tags: ["客观题", "单选题", "GESP4级"]
         },
         {
@@ -207,7 +207,7 @@ export const paperData = {
         {
             id: 14,
             type: "single",
-            question: "运⾏下面的代码，将输出（ ）。\n```cpp\ndouble hmean(double a, double b) {\n    if (a == -b) throw std::runtime_error(\"Runtime error occurred.\");\n    return 2.0*a*b/(a + b);\n}\nint main() {\n    double x = 10;\n    double y = -10;\n    try {\n        int result = hmean(x, y);\n        std::cout << \"hmean: \" << result << std::endl;\n    } catch (const std::runtime_error& e) {\n        std::cout << \"Caught: \" << e.what() << std::endl;\n    } catch (...) {\n        std::cout << \"Caught an unknown exception.\" << std::endl;\n    }\n    return 0;\n}\n```",
+            question: "运⾏下面的代码，将输出（ ）。\n```cpp\ndouble hmean(double a, double b) {\n    if (a == -b) throw std::runtime_error(\"Runtime error occurred.\");\n    return 2.0*a*b/(a+b);\n}\nint main() {\n    double x = 10;\n    double y = -10;\n    try {\n        int result = hmean(x, y);\n        std::cout << \"hmean: \" << result << std::endl;\n    } catch (const std::runtime_error& e) {\n        std::cout << \"Caught: \" << e.what() << std::endl;\n    } catch (...) {\n        std::cout << \"Caught an unknown exception.\" << std::endl;\n    }\n    return 0;\n}\n```",
             options: [
                 "Caught: Runtime error occurred.",
                 "Caught an unknown exception.",
@@ -297,21 +297,21 @@ export const paperData = {
         {
             id: 22,
             type: "judge",
-            question: "考虑最坏情况下冒泡排序算法的时间复杂度， T(n) 为待排序数字的数目为 n 的复杂度，则其递推关系式为 T(n) = T($$n-1$$) + ($$n-1$$)，T(1) = 0。",
+            question: "考虑最坏情况下冒泡排序算法的时间复杂度， T(n) 为待排序数字的数目为 n 的复杂度，则其递推关系式为 T(n) = T($n-1$)+($n-1$)，T(1) = 0。",
             options: ["正确", "错误"],
             answer: 0,
             score: 2,
-            explanation: "正确。冒泡排序每一趟将一个元素排好序。n 个元素的一趟冒泡需要比较 $$n-1$$ 次，随后剩下 $$n-1$$ 个元素继续排序。其复杂度递推式正确反映了这一过程。",
+            explanation: "正确。冒泡排序每一趟将一个元素排好序。n 个元素的一趟冒泡需要比较 $n-1$ 次，随后剩下 $n-1$ 个元素继续排序。其复杂度递推式正确反映了这一过程。",
             tags: ["客观题", "判断题", "GESP4级"]
         },
         {
             id: 23,
             type: "judge",
-            question: "插入排序在最好情况（已有序）下的时间复杂度是 $$$O(N^2)$$$。",
+            question: "插入排序在最好情况（已有序）下的时间复杂度是 $O(N^2)$。",
             options: ["正确", "错误"],
             answer: 1,
             score: 2,
-            explanation: "错误。插入排序在已完全有序的情况下，内层循环每次只需比较一次即可停止，因此最好情况下的时间复杂度是 $$$O(N)$$$。",
+            explanation: "错误。插入排序在已完全有序的情况下，内层循环每次只需比较一次即可停止，因此最好情况下的时间复杂度是 $O(N)$。",
             tags: ["客观题", "判断题", "GESP4级"]
         },
         {
@@ -339,7 +339,7 @@ export const paperData = {
             type: "programming",
             question: "【问题描述】\n给定一个 n x m 的矩阵 A，你需要统计其中“优秀”的 2 x 2 子矩阵的数量。一个 2 x 2 子矩阵（左上角坐标为 (i, j)）被认为是“优秀”的，当且仅当其主对角线上两个元素的乘积等于副对角线上两个元素的乘积。即：A[i, j] * A[i+1, j+1] = A[i, j+1] * A[i+1, j]。\n【输入描述】\n第一行包含两个整数 n 和 m (1 ≤ n, m ≤ 500)。\n接下来 n 行，每行包含 m 个整数 A[i, j] (|A[i, j]| ≤ 100)。\n【输出描述】\n输出一个整数，代表“优秀”子矩阵的总数。\n【样例输入1】\n3 4\n1 2 1 0\n2 4 2 1\n0 3 3 0\n【样例输出1】\n2",
             score: 25,
-            explanation: "遍历矩阵中所有可能的 2x2 子矩阵的左上角位置 (i, j)，范围是 0 ≤ i < $$n-1$$ 且 0 ≤ j < $$m-1$$。对于每个位置，验证主对角线乘积 (A[i][j] * A[i+1][j+1]) 是否等于副对角线乘积 (A[i][j+1] * A[i+1][j])。如果相等，则计数器加一。",
+            explanation: "遍历矩阵中所有可能的 2x2 子矩阵的左上角位置 (i, j)，范围是 0 ≤ i < $n-1$ 且 0 ≤ j < $m-1$。对于每个位置，验证主对角线乘积 (A[i][j] * A[i+1][j+1]) 是否等于副对角线乘积 (A[i][j+1] * A[i+1][j])。如果相等，则计数器加一。",
             tags: ["编程题", "GESP4级"]
         },
         {

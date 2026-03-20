@@ -168,10 +168,10 @@ export const paperData = {
             type: "single",
             question: "下列程序实现了输出杨辉三角形，代码中横线部分应该填入的是（ ）。",
             options: [
-                "a[i][j] = a[i - 1][j - 1] + a[i - 1][j];",
-                "a[i][j] = a[i][j - 1] + a[i - 1][j];",
-                "a[i][j] = a[i - 1][j] + a[i - 1][j]; swap(a[begin], a[i]); pailie(begi$n+1$, end, a); swap(a[i], a[begin]); 1 2 3 swap(a[begin] + 1, a[i]); pailie(begi$n+1$, end, a); swap(a[i], a[begi$n+1$]); 1 2 3 int main() { int a[5] = {1, 2, 3, 4, 5}; pailie(0, 5, a); return 0; } 1 2 3 4 5 #include <iostream> using namespace std; #define N 35 int a[N][N]; int main() { int n; cin >> n; for (int i = 1; i <= n; i++) for (int j = 1; j <= i; j++) { if (j == 1 || j == i) a[i][j] = 1; else __________ // 在此处填入选项 } for (int i = 1; i <= n; i++) { for (int j = 1; j <= i; j++) cout << a[i][j]; cout<<endl; } return 0; } 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21",
-                "a[i][j] = a[i - 1][j - 1] + a[i][j];",
+                "a[i][j] = a[i-1][j-1]+a[i-1][j];",
+                "a[i][j] = a[i][j-1]+a[i-1][j];",
+                "a[i][j] = a[i-1][j]+a[i-1][j]; swap(a[begin], a[i]); pailie(begi$n+1$, end, a); swap(a[i], a[begin]); 1 2 3 swap(a[begin]+1, a[i]); pailie(begi$n+1$, end, a); swap(a[i], a[begi$n+1$]); 1 2 3 int main() { int a[5] = {1, 2, 3, 4, 5}; pailie(0, 5, a); return 0; } 1 2 3 4 5 #include <iostream> using namespace std; #define N 35 int a[N][N]; int main() { int n; cin >> n; for (int i = 1; i <= n; i++) for (int j = 1; j <= i; j++) { if (j == 1 || j == i) a[i][j] = 1; else __________ // 在此处填入选项 } for (int i = 1; i <= n; i++) { for (int j = 1; j <= i; j++) cout << a[i][j]; cout<<endl; } return 0; } 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21",
+                "a[i][j] = a[i-1][j-1]+a[i][j];",
             ],
             answer: 0,
             score: 2,
@@ -223,7 +223,7 @@ export const paperData = {
         {
             id: 12,
             type: "single",
-            question: "下列 Dijkstra 算法中，横线处应该填入的是（ ）。 key[0] = 0; for (int i = 0; i < n; i++) { int u = min_element(key.begin(), key.end()) - key.begin(); if (key[u] == INT_MAX) break; for (int v = 0; v < n; v++) { if (__________) { // 在此处填入选项 key[v] = graph[u][v]; parent[v] = u; } } } int sum = 0; for (int i = 0; i < n; i++) { if (parent[i] != -1) { cout << \"Edge: \" << parent[i] << \" - \" << i << \" Weight: \" << key[i] << endl; sum += key[i]; } } return sum; } int main() { int n, m; cin >> n >> m; vector<vector<int>> graph(n, vector<int>(n, 0)); for (int i = 0; i < m; i++) { int u, v, w; cin >> u >> v >> w; graph[u][v] = w; graph[v][u] = w; } int result = prim(graph, n); cout << \"Total weight of the minimum spanning tree: \" << result << endl; return 0; } 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27 28 29 30 31 32 33 34 35 36 37 38 39 40 41 42 #include <iostream> using namespace std; #define N 100 int n, e, s; const int inf = 0x7fffff; int dis[$N+1$]; int cheak[$N+1$]; int graph[$N+1$][$N+1$]; 1 2 3 4 5 6 7 8 9",
+            question: "下列 Dijkstra 算法中，横线处应该填入的是（ ）。 key[0] = 0; for (int i = 0; i < n; i++) { int u = min_element(key.begin(), key.end())-key.begin(); if (key[u] == INT_MAX) break; for (int v = 0; v < n; v++) { if (__________) { // 在此处填入选项 key[v] = graph[u][v]; parent[v] = u; } } } int sum = 0; for (int i = 0; i < n; i++) { if (parent[i] != -1) { cout << \"Edge: \" << parent[i] << \"-\" << i << \" Weight: \" << key[i] << endl; sum += key[i]; } } return sum; } int main() { int n, m; cin >> n >> m; vector<vector<int>> graph(n, vector<int>(n, 0)); for (int i = 0; i < m; i++) { int u, v, w; cin >> u >> v >> w; graph[u][v] = w; graph[v][u] = w; } int result = prim(graph, n); cout << \"Total weight of the minimum spanning tree: \" << result << endl; return 0; } 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27 28 29 30 31 32 33 34 35 36 37 38 39 40 41 42 #include <iostream> using namespace std; #define N 100 int n, e, s; const int inf = 0x7fffff; int dis[$N+1$]; int cheak[$N+1$]; int graph[$N+1$][$N+1$]; 1 2 3 4 5 6 7 8 9",
             options: [
                 "dis[j] > minn && cheak[j] == 0",
                 "dis[j] < minn && cheak[j] == 0",
@@ -242,12 +242,12 @@ export const paperData = {
         {
             id: 13,
             type: "single",
-            question: "下面 Floyd 算法中，横线处应该填入的是（ ）。 int main() { for (int i = 1; i <= N; i++) dis[i] = inf; cin >> n >> e; for (int i = 1; i <= e; i++) { int a, b, c; cin >> a >> b >> c; graph[a][b] = c; } cin >> s; dis[s] = 0; for (int i = 1; i <= n; i++) { int minn = inf, minx; for (int j = 1; j <= n; j++) { if (__________) { // 在此处填入选项 minn = dis[j]; minx = j; } } cheak[minx] = 1; for (int j = 1; j <= n; j++) { if (graph[minx][j] > 0) { if (minn + graph[minx][j] < dis[j]) { dis[j] = minn + graph[minx][j]; } } } } } 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27 28 29 30 31 32 33 34 35 36 37 38 #include <iostream> using namespace std; #define N 21 #define INF 99999999 int map[N][N]; int main() { int n, m, t1, t2, t3; cin >> n >> m; for (int i = 1; i <= n; i++) { for (int j = 1; j <= n; j++) { if (i == j) map[i][j] = 0; else map[i][j] = INF; } 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16",
+            question: "下面 Floyd 算法中，横线处应该填入的是（ ）。 int main() { for (int i = 1; i <= N; i++) dis[i] = inf; cin >> n >> e; for (int i = 1; i <= e; i++) { int a, b, c; cin >> a >> b >> c; graph[a][b] = c; } cin >> s; dis[s] = 0; for (int i = 1; i <= n; i++) { int minn = inf, minx; for (int j = 1; j <= n; j++) { if (__________) { // 在此处填入选项 minn = dis[j]; minx = j; } } cheak[minx] = 1; for (int j = 1; j <= n; j++) { if (graph[minx][j] > 0) { if (minn+graph[minx][j] < dis[j]) { dis[j] = minn+graph[minx][j]; } } } } } 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27 28 29 30 31 32 33 34 35 36 37 38 #include <iostream> using namespace std; #define N 21 #define INF 99999999 int map[N][N]; int main() { int n, m, t1, t2, t3; cin >> n >> m; for (int i = 1; i <= n; i++) { for (int j = 1; j <= n; j++) { if (i == j) map[i][j] = 0; else map[i][j] = INF; } 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16",
             options: [
-                "map[i][j] < map[i][k] + map[k][j]",
-                "map[i][j] > map[i][k] + map[k][j]",
-                "map[i][j] > map[i][k] - map[k][j]",
-                "map[i][j] < map[i][k] - map[k][j]",
+                "map[i][j] < map[i][k]+map[k][j]",
+                "map[i][j] > map[i][k]+map[k][j]",
+                "map[i][j] > map[i][k]-map[k][j]",
+                "map[i][j] < map[i][k]-map[k][j]",
             ],
             answer: 1,
             score: 2,
@@ -261,7 +261,7 @@ export const paperData = {
         {
             id: 14,
             type: "single",
-            question: "下面程序的Merge_Sort函数时间复杂度为（ ）。 } for (int i = 1; i <= m; i++) { cin >> t1 >> t2 >> t3; map[t1][t2] = t3; } for (int k = 1; k <= n; k++) for (int i = 1; i <= n; i++) for (int j = 1; j <= n; j++) if (__________) // 在此处填入选项 map[i][j] = map[i][k] + map[k][j]; for (int i = 1; i <= n; i++) { for (int j = 1; j <= n; j++) { cout.width(4); cout << map[i][j]; } cout << endl; } } 17 18 19 20 21 22 23 24 25 26 27 28 29 30 31 32 33 34 void Merge(int a[], int left, int mid, int right) { int temp[right - left + 1]; int i = left; int j = mid + 1; int k = 0; while (i <= mid && j <= right) { if (a[i] < a[j]) temp[k++] = a[i++]; else temp[k++] = a[j++]; } while (i <= mid) temp[k++] = a[i++]; while (j <= right) temp[k++] = a[j++]; for (int m = left, n = 0; m <= right; m++, n++) a[m] = temp[n]; } void Merge_Sort(int a[], int left, int right) { if (left == right) return; int mid = (left + right) / 2; Merge_Sort(a, left, mid); Merge_Sort(a, mid + 1, right); Merge(a, left, mid, right); } 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26 题号 1 2 3 4 5 6 7 8 9 10 答案",
+            question: "下面程序的Merge_Sort函数时间复杂度为（ ）。 } for (int i = 1; i <= m; i++) { cin >> t1 >> t2 >> t3; map[t1][t2] = t3; } for (int k = 1; k <= n; k++) for (int i = 1; i <= n; i++) for (int j = 1; j <= n; j++) if (__________) // 在此处填入选项 map[i][j] = map[i][k]+map[k][j]; for (int i = 1; i <= n; i++) { for (int j = 1; j <= n; j++) { cout.width(4); cout << map[i][j]; } cout << endl; } } 17 18 19 20 21 22 23 24 25 26 27 28 29 30 31 32 33 34 void Merge(int a[], int left, int mid, int right) { int temp[right-left+1]; int i = left; int j = mid+1; int k = 0; while (i <= mid && j <= right) { if (a[i] < a[j]) temp[k++] = a[i++]; else temp[k++] = a[j++]; } while (i <= mid) temp[k++] = a[i++]; while (j <= right) temp[k++] = a[j++]; for (int m = left, n = 0; m <= right; m++, n++) a[m] = temp[n]; } void Merge_Sort(int a[], int left, int right) { if (left == right) return; int mid = (left+right) / 2; Merge_Sort(a, left, mid); Merge_Sort(a, mid+1, right); Merge(a, left, mid, right); } 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26 题号 1 2 3 4 5 6 7 8 9 10 答案",
             options: [
                 "选项A",
                 "选项B",
@@ -452,7 +452,7 @@ export const paperData = {
         {
             id: 25,
             type: "judge",
-            question: "诚实国公民只说实话，说谎国公民只说谎话。你来到一处分岔⼝，一条通往诚实国，一条通往说谎国，但 不知是哪一条通往哪⾥。正在为难之际，走来两位路⼈，他们都⾃称是诚实国公民，都说对方是说谎国公民。你想 去说谎国，可以这样问其中一位路⼈： “ 我要去说谎国，如果我去问另一个路⼈，他会指向哪一条路？ ” 。 int fibonacci(int n) { if (n <= 1) return n; else return fibonacci(n - 1) + fibonacci(n - 2); } 1 2 3 4 5 6 子任务编号 数据点占比 1 30% 2 30% 3 40%",
+            question: "诚实国公民只说实话，说谎国公民只说谎话。你来到一处分岔⼝，一条通往诚实国，一条通往说谎国，但 不知是哪一条通往哪⾥。正在为难之际，走来两位路⼈，他们都⾃称是诚实国公民，都说对方是说谎国公民。你想 去说谎国，可以这样问其中一位路⼈： “ 我要去说谎国，如果我去问另一个路⼈，他会指向哪一条路？ ” 。 int fibonacci(int n) { if (n <= 1) return n; else return fibonacci(n-1)+fibonacci(n-2); } 1 2 3 4 5 6 子任务编号 数据点占比 1 30% 2 30% 3 40%",
             options: [
                 "正确",
                 "错误",

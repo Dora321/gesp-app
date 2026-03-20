@@ -1,9 +1,9 @@
 // 2024年6月 GESP C++ 三级真题 (第6次认证)
 // 数据说明：本卷优先依据官方真题 PDF 回填；其中大部分客观题题面可直接由 PDF 文本层提取。
-// - 客观题 1~5、7~15、16~25：题面主要来自官方 PDF 文本层，少量代码/版式做了等价整理。
-// - 客观题 6、8、21、23、24：官方 PDF 为流程图/代码截图，现按官方题面 + 公开解析做等价还原。
-// - 判断题答案来自公开解析并与官方题面逐题复核；第 8~10 题的代码细节在 PDF 文本层有截断，现保留可核对题意。
-// - 编程题 2 题题名、题意、样例与参考代码来自官方 PDF，同时与公开 OJ 题号 B4003/B4004 对齐。
+//-客观题 1~5、7~15、16~25：题面主要来自官方 PDF 文本层，少量代码/版式做了等价整理。
+//-客观题 6、8、21、23、24：官方 PDF 为流程图/代码截图，现按官方题面+公开解析做等价还原。
+//-判断题答案来自公开解析并与官方题面逐题复核；第 8~10 题的代码细节在 PDF 文本层有截断，现保留可核对题意。
+//-编程题 2 题题名、题意、样例与参考代码来自官方 PDF，同时与公开 OJ 题号 B4003/B4004 对齐。
 export const paperData = {
     id: '2024-06-l3',
     title: '2024年6月 GESP C++ 三级真题',
@@ -47,7 +47,7 @@ export const paperData = {
         {
             id: 4,
             type: 'single',
-            question: '下列代码将十进制转化成八进制，则横线上应填入（   ）。\n```cpp\n#include <iostream>\nusing namespace std;\nvoid decimal2octal(int decimal) {\n    int oct_number[100];\n    int i = 0;\n    while (decimal > 0) {\n        __________________________\n    }\n    for (int j = i - 1; j >= 0; j--) cout << oct_number[j];\n    cout << endl;\n}\n```',
+            question: '下列代码将十进制转化成八进制，则横线上应填入（   ）。\n```cpp\n#include <iostream>\nusing namespace std;\nvoid decimal2octal(int decimal) {\n    int oct_number[100];\n    int i = 0;\n    while (decimal > 0) {\n        __________________________\n    }\n    for (int j = i-1; j >= 0; j--) cout << oct_number[j];\n    cout << endl;\n}\n```',
             options: ['oct_number[i] = decimal % 8;    decimal /= 8;', 'oct_number[i] = decimal / 8;    decimal %/= 8;', 'oct_number[i++] = decimal % 8;    decimal /= 8;', 'oct_number[i++] = decimal / 8;    decimal %= 8;'],
             answer: 2,
             score: 2,
@@ -60,7 +60,7 @@ export const paperData = {
             options: ['6.5', '5.5', '5.75', '5.25'],
             answer: 2,
             score: 2,
-            explanation: '101.11₂ = 1×2^2 + 0×2^1 + 1×2^0 + 1×2^-1 + 1×2^-2 = 5.75。'
+            explanation: '101.11₂ = 1×2^2+0×2^1+1×2^0+1×2^-1+1×2^-2 = 5.75。'
         },
         {
             id: 6,
@@ -147,7 +147,7 @@ export const paperData = {
             id: 15,
             type: 'single',
             question: '如果执行下面 C++ 代码后，输出的结果是“gesp ccf org cn ”，则横线上应填入哪个代码？（   ）\n```cpp\n#include <iostream>\nusing namespace std;\nint main() {\n    string str = "gesp.ccf.org.cn";\n    string delimiter = ".";\n    string result = "";\n    string token;\n    size_t found = str.find(delimiter);\n    while (found != string::npos) {\n        token = str.substr(0, found);\n        result += token;\n        result += " ";\n        __________________________\n        found = str.find(delimiter);\n    }\n    result += str;\n    result += " ";\n    cout << result << endl;\n    return 0;\n}\n```',
-            options: ['str = str.substr(found + delimiter.length(), str.length() - 1);', 'str = str.substr(found, str.length());', 'str = str.substr(found, str.length() - 1);', '以上都不对'],
+            options: ['str = str.substr(found+delimiter.length(), str.length()-1);', 'str = str.substr(found, str.length());', 'str = str.substr(found, str.length()-1);', '以上都不对'],
             answer: 0,
             score: 2,
             explanation: '每次处理完前缀后，要把 str 更新为分隔符之后的剩余部分。'
@@ -227,7 +227,7 @@ export const paperData = {
         {
             id: 24,
             type: 'judge',
-            question: '执行下面 C++ 代码后，输出的结果不可能是 89781。\n```cpp\n#include <iostream>\n#include <cstdlib>\n#include <ctime>\nusing namespace std;\nint main() {\n    srand(time(NULL));\n    int i = 1;\n    int s[5];\n    while (i <= 5) {\n        int a = rand() % 10;\n        if (a % 3 == (i + 1) % 3)\n            s[i++] = a;\n    }\n    for (int i = 1; i <= 5; i++) cout << s[i];\n    cout << endl;\n    return 0;\n}\n```',
+            question: '执行下面 C++ 代码后，输出的结果不可能是 89781。\n```cpp\n#include <iostream>\n#include <cstdlib>\n#include <ctime>\nusing namespace std;\nint main() {\n    srand(time(NULL));\n    int i = 1;\n    int s[5];\n    while (i <= 5) {\n        int a = rand() % 10;\n        if (a % 3 == (i+1) % 3)\n            s[i++] = a;\n    }\n    for (int i = 1; i <= 5; i++) cout << s[i];\n    cout << endl;\n    return 0;\n}\n```',
             options: ['正确', '错误'],
             answer: 0,
             score: 2,
@@ -236,7 +236,7 @@ export const paperData = {
         {
             id: 25,
             type: 'judge',
-            question: '把整数 3025 从中剪开分为 30 和 25 两个数，此时再将这两数之和平方，计算结果又等于原数。 (30 + 25) × (30 + 25) = 55 × 55 = 3025，这样的数叫“雷劈数”。可以使用枚举的方法求出所有符合这样条件的四位数。',
+            question: '把整数 3025 从中剪开分为 30 和 25 两个数，此时再将这两数之和平方，计算结果又等于原数。 (30+25) × (30+25) = 55 × 55 = 3025，这样的数叫“雷劈数”。可以使用枚举的方法求出所有符合这样条件的四位数。',
             options: ['正确', '错误'],
             answer: 0,
             score: 2,
@@ -249,7 +249,7 @@ export const paperData = {
             type: 'programming',
             title: '移位',
             problemNumber: 'B4003',
-            source: 'official-pdf + luogu-mapping',
+            source: 'official-pdf+luogu-mapping',
             description: '小杨学习了加密技术移位，所有大写字母都向后按照一个固定数目进行偏移。偏移过程会将字母表视作首尾相接的环，例如偏移量是 3 时，A 会替换成 D，Z 会替换成 C。给定偏移量 n，输出大写字母表 ABCDEFGHIJKLMNOPQRSTUVWXYZ 在偏移量为 n 时的替换结果。',
             inputDescription: '输入一行，一个正整数 n。',
             outputDescription: '输出偏移量为 n 时，大写字母表移位替换后的结果。',
@@ -259,17 +259,17 @@ export const paperData = {
                     output: 'DEFGHIJKLMNOPQRSTUVWXYZABC'
                 }
             ],
-            explanation: '字母表长度为 26，先将 n 对 26 取模。对第 i 个字母，输出 char(\'A\' + (i + n) % 26) 即可。',
+            explanation: '字母表长度为 26，先将 n 对 26 取模。对第 i 个字母，输出 char(\'A\'+(i+n) % 26) 即可。',
             tags: ['编程题', '字符串', '模拟'],
             template: '#include <bits/stdc++.h>\nusing namespace std;\n\nint main() {\n    ios::sync_with_stdio(false);\n    cin.tie(nullptr);\n\n    // 在此编写代码\n    return 0;\n}',
-            referenceCode: '#include<bits/stdc++.h>\nusing namespace std;\nint main(){\n    int n;\n    cin >> n;\n    for(int i = 0; i < 26; i++){\n        int j = (i + n) % 26;\n        char ch = \'A\' + j;\n        cout << ch;\n    }\n    cout << "\\n";\n    return 0;\n}'
+            referenceCode: '#include<bits/stdc++.h>\nusing namespace std;\nint main(){\n    int n;\n    cin >> n;\n    for(int i = 0; i < 26; i++){\n        int j = (i+n) % 26;\n        char ch = \'A\'+j;\n        cout << ch;\n    }\n    cout << "\\n";\n    return 0;\n}'
         },
         {
             id: 27,
             type: 'programming',
             title: '寻找倍数',
             problemNumber: 'B4004',
-            source: 'official-pdf + luogu-mapping',
+            source: 'official-pdf+luogu-mapping',
             description: '小杨有一个包含 n 个正整数的序列 A=[a1,a2,…,an]，他想知道是否存在某个 ai，使得 ai 是序列 A 中所有数的倍数。对于每组测试数据，判断是否存在这样的元素。',
             inputDescription: '第一行一个正整数 t，表示测试用例组数。每组测试用例第一行是 n，第二行是 n 个正整数。',
             outputDescription: '对每组测试用例，若存在这样的元素输出 Yes，否则输出 No。',
@@ -282,7 +282,7 @@ export const paperData = {
             explanation: '如果某个数是所有数的倍数，那么它一定是数组中的最大值。先求最大值，再判断它是否能被数组中每个数整除即可。',
             tags: ['编程题', '数组', '整除', '多组测试'],
             template: '#include <bits/stdc++.h>\nusing namespace std;\n\nint main() {\n    ios::sync_with_stdio(false);\n    cin.tie(nullptr);\n\n    // 在此编写代码\n    return 0;\n}',
-            referenceCode: '#include<bits/stdc++.h>\nusing namespace std;\nconst int N = 1e5 + 10;\nint a[N];\nint main(){\n    int t;\n    cin >> t;\n    while(t--){\n        int n;\n        cin >> n;\n        int x = 0;\n        for(int i = 1; i <= n; i++){\n            cin >> a[i];\n            x = max(x, a[i]);\n        }\n        int fl = 0;\n        for(int i = 1; i <= n; i++){\n            if(x % a[i]) fl = 1;\n        }\n        if(fl) cout << "No\\n";\n        else cout << "Yes\\n";\n    }\n    return 0;\n}'
+            referenceCode: '#include<bits/stdc++.h>\nusing namespace std;\nconst int N = 1e5+10;\nint a[N];\nint main(){\n    int t;\n    cin >> t;\n    while(t--){\n        int n;\n        cin >> n;\n        int x = 0;\n        for(int i = 1; i <= n; i++){\n            cin >> a[i];\n            x = max(x, a[i]);\n        }\n        int fl = 0;\n        for(int i = 1; i <= n; i++){\n            if(x % a[i]) fl = 1;\n        }\n        if(fl) cout << "No\\n";\n        else cout << "Yes\\n";\n    }\n    return 0;\n}'
         }
     ]
 };

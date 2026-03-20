@@ -1,8 +1,8 @@
 // 2023年12月 GESP C++ 三级真题 (第4次认证)
 // 数据说明：本卷基于官方真题 PDF 与公开解析回填。
-// - 官方 PDF：可核对题号、客观题答案、判断题题干、编程题题面/样例/参考程序
-// - 由于官方 PDF 的文本层对多道“代码截图题”缺失，部分客观题题面按公开解析做题意级还原
-// - 其中单选 4~8、11~12 以及判断 2、4~8 含还原成分；答案已与官方 PDF 答案表核对
+//-官方 PDF：可核对题号、客观题答案、判断题题干、编程题题面/样例/参考程序
+//-由于官方 PDF 的文本层对多道“代码截图题”缺失，部分客观题题面按公开解析做题意级还原
+//-其中单选 4~8、11~12 以及判断 2、4~8 含还原成分；答案已与官方 PDF 答案表核对
 export const paperData = {
     id: '2023-12-l3',
     title: '2023年12月 GESP C++ 三级真题',
@@ -280,7 +280,7 @@ export const paperData = {
             explanation: '从小到大枚举初始鱼数，逐只小猫模拟“余 i、扔掉 i 条、拿走一份”的过程，找到第一个全过程都合法的鱼数即可。',
             tags: ['编程题', '模拟', '枚举'],
             template: '#include <bits/stdc++.h>\nusing namespace std;\n\nint main() {\n    ios::sync_with_stdio(false);\n    cin.tie(nullptr);\n\n    // 在此编写代码\n    return 0;\n}',
-            referenceCode: '#include <bits/stdc++.h>\nusing namespace std;\n\nbool check(long long x, int N, int i) {\n    long long cur = x;\n    for (int t = 0; t < N; ++t) {\n        if (cur % N != i) return false;\n        cur -= i;\n        if (cur < 0 || cur % N != 0) return false;\n        cur = cur / N * (N - 1);\n    }\n    return true;\n}\n\nint main() {\n    ios::sync_with_stdio(false);\n    cin.tie(nullptr);\n\n    int N, i;\n    cin >> N >> i;\n    for (long long x = 1; ; ++x) {\n        if (check(x, N, i)) {\n            cout << x << "\\n";\n            break;\n        }\n    }\n    return 0;\n}'
+            referenceCode: '#include <bits/stdc++.h>\nusing namespace std;\n\nbool check(long long x, int N, int i) {\n    long long cur = x;\n    for (int t = 0; t < N; ++t) {\n        if (cur % N != i) return false;\n        cur -= i;\n        if (cur < 0 || cur % N != 0) return false;\n        cur = cur / N * (N-1);\n    }\n    return true;\n}\n\nint main() {\n    ios::sync_with_stdio(false);\n    cin.tie(nullptr);\n\n    int N, i;\n    cin >> N >> i;\n    for (long long x = 1; ; ++x) {\n        if (check(x, N, i)) {\n            cout << x << "\\n";\n            break;\n        }\n    }\n    return 0;\n}'
         },
         {
             id: 27,

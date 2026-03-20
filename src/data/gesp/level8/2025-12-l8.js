@@ -37,9 +37,9 @@ export const paperData = {
             question: "下列代码实现了归并排序（ Merge Sort ）的分治部分。为了正确地将数组 a 的 [left, right] 区间进⾏ 排序，横线处应该填入的是（ ）。",
             options: [
                 "merge_sort(a, mid, right)",
-                "merge_sort(a, mid + 1, right)",
-                "merge_sort(a, left, mid + 1)",
-                "merge_sort(a, mid - 1, right)",
+                "merge_sort(a, mid+1, right)",
+                "merge_sort(a, left, mid+1)",
+                "merge_sort(a, mid-1, right)",
             ],
             answer: 1,
             score: 2,
@@ -72,7 +72,7 @@ export const paperData = {
         {
             id: 4,
             type: "single",
-            question: "二项式 $(x - 2)^8$ 的展开式中 $x^6$ 项的系数为（ ）。",
+            question: "二项式 $(x-2)^8$ 的展开式中 $x^6$ 项的系数为（ ）。",
             options: [
                 "-7168",
                 "7168",
@@ -93,9 +93,9 @@ export const paperData = {
             type: "single",
             question: "下面是使用邻接矩阵实现的 Dijkstra 算法的核⼼⽚段，用于求单源最短路径。在找到当前距离起点最近的顶点 u 后，需要更新其邻接点 j 的距离。横线处应填入的代码是（ ）。",
             options: [
-                "dis[j] < dis[u] + graph[u][j]",
-                "dis[j] > dis[u] + graph[u][j]",
-                "graph[u][j] > dis[u] + dis[j]",
+                "dis[j] < dis[u]+graph[u][j]",
+                "dis[j] > dis[u]+graph[u][j]",
+                "graph[u][j] > dis[u]+dis[j]",
                 "dis[j] > graph[u][j]",
             ],
             answer: 1,
@@ -112,10 +112,10 @@ export const paperData = {
             type: "single",
             question: "下面程序使用动态规划求两个字符串的最长公共子序列（ LCS ）长度，横线处应填入的是（ ）。",
             options: [
-                "dp[i][j] = dp[i - 1][j] + dp[i][j - 1];",
-                "dp[i][j] = min(dp[i - 1][j], dp[i][j - 1]);",
-                "dp[i][j] = max(dp[i - 1][j], dp[i][j - 1]);",
-                "dp[i][j] = max(dp[i - 1][j], dp[i][j - 1]) + 1;",
+                "$dp[i]$[j] = dp[i-1][j]+$dp[i]$[j-1];",
+                "$dp[i]$[j] = min(dp[i-1][j], $dp[i]$[j-1]);",
+                "$dp[i]$[j] = max(dp[i-1][j], $dp[i]$[j-1]);",
+                "$dp[i]$[j] = max(dp[i-1][j], $dp[i]$[j-1])+1;",
             ],
             answer: 2,
             score: 2,
@@ -131,10 +131,10 @@ export const paperData = {
             type: "single",
             question: "已知两个点 和 在平面直角坐标系中的坐标。下列 C++ 表达式中，能正确计算这两点之间 直线距离的是（ ）。",
             options: [
-                "sqrt((x1 - x2) ^ 2 + (y1 - y2) ^ 2)",
-                "sqrt(pow(x1 - x2, 2) + pow(y1 - y2, 2))",
-                "pow(x1 - x2, 2) + pow(y1 - y2, 2)",
-                "abs(x1 - x2) + abs(y1 - y2)",
+                "sqrt((x1-x2) ^ 2+(y1-y2) ^ 2)",
+                "sqrt(pow(x1-x2, 2)+pow(y1-y2, 2))",
+                "pow(x1-x2, 2)+pow(y1-y2, 2)",
+                "abs(x1-x2)+abs(y1-y2)",
             ],
             answer: 1,
             score: 2,
@@ -188,7 +188,7 @@ export const paperData = {
             type: "single",
             question: "下列程序实现了线性筛法（欧拉筛），用于在 时间内求出 之间的所有质数。为了保证每个合数 只被其最小质因子筛掉，横线处应填入的语句是（ ）。",
             options: [
-                "i + primes[j] == n",
+                "i+primes[j] == n",
                 "primes[j] > i",
                 "i % primes[j] == 0",
                 "i % primes[j] != 0",
@@ -368,7 +368,7 @@ export const paperData = {
         {
             id: 20,
             type: "judge",
-            question: "在杨辉三角形中，第 $n$ 行（从 0 开始计数，即第 $n$ 行有 $n+1$ 个数）的所有数字之和等于 $$$2^n$$$。",
+            question: "在杨辉三角形中，第 $n$ 行（从 0 开始计数，即第 $n$ 行有 $n+1$ 个数）的所有数字之和等于 $2^n$。",
             options: [
                 "正确",
                 "错误",
@@ -419,7 +419,7 @@ export const paperData = {
         {
             id: 23,
             type: "judge",
-            question: "快速排序在最坏情况下的时间复杂度为 $$$$O(N^2)$$$$，可以通过随机化选择基准值（pivot）的方法完全避免退化。",
+            question: "快速排序在最坏情况下的时间复杂度为 $O(N^2)$，可以通过随机化选择基准值（pivot）的方法完全避免退化。",
             options: [
                 "正确",
                 "错误",

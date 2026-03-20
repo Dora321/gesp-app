@@ -7,7 +7,7 @@ const programmingQuestions = [
         "title": "路径覆盖",
         "problemNumber": "2026-03-15-06-C-01",
         "description": "给定一棵有根树，把若干节点染黑，使每条叶子到根的路径上至少有一个黑点。节点 $i$ 染黑代价为 $c_i$，求最小总代价。",
-        "inputDescription": "第一行 $n$。第二行 $$$n-1$$$ 个父节点。第三行 $n$ 个代价 $c_i$。",
+        "inputDescription": "第一行 $n$。第二行 $n-1$ 个父节点。第三行 $n$ 个代价 $c_i$。",
         "outputDescription": "输出最小总代价。",
         "samples": [
             {
@@ -44,7 +44,7 @@ const programmingQuestions = [
             "0/1背包"
         ],
         "template": "#include <bits/stdc++.h>\nusing namespace std;\n\nint main() {\n    // 在此编写代码\n    return 0;\n}",
-        "referenceCode": "#include <bits/stdc++.h>\nusing namespace std;\n\nint main() {\n    ios::sync_with_stdio(false);\n    cin.tie(nullptr);\n\n    int n, m;\n    cin >> n >> m;\n    vector<pair<int,int>> items(n);\n    int sumAtk = 0;\n    for (int i = 0; i < n; ++i) {\n        int a, c;\n        cin >> a >> c;\n        items[i] = {a, c};\n        sumAtk += a;\n    }\n\n    const int INF = 1e9;\n    vector<int> dp(sumAtk + 1, INF);\n    dp[0] = 0;\n    int cur = 0;\n    for (auto [a, c] : items) {\n        cur += a;\n        for (int j = cur; j >= a; --j) {\n            dp[j] = min(dp[j], dp[j - a] + c);\n        }\n    }\n\n    int ans = 0;\n    for (int j = 0; j <= sumAtk; ++j) {\n        if (dp[j] <= m) ans = j;\n    }\n    cout << ans << '\\n';\n    return 0;\n}"
+        "referenceCode": "#include <bits/stdc++.h>\nusing namespace std;\n\nint main() {\n    ios::sync_with_stdio(false);\n    cin.tie(nullptr);\n\n    int n, m;\n    cin >> n >> m;\n    vector<pair<int,int>> items(n);\n    int sumAtk = 0;\n    for (int i = 0; i < n; ++i) {\n        int a, c;\n        cin >> a >> c;\n        items[i] = {a, c};\n        sumAtk += a;\n    }\n\n    const int INF = 1e9;\n    vector<int> dp(sumAtk+1, INF);\n    dp[0] = 0;\n    int cur = 0;\n    for (auto [a, c] : items) {\n        cur += a;\n        for (int j = cur; j >= a; --j) {\n            $dp[j]$ = min($dp[j]$, dp[j-a]+c);\n        }\n    }\n\n    int ans = 0;\n    for (int j = 0; j <= sumAtk; ++j) {\n        if ($dp[j]$ <= m) ans = j;\n    }\n    cout << ans << '\\n';\n    return 0;\n}"
     }
 ];
 
@@ -137,7 +137,7 @@ export const paperData = {
         {
             id: 5,
             type: "single",
-            question: "假设循环队列数组长度为 N，其中队空判断条件为：front == rear，队满判断条件为：(rear + 1) % N == front，出队对应的操作为：front = (front + 1) % N，入队对于的操作为：rear = (rear + 1) % N。循环队列长度 N = 6，初始 front = 1, rear = 1，执⾏操作序列为：入队 , 入队 , 入队 , 出队 , 入队 , 入队， 则最终 (front, rear) 的值是（ ）。",
+            question: "假设循环队列数组长度为 N，其中队空判断条件为：front == rear，队满判断条件为：(rear+1) % N == front，出队对应的操作为：front = (front+1) % N，入队对于的操作为：rear = (rear+1) % N。循环队列长度 N = 6，初始 front = 1, rear = 1，执⾏操作序列为：入队 , 入队 , 入队 , 出队 , 入队 , 入队， 则最终 (front, rear) 的值是（ ）。",
             options: [
                 "(2, 5)",
                 "(2, 0)",
@@ -308,7 +308,7 @@ export const paperData = {
         {
             id: 14,
             type: "single",
-            question: "0/1 背包（每件物品最多选一次）问题通常可用一维动态规划求解，核⼼代码如下。则下面说法正确的是（ ）。 struct TreeNode { int val; TreeNode* left; TreeNode* right; TreeNode(int x): val(x), left(nullptr), right(nullptr) {} }; TreeNode* bfsFind(TreeNode* root, int x) { if (!root) return nullptr; queue<TreeNode*> q; q.push(root); while (!q.empty()) { TreeNode* cur = q.front(); q.pop(); if (cur->val == x) return cur; ________________________ } return nullptr; } 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 if (cur->left) q.push(cur->left); if (cur->right) q.push(cur->right); 1 2 3 4 q.push(cur->left); q.push(cur->right); 1 2 bool find(Node* root, int x) { while (root) { if (root->val == x) return true; root = (x < root->val) ? root->left : root->right; } return false; } 1 2 3 4 5 6 7 for each item (w, v): for (int j = W; j >= w; --j) dp[j] = max(dp[j], dp[j-w] + v); 1 2 3 第 8 页 / 共 13 页 题号 1 2 3 4 5 6 7 8 9 10 答案",
+            question: "0/1 背包（每件物品最多选一次）问题通常可用一维动态规划求解，核⼼代码如下。则下面说法正确的是（ ）。 struct TreeNode { int val; TreeNode* left; TreeNode* right; TreeNode(int x): val(x), left(nullptr), right(nullptr) {} }; TreeNode* bfsFind(TreeNode* root, int x) { if (!root) return nullptr; queue<TreeNode*> q; q.push(root); while (!q.empty()) { TreeNode* cur = q.front(); q.pop(); if (cur->val == x) return cur; ________________________ } return nullptr; } 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 if (cur->left) q.push(cur->left); if (cur->right) q.push(cur->right); 1 2 3 4 q.push(cur->left); q.push(cur->right); 1 2 bool find(Node* root, int x) { while (root) { if (root->val == x) return true; root = (x < root->val) ? root->left : root->right; } return false; } 1 2 3 4 5 6 7 for each item (w, v): for (int j = W; j >= w; --j) $dp[j]$ = max($dp[j]$, dp[j-w]+v); 1 2 3 第 8 页 / 共 13 页 题号 1 2 3 4 5 6 7 8 9 10 答案",
             options: [
                 "内层 j 必须从小到大，否则会漏解",
                 "内层 j 必须从大到小，否则同一件物品会被用多次",
@@ -448,7 +448,7 @@ export const paperData = {
         {
             id: 22,
             type: "judge",
-            question: "下面的函数能正确判断一棵树是不是二叉排序树（左边的数字要比当前数字小，右边的数字要比当前数字 大）。 class Test { public: Test() { cout << \"T \"; } }; int main() { Test a; Test b = a; } 1 2 3 4 5 6 7 8 9 int countLeaf(TreeNode* root) { if (!root) return 0; if (!root->left && !root->right) return 1; return countLeaf(root->left) + countLeaf(root->right); } 1 2 3 4 5 bool isBST(TreeNode* root, int minVal, int maxVal) { if (!root) return true; if (root->val <= minVal || root->val >= maxVal) return false; return isBST(root->left, minVal, root->val) && isBST(root->right, root->val, maxVal); } 1 2 3 4 5 6 7 第 9 页 / 共 13 页",
+            question: "下面的函数能正确判断一棵树是不是二叉排序树（左边的数字要比当前数字小，右边的数字要比当前数字 大）。 class Test { public: Test() { cout << \"T \"; } }; int main() { Test a; Test b = a; } 1 2 3 4 5 6 7 8 9 int countLeaf(TreeNode* root) { if (!root) return 0; if (!root->left && !root->right) return 1; return countLeaf(root->left)+countLeaf(root->right); } 1 2 3 4 5 bool isBST(TreeNode* root, int minVal, int maxVal) { if (!root) return true; if (root->val <= minVal || root->val >= maxVal) return false; return isBST(root->left, minVal, root->val) && isBST(root->right, root->val, maxVal); } 1 2 3 4 5 6 7 第 9 页 / 共 13 页",
             options: [
                 "正确",
                 "错误",

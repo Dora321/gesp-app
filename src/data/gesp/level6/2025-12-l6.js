@@ -7,7 +7,7 @@ const programmingQuestions = [
         "title": "路径覆盖",
         "problemNumber": "2025-12-21-06-C-01",
         "description": "给定一棵有根树，把若干节点染黑，使每条叶子到根的路径上至少有一个黑点。节点 i 染黑代价为 c_i，求最小总代价。",
-        "inputDescription": "第一行 n。第二行 $$n-1$$ 个父节点。第三行 n 个代价 c_i。",
+        "inputDescription": "第一行 n。第二行 $n-1$ 个父节点。第三行 n 个代价 c_i。",
         "outputDescription": "输出最小总代价。",
         "samples": [
             {
@@ -37,14 +37,14 @@ const programmingQuestions = [
                 "output": "5"
             }
         ],
-        "explanation": "把“总攻击力”当作背包容量：dp[j] 表示达到总攻击力恰为 j 的最小花费，做一遍 0/1 背包；最后找所有花费不超过 m 的最大 j。这样即使金币上限很大、攻击力总和较小，也能稳定求解。",
+        "explanation": "把“总攻击力”当作背包容量：$dp[j]$ 表示达到总攻击力恰为 j 的最小花费，做一遍 0/1 背包；最后找所有花费不超过 m 的最大 j。这样即使金币上限很大、攻击力总和较小，也能稳定求解。",
         "tags": [
             "编程题",
             "动态规划",
             "0/1背包"
         ],
         "template": "#include <bits/stdc++.h>\nusing namespace std;\n\nint main() {\n    // 在此编写代码\n    return 0;\n}",
-        "referenceCode": "#include <bits/stdc++.h>\nusing namespace std;\n\nint main() {\n    ios::sync_with_stdio(false);\n    cin.tie(nullptr);\n\n    int n, m;\n    cin >> n >> m;\n    vector<pair<int,int>> items(n);\n    int sumAtk = 0;\n    for (int i = 0; i < n; ++i) {\n        int a, c;\n        cin >> a >> c;\n        items[i] = {a, c};\n        sumAtk += a;\n    }\n\n    const int INF = 1e9;\n    vector<int> dp(sumAtk + 1, INF);\n    dp[0] = 0;\n    int cur = 0;\n    for (auto [a, c] : items) {\n        cur += a;\n        for (int j = cur; j >= a; --j) {\n            dp[j] = min(dp[j], dp[j - a] + c);\n        }\n    }\n\n    int ans = 0;\n    for (int j = 0; j <= sumAtk; ++j) {\n        if (dp[j] <= m) ans = j;\n    }\n    cout << ans << '\\n';\n    return 0;\n}"
+        "referenceCode": "#include <bits/stdc++.h>\nusing namespace std;\n\nint main() {\n    ios::sync_with_stdio(false);\n    cin.tie(nullptr);\n\n    int n, m;\n    cin >> n >> m;\n    vector<pair<int,int>> items(n);\n    int sumAtk = 0;\n    for (int i = 0; i < n; ++i) {\n        int a, c;\n        cin >> a >> c;\n        items[i] = {a, c};\n        sumAtk += a;\n    }\n\n    const int INF = 1e9;\n    vector<int> dp(sumAtk+1, INF);\n    dp[0] = 0;\n    int cur = 0;\n    for (auto [a, c] : items) {\n        cur += a;\n        for (int j = cur; j >= a; --j) {\n            $dp[j]$ = min($dp[j]$, dp[j-a]+c);\n        }\n    }\n\n    int ans = 0;\n    for (int j = 0; j <= sumAtk; ++j) {\n        if ($dp[j]$ <= m) ans = j;\n    }\n    cout << ans << '\\n';\n    return 0;\n}"
     }
 ];
 
@@ -61,16 +61,16 @@ export const paperData = {
         {
             id: 1,
             type: "single",
-            question: "在面向对象编程中，下列关于 虚函数 的描述中，错误的是（ ）。",
+            question: "在面向对象编程中，下列关于虚函数（virtual function）的描述中，错误的是（ ）。",
             options: [
-                "虚函数用于支持运⾏时多态",
+                "虚函数用于支持运行时多态",
                 "通过基类指针调用虚函数时，会根据对象实际类型决定调用版本",
                 "构造函数可以声明为虚函数以支持多态",
                 "基类析构函数常声明为虚函数以避免资源泄漏",
             ],
             answer: 2,
             score: 2,
-            explanation: "答案依据试卷标准答案；解析待补充。",
+            explanation: "C++ 中构造函数不能为虚函数，因为虚函数依赖于虚函数表（vtable），而在构造函数执行时，对象尚未完全创建，vtable 尚未建立。析构函数则建议声明为虚位，以确保通过基类指针删除派生类对象时能正确释放资源。选项 C 错误。",
             tags: [
                 "客观题",
                 "单选题",
@@ -137,7 +137,7 @@ export const paperData = {
         {
             id: 5,
             type: "single",
-            question: "假设循环队列数组长度为 N，其中队空判断条件为：front == rear，队满判断条件为：(rear + 1) % N == front，出队对应的操作为：front = (front + 1) % N，入队对于的操作为：rear = (rear + 1) % N。循环队列长度 N = 6，初始 front = 1, rear = 1，执⾏操作序列为：入队 , 入队 , 入队 , 出队 , 入队 , 入队， 则最终 (front, rear) 的值是（ ）。",
+            question: "假设循环队列数组长度为 N，其中队空判断条件为：front == rear，队满判断条件为：(rear+1) % N == front，出队对应的操作为：front = (front+1) % N，入队对于的操作为：rear = (rear+1) % N。循环队列长度 N = 6，初始 front = 1, rear = 1，执⾏操作序列为：入队 , 入队 , 入队 , 出队 , 入队 , 入队， 则最终 (front, rear) 的值是（ ）。",
             options: [
                 "(2, 5)",
                 "(2, 0)",
@@ -291,7 +291,7 @@ export const paperData = {
             type: "single",
             question: "在二叉排序树（ Binary Search Tree, BST ）中，假设节点值互不相同。给定如下搜索函数，以下说法一定正 确的是（ ）。",
             options: [
-                "最坏情况下，访问结点数是 $$$$O(N)$$$$",
+                "最坏情况下，访问结点数是 $O(N)$",
                 "最坏情况下，访问结点数是 $O(h)$",
                 "无论如何，访问结点数都不超过树高的一半",
                 "一定比在普通二叉树中搜索快",
@@ -499,7 +499,7 @@ export const paperData = {
         {
             id: 25,
             type: "judge",
-            question: "假定只有一个根节点的树的深度为 1 ，则一棵有 $n$ 个节点的完全二叉树，则树的深度为 $\\lfloor \log_2 n \\rfloor + 1$。",
+            question: "假定只有一个根节点的树的深度为 1 ，则一棵有 $n$ 个节点的完全二叉树，则树的深度为 $\\lfloor \log_2 n \\rfloor+1$。",
             options: [
                 "正确",
                 "错误",

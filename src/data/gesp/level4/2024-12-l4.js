@@ -6,7 +6,7 @@ const programmingQuestions = [
         type: "programming",
         title: "Recamán",
         problemNumber: "2024-12-23-04-C-01",
-        description: "小杨最近发现了有趣的 Recamán 数列，这个数列是这样生成的：数列的第一项 a0 是 0；如果 ak-1 - k 是正整数并且没有在数列中出现过，那么数列的第 k 项 ak 为 ak-1 - k，否则为 ak-1 + k。小杨想知道 Recamán 数列的前 n 项从小到大排序后的结果。",
+        description: "小杨最近发现了有趣的 Recamán 数列，这个数列是这样生成的：数列的第一项 a0 是 0；如果 ak-1-k 是正整数并且没有在数列中出现过，那么数列的第 k 项 ak 为 ak-1-k，否则为 ak-1+k。小杨想知道 Recamán 数列的前 n 项从小到大排序后的结果。",
         inputDescription: "第一行一个正整数 n (1 ≤ n ≤ 100,000)。",
         outputDescription: "一行，n 个空格分隔的整数，表示 Recamán 数列的前 n 项从小到大排序后的结果。",
         samples: [
@@ -16,7 +16,7 @@ const programmingQuestions = [
         explanation: "按照递推公式生成前 n 项。由于需要判断是否出现过，可以使用 std::set 或布尔数组（注意数值范围可能超过 n，实际前 10^5 项的最大值约 7*10^5）。最后对生成的 n 个数排序输出。",
         tags: ["编程题", "递推", "排序", "哈希/布尔数组"],
         template: "#include <iostream>\n#include <vector>\n#include <algorithm>\nusing namespace std;\n\nint main() {\n    int n;\n    cin >> n;\n    // 在此编写代码\n    return 0;\n}",
-        referenceCode: "#include <iostream>\n#include <vector>\n#include <algorithm>\n#include <set>\nusing namespace std;\nconst int MAX_VAL = 10000000;\nbool vis[MAX_VAL];\nint main() {\n    int n; cin >> n;\n    vector<long long> a(n);\n    a[0] = 0;\n    vis[0] = true;\n    for (int k = 1; k < n; k++) {\n        long long prev = a[k-1];\n        long long next = prev - k;\n        if (next > 0 && !vis[next]) {\n            a[k] = next;\n        } else {\n            a[k] = prev + k;\n        }\n        if (a[k] < MAX_VAL) vis[a[k]] = true;\n    }\n    sort(a.begin(), a.end());\n    for (int i = 0; i < n; i++) cout << a[i] << (i == n - 1 ? \"\" : \" \");\n    cout << endl;\n    return 0;\n}"
+        referenceCode: "#include <iostream>\n#include <vector>\n#include <algorithm>\n#include <set>\nusing namespace std;\nconst int MAX_VAL = 10000000;\nbool vis[MAX_VAL];\nint main() {\n    int n; cin >> n;\n    vector<long long> a(n);\n    a[0] = 0;\n    vis[0] = true;\n    for (int k = 1; k < n; k++) {\n        long long prev = a[k-1];\n        long long next = prev-k;\n        if (next > 0 && !vis[next]) {\n            a[k] = next;\n        } else {\n            a[k] = prev+k;\n        }\n        if (a[k] < MAX_VAL) vis[a[k]] = true;\n    }\n    sort(a.begin(), a.end());\n    for (int i = 0; i < n; i++) cout << a[i] << (i == n-1 ? \"\" : \" \");\n    cout << endl;\n    return 0;\n}"
     },
     {
         id: 27,
@@ -136,10 +136,10 @@ export const paperData = {
             id: 7,
             type: "single",
             question: "选择排序在最坏情况下的比较次数是（ ）。",
-            options: ["$O(\log n)$", "$$$O(N)$$$", "$O(n \log n)$", "$$$O(N^2)$$$"],
+            options: ["$O(\log n)$", "$O(N)$", "$O(n \log n)$", "$O(N^2)$"],
             answer: 3,
             score: 2,
-            explanation: "选择排序无论何种情况都需两层循环，复杂度 $$$O(N^2)$$$。",
+            explanation: "选择排序无论何种情况都需两层循环，复杂度 $O(N^2)$。",
             tags: ["客观题", "单选题", "GESP4级"]
         },
         {
@@ -280,11 +280,11 @@ export const paperData = {
         {
             id: 21,
             type: "judge",
-            question: "冒泡排序的平均时间复杂度为 $$$O(N^2)$$$，但最优情况下为 $$$O(N)$$$。",
+            question: "冒泡排序的平均时间复杂度为 $O(N^2)$，但最优情况下为 $O(N)$。",
             options: ["正确", "错误"],
             answer: 0,
             score: 2,
-            explanation: "经过优化的冒泡排序在已有序时可达到 $$$O(N)$$$。",
+            explanation: "经过优化的冒泡排序在已有序时可达到 $O(N)$。",
             tags: ["客观题", "判断题", "GESP4级"]
         },
         {

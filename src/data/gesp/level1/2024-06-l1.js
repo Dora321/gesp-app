@@ -31,21 +31,21 @@ export const paperData = {
     {
       id: 2,
       type: 'single',
-      question: 'C++表达式 3 - 3 * 3 / 5 的值是( )。',
+      question: 'C++表达式 3-3 * 3 / 5 的值是( )。',
       options: ['-1.2', '1', '0', '2'],
       answer: 3,
       score: 2,
-      explanation: '优先级：* 和 / 高于 -。3 * 3 = 9, 9 / 5 = 1（整除）, 3 - 1 = 2。',
+      explanation: '优先级：* 和 / 高于 -。3 * 3 = 9, 9 / 5 = 1（整除）, 3-1 = 2。',
       tags: [LEVEL1_TAGS.operator]
     },
     {
       id: 3,
       type: 'single',
-      question: '假设N为正整数，则 cout << (N % 3 + N % 7) 的最大可能值是 ( )。',
+      question: '假设N为正整数，则 cout << (N % 3+N % 7) 的最大可能值是 ( )。',
       options: ['6', '8', '10', '不确定'],
       answer: 1,
       score: 2,
-      explanation: 'N % 3 最大值为 2，N % 7 最大值为 6。2 + 6 = 8。',
+      explanation: 'N % 3 最大值为 2，N % 7 最大值为 6。2+6 = 8。',
       tags: [LEVEL1_TAGS.operator]
     },
     {
@@ -61,7 +61,7 @@ export const paperData = {
     {
       id: 5,
       type: 'single',
-      question: '下面的C++代码执行时如果先输入 5 并回车后输入 2 并回车，其输出是 ( )。\n```cpp\nint a, b;\ncin >> a >> b;\ncout << a + b;\n```',
+      question: '下面的C++代码执行时如果先输入 5 并回车后输入 2 并回车，其输出是 ( )。\n```cpp\nint a, b;\ncin >> a >> b;\ncout << a+b;\n```',
       options: ['7', '5', '2', '报错'],
       answer: 0, // 修正：此题考察 cin 逻辑，输出应为 7
       score: 2,
@@ -71,17 +71,17 @@ export const paperData = {
     {
       id: 6,
       type: 'single',
-      question: '下面的C++代码执行后的输出是 ( )。\n```cpp\ndouble a = 10.5;\nprintf("a+1={%d}", (int)a + 1);\n```',
+      question: '下面的C++代码执行后的输出是 ( )。\n```cpp\ndouble a = 10.5;\nprintf("a+1={%d}", (int)a+1);\n```',
       options: ['a+1={11}', 'a+1={11.5}', 'a+1={11}', 'a+1={102}'], // 注意选项可能混淆
       answer: 0,
       score: 2,
-      explanation: '(int)10.5 = 10，10 + 1 = 11。输出 a+1={11}。',
+      explanation: '(int)10.5 = 10，10+1 = 11。输出 a+1={11}。',
       tags: [LEVEL1_TAGS.basics, LEVEL1_TAGS.operator]
     },
     {
       id: 7,
       type: 'single',
-      question: 'C++表达式 9/4 - 6 % (6 - 2) * 10 的值是 ( )。',
+      question: 'C++表达式 9/4-6 % (6-2) * 10 的值是 ( )。',
       options: ['-17', '-18', '2', '12'],
       answer: 1,
       score: 2,

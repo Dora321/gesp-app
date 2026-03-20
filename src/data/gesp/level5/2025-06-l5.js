@@ -16,7 +16,7 @@ const programmingQuestions = [
         explanation: "答案具有单调性：若能兑换 v 份，则一定也能兑换更少的份数。可以二分答案 v，再检查是否能把这 v 份分成两种兑换方式，使两类券都不超出持有数量。",
         tags: ["编程题", "二分答案", "数学"],
         template: "#include <bits/stdc++.h>\nusing namespace std;\n\nint main() {\n    int n, m, a, b;\n    cin >> n >> m >> a >> b;\n    // 在此编写代码\n    return 0;\n}",
-        referenceCode: "#include <cstdio>\n#include <algorithm>\nusing namespace std;\nint n, m, a, b;\nint l, r;\nint check(int v) {\n    long long x, y, t;\n    x = 1ll * v * a;\n    y = 1ll * v * b;\n    if (y > m) {\n        t = (y - m + (b - a) - 1) / (b - a);\n        y -= t * (b - a);\n        x += t * (b - a);\n    }\n    return x <= n && y <= m;\n}\nint main() {\n    scanf(\"%d%d\", &n, &m);\n    scanf(\"%d%d\", &a, &b);\n    if (n > m) swap(n, m);\n    if (a > b) swap(a, b);\n    if (a == b) {\n        printf(\"%d\\n\", n / a);\n        return 0;\n    }\n    l = 0;\n    r = n;\n    while (l < r) {\n        int mid = (l + r + 1) >> 1;\n        if (check(mid)) l = mid;\n        else r = mid - 1;\n    }\n    printf(\"%d\\n\", r);\n    return 0;\n}"
+        referenceCode: "#include <cstdio>\n#include <algorithm>\nusing namespace std;\nint n, m, a, b;\nint l, r;\nint check(int v) {\n    long long x, y, t;\n    x = 1ll * v * a;\n    y = 1ll * v * b;\n    if (y > m) {\n        t = (y-m+(b-a)-1) / (b-a);\n        y -= t * (b-a);\n        x += t * (b-a);\n    }\n    return x <= n && y <= m;\n}\nint main() {\n    scanf(\"%d%d\", &n, &m);\n    scanf(\"%d%d\", &a, &b);\n    if (n > m) swap(n, m);\n    if (a > b) swap(a, b);\n    if (a == b) {\n        printf(\"%d\\n\", n / a);\n        return 0;\n    }\n    l = 0;\n    r = n;\n    while (l < r) {\n        int mid = (l+r+1) >> 1;\n        if (check(mid)) l = mid;\n        else r = mid-1;\n    }\n    printf(\"%d\\n\", r);\n    return 0;\n}"
     },
     {
         id: 27,
@@ -33,7 +33,7 @@ const programmingQuestions = [
         explanation: "将数组排序后，设所有相邻差值的 gcd 为 g，则 gcd(a_1+i,a_2+i,...,a_n+i) = gcd(g, a_1+i)。因此预处理一次差分 gcd 后，每次询问只需再求一次 gcd。",
         tags: ["编程题", "数论", "最大公因数"],
         template: "#include <bits/stdc++.h>\nusing namespace std;\n\nint main() {\n    int n, q;\n    cin >> n >> q;\n    // 在此编写代码\n    return 0;\n}",
-        referenceCode: "#include <cstdio>\n#include <algorithm>\nusing namespace std;\nconst int N = 1e5 + 5;\nint n, q, a[N], g;\nint gcd(int a, int b) {\n    if (a == 0 || b == 0) return a + b;\n    return gcd(b, a % b);\n}\nint main() {\n    scanf(\"%d%d\", &n, &q);\n    for (int i = 1; i <= n; i++) scanf(\"%d\", &a[i]);\n    sort(a + 1, a + $n+1$);\n    for (int i = 2; i <= n; i++) g = gcd(g, a[i] - a[i - 1]);\n    for (int i = 1; i <= q; i++) printf(\"%d\\n\", gcd(g, a[1] + i));\n    return 0;\n}"
+        referenceCode: "#include <cstdio>\n#include <algorithm>\nusing namespace std;\nconst int N = 1e5+5;\nint n, q, a[N], g;\nint gcd(int a, int b) {\n    if (a == 0 || b == 0) return a+b;\n    return gcd(b, a % b);\n}\nint main() {\n    scanf(\"%d%d\", &n, &q);\n    for (int i = 1; i <= n; i++) scanf(\"%d\", &a[i]);\n    sort(a+1, a+$n+1$);\n    for (int i = 2; i <= n; i++) g = gcd(g, a[i]-a[i-1]);\n    for (int i = 1; i <= q; i++) printf(\"%d\\n\", gcd(g, a[1]+i));\n    return 0;\n}"
     }
 ];
 
@@ -223,7 +223,7 @@ export const paperData = {
             question: "下面的 C++ 代码用于求一系列数据中的最大值。有关其算法说法错误的是（ ）。",
             options: [
                 "本题 find_max() 函数采用的是迭代算法",
-                "本题 find_max() 函数的时间复杂度为 $$$O(N)$$$",
+                "本题 find_max() 函数的时间复杂度为 $O(N)$",
                 "和上一题的递归版 find_max() 相比，这里没有递归调用带来的栈开销",
                 "本题 find_max() 与上一题递归版的空间复杂度相同，都是 $O(\log n)$",
             ],
@@ -262,8 +262,8 @@ export const paperData = {
             options: [
                 "“阶段 1”的目标是先判断正整数 n 是否有整数平方根",
                 "“阶段 2”的目标是当 n 不是完全平方数时，在相邻整数平方根之间继续二分逼近",
-                "代码 check_int = (long long)(result + 0.5) 用于消除浮点误差，检查结果是否恰好是整数平方根",
-                "阶段 2 中用 high_d - low_d >= epsilon 作为停止条件完全不能用于浮点数比较，否则一定会死循环",
+                "代码 check_int = (long long)(result+0.5) 用于消除浮点误差，检查结果是否恰好是整数平方根",
+                "阶段 2 中用 high_d-low_d >= epsilon 作为停止条件完全不能用于浮点数比较，否则一定会死循环",
             ],
             answer: 3,
             score: 2,
@@ -299,7 +299,7 @@ export const paperData = {
             question: "关于下述 C++ 代码的快速排序算法，说法错误的是（ ）。",
             options: [
                 "在 randomPartition 函数中，变量 i 的作用是记录不大于基准值元素区间的右边界",
-                "randomPartition 随机选择基准值，可以降低遇到最坏情况 $$$O(N^2)$$$ 的概率",
+                "randomPartition 随机选择基准值，可以降低遇到最坏情况 $O(N^2)$ 的概率",
                 "快速排序的平均时间复杂度是 $O(n \log n)$",
                 "快速排序是稳定排序算法",
             ],
@@ -487,7 +487,7 @@ export const paperData = {
         {
             id: 25,
             type: "judge",
-            question: "如下为线性筛法，用于高效生成素数表，其核⼼思想是每个合数只被它的最小质因数筛掉一次，时间复杂 度为 。 } } void mergeSort(std::vector<int>& arr, int left, int right) { if (left >= right) { return; } int mid = left + (right - left) / 2; mergeSort(arr, left, mid); mergeSort(arr, mid + 1, right); std::cout << \"HERE\"; merge(arr, left, mid, right); } 26 27 28 29 30 31 32 33 34 35 36 37 38 39 40 41 int puzzle(int n) { if (n == 1) return 1; if (n % 2 == 0) return puzzle(n / 2); return puzzle(3 * $n+1$); } 1 2 3 4 5 vector<int> linearSieve(int n) { vector<bool> is_prime($n+1$, true); vector<int> primes; for (int i = 2; i <= n; ++i) { if (is_prime[i]) { primes.push_back(i); } for (int j = 0; j < primes.size() && i * primes[j] <= n; ++j) { 1 2 3 4 5 6 7 8 9 10",
+            question: "如下为线性筛法，用于高效生成素数表，其核⼼思想是每个合数只被它的最小质因数筛掉一次，时间复杂 度为 。 } } void mergeSort(std::vector<int>& arr, int left, int right) { if (left >= right) { return; } int mid = left+(right-left) / 2; mergeSort(arr, left, mid); mergeSort(arr, mid+1, right); std::cout << \"HERE\"; merge(arr, left, mid, right); } 26 27 28 29 30 31 32 33 34 35 36 37 38 39 40 41 int puzzle(int n) { if (n == 1) return 1; if (n % 2 == 0) return puzzle(n / 2); return puzzle(3 * $n+1$); } 1 2 3 4 5 vector<int> linearSieve(int n) { vector<bool> is_prime($n+1$, true); vector<int> primes; for (int i = 2; i <= n; ++i) { if (is_prime[i]) { primes.push_back(i); } for (int j = 0; j < primes.size() && i * primes[j] <= n; ++j) { 1 2 3 4 5 6 7 8 9 10",
             options: [
                 "正确",
                 "错误",

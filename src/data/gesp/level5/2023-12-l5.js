@@ -15,7 +15,7 @@ const programmingQuestions = [
         explanation: "预处理：筛选出所有超级幸运数（完全平方数 ≥ a）及其倍数。然后对于查询 x，找到最近的幸运数。",
         tags: ["编程题", "数论", "埃氏筛"],
         template: "#include <iostream>\nusing namespace std;\n\nint main() {\n    int a, n;\n    cin >> a >> n;\n    // 在此编写代码\n    return 0;\n}",
-        referenceCode: "#include <iostream>\n#include <vector>\n#include <cmath>\nusing namespace std;\nconst int MAX = 2000005;\nbool is_lucky[MAX];\nint next_lucky[MAX];\nint main() {\n    int a, n;\n    cin >> a >> n;\n    for (long long i = 1; i * i < MAX; i++) {\n        long long sq = i * i;\n        if (sq >= a) {\n            for (long long j = sq; j < MAX; j += sq) is_lucky[j] = true;\n        }\n    }\n    int last = -1;\n    for (int i = MAX - 1; i >= 1; i--) {\n        if (is_lucky[i]) last = i;\n        next_lucky[i] = last;\n    }\n    while (n--) {\n        int x; cin >> x;\n        if (is_lucky[x]) cout << \"lucky\" << endl;\n        else cout << next_lucky[x] << endl;\n    }\n    return 0;\n}"
+        referenceCode: "#include <iostream>\n#include <vector>\n#include <cmath>\nusing namespace std;\nconst int MAX = 2000005;\nbool is_lucky[MAX];\nint next_lucky[MAX];\nint main() {\n    int a, n;\n    cin >> a >> n;\n    for (long long i = 1; i * i < MAX; i++) {\n        long long sq = i * i;\n        if (sq >= a) {\n            for (long long j = sq; j < MAX; j += sq) is_lucky[j] = true;\n        }\n    }\n    int last = -1;\n    for (int i = MAX-1; i >= 1; i--) {\n        if (is_lucky[i]) last = i;\n        next_lucky[i] = last;\n    }\n    while (n--) {\n        int x; cin >> x;\n        if (is_lucky[x]) cout << \"lucky\" << endl;\n        else cout << next_lucky[x] << endl;\n    }\n    return 0;\n}"
     },
     {
         id: 27,
@@ -70,9 +70,9 @@ export const paperData = {
             question: "下面 C++ 代码以递归方式实现合并排序。横线处应填上代码是 ( ) 。",
             options: [
                 "mergeSort(SList, T2, s, m,len), mergeSort(SList, T2, m,t,len)",
-                "mergeSort(SList, T2, s, $$m-1$$,len), mergeSort(SList, T2, m+1,t,len)",
+                "mergeSort(SList, T2, s, $m-1$,len), mergeSort(SList, T2, m+1,t,len)",
                 "mergeSort(SList, T2, s, m,len), mergeSort(SList, T2, m+1,t,len)",
-                "mergeSort(SList, T2, s, $$m-1$$,len), mergeSort(SList, T2, $$m-1$$,t,len)",
+                "mergeSort(SList, T2, s, $m-1$,len), mergeSort(SList, T2, $m-1$,t,len)",
             ],
             answer: 2,
             score: 2,
@@ -164,14 +164,14 @@ export const paperData = {
             type: "single",
             question: "下面的 C++ 代码实现对 list 的快速排序，有关说法错误的是（ ）。",
             options: [
-                "qSort(less) + qSort(greater) + (vector<int>)pivot",
-                "(vector<int>)pivot + (qSort(less) + qSort(greater))",
-                "(qSort(less) + (vector<int>)pivot + qSort(greater))",
-                "qSort(less) + pivot + qSort(greater)",
+                "qSort(less)+qSort(greater)+(vector<int>)pivot",
+                "(vector<int>)pivot+(qSort(less)+qSort(greater))",
+                "(qSort(less)+(vector<int>)pivot+qSort(greater))",
+                "qSort(less)+pivot+qSort(greater)",
             ],
             answer: 2,
             score: 2,
-            explanation: "快速排序拼接顺序应为：小于部分 + 基准值 + 大于部分。",
+            explanation: "快速排序拼接顺序应为：小于部分+基准值+大于部分。",
             tags: [
                 "客观题",
                 "单选题",
@@ -221,10 +221,10 @@ export const paperData = {
             type: "single",
             question: "在_binarySearch算法中，如果lst中有N个元素，其时间复杂度是（ ）。",
             options: [
-                "$$$O(N)$$$",
+                "$O(N)$",
                 "$O(\log n)$",
                 "$O(n \log n)$",
-                "$$$O(N^2)$$$",
+                "$O(N^2)$",
             ],
             answer: 1,
             score: 2,
@@ -425,7 +425,7 @@ export const paperData = {
             ],
             answer: 0,
             score: 2,
-            explanation: "在数组几乎有序时，插入排序为 $$$O(N)$$$，快排退化可能更高。",
+            explanation: "在数组几乎有序时，插入排序为 $O(N)$，快排退化可能更高。",
             tags: [
                 "客观题",
                 "判断题",
@@ -493,7 +493,7 @@ export const paperData = {
             ],
             answer: 0,
             score: 2,
-            explanation: "都是 $$$O(N^2)$$$。",
+            explanation: "都是 $O(N^2)$。",
             tags: [
                 "客观题",
                 "判断题",

@@ -160,7 +160,7 @@ export const paperData = {
       options: ['9', '11', '13', '15'],
       answer: 1,
       score: 2,
-      explanation: '1*8 + 0*4 + 1*2 + 1*1 = 11。',
+      explanation: '1*8+0*4+1*2+1*1 = 11。',
       tags: [LEVEL1_TAGS.basics]
     },
     {
@@ -252,7 +252,7 @@ export const paperData = {
       options: ['正确', '错误'],
       answer: 0,
       score: 2,
-      explanation: '这是数组的核心特征，支持 $$O(1)$$ 随机访问。',
+      explanation: '这是数组的核心特征，支持 $O(1)$ 随机访问。',
       tags: [LEVEL1_TAGS.judge, LEVEL1_TAGS.array]
     },
     {
@@ -280,7 +280,7 @@ export const paperData = {
     {
       id: 26,
       type: 'programming',
-      question: '【编程题1】温度转换\n输入开尔文温度 K，将其转换为摄氏度 C（C = K - 273.15）和华氏度 F（F = C * 1.8 + 32），输出 C 和 F（保留两位小数）。',
+      question: '【编程题1】温度转换\n输入开尔文温度 K，将其转换为摄氏度 C（C = K-273.15）和华氏度 F（F = C * 1.8+32），输出 C 和 F（保留两位小数）。',
       answer: '',
       score: 25,
       explanation: '按公式计算并使用 setprecision(2) 输出。',

@@ -71,7 +71,7 @@ export const paperData = {
     {
       id: 5,
       type: 'single',
-      question: 'C++表达式 14 - 3 * 3 % 2 的值是( )。',
+      question: 'C++表达式 14-3 * 3 % 2 的值是( )。',
       options: ['0', '11', '13', '-67'],
       answer: 2,
       score: 2,
@@ -81,7 +81,7 @@ export const paperData = {
     {
       id: 6,
       type: 'single',
-      question: '下面的C++代码执行后，其输出是 ( )。\n```cpp\nint x = 10, y = 20;\nx = x + y;\ny = x - y;\nx = x - y;\ncout << x << " " << y;\n```',
+      question: '下面的C++代码执行后，其输出是 ( )。\n```cpp\nint x = 10, y = 20;\nx = x+y;\ny = x-y;\nx = x-y;\ncout << x << " " << y;\n```',
       options: ['10 20', '20 10', '10 10', '20 20'],
       answer: 1,
       score: 2,
@@ -95,7 +95,7 @@ export const paperData = {
       options: ['3', '17', '19', '20'],
       answer: 2,
       score: 2,
-      explanation: '++a 先使 a 变为 17，17 % 3 等于 2，此时 a 为 17，17 + 2 = 19。',
+      explanation: '++a 先使 a 变为 17，17 % 3 等于 2，此时 a 为 17，17+2 = 19。',
       tags: [LEVEL1_TAGS.operator, LEVEL1_TAGS.basics]
     },
     {
@@ -111,7 +111,7 @@ export const paperData = {
     {
       id: 9,
       type: 'single',
-      question: '下面 C++ 代码执行后的输出是 ( )。\n```cpp\nint a = 3, b = 4;\nprintf("a+b=%d2#a+b={a+b}", a, b, a + b);\n```',
+      question: '下面 C++ 代码执行后的输出是 ( )。\n```cpp\nint a = 3, b = 4;\nprintf("a+b=%d2#a+b={a+b}", a, b, a+b);\n```',
       options: [
         'a+b=07#a+b={a+b}',
         'a+b=34#a+b=7',
@@ -146,11 +146,11 @@ export const paperData = {
     {
       id: 12,
       type: 'single',
-      question: '15 % 2 + 15 / 2.0 的值是 ( )。',
+      question: '15 % 2+15 / 2.0 的值是 ( )。',
       options: ['8', '8.5', '4.5', '1.5'],
       answer: 1,
       score: 2,
-      explanation: '15 % 2 = 1；15 / 2.0 = 7.5。1 + 7.5 = 8.5。',
+      explanation: '15 % 2 = 1；15 / 2.0 = 7.5。1+7.5 = 8.5。',
       tags: [LEVEL1_TAGS.operator]
     },
     {
@@ -160,7 +160,7 @@ export const paperData = {
       options: ['37', '45', '55', '18'],
       answer: 0,
       score: 2,
-      explanation: '1到10之和为 55。排除 3, 6, 9 (3+6+9=18)。55 - 18 = 37。',
+      explanation: '1到10之和为 55。排除 3, 6, 9 (3+6+9=18)。55-18 = 37。',
       tags: [LEVEL1_TAGS.loop, LEVEL1_TAGS.condition]
     },
     {
@@ -198,11 +198,11 @@ export const paperData = {
     {
       id: 17,
       type: 'judge',
-      question: '若 N 为 5，则表达式 (N + !N) 的值为 4。',
+      question: '若 N 为 5，则表达式 (N+!N) 的值为 4。',
       options: ['正确', '错误'],
       answer: 1,
       score: 2,
-      explanation: '!5 为 0，5 + 0 = 5。',
+      explanation: '!5 为 0，5+0 = 5。',
       tags: [LEVEL1_TAGS.judge, LEVEL1_TAGS.operator]
     },
     {

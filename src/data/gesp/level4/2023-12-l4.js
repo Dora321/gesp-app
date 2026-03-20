@@ -117,7 +117,7 @@ export const paperData = {
             ],
             answer: 2,
             score: 2,
-            explanation: "p 指向 int 类型变量 x。在 C++ 中，int 类型通常占用 4 个字节。执行 p++ 会使指针地址增加 4，即 0x6ffe14 + 4 = 0x6ffe18。",
+            explanation: "p 指向 int 类型变量 x。在 C++ 中，int 类型通常占用 4 个字节。执行 p++ 会使指针地址增加 4，即 0x6ffe14+4 = 0x6ffe18。",
             tags: [
                 "客观题",
                 "单选题",
@@ -174,7 +174,7 @@ export const paperData = {
             ],
             answer: 0,
             score: 2,
-            explanation: "alpha[0] 为 65 ('A')。通过 alpha[i] = alpha[i-1] + 1，可以利用 ASCII 码依次得到后续字母。",
+            explanation: "alpha[0] 为 65 ('A')。通过 alpha[i] = alpha[i-1]+1，可以利用 ASCII 码依次得到后续字母。",
             tags: [
                 "客观题",
                 "单选题",
@@ -400,14 +400,14 @@ export const paperData = {
         {
             id: 22,
             type: "judge",
-            question: "在 C++ 中，两个字符串相加的运算符为 + 相当于字符串的合并运算。下面 C++ 代码执⾏后，将输出 chenadai。（ ）",
+            question: "在 C++ 中，两个字符串相加的运算符为+相当于字符串的合并运算。下面 C++ 代码执⾏后，将输出 chenadai。（ ）",
             options: [
                 "正确",
                 "错误",
             ],
             answer: 0,
             score: 2,
-            explanation: "std::string 类重载了 + 运算符，用于将两个字符串连接在一起。",
+            explanation: "std::string 类重载了+运算符，用于将两个字符串连接在一起。",
             tags: [
                 "客观题",
                 "判断题",
@@ -497,11 +497,11 @@ const programmingQuestions = [
         samples: [
             { input: "3\n9 2 1\n8 5 0", output: "1" }
         ],
-        answer: "#include <iostream>\n#include <vector>\n#include <algorithm>\nusing namespace std;\nint main() {\n    int n; cin >> n;\n    vector<int> a(n), b(n);\n    for (int i = 0; i < n; i++) cin >> a[i];\n    for (int i = 0; i < n; i++) cin >> b[i];\n    sort(a.begin(), a.end());\n    sort(b.begin(), b.end());\n    int la = 0, ra = n - 1, lb = 0, rb = n - 1;\n    int ans = 0;\n    while (la <= ra) {\n        if (a[ra] > b[rb]) { ans++; ra--; rb--; }\n        else if (a[la] > b[lb]) { ans++; la++; lb++; }\n        else {\n            if (a[la] < b[rb]) ans--;\n            la++; rb--;\n        }\n    }\n    cout << ans << endl;\n    return 0;\n}",
+        answer: "#include <iostream>\n#include <vector>\n#include <algorithm>\nusing namespace std;\nint main() {\n    int n; cin >> n;\n    vector<int> a(n), b(n);\n    for (int i = 0; i < n; i++) cin >> a[i];\n    for (int i = 0; i < n; i++) cin >> b[i];\n    sort(a.begin(), a.end());\n    sort(b.begin(), b.end());\n    int la = 0, ra = n-1, lb = 0, rb = n-1;\n    int ans = 0;\n    while (la <= ra) {\n        if (a[ra] > b[rb]) { ans++; ra--; rb--; }\n        else if (a[la] > b[lb]) { ans++; la++; lb++; }\n        else {\n            if (a[la] < b[rb]) ans--;\n            la++; rb--;\n        }\n    }\n    cout << ans << endl;\n    return 0;\n}",
         explanation: "贪心策略：1. 如果田忌最快的马比齐王最快的快，则比赛；2. 如果田忌最慢的马比齐王最慢的快，则比赛；3. 否则，用田忌最慢的马去消耗齐王最快的马。LuoGu B3926。",
         tags: ["编程题", "贪心", "双指针"],
         template: "#include <iostream>\n#include <vector>\n#include <algorithm>\nusing namespace std;\n\nint main() {\n    int n;\n    cin >> n;\n    // 在此编写代码\n    return 0;\n}",
-        referenceCode: "#include <iostream>\n#include <vector>\n#include <algorithm>\nusing namespace std;\nint main() {\n    int n; cin >> n;\n    vector<int> a(n), b(n);\n    for (int i = 0; i < n; i++) cin >> a[i];\n    for (int i = 0; i < n; i++) cin >> b[i];\n    sort(a.begin(), a.end());\n    sort(b.begin(), b.end());\n    int la = 0, ra = n - 1, lb = 0, rb = n - 1;\n    int ans = 0;\n    while (la <= ra) {\n        if (a[ra] > b[rb]) { ans++; ra--; rb--; }\n        else if (a[la] > b[lb]) { ans++; la++; lb++; }\n        else {\n            if (a[la] < b[rb]) ans--;\n            la++; rb--;\n        }\n    }\n    cout << ans << endl;\n    return 0;\n}"
+        referenceCode: "#include <iostream>\n#include <vector>\n#include <algorithm>\nusing namespace std;\nint main() {\n    int n; cin >> n;\n    vector<int> a(n), b(n);\n    for (int i = 0; i < n; i++) cin >> a[i];\n    for (int i = 0; i < n; i++) cin >> b[i];\n    sort(a.begin(), a.end());\n    sort(b.begin(), b.end());\n    int la = 0, ra = n-1, lb = 0, rb = n-1;\n    int ans = 0;\n    while (la <= ra) {\n        if (a[ra] > b[rb]) { ans++; ra--; rb--; }\n        else if (a[la] > b[lb]) { ans++; la++; lb++; }\n        else {\n            if (a[la] < b[rb]) ans--;\n            la++; rb--;\n        }\n    }\n    cout << ans << endl;\n    return 0;\n}"
     }
 ];
 

@@ -29,7 +29,7 @@ export const paperData = {
       options: ['3.01', '3.05', '3.125', '3.25'],
       answer: 3,
       score: 2,
-      explanation: '11.01₂ = 2¹ + 2⁰ + 0×2⁻¹ + 1×2⁻² = 2 + 1 + 0.25 = 3.25。',
+      explanation: '11.01₂ = 2¹+2⁰+0×2⁻¹+1×2⁻² = 2+1+0.25 = 3.25。',
       tags: ['数制转换']
     },
     {
@@ -39,7 +39,7 @@ export const paperData = {
       options: ['46', '47', '48', '49'],
       answer: 0,
       score: 2,
-      explanation: '\'F\' 比 \'A\' 大 5，0x41 + 5 = 0x46。',
+      explanation: '\'F\' 比 \'A\' 大 5，0x41+5 = 0x46。',
       tags: ['计算机基础']
     },
     {
@@ -141,7 +141,7 @@ export const paperData = {
       id: 12,
       type: 'single',
       question: '如果 a 为 int 类型的变量，下列哪个表达式可以正确求出满足“小于等于 a 且是 4 的倍数”的整数中最大的？',
-      options: ['(a & (~3))', '((a << 2) >> 2)', '(a ^ 3)', '((a - 1) | 3) + 1'],
+      options: ['(a & (~3))', '((a << 2) >> 2)', '(a ^ 3)', '((a-1) | 3)+1'],
       answer: 0,
       score: 2,
       explanation: '& (~3) 能够清除低两位的位，保留 4 的倍数部分。',
@@ -151,7 +151,7 @@ export const paperData = {
       id: 13,
       type: 'single',
       question: '在下列代码的横线处填写（ ），可以使得输出是“24 12”\n`int a = 12, b = 24; a = a ^ b; ___________; a = a ^ b;`',
-      options: ['a = a ^ b', 'b = a ^ b', 'a = a + b', 'b = a + b'],
+      options: ['a = a ^ b', 'b = a ^ b', 'a = a+b', 'b = a+b'],
       answer: 1,
       score: 2,
       explanation: '经典的位运算交换两数方法。',
@@ -171,7 +171,7 @@ export const paperData = {
       id: 15,
       type: 'single',
       question: '在下列代码的横线处填写（ ），可以使得输出不是“31”\n`int array[] = {1, 2, 4, 8, 16}; int res = 0;`\n`for (int i = 0; i < 5; i++) { ___________ }`',
-      options: ['res = res + array[i]', 'res = res & array[i]', 'res = res | array[i]', 'res = res ^ array[i]'],
+      options: ['res = res+array[i]', 'res = res & array[i]', 'res = res | array[i]', 'res = res ^ array[i]'],
       answer: 1,
       score: 2,
       explanation: '1+2+4+8+16 = 31。按位与 (res & array[i]) 会使结果变为 0。',
@@ -214,7 +214,7 @@ export const paperData = {
       options: ['正确', '错误'],
       answer: 1,
       score: 2,
-      explanation: '范围是 0 到 $$n-1$$。',
+      explanation: '范围是 0 到 $n-1$。',
       tags: ['数组']
     },
     {
@@ -366,7 +366,7 @@ bool check(string s) {
         else if (c == '!' || c == '@' || c == '#' || c == '$') hasSpecial = true;
         else return false; // 非法字符
     }
-    int types = (hasUpper ? 1 : 0) + (hasLower ? 1 : 0) + (hasDigit ? 1 : 0);
+    int types = (hasUpper ? 1 : 0)+(hasLower ? 1 : 0)+(hasDigit ? 1 : 0);
     return (types >= 2 && hasSpecial);
 }
 

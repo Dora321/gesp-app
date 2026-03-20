@@ -7,7 +7,7 @@ const programmingQuestions = [
         title: "黑白翻转",
         problemNumber: "2024-06-l7-Q26",
         description: "给定一棵树，每个节点是黑色或白色。若删除全部白色节点后，剩余黑色节点仍然连成一棵树，则称其为美丽树。每次操作可以把一个白点翻成黑点，求最少操作次数。",
-        inputDescription: "第一行 n。第二行 n 个 0/1，1 表示黑色、0 表示白色。接下来 $$n-1$$ 行每行一条边。",
+        inputDescription: "第一行 n。第二行 n 个 0/1，1 表示黑色、0 表示白色。接下来 $n-1$ 行每行一条边。",
         outputDescription: "输出最少操作次数。",
         samples: [
             { input: "5\n0 1 0 1 0\n1 2\n1 3\n3 4\n3 5", output: "2" }
@@ -15,7 +15,7 @@ const programmingQuestions = [
         explanation: "最终保留下来的黑点必须覆盖原有所有黑点，并且形成一棵连通子树，所以需要把原黑点最小连通子树上的白点全部染黑。答案就是这棵 Steiner 子树中的白点数。",
         tags: ["编程题", "树", "DFS"],
         template: "#include <bits/stdc++.h>\nusing namespace std;\n\nint main() {\n    ios::sync_with_stdio(false);\n    cin.tie(nullptr);\n    return 0;\n}",
-        referenceCode: "#include <bits/stdc++.h>\nusing namespace std;\n\nint n, ans = 0;\nvector<vector<int>> g;\nvector<int> col;\n\nint dfs(int u, int fa) {\n    int has = col[u];\n    for (int v : g[u]) if (v != fa) has += dfs(v, u);\n    if (has > 0 && has < accumulate(col.begin()+1, col.end(), 0) && col[u] == 0) ans++;\n    return has;\n}\n\nint main() {\n    ios::sync_with_stdio(false);\n    cin.tie(nullptr);\n\n    cin >> n;\n    g.assign($n+1$, {});\n    col.assign($n+1$, 0);\n    int tot = 0, root = 1;\n    for (int i = 1; i <= n; ++i) { cin >> col[i]; if (col[i]) tot++, root = i; }\n    for (int i = 0; i < n - 1; ++i) {\n        int u, v; cin >> u >> v;\n        g[u].push_back(v); g[v].push_back(u);\n    }\n    if (tot <= 1) { cout << 0 << '\\n'; return 0; }\n    function<int(int,int)> solve = [&](int u, int fa) {\n        int cnt = col[u];\n        for (int v : g[u]) if (v != fa) cnt += solve(v, u);\n        if (cnt > 0 && cnt < tot && col[u] == 0) ans++;\n        return cnt;\n    };\n    solve(root, 0);\n    cout << ans << '\\n';\n    return 0;\n}"
+        referenceCode: "#include <bits/stdc++.h>\nusing namespace std;\n\nint n, ans = 0;\nvector<vector<int>> g;\nvector<int> col;\n\nint dfs(int u, int fa) {\n    int has = col[u];\n    for (int v : g[u]) if (v != fa) has += dfs(v, u);\n    if (has > 0 && has < accumulate(col.begin()+1, col.end(), 0) && col[u] == 0) ans++;\n    return has;\n}\n\nint main() {\n    ios::sync_with_stdio(false);\n    cin.tie(nullptr);\n\n    cin >> n;\n    g.assign($n+1$, {});\n    col.assign($n+1$, 0);\n    int tot = 0, root = 1;\n    for (int i = 1; i <= n; ++i) { cin >> col[i]; if (col[i]) tot++, root = i; }\n    for (int i = 0; i < n-1; ++i) {\n        int u, v; cin >> u >> v;\n        g[u].push_back(v); g[v].push_back(u);\n    }\n    if (tot <= 1) { cout << 0 << '\\n'; return 0; }\n    function<int(int,int)> solve = [&](int u, int fa) {\n        int cnt = col[u];\n        for (int v : g[u]) if (v != fa) cnt += solve(v, u);\n        if (cnt > 0 && cnt < tot && col[u] == 0) ans++;\n        return cnt;\n    };\n    solve(root, 0);\n    cout << ans << '\\n';\n    return 0;\n}"
     },
     {
         id: 27,
@@ -31,7 +31,7 @@ const programmingQuestions = [
         explanation: "把每个数分解质因数，只保留指数奇偶性，得到一个平方因子自由核的 bitmask。区间乘积是完全平方数，当且仅当前缀异或状态相同。统计相同前缀状态对数即可。",
         tags: ["编程题", "前缀异或", "质因数分解", "哈希"],
         template: "#include <bits/stdc++.h>\nusing namespace std;\n\nint main() {\n    ios::sync_with_stdio(false);\n    cin.tie(nullptr);\n    return 0;\n}",
-        referenceCode: "#include <bits/stdc++.h>\nusing namespace std;\n\nint calc(int x) {\n    int res = 0;\n    for (int i = 2; i * i <= x; ++i) if (x % i == 0) {\n        int c = 0;\n        while (x % i == 0) x /= i, c ^= 1;\n        if (c) res ^= (1 << (i - 1));\n    }\n    if (x > 1) res ^= (1 << (x - 1));\n    return res;\n}\n\nint main() {\n    ios::sync_with_stdio(false);\n    cin.tie(nullptr);\n\n    int n;\n    cin >> n;\n    map<int, long long> mp;\n    long long ans = 0;\n    int pre = 0;\n    mp[0] = 1;\n    for (int i = 0; i < n; ++i) {\n        int x; cin >> x;\n        pre ^= calc(x);\n        ans += mp[pre];\n        mp[pre]++;\n    }\n    cout << ans << '\\n';\n    return 0;\n}"
+        referenceCode: "#include <bits/stdc++.h>\nusing namespace std;\n\nint calc(int x) {\n    int res = 0;\n    for (int i = 2; i * i <= x; ++i) if (x % i == 0) {\n        int c = 0;\n        while (x % i == 0) x /= i, c ^= 1;\n        if (c) res ^= (1 << (i-1));\n    }\n    if (x > 1) res ^= (1 << (x-1));\n    return res;\n}\n\nint main() {\n    ios::sync_with_stdio(false);\n    cin.tie(nullptr);\n\n    int n;\n    cin >> n;\n    map<int, long long> mp;\n    long long ans = 0;\n    int pre = 0;\n    mp[0] = 1;\n    for (int i = 0; i < n; ++i) {\n        int x; cin >> x;\n        pre ^= calc(x);\n        ans += mp[pre];\n        mp[pre]++;\n    }\n    cout << ans << '\\n';\n    return 0;\n}"
     }
 ];
 
@@ -294,7 +294,7 @@ export const paperData = {
         {
             id: 14,
             type: "single",
-            question: "下面count_triple函数的时间复杂度为 ( ) 。 #include <iostream> using namespace std; int fib(int n) { if (n <= 1) return n; return fib(n - 1) + fib(n - 2); } int main() { cout << fib(6) << endl; return 0; } 1 2 3 4 5 6 7 8 9 10 11 题号 1 2 3 4 5 6 7 8 9 10 答案",
+            question: "下面count_triple函数的时间复杂度为 ( ) 。 #include <iostream> using namespace std; int fib(int n) { if (n <= 1) return n; return fib(n-1)+fib(n-2); } int main() { cout << fib(6) << endl; return 0; } 1 2 3 4 5 6 7 8 9 10 11 题号 1 2 3 4 5 6 7 8 9 10 答案",
             options: [
                 "选项A",
                 "选项B",
@@ -366,7 +366,7 @@ export const paperData = {
         {
             id: 18,
             type: "judge",
-            question: "唯一分解定理（算术基本定理）指出，每个大于 1 的⾃然数都可以唯一地分解成若⼲个素数的乘积。因此， 我们可以很容易的对给定的⾃然数n进⾏质因数分解，时间复杂度仅为 。 int count_triple(int n) { int cnt = 0; for (int a = 1; a <= n; a++) for (int b = a; a + b <= n; b++) { int c = sqrt(a * a + b * b); if (a + b + c > n) break; if (a * a + b * b == c * c) cnt++; } return cnt; } 1 2 3 4 5 6 7 8 9 10 11 12",
+            question: "唯一分解定理（算术基本定理）指出，每个大于 1 的⾃然数都可以唯一地分解成若⼲个素数的乘积。因此， 我们可以很容易的对给定的⾃然数n进⾏质因数分解，时间复杂度仅为 。 int count_triple(int n) { int cnt = 0; for (int a = 1; a <= n; a++) for (int b = a; a+b <= n; b++) { int c = sqrt(a * a+b * b); if (a+b+c > n) break; if (a * a+b * b == c * c) cnt++; } return cnt; } 1 2 3 4 5 6 7 8 9 10 11 12",
             options: [
                 "正确",
                 "错误",

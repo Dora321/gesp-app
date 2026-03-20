@@ -23,7 +23,7 @@ const programmingQuestions = [
             "bitset"
         ],
         "template": "#include <bits/stdc++.h>\nusing namespace std;\n\nint main() {\n    ios::sync_with_stdio(false);\n    cin.tie(nullptr);\n\n    int n, m, k;\n    cin >> n >> m >> k;\n    // 在此编写代码\n    return 0;\n}",
-        "referenceCode": "#include <bits/stdc++.h>\nusing namespace std;\n\nconst int MAXN = 505;\n\nint main() {\n    ios::sync_with_stdio(false);\n    cin.tie(nullptr);\n\n    int n, m, k;\n    cin >> n >> m >> k;\n\n    vector<bitset<MAXN>> adj($n+1$);\n    for (int i = 0; i < m; ++i) {\n        int u, v;\n        cin >> u >> v;\n        adj[u].set(v);\n        adj[v].set(u);\n    }\n\n    vector<vector<bitset<MAXN>>> reach(k + 1, vector<bitset<MAXN>>($n+1$));\n    for (int s = 1; s <= n; ++s) reach[0][s].set(s);\n\n    for (int step = 1; step <= k; ++step) {\n        for (int s = 1; s <= n; ++s) {\n            bitset<MAXN> cur;\n            for (int y = 1; y <= n; ++y) {\n                if (reach[step - 1][s].test(y)) cur |= adj[y];\n            }\n            reach[step][s] = cur;\n        }\n    }\n\n    for (int s = 1; s <= n; ++s) {\n        for (int step = 1; step <= k; ++step) {\n            cout << reach[step][s].count() << (step == k ? '\n' : ' ');\n        }\n    }\n    return 0;\n}"
+        "referenceCode": "#include <bits/stdc++.h>\nusing namespace std;\n\nconst int MAXN = 505;\n\nint main() {\n    ios::sync_with_stdio(false);\n    cin.tie(nullptr);\n\n    int n, m, k;\n    cin >> n >> m >> k;\n\n    vector<bitset<MAXN>> adj($n+1$);\n    for (int i = 0; i < m; ++i) {\n        int u, v;\n        cin >> u >> v;\n        adj[u].set(v);\n        adj[v].set(u);\n    }\n\n    vector<vector<bitset<MAXN>>> reach(k+1, vector<bitset<MAXN>>($n+1$));\n    for (int s = 1; s <= n; ++s) reach[0][s].set(s);\n\n    for (int step = 1; step <= k; ++step) {\n        for (int s = 1; s <= n; ++s) {\n            bitset<MAXN> cur;\n            for (int y = 1; y <= n; ++y) {\n                if (reach[step-1][s].test(y)) cur |= adj[y];\n            }\n            reach[step][s] = cur;\n        }\n    }\n\n    for (int s = 1; s <= n; ++s) {\n        for (int step = 1; step <= k; ++step) {\n            cout << reach[step][s].count() << (step == k ? '\n' : ' ');\n        }\n    }\n    return 0;\n}"
     },
     {
         "id": 27,
@@ -51,7 +51,7 @@ const programmingQuestions = [
             "字符串"
         ],
         "template": "#include <bits/stdc++.h>\nusing namespace std;\n\nint main() {\n    ios::sync_with_stdio(false);\n    cin.tie(nullptr);\n\n    int n;\n    string s;\n    cin >> n >> s;\n    // 在此编写代码\n    return 0;\n}",
-        "referenceCode": "#include <bits/stdc++.h>\nusing namespace std;\n\nint main() {\n    ios::sync_with_stdio(false);\n    cin.tie(nullptr);\n\n    int n;\n    string s;\n    cin >> n >> s;\n\n    unordered_map<int, long long> cnt;\n    cnt.reserve(n * 2 + 10);\n    cnt.max_load_factor(0.7f);\n\n    long long ans = 0;\n    int mask = 0;\n    cnt[0] = 1;\n    for (char ch : s) {\n        mask ^= 1 << (ch - 'a');\n        ans += cnt[mask];\n        cnt[mask]++;\n    }\n\n    cout << ans << '\n';\n    return 0;\n}"
+        "referenceCode": "#include <bits/stdc++.h>\nusing namespace std;\n\nint main() {\n    ios::sync_with_stdio(false);\n    cin.tie(nullptr);\n\n    int n;\n    string s;\n    cin >> n >> s;\n\n    unordered_map<int, long long> cnt;\n    cnt.reserve(n * 2+10);\n    cnt.max_load_factor(0.7f);\n\n    long long ans = 0;\n    int mask = 0;\n    cnt[0] = 1;\n    for (char ch : s) {\n        mask ^= 1 << (ch-'a');\n        ans += cnt[mask];\n        cnt[mask]++;\n    }\n\n    cout << ans << '\n';\n    return 0;\n}"
     }
 ];
 
@@ -219,7 +219,7 @@ export const paperData = {
         {
             id: 9,
             type: "single",
-            question: "给定一个无向图，图的节点编号从 0 到 $$n-1$$，图的边以邻接表的形式给出。下面程序使用深度优先搜索（DFS）遍历该图，并输出遍历的节点顺序。横线处应该填入的是（ ）。",
+            question: "给定一个无向图，图的节点编号从 0 到 $n-1$，图的边以邻接表的形式给出。下面程序使用深度优先搜索（DFS）遍历该图，并输出遍历的节点顺序。横线处应该填入的是（ ）。",
             options: [
                 "选项A",
                 "选项B",
@@ -240,10 +240,10 @@ export const paperData = {
             type: "single",
             question: "给定一个整数数组 nums，找到其中最长的严格上升子序列的长度。子序列是指从原数组中删除一些元素（或不删除）后，剩余元素保持原有顺序的序列。下面的程序横线处应该填入的是（ ）。",
             options: [
-                "dp[i] = max(dp[i], dp[j]);",
-                "dp[i] = max(dp[i+1], dp[j] + 1);",
-                "dp[i] = max(dp[i], dp[j] - 1);",
-                "dp[i] = max(dp[i], dp[j] + 1);",
+                "$dp[i]$ = max($dp[i]$, $dp[j]$);",
+                "$dp[i]$ = max(dp[i+1], $dp[j]$+1);",
+                "$dp[i]$ = max($dp[i]$, $dp[j]$-1);",
+                "$dp[i]$ = max($dp[i]$, $dp[j]$+1);",
             ],
             answer: 3,
             score: 2,
@@ -276,11 +276,11 @@ export const paperData = {
         {
             id: 12,
             type: "single",
-            question: "给定两个无向图 G1 和 G2，判断它们是否同构。图的同构是指两个图的节点可以通过某种重新编号的方式完全匹配，且边的连接关系一致。为了简化问题，假设图的节点编号从 0 到 $$n-1$$，并且图的边以邻接表形式给出。下面程序中横线处应该填入的是（ ）。",
+            question: "给定两个无向图 G1 和 G2，判断它们是否同构。图的同构是指两个图的节点可以通过某种重新编号的方式完全匹配，且边的连接关系一致。为了简化问题，假设图的节点编号从 0 到 $n-1$，并且图的边以邻接表形式给出。下面程序中横线处应该填入的是（ ）。",
             options: [
                 "hash += to_string(neighbor);",
                 "hash += to_string(neighbors);",
-                "hash += to_string(neighbor) + \",\";",
+                "hash += to_string(neighbor)+\",\";",
                 "hash -= to_string(neighbors);",
             ],
             answer: 2,
@@ -295,12 +295,12 @@ export const paperData = {
         {
             id: 13,
             type: "single",
-            question: "给定一个 m×n 的二维网格 grid，每个格子中有一个非负整数。请找出一条从左上角 (0, 0) 到右下角 ($$m-1$$, $$n-1$$) 的路径，使得路径上的数字总和最小。每次只能向右或向下移动。横线处应该填入的是（ ）。",
+            question: "给定一个 m×n 的二维网格 grid，每个格子中有一个非负整数。请找出一条从左上角 (0, 0) 到右下角 ($m-1$, $n-1$) 的路径，使得路径上的数字总和最小。每次只能向右或向下移动。横线处应该填入的是（ ）。",
             options: [
-                "dp[i][j] = min(dp[i - 1][j], dp[i][j - 1]) + grid[i][1];",
-                "dp[i][j] = min(dp[i - 1][j], dp[i][j - 1]) + grid[i][j];",
-                "dp[i][j] = min(dp[i - 1][j], dp[i][j]) + grid[i][j];",
-                "dp[i][j] = min(dp[i][j], dp[i][j - 1]) + grid[i][j];",
+                "$dp[i]$[j] = min(dp[i-1][j], $dp[i]$[j-1])+grid[i][1];",
+                "$dp[i]$[j] = min(dp[i-1][j], $dp[i]$[j-1])+grid[i][j];",
+                "$dp[i]$[j] = min(dp[i-1][j], $dp[i]$[j])+grid[i][j];",
+                "$dp[i]$[j] = min($dp[i]$[j], $dp[i]$[j-1])+grid[i][j];",
             ],
             answer: 1,
             score: 2,
@@ -316,10 +316,10 @@ export const paperData = {
             type: "single",
             question: "给定一个整数数组 nums，找到一个具有最大和的连续子数组（子数组最少包含一个元素），返回其最大和。下面横线处应该填入的是（ ）。",
             options: [
-                "dp[i] = max(nums[i+1], dp[i - 1] + nums[i]);",
-                "dp[i] = max(nums[i], dp[i - 1] + nums[i]);",
-                "dp[i] = max(nums[i], dp[i + 1] + nums[i]);",
-                "dp[i] = max(nums[i], dp[i - 1] + nums[i+1]);",
+                "$dp[i]$ = max(nums[i+1], dp[i-1]+nums[i]);",
+                "$dp[i]$ = max(nums[i], dp[i-1]+nums[i]);",
+                "$dp[i]$ = max(nums[i], dp[i+1]+nums[i]);",
+                "$dp[i]$ = max(nums[i], dp[i-1]+nums[i+1]);",
             ],
             answer: 1,
             score: 2,
@@ -454,7 +454,7 @@ export const paperData = {
         {
             id: 22,
             type: "judge",
-            question: "邻接表和邻接矩阵都是图的存储形式。为了操作时间复杂度考虑，同一个图可以同时维护两种存储形式。 maxSum = max(maxSum, dp[i]); } return maxSum; } int main() { int n; cin >> n; vector<int> nums(n); for (int i = 0; i < n; i++) { cin >> nums[i]; } int result = maxSubArray(nums); cout << result << endl; return 0; } 16 17 18 19 20 21 22 23 24 25 26 27 28 29 30 31 32 33 34 35",
+            question: "邻接表和邻接矩阵都是图的存储形式。为了操作时间复杂度考虑，同一个图可以同时维护两种存储形式。 maxSum = max(maxSum, $dp[i]$); } return maxSum; } int main() { int n; cin >> n; vector<int> nums(n); for (int i = 0; i < n; i++) { cin >> nums[i]; } int result = maxSubArray(nums); cout << result << endl; return 0; } 16 17 18 19 20 21 22 23 24 25 26 27 28 29 30 31 32 33 34 35",
             options: [
                 "正确",
                 "错误",

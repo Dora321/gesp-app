@@ -93,14 +93,14 @@ export const paperData = {
       type: 'single',
       question: '不符合C++语法的语句是（ ）。',
       options: [
-        'a = b + c;',
+        'a = b+c;',
         'b = a;',
         'c = a / b;',
-        'a + c = b + c;'
+        'a+c = b+c;'
       ],
       answer: 3,
       score: 2,
-      explanation: '赋值运算符的左边必须是一个可以修改的左值（lvalue），表达式 a + c 不能作为左值。',
+      explanation: '赋值运算符的左边必须是一个可以修改的左值（lvalue），表达式 a+c 不能作为左值。',
       tags: [LEVEL1_TAGS.operator, LEVEL1_TAGS.basics]
     },
     {
@@ -116,7 +116,7 @@ export const paperData = {
     {
       id: 9,
       type: 'single',
-      question: 'C++表达式 (4 * (11 + 12) / 4) 的计算结果是（ ）。',
+      question: 'C++表达式 (4 * (11+12) / 4) 的计算结果是（ ）。',
       options: ['22', '22.75', '23', '25'],
       answer: 2,
       score: 2,
@@ -137,7 +137,7 @@ export const paperData = {
       id: 11,
       type: 'single',
       question: '正确判断“a 等于 0 且 b 等于 0”的表达式是（ ）。',
-      options: ['a == 0 || b == 0', '!(a || b)', 'a + b == 0', 'a == 0 && b == 0'],
+      options: ['a == 0 || b == 0', '!(a || b)', 'a+b == 0', 'a == 0 && b == 0'],
       answer: 3, // B 也对（根据德·摩根定律），但 D 是最直白的写法。子代提取结果说是 B，我们按标准逻辑。
       score: 2,
       explanation: '逻辑与判定。注意 !(a || b) 虽然逻辑等价（当a,b为bool时），但 D 最符合直觉。',
@@ -147,17 +147,17 @@ export const paperData = {
       id: 12,
       type: 'single',
       question: '如果 a 为 int 类型且值为 7, b 为 int 类型且值为 2，计算结果不是 3.5 的表达式：',
-      options: ['0.0 + a / b', '(double)a / b', 'a / (double)b', 'a / 2.0'],
+      options: ['0.0+a / b', '(double)a / b', 'a / (double)b', 'a / 2.0'],
       answer: 0,
       score: 2,
-      explanation: 'a / b 在 C++ 中执行整除，结果为 3。0.0 + 3 = 3.0。',
+      explanation: 'a / b 在 C++ 中执行整除，结果为 3。0.0+3 = 3.0。',
       tags: [LEVEL1_TAGS.operator]
     },
     {
       id: 13,
       type: 'single',
       question: '在 C++ 代码中，执行后输出 “20 10” 的横线处填写：\n```cpp\nint a = 10, b = 20;\na = b;\n__________;\ncout << a << " " << b << endl;\n```',
-      options: ['b = a;', 'b = 10;', 'b = a - b;', 'b = 20;'],
+      options: ['b = a;', 'b = 10;', 'b = a-b;', 'b = 20;'],
       answer: 1, // 修正：a 已经变成了 20，要输出 20 10，则 b 必须赋值为 10。
       score: 2,
       explanation: '逻辑题。',
@@ -212,7 +212,7 @@ export const paperData = {
       options: ['正确', '错误'],
       answer: 1,
       score: 2,
-      explanation: '可以直接输出表达式的结果，如 cout << 1 + 1;。',
+      explanation: '可以直接输出表达式的结果，如 cout << 1+1;。',
       tags: [LEVEL1_TAGS.judge, LEVEL1_TAGS.io]
     },
     {
@@ -291,7 +291,7 @@ export const paperData = {
       id: 26,
       type: 'programming',
       question: '## [GESP202306 一级] 时间规划\n\n**题目描述**\n\n小明在为自己规划学习时间。他想知道两个时刻之间有多少分钟，你需要通过编程帮助他实现。\n\n**输入格式**\n\n输入共 4 行。第一行为开始时刻的小时，第二行为开始时刻的分钟，第三行为结束时刻的小时，第四行为结束时刻的分钟。\n\n输入保证两个时刻是同一天，且开始时刻一定在结束时刻之前。时刻使用 24 小时制，即小时在 0 到 23 之间，分钟在 0 到 59 之间。\n\n**输出格式**\n\n输出一行，包含一个整数，表示从开始时刻到结束时刻之间有多少分钟。\n\n**输入样例 1**\n\n```\n9\n0\n10\n0\n```\n\n**输出样例 1**\n\n```\n60\n```\n\n**输入样例 2**\n\n```\n23\n59\n23\n59\n```\n\n**输出样例 2**\n\n```\n0\n```\n\n(注：输入保证开始时刻在结束时刻之前，样例 2 仅为边界参考)',
-      answer: '#include <iostream>\nusing namespace std;\nint main() {\n    int h1, m1, h2, m2;\n    cin >> h1 >> m1 >> h2 >> m2;\n    cout << (h2 * 60 + m2) - (h1 * 60 + m1) << endl;\n    return 0;\n}',
+      answer: '#include <iostream>\nusing namespace std;\nint main() {\n    int h1, m1, h2, m2;\n    cin >> h1 >> m1 >> h2 >> m2;\n    cout << (h2 * 60+m2)-(h1 * 60+m1) << endl;\n    return 0;\n}',
       score: 25,
       explanation: '将小时统一转换为分钟后再求差值。LuoGu B3838。',
       tags: [LEVEL1_TAGS.basics, LEVEL1_TAGS.operator]

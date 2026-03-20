@@ -15,7 +15,7 @@ const programmingQuestions = [
         explanation: "二分答案 x。把所有大于 x 的数按原顺序保留下来：由于这些数无法被移动，所以若最终能两两相邻，它们在保留序列中必须恰好按相邻成对出现。检验该条件即可。",
         tags: ["编程题", "二分答案", "贪心"],
         template: "#include <bits/stdc++.h>\nusing namespace std;\n\nint main() {\n    int n;\n    cin >> n;\n    // 在此编写代码\n    return 0;\n}",
-        referenceCode: "#include <iostream>\nusing namespace std;\nconst int N = 100010;\nint a[N];\nint b[N];\nint pos;\nint main(){\n    int n;\n    cin >> n;\n    for(int i = 0; i < n; i++) cin >> a[i];\n    int left = 1, right = 1e6, ans = 1e6;\n    while(left <= right){\n        int mid = (left + right) / 2;\n        bool possible = true;\n        pos = 0;\n        for(int i = 0; i < n; i++) {\n            if(a[i] > mid) b[pos++] = a[i];\n        }\n        for(int i = 0; i < pos; i += 2){\n            if(b[i] != b[i+1]) {\n                possible = false;\n                break;\n            }\n        }\n        if(possible){\n            ans = mid;\n            right = mid - 1;\n        } else {\n            left = mid + 1;\n        }\n    }\n    cout << ans << endl;\n    return 0;\n}"
+        referenceCode: "#include <iostream>\nusing namespace std;\nconst int N = 100010;\nint a[N];\nint b[N];\nint pos;\nint main(){\n    int n;\n    cin >> n;\n    for(int i = 0; i < n; i++) cin >> a[i];\n    int left = 1, right = 1e6, ans = 1e6;\n    while(left <= right){\n        int mid = (left+right) / 2;\n        bool possible = true;\n        pos = 0;\n        for(int i = 0; i < n; i++) {\n            if(a[i] > mid) b[pos++] = a[i];\n        }\n        for(int i = 0; i < pos; i += 2){\n            if(b[i] != b[i+1]) {\n                possible = false;\n                break;\n            }\n        }\n        if(possible){\n            ans = mid;\n            right = mid-1;\n        } else {\n            left = mid+1;\n        }\n    }\n    cout << ans << endl;\n    return 0;\n}"
     },
     {
         id: 27,
@@ -31,7 +31,7 @@ const programmingQuestions = [
         explanation: "把每个数进行质因数分解。对每个质数单独考虑其指数序列，乘除一次相当于指数加减 1。要让总代价最小，目标指数应取该质数在所有数中的指数中位数；最后把各质数的代价累加即可。",
         tags: ["编程题", "数论", "质因数分解", "中位数"],
         template: "#include <bits/stdc++.h>\nusing namespace std;\n\nint main() {\n    int n;\n    cin >> n;\n    // 在此编写代码\n    return 0;\n}",
-        referenceCode: "#include <iostream>\nusing namespace std;\nconst int N = 100010;\nint num[N][20];\nint n, a[N];\nvoid calc_prime_factor(int x){\n    for(int i = 2; i * i <= x; i++){\n        if(x % i == 0){\n            int cnt = 0;\n            while(x % i == 0){\n                x /= i;\n                cnt++;\n            }\n            num[i][cnt]++;\n        }\n    }\n    if(x > 1) num[x][1]++;\n}\nint main(){\n    scanf(\"%d\", &n);\n    for(int i = 1; i <= n; i++){\n        scanf(\"%d\", &a[i]);\n        calc_prime_factor(a[i]);\n    }\n    long long ans = 0;\n    for(int i = 2; i < 100001; i++){\n        int pos = 0;\n        for(int j = 0; j < 20; j++) pos += num[i][j];\n        num[i][0] = n - pos;\n        int median_exponent = 0;\n        pos = 0;\n        for(int j = 0; j < 20; j++){\n            pos += num[i][j];\n            if(pos * 2 >= n){\n                median_exponent = j;\n                break;\n            }\n        }\n        for(int j = 0; j < 20; j++) ans += 1ll * num[i][j] * abs(j - median_exponent);\n    }\n    printf(\"%lld\\n\", ans);\n}\n"
+        referenceCode: "#include <iostream>\nusing namespace std;\nconst int N = 100010;\nint num[N][20];\nint n, a[N];\nvoid calc_prime_factor(int x){\n    for(int i = 2; i * i <= x; i++){\n        if(x % i == 0){\n            int cnt = 0;\n            while(x % i == 0){\n                x /= i;\n                cnt++;\n            }\n            num[i][cnt]++;\n        }\n    }\n    if(x > 1) num[x][1]++;\n}\nint main(){\n    scanf(\"%d\", &n);\n    for(int i = 1; i <= n; i++){\n        scanf(\"%d\", &a[i]);\n        calc_prime_factor(a[i]);\n    }\n    long long ans = 0;\n    for(int i = 2; i < 100001; i++){\n        int pos = 0;\n        for(int j = 0; j < 20; j++) pos += num[i][j];\n        num[i][0] = n-pos;\n        int median_exponent = 0;\n        pos = 0;\n        for(int j = 0; j < 20; j++){\n            pos += num[i][j];\n            if(pos * 2 >= n){\n                median_exponent = j;\n                break;\n            }\n        }\n        for(int j = 0; j < 20; j++) ans += 1ll * num[i][j] * abs(j-median_exponent);\n    }\n    printf(\"%lld\\n\", ans);\n}\n"
     }
 ];
 
@@ -69,10 +69,10 @@ export const paperData = {
             type: "single",
             question: "区块链中每个区块都指向前一个区块，新区块只能接在链尾。下面 addBlock 函数横线处应填写（ ）。",
             options: [
-                "Block* newBlock = new Block(tail->index + 1, data, tail); tail = newBlock->prev;",
-                "Block* newBlock = new Block(tail->index + 1, data, tail); tail = newBlock;",
-                "Block* newBlock = new Block(tail->index + 1, data, tail->prev); tail = newBlock;",
-                "Block* newBlock = new Block(tail->index + 1, data, tail->prev); tail = newBlock->prev;",
+                "Block* newBlock = new Block(tail->index+1, data, tail); tail = newBlock->prev;",
+                "Block* newBlock = new Block(tail->index+1, data, tail); tail = newBlock;",
+                "Block* newBlock = new Block(tail->index+1, data, tail->prev); tail = newBlock;",
+                "Block* newBlock = new Block(tail->index+1, data, tail->prev); tail = newBlock->prev;",
             ],
             answer: 1,
             score: 2,
@@ -88,10 +88,10 @@ export const paperData = {
             type: "single",
             question: "下面关于单链表和双链表的描述中，正确的是（ ）。",
             options: [
-                "双链表删除指定结点通常是 $$$O(N)$$$，单链表也是 $$$O(N)$$$。",
-                "双链表删除指定结点通常是 $$O(1)$$，单链表也是 $$O(1)$$。",
-                "双链表删除指定结点通常是 $$O(1)$$，单链表若需先找前驱通常是 $$$O(N)$$$。",
-                "双链表删除指定结点通常是 $$$O(N)$$$，单链表若已知前驱则是 $$O(1)$$。",
+                "双链表删除指定结点通常是 $O(N)$，单链表也是 $O(N)$。",
+                "双链表删除指定结点通常是 $O(1)$，单链表也是 $O(1)$。",
+                "双链表删除指定结点通常是 $O(1)$，单链表若需先找前驱通常是 $O(N)$。",
+                "双链表删除指定结点通常是 $O(N)$，单链表若已知前驱则是 $O(1)$。",
             ],
             answer: 2,
             score: 2,
@@ -105,7 +105,7 @@ export const paperData = {
         {
             id: 4,
             type: "single",
-            question: "假设我们有两个数 a 和 b，它们对模 m 同余，即 a ≡ b (mod m)。以下哪个值不可能是 m？",
+            question: "假设我们有两个数 a 和 b，它们对模 m 同余，即 $a \equiv b \pmod{m}$。以下哪个值不可能是 m？",
             options: [
                 "3",
                 "4",
@@ -165,8 +165,8 @@ export const paperData = {
             question: "下述代码实现素数表的线性筛法，筛选出所有小于等于 n 的素数，则横线上应填的代码是（ ）。",
             options: [
                 "for (int j = 0; j < primes.size() && i * primes[j] <= n; j++)",
-                "for(int j = sqrt(n); j <= n && i * primes[j] <= n; j++)",
-                "for (int j = 1; j <= sqrt(n); j++)",
+                "for(int j = $\sqrt{n}$; j <= n && i * primes[j] <= n; j++)",
+                "for (int j = 1; j <= $\sqrt{n}$; j++)",
                 "for(int j = 1; j < n && i * primes[j] <= n; j++)",
             ],
             answer: 0,
@@ -203,8 +203,8 @@ export const paperData = {
             question: "下面代码实现了归并排序。下述关于归并排序的说法中，不正确的是（ ）。",
             options: [
                 "归并排序的平均时间复杂度是 $O(n \log n)$。",
-                "归并排序通常需要 $$$O(N)$$$ 的额外空间。",
-                "归并排序在最坏情况下的时间复杂度是 $$$O(N^2)$$$。",
+                "归并排序通常需要 $O(N)$ 的额外空间。",
+                "归并排序在最坏情况下的时间复杂度是 $O(N^2)$。",
                 "归并排序适合大规模数据。",
             ],
             answer: 2,
@@ -222,8 +222,8 @@ export const paperData = {
             question: "下述 C++ 代码实现了快速排序算法，最坏情况的时间复杂度是（ ）。",
             options: [
                 "$O(\log n)$",
-                "$$$O(N)$$$",
-                "$$$O(N^2)$$$",
+                "$O(N)$",
+                "$O(N^2)$",
                 "$O(n \log n)$",
             ],
             answer: 2,
@@ -259,10 +259,10 @@ export const paperData = {
             type: "single",
             question: "小杨要把一根长度为 L 的木头切成 K 段，使得每段长度小于等于 x。已知每切一刀只能把一段木头分成两段，他用二分法找到满足条件的最小 x（x 为正整数），则横线处应填写（ ）。",
             options: [
-                "if (check(L, K, mid)) r = mid; else l = mid + 1;",
-                "if (check(L, K, mid)) r = mid + 1; else l = mid + 1;",
-                "if (check(L, K, mid)) r = mid + 1; else l = mid - 1;",
-                "if (check(L, K, mid)) r = mid + 1; else l = mid;",
+                "if (check(L, K, mid)) r = mid; else l = mid+1;",
+                "if (check(L, K, mid)) r = mid+1; else l = mid+1;",
+                "if (check(L, K, mid)) r = mid+1; else l = mid-1;",
+                "if (check(L, K, mid)) r = mid+1; else l = mid;",
             ],
             answer: 0,
             score: 2,
@@ -278,10 +278,10 @@ export const paperData = {
             type: "single",
             question: "下面给出了阶乘计算的递归与迭代两种方式。以下说法正确的是（ ）。",
             options: [
-                "两种实现方式的时间复杂度相同，都是 $$$O(N)$$$。",
-                "两种实现方式的空间复杂度相同，都是 $$O(1)$$。",
-                "两种实现方式的空间复杂度相同，都是 $$$O(N)$$$。",
-                "factorial1() 的时间复杂度为 $$O(1)$$，factorial2() 的时间复杂度为 $$$O(N)$$$。",
+                "两种实现方式的时间复杂度相同，都是 $O(N)$。",
+                "两种实现方式的空间复杂度相同，都是 $O(1)$。",
+                "两种实现方式的空间复杂度相同，都是 $O(N)$。",
+                "factorial1() 的时间复杂度为 $O(1)$，factorial2() 的时间复杂度为 $O(N)$。",
             ],
             answer: 0,
             score: 2,
@@ -350,7 +350,7 @@ export const paperData = {
         {
             id: 17,
             type: "judge",
-            question: "假设函数 gcd() 能正确求两个正整数的最大公约数，则下面的 lcm(a, b) 函数能正确求出正整数 a 和 b 的最小公倍数。",
+            question: "假设函数 gcd() 能正确求两个正整数的最大公约数，则下面的 $\text{lcm}(a, b)$ 函数能正确求出正整数 a 和 b 的最小公倍数。",
             options: [
                 "正确",
                 "错误",
@@ -384,7 +384,7 @@ export const paperData = {
         {
             id: 19,
             type: "judge",
-            question: "在求解所有不大于 n 的素数时，线性筛法（欧拉筛）总应优先于埃氏筛法，因为它的理论时间复杂度为 $$$O(N)$$$，低于埃氏筛法的 O(n log log n)。",
+            question: "在求解所有不大于 n 的素数时，线性筛法（欧拉筛）总应优先于埃氏筛法，因为它的理论时间复杂度为 $O(N)$，低于埃氏筛法的 O(n log log n)。",
             options: [
                 "正确",
                 "错误",

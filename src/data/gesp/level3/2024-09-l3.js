@@ -1,10 +1,10 @@
 // 2024年9月 GESP C++ 三级真题 (第7次认证)
 // 数据说明：本卷以官方真题 PDF 为主完成回填。
-// - 客观题 1~11、14~15、16~25 与两道编程题：题面主体可由官方 PDF 文本层直接提取并整理。
-// - 客观题 12~13：官方 PDF 文本层可提取到选项代码，但版式有截断，现按官方文本层 + 题意做等价整理。
-// - 客观题 7、10、13：原卷为代码/截图排版题，当前保留可核对题意；其中第 13 题代码截图未能从官方 PDF 文本层完整提取，现仅保留题干、选项与答案语义。
-// - 判断题答案表在 PDF 文本层中未完整提取，当前答案依据官方题面逐题复核填写。
-// - 编程题题名、题意、样例与参考代码来自官方 PDF，同时与公开 OJ 题号 B4038/B4039 对齐。
+//-客观题 1~11、14~15、16~25 与两道编程题：题面主体可由官方 PDF 文本层直接提取并整理。
+//-客观题 12~13：官方 PDF 文本层可提取到选项代码，但版式有截断，现按官方文本层+题意做等价整理。
+//-客观题 7、10、13：原卷为代码/截图排版题，当前保留可核对题意；其中第 13 题代码截图未能从官方 PDF 文本层完整提取，现仅保留题干、选项与答案语义。
+//-判断题答案表在 PDF 文本层中未完整提取，当前答案依据官方题面逐题复核填写。
+//-编程题题名、题意、样例与参考代码来自官方 PDF，同时与公开 OJ 题号 B4038/B4039 对齐。
 export const paperData = {
     id: '2024-09-l3',
     title: '2024年9月 GESP C++ 三级真题',
@@ -21,7 +21,7 @@ export const paperData = {
         {
             id: 1,
             type: 'single',
-            question: '下列代码中，输出结果是（ ）。\n```cpp\n#include <iostream>\nusing namespace std;\nint main() {\n    double a = 0.9;\n    double b = 1.0;\n    if ((b - a) == 0.1) cout << "Equal" << endl;\n    else cout << "Not equal" << endl;\n}\n```',
+            question: '下列代码中，输出结果是（ ）。\n```cpp\n#include <iostream>\nusing namespace std;\nint main() {\n    double a = 0.9;\n    double b = 1.0;\n    if ((b-a) == 0.1) cout << "Equal" << endl;\n    else cout << "Not equal" << endl;\n}\n```',
             options: ['Equal', 'Not equal', '程序不能正确执行', '没有输出'],
             answer: 1,
             score: 2,
@@ -43,7 +43,7 @@ export const paperData = {
             options: ['7C3', '7A3', '7B3', '7D3'],
             answer: 0,
             score: 2,
-            explanation: '3703₈ = 3×8^3 + 7×8^2 + 3 = 1987₁₀ = 7C3₁₆。'
+            explanation: '3703₈ = 3×8^3+7×8^2+3 = 1987₁₀ = 7C3₁₆。'
         },
         {
             id: 4,
@@ -161,7 +161,7 @@ export const paperData = {
         {
             id: 16,
             type: 'judge',
-            question: '+1 和 -1 的原码进行 1 + (-1) 计算的结果是 -2。',
+            question: '+1 和 -1 的原码进行 1+(-1) 计算的结果是 -2。',
             options: ['正确', '错误'],
             answer: 1,
             score: 2,
@@ -255,7 +255,7 @@ export const paperData = {
             type: 'programming',
             title: '平衡序列',
             problemNumber: 'B4038',
-            source: 'official-pdf + luogu-mapping',
+            source: 'official-pdf+luogu-mapping',
             description: '小杨有一个包含 n 个正整数的序列 a。他认为一个序列是平衡的，当且仅当存在一个正整数 i（1 ≤ i < n），使得序列第 1 到第 i 个数字的总和等于第 i+1 到第 n 个数字的总和。请你判断序列 a 是否是平衡的。',
             inputDescription: '第一行包含一个正整数 t，代表测试用例组数。接下来 t 组测试用例，每组两行：第一行一个正整数 n，表示序列长度；第二行包含 n 个正整数，表示序列 a。',
             outputDescription: '对于每组测试用例，若序列是平衡的输出 Yes，否则输出 No。',
@@ -275,7 +275,7 @@ export const paperData = {
             type: 'programming',
             title: '回文拼接',
             problemNumber: 'B4039',
-            source: 'official-pdf + luogu-mapping',
+            source: 'official-pdf+luogu-mapping',
             description: '一个字符串是回文串，当且仅当该字符串从前往后读和从后往前读是一样的，例如 aabaa 和 ccddcc 都是回文串，但 abcd 不是。小杨有 n 个仅包含小写字母的字符串，请判断每个字符串是否由两个长度至少为 2 的回文串前后拼接而成。',
             inputDescription: '第一行包含一个正整数 n，代表字符串数量。之后 n 行，每行一个仅包含小写字母的字符串。',
             outputDescription: '对于每个字符串，若它可以拆成两个长度都至少为 2 的回文串，则输出 Yes，否则输出 No。',
@@ -288,7 +288,7 @@ export const paperData = {
             explanation: '枚举分割点 j，把字符串拆成前后两段，要求两段长度都至少为 2，并分别判断是否为回文串。只要存在一种可行拆分就输出 Yes。',
             tags: ['编程题', '字符串', '回文', '枚举'],
             template: '#include <bits/stdc++.h>\nusing namespace std;\n\nbool isPal(const string& s, int l, int r) {\n    while (l < r) if (s[l++] != s[r--]) return false;\n    return true;\n}\n\nint main() {\n    ios::sync_with_stdio(false);\n    cin.tie(nullptr);\n\n    // 在此编写代码\n    return 0;\n}',
-            referenceCode: '#include<bits/stdc++.h>\nusing namespace std;\nint main(){\n    int n;\n    cin >> n;\n    for(int i = 1; i <= n; i++){\n        string s;\n        cin >> s;\n        int m = s.length();\n        int ok = 0;\n        for(int j = 2; j <= m - 2; j++){\n            string s1 = s.substr(0, j);\n            string s2 = s.substr(j, m - j);\n            string t1 = "", t2 = "";\n            for(int k = (int)s1.size() - 1; k >= 0; k--) t1 += s1[k];\n            for(int k = (int)s2.size() - 1; k >= 0; k--) t2 += s2[k];\n            if(t1 == s1 && t2 == s2){\n                ok = 1;\n                break;\n            }\n        }\n        cout << (ok ? "Yes" : "No") << "\\n";\n    }\n    return 0;\n}'
+            referenceCode: '#include<bits/stdc++.h>\nusing namespace std;\nint main(){\n    int n;\n    cin >> n;\n    for(int i = 1; i <= n; i++){\n        string s;\n        cin >> s;\n        int m = s.length();\n        int ok = 0;\n        for(int j = 2; j <= m-2; j++){\n            string s1 = s.substr(0, j);\n            string s2 = s.substr(j, m-j);\n            string t1 = "", t2 = "";\n            for(int k = (int)s1.size()-1; k >= 0; k--) t1 += s1[k];\n            for(int k = (int)s2.size()-1; k >= 0; k--) t2 += s2[k];\n            if(t1 == s1 && t2 == s2){\n                ok = 1;\n                break;\n            }\n        }\n        cout << (ok ? "Yes" : "No") << "\\n";\n    }\n    return 0;\n}'
         }
     ]
 };

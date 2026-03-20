@@ -51,11 +51,11 @@ export const paperData = {
         {
             id: 5,
             type: 'single',
-            question: "在 C++ 中，`cout << (5 / 2 + 5 % 3)` 的输出是（ ）。",
+            question: "在 C++ 中，`cout << (5 / 2+5 % 3)` 的输出是（ ）。",
             options: ["1", "2", "4", "5"],
             answer: 2,
             score: 2,
-            explanation: '5 / 2 = 2 (整数除法)，5 % 3 = 2。2 + 2 = 4。',
+            explanation: '5 / 2 = 2 (整数除法)，5 % 3 = 2。2+2 = 4。',
             tags: ["输入输出", "运算符"]
         },
         {
@@ -91,7 +91,7 @@ export const paperData = {
         {
             id: 9,
             type: 'single',
-            question: "执行下⾯ C++ 代码并输入 1 和 0 ，有关说法正确的是（ ）。 cin >> a; cin >> b; cout << (a + b); int i; for (i = 0; i < 10; i++){ if (i % 2) break; cout << \"0#\"; } if(i==10) cout << \"1#\";。",
+            question: "执行下⾯ C++ 代码并输入 1 和 0 ，有关说法正确的是（ ）。 cin >> a; cin >> b; cout << (a+b); int i; for (i = 0; i < 10; i++){ if (i % 2) break; cout << \"0#\"; } if(i==10) cout << \"1#\";。",
             options: ["（该选项文本提取异常，待按原卷补录）", "（该选项文本提取异常，待按原卷补录）", "（该选项文本提取异常，待按原卷补录）", "（该选项文本提取异常，待按原卷补录）"],
             answer: 2,
             score: 2,
@@ -112,7 +112,7 @@ export const paperData = {
             id: 11,
             type: 'single',
             question: "下图是 C++ 程序执行后的输出（右对角线对齐图案）。横线处应填入代码是（ ）。\n```cpp\nfor (int i = 1; i < 6; i++) {\n    for (int j = ________________; j++) \n        cout << j;\n    cout << endl;\n}\n```",
-            options: ["j = i; j < i", "j = 1; j < i", "j = i; j < i * 2", "j = i + 1; j < i + i"],
+            options: ["j = i; j < i", "j = 1; j < i", "j = i; j < i * 2", "j = i+1; j < i+i"],
             answer: 2,
             score: 2,
             explanation: 'j 从 i 开始到 2*i-1 结束，输出项数随 i 增加。',
@@ -122,10 +122,10 @@ export const paperData = {
             id: 12,
             type: 'single',
             question: "下⾯ C++ 代码执行后输出逆序数。横线处应填入（ ）。\n```cpp\nint N, rst = 0;\ncin >> N;\nwhile (N) {\n    ________________;\n    ________________;\n}\ncout << rst;\n```",
-            options: ["rst = rst * 10 + N % 10; N = N / 10;", "rst += N % 10; N = N / 10;", "rst = rst * 10 + N / 10; N = N % 10;", "rst += N / 10; N = N % 10;"],
+            options: ["rst = rst * 10+N % 10; N = N / 10;", "rst += N % 10; N = N / 10;", "rst = rst * 10+N / 10; N = N % 10;", "rst += N / 10; N = N % 10;"],
             answer: 0,
             score: 2,
-            explanation: 'rst = rst * 10 + N % 10 实现将末位加入反转数。N /= 10 去掉末位。',
+            explanation: 'rst = rst * 10+N % 10 实现将末位加入反转数。N /= 10 去掉末位。',
             tags: ["循环", "数字处理"]
         },
         {
@@ -152,7 +152,7 @@ export const paperData = {
             id: 15,
             type: 'single',
             question: "假设输入正整数 N，以下 C++ 代码用于实现十进制转二进制。横线处应填写（ ）。\n```cpp\nint N;\ncin >> N;\nstring s = \"\";\nwhile (N > 0) {\n    ________________;\n    N /= 2;\n}\ncout << s;\n```",
-            options: ["s = to_string(N % 2) + s", "s = s + to_string(N % 2)", "s = to_string(N / 2) + s", "s = s + to_string(N / 2)"],
+            options: ["s = to_string(N % 2)+s", "s = s+to_string(N % 2)", "s = to_string(N / 2)+s", "s = s+to_string(N / 2)"],
             answer: 0,
             score: 2,
             explanation: '十进制转二进制通过余数逆序排列实现。',
@@ -241,7 +241,7 @@ export const paperData = {
         {
             id: 24,
             type: 'judge',
-            question: "下⾯ C++ 代码用于求第 N 个斐波那契数，N 限定为大于 2。\n```cpp\nint f1 = 1, f2 = 1, f3;\nfor (int i = 3; i <= N; i++) {\n    f3 = f1 + f2; f1 = f2; f2 = f3;\n}\ncout << f3;\n```",
+            question: "下⾯ C++ 代码用于求第 N 个斐波那契数，N 限定为大于 2。\n```cpp\nint f1 = 1, f2 = 1, f3;\nfor (int i = 3; i <= N; i++) {\n    f3 = f1+f2; f1 = f2; f2 = f3;\n}\ncout << f3;\n```",
             options: ['正确', '错误'],
             answer: 0,
             score: 2,
@@ -304,7 +304,7 @@ export const paperData = {
             "模拟"
         ],
         "template": "#include <bits/stdc++.h>\nusing namespace std;\n\nint main() {\n    ios::sync_with_stdio(false);\n    cin.tie(nullptr);\n\n    // 在此编写代码\n    return 0;\n}",
-        "referenceCode": "#include <bits/stdc++.h>\nusing namespace std;\n\nint main() {\n    ios::sync_with_stdio(false);\n    cin.tie(nullptr);\n\n    int m;\n    cin >> m;\n    for (int i = 0; i < m; ++i) {\n        for (int j = 0; j < m; ++j) {\n            if (j == 0 || j == m - 1 || i == j) cout << '+';\n            else cout << '-';\n        }\n        cout << '\\n';\n    }\n    return 0;\n}"
+        "referenceCode": "#include <bits/stdc++.h>\nusing namespace std;\n\nint main() {\n    ios::sync_with_stdio(false);\n    cin.tie(nullptr);\n\n    int m;\n    cin >> m;\n    for (int i = 0; i < m; ++i) {\n        for (int j = 0; j < m; ++j) {\n            if (j == 0 || j == m-1 || i == j) cout << '+';\n            else cout << '-';\n        }\n        cout << '\\n';\n    }\n    return 0;\n}"
     }
 ]
 };

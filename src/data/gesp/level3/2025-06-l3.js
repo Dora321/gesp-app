@@ -1,8 +1,8 @@
 // 2025年6月 GESP C++ 三级真题 (第10次认证)
 // 数据说明：本卷以官方真题 PDF 为主完成回填。
-// - 客观题 1~15：题面、选项与单选答案可由官方 PDF 文本层直接提取并整理。
-// - 判断题 16~25：题面来自官方 PDF；官方 PDF 文本层未完整带出答案表，当前答案依据公开解析交叉复核填写。
-// - 编程题 26~27：题名、题意、样例与参考代码主体来自官方 PDF；少量公式变量/范围符号因 PDF 文本层缺字，按官方题意做等价整理。
+//-客观题 1~15：题面、选项与单选答案可由官方 PDF 文本层直接提取并整理。
+//-判断题 16~25：题面来自官方 PDF；官方 PDF 文本层未完整带出答案表，当前答案依据公开解析交叉复核填写。
+//-编程题 26~27：题名、题意、样例与参考代码主体来自官方 PDF；少量公式变量/范围符号因 PDF 文本层缺字，按官方题意做等价整理。
 export const paperData = {
     id: '2025-06-l3',
     title: '2025年6月 GESP C++ 三级真题',
@@ -59,7 +59,7 @@ export const paperData = {
             options: ['13.625', '12.75', '11.875', '14.5'],
             answer: 0,
             score: 2,
-            explanation: '1101.101₂ = 8 + 4 + 1 + 1/2 + 1/8 = 13.625。'
+            explanation: '1101.101₂ = 8+4+1+1/2+1/8 = 13.625。'
         },
         {
             id: 6,
@@ -77,7 +77,7 @@ export const paperData = {
             options: ['29.75', '28.5', '27.625', '30.25'],
             answer: 0,
             score: 2,
-            explanation: '35.6₈ = 3×8 + 5 + 6/8 = 29.75。'
+            explanation: '35.6₈ = 3×8+5+6/8 = 29.75。'
         },
         {
             id: 8,
@@ -114,7 +114,7 @@ export const paperData = {
         {
             id: 11,
             type: 'single',
-            question: '下面程序使用枚举法（穷举法）求解满足条件的三位数，横线处应该填入的是（ ）。\n```cpp\n#include <iostream>\nusing namespace std;\nint main() {\n    int count = 0;\n    for (int i = 100; i <= 999; i++) {\n        int a = i / 100;\n        __________________\n        int c = i % 10;\n        if (a * a + b * b == c * c) {\n            count++;\n        }\n    }\n    cout << count << endl;\n    return 0;\n}\n```',
+            question: '下面程序使用枚举法（穷举法）求解满足条件的三位数，横线处应该填入的是（ ）。\n```cpp\n#include <iostream>\nusing namespace std;\nint main() {\n    int count = 0;\n    for (int i = 100; i <= 999; i++) {\n        int a = i / 100;\n        __________________\n        int c = i % 10;\n        if (a * a+b * b == c * c) {\n            count++;\n        }\n    }\n    cout << count << endl;\n    return 0;\n}\n```',
             options: ['int b = (i / 10) / 10;', 'int b = (i / 10) % 10;', 'int b = (i % 10) / 10;', 'int b = (i % 10) % 10;'],
             answer: 1,
             score: 2,
@@ -124,7 +124,7 @@ export const paperData = {
             id: 12,
             type: 'single',
             question: '下面程序模拟了一个简单的小球反弹过程，横线处应该填入的是（ ）。\n```cpp\n#include <iostream>\nusing namespace std;\nint main() {\n    int height = 10;\n    int distance = 0;\n    for (int i = 1; i <= 5; i++) { // 模拟 5 次落地\n        __________________\n        height /= 2;\n        distance += height;\n    }\n    cout << distance << endl;\n    return 0;\n}\n```',
-            options: ['distance += height / 2;', 'distance += height;', 'distance += height * 2;', 'distance += height + 1;'],
+            options: ['distance += height / 2;', 'distance += height;', 'distance += height * 2;', 'distance += height+1;'],
             answer: 1,
             score: 2,
             explanation: '每次落地前先把当前下落高度计入总路程，因此填 distance += height。'
@@ -253,7 +253,7 @@ export const paperData = {
             type: 'programming',
             title: '奇偶校验',
             problemNumber: 'B4358',
-            source: 'official-pdf + luogu-mapping',
+            source: 'official-pdf+luogu-mapping',
             description: '数据在传输过程中可能出错，因此接收方收到数据后通常会校验传输的数据是否正确，奇偶校验是经典的校验方式之一。给定 n 个非负整数 c1, c2, ..., cn 代表所传输的数据，它们的校验码取决于这些整数在二进制下 1 的数量之和的奇偶性。如果这些整数在二进制下共有奇数个 1，那么校验码为 1；否则校验码为 0。请输出 1 的总数量与校验码。',
             inputDescription: '第一行，一个正整数 n，表示所传输的数据量。第二行，n 个非负整数 c1, c2, ..., cn，表示所传输的数据。',
             outputDescription: '输出一行，两个整数，以一个空格分隔：第一个整数表示这些数在二进制下 1 的总数量；第二个整数表示校验码（0 或 1）。',
@@ -277,7 +277,7 @@ export const paperData = {
             type: 'programming',
             title: '分糖果',
             problemNumber: 'B4359',
-            source: 'official-pdf + luogu-mapping',
+            source: 'official-pdf+luogu-mapping',
             description: '有 n 位小朋友排成一队等待老师分糖果。第 i 位小朋友想要至少 ai 颗糖果，并且分给他的糖果数量必须比分给前一位小朋友的糖果数量更多，不然他就会不开心。老师想知道至少需要准备多少颗糖果才能让所有小朋友都开心。',
             inputDescription: '第一行，一个正整数 n，表示小朋友的人数。第二行，n 个正整数 a1, a2, ..., an，依次表示每位小朋友至少需要的糖果数量。',
             outputDescription: '输出一行，一个整数，表示最少需要准备的糖果数量。',
@@ -291,10 +291,10 @@ export const paperData = {
                     output: '45081432531'
                 }
             ],
-            explanation: '从左到右贪心。设前一位拿到 prev 颗，则当前位至少应拿 `max(ai, prev + 1)` 颗，把这些值累加即可。',
+            explanation: '从左到右贪心。设前一位拿到 prev 颗，则当前位至少应拿 `max(ai, prev+1)` 颗，把这些值累加即可。',
             tags: ['编程题', '贪心', '数组'],
             template: '#include <bits/stdc++.h>\nusing namespace std;\n\nint main() {\n    ios::sync_with_stdio(false);\n    cin.tie(nullptr);\n\n    // 在此编写代码\n    return 0;\n}',
-            referenceCode: '#include <cstdio>\n#include <algorithm>\nusing namespace std;\n\nconst int N = 1005;\nint n, a[N];\nlong long ans;\n\nint main() {\n    scanf("%d", &n);\n    for (int i = 1; i <= n; i++) {\n        scanf("%d", &a[i]);\n        a[i] = max(a[i - 1] + 1, a[i]);\n        ans += a[i];\n    }\n    printf("%lld\\n", ans);\n    return 0;\n}'
+            referenceCode: '#include <cstdio>\n#include <algorithm>\nusing namespace std;\n\nconst int N = 1005;\nint n, a[N];\nlong long ans;\n\nint main() {\n    scanf("%d", &n);\n    for (int i = 1; i <= n; i++) {\n        scanf("%d", &a[i]);\n        a[i] = max(a[i-1]+1, a[i]);\n        ans += a[i];\n    }\n    printf("%lld\\n", ans);\n    return 0;\n}'
         }
     ]
 };

@@ -53,7 +53,7 @@ export const paperData = {
             id: 5,
             type: 'single',
             question: "下⾯ C++ 代码用于判断 N （大于等于 2 的正整数）是否为质数（素数）。下⾯对如下代码的说法，正确的是（ ）。",
-            options: ["代码能正确判断 N 是否为质数。", "代码总是不能判断 N 是否质数。", "删除第 5 行break，将能正确判断 N 是否质数。", "代码存在漏洞，边界存在问题，应将第 2 行和第 7 行的N / 2改为 N / 2 + 1。"],
+            options: ["代码能正确判断 N 是否为质数。", "代码总是不能判断 N 是否质数。", "删除第 5 行break，将能正确判断 N 是否质数。", "代码存在漏洞，边界存在问题，应将第 2 行和第 7 行的N / 2改为 N / 2+1。"],
             answer: 3,
             score: 2,
             explanation: '答案依据官方答案。',
@@ -92,7 +92,7 @@ export const paperData = {
         {
             id: 9,
             type: 'single',
-            question: "下面C++代码执行后的输出是（ ）。\n```cpp\nint x = 1;\nwhile (x < 10) {\n    if (x % 3 != 0) cout << x << \",\";\n    if (x % 3 == 0) x = x + 5 + 2;\n    else x += 2;\n}\n```",
+            question: "下面C++代码执行后的输出是（ ）。\n```cpp\nint x = 1;\nwhile (x < 10) {\n    if (x % 3 != 0) cout << x << \",\";\n    if (x % 3 == 0) x = x+5+2;\n    else x += 2;\n}\n```",
             options: ["1,3,", "1,3,10,", "1,7,", "1,10,"],
             answer: 3,
             score: 2,
@@ -106,7 +106,7 @@ export const paperData = {
             options: ["5", "10", "15", "20"],
             answer: 1,
             score: 2,
-            explanation: '双重循环执行次数为 1 + 2 + 3 + 4 = 10。',
+            explanation: '双重循环执行次数为 1+2+3+4 = 10。',
             tags: ["循环", "程序分析"]
         },
         {
@@ -182,11 +182,11 @@ export const paperData = {
         {
             id: 18,
             type: 'judge',
-            question: "C++ 表达式 `3 + 2 && 5 - 5` 的值为 `false`。",
+            question: "C++ 表达式 `3+2 && 5-5` 的值为 `false`。",
             options: ['正确', '错误'],
             answer: 0,
             score: 2,
-            explanation: "3 + 2 = 5 (true)，5 - 5 = 0 (false)。true && false 为 false。",
+            explanation: "3+2 = 5 (true)，5-5 = 0 (false)。true && false 为 false。",
             tags: ["判断题", "逻辑运算"]
         },
         {
@@ -226,7 +226,7 @@ export const paperData = {
             options: ['正确', '错误'],
             answer: 1,
             score: 2,
-            explanation: "C++ 支持隐式类型转换（如 int + double），不一定要手动转换。",
+            explanation: "C++ 支持隐式类型转换（如 int+double），不一定要手动转换。",
             tags: ["判断题", "数据类型"]
         },
         {
@@ -282,7 +282,7 @@ export const paperData = {
             "模拟"
         ],
         "template": "#include <bits/stdc++.h>\nusing namespace std;\n\nint main() {\n    ios::sync_with_stdio(false);\n    cin.tie(nullptr);\n\n    // 在此编写代码\n    return 0;\n}",
-        "referenceCode": "#include <bits/stdc++.h>\nusing namespace std;\n\nint main() {\n    ios::sync_with_stdio(false);\n    cin.tie(nullptr);\n\n    long long a, b, m, N;\n    cin >> a >> b >> m >> N;\n    if (N == 1) { cout << a << '\\n'; return 0; }\n    if (N == 2) { cout << a + b << '\\n'; return 0; }\n    long long sum = a + b, x = a, y = b;\n    bool stop = (a >= m || b >= m);\n    for (long long day = 3; day <= N; ++day) {\n        long long cur = 0;\n        if (!stop) {\n            cur = x + y;\n            sum += cur;\n            if (cur >= m) stop = true;\n            x = y;\n            y = cur;\n        }\n    }\n    cout << sum << '\\n';\n    return 0;\n}"
+        "referenceCode": "#include <bits/stdc++.h>\nusing namespace std;\n\nint main() {\n    ios::sync_with_stdio(false);\n    cin.tie(nullptr);\n\n    long long a, b, m, N;\n    cin >> a >> b >> m >> N;\n    if (N == 1) { cout << a << '\\n'; return 0; }\n    if (N == 2) { cout << a+b << '\\n'; return 0; }\n    long long sum = a+b, x = a, y = b;\n    bool stop = (a >= m || b >= m);\n    for (long long day = 3; day <= N; ++day) {\n        long long cur = 0;\n        if (!stop) {\n            cur = x+y;\n            sum += cur;\n            if (cur >= m) stop = true;\n            x = y;\n            y = cur;\n        }\n    }\n    cout << sum << '\\n';\n    return 0;\n}"
     },
     {
         "id": 27,
@@ -291,7 +291,7 @@ export const paperData = {
         "problemNumber": "B3924",
         "description": "小杨想要构造一个 N × N 的 H 字矩阵（N 为奇数），具体来说，这个矩阵共有 N 行，每行 N 个字符，其中最左列、最右列都是 `|` ，而中间一行（即第N+1/2行）的第 2 \\sim $N-1$ 个字符都是 `-` ，其余所有字符都是半角小写字母 `a`。例如，一个 N=5 的 H 字矩阵如下： |aaa| |aaa| |---| |aaa| |aaa| 请你帮小杨根据给定的 N 打印出对应的“H 字矩阵”。",
         "inputDescription": "一行一个整数 N（5\\le N \\le 49 ，保证 N 为奇数）。",
-        "outputDescription": "输出对应的“H 字矩阵”。 请严格按格式要求输出，不要擅自添加任何空格、标点、空行等任何符号。你应该恰好输出 N 行，每行除了换行符外恰好包含 N 个字符，这些字符要么是 - ，要么是 | ，要么是 a 。**你的输出必须和标准答案完全一致才能得分，请在提交前仔细检查。**",
+        "outputDescription": "输出对应的“H 字矩阵”。 请严格按格式要求输出，不要擅自添加任何空格、标点、空行等任何符号。你应该恰好输出 N 行，每行除了换行符外恰好包含 N 个字符，这些字符要么是-，要么是 | ，要么是 a 。**你的输出必须和标准答案完全一致才能得分，请在提交前仔细检查。**",
         "samples": [
             {
                 "input": "5",
@@ -305,7 +305,7 @@ export const paperData = {
             "模拟"
         ],
         "template": "#include <bits/stdc++.h>\nusing namespace std;\n\nint main() {\n    ios::sync_with_stdio(false);\n    cin.tie(nullptr);\n\n    // 在此编写代码\n    return 0;\n}",
-        "referenceCode": "#include <bits/stdc++.h>\nusing namespace std;\n\nint main() {\n    ios::sync_with_stdio(false);\n    cin.tie(nullptr);\n\n    int N;\n    cin >> N;\n    int mid = N / 2;\n    for (int i = 0; i < N; ++i) {\n        for (int j = 0; j < N; ++j) {\n            if (j == 0 || j == N - 1) cout << '|';\n            else if (i == mid) cout << '-';\n            else cout << 'a';\n        }\n        cout << '\\n';\n    }\n    return 0;\n}"
+        "referenceCode": "#include <bits/stdc++.h>\nusing namespace std;\n\nint main() {\n    ios::sync_with_stdio(false);\n    cin.tie(nullptr);\n\n    int N;\n    cin >> N;\n    int mid = N / 2;\n    for (int i = 0; i < N; ++i) {\n        for (int j = 0; j < N; ++j) {\n            if (j == 0 || j == N-1) cout << '|';\n            else if (i == mid) cout << '-';\n            else cout << 'a';\n        }\n        cout << '\\n';\n    }\n    return 0;\n}"
     }
 ]
 };

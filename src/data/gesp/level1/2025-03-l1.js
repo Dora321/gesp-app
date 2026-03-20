@@ -76,8 +76,8 @@ export const paperData = {
     {
       id: 6,
       type: 'single',
-      question: '执行代码 printf("__%02d%2d$$", 3, 22); 的输出结果是 ( )。',
-      options: ['__322$$', '__0322$$', '__ 322$$', '__03 22$$'],
+      question: '执行代码 printf("__%02d%2d$", 3, 22); 的输出结果是 ( )。',
+      options: ['__322$', '__0322$', '__ 322$', '__03 22$'],
       answer: 1,
       score: 2,
       explanation: '%02d 表示宽度为2，不足补0。%2d 表示宽度为2。3 补 0 变为 03，22 宽度刚好为 2。',
@@ -302,7 +302,7 @@ export const paperData = {
       question: '【编程题2】镜像码转换\n小杨发现了一种有趣的镜像码：将小写字母 a 换成 z，b 换成 y ... z 换成 a。输入一个仅包含小写字母的字符串，输出对应的镜像码。',
       answer: '',
       score: 25,
-      explanation: '转换公式为：\'z\' - (c - \'a\')。',
+      explanation: '转换公式为：\'z\'-(c-\'a\')。',
       tags: [LEVEL1_TAGS.loop, LEVEL1_TAGS.basics]
     }
   ]

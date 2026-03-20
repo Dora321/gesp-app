@@ -222,7 +222,7 @@ export const paperData = {
         {
             id: 15,
             type: "single",
-            question: "在下列代码的横线处填写（ ），完成对有n个int类型元素的数组array由小到大排序。\nvoid SelectionSort(int array[], int n) { int i, j, min, temp; for(i=0; i<$$n-1$$; i++) { min = i; for(j=i+1; j<n; j++) if(______) min = j; temp=array[min]; array[min]=array[i]; array[i]=temp; } }",
+            question: "在下列代码的横线处填写（ ），完成对有n个int类型元素的数组array由小到大排序。\nvoid SelectionSort(int array[], int n) { int i, j, min, temp; for(i=0; i<$n-1$; i++) { min = i; for(j=i+1; j<n; j++) if(______) min = j; temp=array[min]; array[min]=array[i]; array[i]=temp; } }",
             options: [
                 "array[min] > array[j]",
                 "array[min] > array[i]",
@@ -366,11 +366,11 @@ const programmingQuestions = [
         samples: [
             { input: "2 2\n127 128\n0 255", output: "0 1\n0 1" }
         ],
-        answer: "#include <iostream>\n#include <vector>\nusing namespace std;\nint main() {\n    int n, k; cin >> n >> k;\n    int step = 256 / k;\n    for (int i = 0; i < n; i++) {\n        for (int j = 0; j < n; j++) {\n            int x; cin >> x;\n            cout << x / step << (j == n - 1 ? \"\" : \" \");\n        }\n        cout << endl;\n    }\n    return 0;\n}",
+        answer: "#include <iostream>\n#include <vector>\nusing namespace std;\nint main() {\n    int n, k; cin >> n >> k;\n    int step = 256 / k;\n    for (int i = 0; i < n; i++) {\n        for (int j = 0; j < n; j++) {\n            int x; cin >> x;\n            cout << x / step << (j == n-1 ? \"\" : \" \");\n        }\n        cout << endl;\n    }\n    return 0;\n}",
         explanation: "每个像素值除以 (256 / k) 即可得到映射值。LuoGu B3851。",
         tags: ["编程题", "二维数组", "模拟"],
         template: "#include <iostream>\n#include <vector>\nusing namespace std;\n\nint main() {\n    int n, k;\n    cin >> n >> k;\n    // 在此编写代码\n    return 0;\n}",
-        referenceCode: "#include <iostream>\n#include <vector>\nusing namespace std;\nint main() {\n    int n, k; cin >> n >> k;\n    int step = 256 / k;\n    for (int i = 0; i < n; i++) {\n        for (int j = 0; j < n; j++) {\n            int x; cin >> x;\n            cout << x / step << (j == n - 1 ? \"\" : \" \");\n        }\n        cout << endl;\n    }\n    return 0;\n}"
+        referenceCode: "#include <iostream>\n#include <vector>\nusing namespace std;\nint main() {\n    int n, k; cin >> n >> k;\n    int step = 256 / k;\n    for (int i = 0; i < n; i++) {\n        for (int j = 0; j < n; j++) {\n            int x; cin >> x;\n            cout << x / step << (j == n-1 ? \"\" : \" \");\n        }\n        cout << endl;\n    }\n    return 0;\n}"
     }
 ];
 

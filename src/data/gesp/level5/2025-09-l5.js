@@ -13,10 +13,10 @@ const programmingQuestions = [
             { input: "6", output: "4" },
             { input: "9", output: "5" }
         ],
-        explanation: "除 1 以外，任何两个不同的质数都互质；而大于 1 的合数通常会与某个更小的质数不互质。因此最优策略是选 1 以及所有不超过 n 的质数，答案为 1 + pi(n)。",
+        explanation: "除 1 以外，任何两个不同的质数都互质；而大于 1 的合数通常会与某个更小的质数不互质。因此最优策略是选 1 以及所有不超过 n 的质数，答案为 1+pi(n)。",
         tags: ["编程题", "数论", "线性筛"],
         template: "#include <bits/stdc++.h>\nusing namespace std;\n\nint main() {\n    int n;\n    cin >> n;\n    // 在此编写代码\n    return 0;\n}",
-        referenceCode: "#include <algorithm>\n#include <cstdio>\nusing namespace std;\nconst int N = 1e5 + 5;\nint n, p[N], cnt;\nbool np[N];\nint main() {\n    scanf(\"%d\", &n);\n    for (int i = 2; i <= n; i++) {\n        if (!np[i]) p[++cnt] = i;\n        for (int j = 1; j <= cnt && i * p[j] <= n; j++) {\n            np[i * p[j]] = 1;\n            if (i % p[j] == 0) break;\n        }\n    }\n    printf(\"%d\\n\", 1 + cnt);\n    return 0;\n}"
+        referenceCode: "#include <algorithm>\n#include <cstdio>\nusing namespace std;\nconst int N = 1e5+5;\nint n, p[N], cnt;\nbool np[N];\nint main() {\n    scanf(\"%d\", &n);\n    for (int i = 2; i <= n; i++) {\n        if (!np[i]) p[++cnt] = i;\n        for (int j = 1; j <= cnt && i * p[j] <= n; j++) {\n            np[i * p[j]] = 1;\n            if (i % p[j] == 0) break;\n        }\n    }\n    printf(\"%d\\n\", 1+cnt);\n    return 0;\n}"
     },
     {
         id: 27,
@@ -33,7 +33,7 @@ const programmingQuestions = [
         explanation: "设 f(n) 表示 [1,n] 中所有二进制中 1 的个数为奇数的数之和。可按最高位递归统计：先处理完整的 [0,2^k-1] 块，再递归处理剩余部分，同时根据最高位翻转奇偶性。最终答案为 f(r)-f(l-1)。",
         tags: ["编程题", "位运算", "递归", "数位DP"],
         template: "#include <bits/stdc++.h>\nusing namespace std;\n\nint main() {\n    int l, r;\n    cin >> l >> r;\n    // 在此编写代码\n    return 0;\n}",
-        referenceCode: "#include <algorithm>\n#include <cstdio>\nusing namespace std;\nint l, r;\nlong long ans;\npair<int, long long> cal2(int n, int p) {\n    if (n == 0) return {1 - p, 0};\n    if (n == 1) return {1, p};\n    return {($n+1$) / 2, 1ll * n * ($n+1$) / 4};\n}\npair<int, long long> cal(int n, int p) {\n    if (n <= 1) return cal2(n, p);\n    long long x = 1ll << (31 - __builtin_clz(n));\n    auto l = cal2(x - 1, p);\n    auto r = cal(n - x, 1 - p);\n    return {l.first + r.first, l.second + r.second + x * r.first};\n}\nint main() {\n    scanf(\"%d%d\", &l, &r);\n    ans -= cal(l - 1, 1).second;\n    ans += cal(r, 1).second;\n    printf(\"%lld\\n\", ans);\n    return 0;\n}"
+        referenceCode: "#include <algorithm>\n#include <cstdio>\nusing namespace std;\nint l, r;\nlong long ans;\npair<int, long long> cal2(int n, int p) {\n    if (n == 0) return {1-p, 0};\n    if (n == 1) return {1, p};\n    return {($n+1$) / 2, 1ll * n * ($n+1$) / 4};\n}\npair<int, long long> cal(int n, int p) {\n    if (n <= 1) return cal2(n, p);\n    long long x = 1ll << (31-__builtin_clz(n));\n    auto l = cal2(x-1, p);\n    auto r = cal(n-x, 1-p);\n    return {l.first+r.first, l.second+r.second+x * r.first};\n}\nint main() {\n    scanf(\"%d%d\", &l, &r);\n    ans -= cal(l-1, 1).second;\n    ans += cal(r, 1).second;\n    printf(\"%lld\\n\", ans);\n    return 0;\n}"
     }
 ];
 
@@ -222,10 +222,10 @@ export const paperData = {
             type: "single",
             question: "给定一个 n x n 的矩阵 matrix，矩阵的每一行和每一列都按升序排列。函数通过二分答案求第 k 小元素，则两处横线应分别填写（ ）。",
             options: [
-                "hi = mid - 1; 和 lo = mid + 1",
+                "hi = mid-1; 和 lo = mid+1",
                 "hi = mid; 和 lo = mid",
-                "hi = mid; 和 lo = mid + 1",
-                "hi = mid + 1; 和 lo = mid",
+                "hi = mid; 和 lo = mid+1",
+                "hi = mid+1; 和 lo = mid",
             ],
             answer: 2,
             score: 2,
@@ -242,8 +242,8 @@ export const paperData = {
             question: "下述 C++ 代码实现了快速排序算法，下面说法错误的是（ ）。",
             options: [
                 "快速排序平均情况下速度较快、常数较小，且属于原地排序，实践中通常较高效。",
-                "平均情况下递归层数约为 $O(\log n)$，每层总工作量为 $$$O(N)$$$，总时间复杂度为 $O(n \log n)$。",
-                "最坏情况下会不断分成 0 和 $$n-1$$ 两部分，递归层数达 $$$O(N)$$$，每层工作量为 $$$O(N)$$$，总时间复杂度为 $$$O(N^2)$$$。",
+                "平均情况下递归层数约为 $O(\log n)$，每层总工作量为 $O(N)$，总时间复杂度为 $O(n \log n)$。",
+                "最坏情况下会不断分成 0 和 $n-1$ 两部分，递归层数达 $O(N)$，每层工作量为 $O(N)$，总时间复杂度为 $O(N^2)$。",
                 "partition 中“先从右往左找”与“先从左往右找”的顺序可以随意交换，算法仍然完全等价。",
             ],
             answer: 3,
@@ -419,7 +419,7 @@ export const paperData = {
         {
             id: 21,
             type: "judge",
-            question: "线性筛的关键性质是“每个合数只会被其最小质因子筛到一次”，因此其时间复杂度为 $$$O(N)$$$。",
+            question: "线性筛的关键性质是“每个合数只会被其最小质因子筛到一次”，因此其时间复杂度为 $O(N)$。",
             options: [
                 "正确",
                 "错误",
@@ -453,7 +453,7 @@ export const paperData = {
         {
             id: 23,
             type: "judge",
-            question: "下面代码采用分治算法求解标准 3 柱汉诺塔问题，其时间复杂度为 O($$2^n$$)。",
+            question: "下面代码采用分治算法求解标准 3 柱汉诺塔问题，其时间复杂度为 O($2^n$)。",
             options: [
                 "正确",
                 "错误",

@@ -7,7 +7,7 @@ const programmingQuestions = [
         "title": "树上漫步",
         "problemNumber": "2025-03-23-06-C-01",
         "description": "给定一棵树。对每个起点，求从该点出发经过偶数步后可能停在多少个节点上（允许经过重复节点，0 步也算）。",
-        "inputDescription": "第一行 n。接下来 $$n-1$$ 行每行两个整数 u,v。",
+        "inputDescription": "第一行 n。接下来 $n-1$ 行每行两个整数 u,v。",
         "outputDescription": "输出一行 n 个整数，依次表示每个起点的答案。",
         "samples": [
             {
@@ -22,7 +22,7 @@ const programmingQuestions = [
             "二分图"
         ],
         "template": "#include <bits/stdc++.h>\nusing namespace std;\n\nint main() {\n    // 在此编写代码\n    return 0;\n}",
-        "referenceCode": "#include <bits/stdc++.h>\nusing namespace std;\n\nint main() {\n    ios::sync_with_stdio(false);\n    cin.tie(nullptr);\n\n    int n;\n    cin >> n;\n    vector<vector<int>> g($n+1$);\n    for (int i = 0; i < n - 1; ++i) {\n        int u, v;\n        cin >> u >> v;\n        g[u].push_back(v);\n        g[v].push_back(u);\n    }\n\n    vector<int> color($n+1$, -1);\n    queue<int> q;\n    q.push(1);\n    color[1] = 0;\n    long long cnt[2] = {1, 0};\n    while (!q.empty()) {\n        int u = q.front(); q.pop();\n        for (int v : g[u]) {\n            if (color[v] == -1) {\n                color[v] = color[u] ^ 1;\n                ++cnt[color[v]];\n                q.push(v);\n            }\n        }\n    }\n\n    for (int i = 1; i <= n; ++i) {\n        if (i > 1) cout << ' ';\n        cout << cnt[color[i]];\n    }\n    cout << '\\n';\n    return 0;\n}"
+        "referenceCode": "#include <bits/stdc++.h>\nusing namespace std;\n\nint main() {\n    ios::sync_with_stdio(false);\n    cin.tie(nullptr);\n\n    int n;\n    cin >> n;\n    vector<vector<int>> g($n+1$);\n    for (int i = 0; i < n-1; ++i) {\n        int u, v;\n        cin >> u >> v;\n        g[u].push_back(v);\n        g[v].push_back(u);\n    }\n\n    vector<int> color($n+1$, -1);\n    queue<int> q;\n    q.push(1);\n    color[1] = 0;\n    long long cnt[2] = {1, 0};\n    while (!q.empty()) {\n        int u = q.front(); q.pop();\n        for (int v : g[u]) {\n            if (color[v] == -1) {\n                color[v] = color[u] ^ 1;\n                ++cnt[color[v]];\n                q.push(v);\n            }\n        }\n    }\n\n    for (int i = 1; i <= n; ++i) {\n        if (i > 1) cout << ' ';\n        cout << cnt[color[i]];\n    }\n    cout << '\\n';\n    return 0;\n}"
     },
     {
         "id": 27,
@@ -34,7 +34,7 @@ const programmingQuestions = [
         "outputDescription": "输出最大快乐值。",
         "samples": [
             {
-                "input": "4\$$n-1$$ 2 3 0",
+                "input": "4\$n-1$ 2 3 0",
                 "output": "5"
             },
             {
@@ -49,7 +49,7 @@ const programmingQuestions = [
             "单调队列"
         ],
         "template": "#include <bits/stdc++.h>\nusing namespace std;\n\nint main() {\n    // 在此编写代码\n    return 0;\n}",
-        "referenceCode": "#include <bits/stdc++.h>\nusing namespace std;\n\nint main() {\n    ios::sync_with_stdio(false);\n    cin.tie(nullptr);\n\n    int n;\n    cin >> n;\n    vector<long long> a(2 * $n+1$), pre(2 * $n+1$, 0);\n    for (int i = 1; i <= n; ++i) {\n        cin >> a[i];\n        a[i + n] = a[i];\n    }\n    for (int i = 1; i <= 2 * n; ++i) pre[i] = pre[i - 1] + a[i];\n\n    deque<int> dq;\n    dq.push_back(0);\n    long long ans = LLONG_MIN;\n    for (int i = 1; i <= 2 * n; ++i) {\n        while (!dq.empty() && dq.front() < i - n) dq.pop_front();\n        ans = max(ans, pre[i] - pre[dq.front()]);\n        while (!dq.empty() && pre[dq.back()] >= pre[i]) dq.pop_back();\n        dq.push_back(i);\n    }\n    cout << ans << '\\n';\n    return 0;\n}"
+        "referenceCode": "#include <bits/stdc++.h>\nusing namespace std;\n\nint main() {\n    ios::sync_with_stdio(false);\n    cin.tie(nullptr);\n\n    int n;\n    cin >> n;\n    vector<long long> a(2 * $n+1$), pre(2 * $n+1$, 0);\n    for (int i = 1; i <= n; ++i) {\n        cin >> a[i];\n        a[i+n] = a[i];\n    }\n    for (int i = 1; i <= 2 * n; ++i) pre[i] = pre[i-1]+a[i];\n\n    deque<int> dq;\n    dq.push_back(0);\n    long long ans = LLONG_MIN;\n    for (int i = 1; i <= 2 * n; ++i) {\n        while (!dq.empty() && dq.front() < i-n) dq.pop_front();\n        ans = max(ans, pre[i]-pre[dq.front()]);\n        while (!dq.empty() && pre[dq.back()] >= pre[i]) dq.pop_back();\n        dq.push_back(i);\n    }\n    cout << ans << '\\n';\n    return 0;\n}"
     }
 ];
 
@@ -276,10 +276,10 @@ export const paperData = {
             type: "single",
             question: "以下代码用于生成 位格雷编码。横线上应填写（ ）。",
             options: [
-                "result.push_back(\"1\" + prev[i]);",
-                "result.push_back(\"0\" + prev[i]);",
-                "result.push_back(prev[i] + \"1\");",
-                "result.push_back(prev[i] + \"0\");",
+                "result.push_back(\"1\"+prev[i]);",
+                "result.push_back(\"0\"+prev[i]);",
+                "result.push_back(prev[i]+\"1\");",
+                "result.push_back(prev[i]+\"0\");",
             ],
             answer: 0,
             score: 2,
@@ -296,9 +296,9 @@ export const paperData = {
             question: "以下代码实现了 0/1 背包问题的动态规划解法。假设物品重量为 weights[]，价值为 values[]，背包容量为 W，横线上应填写（ ）。",
             options: [
                 "dp[i-1][j], values[i-1]",
-                "dp[i-1][j], dp[i-1][j - weights[i-1]] + values[i-1]",
-                "dp[i][j-1], values[i-1]",
-                "dp[i-1][j - weights[i-1]] + values[i-1], dp[i][j-1]",
+                "dp[i-1][j], dp[i-1][j-weights[i-1]]+values[i-1]",
+                "$dp[i]$[j-1], values[i-1]",
+                "dp[i-1][j-weights[i-1]]+values[i-1], $dp[i]$[j-1]",
             ],
             answer: 1,
             score: 2,
@@ -503,7 +503,7 @@ export const paperData = {
         {
             id: 25,
             type: "judge",
-            question: "栈和队列均可以用双向链表实现，插入和删除操作的时间复杂度为 $$O(1)$$ 。",
+            question: "栈和队列均可以用双向链表实现，插入和删除操作的时间复杂度为 $O(1)$ 。",
             options: [
                 "正确",
                 "错误",

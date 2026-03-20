@@ -15,7 +15,7 @@ const programmingQuestions = [
         explanation: "相似字符串定义等价于编辑距离（Edit Distance）不超过 1。由于字符串长度较短，可以直接分类讨论：长度差为 0（修改或相同）或长度差为 1（增加或删除）。",
         tags: ["编程题", "字符串", "编辑距离"],
         template: "#include <iostream>\n#include <string>\nusing namespace std;\n\nint main() {\n    int T;\n    cin >> T;\n    // 在此编写代码\n    return 0;\n}",
-        referenceCode: "#include <iostream>\n#include <string>\n#include <cmath>\nusing namespace std;\nbool isSimilar(string A, string B) {\n    int m = A.size(), n = B.size();\n    if (abs(m - n) > 1) return false;\n    if (m == n) {\n        int diff = 0;\n        for (int i = 0; i < m; ++i) if (A[i] != B[i]) diff++;\n        return diff <= 1;\n    } else {\n        string& s = (m < n) ? A : B;\n        string& l = (m < n) ? B : A;\n        int i = 0, j = 0, diff = 0;\n        while (i < s.size() && j < l.size()) {\n            if (s[i] != l[j]) {\n                if (++diff > 1) return false;\n                ++j;\n            } else { ++i; ++j; }\n        }\n        return true;\n    }\n}\nint main() {\n    int T; cin >> T;\n    while (T--) {\n        string A, B; cin >> A >> B;\n        if (isSimilar(A, B)) cout << \"similar\" << endl;\n        else cout << \"not similar\" << endl;\n    }\n    return 0;\n}"
+        referenceCode: "#include <iostream>\n#include <string>\n#include <cmath>\nusing namespace std;\nbool isSimilar(string A, string B) {\n    int m = A.size(), n = B.size();\n    if (abs(m-n) > 1) return false;\n    if (m == n) {\n        int diff = 0;\n        for (int i = 0; i < m; ++i) if (A[i] != B[i]) diff++;\n        return diff <= 1;\n    } else {\n        string& s = (m < n) ? A : B;\n        string& l = (m < n) ? B : A;\n        int i = 0, j = 0, diff = 0;\n        while (i < s.size() && j < l.size()) {\n            if (s[i] != l[j]) {\n                if (++diff > 1) return false;\n                ++j;\n            } else { ++i; ++j; }\n        }\n        return true;\n    }\n}\nint main() {\n    int T; cin >> T;\n    while (T--) {\n        string A, B; cin >> A >> B;\n        if (isSimilar(A, B)) cout << \"similar\" << endl;\n        else cout << \"not similar\" << endl;\n    }\n    return 0;\n}"
     },
     {
         id: 27,
@@ -31,7 +31,7 @@ const programmingQuestions = [
         explanation: "贪心策略：为了尽可能做更多的天数，我们需要在第 i 天选择一个题目数量 ≥ i 且题目数量尽可能小的题单。因此，先对题单按题目数量从小到大排序，然后尝试匹配每一天。",
         tags: ["编程题", "贪心", "排序"],
         template: "#include <iostream>\n#include <algorithm>\nusing namespace std;\n\nint main() {\n    int n;\n    cin >> n;\n    // 在此编写代码\n    return 0;\n}",
-        referenceCode: "#include <iostream>\n#include <algorithm>\n#include <vector>\nusing namespace std;\nint main() {\n    int n; cin >> n;\n    vector<int> a(n);\n    for (int i = 0; i < n; i++) cin >> a[i];\n    sort(a.begin(), a.end());\n    int day = 0;\n    for (int i = 0; i < n; i++) {\n        if (a[i] >= day + 1) day++;\n    }\n    cout << day << endl;\n    return 0;\n}"
+        referenceCode: "#include <iostream>\n#include <algorithm>\n#include <vector>\nusing namespace std;\nint main() {\n    int n; cin >> n;\n    vector<int> a(n);\n    for (int i = 0; i < n; i++) cin >> a[i];\n    sort(a.begin(), a.end());\n    int day = 0;\n    for (int i = 0; i < n; i++) {\n        if (a[i] >= day+1) day++;\n    }\n    cout << day << endl;\n    return 0;\n}"
     }
 ];
 
@@ -72,7 +72,7 @@ export const paperData = {
             options: ["G", "r", "a", "E"],
             answer: 3,
             score: 2,
-            explanation: "sizeof(x) = 4 * sizeof(int) = 4 * 4 = 16 (在常见64位系统)。geSP[16] 对应字符串中第 17 个字符。'Grade Examination' 长度正好是 17，下标 16 对应 ' ' 后的 'o'？不，'Grade Examination of SP' 中 'Grade ' (6) + 'Examination ' (12) ... 重新计算：G(0)r(1)a(2)d(3)e(4) (5)E(6)x(7)a(8)m(9)i(10)n(11)a(12)t(13)i(14)o(15)n(16)。所以下标 16 对应 'n'。",
+            explanation: "sizeof(x) = 4 * sizeof(int) = 4 * 4 = 16 (在常见64位系统)。geSP[16] 对应字符串中第 17 个字符。'Grade Examination' 长度正好是 17，下标 16 对应 ' ' 后的 'o'？不，'Grade Examination of SP' 中 'Grade ' (6)+'Examination ' (12) ... 重新计算：G(0)r(1)a(2)d(3)e(4) (5)E(6)x(7)a(8)m(9)i(10)n(11)a(12)t(13)i(14)o(15)n(16)。所以下标 16 对应 'n'。",
             tags: ["客观题", "单选题", "GESP4级"]
         },
         {
@@ -92,13 +92,13 @@ export const paperData = {
             options: ["0x28cbc4", "0x28cbd0", "0x28cc00", "0x28cc40"],
             answer: 2,
             score: 2,
-            explanation: "arr[1] 的地址相对于 arr 偏移了 16 个 int。16 * 4 = 64 (0x40)。0x28cbc0 + 0x40 = 0x28cc00。",
+            explanation: "arr[1] 的地址相对于 arr 偏移了 16 个 int。16 * 4 = 64 (0x40)。0x28cbc0+0x40 = 0x28cc00。",
             tags: ["客观题", "单选题", "GESP4级"]
         },
         {
             id: 6,
             type: "single",
-            question: "下面 C++ 代码执行后输出是（ ）。\n```cpp\nint main() {\n    char *p = \"I love GESP!\";\n    cout << p + 7 << endl;\n    return 0;\n}\n```",
+            question: "下面 C++ 代码执行后输出是（ ）。\n```cpp\nint main() {\n    char *p = \"I love GESP!\";\n    cout << p+7 << endl;\n    return 0;\n}\n```",
             options: ["e", "I lov", "e GESP!", "GESP!"],
             answer: 2,
             score: 2,
@@ -108,11 +108,11 @@ export const paperData = {
         {
             id: 7,
             type: "single",
-            question: "下面 C++ 代码执行以后输出的是（ ）。\n```cpp\nint foo(float *f) { return int(*f * 2); }\nint main() {\n    float fnum[10] = {1.1};\n    fnum[1] = foo(fnum);\n    cout << fnum[0] + fnum[1] << endl;\n    return 0;\n}\n```",
+            question: "下面 C++ 代码执行以后输出的是（ ）。\n```cpp\nint foo(float *f) { return int(*f * 2); }\nint main() {\n    float fnum[10] = {1.1};\n    fnum[1] = foo(fnum);\n    cout << fnum[0]+fnum[1] << endl;\n    return 0;\n}\n```",
             options: ["1.1", "3.1", "3.3", "不确定"],
             answer: 3,
             score: 2,
-            explanation: "foo(fnum) 传入 fnum[0]=1.1，返回 int(1.1*2) = 2。fnum[1]=2.0。输出 1.1 + 2.0 = 3.1。",
+            explanation: "foo(fnum) 传入 fnum[0]=1.1，返回 int(1.1*2) = 2。fnum[1]=2.0。输出 1.1+2.0 = 3.1。",
             tags: ["客观题", "单选题", "GESP4级"]
         },
         {
@@ -129,10 +129,10 @@ export const paperData = {
             id: 9,
             type: "single",
             question: "插入排序在最好情况下的时间复杂度是（ ）。",
-            options: ["$$O(1)$$", "$$$O(N)$$$", "$O(n \log n)$", "$$$O(N^2)$$$"],
+            options: ["$O(1)$", "$O(N)$", "$O(n \log n)$", "$O(N^2)$"],
             answer: 2,
             score: 2,
-            explanation: "插入排序在数组已经有序时，只需比较 $N-1$ 次，复杂度为 $$$O(N)$$$。",
+            explanation: "插入排序在数组已经有序时，只需比较 $N-1$ 次，复杂度为 $O(N)$。",
             tags: ["客观题", "单选题", "GESP4级"]
         },
         {
@@ -292,7 +292,7 @@ export const paperData = {
             options: ["正确", "错误"],
             answer: 0,
             score: 2,
-            explanation: "for 循环本质上都能改写为初始化 + 条件判断 + 循环体 + 更新语句组成的 while 循环，说法正确。",
+            explanation: "for 循环本质上都能改写为初始化+条件判断+循环体+更新语句组成的 while 循环，说法正确。",
             tags: ["客观题", "判断题", "GESP4级"]
         },
         ...programmingQuestions

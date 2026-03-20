@@ -263,7 +263,7 @@ export const paperData = {
             type: "single",
             question: "下列程序实现了输出杨辉三角形，代码中横线部分应该填入的是（ ）。",
             options: [
-                "if (i == j) map[i][j] = 0; else map[i][j] = INF; } } for (int i = 1; i <= m; i++) { cin >> t1 >> t2 >> t3; map[t1][t2] = t3; } for (int k = 1; k <= n; k++) for (int i = 1; i <= n; i++) for (int j = 1; j <= n; j++) if (map[i][j] > map[i][k] + map[k][j]) ________; // 在此处填入选项 for (int i = 1; i <= n; i++) { for (int j = 1; j <= n; j++) { cout.width(4); cout << map[i][j]; } cout << endl; } } 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27 28 29 30 31 32 33 34 #include <iostream> using namespace std; #define N 35 int a[N]; int main() { int n; cin >> n; for (int i = 0; i < n; i++) { a[i] = 1; for (int j = i - 1; j > 0; j--) ________; // 在此处填入选项 for (int j = 0; j <= i; j++) cout << a[j] << \" \"; cout << endl; } return 0; } 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 a[j] += a[j + 1]1 题号 1 2 3 4 5 6 7 8 9 10 答案",
+                "if (i == j) map[i][j] = 0; else map[i][j] = INF; } } for (int i = 1; i <= m; i++) { cin >> t1 >> t2 >> t3; map[t1][t2] = t3; } for (int k = 1; k <= n; k++) for (int i = 1; i <= n; i++) for (int j = 1; j <= n; j++) if (map[i][j] > map[i][k]+map[k][j]) ________; // 在此处填入选项 for (int i = 1; i <= n; i++) { for (int j = 1; j <= n; j++) { cout.width(4); cout << map[i][j]; } cout << endl; } } 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27 28 29 30 31 32 33 34 #include <iostream> using namespace std; #define N 35 int a[N]; int main() { int n; cin >> n; for (int i = 0; i < n; i++) { a[i] = 1; for (int j = i-1; j > 0; j--) ________; // 在此处填入选项 for (int j = 0; j <= i; j++) cout << a[j] << \" \"; cout << endl; } return 0; } 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 a[j] += a[j+1]1 题号 1 2 3 4 5 6 7 8 9 10 答案",
                 "选项B",
                 "选项C",
                 "选项D",
@@ -299,7 +299,7 @@ export const paperData = {
         {
             id: 16,
             type: "judge",
-            question: "表达式'5' - 3.0的结果为2.0，类型为double。",
+            question: "表达式'5'-3.0的结果为2.0，类型为double。",
             options: [
                 "正确",
                 "错误",

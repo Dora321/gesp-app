@@ -57,7 +57,7 @@ export const paperData = {
         {
             id: 4,
             type: "single",
-            question: "执⾏完下面的代码后，*(p + 5) 和 arr[1][1]的值分别是（ ）。\n```cpp\nint arr[3][4] = {{1,2,3,4}, {5,6,7,8}, {9,10,11,12}};\nint* p = &arr[0][0];\n```",
+            question: "执⾏完下面的代码后，*(p+5) 和 arr[1][1]的值分别是（ ）。\n```cpp\nint arr[3][4] = {{1,2,3,4}, {5,6,7,8}, {9,10,11,12}};\nint* p = &arr[0][0];\n```",
             options: [
                 "5 6",
                 "6 5",
@@ -117,7 +117,7 @@ export const paperData = {
         {
             id: 8,
             type: "single",
-            question: "运⾏如下代码会输出（ ）。\n```cpp\nstruct Point { int x, y; };\nstruct Rectangle { Point topLeft; Point bottomRight; };\nint main() {\n    Rectangle rect = {{10, 10}, {20, 20}};\n    rect.topLeft.x = 5;\n    Point* p = &rect.bottomRight;\n    p->y = 5;\n    cout << rect.topLeft.x + rect.bottomRight.y;\n    return 0;\n}\n```",
+            question: "运⾏如下代码会输出（ ）。\n```cpp\nstruct Point { int x, y; };\nstruct Rectangle { Point topLeft; Point bottomRight; };\nint main() {\n    Rectangle rect = {{10, 10}, {20, 20}};\n    rect.topLeft.x = 5;\n    Point* p = &rect.bottomRight;\n    p->y = 5;\n    cout << rect.topLeft.x+rect.bottomRight.y;\n    return 0;\n}\n```",
             options: [
                 "10",
                 "30",
@@ -126,13 +126,13 @@ export const paperData = {
             ],
             answer: 0,
             score: 2,
-            explanation: "rect.topLeft.x 被改为 5。p 指向 bottomRight，p->y = 5 将 bottomRight.y 改为 5。5 + 5 = 10。",
+            explanation: "rect.topLeft.x 被改为 5。p 指向 bottomRight，p->y = 5 将 bottomRight.y 改为 5。5+5 = 10。",
             tags: ["客观题", "单选题", "GESP4级"]
         },
         {
             id: 9,
             type: "single",
-            question: "给定函数 climbStairs(int n) 的定义如下，则 climbStairs(5) 的返回的值是（ ）。\n```cpp\nint climbStairs(int n) {\n    if(n <= 2) return n;\n    int a = 1, b = 2;\n    for(int i = 3; i <= n; i++) {\n        int temp = a + b;\n        a = b;\n        b = temp;\n    }\n    return b;\n}\n```",
+            question: "给定函数 climbStairs(int n) 的定义如下，则 climbStairs(5) 的返回的值是（ ）。\n```cpp\nint climbStairs(int n) {\n    if(n <= 2) return n;\n    int a = 1, b = 2;\n    for(int i = 3; i <= n; i++) {\n        int temp = a+b;\n        a = b;\n        b = temp;\n    }\n    return b;\n}\n```",
             options: [
                 "5",
                 "8",
@@ -165,19 +165,19 @@ export const paperData = {
             question: "下面的函数 selectTopK() 实现从 n 个学生中选出前 k 名成绩最好的学生颁发奖学⾦，则横线上应填写（ ）。\n```cpp\nstruct Student { string name; int score; };\nvoid selectTopK(Student students[], int n, int k) {\n    for (int i = 0; i < k; i++) {\n        int maxIdx = i;\n        for (____________________) { // 在此处填入代码\n            if (students[j].score > students[maxIdx].score) {\n                maxIdx = j;\n            }\n        }\n        if (maxIdx != i) {\n            Student temp = students[i];\n            students[i] = students[maxIdx];\n            students[maxIdx] = temp;\n        }\n    }\n}\n```",
             options: [
                 "int j = 0; j < n; j++",
-                "int j = i + 1; j < n; j++",
+                "int j = i+1; j < n; j++",
                 "int j = i; j < n; j++",
                 "int j = 1; j <= n; j++",
             ],
             answer: 1,
             score: 2,
-            explanation: "选择排序思想的一半应用。每一趟从当前位置 i 之后的剩余元素中找最大值，故 j 从 i + 1 开始。",
+            explanation: "选择排序思想的一半应用。每一趟从当前位置 i 之后的剩余元素中找最大值，故 j 从 i+1 开始。",
             tags: ["客观题", "单选题", "GESP4级"]
         },
         {
             id: 12,
             type: "single",
-            question: "某游戏的排⾏榜系统需要实时更新玩家分数。每次只有一个玩家的分数发生变化，排⾏榜已经是按分数降序排列的。现在需要将更新后的玩家调整到正确位置。下面的函数 updateRanking() 要实现上述功能，则两处横线上应分别填写（ ）。\n```cpp\nvoid updateRanking(Player players[], int size, int playerIdx) {\n    Player updatedPlayer = players[playerIdx];\n    if (playerIdx > 0 && updatedPlayer.score > players[playerIdx - 1].score) {\n        int i = playerIdx;\n        while (____________________) {\n            players[i] = players[i - 1];\n            i--;\n        }\n        players[i] = updatedPlayer;\n    } else if (playerIdx < size - 1 && updatedPlayer.score < players[playerIdx + 1].score) {\n        int i = playerIdx;\n        while (____________________) {\n            players[i] = players[i + 1];\n            i++;\n        }\n        players[i] = updatedPlayer;\n    }\n}\n```",
+            question: "某游戏的排⾏榜系统需要实时更新玩家分数。每次只有一个玩家的分数发生变化，排⾏榜已经是按分数降序排列的。现在需要将更新后的玩家调整到正确位置。下面的函数 updateRanking() 要实现上述功能，则两处横线上应分别填写（ ）。\n```cpp\nvoid updateRanking(Player players[], int size, int playerIdx) {\n    Player updatedPlayer = players[playerIdx];\n    if (playerIdx > 0 && updatedPlayer.score > players[playerIdx-1].score) {\n        int i = playerIdx;\n        while (____________________) {\n            players[i] = players[i-1];\n            i--;\n        }\n        players[i] = updatedPlayer;\n    } else if (playerIdx < size-1 && updatedPlayer.score < players[playerIdx+1].score) {\n        int i = playerIdx;\n        while (____________________) {\n            players[i] = players[i+1];\n            i++;\n        }\n        players[i] = updatedPlayer;\n    }\n}\n```",
             options: [
                 "i > 0 && updatedPlayer.score > players[i-1].score | i < size-1 && updatedPlayer.score < players[i+1].score",
                 "i < size-1 && updatedPlayer.score < players[i+1].score | i > 0 && updatedPlayer.score > players[i-1].score",
@@ -194,14 +194,14 @@ export const paperData = {
             type: "single",
             question: "给定如下算法，其时间复杂度为（ ）。\n```cpp\nbool f(int arr[], int n, int target) {\n    for (int i = 0; i < n; i++) {\n        int sum = 0;\n        for (int j = 0; j < n; j++) {\n            if (i & (1 << j)) {\n                sum += arr[j];\n            }\n        }\n        if (sum == target) return true;\n    }\n    return false;\n}\n```",
             options: [
-                "$$$O(N)$$$",
-                "$$$O(N^2)$$$",
-                "O($$2^n$$)",
-                "O(n * $$2^n$$)",
+                "$O(N)$",
+                "$O(N^2)$",
+                "O($2^n$)",
+                "O(n * $2^n$)",
             ],
             answer: 1,
             score: 2,
-            explanation: "代码中包含两层嵌套循环，每层循环次数均为 n。因此时间复杂度为 $$$O(N^2)$$$。注意外层循环不再是 $$2^n$$。",
+            explanation: "代码中包含两层嵌套循环，每层循环次数均为 n。因此时间复杂度为 $O(N^2)$。注意外层循环不再是 $2^n$。",
             tags: ["客观题", "单选题", "GESP4级"]
         },
         {
@@ -237,11 +237,11 @@ export const paperData = {
         {
             id: 16,
             type: "judge",
-            question: "小杨正在调试他的温度传感器程序，其中变量 x 保存当前温度。下面这段代码运⾏后，变量 x 的值变成 了 8。\n```cpp\nint x = 5;\nint *p = &x;\n*p = *p + 3;\n```",
+            question: "小杨正在调试他的温度传感器程序，其中变量 x 保存当前温度。下面这段代码运⾏后，变量 x 的值变成 了 8。\n```cpp\nint x = 5;\nint *p = &x;\n*p = *p+3;\n```",
             options: ["正确", "错误"],
             answer: 0,
             score: 2,
-            explanation: "正确。*p 访问 x 的值，x = 5 + 3 = 8。",
+            explanation: "正确。*p 访问 x 的值，x = 5+3 = 8。",
             tags: ["客观题", "判断题", "GESP4级"]
         },
         {
@@ -277,7 +277,7 @@ export const paperData = {
         {
             id: 20,
             type: "judge",
-            question: "执⾏下面的 C++ 代码，会输出 8。\n```cpp\nint arr[5] = {1, 2, 3, 4, 5};\nint* p1 = arr;\nint* p2 = arr + 2;\ncout << p2 - p1;\n```",
+            question: "执⾏下面的 C++ 代码，会输出 8。\n```cpp\nint arr[5] = {1, 2, 3, 4, 5};\nint* p1 = arr;\nint* p2 = arr+2;\ncout << p2-p1;\n```",
             options: ["正确", "错误"],
             answer: 1,
             score: 2,
@@ -287,11 +287,11 @@ export const paperData = {
         {
             id: 21,
             type: "judge",
-            question: "考虑用如下递推方式计算斐波那契数列，时间复杂度是 $$$O(N)$$$。\n```cpp\nint f[20]; f[0] = 0; f[1] = 1;\nfor (int i = 2; i <= n; i++) f[i] = f[i - 1] + f[i - 2];\n```",
+            question: "考虑用如下递推方式计算斐波那契数列，时间复杂度是 $O(N)$。\n```cpp\nint f[20]; f[0] = 0; f[1] = 1;\nfor (int i = 2; i <= n; i++) f[i] = f[i-1]+f[i-2];\n```",
             options: ["正确", "错误"],
             answer: 0,
             score: 2,
-            explanation: "正确。单层循环线性增加，复杂度为 $$$O(N)$$$。",
+            explanation: "正确。单层循环线性增加，复杂度为 $O(N)$。",
             tags: ["客观题", "判断题", "GESP4级"]
         },
         {
@@ -307,7 +307,7 @@ export const paperData = {
         {
             id: 23,
             type: "judge",
-            question: "下面这段代码实现了选择排序算法。\n```cpp\nvoid sort(int a[], int n) {\n    for (int i = 1; i < n; i++) {\n        int x = a[i];\n        int j = i - 1;\n        while (j >= 0 && a[j] > x) {\n            a[j + 1] = a[j];\n            j--;\n        }\n        a[j + 1] = x;\n    }\n}\n```",
+            question: "下面这段代码实现了选择排序算法。\n```cpp\nvoid sort(int a[], int n) {\n    for (int i = 1; i < n; i++) {\n        int x = a[i];\n        int j = i-1;\n        while (j >= 0 && a[j] > x) {\n            a[j+1] = a[j];\n            j--;\n        }\n        a[j+1] = x;\n    }\n}\n```",
             options: ["正确", "错误"],
             answer: 1,
             score: 2,
@@ -327,7 +327,7 @@ export const paperData = {
         {
             id: 25,
             type: "judge",
-            question: "执⾏下面代码会输出 100。\n```cpp\nint main() {\n    ofstream fout(\"data.txt\");\n    fout << 10 << \" \" << 20 << endl;\n    fout << 30 << \" \" << 40;\n    fout.close();\n    ifstream fin(\"data.txt\");\n    int a, b, c, d;\n    fin >> a >> b >> c >> d;\n    fin.close();\n    cout << a + b + c + d;\n    return 0;\n}\n```",
+            question: "执⾏下面代码会输出 100。\n```cpp\nint main() {\n    ofstream fout(\"data.txt\");\n    fout << 10 << \" \" << 20 << endl;\n    fout << 30 << \" \" << 40;\n    fout.close();\n    ifstream fin(\"data.txt\");\n    int a, b, c, d;\n    fin >> a >> b >> c >> d;\n    fin.close();\n    cout << a+b+c+d;\n    return 0;\n}\n```",
             options: ["正确", "错误"],
             answer: 0,
             score: 2,

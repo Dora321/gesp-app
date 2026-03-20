@@ -37,7 +37,7 @@ const programmingQuestions = [
         "title": "大量的工作沟通",
         "problemNumber": "2023-12-l8-Q27",
         "description": "公司形成一棵管理树，0 号员工是老板，其余每名员工都有唯一直接领导。若 x 是 y 的祖先（也允许 x=y），则称 x 可以管理 y。给定若干场合作，每场合作给出若干参与员工，要求找出一位能管理所有参与者的主持人；若有多名满足条件，输出编号最大的那位。",
-        "inputDescription": "第一行一个整数 n。第二行给出 1..$$n-1$$ 号员工的直接领导编号。第三行一个整数 q，表示合作场数。接下来 q 行，每行先给出 m，再给出 m 个互不重复的员工编号。",
+        "inputDescription": "第一行一个整数 n。第二行给出 1..$n-1$ 号员工的直接领导编号。第三行一个整数 q，表示合作场数。接下来 q 行，每行先给出 m，再给出 m 个互不重复的员工编号。",
         "outputDescription": "输出 q 行，每行一个整数，表示该场合作的主持人编号。",
         "samples": [
             {
@@ -181,9 +181,9 @@ export const paperData = {
             question: "已知三个double类型的变量a、b和theta分别表⽰一个三角形的两条边长及二者的夹角（弧度），则 下列哪个表达式可以计算这个三角形的面积？（ ）。",
             options: [
                 "a * b * sin(theta) / 2",
-                "(a + b) * sin(theta) / 2",
+                "(a+b) * sin(theta) / 2",
                 "a * b * cos(theta) / 2",
-                "sqrt(a * a + b * b - 2 * a * b * cos(theta))",
+                "sqrt(a * a+b * b-2 * a * b * cos(theta))",
             ],
             answer: 0,
             score: 2,
@@ -332,10 +332,10 @@ export const paperData = {
             type: "single",
             question: "下面的程序中，二维数组h和v分别代表如下图所⽰的⽹格中的⽔平边的时间消耗和垂直边的时间消耗。 程序使用动态规划计算从左下角到右上角的最小时间消耗，则横线处应该填写下列哪个选项的代码？（ ）。",
             options: [
-                "dis[i][j] = min(dis[i - 1][j] + v[i - 1][j], dis[i][j - 1] + h[i][j - 1]);",
-                "dis[i][j] = min(dis[i - 1][j] + h[i - 1][j], dis[i][j - 1] + v[i][j - 1]);",
-                "dis[i + 1][j + 1] = min(dis[i][j + 1] + v[i][j + 1], dis[i + 1][j] + h[i + 1][j]); 题号 1 2 3 4 5 6 7 8 9 10 答案",
-                "dis[i + 1][j + 1] = min(dis[i][j + 1] + h[i][j + 1], dis[i + 1][j] + v[i + 1][j]);",
+                "dis[i][j] = min(dis[i-1][j]+v[i-1][j], dis[i][j-1]+h[i][j-1]);",
+                "dis[i][j] = min(dis[i-1][j]+h[i-1][j], dis[i][j-1]+v[i][j-1]);",
+                "dis[i+1][j+1] = min(dis[i][j+1]+v[i][j+1], dis[i+1][j]+h[i+1][j]); 题号 1 2 3 4 5 6 7 8 9 10 答案",
+                "dis[i+1][j+1] = min(dis[i][j+1]+h[i][j+1], dis[i+1][j]+v[i+1][j]);",
             ],
             answer: 2,
             score: 2,
@@ -349,7 +349,7 @@ export const paperData = {
         {
             id: 16,
             type: "judge",
-            question: "C++ 语⾔非常强大，可以用来求解方程的解。例如，如果变量x为double类型的变量，则执⾏语句x * 2 - 4 = 0;后，变量x的值会变为2.0。",
+            question: "C++ 语⾔非常强大，可以用来求解方程的解。例如，如果变量x为double类型的变量，则执⾏语句x * 2-4 = 0;后，变量x的值会变为2.0。",
             options: [
                 "正确",
                 "错误",
@@ -451,7 +451,7 @@ export const paperData = {
         {
             id: 22,
             type: "judge",
-            question: "已知int类型的变量a、b和h中分别存储着一个梯形的顶边长、底边长和高，则这个梯形的面积可以通 过表达式(a + b) * h / 2求得。",
+            question: "已知int类型的变量a、b和h中分别存储着一个梯形的顶边长、底边长和高，则这个梯形的面积可以通 过表达式(a+b) * h / 2求得。",
             options: [
                 "正确",
                 "错误",

@@ -87,7 +87,7 @@ export const paperData = {
       id: 7,
       type: 'single',
       question: '不符合 C++ 语法的表达式是（ ）。',
-      options: ['a = 3 + 2;', 'a = (b = 3) + 2;', 'int a = 3.5;', 'int a = 3.5 % 2;'],
+      options: ['a = 3+2;', 'a = (b = 3)+2;', 'int a = 3.5;', 'int a = 3.5 % 2;'],
       answer: 3,
       score: 2,
       explanation: '取模运算符 % 左右必须为整数。3.5 是浮点数。',
@@ -161,7 +161,7 @@ export const paperData = {
     {
       id: 14,
       type: 'single',
-      question: '代码执行后的输出是 ( )。\n```cpp\nint a = 0;\nfor (int i = 1; i <= 4; i++)\n    a = a + i;\ncout << a;\n```',
+      question: '代码执行后的输出是 ( )。\n```cpp\nint a = 0;\nfor (int i = 1; i <= 4; i++)\n    a = a+i;\ncout << a;\n```',
       options: ['4', '10', '15', '0'],
       answer: 1,
       score: 2,
@@ -171,11 +171,11 @@ export const paperData = {
     {
       id: 15,
       type: 'single',
-      question: '代码执行后的输出是 ( )。\n```cpp\nint a = 5, b = 10;\nif (a > b) a = a + b;\nelse a = b - a;\ncout << a;\n```',
+      question: '代码执行后的输出是 ( )。\n```cpp\nint a = 5, b = 10;\nif (a > b) a = a+b;\nelse a = b-a;\ncout << a;\n```',
       options: ['15', '10', '5', '0'],
       answer: 2,
       score: 2,
-      explanation: '10 - 5 = 5。',
+      explanation: '10-5 = 5。',
       tags: [LEVEL1_TAGS.condition, LEVEL1_TAGS.basics]
     },
 

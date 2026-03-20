@@ -141,7 +141,7 @@ export const paperData = {
             ],
             answer: 2,
             score: 2,
-            explanation: "插入排序在数据“几乎有序”的情况下表现极佳，时间复杂度接近 $$$O(N)$$$。",
+            explanation: "插入排序在数据“几乎有序”的情况下表现极佳，时间复杂度接近 $O(N)$。",
             tags: ["客观题", "单选题", "插入排序", "GESP4级"]
         },
         {
@@ -164,29 +164,29 @@ export const paperData = {
             type: "single",
             question: "给定如下算法，当输入 n=10 时，其时间复杂度为（ ）。\n```cpp\nbool f(int arr[], int n, int target) {\n    for (int i = 0; i < (1 << n); i++) {\n        int sum = 0;\n        for (int j = 0; j < n; j++) {\n            if (i & (1 << j)) {\n                sum += arr[j];\n            }\n        }\n        if (sum == target) return true;\n    }\n    return false;\n}\n```",
             options: [
-                "$$$O(N)$$$",
-                "O(n * $$2^n$$)",
-                "O($$2^n$$)",
-                "$$$O(N^2)$$$"
+                "$O(N)$",
+                "O(n * $2^n$)",
+                "O($2^n$)",
+                "$O(N^2)$"
             ],
             answer: 1,
             score: 2,
-            explanation: "外层循环运行 $$2^n$$ 次，内层循环运行 n 次，因此总复杂度为 O(n * $$2^n$$)。",
+            explanation: "外层循环运行 $2^n$ 次，内层循环运行 n 次，因此总复杂度为 O(n * $2^n$)。",
             tags: ["客观题", "单选题", "时间复杂度", "GESP4级"]
         },
         {
             id: 12,
             type: "single",
-            question: "下述斐波那契数列计算的时间复杂度是（ ）。\n```cpp\nint fibonacci(int n) {\n    if (n == 0) return 0;\n    if (n == 1) return 1;\n    return fibonacci(n - 1) + fibonacci(n - 2);\n}\n```",
+            question: "下述斐波那契数列计算的时间复杂度是（ ）。\n```cpp\nint fibonacci(int n) {\n    if (n == 0) return 0;\n    if (n == 1) return 1;\n    return fibonacci(n-1)+fibonacci(n-2);\n}\n```",
             options: [
-                "$$$O(N)$$$",
-                "$$$O(N^2)$$$",
+                "$O(N)$",
+                "$O(N^2)$",
                 "$O(\log n)$",
-                "O($$2^n$$)"
+                "O($2^n$)"
             ],
             answer: 3,
             score: 2,
-            explanation: "简单的递归求斐波那契数列，不含记忆化，每一层都会分裂成两个子调用，复杂度呈指数级上升，约为 O($$2^n$$)。",
+            explanation: "简单的递归求斐波那契数列，不含记忆化，每一层都会分裂成两个子调用，复杂度呈指数级上升，约为 O($2^n$)。",
             tags: ["客观题", "单选题", "递归", "时间复杂度", "GESP4级"]
         },
         {
@@ -222,7 +222,7 @@ export const paperData = {
         {
             id: 15,
             type: "single",
-            question: "为了提高冒泡排序的效率，如果某轮“冒泡”中没有执行任何交换操作，说明数组已经完成排序，可直接返回结果，则两条横线上分别应该填写（ ）。\n```cpp\nvoid bubbleSortWithFlag(vector<int> &nums) {\n    for (int i = nums.size() - 1; i > 0; i--) {\n        bool flag = false; // 横线 1\n        for (int j = 0; j < i; j++) {\n            if (nums[j] > nums[j + 1]) {\n                swap(nums[j], nums[j + 1]);\n                flag = true; // 横线 2\n            }\n        }\n        if (!flag) break;\n    }\n}\n```",
+            question: "为了提高冒泡排序的效率，如果某轮“冒泡”中没有执行任何交换操作，说明数组已经完成排序，可直接返回结果，则两条横线上分别应该填写（ ）。\n```cpp\nvoid bubbleSortWithFlag(vector<int> &nums) {\n    for (int i = nums.size()-1; i > 0; i--) {\n        bool flag = false; // 横线 1\n        for (int j = 0; j < i; j++) {\n            if (nums[j] > nums[j+1]) {\n                swap(nums[j], nums[j+1]);\n                flag = true; // 横线 2\n            }\n        }\n        if (!flag) break;\n    }\n}\n```",
             options: [
                 "flag = true; flag = false;",
                 "flag = false; flag = true;",
@@ -301,13 +301,13 @@ export const paperData = {
             options: ["正确", "错误"],
             answer: 0,
             score: 2,
-            explanation: "选择排序的基本逻辑是每次在未排序区间找到最小值，无论数据分布如何，比较次数始终为 ($N-1$) + (N-2) + ... + 1 = $$$O(N^2)$$$。",
+            explanation: "选择排序的基本逻辑是每次在未排序区间找到最小值，无论数据分布如何，比较次数始终为 ($N-1$)+(N-2)+...+1 = $O(N^2)$。",
             tags: ["客观题", "判断题", "选择排序", "GESP4级"]
         },
         {
             id: 23,
             type: "judge",
-            question: "以下代码实现了选择排序的逻辑（升序）。\n```cpp\nfor (int i = 0; i < n - 1; i++) {\n    int minIdx = i;\n    for (int j = i + 1; j < n; j++)\n        if (arr[j] < arr[minIdx]) minIdx = j;\n    swap(arr[i], arr[minIdx]);\n}\n```",
+            question: "以下代码实现了选择排序的逻辑（升序）。\n```cpp\nfor (int i = 0; i < n-1; i++) {\n    int minIdx = i;\n    for (int j = i+1; j < n; j++)\n        if (arr[j] < arr[minIdx]) minIdx = j;\n    swap(arr[i], arr[minIdx]);\n}\n```",
             options: ["正确", "错误"],
             answer: 0,
             score: 2,
@@ -341,7 +341,7 @@ export const paperData = {
             question: "【问题描述】\n小 A 在高为 h 宽为 w 的矩形画布上绘制了一幅画。由于画布边缘留白太多，小 A 想适当地裁剪画布，只保留画的主体。具体来说，画布可以视为 h 行 w 列的字符矩阵，其中的字符均为 ASCII 码位于 33∼126 之间的可见字符，小 A 只保留画布中由第 x1 行到第 x2 行、第 y1 列到第 y2 列构成的子矩阵。\n小 A 将画布交给了你，你能帮他完成画布的裁剪吗？\n【输入描述】\n第一行，两个正整数 h, w，分别表示画布的行数与列数。\n第二行，四个正整数 x1, x2, y1, y2，表示保留的行列边界。\n接下来 h 行，每行一个长度为 w 的字符串，表示画布内容。\n【输出描述】\n输出共 x2−x1+1 行，每行一个长度为 y2−y1+1 的字符串，表示裁剪后的画布。\n【样例输入1】\n3 5\n2 2 2 4\n.....\n.>_<.\n.....\n【样例输出1】\n>_<",
             score: 25,
             explanation: "该题为基础的矩阵裁剪问题。根据输入的四个边界坐标 (x1, x2, y1, y2)，使用嵌套循环遍历并输出原矩阵中对应的子区域即可。",
-            referenceCode: `#include <iostream>\n#include <vector>\n#include <string>\nusing namespace std;\n\nint main() {\n    int H, W;\n    cin >> H >> W;\n    int x1, x2, y1, y2;\n    cin >> x1 >> x2 >> y1 >> y2;\n    vector<string> canvas(H);\n    for (int i = 0; i < H; ++i) cin >> canvas[i];\n    for (int i = x1 - 1; i <= x2 - 1; ++i) {\n        for (int j = y1 - 1; j <= y2 - 1; ++j) {\n            cout << canvas[i][j];\n        }\n        cout << endl;\n    }\n    return 0;\n}`,
+            referenceCode: `#include <iostream>\n#include <vector>\n#include <string>\nusing namespace std;\n\nint main() {\n    int H, W;\n    cin >> H >> W;\n    int x1, x2, y1, y2;\n    cin >> x1 >> x2 >> y1 >> y2;\n    vector<string> canvas(H);\n    for (int i = 0; i < H; ++i) cin >> canvas[i];\n    for (int i = x1-1; i <= x2-1; ++i) {\n        for (int j = y1-1; j <= y2-1; ++j) {\n            cout << canvas[i][j];\n        }\n        cout << endl;\n    }\n    return 0;\n}`,
             tags: ["编程题", "矩阵操作", "GESP4级"]
         },
         {
@@ -351,7 +351,7 @@ export const paperData = {
             question: "【问题描述】\n体育课上有 n 名同学排成一队，从前往后数第 i 位同学的身高为 hi，体重为 wi。目前排成的队伍看起来参差不齐，老师希望同学们能按照身高从高到低的顺序排队，如果身高相同则按照体重从重到轻排序。在调整队伍时，每次只能交换相邻两位同学的位置。老师想知道，最少需要多少次交换操作，才能将队伍调整成目标顺序。\n【输入描述】\n第一行，一个正整数 n，表示队伍人数。\n接下来 n 行，每行两个正整数 hi 和 wi，分别表示第 i 位同学的身高和体重。\n【输出描述】\n输出一行，一个整数，表示最少需要的交换次数。\n【样例输入1】\n5\n1 60\n3 70\n2 80\n4 55\n4 50\n【样例输出1】\n8",
             score: 25,
             explanation: "本题要求计算将初始队列调整为目标有序队列所需的最少相邻交换次数，即求原序列的“逆序对”数。由于是要按身高从高到低、体重从重到轻排序，我们可以直接使用冒泡排序或插入排序等模拟相邻交换的过程，统计交换次数即可。",
-            referenceCode: `#include <iostream>\n#include <vector>\n#include <algorithm>\nusing namespace std;\n\nstruct Student {\n    int h, w;\n};\n\nbool compare(const Student& a, const Student& b) {\n    if (a.h != b.h) return a.h > b.h;\n    return a.w > b.w;\n}\n\nint main() {\n    int n;\n    cin >> n;\n    vector<Student> sts(n);\n    for (int i = 0; i < n; ++i) cin >> sts[i].h >> sts[i].w;\n    \n    int swaps = 0;\n    for (int i = 0; i < n - 1; ++i) {\n        for (int j = 0; j < n - 1 - i; ++j) {\n            if (compare(sts[j + 1], sts[j])) {\n                swap(sts[j], sts[j + 1]);\n                swaps++;\n            }\n        }\n    }\n    cout << swaps << endl;\n    return 0;\n}`,
+            referenceCode: `#include <iostream>\n#include <vector>\n#include <algorithm>\nusing namespace std;\n\nstruct Student {\n    int h, w;\n};\n\nbool compare(const Student& a, const Student& b) {\n    if (a.h != b.h) return a.h > b.h;\n    return a.w > b.w;\n}\n\nint main() {\n    int n;\n    cin >> n;\n    vector<Student> sts(n);\n    for (int i = 0; i < n; ++i) cin >> sts[i].h >> sts[i].w;\n    \n    int swaps = 0;\n    for (int i = 0; i < n-1; ++i) {\n        for (int j = 0; j < n-1-i; ++j) {\n            if (compare(sts[j+1], sts[j])) {\n                swap(sts[j], sts[j+1]);\n                swaps++;\n            }\n        }\n    }\n    cout << swaps << endl;\n    return 0;\n}`,
             tags: ["编程题", "排序", "逆序对", "GESP4级"]
         }
     ]

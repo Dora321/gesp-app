@@ -1,7 +1,7 @@
 // 2023年9月 GESP C++ 三级真题 (第3次认证)
 // 数据说明：本卷基于官方真题 PDF 与公开解析回填。
-// - 单选题 1~13、判断题 1~10、编程题 1~2 题面来自官方 PDF 文本提取
-// - 单选题 14~15 的代码截图在 PDF 文本层中缺失，当前按公开解析做“题意级”还原
+//-单选题 1~13、判断题 1~10、编程题 1~2 题面来自官方 PDF 文本提取
+//-单选题 14~15 的代码截图在 PDF 文本层中缺失，当前按公开解析做“题意级”还原
 //   （答案可靠，题面不是逐字转写）
 export const paperData = {
     id: '2023-09-l3',
@@ -41,7 +41,7 @@ export const paperData = {
             options: ['4A', '4B', '4C', '52'],
             answer: 2,
             score: 2,
-            explanation: "'L' 比 'A' 大 11，0x41 + 0x0B = 0x4C。"
+            explanation: "'L' 比 'A' 大 11，0x41+0x0B = 0x4C。"
         },
         {
             id: 4,
@@ -111,7 +111,7 @@ export const paperData = {
             id: 10,
             type: 'single',
             question: '如果 a 是 int 类型的变量，下列哪个表达式的值一定为 true？（   ）',
-            options: ['a + 1000 - 1000 == a', 'a * 2 / 2 == a', '(a & 1) == 1', '(a | 1) == a + 1'],
+            options: ['a+1000-1000 == a', 'a * 2 / 2 == a', '(a & 1) == 1', '(a | 1) == a+1'],
             answer: 0,
             score: 2,
             explanation: 'A 恒成立；B 可能因溢出失效；C 只对奇数成立；D 对奇数不成立。'
@@ -120,7 +120,7 @@ export const paperData = {
             id: 11,
             type: 'single',
             question: '如果 a 和 b 均为 int 类型的变量，下列表达式不能正确判断“a 等于 b”的是（   ）。',
-            options: ['((a >= b) && (a <= b))', '((a >> 1) == (b >> 1))', '((a + b) == (a + a))', '((a ^ b) == 0)'],
+            options: ['((a >= b) && (a <= b))', '((a >> 1) == (b >> 1))', '((a+b) == (a+a))', '((a ^ b) == 0)'],
             answer: 1,
             score: 2,
             explanation: '右移一位后相等并不能推出原数相等，例如 4 和 5 右移一位后都等于 2。'
@@ -129,7 +129,7 @@ export const paperData = {
             id: 12,
             type: 'single',
             question: '如果 a 为 char 类型的变量，下列哪个表达式可以正确判断“a 是大写字母”？（   ）',
-            options: ["a - 'A' <= 26", "'A' <= a <= 'Z'", "'A' <= 'a' <= 'Z'", "('A' <= a) && (a <= 'Z')"],
+            options: ["a-'A' <= 26", "'A' <= a <= 'Z'", "'A' <= 'a' <= 'Z'", "('A' <= a) && (a <= 'Z')"],
             answer: 3,
             score: 2,
             explanation: '正确写法是分别判断上下界并用 && 连接；链式比较在 C++ 中不会按数学意义解释。'
@@ -155,7 +155,7 @@ export const paperData = {
         {
             id: 15,
             type: 'single',
-            question: '下面代码执行后的输出是（   ）。\n```cpp\n#include <iostream>\nusing namespace std;\n\nint main() {\n    int array[10];\n    for (int i = 0; i < 10; i++)\n        array[i] = i;\n    for (int p = 2; p < 10; p++)\n        if (array[p] == p)\n            for (int n = p; n < 10; n += p)\n                array[n] = array[n] / p * (p - 1);\n    int res = 0;\n    for (int n = 1; n < 10; n++)\n        res += array[n];\n    cout << res << endl;\n    return 0;\n}\n```',
+            question: '下面代码执行后的输出是（   ）。\n```cpp\n#include <iostream>\nusing namespace std;\n\nint main() {\n    int array[10];\n    for (int i = 0; i < 10; i++)\n        array[i] = i;\n    for (int p = 2; p < 10; p++)\n        if (array[p] == p)\n            for (int n = p; n < 10; n += p)\n                array[n] = array[n] / p * (p-1);\n    int res = 0;\n    for (int n = 1; n < 10; n++)\n        res += array[n];\n    cout << res << endl;\n    return 0;\n}\n```',
             options: ['15', '28', '45', '55'],
             answer: 1,
             score: 2,
@@ -168,7 +168,7 @@ export const paperData = {
             options: ['正确', '错误'],
             answer: 1,
             score: 2,
-            explanation: '101.101₂ = 4 + 1 + 1/2 + 1/8 = 5.625，不是 5.005。'
+            explanation: '101.101₂ = 4+1+1/2+1/8 = 5.625，不是 5.005。'
         },
         {
             id: 17,
@@ -291,7 +291,7 @@ int main() {
         savings[a] += i;
     }
     for (int i = 0; i < N; i++) {
-        cout << savings[i] << (i == N - 1 ? "" : " ");
+        cout << savings[i] << (i == N-1 ? "" : " ");
     }
     cout << endl;
     return 0;
@@ -332,8 +332,8 @@ void solve() {
     bool b2 = true, b8 = true, b10 = true, b16 = true;
     for (char c : s) {
         int val;
-        if (c >= '0' && c <= '9') val = c - '0';
-        else if (c >= 'A' && c <= 'F') val = 10 + (c - 'A');
+        if (c >= '0' && c <= '9') val = c-'0';
+        else if (c >= 'A' && c <= 'F') val = 10+(c-'A');
         else val = 100; // 非法
 
         if (val >= 2) b2 = false;

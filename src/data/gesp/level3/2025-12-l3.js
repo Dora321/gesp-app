@@ -1,8 +1,8 @@
 // 2025年12月 GESP C++ 三级真题 (第12次认证)
 // 数据说明：本卷已按官方真题 PDF 完成主体回填。
-// - 客观题 1~15：题面、选项与答案表均可由官方 PDF 直接提取；少量代码/流程图片题按官方版式做等价转写。
-// - 判断题 16~25：题面与答案表均可由官方 PDF 直接核对。
-// - 编程题 26~27：题名、题意主体、样例与参考代码来自官方 PDF；少量数据范围数字在 PDF 文本层缺失，当前仅保留题意、样例与参考代码级别的可靠内容。
+//-客观题 1~15：题面、选项与答案表均可由官方 PDF 直接提取；少量代码/流程图片题按官方版式做等价转写。
+//-判断题 16~25：题面与答案表均可由官方 PDF 直接核对。
+//-编程题 26~27：题名、题意主体、样例与参考代码来自官方 PDF；少量数据范围数字在 PDF 文本层缺失，当前仅保留题意、样例与参考代码级别的可靠内容。
 export const paperData = {
     id: '2025-12-l3',
     title: '2025年12月 GESP C++ 三级真题',
@@ -69,7 +69,7 @@ export const paperData = {
         {
             id: 6,
             type: 'single',
-            question: '以下代码是一个程序的部分代码，能够正确执行，输出的结果是（ ）。\n```cpp\nint arr[5] = {1, 2, 3, 4, 5};\nint p = arr[1];\ncout << (p + 2) << endl;\n```',
+            question: '以下代码是一个程序的部分代码，能够正确执行，输出的结果是（ ）。\n```cpp\nint arr[5] = {1, 2, 3, 4, 5};\nint p = arr[1];\ncout << (p+2) << endl;\n```',
             options: ['1', '2', '3', '4'],
             answer: 3,
             score: 2,
@@ -101,7 +101,7 @@ export const paperData = {
         {
             id: 9,
             type: 'single',
-            question: '以下代码执行后，数组 arr 的内容是（ ）。\n```cpp\nint arr[6] = {1, 2, 3, 4, 5, 6};\nfor (int i = 0; i < 6; i += 2) {\n    arr[i] = arr[i] + arr[i+1];\n    arr[i+1] = arr[i] - arr[i+1];\n    arr[i] = arr[i] - arr[i+1];\n}\n```',
+            question: '以下代码执行后，数组 arr 的内容是（ ）。\n```cpp\nint arr[6] = {1, 2, 3, 4, 5, 6};\nfor (int i = 0; i < 6; i += 2) {\n    arr[i] = arr[i]+arr[i+1];\n    arr[i+1] = arr[i]-arr[i+1];\n    arr[i] = arr[i]-arr[i+1];\n}\n```',
             options: ['{2,1,4,3,6,5}', '{1,2,3,4,5,6}', '{3,1,4,2,5,3}', '{1,3,2,5,4,6}'],
             answer: 0,
             score: 2,
@@ -160,7 +160,7 @@ export const paperData = {
         {
             id: 15,
             type: 'single',
-            question: '如果字符串 s 的值是 GESP，以下代码 s 的最后结果是（ ）。\n```cpp\nfor (int i = 0; i < s.length(); i++) {\n    s[i] = toupper(s[i] + i);\n}\n```',
+            question: '如果字符串 s 的值是 GESP，以下代码 s 的最后结果是（ ）。\n```cpp\nfor (int i = 0; i < s.length(); i++) {\n    s[i] = toupper(s[i]+i);\n}\n```',
             options: ['GESP', 'HFTR', 'hesp', 'GFUS'],
             answer: 3,
             score: 2,
@@ -196,7 +196,7 @@ export const paperData = {
         {
             id: 19,
             type: 'judge',
-            question: '以下代码输出结果为 8。\n```cpp\nint a = 5, b = 3;\nint c = a++ + ++b;\ncout << c << endl;\n```',
+            question: '以下代码输出结果为 8。\n```cpp\nint a = 5, b = 3;\nint c = a+++++b;\ncout << c << endl;\n```',
             options: ['正确', '错误'],
             answer: 1,
             score: 2,
@@ -263,7 +263,7 @@ export const paperData = {
             type: 'programming',
             title: '密码强度',
             problemNumber: 'B4449',
-            source: 'official-pdf + luogu-mapping',
+            source: 'official-pdf+luogu-mapping',
             description: '小杨是学校网络安全小组的成员，今天他的任务是设计一个“密码强度检测器”，帮助同学们检查自己的密码是否足够安全。一个安全的密码需要同时满足：长度至少为 8；至少包含一个大写字母；至少包含一个数字。若满足输出 Y，否则输出 N。',
             inputDescription: '第一行一个正整数 T，表示需要安全检测的密码组数。接下来 T 行，每行一个仅由大小写字母和数字组成的字符串，表示一个待检测密码。',
             outputDescription: '对每组密码输出一行，满足强度要求输出 Y，否则输出 N。',
@@ -283,7 +283,7 @@ export const paperData = {
             type: 'programming',
             title: '小杨的智慧购物',
             problemNumber: 'B4450',
-            source: 'official-pdf + luogu-mapping',
+            source: 'official-pdf+luogu-mapping',
             description: '小杨需要购买 M 种不同的文具，商店共有 N 件文具，每件文具有种类编号和价格。对于每种文具，小杨只会购买该种类中最便宜的一件。请计算买齐这 M 种文具一共要花多少钱。',
             inputDescription: '第一行输入两个正整数 M 和 N，分别表示文具种类数与商品总数。接下来 N 行每行两个正整数 K 和 P，表示某件文具的种类编号和价格。保证每个种类至少出现一次。',
             outputDescription: '输出一个整数，表示购买这 M 种文具的最小总花费。',

@@ -31,18 +31,18 @@ export const paperData = {
     {
       id: 2,
       type: 'single',
-      question: 'C++表达式 10 - 3 * (2 + 1) % 10 的值是( )。',
+      question: 'C++表达式 10-3 * (2+1) % 10 的值是( )。',
       options: ['0', '1', '7', '10'],
       answer: 1,
       score: 2,
-      explanation: '10 - 3 * 3 % 10 = 10 - 9 = 1。',
+      explanation: '10-3 * 3 % 10 = 10-9 = 1。',
       tags: [LEVEL1_TAGS.operator]
     },
     {
       id: 3,
       type: 'single',
       question: '小杨同学现在是上午10点，求 N 小时后的时间是几点（24小时制）。横线处应选 ( )。\n```cpp\nint N;\ncin >> N;\ncout << ____________;\n```',
-      options: ['(10 + N) % 12', '(10 + N) % 24', '(10 + N) / 24', '10 + N'],
+      options: ['(10+N) % 12', '(10+N) % 24', '(10+N) / 24', '10+N'],
       answer: 1,
       score: 2,
       explanation: '使用取余运算计算 24 小时制时间。',
@@ -135,7 +135,7 @@ export const paperData = {
       options: ['11', '12', '13', '14'],
       answer: 2,
       score: 2,
-      explanation: '1*8 + 1*4 + 0*2 + 1*1 = 13。',
+      explanation: '1*8+1*4+0*2+1*1 = 13。',
       tags: [LEVEL1_TAGS.basics]
     },
     {
@@ -281,9 +281,9 @@ export const paperData = {
       id: 26,
       type: 'programming',
       question: '## [GESP202312 一级] 小杨的考试\n\n**题目描述**\n\n小杨共有 $X$ 天假，从星期 $Y$ 开始（星期一到星期日分别用 1 到 7 表示）。请问小杨假期结束那天是星期几？\n\n**输入格式**\n\n输入共两行：\n- 第一行包含一个正整数 $X$ ($1 \\le X \\le 100$)。\n- 第二行包含一个正整数 $Y$ ($1 \\le Y \\le 7$)。\n\n**输出格式**\n\n输出一个整数，表示星期几。\n\n**输入样例**\n\n```\n10\n1\n```\n\n**输出样例**\n\n```\n3\n```\n\n**样例解释**\n\n从星期一（1）开始，经过 10 天，分别是：1, 2, 3, 4, 5, 6, 7, 1, 2, 3。最后一天是星期三（3）。 (Wait, if it says "X days holiday", does it mean including the start day? Sample 10 days from 1 -> 1, 2, 3, 4, 5, 6, 7, 8(1), 9(2), 10(3). Yes.)',
-      answer: '#include <iostream>\nusing namespace std;\nint main() {\n    int x, y;\n    cin >> x >> y;\n    int res = (y + x - 1) % 7;\n    if (res == 0) res = 7;\n    cout << res << endl;\n    return 0;\n}',
+      answer: '#include <iostream>\nusing namespace std;\nint main() {\n    int x, y;\n    cin >> x >> y;\n    int res = (y+x-1) % 7;\n    if (res == 0) res = 7;\n    cout << res << endl;\n    return 0;\n}',
       score: 25,
-      explanation: '考查周期性计算。可以使用 $(start + days - 1) \\% 7$ 得到结果，注意余数为 0 时对应星期日 (7)。LuoGu B3921。',
+      explanation: '考查周期性计算。可以使用 $(start+days-1) \\% 7$ 得到结果，注意余数为 0 时对应星期日 (7)。LuoGu B3921。',
       tags: [LEVEL1_TAGS.basics, LEVEL1_TAGS.operator, LEVEL1_TAGS.condition]
     },
     {

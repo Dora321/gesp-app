@@ -6,7 +6,7 @@ const programmingQuestions = [
         type: "programming",
         title: "小杨的武器",
         problemNumber: "2024-09-23-05-C-01",
-        description: "小杨有 n 种不同的武器，对第 i 种武器的初始熟练度为 ai。会依次参加 m 场战斗，每场战斗必须且只能选择一种武器。如果选择了第 i 种武器参加第 j 场战斗，战斗后熟练度变为 ai + cj（cj 可正可负）。求 m 场战斗后熟练度最大值的最大可能结果。",
+        description: "小杨有 n 种不同的武器，对第 i 种武器的初始熟练度为 ai。会依次参加 m 场战斗，每场战斗必须且只能选择一种武器。如果选择了第 i 种武器参加第 j 场战斗，战斗后熟练度变为 ai+cj（cj 可正可负）。求 m 场战斗后熟练度最大值的最大可能结果。",
         inputDescription: "第一行两个正整数 n, m (1 ≤ n, m ≤ 100,000)。第二行 n 个整数 ai (-$10^9$ ≤ ai ≤ $10^9$)。第三行 m 个整数 cj (-$10^9$ ≤ cj ≤ $10^9$)。",
         outputDescription: "输出一个整数，代表 m 场战斗后熟练度的最大可能结果。",
         samples: [
@@ -15,7 +15,7 @@ const programmingQuestions = [
         explanation: "每一场战斗，只要选择当前熟练度最大的武器或能使熟练度增加最多的武器（此题中由于每次只能选一个，实际上只需考虑对所有武器熟练度的增加总量）。由于是求最大值的最大化，我们只需关注单种武器能达到的最大值。其实每场战斗都可以选同一种或不同种，关键在于最大熟练度。策略：每场战斗如果 cj > 0，则加到当前最大的武器上；如果 cj < 0，不加到最大武器上（加到其他武器上）？不对，题目是求 *最后* 熟练度最大值。那么只需让某一种武器吃掉所有正的 cj，另一种吃掉负的 cj（如果不一定要选每种武器）。但题目说‘每场战斗只能选择一种武器使用’。所以总共只有 m 个 cj。我们可以把所有的正 cj 都加给初始最大的武器即可。",
         tags: ["编程题", "贪心", "策略"],
         template: "#include <iostream>\n#include <vector>\n#include <algorithm>\nusing namespace std;\n\nint main() {\n    int n, m;\n    cin >> n >> m;\n    // 在此编写代码\n    return 0;\n}",
-        referenceCode: "#include <iostream>\n#include <vector>\n#include <algorithm>\nusing namespace std;\nint main() {\n    int n, m; cin >> n >> m;\n    long long max_a = -2e18;\n    for (int i = 0; i < n; i++) {\n        long long a; cin >> a;\n        max_a = max(max_a, a);\n    }\n    long long sum_pos = 0;\n    for (int i = 0; i < m; i++) {\n        long long c; cin >> c;\n        if (c > 0) sum_pos += c;\n    }\n    cout << max_a + sum_pos << endl;\n    return 0;\n}"
+        referenceCode: "#include <iostream>\n#include <vector>\n#include <algorithm>\nusing namespace std;\nint main() {\n    int n, m; cin >> n >> m;\n    long long max_a = -2e18;\n    for (int i = 0; i < n; i++) {\n        long long a; cin >> a;\n        max_a = max(max_a, a);\n    }\n    long long sum_pos = 0;\n    for (int i = 0; i < m; i++) {\n        long long c; cin >> c;\n        if (c > 0) sum_pos += c;\n    }\n    cout << max_a+sum_pos << endl;\n    return 0;\n}"
     },
     {
         id: 27,
@@ -31,7 +31,7 @@ const programmingQuestions = [
         explanation: "螺旋填充经典题。维护当前坐标和方向，当越界或遇到已填充位置时旋转 90 度。",
         tags: ["编程题", "模拟", "矩阵"],
         template: "#include <iostream>\n#include <vector>\nusing namespace std;\n\nint main() {\n    int n;\n    cin >> n;\n    // 在此编写代码\n    return 0;\n}",
-        referenceCode: "#include <iostream>\n#include <vector>\nusing namespace std;\nint main() {\n    int n; cin >> n;\n    vector<vector<int>> res(n, vector<int>(n, 0));\n    int dx[] = {0, 1, 0, -1}, dy[] = {1, 0, -1, 0};\n    int x = 0, y = 0, d = 0;\n    for (int i = 1; i <= n * n; i++) {\n        res[x][y] = i;\n        int nx = x + dx[d], ny = y + dy[d];\n        if (nx < 0 || nx >= n || ny < 0 || ny >= n || res[nx][ny]) {\n            d = (d + 1) % 4;\n            nx = x + dx[d], ny = y + dy[d];\n        }\n        x = nx; y = ny;\n    }\n    for (int i = 0; i < n; i++) {\n        for (int j = 0; j < n; j++) cout << res[i][j] << (j == n - 1 ? \"\" : \" \");\n        cout << endl;\n    }\n    return 0;\n}"
+        referenceCode: "#include <iostream>\n#include <vector>\nusing namespace std;\nint main() {\n    int n; cin >> n;\n    vector<vector<int>> res(n, vector<int>(n, 0));\n    int dx[] = {0, 1, 0, -1}, dy[] = {1, 0, -1, 0};\n    int x = 0, y = 0, d = 0;\n    for (int i = 1; i <= n * n; i++) {\n        res[x][y] = i;\n        int nx = x+dx[d], ny = y+dy[d];\n        if (nx < 0 || nx >= n || ny < 0 || ny >= n || res[nx][ny]) {\n            d = (d+1) % 4;\n            nx = x+dx[d], ny = y+dy[d];\n        }\n        x = nx; y = ny;\n    }\n    for (int i = 0; i < n; i++) {\n        for (int j = 0; j < n; j++) cout << res[i][j] << (j == n-1 ? \"\" : \" \");\n        cout << endl;\n    }\n    return 0;\n}"
     }
 ];
 
@@ -241,7 +241,7 @@ export const paperData = {
             options: ["正确", "错误"],
             answer: 0,
             score: 2,
-            explanation: "线性筛（欧拉筛）确保每个合数只被其最小质因子筛一次，复杂度 $$$O(N)$$$。",
+            explanation: "线性筛（欧拉筛）确保每个合数只被其最小质因子筛一次，复杂度 $O(N)$。",
             tags: ["客观题", "判断题", "GESP5级"]
         },
         {

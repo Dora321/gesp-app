@@ -12,11 +12,11 @@ export const paperData = {
         {
             id: 1,
             type: "single",
-            question: "运行下面程序后变量 `a` 的值是（ ）。\n```cpp\nint a = 42;\nint* p = &a;\n*p = *p + 1;\n```",
+            question: "运行下面程序后变量 `a` 的值是（ ）。\n```cpp\nint a = 42;\nint* p = &a;\n*p = *p+1;\n```",
             options: ["42", "43", "编译错误", "不确定"],
             answer: 1,
             score: 2,
-            explanation: "`p` 是指向 `a` 的指针，`*p` 访问的就是 `a` 的内存。`*p = *p + 1` 等同于 `a = a + 1`，所以 `a` 变为 43。",
+            explanation: "`p` 是指向 `a` 的指针，`*p` 访问的就是 `a` 的内存。`*p = *p+1` 等同于 `a = a+1`，所以 `a` 变为 43。",
             tags: ["客观题", "单选题", "指针", "GESP4级"]
         },
         {
@@ -37,17 +37,17 @@ export const paperData = {
         {
             id: 3,
             type: "single",
-            question: "给定如下定义的数组 `arr`，则 `*(*(arr + 1) + 2)` 的值是（ ）。\n```cpp\nint arr[2][3] = {{1, 2, 3}, {4, 5, 6}};\n```",
+            question: "给定如下定义的数组 `arr`，则 `*(*(arr+1)+2)` 的值是（ ）。\n```cpp\nint arr[2][3] = {{1, 2, 3}, {4, 5, 6}};\n```",
             options: ["2", "5", "4", "6"],
             answer: 3,
             score: 2,
-            explanation: "`arr + 1` 指向第二行首地址，`*(arr + 1)` 得到第二行数组名（首元素地址），`*(arr + 1) + 2` 指向第二行第三列元素的地址，解引用得到 `arr[1][2]` 的值 6。",
+            explanation: "`arr+1` 指向第二行首地址，`*(arr+1)` 得到第二行数组名（首元素地址），`*(arr+1)+2` 指向第二行第三列元素的地址，解引用得到 `arr[1][2]` 的值 6。",
             tags: ["客观题", "单选题", "二维数组", "指针", "GESP4级"]
         },
         {
             id: 4,
             type: "single",
-            question: "下面这段代码会输出（ ）。\n```cpp\nint add(int a, int b = 1); // 函数声明\nint main() {\n    cout << add(2) << \" \" << add(2, 3);\n    return 0;\n}\nint add(int a, int b) { // 函数定义\n    return a + b;\n}\n```",
+            question: "下面这段代码会输出（ ）。\n```cpp\nint add(int a, int b = 1); // 函数声明\nint main() {\n    cout << add(2) << \" \" << add(2, 3);\n    return 0;\n}\nint add(int a, int b) { // 函数定义\n    return a+b;\n}\n```",
             options: ["3 5", "编译失败：定义处少了默认参数", "运行错误", "链接失败：未定义引用"],
             answer: 0,
             score: 2,
@@ -112,7 +112,7 @@ export const paperData = {
         {
             id: 10,
             type: "single",
-            question: "下面代码试图实现选择排序，使其能对数组 `nums` 排序为升序，则横线上应分别填写（ ）。\n```cpp\nvoid selectionSort(vector<int>& nums) {\n    int n = nums.size();\n    for (int i = 0; i < n - 1; ++i) {\n        int minIndex = i;\n        for (int j = i + 1; j < n; ++j) {\n            if ( __________ ) { // 在此处填入代码\n                minIndex = j;\n            }\n        }\n        ____________________; // 在此处填入代码\n    }\n}\n```",
+            question: "下面代码试图实现选择排序，使其能对数组 `nums` 排序为升序，则横线上应分别填写（ ）。\n```cpp\nvoid selectionSort(vector<int>& nums) {\n    int n = nums.size();\n    for (int i = 0; i < n-1; ++i) {\n        int minIndex = i;\n        for (int j = i+1; j < n; ++j) {\n            if ( __________ ) { // 在此处填入代码\n                minIndex = j;\n            }\n        }\n        ____________________; // 在此处填入代码\n    }\n}\n```",
             options: [
                 "nums[j] < nums[minIndex] 和 swap(nums[i], nums[minIndex])",
                 "nums[j] > nums[minIndex] 和 swap(nums[i], nums[minIndex])",
@@ -127,10 +127,10 @@ export const paperData = {
         {
             id: 11,
             type: "single",
-            question: "下面程序实现插入排序（升序排序），则横线上应分别填写（ ）。\n```cpp\nvoid insertionSort(int arr[], int n) {\n    for (int i = 1; i < n; i++) {\n        int key = arr[i];\n        int j = i - 1;\n        while ( j >= 0 && ____________________ ) { // 在此处填入代码\n            arr[j + 1] = arr[j];\n            j--;\n        }\n        ____________________; // 在此处填入代码\n    }\n}\n```",
+            question: "下面程序实现插入排序（升序排序），则横线上应分别填写（ ）。\n```cpp\nvoid insertionSort(int arr[], int n) {\n    for (int i = 1; i < n; i++) {\n        int key = arr[i];\n        int j = i-1;\n        while ( j >= 0 && ____________________ ) { // 在此处填入代码\n            arr[j+1] = arr[j];\n            j--;\n        }\n        ____________________; // 在此处填入代码\n    }\n}\n```",
             options: [
-                "arr[j] > key 和 arr[j + 1] = key",
-                "arr[j] < key 和 arr[j + 1] = key",
+                "arr[j] > key 和 arr[j+1] = key",
+                "arr[j] < key 和 arr[j+1] = key",
                 "arr[j] > key 和 arr[j] = key",
                 "arr[j] < key 和 arr[j] = key"
             ],
@@ -144,14 +144,14 @@ export const paperData = {
             type: "single",
             question: "关于插入排序的时间复杂度，下列说法正确的是（ ）。",
             options: [
-                "最好情况和最坏情况的时间复杂度都是 $$$$O(N^2)$$$$",
-                "最好情况是 $$$$O(N)$$$$，最坏情况是 $$$$O(N^2)$$$$",
-                "最好情况是 $$$$O(N^2)$$$$，最坏情况是 $$$$O(N)$$$$",
-                "最好情况是 $$$O(1)$$$，最坏情况是 $$$$O(N)$$$$"
+                "最好情况和最坏情况的时间复杂度都是 $O(N^2)$",
+                "最好情况是 $O(N)$，最坏情况是 $O(N^2)$",
+                "最好情况是 $O(N^2)$，最坏情况是 $O(N)$",
+                "最好情况是 $O(1)$，最坏情况是 $O(N)$"
             ],
             answer: 1,
             score: 2,
-            explanation: "当输入数组已经有序时，插入排序只需遍历一次，复杂度为 $$$$O(N)$$$$；当数组逆序时，每次需移动所有元素，复杂度为 $$$$O(N^2)$$$$。",
+            explanation: "当输入数组已经有序时，插入排序只需遍历一次，复杂度为 $O(N)$；当数组逆序时，每次需移动所有元素，复杂度为 $O(N^2)$。",
             tags: ["客观题", "单选题", "插入排序", "时间复杂度", "GESP4级"]
         },
         {
@@ -159,21 +159,21 @@ export const paperData = {
             type: "single",
             question: "小杨正在爬楼梯，需要 $n$ 阶才能到达楼顶，每次可以爬 1 阶或 2 阶，求小杨有多少种不同的方法可以爬到楼顶。横线上应填写（ ）。\n```cpp\nint climbStairs(int n) {\n    if (n <= 2) return n;\n    int prev2 = 1;\n    int prev1 = 2;\n    int current = 0;\n    for (int i = 3; i <= n; ++i) {\n        ________________ // 在此处填入代码\n    }\n    return current;\n}\n```",
             options: [
-                "prev2 = prev1; prev1 = current; current = prev1 + prev2;",
-                "current = prev1 + prev2; prev2 = prev1; prev1 = current;",
-                "current = prev1 + prev2; prev1 = current; prev2 = prev1;",
-                "prev1 = current; prev2 = prev1; current = prev1 + prev2;"
+                "prev2 = prev1; prev1 = current; current = prev1+prev2;",
+                "current = prev1+prev2; prev2 = prev1; prev1 = current;",
+                "current = prev1+prev2; prev1 = current; prev2 = prev1;",
+                "prev1 = current; prev2 = prev1; current = prev1+prev2;"
             ],
             answer: 1,
             score: 2,
-            explanation: "状态转移方程为 `f(n) = f($$n-1$$) + f(n-2)`。计算出 `current` 后，更新 `prev2` 为旧的 `prev1`，`prev1` 为新的 `current` 供下轮迭代。",
+            explanation: "状态转移方程为 `f(n) = f($n-1$)+f(n-2)`。计算出 `current` 后，更新 `prev2` 为旧的 `prev1`，`prev1` 为新的 `current` 供下轮迭代。",
             tags: ["客观题", "单选题", "递归递推", "斐波那契", "GESP4级"]
         },
         {
             id: 14,
             type: "single",
-            question: "找出所有满足 `scores[i] + scores[j] + scores[k] == 300` 的三元组（$i < j < k$）。下面代码的时间复杂度是（ ）。\n```cpp\nint cnt = 0;\nfor (int i = 0; i < n; i++) {\n    for (int j = i + 1; j < n; j++) {\n        for (int k = j + 1; k < n; k++) {\n            if (scores[i] + scores[j] + scores[k] == 300) {\n                cnt++;\n            }\n        }\n    }\n}\n```",
-            options: ["$$$$O(N)$$$$", "$O(n \log n)$", "$O(n^3)$", "$O(3^n)$"],
+            question: "找出所有满足 `scores[i]+scores[j]+scores[k] == 300` 的三元组（$i < j < k$）。下面代码的时间复杂度是（ ）。\n```cpp\nint cnt = 0;\nfor (int i = 0; i < n; i++) {\n    for (int j = i+1; j < n; j++) {\n        for (int k = j+1; k < n; k++) {\n            if (scores[i]+scores[j]+scores[k] == 300) {\n                cnt++;\n            }\n        }\n    }\n}\n```",
+            options: ["$O(N)$", "$O(n \log n)$", "$O(n^3)$", "$O(3^n)$"],
             answer: 2,
             score: 2,
             explanation: "代码包含三层嵌套循环，每层循环次数均与 $n$ 成线性关系，因此总复杂度为 $O(n^3)$。",
@@ -207,11 +207,11 @@ export const paperData = {
         {
             id: 17,
             type: "judge",
-            question: "执行下面 C++ 代码将输出 11（假设全局变量 `x` 为 10）。\n```cpp\nint x = 10;\nvoid f() {\n    int x = x + 1;\n    cout << x << endl;\n}\nint main() {\n    f();\n}\n```",
+            question: "执行下面 C++ 代码将输出 11（假设全局变量 `x` 为 10）。\n```cpp\nint x = 10;\nvoid f() {\n    int x = x+1;\n    cout << x << endl;\n}\nint main() {\n    f();\n}\n```",
             options: ["正确", "错误"],
             answer: 1,
             score: 2,
-            explanation: "在函数 `f` 内部，定义 `int x = x + 1` 时，等号右边的 `x` 是正在定义的局部变量本身。此时局部变量尚未初始化完成，其值是不确定的（UB），且它屏蔽了全局变量。",
+            explanation: "在函数 `f` 内部，定义 `int x = x+1` 时，等号右边的 `x` 是正在定义的局部变量本身。此时局部变量尚未初始化完成，其值是不确定的（UB），且它屏蔽了全局变量。",
             tags: ["客观题", "判断题", "作用域", "GESP4级"]
         },
         {
@@ -257,7 +257,7 @@ export const paperData = {
         {
             id: 22,
             type: "judge",
-            question: "虽然插入排序的时间复杂度为 $$$$O(N^2)$$$$，但由于单元操作相对较少，因此在小数据量的排序任务中非常受欢迎。",
+            question: "虽然插入排序的时间复杂度为 $O(N^2)$，但由于单元操作相对较少，因此在小数据量的排序任务中非常受欢迎。",
             options: ["正确", "错误"],
             answer: 0,
             score: 2,
@@ -287,11 +287,11 @@ export const paperData = {
         {
             id: 25,
             type: "judge",
-            question: "选择排序算法在任何情况下（无论输入数组是否已经有序）的平均时间复杂度都是 $$$$O(N^2)$$$$。",
+            question: "选择排序算法在任何情况下（无论输入数组是否已经有序）的平均时间复杂度都是 $O(N^2)$。",
             options: ["正确", "错误"],
             answer: 0,
             score: 2,
-            explanation: "选择排序的逻辑是：每次扫描全数组找最小值。无论数据是否有序，它都会进行相同次数的比较，因此复杂度恒定为 $$$$O(N^2)$$$$。",
+            explanation: "选择排序的逻辑是：每次扫描全数组找最小值。无论数据是否有序，它都会进行相同次数的比较，因此复杂度恒定为 $O(N^2)$。",
             tags: ["客观题", "判断题", "选择排序", "复杂度", "GESP4级"]
         },
         {
@@ -301,17 +301,17 @@ export const paperData = {
             question: "【问题描述】\n作为将军，你自然需要合理地排兵布阵。地图可以视为 n 行 m 列的网格，适合排兵的网格以 1 标注，不适合排兵的网格以 0 标注。现在你需要在地图上选择一个矩形区域排兵，这个矩形区域内不能包含不适合排兵的网格。请问可选择的矩形区域最多能包含多少网格？\n【输入描述】\n第一行，两个正整数 n, m，分别表示地图网格的行数与列数。\n接下来 n 行，每行 m 个整数 ai,1, ai,2, …, ai,m，表示各行中的网格是否适合排兵。\n【输出描述】\n一行，一个整数，表示适合排兵的矩形区域包含的最大网格数。\n【样例输入1】\n4 3\n0 1 1\n1 0 1\n0 1 1\n1 1 1\n【样例输出1】\n4",
             score: 25,
             explanation: "该问题可以转化为求“全 1 子矩阵的最大面积”。由于数据范围较小 (n,m <= 500)，可以使用单调栈优化：对每一行，维护以该行为底向上连续 1 的高度。这样每一行就变成了一个“直方图最大矩形”问题，利用单调栈可以在 O(m) 内求解，总复杂度 O(n*m)。",
-            referenceCode: `#include <iostream>\n#include <vector>\n#include <algorithm>\n#include <stack>\nusing namespace std;\n\nint largestRectangleArea(vector<int>& heights) {\n    heights.push_back(0);\n    stack<int> s;\n    int maxArea = 0;\n    for (int i = 0; i < heights.size(); i++) {\n        while (!s.empty() && heights[s.top()] >= heights[i]) {\n            int h = heights[s.top()];\n            s.pop();\n            int w = s.empty() ? i : i - s.top() - 1;\n            maxArea = max(maxArea, h * w);\n        }\n        s.push(i);\n    }\n    return maxArea;\n}\n\nint main() {\n    int n, m;\n    cin >> n >> m;\n    vector<vector<int>> grid(n, vector<int>(m));\n    vector<int> heights(m, 0);\n    int maxArea = 0;\n    for (int i = 0; i < n; i++) {\n        for (int j = 0; j < m; j++) {\n            int val; cin >> val;\n            if (val == 1) heights[j]++;\n            else heights[j] = 0;\n        }\n        maxArea = max(maxArea, largestRectangleArea(heights));\n    }\n    cout << maxArea << endl;\n    return 0;\n}`,
+            referenceCode: `#include <iostream>\n#include <vector>\n#include <algorithm>\n#include <stack>\nusing namespace std;\n\nint largestRectangleArea(vector<int>& heights) {\n    heights.push_back(0);\n    stack<int> s;\n    int maxArea = 0;\n    for (int i = 0; i < heights.size(); i++) {\n        while (!s.empty() && heights[s.top()] >= heights[i]) {\n            int h = heights[s.top()];\n            s.pop();\n            int w = s.empty() ? i : i-s.top()-1;\n            maxArea = max(maxArea, h * w);\n        }\n        s.push(i);\n    }\n    return maxArea;\n}\n\nint main() {\n    int n, m;\n    cin >> n >> m;\n    vector<vector<int>> grid(n, vector<int>(m));\n    vector<int> heights(m, 0);\n    int maxArea = 0;\n    for (int i = 0; i < n; i++) {\n        for (int j = 0; j < m; j++) {\n            int val; cin >> val;\n            if (val == 1) heights[j]++;\n            else heights[j] = 0;\n        }\n        maxArea = max(maxArea, largestRectangleArea(heights));\n    }\n    cout << maxArea << endl;\n    return 0;\n}`,
             tags: ["编程题", "矩阵", "单调栈", "最大子矩阵", "GESP4级"]
         },
         {
             id: 27,
             type: "programming",
             title: "最长连续段",
-            question: "【问题描述】\n对于 k 个整数构成的数组 [b1, b2, …, bk]，如果对 1 ≤ i < k 都有 bi+1 = bi + 1，那么称数组 b 是一个连续段。\n给定由 n 个整数构成的数组 [a1, a2, …, an]，你可以任意重排数组 a 中元素顺序。请问在重排顺序之后，a 所有是连续段的子数组中，最长的子数组长度是多少？\n例如，对于数组 [1, 0, 2, 4]，可以将其重排为 [4, 0, 1, 2]，其子数组中 [0, 1, 2] 是连续段，长度为 3。\n【输入描述】\n第一行，一个正整数 n，表示数组长度。\n第二行，n 个整数 a1, a2, …, an，表示数组中的整数。\n【输出描述】\n一行，一个整数，表示数组 a 重排顺序后，所有是连续段的子数组的最长长度。\n【样例输入1】\n4\n1 0 2 4\n【样例输出1】\n3",
+            question: "【问题描述】\n对于 k 个整数构成的数组 [b1, b2, …, bk]，如果对 1 ≤ i < k 都有 bi+1 = bi+1，那么称数组 b 是一个连续段。\n给定由 n 个整数构成的数组 [a1, a2, …, an]，你可以任意重排数组 a 中元素顺序。请问在重排顺序之后，a 所有是连续段的子数组中，最长的子数组长度是多少？\n例如，对于数组 [1, 0, 2, 4]，可以将其重排为 [4, 0, 1, 2]，其子数组中 [0, 1, 2] 是连续段，长度为 3。\n【输入描述】\n第一行，一个正整数 n，表示数组长度。\n第二行，n 个整数 a1, a2, …, an，表示数组中的整数。\n【输出描述】\n一行，一个整数，表示数组 a 重排顺序后，所有是连续段的子数组的最长长度。\n【样例输入1】\n4\n1 0 2 4\n【样例输出1】\n3",
             score: 25,
             explanation: "重排后能构成的最长“连续段”，本质上是原数组去重排序后，能够构成的最长“值连续整数序列”。解法：先排除重复元素（因为连续段内元素互不相同），排序后遍历，记录最长的相邻差值为 1 的区间。",
-            referenceCode: `#include <iostream>\n#include <vector>\n#include <algorithm>\nusing namespace std;\n\nint main() {\n    int n;\n    if (!(cin >> n)) return 0;\n    if (n == 0) {\n        cout << 0 << endl;\n        return 0;\n    }\n    vector<long long> a(n);\n    for (int i = 0; i < n; i++) cin >> a[i];\n    sort(a.begin(), a.end());\n    a.erase(unique(a.begin(), a.end()), a.end());\n    \n    int maxLen = 1, currentLen = 1;\n    for (size_t i = 1; i < a.size(); i++) {\n        if (a[i] == a[i-1] + 1) {\n            currentLen++;\n        } else {\n            maxLen = max(maxLen, currentLen);\n            currentLen = 1;\n        }\n    }\n    cout << max(maxLen, currentLen) << endl;\n    return 0;\n}`,
+            referenceCode: `#include <iostream>\n#include <vector>\n#include <algorithm>\nusing namespace std;\n\nint main() {\n    int n;\n    if (!(cin >> n)) return 0;\n    if (n == 0) {\n        cout << 0 << endl;\n        return 0;\n    }\n    vector<long long> a(n);\n    for (int i = 0; i < n; i++) cin >> a[i];\n    sort(a.begin(), a.end());\n    a.erase(unique(a.begin(), a.end()), a.end());\n    \n    int maxLen = 1, currentLen = 1;\n    for (size_t i = 1; i < a.size(); i++) {\n        if (a[i] == a[i-1]+1) {\n            currentLen++;\n        } else {\n            maxLen = max(maxLen, currentLen);\n            currentLen = 1;\n        }\n    }\n    cout << max(maxLen, currentLen) << endl;\n    return 0;\n}`,
             tags: ["编程题", "贪心", "排序", "GESP4级"]
         }
     ]

@@ -133,7 +133,7 @@ export const paperData = {
             id: 13,
             type: 'single',
             question: "下⾯图形每一行从字母 A 开始，以 ABC ⽅式重复。行数为输入的整数。请在 C++ 代码段横线处填入合适代码 （ ）。",
-            options: ["'A' + j / 3", "(char)('A' + j / 3)", "'A' + j % 3", "(char)('A' + j % 3)"],
+            options: ["'A'+j / 3", "(char)('A'+j / 3)", "'A'+j % 3", "(char)('A'+j % 3)"],
             answer: 3,
             score: 2,
             explanation: '答案依据官方答案。',
@@ -143,7 +143,7 @@ export const paperData = {
             id: 14,
             type: 'single',
             question: "输入行数，约定 ，输出以下图形。应在 C++ 代码横线处填入（ ）。",
-            options: ["(lineCount - i - 1) * 2", "(lineCount - i) * 2", "lineCount - i - 1", "lineCount - i"],
+            options: ["(lineCount-i-1) * 2", "(lineCount-i) * 2", "lineCount-i-1", "lineCount-i"],
             answer: 0,
             score: 2,
             explanation: '答案依据官方答案。',
@@ -166,7 +166,7 @@ export const paperData = {
             options: ['正确', '错误'],
             answer: 1,
             score: 2,
-            explanation: "101.101(2) = 5 + 1/2 + 1/8 = 5.625。",
+            explanation: "101.101(2) = 5+1/2+1/8 = 5.625。",
             tags: ["判断题", "数制转换"]
         },
         {
@@ -192,7 +192,7 @@ export const paperData = {
         {
             id: 19,
             type: 'judge',
-            question: "C++ 表达式 `(2 * 3) || (2 + 5)` 的值为 67。",
+            question: "C++ 表达式 `(2 * 3) || (2+5)` 的值为 67。",
             options: ['正确', '错误'],
             answer: 1,
             score: 2,
@@ -202,7 +202,7 @@ export const paperData = {
         {
             id: 20,
             type: 'judge',
-            question: "如果 m 和 n 为 int 类型变量，则执行 `for (m = 0, n = 1; n < 9; ) n = ((m = 3 * n, m + 1), m - 1);` 之后 n 的值为偶数。",
+            question: "如果 m 和 n 为 int 类型变量，则执行 `for (m = 0, n = 1; n < 9; ) n = ((m = 3 * n, m+1), m-1);` 之后 n 的值为偶数。",
             options: ['正确', '错误'],
             answer: 0,
             score: 2,
@@ -252,7 +252,7 @@ export const paperData = {
         {
             id: 25,
             type: 'judge',
-            question: "下面C++代码执行时如果输入 2024，则输出是 4202。\n```cpp\nint n, m = 0;\ncin >> n;\nwhile (n > 0) {\n    m = m * 10 + n % 10;\n    n /= 10;\n}\ncout << m;\n```",
+            question: "下面C++代码执行时如果输入 2024，则输出是 4202。\n```cpp\nint n, m = 0;\ncin >> n;\nwhile (n > 0) {\n    m = m * 10+n % 10;\n    n /= 10;\n}\ncout << m;\n```",
             options: ['正确', '错误'],
             answer: 0,
             score: 2,
@@ -282,7 +282,7 @@ export const paperData = {
             "模拟"
         ],
         "template": "#include <bits/stdc++.h>\nusing namespace std;\n\nint main() {\n    ios::sync_with_stdio(false);\n    cin.tie(nullptr);\n\n    // 在此编写代码\n    return 0;\n}",
-        "referenceCode": "#include <bits/stdc++.h>\nusing namespace std;\n\nint main() {\n    ios::sync_with_stdio(false);\n    cin.tie(nullptr);\n\n    int N;\n    cin >> N;\n    for (int i = 0; i < N; ++i) {\n        for (int j = 0; j < N; ++j) {\n            if (i == j || i + j == N - 1) cout << '+';\n            else cout << '-';\n        }\n        cout << '\\n';\n    }\n    return 0;\n}"
+        "referenceCode": "#include <bits/stdc++.h>\nusing namespace std;\n\nint main() {\n    ios::sync_with_stdio(false);\n    cin.tie(nullptr);\n\n    int N;\n    cin >> N;\n    for (int i = 0; i < N; ++i) {\n        for (int j = 0; j < N; ++j) {\n            if (i == j || i+j == N-1) cout << '+';\n            else cout << '-';\n        }\n        cout << '\\n';\n    }\n    return 0;\n}"
     },
     {
         "id": 27,
@@ -305,7 +305,7 @@ export const paperData = {
             "排序"
         ],
         "template": "#include <bits/stdc++.h>\nusing namespace std;\n\nint main() {\n    ios::sync_with_stdio(false);\n    cin.tie(nullptr);\n\n    // 在此编写代码\n    return 0;\n}",
-        "referenceCode": "#include <bits/stdc++.h>\nusing namespace std;\n\nint step(int x) {\n    string s = to_string(x);\n    while ((int)s.size() < 3) s = '0' + s;\n    string a = s, b = s;\n    sort(a.begin(), a.end());\n    sort(b.rbegin(), b.rend());\n    return stoi(b) - stoi(a);\n}\n\nint main() {\n    ios::sync_with_stdio(false);\n    cin.tie(nullptr);\n\n    int n, cnt = 0;\n    cin >> n;\n    while (n != 495) {\n        n = step(n);\n        ++cnt;\n    }\n    cout << cnt << '\\n';\n    return 0;\n}"
+        "referenceCode": "#include <bits/stdc++.h>\nusing namespace std;\n\nint step(int x) {\n    string s = to_string(x);\n    while ((int)s.size() < 3) s = '0'+s;\n    string a = s, b = s;\n    sort(a.begin(), a.end());\n    sort(b.rbegin(), b.rend());\n    return stoi(b)-stoi(a);\n}\n\nint main() {\n    ios::sync_with_stdio(false);\n    cin.tie(nullptr);\n\n    int n, cnt = 0;\n    cin >> n;\n    while (n != 495) {\n        n = step(n);\n        ++cnt;\n    }\n    cout << cnt << '\\n';\n    return 0;\n}"
     }
 ]
 };

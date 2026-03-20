@@ -31,7 +31,7 @@ const programmingQuestions = [
         explanation: "经典的冰雹猜想（Collatz Conjecture）。按照规则直接模拟计算并维护最大值即可。",
         tags: ["编程题", "模拟"],
         template: "#include <iostream>\nusing namespace std;\n\nint main() {\n    long long n;\n    cin >> n;\n    // 在此编写代码\n    return 0;\n}",
-        referenceCode: "#include <iostream>\n#include <algorithm>\nusing namespace std;\nint main() {\n    long long n; cin >> n;\n    long long max_val = n;\n    while (n != 1) {\n        if (n % 2 == 0) n /= 2;\n        else n = n * 3 + 1;\n        max_val = max(max_val, n);\n    }\n    cout << max_val << endl;\n    return 0;\n}"
+        referenceCode: "#include <iostream>\n#include <algorithm>\nusing namespace std;\nint main() {\n    long long n; cin >> n;\n    long long max_val = n;\n    while (n != 1) {\n        if (n % 2 == 0) n /= 2;\n        else n = n * 3+1;\n        max_val = max(max_val, n);\n    }\n    cout << max_val << endl;\n    return 0;\n}"
     }
 ];
 
@@ -50,13 +50,13 @@ export const paperData = {
             question: "下面关于链表和数组的描述，错误的是（ ）。",
             options: [
                 "当数据数量不确定时，为了应对各种可能的情况，需要申请一个较大的数组，可能浪费空间；此时用链表比较合适，大小可动态调整。",
-                "在链表中访问节点的效率较低，时间复杂度为 $$$O(N)$$$。",
-                "链表插入和删除元素效率较低，时间复杂度为 $$$O(N)$$$。",
+                "在链表中访问节点的效率较低，时间复杂度为 $O(N)$。",
+                "链表插入和删除元素效率较低，时间复杂度为 $O(N)$。",
                 "链表的节点在内存中是分散存储的，通过指针连在一起。"
             ],
             answer: 2,
             score: 2,
-            explanation: "链表在已知节点位置的情况下，插入和删除效率很高（$$O(1)$$），不需要移动元素。C 选项说效率低是错误的。",
+            explanation: "链表在已知节点位置的情况下，插入和删除效率很高（$O(1)$），不需要移动元素。C 选项说效率低是错误的。",
             tags: ["客观题", "单选题", "GESP5级"]
         },
         {
@@ -118,10 +118,10 @@ export const paperData = {
             id: 7,
             type: "single",
             question: "下列哪个时间复杂度高于 $O(n \log n)$（ ）。",
-            options: ["$$$O(N)$$$", "$O(\log n)$", "$$$O(N^2)$$$", "$$O(1)$$"],
+            options: ["$O(N)$", "$O(\log n)$", "$O(N^2)$", "$O(1)$"],
             answer: 2,
             score: 2,
-            explanation: "$$$O(N^2)$$$ 高于 $O(n \log n)$。",
+            explanation: "$O(N^2)$ 高于 $O(n \log n)$。",
             tags: ["客观题", "单选题", "GESP5级"]
         },
         {
@@ -163,7 +163,7 @@ export const paperData = {
             id: 11,
             type: "single",
             question: "二分查找成功的平均查找长度是（ ）。",
-            options: ["$$$O(N)$$$", "$O(\log n)$", "$O(n \log n)$", "$$O(1)$$"],
+            options: ["$O(N)$", "$O(\log n)$", "$O(n \log n)$", "$O(1)$"],
             answer: 1,
             score: 2,
             explanation: "二分查找的时间复杂度。",
@@ -186,7 +186,7 @@ export const paperData = {
             options: ["归并排序", "快速排序", "堆排序", "插入排序"],
             answer: 3,
             score: 2,
-            explanation: "插入排序和快排在最坏情况均为 $$$O(N^2)$$$，但由于常数项，插入排序通常认为在常规分布下性能最差。注：快排最坏情况 $$$O(N^2)$$$ 也是极差的。",
+            explanation: "插入排序和快排在最坏情况均为 $O(N^2)$，但由于常数项，插入排序通常认为在常规分布下性能最差。注：快排最坏情况 $O(N^2)$ 也是极差的。",
             tags: ["客观题", "单选题", "GESP5级"]
         },
         {

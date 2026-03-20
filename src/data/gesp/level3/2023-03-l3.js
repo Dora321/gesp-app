@@ -44,11 +44,11 @@ export const paperData = {
         {
             id: 4,
             type: 'single',
-            question: "已知 n=1e5，$$$O(N^2)$$$ 算法通常（ ）。",
+            question: "已知 n=1e5，$O(N^2)$ 算法通常（ ）。",
             options: ["稳定可过","可能超时","一定最优","与 n 无关"],
             answer: 1,
             score: 2,
-            explanation: "1e5 规模下 $$$O(N^2)$$$ 常无法在时限内通过。",
+            explanation: "1e5 规模下 $O(N^2)$ 常无法在时限内通过。",
             tags: ["程序分析"]
         },
         {
@@ -104,7 +104,7 @@ export const paperData = {
         {
             id: 10,
             type: 'single',
-            question: "对于区间 [l,r] 的和，使用前缀和可在 $$O(1)$$ 时间通过（ ）计算。",
+            question: "对于区间 [l,r] 的和，使用前缀和可在 $O(1)$ 时间通过（ ）计算。",
             options: ["pre[r]-pre[l]","pre[r]-pre[l-1]","pre[l]+pre[r]","pre[r+1]-pre[l-1]"],
             answer: 1,
             score: 2,
@@ -145,10 +145,10 @@ export const paperData = {
             id: 14,
             type: 'single',
             question: "双重循环遍历 n×n 矩阵的时间复杂度通常是（ ）。",
-            options: ["$$O(1)$$","$O(\log n)$","$$$O(N)$$$","$$$O(N^2)$$$"],
+            options: ["$O(1)$","$O(\log n)$","$O(N)$","$O(N^2)$"],
             answer: 3,
             score: 2,
-            explanation: "两层线性循环相乘为 $$$O(N^2)$$$。",
+            explanation: "两层线性循环相乘为 $O(N^2)$。",
             tags: ["循环","算法思维"]
         },
         {

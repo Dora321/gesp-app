@@ -1,9 +1,9 @@
 // 2024年12月 GESP C++ 三级真题 (第8次认证)
 // 数据说明：本卷以官方真题 PDF 为主完成回填。
-// - 客观题 1~12、14~15：题面、选项与单选答案可由官方 PDF 文本层直接提取并整理。
-// - 客观题 13：官方 PDF 文本层仅保留题干与答案，选项代码版式缺失；现依据官方题意、答案表与公开题解做等价还原。
-// - 判断题 16~25：题面来自官方 PDF；PDF 文本层未完整带出答案表，当前答案依据官方题面逐题复核填写。
-// - 编程题 26~27：题名、题意、样例与参考代码来自官方 PDF，同时与公开解析可交叉核对。
+//-客观题 1~12、14~15：题面、选项与单选答案可由官方 PDF 文本层直接提取并整理。
+//-客观题 13：官方 PDF 文本层仅保留题干与答案，选项代码版式缺失；现依据官方题意、答案表与公开题解做等价还原。
+//-判断题 16~25：题面来自官方 PDF；PDF 文本层未完整带出答案表，当前答案依据官方题面逐题复核填写。
+//-编程题 26~27：题名、题意、样例与参考代码来自官方 PDF，同时与公开解析可交叉核对。
 export const paperData = {
     id: '2024-12-l3',
     title: '2024年12月 GESP C++ 三级真题',
@@ -14,7 +14,7 @@ export const paperData = {
     timeLimit: 90 * 60,
     source: {
         officialPdf: 'https://gesp.ccf.org.cn/101/attach/1650388837072928.pdf',
-        notes: '客观题 25 题已尽量补齐；其中第 13 题的选项代码因官方 PDF 文本层缺损，按官方题意 + 官方答案 + 公开解析做等价还原。判断题答案由官方题面逐题复核。编程题已补题意、样例与参考代码。'
+        notes: '客观题 25 题已尽量补齐；其中第 13 题的选项代码因官方 PDF 文本层缺损，按官方题意+官方答案+公开解析做等价还原。判断题答案由官方题面逐题复核。编程题已补题意、样例与参考代码。'
     },
     questions: [
         {
@@ -135,14 +135,14 @@ export const paperData = {
             type: 'single',
             question: '兔子五元一只，鸡三元一只，小鸭子一元三只。现在你有一百元要买一百只，兔子、鸡、鸭子每种必须至少一只。下列哪个程序能实现（ ）。\n（说明：本题原卷选项代码在官方 PDF 文本层中缺损，现按公开解析与官方答案做等价整理。）',
             options: [
-                'A. 三重循环枚举 i,j,k，但金额条件写成 25*i + 10*j + k == 300。',
-                'B. 三重循环枚举 i,j,k，但金额条件写成 20*i + 10*j + k == 300。',
-                'C. 三重循环上界偏小（如 i<=20, j<=34, k<=20），且金额条件为 15*i + 9*j + k == 300。',
-                'D. 三重循环完整枚举 0..100，判断 i + j + k == 100 且 15*i + 9*j + k == 300。'
+                'A. 三重循环枚举 i,j,k，但金额条件写成 25*i+10*j+k == 300。',
+                'B. 三重循环枚举 i,j,k，但金额条件写成 20*i+10*j+k == 300。',
+                'C. 三重循环上界偏小（如 i<=20, j<=34, k<=20），且金额条件为 15*i+9*j+k == 300。',
+                'D. 三重循环完整枚举 0..100，判断 i+j+k == 100 且 15*i+9*j+k == 300。'
             ],
             answer: 3,
             score: 2,
-            explanation: '将“5 元、3 元、1 元三只”统一乘 3，可得金额方程 15i + 9j + k = 300；完整枚举并同时满足数量与金额条件的程序是 D。'
+            explanation: '将“5 元、3 元、1 元三只”统一乘 3，可得金额方程 15i+9j+k = 300；完整枚举并同时满足数量与金额条件的程序是 D。'
         },
         {
             id: 14,
@@ -165,7 +165,7 @@ export const paperData = {
             options: ['4 段，分别是 1、2、4、8', '15 段，每段 1 个', '6 段，分别是 3、3、3、3、2、1', '9 段，分别是 2、2、2、2、2、2、1、1、1'],
             answer: 0,
             score: 2,
-            explanation: '按 1、2、4、8 切分后，可通过“给出 + 找零”的方式凑出 1~15 天的任意累计报酬，且段数最少。'
+            explanation: '按 1、2、4、8 切分后，可通过“给出+找零”的方式凑出 1~15 天的任意累计报酬，且段数最少。'
         },
         {
             id: 16,
@@ -179,7 +179,7 @@ export const paperData = {
         {
             id: 17,
             type: 'judge',
-            question: '使用原码进行的计算，2 + (-1) 的结果是 -3。',
+            question: '使用原码进行的计算，2+(-1) 的结果是 -3。',
             options: ['正确', '错误'],
             answer: 0,
             score: 2,
@@ -233,7 +233,7 @@ export const paperData = {
         {
             id: 23,
             type: 'judge',
-            question: '将输出 97。\n```cpp\nchar a = \'A\';\na = a + 32;\ncout << (int)a << endl;\n```',
+            question: '将输出 97。\n```cpp\nchar a = \'A\';\na = a+32;\ncout << (int)a << endl;\n```',
             options: ['正确', '错误'],
             answer: 0,
             score: 2,
@@ -255,7 +255,7 @@ export const paperData = {
             options: ['正确', '错误'],
             answer: 0,
             score: 2,
-            explanation: 'CCF₁₆ = 12×16² + 12×16 + 15 = 3279；12363₇ = 1×7⁴ + 2×7³ + 3×7² + 6×7 + 3 = 3279，二者相等。'
+            explanation: 'CCF₁₆ = 12×16²+12×16+15 = 3279；12363₇ = 1×7⁴+2×7³+3×7²+6×7+3 = 3279，二者相等。'
         }
     ],
     programmingQuestions: [
@@ -264,7 +264,7 @@ export const paperData = {
             type: 'programming',
             title: '数字替换',
             problemNumber: 'B4066',
-            source: 'official-pdf + public-solution-mapping',
+            source: 'official-pdf+public-solution-mapping',
             description: '小杨有一个包含 n 个数字的序列 A，即 A=[a1,a2,...,an]。他想将其中大于 k 的数字都替换为序列的最大值，将其中小于 k 的数字都替换为序列的最小值，请你帮他计算出替换后的序列。',
             inputDescription: '第一行包含两个正整数 n、k，含义如题面所示。第二行包含 n 个数字，代表序列 A。',
             outputDescription: '输出 n 个整数，代表替换后的结果。',
@@ -284,7 +284,7 @@ export const paperData = {
             type: 'programming',
             title: '打印数字',
             problemNumber: 'B4067',
-            source: 'official-pdf + public-solution-mapping',
+            source: 'official-pdf+public-solution-mapping',
             description: '小杨为数字 0、1、2 和 3 设计了一款表示形式，每个数字占用了 5×5 的网格。给定一个仅由数字 0、1、2、3 组成的数字串 n，请输出对应的字符画。',
             inputDescription: '第一行包含一个正整数 n。对于全部数据，保证 n 仅由数字 0、1、2、3 组成。',
             outputDescription: '输出对应的 5 行表示形式。',

@@ -1,0 +1,830 @@
+[
+  {
+    "file": "level1\\2023-03-l1.js",
+    "objCount": 25,
+    "progCount": 2,
+    "placeholders": [],
+    "hasLatex": true,
+    "likelyNeedsLatex": false
+  },
+  {
+    "file": "level1\\2023-06-l1.js",
+    "objCount": 25,
+    "progCount": 2,
+    "placeholders": [],
+    "hasLatex": true,
+    "likelyNeedsLatex": false
+  },
+  {
+    "file": "level1\\2023-09-l1.js",
+    "objCount": 25,
+    "progCount": 2,
+    "placeholders": [],
+    "hasLatex": true,
+    "likelyNeedsLatex": false
+  },
+  {
+    "file": "level1\\2023-12-l1.js",
+    "objCount": 25,
+    "progCount": 2,
+    "placeholders": [],
+    "hasLatex": true,
+    "likelyNeedsLatex": false
+  },
+  {
+    "file": "level1\\2024-03-l1.js",
+    "objCount": 25,
+    "progCount": 2,
+    "placeholders": [],
+    "hasLatex": true,
+    "likelyNeedsLatex": false
+  },
+  {
+    "file": "level1\\2024-06-l1.js",
+    "objCount": 25,
+    "progCount": 2,
+    "placeholders": [],
+    "hasLatex": true,
+    "likelyNeedsLatex": false
+  },
+  {
+    "file": "level1\\2024-09-l1.js",
+    "objCount": 25,
+    "progCount": 2,
+    "placeholders": [],
+    "hasLatex": true,
+    "likelyNeedsLatex": false
+  },
+  {
+    "file": "level1\\2024-12-l1.js",
+    "objCount": 25,
+    "progCount": 2,
+    "placeholders": [],
+    "hasLatex": false,
+    "likelyNeedsLatex": true
+  },
+  {
+    "file": "level1\\2025-03-l1.js",
+    "objCount": 25,
+    "progCount": 2,
+    "placeholders": [],
+    "hasLatex": true,
+    "likelyNeedsLatex": false
+  },
+  {
+    "file": "level1\\2025-06-l1.js",
+    "objCount": 25,
+    "progCount": 2,
+    "placeholders": [],
+    "hasLatex": false,
+    "likelyNeedsLatex": false
+  },
+  {
+    "file": "level1\\2025-09-l1.js",
+    "objCount": 25,
+    "progCount": 2,
+    "placeholders": [],
+    "hasLatex": false,
+    "likelyNeedsLatex": true
+  },
+  {
+    "file": "level1\\2025-12-l1.js",
+    "objCount": 25,
+    "progCount": 2,
+    "placeholders": [],
+    "hasLatex": false,
+    "likelyNeedsLatex": false
+  },
+  {
+    "file": "level2\\2023-03-l2.js",
+    "objCount": 25,
+    "progCount": 2,
+    "placeholders": [],
+    "hasLatex": false,
+    "likelyNeedsLatex": false
+  },
+  {
+    "file": "level2\\2023-06-l2.js",
+    "objCount": 25,
+    "progCount": 0,
+    "placeholders": [],
+    "hasLatex": false,
+    "likelyNeedsLatex": false
+  },
+  {
+    "file": "level2\\2023-09-l2.js",
+    "objCount": 25,
+    "progCount": 0,
+    "placeholders": [],
+    "hasLatex": false,
+    "likelyNeedsLatex": false
+  },
+  {
+    "file": "level2\\2023-12-l2.js",
+    "objCount": 25,
+    "progCount": 0,
+    "placeholders": [],
+    "hasLatex": false,
+    "likelyNeedsLatex": false
+  },
+  {
+    "file": "level2\\2024-03-l2.js",
+    "objCount": 25,
+    "progCount": 0,
+    "placeholders": [],
+    "hasLatex": false,
+    "likelyNeedsLatex": false
+  },
+  {
+    "file": "level2\\2024-06-l2.js",
+    "objCount": 25,
+    "progCount": 0,
+    "placeholders": [],
+    "hasLatex": false,
+    "likelyNeedsLatex": false
+  },
+  {
+    "file": "level2\\2024-09-l2.js",
+    "objCount": 25,
+    "progCount": 0,
+    "placeholders": [],
+    "hasLatex": false,
+    "likelyNeedsLatex": false
+  },
+  {
+    "file": "level2\\2024-12-l2.js",
+    "objCount": 25,
+    "progCount": 0,
+    "placeholders": [],
+    "hasLatex": false,
+    "likelyNeedsLatex": true
+  },
+  {
+    "file": "level2\\2025-03-l2.js",
+    "objCount": 25,
+    "progCount": 0,
+    "placeholders": [],
+    "hasLatex": false,
+    "likelyNeedsLatex": false
+  },
+  {
+    "file": "level2\\2025-06-l2.js",
+    "objCount": 25,
+    "progCount": 0,
+    "placeholders": [],
+    "hasLatex": false,
+    "likelyNeedsLatex": false
+  },
+  {
+    "file": "level2\\2025-09-l2.js",
+    "objCount": 25,
+    "progCount": 0,
+    "placeholders": [],
+    "hasLatex": false,
+    "likelyNeedsLatex": false
+  },
+  {
+    "file": "level2\\2025-12-l2.js",
+    "objCount": 25,
+    "progCount": 0,
+    "placeholders": [],
+    "hasLatex": false,
+    "likelyNeedsLatex": false
+  },
+  {
+    "file": "level3\\2023-03-l3.js",
+    "objCount": 25,
+    "progCount": 0,
+    "placeholders": [],
+    "hasLatex": false,
+    "likelyNeedsLatex": true
+  },
+  {
+    "file": "level3\\2023-06-l3.js",
+    "objCount": 25,
+    "progCount": 2,
+    "placeholders": [],
+    "hasLatex": true,
+    "likelyNeedsLatex": false
+  },
+  {
+    "file": "level3\\2023-09-l3.js",
+    "objCount": 25,
+    "progCount": 2,
+    "placeholders": [],
+    "hasLatex": false,
+    "likelyNeedsLatex": false
+  },
+  {
+    "file": "level3\\2023-12-l3.js",
+    "objCount": 25,
+    "progCount": 2,
+    "placeholders": [],
+    "hasLatex": false,
+    "likelyNeedsLatex": false
+  },
+  {
+    "file": "level3\\2024-03-l3.js",
+    "objCount": 25,
+    "progCount": 2,
+    "placeholders": [],
+    "hasLatex": false,
+    "likelyNeedsLatex": true
+  },
+  {
+    "file": "level3\\2024-06-l3.js",
+    "objCount": 25,
+    "progCount": 2,
+    "placeholders": [],
+    "hasLatex": false,
+    "likelyNeedsLatex": false
+  },
+  {
+    "file": "level3\\2024-09-l3.js",
+    "objCount": 25,
+    "progCount": 2,
+    "placeholders": [],
+    "hasLatex": false,
+    "likelyNeedsLatex": false
+  },
+  {
+    "file": "level3\\2024-12-l3.js",
+    "objCount": 25,
+    "progCount": 2,
+    "placeholders": [],
+    "hasLatex": false,
+    "likelyNeedsLatex": false
+  },
+  {
+    "file": "level3\\2025-03-l3.js",
+    "objCount": 25,
+    "progCount": 2,
+    "placeholders": [],
+    "hasLatex": false,
+    "likelyNeedsLatex": true
+  },
+  {
+    "file": "level3\\2025-06-l3.js",
+    "objCount": 25,
+    "progCount": 2,
+    "placeholders": [],
+    "hasLatex": false,
+    "likelyNeedsLatex": false
+  },
+  {
+    "file": "level3\\2025-09-l3.js",
+    "objCount": 25,
+    "progCount": 2,
+    "placeholders": [],
+    "hasLatex": false,
+    "likelyNeedsLatex": false
+  },
+  {
+    "file": "level3\\2025-12-l3.js",
+    "objCount": 25,
+    "progCount": 2,
+    "placeholders": [],
+    "hasLatex": false,
+    "likelyNeedsLatex": false
+  },
+  {
+    "file": "level4\\2023-06-l4.js",
+    "objCount": 25,
+    "progCount": 2,
+    "placeholders": [],
+    "hasLatex": false,
+    "likelyNeedsLatex": true
+  },
+  {
+    "file": "level4\\2023-09-l4.js",
+    "objCount": 25,
+    "progCount": 2,
+    "placeholders": [],
+    "hasLatex": false,
+    "likelyNeedsLatex": true
+  },
+  {
+    "file": "level4\\2023-12-l4.js",
+    "objCount": 25,
+    "progCount": 2,
+    "placeholders": [],
+    "hasLatex": false,
+    "likelyNeedsLatex": false
+  },
+  {
+    "file": "level4\\2024-03-l4.js",
+    "objCount": 25,
+    "progCount": 2,
+    "placeholders": [],
+    "hasLatex": false,
+    "likelyNeedsLatex": true
+  },
+  {
+    "file": "level4\\2024-06-l4.js",
+    "objCount": 25,
+    "progCount": 2,
+    "placeholders": [],
+    "hasLatex": false,
+    "likelyNeedsLatex": true
+  },
+  {
+    "file": "level4\\2024-09-l4.js",
+    "objCount": 25,
+    "progCount": 2,
+    "placeholders": [],
+    "hasLatex": false,
+    "likelyNeedsLatex": true
+  },
+  {
+    "file": "level4\\2024-12-l4.js",
+    "objCount": 25,
+    "progCount": 2,
+    "placeholders": [],
+    "hasLatex": false,
+    "likelyNeedsLatex": true
+  },
+  {
+    "file": "level4\\2025-03-l4.js",
+    "objCount": 25,
+    "progCount": 2,
+    "placeholders": [],
+    "hasLatex": false,
+    "likelyNeedsLatex": true
+  },
+  {
+    "file": "level4\\2025-06-l4.js",
+    "objCount": 25,
+    "progCount": 2,
+    "placeholders": [],
+    "hasLatex": false,
+    "likelyNeedsLatex": true
+  },
+  {
+    "file": "level4\\2025-09-l4.js",
+    "objCount": 25,
+    "progCount": 2,
+    "placeholders": [],
+    "hasLatex": true,
+    "likelyNeedsLatex": false
+  },
+  {
+    "file": "level4\\2025-12-l4.js",
+    "objCount": 25,
+    "progCount": 2,
+    "placeholders": [],
+    "hasLatex": false,
+    "likelyNeedsLatex": true
+  },
+  {
+    "file": "level4\\2026-03-l4.js",
+    "objCount": 25,
+    "progCount": 2,
+    "placeholders": [],
+    "hasLatex": true,
+    "likelyNeedsLatex": false
+  },
+  {
+    "file": "level5\\2023-09-l5.js",
+    "objCount": 25,
+    "progCount": 2,
+    "placeholders": [],
+    "hasLatex": false,
+    "likelyNeedsLatex": true
+  },
+  {
+    "file": "level5\\2023-12-l5.js",
+    "objCount": 25,
+    "progCount": 2,
+    "placeholders": [],
+    "hasLatex": false,
+    "likelyNeedsLatex": true
+  },
+  {
+    "file": "level5\\2024-03-l5.js",
+    "objCount": 25,
+    "progCount": 2,
+    "placeholders": [],
+    "hasLatex": false,
+    "likelyNeedsLatex": true
+  },
+  {
+    "file": "level5\\2024-06-l5.js",
+    "objCount": 25,
+    "progCount": 2,
+    "placeholders": [],
+    "hasLatex": false,
+    "likelyNeedsLatex": true
+  },
+  {
+    "file": "level5\\2024-09-l5.js",
+    "objCount": 25,
+    "progCount": 2,
+    "placeholders": [],
+    "hasLatex": false,
+    "likelyNeedsLatex": true
+  },
+  {
+    "file": "level5\\2024-12-l5.js",
+    "objCount": 25,
+    "progCount": 2,
+    "placeholders": [],
+    "hasLatex": false,
+    "likelyNeedsLatex": true
+  },
+  {
+    "file": "level5\\2025-03-l5.js",
+    "objCount": 25,
+    "progCount": 2,
+    "placeholders": [
+      "待补充",
+      "待补"
+    ],
+    "hasLatex": false,
+    "likelyNeedsLatex": true
+  },
+  {
+    "file": "level5\\2025-06-l5.js",
+    "objCount": 25,
+    "progCount": 2,
+    "placeholders": [
+      "待补充",
+      "待补"
+    ],
+    "hasLatex": false,
+    "likelyNeedsLatex": true
+  },
+  {
+    "file": "level5\\2025-09-l5.js",
+    "objCount": 25,
+    "progCount": 2,
+    "placeholders": [
+      "待补充",
+      "待补"
+    ],
+    "hasLatex": false,
+    "likelyNeedsLatex": true
+  },
+  {
+    "file": "level5\\2025-12-l5.js",
+    "objCount": 25,
+    "progCount": 2,
+    "placeholders": [
+      "待补充",
+      "待补"
+    ],
+    "hasLatex": false,
+    "likelyNeedsLatex": true
+  },
+  {
+    "file": "level5\\2026-03-l5.js",
+    "objCount": 2,
+    "progCount": 2,
+    "placeholders": [
+      "待补充",
+      "待补"
+    ],
+    "hasLatex": true,
+    "likelyNeedsLatex": false
+  },
+  {
+    "file": "level6\\2023-09-l6.js",
+    "objCount": 25,
+    "progCount": 0,
+    "placeholders": [
+      "待补充",
+      "待补"
+    ],
+    "hasLatex": false,
+    "likelyNeedsLatex": false
+  },
+  {
+    "file": "level6\\2023-12-l6.js",
+    "objCount": 25,
+    "progCount": 0,
+    "placeholders": [
+      "待补充",
+      "待补"
+    ],
+    "hasLatex": false,
+    "likelyNeedsLatex": true
+  },
+  {
+    "file": "level6\\2024-03-l6.js",
+    "objCount": 25,
+    "progCount": 0,
+    "placeholders": [
+      "待补充",
+      "待补"
+    ],
+    "hasLatex": false,
+    "likelyNeedsLatex": false
+  },
+  {
+    "file": "level6\\2024-06-l6.js",
+    "objCount": 25,
+    "progCount": 0,
+    "placeholders": [
+      "待补充",
+      "待补"
+    ],
+    "hasLatex": false,
+    "likelyNeedsLatex": true
+  },
+  {
+    "file": "level6\\2024-09-l6.js",
+    "objCount": 25,
+    "progCount": 0,
+    "placeholders": [
+      "待补充",
+      "待补"
+    ],
+    "hasLatex": false,
+    "likelyNeedsLatex": false
+  },
+  {
+    "file": "level6\\2024-12-l6.js",
+    "objCount": 25,
+    "progCount": 0,
+    "placeholders": [
+      "待补充",
+      "待补"
+    ],
+    "hasLatex": false,
+    "likelyNeedsLatex": false
+  },
+  {
+    "file": "level6\\2025-03-l6.js",
+    "objCount": 25,
+    "progCount": 0,
+    "placeholders": [
+      "待补充",
+      "待补"
+    ],
+    "hasLatex": false,
+    "likelyNeedsLatex": true
+  },
+  {
+    "file": "level6\\2025-06-l6.js",
+    "objCount": 25,
+    "progCount": 0,
+    "placeholders": [
+      "待补充",
+      "待补"
+    ],
+    "hasLatex": false,
+    "likelyNeedsLatex": false
+  },
+  {
+    "file": "level6\\2025-09-l6.js",
+    "objCount": 25,
+    "progCount": 0,
+    "placeholders": [
+      "待补充",
+      "待补"
+    ],
+    "hasLatex": false,
+    "likelyNeedsLatex": true
+  },
+  {
+    "file": "level6\\2025-12-l6.js",
+    "objCount": 25,
+    "progCount": 0,
+    "placeholders": [
+      "待补充",
+      "待补"
+    ],
+    "hasLatex": false,
+    "likelyNeedsLatex": true
+  },
+  {
+    "file": "level6\\2026-03-l6.js",
+    "objCount": 25,
+    "progCount": 0,
+    "placeholders": [
+      "待补充",
+      "待补"
+    ],
+    "hasLatex": true,
+    "likelyNeedsLatex": false
+  },
+  {
+    "file": "level7\\2023-12-l7.js",
+    "objCount": 25,
+    "progCount": 2,
+    "placeholders": [
+      "待补充",
+      "待补"
+    ],
+    "hasLatex": false,
+    "likelyNeedsLatex": true
+  },
+  {
+    "file": "level7\\2024-03-l7.js",
+    "objCount": 25,
+    "progCount": 2,
+    "placeholders": [
+      "待补充",
+      "待补"
+    ],
+    "hasLatex": false,
+    "likelyNeedsLatex": false
+  },
+  {
+    "file": "level7\\2024-06-l7.js",
+    "objCount": 25,
+    "progCount": 2,
+    "placeholders": [
+      "待补充",
+      "待补"
+    ],
+    "hasLatex": false,
+    "likelyNeedsLatex": true
+  },
+  {
+    "file": "level7\\2024-09-l7.js",
+    "objCount": 25,
+    "progCount": 0,
+    "placeholders": [
+      "待补充",
+      "待补"
+    ],
+    "hasLatex": false,
+    "likelyNeedsLatex": true
+  },
+  {
+    "file": "level7\\2024-12-l7.js",
+    "objCount": 25,
+    "progCount": 0,
+    "placeholders": [
+      "待补充",
+      "待补"
+    ],
+    "hasLatex": false,
+    "likelyNeedsLatex": true
+  },
+  {
+    "file": "level7\\2025-03-l7.js",
+    "objCount": 25,
+    "progCount": 0,
+    "placeholders": [
+      "待补充",
+      "待补"
+    ],
+    "hasLatex": false,
+    "likelyNeedsLatex": true
+  },
+  {
+    "file": "level7\\2025-06-l7.js",
+    "objCount": 25,
+    "progCount": 0,
+    "placeholders": [
+      "待补充",
+      "待补"
+    ],
+    "hasLatex": false,
+    "likelyNeedsLatex": false
+  },
+  {
+    "file": "level7\\2025-09-l7.js",
+    "objCount": 25,
+    "progCount": 0,
+    "placeholders": [
+      "待补充",
+      "待补"
+    ],
+    "hasLatex": false,
+    "likelyNeedsLatex": false
+  },
+  {
+    "file": "level7\\2025-12-l7.js",
+    "objCount": 25,
+    "progCount": 0,
+    "placeholders": [
+      "待补充",
+      "待补"
+    ],
+    "hasLatex": false,
+    "likelyNeedsLatex": false
+  },
+  {
+    "file": "level7\\2026-03-l7.js",
+    "objCount": 25,
+    "progCount": 0,
+    "placeholders": [
+      "待补充",
+      "待补"
+    ],
+    "hasLatex": true,
+    "likelyNeedsLatex": false
+  },
+  {
+    "file": "level8\\2023-12-l8.js",
+    "objCount": 25,
+    "progCount": 0,
+    "placeholders": [
+      "待补充",
+      "待补"
+    ],
+    "hasLatex": false,
+    "likelyNeedsLatex": true
+  },
+  {
+    "file": "level8\\2024-03-l8.js",
+    "objCount": 25,
+    "progCount": 0,
+    "placeholders": [
+      "待补充",
+      "待补"
+    ],
+    "hasLatex": false,
+    "likelyNeedsLatex": true
+  },
+  {
+    "file": "level8\\2024-06-l8.js",
+    "objCount": 25,
+    "progCount": 0,
+    "placeholders": [
+      "待补充",
+      "待补"
+    ],
+    "hasLatex": false,
+    "likelyNeedsLatex": false
+  },
+  {
+    "file": "level8\\2024-09-l8.js",
+    "objCount": 25,
+    "progCount": 0,
+    "placeholders": [
+      "待补充",
+      "待补"
+    ],
+    "hasLatex": false,
+    "likelyNeedsLatex": false
+  },
+  {
+    "file": "level8\\2024-12-l8.js",
+    "objCount": 25,
+    "progCount": 0,
+    "placeholders": [
+      "待补充",
+      "待补"
+    ],
+    "hasLatex": false,
+    "likelyNeedsLatex": false
+  },
+  {
+    "file": "level8\\2025-03-l8.js",
+    "objCount": 25,
+    "progCount": 0,
+    "placeholders": [
+      "待补充",
+      "待补"
+    ],
+    "hasLatex": false,
+    "likelyNeedsLatex": false
+  },
+  {
+    "file": "level8\\2025-06-l8.js",
+    "objCount": 25,
+    "progCount": 0,
+    "placeholders": [
+      "待补充",
+      "待补"
+    ],
+    "hasLatex": false,
+    "likelyNeedsLatex": false
+  },
+  {
+    "file": "level8\\2025-09-l8.js",
+    "objCount": 25,
+    "progCount": 0,
+    "placeholders": [
+      "待补充",
+      "待补"
+    ],
+    "hasLatex": false,
+    "likelyNeedsLatex": false
+  },
+  {
+    "file": "level8\\2025-12-l8.js",
+    "objCount": 25,
+    "progCount": 0,
+    "placeholders": [
+      "待补充",
+      "待补"
+    ],
+    "hasLatex": true,
+    "likelyNeedsLatex": false
+  },
+  {
+    "file": "level8\\2026-03-l8.js",
+    "objCount": 25,
+    "progCount": 0,
+    "placeholders": [
+      "待补充",
+      "待补"
+    ],
+    "hasLatex": true,
+    "likelyNeedsLatex": false
+  }
+]

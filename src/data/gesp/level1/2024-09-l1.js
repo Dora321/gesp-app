@@ -56,21 +56,21 @@ export const paperData = {
     {
       id: 4,
       type: 'single',
-      question: 'C++表达式 10 - 3 * 2 的值是( )。',
+      question: 'C++表达式 10-3 * 2 的值是( )。',
       options: ['14', '4', '10', '1'],
       answer: 1,
       score: 2,
-      explanation: '优先级：* 高于 -。10 - 6 = 4。',
+      explanation: '优先级：* 高于 -。10-6 = 4。',
       tags: [LEVEL1_TAGS.operator]
     },
     {
       id: 5,
       type: 'single',
-      question: '假设N为正整数10，则 cout <<(N / 3 + N % 3) 输出是( )。',
+      question: '假设N为正整数10，则 cout <<(N / 3+N % 3) 输出是( )。',
       options: ['0', '1', '4', '3'],
       answer: 2,
       score: 2,
-      explanation: '10 / 3 = 3（整除）；10 % 3 = 1。3 + 1 = 4。',
+      explanation: '10 / 3 = 3（整除）；10 % 3 = 1。3+1 = 4。',
       tags: [LEVEL1_TAGS.operator, LEVEL1_TAGS.basics]
     },
     {
@@ -86,7 +86,7 @@ export const paperData = {
     {
       id: 7,
       type: 'single',
-      question: '下面的C++代码执行时如果先输入 5 并回车后输入 2 并回车，其输出是 ( )。\n```cpp\nint a, b;\nscanf("%d", &a);\nscanf("%d", &b);\nprintf("%d", a + b);\n```',
+      question: '下面的C++代码执行时如果先输入 5 并回车后输入 2 并回车，其输出是 ( )。\n```cpp\nint a, b;\nscanf("%d", &a);\nscanf("%d", &b);\nprintf("%d", a+b);\n```',
       options: ['7', '52', '10', '不输出'],
       answer: 0,
       score: 2,
@@ -126,7 +126,7 @@ export const paperData = {
     {
       id: 11,
       type: 'single',
-      question: '代码执行后的输出是 ( )。\n```cpp\nint P = 14 + 7;\nif (P % 3 || P % 7) cout << "OK";\nelse cout << "KO";\n```',
+      question: '代码执行后的输出是 ( )。\n```cpp\nint P = 14+7;\nif (P % 3 || P % 7) cout << "OK";\nelse cout << "KO";\n```',
       options: ['OK', 'KO', '21', '报错'],
       answer: 1,
       score: 2,
@@ -283,7 +283,7 @@ export const paperData = {
       question: '【编程题1】小杨购物\n小杨同学准备去购物，有两件商品，单价分别是 $a$ 元和 $b$ 元，小杨同学只有 $M$ 元。小杨想买相同数量的商品，请问小杨最多能买多少件？\n\n**输入格式**：输入三行，第一行包含一个整数 $a$，第二行包含一个整数 $b$，第三行包含一个整数 $M$。\n\n**输出格式**：输出一个整数，表示最多能购买的商品件数。',
       answer: '',
       score: 25,
-      explanation: '最多购买件数为 $M / (a + b)$。LuoGu B4034。',
+      explanation: '最多购买件数为 $M / (a+b)$。LuoGu B4034。',
       tags: [LEVEL1_TAGS.basics, LEVEL1_TAGS.operator]
     },
     {

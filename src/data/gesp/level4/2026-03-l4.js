@@ -17,8 +17,8 @@ const programmingQuestions = [
         ],
         explanation: "遍历网格中的每个格子，检查其周围 8 个方向的邻居。如果当前格子的海拔小于等于所有有效邻居的海拔，则该格子是一个山谷，计数加一。注意处理边界情况（只有 3 到 5 个邻居）。样例 1 中，绿色单元格 (2,2), (3,2), (2,5) 是山谷。",
         tags: ["编程题", "二维数组", "模拟"],
-        template: "#include <iostream>\n\nusing namespace std;\n\nint h[105][105];\nint dx[] = {-1, -1, -1, 0, 0, 1, 1, 1};\nint dy[] = {-1, 0, 1, -1, 1, -1, 0, 1};\n\nint main() {\n    int n, m;\n    cin >> n >> m;\n    for (int i = 1; i <= n; i++) {\n        for (int j = 1; j <= m; j++) {\n            cin >> h[i][j];\n        }\n    }\n    \n    int ans = 0;\n    for (int i = 1; i <= n; i++) {\n        for (int j = 1; j <= m; j++) {\n            bool ok = true;\n            for (int k = 0; k < 8; k++) {\n                int ni = i + dx[k];\n                int nj = j + dy[k];\n                if (ni >= 1 && ni <= n && nj >= 1 && nj <= m) {\n                    if (h[i][j] > h[ni][nj]) {\n                        ok = false;\n                        break;\n                    }\n                }\n            }\n            if (ok) ans++;\n        }\n    }\n    cout << ans << endl;\n    return 0;\n}",
-        referenceCode: "#include <iostream>\n\nusing namespace std;\n\nint h[105][105];\nint dx[] = {-1, -1, -1, 0, 0, 1, 1, 1};\nint dy[] = {-1, 0, 1, -1, 1, -1, 0, 1};\n\nint main() {\n    int n, m;\n    if (!(cin >> n >> m)) return 0;\n    for (int i = 1; i <= n; i++) {\n        for (int j = 1; j <= m; j++) {\n            cin >> h[i][j];\n        }\n    }\n    \n    int ans = 0;\n    for (int i = 1; i <= n; i++) {\n        for (int j = 1; j <= m; j++) {\n            bool ok = true;\n            for (int k = 0; k < 8; k++) {\n                int ni = i + dx[k];\n                int nj = j + dy[k];\n                if (ni >= 1 && ni <= n && nj >= 1 && nj <= m) {\n                    if (h[i][j] > h[ni][nj]) {\n                        ok = false;\n                        break;\n                    }\n                }\n            }\n            if (ok) ans++;\n        }\n    }\n    cout << ans << endl;\n    return 0;\n}"
+        template: "#include <iostream>\n\nusing namespace std;\n\nint h[105][105];\nint dx[] = {-1, -1, -1, 0, 0, 1, 1, 1};\nint dy[] = {-1, 0, 1, -1, 1, -1, 0, 1};\n\nint main() {\n    int n, m;\n    cin >> n >> m;\n    for (int i = 1; i <= n; i++) {\n        for (int j = 1; j <= m; j++) {\n            cin >> h[i][j];\n        }\n    }\n    \n    int ans = 0;\n    for (int i = 1; i <= n; i++) {\n        for (int j = 1; j <= m; j++) {\n            bool ok = true;\n            for (int k = 0; k < 8; k++) {\n                int ni = i+dx[k];\n                int nj = j+dy[k];\n                if (ni >= 1 && ni <= n && nj >= 1 && nj <= m) {\n                    if (h[i][j] > h[ni][nj]) {\n                        ok = false;\n                        break;\n                    }\n                }\n            }\n            if (ok) ans++;\n        }\n    }\n    cout << ans << endl;\n    return 0;\n}",
+        referenceCode: "#include <iostream>\n\nusing namespace std;\n\nint h[105][105];\nint dx[] = {-1, -1, -1, 0, 0, 1, 1, 1};\nint dy[] = {-1, 0, 1, -1, 1, -1, 0, 1};\n\nint main() {\n    int n, m;\n    if (!(cin >> n >> m)) return 0;\n    for (int i = 1; i <= n; i++) {\n        for (int j = 1; j <= m; j++) {\n            cin >> h[i][j];\n        }\n    }\n    \n    int ans = 0;\n    for (int i = 1; i <= n; i++) {\n        for (int j = 1; j <= m; j++) {\n            bool ok = true;\n            for (int k = 0; k < 8; k++) {\n                int ni = i+dx[k];\n                int nj = j+dy[k];\n                if (ni >= 1 && ni <= n && nj >= 1 && nj <= m) {\n                    if (h[i][j] > h[ni][nj]) {\n                        ok = false;\n                        break;\n                    }\n                }\n            }\n            if (ok) ans++;\n        }\n    }\n    cout << ans << endl;\n    return 0;\n}"
     },
     {
         id: 27,
@@ -37,7 +37,7 @@ const programmingQuestions = [
         explanation: "1号礼盒：总价10，最大值5，最后进店2。2号礼盒：总价10，最大值5，最后进店5。3号礼盒：总价8，最大值4，最后进店4。4号礼盒：总价10，最大值4，最后进店3。排序过程：3号总价8最小排第一；其余总价均为10，4号最大值4较小排第二；1号和2号最大值相同均为5，1号最后进店2较小排第三；2号排最后。最终：3 4 2 1。",
         tags: ["编程题", "结构体", "排序"],
         template: "#include <iostream>\n#include <vector>\n#include <algorithm>\n\nusing namespace std;\n\nstruct Combo {\n    int sum, mx, last, id;\n};\n\nint main() {\n    int n, k;\n    cin >> n >> k;\n    // 在此编写代码\n    return 0;\n}",
-        referenceCode: "#include <iostream>\n#include <vector>\n#include <algorithm>\n\nusing namespace std;\n\nstruct Combo {\n    int sum, mx, last, id;\n};\n\nbool cmp(const Combo &a, const Combo &b) {\n    if (a.sum != b.sum) return a.sum < b.sum;\n    if (a.mx != b.mx) return a.mx < b.mx;\n    if (a.last != b.last) return a.last < b.last;\n    return a.id < b.id;\n}\n\nint main() {\n    int n, k;\n    if (!(cin >> n >> k)) return 0;\n    vector<Combo> v(n);\n    for (int i = 0; i < n; i++) {\n        v[i].sum = 0;\n        v[i].mx = -1;\n        v[i].id = i + 1;\n        int x;\n        for (int j = 0; j < k; j++) {\n            cin >> x;\n            v[i].sum += x;\n            v[i].mx = max(v[i].mx, x);\n            if (j == k - 1) v[i].last = x;\n        }\n    }\n    sort(v.begin(), v.end(), cmp);\n    for (int i = 0; i < n; i++) {\n        cout << v[i].id << (i == n - 1 ? \"\" : \" \");\n    }\n    cout << endl;\n    return 0;\n}"
+        referenceCode: "#include <iostream>\n#include <vector>\n#include <algorithm>\n\nusing namespace std;\n\nstruct Combo {\n    int sum, mx, last, id;\n};\n\nbool cmp(const Combo &a, const Combo &b) {\n    if (a.sum != b.sum) return a.sum < b.sum;\n    if (a.mx != b.mx) return a.mx < b.mx;\n    if (a.last != b.last) return a.last < b.last;\n    return a.id < b.id;\n}\n\nint main() {\n    int n, k;\n    if (!(cin >> n >> k)) return 0;\n    vector<Combo> v(n);\n    for (int i = 0; i < n; i++) {\n        v[i].sum = 0;\n        v[i].mx = -1;\n        v[i].id = i+1;\n        int x;\n        for (int j = 0; j < k; j++) {\n            cin >> x;\n            v[i].sum += x;\n            v[i].mx = max(v[i].mx, x);\n            if (j == k-1) v[i].last = x;\n        }\n    }\n    sort(v.begin(), v.end(), cmp);\n    for (int i = 0; i < n; i++) {\n        cout << v[i].id << (i == n-1 ? \"\" : \" \");\n    }\n    cout << endl;\n    return 0;\n}"
     }
 ];
 
@@ -68,37 +68,37 @@ export const paperData = {
             options: ["5 5", "12 12", "12 5", "5 12"],
             answer: 1,
             score: 2,
-            explanation: "q 是二级指针，指向指针 p，p 指向变量 a。**q 等价于 *p，等价于变量 a。**q += 7 即 a = a + 7，a 变为 12。*p 也是 a 的值，即 12。因此输出 12 12。",
+            explanation: "q 是二级指针，指向指针 p，p 指向变量 a。**q 等价于 *p，等价于变量 a。**q += 7 即 a = a+7，a 变为 12。*p 也是 a 的值，即 12。因此输出 12 12。",
             tags: ["客观题", "单选题", "GESP4级"]
         },
         {
             id: 3,
             type: "single",
-            question: "已知有如下定义：\n```cpp\nint a[3][4] = {\n    {1, 2, 3, 4},\n    {5, 6, 7, 8},\n    {9, 10, 11, 12}\n};\nint (*p)[4] = a;\n```\n则表达式 `*(*(p + 2) + 1)` 的值为（ ）。",
+            question: "已知有如下定义：\n```cpp\nint a[3][4] = {\n    {1, 2, 3, 4},\n    {5, 6, 7, 8},\n    {9, 10, 11, 12}\n};\nint (*p)[4] = a;\n```\n则表达式 `*(*(p+2)+1)` 的值为（ ）。",
             options: ["6", "10", "7", "11"],
             answer: 1,
             score: 2,
-            explanation: "p 是指向包含 4 个 int 元素的数组指针。p + 2 指向二维数组 a 的第 3 行（即索引为 2 的行 {9, 10, 11, 12}）。*(p + 2) 得到该行首元素的地址。*(p + 2) + 1 指向该行第 2 个元素（索引为 1 的 10）。最后解引用得到 10。",
+            explanation: "p 是指向包含 4 个 int 元素的数组指针。p+2 指向二维数组 a 的第 3 行（即索引为 2 的行 {9, 10, 11, 12}）。*(p+2) 得到该行首元素的地址。*(p+2)+1 指向该行第 2 个元素（索引为 1 的 10）。最后解引用得到 10。",
             tags: ["客观题", "单选题", "GESP4级"]
         },
         {
             id: 4,
             type: "single",
-            question: "执行下列代码后，输出是（ ）。\n```cpp\nint main() {\n    int a[] = {1, 2, 3, 4, 5};\n    int *p = a + 1;\n    cout << p[2];\n    return 0;\n}\n```",
+            question: "执行下列代码后，输出是（ ）。\n```cpp\nint main() {\n    int a[] = {1, 2, 3, 4, 5};\n    int *p = a+1;\n    cout << p[2];\n    return 0;\n}\n```",
             options: ["2", "4", "3", "5"],
             answer: 1,
             score: 2,
-            explanation: "p 指向 a+1，即元素 2 的位置。p[2] 等价于 *(p + 2)，即 *(a + 1 + 2) = a[3]。a[3] 的值是 4。",
+            explanation: "p 指向 a+1，即元素 2 的位置。p[2] 等价于 *(p+2)，即 *(a+1+2) = a[3]。a[3] 的值是 4。",
             tags: ["客观题", "单选题", "GESP4级"]
         },
         {
             id: 5,
             type: "single",
-            question: "执行下面代码后，输出为（ ）。\n```cpp\nint main() {\n    char s[] = \"GESP\";\n    char *p = s + 2;\n    cout << *p << \" \" << p[1];\n    return 0;\n}\n```",
+            question: "执行下面代码后，输出为（ ）。\n```cpp\nint main() {\n    char s[] = \"GESP\";\n    char *p = s+2;\n    cout << *p << \" \" << p[1];\n    return 0;\n}\n```",
             options: ["S P", "G E", "E S", "S G"],
             answer: 0,
             score: 2,
-            explanation: "s[0]='G', s[1]='E', s[2]='S', s[3]='P'。p = s + 2 指向 'S'。*p 为 'S'，p[1] 指向其后一个字符 'P'。输出为 S P。",
+            explanation: "s[0]='G', s[1]='E', s[2]='S', s[3]='P'。p = s+2 指向 'S'。*p 为 'S'，p[1] 指向其后一个字符 'P'。输出为 S P。",
             tags: ["客观题", "单选题", "GESP4级"]
         },
         {
@@ -114,7 +114,7 @@ export const paperData = {
         {
             id: 7,
             type: "single",
-            question: "执行下面代码后，输出为（ ）。\n```cpp\nint f(int n) {\n    if (n <= 1) return 1;\n    return n * f(n - 1);\n}\n\nint main() {\n    cout << f(4);\n    return 0;\n}\n```",
+            question: "执行下面代码后，输出为（ ）。\n```cpp\nint f(int n) {\n    if (n <= 1) return 1;\n    return n * f(n-1);\n}\n\nint main() {\n    cout << f(4);\n    return 0;\n}\n```",
             options: ["6", "24", "12", "4"],
             answer: 1,
             score: 2,
@@ -164,7 +164,7 @@ export const paperData = {
         {
             id: 12,
             type: "single",
-            question: "执行下面代码后，输出为（ ）。\n```cpp\nint main() {\n    int a[] = {5, 2, 8, 1, 9};\n    sort(a, a + 5);\n    cout << a[2];\n    return 0;\n}\n```",
+            question: "执行下面代码后，输出为（ ）。\n```cpp\nint main() {\n    int a[] = {5, 2, 8, 1, 9};\n    sort(a, a+5);\n    cout << a[2];\n    return 0;\n}\n```",
             options: ["2", "5", "8", "1"],
             answer: 1,
             score: 2,
@@ -185,10 +185,10 @@ export const paperData = {
             id: 14,
             type: "single",
             question: "一个长度为 N 的序列，使用选择排序进行排序，比较次数的数量级是（ ）。",
-            options: ["$$$O(N)$$$", "$$$O(N^2)$$$", "$O(\log n)$", "$O(n \log n)$"],
+            options: ["$O(N)$", "$O(N^2)$", "$O(\log n)$", "$O(n \log n)$"],
             answer: 1,
             score: 2,
-            explanation: "选择排序无论何种情况，比较次数均为 N($N-1$)/2，即 $$$O(N^2)$$$ 量级。",
+            explanation: "选择排序无论何种情况，比较次数均为 N($N-1$)/2，即 $O(N^2)$ 量级。",
             tags: ["客观题", "单选题", "GESP4级"]
         },
         {
@@ -208,7 +208,7 @@ export const paperData = {
             options: ["正确", "错误"],
             answer: 0,
             score: 2,
-            explanation: "add10 使用引用传递，对形参 x 的修改会直接影响实参 a。5 + 10 = 15。",
+            explanation: "add10 使用引用传递，对形参 x 的修改会直接影响实参 a。5+10 = 15。",
             tags: ["客观题", "判断题", "GESP4级"]
         },
         {
@@ -224,11 +224,11 @@ export const paperData = {
         {
             id: 18,
             type: "judge",
-            question: "执行下面代码，输出结果为 5。\n```cpp\nint main() {\n    int a[2][3];\n    cout << &a[1][2] - &a[0][1] << endl;\n    return 0;\n}\n```",
+            question: "执行下面代码，输出结果为 5。\n```cpp\nint main() {\n    int a[2][3];\n    cout << &a[1][2]-&a[0][1] << endl;\n    return 0;\n}\n```",
             options: ["正确", "错误"],
             answer: 1,
             score: 2,
-            explanation: "指针相减的结果是元素个数。&a[1][2] 是第 6 个元素（索引 5），&a[0][1] 是第 2 个元素（索引 1）。5 - 1 = 4。因此输出 4 而非 5。",
+            explanation: "指针相减的结果是元素个数。&a[1][2] 是第 6 个元素（索引 5），&a[0][1] 是第 2 个元素（索引 1）。5-1 = 4。因此输出 4 而非 5。",
             tags: ["客观题", "判断题", "GESP4级"]
         },
         {
@@ -284,7 +284,7 @@ export const paperData = {
         {
             id: 24,
             type: "judge",
-            question: "由于选择排序和插入排序的时间复杂度均为 $$$$O(N^2)$$$$，在任何实际场景下两者的性能表现几乎相同，可以互相替代。",
+            question: "由于选择排序和插入排序的时间复杂度均为 $O(N^2)$，在任何实际场景下两者的性能表现几乎相同，可以互相替代。",
             options: ["正确", "错误"],
             answer: 1,
             score: 2,
@@ -294,11 +294,11 @@ export const paperData = {
         {
             id: 25,
             type: "judge",
-            question: "下面用递归方式计算斐波那契数列第 n 项的程序，时间复杂度是 $O($$2^n$$)$。\n```cpp\nint fib(int n) {\n    if (n <= 1) return n;\n    int f0 = 0, f1 = 1, cur = 0;\n    for (int i = 2; i <= n; i++) {\n        cur = f0 + f1;\n        f0 = f1;\n        f1 = cur;\n    }\n    return cur;\n}\n```",
+            question: "下面用递归方式计算斐波那契数列第 n 项的程序，时间复杂度是 $O($2^n$)$。\n```cpp\nint fib(int n) {\n    if (n <= 1) return n;\n    int f0 = 0, f1 = 1, cur = 0;\n    for (int i = 2; i <= n; i++) {\n        cur = f0+f1;\n        f0 = f1;\n        f1 = cur;\n    }\n    return cur;\n}\n```",
             options: ["正确", "错误"],
             answer: 1,
             score: 2,
-            explanation: "该程序实际上是使用循环（递推）实现的，而不是递归。其时间复杂度是 $$$O(N)$$$。",
+            explanation: "该程序实际上是使用循环（递推）实现的，而不是递归。其时间复杂度是 $O(N)$。",
             tags: ["客观题", "判断题", "GESP4级"]
         },
         ...programmingQuestions

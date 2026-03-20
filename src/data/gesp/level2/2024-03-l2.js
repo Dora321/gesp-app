@@ -82,7 +82,7 @@ export const paperData = {
         {
             id: 8,
             type: 'single',
-            question: "下面C++代码执行后的输出是（ ）。\n```cpp\nint n, a, m, i;\nn = 3, a = 5;\nm = (a - 1) * 2;\nfor (i = 0; i < n - 1; i++)\n    m = (m - 1) * 2;\ncout << m;\n```",
+            question: "下面C++代码执行后的输出是（ ）。\n```cpp\nint n, a, m, i;\nn = 3, a = 5;\nm = (a-1) * 2;\nfor (i = 0; i < n-1; i++)\n    m = (m-1) * 2;\ncout << m;\n```",
             options: ["8", "26", "28", "30"],
             answer: 1,
             score: 2,
@@ -123,16 +123,16 @@ export const paperData = {
             id: 12,
             type: 'single',
             question: "一个数的所有数字倒序排列后保持不变，就是回文数。横线处应填写（ ）。",
-            options: ["10 * a + n % 10", "a + n % 10", "10 * a + n / 10", "a + n / 10"],
+            options: ["10 * a+n % 10", "a+n % 10", "10 * a+n / 10", "a+n / 10"],
             answer: 0,
             score: 2,
-            explanation: '构造反转数的经典逻辑：reverse = reverse * 10 + n % 10。',
+            explanation: '构造反转数的经典逻辑：reverse = reverse * 10+n % 10。',
             tags: ["程序分析", "回文数"]
         },
         {
             id: 13,
             type: 'single',
-            question: "给定两个整数 与 ，打印出一个栅栏图形，这个栅栏应该分成 段，段与段之间的间隔为 + ， 段内的填 充为 个 - 。形如 ， 时，图形如下： 以下程序代码用于绘制该图形，横线处应填写？（ ）",
+            question: "给定两个整数 与 ，打印出一个栅栏图形，这个栅栏应该分成 段，段与段之间的间隔为+， 段内的填 充为 个-。形如 ， 时，图形如下： 以下程序代码用于绘制该图形，横线处应填写？（ ）",
             options: ["cout << '+' << endl;", "cout << '+' << ' ' << endl;", "cout << '+';", "cout << '+' << ' ';"],
             answer: 2,
             score: 2,
@@ -305,7 +305,7 @@ export const paperData = {
             "模拟"
         ],
         "template": "#include <bits/stdc++.h>\nusing namespace std;\n\nint main() {\n    ios::sync_with_stdio(false);\n    cin.tie(nullptr);\n\n    // 在此编写代码\n    return 0;\n}",
-        "referenceCode": "#include <bits/stdc++.h>\nusing namespace std;\n\nint main() {\n    ios::sync_with_stdio(false);\n    cin.tie(nullptr);\n\n    int N;\n    cin >> N;\n    int mid = N / 2;\n    for (int i = 0; i < N; ++i) {\n        for (int j = 0; j < N; ++j) {\n            if (j == 0 || j == N - 1) cout << '|';\n            else if (i == 0 || i == mid || i == N - 1) cout << '-';\n            else cout << 'x';\n        }\n        cout << '\\n';\n    }\n    return 0;\n}"
+        "referenceCode": "#include <bits/stdc++.h>\nusing namespace std;\n\nint main() {\n    ios::sync_with_stdio(false);\n    cin.tie(nullptr);\n\n    int N;\n    cin >> N;\n    int mid = N / 2;\n    for (int i = 0; i < N; ++i) {\n        for (int j = 0; j < N; ++j) {\n            if (j == 0 || j == N-1) cout << '|';\n            else if (i == 0 || i == mid || i == N-1) cout << '-';\n            else cout << 'x';\n        }\n        cout << '\\n';\n    }\n    return 0;\n}"
     }
 ]
 };

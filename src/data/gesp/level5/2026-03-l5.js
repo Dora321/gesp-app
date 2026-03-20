@@ -53,7 +53,7 @@ export const paperData = {
     questions: [
         // 1-15 单选 (待补)
         ...Array.from({ length: 15 }, (_, i) => ({
-            id: i + 1,
+            id: i+1,
             type: "single",
             question: `第${i+1}题（单选）：题目内容待从真题PDF补充。`,
             options: ["选项A", "选项B", "选项C", "选项D"],
@@ -64,7 +64,7 @@ export const paperData = {
         })),
         // 16-25 判断 (待补)
         ...Array.from({ length: 10 }, (_, i) => ({
-            id: i + 16,
+            id: i+16,
             type: "judge",
             question: `第${i+1}题（判断）：题目内容待从真题PDF补充。`,
             options: ["正确", "错误"],

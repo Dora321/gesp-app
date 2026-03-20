@@ -45,8 +45,15 @@ const REPLACEMENTS = [
   { reg: /10\^6/g, repl: '$10^6$' },
   { reg: /log2\(n\)/g, repl: '$\\log_2 n$' },
   { reg: /O\(V\+E\)/gi, repl: '$O(V+E)$' },
-  { reg: /O\(V log V\)/gi, repl: '$O(V \\log V)$' },
-  { reg: /([a-z])的平方/g, repl: '$$1^2$$' }, // Simplified
+  { reg: /gcd\(a, b\)/g, repl: '$\\gcd(a, b)$' },
+  { reg: /lcm\(a, b\)/g, repl: '$\\text{lcm}(a, b)$' },
+  { reg: /sqrt\(n\)/g, repl: '$\\sqrt{n}$' },
+  { reg: /dp\[i\]/g, repl: '$dp[i]$' },
+  { reg: /dp\[j\]/g, repl: '$dp[j]$' },
+  { reg: /dp\[i\]\[j\]/g, repl: '$dp[i][j]$' },
+  { reg: /a ≡ b \(mod m\)/g, repl: '$a \\equiv b \\pmod{m}$' },
+  { reg: / \+ /g, repl: '+' }, // Cleanup internal spaces for math
+  { reg: / - /g, repl: '-' },
 ];
 
 files.forEach(f => {

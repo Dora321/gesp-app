@@ -7,7 +7,7 @@ const programmingQuestions = [
         "title": "小杨寻宝",
         "problemNumber": "2024-09-l7-Q26",
         "description": "小杨有一棵包含 n 个节点的树，部分节点上放有宝物。你可以任选一个节点作为起点在树上移动，但每条边最多只能经过一次；一旦经过某条边，这条边就会消失。每经过一个放有宝物的节点，就会获得该节点上的宝物。请判断是否存在一种出发点和移动方案，使得能拿到树上全部宝物。",
-        "inputDescription": "第一行一个正整数 T，表示测试用例组数。每组数据第一行一个正整数 n。第二行包含 n 个非负整数 a_1..a_n，其中 a_i=1 表示节点 i 有宝物，a_i=0 表示没有宝物。接下来 $$n-1$$ 行每行两个正整数 u,v，表示树上一条无向边。题目保证每组数据至少有一个节点放置宝物。",
+        "inputDescription": "第一行一个正整数 T，表示测试用例组数。每组数据第一行一个正整数 n。第二行包含 n 个非负整数 a_1..a_n，其中 a_i=1 表示节点 i 有宝物，a_i=0 表示没有宝物。接下来 $n-1$ 行每行两个正整数 u,v，表示树上一条无向边。题目保证每组数据至少有一个节点放置宝物。",
         "outputDescription": "对每组测试数据输出一行。如果能够取得所有宝物输出 Yes，否则输出 No。",
         "samples": [
             {
@@ -23,7 +23,7 @@ const programmingQuestions = [
             "构造判定"
         ],
         "template": "#include <bits/stdc++.h>\nusing namespace std;\n\nint main() {\n    ios::sync_with_stdio(false);\n    cin.tie(nullptr);\n\n    int T;\n    cin >> T;\n    while (T--) {\n        // 在此编写代码\n    }\n    return 0;\n}",
-        "referenceCode": "#include <bits/stdc++.h>\nusing namespace std;\n\nint main() {\n    ios::sync_with_stdio(false);\n    cin.tie(nullptr);\n\n    int T;\n    cin >> T;\n    while (T--) {\n        int n;\n        cin >> n;\n        vector<int> treasure($n+1$);\n        int totalTreasure = 0;\n        for (int i = 1; i <= n; ++i) {\n            cin >> treasure[i];\n            totalTreasure += treasure[i];\n        }\n\n        vector<vector<int>> g($n+1$);\n        for (int i = 1; i < n; ++i) {\n            int u, v;\n            cin >> u >> v;\n            g[u].push_back(v);\n            g[v].push_back(u);\n        }\n\n        vector<int> sub($n+1$, 0), degree($n+1$, 0);\n        function<void(int, int)> dfs = [&](int u, int parent) {\n            sub[u] = treasure[u];\n            for (int v : g[u]) {\n                if (v == parent) continue;\n                dfs(v, u);\n                if (sub[v] > 0 && totalTreasure - sub[v] > 0) {\n                    degree[u]++;\n                    degree[v]++;\n                }\n                sub[u] += sub[v];\n            }\n        };\n\n        dfs(1, 0);\n\n        bool ok = true;\n        for (int i = 1; i <= n; ++i) {\n            if (degree[i] > 2) {\n                ok = false;\n                break;\n            }\n        }\n        cout << (ok ? \"Yes\" : \"No\") << '\n';\n    }\n    return 0;\n}"
+        "referenceCode": "#include <bits/stdc++.h>\nusing namespace std;\n\nint main() {\n    ios::sync_with_stdio(false);\n    cin.tie(nullptr);\n\n    int T;\n    cin >> T;\n    while (T--) {\n        int n;\n        cin >> n;\n        vector<int> treasure($n+1$);\n        int totalTreasure = 0;\n        for (int i = 1; i <= n; ++i) {\n            cin >> treasure[i];\n            totalTreasure += treasure[i];\n        }\n\n        vector<vector<int>> g($n+1$);\n        for (int i = 1; i < n; ++i) {\n            int u, v;\n            cin >> u >> v;\n            g[u].push_back(v);\n            g[v].push_back(u);\n        }\n\n        vector<int> sub($n+1$, 0), degree($n+1$, 0);\n        function<void(int, int)> dfs = [&](int u, int parent) {\n            sub[u] = treasure[u];\n            for (int v : g[u]) {\n                if (v == parent) continue;\n                dfs(v, u);\n                if (sub[v] > 0 && totalTreasure-sub[v] > 0) {\n                    degree[u]++;\n                    degree[v]++;\n                }\n                sub[u] += sub[v];\n            }\n        };\n\n        dfs(1, 0);\n\n        bool ok = true;\n        for (int i = 1; i <= n; ++i) {\n            if (degree[i] > 2) {\n                ok = false;\n                break;\n            }\n        }\n        cout << (ok ? \"Yes\" : \"No\") << '\n';\n    }\n    return 0;\n}"
     },
     {
         "id": 27,
@@ -39,14 +39,14 @@ const programmingQuestions = [
                 "output": "4\n2"
             }
         ],
-        "explanation": "设 dp[i][j][c] 表示走到格子 (i,j) 且恰好把 c 个问号改成 1 时，能够得到的最大分数。由于转移只来自上方和左方，可以把第一维滚动掉，只保留当前行状态。遇到 1 时分数直接加 1；遇到 0 时只做普通转移；遇到 ? 时既可以不修改，也可以在还可修改时把它改成 1 再额外加 1。最终在终点位置的所有 c≤k 的状态中取最大值即可。",
+        "explanation": "设 $dp[i]$[j][c] 表示走到格子 (i,j) 且恰好把 c 个问号改成 1 时，能够得到的最大分数。由于转移只来自上方和左方，可以把第一维滚动掉，只保留当前行状态。遇到 1 时分数直接加 1；遇到 0 时只做普通转移；遇到 ? 时既可以不修改，也可以在还可修改时把它改成 1 再额外加 1。最终在终点位置的所有 c≤k 的状态中取最大值即可。",
         "tags": [
             "编程题",
             "动态规划",
             "网格DP"
         ],
         "template": "#include <bits/stdc++.h>\nusing namespace std;\n\nint main() {\n    ios::sync_with_stdio(false);\n    cin.tie(nullptr);\n\n    int T;\n    cin >> T;\n    while (T--) {\n        // 在此编写代码\n    }\n    return 0;\n}",
-        "referenceCode": "#include <bits/stdc++.h>\nusing namespace std;\n\nint main() {\n    ios::sync_with_stdio(false);\n    cin.tie(nullptr);\n\n    int T;\n    cin >> T;\n    while (T--) {\n        int n, m, k;\n        cin >> n >> m >> k;\n        vector<string> a($n+1$);\n        for (int i = 1; i <= n; ++i) {\n            cin >> a[i];\n            a[i] = \" \" + a[i];\n        }\n\n        const int NEG = -1000000000;\n        vector<vector<int>> prev(m + 1, vector<int>(k + 1, NEG));\n        for (int i = 1; i <= n; ++i) {\n            vector<vector<int>> cur(m + 1, vector<int>(k + 1, NEG));\n            for (int j = 1; j <= m; ++j) {\n                for (int used = 0; used <= k; ++used) {\n                    int best = NEG;\n                    if (i == 1 && j == 1) best = 0;\n                    if (i > 1) best = max(best, prev[j][used]);\n                    if (j > 1) best = max(best, cur[j - 1][used]);\n                    if (best <= NEG / 2) continue;\n\n                    char ch = a[i][j];\n                    if (ch == '1') {\n                        cur[j][used] = max(cur[j][used], best + 1);\n                    } else if (ch == '0') {\n                        cur[j][used] = max(cur[j][used], best);\n                    } else {\n                        cur[j][used] = max(cur[j][used], best);\n                        if (used < k) cur[j][used + 1] = max(cur[j][used + 1], best + 1);\n                    }\n                }\n            }\n            prev.swap(cur);\n        }\n\n        int ans = 0;\n        for (int used = 0; used <= k; ++used) ans = max(ans, prev[m][used]);\n        cout << ans << '\n';\n    }\n    return 0;\n}"
+        "referenceCode": "#include <bits/stdc++.h>\nusing namespace std;\n\nint main() {\n    ios::sync_with_stdio(false);\n    cin.tie(nullptr);\n\n    int T;\n    cin >> T;\n    while (T--) {\n        int n, m, k;\n        cin >> n >> m >> k;\n        vector<string> a($n+1$);\n        for (int i = 1; i <= n; ++i) {\n            cin >> a[i];\n            a[i] = \" \"+a[i];\n        }\n\n        const int NEG = -1000000000;\n        vector<vector<int>> prev(m+1, vector<int>(k+1, NEG));\n        for (int i = 1; i <= n; ++i) {\n            vector<vector<int>> cur(m+1, vector<int>(k+1, NEG));\n            for (int j = 1; j <= m; ++j) {\n                for (int used = 0; used <= k; ++used) {\n                    int best = NEG;\n                    if (i == 1 && j == 1) best = 0;\n                    if (i > 1) best = max(best, prev[j][used]);\n                    if (j > 1) best = max(best, cur[j-1][used]);\n                    if (best <= NEG / 2) continue;\n\n                    char ch = a[i][j];\n                    if (ch == '1') {\n                        cur[j][used] = max(cur[j][used], best+1);\n                    } else if (ch == '0') {\n                        cur[j][used] = max(cur[j][used], best);\n                    } else {\n                        cur[j][used] = max(cur[j][used], best);\n                        if (used < k) cur[j][used+1] = max(cur[j][used+1], best+1);\n                    }\n                }\n            }\n            prev.swap(cur);\n        }\n\n        int ans = 0;\n        for (int used = 0; used <= k; ++used) ans = max(ans, prev[m][used]);\n        cout << ans << '\n';\n    }\n    return 0;\n}"
     }
 ];
 
@@ -83,9 +83,9 @@ export const paperData = {
             type: "single",
             question: "已知a为int类型变量，下列表达式不符合语法的是（ ）。",
             options: [
-                "&a + 3",
+                "&a+3",
                 "+a & 3",
-                "a - - 4",
+                "a-- 4",
                 "a++3",
             ],
             answer: 3,
@@ -293,7 +293,7 @@ export const paperData = {
             question: "上题中程序的时间复杂度为（ ）。",
             options: [
                 "选项A",
-                "#include <iostream> #include <cmath> using namespace std; int main() { cout << (int)log(8) << endl; return 0; } 1 2 3 4 5 6 7 #include <iostream> #define N 10 using namespace std; int path[N][N]; int main() { for (int i = 1; i < N; i++) path[i][0] = i; for (int j = 1; j < N; j++) path[0][j] = j; for (int i = 1; i < N; i++) for (int j = 1; j < N; j++) path[i][j] = path[i - 1][j] + path[i][j - 1]; cout << path[8][4] << endl; return 0; } 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 题号 1 2 3 4 5 6 7 8 9 10 答案",
+                "#include <iostream> #include <cmath> using namespace std; int main() { cout << (int)log(8) << endl; return 0; } 1 2 3 4 5 6 7 #include <iostream> #define N 10 using namespace std; int path[N][N]; int main() { for (int i = 1; i < N; i++) path[i][0] = i; for (int j = 1; j < N; j++) path[0][j] = j; for (int i = 1; i < N; i++) for (int j = 1; j < N; j++) path[i][j] = path[i-1][j]+path[i][j-1]; cout << path[8][4] << endl; return 0; } 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 题号 1 2 3 4 5 6 7 8 9 10 答案",
                 "选项C",
                 "选项D",
             ],
@@ -415,7 +415,7 @@ export const paperData = {
         {
             id: 20,
             type: "judge",
-            question: "使用math.h或cmath头文件中的正弦函数，表达式sin(30)的结果类型为double、值约为0.5。 int fib_rcd[MAX_N]; int fib(int n) { if (n <= 1) return 1; if (fib_rcd[n] > 0) return fib_rcd[n]; return fib(n - 1) + fib(n - 2); } 1 2 3 4 5 6 7 8",
+            question: "使用math.h或cmath头文件中的正弦函数，表达式sin(30)的结果类型为double、值约为0.5。 int fib_rcd[MAX_N]; int fib(int n) { if (n <= 1) return 1; if (fib_rcd[n] > 0) return fib_rcd[n]; return fib(n-1)+fib(n-2); } 1 2 3 4 5 6 7 8",
             options: [
                 "正确",
                 "错误",

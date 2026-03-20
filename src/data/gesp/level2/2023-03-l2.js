@@ -73,7 +73,7 @@ export const paperData = {
             id: 7,
             type: 'single',
             question: "如果 a 和 b 都是 char 类型的变量，下列哪个语句不符合 C++ 语法？",
-            options: ["b = a + 1;", "b = a + '1';", "b = 'a'++;", "b = a++;"],
+            options: ["b = a+1;", "b = a+'1';", "b = 'a'++;", "b = a++;"],
             answer: 2,
             score: 2,
             explanation: "'a' 是字符常量，常量的值不可更改，因此不能使用自增运算符 ++。",
@@ -93,10 +93,10 @@ export const paperData = {
             id: 9,
             type: 'single',
             question: "如果 a 为 char 变量且值为 '2'，下列那条语句执行后 a 的值不会变为 '3'？",
-            options: ["a = a + 1;", "a + 1;", "a = 1 + a;", "++a;"],
+            options: ["a = a+1;", "a+1;", "a = 1+a;", "++a;"],
             answer: 1,
             score: 2,
-            explanation: "a + 1; 只是一个表达式计算，结果未赋值回变量 a，因此 a 的值保持不变。",
+            explanation: "a+1; 只是一个表达式计算，结果未赋值回变量 a，因此 a 的值保持不变。",
             tags: ["变量", "赋值"]
         },
         {
@@ -106,14 +106,14 @@ export const paperData = {
             options: ["3", "6", "9", "12"],
             answer: 1,
             score: 2,
-            explanation: "a -= 3 等价于 a = a - 3，即 9 - 3 = 6。",
+            explanation: "a -= 3 等价于 a = a-3，即 9-3 = 6。",
             tags: ["语法", "运算符"]
         },
         {
             id: 11,
             type: 'single',
             question: "下列表达式能正确判断“a 等于 0 或 b 等于 0”的是（ ）。",
-            options: ["(!a) || (!b)", "(a == b == 0)", "(a == 0) && (b == 0)", "(a == 0) - (b == 0) == 0"],
+            options: ["(!a) || (!b)", "(a == b == 0)", "(a == 0) && (b == 0)", "(a == 0)-(b == 0) == 0"],
             answer: 0,
             score: 2,
             explanation: "!a 当 a 值为 0 时返回 true，|| 是逻辑或运算符。",
@@ -123,7 +123,7 @@ export const paperData = {
             id: 12,
             type: 'single',
             question: "下列哪个表达式可以正确判断“a 是小写字母”？",
-            options: ["a <= a <= z", "a - 'a' <= 'z' - 'a'", "'a' <= a <= 'z'", "a >= 'a' && a <= 'z'"],
+            options: ["a <= a <= z", "a-'a' <= 'z'-'a'", "'a' <= a <= 'z'", "a >= 'a' && a <= 'z'"],
             answer: 3,
             score: 2,
             explanation: "在 C++ 中判断区间必须使用逻辑与 && 连接两个比较操作。",
@@ -242,7 +242,7 @@ export const paperData = {
         {
             id: 24,
             type: 'judge',
-            question: "a = a - 'a' + 'A' 可以将小写字母转换为对应的大写字母。",
+            question: "a = a-'a'+'A' 可以将小写字母转换为对应的大写字母。",
             options: ["正确", "错误"],
             answer: 0,
             score: 2,
@@ -292,10 +292,10 @@ export const paperData = {
                     output: "4"
                 }
             ],
-            explanation: "通过双重循环枚举公鸡和母鸡的数量，剩余为小鸡，判断总钱数是否符合。注意用乘法避免浮点误差：z*x*i + z*y*j + k = z*n。",
+            explanation: "通过双重循环枚举公鸡和母鸡的数量，剩余为小鸡，判断总钱数是否符合。注意用乘法避免浮点误差：z*x*i+z*y*j+k = z*n。",
             tags: ["枚举", "模拟"],
             template: "#include <iostream>\nusing namespace std;\nint main() {\n    // 在此编写代码\n    return 0;\n}",
-            referenceCode: "#include <iostream>\nusing namespace std;\nint main() {\n    int x, y, z, n, m;\n    cin >> x >> y >> z >> n >> m;\n    int cnt = 0;\n    for (int i = 0; i <= m; i++) {\n        for (int j = 0; j <= m - i; j++) {\n            int k = m - i - j;\n            if (k >= 0 && z * x * i + z * y * j + k == z * n) {\n                cnt++;\n            }\n        }\n    }\n    cout << cnt << endl;\n    return 0;\n}"
+            referenceCode: "#include <iostream>\nusing namespace std;\nint main() {\n    int x, y, z, n, m;\n    cin >> x >> y >> z >> n >> m;\n    int cnt = 0;\n    for (int i = 0; i <= m; i++) {\n        for (int j = 0; j <= m-i; j++) {\n            int k = m-i-j;\n            if (k >= 0 && z * x * i+z * y * j+k == z * n) {\n                cnt++;\n            }\n        }\n    }\n    cout << cnt << endl;\n    return 0;\n}"
         }
     ]
 };

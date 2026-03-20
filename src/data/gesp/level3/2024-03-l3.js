@@ -1,8 +1,8 @@
 // 2024年3月 GESP C++ 三级真题 (第5次认证)
 // 数据说明：本卷以官方真题 PDF 为主完成回填。
-// - 客观题 1~25 的题面均来自官方 PDF 文本提取，未使用公开解析还原题面
-// - 判断题答案表在 PDF 文本层中未被完整提取，当前答案按题面语义逐题复核填写
-// - 编程题 1~2 题名、题意、样例与参考代码来自官方 PDF，同时与公开 OJ 题号 B3956/B3957 对齐
+//-客观题 1~25 的题面均来自官方 PDF 文本提取，未使用公开解析还原题面
+//-判断题答案表在 PDF 文本层中未被完整提取，当前答案按题面语义逐题复核填写
+//-编程题 1~2 题名、题意、样例与参考代码来自官方 PDF，同时与公开 OJ 题号 B3956/B3957 对齐
 export const paperData = {
     id: '2024-03-l3',
     title: '2024年3月 GESP C++ 三级真题',
@@ -64,7 +64,7 @@ export const paperData = {
         {
             id: 6,
             type: 'single',
-            question: '下面 C++ 代码执行后数组中大于 0 的数的特征是（   ）。\n```cpp\nint main() {\n    int a[20], i;\n    for (i = 0; i < 20; i++) a[i] = i + 1;\n    for (int i = 0; i < 20; i++)\n        if ((a[i] % 2) && (a[i] % 3)) a[i] = 0;\n    for (i = 0; i < 20; i++)\n        if (a[i]) cout << a[i] << " ";\n    return 0;\n}\n```',
+            question: '下面 C++ 代码执行后数组中大于 0 的数的特征是（   ）。\n```cpp\nint main() {\n    int a[20], i;\n    for (i = 0; i < 20; i++) a[i] = i+1;\n    for (int i = 0; i < 20; i++)\n        if ((a[i] % 2) && (a[i] % 3)) a[i] = 0;\n    for (i = 0; i < 20; i++)\n        if (a[i]) cout << a[i] << " ";\n    return 0;\n}\n```',
             options: ['2 的倍数', '3 的倍数', '能被 2 或 3 整除的数', '能被 2 和 3 同时整除的数'],
             answer: 2,
             score: 2,
@@ -73,7 +73,7 @@ export const paperData = {
         {
             id: 7,
             type: 'single',
-            question: '执行下面 C++ 代码后输出的第一个数是（   ）。\n```cpp\nint main() {\n    int a[20], i;\n    for (i = 0; i < 20; i++) a[i] = i + 1;\n    for (; i > 0; i--) cout << a[i - 1] << " ";\n    return 0;\n}\n```',
+            question: '执行下面 C++ 代码后输出的第一个数是（   ）。\n```cpp\nint main() {\n    int a[20], i;\n    for (i = 0; i < 20; i++) a[i] = i+1;\n    for (; i > 0; i--) cout << a[i-1] << " ";\n    return 0;\n}\n```',
             options: ['20', '19', '1', '不确定'],
             answer: 0,
             score: 2,
@@ -83,7 +83,7 @@ export const paperData = {
             id: 8,
             type: 'single',
             question: '在下列代码的横线处填写（   ），可以使得输出是 GESP IS INTERESTING。\n```cpp\nint main() {\n    string str = "gEsP is Interesting";\n    int x = str.length();\n    for (int i = 0; i < x; i++)\n        if ((str[i] >= \"a\"[0]) && (str[i] <= \"z\"[0]))\n            ________________________;\n    cout << str << endl;\n    return 0;\n}\n```',
-            options: ["str[i] += 'a' - 'A'", 'str[i] += 20', "str[i] += 'A' - 'a'", '无法实现'],
+            options: ["str[i] += 'a'-'A'", 'str[i] += 20', "str[i] += 'A'-'a'", '无法实现'],
             answer: 2,
             score: 2,
             explanation: '把小写字母转成大写应减去 32，即加上 \"A\"-\"a\"。'
@@ -109,7 +109,7 @@ export const paperData = {
         {
             id: 11,
             type: 'single',
-            question: '下面 C++ 程序执行的结果是（   ）。\n```cpp\nint main() {\n    int a[20], i;\n    int cnt = 0;\n    for (i = 0; i < 20; i++) a[i] = i + 1;\n    for (; i > 1; i--)\n        if ((a[i - 1] + a[i - 2]) % 3) cnt++;\n    cout << cnt << endl;\n    return 0;\n}\n```',
+            question: '下面 C++ 程序执行的结果是（   ）。\n```cpp\nint main() {\n    int a[20], i;\n    int cnt = 0;\n    for (i = 0; i < 20; i++) a[i] = i+1;\n    for (; i > 1; i--)\n        if ((a[i-1]+a[i-2]) % 3) cnt++;\n    cout << cnt << endl;\n    return 0;\n}\n```',
             options: ['5', '6', '10', '12'],
             answer: 3,
             score: 2,
@@ -127,11 +127,11 @@ export const paperData = {
         {
             id: 13,
             type: 'single',
-            question: '定义整型变量 int a = 3, b = 16，则 a | b 的值和 a + b 的关系是（   ）。',
+            question: '定义整型变量 int a = 3, b = 16，则 a | b 的值和 a+b 的关系是（   ）。',
             options: ['大于', '等于', '小于', '等于或小于'],
             answer: 1,
             score: 2,
-            explanation: '3 | 16 = 19，而 3 + 16 = 19，因此两者相等。'
+            explanation: '3 | 16 = 19，而 3+16 = 19，因此两者相等。'
         },
         {
             id: 14,
@@ -248,7 +248,7 @@ export const paperData = {
             type: 'programming',
             title: '字母求和',
             problemNumber: 'B3956',
-            source: 'official-pdf + luogu-mapping',
+            source: 'official-pdf+luogu-mapping',
             description: '给定一个只含大小写英文字母的字符串。小写字母按其在字母表中的位置记为正整数（a=1, b=2, ...），大写字母按其 ASCII 码的相反数记为负整数（如 A=-65）。求整串字符对应数值之和。',
             inputDescription: '第一行一个正整数 n，表示字符串中字母个数；第二行一个长度为 n 的字符串。',
             outputDescription: '输出一个整数，表示该字符串解密后的数值。',
@@ -261,15 +261,15 @@ export const paperData = {
             explanation: '遍历字符串：若是小写字母，加上 c-\'a\'+1；若是大写字母，减去其 ASCII 码值。按题意直接模拟即可。',
             tags: ['编程题', '字符串', '模拟'],
             template: '#include <bits/stdc++.h>\nusing namespace std;\n\nint main() {\n    ios::sync_with_stdio(false);\n    cin.tie(nullptr);\n\n    // 在此编写代码\n    return 0;\n}',
-            referenceCode: '#include <iostream>\n#include <assert.h>\n#include <cstdlib>\n#include <cstdio>\n#include <cstring>\nusing namespace std;\nconst int N = 100005;\nchar str[N];\nint main() {\n    int n;\n    cin >> n;\n    cin >> str;\n    assert(n == strlen(str));\n    int ans = 0;\n    for (int i = 0; i < n; i++) {\n        if (str[i] >= \'a\' && str[i] <= \'z\')\n            ans += str[i] - \'a\' + 1;\n        else if (str[i] >= \'A\' && str[i] <= \'Z\')\n            ans -= str[i];\n        else\n            assert(false);\n    }\n    cout << ans << endl;\n    return 0;\n}'
+            referenceCode: '#include <iostream>\n#include <assert.h>\n#include <cstdlib>\n#include <cstdio>\n#include <cstring>\nusing namespace std;\nconst int N = 100005;\nchar str[N];\nint main() {\n    int n;\n    cin >> n;\n    cin >> str;\n    assert(n == strlen(str));\n    int ans = 0;\n    for (int i = 0; i < n; i++) {\n        if (str[i] >= \'a\' && str[i] <= \'z\')\n            ans += str[i]-\'a\'+1;\n        else if (str[i] >= \'A\' && str[i] <= \'Z\')\n            ans -= str[i];\n        else\n            assert(false);\n    }\n    cout << ans << endl;\n    return 0;\n}'
         },
         {
             id: 27,
             type: 'programming',
             title: '完全平方数',
             problemNumber: 'B3957',
-            source: 'official-pdf + luogu-mapping',
-            description: '给定一个包含 n 个非负整数的序列 A，统计满足 1 ≤ i < j ≤ n 且 A_i + A_j 为完全平方数的下标对数量。',
+            source: 'official-pdf+luogu-mapping',
+            description: '给定一个包含 n 个非负整数的序列 A，统计满足 1 ≤ i < j ≤ n 且 A_i+A_j 为完全平方数的下标对数量。',
             inputDescription: '第一行一个整数 n；第二行输入 n 个非负整数 A_1...A_n。',
             outputDescription: '输出一个整数，表示满足条件的数对个数。',
             samples: [
@@ -278,10 +278,10 @@ export const paperData = {
                     output: '3'
                 }
             ],
-            explanation: '直接双重循环枚举所有下标对，计算两数之和后判断其是否为完全平方数；三级数据范围下，$$$O(N^2)$$$ 的直接枚举即可通过。',
+            explanation: '直接双重循环枚举所有下标对，计算两数之和后判断其是否为完全平方数；三级数据范围下，$O(N^2)$ 的直接枚举即可通过。',
             tags: ['编程题', '枚举', '数学'],
             template: '#include <bits/stdc++.h>\nusing namespace std;\n\nint main() {\n    ios::sync_with_stdio(false);\n    cin.tie(nullptr);\n\n    // 在此编写代码\n    return 0;\n}',
-            referenceCode: '#include <bits/stdc++.h>\nusing namespace std;\nconst int N = 1010;\nint a[N];\nint main(){\n    int n;\n    cin >> n;\n    for(int i = 1; i <= n; i++) cin >> a[i];\n    int ans = 0;\n    for(int i = 1; i <= n; i++){\n        for(int j = i + 1; j <= n; j++){\n            int m = a[i] + a[j];\n            int t = sqrt(m + 1e-7);\n            if(t * t == m) ans++;\n        }\n    }\n    cout << ans << "\\n";\n}'
+            referenceCode: '#include <bits/stdc++.h>\nusing namespace std;\nconst int N = 1010;\nint a[N];\nint main(){\n    int n;\n    cin >> n;\n    for(int i = 1; i <= n; i++) cin >> a[i];\n    int ans = 0;\n    for(int i = 1; i <= n; i++){\n        for(int j = i+1; j <= n; j++){\n            int m = a[i]+a[j];\n            int t = sqrt(m+1e-7);\n            if(t * t == m) ans++;\n        }\n    }\n    cout << ans << "\\n";\n}'
         }
     ]
 };

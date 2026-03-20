@@ -15,13 +15,13 @@ export const paperData = {
         { id: 4, type: 'single', question: '下列关于 C++ 语句规则的叙述，不正确的是（ ）。', options: ['if 的判断条件必须放在小括号中', 'for 语句中间循环条件可省略，表示恒为真', '循环体有多条语句时用缩进即可消除二义性', '运算符有优先级，不仅有先乘除后加减'], answer: 2, score: 2, explanation: '多条语句必须用花括号，不是靠缩进。', tags: ['循环', '基础语法'] },
         { id: 5, type: 'single', question: '以下哪个是 C++ 语言关键字（ ）。', options: ['main', 'max', 'double', 'sqrt'], answer: 2, score: 2, explanation: 'double 是关键字，其余是常见标识符/函数名。', tags: ['变量与标识符'] },
         { id: 6, type: 'single', question: '以下哪个不是 C++ 语言运算符（ ）。', options: ['>=', '/=', '||', '<>'], answer: 3, score: 2, explanation: '<> 不是 C++ 运算符。', tags: ['运算符'] },
-        { id: 7, type: 'single', question: '若 a 为 int、b 为 char，下列哪个语句不符合 C++ 语法（ ）。', options: ['a = a + 1.0;', 'a = (int)(b - \'0\');', 'b = (char)(a + \'0\');', '(int)b = a;'], answer: 3, score: 2, explanation: '强制类型转换结果不是可赋值左值。', tags: ['变量与标识符', '运算符'] },
-        { id: 8, type: 'single', question: '用 int 变量 a、b 表示平行四边形边长，int 变量 h 表示 a 边对应高，以下哪个表达式不能用于计算 b 边对应高（ ）。', options: ['a / b * (0.0 + h)', '(0.0 + a * h) / b', 'a * h / (b + 0.0)', '(a + 0.0) * h / b'], answer: 0, score: 2, explanation: 'A 中先发生 int/int，易丢失精度。', tags: ['运算符', '程序分析'] },
+        { id: 7, type: 'single', question: '若 a 为 int、b 为 char，下列哪个语句不符合 C++ 语法（ ）。', options: ['a = a+1.0;', 'a = (int)(b-\'0\');', 'b = (char)(a+\'0\');', '(int)b = a;'], answer: 3, score: 2, explanation: '强制类型转换结果不是可赋值左值。', tags: ['变量与标识符', '运算符'] },
+        { id: 8, type: 'single', question: '用 int 变量 a、b 表示平行四边形边长，int 变量 h 表示 a 边对应高，以下哪个表达式不能用于计算 b 边对应高（ ）。', options: ['a / b * (0.0+h)', '(0.0+a * h) / b', 'a * h / (b+0.0)', '(a+0.0) * h / b'], answer: 0, score: 2, explanation: 'A 中先发生 int/int，易丢失精度。', tags: ['运算符', '程序分析'] },
         { id: 9, type: 'single', question: '以下哪个循环语句会无限次执行（ ）。', options: ['for (int a = 0; a; a++) ;', 'for (bool b = false; b <= true; b++) ;', 'for (char c = \'A\'; c < \'z\'; c++) ;', 'for (double d = 0.0; d < 10.0; d += 0.001) ;'], answer: 1, score: 2, explanation: 'bool 自增后会保持 true，条件始终成立。', tags: ['循环', '程序分析'] },
-        { id: 10, type: 'single', question: '若 char 变量 a 的值为 \'C\'（ASCII 67），执行 cout << (a + 2); 输出（ ）。', options: ['E', 'C+2', 'C2', '69'], answer: 3, score: 2, explanation: '表达式提升为 int，输出数值 69。', tags: ['输入输出', '运算符'] },
+        { id: 10, type: 'single', question: '若 char 变量 a 的值为 \'C\'（ASCII 67），执行 cout << (a+2); 输出（ ）。', options: ['E', 'C+2', 'C2', '69'], answer: 3, score: 2, explanation: '表达式提升为 int，输出数值 69。', tags: ['输入输出', '运算符'] },
         { id: 11, type: 'single', question: '若 a、b 均为 int，能正确判断“a 等于 1 且 b 等于 1”的表达式是（ ）。', options: ['(a == b) && (b == 1)', '(a && b)', '(a == b == 1)', '(a * b == 1)'], answer: 0, score: 2, explanation: 'A 选项明确表达两个条件同时成立。', tags: ['条件判断', '运算符'] },
         { id: 12, type: 'single', question: '若 a 为 char，哪个表达式可正确判断“a 是数字字符”（ ）。', options: ['\'0\' <= a && a <= \'9\'', '\'1\' <= a && a <= \'0\'', '\'0\' <= a <= \'9\'', '\'1\' <= a <= \'0\''], answer: 0, score: 2, explanation: '需使用 && 连接两个比较。', tags: ['条件判断', '运算符'] },
-        { id: 13, type: 'single', question: '在给定代码横线处填入（ ），使得最终输出字符是 9。', options: ['(a + b)', '(a + b - \'0\')', '(char)(a + b)', '(char)(a + b - \'0\')'], answer: 3, score: 2, explanation: '需先按 ASCII 计算并转换回 char。', tags: ['程序分析', '运算符'] },
+        { id: 13, type: 'single', question: '在给定代码横线处填入（ ），使得最终输出字符是 9。', options: ['(a+b)', '(a+b-\'0\')', '(char)(a+b)', '(char)(a+b-\'0\')'], answer: 3, score: 2, explanation: '需先按 ASCII 计算并转换回 char。', tags: ['程序分析', '运算符'] },
         { id: 14, type: 'single', question: '在给定循环代码横线处填写（ ），可以使输出为 42。', options: ['i % 3 == 0', '20 % i == 0', 'i <= 8', 'i >= 18'], answer: 1, score: 2, explanation: '根据原题程序模拟可得 B。', tags: ['循环', '程序分析'] },
         { id: 15, type: 'single', question: '执行给定 C++ 程序后，输出结果是（ ）。', options: ['A', 'B', 'C', 'D'], answer: 2, score: 2, explanation: '根据原卷答案，第15题为 C。', tags: ['程序分析'] },
 
@@ -33,7 +33,7 @@ export const paperData = {
         { id: 21, type: 'judge', question: 'if 语句中，若条件成立需执行多条语句，可用花括号把这些语句括起来。', options: ['正确', '错误'], answer: 0, score: 2, explanation: '这是标准写法。', tags: ['判断题'] },
         { id: 22, type: 'judge', question: '循环语句的循环体有可能无限制执行下去。', options: ['正确', '错误'], answer: 0, score: 2, explanation: '循环条件始终为真时会无限循环。', tags: ['判断题'] },
         { id: 23, type: 'judge', question: '++ 和 == 是 C++ 运算符，但 += 不是。', options: ['正确', '错误'], answer: 1, score: 2, explanation: '+= 也是运算符。', tags: ['判断题'] },
-        { id: 24, type: 'judge', question: '若 a 为 char 且值为大写字母 F，执行 a = a + 1 后，a 变为 G。', options: ['正确', '错误'], answer: 0, score: 2, explanation: 'ASCII 顺延一位。', tags: ['判断题'] },
+        { id: 24, type: 'judge', question: '若 a 为 char 且值为大写字母 F，执行 a = a+1 后，a 变为 G。', options: ['正确', '错误'], answer: 0, score: 2, explanation: 'ASCII 顺延一位。', tags: ['判断题'] },
         { id: 25, type: 'judge', question: '表达式 sqrt(9.0) 的结果为 3，且结果类型为 int。', options: ['正确', '错误'], answer: 1, score: 2, explanation: 'sqrt 返回 double。', tags: ['判断题'] }
     ],
     programmingQuestions: [

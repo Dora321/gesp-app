@@ -62,7 +62,7 @@ export const paperData = {
             id: 6,
             type: 'single',
             question: "今天星期六，其后第N天星期⼏？如果是星期一到星期六输出形如：星期1.星期2等，星期天则输出星期 天。下⾯的C++代码用于完成上述要求，横线处应填上的代码是（ ）。",
-            options: ["(N + 6) / 7", "(N + 6) // 7", "N % 7", "(N + 6) % 7"],
+            options: ["(N+6) / 7", "(N+6) // 7", "N % 7", "(N+6) % 7"],
             answer: 3,
             score: 2,
             explanation: '答案依据官方答案。',
@@ -111,7 +111,7 @@ export const paperData = {
         {
             id: 11,
             type: 'single',
-            question: "下面 C++ 代码用于输出如下图形，横线处填入（ ）。\n```cpp\nfor (int i = 0; i < 3; i++) {\n    for (int j = 0; j < i + 1; j++) \n        printf(\"%d-%d#\", i, j);\n    printf(\"END\\n\");\n}\n```",
+            question: "下面 C++ 代码用于输出如下图形，横线处填入（ ）。\n```cpp\nfor (int i = 0; i < 3; i++) {\n    for (int j = 0; j < i+1; j++) \n        printf(\"%d-%d#\", i, j);\n    printf(\"END\\n\");\n}\n```",
             options: ["0#0-1#0-2#0-2#1-END", "0#0-1#0-1#1-2#0-2#1-2#2-3#0-3#1-3#2-END", "0#0-1#0-1#1-2#0-2#1-2#2-END", "0-0#END\n1-0#1-1#END\n2-0#2-1#2-2#END"],
             answer: 3,
             score: 2,
@@ -152,7 +152,7 @@ export const paperData = {
             id: 15,
             type: 'single',
             question: "下面C++代码实现输出如下图形，相关说法错误的是（ ）。",
-            options: ["代码 now_number = 0 移动到L1和L2标记的两行代码之间，效果维持不变", "代码 now_number += 1 修改为 now_number = 1 + now_number，效果维持不变", "将代码 now_number == 10 调整为 now_number > 9，效果维持不变", "将最后一行的 cout << endl 修改为 cout << \"\n\"，效果维持不变"],
+            options: ["代码 now_number = 0 移动到L1和L2标记的两行代码之间，效果维持不变", "代码 now_number += 1 修改为 now_number = 1+now_number，效果维持不变", "将代码 now_number == 10 调整为 now_number > 9，效果维持不变", "将最后一行的 cout << endl 修改为 cout << \"\n\"，效果维持不变"],
             answer: 0,
             score: 2,
             explanation: '答案依据官方答案。',
@@ -288,7 +288,7 @@ export const paperData = {
         "type": "programming",
         "title": "幂和数",
         "problemNumber": "B4357",
-        "description": "对于正整数 n，如果 n 可以表为两个 2 的次幂之和，即 n = 2^x + 2^y（x, y 均为非负整数），那么称 n 为幂和数。 给定正整数 l, r，请你求出满足 l ≤ n ≤ r 的整数 n 中有多少个幂和数。",
+        "description": "对于正整数 n，如果 n 可以表为两个 2 的次幂之和，即 n = 2^x+2^y（x, y 均为非负整数），那么称 n 为幂和数。 给定正整数 l, r，请你求出满足 l ≤ n ≤ r 的整数 n 中有多少个幂和数。",
         "inputDescription": "一行，两个正整数 l, r，含义如上。",
         "outputDescription": "输出一行，一个整数，表示 l, r 之间幂和数的数量。",
         "samples": [
@@ -304,7 +304,7 @@ export const paperData = {
             "集合"
         ],
         "template": "#include <bits/stdc++.h>\nusing namespace std;\n\nint main() {\n    ios::sync_with_stdio(false);\n    cin.tie(nullptr);\n\n    // 在此编写代码\n    return 0;\n}",
-        "referenceCode": "#include <bits/stdc++.h>\nusing namespace std;\n\nint main() {\n    ios::sync_with_stdio(false);\n    cin.tie(nullptr);\n\n    long long l, r;\n    cin >> l >> r;\n    set<long long> s;\n    vector<long long> pw;\n    for (long long x = 1; x <= r; x <<= 1) {\n        pw.push_back(x);\n        if (x > r / 2) break;\n    }\n    for (long long a : pw) {\n        for (long long b : pw) {\n            if (a + b >= l && a + b <= r) s.insert(a + b);\n        }\n    }\n    cout << s.size() << '\\n';\n    return 0;\n}"
+        "referenceCode": "#include <bits/stdc++.h>\nusing namespace std;\n\nint main() {\n    ios::sync_with_stdio(false);\n    cin.tie(nullptr);\n\n    long long l, r;\n    cin >> l >> r;\n    set<long long> s;\n    vector<long long> pw;\n    for (long long x = 1; x <= r; x <<= 1) {\n        pw.push_back(x);\n        if (x > r / 2) break;\n    }\n    for (long long a : pw) {\n        for (long long b : pw) {\n            if (a+b >= l && a+b <= r) s.insert(a+b);\n        }\n    }\n    cout << s.size() << '\\n';\n    return 0;\n}"
     }
 ]
 };

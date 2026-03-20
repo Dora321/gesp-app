@@ -316,7 +316,7 @@ export const paperData = {
         {
             id: 17,
             type: "judge",
-            question: "已知double类型的变量a和b，则执⾏语句a = a + b; b = a - b; a = a - b;后，变量a和b的 值会互换。",
+            question: "已知double类型的变量a和b，则执⾏语句a = a+b; b = a-b; a = a-b;后，变量a和b的 值会互换。",
             options: [
                 "正确",
                 "错误",
@@ -350,7 +350,7 @@ export const paperData = {
         {
             id: 19,
             type: "judge",
-            question: "已知int类型的变量a和b中分别存储着一个直角三角形的两条直角边的长度，则斜边的长度可以通过表 达式sqrt(a * a + b * b)求得。",
+            question: "已知int类型的变量a和b中分别存储着一个直角三角形的两条直角边的长度，则斜边的长度可以通过表 达式sqrt(a * a+b * b)求得。",
             options: [
                 "正确",
                 "错误",
@@ -452,7 +452,7 @@ export const paperData = {
         {
             id: 25,
             type: "judge",
-            question: "要判断无向图的连通性，在深度优先搜索和⼴度优先搜索中选择，深度优先的平均时间复杂度更低。 #include <iostream> using namespace std; int main() { int cnt = 0; for (int x = 0; x <= 10; x++) for (int y = 0; y <= 10; y++) for (int z = 0; z <= 10; z++) if (x + y + z <= 15) cnt++; cout << cnt << endl; return 0; } 1 2 3 4 5 6 7 8 9 10 11 12 子任务编号 数据点占比 特殊条件 1 30% 树的形态为一条链 2 30% 3 40%",
+            question: "要判断无向图的连通性，在深度优先搜索和⼴度优先搜索中选择，深度优先的平均时间复杂度更低。 #include <iostream> using namespace std; int main() { int cnt = 0; for (int x = 0; x <= 10; x++) for (int y = 0; y <= 10; y++) for (int z = 0; z <= 10; z++) if (x+y+z <= 15) cnt++; cout << cnt << endl; return 0; } 1 2 3 4 5 6 7 8 9 10 11 12 子任务编号 数据点占比 特殊条件 1 30% 树的形态为一条链 2 30% 3 40%",
             options: [
                 "正确",
                 "错误",

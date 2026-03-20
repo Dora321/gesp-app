@@ -73,11 +73,11 @@ export const paperData = {
     {
       id: 5,
       type: 'single',
-      question: 'C++表达式 `2 + 3 * 4 % 5` 的值为（ ）。',
+      question: 'C++表达式 `2+3 * 4 % 5` 的值为（ ）。',
       options: ['0', '4', '14', '50'],
       answer: 1,
       score: 2,
-      explanation: '优先级：* 和 % 高于 +。3 * 4 = 12, 12 % 5 = 2, 2 + 2 = 4。',
+      explanation: '优先级：* 和 % 高于 +。3 * 4 = 12, 12 % 5 = 2, 2+2 = 4。',
       tags: [LEVEL1_TAGS.operator],
     },
     {
@@ -127,8 +127,8 @@ export const paperData = {
       options: [
         'L1 的 i < 10 改为 i < 11 结果相同。',
         'L1 的 i = 1 改为 i = 0 结果相同。',
-        'tnt += i 与 tnt = tnt + i 结果相同。',
-        'tnt += i 与 tnt = i + tnt 结果相同。',
+        'tnt += i 与 tnt = tnt+i 结果相同。',
+        'tnt += i 与 tnt = i+tnt 结果相同。',
       ],
       answer: 1,
       score: 2,
@@ -149,10 +149,10 @@ export const paperData = {
       id: 12,
       type: 'single',
       question: '两个正整数，只要不相等，就一直进行如下操作：最大数减去最小数得到一个值，该值和两个数中的最小数构成两个新的正整数，重复操作，直到两个数相等。此时输出。编程解决上述问题，横线处应选 ( )。\n```cpp\nwhile (N != M) {\n    if (N > M)\n        ________________\n    else\n        ________________\n}\ncout << N;\n```',
-      options: ['N = N - M; M = M - N;', 'N -= M; M -= N;', 'N = M; M = N;', 'M = N; N = M;'],
+      options: ['N = N-M; M = M-N;', 'N -= M; M -= N;', 'N = M; M = N;', 'M = N; N = M;'],
       answer: 0,
       score: 2,
-      explanation: '更相减损术。大数减小数。选项A中第一个分号后是 M = M - N，实际 N>M 时只应执行 N = N - M，逻辑隐藏在该 ifelse 指令流中。',
+      explanation: '更相减损术。大数减小数。选项A中第一个分号后是 M = M-N，实际 N>M 时只应执行 N = N-M，逻辑隐藏在该 ifelse 指令流中。',
       tags: [LEVEL1_TAGS.loop, LEVEL1_TAGS.basics],
     },
     {
@@ -183,11 +183,11 @@ export const paperData = {
     {
       id: 15,
       type: 'single',
-      question: '执行下面C++代码可以找出千位与个位的和恰好等于中间两位的四位数，横线应填入 ( )。\n```cpp\nint count = 0;\nint a, bc, d, tmp;\nfor (int i = 1000; i <= 9999; i++){\n    a = (tmp = i) / 1000;\n    __________________\n    bc = tmp / 10;\n    d = tmp - bc * 10;\n    if (a + d == bc) {\n        count++;\n    }\n}\ncout << count;\n```',
+      question: '执行下面C++代码可以找出千位与个位的和恰好等于中间两位的四位数，横线应填入 ( )。\n```cpp\nint count = 0;\nint a, bc, d, tmp;\nfor (int i = 1000; i <= 9999; i++){\n    a = (tmp = i) / 1000;\n    __________________\n    bc = tmp / 10;\n    d = tmp-bc * 10;\n    if (a+d == bc) {\n        count++;\n    }\n}\ncout << count;\n```',
       options: ['tmp = i / 1000;', 'tmp = i % 1000;', 'tmp -= a * 1000;', 'tmp %= 100;'],
       answer: 2,
       score: 2,
-      explanation: 'a 取了千位。去掉千位后得到中间两位加个位，应为 tmp = tmp - a * 1000。',
+      explanation: 'a 取了千位。去掉千位后得到中间两位加个位，应为 tmp = tmp-a * 1000。',
       tags: [LEVEL1_TAGS.basics, LEVEL1_TAGS.operator],
     },
     {

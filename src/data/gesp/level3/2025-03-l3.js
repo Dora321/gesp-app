@@ -1,8 +1,8 @@
 // 2025年3月 GESP C++ 三级真题 (第9次认证)
 // 数据说明：本卷以官方真题 PDF 为主完成回填。
-// - 客观题 1~15：题面、选项与单选答案可由官方 PDF 文本层直接提取并整理。
-// - 判断题 16~25：题面来自官方 PDF；官方 PDF 文本层未完整带出答案表，当前答案依据官方题面 + 公开解析交叉复核填写。
-// - 编程题 26~27：题名、题意、样例与参考代码主体来自官方 PDF；其中个别数学符号/数据范围因 PDF 文本层缺字，按官方题意做等价整理。
+//-客观题 1~15：题面、选项与单选答案可由官方 PDF 文本层直接提取并整理。
+//-判断题 16~25：题面来自官方 PDF；官方 PDF 文本层未完整带出答案表，当前答案依据官方题面+公开解析交叉复核填写。
+//-编程题 26~27：题名、题意、样例与参考代码主体来自官方 PDF；其中个别数学符号/数据范围因 PDF 文本层缺字，按官方题意做等价整理。
 export const paperData = {
     id: '2025-03-l3',
     title: '2025年3月 GESP C++ 三级真题',
@@ -110,7 +110,7 @@ export const paperData = {
             id: 11,
             type: 'single',
             question: '下面枚举法查找最大值索引程序中，横线处应该填写的是（ ）\n```cpp\n#include <iostream>\nusing namespace std;\nint main() {\n    int arr[] = {3, 7, 2, 9, 5};\n    int maxIndex = 0;\n    for (int i = 1; i < 5; i++) {\n        ____________________________\n        {\n            maxIndex = i;\n        }\n    }\n    cout << maxIndex;\n    return 0;\n}\n```',
-            options: ['if (arr[maxIndex] > arr[i])', 'if (arr[i] - 1 > arr[maxIndex])', 'if (arr[i] + 1 > arr[maxIndex])', 'if (arr[i] > arr[maxIndex])'],
+            options: ['if (arr[maxIndex] > arr[i])', 'if (arr[i]-1 > arr[maxIndex])', 'if (arr[i]+1 > arr[maxIndex])', 'if (arr[i] > arr[maxIndex])'],
             answer: 3,
             score: 2,
             explanation: '枚举最大值下标时，应比较当前位置元素和当前最大值元素，即 arr[i] > arr[maxIndex]。'
@@ -194,7 +194,7 @@ export const paperData = {
             options: ['正确', '错误'],
             answer: 0,
             score: 2,
-            explanation: '每个同学均有“选/不选”两种独立决策，因此总方案数为 $$2^n$$。'
+            explanation: '每个同学均有“选/不选”两种独立决策，因此总方案数为 $2^n$。'
         },
         {
             id: 21,
@@ -217,7 +217,7 @@ export const paperData = {
         {
             id: 23,
             type: 'judge',
-            question: '两个 13 进制的数 A 和 B，在 10 进制下分别表示 10 和 11。 (A + B)13 = (18)13，也就是说 13 进制数 A 加上 13 进制数 B，和是 13 进制数 18。',
+            question: '两个 13 进制的数 A 和 B，在 10 进制下分别表示 10 和 11。 (A+B)13 = (18)13，也就是说 13 进制数 A 加上 13 进制数 B，和是 13 进制数 18。',
             options: ['正确', '错误'],
             answer: 0,
             score: 2,
@@ -239,7 +239,7 @@ export const paperData = {
             options: ['正确', '错误'],
             answer: 1,
             score: 2,
-            explanation: 'CCF₁₉ = 12×19² + 12×19 + 15 = 4575；21AC₁₃ = 2×13³ + 1×13² + 10×13 + 12 = 4705，二者不相等。'
+            explanation: 'CCF₁₉ = 12×19²+12×19+15 = 4575；21AC₁₃ = 2×13³+1×13²+10×13+12 = 4705，二者不相等。'
         }
     ],
     programmingQuestions: [
@@ -248,8 +248,8 @@ export const paperData = {
             type: 'programming',
             title: '2025',
             problemNumber: 'B4261',
-            source: 'official-pdf + luogu-mapping',
-            description: '小 A 有一个整数 x，他想找到最小的正整数 y，使得 (x & y) + (x | y) = 2025，其中 & 表示按位与，| 表示按位或。如果不存在满足条件的 y，则输出 -1。根据恒等式 (x & y) + (x | y) = x + y，本题等价于求最小正整数 y = 2025 - x；若该值不为正，则无解。',
+            source: 'official-pdf+luogu-mapping',
+            description: '小 A 有一个整数 x，他想找到最小的正整数 y，使得 (x & y)+(x | y) = 2025，其中 & 表示按位与，| 表示按位或。如果不存在满足条件的 y，则输出 -1。根据恒等式 (x & y)+(x | y) = x+y，本题等价于求最小正整数 y = 2025-x；若该值不为正，则无解。',
             inputDescription: '输入一行，一个整数 x。',
             outputDescription: '输出一行，一个整数。若存在满足条件的最小正整数 y，则输出它；否则输出 -1。',
             samples: [
@@ -258,17 +258,17 @@ export const paperData = {
                     output: '1000'
                 }
             ],
-            explanation: '由按位恒等式 (x & y) + (x | y) = x + y，可知只要 2025 - x > 0，答案就是 2025 - x；否则不存在正整数解。官方 PDF 参考程序使用 1..2025 暴力枚举，但可直接化简。',
+            explanation: '由按位恒等式 (x & y)+(x | y) = x+y，可知只要 2025-x > 0，答案就是 2025-x；否则不存在正整数解。官方 PDF 参考程序使用 1..2025 暴力枚举，但可直接化简。',
             tags: ['编程题', '位运算', '数学'],
             template: '#include <bits/stdc++.h>\nusing namespace std;\n\nint main() {\n    ios::sync_with_stdio(false);\n    cin.tie(nullptr);\n\n    // 在此编写代码\n    return 0;\n}',
-            referenceCode: '#include <bits/stdc++.h>\nusing namespace std;\n\nint main() {\n    ios::sync_with_stdio(false);\n    cin.tie(nullptr);\n\n    long long x;\n    cin >> x;\n    long long y = 2025 - x;\n    if (y > 0) cout << y << "\\n";\n    else cout << -1 << "\\n";\n    return 0;\n}'
+            referenceCode: '#include <bits/stdc++.h>\nusing namespace std;\n\nint main() {\n    ios::sync_with_stdio(false);\n    cin.tie(nullptr);\n\n    long long x;\n    cin >> x;\n    long long y = 2025-x;\n    if (y > 0) cout << y << "\\n";\n    else cout << -1 << "\\n";\n    return 0;\n}'
         },
         {
             id: 27,
             type: 'programming',
             title: '词频统计',
             problemNumber: 'B4262',
-            source: 'official-pdf + luogu-mapping',
+            source: 'official-pdf+luogu-mapping',
             description: '给定 n 个仅由大小写英文字母组成的单词，忽略大小写后统计每个单词出现次数，输出出现次数最多的那个单词。题目保证最高频单词唯一，输出时需要转为小写。',
             inputDescription: '第一行一个整数 n，表示单词数量；接下来 n 行，每行一个单词。输入保证出现次数最多的单词唯一。',
             outputDescription: '输出一行，包含出现次数最多的单词，且以小写形式输出。',

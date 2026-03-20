@@ -22,7 +22,7 @@ const programmingQuestions = [
             "递推"
         ],
         "template": "#include <bits/stdc++.h>\nusing namespace std;\n\nint main() {\n    // 在此编写代码\n    return 0;\n}",
-        "referenceCode": "#include <bits/stdc++.h>\nusing namespace std;\n\nint main() {\n    ios::sync_with_stdio(false);\n    cin.tie(nullptr);\n\n    long long n, a, b, mod;\n    cin >> n >> a >> b >> mod;\n    vector<long long> f($n+1$, 0);\n    for (long long x = 1; x <= n; ++x) {\n        long long v1 = (x <= a ? 1 : f[x - a]);\n        long long v2 = (x <= b ? 1 : f[x - b]);\n        f[x] = (v1 + v2) % mod;\n    }\n    cout << f[n] % mod << '\\n';\n    return 0;\n}"
+        "referenceCode": "#include <bits/stdc++.h>\nusing namespace std;\n\nint main() {\n    ios::sync_with_stdio(false);\n    cin.tie(nullptr);\n\n    long long n, a, b, mod;\n    cin >> n >> a >> b >> mod;\n    vector<long long> f($n+1$, 0);\n    for (long long x = 1; x <= n; ++x) {\n        long long v1 = (x <= a ? 1 : f[x-a]);\n        long long v2 = (x <= b ? 1 : f[x-b]);\n        f[x] = (v1+v2) % mod;\n    }\n    cout << f[n] % mod << '\\n';\n    return 0;\n}"
     },
     {
         "id": 27,
@@ -38,14 +38,14 @@ const programmingQuestions = [
                 "output": "6"
             }
         ],
-        "explanation": "若两头相邻的牛分别是 i、j，则它们之间至少要空出 max(a_i,a_j) 个牛棚，整段长度就是 n 加上相邻空棚数之和。把攻击范围从小到大排列即可使这部分和最小，答案化为 n + (a_1+...+a_n) - min(a_i)。",
+        "explanation": "若两头相邻的牛分别是 i、j，则它们之间至少要空出 max(a_i,a_j) 个牛棚，整段长度就是 n 加上相邻空棚数之和。把攻击范围从小到大排列即可使这部分和最小，答案化为 n+(a_1+...+a_n)-min(a_i)。",
         "tags": [
             "编程题",
             "贪心",
             "构造"
         ],
         "template": "#include <bits/stdc++.h>\nusing namespace std;\n\nint main() {\n    // 在此编写代码\n    return 0;\n}",
-        "referenceCode": "#include <bits/stdc++.h>\nusing namespace std;\n\nint main() {\n    ios::sync_with_stdio(false);\n    cin.tie(nullptr);\n\n    int n;\n    cin >> n;\n    long long sum = 0;\n    int mn = INT_MAX;\n    for (int i = 0; i < n; ++i) {\n        int x;\n        cin >> x;\n        sum += x;\n        mn = min(mn, x);\n    }\n    cout << sum - mn + n << '\\n';\n    return 0;\n}"
+        "referenceCode": "#include <bits/stdc++.h>\nusing namespace std;\n\nint main() {\n    ios::sync_with_stdio(false);\n    cin.tie(nullptr);\n\n    int n;\n    cin >> n;\n    long long sum = 0;\n    int mn = INT_MAX;\n    for (int i = 0; i < n; ++i) {\n        int x;\n        cin >> x;\n        sum += x;\n        mn = min(mn, x);\n    }\n    cout << sum-mn+n << '\\n';\n    return 0;\n}"
     }
 ];
 
@@ -199,7 +199,7 @@ export const paperData = {
             options: [
                 "1 2 8 9 4 5 3 6 7 10 11",
                 "1 2 3 4 5 6 7 8 9 10 11",
-                "1 2 3 8 9 6 4 5 7 10 11 vector<int> dp(n, 0); dp[0] = nums[0]; dp[1] = max(nums[0], nums[1]); for (int i = 2; i < n; ++i) { dp[i] = max(dp[i - 1], nums[i] + dp[i - 2]); } return dp[n - 1]; } 7 8 9 10 11 12 13 14 void bfs(TreeNode* root) { if (root == NULL) { return; } queue<TreeNode*> q; q.push(root); while (!q.empty()) { TreeNode* current = q.front(); q.pop(); cout << current->val << \" \"; if (current->left) { q.push(current->left); } if (current->right) { q.push(current->right); } } } 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 1 / \ 2 3 / \ \ 8 9 6 / \ \ 4 5 7 / \ 10 11 1 2 3 4 5 6 7 8 9",
+                "1 2 3 8 9 6 4 5 7 10 11 vector<int> dp(n, 0); dp[0] = nums[0]; dp[1] = max(nums[0], nums[1]); for (int i = 2; i < n; ++i) { $dp[i]$ = max(dp[i-1], nums[i]+dp[i-2]); } return dp[n-1]; } 7 8 9 10 11 12 13 14 void bfs(TreeNode* root) { if (root == NULL) { return; } queue<TreeNode*> q; q.push(root); while (!q.empty()) { TreeNode* current = q.front(); q.pop(); cout << current->val << \" \"; if (current->left) { q.push(current->left); } if (current->right) { q.push(current->right); } } } 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 1 / \ 2 3 / \ \ 8 9 6 / \ \ 4 5 7 / \ 10 11 1 2 3 4 5 6 7 8 9",
                 "1 2 3 8 9 4 5 6 7 10 11",
             ],
             answer: 2,

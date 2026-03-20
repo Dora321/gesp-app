@@ -13,10 +13,10 @@ const programmingQuestions = [
             { input: "3\n1 3 5 6 8 10\n2 4 6 7 9 11", output: "36" },
             { input: "2\n6 7 9 9\n1 2 10 12", output: "35" }
         ],
-        explanation: "先假设全部卖给小 B，得到基础收入 sum(b_i)。再计算每件物品若改卖给小 C 的增量 d_i = c_i - b_i。为了让小 C 恰好买走 n 件物品，只需选择增量最大的 n 件改卖给小 C。",
+        explanation: "先假设全部卖给小 B，得到基础收入 sum(b_i)。再计算每件物品若改卖给小 C 的增量 d_i = c_i-b_i。为了让小 C 恰好买走 n 件物品，只需选择增量最大的 n 件改卖给小 C。",
         tags: ["编程题", "贪心", "排序"],
         template: "#include <bits/stdc++.h>\nusing namespace std;\n\nint main() {\n    int n;\n    cin >> n;\n    // 在此编写代码\n    return 0;\n}",
-        referenceCode: "#include <bits/stdc++.h>\nusing namespace std;\nconst int N = 2e5 + 5;\nint n;\nlong long b[N], c[N], d[N];\nlong long ans;\nint main() {\n    scanf(\"%d\", &n);\n    for (int i = 1; i <= 2 * n; i++) scanf(\"%lld\", &b[i]);\n    for (int i = 1; i <= 2 * n; i++) scanf(\"%lld\", &c[i]);\n    for (int i = 1; i <= 2 * n; i++) {\n        ans += b[i];\n        d[i] = c[i] - b[i];\n    }\n    sort(d + 1, d + 2 * $n+1$);\n    for (int i = $n+1$; i <= 2 * n; i++) ans += d[i];\n    printf(\"%lld\\n\", ans);\n    return 0;\n}"
+        referenceCode: "#include <bits/stdc++.h>\nusing namespace std;\nconst int N = 2e5+5;\nint n;\nlong long b[N], c[N], d[N];\nlong long ans;\nint main() {\n    scanf(\"%d\", &n);\n    for (int i = 1; i <= 2 * n; i++) scanf(\"%lld\", &b[i]);\n    for (int i = 1; i <= 2 * n; i++) scanf(\"%lld\", &c[i]);\n    for (int i = 1; i <= 2 * n; i++) {\n        ans += b[i];\n        d[i] = c[i]-b[i];\n    }\n    sort(d+1, d+2 * $n+1$);\n    for (int i = $n+1$; i <= 2 * n; i++) ans += d[i];\n    printf(\"%lld\\n\", ans);\n    return 0;\n}"
     },
     {
         id: 27,
@@ -32,7 +32,7 @@ const programmingQuestions = [
         explanation: "对质数 p，只需验证对于 p-1 的每个不同质因子 q，都有 a^((p-1)/q) mod p != 1。若全部成立，则 a 是 p 的原根。",
         tags: ["编程题", "数论", "快速幂", "原根"],
         template: "#include <bits/stdc++.h>\nusing namespace std;\n\nint main() {\n    int T;\n    cin >> T;\n    // 在此编写代码\n    return 0;\n}",
-        referenceCode: "#include <cstdio>\nusing namespace std;\nint a, p;\nint ans;\nint fpw(int b, int e) {\n    if (e == 0) return 1;\n    int r = fpw(b, e >> 1);\n    r = 1ll * r * r % p;\n    if (e & 1) r = 1ll * r * b % p;\n    return r;\n}\nvoid check(int e) {\n    if (fpw(a, e) == 1) ans = 0;\n}\nint main() {\n    int T;\n    scanf(\"%d\", &T);\n    while (T--) {\n        scanf(\"%d%d\", &a, &p);\n        ans = 1;\n        int phi = p - 1, r = phi;\n        for (int i = 2; i * i <= phi; i++)\n            if (phi % i == 0) {\n                check(phi / i);\n                while (r % i == 0) r /= i;\n            }\n        if (r > 1) check(phi / r);\n        printf(ans ? \"Yes\\n\" : \"No\\n\");\n    }\n    return 0;\n}"
+        referenceCode: "#include <cstdio>\nusing namespace std;\nint a, p;\nint ans;\nint fpw(int b, int e) {\n    if (e == 0) return 1;\n    int r = fpw(b, e >> 1);\n    r = 1ll * r * r % p;\n    if (e & 1) r = 1ll * r * b % p;\n    return r;\n}\nvoid check(int e) {\n    if (fpw(a, e) == 1) ans = 0;\n}\nint main() {\n    int T;\n    scanf(\"%d\", &T);\n    while (T--) {\n        scanf(\"%d%d\", &a, &p);\n        ans = 1;\n        int phi = p-1, r = phi;\n        for (int i = 2; i * i <= phi; i++)\n            if (phi % i == 0) {\n                check(phi / i);\n                while (r % i == 0) r /= i;\n            }\n        if (r > 1) check(phi / r);\n        printf(ans ? \"Yes\\n\" : \"No\\n\");\n    }\n    return 0;\n}"
     }
 ];
 
@@ -184,7 +184,7 @@ export const paperData = {
             question: "对下面两个求阶乘的函数，说法错误的是（ ）。",
             options: [
                 "两个函数的实现的功能相同。",
-                "两个函数的时间复杂度均为 $$$O(N)$$$。",
+                "两个函数的时间复杂度均为 $O(N)$。",
                 "factorialA采用递归方式。",
                 "factorialB采用递归方式。",
             ],
@@ -259,9 +259,9 @@ export const paperData = {
             type: "single",
             question: "下面代码实现了二分查找算法，在数组 arr 中查找目标元素 target 的位置，则横线上能填写的最佳代码是（ ）。",
             options: [
-                "int mid = left + (right - left) / 2;",
+                "int mid = left+(right-left) / 2;",
                 "int mid = left;",
-                "int mid = (left + right) / 2;",
+                "int mid = (left+right) / 2;",
                 "int mid = right;",
             ],
             answer: 0,
@@ -297,10 +297,10 @@ export const paperData = {
             type: "single",
             question: "函数 int findMax(int arr[], int low, int high) 计算数组从索引 low 到 high 范围内的最大元素，以下哪项正确实现了分治逻辑（ ）。",
             options: [
-                "if (low > high) return 0; int mid = (low + high) / 2; return max(findMax(arr, low, mid - 1), findMax(arr, mid + 1, high));",
-                "if (low == high) return arr[low]; int mid = (low + high) / 2; return arr[mid];",
-                "if (low >= high) return arr[low]; int mid = (low + high) / 2; int leftMax = findMax(arr, low, mid - 1); int rightMax = findMax(arr, mid, high); return leftMax + rightMax;",
-                "if (low == high) return arr[low]; int mid = low + (high - low) / 2; int leftMax = findMax(arr, low, mid); int rightMax = findMax(arr, mid + 1, high); return (leftMax > rightMax) ? leftMax : rightMax;",
+                "if (low > high) return 0; int mid = (low+high) / 2; return max(findMax(arr, low, mid-1), findMax(arr, mid+1, high));",
+                "if (low == high) return arr[low]; int mid = (low+high) / 2; return arr[mid];",
+                "if (low >= high) return arr[low]; int mid = (low+high) / 2; int leftMax = findMax(arr, low, mid-1); int rightMax = findMax(arr, mid, high); return leftMax+rightMax;",
+                "if (low == high) return arr[low]; int mid = low+(high-low) / 2; int leftMax = findMax(arr, low, mid); int rightMax = findMax(arr, mid+1, high); return (leftMax > rightMax) ? leftMax : rightMax;",
             ],
             answer: 3,
             score: 2,
@@ -317,8 +317,8 @@ export const paperData = {
             question: "小杨编写了一个如下的高精度乘法函数，则处理进位时横线上应填写的代码为（ ）。",
             options: [
                 "int temp = c[k];",
-                "int temp = c[k] + carry;",
-                "int temp = c[k] - carry;",
+                "int temp = c[k]+carry;",
+                "int temp = c[k]-carry;",
                 "int temp = c[k] * carry;",
             ],
             answer: 1,

@@ -59,7 +59,7 @@ export const paperData = {
             ],
             answer: 2,
             score: 2,
-            explanation: "冒泡排序在平均情况和最坏情况下都需要进行 n($$n-1$$)/2 次比较，因此时间复杂度为 $$$O(N^2)$$$。",
+            explanation: "冒泡排序在平均情况和最坏情况下都需要进行 n($n-1$)/2 次比较，因此时间复杂度为 $O(N^2)$。",
             tags: [
                 "客观题",
                 "单选题",
@@ -192,7 +192,7 @@ export const paperData = {
             ],
             answer: 2,
             score: 2,
-            explanation: "内存偏移计算：array[1][2][3] 相对于起始位置偏移了 1*6*6 + 2*6 + 3 = 51 个元素。每个 long long 占 8 字节，总偏移 51 * 8 = 408 字节。若起始为 100，则地址为 508。注意：部分题目可能由于对齐或参数差异有不同结果，但 560 字节通常指偏移量（70个元素）。",
+            explanation: "内存偏移计算：array[1][2][3] 相对于起始位置偏移了 1*6*6+2*6+3 = 51 个元素。每个 long long 占 8 字节，总偏移 51 * 8 = 408 字节。若起始为 100，则地址为 508。注意：部分题目可能由于对齐或参数差异有不同结果，但 560 字节通常指偏移量（70个元素）。",
             tags: [
                 "客观题",
                 "单选题",
@@ -282,7 +282,7 @@ export const paperData = {
             options: [
                 "int j = 1; j < n; j++",
                 "int j = 0; j < n; j++",
-                "int j = 0; j < i - 1; j++",
+                "int j = 0; j < i-1; j++",
                 "int j = 0; j < i; j++",
             ],
             answer: 2,
@@ -321,7 +321,7 @@ export const paperData = {
             ],
             answer: 0,
             score: 2,
-            explanation: "插入排序在最坏和平均情况下性能均为二次方级别 $$$O(N^2)$$$。",
+            explanation: "插入排序在最坏和平均情况下性能均为二次方级别 $O(N^2)$。",
             tags: [
                 "客观题",
                 "判断题",
@@ -479,29 +479,29 @@ const programmingQuestions = [
         samples: [
             { input: "10\n16", output: "A" }
         ],
-        answer: "#include <iostream>\n#include <string>\n#include <algorithm>\nusing namespace std;\nchar getChar(int x) {\n    if (x < 10) return x + '0';\n    return x - 10 + 'A';\n}\nint main() {\n    long long n; int b; cin >> n >> b;\n    if (n == 0) { cout << 0 << endl; return 0; }\n    string res = \"\";\n    while (n > 0) {\n        res += getChar(n % b);\n        n /= b;\n    }\n    reverse(res.begin(), res.end());\n    cout << res << endl;\n    return 0;\n}",
+        answer: "#include <iostream>\n#include <string>\n#include <algorithm>\nusing namespace std;\nchar getChar(int x) {\n    if (x < 10) return x+'0';\n    return x-10+'A';\n}\nint main() {\n    long long n; int b; cin >> n >> b;\n    if (n == 0) { cout << 0 << endl; return 0; }\n    string res = \"\";\n    while (n > 0) {\n        res += getChar(n % b);\n        n /= b;\n    }\n    reverse(res.begin(), res.end());\n    cout << res << endl;\n    return 0;\n}",
         explanation: "利用辗转相除法，每次取 N % B 的余数，然后 N = N / B，直到 N 为 0。余数对应的字符逆序排列即为结果。LuoGu B3865。",
         tags: ["编程题", "进制转换"],
         template: "#include <iostream>\n#include <string>\n#include <algorithm>\nusing namespace std;\n\nint main() {\n    long long n;\n    int b;\n    cin >> n >> b;\n    // 在此编写代码\n    return 0;\n}",
-        referenceCode: "#include <iostream>\n#include <string>\n#include <algorithm>\nusing namespace std;\nchar getChar(int x) {\n    if (x < 10) return x + '0';\n    return x - 10 + 'A';\n}\nint main() {\n    long long n; int b; cin >> n >> b;\n    if (n == 0) { cout << 0 << endl; return 0; }\n    string res = \"\";\n    while (n > 0) {\n        res += getChar(n % b);\n        n /= b;\n    }\n    reverse(res.begin(), res.end());\n    cout << res << endl;\n    return 0;\n}"
+        referenceCode: "#include <iostream>\n#include <string>\n#include <algorithm>\nusing namespace std;\nchar getChar(int x) {\n    if (x < 10) return x+'0';\n    return x-10+'A';\n}\nint main() {\n    long long n; int b; cin >> n >> b;\n    if (n == 0) { cout << 0 << endl; return 0; }\n    string res = \"\";\n    while (n > 0) {\n        res += getChar(n % b);\n        n /= b;\n    }\n    reverse(res.begin(), res.end());\n    cout << res << endl;\n    return 0;\n}"
     },
     {
         id: 27,
         type: "programming",
         title: "变长编码",
         problemNumber: "2023-09-23-04-C-02",
-        description: "小杨最近在学习编码。他发现变长编码是一种节省空间的编码方式。假设我们要对一个非负整数 x 进行变长编码，规则如下：如果 x < 128，则编码为一个字节 [x]；如果 x ≥ 128，则将其表示为 B 进制，其中 B=128，即 x = a_k*128^k + ... + a_1*128 + a_0。编码为 k+1 个字节，每个字节最高位为标志位（1 代表后面还有字节，0 代表最后一个字节），低 7 位为 a_i。编码顺序为从 a_0 到 a_k。",
+        description: "小杨最近在学习编码。他发现变长编码是一种节省空间的编码方式。假设我们要对一个非负整数 x 进行变长编码，规则如下：如果 x < 128，则编码为一个字节 [x]；如果 x ≥ 128，则将其表示为 B 进制，其中 B=128，即 x = a_k*128^k+...+a_1*128+a_0。编码为 k+1 个字节，每个字节最高位为标志位（1 代表后面还有字节，0 代表最后一个字节），低 7 位为 a_i。编码顺序为从 a_0 到 a_k。",
         inputDescription: "第一行一个非负整数 N (0 ≤ N ≤ 2^63-1)。",
         outputDescription: "输出 N 的变长编码。每个字节用两位十六进制表示（大写），中间用空格隔开。",
         samples: [
             { input: "127", output: "7F" },
             { input: "128", output: "80 01" }
         ],
-        answer: "#include <iostream>\n#include <vector>\n#include <iomanip>\nusing namespace std;\nint main() {\n    unsigned long long n; cin >> n;\n    if (n == 0) { cout << \"00\" << endl; return 0; }\n    vector<int> res;\n    while (n >= 128) {\n        res.push_back((n % 128) + 128);\n        n /= 128;\n    }\n    res.push_back(n);\n    for (int i = 0; i < res.size(); i++) {\n        cout << hex << uppercase << setw(2) << setfill('0') << res[i] << (i == res.size() - 1 ? \"\" : \" \");\n    }\n    cout << endl;\n    return 0;\n}",
+        answer: "#include <iostream>\n#include <vector>\n#include <iomanip>\nusing namespace std;\nint main() {\n    unsigned long long n; cin >> n;\n    if (n == 0) { cout << \"00\" << endl; return 0; }\n    vector<int> res;\n    while (n >= 128) {\n        res.push_back((n % 128)+128);\n        n /= 128;\n    }\n    res.push_back(n);\n    for (int i = 0; i < res.size(); i++) {\n        cout << hex << uppercase << setw(2) << setfill('0') << res[i] << (i == res.size()-1 ? \"\" : \" \");\n    }\n    cout << endl;\n    return 0;\n}",
         explanation: "按照 128 进制分解，每个字节的低 7 位是余数。除最后一个字节外，最高位补 1（即加上 128）。LuoGu B3866。",
         tags: ["编程题", "位运算", "模拟"],
         template: "#include <iostream>\n#include <vector>\n#include <iomanip>\nusing namespace std;\n\nint main() {\n    unsigned long long n;\n    cin >> n;\n    // 在此编写代码\n    return 0;\n}",
-        referenceCode: "#include <iostream>\n#include <vector>\n#include <iomanip>\nusing namespace std;\nint main() {\n    unsigned long long n; cin >> n;\n    if (n == 0) { cout << \"00\" << endl; return 0; }\n    vector<int> res;\n    while (n >= 128) {\n        res.push_back((n % 128) + 128);\n        n /= 128;\n    }\n    res.push_back(n);\n    for (int i = 0; i < res.size(); i++) {\n        cout << hex << uppercase << setw(2) << setfill('0') << res[i] << (i == res.size() - 1 ? \"\" : \" \");\n    }\n    cout << endl;\n    return 0;\n}"
+        referenceCode: "#include <iostream>\n#include <vector>\n#include <iomanip>\nusing namespace std;\nint main() {\n    unsigned long long n; cin >> n;\n    if (n == 0) { cout << \"00\" << endl; return 0; }\n    vector<int> res;\n    while (n >= 128) {\n        res.push_back((n % 128)+128);\n        n /= 128;\n    }\n    res.push_back(n);\n    for (int i = 0; i < res.size(); i++) {\n        cout << hex << uppercase << setw(2) << setfill('0') << res[i] << (i == res.size()-1 ? \"\" : \" \");\n    }\n    cout << endl;\n    return 0;\n}"
     }
 ];
 

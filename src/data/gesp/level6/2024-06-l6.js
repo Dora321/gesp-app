@@ -15,14 +15,14 @@ const programmingQuestions = [
                 "output": "9"
             }
         ],
-        "explanation": "设 dp[i] 为前 i 个字符的最大得分。若某一段恰好是 k 个连续的 abc，则它的长度一定是 3k，且末尾三字符为 abc。先求出每个位置结尾连续接了多少个 abc 块，再在 dp 中枚举最后取多少块。",
+        "explanation": "设 $dp[i]$ 为前 i 个字符的最大得分。若某一段恰好是 k 个连续的 abc，则它的长度一定是 3k，且末尾三字符为 abc。先求出每个位置结尾连续接了多少个 abc 块，再在 dp 中枚举最后取多少块。",
         "tags": [
             "编程题",
             "动态规划",
             "字符串"
         ],
         "template": "#include <bits/stdc++.h>\nusing namespace std;\n\nint main() {\n    // 在此编写代码\n    return 0;\n}",
-        "referenceCode": "#include <bits/stdc++.h>\nusing namespace std;\n\nint main() {\n    ios::sync_with_stdio(false);\n    cin.tie(nullptr);\n\n    int n;\n    cin >> n;\n    vector<long long> a($n+1$);\n    for (int i = 1; i <= n; ++i) cin >> a[i];\n    int m;\n    string s;\n    cin >> m >> s;\n    s = \" \" + s;\n\n    vector<int> cnt(m + 1, 0);\n    for (int i = 3; i <= m; ++i) {\n        if (s[i - 2] == 'a' && s[i - 1] == 'b' && s[i] == 'c') {\n            cnt[i] = 1;\n            if (i >= 6) cnt[i] += cnt[i - 3];\n        }\n    }\n\n    vector<long long> dp(m + 1, 0);\n    for (int i = 1; i <= m; ++i) {\n        dp[i] = dp[i - 1];\n        for (int k = 1; k <= cnt[i] && k <= n; ++k) {\n            dp[i] = max(dp[i], dp[i - 3 * k] + a[k]);\n        }\n    }\n\n    cout << dp[m] << '\\n';\n    return 0;\n}"
+        "referenceCode": "#include <bits/stdc++.h>\nusing namespace std;\n\nint main() {\n    ios::sync_with_stdio(false);\n    cin.tie(nullptr);\n\n    int n;\n    cin >> n;\n    vector<long long> a($n+1$);\n    for (int i = 1; i <= n; ++i) cin >> a[i];\n    int m;\n    string s;\n    cin >> m >> s;\n    s = \" \"+s;\n\n    vector<int> cnt(m+1, 0);\n    for (int i = 3; i <= m; ++i) {\n        if (s[i-2] == 'a' && s[i-1] == 'b' && s[i] == 'c') {\n            cnt[i] = 1;\n            if (i >= 6) cnt[i] += cnt[i-3];\n        }\n    }\n\n    vector<long long> dp(m+1, 0);\n    for (int i = 1; i <= m; ++i) {\n        $dp[i]$ = dp[i-1];\n        for (int k = 1; k <= cnt[i] && k <= n; ++k) {\n            $dp[i]$ = max($dp[i]$, dp[i-3 * k]+a[k]);\n        }\n    }\n\n    cout << dp[m] << '\\n';\n    return 0;\n}"
     },
     {
         "id": 27,
@@ -30,7 +30,7 @@ const programmingQuestions = [
         "title": "二叉树",
         "problemNumber": "2024-06-23-06-C-02",
         "description": "给定一棵二叉树和初始黑白颜色，进行若干次“翻转某节点整棵子树颜色”的操作，求最终颜色串。",
-        "inputDescription": "第一行 n。第二行 $$n-1$$ 个父节点。第三行长度为 n 的 01 串。第四行 q，之后 q 行每行一个节点。",
+        "inputDescription": "第一行 n。第二行 $n-1$ 个父节点。第三行长度为 n 的 01 串。第四行 q，之后 q 行每行一个节点。",
         "outputDescription": "输出最终颜色串。",
         "samples": [
             {
@@ -45,7 +45,7 @@ const programmingQuestions = [
             "DFS"
         ],
         "template": "#include <bits/stdc++.h>\nusing namespace std;\n\nint main() {\n    // 在此编写代码\n    return 0;\n}",
-        "referenceCode": "#include <bits/stdc++.h>\nusing namespace std;\n\nint main() {\n    ios::sync_with_stdio(false);\n    cin.tie(nullptr);\n\n    int n;\n    cin >> n;\n    vector<vector<int>> g($n+1$);\n    for (int i = 2; i <= n; ++i) {\n        int p;\n        cin >> p;\n        g[p].push_back(i);\n    }\n\n    string s;\n    cin >> s;\n    s = \" \" + s;\n\n    int q;\n    cin >> q;\n    vector<int> mark($n+1$, 0);\n    while (q--) {\n        int x;\n        cin >> x;\n        mark[x] ^= 1;\n    }\n\n    string ans(n, '0');\n    function<void(int,int)> dfs = [&](int u, int flip) {\n        flip ^= mark[u];\n        int color = s[u] - '0';\n        if (flip) color ^= 1;\n        ans[u - 1] = char('0' + color);\n        for (int v : g[u]) dfs(v, flip);\n    };\n    dfs(1, 0);\n    cout << ans << '\\n';\n    return 0;\n}"
+        "referenceCode": "#include <bits/stdc++.h>\nusing namespace std;\n\nint main() {\n    ios::sync_with_stdio(false);\n    cin.tie(nullptr);\n\n    int n;\n    cin >> n;\n    vector<vector<int>> g($n+1$);\n    for (int i = 2; i <= n; ++i) {\n        int p;\n        cin >> p;\n        g[p].push_back(i);\n    }\n\n    string s;\n    cin >> s;\n    s = \" \"+s;\n\n    int q;\n    cin >> q;\n    vector<int> mark($n+1$, 0);\n    while (q--) {\n        int x;\n        cin >> x;\n        mark[x] ^= 1;\n    }\n\n    string ans(n, '0');\n    function<void(int,int)> dfs = [&](int u, int flip) {\n        flip ^= mark[u];\n        int color = s[u]-'0';\n        if (flip) color ^= 1;\n        ans[u-1] = char('0'+color);\n        for (int v : g[u]) dfs(v, flip);\n    };\n    dfs(1, 0);\n    cout << ans << '\\n';\n    return 0;\n}"
     }
 ];
 
@@ -175,12 +175,12 @@ export const paperData = {
         {
             id: 7,
             type: "single",
-            question: "下面定义了一个循环队列的类，请补全判断队列是否满的函数，横向上应填写（ ）。 _____________________ // 在此处填入代码 } return 0; } 27 28 29 30 #include <iostream> using namespace std; class circular_queue { private: int *arr; // 数组用于存储队列元素 int capacity; // 队列容量 int front; // 队头指针 int rear; // 队尾指针 public: circular_queue(int size) { capacity = size + 1; // 为了避免队列满时与队列空时指针相等的情况，多预留一个空间 arr = new int[capacity]; front = 0; rear = 0; } ~circular_queue() { delete[] arr; } bool is_empty() { return front == rear; } bool is_full() { ________________ // 在此处填入代码 } void en_queue(int data) { if (is_full()) { cout << \" 队列已满，无法入队！ \" << endl; return -1; } arr[rear] = data; rear = (rear + 1) % capacity; return 1; } 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27 28 29 30 31 32 33 34 35 36 37 38 39 40 41",
+            question: "下面定义了一个循环队列的类，请补全判断队列是否满的函数，横向上应填写（ ）。 _____________________ // 在此处填入代码 } return 0; } 27 28 29 30 #include <iostream> using namespace std; class circular_queue { private: int *arr; // 数组用于存储队列元素 int capacity; // 队列容量 int front; // 队头指针 int rear; // 队尾指针 public: circular_queue(int size) { capacity = size+1; // 为了避免队列满时与队列空时指针相等的情况，多预留一个空间 arr = new int[capacity]; front = 0; rear = 0; } ~circular_queue() { delete[] arr; } bool is_empty() { return front == rear; } bool is_full() { ________________ // 在此处填入代码 } void en_queue(int data) { if (is_full()) { cout << \" 队列已满，无法入队！ \" << endl; return -1; } arr[rear] = data; rear = (rear+1) % capacity; return 1; } 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27 28 29 30 31 32 33 34 35 36 37 38 39 40 41",
             options: [
-                "return (rear + 1) % capacity == front;",
+                "return (rear+1) % capacity == front;",
                 "return rear % capacity == front;",
                 "return rear == front;",
-                "return (rear + 1) == front;",
+                "return (rear+1) == front;",
             ],
             answer: 0,
             score: 2,
@@ -256,7 +256,7 @@ export const paperData = {
                 "重叠子问题",
                 "分治法",
                 "贪⼼策略",
-                "回溯算法 int de_queue() { if (is_empty()) { cout << \" 队列为空，无法出队！ \" << endl; return -1; // 出队失败，返回一个特殊值 } int data = arr[front]; front = (front + 1) % capacity; return data; } }; 42 43 44 45 46 47 48 49 50 51",
+                "回溯算法 int de_queue() { if (is_empty()) { cout << \" 队列为空，无法出队！ \" << endl; return -1; // 出队失败，返回一个特殊值 } int data = arr[front]; front = (front+1) % capacity; return data; } }; 42 43 44 45 46 47 48 49 50 51",
             ],
             answer: 0,
             score: 2,
@@ -289,7 +289,7 @@ export const paperData = {
         {
             id: 13,
             type: "single",
-            question: "阅读以下二叉树的⼴度优先搜索代码 : int jump_recur(int n) { if (n == 1) return 1; if (n == 2) return 2; return jump_recur(n - 1) + jump_recur(n - 2); } int jump_dp(int n) { vector<int> dp($n+1$); // 创建一个动态规划数组，用于保存已计算的值 // 初始化前两个数 dp[1] = 1; dp[2] = 2; // 从第三个数开始计算斐波那契数列 for (int i = 3; i <= n; ++i) { dp[i] = dp[i - 1] + dp[i - 2]; } return dp[n]; } 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 #include <iostream> #include <queue> using namespace std; // 二叉树节点的定义 struct TreeNode { int val; TreeNode* left; TreeNode* right; TreeNode(int x) : val(x), left(nullptr), right(nullptr) {} }; // 宽度优先搜索（ BFS ）迭代实现 TreeNode* bfs(TreeNode* root, int a) { if (root == nullptr) return nullptr; queue<TreeNode*> q; q.push(root); while (!q.empty()) { TreeNode* node = q.front(); q.pop(); if (node->val == a) return node; 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26 使用以上算法，在以下这棵树搜索数值 时，可能的输出是 ( ) 。",
+            question: "阅读以下二叉树的⼴度优先搜索代码 : int jump_recur(int n) { if (n == 1) return 1; if (n == 2) return 2; return jump_recur(n-1)+jump_recur(n-2); } int jump_dp(int n) { vector<int> dp($n+1$); // 创建一个动态规划数组，用于保存已计算的值 // 初始化前两个数 dp[1] = 1; dp[2] = 2; // 从第三个数开始计算斐波那契数列 for (int i = 3; i <= n; ++i) { $dp[i]$ = dp[i-1]+dp[i-2]; } return dp[n]; } 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 #include <iostream> #include <queue> using namespace std; // 二叉树节点的定义 struct TreeNode { int val; TreeNode* left; TreeNode* right; TreeNode(int x) : val(x), left(nullptr), right(nullptr) {} }; // 宽度优先搜索（ BFS ）迭代实现 TreeNode* bfs(TreeNode* root, int a) { if (root == nullptr) return nullptr; queue<TreeNode*> q; q.push(root); while (!q.empty()) { TreeNode* node = q.front(); q.pop(); if (node->val == a) return node; 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26 使用以上算法，在以下这棵树搜索数值 时，可能的输出是 ( ) 。",
             options: [
                 "5 2 -4 3 17 9",
                 "-4 2 3 5 9 17",

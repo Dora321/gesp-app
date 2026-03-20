@@ -21,7 +21,7 @@ const programmingQuestions = [
             "动态规划"
         ],
         "template": "#include <bits/stdc++.h>\nusing namespace std;\n\nint main() {\n    // 在此编写代码\n    return 0;\n}",
-        "referenceCode": "#include <bits/stdc++.h>\nusing namespace std;\n\nstatic bool isSquare(long long x) {\n    long long r = sqrtl((long double)x);\n    while (r * r < x) ++r;\n    while (r * r > x) --r;\n    return r * r == x;\n}\n\nint main() {\n    ios::sync_with_stdio(false);\n    cin.tie(nullptr);\n\n    long long n;\n    cin >> n;\n    if (isSquare(n)) {\n        cout << 1 << '\\n';\n        return 0;\n    }\n    for (long long i = 1; i * i <= n; ++i) {\n        if (isSquare(n - i * i)) {\n            cout << 2 << '\\n';\n            return 0;\n        }\n    }\n    long long x = n;\n    while (x % 4 == 0) x /= 4;\n    if (x % 8 == 7) cout << 4 << '\\n';\n    else cout << 3 << '\\n';\n    return 0;\n}"
+        "referenceCode": "#include <bits/stdc++.h>\nusing namespace std;\n\nstatic bool isSquare(long long x) {\n    long long r = sqrtl((long double)x);\n    while (r * r < x) ++r;\n    while (r * r > x) --r;\n    return r * r == x;\n}\n\nint main() {\n    ios::sync_with_stdio(false);\n    cin.tie(nullptr);\n\n    long long n;\n    cin >> n;\n    if (isSquare(n)) {\n        cout << 1 << '\\n';\n        return 0;\n    }\n    for (long long i = 1; i * i <= n; ++i) {\n        if (isSquare(n-i * i)) {\n            cout << 2 << '\\n';\n            return 0;\n        }\n    }\n    long long x = n;\n    while (x % 4 == 0) x /= 4;\n    if (x % 8 == 7) cout << 4 << '\\n';\n    else cout << 3 << '\\n';\n    return 0;\n}"
     },
     {
         "id": 27,
@@ -48,7 +48,7 @@ const programmingQuestions = [
             "排序"
         ],
         "template": "#include <bits/stdc++.h>\nusing namespace std;\n\nint main() {\n    // 在此编写代码\n    return 0;\n}",
-        "referenceCode": "#include <bits/stdc++.h>\nusing namespace std;\n\nint main() {\n    ios::sync_with_stdio(false);\n    cin.tie(nullptr);\n\n    int m, n;\n    long long k;\n    cin >> m >> n >> k;\n    vector<int> c(n);\n    for (int i = 0; i < n; ++i) cin >> c[i];\n    vector<long long> v(n);\n    for (int i = 0; i < n; ++i) cin >> v[i];\n\n    vector<vector<long long>> groups(m + 1);\n    for (int i = 0; i < n; ++i) groups[c[i]].push_back(v[i]);\n\n    vector<int> need(m + 1, 0), extra(m + 1, 0);\n    long long total = 0;\n    int mx = 0, who = -1;\n    for (int i = 1; i <= m; ++i) {\n        auto &g = groups[i];\n        sort(g.begin(), g.end(), greater<long long>());\n        long long sum = 0;\n        while (need[i] < (int)g.size() && sum < k) {\n            sum += g[need[i]];\n            ++need[i];\n        }\n        if (sum < k) {\n            cout << -1 << '\\n';\n            return 0;\n        }\n        extra[i] = (int)g.size() - need[i];\n        total += need[i];\n        if (need[i] > mx) {\n            mx = need[i];\n            who = i;\n        }\n    }\n\n    long long others = total - mx;\n    long long needMore = max(0LL, 2LL * mx - others - 1 - mx); // extra items needed outside dominant color\n    long long available = 0;\n    for (int i = 1; i <= m; ++i) if (i != who) available += extra[i];\n    if (needMore > available) {\n        cout << -1 << '\\n';\n        return 0;\n    }\n    cout << total + needMore << '\\n';\n    return 0;\n}"
+        "referenceCode": "#include <bits/stdc++.h>\nusing namespace std;\n\nint main() {\n    ios::sync_with_stdio(false);\n    cin.tie(nullptr);\n\n    int m, n;\n    long long k;\n    cin >> m >> n >> k;\n    vector<int> c(n);\n    for (int i = 0; i < n; ++i) cin >> c[i];\n    vector<long long> v(n);\n    for (int i = 0; i < n; ++i) cin >> v[i];\n\n    vector<vector<long long>> groups(m+1);\n    for (int i = 0; i < n; ++i) groups[c[i]].push_back(v[i]);\n\n    vector<int> need(m+1, 0), extra(m+1, 0);\n    long long total = 0;\n    int mx = 0, who = -1;\n    for (int i = 1; i <= m; ++i) {\n        auto &g = groups[i];\n        sort(g.begin(), g.end(), greater<long long>());\n        long long sum = 0;\n        while (need[i] < (int)g.size() && sum < k) {\n            sum += g[need[i]];\n            ++need[i];\n        }\n        if (sum < k) {\n            cout << -1 << '\\n';\n            return 0;\n        }\n        extra[i] = (int)g.size()-need[i];\n        total += need[i];\n        if (need[i] > mx) {\n            mx = need[i];\n            who = i;\n        }\n    }\n\n    long long others = total-mx;\n    long long needMore = max(0LL, 2LL * mx-others-1-mx); // extra items needed outside dominant color\n    long long available = 0;\n    for (int i = 1; i <= m; ++i) if (i != who) available += extra[i];\n    if (needMore > available) {\n        cout << -1 << '\\n';\n        return 0;\n    }\n    cout << total+needMore << '\\n';\n    return 0;\n}"
     }
 ];
 
@@ -178,12 +178,12 @@ export const paperData = {
         {
             id: 7,
             type: "single",
-            question: "以下 C++ 代码实现 位的格雷码，则横线上应填写（ ）。 #include <iostream> #include <queue> using namespace std; bool is_front_equal(std::queue<int>& q, int a) { bool is_equal = false; if (!q.empty()) { ———————————————————————— // 在此处填入代码 } return is_equal; } 1 2 3 4 5 6 7 8 9 10 11 #include <iostream> #include <vector> #include <string> using namespace std; // 生成 n 位的格雷码 vector<string> generate_graycode(int n) { vector<string> graycode_list; if (n <= 0) { return graycode_list; } // 初始 1 位格雷码 graycode_list.push_back(\"0\"); graycode_list.push_back(\"1\"); // 迭代生成 n 位的格雷码 for (int i = 2; i <= n; i++) { int current_size = graycode_list.size(); for (int j = current_size - 1; j >= 0; j--) { graycode_list.push_back(\"1\" + graycode_list[j]); } for (int j = 0; j < current_size; j++) { 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24",
+            question: "以下 C++ 代码实现 位的格雷码，则横线上应填写（ ）。 #include <iostream> #include <queue> using namespace std; bool is_front_equal(std::queue<int>& q, int a) { bool is_equal = false; if (!q.empty()) { ———————————————————————— // 在此处填入代码 } return is_equal; } 1 2 3 4 5 6 7 8 9 10 11 #include <iostream> #include <vector> #include <string> using namespace std; // 生成 n 位的格雷码 vector<string> generate_graycode(int n) { vector<string> graycode_list; if (n <= 0) { return graycode_list; } // 初始 1 位格雷码 graycode_list.push_back(\"0\"); graycode_list.push_back(\"1\"); // 迭代生成 n 位的格雷码 for (int i = 2; i <= n; i++) { int current_size = graycode_list.size(); for (int j = current_size-1; j >= 0; j--) { graycode_list.push_back(\"1\"+graycode_list[j]); } for (int j = 0; j < current_size; j++) { 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24",
             options: [
-                "graycode_list.push_back(\"0\" + graycode_list[j]);",
-                "graycode_list[j] = \"0\" + graycode_list[j];",
-                "graycode_list.push_back(\"1\" + graycode_list[j]);",
-                "graycode_list[j] = \"1\" + graycode_list[j];",
+                "graycode_list.push_back(\"0\"+graycode_list[j]);",
+                "graycode_list[j] = \"0\"+graycode_list[j];",
+                "graycode_list.push_back(\"1\"+graycode_list[j]);",
+                "graycode_list[j] = \"1\"+graycode_list[j];",
             ],
             answer: 1,
             score: 2,
@@ -237,10 +237,10 @@ export const paperData = {
             type: "single",
             question: "二叉树的深度定义为从根结点到叶结点的最长路径上的结点数，则以下基于二叉树的深度优先搜索实现的 深度计算函数中横线上应填写（ ）。 ———————————————————————— // 在此处填入代码 } } return graycode_list; } 25 26 27 28 29 30 // 定义二叉树的结点结构 struct tree_node { int val; tree_node* left; tree_node* right; tree_node(int x) : val(x), left(nullptr), right(nullptr) {} }; // 计算二叉树的深度 int max_depth(tree_node* root) { if (root == nullptr) { return 0; // 如果根结点为空，则深度为 0 } int left_depth = max_depth(root->left); int right_depth = max_depth(root->right); 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17",
             options: [
-                "return left_depth + right_depth;",
+                "return left_depth+right_depth;",
                 "return max(left_depth, right_depth);",
-                "return max(left_depth, right_depth) + 1;",
-                "return left_depth + right_depth + 1;",
+                "return max(left_depth, right_depth)+1;",
+                "return left_depth+right_depth+1;",
             ],
             answer: 2,
             score: 2,
@@ -330,7 +330,7 @@ export const paperData = {
         {
             id: 15,
             type: "single",
-            question: "阅读以下用动态规划解决的 0-1 背包问题的函数，假设背包的容量 是 10kg ，假设输入 4 个物品的重量 分别为 （单位为 kg ），每个物品对应的价值 分别为 ，则函数的输出为（ ）。 if (val > root->val) root->left = insert(root, val); else root->right = insert(root, val); 1 2 3 4 #include <iostream> using namespace std; // 遍历二叉搜索树，输出结点值 void traversal(tree_node* root) { if (root == nullptr) { return; } traversal(root->left); cout << root->val << \" \"; traversal(root->right); } 1 2 3 4 5 6 7 8 9 10 11 12 13 #include <iostream> #include <vector> using namespace std; // 0/1 背包问题 int knapsack(int W, const vector<int>& weights, const vector<int>& values, int n) { vector<vector<int>> dp($n+1$, vector<int>(W + 1, 0)); for (int i = 1; i <= n; ++i) { for (int w = 0; w <= W; ++w) { if (weights[i - 1] <= w) { 1 2 3 4 5 6 7 8 9 10 11 题号 1 2 3 4 5 6 7 8 9 10 答案",
+            question: "阅读以下用动态规划解决的 0-1 背包问题的函数，假设背包的容量 是 10kg ，假设输入 4 个物品的重量 分别为 （单位为 kg ），每个物品对应的价值 分别为 ，则函数的输出为（ ）。 if (val > root->val) root->left = insert(root, val); else root->right = insert(root, val); 1 2 3 4 #include <iostream> using namespace std; // 遍历二叉搜索树，输出结点值 void traversal(tree_node* root) { if (root == nullptr) { return; } traversal(root->left); cout << root->val << \" \"; traversal(root->right); } 1 2 3 4 5 6 7 8 9 10 11 12 13 #include <iostream> #include <vector> using namespace std; // 0/1 背包问题 int knapsack(int W, const vector<int>& weights, const vector<int>& values, int n) { vector<vector<int>> dp($n+1$, vector<int>(W+1, 0)); for (int i = 1; i <= n; ++i) { for (int w = 0; w <= W; ++w) { if (weights[i-1] <= w) { 1 2 3 4 5 6 7 8 9 10 11 题号 1 2 3 4 5 6 7 8 9 10 答案",
             options: [
                 "90",
                 "100",
@@ -400,7 +400,7 @@ export const paperData = {
         {
             id: 19,
             type: "judge",
-            question: "运⾏以下 C++ 代码，屏幕将输出 “derived class” 。 dp[i][w] = max(dp[i - 1][w], dp[i - 1][w - weights[i - 1]] + values[i - 1]); } else { dp[i][w] = dp[i - 1][w]; } } } return dp[n][W]; } 12 13 14 15 16 17 18 19 20 21 22 #include <iostream> using namespace std; class base { public: virtual void show() { cout << \"base class\" << endl; } }; class derived : public base { public: void show() override { cout << \"derived class\" << endl; } }; int main() { base* b; derived d; b = &d; 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21",
+            question: "运⾏以下 C++ 代码，屏幕将输出 “derived class” 。 $dp[i]$[w] = max(dp[i-1][w], dp[i-1][w-weights[i-1]]+values[i-1]); } else { $dp[i]$[w] = dp[i-1][w]; } } } return dp[n][W]; } 12 13 14 15 16 17 18 19 20 21 22 #include <iostream> using namespace std; class base { public: virtual void show() { cout << \"base class\" << endl; } }; class derived : public base { public: void show() override { cout << \"derived class\" << endl; } }; int main() { base* b; derived d; b = &d; 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21",
             options: [
                 "正确",
                 "错误",

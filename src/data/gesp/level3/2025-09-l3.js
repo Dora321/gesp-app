@@ -1,8 +1,8 @@
 // 2025年9月 GESP C++ 三级真题 (第11次认证)
 // 数据说明：本卷以官方真题 PDF 为主完成回填。
-// - 客观题 1~15：题面主体、选项与单选答案可由官方 PDF 直接提取并整理；其中少量代码/版式题按官方 PDF 文本层做等价排版。
-// - 判断题 16~25：题面来自官方 PDF；官方 PDF 文本层未完整带出判断题答案表，当前答案依据公开解析交叉复核填写。
-// - 编程题 26~27：题名、题意主体、样例与参考代码来自官方 PDF；少量数据范围/公式符号因 PDF 文本层缺字，按官方题意做等价整理。
+//-客观题 1~15：题面主体、选项与单选答案可由官方 PDF 直接提取并整理；其中少量代码/版式题按官方 PDF 文本层做等价排版。
+//-判断题 16~25：题面来自官方 PDF；官方 PDF 文本层未完整带出判断题答案表，当前答案依据公开解析交叉复核填写。
+//-编程题 26~27：题名、题意主体、样例与参考代码来自官方 PDF；少量数据范围/公式符号因 PDF 文本层缺字，按官方题意做等价整理。
 export const paperData = {
     id: '2025-09-l3',
     title: '2025年9月 GESP C++ 三级真题',
@@ -74,11 +74,11 @@ export const paperData = {
         {
             id: 6,
             type: 'single',
-            question: '执行以下 C++ 代码后，数组 arr 的内容是（ ）。\n```cpp\nint arr[4] = {1, 2, 3};\narr[3] = arr[0] + arr[2];\n```',
+            question: '执行以下 C++ 代码后，数组 arr 的内容是（ ）。\n```cpp\nint arr[4] = {1, 2, 3};\narr[3] = arr[0]+arr[2];\n```',
             options: ['{1, 2, 3, 3}', '{1, 2, 3, 4}', '{1, 2, 3, 5}', '{1, 2, 3, 6}'],
             answer: 1,
             score: 2,
-            explanation: '初始化后 arr 为 {1,2,3,0}，再令 arr[3] = 1 + 3 = 4，所以结果是 {1, 2, 3, 4}。'
+            explanation: '初始化后 arr 为 {1,2,3,0}，再令 arr[3] = 1+3 = 4，所以结果是 {1, 2, 3, 4}。'
         },
         {
             id: 7,
@@ -129,7 +129,7 @@ export const paperData = {
         {
             id: 11,
             type: 'single',
-            question: '关于以下代码的说法正确的是（ ）。\n```cpp\nint reversed = 0;\nwhile (x != 0) {\n    int digit = x % 10;\n    x /= 10;\n    reversed = reversed * 10 + digit;\n}\n```',
+            question: '关于以下代码的说法正确的是（ ）。\n```cpp\nint reversed = 0;\nwhile (x != 0) {\n    int digit = x % 10;\n    x /= 10;\n    reversed = reversed * 10+digit;\n}\n```',
             options: [
                 '能够反转任何位数的整数',
                 '能够反转的最大位数正整数是 2147483647',
@@ -283,7 +283,7 @@ export const paperData = {
             type: 'programming',
             title: '数组清零',
             problemNumber: 'B4413',
-            source: 'official-pdf + luogu-mapping',
+            source: 'official-pdf+luogu-mapping',
             description: '小 A 有一个由 n 个非负整数组成的数组 a。她会对数组 a 重复进行如下操作，直到数组只包含 0：1）找到数组中的最大值，若最大值有多个则取下标最大的那个；2）在所有非零元素中找到最小值；3）将第 1 步选中的最大值减去第 2 步得到的最小值。请你计算最少需要进行多少次操作，才能把整个数组都变成 0。',
             inputDescription: '第一行，一个正整数 n，表示数组长度。第二行，n 个非负整数 a1, a2, ..., an，表示数组中的元素。',
             outputDescription: '输出一行一个整数，表示把数组全部变成 0 所需要的操作次数。',
@@ -307,7 +307,7 @@ export const paperData = {
             type: 'programming',
             title: '日历制作',
             problemNumber: 'B4414',
-            source: 'official-pdf + luogu-mapping',
+            source: 'official-pdf+luogu-mapping',
             description: '小 A 想制作 2025 年每个月的日历。输入一个月份 m，请按题目指定格式输出该月日历：先输出表头 MON TUE WED THU FRI SAT SUN，再按每周一到周日的顺序输出日期，并保证日期个位与对应星期缩写的最后一个字母对齐。题面特别说明：2025 年 9 月 1 日是星期一。',
             inputDescription: '输入一行，一个正整数 m，表示要输出 2025 年 m 月的日历。',
             outputDescription: '输出若干行，表示 2025 年 m 月的日历。',
@@ -324,7 +324,7 @@ export const paperData = {
             explanation: '已知 2025 年 9 月 1 日是星期一，可以向前或向后按每月天数推算任意月份 1 日对应的星期。输出时先补齐首周空位，再按宽度格式化输出每个日期即可。',
             tags: ['编程题', '模拟', '日期', '格式化输出'],
             template: '#include <bits/stdc++.h>\nusing namespace std;\n\nint main() {\n    ios::sync_with_stdio(false);\n    cin.tie(nullptr);\n\n    // 在此编写代码\n    return 0;\n}',
-            referenceCode: '#include <algorithm>\n#include <cstdio>\nusing namespace std;\nint days[20] = {0, 31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31};\nint main() {\n    int m;\n    scanf("%d", &m);\n    printf("MON TUE WED THU FRI SAT SUN\\n");\n    int d = days[m];\n    int w = 1;\n    if (m > 9) {\n        for (int i = 9; i < m; i++) w = (w + days[i] - 1) % 7 + 1;\n    } else if (m < 9) {\n        for (int i = 8; i >= m; i--) w = ((w - days[i]) % 7 + 7) % 7;\n        if (w == 0) w = 7;\n    }\n    for (int i = 1; i < w; i++) printf("    ");\n    for (int i = 1; i <= d; i++) {\n        printf("% 3d", i);\n        w = w % 7 + 1;\n        if (w == 1 || i == d)\n            printf("\\n");\n        else\n            printf(" ");\n    }\n    return 0;\n}'
+            referenceCode: '#include <algorithm>\n#include <cstdio>\nusing namespace std;\nint days[20] = {0, 31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31};\nint main() {\n    int m;\n    scanf("%d", &m);\n    printf("MON TUE WED THU FRI SAT SUN\\n");\n    int d = days[m];\n    int w = 1;\n    if (m > 9) {\n        for (int i = 9; i < m; i++) w = (w+days[i]-1) % 7+1;\n    } else if (m < 9) {\n        for (int i = 8; i >= m; i--) w = ((w-days[i]) % 7+7) % 7;\n        if (w == 0) w = 7;\n    }\n    for (int i = 1; i < w; i++) printf("    ");\n    for (int i = 1; i <= d; i++) {\n        printf("% 3d", i);\n        w = w % 7+1;\n        if (w == 1 || i == d)\n            printf("\\n");\n        else\n            printf(" ");\n    }\n    return 0;\n}'
         }
     ]
 };

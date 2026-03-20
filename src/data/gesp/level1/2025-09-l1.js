@@ -76,7 +76,7 @@ export const paperData = {
     {
       id: 6,
       type: 'single',
-      question: '下面的C++代码中变量 N 和 M 都是整型，则执行时如果先输入10并输入1个空格后输入20并回车，其输出的数值是( )。\n```cpp\nscanf("%d", &N);\nscanf("%d", &M);\nprintf("%d", N + M);\n```',
+      question: '下面的C++代码中变量 N 和 M 都是整型，则执行时如果先输入10并输入1个空格后输入20并回车，其输出的数值是( )。\n```cpp\nscanf("%d", &N);\nscanf("%d", &M);\nprintf("%d", N+M);\n```',
       options: ['30', '1020', '{N+M}', '不输出，继续等待输入'],
       answer: 0,
       score: 2,
@@ -87,10 +87,10 @@ export const paperData = {
       id: 7,
       type: 'single',
       question: '当前是9月，编写C++代码求 N 个月后的月份。横线处应填入的代码是 ( )。\n```cpp\nint N, M;\ncin >> N;\nM = ________;\nif (M == 0) printf("%d个月后是12月", N);\nelse printf("%d个月后是%d月", N, M);\n```',
-      options: ['N % 12', '9 + N % 12', '(9 + N) / 12', '(9 + N) % 12'],
+      options: ['N % 12', '9+N % 12', '(9+N) / 12', '(9+N) % 12'],
       answer: 3,
       score: 2,
-      explanation: '月份计算通常使用取余运算。(9 + N) % 12 能正确得到 N 个月后的月份（假设 0 代表 12 月）。',
+      explanation: '月份计算通常使用取余运算。(9+N) % 12 能正确得到 N 个月后的月份（假设 0 代表 12 月）。',
       tags: [LEVEL1_TAGS.operator, LEVEL1_TAGS.basics]
     },
     {
@@ -106,11 +106,11 @@ export const paperData = {
     {
       id: 9,
       type: 'single',
-      question: 'C++表达式 abs(1.0) + floor(-1.0) 的值是( )。',
+      question: 'C++表达式 abs(1.0)+floor(-1.0) 的值是( )。',
       options: ['0', '1', '2', '0.0'],
       answer: 3,
       score: 2,
-      explanation: 'abs(1.0) 为 1.0，floor(-1.0) 为 -1.0。1.0 + (-1.0) = 0.0。注意浮点数结果。',
+      explanation: 'abs(1.0) 为 1.0，floor(-1.0) 为 -1.0。1.0+(-1.0) = 0.0。注意浮点数结果。',
       tags: [LEVEL1_TAGS.basics, LEVEL1_TAGS.operator]
     },
     {
@@ -126,7 +126,7 @@ export const paperData = {
     {
       id: 11,
       type: 'single',
-      question: '代码执行后的输出是 ( )。\n```cpp\nint n, ans = 0;\ncin >> n;\nwhile (n > 0) {\n  ans = ans * 10 + n % 10;\n  n /= 10;\n}\ncout << ans;\n```cpp\n如果输入 123：',
+      question: '代码执行后的输出是 ( )。\n```cpp\nint n, ans = 0;\ncin >> n;\nwhile (n > 0) {\n  ans = ans * 10+n % 10;\n  n /= 10;\n}\ncout << ans;\n```cpp\n如果输入 123：',
       options: ['123', '3', '321', '6'],
       answer: 2,
       score: 2,
@@ -146,11 +146,11 @@ export const paperData = {
     {
       id: 13,
       type: 'single',
-      question: '15 % 4 + 7 / 2 的值是( )。',
+      question: '15 % 4+7 / 2 的值是( )。',
       options: ['6', '6.5', '7', '3'],
       answer: 0,
       score: 2,
-      explanation: '15 % 4 = 3；7 / 2 = 3（整除）。3 + 3 = 6。',
+      explanation: '15 % 4 = 3；7 / 2 = 3（整除）。3+3 = 6。',
       tags: [LEVEL1_TAGS.operator]
     },
     {
@@ -252,7 +252,7 @@ export const paperData = {
       options: ['正确', '错误'],
       answer: 0,
       score: 2,
-      explanation: '斐波那契数列规律：F(n) = F($$n-1$$) + F(n-2)。1+1=2。',
+      explanation: '斐波那契数列规律：F(n) = F($n-1$)+F(n-2)。1+1=2。',
       tags: [LEVEL1_TAGS.judge, LEVEL1_TAGS.basics]
     },
     {
@@ -283,7 +283,7 @@ export const paperData = {
       question: '【编程题1】超市优惠方案选择\n超市有两种优惠方案：\n1. 方案1：满 x 元减 y 元（每满一个 x 减一个 y）。\n2. 方案2：打 n 折（即原价 * n / 10）。\n输入 x, y, n 和原价 p，输出最便宜的价格（保留两位小数）。',
       answer: '',
       score: 25,
-      explanation: '比较 p - (p/x)*y 与 p*n/10.0，取最小值。注意满减可能是阶段性的或多重满减。',
+      explanation: '比较 p-(p/x)*y 与 p*n/10.0，取最小值。注意满减可能是阶段性的或多重满减。',
       tags: [LEVEL1_TAGS.basics, LEVEL1_TAGS.condition, LEVEL1_TAGS.operator]
     },
     {
@@ -292,7 +292,7 @@ export const paperData = {
       question: '【编程题2】石块累加\n小杨在搭石块，第 1 层需要 1*1 个石块，第 2 层需要 2*2 个石块... 第 i 层需要 i*i 个石块。\n输入总层数 n，输出共需要多少个石块。',
       answer: '',
       score: 25,
-      explanation: '使用循环累计 1*1 + 2*2 + ... + n*n。',
+      explanation: '使用循环累计 1*1+2*2+...+n*n。',
       tags: [LEVEL1_TAGS.loop, LEVEL1_TAGS.operator]
     }
   ]

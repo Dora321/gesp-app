@@ -418,7 +418,7 @@ export const paperData = {
         {
             id: 23,
             type: "judge",
-            question: "已知两个double类型的变量r和theta分别表⽰一个扇形的圆半径及圆⼼角（弧度），则扇形的周长可 以通过表达式(2 + theta) * r求得。",
+            question: "已知两个double类型的变量r和theta分别表⽰一个扇形的圆半径及圆⼼角（弧度），则扇形的周长可 以通过表达式(2+theta) * r求得。",
             options: [
                 "正确",
                 "错误",

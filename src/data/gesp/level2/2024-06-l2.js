@@ -82,7 +82,7 @@ export const paperData = {
             id: 8,
             type: 'single',
             question: "某货币由 5 元， 2 元和 1 元组成。输入⾦额（假设为正整数），计算出最少数量。为实现其功能，横线处应填 入代码是（ ）。",
-            options: ["第 1 横线处应填入： N / 2 第 2 横线处应填入： N - M5 - M2", "第 1 横线处应填入： (N - M5 * 5) / 2 第 2 横线处应填入： N - M5 * 5 - M2 * 2", "第 1 横线处应填入： N - M5 * 5 / 2 第 2 横线处应填入： N - M5 * 5 - M2 * 2", "第 1 横线处应填入： (N - M5 * 5) / 2 第 2 横线处应填入： N - M5 - M2"],
+            options: ["第 1 横线处应填入： N / 2 第 2 横线处应填入： N-M5-M2", "第 1 横线处应填入： (N-M5 * 5) / 2 第 2 横线处应填入： N-M5 * 5-M2 * 2", "第 1 横线处应填入： N-M5 * 5 / 2 第 2 横线处应填入： N-M5 * 5-M2 * 2", "第 1 横线处应填入： (N-M5 * 5) / 2 第 2 横线处应填入： N-M5-M2"],
             answer: 1,
             score: 2,
             explanation: '答案依据官方答案。',
@@ -131,7 +131,7 @@ export const paperData = {
         {
             id: 13,
             type: 'single',
-            question: "下⾯ C++ 代码用于实现如下图所示的效果（星号三角形），其有关说法正确的是（ ）。\n```cpp\nfor (int i = 1; i < 6; i++) {\n    for (int j = 1; j < i + 1; j++)\n        cout << \"*\";\n    cout << endl;\n}\n```",
+            question: "下⾯ C++ 代码用于实现如下图所示的效果（星号三角形），其有关说法正确的是（ ）。\n```cpp\nfor (int i = 1; i < 6; i++) {\n    for (int j = 1; j < i+1; j++)\n        cout << \"*\";\n    cout << endl;\n}\n```",
             options: ["当前代码能实现预期效果，⽆需调整代码", "如果cout << endl;移到循环 L2 内部，则可实现预期效果", "如果cout << endl; 移到循环 L1 外部，则可实现预期效果", "删除cout << endl;行，则可实现预期效果"],
             answer: 0,
             score: 2,
@@ -141,7 +141,7 @@ export const paperData = {
         {
             id: 14,
             type: 'single',
-            question: "下⾯ C++ 代码执行后，输出是（ ）。\n```cpp\nint a = 5, b = 2;\nif (a > b)\n    a = a - b;\nelse\n    b = b - a;\nif (a > b)\n    a = a - b;\nelse\n    b = b - a;\ncout << a << \" \" << b;\n```",
+            question: "下⾯ C++ 代码执行后，输出是（ ）。\n```cpp\nint a = 5, b = 2;\nif (a > b)\n    a = a-b;\nelse\n    b = b-a;\nif (a > b)\n    a = a-b;\nelse\n    b = b-a;\ncout << a << \" \" << b;\n```",
             options: ["5 2", "1 2", "1 0", "以上均不对"],
             answer: 1,
             score: 2,
@@ -251,11 +251,11 @@ export const paperData = {
         {
             id: 25,
             type: 'judge',
-            question: "在C++代码中，`cout << (5 / 2 + 5 % 3)` 的输出是 4。",
+            question: "在C++代码中，`cout << (5 / 2+5 % 3)` 的输出是 4。",
             options: ['正确', '错误'],
             answer: 0,
             score: 2,
-            explanation: "5 / 2 = 2, 5 % 3 = 2, 2 + 2 = 4。",
+            explanation: "5 / 2 = 2, 5 % 3 = 2, 2+2 = 4。",
             tags: ["判断题", "运算符", "输入输出"]
         }
     ],
@@ -281,7 +281,7 @@ export const paperData = {
             "完全平方数"
         ],
         "template": "#include <bits/stdc++.h>\nusing namespace std;\n\nint main() {\n    ios::sync_with_stdio(false);\n    cin.tie(nullptr);\n\n    // 在此编写代码\n    return 0;\n}",
-        "referenceCode": "#include <bits/stdc++.h>\nusing namespace std;\n\nbool isSquare(long long x) {\n    if (x <= 0) return false;\n    long long r = sqrt((long double)x);\n    while (r * r < x) ++r;\n    while (r * r > x) --r;\n    return r * r == x;\n}\n\nint main() {\n    ios::sync_with_stdio(false);\n    cin.tie(nullptr);\n\n    int n;\n    cin >> n;\n    while (n--) {\n        long long a;\n        cin >> a;\n        bool ok = false;\n        for (long long x = 1; x * x < a; ++x) {\n            if (isSquare(a - x * x)) { ok = true; break; }\n        }\n        cout << (ok ? \"Yes\" : \"No\") << '\\n';\n    }\n    return 0;\n}"
+        "referenceCode": "#include <bits/stdc++.h>\nusing namespace std;\n\nbool isSquare(long long x) {\n    if (x <= 0) return false;\n    long long r = sqrt((long double)x);\n    while (r * r < x) ++r;\n    while (r * r > x) --r;\n    return r * r == x;\n}\n\nint main() {\n    ios::sync_with_stdio(false);\n    cin.tie(nullptr);\n\n    int n;\n    cin >> n;\n    while (n--) {\n        long long a;\n        cin >> a;\n        bool ok = false;\n        for (long long x = 1; x * x < a; ++x) {\n            if (isSquare(a-x * x)) { ok = true; break; }\n        }\n        cout << (ok ? \"Yes\" : \"No\") << '\\n';\n    }\n    return 0;\n}"
     },
     {
         "id": 27,
@@ -304,7 +304,7 @@ export const paperData = {
             "数位统计"
         ],
         "template": "#include <bits/stdc++.h>\nusing namespace std;\n\nint main() {\n    ios::sync_with_stdio(false);\n    cin.tie(nullptr);\n\n    // 在此编写代码\n    return 0;\n}",
-        "referenceCode": "#include <bits/stdc++.h>\nusing namespace std;\n\nint main() {\n    ios::sync_with_stdio(false);\n    cin.tie(nullptr);\n\n    long long n; int k;\n    cin >> n >> k;\n    long long ans = 0;\n    char target = char('0' + k);\n    for (long long i = 1; i <= n; ++i) {\n        string s = to_string(i);\n        for (char c : s) if (c == target) ++ans;\n    }\n    cout << ans << '\\n';\n    return 0;\n}"
+        "referenceCode": "#include <bits/stdc++.h>\nusing namespace std;\n\nint main() {\n    ios::sync_with_stdio(false);\n    cin.tie(nullptr);\n\n    long long n; int k;\n    cin >> n >> k;\n    long long ans = 0;\n    char target = char('0'+k);\n    for (long long i = 1; i <= n; ++i) {\n        string s = to_string(i);\n        for (char c : s) if (c == target) ++ans;\n    }\n    cout << ans << '\\n';\n    return 0;\n}"
     }
 ]
 };

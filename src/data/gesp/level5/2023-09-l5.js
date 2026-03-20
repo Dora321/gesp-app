@@ -33,7 +33,7 @@ const programmingQuestions = [
         explanation: "贪心策略：优先选择奖励高的小游戏。对于每个奖励高的小游戏，尽量安排在其截止日期的最晚可用时间段完成。",
         tags: ["编程题", "贪心", "排序"],
         template: "#include <iostream>\n#include <algorithm>\nusing namespace std;\n\nint main() {\n    int n;\n    cin >> n;\n    // 在此编写代码\n    return 0;\n}",
-        referenceCode: "#include <iostream>\n#include <algorithm>\nusing namespace std;\nstruct game_t { int T, R; } games[500];\nbool game_cmp(game_t x, game_t y) { return x.R > y.R; }\nbool arrange[501];\nint main() {\n    int n; cin >> n;\n    for (int i = 0; i < n; i++) cin >> games[i].T;\n    for (int i = 0; i < n; i++) cin >> games[i].R;\n    sort(games, games + n, game_cmp);\n    int sum = 0;\n    for (int i = 0; i < n; i++) {\n        for (int t = games[i].T - 1; t >= 0; t--) {\n            if (!arrange[t]) {\n                arrange[t] = true;\n                sum += games[i].R;\n                break;\n            }\n        }\n    }\n    cout << sum << endl;\n    return 0;\n}"
+        referenceCode: "#include <iostream>\n#include <algorithm>\nusing namespace std;\nstruct game_t { int T, R; } games[500];\nbool game_cmp(game_t x, game_t y) { return x.R > y.R; }\nbool arrange[501];\nint main() {\n    int n; cin >> n;\n    for (int i = 0; i < n; i++) cin >> games[i].T;\n    for (int i = 0; i < n; i++) cin >> games[i].R;\n    sort(games, games+n, game_cmp);\n    int sum = 0;\n    for (int i = 0; i < n; i++) {\n        for (int t = games[i].T-1; t >= 0; t--) {\n            if (!arrange[t]) {\n                arrange[t] = true;\n                sum += games[i].R;\n                break;\n            }\n        }\n    }\n    cout << sum << endl;\n    return 0;\n}"
     }
 ];
 
@@ -71,7 +71,7 @@ export const paperData = {
             question: "如果a 和b 均为int类型的变量，且b 的值不为0，那么下列能正确判断 “a 是b 的 3 倍 ” 的表达式是（ ）。",
             options: [
                 "(a >> 3 == b)",
-                "(a - b) % 3 == 0",
+                "(a-b) % 3 == 0",
                 "(a / b == 3)",
                 "(a == 3 * b)",
             ],
@@ -87,7 +87,7 @@ export const paperData = {
         {
             id: 3,
             type: "single",
-            question: "如果变量a 和b 分别为double类型 and int类型，则表达式(a = 6, b = 3 * (7 + 8) / 2, b += a)的 计算结果为（ ）。",
+            question: "如果变量a 和b 分别为double类型 and int类型，则表达式(a = 6, b = 3 * (7+8) / 2, b += a)的 计算结果为（ ）。",
             options: [
                 "6",
                 "21",
@@ -127,14 +127,14 @@ export const paperData = {
             type: "single",
             question: "下面 C++ 代码以递归方式实现字符串反序，横线处应填上代码是（ ）。",
             options: [
-                "sIn[sIn.length() - 1] + sReverse(sIn.substr(0, sIn.length() - 1));",
-                "sIn[0] + sReverse(sIn.substr(1, sIn.length() - 1));",
-                "sReverse(sIn.substr(0, sIn.length() - 1)) + sIn[sIn.length() - 1];",
-                "sReverse(sIn.substr(1, sIn.length() - 1)) + sIn[sIn.length() - 1];",
+                "sIn[sIn.length()-1]+sReverse(sIn.substr(0, sIn.length()-1));",
+                "sIn[0]+sReverse(sIn.substr(1, sIn.length()-1));",
+                "sReverse(sIn.substr(0, sIn.length()-1))+sIn[sIn.length()-1];",
+                "sReverse(sIn.substr(1, sIn.length()-1))+sIn[sIn.length()-1];",
             ],
             answer: 0,
             score: 2,
-            explanation: "反序递归：最后一个字符 + 其余部分的反序。",
+            explanation: "反序递归：最后一个字符+其余部分的反序。",
             tags: [
                 "客观题",
                 "单选题",
@@ -146,14 +146,14 @@ export const paperData = {
             type: "single",
             question: "印度古⽼的汉诺塔传说：三根柱子之间一次只能移动一个圆盘，小圆盘上不能放大圆盘。下面的 C++ 代码以递归方式实现汉诺塔，横线处应填入代码是（ ）。",
             options: [
-                "Hanoi(B, C, A, N - 2)",
-                "Hanoi(B, A, C, N - 1)",
-                "Hanoi(A, B, C, N - 2)",
-                "Hanoi(C, B, A, N - 1)",
+                "Hanoi(B, C, A, N-2)",
+                "Hanoi(B, A, C, N-1)",
+                "Hanoi(A, B, C, N-2)",
+                "Hanoi(C, B, A, N-1)",
             ],
             answer: 1,
             score: 2,
-            explanation: "汉诺塔经典递归：1. $$n-1$$个从A借C移到B；2. 第n个从A移到C；3. $$n-1$$个从B借A移到C。",
+            explanation: "汉诺塔经典递归：1. $n-1$个从A借C移到B；2. 第n个从A移到C；3. $n-1$个从B借A移到C。",
             tags: [
                 "客观题",
                 "单选题",
@@ -241,14 +241,14 @@ export const paperData = {
             type: "single",
             question: "下面代码中的isPrimeA()和isPrimeB()都用于判断参数N是否素数，有关其时间复杂度的正确说法是 （ ）。",
             options: [
-                "isPrimeA()的最坏时间复杂度是 $$$O(N)$$$，isPrimeB()的最坏时间复杂度是 O(logN)。",
-                "isPrimeA()的最坏时间复杂度是 $$$O(N)$$$，isPrimeB()的最坏时间复杂度是 O(sqrt(N))。",
-                "isPrimeA()的最坏时间复杂度是 O(sqrt(N))，isPrimeB()的最坏时间复杂度是 $$$O(N)$$$。",
-                "isPrimeA()的最坏时间复杂度是 O(logN)，isPrimeB()的最坏时间复杂度是 $$$O(N)$$$。",
+                "isPrimeA()的最坏时间复杂度是 $O(N)$，isPrimeB()的最坏时间复杂度是 O(logN)。",
+                "isPrimeA()的最坏时间复杂度是 $O(N)$，isPrimeB()的最坏时间复杂度是 O(sqrt(N))。",
+                "isPrimeA()的最坏时间复杂度是 O(sqrt(N))，isPrimeB()的最坏时间复杂度是 $O(N)$。",
+                "isPrimeA()的最坏时间复杂度是 O(logN)，isPrimeB()的最坏时间复杂度是 $O(N)$。",
             ],
             answer: 1,
             score: 2,
-            explanation: "isPrimeA 遍历到 N/2，复杂度 $$$O(N)$$$；isPrimeB 遍历到 sqrt(N)，复杂度 O(sqrt(N))。",
+            explanation: "isPrimeA 遍历到 N/2，复杂度 $O(N)$；isPrimeB 遍历到 sqrt(N)，复杂度 O(sqrt(N))。",
             tags: [
                 "客观题",
                 "单选题",
@@ -375,7 +375,7 @@ export const paperData = {
             ],
             answer: 1,
             score: 2,
-            explanation: "线性筛法（欧拉筛）的时间复杂度为$$$O(N)$$$，优于埃氏筛法的O(N log log N)。",
+            explanation: "线性筛法（欧拉筛）的时间复杂度为$O(N)$，优于埃氏筛法的O(N log log N)。",
             tags: [
                 "客观题",
                 "判断题",
@@ -392,7 +392,7 @@ export const paperData = {
             ],
             answer: 1,
             score: 2,
-            explanation: "链表不支持随机访问（$$O(1)$$访问任意位置），因此无法高效使用二分查找。",
+            explanation: "链表不支持随机访问（$O(1)$访问任意位置），因此无法高效使用二分查找。",
             tags: [
                 "客观题",
                 "判断题",
@@ -443,7 +443,7 @@ export const paperData = {
             ],
             answer: 1,
             score: 2,
-            explanation: "冒泡排序平均时间复杂度为$$$O(N^2)$$$，归并排序为$O(n \log n)$，通常归并排序更优。",
+            explanation: "冒泡排序平均时间复杂度为$O(N^2)$，归并排序为$O(n \log n)$，通常归并排序更优。",
             tags: [
                 "客观题",
                 "判断题",

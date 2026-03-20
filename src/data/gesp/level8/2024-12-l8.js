@@ -111,10 +111,10 @@ export const paperData = {
             type: "single",
             question: "已知两个点A、B在平面直角坐标系下的坐标分别为 和 ，并分别定义变量double xa, ya, xb, yb;存储坐标。假设直线AB的斜率存在，下列哪个表达式可以用来表达它？（ ）。",
             options: [
-                "(xa - xb) / (ya - yb)",
-                "(xa - xb) / (yb - ya)",
-                "(ya - yb) / (xa - xb)",
-                "(ya - yb) / (xb - xa)",
+                "(xa-xb) / (ya-yb)",
+                "(xa-xb) / (yb-ya)",
+                "(ya-yb) / (xa-xb)",
+                "(ya-yb) / (xb-xa)",
             ],
             answer: 2,
             score: 2,
@@ -166,12 +166,12 @@ export const paperData = {
         {
             id: 9,
             type: "single",
-            question: "在下面的程序中，使用整数表⽰一种组合。整数二进制表⽰的某一位为 1 ，表⽰该位对应的数被选中，反之 为 0 表⽰未选中。例如，从0 - 5这6个数中选出3个，则0b111000代表选中3, 4, 5三个数，0b011001代表 选中0, 3, 4三个数。zuhe_next函数按组合对应的整数由大到小的顺序，求出组合c的下一个组合。横线处可 以填入的是（ ）。 int intlow2(int c) { return ________; // 在此处填入选项 } int zuhe_next_incur(int c, int n, int l) { if (n == 1) return c; if ((c & (1 << l)) == 0) { int d = intlow2(c); c = (c & ~d); c = (c | (d >> 1)); } else { 1 2 3 4 5 6 7 8 9 10",
+            question: "在下面的程序中，使用整数表⽰一种组合。整数二进制表⽰的某一位为 1 ，表⽰该位对应的数被选中，反之 为 0 表⽰未选中。例如，从0-5这6个数中选出3个，则0b111000代表选中3, 4, 5三个数，0b011001代表 选中0, 3, 4三个数。zuhe_next函数按组合对应的整数由大到小的顺序，求出组合c的下一个组合。横线处可 以填入的是（ ）。 int intlow2(int c) { return ________; // 在此处填入选项 } int zuhe_next_incur(int c, int n, int l) { if (n == 1) return c; if ((c & (1 << l)) == 0) { int d = intlow2(c); c = (c & ~d); c = (c | (d >> 1)); } else { 1 2 3 4 5 6 7 8 9 10",
             options: [
-                "((c - 1) ^ c)",
-                "(((c - 1) ^ c) + 1)",
-                "(((c - 1) ^ c) >> 1)",
-                "((((c - 1) ^ c) + 1) >> 1)",
+                "((c-1) ^ c)",
+                "(((c-1) ^ c)+1)",
+                "(((c-1) ^ c) >> 1)",
+                "((((c-1) ^ c)+1) >> 1)",
             ],
             answer: 3,
             score: 2,
@@ -204,12 +204,12 @@ export const paperData = {
         {
             id: 11,
             type: "single",
-            question: "下面最长公共子序列程序中，横线处应该填入的是（ ）。 c = (c & ~(1 << l)); c = zuhe_next_incur(c, n - 1, l + 1); int d = intlow2(c); c = (c | (d >> 1)); } return c; } // 从 n 个数中选 m 个，当前组合为 c int zuhe_next(int c, int n, int m) { return zuhe_next_incur(c, n, 0); } 11 12 13 14 15 16 17 18 19 20 21 #include <iostream> using namespace std; int main() { int N = 15, cnt = 0; for (int x = 0; x + x + x <= N; x++) for (int y = x; x + y + y <= N; y++) for (int z = y; x + y + z <= N; z++) cnt++; cout << cnt << endl; return 0; } 1 2 3 4 5 6 7 8 9 10 11 #define MAX(A, B) (((A) > (B)) ? (A) : (B)) #define MIN(A, B) (((A) < (B)) ? (A) : (B)) int dp[MAX_L + 1][MAX_L + 1]; int LCS(char str1[], char str2[]) { int len1 = strlen(str1); int len2 = strlen(str2); for (int i = 0; i < len1; i++) for(int j = 0; j < len2; j++) if (str1[i] == str2[j]) dp[i + 1][j + 1] = dp[i][j] + 1; else ________; // 在此处填入选项 return dp[len1][len2]; 1 2 3 4 5 6 7 8 9 10 11 12 13",
+            question: "下面最长公共子序列程序中，横线处应该填入的是（ ）。 c = (c & ~(1 << l)); c = zuhe_next_incur(c, n-1, l+1); int d = intlow2(c); c = (c | (d >> 1)); } return c; } // 从 n 个数中选 m 个，当前组合为 c int zuhe_next(int c, int n, int m) { return zuhe_next_incur(c, n, 0); } 11 12 13 14 15 16 17 18 19 20 21 #include <iostream> using namespace std; int main() { int N = 15, cnt = 0; for (int x = 0; x+x+x <= N; x++) for (int y = x; x+y+y <= N; y++) for (int z = y; x+y+z <= N; z++) cnt++; cout << cnt << endl; return 0; } 1 2 3 4 5 6 7 8 9 10 11 #define MAX(A, B) (((A) > (B)) ? (A) : (B)) #define MIN(A, B) (((A) < (B)) ? (A) : (B)) int dp[MAX_L+1][MAX_L+1]; int LCS(char str1[], char str2[]) { int len1 = strlen(str1); int len2 = strlen(str2); for (int i = 0; i < len1; i++) for(int j = 0; j < len2; j++) if (str1[i] == str2[j]) dp[i+1][j+1] = $dp[i]$[j]+1; else ________; // 在此处填入选项 return dp[len1][len2]; 1 2 3 4 5 6 7 8 9 10 11 12 13",
             options: [
-                "dp[i + 1][j + 1] = dp[i][j + 1] + dp[i + 1][j]",
-                "dp[i + 1][j + 1] = MIN(dp[i][j + 1], dp[i + 1][j])",
-                "dp[i + 1][j + 1] = MAX(dp[i][j + 1], dp[i + 1][j])",
-                "dp[i + 1][j + 1] = MAX(dp[i][j + 1], dp[i + 1][j]) + 1",
+                "dp[i+1][j+1] = $dp[i]$[j+1]+dp[i+1][j]",
+                "dp[i+1][j+1] = MIN($dp[i]$[j+1], dp[i+1][j])",
+                "dp[i+1][j+1] = MAX($dp[i]$[j+1], dp[i+1][j])",
+                "dp[i+1][j+1] = MAX($dp[i]$[j+1], dp[i+1][j])+1",
             ],
             answer: 2,
             score: 2,
@@ -227,7 +227,7 @@ export const paperData = {
             options: [
                 "选项A",
                 "选项B",
-                "}14 typedef struct Edge { int in, out; // 从下标 in 顶点到下标 out 顶点的边 int len; // 边长度 struct Edge * next; } Edge; // v ：顶点个数， graph ：出边邻接表， start ：起点下标， dis ：输出每个顶点的最短距离 void dijkstra(int v, Edge * graph[], int start, int * dis) { const int MAX_DIS = 0x7fffff; for (int i = 0; i < v; i++) dis[i] = MAX_DIS; dis[start] = 0; int * visited = new int[v]; for (int i = 0; i < v; i++) visited[i] = 0; visited[start] = 1; for (int t = 0; ; t++) { int min = MAX_DIS, minv = -1; for (int i = 0; i < v; i++) { if (visited[i] == 0 && min > dis[i]) { min = dis[i]; minv = i; } } if (minv < 0) break; visited[minv] = 1; for (Edge * e = graph[minv]; e != NULL; e = e->next) { ________; // 在此处填入选项 } } delete[] visited; } 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27 28 29 30 31 32 if (dis[e->out] > e->len) dis[e->out] = e->len; 1 2 if (dis[e->out] > min + e->len) dis[e->out] = min + e->len; 1 2",
+                "}14 typedef struct Edge { int in, out; // 从下标 in 顶点到下标 out 顶点的边 int len; // 边长度 struct Edge * next; } Edge; // v ：顶点个数， graph ：出边邻接表， start ：起点下标， dis ：输出每个顶点的最短距离 void dijkstra(int v, Edge * graph[], int start, int * dis) { const int MAX_DIS = 0x7fffff; for (int i = 0; i < v; i++) dis[i] = MAX_DIS; dis[start] = 0; int * visited = new int[v]; for (int i = 0; i < v; i++) visited[i] = 0; visited[start] = 1; for (int t = 0; ; t++) { int min = MAX_DIS, minv = -1; for (int i = 0; i < v; i++) { if (visited[i] == 0 && min > dis[i]) { min = dis[i]; minv = i; } } if (minv < 0) break; visited[minv] = 1; for (Edge * e = graph[minv]; e != NULL; e = e->next) { ________; // 在此处填入选项 } } delete[] visited; } 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27 28 29 30 31 32 if (dis[e->out] > e->len) dis[e->out] = e->len; 1 2 if (dis[e->out] > min+e->len) dis[e->out] = min+e->len; 1 2",
                 "选项D",
             ],
             answer: 1,
@@ -264,7 +264,7 @@ export const paperData = {
             question: "下面的快速排序程序中，两处横线处分别应填入的是（ ）。",
             options: [
                 "选项A",
-                "if (dis[e->in] > e->len) dis[e->in] = e->len; 1 2 if (dis[e->in] > min + e->len) dis[e->in] = min + e->len; 1 2 void quick_sort(int a[], int n) { if (n <= 1) return; int pivot = 0, l = 0, r = n - 1; while (________) { // 在此处填入选项 while (r > pivot && a[r] >= a[pivot]) r--; if (r > pivot) { int temp = a[pivot]; a[pivot] = a[r]; a[r] = temp; pivot = r; } while (l < pivot && a[l] <= a[pivot]) l++; if (l < pivot) { int temp = a[pivot]; a[pivot] = a[l]; a[l] = temp; pivot = l; } } quick_sort(a, pivot); quick_sort(________); // 在此处填入选项 } 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 l < r a + pivot + 1, n - pivot - 1 1 2 l < r a + pivot + 1, n - pivot 1 2 题号 1 2 3 4 5 6 7 8 9 10 答案",
+                "if (dis[e->in] > e->len) dis[e->in] = e->len; 1 2 if (dis[e->in] > min+e->len) dis[e->in] = min+e->len; 1 2 void quick_sort(int a[], int n) { if (n <= 1) return; int pivot = 0, l = 0, r = n-1; while (________) { // 在此处填入选项 while (r > pivot && a[r] >= a[pivot]) r--; if (r > pivot) { int temp = a[pivot]; a[pivot] = a[r]; a[r] = temp; pivot = r; } while (l < pivot && a[l] <= a[pivot]) l++; if (l < pivot) { int temp = a[pivot]; a[pivot] = a[l]; a[l] = temp; pivot = l; } } quick_sort(a, pivot); quick_sort(________); // 在此处填入选项 } 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 l < r a+pivot+1, n-pivot-1 1 2 l < r a+pivot+1, n-pivot 1 2 题号 1 2 3 4 5 6 7 8 9 10 答案",
                 "选项C",
                 "选项D",
             ],
@@ -299,7 +299,7 @@ export const paperData = {
         {
             id: 16,
             type: "judge",
-            question: "表达式'3' + '5'的结果为'8'，类型为char。",
+            question: "表达式'3'+'5'的结果为'8'，类型为char。",
             options: [
                 "正确",
                 "错误",
@@ -452,7 +452,7 @@ export const paperData = {
         {
             id: 25,
             type: "judge",
-            question: "要求解一元二次方程 ，需要先判断表达式a ^ 2 - b * 4 >= 0是否为真。 l <= r a + pivot + 1, n - pivot - 1 1 2 l <= r a + pivot + 1, n - pivot 1 2 子任务编号 数据点占比 特殊性质 1 20% 树的形态为一条链 2 20% 3 60%",
+            question: "要求解一元二次方程 ，需要先判断表达式a ^ 2-b * 4 >= 0是否为真。 l <= r a+pivot+1, n-pivot-1 1 2 l <= r a+pivot+1, n-pivot 1 2 子任务编号 数据点占比 特殊性质 1 20% 树的形态为一条链 2 20% 3 60%",
             options: [
                 "正确",
                 "错误",

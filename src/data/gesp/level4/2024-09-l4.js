@@ -15,7 +15,7 @@ const programmingQuestions = [
         explanation: "由于网格规模较小，可以直接枚举所有可能的 2x2 子矩形左上角坐标 (i, j)，检查四个顶点格子是否均为 '0'。",
         tags: ["编程题", "二维数组", "模拟"],
         template: "#include <iostream>\n#include <vector>\n#include <string>\nusing namespace std;\n\nint main() {\n    int T;\n    cin >> T;\n    // 在此编写代码\n    return 0;\n}",
-        referenceCode: "#include <iostream>\n#include <vector>\n#include <string>\nusing namespace std;\nvoid solve() {\n    int n, m; cin >> n >> m;\n    vector<string> g(n);\n    for (int i = 0; i < n; i++) cin >> g[i];\n    bool ok = false;\n    if (n >= 2 && m >= 2) {\n        for (int i = 0; i < n - 1; i++) {\n            for (int j = 0; j < m - 1; j++) {\n                if (g[i][j] == '0' && g[i][j+1] == '0' && g[i+1][j] == '0' && g[i+1][j+1] == '0') {\n                    ok = true; break;\n                }\n            }\n            if (ok) break;\n        }\n    }\n    if (ok) cout << \"Yes\" << endl; else cout << \"No\" << endl;\n}\nint main() {\n    int T; cin >> T;\n    while (T--) solve();\n    return 0;\n}"
+        referenceCode: "#include <iostream>\n#include <vector>\n#include <string>\nusing namespace std;\nvoid solve() {\n    int n, m; cin >> n >> m;\n    vector<string> g(n);\n    for (int i = 0; i < n; i++) cin >> g[i];\n    bool ok = false;\n    if (n >= 2 && m >= 2) {\n        for (int i = 0; i < n-1; i++) {\n            for (int j = 0; j < m-1; j++) {\n                if (g[i][j] == '0' && g[i][j+1] == '0' && g[i+1][j] == '0' && g[i+1][j+1] == '0') {\n                    ok = true; break;\n                }\n            }\n            if (ok) break;\n        }\n    }\n    if (ok) cout << \"Yes\" << endl; else cout << \"No\" << endl;\n}\nint main() {\n    int T; cin >> T;\n    while (T--) solve();\n    return 0;\n}"
     },
     {
         id: 27,
@@ -31,7 +31,7 @@ const programmingQuestions = [
         explanation: "直接按照题目要求，依次执行 m 次排序操作即可。每次操作使用 std::sort 进行区间排序。",
         tags: ["编程题", "排序", "模拟"],
         template: "#include <iostream>\n#include <vector>\n#include <algorithm>\nusing namespace std;\n\nint main() {\n    int n, m;\n    cin >> n >> m;\n    // 在此编写代码\n    return 0;\n}",
-        referenceCode: "#include <iostream>\n#include <vector>\n#include <algorithm>\nusing namespace std;\nint main() {\n    int n, m; cin >> n >> m;\n    vector<int> a(n);\n    for (int i = 0; i < n; i++) cin >> a[i];\n    while (m--) {\n        int l, r; cin >> l >> r;\n        sort(a.begin() + l - 1, a.begin() + r);\n    }\n    for (int i = 0; i < n; i++) cout << a[i] << (i == n - 1 ? \"\" : \" \");\n    cout << endl;\n    return 0;\n}"
+        referenceCode: "#include <iostream>\n#include <vector>\n#include <algorithm>\nusing namespace std;\nint main() {\n    int n, m; cin >> n >> m;\n    vector<int> a(n);\n    for (int i = 0; i < n; i++) cin >> a[i];\n    while (m--) {\n        int l, r; cin >> l >> r;\n        sort(a.begin()+l-1, a.begin()+r);\n    }\n    for (int i = 0; i < n; i++) cout << a[i] << (i == n-1 ? \"\" : \" \");\n    cout << endl;\n    return 0;\n}"
     }
 ];
 
@@ -50,10 +50,10 @@ export const paperData = {
             type: "single",
             question: "在 C++ 中，（ ）正确定义了一个返回整数值并接受两个整数参数的函数。",
             options: [
-                "int add(int a, int b) { return a + b; }",
-                "void add(int a, int b) { return a + b; }",
-                "int add(a, b) { return a + b; }",
-                "void add(int a, int b) { return a - b; }"
+                "int add(int a, int b) { return a+b; }",
+                "void add(int a, int b) { return a+b; }",
+                "int add(a, b) { return a+b; }",
+                "void add(int a, int b) { return a-b; }"
             ],
             answer: 0,
             score: 2,
@@ -119,17 +119,17 @@ export const paperData = {
             id: 6,
             type: "single",
             question: "选择排序的时间复杂度是（ ）。",
-            options: ["$$$O(N)$$$", "$O(n \log n)$", "$$$O(N^2)$$$", "$O(\log n)$"],
+            options: ["$O(N)$", "$O(n \log n)$", "$O(N^2)$", "$O(\log n)$"],
             answer: 2,
             score: 2,
-            explanation: "选择排序平均和最坏情况均为 $$$O(N^2)$$$。",
+            explanation: "选择排序平均和最坏情况均为 $O(N^2)$。",
             tags: ["客观题", "单选题", "GESP4级"]
         },
         {
             id: 7,
             type: "single",
             question: "插入排序在最好情况下的时间复杂度是（ ）。",
-            options: ["$$O(1)$$", "$$$O(N)$$$", "$$$O(N^2)$$$", "$O(n \log n)$"],
+            options: ["$O(1)$", "$O(N)$", "$O(N^2)$", "$O(n \log n)$"],
             answer: 1,
             score: 2,
             explanation: "当数组已有序时，插入排序仅需比较 $N-1$ 次。",
@@ -292,7 +292,7 @@ export const paperData = {
             options: ["正确", "错误"],
             answer: 1,
             score: 2,
-            explanation: "两者平均和最坏情况均为 $$$O(N^2)$$$。",
+            explanation: "两者平均和最坏情况均为 $O(N^2)$。",
             tags: ["客观题", "判断题", "GESP4级"]
         },
         {
@@ -308,7 +308,7 @@ export const paperData = {
         {
             id: 24,
             type: "judge",
-            question: "求斐波那契数列第 n 项，递推法的时间复杂度为 $$$O(N)$$$。",
+            question: "求斐波那契数列第 n 项，递推法的时间复杂度为 $O(N)$。",
             options: ["正确", "错误"],
             answer: 0,
             score: 2,
