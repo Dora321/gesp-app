@@ -83,7 +83,7 @@ import { paperData as p202403l6 } from './level6/2024-03-l6';
 import { paperData as p202406l6 } from './level6/2024-06-l6';
 import { paperData as p202409l6 } from './level6/2024-09-l6';
 import { paperData as p202412l6 } from './level6/2024-12-l6';
-import { paperData as p202403l6_v2 } from './level6/2024-03-l6_v2'; // Note: check if needed
+
 import { paperData as p202503l6 } from './level6/2025-03-l6';
 import { paperData as p202506l6 } from './level6/2025-06-l6';
 import { paperData as p202509l6 } from './level6/2025-09-l6';
