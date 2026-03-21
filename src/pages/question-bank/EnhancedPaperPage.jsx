@@ -399,11 +399,12 @@ export default function EnhancedPaperPage({ forcedPaperId }) {
                         {activeTab === 'practice' && (
                             <div className="space-y-3">
                                 {(currentQ.type === 'coding' || currentQ.type === 'programming') ? (
-                                    <div className="rounded-xl border border-indigo-200 bg-indigo-50 p-4 space-y-3">
-                                        <p className="text-sm text-slate-700 leading-relaxed">
-                                            代码上机题题面如下（Markdown 原文），可直接在此阅读后开始实现：
-                                        </p>
-                                        <div className="prose prose-sm max-w-none bg-white rounded-lg border border-indigo-100 p-3">
+                                    <div className="luogu-problem">
+                                        <div className="problem-header">
+                                            <span className="problem-tag">上机编程</span>
+                                            <span className="problem-title">第 {currentQuestionIndex + 1} 题</span>
+                                        </div>
+                                        <div className="problem-content">
                                             <MarkdownRenderer content={programmingPracticeMarkdown} />
                                         </div>
                                     </div>
@@ -449,9 +450,14 @@ export default function EnhancedPaperPage({ forcedPaperId }) {
                                     <>
                                         {(currentQ.type === 'coding' || currentQ.type === 'programming') ? (
                                             <div className="space-y-3">
-                                                <p className="text-sm"><span className="font-semibold text-indigo-700">上机题原题面（Markdown）：</span></p>
-                                                <div className="prose prose-sm max-w-none bg-white rounded-lg border border-blue-100 p-3">
-                                                    <MarkdownRenderer content={programmingAnalysisMarkdown} />
+                                                <div className="luogu-problem">
+                                                    <div className="problem-header">
+                                                        <span className="problem-tag">题面回顾</span>
+                                                        <span className="problem-title">上机编程</span>
+                                                    </div>
+                                                    <div className="problem-content">
+                                                        <MarkdownRenderer content={programmingAnalysisMarkdown} />
+                                                    </div>
                                                 </div>
 
                                                 <div className="grid md:grid-cols-2 gap-3">

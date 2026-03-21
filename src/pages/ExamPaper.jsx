@@ -350,8 +350,12 @@ const ExamPaper = () => {
 
                             {isProgrammingQuestion(currentQ) ? (
                                 <div className="space-y-4">
-                                    <div className="rounded-2xl border border-indigo-200 bg-indigo-50 p-5">
-                                        <div className="prose prose-sm max-w-none">
+                                    <div className="luogu-problem">
+                                        <div className="problem-header">
+                                            <span className="problem-tag">上机编程</span>
+                                            <span className="problem-title">第 {currentQuestionIndex + 1} 题</span>
+                                        </div>
+                                        <div className="problem-content">
                                             <MarkdownRenderer content={currentProgrammingMarkdown} />
                                         </div>
                                     </div>
