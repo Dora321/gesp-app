@@ -390,9 +390,11 @@ export default function EnhancedPaperPage({ forcedPaperId }) {
                             </div>
                         </div>
 
-                        <h2 className="text-lg md:text-xl font-bold text-slate-800 mb-5 leading-relaxed">
-                            <MarkdownRenderer content={stripLeadingNumber(getQuestionContent(currentQ))} />
-                        </h2>
+                        {!( (currentQ.type === 'coding' || currentQ.type === 'programming') && getQuestionContent(currentQ) === programmingPracticeMarkdown ) && (
+                            <h2 className="text-lg md:text-xl font-bold text-slate-800 mb-5 leading-relaxed">
+                                <MarkdownRenderer content={stripLeadingNumber(getQuestionContent(currentQ))} />
+                            </h2>
+                        )}
 
                         {activeTab === 'practice' && (
                             <div className="space-y-3">

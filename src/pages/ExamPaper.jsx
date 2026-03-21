@@ -336,10 +336,17 @@ const ExamPaper = () => {
                                 {isProgrammingQuestion(currentQ) ? '编程题' : currentQ.type === 'single' ? '单选题' : '判断题'} • {currentQ.score}分
                             </div>
 
-                            <h2 className="text-xl md:text-2xl font-bold text-slate-800 mt-6 mb-8 leading-relaxed">
-                                <span className="text-blue-500 mr-2">{currentQuestionIndex + 1}.</span>
-                                <MarkdownRenderer content={stripLeadingNumber(getQuestionContent(currentQ))} className="inline-markdown" inline={true} />
-                            </h2>
+                            {!(isProgrammingQuestion(currentQ) && getQuestionContent(currentQ) === currentProgrammingMarkdown) && (
+                                <h2 className="text-xl md:text-2xl font-bold text-slate-800 mt-6 mb-8 leading-relaxed">
+                                    <span className="text-blue-500 mr-2">{currentQuestionIndex + 1}.</span>
+                                    <MarkdownRenderer content={stripLeadingNumber(getQuestionContent(currentQ))} className="inline-markdown" inline={true} />
+                                </h2>
+                            )}
+                            {isProgrammingQuestion(currentQ) && getQuestionContent(currentQ) === currentProgrammingMarkdown && (
+                                <h2 className="text-xl md:text-2xl font-bold text-slate-800 mt-6 mb-2 leading-relaxed">
+                                    <span className="text-blue-500 mr-2">第 {currentQuestionIndex + 1} 题</span>
+                                </h2>
+                            )}
 
                             {isProgrammingQuestion(currentQ) ? (
                                 <div className="space-y-4">
