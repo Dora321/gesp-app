@@ -399,6 +399,7 @@ export default function EnhancedPaperPage({ forcedPaperId }) {
                         {activeTab === 'practice' && (
                             <div className="space-y-3">
                                 {(currentQ.type === 'coding' || currentQ.type === 'programming') ? (
+                                    <>
                                     <div className="luogu-problem">
                                         <div className="problem-header">
                                             <span className="problem-tag">上机编程</span>
@@ -408,6 +409,23 @@ export default function EnhancedPaperPage({ forcedPaperId }) {
                                             <MarkdownRenderer content={programmingPracticeMarkdown} />
                                         </div>
                                     </div>
+                                    {(() => {
+                                        const mapped = paperCodingMap[paperId] || {};
+                                        const pid = mapped[`q${currentQ.id}`];
+                                        const hasLink = pid && !pid.startsWith('P0000');
+                                        return hasLink ? (
+                                            <a
+                                                href={`https://www.luogu.com.cn/problem/${pid}`}
+                                                target="_blank"
+                                                rel="noopener noreferrer"
+                                                className="w-full py-3 rounded-xl font-semibold flex items-center justify-center gap-2 bg-green-600 text-white hover:bg-green-700 transition-colors"
+                                            >
+                                                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><path d="M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"/><polyline points="15 3 21 3 21 9"/><line x1="10" y1="14" x2="21" y2="3"/></svg>
+                                                前往洛谷提交代码
+                                            </a>
+                                        ) : null;
+                                    })()}
+                                    </>
                                 ) : (
                                     (currentQ.options || []).map((opt, idx) => {
                                         const isSelected = selected === idx;
