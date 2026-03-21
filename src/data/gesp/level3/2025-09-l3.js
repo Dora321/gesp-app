@@ -279,58 +279,81 @@ export const paperData = {
     ],
     programmingQuestions: [
         {
-            id: 26,
-            type: 'programming',
-            explanation: '暂无解析',
-            template: `#include <bits/stdc++.h>\nusing namespace std;\n\nint main() {\n    // 在此填写代码\n    return 0;\n}`,
-            score: 25,
-            title: '数组清零',
-            problemNumber: 'B4413',
-            source: 'official-pdf+luogu-mapping',
-            description: '小 A 有一个由 n 个非负整数组成的数组 a。她会对数组 a 重复进行如下操作，直到数组只包含 0：1）找到数组中的最大值，若最大值有多个则取下标最大的那个；2）在所有非零元素中找到最小值；3）将第 1 步选中的最大值减去第 2 步得到的最小值。请你计算最少需要进行多少次操作，才能把整个数组都变成 0。',
-            inputDescription: '第一行，一个正整数 n，表示数组长度。第二行，n 个非负整数 a1, a2, ..., an，表示数组中的元素。',
-            outputDescription: '输出一行一个整数，表示把数组全部变成 0 所需要的操作次数。',
-            samples: [
-                {
-                    input: '3\n2 3 4',
-                    output: '7'
-                },
-                {
-                    input: '5\n1 3 2 2 5',
-                    output: '13'
-                }
-            ],
-            explanation: '直接按题意模拟即可：每轮先找“最右侧最大值”，再找当前所有正数中的最小值并做减法，统计轮数直到最大值也变成 0。若进一步分析，答案也可理解为排序后各层高度对剩余正数个数的贡献总和。',
-            tags: ['编程题', '模拟', '数组'],
-            template: '#include <bits/stdc++.h>\nusing namespace std;\n\nint main() {\n    ios::sync_with_stdio(false);\n    cin.tie(nullptr);\n\n    // 在此编写代码\n    return 0;\n}',
-            referenceCode: '#include <algorithm>\n#include <cstdio>\nusing namespace std;\nconst int N = 105;\nint n;\nint a[N];\nint cnt;\nint main() {\n    scanf("%d", &n);\n    for (int i = 1; i <= n; i++) scanf("%d", &a[i]);\n    while (1) {\n        int mx = n;\n        for (int i = 1; i <= n; i++)\n            if (a[i] >= a[mx]) mx = i;\n        if (a[mx] == 0) break;\n        int mn = a[mx];\n        for (int i = 1; i <= n; i++)\n            if (a[i] > 0) mn = min(mn, a[i]);\n        a[mx] -= mn;\n        cnt++;\n    }\n    printf("%d\\n", cnt);\n    return 0;\n}'
-        },
+      id: 26,
+      type: 'programming',
+      question: `
+# [GESP202509 三级] 数组清零
+
+## 题目描述
+
+小 A 有一个由 \$n\$ 个非负整数构成的数组 \$a = [a_1, a_2, \\ldots, a_n]\$。他会对阵组 \$a\$ 重复进行以下操作，直到数组 \$a\$ 只包含 0。在一次操作中，小 A 会依次完成以下三个步骤：
+
+1. 在数组 \$a\$ 中找到最大的整数，记其下标为 \$k\$。如果有多个最大值，那么选择其中下标最大的。
+2. 从数组 \$a\$ 所有不为零的整数中找到最小的整数 \$a_j\$。
+3. 将第一步找出的 \$a_k\$ 减去 \$a_j\$。
+
+例如，数组 \$a = [2, 3, 4]\$ 需要 7 次操作变成 \$[0, 0, 0]\$：
+
+\$
+[2, 3, 4] \\rightarrow [2, 3, 2] \\rightarrow [2, 1, 2] \\rightarrow [2, 1, 1] \\rightarrow [1, 1, 1] \\rightarrow [1, 1, 0] \\rightarrow [1, 0, 0] \\rightarrow [0, 0, 0]
+\$
+
+小 A 想知道，对于给定的数组 \$a\$，需要多少次操作才能使得 \$a\$ 中的整数全部变成 0。可以证明，\$a\$ 中整数必然可以在有限次操作后全部变成 0。你能帮他计算出答案吗？
+
+## 输入格式
+
+第一行，一个正整数 \$n\$，表示数组 \$a\$ 的长度。
+
+第二行，\$n\$ 个非负整数 \$a_1, a_2, \\ldots, a_n\$，表示数组 \$a\$ 中的整数。
+
+## 输出格式
+
+一行，一个正整数，表示 \$a\$ 中整数全部变成 0 所需要的操作次数。
+`,
+      explanation: '直接按题意模拟即可：每轮先找“最右侧最大值”，再找当前所有正数中的最小值并做减法，统计轮数直到最大值也变成 0。若进一步分析，答案也可理解为排序后各层高度对剩余正数个数的贡献总和。',
+      template: '#include <bits/stdc++.h>\nusing namespace std;\n\nint main() {\n    ios::sync_with_stdio(false);\n    cin.tie(nullptr);\n\n    // 在此编写代码\n    return 0;\n}',
+      score: 25,
+      tags: ['编程题', '模拟', '数组'],
+      referenceCode: '#include <algorithm>\n#include <cstdio>\nusing namespace std;\nconst int N = 105;\nint n;\nint a[N];\nint cnt;\nint main() {\n    scanf("%d", &n);\n    for (int i = 1; i <= n; i++) scanf("%d", &a[i]);\n    while (1) {\n        int mx = n;\n        for (int i = 1; i <= n; i++)\n            if (a[i] >= a[mx]) mx = i;\n        if (a[mx] == 0) break;\n        int mn = a[mx];\n        for (int i = 1; i <= n; i++)\n            if (a[i] > 0) mn = min(mn, a[i]);\n        a[mx] -= mn;\n        cnt++;\n    }\n    printf("%d\\n", cnt);\n    return 0;\n}',
+      answer: '',
+    },
         {
-            id: 27,
-            type: 'programming',
-            explanation: '暂无解析',
-            template: `#include <bits/stdc++.h>\nusing namespace std;\n\nint main() {\n    // 在此填写代码\n    return 0;\n}`,
-            score: 25,
-            title: '日历制作',
-            problemNumber: 'B4414',
-            source: 'official-pdf+luogu-mapping',
-            description: '小 A 想制作 2025 年每个月的日历。输入一个月份 m，请按题目指定格式输出该月日历：先输出表头 MON TUE WED THU FRI SAT SUN，再按每周一到周日的顺序输出日期，并保证日期个位与对应星期缩写的最后一个字母对齐。题面特别说明：2025 年 9 月 1 日是星期一。',
-            inputDescription: '输入一行，一个正整数 m，表示要输出 2025 年 m 月的日历。',
-            outputDescription: '输出若干行，表示 2025 年 m 月的日历。',
-            samples: [
-                {
-                    input: '9',
-                    output: 'MON TUE WED THU FRI SAT SUN\n  1   2   3   4   5   6   7\n  8   9  10  11  12  13  14\n 15  16  17  18  19  20  21\n 22  23  24  25  26  27  28\n 29  30'
-                },
-                {
-                    input: '6',
-                    output: 'MON TUE WED THU FRI SAT SUN\n                          1\n  2   3   4   5   6   7   8\n  9  10  11  12  13  14  15\n 16  17  18  19  20  21  22\n 23  24  25  26  27  28  29\n 30'
-                }
-            ],
-            explanation: '已知 2025 年 9 月 1 日是星期一，可以向前或向后按每月天数推算任意月份 1 日对应的星期。输出时先补齐首周空位，再按宽度格式化输出每个日期即可。',
-            tags: ['编程题', '模拟', '日期', '格式化输出'],
-            template: '#include <bits/stdc++.h>\nusing namespace std;\n\nint main() {\n    ios::sync_with_stdio(false);\n    cin.tie(nullptr);\n\n    // 在此编写代码\n    return 0;\n}',
-            referenceCode: '#include <algorithm>\n#include <cstdio>\nusing namespace std;\nint days[20] = {0, 31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31};\nint main() {\n    int m;\n    scanf("%d", &m);\n    printf("MON TUE WED THU FRI SAT SUN\\n");\n    int d = days[m];\n    int w = 1;\n    if (m > 9) {\n        for (int i = 9; i < m; i++) w = (w+days[i]-1) % 7+1;\n    } else if (m < 9) {\n        for (int i = 8; i >= m; i--) w = ((w-days[i]) % 7+7) % 7;\n        if (w == 0) w = 7;\n    }\n    for (int i = 1; i < w; i++) printf("    ");\n    for (int i = 1; i <= d; i++) {\n        printf("% 3d", i);\n        w = w % 7+1;\n        if (w == 1 || i == d)\n            printf("\\n");\n        else\n            printf(" ");\n    }\n    return 0;\n}'
-        }
+      id: 27,
+      type: 'programming',
+      question: `
+# [GESP202509 三级] 日历制作
+
+## 题目描述
+
+小 A 想制作 \$2025\$ 年每个月的日历。他希望你能编写一个程序，按照格式输出给定月份的日历。
+
+具体来说，第一行需要输出 MON TUE WED THU FRI SAT SUN，分别表示星期一到星期日。接下来若干行中依次输出这个月所包含的日期，日期的个位需要和对应星期几的缩写最后一个字母对齐。例如，\$2025\$ 年 \$9\$ 月 \$1\$ 日是星期一，在输出九月的日历时，\$1\$ 号的个位 \$1\$ 就需要与星期一 MON 的最后一个字母 N 对齐。九月的日历输出效果如下:
+
+\`\`\`
+MON TUE WED THU FRI SAT SUN
+  1   2   3   4   5   6   7
+  8   9  10  11  12  13  14
+ 15  16  17  18  19  20  21
+ 22  23  24  25  26  27  28
+ 29  30
+\`\`\`
+
+你能帮助小 A 完成日历的制作吗?
+
+## 输入格式
+
+一行，一个正整数 \$m\$，表示需要按照格式输出 \$2025\$ 年 \$m\$ 月的日历。
+
+## 输出格式
+
+输出包含若干行，表示 \$2025\$ 年 \$m\$ 月的日历。
+`,
+      explanation: '已知 2025 年 9 月 1 日是星期一，可以向前或向后按每月天数推算任意月份 1 日对应的星期。输出时先补齐首周空位，再按宽度格式化输出每个日期即可。',
+      template: '#include <bits/stdc++.h>\nusing namespace std;\n\nint main() {\n    ios::sync_with_stdio(false);\n    cin.tie(nullptr);\n\n    // 在此编写代码\n    return 0;\n}',
+      score: 25,
+      tags: ['编程题', '模拟', '日期', '格式化输出'],
+      referenceCode: '#include <algorithm>\n#include <cstdio>\nusing namespace std;\nint days[20] = {0, 31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31};\nint main() {\n    int m;\n    scanf("%d", &m);\n    printf("MON TUE WED THU FRI SAT SUN\\n");\n    int d = days[m];\n    int w = 1;\n    if (m > 9) {\n        for (int i = 9; i < m; i++) w = (w+days[i]-1) % 7+1;\n    } else if (m < 9) {\n        for (int i = 8; i >= m; i--) w = ((w-days[i]) % 7+7) % 7;\n        if (w == 0) w = 7;\n    }\n    for (int i = 1; i < w; i++) printf("    ");\n    for (int i = 1; i <= d; i++) {\n        printf("% 3d", i);\n        w = w % 7+1;\n        if (w == 1 || i == d)\n            printf("\\n");\n        else\n            printf(" ");\n    }\n    return 0;\n}',
+      answer: '',
+    }
     ]
 };

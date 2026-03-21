@@ -2,52 +2,79 @@
 
 const programmingQuestions = [
     {
-        "id": 26,
-        "type": "programming",
-        "title": "计算得分",
-        "problemNumber": "2024-06-23-06-C-01",
-        "score": 25,
-        "description": "若某个子串恰好由 k 个连续的 abc 首尾相接组成，则可获得分数 a_k，且字符不能重复计分。求字符串的最大总得分。",
-        "inputDescription": "第一行 n。第二行 n 个整数 a_i。第三行 m。第四行字符串 s。",
-        "outputDescription": "输出最大总得分。",
-        "samples": [
-            {
-                "input": "3\n3 1 2\n13\ndabcabcabcabz",
-                "output": "9"
-            }
-        ],
-        "explanation": "设 dp[i] 为前 i 个字符的最大得分。若某一段恰好是 k 个连续的 abc，则它的长度一定是 3k，且末尾三字符为 abc。先求出每个位置结尾连续接了多少个 abc 块，再在 dp 中枚举最后取多少块。",
-        "tags": [
-            "编程题",
-            "动态规划",
-            "字符串"
-        ],
-        "template": "#include <bits/stdc++.h>\nusing namespace std;\n\nint main() {\n    // 在此编写代码\n    return 0;\n}",
-        "referenceCode": "#include <bits/stdc++.h>\nusing namespace std;\n\nint main() {\n    ios::sync_with_stdio(false);\n    cin.tie(nullptr);\n\n    int n;\n    cin >> n;\n    vector<long long> a(n+1);\n    for (int i = 1; i <= n; ++i) cin >> a[i];\n    int m;\n    string s;\n    cin >> m >> s;\n    s = \" \"+s;\n\n    vector<int> cnt(m+1, 0);\n    for (int i = 3; i <= m; ++i) {\n        if (s[i-2] == 'a' && s[i-1] == 'b' && s[i] == 'c') {\n            cnt[i] = 1;\n            if (i >= 6) cnt[i] += cnt[i-3];\n        }\n    }\n\n    vector<long long> dp(m+1, 0);\n    for (int i = 1; i <= m; ++i) {\n        dp[i] = dp[i-1];\n        for (int k = 1; k <= cnt[i] && k <= n; ++k) {\n            dp[i] = max(dp[i], dp[i-3 * k]+a[k]);\n        }\n    }\n\n    cout << dp[m] << '\\n';\n    return 0;\n}"
+      id: 26,
+      type: 'programming',
+      question: `
+# [GESP202406 六级] 计算得分
+
+## 题目描述
+
+小杨想要计算由 \$m\$ 个小写字母组成的字符串的得分。
+
+小杨设置了一个包含 \$n\$ 个正整数的计分序列 \$A=[a_1,a_2,\\ldots,a_n]\$，如果字符串的一个子串由 \$k(1\\leq k \\leq n)\$ 个 \$\\texttt{abc}\$ 首尾相接组成，那么能够得到分数 \$a_k\$，并且字符串包含的字符不能够重复计算得分，整个字符串的得分是计分子串的总和。
+
+例如，假设 ，字符串 \$\\texttt{dabcabcabcabzabc}\$ 的所有可能计分方式如下：
+- \$\\texttt{d+abc+abcabc+abz+abc}\$ 或者 \$\\texttt{d+abcabc+abc+abz+abc}\$，其中 \$\\texttt{d}\$ 和 \$\\texttt{abz}\$ 不计算得分，总得分为 \$a_1+a_2+a_1\$。
+- \$\\texttt{d+abc+abc+abc+abz+abc}\$，总得分为 \$a_1+a_1+a_1+a_1\$。
+- \$\\texttt{d+abcabcabc+abz+abc}\$，总得分为 \$a_3+a_1\$。
+
+小杨想知道对于给定的字符串，最大总得分是多少。
+
+## 输入格式
+
+- 第一行包含一个正整数 \$n\$，代表计分序列 \$A\$ 的长度。
+
+- 第二行包含 \$n\$ 个正整数，代表计分序列 \$A\$。
+
+- 第三行包含一个正整数 \$m\$，代表字符串的长度。
+
+- 第四行包含一个由 \$m\$ 个小写字母组成的字符串。
+
+## 输出格式
+
+输出一个整数，代表给定字符串的最大总得分。
+`,
+      score: 25,
+      explanation: "设 dp[i] 为前 i 个字符的最大得分。若某一段恰好是 k 个连续的 abc，则它的长度一定是 3k，且末尾三字符为 abc。先求出每个位置结尾连续接了多少个 abc 块，再在 dp 中枚举最后取多少块。",
+      tags: ["编程题", "动态规划", "字符串"],
+      template: "#include <bits/stdc++.h>\nusing namespace std;\n\nint main() {\n    // 在此编写代码\n    return 0;\n}",
+      referenceCode: "#include <bits/stdc++.h>\nusing namespace std;\n\nint main() {\n    ios::sync_with_stdio(false);\n    cin.tie(nullptr);\n\n    int n;\n    cin >> n;\n    vector<long long> a(n+1);\n    for (int i = 1; i <= n; ++i) cin >> a[i];\n    int m;\n    string s;\n    cin >> m >> s;\n    s = \" \"+s;\n\n    vector<int> cnt(m+1, 0);\n    for (int i = 3; i <= m; ++i) {\n        if (s[i-2] == 'a' && s[i-1] == 'b' && s[i] == 'c') {\n            cnt[i] = 1;\n            if (i >= 6) cnt[i] += cnt[i-3];\n        }\n    }\n\n    vector<long long> dp(m+1, 0);\n    for (int i = 1; i <= m; ++i) {\n        dp[i] = dp[i-1];\n        for (int k = 1; k <= cnt[i] && k <= n; ++k) {\n            dp[i] = max(dp[i], dp[i-3 * k]+a[k]);\n        }\n    }\n\n    cout << dp[m] << '\\n';\n    return 0;\n}",
+      answer: '',
     },
     {
-        "id": 27,
-        "type": "programming",
-        "title": "二叉树",
-        "problemNumber": "2024-06-23-06-C-02",
-        "score": 25,
-        "description": "给定一棵二叉树和初始黑白颜色，进行若干次“翻转某节点整棵子树颜色”的操作，求最终颜色串。",
-        "inputDescription": "第一行 n。第二行 $n-1$ 个父节点。第三行长度为 n 的 01 串。第四行 q，之后 q 行每行一个节点。",
-        "outputDescription": "输出最终颜色串。",
-        "samples": [
-            {
-                "input": "6\n3 1 1 3 4\n100101\n3\n1\n3\n2",
-                "output": "010000"
-            }
-        ],
-        "explanation": "对子树翻转而言，一个节点最终是否翻色，只取决于从根到它这条链上被操作了多少次。先把每次操作记到对应节点，再 DFS 传递翻转次数的奇偶性，奇数次就把该点颜色取反。",
-        "tags": [
-            "编程题",
-            "树",
-            "DFS"
-        ],
-        "template": "#include <bits/stdc++.h>\nusing namespace std;\n\nint main() {\n    // 在此编写代码\n    return 0;\n}",
-        "referenceCode": "#include <bits/stdc++.h>\nusing namespace std;\n\nint main() {\n    ios::sync_with_stdio(false);\n    cin.tie(nullptr);\n\n    int n;\n    cin >> n;\n    vector<vector<int>> g(n+1);\n    for (int i = 2; i <= n; ++i) {\n        int p;\n        cin >> p;\n        g[p].push_back(i);\n    }\n\n    string s;\n    cin >> s;\n    s = \" \"+s;\n\n    int q;\n    cin >> q;\n    vector<int> mark(n+1, 0);\n    while (q--) {\n        int x;\n        cin >> x;\n        mark[x] ^= 1;\n    }\n\n    string ans(n, '0');\n    function<void(int,int)> dfs = [&](int u, int flip) {\n        flip ^= mark[u];\n        int color = s[u]-'0';\n        if (flip) color ^= 1;\n        ans[u-1] = char('0'+color);\n        for (int v : g[u]) dfs(v, flip);\n    };\n    dfs(1, 0);\n    cout << ans << '\\n';\n    return 0;\n}"
+      id: 27,
+      type: 'programming',
+      question: `
+# [GESP202406 六级] 二叉树
+
+## 题目描述
+
+小杨有一棵包含 \$n\$ 个节点的二叉树，且根节点的编号为 \$1\$。这棵二叉树任意一个节点要么是白色，要么是黑色。之后小杨会对这棵二叉树进行 \$q\$ 次操作，每次小杨会选择一个节点，将以这个节点为根的子树内所有节点的颜色反转，即黑色变成白色，白色变成黑色。
+
+小杨想知道 \$q\$ 次操作全部完成之后每个节点的颜色。
+
+## 输入格式
+
+第一行一个正整数 \$n\$，表示二叉树的节点数量。
+
+第二行 \$(n-1)\$ 个正整数，第 \$i\$（\$1\\le i\\le n-1\$）个数表示编号为 \$(i+1)\$ 的节点的父亲节点编号，数据保证是一棵二叉树。
+
+第三行一个长度为 \$n\$ 的 \$\\texttt{01}\$ 串，从左到右第 \$i\$（\$1\\le i\\le n\$）位如果为 \$\\texttt{0}\$，表示编号为 \$i\$ 的节点颜色为白色，否则为黑色。
+
+第四行一个正整数 \$q\$，表示操作次数。
+
+接下来 \$q\$ 行每行一个正整数 \$a_i\$（\$1\\le a_i\\le n\$），表示第 \$i\$ 次操作选择的节点编号。
+
+## 输出格式
+
+输出一行一个长度为 \$n\$ 的 \$\\texttt{01}\$ 串，表示 \$q\$ 次操作全部完成之后每个节点的颜色。从左到右第 \$i\$（\$1\\le i\\le n\$） 位如果为 \$\\texttt{0}\$，表示编号为 \$i\$ 的节点颜色为白色，否则为黑色。
+`,
+      score: 25,
+      explanation: "对子树翻转而言，一个节点最终是否翻色，只取决于从根到它这条链上被操作了多少次。先把每次操作记到对应节点，再 DFS 传递翻转次数的奇偶性，奇数次就把该点颜色取反。",
+      tags: ["编程题", "树", "DFS"],
+      template: "#include <bits/stdc++.h>\nusing namespace std;\n\nint main() {\n    // 在此编写代码\n    return 0;\n}",
+      referenceCode: "#include <bits/stdc++.h>\nusing namespace std;\n\nint main() {\n    ios::sync_with_stdio(false);\n    cin.tie(nullptr);\n\n    int n;\n    cin >> n;\n    vector<vector<int>> g(n+1);\n    for (int i = 2; i <= n; ++i) {\n        int p;\n        cin >> p;\n        g[p].push_back(i);\n    }\n\n    string s;\n    cin >> s;\n    s = \" \"+s;\n\n    int q;\n    cin >> q;\n    vector<int> mark(n+1, 0);\n    while (q--) {\n        int x;\n        cin >> x;\n        mark[x] ^= 1;\n    }\n\n    string ans(n, '0');\n    function<void(int,int)> dfs = [&](int u, int flip) {\n        flip ^= mark[u];\n        int color = s[u]-'0';\n        if (flip) color ^= 1;\n        ans[u-1] = char('0'+color);\n        for (int v : g[u]) dfs(v, flip);\n    };\n    dfs(1, 0);\n    cout << ans << '\\n';\n    return 0;\n}",
+      answer: '',
     }
 ];
 

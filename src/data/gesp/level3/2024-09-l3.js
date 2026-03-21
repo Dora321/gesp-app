@@ -251,50 +251,64 @@ export const paperData = {
     ],
     programmingQuestions: [
         {
-            id: 26,
-            type: 'programming',
-            explanation: '暂无解析',
-            template: `#include <bits/stdc++.h>\nusing namespace std;\n\nint main() {\n    // 在此填写代码\n    return 0;\n}`,
-            score: 25,
-            title: '平衡序列',
-            problemNumber: 'B4038',
-            source: 'official-pdf+luogu-mapping',
-            description: '小杨有一个包含 n 个正整数的序列 a。他认为一个序列是平衡的，当且仅当存在一个正整数 i（1 ≤ i < n），使得序列第 1 到第 i 个数字的总和等于第 i+1 到第 n 个数字的总和。请你判断序列 a 是否是平衡的。',
-            inputDescription: '第一行包含一个正整数 t，代表测试用例组数。接下来 t 组测试用例，每组两行：第一行一个正整数 n，表示序列长度；第二行包含 n 个正整数，表示序列 a。',
-            outputDescription: '对于每组测试用例，若序列是平衡的输出 Yes，否则输出 No。',
-            samples: [
-                {
-                    input: '3\n3\n1 2 3\n4\n2 3 1 4\n5\n1 2 3 4 5',
-                    output: 'Yes\nYes\nNo'
-                }
-            ],
-            explanation: '先求整个序列总和 sum，再从左到右维护前缀和 pre。若某个位置满足 pre * 2 == sum，则左右两段和相等，序列平衡。',
-            tags: ['编程题', '前缀和', '模拟', '多组测试'],
-            template: '#include <bits/stdc++.h>\nusing namespace std;\n\nint main() {\n    ios::sync_with_stdio(false);\n    cin.tie(nullptr);\n\n    // 在此编写代码\n    return 0;\n}',
-            referenceCode: '#include<bits/stdc++.h>\nusing namespace std;\nint a[10010];\nint main(){\n    int t;\n    cin >> t;\n    while(t--){\n        int n;\n        cin >> n;\n        int sum = 0;\n        for(int i = 1; i <= n; i++){\n            cin >> a[i];\n            sum += a[i];\n        }\n        int pre = 0, ok = 0;\n        for(int i = 1; i < n; i++){\n            pre += a[i];\n            if(pre * 2 == sum){\n                ok = 1;\n                break;\n            }\n        }\n        cout << (ok ? "Yes" : "No") << "\\n";\n    }\n    return 0;\n}'
-        },
+      id: 26,
+      type: 'programming',
+      question: `
+# [GESP202409 三级] 平衡序列
+
+## 题目描述
+
+小杨有一个包含 \$n\$ 个正整数的序列 \$a\$。他认为一个序列是平衡的当且仅当存在一个正整数 \$i\$（\$1 \\leq i < n\$）使得序列第 \$1\$ 到第 \$i\$ 个数字的总和等于第 \$i + 1\$ 到第 \$n\$ 个数字的总和。
+
+小杨想请你判断序列 \$a\$ 是否是平衡的。
+
+## 输入格式
+
+**本题单个测试点内包含多组测试数据**。第一行是一个正整数 \$t\$，表示测试用例组数。
+
+接下来是 \$t\$ 组测试用例。对每组测试用例，一共两行。
+
+第一行包含一个正整数 \$n\$，表示序列长度。  
+第二行包含 \$n\$ 个正整数，代表序列 \$a\$。
+
+## 输出格式
+
+对每组测试用例输出一行一个字符串。如果 \$a\$ 是平衡的，输出 \$\\texttt{Yes}\$，否则输出 \$\\texttt{No}\$。
+`,
+      explanation: '先求整个序列总和 sum，再从左到右维护前缀和 pre。若某个位置满足 pre * 2 == sum，则左右两段和相等，序列平衡。',
+      template: '#include <bits/stdc++.h>\nusing namespace std;\n\nint main() {\n    ios::sync_with_stdio(false);\n    cin.tie(nullptr);\n\n    // 在此编写代码\n    return 0;\n}',
+      score: 25,
+      tags: ['编程题', '前缀和', '模拟', '多组测试'],
+      referenceCode: '#include<bits/stdc++.h>\nusing namespace std;\nint a[10010];\nint main(){\n    int t;\n    cin >> t;\n    while(t--){\n        int n;\n        cin >> n;\n        int sum = 0;\n        for(int i = 1; i <= n; i++){\n            cin >> a[i];\n            sum += a[i];\n        }\n        int pre = 0, ok = 0;\n        for(int i = 1; i < n; i++){\n            pre += a[i];\n            if(pre * 2 == sum){\n                ok = 1;\n                break;\n            }\n        }\n        cout << (ok ? "Yes" : "No") << "\\n";\n    }\n    return 0;\n}',
+      answer: '',
+    },
         {
-            id: 27,
-            type: 'programming',
-            explanation: '暂无解析',
-            template: `#include <bits/stdc++.h>\nusing namespace std;\n\nint main() {\n    // 在此填写代码\n    return 0;\n}`,
-            score: 25,
-            title: '回文拼接',
-            problemNumber: 'B4039',
-            source: 'official-pdf+luogu-mapping',
-            description: '一个字符串是回文串，当且仅当该字符串从前往后读和从后往前读是一样的，例如 aabaa 和 ccddcc 都是回文串，但 abcd 不是。小杨有 n 个仅包含小写字母的字符串，请判断每个字符串是否由两个长度至少为 2 的回文串前后拼接而成。',
-            inputDescription: '第一行包含一个正整数 n，代表字符串数量。之后 n 行，每行一个仅包含小写字母的字符串。',
-            outputDescription: '对于每个字符串，若它可以拆成两个长度都至少为 2 的回文串，则输出 Yes，否则输出 No。',
-            samples: [
-                {
-                    input: '4\nabcd\naabbb\naaac\nabcdd',
-                    output: 'No\nYes\nNo\nNo'
-                }
-            ],
-            explanation: '枚举分割点 j，把字符串拆成前后两段，要求两段长度都至少为 2，并分别判断是否为回文串。只要存在一种可行拆分就输出 Yes。',
-            tags: ['编程题', '字符串', '回文', '枚举'],
-            template: '#include <bits/stdc++.h>\nusing namespace std;\n\nbool isPal(const string& s, int l, int r) {\n    while (l < r) if (s[l++] != s[r--]) return false;\n    return true;\n}\n\nint main() {\n    ios::sync_with_stdio(false);\n    cin.tie(nullptr);\n\n    // 在此编写代码\n    return 0;\n}',
-            referenceCode: '#include<bits/stdc++.h>\nusing namespace std;\nint main(){\n    int n;\n    cin >> n;\n    for(int i = 1; i <= n; i++){\n        string s;\n        cin >> s;\n        int m = s.length();\n        int ok = 0;\n        for(int j = 2; j <= m-2; j++){\n            string s1 = s.substr(0, j);\n            string s2 = s.substr(j, m-j);\n            string t1 = "", t2 = "";\n            for(int k = (int)s1.size()-1; k >= 0; k--) t1 += s1[k];\n            for(int k = (int)s2.size()-1; k >= 0; k--) t2 += s2[k];\n            if(t1 == s1 && t2 == s2){\n                ok = 1;\n                break;\n            }\n        }\n        cout << (ok ? "Yes" : "No") << "\\n";\n    }\n    return 0;\n}'
-        }
+      id: 27,
+      type: 'programming',
+      question: `
+# [GESP202409 三级] 回文拼接
+
+## 题目描述
+
+一个字符串是回文串，当且仅当该字符串从前往后读和从后往前读是一样的，例如，\$\\texttt{aabaa}\$ 和 \$\\texttt{ccddcc}\$ 都是回文串，但 \$\\texttt{abcd}\$ 不是。
+
+小杨有 \$n\$ 个仅包含小写字母的字符串，他想请你编写程序判断每个字符串是否由两个长度至少为 \$2\$ 的回文串前后拼接而成。
+
+## 输入格式
+
+第一行包含一个正整数 \$n\$，代表字符串数量。  
+接下来 \$n\$ 行，每行一个仅包含小写字母的字符串。
+
+## 输出格式
+
+对于每个字符串输出一行，如果该字符串由两个长度至少为 \$2\$ 的回文串前后拼接而成则输出 Yes，否则输出 No。
+`,
+      explanation: '枚举分割点 j，把字符串拆成前后两段，要求两段长度都至少为 2，并分别判断是否为回文串。只要存在一种可行拆分就输出 Yes。',
+      template: '#include <bits/stdc++.h>\nusing namespace std;\n\nbool isPal(const string& s, int l, int r) {\n    while (l < r) if (s[l++] != s[r--]) return false;\n    return true;\n}\n\nint main() {\n    ios::sync_with_stdio(false);\n    cin.tie(nullptr);\n\n    // 在此编写代码\n    return 0;\n}',
+      score: 25,
+      tags: ['编程题', '字符串', '回文', '枚举'],
+      referenceCode: '#include<bits/stdc++.h>\nusing namespace std;\nint main(){\n    int n;\n    cin >> n;\n    for(int i = 1; i <= n; i++){\n        string s;\n        cin >> s;\n        int m = s.length();\n        int ok = 0;\n        for(int j = 2; j <= m-2; j++){\n            string s1 = s.substr(0, j);\n            string s2 = s.substr(j, m-j);\n            string t1 = "", t2 = "";\n            for(int k = (int)s1.size()-1; k >= 0; k--) t1 += s1[k];\n            for(int k = (int)s2.size()-1; k >= 0; k--) t2 += s2[k];\n            if(t1 == s1 && t2 == s2){\n                ok = 1;\n                break;\n            }\n        }\n        cout << (ok ? "Yes" : "No") << "\\n";\n    }\n    return 0;\n}',
+      answer: '',
+    }
     ]
 };

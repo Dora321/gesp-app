@@ -259,50 +259,73 @@ export const paperData = {
     ],
     programmingQuestions: [
         {
-            id: 26,
-            type: 'programming',
-            explanation: '暂无解析',
-            template: `#include <bits/stdc++.h>\nusing namespace std;\n\nint main() {\n    // 在此填写代码\n    return 0;\n}`,
-            score: 25,
-            title: '密码强度',
-            problemNumber: 'B4449',
-            source: 'official-pdf+luogu-mapping',
-            description: '小杨是学校网络安全小组的成员，今天他的任务是设计一个“密码强度检测器”，帮助同学们检查自己的密码是否足够安全。一个安全的密码需要同时满足：长度至少为 8；至少包含一个大写字母；至少包含一个数字。若满足输出 Y，否则输出 N。',
-            inputDescription: '第一行一个正整数 T，表示需要安全检测的密码组数。接下来 T 行，每行一个仅由大小写字母和数字组成的字符串，表示一个待检测密码。',
-            outputDescription: '对每组密码输出一行，满足强度要求输出 Y，否则输出 N。',
-            samples: [
-                {
-                    input: '6\nPAs1s2an\n1a2bCql3\nPa12bsna\nab1da3cd\nPaabdbcd\nPa2',
-                    output: 'Y\nY\nY\nN\nN\nN'
-                }
-            ],
-            explanation: '逐个字符串检查三个条件：长度、是否含大写字母、是否含数字。三个条件都满足则输出 Y。官方 PDF 文本层中的数据范围数字有缺失，但不影响题意、样例与解法理解。',
-            tags: ['编程题', '字符串', '模拟'],
-            template: '#include <bits/stdc++.h>\nusing namespace std;\n\nint main() {\n    ios::sync_with_stdio(false);\n    cin.tie(nullptr);\n\n    // 在此编写代码\n    return 0;\n}',
-            referenceCode: '#include <iostream>\n#include <string>\nusing namespace std;\nint main() {\n    int T;\n    cin >> T;\n    while (T--) {\n        string password;\n        cin >> password;\n        bool has_upper = false;\n        bool has_digit = false;\n        for (size_t i = 0; i < password.length(); ++i) {\n            if (isupper(password[i])) {\n                has_upper = true;\n            }\n            if (isdigit(password[i])) {\n                has_digit = true;\n            }\n        }\n        if (password.length() >= 8 && has_upper && has_digit) {\n            cout << "Y\\n";\n        } else {\n            cout << "N\\n";\n        }\n    }\n    return 0;\n}'
-        },
+      id: 26,
+      type: 'programming',
+      question: `
+# [GESP202512 三级] 密码强度
+
+## 题目描述
+
+小杨是学校网络安全小组的成员，今天他的任务是设计一个“密码强度检测器”，帮助同学们检查自己的密码是否足够安全。一个安全的密码需要满足以下条件：
+
+- 密码至少包含 \$8\$ 个字符（太短的密码容易被猜出来哦！）。
+- 密码至少包含一个大写字母（A、B、C、...、Z 都可以）。
+- 密码至少包含一个数字（0、1、2、3、...、9 都可以）。
+
+例如：
+
+- 密码 \`PAs1s2an\` 是安全密码（有 \$8\$ 位、包含大写字母 \`P\`、\`A\` 和数字 \`1\`、\`2\`）。
+- 密码 \`ab1da3cd\` 不是安全密码（没有大写字母）。
+- 密码 \`Paabdbcd\` 不是安全密码（没有数字）。
+- 密码 \`Pa2\` 不是安全密码（只有 \$3\$ 位，太短了）。
+
+## 输入格式
+
+第一行一个正整数 \$T\$，代表需要安全检测的密码组数。
+
+对于每组密码，一行包含一个字符串，代表需要安全检测的密码。
+
+## 输出格式
+
+对于每组密码，输出一行，如果满足强度要求输出 Y，否则输出 N。
+`,
+      explanation: '逐个字符串检查三个条件：长度、是否含大写字母、是否含数字。三个条件都满足则输出 Y。官方 PDF 文本层中的数据范围数字有缺失，但不影响题意、样例与解法理解。',
+      template: '#include <bits/stdc++.h>\nusing namespace std;\n\nint main() {\n    ios::sync_with_stdio(false);\n    cin.tie(nullptr);\n\n    // 在此编写代码\n    return 0;\n}',
+      score: 25,
+      tags: ['编程题', '字符串', '模拟'],
+      referenceCode: '#include <iostream>\n#include <string>\nusing namespace std;\nint main() {\n    int T;\n    cin >> T;\n    while (T--) {\n        string password;\n        cin >> password;\n        bool has_upper = false;\n        bool has_digit = false;\n        for (size_t i = 0; i < password.length(); ++i) {\n            if (isupper(password[i])) {\n                has_upper = true;\n            }\n            if (isdigit(password[i])) {\n                has_digit = true;\n            }\n        }\n        if (password.length() >= 8 && has_upper && has_digit) {\n            cout << "Y\\n";\n        } else {\n            cout << "N\\n";\n        }\n    }\n    return 0;\n}',
+      answer: '',
+    },
         {
-            id: 27,
-            type: 'programming',
-            explanation: '暂无解析',
-            template: `#include <bits/stdc++.h>\nusing namespace std;\n\nint main() {\n    // 在此填写代码\n    return 0;\n}`,
-            score: 25,
-            title: '小杨的智慧购物',
-            problemNumber: 'B4450',
-            source: 'official-pdf+luogu-mapping',
-            description: '小杨需要购买 M 种不同的文具，商店共有 N 件文具，每件文具有种类编号和价格。对于每种文具，小杨只会购买该种类中最便宜的一件。请计算买齐这 M 种文具一共要花多少钱。',
-            inputDescription: '第一行输入两个正整数 M 和 N，分别表示文具种类数与商品总数。接下来 N 行每行两个正整数 K 和 P，表示某件文具的种类编号和价格。保证每个种类至少出现一次。',
-            outputDescription: '输出一个整数，表示购买这 M 种文具的最小总花费。',
-            samples: [
-                {
-                    input: '2 5\n1 1\n1 2\n1 1\n2 3\n2 10',
-                    output: '4'
-                }
-            ],
-            explanation: '分别维护每个种类的最低价格，最后把 1..M 的最小值累加即可。样例中种类 1 取 1，种类 2 取 3，总价为 4。官方 PDF 文本层里的数据范围数字未完整提取，因此当前未补具体上界。',
-            tags: ['编程题', '模拟', '最值统计', '数组'],
-            template: '#include <bits/stdc++.h>\nusing namespace std;\n\nint main() {\n    ios::sync_with_stdio(false);\n    cin.tie(nullptr);\n\n    // 在此编写代码\n    return 0;\n}',
-            referenceCode: '#include <iostream>\n#include <cstring>\nusing namespace std;\nint min_price[100005];\nint main() {\n    int M, N;\n    cin >> M >> N;\n    for (int i = 0; i <= M; i ++)\n        min_price[i] = 1000000000;\n    for (int i = 0; i < N; ++i) {\n        int K, P;\n        cin >> K >> P;\n        min_price[K] = min(min_price[K], P);\n    }\n    int total_cost = 0;\n    for (int k = 1; k <= M; ++k) {\n        total_cost += min_price[k];\n    }\n    cout << total_cost;\n    return 0;\n}'
-        }
+      id: 27,
+      type: 'programming',
+      question: `
+# [GESP202512 三级] 小杨的智慧购物
+
+## 题目描述
+
+小杨的班级要举办一个环保手工作品展览，老师请小杨去文具店购买 \$M\$ 种不同的文具（例如：铅笔、橡皮、尺子等）。
+
+商店里共有 \$N\$ 件文具，每件文具都有一个种类编号（从 \$1\$ 到 \$M\$）和价格。
+
+小杨的预算有限，他想了一个聪明的办法：对于每种文具，他只买最便宜的那一件（如果同种文具有多件价格相同且都是最便宜的，他只会购买其中的一件）。请你帮小杨计算出，买齐这 \$M\$ 种文具一共需要花费多少钱。
+
+## 输入格式
+
+第一行两个正整数 \$M, N\$，代表文具的种类数和总数。
+
+之后 \$N\$ 行，每行两个正整数 \$K_i\$ 和 \$P_i\$，分别代表第 \$i\$ 件文具的种类编号和它的价格。数据保证每个种类至少有一件文具可供购买。
+
+## 输出格式
+
+输出一行，代表购买文具的总价。
+`,
+      explanation: '分别维护每个种类的最低价格，最后把 1..M 的最小值累加即可。样例中种类 1 取 1，种类 2 取 3，总价为 4。官方 PDF 文本层里的数据范围数字未完整提取，因此当前未补具体上界。',
+      template: '#include <bits/stdc++.h>\nusing namespace std;\n\nint main() {\n    ios::sync_with_stdio(false);\n    cin.tie(nullptr);\n\n    // 在此编写代码\n    return 0;\n}',
+      score: 25,
+      tags: ['编程题', '模拟', '最值统计', '数组'],
+      referenceCode: '#include <iostream>\n#include <cstring>\nusing namespace std;\nint min_price[100005];\nint main() {\n    int M, N;\n    cin >> M >> N;\n    for (int i = 0; i <= M; i ++)\n        min_price[i] = 1000000000;\n    for (int i = 0; i < N; ++i) {\n        int K, P;\n        cin >> K >> P;\n        min_price[K] = min(min_price[K], P);\n    }\n    int total_cost = 0;\n    for (int k = 1; k <= M; ++k) {\n        total_cost += min_price[k];\n    }\n    cout << total_cost;\n    return 0;\n}',
+      answer: '',
+    }
     ]
 };

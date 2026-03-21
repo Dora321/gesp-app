@@ -275,22 +275,55 @@ export const paperData = {
     {
       id: 26,
       type: 'programming',
+      question: `
+# [GESP202406 一级] 休息时间
+
+## 题目描述
+
+小杨计划在某个时刻开始学习，并决定在学习 \$k\$ 秒后开始休息。
+
+小杨想知道自己开始休息的时刻是多少。
+
+## 输入格式
+
+前三行每行包含一个整数，分别表示小杨开始学习时刻的时 \$h\$、分 \$m\$、秒 \$s\$（\$h,m, s\$ 的值符合
+ \$1 \\le h \\le 12,0 \\le m\\le 59,0 \\le s\\le59\$）。
+ 
+第四行包含一个整数 \$k\$，表示小杨学习的总秒数（注：\$k\$ 的值符合 \$1 \\le k \\le 3600\$）。
+
+## 输出格式
+
+输出一行，包含三个整数，分别表示小杨开始休息时刻的时、分、秒。
+`,
       template: `#include <bits/stdc++.h>\nusing namespace std;\n\nint main() {\n    // 在此填写代码\n    return 0;\n}`,
-      question: '【编程题1】休息时间\n小杨同学在学习 $S$ 秒后会休息。输入 $S$，输出小杨休息的时间（转换成小时、分钟和秒）。\n\n**输入格式**：输入一个整数 $S$。\n\n**输出格式**：输出按照 `H M S` 格式（如 1 2 3）。',
       answer: '',
       score: 25,
       explanation: '单位换算题。LuoGu B4000。',
-      tags: [LEVEL1_TAGS.basics, LEVEL1_TAGS.operator]
+      tags: [LEVEL1_TAGS.basics, LEVEL1_TAGS.operator],
     },
     {
       id: 27,
       type: 'programming',
+      question: `
+# [GESP202406 一级] 立方数
+
+## 题目描述
+
+小杨有一个正整数 \$n\$，他想知道 \$n\$ 是否是一个立方数。一个正整数 \$n\$ 是立方数当且仅当存在一个正整数 \$x\$ 满足 \$x\\times x\\times x=n\$ 。
+
+## 输入格式
+
+第一行包含一个正整数 \$n\$。
+
+## 输出格式
+
+如果正整数 \$n\$ 是一个立方数，输出 \`Yes\`，否则输出 \`No\`。
+`,
       template: `#include <bits/stdc++.h>\nusing namespace std;\n\nint main() {\n    // 在此填写代码\n    return 0;\n}`,
-      question: '【编程题2】立方数\n小杨同学定义了一种“立方数”：如果一个正整数能表示为另一个整数的立方，则称之为立方数。输入 $N$，判断它是否为立方数。\n\n**输入格式**：输入一个整数 $N$。\n\n**输出格式**：输出 `Yes` 或 `No`。',
       answer: '',
       score: 25,
       explanation: '判断是否存在 $i$ 使得 $i^3 = N$。LuoGu B4001。',
-      tags: [LEVEL1_TAGS.loop, LEVEL1_TAGS.condition]
+      tags: [LEVEL1_TAGS.loop, LEVEL1_TAGS.condition],
     }
   ]
 };

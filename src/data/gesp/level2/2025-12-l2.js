@@ -43,52 +43,67 @@ export const paperData = {
     ],
     programmingQuestions: [
     {
-        "id": 26,
-        "type": "programming",
-        "title": "环保能量球",
-        "problemNumber": "B4447",
-        "score": 25,
-        "description": "小杨最近在玩一个环保主题的游戏。在游戏中，小杨每行走 1 公里就可以获得 1 点“环保能量”。 为了激励玩家，游戏设置了“里程奖励”：小杨每行走 x 公里，游戏就会额外奖励 1 点能量。 现在已知小杨总共行走了 n 公里，请你帮 he 计算，他一共能获得多少点环保能量？",
-        "inputDescription": "第一行包含一个正整数 t，代表测试数据组数。 对于每组测试数据：-第一行包含一个正整数 n，代表行走的公里数。-第二行包含一个正整数 x，代表奖励触发的间隔。",
-        "outputDescription": "对于每组测试数据，输出一个整数，代表小杨获得的环保能量总数。",
-        "samples": [
-            {
-                "input": "2\n10\n3\n8\n5",
-                "output": "13\n9"
-            }
-        ],
-        "explanation": "基础能量是走过的公里数 n，额外奖励次数是 n/x，两者相加即可。",
-        "tags": [
-            "编程题",
-            "模拟",
-            "整数除法"
-        ],
-        "template": "#include <bits/stdc++.h>\nusing namespace std;\n\nint main() {\n    ios::sync_with_stdio(false);\n    cin.tie(nullptr);\n\n    int t;\n    cin >> t;\n    while (t--) {\n        long long n, x;\n        // 在此编写代码\n    }\n    return 0;\n}",
-        "referenceCode": "#include <bits/stdc++.h>\nusing namespace std;\n\nint main() {\n    ios::sync_with_stdio(false);\n    cin.tie(nullptr);\n\n    int t;\n    cin >> t;\n    while (t--) {\n        long long n, x;\n        cin >> n >> x;\n        cout << n+n / x << '\\n';\n    }\n    return 0;\n}"
+      id: 26,
+      type: 'programming',
+      question: `
+# [GESP202512 二级] 环保能量球
+
+## 题目描述
+
+小杨最近在玩一个环保主题的游戏。在游戏中，小杨每行走 1 公里就可以获得 1 点“环保能量”。
+
+为了激励玩家，游戏设置了“里程奖励”：小杨每行走 \$x\$ 公里，游戏就会额外奖励 1 点能量。
+
+现在已知小杨总共行走了 \$n\$ 公里，请你帮他计算，他一共能获得多少点环保能量？
+
+## 输入格式
+
+第一行包含一个正整数 \$t\$，代表测试数据组数。
+
+对于每组测试数据：
+
+- 第一行包含一个正整数 \$n\$，代表行走的公里数。
+- 第二行包含一个正整数 \$x\$，代表奖励触发的间隔。
+
+## 输出格式
+
+对于每组测试数据，输出一个整数，代表小杨获得的环保能量总数。
+`,
+      score: 25,
+      explanation: "基础能量是走过的公里数 n，额外奖励次数是 n/x，两者相加即可。",
+      tags: ["编程题", "模拟", "整数除法"],
+      template: "#include <bits/stdc++.h>\nusing namespace std;\n\nint main() {\n    ios::sync_with_stdio(false);\n    cin.tie(nullptr);\n\n    int t;\n    cin >> t;\n    while (t--) {\n        long long n, x;\n        // 在此编写代码\n    }\n    return 0;\n}",
+      referenceCode: "#include <bits/stdc++.h>\nusing namespace std;\n\nint main() {\n    ios::sync_with_stdio(false);\n    cin.tie(nullptr);\n\n    int t;\n    cin >> t;\n    while (t--) {\n        long long n, x;\n        cin >> n >> x;\n        cout << n+n / x << '\\n';\n    }\n    return 0;\n}",
+      answer: '',
     },
     {
-        "id": 27,
-        "type": "programming",
-        "title": "黄金格",
-        "problemNumber": "B4448",
-        "score": 25,
-        "description": "小杨听说地图中隐藏着一些“黄金格”，这些格子满足条件：sqrt(r^2+c^2) ≤ x+r-c。 其中 H 行 W 列，坐标 (r, c) 满足 1 ≤ r ≤ H, 1 ≤ c ≤ W。 给定 H, W, x，求满足条件的黄金格数量。",
-        "inputDescription": "三行，每行一个正整数，分别表示 H, W, x。",
-        "outputDescription": "一行一个整数，代表黄金格数量。",
-        "samples": [
-            {
-                "input": "4\n5\n5",
-                "output": "17"
-            }
-        ],
-        "explanation": "枚举每个格子 (r, c)，判断 sqrt(r*r+c*c) <= x+r-c。注意浮点数开方。",
-        "tags": [
-            "编程题",
-            "枚举",
-            "数学"
-        ],
-        "template": "#include <bits/stdc++.h>\nusing namespace std;\n\nint main() {\n    long long H, W, x;\n    // 在此编写代码\n    return 0;\n}",
-        "referenceCode": "#include <bits/stdc++.h>\nusing namespace std;\n\nint main() {\n    long long H, W, x;\n    cin >> H >> W >> x;\n    long long ans = 0;\n    for (long long r = 1; r <= H; ++r) {\n        for (long long c = 1; c <= W; ++c) {\n            double left = sqrt((double)r * r+(double)c * c);\n            if (left <= (double)x+r-c) ++ans;\n        }\n    }\n    cout << ans << endl;\n    return 0;\n}"
+      id: 27,
+      type: 'programming',
+      question: `
+# [GESP202512 二级] 黄金格
+
+## 题目描述
+
+小杨在探险时发现了一张神奇的矩形地图，地图有 \$H\$ 行和 \$W\$ 列。每个格子的坐标是 \$(r, c)\$，其中 \$r\$ 表示行号从 \$1\$ 到 \$H\$，\$c\$ 表示列号 \$1\$ 到 \$W\$。
+
+小杨听说地图中隐藏着一些“黄金格”，这些格子满足一个神秘的数学挑战：当格子坐标 \$(r, c)\$ 代入特定的不等式关系成立时，该格子就是黄金格。具体来说，黄金格的条件是：\$\\sqrt{r^2 + c^2} \\leq x + r - c\$。
+
+例如，如果参数 \$x = 5\$，那么格子 \$(4, 3)\$ 就是黄金格。因为左边坐标平方和的平方根 \$\\sqrt{4^2 + 3^2}\$ 算出来是 \$5\$，而右边 \$5 + 4 - 3\$ 算出来是 \$6\$，\$5\$ 小于等于 \$6\$，符合条件。
+
+## 输入格式
+
+三行，每行一个正整数，分别表示 \$H,W,x\$。含义如题面所示。
+
+## 输出格式
+
+一行一个整数，代表黄金格数量。
+`,
+      score: 25,
+      explanation: "枚举每个格子 (r, c)，判断 sqrt(r*r+c*c) <= x+r-c。注意浮点数开方。",
+      tags: ["编程题", "枚举", "数学"],
+      template: "#include <bits/stdc++.h>\nusing namespace std;\n\nint main() {\n    long long H, W, x;\n    // 在此编写代码\n    return 0;\n}",
+      referenceCode: "#include <bits/stdc++.h>\nusing namespace std;\n\nint main() {\n    long long H, W, x;\n    cin >> H >> W >> x;\n    long long ans = 0;\n    for (long long r = 1; r <= H; ++r) {\n        for (long long c = 1; c <= W; ++c) {\n            double left = sqrt((double)r * r+(double)c * c);\n            if (left <= (double)x+r-c) ++ans;\n        }\n    }\n    cout << ans << endl;\n    return 0;\n}",
+      answer: '',
     }
 ]
 };

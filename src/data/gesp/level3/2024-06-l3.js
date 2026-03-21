@@ -245,50 +245,60 @@ export const paperData = {
     ],
     programmingQuestions: [
         {
-            id: 26,
-            type: 'programming',
-            explanation: '暂无解析',
-            template: `#include <bits/stdc++.h>\nusing namespace std;\n\nint main() {\n    // 在此填写代码\n    return 0;\n}`,
-            score: 25,
-            title: '移位',
-            problemNumber: 'B4003',
-            source: 'official-pdf+luogu-mapping',
-            description: '小杨学习了加密技术移位，所有大写字母都向后按照一个固定数目进行偏移。偏移过程会将字母表视作首尾相接的环，例如偏移量是 3 时，A 会替换成 D，Z 会替换成 C。给定偏移量 n，输出大写字母表 ABCDEFGHIJKLMNOPQRSTUVWXYZ 在偏移量为 n 时的替换结果。',
-            inputDescription: '输入一行，一个正整数 n。',
-            outputDescription: '输出偏移量为 n 时，大写字母表移位替换后的结果。',
-            samples: [
-                {
-                    input: '3',
-                    output: 'DEFGHIJKLMNOPQRSTUVWXYZABC'
-                }
-            ],
-            explanation: '字母表长度为 26，先将 n 对 26 取模。对第 i 个字母，输出 char(\'A\'+(i+n) % 26) 即可。',
-            tags: ['编程题', '字符串', '模拟'],
-            template: '#include <bits/stdc++.h>\nusing namespace std;\n\nint main() {\n    ios::sync_with_stdio(false);\n    cin.tie(nullptr);\n\n    // 在此编写代码\n    return 0;\n}',
-            referenceCode: '#include<bits/stdc++.h>\nusing namespace std;\nint main(){\n    int n;\n    cin >> n;\n    for(int i = 0; i < 26; i++){\n        int j = (i+n) % 26;\n        char ch = \'A\'+j;\n        cout << ch;\n    }\n    cout << "\\n";\n    return 0;\n}'
-        },
+      id: 26,
+      type: 'programming',
+      question: `
+# [GESP202406 三级] 移位
+
+## 题目描述
+
+小杨学习了加密技术移位，所有大写字母都向后按照⼀个固定数目进行偏移。偏移过程会将字母表视作首尾相接的环，例如，当偏移量是 \$3\$ 的时候，大写字母 A 会替换成 D，大写字母 Z 会替换成 C，总体来看，大写字母表 ABCDEFGHIJKLMNOPQRSTUVWXYZ 会被替换成 DEFGHIJKLMNOPQRSTUVWXYZABC。
+
+注：当偏移量是 \$26\$ 的倍数时，每个大写字母经过偏移后会恰好回到原来的位置，即大写字母表 ABCDEFGHIJKLMNOPQRSTUVWXYZ 经过偏移后会保持不变。
+
+## 输入格式
+
+第一行包含一个正整数 \$n\$。
+
+## 输出格式
+
+输出在偏移量为 \$n\$ 的情况下，大写字母表 ABCDEFGHIJKLMNOPQRSTUVWXYZ 移位替换后的结果。
+`,
+      explanation: '字母表长度为 26，先将 n 对 26 取模。对第 i 个字母，输出 char(\'A\'+(i+n) % 26) 即可。',
+      template: '#include <bits/stdc++.h>\nusing namespace std;\n\nint main() {\n    ios::sync_with_stdio(false);\n    cin.tie(nullptr);\n\n    // 在此编写代码\n    return 0;\n}',
+      score: 25,
+      tags: ['编程题', '字符串', '模拟'],
+      referenceCode: '#include<bits/stdc++.h>\nusing namespace std;\nint main(){\n    int n;\n    cin >> n;\n    for(int i = 0; i < 26; i++){\n        int j = (i+n) % 26;\n        char ch = \'A\'+j;\n        cout << ch;\n    }\n    cout << "\\n";\n    return 0;\n}',
+      answer: '',
+    },
         {
-            id: 27,
-            type: 'programming',
-            explanation: '暂无解析',
-            template: `#include <bits/stdc++.h>\nusing namespace std;\n\nint main() {\n    // 在此填写代码\n    return 0;\n}`,
-            score: 25,
-            title: '寻找倍数',
-            problemNumber: 'B4004',
-            source: 'official-pdf+luogu-mapping',
-            description: '小杨有一个包含 n 个正整数的序列 A=[a1,a2,…,an]，他想知道是否存在某个 ai，使得 ai 是序列 A 中所有数的倍数。对于每组测试数据，判断是否存在这样的元素。',
-            inputDescription: '第一行一个正整数 t，表示测试用例组数。每组测试用例第一行是 n，第二行是 n 个正整数。',
-            outputDescription: '对每组测试用例，若存在这样的元素输出 Yes，否则输出 No。',
-            samples: [
-                {
-                    input: '2\n3\n1 2 4\n5\n1 2 3 4 5',
-                    output: 'Yes\nNo'
-                }
-            ],
-            explanation: '如果某个数是所有数的倍数，那么它一定是数组中的最大值。先求最大值，再判断它是否能被数组中每个数整除即可。',
-            tags: ['编程题', '数组', '整除', '多组测试'],
-            template: '#include <bits/stdc++.h>\nusing namespace std;\n\nint main() {\n    ios::sync_with_stdio(false);\n    cin.tie(nullptr);\n\n    // 在此编写代码\n    return 0;\n}',
-            referenceCode: '#include<bits/stdc++.h>\nusing namespace std;\nconst int N = 1e5+10;\nint a[N];\nint main(){\n    int t;\n    cin >> t;\n    while(t--){\n        int n;\n        cin >> n;\n        int x = 0;\n        for(int i = 1; i <= n; i++){\n            cin >> a[i];\n            x = max(x, a[i]);\n        }\n        int fl = 0;\n        for(int i = 1; i <= n; i++){\n            if(x % a[i]) fl = 1;\n        }\n        if(fl) cout << "No\\n";\n        else cout << "Yes\\n";\n    }\n    return 0;\n}'
-        }
+      id: 27,
+      type: 'programming',
+      question: `
+# [GESP202406 三级] 寻找倍数
+
+## 题目描述
+
+小杨有一个包含 \$n\$ 个正整数的序列 \$A=[a_1,a_2,\\dots,a_n]\$，他想知道是否存在 \$i(1\\leq i\\leq n)\$ 使得 \$a_i\$ 是序列 \$A\$ 中所有数的倍数。
+
+## 输入格式
+
+第一行包含一个正整数 \$t\$，代表测试用例组数。
+
+接下来是 \$t\$ 组测试用例。对于每组测试用例，一共两行。
+
+其中，第一行包含一个正整数 \$n\$；第二行包含 \$n\$ 个正整数，代表序列 \$A\$。
+
+## 输出格式
+
+对于每组测试用例，如果存在 \$i(1\\leq i\\leq n)\$ ，满足对于所有 \$k(1\\leq k\\leq n)\$ \$a_i\$ 是 \$a_k\$ 的倍数，输出 \`Yes\`，否则输出 \`No\`。
+`,
+      explanation: '如果某个数是所有数的倍数，那么它一定是数组中的最大值。先求最大值，再判断它是否能被数组中每个数整除即可。',
+      template: '#include <bits/stdc++.h>\nusing namespace std;\n\nint main() {\n    ios::sync_with_stdio(false);\n    cin.tie(nullptr);\n\n    // 在此编写代码\n    return 0;\n}',
+      score: 25,
+      tags: ['编程题', '数组', '整除', '多组测试'],
+      referenceCode: '#include<bits/stdc++.h>\nusing namespace std;\nconst int N = 1e5+10;\nint a[N];\nint main(){\n    int t;\n    cin >> t;\n    while(t--){\n        int n;\n        cin >> n;\n        int x = 0;\n        for(int i = 1; i <= n; i++){\n            cin >> a[i];\n            x = max(x, a[i]);\n        }\n        int fl = 0;\n        for(int i = 1; i <= n; i++){\n            if(x % a[i]) fl = 1;\n        }\n        if(fl) cout << "No\\n";\n        else cout << "Yes\\n";\n    }\n    return 0;\n}',
+      answer: '',
+    }
     ]
 };

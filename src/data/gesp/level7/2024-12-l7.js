@@ -2,51 +2,66 @@
 
 const programmingQuestions = [
     {
-        "id": 26,
-        "type": "programming",
-        "title": "武器购买",
-        "problemNumber": "2024-12-l7-Q26",
-        "description": "商店里有 n 件武器，第 i 件武器的强度为 p_i、花费为 c_i。小杨想购买若干件武器，使得总强度不少于 P、总花费不超过 Q。请判断是否存在这样的购买方案；如果存在，输出满足条件的最小总花费，否则输出 -1。",
-        "inputDescription": "第一行一个正整数 T，表示测试数据组数。每组数据第一行包含三个正整数 n、P、Q。接下来 n 行，每行两个正整数 p_i、c_i，表示一件武器的强度和花费。",
-        "outputDescription": "对每组测试数据输出一行：若可行输出最小总花费，否则输出 -1。",
-        "samples": [
-            {
-                "input": "3\n3 2 3\n1 2\n1 2\n2 3\n3 3 4\n1 2\n1 2\n2 3\n3 1000 1000\n1 2\n1 2\n2 3",
-                "output": "3\$n-1$\$n-1$"
-            }
-        ],
-        "explanation": "这是一个 0/1 背包问题。令 dp[c] 表示总花费恰为 c 时能够达到的最大总强度，初始 dp[0]=0，其余为负无穷。依次枚举武器并倒序枚举花费完成转移。最后从小到大扫描 c=0..Q，第一个满足 dp[c]≥P 的花费就是答案；若不存在则输出 -1。",
-        "tags": [
-            "编程题",
-            "动态规划",
-            "0/1背包"
-        ],
-        "template": "#include <bits/stdc++.h>\nusing namespace std;\n\nint main() {\n    ios::sync_with_stdio(false);\n    cin.tie(nullptr);\n\n    int T;\n    cin >> T;\n    while (T--) {\n        // 在此编写代码\n    }\n    return 0;\n}",
-        "referenceCode": "#include <bits/stdc++.h>\nusing namespace std;\n\nint main() {\n    ios::sync_with_stdio(false);\n    cin.tie(nullptr);\n\n    int T;\n    cin >> T;\n    while (T--) {\n        int n, P, Q;\n        cin >> n >> P >> Q;\n        vector<long long> dp(Q+1, -(1LL << 60));\n        dp[0] = 0;\n\n        for (int i = 0; i < n; ++i) {\n            int p, c;\n            cin >> p >> c;\n            for (int cost = Q; cost >= c; --cost) {\n                if (dp[cost-c] > -(1LL << 50)) {\n                    dp[cost] = max(dp[cost], dp[cost-c]+p);\n                }\n            }\n        }\n\n        int ans = -1;\n        for (int cost = 0; cost <= Q; ++cost) {\n            if (dp[cost] >= P) {\n                ans = cost;\n                break;\n            }\n        }\n        cout << ans << '\n';\n    }\n    return 0;\n}"
+      id: 26,
+      type: 'programming',
+      question: `
+# [GESP202412 七级] 武器购买
+
+## 题目描述
+
+商店里有 \$n\$ 个武器，第 \$i\$ 个武器的强度为 \$p_i\$，花费为 \$c_i\$。
+
+小杨想要购买一些武器，满足这些武器的总强度不小于 \$P\$，总花费不超过 \$Q\$，小杨想知道是否存在满足条件的购买方案，如果有，最少花费又是多少。
+
+## 输入格式
+
+第一行包含一个正整数 \$t\$，代表测试数据组数。
+
+对于每组测试数据，第一行包含三个正整数 \$n,P,Q\$，含义如题面所示。
+
+之后 \$n\$ 行，每行包含两个正整数 \$p_i,c_i\$，代表武器的强度和花费。
+
+## 输出格式
+
+对于每组测试数据，如果存在满足条件的购买方案，输出最少花费，否则输出 \`-1\`。
+`,
+      explanation: "这是一个 0/1 背包问题。令 dp[c] 表示总花费恰为 c 时能够达到的最大总强度，初始 dp[0]=0，其余为负无穷。依次枚举武器并倒序枚举花费完成转移。最后从小到大扫描 c=0..Q，第一个满足 dp[c]≥P 的花费就是答案；若不存在则输出 -1。",
+      tags: ["编程题", "动态规划", "0/1背包"],
+      template: "#include <bits/stdc++.h>\nusing namespace std;\n\nint main() {\n    ios::sync_with_stdio(false);\n    cin.tie(nullptr);\n\n    int T;\n    cin >> T;\n    while (T--) {\n        // 在此编写代码\n    }\n    return 0;\n}",
+      referenceCode: "#include <bits/stdc++.h>\nusing namespace std;\n\nint main() {\n    ios::sync_with_stdio(false);\n    cin.tie(nullptr);\n\n    int T;\n    cin >> T;\n    while (T--) {\n        int n, P, Q;\n        cin >> n >> P >> Q;\n        vector<long long> dp(Q+1, -(1LL << 60));\n        dp[0] = 0;\n\n        for (int i = 0; i < n; ++i) {\n            int p, c;\n            cin >> p >> c;\n            for (int cost = Q; cost >= c; --cost) {\n                if (dp[cost-c] > -(1LL << 50)) {\n                    dp[cost] = max(dp[cost], dp[cost-c]+p);\n                }\n            }\n        }\n\n        int ans = -1;\n        for (int cost = 0; cost <= Q; ++cost) {\n            if (dp[cost] >= P) {\n                ans = cost;\n                break;\n            }\n        }\n        cout << ans << '\n';\n    }\n    return 0;\n}",
+      answer: '',
     },
     {
-        "id": 27,
-        "type": "programming",
-        "title": "燃烧",
-        "problemNumber": "2024-12-l7-Q27",
-        "description": "给定一棵 n 个节点的树，节点编号为 1..n，第 i 个节点的权值为 a_i。你可以任选一个初始节点点燃它。每个已经燃烧的节点会继续点燃与其相邻、且权值严格小于自身权值的节点，扩散会一直持续到没有新节点可被点燃。请问通过合理选择初始节点，最多能燃烧多少个节点。",
-        "inputDescription": "第一行一个正整数 n。第二行包含 n 个正整数 a_1..a_n，表示各节点权值。接下来 $n-1$ 行每行两个正整数 u,v，表示树上一条无向边。",
-        "outputDescription": "输出一个整数，表示最多可以被燃烧的节点数。",
-        "samples": [
-            {
-                "input": "5\n6 2 3 4 5\n1 2\n2 3\n2 5\n1 4",
-                "output": "4"
-            }
-        ],
-        "explanation": "把每条边按权值从大指向小；若两端权值相等，则这条边无法传火。于是问题变成：在这张有向无环图上任选起点，求其可达点数最大值。由于原图是树，从一个节点沿不同相邻边继续向更小权值扩散时，各部分互不重叠，因此记 dp[u] 为从 u 出发能烧到的节点数，则有 dp[u]=1+Σ dp[v]（其中 v 为与 u 相邻且 a_v<a_u 的节点）。按记忆化 DFS 计算所有 dp[u]，取最大值即可。",
-        "tags": [
-            "编程题",
-            "树",
-            "记忆化搜索",
-            "动态规划"
-        ],
-        "template": "#include <bits/stdc++.h>\nusing namespace std;\n\nint main() {\n    ios::sync_with_stdio(false);\n    cin.tie(nullptr);\n\n    int n;\n    cin >> n;\n    // 在此编写代码\n    return 0;\n}",
-        "referenceCode": "#include <bits/stdc++.h>\nusing namespace std;\n\nint main() {\n    ios::sync_with_stdio(false);\n    cin.tie(nullptr);\n\n    int n;\n    cin >> n;\n    vector<int> a($n+1$);\n    for (int i = 1; i <= n; ++i) cin >> a[i];\n\n    vector<vector<int>> g($n+1$);\n    for (int i = 1; i < n; ++i) {\n        int u, v;\n        cin >> u >> v;\n        g[u].push_back(v);\n        g[v].push_back(u);\n    }\n\n    vector<int> dp($n+1$, -1);\n    function<int(int)> solve = [&](int u) -> int {\n        if (dp[u] != -1) return dp[u];\n        int res = 1;\n        for (int v : g[u]) {\n            if (a[v] < a[u]) res += solve(v);\n        }\n        return dp[u] = res;\n    };\n\n    int ans = 0;\n    for (int i = 1; i <= n; ++i) ans = max(ans, solve(i));\n    cout << ans << '\n';\n    return 0;\n}"
+      id: 27,
+      type: 'programming',
+      question: `
+# [GESP202412 七级] 燃烧
+
+## 题目描述
+
+小杨有一棵包含 \$n\$ 个节点的树，其中节点的编号从 \$1\$ 到 \$n\$。节点 \$i\$ 的权值为 \$a_i\$。
+
+小杨可以选择一个初始节点引燃，每个燃烧的节点会将其相邻节点中权值**严格小于**自身权值的在节点间扩散直到不会有新的节点被引燃。
+
+小杨想知道在合理选择初始节点的情况下，最多可以燃烧多少个节点。
+
+## 输入格式
+
+第一行包含一个正整数 \$n\$，表示节点数量。
+
+第二行包含 \$n\$ 个正整数 \$a_1,a_2,\\dots,a_n\$，代表节点权值。
+
+之后 \$n-1\$ 行，每行包含两个正整数 \$u_i,v_i\$，代表存在一条连接节点 \$u_i\$ 和 \$v_i\$ 的边。
+
+## 输出格式
+
+输出一个正整数，代表最多燃烧的节点个数。
+`,
+      explanation: "把每条边按权值从大指向小；若两端权值相等，则这条边无法传火。于是问题变成：在这张有向无环图上任选起点，求其可达点数最大值。由于原图是树，从一个节点沿不同相邻边继续向更小权值扩散时，各部分互不重叠，因此记 dp[u] 为从 u 出发能烧到的节点数，则有 dp[u]=1+Σ dp[v]（其中 v 为与 u 相邻且 a_v<a_u 的节点）。按记忆化 DFS 计算所有 dp[u]，取最大值即可。",
+      tags: ["编程题", "树", "记忆化搜索", "动态规划"],
+      template: "#include <bits/stdc++.h>\nusing namespace std;\n\nint main() {\n    ios::sync_with_stdio(false);\n    cin.tie(nullptr);\n\n    int n;\n    cin >> n;\n    // 在此编写代码\n    return 0;\n}",
+      referenceCode: "#include <bits/stdc++.h>\nusing namespace std;\n\nint main() {\n    ios::sync_with_stdio(false);\n    cin.tie(nullptr);\n\n    int n;\n    cin >> n;\n    vector<int> a($n+1$);\n    for (int i = 1; i <= n; ++i) cin >> a[i];\n\n    vector<vector<int>> g($n+1$);\n    for (int i = 1; i < n; ++i) {\n        int u, v;\n        cin >> u >> v;\n        g[u].push_back(v);\n        g[v].push_back(u);\n    }\n\n    vector<int> dp($n+1$, -1);\n    function<int(int)> solve = [&](int u) -> int {\n        if (dp[u] != -1) return dp[u];\n        int res = 1;\n        for (int v : g[u]) {\n            if (a[v] < a[u]) res += solve(v);\n        }\n        return dp[u] = res;\n    };\n\n    int ans = 0;\n    for (int i = 1; i <= n; ++i) ans = max(ans, solve(i));\n    cout << ans << '\n';\n    return 0;\n}",
+      answer: '',
     }
 ];
 

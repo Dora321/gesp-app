@@ -260,50 +260,66 @@ export const paperData = {
     ],
     programmingQuestions: [
         {
-            id: 26,
-            type: 'programming',
-            explanation: '暂无解析',
-            template: `#include <bits/stdc++.h>\nusing namespace std;\n\nint main() {\n    // 在此填写代码\n    return 0;\n}`,
-            score: 25,
-            title: '数字替换',
-            problemNumber: 'B4066',
-            source: 'official-pdf+public-solution-mapping',
-            description: '小杨有一个包含 n 个数字的序列 A，即 A=[a1,a2,...,an]。他想将其中大于 k 的数字都替换为序列的最大值，将其中小于 k 的数字都替换为序列的最小值，请你帮他计算出替换后的序列。',
-            inputDescription: '第一行包含两个正整数 n、k，含义如题面所示。第二行包含 n 个数字，代表序列 A。',
-            outputDescription: '输出 n 个整数，代表替换后的结果。',
-            samples: [
-                {
-                    input: '5 0\n-2 -1 0 1 2',
-                    output: '-2 -2 0 2 2'
-                }
-            ],
-            explanation: '先扫描一遍序列求出最小值和最大值，再按规则逐个修改：大于 k 的变成最大值，小于 k 的变成最小值，等于 k 的保持不变。',
-            tags: ['编程题', '模拟', '数组'],
-            template: '#include <bits/stdc++.h>\nusing namespace std;\n\nint main() {\n    ios::sync_with_stdio(false);\n    cin.tie(nullptr);\n\n    // 在此编写代码\n    return 0;\n}',
-            referenceCode: '#include <iostream>\n#include <vector>\n#include <algorithm>\nusing namespace std;\nint a[100010];\nint main() {\n    int n, k;\n    cin >> n >> k;\n    for (int i = 1; i <= n; i++) {\n        cin >> a[i];\n    }\n    int max_value = a[1], min_value = a[1];\n    for (int i = 1; i <= n; i++) {\n        max_value = max(max_value, a[i]);\n        min_value = min(min_value, a[i]);\n    }\n    for (int i = 1; i <= n; i++) {\n        if (a[i] > k) {\n            a[i] = max_value;\n        } else if (a[i] < k) {\n            a[i] = min_value;\n        }\n        if (i != n) {\n            cout << a[i] << " ";\n        } else {\n            cout << a[i] << endl;\n        }\n    }\n    return 0;\n}'
-        },
+      id: 26,
+      type: 'programming',
+      question: `
+# [GESP202412 三级] 数字替换
+
+## 题目描述
+
+小杨有一个包含 \$n\$ 个数字的序列 \$A\$，即 \$A=[a_1,a_2,\\ldots,a_n]\$，他想将其中大于 \$k\$ 的数字都替换为序列的最大值，将其中小于 \$k\$ 的数字都替换为序列的最小值，请你帮他计算出替换后的序列。
+
+## 输入格式
+
+第一行包含两个正整数 \$n,k\$，含义如题面所示。
+
+第二行包含 \$n\$ 个数字，代表序列 \$A\$。
+
+## 输出格式
+
+输出 \$n\$ 个整数，代表替换后的结果。
+`,
+      explanation: '先扫描一遍序列求出最小值和最大值，再按规则逐个修改：大于 k 的变成最大值，小于 k 的变成最小值，等于 k 的保持不变。',
+      template: '#include <bits/stdc++.h>\nusing namespace std;\n\nint main() {\n    ios::sync_with_stdio(false);\n    cin.tie(nullptr);\n\n    // 在此编写代码\n    return 0;\n}',
+      score: 25,
+      tags: ['编程题', '模拟', '数组'],
+      referenceCode: '#include <iostream>\n#include <vector>\n#include <algorithm>\nusing namespace std;\nint a[100010];\nint main() {\n    int n, k;\n    cin >> n >> k;\n    for (int i = 1; i <= n; i++) {\n        cin >> a[i];\n    }\n    int max_value = a[1], min_value = a[1];\n    for (int i = 1; i <= n; i++) {\n        max_value = max(max_value, a[i]);\n        min_value = min(min_value, a[i]);\n    }\n    for (int i = 1; i <= n; i++) {\n        if (a[i] > k) {\n            a[i] = max_value;\n        } else if (a[i] < k) {\n            a[i] = min_value;\n        }\n        if (i != n) {\n            cout << a[i] << " ";\n        } else {\n            cout << a[i] << endl;\n        }\n    }\n    return 0;\n}',
+      answer: '',
+    },
         {
-            id: 27,
-            type: 'programming',
-            explanation: '暂无解析',
-            template: `#include <bits/stdc++.h>\nusing namespace std;\n\nint main() {\n    // 在此填写代码\n    return 0;\n}`,
-            score: 25,
-            title: '打印数字',
-            problemNumber: 'B4067',
-            source: 'official-pdf+public-solution-mapping',
-            description: '小杨为数字 0、1、2 和 3 设计了一款表示形式，每个数字占用了 5×5 的网格。给定一个仅由数字 0、1、2、3 组成的数字串 n，请输出对应的字符画。',
-            inputDescription: '第一行包含一个正整数 n。对于全部数据，保证 n 仅由数字 0、1、2、3 组成。',
-            outputDescription: '输出对应的 5 行表示形式。',
-            samples: [
-                {
-                    input: '122301',
-                    output: '****.....................\n****.****.****.****..***.\n****.................***.\n****..****.********..***.\n****.....................'
-                }
-            ],
-            explanation: '把 0、1、2、3 的 5×5 图案预先存成数组，然后按行拼接输出即可。官方参考程序中四个数字的图案分别由固定字符串构成。',
-            tags: ['编程题', '字符串', '模拟', '字符画'],
-            template: '#include <bits/stdc++.h>\nusing namespace std;\n\nint main() {\n    ios::sync_with_stdio(false);\n    cin.tie(nullptr);\n\n    // 在此编写代码\n    return 0;\n}',
-            referenceCode: '#include <iostream>\n#include <string>\nusing namespace std;\nint main() {\n    string n;\n    cin >> n;\n    for (int row = 0; row < 5; row++) {\n        string line = "";\n        for (char digit : n) {\n            if (digit == \'0\') {\n                if (row == 0 || row == 4) {\n                    line += ".....";\n                } else {\n                    line += ".***.";\n                }\n            } else if (digit == \'1\') {\n                line += "****.";\n            } else if (digit == \'2\') {\n                if (row == 0) {\n                    line += ".....";\n                } else if (row == 1) {\n                    line += "****.";\n                } else if (row == 2) {\n                    line += ".....";\n                } else if (row == 3) {\n                    line += ".****";\n                } else {\n                    line += ".....";\n                }\n            } else if (digit == \'3\') {\n                if (row == 0) {\n                    line += ".....";\n                } else if (row == 1) {\n                    line += "****.";\n                } else if (row == 2) {\n                    line += ".....";\n                } else if (row == 3) {\n                    line += "****.";\n                } else {\n                    line += ".....";\n                }\n            }\n        }\n        cout << line << endl;\n    }\n    return 0;\n}'
-        }
+      id: 27,
+      type: 'programming',
+      question: `
+# [GESP202412 三级] 打印数字
+
+## 题目描述
+
+小杨为数字 \$0,1,2\$ 和 \$3\$ 设计了一款表示形式，每个数字占用了 \$5\\times 5\$ 的网格。数字 \$0,1,2\$ 和 \$3\$ 的表示形式如下：
+
+\`\`\`plain
+..... ****. ..... .....
+.***. ****. ****. ****.
+.***. ****. ..... .....
+.***. ****. .**** ****.
+..... ****. ..... .....
+\`\`\`
+
+小杨想请你将给定的数字 \$n\$ 转换为对应的表示形式。
+
+## 输入格式
+
+第一行包含一个非负整数代表 \$n\$。
+
+## 输出格式
+
+输出对应的表示形式。
+`,
+      explanation: '把 0、1、2、3 的 5×5 图案预先存成数组，然后按行拼接输出即可。官方参考程序中四个数字的图案分别由固定字符串构成。',
+      template: '#include <bits/stdc++.h>\nusing namespace std;\n\nint main() {\n    ios::sync_with_stdio(false);\n    cin.tie(nullptr);\n\n    // 在此编写代码\n    return 0;\n}',
+      score: 25,
+      tags: ['编程题', '字符串', '模拟', '字符画'],
+      referenceCode: '#include <iostream>\n#include <string>\nusing namespace std;\nint main() {\n    string n;\n    cin >> n;\n    for (int row = 0; row < 5; row++) {\n        string line = "";\n        for (char digit : n) {\n            if (digit == \'0\') {\n                if (row == 0 || row == 4) {\n                    line += ".....";\n                } else {\n                    line += ".***.";\n                }\n            } else if (digit == \'1\') {\n                line += "****.";\n            } else if (digit == \'2\') {\n                if (row == 0) {\n                    line += ".....";\n                } else if (row == 1) {\n                    line += "****.";\n                } else if (row == 2) {\n                    line += ".....";\n                } else if (row == 3) {\n                    line += ".****";\n                } else {\n                    line += ".....";\n                }\n            } else if (digit == \'3\') {\n                if (row == 0) {\n                    line += ".....";\n                } else if (row == 1) {\n                    line += "****.";\n                } else if (row == 2) {\n                    line += ".....";\n                } else if (row == 3) {\n                    line += "****.";\n                } else {\n                    line += ".....";\n                }\n            }\n        }\n        cout << line << endl;\n    }\n    return 0;\n}',
+      answer: '',
+    }
     ]
 };

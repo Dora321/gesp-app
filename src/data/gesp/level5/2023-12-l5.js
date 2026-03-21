@@ -2,38 +2,71 @@
 
 const programmingQuestions = [
     {
-        id: 26,
-        type: "programming",
-        score: 25,
-        title: "小杨的幸运数",
-        problemNumber: "2023-12-23-05-C-01",
-        description: "小杨认为，所有大于等于 a 的完全平方数都是他的超级幸运数。所有超级幸运数的倍数都是他的幸运数。对于一个非幸运数，可以将它一直 +1 直到变为幸运数。给定 n 个数，判断它们是否为幸运数，若不是则输出幸运化后的结果。",
-        inputDescription: "第一行两个正整数 a, N (1 ≤ a ≤ 1,000,001; 1 ≤ N ≤ 200,000)。接下来 N 行每行一个正整数 x (1 ≤ x ≤ 1,000,001)。",
-        outputDescription: "输出 N 行，若是幸运数输出 lucky，否则输出其幸运化后的结果。",
-        samples: [
-            { input: "4 2\n1\n5", output: "4\n8" }
-        ],
-        explanation: "预处理：筛选出所有超级幸运数（完全平方数 ≥ a）及其倍数。然后对于查询 x，找到最近的幸运数。",
-        tags: ["编程题", "数论", "埃氏筛"],
-        template: "#include <iostream>\nusing namespace std;\n\nint main() {\n    int a, n;\n    cin >> a >> n;\n    // 在此编写代码\n    return 0;\n}",
-        referenceCode: "#include <iostream>\n#include <vector>\n#include <cmath>\nusing namespace std;\nconst int MAX = 2000005;\nbool is_lucky[MAX];\nint next_lucky[MAX];\nint main() {\n    int a, n;\n    cin >> a >> n;\n    for (long long i = 1; i * i < MAX; i++) {\n        long long sq = i * i;\n        if (sq >= a) {\n            for (long long j = sq; j < MAX; j += sq) is_lucky[j] = true;\n        }\n    }\n    int last = -1;\n    for (int i = MAX-1; i >= 1; i--) {\n        if (is_lucky[i]) last = i;\n        next_lucky[i] = last;\n    }\n    while (n--) {\n        int x; cin >> x;\n        if (is_lucky[x]) cout << \"lucky\" << endl;\n        else cout << next_lucky[x] << endl;\n    }\n    return 0;\n}"
+      id: 26,
+      type: 'programming',
+      question: `
+# [GESP202312 五级] 小杨的幸运数
+
+## 题目描述
+
+小杨认为，所有大于等于 \$a\$ 的完全平方数都是他的超级幸运数。
+
+小杨还认为，所有超级幸运数的倍数都是他的幸运数。自然地，小杨的所有超级幸运数也都是幸运数。
+
+对于一个非幸运数，小杨规定，可以将它一直 \$+1\$，直到它变成一个幸运数。我们把这个过程叫做幸运化。例如，如果 \$a=4\$，那么 \$4\$ 是最小的幸运数，而 \$1\$ 不是，但我们可以连续对 \$1\$ 做 \$3\$ 次 \$+1\$ 操作，使其变为 \$4\$，所以我们可以说， \$1\$ 幸运化后的结果是 \$4\$。
+
+现在，小杨给出 \$N\$ 个数，请你首先判断它们是不是幸运数；接着，对于非幸运数，请你将它们幸运化。
+
+## 输入格式
+
+第一行 \$2\$ 个正整数 \$a, N\$。
+
+接下来 \$N\$ 行，每行一个正整数 \$x\$ ，表示需要判断（幸运化）的数。
+
+## 输出格式
+
+输出 \$N\$ 行，对于每个给定的 \$x\$ ，如果它是幸运数，请输出 \`lucky\`，否则请输出将其幸运化后的结果。
+`,
+      score: 25,
+      explanation: "预处理：筛选出所有超级幸运数（完全平方数 ≥ a）及其倍数。然后对于查询 x，找到最近的幸运数。",
+      tags: ["编程题", "数论", "埃氏筛"],
+      template: "#include <iostream>\nusing namespace std;\n\nint main() {\n    int a, n;\n    cin >> a >> n;\n    // 在此编写代码\n    return 0;\n}",
+      referenceCode: "#include <iostream>\n#include <vector>\n#include <cmath>\nusing namespace std;\nconst int MAX = 2000005;\nbool is_lucky[MAX];\nint next_lucky[MAX];\nint main() {\n    int a, n;\n    cin >> a >> n;\n    for (long long i = 1; i * i < MAX; i++) {\n        long long sq = i * i;\n        if (sq >= a) {\n            for (long long j = sq; j < MAX; j += sq) is_lucky[j] = true;\n        }\n    }\n    int last = -1;\n    for (int i = MAX-1; i >= 1; i--) {\n        if (is_lucky[i]) last = i;\n        next_lucky[i] = last;\n    }\n    while (n--) {\n        int x; cin >> x;\n        if (is_lucky[x]) cout << \"lucky\" << endl;\n        else cout << next_lucky[x] << endl;\n    }\n    return 0;\n}",
+      answer: '',
     },
     {
-        id: 27,
-        type: "programming",
-        score: 25,
-        title: "烹饪问题",
-        problemNumber: "2023-12-23-05-C-02",
-        description: "有 N 种食材，美味度为 ai。两两食材之间的契合度定义为美味度的按位与（and）结果。求契合度最高的两种食材的契合度。",
-        inputDescription: "第一行一个整数 N (1 ≤ N ≤ 1,000,000)。第二行 N 个整数 ai (0 ≤ ai ≤ 2,147,483,647)。",
-        outputDescription: "输出最高的契合度。",
-        samples: [
-            { input: "3\n1 2 3", output: "2" }
-        ],
-        explanation: "从最高位开始考虑，如果当前位为 1 的数有至少两个，那么最终答案的这一位可以是 1，并保留这些数进入下一位的判断。",
-        tags: ["编程题", "位运算", "贪心"],
-        template: "#include <iostream>\n#include <vector>\nusing namespace std;\n\nint main() {\n    int n;\n    cin >> n;\n    // 在此编写代码\n    return 0;\n}",
-        referenceCode: "#include <iostream>\n#include <vector>\nusing namespace std;\nint main() {\n    int n; cin >> n;\n    vector<int> a(n);\n    for (int i = 0; i < n; i++) cin >> a[i];\n    int ans = 0;\n    vector<int> candidates = a;\n    for (int i = 30; i >= 0; i--) {\n        vector<int> next_candidates;\n        int target = ans | (1 << i);\n        for (int val : candidates) {\n            if ((val & target) == target) next_candidates.push_back(val);\n        }\n        if (next_candidates.size() >= 2) {\n            ans = target;\n            candidates = next_candidates;\n        }\n    }\n    cout << ans << endl;\n    return 0;\n}"
+      id: 27,
+      type: 'programming',
+      question: `
+# [GESP202312 五级] 烹饪问题
+
+## 题目描述
+
+有 \$N\$ 种食材，编号从 \$1\$ 至 \$N\$，其中第 \$i\$ 种食材的美味度为 \$a_i\$。
+
+不同食材之间的组合可能产生奇妙的化学反应。具体来说，如果两种食材的美味度分别为 \$x\$ 和 \$y\$ ，那么它们的契合度为 \$x\\ \\text{and}\\ y \$。
+
+其中，\$\\text{and}\$ 运算为按位与运算，需要先将两个运算数转换为二进制，然后在高位补足 ，再逐位进行与运算。例如，\$12\$ 与 \$6\$ 的二进制表示分别为 \$1100\$ 和 \$0110\$ ，将它们逐位进行与运算，得到 \$0100\$ ，转换为十进制得到 4，因此 \$12\\ \\text{and}\\ 6 = 4\$。**在 C++ 或 Python 中，可以直接使用 \`&\` 运算符表示与运算。**
+
+
+现在，请你找到契合度最高的两种食材，并输出它们的契合度。
+
+## 输入格式
+
+第一行一个整数 \$N\$，表示食材的种数。
+
+接下来一行 \$N\$ 个用空格隔开的整数，依次为 \$a_1,\\cdots,a_N\$，表示各种食材的美味度。
+
+## 输出格式
+
+输出一行一个整数，表示最高的契合度。
+`,
+      score: 25,
+      explanation: "从最高位开始考虑，如果当前位为 1 的数有至少两个，那么最终答案的这一位可以是 1，并保留这些数进入下一位的判断。",
+      tags: ["编程题", "位运算", "贪心"],
+      template: "#include <iostream>\n#include <vector>\nusing namespace std;\n\nint main() {\n    int n;\n    cin >> n;\n    // 在此编写代码\n    return 0;\n}",
+      referenceCode: "#include <iostream>\n#include <vector>\nusing namespace std;\nint main() {\n    int n; cin >> n;\n    vector<int> a(n);\n    for (int i = 0; i < n; i++) cin >> a[i];\n    int ans = 0;\n    vector<int> candidates = a;\n    for (int i = 30; i >= 0; i--) {\n        vector<int> next_candidates;\n        int target = ans | (1 << i);\n        for (int val : candidates) {\n            if ((val & target) == target) next_candidates.push_back(val);\n        }\n        if (next_candidates.size() >= 2) {\n            ans = target;\n            candidates = next_candidates;\n        }\n    }\n    cout << ans << endl;\n    return 0;\n}",
+      answer: '',
     }
 ];
 

@@ -2,40 +2,67 @@
 
 const programmingQuestions = [
     {
-        id: 26,
-        type: "programming",
-        score: 25,
-        title: "Recamán",
-        problemNumber: "2024-12-23-04-C-01",
-        description: "小杨最近发现了有趣的 Recamán 数列，这个数列是这样生成的：数列的第一项 a0 是 0；如果 ak-1-k 是正整数并且没有在数列中出现过，那么数列的第 k 项 ak 为 ak-1-k，否则为 ak-1+k。小杨想知道 Recamán 数列的前 n 项从小到大排序后的结果。",
-        inputDescription: "第一行一个正整数 n (1 ≤ n ≤ 100,000)。",
-        outputDescription: "一行，n 个空格分隔的整数，表示 Recamán 数列的前 n 项从小到大排序后的结果。",
-        samples: [
-            { input: "5", output: "0 1 3 6 7" },
-            { input: "8", output: "0 1 3 6 7 12 13 20" }
-        ],
-        explanation: "按照递推公式生成前 n 项。由于需要判断是否出现过，可以使用 std::set 或布尔数组（注意数值范围可能超过 n，实际前 10^5 项的最大值约 7*10^5）。最后对生成的 n 个数排序输出。",
-        tags: ["编程题", "递推", "排序", "哈希/布尔数组"],
-        template: "#include <iostream>\n#include <vector>\n#include <algorithm>\nusing namespace std;\n\nint main() {\n    int n;\n    cin >> n;\n    // 在此编写代码\n    return 0;\n}",
-        referenceCode: "#include <iostream>\n#include <vector>\n#include <algorithm>\n#include <set>\nusing namespace std;\nconst int MAX_VAL = 10000000;\nbool vis[MAX_VAL];\nint main() {\n    int n; cin >> n;\n    vector<long long> a(n);\n    a[0] = 0;\n    vis[0] = true;\n    for (int k = 1; k < n; k++) {\n        long long prev = a[k-1];\n        long long next = prev-k;\n        if (next > 0 && !vis[next]) {\n            a[k] = next;\n        } else {\n            a[k] = prev+k;\n        }\n        if (a[k] < MAX_VAL) vis[a[k]] = true;\n    }\n    sort(a.begin(), a.end());\n    for (int i = 0; i < n; i++) cout << a[i] << (i == n-1 ? \"\" : \" \");\n    cout << endl;\n    return 0;\n}"
+      id: 26,
+      type: 'programming',
+      question: `
+# [GESP202412 四级] Recamán
+
+## 题目描述
+
+小杨最近发现了有趣的 Recamán 数列，这个数列是这样生成的：
+
+- 数列的第一项 \$a_1\$ 是 \$1\$；
+- 如果 \$a_{k-1}-k\$ 是正整数并且没有在数列中出现过，那么数列的第 \$k\$ 项 \$a_k\$ 为 \$a_{k-1}-k\$，否则为 \$a_{k-1}+k\$。
+
+小杨想知道 Recamán 数列的前 \$n\$ 项从小到大排序后的结果。手动计算非常困难，小杨希望你能帮他解决这个问题。
+
+## 输入格式
+
+第一行，一个正整数 \$n\$。
+
+## 输出格式
+
+一行，\$n\$ 个空格分隔的整数，表示 Recamán 数列的前 \$n\$ 项从小到大排序后的结果。
+`,
+      score: 25,
+      explanation: "按照递推公式生成前 n 项。由于需要判断是否出现过，可以使用 std::set 或布尔数组（注意数值范围可能超过 n，实际前 10^5 项的最大值约 7*10^5）。最后对生成的 n 个数排序输出。",
+      tags: ["编程题", "递推", "排序", "哈希/布尔数组"],
+      template: "#include <iostream>\n#include <vector>\n#include <algorithm>\nusing namespace std;\n\nint main() {\n    int n;\n    cin >> n;\n    // 在此编写代码\n    return 0;\n}",
+      referenceCode: "#include <iostream>\n#include <vector>\n#include <algorithm>\n#include <set>\nusing namespace std;\nconst int MAX_VAL = 10000000;\nbool vis[MAX_VAL];\nint main() {\n    int n; cin >> n;\n    vector<long long> a(n);\n    a[0] = 0;\n    vis[0] = true;\n    for (int k = 1; k < n; k++) {\n        long long prev = a[k-1];\n        long long next = prev-k;\n        if (next > 0 && !vis[next]) {\n            a[k] = next;\n        } else {\n            a[k] = prev+k;\n        }\n        if (a[k] < MAX_VAL) vis[a[k]] = true;\n    }\n    sort(a.begin(), a.end());\n    for (int i = 0; i < n; i++) cout << a[i] << (i == n-1 ? \"\" : \" \");\n    cout << endl;\n    return 0;\n}",
+      answer: '',
     },
     {
-        id: 27,
-        type: "programming",
-        score: 25,
-        title: "字符排序",
-        problemNumber: "2024-12-23-04-C-02",
-        description: "给定 n 个仅由小写字母组成的字符串。请你将它们按某种顺序排列并拼接起来，使得拼接后的字符串 t 满足：对于任意 j < i，t_j 的字典序不大于 t_i（即 t 是一个不降序列）。判断是否存在这样的排列方式。",
-        inputDescription: "第一行一个整数 T 表示测试用例数。每组测试用例第一行一个整数 n。接下来的 n 行每行一个字符串。",
-        outputDescription: "对于每组测试用例，如果存在输出 1，否则输出 0。",
-        samples: [
-            { input: "1\n2\nabc\ndef", output: "1" },
-            { input: "1\n2\nb\na", output: "0" }
-        ],
-        explanation: "由于拼接后的字符串必须是不降序列，那么每个单独的字符串本身也必须是不降序列。如果所有字符串内部都是不降的，我们将它们按首字母升序排序并拼接，检查拼接后的总字符串是否依然是不降的即可。",
-        tags: ["编程题", "字符串", "排序", "贪心"],
-        template: "#include <iostream>\n#include <string>\n#include <vector>\n\nusing namespace std;\n\nint main() {\n    int T;\n    cin >> T;\n    // 在此编写代码\n    return 0;\n}",
-        referenceCode: "#include <iostream>\n#include <string>\n#include <vector>\n#include <algorithm>\nusing namespace std;\nbool isNonDescending(string s) {\n    for (int i = 1; i < s.size(); i++) if (s[i] < s[i-1]) return false;\n    return true;\n}\nvoid solve() {\n    int n; cin >> n;\n    vector<string> s(n);\n    bool possible = true;\n    for (int i = 0; i < n; i++) {\n        cin >> s[i];\n        if (!isNonDescending(s[i])) possible = false;\n    }\n    if (!possible) { cout << 0 << endl; return; }\n    sort(s.begin(), s.end());\n    string t = \"\";\n    for (auto x : s) t += x;\n    if (isNonDescending(t)) cout << 1 << endl;\n    else cout << 0 << endl;\n}\nint main() {\n    int T; cin >> T;\n    while (T--) solve();\n    return 0;\n}"
+      id: 27,
+      type: 'programming',
+      question: `
+# [GESP202412 四级] 字符排序
+
+## 题目描述
+
+小杨有 \$n\$ 个仅包含小写字母的字符串 \$s_1,s_2,\\ldots,s_n\$，小杨想将这些字符串按一定顺序排列后拼接到一起构成字符串 \$t\$。小杨希望最后构成的字符串 \$t\$ 满足：
+
+- 假设 \$t_i\$ 为字符串 \$t\$ 的第 \$i\$ 个字符，对于所有的 \$j\\lt i\$ 均有 \$t_j\\le t_i\$。两个字符的大小关系与其在字母表中的顺序一致，例如 \$\\texttt{e}\\lt \\texttt{g}\\lt \\texttt{p} \\lt \\texttt{s}\$。
+
+小杨想知道是否存在满足条件的字符串排列顺序。
+
+## 输入格式
+
+第一行包含一个正整数 \$T\$，代表测试数据组数。
+
+对于每组测试数据，第一行包含一个正整数 \$n\$，含义如题面所示。
+
+之后 \$n\$ 行，每行包含一个字符串 \$s_i\$。
+
+## 输出格式
+
+对于每组测试数据，如果存在满足条件的排列顺序，输出（一行一个）\$\\texttt{1}\$，否则输出（一行一个） \$\\texttt{0}\$。
+`,
+      score: 25,
+      explanation: "由于拼接后的字符串必须是不降序列，那么每个单独的字符串本身也必须是不降序列。如果所有字符串内部都是不降的，我们将它们按首字母升序排序并拼接，检查拼接后的总字符串是否依然是不降的即可。",
+      tags: ["编程题", "字符串", "排序", "贪心"],
+      template: "#include <iostream>\n#include <string>\n#include <vector>\n\nusing namespace std;\n\nint main() {\n    int T;\n    cin >> T;\n    // 在此编写代码\n    return 0;\n}",
+      referenceCode: "#include <iostream>\n#include <string>\n#include <vector>\n#include <algorithm>\nusing namespace std;\nbool isNonDescending(string s) {\n    for (int i = 1; i < s.size(); i++) if (s[i] < s[i-1]) return false;\n    return true;\n}\nvoid solve() {\n    int n; cin >> n;\n    vector<string> s(n);\n    bool possible = true;\n    for (int i = 0; i < n; i++) {\n        cin >> s[i];\n        if (!isNonDescending(s[i])) possible = false;\n    }\n    if (!possible) { cout << 0 << endl; return; }\n    sort(s.begin(), s.end());\n    string t = \"\";\n    for (auto x : s) t += x;\n    if (isNonDescending(t)) cout << 1 << endl;\n    else cout << 0 << endl;\n}\nint main() {\n    int T; cin >> T;\n    while (T--) solve();\n    return 0;\n}",
+      answer: '',
     }
 ];
 

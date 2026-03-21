@@ -2,39 +2,65 @@
 
 const programmingQuestions = [
     {
-        id: 26,
-        type: "programming",
-        score: 25,
-        title: "正整数分解",
-        problemNumber: "2024-03-23-05-C-01",
-        description: "正整数分解：正整数 N 可以分解为若干个正整数的乘积，例如 12 = 2 * 2 * 3 = 3 * 4 = 2 * 6 = 12。给定一个正整数 N，请你求出所有分解方案中，分解出的正整数个数最多的方案。如果方案不唯一，输出其中最小的正整数最小的方案。",
-        inputDescription: "第一行包含一个正整数 N (2 ≤ N ≤ 10^12)。",
-        outputDescription: "输出一行，为分解方案。要求按正整数从小到大排列，乘号用星号 * 表示，且左右各空一格。",
-        samples: [
-            { input: "12", output: "2 * 2 * 3" },
-            { input: "13", output: "13" }
-        ],
-        explanation: "由于要求分解出的正整数个数最多，这显然是质因数分解。将 N 分解为所有质因子的乘积即可满足个数最多且正整数最小的要求。",
-        tags: ["编程题", "数论", "质因数分解"],
-        template: "#include <iostream>\nusing namespace std;\n\nint main() {\n    long long N;\n    cin >> N;\n    // 在此编写代码\n    return 0;\n}",
-        referenceCode: "#include <iostream>\nusing namespace std;\nint main() {\n    long long n; cin >> n;\n    bool first = true;\n    for (long long i = 2; i * i <= n; i++) {\n        while (n % i == 0) {\n            if (!first) cout << \" * \";\n            cout << i;\n            n /= i;\n            first = false;\n        }\n    }\n    if (n > 1) {\n        if (!first) cout << \" * \";\n        cout << n;\n    }\n    cout << endl;\n    return 0;\n}"
+      id: 26,
+      type: 'programming',
+      question: `
+# [GESP202403 五级] 成绩排序
+
+## 题目描述
+
+有 \$n\$ 名同学，每名同学有语文、数学、英语三科成绩，你需要按照如下规则对所有同学的成绩从高到低排序：
+
+1. 比较总分，高者靠前；
+2. 如果总分相同，则比较语文和数学两科的总分，高者靠前；
+3. 如果仍相同，则比较语文和数学两科的最高分，高者靠前；
+4. 如果仍相同，则二人并列。
+
+你需要输出每位同学的排名，如遇 \$x\$ 人并列，则他们排名相同，并留空后面的 \$x - 1\$ 个名次。例如，有 \$3\$ 名同学并列第 \$1\$，则后一名同学自动成为第 \$4\$ 名。
+
+## 输入格式
+
+第一行一个整数 \$N\$，表示同学的人数。  
+接下来 \$N\$ 行，每行三个非负整数 \$c_i, m_i, e_i\$ 分别表示该名同学的语文、数学、英语成绩。
+
+## 输出格式
+
+输出 \$N\$ 行，按输入同学的顺序，输出他们的排名。  
+**注意：请不要按排名输出同学的序号，而是按同学的顺序输出他们各自的排名。**
+`,
+      score: 25,
+      explanation: "由于要求分解出的正整数个数最多，这显然是质因数分解。将 N 分解为所有质因子的乘积即可满足个数最多且正整数最小的要求。",
+      tags: ["编程题", "数论", "质因数分解"],
+      template: "#include <iostream>\nusing namespace std;\n\nint main() {\n    long long N;\n    cin >> N;\n    // 在此编写代码\n    return 0;\n}",
+      referenceCode: "#include <iostream>\nusing namespace std;\nint main() {\n    long long n; cin >> n;\n    bool first = true;\n    for (long long i = 2; i * i <= n; i++) {\n        while (n % i == 0) {\n            if (!first) cout << \" * \";\n            cout << i;\n            n /= i;\n            first = false;\n        }\n    }\n    if (n > 1) {\n        if (!first) cout << \" * \";\n        cout << n;\n    }\n    cout << endl;\n    return 0;\n}",
+      answer: '',
     },
     {
-        id: 27,
-        type: "programming",
-        score: 25,
-        title: "扑克牌",
-        problemNumber: "2024-03-23-05-C-02",
-        description: "一副扑克牌有 52 张牌，分为 4 种花色（黑桃、红桃、梅花、方块），每种花色有 13 张牌（A, 2, 3, ..., 10, J, Q, K）。现在从小明手中抽取 n 张牌，请问小明手中是否包含“顺子”。顺子指：5 张牌，点数连续且花色不限。注意 A 可以看作 1，也可以看作 14（但在顺子中不能同时作为 1 和 14，且顺子只能是 1-2-3-4-5 或 10-J-Q-K-A 这种连续形式）。",
-        inputDescription: "第一行一个整数 n (5 ≤ n ≤ 52)。接下来 n 行，每行一个字符串代表一张牌。花色用 S, H, C, D 表示，点数用 A, 2-10, J, Q, K 表示。",
-        outputDescription: "如果包含顺子输出 YES，否则输出 NO。",
-        samples: [
-            { input: "5\nSA\nH2\nC3\nD4\nS5", output: "YES" }
-        ],
-        explanation: "将所有牌的点数转换成数字（A为1和14），去重后排序。检查是否存在连续的 5 个数字。",
-        tags: ["编程题", "搜索", "模拟"],
-        template: "#include <iostream>\n#include <string>\n#include <vector>\n#include <algorithm>\nusing namespace std;\n\nint main() {\n    int n;\n    cin >> n;\n    // 在此编写代码\n    return 0;\n}",
-        referenceCode: "#include <iostream>\n#include <string>\n#include <vector>\n#include <algorithm>\n#include <set>\nusing namespace std;\nint get_val(string s) {\n    string t = s.substr(1);\n    if (t == \"A\") return 1;\n    if (t == \"J\") return 11;\n    if (t == \"Q\") return 12;\n    if (t == \"K\") return 13;\n    return stoi(t);\n}\nint main() {\n    int n; cin >> n;\n    set<int> st;\n    for (int i = 0; i < n; i++) {\n        string s; cin >> s;\n        int v = get_val(s);\n        st.insert(v);\n        if (v == 1) st.insert(14);\n    }\n    vector<int> v(st.begin(), st.end());\n    bool ok = false;\n    if (v.size() >= 5) {\n        for (int i = 0; i <= (int)v.size()-5; i++) {\n            if (v[i+4]-v[i] == 4) { ok = true; break; }\n        }\n    }\n    if (ok) cout << \"YES\" << endl;\n    else cout << \"NO\" << endl;\n    return 0;\n}"
+      id: 27,
+      type: 'programming',
+      question: `
+# [GESP202403 五级] B-smooth 数
+
+## 题目描述
+
+小杨同学想寻找一种名为 \$ B \$-smooth 数的正整数。 
+
+如果一个正整数的最大质因子不超过 \$ B \$，则该正整数为 \$ B \$-smooth 数。小杨同学想知道，对于给定的 \$ n \$ 和 \$ B \$，有多少个不超过 \$ n \$ 的 \$ B \$-smooth 数。
+
+## 输入格式
+
+第一行包含两个正整数 \$ n \$ 和 \$ B \$，含义如题面所示。
+
+## 输出格式
+
+输出一个非负整数，表示不超过 \$ n \$ 的 \$ B \$-smooth 数的数量。
+`,
+      score: 25,
+      explanation: "将所有牌的点数转换成数字（A为1和14），去重后排序。检查是否存在连续的 5 个数字。",
+      tags: ["编程题", "搜索", "模拟"],
+      template: "#include <iostream>\n#include <string>\n#include <vector>\n#include <algorithm>\nusing namespace std;\n\nint main() {\n    int n;\n    cin >> n;\n    // 在此编写代码\n    return 0;\n}",
+      referenceCode: "#include <iostream>\n#include <string>\n#include <vector>\n#include <algorithm>\n#include <set>\nusing namespace std;\nint get_val(string s) {\n    string t = s.substr(1);\n    if (t == \"A\") return 1;\n    if (t == \"J\") return 11;\n    if (t == \"Q\") return 12;\n    if (t == \"K\") return 13;\n    return stoi(t);\n}\nint main() {\n    int n; cin >> n;\n    set<int> st;\n    for (int i = 0; i < n; i++) {\n        string s; cin >> s;\n        int v = get_val(s);\n        st.insert(v);\n        if (v == 1) st.insert(14);\n    }\n    vector<int> v(st.begin(), st.end());\n    bool ok = false;\n    if (v.size() >= 5) {\n        for (int i = 0; i <= (int)v.size()-5; i++) {\n            if (v[i+4]-v[i] == 4) { ok = true; break; }\n        }\n    }\n    if (ok) cout << \"YES\" << endl;\n    else cout << \"NO\" << endl;\n    return 0;\n}",
+      answer: '',
     }
 ];
 

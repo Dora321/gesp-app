@@ -290,22 +290,58 @@ export const paperData = {
     {
       id: 26,
       type: 'programming',
+      question: `
+# [GESP202503 一级] 图书馆里的老鼠
+
+## 题目描述
+
+图书馆里有 \$n\$ 本书，不幸的是，还混入了一只老鼠，老鼠每 \$x\$ 小时能啃光一本书，假设老鼠在啃光一本书之前，不会啃另一本。请问 \$y\$ 小时后图书馆里还剩下多少本完整的书。
+
+## 输入格式
+
+三行，第一行一个正整数 \$n\$，表示图书馆里书的数量；
+
+第二行，一个正整数 \$x\$，表示老鼠啃光一本书需要的时间；
+
+第三行，一个正整数 \$y\$，表示经过的总时间；
+
+输入数据保证 \$y\$ 小时后至少会剩下一本完整的书。
+
+## 输出格式
+
+一行，一个整数，表示 \$y\$ 小时后图书馆里还剩下多少本完整的书。
+`,
       template: `#include <bits/stdc++.h>\nusing namespace std;\n\nint main() {\n    // 在此填写代码\n    return 0;\n}`,
-      question: '【编程题1】区间内偶数之和\n编写一个程序，输入两个整数 a 和 b，计算并输出区间 [a, b] 之间所有偶数的和。',
       answer: '',
       score: 25,
       explanation: '遍历 a 到 b，使用 i % 2 == 0 判断并累加。',
-      tags: [LEVEL1_TAGS.basics, LEVEL1_TAGS.condition, LEVEL1_TAGS.operator]
+      tags: [LEVEL1_TAGS.basics, LEVEL1_TAGS.condition, LEVEL1_TAGS.operator],
     },
     {
       id: 27,
       type: 'programming',
+      question: `
+# [GESP202503 一级] 四舍五入
+
+## 题目描述
+
+四舍五入是一种常见的近似计算方法。现在，给定 \$n\$ 个整数，你需要将每个整数四舍五入到最接近的整十数。例如，\$43\$ 四舍五入后为 \$40\$，\$58\$ 四舍五入后为 \$60\$。
+
+## 输入格式
+
+共 \$n+1\$ 行，第一行，一个整数 \$n\$，表示接下来输入的整数个数。
+
+接下来 \$n\$ 行，每行一个整数 \$a_1, \\cdots, a_n\$，表示需要四舍五入的整数。
+
+## 输出格式
+
+\$n\$ 行，每行一个整数，表示每个整数四舍五入后的结果。
+`,
       template: `#include <bits/stdc++.h>\nusing namespace std;\n\nint main() {\n    // 在此填写代码\n    return 0;\n}`,
-      question: '【编程题2】镜像码转换\n小杨发现了一种有趣的镜像码：将小写字母 a 换成 z，b 换成 y ... z 换成 a。输入一个仅包含小写字母的字符串，输出对应的镜像码。',
       answer: '',
       score: 25,
       explanation: '转换公式为：\'z\'-(c-\'a\')。',
-      tags: [LEVEL1_TAGS.loop, LEVEL1_TAGS.basics]
+      tags: [LEVEL1_TAGS.loop, LEVEL1_TAGS.basics],
     }
   ]
 };

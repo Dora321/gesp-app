@@ -289,22 +289,52 @@ export const paperData = {
     {
       id: 26,
       type: 'programming',
+      question: `
+# [GESP202403 一级] 小杨买书
+
+## 题目描述
+
+小杨同学积攒了一部分零用钱想要用来购买书籍，已知一本书的单价是 \$13\$ 元，请根据小杨零用钱的金额，编写程序计算可以购买多少本书，还剩多少零用钱。
+
+## 输入格式
+
+输入一个正整数 \$m\$，表示小杨拥有的零用钱数。
+
+## 输出格式
+
+输出包含两行，第一行，购买图书的本数；第二行，剩余的零用钱数。
+`,
       template: `#include <bits/stdc++.h>\nusing namespace std;\n\nint main() {\n    // 在此填写代码\n    return 0;\n}`,
-      question: '【编程题1】小杨买书\n小杨同学有 $M$ 元钱，他想买价格为 $a$ 元和 $b$ 元的两种书。要求两种书购买的数量相同，且总价不超过 $M$。请问最多能买多少本书？\n\n**输入格式**：输入三行，分别依次包含一个整数 $a, b, M$。\n\n**输出格式**：输出最多能买的书的数量（两类书的总数）。',
       answer: '',
       score: 25,
       explanation: '设买 $x$ 套，则 $(a+b)x \\le M$。输出 $2x$。注意题目要求两类书各买相同的数量，最后输出总数。LuoGu B3952。',
-      tags: [LEVEL1_TAGS.basics, LEVEL1_TAGS.operator]
+      tags: [LEVEL1_TAGS.basics, LEVEL1_TAGS.operator],
     },
     {
       id: 27,
       type: 'programming',
+      question: `
+# [GESP202403 一级] 找因数
+
+## 题目描述
+
+小 A 最近刚刚学习了因数的概念，具体来说，如果一个正整数 \$a\$ 可以被另一个正整数 \$b\$ 整除，那么我们就说 \$b\$ 是 \$a\$ 的因数。
+
+请你帮忙写一个程序，从小到大输出正整数 \$a\$ 的所有因数。
+
+## 输入格式
+
+输入一行一个正整数 \$a\$。保证 \$a\\leq1000\$。
+
+## 输出格式
+
+输出若干行，为 \$a\$ 的所有约数，从小到大排序。
+`,
       template: `#include <bits/stdc++.h>\nusing namespace std;\n\nint main() {\n    // 在此填写代码\n    return 0;\n}`,
-      question: '【编程题2】找因数\n输入一个正整数 $N$，输出 $N$ 的所有因数，每个因数占一行，按从小到大的顺序排列。\n\n**输入格式**：输入一个正整数 $N$。\n\n**输出格式**：从小到大排列的所有因数，各占一行。',
       answer: '',
       score: 25,
       explanation: '遍历 1 到 $N$，如果 $N \% i == 0$ 则输出。LuoGu B3953。',
-      tags: [LEVEL1_TAGS.loop, LEVEL1_TAGS.condition]
+      tags: [LEVEL1_TAGS.loop, LEVEL1_TAGS.condition],
     }
   ]
 };

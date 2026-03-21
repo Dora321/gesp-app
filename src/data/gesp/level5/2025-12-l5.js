@@ -2,38 +2,71 @@
 
 const programmingQuestions = [
     {
-        id: 26,
-        type: "programming",
-        score: 25,
-        title: "数字移动",
-        problemNumber: "2025-12-20-05-C-01",
-        description: "小 A 有一个包含 N 个正整数的序列 A，序列 A 恰好包含 N/2 对不同的正整数。对于任意 i，存在唯一一个 j != i 使得 A_i = A_j。小 A 希望每对相同的数字在序列中相邻。每次操作他可以选择任意一个位置 i，将当前序列的第 i 个数字移动到任意位置，并花费对应数字的体力。请你计算一个最小的 x，使得他能够在每次花费的体力均不超过 x 的情况下令每对相同的数字在序列中相邻。",
-        inputDescription: "第一行一个正整数 N，代表序列长度，保证 N 为偶数。第二行包含 N 个正整数 A_1,A_2,...,A_N，代表序列 A。数据保证小 A 至少需要执行一次操作。",
-        outputDescription: "输出一行，代表满足要求的 x 的最小值。",
-        samples: [
-            { input: "6\n1 2 1 3 2 3", output: "2" }
-        ],
-        explanation: "二分答案 x。把所有大于 x 的数按原顺序保留下来：由于这些数无法被移动，所以若最终能两两相邻，它们在保留序列中必须恰好按相邻成对出现。检验该条件即可。",
-        tags: ["编程题", "二分答案", "贪心"],
-        template: "#include <bits/stdc++.h>\nusing namespace std;\n\nint main() {\n    int n;\n    cin >> n;\n    // 在此编写代码\n    return 0;\n}",
-        referenceCode: "#include <iostream>\nusing namespace std;\nconst int N = 100010;\nint a[N];\nint b[N];\nint pos;\nint main(){\n    int n;\n    cin >> n;\n    for(int i = 0; i < n; i++) cin >> a[i];\n    int left = 1, right = 1e6, ans = 1e6;\n    while(left <= right){\n        int mid = (left+right) / 2;\n        bool possible = true;\n        pos = 0;\n        for(int i = 0; i < n; i++) {\n            if(a[i] > mid) b[pos++] = a[i];\n        }\n        for(int i = 0; i < pos; i += 2){\n            if(b[i] != b[i+1]) {\n                possible = false;\n                break;\n            }\n        }\n        if(possible){\n            ans = mid;\n            right = mid-1;\n        } else {\n            left = mid+1;\n        }\n    }\n    cout << ans << endl;\n    return 0;\n}"
+      id: 26,
+      type: 'programming',
+      question: `
+# [GESP202512 五级] 数字移动
+
+## 题目描述
+
+小 A 有一个包含 \$N\$ 个正整数的序列 \$A=\\{A_1,A_2,\\cdots,A_N\\}\$，序列 \$A\$ 恰好包含 \$\\frac{N}{2}\$ 对不同的正整数。形式化地，对于任意 \$1 \\le i \\le N\$，存在唯一一个 \$j\$ 满足 \$1\\le j \\le N, i\\neq j, A_i=A_j\$。
+
+小 A 希望每对相同的数字在序列中相邻，为了实现这一目的，小 A 每次操作会选择任意 \$i(1\\le i\\le N)\$，将当前序列的第 \$i\$ 个数字移动到任意位置，并花费对应数字的体力。
+
+例如，假设序列 \$A=\\{1,2,1,3,2,3\\}\$，小 A 可以选择 \$i=2\$，将 \$A_2=2\$ 移动到 \$A_3=1\$ 的后面，此时序列变为 \$\\{1,1,2,3,2,3\\}\$，耗费 \$2\$ 点体力。小 A 也可以选择 \$i=3\$，将 \$A_3=1\$ 移动到 \$A_2=2\$ 的前面，此时序列变为 \$\\{1,1,2,3,2,3\\}\$，花费 \$1\$ 点体力。
+
+小 A 可以执行任意次操作，但他希望自己每次花费的体力尽可能小。小 A 希望你能帮他计算出一个最小的 \$x\$，使得他能够在每次花费的体力均不超过 \$x\$ 的情况下令每对相同的数字在序列中相邻。
+
+## 输入格式
+
+第一行一个正整数 \$N\$，代表序列长度，保证 \$N\$ 为偶数。
+
+第二行包含 \$N\$ 个正整数 \$A_1,A_2,\\ldots,A_N\$，代表序列 \$A\$。且对于任意 \$1\\le i\\le N\$，存在唯一一个 \$j\$ 满足 \$1\\le j\\le N,i\\neq j,A_i=A_j\$。
+
+数据保证小 A 至少需要执行一次操作。
+
+## 输出格式
+
+输出一行，代表满足要求的 \$x\$ 的最小值。
+`,
+      score: 25,
+      explanation: "二分答案 x。把所有大于 x 的数按原顺序保留下来：由于这些数无法被移动，所以若最终能两两相邻，它们在保留序列中必须恰好按相邻成对出现。检验该条件即可。",
+      tags: ["编程题", "二分答案", "贪心"],
+      template: "#include <bits/stdc++.h>\nusing namespace std;\n\nint main() {\n    int n;\n    cin >> n;\n    // 在此编写代码\n    return 0;\n}",
+      referenceCode: "#include <iostream>\nusing namespace std;\nconst int N = 100010;\nint a[N];\nint b[N];\nint pos;\nint main(){\n    int n;\n    cin >> n;\n    for(int i = 0; i < n; i++) cin >> a[i];\n    int left = 1, right = 1e6, ans = 1e6;\n    while(left <= right){\n        int mid = (left+right) / 2;\n        bool possible = true;\n        pos = 0;\n        for(int i = 0; i < n; i++) {\n            if(a[i] > mid) b[pos++] = a[i];\n        }\n        for(int i = 0; i < pos; i += 2){\n            if(b[i] != b[i+1]) {\n                possible = false;\n                break;\n            }\n        }\n        if(possible){\n            ans = mid;\n            right = mid-1;\n        } else {\n            left = mid+1;\n        }\n    }\n    cout << ans << endl;\n    return 0;\n}",
+      answer: '',
     },
     {
-        id: 27,
-        type: "programming",
-        score: 25,
-        title: "相等序列",
-        problemNumber: "2025-12-20-05-C-02",
-        description: "小 A 有一个包含 N 个正整数的序列 A。每次可以花费 1 个金币执行以下任意一种操作：选择 A_i，将其乘以任意质数 P；或在 A_i 能被质数 P 整除时，将其除以 P。请你计算令序列中所有整数都相同，最少需要花费多少金币。",
-        inputDescription: "第一行一个正整数 N。第二行包含 N 个正整数 A_1,A_2,...,A_N，代表序列 A。",
-        outputDescription: "输出一行，代表最少需要花费的金币数量。",
-        samples: [
-            { input: "5\n10 6 35 105 42", output: "8" }
-        ],
-        explanation: "把每个数进行质因数分解。对每个质数单独考虑其指数序列，乘除一次相当于指数加减 1。要让总代价最小，目标指数应取该质数在所有数中的指数中位数；最后把各质数的代价累加即可。",
-        tags: ["编程题", "数论", "质因数分解", "中位数"],
-        template: "#include <bits/stdc++.h>\nusing namespace std;\n\nint main() {\n    int n;\n    cin >> n;\n    // 在此编写代码\n    return 0;\n}",
-        referenceCode: "#include <iostream>\nusing namespace std;\nconst int N = 100010;\nint num[N][20];\nint n, a[N];\nvoid calc_prime_factor(int x){\n    for(int i = 2; i * i <= x; i++){\n        if(x % i == 0){\n            int cnt = 0;\n            while(x % i == 0){\n                x /= i;\n                cnt++;\n            }\n            num[i][cnt]++;\n        }\n    }\n    if(x > 1) num[x][1]++;\n}\nint main(){\n    scanf(\"%d\", &n);\n    for(int i = 1; i <= n; i++){\n        scanf(\"%d\", &a[i]);\n        calc_prime_factor(a[i]);\n    }\n    long long ans = 0;\n    for(int i = 2; i < 100001; i++){\n        int pos = 0;\n        for(int j = 0; j < 20; j++) pos += num[i][j];\n        num[i][0] = n-pos;\n        int median_exponent = 0;\n        pos = 0;\n        for(int j = 0; j < 20; j++){\n            pos += num[i][j];\n            if(pos * 2 >= n){\n                median_exponent = j;\n                break;\n            }\n        }\n        for(int j = 0; j < 20; j++) ans += 1ll * num[i][j] * abs(j-median_exponent);\n    }\n    printf(\"%lld\\n\", ans);\n}\n"
+      id: 27,
+      type: 'programming',
+      question: `
+# [GESP202512 五级] 相等序列
+
+## 题目描述
+
+小 A 有一个包含 \$N\$ 个正整数的序列 \$A=\\{A_1,A_2,\\ldots,A_N\\}\$。小 A 每次可以花费 \$1\$ 个金币执行以下任意一种操作：
+
+- 选择序列中一个正整数 \$A_i\$（\$1\\le i\\le N\$），将 \$A_i\$ 变为 \$A_i\\times P\$，\$P\$ 为任意质数；
+- 选择序列中一个正整数 \$A_i\$（\$1\\le i\\le N\$），将 \$A_i\$ 变为 \$\\frac{A_i}{P}\$，\$P\$ 为任意质数，要求 \$A_i\$ 是 \$P\$ 的倍数。
+
+小 A 想请你帮他计算出令序列中所有整数都相同，最少需要花费多少金币。
+
+## 输入格式
+
+第一行一个正整数 \$N\$，含义如题面所示。
+
+第二行包含 \$N\$ 个正整数 \$A_1,A_2,\\ldots,A_N\$，代表序列 \$A\$。
+
+## 输出格式
+
+输出一行，代表最少需要花费的金币数量。
+`,
+      score: 25,
+      explanation: "把每个数进行质因数分解。对每个质数单独考虑其指数序列，乘除一次相当于指数加减 1。要让总代价最小，目标指数应取该质数在所有数中的指数中位数；最后把各质数的代价累加即可。",
+      tags: ["编程题", "数论", "质因数分解", "中位数"],
+      template: "#include <bits/stdc++.h>\nusing namespace std;\n\nint main() {\n    int n;\n    cin >> n;\n    // 在此编写代码\n    return 0;\n}",
+      referenceCode: "#include <iostream>\nusing namespace std;\nconst int N = 100010;\nint num[N][20];\nint n, a[N];\nvoid calc_prime_factor(int x){\n    for(int i = 2; i * i <= x; i++){\n        if(x % i == 0){\n            int cnt = 0;\n            while(x % i == 0){\n                x /= i;\n                cnt++;\n            }\n            num[i][cnt]++;\n        }\n    }\n    if(x > 1) num[x][1]++;\n}\nint main(){\n    scanf(\"%d\", &n);\n    for(int i = 1; i <= n; i++){\n        scanf(\"%d\", &a[i]);\n        calc_prime_factor(a[i]);\n    }\n    long long ans = 0;\n    for(int i = 2; i < 100001; i++){\n        int pos = 0;\n        for(int j = 0; j < 20; j++) pos += num[i][j];\n        num[i][0] = n-pos;\n        int median_exponent = 0;\n        pos = 0;\n        for(int j = 0; j < 20; j++){\n            pos += num[i][j];\n            if(pos * 2 >= n){\n                median_exponent = j;\n                break;\n            }\n        }\n        for(int j = 0; j < 20; j++) ans += 1ll * num[i][j] * abs(j-median_exponent);\n    }\n    printf(\"%lld\\n\", ans);\n}\n",
+      answer: '',
     }
 ];
 

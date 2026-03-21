@@ -295,24 +295,64 @@ export const paperData = {
             tags: ["客观题", "判断题", "选择排序", "复杂度", "GESP4级"]
         },
         {
-            id: 26,
-            type: "programming",
-            title: "排兵布阵",
-            question: "【问题描述】\n作为将军，你自然需要合理地排兵布阵。地图可以视为 n 行 m 列的网格，适合排兵的网格以 1 标注，不适合排兵的网格以 0 标注。现在你需要在地图上选择一个矩形区域排兵，这个矩形区域内不能包含不适合排兵的网格。请问可选择的矩形区域最多能包含多少网格？\n【输入描述】\n第一行，两个正整数 n, m，分别表示地图网格的行数与列数。\n接下来 n 行，每行 m 个整数 ai,1, ai,2, …, ai,m，表示各行中的网格是否适合排兵。\n【输出描述】\n一行，一个整数，表示适合排兵的矩形区域包含的最大网格数。\n【样例输入1】\n4 3\n0 1 1\n1 0 1\n0 1 1\n1 1 1\n【样例输出1】\n4",
-            score: 25,
-            explanation: "该问题可以转化为求“全 1 子矩阵的最大面积”。由于数据范围较小 (n,m <= 500)，可以使用单调栈优化：对每一行，维护以该行为底向上连续 1 的高度。这样每一行就变成了一个“直方图最大矩形”问题，利用单调栈可以在 O(m) 内求解，总复杂度 O(n*m)。",
-            referenceCode: `#include <iostream>\n#include <vector>\n#include <algorithm>\n#include <stack>\nusing namespace std;\n\nint largestRectangleArea(vector<int>& heights) {\n    heights.push_back(0);\n    stack<int> s;\n    int maxArea = 0;\n    for (int i = 0; i < heights.size(); i++) {\n        while (!s.empty() && heights[s.top()] >= heights[i]) {\n            int h = heights[s.top()];\n            s.pop();\n            int w = s.empty() ? i : i-s.top()-1;\n            maxArea = max(maxArea, h * w);\n        }\n        s.push(i);\n    }\n    return maxArea;\n}\n\nint main() {\n    int n, m;\n    cin >> n >> m;\n    vector<vector<int>> grid(n, vector<int>(m));\n    vector<int> heights(m, 0);\n    int maxArea = 0;\n    for (int i = 0; i < n; i++) {\n        for (int j = 0; j < m; j++) {\n            int val; cin >> val;\n            if (val == 1) heights[j]++;\n            else heights[j] = 0;\n        }\n        maxArea = max(maxArea, largestRectangleArea(heights));\n    }\n    cout << maxArea << endl;\n    return 0;\n}`,
-            tags: ["编程题", "矩阵", "单调栈", "最大子矩阵", "GESP4级"]
-        },
+      id: 26,
+      type: 'programming',
+      question: `
+# [GESP202509 四级] 排兵布阵
+
+## 题目描述
+
+作为将军，你自然需要合理地排兵布阵。地图可以视为 \$n\$ 行 \$m\$ 列的网格，适合排兵的网格以 1 标注，不适合排兵的网格以 0 标注。现在你需要在地图上选择一个矩形区域排兵，这个矩形区域内不能包含不适合排兵的网格。请问可选择的矩形区域最多能包含多少网格？
+
+## 输入格式
+
+第一行，两个正整数 \$n, m\$，分别表示地图网格的行数与列数。
+
+接下来 \$n\$ 行，每行 \$m\$ 个整数 \$a_{i,1}, a_{i,2}, \\ldots, a_{i,m}\$，表示各行中的网格是否适合排兵。
+
+## 输出格式
+
+一行，一个整数，表示适合排兵的矩形区域包含的最大网格数。
+`,
+      score: 25,
+      explanation: "该问题可以转化为求“全 1 子矩阵的最大面积”。由于数据范围较小 (n,m <= 500)，可以使用单调栈优化：对每一行，维护以该行为底向上连续 1 的高度。这样每一行就变成了一个“直方图最大矩形”问题，利用单调栈可以在 O(m) 内求解，总复杂度 O(n*m)。",
+      referenceCode: `#include <iostream>\n#include <vector>\n#include <algorithm>\n#include <stack>\nusing namespace std;\n\nint largestRectangleArea(vector<int>& heights) {\n    heights.push_back(0);\n    stack<int> s;\n    int maxArea = 0;\n    for (int i = 0; i < heights.size(); i++) {\n        while (!s.empty() && heights[s.top()] >= heights[i]) {\n            int h = heights[s.top()];\n            s.pop();\n            int w = s.empty() ? i : i-s.top()-1;\n            maxArea = max(maxArea, h * w);\n        }\n        s.push(i);\n    }\n    return maxArea;\n}\n\nint main() {\n    int n, m;\n    cin >> n >> m;\n    vector<vector<int>> grid(n, vector<int>(m));\n    vector<int> heights(m, 0);\n    int maxArea = 0;\n    for (int i = 0; i < n; i++) {\n        for (int j = 0; j < m; j++) {\n            int val; cin >> val;\n            if (val == 1) heights[j]++;\n            else heights[j] = 0;\n        }\n        maxArea = max(maxArea, largestRectangleArea(heights));\n    }\n    cout << maxArea << endl;\n    return 0;\n}`,
+      tags: ["编程题", "矩阵", "单调栈", "最大子矩阵", "GESP4级"],
+      answer: '',
+    },
         {
-            id: 27,
-            type: "programming",
-            title: "最长连续段",
-            question: "【问题描述】\n对于 k 个整数构成的数组 [b1, b2, …, bk]，如果对 1 ≤ i < k 都有 bi+1 = bi+1，那么称数组 b 是一个连续段。\n给定由 n 个整数构成的数组 [a1, a2, …, an]，你可以任意重排数组 a 中元素顺序。请问在重排顺序之后，a 所有是连续段的子数组中，最长的子数组长度是多少？\n例如，对于数组 [1, 0, 2, 4]，可以将其重排为 [4, 0, 1, 2]，其子数组中 [0, 1, 2] 是连续段，长度为 3。\n【输入描述】\n第一行，一个正整数 n，表示数组长度。\n第二行，n 个整数 a1, a2, …, an，表示数组中的整数。\n【输出描述】\n一行，一个整数，表示数组 a 重排顺序后，所有是连续段的子数组的最长长度。\n【样例输入1】\n4\n1 0 2 4\n【样例输出1】\n3",
-            score: 25,
-            explanation: "重排后能构成的最长“连续段”，本质上是原数组去重排序后，能够构成的最长“值连续整数序列”。解法：先排除重复元素（因为连续段内元素互不相同），排序后遍历，记录最长的相邻差值为 1 的区间。",
-            referenceCode: `#include <iostream>\n#include <vector>\n#include <algorithm>\nusing namespace std;\n\nint main() {\n    int n;\n    if (!(cin >> n)) return 0;\n    if (n == 0) {\n        cout << 0 << endl;\n        return 0;\n    }\n    vector<long long> a(n);\n    for (int i = 0; i < n; i++) cin >> a[i];\n    sort(a.begin(), a.end());\n    a.erase(unique(a.begin(), a.end()), a.end());\n    \n    int maxLen = 1, currentLen = 1;\n    for (size_t i = 1; i < a.size(); i++) {\n        if (a[i] == a[i-1]+1) {\n            currentLen++;\n        } else {\n            maxLen = max(maxLen, currentLen);\n            currentLen = 1;\n        }\n    }\n    cout << max(maxLen, currentLen) << endl;\n    return 0;\n}`,
-            tags: ["编程题", "贪心", "排序", "GESP4级"]
-        }
+      id: 27,
+      type: 'programming',
+      question: `
+# [GESP202509 四级] 最长连续段
+
+## 题目描述
+
+对于 \$k\$ 个整数构成的数组 \$[b_1, b_2, \\ldots, b_k]\$，如果对 \$1 \\leq i < k\$ 都有 \$b_{i+1} = b_i + 1\$，那么称数组 \$b\$ 是一个连续段。
+
+给定由 \$n\$ 个整数构成的数组 \$[a_1, a_2, \\ldots, a_n]\$，你可以任意重排数组 \$a\$ 中元素顺序。请问在重排顺序之后，\$a\$ 所有是连续段的子数组中，最长的子数组长度是多少？
+
+例如，对于数组 \$[1, 0, 2, 4]\$，可以将其重排为 \$[4, 0, 1, 2]\$，有以下 \$10\$ 个子数组：
+
+\$[4], [0], [1], [2], [4, 0], [0, 1], [1, 2], [4, 0, 1], [0, 1, 2], [4, 0, 1, 2]\$
+
+其中除 \$[4, 0], [4, 0, 1], [4, 0, 1, 2]\$ 以外的子数组均是连续段，因此是连续段的子数组中，最长子数组长度为 3。
+
+## 输入格式
+
+第一行，一个正整数 \$n\$，表示数组长度。
+
+第二行，\$n\$ 个整数 \$a_1, a_2, \\ldots, a_n\$，表示数组中的整数。
+
+## 输出格式
+
+一行，一个整数，表示数组 \$a\$ 重排顺序后，所有是连续段的子数组的最长长度。
+`,
+      score: 25,
+      explanation: "重排后能构成的最长“连续段”，本质上是原数组去重排序后，能够构成的最长“值连续整数序列”。解法：先排除重复元素（因为连续段内元素互不相同），排序后遍历，记录最长的相邻差值为 1 的区间。",
+      referenceCode: `#include <iostream>\n#include <vector>\n#include <algorithm>\nusing namespace std;\n\nint main() {\n    int n;\n    if (!(cin >> n)) return 0;\n    if (n == 0) {\n        cout << 0 << endl;\n        return 0;\n    }\n    vector<long long> a(n);\n    for (int i = 0; i < n; i++) cin >> a[i];\n    sort(a.begin(), a.end());\n    a.erase(unique(a.begin(), a.end()), a.end());\n    \n    int maxLen = 1, currentLen = 1;\n    for (size_t i = 1; i < a.size(); i++) {\n        if (a[i] == a[i-1]+1) {\n            currentLen++;\n        } else {\n            maxLen = max(maxLen, currentLen);\n            currentLen = 1;\n        }\n    }\n    cout << max(maxLen, currentLen) << endl;\n    return 0;\n}`,
+      tags: ["编程题", "贪心", "排序", "GESP4级"],
+      answer: '',
+    }
     ]
 };

@@ -290,22 +290,56 @@ export const paperData = {
     {
       id: 26,
       type: 'programming',
+      question: `
+# [GESP202506 一级] 假期阅读
+
+## 题目描述
+
+小 A 有一本厚厚的书。这本书总共有 \$n\$ 页，小 A 一天中最多只能阅读完其中的 \$k\$ 页。小 A 的假期总共有 \$t\$ 天，他想知道在假期中最多能阅读完这本书的多少页。
+
+## 输入格式
+
+第一行，一个正整数 \$n\$，表示书的页数。
+
+第二行，一个正整数 \$k\$，表示小 A 每天最多阅读的页数。
+
+第三行，一个正整数 \$t\$，表示小 A 假期的天数。
+
+## 输出格式
+
+一行，一个整数，表示假期中所能阅读的最多页数。
+`,
       template: `#include <bits/stdc++.h>\nusing namespace std;\n\nint main() {\n    // 在此填写代码\n    return 0;\n}`,
-      question: '【编程题1】假期阅读\n输入书的总页数 n，每天阅读页数 k，阅读天数 t。输出实际阅读的页数。',
       answer: '',
       score: 25,
       explanation: '实际阅读页数为 min(n, k * t)。',
-      tags: [LEVEL1_TAGS.basics, LEVEL1_TAGS.condition, LEVEL1_TAGS.operator]
+      tags: [LEVEL1_TAGS.basics, LEVEL1_TAGS.condition, LEVEL1_TAGS.operator],
     },
     {
       id: 27,
       type: 'programming',
+      question: `
+# [GESP202506 一级] 值日
+
+## 题目描述
+
+小杨和小红是值日生，负责打扫教室。小杨每 \$m\$ 天值日一次，小红每 \$n\$ 天值日一次。今天他们两个一起值日，请问至少多少天后，他们会再次同一天值日？
+
+## 输入格式
+
+第一行，一个正整数 \$m\$，表示小杨的值日周期；
+
+第二行，一个正整数 \$n\$，表示小红的值日周期。
+
+## 输出格式
+
+一行，一个整数，表示至少多少天后他们会再次同一天值日。
+`,
       template: `#include <bits/stdc++.h>\nusing namespace std;\n\nint main() {\n    // 在此填写代码\n    return 0;\n}`,
-      question: '【编程题2】值日\n小杨和小红在同一天开始值日，小杨每 m 天值一次日，小红每 n 天值一次日。输入 m 和 n，输出他们下一次共同值日是在第几天（即求最小公倍数）。',
       answer: '',
       score: 25,
       explanation: '寻找两个数的最小公倍数 (LCM)。',
-      tags: [LEVEL1_TAGS.loop, LEVEL1_TAGS.operator]
+      tags: [LEVEL1_TAGS.loop, LEVEL1_TAGS.operator],
     }
   ]
 };

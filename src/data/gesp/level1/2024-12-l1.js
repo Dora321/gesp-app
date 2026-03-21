@@ -280,22 +280,61 @@ export const paperData = {
     {
       id: 26,
       type: 'programming',
+      question: `
+# [GESP202412 一级] 温度转换
+
+## 题目描述
+
+小杨最近学习了开尔文温度、摄氏温度和华氏温度的转换。令符号 \$K\$ 表开尔文温度，符号 \$C\$ 表摄氏温度，符号 \$F\$ 表华氏温度，这三者的转换公式如下：
+
+\$
+C=K-273.15\\\\
+F=C\\times 1.8+32
+\$
+
+现在小杨想编写一个程序计算某一开尔文温度对应的摄氏温度和华氏温度，你能帮帮他吗?
+
+## 输入格式
+
+一行，一个实数 \$K\$，表示开尔文温度。
+
+## 输出格式
+
+一行，若输入开尔文温度对应的华氏温度高于 \$212\$，输出 \`Temperature is too high!\`；
+
+否则，输出两个由空格分隔的实数 \$C\$ 和 \$F\$，分别表示摄氏温度和华氏度，保留两位小数。
+`,
       template: `#include <bits/stdc++.h>\nusing namespace std;\n\nint main() {\n    // 在此填写代码\n    return 0;\n}`,
-      question: '【编程题1】温度转换\n输入开尔文温度 K，将其转换为摄氏度 C（C = K-273.15）和华氏度 F（F = C * 1.8+32），输出 C 和 F（保留两位小数）。',
       answer: '',
       score: 25,
       explanation: '按公式计算并使用 setprecision(2) 输出。',
-      tags: [LEVEL1_TAGS.basics, LEVEL1_TAGS.condition, LEVEL1_TAGS.operator]
+      tags: [LEVEL1_TAGS.basics, LEVEL1_TAGS.condition, LEVEL1_TAGS.operator],
     },
     {
       id: 27,
       type: 'programming',
+      question: `
+# [GESP202412 一级] 奇数和偶数
+
+## 题目描述
+
+小杨有 \$n\$ 个正整数，他想知道其中的奇数有多少个，偶数有多少个。
+
+## 输入格式
+
+第一行包含一个正整数 \$n\$，代表正整数个数。
+
+之后 \$n\$ 行，每行包含一个正整数。
+
+## 输出格式
+
+输出两个正整数（英文空格间隔），代表奇数的个数和偶数的个数。如奇数或偶数的个数为 \$0\$，则对应输出 \$0\$。
+`,
       template: `#include <bits/stdc++.h>\nusing namespace std;\n\nint main() {\n    // 在此填写代码\n    return 0;\n}`,
-      question: '【编程题2】奇偶计数差\n输入 n 个整数，计算并输出偶数的个数与奇数个数的差（绝对值）。',
       answer: '',
       score: 25,
       explanation: '循环读取，条件判断奇偶并计数，最后相减取 abs。',
-      tags: [LEVEL1_TAGS.basics, LEVEL1_TAGS.condition, LEVEL1_TAGS.loop]
+      tags: [LEVEL1_TAGS.basics, LEVEL1_TAGS.condition, LEVEL1_TAGS.loop],
     }
   ]
 };

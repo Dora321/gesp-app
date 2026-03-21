@@ -2,38 +2,66 @@
 
 const programmingQuestions = [
     {
-        id: 26,
-        type: "programming",
-        score: 25,
-        title: "相似字符串",
-        problemNumber: "2024-03-23-04-C-01",
-        description: "对于两个字符串 A 和 B，如果 A 可以通过删除一个字符，或插入一个字符，或修改一个字符变成 B，那么我们说 A 和 B 是相似的。特别地，完全相同的两个字符串也是相似的。给定 T 组 A, B，请你分别判断他们是否相似。",
-        inputDescription: "第一行一个正整数 T。接下来 T 行，每行两个用空格隔开的字符串 A 和 B。保证 T ≤ 100，字符串长度不超过 100，只包含小写字母。",
-        outputDescription: "输出 T 行，对于每组 A, B，如果它们相似，则输出 similar，否则输出 not similar。",
-        samples: [
-            { input: "5\napple applee\napple appe\napple bpple\napplee bpple\napple apple", output: "similar\nsimilar\nsimilar\nnot similar\nsimilar" }
-        ],
-        explanation: "相似字符串定义等价于编辑距离（Edit Distance）不超过 1。由于字符串长度较短，可以直接分类讨论：长度差为 0（修改或相同）或长度差为 1（增加或删除）。",
-        tags: ["编程题", "字符串", "编辑距离"],
-        template: "#include <iostream>\n#include <string>\nusing namespace std;\n\nint main() {\n    int T;\n    cin >> T;\n    // 在此编写代码\n    return 0;\n}",
-        referenceCode: "#include <iostream>\n#include <string>\n#include <cmath>\nusing namespace std;\nbool isSimilar(string A, string B) {\n    int m = A.size(), n = B.size();\n    if (abs(m-n) > 1) return false;\n    if (m == n) {\n        int diff = 0;\n        for (int i = 0; i < m; ++i) if (A[i] != B[i]) diff++;\n        return diff <= 1;\n    } else {\n        string& s = (m < n) ? A : B;\n        string& l = (m < n) ? B : A;\n        int i = 0, j = 0, diff = 0;\n        while (i < s.size() && j < l.size()) {\n            if (s[i] != l[j]) {\n                if (++diff > 1) return false;\n                ++j;\n            } else { ++i; ++j; }\n        }\n        return true;\n    }\n}\nint main() {\n    int T; cin >> T;\n    while (T--) {\n        string A, B; cin >> A >> B;\n        if (isSimilar(A, B)) cout << \"similar\" << endl;\n        else cout << \"not similar\" << endl;\n    }\n    return 0;\n}"
+      id: 26,
+      type: 'programming',
+      question: `
+# [GESP202403 四级] 相似字符串
+
+## 题目描述
+
+对于两个字符串 \$A\$ 和 \$B\$，如果 \$A\$ 可以通过删除一个字符，**或**插入一个字符，**或**修改一个字符变成 \$B\$，那么我们说 \$A\$ 和 \$B\$ 是相似的。
+
+比如 \$\\texttt{apple}\$ 可以通过插入一个字符变成 \$\\texttt{applee}\$，可以通过删除一个字符变成 \$\\texttt{appe}\$，也可以通过修改一个字符变成 \$\\texttt{bpple}\$。因此 \$\\texttt{apple}\$ 和 \$\\texttt{applee}\$、\$\\texttt{appe}\$、\$\\texttt{bpple}\$ 都是相似的。但 \$\\texttt{applee}\$ 并不能 通过任意一个操作变成 \$\\texttt{bpple}\$，因此它们并不相似。
+
+特别地，两个完全相同的字符串也是相似的。
+
+给定 \$T\$ 组 \$A,B\$，请你分别判断它们是否相似。
+
+## 输入格式
+
+第一行一个正整数 \$T\$。  
+接下来 \$T\$ 行，每行两个用空格隔开的字符串 \$A\$ 和 \$B\$。
+
+## 输出格式
+
+对组 \$A,B\$，如果他们相似，输出 \`\`similar\`\`，否则输出 \`\`not similar\`\`。
+`,
+      score: 25,
+      explanation: "相似字符串定义等价于编辑距离（Edit Distance）不超过 1。由于字符串长度较短，可以直接分类讨论：长度差为 0（修改或相同）或长度差为 1（增加或删除）。",
+      tags: ["编程题", "字符串", "编辑距离"],
+      template: "#include <iostream>\n#include <string>\nusing namespace std;\n\nint main() {\n    int T;\n    cin >> T;\n    // 在此编写代码\n    return 0;\n}",
+      referenceCode: "#include <iostream>\n#include <string>\n#include <cmath>\nusing namespace std;\nbool isSimilar(string A, string B) {\n    int m = A.size(), n = B.size();\n    if (abs(m-n) > 1) return false;\n    if (m == n) {\n        int diff = 0;\n        for (int i = 0; i < m; ++i) if (A[i] != B[i]) diff++;\n        return diff <= 1;\n    } else {\n        string& s = (m < n) ? A : B;\n        string& l = (m < n) ? B : A;\n        int i = 0, j = 0, diff = 0;\n        while (i < s.size() && j < l.size()) {\n            if (s[i] != l[j]) {\n                if (++diff > 1) return false;\n                ++j;\n            } else { ++i; ++j; }\n        }\n        return true;\n    }\n}\nint main() {\n    int T; cin >> T;\n    while (T--) {\n        string A, B; cin >> A >> B;\n        if (isSimilar(A, B)) cout << \"similar\" << endl;\n        else cout << \"not similar\" << endl;\n    }\n    return 0;\n}",
+      answer: '',
     },
     {
-        id: 27,
-        type: "programming",
-        score: 25,
-        title: "做题",
-        problemNumber: "2024-03-23-04-C-02",
-        description: "小杨为了提高实力制定了做题计划，在第 i 天时，他必须要完成 i 道题。他找到了 n 套题单，每套题单有一定数量的题目。每套题单只能使用一次，每一天也只能使用一套题单里的题目。对于每套题单，他不必完成题单内所有的题。问小杨最多会做题几天才偷懒？",
-        inputDescription: "第一行 1 个数为 n (1 ≤ n ≤ 1,000,000)。第二行 n 个整数 ai，分别表示每套题单有多少道题。",
-        outputDescription: "输出一行，小杨同学偷懒前最多做题天数。",
-        samples: [
-            { input: "4\n3 1 4 1", output: "3" }
-        ],
-        explanation: "贪心策略：为了尽可能做更多的天数，我们需要在第 i 天选择一个题目数量 ≥ i 且题目数量尽可能小的题单。因此，先对题单按题目数量从小到大排序，然后尝试匹配每一天。",
-        tags: ["编程题", "贪心", "排序"],
-        template: "#include <iostream>\n#include <algorithm>\nusing namespace std;\n\nint main() {\n    int n;\n    cin >> n;\n    // 在此编写代码\n    return 0;\n}",
-        referenceCode: "#include <iostream>\n#include <algorithm>\n#include <vector>\nusing namespace std;\nint main() {\n    int n; cin >> n;\n    vector<int> a(n);\n    for (int i = 0; i < n; i++) cin >> a[i];\n    sort(a.begin(), a.end());\n    int day = 0;\n    for (int i = 0; i < n; i++) {\n        if (a[i] >= day+1) day++;\n    }\n    cout << day << endl;\n    return 0;\n}"
+      id: 27,
+      type: 'programming',
+      question: `
+# [GESP202403 四级] 做题
+
+## 题目描述
+
+小杨同学为了提高自己的实力制定了做题计划，在第 \$k\$ 天时，他必须要完成 \$k\$ 道题，否则他就会偷懒。
+
+小杨同学现在找到了一个题库，一共有 \$n\$ 套题单，每一套题单中有一定数量的题目。但是他十分挑剔，每套题单他只会使用一次，每一天也只能使用一套题单里的题目，之后那套题单就会弃之不用。对于每套题单，他不必完成题单内所有的题。
+
+那么问题来了，小杨同学最多做题几天才偷懒呢？
+
+## 输入格式
+
+第一行，一个整数为 \$n\$，表示有多少套题单。  
+第二行 \$n\$ 个整数 \$a_1, a_2, \\dots a_n\$，分别表示每套题单有多少道题。
+
+## 输出格式
+
+输出一行一个整数表示答案。
+`,
+      score: 25,
+      explanation: "贪心策略：为了尽可能做更多的天数，我们需要在第 i 天选择一个题目数量 ≥ i 且题目数量尽可能小的题单。因此，先对题单按题目数量从小到大排序，然后尝试匹配每一天。",
+      tags: ["编程题", "贪心", "排序"],
+      template: "#include <iostream>\n#include <algorithm>\nusing namespace std;\n\nint main() {\n    int n;\n    cin >> n;\n    // 在此编写代码\n    return 0;\n}",
+      referenceCode: "#include <iostream>\n#include <algorithm>\n#include <vector>\nusing namespace std;\nint main() {\n    int n; cin >> n;\n    vector<int> a(n);\n    for (int i = 0; i < n; i++) cin >> a[i];\n    sort(a.begin(), a.end());\n    int day = 0;\n    for (int i = 0; i < n; i++) {\n        if (a[i] >= day+1) day++;\n    }\n    cout << day << endl;\n    return 0;\n}",
+      answer: '',
     }
 ];
 

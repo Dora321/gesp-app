@@ -2,38 +2,62 @@
 
 const programmingQuestions = [
     {
-        id: 26,
-        type: "programming",
-        score: 25,
-        title: "黑白格",
-        problemNumber: "2024-06-23-05-C-01",
-        description: "小杨有一个 n 行 m 列的网格图，其中每个格子要么是白色，要么是黑色。小杨想知道至少包含 k 个黑色格子的最小子矩形包含了多少个格子。",
-        inputDescription: "第一行包含三个正整数 n, m, k (1 ≤ n, m ≤ 100, 1 ≤ k ≤ n*m)。之后 n 行，每行一个长度为 m 的 01 串，0 代表白色，1 代表黑色。",
-        outputDescription: "输出一个整数，代表至少包含 k 个黑色格子的最小子矩形包含格子的数量，如果不存在则输出 0。",
-        samples: [
-            { input: "4 5 5\n00000\n01111\n00011\n00011", output: "6" }
-        ],
-        explanation: "由于 n, m 较小（最大 100），可以枚举子矩形的上下边界 (r1, r2)，然后利用双指针或暴力枚举左右边界 (c1, c2)。利用二维前缀和快速计算子矩形内 1 的个数。",
-        tags: ["编程题", "二维前缀和", "双指针"],
-        template: "#include <iostream>\n#include <string>\n#include <vector>\nusing namespace std;\n\nint main() {\n    int n, m, k;\n    cin >> n >> m >> k;\n    // 在此编写代码\n    return 0;\n}",
-        referenceCode: "#include <iostream>\n#include <vector>\n#include <string>\n#include <algorithm>\nusing namespace std;\nint main() {\n    int n, m, k; cin >> n >> m >> k;\n    vector<vector<int>> s(n+1, vector<int>(m+1, 0));\n    for (int i = 1; i <= n; i++) {\n        string row; cin >> row;\n        for (int j = 1; j <= m; j++) {\n            s[i][j] = s[i-1][j]+s[i][j-1]-s[i-1][j-1]+(row[j-1]-'0');\n        }\n    }\n    int min_area = 1e9;\n    for (int r1 = 1; r1 <= n; r1++) {\n        for (int r2 = r1; r2 <= n; r2++) {\n            for (int c1 = 1; c1 <= m; c1++) {\n                for (int c2 = c1; c2 <= m; c2++) {\n                    int count = s[r2][c2]-s[r1-1][c2]-s[r2][c1-1]+s[r1-1][c1-1];\n                    if (count >= k) min_area = min(min_area, (r2-r1+1) * (c2-c1+1));\n                }\n            }\n        }\n    }\n    if (min_area == 1e9) cout << 0 << endl;\n    else cout << min_area << endl;\n    return 0;\n}"
+      id: 26,
+      type: 'programming',
+      question: `
+# [GESP202406 五级] 黑白格
+
+## 题目描述
+
+小杨有一个 \$n\$ 行 \$m\$ 列的网格图，其中每个格子要么是白色，要么是黑色。
+
+小杨想知道至少包含 \$k\$ 个黑色格子的最小子矩形包含了多少个格子。
+
+## 输入格式
+
+第一行包含三个正整数 \$n,m,k\$，含义如题面所示。
+
+之后 \$n\$ 行，每行⼀个长度为 \$m\$ 的 \$\\texttt{01}\$ 串，代表网格图第 \$i\$ 行格子的颜色，如果为 \$\\texttt{0}\$，则对应格子为白色，否则为黑色。
+
+## 输出格式
+
+输出一个整数，代表至少包含 \$k\$ 个黑色格子的最小子矩形包含格子的数量，如果不存在则输出 \$0\$。
+`,
+      score: 25,
+      explanation: "由于 n, m 较小（最大 100），可以枚举子矩形的上下边界 (r1, r2)，然后利用双指针或暴力枚举左右边界 (c1, c2)。利用二维前缀和快速计算子矩形内 1 的个数。",
+      tags: ["编程题", "二维前缀和", "双指针"],
+      template: "#include <iostream>\n#include <string>\n#include <vector>\nusing namespace std;\n\nint main() {\n    int n, m, k;\n    cin >> n >> m >> k;\n    // 在此编写代码\n    return 0;\n}",
+      referenceCode: "#include <iostream>\n#include <vector>\n#include <string>\n#include <algorithm>\nusing namespace std;\nint main() {\n    int n, m, k; cin >> n >> m >> k;\n    vector<vector<int>> s(n+1, vector<int>(m+1, 0));\n    for (int i = 1; i <= n; i++) {\n        string row; cin >> row;\n        for (int j = 1; j <= m; j++) {\n            s[i][j] = s[i-1][j]+s[i][j-1]-s[i-1][j-1]+(row[j-1]-'0');\n        }\n    }\n    int min_area = 1e9;\n    for (int r1 = 1; r1 <= n; r1++) {\n        for (int r2 = r1; r2 <= n; r2++) {\n            for (int c1 = 1; c1 <= m; c1++) {\n                for (int c2 = c1; c2 <= m; c2++) {\n                    int count = s[r2][c2]-s[r1-1][c2]-s[r2][c1-1]+s[r1-1][c1-1];\n                    if (count >= k) min_area = min(min_area, (r2-r1+1) * (c2-c1+1));\n                }\n            }\n        }\n    }\n    if (min_area == 1e9) cout << 0 << endl;\n    else cout << min_area << endl;\n    return 0;\n}",
+      answer: '',
     },
     {
-        id: 27,
-        type: "programming",
-        score: 25,
-        title: "小杨的幸运数字",
-        problemNumber: "2024-06-23-05-C-02",
-        description: "小杨认为，如果一个数字能被 7 整除，或者包含数字 7，那么这个数字就是幸运数字。给定两个正整数 L 和 R，请你求出在 [L, R] 范围内所有幸运数字的和。",
-        inputDescription: "输入两个正整数 L, R (1 ≤ L ≤ R ≤ 1,000,000)。",
-        outputDescription: "输出一个整数，代表幸运数字之和。",
-        samples: [
-            { input: "1 20", output: "21" }
-        ],
-        explanation: "遍历 [L, R] 之间的每一个数字，判断其是否能被 7 整除或包含数字 7。由于范围较小，直接模拟即可。",
-        tags: ["编程题", "模拟"],
-        template: "#include <iostream>\nusing namespace std;\n\nint main() {\n    int L, R;\n    cin >> L >> R;\n    // 在此编写代码\n    return 0;\n}",
-        referenceCode: "#include <iostream>\n#include <string>\nusing namespace std;\nbool isLucky(int n) {\n    if (n % 7 == 0) return true;\n    string s = to_string(n);\n    if (s.find('7') != string::npos) return true;\n    return false;\n}\nint main() {\n    int L, R; cin >> L >> R;\n    long long sum = 0;\n    for (int i = L; i <= R; i++) {\n        if (isLucky(i)) sum += i;\n    }\n    cout << sum << endl;\n    return 0;\n}"
+      id: 27,
+      type: 'programming',
+      question: `
+# [GESP202406 五级] 小杨的幸运数字
+
+## 题目描述
+
+小杨认为他的幸运数字应该恰好有两种不同的质因子，例如，\$12=2\\times 2\\times 3\$ 的质因子有 \$2,3\$，恰好为两种不同的质因子，因此 \$12\$ 是幸运数字，而 \$30=2\\times3\\times5\$ 的质因子有 \$2,3,5\$，不符合要求，不为幸运数字。
+
+小杨现在有 \$n\$ 个正整数，他想知道每个正整数是否是他的幸运数字。
+
+## 输入格式
+
+第一行包含一个正整数 \$n\$，代表正整数个数。
+
+之后 \$n\$ 行，每行一个正整数。
+
+## 输出格式
+
+输出 \$n\$ 行，对于每个正整数，如果是幸运数字，输出 \$1\$，否则输出 \$0\$。
+`,
+      score: 25,
+      explanation: "遍历 [L, R] 之间的每一个数字，判断其是否能被 7 整除或包含数字 7。由于范围较小，直接模拟即可。",
+      tags: ["编程题", "模拟"],
+      template: "#include <iostream>\nusing namespace std;\n\nint main() {\n    int L, R;\n    cin >> L >> R;\n    // 在此编写代码\n    return 0;\n}",
+      referenceCode: "#include <iostream>\n#include <string>\nusing namespace std;\nbool isLucky(int n) {\n    if (n % 7 == 0) return true;\n    string s = to_string(n);\n    if (s.find('7') != string::npos) return true;\n    return false;\n}\nint main() {\n    int L, R; cin >> L >> R;\n    long long sum = 0;\n    for (int i = L; i <= R; i++) {\n        if (isLucky(i)) sum += i;\n    }\n    cout << sum << endl;\n    return 0;\n}",
+      answer: '',
     }
 ];
 

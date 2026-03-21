@@ -37,52 +37,62 @@ export const paperData = {
     ],
     programmingQuestions: [
     {
-        "id": 26,
-        "type": "programming",
-        "title": "寻找数字",
-        "problemNumber": "B4064",
-        "score": 25,
-        "description": "小杨有一个正整数 a，小杨想知道是否存在一个正整数 b 满足 a=b^4。",
-        "inputDescription": "第一行包含一个正整数 t，代表测试数据组数。 对于每组测试数据，第一行包含一个正整数代表 a。",
-        "outputDescription": "对于每组测试数据，如果存在满足条件的正整数 b，则输出 b，否则输出 -1。",
-        "samples": [
-            {
-                "input": "3\n16\n81\n20",
-                "output": "2\n3\$n-1$"
-            }
-        ],
-        "explanation": "对每个 a，检查其整数四次方根。b = pow(a, 0.25) 附近寻找。",
-        "tags": [
-            "编程题",
-            "数学",
-            "开方"
-        ],
-        "template": "#include <bits/stdc++.h>\nusing namespace std;\n\nint main() {\n    int t;\n    cin >> t;\n    while (t--) {\n        long long a;\n        cin >> a;\n        // \n    }\n    return 0;\n}",
-        "referenceCode": "#include <bits/stdc++.h>\nusing namespace std;\n\nint main() {\n    int t;\n    cin >> t;\n    while (t--) {\n        long long a;\n        cin >> a;\n        long long b = round(pow(a, 0.25));\n        if (b * b * b * b == a) cout << b << endl;\n        else cout << -1 << endl;\n    }\n    return 0;\n}"
+      id: 26,
+      type: 'programming',
+      question: `
+# [GESP202412 二级] 寻找数字
+
+## 题目描述
+
+小杨有一个正整数 \$a\$，小杨想知道是否存在一个正整数 \$b\$ 满足 \$a=b^4\$。
+
+## 输入格式
+
+第一行包含一个正整数 \$t\$，代表测试数据组数。
+
+对于每组测试数据，第一行包含一个正整数代表 \$a\$。
+
+## 输出格式
+
+对于每组测试数据，如果存在满足条件的正整数 \$b\$，则输出 \$b\$，否则输出 \$-1\$。
+`,
+      score: 25,
+      explanation: "对每个 a，检查其整数四次方根。b = pow(a, 0.25) 附近寻找。",
+      tags: ["编程题", "数学", "开方"],
+      template: "#include <bits/stdc++.h>\nusing namespace std;\n\nint main() {\n    int t;\n    cin >> t;\n    while (t--) {\n        long long a;\n        cin >> a;\n        // \n    }\n    return 0;\n}",
+      referenceCode: "#include <bits/stdc++.h>\nusing namespace std;\n\nint main() {\n    int t;\n    cin >> t;\n    while (t--) {\n        long long a;\n        cin >> a;\n        long long b = round(pow(a, 0.25));\n        if (b * b * b * b == a) cout << b << endl;\n        else cout << -1 << endl;\n    }\n    return 0;\n}",
+      answer: '',
     },
     {
-        "id": 27,
-        "type": "programming",
-        "title": "数位和",
-        "problemNumber": "B4065",
-        "score": 25,
-        "description": "小杨有 n 个正整数，小杨想知道这些正整数的数位和中最大值是多少。",
-        "inputDescription": "第一行包含一个正整数 n，代表正整数个数。之后 n 行，每行包含一个正整数。",
-        "outputDescription": "输出这些正整数的数位和的最大值。",
-        "samples": [
-            {
-                "input": "3\n123\n999\n1000",
-                "output": "27"
-            }
-        ],
-        "explanation": "对每个数不断 %10 和 /10 累加各数位。",
-        "tags": [
-            "编程题",
-            "数位处理",
-            "统计"
-        ],
-        "template": "#include <bits/stdc++.h>\nusing namespace std;\n\nint main() {\n    int n;\n    cin >> n;\n    // \n    return 0;\n}",
-        "referenceCode": "#include <bits/stdc++.h>\nusing namespace std;\n\nint getSum(long long n) {\n    int s = 0;\n    while (n) { s += n % 10; n /= 10; }\n    return s;\n}\n\nint main() {\n    int n;\n    cin >> n;\n    int mx = 0;\n    while (n--) {\n        long long x;\n        cin >> x;\n        mx = max(mx, getSum(x));\n    }\n    cout << mx << endl;\n    return 0;\n}"
+      id: 27,
+      type: 'programming',
+      question: `
+# [GESP202412 二级] 数位和
+
+## 题目描述
+
+小杨有 \$n\$ 个正整数，小杨想知道这些正整数的数位和中最大值是多少。“数位和”指的是一个数字中所有数位的和。例如:对于数字 \$12345\$，它的各个数位分别是 \$1,2,3,4,5\$。将这些数位相加，得到 
+
+\$1+2+3+4+5=15\$
+
+因此，\$12345\$ 的数位和是 \$15\$。
+
+## 输入格式
+
+第一行包含一个正整数 \$n\$，代表正整数个数。
+
+之后 \$n\$ 行，每行包含一个正整数。
+
+## 输出格式
+
+输出这些正整数的数位和的最大值。
+`,
+      score: 25,
+      explanation: "对每个数不断 %10 和 /10 累加各数位。",
+      tags: ["编程题", "数位处理", "统计"],
+      template: "#include <bits/stdc++.h>\nusing namespace std;\n\nint main() {\n    int n;\n    cin >> n;\n    // \n    return 0;\n}",
+      referenceCode: "#include <bits/stdc++.h>\nusing namespace std;\n\nint getSum(long long n) {\n    int s = 0;\n    while (n) { s += n % 10; n /= 10; }\n    return s;\n}\n\nint main() {\n    int n;\n    cin >> n;\n    int mx = 0;\n    while (n--) {\n        long long x;\n        cin >> x;\n        mx = max(mx, getSum(x));\n    }\n    cout << mx << endl;\n    return 0;\n}",
+      answer: '',
     }
 ]
 };

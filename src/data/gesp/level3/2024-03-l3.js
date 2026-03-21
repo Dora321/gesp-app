@@ -244,50 +244,60 @@ export const paperData = {
     ],
     programmingQuestions: [
         {
-            id: 26,
-            type: 'programming',
-            explanation: '暂无解析',
-            template: `#include <bits/stdc++.h>\nusing namespace std;\n\nint main() {\n    // 在此填写代码\n    return 0;\n}`,
-            score: 25,
-            title: '字母求和',
-            problemNumber: 'B3956',
-            source: 'official-pdf+luogu-mapping',
-            description: '给定一个只含大小写英文字母的字符串。小写字母按其在字母表中的位置记为正整数（a=1, b=2, ...），大写字母按其 ASCII 码的相反数记为负整数（如 A=-65）。求整串字符对应数值之和。',
-            inputDescription: '第一行一个正整数 n，表示字符串中字母个数；第二行一个长度为 n 的字符串。',
-            outputDescription: '输出一个整数，表示该字符串解密后的数值。',
-            samples: [
-                {
-                    input: '3\naAc',
-                    output: '-61'
-                }
-            ],
-            explanation: '遍历字符串：若是小写字母，加上 c-\'a\'+1；若是大写字母，减去其 ASCII 码值。按题意直接模拟即可。',
-            tags: ['编程题', '字符串', '模拟'],
-            template: '#include <bits/stdc++.h>\nusing namespace std;\n\nint main() {\n    ios::sync_with_stdio(false);\n    cin.tie(nullptr);\n\n    // 在此编写代码\n    return 0;\n}',
-            referenceCode: '#include <iostream>\n#include <assert.h>\n#include <cstdlib>\n#include <cstdio>\n#include <cstring>\nusing namespace std;\nconst int N = 100005;\nchar str[N];\nint main() {\n    int n;\n    cin >> n;\n    cin >> str;\n    assert(n == strlen(str));\n    int ans = 0;\n    for (int i = 0; i < n; i++) {\n        if (str[i] >= \'a\' && str[i] <= \'z\')\n            ans += str[i]-\'a\'+1;\n        else if (str[i] >= \'A\' && str[i] <= \'Z\')\n            ans -= str[i];\n        else\n            assert(false);\n    }\n    cout << ans << endl;\n    return 0;\n}'
-        },
+      id: 26,
+      type: 'programming',
+      question: `
+# [GESP202403 三级] 字母求和
+
+## 题目描述
+
+小杨同学发明了一种新型密码，对于每一个小写英文字母，该小写字母代表了一个正整数，即该字母在字母顺序中的位置，例如字母 \`a\` 代表了正整数 \$1\$，字母 \`b\` 代表了正整数 \$2\$；对于每一个大写英文字母，该大写字母代表了一个负整数，即该字母的 ASCII 码的相反数，例如字母 \`A\` 代表了负整数 \$-65\$。小杨同学利用这种放缩对一个整数进行了加密并得到了一个由大写字母和小写字母组成的字符串，该字符串中每个字母所代表数字的总和即为加密前的整数，例如 \`aAc\` 对应的加密前的整数为 \$1+(-65)+3=-61\$。
+
+对于给定的字符串，请你计算出它对应的加密前的整数是多少。
+
+## 输入格式
+
+第一行一个正整数 \$n\$，表示字符串中字母的个数。  
+第二行一个由大写字母和小写字母的字符串 \`T\`，代表加密后得到的字符串。
+
+## 输出格式
+
+输出一行一个整数，代表加密前的整数。
+`,
+      explanation: '遍历字符串：若是小写字母，加上 c-\'a\'+1；若是大写字母，减去其 ASCII 码值。按题意直接模拟即可。',
+      template: '#include <bits/stdc++.h>\nusing namespace std;\n\nint main() {\n    ios::sync_with_stdio(false);\n    cin.tie(nullptr);\n\n    // 在此编写代码\n    return 0;\n}',
+      score: 25,
+      tags: ['编程题', '字符串', '模拟'],
+      referenceCode: '#include <iostream>\n#include <assert.h>\n#include <cstdlib>\n#include <cstdio>\n#include <cstring>\nusing namespace std;\nconst int N = 100005;\nchar str[N];\nint main() {\n    int n;\n    cin >> n;\n    cin >> str;\n    assert(n == strlen(str));\n    int ans = 0;\n    for (int i = 0; i < n; i++) {\n        if (str[i] >= \'a\' && str[i] <= \'z\')\n            ans += str[i]-\'a\'+1;\n        else if (str[i] >= \'A\' && str[i] <= \'Z\')\n            ans -= str[i];\n        else\n            assert(false);\n    }\n    cout << ans << endl;\n    return 0;\n}',
+      answer: '',
+    },
         {
-            id: 27,
-            type: 'programming',
-            explanation: '暂无解析',
-            template: `#include <bits/stdc++.h>\nusing namespace std;\n\nint main() {\n    // 在此填写代码\n    return 0;\n}`,
-            score: 25,
-            title: '完全平方数',
-            problemNumber: 'B3957',
-            source: 'official-pdf+luogu-mapping',
-            description: '给定一个包含 n 个非负整数的序列 A，统计满足 1 ≤ i < j ≤ n 且 A_i+A_j 为完全平方数的下标对数量。',
-            inputDescription: '第一行一个整数 n；第二行输入 n 个非负整数 A_1...A_n。',
-            outputDescription: '输出一个整数，表示满足条件的数对个数。',
-            samples: [
-                {
-                    input: '5\n1 4 3 3 5',
-                    output: '3'
-                }
-            ],
-            explanation: '直接双重循环枚举所有下标对，计算两数之和后判断其是否为完全平方数；三级数据范围下，$O(N^2)$ 的直接枚举即可通过。',
-            tags: ['编程题', '枚举', '数学'],
-            template: '#include <bits/stdc++.h>\nusing namespace std;\n\nint main() {\n    ios::sync_with_stdio(false);\n    cin.tie(nullptr);\n\n    // 在此编写代码\n    return 0;\n}',
-            referenceCode: '#include <bits/stdc++.h>\nusing namespace std;\nconst int N = 1010;\nint a[N];\nint main(){\n    int n;\n    cin >> n;\n    for(int i = 1; i <= n; i++) cin >> a[i];\n    int ans = 0;\n    for(int i = 1; i <= n; i++){\n        for(int j = i+1; j <= n; j++){\n            int m = a[i]+a[j];\n            int t = sqrt(m+1e-7);\n            if(t * t == m) ans++;\n        }\n    }\n    cout << ans << "\\n";\n}'
-        }
+      id: 27,
+      type: 'programming',
+      question: `
+# [GESP202403 三级] 完全平方数
+
+## 题目描述
+
+小杨同学有一个包含 \$n\$ 个非负整数的序列 \$A\$，他想要知道其中有多少对下标组合 \$\\langle i,j\\rangle\$（\$1 \\leq i < j \\leq n\$），使得 \$A_i + A_j\$ 是完全平方数。
+
+如果 \$x\$ 是完全平方数，则存在非负整数 \$y\$ 使得 \$y \\times y = x\$。
+
+## 输入格式
+
+第一行一个非负整数 \$n\$，表示非负整数个数。  
+第二入行包含 \$n\$ 个非负整数 \$A_1, A_2, \\dots A_n\$，表示序列 \$A\$ 包含的非负整数。
+
+## 输出格式
+
+输出一行一个整数表示答案。
+`,
+      explanation: '直接双重循环枚举所有下标对，计算两数之和后判断其是否为完全平方数；三级数据范围下，$O(N^2)$ 的直接枚举即可通过。',
+      template: '#include <bits/stdc++.h>\nusing namespace std;\n\nint main() {\n    ios::sync_with_stdio(false);\n    cin.tie(nullptr);\n\n    // 在此编写代码\n    return 0;\n}',
+      score: 25,
+      tags: ['编程题', '枚举', '数学'],
+      referenceCode: '#include <bits/stdc++.h>\nusing namespace std;\nconst int N = 1010;\nint a[N];\nint main(){\n    int n;\n    cin >> n;\n    for(int i = 1; i <= n; i++) cin >> a[i];\n    int ans = 0;\n    for(int i = 1; i <= n; i++){\n        for(int j = i+1; j <= n; j++){\n            int m = a[i]+a[j];\n            int t = sqrt(m+1e-7);\n            if(t * t == m) ans++;\n        }\n    }\n    cout << ans << "\\n";\n}',
+      answer: '',
+    }
     ]
 };

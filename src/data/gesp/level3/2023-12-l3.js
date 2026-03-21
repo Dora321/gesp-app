@@ -260,56 +260,74 @@ export const paperData = {
     ],
     programmingQuestions: [
         {
-            id: 26,
-            type: 'programming',
-            explanation: '暂无解析',
-            template: `#include <bits/stdc++.h>\nusing namespace std;\n\nint main() {\n    // 在此填写代码\n    return 0;\n}`,
-            score: 25,
-            title: '小猫分鱼',
-            problemNumber: 'B3925',
-            description: '海滩上有一堆鱼，N 只小猫来分。每只小猫都会把当前鱼堆平均分成 N 份，多出 i 条，就把多出的 i 条扔进海里，再拿走其中一份。求满足这个过程的最少初始鱼数。',
-            inputDescription: '共 2 行：第一行一个整数 N，第二行一个整数 i。',
-            outputDescription: '输出一行一个整数，表示满足要求的海滩上最少的鱼数。',
-            samples: [
-                {
-                    input: '2\n1',
-                    output: '7'
-                },
-                {
-                    input: '3\n1',
-                    output: '25'
-                }
-            ],
-            explanation: '从小到大枚举初始鱼数，逐只小猫模拟“余 i、扔掉 i 条、拿走一份”的过程，找到第一个全过程都合法的鱼数即可。',
-            tags: ['编程题', '模拟', '枚举'],
-            template: '#include <bits/stdc++.h>\nusing namespace std;\n\nint main() {\n    ios::sync_with_stdio(false);\n    cin.tie(nullptr);\n\n    // 在此编写代码\n    return 0;\n}',
-            referenceCode: '#include <bits/stdc++.h>\nusing namespace std;\n\nbool check(long long x, int N, int i) {\n    long long cur = x;\n    for (int t = 0; t < N; ++t) {\n        if (cur % N != i) return false;\n        cur -= i;\n        if (cur < 0 || cur % N != 0) return false;\n        cur = cur / N * (N-1);\n    }\n    return true;\n}\n\nint main() {\n    ios::sync_with_stdio(false);\n    cin.tie(nullptr);\n\n    int N, i;\n    cin >> N >> i;\n    for (long long x = 1; ; ++x) {\n        if (check(x, N, i)) {\n            cout << x << "\\n";\n            break;\n        }\n    }\n    return 0;\n}'
-        },
+      id: 26,
+      type: 'programming',
+      question: `
+# [GESP202312 三级] 小猫分鱼
+
+## 题目描述
+
+海滩上有一堆鱼，\$N\$ 只小猫来分。第一只小猫把这堆鱼平均分为 \$N\$ 份，多了 \$i
+
+## 输入格式
+
+总共 \$2\$ 行。第一行一个整数 \$N\$，第二行一个整数 \$i\$。
+
+保证 \$0
+
+## 输出格式
+
+一行一个整数，表示满足要求的海滩上最少的鱼数。
+`,
+      explanation: '从小到大枚举初始鱼数，逐只小猫模拟“余 i、扔掉 i 条、拿走一份”的过程，找到第一个全过程都合法的鱼数即可。',
+      template: '#include <bits/stdc++.h>\nusing namespace std;\n\nint main() {\n    ios::sync_with_stdio(false);\n    cin.tie(nullptr);\n\n    // 在此编写代码\n    return 0;\n}',
+      score: 25,
+      tags: ['编程题', '模拟', '枚举'],
+      referenceCode: '#include <bits/stdc++.h>\nusing namespace std;\n\nbool check(long long x, int N, int i) {\n    long long cur = x;\n    for (int t = 0; t < N; ++t) {\n        if (cur % N != i) return false;\n        cur -= i;\n        if (cur < 0 || cur % N != 0) return false;\n        cur = cur / N * (N-1);\n    }\n    return true;\n}\n\nint main() {\n    ios::sync_with_stdio(false);\n    cin.tie(nullptr);\n\n    int N, i;\n    cin >> N >> i;\n    for (long long x = 1; ; ++x) {\n        if (check(x, N, i)) {\n            cout << x << "\\n";\n            break;\n        }\n    }\n    return 0;\n}',
+      answer: '',
+    },
         {
-            id: 27,
-            type: 'programming',
-            explanation: '暂无解析',
-            template: `#include <bits/stdc++.h>\nusing namespace std;\n\nint main() {\n    // 在此填写代码\n    return 0;\n}`,
-            score: 25,
-            title: '单位转换',
-            problemNumber: 'B3926',
-            description: '给定若干形如“x 单位1 = ? 单位2”的题目，单位只会在 km、m、mm 与 kg、g、mg 中出现，且总是从更大的单位换到更小的单位。请按原格式输出转换结果。',
-            inputDescription: '第一行一个整数 N，表示题目数量。接下来 N 行，每行一题，格式为 x 单位1 = ? 单位2。',
-            outputDescription: '输出 N 行，把每一题中的 ? 替换成正确答案，其余格式保持不变。',
-            samples: [
-                {
-                    input: '2\n1 km = ? mm\n1 m = ? mm',
-                    output: '1 km = 1000000 mm\n1 m = 1000 mm'
-                },
-                {
-                    input: '5\n100 m = ? mm\n1000 km = ? m\n20 kg = ? g\n200 g = ? mg\n0 kg = ? mg',
-                    output: '100 m = 100000 mm\n1000 km = 1000000 m\n20 kg = 20000 g\n200 g = 200000 mg\n0 kg = 0 mg'
-                }
-            ],
-            explanation: '识别源单位和目标单位，乘上相应换算倍数后按题目原格式输出即可。',
-            tags: ['编程题', '字符串', '模拟'],
-            template: '#include <bits/stdc++.h>\nusing namespace std;\n\nint main() {\n    ios::sync_with_stdio(false);\n    cin.tie(nullptr);\n\n    // 在此编写代码\n    return 0;\n}',
-            referenceCode: '#include <bits/stdc++.h>\nusing namespace std;\n\nint main() {\n    ios::sync_with_stdio(false);\n    cin.tie(nullptr);\n\n    int N;\n    cin >> N;\n    map<pair<string, string>, long long> mp;\n    mp[{"m", "mm"}] = 1000;\n    mp[{"km", "mm"}] = 1000000;\n    mp[{"km", "m"}] = 1000;\n    mp[{"g", "mg"}] = 1000;\n    mp[{"kg", "mg"}] = 1000000;\n    mp[{"kg", "g"}] = 1000;\n\n    while (N--) {\n        long long x;\n        string u1, eq, ques, u2;\n        cin >> x >> u1 >> eq >> ques >> u2;\n        cout << x << " " << u1 << " = " << x * mp[{u1, u2}] << " " << u2 << "\\n";\n    }\n    return 0;\n}'
-        }
+      id: 27,
+      type: 'programming',
+      question: `
+# [GESP202312 三级] 单位转换
+
+## 题目描述
+
+小杨这周的数学作业是做单位转换，喜欢编程的小杨决定编程帮他解决这些问题。
+
+小杨只学了长度单位和重量单位，具体来说：
+
+- 长度单位包括千米（\`km\`）、米（\`m\`）、毫米（\`mm\`），它们之间的关系是：\$1\\text{km} = 1000\\text{m} = 1000000\\text{mm}\$。
+
+- 重量单位包括千克（\`kg\`）、克（\`g\`）、毫克（\`mg\`），它们之间的关系是：\$1\\text{kg} = 1000\\text{g} = 1000000\\text{mg}\$。
+
+小杨的作业只涉及将更大的单位转换为更小的单位，也就是说，小杨的作业只会包含如下题型：米转换为毫米，千米转换为毫米，千米转换为米，克转换为毫克，千克转换为毫克，千克转换为克。
+
+现在，请你帮忙完成单位转换的程序。
+
+## 输入格式
+
+输入的第一行为一个整数，表示题目数量。
+
+接下来 \$N\$ 行，每行一个字符串，表示转换单位的题目，格式为 \$x\$ 单位 \$1 = ?\$ 单位 \$2\$。其中，\$x\$ 为一个不超过 \$1000\$ 的非负整数， 单位 \$1\$ 和 单位 \$2\$ 分别为两个单位的英文缩写，保证它们都是长度单位或都是重量单位，且 **单位 1** 比 **单位 2** 更大。
+
+例如，如果题目需要你将 \$1\\text{km}\$ 转换为 \$\\text{mm}\$，则输入为 \`1 km = ? mm\`。
+
+保证 \$1\\le N \\le 1000\$。
+
+## 输出格式
+
+输出 \$N\$ 行，依次输出所有题目的答案，输出时，只需要将输入中的 \$?\$ 代入答案，其余部分一字不差地输出即可。由于小杨的题目只涉及将更大的单位转换为更小的单位，并且输入的 \$x\$ 是整数，因此答案一定也是整数。
+
+例如，如果题目需要你将 \$1\\text{km}\$ 转换为 \$\\text{mm}\$，则输入为 \`1 km = ? mm\`。则你需要输出 \`1 km = 1000000 mm\`。
+`,
+      explanation: '识别源单位和目标单位，乘上相应换算倍数后按题目原格式输出即可。',
+      template: '#include <bits/stdc++.h>\nusing namespace std;\n\nint main() {\n    ios::sync_with_stdio(false);\n    cin.tie(nullptr);\n\n    // 在此编写代码\n    return 0;\n}',
+      score: 25,
+      tags: ['编程题', '字符串', '模拟'],
+      referenceCode: '#include <bits/stdc++.h>\nusing namespace std;\n\nint main() {\n    ios::sync_with_stdio(false);\n    cin.tie(nullptr);\n\n    int N;\n    cin >> N;\n    map<pair<string, string>, long long> mp;\n    mp[{"m", "mm"}] = 1000;\n    mp[{"km", "mm"}] = 1000000;\n    mp[{"km", "m"}] = 1000;\n    mp[{"g", "mg"}] = 1000;\n    mp[{"kg", "mg"}] = 1000000;\n    mp[{"kg", "g"}] = 1000;\n\n    while (N--) {\n        long long x;\n        string u1, eq, ques, u2;\n        cin >> x >> u1 >> eq >> ques >> u2;\n        cout << x << " " << u1 << " = " << x * mp[{u1, u2}] << " " << u2 << "\\n";\n    }\n    return 0;\n}',
+      answer: '',
+    }
     ]
 };

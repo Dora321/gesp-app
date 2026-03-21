@@ -2,38 +2,70 @@
 
 const programmingQuestions = [
     {
-        id: 26,
-        type: "programming",
-        score: 25,
-        title: "黑白方块",
-        problemNumber: "2024-09-23-04-C-01",
-        description: "小杨有一个 n 行 m 列的网格图，其中每个格子要么是白色，要么是黑色。小杨想知道网格图中是否存在一个 2x2 的子矩形，使得该子矩形内的四个格子全部为白色（0 代表白色，1 代表黑色）。",
-        inputDescription: "第一行包含一个正整数 T，代表测试用例组数。之后是 T 组测试用例。每组第一行包含两个正整数 n, m (1 ≤ n, m ≤ 50)。之后 n 行，每行一个长度为 m 的 01 串。",
-        outputDescription: "对于每组测试用例，如果存在输出 Yes，否则输出 No。",
-        samples: [
-            { input: "1\n3 3\n001\n001\n111", output: "Yes" }
-        ],
-        explanation: "由于网格规模较小，可以直接枚举所有可能的 2x2 子矩形左上角坐标 (i, j)，检查四个顶点格子是否均为 '0'。",
-        tags: ["编程题", "二维数组", "模拟"],
-        template: "#include <iostream>\n#include <vector>\n#include <string>\nusing namespace std;\n\nint main() {\n    int T;\n    cin >> T;\n    // 在此编写代码\n    return 0;\n}",
-        referenceCode: "#include <iostream>\n#include <vector>\n#include <string>\nusing namespace std;\nvoid solve() {\n    int n, m; cin >> n >> m;\n    vector<string> g(n);\n    for (int i = 0; i < n; i++) cin >> g[i];\n    bool ok = false;\n    if (n >= 2 && m >= 2) {\n        for (int i = 0; i < n-1; i++) {\n            for (int j = 0; j < m-1; j++) {\n                if (g[i][j] == '0' && g[i][j+1] == '0' && g[i+1][j] == '0' && g[i+1][j+1] == '0') {\n                    ok = true; break;\n                }\n            }\n            if (ok) break;\n        }\n    }\n    if (ok) cout << \"Yes\" << endl; else cout << \"No\" << endl;\n}\nint main() {\n    int T; cin >> T;\n    while (T--) solve();\n    return 0;\n}"
+      id: 26,
+      type: 'programming',
+      question: `
+# [GESP202409 四级] 黑白方块
+
+## 题目描述
+
+小杨有一个 \$n\$ 行 \$m\$ 列的网格图，其中每个格子要么是白色，要么是黑色。
+小杨想知道网格图中是否存在一个满足如下条件的子矩形：
+- 子矩形由 \$4\$ 行 \$4\$ 列组成；
+- 子矩形的第 \$1\$ 行和第 \$4\$ 行只包含白色格子；
+- 对于子矩形的第 \$2\$ 行和第 \$3\$ 行，只有第 \$1\$ 个和第 \$4\$ 个格子是白色的，其余格子都是黑色的；
+
+请你编写程序帮助小杨判断。
+
+## 输入格式
+
+第一行包含一个正整数 \$t\$，代表测试用例组数。  
+接下来是 \$t\$ 组测试用例。对于每组测试用例，一共 \$n+1\$ 行。  
+第一行包含两个正整数 \$n,m\$，含义如题面所示。  
+之后 \$n\$ 行，每行一个长度为 \$m\$ 的 \$01\$ 串，代表网格图第 \$i\$ 行格子的颜色，如果为 \$0\$，则对应格子为白色，否则为黑色。
+
+## 输出格式
+
+对于每组测试用例，如果存在，输出 Yes，否则输出 No。
+`,
+      score: 25,
+      explanation: "由于网格规模较小，可以直接枚举所有可能的 2x2 子矩形左上角坐标 (i, j)，检查四个顶点格子是否均为 '0'。",
+      tags: ["编程题", "二维数组", "模拟"],
+      template: "#include <iostream>\n#include <vector>\n#include <string>\nusing namespace std;\n\nint main() {\n    int T;\n    cin >> T;\n    // 在此编写代码\n    return 0;\n}",
+      referenceCode: "#include <iostream>\n#include <vector>\n#include <string>\nusing namespace std;\nvoid solve() {\n    int n, m; cin >> n >> m;\n    vector<string> g(n);\n    for (int i = 0; i < n; i++) cin >> g[i];\n    bool ok = false;\n    if (n >= 2 && m >= 2) {\n        for (int i = 0; i < n-1; i++) {\n            for (int j = 0; j < m-1; j++) {\n                if (g[i][j] == '0' && g[i][j+1] == '0' && g[i+1][j] == '0' && g[i+1][j+1] == '0') {\n                    ok = true; break;\n                }\n            }\n            if (ok) break;\n        }\n    }\n    if (ok) cout << \"Yes\" << endl; else cout << \"No\" << endl;\n}\nint main() {\n    int T; cin >> T;\n    while (T--) solve();\n    return 0;\n}",
+      answer: '',
     },
     {
-        id: 27,
-        type: "programming",
-        score: 25,
-        title: "区间排序",
-        problemNumber: "2024-09-23-04-C-02",
-        description: "给定一个长度为 n 的序列 a。有 m 次操作，每次操作指定一个区间 [l, r]，你需要将 a[l...r] 内的元素进行升序排序。请输出最终得到的序列。",
-        inputDescription: "第一行两个整数 n, m (1 ≤ n, m ≤ 1000)。第二行 n 个整数 ai。接下来的 m 行，每行两个整数 l, r (1 ≤ l ≤ r ≤ n)。",
-        outputDescription: "输出一行 n 个整数，表示最终的序列。",
-        samples: [
-            { input: "5 2\n5 4 3 2 1\n1 3\n2 4", output: "3 2 4 5 1" }
-        ],
-        explanation: "直接按照题目要求，依次执行 m 次排序操作即可。每次操作使用 std::sort 进行区间排序。",
-        tags: ["编程题", "排序", "模拟"],
-        template: "#include <iostream>\n#include <vector>\n#include <algorithm>\nusing namespace std;\n\nint main() {\n    int n, m;\n    cin >> n >> m;\n    // 在此编写代码\n    return 0;\n}",
-        referenceCode: "#include <iostream>\n#include <vector>\n#include <algorithm>\nusing namespace std;\nint main() {\n    int n, m; cin >> n >> m;\n    vector<int> a(n);\n    for (int i = 0; i < n; i++) cin >> a[i];\n    while (m--) {\n        int l, r; cin >> l >> r;\n        sort(a.begin()+l-1, a.begin()+r);\n    }\n    for (int i = 0; i < n; i++) cout << a[i] << (i == n-1 ? \"\" : \" \");\n    cout << endl;\n    return 0;\n}"
+      id: 27,
+      type: 'programming',
+      question: `
+# [GESP202409 四级] 区间排序
+
+## 题目描述
+
+小杨有一个包含 \$n\$ 个正整数的序列 \$a\$。
+
+小杨计划对序列进行多次升序排序，每次升序排序小杨会选择一个区间 \$[l,r]\$（\$l \\leq r\$）并对区间内所有数字，即进行升序 \$a_l, a_{l + 1}, \\dots a_r\$ 排序。每次升序排序会在上一次升序排序的结果上进行。
+
+小杨想请你计算出多次升序排序后的序列。
+
+## 输入格式
+
+第一行包含一个正整数 \$n\$，含义如题面所示。   
+第二行包含 \$n\$ 个正整数 \$a_1, a_2, \\dots a_n\$，代表序列 \$a\$。  
+第三行包含一个正整数 \$q\$，代表排序次数。  
+之后 \$q\$ 行，每行包含两个正整数 \$l, r\$，代表将区间 \$[l_i, r_i]\$ 内所有数字进行升序排序。
+
+## 输出格式
+
+输出一行包含 \$n\$ 个正整数，代表多次升序排序后的序列。
+`,
+      score: 25,
+      explanation: "直接按照题目要求，依次执行 m 次排序操作即可。每次操作使用 std::sort 进行区间排序。",
+      tags: ["编程题", "排序", "模拟"],
+      template: "#include <iostream>\n#include <vector>\n#include <algorithm>\nusing namespace std;\n\nint main() {\n    int n, m;\n    cin >> n >> m;\n    // 在此编写代码\n    return 0;\n}",
+      referenceCode: "#include <iostream>\n#include <vector>\n#include <algorithm>\nusing namespace std;\nint main() {\n    int n, m; cin >> n >> m;\n    vector<int> a(n);\n    for (int i = 0; i < n; i++) cin >> a[i];\n    while (m--) {\n        int l, r; cin >> l >> r;\n        sort(a.begin()+l-1, a.begin()+r);\n    }\n    for (int i = 0; i < n; i++) cout << a[i] << (i == n-1 ? \"\" : \" \");\n    cout << endl;\n    return 0;\n}",
+      answer: '',
     }
 ];
 

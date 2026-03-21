@@ -262,52 +262,70 @@ export const paperData = {
     ],
     programmingQuestions: [
     {
-        "id": 26,
-        "type": "programming",
-        "title": "小杨的 X 字矩阵",
-        "problemNumber": "B3865",
-        "score": 25,
-        "description": "小杨想要构造一个 的 X 字矩阵（ 为奇数），这个矩阵的两条对角线都是半角加号 `+` ，其余都是半角减号 `-` 。例如，一个 5 × 5 的 X 字矩阵如下： +---+ -+-+- --+-- -+-+- +---+ 请你帮小杨根据给定的 打印出对应的“X 字矩阵”。",
-        "inputDescription": "一行一个整数 （ 5 \\le N \\le 49，保证为奇数）。",
-        "outputDescription": "输出对应的“X 字矩阵”。 请严格按格式要求输出，不要擅自添加任何空格、标点、空行等任何符号。你应该恰好输出 N 行，每行除了换行符外恰好包含 N 个字符，这些字符要么是 `+`，要么是 `-`。",
-        "samples": [
-            {
-                "input": "5",
-                "output": "+---+\n-+-+-\n--+--\n-+-+-\n+---+"
-            }
-        ],
-        "explanation": "逐行逐列输出字符。主对角线和副对角线位置输出 +，其余位置输出 -。",
-        "tags": [
-            "编程题",
-            "字符画",
-            "模拟"
-        ],
-        "template": "#include <bits/stdc++.h>\nusing namespace std;\n\nint main() {\n    ios::sync_with_stdio(false);\n    cin.tie(nullptr);\n\n    // 在此编写代码\n    return 0;\n}",
-        "referenceCode": "#include <bits/stdc++.h>\nusing namespace std;\n\nint main() {\n    ios::sync_with_stdio(false);\n    cin.tie(nullptr);\n\n    int N;\n    cin >> N;\n    for (int i = 0; i < N; ++i) {\n        for (int j = 0; j < N; ++j) {\n            if (i == j || i+j == N-1) cout << '+';\n            else cout << '-';\n        }\n        cout << '\\n';\n    }\n    return 0;\n}"
+      id: 26,
+      type: 'programming',
+      question: `
+# [GESP202309 二级] 小杨的 X 字矩阵
+
+## 题目描述
+
+小杨想要构造一个 的 X 字矩阵（ 为奇数），这个矩阵的两条对角线都是半角加号 \`+\` ，其余都是半角减号 \`-\` 。例如，一个 \$5 \\times 5\$ 的 X 字矩阵如下：
+
+\`\`\`plain
++---+
+-+-+-
+--+--
+-+-+-
++---+
+\`\`\`
+
+请你帮小杨根据给定的 打印出对应的“X 字矩阵”。
+
+## 输入格式
+
+一行一个整数 （ \$5 \\le N \\le 49\$，保证为奇数）。
+
+## 输出格式
+
+输出对应的“X 字矩阵”。
+
+请严格按格式要求输出，不要擅自添加任何空格、标点、空行等任何符号。你应该恰好输出 \$N\$ 行，每行除了换行符外恰好包含 \$N\$ 个字符，这些字符要么是 \`+\`，要么是 \`-\`。
+`,
+      score: 25,
+      explanation: "逐行逐列输出字符。主对角线和副对角线位置输出 +，其余位置输出 -。",
+      tags: ["编程题", "字符画", "模拟"],
+      template: "#include <bits/stdc++.h>\nusing namespace std;\n\nint main() {\n    ios::sync_with_stdio(false);\n    cin.tie(nullptr);\n\n    // 在此编写代码\n    return 0;\n}",
+      referenceCode: "#include <bits/stdc++.h>\nusing namespace std;\n\nint main() {\n    ios::sync_with_stdio(false);\n    cin.tie(nullptr);\n\n    int N;\n    cin >> N;\n    for (int i = 0; i < N; ++i) {\n        for (int j = 0; j < N; ++j) {\n            if (i == j || i+j == N-1) cout << '+';\n            else cout << '-';\n        }\n        cout << '\\n';\n    }\n    return 0;\n}",
+      answer: '',
     },
     {
-        "id": 27,
-        "type": "programming",
-        "title": "数字黑洞",
-        "problemNumber": "B3866",
-        "score": 25,
-        "description": "给定一个三位数，要求各位不能相同。例如，352 是符合要求的，112 是不符合要求的。将这个三位数的三个数字重新排列，得到的最大的数，减去得到的最小的数，形成一个新的三位数。对这个新的三位数可以重复上述过程。神奇的是，最终一定会得到 495！ 试试看，重新排列 352，得到的最大数为 532，最小数为 235，它们的差是 297；变换 297，得到 972-279=693；变换 693，963-369=594；变换 594，954-459=495。因此，经过 4 次变换得到了 495。 现在，输入的三位数，你能通过编程得出，这个三位数经过多少次变换能够得到 495 吗？",
-        "inputDescription": "输入一行，包含一个符合要求的三位数 N。",
-        "outputDescription": "输出一行，包含一个整数 C，表示经过 C 次变换得到 495。",
-        "samples": [
-            {
-                "input": "352",
-                "output": "4"
-            }
-        ],
-        "explanation": "不断把当前三位数的数字重排成最大值和最小值，计算差值，直到得到 495，统计变换次数。需要保留前导零参与三位数构造。",
-        "tags": [
-            "编程题",
-            "模拟",
-            "排序"
-        ],
-        "template": "#include <bits/stdc++.h>\nusing namespace std;\n\nint main() {\n    ios::sync_with_stdio(false);\n    cin.tie(nullptr);\n\n    // 在此编写代码\n    return 0;\n}",
-        "referenceCode": "#include <bits/stdc++.h>\nusing namespace std;\n\nint step(int x) {\n    string s = to_string(x);\n    while ((int)s.size() < 3) s = '0'+s;\n    string a = s, b = s;\n    sort(a.begin(), a.end());\n    sort(b.rbegin(), b.rend());\n    return stoi(b)-stoi(a);\n}\n\nint main() {\n    ios::sync_with_stdio(false);\n    cin.tie(nullptr);\n\n    int n, cnt = 0;\n    cin >> n;\n    while (n != 495) {\n        n = step(n);\n        ++cnt;\n    }\n    cout << cnt << '\\n';\n    return 0;\n}"
+      id: 27,
+      type: 'programming',
+      question: `
+# [GESP202309 二级] 数字黑洞
+
+## 题目描述
+
+给定一个三位数，要求各位不能相同。例如，\$352\$ 是符合要求的，\$112\$ 是不符合要求的。将这个三位数的三个数字重新排列，得到的最大的数，减去得到的最小的数，形成一个新的三位数。对这个新的三位数可以重复上述过程。神奇的是，最终一定会得到 \$495\$！
+
+试试看，重新排列 \$352\$，得到的最大数为 \$532\$，最小数为 \$235\$，它们的差是 \$297\$；变换 \$297\$，得到 \$972-279=693\$；变换 \$693\$，\$963-369=594\$；变换 \$594\$，\$954-459=495\$。因此，经过 \$4\$ 次变换得到了 \$495\$。
+
+现在，输入的三位数，你能通过编程得出，这个三位数经过多少次变换能够得到 \$495\$ 吗？
+
+## 输入格式
+
+输入一行，包含一个符合要求的三位数 \$N\$。
+
+## 输出格式
+
+输出一行，包含一个整数 \$C\$，表示经过 \$C\$ 次变换得到 \$495\$。
+`,
+      score: 25,
+      explanation: "不断把当前三位数的数字重排成最大值和最小值，计算差值，直到得到 495，统计变换次数。需要保留前导零参与三位数构造。",
+      tags: ["编程题", "模拟", "排序"],
+      template: "#include <bits/stdc++.h>\nusing namespace std;\n\nint main() {\n    ios::sync_with_stdio(false);\n    cin.tie(nullptr);\n\n    // 在此编写代码\n    return 0;\n}",
+      referenceCode: "#include <bits/stdc++.h>\nusing namespace std;\n\nint step(int x) {\n    string s = to_string(x);\n    while ((int)s.size() < 3) s = '0'+s;\n    string a = s, b = s;\n    sort(a.begin(), a.end());\n    sort(b.rbegin(), b.rend());\n    return stoi(b)-stoi(a);\n}\n\nint main() {\n    ios::sync_with_stdio(false);\n    cin.tie(nullptr);\n\n    int n, cnt = 0;\n    cin >> n;\n    while (n != 495) {\n        n = step(n);\n        ++cnt;\n    }\n    cout << cnt << '\\n';\n    return 0;\n}",
+      answer: '',
     }
 ]
 };

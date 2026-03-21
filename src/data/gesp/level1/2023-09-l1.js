@@ -266,22 +266,56 @@ export const paperData = {
     {
       id: 26,
       type: 'programming',
+      question: `
+# [GESP202309 一级] 买文具
+
+## 题目描述
+
+开学了，小明来到文具店选购文具。签字笔 \$2\$ 元一支，他需要 \$X\$ 支；记事本 \$5\$ 元一本，他需要 \$Y\$ 本；直尺 \$3\$ 元一把，他需要 \$Z\$ 把。小明手里有 \$Q\$ 元钱。请你通过编程帮小明算算，他手里的钱是否够买他需要的文具。
+
+## 输入格式
+
+第一行包含一个正整数，是小明购买签字笔的数量。约定 \$1 \\le X \\le 10\$。
+
+第二行包含一个正整数，是小明购买记事本的数量。约定 \$1 \\le Y \\le 10\$。
+
+第三行包含一个正整数，是小明购买直尺的数量。约定 \$1 \\le Z \\le 10\$。
+
+第四行包含一个正整数 \$Q\$，是小明手里的钱数（单位：元）。
+
+## 输出格式
+
+输出 \$2\$ 行。如果小明手里的钱够买他需要的文具，则第一行输出 \`Yes\`，第二行输出小明会剩下的钱数（单位：元）；否则，第一行输出 \`No\`，第二行输出小明缺少的钱数（单位：元）。
+`,
       template: `#include <bits/stdc++.h>\nusing namespace std;\n\nint main() {\n    // 在此填写代码\n    return 0;\n}`,
-      question: '## [GESP202309 一级] 小杨买文具\n\n**题目描述**\n\n小杨还有 $x$ 元钱，他想购买签字笔、记事本和直尺。已知签字笔 $a$ 元一支，记事本 $b$ 元一本，直尺 $c$ 元一把。小杨想买 $n$ 支签字笔，$m$ 本记事本和 $k$ 把直尺。\n\n请你编写程序，判断小杨手中的钱是否够买这些文具。如果够买，输出剩余的钱数；如果不够买，输出还差多少钱（以负数形式表示）。\n\n**输入格式**\n\n输入共四行：\n- 第一行包含一个正整数 $x$，表示小杨手中的钱数。\n- 第二行包含三个正整数 $a, b, c$，分别表示签字笔、记事本和直尺的单价。\n- 第三行包含三个正整数 $n, m, k$，分别表示小杨想买的文具数量。\n\n**输出格式**\n\n输出一个整数。如果钱够买，输出剩余钱数；如果不够买，输出还差多少钱的负数。\n\n**输入样例**\n\n```\n100\n5 10 2\n10 3 5\n```\n\n**输出样例**\n\n```\n10\n```\n\n**样例解释**\n\n总花费为 $5 \\times 10+10 \\times 3+2 \\times 5 = 50+30+10 = 90$ 元。小杨有 100 元，剩余 $100-90 = 10$ 元。',
       answer: '#include <iostream>\nusing namespace std;\nint main() {\n    long long x, a, b, c, n, m, k;\n    cin >> x >> a >> b >> c >> n >> m >> k;\n    long long total = a * n+b * m+c * k;\n    cout << x-total << endl;\n    return 0;\n}',
       score: 25,
       explanation: '简单的四则运算。注意使用 long long 以防溢出（虽然一级范围通常较小）。LuoGu B3862。',
-      tags: [LEVEL1_TAGS.basics, LEVEL1_TAGS.operator]
+      tags: [LEVEL1_TAGS.basics, LEVEL1_TAGS.operator],
     },
     {
       id: 27,
       type: 'programming',
+      question: `
+# [GESP202309 一级] 小明的幸运数
+
+## 题目描述
+
+所有个位数为 \$k\$ 的正整数，以及所有 \$k\$ 的倍数，都被小明称为“ \$k\$ 幸运数”。小明想知道正整数 \$L\$ 和 \$R\$ 之间（包括 \$L\$ 和 \$R\$）所有 \$k\$ 幸运数的和，你能帮帮他吗？
+
+## 输入格式
+
+输入 \$3\$ 行。第一行包含一个正整数 \$k\$，第二行包含一个正整数 \$L\$，第三行包含一个正整数 \$R\$。约定 \$2 \\le k \\le 9\$，\$1 \\le L \\le R \\le 1000\$。
+
+## 输出格式
+
+输出 \$1\$ 行，符合题意的幸运数之和。
+`,
       template: `#include <bits/stdc++.h>\nusing namespace std;\n\nint main() {\n    // 在此填写代码\n    return 0;\n}`,
-      question: '## [GESP202309 一级] 幸运数\n\n**题目描述**\n\n小杨认为，如果一个正整数 $n$ 能被 $k$ 整除，或者 $n$ 的个位数字是 $k$，那么这个数就是“幸运数”。\n\n给定正整数 $L, R$ 和 $k$，请你计算在 $[L, R]$ 范围内所有“幸运数”的和。\n\n**输入格式**\n\n输入共一行，包含三个正整数 $L, R, k$。\n\n**输出格式**\n\n输出一个整数，表示幸运数之和。\n\n**输入样例**\n\n```\n1 10 3\n```\n\n**输出样例**\n\n```\n18\n```\n\n**样例解释**\n\n在 1 到 10 之间，3 的倍数有 3, 6, 9；个位是 3 的数有 3。幸运数包括 3, 6, 9。和为 $3+6+9=18$。',
       answer: '#include <iostream>\nusing namespace std;\nint main() {\n    long long l, r, k, sum = 0;\n    cin >> l >> r >> k;\n    for (long long i = l; i <= r; i++) {\n        if (i % k == 0 || i % 10 == k) {\n            sum += i;\n        }\n    }\n    cout << sum << endl;\n    return 0;\n}',
       score: 25,
       explanation: '遍历范围 $[L, R]$，判断每个数是否满足整除条件或个位条件。LuoGu B3863。',
-      tags: [LEVEL1_TAGS.loop, LEVEL1_TAGS.condition, LEVEL1_TAGS.operator]
+      tags: [LEVEL1_TAGS.loop, LEVEL1_TAGS.condition, LEVEL1_TAGS.operator],
     }
   ]
 };

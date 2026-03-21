@@ -280,22 +280,52 @@ export const paperData = {
     {
       id: 26,
       type: 'programming',
+      question: `
+# [GESP202312 一级] 小杨的考试
+
+## 题目描述
+
+今天是星期 \$X\$，小杨还有 \$N\$ 天就要考试了，你能推算出小杨考试那天是星期几吗？（本题中使用 \$7\$ 表示星期日）
+
+## 输入格式
+
+输入 \$2\$ 行，第一行一个整数 \$X(1\\le X \\le 7)\$；第二行一个整数 \$N(1≤N≤364)\$。
+
+## 输出格式
+
+输出一个整数，表示小杨考试那天是星期几。
+`,
       template: `#include <bits/stdc++.h>\nusing namespace std;\n\nint main() {\n    // 在此填写代码\n    return 0;\n}`,
-      question: '## [GESP202312 一级] 小杨的考试\n\n**题目描述**\n\n小杨共有 $X$ 天假，从星期 $Y$ 开始（星期一到星期日分别用 1 到 7 表示）。请问小杨假期结束那天是星期几？\n\n**输入格式**\n\n输入共两行：\n- 第一行包含一个正整数 $X$ ($1 \\le X \\le 100$)。\n- 第二行包含一个正整数 $Y$ ($1 \\le Y \\le 7$)。\n\n**输出格式**\n\n输出一个整数，表示星期几。\n\n**输入样例**\n\n```\n10\n1\n```\n\n**输出样例**\n\n```\n3\n```\n\n**样例解释**\n\n从星期一（1）开始，经过 10 天，分别是：1, 2, 3, 4, 5, 6, 7, 1, 2, 3。最后一天是星期三（3）。 (Wait, if it says "X days holiday", does it mean including the start day? Sample 10 days from 1 -> 1, 2, 3, 4, 5, 6, 7, 8(1), 9(2), 10(3). Yes.)',
       answer: '#include <iostream>\nusing namespace std;\nint main() {\n    int x, y;\n    cin >> x >> y;\n    int res = (y+x-1) % 7;\n    if (res == 0) res = 7;\n    cout << res << endl;\n    return 0;\n}',
       score: 25,
       explanation: '考查周期性计算。可以使用 $(start+days-1) \\% 7$ 得到结果，注意余数为 0 时对应星期日 (7)。LuoGu B3921。',
-      tags: [LEVEL1_TAGS.basics, LEVEL1_TAGS.operator, LEVEL1_TAGS.condition]
+      tags: [LEVEL1_TAGS.basics, LEVEL1_TAGS.operator, LEVEL1_TAGS.condition],
     },
     {
       id: 27,
       type: 'programming',
+      question: `
+# [GESP202312 一级] 小杨报数
+
+## 题目描述
+
+小杨需要从 \$1\$ 到 \$N\$ 报数。在报数过程中，小杨希望跳过 \$M\$ 的倍数。例如，如果 \$N=5\$， \$M=2\$ ，那么小杨就需要依次报出 \$1\$、\$3\$、\$5\$。
+
+现在，请你依次输出小杨报的数。
+
+## 输入格式
+
+输入 \$2\$ 行，第一行一个整数 \$N（1 \\le N \\le 1,000）\$；第二行一个整数 \$M（2 \\le M \\le 100）\$。
+
+## 输出格式
+
+输出若干行，依次表示小杨报的数。
+`,
       template: `#include <bits/stdc++.h>\nusing namespace std;\n\nint main() {\n    // 在此填写代码\n    return 0;\n}`,
-      question: '## [GESP202312 一级] 小杨报数\n\n**题目描述**\n\n小杨正在和同学们玩报数游戏。游戏规则如下：从 1 开始报数，如果报的数包含数字 $x$ 或者能被 $x$ 整除，则报“过”。\n\n给定正整数 $n$ 和数字 $x$ ($1 \\le n \\le 1000, 1 \\le x \\le 9$)，请你求出在 1 到 $n$ 之间，小杨一共报了多少次“过”。\n\n**输入格式**\n\n输入一行，包含两个正整数 $n, x$ ($1 \\le n \\le 1000, 1 \\le x \\le 9$)。\n\n**输出格式**\n\n输出一个整数，表示在 1 到 $n$ 之间报“过”的次数。\n\n**输入样例**\n\n```\n20 3\n```\n\n**输出样例**\n\n```\n8\n```\n\n**样例解释**\n\n在 1 到 20 之间，包含数字 3 或能被 3 整除的数有：3, 6, 9, 12, 13, 15, 18。 (Wait, let me list again: 3(div/cont), 6(div), 9(div), 12(div), 13(cont), 15(div), 18(div). Total 7? Let me check 1-20 again: 3, 6, 9, 12, 13, 15, 18. What else? 10, 11, 14, 16, 17, 19, 20 (none). 1, 2, 4, 5, 7, 8. Wait, is it 8? Let me check: 3, 6, 9, 12, 13, 15, 18. Only 7. Is there another one? Maybe it\'s 1 to n inclusive. 1, 2, 3(X), 4, 5, 6(X), 7, 8, 9(X), 10, 11, 12(X), 13(X), 14, 15(X), 16, 17, 18(X), 19, 20. Still 7. Maybe sample was different or the problem had "contains x" more broadly? In 1-20, x=3, 23, 30-39 etc are outside. 3, 13. That\'s it for contains. Div by 3: 3, 6, 9, 12, 15, 18. Union: {3, 6, 9, 12, 13, 15, 18}. Count is 7. Wait, let me search LuoGu B3922 sample again.\n\nActually, let\'s trust the logic: `i % x == 0 || containsDigit(i, x)`.',
       answer: '#include <iostream>\nusing namespace std;\nbool contains(int n, int x) {\n    while (n > 0) {\n        if (n % 10 == x) return true;\n        n /= 10;\n    }\n    return false;\n}\nint main() {\n    int n, x, count = 0;\n    cin >> n >> x;\n    for (int i = 1; i <= n; i++) {\n        if (i % x == 0 || contains(i, x)) {\n            count++;\n        }\n    }\n    cout << count << endl;\n    return 0;\n}',
       score: 25,
       explanation: '包含判断与整除判断。通过 while 循环拆解数字判断是否包含数字 $x$。LuoGu B3922。',
-      tags: [LEVEL1_TAGS.loop, LEVEL1_TAGS.condition]
+      tags: [LEVEL1_TAGS.loop, LEVEL1_TAGS.condition],
     }
   ]
 };

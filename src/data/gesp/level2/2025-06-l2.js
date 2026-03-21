@@ -261,52 +261,58 @@ export const paperData = {
     ],
     programmingQuestions: [
     {
-        "id": 26,
-        "type": "programming",
-        "title": "数三角形",
-        "problemNumber": "B4356",
-        "score": 25,
-        "description": "直角三角形有两条直角边与一条斜边，设两条直角边的长度分别为 a, b，则直角三角形的面积为 ab/2。 请你计算当直角边长 a, b 均取不超过 n 的正整数时，有多少个不同的面积为整数的直角三角形。直角边长分别为 a, b 和 a', b' 的两个直角三角形相同，当且仅当 a = a', b = b' 或者 a = b', b = a'。",
-        "inputDescription": "一行，一个整数 n，表示直角边长的最大值。",
-        "outputDescription": "输出一行，一个整数，表示不同的直角三角形数量。",
-        "samples": [
-            {
-                "input": "4",
-                "output": "4"
-            }
-        ],
-        "explanation": "面积 ab/2 为整数等价于 ab 为偶数，也就是 a、b 不会同时为奇数。再结合 (a,b) 与 (b,a) 视为同一个三角形，只统计 a<=b 的方案即可。",
-        "tags": [
-            "编程题",
-            "枚举",
-            "数学"
-        ],
-        "template": "#include <bits/stdc++.h>\nusing namespace std;\n\nint main() {\n    ios::sync_with_stdio(false);\n    cin.tie(nullptr);\n\n    // 在此编写代码\n    return 0;\n}",
-        "referenceCode": "#include <bits/stdc++.h>\nusing namespace std;\n\nint main() {\n    ios::sync_with_stdio(false);\n    cin.tie(nullptr);\n\n    long long n, ans = 0;\n    cin >> n;\n    for (long long a = 1; a <= n; ++a) {\n        for (long long b = a; b <= n; ++b) {\n            if ((a * b) % 2 == 0) ++ans;\n        }\n    }\n    cout << ans << '\\n';\n    return 0;\n}"
+      id: 26,
+      type: 'programming',
+      question: `
+# [GESP202506 二级] 数三角形
+
+## 题目描述
+
+直角三角形有两条直角边与一条斜边，设两条直角边的长度分别为 \$a, b\$，则直角三角形的面积为 \$\\frac{ab}{2}\$。
+
+请你计算当直角边长 \$a, b\$ 均取不超过 \$n\$ 的正整数时，有多少个不同的面积为整数的直角三角形。直角边长分别为 \$a, b\$ 和 \$a', b'\$ 的两个直角三角形相同，当且仅当 \$a = a'\$, \$b = b'\$ 或者 \$a = b'\$, \$b = a'\$。
+
+## 输入格式
+
+一行，一个整数 \$n\$，表示直角边长的最大值。
+
+## 输出格式
+
+输出一行，一个整数，表示不同的直角三角形数量。
+`,
+      score: 25,
+      explanation: "面积 ab/2 为整数等价于 ab 为偶数，也就是 a、b 不会同时为奇数。再结合 (a,b) 与 (b,a) 视为同一个三角形，只统计 a<=b 的方案即可。",
+      tags: ["编程题", "枚举", "数学"],
+      template: "#include <bits/stdc++.h>\nusing namespace std;\n\nint main() {\n    ios::sync_with_stdio(false);\n    cin.tie(nullptr);\n\n    // 在此编写代码\n    return 0;\n}",
+      referenceCode: "#include <bits/stdc++.h>\nusing namespace std;\n\nint main() {\n    ios::sync_with_stdio(false);\n    cin.tie(nullptr);\n\n    long long n, ans = 0;\n    cin >> n;\n    for (long long a = 1; a <= n; ++a) {\n        for (long long b = a; b <= n; ++b) {\n            if ((a * b) % 2 == 0) ++ans;\n        }\n    }\n    cout << ans << '\\n';\n    return 0;\n}",
+      answer: '',
     },
     {
-        "id": 27,
-        "type": "programming",
-        "title": "幂和数",
-        "problemNumber": "B4357",
-        "score": 25,
-        "description": "对于正整数 n，如果 n 可以表为两个 2 的次幂之和，即 n = 2^x+2^y（x, y 均为非负整数），那么称 n 为幂和数。 给定正整数 l, r，请你求出满足 l ≤ n ≤ r 的整数 n 中有多少个幂和数。",
-        "inputDescription": "一行，两个正整数 l, r，含义如上。",
-        "outputDescription": "输出一行，一个整数，表示 l, r 之间幂和数的数量。",
-        "samples": [
-            {
-                "input": "1 10",
-                "output": "6"
-            }
-        ],
-        "explanation": "预先枚举所有满足 n=2^x+2^y 的数，去重后统计落在区间 [l,r] 内的个数即可。因为 2 的幂增长很快，指数范围很小。",
-        "tags": [
-            "编程题",
-            "枚举",
-            "集合"
-        ],
-        "template": "#include <bits/stdc++.h>\nusing namespace std;\n\nint main() {\n    ios::sync_with_stdio(false);\n    cin.tie(nullptr);\n\n    // 在此编写代码\n    return 0;\n}",
-        "referenceCode": "#include <bits/stdc++.h>\nusing namespace std;\n\nint main() {\n    ios::sync_with_stdio(false);\n    cin.tie(nullptr);\n\n    long long l, r;\n    cin >> l >> r;\n    set<long long> s;\n    vector<long long> pw;\n    for (long long x = 1; x <= r; x <<= 1) {\n        pw.push_back(x);\n        if (x > r / 2) break;\n    }\n    for (long long a : pw) {\n        for (long long b : pw) {\n            if (a+b >= l && a+b <= r) s.insert(a+b);\n        }\n    }\n    cout << s.size() << '\\n';\n    return 0;\n}"
+      id: 27,
+      type: 'programming',
+      question: `
+# [GESP202506 二级] 幂和数
+
+## 题目描述
+
+对于正整数 \$n\$，如果 \$n\$ 可以表为两个 \$2\$ 的次幂之和，即 \$n = 2^x + 2^y\$（\$x, y\$ 均为非负整数），那么称 \$n\$ 为幂和数。
+
+给定正整数 \$l, r\$，请你求出满足 \$l \\leq n \\leq r\$ 的整数 \$n\$ 中有多少个幂和数。
+
+## 输入格式
+
+一行，两个正整数 \$l, r\$，含义如上。
+
+## 输出格式
+
+输出一行，一个整数，表示 \$l, r\$ 之间幂和数的数量。
+`,
+      score: 25,
+      explanation: "预先枚举所有满足 n=2^x+2^y 的数，去重后统计落在区间 [l,r] 内的个数即可。因为 2 的幂增长很快，指数范围很小。",
+      tags: ["编程题", "枚举", "集合"],
+      template: "#include <bits/stdc++.h>\nusing namespace std;\n\nint main() {\n    ios::sync_with_stdio(false);\n    cin.tie(nullptr);\n\n    // 在此编写代码\n    return 0;\n}",
+      referenceCode: "#include <bits/stdc++.h>\nusing namespace std;\n\nint main() {\n    ios::sync_with_stdio(false);\n    cin.tie(nullptr);\n\n    long long l, r;\n    cin >> l >> r;\n    set<long long> s;\n    vector<long long> pw;\n    for (long long x = 1; x <= r; x <<= 1) {\n        pw.push_back(x);\n        if (x > r / 2) break;\n    }\n    for (long long a : pw) {\n        for (long long b : pw) {\n            if (a+b >= l && a+b <= r) s.insert(a+b);\n        }\n    }\n    cout << s.size() << '\\n';\n    return 0;\n}",
+      answer: '',
     }
 ]
 };

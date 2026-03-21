@@ -280,22 +280,59 @@ export const paperData = {
     {
       id: 26,
       type: 'programming',
+      question: `
+# [GESP202409 一级] 小杨购物
+
+## 题目描述
+
+小杨有 \$n\$ 元钱用于购物。商品 A 的单价是 \$a\$ 元，商品 B 的单价是 \$b\$ 元。小杨想购买**相同数量**的商品 A 和商品 B。
+
+请你编写程序帮助小杨计算出他最多能够购买多少个商品 A 和商品 B。
+
+## 输入格式
+
+第一行包含一个正整数 \$n\$，代表小杨用于购物的金额。
+
+第二行包含一个正整数 \$a\$，代表商品 A 的单价。
+
+第三行包含一个正整数 \$b\$，代表商品 B 的单价。
+
+## 输出格式
+
+输出一行，包含一个整数，代表小杨最多能够购买的商品 A 和商品 B 的数量。
+`,
       template: `#include <bits/stdc++.h>\nusing namespace std;\n\nint main() {\n    // 在此填写代码\n    return 0;\n}`,
-      question: '【编程题1】小杨购物\n小杨同学准备去购物，有两件商品，单价分别是 $a$ 元和 $b$ 元，小杨同学只有 $M$ 元。小杨想买相同数量的商品，请问小杨最多能买多少件？\n\n**输入格式**：输入三行，第一行包含一个整数 $a$，第二行包含一个整数 $b$，第三行包含一个整数 $M$。\n\n**输出格式**：输出一个整数，表示最多能购买的商品件数。',
       answer: '',
       score: 25,
       explanation: '最多购买件数为 $M / (a+b)$。LuoGu B4034。',
-      tags: [LEVEL1_TAGS.basics, LEVEL1_TAGS.operator]
+      tags: [LEVEL1_TAGS.basics, LEVEL1_TAGS.operator],
     },
     {
       id: 27,
       type: 'programming',
+      question: `
+# [GESP202409 一级] 美丽数字
+
+## 题目描述
+
+小杨有 \$n\$ 个正整数，他认为一个正整数是美丽数字当且仅当该正整数是 \$9\$ 的倍数但不是 \$8\$ 的倍数。
+
+小杨想请你编写一个程序计算 \$n\$ 个正整数中美丽数字的数量。
+
+## 输入格式
+
+第一行包含一个整数 \$n\$，代表正整数个数。  
+第二行有 \$n\$ 个正整数 \$a_1, a_2, \\dots a_n\$。
+
+## 输出格式
+
+输出一个整数，表示其中美丽数字的数量。
+`,
       template: `#include <bits/stdc++.h>\nusing namespace std;\n\nint main() {\n    // 在此填写代码\n    return 0;\n}`,
-      question: '【编程题2】美丽数字\n小杨同学定义了一种“美丽数字”：如果一个正整数能被 8 整除，但不能被 12 整除，则称之为美丽数字。\n输入一个正整数 $n$，输出 1 到 $n$ 之间（包含 $n$）有多少个美丽数字。\n\n**输入格式**：输入一个正整数 $n$。\n\n**输出格式**：输出美丽数字的个数。',
       answer: '',
       score: 25,
       explanation: '遍历 1 到 $n$，判断 `i % 8 == 0 && i % 12 != 0`。LuoGu B4035。',
-      tags: [LEVEL1_TAGS.loop, LEVEL1_TAGS.condition]
+      tags: [LEVEL1_TAGS.loop, LEVEL1_TAGS.condition],
     }
   ]
 };

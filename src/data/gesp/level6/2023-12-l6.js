@@ -2,55 +2,74 @@
 
 const programmingQuestions = [
     {
-        "id": 26,
-        "type": "programming",
-        "title": "闯关游戏",
-        "problemNumber": "2023-12-23-06-C-01",
-        "score": 25,
-        "description": "共有 n 关，每关有 m 个通道。第 j 个通道可前进 a_j 关，离开第 i 关可获得 b_i 分；若前进后超过第 n 关则通关。求最多得分。",
-        "inputDescription": "第一行 n,m。第二行 m 个整数 a_j。第三行 n 个整数 b_i。",
-        "outputDescription": "输出最大总分。",
-        "samples": [
-            {
-                "input": "6 2\n2 3\n1 0 30 100 30 30",
-                "output": "131"
-            },
-            {
-                "input": "6 2\n2 3\n1 0 30 100 30 -1",
-                "output": "101"
-            }
-        ],
-        "explanation": "设 dp[i] 为“站在第 i 关开始闯关时，最终最多能得到多少分”。离开第 i 关一定会拿到 b_i 分，然后任选一个通道跳到 i+a_j（越界则直接通关），故可从后往前线性转移。",
-        "tags": [
-            "编程题",
-            "动态规划"
-        ],
-        "template": "#include <bits/stdc++.h>\nusing namespace std;\n\nint main() {\n    // 在此编写代码\n    return 0;\n}",
-        "referenceCode": "#include <bits/stdc++.h>\nusing namespace std;\n\nint main() {\n    ios::sync_with_stdio(false);\n    cin.tie(nullptr);\n\n    int n, m;\n    cin >> n >> m;\n    vector<int> a(m+1), b(n+1);\n    for (int i = 1; i <= m; ++i) cin >> a[i];\n    for (int i = 1; i <= n; ++i) cin >> b[i];\n\n    vector<long long> dp(n+2, 0);\n    for (int i = n; i >= 1; --i) {\n        long long bestNext = LLONG_MIN;\n        for (int j = 1; j <= m; ++j) {\n            int to = i+a[j];\n            bestNext = max(bestNext, to > n ? 0LL : dp[to]);\n        }\n        dp[i] = b[i]+bestNext;\n    }\n\n    cout << dp[1] << '\\n';\n    return 0;\n}"
+      id: 26,
+      type: 'programming',
+      question: `
+# [GESP202312 六级] 闯关游戏
+
+## 题目描述
+
+你来到了一个闯关游戏。
+
+这个游戏总共有 \$N\$ 关，每关都有 \$M\$ 个通道，你需要选择一个通道并通往后续关卡。其中，第 \$i\$ 个通道可以让你前进 \$a_i\$ 关，也就是说，如果你现在在第 \$x\$ 关，那么选择第 \$i\$ 个通道后，你将直接来到第 \$x+a_i\$ 关（特别地，如果 \$x + a_i \\geq N\$，那么你就通关了）。此外，当你顺利离开第 \$s\$ 关时，你还将获得 \$b_s\$ 分。
+
+游戏开始时，你在第 \$0\$ 关。请问，你通关时最多能获得多少总分。
+
+## 输入格式
+
+第一行两个整数 \$N\$，\$M\$，分别表示关卡数量和每关的通道数量。
+
+接下来一行 \$M\$ 个用单个空格隔开的整数 \$a_0,a_1\\cdots,a_{M-1}\$。保证 \$1\\le a_i \\le N\$。
+
+接下来一行 \$N\$ 个用单个空格隔开的整数 \$b_0,b_1\\cdots,b_{N-1}\$。保证 \$|b_i|\\le 10^5\$。
+
+## 输出格式
+
+一行一个整数，表示你通关时最多能够获得的分数。
+`,
+      score: 25,
+      explanation: "设 dp[i] 为“站在第 i 关开始闯关时，最终最多能得到多少分”。离开第 i 关一定会拿到 b_i 分，然后任选一个通道跳到 i+a_j（越界则直接通关），故可从后往前线性转移。",
+      tags: ["编程题", "动态规划"],
+      template: "#include <bits/stdc++.h>\nusing namespace std;\n\nint main() {\n    // 在此编写代码\n    return 0;\n}",
+      referenceCode: "#include <bits/stdc++.h>\nusing namespace std;\n\nint main() {\n    ios::sync_with_stdio(false);\n    cin.tie(nullptr);\n\n    int n, m;\n    cin >> n >> m;\n    vector<int> a(m+1), b(n+1);\n    for (int i = 1; i <= m; ++i) cin >> a[i];\n    for (int i = 1; i <= n; ++i) cin >> b[i];\n\n    vector<long long> dp(n+2, 0);\n    for (int i = n; i >= 1; --i) {\n        long long bestNext = LLONG_MIN;\n        for (int j = 1; j <= m; ++j) {\n            int to = i+a[j];\n            bestNext = max(bestNext, to > n ? 0LL : dp[to]);\n        }\n        dp[i] = b[i]+bestNext;\n    }\n\n    cout << dp[1] << '\\n';\n    return 0;\n}",
+      answer: '',
     },
     {
-        "id": 27,
-        "type": "programming",
-        "title": "工作沟通",
-        "problemNumber": "2023-12-23-06-C-02",
-        "score": 25,
-        "description": "给定公司管理树。每场合作给出若干员工，主持人必须能管理所有参与者；若有多个可选，取编号最大的。",
-        "inputDescription": "第一行 n。第二行 $n-1$ 个整数表示 1..$n-1$ 号员工的直接领导。第三行 q。接下来 q 行每行先给人数 k，再给 k 个员工编号。",
-        "outputDescription": "每场合作输出一行主持人编号。",
-        "samples": [
-            {
-                "input": "5\n0 0 2 2\n3\n2 3 4\n3 2 3 4\n2 1 4",
-                "output": "2\n2\n0"
-            }
-        ],
-        "explanation": "先把每次合作中的所有参与者求出公共祖先的最深点 lca。所有能管理全部参与者的人，正好是根到 lca 路径上的节点；题目要求编号最大的那个，因此预处理 root→u 路径上的最大编号即可。",
-        "tags": [
-            "编程题",
-            "树",
-            "LCA"
-        ],
-        "template": "#include <bits/stdc++.h>\nusing namespace std;\n\nint main() {\n    // 在此编写代码\n    return 0;\n}",
-        "referenceCode": "#include <bits/stdc++.h>\nusing namespace std;\n\nint main() {\n    ios::sync_with_stdio(false);\n    cin.tie(nullptr);\n\n    int n;\n    cin >> n;\n    vector<vector<int>> g(n);\n    vector<int> parent(n, -1);\n    parent[0] = 0;\n    for (int i = 1; i < n; ++i) {\n        cin >> parent[i];\n        g[parent[i]].push_back(i);\n    }\n\n    int LOG = 1;\n    while ((1 << LOG) <= n) ++LOG;\n    vector<vector<int>> up(LOG, vector<int>(n, 0));\n    vector<int> depth(n, 0), bestOnPath(n, 0);\n\n    queue<int> q;\n    q.push(0);\n    bestOnPath[0] = 0;\n    while (!q.empty()) {\n        int u = q.front(); q.pop();\n        up[0][u] = parent[u];\n        for (int k = 1; k < LOG; ++k) up[k][u] = up[k-1][up[k-1][u]];\n        for (int v : g[u]) {\n            depth[v] = depth[u]+1;\n            bestOnPath[v] = max(bestOnPath[u], v);\n            q.push(v);\n        }\n    }\n\n    auto lca = [&](int a, int b) {\n        if (depth[a] < depth[b]) swap(a, b);\n        int diff = depth[a]-depth[b];\n        for (int k = 0; k < LOG; ++k) {\n            if (diff >> k & 1) a = up[k][a];\n        }\n        if (a == b) return a;\n        for (int k = LOG-1; k >= 0; --k) {\n            if (up[k][a] != up[k][b]) {\n                a = up[k][a];\n                b = up[k][b];\n            }\n        }\n        return up[0][a];\n    };\n\n    int Q;\n    cin >> Q;\n    while (Q--) {\n        int k;\n        cin >> k;\n        int x;\n        cin >> x;\n        int cur = x;\n        for (int i = 1; i < k; ++i) {\n            cin >> x;\n            cur = lca(cur, x);\n        }\n        cout << bestOnPath[cur] << '\\n';\n    }\n    return 0;\n}"
+      id: 27,
+      type: 'programming',
+      question: `
+# [GESP202312 六级] 工作沟通
+
+## 题目描述
+
+某公司有 \$N\$ 名员工，编号从 \$0\$ 至 \$N-1\$。其中，除了 \$0\$ 号员工是老板，其余每名员工都有一个直接领导。我们假设编号为 \$i\$ 的员工的直接领导是 \$f_i\$。
+
+该公司有严格的管理制度，每位员工只能受到本人或直接领导或间接领导的管理。具体来说，规定员工 \$x\$ 可以管理员工 \$y\$，当且仅当 \$x=y\$，或 \$x=f_y\$，或 \$x\$ 可以管理 \$f_y\$。特别地，\$0\$ 号员工老板只能自我管理，无法由其他任何员工管理。
+
+现在，有一些同事要开展合作，他们希望找到一位同事来主持这场合作，这位同事必须能够管理参与合作的所有同事。如果有多名满足这一条件的员工，他们希望找到编号最大的员工。你能帮帮他们吗？
+
+## 输入格式
+
+第一行一个整数 \$N\$，表示员工的数量。
+
+第二行 \$N - 1\$ 个用空格隔开的正整数，依次为 \$f_1,f_2,\\dots f_{N−1}\$。
+
+第三行一个整数 \$Q\$，表示共有 \$Q\$ 场合作需要安排。
+
+接下来 \$Q\$ 行，每行描述一场合作：开头是一个整数 \$m\$（\$2 \\le m \\le N\$），表示参与本次合作的员工数量；接着是 \$m\$ 个整数，依次表示参与本次合作的员工编号（保证编号合法且不重复）。
+
+保证公司结构合法，即不存在任意一名员工，其本人是自己的直接或间接领导。
+
+## 输出格式
+
+输出 \$Q\$ 行，每行一个整数，依次为每场合作的主持人选。
+`,
+      score: 25,
+      explanation: "先把每次合作中的所有参与者求出公共祖先的最深点 lca。所有能管理全部参与者的人，正好是根到 lca 路径上的节点；题目要求编号最大的那个，因此预处理 root→u 路径上的最大编号即可。",
+      tags: ["编程题", "树", "LCA"],
+      template: "#include <bits/stdc++.h>\nusing namespace std;\n\nint main() {\n    // 在此编写代码\n    return 0;\n}",
+      referenceCode: "#include <bits/stdc++.h>\nusing namespace std;\n\nint main() {\n    ios::sync_with_stdio(false);\n    cin.tie(nullptr);\n\n    int n;\n    cin >> n;\n    vector<vector<int>> g(n);\n    vector<int> parent(n, -1);\n    parent[0] = 0;\n    for (int i = 1; i < n; ++i) {\n        cin >> parent[i];\n        g[parent[i]].push_back(i);\n    }\n\n    int LOG = 1;\n    while ((1 << LOG) <= n) ++LOG;\n    vector<vector<int>> up(LOG, vector<int>(n, 0));\n    vector<int> depth(n, 0), bestOnPath(n, 0);\n\n    queue<int> q;\n    q.push(0);\n    bestOnPath[0] = 0;\n    while (!q.empty()) {\n        int u = q.front(); q.pop();\n        up[0][u] = parent[u];\n        for (int k = 1; k < LOG; ++k) up[k][u] = up[k-1][up[k-1][u]];\n        for (int v : g[u]) {\n            depth[v] = depth[u]+1;\n            bestOnPath[v] = max(bestOnPath[u], v);\n            q.push(v);\n        }\n    }\n\n    auto lca = [&](int a, int b) {\n        if (depth[a] < depth[b]) swap(a, b);\n        int diff = depth[a]-depth[b];\n        for (int k = 0; k < LOG; ++k) {\n            if (diff >> k & 1) a = up[k][a];\n        }\n        if (a == b) return a;\n        for (int k = LOG-1; k >= 0; --k) {\n            if (up[k][a] != up[k][b]) {\n                a = up[k][a];\n                b = up[k][b];\n            }\n        }\n        return up[0][a];\n    };\n\n    int Q;\n    cin >> Q;\n    while (Q--) {\n        int k;\n        cin >> k;\n        int x;\n        cin >> x;\n        int cur = x;\n        for (int i = 1; i < k; ++i) {\n            cin >> x;\n            cur = lca(cur, x);\n        }\n        cout << bestOnPath[cur] << '\\n';\n    }\n    return 0;\n}",
+      answer: '',
     }
 ];
 

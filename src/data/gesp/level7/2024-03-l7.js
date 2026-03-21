@@ -2,38 +2,67 @@
 
 const programmingQuestions = [
     {
-        id: 26,
-        type: "programming",
-        score: 25,
-        title: "交流问题",
-        problemNumber: "2024-03-l7-Q26",
-        description: "A 校和 B 校共有 n 名同学参加交流会，只会发生跨校交流。给出 m 次交流关系，每次交流都会在两名同学之间连一条边。已知输入一定合法，求 B 校人数的最小可能值与最大可能值。",
-        inputDescription: "第一行 n,m。接下来 m 行每行两个整数 u,v，表示 u 与 v 交流。",
-        outputDescription: "输出两个整数，分别表示 B 校人数的最小值和最大值。",
-        samples: [
-            { input: "4 3\n1 2\n2 3\n4 2", output: "1 3" }
-        ],
-        explanation: "交流图一定是二分图。对每个连通块二染色后，两侧人数分别为 x 和 y。由于两校身份可以整体对调，所以该连通块对 B 校人数的贡献最少为 min(x,y)，最多为 max(x,y)。把各连通块贡献相加即可。",
-        tags: ["编程题", "图论", "二分图", "DFS"],
-        template: "#include <bits/stdc++.h>\nusing namespace std;\n\nint main() {\n    ios::sync_with_stdio(false);\n    cin.tie(nullptr);\n    return 0;\n}",
-        referenceCode: "#include <bits/stdc++.h>\nusing namespace std;\n\nint main() {\n    ios::sync_with_stdio(false);\n    cin.tie(nullptr);\n\n    int n, m;\n    cin >> n >> m;\n    vector<vector<int>> g($n+1$);\n    for (int i = 0; i < m; ++i) {\n        int u, v;\n        cin >> u >> v;\n        g[u].push_back(v);\n        g[v].push_back(u);\n    }\n\n    vector<int> color($n+1$, -1);\n    int mn = 0, mx = 0;\n    for (int i = 1; i <= n; ++i) if (color[i] == -1) {\n        queue<int> q;\n        q.push(i);\n        color[i] = 0;\n        int cnt[2] = {1, 0};\n        while (!q.empty()) {\n            int u = q.front(); q.pop();\n            for (int v : g[u]) if (color[v] == -1) {\n                color[v] = color[u] ^ 1;\n                cnt[color[v]]++;\n                q.push(v);\n            }\n        }\n        mn += min(cnt[0], cnt[1]);\n        mx += max(cnt[0], cnt[1]);\n    }\n    cout << mn << ' ' << mx << '\\n';\n    return 0;\n}"
+      id: 26,
+      type: 'programming',
+      question: `
+# [GESP202403 七级] 交流问题
+
+## 题目描述
+
+来自两所学校 \$A\$、\$B\$ 的 \$n\$ 名同学聚在一起相互交流。为了方便起见，我们把这些同学从 \$1\$ 至 \$n\$ 编号。他们共进行了 \$m\$ 次交流，第 \$i\$ 次交流中，编号为 \$u_i, v_i\$ 的同学相互探讨了他们感兴趣的话题，并结交成为了新的朋友。
+
+由于这次交流会的目的是促进两校友谊，因此只有不同学校的同学之间会交流。同校同学并不会互相交流。
+
+作为 \$A\$ 校顾问，你对 \$B\$ 校的规模非常感兴趣，你希望求出 \$B\$ 校至少有几名同学、至多有几名同学。
+
+## 输入格式
+
+第一行两个正整数，表示同学的人数 \$n\$、交流的次数 \$m\$。  
+接下来 \$m\$ 行，每行两个整数 \$u_i, v_i\$，表示一次交流。
+
+## 输出格式
+
+输出一行两个整数，用单个空格隔开，分别表示 \$B\$ 校至少有几名同学、至多有几名同学。
+`,
+      score: 25,
+      explanation: "交流图一定是二分图。对每个连通块二染色后，两侧人数分别为 x 和 y。由于两校身份可以整体对调，所以该连通块对 B 校人数的贡献最少为 min(x,y)，最多为 max(x,y)。把各连通块贡献相加即可。",
+      tags: ["编程题", "图论", "二分图", "DFS"],
+      template: "#include <bits/stdc++.h>\nusing namespace std;\n\nint main() {\n    ios::sync_with_stdio(false);\n    cin.tie(nullptr);\n    return 0;\n}",
+      referenceCode: "#include <bits/stdc++.h>\nusing namespace std;\n\nint main() {\n    ios::sync_with_stdio(false);\n    cin.tie(nullptr);\n\n    int n, m;\n    cin >> n >> m;\n    vector<vector<int>> g($n+1$);\n    for (int i = 0; i < m; ++i) {\n        int u, v;\n        cin >> u >> v;\n        g[u].push_back(v);\n        g[v].push_back(u);\n    }\n\n    vector<int> color($n+1$, -1);\n    int mn = 0, mx = 0;\n    for (int i = 1; i <= n; ++i) if (color[i] == -1) {\n        queue<int> q;\n        q.push(i);\n        color[i] = 0;\n        int cnt[2] = {1, 0};\n        while (!q.empty()) {\n            int u = q.front(); q.pop();\n            for (int v : g[u]) if (color[v] == -1) {\n                color[v] = color[u] ^ 1;\n                cnt[color[v]]++;\n                q.push(v);\n            }\n        }\n        mn += min(cnt[0], cnt[1]);\n        mx += max(cnt[0], cnt[1]);\n    }\n    cout << mn << ' ' << mx << '\\n';\n    return 0;\n}",
+      answer: '',
     },
     {
-        id: 27,
-        type: "programming",
-        score: 25,
-        title: "俄罗斯方块",
-        problemNumber: "2024-03-l7-Q27",
-        description: "给定一个 n×m 的彩色方格图。四连通且颜色相同的一整块视为一个俄罗斯方块。若两个俄罗斯方块经过平移后可以完全重合，则认为是同一种类型；颜色不同也仍视作同一类型。求整张图中一共有多少种不同类型的俄罗斯方块。",
-        inputDescription: "第一行两个整数 n,m。接下来 n 行每行 m 个整数，表示每个格子的颜色。",
-        outputDescription: "输出不同俄罗斯方块类型的数量。",
-        samples: [
-            { input: "5 6\n1 2 3 4 4 5\n1 2 3 3 4 5\n1 2 2 3 4 5\n1 6 6 7 7 8\n6 6 7 7 8 8", output: "7" }
-        ],
-        explanation: "先按颜色做 flood fill 提取每个连通块，再把块内所有坐标平移到左上角作为规范形状，用集合去重即可。",
-        tags: ["编程题", "搜索", "连通块", "哈希"],
-        template: "#include <bits/stdc++.h>\nusing namespace std;\n\nint main() {\n    ios::sync_with_stdio(false);\n    cin.tie(nullptr);\n    return 0;\n}",
-        referenceCode: "#include <bits/stdc++.h>\nusing namespace std;\n\nint main() {\n    ios::sync_with_stdio(false);\n    cin.tie(nullptr);\n\n    int n, m;\n    cin >> n >> m;\n    vector<vector<int>> a(n, vector<int>(m));\n    for (int i = 0; i < n; ++i) for (int j = 0; j < m; ++j) cin >> a[i][j];\n    vector<vector<int>> vis(n, vector<int>(m, 0));\n    set<vector<pair<int,int>>> shapes;\n    int dx[4] = {-1,1,0,0};\n    int dy[4] = {0,0,-1,1};\n    for (int i = 0; i < n; ++i) for (int j = 0; j < m; ++j) if (!vis[i][j]) {\n        int color = a[i][j];\n        queue<pair<int,int>> q;\n        vector<pair<int,int>> cells;\n        q.push({i,j}); vis[i][j]=1;\n        while(!q.empty()){\n            auto [x,y]=q.front(); q.pop();\n            cells.push_back({x,y});\n            for(int d=0;d<4;++d){\n                int nx=x+dx[d], ny=y+dy[d];\n                if(nx<0||nx>=n||ny<0||ny>=m||vis[nx][ny]||a[nx][ny]!=color) continue;\n                vis[nx][ny]=1; q.push({nx,ny});\n            }\n        }\n        int minx = n, miny = m;\n        for (auto [x,y]: cells) minx=min(minx,x), miny=min(miny,y);\n        vector<pair<int,int>> norm;\n        for (auto [x,y]: cells) norm.push_back({x-minx,y-miny});\n        sort(norm.begin(), norm.end());\n        shapes.insert(norm);\n    }\n    cout << shapes.size() << '\\n';\n    return 0;\n}"
+      id: 27,
+      type: 'programming',
+      question: `
+# [GESP202403 七级] 俄罗斯方块
+
+## 题目描述
+
+小杨同学用不同种类的俄罗斯方块填满了一个大小为 \$n \\times m\$ 的网格图。
+
+网格图由 \$n \\times m\$ 个带颜色方块构成。小杨同学现在将这个网格图交给了你，请你计算出网格图中俄罗斯方块的种类数。  
+如果两个同色方块是四连通（即上下左右四个相邻的位置）的，则称两个同色方块直接连通；若两个同色方块同时与另一个同色方块直接或间接连通，则称两个同色方块间接连通。一个俄罗斯方块由一个方块和所有与其直接或间接连接的同色方块组成。定义两个俄罗斯方块的种类相同当且仅当通过**平移**其中一个俄罗斯方块可以和另一个俄罗斯方块重合；如果两个俄罗斯方块颜色不同，仍然视为同一种俄罗斯方块。
+
+例如，在如下情况中，方块 \$1\$ 和方块 \$2\$ 是同一种俄罗斯方块，而方块 \$1\$ 和方块 \$3\$ **不是**同一种俄罗斯方块。
+
+![](https://cdn.luogu.com.cn/upload/image_hosting/ttv3nmgs.png)
+
+## 输入格式
+
+第一行包含两个正整数 \$n\$ 和 \$m\$，表示网格图的大小。  
+对于之后的 \$n\$ 行，第 \$i\$ 行包含 \$m\$ 个正整数 \$a_{i1}, a_{i2}, \\dots a_{im}\$，表示该行 \$m\$ 个方块的颜色。
+
+## 输出格式
+
+输出一行一个整数表示答案。
+`,
+      score: 25,
+      explanation: "先按颜色做 flood fill 提取每个连通块，再把块内所有坐标平移到左上角作为规范形状，用集合去重即可。",
+      tags: ["编程题", "搜索", "连通块", "哈希"],
+      template: "#include <bits/stdc++.h>\nusing namespace std;\n\nint main() {\n    ios::sync_with_stdio(false);\n    cin.tie(nullptr);\n    return 0;\n}",
+      referenceCode: "#include <bits/stdc++.h>\nusing namespace std;\n\nint main() {\n    ios::sync_with_stdio(false);\n    cin.tie(nullptr);\n\n    int n, m;\n    cin >> n >> m;\n    vector<vector<int>> a(n, vector<int>(m));\n    for (int i = 0; i < n; ++i) for (int j = 0; j < m; ++j) cin >> a[i][j];\n    vector<vector<int>> vis(n, vector<int>(m, 0));\n    set<vector<pair<int,int>>> shapes;\n    int dx[4] = {-1,1,0,0};\n    int dy[4] = {0,0,-1,1};\n    for (int i = 0; i < n; ++i) for (int j = 0; j < m; ++j) if (!vis[i][j]) {\n        int color = a[i][j];\n        queue<pair<int,int>> q;\n        vector<pair<int,int>> cells;\n        q.push({i,j}); vis[i][j]=1;\n        while(!q.empty()){\n            auto [x,y]=q.front(); q.pop();\n            cells.push_back({x,y});\n            for(int d=0;d<4;++d){\n                int nx=x+dx[d], ny=y+dy[d];\n                if(nx<0||nx>=n||ny<0||ny>=m||vis[nx][ny]||a[nx][ny]!=color) continue;\n                vis[nx][ny]=1; q.push({nx,ny});\n            }\n        }\n        int minx = n, miny = m;\n        for (auto [x,y]: cells) minx=min(minx,x), miny=min(miny,y);\n        vector<pair<int,int>> norm;\n        for (auto [x,y]: cells) norm.push_back({x-minx,y-miny});\n        sort(norm.begin(), norm.end());\n        shapes.insert(norm);\n    }\n    cout << shapes.size() << '\\n';\n    return 0;\n}",
+      answer: '',
     }
 ];
 

@@ -2,38 +2,66 @@
 
 const programmingQuestions = [
     {
-        id: 26,
-        type: "programming",
-        score: 25,
-        title: "黑白翻转",
-        problemNumber: "2024-06-l7-Q26",
-        description: "给定一棵树，每个节点是黑色或白色。若删除全部白色节点后，剩余黑色节点仍然连成一棵树，则称其为美丽树。每次操作可以把一个白点翻成黑点，求最少操作次数。",
-        inputDescription: "第一行 n。第二行 n 个 0/1，1 表示黑色、0 表示白色。接下来 $n-1$ 行每行一条边。",
-        outputDescription: "输出最少操作次数。",
-        samples: [
-            { input: "5\n0 1 0 1 0\n1 2\n1 3\n3 4\n3 5", output: "2" }
-        ],
-        explanation: "最终保留下来的黑点必须覆盖原有所有黑点，并且形成一棵连通子树，所以需要把原黑点最小连通子树上的白点全部染黑。答案就是这棵 Steiner 子树中的白点数。",
-        tags: ["编程题", "树", "DFS"],
-        template: "#include <bits/stdc++.h>\nusing namespace std;\n\nint main() {\n    ios::sync_with_stdio(false);\n    cin.tie(nullptr);\n    return 0;\n}",
-        referenceCode: "#include <bits/stdc++.h>\nusing namespace std;\n\nint n, ans = 0;\nvector<vector<int>> g;\nvector<int> col;\n\nint dfs(int u, int fa) {\n    int has = col[u];\n    for (int v : g[u]) if (v != fa) has += dfs(v, u);\n    if (has > 0 && has < accumulate(col.begin()+1, col.end(), 0) && col[u] == 0) ans++;\n    return has;\n}\n\nint main() {\n    ios::sync_with_stdio(false);\n    cin.tie(nullptr);\n\n    cin >> n;\n    g.assign($n+1$, {});\n    col.assign($n+1$, 0);\n    int tot = 0, root = 1;\n    for (int i = 1; i <= n; ++i) { cin >> col[i]; if (col[i]) tot++, root = i; }\n    for (int i = 0; i < n-1; ++i) {\n        int u, v; cin >> u >> v;\n        g[u].push_back(v); g[v].push_back(u);\n    }\n    if (tot <= 1) { cout << 0 << '\\n'; return 0; }\n    function<int(int,int)> solve = [&](int u, int fa) {\n        int cnt = col[u];\n        for (int v : g[u]) if (v != fa) cnt += solve(v, u);\n        if (cnt > 0 && cnt < tot && col[u] == 0) ans++;\n        return cnt;\n    };\n    solve(root, 0);\n    cout << ans << '\\n';\n    return 0;\n}"
+      id: 26,
+      type: 'programming',
+      question: `
+# [GESP202406 七级] 黑白翻转
+
+## 题目描述
+
+小杨有一棵包含 \$n\$ 个节点的树，这棵树上的任意一个节点要么是白色，要么是黑色。小杨认为一棵树是美丽树当且仅当在删除所有白色节点之后，剩余节点仍然组成一棵树。
+
+小杨每次操作可以选择一个白色节点将它的颜色变为黑色，他想知道自己最少要执行多少次操作可以使得这棵树变为美丽树。
+
+## 输入格式
+
+第一行包含一个正整数 \$n\$，代表树的节点数。
+
+第二行包含 \$n\$ 个非负整数 \$a_1,a_2,\\ldots,a_n\$，其中如果 \$a_i=0\$，则节点 \$i\$ 的颜色为白色，否则为黑色。
+
+之后 \$n-1\$ 行，每行包含两个正整数 \$x_i,y_i\$，代表存在一条连接节点 \$x_i\$ 和 \$y_i\$ 的边。
+
+## 输出格式
+
+输出一个整数，代表最少执行的操作次数。
+`,
+      score: 25,
+      explanation: "最终保留下来的黑点必须覆盖原有所有黑点，并且形成一棵连通子树，所以需要把原黑点最小连通子树上的白点全部染黑。答案就是这棵 Steiner 子树中的白点数。",
+      tags: ["编程题", "树", "DFS"],
+      template: "#include <bits/stdc++.h>\nusing namespace std;\n\nint main() {\n    ios::sync_with_stdio(false);\n    cin.tie(nullptr);\n    return 0;\n}",
+      referenceCode: "#include <bits/stdc++.h>\nusing namespace std;\n\nint n, ans = 0;\nvector<vector<int>> g;\nvector<int> col;\n\nint dfs(int u, int fa) {\n    int has = col[u];\n    for (int v : g[u]) if (v != fa) has += dfs(v, u);\n    if (has > 0 && has < accumulate(col.begin()+1, col.end(), 0) && col[u] == 0) ans++;\n    return has;\n}\n\nint main() {\n    ios::sync_with_stdio(false);\n    cin.tie(nullptr);\n\n    cin >> n;\n    g.assign($n+1$, {});\n    col.assign($n+1$, 0);\n    int tot = 0, root = 1;\n    for (int i = 1; i <= n; ++i) { cin >> col[i]; if (col[i]) tot++, root = i; }\n    for (int i = 0; i < n-1; ++i) {\n        int u, v; cin >> u >> v;\n        g[u].push_back(v); g[v].push_back(u);\n    }\n    if (tot <= 1) { cout << 0 << '\\n'; return 0; }\n    function<int(int,int)> solve = [&](int u, int fa) {\n        int cnt = col[u];\n        for (int v : g[u]) if (v != fa) cnt += solve(v, u);\n        if (cnt > 0 && cnt < tot && col[u] == 0) ans++;\n        return cnt;\n    };\n    solve(root, 0);\n    cout << ans << '\\n';\n    return 0;\n}",
+      answer: '',
     },
     {
-        id: 27,
-        type: "programming",
-        score: 25,
-        title: "区间乘积",
-        problemNumber: "2024-06-l7-Q27",
-        description: "给定长度为 n 的正整数序列，统计有多少个区间 [l,r] 的所有元素乘积是完全平方数。",
-        inputDescription: "第一行 n。第二行 n 个正整数。",
-        outputDescription: "输出满足条件的区间数量。",
-        samples: [
-            { input: "5\n3 2 4 3 2", output: "2" }
-        ],
-        explanation: "把每个数分解质因数，只保留指数奇偶性，得到一个平方因子自由核的 bitmask。区间乘积是完全平方数，当且仅当前缀异或状态相同。统计相同前缀状态对数即可。",
-        tags: ["编程题", "前缀异或", "质因数分解", "哈希"],
-        template: "#include <bits/stdc++.h>\nusing namespace std;\n\nint main() {\n    ios::sync_with_stdio(false);\n    cin.tie(nullptr);\n    return 0;\n}",
-        referenceCode: "#include <bits/stdc++.h>\nusing namespace std;\n\nint calc(int x) {\n    int res = 0;\n    for (int i = 2; i * i <= x; ++i) if (x % i == 0) {\n        int c = 0;\n        while (x % i == 0) x /= i, c ^= 1;\n        if (c) res ^= (1 << (i-1));\n    }\n    if (x > 1) res ^= (1 << (x-1));\n    return res;\n}\n\nint main() {\n    ios::sync_with_stdio(false);\n    cin.tie(nullptr);\n\n    int n;\n    cin >> n;\n    map<int, long long> mp;\n    long long ans = 0;\n    int pre = 0;\n    mp[0] = 1;\n    for (int i = 0; i < n; ++i) {\n        int x; cin >> x;\n        pre ^= calc(x);\n        ans += mp[pre];\n        mp[pre]++;\n    }\n    cout << ans << '\\n';\n    return 0;\n}"
+      id: 27,
+      type: 'programming',
+      question: `
+# [GESP202406 七级] 区间乘积
+
+## 题目描述
+
+小杨有一个包含 \$n\$ 个正整数的序列 \$A=[a_1,a_2,\\ldots,a_n]\$。
+
+小杨想知道有多少对 \$\\langle l,r\\rangle(1\\leq l\\leq r\\leq n)\$ 满足 \$a_l\\times a_{l+1}\\times\\ldots\\times a_r\$ 为完全平方数。
+
+一个正整数 \$x\$ 为完全平方数当且仅当存在一个正整数 \$y\$ 使得 \$x=y\\times y\$。
+
+## 输入格式
+
+第一行包含一个正整数 \$n\$，代表正整数个数。
+
+第二行包含 \$n\$ 个正整数 \$a_i\$，代表序列 \$A\$。
+
+## 输出格式
+
+输出一个整数，代表满足要求的 \$\\langle l,r\\rangle\$ 数量。
+`,
+      score: 25,
+      explanation: "把每个数分解质因数，只保留指数奇偶性，得到一个平方因子自由核的 bitmask。区间乘积是完全平方数，当且仅当前缀异或状态相同。统计相同前缀状态对数即可。",
+      tags: ["编程题", "前缀异或", "质因数分解", "哈希"],
+      template: "#include <bits/stdc++.h>\nusing namespace std;\n\nint main() {\n    ios::sync_with_stdio(false);\n    cin.tie(nullptr);\n    return 0;\n}",
+      referenceCode: "#include <bits/stdc++.h>\nusing namespace std;\n\nint calc(int x) {\n    int res = 0;\n    for (int i = 2; i * i <= x; ++i) if (x % i == 0) {\n        int c = 0;\n        while (x % i == 0) x /= i, c ^= 1;\n        if (c) res ^= (1 << (i-1));\n    }\n    if (x > 1) res ^= (1 << (x-1));\n    return res;\n}\n\nint main() {\n    ios::sync_with_stdio(false);\n    cin.tie(nullptr);\n\n    int n;\n    cin >> n;\n    map<int, long long> mp;\n    long long ans = 0;\n    int pre = 0;\n    mp[0] = 1;\n    for (int i = 0; i < n; ++i) {\n        int x; cin >> x;\n        pre ^= calc(x);\n        ans += mp[pre];\n        mp[pre]++;\n    }\n    cout << ans << '\\n';\n    return 0;\n}",
+      answer: '',
     }
 ];
 

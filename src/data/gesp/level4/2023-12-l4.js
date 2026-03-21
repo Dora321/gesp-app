@@ -470,40 +470,70 @@ export const paperData = {
 
 const programmingQuestions = [
     {
-        id: 26,
-        type: "programming",
-        score: 25,
-        title: "小杨的字典",
-        problemNumber: "2023-12-23-04-C-01",
-        description: "在小杨的字典中，共有 n 个单词。这些单词仅由小写字母组成。单词的长度不超过 10。请你协助小杨实现字典的两个功能：1. 向字典中添加一个未曾出现过的单词；2. 查询字典中是否存在某个单词。",
-        inputDescription: "第一行包含一个正整数 n (1 ≤ n ≤ 1000)。接下来的 n 行，每行首先包含一个整数 op (1 或 2)，表示操作类型。如果 op = 1，后面跟着一个单词 s，表示添加操作；如果 op = 2，后面跟着一个单词 s，表示查询操作。",
-        outputDescription: "对于每个查询操作，如果单词存在输出 1，否则输出 0。",
-        samples: [
-            { input: "4\n1 apple\n2 apple\n2 banana\n1 banana", output: "1\n0" }
-        ],
-        answer: "#include <iostream>\n#include <string>\n#include <set>\nusing namespace std;\nint main() {\n    int n; cin >> n;\n    set<string> dict;\n    while (n--) {\n        int op; string s; cin >> op >> s;\n        if (op == 1) dict.insert(s);\n        else {\n            if (dict.count(s)) cout << 1 << endl;\n            else cout << 0 << endl;\n        }\n    }\n    return 0;\n}",
-        explanation: "使用 std::set<string> 或 std::unordered_set<string> 可以方便地实现添加和查询操作。LuoGu B3925。",
-        tags: ["编程题", "哈希", "集合"],
-        template: "#include <iostream>\n#include <string>\n#include <set>\nusing namespace std;\n\nint main() {\n    int n;\n    cin >> n;\n    // 在此编写代码\n    return 0;\n}",
-        referenceCode: "#include <iostream>\n#include <string>\n#include <set>\nusing namespace std;\nint main() {\n    int n; cin >> n;\n    set<string> dict;\n    while (n--) {\n        int op; string s; cin >> op >> s;\n        if (op == 1) dict.insert(s);\n        else {\n            if (dict.count(s)) cout << 1 << endl;\n            else cout << 0 << endl;\n        }\n    }\n    return 0;\n}"
+      id: 26,
+      type: 'programming',
+      question: `
+# [GESP202312 四级] 小杨的字典
+
+## 题目描述
+
+在遥远的星球，有两个国家 A 国和 B 国，他们使用着不同的语言：A 语言和 B 语言。小杨是 B 国的翻译官，他的工作是将 A 语言的文章翻译成 B 语言的文章。
+
+为了顺利完成工作，小杨制作了一本字典，里面记录了 \$N\$ 个 A 语言单词对应的 B 语言单词，巧合的是，这些单词都由地球上的 26 个小写英文字母组成。
+
+小杨希望你写一个程序，帮助他根据这本字典翻译一段 A 语言文章。这段文章由标点符号 \`!()-[]{}\\|;:'",./?\` 和一些 A 语言单词构成，每个单词之间必定由至少一个标点符号分割，你的程序需要把这段话中的所有 A 语言单词替换成它的 B 语言翻译。特别地，如果遇到不在字典中的单词，请使用大写 UNK 来替换它。
+
+例如，小杨的字典中包含 \$2\$ 个 A 语言单词 \`abc\` 和 \`d\`，它们的 B 语言翻译分别为 \`a\` 和 \`def\`，那么我们可以把 A 语言文章 \`abc.d.d.abc.abcd.\` 翻译成 B 语言文章 \`a.def.def.a.UNK.\` 其中，单词 \`abcd\` 不在词典内，因此我们需要使用 UNK 来替换它。
+
+## 输入格式
+
+第一行一个整数 \$N\$，表示词典中的条目数。保证  \$N \\le 100\$。
+
+接下来  \$N\$ 行，每行两个用单个空格隔开的字符串  \$A\$， \$B\$ ,分别表示字典中的一个 A 语言单词以及它对应的 B 语言翻译。保证所有 \$A\$ 不重复；保证 \$A\$ 和 \$B\$ 的长度不超过 \$10\$。
+
+最后一行一个字符串 \$S\$ ，表示需要翻译的 A 语言文章。保证字符串 \$S\$ 的长度不超过 \$1000\$，保证字符串 \$S\$ 只包含小写字母以及标点符号 \`!()-[]{}\\|;:'",./?\` 。
+
+## 输出格式
+
+输出一行，表示翻译后的结果。
+`,
+      score: 25,
+      answer: "#include <iostream>\n#include <string>\n#include <set>\nusing namespace std;\nint main() {\n    int n; cin >> n;\n    set<string> dict;\n    while (n--) {\n        int op; string s; cin >> op >> s;\n        if (op == 1) dict.insert(s);\n        else {\n            if (dict.count(s)) cout << 1 << endl;\n            else cout << 0 << endl;\n        }\n    }\n    return 0;\n}",
+      explanation: "使用 std::set<string> 或 std::unordered_set<string> 可以方便地实现添加和查询操作。LuoGu B3925。",
+      tags: ["编程题", "哈希", "集合"],
+      template: "#include <iostream>\n#include <string>\n#include <set>\nusing namespace std;\n\nint main() {\n    int n;\n    cin >> n;\n    // 在此编写代码\n    return 0;\n}",
+      referenceCode: "#include <iostream>\n#include <string>\n#include <set>\nusing namespace std;\nint main() {\n    int n; cin >> n;\n    set<string> dict;\n    while (n--) {\n        int op; string s; cin >> op >> s;\n        if (op == 1) dict.insert(s);\n        else {\n            if (dict.count(s)) cout << 1 << endl;\n            else cout << 0 << endl;\n        }\n    }\n    return 0;\n}",
     },
     {
-        id: 27,
-        type: "programming",
-        score: 25,
-        title: "田忌赛马",
-        problemNumber: "2023-12-23-04-C-02",
-        description: "田忌和齐王赛马。他们各有 n 匹马，每匹马都有一个速度值。赛马规则如下：每场比赛双方各出一匹马，速度快者获胜；如果速度相同，则为平局。赢一场得 1 分，平一场得 0 分，输一场扣 1 分。请问田忌最高能得多少分？",
-        inputDescription: "第一行一个正整数 n (1 ≤ n ≤ 2000)。第二行 n 个整数，表示田忌马的速度。第三行 n 个整数，表示齐王马的速度。",
-        outputDescription: "输出一个整数，代表田忌最高能得多少分。",
-        samples: [
-            { input: "3\n9 2 1\n8 5 0", output: "1" }
-        ],
-        answer: "#include <iostream>\n#include <vector>\n#include <algorithm>\nusing namespace std;\nint main() {\n    int n; cin >> n;\n    vector<int> a(n), b(n);\n    for (int i = 0; i < n; i++) cin >> a[i];\n    for (int i = 0; i < n; i++) cin >> b[i];\n    sort(a.begin(), a.end());\n    sort(b.begin(), b.end());\n    int la = 0, ra = n-1, lb = 0, rb = n-1;\n    int ans = 0;\n    while (la <= ra) {\n        if (a[ra] > b[rb]) { ans++; ra--; rb--; }\n        else if (a[la] > b[lb]) { ans++; la++; lb++; }\n        else {\n            if (a[la] < b[rb]) ans--;\n            la++; rb--;\n        }\n    }\n    cout << ans << endl;\n    return 0;\n}",
-        explanation: "贪心策略：1. 如果田忌最快的马比齐王最快的快，则比赛；2. 如果田忌最慢的马比齐王最慢的快，则比赛；3. 否则，用田忌最慢的马去消耗齐王最快的马。LuoGu B3926。",
-        tags: ["编程题", "贪心", "双指针"],
-        template: "#include <iostream>\n#include <vector>\n#include <algorithm>\nusing namespace std;\n\nint main() {\n    int n;\n    cin >> n;\n    // 在此编写代码\n    return 0;\n}",
-        referenceCode: "#include <iostream>\n#include <vector>\n#include <algorithm>\nusing namespace std;\nint main() {\n    int n; cin >> n;\n    vector<int> a(n), b(n);\n    for (int i = 0; i < n; i++) cin >> a[i];\n    for (int i = 0; i < n; i++) cin >> b[i];\n    sort(a.begin(), a.end());\n    sort(b.begin(), b.end());\n    int la = 0, ra = n-1, lb = 0, rb = n-1;\n    int ans = 0;\n    while (la <= ra) {\n        if (a[ra] > b[rb]) { ans++; ra--; rb--; }\n        else if (a[la] > b[lb]) { ans++; la++; lb++; }\n        else {\n            if (a[la] < b[rb]) ans--;\n            la++; rb--;\n        }\n    }\n    cout << ans << endl;\n    return 0;\n}"
+      id: 27,
+      type: 'programming',
+      question: `
+# [GESP202312 四级] 田忌赛马
+
+## 题目描述
+
+你要和田忌赛马。你们各自有 \$N\$ 匹马，并且要进行 \$N\$ 轮比赛，每轮比赛，你们都要各派出一匹马决出胜负。
+
+你的马匹的速度分别为 \$u_1,u_2,\\cdots，u_n\$，田忌的马匹的速度分别为 \$v_1,v_2,\\cdots,v_n\$。田忌会按顺序派出他的马匹，请问你要如何排兵布阵，才能赢得最多轮次的比赛？巧合的是，你和田忌的所有马匹的速度两两不同，因此不可能出现平局。
+
+## 输入格式
+
+第一行一个整数 \$N\$。保证 \$1\\le N \\le 5\\times 10^4\$
+
+接下来一行 \$N\$ 个用空格隔开的整数，依次为 \$u_1,u_2,\\cdots,u_n\$，表示你的马匹们的速度。保证 \$1\\le u_i\\le 2N\$。
+
+接下来一行 \$N\$ 个用空格隔开的整数，依次为 \$v_1,v_2,\\cdots,v_n\$，表示田忌的马匹们的速度。保证 \$1\\le v_i\\le 2N\$。
+
+## 输出格式
+
+输出一行，表示你最多能获胜几轮。
+`,
+      score: 25,
+      answer: "#include <iostream>\n#include <vector>\n#include <algorithm>\nusing namespace std;\nint main() {\n    int n; cin >> n;\n    vector<int> a(n), b(n);\n    for (int i = 0; i < n; i++) cin >> a[i];\n    for (int i = 0; i < n; i++) cin >> b[i];\n    sort(a.begin(), a.end());\n    sort(b.begin(), b.end());\n    int la = 0, ra = n-1, lb = 0, rb = n-1;\n    int ans = 0;\n    while (la <= ra) {\n        if (a[ra] > b[rb]) { ans++; ra--; rb--; }\n        else if (a[la] > b[lb]) { ans++; la++; lb++; }\n        else {\n            if (a[la] < b[rb]) ans--;\n            la++; rb--;\n        }\n    }\n    cout << ans << endl;\n    return 0;\n}",
+      explanation: "贪心策略：1. 如果田忌最快的马比齐王最快的快，则比赛；2. 如果田忌最慢的马比齐王最慢的快，则比赛；3. 否则，用田忌最慢的马去消耗齐王最快的马。LuoGu B3926。",
+      tags: ["编程题", "贪心", "双指针"],
+      template: "#include <iostream>\n#include <vector>\n#include <algorithm>\nusing namespace std;\n\nint main() {\n    int n;\n    cin >> n;\n    // 在此编写代码\n    return 0;\n}",
+      referenceCode: "#include <iostream>\n#include <vector>\n#include <algorithm>\nusing namespace std;\nint main() {\n    int n; cin >> n;\n    vector<int> a(n), b(n);\n    for (int i = 0; i < n; i++) cin >> a[i];\n    for (int i = 0; i < n; i++) cin >> b[i];\n    sort(a.begin(), a.end());\n    sort(b.begin(), b.end());\n    int la = 0, ra = n-1, lb = 0, rb = n-1;\n    int ans = 0;\n    while (la <= ra) {\n        if (a[ra] > b[rb]) { ans++; ra--; rb--; }\n        else if (a[la] > b[lb]) { ans++; la++; lb++; }\n        else {\n            if (a[la] < b[rb]) ans--;\n            la++; rb--;\n        }\n    }\n    cout << ans << endl;\n    return 0;\n}",
     }
 ];
 

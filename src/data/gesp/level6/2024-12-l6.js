@@ -2,52 +2,72 @@
 
 const programmingQuestions = [
     {
-        "id": 26,
-        "type": "programming",
-        "title": "树上游走",
-        "problemNumber": "2024-12-22-06-C-01",
-        "score": 25,
-        "description": "在无限二叉树中，节点 x 的左儿子是 2x、右儿子是 2x+1。给定起点和操作串 U/L/R，求最终所在节点。",
-        "inputDescription": "第一行 n,s。第二行长度为 n 的字符串，仅含 U/L/R。",
-        "outputDescription": "输出最终节点编号。",
-        "samples": [
-            {
-                "input": "3 2\nURR",
-                "output": "7"
-            }
-        ],
-        "explanation": "按操作串直接模拟即可：U 表示走到父节点 x/2，L/R 分别走到 2x 和 2x+1。",
-        "tags": [
-            "编程题",
-            "模拟",
-            "栈"
-        ],
-        "template": "#include <bits/stdc++.h>\nusing namespace std;\n\nint main() {\n    // 在此编写代码\n    return 0;\n}",
-        "referenceCode": "#include <bits/stdc++.h>\nusing namespace std;\n\nint main() {\n    ios::sync_with_stdio(false);\n    cin.tie(nullptr);\n\n    int n;\n    long long x;\n    cin >> n >> x;\n    string s;\n    cin >> s;\n    for (char ch : s) {\n        if (ch == 'U') x /= 2;\n        else if (ch == 'L') x = x * 2;\n        else x = x * 2+1;\n    }\n    cout << x << '\\n';\n    return 0;\n}"
+      id: 26,
+      type: 'programming',
+      question: `
+# [GESP202412 六级] 树上游走
+
+## 题目描述
+
+小杨有一棵包含无穷节点的二叉树（即每个节点都有左儿子节点和右儿子节点；除根节点外，每个节点都有父节点），其中根节点的编号为 \$1\$，对于节点 \$i\$，其左儿子的编号为 \$2\\times i\$，右儿子的编号为 \$2\\times i + 1\$。
+
+小杨会从节点 \$s\$ 开始在二叉树上移动，每次移动为以下三种移动方式的任意一种：
+
+- **第 1 种移动方式**：如果当前节点存在父亲节点，向上移动到当前节点的父节点，否则不移动；
+- **第 2 种移动方式**：移动到当前节点的左儿子；
+- **第 3 种移动方式**：移动到当前节点的右儿子。
+
+小杨想知道移动 \$n\$ 次后自己所处的节点编号。**数据保证最后所处的节点编号不超过 \$10^{12}\$**。
+
+## 输入格式
+
+第一行包含两个正整数 \$n\$ 和 \$s\$，代表移动次数和初始节点编号。
+
+第二行包含一个长度为 \$n\$ 且仅包含大写字母 \$\\tt{U}\$、\$\\tt{L}\$ 和 \$\\tt{R}\$ 的字符串，代表每次移动的方式，其中 \$\\tt{U}\$ 代表第 1 种移动方式，\$\\tt{L}\$ 代表第 2 种移动方式，\$\\tt{R}\$ 代表第 3 种移动方式。
+
+## 输出格式
+
+输出一个正整数，代表最后所处的节点编号。
+`,
+      score: 25,
+      explanation: "按操作串直接模拟即可：U 表示走到父节点 x/2，L/R 分别走到 2x 和 2x+1。",
+      tags: ["编程题", "模拟", "栈"],
+      template: "#include <bits/stdc++.h>\nusing namespace std;\n\nint main() {\n    // 在此编写代码\n    return 0;\n}",
+      referenceCode: "#include <bits/stdc++.h>\nusing namespace std;\n\nint main() {\n    ios::sync_with_stdio(false);\n    cin.tie(nullptr);\n\n    int n;\n    long long x;\n    cin >> n >> x;\n    string s;\n    cin >> s;\n    for (char ch : s) {\n        if (ch == 'U') x /= 2;\n        else if (ch == 'L') x = x * 2;\n        else x = x * 2+1;\n    }\n    cout << x << '\\n';\n    return 0;\n}",
+      answer: '',
     },
     {
-        "id": 27,
-        "type": "programming",
-        "title": "运送物资",
-        "problemNumber": "2024-12-22-06-C-02",
-        "score": 25,
-        "description": "A 市在 0，B 市在 x。给定若干运输站点及容量、若干货车去 A/B 的次数，给每辆货车分配一个初始站点，求最短总路程。",
-        "inputDescription": "第一行 n,m,x。接下来 n 行站点位置与容量。接下来 m 行每辆货车去 A/B 的次数。",
-        "outputDescription": "输出最短总路程。",
-        "samples": [
-            {
-                "input": "3 4 10\n1 1\n2 1\n8 3\n5 3\n7 2\n9 0\n1 10000",
-                "output": "40186"
-            }
-        ],
-        "explanation": "若一辆货车被放在位置 p 的站点，总代价是 a·p+b·(x-p) = b·x+(a-b)·p。常数项 b·x 与分配无关，因此只需按 a-b 的大小排序：更偏向 A 的货车配给更靠近 A 的站点，更偏向 B 的配给更靠近 B 的站点。",
-        "tags": [
-            "编程题",
-            "贪心",
-            "排序"
-        ],
-        "template": "#include <bits/stdc++.h>\nusing namespace std;\n\nint main() {\n    // 在此编写代码\n    return 0;\n}",
-        "referenceCode": "#include <bits/stdc++.h>\nusing namespace std;\n\nint main() {\n    ios::sync_with_stdio(false);\n    cin.tie(nullptr);\n\n    int n, m;\n    long long x;\n    cin >> n >> m >> x;\n    vector<pair<long long, int>> stations;\n    for (int i = 0; i < n; ++i) {\n        long long p;\n        int c;\n        cin >> p >> c;\n        stations.push_back({p, c});\n    }\n    vector<pair<long long, long long>> trucks(m);\n    long long ans = 0;\n    for (int i = 0; i < m; ++i) {\n        long long a, b;\n        cin >> a >> b;\n        trucks[i] = {a-b, b};\n        ans += b * x;\n    }\n\n    sort(stations.begin(), stations.end());\n    sort(trucks.begin(), trucks.end());\n\n    vector<long long> pos;\n    for (auto [p, c] : stations) {\n        for (int i = 0; i < c; ++i) pos.push_back(p);\n    }\n\n    for (int i = 0; i < m; ++i) {\n        ans += trucks[i].first * pos[i];\n    }\n    cout << ans << '\\n';\n    return 0;\n}"
+      id: 27,
+      type: 'programming',
+      question: `
+# [GESP202412 六级] 运送物资
+
+## 题目描述
+
+小杨管理着 \$m\$ 辆货车，每辆货车每天需要向 A 市和 B 市运送若干次物资。小杨同时拥有 \$n\$ 个运输站点，这些站点位于 A 市和 B 市之间。
+
+每次运送物资时，货车从初始运输站点出发，前往 A 市或 B 市，之后返回初始运输站点。A 市、B 市和运输站点的位置可以视作数轴上的三个点，其中 A 市的坐标为 \$0\$，B 市的坐标为 \$x\$，运输站点的坐标为 \$p\$ 且有 \$0 \\lt p \\lt x\$。货车每次去 A 市运送物资的总行驶路程为 \$2p\$，去 B 市运送物资的总行驶路程为 \$2(x - p)\$。
+
+对于第 \$i\$ 个运输站点，其位置为 \$p_i\$ 且至多作为 \$c_i\$ 辆车的初始运输站点。小杨想知道，在最优分配每辆货车的初始运输站点的情况下，所有货车每天的最短总行驶路程是多少。
+
+## 输入格式
+
+第一行包含三个正整数 \$n,m,x\$，代表运输站点数量、货车数量和两市距离。
+
+之后 \$n\$ 行，每行包含两个正整数 \$p_i\$ 和 \$c_i\$，代表第 \$i\$ 个运输站点的位置和最多容纳车辆数。
+
+之后 \$m\$ 行，每行包含两个正整数 \$a_i\$ 和 \$b_i\$，代表第 \$i\$ 辆货车每天需要向 A 市运送 \$a_i\$ 次物资，向 B 市运送 \$b_i\$ 次物资。
+
+## 输出格式
+
+输出一个正整数，代表所有货车每天的最短总行驶路程。
+`,
+      score: 25,
+      explanation: "若一辆货车被放在位置 p 的站点，总代价是 a·p+b·(x-p) = b·x+(a-b)·p。常数项 b·x 与分配无关，因此只需按 a-b 的大小排序：更偏向 A 的货车配给更靠近 A 的站点，更偏向 B 的配给更靠近 B 的站点。",
+      tags: ["编程题", "贪心", "排序"],
+      template: "#include <bits/stdc++.h>\nusing namespace std;\n\nint main() {\n    // 在此编写代码\n    return 0;\n}",
+      referenceCode: "#include <bits/stdc++.h>\nusing namespace std;\n\nint main() {\n    ios::sync_with_stdio(false);\n    cin.tie(nullptr);\n\n    int n, m;\n    long long x;\n    cin >> n >> m >> x;\n    vector<pair<long long, int>> stations;\n    for (int i = 0; i < n; ++i) {\n        long long p;\n        int c;\n        cin >> p >> c;\n        stations.push_back({p, c});\n    }\n    vector<pair<long long, long long>> trucks(m);\n    long long ans = 0;\n    for (int i = 0; i < m; ++i) {\n        long long a, b;\n        cin >> a >> b;\n        trucks[i] = {a-b, b};\n        ans += b * x;\n    }\n\n    sort(stations.begin(), stations.end());\n    sort(trucks.begin(), trucks.end());\n\n    vector<long long> pos;\n    for (auto [p, c] : stations) {\n        for (int i = 0; i < c; ++i) pos.push_back(p);\n    }\n\n    for (int i = 0; i < m; ++i) {\n        ans += trucks[i].first * pos[i];\n    }\n    cout << ans << '\\n';\n    return 0;\n}",
+      answer: '',
     }
 ];
 

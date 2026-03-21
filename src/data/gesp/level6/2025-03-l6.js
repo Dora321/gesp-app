@@ -2,56 +2,62 @@
 
 const programmingQuestions = [
     {
-        "id": 26,
-        "type": "programming",
-        "title": "树上漫步",
-        "problemNumber": "2025-03-23-06-C-01",
-        "score": 25,
-        "description": "给定一棵树。对每个起点，求从该点出发经过偶数步后可能停在多少个节点上（允许经过重复节点，0 步也算）。",
-        "inputDescription": "第一行 n。接下来 $n-1$ 行每行两个整数 u,v。",
-        "outputDescription": "输出一行 n 个整数，依次表示每个起点的答案。",
-        "samples": [
-            {
-                "input": "3\n1 3\n2 3",
-                "output": "2 2 1"
-            }
-        ],
-        "explanation": "树是二分图，把点按深度奇偶染成两色。走偶数步不会改变所在颜色，而且树上任意同色两点之间的距离都是偶数，所以从某点出发偶数步可达的点恰好是与它同色的全部节点。",
-        "tags": [
-            "编程题",
-            "树",
-            "二分图"
-        ],
-        "template": "#include <bits/stdc++.h>\nusing namespace std;\n\nint main() {\n    // 在此编写代码\n    return 0;\n}",
-        "referenceCode": "#include <bits/stdc++.h>\nusing namespace std;\n\nint main() {\n    ios::sync_with_stdio(false);\n    cin.tie(nullptr);\n\n    int n;\n    cin >> n;\n    vector<vector<int>> g(n+1);\n    for (int i = 0; i < n-1; ++i) {\n        int u, v;\n        cin >> u >> v;\n        g[u].push_back(v);\n        g[v].push_back(u);\n    }\n\n    vector<int> color(n+1, -1);\n    queue<int> q;\n    q.push(1);\n    color[1] = 0;\n    long long cnt[2] = {1, 0};\n    while (!q.empty()) {\n        int u = q.front(); q.pop();\n        for (int v : g[u]) {\n            if (color[v] == -1) {\n                color[v] = color[u] ^ 1;\n                ++cnt[color[v]];\n                q.push(v);\n            }\n        }\n    }\n\n    for (int i = 1; i <= n; ++i) {\n        if (i > 1) cout << ' ';\n        cout << cnt[color[i]];\n    }\n    cout << '\\n';\n    return 0;\n}"
+      id: 26,
+      type: 'programming',
+      question: `
+# [GESP202503 六级] 树上漫步
+
+## 题目描述
+
+小 A 有一棵 \$n\$ 个结点的树，这些结点依次以 \$1,2,\\cdots,n\$ 标号。
+
+小 A 想在这棵树上漫步。具体来说，小 A 会从树上的某个结点出发，每一步可以移动到与当前结点相邻的结点，并且小 A 只会在偶数步（可以是零步）后结束漫步。
+
+现在小 A 想知道，对于树上的每个结点，从这个结点出发开始漫步，经过偶数步能结束漫步的结点有多少个（可以经过重复的节点）。
+
+## 输入格式
+
+第一行，一个正整数 \$n\$。
+
+接下来 \$n-1\$ 行，每行两个整数 \$u_i,v_i\$，表示树上有⼀条连接结点 \$u_i\$ 和结点 \$v_i\$ 的边。
+
+## 输出格式
+
+一行，\$n\$ 个整数。第 \$i\$ 个整数表示从结点 \$i\$ 出发开始漫步，能结束漫步的结点数量。
+`,
+      score: 25,
+      explanation: "树是二分图，把点按深度奇偶染成两色。走偶数步不会改变所在颜色，而且树上任意同色两点之间的距离都是偶数，所以从某点出发偶数步可达的点恰好是与它同色的全部节点。",
+      tags: ["编程题", "树", "二分图"],
+      template: "#include <bits/stdc++.h>\nusing namespace std;\n\nint main() {\n    // 在此编写代码\n    return 0;\n}",
+      referenceCode: "#include <bits/stdc++.h>\nusing namespace std;\n\nint main() {\n    ios::sync_with_stdio(false);\n    cin.tie(nullptr);\n\n    int n;\n    cin >> n;\n    vector<vector<int>> g(n+1);\n    for (int i = 0; i < n-1; ++i) {\n        int u, v;\n        cin >> u >> v;\n        g[u].push_back(v);\n        g[v].push_back(u);\n    }\n\n    vector<int> color(n+1, -1);\n    queue<int> q;\n    q.push(1);\n    color[1] = 0;\n    long long cnt[2] = {1, 0};\n    while (!q.empty()) {\n        int u = q.front(); q.pop();\n        for (int v : g[u]) {\n            if (color[v] == -1) {\n                color[v] = color[u] ^ 1;\n                ++cnt[color[v]];\n                q.push(v);\n            }\n        }\n    }\n\n    for (int i = 1; i <= n; ++i) {\n        if (i > 1) cout << ' ';\n        cout << cnt[color[i]];\n    }\n    cout << '\\n';\n    return 0;\n}",
+      answer: '',
     },
     {
-        "id": 27,
-        "type": "programming",
-        "title": "环线",
-        "problemNumber": "2025-03-23-06-C-02",
-        "score": 25,
-        "description": "环线上有 n 个车站，每站快乐值为 a_i。选择起点和终点沿环线正向行驶，途中不重复经过车站，至少经过一个车站，求最大快乐值总和。",
-        "inputDescription": "第一行 n。第二行 n 个整数 a_i。",
-        "outputDescription": "输出最大快乐值。",
-        "samples": [
-            {
-                "input": "4\n-1 2 3 0",
-                "output": "5"
-            },
-            {
-                "input": "5\n-3 4 -5 1 3",
-                "output": "5"
-            }
-        ],
-        "explanation": "在环上等价于求长度介于 1 到 n 之间的最大连续子段和。把数组复制一遍，做前缀和，再用单调队列维护最近 n 个前缀和中的最小值即可。",
-        "tags": [
-            "编程题",
-            "前缀和",
-            "单调队列"
-        ],
-        "template": "#include <bits/stdc++.h>\nusing namespace std;\n\nint main() {\n    // 在此编写代码\n    return 0;\n}",
-        "referenceCode": "#include <bits/stdc++.h>\nusing namespace std;\n\nint main() {\n    ios::sync_with_stdio(false);\n    cin.tie(nullptr);\n\n    int n;\n    cin >> n;\n    vector<long long> a(2 * n+1), pre(2 * n+1, 0);\n    for (int i = 1; i <= n; ++i) {\n        cin >> a[i];\n        a[i+n] = a[i];\n    }\n    for (int i = 1; i <= 2 * n; ++i) pre[i] = pre[i-1]+a[i];\n\n    deque<int> dq;\n    dq.push_back(0);\n    long long ans = LLONG_MIN;\n    for (int i = 1; i <= 2 * n; ++i) {\n        while (!dq.empty() && dq.front() < i-n) dq.pop_front();\n        ans = max(ans, pre[i]-pre[dq.front()]);\n        while (!dq.empty() && pre[dq.back()] >= pre[i]) dq.pop_back();\n        dq.push_back(i);\n    }\n    cout << ans << '\\n';\n    return 0;\n}"
+      id: 27,
+      type: 'programming',
+      question: `
+# [GESP202503 六级] 环线
+
+## 题目描述
+
+小 A 喜欢坐地铁。地铁环线有 \$n\$ 个车站，依次以 \$1,2,\\cdots,n\$ 标号。车站 \$i\\ (1\\leq i
+
+## 输入格式
+
+第一行，一个正整数 \$n\$，表示车站的数量。
+
+第二行，\$n\$ 个整数 \$a_i\$，分别表示经过每个车站时获得的快乐值。
+
+## 输出格式
+
+一行，一个整数，表示小 A 能获得的最大快乐值。
+`,
+      score: 25,
+      explanation: "在环上等价于求长度介于 1 到 n 之间的最大连续子段和。把数组复制一遍，做前缀和，再用单调队列维护最近 n 个前缀和中的最小值即可。",
+      tags: ["编程题", "前缀和", "单调队列"],
+      template: "#include <bits/stdc++.h>\nusing namespace std;\n\nint main() {\n    // 在此编写代码\n    return 0;\n}",
+      referenceCode: "#include <bits/stdc++.h>\nusing namespace std;\n\nint main() {\n    ios::sync_with_stdio(false);\n    cin.tie(nullptr);\n\n    int n;\n    cin >> n;\n    vector<long long> a(2 * n+1), pre(2 * n+1, 0);\n    for (int i = 1; i <= n; ++i) {\n        cin >> a[i];\n        a[i+n] = a[i];\n    }\n    for (int i = 1; i <= 2 * n; ++i) pre[i] = pre[i-1]+a[i];\n\n    deque<int> dq;\n    dq.push_back(0);\n    long long ans = LLONG_MIN;\n    for (int i = 1; i <= 2 * n; ++i) {\n        while (!dq.empty() && dq.front() < i-n) dq.pop_front();\n        ans = max(ans, pre[i]-pre[dq.front()]);\n        while (!dq.empty() && pre[dq.back()] >= pre[i]) dq.pop_back();\n        dq.push_back(i);\n    }\n    cout << ans << '\\n';\n    return 0;\n}",
+      answer: '',
     }
 ];
 

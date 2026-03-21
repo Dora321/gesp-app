@@ -261,52 +261,57 @@ export const paperData = {
     ],
     programmingQuestions: [
     {
-        "id": 26,
-        "type": "programming",
-        "title": "平方之和",
-        "problemNumber": "B4002",
-        "score": 25,
-        "description": "小杨有 n 个正整数 a_1,a_2,\\dots,a_n，他想知道对于所有的 i (1\\le i\\le n)，是否存在两个正整数 x 和 y 满足 x× x+y × y=a_i。",
-        "inputDescription": "第一行包含一个正整数 n，代表正整数数量。 之后 n 行，每行包含一个正整数，代表 a_i。",
-        "outputDescription": "对于每个正整数 a_i，如果存在两个正整数 x 和 y 满足 x× x+y × y=a_i，输出 `Yes`，否则输出 `No`。",
-        "samples": [
-            {
-                "input": "3\n2\n5\n50",
-                "output": "No\nYes\nYes"
-            }
-        ],
-        "explanation": "对每个 a，枚举正整数 x，再检查 a-x^2 是否也是某个正整数的平方。只要找到一组 (x,y) 即可输出 Yes。",
-        "tags": [
-            "编程题",
-            "枚举",
-            "完全平方数"
-        ],
-        "template": "#include <bits/stdc++.h>\nusing namespace std;\n\nint main() {\n    ios::sync_with_stdio(false);\n    cin.tie(nullptr);\n\n    // 在此编写代码\n    return 0;\n}",
-        "referenceCode": "#include <bits/stdc++.h>\nusing namespace std;\n\nbool isSquare(long long x) {\n    if (x <= 0) return false;\n    long long r = sqrt((long double)x);\n    while (r * r < x) ++r;\n    while (r * r > x) --r;\n    return r * r == x;\n}\n\nint main() {\n    ios::sync_with_stdio(false);\n    cin.tie(nullptr);\n\n    int n;\n    cin >> n;\n    while (n--) {\n        long long a;\n        cin >> a;\n        bool ok = false;\n        for (long long x = 1; x * x < a; ++x) {\n            if (isSquare(a-x * x)) { ok = true; break; }\n        }\n        cout << (ok ? \"Yes\" : \"No\") << '\\n';\n    }\n    return 0;\n}"
+      id: 26,
+      type: 'programming',
+      question: `
+# [GESP202406 二级] 平方之和
+
+## 题目描述
+
+小杨有 \$n\$ 个正整数 \$a_1,a_2,\\dots,a_n\$，他想知道对于所有的 \$i (1\\le i\\le n)\$，是否存在两个正整数 \$x\$ 和 \$y\$ 满足 \$x\\times x+y \\times y=a_i\$。
+
+## 输入格式
+
+第一行包含一个正整数 \$n\$，代表正整数数量。
+之后 \$n\$ 行，每行包含一个正整数，代表 \$a_i\$。
+
+## 输出格式
+
+对于每个正整数 \$a_i\$，如果存在两个正整数 \$x\$ 和 \$y\$ 满足 \$x\\times x+y \\times y=a_i\$，输出 \`Yes\`，否则输出 \`No\`。
+`,
+      score: 25,
+      explanation: "对每个 a，枚举正整数 x，再检查 a-x^2 是否也是某个正整数的平方。只要找到一组 (x,y) 即可输出 Yes。",
+      tags: ["编程题", "枚举", "完全平方数"],
+      template: "#include <bits/stdc++.h>\nusing namespace std;\n\nint main() {\n    ios::sync_with_stdio(false);\n    cin.tie(nullptr);\n\n    // 在此编写代码\n    return 0;\n}",
+      referenceCode: "#include <bits/stdc++.h>\nusing namespace std;\n\nbool isSquare(long long x) {\n    if (x <= 0) return false;\n    long long r = sqrt((long double)x);\n    while (r * r < x) ++r;\n    while (r * r > x) --r;\n    return r * r == x;\n}\n\nint main() {\n    ios::sync_with_stdio(false);\n    cin.tie(nullptr);\n\n    int n;\n    cin >> n;\n    while (n--) {\n        long long a;\n        cin >> a;\n        bool ok = false;\n        for (long long x = 1; x * x < a; ++x) {\n            if (isSquare(a-x * x)) { ok = true; break; }\n        }\n        cout << (ok ? \"Yes\" : \"No\") << '\\n';\n    }\n    return 0;\n}",
+      answer: '',
     },
     {
-        "id": 27,
-        "type": "programming",
-        "title": "计数",
-        "problemNumber": "B4007",
-        "score": 25,
-        "description": "小杨认为自己的幸运数是正整数 k（注：保证 1 \\le k\\le 9）。小杨想知道，对于从 1 到 n 的所有正整数中， k 出现了多少次。",
-        "inputDescription": "第一行包含一个正整数 n。 第二行包含一个正整数 k。",
-        "outputDescription": "输出从 1 到 n 的所有正整数中， k 出现的次数。",
-        "samples": [
-            {
-                "input": "13\n1",
-                "output": "6"
-            }
-        ],
-        "explanation": "从 1 到 n 枚举每个整数，把它转成十进制字符串或不断取模，统计数字 k 出现的次数。",
-        "tags": [
-            "编程题",
-            "枚举",
-            "数位统计"
-        ],
-        "template": "#include <bits/stdc++.h>\nusing namespace std;\n\nint main() {\n    ios::sync_with_stdio(false);\n    cin.tie(nullptr);\n\n    // 在此编写代码\n    return 0;\n}",
-        "referenceCode": "#include <bits/stdc++.h>\nusing namespace std;\n\nint main() {\n    ios::sync_with_stdio(false);\n    cin.tie(nullptr);\n\n    long long n; int k;\n    cin >> n >> k;\n    long long ans = 0;\n    char target = char('0'+k);\n    for (long long i = 1; i <= n; ++i) {\n        string s = to_string(i);\n        for (char c : s) if (c == target) ++ans;\n    }\n    cout << ans << '\\n';\n    return 0;\n}"
+      id: 27,
+      type: 'programming',
+      question: `
+# [GESP202406 二级] 计数
+
+## 题目描述
+
+小杨认为自己的幸运数是正整数 \$k\$（注：保证 \$1 \\le k\\le 9\$）。小杨想知道，对于从 \$1\$ 到 \$n\$ 的所有正整数中， \$k\$ 出现了多少次。
+
+## 输入格式
+
+第一行包含一个正整数 \$n\$。
+
+第二行包含一个正整数 \$k\$。
+
+## 输出格式
+
+输出从 \$1\$ 到 \$n\$ 的所有正整数中， \$k\$ 出现的次数。
+`,
+      score: 25,
+      explanation: "从 1 到 n 枚举每个整数，把它转成十进制字符串或不断取模，统计数字 k 出现的次数。",
+      tags: ["编程题", "枚举", "数位统计"],
+      template: "#include <bits/stdc++.h>\nusing namespace std;\n\nint main() {\n    ios::sync_with_stdio(false);\n    cin.tie(nullptr);\n\n    // 在此编写代码\n    return 0;\n}",
+      referenceCode: "#include <bits/stdc++.h>\nusing namespace std;\n\nint main() {\n    ios::sync_with_stdio(false);\n    cin.tie(nullptr);\n\n    long long n; int k;\n    cin >> n >> k;\n    long long ans = 0;\n    char target = char('0'+k);\n    for (long long i = 1; i <= n; ++i) {\n        string s = to_string(i);\n        for (char c : s) if (c == target) ++ans;\n    }\n    cout << ans << '\\n';\n    return 0;\n}",
+      answer: '',
     }
 ]
 };

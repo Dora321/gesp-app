@@ -2,60 +2,66 @@
 
 const programmingQuestions = [
     {
-        "id": 26,
-        "type": "programming",
-        "title": "城市规划",
-        "problemNumber": "2025-12-l7-Q26",
-        "description": "A 国有 n 座城市、m 条双向道路，题目保证整张图连通。对于任意两座城市 u、v，它们的连通度定义为从 u 到 v 需要经过的最少道路条数。城市 u 的建设难度定义为它到其它所有城市的连通度最大值。请你找出建设难度最小的城市；若有多个答案，输出编号最小的那个。",
-        "inputDescription": "第一行两个正整数 n、m，表示城市数量与道路数量。接下来 m 行，每行两个正整数 u、v，表示一条连接城市 u 和 v 的双向道路。",
-        "outputDescription": "输出一个整数，表示建设难度最小的城市编号；若有多个最优解，输出编号最小者。",
-        "samples": [
-            {
-                "input": "3 3\n1 2\n1 3\n2 3",
-                "output": "1"
-            },
-            {
-                "input": "4 4\n1 2\n2 3\n3 4\n2 4",
-                "output": "2"
-            }
-        ],
-        "explanation": "对每个城市都做一次 BFS，得到它到所有城市的最短距离，并取其中最大值作为该城市的建设难度（也就是图论中的离心率）。最后在所有城市中选离心率最小的，若并列则取编号最小的。由于图无权且连通，BFS 可以在线性时间求出单源最短路。",
-        "tags": [
-            "编程题",
-            "图论",
-            "BFS",
-            "最短路"
-        ],
-        "template": "#include <bits/stdc++.h>\nusing namespace std;\n\nint main() {\n    ios::sync_with_stdio(false);\n    cin.tie(nullptr);\n\n    int n, m;\n    cin >> n >> m;\n    // 在此编写代码\n    return 0;\n}",
-        "referenceCode": "#include <bits/stdc++.h>\nusing namespace std;\n\nint main() {\n    ios::sync_with_stdio(false);\n    cin.tie(nullptr);\n\n    int n, m;\n    cin >> n >> m;\n    vector<vector<int>> g($n+1$);\n    for (int i = 0; i < m; ++i) {\n        int u, v;\n        cin >> u >> v;\n        g[u].push_back(v);\n        g[v].push_back(u);\n    }\n\n    int bestCity = 1;\n    int bestEcc = INT_MAX;\n    vector<int> dist($n+1$);\n    queue<int> q;\n\n    for (int s = 1; s <= n; ++s) {\n        fill(dist.begin(), dist.end(), -1);\n        while (!q.empty()) q.pop();\n        dist[s] = 0;\n        q.push(s);\n        while (!q.empty()) {\n            int u = q.front();\n            q.pop();\n            for (int v : g[u]) {\n                if (dist[v] == -1) {\n                    dist[v] = dist[u]+1;\n                    q.push(v);\n                }\n            }\n        }\n\n        int ecc = 0;\n        for (int i = 1; i <= n; ++i) ecc = max(ecc, dist[i]);\n        if (ecc < bestEcc) {\n            bestEcc = ecc;\n            bestCity = s;\n        }\n    }\n\n    cout << bestCity << '\n';\n    return 0;\n}"
+      id: 26,
+      type: 'programming',
+      question: `
+# [GESP202512 七级] 城市规划
+
+## 题目描述
+
+A 国有 \$n\$ 座城市，城市之间由 \$m\$ 条双向道路连接，任意一座城市均可经过若干条双向道路到达另一座城市。城市依次以 \$1,2,\\ldots,n\$ 编号。第 \$i\$（\$1\\le i\\le m\$）条双向道路连接城市 \$u_i\$ 与城市 \$v_i\$。
+
+对于城市 \$u\$ 和城市 \$v\$ 而言，它们之间的连通度 \$d(u,v)\$ 定义为从城市 \$u\$ 出发到达城市 \$v\$ 所需经过的双向道路的最少条数。由于道路是双向的，可以知道连通度满足 \$d(u,v)=d(v,u)\$，特殊地有 \$d(u,u)=0\$。
+
+现在 A 国正在规划城市建设方案。城市 \$u\$ 的建设难度为它到其它城市的最大连通度。请你求出建设难度最小的城市，如果有多个满足条件的城市，则选取其中编号最小的城市。形式化地，你需要求出使得 \$\\max\\limits_{1\\le i\\le n}d(u,i)\$ 最小的 \$u\$，若存在多个可能的 \$u\$ 则选取其中最小的。
+
+## 输入格式
+
+第一行，两个正整数 \$n,m\$，表示 A 国的城市数量与双向道路数量。
+
+接下来 \$m\$ 行，每行两个整数 \$u_i,v_i\$，表示一条连接城市 \$u_i\$ 与城市 \$v_i\$ 的双向道路。
+
+## 输出格式
+
+输出一行，一个整数，表示建设难度最小的城市编号。如果有多个满足条件的城市，则选取其中编号最小的城市。
+`,
+      explanation: "对每个城市都做一次 BFS，得到它到所有城市的最短距离，并取其中最大值作为该城市的建设难度（也就是图论中的离心率）。最后在所有城市中选离心率最小的，若并列则取编号最小的。由于图无权且连通，BFS 可以在线性时间求出单源最短路。",
+      tags: ["编程题", "图论", "BFS", "最短路"],
+      template: "#include <bits/stdc++.h>\nusing namespace std;\n\nint main() {\n    ios::sync_with_stdio(false);\n    cin.tie(nullptr);\n\n    int n, m;\n    cin >> n >> m;\n    // 在此编写代码\n    return 0;\n}",
+      referenceCode: "#include <bits/stdc++.h>\nusing namespace std;\n\nint main() {\n    ios::sync_with_stdio(false);\n    cin.tie(nullptr);\n\n    int n, m;\n    cin >> n >> m;\n    vector<vector<int>> g($n+1$);\n    for (int i = 0; i < m; ++i) {\n        int u, v;\n        cin >> u >> v;\n        g[u].push_back(v);\n        g[v].push_back(u);\n    }\n\n    int bestCity = 1;\n    int bestEcc = INT_MAX;\n    vector<int> dist($n+1$);\n    queue<int> q;\n\n    for (int s = 1; s <= n; ++s) {\n        fill(dist.begin(), dist.end(), -1);\n        while (!q.empty()) q.pop();\n        dist[s] = 0;\n        q.push(s);\n        while (!q.empty()) {\n            int u = q.front();\n            q.pop();\n            for (int v : g[u]) {\n                if (dist[v] == -1) {\n                    dist[v] = dist[u]+1;\n                    q.push(v);\n                }\n            }\n        }\n\n        int ecc = 0;\n        for (int i = 1; i <= n; ++i) ecc = max(ecc, dist[i]);\n        if (ecc < bestEcc) {\n            bestEcc = ecc;\n            bestCity = s;\n        }\n    }\n\n    cout << bestCity << '\n';\n    return 0;\n}",
+      answer: '',
     },
     {
-        "id": 27,
-        "type": "programming",
-        "title": "学习小组",
-        "problemNumber": "2025-12-l7-Q27",
-        "description": "班里有 n 名同学，第 i 名同学的发言积极度为 c_i。你需要把全部同学划分为若干个学习小组。若一个小组恰好有 s 人，则它的基础讨论积极度为 a_s；该小组的综合讨论积极度等于基础讨论积极度再加上组内发言积极度最大值与最小值之差。请在所有分组方案中，求综合讨论积极度之和的最大值。",
-        "inputDescription": "第一行一个正整数 n。第二行包含 n 个非负整数 c_1..c_n，表示每位同学的发言积极度。第三行包含 n 个非负整数 a_1..a_n，其中 a_s 表示人数为 s 的学习小组的基础讨论积极度。",
-        "outputDescription": "输出一个整数，表示所有分组方案中的最大综合讨论积极度之和。",
-        "samples": [
-            {
-                "input": "4\n2 1 3 2\n1 5 6 3",
-                "output": "12"
-            },
-            {
-                "input": "8\n1 3 2 4 3 5 4 6\n0 2 5 6 4 3 3 4",
-                "output": "21"
-            }
-        ],
-        "explanation": "先将所有积极度从小到大排序。一个人数大于 1 的小组对“最大值减最小值”的贡献，本质上是在所有学生中取一个当前最小值和一个当前最大值配成一组；组内其余成员只影响人数，不影响这部分差值。于是可以按“已经取走了多少对最小/最大值”做动态规划。设 f[j][k] 表示已经形成 j 个小组、共使用了 k 名同学时的最大总收益。若新建一个大小为 s 的小组，则会使用 1 个新的最小值、1 个新的最大值以及 s-2 个中间值，转移增量为 a_s+(sorted[n-j+1]-sorted[j])（当 s=1 时差值部分为 0）。枚举小组大小即可求得最优划分。",
-        "tags": [
-            "编程题",
-            "动态规划",
-            "排序",
-            "区间贪心思想"
-        ],
-        "template": "#include <bits/stdc++.h>\nusing namespace std;\n\nint main() {\n    ios::sync_with_stdio(false);\n    cin.tie(nullptr);\n\n    int n;\n    cin >> n;\n    // 在此编写代码\n    return 0;\n}",
-        "referenceCode": "#include <bits/stdc++.h>\nusing namespace std;\n\nint main() {\n    ios::sync_with_stdio(false);\n    cin.tie(nullptr);\n\n    int n;\n    cin >> n;\n    vector<int> c($n+1$), a($n+1$);\n    for (int i = 1; i <= n; ++i) cin >> c[i];\n    for (int i = 1; i <= n; ++i) cin >> a[i];\n\n    sort(c.begin()+1, c.end());\n\n    const int NEG = -1000000000;\n    vector<vector<int>> f($n+1$, vector<int>($n+1$, NEG));\n    f[0][0] = 0;\n    int ans = 0;\n\n    for (int groups = 1; groups <= n; ++groups) {\n        int diff = c[n-groups+1]-c[groups];\n        for (int used = 1; used <= n; ++used) {\n            for (int sz = 1; sz <= used; ++sz) {\n                if (f[groups-1][used-sz] <= NEG / 2) continue;\n                int add = a[sz]+(sz == 1 ? 0 : diff);\n                f[groups][used] = max(f[groups][used], f[groups-1][used-sz]+add);\n                if (used == n) ans = max(ans, f[groups][used]);\n            }\n        }\n    }\n\n    cout << ans << '\n';\n    return 0;\n}"
+      id: 27,
+      type: 'programming',
+      question: `
+# [GESP202512 七级] 学习小组
+
+## 题目描述
+
+班主任计划将班级里的 \$n\$ 名同学划分为若干个学习小组，每名同学都需要分入某一个学习小组中。班级里的同学依次以 \$1,2,\\ldots,n\$ 编号，第 \$i\$ 名同学有其发言积极度 \$c_i\$。
+
+观察发现，如果一个学习小组中恰好包含编号为 \$p_1,p_2,\\ldots,p_k\$ 的 \$k\$ 名同学，则该学习小组的基础讨论积极度为 \$a_k\$，综合讨论积极度为 \$a_k+\\max\\{c_{p_1},c_{p_2},\\ldots,c_{p_k}\\}−\\min\\{c_{p_1},c_{p_2},\\ldots,c_{p_k}\\}\$，也即基础讨论积极度加上小组内同学的最大发言积极度与最小发言积极度之差。
+
+给定基础讨论积极度 \$a_1,a_2,\\ldots,a_n\$，请你计算将这 \$n\$ 名同学划分为学习小组的所有可能方案中，综合讨论积极度之和的最大值。
+
+## 输入格式
+
+第一行，一个正整数 \$n\$，表示班级人数。
+
+第二行，\$n\$ 个非负整数 \$c_1,c_2,\\ldots,c_n\$，表示每位同学的发言积极度。
+
+第三行，\$n\$ 个非负整数 \$a_1,a_2,\\ldots,a_n\$，表示不同人数学习小组的基础讨论积极度。
+
+## 输出格式
+
+输出一行，一个整数，表示所有划分方案中，学习小组综合讨论积极度之和的最大值。
+`,
+      explanation: "先将所有积极度从小到大排序。一个人数大于 1 的小组对“最大值减最小值”的贡献，本质上是在所有学生中取一个当前最小值和一个当前最大值配成一组；组内其余成员只影响人数，不影响这部分差值。于是可以按“已经取走了多少对最小/最大值”做动态规划。设 f[j][k] 表示已经形成 j 个小组、共使用了 k 名同学时的最大总收益。若新建一个大小为 s 的小组，则会使用 1 个新的最小值、1 个新的最大值以及 s-2 个中间值，转移增量为 a_s+(sorted[n-j+1]-sorted[j])（当 s=1 时差值部分为 0）。枚举小组大小即可求得最优划分。",
+      tags: ["编程题", "动态规划", "排序", "区间贪心思想"],
+      template: "#include <bits/stdc++.h>\nusing namespace std;\n\nint main() {\n    ios::sync_with_stdio(false);\n    cin.tie(nullptr);\n\n    int n;\n    cin >> n;\n    // 在此编写代码\n    return 0;\n}",
+      referenceCode: "#include <bits/stdc++.h>\nusing namespace std;\n\nint main() {\n    ios::sync_with_stdio(false);\n    cin.tie(nullptr);\n\n    int n;\n    cin >> n;\n    vector<int> c($n+1$), a($n+1$);\n    for (int i = 1; i <= n; ++i) cin >> c[i];\n    for (int i = 1; i <= n; ++i) cin >> a[i];\n\n    sort(c.begin()+1, c.end());\n\n    const int NEG = -1000000000;\n    vector<vector<int>> f($n+1$, vector<int>($n+1$, NEG));\n    f[0][0] = 0;\n    int ans = 0;\n\n    for (int groups = 1; groups <= n; ++groups) {\n        int diff = c[n-groups+1]-c[groups];\n        for (int used = 1; used <= n; ++used) {\n            for (int sz = 1; sz <= used; ++sz) {\n                if (f[groups-1][used-sz] <= NEG / 2) continue;\n                int add = a[sz]+(sz == 1 ? 0 : diff);\n                f[groups][used] = max(f[groups][used], f[groups-1][used-sz]+add);\n                if (used == n) ans = max(ans, f[groups][used]);\n            }\n        }\n    }\n\n    cout << ans << '\n';\n    return 0;\n}",
+      answer: '',
     }
 ];
 

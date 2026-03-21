@@ -2,60 +2,64 @@
 
 const programmingQuestions = [
     {
-        "id": 26,
-        "type": "programming",
-        "title": "连通图",
-        "problemNumber": "2025-09-l7-Q26",
-        "description": "给定一张包含 n 个节点、m 条边的无向图。若从一个节点经过若干条边能够到达另一个节点，则称两点连通。你可以向图中再添加若干条边，请求出使整张图变为连通图所需添加边数的最小值。注意原图中可能存在重边和自环。",
-        "inputDescription": "第一行两个正整数 n、m，表示点数与边数。接下来 m 行每行两个正整数 u、v，表示图中的一条边。",
-        "outputDescription": "输出一行一个整数，表示最少需要添加的边数。",
-        "samples": [
-            {
-                "input": "4 4\n1 2\n2 3\n3 1\n1 4",
-                "output": "0"
-            },
-            {
-                "input": "6 4\n1 2\n2 3\n3 1\n6 5",
-                "output": "2"
-            }
-        ],
-        "explanation": "若图中共有 c 个连通块，那么至少需要 c-1 条边才能把它们全部连成一个连通块；同时任选一个连通块作为中心，把其余连通块各接一条边过来，也恰好能用 c-1 条边完成，因此答案就是连通块数量减 1。用并查集或 DFS/BFS 统计连通块即可。自环不会改变连通性，重边也只会重复合并同一对点。",
-        "tags": [
-            "编程题",
-            "图论",
-            "并查集",
-            "连通块"
-        ],
-        "template": "#include <bits/stdc++.h>\nusing namespace std;\n\nint main() {\n    ios::sync_with_stdio(false);\n    cin.tie(nullptr);\n\n    int n, m;\n    cin >> n >> m;\n    // 在此编写代码\n    return 0;\n}",
-        "referenceCode": "#include <bits/stdc++.h>\nusing namespace std;\n\nstruct DSU {\n    vector<int> p, sz;\n    DSU(int n) : p($n+1$), sz($n+1$, 1) {\n        iota(p.begin(), p.end(), 0);\n    }\n    int find(int x) {\n        return p[x] == x ? x : p[x] = find(p[x]);\n    }\n    void unite(int a, int b) {\n        a = find(a);\n        b = find(b);\n        if (a == b) return;\n        if (sz[a] < sz[b]) swap(a, b);\n        p[b] = a;\n        sz[a] += sz[b];\n    }\n};\n\nint main() {\n    ios::sync_with_stdio(false);\n    cin.tie(nullptr);\n\n    int n, m;\n    cin >> n >> m;\n    DSU dsu(n);\n    for (int i = 0; i < m; ++i) {\n        int u, v;\n        cin >> u >> v;\n        dsu.unite(u, v);\n    }\n\n    int components = 0;\n    for (int i = 1; i <= n; ++i) {\n        if (dsu.find(i) == i) components++;\n    }\n    cout << components-1 << '\n';\n    return 0;\n}"
+      id: 26,
+      type: 'programming',
+      question: `
+# [GESP202509 七级] 连通图
+
+## 题目描述
+
+给定一张包含 \$n\$ 个结点与 \$m\$ 条边的无向图，结点依次以 \$1,2,\\ldots,n\$ 编号，第 \$i\$ 条边（\$1\\le i\\le m\$）连接结点 \$u_i\$ 与结点 \$v_i\$。如果从一个结点经过若干条边可以到达另一个结点，则称这两个结点是连通的。
+
+你需要向图中加入若干条边，使得图中任意两个结点都是连通的。请你求出最少需要加入的边的条数。
+
+注意给出的图中可能包含重边与自环。
+
+## 输入格式
+
+第一行，两个正整数 \$n,m\$，表示图的点数与边数。
+
+接下来 \$m\$ 行，每行两个正整数 \$u_i,v_i\$，表示图中一条连接结点 \$u_i\$ 与结点 \$v_i\$ 的边。
+
+## 输出格式
+
+输出一行，一个整数，表示使得图中任意两个结点连通所需加入的边的最少数量。
+`,
+      explanation: "若图中共有 c 个连通块，那么至少需要 c-1 条边才能把它们全部连成一个连通块；同时任选一个连通块作为中心，把其余连通块各接一条边过来，也恰好能用 c-1 条边完成，因此答案就是连通块数量减 1。用并查集或 DFS/BFS 统计连通块即可。自环不会改变连通性，重边也只会重复合并同一对点。",
+      tags: ["编程题", "图论", "并查集", "连通块"],
+      template: "#include <bits/stdc++.h>\nusing namespace std;\n\nint main() {\n    ios::sync_with_stdio(false);\n    cin.tie(nullptr);\n\n    int n, m;\n    cin >> n >> m;\n    // 在此编写代码\n    return 0;\n}",
+      referenceCode: "#include <bits/stdc++.h>\nusing namespace std;\n\nstruct DSU {\n    vector<int> p, sz;\n    DSU(int n) : p($n+1$), sz($n+1$, 1) {\n        iota(p.begin(), p.end(), 0);\n    }\n    int find(int x) {\n        return p[x] == x ? x : p[x] = find(p[x]);\n    }\n    void unite(int a, int b) {\n        a = find(a);\n        b = find(b);\n        if (a == b) return;\n        if (sz[a] < sz[b]) swap(a, b);\n        p[b] = a;\n        sz[a] += sz[b];\n    }\n};\n\nint main() {\n    ios::sync_with_stdio(false);\n    cin.tie(nullptr);\n\n    int n, m;\n    cin >> n >> m;\n    DSU dsu(n);\n    for (int i = 0; i < m; ++i) {\n        int u, v;\n        cin >> u >> v;\n        dsu.unite(u, v);\n    }\n\n    int components = 0;\n    for (int i = 1; i <= n; ++i) {\n        if (dsu.find(i) == i) components++;\n    }\n    cout << components-1 << '\n';\n    return 0;\n}",
+      answer: '',
     },
     {
-        "id": 27,
-        "type": "programming",
-        "title": "金币收集",
-        "problemNumber": "2025-09-l7-Q27",
-        "description": "数轴上会出现 n 枚金币，第 i 枚金币会在时刻 t_i 出现在坐标 x_i。小 A 初始时刻为 0、初始坐标为 0。每个单位时间内，他只能选择保持不动，或向右移动 1 个单位；也就是说，位置始终单调不减。只有在时刻 t_i 恰好位于坐标 x_i 时才能收集到第 i 枚金币。请计算最多能收集多少枚金币。",
-        "inputDescription": "第一行一个正整数 n。接下来 n 行，每行两个正整数 x_i、t_i，表示一枚金币出现的位置和时刻。",
-        "outputDescription": "输出一个整数，表示最多可以收集到的金币数量。",
-        "samples": [
-            {
-                "input": "3\n1 6\n3 7\n2 4",
-                "output": "2"
-            },
-            {
-                "input": "4\n1 1\n2 2\n1 3\n2 4",
-                "output": "3"
-            }
-        ],
-        "explanation": "若先收集金币 i 再收集金币 j，则必须满足 x_i≤x_j，且从 (x_i,t_i) 走到 (x_j,t_j) 来得及，即 t_j-t_i≥x_j-x_i。把式子改写为 t_j-x_j≥t_i-x_i。于是问题等价于：在所有满足 x_i≤t_i 的金币中，先按 x_i 从小到大排序（x 相同再按 t 排序），再在序列 v_i=t_i-x_i 上求最长不下降子序列长度。因为路径上位置不能后退，这正好刻画了一条可行收集序列。",
-        "tags": [
-            "编程题",
-            "贪心",
-            "最长不下降子序列",
-            "排序"
-        ],
-        "template": "#include <bits/stdc++.h>\nusing namespace std;\n\nint main() {\n    ios::sync_with_stdio(false);\n    cin.tie(nullptr);\n\n    int n;\n    cin >> n;\n    // 在此编写代码\n    return 0;\n}",
-        "referenceCode": "#include <bits/stdc++.h>\nusing namespace std;\n\nstruct Coin {\n    int x, t, v;\n};\n\nint main() {\n    ios::sync_with_stdio(false);\n    cin.tie(nullptr);\n\n    int n;\n    cin >> n;\n    vector<Coin> coins;\n    coins.reserve(n);\n    for (int i = 0; i < n; ++i) {\n        int x, t;\n        cin >> x >> t;\n        if (t >= x) coins.push_back({x, t, t-x});\n    }\n\n    sort(coins.begin(), coins.end(), [](const Coin& a, const Coin& b) {\n        if (a.x != b.x) return a.x < b.x;\n        return a.t < b.t;\n    });\n\n    vector<int> lis;\n    for (auto &coin : coins) {\n        auto it = upper_bound(lis.begin(), lis.end(), coin.v);\n        if (it == lis.end()) lis.push_back(coin.v);\n        else *it = coin.v;\n    }\n\n    cout << lis.size() << '\n';\n    return 0;\n}"
+      id: 27,
+      type: 'programming',
+      question: `
+# [GESP202509 七级] 金币收集
+
+## 题目描述
+
+小 A 正在游玩收集金币的游戏。具体来说，在数轴上将会出现 \$n\$ 枚金币，其中第 \$i\$ 枚（\$1\\le i\\le n\$）金币将会在时刻 \$t_i\$ 出现在数轴上坐标为 \$x_i\$ 的位置。小 A 必须在时刻 \$t_i\$ 恰好位于坐标 \$x_i\$，才可以获得第 \$i\$ 枚金币。
+
+游戏开始时为时刻 \$0\$，此时小 A 的坐标为 \$0\$。正常来说，小 A 可以按游戏机的按键在数轴上左右移动，但不幸的是游戏机的左方向键失灵了。小 A 每个时刻只能选择保持不动，或是向右移动一个单位。换言之，如果小 A 在时刻 \$t\$ 的坐标为 \$x\$，那么他在时刻 \$t+1\$ 的坐标只能是 \$x\$ 或是 \$x+1\$ 二者之一，分别对应保持不动和向右移动。
+
+小 A 想知道他最多能收集多少枚金币。你能帮他收集最多的金币吗？
+
+## 输入格式
+
+第一行，一个正整数 \$n\$，表示金币的数量。
+
+接下来 \$n\$ 行，每行两个正整数 \$x_i,t_i\$，分别表示金币出现的坐标与时刻。
+
+## 输出格式
+
+输出一行，一个整数，表示小 A 最多能收集的金币数量。
+`,
+      explanation: "若先收集金币 i 再收集金币 j，则必须满足 x_i≤x_j，且从 (x_i,t_i) 走到 (x_j,t_j) 来得及，即 t_j-t_i≥x_j-x_i。把式子改写为 t_j-x_j≥t_i-x_i。于是问题等价于：在所有满足 x_i≤t_i 的金币中，先按 x_i 从小到大排序（x 相同再按 t 排序），再在序列 v_i=t_i-x_i 上求最长不下降子序列长度。因为路径上位置不能后退，这正好刻画了一条可行收集序列。",
+      tags: ["编程题", "贪心", "最长不下降子序列", "排序"],
+      template: "#include <bits/stdc++.h>\nusing namespace std;\n\nint main() {\n    ios::sync_with_stdio(false);\n    cin.tie(nullptr);\n\n    int n;\n    cin >> n;\n    // 在此编写代码\n    return 0;\n}",
+      referenceCode: "#include <bits/stdc++.h>\nusing namespace std;\n\nstruct Coin {\n    int x, t, v;\n};\n\nint main() {\n    ios::sync_with_stdio(false);\n    cin.tie(nullptr);\n\n    int n;\n    cin >> n;\n    vector<Coin> coins;\n    coins.reserve(n);\n    for (int i = 0; i < n; ++i) {\n        int x, t;\n        cin >> x >> t;\n        if (t >= x) coins.push_back({x, t, t-x});\n    }\n\n    sort(coins.begin(), coins.end(), [](const Coin& a, const Coin& b) {\n        if (a.x != b.x) return a.x < b.x;\n        return a.t < b.t;\n    });\n\n    vector<int> lis;\n    for (auto &coin : coins) {\n        auto it = upper_bound(lis.begin(), lis.end(), coin.v);\n        if (it == lis.end()) lis.push_back(coin.v);\n        else *it = coin.v;\n    }\n\n    cout << lis.size() << '\n';\n    return 0;\n}",
+      answer: '',
     }
 ];
 

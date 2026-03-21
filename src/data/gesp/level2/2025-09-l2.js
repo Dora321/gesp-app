@@ -37,52 +37,68 @@ export const paperData = {
     ],
     programmingQuestions: [
     {
-        "id": 26,
-        "type": "programming",
-        "title": "优美的数字",
-        "problemNumber": "B4411",
-        "score": 25,
-        "description": "如果一个正整数在十进制下的所有数位都相同，小 A 就会觉得这个正整数很优美。例如，正整数 6 的数位都是 6，所以 6 是优美的。正整数 99 的数位都是 9，所以 99 是优美的。正整数 123 的数位不都相同，所以 123 并不优美。 \n小 A 想知道不超过 n 的正整数中有多少优美的数字。你能帮他数一数吗？",
-        "inputDescription": "一行，一个正整数 n。",
-        "outputDescription": "一行，一个正整数，表示不超过 n 的优美正整数的数量。",
-        "samples": [
-            {
-                "input": "120",
-                "output": "18"
-            }
-        ],
-        "explanation": "优美数字形如 1, 2, ..., 9, 11, 22, ..., 99, 111...。统计不超过 n 的个数即可。",
-        "tags": [
-            "编程题",
-            "模拟",
-            "构造"
-        ],
-        "template": "#include <bits/stdc++.h>\nusing namespace std;\n\nint main() {\n    long long n;\n    cin >> n;\n    // 在此填写代码\n    return 0;\n}",
-        "referenceCode": "#include <bits/stdc++.h>\nusing namespace std;\n\nint main() {\n    long long n;\n    cin >> n;\n    int ans = 0;\n    for (int d = 1; d <= 9; ++d) {\n        long long x = 0;\n        while (true) {\n            x = x * 10+d;\n            if (x > n) break;\n            ans++;\n        }\n    }\n    cout << ans << endl;\n    return 0;\n}"
+      id: 26,
+      type: 'programming',
+      question: `
+# [GESP202509 二级] 优美的数字
+
+## 题目描述
+
+如果一个正整数在十进制下的所有数位都相同，小 A 就会觉得这个正整数很优美。例如，正整数 \$6\$ 的数位都是 \$6\$，所以 \$6\$ 是优美的。正整数 \$99\$ 的数位都是 \$9\$，所以 \$99\$ 是优美的。正整数 \$123\$ 的数位不都相同，所以 \$123\$ 并不优美。
+
+小 A 想知道不超过 \$n\$ 的正整数中有多少优美的数字。你能帮他数一数吗？
+
+## 输入格式
+
+一行，一个正整数 \$n\$。
+
+## 输出格式
+
+一行，一个正整数，表示不超过 \$n\$ 的优美正整数的数量。
+`,
+      score: 25,
+      explanation: "优美数字形如 1, 2, ..., 9, 11, 22, ..., 99, 111...。统计不超过 n 的个数即可。",
+      tags: ["编程题", "模拟", "构造"],
+      template: "#include <bits/stdc++.h>\nusing namespace std;\n\nint main() {\n    long long n;\n    cin >> n;\n    // 在此填写代码\n    return 0;\n}",
+      referenceCode: "#include <bits/stdc++.h>\nusing namespace std;\n\nint main() {\n    long long n;\n    cin >> n;\n    int ans = 0;\n    for (int d = 1; d <= 9; ++d) {\n        long long x = 0;\n        while (true) {\n            x = x * 10+d;\n            if (x > n) break;\n            ans++;\n        }\n    }\n    cout << ans << endl;\n    return 0;\n}",
+      answer: '',
     },
     {
-        "id": 27,
-        "type": "programming",
-        "title": "菱形",
-        "problemNumber": "B4412",
-        "score": 25,
-        "description": "小 A 想绘制一个菱形。具体来说，需要绘制的菱形是一个 n 行 n 列的字符画，n 是一个大于 1 的奇数。菱形的四个顶点依次位于第 1 行、第 1 列、第 n 行、第 n 列的正中间，使用 # 绘制。相邻顶点之间也用 # 连接。其余位置都是 .。",
-        "inputDescription": "一行，一个正整数 n。",
-        "outputDescription": "输出共 n 行，表示对应的菱形。",
-        "samples": [
-            {
-                "input": "5",
-                "output": "..#..\n.#.#.\n#...#\n.#.#.\n..#.."
-            }
-        ],
-        "explanation": "计算每个点相对于中心点的曼哈顿距离。若距离等于 n/2，则输出 #。",
-        "tags": [
-            "编程题",
-            "循环",
-            "曼哈顿距离"
-        ],
-        "template": "#include <bits/stdc++.h>\nusing namespace std;\n\nint main() {\n    int n;\n    cin >> n;\n    // 在此填写代码\n    return 0;\n}",
-        "referenceCode": "#include <bits/stdc++.h>\nusing namespace std;\n\nint main() {\n    int n;\n    cin >> n;\n    int mid = n / 2;\n    for (int i = 0; i < n; i++) {\n        for (int j = 0; j < n; j++) {\n            if (abs(i-mid)+abs(j-mid) == mid) cout << '#';\n            else cout << '.';\n        }\n        cout << endl;\n    }\n    return 0;\n}"
+      id: 27,
+      type: 'programming',
+      question: `
+# [GESP202509 二级] 菱形
+
+## 题目描述
+
+小 A 想绘制一个菱形。具体来说，需要绘制的菱形是一个 \$n\$ 行 \$n\$ 列的字符画，\$n\$ 是一个大于 \$1\$ 的奇数。菱形的四个顶点依次位于第 \$1\$ 行、第 \$1\$ 列、第 \$n\$ 行、第 \$n\$ 列的正中间，使用 \`#\` 绘制。相邻顶点之间也用 \`#\` 连接。其余位置都是 \`.\`。
+
+例如，一个 \$5\$ 行 \$5\$ 列的菱形字符画是这样的：
+
+\`\`\`
+..#..
+.#.#.
+#...#
+.#.#.
+..#..
+\`\`\`
+
+给定 \$n\$，请你帮小 A 绘制对应的菱形。
+
+## 输入格式
+
+一行，一个正整数 \$n\$。
+
+## 输出格式
+
+输出共 \$n\$ 行，表示对应的菱形。
+`,
+      score: 25,
+      explanation: "计算每个点相对于中心点的曼哈顿距离。若距离等于 n/2，则输出 #。",
+      tags: ["编程题", "循环", "曼哈顿距离"],
+      template: "#include <bits/stdc++.h>\nusing namespace std;\n\nint main() {\n    int n;\n    cin >> n;\n    // 在此填写代码\n    return 0;\n}",
+      referenceCode: "#include <bits/stdc++.h>\nusing namespace std;\n\nint main() {\n    int n;\n    cin >> n;\n    int mid = n / 2;\n    for (int i = 0; i < n; i++) {\n        for (int j = 0; j < n; j++) {\n            if (abs(i-mid)+abs(j-mid) == mid) cout << '#';\n            else cout << '.';\n        }\n        cout << endl;\n    }\n    return 0;\n}",
+      answer: '',
     }
 ]
 };

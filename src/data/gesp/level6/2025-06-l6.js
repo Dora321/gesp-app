@@ -2,51 +2,62 @@
 
 const programmingQuestions = [
     {
-        "id": 26,
-        "type": "programming",
-        "title": "学习小组",
-        "problemNumber": "2025-06-22-06-C-01",
-        "score": 25,
-        "description": "将 n 名同学划分为若干组。若某组恰好有 i 人，则该组贡献 a_i。求最大总积极度。",
-        "inputDescription": "第一行 n。第二行 n 个非负整数 a_i。",
-        "outputDescription": "输出最大总积极度。",
-        "samples": [
-            {
-                "input": "3\n1 2 3",
-                "output": "3"
-            }
-        ],
-        "explanation": "设 dp[i] 为前 i 名同学最优分组后的最大积极度。最后一组人数可以是任意 j（1<=j<=i），于是转移为 dp[i]=max(dp[i-j]+a_j)。",
-        "tags": [
-            "编程题",
-            "动态规划"
-        ],
-        "template": "#include <bits/stdc++.h>\nusing namespace std;\n\nint main() {\n    // 在此编写代码\n    return 0;\n}",
-        "referenceCode": "#include <bits/stdc++.h>\nusing namespace std;\n\nint main() {\n    ios::sync_with_stdio(false);\n    cin.tie(nullptr);\n\n    int n;\n    cin >> n;\n    vector<long long> a(n+1), dp(n+1, 0);\n    for (int i = 1; i <= n; ++i) cin >> a[i];\n    for (int i = 1; i <= n; ++i) {\n        for (int j = 1; j <= i; ++j) {\n            dp[i] = max(dp[i], dp[i-j]+a[j]);\n        }\n    }\n    cout << dp[n] << '\\n';\n    return 0;\n}"
+      id: 26,
+      type: 'programming',
+      question: `
+# [GESP202506 六级] 学习小组
+
+## 题目描述
+
+班主任计划将班级里的 \$ n \$ 名同学划分为若干个学习小组，每名同学都需要分入某一个学习小组中。观察发现，如果一个学习小组中恰好包含 \$ k \$ 名同学，则该学习小组的讨论积极度为 \$ a_k \$。
+
+给定讨论积极度 \$ a_1, a_2, \\ldots, a_n \$，请你计算将这 \$ n \$ 名同学划分为学习小组的所有可能方案中，讨论积极度之和的最大值。
+
+## 输入格式
+
+第一行，一个正整数 \$ n \$，表示班级人数。
+
+第二行，\$ n \$ 个非负整数 \$ a_1, a_2, \\ldots, a_n \$，表示不同人数学习小组的讨论积极度。
+
+## 输出格式
+
+输出共一行，一个整数，表示所有划分方案中，学习小组讨论积极度之和的最大值。
+`,
+      score: 25,
+      explanation: "设 dp[i] 为前 i 名同学最优分组后的最大积极度。最后一组人数可以是任意 j（1<=j<=i），于是转移为 dp[i]=max(dp[i-j]+a_j)。",
+      tags: ["编程题", "动态规划"],
+      template: "#include <bits/stdc++.h>\nusing namespace std;\n\nint main() {\n    // 在此编写代码\n    return 0;\n}",
+      referenceCode: "#include <bits/stdc++.h>\nusing namespace std;\n\nint main() {\n    ios::sync_with_stdio(false);\n    cin.tie(nullptr);\n\n    int n;\n    cin >> n;\n    vector<long long> a(n+1), dp(n+1, 0);\n    for (int i = 1; i <= n; ++i) cin >> a[i];\n    for (int i = 1; i <= n; ++i) {\n        for (int j = 1; j <= i; ++j) {\n            dp[i] = max(dp[i], dp[i-j]+a[j]);\n        }\n    }\n    cout << dp[n] << '\\n';\n    return 0;\n}",
+      answer: '',
     },
     {
-        "id": 27,
-        "type": "programming",
-        "title": "最大因数",
-        "problemNumber": "2025-06-22-06-C-02",
-        "score": 25,
-        "description": "构造一棵有根树：1 为根，x>1 的父节点是 x 的最大真因数。多次询问两节点之间的距离。",
-        "inputDescription": "第一行 q。接下来 q 行每行两个正整数 x,y。",
-        "outputDescription": "每组询问输出一行距离。",
-        "samples": [
-            {
-                "input": "3\n1 3\n2 5\n4 8",
-                "output": "2\n1\n2"
-            }
-        ],
-        "explanation": "结点 x 的父亲是 x 除以其最小质因子，因此向上走一步就是删去一个最小质因子。先记 depth(x) 为删到 1 需要几步（即质因子个数，按重数计），查询时先把更深的点抬到同层，再同步上跳直到相遇。",
-        "tags": [
-            "编程题",
-            "数论",
-            "树"
-        ],
-        "template": "#include <bits/stdc++.h>\nusing namespace std;\n\nint main() {\n    // 在此编写代码\n    return 0;\n}",
-        "referenceCode": "#include <bits/stdc++.h>\nusing namespace std;\n\nvector<int> primes;\n\nint smallestPrimeFactor(int x) {\n    for (int p : primes) {\n        if (1LL * p * p > x) break;\n        if (x % p == 0) return p;\n    }\n    return x;\n}\n\nint parentOf(int x) {\n    if (x == 1) return 1;\n    return x / smallestPrimeFactor(x);\n}\n\nunordered_map<int, int> depthMemo;\nint getDepth(int x) {\n    auto it = depthMemo.find(x);\n    if (it != depthMemo.end()) return it->second;\n    int res = (x == 1 ? 0 : getDepth(parentOf(x))+1);\n    depthMemo[x] = res;\n    return res;\n}\n\nint main() {\n    ios::sync_with_stdio(false);\n    cin.tie(nullptr);\n\n    const int LIM = 31623;\n    vector<bool> isPrime(LIM+1, true);\n    isPrime[0] = isPrime[1] = false;\n    for (int i = 2; i <= LIM; ++i) {\n        if (!isPrime[i]) continue;\n        primes.push_back(i);\n        if (1LL * i * i <= LIM) {\n            for (int j = i * i; j <= LIM; j += i) isPrime[j] = false;\n        }\n    }\n    depthMemo[1] = 0;\n\n    int q;\n    cin >> q;\n    while (q--) {\n        int x, y;\n        cin >> x >> y;\n        int dx = getDepth(x), dy = getDepth(y);\n        int ans = 0;\n        while (dx > dy) {\n            x = parentOf(x);\n            --dx;\n            ++ans;\n        }\n        while (dy > dx) {\n            y = parentOf(y);\n            --dy;\n            ++ans;\n        }\n        while (x != y) {\n            x = parentOf(x);\n            y = parentOf(y);\n            ans += 2;\n        }\n        cout << ans << '\\n';\n    }\n    return 0;\n}"
+      id: 27,
+      type: 'programming',
+      question: `
+# [GESP202506 六级] 最大因数
+
+## 题目描述
+
+给定一棵有 \$10^9\$ 个结点的有根树，这些结点依次以 \$1, 2, \\dots, 10^9\$ 编号，根结点的编号为 \$1\$。对于编号为 \$k\$（\$2 \\leq k \\leq 10^9\$）的结点，其父结点的编号为 \$k\$ 的因数中除 \$k\$ 以外最大的因数。
+
+现在有 \$q\$ 组询问，第 \$i\$（\$1 \\leq i \\leq q\$）组询问给定 \$x_i, y_i\$，请你求出编号分别为 \$x_i, y_i\$ 的两个结点在这棵树上的距离。两个结点之间的距离是连接这两个结点的简单路径所包含的边数。
+
+## 输入格式
+
+第一行，一个正整数 \$q\$，表示询问组数。
+
+接下来 \$q\$ 行，每行两个正整数 \$x_i, y_i\$，表示询问结点的编号。
+
+## 输出格式
+
+输出共 \$q\$ 行，每行一个整数，表示结点 \$x_i, y_i\$ 之间的距离。
+`,
+      score: 25,
+      explanation: "结点 x 的父亲是 x 除以其最小质因子，因此向上走一步就是删去一个最小质因子。先记 depth(x) 为删到 1 需要几步（即质因子个数，按重数计），查询时先把更深的点抬到同层，再同步上跳直到相遇。",
+      tags: ["编程题", "数论", "树"],
+      template: "#include <bits/stdc++.h>\nusing namespace std;\n\nint main() {\n    // 在此编写代码\n    return 0;\n}",
+      referenceCode: "#include <bits/stdc++.h>\nusing namespace std;\n\nvector<int> primes;\n\nint smallestPrimeFactor(int x) {\n    for (int p : primes) {\n        if (1LL * p * p > x) break;\n        if (x % p == 0) return p;\n    }\n    return x;\n}\n\nint parentOf(int x) {\n    if (x == 1) return 1;\n    return x / smallestPrimeFactor(x);\n}\n\nunordered_map<int, int> depthMemo;\nint getDepth(int x) {\n    auto it = depthMemo.find(x);\n    if (it != depthMemo.end()) return it->second;\n    int res = (x == 1 ? 0 : getDepth(parentOf(x))+1);\n    depthMemo[x] = res;\n    return res;\n}\n\nint main() {\n    ios::sync_with_stdio(false);\n    cin.tie(nullptr);\n\n    const int LIM = 31623;\n    vector<bool> isPrime(LIM+1, true);\n    isPrime[0] = isPrime[1] = false;\n    for (int i = 2; i <= LIM; ++i) {\n        if (!isPrime[i]) continue;\n        primes.push_back(i);\n        if (1LL * i * i <= LIM) {\n            for (int j = i * i; j <= LIM; j += i) isPrime[j] = false;\n        }\n    }\n    depthMemo[1] = 0;\n\n    int q;\n    cin >> q;\n    while (q--) {\n        int x, y;\n        cin >> x >> y;\n        int dx = getDepth(x), dy = getDepth(y);\n        int ans = 0;\n        while (dx > dy) {\n            x = parentOf(x);\n            --dx;\n            ++ans;\n        }\n        while (dy > dx) {\n            y = parentOf(y);\n            --dy;\n            ++ans;\n        }\n        while (x != y) {\n            x = parentOf(x);\n            y = parentOf(y);\n            ans += 2;\n        }\n        cout << ans << '\\n';\n    }\n    return 0;\n}",
+      answer: '',
     }
 ];
 

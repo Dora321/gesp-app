@@ -262,52 +262,70 @@ export const paperData = {
     ],
     programmingQuestions: [
     {
-        "id": 26,
-        "type": "programming",
-        "title": "小杨做题",
-        "problemNumber": "B3923",
-        "score": 25,
-        "description": "为了准备考试，小杨每天都要做题。第 1 天，小杨做了 a 道题；第 2 天，小杨做了 b 道题；从第 3 天起，小杨每天做的题目数量是前两天的总和。 此外，小杨还规定，当自己某一天做了大于或等于 m 题时，接下来的所有日子里，他就再也不做题了。 请问，到了第 N 天，小杨总共做了多少题呢？",
-        "inputDescription": "总共 4 行。第一行一个整数 a，第二行一个整数 b，第三行一个整数 m，第四行一个整数 N。 保证 0 \\le a,b \\le 10；a,b",
-        "outputDescription": "一行一个整数，表示小杨 N 天里总共做了多少题目。",
-        "samples": [
-            {
-                "input": "1\n1\n5\n5",
-                "output": "10"
-            }
-        ],
-        "explanation": "从前两天开始递推每天做题数；一旦某天做题数达到或超过 m，这天仍计入总和，但之后的天数都不再增加。",
-        "tags": [
-            "编程题",
-            "递推",
-            "模拟"
-        ],
-        "template": "#include <bits/stdc++.h>\nusing namespace std;\n\nint main() {\n    ios::sync_with_stdio(false);\n    cin.tie(nullptr);\n\n    // 在此编写代码\n    return 0;\n}",
-        "referenceCode": "#include <bits/stdc++.h>\nusing namespace std;\n\nint main() {\n    ios::sync_with_stdio(false);\n    cin.tie(nullptr);\n\n    long long a, b, m, N;\n    cin >> a >> b >> m >> N;\n    if (N == 1) { cout << a << '\\n'; return 0; }\n    if (N == 2) { cout << a+b << '\\n'; return 0; }\n    long long sum = a+b, x = a, y = b;\n    bool stop = (a >= m || b >= m);\n    for (long long day = 3; day <= N; ++day) {\n        long long cur = 0;\n        if (!stop) {\n            cur = x+y;\n            sum += cur;\n            if (cur >= m) stop = true;\n            x = y;\n            y = cur;\n        }\n    }\n    cout << sum << '\\n';\n    return 0;\n}"
+      id: 26,
+      type: 'programming',
+      question: `
+# [GESP202312 二级] 小杨做题
+
+## 题目描述
+
+为了准备考试，小杨每天都要做题。第 \$1\$ 天，小杨做了 \$a\$ 道题；第 \$2\$ 天，小杨做了 \$b\$ 道题；从第 \$3\$ 天起，小杨每天做的题目数量是前两天的总和。
+
+此外，小杨还规定，当自己某一天做了大于或等于 \$m\$ 题时，接下来的所有日子里，他就再也不做题了。
+
+请问，到了第 \$N\$ 天，小杨总共做了多少题呢？
+
+## 输入格式
+
+总共 \$4\$ 行。第一行一个整数 \$a\$，第二行一个整数 \$b\$，第三行一个整数 \$m\$，第四行一个整数 \$N\$。
+
+保证 \$0 \\le a,b \\le 10\$；\$a,b
+
+## 输出格式
+
+一行一个整数，表示小杨 \$N\$ 天里总共做了多少题目。
+`,
+      score: 25,
+      explanation: "从前两天开始递推每天做题数；一旦某天做题数达到或超过 m，这天仍计入总和，但之后的天数都不再增加。",
+      tags: ["编程题", "递推", "模拟"],
+      template: "#include <bits/stdc++.h>\nusing namespace std;\n\nint main() {\n    ios::sync_with_stdio(false);\n    cin.tie(nullptr);\n\n    // 在此编写代码\n    return 0;\n}",
+      referenceCode: "#include <bits/stdc++.h>\nusing namespace std;\n\nint main() {\n    ios::sync_with_stdio(false);\n    cin.tie(nullptr);\n\n    long long a, b, m, N;\n    cin >> a >> b >> m >> N;\n    if (N == 1) { cout << a << '\\n'; return 0; }\n    if (N == 2) { cout << a+b << '\\n'; return 0; }\n    long long sum = a+b, x = a, y = b;\n    bool stop = (a >= m || b >= m);\n    for (long long day = 3; day <= N; ++day) {\n        long long cur = 0;\n        if (!stop) {\n            cur = x+y;\n            sum += cur;\n            if (cur >= m) stop = true;\n            x = y;\n            y = cur;\n        }\n    }\n    cout << sum << '\\n';\n    return 0;\n}",
+      answer: '',
     },
     {
-        "id": 27,
-        "type": "programming",
-        "title": "小杨的 H 字矩阵",
-        "problemNumber": "B3924",
-        "score": 25,
-        "description": "小杨想要构造一个 N × N 的 H 字矩阵（N 为奇数），具体来说，这个矩阵共有 N 行，每行 N 个字符，其中最左列、最右列都是 `|` ，而中间一行（即第N+1/2行）的第 2 \\sim $N-1$ 个字符都是 `-` ，其余所有字符都是半角小写字母 `a`。例如，一个 N=5 的 H 字矩阵如下： |aaa| |aaa| |---| |aaa| |aaa| 请你帮小杨根据给定的 N 打印出对应的“H 字矩阵”。",
-        "inputDescription": "一行一个整数 N（5\\le N \\le 49 ，保证 N 为奇数）。",
-        "outputDescription": "输出对应的“H 字矩阵”。 请严格按格式要求输出，不要擅自添加任何空格、标点、空行等任何符号。你应该恰好输出 N 行，每行除了换行符外恰好包含 N 个字符，这些字符要么是-，要么是 | ，要么是 a 。**你的输出必须和标准答案完全一致才能得分，请在提交前仔细检查。**",
-        "samples": [
-            {
-                "input": "5",
-                "output": "|aaa|\n|aaa|\n|---|\n|aaa|\n|aaa|"
-            }
-        ],
-        "explanation": "最左列和最右列始终输出 |；中间行的内部输出 -；其余位置输出 a。",
-        "tags": [
-            "编程题",
-            "字符画",
-            "模拟"
-        ],
-        "template": "#include <bits/stdc++.h>\nusing namespace std;\n\nint main() {\n    ios::sync_with_stdio(false);\n    cin.tie(nullptr);\n\n    // 在此编写代码\n    return 0;\n}",
-        "referenceCode": "#include <bits/stdc++.h>\nusing namespace std;\n\nint main() {\n    ios::sync_with_stdio(false);\n    cin.tie(nullptr);\n\n    int N;\n    cin >> N;\n    int mid = N / 2;\n    for (int i = 0; i < N; ++i) {\n        for (int j = 0; j < N; ++j) {\n            if (j == 0 || j == N-1) cout << '|';\n            else if (i == mid) cout << '-';\n            else cout << 'a';\n        }\n        cout << '\\n';\n    }\n    return 0;\n}"
+      id: 27,
+      type: 'programming',
+      question: `
+# [GESP202312 二级] 小杨的 H 字矩阵
+
+## 题目描述
+
+小杨想要构造一个 \$N \\times N\$ 的 H 字矩阵（\$N\$ 为奇数），具体来说，这个矩阵共有 \$N\$ 行，每行 \$N\$ 个字符，其中最左列、最右列都是 \`|\` ，而中间一行（即第\$\\frac{N+1}{2}\$行）的第 \$2 \\sim N-1\$ 个字符都是 \`-\` ，其余所有字符都是半角小写字母 \`a\`。例如，一个 \$N=5\$ 的 H 字矩阵如下：
+\`\`\`
+|aaa|
+|aaa|
+|---|
+|aaa|
+|aaa|
+\`\`\`
+请你帮小杨根据给定的 \$N\$ 打印出对应的“H 字矩阵”。
+
+## 输入格式
+
+一行一个整数 \$N\$（\$5\\le N \\le 49\$ ，保证 \$N\$ 为奇数）。
+
+## 输出格式
+
+输出对应的“H 字矩阵”。
+
+请严格按格式要求输出，不要擅自添加任何空格、标点、空行等任何符号。你应该恰好输出 \$N\$ 行，每行除了换行符外恰好包含 \$N\$ 个字符，这些字符要么是 - ，要么是 | ，要么是 a 。**你的输出必须和标准答案完全一致才能得分，请在提交前仔细检查。**
+`,
+      score: 25,
+      explanation: "最左列和最右列始终输出 |；中间行的内部输出 -；其余位置输出 a。",
+      tags: ["编程题", "字符画", "模拟"],
+      template: "#include <bits/stdc++.h>\nusing namespace std;\n\nint main() {\n    ios::sync_with_stdio(false);\n    cin.tie(nullptr);\n\n    // 在此编写代码\n    return 0;\n}",
+      referenceCode: "#include <bits/stdc++.h>\nusing namespace std;\n\nint main() {\n    ios::sync_with_stdio(false);\n    cin.tie(nullptr);\n\n    int N;\n    cin >> N;\n    int mid = N / 2;\n    for (int i = 0; i < N; ++i) {\n        for (int j = 0; j < N; ++j) {\n            if (j == 0 || j == N-1) cout << '|';\n            else if (i == mid) cout << '-';\n            else cout << 'a';\n        }\n        cout << '\\n';\n    }\n    return 0;\n}",
+      answer: '',
     }
 ]
 };

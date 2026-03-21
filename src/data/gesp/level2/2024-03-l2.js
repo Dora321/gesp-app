@@ -262,52 +262,72 @@ export const paperData = {
     ],
     programmingQuestions: [
     {
-        "id": 26,
-        "type": "programming",
-        "title": "乘法问题",
-        "problemNumber": "B3954",
-        "score": 25,
-        "description": "小 A 最初刚刚学习了乘法，为了帮助他练习，我们给他若干个正整数，并要求他将这些数乘起来。 对于大部分题目，小 A 可以精确地算出答案，不过，若这些数的乘积超过 $10^6$，小 A 就不会做了。 请你写一个程序，告诉我们小 A 会如何作答。",
-        "inputDescription": "第一行一个整数 n，表示正整数的个数。 接下来 n，每行一个整数 a。小 A 需要将所有的 a 乘起来。",
-        "outputDescription": "输出一行，如果乘积超过 $10^6$，则输出 `>1000000`；否则输出所有数的乘积。",
-        "samples": [
-            {
-                "input": "3\n10\n10\n10",
-                "output": "1000"
-            }
-        ],
-        "explanation": "边乘边判断是否已经超过 1000000。若超过就可以直接输出 >1000000；否则最终输出精确乘积。",
-        "tags": [
-            "编程题",
-            "模拟",
-            "大数界限"
-        ],
-        "template": "#include <bits/stdc++.h>\nusing namespace std;\n\nint main() {\n    ios::sync_with_stdio(false);\n    cin.tie(nullptr);\n\n    // 在此编写代码\n    return 0;\n}",
-        "referenceCode": "#include <bits/stdc++.h>\nusing namespace std;\n\nint main() {\n    ios::sync_with_stdio(false);\n    cin.tie(nullptr);\n\n    int n;\n    cin >> n;\n    long long prod = 1;\n    for (int i = 0; i < n; ++i) {\n        long long a;\n        cin >> a;\n        prod *= a;\n        if (prod > 1000000) {\n            cout << \">1000000\\n\";\n            return 0;\n        }\n    }\n    cout << prod << '\\n';\n    return 0;\n}"
+      id: 26,
+      type: 'programming',
+      question: `
+# [GESP202403 二级] 乘法问题
+
+## 题目描述
+
+小 A 最初刚刚学习了乘法，为了帮助他练习，我们给他若干个正整数，并要求他将这些数乘起来。
+
+对于大部分题目，小 A 可以精确地算出答案，不过，若这些数的乘积超过 \$10^6\$，小 A 就不会做了。
+
+请你写一个程序，告诉我们小 A 会如何作答。
+
+## 输入格式
+
+第一行一个整数 \$n\$，表示正整数的个数。
+
+接下来 \$n\$，每行一个整数 \$a\$。小 A 需要将所有的 \$a\$ 乘起来。
+
+## 输出格式
+
+输出一行，如果乘积超过 \$10^6\$，则输出 \`>1000000\`；否则输出所有数的乘积。
+`,
+      score: 25,
+      explanation: "边乘边判断是否已经超过 1000000。若超过就可以直接输出 >1000000；否则最终输出精确乘积。",
+      tags: ["编程题", "模拟", "大数界限"],
+      template: "#include <bits/stdc++.h>\nusing namespace std;\n\nint main() {\n    ios::sync_with_stdio(false);\n    cin.tie(nullptr);\n\n    // 在此编写代码\n    return 0;\n}",
+      referenceCode: "#include <bits/stdc++.h>\nusing namespace std;\n\nint main() {\n    ios::sync_with_stdio(false);\n    cin.tie(nullptr);\n\n    int n;\n    cin >> n;\n    long long prod = 1;\n    for (int i = 0; i < n; ++i) {\n        long long a;\n        cin >> a;\n        prod *= a;\n        if (prod > 1000000) {\n            cout << \">1000000\\n\";\n            return 0;\n        }\n    }\n    cout << prod << '\\n';\n    return 0;\n}",
+      answer: '',
     },
     {
-        "id": 27,
-        "type": "programming",
-        "title": "小杨的日字矩阵",
-        "problemNumber": "B3955",
-        "score": 25,
-        "description": "小杨想要构造一个 N× N 的日字矩阵（N 为奇数），具体来说，这个矩阵共有 N 行，每行 N 个字符，其中最左列、最右列都是 `|`，而第一行、最后一行、以及中间一行（即第 N+1/2 行）的第 2\\sim $N-1$ 个字符都是 `-` ，其余所有字符都是半角小写字母 `x` 。例如，一个 N = 5 日字矩阵如下: |---| |xxx| |---| |xxx| |---| 请你帮小杨根据给定的 N 打印出对应的“日字矩阵”。",
-        "inputDescription": "一行一个整数 N（5≤ N ≤ 49，保证 N 为奇数）。",
-        "outputDescription": "输出对应的“日字矩阵”。 请严格按格式要求输出，不要擅自添加任何空格、标点等任何符号。你一个恰好输出 N 行，每行除了换行符外恰好包含 N 个字符，这些字符要么是 `-`，要么是 `|`，要么是 `x`。**你的输出必须和标准答案完全一致才能得分，请在提交前仔细检查**。",
-        "samples": [
-            {
-                "input": "5",
-                "output": "|---|\n|xxx|\n|---|\n|xxx|\n|---|"
-            }
-        ],
-        "explanation": "边框列始终为 |；第一行、最后一行和中间行的内部位置输出 -；其他内部位置输出 x。",
-        "tags": [
-            "编程题",
-            "字符画",
-            "模拟"
-        ],
-        "template": "#include <bits/stdc++.h>\nusing namespace std;\n\nint main() {\n    ios::sync_with_stdio(false);\n    cin.tie(nullptr);\n\n    // 在此编写代码\n    return 0;\n}",
-        "referenceCode": "#include <bits/stdc++.h>\nusing namespace std;\n\nint main() {\n    ios::sync_with_stdio(false);\n    cin.tie(nullptr);\n\n    int N;\n    cin >> N;\n    int mid = N / 2;\n    for (int i = 0; i < N; ++i) {\n        for (int j = 0; j < N; ++j) {\n            if (j == 0 || j == N-1) cout << '|';\n            else if (i == 0 || i == mid || i == N-1) cout << '-';\n            else cout << 'x';\n        }\n        cout << '\\n';\n    }\n    return 0;\n}"
+      id: 27,
+      type: 'programming',
+      question: `
+# [GESP202403 二级] 小杨的日字矩阵
+
+## 题目描述
+
+小杨想要构造一个 \$N\\times N\$  的日字矩阵（\$N\$ 为奇数），具体来说，这个矩阵共有 \$N\$ 行，每行 \$N\$ 个字符，其中最左列、最右列都是 \`|\`，而第一行、最后一行、以及中间一行（即第 \$\\frac{N+1}{2}\$ 行）的第 \$2\\sim N-1\$ 个字符都是 \`-\` ，其余所有字符都是半角小写字母 \`x\` 。例如，一个 \$N = 5\$ 日字矩阵如下:
+
+\`\`\`
+|---|
+|xxx|
+|---|
+|xxx|
+|---|
+\`\`\`
+
+请你帮小杨根据给定的 \$N\$ 打印出对应的“日字矩阵”。
+
+## 输入格式
+
+一行一个整数 \$N\$（\$5\\leq N \\leq 49\$，保证 \$N\$ 为奇数）。
+
+## 输出格式
+
+输出对应的“日字矩阵”。
+
+请严格按格式要求输出，不要擅自添加任何空格、标点等任何符号。你一个恰好输出 \$N\$ 行，每行除了换行符外恰好包含 \$N\$ 个字符，这些字符要么是 \`-\`，要么是 \`|\`，要么是 \`x\`。**你的输出必须和标准答案完全一致才能得分，请在提交前仔细检查**。
+`,
+      score: 25,
+      explanation: "边框列始终为 |；第一行、最后一行和中间行的内部位置输出 -；其他内部位置输出 x。",
+      tags: ["编程题", "字符画", "模拟"],
+      template: "#include <bits/stdc++.h>\nusing namespace std;\n\nint main() {\n    ios::sync_with_stdio(false);\n    cin.tie(nullptr);\n\n    // 在此编写代码\n    return 0;\n}",
+      referenceCode: "#include <bits/stdc++.h>\nusing namespace std;\n\nint main() {\n    ios::sync_with_stdio(false);\n    cin.tie(nullptr);\n\n    int N;\n    cin >> N;\n    int mid = N / 2;\n    for (int i = 0; i < N; ++i) {\n        for (int j = 0; j < N; ++j) {\n            if (j == 0 || j == N-1) cout << '|';\n            else if (i == 0 || i == mid || i == N-1) cout << '-';\n            else cout << 'x';\n        }\n        cout << '\\n';\n    }\n    return 0;\n}",
+      answer: '',
     }
 ]
 };

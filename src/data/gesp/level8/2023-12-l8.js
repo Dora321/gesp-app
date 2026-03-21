@@ -2,52 +2,74 @@
 
 const programmingQuestions = [
     {
-        "type": "programming",
-        "tags": [
-            "编程题",
-            "组合数学",
-            "组合数",
-            "计数"
-        ],
-        "id": 26,
-        "title": "奖品分配",
-        "problemNumber": "2023-12-l8-Q26",
-        "description": "共有 T 个班级分配问题。对某个班级，n 名同学需要各分到 1 个奖品，共有 m 种奖品，第 i 种奖品有 a_i 个。求把奖品种类分配给所有同学的方案数；只要存在一位同学拿到的奖品种类不同，就视为不同方案。输出答案对 1e9+7 取模。",
-        "inputDescription": "第一行一个整数 T。每组数据一行：先给出 n、m，再给出 m 个正整数 a_i。",
-        "outputDescription": "对每组数据输出一行，一个整数，表示方案数对 1e9+7 取模后的结果。",
-        "samples": [
-            {
-                "input": "3\n3 2 1 2\n3 2 1 3\n5 3 3 1 1",
-                "output": "3\n4\n20"
-            }
-        ],
-        "explanation": "按奖品种类依次分配。若当前还剩 sum 件奖品，其中某类有 a_i 件，则有 C(sum, a_i) 种选位方式，依次相乘即可。",
-        "template": "#include <bits/stdc++.h>\nusing namespace std;\nint main(){ios::sync_with_stdio(false);cin.tie(nullptr);int T;cin>>T;while(T--){/* TODO */}return 0;}",
-        "referenceCode": "#include <bits/stdc++.h>\nusing namespace std;\nconst int N=1005,MOD=1000000007;int C[N+5][N+5],a[N+5];void addmod(int &x,int y){x+=y;if(x>=MOD)x-=MOD;}void init(){C[0][0]=1;for(int i=1;i<=N;++i){C[i][0]=C[i][i]=1;for(int j=1;j<i;++j){C[i][j]=C[i-1][j-1];addmod(C[i][j],C[i-1][j]);}}}int main(){ios::sync_with_stdio(false);cin.tie(nullptr);init();int T;cin>>T;while(T--){int n,m,sum=0;cin>>n>>m;for(int i=1;i<=m;++i)cin>>a[i],sum+=a[i];long long ans=1;for(int i=1;i<=m;++i){ans=ans*C[sum][a[i]]%MOD;sum-=a[i];}cout<<ans<<\"\\n\";}return 0;}"
+      id: 26,
+      type: 'programming',
+      question: `
+# [GESP202312 八级] 奖品分配
+
+## 题目描述
+
+班上有 \$N\$ 名同学，学号从 \$0\$ 到 \$N-1\$。有 \$M\$ 种奖品要分给这些同学，其中，第 \$i\$ 种奖品总共有 \$a_i\$ 个 （\$i=0,1, \\cdots ,M-1\$）。
+
+巧合的是，奖品的数量不多不少，每位同学都可以恰好分到一个奖品，且最后剩余的奖品不超过 \$1\$ 个（即：\$N\\le a_0+a_1+ \\cdots +a_{M-1}\\le N+1\$）。
+
+现在，请你求出每个班级礼物分配的方案数，所谓方案，指的是为每位同学都分配一个种类的奖品。
+
+只要有一位同学获得了不同种类的奖品，即视为不同的方案。方便起见，你只需要输出方案数对 \$10^{9}+7\$ 取模后的结果即可。
+
+共有 \$T\$ 个班级都面临着奖品分配的问题，你需要依次为他们解答。
+
+## 输入格式
+
+第一行一个整数 \$T\$，表示班级数量。
+
+接下来 \$T\$ 行，每行若干用单个空格隔开的正整数。首先是两个正整数\$N,M\$，接着是 \$M\$ 个正整数 \$a_0,a_1...a_{M-1}\$。保证 \$N \\le a_0+a_1+\\cdots+a_{M-1} \\le N+1 \$。
+
+## 输出格式
+
+输出 \$T\$ 行，每行一个整数，表示该班级分配奖品的方案数对 \$10^{9}+7\$ 取模的结果。
+`,
+      tags: ["编程题", "组合数学", "组合数", "计数"],
+      explanation: "按奖品种类依次分配。若当前还剩 sum 件奖品，其中某类有 a_i 件，则有 C(sum, a_i) 种选位方式，依次相乘即可。",
+      template: "#include <bits/stdc++.h>\nusing namespace std;\nint main(){ios::sync_with_stdio(false);cin.tie(nullptr);int T;cin>>T;while(T--){/* TODO */}return 0;}",
+      referenceCode: "#include <bits/stdc++.h>\nusing namespace std;\nconst int N=1005,MOD=1000000007;int C[N+5][N+5],a[N+5];void addmod(int &x,int y){x+=y;if(x>=MOD)x-=MOD;}void init(){C[0][0]=1;for(int i=1;i<=N;++i){C[i][0]=C[i][i]=1;for(int j=1;j<i;++j){C[i][j]=C[i-1][j-1];addmod(C[i][j],C[i-1][j]);}}}int main(){ios::sync_with_stdio(false);cin.tie(nullptr);init();int T;cin>>T;while(T--){int n,m,sum=0;cin>>n>>m;for(int i=1;i<=m;++i)cin>>a[i],sum+=a[i];long long ans=1;for(int i=1;i<=m;++i){ans=ans*C[sum][a[i]]%MOD;sum-=a[i];}cout<<ans<<\"\\n\";}return 0;}",
+      answer: '',
     },
     {
-        "type": "programming",
-        "tags": [
-            "编程题",
-            "树",
-            "LCA",
-            "重链剖分"
-        ],
-        "id": 27,
-        "title": "大量的工作沟通",
-        "problemNumber": "2023-12-l8-Q27",
-        "description": "公司形成一棵管理树，0 号员工是老板，其余每名员工都有唯一直接领导。若 x 是 y 的祖先（也允许 x=y），则称 x 可以管理 y。给定若干场合作，每场合作给出若干参与员工，要求找出一位能管理所有参与者的主持人；若有多名满足条件，输出编号最大的那位。",
-        "inputDescription": "第一行一个整数 n。第二行给出 1..$n-1$ 号员工的直接领导编号。第三行一个整数 q，表示合作场数。接下来 q 行，每行先给出 m，再给出 m 个互不重复的员工编号。",
-        "outputDescription": "输出 q 行，每行一个整数，表示该场合作的主持人编号。",
-        "samples": [
-            {
-                "input": "5\n0 0 2 2\n3\n2 3 4\n3 2 3 4\n2 1 4",
-                "output": "2\n2\n0"
-            }
-        ],
-        "explanation": "所有参与者的公共管理者就是这些点在树上的最近公共祖先。再预处理根到每点路径上的最大编号 mxId，答案即为 mxId[LCA]。",
-        "template": "#include <bits/stdc++.h>\nusing namespace std;\nint main(){ios::sync_with_stdio(false);cin.tie(nullptr);int n;cin>>n;/* TODO */return 0;}",
-        "referenceCode": "#include <bits/stdc++.h>\nusing namespace std;const int N=100005;int fa[N],sz[N],dep[N],son[N],tp[N],mxId[N],cnt,fir[N],tar[N],nxt[N];void linkEdge(int a,int b){tar[++cnt]=b;nxt[cnt]=fir[a];fir[a]=cnt;}void dfs(int x,int mxid){int mx=0;sz[x]=1;mxId[x]=max(x,mxid);for(int i=fir[x];i;i=nxt[i]){dep[tar[i]]=dep[x]+1;dfs(tar[i],mxId[x]);sz[x]+=sz[tar[i]];if(mx<sz[tar[i]])mx=sz[son[x]=tar[i]];}}void getTop(int x){tp[x]=x;if(son[fa[x]]==x)tp[x]=tp[fa[x]];for(int i=fir[x];i;i=nxt[i])getTop(tar[i]);}int lca(int x,int y){while(tp[x]!=tp[y])dep[tp[x]]>dep[tp[y]]?x=fa[tp[x]]:y=fa[tp[y]];return dep[x]<dep[y]?x:y;}int main(){ios::sync_with_stdio(false);cin.tie(nullptr);int n;cin>>n;for(int i=2;i<=n;++i){cin>>fa[i];++fa[i];linkEdge(fa[i],i);}dfs(1,1);getTop(1);int q;cin>>q;while(q--){int m,x,y;cin>>m>>x;x++;for(int i=2;i<=m;++i){cin>>y;x=lca(x,y+1);}cout<<mxId[x]-1<<\"\\n\";}return 0;}"
+      id: 27,
+      type: 'programming',
+      question: `
+# [GESP202312 八级] 大量的工作沟通
+
+## 题目描述
+
+某公司有 \$N\$ 名员工，编号从 \$0\$ 至 \$N-1\$。其中，除了 \$0\$ 号员工是老板，其余每名员工都有一个直接领导。我们假设编号为 \$i\$ 的员工的直接领导是 \$f_i\$。
+
+该公司有严格的管理制度，每位员工只能受到本人或直接领导或间接领导的管理。具体来说，规定员工 \$x\$ 可以管理员工 \$y\$，当且仅当 \$x=y\$，或 \$x=f_y\$，或 \$x\$ 可以管理 \$f_y\$。特别地，\$0\$ 号员工老板只能自我管理，无法由其他任何员工管理。
+
+现在，有一些同事要开展合作，他们希望找到一位同事来主持这场合作，这位同事必须能够管理参与合作的所有同事。如果有多名满足这一条件的员工，他们希望找到编号最大的员工。你能帮帮他们吗？
+
+## 输入格式
+
+第一行一个整数 \$N\$ ，表示员工的数量。
+
+第二行 \$N-1\$ 个用空格隔开的正整数，依次为 \$f_1, f_2, \\dots f_{N-1}\$。
+
+第三行一个整数 \$Q\$ ，表示共有 \$Q\$ 场合作需要安排。
+
+接下来 \$Q\$ 行，每行描述一场合作：开头是一个整数 \$m\$（\$2 \\leq m \\leq N\$），表示参与本次合作的员工数量；接着是 \$m\$ 个整数，依次表示参与本次合作的员工编号（保证编号合法且不重复）。
+
+保证公司结构合法，即不存在任意一名员工，其本人是自己的直接或间接领导。
+
+## 输出格式
+
+输出 \$Q\$ 行，每行一个整数，依次为每场合作的主持人选。
+`,
+      tags: ["编程题", "树", "LCA", "重链剖分"],
+      explanation: "所有参与者的公共管理者就是这些点在树上的最近公共祖先。再预处理根到每点路径上的最大编号 mxId，答案即为 mxId[LCA]。",
+      template: "#include <bits/stdc++.h>\nusing namespace std;\nint main(){ios::sync_with_stdio(false);cin.tie(nullptr);int n;cin>>n;/* TODO */return 0;}",
+      referenceCode: "#include <bits/stdc++.h>\nusing namespace std;const int N=100005;int fa[N],sz[N],dep[N],son[N],tp[N],mxId[N],cnt,fir[N],tar[N],nxt[N];void linkEdge(int a,int b){tar[++cnt]=b;nxt[cnt]=fir[a];fir[a]=cnt;}void dfs(int x,int mxid){int mx=0;sz[x]=1;mxId[x]=max(x,mxid);for(int i=fir[x];i;i=nxt[i]){dep[tar[i]]=dep[x]+1;dfs(tar[i],mxId[x]);sz[x]+=sz[tar[i]];if(mx<sz[tar[i]])mx=sz[son[x]=tar[i]];}}void getTop(int x){tp[x]=x;if(son[fa[x]]==x)tp[x]=tp[fa[x]];for(int i=fir[x];i;i=nxt[i])getTop(tar[i]);}int lca(int x,int y){while(tp[x]!=tp[y])dep[tp[x]]>dep[tp[y]]?x=fa[tp[x]]:y=fa[tp[y]];return dep[x]<dep[y]?x:y;}int main(){ios::sync_with_stdio(false);cin.tie(nullptr);int n;cin>>n;for(int i=2;i<=n;++i){cin>>fa[i];++fa[i];linkEdge(fa[i],i);}dfs(1,1);getTop(1);int q;cin>>q;while(q--){int m,x,y;cin>>m>>x;x++;for(int i=2;i<=m;++i){cin>>y;x=lca(x,y+1);}cout<<mxId[x]-1<<\"\\n\";}return 0;}",
+      answer: '',
     }
 ];
 

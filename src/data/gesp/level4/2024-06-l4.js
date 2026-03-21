@@ -2,38 +2,62 @@
 
 const programmingQuestions = [
     {
-        id: 26,
-        type: "programming",
-        score: 25,
-        title: "平衡子矩形",
-        problemNumber: "2024-06-23-04-C-01",
-        description: "小杨有一个 n 行 m 列网格图，其中每个格子要么是白色，要么是黑色。对于网格图中的一个子矩形，小杨认为它是平衡的当且仅当其中黑色格子与白色格子数量相同。小杨想知道最大的平衡子矩形包含了多少个格子。",
-        inputDescription: "第一行包含两个正整数 n, m (1 ≤ n, m ≤ 50)。之后 n 行，每行一个长度为 m 的 01 串，0 代表白色，1 代表黑色。",
-        outputDescription: "输出一个整数，代表最大的平衡子矩形包含格子的数量，如果不存在则输出 0。",
-        samples: [
-            { input: "4 5\n00000\n01111\n00011\n00011", output: "16" }
-        ],
-        explanation: "由于 n, m 较小（最大 50），可以枚举所有可能的子矩形（左上角 (r1, c1) 和右下角 (r2, c2)），然后利用二维前缀和快速计算子矩形内 1 的个数。如果 1 的个数正好等于矩形面积的一半，则该矩形平衡。",
-        tags: ["编程题", "二维前缀和", "暴力枚举"],
-        template: "#include <iostream>\n#include <string>\n#include <vector>\nusing namespace std;\n\nint main() {\n    int n, m;\n    cin >> n >> m;\n    // 在此编写代码\n    return 0;\n}",
-        referenceCode: "#include <iostream>\n#include <vector>\n#include <string>\nusing namespace std;\nint main() {\n    int n, m; cin >> n >> m;\n    vector<vector<int>> s($n+1$, vector<int>(m+1, 0));\n    for (int i = 1; i <= n; i++) {\n        string row; cin >> row;\n        for (int j = 1; j <= m; j++) {\n            s[i][j] = s[i-1][j]+s[i][j-1]-s[i-1][j-1]+(row[j-1]-'0');\n        }\n    }\n    int max_area = 0;\n    for (int r1 = 1; r1 <= n; r1++) {\n        for (int c1 = 1; c1 <= m; c1++) {\n            for (int r2 = r1; r2 <= n; r2++) {\n                for (int c2 = c1; c2 <= m; c2++) {\n                    int area = (r2-r1+1) * (c2-c1+1);\n                    if (area % 2 != 0) continue;\n                    int ones = s[r2][c2]-s[r1-1][c2]-s[r2][c1-1]+s[r1-1][c1-1];\n                    if (ones * 2 == area) max_area = max(max_area, area);\n                }\n            }\n        }\n    }\n    cout << max_area << endl;\n    return 0;\n}"
+      id: 26,
+      type: 'programming',
+      question: `
+# [GESP202406 四级] 黑白方块
+
+## 题目描述
+
+小杨有一个 \$n\$ 行 \$m\$ 列的网格图，其中每个格子要么是白色，要么是黑色。对于网格图中的一个子矩形，小杨认为它是平衡的当且仅当其中黑色格子与白色格子数量相同。小杨想知道最大的平衡子矩形包含了多少个格子。
+
+## 输入格式
+
+第一行包含两个正整数 \$n,m\$，含义如题面所示。
+
+之后 \$n\$ 行，每行一个长度为 \$m\$ 的 \$01\$ 串，代表网格图第 \$i\$ 行格子的颜色，如果为 \$0\$，则对应格子为白色，否则为黑色。
+
+## 输出格式
+
+输出一个整数，代表最大的平衡子矩形包含格子的数量，如果不存在则输出 \$0\$。
+`,
+      score: 25,
+      explanation: "由于 n, m 较小（最大 50），可以枚举所有可能的子矩形（左上角 (r1, c1) 和右下角 (r2, c2)），然后利用二维前缀和快速计算子矩形内 1 的个数。如果 1 的个数正好等于矩形面积的一半，则该矩形平衡。",
+      tags: ["编程题", "二维前缀和", "暴力枚举"],
+      template: "#include <iostream>\n#include <string>\n#include <vector>\nusing namespace std;\n\nint main() {\n    int n, m;\n    cin >> n >> m;\n    // 在此编写代码\n    return 0;\n}",
+      referenceCode: "#include <iostream>\n#include <vector>\n#include <string>\nusing namespace std;\nint main() {\n    int n, m; cin >> n >> m;\n    vector<vector<int>> s($n+1$, vector<int>(m+1, 0));\n    for (int i = 1; i <= n; i++) {\n        string row; cin >> row;\n        for (int j = 1; j <= m; j++) {\n            s[i][j] = s[i-1][j]+s[i][j-1]-s[i-1][j-1]+(row[j-1]-'0');\n        }\n    }\n    int max_area = 0;\n    for (int r1 = 1; r1 <= n; r1++) {\n        for (int c1 = 1; c1 <= m; c1++) {\n            for (int r2 = r1; r2 <= n; r2++) {\n                for (int c2 = c1; c2 <= m; c2++) {\n                    int area = (r2-r1+1) * (c2-c1+1);\n                    if (area % 2 != 0) continue;\n                    int ones = s[r2][c2]-s[r1-1][c2]-s[r2][c1-1]+s[r1-1][c1-1];\n                    if (ones * 2 == area) max_area = max(max_area, area);\n                }\n            }\n        }\n    }\n    cout << max_area << endl;\n    return 0;\n}",
+      answer: '',
     },
     {
-        id: 27,
-        type: "programming",
-        score: 25,
-        title: "做题",
-        problemNumber: "2024-06-23-04-C-02",
-        description: "小杨同学为了提高实力制定了做题计划，在第 i 天时，他必须要完成 i 道题。他找到了 n 套题单，每套题单有一定数量的题目。每套题单只能使用一次，每一天也只能使用一套题单里的题目。问小杨最多会做题几天才偷懒？",
-        inputDescription: "第一行 1 个数为 n (1 ≤ n ≤ 1,000,000)。第二行 n 个整数 ai，分别表示每套题单有多少道题。",
-        outputDescription: "输出一行，小杨同学偷懒前最多做题天数。",
-        samples: [
-            { input: "4\n3 1 4 1", output: "3" }
-        ],
-        explanation: "贪心策略：排序后，从小到大匹配每一天所需的题目数量。如果当前题单满足当前天数要求，则进入下一天。",
-        tags: ["编程题", "贪心", "排序"],
-        template: "#include <iostream>\n#include <algorithm>\n#include <vector>\nusing namespace std;\n\nint main() {\n    int n;\n    cin >> n;\n    // 在此编写代码\n    return 0;\n}",
-        referenceCode: "#include <iostream>\n#include <algorithm>\n#include <vector>\nusing namespace std;\nint main() {\n    int n; cin >> n;\n    vector<int> a(n);\n    for (int i = 0; i < n; i++) cin >> a[i];\n    sort(a.begin(), a.end());\n    int day = 0;\n    for (int i = 0; i < n; i++) {\n        if (a[i] >= day+1) day++;\n    }\n    cout << day << endl;\n    return 0;\n}"
+      id: 27,
+      type: 'programming',
+      question: `
+# [GESP202406 四级] 宝箱
+
+## 题目描述
+
+小杨发现了 \$n\$ 个宝箱，其中第 \$i\$ 个宝箱的价值是 \$a_i\$。
+
+小杨可以选择一些宝箱放入背包并带走，但是小杨的背包比较特殊，假设小杨选择的宝箱中最大价值为 \$x\$，最小价值为 \$y\$，小杨需要保证 \$x-y\\leq k\$，否则小杨的背包会损坏。
+
+小杨想知道背包不损坏的情况下，自己能够带走宝箱的总价值最大是多少。
+
+## 输入格式
+
+第一行包含两个正整数 \$n,k\$，含义如题面所示。
+
+第二行包含 \$n\$ 个正整数 \$a_1,a_2,\\dots,a_n\$，代表宝箱的价值。
+
+## 输出格式
+
+输出一个整数，代表带走宝箱的最大总价值。
+`,
+      score: 25,
+      explanation: "贪心策略：排序后，从小到大匹配每一天所需的题目数量。如果当前题单满足当前天数要求，则进入下一天。",
+      tags: ["编程题", "贪心", "排序"],
+      template: "#include <iostream>\n#include <algorithm>\n#include <vector>\nusing namespace std;\n\nint main() {\n    int n;\n    cin >> n;\n    // 在此编写代码\n    return 0;\n}",
+      referenceCode: "#include <iostream>\n#include <algorithm>\n#include <vector>\nusing namespace std;\nint main() {\n    int n; cin >> n;\n    vector<int> a(n);\n    for (int i = 0; i < n; i++) cin >> a[i];\n    sort(a.begin(), a.end());\n    int day = 0;\n    for (int i = 0; i < n; i++) {\n        if (a[i] >= day+1) day++;\n    }\n    cout << day << endl;\n    return 0;\n}",
+      answer: '',
     }
 ];
 

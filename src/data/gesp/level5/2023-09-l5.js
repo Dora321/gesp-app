@@ -2,40 +2,68 @@
 
 const programmingQuestions = [
     {
-        id: 26,
-        type: "programming",
-        score: 25,
-        title: "因数分解",
-        problemNumber: "2023-09-23-05-C-01",
-        description: "每个正整数都可以分解成素数的乘积，例如：6 = 2 * 3、20 = 2^2 * 5。现在，给定一个正整数 N，请按要求输出它的因数分解式。",
-        inputDescription: "输入第一行，包含一个正整数 N。约定 2 ≤ N ≤ 10^12。",
-        outputDescription: "输出一行，为 N 的因数分解式。要求按质因数由小到大排列，乘号用星号 * 表示，且左右各空一格。当且仅当一个素数出现多次时，将它们合并为指数形式，用上箭头 ^ 表示，且左右不空格。",
-        samples: [
-            { input: "6", output: "2 * 3" },
-            { input: "20", output: "2^2 * 5" },
-            { input: "23", output: "23" }
-        ],
-        explanation: "使用试除法，从 2 开始遍历到 sqrt(N)，依次提取质因子并计数。",
-        tags: ["编程题", "数论", "质因数分解"],
-        template: "#include <iostream>\nusing namespace std;\n\nint main() {\n    long long N;\n    cin >> N;\n    // 在此编写代码\n    return 0;\n}",
-        referenceCode: "#include <iostream>\nusing namespace std;\nint main() {\n    long long N = 0;\n    cin >> N;\n    bool first = true;\n    for (long long p = 2; p * p <= N; p++) {\n        if (N % p != 0) continue;\n        int cnt = 0;\n        while (N % p == 0) {\n            cnt++;\n            N /= p;\n        }\n        if (first) first = false;\n        else cout << \" * \";\n        cout << p;\n        if (cnt > 1) cout << \"^\" << cnt;\n    }\n    if (N > 1) {\n        if (!first) cout << \" * \";\n        cout << N;\n    }\n    cout << endl;\n    return 0;\n}"
+      id: 26,
+      type: 'programming',
+      question: `
+# [GESP202309 五级] 因数分解
+
+## 题目描述
+
+每个正整数都可以分解成素数的乘积，例如： \$6=2\\times 3\$，\$20=2^2\\times5\$。
+
+现在，给定一个正整数，请按要求输出它的因数分解式。
+
+## 输入格式
+
+输入第一行，包含一个正整数 \$N\$。约定 \$2 \\le N \\le 10^{12}\$。
+
+## 输出格式
+
+输出一行，为的因数分解式。要求按质因数由小到大排列，乘号用星号 \`*\` 表示，且左右各空一格。当且仅当一个素数出现多次时，将它们合并为指数形式，用上箭头 \`^\` 表示，且左右不空格。
+`,
+      score: 25,
+      explanation: "使用试除法，从 2 开始遍历到 sqrt(N)，依次提取质因子并计数。",
+      tags: ["编程题", "数论", "质因数分解"],
+      template: "#include <iostream>\nusing namespace std;\n\nint main() {\n    long long N;\n    cin >> N;\n    // 在此编写代码\n    return 0;\n}",
+      referenceCode: "#include <iostream>\nusing namespace std;\nint main() {\n    long long N = 0;\n    cin >> N;\n    bool first = true;\n    for (long long p = 2; p * p <= N; p++) {\n        if (N % p != 0) continue;\n        int cnt = 0;\n        while (N % p == 0) {\n            cnt++;\n            N /= p;\n        }\n        if (first) first = false;\n        else cout << \" * \";\n        cout << p;\n        if (cnt > 1) cout << \"^\" << cnt;\n    }\n    if (N > 1) {\n        if (!first) cout << \" * \";\n        cout << N;\n    }\n    cout << endl;\n    return 0;\n}",
+      answer: '',
     },
     {
-        id: 27,
-        type: "programming",
-        score: 25,
-        title: "巧夺大奖",
-        problemNumber: "2023-09-23-05-C-02",
-        description: "小明参加了一个巧夺大奖的游戏节目。游戏规则：\n1. 游戏分为 n 个时间段，每个时间段可以选择一个小游戏。\n2. 共有 n 个小游戏可供选择。\n3. 每个小游戏有规定的时限 Ti 和奖励 Ri。参加者必须在第 Ti 个时间段结束前完成才能得到奖励。\n如何安排每个时间段分别选择哪个小游戏，才能使得总奖励最高？",
-        inputDescription: "第一行包含一个正整数 n (1 ≤ n ≤ 500)。\n第二行包含 n 个正整数 Ti (1 ≤ Ti ≤ n)。\n第三行包含 n 个正整数 Ri (1 ≤ Ri ≤ 1000)。",
-        outputDescription: "输出一行，包含一个正整数，为最高可获得的奖励。",
-        samples: [
-            { input: "7\n4 2 4 3 1 4 6\n70 60 50 40 30 20 10", output: "230" }
-        ],
-        explanation: "贪心策略：优先选择奖励高的小游戏。对于每个奖励高的小游戏，尽量安排在其截止日期的最晚可用时间段完成。",
-        tags: ["编程题", "贪心", "排序"],
-        template: "#include <iostream>\n#include <algorithm>\nusing namespace std;\n\nint main() {\n    int n;\n    cin >> n;\n    // 在此编写代码\n    return 0;\n}",
-        referenceCode: "#include <iostream>\n#include <algorithm>\nusing namespace std;\nstruct game_t { int T, R; } games[500];\nbool game_cmp(game_t x, game_t y) { return x.R > y.R; }\nbool arrange[501];\nint main() {\n    int n; cin >> n;\n    for (int i = 0; i < n; i++) cin >> games[i].T;\n    for (int i = 0; i < n; i++) cin >> games[i].R;\n    sort(games, games+n, game_cmp);\n    int sum = 0;\n    for (int i = 0; i < n; i++) {\n        for (int t = games[i].T-1; t >= 0; t--) {\n            if (!arrange[t]) {\n                arrange[t] = true;\n                sum += games[i].R;\n                break;\n            }\n        }\n    }\n    cout << sum << endl;\n    return 0;\n}"
+      id: 27,
+      type: 'programming',
+      question: `
+# [GESP202309 五级] 巧夺大奖
+
+## 题目描述
+
+小明参加了一个巧夺大奖的游戏节目。主持人宣布了游戏规则：
+
+1. 游戏分为 \$n\$ 个时间段，参加者每个时间段可以选择一个小游戏。
+
+2. 游戏中共有 \$n\$ 个小游戏可供选择。
+
+3. 每个小游戏有规定的时限和奖励。对于第 \$i\$ 个小游戏，参加者必须在第 \$T_i\$ 个时间段结束前完成才能得到奖励 \$R_i\$。
+
+小明发现，这些小游戏都很简单，不管选择哪个小游戏，他都能在一个时间段内完成。关键问题在于，如何安排每个时间段分别选择哪个小游戏，才能使得总奖励最高？
+
+## 输入格式
+
+输入第一行，包含一个正整数 \$n\$。\$n\$ 既是游戏时间段的个数，也是小游戏的个数。约定 \$1\\le n\\le500\$。
+
+输入第二行，包含 \$n\$ 个正整数。第 \$i\$ 个正整数为 \$T_i\$，即第 \$i\$ 个小游戏的完成期限。约定 \$1\\le T_i\\le n\$。
+
+输入第三行，包含 \$n\$ 个正整数。第 \$i\$ 个正整数为 \$R_i\$，即第 \$i\$ 个小游戏的完成奖励。约定 \$1\\le R_i\\le 1000\$。
+
+## 输出格式
+
+输出一行，包含一个正整数 \$C\$，为最高可获得的奖励。
+`,
+      score: 25,
+      explanation: "贪心策略：优先选择奖励高的小游戏。对于每个奖励高的小游戏，尽量安排在其截止日期的最晚可用时间段完成。",
+      tags: ["编程题", "贪心", "排序"],
+      template: "#include <iostream>\n#include <algorithm>\nusing namespace std;\n\nint main() {\n    int n;\n    cin >> n;\n    // 在此编写代码\n    return 0;\n}",
+      referenceCode: "#include <iostream>\n#include <algorithm>\nusing namespace std;\nstruct game_t { int T, R; } games[500];\nbool game_cmp(game_t x, game_t y) { return x.R > y.R; }\nbool arrange[501];\nint main() {\n    int n; cin >> n;\n    for (int i = 0; i < n; i++) cin >> games[i].T;\n    for (int i = 0; i < n; i++) cin >> games[i].R;\n    sort(games, games+n, game_cmp);\n    int sum = 0;\n    for (int i = 0; i < n; i++) {\n        for (int t = games[i].T-1; t >= 0; t--) {\n            if (!arrange[t]) {\n                arrange[t] = true;\n                sum += games[i].R;\n                break;\n            }\n        }\n    }\n    cout << sum << endl;\n    return 0;\n}",
+      answer: '',
     }
 ];
 

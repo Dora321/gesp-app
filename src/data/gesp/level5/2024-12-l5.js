@@ -2,38 +2,64 @@
 
 const programmingQuestions = [
     {
-        id: 26,
-        type: "programming",
-        score: 25,
-        title: "奇妙数字",
-        problemNumber: "2024-12-23-05-C-01",
-        description: "小杨认为一个数字 x 是奇妙数字当且仅当 x = p^k，其中 p 为任意质数且 k 为正整数。对于一个正整数 n，小杨想要构建一个包含 m 个奇妙数字的集合 S，使其满足：1. 集合中不包含相同的数字；2. S 中所有元素的乘积是 n 的因子。求满足条件的集合最多包含多少个奇妙数字。",
-        inputDescription: "第一行包含一个正整数 n (1 ≤ n ≤ 10^12)。",
-        outputDescription: "输出一个正整数，代表满足条件的集合最多包含的奇妙数字个数。",
-        samples: [
-            { input: "12", output: "3" }
-        ],
-        explanation: "由于 n = p1^e1 * p2^e2 * ...，每个质因子 pi 及其幂都是奇妙数字。为了让奇妙数字尽可能多，我们应把每一个质因子的幂分解成尽可能多的不同幂次的组合（例如 p^6 可以分解为 p^1, p^2, p^3，因为 1+2+3=6）。最终答案是每个质因子分解出的不同幂次数量之和。",
-        tags: ["编程题", "数论", "质因数分解", "贪心"],
-        template: "#include <iostream>\nusing namespace std;\n\nint main() {\n    long long n;\n    cin >> n;\n    // 在此编写代码\n    return 0;\n}",
-        referenceCode: "#include <iostream>\n#include <vector>\nusing namespace std;\nint main() {\n    long long n; cin >> n;\n    int total = 0;\n    for (long long i = 2; i * i <= n; i++) {\n        if (n % i == 0) {\n            int e = 0;\n            while (n % i == 0) { e++; n /= i; }\n            // 将 e 分解为 1, 2, 3... 尽量多的项\n            int count = 0, k = 1;\n            while (e >= k) { e -= k; k++; count++; }\n            total += count;\n        }\n    }\n    if (n > 1) total += 1;\n    cout << total << endl;\n    return 0;\n}"
+      id: 26,
+      type: 'programming',
+      question: `
+# [GESP202412 五级] 奇妙数字
+
+## 题目描述
+
+小杨认为一个数字 \$x\$ 是奇妙数字当且仅当 \$x=p^a\$，其中 \$p\$ 为任意质数且 \$a\$ 为正整数。例如，\$8=2^3\$，所以 \$8\$ 是奇妙的，而 \$6\$ 不是。
+
+对于一个正整数 \$n\$，小杨想要构建一个包含 \$m\$ 个奇妙数字的集合 \$\\{x_1,x_2,\\cdots,x_m\\}\$，使其满足以下条件：
+- 集合中不包含相同的数字。
+- \$x_1\\times x_2\\times \\cdots\\times x_m\$ 是 \$n\$ 的因子（即 \$x_1,x_2,\\cdots,x_m\$ 这 \$m\$ 个数字的乘积是 \$n\$ 的因子）。
+
+小杨希望集合包含的奇妙数字尽可能多，请你帮他计算出满足条件的集合最多包含多少个奇妙数字。
+
+## 输入格式
+
+第一行包含一个正整数 \$n\$，含义如题面所示。
+
+## 输出格式
+
+输出一个正整数，代表满足条件的集合最多包含的奇妙数字个数。
+`,
+      score: 25,
+      explanation: "由于 n = p1^e1 * p2^e2 * ...，每个质因子 pi 及其幂都是奇妙数字。为了让奇妙数字尽可能多，我们应把每一个质因子的幂分解成尽可能多的不同幂次的组合（例如 p^6 可以分解为 p^1, p^2, p^3，因为 1+2+3=6）。最终答案是每个质因子分解出的不同幂次数量之和。",
+      tags: ["编程题", "数论", "质因数分解", "贪心"],
+      template: "#include <iostream>\nusing namespace std;\n\nint main() {\n    long long n;\n    cin >> n;\n    // 在此编写代码\n    return 0;\n}",
+      referenceCode: "#include <iostream>\n#include <vector>\nusing namespace std;\nint main() {\n    long long n; cin >> n;\n    int total = 0;\n    for (long long i = 2; i * i <= n; i++) {\n        if (n % i == 0) {\n            int e = 0;\n            while (n % i == 0) { e++; n /= i; }\n            // 将 e 分解为 1, 2, 3... 尽量多的项\n            int count = 0, k = 1;\n            while (e >= k) { e -= k; k++; count++; }\n            total += count;\n        }\n    }\n    if (n > 1) total += 1;\n    cout << total << endl;\n    return 0;\n}",
+      answer: '',
     },
     {
-        id: 27,
-        type: "programming",
-        score: 25,
-        title: "小杨的数字操作",
-        problemNumber: "2024-12-23-05-C-02",
-        description: "给定一个数字 n，进行以下操作：如果是偶数，除以 2；如果是奇数，乘以 3 再加 1。重复上述操作，直到数字变为 1。求整个过程中出现的最大数字。",
-        inputDescription: "输入一个正整数 n (1 ≤ n ≤ 1,000,000)。",
-        outputDescription: "输出操作过程中出现的最大数字。",
-        samples: [
-            { input: "3", output: "16" }
-        ],
-        explanation: "经典的冰雹猜想（Collatz Conjecture）。按照规则直接模拟计算并维护最大值即可。",
-        tags: ["编程题", "模拟"],
-        template: "#include <iostream>\nusing namespace std;\n\nint main() {\n    long long n;\n    cin >> n;\n    // 在此编写代码\n    return 0;\n}",
-        referenceCode: "#include <iostream>\n#include <algorithm>\nusing namespace std;\nint main() {\n    long long n; cin >> n;\n    long long max_val = n;\n    while (n != 1) {\n        if (n % 2 == 0) n /= 2;\n        else n = n * 3+1;\n        max_val = max(max_val, n);\n    }\n    cout << max_val << endl;\n    return 0;\n}"
+      id: 27,
+      type: 'programming',
+      question: `
+# [GESP202412 五级] 武器强化
+
+## 题目描述
+
+小杨有 \$n\$ 种武器和 \$m\$ 种强化材料。第 \$i\$ 种强化材料会适配第 \$p_i\$ 种武器，小杨可以花费 \$c_i\$ 金币将该材料对应的适配武器修改为任意武器。
+
+小杨最喜欢第 \$1\$ 种武器，因此他希望适配该武器的强化材料种类数**严格大于**其他的武器，请你帮小杨计算为了满足该条件最少需要花费多少金币。
+
+## 输入格式
+
+第一行包含两个正整数 \$n,m\$，含义如题面所示。
+
+之后 \$m\$ 行，每行包含两个正整数 \$p_i,c_i\$，代表第 \$i	\$ 种强化材料的适配武器和修改花费。
+
+## 输出格式
+
+输出一个整数，代表能够使适配第 \$1\$ 种武器的强化材料种类数**严格大于**其他的武器最少需要花费的金币。
+`,
+      score: 25,
+      explanation: "经典的冰雹猜想（Collatz Conjecture）。按照规则直接模拟计算并维护最大值即可。",
+      tags: ["编程题", "模拟"],
+      template: "#include <iostream>\nusing namespace std;\n\nint main() {\n    long long n;\n    cin >> n;\n    // 在此编写代码\n    return 0;\n}",
+      referenceCode: "#include <iostream>\n#include <algorithm>\nusing namespace std;\nint main() {\n    long long n; cin >> n;\n    long long max_val = n;\n    while (n != 1) {\n        if (n % 2 == 0) n /= 2;\n        else n = n * 3+1;\n        max_val = max(max_val, n);\n    }\n    cout << max_val << endl;\n    return 0;\n}",
+      answer: '',
     }
 ];
 

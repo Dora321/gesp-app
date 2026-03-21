@@ -2,52 +2,64 @@
 
 const programmingQuestions = [
     {
-        "id": 26,
-        "type": "programming",
-        "title": "游戏",
-        "problemNumber": "2024-03-23-06-C-01",
-        "score": 25,
-        "description": "给定四个正整数 n,a,b,mod。每次可以把当前值减去 a 或 b；当值不大于 0 时结束。求不同操作序列数对 mod 取模。若 a=b，两种选择仍视为不同。",
-        "inputDescription": "输入一行四个正整数 n,a,b,mod。",
-        "outputDescription": "输出答案对 mod 取模后的结果。",
-        "samples": [
-            {
-                "input": "7 2 3 1000000007",
-                "output": "3"
-            }
-        ],
-        "explanation": "记 f[x] 为当前值为 x 时的方案数。若一步减到 0 或负数就立刻结束，这对应一个完整方案，所以边界可视作 f[x]=1（x<=0）；于是对正整数有 f[x]=f[x-a]+f[x-b]，顺推到 n 即可。",
-        "tags": [
-            "编程题",
-            "动态规划",
-            "递推"
-        ],
-        "template": "#include <bits/stdc++.h>\nusing namespace std;\n\nint main() {\n    // 在此编写代码\n    return 0;\n}",
-        "referenceCode": "#include <bits/stdc++.h>\nusing namespace std;\n\nint main() {\n    ios::sync_with_stdio(false);\n    cin.tie(nullptr);\n\n    long long n, a, b, mod;\n    cin >> n >> a >> b >> mod;\n    vector<long long> f(n+1, 0);\n    for (long long x = 1; x <= n; ++x) {\n        long long v1 = (x <= a ? 1 : f[x-a]);\n        long long v2 = (x <= b ? 1 : f[x-b]);\n        f[x] = (v1+v2) % mod;\n    }\n    cout << f[n] % mod << '\\n';\n    return 0;\n}"
+      id: 26,
+      type: 'programming',
+      question: `
+# [GESP202403 六级] 游戏
+
+## 题目描述
+
+你有四个正整数 \$n,a,b,c\$，并准备用它们玩一个简单的小游戏。
+
+在一轮游戏操作中，你可以选择将 \$n\$ 减去 \$a\$，或是将 \$n\$ 减去 \$b\$。游戏将会进行多轮操作，直到当 \$n \\leq c\$ 时游戏结束。
+
+你想知道游戏结束时有多少种不同的游戏操作序列。两种游戏操作序列不同，当且仅当游戏操作轮数不同，或是某一轮游戏操作中，一种操作序列选择将 \$n\$ 减去 \$a\$，而另一种操作序列选择将 \$n\$ 减去 \$b\$。如果 \$a=b\$，也认为将 \$n\$ 减去 \$a\$ 与将 \$n\$ 减去 \$b\$ 是不同的操作。
+
+由于答案可能很大，你只需要求出答案对 \$10^9 + 7\$ 取模的结果。
+
+## 输入格式
+
+一行四个整数 \$n,a,b,c\$。
+
+## 输出格式
+
+输出一行一个整数表示答案。
+`,
+      score: 25,
+      explanation: "记 f[x] 为当前值为 x 时的方案数。若一步减到 0 或负数就立刻结束，这对应一个完整方案，所以边界可视作 f[x]=1（x<=0）；于是对正整数有 f[x]=f[x-a]+f[x-b]，顺推到 n 即可。",
+      tags: ["编程题", "动态规划", "递推"],
+      template: "#include <bits/stdc++.h>\nusing namespace std;\n\nint main() {\n    // 在此编写代码\n    return 0;\n}",
+      referenceCode: "#include <bits/stdc++.h>\nusing namespace std;\n\nint main() {\n    ios::sync_with_stdio(false);\n    cin.tie(nullptr);\n\n    long long n, a, b, mod;\n    cin >> n >> a >> b >> mod;\n    vector<long long> f(n+1, 0);\n    for (long long x = 1; x <= n; ++x) {\n        long long v1 = (x <= a ? 1 : f[x-a]);\n        long long v2 = (x <= b ? 1 : f[x-b]);\n        f[x] = (v1+v2) % mod;\n    }\n    cout << f[n] % mod << '\\n';\n    return 0;\n}",
+      answer: '',
     },
     {
-        "id": 27,
-        "type": "programming",
-        "title": "好斗的牛",
-        "problemNumber": "2024-03-23-06-C-02",
-        "score": 25,
-        "description": "有 n 头牛，第 i 头牛的攻击范围为 a_i。你只保留一段连续牛棚，问最少保留多少个牛棚，才能存在一种摆放方案使所有牛互不挑事。",
-        "inputDescription": "第一行 n。第二行 n 个整数 a_i。",
-        "outputDescription": "输出最少需要保留的牛棚数量。",
-        "samples": [
-            {
-                "input": "3\n1 2 1",
-                "output": "6"
-            }
-        ],
-        "explanation": "若两头相邻的牛分别是 i、j，则它们之间至少要空出 max(a_i,a_j) 个牛棚，整段长度就是 n 加上相邻空棚数之和。把攻击范围从小到大排列即可使这部分和最小，答案化为 n+(a_1+...+a_n)-min(a_i)。",
-        "tags": [
-            "编程题",
-            "贪心",
-            "构造"
-        ],
-        "template": "#include <bits/stdc++.h>\nusing namespace std;\n\nint main() {\n    // 在此编写代码\n    return 0;\n}",
-        "referenceCode": "#include <bits/stdc++.h>\nusing namespace std;\n\nint main() {\n    ios::sync_with_stdio(false);\n    cin.tie(nullptr);\n\n    int n;\n    cin >> n;\n    long long sum = 0;\n    int mn = INT_MAX;\n    for (int i = 0; i < n; ++i) {\n        int x;\n        cin >> x;\n        sum += x;\n        mn = min(mn, x);\n    }\n    cout << sum-mn+n << '\\n';\n    return 0;\n}"
+      id: 27,
+      type: 'programming',
+      question: `
+# [GESP202403 六级] 好斗的牛
+
+## 题目描述
+
+你有 \$10^9\$ 个牛棚，从左到右一字排开。你希望把 \$n\$ 头牛安置到牛棚里。麻烦的是，你的牛很好斗，如果他们附近有其他的牛，他们就会不安分地去挑事。其中，第 \$i\$ 头牛的攻击范围是 \$(a_i, b_i)\$，这意味着，如果他的左边 \$a_i\$ 个牛棚或者右边 \$b_i\$ 个牛棚有其他牛，它就会去挑事。
+
+你想留下一段连续的牛棚，并把其他牛棚都卖掉。请问您最少需要留下多少牛棚，才能保证至少存在一种方案能够把所有的 \$n\$ 头牛都安置进剩余的牛棚里，且没有牛会挑事？
+
+## 输入格式
+
+第一行一个正整数 \$n\$。  
+第二行 \$n\$ 个正整数 \$a_1, a_2, \\dots a_n\$。  
+第三行 \$n\$ 个正整数 \$b_1, b_2, \\dots b_n\$。
+
+## 输出格式
+
+输出一行一个整数表示答案。
+`,
+      score: 25,
+      explanation: "若两头相邻的牛分别是 i、j，则它们之间至少要空出 max(a_i,a_j) 个牛棚，整段长度就是 n 加上相邻空棚数之和。把攻击范围从小到大排列即可使这部分和最小，答案化为 n+(a_1+...+a_n)-min(a_i)。",
+      tags: ["编程题", "贪心", "构造"],
+      template: "#include <bits/stdc++.h>\nusing namespace std;\n\nint main() {\n    // 在此编写代码\n    return 0;\n}",
+      referenceCode: "#include <bits/stdc++.h>\nusing namespace std;\n\nint main() {\n    ios::sync_with_stdio(false);\n    cin.tie(nullptr);\n\n    int n;\n    cin >> n;\n    long long sum = 0;\n    int mn = INT_MAX;\n    for (int i = 0; i < n; ++i) {\n        int x;\n        cin >> x;\n        sum += x;\n        mn = min(mn, x);\n    }\n    cout << sum-mn+n << '\\n';\n    return 0;\n}",
+      answer: '',
     }
 ];
 

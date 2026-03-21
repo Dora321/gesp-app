@@ -261,52 +261,54 @@ export const paperData = {
     ],
     programmingQuestions: [
     {
-        "id": 26,
-        "type": "programming",
-        "title": "等差矩阵",
-        "problemNumber": "B4259",
-        "score": 25,
-        "description": "小 A 想构造一个 n 行 m 列的矩阵，使得矩阵的每一行与每一列均是等差数列。小 A 发现，在矩阵的第 i 行第 j 列填入整数 i × j，得到的矩阵能满足要求。你能帮小 A 输出这个矩阵吗？",
-        "inputDescription": "一行，两个正整数 n, m。",
-        "outputDescription": "共 n 行，每行 m 个由空格分割的整数，表示小 A 需要构造的矩阵。",
-        "samples": [
-            {
-                "input": "3 4",
-                "output": "1 2 3 4\n2 4 6 8\n3 6 9 12"
-            }
-        ],
-        "explanation": "题目已经给出了构造方法：第 i 行第 j 列填 i*j。直接双重循环输出整个矩阵。",
-        "tags": [
-            "编程题",
-            "构造",
-            "模拟"
-        ],
-        "template": "#include <bits/stdc++.h>\nusing namespace std;\n\nint main() {\n    ios::sync_with_stdio(false);\n    cin.tie(nullptr);\n\n    // 在此编写代码\n    return 0;\n}",
-        "referenceCode": "#include <bits/stdc++.h>\nusing namespace std;\n\nint main() {\n    ios::sync_with_stdio(false);\n    cin.tie(nullptr);\n\n    int n, m;\n    cin >> n >> m;\n    for (int i = 1; i <= n; ++i) {\n        for (int j = 1; j <= m; ++j) {\n            if (j > 1) cout << ' ';\n            cout << i * j;\n        }\n        cout << '\\n';\n    }\n    return 0;\n}"
+      id: 26,
+      type: 'programming',
+      question: `
+# [GESP202503 二级] 等差矩阵
+
+## 题目描述
+
+小 A 想构造一个 \$n\$ 行 \$m\$ 列的矩阵，使得矩阵的每一行与每一列均是等差数列。小 A 发现，在矩阵的第 \$i\$ 行第 \$j\$ 列填入整数 \$i \\times j\$，得到的矩阵能满足要求。你能帮小 A 输出这个矩阵吗？
+
+## 输入格式
+
+一行，两个正整数 \$n, m\$。
+
+## 输出格式
+
+共 \$n\$ 行，每行 \$m\$ 个由空格分割的整数，表示小 A 需要构造的矩阵。
+`,
+      score: 25,
+      explanation: "题目已经给出了构造方法：第 i 行第 j 列填 i*j。直接双重循环输出整个矩阵。",
+      tags: ["编程题", "构造", "模拟"],
+      template: "#include <bits/stdc++.h>\nusing namespace std;\n\nint main() {\n    ios::sync_with_stdio(false);\n    cin.tie(nullptr);\n\n    // 在此编写代码\n    return 0;\n}",
+      referenceCode: "#include <bits/stdc++.h>\nusing namespace std;\n\nint main() {\n    ios::sync_with_stdio(false);\n    cin.tie(nullptr);\n\n    int n, m;\n    cin >> n >> m;\n    for (int i = 1; i <= n; ++i) {\n        for (int j = 1; j <= m; ++j) {\n            if (j > 1) cout << ' ';\n            cout << i * j;\n        }\n        cout << '\\n';\n    }\n    return 0;\n}",
+      answer: '',
     },
     {
-        "id": 27,
-        "type": "programming",
-        "title": "时间跨越",
-        "problemNumber": "B4260",
-        "score": 25,
-        "description": "假设现在是 y 年 m 月 d 日 h 时而 k 小时后是 y' 年 m' 月 d' 日 h' 时，对于给定的 y, m, d, h, k，小杨想请你帮他计算出对应的 y', m', d', h' 是多少。",
-        "inputDescription": "输入包含五行，每行一个正整数，分别代表 y, m, d, h, k。",
-        "outputDescription": "输出四个正整数，代表 y', m', d', h'。",
-        "samples": [
-            {
-                "input": "2025\n2\n28\n23\n5",
-                "output": "2025 3 1 4"
-            }
-        ],
-        "explanation": "从给定日期时间出发，每次把小时加到下一天，必要时进位月份和年份。2025 不是闰年，因此 2 月有 28 天。",
-        "tags": [
-            "编程题",
-            "日期",
-            "模拟"
-        ],
-        "template": "#include <bits/stdc++.h>\nusing namespace std;\n\nint main() {\n    ios::sync_with_stdio(false);\n    cin.tie(nullptr);\n\n    // 在此编写代码\n    return 0;\n}",
-        "referenceCode": "#include <bits/stdc++.h>\nusing namespace std;\n\nint daysInMonth(int y, int m) {\n    static int md[] = {0,31,28,31,30,31,30,31,31,30,31,30,31};\n    bool leap = (y % 400 == 0) || (y % 4 == 0 && y % 100 != 0);\n    if (m == 2 && leap) return 29;\n    return md[m];\n}\n\nint main() {\n    ios::sync_with_stdio(false);\n    cin.tie(nullptr);\n\n    long long y, m, d, h, k;\n    cin >> y >> m >> d >> h >> k;\n    h += k;\n    d += h / 24;\n    h %= 24;\n    while (d > daysInMonth(y, m)) {\n        d -= daysInMonth(y, m);\n        ++m;\n        if (m == 13) { m = 1; ++y; }\n    }\n    cout << y << ' ' << m << ' ' << d << ' ' << h << '\\n';\n    return 0;\n}"
+      id: 27,
+      type: 'programming',
+      question: `
+# [GESP202503 二级] 时间跨越
+
+## 题目描述
+
+假设现在是 \$y\$ 年 \$m\$ 月 \$d\$ 日 \$h\$ 时而 \$k\$ 小时后是 \$y'\$ 年 \$m'\$ 月 \$d'\$ 日 \$h'\$ 时，对于给定的 \$y, m, d, h, k\$，小杨想请你帮他计算出对应的 \$y', m', d', h'\$ 是多少。
+
+## 输入格式
+
+输入包含五行，每行一个正整数，分别代表 \$y, m, d, h, k\$。
+
+## 输出格式
+
+输出四个正整数，代表 \$y', m', d', h'\$。
+`,
+      score: 25,
+      explanation: "从给定日期时间出发，每次把小时加到下一天，必要时进位月份和年份。2025 不是闰年，因此 2 月有 28 天。",
+      tags: ["编程题", "日期", "模拟"],
+      template: "#include <bits/stdc++.h>\nusing namespace std;\n\nint main() {\n    ios::sync_with_stdio(false);\n    cin.tie(nullptr);\n\n    // 在此编写代码\n    return 0;\n}",
+      referenceCode: "#include <bits/stdc++.h>\nusing namespace std;\n\nint daysInMonth(int y, int m) {\n    static int md[] = {0,31,28,31,30,31,30,31,31,30,31,30,31};\n    bool leap = (y % 400 == 0) || (y % 4 == 0 && y % 100 != 0);\n    if (m == 2 && leap) return 29;\n    return md[m];\n}\n\nint main() {\n    ios::sync_with_stdio(false);\n    cin.tie(nullptr);\n\n    long long y, m, d, h, k;\n    cin >> y >> m >> d >> h >> k;\n    h += k;\n    d += h / 24;\n    h %= 24;\n    while (d > daysInMonth(y, m)) {\n        d -= daysInMonth(y, m);\n        ++m;\n        if (m == 13) { m = 1; ++y; }\n    }\n    cout << y << ' ' << m << ' ' << d << ' ' << h << '\\n';\n    return 0;\n}",
+      answer: '',
     }
 ]
 };

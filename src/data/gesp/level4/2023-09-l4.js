@@ -469,41 +469,71 @@ export const paperData = {
 
 const programmingQuestions = [
     {
-        id: 26,
-        type: "programming",
-        score: 25,
-        title: "进制转换",
-        problemNumber: "2023-09-23-04-C-01",
-        description: "小杨最近在学习进制转换。他发现对于一个正整数 N，如果将其转换为 B 进制（2 ≤ B ≤ 36），则 N 在 B 进制下的表示由若干个字符组成。请你编写一个程序，输出 N 在 B 进制下的表示（10-35 分别用 A-Z 表示）。",
-        inputDescription: "第一行包含一个正整数 N (1 ≤ N ≤ 2^31-1)。第二行包含一个正整数 B (2 ≤ B ≤ 36)。",
-        outputDescription: "输出 N 在 B 进制下的表示。",
-        samples: [
-            { input: "10\n16", output: "A" }
-        ],
-        answer: "#include <iostream>\n#include <string>\n#include <algorithm>\nusing namespace std;\nchar getChar(int x) {\n    if (x < 10) return x+'0';\n    return x-10+'A';\n}\nint main() {\n    long long n; int b; cin >> n >> b;\n    if (n == 0) { cout << 0 << endl; return 0; }\n    string res = \"\";\n    while (n > 0) {\n        res += getChar(n % b);\n        n /= b;\n    }\n    reverse(res.begin(), res.end());\n    cout << res << endl;\n    return 0;\n}",
-        explanation: "利用辗转相除法，每次取 N % B 的余数，然后 N = N / B，直到 N 为 0。余数对应的字符逆序排列即为结果。LuoGu B3865。",
-        tags: ["编程题", "进制转换"],
-        template: "#include <iostream>\n#include <string>\n#include <algorithm>\nusing namespace std;\n\nint main() {\n    long long n;\n    int b;\n    cin >> n >> b;\n    // 在此编写代码\n    return 0;\n}",
-        referenceCode: "#include <iostream>\n#include <string>\n#include <algorithm>\nusing namespace std;\nchar getChar(int x) {\n    if (x < 10) return x+'0';\n    return x-10+'A';\n}\nint main() {\n    long long n; int b; cin >> n >> b;\n    if (n == 0) { cout << 0 << endl; return 0; }\n    string res = \"\";\n    while (n > 0) {\n        res += getChar(n % b);\n        n /= b;\n    }\n    reverse(res.begin(), res.end());\n    cout << res << endl;\n    return 0;\n}"
+      id: 26,
+      type: 'programming',
+      question: `
+# [GESP202309 四级] 进制转换
+
+## 题目描述
+
+\$N\$ 进制数指的是逢 \$N\$ 进一的计数制。例如，人们日常生活中大多使用十进制计数，而计算机底层则一般使用二进制。除此之外，八进制和十六进制在一些场合也是常用的计数制（十六进制中，一般使用字母 A 至 F 表示十至十五；本题中，十一进制到十五进制也是类似的）。
+
+在本题中，我们将给出 \$N\$ 个不同进制的数。你需要分别把它们转换成十进制数。
+
+## 输入格式
+
+输入的第一行为一个十进制表示的整数 \$N\$。接下来 \$N\$ 行，每行一个整数 \$K\$，随后是一个空格，紧接着是一个 \$K\$ 进制数，表示需要转换的数。保证所有 \$K\$ 进制数均由数字和大写字母组成，且不以 \$0\$ 开头。保证 \$K\$ 进制数合法。
+
+保证 \$N \\le 1000\$；保证 \$2 \\le K \\le 16\$。
+
+保证所有 \$K\$ 进制数的位数不超过 \$9\$。
+
+## 输出格式
+
+输出 \$N\$ 行，每一个十进制数，表示对应 \$K\$ 进制数的十进制数值。
+`,
+      score: 25,
+      answer: "#include <iostream>\n#include <string>\n#include <algorithm>\nusing namespace std;\nchar getChar(int x) {\n    if (x < 10) return x+'0';\n    return x-10+'A';\n}\nint main() {\n    long long n; int b; cin >> n >> b;\n    if (n == 0) { cout << 0 << endl; return 0; }\n    string res = \"\";\n    while (n > 0) {\n        res += getChar(n % b);\n        n /= b;\n    }\n    reverse(res.begin(), res.end());\n    cout << res << endl;\n    return 0;\n}",
+      explanation: "利用辗转相除法，每次取 N % B 的余数，然后 N = N / B，直到 N 为 0。余数对应的字符逆序排列即为结果。LuoGu B3865。",
+      tags: ["编程题", "进制转换"],
+      template: "#include <iostream>\n#include <string>\n#include <algorithm>\nusing namespace std;\n\nint main() {\n    long long n;\n    int b;\n    cin >> n >> b;\n    // 在此编写代码\n    return 0;\n}",
+      referenceCode: "#include <iostream>\n#include <string>\n#include <algorithm>\nusing namespace std;\nchar getChar(int x) {\n    if (x < 10) return x+'0';\n    return x-10+'A';\n}\nint main() {\n    long long n; int b; cin >> n >> b;\n    if (n == 0) { cout << 0 << endl; return 0; }\n    string res = \"\";\n    while (n > 0) {\n        res += getChar(n % b);\n        n /= b;\n    }\n    reverse(res.begin(), res.end());\n    cout << res << endl;\n    return 0;\n}",
     },
     {
-        id: 27,
-        type: "programming",
-        score: 25,
-        title: "变长编码",
-        problemNumber: "2023-09-23-04-C-02",
-        description: "小杨最近在学习编码。他发现变长编码是一种节省空间的编码方式。假设我们要对一个非负整数 x 进行变长编码，规则如下：如果 x < 128，则编码为一个字节 [x]；如果 x ≥ 128，则将其表示为 B 进制，其中 B=128，即 x = a_k*128^k+...+a_1*128+a_0。编码为 k+1 个字节，每个字节最高位为标志位（1 代表后面还有字节，0 代表最后一个字节），低 7 位为 a_i。编码顺序为从 a_0 到 a_k。",
-        inputDescription: "第一行一个非负整数 N (0 ≤ N ≤ 2^63-1)。",
-        outputDescription: "输出 N 的变长编码。每个字节用两位十六进制表示（大写），中间用空格隔开。",
-        samples: [
-            { input: "127", output: "7F" },
-            { input: "128", output: "80 01" }
-        ],
-        answer: "#include <iostream>\n#include <vector>\n#include <iomanip>\nusing namespace std;\nint main() {\n    unsigned long long n; cin >> n;\n    if (n == 0) { cout << \"00\" << endl; return 0; }\n    vector<int> res;\n    while (n >= 128) {\n        res.push_back((n % 128)+128);\n        n /= 128;\n    }\n    res.push_back(n);\n    for (int i = 0; i < res.size(); i++) {\n        cout << hex << uppercase << setw(2) << setfill('0') << res[i] << (i == res.size()-1 ? \"\" : \" \");\n    }\n    cout << endl;\n    return 0;\n}",
-        explanation: "按照 128 进制分解，每个字节的低 7 位是余数。除最后一个字节外，最高位补 1（即加上 128）。LuoGu B3866。",
-        tags: ["编程题", "位运算", "模拟"],
-        template: "#include <iostream>\n#include <vector>\n#include <iomanip>\nusing namespace std;\n\nint main() {\n    unsigned long long n;\n    cin >> n;\n    // 在此编写代码\n    return 0;\n}",
-        referenceCode: "#include <iostream>\n#include <vector>\n#include <iomanip>\nusing namespace std;\nint main() {\n    unsigned long long n; cin >> n;\n    if (n == 0) { cout << \"00\" << endl; return 0; }\n    vector<int> res;\n    while (n >= 128) {\n        res.push_back((n % 128)+128);\n        n /= 128;\n    }\n    res.push_back(n);\n    for (int i = 0; i < res.size(); i++) {\n        cout << hex << uppercase << setw(2) << setfill('0') << res[i] << (i == res.size()-1 ? \"\" : \" \");\n    }\n    cout << endl;\n    return 0;\n}"
+      id: 27,
+      type: 'programming',
+      question: `
+# [GESP202309 四级] 变长编码
+
+## 题目描述
+
+小明刚刚学习了三种整数编码方式：原码、反码、补码，并了解到计算机存储整数通常使用补码。但他总是觉得，生活中很少用到 \$2^{31}-1\$ 这么大的数，生活中常用的 \$0\\sim 100\$ 这种数也同样需要用 \$4\$ 个字节的补码表示，太浪费了些。
+热爱学习的小明通过搜索，发现了一种正整数的变长编码方式。这种编码方式的规则如下：
+
+1. 对于给定的正整数，首先将其表达为二进制形式。例如，\$(0)_{\\{10\\}}=(0)_{\\{2\\}}\$，\$(926)_{\\{10\\}}=(1110011110)_{\\{2\\}}\$。
+
+2. 将二进制数从低位到高位切分成每组 \$7\$ bit，不足 \$7\$bit 的在高位用 \$0\$ 填补。例如，\$(0)_{\\{2\\}}\$ 变为\$0000000\$ 的一组，\$(1110011110)_{\\{2\\}}\$ 变为 \$0011110\$ 和 \$0000111\$ 的两组。
+
+3. 由代表低位的组开始，为其加入最高位。如果这组是最后一组，则在最高位填上 \$0\$，否则在最高位填上 \$1\$。于是，\$0\$ 的变长编码为 \$00000000\$ 一个字节， \$926\$ 的变长编码为 \$10011110\$ 和 \$00000111\$ 两个字节。
+
+这种编码方式可以用更少的字节表达比较小的数，也可以用很多的字节表达非常大的数。例如，\$987654321012345678\$ 的二进制为 \$(0001101 \\ 1011010 \\ 0110110 \\ 1001011 \\ 1110100 \\ 0100110 \\ 1001000 \\ 0010110 \\ 1001110)_{\\{2\\}}\$，于是它的变长编码为（十六进制表示） \`CE 96 C8 A6 F4 CB B6 DA 0D\`，共 \$9\$ 个字节。
+
+你能通过编写程序，找到一个正整数的变长编码吗？
+
+## 输入格式
+
+输入第一行，包含一个正整数 \$N\$。约定 \$0\\le N \\le 10^{18}\$。
+
+## 输出格式
+
+输出一行，输出 \$N\$ 对应的变长编码的每个字节，每个字节均以 \$2\$ 位十六进制表示（其中， \`A-F\` 使用大写字母表示），两个字节间以空格分隔。
+`,
+      score: 25,
+      answer: "#include <iostream>\n#include <vector>\n#include <iomanip>\nusing namespace std;\nint main() {\n    unsigned long long n; cin >> n;\n    if (n == 0) { cout << \"00\" << endl; return 0; }\n    vector<int> res;\n    while (n >= 128) {\n        res.push_back((n % 128)+128);\n        n /= 128;\n    }\n    res.push_back(n);\n    for (int i = 0; i < res.size(); i++) {\n        cout << hex << uppercase << setw(2) << setfill('0') << res[i] << (i == res.size()-1 ? \"\" : \" \");\n    }\n    cout << endl;\n    return 0;\n}",
+      explanation: "按照 128 进制分解，每个字节的低 7 位是余数。除最后一个字节外，最高位补 1（即加上 128）。LuoGu B3866。",
+      tags: ["编程题", "位运算", "模拟"],
+      template: "#include <iostream>\n#include <vector>\n#include <iomanip>\nusing namespace std;\n\nint main() {\n    unsigned long long n;\n    cin >> n;\n    // 在此编写代码\n    return 0;\n}",
+      referenceCode: "#include <iostream>\n#include <vector>\n#include <iomanip>\nusing namespace std;\nint main() {\n    unsigned long long n; cin >> n;\n    if (n == 0) { cout << \"00\" << endl; return 0; }\n    vector<int> res;\n    while (n >= 128) {\n        res.push_back((n % 128)+128);\n        n /= 128;\n    }\n    res.push_back(n);\n    for (int i = 0; i < res.size(); i++) {\n        cout << hex << uppercase << setw(2) << setfill('0') << res[i] << (i == res.size()-1 ? \"\" : \" \");\n    }\n    cout << endl;\n    return 0;\n}",
     }
 ];
 

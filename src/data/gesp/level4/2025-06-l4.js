@@ -335,25 +335,61 @@ export const paperData = {
             tags: ["客观题", "判断题", "文件操作", "GESP4级"]
         },
         {
-            id: 26,
-            type: "programming",
-            title: "画布裁剪",
-            question: "【问题描述】\n小 A 在高为 h 宽为 w 的矩形画布上绘制了一幅画。由于画布边缘留白太多，小 A 想适当地裁剪画布，只保留画的主体。具体来说，画布可以视为 h 行 w 列的字符矩阵，其中的字符均为 ASCII 码位于 33∼126 之间的可见字符，小 A 只保留画布中由第 x1 行到第 x2 行、第 y1 列到第 y2 列构成的子矩阵。\n小 A 将画布交给了你，你能帮他完成画布的裁剪吗？\n【输入描述】\n第一行，两个正整数 h, w，分别表示画布的行数与列数。\n第二行，四个正整数 x1, x2, y1, y2，表示保留的行列边界。\n接下来 h 行，每行一个长度为 w 的字符串，表示画布内容。\n【输出描述】\n输出共 x2−x1+1 行，每行一个长度为 y2−y1+1 的字符串，表示裁剪后的画布。\n【样例输入1】\n3 5\n2 2 2 4\n.....\n.>_<.\n.....\n【样例输出1】\n>_<",
-            score: 25,
-            explanation: "该题为基础的矩阵裁剪问题。根据输入的四个边界坐标 (x1, x2, y1, y2)，使用嵌套循环遍历并输出原矩阵中对应的子区域即可。",
-            referenceCode: `#include <iostream>\n#include <vector>\n#include <string>\nusing namespace std;\n\nint main() {\n    int H, W;\n    cin >> H >> W;\n    int x1, x2, y1, y2;\n    cin >> x1 >> x2 >> y1 >> y2;\n    vector<string> canvas(H);\n    for (int i = 0; i < H; ++i) cin >> canvas[i];\n    for (int i = x1-1; i <= x2-1; ++i) {\n        for (int j = y1-1; j <= y2-1; ++j) {\n            cout << canvas[i][j];\n        }\n        cout << endl;\n    }\n    return 0;\n}`,
-            tags: ["编程题", "矩阵操作", "GESP4级"]
-        },
+      id: 26,
+      type: 'programming',
+      question: `
+# [GESP202506 四级] 画布裁剪
+
+## 题目描述
+
+小 A 在高为 \$h\$ 宽为 \$w\$ 的矩形画布上绘制了一幅画。由于画布边缘留白太多，小 A 想适当地裁剪画布，只保留画的主体。具体来说，画布可以视为 \$h\$ 行 \$w\$ 列的字符矩阵，其中的字符均为 ASCII 码位于 \$33 \\sim 126\$ 之间的可见字符，小 A 只保留画布中由第 \$x_1\$ 行到第 \$x_2\$ 行、第 \$y_1\$ 列到第 \$y_2\$ 列构成的子矩阵。
+
+小 A 将画布交给了你，你能帮他完成画布的裁剪吗？
+
+## 输入格式
+
+第一行，两个正整数 \$h, w\$，分别表示画布的行数与列数。
+
+第二行，四个正整数 \$x_1, x_2, y_1, y_2\$，表示保留的行列边界。
+
+接下来 \$h\$ 行，每行一个长度为 \$w\$ 的字符串，表示画布内容。
+
+## 输出格式
+
+输出共 \$x_2 - x_1 + 1\$ 行，每行一个长度为 \$y_2 - y_1 + 1\$ 的字符串，表示裁剪后的画布。
+`,
+      score: 25,
+      explanation: "该题为基础的矩阵裁剪问题。根据输入的四个边界坐标 (x1, x2, y1, y2)，使用嵌套循环遍历并输出原矩阵中对应的子区域即可。",
+      referenceCode: `#include <iostream>\n#include <vector>\n#include <string>\nusing namespace std;\n\nint main() {\n    int H, W;\n    cin >> H >> W;\n    int x1, x2, y1, y2;\n    cin >> x1 >> x2 >> y1 >> y2;\n    vector<string> canvas(H);\n    for (int i = 0; i < H; ++i) cin >> canvas[i];\n    for (int i = x1-1; i <= x2-1; ++i) {\n        for (int j = y1-1; j <= y2-1; ++j) {\n            cout << canvas[i][j];\n        }\n        cout << endl;\n    }\n    return 0;\n}`,
+      tags: ["编程题", "矩阵操作", "GESP4级"],
+      answer: '',
+    },
         {
-            id: 27,
-            type: "programming",
-            title: "排序",
-            question: "【问题描述】\n体育课上有 n 名同学排成一队，从前往后数第 i 位同学的身高为 hi，体重为 wi。目前排成的队伍看起来参差不齐，老师希望同学们能按照身高从高到低的顺序排队，如果身高相同则按照体重从重到轻排序。在调整队伍时，每次只能交换相邻两位同学的位置。老师想知道，最少需要多少次交换操作，才能将队伍调整成目标顺序。\n【输入描述】\n第一行，一个正整数 n，表示队伍人数。\n接下来 n 行，每行两个正整数 hi 和 wi，分别表示第 i 位同学的身高和体重。\n【输出描述】\n输出一行，一个整数，表示最少需要的交换次数。\n【样例输入1】\n5\n1 60\n3 70\n2 80\n4 55\n4 50\n【样例输出1】\n8",
-            score: 25,
-            explanation: "本题要求计算将初始队列调整为目标有序队列所需的最少相邻交换次数，即求原序列的“逆序对”数。由于是要按身高从高到低、体重从重到轻排序，我们可以直接使用冒泡排序或插入排序等模拟相邻交换的过程，统计交换次数即可。",
-            referenceCode: `#include <iostream>\n#include <vector>\n#include <algorithm>\nusing namespace std;\n\nstruct Student {\n    int h, w;\n};\n\nbool compare(const Student& a, const Student& b) {\n    if (a.h != b.h) return a.h > b.h;\n    return a.w > b.w;\n}\n\nint main() {\n    int n;\n    cin >> n;\n    vector<Student> sts(n);\n    for (int i = 0; i < n; ++i) cin >> sts[i].h >> sts[i].w;\n    \n    int swaps = 0;\n    for (int i = 0; i < n-1; ++i) {\n        for (int j = 0; j < n-1-i; ++j) {\n            if (compare(sts[j+1], sts[j])) {\n                swap(sts[j], sts[j+1]);\n                swaps++;\n            }\n        }\n    }\n    cout << swaps << endl;\n    return 0;\n}`,
-            tags: ["编程题", "排序", "逆序对", "GESP4级"]
-        }
+      id: 27,
+      type: 'programming',
+      question: `
+# [GESP202506 四级] 排序
+
+## 题目描述
+
+体育课上有 \$n\$ 名同学排成一队，从前往后数第 \$i\$ 位同学的身高为 \$h_i\$，体重为 \$w_i\$。目前排成的队伍看起来参差不齐，老师希望同学们能按照身高从高到低的顺序排队，如果身高相同则按照体重从重到轻排序。在调整队伍时，每次只能交换相邻两位同学的位置。老师想知道，最少需要多少次交换操作，才能将队伍调整成目标顺序。
+
+## 输入格式
+
+第一行，一个正整数 \$n\$，表示队伍人数。
+
+接下来 \$n\$ 行，每行两个正整数 \$h_i\$ 和 \$w_i\$，分别表示第 \$i\$ 位同学的身高和体重。
+
+## 输出格式
+
+输出一行，一个整数，表示最少需要的交换次数。
+`,
+      score: 25,
+      explanation: "本题要求计算将初始队列调整为目标有序队列所需的最少相邻交换次数，即求原序列的“逆序对”数。由于是要按身高从高到低、体重从重到轻排序，我们可以直接使用冒泡排序或插入排序等模拟相邻交换的过程，统计交换次数即可。",
+      referenceCode: `#include <iostream>\n#include <vector>\n#include <algorithm>\nusing namespace std;\n\nstruct Student {\n    int h, w;\n};\n\nbool compare(const Student& a, const Student& b) {\n    if (a.h != b.h) return a.h > b.h;\n    return a.w > b.w;\n}\n\nint main() {\n    int n;\n    cin >> n;\n    vector<Student> sts(n);\n    for (int i = 0; i < n; ++i) cin >> sts[i].h >> sts[i].w;\n    \n    int swaps = 0;\n    for (int i = 0; i < n-1; ++i) {\n        for (int j = 0; j < n-1-i; ++j) {\n            if (compare(sts[j+1], sts[j])) {\n                swap(sts[j], sts[j+1]);\n                swaps++;\n            }\n        }\n    }\n    cout << swaps << endl;\n    return 0;\n}`,
+      tags: ["编程题", "排序", "逆序对", "GESP4级"],
+      answer: '',
+    }
     ]
 };
 

@@ -2,55 +2,62 @@
 
 const programmingQuestions = [
     {
-        "id": 26,
-        "type": "programming",
-        "title": "小杨和整数拆分",
-        "problemNumber": "2024-09-22-06-C-01",
-        "score": 25,
-        "description": "把正整数 n 拆分成若干完全平方数之和，要求数量最少。",
-        "inputDescription": "输入一个正整数 n。",
-        "outputDescription": "输出最少完全平方数数量。",
-        "samples": [
-            {
-                "input": "8",
-                "output": "2"
-            }
-        ],
-        "explanation": "这是“最少完全平方数分拆”。先用四平方定理：答案一定在 1~4 之间；依次判断是否本身是平方数、是否可写成两个平方数之和，再用 Legendre 三平方定理判断是否必须是 4，否则就是 3。",
-        "tags": [
-            "编程题",
-            "动态规划"
-        ],
-        "template": "#include <bits/stdc++.h>\nusing namespace std;\n\nint main() {\n    // 在此编写代码\n    return 0;\n}",
-        "referenceCode": "#include <bits/stdc++.h>\nusing namespace std;\n\nstatic bool isSquare(long long x) {\n    long long r = sqrtl((long double)x);\n    while (r * r < x) ++r;\n    while (r * r > x) --r;\n    return r * r == x;\n}\n\nint main() {\n    ios::sync_with_stdio(false);\n    cin.tie(nullptr);\n\n    long long n;\n    cin >> n;\n    if (isSquare(n)) {\n        cout << 1 << '\\n';\n        return 0;\n    }\n    for (long long i = 1; i * i <= n; ++i) {\n        if (isSquare(n-i * i)) {\n            cout << 2 << '\\n';\n            return 0;\n        }\n    }\n    long long x = n;\n    while (x % 4 == 0) x /= 4;\n    if (x % 8 == 7) cout << 4 << '\\n';\n    else cout << 3 << '\\n';\n    return 0;\n}"
+      id: 26,
+      type: 'programming',
+      question: `
+# [GESP202409 六级] 小杨和整数拆分
+
+## 题目描述
+
+小杨有一个正整数 \$n\$，小杨想将它拆分成若干完全平方数的和，同时小杨希望拆分的数量越少越好。
+
+编程计算总和为 \$n\$ 的完全平方数的最小数量。
+
+## 输入格式
+
+输入只有一行一个正整数 \$n\$。
+
+## 输出格式
+
+输出一行一个整数表示答案。
+`,
+      score: 25,
+      explanation: "这是“最少完全平方数分拆”。先用四平方定理：答案一定在 1~4 之间；依次判断是否本身是平方数、是否可写成两个平方数之和，再用 Legendre 三平方定理判断是否必须是 4，否则就是 3。",
+      tags: ["编程题", "动态规划"],
+      template: "#include <bits/stdc++.h>\nusing namespace std;\n\nint main() {\n    // 在此编写代码\n    return 0;\n}",
+      referenceCode: "#include <bits/stdc++.h>\nusing namespace std;\n\nstatic bool isSquare(long long x) {\n    long long r = sqrtl((long double)x);\n    while (r * r < x) ++r;\n    while (r * r > x) --r;\n    return r * r == x;\n}\n\nint main() {\n    ios::sync_with_stdio(false);\n    cin.tie(nullptr);\n\n    long long n;\n    cin >> n;\n    if (isSquare(n)) {\n        cout << 1 << '\\n';\n        return 0;\n    }\n    for (long long i = 1; i * i <= n; ++i) {\n        if (isSquare(n-i * i)) {\n            cout << 2 << '\\n';\n            return 0;\n        }\n    }\n    long long x = n;\n    while (x % 4 == 0) x /= 4;\n    if (x % 8 == 7) cout << 4 << '\\n';\n    else cout << 3 << '\\n';\n    return 0;\n}",
+      answer: '',
     },
     {
-        "id": 27,
-        "type": "programming",
-        "title": "算法学习",
-        "problemNumber": "2024-09-22-06-C-02",
-        "score": 25,
-        "description": "有 m 种算法、n 道题。第 i 道题属于知识点 c_i，可使对应掌握程度增加 v_i。要求每种算法掌握程度都至少达到 k，且不能连续学习两道同知识点题目。求最少学习题数，无解输出 -1。",
-        "inputDescription": "第一行 m,n,k。第二行 n 个 c_i。第三行 n 个 v_i。",
-        "outputDescription": "输出最少题数；无解输出 -1。",
-        "samples": [
-            {
-                "input": "3 5 10\n1 1 2 3 3\n9 1 10 10 1",
-                "output": "4"
-            },
-            {
-                "input": "2 4 10\n1 1 1 2\n1 2 7 10",
-                "output": "-1"
-            }
-        ],
-        "explanation": "先对每个知识点把题目价值从大到小排序，求出达到总掌握度至少 k 所需的最少题数 need_i。若某个知识点总和都不足 k，则无解。随后还要满足“相邻题知识点不同”，等价于所选题目能重排为相邻不同；若最大 need_i 过大，就必须从其他知识点再补选一些题直到 maxCnt <= total-maxCnt+1。",
-        "tags": [
-            "编程题",
-            "贪心",
-            "排序"
-        ],
-        "template": "#include <bits/stdc++.h>\nusing namespace std;\n\nint main() {\n    // 在此编写代码\n    return 0;\n}",
-        "referenceCode": "#include <bits/stdc++.h>\nusing namespace std;\n\nint main() {\n    ios::sync_with_stdio(false);\n    cin.tie(nullptr);\n\n    int m, n;\n    long long k;\n    cin >> m >> n >> k;\n    vector<int> c(n);\n    for (int i = 0; i < n; ++i) cin >> c[i];\n    vector<long long> v(n);\n    for (int i = 0; i < n; ++i) cin >> v[i];\n\n    vector<vector<long long>> groups(m+1);\n    for (int i = 0; i < n; ++i) groups[c[i]].push_back(v[i]);\n\n    vector<int> need(m+1, 0), extra(m+1, 0);\n    long long total = 0;\n    int mx = 0, who = -1;\n    for (int i = 1; i <= m; ++i) {\n        auto &g = groups[i];\n        sort(g.begin(), g.end(), greater<long long>());\n        long long sum = 0;\n        while (need[i] < (int)g.size() && sum < k) {\n            sum += g[need[i]];\n            ++need[i];\n        }\n        if (sum < k) {\n            cout << -1 << '\\n';\n            return 0;\n        }\n        extra[i] = (int)g.size()-need[i];\n        total += need[i];\n        if (need[i] > mx) {\n            mx = need[i];\n            who = i;\n        }\n    }\n\n    long long others = total-mx;\n    long long needMore = max(0LL, 2LL * mx-others-1-mx); // extra items needed outside dominant color\n    long long available = 0;\n    for (int i = 1; i <= m; ++i) if (i != who) available += extra[i];\n    if (needMore > available) {\n        cout << -1 << '\\n';\n        return 0;\n    }\n    cout << total+needMore << '\\n';\n    return 0;\n}"
+      id: 27,
+      type: 'programming',
+      question: `
+# [GESP202409 六级] 算法学习
+
+## 题目描述
+
+小杨计划学习 \$m\$ 种算法，为此他找了 \$n\$ 道题目来帮助自己学习，每道题目最多学习一次。
+
+小杨对于 \$m\$ 种算法的初始掌握程度均为 \$0\$。第 \$i\$ 道题目有对应的知识点 \$a_i\$，即学习第 \$i\$ 道题目可以令小杨对第 \$a_i\$ 种算法的掌握程度提高 \$b_i\$。小杨的学习目标是对于 \$m\$ 种算法的掌握程度均至少为 \$k\$。
+
+小杨认为连续学习两道相同知识点的题目是不好的，小杨想请你编写程序帮他计算出他最少需要学习多少道题目才能使得他在完成学习目标的同时避免连续学习两道相同知识点的题目。
+
+## 输入格式
+
+第一行三个正整数 \$m, n, k\$，代表算法种类数，题目数和目标掌握程度。  
+第二行 \$n\$ 个正整数 \$a_1, a_2, ..., a_n\$，代表每道题目的知识点。  
+第三行 \$n\$ 个正整数 \$b_1, b_2, ..., b_n\$，代表每道题目提升的掌握程度。
+
+## 输出格式
+
+输出一个整数，代表小杨最少需要学习题目的数量，如果不存在满足条件的方案，输出 -1。
+`,
+      score: 25,
+      explanation: "先对每个知识点把题目价值从大到小排序，求出达到总掌握度至少 k 所需的最少题数 need_i。若某个知识点总和都不足 k，则无解。随后还要满足“相邻题知识点不同”，等价于所选题目能重排为相邻不同；若最大 need_i 过大，就必须从其他知识点再补选一些题直到 maxCnt <= total-maxCnt+1。",
+      tags: ["编程题", "贪心", "排序"],
+      template: "#include <bits/stdc++.h>\nusing namespace std;\n\nint main() {\n    // 在此编写代码\n    return 0;\n}",
+      referenceCode: "#include <bits/stdc++.h>\nusing namespace std;\n\nint main() {\n    ios::sync_with_stdio(false);\n    cin.tie(nullptr);\n\n    int m, n;\n    long long k;\n    cin >> m >> n >> k;\n    vector<int> c(n);\n    for (int i = 0; i < n; ++i) cin >> c[i];\n    vector<long long> v(n);\n    for (int i = 0; i < n; ++i) cin >> v[i];\n\n    vector<vector<long long>> groups(m+1);\n    for (int i = 0; i < n; ++i) groups[c[i]].push_back(v[i]);\n\n    vector<int> need(m+1, 0), extra(m+1, 0);\n    long long total = 0;\n    int mx = 0, who = -1;\n    for (int i = 1; i <= m; ++i) {\n        auto &g = groups[i];\n        sort(g.begin(), g.end(), greater<long long>());\n        long long sum = 0;\n        while (need[i] < (int)g.size() && sum < k) {\n            sum += g[need[i]];\n            ++need[i];\n        }\n        if (sum < k) {\n            cout << -1 << '\\n';\n            return 0;\n        }\n        extra[i] = (int)g.size()-need[i];\n        total += need[i];\n        if (need[i] > mx) {\n            mx = need[i];\n            who = i;\n        }\n    }\n\n    long long others = total-mx;\n    long long needMore = max(0LL, 2LL * mx-others-1-mx); // extra items needed outside dominant color\n    long long available = 0;\n    for (int i = 1; i <= m; ++i) if (i != who) available += extra[i];\n    if (needMore > available) {\n        cout << -1 << '\\n';\n        return 0;\n    }\n    cout << total+needMore << '\\n';\n    return 0;\n}",
+      answer: '',
     }
 ];
 

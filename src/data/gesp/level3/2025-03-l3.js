@@ -244,50 +244,64 @@ export const paperData = {
     ],
     programmingQuestions: [
         {
-            id: 26,
-            type: 'programming',
-            explanation: '暂无解析',
-            template: `#include <bits/stdc++.h>\nusing namespace std;\n\nint main() {\n    // 在此填写代码\n    return 0;\n}`,
-            score: 25,
-            title: '2025',
-            problemNumber: 'B4261',
-            source: 'official-pdf+luogu-mapping',
-            description: '小 A 有一个整数 x，他想找到最小的正整数 y，使得 (x & y)+(x | y) = 2025，其中 & 表示按位与，| 表示按位或。如果不存在满足条件的 y，则输出 -1。根据恒等式 (x & y)+(x | y) = x+y，本题等价于求最小正整数 y = 2025-x；若该值不为正，则无解。',
-            inputDescription: '输入一行，一个整数 x。',
-            outputDescription: '输出一行，一个整数。若存在满足条件的最小正整数 y，则输出它；否则输出 -1。',
-            samples: [
-                {
-                    input: '1025',
-                    output: '1000'
-                }
-            ],
-            explanation: '由按位恒等式 (x & y)+(x | y) = x+y，可知只要 2025-x > 0，答案就是 2025-x；否则不存在正整数解。官方 PDF 参考程序使用 1..2025 暴力枚举，但可直接化简。',
-            tags: ['编程题', '位运算', '数学'],
-            template: '#include <bits/stdc++.h>\nusing namespace std;\n\nint main() {\n    ios::sync_with_stdio(false);\n    cin.tie(nullptr);\n\n    // 在此编写代码\n    return 0;\n}',
-            referenceCode: '#include <bits/stdc++.h>\nusing namespace std;\n\nint main() {\n    ios::sync_with_stdio(false);\n    cin.tie(nullptr);\n\n    long long x;\n    cin >> x;\n    long long y = 2025-x;\n    if (y > 0) cout << y << "\\n";\n    else cout << -1 << "\\n";\n    return 0;\n}'
-        },
+      id: 26,
+      type: 'programming',
+      question: `
+# [GESP202503 三级] 2025
+
+## 题目描述
+
+小 A 有一个整数 \$x\$，他想找到最小的正整数 \$y\$ 使得下式成立：
+
+\$(x \\ \\operatorname{and} \\ y) + (x \\ \\operatorname{or} \\ y) = 2025\$
+
+其中 \$\\operatorname{and}\$ 表示二进制按位与运算，\$\\operatorname{or}\$ 表示二进制按位或运算。如果不存在满足条件的 \$y\$，则输出 \$-1\$。
+
+## 输入格式
+
+一行，一个整数 \$x\$。
+
+## 输出格式
+
+一行，一个整数，若满足条件的 \$y\$ 存在则输出 \$y\$，否则输出 \$-1\$。
+`,
+      explanation: '由按位恒等式 (x & y)+(x | y) = x+y，可知只要 2025-x > 0，答案就是 2025-x；否则不存在正整数解。官方 PDF 参考程序使用 1..2025 暴力枚举，但可直接化简。',
+      template: '#include <bits/stdc++.h>\nusing namespace std;\n\nint main() {\n    ios::sync_with_stdio(false);\n    cin.tie(nullptr);\n\n    // 在此编写代码\n    return 0;\n}',
+      score: 25,
+      tags: ['编程题', '位运算', '数学'],
+      referenceCode: '#include <bits/stdc++.h>\nusing namespace std;\n\nint main() {\n    ios::sync_with_stdio(false);\n    cin.tie(nullptr);\n\n    long long x;\n    cin >> x;\n    long long y = 2025-x;\n    if (y > 0) cout << y << "\\n";\n    else cout << -1 << "\\n";\n    return 0;\n}',
+      answer: '',
+    },
         {
-            id: 27,
-            type: 'programming',
-            explanation: '暂无解析',
-            template: `#include <bits/stdc++.h>\nusing namespace std;\n\nint main() {\n    // 在此填写代码\n    return 0;\n}`,
-            score: 25,
-            title: '词频统计',
-            problemNumber: 'B4262',
-            source: 'official-pdf+luogu-mapping',
-            description: '给定 n 个仅由大小写英文字母组成的单词，忽略大小写后统计每个单词出现次数，输出出现次数最多的那个单词。题目保证最高频单词唯一，输出时需要转为小写。',
-            inputDescription: '第一行一个整数 n，表示单词数量；接下来 n 行，每行一个单词。输入保证出现次数最多的单词唯一。',
-            outputDescription: '输出一行，包含出现次数最多的单词，且以小写形式输出。',
-            samples: [
-                {
-                    input: '6\nApple\nbanana\napple\nOrange\nbanana\napple',
-                    output: 'apple'
-                }
-            ],
-            explanation: '把每个单词统一转为小写后，用 map / unordered_map 统计出现次数，最后输出频次最大的那个单词即可。',
-            tags: ['编程题', '字符串', '哈希表'],
-            template: '#include <bits/stdc++.h>\nusing namespace std;\n\nint main() {\n    ios::sync_with_stdio(false);\n    cin.tie(nullptr);\n\n    // 在此编写代码\n    return 0;\n}',
-            referenceCode: '#include <bits/stdc++.h>\nusing namespace std;\n\nint main() {\n    int n;\n    cin >> n;\n    map<string, int> cnt;\n    int best = -1;\n    string ans;\n\n    for (int i = 0; i < n; ++i) {\n        string s;\n        cin >> s;\n        for (char &c : s) c = tolower(static_cast<unsigned char>(c));\n        int cur = ++cnt[s];\n        if (cur > best) {\n            best = cur;\n            ans = s;\n        }\n    }\n\n    cout << ans << "\\n";\n    return 0;\n}'
-        }
+      id: 27,
+      type: 'programming',
+      question: `
+# [GESP202503 三级] 词频统计
+
+## 题目描述
+
+在文本处理中，统计单词出现的频率是一个常见的任务。现在，给定 \$n\$ 个单词，你需要找出其中出现次数最多的单词。在本题中，忽略单词中字母的大小写（即 \`Apple\`、\`apple\`、\`APPLE\`、\`aPPle\` 等均视为同一个单词）。
+
+请你编写一个程序，输入 \$n\$ 个单词，输出其中出现次数最多的单词。
+
+## 输入格式
+
+第一行，一个整数 \$n\$，表示单词的个数；
+
+接下来 \$n\$ 行，每行包含一个单词，单词由大小写英文字母组成。
+
+输入保证，出现次数最多的单词只会有一个。
+
+## 输出格式
+
+输出一行，包含出现次数最多的单词（输出单词为小写形式）。
+`,
+      explanation: '把每个单词统一转为小写后，用 map / unordered_map 统计出现次数，最后输出频次最大的那个单词即可。',
+      template: '#include <bits/stdc++.h>\nusing namespace std;\n\nint main() {\n    ios::sync_with_stdio(false);\n    cin.tie(nullptr);\n\n    // 在此编写代码\n    return 0;\n}',
+      score: 25,
+      tags: ['编程题', '字符串', '哈希表'],
+      referenceCode: '#include <bits/stdc++.h>\nusing namespace std;\n\nint main() {\n    int n;\n    cin >> n;\n    map<string, int> cnt;\n    int best = -1;\n    string ans;\n\n    for (int i = 0; i < n; ++i) {\n        string s;\n        cin >> s;\n        for (char &c : s) c = tolower(static_cast<unsigned char>(c));\n        int cur = ++cnt[s];\n        if (cur > best) {\n            best = cur;\n            ans = s;\n        }\n    }\n\n    cout << ans << "\\n";\n    return 0;\n}',
+      answer: '',
+    }
     ]
 };

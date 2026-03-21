@@ -2,38 +2,69 @@
 
 const programmingQuestions = [
     {
-        id: 26,
-        type: "programming",
-        score: 25,
-        title: "小杨的武器",
-        problemNumber: "2024-09-23-05-C-01",
-        description: "小杨有 n 种不同的武器，对第 i 种武器的初始熟练度为 ai。会依次参加 m 场战斗，每场战斗必须且只能选择一种武器。如果选择了第 i 种武器参加第 j 场战斗，战斗后熟练度变为 ai+cj（cj 可正可负）。求 m 场战斗后熟练度最大值的最大可能结果。",
-        inputDescription: "第一行两个正整数 n, m (1 ≤ n, m ≤ 100,000)。第二行 n 个整数 ai (-$10^9$ ≤ ai ≤ $10^9$)。第三行 m 个整数 cj (-$10^9$ ≤ cj ≤ $10^9$)。",
-        outputDescription: "输出一个整数，代表 m 场战斗后熟练度的最大可能结果。",
-        samples: [
-            { input: "2 2\n9 9\n1 -1", output: "10" }
-        ],
-        explanation: "每一场战斗，只要选择当前熟练度最大的武器或能使熟练度增加最多的武器（此题中由于每次只能选一个，实际上只需考虑对所有武器熟练度的增加总量）。由于是求最大值的最大化，我们只需关注单种武器能达到的最大值。其实每场战斗都可以选同一种或不同种，关键在于最大熟练度。策略：每场战斗如果 cj > 0，则加到当前最大的武器上；如果 cj < 0，不加到最大武器上（加到其他武器上）？不对，题目是求 *最后* 熟练度最大值。那么只需让某一种武器吃掉所有正的 cj，另一种吃掉负的 cj（如果不一定要选每种武器）。但题目说‘每场战斗只能选择一种武器使用’。所以总共只有 m 个 cj。我们可以把所有的正 cj 都加给初始最大的武器即可。",
-        tags: ["编程题", "贪心", "策略"],
-        template: "#include <iostream>\n#include <vector>\n#include <algorithm>\nusing namespace std;\n\nint main() {\n    int n, m;\n    cin >> n >> m;\n    // 在此编写代码\n    return 0;\n}",
-        referenceCode: "#include <iostream>\n#include <vector>\n#include <algorithm>\nusing namespace std;\nint main() {\n    int n, m; cin >> n >> m;\n    long long max_a = -2e18;\n    for (int i = 0; i < n; i++) {\n        long long a; cin >> a;\n        max_a = max(max_a, a);\n    }\n    long long sum_pos = 0;\n    for (int i = 0; i < m; i++) {\n        long long c; cin >> c;\n        if (c > 0) sum_pos += c;\n    }\n    cout << max_a+sum_pos << endl;\n    return 0;\n}"
+      id: 26,
+      type: 'programming',
+      question: `
+# [GESP202409 五级] 挑战怪物
+
+## 题目描述
+
+小杨正在和一个怪物战斗，怪物的血量为 \$h\$，只有当怪物的血量**恰好**为 \$0\$ 时小杨才能够成功击败怪物。
+
+小杨有两种攻击怪物的方式：
+- 物理攻击。假设当前为小杨第  \$i\$ 次使用物理攻击，则会对怪物造成 \$2^{i - 1}\$ 点伤害。
+- 魔法攻击。小杨选择任意一个质数 \$x\$（ 不能超过怪物当前血量），对怪物造成 \$x\$ 点伤害。由于小杨并不擅长魔法，他只能使用**至多一次**魔法攻击。
+
+小杨想知道自己能否击败怪物，如果能，小杨想知道自己最少需要多少次攻击。
+
+## 输入格式
+
+**本题单个测试点内有多组测试数据**。第一行包含一个正整数 \$t\$，代表测试用例组数。
+
+接下来是 \$t\$ 组测试用例。对于每组测试用例，只有一行一个整数 \$h\$，代表怪物血量。
+
+## 输出格式
+
+对于每组测试用例，如果小杨能够击败怪物，输出一个整数，代表小杨需要的最少攻击次数，如果不能击败怪物，
+输出 \$-1\$。
+`,
+      score: 25,
+      explanation: "每一场战斗，只要选择当前熟练度最大的武器或能使熟练度增加最多的武器（此题中由于每次只能选一个，实际上只需考虑对所有武器熟练度的增加总量）。由于是求最大值的最大化，我们只需关注单种武器能达到的最大值。其实每场战斗都可以选同一种或不同种，关键在于最大熟练度。策略：每场战斗如果 cj > 0，则加到当前最大的武器上；如果 cj < 0，不加到最大武器上（加到其他武器上）？不对，题目是求 *最后* 熟练度最大值。那么只需让某一种武器吃掉所有正的 cj，另一种吃掉负的 cj（如果不一定要选每种武器）。但题目说‘每场战斗只能选择一种武器使用’。所以总共只有 m 个 cj。我们可以把所有的正 cj 都加给初始最大的武器即可。",
+      tags: ["编程题", "贪心", "策略"],
+      template: "#include <iostream>\n#include <vector>\n#include <algorithm>\nusing namespace std;\n\nint main() {\n    int n, m;\n    cin >> n >> m;\n    // 在此编写代码\n    return 0;\n}",
+      referenceCode: "#include <iostream>\n#include <vector>\n#include <algorithm>\nusing namespace std;\nint main() {\n    int n, m; cin >> n >> m;\n    long long max_a = -2e18;\n    for (int i = 0; i < n; i++) {\n        long long a; cin >> a;\n        max_a = max(max_a, a);\n    }\n    long long sum_pos = 0;\n    for (int i = 0; i < m; i++) {\n        long long c; cin >> c;\n        if (c > 0) sum_pos += c;\n    }\n    cout << max_a+sum_pos << endl;\n    return 0;\n}",
+      answer: '',
     },
     {
-        id: 27,
-        type: "programming",
-        score: 25,
-        title: "小杨的数字矩阵",
-        problemNumber: "2024-09-23-05-C-02",
-        description: "给定一个 n*n 的矩阵，要求顺时针螺旋填充 1 到 n*n 的数字。然后按行输出矩阵。",
-        inputDescription: "第一行一个整数 n (1 ≤ n ≤ 10)。",
-        outputDescription: "输出 n 行，每行 n 个整数，由空格分隔。",
-        samples: [
-            { input: "3", output: "1 2 3\n8 9 4\n7 6 5" }
-        ],
-        explanation: "螺旋填充经典题。维护当前坐标和方向，当越界或遇到已填充位置时旋转 90 度。",
-        tags: ["编程题", "模拟", "矩阵"],
-        template: "#include <iostream>\n#include <vector>\nusing namespace std;\n\nint main() {\n    int n;\n    cin >> n;\n    // 在此编写代码\n    return 0;\n}",
-        referenceCode: "#include <iostream>\n#include <vector>\nusing namespace std;\nint main() {\n    int n; cin >> n;\n    vector<vector<int>> res(n, vector<int>(n, 0));\n    int dx[] = {0, 1, 0, -1}, dy[] = {1, 0, -1, 0};\n    int x = 0, y = 0, d = 0;\n    for (int i = 1; i <= n * n; i++) {\n        res[x][y] = i;\n        int nx = x+dx[d], ny = y+dy[d];\n        if (nx < 0 || nx >= n || ny < 0 || ny >= n || res[nx][ny]) {\n            d = (d+1) % 4;\n            nx = x+dx[d], ny = y+dy[d];\n        }\n        x = nx; y = ny;\n    }\n    for (int i = 0; i < n; i++) {\n        for (int j = 0; j < n; j++) cout << res[i][j] << (j == n-1 ? \"\" : \" \");\n        cout << endl;\n    }\n    return 0;\n}"
+      id: 27,
+      type: 'programming',
+      question: `
+# [GESP202409 五级] 小杨的武器
+
+## 题目描述
+
+小杨有 \$n\$ 种不同的武器，他对第 \$i\$ 种武器的初始熟练度为 \$c_i\$。
+
+小杨会依次参加 \$m\$ 场战斗，每场战斗小杨只能且必须选择一种武器使用，假设小杨使用了第 \$i\$ 种武器参加了第 \$j\$ 场战斗，战斗前该武器的熟练度为 \$c'_i\$，则战斗后小杨对该武器的熟练度会变为 \$c'_i + a_j\$。需要注意的是，\$a_j\$ 可能是正数，\$0\$ 或负数，这意味着小杨参加战斗后对武器的熟练度可能会提高，也可能会不变，还有可能降低。
+
+小杨想请你编写程序帮他计算出如何选择武器才能使得 \$m\$ 场战斗后，自己对 \$n\$ 种武器的熟练度的**最大值尽可能大**。
+
+## 输入格式
+
+第一行包含两个正整数 \$n,m\$，含义如题面所示。  
+第二行包含 \$n\$ 个正整数 \$c_1, c_2, \\dots c_n\$，代表小杨对武器的初始熟练度。  
+第三行包含 \$m\$ 个正整数 \$a_1, a_2, \\dots a_m\$，代表每场战斗后武器熟练度的变化值。
+
+## 输出格式
+
+输出一个整数，代表 \$m\$ 场战斗后小杨对 \$n\$ 种武器的熟练度的最大值最大是多少。
+`,
+      score: 25,
+      explanation: "螺旋填充经典题。维护当前坐标和方向，当越界或遇到已填充位置时旋转 90 度。",
+      tags: ["编程题", "模拟", "矩阵"],
+      template: "#include <iostream>\n#include <vector>\nusing namespace std;\n\nint main() {\n    int n;\n    cin >> n;\n    // 在此编写代码\n    return 0;\n}",
+      referenceCode: "#include <iostream>\n#include <vector>\nusing namespace std;\nint main() {\n    int n; cin >> n;\n    vector<vector<int>> res(n, vector<int>(n, 0));\n    int dx[] = {0, 1, 0, -1}, dy[] = {1, 0, -1, 0};\n    int x = 0, y = 0, d = 0;\n    for (int i = 1; i <= n * n; i++) {\n        res[x][y] = i;\n        int nx = x+dx[d], ny = y+dy[d];\n        if (nx < 0 || nx >= n || ny < 0 || ny >= n || res[nx][ny]) {\n            d = (d+1) % 4;\n            nx = x+dx[d], ny = y+dy[d];\n        }\n        x = nx; y = ny;\n    }\n    for (int i = 0; i < n; i++) {\n        for (int j = 0; j < n; j++) cout << res[i][j] << (j == n-1 ? \"\" : \" \");\n        cout << endl;\n    }\n    return 0;\n}",
+      answer: '',
     }
 ];
 
