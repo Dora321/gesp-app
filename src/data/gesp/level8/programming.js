@@ -56,11 +56,16 @@ export const l8ProgrammingByPaper = {
       score: 25,
       id: 26,
       title: '消息查找',
-      problemNumber: '2026-03-l8-Q26',
+      problemNumber: 'P15804',
       description: '有 n 条消息，编号 1..n。每条消息 i 可能引用一条编号小于 i 的消息 r_i。从消息 i 可一步移动到 i-1 或 r_i。给定多组询问，求从 x 到 y 的最少操作次数。',
       inputDescription: '第一行两个正整数 n、q。第二行给出 r_1..r_n（若无引用可为 0）。接下来 q 行每行两个整数 x、y。',
       outputDescription: '每个询问输出一个整数，表示最少操作次数。',
-      samples: [],
+      samples: [
+        {
+          input: '5 3\n0 0 1 2 2\n5 1\n4 1\n3 2',
+          output: '2\n2\n1'
+        }
+      ],
       explanation: '可建反向跳边并结合倍增/LCA 或最短路思想处理多询问。',
       tags: ['编程题', '图论', '最短路/倍增'],
       template: '#include <bits/stdc++.h>\nusing namespace std;int main(){ios::sync_with_stdio(false);cin.tie(nullptr);int n,q;cin>>n>>q;return 0;}',
@@ -71,11 +76,20 @@ export const l8ProgrammingByPaper = {
       score: 25,
       id: 27,
       title: '子图最短路',
-      problemNumber: '2026-03-l8-Q27',
+      problemNumber: 'P15805',
       description: '给定 n 点 m 边无向带权图。对所有区间 [l,r] 构造只含编号在区间内节点的子图，累加每个子图中所有点对最短路长度（不连通记 0），结果对 1e9 取模。',
       inputDescription: '第一行两个正整数 n、m。接下来 m 行每行 u、v、w。',
       outputDescription: '输出总和对 1e9 取模的结果。',
-      samples: [],
+      samples: [
+        {
+          input: '2 1\n1 2 5',
+          output: '5'
+        },
+        {
+          input: '3 2\n1 2 1\n2 3 2',
+          output: '9'
+        }
+      ],
       explanation: '可考虑按区间增量维护最短路（如 Floyd 增点思想）并累计贡献。',
       tags: ['编程题', '最短路', '图论'],
       template: '#include <bits/stdc++.h>\nusing namespace std;int main(){ios::sync_with_stdio(false);cin.tie(nullptr);int n,m;cin>>n>>m;return 0;}',

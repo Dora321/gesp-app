@@ -1,15 +1,110 @@
 # GESP Question Bank Comprehensive Audit Report
 
-**Summary**: 92 files tested. Found 626 errors and 570 usability warnings.
+**Summary**: 92 files tested. Found 637 errors and 696 usability warnings.
 
 ## 1. 完整性审计 (Completeness)
-> All checks passed.
+- **2023-03-l1.js**: File exists on disk but is not registered in index.js.
+- **2023-06-l1.js**: File exists on disk but is not registered in index.js.
+- **2023-09-l1.js**: File exists on disk but is not registered in index.js.
+- **2023-12-l1.js**: File exists on disk but is not registered in index.js.
+- **2024-03-l1.js**: File exists on disk but is not registered in index.js.
+- **2024-06-l1.js**: File exists on disk but is not registered in index.js.
+- **2024-09-l1.js**: File exists on disk but is not registered in index.js.
+- **2024-12-l1.js**: File exists on disk but is not registered in index.js.
+- **2025-03-l1.js**: File exists on disk but is not registered in index.js.
+- **2025-06-l1.js**: File exists on disk but is not registered in index.js.
+- **2025-09-l1.js**: File exists on disk but is not registered in index.js.
+- **2025-12-l1.js**: File exists on disk but is not registered in index.js.
+- **2026-03-l1.js**: File exists on disk but is not registered in index.js.
+- **2023-03-l2.js**: File exists on disk but is not registered in index.js.
+- **2023-06-l2.js**: File exists on disk but is not registered in index.js.
+- **2023-09-l2.js**: File exists on disk but is not registered in index.js.
+- **2023-12-l2.js**: File exists on disk but is not registered in index.js.
+- **2024-03-l2.js**: File exists on disk but is not registered in index.js.
+- **2024-06-l2.js**: File exists on disk but is not registered in index.js.
+- **2024-09-l2.js**: File exists on disk but is not registered in index.js.
+- **2024-12-l2.js**: File exists on disk but is not registered in index.js.
+- **2025-03-l2.js**: File exists on disk but is not registered in index.js.
+- **2025-06-l2.js**: File exists on disk but is not registered in index.js.
+- **2025-09-l2.js**: File exists on disk but is not registered in index.js.
+- **2025-12-l2.js**: File exists on disk but is not registered in index.js.
+- **2026-03-l2.js**: File exists on disk but is not registered in index.js.
+- **2023-06-l3.js**: File exists on disk but is not registered in index.js.
+- **2023-09-l3.js**: File exists on disk but is not registered in index.js.
+- **2023-12-l3.js**: File exists on disk but is not registered in index.js.
+- **2024-03-l3.js**: File exists on disk but is not registered in index.js.
+- **2024-06-l3.js**: File exists on disk but is not registered in index.js.
+- **2024-09-l3.js**: File exists on disk but is not registered in index.js.
+- **2024-12-l3.js**: File exists on disk but is not registered in index.js.
+- **2025-03-l3.js**: File exists on disk but is not registered in index.js.
+- **2025-06-l3.js**: File exists on disk but is not registered in index.js.
+- **2025-09-l3.js**: File exists on disk but is not registered in index.js.
+- **2025-12-l3.js**: File exists on disk but is not registered in index.js.
+- **2026-03-l3.js**: File exists on disk but is not registered in index.js.
+- **2023-06-l4.js**: File exists on disk but is not registered in index.js.
+- **2023-09-l4.js**: File exists on disk but is not registered in index.js.
+- **2023-12-l4.js**: File exists on disk but is not registered in index.js.
+- **2024-03-l4.js**: File exists on disk but is not registered in index.js.
+- **2024-06-l4.js**: File exists on disk but is not registered in index.js.
+- **2024-09-l4.js**: File exists on disk but is not registered in index.js.
+- **2024-12-l4.js**: File exists on disk but is not registered in index.js.
+- **2025-03-l4.js**: File exists on disk but is not registered in index.js.
+- **2025-06-l4.js**: File exists on disk but is not registered in index.js.
+- **2025-09-l4.js**: File exists on disk but is not registered in index.js.
+- **2025-12-l4.js**: File exists on disk but is not registered in index.js.
+- **2026-03-l4.js**: File exists on disk but is not registered in index.js.
+- **2023-09-l5.js**: File exists on disk but is not registered in index.js.
+- **2023-12-l5.js**: File exists on disk but is not registered in index.js.
+- **2024-03-l5.js**: File exists on disk but is not registered in index.js.
+- **2024-06-l5.js**: File exists on disk but is not registered in index.js.
+- **2024-09-l5.js**: File exists on disk but is not registered in index.js.
+- **2024-12-l5.js**: File exists on disk but is not registered in index.js.
+- **2025-03-l5.js**: File exists on disk but is not registered in index.js.
+- **2025-06-l5.js**: File exists on disk but is not registered in index.js.
+- **2025-09-l5.js**: File exists on disk but is not registered in index.js.
+- **2025-12-l5.js**: File exists on disk but is not registered in index.js.
+- **2026-03-l5.js**: File exists on disk but is not registered in index.js.
+- **2023-09-l6.js**: File exists on disk but is not registered in index.js.
+- **2023-12-l6.js**: File exists on disk but is not registered in index.js.
+- **2024-03-l6.js**: File exists on disk but is not registered in index.js.
+- **2024-06-l6.js**: File exists on disk but is not registered in index.js.
+- **2024-09-l6.js**: File exists on disk but is not registered in index.js.
+- **2024-12-l6.js**: File exists on disk but is not registered in index.js.
+- **2025-03-l6.js**: File exists on disk but is not registered in index.js.
+- **2025-06-l6.js**: File exists on disk but is not registered in index.js.
+- **2025-09-l6.js**: File exists on disk but is not registered in index.js.
+- **2025-12-l6.js**: File exists on disk but is not registered in index.js.
+- **2026-03-l6.js**: File exists on disk but is not registered in index.js.
+- **2023-12-l7.js**: File exists on disk but is not registered in index.js.
+- **2024-03-l7.js**: File exists on disk but is not registered in index.js.
+- **2024-06-l7.js**: File exists on disk but is not registered in index.js.
+- **2024-09-l7.js**: File exists on disk but is not registered in index.js.
+- **2024-12-l7.js**: File exists on disk but is not registered in index.js.
+- **2025-03-l7.js**: File exists on disk but is not registered in index.js.
+- **2025-06-l7.js**: File exists on disk but is not registered in index.js.
+- **2025-09-l7.js**: File exists on disk but is not registered in index.js.
+- **2025-12-l7.js**: File exists on disk but is not registered in index.js.
+- **2026-03-l7.js**: File exists on disk but is not registered in index.js.
+- **2023-12-l8.js**: File exists on disk but is not registered in index.js.
+- **2024-03-l8.js**: File exists on disk but is not registered in index.js.
+- **2024-06-l8.js**: File exists on disk but is not registered in index.js.
+- **2024-09-l8.js**: File exists on disk but is not registered in index.js.
+- **2024-12-l8.js**: File exists on disk but is not registered in index.js.
+- **2025-03-l8.js**: File exists on disk but is not registered in index.js.
+- **2025-06-l8.js**: File exists on disk but is not registered in index.js.
+- **2025-09-l8.js**: File exists on disk but is not registered in index.js.
+- **2025-12-l8.js**: File exists on disk but is not registered in index.js.
+- **2026-03-l8.js**: File exists on disk but is not registered in index.js.
 
 ## 2. 正确性审计 (Correctness) (Dirty Data, Constraints, Syntax)
+- **2023-06-l1.js** [Q27]: Suspicious unbalanced $
 - **2025-12-l1.js** [Q12]: Contains suspected dirty or placeholder data: "选项A"
+- **2023-12-l2.js** [Q26]: Suspicious unbalanced $
+- **2023-06-l4.js** [Q27]: Suspicious unbalanced $
 - **2023-09-l4.js** [Q3]: Contains suspected dirty or placeholder data: "选项A"
 - **2023-12-l4.js** [Q4]: Contains suspected dirty or placeholder data: "选项A"
 - **2025-03-l5.js** [Q10]: Contains suspected dirty or placeholder data: "选项A"
+- **2025-03-l5.js** [Q27]: Suspicious unbalanced $
 - **2025-06-l5.js** [Q4]: Contains suspected dirty or placeholder data: "选项A"
 - **2023-09-l6.js** [Q12]: Contains suspected dirty or placeholder data: "选项A"
 - **2023-09-l6.js** [Q14]: Contains suspected dirty or placeholder data: "选项A"
@@ -21,12 +116,14 @@
 - **2024-12-l6.js** [Q7]: Contains suspected dirty or placeholder data: "选项A"
 - **2024-12-l6.js** [Q10]: Contains suspected dirty or placeholder data: "选项A"
 - **2024-12-l6.js** [Q13]: Contains suspected dirty or placeholder data: "选项A"
+- **2025-03-l6.js** [Q27]: Suspicious unbalanced $
 - **2025-06-l6.js** [Q9]: Contains suspected dirty or placeholder data: "选项A"
 - **2025-06-l6.js** [Q11]: Contains suspected dirty or placeholder data: "选项A"
 - **2025-06-l6.js** [Q12]: Contains suspected dirty or placeholder data: "选项A"
 - **2025-06-l6.js** [Q13]: Contains suspected dirty or placeholder data: "选项A"
 - **2025-09-l6.js** [Q12]: Contains suspected dirty or placeholder data: "选项A"
 - **2025-12-l6.js** [Q8]: Contains suspected dirty or placeholder data: "选项A"
+- **2025-12-l6.js** [Q26]: Suspicious unbalanced $
 - **2026-03-l6.js** [Q8]: Contains suspected dirty or placeholder data: "选项A"
 - **2023-12-l7.js** [Q1]: Contains suspected dirty or placeholder data: "待补充"
 - **2023-12-l7.js** [Q2]: Contains suspected dirty or placeholder data: "待补充"
@@ -55,6 +152,7 @@
 - **2023-12-l7.js** [Q23]: Contains suspected dirty or placeholder data: "待补充"
 - **2023-12-l7.js** [Q24]: Contains suspected dirty or placeholder data: "待补充"
 - **2023-12-l7.js** [Q25]: Contains suspected dirty or placeholder data: "待补充"
+- **2023-12-l7.js** [Q26]: Suspicious unbalanced $
 - **2024-03-l7.js** [Q1]: Contains suspected dirty or placeholder data: "待补充"
 - **2024-03-l7.js** [Q2]: Contains suspected dirty or placeholder data: "待补充"
 - **2024-03-l7.js** [Q3]: Contains suspected dirty or placeholder data: "待补充"
@@ -634,7 +732,10 @@
 - **2026-03-l8.js** [Q25]: Contains suspected dirty or placeholder data: "待补充"
 
 ## 3. 可用性审计 (Availability)
-> All checks passed.
+- **index.js**: Failed to import paperRegistry: Invalid or unexpected token
+- **2026-03-l2.js**: Failed to load paperData: Invalid or unexpected token
+- **2026-03-l3.js**: Failed to load paperData: Invalid or unexpected token
+- **2026-03-l5.js**: Failed to load paperData: Unexpected token ':'
 
 ## 4. 易用性审计 (Usability) (Explanations, Code Templates)
 - **2023-03-l1.js** [Q26]: Missing reference code.
@@ -685,6 +786,64 @@
 - **2025-12-l1.js** [Q26]: Missing samples.
 - **2025-12-l1.js** [Q27]: Missing reference code.
 - **2025-12-l1.js** [Q27]: Missing samples.
+- **2026-03-l1.js** [Q26]: Missing samples.
+- **2026-03-l1.js** [Q27]: Missing samples.
+- **2023-06-l2.js** [Q26]: Missing samples.
+- **2023-06-l2.js** [Q27]: Missing samples.
+- **2023-09-l2.js** [Q26]: Missing samples.
+- **2023-09-l2.js** [Q27]: Missing samples.
+- **2023-12-l2.js** [Q26]: Missing samples.
+- **2023-12-l2.js** [Q27]: Missing samples.
+- **2024-03-l2.js** [Q26]: Missing samples.
+- **2024-03-l2.js** [Q27]: Missing samples.
+- **2024-06-l2.js** [Q26]: Missing samples.
+- **2024-06-l2.js** [Q27]: Missing samples.
+- **2024-09-l2.js** [Q26]: Missing samples.
+- **2024-09-l2.js** [Q27]: Missing samples.
+- **2024-12-l2.js** [Q26]: Missing samples.
+- **2024-12-l2.js** [Q27]: Missing samples.
+- **2025-03-l2.js** [Q26]: Missing samples.
+- **2025-03-l2.js** [Q27]: Missing samples.
+- **2025-06-l2.js** [Q26]: Missing samples.
+- **2025-06-l2.js** [Q27]: Missing samples.
+- **2025-09-l2.js** [Q26]: Missing samples.
+- **2025-09-l2.js** [Q27]: Missing samples.
+- **2025-12-l2.js** [Q26]: Missing samples.
+- **2025-12-l2.js** [Q27]: Missing samples.
+- **2023-09-l3.js** [Q26]: Missing samples.
+- **2023-09-l3.js** [Q27]: Missing samples.
+- **2023-12-l3.js** [Q26]: Missing samples.
+- **2023-12-l3.js** [Q27]: Missing samples.
+- **2024-03-l3.js** [Q26]: Missing samples.
+- **2024-03-l3.js** [Q27]: Missing samples.
+- **2024-06-l3.js** [Q26]: Missing samples.
+- **2024-06-l3.js** [Q27]: Missing samples.
+- **2024-09-l3.js** [Q26]: Missing samples.
+- **2024-09-l3.js** [Q27]: Missing samples.
+- **2024-12-l3.js** [Q26]: Missing samples.
+- **2024-12-l3.js** [Q27]: Missing samples.
+- **2025-03-l3.js** [Q26]: Missing samples.
+- **2025-03-l3.js** [Q27]: Missing samples.
+- **2025-06-l3.js** [Q26]: Missing samples.
+- **2025-06-l3.js** [Q27]: Missing samples.
+- **2025-09-l3.js** [Q26]: Missing samples.
+- **2025-09-l3.js** [Q27]: Missing samples.
+- **2025-12-l3.js** [Q26]: Missing samples.
+- **2025-12-l3.js** [Q27]: Missing samples.
+- **2023-06-l4.js** [Q26]: Missing samples.
+- **2023-06-l4.js** [Q27]: Missing samples.
+- **2023-09-l4.js** [Q26]: Missing samples.
+- **2023-09-l4.js** [Q27]: Missing samples.
+- **2023-12-l4.js** [Q26]: Missing samples.
+- **2023-12-l4.js** [Q27]: Missing samples.
+- **2024-03-l4.js** [Q26]: Missing samples.
+- **2024-03-l4.js** [Q27]: Missing samples.
+- **2024-06-l4.js** [Q26]: Missing samples.
+- **2024-06-l4.js** [Q27]: Missing samples.
+- **2024-09-l4.js** [Q26]: Missing samples.
+- **2024-09-l4.js** [Q27]: Missing samples.
+- **2024-12-l4.js** [Q26]: Missing samples.
+- **2024-12-l4.js** [Q27]: Missing samples.
 - **2025-03-l4.js** [Q26]: Missing code template.
 - **2025-03-l4.js** [Q26]: Missing reference code.
 - **2025-03-l4.js** [Q26]: Missing samples.
@@ -705,6 +864,50 @@
 - **2025-12-l4.js** [Q27]: Missing code template.
 - **2025-12-l4.js** [Q27]: Missing reference code.
 - **2025-12-l4.js** [Q27]: Missing samples.
+- **2026-03-l4.js** [Q26]: Missing samples.
+- **2026-03-l4.js** [Q27]: Missing samples.
+- **2023-09-l5.js** [Q26]: Missing samples.
+- **2023-09-l5.js** [Q27]: Missing samples.
+- **2023-12-l5.js** [Q26]: Missing samples.
+- **2023-12-l5.js** [Q27]: Missing samples.
+- **2024-03-l5.js** [Q26]: Missing samples.
+- **2024-03-l5.js** [Q27]: Missing samples.
+- **2024-06-l5.js** [Q26]: Missing samples.
+- **2024-06-l5.js** [Q27]: Missing samples.
+- **2024-09-l5.js** [Q26]: Missing samples.
+- **2024-09-l5.js** [Q27]: Missing samples.
+- **2024-12-l5.js** [Q26]: Missing samples.
+- **2024-12-l5.js** [Q27]: Missing samples.
+- **2025-03-l5.js** [Q26]: Missing samples.
+- **2025-03-l5.js** [Q27]: Missing samples.
+- **2025-06-l5.js** [Q26]: Missing samples.
+- **2025-06-l5.js** [Q27]: Missing samples.
+- **2025-09-l5.js** [Q26]: Missing samples.
+- **2025-09-l5.js** [Q27]: Missing samples.
+- **2025-12-l5.js** [Q26]: Missing samples.
+- **2025-12-l5.js** [Q27]: Missing samples.
+- **2023-09-l6.js** [Q26]: Missing samples.
+- **2023-09-l6.js** [Q27]: Missing samples.
+- **2023-12-l6.js** [Q26]: Missing samples.
+- **2023-12-l6.js** [Q27]: Missing samples.
+- **2024-03-l6.js** [Q26]: Missing samples.
+- **2024-03-l6.js** [Q27]: Missing samples.
+- **2024-06-l6.js** [Q26]: Missing samples.
+- **2024-06-l6.js** [Q27]: Missing samples.
+- **2024-09-l6.js** [Q26]: Missing samples.
+- **2024-09-l6.js** [Q27]: Missing samples.
+- **2024-12-l6.js** [Q26]: Missing samples.
+- **2024-12-l6.js** [Q27]: Missing samples.
+- **2025-03-l6.js** [Q26]: Missing samples.
+- **2025-03-l6.js** [Q27]: Missing samples.
+- **2025-06-l6.js** [Q26]: Missing samples.
+- **2025-06-l6.js** [Q27]: Missing samples.
+- **2025-09-l6.js** [Q26]: Missing samples.
+- **2025-09-l6.js** [Q27]: Missing samples.
+- **2025-12-l6.js** [Q26]: Missing samples.
+- **2025-12-l6.js** [Q27]: Missing samples.
+- **2026-03-l6.js** [Q26]: Missing samples.
+- **2026-03-l6.js** [Q27]: Missing samples.
 - **2023-12-l7.js** [Q1]: Missing or placeholder explanation.
 - **2023-12-l7.js** [Q2]: Missing or placeholder explanation.
 - **2023-12-l7.js** [Q3]: Missing or placeholder explanation.
@@ -730,6 +933,8 @@
 - **2023-12-l7.js** [Q23]: Missing or placeholder explanation.
 - **2023-12-l7.js** [Q24]: Missing or placeholder explanation.
 - **2023-12-l7.js** [Q25]: Missing or placeholder explanation.
+- **2023-12-l7.js** [Q26]: Missing samples.
+- **2023-12-l7.js** [Q27]: Missing samples.
 - **2024-03-l7.js** [Q1]: Missing or placeholder explanation.
 - **2024-03-l7.js** [Q2]: Missing or placeholder explanation.
 - **2024-03-l7.js** [Q3]: Missing or placeholder explanation.
@@ -755,6 +960,8 @@
 - **2024-03-l7.js** [Q23]: Missing or placeholder explanation.
 - **2024-03-l7.js** [Q24]: Missing or placeholder explanation.
 - **2024-03-l7.js** [Q25]: Missing or placeholder explanation.
+- **2024-03-l7.js** [Q26]: Missing samples.
+- **2024-03-l7.js** [Q27]: Missing samples.
 - **2024-06-l7.js** [Q1]: Missing or placeholder explanation.
 - **2024-06-l7.js** [Q2]: Missing or placeholder explanation.
 - **2024-06-l7.js** [Q3]: Missing or placeholder explanation.
@@ -780,6 +987,8 @@
 - **2024-06-l7.js** [Q23]: Missing or placeholder explanation.
 - **2024-06-l7.js** [Q24]: Missing or placeholder explanation.
 - **2024-06-l7.js** [Q25]: Missing or placeholder explanation.
+- **2024-06-l7.js** [Q26]: Missing samples.
+- **2024-06-l7.js** [Q27]: Missing samples.
 - **2024-09-l7.js** [Q1]: Missing or placeholder explanation.
 - **2024-09-l7.js** [Q2]: Missing or placeholder explanation.
 - **2024-09-l7.js** [Q3]: Missing or placeholder explanation.
@@ -805,6 +1014,8 @@
 - **2024-09-l7.js** [Q23]: Missing or placeholder explanation.
 - **2024-09-l7.js** [Q24]: Missing or placeholder explanation.
 - **2024-09-l7.js** [Q25]: Missing or placeholder explanation.
+- **2024-09-l7.js** [Q26]: Missing samples.
+- **2024-09-l7.js** [Q27]: Missing samples.
 - **2024-12-l7.js** [Q1]: Missing or placeholder explanation.
 - **2024-12-l7.js** [Q2]: Missing or placeholder explanation.
 - **2024-12-l7.js** [Q3]: Missing or placeholder explanation.
@@ -830,6 +1041,8 @@
 - **2024-12-l7.js** [Q23]: Missing or placeholder explanation.
 - **2024-12-l7.js** [Q24]: Missing or placeholder explanation.
 - **2024-12-l7.js** [Q25]: Missing or placeholder explanation.
+- **2024-12-l7.js** [Q26]: Missing samples.
+- **2024-12-l7.js** [Q27]: Missing samples.
 - **2025-03-l7.js** [Q1]: Missing or placeholder explanation.
 - **2025-03-l7.js** [Q2]: Missing or placeholder explanation.
 - **2025-03-l7.js** [Q3]: Missing or placeholder explanation.
@@ -855,6 +1068,8 @@
 - **2025-03-l7.js** [Q23]: Missing or placeholder explanation.
 - **2025-03-l7.js** [Q24]: Missing or placeholder explanation.
 - **2025-03-l7.js** [Q25]: Missing or placeholder explanation.
+- **2025-03-l7.js** [Q26]: Missing samples.
+- **2025-03-l7.js** [Q27]: Missing samples.
 - **2025-06-l7.js** [Q1]: Missing or placeholder explanation.
 - **2025-06-l7.js** [Q2]: Missing or placeholder explanation.
 - **2025-06-l7.js** [Q3]: Missing or placeholder explanation.
@@ -880,6 +1095,8 @@
 - **2025-06-l7.js** [Q23]: Missing or placeholder explanation.
 - **2025-06-l7.js** [Q24]: Missing or placeholder explanation.
 - **2025-06-l7.js** [Q25]: Missing or placeholder explanation.
+- **2025-06-l7.js** [Q26]: Missing samples.
+- **2025-06-l7.js** [Q27]: Missing samples.
 - **2025-09-l7.js** [Q1]: Missing or placeholder explanation.
 - **2025-09-l7.js** [Q2]: Missing or placeholder explanation.
 - **2025-09-l7.js** [Q3]: Missing or placeholder explanation.
@@ -905,6 +1122,8 @@
 - **2025-09-l7.js** [Q23]: Missing or placeholder explanation.
 - **2025-09-l7.js** [Q24]: Missing or placeholder explanation.
 - **2025-09-l7.js** [Q25]: Missing or placeholder explanation.
+- **2025-09-l7.js** [Q26]: Missing samples.
+- **2025-09-l7.js** [Q27]: Missing samples.
 - **2025-12-l7.js** [Q1]: Missing or placeholder explanation.
 - **2025-12-l7.js** [Q2]: Missing or placeholder explanation.
 - **2025-12-l7.js** [Q3]: Missing or placeholder explanation.
@@ -930,6 +1149,8 @@
 - **2025-12-l7.js** [Q23]: Missing or placeholder explanation.
 - **2025-12-l7.js** [Q24]: Missing or placeholder explanation.
 - **2025-12-l7.js** [Q25]: Missing or placeholder explanation.
+- **2025-12-l7.js** [Q26]: Missing samples.
+- **2025-12-l7.js** [Q27]: Missing samples.
 - **2026-03-l7.js** [Q1]: Missing or placeholder explanation.
 - **2026-03-l7.js** [Q2]: Missing or placeholder explanation.
 - **2026-03-l7.js** [Q3]: Missing or placeholder explanation.
@@ -955,6 +1176,8 @@
 - **2026-03-l7.js** [Q23]: Missing or placeholder explanation.
 - **2026-03-l7.js** [Q24]: Missing or placeholder explanation.
 - **2026-03-l7.js** [Q25]: Missing or placeholder explanation.
+- **2026-03-l7.js** [Q26]: Missing samples.
+- **2026-03-l7.js** [Q27]: Missing samples.
 - **2023-12-l8.js** [Q1]: Missing or placeholder explanation.
 - **2023-12-l8.js** [Q2]: Missing or placeholder explanation.
 - **2023-12-l8.js** [Q3]: Missing or placeholder explanation.
@@ -980,6 +1203,8 @@
 - **2023-12-l8.js** [Q23]: Missing or placeholder explanation.
 - **2023-12-l8.js** [Q24]: Missing or placeholder explanation.
 - **2023-12-l8.js** [Q25]: Missing or placeholder explanation.
+- **2023-12-l8.js** [Q26]: Missing samples.
+- **2023-12-l8.js** [Q27]: Missing samples.
 - **2024-03-l8.js** [Q1]: Missing or placeholder explanation.
 - **2024-03-l8.js** [Q2]: Missing or placeholder explanation.
 - **2024-03-l8.js** [Q3]: Missing or placeholder explanation.
@@ -1005,6 +1230,8 @@
 - **2024-03-l8.js** [Q23]: Missing or placeholder explanation.
 - **2024-03-l8.js** [Q24]: Missing or placeholder explanation.
 - **2024-03-l8.js** [Q25]: Missing or placeholder explanation.
+- **2024-03-l8.js** [Q26]: Missing samples.
+- **2024-03-l8.js** [Q27]: Missing samples.
 - **2024-06-l8.js** [Q1]: Missing or placeholder explanation.
 - **2024-06-l8.js** [Q2]: Missing or placeholder explanation.
 - **2024-06-l8.js** [Q3]: Missing or placeholder explanation.
