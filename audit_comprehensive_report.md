@@ -1,6 +1,6 @@
 # GESP Question Bank Comprehensive Audit Report
 
-**Summary**: 91 files tested. Found 1164 errors and 992 usability warnings.
+**Summary**: 91 files tested. Found 1162 errors and 992 usability warnings.
 
 ## 1. 完整性审计 (Completeness)
 - **programming.js**: File exists on disk but is not registered in index.js.
@@ -30,9 +30,7 @@
 - **2025-12-l3.js**: Expected 27 questions, found 25.
 
 ## 2. 正确性审计 (Correctness) (Dirty Data, Constraints, Syntax)
-- **2025-03-l1.js** [Q6]: Suspicious unbalanced $
 - **2025-12-l1.js** [Q12]: Contains suspected dirty or placeholder data: "选项A"
-- **2025-09-l2.js** [Q5]: Unbalanced ```
 - **2023-06-l4.js** [Q26]: true
 - **2023-06-l4.js** [Q27]: true
 - **2023-09-l4.js** [Q3]: Contains suspected dirty or placeholder data: "选项A"
