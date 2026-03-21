@@ -14,6 +14,7 @@ import { paperData as p202503l1 } from './level1/2025-03-l1.js';
 import { paperData as p202506l1 } from './level1/2025-06-l1.js';
 import { paperData as p202509l1 } from './level1/2025-09-l1.js';
 import { paperData as p202512l1 } from './level1/2025-12-l1.js';
+import { paperData as p202603l1 } from './level1/2026-03-l1.js';
 
 // ========== Level 2 ==========
 import { paperData as p202303l2 } from './level2/2023-03-l2.js';
@@ -28,6 +29,7 @@ import { paperData as p202503l2 } from './level2/2025-03-l2.js';
 import { paperData as p202506l2 } from './level2/2025-06-l2.js';
 import { paperData as p202509l2 } from './level2/2025-09-l2.js';
 import { paperData as p202512l2 } from './level2/2025-12-l2.js';
+import { paperData as p202603l2 } from './level2/2026-03-l2.js';
 
 // ========== Level 3 ==========
 import { paperData as p202306l3 } from './level3/2023-06-l3.js';
@@ -41,6 +43,7 @@ import { paperData as p202503l3 } from './level3/2025-03-l3.js';
 import { paperData as p202506l3 } from './level3/2025-06-l3.js';
 import { paperData as p202509l3 } from './level3/2025-09-l3.js';
 import { paperData as p202512l3 } from './level3/2025-12-l3.js';
+import { paperData as p202603l3 } from './level3/2026-03-l3.js';
 
 // ========== Level 4 ==========
 import { paperData as p202306l4 } from './level4/2023-06-l4.js';
@@ -120,6 +123,7 @@ export const paperRegistry = {
     '2025-06-l1': p202506l1,
     '2025-09-l1': p202509l1,
     '2025-12-l1': p202512l1,
+    '2026-03-l1': p202603l1,
     // ===== Level 2 =====
     '2023-03-l2': p202303l2,
     '2023-06-l2': p202306l2,
@@ -133,6 +137,7 @@ export const paperRegistry = {
     '2025-06-l2': p202506l2,
     '2025-09-l2': p202509l2,
     '2025-12-l2': p202512l2,
+    '2026-03-l2': p202603l2,
     // ===== Level 3 =====
     '2023-06-l3': p202306l3,
     '2023-09-l3': p202309l3,
@@ -145,6 +150,7 @@ export const paperRegistry = {
     '2025-06-l3': p202506l3,
     '2025-09-l3': p202509l3,
     '2025-12-l3': p202512l3,
+    '2026-03-l3': p202603l3,
     // ===== Level 4 =====
     '2023-06-l4': p202306l4,
     '2023-09-l4': p202309l4,

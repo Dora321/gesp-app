@@ -116,7 +116,7 @@ export const paperData = {
     {
       id: 10,
       type: 'single',
-      question: '代码执行后的输出是 ( )。\n```cpp\nint a, b;\ncin >> a >> b;\nif (a > b) a = b;\nb = a;\ncout << a << " " << b;\n```cpp\n如果输入 10 20：',
+      question: '代码执行后的输出是 ( )。\n```cpp\nint a, b;\ncin >> a >> b;\nif (a > b) a = b;\nb = a;\ncout << a << " " << b;\n```\n如果输入 10 20：',
       options: ['10 20', '10 10', '20 20', '20 10'],
       answer: 1,
       score: 2,
@@ -126,7 +126,7 @@ export const paperData = {
     {
       id: 11,
       type: 'single',
-      question: '代码执行后的输出是 ( )。\n```cpp\nint n, ans = 0;\ncin >> n;\nwhile (n > 0) {\n  ans = ans * 10+n % 10;\n  n /= 10;\n}\ncout << ans;\n```cpp\n如果输入 123：',
+      question: '代码执行后的输出是 ( )。\n```cpp\nint n, ans = 0;\ncin >> n;\nwhile (n > 0) {\n  ans = ans * 10+n % 10;\n  n /= 10;\n}\ncout << ans;\n```\n如果输入 123：',
       options: ['123', '3', '321', '6'],
       answer: 2,
       score: 2,

@@ -1,6 +1,6 @@
 # GESP Question Bank Comprehensive Audit Report
 
-**Summary**: 89 files tested. Found 626 errors and 570 usability warnings.
+**Summary**: 92 files tested. Found 626 errors and 570 usability warnings.
 
 ## 1. 完整性审计 (Completeness)
 > All checks passed.
