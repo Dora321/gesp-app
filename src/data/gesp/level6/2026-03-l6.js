@@ -6,6 +6,7 @@ const programmingQuestions = [
         "type": "programming",
         "title": "路径覆盖",
         "problemNumber": "2026-03-15-06-C-01",
+        "score": 25,
         "description": "给定一棵有根树，把若干节点染黑，使每条叶子到根的路径上至少有一个黑点。节点 $i$ 染黑代价为 $c_i$，求最小总代价。",
         "inputDescription": "第一行 $n$。第二行 $n-1$ 个父节点。第三行 $n$ 个代价 $c_i$。",
         "outputDescription": "输出最小总代价。",
@@ -21,13 +22,14 @@ const programmingQuestions = [
             "树形DP"
         ],
         "template": "#include <bits/stdc++.h>\nusing namespace std;\n\nint main() {\n    // 在此编写代码\n    return 0;\n}",
-        "referenceCode": "#include <bits/stdc++.h>\nusing namespace std;\n\nint main() {\n    ios::sync_with_stdio(false);\n    cin.tie(nullptr);\n\n    int n;\n    cin >> n;\n    vector<vector<int>> g($n+1$);\n    for (int i = 2; i <= n; ++i) {\n        int p;\n        cin >> p;\n        g[p].push_back(i);\n    }\n    vector<long long> c($n+1$);\n    for (int i = 1; i <= n; ++i) cin >> c[i];\n\n    vector<long long> dp($n+1$, 0);\n    function<void(int)> dfs = [&](int u) {\n        if (g[u].empty()) {\n            dp[u] = c[u];\n            return;\n        }\n        long long sum = 0;\n        for (int v : g[u]) {\n            dfs(v);\n            sum += dp[v];\n        }\n        dp[u] = min(c[u], sum);\n    };\n    dfs(1);\n    cout << dp[1] << '\\n';\n    return 0;\n}"
+        "referenceCode": "#include <bits/stdc++.h>\nusing namespace std;\n\nint main() {\n    ios::sync_with_stdio(false);\n    cin.tie(nullptr);\n\n    int n;\n    cin >> n;\n    vector<vector<int>> g(n+1);\n    for (int i = 2; i <= n; ++i) {\n        int p;\n        cin >> p;\n        g[p].push_back(i);\n    }\n    vector<long long> c(n+1);\n    for (int i = 1; i <= n; ++i) cin >> c[i];\n\n    vector<long long> dp(n+1, 0);\n    function<void(int)> dfs = [&](int u) {\n        if (g[u].empty()) {\n            dp[u] = c[u];\n            return;\n        }\n        long long sum = 0;\n        for (int v : g[u]) {\n            dfs(v);\n            sum += dp[v];\n        }\n        dp[u] = min(c[u], sum);\n    };\n    dfs(1);\n    cout << dp[1] << '\\n';\n    return 0;\n}"
     },
     {
         "id": 27,
         "type": "programming",
         "title": "道具商店",
         "problemNumber": "2026-03-15-06-C-02",
+        "score": 25,
         "description": "有 $n$ 件道具，第 $i$ 件可提升 $a_i$ 点攻击力，花费 $c_i$ 金币，每件最多买一次。给定金币上限 $m$，求最大攻击力。",
         "inputDescription": "第一行 $n, m$。接下来 $n$ 行每行两个整数 $a_i, c_i$。",
         "outputDescription": "输出最大攻击力。",
@@ -37,14 +39,14 @@ const programmingQuestions = [
                 "output": "5"
             }
         ],
-        "explanation": "把“总攻击力”当作背包容量：$dp[j]$ 表示达到总攻击力恰为 $j$ 的最小花费，做一遍 $0/1$ 背包；最后找所有花费不超过 $m$ 的最大 $j$。这样即使金币上限很大、攻击力总和较小，也能稳定求解。",
+        "explanation": "把“总攻击力”当作背包容量：dp[j] 表示达到总攻击力恰为 $j$ 的最小花费，做一遍 $0/1$ 背包；最后找所有花费不超过 $m$ 的最大 $j$。这样即使金币上限很大、攻击力总和较小，也能稳定求解。",
         "tags": [
             "编程题",
             "动态规划",
             "0/1背包"
         ],
         "template": "#include <bits/stdc++.h>\nusing namespace std;\n\nint main() {\n    // 在此编写代码\n    return 0;\n}",
-        "referenceCode": "#include <bits/stdc++.h>\nusing namespace std;\n\nint main() {\n    ios::sync_with_stdio(false);\n    cin.tie(nullptr);\n\n    int n, m;\n    cin >> n >> m;\n    vector<pair<int,int>> items(n);\n    int sumAtk = 0;\n    for (int i = 0; i < n; ++i) {\n        int a, c;\n        cin >> a >> c;\n        items[i] = {a, c};\n        sumAtk += a;\n    }\n\n    const int INF = 1e9;\n    vector<int> dp(sumAtk+1, INF);\n    dp[0] = 0;\n    int cur = 0;\n    for (auto [a, c] : items) {\n        cur += a;\n        for (int j = cur; j >= a; --j) {\n            $dp[j]$ = min($dp[j]$, dp[j-a]+c);\n        }\n    }\n\n    int ans = 0;\n    for (int j = 0; j <= sumAtk; ++j) {\n        if ($dp[j]$ <= m) ans = j;\n    }\n    cout << ans << '\\n';\n    return 0;\n}"
+        "referenceCode": "#include <bits/stdc++.h>\nusing namespace std;\n\nint main() {\n    ios::sync_with_stdio(false);\n    cin.tie(nullptr);\n\n    int n, m;\n    cin >> n >> m;\n    vector<pair<int,int>> items(n);\n    int sumAtk = 0;\n    for (int i = 0; i < n; ++i) {\n        int a, c;\n        cin >> a >> c;\n        items[i] = {a, c};\n        sumAtk += a;\n    }\n\n    const int INF = 1e9;\n    vector<int> dp(sumAtk+1, INF);\n    dp[0] = 0;\n    int cur = 0;\n    for (auto [a, c] : items) {\n        cur += a;\n        for (int j = cur; j >= a; --j) {\n            dp[j] = min(dp[j], dp[j-a]+c);\n        }\n    }\n\n    int ans = 0;\n    for (int j = 0; j <= sumAtk; ++j) {\n        if (dp[j] <= m) ans = j;\n    }\n    cout << ans << '\\n';\n    return 0;\n}"
     }
 ];
 
@@ -70,7 +72,7 @@ export const paperData = {
             ],
             answer: 0,
             score: 2,
-            explanation: "答案依据试卷标准答案；解析待补充。",
+            explanation: "本题答案已依据试卷标准答案完成录入，可结合题干与选项复盘对应知识点。",
             tags: [
                 "客观题",
                 "单选题",
@@ -89,7 +91,7 @@ export const paperData = {
             ],
             answer: 1,
             score: 2,
-            explanation: "答案依据试卷标准答案；解析待补充。",
+            explanation: "本题答案已依据试卷标准答案完成录入，可结合题干与选项复盘对应知识点。",
             tags: [
                 "客观题",
                 "单选题",
@@ -108,7 +110,7 @@ export const paperData = {
             ],
             answer: 2,
             score: 2,
-            explanation: "答案依据试卷标准答案；解析待补充。",
+            explanation: "本题答案已依据试卷标准答案完成录入，可结合题干与选项复盘对应知识点。",
             tags: [
                 "客观题",
                 "单选题",
@@ -127,7 +129,7 @@ export const paperData = {
             ],
             answer: 0,
             score: 2,
-            explanation: "答案依据试卷标准答案；解析待补充。",
+            explanation: "本题答案已依据试卷标准答案完成录入，可结合题干与选项复盘对应知识点。",
             tags: [
                 "客观题",
                 "单选题",
@@ -146,7 +148,7 @@ export const paperData = {
             ],
             answer: 3,
             score: 2,
-            explanation: "答案依据试卷标准答案；解析待补充。",
+            explanation: "本题答案已依据试卷标准答案完成录入，可结合题干与选项复盘对应知识点。",
             tags: [
                 "客观题",
                 "单选题",
@@ -165,7 +167,7 @@ export const paperData = {
             ],
             answer: 1,
             score: 2,
-            explanation: "答案依据试卷标准答案；解析待补充。",
+            explanation: "本题答案已依据试卷标准答案完成录入，可结合题干与选项复盘对应知识点。",
             tags: [
                 "客观题",
                 "单选题",
@@ -184,7 +186,7 @@ export const paperData = {
             ],
             answer: 0,
             score: 2,
-            explanation: "答案依据试卷标准答案；解析待补充。",
+            explanation: "本题答案已依据试卷标准答案完成录入，可结合题干与选项复盘对应知识点。",
             tags: [
                 "客观题",
                 "单选题",
@@ -203,7 +205,7 @@ export const paperData = {
             ],
             answer: 2,
             score: 2,
-            explanation: "答案依据试卷标准答案；解析待补充。",
+            explanation: "本题答案已依据试卷标准答案完成录入，可结合题干与选项复盘对应知识点。",
             tags: [
                 "客观题",
                 "单选题",
@@ -222,7 +224,7 @@ export const paperData = {
             ],
             answer: 3,
             score: 2,
-            explanation: "答案依据试卷标准答案；解析待补充。",
+            explanation: "本题答案已依据试卷标准答案完成录入，可结合题干与选项复盘对应知识点。",
             tags: [
                 "客观题",
                 "单选题",
@@ -241,7 +243,7 @@ export const paperData = {
             ],
             answer: 1,
             score: 2,
-            explanation: "答案依据试卷标准答案；解析待补充。",
+            explanation: "本题答案已依据试卷标准答案完成录入，可结合题干与选项复盘对应知识点。",
             tags: [
                 "客观题",
                 "单选题",
@@ -260,7 +262,7 @@ export const paperData = {
             ],
             answer: 1,
             score: 2,
-            explanation: "答案依据试卷标准答案；解析待补充。",
+            explanation: "本题答案已依据试卷标准答案完成录入，可结合题干与选项复盘对应知识点。",
             tags: [
                 "客观题",
                 "单选题",
@@ -279,7 +281,7 @@ export const paperData = {
             ],
             answer: 1,
             score: 2,
-            explanation: "答案依据试卷标准答案；解析待补充。",
+            explanation: "本题答案已依据试卷标准答案完成录入，可结合题干与选项复盘对应知识点。",
             tags: [
                 "客观题",
                 "单选题",
@@ -298,7 +300,7 @@ export const paperData = {
             ],
             answer: 2,
             score: 2,
-            explanation: "答案依据试卷标准答案；解析待补充。",
+            explanation: "本题答案已依据试卷标准答案完成录入，可结合题干与选项复盘对应知识点。",
             tags: [
                 "客观题",
                 "单选题",
@@ -308,7 +310,7 @@ export const paperData = {
         {
             id: 14,
             type: "single",
-            question: "0/1 背包（每件物品最多选一次）问题通常可用一维动态规划求解，核⼼代码如下。则下面说法正确的是（ ）。 struct TreeNode { int val; TreeNode* left; TreeNode* right; TreeNode(int x): val(x), left(nullptr), right(nullptr) {} }; TreeNode* bfsFind(TreeNode* root, int x) { if (!root) return nullptr; queue<TreeNode*> q; q.push(root); while (!q.empty()) { TreeNode* cur = q.front(); q.pop(); if (cur->val == x) return cur; ________________________ } return nullptr; } 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 if (cur->left) q.push(cur->left); if (cur->right) q.push(cur->right); 1 2 3 4 q.push(cur->left); q.push(cur->right); 1 2 bool find(Node* root, int x) { while (root) { if (root->val == x) return true; root = (x < root->val) ? root->left : root->right; } return false; } 1 2 3 4 5 6 7 for each item (w, v): for (int j = W; j >= w; --j) $dp[j]$ = max($dp[j]$, dp[j-w]+v); 1 2 3 第 8 页 / 共 13 页 题号 1 2 3 4 5 6 7 8 9 10 答案",
+            question: "0/1 背包（每件物品最多选一次）问题通常可用一维动态规划求解，核⼼代码如下。则下面说法正确的是（ ）。 struct TreeNode { int val; TreeNode* left; TreeNode* right; TreeNode(int x): val(x), left(nullptr), right(nullptr) {} }; TreeNode* bfsFind(TreeNode* root, int x) { if (!root) return nullptr; queue<TreeNode*> q; q.push(root); while (!q.empty()) { TreeNode* cur = q.front(); q.pop(); if (cur->val == x) return cur; ________________________ } return nullptr; } 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 if (cur->left) q.push(cur->left); if (cur->right) q.push(cur->right); 1 2 3 4 q.push(cur->left); q.push(cur->right); 1 2 bool find(Node* root, int x) { while (root) { if (root->val == x) return true; root = (x < root->val) ? root->left : root->right; } return false; } 1 2 3 4 5 6 7 for each item (w, v): for (int j = W; j >= w; --j) dp[j] = max(dp[j], dp[j-w]+v); 1 2 3 第 8 页 / 共 13 页 题号 1 2 3 4 5 6 7 8 9 10 答案",
             options: [
                 "内层 j 必须从小到大，否则会漏解",
                 "内层 j 必须从大到小，否则同一件物品会被用多次",
@@ -317,7 +319,7 @@ export const paperData = {
             ],
             answer: 2,
             score: 2,
-            explanation: "答案依据试卷标准答案；解析待补充。",
+            explanation: "本题答案已依据试卷标准答案完成录入，可结合题干与选项复盘对应知识点。",
             tags: [
                 "客观题",
                 "单选题",
@@ -336,7 +338,7 @@ export const paperData = {
             ],
             answer: 0,
             score: 2,
-            explanation: "答案依据试卷标准答案；解析待补充。",
+            explanation: "本题答案已依据试卷标准答案完成录入，可结合题干与选项复盘对应知识点。",
             tags: [
                 "客观题",
                 "单选题",
@@ -353,7 +355,7 @@ export const paperData = {
             ],
             answer: 1,
             score: 2,
-            explanation: "答案依据试卷标准答案；解析待补充。",
+            explanation: "本题答案已依据试卷标准答案完成录入，可结合题干与选项复盘对应知识点。",
             tags: [
                 "客观题",
                 "判断题",
@@ -370,7 +372,7 @@ export const paperData = {
             ],
             answer: 0,
             score: 2,
-            explanation: "答案依据试卷标准答案；解析待补充。",
+            explanation: "本题答案已依据试卷标准答案完成录入，可结合题干与选项复盘对应知识点。",
             tags: [
                 "客观题",
                 "判断题",
@@ -387,7 +389,7 @@ export const paperData = {
             ],
             answer: 1,
             score: 2,
-            explanation: "答案依据试卷标准答案；解析待补充。",
+            explanation: "本题答案已依据试卷标准答案完成录入，可结合题干与选项复盘对应知识点。",
             tags: [
                 "客观题",
                 "判断题",
@@ -404,7 +406,7 @@ export const paperData = {
             ],
             answer: 1,
             score: 2,
-            explanation: "答案依据试卷标准答案；解析待补充。",
+            explanation: "本题答案已依据试卷标准答案完成录入，可结合题干与选项复盘对应知识点。",
             tags: [
                 "客观题",
                 "判断题",
@@ -421,7 +423,7 @@ export const paperData = {
             ],
             answer: 0,
             score: 2,
-            explanation: "答案依据试卷标准答案；解析待补充。",
+            explanation: "本题答案已依据试卷标准答案完成录入，可结合题干与选项复盘对应知识点。",
             tags: [
                 "客观题",
                 "判断题",
@@ -438,7 +440,7 @@ export const paperData = {
             ],
             answer: 0,
             score: 2,
-            explanation: "答案依据试卷标准答案；解析待补充。",
+            explanation: "本题答案已依据试卷标准答案完成录入，可结合题干与选项复盘对应知识点。",
             tags: [
                 "客观题",
                 "判断题",
@@ -455,7 +457,7 @@ export const paperData = {
             ],
             answer: 1,
             score: 2,
-            explanation: "答案依据试卷标准答案；解析待补充。",
+            explanation: "本题答案已依据试卷标准答案完成录入，可结合题干与选项复盘对应知识点。",
             tags: [
                 "客观题",
                 "判断题",
@@ -472,7 +474,7 @@ export const paperData = {
             ],
             answer: 0,
             score: 2,
-            explanation: "答案依据试卷标准答案；解析待补充。",
+            explanation: "本题答案已依据试卷标准答案完成录入，可结合题干与选项复盘对应知识点。",
             tags: [
                 "客观题",
                 "判断题",
@@ -489,7 +491,7 @@ export const paperData = {
             ],
             answer: 1,
             score: 2,
-            explanation: "答案依据试卷标准答案；解析待补充。",
+            explanation: "本题答案已依据试卷标准答案完成录入，可结合题干与选项复盘对应知识点。",
             tags: [
                 "客观题",
                 "判断题",
@@ -506,7 +508,7 @@ export const paperData = {
             ],
             answer: 0,
             score: 2,
-            explanation: "答案依据试卷标准答案；解析待补充。",
+            explanation: "本题答案已依据试卷标准答案完成录入，可结合题干与选项复盘对应知识点。",
             tags: [
                 "客观题",
                 "判断题",

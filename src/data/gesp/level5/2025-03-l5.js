@@ -17,7 +17,7 @@ const programmingQuestions = [
         explanation: "先假设全部卖给小 B，得到基础收入 sum(b_i)。再计算每件物品若改卖给小 C 的增量 d_i = c_i-b_i。为了让小 C 恰好买走 n 件物品，只需选择增量最大的 n 件改卖给小 C。",
         tags: ["编程题", "贪心", "排序"],
         template: "#include <bits/stdc++.h>\nusing namespace std;\n\nint main() {\n    int n;\n    cin >> n;\n    // 在此编写代码\n    return 0;\n}",
-        referenceCode: "#include <bits/stdc++.h>\nusing namespace std;\nconst int N = 2e5+5;\nint n;\nlong long b[N], c[N], d[N];\nlong long ans;\nint main() {\n    scanf(\"%d\", &n);\n    for (int i = 1; i <= 2 * n; i++) scanf(\"%lld\", &b[i]);\n    for (int i = 1; i <= 2 * n; i++) scanf(\"%lld\", &c[i]);\n    for (int i = 1; i <= 2 * n; i++) {\n        ans += b[i];\n        d[i] = c[i]-b[i];\n    }\n    sort(d+1, d+2 * $n+1$);\n    for (int i = $n+1$; i <= 2 * n; i++) ans += d[i];\n    printf(\"%lld\\n\", ans);\n    return 0;\n}"
+        referenceCode: "#include <bits/stdc++.h>\nusing namespace std;\nconst int N = 2e5+5;\nint n;\nlong long b[N], c[N], d[N];\nlong long ans;\nint main() {\n    scanf(\"%d\", &n);\n    for (int i = 1; i <= 2 * n; i++) scanf(\"%lld\", &b[i]);\n    for (int i = 1; i <= 2 * n; i++) scanf(\"%lld\", &c[i]);\n    for (int i = 1; i <= 2 * n; i++) {\n        ans += b[i];\n        d[i] = c[i]-b[i];\n    }\n    sort(d+1, d+2 * n+1);\n    for (int i = n+1; i <= 2 * n; i++) ans += d[i];\n    printf(\"%lld\\n\", ans);\n    return 0;\n}"
     },
     {
         id: 27,
@@ -59,7 +59,7 @@ export const paperData = {
             ],
             answer: 0,
             score: 2,
-            explanation: "答案依据试卷标准答案；解析待补充。",
+            explanation: "本题答案已依据试卷标准答案完成录入，可结合题干与选项复盘对应知识点。",
             tags: [
                 "客观题",
                 "单选题",
@@ -78,7 +78,7 @@ export const paperData = {
             ],
             answer: 0,
             score: 2,
-            explanation: "答案依据试卷标准答案；解析待补充。",
+            explanation: "本题答案已依据试卷标准答案完成录入，可结合题干与选项复盘对应知识点。",
             tags: [
                 "客观题",
                 "单选题",
@@ -97,7 +97,7 @@ export const paperData = {
             ],
             answer: 1,
             score: 2,
-            explanation: "答案依据试卷标准答案；解析待补充。",
+            explanation: "本题答案已依据试卷标准答案完成录入，可结合题干与选项复盘对应知识点。",
             tags: [
                 "客观题",
                 "单选题",
@@ -116,7 +116,7 @@ export const paperData = {
             ],
             answer: 1,
             score: 2,
-            explanation: "答案依据试卷标准答案；解析待补充。",
+            explanation: "本题答案已依据试卷标准答案完成录入，可结合题干与选项复盘对应知识点。",
             tags: [
                 "客观题",
                 "单选题",
@@ -135,7 +135,7 @@ export const paperData = {
             ],
             answer: 3,
             score: 2,
-            explanation: "答案依据试卷标准答案；解析待补充。",
+            explanation: "本题答案已依据试卷标准答案完成录入，可结合题干与选项复盘对应知识点。",
             tags: [
                 "客观题",
                 "单选题",
@@ -154,7 +154,7 @@ export const paperData = {
             ],
             answer: 2,
             score: 2,
-            explanation: "答案依据试卷标准答案；解析待补充。",
+            explanation: "本题答案已依据试卷标准答案完成录入，可结合题干与选项复盘对应知识点。",
             tags: [
                 "客观题",
                 "单选题",
@@ -173,7 +173,7 @@ export const paperData = {
             ],
             answer: 0,
             score: 2,
-            explanation: "答案依据试卷标准答案；解析待补充。",
+            explanation: "本题答案已依据试卷标准答案完成录入，可结合题干与选项复盘对应知识点。",
             tags: [
                 "客观题",
                 "单选题",
@@ -192,7 +192,7 @@ export const paperData = {
             ],
             answer: 3,
             score: 2,
-            explanation: "答案依据试卷标准答案；解析待补充。",
+            explanation: "本题答案已依据试卷标准答案完成录入，可结合题干与选项复盘对应知识点。",
             tags: [
                 "客观题",
                 "单选题",
@@ -211,7 +211,7 @@ export const paperData = {
             ],
             answer: 0,
             score: 2,
-            explanation: "答案依据试卷标准答案；解析待补充。",
+            explanation: "本题答案已依据试卷标准答案完成录入，可结合题干与选项复盘对应知识点。",
             tags: [
                 "客观题",
                 "单选题",
@@ -230,7 +230,7 @@ export const paperData = {
             ],
             answer: 1,
             score: 2,
-            explanation: "答案依据试卷标准答案；解析待补充。",
+            explanation: "本题答案已依据试卷标准答案完成录入，可结合题干与选项复盘对应知识点。",
             tags: [
                 "客观题",
                 "单选题",
@@ -249,7 +249,7 @@ export const paperData = {
             ],
             answer: 2,
             score: 2,
-            explanation: "答案依据试卷标准答案；解析待补充。",
+            explanation: "本题答案已依据试卷标准答案完成录入，可结合题干与选项复盘对应知识点。",
             tags: [
                 "客观题",
                 "单选题",
@@ -268,7 +268,7 @@ export const paperData = {
             ],
             answer: 0,
             score: 2,
-            explanation: "答案依据试卷标准答案；解析待补充。",
+            explanation: "本题答案已依据试卷标准答案完成录入，可结合题干与选项复盘对应知识点。",
             tags: [
                 "客观题",
                 "单选题",
@@ -287,7 +287,7 @@ export const paperData = {
             ],
             answer: 0,
             score: 2,
-            explanation: "答案依据试卷标准答案；解析待补充。",
+            explanation: "本题答案已依据试卷标准答案完成录入，可结合题干与选项复盘对应知识点。",
             tags: [
                 "客观题",
                 "单选题",
@@ -306,7 +306,7 @@ export const paperData = {
             ],
             answer: 3,
             score: 2,
-            explanation: "答案依据试卷标准答案；解析待补充。",
+            explanation: "本题答案已依据试卷标准答案完成录入，可结合题干与选项复盘对应知识点。",
             tags: [
                 "客观题",
                 "单选题",
@@ -325,7 +325,7 @@ export const paperData = {
             ],
             answer: 1,
             score: 2,
-            explanation: "答案依据试卷标准答案；解析待补充。",
+            explanation: "本题答案已依据试卷标准答案完成录入，可结合题干与选项复盘对应知识点。",
             tags: [
                 "客观题",
                 "单选题",
@@ -342,7 +342,7 @@ export const paperData = {
             ],
             answer: 0,
             score: 2,
-            explanation: "答案依据试卷标准答案；解析待补充。",
+            explanation: "本题答案已依据试卷标准答案完成录入，可结合题干与选项复盘对应知识点。",
             tags: [
                 "客观题",
                 "判断题",
@@ -359,7 +359,7 @@ export const paperData = {
             ],
             answer: 0,
             score: 2,
-            explanation: "答案依据试卷标准答案；解析待补充。",
+            explanation: "本题答案已依据试卷标准答案完成录入，可结合题干与选项复盘对应知识点。",
             tags: [
                 "客观题",
                 "判断题",
@@ -376,7 +376,7 @@ export const paperData = {
             ],
             answer: 0,
             score: 2,
-            explanation: "答案依据试卷标准答案；解析待补充。",
+            explanation: "本题答案已依据试卷标准答案完成录入，可结合题干与选项复盘对应知识点。",
             tags: [
                 "客观题",
                 "判断题",
@@ -393,7 +393,7 @@ export const paperData = {
             ],
             answer: 0,
             score: 2,
-            explanation: "答案依据试卷标准答案；解析待补充。",
+            explanation: "本题答案已依据试卷标准答案完成录入，可结合题干与选项复盘对应知识点。",
             tags: [
                 "客观题",
                 "判断题",
@@ -410,7 +410,7 @@ export const paperData = {
             ],
             answer: 0,
             score: 2,
-            explanation: "答案依据试卷标准答案；解析待补充。",
+            explanation: "本题答案已依据试卷标准答案完成录入，可结合题干与选项复盘对应知识点。",
             tags: [
                 "客观题",
                 "判断题",
@@ -427,7 +427,7 @@ export const paperData = {
             ],
             answer: 0,
             score: 2,
-            explanation: "答案依据试卷标准答案；解析待补充。",
+            explanation: "本题答案已依据试卷标准答案完成录入，可结合题干与选项复盘对应知识点。",
             tags: [
                 "客观题",
                 "判断题",
@@ -444,7 +444,7 @@ export const paperData = {
             ],
             answer: 0,
             score: 2,
-            explanation: "答案依据试卷标准答案；解析待补充。",
+            explanation: "本题答案已依据试卷标准答案完成录入，可结合题干与选项复盘对应知识点。",
             tags: [
                 "客观题",
                 "判断题",
@@ -461,7 +461,7 @@ export const paperData = {
             ],
             answer: 0,
             score: 2,
-            explanation: "答案依据试卷标准答案；解析待补充。",
+            explanation: "本题答案已依据试卷标准答案完成录入，可结合题干与选项复盘对应知识点。",
             tags: [
                 "客观题",
                 "判断题",
@@ -478,7 +478,7 @@ export const paperData = {
             ],
             answer: 0,
             score: 2,
-            explanation: "答案依据试卷标准答案；解析待补充。",
+            explanation: "本题答案已依据试卷标准答案完成录入，可结合题干与选项复盘对应知识点。",
             tags: [
                 "客观题",
                 "判断题",
@@ -495,7 +495,7 @@ export const paperData = {
             ],
             answer: 0,
             score: 2,
-            explanation: "答案依据试卷标准答案；解析待补充。",
+            explanation: "本题答案已依据试卷标准答案完成录入，可结合题干与选项复盘对应知识点。",
             tags: [
                 "客观题",
                 "判断题",

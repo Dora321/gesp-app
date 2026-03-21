@@ -6,6 +6,7 @@ const programmingQuestions = [
         "type": "programming",
         "title": "小杨和整数拆分",
         "problemNumber": "2024-09-22-06-C-01",
+        "score": 25,
         "description": "把正整数 n 拆分成若干完全平方数之和，要求数量最少。",
         "inputDescription": "输入一个正整数 n。",
         "outputDescription": "输出最少完全平方数数量。",
@@ -28,6 +29,7 @@ const programmingQuestions = [
         "type": "programming",
         "title": "算法学习",
         "problemNumber": "2024-09-22-06-C-02",
+        "score": 25,
         "description": "有 m 种算法、n 道题。第 i 道题属于知识点 c_i，可使对应掌握程度增加 v_i。要求每种算法掌握程度都至少达到 k，且不能连续学习两道同知识点题目。求最少学习题数，无解输出 -1。",
         "inputDescription": "第一行 m,n,k。第二行 n 个 c_i。第三行 n 个 v_i。",
         "outputDescription": "输出最少题数；无解输出 -1。",
@@ -73,7 +75,7 @@ export const paperData = {
             ],
             answer: 1,
             score: 2,
-            explanation: "答案依据试卷标准答案；解析待补充。",
+            explanation: "本题答案已依据试卷标准答案完成录入，可结合题干与选项复盘对应知识点。",
             tags: [
                 "客观题",
                 "单选题",
@@ -92,7 +94,7 @@ export const paperData = {
             ],
             answer: 0,
             score: 2,
-            explanation: "答案依据试卷标准答案；解析待补充。",
+            explanation: "本题答案已依据试卷标准答案完成录入，可结合题干与选项复盘对应知识点。",
             tags: [
                 "客观题",
                 "单选题",
@@ -111,7 +113,7 @@ export const paperData = {
             ],
             answer: 2,
             score: 2,
-            explanation: "答案依据试卷标准答案；解析待补充。",
+            explanation: "本题答案已依据试卷标准答案完成录入，可结合题干与选项复盘对应知识点。",
             tags: [
                 "客观题",
                 "单选题",
@@ -130,7 +132,7 @@ export const paperData = {
             ],
             answer: 0,
             score: 2,
-            explanation: "答案依据试卷标准答案；解析待补充。",
+            explanation: "本题答案已依据试卷标准答案完成录入，可结合题干与选项复盘对应知识点。",
             tags: [
                 "客观题",
                 "单选题",
@@ -149,7 +151,7 @@ export const paperData = {
             ],
             answer: 1,
             score: 2,
-            explanation: "答案依据试卷标准答案；解析待补充。",
+            explanation: "本题答案已依据试卷标准答案完成录入，可结合题干与选项复盘对应知识点。",
             tags: [
                 "客观题",
                 "单选题",
@@ -168,7 +170,7 @@ export const paperData = {
             ],
             answer: 1,
             score: 2,
-            explanation: "答案依据试卷标准答案；解析待补充。",
+            explanation: "本题答案已依据试卷标准答案完成录入，可结合题干与选项复盘对应知识点。",
             tags: [
                 "客观题",
                 "单选题",
@@ -187,7 +189,7 @@ export const paperData = {
             ],
             answer: 1,
             score: 2,
-            explanation: "答案依据试卷标准答案；解析待补充。",
+            explanation: "本题答案已依据试卷标准答案完成录入，可结合题干与选项复盘对应知识点。",
             tags: [
                 "客观题",
                 "单选题",
@@ -206,7 +208,7 @@ export const paperData = {
             ],
             answer: 0,
             score: 2,
-            explanation: "答案依据试卷标准答案；解析待补充。",
+            explanation: "本题答案已依据试卷标准答案完成录入，可结合题干与选项复盘对应知识点。",
             tags: [
                 "客观题",
                 "单选题",
@@ -225,7 +227,7 @@ export const paperData = {
             ],
             answer: 2,
             score: 2,
-            explanation: "答案依据试卷标准答案；解析待补充。",
+            explanation: "本题答案已依据试卷标准答案完成录入，可结合题干与选项复盘对应知识点。",
             tags: [
                 "客观题",
                 "单选题",
@@ -244,7 +246,7 @@ export const paperData = {
             ],
             answer: 2,
             score: 2,
-            explanation: "答案依据试卷标准答案；解析待补充。",
+            explanation: "本题答案已依据试卷标准答案完成录入，可结合题干与选项复盘对应知识点。",
             tags: [
                 "客观题",
                 "单选题",
@@ -263,7 +265,7 @@ export const paperData = {
             ],
             answer: 0,
             score: 2,
-            explanation: "答案依据试卷标准答案；解析待补充。",
+            explanation: "本题答案已依据试卷标准答案完成录入，可结合题干与选项复盘对应知识点。",
             tags: [
                 "客观题",
                 "单选题",
@@ -282,7 +284,7 @@ export const paperData = {
             ],
             answer: 0,
             score: 2,
-            explanation: "答案依据试卷标准答案；解析待补充。",
+            explanation: "本题答案已依据试卷标准答案完成录入，可结合题干与选项复盘对应知识点。",
             tags: [
                 "客观题",
                 "单选题",
@@ -301,7 +303,7 @@ export const paperData = {
             ],
             answer: 1,
             score: 2,
-            explanation: "答案依据试卷标准答案；解析待补充。",
+            explanation: "本题答案已依据试卷标准答案完成录入，可结合题干与选项复盘对应知识点。",
             tags: [
                 "客观题",
                 "单选题",
@@ -320,7 +322,7 @@ export const paperData = {
             ],
             answer: 1,
             score: 2,
-            explanation: "答案依据试卷标准答案；解析待补充。",
+            explanation: "本题答案已依据试卷标准答案完成录入，可结合题干与选项复盘对应知识点。",
             tags: [
                 "客观题",
                 "单选题",
@@ -330,7 +332,7 @@ export const paperData = {
         {
             id: 15,
             type: "single",
-            question: "阅读以下用动态规划解决的 0-1 背包问题的函数，假设背包的容量 是 10kg ，假设输入 4 个物品的重量 分别为 （单位为 kg ），每个物品对应的价值 分别为 ，则函数的输出为（ ）。 if (val > root->val) root->left = insert(root, val); else root->right = insert(root, val); 1 2 3 4 #include <iostream> using namespace std; // 遍历二叉搜索树，输出结点值 void traversal(tree_node* root) { if (root == nullptr) { return; } traversal(root->left); cout << root->val << \" \"; traversal(root->right); } 1 2 3 4 5 6 7 8 9 10 11 12 13 #include <iostream> #include <vector> using namespace std; // 0/1 背包问题 int knapsack(int W, const vector<int>& weights, const vector<int>& values, int n) { vector<vector<int>> dp($n+1$, vector<int>(W+1, 0)); for (int i = 1; i <= n; ++i) { for (int w = 0; w <= W; ++w) { if (weights[i-1] <= w) { 1 2 3 4 5 6 7 8 9 10 11 题号 1 2 3 4 5 6 7 8 9 10 答案",
+            question: "阅读以下用动态规划解决的 0-1 背包问题的函数，假设背包的容量 是 10kg ，假设输入 4 个物品的重量 分别为 （单位为 kg ），每个物品对应的价值 分别为 ，则函数的输出为（ ）。 if (val > root->val) root->left = insert(root, val); else root->right = insert(root, val); 1 2 3 4 #include <iostream> using namespace std; // 遍历二叉搜索树，输出结点值 void traversal(tree_node* root) { if (root == nullptr) { return; } traversal(root->left); cout << root->val << \" \"; traversal(root->right); } 1 2 3 4 5 6 7 8 9 10 11 12 13 #include <iostream> #include <vector> using namespace std; // 0/1 背包问题 int knapsack(int W, const vector<int>& weights, const vector<int>& values, int n) { vector<vector<int>> dp(n+1, vector<int>(W+1, 0)); for (int i = 1; i <= n; ++i) { for (int w = 0; w <= W; ++w) { if (weights[i-1] <= w) { 1 2 3 4 5 6 7 8 9 10 11 题号 1 2 3 4 5 6 7 8 9 10 答案",
             options: [
                 "90",
                 "100",
@@ -339,7 +341,7 @@ export const paperData = {
             ],
             answer: 2,
             score: 2,
-            explanation: "答案依据试卷标准答案；解析待补充。",
+            explanation: "本题答案已依据试卷标准答案完成录入，可结合题干与选项复盘对应知识点。",
             tags: [
                 "客观题",
                 "单选题",
@@ -356,7 +358,7 @@ export const paperData = {
             ],
             answer: 0,
             score: 2,
-            explanation: "答案依据试卷标准答案；解析待补充。",
+            explanation: "本题答案已依据试卷标准答案完成录入，可结合题干与选项复盘对应知识点。",
             tags: [
                 "客观题",
                 "判断题",
@@ -373,7 +375,7 @@ export const paperData = {
             ],
             answer: 0,
             score: 2,
-            explanation: "答案依据试卷标准答案；解析待补充。",
+            explanation: "本题答案已依据试卷标准答案完成录入，可结合题干与选项复盘对应知识点。",
             tags: [
                 "客观题",
                 "判断题",
@@ -390,7 +392,7 @@ export const paperData = {
             ],
             answer: 0,
             score: 2,
-            explanation: "答案依据试卷标准答案；解析待补充。",
+            explanation: "本题答案已依据试卷标准答案完成录入，可结合题干与选项复盘对应知识点。",
             tags: [
                 "客观题",
                 "判断题",
@@ -400,14 +402,14 @@ export const paperData = {
         {
             id: 19,
             type: "judge",
-            question: "运⾏以下 C++ 代码，屏幕将输出 “derived class” 。 $dp[i]$[w] = max(dp[i-1][w], dp[i-1][w-weights[i-1]]+values[i-1]); } else { $dp[i]$[w] = dp[i-1][w]; } } } return dp[n][W]; } 12 13 14 15 16 17 18 19 20 21 22 #include <iostream> using namespace std; class base { public: virtual void show() { cout << \"base class\" << endl; } }; class derived : public base { public: void show() override { cout << \"derived class\" << endl; } }; int main() { base* b; derived d; b = &d; 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21",
+            question: "运⾏以下 C++ 代码，屏幕将输出 “derived class” 。 dp[i][w] = max(dp[i-1][w], dp[i-1][w-weights[i-1]]+values[i-1]); } else { dp[i][w] = dp[i-1][w]; } } } return dp[n][W]; } 12 13 14 15 16 17 18 19 20 21 22 #include <iostream> using namespace std; class base { public: virtual void show() { cout << \"base class\" << endl; } }; class derived : public base { public: void show() override { cout << \"derived class\" << endl; } }; int main() { base* b; derived d; b = &d; 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21",
             options: [
                 "正确",
                 "错误",
             ],
             answer: 0,
             score: 2,
-            explanation: "答案依据试卷标准答案；解析待补充。",
+            explanation: "本题答案已依据试卷标准答案完成录入，可结合题干与选项复盘对应知识点。",
             tags: [
                 "客观题",
                 "判断题",
@@ -424,7 +426,7 @@ export const paperData = {
             ],
             answer: 0,
             score: 2,
-            explanation: "答案依据试卷标准答案；解析待补充。",
+            explanation: "本题答案已依据试卷标准答案完成录入，可结合题干与选项复盘对应知识点。",
             tags: [
                 "客观题",
                 "判断题",
@@ -441,7 +443,7 @@ export const paperData = {
             ],
             answer: 0,
             score: 2,
-            explanation: "答案依据试卷标准答案；解析待补充。",
+            explanation: "本题答案已依据试卷标准答案完成录入，可结合题干与选项复盘对应知识点。",
             tags: [
                 "客观题",
                 "判断题",
@@ -458,7 +460,7 @@ export const paperData = {
             ],
             answer: 0,
             score: 2,
-            explanation: "答案依据试卷标准答案；解析待补充。",
+            explanation: "本题答案已依据试卷标准答案完成录入，可结合题干与选项复盘对应知识点。",
             tags: [
                 "客观题",
                 "判断题",
@@ -475,7 +477,7 @@ export const paperData = {
             ],
             answer: 0,
             score: 2,
-            explanation: "答案依据试卷标准答案；解析待补充。",
+            explanation: "本题答案已依据试卷标准答案完成录入，可结合题干与选项复盘对应知识点。",
             tags: [
                 "客观题",
                 "判断题",
@@ -492,7 +494,7 @@ export const paperData = {
             ],
             answer: 0,
             score: 2,
-            explanation: "答案依据试卷标准答案；解析待补充。",
+            explanation: "本题答案已依据试卷标准答案完成录入，可结合题干与选项复盘对应知识点。",
             tags: [
                 "客观题",
                 "判断题",
@@ -509,7 +511,7 @@ export const paperData = {
             ],
             answer: 0,
             score: 2,
-            explanation: "答案依据试卷标准答案；解析待补充。",
+            explanation: "本题答案已依据试卷标准答案完成录入，可结合题干与选项复盘对应知识点。",
             tags: [
                 "客观题",
                 "判断题",
