@@ -1,66 +1,36 @@
 # GESP Question Bank Comprehensive Audit Report
 
-**Summary**: 91 files tested. Found 1162 errors and 968 usability warnings.
+**Summary**: 89 files tested. Found 1083 errors and 968 usability warnings.
 
 ## 1. 完整性审计 (Completeness)
-- **programming.js**: File exists on disk but is not registered in index.js.
-- **2023-03-l2.js**: Expected 27 questions, found 25.
-- **2023-06-l2.js**: Expected 27 questions, found 25.
-- **2023-09-l2.js**: Expected 27 questions, found 25.
-- **2023-12-l2.js**: Expected 27 questions, found 25.
-- **2024-03-l2.js**: Expected 27 questions, found 25.
-- **2024-06-l2.js**: Expected 27 questions, found 25.
-- **2024-09-l2.js**: Expected 27 questions, found 25.
-- **2024-12-l2.js**: Expected 27 questions, found 25.
-- **2025-03-l2.js**: Expected 27 questions, found 25.
-- **2025-06-l2.js**: Expected 27 questions, found 25.
-- **2025-09-l2.js**: Expected 27 questions, found 25.
-- **2025-12-l2.js**: Expected 27 questions, found 25.
-- **2023-03-l3.js**: Historical placeholder erroneously registered in index.js.
-- **2023-06-l3.js**: Expected 27 questions, found 25.
-- **2023-09-l3.js**: Expected 27 questions, found 25.
-- **2023-12-l3.js**: Expected 27 questions, found 25.
-- **2024-03-l3.js**: Expected 27 questions, found 25.
-- **2024-06-l3.js**: Expected 27 questions, found 25.
-- **2024-09-l3.js**: Expected 27 questions, found 25.
-- **2024-12-l3.js**: Expected 27 questions, found 25.
-- **2025-03-l3.js**: Expected 27 questions, found 25.
-- **2025-06-l3.js**: Expected 27 questions, found 25.
-- **2025-09-l3.js**: Expected 27 questions, found 25.
-- **2025-12-l3.js**: Expected 27 questions, found 25.
+> All checks passed.
 
 ## 2. 正确性审计 (Correctness) (Dirty Data, Constraints, Syntax)
 - **2025-12-l1.js** [Q12]: Contains suspected dirty or placeholder data: "选项A"
-- **2023-06-l4.js** [Q26]: true
-- **2023-06-l4.js** [Q27]: true
+- **2023-06-l2.js** [Q26]: Missing score field
+- **2023-06-l2.js** [Q27]: Missing score field
+- **2023-09-l2.js** [Q26]: Missing score field
+- **2023-09-l2.js** [Q27]: Missing score field
+- **2023-12-l2.js** [Q26]: Missing score field
+- **2023-12-l2.js** [Q27]: Missing score field
+- **2024-03-l2.js** [Q26]: Missing score field
+- **2024-03-l2.js** [Q27]: Missing score field
+- **2024-06-l2.js** [Q26]: Missing score field
+- **2024-06-l2.js** [Q27]: Missing score field
+- **2024-09-l2.js** [Q26]: Missing score field
+- **2024-09-l2.js** [Q27]: Missing score field
+- **2024-12-l2.js** [Q26]: Missing score field
+- **2024-12-l2.js** [Q27]: Missing score field
+- **2025-03-l2.js** [Q26]: Missing score field
+- **2025-03-l2.js** [Q27]: Missing score field
+- **2025-06-l2.js** [Q26]: Missing score field
+- **2025-06-l2.js** [Q27]: Missing score field
+- **2025-09-l2.js** [Q26]: Missing score field
+- **2025-09-l2.js** [Q27]: Missing score field
+- **2025-12-l2.js** [Q26]: Missing score field
+- **2025-12-l2.js** [Q27]: Missing score field
 - **2023-09-l4.js** [Q3]: Contains suspected dirty or placeholder data: "选项A"
-- **2023-09-l4.js** [Q26]: true
-- **2023-09-l4.js** [Q27]: true
 - **2023-12-l4.js** [Q4]: Contains suspected dirty or placeholder data: "选项A"
-- **2023-12-l4.js** [Q26]: true
-- **2023-12-l4.js** [Q27]: true
-- **2024-03-l4.js** [Q26]: true
-- **2024-03-l4.js** [Q27]: true
-- **2024-06-l4.js** [Q26]: true
-- **2024-06-l4.js** [Q27]: true
-- **2024-09-l4.js** [Q26]: true
-- **2024-09-l4.js** [Q27]: true
-- **2024-12-l4.js** [Q26]: true
-- **2024-12-l4.js** [Q27]: true
-- **2026-03-l4.js** [Q26]: true
-- **2026-03-l4.js** [Q27]: true
-- **2023-09-l5.js** [Q26]: true
-- **2023-09-l5.js** [Q27]: true
-- **2023-12-l5.js** [Q26]: true
-- **2023-12-l5.js** [Q27]: true
-- **2024-03-l5.js** [Q26]: true
-- **2024-03-l5.js** [Q27]: true
-- **2024-06-l5.js** [Q26]: true
-- **2024-06-l5.js** [Q27]: true
-- **2024-09-l5.js** [Q26]: true
-- **2024-09-l5.js** [Q27]: true
-- **2024-12-l5.js** [Q26]: true
-- **2024-12-l5.js** [Q27]: true
 - **2025-03-l5.js** [Q1]: Contains suspected dirty or placeholder data: "待补充"
 - **2025-03-l5.js** [Q2]: Contains suspected dirty or placeholder data: "待补充"
 - **2025-03-l5.js** [Q3]: Contains suspected dirty or placeholder data: "待补充"
@@ -87,8 +57,6 @@
 - **2025-03-l5.js** [Q23]: Contains suspected dirty or placeholder data: "待补充"
 - **2025-03-l5.js** [Q24]: Contains suspected dirty or placeholder data: "待补充"
 - **2025-03-l5.js** [Q25]: Contains suspected dirty or placeholder data: "待补充"
-- **2025-03-l5.js** [Q26]: true
-- **2025-03-l5.js** [Q27]: true
 - **2025-06-l5.js** [Q1]: Contains suspected dirty or placeholder data: "待补充"
 - **2025-06-l5.js** [Q2]: Contains suspected dirty or placeholder data: "待补充"
 - **2025-06-l5.js** [Q3]: Contains suspected dirty or placeholder data: "待补充"
@@ -114,8 +82,6 @@
 - **2025-06-l5.js** [Q23]: Contains suspected dirty or placeholder data: "待补充"
 - **2025-06-l5.js** [Q24]: Contains suspected dirty or placeholder data: "待补充"
 - **2025-06-l5.js** [Q25]: Contains suspected dirty or placeholder data: "待补充"
-- **2025-06-l5.js** [Q26]: true
-- **2025-06-l5.js** [Q27]: true
 - **2025-09-l5.js** [Q1]: Contains suspected dirty or placeholder data: "待补充"
 - **2025-09-l5.js** [Q2]: Contains suspected dirty or placeholder data: "待补充"
 - **2025-09-l5.js** [Q3]: Contains suspected dirty or placeholder data: "待补充"
@@ -141,8 +107,6 @@
 - **2025-09-l5.js** [Q23]: Contains suspected dirty or placeholder data: "待补充"
 - **2025-09-l5.js** [Q24]: Contains suspected dirty or placeholder data: "待补充"
 - **2025-09-l5.js** [Q25]: Contains suspected dirty or placeholder data: "待补充"
-- **2025-09-l5.js** [Q26]: true
-- **2025-09-l5.js** [Q27]: true
 - **2025-12-l5.js** [Q1]: Contains suspected dirty or placeholder data: "待补充"
 - **2025-12-l5.js** [Q2]: Contains suspected dirty or placeholder data: "待补充"
 - **2025-12-l5.js** [Q3]: Contains suspected dirty or placeholder data: "待补充"
@@ -168,8 +132,6 @@
 - **2025-12-l5.js** [Q23]: Contains suspected dirty or placeholder data: "待补充"
 - **2025-12-l5.js** [Q24]: Contains suspected dirty or placeholder data: "待补充"
 - **2025-12-l5.js** [Q25]: Contains suspected dirty or placeholder data: "待补充"
-- **2025-12-l5.js** [Q26]: true
-- **2025-12-l5.js** [Q27]: true
 - **2026-03-l5.js** [Q1]: Contains suspected dirty or placeholder data: "待补充"
 - **2026-03-l5.js** [Q1]: Contains suspected dirty or placeholder data: "选项A"
 - **2026-03-l5.js** [Q2]: Contains suspected dirty or placeholder data: "待补充"
@@ -210,8 +172,6 @@
 - **2026-03-l5.js** [Q23]: Contains suspected dirty or placeholder data: "待补充"
 - **2026-03-l5.js** [Q24]: Contains suspected dirty or placeholder data: "待补充"
 - **2026-03-l5.js** [Q25]: Contains suspected dirty or placeholder data: "待补充"
-- **2026-03-l5.js** [Q26]: true
-- **2026-03-l5.js** [Q27]: true
 - **2023-09-l6.js** [Q1]: Contains suspected dirty or placeholder data: "待补充"
 - **2023-09-l6.js** [Q2]: Contains suspected dirty or placeholder data: "待补充"
 - **2023-09-l6.js** [Q3]: Contains suspected dirty or placeholder data: "待补充"
@@ -240,9 +200,7 @@
 - **2023-09-l6.js** [Q24]: Contains suspected dirty or placeholder data: "待补充"
 - **2023-09-l6.js** [Q25]: Contains suspected dirty or placeholder data: "待补充"
 - **2023-09-l6.js** [Q26]: Missing score field
-- **2023-09-l6.js** [Q26]: true
 - **2023-09-l6.js** [Q27]: Missing score field
-- **2023-09-l6.js** [Q27]: true
 - **2023-12-l6.js** [Q1]: Contains suspected dirty or placeholder data: "待补充"
 - **2023-12-l6.js** [Q2]: Contains suspected dirty or placeholder data: "待补充"
 - **2023-12-l6.js** [Q3]: Contains suspected dirty or placeholder data: "待补充"
@@ -270,9 +228,7 @@
 - **2023-12-l6.js** [Q24]: Contains suspected dirty or placeholder data: "待补充"
 - **2023-12-l6.js** [Q25]: Contains suspected dirty or placeholder data: "待补充"
 - **2023-12-l6.js** [Q26]: Missing score field
-- **2023-12-l6.js** [Q26]: true
 - **2023-12-l6.js** [Q27]: Missing score field
-- **2023-12-l6.js** [Q27]: true
 - **2024-03-l6.js** [Q1]: Contains suspected dirty or placeholder data: "待补充"
 - **2024-03-l6.js** [Q2]: Contains suspected dirty or placeholder data: "待补充"
 - **2024-03-l6.js** [Q3]: Contains suspected dirty or placeholder data: "待补充"
@@ -299,9 +255,7 @@
 - **2024-03-l6.js** [Q24]: Contains suspected dirty or placeholder data: "待补充"
 - **2024-03-l6.js** [Q25]: Contains suspected dirty or placeholder data: "待补充"
 - **2024-03-l6.js** [Q26]: Missing score field
-- **2024-03-l6.js** [Q26]: true
 - **2024-03-l6.js** [Q27]: Missing score field
-- **2024-03-l6.js** [Q27]: true
 - **2024-06-l6.js** [Q1]: Contains suspected dirty or placeholder data: "待补充"
 - **2024-06-l6.js** [Q2]: Contains suspected dirty or placeholder data: "待补充"
 - **2024-06-l6.js** [Q3]: Contains suspected dirty or placeholder data: "待补充"
@@ -328,9 +282,7 @@
 - **2024-06-l6.js** [Q24]: Contains suspected dirty or placeholder data: "待补充"
 - **2024-06-l6.js** [Q25]: Contains suspected dirty or placeholder data: "待补充"
 - **2024-06-l6.js** [Q26]: Missing score field
-- **2024-06-l6.js** [Q26]: true
 - **2024-06-l6.js** [Q27]: Missing score field
-- **2024-06-l6.js** [Q27]: true
 - **2024-09-l6.js** [Q1]: Contains suspected dirty or placeholder data: "待补充"
 - **2024-09-l6.js** [Q2]: Contains suspected dirty or placeholder data: "待补充"
 - **2024-09-l6.js** [Q3]: Contains suspected dirty or placeholder data: "待补充"
@@ -359,9 +311,7 @@
 - **2024-09-l6.js** [Q24]: Contains suspected dirty or placeholder data: "待补充"
 - **2024-09-l6.js** [Q25]: Contains suspected dirty or placeholder data: "待补充"
 - **2024-09-l6.js** [Q26]: Missing score field
-- **2024-09-l6.js** [Q26]: true
 - **2024-09-l6.js** [Q27]: Missing score field
-- **2024-09-l6.js** [Q27]: true
 - **2024-12-l6.js** [Q1]: Contains suspected dirty or placeholder data: "待补充"
 - **2024-12-l6.js** [Q2]: Contains suspected dirty or placeholder data: "待补充"
 - **2024-12-l6.js** [Q3]: Contains suspected dirty or placeholder data: "待补充"
@@ -393,9 +343,7 @@
 - **2024-12-l6.js** [Q24]: Contains suspected dirty or placeholder data: "待补充"
 - **2024-12-l6.js** [Q25]: Contains suspected dirty or placeholder data: "待补充"
 - **2024-12-l6.js** [Q26]: Missing score field
-- **2024-12-l6.js** [Q26]: true
 - **2024-12-l6.js** [Q27]: Missing score field
-- **2024-12-l6.js** [Q27]: true
 - **2025-03-l6.js** [Q1]: Contains suspected dirty or placeholder data: "待补充"
 - **2025-03-l6.js** [Q2]: Contains suspected dirty or placeholder data: "待补充"
 - **2025-03-l6.js** [Q3]: Contains suspected dirty or placeholder data: "待补充"
@@ -422,9 +370,7 @@
 - **2025-03-l6.js** [Q24]: Contains suspected dirty or placeholder data: "待补充"
 - **2025-03-l6.js** [Q25]: Contains suspected dirty or placeholder data: "待补充"
 - **2025-03-l6.js** [Q26]: Missing score field
-- **2025-03-l6.js** [Q26]: true
 - **2025-03-l6.js** [Q27]: Missing score field
-- **2025-03-l6.js** [Q27]: true
 - **2025-06-l6.js** [Q1]: Contains suspected dirty or placeholder data: "待补充"
 - **2025-06-l6.js** [Q2]: Contains suspected dirty or placeholder data: "待补充"
 - **2025-06-l6.js** [Q3]: Contains suspected dirty or placeholder data: "待补充"
@@ -455,9 +401,7 @@
 - **2025-06-l6.js** [Q24]: Contains suspected dirty or placeholder data: "待补充"
 - **2025-06-l6.js** [Q25]: Contains suspected dirty or placeholder data: "待补充"
 - **2025-06-l6.js** [Q26]: Missing score field
-- **2025-06-l6.js** [Q26]: true
 - **2025-06-l6.js** [Q27]: Missing score field
-- **2025-06-l6.js** [Q27]: true
 - **2025-09-l6.js** [Q1]: Contains suspected dirty or placeholder data: "待补充"
 - **2025-09-l6.js** [Q2]: Contains suspected dirty or placeholder data: "待补充"
 - **2025-09-l6.js** [Q3]: Contains suspected dirty or placeholder data: "待补充"
@@ -485,9 +429,7 @@
 - **2025-09-l6.js** [Q24]: Contains suspected dirty or placeholder data: "待补充"
 - **2025-09-l6.js** [Q25]: Contains suspected dirty or placeholder data: "待补充"
 - **2025-09-l6.js** [Q26]: Missing score field
-- **2025-09-l6.js** [Q26]: true
 - **2025-09-l6.js** [Q27]: Missing score field
-- **2025-09-l6.js** [Q27]: true
 - **2025-12-l6.js** [Q2]: Contains suspected dirty or placeholder data: "待补充"
 - **2025-12-l6.js** [Q3]: Contains suspected dirty or placeholder data: "待补充"
 - **2025-12-l6.js** [Q4]: Contains suspected dirty or placeholder data: "待补充"
@@ -514,9 +456,7 @@
 - **2025-12-l6.js** [Q24]: Contains suspected dirty or placeholder data: "待补充"
 - **2025-12-l6.js** [Q25]: Contains suspected dirty or placeholder data: "待补充"
 - **2025-12-l6.js** [Q26]: Missing score field
-- **2025-12-l6.js** [Q26]: true
 - **2025-12-l6.js** [Q27]: Missing score field
-- **2025-12-l6.js** [Q27]: true
 - **2026-03-l6.js** [Q1]: Contains suspected dirty or placeholder data: "待补充"
 - **2026-03-l6.js** [Q2]: Contains suspected dirty or placeholder data: "待补充"
 - **2026-03-l6.js** [Q3]: Contains suspected dirty or placeholder data: "待补充"
@@ -544,9 +484,7 @@
 - **2026-03-l6.js** [Q24]: Contains suspected dirty or placeholder data: "待补充"
 - **2026-03-l6.js** [Q25]: Contains suspected dirty or placeholder data: "待补充"
 - **2026-03-l6.js** [Q26]: Missing score field
-- **2026-03-l6.js** [Q26]: true
 - **2026-03-l6.js** [Q27]: Missing score field
-- **2026-03-l6.js** [Q27]: true
 - **2023-12-l7.js** [Q1]: Contains suspected dirty or placeholder data: "待补充"
 - **2023-12-l7.js** [Q2]: Contains suspected dirty or placeholder data: "待补充"
 - **2023-12-l7.js** [Q2]: Contains suspected dirty or placeholder data: "选项A"
@@ -574,8 +512,6 @@
 - **2023-12-l7.js** [Q23]: Contains suspected dirty or placeholder data: "待补充"
 - **2023-12-l7.js** [Q24]: Contains suspected dirty or placeholder data: "待补充"
 - **2023-12-l7.js** [Q25]: Contains suspected dirty or placeholder data: "待补充"
-- **2023-12-l7.js** [Q26]: true
-- **2023-12-l7.js** [Q27]: true
 - **2024-03-l7.js** [Q1]: Contains suspected dirty or placeholder data: "待补充"
 - **2024-03-l7.js** [Q2]: Contains suspected dirty or placeholder data: "待补充"
 - **2024-03-l7.js** [Q3]: Contains suspected dirty or placeholder data: "待补充"
@@ -604,8 +540,6 @@
 - **2024-03-l7.js** [Q23]: Contains suspected dirty or placeholder data: "待补充"
 - **2024-03-l7.js** [Q24]: Contains suspected dirty or placeholder data: "待补充"
 - **2024-03-l7.js** [Q25]: Contains suspected dirty or placeholder data: "待补充"
-- **2024-03-l7.js** [Q26]: true
-- **2024-03-l7.js** [Q27]: true
 - **2024-06-l7.js** [Q1]: Contains suspected dirty or placeholder data: "待补充"
 - **2024-06-l7.js** [Q2]: Contains suspected dirty or placeholder data: "待补充"
 - **2024-06-l7.js** [Q3]: Contains suspected dirty or placeholder data: "待补充"
@@ -634,8 +568,6 @@
 - **2024-06-l7.js** [Q23]: Contains suspected dirty or placeholder data: "待补充"
 - **2024-06-l7.js** [Q24]: Contains suspected dirty or placeholder data: "待补充"
 - **2024-06-l7.js** [Q25]: Contains suspected dirty or placeholder data: "待补充"
-- **2024-06-l7.js** [Q26]: true
-- **2024-06-l7.js** [Q27]: true
 - **2024-09-l7.js** [Q1]: Contains suspected dirty or placeholder data: "待补充"
 - **2024-09-l7.js** [Q2]: Contains suspected dirty or placeholder data: "待补充"
 - **2024-09-l7.js** [Q3]: Contains suspected dirty or placeholder data: "待补充"
@@ -664,9 +596,7 @@
 - **2024-09-l7.js** [Q24]: Contains suspected dirty or placeholder data: "待补充"
 - **2024-09-l7.js** [Q25]: Contains suspected dirty or placeholder data: "待补充"
 - **2024-09-l7.js** [Q26]: Missing score field
-- **2024-09-l7.js** [Q26]: true
 - **2024-09-l7.js** [Q27]: Missing score field
-- **2024-09-l7.js** [Q27]: true
 - **2024-12-l7.js** [Q1]: Contains suspected dirty or placeholder data: "待补充"
 - **2024-12-l7.js** [Q2]: Contains suspected dirty or placeholder data: "待补充"
 - **2024-12-l7.js** [Q3]: Contains suspected dirty or placeholder data: "待补充"
@@ -695,9 +625,7 @@
 - **2024-12-l7.js** [Q24]: Contains suspected dirty or placeholder data: "待补充"
 - **2024-12-l7.js** [Q25]: Contains suspected dirty or placeholder data: "待补充"
 - **2024-12-l7.js** [Q26]: Missing score field
-- **2024-12-l7.js** [Q26]: true
 - **2024-12-l7.js** [Q27]: Missing score field
-- **2024-12-l7.js** [Q27]: true
 - **2025-03-l7.js** [Q1]: Contains suspected dirty or placeholder data: "待补充"
 - **2025-03-l7.js** [Q2]: Contains suspected dirty or placeholder data: "待补充"
 - **2025-03-l7.js** [Q3]: Contains suspected dirty or placeholder data: "待补充"
@@ -727,9 +655,7 @@
 - **2025-03-l7.js** [Q24]: Contains suspected dirty or placeholder data: "待补充"
 - **2025-03-l7.js** [Q25]: Contains suspected dirty or placeholder data: "待补充"
 - **2025-03-l7.js** [Q26]: Missing score field
-- **2025-03-l7.js** [Q26]: true
 - **2025-03-l7.js** [Q27]: Missing score field
-- **2025-03-l7.js** [Q27]: true
 - **2025-06-l7.js** [Q1]: Contains suspected dirty or placeholder data: "待补充"
 - **2025-06-l7.js** [Q2]: Contains suspected dirty or placeholder data: "待补充"
 - **2025-06-l7.js** [Q3]: Contains suspected dirty or placeholder data: "待补充"
@@ -760,9 +686,7 @@
 - **2025-06-l7.js** [Q24]: Contains suspected dirty or placeholder data: "待补充"
 - **2025-06-l7.js** [Q25]: Contains suspected dirty or placeholder data: "待补充"
 - **2025-06-l7.js** [Q26]: Missing score field
-- **2025-06-l7.js** [Q26]: true
 - **2025-06-l7.js** [Q27]: Missing score field
-- **2025-06-l7.js** [Q27]: true
 - **2025-09-l7.js** [Q1]: Contains suspected dirty or placeholder data: "待补充"
 - **2025-09-l7.js** [Q2]: Contains suspected dirty or placeholder data: "待补充"
 - **2025-09-l7.js** [Q3]: Contains suspected dirty or placeholder data: "待补充"
@@ -793,9 +717,7 @@
 - **2025-09-l7.js** [Q24]: Contains suspected dirty or placeholder data: "待补充"
 - **2025-09-l7.js** [Q25]: Contains suspected dirty or placeholder data: "待补充"
 - **2025-09-l7.js** [Q26]: Missing score field
-- **2025-09-l7.js** [Q26]: true
 - **2025-09-l7.js** [Q27]: Missing score field
-- **2025-09-l7.js** [Q27]: true
 - **2025-12-l7.js** [Q1]: Contains suspected dirty or placeholder data: "待补充"
 - **2025-12-l7.js** [Q2]: Contains suspected dirty or placeholder data: "待补充"
 - **2025-12-l7.js** [Q3]: Contains suspected dirty or placeholder data: "待补充"
@@ -825,9 +747,7 @@
 - **2025-12-l7.js** [Q24]: Contains suspected dirty or placeholder data: "待补充"
 - **2025-12-l7.js** [Q25]: Contains suspected dirty or placeholder data: "待补充"
 - **2025-12-l7.js** [Q26]: Missing score field
-- **2025-12-l7.js** [Q26]: true
 - **2025-12-l7.js** [Q27]: Missing score field
-- **2025-12-l7.js** [Q27]: true
 - **2026-03-l7.js** [Q1]: Contains suspected dirty or placeholder data: "待补充"
 - **2026-03-l7.js** [Q2]: Contains suspected dirty or placeholder data: "待补充"
 - **2026-03-l7.js** [Q3]: Contains suspected dirty or placeholder data: "待补充"
@@ -855,9 +775,7 @@
 - **2026-03-l7.js** [Q24]: Contains suspected dirty or placeholder data: "待补充"
 - **2026-03-l7.js** [Q25]: Contains suspected dirty or placeholder data: "待补充"
 - **2026-03-l7.js** [Q26]: Missing score field
-- **2026-03-l7.js** [Q26]: true
 - **2026-03-l7.js** [Q27]: Missing score field
-- **2026-03-l7.js** [Q27]: true
 - **2023-12-l8.js** [Q1]: Contains suspected dirty or placeholder data: "待补充"
 - **2023-12-l8.js** [Q2]: Contains suspected dirty or placeholder data: "待补充"
 - **2023-12-l8.js** [Q3]: Contains suspected dirty or placeholder data: "待补充"
@@ -891,9 +809,7 @@
 - **2023-12-l8.js** [Q24]: Contains suspected dirty or placeholder data: "待补充"
 - **2023-12-l8.js** [Q25]: Contains suspected dirty or placeholder data: "待补充"
 - **2023-12-l8.js** [Q26]: Missing score field
-- **2023-12-l8.js** [Q26]: true
 - **2023-12-l8.js** [Q27]: Missing score field
-- **2023-12-l8.js** [Q27]: true
 - **2024-03-l8.js** [Q1]: Contains suspected dirty or placeholder data: "待补充"
 - **2024-03-l8.js** [Q2]: Contains suspected dirty or placeholder data: "待补充"
 - **2024-03-l8.js** [Q3]: Contains suspected dirty or placeholder data: "待补充"
@@ -923,11 +839,7 @@
 - **2024-03-l8.js** [Q24]: Contains suspected dirty or placeholder data: "待补充"
 - **2024-03-l8.js** [Q25]: Contains suspected dirty or placeholder data: "待补充"
 - **2024-03-l8.js** [Q26]: Missing score field
-- **2024-03-l8.js** [Q26]: true
 - **2024-03-l8.js** [Q27]: Missing score field
-- **2024-03-l8.js** [Q27]: true
-- **2024-06-l8.js** [Q26]: true
-- **2024-06-l8.js** [Q27]: true
 - **2024-06-l8.js** [Q1]: Contains suspected dirty or placeholder data: "待补充"
 - **2024-06-l8.js** [Q2]: Contains suspected dirty or placeholder data: "待补充"
 - **2024-06-l8.js** [Q3]: Contains suspected dirty or placeholder data: "待补充"
@@ -958,9 +870,7 @@
 - **2024-06-l8.js** [Q24]: Contains suspected dirty or placeholder data: "待补充"
 - **2024-06-l8.js** [Q25]: Contains suspected dirty or placeholder data: "待补充"
 - **2024-09-l8.js** [Q26]: Missing score field
-- **2024-09-l8.js** [Q26]: true
 - **2024-09-l8.js** [Q27]: Missing score field
-- **2024-09-l8.js** [Q27]: true
 - **2024-09-l8.js** [Q1]: Contains suspected dirty or placeholder data: "待补充"
 - **2024-09-l8.js** [Q2]: Contains suspected dirty or placeholder data: "待补充"
 - **2024-09-l8.js** [Q2]: Contains suspected dirty or placeholder data: "选项A"
@@ -993,9 +903,7 @@
 - **2024-09-l8.js** [Q24]: Contains suspected dirty or placeholder data: "待补充"
 - **2024-09-l8.js** [Q25]: Contains suspected dirty or placeholder data: "待补充"
 - **2024-12-l8.js** [Q26]: Missing score field
-- **2024-12-l8.js** [Q26]: true
 - **2024-12-l8.js** [Q27]: Missing score field
-- **2024-12-l8.js** [Q27]: true
 - **2024-12-l8.js** [Q1]: Contains suspected dirty or placeholder data: "待补充"
 - **2024-12-l8.js** [Q2]: Contains suspected dirty or placeholder data: "待补充"
 - **2024-12-l8.js** [Q3]: Contains suspected dirty or placeholder data: "待补充"
@@ -1027,9 +935,7 @@
 - **2024-12-l8.js** [Q24]: Contains suspected dirty or placeholder data: "待补充"
 - **2024-12-l8.js** [Q25]: Contains suspected dirty or placeholder data: "待补充"
 - **2025-03-l8.js** [Q26]: Missing score field
-- **2025-03-l8.js** [Q26]: true
 - **2025-03-l8.js** [Q27]: Missing score field
-- **2025-03-l8.js** [Q27]: true
 - **2025-03-l8.js** [Q1]: Contains suspected dirty or placeholder data: "待补充"
 - **2025-03-l8.js** [Q2]: Contains suspected dirty or placeholder data: "待补充"
 - **2025-03-l8.js** [Q3]: Contains suspected dirty or placeholder data: "待补充"
@@ -1063,9 +969,7 @@
 - **2025-03-l8.js** [Q24]: Contains suspected dirty or placeholder data: "待补充"
 - **2025-03-l8.js** [Q25]: Contains suspected dirty or placeholder data: "待补充"
 - **2025-06-l8.js** [Q26]: Missing score field
-- **2025-06-l8.js** [Q26]: true
 - **2025-06-l8.js** [Q27]: Missing score field
-- **2025-06-l8.js** [Q27]: true
 - **2025-06-l8.js** [Q1]: Contains suspected dirty or placeholder data: "待补充"
 - **2025-06-l8.js** [Q2]: Contains suspected dirty or placeholder data: "待补充"
 - **2025-06-l8.js** [Q3]: Contains suspected dirty or placeholder data: "待补充"
@@ -1099,9 +1003,7 @@
 - **2025-06-l8.js** [Q24]: Contains suspected dirty or placeholder data: "待补充"
 - **2025-06-l8.js** [Q25]: Contains suspected dirty or placeholder data: "待补充"
 - **2025-09-l8.js** [Q26]: Missing score field
-- **2025-09-l8.js** [Q26]: true
 - **2025-09-l8.js** [Q27]: Missing score field
-- **2025-09-l8.js** [Q27]: true
 - **2025-09-l8.js** [Q1]: Contains suspected dirty or placeholder data: "待补充"
 - **2025-09-l8.js** [Q2]: Contains suspected dirty or placeholder data: "待补充"
 - **2025-09-l8.js** [Q3]: Contains suspected dirty or placeholder data: "待补充"
@@ -1135,9 +1037,7 @@
 - **2025-09-l8.js** [Q24]: Contains suspected dirty or placeholder data: "待补充"
 - **2025-09-l8.js** [Q25]: Contains suspected dirty or placeholder data: "待补充"
 - **2025-12-l8.js** [Q26]: Missing score field
-- **2025-12-l8.js** [Q26]: true
 - **2025-12-l8.js** [Q27]: Missing score field
-- **2025-12-l8.js** [Q27]: true
 - **2025-12-l8.js** [Q1]: Contains suspected dirty or placeholder data: "待补充"
 - **2025-12-l8.js** [Q2]: Contains suspected dirty or placeholder data: "待补充"
 - **2025-12-l8.js** [Q3]: Contains suspected dirty or placeholder data: "待补充"
@@ -1164,8 +1064,6 @@
 - **2025-12-l8.js** [Q23]: Contains suspected dirty or placeholder data: "待补充"
 - **2025-12-l8.js** [Q24]: Contains suspected dirty or placeholder data: "待补充"
 - **2025-12-l8.js** [Q25]: Contains suspected dirty or placeholder data: "待补充"
-- **2026-03-l8.js** [Q26]: true
-- **2026-03-l8.js** [Q27]: true
 - **2026-03-l8.js** [Q1]: Contains suspected dirty or placeholder data: "待补充"
 - **2026-03-l8.js** [Q2]: Contains suspected dirty or placeholder data: "待补充"
 - **2026-03-l8.js** [Q3]: Contains suspected dirty or placeholder data: "待补充"
@@ -1193,7 +1091,7 @@
 - **2026-03-l8.js** [Q25]: Contains suspected dirty or placeholder data: "待补充"
 
 ## 3. 可用性审计 (Availability)
-- **programming.js**: Failed to load paperData: paperData is not exported.
+> All checks passed.
 
 ## 4. 易用性审计 (Usability) (Explanations, Code Templates)
 - **2023-03-l1.js** [Q26]: Missing reference code.

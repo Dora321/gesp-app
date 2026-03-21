@@ -22,8 +22,13 @@ const QuestionBankHome = () => {
 
     const papers = useMemo(() => {
         return Object.values(paperRegistry)
+            .filter((paper) => !paper.isHistoricalPlaceholder)
             .map((paper) => {
-                const questionCount = Array.isArray(paper.questions) ? paper.questions.length : 0;
+                const questionCount = [
+                    ...(paper.questions || []),
+                    ...(paper.programmingQuestions || []),
+                    ...(paper.codingQuestions || [])
+                ].length;
                 const isPlaceholder = paper.level >= 3 && questionCount <= 4;
                 const displayTitle = isPlaceholder
                     ? paper.title.replace('真题', '练习卷（待补全）')
@@ -64,7 +69,7 @@ const QuestionBankHome = () => {
                                 GESP 真题题库
                             </h1>
                             <p className="text-indigo-100 max-w-2xl text-lg">
-                                收录 2023-2025 年全套 C++ 等级考试真题，在线模拟，智能判卷。
+                                收录 2023-2026 年 GESP C++ 真题与练习卷，支持整卷练习与解析复盘。
                             </p>
                         </div>
                         {/* Stats */}
@@ -74,7 +79,7 @@ const QuestionBankHome = () => {
                                 <div className="text-xs text-indigo-200">覆盖等级</div>
                             </div>
                             <div className="bg-white/10 backdrop-blur-sm rounded-lg p-3 text-center min-w-[100px]">
-                                <div className="text-2xl font-bold">{papers.length}+</div>
+                                <div className="text-2xl font-bold">{papers.length}</div>
                                 <div className="text-xs text-indigo-200">真题试卷</div>
                             </div>
                         </div>

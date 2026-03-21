@@ -22,9 +22,12 @@ function addCompletenessIssue(file, issue) { report.completeness.push(`- **${fil
 function addCorrectnessIssue(file, Q, issue) { report.correctness.push(`- **${file}** [Q${Q}]: ${issue}`); report.summary.errors++;}
 function addAvailabilityIssue(file, issue) { report.availability.push(`- **${file}**: ${issue}`); report.summary.errors++;}
 function addUsabilityIssue(file, Q, issue) { report.usability.push(`- **${file}** [Q${Q}]: ${issue}`); report.summary.warnings++;}
+function isHistoricalPlaceholderFile(fullPath) {
+    return fs.readFileSync(fullPath, 'utf-8').includes('isHistoricalPlaceholder: true');
+}
 
 function checkLatexStructure(text) {
-    if (!text) return true;
+    if (!text) return null;
     const countMatches = (str, regex) => (str.match(regex) || []).length;
     // VERY BASIC checks for unbalanced codes
     const backticks = countMatches(text, /```/g);
@@ -73,8 +76,12 @@ async function runAudit() {
 
     levelDirs.forEach(dir => {
         const dirPath = path.join(DATA_DIR, dir);
-        const files = fs.readdirSync(dirPath).filter(f => f.endsWith('.js') && f !== 'shared.js');
-        files.forEach(f => allFiles.push({ dir, file: f, fullPath: path.join(dirPath, f) }));
+        const files = fs.readdirSync(dirPath).filter(f => /^\d{4}-\d{2}-l\d+\.js$/.test(f));
+        files.forEach(f => {
+            const fullPath = path.join(dirPath, f);
+            if (isHistoricalPlaceholderFile(fullPath)) return;
+            allFiles.push({ dir, file: f, fullPath });
+        });
     });
 
     report.summary.totalTested = allFiles.length;
@@ -104,21 +111,22 @@ async function runAudit() {
         }
 
         if (paper.isHistoricalPlaceholder) {
-            // Check if mistakenly in registry
-            if (registeredIds.includes(fileId)) {
-                addCompletenessIssue(file, `Historical placeholder erroneously registered in index.js.`);
-            }
             continue; 
         }
 
         // Completeness: Questions length
-        const qs = paper.questions || [];
+        const qs = [
+            ...(paper.questions || []),
+            ...(paper.programmingQuestions || []),
+            ...(paper.codingQuestions || [])
+        ];
         if (qs.length !== 27) {
             addCompletenessIssue(file, `Expected 27 questions, found ${qs.length}.`);
         }
 
         // Completeness: Programming mapping
-        if (!paperCodingMap[fileId] && qs.some(q => q.type === 'programming')) {
+        const hasEmbeddedProgramming = (paper.programmingQuestions?.length || 0) + (paper.codingQuestions?.length || 0) > 0;
+        if (!paperCodingMap[fileId] && !hasEmbeddedProgramming && qs.some(q => q.type === 'programming' || q.type === 'coding')) {
             addCompletenessIssue(file, `Missing entry in paperCodingMap.js for programming questions.`);
         }
 
@@ -127,13 +135,14 @@ async function runAudit() {
 
         qs.forEach((q, idx) => {
             const qNum = q.id || `idx-${idx}`;
-            if (q.type) typeCounts[q.type] = (typeCounts[q.type] || 0) + 1;
+            const normalizedType = (q.type === 'coding' || q.type === 'programming') ? 'programming' : q.type;
+            if (normalizedType) typeCounts[normalizedType] = (typeCounts[normalizedType] || 0) + 1;
 
             // Correctness: ID unique and type valid
             if (idSet.has(q.id)) addCorrectnessIssue(file, qNum, 'Duplicate question ID');
             idSet.add(q.id);
 
-            if (!['single', 'judge', 'programming'].includes(q.type)) {
+            if (!['single', 'judge', 'programming', 'coding'].includes(q.type)) {
                 addCorrectnessIssue(file, qNum, `Invalid type: ${q.type}`);
             }
 
@@ -149,7 +158,7 @@ async function runAudit() {
             if (q.score === undefined) addCorrectnessIssue(file, qNum, `Missing score field`);
 
             // Correctness: Dirty data / suspected unverified parse output
-            const fullText = (q.question || '') + (q.explanation || '') + JSON.stringify(q.options || []);
+            const fullText = (q.question || q.description || '') + (q.explanation || '') + JSON.stringify(q.options || []);
             badFragments.forEach(bf => {
                 if (fullText.includes(bf)) {
                     addCorrectnessIssue(file, qNum, `Contains suspected dirty or placeholder data: "${bf}"`);
@@ -157,13 +166,13 @@ async function runAudit() {
             });
 
             // Correctness: Latex check
-            const latexCheck = checkLatexStructure(q.question);
+            const latexCheck = checkLatexStructure(q.question || q.description);
             if (latexCheck) addCorrectnessIssue(file, qNum, latexCheck);
             const latexExpCheck = checkLatexStructure(q.explanation);
             if (latexExpCheck) addCorrectnessIssue(file, qNum, `(Explanation) ${latexExpCheck}`);
 
             // Usability checks
-            if (q.type !== 'programming') {
+            if (q.type !== 'programming' && q.type !== 'coding') {
                 const expl = (q.explanation || '').trim();
                 if (!expl || expl === '真题解析待补充。' || expl.includes('待补充')) {
                     addUsabilityIssue(file, qNum, `Missing or placeholder explanation.`);

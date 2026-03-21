@@ -24,6 +24,9 @@ const stripLeadingNumber = (questionText) => {
 
 const getQuestionContent = (q) => {
     if (!q) return '';
+    if (q.type === 'coding' || q.type === 'programming') {
+        return q.question || q.title || q.summary || q.description || '';
+    }
     return q.question || q.description || q.summary || q.title || '';
 };
 
@@ -59,7 +62,44 @@ const inferKnowledgeTags = (q, level) => {
     return Array.from(new Set(tags)).slice(0, 5);
 };
 
-const formatProblemMarkdown = (md = '') => String(md);
+const buildProgrammingMarkdown = (q, { includeReference = false } = {}) => {
+    if (!q) return '';
+    if (q.type === 'coding' && !q.description && q.explanation) {
+        return q.explanation;
+    }
+
+    const sections = [];
+    if (q.title) sections.push(`## ${q.title}`);
+    if (q.problemNumber) sections.push(`**题号**：${q.problemNumber}`);
+    if (q.description) sections.push(`### 题目描述\n${q.description}`);
+    if (q.inputDescription) sections.push(`### 输入格式\n${q.inputDescription}`);
+    if (q.outputDescription) sections.push(`### 输出格式\n${q.outputDescription}`);
+
+    if (Array.isArray(q.samples) && q.samples.length > 0) {
+        const sampleSections = q.samples.map((sample, index) => [
+            `#### 样例 ${index + 1}`,
+            '输入：',
+            '```text',
+            sample.input || '',
+            '```',
+            '输出：',
+            '```text',
+            sample.output || '',
+            '```'
+        ].join('\n'));
+        sections.push(`### 样例\n${sampleSections.join('\n\n')}`);
+    }
+
+    if (q.explanation) sections.push(`### 题解提示\n${q.explanation}`);
+    if (includeReference && q.template) sections.push(`### 代码模板\n\`\`\`cpp\n${q.template}\n\`\`\``);
+    if (includeReference && q.referenceCode) sections.push(`### 参考代码\n\`\`\`cpp\n${q.referenceCode}\n\`\`\``);
+
+    if (sections.length === 0) {
+        return q.question || '';
+    }
+
+    return sections.join('\n\n');
+};
 
 const buildCodingGuide = (q) => {
     const text = `${q?.question || ''} ${q?.explanation || ''}`;
@@ -238,7 +278,13 @@ export default function EnhancedPaperPage({ forcedPaperId }) {
     const selected = answers[currentQ.id];
     const isRevealed = !!revealed[currentQ.id];
     const tags = inferKnowledgeTags(currentQ, paperData.level);
-    const codingGuide = currentQ?.type === 'coding' ? buildCodingGuide(currentQ) : null;
+    const codingGuide = (currentQ?.type === 'coding' || currentQ?.type === 'programming') ? buildCodingGuide(currentQ) : null;
+    const programmingPracticeMarkdown = (currentQ?.type === 'coding' || currentQ?.type === 'programming')
+        ? buildProgrammingMarkdown(currentQ)
+        : '';
+    const programmingAnalysisMarkdown = (currentQ?.type === 'coding' || currentQ?.type === 'programming')
+        ? buildProgrammingMarkdown(currentQ, { includeReference: true })
+        : '';
 
     return (
         <div className="min-h-screen bg-slate-100">
@@ -356,7 +402,7 @@ export default function EnhancedPaperPage({ forcedPaperId }) {
                                             代码上机题题面如下（Markdown 原文），可直接在此阅读后开始实现：
                                         </p>
                                         <div className="prose prose-sm max-w-none bg-white rounded-lg border border-indigo-100 p-3">
-                                            <MarkdownRenderer content={currentQ.explanation || currentQ.question || ''} />
+                                            <MarkdownRenderer content={programmingPracticeMarkdown} />
                                         </div>
                                     </div>
                                 ) : (
@@ -403,7 +449,7 @@ export default function EnhancedPaperPage({ forcedPaperId }) {
                                             <div className="space-y-3">
                                                 <p className="text-sm"><span className="font-semibold text-indigo-700">上机题原题面（Markdown）：</span></p>
                                                 <div className="prose prose-sm max-w-none bg-white rounded-lg border border-blue-100 p-3">
-                                                    <MarkdownRenderer content={currentQ.explanation || currentQ.question || ''} />
+                                                    <MarkdownRenderer content={programmingAnalysisMarkdown} />
                                                 </div>
 
                                                 <div className="grid md:grid-cols-2 gap-3">

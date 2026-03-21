@@ -30,7 +30,6 @@ import { paperData as p202509l2 } from './level2/2025-09-l2.js';
 import { paperData as p202512l2 } from './level2/2025-12-l2.js';
 
 // ========== Level 3 ==========
-import { paperData as p202303l3 } from './level3/2023-03-l3.js';
 import { paperData as p202306l3 } from './level3/2023-06-l3.js';
 import { paperData as p202309l3 } from './level3/2023-09-l3.js';
 import { paperData as p202312l3 } from './level3/2023-12-l3.js';
@@ -135,7 +134,6 @@ export const paperRegistry = {
     '2025-09-l2': p202509l2,
     '2025-12-l2': p202512l2,
     // ===== Level 3 =====
-    '2023-03-l3': p202303l3,
     '2023-06-l3': p202306l3,
     '2023-09-l3': p202309l3,
     '2023-12-l3': p202312l3,
