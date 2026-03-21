@@ -24,6 +24,7 @@ export const paperData = {
             answer: 2,
             score: 2,
             explanation: '字符 `1` 的 ASCII 码是 49，强制转为 `int` 后得到 49。',
+            tags: ['字符与ASCII', '类型转换'],
         },
         {
             id: 2,
@@ -33,6 +34,7 @@ export const paperData = {
             answer: 1,
             score: 2,
             explanation: '这是经典的异或交换写法，执行后 `a` 与 `b` 的值会互换。',
+            tags: ['位运算', '异或'],
         },
         {
             id: 3,
@@ -42,6 +44,7 @@ export const paperData = {
             answer: 2,
             score: 2,
             explanation: "`str1` 是以 `\\0` 结尾的字符串 `\"Hello\"`；`str2` 最后一个字符是 `'0'` 而不是字符串结束符，因此两者并不相同。",
+            tags: ['字符串', '字符数组'],
         },
         {
             id: 4,
@@ -51,6 +54,7 @@ export const paperData = {
             answer: 0,
             score: 2,
             explanation: '同一表达式中对变量 `x` 做多次未排序修改，在 C++11 中属于未定义行为。',
+            tags: ['运算符', '未定义行为'],
         },
         {
             id: 5,
@@ -60,6 +64,7 @@ export const paperData = {
             answer: 3,
             score: 2,
             explanation: '`15` 的二进制是 `00001111`，按补码规则取反加一得到 `11110001`。',
+            tags: ['二进制', '补码'],
         },
         {
             id: 6,
@@ -69,6 +74,7 @@ export const paperData = {
             answer: 1,
             score: 2,
             explanation: '`2102(3) = 2*27 + 1*9 + 0*3 + 2 = 65`。',
+            tags: ['进制转换'],
         },
         {
             id: 7,
@@ -78,6 +84,7 @@ export const paperData = {
             answer: 1,
             score: 2,
             explanation: '最高位为 1，表示负数。取反加一得 `01001011`，即 75，所以原数是 `-75`。',
+            tags: ['二进制', '补码'],
         },
         {
             id: 8,
@@ -87,6 +94,7 @@ export const paperData = {
             answer: 3,
             score: 2,
             explanation: '`00001111 << 3 = 01111000`，即十进制 `120`。',
+            tags: ['位运算', '左移'],
         },
         {
             id: 9,
@@ -96,6 +104,7 @@ export const paperData = {
             answer: 1,
             score: 2,
             explanation: '`~0` 在补码下所有位都变成 1，结果是 `-1`，不是 `0`。',
+            tags: ['位运算', '按位取反'],
         },
         {
             id: 10,
@@ -105,6 +114,7 @@ export const paperData = {
             answer: 0,
             score: 2,
             explanation: '`substr(4, 2)` 表示从下标 4 开始取长度 2 的子串，因此结果是 `"20"`。',
+            tags: ['字符串', 'substr'],
         },
         {
             id: 11,
@@ -114,6 +124,7 @@ export const paperData = {
             answer: 1,
             score: 2,
             explanation: '数组共有 6 个元素，因此 `count` 为 6。',
+            tags: ['数组', 'sizeof'],
         },
         {
             id: 12,
@@ -123,6 +134,7 @@ export const paperData = {
             answer: 1,
             score: 2,
             explanation: '`sizeof(s)` 为 10，`strlen(s)` 为 5，因此结果是 5。',
+            tags: ['字符串', 'sizeof'],
         },
         {
             id: 13,
@@ -132,6 +144,7 @@ export const paperData = {
             answer: 2,
             score: 2,
             explanation: '等差求和有直接公式，不需要枚举每一个数。',
+            tags: ['枚举', '算法思想'],
         },
         {
             id: 14,
@@ -146,6 +159,7 @@ export const paperData = {
             answer: 0,
             score: 2,
             explanation: '利用头数固定这一条件，只需枚举一个变量即可，范围也最小。',
+            tags: ['枚举', '应用题'],
         },
         {
             id: 15,
@@ -160,6 +174,7 @@ export const paperData = {
             answer: 3,
             score: 2,
             explanation: "判断是否越过 `z`，越界后要从 `a` 重新接续，选项 D 的处理方式正确。",
+            tags: ['字符串', '模拟'],
         },
         {
             id: 16,
@@ -169,6 +184,7 @@ export const paperData = {
             answer: 1,
             score: 2,
             explanation: '`arr[3]` 确实会补零，但合法下标只能到 `arr[4]`，`arr[5]` 越界。',
+            tags: ['判断题', '数组'],
         },
         {
             id: 17,
@@ -178,6 +194,7 @@ export const paperData = {
             answer: 1,
             score: 2,
             explanation: '局部数组不会自动初始化为 0；若未显式初始化，其值是不确定的。',
+            tags: ['判断题', '数组'],
         },
         {
             id: 18,
@@ -187,6 +204,7 @@ export const paperData = {
             answer: 0,
             score: 2,
             explanation: '数组有 3 个 `int` 元素，`3 * 4 = 12`。',
+            tags: ['判断题', 'sizeof'],
         },
         {
             id: 19,
@@ -196,6 +214,7 @@ export const paperData = {
             answer: 0,
             score: 2,
             explanation: '依据官方答案，该流程图逻辑正确，能够得到 1 到 10 的和。',
+            tags: ['判断题', '流程图'],
         },
         {
             id: 20,
@@ -205,6 +224,7 @@ export const paperData = {
             answer: 0,
             score: 2,
             explanation: '`5 % 2 = 1`，官方答案判定该流程图功能表述正确。',
+            tags: ['判断题', '流程图'],
         },
         {
             id: 21,
@@ -214,6 +234,7 @@ export const paperData = {
             answer: 0,
             score: 2,
             explanation: '`m` 的十进制 ASCII 码是 109，换成八进制正好是 `155`。',
+            tags: ['判断题', '字符与ASCII'],
         },
         {
             id: 22,
@@ -223,6 +244,7 @@ export const paperData = {
             answer: 0,
             score: 2,
             explanation: '括号可以显式指定计算顺序，是处理位运算优先级问题的常用办法。',
+            tags: ['判断题', '位运算'],
         },
         {
             id: 23,
@@ -232,6 +254,7 @@ export const paperData = {
             answer: 1,
             score: 2,
             explanation: "字符 `'1'` 的值是 ASCII 码 49，而整数 `1` 的值是 1，两者不相等。",
+            tags: ['判断题', '字符与ASCII'],
         },
         {
             id: 24,
@@ -241,6 +264,7 @@ export const paperData = {
             answer: 1,
             score: 2,
             explanation: '`0xf0 = 240`，`0x15 = 21`，两者之和为 261，不等于 255。',
+            tags: ['判断题', '十六进制'],
         },
         {
             id: 25,
@@ -250,6 +274,7 @@ export const paperData = {
             answer: 0,
             score: 2,
             explanation: '最低位为 0 时，与 `1` 按位与的结果一定为 0，因此整个判断成立。',
+            tags: ['判断题', '位运算'],
         },
     ],
     programmingQuestions: [
