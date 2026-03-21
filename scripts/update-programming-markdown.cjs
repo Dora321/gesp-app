@@ -151,6 +151,9 @@ function processFileSafe(filePath) {
                         newObjLines.push("      " + key + ": " + otherFields[key] + ",");
                     }
                 }
+                if (pid) {
+                    newObjLines.push("      problemNumber: '" + pid + "',");
+                }
                 if (!otherFields.hasOwnProperty('answer')) {
                     newObjLines.push("      answer: '',");
                 }

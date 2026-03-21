@@ -6,6 +6,15 @@ const programmingQuestions = [
       id: 26,
       type: 'programming',
       question: `
+# 编程题
+
+
+# 编程题
+
+
+# 编程题
+
+
 # 有限不循环小数
 
 ## 题目描述
@@ -26,11 +35,21 @@ const programmingQuestions = [
       template: "#include <iostream>\nusing namespace std;\n\nint main() {\n    int l, r;\n    cin >> l >> r;\n    // 在此编写代码\n    return 0;\n}",
       referenceCode: "#include <iostream>\nusing namespace std;\n\nint main() {\n    int l, r, ans = 0;\n    cin >> l >> r;\n    for (int i = l; i <= r; i++) {\n        int t = i;\n        while (t && t % 2 == 0) t /= 2;\n        while (t && t % 5 == 0) t /= 5;\n        if (t == 1) ans++;\n    }\n    cout << ans;\n    return 0;\n}",
       answer: '',
+      problemNumber: 'P15798',
     },
     {
       id: 27,
       type: 'programming',
       question: `
+# 编程题
+
+
+# 编程题
+
+
+# 编程题
+
+
 # 找数
 
 ## 题目描述
@@ -51,6 +70,7 @@ const programmingQuestions = [
       template: "#include <iostream>\n#include <vector>\n#include <algorithm>\nusing namespace std;\n\nint main() {\n    int n, m;\n    cin >> n >> m;\n    // 在此编写代码\n    return 0;\n}",
       referenceCode: "#include <iostream>\n#include <vector>\n#include <algorithm>\nusing namespace std;\n\nint main() {\n    int n, m, l, r, mid;\n    bool ok;\n    cin >> n >> m;\n    vector<int> a(n);\n    for (int i = 0; i < n; i++) cin >> a[i];\n    sort(a.begin(), a.end());\n    int ans = 0;\n    for (int i = 0, b; i < m; i++) {\n        cin >> b;\n        ok = false;\n        l = 0;\n        r = n - 1;\n        while (l <= r) {\n            mid = l + (r - l) / 2;\n            if (a[mid] > b) r = mid - 1;\n            else if (a[mid] < b) l = mid + 1;\n            else {\n                ok = true;\n                break;\n            }\n        }\n        if (ok) ans++;\n    }\n    cout << ans;\n    return 0;\n}",
       answer: '',
+      problemNumber: 'P15799',
     }
 ];
 

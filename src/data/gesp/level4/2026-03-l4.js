@@ -5,19 +5,28 @@ const programmingQuestions = [
       id: 26,
       type: 'programming',
       question: `
+# 编程题
+
+
+# 编程题
+
+
+# 编程题
+
+
 # 山之谷
 
 ## 题目描述
 
-现有一片山地，可以视为一个 \$N\$ 行 \$M\$ 列的网格图，第 \$i\$ 行 \$j\$ 列的海拔为 \$h_{i,j}\$。如果一个单元格的海拔不高于其所有相邻单元格（相邻包括上、下、左、右、左上、右上、左下、右下，最多 8 个方向）的海拔，则称该单元格为山谷。请你数一数该片山地中有多少山谷。
+现有一片山地，可以视为一个 \\\\\\\\\\\\\\\$N\\\\\\\\\\\\\\\$ 行 \\\\\\\\\\\\\\\$M\\\\\\\\\\\\\\\$ 列的网格图，第 \\\\\\\\\\\\\\\$i\\\\\\\\\\\\\\\$ 行 \\\\\\\\\\\\\\\$j\\\\\\\\\\\\\\\$ 列的海拔为 \\\\\\\\\\\\\\\$h_{i,j}\\\\\\\\\\\\\\\$。如果一个单元格的海拔不高于其所有相邻单元格（相邻包括上、下、左、右、左上、右上、左下、右下，最多 8 个方向）的海拔，则称该单元格为山谷。请你数一数该片山地中有多少山谷。
 
 ## 输入格式
 
-第一行包含 2 个整数 \$N, M\$，表示山地的大小。之后 \$N\$ 行，每行包含 \$M\$ 个整数 \$h_{i,1}, h_{i,2}, \\dots, h_{i,M}\$，表示海拔。
+第一行包含 2 个整数 \\\\\\\\\\\\\\\$N, M\\\\\\\\\\\\\\\$，表示山地的大小。之后 \\\\\\\\\\\\\\\$N\\\\\\\\\\\\\\\$ 行，每行包含 \\\\\\\\\\\\\\\$M\\\\\\\\\\\\\\\$ 个整数 \\\\\\\\\\\\\\\$h_{i,1}, h_{i,2}, \\\\\\\\\\\\\\\\dots, h_{i,M}\\\\\\\\\\\\\\\$，表示海拔。
 
 ## 输出格式
 
-输出 1 行，包含 1 个整数 \$C\$，表示山谷的数量。
+输出 1 行，包含 1 个整数 \\\\\\\\\\\\\\\$C\\\\\\\\\\\\\\\$，表示山谷的数量。
 `,
       score: 25,
       explanation: "遍历网格中的每个格子，检查其周围 8 个方向的邻居。如果当前格子的海拔小于等于所有有效邻居的海拔，则该格子是一个山谷，计数加一。注意处理边界情况（只有 3 到 5 个邻居）。样例 1 中，绿色单元格 (2,2), (3,2), (2,5) 是山谷。",
@@ -25,16 +34,26 @@ const programmingQuestions = [
       template: "#include <iostream>\n\nusing namespace std;\n\nint h[105][105];\nint dx[] = {-1, -1, -1, 0, 0, 1, 1, 1};\nint dy[] = {-1, 0, 1, -1, 1, -1, 0, 1};\n\nint main() {\n    int n, m;\n    cin >> n >> m;\n    for (int i = 1; i <= n; i++) {\n        for (int j = 1; j <= m; j++) {\n            cin >> h[i][j];\n        }\n    }\n    \n    int ans = 0;\n    for (int i = 1; i <= n; i++) {\n        for (int j = 1; j <= m; j++) {\n            bool ok = true;\n            for (int k = 0; k < 8; k++) {\n                int ni = i+dx[k];\n                int nj = j+dy[k];\n                if (ni >= 1 && ni <= n && nj >= 1 && nj <= m) {\n                    if (h[i][j] > h[ni][nj]) {\n                        ok = false;\n                        break;\n                    }\n                }\n            }\n            if (ok) ans++;\n        }\n    }\n    cout << ans << endl;\n    return 0;\n}",
       referenceCode: "#include <iostream>\n\nusing namespace std;\n\nint h[105][105];\nint dx[] = {-1, -1, -1, 0, 0, 1, 1, 1};\nint dy[] = {-1, 0, 1, -1, 1, -1, 0, 1};\n\nint main() {\n    int n, m;\n    if (!(cin >> n >> m)) return 0;\n    for (int i = 1; i <= n; i++) {\n        for (int j = 1; j <= m; j++) {\n            cin >> h[i][j];\n        }\n    }\n    \n    int ans = 0;\n    for (int i = 1; i <= n; i++) {\n        for (int j = 1; j <= m; j++) {\n            bool ok = true;\n            for (int k = 0; k < 8; k++) {\n                int ni = i+dx[k];\n                int nj = j+dy[k];\n                if (ni >= 1 && ni <= n && nj >= 1 && nj <= m) {\n                    if (h[i][j] > h[ni][nj]) {\n                        ok = false;\n                        break;\n                    }\n                }\n            }\n            if (ok) ans++;\n        }\n    }\n    cout << ans << endl;\n    return 0;\n}",
       answer: '',
+      problemNumber: 'B4501',
     },
     {
       id: 27,
       type: 'programming',
       question: `
+# 编程题
+
+
+# 编程题
+
+
+# 编程题
+
+
 # 礼盒排序
 
 ## 题目描述
 
-商店推出了许多礼盒，每个礼盒中包含 \$k\$ 件商品，每件商品都有一个价格。现在需要对这些礼盒进行排序，排序规则如下：
+商店推出了许多礼盒，每个礼盒中包含 \\\\\\\\\\\\\\\$k\\\\\\\\\\\\\\\$ 件商品，每件商品都有一个价格。现在需要对这些礼盒进行排序，排序规则如下：
 1. 先按礼盒总价格从小到大排序；
 2. 如果总价格相同，则按礼盒中最贵商品的价格从小到大排序；
 3. 如果仍然相同，则按礼盒中最后进店商品的价格（即输入的最后一个价格）从小到大排序；
@@ -42,11 +61,11 @@ const programmingQuestions = [
 
 ## 输入格式
 
-第一行包含两个整数 \$n, k\$，表示礼盒数量和每个礼盒中的商品数量。接下来的 \$n\$ 行，每行包含 \$k\$ 个整数，表示对应礼盒中商品的价格。
+第一行包含两个整数 \\\\\\\\\\\\\\\$n, k\\\\\\\\\\\\\\\$，表示礼盒数量和每个礼盒中的商品数量。接下来的 \\\\\\\\\\\\\\\$n\\\\\\\\\\\\\\\$ 行，每行包含 \\\\\\\\\\\\\\\$k\\\\\\\\\\\\\\\$ 个整数，表示对应礼盒中商品的价格。
 
 ## 输出格式
 
-输出一行，包含 \$n\$ 个整数，用空格分隔，表示排序后的礼盒编号。
+输出一行，包含 \\\\\\\\\\\\\\\$n\\\\\\\\\\\\\\\$ 个整数，用空格分隔，表示排序后的礼盒编号。
 `,
       score: 25,
       explanation: "1号礼盒：总价10，最大值5，最后进店2。2号礼盒：总价10，最大值5，最后进店5。3号礼盒：总价8，最大值4，最后进店4。4号礼盒：总价10，最大值4，最后进店3。排序过程：3号总价8最小排第一；其余总价均为10，4号最大值4较小排第二；1号和2号最大值相同均为5，1号最后进店2较小排第三；2号排最后。最终：3 4 2 1。",
@@ -54,6 +73,7 @@ const programmingQuestions = [
       template: "#include <iostream>\n#include <vector>\n#include <algorithm>\n\nusing namespace std;\n\nstruct Combo {\n    int sum, mx, last, id;\n};\n\nint main() {\n    int n, k;\n    cin >> n >> k;\n    // 在此编写代码\n    return 0;\n}",
       referenceCode: "#include <iostream>\n#include <vector>\n#include <algorithm>\n\nusing namespace std;\n\nstruct Combo {\n    int sum, mx, last, id;\n};\n\nbool cmp(const Combo &a, const Combo &b) {\n    if (a.sum != b.sum) return a.sum < b.sum;\n    if (a.mx != b.mx) return a.mx < b.mx;\n    if (a.last != b.last) return a.last < b.last;\n    return a.id < b.id;\n}\n\nint main() {\n    int n, k;\n    if (!(cin >> n >> k)) return 0;\n    vector<Combo> v(n);\n    for (int i = 0; i < n; i++) {\n        v[i].sum = 0;\n        v[i].mx = -1;\n        v[i].id = i+1;\n        int x;\n        for (int j = 0; j < k; j++) {\n            cin >> x;\n            v[i].sum += x;\n            v[i].mx = max(v[i].mx, x);\n            if (j == k-1) v[i].last = x;\n        }\n    }\n    sort(v.begin(), v.end(), cmp);\n    for (int i = 0; i < n; i++) {\n        cout << v[i].id << (i == n-1 ? \"\" : \" \");\n    }\n    cout << endl;\n    return 0;\n}",
       answer: '',
+      problemNumber: 'B4502',
     }
 ];
 

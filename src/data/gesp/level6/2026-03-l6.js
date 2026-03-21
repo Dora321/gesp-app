@@ -6,6 +6,15 @@ const programmingQuestions = [
       type: 'programming',
       question: `
 # 编程题
+
+
+# 编程题
+
+
+# 编程题
+
+
+# 编程题
 `,
       score: 25,
       explanation: "树形 DP。设 $f[u]$ 表示覆盖 $u$ 子树内所有叶根路径的最小代价：要么直接把 $u$ 染黑，花 $c_u$；要么不染 $u$，而把责任交给所有儿子分别完成，代价为 $\\sum f[v]$。叶子必须被染黑，所以叶子答案就是 $c_u$。",
@@ -13,11 +22,21 @@ const programmingQuestions = [
       template: "#include <bits/stdc++.h>\nusing namespace std;\n\nint main() {\n    // 在此编写代码\n    return 0;\n}",
       referenceCode: "#include <bits/stdc++.h>\nusing namespace std;\n\nint main() {\n    ios::sync_with_stdio(false);\n    cin.tie(nullptr);\n\n    int n;\n    cin >> n;\n    vector<vector<int>> g(n+1);\n    for (int i = 2; i <= n; ++i) {\n        int p;\n        cin >> p;\n        g[p].push_back(i);\n    }\n    vector<long long> c(n+1);\n    for (int i = 1; i <= n; ++i) cin >> c[i];\n\n    vector<long long> dp(n+1, 0);\n    function<void(int)> dfs = [&](int u) {\n        if (g[u].empty()) {\n            dp[u] = c[u];\n            return;\n        }\n        long long sum = 0;\n        for (int v : g[u]) {\n            dfs(v);\n            sum += dp[v];\n        }\n        dp[u] = min(c[u], sum);\n    };\n    dfs(1);\n    cout << dp[1] << '\\n';\n    return 0;\n}",
       answer: '',
+      problemNumber: 'P15800',
     },
     {
       id: 27,
       type: 'programming',
       question: `
+# 编程题
+
+
+# 编程题
+
+
+# 编程题
+
+
 # 编程题
 `,
       score: 25,
@@ -26,6 +45,7 @@ const programmingQuestions = [
       template: "#include <bits/stdc++.h>\nusing namespace std;\n\nint main() {\n    // 在此编写代码\n    return 0;\n}",
       referenceCode: "#include <bits/stdc++.h>\nusing namespace std;\n\nint main() {\n    ios::sync_with_stdio(false);\n    cin.tie(nullptr);\n\n    int n, m;\n    cin >> n >> m;\n    vector<pair<int,int>> items(n);\n    int sumAtk = 0;\n    for (int i = 0; i < n; ++i) {\n        int a, c;\n        cin >> a >> c;\n        items[i] = {a, c};\n        sumAtk += a;\n    }\n\n    const int INF = 1e9;\n    vector<int> dp(sumAtk+1, INF);\n    dp[0] = 0;\n    int cur = 0;\n    for (auto [a, c] : items) {\n        cur += a;\n        for (int j = cur; j >= a; --j) {\n            dp[j] = min(dp[j], dp[j-a]+c);\n        }\n    }\n\n    int ans = 0;\n    for (int j = 0; j <= sumAtk; ++j) {\n        if (dp[j] <= m) ans = j;\n    }\n    cout << ans << '\\n';\n    return 0;\n}",
       answer: '',
+      problemNumber: 'P15801',
     }
 ];
 
