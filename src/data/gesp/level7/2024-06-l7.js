@@ -4,6 +4,7 @@ const programmingQuestions = [
     {
         id: 26,
         type: "programming",
+        score: 25,
         title: "黑白翻转",
         problemNumber: "2024-06-l7-Q26",
         description: "给定一棵树，每个节点是黑色或白色。若删除全部白色节点后，剩余黑色节点仍然连成一棵树，则称其为美丽树。每次操作可以把一个白点翻成黑点，求最少操作次数。",
@@ -20,6 +21,7 @@ const programmingQuestions = [
     {
         id: 27,
         type: "programming",
+        score: 25,
         title: "区间乘积",
         problemNumber: "2024-06-l7-Q27",
         description: "给定长度为 n 的正整数序列，统计有多少个区间 [l,r] 的所有元素乘积是完全平方数。",

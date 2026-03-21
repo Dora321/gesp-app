@@ -5,6 +5,7 @@ const programmingQuestions = [
     {
         id: 26,
         type: "programming",
+        score: 25,
         title: "找数",
         problemNumber: "2026-03-23-05-C-01",
         description: "给定一个包含 $n$ 个互不相同的正整数的数组 $A$，以及一个包含 $m$ 个互不相同的正整数的数组 $B$。输出一个整数，表示在数组 $A$ 与数组 $B$ 中均出现的数的个数。",
@@ -24,6 +25,7 @@ const programmingQuestions = [
     {
         id: 27,
         type: "programming",
+        score: 25,
         title: "有限不循环小数",
         problemNumber: "2026-03-23-05-C-02",
         description: "如果一个最简分数 $a/b$ 能化为一个有限的、不循环的小数，则称其分母 $b$ 为终止数。现在给定区间 $[L, R]$，请你求出在该区间内终止数的数量。一个数 $b$ 是终止数，当且仅当 $b$ 的质因数分解中只包含 2 和 5。",

@@ -4,6 +4,7 @@ const programmingQuestions = [
     {
         id: 26,
         type: "programming",
+        score: 25,
         title: "交流问题",
         problemNumber: "2024-03-l7-Q26",
         description: "A 校和 B 校共有 n 名同学参加交流会，只会发生跨校交流。给出 m 次交流关系，每次交流都会在两名同学之间连一条边。已知输入一定合法，求 B 校人数的最小可能值与最大可能值。",
@@ -20,6 +21,7 @@ const programmingQuestions = [
     {
         id: 27,
         type: "programming",
+        score: 25,
         title: "俄罗斯方块",
         problemNumber: "2024-03-l7-Q27",
         description: "给定一个 n×m 的彩色方格图。四连通且颜色相同的一整块视为一个俄罗斯方块。若两个俄罗斯方块经过平移后可以完全重合，则认为是同一种类型；颜色不同也仍视作同一类型。求整张图中一共有多少种不同类型的俄罗斯方块。",

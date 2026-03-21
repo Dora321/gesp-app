@@ -4,6 +4,7 @@ const programmingQuestions = [
     {
         id: 26,
         type: "programming",
+        score: 25,
         title: "奇妙数字",
         problemNumber: "2024-12-23-05-C-01",
         description: "小杨认为一个数字 x 是奇妙数字当且仅当 x = p^k，其中 p 为任意质数且 k 为正整数。对于一个正整数 n，小杨想要构建一个包含 m 个奇妙数字的集合 S，使其满足：1. 集合中不包含相同的数字；2. S 中所有元素的乘积是 n 的因子。求满足条件的集合最多包含多少个奇妙数字。",
@@ -20,6 +21,7 @@ const programmingQuestions = [
     {
         id: 27,
         type: "programming",
+        score: 25,
         title: "小杨的数字操作",
         problemNumber: "2024-12-23-05-C-02",
         description: "给定一个数字 n，进行以下操作：如果是偶数，除以 2；如果是奇数，乘以 3 再加 1。重复上述操作，直到数字变为 1。求整个过程中出现的最大数字。",

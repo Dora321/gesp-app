@@ -262,6 +262,7 @@ export const paperData = {
         {
             id: 26,
             type: 'programming',
+            score: 25,
             title: '数字替换',
             problemNumber: 'B4066',
             source: 'official-pdf+public-solution-mapping',
@@ -282,6 +283,7 @@ export const paperData = {
         {
             id: 27,
             type: 'programming',
+            score: 25,
             title: '打印数字',
             problemNumber: 'B4067',
             source: 'official-pdf+public-solution-mapping',

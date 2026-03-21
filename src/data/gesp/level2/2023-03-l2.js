@@ -264,6 +264,7 @@ export const paperData = {
         {
             id: 26,
             type: 'programming',
+            score: 25,
             title: "字母金字塔",
             description: "输入 n (2≤n≤40)，输出 n 行直角三角形。由大写字母 A-Z 按由上至下、由左至右填充，Z 后接 A。",
             inputDescription: "一个正整数 n (2≤n≤40)。",
@@ -282,6 +283,7 @@ export const paperData = {
         {
             id: 27,
             type: 'programming',
+            score: 25,
             title: "扩展百鸡问题",
             description: "公鸡 x 元，母鸡 y 元，z 只小鸡 1 元。有 n 元钱买 m 只鸡，问有多少种方案？",
             inputDescription: "五个正整数 x, y, z, n, m。",

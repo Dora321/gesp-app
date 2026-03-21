@@ -4,6 +4,7 @@ const programmingQuestions = [
     {
         id: 26,
         type: "programming",
+        score: 25,
         title: "奖品兑换",
         problemNumber: "2025-06-22-05-C-01",
         description: "班主任给上课专心听讲、认真完成作业的同学们分别发放了若干张课堂优秀券和作业优秀券。同学们可以使用这两种券找班主任兑换奖品。具体来说，可以使用 a 张课堂优秀券和 b 张作业优秀券兑换一份奖品，或者使用 b 张课堂优秀券和 a 张作业优秀券兑换一份奖品。现在小 A 有 n 张课堂优秀券和 m 张作业优秀券，他最多能兑换多少份奖品呢？",
@@ -21,6 +22,7 @@ const programmingQuestions = [
     {
         id: 27,
         type: "programming",
+        score: 25,
         title: "最大公因数",
         problemNumber: "2025-06-22-05-C-02",
         description: "对于两个正整数 a,b，他们的最大公因数记为 gcd(a,b)。对于 k 个正整数 c_1,c_2,...,c_k，它们的最大公因数可以递归定义。给定 n 个正整数 a_1,a_2,...,a_n 以及 q 组询问。对于第 i 组询问，请求出 gcd(a_1+i,a_2+i,...,a_n+i)。",

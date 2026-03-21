@@ -4,6 +4,7 @@ const programmingQuestions = [
     {
         id: 26,
         type: "programming",
+        score: 25,
         title: "黑白格",
         problemNumber: "2024-06-23-05-C-01",
         description: "小杨有一个 n 行 m 列的网格图，其中每个格子要么是白色，要么是黑色。小杨想知道至少包含 k 个黑色格子的最小子矩形包含了多少个格子。",
@@ -20,6 +21,7 @@ const programmingQuestions = [
     {
         id: 27,
         type: "programming",
+        score: 25,
         title: "小杨的幸运数字",
         problemNumber: "2024-06-23-05-C-02",
         description: "小杨认为，如果一个数字能被 7 整除，或者包含数字 7，那么这个数字就是幸运数字。给定两个正整数 L 和 R，请你求出在 [L, R] 范围内所有幸运数字的和。",

@@ -341,6 +341,7 @@ const programmingQuestions = [
     {
         id: 26,
         type: "programming",
+        score: 25,
         title: "幸运数",
         problemNumber: "2023-06-23-04-C-01",
         description: "小杨认为，如果一个正整数 n 满足其各位数字之和是 7 的倍数，那么这个数就是“幸运数”。给定 n 个正整数，请你依次判断它们是否为幸运数。",
@@ -358,6 +359,7 @@ const programmingQuestions = [
     {
         id: 27,
         type: "programming",
+        score: 25,
         title: "图像压缩",
         problemNumber: "2023-06-23-04-C-02",
         description: "小杨有一张 n x n 的灰度图像，每个像素的灰度值为 0-255。为了压缩图像，小杨决定将灰度值映射到更小的集合。如果映射规则是将 [0, 255] 平分为 k 个区间（每个区间长度为 256/k，k 保证是 2 的幂），则原值 x 映射为 floor(x / (256/k))。请输出映射后的图像。",

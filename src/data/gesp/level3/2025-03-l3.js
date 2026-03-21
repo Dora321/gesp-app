@@ -246,6 +246,7 @@ export const paperData = {
         {
             id: 26,
             type: 'programming',
+            score: 25,
             title: '2025',
             problemNumber: 'B4261',
             source: 'official-pdf+luogu-mapping',
@@ -266,6 +267,7 @@ export const paperData = {
         {
             id: 27,
             type: 'programming',
+            score: 25,
             title: '词频统计',
             problemNumber: 'B4262',
             source: 'official-pdf+luogu-mapping',

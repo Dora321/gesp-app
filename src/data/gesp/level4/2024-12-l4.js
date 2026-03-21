@@ -4,6 +4,7 @@ const programmingQuestions = [
     {
         id: 26,
         type: "programming",
+        score: 25,
         title: "Recamán",
         problemNumber: "2024-12-23-04-C-01",
         description: "小杨最近发现了有趣的 Recamán 数列，这个数列是这样生成的：数列的第一项 a0 是 0；如果 ak-1-k 是正整数并且没有在数列中出现过，那么数列的第 k 项 ak 为 ak-1-k，否则为 ak-1+k。小杨想知道 Recamán 数列的前 n 项从小到大排序后的结果。",
@@ -21,6 +22,7 @@ const programmingQuestions = [
     {
         id: 27,
         type: "programming",
+        score: 25,
         title: "字符排序",
         problemNumber: "2024-12-23-04-C-02",
         description: "给定 n 个仅由小写字母组成的字符串。请你将它们按某种顺序排列并拼接起来，使得拼接后的字符串 t 满足：对于任意 j < i，t_j 的字典序不大于 t_i（即 t 是一个不降序列）。判断是否存在这样的排列方式。",

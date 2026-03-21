@@ -4,6 +4,7 @@ const programmingQuestions = [
     {
         id: 26,
         type: "programming",
+        score: 25,
         title: "数字选取",
         problemNumber: "2025-09-21-05-C-01",
         description: "给定正整数 n，现在有 1,2,...,n 共计 n 个整数。你需要从这 n 个整数中选取一些整数，使得所选取的整数中任意两个不同的整数均互质。请你最大化所选取整数的数量。",
@@ -21,6 +22,7 @@ const programmingQuestions = [
     {
         id: 27,
         type: "programming",
+        score: 25,
         title: "有趣的数字和",
         problemNumber: "2025-09-21-05-C-02",
         description: "如果一个正整数的二进制表示包含奇数个 1，那么小 A 就会认为这个正整数是有趣的。给定正整数 l,r，请你统计满足 l<=n<=r 的有趣的整数 n 之和。",

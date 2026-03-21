@@ -472,6 +472,7 @@ const programmingQuestions = [
     {
         id: 26,
         type: "programming",
+        score: 25,
         title: "小杨的字典",
         problemNumber: "2023-12-23-04-C-01",
         description: "在小杨的字典中，共有 n 个单词。这些单词仅由小写字母组成。单词的长度不超过 10。请你协助小杨实现字典的两个功能：1. 向字典中添加一个未曾出现过的单词；2. 查询字典中是否存在某个单词。",
@@ -489,6 +490,7 @@ const programmingQuestions = [
     {
         id: 27,
         type: "programming",
+        score: 25,
         title: "田忌赛马",
         problemNumber: "2023-12-23-04-C-02",
         description: "田忌和齐王赛马。他们各有 n 匹马，每匹马都有一个速度值。赛马规则如下：每场比赛双方各出一匹马，速度快者获胜；如果速度相同，则为平局。赢一场得 1 分，平一场得 0 分，输一场扣 1 分。请问田忌最高能得多少分？",

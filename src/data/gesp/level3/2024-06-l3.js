@@ -247,6 +247,7 @@ export const paperData = {
         {
             id: 26,
             type: 'programming',
+            score: 25,
             title: '移位',
             problemNumber: 'B4003',
             source: 'official-pdf+luogu-mapping',
@@ -267,6 +268,7 @@ export const paperData = {
         {
             id: 27,
             type: 'programming',
+            score: 25,
             title: '寻找倍数',
             problemNumber: 'B4004',
             source: 'official-pdf+luogu-mapping',

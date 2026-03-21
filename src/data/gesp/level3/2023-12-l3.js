@@ -262,6 +262,7 @@ export const paperData = {
         {
             id: 26,
             type: 'programming',
+            score: 25,
             title: '小猫分鱼',
             problemNumber: 'B3925',
             description: '海滩上有一堆鱼，N 只小猫来分。每只小猫都会把当前鱼堆平均分成 N 份，多出 i 条，就把多出的 i 条扔进海里，再拿走其中一份。求满足这个过程的最少初始鱼数。',
@@ -285,6 +286,7 @@ export const paperData = {
         {
             id: 27,
             type: 'programming',
+            score: 25,
             title: '单位转换',
             problemNumber: 'B3926',
             description: '给定若干形如“x 单位1 = ? 单位2”的题目，单位只会在 km、m、mm 与 kg、g、mg 中出现，且总是从更大的单位换到更小的单位。请按原格式输出转换结果。',

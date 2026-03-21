@@ -261,6 +261,7 @@ export const paperData = {
         {
             id: 26,
             type: 'programming',
+            score: 25,
             title: '密码强度',
             problemNumber: 'B4449',
             source: 'official-pdf+luogu-mapping',
@@ -281,6 +282,7 @@ export const paperData = {
         {
             id: 27,
             type: 'programming',
+            score: 25,
             title: '小杨的智慧购物',
             problemNumber: 'B4450',
             source: 'official-pdf+luogu-mapping',

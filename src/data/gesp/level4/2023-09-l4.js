@@ -471,6 +471,7 @@ const programmingQuestions = [
     {
         id: 26,
         type: "programming",
+        score: 25,
         title: "进制转换",
         problemNumber: "2023-09-23-04-C-01",
         description: "小杨最近在学习进制转换。他发现对于一个正整数 N，如果将其转换为 B 进制（2 ≤ B ≤ 36），则 N 在 B 进制下的表示由若干个字符组成。请你编写一个程序，输出 N 在 B 进制下的表示（10-35 分别用 A-Z 表示）。",
@@ -488,6 +489,7 @@ const programmingQuestions = [
     {
         id: 27,
         type: "programming",
+        score: 25,
         title: "变长编码",
         problemNumber: "2023-09-23-04-C-02",
         description: "小杨最近在学习编码。他发现变长编码是一种节省空间的编码方式。假设我们要对一个非负整数 x 进行变长编码，规则如下：如果 x < 128，则编码为一个字节 [x]；如果 x ≥ 128，则将其表示为 B 进制，其中 B=128，即 x = a_k*128^k+...+a_1*128+a_0。编码为 k+1 个字节，每个字节最高位为标志位（1 代表后面还有字节，0 代表最后一个字节），低 7 位为 a_i。编码顺序为从 a_0 到 a_k。",

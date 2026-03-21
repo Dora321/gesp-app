@@ -253,6 +253,7 @@ export const paperData = {
         {
             id: 26,
             type: 'programming',
+            score: 25,
             title: '平衡序列',
             problemNumber: 'B4038',
             source: 'official-pdf+luogu-mapping',
@@ -273,6 +274,7 @@ export const paperData = {
         {
             id: 27,
             type: 'programming',
+            score: 25,
             title: '回文拼接',
             problemNumber: 'B4039',
             source: 'official-pdf+luogu-mapping',

@@ -4,6 +4,7 @@ const programmingQuestions = [
     {
         id: 26,
         type: "programming",
+        score: 25,
         title: "平衡子矩形",
         problemNumber: "2024-06-23-04-C-01",
         description: "小杨有一个 n 行 m 列网格图，其中每个格子要么是白色，要么是黑色。对于网格图中的一个子矩形，小杨认为它是平衡的当且仅当其中黑色格子与白色格子数量相同。小杨想知道最大的平衡子矩形包含了多少个格子。",
@@ -20,6 +21,7 @@ const programmingQuestions = [
     {
         id: 27,
         type: "programming",
+        score: 25,
         title: "做题",
         problemNumber: "2024-06-23-04-C-02",
         description: "小杨同学为了提高实力制定了做题计划，在第 i 天时，他必须要完成 i 道题。他找到了 n 套题单，每套题单有一定数量的题目。每套题单只能使用一次，每一天也只能使用一套题单里的题目。问小杨最多会做题几天才偷懒？",

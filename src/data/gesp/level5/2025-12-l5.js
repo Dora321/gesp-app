@@ -4,6 +4,7 @@ const programmingQuestions = [
     {
         id: 26,
         type: "programming",
+        score: 25,
         title: "数字移动",
         problemNumber: "2025-12-20-05-C-01",
         description: "小 A 有一个包含 N 个正整数的序列 A，序列 A 恰好包含 N/2 对不同的正整数。对于任意 i，存在唯一一个 j != i 使得 A_i = A_j。小 A 希望每对相同的数字在序列中相邻。每次操作他可以选择任意一个位置 i，将当前序列的第 i 个数字移动到任意位置，并花费对应数字的体力。请你计算一个最小的 x，使得他能够在每次花费的体力均不超过 x 的情况下令每对相同的数字在序列中相邻。",
@@ -20,6 +21,7 @@ const programmingQuestions = [
     {
         id: 27,
         type: "programming",
+        score: 25,
         title: "相等序列",
         problemNumber: "2025-12-20-05-C-02",
         description: "小 A 有一个包含 N 个正整数的序列 A。每次可以花费 1 个金币执行以下任意一种操作：选择 A_i，将其乘以任意质数 P；或在 A_i 能被质数 P 整除时，将其除以 P。请你计算令序列中所有整数都相同，最少需要花费多少金币。",

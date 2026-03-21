@@ -4,6 +4,7 @@ const programmingQuestions = [
     {
         id: 26,
         type: "programming",
+        score: 25,
         title: "小杨的幸运数",
         problemNumber: "2023-12-23-05-C-01",
         description: "小杨认为，所有大于等于 a 的完全平方数都是他的超级幸运数。所有超级幸运数的倍数都是他的幸运数。对于一个非幸运数，可以将它一直 +1 直到变为幸运数。给定 n 个数，判断它们是否为幸运数，若不是则输出幸运化后的结果。",
@@ -20,6 +21,7 @@ const programmingQuestions = [
     {
         id: 27,
         type: "programming",
+        score: 25,
         title: "烹饪问题",
         problemNumber: "2023-12-23-05-C-02",
         description: "有 N 种食材，美味度为 ai。两两食材之间的契合度定义为美味度的按位与（and）结果。求契合度最高的两种食材的契合度。",

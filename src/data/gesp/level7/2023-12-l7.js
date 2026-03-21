@@ -4,6 +4,7 @@ const programmingQuestions = [
     {
         id: 26,
         type: "programming",
+        score: 25,
         title: "商品交易",
         problemNumber: "2023-12-l7-Q26",
         description: "市场上有 n 种商品，每种商品有固定价值。共有 m 个商人，第 i 个商人允许你用商品 x_i 换商品 y_i，并按两种商品的价值差结算差价，同时额外收取 1 元手续费。你一开始持有商品 s，希望获得商品 t，求最小总花费；答案可能为负，表示最终还能赚钱。若无法达成则输出 No solution。",
@@ -20,6 +21,7 @@ const programmingQuestions = [
     {
         id: 27,
         type: "programming",
+        score: 25,
         title: "纸牌游戏",
         problemNumber: "2023-12-l7-Q27",
         description: "你和小杨进行 n 轮猜拳式纸牌游戏，牌只有 0、1、2 三种，规则是 1 胜 0、2 胜 1、0 胜 2；每轮获胜得 a_i 分，平局得 a_i 中给定的平局分。小杨全部 n 轮的出牌序列已知。你从第 2 轮开始只能保持上一轮的出牌，或执行一次换牌；若总共换了 j 次，需要额外扣 b_j 分。求你最多能得到多少分。",

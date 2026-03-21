@@ -281,6 +281,7 @@ export const paperData = {
         {
             id: 26,
             type: 'programming',
+            score: 25,
             title: '数组清零',
             problemNumber: 'B4413',
             source: 'official-pdf+luogu-mapping',
@@ -305,6 +306,7 @@ export const paperData = {
         {
             id: 27,
             type: 'programming',
+            score: 25,
             title: '日历制作',
             problemNumber: 'B4414',
             source: 'official-pdf+luogu-mapping',

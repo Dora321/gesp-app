@@ -4,6 +4,7 @@ const programmingQuestions = [
     {
         id: 26,
         type: "programming",
+        score: 25,
         title: "黑白方块",
         problemNumber: "2024-09-23-04-C-01",
         description: "小杨有一个 n 行 m 列的网格图，其中每个格子要么是白色，要么是黑色。小杨想知道网格图中是否存在一个 2x2 的子矩形，使得该子矩形内的四个格子全部为白色（0 代表白色，1 代表黑色）。",
@@ -20,6 +21,7 @@ const programmingQuestions = [
     {
         id: 27,
         type: "programming",
+        score: 25,
         title: "区间排序",
         problemNumber: "2024-09-23-04-C-02",
         description: "给定一个长度为 n 的序列 a。有 m 次操作，每次操作指定一个区间 [l, r]，你需要将 a[l...r] 内的元素进行升序排序。请输出最终得到的序列。",

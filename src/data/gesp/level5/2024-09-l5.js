@@ -4,6 +4,7 @@ const programmingQuestions = [
     {
         id: 26,
         type: "programming",
+        score: 25,
         title: "小杨的武器",
         problemNumber: "2024-09-23-05-C-01",
         description: "小杨有 n 种不同的武器，对第 i 种武器的初始熟练度为 ai。会依次参加 m 场战斗，每场战斗必须且只能选择一种武器。如果选择了第 i 种武器参加第 j 场战斗，战斗后熟练度变为 ai+cj（cj 可正可负）。求 m 场战斗后熟练度最大值的最大可能结果。",
@@ -20,6 +21,7 @@ const programmingQuestions = [
     {
         id: 27,
         type: "programming",
+        score: 25,
         title: "小杨的数字矩阵",
         problemNumber: "2024-09-23-05-C-02",
         description: "给定一个 n*n 的矩阵，要求顺时针螺旋填充 1 到 n*n 的数字。然后按行输出矩阵。",

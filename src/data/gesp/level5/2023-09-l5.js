@@ -4,6 +4,7 @@ const programmingQuestions = [
     {
         id: 26,
         type: "programming",
+        score: 25,
         title: "因数分解",
         problemNumber: "2023-09-23-05-C-01",
         description: "每个正整数都可以分解成素数的乘积，例如：6 = 2 * 3、20 = 2^2 * 5。现在，给定一个正整数 N，请按要求输出它的因数分解式。",
@@ -22,6 +23,7 @@ const programmingQuestions = [
     {
         id: 27,
         type: "programming",
+        score: 25,
         title: "巧夺大奖",
         problemNumber: "2023-09-23-05-C-02",
         description: "小明参加了一个巧夺大奖的游戏节目。游戏规则：\n1. 游戏分为 n 个时间段，每个时间段可以选择一个小游戏。\n2. 共有 n 个小游戏可供选择。\n3. 每个小游戏有规定的时限 Ti 和奖励 Ri。参加者必须在第 Ti 个时间段结束前完成才能得到奖励。\n如何安排每个时间段分别选择哪个小游戏，才能使得总奖励最高？",

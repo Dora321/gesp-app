@@ -4,6 +4,7 @@ const programmingQuestions = [
     {
         id: 26,
         type: "programming",
+        score: 25,
         title: "相似字符串",
         problemNumber: "2024-03-23-04-C-01",
         description: "对于两个字符串 A 和 B，如果 A 可以通过删除一个字符，或插入一个字符，或修改一个字符变成 B，那么我们说 A 和 B 是相似的。特别地，完全相同的两个字符串也是相似的。给定 T 组 A, B，请你分别判断他们是否相似。",
@@ -20,6 +21,7 @@ const programmingQuestions = [
     {
         id: 27,
         type: "programming",
+        score: 25,
         title: "做题",
         problemNumber: "2024-03-23-04-C-02",
         description: "小杨为了提高实力制定了做题计划，在第 i 天时，他必须要完成 i 道题。他找到了 n 套题单，每套题单有一定数量的题目。每套题单只能使用一次，每一天也只能使用一套题单里的题目。对于每套题单，他不必完成题单内所有的题。问小杨最多会做题几天才偷懒？",

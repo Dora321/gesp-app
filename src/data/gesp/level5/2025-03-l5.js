@@ -4,6 +4,7 @@ const programmingQuestions = [
     {
         id: 26,
         type: "programming",
+        score: 25,
         title: "平均分配",
         problemNumber: "2025-03-23-05-C-01",
         description: "小 A 有 2n 件物品，小 B 和小 C 想从小 A 手上买走这些物品。对于第 i 件物品，小 B 会以 b_i 的价格购买，而小 C 会以 c_i 的价格购买。为了平均分配这 2n 件物品，小 A 决定小 B 和小 C 各自只能买走恰好 n 件物品。你能帮小 A 求出他卖出这 2n 件物品所能获得的最大收入吗？",
@@ -21,6 +22,7 @@ const programmingQuestions = [
     {
         id: 27,
         type: "programming",
+        score: 25,
         title: "原根判断",
         problemNumber: "2025-03-23-05-C-02",
         description: "小 A 知道，对于质数 p 而言，p 的原根 g 是满足以下条件的正整数：g 与 p 互质；g^(p-1) ≡ 1 (mod p)；并且对于任意 1 ≤ x < p-1，均有 g^x mod p ≠ 1。小 A 现在有一个整数 a，请你帮他判断 a 是不是 p 的原根。",
