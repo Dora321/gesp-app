@@ -246,6 +246,8 @@ export const paperData = {
         {
             id: 26,
             type: 'programming',
+            explanation: '暂无解析',
+            template: `#include <bits/stdc++.h>\nusing namespace std;\n\nint main() {\n    // 在此填写代码\n    return 0;\n}`,
             score: 25,
             title: '字母求和',
             problemNumber: 'B3956',
@@ -267,6 +269,8 @@ export const paperData = {
         {
             id: 27,
             type: 'programming',
+            explanation: '暂无解析',
+            template: `#include <bits/stdc++.h>\nusing namespace std;\n\nint main() {\n    // 在此填写代码\n    return 0;\n}`,
             score: 25,
             title: '完全平方数',
             problemNumber: 'B3957',

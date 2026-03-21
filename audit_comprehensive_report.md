@@ -1,6 +1,6 @@
 # GESP Question Bank Comprehensive Audit Report
 
-**Summary**: 91 files tested. Found 1162 errors and 992 usability warnings.
+**Summary**: 91 files tested. Found 1162 errors and 968 usability warnings.
 
 ## 1. 完整性审计 (Completeness)
 - **programming.js**: File exists on disk but is not registered in index.js.
@@ -1196,76 +1196,52 @@
 - **programming.js**: Failed to load paperData: paperData is not exported.
 
 ## 4. 易用性审计 (Usability) (Explanations, Code Templates)
-- **2023-03-l1.js** [Q26]: Missing code template.
 - **2023-03-l1.js** [Q26]: Missing reference code.
 - **2023-03-l1.js** [Q26]: Missing samples.
-- **2023-03-l1.js** [Q27]: Missing code template.
 - **2023-03-l1.js** [Q27]: Missing reference code.
 - **2023-03-l1.js** [Q27]: Missing samples.
-- **2023-06-l1.js** [Q26]: Missing code template.
 - **2023-06-l1.js** [Q26]: Missing reference code.
 - **2023-06-l1.js** [Q26]: Missing samples.
-- **2023-06-l1.js** [Q27]: Missing code template.
 - **2023-06-l1.js** [Q27]: Missing reference code.
 - **2023-06-l1.js** [Q27]: Missing samples.
-- **2023-09-l1.js** [Q26]: Missing code template.
 - **2023-09-l1.js** [Q26]: Missing reference code.
 - **2023-09-l1.js** [Q26]: Missing samples.
-- **2023-09-l1.js** [Q27]: Missing code template.
 - **2023-09-l1.js** [Q27]: Missing reference code.
 - **2023-09-l1.js** [Q27]: Missing samples.
-- **2023-12-l1.js** [Q26]: Missing code template.
 - **2023-12-l1.js** [Q26]: Missing reference code.
 - **2023-12-l1.js** [Q26]: Missing samples.
-- **2023-12-l1.js** [Q27]: Missing code template.
 - **2023-12-l1.js** [Q27]: Missing reference code.
 - **2023-12-l1.js** [Q27]: Missing samples.
-- **2024-03-l1.js** [Q26]: Missing code template.
 - **2024-03-l1.js** [Q26]: Missing reference code.
 - **2024-03-l1.js** [Q26]: Missing samples.
-- **2024-03-l1.js** [Q27]: Missing code template.
 - **2024-03-l1.js** [Q27]: Missing reference code.
 - **2024-03-l1.js** [Q27]: Missing samples.
-- **2024-06-l1.js** [Q26]: Missing code template.
 - **2024-06-l1.js** [Q26]: Missing reference code.
 - **2024-06-l1.js** [Q26]: Missing samples.
-- **2024-06-l1.js** [Q27]: Missing code template.
 - **2024-06-l1.js** [Q27]: Missing reference code.
 - **2024-06-l1.js** [Q27]: Missing samples.
-- **2024-09-l1.js** [Q26]: Missing code template.
 - **2024-09-l1.js** [Q26]: Missing reference code.
 - **2024-09-l1.js** [Q26]: Missing samples.
-- **2024-09-l1.js** [Q27]: Missing code template.
 - **2024-09-l1.js** [Q27]: Missing reference code.
 - **2024-09-l1.js** [Q27]: Missing samples.
-- **2024-12-l1.js** [Q26]: Missing code template.
 - **2024-12-l1.js** [Q26]: Missing reference code.
 - **2024-12-l1.js** [Q26]: Missing samples.
-- **2024-12-l1.js** [Q27]: Missing code template.
 - **2024-12-l1.js** [Q27]: Missing reference code.
 - **2024-12-l1.js** [Q27]: Missing samples.
-- **2025-03-l1.js** [Q26]: Missing code template.
 - **2025-03-l1.js** [Q26]: Missing reference code.
 - **2025-03-l1.js** [Q26]: Missing samples.
-- **2025-03-l1.js** [Q27]: Missing code template.
 - **2025-03-l1.js** [Q27]: Missing reference code.
 - **2025-03-l1.js** [Q27]: Missing samples.
-- **2025-06-l1.js** [Q26]: Missing code template.
 - **2025-06-l1.js** [Q26]: Missing reference code.
 - **2025-06-l1.js** [Q26]: Missing samples.
-- **2025-06-l1.js** [Q27]: Missing code template.
 - **2025-06-l1.js** [Q27]: Missing reference code.
 - **2025-06-l1.js** [Q27]: Missing samples.
-- **2025-09-l1.js** [Q26]: Missing code template.
 - **2025-09-l1.js** [Q26]: Missing reference code.
 - **2025-09-l1.js** [Q26]: Missing samples.
-- **2025-09-l1.js** [Q27]: Missing code template.
 - **2025-09-l1.js** [Q27]: Missing reference code.
 - **2025-09-l1.js** [Q27]: Missing samples.
-- **2025-12-l1.js** [Q26]: Missing code template.
 - **2025-12-l1.js** [Q26]: Missing reference code.
 - **2025-12-l1.js** [Q26]: Missing samples.
-- **2025-12-l1.js** [Q27]: Missing code template.
 - **2025-12-l1.js** [Q27]: Missing reference code.
 - **2025-12-l1.js** [Q27]: Missing samples.
 - **2025-03-l4.js** [Q26]: Missing code template.

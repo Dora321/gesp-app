@@ -251,6 +251,8 @@ export const paperData = {
         {
             id: 26,
             type: 'programming',
+            explanation: '暂无解析',
+            template: `#include <bits/stdc++.h>\nusing namespace std;\n\nint main() {\n    // 在此填写代码\n    return 0;\n}`,
             score: 25,
             title: '奇偶校验',
             problemNumber: 'B4358',
@@ -276,6 +278,8 @@ export const paperData = {
         {
             id: 27,
             type: 'programming',
+            explanation: '暂无解析',
+            template: `#include <bits/stdc++.h>\nusing namespace std;\n\nint main() {\n    // 在此填写代码\n    return 0;\n}`,
             score: 25,
             title: '分糖果',
             problemNumber: 'B4359',

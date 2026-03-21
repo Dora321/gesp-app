@@ -290,6 +290,7 @@ export const paperData = {
     {
       id: 26,
       type: 'programming',
+      template: `#include <bits/stdc++.h>\nusing namespace std;\n\nint main() {\n    // 在此填写代码\n    return 0;\n}`,
       question: '【编程题1】假期阅读\n输入书的总页数 n，每天阅读页数 k，阅读天数 t。输出实际阅读的页数。',
       answer: '',
       score: 25,
@@ -299,6 +300,7 @@ export const paperData = {
     {
       id: 27,
       type: 'programming',
+      template: `#include <bits/stdc++.h>\nusing namespace std;\n\nint main() {\n    // 在此填写代码\n    return 0;\n}`,
       question: '【编程题2】值日\n小杨和小红在同一天开始值日，小杨每 m 天值一次日，小红每 n 天值一次日。输入 m 和 n，输出他们下一次共同值日是在第几天（即求最小公倍数）。',
       answer: '',
       score: 25,

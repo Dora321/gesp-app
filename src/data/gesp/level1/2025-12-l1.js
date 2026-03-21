@@ -293,6 +293,7 @@ export const paperData = {
     {
       id: 26,
       type: 'programming',
+      template: `#include <bits/stdc++.h>\nusing namespace std;\n\nint main() {\n    // 在此填写代码\n    return 0;\n}`,
       question: '小杨的爱心快递\n\n**题目描述**：假设快递的体积为 V，重量为 G。计费规则如下：\n1. 按体积计算：运费 = 0.5 * V 元。\n2. 按重量计算：当 G < 300 克时，运费为 M 元；当 G >= 300 克时，运费为 N 元。\n最终运费取两者中较小的一个。\n\n**输入格式**：四行，每行一个一位小数，分别代表 V, G, M, N。\n\n**输出格式**：一行一个一位小数，代表实际运费。',
       answer: '',
       score: 25,
@@ -302,6 +303,7 @@ export const paperData = {
     {
       id: 27,
       type: 'programming',
+      template: `#include <bits/stdc++.h>\nusing namespace std;\n\nint main() {\n    // 在此填写代码\n    return 0;\n}`,
       question: '手机电量显示\n\n**题目描述**：根据电量百分比 P 显示提醒内容：\n1. P <= 10：显示大写字母 R。\n2. 10 < P <= 20：显示大写字母 L。\n3. P > 20：直接显示数字 P。\n\n**输入格式**：第一行一个正整数 T，表示组数。接下来 T 行，每行一个整数 P。\n\n**输出格式**：每组数据输出一行显示结果。',
       answer: '',
       score: 25,

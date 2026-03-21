@@ -282,6 +282,7 @@ export const paperData = {
     {
       id: 26,
       type: 'programming',
+      template: `#include <bits/stdc++.h>\nusing namespace std;\n\nint main() {\n    // 在此填写代码\n    return 0;\n}`,
       score: 25,
       title: '春游',
       description: '老师带领同学们春游。已知班上有 N 位同学，每位同学有从 0 到 $N-1$ 的唯一编号。到了集合时间，老师确认是否所有同学都到达了集合地点，就让同学们报出自己的编号。到达的同学都会报出自己的编号，不会报出别人的编号，但有的同学很顽皮，会多次报出。你能帮老师找出有哪些同学没有到达吗？',
@@ -336,6 +337,7 @@ int main() {
     {
       id: 27,
       type: 'programming',
+      template: `#include <bits/stdc++.h>\nusing namespace std;\n\nint main() {\n    // 在此填写代码\n    return 0;\n}`,
       score: 25,
       title: '密码合规检测',
       description: '网站注册时需要用户名和密码。本题的任务是编写程序检查用户输入密码的有效性。合规的密码需满足以下条件：\n1. 只能由 a-z 之间 26 个小写字母、A-Z 之间 26 个大写字母、0-9 之间 10 个数字以及 !@#$ 这四个特殊字符构成。\n2. 密码最短长度为 6 个字符，最长长度为 12 个字符。\n3. 大写字母、小写字母 and 数字这三类字符中，必须至少包含其中两种，并且至少包含一个 !@#$ 中的特殊字符。',

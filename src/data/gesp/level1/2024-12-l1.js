@@ -280,6 +280,7 @@ export const paperData = {
     {
       id: 26,
       type: 'programming',
+      template: `#include <bits/stdc++.h>\nusing namespace std;\n\nint main() {\n    // 在此填写代码\n    return 0;\n}`,
       question: '【编程题1】温度转换\n输入开尔文温度 K，将其转换为摄氏度 C（C = K-273.15）和华氏度 F（F = C * 1.8+32），输出 C 和 F（保留两位小数）。',
       answer: '',
       score: 25,
@@ -289,6 +290,7 @@ export const paperData = {
     {
       id: 27,
       type: 'programming',
+      template: `#include <bits/stdc++.h>\nusing namespace std;\n\nint main() {\n    // 在此填写代码\n    return 0;\n}`,
       question: '【编程题2】奇偶计数差\n输入 n 个整数，计算并输出偶数的个数与奇数个数的差（绝对值）。',
       answer: '',
       score: 25,

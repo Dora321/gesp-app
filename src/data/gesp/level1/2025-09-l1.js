@@ -280,6 +280,7 @@ export const paperData = {
     {
       id: 26,
       type: 'programming',
+      template: `#include <bits/stdc++.h>\nusing namespace std;\n\nint main() {\n    // 在此填写代码\n    return 0;\n}`,
       question: '【编程题1】超市优惠方案选择\n超市有两种优惠方案：\n1. 方案1：满 x 元减 y 元（每满一个 x 减一个 y）。\n2. 方案2：打 n 折（即原价 * n / 10）。\n输入 x, y, n 和原价 p，输出最便宜的价格（保留两位小数）。',
       answer: '',
       score: 25,
@@ -289,6 +290,7 @@ export const paperData = {
     {
       id: 27,
       type: 'programming',
+      template: `#include <bits/stdc++.h>\nusing namespace std;\n\nint main() {\n    // 在此填写代码\n    return 0;\n}`,
       question: '【编程题2】石块累加\n小杨在搭石块，第 1 层需要 1*1 个石块，第 2 层需要 2*2 个石块... 第 i 层需要 i*i 个石块。\n输入总层数 n，输出共需要多少个石块。',
       answer: '',
       score: 25,

@@ -280,6 +280,7 @@ export const paperData = {
     {
       id: 26,
       type: 'programming',
+      template: `#include <bits/stdc++.h>\nusing namespace std;\n\nint main() {\n    // 在此填写代码\n    return 0;\n}`,
       question: '【编程题1】小杨购物\n小杨同学准备去购物，有两件商品，单价分别是 $a$ 元和 $b$ 元，小杨同学只有 $M$ 元。小杨想买相同数量的商品，请问小杨最多能买多少件？\n\n**输入格式**：输入三行，第一行包含一个整数 $a$，第二行包含一个整数 $b$，第三行包含一个整数 $M$。\n\n**输出格式**：输出一个整数，表示最多能购买的商品件数。',
       answer: '',
       score: 25,
@@ -289,6 +290,7 @@ export const paperData = {
     {
       id: 27,
       type: 'programming',
+      template: `#include <bits/stdc++.h>\nusing namespace std;\n\nint main() {\n    // 在此填写代码\n    return 0;\n}`,
       question: '【编程题2】美丽数字\n小杨同学定义了一种“美丽数字”：如果一个正整数能被 8 整除，但不能被 12 整除，则称之为美丽数字。\n输入一个正整数 $n$，输出 1 到 $n$ 之间（包含 $n$）有多少个美丽数字。\n\n**输入格式**：输入一个正整数 $n$。\n\n**输出格式**：输出美丽数字的个数。',
       answer: '',
       score: 25,

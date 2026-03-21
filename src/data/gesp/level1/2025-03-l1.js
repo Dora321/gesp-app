@@ -290,6 +290,7 @@ export const paperData = {
     {
       id: 26,
       type: 'programming',
+      template: `#include <bits/stdc++.h>\nusing namespace std;\n\nint main() {\n    // 在此填写代码\n    return 0;\n}`,
       question: '【编程题1】区间内偶数之和\n编写一个程序，输入两个整数 a 和 b，计算并输出区间 [a, b] 之间所有偶数的和。',
       answer: '',
       score: 25,
@@ -299,6 +300,7 @@ export const paperData = {
     {
       id: 27,
       type: 'programming',
+      template: `#include <bits/stdc++.h>\nusing namespace std;\n\nint main() {\n    // 在此填写代码\n    return 0;\n}`,
       question: '【编程题2】镜像码转换\n小杨发现了一种有趣的镜像码：将小写字母 a 换成 z，b 换成 y ... z 换成 a。输入一个仅包含小写字母的字符串，输出对应的镜像码。',
       answer: '',
       score: 25,

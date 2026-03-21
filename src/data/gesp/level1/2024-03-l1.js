@@ -289,6 +289,7 @@ export const paperData = {
     {
       id: 26,
       type: 'programming',
+      template: `#include <bits/stdc++.h>\nusing namespace std;\n\nint main() {\n    // 在此填写代码\n    return 0;\n}`,
       question: '【编程题1】小杨买书\n小杨同学有 $M$ 元钱，他想买价格为 $a$ 元和 $b$ 元的两种书。要求两种书购买的数量相同，且总价不超过 $M$。请问最多能买多少本书？\n\n**输入格式**：输入三行，分别依次包含一个整数 $a, b, M$。\n\n**输出格式**：输出最多能买的书的数量（两类书的总数）。',
       answer: '',
       score: 25,
@@ -298,6 +299,7 @@ export const paperData = {
     {
       id: 27,
       type: 'programming',
+      template: `#include <bits/stdc++.h>\nusing namespace std;\n\nint main() {\n    // 在此填写代码\n    return 0;\n}`,
       question: '【编程题2】找因数\n输入一个正整数 $N$，输出 $N$ 的所有因数，每个因数占一行，按从小到大的顺序排列。\n\n**输入格式**：输入一个正整数 $N$。\n\n**输出格式**：从小到大排列的所有因数，各占一行。',
       answer: '',
       score: 25,

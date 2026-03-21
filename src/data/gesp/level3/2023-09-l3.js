@@ -256,6 +256,7 @@ export const paperData = {
         {
             id: 26,
             type: 'programming',
+            template: `#include <bits/stdc++.h>\nusing namespace std;\n\nint main() {\n    // 在此填写代码\n    return 0;\n}`,
             score: 25,
             title: '小杨的储蓄',
             description: '小杨拥有 N 个储蓄罐，它们的编号从 0 到 $N-1$。从第 1 天开始，小杨每天都会往其中的一个储蓄罐里存钱。具体来说，在第 i 天，他会选择一个储蓄罐 a_i，并存入 i 元钱。D 天过后，小杨已经记不清每个储蓄罐里具体存了多少钱。你需要编写程序帮助他计算出每个储蓄罐当前的存款总额。',
@@ -302,6 +303,7 @@ int main() {
         {
             id: 27,
             type: 'programming',
+            template: `#include <bits/stdc++.h>\nusing namespace std;\n\nint main() {\n    // 在此填写代码\n    return 0;\n}`,
             score: 25,
             title: '进制判断',
             description: 'N 进制数是一种逢 N 进一的计数制度。题目将给出一些字符串，需要判断每个字符串是否能分别作为二进制、八进制、十进制或十六进制数。\n- 二进制：仅包含 0, 1。\n- 八进制：包含 0-7。\n- 十进制：包含 0-9。\n- 十六进制：包含 0-9 和 A-F。',

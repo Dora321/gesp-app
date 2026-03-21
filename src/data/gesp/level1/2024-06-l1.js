@@ -275,6 +275,7 @@ export const paperData = {
     {
       id: 26,
       type: 'programming',
+      template: `#include <bits/stdc++.h>\nusing namespace std;\n\nint main() {\n    // 在此填写代码\n    return 0;\n}`,
       question: '【编程题1】休息时间\n小杨同学在学习 $S$ 秒后会休息。输入 $S$，输出小杨休息的时间（转换成小时、分钟和秒）。\n\n**输入格式**：输入一个整数 $S$。\n\n**输出格式**：输出按照 `H M S` 格式（如 1 2 3）。',
       answer: '',
       score: 25,
@@ -284,6 +285,7 @@ export const paperData = {
     {
       id: 27,
       type: 'programming',
+      template: `#include <bits/stdc++.h>\nusing namespace std;\n\nint main() {\n    // 在此填写代码\n    return 0;\n}`,
       question: '【编程题2】立方数\n小杨同学定义了一种“立方数”：如果一个正整数能表示为另一个整数的立方，则称之为立方数。输入 $N$，判断它是否为立方数。\n\n**输入格式**：输入一个整数 $N$。\n\n**输出格式**：输出 `Yes` 或 `No`。',
       answer: '',
       score: 25,
