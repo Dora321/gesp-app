@@ -79,10 +79,52 @@ function processFileSafe(filePath) {
                 const mapped = paperCodingMap[paperId];
                 if (!mapped) return;
                 const pid = mapped["q" + qId];
-                if (!pid || pid.startsWith('P0000')) return;
+                const luoguProb = pid ? luoguProblems[pid] : null;
 
-                const luoguProb = luoguProblems[pid];
-                if (!luoguProb) return;
+                // If not in Luogu, we still want to reform it using existing fields to unify the format
+                let markdown = "";
+                if (luoguProb) {
+                    markdown = "# " + luoguProb.title + "\n\n" +
+                        (luoguProb.background ? "## 题目背景\n\n" + luoguProb.background + "\n\n" : "") +
+                        "## 题目描述\n\n" + luoguProb.description + "\n\n" +
+                        "## 输入格式\n\n" + luoguProb.inputFormat + "\n\n" +
+                        "## 输出格式\n\n" + luoguProb.outputFormat + "\n\n";
+
+                    if (luoguProb.samples && luoguProb.samples.length > 0) {
+                        luoguProb.samples.forEach((sample, index) => {
+                            markdown += "## 输入输出样例 #" + (index + 1) + "\n\n" +
+                                "### 输入 #" + (index + 1) + "\n\n```\n" + sample.input + "\n```\n\n" +
+                                "### 输出 #" + (index + 1) + "\n\n```\n" + sample.output + "\n```\n\n";
+                        });
+                    }
+
+                    if (luoguProb.hint) {
+                        markdown += "## 提示\n\n" + luoguProb.hint + "\n";
+                    }
+                } else {
+                    // Blind Reform: Use existing fields
+                    const q = {};
+                    pathNode.node.properties.forEach(p => {
+                        if (p.key && p.key.name && p.value && p.value.type === 'StringLiteral') {
+                            q[p.key.name] = p.value.value;
+                        } else if (p.key && p.key.name && p.value && p.value.type === 'TemplateLiteral') {
+                            q[p.key.name] = p.value.quasis[0].value.raw;
+                        }
+                    });
+
+                    // Build markdown similar to buildProgrammingStatementMarkdown
+                    markdown = "# " + (q.title || "编程题") + "\n\n";
+                    if (q.description) {
+                        markdown += "## 题目描述\n\n" + q.description + "\n\n";
+                        if (q.inputDescription) markdown += "## 输入格式\n\n" + q.inputDescription + "\n\n";
+                        if (q.outputDescription) markdown += "## 输出格式\n\n" + q.outputDescription + "\n\n";
+                    } else if (q.question && !q.question.includes('# [GESP')) {
+                        // If it's a "Mixed Format" (Format A but not yet Luogu-style)
+                        markdown += q.question + "\n\n";
+                    }
+                }
+
+                if (!markdown) return;
 
                 // Check if already reformed (only if it has Format A structure)
                 if (existingQuestionNode && !code.substring(pathNode.node.start, pathNode.node.end).includes('description:')) {
@@ -92,12 +134,6 @@ function processFileSafe(filePath) {
                         return;
                     }
                 }
-
-                // Construct markdown
-                let markdown = "# " + luoguProb.title + "\n\n" +
-                               "## 题目描述\n\n" + (luoguProb.description || '') + "\n\n" +
-                               "## 输入格式\n\n" + (luoguProb.inputFormat || '') + "\n\n" +
-                               "## 输出格式\n\n" + (luoguProb.outputFormat || '');
 
                 // Escape for template literal insertion
                 markdown = markdown.replace(/\\/g, '\\\\').replace(/`/g, '\\`').replace(/\$/g, '\\$');

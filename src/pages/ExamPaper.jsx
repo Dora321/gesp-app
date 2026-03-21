@@ -179,7 +179,7 @@ const ExamPaper = () => {
     const programmingMarkedCount = programmingQuestions.filter((q) => answers[q.id] !== undefined).length;
     const objectiveCorrectCount = objectiveQuestions.filter((q) => answers[q.id] === q.answer).length;
     const objectiveWrongCount = objectiveQuestions.filter((q) => answers[q.id] !== undefined && answers[q.id] !== q.answer).length;
-    const isLuoguStyle = isProgrammingQuestion(currentQ) && getQuestionContent(currentQ).includes('# [GESP');
+    const isReformed = isProgrammingQuestion(currentQ) && getQuestionContent(currentQ).trim().startsWith('# ');
     const currentProgrammingMarkdown = isProgrammingQuestion(currentQ) ? buildProgrammingStatementMarkdown(currentQ) : '';
 
     if (mode === null) {
@@ -338,13 +338,13 @@ const ExamPaper = () => {
                                 {isProgrammingQuestion(currentQ) ? '编程题' : currentQ.type === 'single' ? '单选题' : '判断题'} • {currentQ.score}分
                             </div>
 
-                            {!(isProgrammingQuestion(currentQ) && (getQuestionContent(currentQ) === currentProgrammingMarkdown || isLuoguStyle)) && (
+                            {!(isProgrammingQuestion(currentQ) && (getQuestionContent(currentQ) === currentProgrammingMarkdown || isReformed)) && (
                                 <h2 className="text-xl md:text-2xl font-bold text-slate-800 mt-6 mb-8 leading-relaxed">
                                     <span className="text-blue-500 mr-2">{currentQuestionIndex + 1}.</span>
                                     <MarkdownRenderer content={stripLeadingNumber(getQuestionContent(currentQ))} className="inline-markdown" inline={true} />
                                 </h2>
                             )}
-                            {isProgrammingQuestion(currentQ) && (getQuestionContent(currentQ) === currentProgrammingMarkdown || isLuoguStyle) && (
+                            {isProgrammingQuestion(currentQ) && (getQuestionContent(currentQ) === currentProgrammingMarkdown || isReformed) && (
                                 <h2 className="text-xl md:text-2xl font-bold text-slate-800 mt-6 mb-2 leading-relaxed">
                                     <span className="text-blue-500 mr-2">第 {currentQuestionIndex + 1} 题</span>
                                 </h2>
@@ -358,7 +358,7 @@ const ExamPaper = () => {
                                             <span className="problem-title">第 {currentQuestionIndex + 1} 题</span>
                                         </div>
                                         <div className="problem-content">
-                                            <MarkdownRenderer content={isLuoguStyle ? getQuestionContent(currentQ) : currentProgrammingMarkdown} />
+                                            <MarkdownRenderer content={isReformed ? getQuestionContent(currentQ) : currentProgrammingMarkdown} />
                                         </div>
                                     </div>
                                     <a

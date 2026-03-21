@@ -279,7 +279,7 @@ export default function EnhancedPaperPage({ forcedPaperId }) {
     const isRevealed = !!revealed[currentQ.id];
     const tags = inferKnowledgeTags(currentQ, paperData.level);
     const codingGuide = (currentQ?.type === 'coding' || currentQ?.type === 'programming') ? buildCodingGuide(currentQ) : null;
-    const isLuoguStyle = (currentQ.type === 'coding' || currentQ.type === 'programming') && getQuestionContent(currentQ).includes('# [GESP');
+    const isReformed = (currentQ.type === 'coding' || currentQ.type === 'programming') && getQuestionContent(currentQ).trim().startsWith('# ');
     const programmingPracticeMarkdown = (currentQ.type === 'coding' || currentQ.type === 'programming') ? buildProgrammingMarkdown(currentQ) : '';
     const programmingAnalysisMarkdown = (currentQ?.type === 'coding' || currentQ?.type === 'programming')
         ? buildProgrammingMarkdown(currentQ, { includeReference: true })
@@ -389,7 +389,7 @@ export default function EnhancedPaperPage({ forcedPaperId }) {
                             </div>
                         </div>
 
-                        {!( (currentQ.type === 'coding' || currentQ.type === 'programming') && (getQuestionContent(currentQ) === programmingPracticeMarkdown || isLuoguStyle) ) && (
+                        {!( (currentQ.type === 'coding' || currentQ.type === 'programming') && (getQuestionContent(currentQ) === programmingPracticeMarkdown || isReformed) ) && (
                             <h2 className="text-lg md:text-xl font-bold text-slate-800 mb-5 leading-relaxed">
                                 <MarkdownRenderer content={stripLeadingNumber(getQuestionContent(currentQ))} />
                             </h2>
@@ -405,7 +405,7 @@ export default function EnhancedPaperPage({ forcedPaperId }) {
                                             <span className="problem-title">第 {currentQuestionIndex + 1} 题</span>
                                         </div>
                                         <div className="problem-content">
-                                            <MarkdownRenderer content={isLuoguStyle ? getQuestionContent(currentQ) : programmingPracticeMarkdown} />
+                                            <MarkdownRenderer content={isReformed ? getQuestionContent(currentQ) : programmingPracticeMarkdown} />
                                         </div>
                                     </div>
                                     {(() => {

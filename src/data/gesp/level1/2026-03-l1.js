@@ -302,18 +302,37 @@ export const paperData = {
     {
       id: 26,
       type: 'programming',
+      question: `
+# 交朋友
+
+交朋友
+
+**题目描述**：Alice 班上共有 4 个小朋友，身高分别为 \`H1, H2, H3, H4\`，其中 Alice 的身高为 \`H1\`。Alice 想要和身高最接近她的人交朋友，如果有多个人符合条件，则 Alice 想和其中较矮的那一人做朋友。请输出这个人的身高。
+
+**输入格式**：输入共 4 行，第 \`i\` 行包含一个整数 \`Hi\`，表示班上小朋友的身高。
+
+**输出格式**：输出 1 行，包含一个整数，表示 Alice 想交的朋友的身高。
+
+**样例输入**：
+\`\`\`text
+150
+165
+135
+133
+\`\`\`
+
+**样例输出**：
+\`\`\`text
+135
+\`\`\`
+
+**样例解释**：Alice 身高为 150，第 2、3 个小朋友与 Alice 身高差距同为 15，取其中较矮的 135。
+
+**数据范围**：保证 \`100 <= Hi <= 199\` 且 \`Hi\` 互不相同。
+`,
       score: 25,
-      title: '交朋友',
-      problemNumber: '2026-03-l1-Q26',
-      question: '交朋友\n\n**题目描述**：Alice 班上共有 4 个小朋友，身高分别为 `H1, H2, H3, H4`，其中 Alice 的身高为 `H1`。Alice 想要和身高最接近她的人交朋友，如果有多个人符合条件，则 Alice 想和其中较矮的那一人做朋友。请输出这个人的身高。\n\n**输入格式**：输入共 4 行，第 `i` 行包含一个整数 `Hi`，表示班上小朋友的身高。\n\n**输出格式**：输出 1 行，包含一个整数，表示 Alice 想交的朋友的身高。\n\n**样例输入**：\n```text\n150\n165\n135\n133\n```\n\n**样例输出**：\n```text\n135\n```\n\n**样例解释**：Alice 身高为 150，第 2、3 个小朋友与 Alice 身高差距同为 15，取其中较矮的 135。\n\n**数据范围**：保证 `100 <= Hi <= 199` 且 `Hi` 互不相同。',
       answer: '',
       explanation: '依次比较 `H2`、`H3`、`H4` 与 `H1` 的距离，记录最小距离；如果距离相同，则保留更矮的那个。',
-      samples: [
-        {
-          input: '150\n165\n135\n133',
-          output: '135',
-        },
-      ],
       template: '#include <iostream>\nusing namespace std;\n\nint main() {\n    int H1, H2, H3, H4;\n    cin >> H1 >> H2 >> H3 >> H4;\n    // 在此填写代码\n    return 0;\n}',
       referenceCode: '#include <iostream>\nusing namespace std;\n\nint main() {\n    int H1, H2, H3, H4;\n    cin >> H1 >> H2 >> H3 >> H4;\n\n    int ans = H2;\n    int d = H1 - H2;\n    if (d < 0) d = -d;\n    int mnd = d;\n\n    d = H1 - H3;\n    if (d < 0) d = -d;\n    if (d < mnd || (d == mnd && H3 < ans)) {\n        ans = H3;\n        mnd = d;\n    }\n\n    d = H1 - H4;\n    if (d < 0) d = -d;\n    if (d < mnd || (d == mnd && H4 < ans)) {\n        ans = H4;\n    }\n\n    cout << ans << endl;\n    return 0;\n}',
       tags: [LEVEL1_TAGS.basics, LEVEL1_TAGS.condition],
@@ -321,22 +340,44 @@ export const paperData = {
     {
       id: 27,
       type: 'programming',
+      question: `
+# 数字替换
+
+数字替换
+
+**题目描述**：Alice 不喜欢数字 \`4\`，但觉得数字 \`8\` 寓意好。她想把整数 \`A\` 中的全部数字 \`4\` 都替换成 \`8\`，若数中不含 \`4\` 则无需修改。
+
+**输入格式**：输入一行，包含一个整数 \`A\`，表示替换前的数。
+
+**输出格式**：输出一行，包含一个整数 \`B\`，表示替换后的数。
+
+**样例输入 #1**：
+\`\`\`text
+8459045
+\`\`\`
+
+**样例输出 #1**：
+\`\`\`text
+8859085
+\`\`\`
+
+**样例输入 #2**：
+\`\`\`text
+123
+\`\`\`
+
+**样例输出 #2**：
+\`\`\`text
+123
+\`\`\`
+
+**样例解释**：样例 1 中有两个 \`4\`，都替换为 \`8\`；样例 2 不含 \`4\`，因此保持不变。
+
+**数据范围**：\`0 <= A <= 10^8\`。
+`,
       score: 25,
-      title: '数字替换',
-      problemNumber: '2026-03-l1-Q27',
-      question: '数字替换\n\n**题目描述**：Alice 不喜欢数字 `4`，但觉得数字 `8` 寓意好。她想把整数 `A` 中的全部数字 `4` 都替换成 `8`，若数中不含 `4` 则无需修改。\n\n**输入格式**：输入一行，包含一个整数 `A`，表示替换前的数。\n\n**输出格式**：输出一行，包含一个整数 `B`，表示替换后的数。\n\n**样例输入 #1**：\n```text\n8459045\n```\n\n**样例输出 #1**：\n```text\n8859085\n```\n\n**样例输入 #2**：\n```text\n123\n```\n\n**样例输出 #2**：\n```text\n123\n```\n\n**样例解释**：样例 1 中有两个 `4`，都替换为 `8`；样例 2 不含 `4`，因此保持不变。\n\n**数据范围**：`0 <= A <= 10^8`。',
       answer: '',
       explanation: '从最低位开始逐位处理原数：遇到 `4` 时改写为 `8`，其余数字保持不变，再按原位权重还原结果。',
-      samples: [
-        {
-          input: '8459045',
-          output: '8859085',
-        },
-        {
-          input: '123',
-          output: '123',
-        },
-      ],
       template: '#include <iostream>\nusing namespace std;\n\nint main() {\n    int a;\n    cin >> a;\n    // 在此填写代码\n    return 0;\n}',
       referenceCode: '#include <iostream>\nusing namespace std;\n\nint main() {\n    int a, b = 0, t = 1;\n    cin >> a;\n    while (a) {\n        if (a % 10 == 4)\n            b += t * 8;\n        else\n            b += t * (a % 10);\n        a /= 10;\n        t *= 10;\n    }\n    cout << b;\n    return 0;\n}',
       tags: [LEVEL1_TAGS.basics, LEVEL1_TAGS.loop],
