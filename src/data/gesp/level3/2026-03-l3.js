@@ -279,74 +279,44 @@ export const paperData = {
     ],
     programmingQuestions: [
         {
-      id: 26,
-      type: 'programming',
-      question: `
-# 编程题
-
-
-# 编程题
-
-
-# 编程题
-
-
-# 二进制回文串
-
-## 题目描述
-
-对于一个正整数 \\\\\\\\\\\\\\\`n\\\\\\\\\\\\\\\`，把它转换成不含前导零的二进制表示；如果这个二进制序列从左向右读与从右向左读完全相同，则称该数为二进制回文数。例如，\\\\\\\\\\\\\\\`9\\\\\\\\\\\\\\\` 的二进制表示为 \\\\\\\\\\\\\\\`1001\\\\\\\\\\\\\\\`，是二进制回文数；\\\\\\\\\\\\\\\`12\\\\\\\\\\\\\\\` 的二进制表示为 \\\\\\\\\\\\\\\`1100\\\\\\\\\\\\\\\`，不是二进制回文数。给定一个正整数 \\\\\\\\\\\\\\\`n\\\\\\\\\\\\\\\`，请计算在 \\\\\\\\\\\\\\\`1\\\\\\\\\\\\\\\` 到 \\\\\\\\\\\\\\\`n\\\\\\\\\\\\\\\` 的范围内二进制回文数的数量。
-
-## 输入格式
-
-输入一行，包含一个正整数 \\\\\\\\\\\\\\\`n\\\\\\\\\\\\\\\`。
-
-## 输出格式
-
-输出一行，包含一个数，表示在 \\\\\\\\\\\\\\\`1\\\\\\\\\\\\\\\` 到 \\\\\\\\\\\\\\\`n\\\\\\\\\\\\\\\` 的范围内二进制回文数的数量。
-`,
-      score: 25,
-      explanation: '在 `1` 到 `15` 中，`1、3、5、7、9、15` 的二进制表示都是回文串，因此答案为 6。',
-      tags: ['编程题', '进制转换', '枚举'],
-      template: '#include <iostream>\nusing namespace std;\n\nint main() {\n    int n;\n    cin >> n;\n    // 在此编写代码\n    return 0;\n}',
-      referenceCode: '#include <iostream>\nusing namespace std;\n\nint main() {\n    int n, a[50] = {0}, ans = 0;\n    cin >> n;\n    for (int i = 1; i <= n; i++) {\n        int t = i, pos = 0;\n        while (t) {\n            a[pos++] = t % 2;\n            t /= 2;\n        }\n        bool ok = true;\n        for (int j = 0; j < pos; j++)\n            if (a[j] != a[pos - j - 1]) {\n                ok = false;\n                break;\n            }\n        ans += ok;\n    }\n    cout << ans;\n    return 0;\n}',
-      answer: '',
-      problemNumber: 'B4499',
-    },
+            id: 26,
+            type: 'programming',
+            title: '二进制回文串',
+            problemNumber: 'B4499',
+            score: 25,
+            description: '对于一个正整数 `n`，把它转换成不含前导零的二进制表示；如果这个二进制序列从左向右读与从右向左读完全相同，则称该数为二进制回文数。例如，`9` 的二进制表示为 `1001`，是二进制回文数；`12` 的二进制表示为 `1100`，不是二进制回文数。给定一个正整数 `n`，请计算在 `1` 到 `n` 的范围内二进制回文数的数量。',
+            inputDescription: '输入一行，包含一个正整数 `n`。',
+            outputDescription: '输出一行，包含一个数，表示在 `1` 到 `n` 的范围内二进制回文数的数量。',
+            samples: [
+                {
+                    input: '15',
+                    output: '6',
+                },
+            ],
+            explanation: '在 `1` 到 `15` 中，`1、3、5、7、9、15` 的二进制表示都是回文串，因此答案为 6。',
+            tags: ['编程题', '进制转换', '枚举'],
+            template: '#include <iostream>\nusing namespace std;\n\nint main() {\n    int n;\n    cin >> n;\n    // 在此编写代码\n    return 0;\n}',
+            referenceCode: '#include <iostream>\nusing namespace std;\n\nint main() {\n    int n, a[50] = {0}, ans = 0;\n    cin >> n;\n    for (int i = 1; i <= n; i++) {\n        int t = i, pos = 0;\n        while (t) {\n            a[pos++] = t % 2;\n            t /= 2;\n        }\n        bool ok = true;\n        for (int j = 0; j < pos; j++)\n            if (a[j] != a[pos - j - 1]) {\n                ok = false;\n                break;\n            }\n        ans += ok;\n    }\n    cout << ans;\n    return 0;\n}',
+        },
         {
-      id: 27,
-      type: 'programming',
-      question: `
-# 编程题
-
-
-# 编程题
-
-
-# 编程题
-
-
-# 凯撒密码
-
-## 题目描述
-
-凯撒密码是一种替换加密技术，明文中的所有字母都会按照固定偏移量进行整体平移。例如偏移量是 \\\\\\\\\\\\\\\`3\\\\\\\\\\\\\\\` 时，\\\\\\\\\\\\\\\`A\\\\\\\\\\\\\\\` 会替换成 \\\\\\\\\\\\\\\`D\\\\\\\\\\\\\\\`，\\\\\\\\\\\\\\\`B\\\\\\\\\\\\\\\` 会替换成 \\\\\\\\\\\\\\\`E\\\\\\\\\\\\\\\`，……，\\\\\\\\\\\\\\\`X\\\\\\\\\\\\\\\` 会替换成 \\\\\\\\\\\\\\\`A\\\\\\\\\\\\\\\`，\\\\\\\\\\\\\\\`Y\\\\\\\\\\\\\\\` 会替换成 \\\\\\\\\\\\\\\`B\\\\\\\\\\\\\\\`，\\\\\\\\\\\\\\\`Z\\\\\\\\\\\\\\\` 会替换成 \\\\\\\\\\\\\\\`C\\\\\\\\\\\\\\\`。现在给你一组已破解的凯撒密码明文与密文，以及一个使用相同偏移量的待破解密文，请输出它对应的明文。
-
-## 输入格式
-
-输入共三行：第一行是已破解的凯撒密码明文；第二行是对应密文；第三行是待破解的凯撒密码密文。
-
-## 输出格式
-
-输出一行，包含一个字符串，表示待破解的凯撒密码对应的明文。
-`,
-      score: 25,
-      explanation: '样例中由 `A -> D` 可知偏移量为 3，因此解密时把待破解密文中的每个字符都逆向偏移 3 位。',
-      tags: ['编程题', '字符串', '模拟'],
-      template: '#include <iostream>\n#include <cstring>\nusing namespace std;\n\nint main() {\n    string s1, s2, s3;\n    cin >> s1 >> s2 >> s3;\n    // 在此编写代码\n    return 0;\n}',
-      referenceCode: '#include <iostream>\n#include <cstring>\nusing namespace std;\n\nint main() {\n    string s1, s2, s3;\n    cin >> s1 >> s2 >> s3;\n    int d = s1[0] - s2[0];\n    d = (d % 26 + 26) % 26;\n    for (int i = 0; i < s3.length(); i++) {\n        int ch = (s3[i] - \'A\' + d) % 26;\n        cout << (char)(ch + \'A\');\n    }\n    return 0;\n}',
-      answer: '',
-      problemNumber: 'B4500',
-    },
+            id: 27,
+            type: 'programming',
+            title: '凯撒密码',
+            problemNumber: 'B4500',
+            score: 25,
+            description: '凯撒密码是一种替换加密技术，明文中的所有字母都会按照固定偏移量进行整体平移。例如偏移量是 `3` 时，`A` 会替换成 `D`，`B` 会替换成 `E`，……，`X` 会替换成 `A`，`Y` 会替换成 `B`，`Z` 会替换成 `C`。现在给你一组已破解的凯撒密码明文与密文，以及一个使用相同偏移量的待破解密文，请输出它对应的明文。',
+            inputDescription: '输入共三行：第一行是已破解的凯撒密码明文；第二行是对应密文；第三行是待破解的凯撒密码密文。',
+            outputDescription: '输出一行，包含一个字符串，表示待破解的凯撒密码对应的明文。',
+            samples: [
+                {
+                    input: 'ABCDEFGVWXYZ\nDEFGHIJYZABC\nWKHTXLFNEURZQIRAMXPSVRYHUWKHODCBGRJ',
+                    output: 'THEQUICKBROWNFOXJUMPSOVERTHELAZYDOG',
+                },
+            ],
+            explanation: '样例中由 `A -> D` 可知偏移量为 3，因此解密时把待破解密文中的每个字符都逆向偏移 3 位。',
+            tags: ['编程题', '字符串', '模拟'],
+            template: '#include <iostream>\n#include <cstring>\nusing namespace std;\n\nint main() {\n    string s1, s2, s3;\n    cin >> s1 >> s2 >> s3;\n    // 在此编写代码\n    return 0;\n}',
+            referenceCode: '#include <iostream>\n#include <cstring>\nusing namespace std;\n\nint main() {\n    string s1, s2, s3;\n    cin >> s1 >> s2 >> s3;\n    int d = s1[0] - s2[0];\n    d = (d % 26 + 26) % 26;\n    for (int i = 0; i < s3.length(); i++) {\n        int ch = (s3[i] - \'A\' + d) % 26;\n        cout << (char)(ch + \'A\');\n    }\n    return 0;\n}',
+        },
     ],
 };

@@ -129,7 +129,7 @@ function processFileSafe(filePath) {
                 // Check if already reformed (only if it has Format A structure)
                 if (existingQuestionNode && !code.substring(pathNode.node.start, pathNode.node.end).includes('description:')) {
                     const oldTextRaw = code.substring(existingQuestionNode.start, existingQuestionNode.end);
-                    if (oldTextRaw.includes('# [GESP')) {
+                    if (oldTextRaw.includes('# ')) { // Any header means it's already processed
                         console.log("  Skipping Q" + qId + " (already formatted)");
                         return;
                     }

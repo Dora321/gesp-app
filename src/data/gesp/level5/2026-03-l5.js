@@ -5,72 +5,42 @@ const programmingQuestions = [
     {
       id: 26,
       type: 'programming',
-      question: `
-# 编程题
-
-
-# 编程题
-
-
-# 编程题
-
-
-# 有限不循环小数
-
-## 题目描述
-
-若最简分数 a / b 可以化为一个有限的、不循环的小数，则称 b 为终止数。请你求出在区间 [L, R] 中终止数的数量。
-
-## 输入格式
-
-输入一行，包含两个整数 L 和 R。
-
-## 输出格式
-
-输出一行，包含一个整数，表示 L 到 R 中终止数的数量。
-`,
+      title: '有限不循环小数',
+      problemNumber: 'P15798',
       score: 25,
+      description: '若最简分数 a / b 可以化为一个有限的、不循环的小数，则称 b 为终止数。请你求出在区间 [L, R] 中终止数的数量。',
+      inputDescription: '输入一行，包含两个整数 L 和 R。',
+      outputDescription: '输出一行，包含一个整数，表示 L 到 R 中终止数的数量。',
+      samples: [
+        {
+          input: '2 111',
+          output: '51'
+        }
+      ],
       explanation: "一个正整数能作为最简分数分母并得到有限小数，当且仅当它的质因数分解中只包含 2 和 5。枚举区间内每个数，不断除去 2 和 5，最后剩 1 就是终止数。",
       tags: ["编程题", "数论", "枚举"],
       template: "#include <iostream>\nusing namespace std;\n\nint main() {\n    int l, r;\n    cin >> l >> r;\n    // 在此编写代码\n    return 0;\n}",
       referenceCode: "#include <iostream>\nusing namespace std;\n\nint main() {\n    int l, r, ans = 0;\n    cin >> l >> r;\n    for (int i = l; i <= r; i++) {\n        int t = i;\n        while (t && t % 2 == 0) t /= 2;\n        while (t && t % 5 == 0) t /= 5;\n        if (t == 1) ans++;\n    }\n    cout << ans;\n    return 0;\n}",
-      answer: '',
-      problemNumber: 'P15798',
     },
     {
       id: 27,
       type: 'programming',
-      question: `
-# 编程题
-
-
-# 编程题
-
-
-# 编程题
-
-
-# 找数
-
-## 题目描述
-
-给定一个包含 n 个互不相同的正整数的数组 A，以及一个包含 m 个互不相同的正整数的数组 B。输出一个整数，表示在数组 A 与数组 B 中均出现的数的个数。
-
-## 输入格式
-
-第一行包含两个整数 n, m。第二行包含 n 个正整数 a_i 表示数组 A。第三行包含 m 个正整数 b_i 表示数组 B。
-
-## 输出格式
-
-输出一个整数，表示在数组 A 与数组 B 中均出现的数的个数。
-`,
+      title: '找数',
+      problemNumber: 'P15799',
       score: 25,
+      description: '给定一个包含 n 个互不相同的正整数的数组 A，以及一个包含 m 个互不相同的正整数的数组 B。输出一个整数，表示在数组 A 与数组 B 中均出现的数的个数。',
+      inputDescription: '第一行包含两个整数 n, m。第二行包含 n 个正整数 a_i 表示数组 A。第三行包含 m 个正整数 b_i 表示数组 B。',
+      outputDescription: '输出一个整数，表示在数组 A 与数组 B 中均出现的数的个数。',
+      samples: [
+        {
+          input: '3 5\n4 2 3\n3 1 5 4 6',
+          output: '2'
+        }
+      ],
       explanation: "先把数组 A 排序。随后依次读入数组 B 中的每个数，用二分查找判断它是否在 A 中出现；出现就把答案加一。",
       tags: ["编程题", "二分查找", "排序"],
       template: "#include <iostream>\n#include <vector>\n#include <algorithm>\nusing namespace std;\n\nint main() {\n    int n, m;\n    cin >> n >> m;\n    // 在此编写代码\n    return 0;\n}",
       referenceCode: "#include <iostream>\n#include <vector>\n#include <algorithm>\nusing namespace std;\n\nint main() {\n    int n, m, l, r, mid;\n    bool ok;\n    cin >> n >> m;\n    vector<int> a(n);\n    for (int i = 0; i < n; i++) cin >> a[i];\n    sort(a.begin(), a.end());\n    int ans = 0;\n    for (int i = 0, b; i < m; i++) {\n        cin >> b;\n        ok = false;\n        l = 0;\n        r = n - 1;\n        while (l <= r) {\n            mid = l + (r - l) / 2;\n            if (a[mid] > b) r = mid - 1;\n            else if (a[mid] < b) l = mid + 1;\n            else {\n                ok = true;\n                break;\n            }\n        }\n        if (ok) ans++;\n    }\n    cout << ans;\n    return 0;\n}",
-      answer: '',
-      problemNumber: 'P15799',
     }
 ];
 
