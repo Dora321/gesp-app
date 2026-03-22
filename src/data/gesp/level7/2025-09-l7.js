@@ -4,6 +4,8 @@ const programmingQuestions = [
     {
       id: 26,
       type: 'programming',
+      samples: [{ input: '待补充', output: '待补充' }],
+      referenceCode: '// 待补充',
       question: `
 # [GESP202509 七级] 连通图
 
@@ -29,11 +31,14 @@ const programmingQuestions = [
       tags: ["编程题", "图论", "并查集", "连通块"],
       template: "#include <bits/stdc++.h>\nusing namespace std;\n\nint main() {\n    ios::sync_with_stdio(false);\n    cin.tie(nullptr);\n\n    int n, m;\n    cin >> n >> m;\n    // 在此编写代码\n    return 0;\n}",
       referenceCode: "#include <bits/stdc++.h>\nusing namespace std;\n\nstruct DSU {\n    vector<int> p, sz;\n    DSU(int n) : p($n+1$), sz($n+1$, 1) {\n        iota(p.begin(), p.end(), 0);\n    }\n    int find(int x) {\n        return p[x] == x ? x : p[x] = find(p[x]);\n    }\n    void unite(int a, int b) {\n        a = find(a);\n        b = find(b);\n        if (a == b) return;\n        if (sz[a] < sz[b]) swap(a, b);\n        p[b] = a;\n        sz[a] += sz[b];\n    }\n};\n\nint main() {\n    ios::sync_with_stdio(false);\n    cin.tie(nullptr);\n\n    int n, m;\n    cin >> n >> m;\n    DSU dsu(n);\n    for (int i = 0; i < m; ++i) {\n        int u, v;\n        cin >> u >> v;\n        dsu.unite(u, v);\n    }\n\n    int components = 0;\n    for (int i = 1; i <= n; ++i) {\n        if (dsu.find(i) == i) components++;\n    }\n    cout << components-1 << '\n';\n    return 0;\n}",
+      score: 25,
       answer: '',
     },
     {
       id: 27,
       type: 'programming',
+      samples: [{ input: '待补充', output: '待补充' }],
+      referenceCode: '// 待补充',
       question: `
 # [GESP202509 七级] 金币收集
 
@@ -59,6 +64,7 @@ const programmingQuestions = [
       tags: ["编程题", "贪心", "最长不下降子序列", "排序"],
       template: "#include <bits/stdc++.h>\nusing namespace std;\n\nint main() {\n    ios::sync_with_stdio(false);\n    cin.tie(nullptr);\n\n    int n;\n    cin >> n;\n    // 在此编写代码\n    return 0;\n}",
       referenceCode: "#include <bits/stdc++.h>\nusing namespace std;\n\nstruct Coin {\n    int x, t, v;\n};\n\nint main() {\n    ios::sync_with_stdio(false);\n    cin.tie(nullptr);\n\n    int n;\n    cin >> n;\n    vector<Coin> coins;\n    coins.reserve(n);\n    for (int i = 0; i < n; ++i) {\n        int x, t;\n        cin >> x >> t;\n        if (t >= x) coins.push_back({x, t, t-x});\n    }\n\n    sort(coins.begin(), coins.end(), [](const Coin& a, const Coin& b) {\n        if (a.x != b.x) return a.x < b.x;\n        return a.t < b.t;\n    });\n\n    vector<int> lis;\n    for (auto &coin : coins) {\n        auto it = upper_bound(lis.begin(), lis.end(), coin.v);\n        if (it == lis.end()) lis.push_back(coin.v);\n        else *it = coin.v;\n    }\n\n    cout << lis.size() << '\n';\n    return 0;\n}",
+      score: 25,
       answer: '',
     }
 ];
@@ -210,7 +216,7 @@ export const paperData = {
             type: "single",
             question: "对一个包含 个顶点、 条边的图，执⾏⼴度优先搜索，其最优时间复杂度是（ ）。",
             options: [
-                "选项A",
+                "[待补充选项]",
                 "选项B",
                 "选项C",
                 "选项D",
@@ -286,7 +292,7 @@ export const paperData = {
             type: "single",
             question: "下面程序的时间复杂度为（ ）。",
             options: [
-                "选项A",
+                "[待补充选项]",
                 "选项B",
                 "选项C",
                 "选项D",
@@ -305,7 +311,7 @@ export const paperData = {
             type: "single",
             question: "下面init_sieve函数的时间复杂度为 ( ) 。",
             options: [
-                "选项A",
+                "[待补充选项]",
                 "选项B",
                 "选项C",
                 "选项D",
@@ -324,7 +330,7 @@ export const paperData = {
             type: "single",
             question: "下面count_triple函数的时间复杂度为 ( ) 。 #include <iostream> using namespace std; int fib(int n) { if (n == 0) return 1; return fib(n-1)+fib(n-2); } int main() { cout << fib(6) << endl; return 0; } 1 2 3 4 5 6 7 8 9 10 11 int rec_fib[MAX_N]; int fib(int n) { if (n <= 1) return n; if (rec_fib[n] != 0) return rec_fib[n]; return fib(n-1)+fib(n-2); } 1 2 3 4 5 6 7 8 int sieve[MAX_N]; void init_sieve(int n) { for (int i = 1; i <= n; i++) sieve[i] = i; for (int i = 2; i <= n; i++) for (int j = i; j <= n; j += i) sieve[j]--; } 1 2 3 4 5 6 7 8 int gcd(int m, int n) { if (m == 0) return n; return gcd(n % m, m); } int count_triple(int n) { 1 2 3 4 5 题号 1 2 3 4 5 6 7 8 9 10 答案",
             options: [
-                "选项A",
+                "[待补充选项]",
                 "选项B",
                 "选项C",
                 "选项D",

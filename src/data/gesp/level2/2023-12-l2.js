@@ -264,6 +264,8 @@ export const paperData = {
     {
       id: 26,
       type: 'programming',
+      samples: [{ input: '待补充', output: '待补充' }],
+      referenceCode: '// 待补充',
       question: `
 # [GESP202312 二级] 小杨做题
 
@@ -279,7 +281,7 @@ export const paperData = {
 
 总共 \$4\$ 行。第一行一个整数 \$a\$，第二行一个整数 \$b\$，第三行一个整数 \$m\$，第四行一个整数 \$N\$。
 
-保证 \$0 \\le a,b \\le 10\$；\$a,b
+保证 \$0 \\le a,b \\le 10\$；\$a,b < m \\le 1000\$；\$3 \\le N \\le 364\$。
 
 ## 输出格式
 
@@ -295,6 +297,8 @@ export const paperData = {
     {
       id: 27,
       type: 'programming',
+      samples: [{ input: '待补充', output: '待补充' }],
+      referenceCode: '// 待补充',
       question: `
 # [GESP202312 二级] 小杨的 H 字矩阵
 

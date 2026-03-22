@@ -4,6 +4,8 @@ const programmingQuestions = [
     {
       id: 26,
       type: 'programming',
+      samples: [{ input: '待补充', output: '待补充' }],
+      referenceCode: '// 待补充',
       question: `
 # [GESP202312 五级] 小杨的幸运数
 
@@ -37,6 +39,8 @@ const programmingQuestions = [
     {
       id: 27,
       type: 'programming',
+      samples: [{ input: '待补充', output: '待补充' }],
+      referenceCode: '// 待补充',
       question: `
 # [GESP202312 五级] 烹饪问题
 

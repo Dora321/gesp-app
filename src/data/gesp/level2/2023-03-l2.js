@@ -264,6 +264,8 @@ export const paperData = {
         {
             id: 26,
             type: 'programming',
+            samples: [{ input: '待补充', output: '待补充' }],
+            referenceCode: '// 待补充',
             explanation: '暂无解析',
             template: `#include <bits/stdc++.h>\nusing namespace std;\n\nint main() {\n    // 在此填写代码\n    return 0;\n}`,
             score: 25,
@@ -285,6 +287,8 @@ export const paperData = {
         {
             id: 27,
             type: 'programming',
+            samples: [{ input: '待补充', output: '待补充' }],
+            referenceCode: '// 待补充',
             explanation: '暂无解析',
             template: `#include <bits/stdc++.h>\nusing namespace std;\n\nint main() {\n    // 在此填写代码\n    return 0;\n}`,
             score: 25,

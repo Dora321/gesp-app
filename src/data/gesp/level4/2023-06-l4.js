@@ -341,6 +341,8 @@ const programmingQuestions = [
     {
       id: 26,
       type: 'programming',
+      samples: [{ input: '待补充', output: '待补充' }],
+      referenceCode: '// 待补充',
       question: `
 # [GESP202306 三级] 春游
 
@@ -360,37 +362,14 @@ const programmingQuestions = [
       score: 25,
       answer: "#include <iostream>\nusing namespace std;\nvoid solve() {\n    long long x; cin >> x;\n    int sum = 0;\n    while (x > 0) {\n        sum += x % 10;\n        x /= 10;\n    }\n    if (sum % 7 == 0) cout << 1 << endl;\n    else cout << 0 << endl;\n}\nint main() {\n    int n; cin >> n;\n    while (n--) solve();\n    return 0;\n}",
       explanation: "对每个数计算各位数字之和，判断 sum % 7 == 0。注意输入可能达到 10^18，需要用 long long。LuoGu B3850。",
+      template: "#include <bits/stdc++.h>\nusing namespace std;\n\nint main() {\n    ios::sync_with_stdio(false);\n    cin.tie(nullptr);\n\n    // 在此编写代码\n\n    return 0;\n}",
+      template: "#include <bits/stdc++.h>\nusing namespace std;\n\nint main() {\n    ios::sync_with_stdio(false);\n    cin.tie(nullptr);\n\n    // 在此编写代码\n\n    return 0;\n}",
       tags: ["编程题", "模拟"],
       template: "#include <iostream>\nusing namespace std;\n\nint main() {\n    int n;\n    cin >> n;\n    // 在此编写代码\n    return 0;\n}",
-      referenceCode: "#include <iostream>\nusing namespace std;\nvoid solve() {\n    long long x; cin >> x;\n    int sum = 0;\n    while (x > 0) {\n        sum += x % 10;\n        x /= 10;\n    }\n    if (sum % 7 == 0) cout << 1 << endl;\n    else cout << 0 << endl;\n}\nint main() {\n    int n; cin >> n;\n    while (n--) solve();\n    return 0;\n}",
-    },
-    {
-      id: 27,
-      type: 'programming',
-      question: `
-# [GESP202306 三级] 密码合规
-
-## 题目描述
-
-网站注册需要有用户名和密码，编写程序以检查用户输入密码的有效性。合规的密码应满足以下要求 :
-
-1. 只能由 \$\\texttt a \\sim \\texttt z\$ 之间 \$26\$ 个小写字母、\$\\texttt A \\sim \\texttt Z\$ 之间 \$26\$ 个大写字母、\$0 \\sim 9\$ 之间 \$10\$ 个数字以及 \`!@#\$\` 四个特殊字符构成。
-
-2. 密码最短长度 \$:6\$ 个字符，密码最大长度 \$:12\$ 个字符。
-
-3. 大写字母，小写字母和数字必须至少有其中两种，以及至少有四个特殊字符中的一个。
-
-## 输入格式
-
-输入一行不含空格的字符串。约定长度不超过 \$100\$。该字符串被英文逗号分隔为多段，作为多组被检测密码。
-
-## 输出格式
-
-输出若干行，每行输出一组合规的密码。输出顺序以输入先后为序，即先输入则先输出。
-`,
-      score: 25,
-      answer: "#include <iostream>\n#include <vector>\nusing namespace std;\nint main() {\n    int n, k; cin >> n >> k;\n    int step = 256 / k;\n    for (int i = 0; i < n; i++) {\n        for (int j = 0; j < n; j++) {\n            int x; cin >> x;\n            cout << x / step << (j == n-1 ? \"\" : \" \");\n        }\n        cout << endl;\n    }\n    return 0;\n}",
+      referenceCode: "#include <iostream>\nusing namespace std;\nvoid solve() {\n    long long x; cin >> x;\n    int sum = 0;\n    while (x > 0) {\n        sum += x % 10;\n        x /= 10;\n    }\n    if (sum % 7 == 0) cout << 1 << endl;\n    else cout << 0 << endl;\n}\nint main() {\n    int n; cin >> n;\n    while (n--) solve();\n    return 0;\n1. 只能由 $\\texttt a \\sim \\texttt z$ 之间 $26$ 个小写字母、$\\texttt A \\sim \\texttt Z$ 之间 $26$ 个大写字母、$0 \\sim 9$ 之间 $10$ 个数字以及 \`!@#\\$\` 四个特殊字符构成。\n#include <vector>\nusing namespace std;\nint main() {\n    int n, k; cin >> n >> k;\n    int step = 256 / k;\n    for (int i = 0; i < n; i++) {\n        for (int j = 0; j < n; j++) {\n            int x; cin >> x;\n            cout << x / step << (j == n-1 ? \"\" : \" \");\n        }\n        cout << endl;\n    }\n    return 0;\n}",
       explanation: "每个像素值除以 (256 / k) 即可得到映射值。LuoGu B3851。",
+      template: "#include <bits/stdc++.h>\nusing namespace std;\n\nint main() {\n    ios::sync_with_stdio(false);\n    cin.tie(nullptr);\n\n    // 在此编写代码\n\n    return 0;\n}",
+      template: "#include <bits/stdc++.h>\nusing namespace std;\n\nint main() {\n    ios::sync_with_stdio(false);\n    cin.tie(nullptr);\n\n    // 在此编写代码\n\n    return 0;\n}",
       tags: ["编程题", "二维数组", "模拟"],
       template: "#include <iostream>\n#include <vector>\nusing namespace std;\n\nint main() {\n    int n, k;\n    cin >> n >> k;\n    // 在此编写代码\n    return 0;\n}",
       referenceCode: "#include <iostream>\n#include <vector>\nusing namespace std;\nint main() {\n    int n, k; cin >> n >> k;\n    int step = 256 / k;\n    for (int i = 0; i < n; i++) {\n        for (int j = 0; j < n; j++) {\n            int x; cin >> x;\n            cout << x / step << (j == n-1 ? \"\" : \" \");\n        }\n        cout << endl;\n    }\n    return 0;\n}",

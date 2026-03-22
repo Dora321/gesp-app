@@ -289,6 +289,8 @@ export const paperData = {
     {
       id: 26,
       type: 'programming',
+      samples: [{ input: '待补充', output: '待补充' }],
+      referenceCode: '// 待补充',
       question: `
 # [GESP202403 一级] 小杨买书
 
@@ -313,6 +315,8 @@ export const paperData = {
     {
       id: 27,
       type: 'programming',
+      samples: [{ input: '待补充', output: '待补充' }],
+      referenceCode: '// 待补充',
       question: `
 # [GESP202403 一级] 找因数
 

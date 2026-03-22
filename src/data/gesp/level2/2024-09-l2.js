@@ -263,6 +263,8 @@ export const paperData = {
     {
       id: 26,
       type: 'programming',
+      samples: [{ input: '待补充', output: '待补充' }],
+      referenceCode: '// 待补充',
       question: `
 # [GESP202409 二级] 数位之和
 
@@ -291,6 +293,8 @@ export const paperData = {
     {
       id: 27,
       type: 'programming',
+      samples: [{ input: '待补充', output: '待补充' }],
+      referenceCode: '// 待补充',
       question: `
 # [GESP202409 二级] 小杨的 N 字矩阵
 

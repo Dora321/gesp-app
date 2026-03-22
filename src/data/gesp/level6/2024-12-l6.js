@@ -4,6 +4,8 @@ const programmingQuestions = [
     {
       id: 26,
       type: 'programming',
+      samples: [{ input: '待补充', output: '待补充' }],
+      referenceCode: '// 待补充',
       question: `
 # [GESP202412 六级] 树上游走
 
@@ -39,6 +41,8 @@ const programmingQuestions = [
     {
       id: 27,
       type: 'programming',
+      samples: [{ input: '待补充', output: '待补充' }],
+      referenceCode: '// 待补充',
       question: `
 # [GESP202412 六级] 运送物资
 
@@ -161,7 +165,7 @@ export const paperData = {
             type: "single",
             question: "个节点的双向循环链，在其中查找某个节点的平均时间复杂度是 ( ) 。",
             options: [
-                "选项A",
+                "[待补充选项]",
                 "选项B",
                 "选项C",
                 "选项D",
@@ -180,7 +184,7 @@ export const paperData = {
             type: "single",
             question: "以下关于树的说法，（ ）是正确的。",
             options: [
-                "选项A",
+                "[待补充选项]",
                 "选项B",
                 "选项C",
                 "选项D",
@@ -199,7 +203,7 @@ export const paperData = {
             type: "single",
             question: "已知字符集 {A, B, C, D} 的出现频率如下表所⽰： void processData() { stack<int> s; queue<int> q; for (int i = 1; i <= 5; ++i) { s.push(i); q.push(i); } while (!s.empty()) { cout << \"Stack pop: \" << s.top() << endl; s.pop(); } while (!q.empty()) { cout << \"Queue pop: \" << q.front() << endl; q.pop(); } } 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 字符 频率 A 8 B 3 C 1 D 6 根据哈夫曼编码法，下面（ ）是正确的哈夫曼树。",
             options: [
-                "选项A",
+                "[待补充选项]",
                 "选项B",
                 "选项C",
                 "选项D",
@@ -256,7 +260,7 @@ export const paperData = {
             type: "single",
             question: "根据下面二叉树和给定的代码， 给定以下二叉搜索树，调用函数 search(root,7) 时，输出的结果是（ ）。",
             options: [
-                "选项A",
+                "[待补充选项]",
                 "选项B",
                 "选项C",
                 "选项D",
@@ -313,7 +317,7 @@ export const paperData = {
             type: "single",
             question: "使用上题中的宽度优先搜索算法遍历以下这棵树，可能的输出是 ( ) 。 s.push(root); while (!s.empty()) { ———————————————————————— // 在此处填入代码 cout << node->value << \" \"; if (node->right) s.push(node->right); if (node->left) s.push(node->left); } } 6 7 8 9 10 11 12 13 14 #include <queue> void bfs(TreeNode* root) { if (root == NULL) return; queue<TreeNode*> q; q.push(root); while (!q.empty()) { ———————————————————————— // 在此处填入代码 cout << node->val << \" \"; if (node->left) { q.push(node->left); } if (node->right) { q.push(node->right); } } } 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 1 / \ 2 3 / \ \ 8 9 6 / \ \ 4 5 7 1 2 3 4 5 6 7 题号 1 2 3 4 5 6 7 8 9 10 答案",
             options: [
-                "选项A",
+                "[待补充选项]",
                 "选项B",
                 "选项C",
                 "选项D",

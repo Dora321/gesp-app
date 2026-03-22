@@ -4,6 +4,8 @@ const programmingQuestions = [
     {
       id: 26,
       type: 'programming',
+      samples: [{ input: '待补充', output: '待补充' }],
+      referenceCode: '// 待补充',
       question: `
 # [GESP202406 五级] 黑白格
 
@@ -33,6 +35,8 @@ const programmingQuestions = [
     {
       id: 27,
       type: 'programming',
+      samples: [{ input: '待补充', output: '待补充' }],
+      referenceCode: '// 待补充',
       question: `
 # [GESP202406 五级] 小杨的幸运数字
 

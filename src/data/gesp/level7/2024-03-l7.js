@@ -4,6 +4,8 @@ const programmingQuestions = [
     {
       id: 26,
       type: 'programming',
+      samples: [{ input: '待补充', output: '待补充' }],
+      referenceCode: '// 待补充',
       question: `
 # [GESP202403 七级] 交流问题
 
@@ -29,11 +31,14 @@ const programmingQuestions = [
       tags: ["编程题", "图论", "二分图", "DFS"],
       template: "#include <bits/stdc++.h>\nusing namespace std;\n\nint main() {\n    ios::sync_with_stdio(false);\n    cin.tie(nullptr);\n    return 0;\n}",
       referenceCode: "#include <bits/stdc++.h>\nusing namespace std;\n\nint main() {\n    ios::sync_with_stdio(false);\n    cin.tie(nullptr);\n\n    int n, m;\n    cin >> n >> m;\n    vector<vector<int>> g($n+1$);\n    for (int i = 0; i < m; ++i) {\n        int u, v;\n        cin >> u >> v;\n        g[u].push_back(v);\n        g[v].push_back(u);\n    }\n\n    vector<int> color($n+1$, -1);\n    int mn = 0, mx = 0;\n    for (int i = 1; i <= n; ++i) if (color[i] == -1) {\n        queue<int> q;\n        q.push(i);\n        color[i] = 0;\n        int cnt[2] = {1, 0};\n        while (!q.empty()) {\n            int u = q.front(); q.pop();\n            for (int v : g[u]) if (color[v] == -1) {\n                color[v] = color[u] ^ 1;\n                cnt[color[v]]++;\n                q.push(v);\n            }\n        }\n        mn += min(cnt[0], cnt[1]);\n        mx += max(cnt[0], cnt[1]);\n    }\n    cout << mn << ' ' << mx << '\\n';\n    return 0;\n}",
+      score: 25,
       answer: '',
     },
     {
       id: 27,
       type: 'programming',
+      samples: [{ input: '待补充', output: '待补充' }],
+      referenceCode: '// 待补充',
       question: `
 # [GESP202403 七级] 俄罗斯方块
 
@@ -62,6 +67,7 @@ const programmingQuestions = [
       tags: ["编程题", "搜索", "连通块", "哈希"],
       template: "#include <bits/stdc++.h>\nusing namespace std;\n\nint main() {\n    ios::sync_with_stdio(false);\n    cin.tie(nullptr);\n    return 0;\n}",
       referenceCode: "#include <bits/stdc++.h>\nusing namespace std;\n\nint main() {\n    ios::sync_with_stdio(false);\n    cin.tie(nullptr);\n\n    int n, m;\n    cin >> n >> m;\n    vector<vector<int>> a(n, vector<int>(m));\n    for (int i = 0; i < n; ++i) for (int j = 0; j < m; ++j) cin >> a[i][j];\n    vector<vector<int>> vis(n, vector<int>(m, 0));\n    set<vector<pair<int,int>>> shapes;\n    int dx[4] = {-1,1,0,0};\n    int dy[4] = {0,0,-1,1};\n    for (int i = 0; i < n; ++i) for (int j = 0; j < m; ++j) if (!vis[i][j]) {\n        int color = a[i][j];\n        queue<pair<int,int>> q;\n        vector<pair<int,int>> cells;\n        q.push({i,j}); vis[i][j]=1;\n        while(!q.empty()){\n            auto [x,y]=q.front(); q.pop();\n            cells.push_back({x,y});\n            for(int d=0;d<4;++d){\n                int nx=x+dx[d], ny=y+dy[d];\n                if(nx<0||nx>=n||ny<0||ny>=m||vis[nx][ny]||a[nx][ny]!=color) continue;\n                vis[nx][ny]=1; q.push({nx,ny});\n            }\n        }\n        int minx = n, miny = m;\n        for (auto [x,y]: cells) minx=min(minx,x), miny=min(miny,y);\n        vector<pair<int,int>> norm;\n        for (auto [x,y]: cells) norm.push_back({x-minx,y-miny});\n        sort(norm.begin(), norm.end());\n        shapes.insert(norm);\n    }\n    cout << shapes.size() << '\\n';\n    return 0;\n}",
+      score: 25,
       answer: '',
     }
 ];
@@ -271,7 +277,7 @@ export const paperData = {
             type: "single",
             question: "下面schedule函数的时间复杂度为 ( ) 。",
             options: [
-                "选项A",
+                "[待补充选项]",
                 "选项B",
                 "选项C",
                 "选项D",
@@ -290,7 +296,7 @@ export const paperData = {
             type: "single",
             question: "下面search函数的平均时间复杂度为 ( ) 。 #include <algorithm> using namespace std; struct activity { int id, start, end; }; bool compare(activity a, activity b) { return a.end < b.end; } int schedule(int n, activity * p) { sort(p, p+n, compare); int cnt = 0, end = 0; for (int i = 0; i < n; i++) { if (p[i].start >= end) { end = p[i].end; cnt++; } } return cnt; } 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19",
             options: [
-                "选项A",
+                "[待补充选项]",
                 "选项B",
                 "选项C",
                 "可能无法返回",
@@ -309,7 +315,7 @@ export const paperData = {
             type: "single",
             question: "下面count_triple函数的时间复杂度为 ( ) 。",
             options: [
-                "选项A",
+                "[待补充选项]",
                 "选项B",
                 "选项C",
                 "选项D",

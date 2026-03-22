@@ -4,6 +4,8 @@ const programmingQuestions = [
     {
       id: 26,
       type: 'programming',
+      samples: [{ input: '待补充', output: '待补充' }],
+      referenceCode: '// 待补充',
       question: `
 # [GESP202309 六级] 小杨买饮料
 
@@ -41,6 +43,8 @@ const programmingQuestions = [
     {
       id: 27,
       type: 'programming',
+      samples: [{ input: '待补充', output: '待补充' }],
+      referenceCode: '// 待补充',
       question: `
 # [GESP202309 六级] 小杨的握手问题
 
@@ -297,7 +301,7 @@ export const paperData = {
             type: "single",
             question: "个节点的二叉搜索树，其查找的平均时间复杂度为（ ）。",
             options: [
-                "选项A",
+                "[待补充选项]",
                 "选项B",
                 "选项C",
                 "选项D",
@@ -335,7 +339,7 @@ export const paperData = {
             type: "single",
             question: "个节点的双向循环链，在其中查找某个节点的平均时间复杂度是（ ）。",
             options: [
-                "选项A",
+                "[待补充选项]",
                 "题号 1 2 3 4 5 6 7 8 9 10 答案",
                 "选项C",
                 "选项D",

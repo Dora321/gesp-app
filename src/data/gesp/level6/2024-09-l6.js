@@ -4,6 +4,8 @@ const programmingQuestions = [
     {
       id: 26,
       type: 'programming',
+      samples: [{ input: '待补充', output: '待补充' }],
+      referenceCode: '// 待补充',
       question: `
 # [GESP202409 六级] 小杨和整数拆分
 
@@ -31,6 +33,8 @@ const programmingQuestions = [
     {
       id: 27,
       type: 'programming',
+      samples: [{ input: '待补充', output: '待补充' }],
+      referenceCode: '// 待补充',
       question: `
 # [GESP202409 六级] 算法学习
 
@@ -284,7 +288,7 @@ export const paperData = {
             type: "single",
             question: "二叉搜索树中的每个结点，其左子树的所有结点值都小于该结点值，右子树的所有结点值都大于该结点 值。以下代码对给定的整数数组 ( 假设数组中没有数值相等的元素 ) ，构造一个对应的二叉搜索树，横线上应填写（ ） : ———————————————————————— // 在此处填入代码 } 18 19 20 #include <queue> int max_depth_bfs(tree_node* root) { if (root == nullptr) { return 0; // 如果树为空，深度为 0 } queue <tree_node*> q; q.push(root); int depth = 0; // 使用队列进行层序遍历 while (!q.empty()) { ———————————————————————— // 在此处填入代码 for (int i = 0; i < level_size; ++i) { tree_node* node = q.front(); q.pop(); if (node->left) { q.push(node->left); } if (node->right) { q.push(node->right); } } } return depth; } 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27 28 29",
             options: [
-                "选项A",
+                "[待补充选项]",
                 "选项B",
                 "选项C",
                 "// 定义二叉树的结点结构 struct tree_node { int val; tree_node* left; tree_node* right; tree_node(int x) : val(x), left(nullptr), right(nullptr) {} }; // 插入结点到二叉搜索树中 tree_node* insert(tree_node* root, int val) { if (root == nullptr) { return new tree_node(val); } ———————————————————————— // 在此处填入代码 return root; } // 根据给定数组构造二叉搜索树 tree_node* constructBST(const int arr[], int size) { tree_node* root = nullptr; for (int i = 0; i < size; ++i) { root = insert(root, arr[i]); } return root; } 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27 28 29 if (val < root->val) root->left = insert(root->left, val); else root->right = insert(root->right, val); 1 2 3 4 if (val > root->val) root->left = insert(root->left, val); else root->right = insert(root->right, val); 1 2 3 4 if (val < root->val) root->left = insert(root, val); else root->right = insert(root, val); 1 2 3 4",
@@ -303,7 +307,7 @@ export const paperData = {
             type: "single",
             question: "对上题中的二叉搜素树，当输入数组为 时，构建二叉搜索树，并采用如下代码实现的遍历方式，得到 的输出是（ ）。",
             options: [
-                "选项A",
+                "[待补充选项]",
                 "选项B",
                 "选项C",
                 "选项D",

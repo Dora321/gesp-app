@@ -1,23 +1,4 @@
-// 2023年12月 GESP C++ 七级真题
-
-const programmingQuestions = [
-    {
-      id: 26,
-      type: 'programming',
-      question: `
-# [GESP202312 七级] 商品交易
-
-## 题目描述
-
-市场上共有 \$N\$ 种商品，编号从 \$0\$ 至 \$N-1\$ ，其中，第 \$i\$ 种商品价值 \$v_i\$ 元。
-
-现在共有 \$M\$ 个商人，编号从 \$0\$ 至 \$M-1\$ 。在第 \$j\$ 个商人这，你可以使用你手上的第 \$x_j\$ 种商品交换商人手上的第 \$y_j\$ 种商品。每个商人都会按照商品价值进行交易，具体来说，如果 \$v_{x_j}>v_{y_j}\$，他将会付给你 \$v_{x_j}-v_{y_j}\$元钱；否则，那么你需要付给商人 \$v_{y_j}-v_{x_j}\$ 元钱。除此之外，每次交易商人还会收取 \$1\$ 元作为手续费，不论交易商品的价值孰高孰低。
-
-你现在拥有商品 \$a\$ ，并希望通过一些交换来获得商品 \$b\$ 。请问你至少要花费多少钱？（当然，这个最小花费也可能是负数，这表示你可以在完成目标的同时赚取一些钱。）
-
-## 输入格式
-
-第一行四个整数 \$N , M , a , b\$，分别表示商品的数量、商人的数量、你持有的商品以及你希望获得的商品。保证 \$0 \\le a,b < N\$ ，保证 \$a \\ne b\$。
+第一行四个整数 $N , M , a , b$，分别表示商品的数量、商人的数量、你持有的商品以及你希望获得的商品。保证 $0 \\le a,b < N$ ，保证 $a \\ne b$。\ne b\$。
 
 第二行 \$N\$ 个用单个空格隔开的正整数 \$v_0,v_1,…,v_{N-1}\$ ，依次表示每种商品的价值。保证 \$1≤v_i≤10^9\$。
 
@@ -32,11 +13,14 @@ const programmingQuestions = [
       tags: ["编程题", "图论", "最短路"],
       template: "#include <bits/stdc++.h>\nusing namespace std;\n\nint main() {\n    ios::sync_with_stdio(false);\n    cin.tie(nullptr);\n    return 0;\n}",
       referenceCode: "#include <bits/stdc++.h>\nusing namespace std;\n\nint main() {\n    ios::sync_with_stdio(false);\n    cin.tie(nullptr);\n\n    int n, m, s, t;\n    cin >> n >> m >> s >> t;\n    vector<long long> val(n);\n    for (int i = 0; i < n; ++i) cin >> val[i];\n    vector<vector<pair<int,long long>>> g(n);\n    for (int i = 0; i < m; ++i) {\n        int x, y;\n        cin >> x >> y;\n        long long w = 1+val[y]-val[x];\n        g[x].push_back({y, w});\n    }\n\n    const long long INF = (1LL << 60);\n    vector<long long> dist(n, INF);\n    vector<int> inq(n, 0), cnt(n, 0);\n    queue<int> q;\n    dist[s] = 0;\n    q.push(s);\n    inq[s] = 1;\n    while (!q.empty()) {\n        int u = q.front(); q.pop();\n        inq[u] = 0;\n        for (auto [v, w] : g[u]) {\n            if (dist[u] != INF && dist[v] > dist[u]+w) {\n                dist[v] = dist[u]+w;\n                if (!inq[v]) {\n                    q.push(v);\n                    inq[v] = 1;\n                }\n            }\n        }\n    }\n    if (dist[t] == INF) cout << \"No solution\\n\";\n    else cout << dist[t] << '\\n';\n    return 0;\n}",
+      score: 25,
       answer: '',
     },
     {
       id: 27,
       type: 'programming',
+      samples: [{ input: '待补充', output: '待补充' }],
+      referenceCode: '// 待补充',
       question: `
 # [GESP202312 七级] 纸牌游戏
 
@@ -70,6 +54,7 @@ _i\\in{0,1,2}\$。
       tags: ["编程题", "动态规划"],
       template: "#include <bits/stdc++.h>\nusing namespace std;\n\nint main() {\n    ios::sync_with_stdio(false);\n    cin.tie(nullptr);\n    return 0;\n}",
       referenceCode: "#include <bits/stdc++.h>\nusing namespace std;\n\nint score(int me, int he, int winScore) {\n    if ((me == 1 && he == 0) || (me == 2 && he == 1) || (me == 0 && he == 2)) return 2 * winScore;\n    if (me == he) return winScore;\n    return 0;\n}\n\nint main() {\n    ios::sync_with_stdio(false);\n    cin.tie(nullptr);\n\n    int n;\n    cin >> n;\n    vector<int> a($n+1$), b($n+1$, 0), c($n+1$);\n    for (int i = 1; i <= n; ++i) cin >> a[i];\n    for (int i = 1; i < n; ++i) cin >> b[i];\n    for (int i = 1; i <= n; ++i) cin >> c[i];\n\n    const int NEG = -1e9;\n    vector<vector<int>> dp(3, vector<int>($n+1$, NEG));\n    for (int k = 0; k < 3; ++k) dp[k][0] = score(k, c[1], a[1]);\n\n    for (int i = 2; i <= n; ++i) {\n        vector<vector<int>> ndp(3, vector<int>($n+1$, NEG));\n        for (int last = 0; last < 3; ++last) {\n            for (int j = 0; j <= i-2; ++j) if (dp[last][j] > NEG / 2) {\n                ndp[last][j] = max(ndp[last][j], dp[last][j]+score(last, c[i], a[i]));\n                for (int now = 0; now < 3; ++now) if (now != last) {\n                    ndp[now][j+1] = max(ndp[now][j+1], dp[last][j]+score(now, c[i], a[i]));\n                }\n            }\n        }\n        dp.swap(ndp);\n    }\n\n    int ans = 0;\n    for (int k = 0; k < 3; ++k) {\n        for (int j = 0; j < n; ++j) ans = max(ans, dp[k][j]-b[j]);\n    }\n    cout << ans << '\\n';\n    return 0;\n}",
+      score: 25,
       answer: '',
     }
 ];
@@ -108,7 +93,7 @@ export const paperData = {
             type: "single",
             question: "对于下面动态规划方法实现的函数，以下选项中最适合表达其状态转移函数的为 ( ) 。",
             options: [
-                "选项A",
+                "[待补充选项]",
                 "选项B",
                 "选项C",
                 "选项D",
@@ -317,7 +302,7 @@ export const paperData = {
             type: "single",
             question: "用下面的邻接表结构保存一个有向图G，InfoType和VertexType是定义好的类。设G有n个顶点、 e条弧，则求图G中某个顶点u（其顶点序号为k）的度的算法复杂度是 ( ) 。",
             options: [
-                "选项A",
+                "[待补充选项]",
                 "选项B",
                 "选项C",
                 "选项D",

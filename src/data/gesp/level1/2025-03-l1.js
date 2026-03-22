@@ -290,6 +290,8 @@ export const paperData = {
     {
       id: 26,
       type: 'programming',
+      samples: [{ input: '待补充', output: '待补充' }],
+      referenceCode: '// 待补充',
       question: `
 # [GESP202503 一级] 图书馆里的老鼠
 
@@ -320,6 +322,8 @@ export const paperData = {
     {
       id: 27,
       type: 'programming',
+      samples: [{ input: '待补充', output: '待补充' }],
+      referenceCode: '// 待补充',
       question: `
 # [GESP202503 一级] 四舍五入
 

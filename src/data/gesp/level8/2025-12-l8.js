@@ -169,7 +169,7 @@ export const paperData = {
             type: "single",
             question: "下列代码的时间复杂度（以 为⾃变量，忽略常数与低阶项）是（ ）。",
             options: [
-                "选项A",
+                "[待补充选项]",
                 "选项B",
                 "选项C",
                 "选项D",

@@ -4,6 +4,8 @@ const programmingQuestions = [
     {
       id: 26,
       type: 'programming',
+      samples: [{ input: '待补充', output: '待补充' }],
+      referenceCode: '// 待补充',
       question: `
 # [GESP202412 七级] 武器购买
 
@@ -29,11 +31,14 @@ const programmingQuestions = [
       tags: ["编程题", "动态规划", "0/1背包"],
       template: "#include <bits/stdc++.h>\nusing namespace std;\n\nint main() {\n    ios::sync_with_stdio(false);\n    cin.tie(nullptr);\n\n    int T;\n    cin >> T;\n    while (T--) {\n        // 在此编写代码\n    }\n    return 0;\n}",
       referenceCode: "#include <bits/stdc++.h>\nusing namespace std;\n\nint main() {\n    ios::sync_with_stdio(false);\n    cin.tie(nullptr);\n\n    int T;\n    cin >> T;\n    while (T--) {\n        int n, P, Q;\n        cin >> n >> P >> Q;\n        vector<long long> dp(Q+1, -(1LL << 60));\n        dp[0] = 0;\n\n        for (int i = 0; i < n; ++i) {\n            int p, c;\n            cin >> p >> c;\n            for (int cost = Q; cost >= c; --cost) {\n                if (dp[cost-c] > -(1LL << 50)) {\n                    dp[cost] = max(dp[cost], dp[cost-c]+p);\n                }\n            }\n        }\n\n        int ans = -1;\n        for (int cost = 0; cost <= Q; ++cost) {\n            if (dp[cost] >= P) {\n                ans = cost;\n                break;\n            }\n        }\n        cout << ans << '\n';\n    }\n    return 0;\n}",
+      score: 25,
       answer: '',
     },
     {
       id: 27,
       type: 'programming',
+      samples: [{ input: '待补充', output: '待补充' }],
+      referenceCode: '// 待补充',
       question: `
 # [GESP202412 七级] 燃烧
 
@@ -61,6 +66,7 @@ const programmingQuestions = [
       tags: ["编程题", "树", "记忆化搜索", "动态规划"],
       template: "#include <bits/stdc++.h>\nusing namespace std;\n\nint main() {\n    ios::sync_with_stdio(false);\n    cin.tie(nullptr);\n\n    int n;\n    cin >> n;\n    // 在此编写代码\n    return 0;\n}",
       referenceCode: "#include <bits/stdc++.h>\nusing namespace std;\n\nint main() {\n    ios::sync_with_stdio(false);\n    cin.tie(nullptr);\n\n    int n;\n    cin >> n;\n    vector<int> a($n+1$);\n    for (int i = 1; i <= n; ++i) cin >> a[i];\n\n    vector<vector<int>> g($n+1$);\n    for (int i = 1; i < n; ++i) {\n        int u, v;\n        cin >> u >> v;\n        g[u].push_back(v);\n        g[v].push_back(u);\n    }\n\n    vector<int> dp($n+1$, -1);\n    function<int(int)> solve = [&](int u) -> int {\n        if (dp[u] != -1) return dp[u];\n        int res = 1;\n        for (int v : g[u]) {\n            if (a[v] < a[u]) res += solve(v);\n        }\n        return dp[u] = res;\n    };\n\n    int ans = 0;\n    for (int i = 1; i <= n; ++i) ans = max(ans, solve(i));\n    cout << ans << '\n';\n    return 0;\n}",
+      score: 25,
       answer: '',
     }
 ];
@@ -307,7 +313,7 @@ export const paperData = {
             type: "single",
             question: "上题中程序的时间复杂度为（ ）。",
             options: [
-                "选项A",
+                "[待补充选项]",
                 "#include <iostream> #include <cmath> using namespace std; int main() { cout << (int)exp(2) << endl; return 0; } 1 2 3 4 5 6 7 #include <iostream> #define N 10 using namespace std; int h[N]; int main() { h[0] = h[1] = 1; for (int n = 2; n < N; n++) for (int j = 0; j < n; j++) h[n] += h[j] * h[n-j-1]; cout << h[6] << endl; return 0; } 1 2 3 4 5 6 7 8 9 10 11 12 题号 1 2 3 4 5 6 7 8 9 10 答案",
                 "选项C",
                 "选项D",
@@ -326,7 +332,7 @@ export const paperData = {
             type: "single",
             question: "下面init_sieve函数的时间复杂度为 ( ) 。",
             options: [
-                "选项A",
+                "[待补充选项]",
                 "选项B",
                 "选项C",
                 "无法正常结束。",

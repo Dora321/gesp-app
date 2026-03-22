@@ -4,6 +4,8 @@ const programmingQuestions = [
     {
       id: 26,
       type: 'programming',
+      samples: [{ input: '待补充', output: '待补充' }],
+      referenceCode: '// 待补充',
       question: `
 # [GESP202503 六级] 树上漫步
 
@@ -35,12 +37,14 @@ const programmingQuestions = [
     {
       id: 27,
       type: 'programming',
+      samples: [{ input: '待补充', output: '待补充' }],
+      referenceCode: '// 待补充',
       question: `
 # [GESP202503 六级] 环线
 
 ## 题目描述
 
-小 A 喜欢坐地铁。地铁环线有 \$n\$ 个车站，依次以 \$1,2,\\cdots,n\$ 标号。车站 \$i\\ (1\\leq i
+小 A 喜欢坐地铁。地铁环线有 \$n\$ 个车站，依次以 \$1,2,\\cdots,n\$ 标号。车站 \$i\\ (1\\leq i \\le n)\$
 
 ## 输入格式
 

@@ -4,6 +4,8 @@ const programmingQuestions = [
     {
       id: 26,
       type: 'programming',
+      samples: [{ input: '待补充', output: '待补充' }],
+      referenceCode: '// 待补充',
       title: '路径覆盖',
       problemNumber: 'P15800',
       description: '给定一棵有根树，把若干节点染黑，使每条叶子到根的路径上至少有一个黑点。节点 i 染黑代价为 c_i，求最小总代价。',
@@ -24,6 +26,8 @@ const programmingQuestions = [
     {
       id: 27,
       type: 'programming',
+      samples: [{ input: '待补充', output: '待补充' }],
+      referenceCode: '// 待补充',
       title: '道具商店',
       problemNumber: 'P15801',
       description: '有 n 件道具，第 i 件可提升 a_i 点攻击力，花费 c_i 金币，每件最多买一次。给定金币上限 m，求最大攻击力。',
@@ -191,7 +195,7 @@ export const paperData = {
             type: "single",
             question: "下面代码实现了哈夫曼编码，则横线处应填写的代码是（ ）。",
             options: [
-                "选项A",
+                "[待补充选项]",
                 "选项B",
                 "选项C",
                 "选项D",

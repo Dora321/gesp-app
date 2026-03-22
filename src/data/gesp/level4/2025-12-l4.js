@@ -337,6 +337,8 @@ export const paperData = {
         {
       id: 26,
       type: 'programming',
+      samples: [{ input: '待补充', output: '待补充' }],
+      referenceCode: '// 待补充',
       question: `
 # [GESP202512 四级] 建造
 
@@ -363,11 +365,14 @@ export const paperData = {
       score: 25,
       explanation: "遍历所有可能的 3x3 子矩阵，计算极差。如果极差 <= H，更新最大累加和。",
       tags: ["编程题", "GESP4级"],
+      template: "#include <bits/stdc++.h>\nusing namespace std;\n\nint main() {\n    ios::sync_with_stdio(false);\n    cin.tie(nullptr);\n\n    // 在此编写代码\n\n    return 0;\n}",
       answer: '',
     },
         {
       id: 27,
       type: 'programming',
+      samples: [{ input: '待补充', output: '待补充' }],
+      referenceCode: '// 待补充',
       question: `
 # [GESP202512 四级] 优先购买
 
@@ -398,6 +403,7 @@ export const paperData = {
       score: 25,
       explanation: "使用结构体存储商品信息，自定义排序规则（优先级升序 > 价格升序 > 名字升序）。模拟购买过程，扣除预算。最后将购买列表按名字排序输出。",
       tags: ["编程题", "GESP4级"],
+      template: "#include <bits/stdc++.h>\nusing namespace std;\n\nint main() {\n    ios::sync_with_stdio(false);\n    cin.tie(nullptr);\n\n    // 在此编写代码\n\n    return 0;\n}",
       answer: '',
     }
     ]

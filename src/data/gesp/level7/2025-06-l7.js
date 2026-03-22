@@ -4,6 +4,8 @@ const programmingQuestions = [
     {
       id: 26,
       type: 'programming',
+      samples: [{ input: '待补充', output: '待补充' }],
+      referenceCode: '// 待补充',
       question: `
 # [GESP202506 七级] 线图
 
@@ -33,11 +35,14 @@ const programmingQuestions = [
       tags: ["编程题", "图论", "计数", "度数统计"],
       template: "#include <bits/stdc++.h>\nusing namespace std;\n\nint main() {\n    ios::sync_with_stdio(false);\n    cin.tie(nullptr);\n\n    int n, m;\n    cin >> n >> m;\n    // 在此编写代码\n    return 0;\n}",
       referenceCode: "#include <bits/stdc++.h>\nusing namespace std;\n\nint main() {\n    ios::sync_with_stdio(false);\n    cin.tie(nullptr);\n\n    int n, m;\n    cin >> n >> m;\n    vector<long long> deg($n+1$, 0);\n    for (int i = 0; i < m; ++i) {\n        int u, v;\n        cin >> u >> v;\n        deg[u]++;\n        deg[v]++;\n    }\n\n    long long ans = 0;\n    for (int i = 1; i <= n; ++i) {\n        ans += deg[i] * (deg[i]-1) / 2;\n    }\n    cout << ans << '\n';\n    return 0;\n}",
+      score: 25,
       answer: '',
     },
     {
       id: 27,
       type: 'programming',
+      samples: [{ input: '待补充', output: '待补充' }],
+      referenceCode: '// 待补充',
       question: `
 # [GESP202506 七级] 调味平衡
 
@@ -61,6 +66,7 @@ const programmingQuestions = [
       tags: ["编程题", "动态规划", "0/1背包"],
       template: "#include <bits/stdc++.h>\nusing namespace std;\n\nint main() {\n    ios::sync_with_stdio(false);\n    cin.tie(nullptr);\n\n    int n;\n    cin >> n;\n    // 在此编写代码\n    return 0;\n}",
       referenceCode: "#include <bits/stdc++.h>\nusing namespace std;\n\nint main() {\n    ios::sync_with_stdio(false);\n    cin.tie(nullptr);\n\n    int n;\n    cin >> n;\n    vector<pair<int, int>> items(n);\n    int sumDiff = 0;\n    for (int i = 0; i < n; ++i) {\n        int a, b;\n        cin >> a >> b;\n        items[i] = {a, b};\n        sumDiff += abs(a-b);\n    }\n\n    const int NEG = -1000000000;\n    int offset = sumDiff;\n    vector<int> dp(offset * 2+1, NEG);\n    dp[offset] = 0;\n\n    for (auto [a, b] : items) {\n        int diff = a-b;\n        int val = a+b;\n        vector<int> ndp = dp;\n        for (int i = 0; i <= offset * 2; ++i) {\n            if ($dp[i]$ <= NEG / 2) continue;\n            int ni = i+diff;\n            if (0 <= ni && ni <= offset * 2) {\n                ndp[ni] = max(ndp[ni], $dp[i]$+val);\n            }\n        }\n        dp.swap(ndp);\n    }\n\n    cout << max(0, dp[offset]) << '\n';\n    return 0;\n}",
+      score: 25,
       answer: '',
     }
 ];
@@ -155,7 +161,7 @@ export const paperData = {
             type: "single",
             question: "假定只有一个根节点的树的深度为 ，则一棵有 个节点的完全二叉树，则树的深度为( )。",
             options: [
-                "选项A",
+                "[待补充选项]",
                 "选项B",
                 "。",
                 "不能确定。",
@@ -288,7 +294,7 @@ export const paperData = {
             type: "single",
             question: "下面程序的时间复杂度为（ ）。 #include <iostream> using namespace std; int rec_fib[100]; int fib(int n) { if (n <= 1) return n; if (rec_fib[n] == 0) rec_fib[n] = fib(n-1)+fib(n-2); return rec_fib[n]; } int main() { cout << fib(6) << endl; return 0; } 1 2 3 4 5 6 7 8 9 10 11 12 13 14 int rec_fib[MAX_N]; int fib(int n) { if (n <= 1) return n; if (rec_fib[n] == 0) rec_fib[n] = fib(n-1)+fib(n-2); return rec_fib[n]; } 1 2 3 4 5 6 7 8",
             options: [
-                "选项A",
+                "[待补充选项]",
                 "选项B",
                 "选项C",
                 "选项D",
@@ -307,7 +313,7 @@ export const paperData = {
             type: "single",
             question: "下面search 函数的平均时间复杂度为 ( ) 。",
             options: [
-                "选项A",
+                "[待补充选项]",
                 "选项B",
                 "选项C",
                 "选项D",
@@ -326,7 +332,7 @@ export const paperData = {
             type: "single",
             question: "下面程序的时间复杂度为（ ）。",
             options: [
-                "选项A",
+                "[待补充选项]",
                 "选项B",
                 "选项C",
                 "选项D",

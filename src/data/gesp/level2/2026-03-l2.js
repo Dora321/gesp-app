@@ -293,6 +293,8 @@ export const paperData = {
         {
             id: 26,
             type: 'programming',
+            samples: [{ input: '待补充', output: '待补充' }],
+            referenceCode: '// 待补充',
             title: '数数',
             problemNumber: 'B4497',
             score: 25,
@@ -313,6 +315,8 @@ export const paperData = {
         {
             id: 27,
             type: 'programming',
+            samples: [{ input: '待补充', output: '待补充' }],
+            referenceCode: '// 待补充',
             title: '画画',
             problemNumber: 'B4498',
             score: 25,

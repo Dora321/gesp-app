@@ -130,7 +130,7 @@ export const paperData = {
             type: "single",
             question: "个节点的平衡二叉树的高为（ ）。",
             options: [
-                "选项A",
+                "[待补充选项]",
                 "选项B",
                 "选项C",
                 "无法确定。",
@@ -168,7 +168,7 @@ export const paperData = {
             type: "single",
             question: "下面程序横线处应填入的是（ ）。",
             options: [
-                "选项A",
+                "[待补充选项]",
                 "选项B",
                 "选项C",
                 "选项D",
@@ -187,7 +187,7 @@ export const paperData = {
             type: "single",
             question: "下面程序的时间复杂度为（ ）。",
             options: [
-                "选项A",
+                "[待补充选项]",
                 "选项B",
                 "选项C",
                 "选项D",
@@ -206,7 +206,7 @@ export const paperData = {
             type: "single",
             question: "下面的欧⽒筛法程序中，两个横线处应填入的分别是（ ）。",
             options: [
-                "选项A",
+                "[待补充选项]",
                 "选项B",
                 "选项C",
                 "选项D",
@@ -225,7 +225,7 @@ export const paperData = {
             type: "single",
             question: "下面欧拉筛程序中，两个横线处应填入的分别是（ ）。",
             options: [
-                "选项A",
+                "[待补充选项]",
                 "选项B",
                 "选项C",
                 "选项D",
@@ -244,7 +244,7 @@ export const paperData = {
             type: "single",
             question: "下面 Floyd 算法程序的时间复杂度为（ ）。",
             options: [
-                "选项A",
+                "[待补充选项]",
                 "选项B",
                 "选项C",
                 "选项D",
@@ -282,7 +282,7 @@ export const paperData = {
             type: "single",
             question: "下列程序实现了输出杨辉三角形，其时间复杂度为（ ）。",
             options: [
-                "选项A",
+                "[待补充选项]",
                 "选项B",
                 "选项C",
                 "选项D",

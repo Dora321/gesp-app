@@ -4,6 +4,8 @@ const programmingQuestions = [
     {
       id: 26,
       type: 'programming',
+      samples: [{ input: '待补充', output: '待补充' }],
+      referenceCode: '// 待补充',
       question: `
 # [GESP202512 七级] 城市规划
 
@@ -29,11 +31,14 @@ A 国有 \$n\$ 座城市，城市之间由 \$m\$ 条双向道路连接，任意�
       tags: ["编程题", "图论", "BFS", "最短路"],
       template: "#include <bits/stdc++.h>\nusing namespace std;\n\nint main() {\n    ios::sync_with_stdio(false);\n    cin.tie(nullptr);\n\n    int n, m;\n    cin >> n >> m;\n    // 在此编写代码\n    return 0;\n}",
       referenceCode: "#include <bits/stdc++.h>\nusing namespace std;\n\nint main() {\n    ios::sync_with_stdio(false);\n    cin.tie(nullptr);\n\n    int n, m;\n    cin >> n >> m;\n    vector<vector<int>> g($n+1$);\n    for (int i = 0; i < m; ++i) {\n        int u, v;\n        cin >> u >> v;\n        g[u].push_back(v);\n        g[v].push_back(u);\n    }\n\n    int bestCity = 1;\n    int bestEcc = INT_MAX;\n    vector<int> dist($n+1$);\n    queue<int> q;\n\n    for (int s = 1; s <= n; ++s) {\n        fill(dist.begin(), dist.end(), -1);\n        while (!q.empty()) q.pop();\n        dist[s] = 0;\n        q.push(s);\n        while (!q.empty()) {\n            int u = q.front();\n            q.pop();\n            for (int v : g[u]) {\n                if (dist[v] == -1) {\n                    dist[v] = dist[u]+1;\n                    q.push(v);\n                }\n            }\n        }\n\n        int ecc = 0;\n        for (int i = 1; i <= n; ++i) ecc = max(ecc, dist[i]);\n        if (ecc < bestEcc) {\n            bestEcc = ecc;\n            bestCity = s;\n        }\n    }\n\n    cout << bestCity << '\n';\n    return 0;\n}",
+      score: 25,
       answer: '',
     },
     {
       id: 27,
       type: 'programming',
+      samples: [{ input: '待补充', output: '待补充' }],
+      referenceCode: '// 待补充',
       question: `
 # [GESP202512 七级] 学习小组
 
@@ -61,6 +66,7 @@ A 国有 \$n\$ 座城市，城市之间由 \$m\$ 条双向道路连接，任意�
       tags: ["编程题", "动态规划", "排序", "区间贪心思想"],
       template: "#include <bits/stdc++.h>\nusing namespace std;\n\nint main() {\n    ios::sync_with_stdio(false);\n    cin.tie(nullptr);\n\n    int n;\n    cin >> n;\n    // 在此编写代码\n    return 0;\n}",
       referenceCode: "#include <bits/stdc++.h>\nusing namespace std;\n\nint main() {\n    ios::sync_with_stdio(false);\n    cin.tie(nullptr);\n\n    int n;\n    cin >> n;\n    vector<int> c($n+1$), a($n+1$);\n    for (int i = 1; i <= n; ++i) cin >> c[i];\n    for (int i = 1; i <= n; ++i) cin >> a[i];\n\n    sort(c.begin()+1, c.end());\n\n    const int NEG = -1000000000;\n    vector<vector<int>> f($n+1$, vector<int>($n+1$, NEG));\n    f[0][0] = 0;\n    int ans = 0;\n\n    for (int groups = 1; groups <= n; ++groups) {\n        int diff = c[n-groups+1]-c[groups];\n        for (int used = 1; used <= n; ++used) {\n            for (int sz = 1; sz <= used; ++sz) {\n                if (f[groups-1][used-sz] <= NEG / 2) continue;\n                int add = a[sz]+(sz == 1 ? 0 : diff);\n                f[groups][used] = max(f[groups][used], f[groups-1][used-sz]+add);\n                if (used == n) ans = max(ans, f[groups][used]);\n            }\n        }\n    }\n\n    cout << ans << '\n';\n    return 0;\n}",
+      score: 25,
       answer: '',
     }
 ];
@@ -118,7 +124,7 @@ export const paperData = {
             type: "single",
             question: "现有一个地址区间为 的哈希表，当出现冲突情况，会往后找第一个空的地址存储（到 冲突了就从 开始往后），现在要依次存储 ，哈希函数为 。其中 存储在哈希表哪个地址中 （ ）。",
             options: [
-                "选项A",
+                "[待补充选项]",
                 "选项B",
                 "选项C",
                 "选项D",
@@ -213,7 +219,7 @@ export const paperData = {
             type: "single",
             question: "下面程序中，函数 query 的时间复杂度是（ ）。",
             options: [
-                "选项A",
+                "[待补充选项]",
                 "选项B",
                 "选项C",
                 "选项D",
@@ -308,7 +314,7 @@ export const paperData = {
             type: "single",
             question: "假设一个算法时间复杂度的递推式是 （ 为正整数），和 ，那么这个算法的 时间复杂度是（ ）。",
             options: [
-                "选项A",
+                "[待补充选项]",
                 "选项B",
                 "选项C",
                 "选项D",

@@ -262,6 +262,8 @@ export const paperData = {
         {
       id: 26,
       type: 'programming',
+      samples: [{ input: '待补充', output: '待补充' }],
+      referenceCode: '// 待补充',
       question: `
 # [GESP202312 三级] 小猫分鱼
 
@@ -289,6 +291,8 @@ export const paperData = {
         {
       id: 27,
       type: 'programming',
+      samples: [{ input: '待补充', output: '待补充' }],
+      referenceCode: '// 待补充',
       question: `
 # [GESP202312 三级] 单位转换
 

@@ -92,7 +92,7 @@ export const paperData = {
             type: "single",
             question: "一对夫妻生男生⼥的概率相同。这对夫妻希望⼉⼥双全。请问这对夫妻生下两个孩子时，实现⼉⼥双全的概 率是多少？（ ）。",
             options: [
-                "选项A",
+                "[待补充选项]",
                 "选项B",
                 "选项C",
                 "选项D",
@@ -130,7 +130,7 @@ export const paperData = {
             type: "single",
             question: "个结点的二叉树，执⾏⼴度优先搜索的平均时间复杂度是（ ）。",
             options: [
-                "选项A",
+                "[待补充选项]",
                 "选项B",
                 "选项C",
                 "选项D",
@@ -168,7 +168,7 @@ export const paperData = {
             type: "single",
             question: "下面的 sum_digit 函数试图求出从 1 到 n （包含 1 和 n ）的数中，包含数字 d 的个数。该函数的时间复杂 度为（ ）。 #include <string> int count_digit(int n, char d) { int cnt = 0; std::string s = std::to_string(n); for (int i = 0; i < s.length(); i++) if (s[i] == d) cnt++; return cnt; } int sum_digit(int n, char d) { int sum = 0; for (int i = 1; i <= n; i++) sum += count_digit(i, d); return sum; } 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15",
             options: [
-                "选项A",
+                "[待补充选项]",
                 "选项B",
                 "选项C",
                 "选项D",
@@ -206,7 +206,7 @@ export const paperData = {
             type: "single",
             question: "下面 count_triple 函数的时间复杂度为( )。",
             options: [
-                "选项A",
+                "[待补充选项]",
                 "#include <iostream> const int N = 10; int ch[N][N][N]; int main() { for (int x = 0; x < N; x++) for (int y = 0; y < N; y++) for (int z = 0; z < N; z++) if (x == 0 && y == 0 && z == 0) ch[x][y][z] = 1; else { if (x > 0) ch[x][y][z] += ch[x-1][y][z]; if (y > 0) ch[x][y][z] += ch[x][y-1][z]; if (z > 0) ch[x][y][z] += ch[x][y][z-1]; } std::cout << ch[1][2][3] << std::endl; return 0; } 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 int gcd(int a, int b) { if (a == 0) return b; return gcd(b % a, a); } int count_triple(int n) { int cnt = 0; for (int v = 1; v * v * 4 <= n; v++) for (int u = v+1; u * (u+v) * 2 <= n; u += 2) if (gcd(u, v) == 1) { int a = u * u-v * v; int b = u * v * 2; int c = u * u+v * v; cnt += n / (a+b+c); } return cnt; } 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17",
                 "选项C",
                 "选项D",
@@ -225,7 +225,7 @@ export const paperData = {
             type: "single",
             question: "下面 quick_sort 函数试图实现快速排序算法，两处横线处分别应该填入的是（ ）。",
             options: [
-                "选项A",
+                "[待补充选项]",
                 "选项B",
                 "选项C",
                 "选项D",
@@ -244,7 +244,7 @@ export const paperData = {
             type: "single",
             question: "下面 LIS 函数试图求出最长上升子序列的长度，横线处应该填入的是（ ）。 void swap(int & a, int & b) { int temp = a; a = b; b = temp; } int partition(int a[], int l, int r) { int pivot = a[l], i = l+1, j = r; while (i <= j) { while (i <= j && a[j] >= pivot) j--; while (i <= j && a[i] <= pivot) i++; if (i < j) swap(a[i], a[j]); } ________; // 在此处填入选项 return ________; // 在此处填入选项 } void quick_sort(int a[], int l, int r) { if (l < r) { int pivot = partition(a, l, r); quick_sort(a, l, pivot-1); quick_sort(a, pivot+1, r); } } 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 swap(a[l], a[i]) i 1 2 swap(a[l], a[j]) i 1 2 swap(a[l], a[i]) j 1 2 swap(a[l], a[j]) j 1 2 int max(int a, int b) { return (a > b) ? a : b; } int LIS(vector<int> & nums) { int n = nums.size(); if (n == 0) return 0; vector<int> dp(n, 1); int maxLen = 1; 1 2 3 4 5 6 7 8 9",
             options: [
-                "选项A",
+                "[待补充选项]",
                 "选项B",
                 "选项C",
                 "选项D",
@@ -263,7 +263,7 @@ export const paperData = {
             type: "single",
             question: "下面LIS 函数试图求出最长上升子序列的长度，其时间复杂度为（ ）。",
             options: [
-                "选项A",
+                "[待补充选项]",
                 "选项B",
                 "选项C",
                 "选项D",

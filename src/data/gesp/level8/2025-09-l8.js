@@ -92,7 +92,7 @@ export const paperData = {
             type: "single",
             question: "一对夫妻生男生⼥的概率相同。这对夫妻希望⼉⼥双全。请问这对夫妻生下三个孩子时，实现⼉⼥双全的概 率是多少？（ ）。",
             options: [
-                "选项A",
+                "[待补充选项]",
                 "选项B",
                 "选项C",
                 "选项D",
@@ -130,7 +130,7 @@ export const paperData = {
             type: "single",
             question: "对一个包含 个顶点、 条边的图，执⾏⼴度优先搜索，其最优时间复杂度是（ ）。",
             options: [
-                "选项A",
+                "[待补充选项]",
                 "选项B",
                 "选项C",
                 "选项D",
@@ -187,7 +187,7 @@ export const paperData = {
             type: "single",
             question: "下面程序的时间复杂度为（ ）。",
             options: [
-                "选项A",
+                "[待补充选项]",
                 "选项B",
                 "选项C",
                 "选项D",
@@ -206,7 +206,7 @@ export const paperData = {
             type: "single",
             question: "下列Dijkstra算法，假设图 中顶点数 、边数 ，则程序的时间复杂度为（ ）。",
             options: [
-                "选项A",
+                "[待补充选项]",
                 "选项B",
                 "选项C",
                 "选项D",
@@ -225,7 +225,7 @@ export const paperData = {
             type: "single",
             question: "下面 count_triple 函数的时间复杂度为( )。",
             options: [
-                "选项A",
+                "[待补充选项]",
                 "选项B",
                 "选项C",
                 "选项D",
@@ -244,7 +244,7 @@ export const paperData = {
             type: "single",
             question: "下面merge_sort函数试图实现归并排序算法，横线处应该填入的是（ ）。",
             options: [
-                "选项A",
+                "[待补充选项]",
                 "选项B",
                 "选项C",
                 "选项D",
@@ -263,7 +263,7 @@ export const paperData = {
             type: "single",
             question: "下面 Prim 算法程序中，横线处应该填入的是（ ）。",
             options: [
-                "选项A",
+                "[待补充选项]",
                 "选项B",
                 "选项C",
                 "选项D",

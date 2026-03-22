@@ -4,6 +4,8 @@ const programmingQuestions = [
     {
       id: 26,
       type: 'programming',
+      samples: [{ input: '待补充', output: '待补充' }],
+      referenceCode: '// 待补充',
       question: `
 # [GESP202509 六级] 划分字符串
 
@@ -35,6 +37,8 @@ const programmingQuestions = [
     {
       id: 27,
       type: 'programming',
+      samples: [{ input: '待补充', output: '待补充' }],
+      referenceCode: '// 待补充',
       question: `
 # [GESP202509 六级] 货物运输
 
@@ -286,7 +290,7 @@ export const paperData = {
             type: "single",
             question: "令 是树的节点数目，下列代码实现了树的⼴度优先遍历，其时间复杂度是（ ）。",
             options: [
-                "选项A",
+                "[待补充选项]",
                 "选项B",
                 "选项C",
                 "选项D",

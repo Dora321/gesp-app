@@ -302,6 +302,8 @@ export const paperData = {
     {
       id: 26,
       type: 'programming',
+      samples: [{ input: '待补充', output: '待补充' }],
+      referenceCode: '// 待补充',
       question: `
 # [GESP202603 一级] 交朋友
 
@@ -349,6 +351,8 @@ Alice 班上共有 4 个小朋友，身高分别为 $H_1, H_2, H_3, H_4$，其�
     {
       id: 27,
       type: 'programming',
+      samples: [{ input: '待补充', output: '待补充' }],
+      referenceCode: '// 待补充',
       question: `
 # [GESP202603 一级] 数字替换
 

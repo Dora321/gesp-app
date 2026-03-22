@@ -4,6 +4,8 @@ const programmingQuestions = [
     {
       id: 26,
       type: 'programming',
+      samples: [{ input: '待补充', output: '待补充' }],
+      referenceCode: '// 待补充',
       question: `
 # [GESP202506 六级] 学习小组
 
@@ -33,6 +35,8 @@ const programmingQuestions = [
     {
       id: 27,
       type: 'programming',
+      samples: [{ input: '待补充', output: '待补充' }],
+      referenceCode: '// 待补充',
       question: `
 # [GESP202506 六级] 最大因数
 
@@ -227,7 +231,7 @@ export const paperData = {
             type: "single",
             question: "设有字符集 {a, b, c, d, e} ，其出现频率分别为 {5, 8, 12, 15, 20} ，得到的哈夫曼编码为（ ）。",
             options: [
-                "选项A",
+                "[待补充选项]",
                 "选项B",
                 "选项C",
                 "选项D",
@@ -265,7 +269,7 @@ export const paperData = {
             type: "single",
             question: "请将下列 C++ 实现的深度优先搜索（DFS）代码补充完整，横线处应填入（ ）。",
             options: [
-                "选项A",
+                "[待补充选项]",
                 "选项B",
                 "选项C",
                 "选项D",
@@ -284,7 +288,7 @@ export const paperData = {
             type: "single",
             question: "给定一个二叉树，返回每一层中最大的节点值，结果以数组形式返回，横线处应填入（ ）。 struct TreeNode { int val; TreeNode* left; TreeNode* right; TreeNode(int x): val(x), left(nullptr), right(nullptr) {} }; void dfs(TreeNode* root, vector<int>& result) { if (root == nullptr) return; __________________________ } 1 2 3 4 5 6 7 8 9 10 11 12 result.push_back(root->val); dfs(root->left); dfs(root->right); 1 2 3 result.push_back(root->left->val); dfs(root->right); dfs(root->left); 1 2 3 result.push_back(root->left->val); dfs(root->left); dfs(root->right); 1 2 3 result.push_back(root->right->val); dfs(root->right); dfs(root->left); 1 2 3 #include <vector> #include <queue> #include <algorithm> struct TreeNode { int val; TreeNode* left; TreeNode* right; TreeNode(int x): val(x), left(nullptr), right(nullptr) {} }; vector<int> largestValues(TreeNode* root) { vector<int> result; if (!root) return result; queue<TreeNode*> q; q.push(root); while (!q.empty()) { int sz = q.size(); 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20",
             options: [
-                "选项A",
+                "[待补充选项]",
                 "选项B",
                 "选项C",
                 "选项D",
@@ -303,7 +307,7 @@ export const paperData = {
             type: "single",
             question: "下面代码实现一个二叉排序树的插入函数（没有相同的数值），横线处应填入（ ）。",
             options: [
-                "选项A",
+                "[待补充选项]",
                 "int maxVal = INT_MIN; for (int i = 0; i < sz; ++i) { TreeNode* node; _______________________________ maxVal = max(maxVal, node->val); if (node->left) q.push(node->left); if (node->right) q.push(node->right); } result.push_back(maxVal); } return result; } 21 22 23 24 25 26 27 28 29 30 31 32 33 node = q.end();1 node = q.front();1 q.pop(); node = q.front(); 1 2 node = q.front(); q.pop(); 1 2 struct TreeNode { int val; TreeNode* left; TreeNode* right; TreeNode(int x): val(x), left(nullptr), right(nullptr) {} }; void insert(TreeNode*& root, int key) { if (!root) { root = new TreeNode(key); return; } _______________________________ } 1 2 3 4 5 6 7 8 9 10 11 12 13 14 if (key < root->val) insert(root->left, key); else if (key > root->val) insert(root->right, key); 1 2 3 4 题号 1 2 3 4 5 6 7 8 9 10 答案",
                 "选项C",
                 "选项D",

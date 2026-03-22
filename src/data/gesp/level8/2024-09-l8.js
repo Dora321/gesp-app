@@ -35,7 +35,7 @@ export const paperData = {
             type: "single",
             question: "对于一个具有 个顶点的无向图，若采用邻接矩阵表⽰，则该矩阵的大小为（ ）。",
             options: [
-                "选项A",
+                "[待补充选项]",
                 "选项B",
                 "选项C",
                 "选项D",
@@ -92,7 +92,7 @@ export const paperData = {
             type: "single",
             question: "个结点的二叉树，执⾏释放全部结点操作的时间复杂度是（ ）。",
             options: [
-                "选项A",
+                "[待补充选项]",
                 "选项B",
                 "选项C",
                 "选项D",
@@ -111,7 +111,7 @@ export const paperData = {
             type: "single",
             question: "在一个单位圆上，随机分布 个点，求这 个点能被一个单位半圆周全部覆盖的概率（ ）。",
             options: [
-                "选项A",
+                "[待补充选项]",
                 "选项B",
                 "选项C",
                 "选项D",
@@ -130,7 +130,7 @@ export const paperData = {
             type: "single",
             question: "下面pailie函数是一个实现排列的程序，横线处可以填入的是（ ）。",
             options: [
-                "选项A",
+                "[待补充选项]",
                 "选项B",
                 "#include <iostream> using namespace std; int sum = 0; void swap(int & a, int & b) { int temp = a; a = b; b = temp; } void pailie(int begin, int end, int a[]) { if (begin == end) { for (int i = 0; i < end; i++) cout << a[i]; cout << endl; } for (int i = begin; i < end; i++) { __________ // 在此处填入选项 } } 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 swap(a[begi$n+1$], a[i]); pailie(begi$n+1$, end, a); swap(a[i], a[begin]); 1 2 3 swap(a[begin], a[i]); pailie(begin, end, a); swap(a[i], a[begin]); 1 2 3",
                 "选项D",
@@ -263,7 +263,7 @@ export const paperData = {
             type: "single",
             question: "下面程序的Merge_Sort函数时间复杂度为（ ）。 } for (int i = 1; i <= m; i++) { cin >> t1 >> t2 >> t3; map[t1][t2] = t3; } for (int k = 1; k <= n; k++) for (int i = 1; i <= n; i++) for (int j = 1; j <= n; j++) if (__________) // 在此处填入选项 map[i][j] = map[i][k]+map[k][j]; for (int i = 1; i <= n; i++) { for (int j = 1; j <= n; j++) { cout.width(4); cout << map[i][j]; } cout << endl; } } 17 18 19 20 21 22 23 24 25 26 27 28 29 30 31 32 33 34 void Merge(int a[], int left, int mid, int right) { int temp[right-left+1]; int i = left; int j = mid+1; int k = 0; while (i <= mid && j <= right) { if (a[i] < a[j]) temp[k++] = a[i++]; else temp[k++] = a[j++]; } while (i <= mid) temp[k++] = a[i++]; while (j <= right) temp[k++] = a[j++]; for (int m = left, n = 0; m <= right; m++, n++) a[m] = temp[n]; } void Merge_Sort(int a[], int left, int right) { if (left == right) return; int mid = (left+right) / 2; Merge_Sort(a, left, mid); Merge_Sort(a, mid+1, right); Merge(a, left, mid, right); } 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26 题号 1 2 3 4 5 6 7 8 9 10 答案",
             options: [
-                "选项A",
+                "[待补充选项]",
                 "选项B",
                 "选项C",
                 "选项D",
@@ -282,7 +282,7 @@ export const paperData = {
             type: "single",
             question: "下面fibonacci函数的时间复杂度为（ ）。",
             options: [
-                "选项A",
+                "[待补充选项]",
                 ",",
                 "选项C",
                 "选项D",

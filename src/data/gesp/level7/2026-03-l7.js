@@ -4,6 +4,8 @@ const programmingQuestions = [
     {
       id: 26,
       type: 'programming',
+      samples: [{ input: '待补充', output: '待补充' }],
+      referenceCode: '// 待补充',
       title: '城市规划',
       problemNumber: 'P15802',
       score: 25,
@@ -28,6 +30,8 @@ const programmingQuestions = [
     {
       id: 27,
       type: 'programming',
+      samples: [{ input: '待补充', output: '待补充' }],
+      referenceCode: '// 待补充',
       title: '学习小组',
       problemNumber: 'P15803',
       score: 25,
@@ -199,7 +203,7 @@ export const paperData = {
             type: "single",
             question: "下面程序中，函数 query 的时间复杂度是（ ）。",
             options: [
-                "选项A",
+                "[待补充选项]",
                 "选项B",
                 "选项C",
                 "选项D",

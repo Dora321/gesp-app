@@ -52,7 +52,7 @@ export const paperData = {
             type: "single",
             question: "对包含n 个元素的数组进⾏冒泡排序，平均时间复杂度一般为（ ）。 A",
             options: [
-                "选项A",
+                "[待补充选项]",
                 "选项B",
                 "选项C",
                 "以上都不正确",
@@ -471,6 +471,8 @@ const programmingQuestions = [
     {
       id: 26,
       type: 'programming',
+      samples: [{ input: '待补充', output: '待补充' }],
+      referenceCode: '// 待补充',
       question: `
 # [GESP202309 四级] 进制转换
 
@@ -502,6 +504,8 @@ const programmingQuestions = [
     {
       id: 27,
       type: 'programming',
+      samples: [{ input: '待补充', output: '待补充' }],
+      referenceCode: '// 待补充',
       question: `
 # [GESP202309 四级] 变长编码
 

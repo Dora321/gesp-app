@@ -4,6 +4,8 @@ const programmingQuestions = [
     {
       id: 26,
       type: 'programming',
+      samples: [{ input: '待补充', output: '待补充' }],
+      referenceCode: '// 待补充',
       question: `
 # [GESP202406 七级] 黑白翻转
 
@@ -30,11 +32,14 @@ const programmingQuestions = [
       tags: ["编程题", "树", "DFS"],
       template: "#include <bits/stdc++.h>\nusing namespace std;\n\nint main() {\n    ios::sync_with_stdio(false);\n    cin.tie(nullptr);\n    return 0;\n}",
       referenceCode: "#include <bits/stdc++.h>\nusing namespace std;\n\nint n, ans = 0;\nvector<vector<int>> g;\nvector<int> col;\n\nint dfs(int u, int fa) {\n    int has = col[u];\n    for (int v : g[u]) if (v != fa) has += dfs(v, u);\n    if (has > 0 && has < accumulate(col.begin()+1, col.end(), 0) && col[u] == 0) ans++;\n    return has;\n}\n\nint main() {\n    ios::sync_with_stdio(false);\n    cin.tie(nullptr);\n\n    cin >> n;\n    g.assign($n+1$, {});\n    col.assign($n+1$, 0);\n    int tot = 0, root = 1;\n    for (int i = 1; i <= n; ++i) { cin >> col[i]; if (col[i]) tot++, root = i; }\n    for (int i = 0; i < n-1; ++i) {\n        int u, v; cin >> u >> v;\n        g[u].push_back(v); g[v].push_back(u);\n    }\n    if (tot <= 1) { cout << 0 << '\\n'; return 0; }\n    function<int(int,int)> solve = [&](int u, int fa) {\n        int cnt = col[u];\n        for (int v : g[u]) if (v != fa) cnt += solve(v, u);\n        if (cnt > 0 && cnt < tot && col[u] == 0) ans++;\n        return cnt;\n    };\n    solve(root, 0);\n    cout << ans << '\\n';\n    return 0;\n}",
+      score: 25,
       answer: '',
     },
     {
       id: 27,
       type: 'programming',
+      samples: [{ input: '待补充', output: '待补充' }],
+      referenceCode: '// 待补充',
       question: `
 # [GESP202406 七级] 区间乘积
 
@@ -61,6 +66,7 @@ const programmingQuestions = [
       tags: ["编程题", "前缀异或", "质因数分解", "哈希"],
       template: "#include <bits/stdc++.h>\nusing namespace std;\n\nint main() {\n    ios::sync_with_stdio(false);\n    cin.tie(nullptr);\n    return 0;\n}",
       referenceCode: "#include <bits/stdc++.h>\nusing namespace std;\n\nint calc(int x) {\n    int res = 0;\n    for (int i = 2; i * i <= x; ++i) if (x % i == 0) {\n        int c = 0;\n        while (x % i == 0) x /= i, c ^= 1;\n        if (c) res ^= (1 << (i-1));\n    }\n    if (x > 1) res ^= (1 << (x-1));\n    return res;\n}\n\nint main() {\n    ios::sync_with_stdio(false);\n    cin.tie(nullptr);\n\n    int n;\n    cin >> n;\n    map<int, long long> mp;\n    long long ans = 0;\n    int pre = 0;\n    mp[0] = 1;\n    for (int i = 0; i < n; ++i) {\n        int x; cin >> x;\n        pre ^= calc(x);\n        ans += mp[pre];\n        mp[pre]++;\n    }\n    cout << ans << '\\n';\n    return 0;\n}",
+      score: 25,
       answer: '',
     }
 ];
@@ -269,7 +275,7 @@ export const paperData = {
             type: "single",
             question: "如下图所⽰的邻接表结构，表⽰的是下列哪个选项中的图？",
             options: [
-                "选项A",
+                "[待补充选项]",
                 "选项B",
                 "选项C",
                 "选项D",
@@ -288,7 +294,7 @@ export const paperData = {
             type: "single",
             question: "如下图所⽰的邻接矩阵（ inf 表⽰无穷大），表⽰的是下列哪个选项中的图？",
             options: [
-                "选项A",
+                "[待补充选项]",
                 "选项B",
                 "选项C",
                 "选项D",
@@ -326,7 +332,7 @@ export const paperData = {
             type: "single",
             question: "下面count_triple函数的时间复杂度为 ( ) 。 #include <iostream> using namespace std; int fib(int n) { if (n <= 1) return n; return fib(n-1)+fib(n-2); } int main() { cout << fib(6) << endl; return 0; } 1 2 3 4 5 6 7 8 9 10 11 题号 1 2 3 4 5 6 7 8 9 10 答案",
             options: [
-                "选项A",
+                "[待补充选项]",
                 "选项B",
                 "选项C",
                 "选项D",

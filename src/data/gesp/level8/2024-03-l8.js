@@ -4,6 +4,8 @@ const programmingQuestions = [
     {
       id: 26,
       type: 'programming',
+      samples: [{ input: '待补充', output: '待补充' }],
+      referenceCode: '// 待补充',
       question: `
 # [GESP202403 八级] 公倍数问题
 
@@ -29,11 +31,14 @@ const programmingQuestions = [
       explanation: "若某位置能取值为 x，则该位置的行号和列号都必须是 x 的约数。分别统计 1..N 和 1..M 中各有多少数整除 x，即得可行位置数。",
       template: "#include <bits/stdc++.h>\nusing namespace std;int main(){ios::sync_with_stdio(false);cin.tie(nullptr);int N,M,K;cin>>N>>M>>K;return 0;}",
       referenceCode: "#include <bits/stdc++.h>\nusing namespace std;vector<int> count_divisors(int limit,int num){vector<int>s(num+1,0);for(int i=1;i<=limit;++i)for(int j=i;j<=num;j+=i)s[j]++;return s;}int main(){ios::sync_with_stdio(false);cin.tie(nullptr);int N,M,K;cin>>N>>M>>K;vector<int>sN=count_divisors(N,1000000),sM=count_divisors(M,1000000);long long ans=0;for(int x=1;x<=K;++x)ans+=1LL*x*sN[x]*sM[x];cout<<ans<<\"\\n\";return 0;}",
+      score: 25,
       answer: '',
     },
     {
       id: 27,
       type: 'programming',
+      samples: [{ input: '待补充', output: '待补充' }],
+      referenceCode: '// 待补充',
       question: `
 # [GESP202403 八级] 接竹竿
 
@@ -65,6 +70,7 @@ const programmingQuestions = [
       explanation: "预处理每个位置第一次形成消去时会跳到哪里，并做倍增。回答询问时一边统计无法消去的牌，一边尽量用倍增跳过可整体消去的段。",
       template: "#include <bits/stdc++.h>\nusing namespace std;int main(){ios::sync_with_stdio(false);cin.tie(nullptr);int T;cin>>T;while(T--){}return 0;}",
       referenceCode: "#include <bits/stdc++.h>\nusing namespace std;const int N=100000+10;int a[N],nxt[N][30],pos[25];int main(){ios::sync_with_stdio(false);cin.tie(nullptr);int T;cin>>T;while(T--){int n;cin>>n;memset(pos,0,sizeof(pos));for(int i=1;i<=n;++i){cin>>a[i];for(int j=0;j<=20;++j)nxt[i][j]=n+1;}for(int i=n;i>=1;--i){if(!pos[a[i]]){nxt[i][0]=n+1;pos[a[i]]=i;}else{nxt[i][0]=pos[a[i]];pos[a[i]]=i;}}for(int i=n;i>=1;--i)for(int j=1;j<=20;++j)if(nxt[i][j-1]+1<=n)nxt[i][j]=nxt[nxt[i][j-1]+1][j-1];int q;cin>>q;while(q--){int l,r;cin>>l>>r;int i=l,ans=0;while(i<=r){while(i<=r&&nxt[i][0]>r)++i,++ans;if(i>r)break;for(int j=20;j>=0;--j)if(nxt[i][j]<=r){i=nxt[i][j];break;}++i;}cout<<ans<<\"\\n\";}}return 0;}",
+      score: 25,
       answer: '',
     }
 ];
@@ -160,7 +166,7 @@ export const paperData = {
             type: "single",
             question: "使用邻接表表达一个无向简单图，图中包含v个顶点、e条边，则该表中边节点的个数为（ ）。",
             options: [
-                "选项A",
+                "[待补充选项]",
                 "选项B",
                 "选项C",
                 "选项D",
@@ -255,7 +261,7 @@ export const paperData = {
             type: "single",
             question: "下面程序的时间复杂度为（ ）。",
             options: [
-                "选项A",
+                "[待补充选项]",
                 "，其中",
                 "选项C",
                 "选项D",
@@ -274,7 +280,7 @@ export const paperData = {
             type: "single",
             question: "下面程序的时间复杂度为（ ）。",
             options: [
-                "选项A",
+                "[待补充选项]",
                 "选项B",
                 "选项C",
                 "选项D",

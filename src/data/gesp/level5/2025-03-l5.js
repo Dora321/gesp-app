@@ -4,6 +4,8 @@ const programmingQuestions = [
     {
       id: 26,
       type: 'programming',
+      samples: [{ input: '待补充', output: '待补充' }],
+      referenceCode: '// 待补充',
       question: `
 # [GESP202503 五级] 平均分配
 
@@ -33,6 +35,8 @@ const programmingQuestions = [
     {
       id: 27,
       type: 'programming',
+      samples: [{ input: '待补充', output: '待补充' }],
+      referenceCode: '// 待补充',
       question: `
 # [GESP202503 五级] 原根判断
 
@@ -40,7 +44,7 @@ const programmingQuestions = [
 
 小 A 知道，对于质数 \$p\$ 而言，\$p\$ 的原根 \$g\$ 是满足以下条件的正整数：
 
-+ \$1
++ \$1 \le g < p\$
 
 ## 输入格式
 
@@ -246,7 +250,7 @@ export const paperData = {
             type: "single",
             question: "考虑以下 C++ 代码实现的快速排序算法，将数据从小到大排序，则 partition 中横线上应填的最佳代码是（ ）。",
             options: [
-                "选项A",
+                "[待补充选项]",
                 "选项B",
                 "选项C",
                 "选项D",

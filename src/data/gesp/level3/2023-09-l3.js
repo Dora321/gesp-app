@@ -256,6 +256,8 @@ export const paperData = {
         {
       id: 26,
       type: 'programming',
+      samples: [{ input: '待补充', output: '待补充' }],
+      referenceCode: '// 待补充',
       question: `
 # [GESP202309 三级] 小杨的储蓄
 
@@ -306,6 +308,8 @@ int main() {
         {
       id: 27,
       type: 'programming',
+      samples: [{ input: '待补充', output: '待补充' }],
+      referenceCode: '// 待补充',
       question: `
 # [GESP202309 三级] 进制判断
 

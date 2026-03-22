@@ -73,7 +73,7 @@ export const paperData = {
             type: "single",
             question: "有 V 个顶点、 E 条边的图的深度优先搜索遍历时间复杂度为（ ）。",
             options: [
-                "选项A",
+                "[待补充选项]",
                 "选项B",
                 "选项C",
                 "选项D",
@@ -92,7 +92,7 @@ export const paperData = {
             type: "single",
             question: "一对夫妻生男生⼥的概率相同。已知这对夫妻有两个孩子，其中一个是⼥孩，另一个是男孩的概率是多少？",
             options: [
-                "选项A",
+                "[待补充选项]",
                 "选项B",
                 "选项C",
                 "选项D",
@@ -244,7 +244,7 @@ export const paperData = {
             type: "single",
             question: "下面程序的时间复杂度为（ ）。",
             options: [
-                "选项A",
+                "[待补充选项]",
                 "选项B",
                 "选项C",
                 "选项D",
@@ -263,7 +263,7 @@ export const paperData = {
             type: "single",
             question: "下面程序的最差时间复杂度为（ ）。",
             options: [
-                "选项A",
+                "[待补充选项]",
                 "选项B",
                 "选项C",
                 "选项D",

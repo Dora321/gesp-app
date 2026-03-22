@@ -5,6 +5,8 @@ const programmingQuestions = [
     {
       id: 26,
       type: 'programming',
+      samples: [{ input: '待补充', output: '待补充' }],
+      referenceCode: '// 待补充',
       title: '有限不循环小数',
       problemNumber: 'P15798',
       score: 25,
@@ -25,6 +27,8 @@ const programmingQuestions = [
     {
       id: 27,
       type: 'programming',
+      samples: [{ input: '待补充', output: '待补充' }],
+      referenceCode: '// 待补充',
       title: '找数',
       problemNumber: 'P15799',
       score: 25,

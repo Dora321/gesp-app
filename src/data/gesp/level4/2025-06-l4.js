@@ -337,6 +337,8 @@ export const paperData = {
         {
       id: 26,
       type: 'programming',
+      samples: [{ input: '待补充', output: '待补充' }],
+      referenceCode: '// 待补充',
       question: `
 # [GESP202506 四级] 画布裁剪
 
@@ -360,6 +362,7 @@ export const paperData = {
 `,
       score: 25,
       explanation: "该题为基础的矩阵裁剪问题。根据输入的四个边界坐标 (x1, x2, y1, y2)，使用嵌套循环遍历并输出原矩阵中对应的子区域即可。",
+      template: "#include <bits/stdc++.h>\nusing namespace std;\n\nint main() {\n    ios::sync_with_stdio(false);\n    cin.tie(nullptr);\n\n    // 在此编写代码\n\n    return 0;\n}",
       referenceCode: `#include <iostream>\n#include <vector>\n#include <string>\nusing namespace std;\n\nint main() {\n    int H, W;\n    cin >> H >> W;\n    int x1, x2, y1, y2;\n    cin >> x1 >> x2 >> y1 >> y2;\n    vector<string> canvas(H);\n    for (int i = 0; i < H; ++i) cin >> canvas[i];\n    for (int i = x1-1; i <= x2-1; ++i) {\n        for (int j = y1-1; j <= y2-1; ++j) {\n            cout << canvas[i][j];\n        }\n        cout << endl;\n    }\n    return 0;\n}`,
       tags: ["编程题", "矩阵操作", "GESP4级"],
       answer: '',
@@ -367,6 +370,8 @@ export const paperData = {
         {
       id: 27,
       type: 'programming',
+      samples: [{ input: '待补充', output: '待补充' }],
+      referenceCode: '// 待补充',
       question: `
 # [GESP202506 四级] 排序
 
@@ -386,6 +391,7 @@ export const paperData = {
 `,
       score: 25,
       explanation: "本题要求计算将初始队列调整为目标有序队列所需的最少相邻交换次数，即求原序列的“逆序对”数。由于是要按身高从高到低、体重从重到轻排序，我们可以直接使用冒泡排序或插入排序等模拟相邻交换的过程，统计交换次数即可。",
+      template: "#include <bits/stdc++.h>\nusing namespace std;\n\nint main() {\n    ios::sync_with_stdio(false);\n    cin.tie(nullptr);\n\n    // 在此编写代码\n\n    return 0;\n}",
       referenceCode: `#include <iostream>\n#include <vector>\n#include <algorithm>\nusing namespace std;\n\nstruct Student {\n    int h, w;\n};\n\nbool compare(const Student& a, const Student& b) {\n    if (a.h != b.h) return a.h > b.h;\n    return a.w > b.w;\n}\n\nint main() {\n    int n;\n    cin >> n;\n    vector<Student> sts(n);\n    for (int i = 0; i < n; ++i) cin >> sts[i].h >> sts[i].w;\n    \n    int swaps = 0;\n    for (int i = 0; i < n-1; ++i) {\n        for (int j = 0; j < n-1-i; ++j) {\n            if (compare(sts[j+1], sts[j])) {\n                swap(sts[j], sts[j+1]);\n                swaps++;\n            }\n        }\n    }\n    cout << swaps << endl;\n    return 0;\n}`,
       tags: ["编程题", "排序", "逆序对", "GESP4级"],
       answer: '',

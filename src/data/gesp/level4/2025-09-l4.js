@@ -297,6 +297,8 @@ export const paperData = {
         {
       id: 26,
       type: 'programming',
+      samples: [{ input: '待补充', output: '待补充' }],
+      referenceCode: '// 待补充',
       question: `
 # [GESP202509 四级] 排兵布阵
 
@@ -316,6 +318,7 @@ export const paperData = {
 `,
       score: 25,
       explanation: "该问题可以转化为求“全 1 子矩阵的最大面积”。由于数据范围较小 (n,m <= 500)，可以使用单调栈优化：对每一行，维护以该行为底向上连续 1 的高度。这样每一行就变成了一个“直方图最大矩形”问题，利用单调栈可以在 O(m) 内求解，总复杂度 O(n*m)。",
+      template: "#include <bits/stdc++.h>\nusing namespace std;\n\nint main() {\n    ios::sync_with_stdio(false);\n    cin.tie(nullptr);\n\n    // 在此编写代码\n\n    return 0;\n}",
       referenceCode: `#include <iostream>\n#include <vector>\n#include <algorithm>\n#include <stack>\nusing namespace std;\n\nint largestRectangleArea(vector<int>& heights) {\n    heights.push_back(0);\n    stack<int> s;\n    int maxArea = 0;\n    for (int i = 0; i < heights.size(); i++) {\n        while (!s.empty() && heights[s.top()] >= heights[i]) {\n            int h = heights[s.top()];\n            s.pop();\n            int w = s.empty() ? i : i-s.top()-1;\n            maxArea = max(maxArea, h * w);\n        }\n        s.push(i);\n    }\n    return maxArea;\n}\n\nint main() {\n    int n, m;\n    cin >> n >> m;\n    vector<vector<int>> grid(n, vector<int>(m));\n    vector<int> heights(m, 0);\n    int maxArea = 0;\n    for (int i = 0; i < n; i++) {\n        for (int j = 0; j < m; j++) {\n            int val; cin >> val;\n            if (val == 1) heights[j]++;\n            else heights[j] = 0;\n        }\n        maxArea = max(maxArea, largestRectangleArea(heights));\n    }\n    cout << maxArea << endl;\n    return 0;\n}`,
       tags: ["编程题", "矩阵", "单调栈", "最大子矩阵", "GESP4级"],
       answer: '',
@@ -323,6 +326,8 @@ export const paperData = {
         {
       id: 27,
       type: 'programming',
+      samples: [{ input: '待补充', output: '待补充' }],
+      referenceCode: '// 待补充',
       question: `
 # [GESP202509 四级] 最长连续段
 
@@ -350,6 +355,7 @@ export const paperData = {
 `,
       score: 25,
       explanation: "重排后能构成的最长“连续段”，本质上是原数组去重排序后，能够构成的最长“值连续整数序列”。解法：先排除重复元素（因为连续段内元素互不相同），排序后遍历，记录最长的相邻差值为 1 的区间。",
+      template: "#include <bits/stdc++.h>\nusing namespace std;\n\nint main() {\n    ios::sync_with_stdio(false);\n    cin.tie(nullptr);\n\n    // 在此编写代码\n\n    return 0;\n}",
       referenceCode: `#include <iostream>\n#include <vector>\n#include <algorithm>\nusing namespace std;\n\nint main() {\n    int n;\n    if (!(cin >> n)) return 0;\n    if (n == 0) {\n        cout << 0 << endl;\n        return 0;\n    }\n    vector<long long> a(n);\n    for (int i = 0; i < n; i++) cin >> a[i];\n    sort(a.begin(), a.end());\n    a.erase(unique(a.begin(), a.end()), a.end());\n    \n    int maxLen = 1, currentLen = 1;\n    for (size_t i = 1; i < a.size(); i++) {\n        if (a[i] == a[i-1]+1) {\n            currentLen++;\n        } else {\n            maxLen = max(maxLen, currentLen);\n            currentLen = 1;\n        }\n    }\n    cout << max(maxLen, currentLen) << endl;\n    return 0;\n}`,
       tags: ["编程题", "贪心", "排序", "GESP4级"],
       answer: '',

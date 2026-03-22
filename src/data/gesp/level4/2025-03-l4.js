@@ -337,6 +337,8 @@ export const paperData = {
         {
       id: 26,
       type: 'programming',
+      samples: [{ input: '待补充', output: '待补充' }],
+      referenceCode: '// 待补充',
       question: `
 # [GESP202503 四级] 荒地开垦
 
@@ -361,11 +363,14 @@ export const paperData = {
       score: 25,
       explanation: "遍历矩阵中所有可能的 2x2 子矩阵的左上角位置 (i, j)，范围是 0 ≤ i < $n-1$ 且 0 ≤ j < $m-1$。对于每个位置，验证主对角线乘积 (A[i][j] * A[i+1][j+1]) 是否等于副对角线乘积 (A[i][j+1] * A[i+1][j])。如果相等，则计数器加一。",
       tags: ["编程题", "GESP4级"],
+      template: "#include <bits/stdc++.h>\nusing namespace std;\n\nint main() {\n    ios::sync_with_stdio(false);\n    cin.tie(nullptr);\n\n    // 在此编写代码\n\n    return 0;\n}",
       answer: '',
     },
         {
       id: 27,
       type: 'programming',
+      samples: [{ input: '待补充', output: '待补充' }],
+      referenceCode: '// 待补充',
       question: `
 # [GESP202503 四级] 二阶矩阵
 
@@ -390,6 +395,7 @@ export const paperData = {
       score: 25,
       explanation: "1. 预处理：判断每个点是否受邻居障碍物影响。2. 计算初始可开垦数量。3. 枚举每个障碍物，计算移除它后新增的可开垦格子（其自身及受其单方面影响的邻居）。4. 取最大值。",
       tags: ["编程题", "GESP4级"],
+      template: "#include <bits/stdc++.h>\nusing namespace std;\n\nint main() {\n    ios::sync_with_stdio(false);\n    cin.tie(nullptr);\n\n    // 在此编写代码\n\n    return 0;\n}",
       answer: '',
     }
     ]

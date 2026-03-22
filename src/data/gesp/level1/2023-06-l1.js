@@ -290,6 +290,8 @@ export const paperData = {
     {
       id: 26,
       type: 'programming',
+      samples: [{ input: '待补充', output: '待补充' }],
+      referenceCode: '// 待补充',
       question: `
 # [GESP202306 一级] 时间规划
 
@@ -314,6 +316,8 @@ export const paperData = {
     {
       id: 27,
       type: 'programming',
+      samples: [{ input: '待补充', output: '待补充' }],
+      referenceCode: '// 待补充',
       question: `
 # [GESP202306 一级] 累计相加
 
@@ -325,7 +329,7 @@ export const paperData = {
 
 ## 输入格式
 
-输入一个正整数 \$n\$。约定 \$1
+输入一个正整数 \$n\$。约定 \$1 \le n \le 100\$。
 
 ## 输出格式
 

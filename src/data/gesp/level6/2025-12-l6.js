@@ -4,6 +4,8 @@ const programmingQuestions = [
     {
       id: 26,
       type: 'programming',
+      samples: [{ input: '待补充', output: '待补充' }],
+      referenceCode: '// 待补充',
       question: `
 # [GESP202512 六级] 路径覆盖
 
@@ -19,7 +21,7 @@ const programmingQuestions = [
 
 第一行，一个正整数 \$n\$，表示结点数量。
 
-第二行，\$n-1\$ 个正整数 \$f_2,f_3,\\ldots,f_n\$，其中 \$f_i\$ 表示结点 \$i\$ 的父结点的编号，保证 \$f_i
+第二行，\$n-1\$ 个正整数 \$f_2,f_3,\\ldots,f_n\$，其中 \$f_i\$ 表示结点 \$i\$ 的父结点的编号，保证 \$f_i < i\$。
 
 ## 输出格式
 
@@ -35,6 +37,8 @@ const programmingQuestions = [
     {
       id: 27,
       type: 'programming',
+      samples: [{ input: '待补充', output: '待补充' }],
+      referenceCode: '// 待补充',
       question: `
 # [GESP202512 六级] 道具商店
 
@@ -209,7 +213,7 @@ export const paperData = {
             type: "single",
             question: "下面代码实现了哈夫曼编码，则横线处应填写的代码是（ ）。",
             options: [
-                "选项A",
+                "[待补充选项]",
                 "选项B",
                 "选项C",
                 "选项D",

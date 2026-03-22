@@ -4,6 +4,8 @@ const programmingQuestions = [
     {
       id: 26,
       type: 'programming',
+      samples: [{ input: '待补充', output: '待补充' }],
+      referenceCode: '// 待补充',
       question: `
 # [GESP202409 七级] 矩阵移动
 
@@ -28,11 +30,14 @@ const programmingQuestions = [
       tags: ["编程题", "树", "DFS", "构造判定"],
       template: "#include <bits/stdc++.h>\nusing namespace std;\n\nint main() {\n    ios::sync_with_stdio(false);\n    cin.tie(nullptr);\n\n    int T;\n    cin >> T;\n    while (T--) {\n        // 在此编写代码\n    }\n    return 0;\n}",
       referenceCode: "#include <bits/stdc++.h>\nusing namespace std;\n\nint main() {\n    ios::sync_with_stdio(false);\n    cin.tie(nullptr);\n\n    int T;\n    cin >> T;\n    while (T--) {\n        int n;\n        cin >> n;\n        vector<int> treasure($n+1$);\n        int totalTreasure = 0;\n        for (int i = 1; i <= n; ++i) {\n            cin >> treasure[i];\n            totalTreasure += treasure[i];\n        }\n\n        vector<vector<int>> g($n+1$);\n        for (int i = 1; i < n; ++i) {\n            int u, v;\n            cin >> u >> v;\n            g[u].push_back(v);\n            g[v].push_back(u);\n        }\n\n        vector<int> sub($n+1$, 0), degree($n+1$, 0);\n        function<void(int, int)> dfs = [&](int u, int parent) {\n            sub[u] = treasure[u];\n            for (int v : g[u]) {\n                if (v == parent) continue;\n                dfs(v, u);\n                if (sub[v] > 0 && totalTreasure-sub[v] > 0) {\n                    degree[u]++;\n                    degree[v]++;\n                }\n                sub[u] += sub[v];\n            }\n        };\n\n        dfs(1, 0);\n\n        bool ok = true;\n        for (int i = 1; i <= n; ++i) {\n            if (degree[i] > 2) {\n                ok = false;\n                break;\n            }\n        }\n        cout << (ok ? \"Yes\" : \"No\") << '\n';\n    }\n    return 0;\n}",
+      score: 25,
       answer: '',
     },
     {
       id: 27,
       type: 'programming',
+      samples: [{ input: '待补充', output: '待补充' }],
+      referenceCode: '// 待补充',
       question: `
 # [GESP202409 七级] 小杨寻宝
 
@@ -61,6 +66,7 @@ const programmingQuestions = [
       tags: ["编程题", "动态规划", "网格DP"],
       template: "#include <bits/stdc++.h>\nusing namespace std;\n\nint main() {\n    ios::sync_with_stdio(false);\n    cin.tie(nullptr);\n\n    int T;\n    cin >> T;\n    while (T--) {\n        // 在此编写代码\n    }\n    return 0;\n}",
       referenceCode: "#include <bits/stdc++.h>\nusing namespace std;\n\nint main() {\n    ios::sync_with_stdio(false);\n    cin.tie(nullptr);\n\n    int T;\n    cin >> T;\n    while (T--) {\n        int n, m, k;\n        cin >> n >> m >> k;\n        vector<string> a($n+1$);\n        for (int i = 1; i <= n; ++i) {\n            cin >> a[i];\n            a[i] = \" \"+a[i];\n        }\n\n        const int NEG = -1000000000;\n        vector<vector<int>> prev(m+1, vector<int>(k+1, NEG));\n        for (int i = 1; i <= n; ++i) {\n            vector<vector<int>> cur(m+1, vector<int>(k+1, NEG));\n            for (int j = 1; j <= m; ++j) {\n                for (int used = 0; used <= k; ++used) {\n                    int best = NEG;\n                    if (i == 1 && j == 1) best = 0;\n                    if (i > 1) best = max(best, prev[j][used]);\n                    if (j > 1) best = max(best, cur[j-1][used]);\n                    if (best <= NEG / 2) continue;\n\n                    char ch = a[i][j];\n                    if (ch == '1') {\n                        cur[j][used] = max(cur[j][used], best+1);\n                    } else if (ch == '0') {\n                        cur[j][used] = max(cur[j][used], best);\n                    } else {\n                        cur[j][used] = max(cur[j][used], best);\n                        if (used < k) cur[j][used+1] = max(cur[j][used+1], best+1);\n                    }\n                }\n            }\n            prev.swap(cur);\n        }\n\n        int ans = 0;\n        for (int used = 0; used <= k; ++used) ans = max(ans, prev[m][used]);\n        cout << ans << '\n';\n    }\n    return 0;\n}",
+      score: 25,
       answer: '',
     }
 ];
@@ -307,7 +313,7 @@ export const paperData = {
             type: "single",
             question: "上题中程序的时间复杂度为（ ）。",
             options: [
-                "选项A",
+                "[待补充选项]",
                 "#include <iostream> #include <cmath> using namespace std; int main() { cout << (int)log(8) << endl; return 0; } 1 2 3 4 5 6 7 #include <iostream> #define N 10 using namespace std; int path[N][N]; int main() { for (int i = 1; i < N; i++) path[i][0] = i; for (int j = 1; j < N; j++) path[0][j] = j; for (int i = 1; i < N; i++) for (int j = 1; j < N; j++) path[i][j] = path[i-1][j]+path[i][j-1]; cout << path[8][4] << endl; return 0; } 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 题号 1 2 3 4 5 6 7 8 9 10 答案",
                 "选项C",
                 "选项D",
@@ -326,7 +332,7 @@ export const paperData = {
             type: "single",
             question: "下面fib函数的时间复杂度为 ( ) 。",
             options: [
-                "选项A",
+                "[待补充选项]",
                 ",",
                 "选项C",
                 "无法正常结束。",
