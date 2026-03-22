@@ -4,7 +4,18 @@ const programmingQuestions = [
     {
       id: 26,
       type: 'programming',
-      samples: [{ input: '待补充', output: '待补充' }],
+      samples: [
+        { input: `4 3
+1 2
+2 3
+4 2`, output: `1 3` },
+        { input: `7 5
+1 2
+2 3
+4 2
+5 6
+6 7`, output: `2 5` }
+      ],
       referenceCode: '// 待补充',
       question: `
 # [GESP202403 七级] 交流问题
@@ -37,7 +48,14 @@ const programmingQuestions = [
     {
       id: 27,
       type: 'programming',
-      samples: [{ input: '待补充', output: '待补充' }],
+      samples: [
+        { input: `5 6
+1 2 3 4 4 5
+1 2 3 3 4 5
+1 2 2 3 4 5
+1 6 6 7 7 8
+6 6 7 7 8 8`, output: `7` }
+      ],
       referenceCode: '// 待补充',
       question: `
 # [GESP202403 七级] 俄罗斯方块

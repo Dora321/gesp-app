@@ -4,7 +4,10 @@ const programmingQuestions = [
     {
       id: 26,
       type: 'programming',
-      samples: [{ input: '待补充', output: '待补充' }],
+      samples: [
+        { input: `2 5 2`, output: `9` },
+        { input: `100 100 100`, output: `185233` }
+      ],
       referenceCode: '// 待补充',
       question: `
 # [GESP202403 八级] 公倍数问题
@@ -37,7 +40,19 @@ const programmingQuestions = [
     {
       id: 27,
       type: 'programming',
-      samples: [{ input: '待补充', output: '待补充' }],
+      samples: [
+        { input: `1
+6
+1 2 2 3 1 3
+4
+1 3
+1 6
+1 5
+5 6`, output: `1
+1
+0
+2` }
+      ],
       referenceCode: '// 待补充',
       question: `
 # [GESP202403 八级] 接竹竿

@@ -337,7 +337,14 @@ export const paperData = {
         {
       id: 26,
       type: 'programming',
-      samples: [{ input: '待补充', output: '待补充' }],
+      samples: [
+        { input: `5 5 3
+5 5 5 5 5
+5 1 5 1 5
+5 5 5 5 5
+5 2 5 2 5
+3 5 5 5 2`, output: `40` }
+      ],
       referenceCode: '// 待补充',
       question: `
 # [GESP202512 四级] 建造
@@ -371,7 +378,15 @@ export const paperData = {
         {
       id: 27,
       type: 'programming',
-      samples: [{ input: '待补充', output: '待补充' }],
+      samples: [
+        { input: `20 4
+apple 6 8
+bus 15 1
+cab 1 10
+water 4 8`, output: `bus
+cab
+water` }
+      ],
       referenceCode: '// 待补充',
       question: `
 # [GESP202512 四级] 优先购买

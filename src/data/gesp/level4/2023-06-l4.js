@@ -341,7 +341,12 @@ const programmingQuestions = [
     {
       id: 26,
       type: 'programming',
-      samples: [{ input: '待补充', output: '待补充' }],
+      samples: [
+        { input: `3 3
+0 2 1`, output: `3` },
+        { input: `3 5
+0 0 0 0 0`, output: `1 2` }
+      ],
       referenceCode: '// 待补充',
       question: `
 # [GESP202306 三级] 春游

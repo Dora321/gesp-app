@@ -263,7 +263,11 @@ export const paperData = {
     {
       id: 26,
       type: 'programming',
-      samples: [{ input: '待补充', output: '待补充' }],
+      samples: [
+        { input: `3 4`, output: `1 2 3 4
+2 4 6 8
+3 6 9 12` }
+      ],
       referenceCode: '// 待补充',
       question: `
 # [GESP202503 二级] 等差矩阵
@@ -290,7 +294,13 @@ export const paperData = {
     {
       id: 27,
       type: 'programming',
-      samples: [{ input: '待补充', output: '待补充' }],
+      samples: [
+        { input: `2008
+2
+28
+23
+1`, output: `2008 2 29 0` }
+      ],
       referenceCode: '// 待补充',
       question: `
 # [GESP202503 二级] 时间跨越

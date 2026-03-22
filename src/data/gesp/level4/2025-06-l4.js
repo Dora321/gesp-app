@@ -337,7 +337,21 @@ export const paperData = {
         {
       id: 26,
       type: 'programming',
-      samples: [{ input: '待补充', output: '待补充' }],
+      samples: [
+        { input: `3 5
+2 2 2 4
+.....
+.>_<.
+.....`, output: `>_<` },
+        { input: `5 5
+1 2 3 4
+AbCdE
+fGhIk
+LmNoP
+qRsTu
+VwXyZ`, output: `Cd
+hI` }
+      ],
       referenceCode: '// 待补充',
       question: `
 # [GESP202506 四级] 画布裁剪
@@ -370,7 +384,20 @@ export const paperData = {
         {
       id: 27,
       type: 'programming',
-      samples: [{ input: '待补充', output: '待补充' }],
+      samples: [
+        { input: `5
+1 60
+3 70
+2 80
+4 55
+4 50`, output: `8` },
+        { input: `5
+4 0
+4 0
+2 0
+3 0
+1 0`, output: `1` }
+      ],
       referenceCode: '// 待补充',
       question: `
 # [GESP202506 四级] 排序

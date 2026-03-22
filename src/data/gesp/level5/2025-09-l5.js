@@ -4,7 +4,10 @@ const programmingQuestions = [
     {
       id: 26,
       type: 'programming',
-      samples: [{ input: '待补充', output: '待补充' }],
+      samples: [
+        { input: `6`, output: `4` },
+        { input: `9`, output: `5` }
+      ],
       referenceCode: '// 待补充',
       question: `
 # [GESP202509 五级] 数字选取
@@ -33,7 +36,10 @@ const programmingQuestions = [
     {
       id: 27,
       type: 'programming',
-      samples: [{ input: '待补充', output: '待补充' }],
+      samples: [
+        { input: `3 8`, output: `19` },
+        { input: `65 36248`, output: `328505490` }
+      ],
       referenceCode: '// 待补充',
       question: `
 # [GESP202509 五级] 有趣的数字和

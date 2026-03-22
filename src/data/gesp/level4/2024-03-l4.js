@@ -4,7 +4,18 @@ const programmingQuestions = [
     {
       id: 26,
       type: 'programming',
-      samples: [{ input: '待补充', output: '待补充' }],
+      samples: [
+        { input: `5
+apple applee
+apple appe
+apple bpple
+applee bpple
+apple apple`, output: `similar
+similar
+similar
+not similar
+similar` }
+      ],
       referenceCode: '// 待补充',
       question: `
 # [GESP202403 四级] 相似字符串
@@ -38,7 +49,10 @@ const programmingQuestions = [
     {
       id: 27,
       type: 'programming',
-      samples: [{ input: '待补充', output: '待补充' }],
+      samples: [
+        { input: `4
+3 1 4 1`, output: `3` }
+      ],
       referenceCode: '// 待补充',
       question: `
 # [GESP202403 四级] 做题

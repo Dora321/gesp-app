@@ -45,7 +45,17 @@ export const paperData = {
     {
       id: 26,
       type: 'programming',
-      samples: [{ input: '待补充', output: '待补充' }],
+      samples: [
+        { input: `3
+5
+2
+10
+3
+2
+5`, output: `7
+13
+2` }
+      ],
       referenceCode: '// 待补充',
       question: `
 # [GESP202512 二级] 环保能量球
@@ -81,7 +91,11 @@ export const paperData = {
     {
       id: 27,
       type: 'programming',
-      samples: [{ input: '待补充', output: '待补充' }],
+      samples: [
+        { input: `4
+4
+2`, output: `4` }
+      ],
       referenceCode: '// 待补充',
       question: `
 # [GESP202512 二级] 黄金格

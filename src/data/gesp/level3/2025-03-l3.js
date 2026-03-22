@@ -246,7 +246,9 @@ export const paperData = {
         {
       id: 26,
       type: 'programming',
-      samples: [{ input: '待补充', output: '待补充' }],
+      samples: [
+        { input: `1025`, output: `1000` }
+      ],
       referenceCode: '// 待补充',
       question: `
 # [GESP202503 三级] 2025
@@ -277,7 +279,15 @@ export const paperData = {
         {
       id: 27,
       type: 'programming',
-      samples: [{ input: '待补充', output: '待补充' }],
+      samples: [
+        { input: `6
+Apple
+banana
+apple
+Orange
+banana
+apple`, output: `apple` }
+      ],
       referenceCode: '// 待补充',
       question: `
 # [GESP202503 三级] 词频统计

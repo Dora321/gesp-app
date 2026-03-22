@@ -4,7 +4,14 @@ const programmingQuestions = [
     {
       id: 26,
       type: 'programming',
-      samples: [{ input: '待补充', output: '待补充' }],
+      samples: [
+        { input: `6
+street
+2 1 7 4 3 3`, output: `13` },
+        { input: `8
+blossoms
+1 1 2 3 5 8 13 21`, output: `8` }
+      ],
       referenceCode: '// 待补充',
       question: `
 # [GESP202509 六级] 划分字符串
@@ -37,7 +44,19 @@ const programmingQuestions = [
     {
       id: 27,
       type: 'programming',
-      samples: [{ input: '待补充', output: '待补充' }],
+      samples: [
+        { input: `4
+1 2 6
+1 3 1
+3 4 5`, output: `18` },
+        { input: `7
+1 2 1
+2 3 1
+3 4 1
+7 6 1
+6 5 1
+5 1 1`, output: `9` }
+      ],
       referenceCode: '// 待补充',
       question: `
 # [GESP202509 六级] 货物运输

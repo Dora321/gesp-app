@@ -4,7 +4,12 @@ const programmingQuestions = [
     {
       id: 26,
       type: 'programming',
-      samples: [{ input: '待补充', output: '待补充' }],
+      samples: [
+        { input: `4
+1 5 6 3`, output: `10` },
+        { input: `8
+0 2 5 6 4 3 3 4`, output: `12` }
+      ],
       referenceCode: '// 待补充',
       question: `
 # [GESP202506 六级] 学习小组
@@ -35,7 +40,16 @@ const programmingQuestions = [
     {
       id: 27,
       type: 'programming',
-      samples: [{ input: '待补充', output: '待补充' }],
+      samples: [
+        { input: `3
+1 3
+2 5
+4 8`, output: `1
+2
+1` },
+        { input: `1
+120 650`, output: `9` }
+      ],
       referenceCode: '// 待补充',
       question: `
 # [GESP202506 六级] 最大因数

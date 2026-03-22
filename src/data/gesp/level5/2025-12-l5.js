@@ -4,7 +4,10 @@ const programmingQuestions = [
     {
       id: 26,
       type: 'programming',
-      samples: [{ input: '待补充', output: '待补充' }],
+      samples: [
+        { input: `6
+1 2 1 3 2 3`, output: `2` }
+      ],
       referenceCode: '// 待补充',
       question: `
 # [GESP202512 五级] 数字移动
@@ -41,7 +44,10 @@ const programmingQuestions = [
     {
       id: 27,
       type: 'programming',
-      samples: [{ input: '待补充', output: '待补充' }],
+      samples: [
+        { input: `5
+10 6 35 105 42`, output: `8` }
+      ],
       referenceCode: '// 待补充',
       question: `
 # [GESP202512 五级] 相等序列

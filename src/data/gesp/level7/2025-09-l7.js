@@ -4,7 +4,18 @@ const programmingQuestions = [
     {
       id: 26,
       type: 'programming',
-      samples: [{ input: '待补充', output: '待补充' }],
+      samples: [
+        { input: `4 4
+1 2
+2 3
+3 1
+1 4`, output: `0` },
+        { input: `6 4
+1 2
+2 3
+3 1
+6 5`, output: `2` }
+      ],
       referenceCode: '// 待补充',
       question: `
 # [GESP202509 七级] 连通图
@@ -37,7 +48,17 @@ const programmingQuestions = [
     {
       id: 27,
       type: 'programming',
-      samples: [{ input: '待补充', output: '待补充' }],
+      samples: [
+        { input: `3
+1 6
+3 7
+2 4`, output: `2` },
+        { input: `4
+1 1
+2 2
+1 3
+2 4`, output: `3` }
+      ],
       referenceCode: '// 待补充',
       question: `
 # [GESP202509 七级] 金币收集

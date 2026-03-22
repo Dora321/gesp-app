@@ -253,7 +253,17 @@ export const paperData = {
         {
       id: 26,
       type: 'programming',
-      samples: [{ input: '待补充', output: '待补充' }],
+      samples: [
+        { input: `3
+3
+1 2 3
+4
+2 3 1 4
+5
+1 2 3 4 5`, output: `Yes
+Yes
+No` }
+      ],
       referenceCode: '// 待补充',
       question: `
 # [GESP202409 三级] 平衡序列
@@ -287,7 +297,16 @@ export const paperData = {
         {
       id: 27,
       type: 'programming',
-      samples: [{ input: '待补充', output: '待补充' }],
+      samples: [
+        { input: `4
+abcd
+aabbb
+aaac
+abcdd`, output: `No
+Yes
+No
+No` }
+      ],
       referenceCode: '// 待补充',
       question: `
 # [GESP202409 三级] 回文拼接

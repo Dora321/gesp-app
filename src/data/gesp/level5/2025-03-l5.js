@@ -4,7 +4,14 @@ const programmingQuestions = [
     {
       id: 26,
       type: 'programming',
-      samples: [{ input: '待补充', output: '待补充' }],
+      samples: [
+        { input: `3
+1 3 5 6 8 10
+2 4 6 7 9 11`, output: `36` },
+        { input: `2
+6 7 9 9
+1 2 10 12`, output: `35` }
+      ],
       referenceCode: '// 待补充',
       question: `
 # [GESP202503 五级] 平均分配
@@ -35,7 +42,14 @@ const programmingQuestions = [
     {
       id: 27,
       type: 'programming',
-      samples: [{ input: '待补充', output: '待补充' }],
+      samples: [
+        { input: `3
+3 998244353
+5 998244353
+7 998244353`, output: `Yes
+Yes
+No` }
+      ],
       referenceCode: '// 待补充',
       question: `
 # [GESP202503 五级] 原根判断

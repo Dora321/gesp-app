@@ -4,7 +4,10 @@ const programmingQuestions = [
     {
       id: 26,
       type: 'programming',
-      samples: [{ input: '待补充', output: '待补充' }],
+      samples: [
+        { input: `5`, output: `1 2 3 6 7` },
+        { input: `8`, output: `1 2 3 6 7 12 13 20` }
+      ],
       referenceCode: '// 待补充',
       question: `
 # [GESP202412 四级] Recamán
@@ -36,7 +39,20 @@ const programmingQuestions = [
     {
       id: 27,
       type: 'programming',
-      samples: [{ input: '待补充', output: '待补充' }],
+      samples: [
+        { input: `3
+3
+aa
+ac
+de
+2
+aac
+bc
+1
+gesp`, output: `1
+0
+0` }
+      ],
       referenceCode: '// 待补充',
       question: `
 # [GESP202412 四级] 字符排序

@@ -4,7 +4,14 @@ const programmingQuestions = [
     {
       id: 26,
       type: 'programming',
-      samples: [{ input: '待补充', output: '待补充' }],
+      samples: [
+        { input: `6 2 
+2 3
+1 0 30 100 30 30`, output: `131` },
+        { input: `6 2
+2 3
+1 0 30 100 30 -1`, output: `101` }
+      ],
       referenceCode: '// 待补充',
       question: `
 # [GESP202312 六级] 闯关游戏
@@ -39,7 +46,28 @@ const programmingQuestions = [
     {
       id: 27,
       type: 'programming',
-      samples: [{ input: '待补充', output: '待补充' }],
+      samples: [
+        { input: `5
+0 0 2 2
+3
+2 3 4
+3 2 3 4
+2 1 4`, output: `2
+2
+0` },
+        { input: `7
+0 1 0 2 1 2
+5
+2 4 6
+2 4 5
+3 4 5 6
+4 2 4 5 6
+2 3 4`, output: `2
+1
+1
+1
+0` }
+      ],
       referenceCode: '// 待补充',
       question: `
 # [GESP202312 六级] 工作沟通

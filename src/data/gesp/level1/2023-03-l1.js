@@ -285,7 +285,10 @@ export const paperData = {
     {
       id: 26,
       type: 'programming',
-      samples: [{ input: '待补充', output: '待补充' }],
+      samples: [
+        { input: `4`, output: `2` },
+        { input: `6`, output: `2` }
+      ],
       referenceCode: `#include <iostream>\nusing namespace std;\nint main() {\n    int n, count = 0;\n    cin >> n;\n    for (int i = 1; i * i <= n; i++) {\n        if (n % i == 0) {\n            count++;\n        }\n    }\n    cout << count << endl;\n    return 0;\n}`,
       question: `
 # [GESP202303 一级] 长方形面积
@@ -311,7 +314,10 @@ export const paperData = {
     {
       id: 27,
       type: 'programming',
-      samples: [{ input: '待补充', output: '待补充' }],
+      samples: [
+        { input: `2022 1`, output: `31` },
+        { input: `2020 2`, output: `29` }
+      ],
       referenceCode: `#include <iostream>\nusing namespace std;\nint main() {\n    int y, m;\n    cin >> y >> m;\n    if (m == 1 || m == 3 || m == 5 || m == 7 || m == 8 || m == 10 || m == 12) {\n        cout << 31 << endl;\n    } else if (m == 4 || m == 6 || m == 9 || m == 11) {\n        cout << 30 << endl;\n    } else {\n        if ((y % 4 == 0 && y % 100 != 0) || (y % 400 == 0)) {\n            cout << 29 << endl;\n        } else {\n            cout << 28 << endl;\n        }\n    }\n    return 0;\n}`,
       question: `
 # [GESP202303 一级] 每月天数

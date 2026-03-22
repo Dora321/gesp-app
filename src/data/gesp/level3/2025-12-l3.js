@@ -261,7 +261,20 @@ export const paperData = {
         {
       id: 26,
       type: 'programming',
-      samples: [{ input: '待补充', output: '待补充' }],
+      samples: [
+        { input: `6
+PAs1s2an
+1a2bCql3
+Pa12bsna
+ab1da3cd
+Paabdbcd
+Pa2`, output: `Y
+Y
+Y
+N
+N
+N` }
+      ],
       referenceCode: '// 待补充',
       question: `
 # [GESP202512 三级] 密码强度
@@ -301,7 +314,14 @@ export const paperData = {
         {
       id: 27,
       type: 'programming',
-      samples: [{ input: '待补充', output: '待补充' }],
+      samples: [
+        { input: `2 5
+1 1
+1 2
+1 1
+2 3
+2 10`, output: `4` }
+      ],
       referenceCode: '// 待补充',
       question: `
 # [GESP202512 三级] 小杨的智慧购物

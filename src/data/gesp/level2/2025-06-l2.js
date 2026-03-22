@@ -263,7 +263,10 @@ export const paperData = {
     {
       id: 26,
       type: 'programming',
-      samples: [{ input: '待补充', output: '待补充' }],
+      samples: [
+        { input: `3`, output: `3` },
+        { input: `5`, output: `9` }
+      ],
       referenceCode: '// 待补充',
       question: `
 # [GESP202506 二级] 数三角形
@@ -292,7 +295,10 @@ export const paperData = {
     {
       id: 27,
       type: 'programming',
-      samples: [{ input: '待补充', output: '待补充' }],
+      samples: [
+        { input: `2 8`, output: `6` },
+        { input: `10 100`, output: `20` }
+      ],
       referenceCode: '// 待补充',
       question: `
 # [GESP202506 二级] 幂和数

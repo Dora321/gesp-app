@@ -280,7 +280,12 @@ export const paperData = {
     {
       id: 26,
       type: 'programming',
-      samples: [{ input: '待补充', output: '待补充' }],
+      samples: [
+        { input: `1
+6`, output: `7` },
+        { input: `5
+3`, output: `1` }
+      ],
       referenceCode: `#include <iostream>\nusing namespace std;\nint main() {\n    int x, y;\n    cin >> x >> y;\n    int res = (y+x-1) % 7;\n    if (res == 0) res = 7;\n    cout << res << endl;\n    return 0;\n}`,
       question: `
 # [GESP202312 一级] 小杨的考试
@@ -306,7 +311,20 @@ export const paperData = {
     {
       id: 27,
       type: 'programming',
-      samples: [{ input: '待补充', output: '待补充' }],
+      samples: [
+        { input: `5
+2`, output: `1
+3
+5` },
+        { input: `10
+3`, output: `1
+2
+4
+5
+7
+8
+10` }
+      ],
       referenceCode: `#include <iostream>\nusing namespace std;\nbool contains(int n, int x) {\n    while (n > 0) {\n        if (n % 10 == x) return true;\n        n /= 10;\n    }\n    return false;\n}\nint main() {\n    int n, x, count = 0;\n    cin >> n >> x;\n    for (int i = 1; i <= n; i++) {\n        if (i % x == 0 || contains(i, x)) {\n            count++;\n        }\n    }\n    cout << count << endl;\n    return 0;\n}`,
       question: `
 # [GESP202312 一级] 小杨报数

@@ -281,7 +281,12 @@ export const paperData = {
         {
       id: 26,
       type: 'programming',
-      samples: [{ input: '待补充', output: '待补充' }],
+      samples: [
+        { input: `3
+2 3 4`, output: `7` },
+        { input: `5
+1 3 2 2 5`, output: `13` }
+      ],
       referenceCode: '// 待补充',
       question: `
 # [GESP202509 三级] 数组清零
@@ -322,7 +327,21 @@ export const paperData = {
         {
       id: 27,
       type: 'programming',
-      samples: [{ input: '待补充', output: '待补充' }],
+      samples: [
+        { input: `9`, output: `MON TUE WED THU FRI SAT SUN
+  1   2   3   4   5   6   7
+  8   9  10  11  12  13  14
+ 15  16  17  18  19  20  21
+ 22  23  24  25  26  27  28
+ 29  30` },
+        { input: `6`, output: `MON TUE WED THU FRI SAT SUN
+                          1
+  2   3   4   5   6   7   8
+  9  10  11  12  13  14  15
+ 16  17  18  19  20  21  22
+ 23  24  25  26  27  28  29
+ 30` }
+      ],
       referenceCode: '// 待补充',
       question: `
 # [GESP202509 三级] 日历制作

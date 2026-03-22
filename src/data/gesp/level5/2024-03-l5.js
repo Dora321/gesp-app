@@ -4,7 +4,20 @@ const programmingQuestions = [
     {
       id: 26,
       type: 'programming',
-      samples: [{ input: '待补充', output: '待补充' }],
+      samples: [
+        { input: `6
+140 140 150
+140 149 140
+148 141 140
+141 148 140
+145 145 139
+0 0 0`, output: `1
+3
+4
+4
+2
+6` }
+      ],
       referenceCode: '// 待补充',
       question: `
 # [GESP202403 五级] 成绩排序
@@ -40,7 +53,9 @@ const programmingQuestions = [
     {
       id: 27,
       type: 'programming',
-      samples: [{ input: '待补充', output: '待补充' }],
+      samples: [
+        { input: `10 3`, output: `7` }
+      ],
       referenceCode: '// 待补充',
       question: `
 # [GESP202403 五级] B-smooth 数

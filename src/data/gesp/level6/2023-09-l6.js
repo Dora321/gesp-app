@@ -4,7 +4,25 @@ const programmingQuestions = [
     {
       id: 26,
       type: 'programming',
-      samples: [{ input: '待补充', output: '待补充' }],
+      samples: [
+        { input: `5 100
+100 2000
+2 50
+4 40
+5 30
+3 20`, output: `9` },
+        { input: `5 141
+100 2000
+2 50
+4 40
+5 30
+3 20`, output: `100` },
+        { input: `4 141
+2 50
+4 40
+5 30
+3 20`, output: `no solution` }
+      ],
       referenceCode: '// 待补充',
       question: `
 # [GESP202309 六级] 小杨买饮料
@@ -43,7 +61,12 @@ const programmingQuestions = [
     {
       id: 27,
       type: 'programming',
-      samples: [{ input: '待补充', output: '待补充' }],
+      samples: [
+        { input: `4
+2 1 3 0`, output: `2` },
+        { input: `6
+0 1 2 3 4 5`, output: `15` }
+      ],
       referenceCode: '// 待补充',
       question: `
 # [GESP202309 六级] 小杨的握手问题

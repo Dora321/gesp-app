@@ -256,7 +256,12 @@ export const paperData = {
         {
       id: 26,
       type: 'programming',
-      samples: [{ input: '待补充', output: '待补充' }],
+      samples: [
+        { input: `2 3
+0 1 0`, output: `4 2` },
+        { input: `3 5
+0 0 0 2 0`, output: `11 0 4` }
+      ],
       referenceCode: '// 待补充',
       question: `
 # [GESP202309 三级] 小杨的储蓄
@@ -308,7 +313,20 @@ int main() {
         {
       id: 27,
       type: 'programming',
-      samples: [{ input: '待补充', output: '待补充' }],
+      samples: [
+        { input: `2
+15A6F
+1011`, output: `0 0 0 1
+1 1 1 1` },
+        { input: `4
+1234567
+12345678
+FF
+GG`, output: `0 1 1 1
+0 0 1 1
+0 0 0 1
+0 0 0 0` }
+      ],
       referenceCode: '// 待补充',
       question: `
 # [GESP202309 三级] 进制判断

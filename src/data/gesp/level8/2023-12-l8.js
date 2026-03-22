@@ -4,7 +4,24 @@ const programmingQuestions = [
     {
       id: 26,
       type: 'programming',
-      samples: [{ input: '待补充', output: '待补充' }],
+      samples: [
+        { input: `3
+3 2 1 2
+3 2 1 3
+5 3 1 3 1`, output: `3
+4
+20` },
+        { input: `5
+100 1 100
+100 1 101
+20 2 12 8
+123 4 80 20 21 3
+999 5 101 234 499 66 99`, output: `1
+1
+125970
+895031741
+307187590` }
+      ],
       referenceCode: '// 待补充',
       question: `
 # [GESP202312 八级] 奖品分配
@@ -41,7 +58,28 @@ const programmingQuestions = [
     {
       id: 27,
       type: 'programming',
-      samples: [{ input: '待补充', output: '待补充' }],
+      samples: [
+        { input: `5
+0 0 2 2
+3
+2 3 4
+3 2 3 4
+2 1 4`, output: `2
+2
+0` },
+        { input: `7
+0 1 0 2 1 2
+5
+2 4 6
+2 4 5
+3 4 5 6
+4 2 4 5 6
+2 3 4`, output: `2
+1
+1
+1
+0` }
+      ],
       referenceCode: '// 待补充',
       question: `
 # [GESP202312 八级] 大量的工作沟通

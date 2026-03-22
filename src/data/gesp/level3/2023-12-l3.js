@@ -262,7 +262,12 @@ export const paperData = {
         {
       id: 26,
       type: 'programming',
-      samples: [{ input: '待补充', output: '待补充' }],
+      samples: [
+        { input: `2
+1`, output: `7` },
+        { input: `3
+1`, output: `25` }
+      ],
       referenceCode: '// 待补充',
       question: `
 # [GESP202312 三级] 小猫分鱼
@@ -291,7 +296,22 @@ export const paperData = {
         {
       id: 27,
       type: 'programming',
-      samples: [{ input: '待补充', output: '待补充' }],
+      samples: [
+        { input: `2
+1 km = ? mm
+1 m = ? mm`, output: `1 km = 1000000 mm
+1 m = 1000 mm` },
+        { input: `5
+100 m = ? mm
+1000 km = ? m
+20 kg = ? g
+200 g = ? mg
+0 kg = ? mg`, output: `100 m = 100000 mm
+1000 km = 1000000 m
+20 kg = 20000 g
+200 g = 200000 mg
+0 kg = 0 mg` }
+      ],
       referenceCode: '// 待补充',
       question: `
 # [GESP202312 三级] 单位转换

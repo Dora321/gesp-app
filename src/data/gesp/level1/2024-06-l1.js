@@ -275,7 +275,12 @@ export const paperData = {
     {
       id: 26,
       type: 'programming',
-      samples: [{ input: '待补充', output: '待补充' }],
+      samples: [
+        { input: `12
+59
+59
+10`, output: `13 0 9` }
+      ],
       referenceCode: `#include <iostream>
 using namespace std;
 int main() {
@@ -319,7 +324,10 @@ int main() {
     {
       id: 27,
       type: 'programming',
-      samples: [{ input: '待补充', output: '待补充' }],
+      samples: [
+        { input: `8`, output: `Yes` },
+        { input: `9`, output: `No` }
+      ],
       referenceCode: `#include <iostream>
 using namespace std;
 int main() {

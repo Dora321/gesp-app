@@ -4,7 +4,14 @@ const programmingQuestions = [
     {
       id: 26,
       type: 'programming',
-      samples: [{ input: '待补充', output: '待补充' }],
+      samples: [
+        { input: `3
+6
+188
+9999`, output: `2
+4
+-1` }
+      ],
       referenceCode: '// 待补充',
       question: `
 # [GESP202409 五级] 挑战怪物
@@ -40,7 +47,11 @@ const programmingQuestions = [
     {
       id: 27,
       type: 'programming',
-      samples: [{ input: '待补充', output: '待补充' }],
+      samples: [
+        { input: `2 2
+9 9
+1 -1`, output: `10` }
+      ],
       referenceCode: '// 待补充',
       question: `
 # [GESP202409 五级] 小杨的武器

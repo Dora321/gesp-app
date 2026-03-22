@@ -290,7 +290,16 @@ export const paperData = {
     {
       id: 26,
       type: 'programming',
-      samples: [{ input: '待补充', output: '待补充' }],
+      samples: [
+        { input: `9
+5
+9
+6`, output: `1` },
+        { input: `9
+5
+10
+0`, output: `55` }
+      ],
       referenceCode: `#include <iostream>\nusing namespace std;\nint main() {\n    int h1, m1, h2, m2;\n    cin >> h1 >> m1 >> h2 >> m2;\n    cout << (h2 * 60+m2)-(h1 * 60+m1) << endl;\n    return 0;\n}`,
       question: `
 # [GESP202306 一级] 时间规划
@@ -316,7 +325,11 @@ export const paperData = {
     {
       id: 27,
       type: 'programming',
-      samples: [{ input: '待补充', output: '待补充' }],
+      samples: [
+        { input: `3`, output: `10` },
+        { input: `4`, output: `20` },
+        { input: `10`, output: `220` }
+      ],
       referenceCode: `#include <iostream>\nusing namespace std;\nint main() {\n    int n, x, min_val = 1001;\n    cin >> n;\n    for (int i = 0; i < n; i++) {\n        cin >> x;\n        if (x < min_val) {\n            min_val = x;\n        }\n    }\n    cout << min_val << endl;\n    return 0;\n}`,
       question: `
 # [GESP202306 一级] 累计相加

@@ -4,7 +4,13 @@ const programmingQuestions = [
     {
       id: 26,
       type: 'programming',
-      samples: [{ input: '待补充', output: '待补充' }],
+      samples: [
+        { input: `4 5
+00000
+01111
+00011
+00011`, output: `16` }
+      ],
       referenceCode: '// 待补充',
       question: `
 # [GESP202406 四级] 黑白方块
@@ -33,7 +39,10 @@ const programmingQuestions = [
     {
       id: 27,
       type: 'programming',
-      samples: [{ input: '待补充', output: '待补充' }],
+      samples: [
+        { input: `5 1
+1 2 3 1 2`, output: `7` }
+      ],
       referenceCode: '// 待补充',
       question: `
 # [GESP202406 四级] 宝箱

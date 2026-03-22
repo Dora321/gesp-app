@@ -472,7 +472,20 @@ const programmingQuestions = [
     {
       id: 26,
       type: 'programming',
-      samples: [{ input: '待补充', output: '待补充' }],
+      samples: [
+        { input: `2
+abc a
+d def
+abc.d.d.abc.abcd`, output: `a.def.def.a.UNK` },
+        { input: `3
+abc a
+d def
+abcd xxxx
+abc,(d)d!-abc?abcd`, output: `a,(def)def!-a?xxxx` },
+        { input: `1
+abcdefghij klmnopqrst
+!()-[]{}\\|;:'",./?<>abcdefghijklmnopqrstuvwxyz`, output: `!()-[]{}\\|;:'",./?<>UNK` }
+      ],
       referenceCode: '// 待补充',
       question: `
 # [GESP202312 四级] 小杨的字典
@@ -509,7 +522,14 @@ const programmingQuestions = [
     {
       id: 27,
       type: 'programming',
-      samples: [{ input: '待补充', output: '待补充' }],
+      samples: [
+        { input: `3
+1 3 5
+2 4 6`, output: `2` },
+        { input: `5
+10 3 5 8 7
+4 6 1 2 9`, output: `5` }
+      ],
       referenceCode: '// 待补充',
       question: `
 # [GESP202312 四级] 田忌赛马

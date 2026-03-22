@@ -290,7 +290,14 @@ export const paperData = {
     {
       id: 26,
       type: 'programming',
-      samples: [{ input: '待补充', output: '待补充' }],
+      samples: [
+        { input: `8
+3
+2`, output: `6` },
+        { input: `19
+3
+30`, output: `19` }
+      ],
       referenceCode: `#include <iostream>
 using namespace std;
 int main() {
@@ -327,7 +334,10 @@ int main() {
     {
       id: 27,
       type: 'programming',
-      samples: [{ input: '待补充', output: '待补充' }],
+      samples: [
+        { input: `4
+6`, output: `12` }
+      ],
       referenceCode: `#include <iostream>
 using namespace std;
 long long gcd(long long a, long long b) {

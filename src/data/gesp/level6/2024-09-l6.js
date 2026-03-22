@@ -4,7 +4,9 @@ const programmingQuestions = [
     {
       id: 26,
       type: 'programming',
-      samples: [{ input: '待补充', output: '待补充' }],
+      samples: [
+        { input: `18`, output: `2` }
+      ],
       referenceCode: '// 待补充',
       question: `
 # [GESP202409 六级] 小杨和整数拆分
@@ -33,7 +35,14 @@ const programmingQuestions = [
     {
       id: 27,
       type: 'programming',
-      samples: [{ input: '待补充', output: '待补充' }],
+      samples: [
+        { input: `3 5 10
+1 1 2 3 3
+9 1 10 10 1`, output: `4` },
+        { input: `2 4 10
+1 1 1 2
+1 2 7 10`, output: `-1` }
+      ],
       referenceCode: '// 待补充',
       question: `
 # [GESP202409 六级] 算法学习

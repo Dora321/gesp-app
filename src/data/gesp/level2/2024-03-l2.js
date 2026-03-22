@@ -264,7 +264,20 @@ export const paperData = {
     {
       id: 26,
       type: 'programming',
-      samples: [{ input: '待补充', output: '待补充' }],
+      samples: [
+        { input: `2
+3
+5`, output: `15` },
+        { input: `3
+100
+100
+100`, output: `1000000` },
+        { input: `4
+100
+100
+100
+2`, output: `>1000000` }
+      ],
       referenceCode: '// 待补充',
       question: `
 # [GESP202403 二级] 乘法问题
@@ -297,7 +310,20 @@ export const paperData = {
     {
       id: 27,
       type: 'programming',
-      samples: [{ input: '待补充', output: '待补充' }],
+      samples: [
+        { input: `5`, output: `|---|
+|xxx|
+|---|
+|xxx|
+|---|` },
+        { input: `7`, output: `|-----|
+|xxxxx|
+|xxxxx|
+|-----|
+|xxxxx|
+|xxxxx|
+|-----|` }
+      ],
       referenceCode: '// 待补充',
       question: `
 # [GESP202403 二级] 小杨的日字矩阵

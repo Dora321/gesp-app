@@ -337,7 +337,12 @@ export const paperData = {
         {
       id: 26,
       type: 'programming',
-      samples: [{ input: '待补充', output: '待补充' }],
+      samples: [
+        { input: `3 5
+.....
+.#..#
+.....`, output: `11` }
+      ],
       referenceCode: '// 待补充',
       question: `
 # [GESP202503 四级] 荒地开垦
@@ -369,7 +374,12 @@ export const paperData = {
         {
       id: 27,
       type: 'programming',
-      samples: [{ input: '待补充', output: '待补充' }],
+      samples: [
+        { input: `3 4
+1 2 1 0
+2 4 2 1
+0 3 3 0`, output: `2` }
+      ],
       referenceCode: '// 待补充',
       question: `
 # [GESP202503 四级] 二阶矩阵

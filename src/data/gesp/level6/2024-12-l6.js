@@ -4,7 +4,10 @@ const programmingQuestions = [
     {
       id: 26,
       type: 'programming',
-      samples: [{ input: '待补充', output: '待补充' }],
+      samples: [
+        { input: `3 2
+URR`, output: `7` }
+      ],
       referenceCode: '// 待补充',
       question: `
 # [GESP202412 六级] 树上游走
@@ -41,7 +44,16 @@ const programmingQuestions = [
     {
       id: 27,
       type: 'programming',
-      samples: [{ input: '待补充', output: '待补充' }],
+      samples: [
+        { input: `3 4 10
+1 1
+2 1
+8 3
+5 3
+7 2
+9 0
+1 10000`, output: `40186` }
+      ],
       referenceCode: '// 待补充',
       question: `
 # [GESP202412 六级] 运送物资

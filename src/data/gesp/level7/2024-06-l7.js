@@ -4,7 +4,14 @@ const programmingQuestions = [
     {
       id: 26,
       type: 'programming',
-      samples: [{ input: '待补充', output: '待补充' }],
+      samples: [
+        { input: `5
+0 1 0 1 0
+1 2
+1 3
+3 4
+3 5`, output: `2` }
+      ],
       referenceCode: '// 待补充',
       question: `
 # [GESP202406 七级] 黑白翻转
@@ -38,7 +45,10 @@ const programmingQuestions = [
     {
       id: 27,
       type: 'programming',
-      samples: [{ input: '待补充', output: '待补充' }],
+      samples: [
+        { input: `5
+3 2 4 3 2`, output: `2` }
+      ],
       referenceCode: '// 待补充',
       question: `
 # [GESP202406 七级] 区间乘积

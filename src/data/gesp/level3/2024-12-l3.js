@@ -262,7 +262,10 @@ export const paperData = {
         {
       id: 26,
       type: 'programming',
-      samples: [{ input: '待补充', output: '待补充' }],
+      samples: [
+        { input: `5 0
+-2 -1 0 1 2`, output: `-2 -2 0 2 2` }
+      ],
       referenceCode: '// 待补充',
       question: `
 # [GESP202412 三级] 数字替换
@@ -291,7 +294,13 @@ export const paperData = {
         {
       id: 27,
       type: 'programming',
-      samples: [{ input: '待补充', output: '待补充' }],
+      samples: [
+        { input: `12230`, output: `****.....................
+****.****.****.****..***.
+****.................***.
+****..****.********..***.
+****.....................` }
+      ],
       referenceCode: '// 待补充',
       question: `
 # [GESP202412 三级] 打印数字

@@ -264,7 +264,20 @@ export const paperData = {
     {
       id: 26,
       type: 'programming',
-      samples: [{ input: '待补充', output: '待补充' }],
+      samples: [
+        { input: `5`, output: `+---+
+-+-+-
+--+--
+-+-+-
++---+` },
+        { input: `7`, output: `+-----+
+-+---+-
+--+-+--
+---+---
+--+-+--
+-+---+-
++-----+` }
+      ],
       referenceCode: '// 待补充',
       question: `
 # [GESP202309 二级] 小杨的 X 字矩阵
@@ -303,7 +316,9 @@ export const paperData = {
     {
       id: 27,
       type: 'programming',
-      samples: [{ input: '待补充', output: '待补充' }],
+      samples: [
+        { input: `352`, output: `4` }
+      ],
       referenceCode: '// 待补充',
       question: `
 # [GESP202309 二级] 数字黑洞

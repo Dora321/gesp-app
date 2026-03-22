@@ -4,7 +4,14 @@ const programmingQuestions = [
     {
       id: 26,
       type: 'programming',
-      samples: [{ input: '待补充', output: '待补充' }],
+      samples: [
+        { input: `4
+1 2 3
+5 6 2 3`, output: `2` },
+        { input: `7
+1 1 2 2 3 3
+64 16 15 4 3 2 1`, output: `10` }
+      ],
       referenceCode: '// 待补充',
       question: `
 # [GESP202512 六级] 路径覆盖
@@ -37,7 +44,17 @@ const programmingQuestions = [
     {
       id: 27,
       type: 'programming',
-      samples: [{ input: '待补充', output: '待补充' }],
+      samples: [
+        { input: `3 5
+99 1
+33 2
+11 3`, output: `132` },
+        { input: `4 100
+10 1
+20 11
+40 33
+100 99`, output: `110` }
+      ],
       referenceCode: '// 待补充',
       question: `
 # [GESP202512 六级] 道具商店

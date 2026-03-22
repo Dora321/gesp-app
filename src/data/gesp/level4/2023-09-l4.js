@@ -471,7 +471,16 @@ const programmingQuestions = [
     {
       id: 26,
       type: 'programming',
-      samples: [{ input: '待补充', output: '待补充' }],
+      samples: [
+        { input: `2
+8 1362
+16 3F0`, output: `754
+1008` },
+        { input: `2
+2 11011
+10 123456789`, output: `27
+123456789` }
+      ],
       referenceCode: '// 待补充',
       question: `
 # [GESP202309 四级] 进制转换
@@ -504,7 +513,11 @@ const programmingQuestions = [
     {
       id: 27,
       type: 'programming',
-      samples: [{ input: '待补充', output: '待补充' }],
+      samples: [
+        { input: `0`, output: `00` },
+        { input: `926`, output: `9E 07` },
+        { input: `987654321012345678`, output: `CE 96 C8 A6 F4 CB B6 DA 0D` }
+      ],
       referenceCode: '// 待补充',
       question: `
 # [GESP202309 四级] 变长编码

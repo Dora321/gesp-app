@@ -4,7 +4,23 @@ const programmingQuestions = [
     {
       id: 26,
       type: 'programming',
-      samples: [{ input: '待补充', output: '待补充' }],
+      samples: [
+        { input: `3
+3 2 3
+1 2
+1 2
+2 3
+3 3 4
+1 2
+1 2
+2 3
+3 1000 1000
+1 2
+1 2
+2 3`, output: `3
+-1
+-1` }
+      ],
       referenceCode: '// 待补充',
       question: `
 # [GESP202412 七级] 武器购买
@@ -37,7 +53,14 @@ const programmingQuestions = [
     {
       id: 27,
       type: 'programming',
-      samples: [{ input: '待补充', output: '待补充' }],
+      samples: [
+        { input: `5
+6 2 3 4 5
+1 2
+2 3
+2 5
+1 4`, output: `3` }
+      ],
       referenceCode: '// 待补充',
       question: `
 # [GESP202412 七级] 燃烧

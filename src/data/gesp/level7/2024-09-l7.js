@@ -4,7 +4,18 @@ const programmingQuestions = [
     {
       id: 26,
       type: 'programming',
-      samples: [{ input: '待补充', output: '待补充' }],
+      samples: [
+        { input: `2
+3 3 1
+000
+111
+01?
+3 3 1
+000
+?0?
+01?`, output: `4
+2` }
+      ],
       referenceCode: '// 待补充',
       question: `
 # [GESP202409 七级] 矩阵移动
@@ -36,7 +47,22 @@ const programmingQuestions = [
     {
       id: 27,
       type: 'programming',
-      samples: [{ input: '待补充', output: '待补充' }],
+      samples: [
+        { input: `2
+5
+0 1 0 1 0
+1 2
+1 3
+3 4
+3 5
+5
+1 1 1 1 1
+1 2
+1 3
+3 4
+3 5`, output: `Yes
+No` }
+      ],
       referenceCode: '// 待补充',
       question: `
 # [GESP202409 七级] 小杨寻宝

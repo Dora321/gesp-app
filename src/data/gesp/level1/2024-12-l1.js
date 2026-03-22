@@ -280,7 +280,10 @@ export const paperData = {
     {
       id: 26,
       type: 'programming',
-      samples: [{ input: '待补充', output: '待补充' }],
+      samples: [
+        { input: `412.00`, output: `Temperature is too high!` },
+        { input: `173.56`, output: `-99.59 -147.26` }
+      ],
       referenceCode: `#include <iostream>
 #include <iomanip>
 using namespace std;
@@ -326,7 +329,14 @@ F=C\\times 1.8+32
     {
       id: 27,
       type: 'programming',
-      samples: [{ input: '待补充', output: '待补充' }],
+      samples: [
+        { input: `5
+1
+2
+3
+4
+5`, output: `3 2` }
+      ],
       referenceCode: `#include <iostream>
 using namespace std;
 int main() {

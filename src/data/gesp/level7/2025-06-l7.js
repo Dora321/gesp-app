@@ -4,7 +4,24 @@ const programmingQuestions = [
     {
       id: 26,
       type: 'programming',
-      samples: [{ input: '待补充', output: '待补充' }],
+      samples: [
+        { input: `5 4
+1 2
+2 3
+3 1
+4 5`, output: `3` },
+        { input: `5 10
+1 2
+1 3
+1 4
+1 5
+2 3
+2 4
+2 5
+3 4
+3 5
+4 5`, output: `30` }
+      ],
       referenceCode: '// 待补充',
       question: `
 # [GESP202506 七级] 线图
@@ -41,7 +58,18 @@ const programmingQuestions = [
     {
       id: 27,
       type: 'programming',
-      samples: [{ input: '待补充', output: '待补充' }],
+      samples: [
+        { input: `3
+1 2
+2 4
+3 2`, output: `8` },
+        { input: `5
+1 1
+2 3
+6 1
+8 2
+5 7`, output: `2` }
+      ],
       referenceCode: '// 待补充',
       question: `
 # [GESP202506 七级] 调味平衡

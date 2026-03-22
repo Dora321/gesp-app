@@ -4,7 +4,15 @@ const programmingQuestions = [
     {
       id: 26,
       type: 'programming',
-      samples: [{ input: '待补充', output: '待补充' }],
+      samples: [
+        { input: `3
+1 3
+2 3`, output: `2 2 1` },
+        { input: `4
+1 3
+3 2
+4 3`, output: `3 3 1 3` }
+      ],
       referenceCode: '// 待补充',
       question: `
 # [GESP202503 六级] 树上漫步
@@ -37,7 +45,12 @@ const programmingQuestions = [
     {
       id: 27,
       type: 'programming',
-      samples: [{ input: '待补充', output: '待补充' }],
+      samples: [
+        { input: `4
+-1 2 3 0`, output: `5` },
+        { input: `5
+-3 4 -5 1 3`, output: `5` }
+      ],
       referenceCode: '// 待补充',
       question: `
 # [GESP202503 六级] 环线

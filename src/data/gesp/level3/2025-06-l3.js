@@ -251,7 +251,12 @@ export const paperData = {
         {
       id: 26,
       type: 'programming',
-      samples: [{ input: '待补充', output: '待补充' }],
+      samples: [
+        { input: `4
+71 69 83 80`, output: `13 1` },
+        { input: `6
+1 2 4 8 16 32`, output: `6 0` }
+      ],
       referenceCode: '// 待补充',
       question: `
 # [GESP202506 三级] 奇偶校验
@@ -286,7 +291,12 @@ export const paperData = {
         {
       id: 27,
       type: 'programming',
-      samples: [{ input: '待补充', output: '待补充' }],
+      samples: [
+        { input: `4
+1 4 3 3`, output: `16` },
+        { input: `15
+314 15926 53589793 238462643 383279502 8 8 4 1 9 7 1 6 9 3`, output: `4508143253` }
+      ],
       referenceCode: '// 待补充',
       question: `
 # [GESP202506 三级] 分糖果

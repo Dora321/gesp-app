@@ -19,7 +19,16 @@
     {
       id: 27,
       type: 'programming',
-      samples: [{ input: '待补充', output: '待补充' }],
+      samples: [
+        { input: `4
+1 2 10 100
+1 100 1
+1 1 2 0`, output: `219` },
+        { input: `6
+3 7 2 8 9 4
+1 3 9 27 81
+0 1 2 1 2 0`, output: `56` }
+      ],
       referenceCode: '// 待补充',
       question: `
 # [GESP202312 七级] 纸牌游戏

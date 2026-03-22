@@ -4,7 +4,9 @@ const programmingQuestions = [
     {
       id: 26,
       type: 'programming',
-      samples: [{ input: '待补充', output: '待补充' }],
+      samples: [
+        { input: `128`, output: `3` }
+      ],
       referenceCode: '// 待补充',
       question: `
 # [GESP202412 五级] 奇妙数字
@@ -37,7 +39,13 @@ const programmingQuestions = [
     {
       id: 27,
       type: 'programming',
-      samples: [{ input: '待补充', output: '待补充' }],
+      samples: [
+        { input: `4 4
+1 1
+2 1
+3 1
+3 2`, output: `1` }
+      ],
       referenceCode: '// 待补充',
       question: `
 # [GESP202412 五级] 武器强化

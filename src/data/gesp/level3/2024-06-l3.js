@@ -247,7 +247,9 @@ export const paperData = {
         {
       id: 26,
       type: 'programming',
-      samples: [{ input: '待补充', output: '待补充' }],
+      samples: [
+        { input: `3`, output: `DEFGHIJKLMNOPQRSTUVWXYZABC` }
+      ],
       referenceCode: '// 待补充',
       question: `
 # [GESP202406 三级] 移位
@@ -276,7 +278,14 @@ export const paperData = {
         {
       id: 27,
       type: 'programming',
-      samples: [{ input: '待补充', output: '待补充' }],
+      samples: [
+        { input: `2
+3
+1 2 4
+5
+1 2 3 4 5`, output: `Yes
+No` }
+      ],
       referenceCode: '// 待补充',
       question: `
 # [GESP202406 三级] 寻找倍数

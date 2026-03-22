@@ -4,7 +4,12 @@ const programmingQuestions = [
     {
       id: 26,
       type: 'programming',
-      samples: [{ input: '待补充', output: '待补充' }],
+      samples: [
+        { input: `3
+3 1 2
+13
+dabcabcabcabz`, output: `9` }
+      ],
       referenceCode: '// 待补充',
       question: `
 # [GESP202406 六级] 计算得分
@@ -46,7 +51,15 @@ const programmingQuestions = [
     {
       id: 27,
       type: 'programming',
-      samples: [{ input: '待补充', output: '待补充' }],
+      samples: [
+        { input: `6
+3 1 1 3 4
+100101
+3
+1
+3
+2`, output: `010000` }
+      ],
       referenceCode: '// 待补充',
       question: `
 # [GESP202406 六级] 二叉树

@@ -266,7 +266,18 @@ export const paperData = {
     {
       id: 26,
       type: 'programming',
-      samples: [{ input: '待补充', output: '待补充' }],
+      samples: [
+        { input: `1
+1
+1
+20`, output: `Yes
+10` },
+        { input: `1
+1
+1
+5`, output: `No
+5` }
+      ],
       referenceCode: `#include <iostream>\nusing namespace std;\nint main() {\n    long long x, a, b, c, n, m, k;\n    cin >> x >> a >> b >> c >> n >> m >> k;\n    long long total = a * n+b * m+c * k;\n    cout << x-total << endl;\n    return 0;\n}`,
       question: `
 # [GESP202309 一级] 买文具
@@ -298,7 +309,14 @@ export const paperData = {
     {
       id: 27,
       type: 'programming',
-      samples: [{ input: '待补充', output: '待补充' }],
+      samples: [
+        { input: `7
+1
+10`, output: `7` },
+        { input: `7
+10
+20`, output: `31` }
+      ],
       referenceCode: `#include <iostream>\nusing namespace std;\nint main() {\n    long long l, r, k, sum = 0;\n    cin >> l >> r >> k;\n    for (long long i = l; i <= r; i++) {\n        if (i % k == 0 || i % 10 == k) {\n            sum += i;\n        }\n    }\n    cout << sum << endl;\n    return 0;\n}`,
       question: `
 # [GESP202309 一级] 小明的幸运数

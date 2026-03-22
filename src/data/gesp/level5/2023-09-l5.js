@@ -4,7 +4,11 @@ const programmingQuestions = [
     {
       id: 26,
       type: 'programming',
-      samples: [{ input: '待补充', output: '待补充' }],
+      samples: [
+        { input: `6`, output: `2 * 3` },
+        { input: `20`, output: `2^2 * 5` },
+        { input: `23`, output: `23` }
+      ],
       referenceCode: '// 待补充',
       question: `
 # [GESP202309 五级] 因数分解
@@ -33,7 +37,11 @@ const programmingQuestions = [
     {
       id: 27,
       type: 'programming',
-      samples: [{ input: '待补充', output: '待补充' }],
+      samples: [
+        { input: `7
+4 2 4 3 1 4 6
+70 60 50 40 30 20 10`, output: `230` }
+      ],
       referenceCode: '// 待补充',
       question: `
 # [GESP202309 五级] 巧夺大奖

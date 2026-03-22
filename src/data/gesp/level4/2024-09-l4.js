@@ -4,7 +4,25 @@ const programmingQuestions = [
     {
       id: 26,
       type: 'programming',
-      samples: [{ input: '待补充', output: '待补充' }],
+      samples: [
+        { input: `3
+1 4
+0110
+5 5
+00000
+01100
+01100
+00001
+01100
+5 5
+00000
+01100
+01110
+00001
+01100`, output: `No
+Yes
+No` }
+      ],
       referenceCode: '// 待补充',
       question: `
 # [GESP202409 四级] 黑白方块
@@ -40,7 +58,14 @@ const programmingQuestions = [
     {
       id: 27,
       type: 'programming',
-      samples: [{ input: '待补充', output: '待补充' }],
+      samples: [
+        { input: `5
+3 4 5 2 1
+3
+4 5
+3 4
+1 3`, output: `1 3 4 5 2` }
+      ],
       referenceCode: '// 待补充',
       question: `
 # [GESP202409 四级] 区间排序

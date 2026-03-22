@@ -246,7 +246,10 @@ export const paperData = {
         {
       id: 26,
       type: 'programming',
-      samples: [{ input: '待补充', output: '待补充' }],
+      samples: [
+        { input: `3
+aAc`, output: `-61` }
+      ],
       referenceCode: '// 待补充',
       question: `
 # [GESP202403 三级] 字母求和
@@ -276,7 +279,10 @@ export const paperData = {
         {
       id: 27,
       type: 'programming',
-      samples: [{ input: '待补充', output: '待补充' }],
+      samples: [
+        { input: `5
+1 4 3 3 5`, output: `3` }
+      ],
       referenceCode: '// 待补充',
       question: `
 # [GESP202403 三级] 完全平方数

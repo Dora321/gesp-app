@@ -264,7 +264,16 @@ export const paperData = {
     {
       id: 26,
       type: 'programming',
-      samples: [{ input: '待补充', output: '待补充' }],
+      samples: [
+        { input: `1
+2
+10
+5`, output: `19` },
+        { input: `1
+1
+5
+8`, output: `12` }
+      ],
       referenceCode: '// 待补充',
       question: `
 # [GESP202312 二级] 小杨做题
@@ -297,7 +306,20 @@ export const paperData = {
     {
       id: 27,
       type: 'programming',
-      samples: [{ input: '待补充', output: '待补充' }],
+      samples: [
+        { input: `5`, output: `|aaa|
+|aaa|
+|---|
+|aaa|
+|aaa|` },
+        { input: `7`, output: `|aaaaa|
+|aaaaa|
+|aaaaa|
+|-----|
+|aaaaa|
+|aaaaa|
+|aaaaa|` }
+      ],
       referenceCode: '// 待补充',
       question: `
 # [GESP202312 二级] 小杨的 H 字矩阵

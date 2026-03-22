@@ -263,7 +263,12 @@ export const paperData = {
     {
       id: 26,
       type: 'programming',
-      samples: [{ input: '待补充', output: '待补充' }],
+      samples: [
+        { input: `2
+5
+4`, output: `Yes
+No` }
+      ],
       referenceCode: '// 待补充',
       question: `
 # [GESP202406 二级] 平方之和
@@ -291,7 +296,10 @@ export const paperData = {
     {
       id: 27,
       type: 'programming',
-      samples: [{ input: '待补充', output: '待补充' }],
+      samples: [
+        { input: `25
+2`, output: `9` }
+      ],
       referenceCode: '// 待补充',
       question: `
 # [GESP202406 二级] 计数

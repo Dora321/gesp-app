@@ -4,7 +4,12 @@ const programmingQuestions = [
     {
       id: 26,
       type: 'programming',
-      samples: [{ input: '待补充', output: '待补充' }],
+      samples: [
+        { input: `8 8
+2 1`, output: `5` },
+        { input: `314159 2653589
+27 1828`, output: `1599` }
+      ],
       referenceCode: '// 待补充',
       question: `
 # [GESP202506 五级] 奖品兑换
@@ -35,7 +40,18 @@ const programmingQuestions = [
     {
       id: 27,
       type: 'programming',
-      samples: [{ input: '待补充', output: '待补充' }],
+      samples: [
+        { input: `5 3
+6 9 12 18 30`, output: `1
+1
+3` },
+        { input: `3 5
+31 47 59`, output: `4
+1
+2
+1
+4` }
+      ],
       referenceCode: '// 待补充',
       question: `
 # [GESP202506 五级] 最大公因数

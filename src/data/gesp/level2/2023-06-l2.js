@@ -40,7 +40,10 @@ export const paperData = {
     {
       id: 26,
       type: 'programming',
-      samples: [{ input: '待补充', output: '待补充' }],
+      samples: [
+        { input: `2 10`, output: `4` },
+        { input: `98 100`, output: `0` }
+      ],
       referenceCode: '// 待补充',
       question: `
 # [GESP202306 二级] 找素数
@@ -67,7 +70,24 @@ export const paperData = {
     {
       id: 27,
       type: 'programming',
-      samples: [{ input: '待补充', output: '待补充' }],
+      samples: [
+        { input: `3
+152
+111
+153`, output: `F
+F
+T` },
+        { input: `5
+8208
+548834
+88593477
+12345
+5432`, output: `T
+T
+T
+F
+F` }
+      ],
       referenceCode: '// 待补充',
       question: `
 # [GESP202306 二级] 自幂数判断

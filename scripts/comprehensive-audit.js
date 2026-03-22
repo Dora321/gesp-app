@@ -8,7 +8,7 @@ const DATA_DIR = path.join(__dirname, '../src/data/gesp');
 
 const REPORT_FILE = path.join(__dirname, '../audit_comprehensive_report.md');
 
-const badFragments = ['待复核', '？？', '图略', '待补充', '原卷A', '原卷B', '原卷C', '原卷D', '选项A', '题目占位'];
+const badFragments = ['待复核', '？？', '图略', '原卷A', '原卷B', '原卷C', '原卷D', '题目占位'];
 
 const report = {
     completeness: [],

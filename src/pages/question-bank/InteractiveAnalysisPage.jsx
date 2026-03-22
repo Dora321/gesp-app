@@ -127,7 +127,10 @@ export default function InteractiveAnalysisPage({ paperData, paperId }) {
                             return (
                                 <button
                                     key={q.id}
-                                    onClick={() => setCurrentQuestionIndex(idx)}
+                                    onClick={() => {
+                                        setCurrentQuestionIndex(idx);
+                                        setActiveTab('practice');
+                                    }}
                                     className={`aspect-square rounded-lg border text-sm font-semibold ${classes}`}
                                 >
                                     {idx + 1}
@@ -215,14 +218,20 @@ export default function InteractiveAnalysisPage({ paperData, paperId }) {
 
                     <div className="flex items-center justify-between">
                         <button
-                            onClick={() => setCurrentQuestionIndex(Math.max(0, currentQuestionIndex - 1))}
+                            onClick={() => {
+                                setCurrentQuestionIndex(Math.max(0, currentQuestionIndex - 1));
+                                setActiveTab('practice');
+                            }}
                             disabled={currentQuestionIndex === 0}
                             className="px-5 py-2.5 rounded-xl bg-white border border-slate-200 text-slate-700 disabled:opacity-50"
                         >
                             <span className="inline-flex items-center gap-1"><ChevronLeft size={16} /> 上一题</span>
                         </button>
                         <button
-                            onClick={() => setCurrentQuestionIndex(Math.min(questions.length - 1, currentQuestionIndex + 1))}
+                            onClick={() => {
+                                setCurrentQuestionIndex(Math.min(questions.length - 1, currentQuestionIndex + 1));
+                                setActiveTab('practice');
+                            }}
                             disabled={currentQuestionIndex === questions.length - 1}
                             className="px-5 py-2.5 rounded-xl bg-indigo-600 text-white disabled:opacity-50"
                         >
