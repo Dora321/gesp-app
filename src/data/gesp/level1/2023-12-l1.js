@@ -281,7 +281,7 @@ export const paperData = {
       id: 26,
       type: 'programming',
       samples: [{ input: '待补充', output: '待补充' }],
-      referenceCode: '// 待补充',
+      referenceCode: `#include <iostream>\nusing namespace std;\nint main() {\n    int x, y;\n    cin >> x >> y;\n    int res = (y+x-1) % 7;\n    if (res == 0) res = 7;\n    cout << res << endl;\n    return 0;\n}`,
       question: `
 # [GESP202312 一级] 小杨的考试
 
@@ -298,7 +298,7 @@ export const paperData = {
 输出一个整数，表示小杨考试那天是星期几。
 `,
       template: `#include <bits/stdc++.h>\nusing namespace std;\n\nint main() {\n    // 在此填写代码\n    return 0;\n}`,
-      answer: '#include <iostream>\nusing namespace std;\nint main() {\n    int x, y;\n    cin >> x >> y;\n    int res = (y+x-1) % 7;\n    if (res == 0) res = 7;\n    cout << res << endl;\n    return 0;\n}',
+      
       score: 25,
       explanation: '考查周期性计算。可以使用 $(start+days-1) \\% 7$ 得到结果，注意余数为 0 时对应星期日 (7)。LuoGu B3921。',
       tags: [LEVEL1_TAGS.basics, LEVEL1_TAGS.operator, LEVEL1_TAGS.condition],
@@ -307,7 +307,7 @@ export const paperData = {
       id: 27,
       type: 'programming',
       samples: [{ input: '待补充', output: '待补充' }],
-      referenceCode: '// 待补充',
+      referenceCode: `#include <iostream>\nusing namespace std;\nbool contains(int n, int x) {\n    while (n > 0) {\n        if (n % 10 == x) return true;\n        n /= 10;\n    }\n    return false;\n}\nint main() {\n    int n, x, count = 0;\n    cin >> n >> x;\n    for (int i = 1; i <= n; i++) {\n        if (i % x == 0 || contains(i, x)) {\n            count++;\n        }\n    }\n    cout << count << endl;\n    return 0;\n}`,
       question: `
 # [GESP202312 一级] 小杨报数
 
@@ -326,7 +326,7 @@ export const paperData = {
 输出若干行，依次表示小杨报的数。
 `,
       template: `#include <bits/stdc++.h>\nusing namespace std;\n\nint main() {\n    // 在此填写代码\n    return 0;\n}`,
-      answer: '#include <iostream>\nusing namespace std;\nbool contains(int n, int x) {\n    while (n > 0) {\n        if (n % 10 == x) return true;\n        n /= 10;\n    }\n    return false;\n}\nint main() {\n    int n, x, count = 0;\n    cin >> n >> x;\n    for (int i = 1; i <= n; i++) {\n        if (i % x == 0 || contains(i, x)) {\n            count++;\n        }\n    }\n    cout << count << endl;\n    return 0;\n}',
+      
       score: 25,
       explanation: '包含判断与整除判断。通过 while 循环拆解数字判断是否包含数字 $x$。LuoGu B3922。',
       tags: [LEVEL1_TAGS.loop, LEVEL1_TAGS.condition],

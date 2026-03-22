@@ -286,7 +286,7 @@ export const paperData = {
       id: 26,
       type: 'programming',
       samples: [{ input: '待补充', output: '待补充' }],
-      referenceCode: '// 待补充',
+      referenceCode: `#include <iostream>\nusing namespace std;\nint main() {\n    int n, count = 0;\n    cin >> n;\n    for (int i = 1; i * i <= n; i++) {\n        if (n % i == 0) {\n            count++;\n        }\n    }\n    cout << count << endl;\n    return 0;\n}`,
       question: `
 # [GESP202303 一级] 长方形面积
 
@@ -303,7 +303,7 @@ export const paperData = {
 输出一行，包含一个整数 \$C\$，表示有 \$C\$ 种可能的长方形。
 `,
       template: `#include <bits/stdc++.h>\nusing namespace std;\n\nint main() {\n    // 在此填写代码\n    return 0;\n}`,
-      answer: '#include <iostream>\nusing namespace std;\nint main() {\n    int n, count = 0;\n    cin >> n;\n    for (int i = 1; i * i <= n; i++) {\n        if (n % i == 0) {\n            count++;\n        }\n    }\n    cout << count << endl;\n    return 0;\n}',
+      
       score: 25,
       explanation: '枚举宽 $i$ 从 1 到 $\\sqrt{N}$，如果 $N$ 能被 $i$ 整除，则对应一种长和宽都为整数的方案。LuoGu B3834。',
       tags: [LEVEL1_TAGS.basics, LEVEL1_TAGS.operator, LEVEL1_TAGS.loop],
@@ -312,7 +312,7 @@ export const paperData = {
       id: 27,
       type: 'programming',
       samples: [{ input: '待补充', output: '待补充' }],
-      referenceCode: '// 待补充',
+      referenceCode: `#include <iostream>\nusing namespace std;\nint main() {\n    int y, m;\n    cin >> y >> m;\n    if (m == 1 || m == 3 || m == 5 || m == 7 || m == 8 || m == 10 || m == 12) {\n        cout << 31 << endl;\n    } else if (m == 4 || m == 6 || m == 9 || m == 11) {\n        cout << 30 << endl;\n    } else {\n        if ((y % 4 == 0 && y % 100 != 0) || (y % 400 == 0)) {\n            cout << 29 << endl;\n        } else {\n            cout << 28 << endl;\n        }\n    }\n    return 0;\n}`,
       question: `
 # [GESP202303 一级] 每月天数
 
@@ -329,7 +329,7 @@ export const paperData = {
 输出一行，包含一个整数，表示输入月份有多少天。
 `,
       template: `#include <bits/stdc++.h>\nusing namespace std;\n\nint main() {\n    // 在此填写代码\n    return 0;\n}`,
-      answer: '#include <iostream>\nusing namespace std;\nint main() {\n    int y, m;\n    cin >> y >> m;\n    if (m == 1 || m == 3 || m == 5 || m == 7 || m == 8 || m == 10 || m == 12) {\n        cout << 31 << endl;\n    } else if (m == 4 || m == 6 || m == 9 || m == 11) {\n        cout << 30 << endl;\n    } else {\n        if ((y % 4 == 0 && y % 100 != 0) || (y % 400 == 0)) {\n            cout << 29 << endl;\n        } else {\n            cout << 28 << endl;\n        }\n    }\n    return 0;\n}',
+      
       score: 25,
       explanation: '考查条件判断与逻辑运算。需要特殊处理 2 月并判断闰年。LuoGu B3835。',
       tags: [LEVEL1_TAGS.basics, LEVEL1_TAGS.condition],

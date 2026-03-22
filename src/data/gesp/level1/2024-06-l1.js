@@ -276,7 +276,20 @@ export const paperData = {
       id: 26,
       type: 'programming',
       samples: [{ input: '待补充', output: '待补充' }],
-      referenceCode: '// 待补充',
+      referenceCode: `#include <iostream>
+using namespace std;
+int main() {
+    int h, m, s, k;
+    cin >> h >> m >> s >> k;
+    s += k;
+    m += s / 60;
+    s %= 60;
+    h += m / 60;
+    m %= 60;
+    h %= 24;
+    cout << h << " " << m << " " << s << "\n";
+    return 0;
+}`,
       question: `
 # [GESP202406 一级] 休息时间
 
@@ -307,7 +320,22 @@ export const paperData = {
       id: 27,
       type: 'programming',
       samples: [{ input: '待补充', output: '待补充' }],
-      referenceCode: '// 待补充',
+      referenceCode: `#include <iostream>
+using namespace std;
+int main() {
+    int n;
+    cin >> n;
+    bool ok = false;
+    for (int i = 1; i * i * i <= n; i++) {
+        if (i * i * i == n) {
+            ok = true;
+            break;
+        }
+    }
+    if (ok) cout << "Yes\n";
+    else cout << "No\n";
+    return 0;
+}`,
       question: `
 # [GESP202406 一级] 立方数
 

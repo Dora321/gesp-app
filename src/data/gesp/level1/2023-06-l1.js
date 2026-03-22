@@ -291,7 +291,7 @@ export const paperData = {
       id: 26,
       type: 'programming',
       samples: [{ input: '待补充', output: '待补充' }],
-      referenceCode: '// 待补充',
+      referenceCode: `#include <iostream>\nusing namespace std;\nint main() {\n    int h1, m1, h2, m2;\n    cin >> h1 >> m1 >> h2 >> m2;\n    cout << (h2 * 60+m2)-(h1 * 60+m1) << endl;\n    return 0;\n}`,
       question: `
 # [GESP202306 一级] 时间规划
 
@@ -308,7 +308,7 @@ export const paperData = {
 输出一行，包含一个整数，从开始时刻到结束时刻之间有多少分钟。
 `,
       template: `#include <bits/stdc++.h>\nusing namespace std;\n\nint main() {\n    // 在此填写代码\n    return 0;\n}`,
-      answer: '#include <iostream>\nusing namespace std;\nint main() {\n    int h1, m1, h2, m2;\n    cin >> h1 >> m1 >> h2 >> m2;\n    cout << (h2 * 60+m2)-(h1 * 60+m1) << endl;\n    return 0;\n}',
+      
       score: 25,
       explanation: '将小时统一转换为分钟后再求差值。LuoGu B3838。',
       tags: [LEVEL1_TAGS.basics, LEVEL1_TAGS.operator],
@@ -317,7 +317,7 @@ export const paperData = {
       id: 27,
       type: 'programming',
       samples: [{ input: '待补充', output: '待补充' }],
-      referenceCode: '// 待补充',
+      referenceCode: `#include <iostream>\nusing namespace std;\nint main() {\n    int n, x, min_val = 1001;\n    cin >> n;\n    for (int i = 0; i < n; i++) {\n        cin >> x;\n        if (x < min_val) {\n            min_val = x;\n        }\n    }\n    cout << min_val << endl;\n    return 0;\n}`,
       question: `
 # [GESP202306 一级] 累计相加
 
@@ -336,7 +336,7 @@ export const paperData = {
 输出累计相加的结果。
 `,
       template: `#include <bits/stdc++.h>\nusing namespace std;\n\nint main() {\n    // 在此填写代码\n    return 0;\n}`,
-      answer: '#include <iostream>\nusing namespace std;\nint main() {\n    int n, x, min_val = 1001;\n    cin >> n;\n    for (int i = 0; i < n; i++) {\n        cin >> x;\n        if (x < min_val) {\n            min_val = x;\n        }\n    }\n    cout << min_val << endl;\n    return 0;\n}',
+      
       score: 25,
       explanation: '标准最小值遍历。LuoGu B3839。',
       tags: [LEVEL1_TAGS.loop, LEVEL1_TAGS.condition],

@@ -291,7 +291,15 @@ export const paperData = {
       id: 26,
       type: 'programming',
       samples: [{ input: '待补充', output: '待补充' }],
-      referenceCode: '// 待补充',
+      referenceCode: `#include <iostream>
+using namespace std;
+int main() {
+    int n, x, y;
+    cin >> n >> x >> y;
+    int eaten = (y + x - 1) / x;
+    cout << (n > eaten ? n - eaten : 0) << "\n";
+    return 0;
+}`,
       question: `
 # [GESP202503 一级] 图书馆里的老鼠
 
@@ -323,7 +331,21 @@ export const paperData = {
       id: 27,
       type: 'programming',
       samples: [{ input: '待补充', output: '待补充' }],
-      referenceCode: '// 待补充',
+      referenceCode: `#include <iostream>
+using namespace std;
+int main() {
+    int n;
+    cin >> n;
+    for(int i = 0; i < n; i++) {
+        int a;
+        cin >> a;
+        int rem = a % 10;
+        if (rem >= 5) a += 10 - rem;
+        else a -= rem;
+        cout << a << "\n";
+    }
+    return 0;
+}`,
       question: `
 # [GESP202503 一级] 四舍五入
 

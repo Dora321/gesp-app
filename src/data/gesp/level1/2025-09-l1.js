@@ -281,7 +281,19 @@ export const paperData = {
       id: 26,
       type: 'programming',
       samples: [{ input: '待补充', output: '待补充' }],
-      referenceCode: '// 待补充',
+      referenceCode: `#include <iostream>
+#include <iomanip>
+using namespace std;
+int main() {
+    long long x, y, n, p;
+    cin >> x >> y >> n >> p;
+    double p1 = p;
+    if (p >= x) p1 -= y;
+    double p2 = p * n / 10.0;
+    if (p1 < p2) cout << fixed << setprecision(2) << p1 << "\n";
+    else cout << fixed << setprecision(2) << p2 << "\n";
+    return 0;
+}`,
       question: `
 # [GESP202509 一级] 商店折扣
 
@@ -311,7 +323,18 @@ export const paperData = {
       id: 27,
       type: 'programming',
       samples: [{ input: '待补充', output: '待补充' }],
-      referenceCode: '// 待补充',
+      referenceCode: `#include <iostream>
+using namespace std;
+int main() {
+    long long n;
+    cin >> n;
+    long long sum = 0;
+    for(long long i = 1; i <= n; i++) {
+        sum += i * i;
+    }
+    cout << sum << "\n";
+    return 0;
+}`,
       question: `
 # [GESP202509 一级] 金字塔
 

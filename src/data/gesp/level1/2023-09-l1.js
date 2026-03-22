@@ -267,7 +267,7 @@ export const paperData = {
       id: 26,
       type: 'programming',
       samples: [{ input: '待补充', output: '待补充' }],
-      referenceCode: '// 待补充',
+      referenceCode: `#include <iostream>\nusing namespace std;\nint main() {\n    long long x, a, b, c, n, m, k;\n    cin >> x >> a >> b >> c >> n >> m >> k;\n    long long total = a * n+b * m+c * k;\n    cout << x-total << endl;\n    return 0;\n}`,
       question: `
 # [GESP202309 一级] 买文具
 
@@ -290,7 +290,7 @@ export const paperData = {
 输出 \$2\$ 行。如果小明手里的钱够买他需要的文具，则第一行输出 \`Yes\`，第二行输出小明会剩下的钱数（单位：元）；否则，第一行输出 \`No\`，第二行输出小明缺少的钱数（单位：元）。
 `,
       template: `#include <bits/stdc++.h>\nusing namespace std;\n\nint main() {\n    // 在此填写代码\n    return 0;\n}`,
-      answer: '#include <iostream>\nusing namespace std;\nint main() {\n    long long x, a, b, c, n, m, k;\n    cin >> x >> a >> b >> c >> n >> m >> k;\n    long long total = a * n+b * m+c * k;\n    cout << x-total << endl;\n    return 0;\n}',
+      
       score: 25,
       explanation: '简单的四则运算。注意使用 long long 以防溢出（虽然一级范围通常较小）。LuoGu B3862。',
       tags: [LEVEL1_TAGS.basics, LEVEL1_TAGS.operator],
@@ -299,7 +299,7 @@ export const paperData = {
       id: 27,
       type: 'programming',
       samples: [{ input: '待补充', output: '待补充' }],
-      referenceCode: '// 待补充',
+      referenceCode: `#include <iostream>\nusing namespace std;\nint main() {\n    long long l, r, k, sum = 0;\n    cin >> l >> r >> k;\n    for (long long i = l; i <= r; i++) {\n        if (i % k == 0 || i % 10 == k) {\n            sum += i;\n        }\n    }\n    cout << sum << endl;\n    return 0;\n}`,
       question: `
 # [GESP202309 一级] 小明的幸运数
 
@@ -316,7 +316,7 @@ export const paperData = {
 输出 \$1\$ 行，符合题意的幸运数之和。
 `,
       template: `#include <bits/stdc++.h>\nusing namespace std;\n\nint main() {\n    // 在此填写代码\n    return 0;\n}`,
-      answer: '#include <iostream>\nusing namespace std;\nint main() {\n    long long l, r, k, sum = 0;\n    cin >> l >> r >> k;\n    for (long long i = l; i <= r; i++) {\n        if (i % k == 0 || i % 10 == k) {\n            sum += i;\n        }\n    }\n    cout << sum << endl;\n    return 0;\n}',
+      
       score: 25,
       explanation: '遍历范围 $[L, R]$，判断每个数是否满足整除条件或个位条件。LuoGu B3863。',
       tags: [LEVEL1_TAGS.loop, LEVEL1_TAGS.condition, LEVEL1_TAGS.operator],

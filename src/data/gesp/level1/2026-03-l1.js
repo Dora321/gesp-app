@@ -303,7 +303,23 @@ export const paperData = {
       id: 26,
       type: 'programming',
       samples: [{ input: '待补充', output: '待补充' }],
-      referenceCode: '// 待补充',
+      referenceCode: `#include <iostream>
+#include <cmath>
+using namespace std;
+int main() {
+    int h1, h2, h3, h4;
+    cin >> h1 >> h2 >> h3 >> h4;
+    int h[] = {h2, h3, h4};
+    int best = h2;
+    for(int i = 1; i < 3; i++) {
+        int d1 = abs(h[i] - h1);
+        int d2 = abs(best - h1);
+        if (d1 < d2) best = h[i];
+        else if (d1 == d2 && h[i] < best) best = h[i];
+    }
+    cout << best << "\n";
+    return 0;
+}`,
       question: `
 # [GESP202603 一级] 交朋友
 
@@ -352,7 +368,18 @@ Alice 班上共有 4 个小朋友，身高分别为 $H_1, H_2, H_3, H_4$，其�
       id: 27,
       type: 'programming',
       samples: [{ input: '待补充', output: '待补充' }],
-      referenceCode: '// 待补充',
+      referenceCode: `#include <iostream>
+#include <string>
+using namespace std;
+int main() {
+    string s;
+    cin >> s;
+    for(int i = 0; i < s.length(); i++) {
+        if(s[i] == '4') s[i] = '8';
+    }
+    cout << s << "\n";
+    return 0;
+}`,
       question: `
 # [GESP202603 一级] 数字替换
 

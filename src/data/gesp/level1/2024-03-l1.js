@@ -290,7 +290,14 @@ export const paperData = {
       id: 26,
       type: 'programming',
       samples: [{ input: '待补充', output: '待补充' }],
-      referenceCode: '// 待补充',
+      referenceCode: `#include <iostream>
+using namespace std;
+int main() {
+    int m;
+    cin >> m;
+    cout << m / 13 << "\n" << m % 13 << "\n";
+    return 0;
+}`,
       question: `
 # [GESP202403 一级] 小杨买书
 
@@ -316,7 +323,16 @@ export const paperData = {
       id: 27,
       type: 'programming',
       samples: [{ input: '待补充', output: '待补充' }],
-      referenceCode: '// 待补充',
+      referenceCode: `#include <iostream>
+using namespace std;
+int main() {
+    int a;
+    cin >> a;
+    for (int i = 1; i <= a; i++) {
+        if (a % i == 0) cout << i << "\n";
+    }
+    return 0;
+}`,
       question: `
 # [GESP202403 一级] 找因数
 

@@ -281,7 +281,18 @@ export const paperData = {
       id: 26,
       type: 'programming',
       samples: [{ input: '待补充', output: '待补充' }],
-      referenceCode: '// 待补充',
+      referenceCode: `#include <iostream>
+#include <iomanip>
+using namespace std;
+int main() {
+    double k, c, f;
+    cin >> k;
+    c = k - 273.15;
+    f = c * 1.8 + 32;
+    if (f > 212) cout << "Temperature is too high!\n";
+    else cout << fixed << setprecision(2) << c << " " << f << "\n";
+    return 0;
+}`,
       question: `
 # [GESP202412 一级] 温度转换
 
@@ -316,7 +327,20 @@ F=C\\times 1.8+32
       id: 27,
       type: 'programming',
       samples: [{ input: '待补充', output: '待补充' }],
-      referenceCode: '// 待补充',
+      referenceCode: `#include <iostream>
+using namespace std;
+int main() {
+    int n, odd = 0, even = 0;
+    cin >> n;
+    for(int i = 0; i < n; i++) {
+        int x;
+        cin >> x;
+        if(x % 2 != 0) odd++;
+        else even++;
+    }
+    cout << odd << " " << even << "\n";
+    return 0;
+}`,
       question: `
 # [GESP202412 一级] 奇数和偶数
 

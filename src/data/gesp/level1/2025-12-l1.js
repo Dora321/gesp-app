@@ -294,7 +294,17 @@ export const paperData = {
       id: 26,
       type: 'programming',
       samples: [{ input: '待补充', output: '待补充' }],
-      referenceCode: '// 待补充',
+      referenceCode: `#include <iostream>
+#include <iomanip>
+using namespace std;
+int main() {
+    double v, g, m, n;
+    cin >> v >> g >> m >> n;
+    double f1 = 0.5 * v;
+    double f2 = (g < 300) ? m : n;
+    cout << fixed << setprecision(1) << (f1 < f2 ? f1 : f2) << "\n";
+    return 0;
+}`,
       question: `
 # [GESP202512 一级] 小杨的爱心快递
 
@@ -329,7 +339,20 @@ export const paperData = {
       id: 27,
       type: 'programming',
       samples: [{ input: '待补充', output: '待补充' }],
-      referenceCode: '// 待补充',
+      referenceCode: `#include <iostream>
+using namespace std;
+int main() {
+    int t;
+    cin >> t;
+    for(int i = 0; i < t; i++) {
+        int p;
+        cin >> p;
+        if(p <= 10) cout << "R\n";
+        else if(p <= 20) cout << "L\n";
+        else cout << p << "\n";
+    }
+    return 0;
+}`,
       question: `
 # [GESP202512 一级] 手机电量显示
 

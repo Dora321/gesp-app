@@ -291,7 +291,14 @@ export const paperData = {
       id: 26,
       type: 'programming',
       samples: [{ input: '待补充', output: '待补充' }],
-      referenceCode: '// 待补充',
+      referenceCode: `#include <iostream>
+using namespace std;
+int main() {
+    long long n, k, t;
+    cin >> n >> k >> t;
+    cout << (n < k * t ? n : k * t) << "\n";
+    return 0;
+}`,
       question: `
 # [GESP202506 一级] 假期阅读
 
@@ -321,7 +328,17 @@ export const paperData = {
       id: 27,
       type: 'programming',
       samples: [{ input: '待补充', output: '待补充' }],
-      referenceCode: '// 待补充',
+      referenceCode: `#include <iostream>
+using namespace std;
+long long gcd(long long a, long long b) {
+    return b == 0 ? a : gcd(b, a % b);
+}
+int main() {
+    long long m, n;
+    cin >> m >> n;
+    cout << (m / gcd(m, n)) * n << "\n";
+    return 0;
+}`,
       question: `
 # [GESP202506 一级] 值日
 
