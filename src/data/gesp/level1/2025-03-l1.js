@@ -21,269 +21,329 @@ export const paperData = {
     {
       id: 1,
       type: 'single',
-      question: '关于2025年春节期间发生的热点事件(如 DeepSeek 爆火、电影《哪吒2》热映)，下列说法错误的是( )。',
+      question: '2025年春节有两件轰动全球的事件，一个是DeepSeek横空出世，另一个是贺岁片《哪吒2》票房惊人，入了全球票房榜。下面关于DeepSeek与《哪吒2》的描述成立的是( )。',
       options: [
-        'DeepSeek R1 模型在研发中大规模使用了强化学习技术',
-        '在电影院观看《哪吒2》时，在大银幕上看到的画面是连续的',
-        '放映机放映电影利用了“视觉暂留”原理',
-        '是因为人脑处理图像的速度太快，所以才感觉画面是连续的'
+        '《哪吒2》是一款新型操作系统',
+        'DeepSeek是深海钻探软件',
+        '《哪吒2》可以生成新的软件',
+        'DeepSeek可以根据《哪吒2》的场景生成剧情脚本'
       ],
       answer: 3,
       score: 2,
-      explanation: '画面连续是因为“视觉暂留”原理，即人脑处理图像的速度不够快，从而将快速切换的静态画面看作连续运动。',
+      explanation: 'DeepSeek 是大语言模型人工智能，具备剧本生成能力，因此选 D。A、B、C 均为错误描述。',
       tags: [LEVEL1_TAGS.basics]
     },
     {
       id: 2,
       type: 'single',
-      question: '下列哪个不是集成电路(IC)的基本组成元器件？',
-      options: ['晶体管', '电阻器', '电感器', '塑料外壳'],
+      question: '在某集成开发环境中编辑一个源代码文件时不可以执行下面（ ）操作。',
+      options: [
+        '修改变量定义',
+        '保存代码修改',
+        '撤销代码修改',
+        '插入执行截图'
+      ],
       answer: 3,
       score: 2,
-      explanation: '塑料外壳是集成电路的封装材料，不是其内部参与电路运算或控制的基本电子元器件。',
+      explanation: '源代码文件本质上是纯文本文件，虽然IDE支持很多操作，但无法在纯源代码文件里插入并保存图片/截图。',
       tags: [LEVEL1_TAGS.basics]
     },
     {
       id: 3,
       type: 'single',
-      question: '下列哪个 C++ 变量名是合法的？',
-      options: ['3_Var', 'int', '_Var_1', 'a+b'],
-      answer: 2,
+      question: '在C++中，下列可以做变量的是( )。',
+      options: [
+        'Var-1',
+        '$1',
+        '%%1',
+        '_Var_1'
+      ],
+      answer: 3,
       score: 2,
-      explanation: 'A以数字开头，B是关键字，D包含非法符号+。只有下划线或字母开头的变量名合法。',
+      explanation: 'C++ 变量名只能由字母、数字和下划线组成，并且不能以数字开头。只有 D 选项符合。',
       tags: [LEVEL1_TAGS.basics]
     },
     {
       id: 4,
       type: 'single',
-      question: '下列哪个是 C++ 关键字？',
-      options: ['abs', 'cin', 'do', 'endl'],
+      question: '以下哪个是C++语言的关键字？（ ）',
+      options: [
+        'abs',
+        'cin',
+        'do',
+        'endl'
+      ],
       answer: 2,
       score: 2,
-      explanation: 'do 是 C++ 循环控制的关键字。abs 是函数，cin 和 endl 是标准库定义的标识符。',
+      explanation: '`do` 是 C++ 语言中用于 do-while 循环的关键字；而 `abs` 是函数名，`cin` 和 `endl` 是预定义的对象标识符。',
       tags: [LEVEL1_TAGS.basics]
     },
     {
       id: 5,
       type: 'single',
-      question: '在一段 C++ 代码中，如果在一个 for 循环外使用了 break 语句，会发生什么？',
-      options: ['程序正常运行', '程序运行崩溃', '编译报错', '跳过下一行代码执行'],
+      question: '下面的框架在L1和L2标记的两行处分别填写选项中的代码，哪组不能通过编译（ ）。\n```cpp\nint main () {\n    int i = 0;\n    ______________ // L1\n    break;\n    ______________ // L2\n    return 0;\n}\n```',
+      options: [
+        'do { (L1) 和 } while (i != 0); (L2)',
+        'for (; i < 10; i++) { (L1) 和 } (L2)',
+        'if (i == 0) { (L1) 和 } (L2)',
+        'switch (i) { (L1) 和 } (L2)'
+      ],
       answer: 2,
       score: 2,
-      explanation: 'break 语句只能用在循环语句（for, while, do-while）或 switch 语句中，否则会引起编译阶段的语法错误。',
+      explanation: '`break` 语句只能在循环（`for`、`while`、`do-while`）及 `switch` 语句中使用。不能单独在 `if` 语句中使用，否则会导致编译错误。',
       tags: [LEVEL1_TAGS.condition, LEVEL1_TAGS.loop]
     },
     {
       id: 6,
       type: 'single',
-      question: '执行代码 `printf("__%02d%2d\\$", 3, 22);` 的输出结果是 ( )。',
-      options: ['`__322\\$`', '`__0322\\$`', '`__ 322\\$`', '`__03 22\\$`'],
+      question: '下面C++语句（ ）执行后的输出是 `__ 0322`（注：前面有空格）。',
+      options: [
+        'printf("__ %2d%02d", 3, 22)',
+        'printf("__ %02d%2d", 3, 22)',
+        'printf("__ %02d%02d", 3, 22)',
+        'printf("____ %02d%02d", 3, 22)'
+      ],
       answer: 1,
       score: 2,
-      explanation: '%02d 表示宽度为2，不足补0。%2d 表示宽度为2。3 补 0 变为 03，22 宽度刚好为 2。',
+      explanation: '`%02d` 表示输出位数为2，不足时用0补齐；`%2d` 表示输出占2位。因此3被格式化为`03`，22被格式化为`22`。最终输出为 `__ 0322`。',
       tags: [LEVEL1_TAGS.io]
     },
     {
       id: 7,
       type: 'single',
-      question: '关于 C++ 中的引号，下列说法错误的是( )。',
+      question: '有关下列C++代码的说法，错误的是( )。\n```cpp\nprintf("我爱码代码！");\n```',
       options: [
-        '单引号用于表示字符常量',
-        '双引号用于表示字符串常量',
-        '单引号和双引号在 C++ 中可以互换使用',
-        '\'a\' 和 "a" 是不同的数据类型'
+        '配对双引号内的汉字改为英文 Hello，C++代码能正确执行',
+        '配对双引号内的汉字改为 Hello代码！，C++代码能正确执行',
+        '代码中的每个双引号，都可以改为两个单引号',
+        '代码中的每个双引号，都可以改为三个双引号'
       ],
       answer: 2,
       score: 2,
-      explanation: 'C++ 中单引号表示 char，双引号表示 string，两者性质完全不同，不能互换。',
+      explanation: '在 C++ 中，双引号代表字符串字面量，这与单引号（表示单个字符）完全不同，不能用两个单引号来代替一个双引号。',
       tags: [LEVEL1_TAGS.basics]
     },
     {
       id: 8,
       type: 'single',
-      question: '表达式 16 / 4 % 2 的值是( )。',
-      options: ['4', '2', '1', '0'],
+      question: 'C++表达式 `16 / 4 % 2` 的值是( )。',
+      options: [
+        '8',
+        '4',
+        '2',
+        '0'
+      ],
       answer: 3,
       score: 2,
-      explanation: '16 / 4 = 4；4 % 2 = 0。',
+      explanation: '`16 / 4` 结果为 4，接着计算 `4 % 2` 结果为 0。',
       tags: [LEVEL1_TAGS.operator]
     },
     {
       id: 9,
       type: 'single',
-      question: 'for(int i = 1; i < 10; i += 2) 循环体会执行多少次？',
-      options: ['10', '9', '6', '5'],
+      question: 'N是C++的正整数，值为12，则 `cout << (N % 3 + N / 5)` 的输出是( )。',
+      options: [
+        '6.4',
+        '2.4',
+        '6',
+        '2'
+      ],
       answer: 3,
       score: 2,
-      explanation: 'i 的取值分别为 1, 3, 5, 7, 9，共 5 次。',
-      tags: [LEVEL1_TAGS.loop]
+      explanation: 'N=12。`12 % 3` 为0，`12 / 5` 是整数除法，结果为2。所以 `0 + 2 = 2`。',
+      tags: [LEVEL1_TAGS.operator]
     },
     {
       id: 10,
       type: 'single',
-      question: '已知 a = 5, b = 10，执行语句 if(a > b) cout << a; else cout << b; 的输出是 ( )。',
-      options: ['5', '15', 'true', '10'],
+      question: '下面C++代码执行后的输出是( )。\n```cpp\nint N = 10;\nprintf("{N}*{N}={%d*%d}", N, N, N * N);\n```',
+      options: [
+        '10*10={10*10}',
+        '100=10',
+        'N*N=100',
+        '{N}*{N}={10*10}'
+      ],
       answer: 3,
       score: 2,
-      explanation: '5 > 10 为假，执行 else 分支，输出 b 的值 10。',
-      tags: [LEVEL1_TAGS.condition, LEVEL1_TAGS.basics]
+      explanation: '格式化字符串中仅有两处 `%d`，参数提供了三个，只有前两个起作用。替换后结果：`{N}*{N}={10*10}`。',
+      tags: [LEVEL1_TAGS.io]
     },
     {
       id: 11,
       type: 'single',
-      question: '字符 \'A\' 的 ASCII 码值是( )。',
-      options: ['48', '97', '32', '65'],
+      question: '执行下面的C++代码，在键盘上先后输入100和200，输出是（ ）。\n```cpp\nint first, second;\ncin >> first >> second;\ncout << (first / second * second) << endl;\n```',
+      options: [
+        '200',
+        '100',
+        '1',
+        '0'
+      ],
       answer: 3,
       score: 2,
-      explanation: '标准 ASCII 码中，\'A\' 为 65，\'a\' 为 97，\'0\' 为 48。',
-      tags: [LEVEL1_TAGS.basics]
+      explanation: '`first = 100`, `second = 200`。整除运算 `100 / 200` 等于 0，然后再乘 200 仍为 0。',
+      tags: [LEVEL1_TAGS.operator]
     },
     {
       id: 12,
       type: 'single',
-      question: '逻辑运算符的优先级从高到低排列正确的是( )。',
+      question: '下面C++代码执行后，将输出能被2整除且除以7余数为2的数。下列选项不能实现的是（ ）。\n```cpp\nfor (int i = 0; i < 100; i++)\n    if (_______________________)\n        cout << i << " ";\n```',
       options: [
-        '&&, ||, !',
-        '||, &&, !',
-        '!, &&, ||',
-        '!, ||, &&'
+        '((i % 2 == 0) && (i % 7 == 2))',
+        '((!(i % 2)) && (i % 7 == 2))',
+        '((!(i % 2)) && (!(i % 7)))',
+        '((i % 2 != 1) && (i % 7 == 2))'
       ],
       answer: 2,
       score: 2,
-      explanation: '逻辑非（!）最高，其次是逻辑与（&&），最低是逻辑或（||）。',
-      tags: [LEVEL1_TAGS.operator]
+      explanation: '选项 C 中的 `!(i % 7)` 的等效意义是 `i % 7 == 0`，不符合“除以7余数为2”的条件。',
+      tags: [LEVEL1_TAGS.condition, LEVEL1_TAGS.operator]
     },
     {
       id: 13,
       type: 'single',
-      question: '下列哪个组件在断电后会丢失存储的数据？',
-      options: ['RAM', 'ROM', '硬盘', 'U 盘'],
+      question: '下面C++代码执行后输出是（ ）。\n```cpp\nint tnt = 0;\nfor (int i = -1000; i < 1000; i++)\n    tnt += i;\ncout << tnt << endl;\n```',
+      options: [
+        '-1000',
+        '0',
+        '999',
+        '1000'
+      ],
       answer: 0,
       score: 2,
-      explanation: 'RAM (随机存取存储器) 是易失性存储器，断电后数据丢失。',
-      tags: [LEVEL1_TAGS.basics]
+      explanation: '由于包含 `-1000` 到 `999`。正负数相加：`-999` 与 `999` 互相抵消为 0，直到剩下唯一的无相反数的一端的是 `-1000`。所以为 `-1000`。',
+      tags: [LEVEL1_TAGS.loop]
     },
     {
       id: 14,
       type: 'single',
-      question: '在 C++ 中，cin >> a >> b; 的作用是( )。',
-      options: ['从键盘输入两个变量的值', '向屏幕输出两个变量的值', '比较两个变量的大小', '交换两个变量的值'],
+      question: '下面C++代码执行后输出的是（ ）。\n```cpp\nint i;\nfor (i = 1; i < 100; i += 5)\n    continue;\ncout << i << endl;\n```',
+      options: [
+        '101',
+        '100',
+        '99',
+        '96'
+      ],
       answer: 0,
       score: 2,
-      explanation: 'cin 是 standard 输入流，用于从终端读取数据。',
-      tags: [LEVEL1_TAGS.io]
+      explanation: '循环每次递增5，到达最后满足循环条件的最后一个数 `96` 后，再加上 5 变为 `101`，此时不满足条件结束循环。所以最终 `i` 为 101。',
+      tags: [LEVEL1_TAGS.loop]
     },
     {
       id: 15,
       type: 'single',
-      question: '下列 C++ 嵌套循环中，共会执行多少次 printf("*"); 操作？\n```cpp\nfor(int i = 0; i < 3; i++)\n  for(int j = 0; j < 4; j++)\n    printf("*");\n```',
-      options: ['7', '12', '4', '3'],
-      answer: 1,
+      question: '下面C++代码执行后输出的是（ ）。\n```cpp\nint tnt = 0;\nfor (int i = 5; i < 100; i += 5){\n    if (i % 2 == 0) continue;\n    tnt += 1;\n    if (i % 3 == 0 && i % 7 == 0) break;\n}\ncout << tnt << endl;\n```',
+      options: [
+        '500',
+        '450',
+        '10',
+        '1'
+      ],
+      answer: 2,
       score: 2,
-      explanation: '外层循环 3 次，每层内层循环 4 次，共 3 * 4 = 12 次。',
-      tags: [LEVEL1_TAGS.loop]
+      explanation: '循环遍历范围满足 `i % 5 == 0` 的小于 100 的正整数。若偶数则跳过，因此有效值为以5结尾的数（如5,15,25...95），这样的数有10个。每次 `tnt` 增加1。并且没有任何以5结尾且小于100的数能同时被3和7整除，所以不会被 break 取消，循环将完整执行这十次迭代，因此输出结果为10。',
+      tags: [LEVEL1_TAGS.loop, LEVEL1_TAGS.condition]
     },
 
     // 16-25 判断题
     {
       id: 16,
       type: 'judge',
-      question: 'C++ 语言通过区分字母的大小写来识别不同的变量。',
+      question: 'C++、Python都是高级编程语言，它们的每条语句最终都要通过机器指令来完成。',
       options: ['正确', '错误'],
       answer: 0,
       score: 2,
-      explanation: 'C++ 是强类型且区分大小写的语言。',
+      explanation: '高级语言必须经过编译或解释翻译成CPU能够识别执行的机器指令来完成工作。',
       tags: [LEVEL1_TAGS.judge, LEVEL1_TAGS.basics]
     },
     {
       id: 17,
       type: 'judge',
-      question: '第一块集成电路出现在 20 世纪 50 年代末。',
+      question: '在C++中表达式 `N * 2 % N` 中如果N的值为正整数，则其值为2。',
       options: ['正确', '错误'],
-      answer: 0,
+      answer: 1,
       score: 2,
-      explanation: '1958 年杰克·基尔比研制出第一块集成电路。',
-      tags: [LEVEL1_TAGS.judge, LEVEL1_TAGS.basics]
+      explanation: '`N * 2` 是 `N` 的倍数，因此它对 `N` 取余数结果总为 `0`，不可能为2。',
+      tags: [LEVEL1_TAGS.judge, LEVEL1_TAGS.operator]
     },
     {
       id: 18,
       type: 'judge',
-      question: '在函数内部声明的变量通常是局部变量。',
+      question: '执行如下C++代码如果在键盘上输入10，执行后将输出20。\n```cpp\nchar N;\ncin >> N;\nprintf("%d\\n", N * 2);\n```',
       options: ['正确', '错误'],
-      answer: 0,
+      answer: 1,
       score: 2,
-      explanation: '局部变量的作用域仅限于其定义的函数块内部。',
-      tags: [LEVEL1_TAGS.judge, LEVEL1_TAGS.basics]
+      explanation: '变量声明中 `N` 的类型为 `char`。当你输入 `10` 时，读取首个字符 `\'1\'` （ASCII 值为 49），输出结果将变为其 ASCII 码乘2，即 `98`。',
+      tags: [LEVEL1_TAGS.judge, LEVEL1_TAGS.io, LEVEL1_TAGS.operator]
     },
     {
       id: 19,
       type: 'judge',
-      question: '(5 > 3) && (2 > 4) 的结果是 true。',
+      question: '删除下面C++代码中的continue不影响程序的执行效果。\n```cpp\nfor (int i = 0; i < 100; i++) {\n    if (i % 2 == 0) {\n        printf("偶数");\n        continue;\n    } else \n        printf("奇数");\n}\n```',
       options: ['正确', '错误'],
-      answer: 1,
+      answer: 0,
       score: 2,
-      explanation: 'true && false 结果为 false。',
-      tags: [LEVEL1_TAGS.judge, LEVEL1_TAGS.operator]
+      explanation: '不论删去与否，当 `i%2==0` 条件符合时执行真分支，结束后因为存在 `else` ，其语句执行也会跳过。因此 `continue` 加在这里是多余的，删除不引发影响。',
+      tags: [LEVEL1_TAGS.judge, LEVEL1_TAGS.condition, LEVEL1_TAGS.loop]
     },
     {
       id: 20,
       type: 'judge',
-      question: '在 C++ 中，可以用 const 关键字来定义常量。',
+      question: '下面C++代码执行时将报错，因为 `_` 所在位置应该是变量名，而 `_` 不可以做变量名。\n```cpp\nfor(int _ = 0; _ < 100; _++) cout<< "*" <<endl;\n```',
       options: ['正确', '错误'],
-      answer: 0,
+      answer: 1,
       score: 2,
-      explanation: 'const 用于修饰变量，使其值不可更改。',
+      explanation: '在 C++ 中，单下划线 `_` 是被允许作为合法变量名称使用的（由一条下划线构造字母组成）。',
       tags: [LEVEL1_TAGS.judge, LEVEL1_TAGS.basics]
     },
     {
       id: 21,
       type: 'judge',
-      question: 'while(false) 循环的循环体一次都不会执行。',
+      question: '下面C++代码被执行后，将先后输出3和5。\n```cpp\nfor (int i = 3; i < 5; i += 2)\n    printf("%d ", i);\n```',
       options: ['正确', '错误'],
-      answer: 0,
+      answer: 1,
       score: 2,
-      explanation: 'while 是先判断后执行。',
-      tags: [LEVEL1_TAGS.judge, LEVEL1_TAGS.loop, LEVEL1_TAGS.condition]
+      explanation: '初始值为3时符合循环要求，所以将输出3；当步长 `+=2` 后变为 `5` 时便不再符合 `i < 5` 的判断基准并直接终结循环，因而不可以输出5。',
+      tags: [LEVEL1_TAGS.judge, LEVEL1_TAGS.loop]
     },
     {
       id: 22,
       type: 'judge',
-      question: '% 运算符可以用于对浮点数（如 5.5）进行取余运算。',
+      question: '下面的C++代码执行后将先后输出7个true。\n```cpp\nfor (int i = 0; i < 10; i++)\n    cout << (i * 2 < i * i) << " ";\n```',
       options: ['正确', '错误'],
       answer: 1,
       score: 2,
-      explanation: 'C++ 中的 % 运算符操作数必须是整型。',
-      tags: [LEVEL1_TAGS.judge, LEVEL1_TAGS.operator]
+      explanation: '条件成立的时候结果会被渲染，但默认配置情况下的普通控制台只会将成立布尔值作为整数 `1` 抛出（假为 `0`），不会展现出 `true` 与 `false` 字样。',
+      tags: [LEVEL1_TAGS.judge, LEVEL1_TAGS.io, LEVEL1_TAGS.operator]
     },
     {
       id: 23,
       type: 'judge',
-      question: '计算机的键盘属于输出设备。',
+      question: '在C++代码中，`user_Name`、`_userName`、`user-Name`、`userName_`都是合法的变量名。',
       options: ['正确', '错误'],
       answer: 1,
       score: 2,
-      explanation: '键盘是常见的输入设备。',
-      tags: [LEVEL1_TAGS.judge, LEVEL1_TAGS.io]
+      explanation: '`user-Name` 包含减号运算符，该字符不能作为变量的构成合法名称符号。',
+      tags: [LEVEL1_TAGS.judge, LEVEL1_TAGS.basics]
     },
     {
       id: 24,
       type: 'judge',
-      question: '每一个 C++ 程序都必须包含一个 main 函数。',
+      question: 'C++语言中continue语句可以来提前结束循环。',
       options: ['正确', '错误'],
-      answer: 0,
+      answer: 1,
       score: 2,
-      explanation: 'main 函数是程序的入口。',
-      tags: [LEVEL1_TAGS.judge, LEVEL1_TAGS.basics]
+      explanation: '`continue` 的作用仅为跳转过本次的循环执行（提前终止本回合迭代），而完全撤底结束本块循环需要借助 `break` 。',
+      tags: [LEVEL1_TAGS.judge, LEVEL1_TAGS.loop]
     },
     {
       id: 25,
       type: 'judge',
-      question: '在 C++ 中，花括号 {} 用于定义一个代码块。',
+      question: 'C++中定义整型变量N，执行语句 `scanf("%d", &N); cout << N / 3 * 5;` 时输入3.6，则输出是5。',
       options: ['正确', '错误'],
       answer: 0,
       score: 2,
-      explanation: '花括号界定作用域或复合语句。',
-      tags: [LEVEL1_TAGS.judge, LEVEL1_TAGS.basics]
+      explanation: '`scanf` 检测到 `.` 为非数字形态输入将截止解析（它属于输入项分隔效果），因此获取到的整数数值是 `3`。此后执行除加结合：`(3/3)*5=5`。输出结果相符。',
+      tags: [LEVEL1_TAGS.judge, LEVEL1_TAGS.io, LEVEL1_TAGS.operator]
     },
 
     // 26-27 编程题
@@ -291,100 +351,29 @@ export const paperData = {
       id: 26,
       type: 'programming',
       samples: [
-        { input: `10
-2
-3`, output: `8` },
-        { input: `5
-2
-4`, output: `3` }
+        { input: `10\n2\n3`, output: `8` },
+        { input: `5\n2\n4`, output: `3` }
       ],
-      referenceCode: `#include <iostream>
-using namespace std;
-int main() {
-    int n, x, y;
-    cin >> n >> x >> y;
-    int eaten = (y + x - 1) / x;
-    cout << (n > eaten ? n - eaten : 0) << "\n";
-    return 0;
-}`,
-      question: `
-# [GESP202503 一级] 图书馆里的老鼠
-
-## 题目描述
-
-图书馆里有 \$n\$ 本书，不幸的是，还混入了一只老鼠，老鼠每 \$x\$ 小时能啃光一本书，假设老鼠在啃光一本书之前，不会啃另一本。请问 \$y\$ 小时后图书馆里还剩下多少本完整的书。
-
-## 输入格式
-
-三行，第一行一个正整数 \$n\$，表示图书馆里书的数量；
-
-第二行，一个正整数 \$x\$，表示老鼠啃光一本书需要的时间；
-
-第三行，一个正整数 \$y\$，表示经过的总时间；
-
-输入数据保证 \$y\$ 小时后至少会剩下一本完整的书。
-
-## 输出格式
-
-一行，一个整数，表示 \$y\$ 小时后图书馆里还剩下多少本完整的书。
-`,
+      referenceCode: `#include <iostream>\nusing namespace std;\n\nint main() {\n    int n, x, y;\n    cin >> n >> x >> y;\n    int eaten = (y + x - 1) / x;\n    int remain = n - eaten;\n    if (remain < 0) remain = 0;\n    cout << remain << "\\n";\n    return 0;\n}`,
+      question: `# [GESP202503 一级] 图书馆里的老鼠\n\n## 题目描述\n\n图书馆里有 $n$ 本书，不幸的是，还混入了一只老鼠，老鼠每 $x$ 小时能啃光一本书，假设老鼠在啃光一本书之前，不会啃另一本。请问 $y$ 小时后图书馆里还剩下多少本完整的书。\n\n## 输入格式\n\n三行，第一行一个正整数 $n$（$n \\le 10^5$），表示图书馆里书的数量；\n\n第二行，一个正整数 $x$（$x \\le 100$），表示老鼠啃光一本书需要的时间；\n\n第三行，一个正整数 $y$（$y \\le 10^7$），表示经过的总时间；\n\n## 输出格式\n\n一行，一个整数，表示 $y$ 小时后图书馆里还剩下多少本完整的书。`,
       template: `#include <bits/stdc++.h>\nusing namespace std;\n\nint main() {\n    // 在此填写代码\n    return 0;\n}`,
       answer: '',
       score: 25,
-      explanation: '遍历 a 到 b，使用 i % 2 == 0 判断并累加。',
+      explanation: '这道题考验简单的整数除法和边界条件分析。由于老鼠吃书是连续的，所以哪怕一小部分被咬过也不算作好书。这意味着已经失去的书的数量为向上取整 `ceil(y/x)`，在 C++ 整数逻辑下对应公式为 `(y + x - 1) / x` 或直接使用条件判断。计算出总失去数量后从总数里剪除，若总数目全失则只保底 `0`。',
       tags: [LEVEL1_TAGS.basics, LEVEL1_TAGS.condition, LEVEL1_TAGS.operator],
     },
     {
       id: 27,
       type: 'programming',
       samples: [
-        { input: `5
-43
-58
-25
-67
-90`, output: `40
-60
-30
-70
-90` }
+        { input: `5\n43\n58\n25\n67\n90`, output: `40\n60\n30\n70\n90` }
       ],
-      referenceCode: `#include <iostream>
-using namespace std;
-int main() {
-    int n;
-    cin >> n;
-    for(int i = 0; i < n; i++) {
-        int a;
-        cin >> a;
-        int rem = a % 10;
-        if (rem >= 5) a += 10 - rem;
-        else a -= rem;
-        cout << a << "\n";
-    }
-    return 0;
-}`,
-      question: `
-# [GESP202503 一级] 四舍五入
-
-## 题目描述
-
-四舍五入是一种常见的近似计算方法。现在，给定 \$n\$ 个整数，你需要将每个整数四舍五入到最接近的整十数。例如，\$43\$ 四舍五入后为 \$40\$，\$58\$ 四舍五入后为 \$60\$。
-
-## 输入格式
-
-共 \$n+1\$ 行，第一行，一个整数 \$n\$，表示接下来输入的整数个数。
-
-接下来 \$n\$ 行，每行一个整数 \$a_1, \\cdots, a_n\$，表示需要四舍五入的整数。
-
-## 输出格式
-
-\$n\$ 行，每行一个整数，表示每个整数四舍五入后的结果。
-`,
+      referenceCode: `#include <iostream>\nusing namespace std;\n\nint main() {\n    int n;\n    cin >> n;\n    for(int i = 0; i < n; i++) {\n        int a;\n        cin >> a;\n        int rem = a % 10;\n        if (rem >= 5) a += 10 - rem;\n        else a -= rem;\n        cout << a << "\\n";\n    }\n    return 0;\n}`,
+      question: `# [GESP202503 一级] 四舍五入\n\n## 题目描述\n\n四舍五入是一种常见的近似计算方法。现在，给定 $n$ 个整数，你需要将每个整数四舍五入到最接近的整十数。例如，$43$ 四舍五入后为 $40$，$58$ 四舍五入后为 $60$；如果个位是 $5$，向上取整，例如 $25$ 变为 $30$。\n\n## 输入格式\n\n共 $n+1$ 行，第一行，一个正整数 $n$（$n \\le 10^5$），表示接下来输入的整数个数。\n\n接下来 $n$ 行，每行一个整数 $a_i$（$\\le a_i \\le 10^9$），表示需要四舍五入的整数。\n\n## 输出格式\n\n$n$ 行，每行一个整数，表示每个整数四舍五入后的结果。`,
       template: `#include <bits/stdc++.h>\nusing namespace std;\n\nint main() {\n    // 在此填写代码\n    return 0;\n}`,
       answer: '',
       score: 25,
-      explanation: '转换公式为：\'z\'-(c-\'a\')。',
+      explanation: '可以使用取个位的方法处理：`rem = a % 10`。如果 `rem >= 5`，则需要进位（加上 `10 - rem`）；否则，直接舍去个位（减去 `rem`）。这里同样要注意处理使用循环结构，读入 n 然后进行多次计算。',
       tags: [LEVEL1_TAGS.loop, LEVEL1_TAGS.basics],
     }
   ]
