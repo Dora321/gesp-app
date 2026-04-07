@@ -206,10 +206,10 @@ const questions = [
     {
         id: 106,
         type: 'tf',
-        question: "6. C++ 代码中对表达式 ('Z'-'A') < ('z'-'a') 的结果输出为 0。",
+        question: "6. C++ 代码中对表达式 ('Z'-'A') < ('z'-'A') 的结果输出为 0。",
         options: ["√ 正确", "× 错误"],
-        answer: 0, // True
-        explanation: "大写字母范围和小写字母范围的长度是相等的（都是 25）。25 < 25 为假（False），在 C++ 中输出为 0。"
+        answer: 1, // False
+        explanation: "'Z'-'A' = 25，'z'-'A' = 57，因此 25 < 57 为真，表达式输出 1，所以题干说法错误。"
     },
     {
         id: 107,

@@ -35,10 +35,10 @@ export const paperData = {
         { id: 18, type: 'judge', question: 'C++ 表达式 10 / 0.333333 == 10 / (1 / 3) 的值为 true。', options: ['正确', '错误'], answer: 1, score: 2, explanation: '右侧 (1/3) 是整数除法得 0，导致 10/0 报错；且浮点数与整数表达式逻辑不通。', tags: ['运算符', '数据类型'] },
         { id: 19, type: 'judge', question: '给定代码中 N 为整数时，无论输入负数、0或正数，输出都为 0。\n```cpp\nwhile(N) N /= 10; cout << N;\n```', options: ['正确', '错误'], answer: 0, score: 2, explanation: '反复除以 10 最终都会变成 0。', tags: ['程序分析'] },
         { id: 20, type: 'judge', question: '给定代码执行后输出是“4 0”。\n```cpp\nint a=4, b=a==5; cout << a << " " << b;\n```', options: ['正确', '错误'], answer: 0, score: 2, explanation: 'b 赋值为 (a==5) 即 false(0)，输出 4 0。', tags: ['运算符', '判断'] },
-        { id: 21, type: 'judge', question: '表达式 (\'Z\'-\'A\') < (\'z\'-\'a\') 的结果输出为 0。', options: ['正确', '错误'], answer: 0, score: 2, explanation: '大写字母区间长度与小写相同，25 < 25 为 false，输出 0。', tags: ['字符处理', '比较运算'] },
+        { id: 21, type: 'judge', question: '表达式 (\'Z\'-\'A\') < (\'z\'-\'A\') 的结果输出为 0。', options: ['正确', '错误'], answer: 1, score: 2, explanation: '\'Z\'-\'A\' = 25，\'z\'-\'A\' = 57，因此 25 < 57 为 true，表达式输出 1，所以题干说法错误。', tags: ['字符处理', '比较运算'] },
         { id: 22, type: 'judge', question: '给定代码利用 N % N10 == N 可用于判断正整数 N 的位数。', options: ['正确', '错误'], answer: 0, score: 2, explanation: '通过不断扩大取模基数判断数值范围，逻辑正确。', tags: ['程序分析'] },
         { id: 23, type: 'judge', question: '将 Flag = -Flag 改为 Flag -= Flag，交叉加减程序效果相同。', options: ['正确', '错误'], answer: 1, score: 2, explanation: 'Flag -= Flag 结果永远是 0，无法实现正负翻转。', tags: ['运算符', '逻辑'] },
-        { id: 24, type: 'judge', question: '给定代码段执行后将输出 55。\n```cpp\nfor (i=0; i<10; i++) for (j=i; j<10; j++) cnt++;\n```', options: ['正确', '错误'], answer: 1, score: 2, explanation: '此处次数计算应为 10+9+...+1 = 55，但需看 cnt 初始值和具体循环逻辑（原题答案为正确）。', tags: ['循环', '算法'] },
+        { id: 24, type: 'judge', question: '给定代码段执行后将输出 55。\n```cpp\nfor (i=0; i<10; i++) for (j=i; j<10; j++) cnt++;\n```', options: ['正确', '错误'], answer: 0, score: 2, explanation: '内层循环次数依次为 10、9、8、...、1，总和为 55，因此题干说法正确。', tags: ['循环', '算法'] },
         { id: 25, type: 'judge', question: '九九乘法表代码中删除 printf("\\n") 不会影响输出效果。', options: ['正确', '错误'], answer: 1, score: 2, explanation: '删除换行符会导致所有输出挤在同一行。', tags: ['程序设计'] }
     ],
     programmingQuestions: [
