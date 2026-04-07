@@ -262,7 +262,6 @@ export const paperData = {
         { input: `3 5
 0 0 0 2 0`, output: `11 0 4` }
       ],
-      referenceCode: '// 待补充',
       question: `
 # [GESP202309 三级] 小杨的储蓄
 
@@ -327,7 +326,6 @@ GG`, output: `0 1 1 1
 0 0 0 1
 0 0 0 0` }
       ],
-      referenceCode: '// 待补充',
       question: `
 # [GESP202309 三级] 进制判断
 

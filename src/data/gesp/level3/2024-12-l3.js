@@ -266,7 +266,6 @@ export const paperData = {
         { input: `5 0
 -2 -1 0 1 2`, output: `-2 -2 0 2 2` }
       ],
-      referenceCode: '// 待补充',
       question: `
 # [GESP202412 三级] 数字替换
 
@@ -301,7 +300,6 @@ export const paperData = {
 ****..****.********..***.
 ****.....................` }
       ],
-      referenceCode: '// 待补充',
       question: `
 # [GESP202412 三级] 打印数字
 

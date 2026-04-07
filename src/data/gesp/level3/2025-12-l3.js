@@ -275,7 +275,6 @@ N
 N
 N` }
       ],
-      referenceCode: '// 待补充',
       question: `
 # [GESP202512 三级] 密码强度
 
@@ -322,7 +321,6 @@ N` }
 2 3
 2 10`, output: `4` }
       ],
-      referenceCode: '// 待补充',
       question: `
 # [GESP202512 三级] 小杨的智慧购物
 

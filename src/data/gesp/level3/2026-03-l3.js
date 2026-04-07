@@ -281,8 +281,6 @@ export const paperData = {
         {
             id: 26,
             type: 'programming',
-            samples: [{ input: '待补充', output: '待补充' }],
-            referenceCode: '// 待补充',
             title: '二进制回文串',
             problemNumber: 'B4499',
             score: 25,
@@ -303,8 +301,6 @@ export const paperData = {
         {
             id: 27,
             type: 'programming',
-            samples: [{ input: '待补充', output: '待补充' }],
-            referenceCode: '// 待补充',
             title: '凯撒密码',
             problemNumber: 'B4500',
             score: 25,

@@ -8,8 +8,9 @@ export const paperData = {
   session: 2,
   timeLimit: 5400,
   source: {
-    officialPdf: '',
-    type: 'public-recovery',
+    officialPdf: 'https://gesp.ccf.org.cn/101/attach/1569361659691040.pdf',
+    type: 'official-analysis',
+    notes: '2023-06 三级目前对照的是 CCF 官方真题解析 PDF，而非单独试卷 PDF。',
   },
   questions: [
     {
@@ -160,11 +161,13 @@ export const paperData = {
     {
       id: 14,
       type: 'single',
-      question: '在下列代码的横线处填写（ ），可以使得输出是“2”\n`int array[] = {3, 11, 2, 5, 24}; int min = array[0];`\n`for (int i = 1; i < 5; i++) { if (___________) min = array[i]; }`',
+      question: `在下列代码的横线处填写（ ），可以使得输出是“2”。
+\`int array[] = {3, 11, 2, 5, 24}; int min = 0;\`
+\`for (int i = 1; i < 5; i++) { if (___________) min = array[i]; }\``,
       options: ['min > array[i]', 'min < array[i]', 'min = array[i]', '以上均不对'],
-      answer: 0,
+      answer: 3,
       score: 2,
-      explanation: '寻找最小值的逻辑。',
+      explanation: '官方解析中 min 初始为 0，而 array 全为正整数，A/B/C 都无法让最终结果为 2，因此正确答案为 D。',
       tags: ['算法']
     },
     {
@@ -282,8 +285,6 @@ export const paperData = {
     {
       id: 26,
       type: 'programming',
-      samples: [{ input: '待补充', output: '待补充' }],
-      referenceCode: '// 待补充',
       template: `#include <bits/stdc++.h>\nusing namespace std;\n\nint main() {\n    // 在此填写代码\n    return 0;\n}`,
       score: 25,
       title: '春游',
@@ -292,14 +293,16 @@ export const paperData = {
       outputDescription: '输出一行。如果所有同学都到达，则输出 N；否则由小到大输出所有未到达的同学编号，空格分隔。',
       samples: [
         {
-          input: '3 3\n0 2 2',
-          output: '1',
-          explanation: '班级共有 3 位同学（0, 1, 2），报数三次分别是 0, 2, 2。只有 1 号同学没有报数。'
+          input: `3 3
+0 2 1`,
+          output: '3',
+          explanation: '???? 3 ????0, 1, 2????????? 0?2?1?????????????? 3?'
         },
         {
-          input: '3 5\n0 1 2 1 0',
-          output: '3',
-          explanation: '班级共有 3 位同学（0, 1, 2），所有同学都到齐了，所以输出 3。'
+          input: `3 5
+0 0 0 0 0`,
+          output: '1 2',
+          explanation: '3 ?????? 0 ????????????? 1 ? 2??? 1 2?'
         }
       ],
       score: 25,
@@ -339,8 +342,6 @@ int main() {
     {
       id: 27,
       type: 'programming',
-      samples: [{ input: '待补充', output: '待补充' }],
-      referenceCode: '// 待补充',
       template: `#include <bits/stdc++.h>\nusing namespace std;\n\nint main() {\n    // 在此填写代码\n    return 0;\n}`,
       score: 25,
       title: '密码合规检测',

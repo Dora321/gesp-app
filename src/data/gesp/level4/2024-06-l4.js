@@ -99,7 +99,7 @@ export const paperData = {
             type: "single",
             question: "下面函数不能正常执行的是（ ）。",
             options: ["int f(int x) { return x; }", "void f(int &x) { x++; }", "int& f(int x) { return x; }", "void f(const int x) { }"],
-            answer: 2,
+            answer: 1,
             score: 2,
             explanation: "返回局部变量的引用是非法的，因为函数结束后局部变量会被销毁，引用将指向无效地址。",
             tags: ["客观题", "单选题", "GESP4级"]
@@ -119,7 +119,7 @@ export const paperData = {
             type: "single",
             question: "假设变量 a 的地址是 0x6ffe14，下面程序的输出是（ ）。\n```cpp\nint a = 10;\nint *p = &a;\ncout << p << \" \" << p+1 << endl;\n```",
             options: ["0x6ffe14 0x6ffe15", "0x6ffe14 0x6ffe18", "0x6ffe14 0x6ffe14", "0x6ffe14 0x6ffe1c"],
-            answer: 1,
+            answer: 3,
             score: 2,
             explanation: "p+1 在地址上增加的是指针所指向类型的大小。int 占 4 字节，0x6ffe14+4 = 0x6ffe18。",
             tags: ["客观题", "单选题", "GESP4级"]
@@ -129,7 +129,7 @@ export const paperData = {
             type: "single",
             question: "在 C++ 中，关于引用和指针的描述，错误的是（ ）。",
             options: ["引用必须初始化，指针可以不初始化", "引用初始化后不能更改，指针可以随时指向别处", "引用占用内存空间，指针不占用内存空间", "引用没有空引用，指针可以有空指针"],
-            answer: 2,
+            answer: 1,
             score: 2,
             explanation: "引用在底层通常通过指针实现，但逻辑上被视为变量的别名。指针本身是一个变量，必然占用内存空间用于存储地址。",
             tags: ["客观题", "单选题", "GESP4级"]
@@ -139,7 +139,7 @@ export const paperData = {
             type: "single",
             question: "下列关于递归的描述，正确的是（ ）。",
             options: ["递归函数不需要终止条件", "递归函数必须调用自身", "递归总是比循环更高效", "递归调用不会增加栈空间开销"],
-            answer: 1,
+            answer: 3,
             score: 2,
             explanation: "递归的定义就是函数直接或间接调用自身。递归必须有终止条件，且由于压栈开销，通常比循环低效。",
             tags: ["客观题", "单选题", "GESP4级"]
@@ -149,7 +149,7 @@ export const paperData = {
             type: "single",
             question: "关于 static 关键字，下列说法正确的是（ ）。",
             options: ["static 修饰的局部变量在函数结束后销毁", "static 修饰的全局变量在所有文件中可见", "static 修饰的局部变量仅在第一次调用时初始化", "static 不能修饰类成员"],
-            answer: 2,
+            answer: 3,
             score: 2,
             explanation: "静态局部变量存储在全局数据区，生命周期贯穿整个程序，且只在第一次进入函数时初始化一次。",
             tags: ["客观题", "单选题", "GESP4级"]
@@ -169,7 +169,7 @@ export const paperData = {
             type: "single",
             question: "下面有关 C++ 类的说法，错误的是（ ）。",
             options: ["类可以包含私有成员", "构造函数可以有参数", "一个类必须显式定义构造函数", "析构函数不能重载"],
-            answer: 2,
+            answer: 0,
             score: 2,
             explanation: "如果类中没有定义构造函数，编译器会生成一个默认的无参构造函数。",
             tags: ["客观题", "单选题", "GESP4级"]
@@ -179,7 +179,7 @@ export const paperData = {
             type: "single",
             question: "选择排序在最坏情况下的时间复杂度是（ ）。",
             options: ["$O(N)$", "$O(n \log n)$", "$O(N^2)$", "$O(1)$"],
-            answer: 2,
+            answer: 1,
             score: 2,
             explanation: "选择排序无论最好还是最坏情况，都需要进行两层循环，复杂度均为 $O(N^2)$。",
             tags: ["客观题", "单选题", "GESP4级"]
@@ -199,7 +199,7 @@ export const paperData = {
             type: "single",
             question: "在 C++ 中，`std::sort` 默认采用的排序规则是（ ）。",
             options: ["降序", "升序", "随机", "不确定"],
-            answer: 1,
+            answer: 3,
             score: 2,
             explanation: "std::sort 默认使用 `<` 运算符进行升序排序。",
             tags: ["客观题", "单选题", "GESP4级"]
@@ -209,7 +209,7 @@ export const paperData = {
             type: "single",
             question: "下列哪个关键字用于声明基类的成员在派生类中可见但对外部不可见（ ）。",
             options: ["private", "public", "protected", "virtual"],
-            answer: 2,
+            answer: 0,
             score: 2,
             explanation: "protected 成员在派生类内部可以访问，但类外部无法访问。",
             tags: ["客观题", "单选题", "GESP4级"]
@@ -229,7 +229,7 @@ export const paperData = {
             type: "single",
             question: "中国计算机学会（ CCF ）主办的 GESP 认证，主要面向（ ）。",
             options: ["大学生", "职场人士", "青少年", "科研人员"],
-            answer: 2,
+            answer: 3,
             score: 2,
             explanation: "GESP 是 CCF 面向青少年的编程能力等级认证。",
             tags: ["客观题", "单选题", "GESP4级"]

@@ -4,19 +4,18 @@ const programmingQuestions = [
     {
       id: 26,
       type: 'programming',
-      samples: [{ input: '待补充', output: '待补充' }],
+      samples: [
+        {
+          input: `3 5
+7 6 6 7 9
+6 5 6 7 6
+6 5 7 8 9`,
+          output: `3`
+        }
+      ],
       referenceCode: '// 待补充',
       question: `
-# 编程题
-
-
-# 编程题
-
-
-# 编程题
-
-
-# 山之谷
+# [GESP202603 四级] 山之谷
 
 ## 题目描述
 
@@ -41,26 +40,26 @@ const programmingQuestions = [
     {
       id: 27,
       type: 'programming',
-      samples: [{ input: '待补充', output: '待补充' }],
+      samples: [
+        {
+          input: `4 3
+3 5 2
+4 1 5
+2 2 4
+3 4 3`,
+          output: `3 4 2 1`
+        }
+      ],
       referenceCode: '// 待补充',
       question: `
-# 编程题
-
-
-# 编程题
-
-
-# 编程题
-
-
-# 礼盒排序
+# [GESP202603 四级] 礼盒排序
 
 ## 题目描述
 
 商店推出了许多礼盒，每个礼盒中包含 \\\\\\\\\\\\\\\$k\\\\\\\\\\\\\\\$ 件商品，每件商品都有一个价格。现在需要对这些礼盒进行排序，排序规则如下：
 1. 先按礼盒总价格从小到大排序；
 2. 如果总价格相同，则按礼盒中最贵商品的价格从小到大排序；
-3. 如果仍然相同，则按礼盒中最后进店商品的价格（即输入的最后一个价格）从小到大排序；
+3. 如果仍然相同，则按礼盒中最便宜商品的价格从小到大排序；
 4. 如果上述规则都相同，则按礼盒原本的编号（从 1 开始）从小到大排序。
 
 ## 输入格式
@@ -72,7 +71,7 @@ const programmingQuestions = [
 输出一行，包含 \\\\\\\\\\\\\\\$n\\\\\\\\\\\\\\\$ 个整数，用空格分隔，表示排序后的礼盒编号。
 `,
       score: 25,
-      explanation: "1号礼盒：总价10，最大值5，最后进店2。2号礼盒：总价10，最大值5，最后进店5。3号礼盒：总价8，最大值4，最后进店4。4号礼盒：总价10，最大值4，最后进店3。排序过程：3号总价8最小排第一；其余总价均为10，4号最大值4较小排第二；1号和2号最大值相同均为5，1号最后进店2较小排第三；2号排最后。最终：3 4 2 1。",
+      explanation: "先为每个礼盒统计总价、最大值和最小值，再按题目给定的三重关键字排序即可。样例中 3 号礼盒总价最小先排第一；其余总价都为 10，4 号礼盒最大值更小排第二；1 号和 2 号最大值同为 5，再比较最小值，2 号最小值 1 更小，所以最终顺序是 3 4 2 1。",
       tags: ["编程题", "结构体", "排序"],
       template: "#include <iostream>\n#include <vector>\n#include <algorithm>\n\nusing namespace std;\n\nstruct Combo {\n    int sum, mx, last, id;\n};\n\nint main() {\n    int n, k;\n    cin >> n >> k;\n    // 在此编写代码\n    return 0;\n}",
       referenceCode: "#include <iostream>\n#include <vector>\n#include <algorithm>\n\nusing namespace std;\n\nstruct Combo {\n    int sum, mx, last, id;\n};\n\nbool cmp(const Combo &a, const Combo &b) {\n    if (a.sum != b.sum) return a.sum < b.sum;\n    if (a.mx != b.mx) return a.mx < b.mx;\n    if (a.last != b.last) return a.last < b.last;\n    return a.id < b.id;\n}\n\nint main() {\n    int n, k;\n    if (!(cin >> n >> k)) return 0;\n    vector<Combo> v(n);\n    for (int i = 0; i < n; i++) {\n        v[i].sum = 0;\n        v[i].mx = -1;\n        v[i].id = i+1;\n        int x;\n        for (int j = 0; j < k; j++) {\n            cin >> x;\n            v[i].sum += x;\n            v[i].mx = max(v[i].mx, x);\n            if (j == k-1) v[i].last = x;\n        }\n    }\n    sort(v.begin(), v.end(), cmp);\n    for (int i = 0; i < n; i++) {\n        cout << v[i].id << (i == n-1 ? \"\" : \" \");\n    }\n    cout << endl;\n    return 0;\n}",
@@ -196,7 +195,7 @@ export const paperData = {
             type: "single",
             question: "下列关于分治算法的说法，错误的是（ ）。",
             options: ["分治算法通常配合递归实现", "归并排序是典型的分治算法", "分治算法总是比其他算法更高效", "快速排序采用了分治策略"],
-            answer: 2,
+            answer: 1,
             score: 2,
             explanation: "分治算法在许多场景下效率很高，但并不总是比其他算法更高效，效率取决于具体问题和子问题划分。选项 C 说法太绝对。",
             tags: ["客观题", "单选题", "GESP4级"]
@@ -206,7 +205,7 @@ export const paperData = {
             type: "single",
             question: "执行下面代码后，输出为（ ）。\n```cpp\nint main() {\n    int a[] = {5, 2, 8, 1, 9};\n    sort(a, a+5);\n    cout << a[2];\n    return 0;\n}\n```",
             options: ["2", "5", "8", "1"],
-            answer: 1,
+            answer: 2,
             score: 2,
             explanation: "sort 对数组升序排序后为 {1, 2, 5, 8, 9}。a[2] 是 5。",
             tags: ["客观题", "单选题", "GESP4级"]
