@@ -214,7 +214,7 @@ export const paperData = {
                 "33",
                 "无法确定",
             ],
-            answer: 2,
+            answer: 3,
             score: 2,
             explanation: "累加主对角线元素：array[0][0]=0, array[1][1]=11, array[2][2]=22。0+11+22=33。",
             tags: ["二维数组", "单选题", "GESP4级"]
@@ -342,42 +342,220 @@ const programmingQuestions = [
       id: 26,
       type: 'programming',
       samples: [
-        { input: `3 3
-0 2 1`, output: `3` },
-        { input: `3 5
-0 0 0 0 0`, output: `1 2` }
+        {
+          input: `2
+16347
+76344`,
+          output: `T
+F`
+        }
       ],
-      referenceCode: '// 待补充',
       question: `
-# [GESP202306 三级] 春游
+# [GESP202306 四级] 幸运数
 
 ## 题目描述
 
-老师带领同学们春游。已知班上有 \$N\$ 位同学，每位同学有从 \$0\$ 到 \$N-1\$ 的唯一编号。到了集合时间，老师确认是否所有同学都到达了集合地点，就让同学们报出自己的编号。到达的同学都会报出自己的编号，不会报出别人的编号，但有的同学很顽皮，会多次报出。你能帮老师找出有哪些同学没有到达吗 ?。
+小明发明了一种“幸运数”。一个正整数从个位开始编号，第 1、3、5... 位上的数字都要做一次变换，第 2、4、6... 位上的数字保持不变。
+
+对奇数位上的数字 \$t\$，变换规则为：
+
+- 先计算 \$t \\times 7\$；
+- 如果结果不大于 \$9\$，就把它作为变换结果；
+- 否则不断把各位数字相加，直到结果不大于 \$9\$。
+
+把所有数位处理完成后，再将最终各位数字求和；如果这个和是 \$8\$ 的倍数，则称原数是幸运数。
 
 ## 输入格式
 
-输入包含 \$2\$ 行。第一行包含两个整数 \$N\$ 和 \$M\$，表示班级有 \$N\$ 位同学，同学们共有 \$M\$ 次报出编号。约定 \$2 \\le N,M \\le 1000\$。  
-第二行包含 \$M\$ 个整数，分别为 \$M\$ 次报出的编号。约定所有编号是小于 \$N\$ 的非负整数。
+第一行一个正整数 \$N\$，表示待判断的整数个数。  
+接下来 \$N\$ 行，每行一个正整数 \$x\$。
 
 ## 输出格式
 
-输出一行。如果所有同学都到达，则输出 \$N\$；否则由小到大输出所有未到达的同学编号，空格分隔。
+输出 \$N\$ 行。若对应整数是幸运数，输出 \`T\`；否则输出 \`F\`。
 `,
       score: 25,
-      answer: "#include <iostream>\nusing namespace std;\nvoid solve() {\n    long long x; cin >> x;\n    int sum = 0;\n    while (x > 0) {\n        sum += x % 10;\n        x /= 10;\n    }\n    if (sum % 7 == 0) cout << 1 << endl;\n    else cout << 0 << endl;\n}\nint main() {\n    int n; cin >> n;\n    while (n--) solve();\n    return 0;\n}",
-      explanation: "对每个数计算各位数字之和，判断 sum % 7 == 0。注意输入可能达到 10^18，需要用 long long。LuoGu B3850。",
-      template: "#include <bits/stdc++.h>\nusing namespace std;\n\nint main() {\n    ios::sync_with_stdio(false);\n    cin.tie(nullptr);\n\n    // 在此编写代码\n\n    return 0;\n}",
-      template: "#include <bits/stdc++.h>\nusing namespace std;\n\nint main() {\n    ios::sync_with_stdio(false);\n    cin.tie(nullptr);\n\n    // 在此编写代码\n\n    return 0;\n}",
-      tags: ["编程题", "模拟"],
-      template: "#include <iostream>\nusing namespace std;\n\nint main() {\n    int n;\n    cin >> n;\n    // 在此编写代码\n    return 0;\n}",
-      referenceCode: "#include <iostream>\nusing namespace std;\nvoid solve() {\n    long long x; cin >> x;\n    int sum = 0;\n    while (x > 0) {\n        sum += x % 10;\n        x /= 10;\n    }\n    if (sum % 7 == 0) cout << 1 << endl;\n    else cout << 0 << endl;\n}\nint main() {\n    int n; cin >> n;\n    while (n--) solve();\n    return 0;\n1. 只能由 $\\texttt a \\sim \\texttt z$ 之间 $26$ 个小写字母、$\\texttt A \\sim \\texttt Z$ 之间 $26$ 个大写字母、$0 \\sim 9$ 之间 $10$ 个数字以及 \`!@#\\$\` 四个特殊字符构成。\n#include <vector>\nusing namespace std;\nint main() {\n    int n, k; cin >> n >> k;\n    int step = 256 / k;\n    for (int i = 0; i < n; i++) {\n        for (int j = 0; j < n; j++) {\n            int x; cin >> x;\n            cout << x / step << (j == n-1 ? \"\" : \" \");\n        }\n        cout << endl;\n    }\n    return 0;\n}",
-      explanation: "每个像素值除以 (256 / k) 即可得到映射值。LuoGu B3851。",
-      template: "#include <bits/stdc++.h>\nusing namespace std;\n\nint main() {\n    ios::sync_with_stdio(false);\n    cin.tie(nullptr);\n\n    // 在此编写代码\n\n    return 0;\n}",
-      template: "#include <bits/stdc++.h>\nusing namespace std;\n\nint main() {\n    ios::sync_with_stdio(false);\n    cin.tie(nullptr);\n\n    // 在此编写代码\n\n    return 0;\n}",
-      tags: ["编程题", "二维数组", "模拟"],
-      template: "#include <iostream>\n#include <vector>\nusing namespace std;\n\nint main() {\n    int n, k;\n    cin >> n >> k;\n    // 在此编写代码\n    return 0;\n}",
-      referenceCode: "#include <iostream>\n#include <vector>\nusing namespace std;\nint main() {\n    int n, k; cin >> n >> k;\n    int step = 256 / k;\n    for (int i = 0; i < n; i++) {\n        for (int j = 0; j < n; j++) {\n            int x; cin >> x;\n            cout << x / step << (j == n-1 ? \"\" : \" \");\n        }\n        cout << endl;\n    }\n    return 0;\n}",
+      answer: '',
+      explanation: '按位从低到高扫描整数。偶数位直接累加，奇数位先做题目规定的数位变换后再累加，最后判断总和是否能被 8 整除即可。',
+      tags: ['编程题', '模拟'],
+      template: `#include <iostream>
+using namespace std;
+
+int main() {
+    int n;
+    cin >> n;
+    // 在此编写代码
+    return 0;
+}`,
+      referenceCode: `#include <iostream>
+using namespace std;
+
+int trans(int t) {
+    if (t == 0) return 0;
+    return (t * 7 - 1) % 9 + 1;
+}
+
+bool judge(long long x) {
+    int sum = 0;
+    for (int d = 1; x > 0; d++, x /= 10) {
+        int t = static_cast<int>(x % 10);
+        if (d % 2 == 0) sum += t;
+        else sum += trans(t);
+    }
+    return sum % 8 == 0;
+}
+
+int main() {
+    int n;
+    cin >> n;
+    while (n--) {
+        long long x;
+        cin >> x;
+        cout << (judge(x) ? "T" : "F") << "\n";
+    }
+    return 0;
+}`,
+    },
+    {
+      id: 27,
+      type: 'programming',
+      samples: [
+        {
+          input: `10
+00FFCFAB00FFAC09071B5CCFAB76
+00AFCBAB11FFAB09981D34CFAF56
+01BFCEAB00FFAC0907F25FCFBA65
+10FBCBAB11FFAB09981DF4CFCA67
+00FFCBFB00FFAC0907A25CCFFC76
+00FFCBAB1CFFCB09FC1AC4CFCF67
+01FCCBAB00FFAC0F071A54CFBA65
+10EFCBAB11FFAB09981B34CFCF67
+01FFCBAB00FFAC0F071054CFAC76
+1000CBAB11FFAB0A981B84CFCF66`,
+          output: `ABCFFF00CB09AC07101198011B6776FC
+321032657CD10E
+36409205ACC16D
+B41032657FD16D
+8F409205ACF14D
+324F326570D1FE
+3240C245FC411D
+BF4032687CD16D
+8F409205ACC11D
+B240326878D16E
+83409205ACE11D`
+        }
+      ],
+      question: `
+# [GESP202306 四级] 图像压缩
+
+## 题目描述
+
+给定一幅 256 级灰度图像，其中每个像素都用两位十六进制数表示，范围从 \`00\` 到 \`FF\`。
+
+现在需要把它压缩为 16 级灰度图，规则如下：
+
+- 先统计整幅图中每种灰度出现的次数；
+- 选出出现次数最多的 16 种灰度，按“出现次数从多到少、灰度值从小到大”的规则编号为 \`0\` 到 \`F\`；
+- 其他灰度映射到这 16 种灰度中“最接近”的一种；若距离相同，则选择编号更小的那种。
+
+## 输入格式
+
+第一行一个正整数 \$N\$，表示图像共有 \$N\$ 行。  
+接下来 \$N\$ 行，每行是一个长度为偶数的十六进制字符串，每两位表示一个像素。
+
+## 输出格式
+
+第一行输出被选中的 16 种灰度的十六进制编码，共 32 个字符。  
+随后输出压缩后的图像，每个像素用一位十六进制数表示。
+`,
+      score: 25,
+      answer: '',
+      explanation: '先统计灰度直方图并选出 16 个代表灰度，再把每个像素映射到最近的代表灰度，输出代表灰度表和压缩后的图像。',
+      tags: ['编程题', '模拟', '字符串', '统计'],
+      template: `#include <iostream>
+#include <cstring>
+using namespace std;
+
+int main() {
+    int n;
+    cin >> n;
+    // 在此编写代码
+    return 0;
+}`,
+      referenceCode: `#include <iostream>
+#include <cstring>
+using namespace std;
+
+int image[20][20];
+int cpimg[20][20];
+int his[256];
+int color[16];
+
+int trans(char a) {
+    if (a <= '9') return a - '0';
+    return a - 'A' + 10;
+}
+
+char itrans(int n) {
+    if (n >= 10) return static_cast<char>(n - 10 + 'A');
+    return static_cast<char>(n + '0');
+}
+
+int compress(int c) {
+    int dis = 256, res = -1;
+    for (int i = 0; i < 16; i++) {
+        int d = c - color[i];
+        if (d < 0) d = -d;
+        if (d < dis) {
+            dis = d;
+            res = i;
+        }
+    }
+    return res;
+}
+
+int main() {
+    int n = 0, m = 0;
+    cin >> n;
+    memset(his, 0, sizeof(his));
+    for (int i = 0; i < n; i++) {
+        char line[50];
+        cin >> line;
+        m = static_cast<int>(strlen(line)) / 2;
+        for (int j = 0; j < m; j++) {
+            int c = trans(line[j * 2]) * 16 + trans(line[j * 2 + 1]);
+            image[i][j] = c;
+            his[c]++;
+        }
+    }
+    for (int c = 0; c < 16; c++) {
+        int mx = -1, mx_id = -1;
+        for (int i = 0; i < 256; i++) {
+            if (his[i] > mx) {
+                mx = his[i];
+                mx_id = i;
+            }
+        }
+        color[c] = mx_id;
+        his[mx_id] = -1;
+    }
+    for (int i = 0; i < n; i++) {
+        for (int j = 0; j < m; j++) {
+            cpimg[i][j] = compress(image[i][j]);
+        }
+    }
+    for (int c = 0; c < 16; c++) {
+        cout << itrans(color[c] / 16) << itrans(color[c] % 16);
+    }
+    cout << "\n";
+    for (int i = 0; i < n; i++) {
+        for (int j = 0; j < m; j++) {
+            cout << itrans(cpimg[i][j]);
+        }
+        cout << "\n";
+    }
+    return 0;
+}`,
     }
 ];
 

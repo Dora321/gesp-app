@@ -250,7 +250,6 @@ export const paperData = {
       samples: [
         { input: `3`, output: `DEFGHIJKLMNOPQRSTUVWXYZABC` }
       ],
-      referenceCode: '// 待补充',
       question: `
 # [GESP202406 三级] 移位
 
@@ -286,7 +285,6 @@ export const paperData = {
 1 2 3 4 5`, output: `Yes
 No` }
       ],
-      referenceCode: '// 待补充',
       question: `
 # [GESP202406 三级] 寻找倍数
 

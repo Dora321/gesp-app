@@ -287,7 +287,6 @@ export const paperData = {
         { input: `5
 1 3 2 2 5`, output: `13` }
       ],
-      referenceCode: '// 待补充',
       question: `
 # [GESP202509 三级] 数组清零
 
@@ -342,7 +341,6 @@ export const paperData = {
  23  24  25  26  27  28  29
  30` }
       ],
-      referenceCode: '// 待补充',
       question: `
 # [GESP202509 三级] 日历制作
 

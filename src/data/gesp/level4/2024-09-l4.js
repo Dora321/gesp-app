@@ -143,7 +143,7 @@ export const paperData = {
             type: "single",
             question: "运行以下代码，屏幕上将输出（ ）。\n```cpp\nint var = 100;\nvoid function() {\n    int var = 200;\n    cout << var << \" \" << ::var << endl;\n}\n```",
             options: ["100 100", "200 100", "200 200", "100 200"],
-            answer: 1,
+            answer: 0,
             score: 2,
             explanation: "var 访问局部变量（200），::var 访问全局变量（100）。",
             tags: ["客观题", "单选题", "GESP4级"]
@@ -158,7 +158,7 @@ export const paperData = {
                 "可以使用 #define 预处理器定义常量",
                 "常量必须在全局作用域定义"
             ],
-            answer: 3,
+            answer: 1,
             score: 2,
             explanation: "常量可以在局部作用域（如函数内部）定义。",
             tags: ["客观题", "单选题", "GESP4级"]
@@ -183,7 +183,7 @@ export const paperData = {
             type: "single",
             question: "选择排序的时间复杂度是（ ）。",
             options: ["$O(N)$", "$O(n \log n)$", "$O(N^2)$", "$O(\log n)$"],
-            answer: 2,
+            answer: 0,
             score: 2,
             explanation: "选择排序平均和最坏情况均为 $O(N^2)$。",
             tags: ["客观题", "单选题", "GESP4级"]
@@ -223,7 +223,7 @@ export const paperData = {
                 "所有指针在 64 位系统上占 8 字节",
                 "指针一旦指向某个地址就不能更改"
             ],
-            answer: 3,
+            answer: 0,
             score: 2,
             explanation: "普通指针可以随时重新指向不同的地址（除非是 const 指针）。",
             tags: ["客观题", "单选题", "GESP4级"]
@@ -243,7 +243,7 @@ export const paperData = {
             type: "single",
             question: "递归函数必须包含（ ）。",
             options: ["循环语句", "分支语句处理基准情况", "全局变量", "多个参数"],
-            answer: 1,
+            answer: 2,
             score: 2,
             explanation: "递归必须有终止条件（基准情况）以防止无限递归。",
             tags: ["客观题", "单选题", "GESP4级"]
@@ -263,7 +263,7 @@ export const paperData = {
             type: "single",
             question: "在 C++ 中，`std::sort` 位于哪个头文件中（ ）。",
             options: ["<iostream>", "<vector>", "<algorithm>", "<cmath>"],
-            answer: 2,
+            answer: 0,
             score: 2,
             explanation: "排序算法位于 `<algorithm>`。",
             tags: ["客观题", "单选题", "GESP4级"]

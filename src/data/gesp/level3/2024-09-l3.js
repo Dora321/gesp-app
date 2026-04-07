@@ -264,7 +264,6 @@ export const paperData = {
 Yes
 No` }
       ],
-      referenceCode: '// 待补充',
       question: `
 # [GESP202409 三级] 平衡序列
 
@@ -307,7 +306,6 @@ Yes
 No
 No` }
       ],
-      referenceCode: '// 待补充',
       question: `
 # [GESP202409 三级] 回文拼接
 

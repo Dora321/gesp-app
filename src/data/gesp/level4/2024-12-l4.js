@@ -131,7 +131,7 @@ export const paperData = {
                 "引用可以指向空值（NULL）。",
                 "引用的本质是变量的别名。"
             ],
-            answer: 2,
+            answer: 1,
             score: 2,
             explanation: "引用没有空引用，必须绑定到具体的对象。",
             tags: ["客观题", "单选题", "GESP4级"]
@@ -146,7 +146,7 @@ export const paperData = {
                 "函数内的修改直接影响外部变量。",
                 "该函数无法通过编译，因为引用不能作为参数。"
             ],
-            answer: 3,
+            answer: 1,
             score: 2,
             explanation: "引用可以作为参数，这是 C++ 的基本特性。",
             tags: ["客观题", "单选题", "GESP4级"]
@@ -206,7 +206,7 @@ export const paperData = {
             type: "single",
             question: "在 C++ 中，`std::sort` 函数默认采用的排序方法（底层实现）通常不包括（ ）。",
             options: ["插入排序", "快速排序", "堆排序", "冒泡排序"],
-            answer: 3,
+            answer: 0,
             score: 2,
             explanation: "std::sort（内省排序）通常结合快排、堆排和插排，不包含冒泡排序。",
             tags: ["客观题", "单选题", "GESP4级"]
@@ -221,7 +221,7 @@ export const paperData = {
                 "任何类型的异常都可以由 `catch(...)` 捕获并自动修复错误。",
                 "如果没有对应的 catch 块，异常会被静默忽略。"
             ],
-            answer: 1,
+            answer: 2,
             score: 2,
             explanation: "异常处理语法要求 catch 紧随 try。`catch(...)` 仅能捕获异常但不能修复。",
             tags: ["客观题", "单选题", "GESP4级"]
@@ -271,7 +271,7 @@ export const paperData = {
             type: "single",
             question: "GESP 4 级认证不包含下列哪个知识点（ ）。",
             options: ["一维数组", "结构体", "动态规划", "函数嵌套调用"],
-            answer: 2,
+            answer: 0,
             score: 2,
             explanation: "动态规划通常在 6 级及以上要求，4 级不涉及。",
             tags: ["客观题", "单选题", "GESP4级"]

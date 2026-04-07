@@ -249,7 +249,6 @@ export const paperData = {
       samples: [
         { input: `1025`, output: `1000` }
       ],
-      referenceCode: '// 待补充',
       question: `
 # [GESP202503 三级] 2025
 
@@ -288,7 +287,6 @@ Orange
 banana
 apple`, output: `apple` }
       ],
-      referenceCode: '// 待补充',
       question: `
 # [GESP202503 三级] 词频统计
 

@@ -268,7 +268,6 @@ export const paperData = {
         { input: `3
 1`, output: `25` }
       ],
-      referenceCode: '// 待补充',
       question: `
 # [GESP202312 三级] 小猫分鱼
 
@@ -312,7 +311,6 @@ export const paperData = {
 200 g = 200000 mg
 0 kg = 0 mg` }
       ],
-      referenceCode: '// 待补充',
       question: `
 # [GESP202312 三级] 单位转换
 

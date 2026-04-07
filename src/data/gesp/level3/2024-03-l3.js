@@ -250,7 +250,6 @@ export const paperData = {
         { input: `3
 aAc`, output: `-61` }
       ],
-      referenceCode: '// 待补充',
       question: `
 # [GESP202403 三级] 字母求和
 
@@ -283,7 +282,6 @@ aAc`, output: `-61` }
         { input: `5
 1 4 3 3 5`, output: `3` }
       ],
-      referenceCode: '// 待补充',
       question: `
 # [GESP202403 三级] 完全平方数
 
