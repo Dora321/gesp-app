@@ -268,7 +268,6 @@ export const paperData = {
 2 4 6 8
 3 6 9 12` }
       ],
-      referenceCode: '// 待补充',
       question: `
 # [GESP202503 二级] 等差矩阵
 
@@ -301,7 +300,6 @@ export const paperData = {
 23
 1`, output: `2008 2 29 0` }
       ],
-      referenceCode: '// 待补充',
       question: `
 # [GESP202503 二级] 时间跨越
 

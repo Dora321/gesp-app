@@ -278,7 +278,6 @@ export const paperData = {
 100
 2`, output: `>1000000` }
       ],
-      referenceCode: '// 待补充',
       question: `
 # [GESP202403 二级] 乘法问题
 
@@ -324,7 +323,6 @@ export const paperData = {
 |xxxxx|
 |-----|` }
       ],
-      referenceCode: '// 待补充',
       question: `
 # [GESP202403 二级] 小杨的日字矩阵
 

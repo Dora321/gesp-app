@@ -8,7 +8,6 @@ const programmingQuestions = [
         { input: `5`, output: `1 2 3 6 7` },
         { input: `8`, output: `1 2 3 6 7 12 13 20` }
       ],
-      referenceCode: '// 待补充',
       question: `
 # [GESP202412 四级] Recamán
 
@@ -53,7 +52,6 @@ gesp`, output: `1
 0
 0` }
       ],
-      referenceCode: '// 待补充',
       question: `
 # [GESP202412 四级] 字符排序
 

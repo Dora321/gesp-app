@@ -43,7 +43,6 @@ export const paperData = {
         { input: `6`, output: `6` },
         { input: `2025`, output: `28` }
       ],
-      referenceCode: '// 待补充',
       question: `
 # [GESP202509 二级] 优美的数字
 
@@ -85,7 +84,6 @@ export const paperData = {
 ...#.#...
 ....#....` }
       ],
-      referenceCode: '// 待补充',
       question: `
 # [GESP202509 二级] 菱形
 

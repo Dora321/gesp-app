@@ -345,7 +345,6 @@ export const paperData = {
 5 2 5 2 5
 3 5 5 5 2`, output: `40` }
       ],
-      referenceCode: '// 待补充',
       question: `
 # [GESP202512 四级] 建造
 
@@ -387,7 +386,6 @@ water 4 8`, output: `bus
 cab
 water` }
       ],
-      referenceCode: '// 待补充',
       question: `
 # [GESP202512 四级] 优先购买
 

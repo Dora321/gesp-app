@@ -271,7 +271,6 @@ export const paperData = {
 Yes
 No` }
       ],
-      referenceCode: '// 待补充',
       question: `
 # [GESP202409 二级] 数位之和
 
@@ -307,7 +306,6 @@ No` }
 +--++
 +---+` }
       ],
-      referenceCode: '// 待补充',
       question: `
 # [GESP202409 二级] 小杨的 N 字矩阵
 

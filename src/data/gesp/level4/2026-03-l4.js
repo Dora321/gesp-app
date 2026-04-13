@@ -13,7 +13,6 @@ const programmingQuestions = [
           output: `3`
         }
       ],
-      referenceCode: '// 待补充',
       question: `
 # [GESP202603 四级] 山之谷
 
@@ -50,7 +49,6 @@ const programmingQuestions = [
           output: `3 4 2 1`
         }
       ],
-      referenceCode: '// 待补充',
       question: `
 # [GESP202603 四级] 礼盒排序
 
@@ -73,8 +71,8 @@ const programmingQuestions = [
       score: 25,
       explanation: "先为每个礼盒统计总价、最大值和最小值，再按题目给定的三重关键字排序即可。样例中 3 号礼盒总价最小先排第一；其余总价都为 10，4 号礼盒最大值更小排第二；1 号和 2 号最大值同为 5，再比较最小值，2 号最小值 1 更小，所以最终顺序是 3 4 2 1。",
       tags: ["编程题", "结构体", "排序"],
-      template: "#include <iostream>\n#include <vector>\n#include <algorithm>\n\nusing namespace std;\n\nstruct Combo {\n    int sum, mx, last, id;\n};\n\nint main() {\n    int n, k;\n    cin >> n >> k;\n    // 在此编写代码\n    return 0;\n}",
-      referenceCode: "#include <iostream>\n#include <vector>\n#include <algorithm>\n\nusing namespace std;\n\nstruct Combo {\n    int sum, mx, last, id;\n};\n\nbool cmp(const Combo &a, const Combo &b) {\n    if (a.sum != b.sum) return a.sum < b.sum;\n    if (a.mx != b.mx) return a.mx < b.mx;\n    if (a.last != b.last) return a.last < b.last;\n    return a.id < b.id;\n}\n\nint main() {\n    int n, k;\n    if (!(cin >> n >> k)) return 0;\n    vector<Combo> v(n);\n    for (int i = 0; i < n; i++) {\n        v[i].sum = 0;\n        v[i].mx = -1;\n        v[i].id = i+1;\n        int x;\n        for (int j = 0; j < k; j++) {\n            cin >> x;\n            v[i].sum += x;\n            v[i].mx = max(v[i].mx, x);\n            if (j == k-1) v[i].last = x;\n        }\n    }\n    sort(v.begin(), v.end(), cmp);\n    for (int i = 0; i < n; i++) {\n        cout << v[i].id << (i == n-1 ? \"\" : \" \");\n    }\n    cout << endl;\n    return 0;\n}",
+      template: "#include <iostream>\n#include <vector>\n#include <algorithm>\n\nusing namespace std;\n\nstruct Combo {\n    int sum, mx, mn, id;\n};\n\nint main() {\n    int n, k;\n    cin >> n >> k;\n    // 在此编写代码\n    return 0;\n}",
+      referenceCode: "#include <iostream>\n#include <vector>\n#include <algorithm>\n\nusing namespace std;\n\nstruct Combo {\n    int sum, mx, mn, id;\n};\n\nbool cmp(const Combo &a, const Combo &b) {\n    if (a.sum != b.sum) return a.sum < b.sum;\n    if (a.mx != b.mx) return a.mx < b.mx;\n    if (a.mn != b.mn) return a.mn < b.mn;\n    return a.id < b.id;\n}\n\nint main() {\n    int n, k;\n    if (!(cin >> n >> k)) return 0;\n    vector<Combo> v(n);\n    for (int i = 0; i < n; i++) {\n        v[i].sum = 0;\n        v[i].mx = -1;\n        v[i].mn = 1000000000;\n        v[i].id = i+1;\n        int x;\n        for (int j = 0; j < k; j++) {\n            cin >> x;\n            v[i].sum += x;\n            v[i].mx = max(v[i].mx, x);\n            v[i].mn = min(v[i].mn, x);\n        }\n    }\n    sort(v.begin(), v.end(), cmp);\n    for (int i = 0; i < n; i++) {\n        cout << v[i].id << (i == n-1 ? \"\" : \" \");\n    }\n    cout << endl;\n    return 0;\n}",
       answer: '',
       problemNumber: 'B4502',
     }

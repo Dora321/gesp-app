@@ -308,7 +308,6 @@ export const paperData = {
 0 1 0 1 0
 0 1 1 1 0`, output: `3` }
       ],
-      referenceCode: '// 待补充',
       question: `
 # [GESP202509 四级] 排兵布阵
 
@@ -342,7 +341,6 @@ export const paperData = {
         { input: `9
 9 9 8 2 4 4 3 5 3`, output: `4` }
       ],
-      referenceCode: '// 待补充',
       question: `
 # [GESP202509 四级] 最长连续段
 

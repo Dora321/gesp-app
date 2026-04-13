@@ -72,10 +72,10 @@ export const paperData = {
             type: "single",
             question: "下面 C++ 代码执⾏后的结果是 ( ) 。",
             options: [
-                "[待补充选项]",
-                "选项B",
-                "选项C",
-                "选项D",
+                "123 456 789",
+                "789 456 123",
+                "321 654 987",
+                "147 258 369",
             ],
             answer: 2,
             score: 2,
@@ -224,7 +224,7 @@ export const paperData = {
             type: "single",
             question: "以下 C++ 代码用于实现每个整数对应的因数，如输入12，则输出1 2 3 4 6 12；如输入18，则输出1 2 3 6 9 18。横线处应填入代码是（ ）。",
             options: [
-                "if(n%i==0) 题号 1 2 3 4 5 6 7 8 9 10 答案",
+                "if(n%i==0)",
                 "if(n/i==0)",
                 "if(n%i!=0)",
                 "if(n/i!=0)",
@@ -486,7 +486,6 @@ abc,(d)d!-abc?abcd`, output: `a,(def)def!-a?xxxx` },
 abcdefghij klmnopqrst
 !()-[]{}\\|;:'",./?<>abcdefghijklmnopqrstuvwxyz`, output: `!()-[]{}\\|;:'",./?<>UNK` }
       ],
-      referenceCode: '// 待补充',
       question: `
 # [GESP202312 四级] 小杨的字典
 
@@ -513,7 +512,6 @@ abcdefghij klmnopqrst
 输出一行，表示翻译后的结果。
 `,
       score: 25,
-      answer: "#include <iostream>\n#include <string>\n#include <set>\nusing namespace std;\nint main() {\n    int n; cin >> n;\n    set<string> dict;\n    while (n--) {\n        int op; string s; cin >> op >> s;\n        if (op == 1) dict.insert(s);\n        else {\n            if (dict.count(s)) cout << 1 << endl;\n            else cout << 0 << endl;\n        }\n    }\n    return 0;\n}",
       explanation: "使用 std::set<string> 或 std::unordered_set<string> 可以方便地实现添加和查询操作。LuoGu B3925。",
       tags: ["编程题", "哈希", "集合"],
       template: "#include <iostream>\n#include <string>\n#include <set>\nusing namespace std;\n\nint main() {\n    int n;\n    cin >> n;\n    // 在此编写代码\n    return 0;\n}",
@@ -530,7 +528,6 @@ abcdefghij klmnopqrst
 10 3 5 8 7
 4 6 1 2 9`, output: `5` }
       ],
-      referenceCode: '// 待补充',
       question: `
 # [GESP202312 四级] 田忌赛马
 
@@ -553,7 +550,6 @@ abcdefghij klmnopqrst
 输出一行，表示你最多能获胜几轮。
 `,
       score: 25,
-      answer: "#include <iostream>\n#include <vector>\n#include <algorithm>\nusing namespace std;\nint main() {\n    int n; cin >> n;\n    vector<int> a(n), b(n);\n    for (int i = 0; i < n; i++) cin >> a[i];\n    for (int i = 0; i < n; i++) cin >> b[i];\n    sort(a.begin(), a.end());\n    sort(b.begin(), b.end());\n    int la = 0, ra = n-1, lb = 0, rb = n-1;\n    int ans = 0;\n    while (la <= ra) {\n        if (a[ra] > b[rb]) { ans++; ra--; rb--; }\n        else if (a[la] > b[lb]) { ans++; la++; lb++; }\n        else {\n            if (a[la] < b[rb]) ans--;\n            la++; rb--;\n        }\n    }\n    cout << ans << endl;\n    return 0;\n}",
       explanation: "贪心策略：1. 如果田忌最快的马比齐王最快的快，则比赛；2. 如果田忌最慢的马比齐王最慢的快，则比赛；3. 否则，用田忌最慢的马去消耗齐王最快的马。LuoGu B3926。",
       tags: ["编程题", "贪心", "双指针"],
       template: "#include <iostream>\n#include <vector>\n#include <algorithm>\nusing namespace std;\n\nint main() {\n    int n;\n    cin >> n;\n    // 在此编写代码\n    return 0;\n}",

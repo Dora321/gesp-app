@@ -343,7 +343,6 @@ export const paperData = {
 .#..#
 .....`, output: `11` }
       ],
-      referenceCode: '// 待补充',
       question: `
 # [GESP202503 四级] 荒地开垦
 
@@ -380,7 +379,6 @@ export const paperData = {
 2 4 2 1
 0 3 3 0`, output: `2` }
       ],
-      referenceCode: '// 待补充',
       question: `
 # [GESP202503 四级] 二阶矩阵
 

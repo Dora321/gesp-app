@@ -47,7 +47,6 @@ export const paperData = {
 3
 -1` }
       ],
-      referenceCode: '// 待补充',
       question: `
 # [GESP202412 二级] 寻找数字
 
@@ -81,7 +80,6 @@ export const paperData = {
 81
 10`, output: `9` }
       ],
-      referenceCode: '// 待补充',
       question: `
 # [GESP202412 二级] 数位和
 

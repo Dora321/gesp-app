@@ -11,7 +11,6 @@ const programmingQuestions = [
 00011
 00011`, output: `16` }
       ],
-      referenceCode: '// 待补充',
       question: `
 # [GESP202406 四级] 黑白方块
 
@@ -43,7 +42,6 @@ const programmingQuestions = [
         { input: `5 1
 1 2 3 1 2`, output: `7` }
       ],
-      referenceCode: '// 待补充',
       question: `
 # [GESP202406 四级] 宝箱
 

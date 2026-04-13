@@ -267,7 +267,6 @@ export const paperData = {
         { input: `3`, output: `3` },
         { input: `5`, output: `9` }
       ],
-      referenceCode: '// 待补充',
       question: `
 # [GESP202506 二级] 数三角形
 
@@ -299,7 +298,6 @@ export const paperData = {
         { input: `2 8`, output: `6` },
         { input: `10 100`, output: `20` }
       ],
-      referenceCode: '// 待补充',
       question: `
 # [GESP202506 二级] 幂和数
 

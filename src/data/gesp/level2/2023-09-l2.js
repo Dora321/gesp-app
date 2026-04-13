@@ -278,7 +278,6 @@ export const paperData = {
 -+---+-
 +-----+` }
       ],
-      referenceCode: '// 待补充',
       question: `
 # [GESP202309 二级] 小杨的 X 字矩阵
 
@@ -319,7 +318,6 @@ export const paperData = {
       samples: [
         { input: `352`, output: `4` }
       ],
-      referenceCode: '// 待补充',
       question: `
 # [GESP202309 二级] 数字黑洞
 

@@ -44,7 +44,6 @@ export const paperData = {
         { input: `2 10`, output: `4` },
         { input: `98 100`, output: `0` }
       ],
-      referenceCode: '// 待补充',
       question: `
 # [GESP202306 二级] 找素数
 
@@ -88,7 +87,6 @@ T
 F
 F` }
       ],
-      referenceCode: '// 待补充',
       question: `
 # [GESP202306 二级] 自幂数判断
 

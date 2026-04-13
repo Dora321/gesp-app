@@ -16,7 +16,6 @@ similar
 not similar
 similar` }
       ],
-      referenceCode: '// 待补充',
       question: `
 # [GESP202403 四级] 相似字符串
 
@@ -53,7 +52,6 @@ similar` }
         { input: `4
 3 1 4 1`, output: `3` }
       ],
-      referenceCode: '// 待补充',
       question: `
 # [GESP202403 四级] 做题
 

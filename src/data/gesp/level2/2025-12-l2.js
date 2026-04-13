@@ -23,7 +23,7 @@ export const paperData = {
             'int i = 0; while (i < 10){ cout << i; i += 1; }',
             'int i = 0; while (true){ if (i >= 10) break; cout << i; i += 1; }',
             'int i = 0; while (true){ cout << i; i += 1; if (i >= 10) break; }'
-        ], answer: 0, score: 2, explanation: '原代码输出 0 到 9。选项 A 的代码先自增再输出，会输出 1 到 10。', tags: ['循环', '等价变换'] },
+        ], answer: 1, score: 2, explanation: '原代码输出 0 到 9。选项 A 的代码先自增再输出，会输出 1 到 10。', tags: ['循环', '等价变换'] },
         { id: 11, type: 'single', question: '下列给定代码执行后输出是（ ）。\n```cpp\nint num=0; while (num <= 5) { num += 1; if (num % 3) continue; printf("%d#", num); if (num > 5) printf("%d", num); }\n```', options: ['3#6#', '3#6#6', '1#2#3#4#5#6#', '1#2#3#4#5#6#6'], answer: 1, score: 2, explanation: 'num为3时输出 3#，num为6时输出 6#，且满足 num>5 输出 6，共 3#6#6。', tags: ['循环', '判断'] },
         { id: 12, type: 'single', question: '关于多段 while/for 代码的执行结果，正确选项是（ ）。\n```cpp\nint cnt=0; for (int i=0; i<5; i++) for (int j=i; j<4; j++) cnt += 1; cout << cnt;\n```', options: ['9', '10', '14', '20'], answer: 1, score: 2, explanation: 'i=0..4, j=i..3。次数为 4+3+2+1 = 10。', tags: ['循环', '组合'] },
         { id: 13, type: 'single', question: '关于“完整漂亮数”判定代码的说法，正确的是（ ）。', options: ['代码本身完全正确', '应先保存原 N，再在 L1 使用原 N 判定', 'while 中可加 else 将 Flag 置 0', '输入 0 和 3 必输出“0是3的完整漂亮数”'], answer: 1, score: 2, explanation: 'while 循环后 N 变为 0，必须备份 N 才能在后续判断中使用原值。', tags: ['程序分析', '变量'] },
@@ -56,7 +56,6 @@ export const paperData = {
 13
 2` }
       ],
-      referenceCode: '// 待补充',
       question: `
 # [GESP202512 二级] 环保能量球
 
@@ -96,7 +95,6 @@ export const paperData = {
 4
 2`, output: `4` }
       ],
-      referenceCode: '// 待补充',
       question: `
 # [GESP202512 二级] 黄金格
 

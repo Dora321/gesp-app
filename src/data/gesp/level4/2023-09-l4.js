@@ -52,9 +52,9 @@ export const paperData = {
             type: "single",
             question: "对包含n 个元素的数组进⾏冒泡排序，平均时间复杂度一般为（ ）。 A",
             options: [
-                "[待补充选项]",
-                "选项B",
-                "选项C",
+                "O(n)",
+                "O(n log n)",
+                "O(n²)",
                 "以上都不正确",
             ],
             answer: 2,
@@ -259,7 +259,7 @@ export const paperData = {
         {
             id: 14,
             type: "single",
-            question: "执⾏以下 C++ 语⾔程序后，输出结果是（ ）。 题号 1 2 3 4 5 6 7 8 9 10 答案",
+            question: "执⾏以下 C++ 语⾔程序后，输出结果是（ ）。",
             options: [
                 "0",
                 "5",
@@ -481,7 +481,6 @@ const programmingQuestions = [
 10 123456789`, output: `27
 123456789` }
       ],
-      referenceCode: '// 待补充',
       question: `
 # [GESP202309 四级] 进制转换
 
@@ -504,7 +503,6 @@ const programmingQuestions = [
 输出 \$N\$ 行，每一个十进制数，表示对应 \$K\$ 进制数的十进制数值。
 `,
       score: 25,
-      answer: "#include <iostream>\n#include <string>\n#include <algorithm>\nusing namespace std;\nchar getChar(int x) {\n    if (x < 10) return x+'0';\n    return x-10+'A';\n}\nint main() {\n    long long n; int b; cin >> n >> b;\n    if (n == 0) { cout << 0 << endl; return 0; }\n    string res = \"\";\n    while (n > 0) {\n        res += getChar(n % b);\n        n /= b;\n    }\n    reverse(res.begin(), res.end());\n    cout << res << endl;\n    return 0;\n}",
       explanation: "利用辗转相除法，每次取 N % B 的余数，然后 N = N / B，直到 N 为 0。余数对应的字符逆序排列即为结果。LuoGu B3865。",
       tags: ["编程题", "进制转换"],
       template: "#include <iostream>\n#include <string>\n#include <algorithm>\nusing namespace std;\n\nint main() {\n    long long n;\n    int b;\n    cin >> n >> b;\n    // 在此编写代码\n    return 0;\n}",
@@ -518,7 +516,6 @@ const programmingQuestions = [
         { input: `926`, output: `9E 07` },
         { input: `987654321012345678`, output: `CE 96 C8 A6 F4 CB B6 DA 0D` }
       ],
-      referenceCode: '// 待补充',
       question: `
 # [GESP202309 四级] 变长编码
 
@@ -546,7 +543,6 @@ const programmingQuestions = [
 输出一行，输出 \$N\$ 对应的变长编码的每个字节，每个字节均以 \$2\$ 位十六进制表示（其中， \`A-F\` 使用大写字母表示），两个字节间以空格分隔。
 `,
       score: 25,
-      answer: "#include <iostream>\n#include <vector>\n#include <iomanip>\nusing namespace std;\nint main() {\n    unsigned long long n; cin >> n;\n    if (n == 0) { cout << \"00\" << endl; return 0; }\n    vector<int> res;\n    while (n >= 128) {\n        res.push_back((n % 128)+128);\n        n /= 128;\n    }\n    res.push_back(n);\n    for (int i = 0; i < res.size(); i++) {\n        cout << hex << uppercase << setw(2) << setfill('0') << res[i] << (i == res.size()-1 ? \"\" : \" \");\n    }\n    cout << endl;\n    return 0;\n}",
       explanation: "按照 128 进制分解，每个字节的低 7 位是余数。除最后一个字节外，最高位补 1（即加上 128）。LuoGu B3866。",
       tags: ["编程题", "位运算", "模拟"],
       template: "#include <iostream>\n#include <vector>\n#include <iomanip>\nusing namespace std;\n\nint main() {\n    unsigned long long n;\n    cin >> n;\n    // 在此编写代码\n    return 0;\n}",

@@ -133,7 +133,7 @@ export const paperData = {
             id: 13,
             type: 'single',
             question: "某公司新出了一款⽆⼈驾驶的小汽车，通过声控智能驾驶系统，乘客只要告诉汽车⽬的地，车⼦就能⾃动 选择一条优化路线，告诉乘客后驶达那里。请问下⾯哪项不是驾驶系统完成选路所必须的。（ ）",
-            options: ["麦克风", "扬声器", "油量表 题号 1 2 3 4 5 6 7 8 9 10 答案", "传感器"],
+            options: ["麦克风", "扬声器", "油量表", "传感器"],
             answer: 2,
             score: 2,
             explanation: '答案依据官方答案。',
@@ -274,7 +274,6 @@ export const paperData = {
 5
 8`, output: `12` }
       ],
-      referenceCode: '// 待补充',
       question: `
 # [GESP202312 二级] 小杨做题
 
@@ -320,7 +319,6 @@ export const paperData = {
 |aaaaa|
 |aaaaa|` }
       ],
-      referenceCode: '// 待补充',
       question: `
 # [GESP202312 二级] 小杨的 H 字矩阵
 

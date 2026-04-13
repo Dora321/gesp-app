@@ -352,7 +352,6 @@ qRsTu
 VwXyZ`, output: `Cd
 hI` }
       ],
-      referenceCode: '// 待补充',
       question: `
 # [GESP202506 四级] 画布裁剪
 
@@ -398,7 +397,6 @@ hI` }
 3 0
 1 0`, output: `1` }
       ],
-      referenceCode: '// 待补充',
       question: `
 # [GESP202506 四级] 排序
 

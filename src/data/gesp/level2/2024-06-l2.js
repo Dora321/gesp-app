@@ -269,7 +269,6 @@ export const paperData = {
 4`, output: `Yes
 No` }
       ],
-      referenceCode: '// 待补充',
       question: `
 # [GESP202406 二级] 平方之和
 
@@ -300,7 +299,6 @@ No` }
         { input: `25
 2`, output: `9` }
       ],
-      referenceCode: '// 待补充',
       question: `
 # [GESP202406 二级] 计数
 

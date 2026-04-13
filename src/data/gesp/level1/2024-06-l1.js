@@ -22,7 +22,7 @@ export const paperData = {
       type: 'single',
       question: '在 C++ 中，下列不可作为变量名的是（ ）。',
       options: ['five-Star', 'five_star', 'fiveStar', '_fiveStar'],
-      answer: 3,
+      answer: 0,
       score: 2,
       explanation: '变量名不能包含连字符 `-`。',
       tags: [LEVEL1_TAGS.basics],

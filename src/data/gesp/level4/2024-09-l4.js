@@ -23,7 +23,6 @@ const programmingQuestions = [
 Yes
 No` }
       ],
-      referenceCode: '// 待补充',
       question: `
 # [GESP202409 四级] 黑白方块
 
@@ -66,7 +65,6 @@ No` }
 3 4
 1 3`, output: `1 3 4 5 2` }
       ],
-      referenceCode: '// 待补充',
       question: `
 # [GESP202409 四级] 区间排序
 
