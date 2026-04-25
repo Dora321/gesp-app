@@ -110,7 +110,7 @@ export const paperData = {
         {
             id: 2,
             type: "single",
-            question: "2. 为了让 Dog 类的构造函数能正确地调用其⽗类 Animal 的构造方法，横线线处应填入（ ）。",
+            question: "为了让 Dog 类的构造函数能正确地调用其父类 Animal 的构造方法，横线线处应填入（ ）。",
             options: [
                 "Animal(name) class Animal { public: std::string name; Animal(std::string str) : name(str) { std::cout << \"Animal created\n\"; } virtual void speak() { cout << \"Animal speaks\" << endl; } }; class Dog : public Animal { std::string breed; public: Dog(std::string name, std::string b) : _________________, breed(b) { std::cout << \"Dog created\n\"; } void speak() override { cout << \"Dog barks\" << endl; } }; int main() { Animal* p = new Dog(\"Rex\", \"Labrador\"); p->speak(); delete p; return 0; } 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27 28 29",
                 "super(name)",

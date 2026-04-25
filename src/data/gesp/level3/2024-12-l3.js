@@ -33,7 +33,7 @@ export const paperData = {
             options: ['对于无符号数，原码就是真值', '正数的反码是其本身', '负数的反码和补码是不一样的', '负数的反码，在其原码的基础上，各个位取反'],
             answer: 3,
             score: 2,
-            explanation: '负数的反码应在“符号位不变、数值位取反”的基础上得到；“各个位取反”表述不严谨，因此 D 错。'
+            explanation: '负数的反码应在"符号位不变、数值位取反"的基础上得到；"各个位取反"表述不严谨，因此 D 错。'
         },
         {
             id: 3,
@@ -78,7 +78,7 @@ export const paperData = {
             options: ['12345', '2345@', '112345chenadai', '12345chenadai'],
             answer: 2,
             score: 2,
-            explanation: '从下标 1 开始替换 5 个字符，即把“234@@”替换成“12345”，结果为 112345chenadai。'
+            explanation: '从下标 1 开始替换 5 个字符，即把"234@@"替换成"12345"，结果为 112345chenadai。'
         },
         {
             id: 8,
@@ -121,10 +121,10 @@ export const paperData = {
             type: 'single',
             question: '想要计算从数字 n 到数字 m 之间（包含 n 和 m）有多少个数字 d 出现，下列程序哪个能够实现（ ）。',
             options: [
-                'A. res 未初始化，且 for 从 n+1 开始，漏统计 n。',
-                'B. 判断条件写成 if(temp % 10 = d)，把比较误写成赋值。',
-                'C. int n,m,res=0,d; for(int i=n;i<=m;i++){ int temp=i; while(temp){ if(temp%10==d) res++; temp/=10; } } cout<<res<<endl;',
-                'D. while(temp) 中 temp 未定义，程序错误。'
+                'res 未初始化，且 for 从 n+1 开始，漏统计 n。',
+                '判断条件写成 if(temp % 10 = d)，把比较误写成赋值。',
+                'int n,m,res=0,d; for(int i=n;i<=m;i++){ int temp=i; while(temp){ if(temp%10==d) res++; temp/=10; } } cout<<res<<endl;',
+                'while(temp) 中 temp 未定义，程序错误。'
             ],
             answer: 2,
             score: 2,
@@ -135,24 +135,24 @@ export const paperData = {
             type: 'single',
             question: '兔子五元一只，鸡三元一只，小鸭子一元三只。现在你有一百元要买一百只，兔子、鸡、鸭子每种必须至少一只。下列哪个程序能实现（ ）。\n（说明：本题原卷选项代码在官方 PDF 文本层中缺损，现按公开解析与官方答案做等价整理。）',
             options: [
-                'A. 三重循环枚举 i,j,k，但金额条件写成 25*i+10*j+k == 300。',
-                'B. 三重循环枚举 i,j,k，但金额条件写成 20*i+10*j+k == 300。',
-                'C. 三重循环上界偏小（如 i<=20, j<=34, k<=20），且金额条件为 15*i+9*j+k == 300。',
-                'D. 三重循环完整枚举 0..100，判断 i+j+k == 100 且 15*i+9*j+k == 300。'
+                '三重循环枚举 i,j,k，但金额条件写成 25*i+10*j+k == 300。',
+                '三重循环枚举 i,j,k，但金额条件写成 20*i+10*j+k == 300。',
+                '三重循环上界偏小（如 i<=20, j<=34, k<=20），且金额条件为 15*i+9*j+k == 300。',
+                '三重循环完整枚举 0..100，判断 i+j+k == 100 且 15*i+9*j+k == 300。'
             ],
             answer: 3,
             score: 2,
-            explanation: '将“5 元、3 元、1 元三只”统一乘 3，可得金额方程 15i+9j+k = 300；完整枚举并同时满足数量与金额条件的程序是 D。'
+            explanation: '将"5 元、3 元、1 元三只"统一乘 3，可得金额方程 15i+9j+k = 300；完整枚举并同时满足数量与金额条件的程序是 D。'
         },
         {
             id: 14,
             type: 'single',
             question: '求小于等于 N 的素数的方法中，有一种方法是将所有从 2 到它本身减 1 的数都除一遍，如果不能整除，就是素数。下列哪个程序体现了这种方法（ ）。',
             options: [
-                'A. 从 i=2 开始枚举，但内层在 i%j != 0 时就把 flag 置 1，逻辑错误。',
-                'B. 用 if(N>=2){ for(int i=3;i<=N;i++){ ... } }，但没有输出 2。',
-                'C. 用 if(N>=2){ cout<<2<<endl; for(int i=3;i<=N;i++){ for(int j=2;j<i;j++){ if(i%j==0) flag=1; } if(flag==0) cout<<i<<endl; flag=0; } }',
-                'D. 其余流程不符合“从 2 到 i-1 逐个试除并输出素数”的完整实现。'
+                '从 i=2 开始枚举，但内层在 i%j != 0 时就把 flag 置 1，逻辑错误。',
+                '用 if(N>=2){ for(int i=3;i<=N;i++){ ... } }，但没有输出 2。',
+                '用 if(N>=2){ cout<<2<<endl; for(int i=3;i<=N;i++){ for(int j=2;j<i;j++){ if(i%j==0) flag=1; } if(flag==0) cout<<i<<endl; flag=0; } }',
+                '其余流程不符合"从 2 到 i-1 逐个试除并输出素数"的完整实现。'
             ],
             answer: 2,
             score: 2,
@@ -165,7 +165,7 @@ export const paperData = {
             options: ['4 段，分别是 1、2、4、8', '15 段，每段 1 个', '6 段，分别是 3、3、3、3、2、1', '9 段，分别是 2、2、2、2、2、2、1、1、1'],
             answer: 0,
             score: 2,
-            explanation: '按 1、2、4、8 切分后，可通过“给出+找零”的方式凑出 1~15 天的任意累计报酬，且段数最少。'
+            explanation: '按 1、2、4、8 切分后，可通过"给出+找零"的方式凑出 1~15 天的任意累计报酬，且段数最少。'
         },
         {
             id: 16,
