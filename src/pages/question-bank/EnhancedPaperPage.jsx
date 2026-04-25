@@ -11,7 +11,8 @@ import {
     BrainCircuit,
     CheckCircle2,
     ClipboardList,
-    Tags
+    Tags,
+    AlertTriangle
 } from 'lucide-react';
 import { getPaper } from '../../data/gesp';
 import { luoguCodingByLevel } from '../../data/gesp/luoguCodingByLevel';
@@ -177,6 +178,21 @@ export default function EnhancedPaperPage({ forcedPaperId }) {
                 <div className="flex flex-col items-center gap-4">
                     <div className="w-8 h-8 border-4 border-indigo-500 border-t-transparent rounded-full animate-spin"></div>
                     <p>正在加载试卷...</p>
+                </div>
+            </div>
+        );
+    }
+
+    if (!paperData) {
+        return (
+            <div className="min-h-screen flex items-center justify-center bg-slate-50 text-slate-500">
+                <div className="text-center max-w-lg p-6">
+                    <AlertTriangle size={48} className="mx-auto text-red-400 mb-4" />
+                    <h2 className="text-xl font-bold text-slate-700">无法加载试卷</h2>
+                    <p className="mb-4">试卷数据未找到，请返回题库后重试。</p>
+                    <button onClick={() => navigate('/question-bank')} className="px-6 py-2 bg-indigo-600 text-white rounded-lg">
+                        返回题库
+                    </button>
                 </div>
             </div>
         );
