@@ -112,7 +112,7 @@ const ExamPaper = () => {
         return (
             <div className="min-h-screen flex items-center justify-center bg-slate-50 text-slate-500">
                 <div className="flex flex-col items-center gap-4">
-                    <img src="/cxk-dance.gif" alt="加载中" className="w-24 h-24 object-contain animate-bounce drop-shadow-md" />
+                    <img src={`${import.meta.env.BASE_URL}cxk-dance.gif`} alt="加载中" className="w-24 h-24 object-contain animate-bounce drop-shadow-md" />
                     <p className="font-semibold tracking-wider text-slate-600">正在加载试卷...</p>
                 </div>
             </div>
