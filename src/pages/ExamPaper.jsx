@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import { Clock, ChevronLeft, CheckCircle, AlertTriangle, X, ChevronRight, Menu, Trophy, BookOpen, FileText, Lightbulb } from 'lucide-react';
-import { paperRegistry } from '../data/gesp/index';
+import { getPaper, paperMeta } from '../data/gesp/index';
 import { paperCodingMap } from '../data/gesp/paperCodingMap';
 import InteractiveAnalysisPage from './question-bank/InteractiveAnalysisPage';
 import { getEnhancedPaperComponent } from './question-bank/enhancedPaperRegistry';
@@ -56,21 +56,43 @@ const ExamPaper = () => {
     const [showSubmitConfirm, setShowSubmitConfirm] = useState(false);
     const [mode, setMode] = useState(null); // 'exam' | 'analysis'
 
-    const paperData = paperRegistry[paperId] || null;
+    // Async paper loading
+    const [paperData, setPaperData] = useState(null);
+    const [loading, setLoading] = useState(true);
+    const [error, setError] = useState(null);
     const EnhancedPaperComponent = getEnhancedPaperComponent(paperId);
-    const loading = false;
-    const error = paperData ? null : '在此题库中未找到该试卷 (Registry Lookup Failed)';
+
+    useEffect(() => {
+        let cancelled = false;
+        setLoading(true);
+        setError(null);
+        setPaperData(null);
+        getPaper(paperId).then(data => {
+            if (cancelled) return;
+            if (data) {
+                setPaperData(data);
+                setTimeLeft(data.timeLimit || 90 * 60);
+            } else {
+                setError('在此题库中未找到该试卷 (Registry Lookup Failed)');
+            }
+            setLoading(false);
+        }).catch(err => {
+            if (cancelled) return;
+            setError('加载试卷失败: ' + (err.message || err));
+            setLoading(false);
+        });
+        return () => { cancelled = true; };
+    }, [paperId]);
 
     useEffect(() => {
         setCurrentQuestionIndex(0);
         setAnswers({});
-        setTimeLeft((paperData?.timeLimit) || 90 * 60);
         setIsSubmitted(false);
         setShowResult(false);
         setShowSidebar(false);
         setShowSubmitConfirm(false);
         setMode(null);
-    }, [paperId, paperData?.timeLimit]);
+    }, [paperId]);
 
     useEffect(() => {
         if (isSubmitted || !paperData || mode !== 'exam') return;
@@ -108,7 +130,7 @@ const ExamPaper = () => {
                     <div className="text-left bg-slate-100 p-4 rounded-lg text-xs font-mono mb-6 overflow-auto max-h-40">
                         <p><strong>Debug Info:</strong></p>
                         <p>Paper ID: {paperId}</p>
-                        <p>Registry Keys: {Object.keys(paperRegistry).join(', ')}</p>
+                        <p>Available: {paperMeta[paperId] ? 'Yes (in meta)' : 'No'}</p>
                     </div>
 
                     <button onClick={() => navigate(-1)} className="px-6 py-2 bg-indigo-600 text-white rounded-lg">

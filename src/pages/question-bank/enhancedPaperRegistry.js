@@ -1,9 +1,9 @@
-import { paperRegistry } from '../../data/gesp';
+import { paperIds } from '../../data/gesp';
 import EnhancedPaperPage from './EnhancedPaperPage';
 
 const sharedEnhancedComponent = EnhancedPaperPage;
 
-const enhancedPaperRegistry = Object.keys(paperRegistry).reduce((acc, paperId) => {
+const enhancedPaperRegistry = paperIds.reduce((acc, paperId) => {
     acc[paperId] = sharedEnhancedComponent;
     return acc;
 }, {});

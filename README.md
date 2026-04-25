@@ -14,9 +14,10 @@ GESP App 是一个基于 **React + Vite** 的互动教学与题库网站，包�
 ## 技术栈
 
 - React 19
-- Vite 6
-- React Router DOM 7
-- Tailwind CSS 3
+- Vite 5
+- React Router DOM 6
+- Tailwind CSS 4
+- Framer Motion
 - Lucide React
 
 ---

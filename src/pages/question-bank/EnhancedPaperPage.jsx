@@ -1,4 +1,4 @@
-import React, { useMemo, useState } from 'react';
+import React, { useMemo, useState, useEffect } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
 import MarkdownRenderer from '../../components/MarkdownRenderer';
 import {
@@ -13,7 +13,7 @@ import {
     ClipboardList,
     Tags
 } from 'lucide-react';
-import { paperRegistry } from '../../data/gesp';
+import { getPaper } from '../../data/gesp';
 import { luoguCodingByLevel } from '../../data/gesp/luoguCodingByLevel';
 import { paperCodingMap } from '../../data/gesp/paperCodingMap';
 
@@ -154,7 +154,33 @@ export default function EnhancedPaperPage({ forcedPaperId }) {
     const navigate = useNavigate();
 
     const paperId = forcedPaperId || routePaperId;
-    const paperData = paperRegistry[paperId] || null;
+    const [paperData, setPaperData] = useState(null);
+    const [loading, setLoading] = useState(true);
+
+    useEffect(() => {
+        let cancelled = false;
+        setLoading(true);
+        getPaper(paperId).then(data => {
+            if (!cancelled) {
+                setPaperData(data);
+                setLoading(false);
+            }
+        }).catch(() => {
+            if (!cancelled) setLoading(false);
+        });
+        return () => { cancelled = true; };
+    }, [paperId]);
+
+    if (loading) {
+        return (
+            <div className="min-h-screen flex items-center justify-center bg-slate-50 text-slate-500">
+                <div className="flex flex-col items-center gap-4">
+                    <div className="w-8 h-8 border-4 border-indigo-500 border-t-transparent rounded-full animate-spin"></div>
+                    <p>正在加载试卷...</p>
+                </div>
+            </div>
+        );
+    }
     const baseQuestions = useMemo(() => {
         if (!paperData) return [];
         return [
