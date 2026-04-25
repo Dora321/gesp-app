@@ -19,7 +19,7 @@ export const paperData = {
         {
             id: 1,
             type: 'single',
-            question: '请将二进制数 (1101.101)₂ 转换为等值的 10 进制数（ ）。',
+            question: `请将二进制数 (1101.101)₂ 转换为等值的 10 进制数（ ）。`,
             options: ['14.25', '13.625', '13.5', '14.5'],
             answer: 1,
             score: 2,
@@ -28,7 +28,7 @@ export const paperData = {
         {
             id: 2,
             type: 'single',
-            question: '以下关于标准 C++ 一维数组的描述，哪一项是错误的？（ ）',
+            question: `以下关于标准 C++ 一维数组的描述，哪一项是错误的？（ ）`,
             options: [
                 '数组的下标从 0 开始',
                 '数组在内存中是连续存放的',
@@ -42,7 +42,7 @@ export const paperData = {
         {
             id: 3,
             type: 'single',
-            question: '下列代码段执行后，变量 sum 的值是（ ）。\n{\n    int sum = 0;\n    for (int i = 1; i <= 10; i++) {\n        if (i % 3 == 8 >> 2)\n            continue;\n        sum += i;\n    }\n}',
+            question: `下列代码段执行后，变量 sum 的值是（ ）。\n{\n int sum = 0;\n for (int i = 1; i <= 10; i++) {\n if (i % 3 == 8 >> 2)\n continue;\n sum += i;\n }\n}`,
             options: ['12', '17', '33', '40'],
             answer: 3,
             score: 2,
@@ -51,7 +51,7 @@ export const paperData = {
         {
             id: 4,
             type: 'single',
-            question: '执行以下程序段，输出值是（ ）。\n```cpp\nint x = 5;\nif (x == 3 >> 2) x = 8 >> 3;\ncout << x << endl;\n```',
+            question: `执行以下程序段，输出值是（ ）。\n\`\`\`cpp\nint x = 5;\nif (x == 3 >> 2) x = 8 >> 3;\ncout << x << endl;\n\`\`\``,
             options: ['0', '5', '120', '1'],
             answer: 1,
             score: 2,
@@ -60,7 +60,7 @@ export const paperData = {
         {
             id: 5,
             type: 'single',
-            question: '已知字符串 s = "C++ Programming"，下列程序运行的结果是（ ）。\n```cpp\ncout << (int)(s.length() | 3) << endl;\n```',
+            question: `已知字符串 s = "C++ Programming"，下列程序运行的结果是（ ）。\n\`\`\`cpp\ncout << (int)(s.length() | 3) << endl;\n\`\`\``,
             options: ['14', '15', '16', '17'],
             answer: 1,
             score: 2,
@@ -69,7 +69,7 @@ export const paperData = {
         {
             id: 6,
             type: 'single',
-            question: '以下代码是一个程序的部分代码，能够正确执行，输出的结果是（ ）。\n```cpp\nint arr[5] = {1, 2, 3, 4, 5};\nint p = arr[1];\ncout << (p+2) << endl;\n```',
+            question: `以下代码是一个程序的部分代码，能够正确执行，输出的结果是（ ）。\n\`\`\`cpp\nint arr[5] = {1, 2, 3, 4, 5};\nint p = arr[1];\ncout << (p+2) << endl;\n\`\`\``,
             options: ['1', '2', '3', '4'],
             answer: 3,
             score: 2,
@@ -78,7 +78,7 @@ export const paperData = {
         {
             id: 7,
             type: 'single',
-            question: '以下关于 C++ 求最小值函数 min() 的描述，不正确的是（ ）。',
+            question: `以下关于 C++ 求最小值函数 min() 的描述，不正确的是（ ）。`,
             options: [
                 '函数必须返回一个值',
                 '该函数可以嵌套调用',
@@ -92,7 +92,7 @@ export const paperData = {
         {
             id: 8,
             type: 'single',
-            question: '在一个特定的计算机系统中，假如 unsigned int 类型需要占用 2 个字节的存储空间（每个字节有 8 位），则 unsigned int 可以表示的数据范围是（ ）。',
+            question: `在一个特定的计算机系统中，假如 unsigned int 类型需要占用 2 个字节的存储空间（每个字节有 8 位），则 unsigned int 可以表示的数据范围是（ ）。`,
             options: ['0 ~ 65535', '0 ~ 65536', '-65536 ~ 65535', '0 ~ 32767'],
             answer: 0,
             score: 2,
@@ -101,7 +101,7 @@ export const paperData = {
         {
             id: 9,
             type: 'single',
-            question: '以下代码执行后，数组 arr 的内容是（ ）。\n```cpp\nint arr[6] = {1, 2, 3, 4, 5, 6};\nfor (int i = 0; i < 6; i += 2) {\n    arr[i] = arr[i]+arr[i+1];\n    arr[i+1] = arr[i]-arr[i+1];\n    arr[i] = arr[i]-arr[i+1];\n}\n```',
+            question: `以下代码执行后，数组 arr 的内容是（ ）。\n\`\`\`cpp\nint arr[6] = {1, 2, 3, 4, 5, 6};\nfor (int i = 0; i < 6; i += 2) {\n arr[i] = arr[i]+arr[i+1];\n arr[i+1] = arr[i]-arr[i+1];\n arr[i] = arr[i]-arr[i+1];\n}\n\`\`\``,
             options: ['{2,1,4,3,6,5}', '{1,2,3,4,5,6}', '{3,1,4,2,5,3}', '{1,3,2,5,4,6}'],
             answer: 0,
             score: 2,
@@ -110,7 +110,7 @@ export const paperData = {
         {
             id: 10,
             type: 'single',
-            question: 'a & b | (c ^ d)，其中 a = 3，b = 7，c = 15，d = 4，计算结果是（ ）。',
+            question: `a & b | (c ^ d)，其中 a = 3，b = 7，c = 15，d = 4，计算结果是（ ）。`,
             options: ['十进制 11', '二进制 11', '八进制 11', '十六进制 11'],
             answer: 0,
             score: 2,
@@ -119,7 +119,7 @@ export const paperData = {
         {
             id: 11,
             type: 'single',
-            question: '整型变量 x 的初始值为 10，以下代码的输出结果是（ ）。\n```cpp\nint t = x--;\nt -= x;\ncout << t << endl;\n```',
+            question: `整型变量 x 的初始值为 10，以下代码的输出结果是（ ）。\n\`\`\`cpp\nint t = x--;\nt -= x;\ncout << t << endl;\n\`\`\``,
             options: ['0', '-1', '1', '死循环'],
             answer: 2,
             score: 2,
@@ -128,7 +128,7 @@ export const paperData = {
         {
             id: 12,
             type: 'single',
-            question: '根据下面的流程图，如果成绩 score 输入 60，输出的结果是（ ）。',
+            question: `根据下面的流程图，如果成绩 score 输入 60，输出的结果是（ ）。`,
             options: ['优秀', '及格', '不及格', '没有输出'],
             answer: 1,
             score: 2,
@@ -137,7 +137,7 @@ export const paperData = {
         {
             id: 13,
             type: 'single',
-            question: '以下代码运行后，sum 的结果是（ ）。\n```cpp\nint arr[5] = {2, 4, 6, 8, 10};\nint sum = 0;\nfor (int i = 0; i < 5; i++) {\n    switch (arr[i] % (1 | 2)) {\n        case 0: sum += 1; break;\n        case 1: sum += 2; break;\n        case 2: sum += 3; break;\n    }\n}\n```',
+            question: `以下代码运行后，sum 的结果是（ ）。\n\`\`\`cpp\nint arr[5] = {2, 4, 6, 8, 10};\nint sum = 0;\nfor (int i = 0; i < 5; i++) {\n switch (arr[i] % (1 | 2)) {\n case 0: sum += 1; break;\n case 1: sum += 2; break;\n case 2: sum += 3; break;\n }\n}\n\`\`\``,
             options: ['10', '11', '14', '15'],
             answer: 1,
             score: 2,
@@ -146,7 +146,7 @@ export const paperData = {
         {
             id: 14,
             type: 'single',
-            question: '以下关于 C++ 中 abs() 函数的描述，正确的是（ ）。',
+            question: `以下关于 C++ 中 abs() 函数的描述，正确的是（ ）。`,
             options: [
                 'abs() 函数可用于计算 int 类型整数的绝对值，头文件为 <cmath> 或 <cstdlib>',
                 '调用 abs(3.14) 可以四舍五入得到 3',
@@ -160,7 +160,7 @@ export const paperData = {
         {
             id: 15,
             type: 'single',
-            question: '如果字符串 s 的值是 GESP，以下代码 s 的最后结果是（ ）。\n```cpp\nfor (int i = 0; i < s.length(); i++) {\n    s[i] = toupper(s[i]+i);\n}\n```',
+            question: `如果字符串 s 的值是 GESP，以下代码 s 的最后结果是（ ）。\n\`\`\`cpp\nfor (int i = 0; i < s.length(); i++) {\n s[i] = toupper(s[i]+i);\n}\n\`\`\``,
             options: ['GESP', 'HFTR', 'hesp', 'GFUS'],
             answer: 3,
             score: 2,
@@ -169,7 +169,7 @@ export const paperData = {
         {
             id: 16,
             type: 'judge',
-            question: '在 C++ 中，数组名不能改变，数组名不能被赋值。',
+            question: `在 C++ 中，数组名不能改变，数组名不能被赋值。`,
             options: ['正确', '错误'],
             answer: 0,
             score: 2,
@@ -178,7 +178,7 @@ export const paperData = {
         {
             id: 17,
             type: 'judge',
-            question: '整型变量 a 的值为 3，浮点数变量 b 的值为 3.5，在 C++ 编译环境下，经过 a *= b 计算后，a 的值变为 10.5，此时如果输出 a，将输出 10.5。',
+            question: `整型变量 a 的值为 3，浮点数变量 b 的值为 3.5，在 C++ 编译环境下，经过 a *= b 计算后，a 的值变为 10.5，此时如果输出 a，将输出 10.5。`,
             options: ['正确', '错误'],
             answer: 1,
             score: 2,
@@ -187,7 +187,7 @@ export const paperData = {
         {
             id: 18,
             type: 'judge',
-            question: 'strcmp(str1, str2) 返回 0 表示 str1 大于 str2，返回正数表示两者相等。',
+            question: `strcmp(str1, str2) 返回 0 表示 str1 大于 str2，返回正数表示两者相等。`,
             options: ['正确', '错误'],
             answer: 1,
             score: 2,
@@ -196,7 +196,7 @@ export const paperData = {
         {
             id: 19,
             type: 'judge',
-            question: '以下代码输出结果为 8。\n```cpp\nint a = 5, b = 3;\nint c = a+++++b;\ncout << c << endl;\n```',
+            question: `以下代码输出结果为 8。\n\`\`\`cpp\nint a = 5, b = 3;\nint c = a+++++b;\ncout << c << endl;\n\`\`\``,
             options: ['正确', '错误'],
             answer: 1,
             score: 2,
@@ -205,7 +205,7 @@ export const paperData = {
         {
             id: 20,
             type: 'judge',
-            question: '位运算符 &、|、^、~ 的优先级高于算术运算符 +、-、*、/。',
+            question: `位运算符 &、|、^、~ 的优先级高于算术运算符 +、-、*、/。`,
             options: ['正确', '错误'],
             answer: 1,
             score: 2,
@@ -214,7 +214,7 @@ export const paperData = {
         {
             id: 21,
             type: 'judge',
-            question: '在 C++ 中，int a[] = {1, 2, 3, 4, 5}; 可以定义一个包含 5 个元素的整型数组。',
+            question: `在 C++ 中，int a[] = {1, 2, 3, 4, 5}; 可以定义一个包含 5 个元素的整型数组。`,
             options: ['正确', '错误'],
             answer: 0,
             score: 2,
@@ -223,7 +223,7 @@ export const paperData = {
         {
             id: 22,
             type: 'judge',
-            question: 'C++ 表达式 z = a > b ? x : y 等同于：\n```cpp\nif (a > b) {\n    z = x;\n} else {\n    z = y;\n}\n```',
+            question: `C++ 表达式 z = a > b ? x : y 等同于：\n\`\`\`cpp\nif (a > b) {\n z = x;\n} else {\n z = y;\n}\n\`\`\``,
             options: ['正确', '错误'],
             answer: 0,
             score: 2,
@@ -232,7 +232,7 @@ export const paperData = {
         {
             id: 23,
             type: 'judge',
-            question: '在 C++ 中，++ 和 -- 运算符只能用于整型变量，不能用于浮点数变量。',
+            question: `在 C++ 中，++ 和 -- 运算符只能用于整型变量，不能用于浮点数变量。`,
             options: ['正确', '错误'],
             answer: 1,
             score: 2,
@@ -241,7 +241,7 @@ export const paperData = {
         {
             id: 24,
             type: 'judge',
-            question: '给定一个正整数 a，当需要计算 -a 的补码时，有这样一个计算技巧：将 a 的二进制形式从右往左扫描，遇到第一个 1 之后，将找到的第一个 1 左边的所有位都取反，能得到 -a 的补码。',
+            question: `给定一个正整数 a，当需要计算 -a 的补码时，有这样一个计算技巧：将 a 的二进制形式从右往左扫描，遇到第一个 1 之后，将找到的第一个 1 左边的所有位都取反，能得到 -a 的补码。`,
             options: ['正确', '错误'],
             answer: 0,
             score: 2,
@@ -250,7 +250,7 @@ export const paperData = {
         {
             id: 25,
             type: 'judge',
-            question: '以下代码中，Hello 将被输出 5 次。\n```cpp\nfor (int i = 0; i < 5; i++);\n{\n    cout << "Hello" << endl;\n}\n```',
+            question: `以下代码中，Hello 将被输出 5 次。\n\`\`\`cpp\nfor (int i = 0; i < 5; i++);\n{\n cout << "Hello" << endl;\n}\n\`\`\``,
             options: ['正确', '错误'],
             answer: 1,
             score: 2,
@@ -282,20 +282,20 @@ N` }
 
 小杨是学校网络安全小组的成员，今天他的任务是设计一个“密码强度检测器”，帮助同学们检查自己的密码是否足够安全。一个安全的密码需要满足以下条件：
 
-- 密码至少包含 \$8\$ 个字符（太短的密码容易被猜出来哦！）。
+- 密码至少包含 $8$ 个字符（太短的密码容易被猜出来哦！）。
 - 密码至少包含一个大写字母（A、B、C、...、Z 都可以）。
 - 密码至少包含一个数字（0、1、2、3、...、9 都可以）。
 
 例如：
 
-- 密码 \`PAs1s2an\` 是安全密码（有 \$8\$ 位、包含大写字母 \`P\`、\`A\` 和数字 \`1\`、\`2\`）。
+- 密码 \`PAs1s2an\` 是安全密码（有 $8$ 位、包含大写字母 \`P\`、\`A\` 和数字 \`1\`、\`2\`）。
 - 密码 \`ab1da3cd\` 不是安全密码（没有大写字母）。
 - 密码 \`Paabdbcd\` 不是安全密码（没有数字）。
-- 密码 \`Pa2\` 不是安全密码（只有 \$3\$ 位，太短了）。
+- 密码 \`Pa2\` 不是安全密码（只有 $3$ 位，太短了）。
 
 ## 输入格式
 
-第一行一个正整数 \$T\$，代表需要安全检测的密码组数。
+第一行一个正整数 $T$，代表需要安全检测的密码组数。
 
 对于每组密码，一行包含一个字符串，代表需要安全检测的密码。
 
@@ -326,17 +326,17 @@ N` }
 
 ## 题目描述
 
-小杨的班级要举办一个环保手工作品展览，老师请小杨去文具店购买 \$M\$ 种不同的文具（例如：铅笔、橡皮、尺子等）。
+小杨的班级要举办一个环保手工作品展览，老师请小杨去文具店购买 $M$ 种不同的文具（例如：铅笔、橡皮、尺子等）。
 
-商店里共有 \$N\$ 件文具，每件文具都有一个种类编号（从 \$1\$ 到 \$M\$）和价格。
+商店里共有 $N$ 件文具，每件文具都有一个种类编号（从 $1$ 到 $M$）和价格。
 
-小杨的预算有限，他想了一个聪明的办法：对于每种文具，他只买最便宜的那一件（如果同种文具有多件价格相同且都是最便宜的，他只会购买其中的一件）。请你帮小杨计算出，买齐这 \$M\$ 种文具一共需要花费多少钱。
+小杨的预算有限，他想了一个聪明的办法：对于每种文具，他只买最便宜的那一件（如果同种文具有多件价格相同且都是最便宜的，他只会购买其中的一件）。请你帮小杨计算出，买齐这 $M$ 种文具一共需要花费多少钱。
 
 ## 输入格式
 
-第一行两个正整数 \$M, N\$，代表文具的种类数和总数。
+第一行两个正整数 $M, N$，代表文具的种类数和总数。
 
-之后 \$N\$ 行，每行两个正整数 \$K_i\$ 和 \$P_i\$，分别代表第 \$i\$ 件文具的种类编号和它的价格。数据保证每个种类至少有一件文具可供购买。
+之后 $N$ 行，每行两个正整数 $K_i$ 和 $P_i$，分别代表第 $i$ 件文具的种类编号和它的价格。数据保证每个种类至少有一件文具可供购买。
 
 ## 输出格式
 

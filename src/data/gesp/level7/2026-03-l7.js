@@ -68,7 +68,7 @@ export const paperData = {
         {
             id: 1,
             type: "single",
-            question: "下面关于 C++ 中形参、实参 and 定义域的说法中，正确的一项是（ ）。",
+            question: `下面关于 C++ 中形参、实参 and 定义域的说法中，正确的一项是（ ）。`,
             options: [
                 "形参是函数定义时所指定的变量，它只在函数内部有效。",
                 "在函数内部，可以修改传入的形参的值，即使该形参是一个常量引用。",
@@ -87,7 +87,7 @@ export const paperData = {
         {
             id: 2,
             type: "single",
-            question: "已知三个序列：$s_1 = \\{3, 1, 8, 2, 5, 6, 7, 4\\}$，$s_2 = \\{1, 5, 1, 8, 6, 4, 7, 5, 6\\}$，$s_3 = \\{1, 8, 3, 5, 7, 6, 2, 4\\}$。以下哪个序列是它们的最长公共子序列（ ）。",
+            question: `已知三个序列：$s_1 = \\{3, 1, 8, 2, 5, 6, 7, 4\\}$，$s_2 = \\{1, 5, 1, 8, 6, 4, 7, 5, 6\\}$，$s_3 = \\{1, 8, 3, 5, 7, 6, 2, 4\\}$。以下哪个序列是它们的最长公共子序列（ ）。`,
             options: [
                 "$\\{1, 8, 5, 6\\}$",
                 "$\\{1, 5, 6, 7\\}$",
@@ -106,7 +106,7 @@ export const paperData = {
         {
             id: 3,
             type: "single",
-            question: "现有一个地址区间为 $[0, $n-1$]$ 的哈希表，当出现冲突情况，会往后找第一个空的地址存储（到 $n-1$ 冲突了就从 $0$ 开始往后），现在要依次存储 $\\{20, 30, 20, 15, 6\\}$，哈希函数为 $H(key) = key \\bmod 7$。其中 $6$ 存储在哈希表哪个地址中 （ ）。",
+            question: `现有一个地址区间为 $[0, $n-1$]$ 的哈希表，当出现冲突情况，会往后找第一个空的地址存储（到 $n-1$ 冲突了就从 $0$ 开始往后），现在要依次存储 $\\{20, 30, 20, 15, 6\\}$，哈希函数为 $H(key) = key \\bmod 7$。其中 $6$ 存储在哈希表哪个地址中 （ ）。`,
             options: [
                 "0",
                 "1",
@@ -125,7 +125,7 @@ export const paperData = {
         {
             id: 4,
             type: "single",
-            question: "在 $0/1$ 背包问题中，给定一组物品，每个物品有一个重量和价值，背包的容量有限。假设背包的最大容量为 $W$，物品的数量为 $n$，其中第 $i$ 个物品的重量为 $w_i$，价值为 $v_i$。以下关于 $0/1$ 背包问题的描述，正确的是（ ）。",
+            question: `在 $0/1$ 背包问题中，给定一组物品，每个物品有一个重量和价值，背包的容量有限。假设背包的最大容量为 $W$，物品的数量为 $n$，其中第 $i$ 个物品的重量为 $w_i$，价值为 $v_i$。以下关于 $0/1$ 背包问题的描述，正确的是（ ）。`,
             options: [
                 "在解决 $0/1$ 背包问题时，使用贪心算法可以保证找到最优解，因为物品只能放入一次。",
                 "0/1 背包是 P 问题（多项式时间可解问题），它可以在 $O(nW)$ 的时间复杂度内解决。",
@@ -144,7 +144,7 @@ export const paperData = {
         {
             id: 5,
             type: "single",
-            question: "一棵深度为 6（根节点深度为 1）的完全二叉树，节点总数最少有（ ）。",
+            question: `一棵深度为 6（根节点深度为 1）的完全二叉树，节点总数最少有（ ）。`,
             options: [
                 "31",
                 "32",
@@ -163,7 +163,7 @@ export const paperData = {
         {
             id: 6,
             type: "single",
-            question: "对于如下二叉树，下面关于访问的顺序说法错误的是（ ）。",
+            question: `对于如下二叉树，下面关于访问的顺序说法错误的是（ ）。`,
             options: [
                 "D E B F H J I G C A 是它的后序遍历序列。",
                 "A B C D E F G H I J 是它的⼴度优先遍历序列。",
@@ -182,7 +182,7 @@ export const paperData = {
         {
             id: 7,
             type: "single",
-            question: "下面程序的运⾏结果为（ ）。",
+            question: `下面程序的运⾏结果为（ ）。`,
             options: [
                 "2",
                 "3",
@@ -201,7 +201,7 @@ export const paperData = {
         {
             id: 8,
             type: "single",
-            question: "下面程序中，函数 query 的时间复杂度是（ ）。",
+            question: `下面程序中，函数 query 的时间复杂度是（ ）。`,
             options: [
                 "[待补充选项]",
                 "选项B",
@@ -220,7 +220,7 @@ export const paperData = {
         {
             id: 9,
             type: "single",
-            question: "有 5 个字符，它们出现的次数分别为 2 次、 2 次、 3 次、 3 次、 5 次。现在要用哈夫曼编码的方式来为这些字符进 ⾏编码，最小加权路径长度 WPL （每个字符的出现次数 它的编码长度，再把每个字符结果加起来）的值为（ ）。",
+            question: `有 5 个字符，它们出现的次数分别为 2 次、 2 次、 3 次、 3 次、 5 次。现在要用哈夫曼编码的方式来为这些字符进 ⾏编码，最小加权路径长度 WPL （每个字符的出现次数 它的编码长度，再把每个字符结果加起来）的值为（ ）。`,
             options: [
                 "30",
                 "34",
@@ -239,7 +239,7 @@ export const paperData = {
         {
             id: 10,
             type: "single",
-            question: "下面程序的运⾏结果为（ ）。",
+            question: `下面程序的运⾏结果为（ ）。`,
             options: [
                 "10",
                 "16",
@@ -258,7 +258,7 @@ export const paperData = {
         {
             id: 11,
             type: "single",
-            question: "一个简单无向图有 36 条边，且每个顶点的度数都为 4，则图的顶点个数为（ ）。",
+            question: `一个简单无向图有 36 条边，且每个顶点的度数都为 4，则图的顶点个数为（ ）。`,
             options: [
                 "9",
                 "12",
@@ -277,7 +277,7 @@ export const paperData = {
         {
             id: 12,
             type: "single",
-            question: "下面关于二叉树的说法正确的是（ ）。",
+            question: `下面关于二叉树的说法正确的是（ ）。`,
             options: [
                 "任意二叉树的中序遍历与后序遍历必定不相同。",
                 "对任意二叉树，若已知先序遍历与后序遍历，则该二叉树唯一确定。",
@@ -296,7 +296,7 @@ export const paperData = {
         {
             id: 13,
             type: "single",
-            question: "假设一个算法时间复杂度的递推式是 $T(n) = 2T(n/2)+n$ ($n$ 为正整数)，且 $T(1) = 1$，那么这个算法的时间复杂度是（ ）。",
+            question: `假设一个算法时间复杂度的递推式是 $T(n) = 2T(n/2)+n$ ($n$ 为正整数)，且 $T(1) = 1$，那么这个算法的时间复杂度是（ ）。`,
             options: [
                 "$O(N)$",
                 "$O(n \\log n)$",
@@ -315,7 +315,7 @@ export const paperData = {
         {
             id: 14,
             type: "single",
-            question: "下面哪一个可能是下图的深度优先遍历序列（ ）。",
+            question: `下面哪一个可能是下图的深度优先遍历序列（ ）。`,
             options: [
                 "1, 5, 6, 3, 2, 8, 9, 4, 7",
                 "1, 5, 8, 9, 7, 4, 6, 3, 2",
@@ -334,7 +334,7 @@ export const paperData = {
         {
             id: 15,
             type: "single",
-            question: "下面这个有向图的强连通分量的个数是（ ）。",
+            question: `下面这个有向图的强连通分量的个数是（ ）。`,
             options: [
                 "3",
                 "4",
@@ -353,7 +353,7 @@ export const paperData = {
         {
             id: 16,
             type: "judge",
-            question: "C++ 语⾔中，表达式3 ^ 2的结果类型为int，值为9。",
+            question: `C++ 语⾔中，表达式3 ^ 2的结果类型为int，值为9。`,
             options: [
                 "正确",
                 "错误",
@@ -370,7 +370,7 @@ export const paperData = {
         {
             id: 17,
             type: "judge",
-            question: "使用cmath头文件中的正弦函数，表达式sin(90)的结果类型为double，值约为1.0。",
+            question: `使用cmath头文件中的正弦函数，表达式sin(90)的结果类型为double，值约为1.0。`,
             options: [
                 "正确",
                 "错误",
@@ -387,7 +387,7 @@ export const paperData = {
         {
             id: 18,
             type: "judge",
-            question: "使用strcmp(\"10\", \"9\")比较两个字符串，返回值大于 0 ，说明\"10\"比\"9\"大。",
+            question: `使用strcmp("10", "9")比较两个字符串，返回值大于 0 ，说明"10"比"9"大。`,
             options: [
                 "正确",
                 "错误",
@@ -404,7 +404,7 @@ export const paperData = {
         {
             id: 19,
             type: "judge",
-            question: "选择排序是一种不稳定的排序算法，而冒泡排序是一种稳定的排序算法。",
+            question: `选择排序是一种不稳定的排序算法，而冒泡排序是一种稳定的排序算法。`,
             options: [
                 "正确",
                 "错误",
@@ -421,7 +421,7 @@ export const paperData = {
         {
             id: 20,
             type: "judge",
-            question: "求两个长度为 $n$ 序列的最长公共子序列（LCS）长度时，可以使用滚动数组将空间复杂度从 $O(N^2)$ 优化到 $O(N)$。",
+            question: `求两个长度为 $n$ 序列的最长公共子序列（LCS）长度时，可以使用滚动数组将空间复杂度从 $O(N^2)$ 优化到 $O(N)$。`,
             options: [
                 "正确",
                 "错误",
@@ -438,7 +438,7 @@ export const paperData = {
         {
             id: 21,
             type: "judge",
-            question: "在无向图中，所有顶点的度数之和等于边数的两倍。",
+            question: `在无向图中，所有顶点的度数之和等于边数的两倍。`,
             options: [
                 "正确",
                 "错误",
@@ -455,7 +455,7 @@ export const paperData = {
         {
             id: 22,
             type: "judge",
-            question: "使用邻接矩阵存储一个有 $n$ 个顶点、$m$ 条边的图，对该图进行一次完整的 BFS 遍历，时间复杂度为 $O(N^2)$。",
+            question: `使用邻接矩阵存储一个有 $n$ 个顶点、$m$ 条边的图，对该图进行一次完整的 BFS 遍历，时间复杂度为 $O(N^2)$。`,
             options: [
                 "正确",
                 "错误",
@@ -472,7 +472,7 @@ export const paperData = {
         {
             id: 23,
             type: "judge",
-            question: "在图像处理或游戏开发中，泛洪（ flood fill ）算法既可以用 BFS 实现，也可以用 DFS 实现。",
+            question: `在图像处理或游戏开发中，泛洪（ flood fill ）算法既可以用 BFS 实现，也可以用 DFS 实现。`,
             options: [
                 "正确",
                 "错误",
@@ -489,7 +489,7 @@ export const paperData = {
         {
             id: 24,
             type: "judge",
-            question: "使用链地址法处理冲突的哈希表，当所有元素都映射到同一个槽位时，查找操作的最坏时间复杂度为 $O(N)$，其中 $n$ 为元素个数。",
+            question: `使用链地址法处理冲突的哈希表，当所有元素都映射到同一个槽位时，查找操作的最坏时间复杂度为 $O(N)$，其中 $n$ 为元素个数。`,
             options: [
                 "正确",
                 "错误",
@@ -506,7 +506,7 @@ export const paperData = {
         {
             id: 25,
             type: "judge",
-            question: "一个包含 $n$ 个顶点的连通无向图，其任何一棵生成树都恰好包含 $n-1$ 条边。",
+            question: `一个包含 $n$ 个顶点的连通无向图，其任何一棵生成树都恰好包含 $n-1$ 条边。`,
             options: [
                 "正确",
                 "错误",

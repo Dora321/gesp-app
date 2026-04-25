@@ -20,7 +20,7 @@ export const paperData = {
     {
       id: 1,
       type: 'single',
-      question: '在 C++ 中，下列不可作为变量名的是（ ）。',
+      question: `在 C++ 中，下列不可作为变量名的是（ ）。`,
       options: ['five-Star', 'five_star', 'fiveStar', '_fiveStar'],
       answer: 0,
       score: 2,
@@ -30,7 +30,7 @@ export const paperData = {
     {
       id: 2,
       type: 'single',
-      question: 'C++ 表达式 `3 - 3 * 3 / 5` 的值是（ ）。',
+      question: `C++ 表达式 \`3 - 3 * 3 / 5\` 的值是（ ）。`,
       options: ['-1.2', '1', '0', '2'],
       answer: 3,
       score: 2,
@@ -40,7 +40,7 @@ export const paperData = {
     {
       id: 3,
       type: 'single',
-      question: '设 `N` 为正整数，则 `N % 3 + N % 7` 可能输出的最大值是（ ）。',
+      question: `设 \`N\` 为正整数，则 \`N % 3 + N % 7\` 可能输出的最大值是（ ）。`,
       options: ['6', '8', '9', '10'],
       answer: 1,
       score: 2,
@@ -50,7 +50,7 @@ export const paperData = {
     {
       id: 4,
       type: 'single',
-      question: '语句 `printf("5%%2={%d}\\n", 5 % 2);` 的输出是（ ）。',
+      question: `语句 \`printf("5%%2={%d}\\n", 5 % 2);\` 的输出是（ ）。`,
       options: ['1={1}', '5%2={5%2}', '5%2={1}', '5 ={1}'],
       answer: 2,
       score: 2,
@@ -60,7 +60,7 @@ export const paperData = {
     {
       id: 5,
       type: 'single',
-      question: '对整型变量 `i` 执行 `cin >> i; cout << i;`，若输入 `5+2`，正确说法是（ ）。',
+      question: `对整型变量 \`i\` 执行 \`cin >> i; cout << i;\`，若输入 \`5+2\`，正确说法是（ ）。`,
       options: ['将输出 7', '将输出 5', '语句会报错', '输出不确定'],
       answer: 1,
       score: 2,
@@ -70,7 +70,7 @@ export const paperData = {
     {
       id: 6,
       type: 'single',
-      question: '下面代码执行后的输出是（ ）。\n```cpp\ndouble a = 101.1;\na = (int)a;\nprintf("a + 1 = {%d}", (int)(a + 1));\n```',
+      question: `下面代码执行后的输出是（ ）。\n\`\`\`cpp\ndouble a = 101.1;\na = (int)a;\nprintf("a + 1 = {%d}", (int)(a + 1));\n\`\`\``,
       options: ['102={102}', 'a+1={a+1}', 'a + 1 = {102}', '会报错'],
       answer: 2,
       score: 2,
@@ -80,7 +80,7 @@ export const paperData = {
     {
       id: 7,
       type: 'single',
-      question: '表达式 `9/4 - 6 % (6 - 2) * 10` 的值是（ ）。',
+      question: `表达式 \`9/4 - 6 % (6 - 2) * 10\` 的值是（ ）。`,
       options: ['-17.75', '-18', '-14', '-12.75'],
       answer: 1,
       score: 2,
@@ -90,7 +90,7 @@ export const paperData = {
     {
       id: 8,
       type: 'single',
-      question: '输入 `10` 后，下面代码的正确输出是（ ）。\n```cpp\nint n;\ncin >> n;\nif (n % 3 == 1)\n    printf("第5行代码%2d", n % 3);\nelse\n    printf("第6行代码%2d", n % 3);\n```',
+      question: `输入 \`10\` 后，下面代码的正确输出是（ ）。\n\`\`\`cpp\nint n;\ncin >> n;\nif (n % 3 == 1)\n printf("第5行代码%2d", n % 3);\nelse\n printf("第6行代码%2d", n % 3);\n\`\`\``,
       options: ['第5行代码1', '第6行代码1', '第5行代码 1', '第6行代码 1'],
       answer: 2,
       score: 2,
@@ -100,7 +100,7 @@ export const paperData = {
     {
       id: 9,
       type: 'single',
-      question: '下面代码执行后输出是（ ）。\n```cpp\nint i = 0, sum = 0;\nfor (; i < 10; sum += i, i++);\ncout << i << " " << sum << endl;\n```',
+      question: `下面代码执行后输出是（ ）。\n\`\`\`cpp\nint i = 0, sum = 0;\nfor (; i < 10; sum += i, i++);\ncout << i << " " << sum << endl;\n\`\`\``,
       options: ['9 45', '10 55', '10 45', '11 55'],
       answer: 2,
       score: 2,
@@ -110,7 +110,7 @@ export const paperData = {
     {
       id: 10,
       type: 'single',
-      question: '有关判断质数程序的说法，正确的是（ ）。',
+      question: `有关判断质数程序的说法，正确的是（ ）。`,
       options: ['输入负数可能输出“是质数”', '输入 2 会输出“不是质数”', '输入 2 会输出“是质数”，即使循环体未执行', '把 `N>=2` 改成 `N>2` 仍然正确'],
       answer: 2,
       score: 2,
@@ -120,7 +120,7 @@ export const paperData = {
     {
       id: 11,
       type: 'single',
-      question: '关于“求 1~N 奇数之和”的程序，错误说法是（ ）。',
+      question: `关于“求 1~N 奇数之和”的程序，错误说法是（ ）。`,
       options: ['输入 10 时最后一行会输出 `11 25`', '输入 5 时最后一行会输出 `6 9`', '把 `i += 1` 移到 `if` 前面仍然正确', '删去 `if` 并改成 `i += 2` 也可实现'],
       answer: 2,
       score: 2,
@@ -130,7 +130,7 @@ export const paperData = {
     {
       id: 12,
       type: 'single',
-      question: '判断完全平方数时，横线处应填（ ）。\n```cpp\nfor (int i = 1; i * i <= N; i++) {\n    if (________) {\n        flag = true;\n        break;\n    }\n}\n```',
+      question: `判断完全平方数时，横线处应填（ ）。\n\`\`\`cpp\nfor (int i = 1; i * i <= N; i++) {\n if (________) {\n flag = true;\n break;\n }\n}\n\`\`\``,
       options: ['i == N*N', 'i*10 == N', 'i+i == N', 'i*i == N'],
       answer: 3,
       score: 2,
@@ -140,7 +140,7 @@ export const paperData = {
     {
       id: 13,
       type: 'single',
-      question: '执行代码后 `cnt` 的值是（ ）。\n```cpp\nint cnt = 0;\nfor (int i = 0; i < 10; i += 2) {\n    if (i <= 6) cnt++;\n}\n```',
+      question: `执行代码后 \`cnt\` 的值是（ ）。\n\`\`\`cpp\nint cnt = 0;\nfor (int i = 0; i < 10; i += 2) {\n if (i <= 6) cnt++;\n}\n\`\`\``,
       options: ['8', '7', '4', '1'],
       answer: 2,
       score: 2,
@@ -150,7 +150,7 @@ export const paperData = {
     {
       id: 14,
       type: 'single',
-      question: 'GESP 一级可以选择的认证语言有几种？',
+      question: `GESP 一级可以选择的认证语言有几种？`,
       options: ['1', '2', '3', '4'],
       answer: 2,
       score: 2,
@@ -160,7 +160,7 @@ export const paperData = {
     {
       id: 15,
       type: 'single',
-      question: 'ENIAC 的主要器件是（ ）。',
+      question: `ENIAC 的主要器件是（ ）。`,
       options: ['感应线圈', '电子管', '晶体管', '集成电路'],
       answer: 1,
       score: 2,
@@ -170,7 +170,7 @@ export const paperData = {
     {
       id: 16,
       type: 'judge',
-      question: '若变量 `X` 被赋值为 `16.44`，则 `cout << X / 10` 的输出一定是 `1`。',
+      question: `若变量 \`X\` 被赋值为 \`16.44\`，则 \`cout << X / 10\` 的输出一定是 \`1\`。`,
       options: ['正确', '错误'],
       answer: 1,
       score: 2,
@@ -180,7 +180,7 @@ export const paperData = {
     {
       id: 17,
       type: 'judge',
-      question: '当 `N=10` 时，`N/4` 和 `N%4` 的值相等，且 `N/4.0` 的结果为 `2.5`。',
+      question: `当 \`N=10\` 时，\`N/4\` 和 \`N%4\` 的值相等，且 \`N/4.0\` 的结果为 \`2.5\`。`,
       options: ['正确', '错误'],
       answer: 1,
       score: 2,
@@ -190,7 +190,7 @@ export const paperData = {
     {
       id: 18,
       type: 'judge',
-      question: '定义 `float N` 后，语句 `cin >> N; cout << int(float(N));` 可以输入整数和浮点数，并把它们转成整数输出。',
+      question: `定义 \`float N\` 后，语句 \`cin >> N; cout << int(float(N));\` 可以输入整数和浮点数，并把它们转成整数输出。`,
       options: ['正确', '错误'],
       answer: 0,
       score: 2,
@@ -200,7 +200,7 @@ export const paperData = {
     {
       id: 19,
       type: 'judge',
-      question: '当 `N=5` 时，`printf("%d*2", N)` 的输出是 `10`。',
+      question: `当 \`N=5\` 时，\`printf("%d*2", N)\` 的输出是 \`10\`。`,
       options: ['正确', '错误'],
       answer: 1,
       score: 2,
@@ -210,7 +210,7 @@ export const paperData = {
     {
       id: 20,
       type: 'judge',
-      question: '`break` 语句可以终止当前层次的 `for` 循环，也可以终止当前层次的 `while` 循环。',
+      question: `\`break\` 语句可以终止当前层次的 \`for\` 循环，也可以终止当前层次的 \`while\` 循环。`,
       options: ['正确', '错误'],
       answer: 0,
       score: 2,
@@ -220,7 +220,7 @@ export const paperData = {
     {
       id: 21,
       type: 'judge',
-      question: '`continue` 语句通常会和 `if` 语句配合使用。',
+      question: `\`continue\` 语句通常会和 \`if\` 语句配合使用。`,
       options: ['正确', '错误'],
       answer: 0,
       score: 2,
@@ -230,7 +230,7 @@ export const paperData = {
     {
       id: 22,
       type: 'judge',
-      question: '在 C++ 中，不可以把变量命名为 `printf`，因为它是关键字。',
+      question: `在 C++ 中，不可以把变量命名为 \`printf\`，因为它是关键字。`,
       options: ['正确', '错误'],
       answer: 1,
       score: 2,
@@ -240,7 +240,7 @@ export const paperData = {
     {
       id: 23,
       type: 'judge',
-      question: '表达式 `N += 8/4//2` 等价于 `N += 8/(4/2)`。',
+      question: `表达式 \`N += 8/4//2\` 等价于 \`N += 8/(4/2)\`。`,
       options: ['正确', '错误'],
       answer: 1,
       score: 2,
@@ -250,7 +250,7 @@ export const paperData = {
     {
       id: 24,
       type: 'judge',
-      question: '对于整型变量 `N`，表达式 `!!N` 的值总是与 `N` 本身相同。',
+      question: `对于整型变量 \`N\`，表达式 \`!!N\` 的值总是与 \`N\` 本身相同。`,
       options: ['正确', '错误'],
       answer: 1,
       score: 2,
@@ -260,7 +260,7 @@ export const paperData = {
     {
       id: 25,
       type: 'judge',
-      question: 'GESP 是对编程能力进行等级认证，同一级别考察的核心能力基本与具体语言无关。',
+      question: `GESP 是对编程能力进行等级认证，同一级别考察的核心能力基本与具体语言无关。`,
       options: ['正确', '错误'],
       answer: 0,
       score: 2,
@@ -293,12 +293,12 @@ int main() {
 
 ## 题目描述
 
-小杨在某个时刻开始学习，并决定在学习 $k$ 秒后开始休息。  
+小杨在某个时刻开始学习，并决定在学习 $k$ 秒后开始休息。 
 已知开始学习时刻的时、分、秒，请输出开始休息时刻。
 
 ## 输入格式
 
-前 3 行分别输入开始时刻的时 $h$、分 $m$、秒 $s$。  
+前 3 行分别输入开始时刻的时 $h$、分 $m$、秒 $s$。 
 第 4 行输入学习时长 $k$。
 
 ## 输出格式
@@ -346,7 +346,7 @@ int main() {
 
 ## 题目描述
 
-给定一个正整数 $n$，判断它是否是立方数。  
+给定一个正整数 $n$，判断它是否是立方数。 
 如果存在正整数 $x$，使得 $x \\times x \\times x = n$，则称 $n$ 是立方数。
 
 ## 输入格式

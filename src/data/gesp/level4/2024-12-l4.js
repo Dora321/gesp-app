@@ -15,18 +15,18 @@ const programmingQuestions = [
 
 小杨最近发现了有趣的 Recamán 数列，这个数列是这样生成的：
 
-- 数列的第一项 \$a_1\$ 是 \$1\$；
-- 如果 \$a_{k-1}-k\$ 是正整数并且没有在数列中出现过，那么数列的第 \$k\$ 项 \$a_k\$ 为 \$a_{k-1}-k\$，否则为 \$a_{k-1}+k\$。
+- 数列的第一项 $a_1$ 是 $1$；
+- 如果 $a_{k-1}-k$ 是正整数并且没有在数列中出现过，那么数列的第 $k$ 项 $a_k$ 为 $a_{k-1}-k$，否则为 $a_{k-1}+k$。
 
-小杨想知道 Recamán 数列的前 \$n\$ 项从小到大排序后的结果。手动计算非常困难，小杨希望你能帮他解决这个问题。
+小杨想知道 Recamán 数列的前 $n$ 项从小到大排序后的结果。手动计算非常困难，小杨希望你能帮他解决这个问题。
 
 ## 输入格式
 
-第一行，一个正整数 \$n\$。
+第一行，一个正整数 $n$。
 
 ## 输出格式
 
-一行，\$n\$ 个空格分隔的整数，表示 Recamán 数列的前 \$n\$ 项从小到大排序后的结果。
+一行，$n$ 个空格分隔的整数，表示 Recamán 数列的前 $n$ 项从小到大排序后的结果。
 `,
       score: 25,
       explanation: "按照递推公式生成前 n 项。由于需要判断是否出现过，可以使用 std::set 或布尔数组（注意数值范围可能超过 n，实际前 10^5 项的最大值约 7*10^5）。最后对生成的 n 个数排序输出。",
@@ -57,23 +57,23 @@ gesp`, output: `1
 
 ## 题目描述
 
-小杨有 \$n\$ 个仅包含小写字母的字符串 \$s_1,s_2,\\ldots,s_n\$，小杨想将这些字符串按一定顺序排列后拼接到一起构成字符串 \$t\$。小杨希望最后构成的字符串 \$t\$ 满足：
+小杨有 $n$ 个仅包含小写字母的字符串 $s_1,s_2,\\ldots,s_n$，小杨想将这些字符串按一定顺序排列后拼接到一起构成字符串 $t$。小杨希望最后构成的字符串 $t$ 满足：
 
-- 假设 \$t_i\$ 为字符串 \$t\$ 的第 \$i\$ 个字符，对于所有的 \$j\\lt i\$ 均有 \$t_j\\le t_i\$。两个字符的大小关系与其在字母表中的顺序一致，例如 \$\\texttt{e}\\lt \\texttt{g}\\lt \\texttt{p} \\lt \\texttt{s}\$。
+- 假设 $t_i$ 为字符串 $t$ 的第 $i$ 个字符，对于所有的 $j\\lt i$ 均有 $t_j\\le t_i$。两个字符的大小关系与其在字母表中的顺序一致，例如 $\\texttt{e}\\lt \\texttt{g}\\lt \\texttt{p} \\lt \\texttt{s}$。
 
 小杨想知道是否存在满足条件的字符串排列顺序。
 
 ## 输入格式
 
-第一行包含一个正整数 \$T\$，代表测试数据组数。
+第一行包含一个正整数 $T$，代表测试数据组数。
 
-对于每组测试数据，第一行包含一个正整数 \$n\$，含义如题面所示。
+对于每组测试数据，第一行包含一个正整数 $n$，含义如题面所示。
 
-之后 \$n\$ 行，每行包含一个字符串 \$s_i\$。
+之后 $n$ 行，每行包含一个字符串 $s_i$。
 
 ## 输出格式
 
-对于每组测试数据，如果存在满足条件的排列顺序，输出（一行一个）\$\\texttt{1}\$，否则输出（一行一个） \$\\texttt{0}\$。
+对于每组测试数据，如果存在满足条件的排列顺序，输出（一行一个）$\\texttt{1}$，否则输出（一行一个） $\\texttt{0}$。
 `,
       score: 25,
       explanation: "由于拼接后的字符串必须是不降序列，那么每个单独的字符串本身也必须是不降序列。如果所有字符串内部都是不降的，我们将它们按首字母升序排序并拼接，检查拼接后的总字符串是否依然是不降的即可。",
@@ -97,7 +97,7 @@ export const paperData = {
         {
             id: 1,
             type: "single",
-            question: "下面的语句中，（ ）正确定义了一个计算浮点数 x 的平方 (x^2) 的函数, 并成功调用该函数。",
+            question: `下面的语句中，（ ）正确定义了一个计算浮点数 x 的平方 (x^2) 的函数, 并成功调用该函数。`,
             options: [
                 "float square(float x) { return x * x; } float area = square(2.0);",
                 "void square(float x) { return x * x; } float area = square(2.0);",
@@ -112,7 +112,7 @@ export const paperData = {
         {
             id: 2,
             type: "single",
-            question: "下面代码的描述中，正确的是（ ）。\n```cpp\nint main() {\n    int a = 10, b = 20;\n    int *p1 = &a, *p2 = &b;\n    *p1 = *p2;\n    cout << a << \" \" << b << endl;\n    return 0;\n}\n```",
+            question: `下面代码的描述中，正确的是（ ）。\n\`\`\`cpp\nint main() {\n int a = 10, b = 20;\n int *p1 = &a, *p2 = &b;\n *p1 = *p2;\n cout << a << " " << b << endl;\n return 0;\n}\n\`\`\``,
             options: ["输出 10 20", "输出 20 20", "输出 10 10", "输出 20 10"],
             answer: 1,
             score: 2,
@@ -122,7 +122,7 @@ export const paperData = {
         {
             id: 3,
             type: "single",
-            question: "在 C++ 中，下列关于引用的说法，错误的是（ ）。",
+            question: `在 C++ 中，下列关于引用的说法，错误的是（ ）。`,
             options: [
                 "引用必须在定义时初始化。",
                 "引用一旦绑定到一个变量，就不能再绑定到另一个变量。",
@@ -137,7 +137,7 @@ export const paperData = {
         {
             id: 4,
             type: "single",
-            question: "有关下面代码，说法错误的是（ ）。\n```cpp\nvoid swap(int &a, int &b) {\n    int temp = a;\n    a = b;\n    b = temp;\n}\n```",
+            question: `有关下面代码，说法错误的是（ ）。\n\`\`\`cpp\nvoid swap(int &a, int &b) {\n int temp = a;\n a = b;\n b = temp;\n}\n\`\`\``,
             options: [
                 "该函数使用引用传递参数。",
                 "调用该函数后，实参的值会发生交换。",
@@ -152,7 +152,7 @@ export const paperData = {
         {
             id: 5,
             type: "single",
-            question: "下列关于 C++ 中 static 关键字的说法，错误的是（ ）。",
+            question: `下列关于 C++ 中 static 关键字的说法，错误的是（ ）。`,
             options: [
                 "静态局部变量只初始化一次。",
                 "静态全局变量仅在定义它的文件中可见。",
@@ -167,7 +167,7 @@ export const paperData = {
         {
             id: 6,
             type: "single",
-            question: "下列关于递归函数的说法，正确的是（ ）。",
+            question: `下列关于递归函数的说法，正确的是（ ）。`,
             options: [
                 "递归函数不需要终止条件。",
                 "递归调用不会消耗栈空间。",
@@ -182,8 +182,8 @@ export const paperData = {
         {
             id: 7,
             type: "single",
-            question: "选择排序在最坏情况下的比较次数是（ ）。",
-            options: ["$O(\log n)$", "$O(N)$", "$O(n \log n)$", "$O(N^2)$"],
+            question: `选择排序在最坏情况下的比较次数是（ ）。`,
+            options: ["$O(log n)$", "$O(N)$", "$O(n log n)$", "$O(N^2)$"],
             answer: 3,
             score: 2,
             explanation: "选择排序无论何种情况都需两层循环，复杂度 $O(N^2)$。",
@@ -192,7 +192,7 @@ export const paperData = {
         {
             id: 8,
             type: "single",
-            question: "下列排序算法中，不稳定的是（ ）。",
+            question: `下列排序算法中，不稳定的是（ ）。`,
             options: ["冒泡排序", "插入排序", "归并排序", "快速排序"],
             answer: 3,
             score: 2,
@@ -202,7 +202,7 @@ export const paperData = {
         {
             id: 9,
             type: "single",
-            question: "在 C++ 中，`std::sort` 函数默认采用的排序方法（底层实现）通常不包括（ ）。",
+            question: `在 C++ 中，\`std::sort\` 函数默认采用的排序方法（底层实现）通常不包括（ ）。`,
             options: ["插入排序", "快速排序", "堆排序", "冒泡排序"],
             answer: 0,
             score: 2,
@@ -212,7 +212,7 @@ export const paperData = {
         {
             id: 10,
             type: "single",
-            question: "关于 C++ 中的 `try-catch` 异常处理，下列说法正确的是（ ）。",
+            question: `关于 C++ 中的 \`try-catch\` 异常处理，下列说法正确的是（ ）。`,
             options: [
                 "一个 try 块只能对应一个 catch 块。",
                 "catch 块必须出现在 try 块之后。",
@@ -227,7 +227,7 @@ export const paperData = {
         {
             id: 11,
             type: "single",
-            question: "二维数组 `int a[3][4]` 的存储方式是（ ）。",
+            question: `二维数组 \`int a[3][4]\` 的存储方式是（ ）。`,
             options: ["按列存储", "按行存储", "随机存储", "树形存储"],
             answer: 1,
             score: 2,
@@ -237,7 +237,7 @@ export const paperData = {
         {
             id: 12,
             type: "single",
-            question: "分治算法中，通常将问题分解为（ ）个子问题。",
+            question: `分治算法中，通常将问题分解为（ ）个子问题。`,
             options: ["1", "2 或多个", "N (数据总量)", "不确定"],
             answer: 1,
             score: 2,
@@ -247,7 +247,7 @@ export const paperData = {
         {
             id: 13,
             type: "single",
-            question: "在 C++ 中，下列哪个关键字用于抛出异常（ ）。",
+            question: `在 C++ 中，下列哪个关键字用于抛出异常（ ）。`,
             options: ["throw", "catch", "try", "finally"],
             answer: 0,
             score: 2,
@@ -257,7 +257,7 @@ export const paperData = {
         {
             id: 14,
             type: "single",
-            question: "下列哪种算法采用了递归思想实现（ ）。",
+            question: `下列哪种算法采用了递归思想实现（ ）。`,
             options: ["顺序查找", "二分查找", "归并排序", "以上都是"],
             answer: 2,
             score: 2,
@@ -267,7 +267,7 @@ export const paperData = {
         {
             id: 15,
             type: "single",
-            question: "GESP 4 级认证不包含下列哪个知识点（ ）。",
+            question: `GESP 4 级认证不包含下列哪个知识点（ ）。`,
             options: ["一维数组", "结构体", "动态规划", "函数嵌套调用"],
             answer: 0,
             score: 2,
@@ -277,7 +277,7 @@ export const paperData = {
         {
             id: 16,
             type: "judge",
-            question: "在 C++ 中，下面代码可以正确定义指针和初始化指针：`int *p = nullptr;`。",
+            question: `在 C++ 中，下面代码可以正确定义指针和初始化指针：\`int *p = nullptr;\`。`,
             options: ["正确", "错误"],
             answer: 0,
             score: 2,
@@ -287,7 +287,7 @@ export const paperData = {
         {
             id: 17,
             type: "judge",
-            question: "一个函数必须在调用之前既声明又定义。",
+            question: `一个函数必须在调用之前既声明又定义。`,
             options: ["正确", "错误"],
             answer: 1,
             score: 2,
@@ -297,7 +297,7 @@ export const paperData = {
         {
             id: 18,
             type: "judge",
-            question: "函数参数可以通过值传递、引用传递和指针传递，这样函数内对参数的修改可以直接修改传入变量的值。",
+            question: `函数参数可以通过值传递、引用传递和指针传递，这样函数内对参数的修改可以直接修改传入变量的值。`,
             options: ["正确", "错误"],
             answer: 1,
             score: 2,
@@ -307,7 +307,7 @@ export const paperData = {
         {
             id: 19,
             type: "judge",
-            question: "int arr[3][] 是一个正确的二维数组的声明。",
+            question: `int arr[3][] 是一个正确的二维数组的声明。`,
             options: ["正确", "错误"],
             answer: 1,
             score: 2,
@@ -317,7 +317,7 @@ export const paperData = {
         {
             id: 20,
             type: "judge",
-            question: "递推是一种通过已知的初始值和递推公式，逐步求解目标值的算法。",
+            question: `递推是一种通过已知的初始值和递推公式，逐步求解目标值的算法。`,
             options: ["正确", "错误"],
             answer: 0,
             score: 2,
@@ -327,7 +327,7 @@ export const paperData = {
         {
             id: 21,
             type: "judge",
-            question: "冒泡排序的平均时间复杂度为 $O(N^2)$，但最优情况下为 $O(N)$。",
+            question: `冒泡排序的平均时间复杂度为 $O(N^2)$，但最优情况下为 $O(N)$。`,
             options: ["正确", "错误"],
             answer: 0,
             score: 2,
@@ -337,7 +337,7 @@ export const paperData = {
         {
             id: 22,
             type: "judge",
-            question: "冒泡排序和插入排序都是稳定的排序算法。",
+            question: `冒泡排序和插入排序都是稳定的排序算法。`,
             options: ["正确", "错误"],
             answer: 0,
             score: 2,
@@ -347,7 +347,7 @@ export const paperData = {
         {
             id: 23,
             type: "judge",
-            question: "选择排序是稳定的排序算法。",
+            question: `选择排序是稳定的排序算法。`,
             options: ["正确", "错误"],
             answer: 1,
             score: 2,
@@ -357,7 +357,7 @@ export const paperData = {
         {
             id: 24,
             type: "judge",
-            question: "在 C++ 语言中，如果一个函数可能抛出异常，那么一定要在 try 子句里调用这个函数。",
+            question: `在 C++ 语言中，如果一个函数可能抛出异常，那么一定要在 try 子句里调用这个函数。`,
             options: ["正确", "错误"],
             answer: 1,
             score: 2,
@@ -367,7 +367,7 @@ export const paperData = {
         {
             id: 25,
             type: "judge",
-            question: "GESP 认证分为 1 到 8 级，数字越大难度越高。",
+            question: `GESP 认证分为 1 到 8 级，数字越大难度越高。`,
             options: ["正确", "错误"],
             answer: 0,
             score: 2,

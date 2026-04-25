@@ -19,7 +19,7 @@ export const paperData = {
         {
             id: 1,
             type: 'single',
-            question: '下面 C++ 数组的定义中，会丢失数据的是（   ）。',
+            question: `下面 C++ 数组的定义中，会丢失数据的是（ ）。`,
             options: [
                 "char dict_key[] = {'p','t','o'};",
                 'int dict_value[] = {33,22,11};',
@@ -33,7 +33,7 @@ export const paperData = {
         {
             id: 2,
             type: 'single',
-            question: '在下列编码中，不能够和二进制“1101 1101”相等的是（   ）。',
+            question: `在下列编码中，不能够和二进制“1101 1101”相等的是（ ）。`,
             options: ['（221）10进制', '（335）8进制', '（dd）16进制', '（5d）16进制'],
             answer: 3,
             score: 2,
@@ -42,7 +42,7 @@ export const paperData = {
         {
             id: 3,
             type: 'single',
-            question: '下面 C++ 代码执行后不能输出“GESP”的是（   ）。',
+            question: `下面 C++ 代码执行后不能输出“GESP”的是（ ）。`,
             options: [
                 'string str("GESP"); cout << str << endl;',
                 'string str = "GESP"; cout << str << endl;',
@@ -56,7 +56,7 @@ export const paperData = {
         {
             id: 4,
             type: 'single',
-            question: '【题面按公开解析还原】执行下面 C++ 代码后输出是（   ）。\n```cpp\nint temp = 0;\nfor (int i = 1; i < 7; i++) {\n    for (int j = 1; j < 5; j++) {\n        if (i / j == 2) temp++;\n    }\n}\ncout << temp << endl;\n```',
+            question: `【题面按公开解析还原】执行下面 C++ 代码后输出是（ ）。\n\`\`\`cpp\nint temp = 0;\nfor (int i = 1; i < 7; i++) {\n for (int j = 1; j < 5; j++) {\n if (i / j == 2) temp++;\n }\n}\ncout << temp << endl;\n\`\`\``,
             options: ['10', '8', '4', '3'],
             answer: 2,
             score: 2,
@@ -65,7 +65,7 @@ export const paperData = {
         {
             id: 5,
             type: 'single',
-            question: '【题面按公开解析还原】执行下面 C++ 代码后，输出是（   ）。\n```cpp\nstring str = "chen";\nint x = str.length();\nint temp = 0;\nfor (int i = 0; i <= x; i++) temp++;\ncout << temp << endl;\n```',
+            question: `【题面按公开解析还原】执行下面 C++ 代码后，输出是（ ）。\n\`\`\`cpp\nstring str = "chen";\nint x = str.length();\nint temp = 0;\nfor (int i = 0; i <= x; i++) temp++;\ncout << temp << endl;\n\`\`\``,
             options: ['4', '2', '5', '3'],
             answer: 2,
             score: 2,
@@ -74,7 +74,7 @@ export const paperData = {
         {
             id: 6,
             type: 'single',
-            question: '【题面按公开解析还原】执行下面 C++ 代码后输出是（   ）。\n```cpp\nstring str = "chen";\nint x = str.length();\ncout << x << endl;\n```',
+            question: `【题面按公开解析还原】执行下面 C++ 代码后输出是（ ）。\n\`\`\`cpp\nstring str = "chen";\nint x = str.length();\ncout << x << endl;\n\`\`\``,
             options: ['4', '3', '2', '5'],
             answer: 0,
             score: 2,
@@ -83,7 +83,7 @@ export const paperData = {
         {
             id: 7,
             type: 'single',
-            question: '【题面按公开解析还原】执行下面 C++ 代码后输出的是（   ）。\n```cpp\nstring str = "chen";\ncout << str[5] << endl;\n```',
+            question: `【题面按公开解析还原】执行下面 C++ 代码后输出的是（ ）。\n\`\`\`cpp\nstring str = "chen";\ncout << str[5] << endl;\n\`\`\``,
             options: ['输出未知的数', "输出 'n'", "输出 '\\0'", '输出空格'],
             answer: 0,
             score: 2,
@@ -92,7 +92,7 @@ export const paperData = {
         {
             id: 8,
             type: 'single',
-            question: '【题面按公开解析还原】下面 C++ 代码执行后的输出是（   ）。\n```cpp\nchar ch[10] = {\'1\'};\ncout << ch[2] << endl;\n```',
+            question: `【题面按公开解析还原】下面 C++ 代码执行后的输出是（ ）。\n\`\`\`cpp\nchar ch[10] = {'1'};\ncout << ch[2] << endl;\n\`\`\``,
             options: ['0', '1', '输出空格', '什么也不输出'],
             answer: 3,
             score: 2,
@@ -101,7 +101,7 @@ export const paperData = {
         {
             id: 9,
             type: 'single',
-            question: '下面 C++ 代码用于统计每种字符出现的次数，当输出为 3 时，横线上不能填入的代码是（   ）。\n```cpp\nstring str = "GESP is a good programming test!";\nint cnt = 0;\nfor (int i = 0; i < str.length(); i++) {\n    if (_______) cnt++;\n}\ncout << cnt << endl;\n```',
+            question: `下面 C++ 代码用于统计每种字符出现的次数，当输出为 3 时，横线上不能填入的代码是（ ）。\n\`\`\`cpp\nstring str = "GESP is a good programming test!";\nint cnt = 0;\nfor (int i = 0; i < str.length(); i++) {\n if (_______) cnt++;\n}\ncout << cnt << endl;\n\`\`\``,
             options: ["str[i]=='o'", "str[i]=='a'+14", 'str[i]==115', 'str[i]==111'],
             answer: 2,
             score: 2,
@@ -111,7 +111,7 @@ export const paperData = {
         {
             id: 10,
             type: 'single',
-            question: '32 位计算机中，C++ 的整型变量 int 能够表示的数据范围是（   ）。',
+            question: `32 位计算机中，C++ 的整型变量 int 能够表示的数据范围是（ ）。`,
             options: ['2^31~(2^31)-1', '2^32', '-2^31~+(2^31)-1', '-(2^31)+1~2^31'],
             answer: 2,
             score: 2,
@@ -120,7 +120,7 @@ export const paperData = {
         {
             id: 11,
             type: 'single',
-            question: '【题面按公开解析还原】下面 C++ 程序执行的结果是（   ）。\n```cpp\nint cnt = 0;\nfor (int i = 0; i <= 20; i++) {\n    if (i % 3 == 0 && i % 5 == 0) cnt++;\n}\ncout << cnt;\n```',
+            question: `【题面按公开解析还原】下面 C++ 程序执行的结果是（ ）。\n\`\`\`cpp\nint cnt = 0;\nfor (int i = 0; i <= 20; i++) {\n if (i % 3 == 0 && i % 5 == 0) cnt++;\n}\ncout << cnt;\n\`\`\``,
             options: ['2', '3', '5', '4'],
             answer: 0,
             score: 2,
@@ -129,7 +129,7 @@ export const paperData = {
         {
             id: 12,
             type: 'single',
-            question: '【题面按公开解析还原】C++ 的数据类型转换让人很难琢磨透，下列代码输出的值是（   ）。\n```cpp\nint a = 3;\nint b = 2;\ncout << a / b * 1.0 << endl;\n```',
+            question: `【题面按公开解析还原】C++ 的数据类型转换让人很难琢磨透，下列代码输出的值是（ ）。\n\`\`\`cpp\nint a = 3;\nint b = 2;\ncout << a / b * 1.0 << endl;\n\`\`\``,
             options: ['1.5', '1', '2', '1.50'],
             answer: 1,
             score: 2,
@@ -138,7 +138,7 @@ export const paperData = {
         {
             id: 13,
             type: 'single',
-            question: 'C++ 代码用于抽取字符串中的电话号码。约定：电话号码全部是数字，数字之间没有其他符号如连字符或空格等。代码中变量 strSrc 仅仅是示例，可以包含更多字符。下面有关代码说法，正确的是（   ）。',
+            question: `C++ 代码用于抽取字符串中的电话号码。约定：电话号码全部是数字，数字之间没有其他符号如连字符或空格等。代码中变量 strSrc 仅仅是示例，可以包含更多字符。下面有关代码说法，正确的是（ ）。`,
             options: [
                 '代码将换行输出各个含有数字的电话号码。',
                 '代码将不换行输出各个含有数字的电话号码，号码中间没有分隔。',
@@ -152,7 +152,7 @@ export const paperData = {
         {
             id: 14,
             type: 'single',
-            question: '某公司新出了一款无人驾驶的小汽车，通过声控智能驾驶系统，乘客只要告诉汽车目的地，车子就能自动选择一条优化路线，告诉乘客后驶达那里。请问下面哪项不是驾驶系统完成选路所必须的。（   ）',
+            question: `某公司新出了一款无人驾驶的小汽车，通过声控智能驾驶系统，乘客只要告诉汽车目的地，车子就能自动选择一条优化路线，告诉乘客后驶达那里。请问下面哪项不是驾驶系统完成选路所必须的。（ ）`,
             options: ['麦克风', '扬声器', '油量表', '传感器'],
             answer: 2,
             score: 2,
@@ -161,7 +161,7 @@ export const paperData = {
         {
             id: 15,
             type: 'single',
-            question: '现代计算机是指电子计算机，它所基于的是（   ）体系结构。',
+            question: `现代计算机是指电子计算机，它所基于的是（ ）体系结构。`,
             options: ['艾伦·图灵', '冯·诺依曼', '阿塔纳索夫', '埃克特-莫克利'],
             answer: 1,
             score: 2,
@@ -170,7 +170,7 @@ export const paperData = {
         {
             id: 16,
             type: 'judge',
-            question: '执行 C++ 代码 cout << (5 && 2) << endl; 后将输出 1。',
+            question: `执行 C++ 代码 cout << (5 && 2) << endl; 后将输出 1。`,
             options: ['正确', '错误'],
             answer: 0,
             score: 2,
@@ -179,7 +179,7 @@ export const paperData = {
         {
             id: 17,
             type: 'judge',
-            question: '【题面按公开解析还原】C++ 程序执行后，输入 chen a dai，输出应该为：chen。',
+            question: `【题面按公开解析还原】C++ 程序执行后，输入 chen a dai，输出应该为：chen。`,
             options: ['正确', '错误'],
             answer: 0,
             score: 2,
@@ -188,7 +188,7 @@ export const paperData = {
         {
             id: 18,
             type: 'judge',
-            question: '执行 C++ 代码 cout << (5 || 2); 后将输出 1。',
+            question: `执行 C++ 代码 cout << (5 || 2); 后将输出 1。`,
             options: ['正确', '错误'],
             answer: 0,
             score: 2,
@@ -197,7 +197,7 @@ export const paperData = {
         {
             id: 19,
             type: 'judge',
-            question: '【题面按公开解析还原】执行下面 C++ 代码后将输出 “China”。\nstring a = "china";\na.replace(0, 1, "C");\n```cpp\ncout << a << endl;\n```',
+            question: `【题面按公开解析还原】执行下面 C++ 代码后将输出 “China”。\nstring a = "china";\na.replace(0, 1, "C");\n\`\`\`cpp\ncout << a << endl;\n\`\`\``,
             options: ['正确', '错误'],
             answer: 0,
             score: 2,
@@ -206,7 +206,7 @@ export const paperData = {
         {
             id: 20,
             type: 'judge',
-            question: '【题面按公开解析还原】执行 C++ 代码将输出 0 5，5 之后还有一个空格。\n```cpp\nint list[10] = {1,2,3,4,5,6,7,8,9,10};\nfor (int i = 0; i < 10; i++)\n    if (i % 5 == 0)\n        cout << list[i] << " ";\n```',
+            question: `【题面按公开解析还原】执行 C++ 代码将输出 0 5，5 之后还有一个空格。\n\`\`\`cpp\nint list[10] = {1,2,3,4,5,6,7,8,9,10};\nfor (int i = 0; i < 10; i++)\n if (i % 5 == 0)\n cout << list[i] << " ";\n\`\`\``,
             options: ['正确', '错误'],
             answer: 1,
             score: 2,
@@ -215,7 +215,7 @@ export const paperData = {
         {
             id: 21,
             type: 'judge',
-            question: '【题面按公开解析还原】下面 C++ 代码将输出 1。\n```cpp\nint list[10] = {1};\ncout << list << endl;\n```',
+            question: `【题面按公开解析还原】下面 C++ 代码将输出 1。\n\`\`\`cpp\nint list[10] = {1};\ncout << list << endl;\n\`\`\``,
             options: ['正确', '错误'],
             answer: 1,
             score: 2,
@@ -224,7 +224,7 @@ export const paperData = {
         {
             id: 22,
             type: 'judge',
-            question: '【题面按公开解析还原】下面 C++ 程序将输出 1。\n```cpp\nint arr[10] = {1};\ncout << arr[0] << endl;\n```',
+            question: `【题面按公开解析还原】下面 C++ 程序将输出 1。\n\`\`\`cpp\nint arr[10] = {1};\ncout << arr[0] << endl;\n\`\`\``,
             options: ['正确', '错误'],
             answer: 0,
             score: 2,
@@ -233,7 +233,7 @@ export const paperData = {
         {
             id: 23,
             type: 'judge',
-            question: '【题面按公开解析还原】执行 C++ 代码，将输出 1 3 5 7 9，9 之后还有一个空格。\n```cpp\nint list[10] = {1,2,3,4,5,6,7,8,9,10};\nfor (int i = 0; i < 10; i += 2) {\n    cout << list[i] << " ";\n}\n```',
+            question: `【题面按公开解析还原】执行 C++ 代码，将输出 1 3 5 7 9，9 之后还有一个空格。\n\`\`\`cpp\nint list[10] = {1,2,3,4,5,6,7,8,9,10};\nfor (int i = 0; i < 10; i += 2) {\n cout << list[i] << " ";\n}\n\`\`\``,
             options: ['正确', '错误'],
             answer: 0,
             score: 2,
@@ -242,7 +242,7 @@ export const paperData = {
         {
             id: 24,
             type: 'judge',
-            question: '小杨最近在准备考 GESP，他用的 Dev C++ 来练习和运行程序，所以 Dev C++ 也是一个小型操作系统。',
+            question: `小杨最近在准备考 GESP，他用的 Dev C++ 来练习和运行程序，所以 Dev C++ 也是一个小型操作系统。`,
             options: ['正确', '错误'],
             answer: 1,
             score: 2,
@@ -251,7 +251,7 @@ export const paperData = {
         {
             id: 25,
             type: 'judge',
-            question: '任何一个 while 循环都可以转化为等价的 for 循环。',
+            question: `任何一个 while 循环都可以转化为等价的 for 循环。`,
             options: ['正确', '错误'],
             answer: 0,
             score: 2,
@@ -273,13 +273,13 @@ export const paperData = {
 
 ## 题目描述
 
-海滩上有一堆鱼，\$N\$ 只小猫来分。第一只小猫把这堆鱼平均分为 \$N\$ 份，多了 \$i
+海滩上有一堆鱼，$N$ 只小猫来分。第一只小猫把这堆鱼平均分为 $N$ 份，多了 $i
 
 ## 输入格式
 
-总共 \$2\$ 行。第一行一个整数 \$N\$，第二行一个整数 \$i\$。
+总共 $2$ 行。第一行一个整数 $N$，第二行一个整数 $i$。
 
-保证 \$0
+保证 $0
 
 ## 输出格式
 
@@ -320,9 +320,9 @@ export const paperData = {
 
 小杨只学了长度单位和重量单位，具体来说：
 
-- 长度单位包括千米（\`km\`）、米（\`m\`）、毫米（\`mm\`），它们之间的关系是：\$1\\text{km} = 1000\\text{m} = 1000000\\text{mm}\$。
+- 长度单位包括千米（\`km\`）、米（\`m\`）、毫米（\`mm\`），它们之间的关系是：$1\\text{km} = 1000\\text{m} = 1000000\\text{mm}$。
 
-- 重量单位包括千克（\`kg\`）、克（\`g\`）、毫克（\`mg\`），它们之间的关系是：\$1\\text{kg} = 1000\\text{g} = 1000000\\text{mg}\$。
+- 重量单位包括千克（\`kg\`）、克（\`g\`）、毫克（\`mg\`），它们之间的关系是：$1\\text{kg} = 1000\\text{g} = 1000000\\text{mg}$。
 
 小杨的作业只涉及将更大的单位转换为更小的单位，也就是说，小杨的作业只会包含如下题型：米转换为毫米，千米转换为毫米，千米转换为米，克转换为毫克，千克转换为毫克，千克转换为克。
 
@@ -332,17 +332,17 @@ export const paperData = {
 
 输入的第一行为一个整数，表示题目数量。
 
-接下来 \$N\$ 行，每行一个字符串，表示转换单位的题目，格式为 \$x\$ 单位 \$1 = ?\$ 单位 \$2\$。其中，\$x\$ 为一个不超过 \$1000\$ 的非负整数， 单位 \$1\$ 和 单位 \$2\$ 分别为两个单位的英文缩写，保证它们都是长度单位或都是重量单位，且 **单位 1** 比 **单位 2** 更大。
+接下来 $N$ 行，每行一个字符串，表示转换单位的题目，格式为 $x$ 单位 $1 = ?$ 单位 $2$。其中，$x$ 为一个不超过 $1000$ 的非负整数， 单位 $1$ 和 单位 $2$ 分别为两个单位的英文缩写，保证它们都是长度单位或都是重量单位，且 **单位 1** 比 **单位 2** 更大。
 
-例如，如果题目需要你将 \$1\\text{km}\$ 转换为 \$\\text{mm}\$，则输入为 \`1 km = ? mm\`。
+例如，如果题目需要你将 $1\\text{km}$ 转换为 $\\text{mm}$，则输入为 \`1 km = ? mm\`。
 
-保证 \$1\\le N \\le 1000\$。
+保证 $1\\le N \\le 1000$。
 
 ## 输出格式
 
-输出 \$N\$ 行，依次输出所有题目的答案，输出时，只需要将输入中的 \$?\$ 代入答案，其余部分一字不差地输出即可。由于小杨的题目只涉及将更大的单位转换为更小的单位，并且输入的 \$x\$ 是整数，因此答案一定也是整数。
+输出 $N$ 行，依次输出所有题目的答案，输出时，只需要将输入中的 $?$ 代入答案，其余部分一字不差地输出即可。由于小杨的题目只涉及将更大的单位转换为更小的单位，并且输入的 $x$ 是整数，因此答案一定也是整数。
 
-例如，如果题目需要你将 \$1\\text{km}\$ 转换为 \$\\text{mm}\$，则输入为 \`1 km = ? mm\`。则你需要输出 \`1 km = 1000000 mm\`。
+例如，如果题目需要你将 $1\\text{km}$ 转换为 $\\text{mm}$，则输入为 \`1 km = ? mm\`。则你需要输出 \`1 km = 1000000 mm\`。
 `,
       explanation: '识别源单位和目标单位，乘上相应换算倍数后按题目原格式输出即可。',
       template: '#include <bits/stdc++.h>\nusing namespace std;\n\nint main() {\n    ios::sync_with_stdio(false);\n    cin.tie(nullptr);\n\n    // 在此编写代码\n    return 0;\n}',

@@ -21,7 +21,7 @@ export const paperData = {
     {
       id: 1,
       type: 'single',
-      question: '以下不属于计算机输出设备的有（ ）。',
+      question: `以下不属于计算机输出设备的有（ ）。`,
       options: ['麦克风', '打印机', '显示器', '音箱'],
       answer: 0,
       score: 2,
@@ -31,7 +31,7 @@ export const paperData = {
     {
       id: 2,
       type: 'single',
-      question: 'ChatGPT 是目前流行的一种人工智能应用，它不能完成的任务是（ ）。',
+      question: `ChatGPT 是目前流行的一种人工智能应用，它不能完成的任务是（ ）。`,
       options: ['编写程序', '翻译语言', '炒菜', '写诗'],
       answer: 2,
       score: 2,
@@ -41,7 +41,7 @@ export const paperData = {
     {
       id: 3,
       type: 'single',
-      question: '常量 \'3\' 的数据类型是（ ）。',
+      question: `常量 '3' 的数据类型是（ ）。`,
       options: ['int', 'double', 'char', 'bool'],
       answer: 2,
       score: 2,
@@ -51,7 +51,7 @@ export const paperData = {
     {
       id: 4,
       type: 'single',
-      question: '关于C++语言变量的叙述，正确的是（ ）。',
+      question: `关于C++语言变量的叙述，正确的是（ ）。`,
       options: [
         '变量名可以由数字开头',
         '变量必须先赋值再定义',
@@ -66,7 +66,7 @@ export const paperData = {
     {
       id: 5,
       type: 'single',
-      question: '可以作为C++标识符的是（ ）。',
+      question: `可以作为C++标识符的是（ ）。`,
       options: [
         'number_of_Chinese_people_in_millions',
         '2023_GESP',
@@ -81,7 +81,7 @@ export const paperData = {
     {
       id: 6,
       type: 'single',
-      question: '以下哪个不是C++语言关键字（ ）。',
+      question: `以下哪个不是C++语言关键字（ ）。`,
       options: ['int', 'for', 'if', 'endl'],
       answer: 3,
       score: 2,
@@ -91,7 +91,7 @@ export const paperData = {
     {
       id: 7,
       type: 'single',
-      question: '不符合C++语法的语句是（ ）。',
+      question: `不符合C++语法的语句是（ ）。`,
       options: [
         'a = b+c;',
         'b = a;',
@@ -106,7 +106,7 @@ export const paperData = {
     {
       id: 8,
       type: 'single',
-      question: '如果 a 是 int 类型的变量，不能用来计算正方形面积的表达式是（ ）。',
+      question: `如果 a 是 int 类型的变量，不能用来计算正方形面积的表达式是（ ）。`,
       options: ['a * a', 'pow(a, 2)', 'a ^ 2', 'a * (double)a'],
       answer: 2,
       score: 2,
@@ -116,7 +116,7 @@ export const paperData = {
     {
       id: 9,
       type: 'single',
-      question: 'C++表达式 (4 * (11+12) / 4) 的计算结果是（ ）。',
+      question: `C++表达式 (4 * (11+12) / 4) 的计算结果是（ ）。`,
       options: ['22', '22.75', '23', '25'],
       answer: 2,
       score: 2,
@@ -126,7 +126,7 @@ export const paperData = {
     {
       id: 10,
       type: 'single',
-      question: '执行 a %= 4; 之后 a 的值（原值为 6）：',
+      question: `执行 a %= 4; 之后 a 的值（原值为 6）：`,
       options: ['1', '2', '4', '6'],
       answer: 1,
       score: 2,
@@ -136,7 +136,7 @@ export const paperData = {
     {
       id: 11,
       type: 'single',
-      question: '正确判断“a 等于 0 且 b 等于 0”的表达式是（ ）。',
+      question: `正确判断“a 等于 0 且 b 等于 0”的表达式是（ ）。`,
       options: ['a == 0 || b == 0', '!(a || b)', 'a+b == 0', 'a == 0 && b == 0'],
       answer: 3, // B 也对（根据德·摩根定律），但 D 是最直白的写法。子代提取结果说是 B，我们按标准逻辑。
       score: 2,
@@ -146,7 +146,7 @@ export const paperData = {
     {
       id: 12,
       type: 'single',
-      question: '如果 a 为 int 类型且值为 7, b 为 int 类型且值为 2，计算结果不是 3.5 的表达式：',
+      question: `如果 a 为 int 类型且值为 7, b 为 int 类型且值为 2，计算结果不是 3.5 的表达式：`,
       options: ['0.0+a / b', '(double)a / b', 'a / (double)b', 'a / 2.0'],
       answer: 0,
       score: 2,
@@ -156,7 +156,7 @@ export const paperData = {
     {
       id: 13,
       type: 'single',
-      question: '在 C++ 代码中，执行后输出 “20 10” 的横线处填写：\n```cpp\nint a = 10, b = 20;\na = b;\n__________;\ncout << a << " " << b << endl;\n```',
+      question: `在 C++ 代码中，执行后输出 “20 10” 的横线处填写：\n\`\`\`cpp\nint a = 10, b = 20;\na = b;\n__________;\ncout << a << " " << b << endl;\n\`\`\``,
       options: ['b = a;', 'b = 10;', 'b = a-b;', 'b = 20;'],
       answer: 1, // 修正：a 已经变成了 20，要输出 20 10，则 b 必须赋值为 10。
       score: 2,
@@ -166,7 +166,7 @@ export const paperData = {
     {
       id: 14,
       type: 'single',
-      question: '在 C++ 代码中，执行后输出 “147” 的横线处填写：\n```cpp\nfor (int i = 1; i <= 9; i++) {\n    if (________) cout << i;\n}\n```',
+      question: `在 C++ 代码中，执行后输出 “147” 的横线处填写：\n\`\`\`cpp\nfor (int i = 1; i <= 9; i++) {\n if (________) cout << i;\n}\n\`\`\``,
       options: ['i % 2 == 1', 'i % 3 == 1', 'i % 4 == 1', 'i % 7 == 1'],
       answer: 1,
       score: 2,
@@ -176,7 +176,7 @@ export const paperData = {
     {
       id: 15,
       type: 'single',
-      question: '未初始化 sum 变量的输出：\n```cpp\nint sum;\nfor (int i = 1; i <= 10; i++) sum += i;\ncout << sum << endl;\n```',
+      question: `未初始化 sum 变量的输出：\n\`\`\`cpp\nint sum;\nfor (int i = 1; i <= 10; i++) sum += i;\ncout << sum << endl;\n\`\`\``,
       options: ['55', '0', '45', '无法确定'],
       answer: 3,
       score: 2,
@@ -188,7 +188,7 @@ export const paperData = {
     {
       id: 16,
       type: 'judge',
-      question: '计算机硬件主要包括运算器、控制器、存储器、输入设备和输出设备。',
+      question: `计算机硬件主要包括运算器、控制器、存储器、输入设备和输出设备。`,
       options: ['正确', '错误'],
       answer: 0,
       score: 2,
@@ -198,7 +198,7 @@ export const paperData = {
     {
       id: 17,
       type: 'judge',
-      question: '103 机是中国第一台通用数字电子计算机，ENIAC 诞生于1946年。',
+      question: `103 机是中国第一台通用数字电子计算机，ENIAC 诞生于1946年。`,
       options: ['正确', '错误'],
       answer: 0,
       score: 2,
@@ -208,7 +208,7 @@ export const paperData = {
     {
       id: 18,
       type: 'judge',
-      question: '在C++语言中，计算结果必须存储在变量中才能输出。',
+      question: `在C++语言中，计算结果必须存储在变量中才能输出。`,
       options: ['正确', '错误'],
       answer: 1,
       score: 2,
@@ -218,7 +218,7 @@ export const paperData = {
     {
       id: 19,
       type: 'judge',
-      question: '在C++语言中，标识符的命名不能完全由数字组成，至少有一个字母就可以。',
+      question: `在C++语言中，标识符的命名不能完全由数字组成，至少有一个字母就可以。`,
       options: ['正确', '错误'],
       answer: 1,
       score: 2,
@@ -228,7 +228,7 @@ export const paperData = {
     {
       id: 20,
       type: 'judge',
-      question: '10 是一个 int 类型常量。',
+      question: `10 是一个 int 类型常量。`,
       options: ['正确', '错误'],
       answer: 0,
       score: 2,
@@ -238,7 +238,7 @@ export const paperData = {
     {
       id: 21,
       type: 'judge',
-      question: 'if 语句可以没有 else 子句。',
+      question: `if 语句可以没有 else 子句。`,
       options: ['正确', '错误'],
       answer: 0,
       score: 2,
@@ -248,7 +248,7 @@ export const paperData = {
     {
       id: 22,
       type: 'judge',
-      question: 'do ... while 语句的循环体至少会执行一次。',
+      question: `do ... while 语句的循环体至少会执行一次。`,
       options: ['正确', '错误'],
       answer: 0,
       score: 2,
@@ -258,7 +258,7 @@ export const paperData = {
     {
       id: 23,
       type: 'judge',
-      question: '表达式 a = b 可以判断 a 和 b 是否相等。',
+      question: `表达式 a = b 可以判断 a 和 b 是否相等。`,
       options: ['正确', '错误'],
       answer: 1,
       score: 2,
@@ -268,7 +268,7 @@ export const paperData = {
     {
       id: 24,
       type: 'judge',
-      question: '表达式 (a % 4 == 2) 可以判断 a 的值是否为偶数。',
+      question: `表达式 (a % 4 == 2) 可以判断 a 的值是否为偶数。`,
       options: ['正确', '错误'],
       answer: 1,
       score: 2,
@@ -278,7 +278,7 @@ export const paperData = {
     {
       id: 25,
       type: 'judge',
-      question: '表达式 (37 / 4) 的计算结果为 9，且结果类型为 int。',
+      question: `表达式 (37 / 4) 的计算结果为 9，且结果类型为 int。`,
       options: ['正确', '错误'],
       answer: 0,
       score: 2,
@@ -310,7 +310,7 @@ export const paperData = {
 
 ## 输入格式
 
-输入 \$4\$ 行，第一行为开始时刻的小时，第二行为开始时刻的分钟，第三行为结束时刻的小时，第四行为结束时刻的分钟。输入保证两个时刻是同一天，开始时刻一定在结束时刻之前。时刻使用 \$24\$ 小时制，即小时在 \$0\$ 到 \$23\$ 之间，分钟在 \$0\$ 到 \$59\$ 之间。
+输入 $4$ 行，第一行为开始时刻的小时，第二行为开始时刻的分钟，第三行为结束时刻的小时，第四行为结束时刻的分钟。输入保证两个时刻是同一天，开始时刻一定在结束时刻之前。时刻使用 $24$ 小时制，即小时在 $0$ 到 $23$ 之间，分钟在 $0$ 到 $59$ 之间。
 
 ## 输出格式
 
@@ -336,13 +336,13 @@ export const paperData = {
 
 ## 题目描述
 
-输入一个正整数 \$n\$，求形如：
+输入一个正整数 $n$，求形如：
 
-\$1+(1+2)+(1+2+3)+(1+2+3+4)+ \\cdots  +(1+2+3+4+5+ \\cdots  +n)\$ 的累计相加。
+$1+(1+2)+(1+2+3)+(1+2+3+4)+ \\cdots +(1+2+3+4+5+ \\cdots +n)$ 的累计相加。
 
 ## 输入格式
 
-输入一个正整数 \$n\$。约定 \$1 \le n \le 100\$。
+输入一个正整数 $n$。约定 $1 le n le 100$。
 
 ## 输出格式
 

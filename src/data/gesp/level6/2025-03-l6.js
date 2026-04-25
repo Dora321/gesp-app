@@ -19,7 +19,7 @@ const programmingQuestions = [
 
 ## 题目描述
 
-小 A 有一棵 \$n\$ 个结点的树，这些结点依次以 \$1,2,\\cdots,n\$ 标号。
+小 A 有一棵 $n$ 个结点的树，这些结点依次以 $1,2,\\cdots,n$ 标号。
 
 小 A 想在这棵树上漫步。具体来说，小 A 会从树上的某个结点出发，每一步可以移动到与当前结点相邻的结点，并且小 A 只会在偶数步（可以是零步）后结束漫步。
 
@@ -27,13 +27,13 @@ const programmingQuestions = [
 
 ## 输入格式
 
-第一行，一个正整数 \$n\$。
+第一行，一个正整数 $n$。
 
-接下来 \$n-1\$ 行，每行两个整数 \$u_i,v_i\$，表示树上有⼀条连接结点 \$u_i\$ 和结点 \$v_i\$ 的边。
+接下来 $n-1$ 行，每行两个整数 $u_i,v_i$，表示树上有⼀条连接结点 $u_i$ 和结点 $v_i$ 的边。
 
 ## 输出格式
 
-一行，\$n\$ 个整数。第 \$i\$ 个整数表示从结点 \$i\$ 出发开始漫步，能结束漫步的结点数量。
+一行，$n$ 个整数。第 $i$ 个整数表示从结点 $i$ 出发开始漫步，能结束漫步的结点数量。
 `,
       score: 25,
       explanation: "树是二分图，把点按深度奇偶染成两色。走偶数步不会改变所在颜色，而且树上任意同色两点之间的距离都是偶数，所以从某点出发偶数步可达的点恰好是与它同色的全部节点。",
@@ -57,13 +57,13 @@ const programmingQuestions = [
 
 ## 题目描述
 
-小 A 喜欢坐地铁。地铁环线有 \$n\$ 个车站，依次以 \$1,2,\\cdots,n\$ 标号。车站 \$i\\ (1\\leq i \\le n)\$
+小 A 喜欢坐地铁。地铁环线有 $n$ 个车站，依次以 $1,2,\\cdots,n$ 标号。车站 $i\\ (1\\leq i \\le n)$
 
 ## 输入格式
 
-第一行，一个正整数 \$n\$，表示车站的数量。
+第一行，一个正整数 $n$，表示车站的数量。
 
-第二行，\$n\$ 个整数 \$a_i\$，分别表示经过每个车站时获得的快乐值。
+第二行，$n$ 个整数 $a_i$，分别表示经过每个车站时获得的快乐值。
 
 ## 输出格式
 
@@ -90,7 +90,7 @@ export const paperData = {
         {
             id: 1,
             type: "single",
-            question: "在面向对象编程中，类是一种重要的概念。下面关于类的描述中，不正确的是（ ）。",
+            question: `在面向对象编程中，类是一种重要的概念。下面关于类的描述中，不正确的是（ ）。`,
             options: [
                 "类是一个抽象的概念，用于描述具有相同属性和⾏为的对象集合。",
                 "类可以包含属性和方法，属性用于描述对象的状态，方法用于描述对象的⾏为。",
@@ -109,7 +109,7 @@ export const paperData = {
         {
             id: 2,
             type: "single",
-            question: "哈夫曼编码是一种数据压缩算法。以下关于哈夫曼编码的描述中，不正确的是（ ）。",
+            question: `哈夫曼编码是一种数据压缩算法。以下关于哈夫曼编码的描述中，不正确的是（ ）。`,
             options: [
                 "哈夫曼编码是一种变长编码，频率高的字符使用较短的编码，频率低的字符使用较长的编码。",
                 "在构造哈夫曼树时，频率越低的字符离根节点越近，频率越高的字符离根节点越远。",
@@ -128,7 +128,7 @@ export const paperData = {
         {
             id: 3,
             type: "single",
-            question: "以下代码实现了树的哪种遍历方式？",
+            question: `以下代码实现了树的哪种遍历方式？`,
             options: [
                 "前序遍历",
                 "中序遍历",
@@ -147,7 +147,7 @@ export const paperData = {
         {
             id: 4,
             type: "single",
-            question: "以下关于完全二叉树的代码描述，正确的是（ ）。 void traverse(TreeNode* root) { if (root == nullptr) return; cout << root->val << \" \"; traverse(root->left); traverse(root->right); } 1 2 3 4 5 6 bool isCompleteTree(TreeNode* root) {1",
+            question: `以下关于完全二叉树的代码描述，正确的是（ ）。 void traverse(TreeNode* root) { if (root == nullptr) return; cout << root->val << " "; traverse(root->left); traverse(root->right); } 1 2 3 4 5 6 bool isCompleteTree(TreeNode* root) {1`,
             options: [
                 "该代码用于判断一棵树是否为满二叉树",
                 "该代码用于判断一棵树是否为完全二叉树",
@@ -166,7 +166,7 @@ export const paperData = {
         {
             id: 5,
             type: "single",
-            question: "以下代码实现了二叉排序树的哪种操作？",
+            question: `以下代码实现了二叉排序树的哪种操作？`,
             options: [
                 "查找",
                 "插入",
@@ -185,7 +185,7 @@ export const paperData = {
         {
             id: 6,
             type: "single",
-            question: "给定字符集 {A, B, C, D} 的出现频率分别为 {5, 1, 6, 2}，则正确的哈夫曼编码是（ ）。",
+            question: `给定字符集 {A, B, C, D} 的出现频率分别为 {5, 1, 6, 2}，则正确的哈夫曼编码是（ ）。`,
             options: [
                 "A: 0, B: 100, C: 11, D: 101",
                 "A: 11, B: 100, C: 0, D: 101",
@@ -204,7 +204,7 @@ export const paperData = {
         {
             id: 7,
             type: "single",
-            question: "关于动态规划的描述，正确的是（ ）。",
+            question: `关于动态规划的描述，正确的是（ ）。`,
             options: [
                 "动态规划算法的时间复杂度总是低于贪⼼算法。",
                 "动态规划要求问题必须具有最优子结构和重叠子问题两个性质。",
@@ -223,7 +223,7 @@ export const paperData = {
         {
             id: 8,
             type: "single",
-            question: "以下代码中，类的构造函数被调用了（ ）次。",
+            question: `以下代码中，类的构造函数被调用了（ ）次。`,
             options: [
                 "1",
                 "2",
@@ -242,7 +242,7 @@ export const paperData = {
         {
             id: 9,
             type: "single",
-            question: "以下代码实现了循环队列的哪种操作？",
+            question: `以下代码实现了循环队列的哪种操作？`,
             options: [
                 "入队",
                 "出队",
@@ -261,7 +261,7 @@ export const paperData = {
         {
             id: 10,
             type: "single",
-            question: "以下代码实现了二叉树的深度优先搜索（ DFS ），并统计叶子结点的数量，则横线上应填写（ ）。",
+            question: `以下代码实现了二叉树的深度优先搜索（ DFS ），并统计叶子结点的数量，则横线上应填写（ ）。`,
             options: [
                 "if (node->left) s.push(node->left);",
                 "if (node->left) s.pop(node->left);",
@@ -280,7 +280,7 @@ export const paperData = {
         {
             id: 11,
             type: "single",
-            question: "以下代码实现了二叉树的⼴度优先搜索（ BFS ），并查找特定值的节点，则横线上应填写（ ）。",
+            question: `以下代码实现了二叉树的⼴度优先搜索（ BFS ），并查找特定值的节点，则横线上应填写（ ）。`,
             options: [
                 "if (current->left) q.push(current->left); if (current->right) q.push(current->right);",
                 "if (current->left) q.pop(current->left); if (current->right) q.pop(current->right);",
@@ -299,7 +299,7 @@ export const paperData = {
         {
             id: 12,
             type: "single",
-            question: "以下代码用于生成 位格雷编码。横线上应填写（ ）。",
+            question: `以下代码用于生成 位格雷编码。横线上应填写（ ）。`,
             options: [
                 "result.push_back(\"1\"+prev[i]);",
                 "result.push_back(\"0\"+prev[i]);",
@@ -318,7 +318,7 @@ export const paperData = {
         {
             id: 13,
             type: "single",
-            question: "以下代码实现了 0/1 背包问题的动态规划解法。假设物品重量为 weights[]，价值为 values[]，背包容量为 W，横线上应填写（ ）。",
+            question: `以下代码实现了 0/1 背包问题的动态规划解法。假设物品重量为 weights[]，价值为 values[]，背包容量为 W，横线上应填写（ ）。`,
             options: [
                 "dp[i-1][j], values[i-1]",
                 "dp[i-1][j], dp[i-1][j-weights[i-1]]+values[i-1]",
@@ -337,7 +337,7 @@ export const paperData = {
         {
             id: 14,
             type: "single",
-            question: "以下代码用于检查字符串中的括号是否匹配，横线上应填写（ ）。",
+            question: `以下代码用于检查字符串中的括号是否匹配，横线上应填写（ ）。`,
             options: [
                 "true",
                 "false",
@@ -356,7 +356,7 @@ export const paperData = {
         {
             id: 15,
             type: "single",
-            question: "关于下面代码，说法错误的是（ ）。",
+            question: `关于下面代码，说法错误的是（ ）。`,
             options: [
                 "语句Shape* shapePtr = &circle;和shapePtr = &rectangle;出现编译错误",
                 "Shape为基类， Circle 和 Rectangle是派生类",
@@ -375,7 +375,7 @@ export const paperData = {
         {
             id: 16,
             type: "judge",
-            question: "哈夫曼树在构造过程中，每次合并权值最小的两个节点，最终生成的树带权路径长度最小。",
+            question: `哈夫曼树在构造过程中，每次合并权值最小的两个节点，最终生成的树带权路径长度最小。`,
             options: [
                 "正确",
                 "错误",
@@ -392,7 +392,7 @@ export const paperData = {
         {
             id: 17,
             type: "judge",
-            question: "格雷编码的相邻两个编码之间必须有多位不同，以避免数据传输错误。",
+            question: `格雷编码的相邻两个编码之间必须有多位不同，以避免数据传输错误。`,
             options: [
                 "正确",
                 "错误",
@@ -409,7 +409,7 @@ export const paperData = {
         {
             id: 18,
             type: "judge",
-            question: "在树的深度优先搜索（ DFS ）中，使用队列作为辅助数据结构以实现 “ 先进后出 ” 的访问顺序。",
+            question: `在树的深度优先搜索（ DFS ）中，使用队列作为辅助数据结构以实现 “ 先进后出 ” 的访问顺序。`,
             options: [
                 "正确",
                 "错误",
@@ -426,7 +426,7 @@ export const paperData = {
         {
             id: 19,
             type: "judge",
-            question: "以下代码实现的是二叉树的中序遍历。", 
+            question: `以下代码实现的是二叉树的中序遍历。`, 
             options: [
                 "正确",
                 "错误",
@@ -443,7 +443,7 @@ export const paperData = {
         {
             id: 20,
             type: "judge",
-            question: "C++ 支持构造函数重载，但默认无参数的构造函数只能有一个。",
+            question: `C++ 支持构造函数重载，但默认无参数的构造函数只能有一个。`,
             options: [
                 "正确",
                 "错误",
@@ -460,7 +460,7 @@ export const paperData = {
         {
             id: 21,
             type: "judge",
-            question: "二叉排序树（ BST ）中，若某节点的左子树为空，则该节点一定是树中的最小值节点。",
+            question: `二叉排序树（ BST ）中，若某节点的左子树为空，则该节点一定是树中的最小值节点。`,
             options: [
                 "正确",
                 "错误",
@@ -477,7 +477,7 @@ export const paperData = {
         {
             id: 22,
             type: "judge",
-            question: "在动态规划解决一维硬币找零问题时，若硬币面额为 [1, 3, 4]，目标⾦额为 6，则最少需要 2 枚硬币 （ 3+3 ）。",
+            question: `在动态规划解决一维硬币找零问题时，若硬币面额为 [1, 3, 4]，目标⾦额为 6，则最少需要 2 枚硬币 （ 3+3 ）。`,
             options: [
                 "正确",
                 "错误",
@@ -494,7 +494,7 @@ export const paperData = {
         {
             id: 23,
             type: "judge",
-            question: "面向对象编程中，封装是指将数据和⾏为绑定在一起，并对外隐藏实现细节。",
+            question: `面向对象编程中，封装是指将数据和⾏为绑定在一起，并对外隐藏实现细节。`,
             options: [
                 "正确",
                 "错误",
@@ -511,7 +511,7 @@ export const paperData = {
         {
             id: 24,
             type: "judge",
-            question: "以下代码创建的树是一棵完全二叉树：",
+            question: `以下代码创建的树是一棵完全二叉树：`,
             options: [
                 "正确",
                 "错误",
@@ -528,7 +528,7 @@ export const paperData = {
         {
             id: 25,
             type: "judge",
-            question: "栈和队列均可以用双向链表实现，插入和删除操作的时间复杂度为 $O(1)$ 。",
+            question: `栈和队列均可以用双向链表实现，插入和删除操作的时间复杂度为 $O(1)$ 。`,
             options: [
                 "正确",
                 "错误",

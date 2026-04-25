@@ -22,7 +22,7 @@ export const paperData = {
     {
       id: 1,
       type: 'single',
-      question: '2026 年春节联欢晚会上一个武术表演节目《武 BOT》。节目中多个人形机器人会表演空翻，它们落地可能会有微微踉跄，但都会迅速调整姿态站稳，并适当移动来和前后左右的其他机器人保持原来队列。如果将机器人视作一个计算机系统，那么在该计算机系统中下面哪一项不能作为输入设备（ ）。',
+      question: `2026 年春节联欢晚会上一个武术表演节目《武 BOT》。节目中多个人形机器人会表演空翻，它们落地可能会有微微踉跄，但都会迅速调整姿态站稳，并适当移动来和前后左右的其他机器人保持原来队列。如果将机器人视作一个计算机系统，那么在该计算机系统中下面哪一项不能作为输入设备（ ）。`,
       options: ['检测重心的重力传感器', '预装的 AI 算法程序', '接收动作指令的遥控器', '拍摄其他机器人的摄像头'],
       answer: 1,
       score: 2,
@@ -32,7 +32,7 @@ export const paperData = {
     {
       id: 2,
       type: 'single',
-      question: '小明想在图形环境下把当前目录（或文件夹）下的文本文件 `20260314.txt` 改名。他用鼠标左键点击选中该文件后，立即完成下面哪个操作后将处于输入新文件名的状态（ ）。',
+      question: `小明想在图形环境下把当前目录（或文件夹）下的文本文件 \`20260314.txt\` 改名。他用鼠标左键点击选中该文件后，立即完成下面哪个操作后将处于输入新文件名的状态（ ）。`,
       options: ['单击右键并选择弹出菜单中的“重命名”', '双击左键', '按功能键 F1', '按回车键'],
       answer: 0,
       score: 2,
@@ -42,7 +42,7 @@ export const paperData = {
     {
       id: 3,
       type: 'single',
-      question: '下面 C++ 代码可以执行，有关说法正确的是（ ）。\n```cpp\ndouble PI = 3.1415926;\ncout << (PI);\n```',
+      question: `下面 C++ 代码可以执行，有关说法正确的是（ ）。\n\`\`\`cpp\ndouble PI = 3.1415926;\ncout << (PI);\n\`\`\``,
       options: [
         '为了方便初学者，`cout << (PI)` 和 `cout << (pi)` 效果相同，即变量的大小写不敏感',
         '把 `cout << (PI)` 修改为 `cout << (Pi)` 能正常执行',
@@ -57,7 +57,7 @@ export const paperData = {
     {
       id: 4,
       type: 'single',
-      question: 'C++ 表达式 `3 * 3 % 2` 的值为（ ）。',
+      question: `C++ 表达式 \`3 * 3 % 2\` 的值为（ ）。`,
       options: ['81', '27', '4', '1'],
       answer: 3,
       score: 2,
@@ -67,7 +67,7 @@ export const paperData = {
     {
       id: 5,
       type: 'single',
-      question: '整型变量 `a`、`b` 的初值都是 `4`，则下面的 C++ 代码执行后的输出是（ ）。\n```cpp\na, b = 3, 4;\ncout << (a + 2) << (b - 2) << endl;\ncout << a << b << endl;\n```',
+      question: `整型变量 \`a\`、\`b\` 的初值都是 \`4\`，则下面的 C++ 代码执行后的输出是（ ）。\n\`\`\`cpp\na, b = 3, 4;\ncout << (a + 2) << (b - 2) << endl;\ncout << a << b << endl;\n\`\`\``,
       options: ['61\n43', '52\n34', '62\n44', '62\n32'],
       answer: 0,
       score: 2,
@@ -77,7 +77,7 @@ export const paperData = {
     {
       id: 6,
       type: 'single',
-      question: '下面 C++ 代码的相关说法，正确的是（ ）。\n```cpp\nint N = 0;\ncin >> N;\ncout << (N);\n```',
+      question: `下面 C++ 代码的相关说法，正确的是（ ）。\n\`\`\`cpp\nint N = 0;\ncin >> N;\ncout << (N);\n\`\`\``,
       options: ['执行时如输入 `10`，则将输出 `10`', '执行时如输入 `3.14`，将报错', '执行时如输入 `ABC`，将报错', '执行时如输入 `-10`，将报错'],
       answer: 0,
       score: 2,
@@ -87,7 +87,7 @@ export const paperData = {
     {
       id: 7,
       type: 'single',
-      question: '下面 C++ 代码执行时，其说法正确的是（ ）。\n```cpp\nint M = 0, N = 0;\ncin >> M;\ncin >> N;\nif (N > M)\n    cout << (N - M);\nelse\n    cout << (M - N);\n```',
+      question: `下面 C++ 代码执行时，其说法正确的是（ ）。\n\`\`\`cpp\nint M = 0, N = 0;\ncin >> M;\ncin >> N;\nif (N > M)\n cout << (N - M);\nelse\n cout << (M - N);\n\`\`\``,
       options: ['如果输入一个正数和一个负数，其输出结果肯定是大于 0', '不管是负整数、正整数亦或 0，其结果肯定是大于等于 0', '如果 `N` 和 `M` 是相等的整数，将不会有输出', '如果 `N` 和 `M` 输入带有小数点的数，将按整数部分计算'],
       answer: 1,
       score: 2,
@@ -97,7 +97,7 @@ export const paperData = {
     {
       id: 8,
       type: 'single',
-      question: '下面 C++ 代码执行后的输出是（ ）。\n```cpp\nint i, tnt = 1;\nfor (i = 0; i < 5; i++)\n    tnt *= i;\nprintf(\"%2d%2d\\n\", tnt, i);\n```',
+      question: `下面 C++ 代码执行后的输出是（ ）。\n\`\`\`cpp\nint i, tnt = 1;\nfor (i = 0; i < 5; i++)\n tnt *= i;\nprintf("%2d%2d\\n", tnt, i);\n\`\`\``,
       options: ['24 5', '10 5', '0 4', '0 5'],
       answer: 3,
       score: 2,
@@ -107,7 +107,7 @@ export const paperData = {
     {
       id: 9,
       type: 'single',
-      question: '执行下面 C++ 代码段求序列 `-1+2+3-4+5+6-7+8+9-10+11+12...` 之前 `N` 项的值。下面说法中正确的是（ ）。\n```cpp\nint N, tnt, i;\ncout << \"请输入正整数：\";\ncin >> N;\ntnt = 0;\nfor (i = 1; i < N + 1; i++)  // L1\n    if (i % 3 == 1)          // L2\n        tnt += -i;\n    else\n        tnt += i;\ncout << tnt;\n```',
+      question: `执行下面 C++ 代码段求序列 \`-1+2+3-4+5+6-7+8+9-10+11+12...\` 之前 \`N\` 项的值。下面说法中正确的是（ ）。\n\`\`\`cpp\nint N, tnt, i;\ncout << "请输入正整数：";\ncin >> N;\ntnt = 0;\nfor (i = 1; i < N + 1; i++) // L1\n if (i % 3 == 1) // L2\n tnt += -i;\n else\n tnt += i;\ncout << tnt;\n\`\`\``,
       options: [
         'L1 行中 `i < N + 1` 应该改为 `i < N` 才会符合预期',
         'L2 行中 `i % 3 == 1` 应修改为 `i % 3 == 0` 才会符合预期',
@@ -122,12 +122,12 @@ export const paperData = {
     {
       id: 10,
       type: 'single',
-      question: '下面 C++ 代码的相关说法，正确的是（ ）。\n```cpp\nint i;\nfor (i = 1; i < 10; i++) {\n    if (i % 2 == 0) {\n        continue; // L1\n    } else {\n        cout << i << \"#\";\n    }\n}\ncout << i << \"END\";\n```',
+      question: `下面 C++ 代码的相关说法，正确的是（ ）。\n\`\`\`cpp\nint i;\nfor (i = 1; i < 10; i++) {\n if (i % 2 == 0) {\n continue; // L1\n } else {\n cout << i << "#";\n }\n}\ncout << i << "END";\n\`\`\``,
       options: [
         '上述代码执行后，其输出是 `1#3#5#7#9#9END`',
         '删除 `else` 后的执行效果与当前代码相同',
-        '删除 `else` 且将 `cout << i << \"#\"` 移入 L1 行下面，则执行效果与当前代码相同',
-        '在 `cout << i << \"END\"` 前增加判断 `if(i > 10)`，其执行效果与当前代码相同',
+        '删除 `else` 且将 `cout << i << "#"` 移入 L1 行下面，则执行效果与当前代码相同',
+        '在 `cout << i << "END"` 前增加判断 `if(i > 10)`，其执行效果与当前代码相同',
       ],
       answer: 1,
       score: 2,
@@ -137,7 +137,7 @@ export const paperData = {
     {
       id: 11,
       type: 'single',
-      question: '一个正整数的每位都是个位数，称为数位，最高位非 0。下面的 C++ 代码用于求正整数的所有数位之和。为实现该目标，横线处应该填写的代码是（ ）。\n```cpp\nint N;\ncin >> N;\nint tnt = 0;\nwhile (N != 0) {\n    ____________;\n    ____________;\n}\ncout << \"N 的数位和为：\" << tnt;\n```',
+      question: `一个正整数的每位都是个位数，称为数位，最高位非 0。下面的 C++ 代码用于求正整数的所有数位之和。为实现该目标，横线处应该填写的代码是（ ）。\n\`\`\`cpp\nint N;\ncin >> N;\nint tnt = 0;\nwhile (N != 0) {\n ____________;\n ____________;\n}\ncout << "N 的数位和为：" << tnt;\n\`\`\``,
       options: ['tnt += N / 10;\nN /= 10;', 'tnt += N % 10;\nN /= 10;', 'tnt += N / 10;\nN %= 10;', 'tnt = tnt + N % 10;\nN %= 10;'],
       answer: 1,
       score: 2,
@@ -147,7 +147,7 @@ export const paperData = {
     {
       id: 12,
       type: 'single',
-      question: '小明想要快速知道任给一个正整数中有多少个奇数位（数位值是奇数），下面的 C++ 代码是其实现，横线处应该填入的代码是（ ）。\n```cpp\nint N;\ncin >> N;\nint odd_count = 0;\nint old_number = N;\nwhile (N != 0) {\n    if (_________________)\n        odd_count += 1;\n    N = (N - N % 10) / 10;\n}\ncout << old_number << \" 中共有 \" << odd_count << \" 个奇数\";\n```',
+      question: `小明想要快速知道任给一个正整数中有多少个奇数位（数位值是奇数），下面的 C++ 代码是其实现，横线处应该填入的代码是（ ）。\n\`\`\`cpp\nint N;\ncin >> N;\nint odd_count = 0;\nint old_number = N;\nwhile (N != 0) {\n if (_________________)\n odd_count += 1;\n N = (N - N % 10) / 10;\n}\ncout << old_number << " 中共有 " << odd_count << " 个奇数";\n\`\`\``,
       options: ['N % 10 % 2 == 0', 'N % 10 % 2 == 1', 'N / 10 / 2 == 1', 'N / 2 / 10 == 0'],
       answer: 1,
       score: 2,
@@ -157,7 +157,7 @@ export const paperData = {
     {
       id: 13,
       type: 'single',
-      question: '小明和弟弟在玩一个拼数字游戏。二人各写一个两位正整数 `M` 和 `N`；然后将较大的数字放在较小的前面，拼成一个 4 位数；将这个 4 位数除以 3 的余数添加到 4 位数后面，得到一个 5 位数；最后判断这个 5 位数能否被 14 整除。下面的 C++ 代码用于判断 `M` 和 `N` 是否符合全部要求。关于下面代码描述正确的是（ ）。\n```cpp\nint M, N, Q;\ncin >> M >> N;\nif (M > N)      // L1\n    Q = M * 100 + N;\nelse\n    Q = N * 100 + M;\nif ((Q * 10 + Q % 3) % 14 == 0) // L2\n    cout << \"Y\";\nelse\n    cout << \"N\";\n```',
+      question: `小明和弟弟在玩一个拼数字游戏。二人各写一个两位正整数 \`M\` 和 \`N\`；然后将较大的数字放在较小的前面，拼成一个 4 位数；将这个 4 位数除以 3 的余数添加到 4 位数后面，得到一个 5 位数；最后判断这个 5 位数能否被 14 整除。下面的 C++ 代码用于判断 \`M\` 和 \`N\` 是否符合全部要求。关于下面代码描述正确的是（ ）。\n\`\`\`cpp\nint M, N, Q;\ncin >> M >> N;\nif (M > N) // L1\n Q = M * 100 + N;\nelse\n Q = N * 100 + M;\nif ((Q * 10 + Q % 3) % 14 == 0) // L2\n cout << "Y";\nelse\n cout << "N";\n\`\`\``,
       options: [
         '代码段不能完成正确判断',
         'L1 行代码中条件应该改为 `M <= N`',
@@ -172,7 +172,7 @@ export const paperData = {
     {
       id: 14,
       type: 'single',
-      question: '执行下面 C++ 代码可以判断一个 6 位正整数 `N` 的高 3 位和低 3 位的差是否是 `314` 的倍数。例如 `628314` 就符合要求。横线处应该填入（ ）。\n```cpp\ncin >> N;\nif (___________________________)\n    cout << N << \" 符合条件\" << endl;\n```',
+      question: `执行下面 C++ 代码可以判断一个 6 位正整数 \`N\` 的高 3 位和低 3 位的差是否是 \`314\` 的倍数。例如 \`628314\` 就符合要求。横线处应该填入（ ）。\n\`\`\`cpp\ncin >> N;\nif (___________________________)\n cout << N << " 符合条件" << endl;\n\`\`\``,
       options: [
         '((N % 1000) - (N / 1000)) / 314 == 0',
         '((N / 1000) - (N % 1000)) % 314 == 0',
@@ -187,7 +187,7 @@ export const paperData = {
     {
       id: 15,
       type: 'single',
-      question: '如果 `N` 的所有奇数位的数位和等于所有偶数位的数位和，则称它是一个“双螺旋数”。例如 `12375` 的所有奇数位的数位和是 9，同时它的所有偶数位的数位和也是 9。下面的 C++ 代码用于判断输入的 `N` 是否为双螺旋数。空白处应该填入的代码是（ ）。\n```cpp\nint i, N, N1 = 0, N2 = 0, N0;\ncin >> N;\nN0 = N;\nwhile (N) {\n    _________________________\n    _________________________\n}\nif (N1 == N2)\n    cout << N0 << \" 是双螺旋数\" << endl;\n```',
+      question: `如果 \`N\` 的所有奇数位的数位和等于所有偶数位的数位和，则称它是一个“双螺旋数”。例如 \`12375\` 的所有奇数位的数位和是 9，同时它的所有偶数位的数位和也是 9。下面的 C++ 代码用于判断输入的 \`N\` 是否为双螺旋数。空白处应该填入的代码是（ ）。\n\`\`\`cpp\nint i, N, N1 = 0, N2 = 0, N0;\ncin >> N;\nN0 = N;\nwhile (N) {\n _________________________\n _________________________\n}\nif (N1 == N2)\n cout << N0 << " 是双螺旋数" << endl;\n\`\`\``,
       options: [
         'N1 += N % 10, N /= 10;\nN2 += N % 10, N /= 10;',
         'N1 += N / 10, N /= 10;\nN2 += N / 10, N /= 10;',
@@ -202,7 +202,7 @@ export const paperData = {
     {
       id: 16,
       type: 'judge',
-      question: '小明的妈妈最近刚刚给他买了一块电话手表，除了可以看时间，小明也可以用它和妈妈打电话、收发信息，那么可以推测这块手表中装有一款特定操作系统。',
+      question: `小明的妈妈最近刚刚给他买了一块电话手表，除了可以看时间，小明也可以用它和妈妈打电话、收发信息，那么可以推测这块手表中装有一款特定操作系统。`,
       options: ['正确', '错误'],
       answer: 0,
       score: 2,
@@ -212,7 +212,7 @@ export const paperData = {
     {
       id: 17,
       type: 'judge',
-      question: 'C++ 表达式 `4 % 2` 和 `2 * 2 % 2` 的结果相同。',
+      question: `C++ 表达式 \`4 % 2\` 和 \`2 * 2 % 2\` 的结果相同。`,
       options: ['正确', '错误'],
       answer: 0,
       score: 2,
@@ -222,7 +222,7 @@ export const paperData = {
     {
       id: 18,
       type: 'judge',
-      question: '下面 C++ 代码段成功执行后将输出 `0`。\n```cpp\nfor (i = 1; i < 10; i++)\n    if (i % 3 == 0)\n        break;\ncout << i;\n```',
+      question: `下面 C++ 代码段成功执行后将输出 \`0\`。\n\`\`\`cpp\nfor (i = 1; i < 10; i++)\n if (i % 3 == 0)\n break;\ncout << i;\n\`\`\``,
       options: ['正确', '错误'],
       answer: 1,
       score: 2,
@@ -232,7 +232,7 @@ export const paperData = {
     {
       id: 19,
       type: 'judge',
-      question: '下面能够正常执行的 C++ 代码段用于求 `1` 到 `N` 之和，`N` 为正整数。因为 `i < N + 1`，所以是 `1` 到 `N` 且包含 `N` 之和。\n```cpp\ntnt = 0;\ncout << \"请输入正整数：\";\ncin >> N;\ntotal = 0;\nfor (i = 1; i < N + 1; i++) ;\n    total += i;\ncout << total;\n```',
+      question: `下面能够正常执行的 C++ 代码段用于求 \`1\` 到 \`N\` 之和，\`N\` 为正整数。因为 \`i < N + 1\`，所以是 \`1\` 到 \`N\` 且包含 \`N\` 之和。\n\`\`\`cpp\ntnt = 0;\ncout << "请输入正整数：";\ncin >> N;\ntotal = 0;\nfor (i = 1; i < N + 1; i++) ;\n total += i;\ncout << total;\n\`\`\``,
       options: ['正确', '错误'],
       answer: 1,
       score: 2,
@@ -242,7 +242,7 @@ export const paperData = {
     {
       id: 20,
       type: 'judge',
-      question: '执行下面的 C++ 代码段，其语句 `cout << (N)` 将被执行 0 次或无数次（即死循环）。\n```cpp\ncin >> N;\nwhile (N)\n    cout << (N);\n```',
+      question: `执行下面的 C++ 代码段，其语句 \`cout << (N)\` 将被执行 0 次或无数次（即死循环）。\n\`\`\`cpp\ncin >> N;\nwhile (N)\n cout << (N);\n\`\`\``,
       options: ['正确', '错误'],
       answer: 0,
       score: 2,
@@ -252,7 +252,7 @@ export const paperData = {
     {
       id: 21,
       type: 'judge',
-      question: '下面的 C++ 代码段的变量都是整型，它能用于判断输入的正整数是否为对称数。\n```cpp\ncout << \"请输入正整数:\";\ncin >> n;\nold_number = n;\nnew_number = 0;\nwhile (n != 0) {\n    new_number = new_number * 10 + n % 10;\n    n /= 10;\n}\nif (old_number == new_number)\n    cout << \"对称数\";\nelse\n    cout << \"非对称数\";\n```',
+      question: `下面的 C++ 代码段的变量都是整型，它能用于判断输入的正整数是否为对称数。\n\`\`\`cpp\ncout << "请输入正整数:";\ncin >> n;\nold_number = n;\nnew_number = 0;\nwhile (n != 0) {\n new_number = new_number * 10 + n % 10;\n n /= 10;\n}\nif (old_number == new_number)\n cout << "对称数";\nelse\n cout << "非对称数";\n\`\`\``,
       options: ['正确', '错误'],
       answer: 0,
       score: 2,
@@ -262,7 +262,7 @@ export const paperData = {
     {
       id: 22,
       type: 'judge',
-      question: '执行下面的 C++ 代码段，如果变量都为整型变量、输入为大于 0 的整数，则输出数值一定为 `-N` 的值。\n```cpp\ncin >> N;\ntotal = 0;\nfor (i = -N; i < N; i += 2)\n    total += i;\ncout << total;\n```',
+      question: `执行下面的 C++ 代码段，如果变量都为整型变量、输入为大于 0 的整数，则输出数值一定为 \`-N\` 的值。\n\`\`\`cpp\ncin >> N;\ntotal = 0;\nfor (i = -N; i < N; i += 2)\n total += i;\ncout << total;\n\`\`\``,
       options: ['正确', '错误'],
       answer: 0,
       score: 2,
@@ -272,7 +272,7 @@ export const paperData = {
     {
       id: 23,
       type: 'judge',
-      question: '执行 C++ 语句 `printf("%d\\n", 3.14)` 将报错。',
+      question: `执行 C++ 语句 \`printf("%d\\n", 3.14)\` 将报错。`,
       options: ['正确', '错误'],
       answer: 1,
       score: 2,
@@ -282,7 +282,7 @@ export const paperData = {
     {
       id: 24,
       type: 'judge',
-      question: '执行下面的 C++ 代码后将输出 `2500`。\n```cpp\nint cnt = 0;\nfor (int i = 1; i < 100; i++)\n    cnt += i++;\ncout << cnt;\n```',
+      question: `执行下面的 C++ 代码后将输出 \`2500\`。\n\`\`\`cpp\nint cnt = 0;\nfor (int i = 1; i < 100; i++)\n cnt += i++;\ncout << cnt;\n\`\`\``,
       options: ['正确', '错误'],
       answer: 0,
       score: 2,
@@ -292,7 +292,7 @@ export const paperData = {
     {
       id: 25,
       type: 'judge',
-      question: '小明在测试 C++ 的 `printf` 功能时执行了 `printf("%-5d\\n", 314)`，则代码输出的结果是 `-5314`。',
+      question: `小明在测试 C++ 的 \`printf\` 功能时执行了 \`printf("%-5d\\n", 314)\`，则代码输出的结果是 \`-5314\`。`,
       options: ['正确', '错误'],
       answer: 1,
       score: 2,

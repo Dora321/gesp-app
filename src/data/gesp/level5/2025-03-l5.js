@@ -18,15 +18,15 @@ const programmingQuestions = [
 
 ## 题目描述
 
-小 A 有 \$2n\$ 件物品，小 B 和小 C 想从小 A 手上买走这些物品。对于第 \$i\$ 件物品，小 B 会以 \$b_i\$ 的价格购买，而小 C 会以 \$c_i\$ 的价格购买。为了平均分配这 \$2n\$ 件物品，小 A 决定小 B 和小 C 各自只能买走恰好 \$n\$ 件物品。你能帮小 A 求出他卖出这 \$2n\$ 件物品所能获得的最大收入吗？
+小 A 有 $2n$ 件物品，小 B 和小 C 想从小 A 手上买走这些物品。对于第 $i$ 件物品，小 B 会以 $b_i$ 的价格购买，而小 C 会以 $c_i$ 的价格购买。为了平均分配这 $2n$ 件物品，小 A 决定小 B 和小 C 各自只能买走恰好 $n$ 件物品。你能帮小 A 求出他卖出这 $2n$ 件物品所能获得的最大收入吗？
 
 ## 输入格式
 
-第一行，一个正整数 \$n\$。
+第一行，一个正整数 $n$。
 
-第二行，\$2n\$ 个整数 \$b_1,b_2,\\dots,b_{2n}\$。
+第二行，$2n$ 个整数 $b_1,b_2,\\dots,b_{2n}$。
 
-第三行，\$2n\$ 个整数 \$c_1,c_2,\\dots,c_{2n}\$。
+第三行，$2n$ 个整数 $c_1,c_2,\\dots,c_{2n}$。
 
 ## 输出格式
 
@@ -56,19 +56,19 @@ No` }
 
 ## 题目描述
 
-小 A 知道，对于质数 \$p\$ 而言，\$p\$ 的原根 \$g\$ 是满足以下条件的正整数：
+小 A 知道，对于质数 $p$ 而言，$p$ 的原根 $g$ 是满足以下条件的正整数：
 
-+ \$1 \le g < p\$
++ $1 le g < p$
 
 ## 输入格式
 
-第一行，一个正整数 \$T\$，表示测试数据组数。
+第一行，一个正整数 $T$，表示测试数据组数。
 
-每组测试数据包含一行，两个正整数 \$a,p\$。
+每组测试数据包含一行，两个正整数 $a,p$。
 
 ## 输出格式
 
-对于每组测试数据，输出一行，如果 \$a\$ 是 \$p\$ 的原根则输出 \`Yes\`，否则输出 \`No\`。
+对于每组测试数据，输出一行，如果 $a$ 是 $p$ 的原根则输出 \`Yes\`，否则输出 \`No\`。
 `,
       score: 25,
       explanation: "对质数 p，只需验证对于 p-1 的每个不同质因子 q，都有 a^((p-1)/q) mod p != 1。若全部成立，则 a 是 p 的原根。",
@@ -91,7 +91,7 @@ export const paperData = {
         {
             id: 1,
             type: "single",
-            question: "链表不具备的特点是 ( ) 。",
+            question: `链表不具备的特点是 ( ) 。`,
             options: [
                 "可随机访问任何一个元素",
                 "插入、删除操作不需要移动元素",
@@ -110,7 +110,7 @@ export const paperData = {
         {
             id: 2,
             type: "single",
-            question: "双向链表中每个结点有两个指针域 prev 和 next，分别指向前驱和后继。设 p 指向链表中的一个结点，且其前驱和后继都非空。要删除结点 p，下述语句中错误的是（ ）。",
+            question: `双向链表中每个结点有两个指针域 prev 和 next，分别指向前驱和后继。设 p 指向链表中的一个结点，且其前驱和后继都非空。要删除结点 p，下述语句中错误的是（ ）。`,
             options: [
                 "p->next->prev = p->next; p->prev->next = p->prev; delete p;",
                 "p->prev->next = p->next; p->next->prev = p->prev; delete p;",
@@ -129,7 +129,7 @@ export const paperData = {
         {
             id: 3,
             type: "single",
-            question: "假设双向链表包含头、尾两个哨兵结点（不存储实际内容），分别为 head 和 tail，链表中每个结点有 prev 和 next 两个指针域。下面代码用于初始化一个空链表，横线上应填的最佳代码是（ ）。",
+            question: `假设双向链表包含头、尾两个哨兵结点（不存储实际内容），分别为 head 和 tail，链表中每个结点有 prev 和 next 两个指针域。下面代码用于初始化一个空链表，横线上应填的最佳代码是（ ）。`,
             options: [
                 "list->head->prev = list->head; list->tail->prev = list->head;",
                 "list->head->next = list->tail; list->tail->prev = list->head;",
@@ -148,7 +148,7 @@ export const paperData = {
         {
             id: 4,
             type: "single",
-            question: "用辗转相除法（欧几里得算法）求 gcd(84, 60) 时，第二步计算的是哪一对数（ ）。",
+            question: `用辗转相除法（欧几里得算法）求 gcd(84, 60) 时，第二步计算的是哪一对数（ ）。`,
             options: [
                 "84 和 60",
                 "60 和 24",
@@ -167,7 +167,7 @@ export const paperData = {
         {
             id: 5,
             type: "single",
-            question: "根据唯一分解定理，下面整数的唯一分解是正确的（ ）。",
+            question: `根据唯一分解定理，下面整数的唯一分解是正确的（ ）。`,
             options: [
                 "18 = 3 × 6",
                 "28 = 4 × 7",
@@ -186,7 +186,7 @@ export const paperData = {
         {
             id: 6,
             type: "single",
-            question: "下述代码实现素数表的线性筛法，筛选出所有小于等于 n 的素数，横线上应填的最佳代码是（ ）。",
+            question: `下述代码实现素数表的线性筛法，筛选出所有小于等于 n 的素数，横线上应填的最佳代码是（ ）。`,
             options: [
                 "j < primes.size()",
                 "i * primes[j] <= n",
@@ -205,7 +205,7 @@ export const paperData = {
         {
             id: 7,
             type: "single",
-            question: "在程序运⾏过程中，如果递归调用的层数过多，会因为（ ）引发错误。",
+            question: `在程序运⾏过程中，如果递归调用的层数过多，会因为（ ）引发错误。`,
             options: [
                 "系统分配的栈空间溢出",
                 "系统分配的堆空间溢出",
@@ -224,7 +224,7 @@ export const paperData = {
         {
             id: 8,
             type: "single",
-            question: "对下面两个求阶乘的函数，说法错误的是（ ）。",
+            question: `对下面两个求阶乘的函数，说法错误的是（ ）。`,
             options: [
                 "两个函数的实现的功能相同。",
                 "两个函数的时间复杂度均为 $O(N)$。",
@@ -243,7 +243,7 @@ export const paperData = {
         {
             id: 9,
             type: "single",
-            question: "下算法中，（ ）是不稳定的排序。",
+            question: `下算法中，（ ）是不稳定的排序。`,
             options: [
                 "选择排序",
                 "插入排序",
@@ -262,7 +262,7 @@ export const paperData = {
         {
             id: 10,
             type: "single",
-            question: "考虑以下 C++ 代码实现的快速排序算法，将数据从小到大排序，则 partition 中横线上应填的最佳代码是（ ）。",
+            question: `考虑以下 C++ 代码实现的快速排序算法，将数据从小到大排序，则 partition 中横线上应填的最佳代码是（ ）。`,
             options: [
                 "[待补充选项]",
                 "选项B",
@@ -281,7 +281,7 @@ export const paperData = {
         {
             id: 11,
             type: "single",
-            question: "若用二分法在 [1, 100] 内猜数，最多需要猜（ ）次。",
+            question: `若用二分法在 [1, 100] 内猜数，最多需要猜（ ）次。`,
             options: [
                 "100",
                 "10",
@@ -300,7 +300,7 @@ export const paperData = {
         {
             id: 12,
             type: "single",
-            question: "下面代码实现了二分查找算法，在数组 arr 中查找目标元素 target 的位置，则横线上能填写的最佳代码是（ ）。",
+            question: `下面代码实现了二分查找算法，在数组 arr 中查找目标元素 target 的位置，则横线上能填写的最佳代码是（ ）。`,
             options: [
                 "int mid = left+(right-left) / 2;",
                 "int mid = left;",
@@ -319,7 +319,7 @@ export const paperData = {
         {
             id: 13,
             type: "single",
-            question: "贪⼼算法的核⼼特征是（ ）。",
+            question: `贪⼼算法的核⼼特征是（ ）。`,
             options: [
                 "总是选择当前最优解",
                 "回溯尝试所有可能",
@@ -338,7 +338,7 @@ export const paperData = {
         {
             id: 14,
             type: "single",
-            question: "函数 int findMax(int arr[], int low, int high) 计算数组从索引 low 到 high 范围内的最大元素，以下哪项正确实现了分治逻辑（ ）。",
+            question: `函数 int findMax(int arr[], int low, int high) 计算数组从索引 low 到 high 范围内的最大元素，以下哪项正确实现了分治逻辑（ ）。`,
             options: [
                 "if (low > high) return 0; int mid = (low+high) / 2; return max(findMax(arr, low, mid-1), findMax(arr, mid+1, high));",
                 "if (low == high) return arr[low]; int mid = (low+high) / 2; return arr[mid];",
@@ -357,7 +357,7 @@ export const paperData = {
         {
             id: 15,
             type: "single",
-            question: "小杨编写了一个如下的高精度乘法函数，则处理进位时横线上应填写的代码为（ ）。",
+            question: `小杨编写了一个如下的高精度乘法函数，则处理进位时横线上应填写的代码为（ ）。`,
             options: [
                 "int temp = c[k];",
                 "int temp = c[k]+carry;",
@@ -376,7 +376,7 @@ export const paperData = {
         {
             id: 16,
             type: "judge",
-            question: "快速排序算法的时间复杂度与输入是否有序无关，始终稳定",
+            question: `快速排序算法的时间复杂度与输入是否有序无关，始终稳定`,
             options: [
                 "正确",
                 "错误",
@@ -393,7 +393,7 @@ export const paperData = {
         {
             id: 17,
             type: "judge",
-            question: "要删除单链表中某个结点 p（非尾结点），但不知道头结点，可行的操作是将 p->next 的数据拷贝到 p，再跳过并删除 p->next。",
+            question: `要删除单链表中某个结点 p（非尾结点），但不知道头结点，可行的操作是将 p->next 的数据拷贝到 p，再跳过并删除 p->next。`,
             options: [
                 "正确",
                 "错误",
@@ -410,7 +410,7 @@ export const paperData = {
         {
             id: 18,
             type: "judge",
-            question: "链表存储线性表时要求内存中可用存储单元地址是连续的。",
+            question: `链表存储线性表时要求内存中可用存储单元地址是连续的。`,
             options: [
                 "正确",
                 "错误",
@@ -427,7 +427,7 @@ export const paperData = {
         {
             id: 19,
             type: "judge",
-            question: "线性筛相对于埃拉托斯特尼筛法，每个合数只会被它的最小质因数筛去一次，因此效率更高。",
+            question: `线性筛相对于埃拉托斯特尼筛法，每个合数只会被它的最小质因数筛去一次，因此效率更高。`,
             options: [
                 "正确",
                 "错误",
@@ -444,7 +444,7 @@ export const paperData = {
         {
             id: 20,
             type: "judge",
-            question: "贪⼼算法通过每一步选择当前最优解，从而一定能获得全局最优解。",
+            question: `贪⼼算法通过每一步选择当前最优解，从而一定能获得全局最优解。`,
             options: [
                 "正确",
                 "错误",
@@ -461,7 +461,7 @@ export const paperData = {
         {
             id: 21,
             type: "judge",
-            question: "递归函数必须具有终止条件，以防止无限递归。",
+            question: `递归函数必须具有终止条件，以防止无限递归。`,
             options: [
                 "正确",
                 "错误",
@@ -478,7 +478,7 @@ export const paperData = {
         {
             id: 22,
             type: "judge",
-            question: "归并排序算法的时间复杂度与输入是否有序无关，始终稳定在 $O(n \log n)$。",
+            question: `归并排序算法的时间复杂度与输入是否有序无关，始终稳定在 $O(n log n)$。`,
             options: [
                 "正确",
                 "错误",
@@ -495,7 +495,7 @@ export const paperData = {
         {
             id: 23,
             type: "judge",
-            question: "二分查找适用于对无序数组和有序数组的查找。",
+            question: `二分查找适用于对无序数组和有序数组的查找。`,
             options: [
                 "正确",
                 "错误",
@@ -512,7 +512,7 @@ export const paperData = {
         {
             id: 24,
             type: "judge",
-            question: "小杨有 100 元去超市买东西，每个商品有各自的价格，每种商品只能买 1 个。若目标是买到最多数量的商品，每次优先买价格最低的商品，这体现的是贪心思想。",
+            question: `小杨有 100 元去超市买东西，每个商品有各自的价格，每种商品只能买 1 个。若目标是买到最多数量的商品，每次优先买价格最低的商品，这体现的是贪心思想。`,
             options: [
                 "正确",
                 "错误",
@@ -529,7 +529,7 @@ export const paperData = {
         {
             id: 25,
             type: "judge",
-            question: "归并排序算法体现了分治算法，每次将大的待排序数组分成大小大致相等的两个小数组，然后分别对两个 小数组进⾏排序，最后对排好序的两个小数组合并成有序数组。",
+            question: `归并排序算法体现了分治算法，每次将大的待排序数组分成大小大致相等的两个小数组，然后分别对两个 小数组进⾏排序，最后对排好序的两个小数组合并成有序数组。`,
             options: [
                 "正确",
                 "错误",

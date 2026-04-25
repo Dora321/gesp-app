@@ -12,7 +12,7 @@ export const paperData = {
         {
             id: 1,
             type: "single",
-            question: "高级语言编写的程序需要经过以下（ ）操作，可以生成在计算机上运行的可执行代码。",
+            question: `高级语言编写的程序需要经过以下（ ）操作，可以生成在计算机上运行的可执行代码。`,
             options: [
                 "编辑",
                 "保存",
@@ -27,7 +27,7 @@ export const paperData = {
         {
             id: 2,
             type: "single",
-            question: "排序算法是稳定的(Stable Sorting)，就是指排序算法可以保证，在待排序数据中有两个相等记录的关键字R和S(R出现在S之前)，在排序后的列表中R也一定在S前。下面关于排序稳定性的描述，正确的是（ ）。",
+            question: `排序算法是稳定的(Stable Sorting)，就是指排序算法可以保证，在待排序数据中有两个相等记录的关键字R和S(R出现在S之前)，在排序后的列表中R也一定在S前。下面关于排序稳定性的描述，正确的是（ ）。`,
             options: [
                 "冒泡排序是不稳定的",
                 "插入排序是不稳定的",
@@ -42,7 +42,7 @@ export const paperData = {
         {
             id: 3,
             type: "single",
-            question: "下列关于C++语言中指针的叙述，不正确的是（ ）。",
+            question: `下列关于C++语言中指针的叙述，不正确的是（ ）。`,
             options: [
                 "指针变量中存储的是内存地址。",
                 "定义指针变量时必须指定其指向的类型。",
@@ -57,7 +57,7 @@ export const paperData = {
         {
             id: 4,
             type: "single",
-            question: "下列关于C++语言中数组的叙述，不正确的是（ ）。",
+            question: `下列关于C++语言中数组的叙述，不正确的是（ ）。`,
             options: [
                 "一维数组在内存中一定是连续存放的。",
                 "二维数组是一维数组的一维数组。",
@@ -72,7 +72,7 @@ export const paperData = {
         {
             id: 5,
             type: "single",
-            question: "下列关于C++语言中函数的叙述，正确的是（ ）。",
+            question: `下列关于C++语言中函数的叙述，正确的是（ ）。`,
             options: [
                 "函数必须有名字。",
                 "函数必须有参数。",
@@ -87,7 +87,7 @@ export const paperData = {
         {
             id: 6,
             type: "single",
-            question: "下列关于C++语言中变量的叙述，正确的是（ ）。",
+            question: `下列关于C++语言中变量的叙述，正确的是（ ）。`,
             options: [
                 "变量定义后可以一直使用。",
                 "两个变量的变量名不能是相同的。",
@@ -102,7 +102,7 @@ export const paperData = {
         {
             id: 7,
             type: "single",
-            question: "一个二维数组定义为 double array[3][10]; ，则这个二维数组占用内存的大小为（ ）。",
+            question: `一个二维数组定义为 double array[3][10]; ，则这个二维数组占用内存的大小为（ ）。`,
             options: [
                 "30",
                 "60",
@@ -117,7 +117,7 @@ export const paperData = {
         {
             id: 8,
             type: "single",
-            question: "一个变量定义为 int *p = nullptr; ，则下列说法正确的是（ ）。",
+            question: `一个变量定义为 int *p = nullptr; ，则下列说法正确的是（ ）。`,
             options: [
                 "该指针变量的类型为int。",
                 "该指针变量指向的类型为int。",
@@ -132,7 +132,7 @@ export const paperData = {
         {
             id: 9,
             type: "single",
-            question: "一个二维数组定义为 int array[5][3]; ，则 array[1][2] 和 array[2][1] 在内存中的位置相差多少字节?",
+            question: `一个二维数组定义为 int array[5][3]; ，则 array[1][2] 和 array[2][1] 在内存中的位置相差多少字节?`,
             options: [
                 "2字节",
                 "4字节",
@@ -147,7 +147,7 @@ export const paperData = {
         {
             id: 10,
             type: "single",
-            question: "如果a为int类型的变量，且a的值为6，则执行 a &= 3; 之后，a的值会是（ ）。",
+            question: `如果a为int类型的变量，且a的值为6，则执行 a &= 3; 之后，a的值会是（ ）。`,
             options: [
                 "3",
                 "9",
@@ -162,7 +162,7 @@ export const paperData = {
         {
             id: 11,
             type: "single",
-            question: "一个数组定义为 int a[5]={1, 2, 3, 4, 5}; ，一个指针定义为 int *p=&a[2]; ，则执行 a[1] = *p; 后，数组a中的值会变为（ ）。",
+            question: `一个数组定义为 int a[5]={1, 2, 3, 4, 5}; ，一个指针定义为 int *p=&a[2]; ，则执行 a[1] = *p; 后，数组a中的值会变为（ ）。`,
             options: [
                 "{1, 3, 3, 4, 5}",
                 "{2, 2, 3, 4, 5}",
@@ -177,7 +177,7 @@ export const paperData = {
         {
             id: 12,
             type: "single",
-            question: "以下哪个函数声明在调用时可以传递二维数组的名字作为参数?",
+            question: `以下哪个函数声明在调用时可以传递二维数组的名字作为参数?`,
             options: [
                 "void BubbleSort(int a[][4]);",
                 "void BubbleSort(int a[3][]);",
@@ -192,7 +192,7 @@ export const paperData = {
         {
             id: 13,
             type: "single",
-            question: "在下列代码的横线处填写（ ），可以使得输出是“20 10”。\nvoid xchg(______) { int t = *x; *x = *y; *y = t; }\nint main() { int a = 10, b = 20; xchg(&a, &b); cout << a << ' ' << b << endl; }",
+            question: `在下列代码的横线处填写（ ），可以使得输出是“20 10”。\nvoid xchg(______) { int t = *x; *x = *y; *y = t; }\nint main() { int a = 10, b = 20; xchg(&a, &b); cout << a << ' ' << b << endl; }`,
             options: [
                 "int x, int y",
                 "int *x, int *y",
@@ -207,7 +207,7 @@ export const paperData = {
         {
             id: 14,
             type: "single",
-            question: "执行以下C++语言程序后，输出结果是（ ）。\nint main() { int array[3][3]; for(int i=0; i<3; i++) for(int j=0; j<3; j++) array[i][j] = i*10+j; int sum=0; for(int i=0; i<3; i++) sum += array[i][i]; cout << sum << endl; }",
+            question: `执行以下C++语言程序后，输出结果是（ ）。\nint main() { int array[3][3]; for(int i=0; i<3; i++) for(int j=0; j<3; j++) array[i][j] = i*10+j; int sum=0; for(int i=0; i<3; i++) sum += array[i][i]; cout << sum << endl; }`,
             options: [
                 "3",
                 "30",
@@ -222,7 +222,7 @@ export const paperData = {
         {
             id: 15,
             type: "single",
-            question: "在下列代码的横线处填写（ ），完成对有n个int类型元素的数组array由小到大排序。\nvoid SelectionSort(int array[], int n) { int i, j, min, temp; for(i=0; i<$n-1$; i++) { min = i; for(j=i+1; j<n; j++) if(______) min = j; temp=array[min]; array[min]=array[i]; array[i]=temp; } }",
+            question: `在下列代码的横线处填写（ ），完成对有n个int类型元素的数组array由小到大排序。\nvoid SelectionSort(int array[], int n) { int i, j, min, temp; for(i=0; i<$n-1$; i++) { min = i; for(j=i+1; j<n; j++) if(______) min = j; temp=array[min]; array[min]=array[i]; array[i]=temp; } }`,
             options: [
                 "array[min] > array[j]",
                 "array[min] > array[i]",
@@ -237,7 +237,7 @@ export const paperData = {
         {
             id: 16,
             type: "judge",
-            question: "域名是由一串用点分隔的名字来标识互联网上一个计算机或计算机组的名称，CCF编程能力等级认证官方网站的域名是gesp.ccf.org.cn，其中顶级域名是gesp。",
+            question: `域名是由一串用点分隔的名字来标识互联网上一个计算机或计算机组的名称，CCF编程能力等级认证官方网站的域名是gesp.ccf.org.cn，其中顶级域名是gesp。`,
             options: ["正确", "错误"],
             answer: 1,
             score: 2,
@@ -247,7 +247,7 @@ export const paperData = {
         {
             id: 17,
             type: "judge",
-            question: "斐波那契数列计算体现了递推的编程思想。",
+            question: `斐波那契数列计算体现了递推的编程思想。`,
             options: ["正确", "错误"],
             answer: 0,
             score: 2,
@@ -257,7 +257,7 @@ export const paperData = {
         {
             id: 18,
             type: "judge",
-            question: "在C++语言中，函数的参数默认以引用传递方式进行传递。",
+            question: `在C++语言中，函数的参数默认以引用传递方式进行传递。`,
             options: ["正确", "错误"],
             answer: 1,
             score: 2,
@@ -267,7 +267,7 @@ export const paperData = {
         {
             id: 19,
             type: "judge",
-            question: "在C++语言中，可以定义四维数组，但在解决实际问题时不可能用到，因为世界是三维的。",
+            question: `在C++语言中，可以定义四维数组，但在解决实际问题时不可能用到，因为世界是三维的。`,
             options: ["正确", "错误"],
             answer: 1,
             score: 2,
@@ -277,7 +277,7 @@ export const paperData = {
         {
             id: 20,
             type: "judge",
-            question: "在C++语言中，一个函数没有被调用时，它的参数不占用内存。",
+            question: `在C++语言中，一个函数没有被调用时，它的参数不占用内存。`,
             options: ["正确", "错误"],
             answer: 0,
             score: 2,
@@ -287,7 +287,7 @@ export const paperData = {
         {
             id: 21,
             type: "judge",
-            question: "在C++语言中，如果一个函数可能抛出异常，那么一定要在try子句里调用这个函数。",
+            question: `在C++语言中，如果一个函数可能抛出异常，那么一定要在try子句里调用这个函数。`,
             options: ["正确", "错误"],
             answer: 1,
             score: 2,
@@ -297,7 +297,7 @@ export const paperData = {
         {
             id: 22,
             type: "judge",
-            question: "如果希望记录10个最长为99字节的字符串，可以将字符串数组定义为 char s[100][10]; 。",
+            question: `如果希望记录10个最长为99字节的字符串，可以将字符串数组定义为 char s[100][10]; 。`,
             options: ["正确", "错误"],
             answer: 1,
             score: 2,
@@ -307,7 +307,7 @@ export const paperData = {
         {
             id: 23,
             type: "judge",
-            question: "字符常量 '@' 和 \"\\0\" 是等价的。",
+            question: `字符常量 '@' 和 "\\0" 是等价的。`,
             options: ["正确", "错误"],
             answer: 1,
             score: 2,
@@ -317,7 +317,7 @@ export const paperData = {
         {
             id: 24,
             type: "judge",
-            question: ">= 和 >>= 都是C++语言的运算符。",
+            question: `>= 和 >>= 都是C++语言的运算符。`,
             options: ["正确", "错误"],
             answer: 0,
             score: 2,
@@ -327,7 +327,7 @@ export const paperData = {
         {
             id: 25,
             type: "judge",
-            question: "由于文件重定向操作，程序员在使用C++语言编写程序时无法确定通过cout输出的内容是否会被输出到屏幕上。",
+            question: `由于文件重定向操作，程序员在使用C++语言编写程序时无法确定通过cout输出的内容是否会被输出到屏幕上。`,
             options: ["正确", "错误"],
             answer: 0,
             score: 2,
@@ -357,22 +357,22 @@ F`
 
 小明发明了一种“幸运数”。一个正整数从个位开始编号，第 1、3、5... 位上的数字都要做一次变换，第 2、4、6... 位上的数字保持不变。
 
-对奇数位上的数字 \$t\$，变换规则为：
+对奇数位上的数字 $t$，变换规则为：
 
-- 先计算 \$t \\times 7\$；
-- 如果结果不大于 \$9\$，就把它作为变换结果；
-- 否则不断把各位数字相加，直到结果不大于 \$9\$。
+- 先计算 $t \\times 7$；
+- 如果结果不大于 $9$，就把它作为变换结果；
+- 否则不断把各位数字相加，直到结果不大于 $9$。
 
-把所有数位处理完成后，再将最终各位数字求和；如果这个和是 \$8\$ 的倍数，则称原数是幸运数。
+把所有数位处理完成后，再将最终各位数字求和；如果这个和是 $8$ 的倍数，则称原数是幸运数。
 
 ## 输入格式
 
-第一行一个正整数 \$N\$，表示待判断的整数个数。  
-接下来 \$N\$ 行，每行一个正整数 \$x\$。
+第一行一个正整数 $N$，表示待判断的整数个数。 
+接下来 $N$ 行，每行一个正整数 $x$。
 
 ## 输出格式
 
-输出 \$N\$ 行。若对应整数是幸运数，输出 \`T\`；否则输出 \`F\`。
+输出 $N$ 行。若对应整数是幸运数，输出 \`T\`；否则输出 \`F\`。
 `,
       score: 25,
       answer: '',
@@ -460,12 +460,12 @@ B240326878D16E
 
 ## 输入格式
 
-第一行一个正整数 \$N\$，表示图像共有 \$N\$ 行。  
-接下来 \$N\$ 行，每行是一个长度为偶数的十六进制字符串，每两位表示一个像素。
+第一行一个正整数 $N$，表示图像共有 $N$ 行。 
+接下来 $N$ 行，每行是一个长度为偶数的十六进制字符串，每两位表示一个像素。
 
 ## 输出格式
 
-第一行输出被选中的 16 种灰度的十六进制编码，共 32 个字符。  
+第一行输出被选中的 16 种灰度的十六进制编码，共 32 个字符。 
 随后输出压缩后的图像，每个像素用一位十六进制数表示。
 `,
       score: 25,

@@ -21,7 +21,7 @@ export const paperData = {
     {
       id: 1,
       type: 'single',
-      question: '人工智能现在非常火，小杨就想多了解一下，其中就经常听人提到“大模型”。那么请问这里说的“大模型”最贴切意指( )。',
+      question: `人工智能现在非常火，小杨就想多了解一下，其中就经常听人提到“大模型”。那么请问这里说的“大模型”最贴切意指( )。`,
       options: ['大电脑模型', '大规模智能', '智能单位', '大语言模型'],
       answer: 3,
       score: 2,
@@ -31,7 +31,7 @@ export const paperData = {
     {
       id: 2,
       type: 'single',
-      question: '小杨这学期刚开学就选修了一门编程课程，然后就想编写程序来计算1到10001之间的所有偶数的和。他希望程序用简单易懂且执行效率高，请问下列关于实现该程序时采用的主要控制结构哪个说法最不合适 ( )。',
+      question: `小杨这学期刚开学就选修了一门编程课程，然后就想编写程序来计算1到10001之间的所有偶数的和。他希望程序用简单易懂且执行效率高，请问下列关于实现该程序时采用的主要控制结构哪个说法最不合适 ( )。`,
       options: ['循环结构', '循环和分支结合', '仅使用顺序结构', '不使用分支结构'],
       answer: 2,
       score: 2,
@@ -41,7 +41,7 @@ export const paperData = {
     {
       id: 3,
       type: 'single',
-      question: '关于下边的C++代码用于输入姓名，然后输出姓名，正确的说法是( )。\n```cpp\nstring XingMing;\ncout << "请输入您的姓名：";\ncin >> XingMing;\ncout << XingMing;\n```',
+      question: `关于下边的C++代码用于输入姓名，然后输出姓名，正确的说法是( )。\n\`\`\`cpp\nstring XingMing;\ncout << "请输入您的姓名：";\ncin >> XingMing;\ncout << XingMing;\n\`\`\``,
       options: [
         'XingMing 是汉语拼音，不能作为变量名',
         '可以将 XingMing 改为 Xing Ming',
@@ -56,7 +56,7 @@ export const paperData = {
     {
       id: 4,
       type: 'single',
-      question: '下列C++代码中a和b都是整型变量，执行后，其结果是( )。\n```cpp\na = 13;\nb = 5;\ncout << a / b << a % a * b;\n```',
+      question: `下列C++代码中a和b都是整型变量，执行后，其结果是( )。\n\`\`\`cpp\na = 13;\nb = 5;\ncout << a / b << a % a * b;\n\`\`\``,
       options: ['2.60', '23', '20', '以上都不准确'],
       answer: 2,
       score: 2,
@@ -66,7 +66,7 @@ export const paperData = {
     {
       id: 5,
       type: 'single',
-      question: 'C++表达式 3 * 4 % 5 / 6 的值是( )。',
+      question: `C++表达式 3 * 4 % 5 / 6 的值是( )。`,
       options: ['10', '5', '2', '0'],
       answer: 3,
       score: 2,
@@ -76,7 +76,7 @@ export const paperData = {
     {
       id: 6,
       type: 'single',
-      question: '下面的C++代码中变量 N 和 M 都是整型，则执行时如果先输入10并输入1个空格后输入20并回车，其输出的数值是( )。\n```cpp\nscanf("%d", &N);\nscanf("%d", &M);\nprintf("%d", N+M);\n```',
+      question: `下面的C++代码中变量 N 和 M 都是整型，则执行时如果先输入10并输入1个空格后输入20并回车，其输出的数值是( )。\n\`\`\`cpp\nscanf("%d", &N);\nscanf("%d", &M);\nprintf("%d", N+M);\n\`\`\``,
       options: ['30', '1020', '{N+M}', '不输出，继续等待输入'],
       answer: 0,
       score: 2,
@@ -86,7 +86,7 @@ export const paperData = {
     {
       id: 7,
       type: 'single',
-      question: '当前是9月，编写C++代码求 N 个月后的月份。横线处应填入的代码是 ( )。\n```cpp\nint N, M;\ncin >> N;\nM = ________;\nif (M == 0) printf("%d个月后是12月", N);\nelse printf("%d个月后是%d月", N, M);\n```',
+      question: `当前是9月，编写C++代码求 N 个月后的月份。横线处应填入的代码是 ( )。\n\`\`\`cpp\nint N, M;\ncin >> N;\nM = ________;\nif (M == 0) printf("%d个月后是12月", N);\nelse printf("%d个月后是%d月", N, M);\n\`\`\``,
       options: ['N % 12', '9+N % 12', '(9+N) / 12', '(9+N) % 12'],
       answer: 3,
       score: 2,
@@ -96,7 +96,7 @@ export const paperData = {
     {
       id: 8,
       type: 'single',
-      question: '下面C++代码执行后的输出是 ( )。\n```cpp\nint n = 0;\nfor (int i = 0; i < 100; i++)\n  n += i % 2;\ncout << n;\n```',
+      question: `下面C++代码执行后的输出是 ( )。\n\`\`\`cpp\nint n = 0;\nfor (int i = 0; i < 100; i++)\n n += i % 2;\ncout << n;\n\`\`\``,
       options: ['5050', '4950', '50', '49'],
       answer: 2,
       score: 2,
@@ -106,7 +106,7 @@ export const paperData = {
     {
       id: 9,
       type: 'single',
-      question: 'C++表达式 abs(1.0)+floor(-1.0) 的值是( )。',
+      question: `C++表达式 abs(1.0)+floor(-1.0) 的值是( )。`,
       options: ['0', '1', '2', '0.0'],
       answer: 3,
       score: 2,
@@ -116,7 +116,7 @@ export const paperData = {
     {
       id: 10,
       type: 'single',
-      question: '代码执行后的输出是 ( )。\n```cpp\nint a, b;\ncin >> a >> b;\nif (a > b) a = b;\nb = a;\ncout << a << " " << b;\n```\n如果输入 10 20：',
+      question: `代码执行后的输出是 ( )。\n\`\`\`cpp\nint a, b;\ncin >> a >> b;\nif (a > b) a = b;\nb = a;\ncout << a << " " << b;\n\`\`\`\n如果输入 10 20：`,
       options: ['10 20', '10 10', '20 20', '20 10'],
       answer: 1,
       score: 2,
@@ -126,7 +126,7 @@ export const paperData = {
     {
       id: 11,
       type: 'single',
-      question: '代码执行后的输出是 ( )。\n```cpp\nint n, ans = 0;\ncin >> n;\nwhile (n > 0) {\n  ans = ans * 10+n % 10;\n  n /= 10;\n}\ncout << ans;\n```\n如果输入 123：',
+      question: `代码执行后的输出是 ( )。\n\`\`\`cpp\nint n, ans = 0;\ncin >> n;\nwhile (n > 0) {\n ans = ans * 10+n % 10;\n n /= 10;\n}\ncout << ans;\n\`\`\`\n如果输入 123：`,
       options: ['123', '3', '321', '6'],
       answer: 2,
       score: 2,
@@ -136,7 +136,7 @@ export const paperData = {
     {
       id: 12,
       type: 'single',
-      question: '代码执行后的输出是 ( )。\n```cpp\nfor (int i = 1; i <= 5; i++) {\n  if (i % 2 == 0) continue;\n  cout << i;\n}\n```',
+      question: `代码执行后的输出是 ( )。\n\`\`\`cpp\nfor (int i = 1; i <= 5; i++) {\n if (i % 2 == 0) continue;\n cout << i;\n}\n\`\`\``,
       options: ['12345', '24', '135', '13'],
       answer: 2,
       score: 2,
@@ -146,7 +146,7 @@ export const paperData = {
     {
       id: 13,
       type: 'single',
-      question: '15 % 4+7 / 2 的值是( )。',
+      question: `15 % 4+7 / 2 的值是( )。`,
       options: ['6', '6.5', '7', '3'],
       answer: 0,
       score: 2,
@@ -156,7 +156,7 @@ export const paperData = {
     {
       id: 14,
       type: 'single',
-      question: '代码执行后的输出是 ( )。\n```cpp\nint n = 10, sum = 0;\nwhile (n > 0) {\n  if (n % 3 == 0) break;\n  sum += n;\n  n--;\n}\ncout << sum;\n```',
+      question: `代码执行后的输出是 ( )。\n\`\`\`cpp\nint n = 10, sum = 0;\nwhile (n > 0) {\n if (n % 3 == 0) break;\n sum += n;\n n--;\n}\ncout << sum;\n\`\`\``,
       options: ['55', '19', '45', '10'],
       answer: 3,
       score: 2,
@@ -166,7 +166,7 @@ export const paperData = {
     {
       id: 15,
       type: 'single',
-      question: '在 IDE 中调试时，设置断点的目的是( )。',
+      question: `在 IDE 中调试时，设置断点的目的是( )。`,
       options: ['终止程序运行', '让程序在特定位置暂停', '修改程序源代码', '提高运行速度'],
       answer: 1,
       score: 2,
@@ -178,7 +178,7 @@ export const paperData = {
     {
       id: 16,
       type: 'judge',
-      question: '在C++中，变量名必须以字母或下划线开头。',
+      question: `在C++中，变量名必须以字母或下划线开头。`,
       options: ['正确', '错误'],
       answer: 0,
       score: 2,
@@ -188,7 +188,7 @@ export const paperData = {
     {
       id: 17,
       type: 'judge',
-      question: '3 < x < 5 是检查 x 是否在 3 和 5 之间的正确写法。',
+      question: `3 < x < 5 是检查 x 是否在 3 和 5 之间的正确写法。`,
       options: ['正确', '错误'],
       answer: 1,
       score: 2,
@@ -198,7 +198,7 @@ export const paperData = {
     {
       id: 18,
       type: 'judge',
-      question: 'while 循环可能一次都不执行。',
+      question: `while 循环可能一次都不执行。`,
       options: ['正确', '错误'],
       answer: 0,
       score: 2,
@@ -208,7 +208,7 @@ export const paperData = {
     {
       id: 19,
       type: 'judge',
-      question: 'for 循环的三个部分都可以省略。',
+      question: `for 循环的三个部分都可以省略。`,
       options: ['正确', '错误'],
       answer: 0,
       score: 2,
@@ -218,7 +218,7 @@ export const paperData = {
     {
       id: 20,
       type: 'judge',
-      question: '1 == 1 的值是 true。',
+      question: `1 == 1 的值是 true。`,
       options: ['正确', '错误'],
       answer: 0,
       score: 2,
@@ -228,7 +228,7 @@ export const paperData = {
     {
       id: 21,
       type: 'judge',
-      question: '!(3 > 5) 的值是 false。',
+      question: `!(3 > 5) 的值是 false。`,
       options: ['正确', '错误'],
       answer: 1,
       score: 2,
@@ -238,7 +238,7 @@ export const paperData = {
     {
       id: 22,
       type: 'judge',
-      question: '在C++中，char 类型占1个字节。',
+      question: `在C++中，char 类型占1个字节。`,
       options: ['正确', '错误'],
       answer: 0,
       score: 2,
@@ -248,7 +248,7 @@ export const paperData = {
     {
       id: 23,
       type: 'judge',
-      question: '斐波那契数列第1项是1，第2项是1，则第3项是2。',
+      question: `斐波那契数列第1项是1，第2项是1，则第3项是2。`,
       options: ['正确', '错误'],
       answer: 0,
       score: 2,
@@ -258,7 +258,7 @@ export const paperData = {
     {
       id: 24,
       type: 'judge',
-      question: '代码 if (x = 1) 总是将 x 设置为 1。',
+      question: `代码 if (x = 1) 总是将 x 设置为 1。`,
       options: ['正确', '错误'],
       answer: 0,
       score: 2,
@@ -268,7 +268,7 @@ export const paperData = {
     {
       id: 25,
       type: 'judge',
-      question: 'break 只能用于循环中。',
+      question: `break 只能用于循环中。`,
       options: ['正确', '错误'],
       answer: 1,
       score: 2,
@@ -308,15 +308,15 @@ int main() {
 
 ## 题目描述
 
-商店正在开展促销活动，给出了两种方案的折扣优惠。第一种方案是购物满 \$x\$ 元减 \$y\$ 元；第二种方案是直接打 \$n\$ 折，也就是说价格变为原先的 \$n\\div 10\$。这里的 \$x, y, n\$ 均是正整数，并且 \$1 \\leq y < x\$，\$1 \\leq n < 10\$。
+商店正在开展促销活动，给出了两种方案的折扣优惠。第一种方案是购物满 $x$ 元减 $y$ 元；第二种方案是直接打 $n$ 折，也就是说价格变为原先的 $n\\div 10$。这里的 $x, y, n$ 均是正整数，并且 $1 \\leq y < x$，$1 \\leq n < 10$。
 
-需要注意的是，第一种方案中满减优惠只能使用一次。例如购物满 \$10\$ 元减 \$3\$ 元时，若挑选了价格总和为 \$33\$ 元的物品，只能减免 \$3\$ 元，需要支付 \$30\$ 元。
+需要注意的是，第一种方案中满减优惠只能使用一次。例如购物满 $10$ 元减 $3$ 元时，若挑选了价格总和为 $33$ 元的物品，只能减免 $3$ 元，需要支付 $30$ 元。
 
-小明在商店挑选了价格总和为 \$p\$ 元的物品，结账时只能使用一种优惠方案。小明最少需要支付多少钱呢？
+小明在商店挑选了价格总和为 $p$ 元的物品，结账时只能使用一种优惠方案。小明最少需要支付多少钱呢？
 
 ## 输入格式
 
-四行，四个正整数 \$x, y, n, p\$，含义见题目描述。
+四行，四个正整数 $x, y, n, p$，含义见题目描述。
 
 ## 输出格式
 
@@ -352,11 +352,11 @@ int main() {
 
 ## 题目描述
 
-金字塔由 \$n\$ 层石块垒成。从塔底向上，每层依次需要 \$n \\times n, (n-1) \\times (n-1), \\cdots, 2 \\times 2, 1 \\times 1\$ 块石块。请问搭建金字塔总共需要多少块石块？
+金字塔由 $n$ 层石块垒成。从塔底向上，每层依次需要 $n \\times n, (n-1) \\times (n-1), \\cdots, 2 \\times 2, 1 \\times 1$ 块石块。请问搭建金字塔总共需要多少块石块？
 
 ## 输入格式
 
-一行，一个正整数 \$n\$，表示金字塔的层数。
+一行，一个正整数 $n$，表示金字塔的层数。
 
 ## 输出格式
 

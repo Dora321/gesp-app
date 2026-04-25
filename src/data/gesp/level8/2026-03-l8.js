@@ -15,7 +15,7 @@ export const paperData = {
         {
             id: 1,
             type: "single",
-            question: "某平台生成 “ 取件码 ” 由 6 个字符组成：前 4 位为数字（0– 9），后 2 位为大写字母（A– Z），其中字母不能 为 I、O。假设数字和字母均可重复使用，要求整个取件码中恰好有 2 个数字为奇数。共有多少种不同取件码？（ ）",
+            question: `某平台生成 “ 取件码 ” 由 6 个字符组成：前 4 位为数字（0– 9），后 2 位为大写字母（A– Z），其中字母不能 为 I、O。假设数字和字母均可重复使用，要求整个取件码中恰好有 2 个数字为奇数。共有多少种不同取件码？（ ）`,
             options: [
                 "1,440,000",
                 "2,160,000",
@@ -34,7 +34,7 @@ export const paperData = {
         {
             id: 2,
             type: "single",
-            question: "下列代码实现了归并排序（ Merge Sort ）的分治部分。为了正确地将数组 a 的 [left, right] 区间进⾏ 排序，横线处应该填入的是（ ）。\n\n```cpp\nvoid merge_sort(int a[], int left, int right) {\n    if (left >= right) return;\n    int mid = (left+right) / 2;\n    merge_sort(a, left, mid);\n    ________________; // 横线处\n    merge(a, left, mid, right);\n}\n```",
+            question: `下列代码实现了归并排序（ Merge Sort ）的分治部分。为了正确地将数组 a 的 [left, right] 区间进⾏ 排序，横线处应该填入的是（ ）。\n\n\`\`\`cpp\nvoid merge_sort(int a[], int left, int right) {\n if (left >= right) return;\n int mid = (left+right) / 2;\n merge_sort(a, left, mid);\n ________________; // 横线处\n merge(a, left, mid, right);\n}\n\`\`\``,
             options: [
                 "merge_sort(a, mid, right)",
                 "merge_sort(a, mid+1, right)",
@@ -53,7 +53,7 @@ export const paperData = {
         {
             id: 3,
             type: "single",
-            question: "某社团有男生 8 ⼈、⼥生 7 ⼈。现需选出 1 名队长（性别不限）、 1 名副队长（性别不限）、 2 名宣传委员（两 ⼈无角⾊区别，且必须⾄少 1 名⼥生）。假如一⼈不能兼任多职，共有多少种不同选法？（ ）",
+            question: `某社团有男生 8 ⼈、⼥生 7 ⼈。现需选出 1 名队长（性别不限）、 1 名副队长（性别不限）、 2 名宣传委员（两 ⼈无角⾊区别，且必须⾄少 1 名⼥生）。假如一⼈不能兼任多职，共有多少种不同选法？（ ）`,
             options: [
                 "12012",
                 "11844",
@@ -72,7 +72,7 @@ export const paperData = {
         {
             id: 4,
             type: "single",
-            question: "二项式 $(x-2)^8$ 的展开式中 $x^6$ 项的系数为（ ）。",
+            question: `二项式 $(x-2)^8$ 的展开式中 $x^6$ 项的系数为（ ）。`,
             options: [
                 "-7168",
                 "7168",
@@ -91,7 +91,7 @@ export const paperData = {
         {
             id: 5,
             type: "single",
-            question: "下面是使用邻接矩阵实现的 Dijkstra 算法的核⼼⽚段，用于求单源最短路径。在找到当前距离起点最近的顶点 u 后，需要更新其邻接点 j 的距离。横线处应填入的代码是（ ）。\n\n```cpp\nfor (int j = 1; j <= n; j++) {\n    if (!visited[j] && graph[u][j] < INF) {\n        if (________) { // 横线处\n            dis[j] = dis[u]+graph[u][j];\n        }\n    }\n}\n```",
+            question: `下面是使用邻接矩阵实现的 Dijkstra 算法的核⼼⽚段，用于求单源最短路径。在找到当前距离起点最近的顶点 u 后，需要更新其邻接点 j 的距离。横线处应填入的代码是（ ）。\n\n\`\`\`cpp\nfor (int j = 1; j <= n; j++) {\n if (!visited[j] && graph[u][j] < INF) {\n if (________) { // 横线处\n dis[j] = dis[u]+graph[u][j];\n }\n }\n}\n\`\`\``,
             options: [
                 "dis[j] < dis[u]+graph[u][j]",
                 "dis[j] > dis[u]+graph[u][j]",
@@ -110,7 +110,7 @@ export const paperData = {
         {
             id: 6,
             type: "single",
-            question: "下面程序使用动态规划求两个字符串的最长公共子序列（ LCS ）长度，横线处应填入的是（ ）。\n\n```cpp\nint lcs_len(const string &a, const string &b) {\n    int n = (int)a.size(), m = (int)b.size();\n    vector<vector<int>> dp($n+1$, vector<int>(m+1, 0));\n    for (int i = 1; i <= n; i++) {\n        for (int j = 1; j <= m; j++) {\n            if (a[i-1] == b[j-1]) $dp[i]$[j] = dp[i-1][j-1]+1;\n            else ________; // 横线处\n        }\n    }\n    return dp[n][m];\n}\n```",
+            question: `下面程序使用动态规划求两个字符串的最长公共子序列（ LCS ）长度，横线处应填入的是（ ）。\n\n\`\`\`cpp\nint lcs_len(const string &a, const string &b) {\n int n = (int)a.size(), m = (int)b.size();\n vector<vector<int>> dp($n+1$, vector<int>(m+1, 0));\n for (int i = 1; i <= n; i++) {\n for (int j = 1; j <= m; j++) {\n if (a[i-1] == b[j-1]) $dp[i]$[j] = dp[i-1][j-1]+1;\n else ________; // 横线处\n }\n }\n return dp[n][m];\n}\n\`\`\``,
             options: [
                 "$dp[i]$[j] = dp[i-1][j]+$dp[i]$[j-1];",
                 "$dp[i]$[j] = min(dp[i-1][j], $dp[i]$[j-1]);",
@@ -129,7 +129,7 @@ export const paperData = {
         {
             id: 7,
             type: "single",
-            question: "已知两个点 $P_1(x_1, y_1)$ 和 $P_2(x_2, y_2)$ 在平面直角坐标系中的坐标。下列 C++ 表达式中，能正确计算这两点之间直线距离的是（ ）。",
+            question: `已知两个点 $P_1(x_1, y_1)$ 和 $P_2(x_2, y_2)$ 在平面直角坐标系中的坐标。下列 C++ 表达式中，能正确计算这两点之间直线距离的是（ ）。`,
             options: [
                 "sqrt((x1-x2) ^ 2+(y1-y2) ^ 2)",
                 "sqrt(pow(x1-x2, 2)+pow(y1-y2, 2))",
@@ -148,7 +148,7 @@ export const paperData = {
         {
             id: 8,
             type: "single",
-            question: "已知 int a = 10;，执⾏ int &b = a; b = 20; 后，变量 a 的值是（ ）。",
+            question: `已知 int a = 10;，执⾏ int &b = a; b = 20; 后，变量 a 的值是（ ）。`,
             options: [
                 "10",
                 "20",
@@ -167,7 +167,7 @@ export const paperData = {
         {
             id: 9,
             type: "single",
-            question: "下列代码的时间复杂度（以 $n$ 为自变量，忽略常数与低阶项）是（ ）。",
+            question: `下列代码的时间复杂度（以 $n$ 为自变量，忽略常数与低阶项）是（ ）。`,
             options: [
                 "$O(N)$",
                 "$O(n \\log n)$",
@@ -186,7 +186,7 @@ export const paperData = {
         {
             id: 10,
             type: "single",
-            question: "下列程序实现了线性筛法（欧拉筛），用于在 $O(N)$ 时间内求出 $2 \sim n$ 之间的所有质数。为了保证每个合数只被其最小质因子筛掉，横线处应填入的语句是（ ）。",
+            question: `下列程序实现了线性筛法（欧拉筛），用于在 $O(N)$ 时间内求出 $2 sim n$ 之间的所有质数。为了保证每个合数只被其最小质因子筛掉，横线处应填入的语句是（ ）。`,
             options: [
                 "i+primes[j] == n",
                 "primes[j] > i",
@@ -205,7 +205,7 @@ export const paperData = {
         {
             id: 11,
             type: "single",
-            question: "在 C++ 语⾔中，关于类的继承和访问权限，下列说法正确的是（ ）。",
+            question: `在 C++ 语⾔中，关于类的继承和访问权限，下列说法正确的是（ ）。`,
             options: [
                 "派生类可以访问基类的 private 成员。",
                 "基类的 protected 成员在私有继承（ private inheritance ）后，在派生类中变为 public。",
@@ -224,7 +224,7 @@ export const paperData = {
         {
             id: 12,
             type: "single",
-            question: "当输入 6 时，下列程序的输出结果为（ ）。\n\n```cpp\nlong long s = 0;\nfor (int i = 1; i <= n; i++) {\n    for (int j = 1; j * j <= i; j++) {\n        s += j;\n    }\n}\n```",
+            question: `当输入 6 时，下列程序的输出结果为（ ）。\n\n\`\`\`cpp\nlong long s = 0;\nfor (int i = 1; i <= n; i++) {\n for (int j = 1; j * j <= i; j++) {\n s += j;\n }\n}\n\`\`\``,
             options: [
                 "14",
                 "27",
@@ -243,7 +243,7 @@ export const paperData = {
         {
             id: 13,
             type: "single",
-            question: "从 1 到 999 这 999 个正整数中，⼗进制表⽰中数字 5 恰好出现一次的数有多少个？（ ）",
+            question: `从 1 到 999 这 999 个正整数中，⼗进制表⽰中数字 5 恰好出现一次的数有多少个？（ ）`,
             options: [
                 "243",
                 "271",
@@ -262,7 +262,7 @@ export const paperData = {
         {
             id: 14,
             type: "single",
-            question: "当输入 2023 时，下列程序的输出结果为（ ）。\n\n```cpp\nint x, ans = 0;\ncin >> x;\nwhile (x != 0) {\n    x -= x & -x;\n    ans++;\n}\ncout << ans << endl;\n```",
+            question: `当输入 2023 时，下列程序的输出结果为（ ）。\n\n\`\`\`cpp\nint x, ans = 0;\ncin >> x;\nwhile (x != 0) {\n x -= x & -x;\n ans++;\n}\ncout << ans << endl;\n\`\`\``,
             options: [
                 "7",
                 "8",
@@ -281,7 +281,7 @@ export const paperData = {
         {
             id: 15,
             type: "single",
-            question: "对连通无向图执⾏ Kruskal 算法。已按边权从小到大依次扫描到某条边 。此时在已经构建的部分 MST 结构中， 已在同一连通块内。关于边 的处理，下列说法正确的是（ ）。",
+            question: `对连通无向图执⾏ Kruskal 算法。已按边权从小到大依次扫描到某条边 。此时在已经构建的部分 MST 结构中， 已在同一连通块内。关于边 的处理，下列说法正确的是（ ）。`,
             options: [
                 "必须选入 MST ，否则可能不连通。",
                 "一定不能选入 MST （在此扫描顺序下）。",
@@ -300,7 +300,7 @@ export const paperData = {
         {
             id: 16,
             type: "judge",
-            question: "若一项任务可用两种互斥方案完成：方案 A 有 $n$ 种做法，方案 B 有 $m$ 种做法，则总做法数为 $n+m$。",
+            question: `若一项任务可用两种互斥方案完成：方案 A 有 $n$ 种做法，方案 B 有 $m$ 种做法，则总做法数为 $n+m$。`,
             options: [
                 "正确",
                 "错误",
@@ -317,7 +317,7 @@ export const paperData = {
         {
             id: 17,
             type: "judge",
-            question: "在 C++ 语⾔中，引用一旦被初始化，就不能再改为引用另一个变量。",
+            question: `在 C++ 语⾔中，引用一旦被初始化，就不能再改为引用另一个变量。`,
             options: [
                 "正确",
                 "错误",
@@ -334,7 +334,7 @@ export const paperData = {
         {
             id: 18,
             type: "judge",
-            question: "快速排序和归并排序的平均时间复杂度都是 $O(n \\log n)$，但快速排序是不稳定的排序算法，归并排序是稳定的排序算法。",
+            question: `快速排序和归并排序的平均时间复杂度都是 $O(n \\log n)$，但快速排序是不稳定的排序算法，归并排序是稳定的排序算法。`,
             options: [
                 "正确",
                 "错误",
@@ -351,7 +351,7 @@ export const paperData = {
         {
             id: 19,
             type: "judge",
-            question: "使用 math.h 或 cmath 头文件中的函数，表达式 sqrt(4) 的结果类型为 double。",
+            question: `使用 math.h 或 cmath 头文件中的函数，表达式 sqrt(4) 的结果类型为 double。`,
             options: [
                 "正确",
                 "错误",
@@ -368,7 +368,7 @@ export const paperData = {
         {
             id: 20,
             type: "judge",
-            question: "在杨辉三角形中，第 $n$ 行（从 0 开始计数，即第 $n$ 行有 $n+1$ 个数）的所有数字之和等于 $2^n$。",
+            question: `在杨辉三角形中，第 $n$ 行（从 0 开始计数，即第 $n$ 行有 $n+1$ 个数）的所有数字之和等于 $2^n$。`,
             options: [
                 "正确",
                 "错误",
@@ -385,7 +385,7 @@ export const paperData = {
         {
             id: 21,
             type: "judge",
-            question: "使用二叉堆优化的 Dijkstra 最短路算法，在某些特殊情况下时间复杂度不如朴素实现的 $O(v^2)$。",
+            question: `使用二叉堆优化的 Dijkstra 最短路算法，在某些特殊情况下时间复杂度不如朴素实现的 $O(v^2)$。`,
             options: [
                 "正确",
                 "错误",
@@ -402,7 +402,7 @@ export const paperData = {
         {
             id: 22,
             type: "judge",
-            question: "$n$ 个不同元素依次入栈的出栈序列数与将 $n$ 个不同元素划分成若干非空子集的方案数不相等。",
+            question: `$n$ 个不同元素依次入栈的出栈序列数与将 $n$ 个不同元素划分成若干非空子集的方案数不相等。`,
             options: [
                 "正确",
                 "错误",
@@ -419,7 +419,7 @@ export const paperData = {
         {
             id: 23,
             type: "judge",
-            question: "快速排序在最坏情况下的时间复杂度为 $O(N^2)$，可以通过随机化选择基准值（pivot）的方法完全避免退化。",
+            question: `快速排序在最坏情况下的时间复杂度为 $O(N^2)$，可以通过随机化选择基准值（pivot）的方法完全避免退化。`,
             options: [
                 "正确",
                 "错误",
@@ -436,7 +436,7 @@ export const paperData = {
         {
             id: 24,
             type: "judge",
-            question: "在 C++ 语⾔中，一个类可以拥有多个构造函数，也可以拥有多个析构函数。",
+            question: `在 C++ 语⾔中，一个类可以拥有多个构造函数，也可以拥有多个析构函数。`,
             options: [
                 "正确",
                 "错误",
@@ -453,7 +453,7 @@ export const paperData = {
         {
             id: 25,
             type: "judge",
-            question: "求两个序列的最长公共子序列（ LCS ）时，使用滚动数组优化空间后，仍然可以还原出具体的 LCS 序列。",
+            question: `求两个序列的最长公共子序列（ LCS ）时，使用滚动数组优化空间后，仍然可以还原出具体的 LCS 序列。`,
             options: [
                 "正确",
                 "错误",

@@ -21,7 +21,7 @@ export const paperData = {
     {
       id: 1,
       type: 'single',
-      question: '2025年4月19日在北京举行了一场颇为瞩目的人形机器人半程马拉松赛... 机器人需要通过各种传感器来获取自身的姿态、平衡以及周围环境的信息。那么这类传感器类似于计算机的( )。',
+      question: `2025年4月19日在北京举行了一场颇为瞩目的人形机器人半程马拉松赛... 机器人需要通过各种传感器来获取自身的姿态、平衡以及周围环境的信息。那么这类传感器类似于计算机的( )。`,
       options: ['处理器', '存储器', '输入设备', '输出设备'],
       answer: 2,
       score: 2,
@@ -31,7 +31,7 @@ export const paperData = {
     {
       id: 2,
       type: 'single',
-      question: '关于计算机编程环境及断点调试，下列说法是错误的是( )。\n```cpp\n1  int N = 0; // L1\n2  cin >> N;  // L2\n3  if (N < 9) \n4    printf("N不能大于等于9"); // L4\n```',
+      question: `关于计算机编程环境及断点调试，下列说法是错误的是( )。\n\`\`\`cpp\n1 int N = 0; // L1\n2 cin >> N; // L2\n3 if (N < 9) \n4 printf("N不能大于等于9"); // L4\n\`\`\``,
       options: [
         '断点不可以设置在L1标记的代码行',
         '执行暂停在L2标记的代码行时，可以检测N的值',
@@ -46,7 +46,7 @@ export const paperData = {
     {
       id: 3,
       type: 'single',
-      question: '对于下列C++的代码，描述准确的是 ( )。\n```cpp\nint first = 10;\nprintf("%d", First);\n```',
+      question: `对于下列C++的代码，描述准确的是 ( )。\n\`\`\`cpp\nint first = 10;\nprintf("%d", First);\n\`\`\``,
       options: [
         '执行后输出10',
         '执行后输出{First}',
@@ -61,7 +61,7 @@ export const paperData = {
     {
       id: 4,
       type: 'single',
-      question: '在C++中，下列可以做变量名的是( )。',
+      question: `在C++中，下列可以做变量名的是( )。`,
       options: ['X.cpp', 'X-cpp', 'X#cpp', 'X_cpp'],
       answer: 3,
       score: 2,
@@ -71,7 +71,7 @@ export const paperData = {
     {
       id: 5,
       type: 'single',
-      question: 'C++表达式 14-3 * 3 % 2 的值是( )。',
+      question: `C++表达式 14-3 * 3 % 2 的值是( )。`,
       options: ['0', '11', '13', '-67'],
       answer: 2,
       score: 2,
@@ -81,7 +81,7 @@ export const paperData = {
     {
       id: 6,
       type: 'single',
-      question: '下面的C++代码执行后，其输出是 ( )。\n```cpp\nint x = 10, y = 20;\nx = x+y;\ny = x-y;\nx = x-y;\ncout << x << " " << y;\n```',
+      question: `下面的C++代码执行后，其输出是 ( )。\n\`\`\`cpp\nint x = 10, y = 20;\nx = x+y;\ny = x-y;\nx = x-y;\ncout << x << " " << y;\n\`\`\``,
       options: ['10 20', '20 10', '10 10', '20 20'],
       answer: 1,
       score: 2,
@@ -91,7 +91,7 @@ export const paperData = {
     {
       id: 7,
       type: 'single',
-      question: '定义整型变量 int a = 16，则执行 a += ++a % 3 之后，a 的值会是 ( )。',
+      question: `定义整型变量 int a = 16，则执行 a += ++a % 3 之后，a 的值会是 ( )。`,
       options: ['3', '17', '19', '20'],
       answer: 2,
       score: 2,
@@ -101,7 +101,7 @@ export const paperData = {
     {
       id: 8,
       type: 'single',
-      question: '已知 C++ 的 int 类型变量 x 的值为 8，如果执行 cout << (++x)++ ; 则输出和执行后 x 的值分别是 ( )。',
+      question: `已知 C++ 的 int 类型变量 x 的值为 8，如果执行 cout << (++x)++ ; 则输出和执行后 x 的值分别是 ( )。`,
       options: ['8 9', '9 9', '9 10', '编译错误，无法执行'],
       answer: 2,
       score: 2,
@@ -111,7 +111,7 @@ export const paperData = {
     {
       id: 9,
       type: 'single',
-      question: '下面 C++ 代码执行后的输出是 ( )。\n```cpp\nint a = 3, b = 4;\nprintf("a+b=%d2#a+b={a+b}", a, b, a+b);\n```',
+      question: `下面 C++ 代码执行后的输出是 ( )。\n\`\`\`cpp\nint a = 3, b = 4;\nprintf("a+b=%d2#a+b={a+b}", a, b, a+b);\n\`\`\``,
       options: [
         'a+b=07#a+b={a+b}',
         'a+b=34#a+b=7',
@@ -126,7 +126,7 @@ export const paperData = {
     {
       id: 10,
       type: 'single',
-      question: '下面 C++ 代码用于判断 N 是否为偶数，横线处应填入代码是 ( )。\n```cpp\nint N;\ncin >> N;\nif (________)\n  cout << N << "是偶数";\nelse\n  cout << N << "是奇数";\n```',
+      question: `下面 C++ 代码用于判断 N 是否为偶数，横线处应填入代码是 ( )。\n\`\`\`cpp\nint N;\ncin >> N;\nif (________)\n cout << N << "是偶数";\nelse\n cout << N << "是奇数";\n\`\`\``,
       options: ['N % 2 = 0', 'N % 2 == 0', 'N / 2 == 0', 'N % 2 != 1'],
       answer: 1,
       score: 2,
@@ -136,7 +136,7 @@ export const paperData = {
     {
       id: 11,
       type: 'single',
-      question: '下面 C++ 代码执行后的输出是 ( )。\n```cpp\nint n = 10, i = 1;\nwhile (i < n) {\n  n--;\n  i++;\n}\ncout << n << " " << i;\n```',
+      question: `下面 C++ 代码执行后的输出是 ( )。\n\`\`\`cpp\nint n = 10, i = 1;\nwhile (i < n) {\n n--;\n i++;\n}\ncout << n << " " << i;\n\`\`\``,
       options: ['5 6', '6 5', '6 6', '5 5'],
       answer: 0,
       score: 2,
@@ -146,7 +146,7 @@ export const paperData = {
     {
       id: 12,
       type: 'single',
-      question: '15 % 2+15 / 2.0 的值是 ( )。',
+      question: `15 % 2+15 / 2.0 的值是 ( )。`,
       options: ['8', '8.5', '4.5', '1.5'],
       answer: 1,
       score: 2,
@@ -156,7 +156,7 @@ export const paperData = {
     {
       id: 13,
       type: 'single',
-      question: '下面 C++ 代码执行后的输出是 ( )。\n```cpp\nint n = 10, sum = 0;\nfor (int i = 1; i <= n; i++) {\n  if (i % 3 == 0) continue;\n  sum += i;\n}\ncout << sum;\n\n```',
+      question: `下面 C++ 代码执行后的输出是 ( )。\n\`\`\`cpp\nint n = 10, sum = 0;\nfor (int i = 1; i <= n; i++) {\n if (i % 3 == 0) continue;\n sum += i;\n}\ncout << sum;\n\n\`\`\``,
       options: ['37', '45', '55', '18'],
       answer: 0,
       score: 2,
@@ -166,7 +166,7 @@ export const paperData = {
     {
       id: 14,
       type: 'single',
-      question: '在 C++ 中，下列哪个关键字用于定义整型变量？',
+      question: `在 C++ 中，下列哪个关键字用于定义整型变量？`,
       options: ['float', 'double', 'char', 'int'],
       answer: 3,
       score: 2,
@@ -176,7 +176,7 @@ export const paperData = {
     {
       id: 15,
       type: 'single',
-      question: '已知整型变量 n = 567，下列哪个表达式可以得到其百位上的数字 5？',
+      question: `已知整型变量 n = 567，下列哪个表达式可以得到其百位上的数字 5？`,
       options: ['n / 100', 'n / 10 % 10', 'n % 100', 'n % 10'],
       answer: 0,
       score: 2,
@@ -188,7 +188,7 @@ export const paperData = {
     {
       id: 16,
       type: 'judge',
-      question: '闭卷考试中，考生不得携带手机、平板、智能手表等智能设备。',
+      question: `闭卷考试中，考生不得携带手机、平板、智能手表等智能设备。`,
       options: ['正确', '错误'],
       answer: 0,
       score: 2,
@@ -198,7 +198,7 @@ export const paperData = {
     {
       id: 17,
       type: 'judge',
-      question: '若 N 为 5，则表达式 (N+!N) 的值为 4。',
+      question: `若 N 为 5，则表达式 (N+!N) 的值为 4。`,
       options: ['正确', '错误'],
       answer: 1,
       score: 2,
@@ -208,7 +208,7 @@ export const paperData = {
     {
       id: 18,
       type: 'judge',
-      question: 'while 循环体中必须包含修改循环条件的语句，否则可能陷入死循环。',
+      question: `while 循环体中必须包含修改循环条件的语句，否则可能陷入死循环。`,
       options: ['正确', '错误'],
       answer: 0,
       score: 2,
@@ -218,7 +218,7 @@ export const paperData = {
     {
       id: 19,
       type: 'judge',
-      question: 'C++ 语言中，一个变量可以多次定义。',
+      question: `C++ 语言中，一个变量可以多次定义。`,
       options: ['正确', '错误'],
       answer: 1,
       score: 2,
@@ -228,7 +228,7 @@ export const paperData = {
     {
       id: 20,
       type: 'judge',
-      question: '1.0 / 2.0 的值是 0.5。',
+      question: `1.0 / 2.0 的值是 0.5。`,
       options: ['正确', '错误'],
       answer: 0,
       score: 2,
@@ -238,7 +238,7 @@ export const paperData = {
     {
       id: 21,
       type: 'judge',
-      question: 'if (x = 0) 的判定结果总是 false。',
+      question: `if (x = 0) 的判定结果总是 false。`,
       options: ['正确', '错误'],
       answer: 0,
       score: 2,
@@ -248,7 +248,7 @@ export const paperData = {
     {
       id: 22,
       type: 'judge',
-      question: '在 C++ 中，&& 是逻辑与运算符。',
+      question: `在 C++ 中，&& 是逻辑与运算符。`,
       options: ['正确', '错误'],
       answer: 0,
       score: 2,
@@ -258,7 +258,7 @@ export const paperData = {
     {
       id: 23,
       type: 'judge',
-      question: 'for(int i=0; i<10; i++) 循环执行 10 次。',
+      question: `for(int i=0; i<10; i++) 循环执行 10 次。`,
       options: ['正确', '错误'],
       answer: 0,
       score: 2,
@@ -268,7 +268,7 @@ export const paperData = {
     {
       id: 24,
       type: 'judge',
-      question: 'cin 和 cout 是 C++ 中的标准输入输出流。',
+      question: `cin 和 cout 是 C++ 中的标准输入输出流。`,
       options: ['正确', '错误'],
       answer: 0,
       score: 2,
@@ -278,7 +278,7 @@ export const paperData = {
     {
       id: 25,
       type: 'judge',
-      question: '在 C++ 中，3 < x < 5 是检查 x 是否在 3 和 5 之间的正确语法。',
+      question: `在 C++ 中，3 < x < 5 是检查 x 是否在 3 和 5 之间的正确语法。`,
       options: ['正确', '错误'],
       answer: 1,
       score: 2,
@@ -311,15 +311,15 @@ int main() {
 
 ## 题目描述
 
-小 A 有一本厚厚的书。这本书总共有 \$n\$ 页，小 A 一天中最多只能阅读完其中的 \$k\$ 页。小 A 的假期总共有 \$t\$ 天，他想知道在假期中最多能阅读完这本书的多少页。
+小 A 有一本厚厚的书。这本书总共有 $n$ 页，小 A 一天中最多只能阅读完其中的 $k$ 页。小 A 的假期总共有 $t$ 天，他想知道在假期中最多能阅读完这本书的多少页。
 
 ## 输入格式
 
-第一行，一个正整数 \$n\$，表示书的页数。
+第一行，一个正整数 $n$，表示书的页数。
 
-第二行，一个正整数 \$k\$，表示小 A 每天最多阅读的页数。
+第二行，一个正整数 $k$，表示小 A 每天最多阅读的页数。
 
-第三行，一个正整数 \$t\$，表示小 A 假期的天数。
+第三行，一个正整数 $t$，表示小 A 假期的天数。
 
 ## 输出格式
 
@@ -354,13 +354,13 @@ int main() {
 
 ## 题目描述
 
-小杨和小红是值日生，负责打扫教室。小杨每 \$m\$ 天值日一次，小红每 \$n\$ 天值日一次。今天他们两个一起值日，请问至少多少天后，他们会再次同一天值日？
+小杨和小红是值日生，负责打扫教室。小杨每 $m$ 天值日一次，小红每 $n$ 天值日一次。今天他们两个一起值日，请问至少多少天后，他们会再次同一天值日？
 
 ## 输入格式
 
-第一行，一个正整数 \$m\$，表示小杨的值日周期；
+第一行，一个正整数 $m$，表示小杨的值日周期；
 
-第二行，一个正整数 \$n\$，表示小红的值日周期。
+第二行，一个正整数 $n$，表示小红的值日周期。
 
 ## 输出格式
 

@@ -19,7 +19,7 @@ export const paperData = {
         {
             id: 1,
             type: 'single',
-            question: '整数 -5 的 16 位补码表示是（   ）。',
+            question: `整数 -5 的 16 位补码表示是（ ）。`,
             options: ['1005', '1006', 'FFFA', 'FFFB'],
             answer: 3,
             score: 2,
@@ -28,7 +28,7 @@ export const paperData = {
         {
             id: 2,
             type: 'single',
-            question: '如果 16 位短整数 -2 的十六进制表示是 "FFFE"，则短整数 -4 的十六进制是（   ）。',
+            question: `如果 16 位短整数 -2 的十六进制表示是 "FFFE"，则短整数 -4 的十六进制是（ ）。`,
             options: ['FF04', 'FFFA', 'FFFC', 'FFFH'],
             answer: 2,
             score: 2,
@@ -37,7 +37,7 @@ export const paperData = {
         {
             id: 3,
             type: 'single',
-            question: '下面 C++ 代码执行后的输出是（   ）。\n```cpp\nint main() {\n    cout << (3 | 16) << endl;\n    return 0;\n}\n```',
+            question: `下面 C++ 代码执行后的输出是（ ）。\n\`\`\`cpp\nint main() {\n cout << (3 | 16) << endl;\n return 0;\n}\n\`\`\``,
             options: ['3', '16', '19', '48'],
             answer: 2,
             score: 2,
@@ -46,7 +46,7 @@ export const paperData = {
         {
             id: 4,
             type: 'single',
-            question: '定义整数 int x = -5，则执行 C++ 代码 cout << (x == (x << 1 >> 1)) 输出是（   ）。',
+            question: `定义整数 int x = -5，则执行 C++ 代码 cout << (x == (x << 1 >> 1)) 输出是（ ）。`,
             options: ['0', '1', '-5', '5'],
             answer: 1,
             score: 2,
@@ -55,7 +55,7 @@ export const paperData = {
         {
             id: 5,
             type: 'single',
-            question: '已知字符 \"0\" 的 ASCII 编码的十进制表示为 48，则执行下面 C++ 代码后，输出是（   ）。\n```cpp\nint main() {\n    string s = "316";\n    int n = s.length();\n    int x = 0;\n    for (int i = 0; i < n; i++) x += s[i];\n    cout << x << endl;\n    return 0;\n}\n```',
+            question: `已知字符 "0" 的 ASCII 编码的十进制表示为 48，则执行下面 C++ 代码后，输出是（ ）。\n\`\`\`cpp\nint main() {\n string s = "316";\n int n = s.length();\n int x = 0;\n for (int i = 0; i < n; i++) x += s[i];\n cout << x << endl;\n return 0;\n}\n\`\`\``,
             options: ['10', '58', '154', '316'],
             answer: 2,
             score: 2,
@@ -64,7 +64,7 @@ export const paperData = {
         {
             id: 6,
             type: 'single',
-            question: '下面 C++ 代码执行后数组中大于 0 的数的特征是（   ）。\n```cpp\nint main() {\n    int a[20], i;\n    for (i = 0; i < 20; i++) a[i] = i+1;\n    for (int i = 0; i < 20; i++)\n        if ((a[i] % 2) && (a[i] % 3)) a[i] = 0;\n    for (i = 0; i < 20; i++)\n        if (a[i]) cout << a[i] << " ";\n    return 0;\n}\n```',
+            question: `下面 C++ 代码执行后数组中大于 0 的数的特征是（ ）。\n\`\`\`cpp\nint main() {\n int a[20], i;\n for (i = 0; i < 20; i++) a[i] = i+1;\n for (int i = 0; i < 20; i++)\n if ((a[i] % 2) && (a[i] % 3)) a[i] = 0;\n for (i = 0; i < 20; i++)\n if (a[i]) cout << a[i] << " ";\n return 0;\n}\n\`\`\``,
             options: ['2 的倍数', '3 的倍数', '能被 2 或 3 整除的数', '能被 2 和 3 同时整除的数'],
             answer: 2,
             score: 2,
@@ -73,7 +73,7 @@ export const paperData = {
         {
             id: 7,
             type: 'single',
-            question: '执行下面 C++ 代码后输出的第一个数是（   ）。\n```cpp\nint main() {\n    int a[20], i;\n    for (i = 0; i < 20; i++) a[i] = i+1;\n    for (; i > 0; i--) cout << a[i-1] << " ";\n    return 0;\n}\n```',
+            question: `执行下面 C++ 代码后输出的第一个数是（ ）。\n\`\`\`cpp\nint main() {\n int a[20], i;\n for (i = 0; i < 20; i++) a[i] = i+1;\n for (; i > 0; i--) cout << a[i-1] << " ";\n return 0;\n}\n\`\`\``,
             options: ['20', '19', '1', '不确定'],
             answer: 0,
             score: 2,
@@ -82,16 +82,16 @@ export const paperData = {
         {
             id: 8,
             type: 'single',
-            question: '在下列代码的横线处填写（   ），可以使得输出是 GESP IS INTERESTING。\n```cpp\nint main() {\n    string str = "gEsP is Interesting";\n    int x = str.length();\n    for (int i = 0; i < x; i++)\n        if ((str[i] >= \"a\"[0]) && (str[i] <= \"z\"[0]))\n            ________________________;\n    cout << str << endl;\n    return 0;\n}\n```',
+            question: `在下列代码的横线处填写（ ），可以使得输出是 GESP IS INTERESTING。\n\`\`\`cpp\nint main() {\n string str = "gEsP is Interesting";\n int x = str.length();\n for (int i = 0; i < x; i++)\n if ((str[i] >= "a"[0]) && (str[i] <= "z"[0]))\n ________________________;\n cout << str << endl;\n return 0;\n}\n\`\`\``,
             options: ["str[i] += 'a'-'A'", 'str[i] += 20', "str[i] += 'A'-'a'", '无法实现'],
             answer: 2,
             score: 2,
-            explanation: '把小写字母转成大写应减去 32，即加上 \"A\"-\"a\"。'
+            explanation: '把小写字母转成大写应减去 32，即加上 "A"-"a"。'
         },
         {
             id: 9,
             type: 'single',
-            question: '假设英文句子由若干词构成。下面 C++ 代码统计输出的词数是（   ）。\n```cpp\nint main() {\n    string str = "gEsP is  Interesting  !";\n    int x = str.length();\n    int nwords = 0;\n    for (int i = 0; i < x; i++)\n        if (str[i] == \" \"[0]) {\n            nwords++;\n            while (str[++i] == \" \"[0]);\n        }\n    cout << nwords << endl;\n    return 0;\n}\n```',
+            question: `假设英文句子由若干词构成。下面 C++ 代码统计输出的词数是（ ）。\n\`\`\`cpp\nint main() {\n string str = "gEsP is Interesting !";\n int x = str.length();\n int nwords = 0;\n for (int i = 0; i < x; i++)\n if (str[i] == " "[0]) {\n nwords++;\n while (str[++i] == " "[0]);\n }\n cout << nwords << endl;\n return 0;\n}\n\`\`\``,
             options: ['1', '2', '3', '4'],
             answer: 2,
             score: 2,
@@ -100,7 +100,7 @@ export const paperData = {
         {
             id: 10,
             type: 'single',
-            question: 'C++ 的字符变量的码值是整数，下面字面量形式的字符码值最大的是（   ）。',
+            question: `C++ 的字符变量的码值是整数，下面字面量形式的字符码值最大的是（ ）。`,
             options: ['100', '075', '0x70', '0x60'],
             answer: 2,
             score: 2,
@@ -109,7 +109,7 @@ export const paperData = {
         {
             id: 11,
             type: 'single',
-            question: '下面 C++ 程序执行的结果是（   ）。\n```cpp\nint main() {\n    int a[20], i;\n    int cnt = 0;\n    for (i = 0; i < 20; i++) a[i] = i+1;\n    for (; i > 1; i--)\n        if ((a[i-1]+a[i-2]) % 3) cnt++;\n    cout << cnt << endl;\n    return 0;\n}\n```',
+            question: `下面 C++ 程序执行的结果是（ ）。\n\`\`\`cpp\nint main() {\n int a[20], i;\n int cnt = 0;\n for (i = 0; i < 20; i++) a[i] = i+1;\n for (; i > 1; i--)\n if ((a[i-1]+a[i-2]) % 3) cnt++;\n cout << cnt << endl;\n return 0;\n}\n\`\`\``,
             options: ['5', '6', '10', '12'],
             answer: 3,
             score: 2,
@@ -118,7 +118,7 @@ export const paperData = {
         {
             id: 12,
             type: 'single',
-            question: '定义字符数组 char str[20] = {\'G\', \'E\', \'S\', \'P\'};，则 str 的字符串长度为（   ）。',
+            question: `定义字符数组 char str[20] = {'G', 'E', 'S', 'P'};，则 str 的字符串长度为（ ）。`,
             options: ['4', '5', '19', '20'],
             answer: 0,
             score: 2,
@@ -127,7 +127,7 @@ export const paperData = {
         {
             id: 13,
             type: 'single',
-            question: '定义整型变量 int a = 3, b = 16，则 a | b 的值和 a+b 的关系是（   ）。',
+            question: `定义整型变量 int a = 3, b = 16，则 a | b 的值和 a+b 的关系是（ ）。`,
             options: ['大于', '等于', '小于', '等于或小于'],
             answer: 1,
             score: 2,
@@ -136,7 +136,7 @@ export const paperData = {
         {
             id: 14,
             type: 'single',
-            question: '小杨的父母最近刚刚给他买了一块华为手表，他说手表上跑的是鸿蒙，这个鸿蒙是（   ）。',
+            question: `小杨的父母最近刚刚给他买了一块华为手表，他说手表上跑的是鸿蒙，这个鸿蒙是（ ）。`,
             options: ['小程序', '计时器', '操作系统', '神话人物'],
             answer: 2,
             score: 2,
@@ -145,7 +145,7 @@ export const paperData = {
         {
             id: 15,
             type: 'single',
-            question: '中国计算机学会（CCF）在 2024 年 1 月 27 日的颁奖典礼上颁布了王选奖，王选先生的重大贡献是（   ）。',
+            question: `中国计算机学会（CCF）在 2024 年 1 月 27 日的颁奖典礼上颁布了王选奖，王选先生的重大贡献是（ ）。`,
             options: ['制造自动驾驶汽车', '创立培训学校', '发明汉字激光照排系统', '成立方正公司'],
             answer: 2,
             score: 2,
@@ -154,7 +154,7 @@ export const paperData = {
         {
             id: 16,
             type: 'judge',
-            question: '任意整数 a 的二进制反码与补码都有 1 位不同。',
+            question: `任意整数 a 的二进制反码与补码都有 1 位不同。`,
             options: ['正确', '错误'],
             answer: 1,
             score: 2,
@@ -163,7 +163,7 @@ export const paperData = {
         {
             id: 17,
             type: 'judge',
-            question: '对整型变量 int a = 3，执行 C++ 代码 a << 2 将把 2 输出到 a 中。',
+            question: `对整型变量 int a = 3，执行 C++ 代码 a << 2 将把 2 输出到 a 中。`,
             options: ['正确', '错误'],
             answer: 1,
             score: 2,
@@ -172,7 +172,7 @@ export const paperData = {
         {
             id: 18,
             type: 'judge',
-            question: '下面 C++ 代码可以计算 1 到 100 的累加和，采用的是穷举法。\n```cpp\nint main() {\n    int i, sum = 0;\n    for (int i = 1; i <= 100; i++) sum += i;\n    cout << sum << endl;\n    return 0;\n}\n```',
+            question: `下面 C++ 代码可以计算 1 到 100 的累加和，采用的是穷举法。\n\`\`\`cpp\nint main() {\n int i, sum = 0;\n for (int i = 1; i <= 100; i++) sum += i;\n cout << sum << endl;\n return 0;\n}\n\`\`\``,
             options: ['正确', '错误'],
             answer: 0,
             score: 2,
@@ -181,7 +181,7 @@ export const paperData = {
         {
             id: 19,
             type: 'judge',
-            question: '一个 int 类型变量 a，执行操作 (a << 2 >> 2) 后的值一定是 a。',
+            question: `一个 int 类型变量 a，执行操作 (a << 2 >> 2) 后的值一定是 a。`,
             options: ['正确', '错误'],
             answer: 1,
             score: 2,
@@ -190,7 +190,7 @@ export const paperData = {
         {
             id: 20,
             type: 'judge',
-            question: '在 C++ 语言中，(010 << 1) 执行结果是 100。',
+            question: `在 C++ 语言中，(010 << 1) 执行结果是 100。`,
             options: ['正确', '错误'],
             answer: 1,
             score: 2,
@@ -199,7 +199,7 @@ export const paperData = {
         {
             id: 21,
             type: 'judge',
-            question: '执行下面 C++ 代码后将输出 2。\n```cpp\nint main() {\n    string str = "gEsP is Interesting";\n    int x = str.find("s");\n    cout << x << endl;\n    return 0;\n}\n```',
+            question: `执行下面 C++ 代码后将输出 2。\n\`\`\`cpp\nint main() {\n string str = "gEsP is Interesting";\n int x = str.find("s");\n cout << x << endl;\n return 0;\n}\n\`\`\``,
             options: ['正确', '错误'],
             answer: 0,
             score: 2,
@@ -208,7 +208,7 @@ export const paperData = {
         {
             id: 22,
             type: 'judge',
-            question: '在 C++ 语言中，字符数组被定义时，它的大小可以调整。',
+            question: `在 C++ 语言中，字符数组被定义时，它的大小可以调整。`,
             options: ['正确', '错误'],
             answer: 1,
             score: 2,
@@ -217,7 +217,7 @@ export const paperData = {
         {
             id: 23,
             type: 'judge',
-            question: '对定义的数组 int a[7] = {2, 0, 2, 4, 3, 1, 6}，可以用简单循环就找到其中最小的整数。',
+            question: `对定义的数组 int a[7] = {2, 0, 2, 4, 3, 1, 6}，可以用简单循环就找到其中最小的整数。`,
             options: ['正确', '错误'],
             answer: 0,
             score: 2,
@@ -226,7 +226,7 @@ export const paperData = {
         {
             id: 24,
             type: 'judge',
-            question: '小杨今年春节回奶奶家了，奶奶家的数字电视要设置 IP 地址并接入到 WIFI 盒子才能收看节目，那这个 WIFI 盒子具有路由器的功能。',
+            question: `小杨今年春节回奶奶家了，奶奶家的数字电视要设置 IP 地址并接入到 WIFI 盒子才能收看节目，那这个 WIFI 盒子具有路由器的功能。`,
             options: ['正确', '错误'],
             answer: 0,
             score: 2,
@@ -235,7 +235,7 @@ export const paperData = {
         {
             id: 25,
             type: 'judge',
-            question: '任何一个 for 循环都可以转化为等价的 while 循环。',
+            question: `任何一个 for 循环都可以转化为等价的 while 循环。`,
             options: ['正确', '错误'],
             answer: 0,
             score: 2,
@@ -255,13 +255,13 @@ aAc`, output: `-61` }
 
 ## 题目描述
 
-小杨同学发明了一种新型密码，对于每一个小写英文字母，该小写字母代表了一个正整数，即该字母在字母顺序中的位置，例如字母 \`a\` 代表了正整数 \$1\$，字母 \`b\` 代表了正整数 \$2\$；对于每一个大写英文字母，该大写字母代表了一个负整数，即该字母的 ASCII 码的相反数，例如字母 \`A\` 代表了负整数 \$-65\$。小杨同学利用这种放缩对一个整数进行了加密并得到了一个由大写字母和小写字母组成的字符串，该字符串中每个字母所代表数字的总和即为加密前的整数，例如 \`aAc\` 对应的加密前的整数为 \$1+(-65)+3=-61\$。
+小杨同学发明了一种新型密码，对于每一个小写英文字母，该小写字母代表了一个正整数，即该字母在字母顺序中的位置，例如字母 \`a\` 代表了正整数 $1$，字母 \`b\` 代表了正整数 $2$；对于每一个大写英文字母，该大写字母代表了一个负整数，即该字母的 ASCII 码的相反数，例如字母 \`A\` 代表了负整数 $-65$。小杨同学利用这种放缩对一个整数进行了加密并得到了一个由大写字母和小写字母组成的字符串，该字符串中每个字母所代表数字的总和即为加密前的整数，例如 \`aAc\` 对应的加密前的整数为 $1+(-65)+3=-61$。
 
 对于给定的字符串，请你计算出它对应的加密前的整数是多少。
 
 ## 输入格式
 
-第一行一个正整数 \$n\$，表示字符串中字母的个数。  
+第一行一个正整数 $n$，表示字符串中字母的个数。 
 第二行一个由大写字母和小写字母的字符串 \`T\`，代表加密后得到的字符串。
 
 ## 输出格式
@@ -287,14 +287,14 @@ aAc`, output: `-61` }
 
 ## 题目描述
 
-小杨同学有一个包含 \$n\$ 个非负整数的序列 \$A\$，他想要知道其中有多少对下标组合 \$\\langle i,j\\rangle\$（\$1 \\leq i < j \\leq n\$），使得 \$A_i + A_j\$ 是完全平方数。
+小杨同学有一个包含 $n$ 个非负整数的序列 $A$，他想要知道其中有多少对下标组合 $\\langle i,j\\rangle$（$1 \\leq i < j \\leq n$），使得 $A_i + A_j$ 是完全平方数。
 
-如果 \$x\$ 是完全平方数，则存在非负整数 \$y\$ 使得 \$y \\times y = x\$。
+如果 $x$ 是完全平方数，则存在非负整数 $y$ 使得 $y \\times y = x$。
 
 ## 输入格式
 
-第一行一个非负整数 \$n\$，表示非负整数个数。  
-第二入行包含 \$n\$ 个非负整数 \$A_1, A_2, \\dots A_n\$，表示序列 \$A\$ 包含的非负整数。
+第一行一个非负整数 $n$，表示非负整数个数。 
+第二入行包含 $n$ 个非负整数 $A_1, A_2, \\dots A_n$，表示序列 $A$ 包含的非负整数。
 
 ## 输出格式
 

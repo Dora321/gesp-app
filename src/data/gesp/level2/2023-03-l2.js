@@ -12,7 +12,7 @@ export const paperData = {
         {
             id: 1,
             type: 'single',
-            question: "以下存储器中的数据不会受到附近强磁场干扰的是（ ）。",
+            question: `以下存储器中的数据不会受到附近强磁场干扰的是（ ）。`,
             options: ["硬盘", "U 盘", "内存", "光盘"],
             answer: 3,
             score: 2,
@@ -22,7 +22,7 @@ export const paperData = {
         {
             id: 2,
             type: 'single',
-            question: "下列流程图，属于计算机的哪种程序结构？（ ）。",
+            question: `下列流程图，属于计算机的哪种程序结构？（ ）。`,
             options: ["顺序结构", "循环结构", "分支结构", "数据结构"],
             answer: 2,
             score: 2,
@@ -32,7 +32,7 @@ export const paperData = {
         {
             id: 3,
             type: 'single',
-            question: "下列关于 C++ 语言的叙述，不正确的是（ ）。",
+            question: `下列关于 C++ 语言的叙述，不正确的是（ ）。`,
             options: ["double 类型的变量占用内存的大小是浮动的", "bool 类型的变量占用 1 字节内存", "int 类型变量的取值范围不是无限的", "char 类型的变量有 256 种取值"],
             answer: 0,
             score: 2,
@@ -42,7 +42,7 @@ export const paperData = {
         {
             id: 4,
             type: 'single',
-            question: "下列关于 C++ 语言的叙述，不正确的是（ ）。",
+            question: `下列关于 C++ 语言的叙述，不正确的是（ ）。`,
             options: ["变量定义后，可以使用赋值语句改变它的值", "变量定义时，必须指定类型", "变量名必须为合法标识符", "合法标识符可以以数字开始"],
             answer: 3,
             score: 2,
@@ -52,7 +52,7 @@ export const paperData = {
         {
             id: 5,
             type: 'single',
-            question: "以下哪个不是 C++ 语言的关键字？",
+            question: `以下哪个不是 C++ 语言的关键字？`,
             options: ["return", "max", "else", "case"],
             answer: 1,
             score: 2,
@@ -62,7 +62,7 @@ export const paperData = {
         {
             id: 6,
             type: 'single',
-            question: "以下哪个不是 C++ 语言的运算符？",
+            question: `以下哪个不是 C++ 语言的运算符？`,
             options: ["=", "==", "/=", "++"],
             answer: 0,
             score: 2,
@@ -72,7 +72,7 @@ export const paperData = {
         {
             id: 7,
             type: 'single',
-            question: "如果 a 和 b 都是 char 类型的变量，下列哪个语句不符合 C++ 语法？",
+            question: `如果 a 和 b 都是 char 类型的变量，下列哪个语句不符合 C++ 语法？`,
             options: ["b = a+1;", "b = a+'1';", "b = 'a'++;", "b = a++;"],
             answer: 2,
             score: 2,
@@ -82,7 +82,7 @@ export const paperData = {
         {
             id: 8,
             type: 'single',
-            question: "如果 a, b, c, d 都是 int 类型的变量，下列哪个表达式能正确计算它们的平均值？",
+            question: `如果 a, b, c, d 都是 int 类型的变量，下列哪个表达式能正确计算它们的平均值？`,
             options: ["(a+b+c+d)/4", "(a+b+c+d)%4", "(a+b+c+d)/4.0", "(a+b+c+d)%4.0"],
             answer: 2,
             score: 2,
@@ -92,7 +92,7 @@ export const paperData = {
         {
             id: 9,
             type: 'single',
-            question: "如果 a 为 char 变量且值为 '2'，下列那条语句执行后 a 的值不会变为 '3'？",
+            question: `如果 a 为 char 变量且值为 '2'，下列那条语句执行后 a 的值不会变为 '3'？`,
             options: ["a = a+1;", "a+1;", "a = 1+a;", "++a;"],
             answer: 1,
             score: 2,
@@ -102,7 +102,7 @@ export const paperData = {
         {
             id: 10,
             type: 'single',
-            question: "如果 a 为 int 变量且值为 9，则执行 a -= 3; 之后，a 的值是（ ）。",
+            question: `如果 a 为 int 变量且值为 9，则执行 a -= 3; 之后，a 的值是（ ）。`,
             options: ["3", "6", "9", "12"],
             answer: 1,
             score: 2,
@@ -112,7 +112,7 @@ export const paperData = {
         {
             id: 11,
             type: 'single',
-            question: "下列表达式能正确判断“a 等于 0 或 b 等于 0”的是（ ）。",
+            question: `下列表达式能正确判断“a 等于 0 或 b 等于 0”的是（ ）。`,
             options: ["(!a) || (!b)", "(a == b == 0)", "(a == 0) && (b == 0)", "(a == 0)-(b == 0) == 0"],
             answer: 0,
             score: 2,
@@ -122,7 +122,7 @@ export const paperData = {
         {
             id: 12,
             type: 'single',
-            question: "下列哪个表达式可以正确判断“a 是小写字母”？",
+            question: `下列哪个表达式可以正确判断“a 是小写字母”？`,
             options: ["a <= a <= z", "a-'a' <= 'z'-'a'", "'a' <= a <= 'z'", "a >= 'a' && a <= 'z'"],
             answer: 3,
             score: 2,
@@ -132,7 +132,7 @@ export const paperData = {
         {
             id: 13,
             type: 'single',
-            question: "在下列代码横线处填写（ ），使得输出为 50 10。\nint a=10, b=50; ________; b-=a; a+=b; cout<<a<<\" \"<<b;",
+            question: `在下列代码横线处填写（ ），使得输出为 50 10。\nint a=10, b=50; ________; b-=a; a+=b; cout<<a<<" "<<b;`,
             options: ["a-=b", "a+=b", "a=b-a", "a=b"],
             answer: 2,
             score: 2,
@@ -142,7 +142,7 @@ export const paperData = {
         {
             id: 14,
             type: 'single',
-            question: "在下列代码横线处填写（ ），可以使得输出为 5。\nint cnt=0; for(char ch='1'; ch<='9'; ch++) if(________) cnt++;",
+            question: `在下列代码横线处填写（ ），可以使得输出为 5。\nint cnt=0; for(char ch='1'; ch<='9'; ch++) if(________) cnt++;`,
             options: ["ch < '5'", "ch >= 5", "ch >= '4'", "ch % 2 == 1"],
             answer: 3,
             score: 2,
@@ -152,7 +152,7 @@ export const paperData = {
         {
             id: 15,
             type: 'single',
-            question: "执行以下程序后，输出结果是（ ）。\nint n=17; bool isprime=true; for(int i=2; i<=n; i++) if(n%i==0) isprime=false; cout<<isprime;",
+            question: `执行以下程序后，输出结果是（ ）。\nint n=17; bool isprime=true; for(int i=2; i<=n; i++) if(n%i==0) isprime=false; cout<<isprime;`,
             options: ["false", "true", "0", "1"],
             answer: 2,
             score: 2,
@@ -162,7 +162,7 @@ export const paperData = {
         {
             id: 16,
             type: 'judge',
-            question: "4GB 和 4096MB 的 U 盘容量大小是一样的。",
+            question: `4GB 和 4096MB 的 U 盘容量大小是一样的。`,
             options: ["正确", "错误"],
             answer: 0,
             score: 2,
@@ -172,7 +172,7 @@ export const paperData = {
         {
             id: 17,
             type: 'judge',
-            question: "IPv4 地址点分十进制形式中，a, b, c, d 都是 1~255 之间的整数。",
+            question: `IPv4 地址点分十进制形式中，a, b, c, d 都是 1~255 之间的整数。`,
             options: ["正确", "错误"],
             answer: 1,
             score: 2,
@@ -182,7 +182,7 @@ export const paperData = {
         {
             id: 18,
             type: 'judge',
-            question: "C++ 语言中，一个程序不能有多个 main 函数。",
+            question: `C++ 语言中，一个程序不能有多个 main 函数。`,
             options: ["正确", "错误"],
             answer: 0,
             score: 2,
@@ -192,7 +192,7 @@ export const paperData = {
         {
             id: 19,
             type: 'judge',
-            question: "标识符中可以有下划线，但不能以下划线开头。",
+            question: `标识符中可以有下划线，但不能以下划线开头。`,
             options: ["正确", "错误"],
             answer: 1,
             score: 2,
@@ -202,7 +202,7 @@ export const paperData = {
         {
             id: 20,
             type: 'judge',
-            question: "如果 int a = 1，则表达式 'a' 的值为 '1'。",
+            question: `如果 int a = 1，则表达式 'a' 的值为 '1'。`,
             options: ["正确", "错误"],
             answer: 1,
             score: 2,
@@ -212,7 +212,7 @@ export const paperData = {
         {
             id: 21,
             type: 'judge',
-            question: "if 子句中不可以嵌套 if...else 语句。",
+            question: `if 子句中不可以嵌套 if...else 语句。`,
             options: ["正确", "错误"],
             answer: 1,
             score: 2,
@@ -222,7 +222,7 @@ export const paperData = {
         {
             id: 22,
             type: 'judge',
-            question: "while 语句的循环体至少会执行一次。",
+            question: `while 语句的循环体至少会执行一次。`,
             options: ["正确", "错误"],
             answer: 1,
             score: 2,
@@ -232,7 +232,7 @@ export const paperData = {
         {
             id: 23,
             type: 'judge',
-            question: "C++ 语言中 >= 是运算符，但 => 不是。",
+            question: `C++ 语言中 >= 是运算符，但 => 不是。`,
             options: ["正确", "错误"],
             answer: 0,
             score: 2,
@@ -242,7 +242,7 @@ export const paperData = {
         {
             id: 24,
             type: 'judge',
-            question: "a = a-'a'+'A' 可以将小写字母转换为对应的大写字母。",
+            question: `a = a-'a'+'A' 可以将小写字母转换为对应的大写字母。`,
             options: ["正确", "错误"],
             answer: 0,
             score: 2,
@@ -252,7 +252,7 @@ export const paperData = {
         {
             id: 25,
             type: 'judge',
-            question: "表达式 (10.0 / 2) 的计算结果类型为 double。",
+            question: `表达式 (10.0 / 2) 的计算结果类型为 double。`,
             options: ["正确", "错误"],
             answer: 0,
             score: 2,

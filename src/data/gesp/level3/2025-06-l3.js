@@ -19,7 +19,7 @@ export const paperData = {
         {
             id: 1,
             type: 'single',
-            question: '8 位二进制原码能表示的最小整数是（ ）。',
+            question: `8 位二进制原码能表示的最小整数是（ ）。`,
             options: ['-127', '-128', '-255', '-256'],
             answer: 0,
             score: 2,
@@ -28,7 +28,7 @@ export const paperData = {
         {
             id: 2,
             type: 'single',
-            question: '反码表示中，零的表示形式有（ ）。',
+            question: `反码表示中，零的表示形式有（ ）。`,
             options: ['1 种', '2 种', '8 种', '16 种'],
             answer: 1,
             score: 2,
@@ -37,7 +37,7 @@ export const paperData = {
         {
             id: 3,
             type: 'single',
-            question: '补码 1011 1011 对应的真值是（ ）。',
+            question: `补码 1011 1011 对应的真值是（ ）。`,
             options: ['-69', '-59', '-68', '-58'],
             answer: 0,
             score: 2,
@@ -46,7 +46,7 @@ export const paperData = {
         {
             id: 4,
             type: 'single',
-            question: '若 X 的 8 位补码为 0000 1010，则 X / 2 的补码是（ ）。',
+            question: `若 X 的 8 位补码为 0000 1010，则 X / 2 的补码是（ ）。`,
             options: ['0000 0101', '1000 0101', '0000 0101 或 1000 0101', '算术右移后结果取决于符号位'],
             answer: 0,
             score: 2,
@@ -55,7 +55,7 @@ export const paperData = {
         {
             id: 5,
             type: 'single',
-            question: '二进制数 1101.101 对应的十进制数是（ ）。',
+            question: `二进制数 1101.101 对应的十进制数是（ ）。`,
             options: ['13.625', '12.75', '11.875', '14.5'],
             answer: 0,
             score: 2,
@@ -64,7 +64,7 @@ export const paperData = {
         {
             id: 6,
             type: 'single',
-            question: '补码加法中，若符号位无进位而次高位有进位，则说明（ ）。',
+            question: `补码加法中，若符号位无进位而次高位有进位，则说明（ ）。`,
             options: ['结果正确', '发生上溢', '发生下溢', '结果符号位错误'],
             answer: 1,
             score: 2,
@@ -73,7 +73,7 @@ export const paperData = {
         {
             id: 7,
             type: 'single',
-            question: '八进制数 35.6 对应的十进制数是（ ）。',
+            question: `八进制数 35.6 对应的十进制数是（ ）。`,
             options: ['29.75', '28.5', '27.625', '30.25'],
             answer: 0,
             score: 2,
@@ -82,7 +82,7 @@ export const paperData = {
         {
             id: 8,
             type: 'single',
-            question: '二进制数 1010 | 1100 的结果是（ ）。',
+            question: `二进制数 1010 | 1100 的结果是（ ）。`,
             options: ['1000', '1110', '1010', '1100'],
             answer: 1,
             score: 2,
@@ -91,7 +91,7 @@ export const paperData = {
         {
             id: 9,
             type: 'single',
-            question: '以下哪个位运算可以交换两个变量的值（无需临时变量）（ ）。',
+            question: `以下哪个位运算可以交换两个变量的值（无需临时变量）（ ）。`,
             options: [
                 'a = a ^ b; b = a ^ b; a = a ^ b;',
                 'a = a & b; b = a | b; a = a & b;',
@@ -105,7 +105,7 @@ export const paperData = {
         {
             id: 10,
             type: 'single',
-            question: '如何正确定义一个长度为 5 的整型数组（ ）。',
+            question: `如何正确定义一个长度为 5 的整型数组（ ）。`,
             options: ['int array = new int[5];', 'array int[5];', 'int[] array = {1,2,3,4,5};', 'int array[5];'],
             answer: 3,
             score: 2,
@@ -114,7 +114,7 @@ export const paperData = {
         {
             id: 11,
             type: 'single',
-            question: '下面程序使用枚举法（穷举法）求解满足条件的三位数，横线处应该填入的是（ ）。\n```cpp\n#include <iostream>\nusing namespace std;\nint main() {\n    int count = 0;\n    for (int i = 100; i <= 999; i++) {\n        int a = i / 100;\n        __________________\n        int c = i % 10;\n        if (a * a+b * b == c * c) {\n            count++;\n        }\n    }\n    cout << count << endl;\n    return 0;\n}\n```',
+            question: `下面程序使用枚举法（穷举法）求解满足条件的三位数，横线处应该填入的是（ ）。\n\`\`\`cpp\n#include <iostream>\nusing namespace std;\nint main() {\n int count = 0;\n for (int i = 100; i <= 999; i++) {\n int a = i / 100;\n __________________\n int c = i % 10;\n if (a * a+b * b == c * c) {\n count++;\n }\n }\n cout << count << endl;\n return 0;\n}\n\`\`\``,
             options: ['int b = (i / 10) / 10;', 'int b = (i / 10) % 10;', 'int b = (i % 10) / 10;', 'int b = (i % 10) % 10;'],
             answer: 1,
             score: 2,
@@ -123,7 +123,7 @@ export const paperData = {
         {
             id: 12,
             type: 'single',
-            question: '下面程序模拟了一个简单的小球反弹过程，横线处应该填入的是（ ）。\n```cpp\n#include <iostream>\nusing namespace std;\nint main() {\n    int height = 10;\n    int distance = 0;\n    for (int i = 1; i <= 5; i++) { // 模拟 5 次落地\n        __________________\n        height /= 2;\n        distance += height;\n    }\n    cout << distance << endl;\n    return 0;\n}\n```',
+            question: `下面程序模拟了一个简单的小球反弹过程，横线处应该填入的是（ ）。\n\`\`\`cpp\n#include <iostream>\nusing namespace std;\nint main() {\n int height = 10;\n int distance = 0;\n for (int i = 1; i <= 5; i++) { // 模拟 5 次落地\n __________________\n height /= 2;\n distance += height;\n }\n cout << distance << endl;\n return 0;\n}\n\`\`\``,
             options: ['distance += height / 2;', 'distance += height;', 'distance += height * 2;', 'distance += height+1;'],
             answer: 1,
             score: 2,
@@ -132,7 +132,7 @@ export const paperData = {
         {
             id: 13,
             type: 'single',
-            question: 'C++ 代码 `string s = "GESP考试";` 中，s 占据的字节数是（ ）。',
+            question: `C++ 代码 \`string s = "GESP考试";\` 中，s 占据的字节数是（ ）。`,
             options: ['10', '8', '8 或 10', '取决于计算机采用什么编码'],
             answer: 3,
             score: 2,
@@ -141,7 +141,7 @@ export const paperData = {
         {
             id: 14,
             type: 'single',
-            question: 'C++ 语句 `string s = "Gesp Test";` 执行 `s.rfind("e")` 以后，输出的是（ ）。',
+            question: `C++ 语句 \`string s = "Gesp Test";\` 执行 \`s.rfind("e")\` 以后，输出的是（ ）。`,
             options: ['1', '2', '6', '3'],
             answer: 2,
             score: 2,
@@ -150,7 +150,7 @@ export const paperData = {
         {
             id: 15,
             type: 'single',
-            question: '字符串 "Gesp考试" 的字符数是（ ）。',
+            question: `字符串 "Gesp考试" 的字符数是（ ）。`,
             options: ['10', '8', '6', '字符数多少取决于编码'],
             answer: 2,
             score: 2,
@@ -159,7 +159,7 @@ export const paperData = {
         {
             id: 16,
             type: 'judge',
-            question: 'C++ 中 string 的 == 运算符比较的是字符串的内存地址，而非内容。',
+            question: `C++ 中 string 的 == 运算符比较的是字符串的内存地址，而非内容。`,
             options: ['正确', '错误'],
             answer: 1,
             score: 2,
@@ -168,7 +168,7 @@ export const paperData = {
         {
             id: 17,
             type: 'judge',
-            question: 'string 的 substr(1, 3) 返回从下标 1 开始的 3 个字符的子串。',
+            question: `string 的 substr(1, 3) 返回从下标 1 开始的 3 个字符的子串。`,
             options: ['正确', '错误'],
             answer: 0,
             score: 2,
@@ -177,7 +177,7 @@ export const paperData = {
         {
             id: 18,
             type: 'judge',
-            question: 'x 是浮点数，(x >> 1) 等价于 x / 2。',
+            question: `x 是浮点数，(x >> 1) 等价于 x / 2。`,
             options: ['正确', '错误'],
             answer: 1,
             score: 2,
@@ -186,7 +186,7 @@ export const paperData = {
         {
             id: 19,
             type: 'judge',
-            question: 'string("hello") == "hello" 的比较结果为 true。',
+            question: `string("hello") == "hello" 的比较结果为 true。`,
             options: ['正确', '错误'],
             answer: 0,
             score: 2,
@@ -195,7 +195,7 @@ export const paperData = {
         {
             id: 20,
             type: 'judge',
-            question: 'sort 可以直接用于排序 set 中的元素。',
+            question: `sort 可以直接用于排序 set 中的元素。`,
             options: ['正确', '错误'],
             answer: 1,
             score: 2,
@@ -204,7 +204,7 @@ export const paperData = {
         {
             id: 21,
             type: 'judge',
-            question: '(x & 1) == 0 可以判断整数 x 是否为偶数。',
+            question: `(x & 1) == 0 可以判断整数 x 是否为偶数。`,
             options: ['正确', '错误'],
             answer: 0,
             score: 2,
@@ -213,7 +213,7 @@ export const paperData = {
         {
             id: 22,
             type: 'judge',
-            question: 'string 的 substr(2, 10) 在字符串长度不足时会抛出异常。',
+            question: `string 的 substr(2, 10) 在字符串长度不足时会抛出异常。`,
             options: ['正确', '错误'],
             answer: 1,
             score: 2,
@@ -222,7 +222,7 @@ export const paperData = {
         {
             id: 23,
             type: 'judge',
-            question: '在数学纸面计算中，pow(2, 3) 的计算结果一定是 8，但是在 C++ 中，如果遇到数据类型是浮点数，那就不一定正确。',
+            question: `在数学纸面计算中，pow(2, 3) 的计算结果一定是 8，但是在 C++ 中，如果遇到数据类型是浮点数，那就不一定正确。`,
             options: ['正确', '错误'],
             answer: 0,
             score: 2,
@@ -231,7 +231,7 @@ export const paperData = {
         {
             id: 24,
             type: 'judge',
-            question: '在 C++ 中，枚举的底层类型可以是非整型（如 float 或 double）。',
+            question: `在 C++ 中，枚举的底层类型可以是非整型（如 float 或 double）。`,
             options: ['正确', '错误'],
             answer: 1,
             score: 2,
@@ -240,7 +240,7 @@ export const paperData = {
         {
             id: 25,
             type: 'judge',
-            question: '函数声明 `double f();` 返回 int 时，会自动转换为 double。',
+            question: `函数声明 \`double f();\` 返回 int 时，会自动转换为 double。`,
             options: ['正确', '错误'],
             answer: 0,
             score: 2,
@@ -264,19 +264,19 @@ export const paperData = {
 
 数据在传输过程中可能出错，因此接收方收到数据后通常会校验传输的数据是否正确，奇偶校验是经典的校验方式之一。
 
-给定 \$n\$ 个非负整数 \$c_1, c_2, \\ldots, c_n\$ 代表所传输的数据，它们的校验码取决于这些整数在二进制下 1 的数量之和的奇偶性。如果这些整数在二进制下共有奇数个 1，那么校验码为 1；否则校验码为 0。你能求出这些整数的校验码吗？
+给定 $n$ 个非负整数 $c_1, c_2, \\ldots, c_n$ 代表所传输的数据，它们的校验码取决于这些整数在二进制下 1 的数量之和的奇偶性。如果这些整数在二进制下共有奇数个 1，那么校验码为 1；否则校验码为 0。你能求出这些整数的校验码吗？
 
 ## 输入格式
 
-第一行，一个正整数 \$n\$，表示所传输的数据量。
+第一行，一个正整数 $n$，表示所传输的数据量。
 
-第二行，\$n\$ 个非负整数 \$c_1, c_2, \\ldots, c_n\$，表示所传输的数据。
+第二行，$n$ 个非负整数 $c_1, c_2, \\ldots, c_n$，表示所传输的数据。
 
 ## 输出格式
 
 输出一行，两个整数，以一个空格分隔：
 
-第一个整数表示 \$c_1, c_2, \\ldots, c_n\$ 在二进制下 1 的总数量；
+第一个整数表示 $c_1, c_2, \\ldots, c_n$ 在二进制下 1 的总数量；
 
 第二个整数表示校验码（0 或 1）。
 `,
@@ -301,15 +301,15 @@ export const paperData = {
 
 ## 题目描述
 
-有 \$n\$ 位小朋友排成一队等待老师分糖果。第 \$i\$ 位小朋友想要至少 \$a_i\$ 颗糖果，并且分给他的糖果数量必须比分给前一位小朋友的糖果数量更多，不然他就会不开心。
+有 $n$ 位小朋友排成一队等待老师分糖果。第 $i$ 位小朋友想要至少 $a_i$ 颗糖果，并且分给他的糖果数量必须比分给前一位小朋友的糖果数量更多，不然他就会不开心。
 
 老师想知道至少需要准备多少颗糖果才能让所有小朋友都开心。你能帮帮老师吗？
 
 ## 输入格式
 
-第一行，一个正整数 \$n\$，表示小朋友的人数。
+第一行，一个正整数 $n$，表示小朋友的人数。
 
-第二行，\$n\$ 个正整数 \$a_1, a_2, \\ldots, a_n\$，依次表示每位小朋友至少需要的糖果数量。
+第二行，$n$ 个正整数 $a_1, a_2, \\ldots, a_n$，依次表示每位小朋友至少需要的糖果数量。
 
 ## 输出格式
 

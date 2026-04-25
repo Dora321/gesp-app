@@ -61,7 +61,7 @@ export const paperData = {
         {
             id: 1,
             type: "single",
-            question: "关于单链表、双链表和循环链表，下列说法正确的是（ ）。",
+            question: `关于单链表、双链表和循环链表，下列说法正确的是（ ）。`,
             options: [
                 "在单链表中，若已知任意结点的指针，则可以在 O(1) 时间内删除该结点。",
                 "循环链表中一定不存在空指针。",
@@ -76,7 +76,7 @@ export const paperData = {
         {
             id: 2,
             type: "single",
-            question: "双向循环链表中要在结点 p 之前插入新结点 s（均非空），以下指针操作正确的是（ ）。",
+            question: `双向循环链表中要在结点 p 之前插入新结点 s（均非空），以下指针操作正确的是（ ）。`,
             options: [
                 "s->next = p;\np->prev = s;\np->next = s;\ns->prev = p;",
                 "s->prev = p;\ns->next = p->next;\np->next->prev = s;\np->next = s;",
@@ -91,7 +91,7 @@ export const paperData = {
         {
             id: 3,
             type: "single",
-            question: "下面函数用“哑结点”统一处理删除单向链表中的头结点与中间结点。横线处应填（ ）。\n\nstruct Node {\n    int val;\n    Node* next;\n    Node(int v): val(v), next(nullptr) {}\n};\n\nNode* eraseAll(Node* head, int x) {\n    Node dummy(0);\n    dummy.next = head;\n    Node* cur = &dummy;\n    while (cur->next) {\n        if (cur->next->val == x) {\n            Node* del = cur->next;\n            ______________________\n            delete del;\n        } else cur = cur->next;\n    }\n    return dummy.next;\n}",
+            question: `下面函数用“哑结点”统一处理删除单向链表中的头结点与中间结点。横线处应填（ ）。\n\nstruct Node {\n int val;\n Node* next;\n Node(int v): val(v), next(nullptr) {}\n};\n\nNode* eraseAll(Node* head, int x) {\n Node dummy(0);\n dummy.next = head;\n Node* cur = &dummy;\n while (cur->next) {\n if (cur->next->val == x) {\n Node* del = cur->next;\n ______________________\n delete del;\n } else cur = cur->next;\n }\n return dummy.next;\n}`,
             options: [
                 "cur = cur->next;",
                 "cur->next = del->next;",
@@ -106,7 +106,7 @@ export const paperData = {
         {
             id: 4,
             type: "single",
-            question: "对如下代码实现的欧几里得算法（辗转相除法），执行 gcd(48, 18) 得到的调用序列为（ ）。\n\nint gcd(int a, int b) {\n    return b == 0 ? a : gcd(b, a % b);\n}",
+            question: `对如下代码实现的欧几里得算法（辗转相除法），执行 gcd(48, 18) 得到的调用序列为（ ）。\n\nint gcd(int a, int b) {\n return b == 0 ? a : gcd(b, a % b);\n}`,
             options: [
                 "gcd(48,18) -> gcd(18,12) -> gcd(12,6) -> gcd(6,0)",
                 "gcd(48,18) -> gcd(30,18) -> gcd(12,18)",
@@ -121,7 +121,7 @@ export const paperData = {
         {
             id: 5,
             type: "single",
-            question: "下面代码实现了欧拉（线性）筛，横线处应填写（ ）。\n\nvector<int> euler_sieve(int n) {\n    vector<bool> is_composite(n + 1, false);\n    vector<int> primes;\n    for (int i = 2; i <= n; i++) {\n        if (!is_composite[i]) primes.push_back(i);\n        for (int j = 0; __________________________ && (long long)i * primes[j] <= n; j++) {\n            is_composite[i * primes[j]] = true;\n            if (i % primes[j] == 0) break;\n        }\n    }\n    return primes;\n}",
+            question: `下面代码实现了欧拉（线性）筛，横线处应填写（ ）。\n\nvector<int> euler_sieve(int n) {\n vector<bool> is_composite(n + 1, false);\n vector<int> primes;\n for (int i = 2; i <= n; i++) {\n if (!is_composite[i]) primes.push_back(i);\n for (int j = 0; __________________________ && (long long)i * primes[j] <= n; j++) {\n is_composite[i * primes[j]] = true;\n if (i % primes[j] == 0) break;\n }\n }\n return primes;\n}`,
             options: [
                 "j <= n",
                 "j < sqrt(n)",
@@ -136,7 +136,7 @@ export const paperData = {
         {
             id: 6,
             type: "single",
-            question: "埃氏筛中将内层循环从 j = i * i 开始而不是 j = 2 * i 的主要原因是（ ）。",
+            question: `埃氏筛中将内层循环从 j = i * i 开始而不是 j = 2 * i 的主要原因是（ ）。`,
             options: [
                 "因为 2 * i 一定不是合数",
                 "i * i 一定是质数",
@@ -151,7 +151,7 @@ export const paperData = {
         {
             id: 7,
             type: "single",
-            question: "下面程序的运行结果为（ ）。\n\nbool check(int n, int a[], int k, int dist) {\n    int cnt = 1;\n    int last = a[0];\n    for (int i = 1; i < n; i++) {\n        if (a[i] - last >= dist) {\n            cnt++;\n            last = a[i];\n        }\n    }\n    return cnt >= k;\n}\n\nint solve(int n, int a[], int k) {\n    sort(a, a + n);\n    int l = 0;\n    int r = a[n - 1] - a[0];\n    while (l < r) {\n        int mid = (l + r + 1) / 2;\n        if (check(n, a, k, mid)) l = mid;\n        else r = mid - 1;\n    }\n    return l;\n}\n\nint main() {\n    int a[] = {1, 2, 8, 4, 9};\n    int n = 5;\n    int k = 3;\n    cout << solve(n, a, k) << endl;\n}",
+            question: `下面程序的运行结果为（ ）。\n\nbool check(int n, int a[], int k, int dist) {\n int cnt = 1;\n int last = a[0];\n for (int i = 1; i < n; i++) {\n if (a[i] - last >= dist) {\n cnt++;\n last = a[i];\n }\n }\n return cnt >= k;\n}\n\nint solve(int n, int a[], int k) {\n sort(a, a + n);\n int l = 0;\n int r = a[n - 1] - a[0];\n while (l < r) {\n int mid = (l + r + 1) / 2;\n if (check(n, a, k, mid)) l = mid;\n else r = mid - 1;\n }\n return l;\n}\n\nint main() {\n int a[] = {1, 2, 8, 4, 9};\n int n = 5;\n int k = 3;\n cout << solve(n, a, k) << endl;\n}`,
             options: [
                 "2",
                 "3",
@@ -166,7 +166,7 @@ export const paperData = {
         {
             id: 8,
             type: "single",
-            question: "在升序数组中查找第一个大于等于 x 的位置，下面循环中横线应填（ ）。\n\nint lowerBound(const vector<int>& a, int x) {\n    int l = 0, r = a.size();\n    while (l < r) {\n        int mid = l + (r - l) / 2;\n        if (a[mid] >= x) _____________;\n        else l = mid + 1;\n    }\n    return l;\n}",
+            question: `在升序数组中查找第一个大于等于 x 的位置，下面循环中横线应填（ ）。\n\nint lowerBound(const vector<int>& a, int x) {\n int l = 0, r = a.size();\n while (l < r) {\n int mid = l + (r - l) / 2;\n if (a[mid] >= x) _____________;\n else l = mid + 1;\n }\n return l;\n}`,
             options: [
                 "r = mid;",
                 "r = mid - 1;",
@@ -181,7 +181,7 @@ export const paperData = {
         {
             id: 9,
             type: "single",
-            question: "关于递归函数调用，下列说法错误的是（ ）。",
+            question: `关于递归函数调用，下列说法错误的是（ ）。`,
             options: [
                 "递归调用层次过深时，可能会耗尽栈空间导致栈溢出。",
                 "尾递归函数可以通过编译器优化来避免栈溢出。",
@@ -196,7 +196,7 @@ export const paperData = {
         {
             id: 10,
             type: "single",
-            question: "给定 n 根木头，第 i 根长度为 a[i]。要切成不少于 m 段等长木段，求最大可能长度，则横线上应填写（ ）。\n\nconst int MAXN = 100005;\nlong long a[MAXN];\nint n, m;\n\nbool check(long long x) {\n    long long cnt = 0;\n    for (int i = 1; i <= n; i++) {\n        if (x == 0) return true;\n        cnt += a[i] / x;\n        if (cnt >= m) return true;\n    }\n    return false;\n}\n\nint main() {\n    cin >> n >> m;\n    long long mx = 0;\n    for (int i = 1; i <= n; i++) {\n        cin >> a[i];\n        mx = max(mx, a[i]);\n    }\n    long long l = 1, r = mx;\n    long long ans = 0;\n    while (l <= r) {\n        long long mid = l + (r - l) / 2;\n        if (check(mid)) {\n            ans = mid;\n            ______________________\n        } else {\n            ______________________\n        }\n    }\n    cout << ans << endl;\n}",
+            question: `给定 n 根木头，第 i 根长度为 a[i]。要切成不少于 m 段等长木段，求最大可能长度，则横线上应填写（ ）。\n\nconst int MAXN = 100005;\nlong long a[MAXN];\nint n, m;\n\nbool check(long long x) {\n long long cnt = 0;\n for (int i = 1; i <= n; i++) {\n if (x == 0) return true;\n cnt += a[i] / x;\n if (cnt >= m) return true;\n }\n return false;\n}\n\nint main() {\n cin >> n >> m;\n long long mx = 0;\n for (int i = 1; i <= n; i++) {\n cin >> a[i];\n mx = max(mx, a[i]);\n }\n long long l = 1, r = mx;\n long long ans = 0;\n while (l <= r) {\n long long mid = l + (r - l) / 2;\n if (check(mid)) {\n ans = mid;\n ______________________\n } else {\n ______________________\n }\n }\n cout << ans << endl;\n}`,
             options: [
                 "l = mid + 1;\nr = mid - 1;",
                 "l = mid - 1;\nr = mid + 1;",
@@ -211,7 +211,7 @@ export const paperData = {
         {
             id: 11,
             type: "single",
-            question: "下面代码用分治求“最大连续子段和”，其时间复杂度为（ ）。\n\nint solve(vector<int>& a, int l, int r) {\n    if (l == r) return a[l];\n    int mid = l + (r - l) / 2;\n    int left = solve(a, l, mid);\n    int right = solve(a, mid + 1, r);\n    int sum = 0, lmax = INT_MIN;\n    for (int i = mid; i >= l; i--) {\n        sum += a[i];\n        lmax = max(lmax, sum);\n    }\n    sum = 0;\n    int rmax = INT_MIN;\n    for (int i = mid + 1; i <= r; i++) {\n        sum += a[i];\n        rmax = max(rmax, sum);\n    }\n    return max({left, right, lmax + rmax});\n}",
+            question: `下面代码用分治求“最大连续子段和”，其时间复杂度为（ ）。\n\nint solve(vector<int>& a, int l, int r) {\n if (l == r) return a[l];\n int mid = l + (r - l) / 2;\n int left = solve(a, l, mid);\n int right = solve(a, mid + 1, r);\n int sum = 0, lmax = INT_MIN;\n for (int i = mid; i >= l; i--) {\n sum += a[i];\n lmax = max(lmax, sum);\n }\n sum = 0;\n int rmax = INT_MIN;\n for (int i = mid + 1; i <= r; i++) {\n sum += a[i];\n rmax = max(rmax, sum);\n }\n return max({left, right, lmax + rmax});\n}`,
             options: [
                 "O(n^2)",
                 "O(n log n)",
@@ -226,7 +226,7 @@ export const paperData = {
         {
             id: 12,
             type: "single",
-            question: "游戏大赛决赛，两组选手分别按得分从小到大排好队，现在要把他们合并成一个有序排行榜。A 组：A = {12, 35, 67, 89}，B 组：B = {20, 45, 55, 78}。下面是归并合并函数的核心循环，横线处应填入（ ）。\n\nint i = 0, j = 0;\nvector<int> result;\nwhile (i < A.size() && j < B.size()) {\n    if (___________________) {\n        result.push_back(A[i++]);\n    } else {\n        result.push_back(B[j++]);\n    }\n}",
+            question: `游戏大赛决赛，两组选手分别按得分从小到大排好队，现在要把他们合并成一个有序排行榜。A 组：A = {12, 35, 67, 89}，B 组：B = {20, 45, 55, 78}。下面是归并合并函数的核心循环，横线处应填入（ ）。\n\nint i = 0, j = 0;\nvector<int> result;\nwhile (i < A.size() && j < B.size()) {\n if (___________________) {\n result.push_back(A[i++]);\n } else {\n result.push_back(B[j++]);\n }\n}`,
             options: [
                 "A[i] >= B[j]",
                 "A[i] <= B[j]",
@@ -241,7 +241,7 @@ export const paperData = {
         {
             id: 13,
             type: "single",
-            question: "有 n 位同学的成绩已经从小到大排好序，现在对它执行下面这段以第一个元素为 pivot 的快速排序，请问此次排序的时间复杂度是（ ）。\n\nvoid quicksort(vector<int>& a, int l, int r) {\n    if (l >= r) return;\n    int pivot = a[l];\n    int i = l, j = r;\n    while (i < j) {\n        while (i < j && a[j] >= pivot) j--;\n        while (i < j && a[i] <= pivot) i++;\n        if (i < j) swap(a[i], a[j]);\n    }\n    swap(a[l], a[i]);\n    quicksort(a, l, i - 1);\n    quicksort(a, i + 1, r);\n}",
+            question: `有 n 位同学的成绩已经从小到大排好序，现在对它执行下面这段以第一个元素为 pivot 的快速排序，请问此次排序的时间复杂度是（ ）。\n\nvoid quicksort(vector<int>& a, int l, int r) {\n if (l >= r) return;\n int pivot = a[l];\n int i = l, j = r;\n while (i < j) {\n while (i < j && a[j] >= pivot) j--;\n while (i < j && a[i] <= pivot) i++;\n if (i < j) swap(a[i], a[j]);\n }\n swap(a[l], a[i]);\n quicksort(a, l, i - 1);\n quicksort(a, i + 1, r);\n}`,
             options: [
                 "O(n)",
                 "O(n log n)",
@@ -256,7 +256,7 @@ export const paperData = {
         {
             id: 14,
             type: "single",
-            question: "下面关于排序算法的描述中，不正确的是（ ）。",
+            question: `下面关于排序算法的描述中，不正确的是（ ）。`,
             options: [
                 "冒泡排序和插入排序都是稳定的排序算法。",
                 "快速排序和归并排序都是不稳定的排序算法。",
@@ -271,7 +271,7 @@ export const paperData = {
         {
             id: 15,
             type: "single",
-            question: "下面代码实现两个整数除法，其中被除数为一个“大整数”，用字符串表示，除数是一个小整数，用 int 表示，则横线处应该填写（ ）。\n\nint main() {\n    string s;\n    int b;\n    cin >> s >> b;\n    vector<int> a;\n    for (char c : s) a.push_back(c - '0');\n    vector<int> c;\n    long long rem = 0;\n    for (int i = 0; i < a.size(); i++) {\n        rem = rem * 10 + a[i];\n        int q = rem / b;\n        c.push_back(q);\n        ______________________\n    }\n    int pos = 0;\n    while (pos < c.size() - 1 && c[pos] == 0) pos++;\n    for (int i = pos; i < c.size(); i++) cout << c[i];\n    cout << endl;\n    cout << rem << endl;\n}",
+            question: `下面代码实现两个整数除法，其中被除数为一个“大整数”，用字符串表示，除数是一个小整数，用 int 表示，则横线处应该填写（ ）。\n\nint main() {\n string s;\n int b;\n cin >> s >> b;\n vector<int> a;\n for (char c : s) a.push_back(c - '0');\n vector<int> c;\n long long rem = 0;\n for (int i = 0; i < a.size(); i++) {\n rem = rem * 10 + a[i];\n int q = rem / b;\n c.push_back(q);\n ______________________\n }\n int pos = 0;\n while (pos < c.size() - 1 && c[pos] == 0) pos++;\n for (int i = pos; i < c.size(); i++) cout << c[i];\n cout << endl;\n cout << rem << endl;\n}`,
             options: [
                 "rem /= b;",
                 "rem %= b;",
@@ -286,7 +286,7 @@ export const paperData = {
         {
             id: 16,
             type: "judge",
-            question: "有一个存储了 n 个整数的线性表，分别用数组和单链表两种方式实现。在已知下标（或结点指针）的前提下，数组的随机访问是 O(1)，而在链表中已知某结点的指针时，在该结点之后插入一个新结点的操作也是 O(1)。",
+            question: `有一个存储了 n 个整数的线性表，分别用数组和单链表两种方式实现。在已知下标（或结点指针）的前提下，数组的随机访问是 O(1)，而在链表中已知某结点的指针时，在该结点之后插入一个新结点的操作也是 O(1)。`,
             options: ["正确", "错误"],
             answer: 0,
             score: 2,
@@ -296,7 +296,7 @@ export const paperData = {
         {
             id: 17,
             type: "judge",
-            question: "若数组 a 已按升序排列，则下面代码可以正确实现“在 a 中查找第一个大于等于 x 的元素的位置”。\n\nint lowerBound(vector<int>& a, int x) {\n    int l = 0, r = a.size();\n    while (l < r) {\n        int mid = (l + r) / 2;\n        if (a[mid] >= x) r = mid;\n        else l = mid + 1;\n    }\n    return l;\n}",
+            question: `若数组 a 已按升序排列，则下面代码可以正确实现“在 a 中查找第一个大于等于 x 的元素的位置”。\n\nint lowerBound(vector<int>& a, int x) {\n int l = 0, r = a.size();\n while (l < r) {\n int mid = (l + r) / 2;\n if (a[mid] >= x) r = mid;\n else l = mid + 1;\n }\n return l;\n}`,
             options: ["正确", "错误"],
             answer: 0,
             score: 2,
@@ -306,7 +306,7 @@ export const paperData = {
         {
             id: 18,
             type: "judge",
-            question: "快速排序只要每次都选取中间元素作为枢轴，就一定是稳定排序。",
+            question: `快速排序只要每次都选取中间元素作为枢轴，就一定是稳定排序。`,
             options: ["正确", "错误"],
             answer: 1,
             score: 2,
@@ -316,7 +316,7 @@ export const paperData = {
         {
             id: 19,
             type: "judge",
-            question: "若某算法满足递推式 T(n) = 2T(n / 2) + O(n)，则其时间复杂度为 O(n log n)。",
+            question: `若某算法满足递推式 T(n) = 2T(n / 2) + O(n)，则其时间复杂度为 O(n log n)。`,
             options: ["正确", "错误"],
             answer: 0,
             score: 2,
@@ -326,7 +326,7 @@ export const paperData = {
         {
             id: 20,
             type: "judge",
-            question: "在一个数组中，如果两个元素 a[i] 和 a[j] 满足 i < j 且 a[i] > a[j]，则 a[i] 和 a[j] 是一个逆序对。下列代码可以正确统计数组 a 区间 [l, r] 内的逆序对总数。\n\nlong long cnt = 0;\nvoid merge_count(vector<int>& a, int l, int m, int r) {\n    int i = l, j = m + 1;\n    while (i <= m && j <= r) {\n        if (a[i] <= a[j]) i++;\n        else {\n            cnt += (m - i + 1);\n            j++;\n        }\n    }\n}",
+            question: `在一个数组中，如果两个元素 a[i] 和 a[j] 满足 i < j 且 a[i] > a[j]，则 a[i] 和 a[j] 是一个逆序对。下列代码可以正确统计数组 a 区间 [l, r] 内的逆序对总数。\n\nlong long cnt = 0;\nvoid merge_count(vector<int>& a, int l, int m, int r) {\n int i = l, j = m + 1;\n while (i <= m && j <= r) {\n if (a[i] <= a[j]) i++;\n else {\n cnt += (m - i + 1);\n j++;\n }\n }\n}`,
             options: ["正确", "错误"],
             answer: 1,
             score: 2,
@@ -336,7 +336,7 @@ export const paperData = {
         {
             id: 21,
             type: "judge",
-            question: "根据唯一分解定理，如果大于 1 的整数 n 不能被任何不超过其平方根的质数整除，那么 n 一定是质数。",
+            question: `根据唯一分解定理，如果大于 1 的整数 n 不能被任何不超过其平方根的质数整除，那么 n 一定是质数。`,
             options: ["正确", "错误"],
             answer: 0,
             score: 2,
@@ -346,7 +346,7 @@ export const paperData = {
         {
             id: 22,
             type: "judge",
-            question: "假设数组 a 的值域范围是 [0, D]，下列程序的时间复杂度是 O(n log n + n log D)。\n\nbool check(int n, int a[], int k, int dist) {\n    int cnt = 1;\n    int last = a[0];\n    for (int i = 1; i < n; i++) {\n        if (a[i] - last >= dist) {\n            cnt++;\n            last = a[i];\n        }\n    }\n    return cnt >= k;\n}\n\nint solve(int n, int a[], int k) {\n    sort(a, a + n);\n    int l = 0;\n    int r = a[n - 1] - a[0];\n    while (l < r) {\n        int mid = (l + r + 1) / 2;\n        if (check(n, a, k, mid)) l = mid;\n        else r = mid - 1;\n    }\n    return l;\n}",
+            question: `假设数组 a 的值域范围是 [0, D]，下列程序的时间复杂度是 O(n log n + n log D)。\n\nbool check(int n, int a[], int k, int dist) {\n int cnt = 1;\n int last = a[0];\n for (int i = 1; i < n; i++) {\n if (a[i] - last >= dist) {\n cnt++;\n last = a[i];\n }\n }\n return cnt >= k;\n}\n\nint solve(int n, int a[], int k) {\n sort(a, a + n);\n int l = 0;\n int r = a[n - 1] - a[0];\n while (l < r) {\n int mid = (l + r + 1) / 2;\n if (check(n, a, k, mid)) l = mid;\n else r = mid - 1;\n }\n return l;\n}`,
             options: ["正确", "错误"],
             answer: 0,
             score: 2,
@@ -356,7 +356,7 @@ export const paperData = {
         {
             id: 23,
             type: "judge",
-            question: "若一个问题满足最优子结构性质，则一定可以用贪心算法得到最优解。",
+            question: `若一个问题满足最优子结构性质，则一定可以用贪心算法得到最优解。`,
             options: ["正确", "错误"],
             answer: 1,
             score: 2,
@@ -366,7 +366,7 @@ export const paperData = {
         {
             id: 24,
             type: "judge",
-            question: "线性筛相比埃氏筛的核心改进在于：埃氏筛中一个合数可能被多个质数重复标记，线性筛通过“每个合数只被其最大质因子筛去”的策略，保证每个合数恰好被标记一次，从而实现 O(n) 的时间复杂度。",
+            question: `线性筛相比埃氏筛的核心改进在于：埃氏筛中一个合数可能被多个质数重复标记，线性筛通过“每个合数只被其最大质因子筛去”的策略，保证每个合数恰好被标记一次，从而实现 O(n) 的时间复杂度。`,
             options: ["正确", "错误"],
             answer: 1,
             score: 2,
@@ -376,7 +376,7 @@ export const paperData = {
         {
             id: 25,
             type: "judge",
-            question: "任何递归程序都可以改写为等价的非递归程序，但改写后的非递归程序一定需要显式地使用栈来模拟递归调用过程。",
+            question: `任何递归程序都可以改写为等价的非递归程序，但改写后的非递归程序一定需要显式地使用栈来模拟递归调用过程。`,
             options: ["正确", "错误"],
             answer: 1,
             score: 2,

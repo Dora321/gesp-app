@@ -12,7 +12,7 @@ export const paperData = {
         {
             id: 1,
             type: 'single',
-            question: "我国第一台大型通用电子计算机使用的逻辑部件是（ ）。",
+            question: `我国第一台大型通用电子计算机使用的逻辑部件是（ ）。`,
             options: ["集成电路", "大规模集成电路", "晶体管", "电子管"],
             answer: 3,
             score: 2,
@@ -22,7 +22,7 @@ export const paperData = {
         {
             id: 2,
             type: 'single',
-            question: "下列流程图的输出结果是（ ）？",
+            question: `下列流程图的输出结果是（ ）？`,
             options: ["5 12", "12 5", "5 5", "12 12"],
             answer: 1,
             score: 2,
@@ -32,7 +32,7 @@ export const paperData = {
         {
             id: 3,
             type: 'single',
-            question: "如果要找出整数a.b 中较大一个，通常要用下⾯哪种程序结构？（ ）。",
+            question: `如果要找出整数a.b 中较大一个，通常要用下⾯哪种程序结构？（ ）。`,
             options: ["顺序结构", "循环结构", "分⽀结构", "跳转结构"],
             answer: 2,
             score: 2,
@@ -42,7 +42,7 @@ export const paperData = {
         {
             id: 4,
             type: 'single',
-            question: "以下不是 C++ 关键字的是（ ）。",
+            question: `以下不是 C++ 关键字的是（ ）。`,
             options: ["continue", "cout", "break", "goto"],
             answer: 1,
             score: 2,
@@ -52,7 +52,7 @@ export const paperData = {
         {
             id: 5,
             type: 'single',
-            question: "C++ 表达式int(-123.123 / 10)的值是（ ）。",
+            question: `C++ 表达式int(-123.123 / 10)的值是（ ）。`,
             options: ["-124", "-123", "-13", "-12"],
             answer: 3,
             score: 2,
@@ -62,7 +62,7 @@ export const paperData = {
         {
             id: 6,
             type: 'single',
-            question: "以下 C++ 代码实现从大到小的顺序输出N 的所有因⼦。例如，输入N = 18时输出18 9 6 3 2 1，横线处 应填入（ ）。",
+            question: `以下 C++ 代码实现从大到小的顺序输出N 的所有因⼦。例如，输入N = 18时输出18 9 6 3 2 1，横线处 应填入（ ）。`,
             options: ["; ;", "int i = 1; i < N; i++", "int i = N; i > 0; i--", "int i = N; i > 1; i--"],
             answer: 2,
             score: 2,
@@ -72,7 +72,7 @@ export const paperData = {
         {
             id: 7,
             type: 'single',
-            question: "如下图所示，输出N 行N 列的矩阵，对角线为 1 ，横线处应填入（ ）。",
+            question: `如下图所示，输出N 行N 列的矩阵，对角线为 1 ，横线处应填入（ ）。`,
             options: ["i = j", "j != j", "i >= j", "i == j"],
             answer: 3,
             score: 2,
@@ -82,7 +82,7 @@ export const paperData = {
         {
             id: 8,
             type: 'single',
-            question: "下⾯ C++ 代码用于判断N 是否为质数（素数），约定输入N 为大于等于 2 的正整数，请在横线处填入合适的 代码（ ）。",
+            question: `下⾯ C++ 代码用于判断N 是否为质数（素数），约定输入N 为大于等于 2 的正整数，请在横线处填入合适的 代码（ ）。`,
             options: ["break", "continue", "exit", "return"],
             answer: 0,
             score: 2,
@@ -92,7 +92,7 @@ export const paperData = {
         {
             id: 9,
             type: 'single',
-            question: "下⾯ C++ 代码执行后的输出是（ ）。",
+            question: `下⾯ C++ 代码执行后的输出是（ ）。`,
             options: ["1#0", "1#", "1#1#1#1#1#1", "1#1#1#1#1#1#0"],
             answer: 3,
             score: 2,
@@ -102,7 +102,7 @@ export const paperData = {
         {
             id: 10,
             type: 'single',
-            question: "下面C++代码执行后的输出是（ ）。\n```cpp\nint cnt = 0;\nfor (int i = 1; i < 8; i++)\n    for (int j = 1; j <= i; j += 2)\n        cnt++;\ncout << cnt;\n```",
+            question: `下面C++代码执行后的输出是（ ）。\n\`\`\`cpp\nint cnt = 0;\nfor (int i = 1; i < 8; i++)\n for (int j = 1; j <= i; j += 2)\n cnt++;\ncout << cnt;\n\`\`\``,
             options: ["16", "28", "35", "36"],
             answer: 0,
             score: 2,
@@ -112,7 +112,7 @@ export const paperData = {
         {
             id: 11,
             type: 'single',
-            question: "下面C++代码执行后的输出是（ ）。\n```cpp\nint cnt = 0;\nfor (int i = 1; i <= 12; i += 3) {\n    if (i % 2 != 0) {\n        for (int j = 1; j < i; j += 2) {\n            cnt++;\n        }\n    }\n}\ncout << cnt;\n```",
+            question: `下面C++代码执行后的输出是（ ）。\n\`\`\`cpp\nint cnt = 0;\nfor (int i = 1; i <= 12; i += 3) {\n if (i % 2 != 0) {\n for (int j = 1; j < i; j += 2) {\n cnt++;\n }\n }\n}\ncout << cnt;\n\`\`\``,
             options: ["1", "3", "15", "没有输出"],
             answer: 1,
             score: 2,
@@ -122,7 +122,7 @@ export const paperData = {
         {
             id: 12,
             type: 'single',
-            question: "下面C++代码执行后的输出是（ ）。\n```cpp\nint x = 1;\nwhile (x < 15) {\n    x += 2;\n    if (x % 3 == 0 || x == 11) {\n        if (x / 10) cout << x;\n        else cout << x << \",\";\n    }\n}\n```",
+            question: `下面C++代码执行后的输出是（ ）。\n\`\`\`cpp\nint x = 1;\nwhile (x < 15) {\n x += 2;\n if (x % 3 == 0 || x == 11) {\n if (x / 10) cout << x;\n else cout << x << ",";\n }\n}\n\`\`\``,
             options: ["3,9,15", "3,9,11", "3,6,9,12", "1,5,7,11,13,15"],
             answer: 1,
             score: 2,
@@ -132,7 +132,7 @@ export const paperData = {
         {
             id: 13,
             type: 'single',
-            question: "下⾯图形每一行从字母 A 开始，以 ABC ⽅式重复。行数为输入的整数。请在 C++ 代码段横线处填入合适代码 （ ）。",
+            question: `下⾯图形每一行从字母 A 开始，以 ABC ⽅式重复。行数为输入的整数。请在 C++ 代码段横线处填入合适代码 （ ）。`,
             options: ["'A'+j / 3", "(char)('A'+j / 3)", "'A'+j % 3", "(char)('A'+j % 3)"],
             answer: 3,
             score: 2,
@@ -142,7 +142,7 @@ export const paperData = {
         {
             id: 14,
             type: 'single',
-            question: "输入行数，约定 ，输出以下图形。应在 C++ 代码横线处填入（ ）。",
+            question: `输入行数，约定 ，输出以下图形。应在 C++ 代码横线处填入（ ）。`,
             options: ["(lineCount-i-1) * 2", "(lineCount-i) * 2", "lineCount-i-1", "lineCount-i"],
             answer: 0,
             score: 2,
@@ -152,7 +152,7 @@ export const paperData = {
         {
             id: 15,
             type: 'single',
-            question: "一个数如果能被某个数（比如 7）整除，或者含有该数，则说该数是该数的相关数。如果 N 为 1 到 9 之间的整数，M 为正整数，则下面 C++ 代码用于判断 M 是否为 N 的相关数。有关说法错误的是（ ）。\n```cpp\nint N, M;\ncin >> N >> M;\nbool flag = false;\nif (M % N == 0) flag = true;\nelse {\n    int temp = M;\n    while (temp > 0) {\n        if (temp % 10 == N) {\n            flag = true;\n            break;\n        }\n        temp /= 10;\n    }\n}\nif (flag) cout << \"Yes\";\n```",
+            question: `一个数如果能被某个数（比如 7）整除，或者含有该数，则说该数是该数的相关数。如果 N 为 1 到 9 之间的整数，M 为正整数，则下面 C++ 代码用于判断 M 是否为 N 的相关数。有关说法错误的是（ ）。\n\`\`\`cpp\nint N, M;\ncin >> N >> M;\nbool flag = false;\nif (M % N == 0) flag = true;\nelse {\n int temp = M;\n while (temp > 0) {\n if (temp % 10 == N) {\n flag = true;\n break;\n }\n temp /= 10;\n }\n}\nif (flag) cout << "Yes";\n\`\`\``,
             options: ["该段代码可以正确判断 M 是否为 N 的相关数。", "如果 M 是 N 的整倍数，flag 将被设为 true。", "如果 M 的某一位数字是 N，则 flag 将被设为 true。", "以上说法均正确。"],
             answer: 3,
             score: 2,
@@ -162,7 +162,7 @@ export const paperData = {
         {
             id: 16,
             type: 'judge',
-            question: "二进制数 101.101 在十进制下是 5.005。",
+            question: `二进制数 101.101 在十进制下是 5.005。`,
             options: ['正确', '错误'],
             answer: 1,
             score: 2,
@@ -172,7 +172,7 @@ export const paperData = {
         {
             id: 17,
             type: 'judge',
-            question: "“神威·太湖之光”超级计算机是中国自主研制的超级计算机，在全球超级计算机 TOP500 排行榜中多次荣膺榜首。",
+            question: `“神威·太湖之光”超级计算机是中国自主研制的超级计算机，在全球超级计算机 TOP500 排行榜中多次荣膺榜首。`,
             options: ['正确', '错误'],
             answer: 0,
             score: 2,
@@ -182,7 +182,7 @@ export const paperData = {
         {
             id: 18,
             type: 'judge',
-            question: "C++ 表达式 `7.8 / 2` 的值为 3.9，类型为 `float`。",
+            question: `C++ 表达式 \`7.8 / 2\` 的值为 3.9，类型为 \`float\`。`,
             options: ['正确', '错误'],
             answer: 1,
             score: 2,
@@ -192,7 +192,7 @@ export const paperData = {
         {
             id: 19,
             type: 'judge',
-            question: "C++ 表达式 `(2 * 3) || (2+5)` 的值为 67。",
+            question: `C++ 表达式 \`(2 * 3) || (2+5)\` 的值为 67。`,
             options: ['正确', '错误'],
             answer: 1,
             score: 2,
@@ -202,7 +202,7 @@ export const paperData = {
         {
             id: 20,
             type: 'judge',
-            question: "如果 m 和 n 为 int 类型变量，则执行 `for (m = 0, n = 1; n < 9; ) n = ((m = 3 * n, m+1), m-1);` 之后 n 的值为偶数。",
+            question: `如果 m 和 n 为 int 类型变量，则执行 \`for (m = 0, n = 1; n < 9; ) n = ((m = 3 * n, m+1), m-1);\` 之后 n 的值为偶数。`,
             options: ['正确', '错误'],
             answer: 0,
             score: 2,
@@ -212,7 +212,7 @@ export const paperData = {
         {
             id: 21,
             type: 'judge',
-            question: "如果 a 为 int 类型的变量，则表达式 `(a >= 5 && a <= 10)` 与 `(5 <= a <= 10)` 的值总是相同的。",
+            question: `如果 a 为 int 类型的变量，则表达式 \`(a >= 5 && a <= 10)\` 与 \`(5 <= a <= 10)\` 的值总是相同的。`,
             options: ['正确', '错误'],
             answer: 1,
             score: 2,
@@ -222,7 +222,7 @@ export const paperData = {
         {
             id: 22,
             type: 'judge',
-            question: "在 C++ 中，`while` 循环和 `for` 循环在所有情况下都可以互相转换实现相同的功能。",
+            question: `在 C++ 中，\`while\` 循环和 \`for\` 循环在所有情况下都可以互相转换实现相同的功能。`,
             options: ['正确', '错误'],
             answer: 0,
             score: 2,
@@ -232,7 +232,7 @@ export const paperData = {
         {
             id: 23,
             type: 'judge',
-            question: "下⾯ C++ 代码执行后的输出为 0。\n```cpp\nint cnt = 0;\nfor (int i = 0; i < 10; i++) {\n    if (i % 2 == 0) continue;\n    cnt++;\n}\ncout << cnt % 2;\n```",
+            question: `下⾯ C++ 代码执行后的输出为 0。\n\`\`\`cpp\nint cnt = 0;\nfor (int i = 0; i < 10; i++) {\n if (i % 2 == 0) continue;\n cnt++;\n}\ncout << cnt % 2;\n\`\`\``,
             options: ['正确', '错误'],
             answer: 1,
             score: 2,
@@ -242,7 +242,7 @@ export const paperData = {
         {
             id: 24,
             type: 'judge',
-            question: "下⾯ C++ 代码执行后的输出为 30。\n```cpp\nint sum = 0;\nfor (int i = 1; i <= 10; i++) {\n    if (i % 3 == 0) sum += i;\n}\ncout << sum;\n```",
+            question: `下⾯ C++ 代码执行后的输出为 30。\n\`\`\`cpp\nint sum = 0;\nfor (int i = 1; i <= 10; i++) {\n if (i % 3 == 0) sum += i;\n}\ncout << sum;\n\`\`\``,
             options: ['正确', '错误'],
             answer: 1,
             score: 2,
@@ -252,7 +252,7 @@ export const paperData = {
         {
             id: 25,
             type: 'judge',
-            question: "下面C++代码执行时如果输入 2024，则输出是 4202。\n```cpp\nint n, m = 0;\ncin >> n;\nwhile (n > 0) {\n    m = m * 10+n % 10;\n    n /= 10;\n}\ncout << m;\n```",
+            question: `下面C++代码执行时如果输入 2024，则输出是 4202。\n\`\`\`cpp\nint n, m = 0;\ncin >> n;\nwhile (n > 0) {\n m = m * 10+n % 10;\n n /= 10;\n}\ncout << m;\n\`\`\``,
             options: ['正确', '错误'],
             answer: 0,
             score: 2,
@@ -283,7 +283,7 @@ export const paperData = {
 
 ## 题目描述
 
-小杨想要构造一个 的 X 字矩阵（ 为奇数），这个矩阵的两条对角线都是半角加号 \`+\` ，其余都是半角减号 \`-\` 。例如，一个 \$5 \\times 5\$ 的 X 字矩阵如下：
+小杨想要构造一个 的 X 字矩阵（ 为奇数），这个矩阵的两条对角线都是半角加号 \`+\` ，其余都是半角减号 \`-\` 。例如，一个 $5 \\times 5$ 的 X 字矩阵如下：
 
 \`\`\`plain
 +---+
@@ -297,13 +297,13 @@ export const paperData = {
 
 ## 输入格式
 
-一行一个整数 （ \$5 \\le N \\le 49\$，保证为奇数）。
+一行一个整数 （ $5 \\le N \\le 49$，保证为奇数）。
 
 ## 输出格式
 
 输出对应的“X 字矩阵”。
 
-请严格按格式要求输出，不要擅自添加任何空格、标点、空行等任何符号。你应该恰好输出 \$N\$ 行，每行除了换行符外恰好包含 \$N\$ 个字符，这些字符要么是 \`+\`，要么是 \`-\`。
+请严格按格式要求输出，不要擅自添加任何空格、标点、空行等任何符号。你应该恰好输出 $N$ 行，每行除了换行符外恰好包含 $N$ 个字符，这些字符要么是 \`+\`，要么是 \`-\`。
 `,
       score: 25,
       explanation: "逐行逐列输出字符。主对角线和副对角线位置输出 +，其余位置输出 -。",
@@ -323,19 +323,19 @@ export const paperData = {
 
 ## 题目描述
 
-给定一个三位数，要求各位不能相同。例如，\$352\$ 是符合要求的，\$112\$ 是不符合要求的。将这个三位数的三个数字重新排列，得到的最大的数，减去得到的最小的数，形成一个新的三位数。对这个新的三位数可以重复上述过程。神奇的是，最终一定会得到 \$495\$！
+给定一个三位数，要求各位不能相同。例如，$352$ 是符合要求的，$112$ 是不符合要求的。将这个三位数的三个数字重新排列，得到的最大的数，减去得到的最小的数，形成一个新的三位数。对这个新的三位数可以重复上述过程。神奇的是，最终一定会得到 $495$！
 
-试试看，重新排列 \$352\$，得到的最大数为 \$532\$，最小数为 \$235\$，它们的差是 \$297\$；变换 \$297\$，得到 \$972-279=693\$；变换 \$693\$，\$963-369=594\$；变换 \$594\$，\$954-459=495\$。因此，经过 \$4\$ 次变换得到了 \$495\$。
+试试看，重新排列 $352$，得到的最大数为 $532$，最小数为 $235$，它们的差是 $297$；变换 $297$，得到 $972-279=693$；变换 $693$，$963-369=594$；变换 $594$，$954-459=495$。因此，经过 $4$ 次变换得到了 $495$。
 
-现在，输入的三位数，你能通过编程得出，这个三位数经过多少次变换能够得到 \$495\$ 吗？
+现在，输入的三位数，你能通过编程得出，这个三位数经过多少次变换能够得到 $495$ 吗？
 
 ## 输入格式
 
-输入一行，包含一个符合要求的三位数 \$N\$。
+输入一行，包含一个符合要求的三位数 $N$。
 
 ## 输出格式
 
-输出一行，包含一个整数 \$C\$，表示经过 \$C\$ 次变换得到 \$495\$。
+输出一行，包含一个整数 $C$，表示经过 $C$ 次变换得到 $495$。
 `,
       score: 25,
       explanation: "不断把当前三位数的数字重排成最大值和最小值，计算差值，直到得到 495，统计变换次数。需要保留前导零参与三位数构造。",

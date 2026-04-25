@@ -13,17 +13,17 @@ const programmingQuestions = [
 
 ## 题目描述
 
-小杨认为一个数字 \$x\$ 是奇妙数字当且仅当 \$x=p^a\$，其中 \$p\$ 为任意质数且 \$a\$ 为正整数。例如，\$8=2^3\$，所以 \$8\$ 是奇妙的，而 \$6\$ 不是。
+小杨认为一个数字 $x$ 是奇妙数字当且仅当 $x=p^a$，其中 $p$ 为任意质数且 $a$ 为正整数。例如，$8=2^3$，所以 $8$ 是奇妙的，而 $6$ 不是。
 
-对于一个正整数 \$n\$，小杨想要构建一个包含 \$m\$ 个奇妙数字的集合 \$\\{x_1,x_2,\\cdots,x_m\\}\$，使其满足以下条件：
+对于一个正整数 $n$，小杨想要构建一个包含 $m$ 个奇妙数字的集合 $\\{x_1,x_2,\\cdots,x_m\\}$，使其满足以下条件：
 - 集合中不包含相同的数字。
-- \$x_1\\times x_2\\times \\cdots\\times x_m\$ 是 \$n\$ 的因子（即 \$x_1,x_2,\\cdots,x_m\$ 这 \$m\$ 个数字的乘积是 \$n\$ 的因子）。
+- $x_1\\times x_2\\times \\cdots\\times x_m$ 是 $n$ 的因子（即 $x_1,x_2,\\cdots,x_m$ 这 $m$ 个数字的乘积是 $n$ 的因子）。
 
 小杨希望集合包含的奇妙数字尽可能多，请你帮他计算出满足条件的集合最多包含多少个奇妙数字。
 
 ## 输入格式
 
-第一行包含一个正整数 \$n\$，含义如题面所示。
+第一行包含一个正整数 $n$，含义如题面所示。
 
 ## 输出格式
 
@@ -52,19 +52,19 @@ const programmingQuestions = [
 
 ## 题目描述
 
-小杨有 \$n\$ 种武器和 \$m\$ 种强化材料。第 \$i\$ 种强化材料会适配第 \$p_i\$ 种武器，小杨可以花费 \$c_i\$ 金币将该材料对应的适配武器修改为任意武器。
+小杨有 $n$ 种武器和 $m$ 种强化材料。第 $i$ 种强化材料会适配第 $p_i$ 种武器，小杨可以花费 $c_i$ 金币将该材料对应的适配武器修改为任意武器。
 
-小杨最喜欢第 \$1\$ 种武器，因此他希望适配该武器的强化材料种类数**严格大于**其他的武器，请你帮小杨计算为了满足该条件最少需要花费多少金币。
+小杨最喜欢第 $1$ 种武器，因此他希望适配该武器的强化材料种类数**严格大于**其他的武器，请你帮小杨计算为了满足该条件最少需要花费多少金币。
 
 ## 输入格式
 
-第一行包含两个正整数 \$n,m\$，含义如题面所示。
+第一行包含两个正整数 $n,m$，含义如题面所示。
 
-之后 \$m\$ 行，每行包含两个正整数 \$p_i,c_i\$，代表第 \$i	\$ 种强化材料的适配武器和修改花费。
+之后 $m$ 行，每行包含两个正整数 $p_i,c_i$，代表第 $i	$ 种强化材料的适配武器和修改花费。
 
 ## 输出格式
 
-输出一个整数，代表能够使适配第 \$1\$ 种武器的强化材料种类数**严格大于**其他的武器最少需要花费的金币。
+输出一个整数，代表能够使适配第 $1$ 种武器的强化材料种类数**严格大于**其他的武器最少需要花费的金币。
 `,
       score: 25,
       explanation: "经典的冰雹猜想（Collatz Conjecture）。按照规则直接模拟计算并维护最大值即可。",
@@ -87,7 +87,7 @@ export const paperData = {
         {
             id: 1,
             type: "single",
-            question: "下面关于链表和数组的描述，错误的是（ ）。",
+            question: `下面关于链表和数组的描述，错误的是（ ）。`,
             options: [
                 "当数据数量不确定时，为了应对各种可能的情况，需要申请一个较大的数组，可能浪费空间；此时用链表比较合适，大小可动态调整。",
                 "在链表中访问节点的效率较低，时间复杂度为 $O(N)$。",
@@ -102,7 +102,7 @@ export const paperData = {
         {
             id: 2,
             type: "single",
-            question: "在循环单链表中，节点的 next 指针指向下一个节点，最后一个节点的 next 指针指向（ ）。",
+            question: `在循环单链表中，节点的 next 指针指向下一个节点，最后一个节点的 next 指针指向（ ）。`,
             options: ["当前节点", "nullptr", "第一个节点", "上一个节点"],
             answer: 2,
             score: 2,
@@ -112,7 +112,7 @@ export const paperData = {
         {
             id: 3,
             type: "single",
-            question: "下列哪个操作属于线性表的基本操作（ ）。",
+            question: `下列哪个操作属于线性表的基本操作（ ）。`,
             options: ["查找", "插入", "删除", "以上都是"],
             answer: 3,
             score: 2,
@@ -122,7 +122,7 @@ export const paperData = {
         {
             id: 4,
             type: "single",
-            question: "关于 C++ 的类和对象，下列说法正确的是（ ）。",
+            question: `关于 C++ 的类和对象，下列说法正确的是（ ）。`,
             options: [
                 "一个类只能创建一个对象",
                 "构造函数名与类名相同",
@@ -137,7 +137,7 @@ export const paperData = {
         {
             id: 5,
             type: "single",
-            question: "下列关于栈的描述，正确的是（ ）。",
+            question: `下列关于栈的描述，正确的是（ ）。`,
             options: ["先进先出", "支持下标访问", "后进先出", "动态增加长度"],
             answer: 2,
             score: 2,
@@ -147,7 +147,7 @@ export const paperData = {
         {
             id: 6,
             type: "single",
-            question: "快速排序的分治策略核心是（ ）。",
+            question: `快速排序的分治策略核心是（ ）。`,
             options: ["选择基准（Pivot）进行分区", "将数组对半分开", "逐步构建有序子序列", "随机交换元素"],
             answer: 0,
             score: 2,
@@ -157,17 +157,17 @@ export const paperData = {
         {
             id: 7,
             type: "single",
-            question: "下列哪个时间复杂度高于 $O(n \log n)$（ ）。",
-            options: ["$O(N)$", "$O(\log n)$", "$O(N^2)$", "$O(1)$"],
+            question: `下列哪个时间复杂度高于 $O(n log n)$（ ）。`,
+            options: ["$O(N)$", "$O(log n)$", "$O(N^2)$", "$O(1)$"],
             answer: 2,
             score: 2,
-            explanation: "$O(N^2)$ 高于 $O(n \log n)$。",
+            explanation: "$O(N^2)$ 高于 $O(n log n)$。",
             tags: ["客观题", "单选题", "GESP5级"]
         },
         {
             id: 8,
             type: "single",
-            question: "埃氏筛法用于求解（ ）问题。",
+            question: `埃氏筛法用于求解（ ）问题。`,
             options: ["最大公约数", "素数判定/筛选", "矩阵乘法", "图的遍历"],
             answer: 1,
             score: 2,
@@ -177,7 +177,7 @@ export const paperData = {
         {
             id: 9,
             type: "single",
-            question: "关于 C++ 的继承，派生类（ ）访问基类的私有成员。",
+            question: `关于 C++ 的继承，派生类（ ）访问基类的私有成员。`,
             options: ["可以直接", "可以通过友元函数", "不能", "只有在多重继承时可以"],
             answer: 2,
             score: 2,
@@ -187,7 +187,7 @@ export const paperData = {
         {
             id: 10,
             type: "single",
-            question: "唯一分解定理描述的是（ ）。",
+            question: `唯一分解定理描述的是（ ）。`,
             options: [
                 "一个合数可以分解为多个整数的乘积",
                 "每个大于1的自然数均可唯一地写成质数的幂的乘积",
@@ -202,8 +202,8 @@ export const paperData = {
         {
             id: 11,
             type: "single",
-            question: "二分查找成功的平均查找长度是（ ）。",
-            options: ["$O(N)$", "$O(\log n)$", "$O(n \log n)$", "$O(1)$"],
+            question: `二分查找成功的平均查找长度是（ ）。`,
+            options: ["$O(N)$", "$O(log n)$", "$O(n log n)$", "$O(1)$"],
             answer: 1,
             score: 2,
             explanation: "二分查找的时间复杂度。",
@@ -212,7 +212,7 @@ export const paperData = {
         {
             id: 12,
             type: "single",
-            question: "在 C++ 中，`std::vector` 的内存分配方式是（ ）。",
+            question: `在 C++ 中，\`std::vector\` 的内存分配方式是（ ）。`,
             options: ["静态分配", "按需动态分配，通常预留额外空间", "固定大小", "按链表方式存储"],
             answer: 1,
             score: 2,
@@ -222,7 +222,7 @@ export const paperData = {
         {
             id: 13,
             type: "single",
-            question: "下列哪种排序算法在最坏情况下性能最差（ ）。",
+            question: `下列哪种排序算法在最坏情况下性能最差（ ）。`,
             options: ["归并排序", "快速排序", "堆排序", "插入排序"],
             answer: 3,
             score: 2,
@@ -232,7 +232,7 @@ export const paperData = {
         {
             id: 14,
             type: "single",
-            question: "关于 C++ 的友元函数（friend），下列说法正确的是（ ）。",
+            question: `关于 C++ 的友元函数（friend），下列说法正确的是（ ）。`,
             options: [
                 "友元函数是类的成员函数",
                 "友元函数不能访问类的私有成员",
@@ -247,7 +247,7 @@ export const paperData = {
         {
             id: 15,
             type: "single",
-            question: "贪心算法的核心是（ ）。",
+            question: `贪心算法的核心是（ ）。`,
             options: ["全局搜索", "局部最优选择", "回溯", "并行计算"],
             answer: 1,
             score: 2,
@@ -257,7 +257,7 @@ export const paperData = {
         {
             id: 16,
             type: "judge",
-            question: "单链表只支持在表头进行插入和删除操作。",
+            question: `单链表只支持在表头进行插入和删除操作。`,
             options: ["正确", "错误"],
             answer: 1,
             score: 2,
@@ -267,7 +267,7 @@ export const paperData = {
         {
             id: 17,
             type: "judge",
-            question: "线性筛相对于埃氏筛法，每个合数只会被它的最小质因数筛去一次，因此效率更高。",
+            question: `线性筛相对于埃氏筛法，每个合数只会被它的最小质因数筛去一次，因此效率更高。`,
             options: ["正确", "错误"],
             answer: 0,
             score: 2,
@@ -277,7 +277,7 @@ export const paperData = {
         {
             id: 18,
             type: "judge",
-            question: "任何一个大于 1 的自然数都可以分解成若干个不同的质数的乘积，且分解方式是唯一的。",
+            question: `任何一个大于 1 的自然数都可以分解成若干个不同的质数的乘积，且分解方式是唯一的。`,
             options: ["正确", "错误"],
             answer: 1,
             score: 2,
@@ -287,7 +287,7 @@ export const paperData = {
         {
             id: 19,
             type: "judge",
-            question: "贪心算法通过每一步选择当前最优解，从而一定能获得全局最优解。",
+            question: `贪心算法通过每一步选择当前最优解，从而一定能获得全局最优解。`,
             options: ["正确", "错误"],
             answer: 1,
             score: 2,
@@ -297,7 +297,7 @@ export const paperData = {
         {
             id: 20,
             type: "judge",
-            question: "递归算法必须有一个明确的结束条件，否则会导致无限递归并可能引发栈溢出。",
+            question: `递归算法必须有一个明确的结束条件，否则会导致无限递归并可能引发栈溢出。`,
             options: ["正确", "错误"],
             answer: 0,
             score: 2,
@@ -307,7 +307,7 @@ export const paperData = {
         {
             id: 21,
             type: "judge",
-            question: "快速排序和归并排序的平均时间复杂度均为 $O(n \log n)$，且都是稳定排序。",
+            question: `快速排序和归并排序的平均时间复杂度均为 $O(n log n)$，且都是稳定排序。`,
             options: ["正确", "错误"],
             answer: 1,
             score: 2,
@@ -317,7 +317,7 @@ export const paperData = {
         {
             id: 22,
             type: "judge",
-            question: "快速排序的时间复杂度总比插入排序的时间复杂度低。",
+            question: `快速排序的时间复杂度总比插入排序的时间复杂度低。`,
             options: ["正确", "错误"],
             answer: 1,
             score: 2,
@@ -327,7 +327,7 @@ export const paperData = {
         {
             id: 23,
             type: "judge",
-            question: "二分查找仅适用于数组而不适合链表，因为二分查找需要跳跃式访问元素，链表中执行跳跃式访问的效率低。",
+            question: `二分查找仅适用于数组而不适合链表，因为二分查找需要跳跃式访问元素，链表中执行跳跃式访问的效率低。`,
             options: ["正确", "错误"],
             answer: 0,
             score: 2,
@@ -337,7 +337,7 @@ export const paperData = {
         {
             id: 24,
             type: "judge",
-            question: "对有序数组{5,13,19,21,37,56,64,75,88,92,100} 进行二分查找，成功查找元素 19 的比较次数是 2 。",
+            question: `对有序数组{5,13,19,21,37,56,64,75,88,92,100} 进行二分查找，成功查找元素 19 的比较次数是 2 。`,
             options: ["正确", "错误"],
             answer: 1,
             score: 2,
@@ -347,7 +347,7 @@ export const paperData = {
         {
             id: 25,
             type: "judge",
-            question: "递归函数每次调用自身时，系统都会为新开启的函数分配内存，以存储局部变量、调用地址和其他信息等，导致递归通常比迭代更加耗费内存空间。",
+            question: `递归函数每次调用自身时，系统都会为新开启的函数分配内存，以存储局部变量、调用地址和其他信息等，导致递归通常比迭代更加耗费内存空间。`,
             options: ["正确", "错误"],
             answer: 0,
             score: 2,

@@ -22,16 +22,16 @@ const programmingQuestions = [
 
 ## 题目描述
 
-小杨有一个 \$n \\times m\$ 的矩阵，仅包含 \`01?\` 三种字符。矩阵的行从上到下编号依次为 \$1,2,\\dots, n\$，列从左到右编号依次为 \$1, 2, \\dots, m\$。小杨开始在矩阵的左上角 \$(1,1)\$，小杨只能向下或者向右移动，最终到达右下角 \$(n, m)\$ 时停止，在移动的过程中每经过一个字符 \`1\` 得分会增加一分（包括起点和终点），经过其它字符则分数不变。小杨的初始分数为 \$0\$ 分。
+小杨有一个 $n \\times m$ 的矩阵，仅包含 \`01?\` 三种字符。矩阵的行从上到下编号依次为 $1,2,\\dots, n$，列从左到右编号依次为 $1, 2, \\dots, m$。小杨开始在矩阵的左上角 $(1,1)$，小杨只能向下或者向右移动，最终到达右下角 $(n, m)$ 时停止，在移动的过程中每经过一个字符 \`1\` 得分会增加一分（包括起点和终点），经过其它字符则分数不变。小杨的初始分数为 $0$ 分。
 
-小杨可以将矩阵中不超过 \$x\$ 个字符 \`?\` 变为字符  \`1\`。小杨在修改矩阵后，会以最优的策略从左上角移动到右下角。他想知道自己最多能获得多少分。
+小杨可以将矩阵中不超过 $x$ 个字符 \`?\` 变为字符 \`1\`。小杨在修改矩阵后，会以最优的策略从左上角移动到右下角。他想知道自己最多能获得多少分。
 
 ## 输入格式
 
-第一行包含一个正整数 \$t\$，代表测试用例组数，接下来是 \$t\$ 组测试用例。对于每组测试用例，一共 \$n + 1\$ 行。
+第一行包含一个正整数 $t$，代表测试用例组数，接下来是 $t$ 组测试用例。对于每组测试用例，一共 $n + 1$ 行。
 
-第一行包含三个正整数 \$n, m, x\$，含义如题面所示。  
-之后 \$n\$ 行，每行一个长度为 \$m\$ 的仅含 \`01?\` 的字符串。
+第一行包含三个正整数 $n, m, x$，含义如题面所示。 
+之后 $n$ 行，每行一个长度为 $m$ 的仅含 \`01?\` 的字符串。
 
 ## 输出格式
 
@@ -69,7 +69,7 @@ No` }
 
 ## 题目描述
 
-小杨有一棵包含 \$n\$ 个节点的树，树上的一些节点放置有宝物。
+小杨有一棵包含 $n$ 个节点的树，树上的一些节点放置有宝物。
 
 小杨可以任意选择一个节点作为起点并在树上移动，但是小杨只能经过每条边至多一次，当小杨经过一条边后，这条边就会消失。小杨每经过一个放置有宝物的节点就会取得该宝物。
 
@@ -77,12 +77,12 @@ No` }
 
 ## 输入格式
 
-**本题单个测试点内有多组测试数据**。输入第一行包含一个正整数 \$t\$，代表测试用例组数。  
-接下来是 \$t\$ 组测试用例。对于每组测试用例，一共 \$n+1\$ 行。
+**本题单个测试点内有多组测试数据**。输入第一行包含一个正整数 $t$，代表测试用例组数。 
+接下来是 $t$ 组测试用例。对于每组测试用例，一共 $n+1$ 行。
 
-第一行包含一个正整数 \$n\$，代表树的节点数。  
-第二行包含 \$n\$ 个非负整数 \$a_1, a_2, \\dots a_n\$，其中如果 \$a_i = 1\$，则节点 \$i\$ 放置有宝物；若 \$a_i = 0\$，则节点 \$i\$ 没有宝物。  
-之后 \$n - 1\$ 行，每行包含两个正整数 \$x_i, y_i\$，代表存在一条连接节点 \$x_i\$ 和 \$y_i\$ 的边。
+第一行包含一个正整数 $n$，代表树的节点数。 
+第二行包含 $n$ 个非负整数 $a_1, a_2, \\dots a_n$，其中如果 $a_i = 1$，则节点 $i$ 放置有宝物；若 $a_i = 0$，则节点 $i$ 没有宝物。 
+之后 $n - 1$ 行，每行包含两个正整数 $x_i, y_i$，代表存在一条连接节点 $x_i$ 和 $y_i$ 的边。
 
 ## 输出格式
 
@@ -109,7 +109,7 @@ export const paperData = {
         {
             id: 1,
             type: "single",
-            question: "已知小写字母b的 ASCII 码为 98 ，下列 C++ 代码的输出结果是（ ）。",
+            question: `已知小写字母b的 ASCII 码为 98 ，下列 C++ 代码的输出结果是（ ）。`,
             options: [
                 "b",
                 "c",
@@ -128,7 +128,7 @@ export const paperData = {
         {
             id: 2,
             type: "single",
-            question: "已知a为int类型变量，下列表达式不符合语法的是（ ）。",
+            question: `已知a为int类型变量，下列表达式不符合语法的是（ ）。`,
             options: [
                 "&a+3",
                 "+a & 3",
@@ -147,7 +147,7 @@ export const paperData = {
         {
             id: 3,
             type: "single",
-            question: "下列关于 C++ 语⾔中指针的叙述，不正确的是（ ）。",
+            question: `下列关于 C++ 语⾔中指针的叙述，不正确的是（ ）。`,
             options: [
                 "指针变量中存储的是内存地址。",
                 "指针变量指向的内存地址不一定能够合法访问。",
@@ -166,7 +166,7 @@ export const paperData = {
         {
             id: 4,
             type: "single",
-            question: "下列关于 C++ 类的说法，错误的是 ( ) 。 #include <iostream> using namespace std; int main() { char a = 'b'; a++; cout << a; return 0; } 1 2 3 4 5 6 7 8",
+            question: `下列关于 C++ 类的说法，错误的是 ( ) 。 #include <iostream> using namespace std; int main() { char a = 'b'; a++; cout << a; return 0; } 1 2 3 4 5 6 7 8`,
             options: [
                 "将 C++ 类对象通过值传递给函数参数时，会⾃动调用复制构造函数。",
                 "将一个类的对象赋值给该类的另一个对象时，不会⾃动调用构造函数。",
@@ -185,7 +185,7 @@ export const paperData = {
         {
             id: 5,
             type: "single",
-            question: "某二叉树 T 的先序遍历序列为： {A B D C E G H F} ，中序遍历序列为： {D B A H G E C F} ，则下列说法中正 确的是 ( ) 。",
+            question: `某二叉树 T 的先序遍历序列为： {A B D C E G H F} ，中序遍历序列为： {D B A H G E C F} ，则下列说法中正 确的是 ( ) 。`,
             options: [
                 "T 的高为 5",
                 "T 有 4 个叶节点",
@@ -204,7 +204,7 @@ export const paperData = {
         {
             id: 6,
             type: "single",
-            question: "一棵完全二叉树有 431 个结点，则叶结点有多少个？ ( )",
+            question: `一棵完全二叉树有 431 个结点，则叶结点有多少个？ ( )`,
             options: [
                 "176",
                 "215",
@@ -223,7 +223,7 @@ export const paperData = {
         {
             id: 7,
             type: "single",
-            question: "下列关于树的说法，错误的是（ ）。",
+            question: `下列关于树的说法，错误的是（ ）。`,
             options: [
                 "二叉树的中序遍历与其深度优先遍历总是相同的。",
                 "所有树都可以构造一颗二叉树与之一一对应。",
@@ -242,7 +242,7 @@ export const paperData = {
         {
             id: 8,
             type: "single",
-            question: "一个简单无向图有 10 个结点、 30 条边。再增加多少条边可以成为完全图。（ ）",
+            question: `一个简单无向图有 10 个结点、 30 条边。再增加多少条边可以成为完全图。（ ）`,
             options: [
                 "10",
                 "15",
@@ -261,7 +261,7 @@ export const paperData = {
         {
             id: 9,
             type: "single",
-            question: "以下哪个方案可以合理解决或缓解哈希表冲突（ ）。",
+            question: `以下哪个方案可以合理解决或缓解哈希表冲突（ ）。`,
             options: [
                 "丢弃发生冲突的新元素。",
                 "用新元素覆盖发生冲突的元素。",
@@ -280,7 +280,7 @@ export const paperData = {
         {
             id: 10,
             type: "single",
-            question: "一个迷宫，已知从起点不经过重复结点到达终点的路径有且仅有一条，则下面说法错误的是（ ）。",
+            question: `一个迷宫，已知从起点不经过重复结点到达终点的路径有且仅有一条，则下面说法错误的是（ ）。`,
             options: [
                 "可以使用深度优先搜索找到这条路径。",
                 "可以使用⼴度优先搜索找到这条路径。",
@@ -299,7 +299,7 @@ export const paperData = {
         {
             id: 11,
             type: "single",
-            question: "下面程序的输出为（ ）。",
+            question: `下面程序的输出为（ ）。`,
             options: [
                 "2",
                 "3",
@@ -318,7 +318,7 @@ export const paperData = {
         {
             id: 12,
             type: "single",
-            question: "下面程序的输出为（ ）。",
+            question: `下面程序的输出为（ ）。`,
             options: [
                 "84",
                 "495",
@@ -337,7 +337,7 @@ export const paperData = {
         {
             id: 13,
             type: "single",
-            question: "上题中程序的时间复杂度为（ ）。",
+            question: `上题中程序的时间复杂度为（ ）。`,
             options: [
                 "[待补充选项]",
                 "#include <iostream> #include <cmath> using namespace std; int main() { cout << (int)log(8) << endl; return 0; } 1 2 3 4 5 6 7 #include <iostream> #define N 10 using namespace std; int path[N][N]; int main() { for (int i = 1; i < N; i++) path[i][0] = i; for (int j = 1; j < N; j++) path[0][j] = j; for (int i = 1; i < N; i++) for (int j = 1; j < N; j++) path[i][j] = path[i-1][j]+path[i][j-1]; cout << path[8][4] << endl; return 0; } 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 题号 1 2 3 4 5 6 7 8 9 10 答案",
@@ -356,7 +356,7 @@ export const paperData = {
         {
             id: 14,
             type: "single",
-            question: "下面fib函数的时间复杂度为 ( ) 。",
+            question: `下面fib函数的时间复杂度为 ( ) 。`,
             options: [
                 "[待补充选项]",
                 ",",
@@ -375,7 +375,7 @@ export const paperData = {
         {
             id: 15,
             type: "single",
-            question: "下列选项中，哪个可能是下图的⼴度优先遍历序列（ ）。",
+            question: `下列选项中，哪个可能是下图的⼴度优先遍历序列（ ）。`,
             options: [
                 "1, 3, 5, 7, 4, 2, 6, 8, 9",
                 "9, 4, 2, 1, 3, 7, 5, 6, 8",
@@ -394,7 +394,7 @@ export const paperData = {
         {
             id: 16,
             type: "judge",
-            question: "表达式'a' << 1的结果为'a '。",
+            question: `表达式'a' << 1的结果为'a '。`,
             options: [
                 "正确",
                 "错误",
@@ -411,7 +411,7 @@ export const paperData = {
         {
             id: 17,
             type: "judge",
-            question: "在 C++ 语⾔中，函数可以定义在另一个函数定义之内。",
+            question: `在 C++ 语⾔中，函数可以定义在另一个函数定义之内。`,
             options: [
                 "正确",
                 "错误",
@@ -428,7 +428,7 @@ export const paperData = {
         {
             id: 18,
             type: "judge",
-            question: "选择排序一般是不稳定的。",
+            question: `选择排序一般是不稳定的。`,
             options: [
                 "正确",
                 "错误",
@@ -445,7 +445,7 @@ export const paperData = {
         {
             id: 19,
             type: "judge",
-            question: "埃⽒筛法和欧拉筛法都是使用筛法思想生成素数表的算法，欧拉筛法的时间复杂度更低。",
+            question: `埃⽒筛法和欧拉筛法都是使用筛法思想生成素数表的算法，欧拉筛法的时间复杂度更低。`,
             options: [
                 "正确",
                 "错误",
@@ -462,7 +462,7 @@ export const paperData = {
         {
             id: 20,
             type: "judge",
-            question: "使用math.h或cmath头文件中的正弦函数，表达式sin(30)的结果类型为double、值约为0.5。 int fib_rcd[MAX_N]; int fib(int n) { if (n <= 1) return 1; if (fib_rcd[n] > 0) return fib_rcd[n]; return fib(n-1)+fib(n-2); } 1 2 3 4 5 6 7 8",
+            question: `使用math.h或cmath头文件中的正弦函数，表达式sin(30)的结果类型为double、值约为0.5。 int fib_rcd[MAX_N]; int fib(int n) { if (n <= 1) return 1; if (fib_rcd[n] > 0) return fib_rcd[n]; return fib(n-1)+fib(n-2); } 1 2 3 4 5 6 7 8`,
             options: [
                 "正确",
                 "错误",
@@ -479,7 +479,7 @@ export const paperData = {
         {
             id: 21,
             type: "judge",
-            question: "一颗 层的完全二叉树，一定有 个结点。",
+            question: `一颗 层的完全二叉树，一定有 个结点。`,
             options: [
                 "正确",
                 "错误",
@@ -496,7 +496,7 @@ export const paperData = {
         {
             id: 22,
             type: "judge",
-            question: "一个图，不管是否连通，都可以使用深度优先搜索算法进⾏遍历。",
+            question: `一个图，不管是否连通，都可以使用深度优先搜索算法进⾏遍历。`,
             options: [
                 "正确",
                 "错误",
@@ -513,7 +513,7 @@ export const paperData = {
         {
             id: 23,
             type: "judge",
-            question: "某个哈希表键值x为整数，H(x) = x % p是常用的哈希函数之一，要求p选择素数是因为这样不会产生 冲突。 ( )",
+            question: `某个哈希表键值x为整数，H(x) = x % p是常用的哈希函数之一，要求p选择素数是因为这样不会产生 冲突。 ( )`,
             options: [
                 "正确",
                 "错误",
@@ -530,7 +530,7 @@ export const paperData = {
         {
             id: 24,
             type: "judge",
-            question: "使用单链表实现队列时，链表头结点作为队⾸比链表头结点作为队尾更便于操作。",
+            question: `使用单链表实现队列时，链表头结点作为队⾸比链表头结点作为队尾更便于操作。`,
             options: [
                 "正确",
                 "错误",
@@ -547,7 +547,7 @@ export const paperData = {
         {
             id: 25,
             type: "judge",
-            question: "一个图中，每个结点表达一个⼈，连接两个结点的边表达两个结点对应的⼈相互认识，则这个图可以用来 表达社交⽹络。",
+            question: `一个图中，每个结点表达一个⼈，连接两个结点的边表达两个结点对应的⼈相互认识，则这个图可以用来 表达社交⽹络。`,
             options: [
                 "正确",
                 "错误",

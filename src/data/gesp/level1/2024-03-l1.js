@@ -20,7 +20,7 @@ export const paperData = {
     {
       id: 1,
       type: 'single',
-      question: 'C++ 表达式 `(3 - 2) * 3 + 5` 的值是（ ）。',
+      question: `C++ 表达式 \`(3 - 2) * 3 + 5\` 的值是（ ）。`,
       options: ['-13', '8', '2', '0'],
       answer: 1,
       score: 2,
@@ -30,7 +30,7 @@ export const paperData = {
     {
       id: 2,
       type: 'single',
-      question: 'C++ 语句 `cout << "5%2=" << 5 % 2` 执行后的输出是（ ）。',
+      question: `C++ 语句 \`cout << "5%2=" << 5 % 2\` 执行后的输出是（ ）。`,
       options: ['2 2', '1 1', '5%2=2', '5%2=1'],
       answer: 3,
       score: 2,
@@ -40,7 +40,7 @@ export const paperData = {
     {
       id: 3,
       type: 'single',
-      question: '执行 C++ 语句 `cin >> a` 时如果输入 `5+2`，下述说法正确的是（ ）。',
+      question: `执行 C++ 语句 \`cin >> a\` 时如果输入 \`5+2\`，下述说法正确的是（ ）。`,
       options: [
         '变量 a 将被赋值为整数 7',
         '变量 a 将被赋值为字符串，内容为 5+2',
@@ -55,7 +55,7 @@ export const paperData = {
     {
       id: 4,
       type: 'single',
-      question: '下面 C++ 代码执行后的输出是（ ）。\n```cpp\nint a = 1;\ncout << "a+1= " << a + 1 << endl;\n```',
+      question: `下面 C++ 代码执行后的输出是（ ）。\n\`\`\`cpp\nint a = 1;\ncout << "a+1= " << a + 1 << endl;\n\`\`\``,
       options: ['a+1= 2', 'a+1=2', '2=2', '2= 2'],
       answer: 0,
       score: 2,
@@ -65,7 +65,7 @@ export const paperData = {
     {
       id: 5,
       type: 'single',
-      question: '下列语句中，能够完成格式化输出且结果为 `2=2` 的是（ ）。',
+      question: `下列语句中，能够完成格式化输出且结果为 \`2=2\` 的是（ ）。`,
       options: [
         'printf("%d=%d\\n", 2 2);',
         'printf("%d=%d\\n", 2, 2);',
@@ -80,7 +80,7 @@ export const paperData = {
     {
       id: 6,
       type: 'single',
-      question: '下面 C++ 代码执行时输入 `21` 后，有关描述正确的是（ ）。\n```cpp\nint N;\ncin >> N;\nif (N % 3 == 0)\n    cout << "能被3整除";\nelse if (N % 7 == 0)\n    cout << "能被7整除";\nelse\n    cout << "不能被3和7整除";\ncout << endl;\n```',
+      question: `下面 C++ 代码执行时输入 \`21\` 后，有关描述正确的是（ ）。\n\`\`\`cpp\nint N;\ncin >> N;\nif (N % 3 == 0)\n cout << "能被3整除";\nelse if (N % 7 == 0)\n cout << "能被7整除";\nelse\n cout << "不能被3和7整除";\ncout << endl;\n\`\`\``,
       options: [
         '代码第 4 行被执行',
         '第 4 和第 7 行代码都被执行',
@@ -95,7 +95,7 @@ export const paperData = {
     {
       id: 7,
       type: 'single',
-      question: '下面 C++ 代码第 2 行，总共被执行的次数是（ ）。\n```cpp\nfor (int i = -10; i < 10; i++)\n    cout << i << " ";\n```',
+      question: `下面 C++ 代码第 2 行，总共被执行的次数是（ ）。\n\`\`\`cpp\nfor (int i = -10; i < 10; i++)\n cout << i << " ";\n\`\`\``,
       options: ['10', '19', '20', '21'],
       answer: 2,
       score: 2,
@@ -105,7 +105,7 @@ export const paperData = {
     {
       id: 8,
       type: 'single',
-      question: '下面 C++ 代码执行后的输出是（ ）。\n```cpp\nint tnt = 0;\nfor (int i = 0; i < 10; i++)\n    if (i % 3 && i % 7)\n        tnt += i;\ncout << tnt << endl;\n```',
+      question: `下面 C++ 代码执行后的输出是（ ）。\n\`\`\`cpp\nint tnt = 0;\nfor (int i = 0; i < 10; i++)\n if (i % 3 && i % 7)\n tnt += i;\ncout << tnt << endl;\n\`\`\``,
       options: ['0', '7', '18', '20'],
       answer: 3,
       score: 2,
@@ -115,7 +115,7 @@ export const paperData = {
     {
       id: 9,
       type: 'single',
-      question: '下面 C++ 代码执行后的输出是（ ）。\n```cpp\nint N = 10;\nwhile (N) {\n    N -= 1;\n    if (N % 3 == 0)\n        cout << N << "#";\n}\n```',
+      question: `下面 C++ 代码执行后的输出是（ ）。\n\`\`\`cpp\nint N = 10;\nwhile (N) {\n N -= 1;\n if (N % 3 == 0)\n cout << N << "#";\n}\n\`\`\``,
       options: ['9#6#3#', '9#6#3#0#', '8#7#5#4#2#1#', '10#8#7#5#4#2#1#'],
       answer: 1,
       score: 2,
@@ -125,7 +125,7 @@ export const paperData = {
     {
       id: 10,
       type: 'single',
-      question: '下面 C++ 代码用于判断输入的整数 `N` 是否为质数。在横线处应填入的代码是（ ）。\n```cpp\nint N;\ncin >> N;\nint cnt = 0;\nfor (int i = 1; i < N + 1; i++)\n    if (________________)\n        cnt += 1;\nif (cnt == 2)\n    cout << N << "是质数";\nelse\n    cout << N << "不是质数";\n```',
+      question: `下面 C++ 代码用于判断输入的整数 \`N\` 是否为质数。在横线处应填入的代码是（ ）。\n\`\`\`cpp\nint N;\ncin >> N;\nint cnt = 0;\nfor (int i = 1; i < N + 1; i++)\n if (________________)\n cnt += 1;\nif (cnt == 2)\n cout << N << "是质数";\nelse\n cout << N << "不是质数";\n\`\`\``,
       options: ['N % i', 'N % i == 0', 'N / i == 0', 'N / i'],
       answer: 1,
       score: 2,
@@ -135,7 +135,7 @@ export const paperData = {
     {
       id: 11,
       type: 'single',
-      question: '下面关于整型变量 `int x` 的赋值语句，不正确的是（ ）。',
+      question: `下面关于整型变量 \`int x\` 的赋值语句，不正确的是（ ）。`,
       options: ['x=(3.16);', 'x=3.16;', 'x=int(3.16);', 'x=3.16 int;'],
       answer: 3,
       score: 2,
@@ -145,7 +145,7 @@ export const paperData = {
     {
       id: 12,
       type: 'single',
-      question: 'C++ 语句中，下面可以完成数据输入的是（ ）。',
+      question: `C++ 语句中，下面可以完成数据输入的是（ ）。`,
       options: ['printf 语句', 'scanf 语句', 'default 语句', 'cout 语句'],
       answer: 1,
       score: 2,
@@ -155,7 +155,7 @@ export const paperData = {
     {
       id: 13,
       type: 'single',
-      question: '在 Dev C++ 中，对一个写好的 C++ 源文件要生成一个可执行程序，需要执行下面哪一个处理步骤？（ ）',
+      question: `在 Dev C++ 中，对一个写好的 C++ 源文件要生成一个可执行程序，需要执行下面哪一个处理步骤？（ ）`,
       options: ['创建', '编辑', '编译', '调试'],
       answer: 2,
       score: 2,
@@ -165,7 +165,7 @@ export const paperData = {
     {
       id: 14,
       type: 'single',
-      question: '小杨的妈妈最近刚给他买了一块华为手表，他说手表上跑的是鸿蒙，这里的“鸿蒙”是（ ）。',
+      question: `小杨的妈妈最近刚给他买了一块华为手表，他说手表上跑的是鸿蒙，这里的“鸿蒙”是（ ）。`,
       options: ['小程序', '计时器', '操作系统', '神话人物'],
       answer: 2,
       score: 2,
@@ -175,7 +175,7 @@ export const paperData = {
     {
       id: 15,
       type: 'single',
-      question: '中国计算机学会（CCF）在 2024 年 1 月 27 日的颁奖典礼上颁布了王选奖，王选先生的重要贡献是（ ）。',
+      question: `中国计算机学会（CCF）在 2024 年 1 月 27 日的颁奖典礼上颁布了王选奖，王选先生的重要贡献是（ ）。`,
       options: ['制造自动驾驶汽车', '创办培训学校', '发明汉字激光照排系统', '成立软件公司'],
       answer: 2,
       score: 2,
@@ -185,7 +185,7 @@ export const paperData = {
     {
       id: 16,
       type: 'judge',
-      question: '在 C++ 代码中变量 `n` 被赋值为 `27`，则 `cout << n % 10` 执行后输出的是 `7`。',
+      question: `在 C++ 代码中变量 \`n\` 被赋值为 \`27\`，则 \`cout << n % 10\` 执行后输出的是 \`7\`。`,
       options: ['正确', '错误'],
       answer: 0,
       score: 2,
@@ -195,7 +195,7 @@ export const paperData = {
     {
       id: 17,
       type: 'judge',
-      question: 'C++ 语句 `printf("%d#%d&", 2, 3)` 执行后输出的是 `2#3&`。',
+      question: `C++ 语句 \`printf("%d#%d&", 2, 3)\` 执行后输出的是 \`2#3&\`。`,
       options: ['正确', '错误'],
       answer: 0,
       score: 2,
@@ -205,7 +205,7 @@ export const paperData = {
     {
       id: 18,
       type: 'judge',
-      question: 'C++ 函数 `scanf()` 必须含有参数，且其参数为字符串型字面量，其功能是提示输入。',
+      question: `C++ 函数 \`scanf()\` 必须含有参数，且其参数为字符串型字面量，其功能是提示输入。`,
       options: ['正确', '错误'],
       answer: 1,
       score: 2,
@@ -215,7 +215,7 @@ export const paperData = {
     {
       id: 19,
       type: 'judge',
-      question: 'C++ 表达式 `"10" * 2` 执行时将报错，因为 `"10"` 是字符串类型而 `2` 是整数类型，它们数据类型不同，不能在一起运算。',
+      question: `C++ 表达式 \`"10" * 2\` 执行时将报错，因为 \`"10"\` 是字符串类型而 \`2\` 是整数类型，它们数据类型不同，不能在一起运算。`,
       options: ['正确', '错误'],
       answer: 0,
       score: 2,
@@ -225,7 +225,7 @@ export const paperData = {
     {
       id: 20,
       type: 'judge',
-      question: '在 C++ 中，`while` 可能是死循环，而 `for` 循环不可能是死循环。',
+      question: `在 C++ 中，\`while\` 可能是死循环，而 \`for\` 循环不可能是死循环。`,
       options: ['正确', '错误'],
       answer: 1,
       score: 2,
@@ -235,7 +235,7 @@ export const paperData = {
     {
       id: 21,
       type: 'judge',
-      question: '在 C++ 中，`break` 语句用于提前结束当前层次循环，适用于 `while` 循环，但不适用于 `for` 循环。',
+      question: `在 C++ 中，\`break\` 语句用于提前结束当前层次循环，适用于 \`while\` 循环，但不适用于 \`for\` 循环。`,
       options: ['正确', '错误'],
       answer: 1,
       score: 2,
@@ -245,7 +245,7 @@ export const paperData = {
     {
       id: 22,
       type: 'judge',
-      question: 'C++ 语言中，`3.0` 和 `3` 的值相等，所以它们占用的存储空间也相同。',
+      question: `C++ 语言中，\`3.0\` 和 \`3\` 的值相等，所以它们占用的存储空间也相同。`,
       options: ['正确', '错误'],
       answer: 1,
       score: 2,
@@ -255,7 +255,7 @@ export const paperData = {
     {
       id: 23,
       type: 'judge',
-      question: '在 C++ 的程序中，`cin` 是一个合法的变量名。',
+      question: `在 C++ 的程序中，\`cin\` 是一个合法的变量名。`,
       options: ['正确', '错误'],
       answer: 0,
       score: 2,
@@ -265,7 +265,7 @@ export const paperData = {
     {
       id: 24,
       type: 'judge',
-      question: '小杨今年春节回奶奶家，奶奶家的数字电视可以通过遥控器输入电视剧名称来查找想播放的电视剧，所以可以推知电视上有交互式程序在运行。',
+      question: `小杨今年春节回奶奶家，奶奶家的数字电视可以通过遥控器输入电视剧名称来查找想播放的电视剧，所以可以推知电视上有交互式程序在运行。`,
       options: ['正确', '错误'],
       answer: 0,
       score: 2,
@@ -275,7 +275,7 @@ export const paperData = {
     {
       id: 25,
       type: 'judge',
-      question: '任何一个 `for` 循环都可以转化为等价的 `while` 循环。',
+      question: `任何一个 \`for\` 循环都可以转化为等价的 \`while\` 循环。`,
       options: ['正确', '错误'],
       answer: 0,
       score: 2,

@@ -29,23 +29,23 @@ const programmingQuestions = [
 
 ## 题目描述
 
-小杨来到了一家商店，打算购买一些饮料。这家商店总共出售 \$N\$ 种饮料，编号从 \$0\$ 至 \$N-1\$，其中编号为 \$i\$ 的饮料售价 \$c_i\$ 元，容量 \$l_i\$ 毫升。
+小杨来到了一家商店，打算购买一些饮料。这家商店总共出售 $N$ 种饮料，编号从 $0$ 至 $N-1$，其中编号为 $i$ 的饮料售价 $c_i$ 元，容量 $l_i$ 毫升。
 
 小杨的需求有如下几点：
 
-1. 小杨想要尽可能尝试不同种类的饮料，因此他希望每种饮料至多购买 \$1\$ 瓶；
+1. 小杨想要尽可能尝试不同种类的饮料，因此他希望每种饮料至多购买 $1$ 瓶；
 
-2. 小杨很渴，所以他想要购买总容量不低于 \$L\$ 的饮料；
+2. 小杨很渴，所以他想要购买总容量不低于 $L$ 的饮料；
 
-3. 小杨勤俭节约，所以在 \$1\$ 和 \$2\$ 的前提下，他希望使用尽可能少的费用。
+3. 小杨勤俭节约，所以在 $1$ 和 $2$ 的前提下，他希望使用尽可能少的费用。
 
 方便起见，你只需要输出最少花费的费用即可。特别地，如果不能满足小杨的要求，则输出 \`no solution\`。
 
 ## 输入格式
 
-第一行两个整数 \$N,L\$。
+第一行两个整数 $N,L$。
 
-接下来 \$N\$行，依次描述第 \$i=0,1,\\cdots,N-1\$ 种饮料：每行两个整数 \$c_i,l_i\$。
+接下来 $N$行，依次描述第 $i=0,1,\\cdots,N-1$ 种饮料：每行两个整数 $c_i,l_i$。
 
 ## 输出格式
 
@@ -73,9 +73,9 @@ const programmingQuestions = [
 
 ## 题目描述
 
-小杨的班级里共有 \$N\$ 名同学，学号从 \$0\$ 至 \$N-1\$。
+小杨的班级里共有 $N$ 名同学，学号从 $0$ 至 $N-1$。
 
-某节课上，老师安排全班同学进行一次握手游戏，具体规则如下：老师安排了一个顺序，让全班 \$N\$ 名同学依次进入教室。每位同学进入教室时，需要和 **已经在教室内** 且 **学号小于自己** 的同学握手。
+某节课上，老师安排全班同学进行一次握手游戏，具体规则如下：老师安排了一个顺序，让全班 $N$ 名同学依次进入教室。每位同学进入教室时，需要和 **已经在教室内** 且 **学号小于自己** 的同学握手。
 
 现在，小杨想知道，整个班级总共会进行多少次握手。
 
@@ -83,7 +83,7 @@ const programmingQuestions = [
 
 ## 输入格式
 
-输入包含 \$2\$ 行。第一行一个整数 \$N\$ ，表示同学的个数；第二行 \$N\$ 个用单个空格隔开的整数，依次描述同学们进入教室的顺序，每个整数在 \$0 \\sim N-1\$ 之间，表示该同学的学号。
+输入包含 $2$ 行。第一行一个整数 $N$ ，表示同学的个数；第二行 $N$ 个用单个空格隔开的整数，依次描述同学们进入教室的顺序，每个整数在 $0 \\sim N-1$ 之间，表示该同学的学号。
 
 保证每位同学会且只会进入教室一次。
 
@@ -113,7 +113,7 @@ export const paperData = {
         {
             id: 1,
             type: "single",
-            question: "近年来，线上授课变得普遍，很多有助于改善教学效果的设备也逐渐流⾏，其中包括比较常用的⼿写板，那 么它属于哪类设备？（ ）。",
+            question: `近年来，线上授课变得普遍，很多有助于改善教学效果的设备也逐渐流⾏，其中包括比较常用的⼿写板，那 么它属于哪类设备？（ ）。`,
             options: [
                 "输入",
                 "输出",
@@ -132,7 +132,7 @@ export const paperData = {
         {
             id: 2,
             type: "single",
-            question: "如果 a 和 b 均为 int 类型的变量，且 b 的值不为 0，那么下列能正确判断“ a 是 b 的3倍”的表达式是（ ）。",
+            question: `如果 a 和 b 均为 int 类型的变量，且 b 的值不为 0，那么下列能正确判断“ a 是 b 的3倍”的表达式是（ ）。`,
             options: [
                 "(a >> 3 == b)",
                 "(a-b) % 3 == 0",
@@ -151,7 +151,7 @@ export const paperData = {
         {
             id: 3,
             type: "single",
-            question: "以下不属于面向对象程序设计语⾔的是（ ）。",
+            question: `以下不属于面向对象程序设计语⾔的是（ ）。`,
             options: [
                 "C++",
                 "Python",
@@ -170,7 +170,7 @@ export const paperData = {
         {
             id: 4,
             type: "single",
-            question: "下面有关C++类定义的说法，错误的是（ ）。",
+            question: `下面有关C++类定义的说法，错误的是（ ）。`,
             options: [
                 "C++类实例化时，会执⾏构造函数。",
                 "C++⾃定义类可以通过定义构造函数实现⾃动类型转换。",
@@ -189,7 +189,7 @@ export const paperData = {
         {
             id: 5,
             type: "single",
-            question: "有关下面C++代码的说法，错误的是（ ）。",
+            question: `有关下面C++代码的说法，错误的是（ ）。`,
             options: [
                 "代码 cout << st << endl;会报错，",
                 "第 6 ⾏代码的 data是 MyStr类的成员变量。",
@@ -208,7 +208,7 @@ export const paperData = {
         {
             id: 6,
             type: "single",
-            question: "下列关于命名空间的说法错误的是（ D. 代码 cout<< st.data <<endl; 可输出 ABC。 ）。",
+            question: `下列关于命名空间的说法错误的是（ D. 代码 cout<< st.data <<endl; 可输出 ABC。 ）。`,
             options: [
                 "命名空间可以嵌套, 例如 namespace A { namespace B { int i;}}。",
                 "命名空间只可以在全局定义。",
@@ -227,7 +227,7 @@ export const paperData = {
         {
             id: 7,
             type: "single",
-            question: "有关下面C++代码的说法，正确的是（ ）。 因为没有为 MyStr类重载 <<运算符。",
+            question: `有关下面C++代码的说法，正确的是（ ）。 因为没有为 MyStr类重载 <<运算符。`,
             options: [
                 "这段代码不能正常运⾏。",
                 "ManyData类可用于构造队列（ Queue ）数据结构。",
@@ -246,7 +246,7 @@ export const paperData = {
         {
             id: 8,
             type: "single",
-            question: "有关下面 C++ 代码的说法，错误的是（ ）。",
+            question: `有关下面 C++ 代码的说法，错误的是（ ）。`,
             options: [
                 "MoreData类可用于构造队列（ Queue ）数据结构。",
                 "代码第 29 ⾏，连续push()的用法将导致编译错误。",
@@ -265,7 +265,7 @@ export const paperData = {
         {
             id: 9,
             type: "single",
-            question: "某内容仅会出现ABCDEFG，其对应的出现概率为 0.40 、 0.30 、 0.15 、 0.05 、 0.04 、 0.03 、 0.03 ，如下图所⽰。 按照哈夫曼编码规则，假设B 的编码为11，则D 的编码为（ ）。",
+            question: `某内容仅会出现ABCDEFG，其对应的出现概率为 0.40 、 0.30 、 0.15 、 0.05 、 0.04 、 0.03 、 0.03 ，如下图所⽰。 按照哈夫曼编码规则，假设B 的编码为11，则D 的编码为（ ）。`,
             options: [
                 "10010",
                 "10011",
@@ -284,7 +284,7 @@ export const paperData = {
         {
             id: 10,
             type: "single",
-            question: "下面有关格雷码的说法，错误的是（ ）。",
+            question: `下面有关格雷码的说法，错误的是（ ）。`,
             options: [
                 "在格雷码中，任意两个相邻的代码只有一位二进制数不同。",
                 "格雷码是一种唯一性编码。",
@@ -303,7 +303,7 @@ export const paperData = {
         {
             id: 11,
             type: "single",
-            question: "有关下图的二叉树，说法正确的是（ ）。",
+            question: `有关下图的二叉树，说法正确的是（ ）。`,
             options: [
                 "既是完全二叉树也是满二叉树。",
                 "既是二叉搜索树也是平衡二叉树。",
@@ -322,7 +322,7 @@ export const paperData = {
         {
             id: 12,
             type: "single",
-            question: "个节点的二叉搜索树，其查找的平均时间复杂度为（ ）。",
+            question: `个节点的二叉搜索树，其查找的平均时间复杂度为（ ）。`,
             options: [
                 "[待补充选项]",
                 "选项B",
@@ -341,7 +341,7 @@ export const paperData = {
         {
             id: 13,
             type: "single",
-            question: "青蛙每次能跳1或2步。下面是青蛙跳到第 N 步台阶C++实现代码。该段代码采用的算法是（ ）。",
+            question: `青蛙每次能跳1或2步。下面是青蛙跳到第 N 步台阶C++实现代码。该段代码采用的算法是（ ）。`,
             options: [
                 "递推算法",
                 "贪⼼算法",
@@ -360,7 +360,7 @@ export const paperData = {
         {
             id: 14,
             type: "single",
-            question: "个节点的双向循环链，在其中查找某个节点的平均时间复杂度是（ ）。",
+            question: `个节点的双向循环链，在其中查找某个节点的平均时间复杂度是（ ）。`,
             options: [
                 "[待补充选项]",
                 "题号 1 2 3 4 5 6 7 8 9 10 答案",
@@ -379,7 +379,7 @@ export const paperData = {
         {
             id: 15,
             type: "single",
-            question: "关于C++语⾔，以下说法不正确的是（ ）。",
+            question: `关于C++语⾔，以下说法不正确的是（ ）。`,
             options: [
                 "若对象被定义为常量，则它只能调用以 const修饰的成员函数。",
                 "所有的常量静态变量都只能在类外进⾏初始化。",
@@ -398,7 +398,7 @@ export const paperData = {
         {
             id: 16,
             type: "judge",
-            question: "TCP/IP的传输层的两个不同的协议分别是UDP和TCP。",
+            question: `TCP/IP的传输层的两个不同的协议分别是UDP和TCP。`,
             options: [
                 "正确",
                 "错误",
@@ -415,7 +415,7 @@ export const paperData = {
         {
             id: 17,
             type: "judge",
-            question: "5G⽹络中，5G中的G表⽰Gigabytes/s，其中 1 GB = 1024 MB。",
+            question: `5G⽹络中，5G中的G表⽰Gigabytes/s，其中 1 GB = 1024 MB。`,
             options: [
                 "正确",
                 "错误",
@@ -432,7 +432,7 @@ export const paperData = {
         {
             id: 18,
             type: "judge",
-            question: "在面向对象中，类是对象的实例。",
+            question: `在面向对象中，类是对象的实例。`,
             options: [
                 "正确",
                 "错误",
@@ -449,7 +449,7 @@ export const paperData = {
         {
             id: 19,
             type: "judge",
-            question: "在C++类的定义中，使用 static修饰符定义的静态成员被该类的所有对象共享。",
+            question: `在C++类的定义中，使用 static修饰符定义的静态成员被该类的所有对象共享。`,
             options: [
                 "正确",
                 "错误",
@@ -466,7 +466,7 @@ export const paperData = {
         {
             id: 20,
             type: "judge",
-            question: "在C++类的定义中，可以定义初始化函数或运算符函数等。",
+            question: `在C++类的定义中，可以定义初始化函数或运算符函数等。`,
             options: [
                 "正确",
                 "错误",
@@ -483,7 +483,7 @@ export const paperData = {
         {
             id: 21,
             type: "judge",
-            question: "DFS是深度优先算法的英文简写。",
+            question: `DFS是深度优先算法的英文简写。`,
             options: [
                 "正确",
                 "错误",
@@ -500,7 +500,7 @@ export const paperData = {
         {
             id: 22,
             type: "judge",
-            question: "哈夫曼编码是一种有损压缩算法。",
+            question: `哈夫曼编码是一种有损压缩算法。`,
             options: [
                 "正确",
                 "错误",
@@ -517,7 +517,7 @@ export const paperData = {
         {
             id: 23,
             type: "judge",
-            question: "有些算法或数据结构在C/C++语⾔中使用指针实现，一个典型的例子就是链表。因此，链表这一数据结构在 C/C++语⾔中只能使用指针来实现。",
+            question: `有些算法或数据结构在C/C++语⾔中使用指针实现，一个典型的例子就是链表。因此，链表这一数据结构在 C/C++语⾔中只能使用指针来实现。`,
             options: [
                 "正确",
                 "错误",
@@ -534,7 +534,7 @@ export const paperData = {
         {
             id: 24,
             type: "judge",
-            question: "如果节点数为 ，⼴度搜索算法的最差时间复杂度为 。",
+            question: `如果节点数为 ，⼴度搜索算法的最差时间复杂度为 。`,
             options: [
                 "正确",
                 "错误",
@@ -551,7 +551,7 @@ export const paperData = {
         {
             id: 25,
             type: "judge",
-            question: "二叉搜索树的左右子树也是二叉搜索树。",
+            question: `二叉搜索树的左右子树也是二叉搜索树。`,
             options: [
                 "正确",
                 "错误",

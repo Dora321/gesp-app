@@ -42,23 +42,23 @@ lucky` }
 
 ## 题目描述
 
-小杨认为，所有大于等于 \$a\$ 的完全平方数都是他的超级幸运数。
+小杨认为，所有大于等于 $a$ 的完全平方数都是他的超级幸运数。
 
 小杨还认为，所有超级幸运数的倍数都是他的幸运数。自然地，小杨的所有超级幸运数也都是幸运数。
 
-对于一个非幸运数，小杨规定，可以将它一直 \$+1\$，直到它变成一个幸运数。我们把这个过程叫做幸运化。例如，如果 \$a=4\$，那么 \$4\$ 是最小的幸运数，而 \$1\$ 不是，但我们可以连续对 \$1\$ 做 \$3\$ 次 \$+1\$ 操作，使其变为 \$4\$，所以我们可以说， \$1\$ 幸运化后的结果是 \$4\$。
+对于一个非幸运数，小杨规定，可以将它一直 $+1$，直到它变成一个幸运数。我们把这个过程叫做幸运化。例如，如果 $a=4$，那么 $4$ 是最小的幸运数，而 $1$ 不是，但我们可以连续对 $1$ 做 $3$ 次 $+1$ 操作，使其变为 $4$，所以我们可以说， $1$ 幸运化后的结果是 $4$。
 
-现在，小杨给出 \$N\$ 个数，请你首先判断它们是不是幸运数；接着，对于非幸运数，请你将它们幸运化。
+现在，小杨给出 $N$ 个数，请你首先判断它们是不是幸运数；接着，对于非幸运数，请你将它们幸运化。
 
 ## 输入格式
 
-第一行 \$2\$ 个正整数 \$a, N\$。
+第一行 $2$ 个正整数 $a, N$。
 
-接下来 \$N\$ 行，每行一个正整数 \$x\$ ，表示需要判断（幸运化）的数。
+接下来 $N$ 行，每行一个正整数 $x$ ，表示需要判断（幸运化）的数。
 
 ## 输出格式
 
-输出 \$N\$ 行，对于每个给定的 \$x\$ ，如果它是幸运数，请输出 \`lucky\`，否则请输出将其幸运化后的结果。
+输出 $N$ 行，对于每个给定的 $x$ ，如果它是幸运数，请输出 \`lucky\`，否则请输出将其幸运化后的结果。
 `,
       score: 25,
       explanation: "预处理：筛选出所有超级幸运数（完全平方数 ≥ a）及其倍数。然后对于查询 x，找到最近的幸运数。",
@@ -82,20 +82,20 @@ lucky` }
 
 ## 题目描述
 
-有 \$N\$ 种食材，编号从 \$1\$ 至 \$N\$，其中第 \$i\$ 种食材的美味度为 \$a_i\$。
+有 $N$ 种食材，编号从 $1$ 至 $N$，其中第 $i$ 种食材的美味度为 $a_i$。
 
-不同食材之间的组合可能产生奇妙的化学反应。具体来说，如果两种食材的美味度分别为 \$x\$ 和 \$y\$ ，那么它们的契合度为 \$x\\ \\text{and}\\ y \$。
+不同食材之间的组合可能产生奇妙的化学反应。具体来说，如果两种食材的美味度分别为 $x$ 和 $y$ ，那么它们的契合度为 $x\\ \\text{and}\\ y $。
 
-其中，\$\\text{and}\$ 运算为按位与运算，需要先将两个运算数转换为二进制，然后在高位补足 ，再逐位进行与运算。例如，\$12\$ 与 \$6\$ 的二进制表示分别为 \$1100\$ 和 \$0110\$ ，将它们逐位进行与运算，得到 \$0100\$ ，转换为十进制得到 4，因此 \$12\\ \\text{and}\\ 6 = 4\$。**在 C++ 或 Python 中，可以直接使用 \`&\` 运算符表示与运算。**
+其中，$\\text{and}$ 运算为按位与运算，需要先将两个运算数转换为二进制，然后在高位补足 ，再逐位进行与运算。例如，$12$ 与 $6$ 的二进制表示分别为 $1100$ 和 $0110$ ，将它们逐位进行与运算，得到 $0100$ ，转换为十进制得到 4，因此 $12\\ \\text{and}\\ 6 = 4$。**在 C++ 或 Python 中，可以直接使用 \`&\` 运算符表示与运算。**
 
 
 现在，请你找到契合度最高的两种食材，并输出它们的契合度。
 
 ## 输入格式
 
-第一行一个整数 \$N\$，表示食材的种数。
+第一行一个整数 $N$，表示食材的种数。
 
-接下来一行 \$N\$ 个用空格隔开的整数，依次为 \$a_1,\\cdots,a_N\$，表示各种食材的美味度。
+接下来一行 $N$ 个用空格隔开的整数，依次为 $a_1,\\cdots,a_N$，表示各种食材的美味度。
 
 ## 输出格式
 
@@ -123,7 +123,7 @@ export const paperData = {
         {
             id: 1,
             type: "single",
-            question: "下面 C++ 代码用于求斐波那契数列，该数列第 1 、 2 项为 1 ，以后各项均是前两项之和。下面有关说法错误的是 ( ) 。",
+            question: `下面 C++ 代码用于求斐波那契数列，该数列第 1 、 2 项为 1 ，以后各项均是前两项之和。下面有关说法错误的是 ( ) 。`,
             options: [
                 "fiboA( )用递归方式，fiboB()循环方式",
                 "fiboA( )更加符合斐波那契数列的数学定义，直观易于理解",
@@ -142,7 +142,7 @@ export const paperData = {
         {
             id: 2,
             type: "single",
-            question: "下面 C++ 代码以递归方式实现合并排序。横线处应填上代码是 ( ) 。",
+            question: `下面 C++ 代码以递归方式实现合并排序。横线处应填上代码是 ( ) 。`,
             options: [
                 "mergeSort(SList, T2, s, m,len), mergeSort(SList, T2, m,t,len)",
                 "mergeSort(SList, T2, s, $m-1$,len), mergeSort(SList, T2, m+1,t,len)",
@@ -161,7 +161,7 @@ export const paperData = {
         {
             id: 3,
             type: "single",
-            question: "阅读下面的C++代码，执⾏后其输出是( )。",
+            question: `阅读下面的C++代码，执⾏后其输出是( )。`,
             options: [
                 "1->120<===>2->120",
                 "1->120<===>1->120",
@@ -180,7 +180,7 @@ export const paperData = {
         {
             id: 4,
             type: "single",
-            question: "下面的C++用于对 lstA 排序，使得偶数在前奇数在后，横线处应填入( )。",
+            question: `下面的C++用于对 lstA 排序，使得偶数在前奇数在后，横线处应填入( )。`,
             options: [
                 "isEven(lstA[j]) && !isEven(lstA[j+1])",
                 "!isEven(lstA[j]) && isEven(lstA[j+1])",
@@ -199,7 +199,7 @@ export const paperData = {
         {
             id: 5,
             type: "single",
-            question: "下面的 C++ 代码用于将字符串保存到双向链表中，横线处应填入代码是（ ）。",
+            question: `下面的 C++ 代码用于将字符串保存到双向链表中，横线处应填入代码是（ ）。`,
             options: [
                 "if(pHead) {p->next = pHead->next, pHead->next->prev = p;}",
                 "if(pHead->next) {p->next = pHead->next, pHead->next->prev = p;}",
@@ -218,7 +218,7 @@ export const paperData = {
         {
             id: 6,
             type: "single",
-            question: "有关下面 C++ 代码说法正确的是（ ）。",
+            question: `有关下面 C++ 代码说法正确的是（ ）。`,
             options: [
                 "如果x小于 10 ，rc值也不会超过 20",
                 "foo可能无限递归",
@@ -237,7 +237,7 @@ export const paperData = {
         {
             id: 7,
             type: "single",
-            question: "下面的 C++ 代码实现对 list 的快速排序，有关说法错误的是（ ）。",
+            question: `下面的 C++ 代码实现对 list 的快速排序，有关说法错误的是（ ）。`,
             options: [
                 "qSort(less)+qSort(greater)+(vector<int>)pivot",
                 "(vector<int>)pivot+(qSort(less)+qSort(greater))",
@@ -256,7 +256,7 @@ export const paperData = {
         {
             id: 8,
             type: "single",
-            question: "isPrimeA() 和 isPrimeB() 判定参数 N 是否素数，有关其时间复杂度的说法正确的是（ ）。",
+            question: `isPrimeA() 和 isPrimeB() 判定参数 N 是否素数，有关其时间复杂度的说法正确的是（ ）。`,
             options: [
                 "isPrimeA()优于isPrimeB()",
                 "isPrimeB()绝大多数情况下优于isPrimeA()",
@@ -275,7 +275,7 @@ export const paperData = {
         {
             id: 9,
             type: "single",
-            question: "下面 C++ 代码用于有序list的二分查找，有关说法错误的是（ ）。",
+            question: `下面 C++ 代码用于有序list的二分查找，有关说法错误的是（ ）。`,
             options: [
                 "代码采用二分法实现有序list的查找",
                 "代码采用分治算法实现有序list的查找",
@@ -294,16 +294,16 @@ export const paperData = {
         {
             id: 10,
             type: "single",
-            question: "在_binarySearch算法中，如果lst中有N个元素，其时间复杂度是（ ）。",
+            question: `在_binarySearch算法中，如果lst中有N个元素，其时间复杂度是（ ）。`,
             options: [
                 "$O(N)$",
-                "$O(\log n)$",
-                "$O(n \log n)$",
+                "$O(log n)$",
+                "$O(n log n)$",
                 "$O(N^2)$",
             ],
             answer: 1,
             score: 2,
-            explanation: "二分查找的时间复杂度是 $O(\log n)$。",
+            explanation: "二分查找的时间复杂度是 $O(log n)$。",
             tags: [
                 "客观题",
                 "单选题",
@@ -313,7 +313,7 @@ export const paperData = {
         {
             id: 11,
             type: "single",
-            question: "数组模拟整数加法处理超出大整数范围的运算。横线处应填入代码是（ ）。",
+            question: `数组模拟整数加法处理超出大整数范围的运算。横线处应填入代码是（ ）。`,
             options: [
                 "c.push_back(t % 10), t = t % 10;",
                 "c.push_back(t / 10), t = t % 10;",
@@ -332,7 +332,7 @@ export const paperData = {
         {
             id: 12,
             type: "single",
-            question: "有关下面 C++ 代码的说法正确的是（ ）。",
+            question: `有关下面 C++ 代码的说法正确的是（ ）。`,
             options: [
                 "上述代码构成单向链表",
                 "上述代码构成双向链表",
@@ -351,7 +351,7 @@ export const paperData = {
         {
             id: 13,
             type: "single",
-            question: "通讯卫星在通信⽹络系统中主要起到（）的作用。",
+            question: `通讯卫星在通信⽹络系统中主要起到（）的作用。`,
             options: [
                 "信息过滤",
                 "信号中继",
@@ -370,7 +370,7 @@ export const paperData = {
         {
             id: 14,
             type: "single",
-            question: "判断任意输入的整数 N 是否为素数的程序，下面哪个方法不合适？（ ）",
+            question: `判断任意输入的整数 N 是否为素数的程序，下面哪个方法不合适？（ ）`,
             options: [
                 "埃⽒筛法",
                 "线性筛法",
@@ -389,7 +389,7 @@ export const paperData = {
         {
             id: 15,
             type: "single",
-            question: "哪种排序算法不能保证在下一趟处理时从待处理数据中选出最大或最小的数据？（ ）",
+            question: `哪种排序算法不能保证在下一趟处理时从待处理数据中选出最大或最小的数据？（ ）`,
             options: [
                 "选择排序",
                 "快速排序",
@@ -408,14 +408,14 @@ export const paperData = {
         {
             id: 16,
             type: "judge",
-            question: "归并排序的时间复杂度是 $O(n \log n)$ 。 ( )",
+            question: `归并排序的时间复杂度是 $O(n log n)$ 。 ( )`,
             options: [
                 "正确",
                 "错误",
             ],
             answer: 0,
             score: 2,
-            explanation: "归并排序在最好、平均、最坏情况下都是 $O(n \log n)$。",
+            explanation: "归并排序在最好、平均、最坏情况下都是 $O(n log n)$。",
             tags: [
                 "客观题",
                 "判断题",
@@ -425,7 +425,7 @@ export const paperData = {
         {
             id: 17,
             type: "judge",
-            question: "小杨分巧克力最大边长可以使用二分法。（ ）",
+            question: `小杨分巧克力最大边长可以使用二分法。（ ）`,
             options: [
                 "正确",
                 "错误",
@@ -442,7 +442,7 @@ export const paperData = {
         {
             id: 18,
             type: "judge",
-            question: "C++ 代码能以递归方式实现斐波那契数列。 ( )",
+            question: `C++ 代码能以递归方式实现斐波那契数列。 ( )`,
             options: [
                 "正确",
                 "错误",
@@ -459,7 +459,7 @@ export const paperData = {
         {
             id: 19,
             type: "judge",
-            question: "贪⼼算法可以达到局部最优，但可能不是全局最优解。 ( )",
+            question: `贪⼼算法可以达到局部最优，但可能不是全局最优解。 ( )`,
             options: [
                 "正确",
                 "错误",
@@ -476,7 +476,7 @@ export const paperData = {
         {
             id: 20,
             type: "judge",
-            question: "拆数程序能将非质数 N 转换成若⼲个质数的乘积。（ ）",
+            question: `拆数程序能将非质数 N 转换成若⼲个质数的乘积。（ ）`,
             options: [
                 "正确",
                 "错误",
@@ -493,7 +493,7 @@ export const paperData = {
         {
             id: 21,
             type: "judge",
-            question: "插入排序有时比快速排序时间复杂度更低。（ ）",
+            question: `插入排序有时比快速排序时间复杂度更低。（ ）`,
             options: [
                 "正确",
                 "错误",
@@ -510,7 +510,7 @@ export const paperData = {
         {
             id: 22,
             type: "judge",
-            question: "下面的 C++ 代码能实现⼗进制正整数 N 转换为⼋进制并输出。（ ）",
+            question: `下面的 C++ 代码能实现⼗进制正整数 N 转换为⼋进制并输出。（ ）`,
             options: [
                 "正确",
                 "错误",
@@ -527,7 +527,7 @@ export const paperData = {
         {
             id: 23,
             type: "judge",
-            question: "对数组 arr 执行 sort 后，数据调整为有序。（ ）",
+            question: `对数组 arr 执行 sort 后，数据调整为有序。（ ）`,
             options: [
                 "正确",
                 "错误",
@@ -544,7 +544,7 @@ export const paperData = {
         {
             id: 24,
             type: "judge",
-            question: "算正整数 N 有多少个因数，重复没有超过 N/2 次的循环就能算出来。（ ）",
+            question: `算正整数 N 有多少个因数，重复没有超过 N/2 次的循环就能算出来。（ ）`,
             options: [
                 "正确",
                 "错误",
@@ -561,7 +561,7 @@ export const paperData = {
         {
             id: 25,
             type: "judge",
-            question: "单链表和双向链表上的简单冒泡排序的复杂度相同。（ ）",
+            question: `单链表和双向链表上的简单冒泡排序的复杂度相同。（ ）`,
             options: [
                 "正确",
                 "错误",

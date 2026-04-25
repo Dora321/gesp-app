@@ -19,7 +19,7 @@ export const paperData = {
         {
             id: 1,
             type: 'single',
-            question: '人们所使用的手机上安装的 App 通常指的是（   ）。',
+            question: `人们所使用的手机上安装的 App 通常指的是（ ）。`,
             options: ['一款操作系统', '一款应用软件', '一种通话设备', '以上都不对'],
             answer: 1,
             score: 2,
@@ -28,7 +28,7 @@ export const paperData = {
         {
             id: 2,
             type: 'single',
-            question: '下列流程图的输出结果是（   ）。',
+            question: `下列流程图的输出结果是（ ）。`,
             options: ['60', '20', '5', '1'],
             answer: 1,
             score: 2,
@@ -37,7 +37,7 @@ export const paperData = {
         {
             id: 3,
             type: 'single',
-            question: "已知大写字符 'A' 的 ASCII 编码的十六进制表示为 0x41，则字符 'L' 的 ASCII 编码的十六进制表示为（   ）。",
+            question: `已知大写字符 'A' 的 ASCII 编码的十六进制表示为 0x41，则字符 'L' 的 ASCII 编码的十六进制表示为（ ）。`,
             options: ['4A', '4B', '4C', '52'],
             answer: 2,
             score: 2,
@@ -46,7 +46,7 @@ export const paperData = {
         {
             id: 4,
             type: 'single',
-            question: '以下哪个不是 C++ 语言中的运算符？（   ）',
+            question: `以下哪个不是 C++ 语言中的运算符？（ ）`,
             options: ['~', '~~', '<', '<<'],
             answer: 1,
             score: 2,
@@ -55,7 +55,7 @@ export const paperData = {
         {
             id: 5,
             type: 'single',
-            question: '如果数组定义为 long long array[] = {3, 5, 7, 2};，则数组 array 占用的字节数为（   ）。',
+            question: `如果数组定义为 long long array[] = {3, 5, 7, 2};，则数组 array 占用的字节数为（ ）。`,
             options: ['32', '16', '8', '4'],
             answer: 0,
             score: 2,
@@ -64,7 +64,7 @@ export const paperData = {
         {
             id: 6,
             type: 'single',
-            question: '一个数组定义为 double array[3];，则可合理访问这个数组的元素的下标最大为（   ）。',
+            question: `一个数组定义为 double array[3];，则可合理访问这个数组的元素的下标最大为（ ）。`,
             options: ['2', '3', '23', '24'],
             answer: 0,
             score: 2,
@@ -73,7 +73,7 @@ export const paperData = {
         {
             id: 7,
             type: 'single',
-            question: '以下数组定义，符合 C++ 语言语法的是（   ）。',
+            question: `以下数组定义，符合 C++ 语言语法的是（ ）。`,
             options: ['double a[];', "double b[] = {1, 2.0, '3'};", 'double c[3.0];', 'double[] d = new double[3];'],
             answer: 1,
             score: 2,
@@ -82,7 +82,7 @@ export const paperData = {
         {
             id: 8,
             type: 'single',
-            question: '下列关于进制的叙述，正确的是（   ）。',
+            question: `下列关于进制的叙述，正确的是（ ）。`,
             options: [
                 '只有十进制和二进制能够用来表示小数，八进制和十六进制不可以。',
                 '常用的进制包括二进制、八进制、十进制、十六进制，其他进制在日常生活中很少使用。',
@@ -96,7 +96,7 @@ export const paperData = {
         {
             id: 9,
             type: 'single',
-            question: '下列关于 C++ 语言中数组的叙述，不正确的是（   ）。',
+            question: `下列关于 C++ 语言中数组的叙述，不正确的是（ ）。`,
             options: [
                 '可以定义 0 个元素的数组。',
                 '不能定义 -1 个元素的数组。',
@@ -110,7 +110,7 @@ export const paperData = {
         {
             id: 10,
             type: 'single',
-            question: '如果 a 是 int 类型的变量，下列哪个表达式的值一定为 true？（   ）',
+            question: `如果 a 是 int 类型的变量，下列哪个表达式的值一定为 true？（ ）`,
             options: ['a+1000-1000 == a', 'a * 2 / 2 == a', '(a & 1) == 1', '(a | 1) == a+1'],
             answer: 0,
             score: 2,
@@ -119,7 +119,7 @@ export const paperData = {
         {
             id: 11,
             type: 'single',
-            question: '如果 a 和 b 均为 int 类型的变量，下列表达式不能正确判断“a 等于 b”的是（   ）。',
+            question: `如果 a 和 b 均为 int 类型的变量，下列表达式不能正确判断“a 等于 b”的是（ ）。`,
             options: ['((a >= b) && (a <= b))', '((a >> 1) == (b >> 1))', '((a+b) == (a+a))', '((a ^ b) == 0)'],
             answer: 1,
             score: 2,
@@ -128,7 +128,7 @@ export const paperData = {
         {
             id: 12,
             type: 'single',
-            question: '如果 a 为 char 类型的变量，下列哪个表达式可以正确判断“a 是大写字母”？（   ）',
+            question: `如果 a 为 char 类型的变量，下列哪个表达式可以正确判断“a 是大写字母”？（ ）`,
             options: ["a-'A' <= 26", "'A' <= a <= 'Z'", "'A' <= 'a' <= 'Z'", "('A' <= a) && (a <= 'Z')"],
             answer: 3,
             score: 2,
@@ -137,7 +137,7 @@ export const paperData = {
         {
             id: 13,
             type: 'single',
-            question: '在下列代码的横线处填写（   ），可以使得输出是“20 10”。',
+            question: `在下列代码的横线处填写（ ），可以使得输出是“20 10”。`,
             options: ['a = a >> 8; b = a & 0xff;', 'b = a >> 8; a = a & 0xff;', 'a = b; b = a & 0xff;', 'b = a; a = b;'],
             answer: 1,
             score: 2,
@@ -146,7 +146,7 @@ export const paperData = {
         {
             id: 14,
             type: 'single',
-            question: '如果要使得下面代码输出 120，则横线处应填入（   ）。\n```cpp\n#include <iostream>\nusing namespace std;\n\nint main() {\n    int array[5] = {1, 2, 3, 4, 5};\n    int res = 0;\n    for (int i = 0; i < 5; i++)\n        _______; // 在此处填入代码\n    cout << res << endl;\n    return 0;\n}\n```',
+            question: `如果要使得下面代码输出 120，则横线处应填入（ ）。\n\`\`\`cpp\n#include <iostream>\nusing namespace std;\n\nint main() {\n int array[5] = {1, 2, 3, 4, 5};\n int res = 0;\n for (int i = 0; i < 5; i++)\n _______; // 在此处填入代码\n cout << res << endl;\n return 0;\n}\n\`\`\``,
             options: ['res += array[i];', 'res *= array[i]', 'res = array[i]', '以上均不对'],
             answer: 3,
             score: 2,
@@ -155,7 +155,7 @@ export const paperData = {
         {
             id: 15,
             type: 'single',
-            question: '下面代码执行后的输出是（   ）。\n```cpp\n#include <iostream>\nusing namespace std;\n\nint main() {\n    int array[10];\n    for (int i = 0; i < 10; i++)\n        array[i] = i;\n    for (int p = 2; p < 10; p++)\n        if (array[p] == p)\n            for (int n = p; n < 10; n += p)\n                array[n] = array[n] / p * (p-1);\n    int res = 0;\n    for (int n = 1; n < 10; n++)\n        res += array[n];\n    cout << res << endl;\n    return 0;\n}\n```',
+            question: `下面代码执行后的输出是（ ）。\n\`\`\`cpp\n#include <iostream>\nusing namespace std;\n\nint main() {\n int array[10];\n for (int i = 0; i < 10; i++)\n array[i] = i;\n for (int p = 2; p < 10; p++)\n if (array[p] == p)\n for (int n = p; n < 10; n += p)\n array[n] = array[n] / p * (p-1);\n int res = 0;\n for (int n = 1; n < 10; n++)\n res += array[n];\n cout << res << endl;\n return 0;\n}\n\`\`\``,
             options: ['15', '28', '45', '55'],
             answer: 1,
             score: 2,
@@ -164,7 +164,7 @@ export const paperData = {
         {
             id: 16,
             type: 'judge',
-            question: '二进制数 101.101 在十进制下是 5.005。',
+            question: `二进制数 101.101 在十进制下是 5.005。`,
             options: ['正确', '错误'],
             answer: 1,
             score: 2,
@@ -173,7 +173,7 @@ export const paperData = {
         {
             id: 17,
             type: 'judge',
-            question: '在 C++ 语言中，位运算符也有类似“先乘除、后加减”的优先级规则，因此使用时应注意合理使用括号。',
+            question: `在 C++ 语言中，位运算符也有类似“先乘除、后加减”的优先级规则，因此使用时应注意合理使用括号。`,
             options: ['正确', '错误'],
             answer: 0,
             score: 2,
@@ -182,7 +182,7 @@ export const paperData = {
         {
             id: 18,
             type: 'judge',
-            question: "字符常量 '3' 的值和 int 类型常量 3 的值是相同的，只是占用的字节数不同。",
+            question: `字符常量 '3' 的值和 int 类型常量 3 的值是相同的，只是占用的字节数不同。`,
             options: ['正确', '错误'],
             answer: 1,
             score: 2,
@@ -191,7 +191,7 @@ export const paperData = {
         {
             id: 19,
             type: 'judge',
-            question: '在 C++ 语言中，长度为 3 的数组，访问下标为 3 的元素会引起编译错误。',
+            question: `在 C++ 语言中，长度为 3 的数组，访问下标为 3 的元素会引起编译错误。`,
             options: ['正确', '错误'],
             answer: 1,
             score: 2,
@@ -200,7 +200,7 @@ export const paperData = {
         {
             id: 20,
             type: 'judge',
-            question: '在 C++ 语言中，所有 int 类型的值，经过若干次左移操作（<<）后，它们的值总会变为 0。',
+            question: `在 C++ 语言中，所有 int 类型的值，经过若干次左移操作（<<）后，它们的值总会变为 0。`,
             options: ['正确', '错误'],
             answer: 0,
             score: 2,
@@ -209,7 +209,7 @@ export const paperData = {
         {
             id: 21,
             type: 'judge',
-            question: '在 C++ 语言中，数组下标的大小决定元素在逻辑上的先后顺序，与元素在内存中位置的先后顺序无关。',
+            question: `在 C++ 语言中，数组下标的大小决定元素在逻辑上的先后顺序，与元素在内存中位置的先后顺序无关。`,
             options: ['正确', '错误'],
             answer: 1,
             score: 2,
@@ -218,7 +218,7 @@ export const paperData = {
         {
             id: 22,
             type: 'judge',
-            question: '在 C++ 语言中，定义数组时，[] 中必须指定元素个数。',
+            question: `在 C++ 语言中，定义数组时，[] 中必须指定元素个数。`,
             options: ['正确', '错误'],
             answer: 1,
             score: 2,
@@ -227,7 +227,7 @@ export const paperData = {
         {
             id: 23,
             type: 'judge',
-            question: '著名的哥德巴赫猜想：任一大于 2 的偶数都可写成两个素数之和。我们可以通过枚举法来证明它。',
+            question: `著名的哥德巴赫猜想：任一大于 2 的偶数都可写成两个素数之和。我们可以通过枚举法来证明它。`,
             options: ['正确', '错误'],
             answer: 1,
             score: 2,
@@ -236,7 +236,7 @@ export const paperData = {
         {
             id: 24,
             type: 'judge',
-            question: '在 C++ 语言中，表达式 (0xff == 255) 的值为 true。',
+            question: `在 C++ 语言中，表达式 (0xff == 255) 的值为 true。`,
             options: ['正确', '错误'],
             answer: 0,
             score: 2,
@@ -245,7 +245,7 @@ export const paperData = {
         {
             id: 25,
             type: 'judge',
-            question: '如果 a 为 int 类型的变量，且表达式 ((a & 1) == 0) 的值为 true，则说明 a 是偶数。',
+            question: `如果 a 为 int 类型的变量，且表达式 ((a & 1) == 0) 的值为 true，则说明 a 是偶数。`,
             options: ['正确', '错误'],
             answer: 0,
             score: 2,
@@ -267,19 +267,19 @@ export const paperData = {
 
 ## 题目描述
 
-小杨共有 \$N\$ 个储蓄罐，编号从 \$0\$ 到 \$N-1\$。从第 \$1\$ 天开始，小杨每天都会往存钱罐里存钱。具体来说，第 \$i\$ 天他会挑选一个存钱罐 \$a_i\$，并存入 \$i\$ 元钱。过了 \$D\$ 天后，他已经忘记每个储蓄罐里都存了多少钱了，你能帮帮他吗？
+小杨共有 $N$ 个储蓄罐，编号从 $0$ 到 $N-1$。从第 $1$ 天开始，小杨每天都会往存钱罐里存钱。具体来说，第 $i$ 天他会挑选一个存钱罐 $a_i$，并存入 $i$ 元钱。过了 $D$ 天后，他已经忘记每个储蓄罐里都存了多少钱了，你能帮帮他吗？
 
 ## 输入格式
 
-输入 \$2\$ 行，第一行两个整数 \$N,D\$；第二行 \$D\$ 个整数，其中第 \$i\$ 个整数为 \${a_i}\$（保证 \$0 \\le a_i \\le N-1\$）。
+输入 $2$ 行，第一行两个整数 $N,D$；第二行 $D$ 个整数，其中第 $i$ 个整数为 \${a_i}$（保证 $0 \\le a_i \\le N-1$）。
 
 每行的各个整数之间用单个空格分隔。
 
-保证 \$1 \\le N \\le 1,000\$；\$1 \\le D \\le 1,000\$。
+保证 $1 \\le N \\le 1,000$；$1 \\le D \\le 1,000$。
 
 ## 输出格式
 
-输出 \$N\$ 个用单个空格隔开的整数，其中第 \$i\$ 个整数表示编号为 \$i-1\$ 的存钱罐中有多少钱（\$i=1, \\cdots ,N\$）。
+输出 $N$ 个用单个空格隔开的整数，其中第 $i$ 个整数表示编号为 $i-1$ 的存钱罐中有多少钱（$i=1, \\cdots ,N$）。
 `,
       template: `#include <bits/stdc++.h>\nusing namespace std;\n\nint main() {\n    // 在此填写代码\n    return 0;\n}`,
       score: 25,
@@ -331,19 +331,19 @@ GG`, output: `0 1 1 1
 
 ## 题目描述
 
-\$N\$ 进制数指的是逢 \$N\$ 进一的计数制。例如，人们日常生活中大多使用十进制计数，而计算机底层则一般使用二进制。除此之外，八进制和十六进制在一些场合也是常用的计数制（十六进制中，一般使用字母 A 至 F 表示十至十五）。
+$N$ 进制数指的是逢 $N$ 进一的计数制。例如，人们日常生活中大多使用十进制计数，而计算机底层则一般使用二进制。除此之外，八进制和十六进制在一些场合也是常用的计数制（十六进制中，一般使用字母 A 至 F 表示十至十五）。
 
-现在有 \$N\$ 个数，请你分别判断他们是否可能是二进制、八进制、十进制、十六进制。例如，\`15A6F\` 就只可能是十六进制，而 \`1011\` 则是四种进制皆有可能。
+现在有 $N$ 个数，请你分别判断他们是否可能是二进制、八进制、十进制、十六进制。例如，\`15A6F\` 就只可能是十六进制，而 \`1011\` 则是四种进制皆有可能。
 
 ## 输入格式
 
-输入的第一行为一个十进制表示的整数 \$N\$。接下来 \$N\$ 行，每行一个字符串，表示需要判断的数。保证所有字符串均由数字和大写字母组成，**可能以 \$0\$ 开头**。保证不会出现空行。
+输入的第一行为一个十进制表示的整数 $N$。接下来 $N$ 行，每行一个字符串，表示需要判断的数。保证所有字符串均由数字和大写字母组成，**可能以 $0$ 开头**。保证不会出现空行。
 
-保证 \$1 \\le N \\le 1000\$，保证所有字符串长度不超过 \$10\$。
+保证 $1 \\le N \\le 1000$，保证所有字符串长度不超过 $10$。
 
 ## 输出格式
 
-输出 \$N\$ 行，每行 \$4\$ 个数，用空格隔开，分别表示给定的字符串是否可能表示一个二进制数、八进制数、十进制数、十六进制数。使用 \$1\$ 表示可能，使用 \$0\$ 表示不可能。
+输出 $N$ 行，每行 $4$ 个数，用空格隔开，分别表示给定的字符串是否可能表示一个二进制数、八进制数、十进制数、十六进制数。使用 $1$ 表示可能，使用 $0$ 表示不可能。
 
 例如，对于只可能是十六进制数的 \`15A6F\`，就需要输出 \`0 0 0 1\`；而对于四者皆有可能的 \`1011\`，则需要输出 \`1 1 1 1\`。
 `,

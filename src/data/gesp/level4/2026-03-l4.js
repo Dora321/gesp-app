@@ -18,15 +18,15 @@ const programmingQuestions = [
 
 ## 题目描述
 
-现有一片山地，可以视为一个 \\\\\\\\\\\\\\\$N\\\\\\\\\\\\\\\$ 行 \\\\\\\\\\\\\\\$M\\\\\\\\\\\\\\\$ 列的网格图，第 \\\\\\\\\\\\\\\$i\\\\\\\\\\\\\\\$ 行 \\\\\\\\\\\\\\\$j\\\\\\\\\\\\\\\$ 列的海拔为 \\\\\\\\\\\\\\\$h_{i,j}\\\\\\\\\\\\\\\$。如果一个单元格的海拔不高于其所有相邻单元格（相邻包括上、下、左、右、左上、右上、左下、右下，最多 8 个方向）的海拔，则称该单元格为山谷。请你数一数该片山地中有多少山谷。
+现有一片山地，可以视为一个 \\\\\\\\\\\\\\$N\\\\\\\\\\\\\\$ 行 \\\\\\\\\\\\\\$M\\\\\\\\\\\\\\$ 列的网格图，第 \\\\\\\\\\\\\\$i\\\\\\\\\\\\\\$ 行 \\\\\\\\\\\\\\$j\\\\\\\\\\\\\\$ 列的海拔为 \\\\\\\\\\\\\\$h_{i,j}\\\\\\\\\\\\\\$。如果一个单元格的海拔不高于其所有相邻单元格（相邻包括上、下、左、右、左上、右上、左下、右下，最多 8 个方向）的海拔，则称该单元格为山谷。请你数一数该片山地中有多少山谷。
 
 ## 输入格式
 
-第一行包含 2 个整数 \\\\\\\\\\\\\\\$N, M\\\\\\\\\\\\\\\$，表示山地的大小。之后 \\\\\\\\\\\\\\\$N\\\\\\\\\\\\\\\$ 行，每行包含 \\\\\\\\\\\\\\\$M\\\\\\\\\\\\\\\$ 个整数 \\\\\\\\\\\\\\\$h_{i,1}, h_{i,2}, \\\\\\\\\\\\\\\\dots, h_{i,M}\\\\\\\\\\\\\\\$，表示海拔。
+第一行包含 2 个整数 \\\\\\\\\\\\\\$N, M\\\\\\\\\\\\\\$，表示山地的大小。之后 \\\\\\\\\\\\\\$N\\\\\\\\\\\\\\$ 行，每行包含 \\\\\\\\\\\\\\$M\\\\\\\\\\\\\\$ 个整数 \\\\\\\\\\\\\\$h_{i,1}, h_{i,2}, \\\\\\\\\\\\\\\\dots, h_{i,M}\\\\\\\\\\\\\\$，表示海拔。
 
 ## 输出格式
 
-输出 1 行，包含 1 个整数 \\\\\\\\\\\\\\\$C\\\\\\\\\\\\\\\$，表示山谷的数量。
+输出 1 行，包含 1 个整数 \\\\\\\\\\\\\\$C\\\\\\\\\\\\\\$，表示山谷的数量。
 `,
       score: 25,
       explanation: "遍历网格中的每个格子，检查其周围 8 个方向的邻居。如果当前格子的海拔小于等于所有有效邻居的海拔，则该格子是一个山谷，计数加一。注意处理边界情况（只有 3 到 5 个邻居）。样例 1 中，绿色单元格 (2,2), (3,2), (2,5) 是山谷。",
@@ -54,7 +54,7 @@ const programmingQuestions = [
 
 ## 题目描述
 
-商店推出了许多礼盒，每个礼盒中包含 \\\\\\\\\\\\\\\$k\\\\\\\\\\\\\\\$ 件商品，每件商品都有一个价格。现在需要对这些礼盒进行排序，排序规则如下：
+商店推出了许多礼盒，每个礼盒中包含 \\\\\\\\\\\\\\$k\\\\\\\\\\\\\\$ 件商品，每件商品都有一个价格。现在需要对这些礼盒进行排序，排序规则如下：
 1. 先按礼盒总价格从小到大排序；
 2. 如果总价格相同，则按礼盒中最贵商品的价格从小到大排序；
 3. 如果仍然相同，则按礼盒中最便宜商品的价格从小到大排序；
@@ -62,11 +62,11 @@ const programmingQuestions = [
 
 ## 输入格式
 
-第一行包含两个整数 \\\\\\\\\\\\\\\$n, k\\\\\\\\\\\\\\\$，表示礼盒数量和每个礼盒中的商品数量。接下来的 \\\\\\\\\\\\\\\$n\\\\\\\\\\\\\\\$ 行，每行包含 \\\\\\\\\\\\\\\$k\\\\\\\\\\\\\\\$ 个整数，表示对应礼盒中商品的价格。
+第一行包含两个整数 \\\\\\\\\\\\\\$n, k\\\\\\\\\\\\\\$，表示礼盒数量和每个礼盒中的商品数量。接下来的 \\\\\\\\\\\\\\$n\\\\\\\\\\\\\\$ 行，每行包含 \\\\\\\\\\\\\\$k\\\\\\\\\\\\\\$ 个整数，表示对应礼盒中商品的价格。
 
 ## 输出格式
 
-输出一行，包含 \\\\\\\\\\\\\\\$n\\\\\\\\\\\\\\\$ 个整数，用空格分隔，表示排序后的礼盒编号。
+输出一行，包含 \\\\\\\\\\\\\\$n\\\\\\\\\\\\\\$ 个整数，用空格分隔，表示排序后的礼盒编号。
 `,
       score: 25,
       explanation: "先为每个礼盒统计总价、最大值和最小值，再按题目给定的三重关键字排序即可。样例中 3 号礼盒总价最小先排第一；其余总价都为 10，4 号礼盒最大值更小排第二；1 号和 2 号最大值同为 5，再比较最小值，2 号最小值 1 更小，所以最终顺序是 3 4 2 1。",
@@ -91,7 +91,7 @@ export const paperData = {
         {
             id: 1,
             type: "single",
-            question: "执行下面程序后，输出为（ ）。\n```cpp\nint f(int x = 2){\n    return x * 3;\n}\n\nint main(){\n    cout << f() << \" \" << f(4);\n    return 0;\n}\n```",
+            question: `执行下面程序后，输出为（ ）。\n\`\`\`cpp\nint f(int x = 2){\n return x * 3;\n}\n\nint main(){\n cout << f() << " " << f(4);\n return 0;\n}\n\`\`\``,
             options: ["2 12", "6 12", "6 4", "12 6"],
             answer: 1,
             score: 2,
@@ -101,7 +101,7 @@ export const paperData = {
         {
             id: 2,
             type: "single",
-            question: "执行下面代码后，输出为（ ）。\n```cpp\nint main() {\n    int a = 5;\n    int* p = &a;\n    int** q = &p;\n    **q += 7;\n    cout << a << \" \" << *p;\n    return 0;\n}\n```",
+            question: `执行下面代码后，输出为（ ）。\n\`\`\`cpp\nint main() {\n int a = 5;\n int* p = &a;\n int** q = &p;\n **q += 7;\n cout << a << " " << *p;\n return 0;\n}\n\`\`\``,
             options: ["5 5", "12 12", "12 5", "5 12"],
             answer: 1,
             score: 2,
@@ -111,7 +111,7 @@ export const paperData = {
         {
             id: 3,
             type: "single",
-            question: "已知有如下定义：\n```cpp\nint a[3][4] = {\n    {1, 2, 3, 4},\n    {5, 6, 7, 8},\n    {9, 10, 11, 12}\n};\nint (*p)[4] = a;\n```\n则表达式 `*(*(p+2)+1)` 的值为（ ）。",
+            question: `已知有如下定义：\n\`\`\`cpp\nint a[3][4] = {\n {1, 2, 3, 4},\n {5, 6, 7, 8},\n {9, 10, 11, 12}\n};\nint (*p)[4] = a;\n\`\`\`\n则表达式 \`*(*(p+2)+1)\` 的值为（ ）。`,
             options: ["6", "10", "7", "11"],
             answer: 1,
             score: 2,
@@ -121,7 +121,7 @@ export const paperData = {
         {
             id: 4,
             type: "single",
-            question: "执行下列代码后，输出是（ ）。\n```cpp\nint main() {\n    int a[] = {1, 2, 3, 4, 5};\n    int *p = a+1;\n    cout << p[2];\n    return 0;\n}\n```",
+            question: `执行下列代码后，输出是（ ）。\n\`\`\`cpp\nint main() {\n int a[] = {1, 2, 3, 4, 5};\n int *p = a+1;\n cout << p[2];\n return 0;\n}\n\`\`\``,
             options: ["2", "4", "3", "5"],
             answer: 1,
             score: 2,
@@ -131,7 +131,7 @@ export const paperData = {
         {
             id: 5,
             type: "single",
-            question: "执行下面代码后，输出为（ ）。\n```cpp\nint main() {\n    char s[] = \"GESP\";\n    char *p = s+2;\n    cout << *p << \" \" << p[1];\n    return 0;\n}\n```",
+            question: `执行下面代码后，输出为（ ）。\n\`\`\`cpp\nint main() {\n char s[] = "GESP";\n char *p = s+2;\n cout << *p << " " << p[1];\n return 0;\n}\n\`\`\``,
             options: ["S P", "G E", "E S", "S G"],
             answer: 0,
             score: 2,
@@ -141,7 +141,7 @@ export const paperData = {
         {
             id: 6,
             type: "single",
-            question: "下列关于 C++ 中 delete 运算符的说法，错误的是（ ）。",
+            question: `下列关于 C++ 中 delete 运算符的说法，错误的是（ ）。`,
             options: ["delete 用于释放 new 分配的内存", "delete 只能用于释放数组内存", "释放数组内存时应使用 delete[]", "对同一个指针多次使用 delete 可能会导致程序崩溃"],
             answer: 1,
             score: 2,
@@ -151,7 +151,7 @@ export const paperData = {
         {
             id: 7,
             type: "single",
-            question: "执行下面代码后，输出为（ ）。\n```cpp\nint f(int n) {\n    if (n <= 1) return 1;\n    return n * f(n-1);\n}\n\nint main() {\n    cout << f(4);\n    return 0;\n}\n```",
+            question: `执行下面代码后，输出为（ ）。\n\`\`\`cpp\nint f(int n) {\n if (n <= 1) return 1;\n return n * f(n-1);\n}\n\nint main() {\n cout << f(4);\n return 0;\n}\n\`\`\``,
             options: ["6", "24", "12", "4"],
             answer: 1,
             score: 2,
@@ -161,7 +161,7 @@ export const paperData = {
         {
             id: 8,
             type: "single",
-            question: "下列关于递归的说法，正确的是（ ）。",
+            question: `下列关于递归的说法，正确的是（ ）。`,
             options: ["递归函数不能有返回值", "递归过程必须有终止条件以防止死递归", "递归函数只能在 main 函数中调用", "任何问题都可以用递归非常高效地解决"],
             answer: 1,
             score: 2,
@@ -171,7 +171,7 @@ export const paperData = {
         {
             id: 9,
             type: "single",
-            question: "已知一个序列为 {8, 3, 5, 2, 9}，使用插入排序（从小到大）进行第一轮排序后的结果是（ ）。",
+            question: `已知一个序列为 {8, 3, 5, 2, 9}，使用插入排序（从小到大）进行第一轮排序后的结果是（ ）。`,
             options: ["{3, 5, 8, 2, 9}", "{3, 8, 5, 2, 9}", "{2, 3, 5, 8, 9}", "{3, 2, 5, 8, 9}"],
             answer: 1,
             score: 2,
@@ -181,7 +181,7 @@ export const paperData = {
         {
             id: 10,
             type: "single",
-            question: "在 5 个元素（从小到大已排好序）中进行折半查找，目标元素位于最后一位，查找过程中需要比较的次数是（ ）。",
+            question: `在 5 个元素（从小到大已排好序）中进行折半查找，目标元素位于最后一位，查找过程中需要比较的次数是（ ）。`,
             options: ["1", "3", "4", "5"],
             answer: 1,
             score: 2,
@@ -191,7 +191,7 @@ export const paperData = {
         {
             id: 11,
             type: "single",
-            question: "下列关于分治算法的说法，错误的是（ ）。",
+            question: `下列关于分治算法的说法，错误的是（ ）。`,
             options: ["分治算法通常配合递归实现", "归并排序是典型的分治算法", "分治算法总是比其他算法更高效", "快速排序采用了分治策略"],
             answer: 1,
             score: 2,
@@ -201,7 +201,7 @@ export const paperData = {
         {
             id: 12,
             type: "single",
-            question: "执行下面代码后，输出为（ ）。\n```cpp\nint main() {\n    int a[] = {5, 2, 8, 1, 9};\n    sort(a, a+5);\n    cout << a[2];\n    return 0;\n}\n```",
+            question: `执行下面代码后，输出为（ ）。\n\`\`\`cpp\nint main() {\n int a[] = {5, 2, 8, 1, 9};\n sort(a, a+5);\n cout << a[2];\n return 0;\n}\n\`\`\``,
             options: ["2", "5", "8", "1"],
             answer: 2,
             score: 2,
@@ -211,18 +211,18 @@ export const paperData = {
         {
             id: 13,
             type: "single",
-            question: "下列哪个算法的时间复杂度是 $O(n \log n)$？",
+            question: `下列哪个算法的时间复杂度是 $O(n log n)$？`,
             options: ["计数排序", "快速排序（平均情况）", "冒泡排序", "顺序查找"],
             answer: 1,
             score: 2,
-            explanation: "快速排序平均时间复杂度为 $O(n \log n)$。",
+            explanation: "快速排序平均时间复杂度为 $O(n log n)$。",
             tags: ["客观题", "单选题", "GESP4级"]
         },
         {
             id: 14,
             type: "single",
-            question: "一个长度为 N 的序列，使用选择排序进行排序，比较次数的数量级是（ ）。",
-            options: ["$O(N)$", "$O(N^2)$", "$O(\log n)$", "$O(n \log n)$"],
+            question: `一个长度为 N 的序列，使用选择排序进行排序，比较次数的数量级是（ ）。`,
+            options: ["$O(N)$", "$O(N^2)$", "$O(log n)$", "$O(n log n)$"],
             answer: 1,
             score: 2,
             explanation: "选择排序无论何种情况，比较次数均为 N($N-1$)/2，即 $O(N^2)$ 量级。",
@@ -231,7 +231,7 @@ export const paperData = {
         {
             id: 15,
             type: "single",
-            question: "执行下面代码后，输出为（ ）。\n```cpp\nint main() {\n    vector<int> v = {1, 2, 3};\n    v.push_back(4);\n    cout << v.size() << \" \" << v.back();\n    return 0;\n}\n```",
+            question: `执行下面代码后，输出为（ ）。\n\`\`\`cpp\nint main() {\n vector<int> v = {1, 2, 3};\n v.push_back(4);\n cout << v.size() << " " << v.back();\n return 0;\n}\n\`\`\``,
             options: ["4 4", "3 3", "3 4", "4 3"],
             answer: 0,
             score: 2,
@@ -241,7 +241,7 @@ export const paperData = {
         {
             id: 16,
             type: "judge",
-            question: "下面代码执行结束后，变量 a 的值变成 15。\n```cpp\nvoid add10(int &x) { x += 10; }\nint main() {\n    int a = 5;\n    add10(a);\n}\n```",
+            question: `下面代码执行结束后，变量 a 的值变成 15。\n\`\`\`cpp\nvoid add10(int &x) { x += 10; }\nint main() {\n int a = 5;\n add10(a);\n}\n\`\`\``,
             options: ["正确", "错误"],
             answer: 0,
             score: 2,
@@ -251,7 +251,7 @@ export const paperData = {
         {
             id: 17,
             type: "judge",
-            question: "引用一旦绑定某个变量，就不能再绑定其他变量。",
+            question: `引用一旦绑定某个变量，就不能再绑定其他变量。`,
             options: ["正确", "错误"],
             answer: 0,
             score: 2,
@@ -261,7 +261,7 @@ export const paperData = {
         {
             id: 18,
             type: "judge",
-            question: "执行下面代码，输出结果为 5。\n```cpp\nint main() {\n    int a[2][3];\n    cout << &a[1][2]-&a[0][1] << endl;\n    return 0;\n}\n```",
+            question: `执行下面代码，输出结果为 5。\n\`\`\`cpp\nint main() {\n int a[2][3];\n cout << &a[1][2]-&a[0][1] << endl;\n return 0;\n}\n\`\`\``,
             options: ["正确", "错误"],
             answer: 1,
             score: 2,
@@ -271,7 +271,7 @@ export const paperData = {
         {
             id: 19,
             type: "judge",
-            question: "下面程序可以正常编译并输出 10。\n```cpp\nint calc(int x, int y = 10);\nint calc(int x) { return x * 2; }\nint calc(int x, int y) { return x * y; }\n\nint main() {\n    cout << calc(5);\n    return 0;\n}\n```",
+            question: `下面程序可以正常编译并输出 10。\n\`\`\`cpp\nint calc(int x, int y = 10);\nint calc(int x) { return x * 2; }\nint calc(int x, int y) { return x * y; }\n\nint main() {\n cout << calc(5);\n return 0;\n}\n\`\`\``,
             options: ["正确", "错误"],
             answer: 1,
             score: 2,
@@ -281,7 +281,7 @@ export const paperData = {
         {
             id: 20,
             type: "judge",
-            question: "下面程序执行后输出 2010。\n```cpp\nint x = 10;\nvoid f() { int x = 20; cout << x; }\nint main() {\n    f();\n    cout << x;\n    return 0;\n}\n```",
+            question: `下面程序执行后输出 2010。\n\`\`\`cpp\nint x = 10;\nvoid f() { int x = 20; cout << x; }\nint main() {\n f();\n cout << x;\n return 0;\n}\n\`\`\``,
             options: ["正确", "错误"],
             answer: 1,
             score: 2,
@@ -291,7 +291,7 @@ export const paperData = {
         {
             id: 21,
             type: "judge",
-            question: "在 C++ 中，如果声明了一个指针变量但没有显式初始化，该指针会自动初始化为 nullptr。",
+            question: `在 C++ 中，如果声明了一个指针变量但没有显式初始化，该指针会自动初始化为 nullptr。`,
             options: ["正确", "错误"],
             answer: 0,
             score: 2,
@@ -301,7 +301,7 @@ export const paperData = {
         {
             id: 22,
             type: "judge",
-            question: "下面代码没有语法错误。\n```cpp\nstruct GameCharacter {\n    string name;\n    int level;\n    struct Equipment {\n        string weapon;\n        int attack_bonus;\n        int defense_bonus;\n    } equipment;\n    struct Skill {\n        string name;\n        int damage;\n    } skills[8];\n    int skill_count;\n};\n```",
+            question: `下面代码没有语法错误。\n\`\`\`cpp\nstruct GameCharacter {\n string name;\n int level;\n struct Equipment {\n string weapon;\n int attack_bonus;\n int defense_bonus;\n } equipment;\n struct Skill {\n string name;\n int damage;\n } skills[8];\n int skill_count;\n};\n\`\`\``,
             options: ["正确", "错误"],
             answer: 0,
             score: 2,
@@ -311,7 +311,7 @@ export const paperData = {
         {
             id: 23,
             type: "judge",
-            question: "下面程序能够把 Hello 写入 data.txt 文件中。\n```cpp\nofstream fout(\"data.txt\");\ncout << \"Hello\";\nfout.close();\n```",
+            question: `下面程序能够把 Hello 写入 data.txt 文件中。\n\`\`\`cpp\nofstream fout("data.txt");\ncout << "Hello";\nfout.close();\n\`\`\``,
             options: ["正确", "错误"],
             answer: 1,
             score: 2,
@@ -321,7 +321,7 @@ export const paperData = {
         {
             id: 24,
             type: "judge",
-            question: "由于选择排序和插入排序的时间复杂度均为 $O(N^2)$，在任何实际场景下两者的性能表现几乎相同，可以互相替代。",
+            question: `由于选择排序和插入排序的时间复杂度均为 $O(N^2)$，在任何实际场景下两者的性能表现几乎相同，可以互相替代。`,
             options: ["正确", "错误"],
             answer: 1,
             score: 2,
@@ -331,7 +331,7 @@ export const paperData = {
         {
             id: 25,
             type: "judge",
-            question: "下面用递归方式计算斐波那契数列第 n 项的程序，时间复杂度是 $O($2^n$)$。\n```cpp\nint fib(int n) {\n    if (n <= 1) return n;\n    int f0 = 0, f1 = 1, cur = 0;\n    for (int i = 2; i <= n; i++) {\n        cur = f0+f1;\n        f0 = f1;\n        f1 = cur;\n    }\n    return cur;\n}\n```",
+            question: `下面用递归方式计算斐波那契数列第 n 项的程序，时间复杂度是 $O($2^n$)$。\n\`\`\`cpp\nint fib(int n) {\n if (n <= 1) return n;\n int f0 = 0, f1 = 1, cur = 0;\n for (int i = 2; i <= n; i++) {\n cur = f0+f1;\n f0 = f1;\n f1 = cur;\n }\n return cur;\n}\n\`\`\``,
             options: ["正确", "错误"],
             answer: 1,
             score: 2,

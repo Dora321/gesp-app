@@ -12,7 +12,7 @@ export const paperData = {
         {
             id: 1,
             type: "single",
-            question: "关于下述代码，说法错误的是（ ）。\n```cpp\nint multiply(int x, int y);\nint main() {\n    int a = 4;\n    int b = 5;\n    int result = multiply(a, b);\n    std::cout << \"The result is: \" << result << std::endl;\n    return 0;\n}\nint multiply(int x, int y) {\n    return x * y;\n}\n```",
+            question: `关于下述代码，说法错误的是（ ）。\n\`\`\`cpp\nint multiply(int x, int y);\nint main() {\n int a = 4;\n int b = 5;\n int result = multiply(a, b);\n std::cout << "The result is: " << result << std::endl;\n return 0;\n}\nint multiply(int x, int y) {\n return x * y;\n}\n\`\`\``,
             options: [
                 "函数multiply的定义应该放到函数main之前。",
                 "函数声明int multiply(int x, int y);中明确指定了函数multiply()的返回值为整数类型。",
@@ -27,7 +27,7 @@ export const paperData = {
         {
             id: 2,
             type: "single",
-            question: "执⾏下述代码将输出（ ）。\n```cpp\nint x = 10;\nvoid func() {\n    int x = 20;\n    std::cout << x;\n}\nint main() {\n    func();\n    std::cout << x;\n    return 0;\n}\n```",
+            question: `执⾏下述代码将输出（ ）。\n\`\`\`cpp\nint x = 10;\nvoid func() {\n int x = 20;\n std::cout << x;\n}\nint main() {\n func();\n std::cout << x;\n return 0;\n}\n\`\`\``,
             options: [
                 "2020",
                 "2010",
@@ -42,7 +42,7 @@ export const paperData = {
         {
             id: 3,
             type: "single",
-            question: "执⾏下述代码后，变量a的值为（ ）。\n```cpp\nint a = 10;\nint* p = &a;\n*p = 20;\n```",
+            question: `执⾏下述代码后，变量a的值为（ ）。\n\`\`\`cpp\nint a = 10;\nint* p = &a;\n*p = 20;\n\`\`\``,
             options: [
                 "10",
                 "20",
@@ -57,7 +57,7 @@ export const paperData = {
         {
             id: 4,
             type: "single",
-            question: "以下哪种参数传递方式可以避免拷贝大型对象？",
+            question: `以下哪种参数传递方式可以避免拷贝大型对象？`,
             options: [
                 "只能用值传递",
                 "只能用引用传递",
@@ -72,7 +72,7 @@ export const paperData = {
         {
             id: 5,
             type: "single",
-            question: "执⾏下述代码，将输出（ ）。\n```cpp\nvoid swap(int a, int &b) {\n    int temp = a;\n    a = b;\n    b = temp;\n}\nint main() {\n    int x = 1, y = 2;\n    swap(x, y);\n    std::cout << x << y;\n    return 0;\n}\n```",
+            question: `执⾏下述代码，将输出（ ）。\n\`\`\`cpp\nvoid swap(int a, int &b) {\n int temp = a;\n a = b;\n b = temp;\n}\nint main() {\n int x = 1, y = 2;\n swap(x, y);\n std::cout << x << y;\n return 0;\n}\n\`\`\``,
             options: [
                 "12",
                 "21",
@@ -87,7 +87,7 @@ export const paperData = {
         {
             id: 6,
             type: "single",
-            question: "下面的描述中，（ ）正确定义一个名为Person的结构体并正确初始化了一个Person结构体的变量p。",
+            question: `下面的描述中，（ ）正确定义一个名为Person的结构体并正确初始化了一个Person结构体的变量p。`,
             options: [
                 "struct Person { string name; int age; }; Person p(\"Yang\", 10);",
                 "struct Person { string name, int age; }; Person p; p.name = \"Yang\"; p.age = 10;",
@@ -102,7 +102,7 @@ export const paperData = {
         {
             id: 7,
             type: "single",
-            question: "给定如下代码， 下面描述错误的是（ ）。\n```cpp\nstruct Person {\n    std::string name;\n    int age;\n    struct Address {\n        std::string street;\n        std::string city;\n    };\n    Address address;\n};\n```",
+            question: `给定如下代码， 下面描述错误的是（ ）。\n\`\`\`cpp\nstruct Person {\n std::string name;\n int age;\n struct Address {\n std::string street;\n std::string city;\n };\n Address address;\n};\n\`\`\``,
             options: [
                 "结构Person内嵌套结构Address",
                 "Person 有一个Address 类型的 address 成员",
@@ -117,7 +117,7 @@ export const paperData = {
         {
             id: 8,
             type: "single",
-            question: "假设int arr[2][3] = {{1,2,3},{4,5,6}};，则arr[1][2]的值是（ ）。",
+            question: `假设int arr[2][3] = {{1,2,3},{4,5,6}};，则arr[1][2]的值是（ ）。`,
             options: [
                 "2",
                 "3",
@@ -132,7 +132,7 @@ export const paperData = {
         {
             id: 9,
             type: "single",
-            question: "下面（ ）正确定义了二维数组。",
+            question: `下面（ ）正确定义了二维数组。`,
             options: [
                 "int arr[3,4];",
                 "int arr[3][4];",
@@ -147,7 +147,7 @@ export const paperData = {
         {
             id: 10,
             type: "single",
-            question: "小杨正在爬楼梯，需要爬 n 阶才能到达楼顶。如果每次可以爬 1 个或 2 个台阶，下面代码采用递推算法来计算一共有多少种不同的方法可以爬到楼顶，则横线上应填写（ ）。\n```cpp\nint f(int n) {\n    if (n == 1 || n == 2) return n;\n    int f1 = 1;\n    int f2 = 2;\n    int res = 0;\n    for (int i = 3; i <= n; i++) {\n        ________________________________ // 在此处填入代码\n    }\n    return res;\n}\n```",
+            question: `小杨正在爬楼梯，需要爬 n 阶才能到达楼顶。如果每次可以爬 1 个或 2 个台阶，下面代码采用递推算法来计算一共有多少种不同的方法可以爬到楼顶，则横线上应填写（ ）。\n\`\`\`cpp\nint f(int n) {\n if (n == 1 || n == 2) return n;\n int f1 = 1;\n int f2 = 2;\n int res = 0;\n for (int i = 3; i <= n; i++) {\n ________________________________ // 在此处填入代码\n }\n return res;\n}\n\`\`\``,
             options: [
                 "res += f1+f2; f1 = f2; f2 = res;",
                 "res = f1+f2; f1 = f2; f2 = res;",
@@ -162,7 +162,7 @@ export const paperData = {
         {
             id: 11,
             type: "single",
-            question: "给定如下算法，其时间复杂度为（ ）。\n```cpp\nbool f(int arr[], int n, int target) {\n    for (int i = 0; i < (1 << n); i++) {\n        int sum = 0;\n        for (int j = 0; j < n; j++) {\n            if (i & (1 << j)) {\n                sum += arr[j];\n            }\n        }\n        if (sum == target) return true;\n    }\n    return false;\n}\n```",
+            question: `给定如下算法，其时间复杂度为（ ）。\n\`\`\`cpp\nbool f(int arr[], int n, int target) {\n for (int i = 0; i < (1 << n); i++) {\n int sum = 0;\n for (int j = 0; j < n; j++) {\n if (i & (1 << j)) {\n sum += arr[j];\n }\n }\n if (sum == target) return true;\n }\n return false;\n}\n\`\`\``,
             options: [
                 "O($2^n$)",
                 "O(n * $2^n$)",
@@ -177,7 +177,7 @@ export const paperData = {
         {
             id: 12,
             type: "single",
-            question: "下面关于排序稳定性的描述，正确的是（ ）。",
+            question: `下面关于排序稳定性的描述，正确的是（ ）。`,
             options: [
                 "稳定性指算法的时间复杂度恒定",
                 "稳定排序保证相同元素的相对顺序不变",
@@ -192,7 +192,7 @@ export const paperData = {
         {
             id: 13,
             type: "single",
-            question: "对数组arr[]={5, 3, 8, 1}进⾏升序排序，执⾏第一轮冒泡排序后数组arr中的内容为（ ）。",
+            question: `对数组arr[]={5, 3, 8, 1}进⾏升序排序，执⾏第一轮冒泡排序后数组arr中的内容为（ ）。`,
             options: [
                 "3, 5, 1, 8",
                 "3, 1, 5, 8",
@@ -207,7 +207,7 @@ export const paperData = {
         {
             id: 14,
             type: "single",
-            question: "运⾏下面的代码，将输出（ ）。\n```cpp\ndouble hmean(double a, double b) {\n    if (a == -b) throw std::runtime_error(\"Runtime error occurred.\");\n    return 2.0*a*b/(a+b);\n}\nint main() {\n    double x = 10;\n    double y = -10;\n    try {\n        int result = hmean(x, y);\n        std::cout << \"hmean: \" << result << std::endl;\n    } catch (const std::runtime_error& e) {\n        std::cout << \"Caught: \" << e.what() << std::endl;\n    } catch (...) {\n        std::cout << \"Caught an unknown exception.\" << std::endl;\n    }\n    return 0;\n}\n```",
+            question: `运⾏下面的代码，将输出（ ）。\n\`\`\`cpp\ndouble hmean(double a, double b) {\n if (a == -b) throw std::runtime_error("Runtime error occurred.");\n return 2.0*a*b/(a+b);\n}\nint main() {\n double x = 10;\n double y = -10;\n try {\n int result = hmean(x, y);\n std::cout << "hmean: " << result << std::endl;\n } catch (const std::runtime_error& e) {\n std::cout << "Caught: " << e.what() << std::endl;\n } catch (...) {\n std::cout << "Caught an unknown exception." << std::endl;\n }\n return 0;\n}\n\`\`\``,
             options: [
                 "Caught: Runtime error occurred.",
                 "Caught an unknown exception.",
@@ -222,7 +222,7 @@ export const paperData = {
         {
             id: 15,
             type: "single",
-            question: "下面哪种方式不能实现将字符串\"Happy Spring!\"输出重定向到文件log.txt（ ）。",
+            question: `下面哪种方式不能实现将字符串"Happy Spring!"输出重定向到文件log.txt（ ）。`,
             options: [
                 "freopen(\"log.txt\", \"w\", stdout); std::cout << \"Happy Spring!\" << std::endl;",
                 "std::ofstream outFile(\"log.txt\"); outFile << \"Happy Spring!\"; outFile.close();",
@@ -237,7 +237,7 @@ export const paperData = {
         {
             id: 16,
             type: "judge",
-            question: "函数是 C++ 中的核⼼概念，用于封装可重用的代码块。",
+            question: `函数是 C++ 中的核⼼概念，用于封装可重用的代码块。`,
             options: ["正确", "错误"],
             answer: 0,
             score: 2,
@@ -247,7 +247,7 @@ export const paperData = {
         {
             id: 17,
             type: "judge",
-            question: "在 C++ 中，函数的返回类型可以省略，默认为int。",
+            question: `在 C++ 中，函数的返回类型可以省略，默认为int。`,
             options: ["正确", "错误"],
             answer: 1,
             score: 2,
@@ -257,7 +257,7 @@ export const paperData = {
         {
             id: 18,
             type: "judge",
-            question: "结构体的成员默认是public访问权限。",
+            question: `结构体的成员默认是public访问权限。`,
             options: ["正确", "错误"],
             answer: 0,
             score: 2,
@@ -267,7 +267,7 @@ export const paperData = {
         {
             id: 19,
             type: "judge",
-            question: "假设整数数组arr[4]= {0, 1, 2, 3};的第一个元素在内存中的地址为0x7ffee4065820, 经过int* p = arr; p += 1;后，指针p的值是 1 。",
+            question: `假设整数数组arr[4]= {0, 1, 2, 3};的第一个元素在内存中的地址为0x7ffee4065820, 经过int* p = arr; p += 1;后，指针p的值是 1 。`,
             options: ["正确", "错误"],
             answer: 1,
             score: 2,
@@ -277,7 +277,7 @@ export const paperData = {
         {
             id: 20,
             type: "judge",
-            question: "二维数组作为函数参数时，必须显式指定所有维度的大小。",
+            question: `二维数组作为函数参数时，必须显式指定所有维度的大小。`,
             options: ["正确", "错误"],
             answer: 1,
             score: 2,
@@ -287,7 +287,7 @@ export const paperData = {
         {
             id: 21,
             type: "judge",
-            question: "递推是一种通过已知的初始值和递推公式，逐步求解目标值的算法。",
+            question: `递推是一种通过已知的初始值和递推公式，逐步求解目标值的算法。`,
             options: ["正确", "错误"],
             answer: 0,
             score: 2,
@@ -297,7 +297,7 @@ export const paperData = {
         {
             id: 22,
             type: "judge",
-            question: "考虑最坏情况下冒泡排序算法的时间复杂度， T(n) 为待排序数字的数目为 n 的复杂度，则其递推关系式为 T(n) = T($n-1$)+($n-1$)，T(1) = 0。",
+            question: `考虑最坏情况下冒泡排序算法的时间复杂度， T(n) 为待排序数字的数目为 n 的复杂度，则其递推关系式为 T(n) = T($n-1$)+($n-1$)，T(1) = 0。`,
             options: ["正确", "错误"],
             answer: 0,
             score: 2,
@@ -307,7 +307,7 @@ export const paperData = {
         {
             id: 23,
             type: "judge",
-            question: "插入排序在最好情况（已有序）下的时间复杂度是 $O(N^2)$。",
+            question: `插入排序在最好情况（已有序）下的时间复杂度是 $O(N^2)$。`,
             options: ["正确", "错误"],
             answer: 1,
             score: 2,
@@ -317,7 +317,7 @@ export const paperData = {
         {
             id: 24,
             type: "judge",
-            question: "对数组arr[]={4, 3, 1, 5, 2}进⾏升序排序，执⾏第一轮选择排序后数组 arr 中的内容是{1, 4, 3, 5, 2}。",
+            question: `对数组arr[]={4, 3, 1, 5, 2}进⾏升序排序，执⾏第一轮选择排序后数组 arr 中的内容是{1, 4, 3, 5, 2}。`,
             options: ["正确", "错误"],
             answer: 1,
             score: 2,
@@ -327,7 +327,7 @@ export const paperData = {
         {
             id: 25,
             type: "judge",
-            question: "未捕获异常会调用 std::terminate 终⽌程序。",
+            question: `未捕获异常会调用 std::terminate 终⽌程序。`,
             options: ["正确", "错误"],
             answer: 0,
             score: 2,
@@ -348,7 +348,7 @@ export const paperData = {
 
 ## 题目描述
 
-小杨有一大片荒地，可以表示为一个 \$n\$ 行 \$m\$ 列的网格图。
+小杨有一大片荒地，可以表示为一个 $n$ 行 $m$ 列的网格图。
 
 小杨想要开垦这块荒地，但荒地中一些位置存在杂物，对于一块不存在杂物的荒地，该荒地可以开垦当且仅当其上下左右四个方向相邻的格子均不存在杂物。
 
@@ -356,9 +356,9 @@ export const paperData = {
 
 ## 输入格式
 
-第一行包含两个正整数 \$n, m\$，含义如题面所示。
+第一行包含两个正整数 $n, m$，含义如题面所示。
 
-之后 \$n\$ 行，每行包含一个长度为 \$m\$ 且仅包含字符 \`.\` 和 \`#\` 的字符串。如果为 \`.\`，代表该位置为荒地；如果为 \`#\`，代表该位置为杂物。
+之后 $n$ 行，每行包含一个长度为 $m$ 且仅包含字符 \`.\` 和 \`#\` 的字符串。如果为 \`.\`，代表该位置为荒地；如果为 \`#\`，代表该位置为杂物。
 
 ## 输出格式
 
@@ -384,21 +384,21 @@ export const paperData = {
 
 ## 题目描述
 
-小 A 有一个 \$n\$ 行 \$m\$ 列的矩阵 \$A\$。
+小 A 有一个 $n$ 行 $m$ 列的矩阵 $A$。
 
-小 A 认为一个 \$2 \\times 2\$ 的矩阵 \$D\$ 是好的，当且仅当 \$D_{1,1} \\times D_{2,2} = D_{1,2} \\times D_{2,1}\$。其中 \$D_{i,j}\$ 表示矩阵 \$D\$ 的第 \$i\$ 行第 \$j\$ 列的元素。
+小 A 认为一个 $2 \\times 2$ 的矩阵 $D$ 是好的，当且仅当 $D_{1,1} \\times D_{2,2} = D_{1,2} \\times D_{2,1}$。其中 $D_{i,j}$ 表示矩阵 $D$ 的第 $i$ 行第 $j$ 列的元素。
 
-小 A 想知道 \$A\$ 中有多少个好的子矩阵。
+小 A 想知道 $A$ 中有多少个好的子矩阵。
 
 ## 输入格式
 
-第一行，两个正整数 \$n, m\$。
+第一行，两个正整数 $n, m$。
 
-接下来 \$n\$ 行，每行 \$m\$ 个整数 \$A_{i,1}, A_{i,2}, \\ldots, A_{i,m}\$。
+接下来 $n$ 行，每行 $m$ 个整数 $A_{i,1}, A_{i,2}, \\ldots, A_{i,m}$。
 
 ## 输出格式
 
-一行，一个整数，表示 \$A\$ 中好的子矩阵的数量。
+一行，一个整数，表示 $A$ 中好的子矩阵的数量。
 `,
       score: 25,
       explanation: "1. 预处理：判断每个点是否受邻居障碍物影响。2. 计算初始可开垦数量。3. 枚举每个障碍物，计算移除它后新增的可开垦格子（其自身及受其单方面影响的邻居）。4. 取最大值。",

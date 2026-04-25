@@ -21,7 +21,7 @@ export const paperData = {
     {
       id: 1,
       type: 'single',
-      question: '2025年春节有两件轰动全球的事件，一个是DeepSeek横空出世，另一个是贺岁片《哪吒2》票房惊人，入了全球票房榜。下面关于DeepSeek与《哪吒2》的描述成立的是( )。',
+      question: `2025年春节有两件轰动全球的事件，一个是DeepSeek横空出世，另一个是贺岁片《哪吒2》票房惊人，入了全球票房榜。下面关于DeepSeek与《哪吒2》的描述成立的是( )。`,
       options: [
         '《哪吒2》是一款新型操作系统',
         'DeepSeek是深海钻探软件',
@@ -36,7 +36,7 @@ export const paperData = {
     {
       id: 2,
       type: 'single',
-      question: '在某集成开发环境中编辑一个源代码文件时不可以执行下面（ ）操作。',
+      question: `在某集成开发环境中编辑一个源代码文件时不可以执行下面（ ）操作。`,
       options: [
         '修改变量定义',
         '保存代码修改',
@@ -51,7 +51,7 @@ export const paperData = {
     {
       id: 3,
       type: 'single',
-      question: '在C++中，下列可以做变量的是( )。',
+      question: `在C++中，下列可以做变量的是( )。`,
       options: [
         'Var-1',
         '$1',
@@ -66,7 +66,7 @@ export const paperData = {
     {
       id: 4,
       type: 'single',
-      question: '以下哪个是C++语言的关键字？（ ）',
+      question: `以下哪个是C++语言的关键字？（ ）`,
       options: [
         'abs',
         'cin',
@@ -81,7 +81,7 @@ export const paperData = {
     {
       id: 5,
       type: 'single',
-      question: '下面的框架在L1和L2标记的两行处分别填写选项中的代码，哪组不能通过编译（ ）。\n```cpp\nint main () {\n    int i = 0;\n    ______________ // L1\n    break;\n    ______________ // L2\n    return 0;\n}\n```',
+      question: `下面的框架在L1和L2标记的两行处分别填写选项中的代码，哪组不能通过编译（ ）。\n\`\`\`cpp\nint main () {\n int i = 0;\n ______________ // L1\n break;\n ______________ // L2\n return 0;\n}\n\`\`\``,
       options: [
         'do { (L1) 和 } while (i != 0); (L2)',
         'for (; i < 10; i++) { (L1) 和 } (L2)',
@@ -96,7 +96,7 @@ export const paperData = {
     {
       id: 6,
       type: 'single',
-      question: '下面C++语句（ ）执行后的输出是 `__ 0322`（注：前面有空格）。',
+      question: `下面C++语句（ ）执行后的输出是 \`__ 0322\`（注：前面有空格）。`,
       options: [
         'printf("__ %2d%02d", 3, 22)',
         'printf("__ %02d%2d", 3, 22)',
@@ -111,7 +111,7 @@ export const paperData = {
     {
       id: 7,
       type: 'single',
-      question: '有关下列C++代码的说法，错误的是( )。\n```cpp\nprintf("我爱码代码！");\n```',
+      question: `有关下列C++代码的说法，错误的是( )。\n\`\`\`cpp\nprintf("我爱码代码！");\n\`\`\``,
       options: [
         '配对双引号内的汉字改为英文 Hello，C++代码能正确执行',
         '配对双引号内的汉字改为 Hello代码！，C++代码能正确执行',
@@ -126,7 +126,7 @@ export const paperData = {
     {
       id: 8,
       type: 'single',
-      question: 'C++表达式 `16 / 4 % 2` 的值是( )。',
+      question: `C++表达式 \`16 / 4 % 2\` 的值是( )。`,
       options: [
         '8',
         '4',
@@ -141,7 +141,7 @@ export const paperData = {
     {
       id: 9,
       type: 'single',
-      question: 'N是C++的正整数，值为12，则 `cout << (N % 3 + N / 5)` 的输出是( )。',
+      question: `N是C++的正整数，值为12，则 \`cout << (N % 3 + N / 5)\` 的输出是( )。`,
       options: [
         '6.4',
         '2.4',
@@ -156,7 +156,7 @@ export const paperData = {
     {
       id: 10,
       type: 'single',
-      question: '下面C++代码执行后的输出是( )。\n```cpp\nint N = 10;\nprintf("{N}*{N}={%d*%d}", N, N, N * N);\n```',
+      question: `下面C++代码执行后的输出是( )。\n\`\`\`cpp\nint N = 10;\nprintf("{N}*{N}={%d*%d}", N, N, N * N);\n\`\`\``,
       options: [
         '10*10={10*10}',
         '100=10',
@@ -171,7 +171,7 @@ export const paperData = {
     {
       id: 11,
       type: 'single',
-      question: '执行下面的C++代码，在键盘上先后输入100和200，输出是（ ）。\n```cpp\nint first, second;\ncin >> first >> second;\ncout << (first / second * second) << endl;\n```',
+      question: `执行下面的C++代码，在键盘上先后输入100和200，输出是（ ）。\n\`\`\`cpp\nint first, second;\ncin >> first >> second;\ncout << (first / second * second) << endl;\n\`\`\``,
       options: [
         '200',
         '100',
@@ -186,7 +186,7 @@ export const paperData = {
     {
       id: 12,
       type: 'single',
-      question: '下面C++代码执行后，将输出能被2整除且除以7余数为2的数。下列选项不能实现的是（ ）。\n```cpp\nfor (int i = 0; i < 100; i++)\n    if (_______________________)\n        cout << i << " ";\n```',
+      question: `下面C++代码执行后，将输出能被2整除且除以7余数为2的数。下列选项不能实现的是（ ）。\n\`\`\`cpp\nfor (int i = 0; i < 100; i++)\n if (_______________________)\n cout << i << " ";\n\`\`\``,
       options: [
         '((i % 2 == 0) && (i % 7 == 2))',
         '((!(i % 2)) && (i % 7 == 2))',
@@ -201,7 +201,7 @@ export const paperData = {
     {
       id: 13,
       type: 'single',
-      question: '下面C++代码执行后输出是（ ）。\n```cpp\nint tnt = 0;\nfor (int i = -1000; i < 1000; i++)\n    tnt += i;\ncout << tnt << endl;\n```',
+      question: `下面C++代码执行后输出是（ ）。\n\`\`\`cpp\nint tnt = 0;\nfor (int i = -1000; i < 1000; i++)\n tnt += i;\ncout << tnt << endl;\n\`\`\``,
       options: [
         '-1000',
         '0',
@@ -216,7 +216,7 @@ export const paperData = {
     {
       id: 14,
       type: 'single',
-      question: '下面C++代码执行后输出的是（ ）。\n```cpp\nint i;\nfor (i = 1; i < 100; i += 5)\n    continue;\ncout << i << endl;\n```',
+      question: `下面C++代码执行后输出的是（ ）。\n\`\`\`cpp\nint i;\nfor (i = 1; i < 100; i += 5)\n continue;\ncout << i << endl;\n\`\`\``,
       options: [
         '101',
         '100',
@@ -231,7 +231,7 @@ export const paperData = {
     {
       id: 15,
       type: 'single',
-      question: '下面C++代码执行后输出的是（ ）。\n```cpp\nint tnt = 0;\nfor (int i = 5; i < 100; i += 5){\n    if (i % 2 == 0) continue;\n    tnt += 1;\n    if (i % 3 == 0 && i % 7 == 0) break;\n}\ncout << tnt << endl;\n```',
+      question: `下面C++代码执行后输出的是（ ）。\n\`\`\`cpp\nint tnt = 0;\nfor (int i = 5; i < 100; i += 5){\n if (i % 2 == 0) continue;\n tnt += 1;\n if (i % 3 == 0 && i % 7 == 0) break;\n}\ncout << tnt << endl;\n\`\`\``,
       options: [
         '500',
         '450',
@@ -248,7 +248,7 @@ export const paperData = {
     {
       id: 16,
       type: 'judge',
-      question: 'C++、Python都是高级编程语言，它们的每条语句最终都要通过机器指令来完成。',
+      question: `C++、Python都是高级编程语言，它们的每条语句最终都要通过机器指令来完成。`,
       options: ['正确', '错误'],
       answer: 0,
       score: 2,
@@ -258,7 +258,7 @@ export const paperData = {
     {
       id: 17,
       type: 'judge',
-      question: '在C++中表达式 `N * 2 % N` 中如果N的值为正整数，则其值为2。',
+      question: `在C++中表达式 \`N * 2 % N\` 中如果N的值为正整数，则其值为2。`,
       options: ['正确', '错误'],
       answer: 1,
       score: 2,
@@ -268,7 +268,7 @@ export const paperData = {
     {
       id: 18,
       type: 'judge',
-      question: '执行如下C++代码如果在键盘上输入10，执行后将输出20。\n```cpp\nchar N;\ncin >> N;\nprintf("%d\\n", N * 2);\n```',
+      question: `执行如下C++代码如果在键盘上输入10，执行后将输出20。\n\`\`\`cpp\nchar N;\ncin >> N;\nprintf("%d\\n", N * 2);\n\`\`\``,
       options: ['正确', '错误'],
       answer: 1,
       score: 2,
@@ -278,7 +278,7 @@ export const paperData = {
     {
       id: 19,
       type: 'judge',
-      question: '删除下面C++代码中的continue不影响程序的执行效果。\n```cpp\nfor (int i = 0; i < 100; i++) {\n    if (i % 2 == 0) {\n        printf("偶数");\n        continue;\n    } else \n        printf("奇数");\n}\n```',
+      question: `删除下面C++代码中的continue不影响程序的执行效果。\n\`\`\`cpp\nfor (int i = 0; i < 100; i++) {\n if (i % 2 == 0) {\n printf("偶数");\n continue;\n } else \n printf("奇数");\n}\n\`\`\``,
       options: ['正确', '错误'],
       answer: 0,
       score: 2,
@@ -288,7 +288,7 @@ export const paperData = {
     {
       id: 20,
       type: 'judge',
-      question: '下面C++代码执行时将报错，因为 `_` 所在位置应该是变量名，而 `_` 不可以做变量名。\n```cpp\nfor(int _ = 0; _ < 100; _++) cout<< "*" <<endl;\n```',
+      question: `下面C++代码执行时将报错，因为 \`_\` 所在位置应该是变量名，而 \`_\` 不可以做变量名。\n\`\`\`cpp\nfor(int _ = 0; _ < 100; _++) cout<< "*" <<endl;\n\`\`\``,
       options: ['正确', '错误'],
       answer: 1,
       score: 2,
@@ -298,7 +298,7 @@ export const paperData = {
     {
       id: 21,
       type: 'judge',
-      question: '下面C++代码被执行后，将先后输出3和5。\n```cpp\nfor (int i = 3; i < 5; i += 2)\n    printf("%d ", i);\n```',
+      question: `下面C++代码被执行后，将先后输出3和5。\n\`\`\`cpp\nfor (int i = 3; i < 5; i += 2)\n printf("%d ", i);\n\`\`\``,
       options: ['正确', '错误'],
       answer: 1,
       score: 2,
@@ -308,7 +308,7 @@ export const paperData = {
     {
       id: 22,
       type: 'judge',
-      question: '下面的C++代码执行后将先后输出7个true。\n```cpp\nfor (int i = 0; i < 10; i++)\n    cout << (i * 2 < i * i) << " ";\n```',
+      question: `下面的C++代码执行后将先后输出7个true。\n\`\`\`cpp\nfor (int i = 0; i < 10; i++)\n cout << (i * 2 < i * i) << " ";\n\`\`\``,
       options: ['正确', '错误'],
       answer: 1,
       score: 2,
@@ -318,7 +318,7 @@ export const paperData = {
     {
       id: 23,
       type: 'judge',
-      question: '在C++代码中，`user_Name`、`_userName`、`user-Name`、`userName_`都是合法的变量名。',
+      question: `在C++代码中，\`user_Name\`、\`_userName\`、\`user-Name\`、\`userName_\`都是合法的变量名。`,
       options: ['正确', '错误'],
       answer: 1,
       score: 2,
@@ -328,7 +328,7 @@ export const paperData = {
     {
       id: 24,
       type: 'judge',
-      question: 'C++语言中continue语句可以来提前结束循环。',
+      question: `C++语言中continue语句可以来提前结束循环。`,
       options: ['正确', '错误'],
       answer: 1,
       score: 2,
@@ -338,7 +338,7 @@ export const paperData = {
     {
       id: 25,
       type: 'judge',
-      question: 'C++中定义整型变量N，执行语句 `scanf("%d", &N); cout << N / 3 * 5;` 时输入3.6，则输出是5。',
+      question: `C++中定义整型变量N，执行语句 \`scanf("%d", &N); cout << N / 3 * 5;\` 时输入3.6，则输出是5。`,
       options: ['正确', '错误'],
       answer: 0,
       score: 2,

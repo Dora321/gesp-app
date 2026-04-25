@@ -23,7 +23,7 @@ export const paperData = {
     {
       id: 1,
       type: 'single',
-      question: '近日，空中客车公司表示，约6000架空客A320系列飞机需要紧急更换一种易受太阳辐射影响的飞行控制软件。空客表示，在对一起飞行事故分析后的结果显示，强烈的太阳辐射可能会损坏飞行控制系统所需的关键数据，导致判断失误，进而引发飞行异常。那这里的飞行控制系统执行判断的部件最可能是下面的（ ）。',
+      question: `近日，空中客车公司表示，约6000架空客A320系列飞机需要紧急更换一种易受太阳辐射影响的飞行控制软件。空客表示，在对一起飞行事故分析后的结果显示，强烈的太阳辐射可能会损坏飞行控制系统所需的关键数据，导致判断失误，进而引发飞行异常。那这里的飞行控制系统执行判断的部件最可能是下面的（ ）。`,
       options: ['辐射传感器', '处理器', '内存单元', '输出设备'],
       answer: 1,
       score: 2,
@@ -33,7 +33,7 @@ export const paperData = {
     {
       id: 2,
       type: 'single',
-      question: '下面的C++代码在某集成开发环境中编译运行时，提示有“Invalid Character”（“无效字符”）错误。可能的原因是():\n```cpp\nint a, b;\na=3, b = 4; // L1\ncout << a; // L2\ncout << b; // L3\n```',
+      question: `下面的C++代码在某集成开发环境中编译运行时，提示有“Invalid Character”（“无效字符”）错误。可能的原因是():\n\`\`\`cpp\nint a, b;\na=3, b = 4; // L1\ncout << a; // L2\ncout << b; // L3\n\`\`\``,
       options: [
         'L1行代码中的逗号很可能是中文逗号，应该改为英文逗号。',
         'L1行应该分为两行，分别是 a = 3 和 b = 4 。',
@@ -48,7 +48,7 @@ export const paperData = {
     {
       id: 3,
       type: 'single',
-      question: '下面有关C++变量的说法，正确的是( )。',
+      question: `下面有关C++变量的说法，正确的是( )。`,
       options: [
         '不可以用 for 作为变量名，因为 for 是C++的关键字（保留字）。',
         '_tnt 不可以是变量名，因为变量名的第一个字符必须是英文字母。',
@@ -63,7 +63,7 @@ export const paperData = {
     {
       id: 4,
       type: 'single',
-      question: 'X 是C++的整型变量，则 `cout << (X=3, X++, ++X);` 执行后的输出是（ ）。',
+      question: `X 是C++的整型变量，则 \`cout << (X=3, X++, ++X);\` 执行后的输出是（ ）。`,
       options: ['3', '4', '5', '不确定'],
       answer: 2,
       score: 2,
@@ -73,7 +73,7 @@ export const paperData = {
     {
       id: 5,
       type: 'single',
-      question: 'C++表达式 `2+3 * 4 % 5` 的值为（ ）。',
+      question: `C++表达式 \`2+3 * 4 % 5\` 的值为（ ）。`,
       options: ['0', '4', '14', '50'],
       answer: 1,
       score: 2,
@@ -83,7 +83,7 @@ export const paperData = {
     {
       id: 6,
       type: 'single',
-      question: '下面的C++代码执行后，其输出是（ ）。\n```cpp\nint a, b;\na = 3;\nb = a = 4;\nprintf("%d %d", a, b);\n```',
+      question: `下面的C++代码执行后，其输出是（ ）。\n\`\`\`cpp\nint a, b;\na = 3;\nb = a = 4;\nprintf("%d %d", a, b);\n\`\`\``,
       options: ['4 4', '3 3', '3 4', '4 3'],
       answer: 0,
       score: 2,
@@ -93,7 +93,7 @@ export const paperData = {
     {
       id: 7,
       type: 'single',
-      question: '下面的C++代码执行时如果先输入 10 回车后输入 20 并回车，其输出是 ( )。\n```cpp\nint N, M;\nprintf("第一个数:");\nscanf("%d", &N);\nprintf("第二个数:");\nscanf("%d", &M);\nprintf("%%(N+M)=%d", N+M);\n```',
+      question: `下面的C++代码执行时如果先输入 10 回车后输入 20 并回车，其输出是 ( )。\n\`\`\`cpp\nint N, M;\nprintf("第一个数:");\nscanf("%d", &N);\nprintf("第二个数:");\nscanf("%d", &M);\nprintf("%%(N+M)=%d", N+M);\n\`\`\``,
       options: ['30=30', '10+20=30', '%(N+M)=30', '错误提示'],
       answer: 2,
       score: 2,
@@ -103,7 +103,7 @@ export const paperData = {
     {
       id: 8,
       type: 'single',
-      question: '某个整数很长很长，形如：1232123212321...... 其规律是从1开始每逐一升高到3然后逐一降低到1，然后又逐一升高到3，.... 用 N 表示从左向右的该整数位数。编程解决上述问题，横线处应选 ( )。\n```cpp\nint N, M;\ncout << "请输入编号: ";\ncin >> N;\nM = ______________;\nif (M != 0)\n    cout << M;\nelse\n    cout << 2;\n```',
+      question: `某个整数很长很长，形如：1232123212321...... 其规律是从1开始每逐一升高到3然后逐一降低到1，然后又逐一升高到3，.... 用 N 表示从左向右的该整数位数。编程解决上述问题，横线处应选 ( )。\n\`\`\`cpp\nint N, M;\ncout << "请输入编号: ";\ncin >> N;\nM = ______________;\nif (M != 0)\n cout << M;\nelse\n cout << 2;\n\`\`\``,
       options: ['N % 4', 'N / 4', 'N % 3', 'N / 3'],
       answer: 0,
       score: 2,
@@ -113,7 +113,7 @@ export const paperData = {
     {
       id: 9,
       type: 'single',
-      question: '下面C++代码执行后其输出是 ( )。\n```cpp\nint i, tnt = 0;\nfor (i = 0; i < 100; i++)\n    tnt += 1;\ncout << tnt << \' \' << i;\n```',
+      question: `下面C++代码执行后其输出是 ( )。\n\`\`\`cpp\nint i, tnt = 0;\nfor (i = 0; i < 100; i++)\n tnt += 1;\ncout << tnt << ' ' << i;\n\`\`\``,
       options: ['99 99', '100 99', '99 100', '100 100'],
       answer: 3,
       score: 2,
@@ -123,7 +123,7 @@ export const paperData = {
     {
       id: 10,
       type: 'single',
-      question: '有关下面C++代码的发展，错误的是 ( )\n```cpp\nint tnt = 0;\nfor (int i = 1; i < 10; i += 2) // L1\n    tnt += i; // L2\ncout << tnt;\n```',
+      question: `有关下面C++代码的发展，错误的是 ( )\n\`\`\`cpp\nint tnt = 0;\nfor (int i = 1; i < 10; i += 2) // L1\n tnt += i; // L2\ncout << tnt;\n\`\`\``,
       options: [
         'L1 的 i < 10 改为 i < 11 结果相同。',
         'L1 的 i = 1 改为 i = 0 结果相同。',
@@ -138,7 +138,7 @@ export const paperData = {
     {
       id: 11,
       type: 'single',
-      question: '下面C++代码执行后输出是 ( )。\n```cpp\nint i;\nfor (i = 10; i < 100; i += 10) {\n    if (i % 10 == 0)\n        continue;\n    printf("%d#", i);\n}\nif (i >= 100)\n    printf("%d END", i);\n```',
+      question: `下面C++代码执行后输出是 ( )。\n\`\`\`cpp\nint i;\nfor (i = 10; i < 100; i += 10) {\n if (i % 10 == 0)\n continue;\n printf("%d#", i);\n}\nif (i >= 100)\n printf("%d END", i);\n\`\`\``,
       options: ['10#20#30#40#50#60#70#80#90#100 END', '100#100 END', '100 END', '110 END'],
       answer: 2,
       score: 2,
@@ -148,7 +148,7 @@ export const paperData = {
     {
       id: 12,
       type: 'single',
-      question: '两个正整数，只要不相等，就一直进行如下操作：最大数减去最小数得到一个值，该值和两个数中的最小数构成两个新的正整数，重复操作，直到两个数相等。此时输出。编程解决上述问题，横线处应选 ( )。\n```cpp\nwhile (N != M) {\n    if (N > M)\n        ________________\n    else\n        ________________\n}\ncout << N;\n```',
+      question: `两个正整数，只要不相等，就一直进行如下操作：最大数减去最小数得到一个值，该值和两个数中的最小数构成两个新的正整数，重复操作，直到两个数相等。此时输出。编程解决上述问题，横线处应选 ( )。\n\`\`\`cpp\nwhile (N != M) {\n if (N > M)\n ________________\n else\n ________________\n}\ncout << N;\n\`\`\``,
       options: ['N = N-M; M = M-N;', 'N -= M; M -= N;', 'N = M; M = N;', 'M = N; N = M;'],
       answer: 0,
       score: 2,
@@ -158,7 +158,7 @@ export const paperData = {
     {
       id: 13,
       type: 'single',
-      question: '如果一个正整数能被3整除，或者其某一位能被3整除，则称之为"漂亮数"。下面的C++代码用于判断正整数 N 是否为漂亮数。L1行的横线处应该填入的代码是（ ）。\n```cpp\nint N, Flag;\ncin >> N;\nFlag = 0; \nif (N % 3 == 0)\n    Flag = 1; \nelse\n    while (N != 0) {\n        if (____________){ // L1\n           Flag = 1;\n           break;\n        }\n        N /= 10;\n    }\ncout << (Flag? "漂亮数" : "非漂亮数");\n```',
+      question: `如果一个正整数能被3整除，或者其某一位能被3整除，则称之为"漂亮数"。下面的C++代码用于判断正整数 N 是否为漂亮数。L1行的横线处应该填入的代码是（ ）。\n\`\`\`cpp\nint N, Flag;\ncin >> N;\nFlag = 0; \nif (N % 3 == 0)\n Flag = 1; \nelse\n while (N != 0) {\n if (____________){ // L1\n Flag = 1;\n break;\n }\n N /= 10;\n }\ncout << (Flag? "漂亮数" : "非漂亮数");\n\`\`\``,
       options: ['N % 10 == 0', 'N % 3 % 10 == 0', 'N % 10 % 3', 'N % 10 % 3 == 0'],
       answer: 3,
       score: 2,
@@ -168,7 +168,7 @@ export const paperData = {
     {
       id: 14,
       type: 'single',
-      question: '如果正整数N的所有奇因数（即能平整除N的奇数）的和是27的倍数，则称N为27的神秘数。下面的C++代码用于判断输入的N是否为27的神秘数。L2横线处应填入的代码是（ ）。\n```cpp\nint i, N, cnt = 0;\ncin >> N;\nfor (i=1; i <= N; i++) {\n    if (____________) // L2\n        cnt += i;\n}\nif (cnt % 27 == 0) cout << \'Y\';\nelse cout << \'N\';\n```',
+      question: `如果正整数N的所有奇因数（即能平整除N的奇数）的和是27的倍数，则称N为27的神秘数。下面的C++代码用于判断输入的N是否为27的神秘数。L2横线处应填入的代码是（ ）。\n\`\`\`cpp\nint i, N, cnt = 0;\ncin >> N;\nfor (i=1; i <= N; i++) {\n if (____________) // L2\n cnt += i;\n}\nif (cnt % 27 == 0) cout << 'Y';\nelse cout << 'N';\n\`\`\``,
       options: [
         '(N % i == 0) || (i % 2 == 0)',
         '(N % i == 0) || (i % 2 != 0)',
@@ -183,7 +183,7 @@ export const paperData = {
     {
       id: 15,
       type: 'single',
-      question: '执行下面C++代码可以找出千位与个位的和恰好等于中间两位的四位数，横线应填入 ( )。\n```cpp\nint count = 0;\nint a, bc, d, tmp;\nfor (int i = 1000; i <= 9999; i++){\n    a = (tmp = i) / 1000;\n    __________________\n    bc = tmp / 10;\n    d = tmp-bc * 10;\n    if (a+d == bc) {\n        count++;\n    }\n}\ncout << count;\n```',
+      question: `执行下面C++代码可以找出千位与个位的和恰好等于中间两位的四位数，横线应填入 ( )。\n\`\`\`cpp\nint count = 0;\nint a, bc, d, tmp;\nfor (int i = 1000; i <= 9999; i++){\n a = (tmp = i) / 1000;\n __________________\n bc = tmp / 10;\n d = tmp-bc * 10;\n if (a+d == bc) {\n count++;\n }\n}\ncout << count;\n\`\`\``,
       options: ['tmp = i / 1000;', 'tmp = i % 1000;', 'tmp -= a * 1000;', 'tmp %= 100;'],
       answer: 2,
       score: 2,
@@ -193,7 +193,7 @@ export const paperData = {
     {
       id: 16,
       type: 'judge',
-      question: '鸿蒙是华为公司开发的一款操作系统，那么它能够将正确的源程序翻译成目标程序，并运行。',
+      question: `鸿蒙是华为公司开发的一款操作系统，那么它能够将正确的源程序翻译成目标程序，并运行。`,
       options: ['正确', '错误'],
       answer: 1,
       score: 2,
@@ -203,7 +203,7 @@ export const paperData = {
     {
       id: 17,
       type: 'judge',
-      question: 'C++表达式 `10 * 4 % 6` 和 `10 * 2 % 3` 的结果相同。',
+      question: `C++表达式 \`10 * 4 % 6\` 和 \`10 * 2 % 3\` 的结果相同。`,
       options: ['正确', '错误'],
       answer: 1,
       score: 2,
@@ -213,7 +213,7 @@ export const paperData = {
     {
       id: 18,
       type: 'judge',
-      question: '下面C++代码执行后输出 0。\n```cpp\nint i;\nfor (i = 0; i < 10; i++)\n    if (i % 3 == 0)\n        continue;\ncout << i;\n```',
+      question: `下面C++代码执行后输出 0。\n\`\`\`cpp\nint i;\nfor (i = 0; i < 10; i++)\n if (i % 3 == 0)\n continue;\ncout << i;\n\`\`\``,
       options: ['正确', '错误'],
       answer: 1,
       score: 2,
@@ -223,7 +223,7 @@ export const paperData = {
     {
       id: 19,
       type: 'judge',
-      question: '下面C++代码中的 `i > -10; i--` 改为 `i < 10; i++` 执行结果相同。\n```cpp\nint tnt = 0;\nfor (int i = 0; i > -10; i--){\n    if (i < 0)\n        i = -i;\n    tnt += i;\n}\ncout << tnt;\n```',
+      question: `下面C++代码中的 \`i > -10; i--\` 改为 \`i < 10; i++\` 执行结果相同。\n\`\`\`cpp\nint tnt = 0;\nfor (int i = 0; i > -10; i--){\n if (i < 0)\n i = -i;\n tnt += i;\n}\ncout << tnt;\n\`\`\``,
       options: ['正确', '错误'],
       answer: 1,
       score: 2,
@@ -233,7 +233,7 @@ export const paperData = {
     {
       id: 20,
       type: 'judge',
-      question: '下面C++代码执行后将输出 99，因为 `i < 100` 不包括 100，而是到 99。\n```cpp\nint cnt = 0;\nfor (int i = 0; i < 100; i++)\n    cnt++;\ncout << cnt;\n```',
+      question: `下面C++代码执行后将输出 99，因为 \`i < 100\` 不包括 100，而是到 99。\n\`\`\`cpp\nint cnt = 0;\nfor (int i = 0; i < 100; i++)\n cnt++;\ncout << cnt;\n\`\`\``,
       options: ['正确', '错误'],
       answer: 1,
       score: 2,
@@ -243,7 +243,7 @@ export const paperData = {
     {
       id: 21,
       type: 'judge',
-      question: '下面C++代码执行后，其输出为 `N % 10`。\n```cpp\nint N;\ncin >> N;\nwhile (N > 10)\n    N /= 10;\ncout << N;\n```',
+      question: `下面C++代码执行后，其输出为 \`N % 10\`。\n\`\`\`cpp\nint N;\ncin >> N;\nwhile (N > 10)\n N /= 10;\ncout << N;\n\`\`\``,
       options: ['正确', '错误'],
       answer: 1,
       score: 2,
@@ -253,7 +253,7 @@ export const paperData = {
     {
       id: 22,
       type: 'judge',
-      question: '执行下面C++代码，如果输入 7，将输出 \'Y\' ；如果输入 8，将输出 \'N\'。\n```cpp\nint N;\ncin >> N;\nif (N > 5 || N < 10 && N % 2 != 0)\n    cout << \'Y\';\nelse\n    cout << \'N\';\n```',
+      question: `执行下面C++代码，如果输入 7，将输出 'Y' ；如果输入 8，将输出 'N'。\n\`\`\`cpp\nint N;\ncin >> N;\nif (N > 5 || N < 10 && N % 2 != 0)\n cout << 'Y';\nelse\n cout << 'N';\n\`\`\``,
       options: ['正确', '错误'],
       answer: 1,
       score: 2,
@@ -263,7 +263,7 @@ export const paperData = {
     {
       id: 23,
       type: 'judge',
-      question: '把 C++ 代码中所有 `cout << a;` 改为 `printf("%d", &a);` ，执行结果可能仍然相同。',
+      question: `把 C++ 代码中所有 \`cout << a;\` 改为 \`printf("%d", &a);\` ，执行结果可能仍然相同。`,
       options: ['正确', '错误'],
       answer: 1,
       score: 2,
@@ -273,7 +273,7 @@ export const paperData = {
     {
       id: 24,
       type: 'judge',
-      question: '如果 x 是C++代码中的 `double` 型变量，则对 `cout << ( x? 1227 : 12.27);` 编译时将报错，因为 1227 和 12.27 分别是 `int` 和 `double` 类型，导致识别混乱。',
+      question: `如果 x 是C++代码中的 \`double\` 型变量，则对 \`cout << ( x? 1227 : 12.27);\` 编译时将报错，因为 1227 和 12.27 分别是 \`int\` 和 \`double\` 类型，导致识别混乱。`,
       options: ['正确', '错误'],
       answer: 1,
       score: 2,
@@ -283,7 +283,7 @@ export const paperData = {
     {
       id: 25,
       type: 'judge',
-      question: '在C++代码中，不可以将变量命名为 `keyword` ，因为它是C++语言的关键字。',
+      question: `在C++代码中，不可以将变量命名为 \`keyword\` ，因为它是C++语言的关键字。`,
       options: ['正确', '错误'],
       answer: 1,
       score: 2,
@@ -321,10 +321,10 @@ int main() {
 
 小杨是“爱心社区”的小志愿者，每周他都会帮助邻居们寄送捐赠给山区小学的文具和书籍。快递公司为了支持公益行动，制定了特殊的运费规则，鼓励大家合理包装：
 
-假设快递的体积为 \$V\$，重量为 \$G\$。
+假设快递的体积为 $V$，重量为 $G$。
 
-- 按体积计算：运费按体积计算，公式是 \$0.5 \\times V\$ 元。
-- 按重量计算：为了鼓励减轻包裹重量，规则是：当重量小于 300 克，即 \$G < 300\$ 时，运费为 \$M\$ 元；当重量达到或超过 300 克，即 \$G \\geq 300\$ 时，运费为 \$N\$ 元。
+- 按体积计算：运费按体积计算，公式是 $0.5 \\times V$ 元。
+- 按重量计算：为了鼓励减轻包裹重量，规则是：当重量小于 300 克，即 $G < 300$ 时，运费为 $M$ 元；当重量达到或超过 300 克，即 $G \\geq 300$ 时，运费为 $N$ 元。
 
 快递公司的叔叔说：“我们应该选择最公平合理的计费方式。”
 
@@ -332,7 +332,7 @@ int main() {
 
 ## 输入格式
 
-四行，每行一个一位小数的浮点数，分别代表，快递的体积 \$V\$，快递的重量 \$G\$，第一档重量运费 \$M\$，第二档重量运费 \$N\$。
+四行，每行一个一位小数的浮点数，分别代表，快递的体积 $V$，快递的重量 $G$，第一档重量运费 $M$，第二档重量运费 $N$。
 
 ## 输出格式
 
@@ -378,17 +378,17 @@ int main() {
 
 ## 题目描述
 
-小杨的手机就像一个聪明的小助手，当电量变化时，它会用不同的方式来提醒我们，假设当前的电量百分比为 \$P\$：
+小杨的手机就像一个聪明的小助手，当电量变化时，它会用不同的方式来提醒我们，假设当前的电量百分比为 $P$：
 
-- 当电量非常低（不超过 10，即 \$P \\leq 10\$），它会显示一个大写字母 R，就像在说：“快给我充电吧！（Red 警告色）”
-- 当电量有点低（超过 10 但不超过 20，即 \$10 < P \\leq 20\$），它会显示一个大写字母 L。
-- 当电量比较充足（即 \$P > 20\$）时，它会直接显示具体的数字，也就是当前的电量百分比。
+- 当电量非常低（不超过 10，即 $P \\leq 10$），它会显示一个大写字母 R，就像在说：“快给我充电吧！（Red 警告色）”
+- 当电量有点低（超过 10 但不超过 20，即 $10 < P \\leq 20$），它会显示一个大写字母 L。
+- 当电量比较充足（即 $P > 20$）时，它会直接显示具体的数字，也就是当前的电量百分比。
 
 ## 输入格式
 
-第一行一个正整数 \$T\$，代表数据组数。
+第一行一个正整数 $T$，代表数据组数。
 
-对于每组数据，一行包含一个正整数 \$P\$，代表手机电量百分比。
+对于每组数据，一行包含一个正整数 $P$，代表手机电量百分比。
 
 ## 输出格式
 

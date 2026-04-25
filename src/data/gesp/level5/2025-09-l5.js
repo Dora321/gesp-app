@@ -14,13 +14,13 @@ const programmingQuestions = [
 
 ## 题目描述
 
-给定正整数 \$n\$，现在有 \$1,2,\\ldots,n\$ 共计 \$n\$ 个整数。你需要从这 \$n\$ 个整数中选取一些整数，使得所选取的整数中任意两个不同的整数均互质（也就是说，这两个整数的最大公因数为 \$1\$）。请你最大化所选取整数的数量。
+给定正整数 $n$，现在有 $1,2,\\ldots,n$ 共计 $n$ 个整数。你需要从这 $n$ 个整数中选取一些整数，使得所选取的整数中任意两个不同的整数均互质（也就是说，这两个整数的最大公因数为 $1$）。请你最大化所选取整数的数量。
 
-例如，当 \$n=9\$ 时，可以选择 \$1,5,7,8,9\$ 共计 \$5\$ 个整数。可以验证不存在数量更多的选取整数的方案。
+例如，当 $n=9$ 时，可以选择 $1,5,7,8,9$ 共计 $5$ 个整数。可以验证不存在数量更多的选取整数的方案。
 
 ## 输入格式
 
-一行，一个正整数 \$n\$，表示给定的正整数。
+一行，一个正整数 $n$，表示给定的正整数。
 
 ## 输出格式
 
@@ -46,19 +46,19 @@ const programmingQuestions = [
 
 ## 题目描述
 
-如果一个正整数的二进制表示包含奇数个 \$1\$，那么小 A 就会认为这个正整数是有趣的。
+如果一个正整数的二进制表示包含奇数个 $1$，那么小 A 就会认为这个正整数是有趣的。
 
-例如，\$7\$ 的二进制表示为 \$(111)_2\$，包含 \$1\$ 的个数为 \$3\$ 个，所以 \$7\$ 是有趣的。但是 \$9=(1001)_2\$ 包含 \$2\$ 个 \$1\$，所以 \$9\$ 不是有趣的。
+例如，$7$ 的二进制表示为 $(111)_2$，包含 $1$ 的个数为 $3$ 个，所以 $7$ 是有趣的。但是 $9=(1001)_2$ 包含 $2$ 个 $1$，所以 $9$ 不是有趣的。
 
-给定正整数 \$l,r\$，请你统计满足 \$l\\le n\\le r\$ 的有趣的整数 \$n\$ 之和。
+给定正整数 $l,r$，请你统计满足 $l\\le n\\le r$ 的有趣的整数 $n$ 之和。
 
 ## 输入格式
 
-一行，两个正整数 \$l,r\$，表示给定的正整数。
+一行，两个正整数 $l,r$，表示给定的正整数。
 
 ## 输出格式
 
-一行，一个正整数，表示 \$l,r\$ 之间有趣的整数之和。
+一行，一个正整数，表示 $l,r$ 之间有趣的整数之和。
 `,
       score: 25,
       explanation: "设 f(n) 表示 [1,n] 中所有二进制中 1 的个数为奇数的数之和。可按最高位递归统计：先处理完整的 [0,2^k-1] 块，再递归处理剩余部分，同时根据最高位翻转奇偶性。最终答案为 f(r)-f(l-1)。",
@@ -81,7 +81,7 @@ export const paperData = {
         {
             id: 1,
             type: "single",
-            question: "以下哪种情况使用链表比数组更合适？",
+            question: `以下哪种情况使用链表比数组更合适？`,
             options: [
                 "数据量固定且读多写少",
                 "需要频繁在中间或开头插入、删除元素",
@@ -100,7 +100,7 @@ export const paperData = {
         {
             id: 2,
             type: "single",
-            question: "函数 removeElements 删除单链表中所有结点值等于 val 的结点，并返回新的头结点。其中链表头结点为 head，则横线处应填写（ ）。",
+            question: `函数 removeElements 删除单链表中所有结点值等于 val 的结点，并返回新的头结点。其中链表头结点为 head，则横线处应填写（ ）。`,
             options: [
                 "Node* del = cur->next; cur->next = del; delete del;",
                 "Node* del = cur->next; cur->next = del->next; delete del;",
@@ -119,7 +119,7 @@ export const paperData = {
         {
             id: 3,
             type: "single",
-            question: "函数 hasCycle 采用 Floyd 快慢指针法判断单链表中是否存在环。slow 每次走 1 步，fast 每次走 2 步，则横线处应填写（ ）。",
+            question: `函数 hasCycle 采用 Floyd 快慢指针法判断单链表中是否存在环。slow 每次走 1 步，fast 每次走 2 步，则横线处应填写（ ）。`,
             options: [
                 "slow = slow->next; fast = fast->next->next;",
                 "slow = fast->next; fast = slow->next->next;",
@@ -138,7 +138,7 @@ export const paperData = {
         {
             id: 4,
             type: "single",
-            question: "函数 isPerfectNumber 判断一个正整数是否为完全数（该数等于其所有真因子之和），为避免重复枚举因子，循环条件横线处应填写（ ）。",
+            question: `函数 isPerfectNumber 判断一个正整数是否为完全数（该数等于其所有真因子之和），为避免重复枚举因子，循环条件横线处应填写（ ）。`,
             options: [
                 "i <= n",
                 "i*i <= n",
@@ -157,7 +157,7 @@ export const paperData = {
         {
             id: 5,
             type: "single",
-            question: "以下代码计算两个正整数的最大公约数(GCD)，横线上应填写（ ）。",
+            question: `以下代码计算两个正整数的最大公约数(GCD)，横线上应填写（ ）。`,
             options: [
                 "b",
                 "a",
@@ -176,7 +176,7 @@ export const paperData = {
         {
             id: 6,
             type: "single",
-            question: "函数 sieve 实现埃拉托斯特尼筛法(埃⽒筛)，横线处应填入（ ）。",
+            question: `函数 sieve 实现埃拉托斯特尼筛法(埃⽒筛)，横线处应填入（ ）。`,
             options: [
                 "i",
                 "i+1",
@@ -195,7 +195,7 @@ export const paperData = {
         {
             id: 7,
             type: "single",
-            question: "函数 linearSieve 实现线性筛法(欧拉筛)，横线处应填入（ ）。",
+            question: `函数 linearSieve 实现线性筛法(欧拉筛)，横线处应填入（ ）。`,
             options: [
                 "i % p == 0",
                 "p % i == 0",
@@ -214,7 +214,7 @@ export const paperData = {
         {
             id: 8,
             type: "single",
-            question: "关于埃氏筛和线性筛的比较，下列说法错误的是（ ）。",
+            question: `关于埃氏筛和线性筛的比较，下列说法错误的是（ ）。`,
             options: [
                 "埃⽒筛可能会对同一个合数进⾏多次标记",
                 "线性筛的理论时间复杂度更优，所以线性筛的速度往往优于埃⽒筛",
@@ -233,7 +233,7 @@ export const paperData = {
         {
             id: 9,
             type: "single",
-            question: "唯一分解定理描述的是( )。",
+            question: `唯一分解定理描述的是( )。`,
             options: [
                 "每个整数都能表⽰为任意素数的乘积",
                 "每个大于 1 的整数能唯一分解为素数幂乘积（忽略顺序）",
@@ -252,7 +252,7 @@ export const paperData = {
         {
             id: 10,
             type: "single",
-            question: "给定一个 n x n 的矩阵 matrix，矩阵的每一行和每一列都按升序排列。函数通过二分答案求第 k 小元素，则两处横线应分别填写（ ）。",
+            question: `给定一个 n x n 的矩阵 matrix，矩阵的每一行和每一列都按升序排列。函数通过二分答案求第 k 小元素，则两处横线应分别填写（ ）。`,
             options: [
                 "hi = mid-1; 和 lo = mid+1",
                 "hi = mid; 和 lo = mid",
@@ -271,10 +271,10 @@ export const paperData = {
         {
             id: 11,
             type: "single",
-            question: "下述 C++ 代码实现了快速排序算法，下面说法错误的是（ ）。",
+            question: `下述 C++ 代码实现了快速排序算法，下面说法错误的是（ ）。`,
             options: [
                 "快速排序平均情况下速度较快、常数较小，且属于原地排序，实践中通常较高效。",
-                "平均情况下递归层数约为 $O(\log n)$，每层总工作量为 $O(N)$，总时间复杂度为 $O(n \log n)$。",
+                "平均情况下递归层数约为 $O(log n)$，每层总工作量为 $O(N)$，总时间复杂度为 $O(n log n)$。",
                 "最坏情况下会不断分成 0 和 $n-1$ 两部分，递归层数达 $O(N)$，每层工作量为 $O(N)$，总时间复杂度为 $O(N^2)$。",
                 "partition 中“先从右往左找”与“先从左往右找”的顺序可以随意交换，算法仍然完全等价。",
             ],
@@ -290,7 +290,7 @@ export const paperData = {
         {
             id: 12,
             type: "single",
-            question: "下述C++代码实现了归并排序算法，则横线上应填写（ ）。",
+            question: `下述C++代码实现了归并排序算法，则横线上应填写（ ）。`,
             options: [
                 "i < mid",
                 "j < right",
@@ -309,7 +309,7 @@ export const paperData = {
         {
             id: 13,
             type: "single",
-            question: "电影院排片问题中，按结束时间从小到大排序并维护 lastEnd，才能贪心选出最多部不重叠电影。则两处横线应分别填写（ ）。",
+            question: `电影院排片问题中，按结束时间从小到大排序并维护 lastEnd，才能贪心选出最多部不重叠电影。则两处横线应分别填写（ ）。`,
             options: [
                 "a[0] < b[0] 和 lastEnd",
                 "a[1] < b[1] 和 lastEnd",
@@ -328,11 +328,11 @@ export const paperData = {
         {
             id: 14,
             type: "single",
-            question: "给定一个整数数组 nums，下面代码找到一个具有最大和的连续子数组并返回该最大和。则下面说法错误的是（ ）。",
+            question: `给定一个整数数组 nums，下面代码找到一个具有最大和的连续子数组并返回该最大和。则下面说法错误的是（ ）。`,
             options: [
                 "上述代码采用分治算法实现",
                 "上述代码采用贪⼼算法",
-                "上述代码的时间复杂度为 $O(n \log n)$",
+                "上述代码的时间复杂度为 $O(n log n)$",
                 "上述代码采用递归方式实现",
             ],
             answer: 1,
@@ -347,7 +347,7 @@ export const paperData = {
         {
             id: 15,
             type: "single",
-            question: "给定一个由非负整数组成的数组 digits，表示一个非负整数的各位数字。下面代码对该整数执行 +1 操作并返回结果数组，则横线处应填写（ ）。",
+            question: `给定一个由非负整数组成的数组 digits，表示一个非负整数的各位数字。下面代码对该整数执行 +1 操作并返回结果数组，则横线处应填写（ ）。`,
             options: [
                 "digits[i] = 0;",
                 "digits[i] = 9;",
@@ -366,7 +366,7 @@ export const paperData = {
         {
             id: 16,
             type: "judge",
-            question: "基于下面定义的函数，通过判断 isDivisibleBy9(n) == isDigitSumDivisibleBy9(n)，可用于验算：如果一个数能被 9 整除，则它的各位数字之和也能被 9 整除。",
+            question: `基于下面定义的函数，通过判断 isDivisibleBy9(n) == isDigitSumDivisibleBy9(n)，可用于验算：如果一个数能被 9 整除，则它的各位数字之和也能被 9 整除。`,
             options: [
                 "正确",
                 "错误",
@@ -383,7 +383,7 @@ export const paperData = {
         {
             id: 17,
             type: "judge",
-            question: "假设函数gcd()能正确求两个正整数的最大公约数，则下面的findMusicalPattern(4 ， 6)函数返回 2 。",
+            question: `假设函数gcd()能正确求两个正整数的最大公约数，则下面的findMusicalPattern(4 ， 6)函数返回 2 。`,
             options: [
                 "正确",
                 "错误",
@@ -400,7 +400,7 @@ export const paperData = {
         {
             id: 18,
             type: "judge",
-            question: "下面递归实现的斐波那契数列的时间复杂度为指数级。",
+            question: `下面递归实现的斐波那契数列的时间复杂度为指数级。`,
             options: [
                 "正确",
                 "错误",
@@ -417,7 +417,7 @@ export const paperData = {
         {
             id: 19,
             type: "judge",
-            question: "链表通过更改指针实现高效的结点插入与删除，但结点访问效率低、占用内存较多，且对缓存利用不友好。",
+            question: `链表通过更改指针实现高效的结点插入与删除，但结点访问效率低、占用内存较多，且对缓存利用不友好。`,
             options: [
                 "正确",
                 "错误",
@@ -434,7 +434,7 @@ export const paperData = {
         {
             id: 20,
             type: "judge",
-            question: "二分查找依赖数据的有序性，通过循环逐步缩减一半搜索区间来进行查找，且仅适用于数组或基于数组实现的数据结构。",
+            question: `二分查找依赖数据的有序性，通过循环逐步缩减一半搜索区间来进行查找，且仅适用于数组或基于数组实现的数据结构。`,
             options: [
                 "正确",
                 "错误",
@@ -451,7 +451,7 @@ export const paperData = {
         {
             id: 21,
             type: "judge",
-            question: "线性筛的关键性质是“每个合数只会被其最小质因子筛到一次”，因此其时间复杂度为 $O(N)$。",
+            question: `线性筛的关键性质是“每个合数只会被其最小质因子筛到一次”，因此其时间复杂度为 $O(N)$。`,
             options: [
                 "正确",
                 "错误",
@@ -468,7 +468,7 @@ export const paperData = {
         {
             id: 22,
             type: "judge",
-            question: "快速排序和归并排序都是稳定的排序算法。",
+            question: `快速排序和归并排序都是稳定的排序算法。`,
             options: [
                 "正确",
                 "错误",
@@ -485,7 +485,7 @@ export const paperData = {
         {
             id: 23,
             type: "judge",
-            question: "下面代码采用分治算法求解标准 3 柱汉诺塔问题，其时间复杂度为 O($2^n$)。",
+            question: `下面代码采用分治算法求解标准 3 柱汉诺塔问题，其时间复杂度为 O($2^n$)。`,
             options: [
                 "正确",
                 "错误",
@@ -502,7 +502,7 @@ export const paperData = {
         {
             id: 24,
             type: "judge",
-            question: "所有递归算法都可以转换为迭代算法。",
+            question: `所有递归算法都可以转换为迭代算法。`,
             options: [
                 "正确",
                 "错误",
@@ -519,7 +519,7 @@ export const paperData = {
         {
             id: 25,
             type: "judge",
-            question: "贪心算法并不总能得到全局最优解。",
+            question: `贪心算法并不总能得到全局最优解。`,
             options: [
                 "正确",
                 "错误",

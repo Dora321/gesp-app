@@ -21,7 +21,7 @@ export const paperData = {
         {
             id: 1,
             type: 'single',
-            question: '下列代码中，输出结果是（ ）。\n```cpp\n#include <iostream>\nusing namespace std;\nint main() {\n    double a = 0.9;\n    double b = 1.0;\n    if ((b-a) == 0.1) cout << "Equal" << endl;\n    else cout << "Not equal" << endl;\n}\n```',
+            question: `下列代码中，输出结果是（ ）。\n\`\`\`cpp\n#include <iostream>\nusing namespace std;\nint main() {\n double a = 0.9;\n double b = 1.0;\n if ((b-a) == 0.1) cout << "Equal" << endl;\n else cout << "Not equal" << endl;\n}\n\`\`\``,
             options: ['Equal', 'Not equal', '程序不能正确执行', '没有输出'],
             answer: 1,
             score: 2,
@@ -30,7 +30,7 @@ export const paperData = {
         {
             id: 2,
             type: 'single',
-            question: '关于计算机中的编码，下列说法中正确的是（ ）。',
+            question: `关于计算机中的编码，下列说法中正确的是（ ）。`,
             options: ['机器数的形式值和真值是一致的', '原码就是符号位加上真值', '机器数是带符号的', '[-1]=[1000 0001]原=[1111 1111]反'],
             answer: 2,
             score: 2,
@@ -39,7 +39,7 @@ export const paperData = {
         {
             id: 3,
             type: 'single',
-            question: '8 进制数 3703 转换成 16 进制数是（ ）。',
+            question: `8 进制数 3703 转换成 16 进制数是（ ）。`,
             options: ['7C3', '7A3', '7B3', '7D3'],
             answer: 0,
             score: 2,
@@ -48,7 +48,7 @@ export const paperData = {
         {
             id: 4,
             type: 'single',
-            question: '0.8125 变成二进制是（ ）。',
+            question: `0.8125 变成二进制是（ ）。`,
             options: ['0.1110', '0.1 1111 1011 1101', '0.1 1111 1011 1100', '0.1101'],
             answer: 3,
             score: 2,
@@ -57,7 +57,7 @@ export const paperData = {
         {
             id: 5,
             type: 'single',
-            question: '下面说法正确的是（ ）。',
+            question: `下面说法正确的是（ ）。`,
             options: ['（22 & 01）==（22 && 01）成立', '(23 | 11) == 30', '(23 | 10) == 31', '(23 | 01) == 31'],
             answer: 2,
             score: 2,
@@ -66,7 +66,7 @@ export const paperData = {
         {
             id: 6,
             type: 'single',
-            question: '下列说法正确的是（ ）。',
+            question: `下列说法正确的是（ ）。`,
             options: ['2 >> 1 和 1 >> 1 的值是一样的', '(2 >> 2) 和 (1 >> 1) 的值是一样的', '(11 ^ 00) 和 (1 ^ 0) 的值是一样的', '(~0 的输出值是 1)'],
             answer: 1,
             score: 2,
@@ -75,7 +75,7 @@ export const paperData = {
         {
             id: 7,
             type: 'single',
-            question: '下列代码实现的是（ ）。\nvoid Swap(int &a, int &b) {\n    if (a != b) {\n        a ^= b;\n        b ^= a;\n        a ^= b;\n    }\n}',
+            question: `下列代码实现的是（ ）。\nvoid Swap(int &a, int &b) {\n if (a != b) {\n a ^= b;\n b ^= a;\n a ^= b;\n }\n}`,
             options: ['a 和 b 的异或', 'a 和 b 的同或', 'a 和 b 的值交换', 'a 和 b 的高低位互换'],
             answer: 2,
             score: 2,
@@ -84,7 +84,7 @@ export const paperData = {
         {
             id: 8,
             type: 'single',
-            question: 'a & ~1 运算实现的是（ ）。',
+            question: `a & ~1 运算实现的是（ ）。`,
             options: ['使 a 的最低位为 1', '使 a 的最高位为 1', '使 a 的最低位为 0', '使 a 的最高位为 0'],
             answer: 2,
             score: 2,
@@ -93,7 +93,7 @@ export const paperData = {
         {
             id: 9,
             type: 'single',
-            question: 'a = 1010 1110，执行 a << 2 后，下面关于结果的说法正确的是（ ）。',
+            question: `a = 1010 1110，执行 a << 2 后，下面关于结果的说法正确的是（ ）。`,
             options: ['a 的值变为 1011 1000', 'a 的值变为 1011 1010', 'a 的值变为 0101 1101', 'a 的值变为 1011 1000（高位移出，低位补 0 后按 8 位观察应为 1011 1000）'],
             answer: 0,
             score: 2,
@@ -102,7 +102,7 @@ export const paperData = {
         {
             id: 10,
             type: 'single',
-            question: '下列程序中，result 和 result2 输出分别是（ ）。\nlong a = 123;\n```cpp\nint b = 1;\nlong result = a & b;\ncout << result << endl;\n\nlong a2 = -123;\nunsigned int b2 = -1;\nlong result2 = a2 & b2;\ncout << result2 << endl;\n```',
+            question: `下列程序中，result 和 result2 输出分别是（ ）。\nlong a = 123;\n\`\`\`cpp\nint b = 1;\nlong result = a & b;\ncout << result << endl;\n\nlong a2 = -123;\nunsigned int b2 = -1;\nlong result2 = a2 & b2;\ncout << result2 << endl;\n\`\`\``,
             options: ['123 -1', '123 -123', '1 -1', '1 -123'],
             answer: 3,
             score: 2,
@@ -111,7 +111,7 @@ export const paperData = {
         {
             id: 11,
             type: 'single',
-            question: '陈 A 歹种植一批农作物：第 1 天浇水 1 次；接下来的 2 天每天浇水 2 次；再接下来的 3 天每天浇水 3 次；……依此类推，接下来的 n 天每天浇水 n 次。请问在 100 天里总共浇了多少次水（ ）。',
+            question: `陈 A 歹种植一批农作物：第 1 天浇水 1 次；接下来的 2 天每天浇水 2 次；再接下来的 3 天每天浇水 3 次；……依此类推，接下来的 n 天每天浇水 n 次。请问在 100 天里总共浇了多少次水（ ）。`,
             options: ['994', '996', '995', '945'],
             answer: 3,
             score: 2,
@@ -120,7 +120,7 @@ export const paperData = {
         {
             id: 12,
             type: 'single',
-            question: '关于一维数组，下列程序能够正确执行的是（ ）。',
+            question: `关于一维数组，下列程序能够正确执行的是（ ）。`,
             options: [
                 'int a[10]; int sum = 0; for (int i = 0; i <= 10; i++) sum += a[i];',
                 'int a[10] = {1,2,3,4,5,6,7,8,9,10}; int sum = 0; for (int i = 0; i <= 10; i++) sum += a[i];',
@@ -134,7 +134,7 @@ export const paperData = {
         {
             id: 13,
             type: 'single',
-            question: '下面的程序中，会输出（ ）。\n（说明：本题原卷代码截图在官方 PDF 文本层中未完整提取，当前仅保留“输出结果不确定”的可核对结论。）',
+            question: `下面的程序中，会输出（ ）。\n（说明：本题原卷代码截图在官方 PDF 文本层中未完整提取，当前仅保留“输出结果不确定”的可核对结论。）`,
             options: ['1', '0', '10', '不确定的值'],
             answer: 3,
             score: 2,
@@ -143,7 +143,7 @@ export const paperData = {
         {
             id: 14,
             type: 'single',
-            question: '有 A、B、C、D 4 个人，其中 1 个是小偷。每个人说一句话，且只有小偷说的是假话。\nA 说：不是我。\nB 说：是 C。\nC 说：是 D。\nD 说：C 瞎说。\n请问谁是小偷（ ）。',
+            question: `有 A、B、C、D 4 个人，其中 1 个是小偷。每个人说一句话，且只有小偷说的是假话。\nA 说：不是我。\nB 说：是 C。\nC 说：是 D。\nD 说：C 瞎说。\n请问谁是小偷（ ）。`,
             options: ['A', 'B', 'C', 'D'],
             answer: 2,
             score: 2,
@@ -152,7 +152,7 @@ export const paperData = {
         {
             id: 15,
             type: 'single',
-            question: '下列程序输出的是（ ）。\nstring str = "Hello,CHAD";\n```cpp\ncout << str.find("A") << "\\n";\n```',
+            question: `下列程序输出的是（ ）。\nstring str = "Hello,CHAD";\n\`\`\`cpp\ncout << str.find("A") << "\\n";\n\`\`\``,
             options: ['9', '8', '7', '6'],
             answer: 1,
             score: 2,
@@ -161,7 +161,7 @@ export const paperData = {
         {
             id: 16,
             type: 'judge',
-            question: '+1 和 -1 的原码进行 1+(-1) 计算的结果是 -2。',
+            question: `+1 和 -1 的原码进行 1+(-1) 计算的结果是 -2。`,
             options: ['正确', '错误'],
             answer: 1,
             score: 2,
@@ -170,7 +170,7 @@ export const paperData = {
         {
             id: 17,
             type: 'judge',
-            question: '~1 的输出值是 -2。',
+            question: `~1 的输出值是 -2。`,
             options: ['正确', '错误'],
             answer: 0,
             score: 2,
@@ -179,7 +179,7 @@ export const paperData = {
         {
             id: 18,
             type: 'judge',
-            question: '~1 = 1111 1110。',
+            question: `~1 = 1111 1110。`,
             options: ['正确', '错误'],
             answer: 0,
             score: 2,
@@ -188,7 +188,7 @@ export const paperData = {
         {
             id: 19,
             type: 'judge',
-            question: '取 X 的低四位，可以用 Y = 0000 1111，用 X & Y 获取 X 的低四位。',
+            question: `取 X 的低四位，可以用 Y = 0000 1111，用 X & Y 获取 X 的低四位。`,
             options: ['正确', '错误'],
             answer: 0,
             score: 2,
@@ -197,7 +197,7 @@ export const paperData = {
         {
             id: 20,
             type: 'judge',
-            question: '下列程序输出的是 A。\n```cpp\nchar x = 65;\nx++;\ncout << x++ << endl;\n```',
+            question: `下列程序输出的是 A。\n\`\`\`cpp\nchar x = 65;\nx++;\ncout << x++ << endl;\n\`\`\``,
             options: ['正确', '错误'],
             answer: 1,
             score: 2,
@@ -206,7 +206,7 @@ export const paperData = {
         {
             id: 21,
             type: 'judge',
-            question: '下列程序输出的是 3。\nstring str = "CHADai";\nsize_t pos = str.find(\'D\');\ncout << pos << endl;',
+            question: `下列程序输出的是 3。\nstring str = "CHADai";\nsize_t pos = str.find('D');\ncout << pos << endl;`,
             options: ['正确', '错误'],
             answer: 0,
             score: 2,
@@ -215,7 +215,7 @@ export const paperData = {
         {
             id: 22,
             type: 'judge',
-            question: '下列程序将输出 1。\n```cpp\nint a[10] = {1};\ncout << a[1] << endl;\n```',
+            question: `下列程序将输出 1。\n\`\`\`cpp\nint a[10] = {1};\ncout << a[1] << endl;\n\`\`\``,
             options: ['正确', '错误'],
             answer: 1,
             score: 2,
@@ -224,7 +224,7 @@ export const paperData = {
         {
             id: 23,
             type: 'judge',
-            question: '下列程序将输出 A。\n```cpp\nint a = 65;\ncout << (char)a << endl;\n```',
+            question: `下列程序将输出 A。\n\`\`\`cpp\nint a = 65;\ncout << (char)a << endl;\n\`\`\``,
             options: ['正确', '错误'],
             answer: 0,
             score: 2,
@@ -233,7 +233,7 @@ export const paperData = {
         {
             id: 24,
             type: 'judge',
-            question: '16 进制数 AB，表示成 2 进制数是 10101011。',
+            question: `16 进制数 AB，表示成 2 进制数是 10101011。`,
             options: ['正确', '错误'],
             answer: 0,
             score: 2,
@@ -242,7 +242,7 @@ export const paperData = {
         {
             id: 25,
             type: 'judge',
-            question: 'def（十六进制）= 103231（五进制）。',
+            question: `def（十六进制）= 103231（五进制）。`,
             options: ['正确', '错误'],
             answer: 1,
             score: 2,
@@ -269,22 +269,22 @@ No` }
 
 ## 题目描述
 
-小杨有一个包含 \$n\$ 个正整数的序列 \$a\$。他认为一个序列是平衡的当且仅当存在一个正整数 \$i\$（\$1 \\leq i < n\$）使得序列第 \$1\$ 到第 \$i\$ 个数字的总和等于第 \$i + 1\$ 到第 \$n\$ 个数字的总和。
+小杨有一个包含 $n$ 个正整数的序列 $a$。他认为一个序列是平衡的当且仅当存在一个正整数 $i$（$1 \\leq i < n$）使得序列第 $1$ 到第 $i$ 个数字的总和等于第 $i + 1$ 到第 $n$ 个数字的总和。
 
-小杨想请你判断序列 \$a\$ 是否是平衡的。
+小杨想请你判断序列 $a$ 是否是平衡的。
 
 ## 输入格式
 
-**本题单个测试点内包含多组测试数据**。第一行是一个正整数 \$t\$，表示测试用例组数。
+**本题单个测试点内包含多组测试数据**。第一行是一个正整数 $t$，表示测试用例组数。
 
-接下来是 \$t\$ 组测试用例。对每组测试用例，一共两行。
+接下来是 $t$ 组测试用例。对每组测试用例，一共两行。
 
-第一行包含一个正整数 \$n\$，表示序列长度。  
-第二行包含 \$n\$ 个正整数，代表序列 \$a\$。
+第一行包含一个正整数 $n$，表示序列长度。 
+第二行包含 $n$ 个正整数，代表序列 $a$。
 
 ## 输出格式
 
-对每组测试用例输出一行一个字符串。如果 \$a\$ 是平衡的，输出 \$\\texttt{Yes}\$，否则输出 \$\\texttt{No}\$。
+对每组测试用例输出一行一个字符串。如果 $a$ 是平衡的，输出 $\\texttt{Yes}$，否则输出 $\\texttt{No}$。
 `,
       explanation: '先求整个序列总和 sum，再从左到右维护前缀和 pre。若某个位置满足 pre * 2 == sum，则左右两段和相等，序列平衡。',
       template: '#include <bits/stdc++.h>\nusing namespace std;\n\nint main() {\n    ios::sync_with_stdio(false);\n    cin.tie(nullptr);\n\n    // 在此编写代码\n    return 0;\n}',
@@ -311,18 +311,18 @@ No` }
 
 ## 题目描述
 
-一个字符串是回文串，当且仅当该字符串从前往后读和从后往前读是一样的，例如，\$\\texttt{aabaa}\$ 和 \$\\texttt{ccddcc}\$ 都是回文串，但 \$\\texttt{abcd}\$ 不是。
+一个字符串是回文串，当且仅当该字符串从前往后读和从后往前读是一样的，例如，$\\texttt{aabaa}$ 和 $\\texttt{ccddcc}$ 都是回文串，但 $\\texttt{abcd}$ 不是。
 
-小杨有 \$n\$ 个仅包含小写字母的字符串，他想请你编写程序判断每个字符串是否由两个长度至少为 \$2\$ 的回文串前后拼接而成。
+小杨有 $n$ 个仅包含小写字母的字符串，他想请你编写程序判断每个字符串是否由两个长度至少为 $2$ 的回文串前后拼接而成。
 
 ## 输入格式
 
-第一行包含一个正整数 \$n\$，代表字符串数量。  
-接下来 \$n\$ 行，每行一个仅包含小写字母的字符串。
+第一行包含一个正整数 $n$，代表字符串数量。 
+接下来 $n$ 行，每行一个仅包含小写字母的字符串。
 
 ## 输出格式
 
-对于每个字符串输出一行，如果该字符串由两个长度至少为 \$2\$ 的回文串前后拼接而成则输出 Yes，否则输出 No。
+对于每个字符串输出一行，如果该字符串由两个长度至少为 $2$ 的回文串前后拼接而成则输出 Yes，否则输出 No。
 `,
       explanation: '枚举分割点 j，把字符串拆成前后两段，要求两段长度都至少为 2，并分别判断是否为回文串。只要存在一种可行拆分就输出 Yes。',
       template: '#include <bits/stdc++.h>\nusing namespace std;\n\nbool isPal(const string& s, int l, int r) {\n    while (l < r) if (s[l++] != s[r--]) return false;\n    return true;\n}\n\nint main() {\n    ios::sync_with_stdio(false);\n    cin.tie(nullptr);\n\n    // 在此编写代码\n    return 0;\n}',
