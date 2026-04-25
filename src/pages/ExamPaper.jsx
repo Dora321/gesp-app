@@ -256,6 +256,18 @@ const ExamPaper = () => {
 
     if (mode === 'analysis') {
         if (EnhancedPaperComponent) return <EnhancedPaperComponent />;
+        if (!paperData) {
+            return (
+                <div className="min-h-screen flex items-center justify-center bg-slate-50 text-slate-500">
+                    <div className="text-center p-6">
+                        <AlertTriangle size={48} className="mx-auto text-red-400 mb-4" />
+                        <h2 className="text-xl font-bold text-slate-700">试卷数据未就绪</h2>
+                        <p className="mb-4">请返回重试</p>
+                        <button onClick={() => setMode(null)} className="px-6 py-2 bg-indigo-600 text-white rounded-lg">返回</button>
+                    </div>
+                </div>
+            );
+        }
         return <InteractiveAnalysisPage paperData={paperData} paperId={paperId} />;
     }
 

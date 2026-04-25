@@ -172,31 +172,7 @@ export default function EnhancedPaperPage({ forcedPaperId }) {
         return () => { cancelled = true; };
     }, [paperId]);
 
-    if (loading) {
-        return (
-            <div className="min-h-screen flex items-center justify-center bg-slate-50 text-slate-500">
-                <div className="flex flex-col items-center gap-4">
-                    <div className="w-8 h-8 border-4 border-indigo-500 border-t-transparent rounded-full animate-spin"></div>
-                    <p>正在加载试卷...</p>
-                </div>
-            </div>
-        );
-    }
-
-    if (!paperData) {
-        return (
-            <div className="min-h-screen flex items-center justify-center bg-slate-50 text-slate-500">
-                <div className="text-center max-w-lg p-6">
-                    <AlertTriangle size={48} className="mx-auto text-red-400 mb-4" />
-                    <h2 className="text-xl font-bold text-slate-700">无法加载试卷</h2>
-                    <p className="mb-4">试卷数据未找到，请返回题库后重试。</p>
-                    <button onClick={() => navigate('/question-bank')} className="px-6 py-2 bg-indigo-600 text-white rounded-lg">
-                        返回题库
-                    </button>
-                </div>
-            </div>
-        );
-    }
+    // All hooks MUST be called before any conditional returns (React Rules of Hooks)
     const baseQuestions = useMemo(() => {
         if (!paperData) return [];
         return [
@@ -261,9 +237,54 @@ export default function EnhancedPaperPage({ forcedPaperId }) {
     const [answers, setAnswers] = useState({});
     const [revealed, setRevealed] = useState({});
 
-    const currentQ = questions[currentQuestionIndex];
     const answeredCount = useMemo(() => Object.keys(answers).length, [answers]);
     const revealedCount = useMemo(() => Object.keys(revealed).length, [revealed]);
+
+    // --- Conditional returns AFTER all hooks ---
+    if (loading) {
+        return (
+            <div className="min-h-screen flex items-center justify-center bg-slate-50 text-slate-500">
+                <div className="flex flex-col items-center gap-4">
+                    <div className="w-8 h-8 border-4 border-indigo-500 border-t-transparent rounded-full animate-spin"></div>
+                    <p>正在加载试卷...</p>
+                </div>
+            </div>
+        );
+    }
+
+    if (!paperData) {
+        return (
+            <div className="min-h-screen flex items-center justify-center bg-slate-50 text-slate-500">
+                <div className="text-center max-w-lg p-6">
+                    <AlertTriangle size={48} className="mx-auto text-red-400 mb-4" />
+                    <h2 className="text-xl font-bold text-slate-700">无法加载试卷</h2>
+                    <p className="mb-4">试卷数据未找到，请返回题库后重试。</p>
+                    <button onClick={() => navigate('/question-bank')} className="px-6 py-2 bg-indigo-600 text-white rounded-lg">
+                        返回题库
+                    </button>
+                </div>
+            </div>
+        );
+    }
+
+    if (!questions.length) {
+        return (
+            <div className="min-h-screen bg-slate-50 flex items-center justify-center p-6">
+                <div className="max-w-md text-center space-y-4">
+                    <h2 className="text-xl font-bold text-slate-800">试卷数据不可用</h2>
+                    <p className="text-slate-500 text-sm">未找到对应试卷，请返回题库后重试。</p>
+                    <button
+                        onClick={() => navigate('/question-bank')}
+                        className="px-4 py-2 rounded-lg bg-indigo-600 text-white"
+                    >
+                        返回题库
+                    </button>
+                </div>
+            </div>
+        );
+    }
+
+    const currentQ = questions[currentQuestionIndex];
     const progress = questions.length ? Math.round((answeredCount / questions.length) * 100) : 0;
 
     const levelMeta = sectionMetaByLevel[paperData?.level] || {
@@ -299,23 +320,6 @@ export default function EnhancedPaperPage({ forcedPaperId }) {
         setRevealed((prev) => ({ ...prev, [currentQ.id]: true }));
         setActiveTab('analysis');
     };
-
-    if (!paperData || !questions.length) {
-        return (
-            <div className="min-h-screen bg-slate-50 flex items-center justify-center p-6">
-                <div className="max-w-md text-center space-y-4">
-                    <h2 className="text-xl font-bold text-slate-800">试卷数据不可用</h2>
-                    <p className="text-slate-500 text-sm">未找到对应试卷，请返回题库后重试。</p>
-                    <button
-                        onClick={() => navigate('/question-bank')}
-                        className="px-4 py-2 rounded-lg bg-indigo-600 text-white"
-                    >
-                        返回题库
-                    </button>
-                </div>
-            </div>
-        );
-    }
 
     const selected = answers[currentQ.id];
     const isRevealed = !!revealed[currentQ.id];
