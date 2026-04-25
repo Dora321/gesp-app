@@ -14,6 +14,7 @@ import {
     Tags,
     AlertTriangle
 } from 'lucide-react';
+import LoadingScreen from '../../components/LoadingScreen';
 import { getPaper } from '../../data/gesp';
 import { luoguCodingByLevel } from '../../data/gesp/luoguCodingByLevel';
 import { paperCodingMap } from '../../data/gesp/paperCodingMap';
@@ -242,14 +243,7 @@ export default function EnhancedPaperPage({ forcedPaperId }) {
 
     // --- Conditional returns AFTER all hooks ---
     if (loading) {
-        return (
-            <div className="min-h-screen flex items-center justify-center bg-slate-50 text-slate-500">
-                <div className="flex flex-col items-center gap-4">
-                    <img src={`${import.meta.env.BASE_URL}cxk-dance.gif`} alt="加载中" className="w-24 h-24 object-contain animate-bounce drop-shadow-md" />
-                    <p className="font-semibold tracking-wider text-slate-600">正在拼命加载试卷...</p>
-                </div>
-            </div>
-        );
+        return <LoadingScreen message="正在拼命加载试卷" variant="dark" />;
     }
 
     if (!paperData) {

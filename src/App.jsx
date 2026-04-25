@@ -168,14 +168,8 @@ const HardwareLanding = lazy(() => import('./hardware/pages/HardwareLanding'));
 const HardwareLessonDetail = lazy(() => import('./hardware/pages/HardwareLessonDetail'));
 
 // Loading fallback
-const PageLoader = () => (
-  <div className="flex items-center justify-center min-h-screen bg-slate-950">
-    <div className="flex flex-col items-center gap-4">
-      <img src={`${import.meta.env.BASE_URL}cxk-dance.gif`} alt="加载中..." className="w-20 h-20 object-contain drop-shadow-lg animate-bounce" />
-      <span className="text-slate-400 text-sm font-medium tracking-widest">正在为您加载...</span>
-    </div>
-  </div>
-);
+import LoadingScreen from './components/LoadingScreen';
+const PageLoader = () => <LoadingScreen message="正在为您加载" />;
 
 function App() {
   const Router = import.meta.env.DEV ? BrowserRouter : HashRouter;

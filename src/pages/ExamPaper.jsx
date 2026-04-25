@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import { Clock, ChevronLeft, CheckCircle, AlertTriangle, X, ChevronRight, Menu, Trophy, BookOpen, FileText, Lightbulb } from 'lucide-react';
+import LoadingScreen from '../components/LoadingScreen';
 import { getPaper, paperMeta } from '../data/gesp/index';
 import { paperCodingMap } from '../data/gesp/paperCodingMap';
 import InteractiveAnalysisPage from './question-bank/InteractiveAnalysisPage';
@@ -109,14 +110,7 @@ const ExamPaper = () => {
     }, [isSubmitted, paperData, mode]);
 
     if (loading) {
-        return (
-            <div className="min-h-screen flex items-center justify-center bg-slate-50 text-slate-500">
-                <div className="flex flex-col items-center gap-4">
-                    <img src={`${import.meta.env.BASE_URL}cxk-dance.gif`} alt="加载中" className="w-24 h-24 object-contain animate-bounce drop-shadow-md" />
-                    <p className="font-semibold tracking-wider text-slate-600">正在加载试卷...</p>
-                </div>
-            </div>
-        );
+        return <LoadingScreen message="正在加载试卷" variant="dark" />;
     }
 
     if (error || !paperData) {
