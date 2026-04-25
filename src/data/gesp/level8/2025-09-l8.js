@@ -14,7 +14,7 @@ export const paperData = {
         {
             id: 1,
             type: "single",
-            question: "小杨想点一杯奶茶外卖，但还差 5 元起送。于是，小杨决定点一些小料。可选的小料包括：珍珠 1 元、椰果 2 元、奶冻 3 元、奶盖 4 元。每种小料最多点 1 份。请问共有多少种满⾜起送条件的点小料方案？（ ）。",
+            question: `小杨想点一杯奶茶外卖，但还差 5 元起送。于是，小杨决定点一些小料。可选的小料包括：珍珠 1 元、椰果 2 元、奶冻 3 元、奶盖 4 元。每种小料最多点 1 份。请问共有多少种满⾜起送条件的点小料方案？（ ）。`,
             options: [
                 "16",
                 "10",
@@ -33,7 +33,7 @@ export const paperData = {
         {
             id: 2,
             type: "single",
-            question: "小杨和小刘是好朋友，她们在逛商场时发现新设置的大头贴⾃拍机，于是决定一起拍一组照⽚。一组照⽚包 括 4 张，这 4 张照⽚没有顺序区分。拍每张照⽚时，可以选择有相框或无相框、两⼈可以分别选择有头饰或无头饰、 还可以从 2 种位置（小杨在左，或小刘在左）中选出一种。她们不希望一组照⽚中出现完全相同的相框、头饰、位置 的组合。请问一组照⽚共有多少种不同的方案？（ ）。",
+            question: `小杨和小刘是好朋友，她们在逛商场时发现新设置的大头贴⾃拍机，于是决定一起拍一组照⽚。一组照⽚包 括 4 张，这 4 张照⽚没有顺序区分。拍每张照⽚时，可以选择有相框或无相框、两⼈可以分别选择有头饰或无头饰、 还可以从 2 种位置（小杨在左，或小刘在左）中选出一种。她们不希望一组照⽚中出现完全相同的相框、头饰、位置 的组合。请问一组照⽚共有多少种不同的方案？（ ）。`,
             options: [
                 "1820",
                 "70",
@@ -52,7 +52,7 @@ export const paperData = {
         {
             id: 3,
             type: "single",
-            question: "下列关于 C++ 类的说法，错误的是（ ）。",
+            question: `下列关于 C++ 类的说法，错误的是（ ）。`,
             options: [
                 "派生类对象占用的内存总是不小于基类对象。",
                 "派生类可以不实现基类的虚函数。",
@@ -71,7 +71,7 @@ export const paperData = {
         {
             id: 4,
             type: "single",
-            question: "下列关于树和图的说法，错误的是（ ）。",
+            question: `下列关于树和图的说法，错误的是（ ）。`,
             options: [
                 "每个连通图都存在生成树。",
                 "每个存在生成树的有向图，都一定是强连通的。",
@@ -90,7 +90,7 @@ export const paperData = {
         {
             id: 5,
             type: "single",
-            question: "一对夫妻生男生⼥的概率相同。这对夫妻希望⼉⼥双全。请问这对夫妻生下三个孩子时，实现⼉⼥双全的概 率是多少？（ ）。",
+            question: `一对夫妻生男生⼥的概率相同。这对夫妻希望⼉⼥双全。请问这对夫妻生下三个孩子时，实现⼉⼥双全的概 率是多少？（ ）。`,
             options: [
                 "[待补充选项]",
                 "选项B",
@@ -109,7 +109,7 @@ export const paperData = {
         {
             id: 6,
             type: "single",
-            question: "二项式 的展开式中 项的系数是（ ）。",
+            question: `二项式 的展开式中 项的系数是（ ）。`,
             options: [
                 "720",
                 "120",
@@ -128,7 +128,7 @@ export const paperData = {
         {
             id: 7,
             type: "single",
-            question: "对一个包含 个顶点、 条边的图，执⾏⼴度优先搜索，其最优时间复杂度是（ ）。",
+            question: `对一个包含 个顶点、 条边的图，执⾏⼴度优先搜索，其最优时间复杂度是（ ）。`,
             options: [
                 "[待补充选项]",
                 "选项B",
@@ -147,7 +147,7 @@ export const paperData = {
         {
             id: 8,
             type: "single",
-            question: "以下关于贪⼼法和动态规划的说法中，错误的是（ ）。",
+            question: `以下关于贪⼼法和动态规划的说法中，错误的是（ ）。`,
             options: [
                 "动态规划能解决大部分多阶段决策问题。",
                 "对特定的问题，贪⼼法不一定适用。",
@@ -166,7 +166,7 @@ export const paperData = {
         {
             id: 9,
             type: "single",
-            question: "下面程序的输出为（ ）。",
+            question: `下面程序的输出为（ ）。`,
             options: [
                 "45",
                 "102",
@@ -185,7 +185,7 @@ export const paperData = {
         {
             id: 10,
             type: "single",
-            question: "下面程序的时间复杂度为（ ）。",
+            question: `下面程序的时间复杂度为（ ）。`,
             options: [
                 "[待补充选项]",
                 "选项B",
@@ -204,7 +204,7 @@ export const paperData = {
         {
             id: 11,
             type: "single",
-            question: "下列Dijkstra算法，假设图 中顶点数 、边数 ，则程序的时间复杂度为（ ）。",
+            question: `下列Dijkstra算法，假设图 中顶点数 、边数 ，则程序的时间复杂度为（ ）。`,
             options: [
                 "[待补充选项]",
                 "选项B",
@@ -223,7 +223,7 @@ export const paperData = {
         {
             id: 12,
             type: "single",
-            question: "下面 count_triple 函数的时间复杂度为( )。",
+            question: `下面 count_triple 函数的时间复杂度为( )。`,
             options: [
                 "[待补充选项]",
                 "选项B",
@@ -242,7 +242,7 @@ export const paperData = {
         {
             id: 13,
             type: "single",
-            question: "下面merge_sort函数试图实现归并排序算法，横线处应该填入的是（ ）。",
+            question: `下面merge_sort函数试图实现归并排序算法，横线处应该填入的是（ ）。`,
             options: [
                 "[待补充选项]",
                 "选项B",
@@ -261,7 +261,7 @@ export const paperData = {
         {
             id: 14,
             type: "single",
-            question: "下面 Prim 算法程序中，横线处应该填入的是（ ）。",
+            question: `下面 Prim 算法程序中，横线处应该填入的是（ ）。`,
             options: [
                 "[待补充选项]",
                 "选项B",
@@ -280,7 +280,7 @@ export const paperData = {
         {
             id: 15,
             type: "single",
-            question: "下面的程序使用出边邻接表表达的带权无向图，则从顶点0到顶点3的最短距离为（ ）。",
+            question: `下面的程序使用出边邻接表表达的带权无向图，则从顶点0到顶点3的最短距离为（ ）。`,
             options: [
                 "12",
                 "11",
@@ -299,7 +299,7 @@ export const paperData = {
         {
             id: 16,
             type: "judge",
-            question: "C++语⾔中，表达式 '9' ^ 3 的结果值为 '999' 。",
+            question: `C++语⾔中，表达式 '9' ^ 3 的结果值为 '999' 。`,
             options: [
                 "正确",
                 "错误",
@@ -316,7 +316,7 @@ export const paperData = {
         {
             id: 17,
             type: "judge",
-            question: "下列C++语⾔代码，能够安全地输出 arr[5] 的值。",
+            question: `下列C++语⾔代码，能够安全地输出 arr[5] 的值。`,
             options: [
                 "正确",
                 "错误",
@@ -333,7 +333,7 @@ export const paperData = {
         {
             id: 18,
             type: "judge",
-            question: "对 个元素的数组进⾏排序，最差情况的时间复杂度为 。",
+            question: `对 个元素的数组进⾏排序，最差情况的时间复杂度为 。`,
             options: [
                 "正确",
                 "错误",
@@ -350,7 +350,7 @@ export const paperData = {
         {
             id: 19,
             type: "judge",
-            question: "有4个红球、3个蓝球和2个绿球排成一排（相同⾊球视为完全相同），则不同的排列方案数为1260种 。",
+            question: `有4个红球、3个蓝球和2个绿球排成一排（相同⾊球视为完全相同），则不同的排列方案数为1260种 。`,
             options: [
                 "正确",
                 "错误",
@@ -367,7 +367,7 @@ export const paperData = {
         {
             id: 20,
             type: "judge",
-            question: "使用 math.h 或 cmath 头文件中的函数，对于 int 类型的变量 x ，表达式 fabs(x) 和 sqrt(x * x) 的结果总是近似相等的。",
+            question: `使用 math.h 或 cmath 头文件中的函数，对于 int 类型的变量 x ，表达式 fabs(x) 和 sqrt(x * x) 的结果总是近似相等的。`,
             options: [
                 "正确",
                 "错误",
@@ -384,7 +384,7 @@ export const paperData = {
         {
             id: 21,
             type: "judge",
-            question: "运算符重载是 C++ 语⾔静态多态的一种典型体现，而使用 C 语⾔则无法实现运算符重载。",
+            question: `运算符重载是 C++ 语⾔静态多态的一种典型体现，而使用 C 语⾔则无法实现运算符重载。`,
             options: [
                 "正确",
                 "错误",
@@ -401,7 +401,7 @@ export const paperData = {
         {
             id: 22,
             type: "judge",
-            question: "存在一个简单无向图满⾜：顶点数为 6 ，边数为 8 ， 6 个顶点的度数分别为 3 、 3 、 3 、 3 、 2 、 2 。",
+            question: `存在一个简单无向图满⾜：顶点数为 6 ，边数为 8 ， 6 个顶点的度数分别为 3 、 3 、 3 、 3 、 2 、 2 。`,
             options: [
                 "正确",
                 "错误",
@@ -418,7 +418,7 @@ export const paperData = {
         {
             id: 23,
             type: "judge",
-            question: "已知两个double类型的变量r和theta分别表⽰一个扇形的圆半径及圆⼼角（弧度），则扇形的周长可 以通过表达式(2+theta) * r求得。",
+            question: `已知两个double类型的变量r和theta分别表⽰一个扇形的圆半径及圆⼼角（弧度），则扇形的周长可 以通过表达式(2+theta) * r求得。`,
             options: [
                 "正确",
                 "错误",
@@ -435,7 +435,7 @@ export const paperData = {
         {
             id: 24,
             type: "judge",
-            question: "Dijkstra 算法的时间复杂度为 ，其中 为图中顶点的数量。",
+            question: `Dijkstra 算法的时间复杂度为 ，其中 为图中顶点的数量。`,
             options: [
                 "正确",
                 "错误",
@@ -452,7 +452,7 @@ export const paperData = {
         {
             id: 25,
             type: "judge",
-            question: "从 32 名学生中选出 2 ⼈分别担任男生班长和⼥生班长（男生班长必须是男生，⼥生班长必须是⼥生），则共 有 种不同的选法。",
+            question: `从 32 名学生中选出 2 ⼈分别担任男生班长和⼥生班长（男生班长必须是男生，⼥生班长必须是⼥生），则共 有 种不同的选法。`,
             options: [
                 "正确",
                 "错误",

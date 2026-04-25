@@ -60,7 +60,7 @@ export const paperData = {
         {
             id: 1,
             type: "single",
-            question: "在面向对象编程中，下列关于 虚函数 的描述中，错误的是（ ）。",
+            question: `在面向对象编程中，下列关于 虚函数 的描述中，错误的是（ ）。`,
             options: [
                 "虚函数用于支持运⾏时多态",
                 "通过基类指针调用虚函数时，会根据对象实际类型决定调用版本",
@@ -79,7 +79,7 @@ export const paperData = {
         {
             id: 2,
             type: "single",
-            question: "执行如下代码，会输出 钢琴：叮咚叮咚 和 吉他：咚咚当当。这体现了面向对象编程的（ ）特性。",
+            question: `执行如下代码，会输出 钢琴：叮咚叮咚 和 吉他：咚咚当当。这体现了面向对象编程的（ ）特性。`,
             options: [
                 "继承",
                 "封装",
@@ -98,7 +98,7 @@ export const paperData = {
         {
             id: 3,
             type: "single",
-            question: "关于以下代码，说法正确的是（ ）。",
+            question: `关于以下代码，说法正确的是（ ）。`,
             options: [
                 "执⾏代码会输出两⾏，内容分别为：钢琴：叮咚叮咚 和 吉他：咚咚当当",
                 "执⾏代码会输出两⾏，内容分别为：乐器在演奏声音 和 乐器在演奏声音",
@@ -117,7 +117,7 @@ export const paperData = {
         {
             id: 4,
             type: "single",
-            question: "某文本编辑器把用户输入的字符依次压入栈 S 。用户依次输入 A, B, C, D 后，用户按了两次撤销（每次 撤销，弹出栈顶一个字符）。此时栈从栈底到栈顶的内容是：（ ）。",
+            question: `某文本编辑器把用户输入的字符依次压入栈 S 。用户依次输入 A, B, C, D 后，用户按了两次撤销（每次 撤销，弹出栈顶一个字符）。此时栈从栈底到栈顶的内容是：（ ）。`,
             options: [
                 "A B",
                 "A B C",
@@ -136,7 +136,7 @@ export const paperData = {
         {
             id: 5,
             type: "single",
-            question: "假设循环队列数组长度为 N，其中队空判断条件为：front == rear，队满判断条件为：(rear+1) % N == front，出队对应的操作为：front = (front+1) % N，入队对于的操作为：rear = (rear+1) % N。循环队列长度 N = 6，初始 front = 1, rear = 1，执⾏操作序列为：入队 , 入队 , 入队 , 出队 , 入队 , 入队， 则最终 (front, rear) 的值是（ ）。",
+            question: `假设循环队列数组长度为 N，其中队空判断条件为：front == rear，队满判断条件为：(rear+1) % N == front，出队对应的操作为：front = (front+1) % N，入队对于的操作为：rear = (rear+1) % N。循环队列长度 N = 6，初始 front = 1, rear = 1，执⾏操作序列为：入队 , 入队 , 入队 , 出队 , 入队 , 入队， 则最终 (front, rear) 的值是（ ）。`,
             options: [
                 "(2, 5)",
                 "(2, 0)",
@@ -155,7 +155,7 @@ export const paperData = {
         {
             id: 6,
             type: "single",
-            question: "以下函数 check() 用于判断一棵二叉树是否为（ ）。",
+            question: `以下函数 check() 用于判断一棵二叉树是否为（ ）。`,
             options: [
                 "满二叉树",
                 "完全二叉树",
@@ -174,7 +174,7 @@ export const paperData = {
         {
             id: 7,
             type: "single",
-            question: "以下代码实现了二叉树的（ ）。",
+            question: `以下代码实现了二叉树的（ ）。`,
             options: [
                 "前序遍历",
                 "中序遍历",
@@ -193,7 +193,7 @@ export const paperData = {
         {
             id: 8,
             type: "single",
-            question: "下面代码实现了哈夫曼编码，则横线处应填写的代码是（ ）。",
+            question: `下面代码实现了哈夫曼编码，则横线处应填写的代码是（ ）。`,
             options: [
                 "[待补充选项]",
                 "选项B",
@@ -212,7 +212,7 @@ export const paperData = {
         {
             id: 9,
             type: "single",
-            question: "以下关于哈夫曼编码的说法，正确的是（ ）。",
+            question: `以下关于哈夫曼编码的说法，正确的是（ ）。`,
             options: [
                 "哈夫曼编码是定长编码",
                 "哈夫曼编码中，没有任何一个字符的编码是另一个字符编码的前缀",
@@ -231,7 +231,7 @@ export const paperData = {
         {
             id: 10,
             type: "single",
-            question: "以下函数实现了二叉排序树（BST）的（ ）操作。",
+            question: `以下函数实现了二叉排序树（BST）的（ ）操作。`,
             options: [
                 "查找",
                 "插入",
@@ -250,7 +250,7 @@ export const paperData = {
         {
             id: 11,
             type: "single",
-            question: "下列代码实现了树的深度优先遍历，则横线处应填入（ ）。",
+            question: `下列代码实现了树的深度优先遍历，则横线处应填入（ ）。`,
             options: [
                 "if (node->left) st.push(node->left);",
                 "if (node->left) st.pop(node->left);",
@@ -269,7 +269,7 @@ export const paperData = {
         {
             id: 12,
             type: "single",
-            question: "给定一棵普通二叉树（节点值没有大小规律），下面代码判断是否存在值为 x 的结点，则横线处应填入（ ）。 TreeNode* op(TreeNode* root, int x) { if (!root) return new TreeNode(x); if (x < root->val) root->left = op(root->left, x); else root->right = op(root->right, x); return root; } 1 2 3 4 5 6 7 8 struct TreeNode { int val; TreeNode* left; TreeNode* right; TreeNode(int x): val(x), left(nullptr), right(nullptr) {} }; void dfs(TreeNode* root) { if (!root) return; stack<TreeNode*> st; st.push(root); while (!st.empty()) { TreeNode* node = st.top(); st.pop(); cout << node->val << \" \"; if (node->right) st.push(node->right); ________________________ } } 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 第 7 页 / 共 13 页",
+            question: `给定一棵普通二叉树（节点值没有大小规律），下面代码判断是否存在值为 x 的结点，则横线处应填入（ ）。 TreeNode* op(TreeNode* root, int x) { if (!root) return new TreeNode(x); if (x < root->val) root->left = op(root->left, x); else root->right = op(root->right, x); return root; } 1 2 3 4 5 6 7 8 struct TreeNode { int val; TreeNode* left; TreeNode* right; TreeNode(int x): val(x), left(nullptr), right(nullptr) {} }; void dfs(TreeNode* root) { if (!root) return; stack<TreeNode*> st; st.push(root); while (!st.empty()) { TreeNode* node = st.top(); st.pop(); cout << node->val << " "; if (node->right) st.push(node->right); ________________________ } } 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 第 7 页 / 共 13 页`,
             options: [
                 "q.push(cur);",
                 "if (cur->right) q.push(cur->right);",
@@ -288,7 +288,7 @@ export const paperData = {
         {
             id: 13,
             type: "single",
-            question: "在二叉排序树（ Binary Search Tree, BST ）中，假设节点值互不相同。给定如下搜索函数，以下说法一定正 确的是（ ）。",
+            question: `在二叉排序树（ Binary Search Tree, BST ）中，假设节点值互不相同。给定如下搜索函数，以下说法一定正 确的是（ ）。`,
             options: [
                 "最坏情况下，访问结点数是",
                 "最坏情况下，访问结点数是",
@@ -307,7 +307,7 @@ export const paperData = {
         {
             id: 14,
             type: "single",
-            question: "0/1 背包（每件物品最多选一次）问题通常可用一维动态规划求解，核⼼代码如下。则下面说法正确的是（ ）。 struct TreeNode { int val; TreeNode* left; TreeNode* right; TreeNode(int x): val(x), left(nullptr), right(nullptr) {} }; TreeNode* bfsFind(TreeNode* root, int x) { if (!root) return nullptr; queue<TreeNode*> q; q.push(root); while (!q.empty()) { TreeNode* cur = q.front(); q.pop(); if (cur->val == x) return cur; ________________________ } return nullptr; } 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 if (cur->left) q.push(cur->left); if (cur->right) q.push(cur->right); 1 2 3 4 q.push(cur->left); q.push(cur->right); 1 2 bool find(Node* root, int x) { while (root) { if (root->val == x) return true; root = (x < root->val) ? root->left : root->right; } return false; } 1 2 3 4 5 6 7 for each item (w, v): for (int j = W; j >= w; --j) dp[j] = max(dp[j], dp[j-w]+v); 1 2 3 第 8 页 / 共 13 页 题号 1 2 3 4 5 6 7 8 9 10 答案",
+            question: `0/1 背包（每件物品最多选一次）问题通常可用一维动态规划求解，核⼼代码如下。则下面说法正确的是（ ）。 struct TreeNode { int val; TreeNode* left; TreeNode* right; TreeNode(int x): val(x), left(nullptr), right(nullptr) {} }; TreeNode* bfsFind(TreeNode* root, int x) { if (!root) return nullptr; queue<TreeNode*> q; q.push(root); while (!q.empty()) { TreeNode* cur = q.front(); q.pop(); if (cur->val == x) return cur; ________________________ } return nullptr; } 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 if (cur->left) q.push(cur->left); if (cur->right) q.push(cur->right); 1 2 3 4 q.push(cur->left); q.push(cur->right); 1 2 bool find(Node* root, int x) { while (root) { if (root->val == x) return true; root = (x < root->val) ? root->left : root->right; } return false; } 1 2 3 4 5 6 7 for each item (w, v): for (int j = W; j >= w; --j) dp[j] = max(dp[j], dp[j-w]+v); 1 2 3 第 8 页 / 共 13 页 题号 1 2 3 4 5 6 7 8 9 10 答案`,
             options: [
                 "内层 j 必须从小到大，否则会漏解",
                 "内层 j 必须从大到小，否则同一件物品会被用多次",
@@ -326,7 +326,7 @@ export const paperData = {
         {
             id: 15,
             type: "single",
-            question: "以下关于动态规划的说法中，错误的是（ ）。",
+            question: `以下关于动态规划的说法中，错误的是（ ）。`,
             options: [
                 "动态规划方法通常能够列出递推公式。",
                 "动态规划方法的时间复杂度通常为状态的个数。",
@@ -345,7 +345,7 @@ export const paperData = {
         {
             id: 16,
             type: "judge",
-            question: "以下代码中，构造函数被调用的次数是 1 次。",
+            question: `以下代码中，构造函数被调用的次数是 1 次。`,
             options: [
                 "正确",
                 "错误",
@@ -362,7 +362,7 @@ export const paperData = {
         {
             id: 17,
             type: "judge",
-            question: "面向对象编程中，封装是指将数据和操作数据的方法绑定在一起，并对外隐藏实现细节。",
+            question: `面向对象编程中，封装是指将数据和操作数据的方法绑定在一起，并对外隐藏实现细节。`,
             options: [
                 "正确",
                 "错误",
@@ -379,7 +379,7 @@ export const paperData = {
         {
             id: 18,
             type: "judge",
-            question: "以下代码能够正确统计二叉树中叶子结点的数量。",
+            question: `以下代码能够正确统计二叉树中叶子结点的数量。`,
             options: [
                 "正确",
                 "错误",
@@ -396,7 +396,7 @@ export const paperData = {
         {
             id: 19,
             type: "judge",
-            question: "⼴度优先遍历二叉树可用栈来实现。",
+            question: `⼴度优先遍历二叉树可用栈来实现。`,
             options: [
                 "正确",
                 "错误",
@@ -413,7 +413,7 @@ export const paperData = {
         {
             id: 20,
             type: "judge",
-            question: "函数调用管理可用栈来管理。",
+            question: `函数调用管理可用栈来管理。`,
             options: [
                 "正确",
                 "错误",
@@ -430,7 +430,7 @@ export const paperData = {
         {
             id: 21,
             type: "judge",
-            question: "在二叉排序树（ BST ）中，若某结点的左子树为空，则该结点一定是整棵树中的最小值结点。",
+            question: `在二叉排序树（ BST ）中，若某结点的左子树为空，则该结点一定是整棵树中的最小值结点。`,
             options: [
                 "正确",
                 "错误",
@@ -447,7 +447,7 @@ export const paperData = {
         {
             id: 22,
             type: "judge",
-            question: "下面的函数能正确判断一棵树是不是二叉排序树（左边的数字要比当前数字小，右边的数字要比当前数字 大）。 class Test { public: Test() { cout << \"T \"; } }; int main() { Test a; Test b = a; } 1 2 3 4 5 6 7 8 9 int countLeaf(TreeNode* root) { if (!root) return 0; if (!root->left && !root->right) return 1; return countLeaf(root->left)+countLeaf(root->right); } 1 2 3 4 5 bool isBST(TreeNode* root, int minVal, int maxVal) { if (!root) return true; if (root->val <= minVal || root->val >= maxVal) return false; return isBST(root->left, minVal, root->val) && isBST(root->right, root->val, maxVal); } 1 2 3 4 5 6 7 第 9 页 / 共 13 页",
+            question: `下面的函数能正确判断一棵树是不是二叉排序树（左边的数字要比当前数字小，右边的数字要比当前数字 大）。 class Test { public: Test() { cout << "T "; } }; int main() { Test a; Test b = a; } 1 2 3 4 5 6 7 8 9 int countLeaf(TreeNode* root) { if (!root) return 0; if (!root->left && !root->right) return 1; return countLeaf(root->left)+countLeaf(root->right); } 1 2 3 4 5 bool isBST(TreeNode* root, int minVal, int maxVal) { if (!root) return true; if (root->val <= minVal || root->val >= maxVal) return false; return isBST(root->left, minVal, root->val) && isBST(root->right, root->val, maxVal); } 1 2 3 4 5 6 7 第 9 页 / 共 13 页`,
             options: [
                 "正确",
                 "错误",
@@ -464,7 +464,7 @@ export const paperData = {
         {
             id: 23,
             type: "judge",
-            question: "格雷编码相邻两个编码之间必须有多位不同，以避免数据传输错误。",
+            question: `格雷编码相邻两个编码之间必须有多位不同，以避免数据传输错误。`,
             options: [
                 "正确",
                 "错误",
@@ -481,7 +481,7 @@ export const paperData = {
         {
             id: 24,
             type: "judge",
-            question: "小杨在玩一个闯关游戏，从第 1 关走到第 4 关。每一关的体力消耗如下（下标表⽰关卡编号）：cost = [ 0, 3, 5, 2, 4 ]，其中 cost[i] 表⽰到达第 i 关需要消耗的体力，cost[0]=0 表⽰在开始状态，体力消耗为 0 。小杨每次可以从当前关卡 前进 1 步或 2 步。按照上述规则，从第 1 关到第 4 关所需消耗的最小体力为 7 。",
+            question: `小杨在玩一个闯关游戏，从第 1 关走到第 4 关。每一关的体力消耗如下（下标表⽰关卡编号）：cost = [ 0, 3, 5, 2, 4 ]，其中 cost[i] 表⽰到达第 i 关需要消耗的体力，cost[0]=0 表⽰在开始状态，体力消耗为 0 。小杨每次可以从当前关卡 前进 1 步或 2 步。按照上述规则，从第 1 关到第 4 关所需消耗的最小体力为 7 。`,
             options: [
                 "正确",
                 "错误",
@@ -498,7 +498,7 @@ export const paperData = {
         {
             id: 25,
             type: "judge",
-            question: "假定只有一个根节点的树的深度为 1 ，则一棵有 个节点的完全二叉树，则树的深度为 。",
+            question: `假定只有一个根节点的树的深度为 1 ，则一棵有 个节点的完全二叉树，则树的深度为 。`,
             options: [
                 "正确",
                 "错误",

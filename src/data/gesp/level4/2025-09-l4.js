@@ -12,7 +12,7 @@ export const paperData = {
         {
             id: 1,
             type: "single",
-            question: "运行下面程序后变量 `a` 的值是（ ）。\n```cpp\nint a = 42;\nint* p = &a;\n*p = *p+1;\n```",
+            question: `运行下面程序后变量 \`a\` 的值是（ ）。\n\`\`\`cpp\nint a = 42;\nint* p = &a;\n*p = *p+1;\n\`\`\``,
             options: ["42", "43", "编译错误", "不确定"],
             answer: 1,
             score: 2,
@@ -22,7 +22,7 @@ export const paperData = {
         {
             id: 2,
             type: "single",
-            question: "以下关于数组的描述中，（ ）是错误的。",
+            question: `以下关于数组的描述中，（ ）是错误的。`,
             options: [
                 "数组名是一个指针常量",
                 "随机访问数组的元素方便快捷",
@@ -37,7 +37,7 @@ export const paperData = {
         {
             id: 3,
             type: "single",
-            question: "给定如下定义的数组 `arr`，则 `*(*(arr+1)+2)` 的值是（ ）。\n```cpp\nint arr[2][3] = {{1, 2, 3}, {4, 5, 6}};\n```",
+            question: `给定如下定义的数组 \`arr\`，则 \`*(*(arr+1)+2)\` 的值是（ ）。\n\`\`\`cpp\nint arr[2][3] = {{1, 2, 3}, {4, 5, 6}};\n\`\`\``,
             options: ["2", "5", "4", "6"],
             answer: 3,
             score: 2,
@@ -47,7 +47,7 @@ export const paperData = {
         {
             id: 4,
             type: "single",
-            question: "下面这段代码会输出（ ）。\n```cpp\nint add(int a, int b = 1); // 函数声明\nint main() {\n    cout << add(2) << \" \" << add(2, 3);\n    return 0;\n}\nint add(int a, int b) { // 函数定义\n    return a+b;\n}\n```",
+            question: `下面这段代码会输出（ ）。\n\`\`\`cpp\nint add(int a, int b = 1); // 函数声明\nint main() {\n cout << add(2) << " " << add(2, 3);\n return 0;\n}\nint add(int a, int b) { // 函数定义\n return a+b;\n}\n\`\`\``,
             options: ["3 5", "编译失败：定义处少了默认参数", "运行错误", "链接失败：未定义引用"],
             answer: 0,
             score: 2,
@@ -57,7 +57,7 @@ export const paperData = {
         {
             id: 5,
             type: "single",
-            question: "下面这段代码会输出（ ）。\n```cpp\nint x = 5;\nvoid foo() {\n    int x = 10;\n    cout << x << \" \";\n}\nvoid bar() {\n    cout << x << \" \";\n}\nint main() {\n    foo();\n    bar();\n}\n```",
+            question: `下面这段代码会输出（ ）。\n\`\`\`cpp\nint x = 5;\nvoid foo() {\n int x = 10;\n cout << x << " ";\n}\nvoid bar() {\n cout << x << " ";\n}\nint main() {\n foo();\n bar();\n}\n\`\`\``,
             options: ["5 5", "10 10", "5 10", "10 5"],
             answer: 3,
             score: 2,
@@ -67,7 +67,7 @@ export const paperData = {
         {
             id: 6,
             type: "single",
-            question: "下面程序运行的结果是（ ）。\n```cpp\nvoid increaseA(int x) { x++; }\nvoid increaseB(int* p) { (*p)++; }\nint main() {\n    int a = 5;\n    increaseA(a);\n    cout << a << \" \";\n    increaseB(&a);\n    cout << a;\n}\n```",
+            question: `下面程序运行的结果是（ ）。\n\`\`\`cpp\nvoid increaseA(int x) { x++; }\nvoid increaseB(int* p) { (*p)++; }\nint main() {\n int a = 5;\n increaseA(a);\n cout << a << " ";\n increaseB(&a);\n cout << a;\n}\n\`\`\``,
             options: ["6 7", "6 6", "5 6", "5 5"],
             answer: 2,
             score: 2,
@@ -77,7 +77,7 @@ export const paperData = {
         {
             id: 7,
             type: "single",
-            question: "关于结构体初始化，以下哪个选项中正确的是（ ）。\n```cpp\nstruct Point { int x, y; };\n```",
+            question: `关于结构体初始化，以下哪个选项中正确的是（ ）。\n\`\`\`cpp\nstruct Point { int x, y; };\n\`\`\``,
             options: ["Point p = (1, 2);", "Point p = {1, 2};", "Point p = new {1, 2};", "Point p = <1, 2>;"],
             answer: 1,
             score: 2,
@@ -87,7 +87,7 @@ export const paperData = {
         {
             id: 8,
             type: "single",
-            question: "运行如下代码会输出（ ）。\n```cpp\nstruct Cat {\n    string name;\n    int age;\n};\nvoid birthday(Cat& c) {\n    c.age++;\n}\nint main() {\n    Cat kitty = {\"Mimi\", 2};\n    birthday(kitty);\n    cout << kitty.name << \" \" << kitty.age;\n}\n```",
+            question: `运行如下代码会输出（ ）。\n\`\`\`cpp\nstruct Cat {\n string name;\n int age;\n};\nvoid birthday(Cat& c) {\n c.age++;\n}\nint main() {\n Cat kitty = {"Mimi", 2};\n birthday(kitty);\n cout << kitty.name << " " << kitty.age;\n}\n\`\`\``,
             options: ["Mimi 2", "Mimi 3", "kitty 3", "kitty 2"],
             answer: 1,
             score: 2,
@@ -97,7 +97,7 @@ export const paperData = {
         {
             id: 9,
             type: "single",
-            question: "关于排序算法的稳定性，以下说法错误的是（ ）。",
+            question: `关于排序算法的稳定性，以下说法错误的是（ ）。`,
             options: [
                 "稳定的排序算法不改变相等元素的相对位置",
                 "冒泡排序是稳定的排序算法",
@@ -112,7 +112,7 @@ export const paperData = {
         {
             id: 10,
             type: "single",
-            question: "下面代码试图实现选择排序，使其能对数组 `nums` 排序为升序，则横线上应分别填写（ ）。\n```cpp\nvoid selectionSort(vector<int>& nums) {\n    int n = nums.size();\n    for (int i = 0; i < n-1; ++i) {\n        int minIndex = i;\n        for (int j = i+1; j < n; ++j) {\n            if ( __________ ) { // 在此处填入代码\n                minIndex = j;\n            }\n        }\n        ____________________; // 在此处填入代码\n    }\n}\n```",
+            question: `下面代码试图实现选择排序，使其能对数组 \`nums\` 排序为升序，则横线上应分别填写（ ）。\n\`\`\`cpp\nvoid selectionSort(vector<int>& nums) {\n int n = nums.size();\n for (int i = 0; i < n-1; ++i) {\n int minIndex = i;\n for (int j = i+1; j < n; ++j) {\n if ( __________ ) { // 在此处填入代码\n minIndex = j;\n }\n }\n ____________________; // 在此处填入代码\n }\n}\n\`\`\``,
             options: [
                 "nums[j] < nums[minIndex] 和 swap(nums[i], nums[minIndex])",
                 "nums[j] > nums[minIndex] 和 swap(nums[i], nums[minIndex])",
@@ -127,7 +127,7 @@ export const paperData = {
         {
             id: 11,
             type: "single",
-            question: "下面程序实现插入排序（升序排序），则横线上应分别填写（ ）。\n```cpp\nvoid insertionSort(int arr[], int n) {\n    for (int i = 1; i < n; i++) {\n        int key = arr[i];\n        int j = i-1;\n        while ( j >= 0 && ____________________ ) { // 在此处填入代码\n            arr[j+1] = arr[j];\n            j--;\n        }\n        ____________________; // 在此处填入代码\n    }\n}\n```",
+            question: `下面程序实现插入排序（升序排序），则横线上应分别填写（ ）。\n\`\`\`cpp\nvoid insertionSort(int arr[], int n) {\n for (int i = 1; i < n; i++) {\n int key = arr[i];\n int j = i-1;\n while ( j >= 0 && ____________________ ) { // 在此处填入代码\n arr[j+1] = arr[j];\n j--;\n }\n ____________________; // 在此处填入代码\n }\n}\n\`\`\``,
             options: [
                 "arr[j] > key 和 arr[j+1] = key",
                 "arr[j] < key 和 arr[j+1] = key",
@@ -142,7 +142,7 @@ export const paperData = {
         {
             id: 12,
             type: "single",
-            question: "关于插入排序的时间复杂度，下列说法正确的是（ ）。",
+            question: `关于插入排序的时间复杂度，下列说法正确的是（ ）。`,
             options: [
                 "最好情况和最坏情况的时间复杂度都是 $O(N^2)$",
                 "最好情况是 $O(N)$，最坏情况是 $O(N^2)$",
@@ -157,7 +157,7 @@ export const paperData = {
         {
             id: 13,
             type: "single",
-            question: "小杨正在爬楼梯，需要 $n$ 阶才能到达楼顶，每次可以爬 1 阶或 2 阶，求小杨有多少种不同的方法可以爬到楼顶。横线上应填写（ ）。\n```cpp\nint climbStairs(int n) {\n    if (n <= 2) return n;\n    int prev2 = 1;\n    int prev1 = 2;\n    int current = 0;\n    for (int i = 3; i <= n; ++i) {\n        ________________ // 在此处填入代码\n    }\n    return current;\n}\n```",
+            question: `小杨正在爬楼梯，需要 $n$ 阶才能到达楼顶，每次可以爬 1 阶或 2 阶，求小杨有多少种不同的方法可以爬到楼顶。横线上应填写（ ）。\n\`\`\`cpp\nint climbStairs(int n) {\n if (n <= 2) return n;\n int prev2 = 1;\n int prev1 = 2;\n int current = 0;\n for (int i = 3; i <= n; ++i) {\n ________________ // 在此处填入代码\n }\n return current;\n}\n\`\`\``,
             options: [
                 "prev2 = prev1; prev1 = current; current = prev1+prev2;",
                 "current = prev1+prev2; prev2 = prev1; prev1 = current;",
@@ -172,8 +172,8 @@ export const paperData = {
         {
             id: 14,
             type: "single",
-            question: "找出所有满足 `scores[i]+scores[j]+scores[k] == 300` 的三元组（$i < j < k$）。下面代码的时间复杂度是（ ）。\n```cpp\nint cnt = 0;\nfor (int i = 0; i < n; i++) {\n    for (int j = i+1; j < n; j++) {\n        for (int k = j+1; k < n; k++) {\n            if (scores[i]+scores[j]+scores[k] == 300) {\n                cnt++;\n            }\n        }\n    }\n}\n```",
-            options: ["$O(N)$", "$O(n \log n)$", "$O(n^3)$", "$O(3^n)$"],
+            question: `找出所有满足 \`scores[i]+scores[j]+scores[k] == 300\` 的三元组（$i < j < k$）。下面代码的时间复杂度是（ ）。\n\`\`\`cpp\nint cnt = 0;\nfor (int i = 0; i < n; i++) {\n for (int j = i+1; j < n; j++) {\n for (int k = j+1; k < n; k++) {\n if (scores[i]+scores[j]+scores[k] == 300) {\n cnt++;\n }\n }\n }\n}\n\`\`\``,
+            options: ["$O(N)$", "$O(n log n)$", "$O(n^3)$", "$O(3^n)$"],
             answer: 2,
             score: 2,
             explanation: "代码包含三层嵌套循环，每层循环次数均与 $n$ 成线性关系，因此总复杂度为 $O(n^3)$。",
@@ -182,7 +182,7 @@ export const paperData = {
         {
             id: 15,
             type: "single",
-            question: "关于异常处理，以下说法错误的是（ ）。",
+            question: `关于异常处理，以下说法错误的是（ ）。`,
             options: [
                 "try 块中的代码可能会抛出异常",
                 "catch 块可以有多个，处理不同类型的异常",
@@ -197,7 +197,7 @@ export const paperData = {
         {
             id: 16,
             type: "judge",
-            question: "执行以下代码后，变量 `a` 的值将变为 20。\n```cpp\nint a = 5;\nint* p = &a;\n*p = 20;\n```",
+            question: `执行以下代码后，变量 \`a\` 的值将变为 20。\n\`\`\`cpp\nint a = 5;\nint* p = &a;\n*p = 20;\n\`\`\``,
             options: ["正确", "错误"],
             answer: 0,
             score: 2,
@@ -207,7 +207,7 @@ export const paperData = {
         {
             id: 17,
             type: "judge",
-            question: "执行下面 C++ 代码将输出 11（假设全局变量 `x` 为 10）。\n```cpp\nint x = 10;\nvoid f() {\n    int x = x+1;\n    cout << x << endl;\n}\nint main() {\n    f();\n}\n```",
+            question: `执行下面 C++ 代码将输出 11（假设全局变量 \`x\` 为 10）。\n\`\`\`cpp\nint x = 10;\nvoid f() {\n int x = x+1;\n cout << x << endl;\n}\nint main() {\n f();\n}\n\`\`\``,
             options: ["正确", "错误"],
             answer: 1,
             score: 2,
@@ -217,7 +217,7 @@ export const paperData = {
         {
             id: 18,
             type: "judge",
-            question: "以下 C++ 代码合法。\n```cpp\nstruct Student { string name; int age; float score; };\nStudent* students = new Student[20];\n```",
+            question: `以下 C++ 代码合法。\n\`\`\`cpp\nstruct Student { string name; int age; float score; };\nStudent* students = new Student[20];\n\`\`\``,
             options: ["正确", "错误"],
             answer: 0,
             score: 2,
@@ -227,7 +227,7 @@ export const paperData = {
         {
             id: 19,
             type: "judge",
-            question: "执行下面 C++ 代码将输出 10。\n```cpp\nvoid func(int* p) {\n    *p = 10;\n}\nint main() {\n    int a = 5;\n    func(&a);\n    cout << a << endl;\n    return 0;\n}\n```",
+            question: `执行下面 C++ 代码将输出 10。\n\`\`\`cpp\nvoid func(int* p) {\n *p = 10;\n}\nint main() {\n int a = 5;\n func(&a);\n cout << a << endl;\n return 0;\n}\n\`\`\``,
             options: ["正确", "错误"],
             answer: 0,
             score: 2,
@@ -237,7 +237,7 @@ export const paperData = {
         {
             id: 20,
             type: "judge",
-            question: "下面代码将二维数组 `arr` 传递给函数 `f`，函数内部用 `arr[i][j]` 访问元素，函数参数声明为 `int arr[][4]` 是错误的。\n```cpp\nvoid f(int arr[][4], int rows) { /* 访问 arr[i][j] */ }\nint main() {\n    int arr[3][4] = { /* 初始化 */ };\n    f(arr, 3);\n}\n```",
+            question: `下面代码将二维数组 \`arr\` 传递给函数 \`f\`，函数内部用 \`arr[i][j]\` 访问元素，函数参数声明为 \`int arr[][4]\` 是错误的。\n\`\`\`cpp\nvoid f(int arr[][4], int rows) { /* 访问 arr[i][j] */ }\nint main() {\n int arr[3][4] = { /* 初始化 */ };\n f(arr, 3);\n}\n\`\`\``,
             options: ["正确", "错误"],
             answer: 1,
             score: 2,
@@ -247,7 +247,7 @@ export const paperData = {
         {
             id: 21,
             type: "judge",
-            question: "递推是在给定初始条件下，已知前一项（或前几项）求后一项的过程。",
+            question: `递推是在给定初始条件下，已知前一项（或前几项）求后一项的过程。`,
             options: ["正确", "错误"],
             answer: 0,
             score: 2,
@@ -257,7 +257,7 @@ export const paperData = {
         {
             id: 22,
             type: "judge",
-            question: "虽然插入排序的时间复杂度为 $O(N^2)$，但由于单元操作相对较少，因此在小数据量的排序任务中非常受欢迎。",
+            question: `虽然插入排序的时间复杂度为 $O(N^2)$，但由于单元操作相对较少，因此在小数据量的排序任务中非常受欢迎。`,
             options: ["正确", "错误"],
             answer: 0,
             score: 2,
@@ -267,7 +267,7 @@ export const paperData = {
         {
             id: 23,
             type: "judge",
-            question: "对整数数组 `{4, 1, 3, 1, 5, 2}` 进行冒泡排序（将最大元素放到最后），执行一轮之后是 `{4, 1, 3, 1, 2, 5}`。",
+            question: `对整数数组 \`{4, 1, 3, 1, 5, 2}\` 进行冒泡排序（将最大元素放到最后），执行一轮之后是 \`{4, 1, 3, 1, 2, 5}\`。`,
             options: ["正确", "错误"],
             answer: 1,
             score: 2,
@@ -277,7 +277,7 @@ export const paperData = {
         {
             id: 24,
             type: "judge",
-            question: "以下代码只能捕获 `int` 类型异常。\n```cpp\ntry { /* codes */ }\ncatch (...) { /* codes */ }\n```",
+            question: `以下代码只能捕获 \`int\` 类型异常。\n\`\`\`cpp\ntry { /* codes */ }\ncatch (...) { /* codes */ }\n\`\`\``,
             options: ["正确", "错误"],
             answer: 1,
             score: 2,
@@ -287,7 +287,7 @@ export const paperData = {
         {
             id: 25,
             type: "judge",
-            question: "选择排序算法在任何情况下（无论输入数组是否已经有序）的平均时间复杂度都是 $O(N^2)$。",
+            question: `选择排序算法在任何情况下（无论输入数组是否已经有序）的平均时间复杂度都是 $O(N^2)$。`,
             options: ["正确", "错误"],
             answer: 0,
             score: 2,
@@ -313,13 +313,13 @@ export const paperData = {
 
 ## 题目描述
 
-作为将军，你自然需要合理地排兵布阵。地图可以视为 \$n\$ 行 \$m\$ 列的网格，适合排兵的网格以 1 标注，不适合排兵的网格以 0 标注。现在你需要在地图上选择一个矩形区域排兵，这个矩形区域内不能包含不适合排兵的网格。请问可选择的矩形区域最多能包含多少网格？
+作为将军，你自然需要合理地排兵布阵。地图可以视为 $n$ 行 $m$ 列的网格，适合排兵的网格以 1 标注，不适合排兵的网格以 0 标注。现在你需要在地图上选择一个矩形区域排兵，这个矩形区域内不能包含不适合排兵的网格。请问可选择的矩形区域最多能包含多少网格？
 
 ## 输入格式
 
-第一行，两个正整数 \$n, m\$，分别表示地图网格的行数与列数。
+第一行，两个正整数 $n, m$，分别表示地图网格的行数与列数。
 
-接下来 \$n\$ 行，每行 \$m\$ 个整数 \$a_{i,1}, a_{i,2}, \\ldots, a_{i,m}\$，表示各行中的网格是否适合排兵。
+接下来 $n$ 行，每行 $m$ 个整数 $a_{i,1}, a_{i,2}, \\ldots, a_{i,m}$，表示各行中的网格是否适合排兵。
 
 ## 输出格式
 
@@ -346,25 +346,25 @@ export const paperData = {
 
 ## 题目描述
 
-对于 \$k\$ 个整数构成的数组 \$[b_1, b_2, \\ldots, b_k]\$，如果对 \$1 \\leq i < k\$ 都有 \$b_{i+1} = b_i + 1\$，那么称数组 \$b\$ 是一个连续段。
+对于 $k$ 个整数构成的数组 $[b_1, b_2, \\ldots, b_k]$，如果对 $1 \\leq i < k$ 都有 $b_{i+1} = b_i + 1$，那么称数组 $b$ 是一个连续段。
 
-给定由 \$n\$ 个整数构成的数组 \$[a_1, a_2, \\ldots, a_n]\$，你可以任意重排数组 \$a\$ 中元素顺序。请问在重排顺序之后，\$a\$ 所有是连续段的子数组中，最长的子数组长度是多少？
+给定由 $n$ 个整数构成的数组 $[a_1, a_2, \\ldots, a_n]$，你可以任意重排数组 $a$ 中元素顺序。请问在重排顺序之后，$a$ 所有是连续段的子数组中，最长的子数组长度是多少？
 
-例如，对于数组 \$[1, 0, 2, 4]\$，可以将其重排为 \$[4, 0, 1, 2]\$，有以下 \$10\$ 个子数组：
+例如，对于数组 $[1, 0, 2, 4]$，可以将其重排为 $[4, 0, 1, 2]$，有以下 $10$ 个子数组：
 
-\$[4], [0], [1], [2], [4, 0], [0, 1], [1, 2], [4, 0, 1], [0, 1, 2], [4, 0, 1, 2]\$
+$[4], [0], [1], [2], [4, 0], [0, 1], [1, 2], [4, 0, 1], [0, 1, 2], [4, 0, 1, 2]$
 
-其中除 \$[4, 0], [4, 0, 1], [4, 0, 1, 2]\$ 以外的子数组均是连续段，因此是连续段的子数组中，最长子数组长度为 3。
+其中除 $[4, 0], [4, 0, 1], [4, 0, 1, 2]$ 以外的子数组均是连续段，因此是连续段的子数组中，最长子数组长度为 3。
 
 ## 输入格式
 
-第一行，一个正整数 \$n\$，表示数组长度。
+第一行，一个正整数 $n$，表示数组长度。
 
-第二行，\$n\$ 个整数 \$a_1, a_2, \\ldots, a_n\$，表示数组中的整数。
+第二行，$n$ 个整数 $a_1, a_2, \\ldots, a_n$，表示数组中的整数。
 
 ## 输出格式
 
-一行，一个整数，表示数组 \$a\$ 重排顺序后，所有是连续段的子数组的最长长度。
+一行，一个整数，表示数组 $a$ 重排顺序后，所有是连续段的子数组的最长长度。
 `,
       score: 25,
       explanation: "重排后能构成的最长“连续段”，本质上是原数组去重排序后，能够构成的最长“值连续整数序列”。解法：先排除重复元素（因为连续段内元素互不相同），排序后遍历，记录最长的相邻差值为 1 的区间。",

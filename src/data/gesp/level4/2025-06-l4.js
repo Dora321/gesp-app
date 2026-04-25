@@ -12,7 +12,7 @@ export const paperData = {
         {
             id: 1,
             type: "single",
-            question: "在 C++ 中，声明一个指向整型变量的指针的正确语法是（ ）。",
+            question: `在 C++ 中，声明一个指向整型变量的指针的正确语法是（ ）。`,
             options: [
                 "int* ptr;",
                 "*int ptr;",
@@ -27,7 +27,7 @@ export const paperData = {
         {
             id: 2,
             type: "single",
-            question: "下面的函数接收一个 3 行 4 列的二维数组并输出其中元素，则横线上不能填写（ ）。\n```cpp\nvoid printArray(________) {\n    for (int i = 0; i < 3; ++i)\n        for (int j = 0; j < 4; ++j)\n            std::cout << arr[i][j] << \" \";\n}\n```",
+            question: `下面的函数接收一个 3 行 4 列的二维数组并输出其中元素，则横线上不能填写（ ）。\n\`\`\`cpp\nvoid printArray(________) {\n for (int i = 0; i < 3; ++i)\n for (int j = 0; j < 4; ++j)\n std::cout << arr[i][j] << " ";\n}\n\`\`\``,
             options: [
                 "int arr[3][4]",
                 "int arr[][4]",
@@ -42,7 +42,7 @@ export const paperData = {
         {
             id: 3,
             type: "single",
-            question: "在 C++ 中，`int arr[3][4]` 和 `int* arr = new int[12]` 均可模拟一个 3 行 4 列的二维数组。关于这两种方式，下面说法错误的是（ ）。",
+            question: `在 C++ 中，\`int arr[3][4]\` 和 \`int* arr = new int[12]\` 均可模拟一个 3 行 4 列的二维数组。关于这两种方式，下面说法错误的是（ ）。`,
             options: [
                 "int arr[3][4] 在栈上分配空间，适合数组较小的情况",
                 "int* arr = new int[12] 在堆上分配空间，数组较大时也适用",
@@ -57,7 +57,7 @@ export const paperData = {
         {
             id: 4,
             type: "single",
-            question: "关于以下 C++ 代码，说法正确的是（ ）。\n```cpp\nint main() {\n    greet();\n    return 0;\n}\nvoid greet() {\n    cout << \"Hello!\" << endl;\n}\n```",
+            question: `关于以下 C++ 代码，说法正确的是（ ）。\n\`\`\`cpp\nint main() {\n greet();\n return 0;\n}\nvoid greet() {\n cout << "Hello!" << endl;\n}\n\`\`\``,
             options: [
                 "正确编译并输出 Hello!",
                 "编译错误：找不到函数 greet()",
@@ -72,7 +72,7 @@ export const paperData = {
         {
             id: 5,
             type: "single",
-            question: "在 C++ 中，如果希望通过函数修改传入的结构体对象的内容，应该使用哪种参数传递方式？",
+            question: `在 C++ 中，如果希望通过函数修改传入的结构体对象的内容，应该使用哪种参数传递方式？`,
             options: [
                 "值传递或引用传递",
                 "值传递或指针传递",
@@ -87,7 +87,7 @@ export const paperData = {
         {
             id: 6,
             type: "single",
-            question: "以下哪个选项正确描述了 C++ 中形参和实参的区别？",
+            question: `以下哪个选项正确描述了 C++ 中形参和实参的区别？`,
             options: [
                 "形参是函数调用时传递给函数的具体值，实参是函数定义中声明的变量",
                 "形参是函数定义中声明的变量，实参是函数调用时传递给函数的具体值",
@@ -102,7 +102,7 @@ export const paperData = {
         {
             id: 7,
             type: "single",
-            question: "运行如下代码会输出（ ）。\n```cpp\nint value = 100;\nvoid print1() {\n    int value = 50;\n    cout << value << \" \";\n    cout << ::value << \" \";\n}\nvoid print2() {\n    cout << value << \" \";\n}\nint main() {\n    print1();\n    print2();\n    return 0;\n}\n```",
+            question: `运行如下代码会输出（ ）。\n\`\`\`cpp\nint value = 100;\nvoid print1() {\n int value = 50;\n cout << value << " ";\n cout << ::value << " ";\n}\nvoid print2() {\n cout << value << " ";\n}\nint main() {\n print1();\n print2();\n return 0;\n}\n\`\`\``,
             options: [
                 "100 100 100",
                 "50 50 50",
@@ -117,7 +117,7 @@ export const paperData = {
         {
             id: 8,
             type: "single",
-            question: "小杨在整理一副扑克牌的所有红心扑克牌，使其从小到大排列。他的做法是：最开始抓到第 1 张扑克牌被认为已经排好序；然后抓第 2 张扑克牌，将其插入至有序部分的正确位置；不断循环步骤，每次将新抓到扑克牌插入至有序部分，直至抓完所有扑克牌，这样抓牌结束时就完成了扑克牌的排序。小杨这种整理扑克牌的方式与（ ）排序的方式最接近。",
+            question: `小杨在整理一副扑克牌的所有红心扑克牌，使其从小到大排列。他的做法是：最开始抓到第 1 张扑克牌被认为已经排好序；然后抓第 2 张扑克牌，将其插入至有序部分的正确位置；不断循环步骤，每次将新抓到扑克牌插入至有序部分，直至抓完所有扑克牌，这样抓牌结束时就完成了扑克牌的排序。小杨这种整理扑克牌的方式与（ ）排序的方式最接近。`,
             options: [
                 "冒泡排序",
                 "插入排序",
@@ -132,7 +132,7 @@ export const paperData = {
         {
             id: 9,
             type: "single",
-            question: "以下哪种情况是使用插入排序的合适场景？",
+            question: `以下哪种情况是使用插入排序的合适场景？`,
             options: [
                 "数据量非常大，且乱序严重",
                 "希望获得稳定排序，但不要求实时性",
@@ -147,7 +147,7 @@ export const paperData = {
         {
             id: 10,
             type: "single",
-            question: "以下关于递推算法基本思想的描述，正确的是（ ）。",
+            question: `以下关于递推算法基本思想的描述，正确的是（ ）。`,
             options: [
                 "递推算法通过将问题分解为相互独立的子问题来解决",
                 "递推算法从已知的基础情况出发，通过某种关系逐步推导出更大规模问题的解",
@@ -162,7 +162,7 @@ export const paperData = {
         {
             id: 11,
             type: "single",
-            question: "给定如下算法，当输入 n=10 时，其时间复杂度为（ ）。\n```cpp\nbool f(int arr[], int n, int target) {\n    for (int i = 0; i < (1 << n); i++) {\n        int sum = 0;\n        for (int j = 0; j < n; j++) {\n            if (i & (1 << j)) {\n                sum += arr[j];\n            }\n        }\n        if (sum == target) return true;\n    }\n    return false;\n}\n```",
+            question: `给定如下算法，当输入 n=10 时，其时间复杂度为（ ）。\n\`\`\`cpp\nbool f(int arr[], int n, int target) {\n for (int i = 0; i < (1 << n); i++) {\n int sum = 0;\n for (int j = 0; j < n; j++) {\n if (i & (1 << j)) {\n sum += arr[j];\n }\n }\n if (sum == target) return true;\n }\n return false;\n}\n\`\`\``,
             options: [
                 "$O(N)$",
                 "O(n * $2^n$)",
@@ -177,11 +177,11 @@ export const paperData = {
         {
             id: 12,
             type: "single",
-            question: "下述斐波那契数列计算的时间复杂度是（ ）。\n```cpp\nint fibonacci(int n) {\n    if (n == 0) return 0;\n    if (n == 1) return 1;\n    return fibonacci(n-1)+fibonacci(n-2);\n}\n```",
+            question: `下述斐波那契数列计算的时间复杂度是（ ）。\n\`\`\`cpp\nint fibonacci(int n) {\n if (n == 0) return 0;\n if (n == 1) return 1;\n return fibonacci(n-1)+fibonacci(n-2);\n}\n\`\`\``,
             options: [
                 "$O(N)$",
                 "$O(N^2)$",
-                "$O(\log n)$",
+                "$O(log n)$",
                 "O($2^n$)"
             ],
             answer: 3,
@@ -192,7 +192,7 @@ export const paperData = {
         {
             id: 13,
             type: "single",
-            question: "关于下面 C++ 程序的描述，（ ）最准确。\n```cpp\nifstream in(\"data.txt\");\nstring line;\nwhile (getline(in, line)) {\n    cout << line << endl;\n}\n```",
+            question: `关于下面 C++ 程序的描述，（ ）最准确。\n\`\`\`cpp\nifstream in("data.txt");\nstring line;\nwhile (getline(in, line)) {\n cout << line << endl;\n}\n\`\`\``,
             options: [
                 "将从标准输入读取每行，并输出到屏幕",
                 "程序无法运行，因为 getline 只能读取 cin",
@@ -207,7 +207,7 @@ export const paperData = {
         {
             id: 14,
             type: "single",
-            question: "在 C++ 中，异常处理机制（try-catch块）的主要目的是（ ）。",
+            question: `在 C++ 中，异常处理机制（try-catch块）的主要目的是（ ）。`,
             options: [
                 "提高程序的运行速度",
                 "在程序发生运行时错误时，提供一种结构化的错误处理方式",
@@ -222,7 +222,7 @@ export const paperData = {
         {
             id: 15,
             type: "single",
-            question: "为了提高冒泡排序的效率，如果某轮“冒泡”中没有执行任何交换操作，说明数组已经完成排序，可直接返回结果，则两条横线上分别应该填写（ ）。\n```cpp\nvoid bubbleSortWithFlag(vector<int> &nums) {\n    for (int i = nums.size()-1; i > 0; i--) {\n        bool flag = false; // 横线 1\n        for (int j = 0; j < i; j++) {\n            if (nums[j] > nums[j+1]) {\n                swap(nums[j], nums[j+1]);\n                flag = true; // 横线 2\n            }\n        }\n        if (!flag) break;\n    }\n}\n```",
+            question: `为了提高冒泡排序的效率，如果某轮“冒泡”中没有执行任何交换操作，说明数组已经完成排序，可直接返回结果，则两条横线上分别应该填写（ ）。\n\`\`\`cpp\nvoid bubbleSortWithFlag(vector<int> &nums) {\n for (int i = nums.size()-1; i > 0; i--) {\n bool flag = false; // 横线 1\n for (int j = 0; j < i; j++) {\n if (nums[j] > nums[j+1]) {\n swap(nums[j], nums[j+1]);\n flag = true; // 横线 2\n }\n }\n if (!flag) break;\n }\n}\n\`\`\``,
             options: [
                 "flag = true; flag = false;",
                 "flag = false; flag = true;",
@@ -237,7 +237,7 @@ export const paperData = {
         {
             id: 16,
             type: "judge",
-            question: "C++ 语言中，函数声明 `int add(int, int);` 是合法的。",
+            question: `C++ 语言中，函数声明 \`int add(int, int);\` 是合法的。`,
             options: ["正确", "错误"],
             answer: 0,
             score: 2,
@@ -247,7 +247,7 @@ export const paperData = {
         {
             id: 17,
             type: "judge",
-            question: "在 C++ 中，通过值传递方式将变量传入函数后，在函数内部修改该参数的值，不会影响函数外部原始变量的值。",
+            question: `在 C++ 中，通过值传递方式将变量传入函数后，在函数内部修改该参数的值，不会影响函数外部原始变量的值。`,
             options: ["正确", "错误"],
             answer: 0,
             score: 2,
@@ -257,7 +257,7 @@ export const paperData = {
         {
             id: 18,
             type: "judge",
-            question: "C++ 并不支持嵌套结构体，即在一个结构体内部定义另一个结构体是错误的。",
+            question: `C++ 并不支持嵌套结构体，即在一个结构体内部定义另一个结构体是错误的。`,
             options: ["正确", "错误"],
             answer: 1,
             score: 2,
@@ -267,7 +267,7 @@ export const paperData = {
         {
             id: 19,
             type: "judge",
-            question: "引用传递（Pass-by-reference）在函数调用时不会产生参数的副本，因此在处理大型对象时通常比值传递更高效。",
+            question: `引用传递（Pass-by-reference）在函数调用时不会产生参数的副本，因此在处理大型对象时通常比值传递更高效。`,
             options: ["正确", "错误"],
             answer: 0,
             score: 2,
@@ -277,7 +277,7 @@ export const paperData = {
         {
             id: 20,
             type: "judge",
-            question: "在 C++ 中，定义二维数组时，必须明确地为数组的每一个元素都提供初始化值。",
+            question: `在 C++ 中，定义二维数组时，必须明确地为数组的每一个元素都提供初始化值。`,
             options: ["正确", "错误"],
             answer: 1,
             score: 2,
@@ -287,7 +287,7 @@ export const paperData = {
         {
             id: 21,
             type: "judge",
-            question: "执行以下代码后，变量 `res` 的值将为 `n` 的阶乘。\n```cpp\nint res = 1;\nfor (int i = 0; i < n; i++) {\n    res *= i;\n}\n```",
+            question: `执行以下代码后，变量 \`res\` 的值将为 \`n\` 的阶乘。\n\`\`\`cpp\nint res = 1;\nfor (int i = 0; i < n; i++) {\n res *= i;\n}\n\`\`\``,
             options: ["正确", "错误"],
             answer: 1,
             score: 2,
@@ -297,7 +297,7 @@ export const paperData = {
         {
             id: 22,
             type: "judge",
-            question: "选择排序算法在任何情况下（无论输入数组是否已经有序）的比较次数都是相同的。",
+            question: `选择排序算法在任何情况下（无论输入数组是否已经有序）的比较次数都是相同的。`,
             options: ["正确", "错误"],
             answer: 0,
             score: 2,
@@ -307,7 +307,7 @@ export const paperData = {
         {
             id: 23,
             type: "judge",
-            question: "以下代码实现了选择排序的逻辑（升序）。\n```cpp\nfor (int i = 0; i < n-1; i++) {\n    int minIdx = i;\n    for (int j = i+1; j < n; j++)\n        if (arr[j] < arr[minIdx]) minIdx = j;\n    swap(arr[i], arr[minIdx]);\n}\n```",
+            question: `以下代码实现了选择排序的逻辑（升序）。\n\`\`\`cpp\nfor (int i = 0; i < n-1; i++) {\n int minIdx = i;\n for (int j = i+1; j < n; j++)\n if (arr[j] < arr[minIdx]) minIdx = j;\n swap(arr[i], arr[minIdx]);\n}\n\`\`\``,
             options: ["正确", "错误"],
             answer: 0,
             score: 2,
@@ -317,7 +317,7 @@ export const paperData = {
         {
             id: 24,
             type: "judge",
-            question: "在 C++ 中，如果程序抛出了一个异常，但没有任何 `catch` 块与之匹配，程序将产生编译错误。",
+            question: `在 C++ 中，如果程序抛出了一个异常，但没有任何 \`catch\` 块与之匹配，程序将产生编译错误。`,
             options: ["正确", "错误"],
             answer: 1,
             score: 2,
@@ -327,7 +327,7 @@ export const paperData = {
         {
             id: 25,
             type: "judge",
-            question: "使用 `ofstream outFile(\"output.txt\"); outFile << \"Hello\";` 这种方式可以将字符串 \"Hello\" 写入到 output.txt 文件中。",
+            question: `使用 \`ofstream outFile("output.txt"); outFile << "Hello";\` 这种方式可以将字符串 "Hello" 写入到 output.txt 文件中。`,
             options: ["正确", "错误"],
             answer: 0,
             score: 2,
@@ -357,21 +357,21 @@ hI` }
 
 ## 题目描述
 
-小 A 在高为 \$h\$ 宽为 \$w\$ 的矩形画布上绘制了一幅画。由于画布边缘留白太多，小 A 想适当地裁剪画布，只保留画的主体。具体来说，画布可以视为 \$h\$ 行 \$w\$ 列的字符矩阵，其中的字符均为 ASCII 码位于 \$33 \\sim 126\$ 之间的可见字符，小 A 只保留画布中由第 \$x_1\$ 行到第 \$x_2\$ 行、第 \$y_1\$ 列到第 \$y_2\$ 列构成的子矩阵。
+小 A 在高为 $h$ 宽为 $w$ 的矩形画布上绘制了一幅画。由于画布边缘留白太多，小 A 想适当地裁剪画布，只保留画的主体。具体来说，画布可以视为 $h$ 行 $w$ 列的字符矩阵，其中的字符均为 ASCII 码位于 $33 \\sim 126$ 之间的可见字符，小 A 只保留画布中由第 $x_1$ 行到第 $x_2$ 行、第 $y_1$ 列到第 $y_2$ 列构成的子矩阵。
 
 小 A 将画布交给了你，你能帮他完成画布的裁剪吗？
 
 ## 输入格式
 
-第一行，两个正整数 \$h, w\$，分别表示画布的行数与列数。
+第一行，两个正整数 $h, w$，分别表示画布的行数与列数。
 
-第二行，四个正整数 \$x_1, x_2, y_1, y_2\$，表示保留的行列边界。
+第二行，四个正整数 $x_1, x_2, y_1, y_2$，表示保留的行列边界。
 
-接下来 \$h\$ 行，每行一个长度为 \$w\$ 的字符串，表示画布内容。
+接下来 $h$ 行，每行一个长度为 $w$ 的字符串，表示画布内容。
 
 ## 输出格式
 
-输出共 \$x_2 - x_1 + 1\$ 行，每行一个长度为 \$y_2 - y_1 + 1\$ 的字符串，表示裁剪后的画布。
+输出共 $x_2 - x_1 + 1$ 行，每行一个长度为 $y_2 - y_1 + 1$ 的字符串，表示裁剪后的画布。
 `,
       score: 25,
       explanation: "该题为基础的矩阵裁剪问题。根据输入的四个边界坐标 (x1, x2, y1, y2)，使用嵌套循环遍历并输出原矩阵中对应的子区域即可。",
@@ -402,13 +402,13 @@ hI` }
 
 ## 题目描述
 
-体育课上有 \$n\$ 名同学排成一队，从前往后数第 \$i\$ 位同学的身高为 \$h_i\$，体重为 \$w_i\$。目前排成的队伍看起来参差不齐，老师希望同学们能按照身高从高到低的顺序排队，如果身高相同则按照体重从重到轻排序。在调整队伍时，每次只能交换相邻两位同学的位置。老师想知道，最少需要多少次交换操作，才能将队伍调整成目标顺序。
+体育课上有 $n$ 名同学排成一队，从前往后数第 $i$ 位同学的身高为 $h_i$，体重为 $w_i$。目前排成的队伍看起来参差不齐，老师希望同学们能按照身高从高到低的顺序排队，如果身高相同则按照体重从重到轻排序。在调整队伍时，每次只能交换相邻两位同学的位置。老师想知道，最少需要多少次交换操作，才能将队伍调整成目标顺序。
 
 ## 输入格式
 
-第一行，一个正整数 \$n\$，表示队伍人数。
+第一行，一个正整数 $n$，表示队伍人数。
 
-接下来 \$n\$ 行，每行两个正整数 \$h_i\$ 和 \$w_i\$，分别表示第 \$i\$ 位同学的身高和体重。
+接下来 $n$ 行，每行两个正整数 $h_i$ 和 $w_i$，分别表示第 $i$ 位同学的身高和体重。
 
 ## 输出格式
 

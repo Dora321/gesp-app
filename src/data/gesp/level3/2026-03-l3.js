@@ -19,7 +19,7 @@ export const paperData = {
         {
             id: 1,
             type: 'single',
-            question: '如果字符变量 `_1` 的值是字符 `1`，那么 `(int)_1` 的值是（ ）。',
+            question: `如果字符变量 \`_1\` 的值是字符 \`1\`，那么 \`(int)_1\` 的值是（ ）。`,
             options: ['1', '-1', '49', '+1 或者 -1'],
             answer: 2,
             score: 2,
@@ -29,7 +29,7 @@ export const paperData = {
         {
             id: 2,
             type: 'single',
-            question: '`a`、`b` 是整型变量，各自有互不相同的初始值。下列程序实现了什么效果（ ）。\n```cpp\na = a ^ b;\nb = a ^ b;\na = a ^ b;\n```',
+            question: `\`a\`、\`b\` 是整型变量，各自有互不相同的初始值。下列程序实现了什么效果（ ）。\n\`\`\`cpp\na = a ^ b;\nb = a ^ b;\na = a ^ b;\n\`\`\``,
             options: ['`a`、`b` 的值从始至终都没有改变', '`a`、`b` 的值实现了互换', '`a`、`b` 的值互换了以后，又还回去了，相当于没有变化', '`a`、`b` 的值最后和原值不一样，没有任何意义'],
             answer: 1,
             score: 2,
@@ -39,7 +39,7 @@ export const paperData = {
         {
             id: 3,
             type: 'single',
-            question: "关于下列正确的程序段，说法正确的是（ ）。\n```cpp\nchar str1[] = \"Hello\";\nchar str2[] = {'H', 'e', 'l', 'l', '0'};\ncout << str1 << endl;\ncout << str2 << endl;\n```",
+            question: `关于下列正确的程序段，说法正确的是（ ）。\n\`\`\`cpp\nchar str1[] = "Hello";\nchar str2[] = {'H', 'e', 'l', 'l', '0'};\ncout << str1 << endl;\ncout << str2 << endl;\n\`\`\``,
             options: ['字符数组 `str1` 和 `str2` 完全相同', '这段程序多次执行将输出不同的结果', '字符数组 `str1` 和 `str2` 不相等', '这两个赋值方式完全相同'],
             answer: 2,
             score: 2,
@@ -49,7 +49,7 @@ export const paperData = {
         {
             id: 4,
             type: 'single',
-            question: '关于以下程序段，说法正确的是（ ）。\n```cpp\nint x = 10;\ncout << (x++) + (++x) << endl;\n```',
+            question: `关于以下程序段，说法正确的是（ ）。\n\`\`\`cpp\nint x = 10;\ncout << (x++) + (++x) << endl;\n\`\`\``,
             options: ['C++11 标准中，这是未定义行为，不同的环境有可能出现不同的结果', '22', '21', '20'],
             answer: 0,
             score: 2,
@@ -59,7 +59,7 @@ export const paperData = {
         {
             id: 5,
             type: 'single',
-            question: '8 位二进制下，十进制数 `-15` 的补码是（ ）。',
+            question: `8 位二进制下，十进制数 \`-15\` 的补码是（ ）。`,
             options: ['11110000', '10001111', '10010000', '11110001'],
             answer: 3,
             score: 2,
@@ -69,7 +69,7 @@ export const paperData = {
         {
             id: 6,
             type: 'single',
-            question: '三进制数 `2102(3)` 转换成十进制是（ ）。',
+            question: `三进制数 \`2102(3)\` 转换成十进制是（ ）。`,
             options: ['63', '65', '67', '69'],
             answer: 1,
             score: 2,
@@ -79,7 +79,7 @@ export const paperData = {
         {
             id: 7,
             type: 'single',
-            question: '二进制数 `10110101` 是某数的 8 位补码，该数的十进制是（ ）。',
+            question: `二进制数 \`10110101\` 是某数的 8 位补码，该数的十进制是（ ）。`,
             options: ['-73', '-75', '-77', '75'],
             answer: 1,
             score: 2,
@@ -89,7 +89,7 @@ export const paperData = {
         {
             id: 8,
             type: 'single',
-            question: '已知 `unsigned char c = 0x0F;`（十六进制 `0F` = 二进制 `00001111`），执行 `c = c << 3;` 后，`c` 的十进制值是（ ）。',
+            question: `已知 \`unsigned char c = 0x0F;\`（十六进制 \`0F\` = 二进制 \`00001111\`），执行 \`c = c << 3;\` 后，\`c\` 的十进制值是（ ）。`,
             options: ['64', '72', '80', '120'],
             answer: 3,
             score: 2,
@@ -99,7 +99,7 @@ export const paperData = {
         {
             id: 9,
             type: 'single',
-            question: '补码的情况下，关于按位取反运算，用笔计算的情况下，以下说法错误的是（ ）。',
+            question: `补码的情况下，关于按位取反运算，用笔计算的情况下，以下说法错误的是（ ）。`,
             options: ['`~5` 的结果是 `-6`（`int` 类型，32 位）', '`~0` 的结果是 `0`（`int` 类型，32 位）', '`~(-3)` 的结果是 `2`（`int` 类型，32 位）', '`~8` 的结果是 `-9`（`int` 类型，32 位）'],
             answer: 1,
             score: 2,
@@ -109,7 +109,7 @@ export const paperData = {
         {
             id: 10,
             type: 'single',
-            question: '执行以下 C++ 代码后，`sub` 的值是（ ）。\n```cpp\nstring str = \"GESP2026\";\nstring sub = str.substr(4, 2);\n```',
+            question: `执行以下 C++ 代码后，\`sub\` 的值是（ ）。\n\`\`\`cpp\nstring str = "GESP2026";\nstring sub = str.substr(4, 2);\n\`\`\``,
             options: ['20', '02', '2026', '026'],
             answer: 0,
             score: 2,
@@ -119,7 +119,7 @@ export const paperData = {
         {
             id: 11,
             type: 'single',
-            question: '执行以下代码后，输出结果是（ ）。\n```cpp\nint arr[] = {5, 10, 15, 20, 25, 30};\nint count = sizeof(arr) / sizeof(arr[0]);\ncout << count;\n```',
+            question: `执行以下代码后，输出结果是（ ）。\n\`\`\`cpp\nint arr[] = {5, 10, 15, 20, 25, 30};\nint count = sizeof(arr) / sizeof(arr[0]);\ncout << count;\n\`\`\``,
             options: ['4', '6', '24', '30'],
             answer: 1,
             score: 2,
@@ -129,7 +129,7 @@ export const paperData = {
         {
             id: 12,
             type: 'single',
-            question: '执行以下代码后，输出结果是（ ）。\n```cpp\nchar s[10] = \"abcde\";\nint a = sizeof(s) / sizeof(s[0]);\nint b = strlen(s);\ncout << a - b;\n```',
+            question: `执行以下代码后，输出结果是（ ）。\n\`\`\`cpp\nchar s[10] = "abcde";\nint a = sizeof(s) / sizeof(s[0]);\nint b = strlen(s);\ncout << a - b;\n\`\`\``,
             options: ['4', '5', '6', '10'],
             answer: 1,
             score: 2,
@@ -139,7 +139,7 @@ export const paperData = {
         {
             id: 13,
             type: 'single',
-            question: '以下问题中，最不适合用枚举法解决的是（ ）。',
+            question: `以下问题中，最不适合用枚举法解决的是（ ）。`,
             options: ['找出 `1~100` 之间所有能被 `7` 整除的数', '找出 `100~200` 之间的所有质数', '计算 `1+2+3+...+1000` 的和', '找出三位数中个位、十位、百位数字之和等于 `10` 的数'],
             answer: 2,
             score: 2,
@@ -149,7 +149,7 @@ export const paperData = {
         {
             id: 14,
             type: 'single',
-            question: '用枚举法解决“鸡兔同笼问题：头共 35 个，脚共 94 只，求鸡和兔的数量”，以下枚举逻辑最合理的是（ ）。',
+            question: `用枚举法解决“鸡兔同笼问题：头共 35 个，脚共 94 只，求鸡和兔的数量”，以下枚举逻辑最合理的是（ ）。`,
             options: [
                 '枚举鸡的数量 `x`（`0~35`），兔的数量 `y = 35 - x`，判断 `2*x + 4*y == 94`',
                 '枚举兔的数量 `y`（`0~94`），鸡的数量 `x = 35 - y`，判断 `2*x + 4*y == 94`',
@@ -164,7 +164,7 @@ export const paperData = {
         {
             id: 15,
             type: 'single',
-            question: "模拟“字符串加密”：规则为“每个字符 ASCII 码 + 3，若超过 `z`（122）则从 `a` 重新开始”，以下代码中正确的条件判断是（ ）。\n```cpp\nfor (int i = 0; i < str.length(); i++) {\n    // 需补充条件：\n    _______________________\n    else {\n        str[i] += 3;\n    }\n}\n```",
+            question: `模拟“字符串加密”：规则为“每个字符 ASCII 码 + 3，若超过 \`z\`（122）则从 \`a\` 重新开始”，以下代码中正确的条件判断是（ ）。\n\`\`\`cpp\nfor (int i = 0; i < str.length(); i++) {\n // 需补充条件：\n _______________________\n else {\n str[i] += 3;\n }\n}\n\`\`\``,
             options: [
                 '```cpp\nif (str[i] > 122) str[i] = str[i] + 3 - 26;\n```',
                 '```cpp\nif (str[i] > 122) str[i] = str[i] - 26;\n```',
@@ -179,7 +179,7 @@ export const paperData = {
         {
             id: 16,
             type: 'judge',
-            question: '定义 `int arr[5] = {1,2,3};`，则 `arr[3]` 的值为 `0`，`arr[5]` 是合法下标。',
+            question: `定义 \`int arr[5] = {1,2,3};\`，则 \`arr[3]\` 的值为 \`0\`，\`arr[5]\` 是合法下标。`,
             options: ['正确', '错误'],
             answer: 1,
             score: 2,
@@ -189,7 +189,7 @@ export const paperData = {
         {
             id: 17,
             type: 'judge',
-            question: '定义 `double arr[10];`，未手动初始化时，数组中所有元素的默认值为 `0.0`。',
+            question: `定义 \`double arr[10];\`，未手动初始化时，数组中所有元素的默认值为 \`0.0\`。`,
             options: ['正确', '错误'],
             answer: 1,
             score: 2,
@@ -199,7 +199,7 @@ export const paperData = {
         {
             id: 18,
             type: 'judge',
-            question: '定义 `int arr[] = {1,2,3};`，则 `sizeof(arr)` 的结果为 `12`（`int` 占 4 字节）。',
+            question: `定义 \`int arr[] = {1,2,3};\`，则 \`sizeof(arr)\` 的结果为 \`12\`（\`int\` 占 4 字节）。`,
             options: ['正确', '错误'],
             answer: 0,
             score: 2,
@@ -209,7 +209,7 @@ export const paperData = {
         {
             id: 19,
             type: 'judge',
-            question: '下面的流程图是用来求 `1+2+3+...+10` 的和。请判断：这个流程图的逻辑正确还是错误？',
+            question: `下面的流程图是用来求 \`1+2+3+...+10\` 的和。请判断：这个流程图的逻辑正确还是错误？`,
             options: ['正确', '错误'],
             answer: 0,
             score: 2,
@@ -219,7 +219,7 @@ export const paperData = {
         {
             id: 20,
             type: 'judge',
-            question: '下面流程图的功能是计算 `5` 对 `2` 取余数，输出结果为 `1`。',
+            question: `下面流程图的功能是计算 \`5\` 对 \`2\` 取余数，输出结果为 \`1\`。`,
             options: ['正确', '错误'],
             answer: 0,
             score: 2,
@@ -229,7 +229,7 @@ export const paperData = {
         {
             id: 21,
             type: 'judge',
-            question: '已知大写字符 `A` 的 ASCII 编码的十六进制表示为 `0x41`，计算字符 `m` 的 ASCII 编码的八进制表示为 `155`（八进制）。',
+            question: `已知大写字符 \`A\` 的 ASCII 编码的十六进制表示为 \`0x41\`，计算字符 \`m\` 的 ASCII 编码的八进制表示为 \`155\`（八进制）。`,
             options: ['正确', '错误'],
             answer: 0,
             score: 2,
@@ -239,7 +239,7 @@ export const paperData = {
         {
             id: 22,
             type: 'judge',
-            question: '在 C++ 位运算中，各种不同的运算符有优先级的区分，使用括号能够解决优先级的问题。',
+            question: `在 C++ 位运算中，各种不同的运算符有优先级的区分，使用括号能够解决优先级的问题。`,
             options: ['正确', '错误'],
             answer: 0,
             score: 2,
@@ -249,7 +249,7 @@ export const paperData = {
         {
             id: 23,
             type: 'judge',
-            question: "由于在 `0~255` 范围内，`char` 类型和 `int` 类型可以互换，因此在这里 `x` 和 `y` 相等。\n```cpp\nchar x = '1';\nint y = 1;\n```",
+            question: `由于在 \`0~255\` 范围内，\`char\` 类型和 \`int\` 类型可以互换，因此在这里 \`x\` 和 \`y\` 相等。\n\`\`\`cpp\nchar x = '1';\nint y = 1;\n\`\`\``,
             options: ['正确', '错误'],
             answer: 1,
             score: 2,
@@ -259,7 +259,7 @@ export const paperData = {
         {
             id: 24,
             type: 'judge',
-            question: '在 C++ 语言中，表达式 `((0xf0 + 0x15) == 255)` 的值为 `true`。',
+            question: `在 C++ 语言中，表达式 \`((0xf0 + 0x15) == 255)\` 的值为 \`true\`。`,
             options: ['正确', '错误'],
             answer: 1,
             score: 2,
@@ -269,7 +269,7 @@ export const paperData = {
         {
             id: 25,
             type: 'judge',
-            question: '如果 `a` 为 `int` 类型的变量，且 `a` 的二进制最低位为 `0`，则表达式 `((a & 3 & 1) == 0)` 的值为 `true`。',
+            question: `如果 \`a\` 为 \`int\` 类型的变量，且 \`a\` 的二进制最低位为 \`0\`，则表达式 \`((a & 3 & 1) == 0)\` 的值为 \`true\`。`,
             options: ['正确', '错误'],
             answer: 0,
             score: 2,

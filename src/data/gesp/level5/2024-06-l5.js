@@ -17,19 +17,19 @@ const programmingQuestions = [
 
 ## 题目描述
 
-小杨有一个 \$n\$ 行 \$m\$ 列的网格图，其中每个格子要么是白色，要么是黑色。
+小杨有一个 $n$ 行 $m$ 列的网格图，其中每个格子要么是白色，要么是黑色。
 
-小杨想知道至少包含 \$k\$ 个黑色格子的最小子矩形包含了多少个格子。
+小杨想知道至少包含 $k$ 个黑色格子的最小子矩形包含了多少个格子。
 
 ## 输入格式
 
-第一行包含三个正整数 \$n,m,k\$，含义如题面所示。
+第一行包含三个正整数 $n,m,k$，含义如题面所示。
 
-之后 \$n\$ 行，每行⼀个长度为 \$m\$ 的 \$\\texttt{01}\$ 串，代表网格图第 \$i\$ 行格子的颜色，如果为 \$\\texttt{0}\$，则对应格子为白色，否则为黑色。
+之后 $n$ 行，每行⼀个长度为 $m$ 的 $\\texttt{01}$ 串，代表网格图第 $i$ 行格子的颜色，如果为 $\\texttt{0}$，则对应格子为白色，否则为黑色。
 
 ## 输出格式
 
-输出一个整数，代表至少包含 \$k\$ 个黑色格子的最小子矩形包含格子的数量，如果不存在则输出 \$0\$。
+输出一个整数，代表至少包含 $k$ 个黑色格子的最小子矩形包含格子的数量，如果不存在则输出 $0$。
 `,
       score: 25,
       explanation: "由于 n, m 较小（最大 100），可以枚举子矩形的上下边界 (r1, r2)，然后利用双指针或暴力枚举左右边界 (c1, c2)。利用二维前缀和快速计算子矩形内 1 的个数。",
@@ -55,19 +55,19 @@ const programmingQuestions = [
 
 ## 题目描述
 
-小杨认为他的幸运数字应该恰好有两种不同的质因子，例如，\$12=2\\times 2\\times 3\$ 的质因子有 \$2,3\$，恰好为两种不同的质因子，因此 \$12\$ 是幸运数字，而 \$30=2\\times3\\times5\$ 的质因子有 \$2,3,5\$，不符合要求，不为幸运数字。
+小杨认为他的幸运数字应该恰好有两种不同的质因子，例如，$12=2\\times 2\\times 3$ 的质因子有 $2,3$，恰好为两种不同的质因子，因此 $12$ 是幸运数字，而 $30=2\\times3\\times5$ 的质因子有 $2,3,5$，不符合要求，不为幸运数字。
 
-小杨现在有 \$n\$ 个正整数，他想知道每个正整数是否是他的幸运数字。
+小杨现在有 $n$ 个正整数，他想知道每个正整数是否是他的幸运数字。
 
 ## 输入格式
 
-第一行包含一个正整数 \$n\$，代表正整数个数。
+第一行包含一个正整数 $n$，代表正整数个数。
 
-之后 \$n\$ 行，每行一个正整数。
+之后 $n$ 行，每行一个正整数。
 
 ## 输出格式
 
-输出 \$n\$ 行，对于每个正整数，如果是幸运数字，输出 \$1\$，否则输出 \$0\$。
+输出 $n$ 行，对于每个正整数，如果是幸运数字，输出 $1$，否则输出 $0$。
 `,
       score: 25,
       explanation: "遍历 [L, R] 之间的每一个数字，判断其是否能被 7 整除或包含数字 7。由于范围较小，直接模拟即可。",
@@ -90,7 +90,7 @@ export const paperData = {
         {
             id: 1,
             type: "single",
-            question: "下面 C++ 代码用于求斐波那契数列，该数列第 1、2 项为 1，以后各项均是前两项之和。函数 fibo() 属于 ( ) 。",
+            question: `下面 C++ 代码用于求斐波那契数列，该数列第 1、2 项为 1，以后各项均是前两项之和。函数 fibo() 属于 ( ) 。`,
             options: ["枚举算法", "贪心算法", "迭代算法", "递归算法"],
             answer: 2,
             score: 2,
@@ -100,7 +100,7 @@ export const paperData = {
         {
             id: 2,
             type: "single",
-            question: "下面 C++ 代码用于将输入金额换成最少币种组合方案，其实现算法是 ( ) 。",
+            question: `下面 C++ 代码用于将输入金额换成最少币种组合方案，其实现算法是 ( ) 。`,
             options: ["分治算法", "贪心算法", "动态规划", "枚举算法"],
             answer: 1,
             score: 2,
@@ -110,7 +110,7 @@ export const paperData = {
         {
             id: 3,
             type: "single",
-            question: "关于双向链表，下列说法错误的是（ ）。",
+            question: `关于双向链表，下列说法错误的是（ ）。`,
             options: ["每个节点包含指向前驱和后继的指针", "可以在 $O(1)$ 时间内删除已知节点", "支持随机访问", "支持双向遍历"],
             answer: 2,
             score: 2,
@@ -120,17 +120,17 @@ export const paperData = {
         {
             id: 4,
             type: "single",
-            question: "下列哪个时间复杂度最低（ ）。",
-            options: ["$O(n \log n)$", "$O(N^2)$", "$O(\log n)$", "$O(N)$"],
+            question: `下列哪个时间复杂度最低（ ）。`,
+            options: ["$O(n log n)$", "$O(N^2)$", "$O(log n)$", "$O(N)$"],
             answer: 2,
             score: 2,
-            explanation: "常见复杂度排序：$O(1)$ < $O(\log n)$ < $O(N)$ < $O(n \log n)$ < $O(N^2)$。",
+            explanation: "常见复杂度排序：$O(1)$ < $O(log n)$ < $O(N)$ < $O(n log n)$ < $O(N^2)$。",
             tags: ["客观题", "单选题", "GESP5级"]
         },
         {
             id: 5,
             type: "single",
-            question: "关于 C++ 的类和继承，下列说法正确的是（ ）。",
+            question: `关于 C++ 的类和继承，下列说法正确的是（ ）。`,
             options: ["私有成员可以被派生类访问", "公有继承时，基类的公有成员在派生类中变为私有", "基类的析构函数通常应声明为虚函数", "一个派生类只能继承一个基类"],
             answer: 2,
             score: 2,
@@ -140,7 +140,7 @@ export const paperData = {
         {
             id: 6,
             type: "single",
-            question: "下列哪个算法用于寻找质数（ ）。",
+            question: `下列哪个算法用于寻找质数（ ）。`,
             options: ["冒泡排序", "二分查找", "埃氏筛法", "贪心算法"],
             answer: 2,
             score: 2,
@@ -150,7 +150,7 @@ export const paperData = {
         {
             id: 7,
             type: "single",
-            question: "在 C++ 中，`std::queue` 的入队操作是（ ）。",
+            question: `在 C++ 中，\`std::queue\` 的入队操作是（ ）。`,
             options: ["push", "pop", "front", "back"],
             answer: 0,
             score: 2,
@@ -160,8 +160,8 @@ export const paperData = {
         {
             id: 8,
             type: "single",
-            question: "归并排序合并两个长度为 N 的有序数组，最坏情况下的比较次数是（ ）。",
-            options: ["$O(1)$", "$O(\log n)$", "$O(N)$", "$O(n \log n)$"],
+            question: `归并排序合并两个长度为 N 的有序数组，最坏情况下的比较次数是（ ）。`,
+            options: ["$O(1)$", "$O(log n)$", "$O(N)$", "$O(n log n)$"],
             answer: 2,
             score: 2,
             explanation: "合并操作的时间复杂度是 $O(N)$。",
@@ -170,7 +170,7 @@ export const paperData = {
         {
             id: 9,
             type: "single",
-            question: "下列关于堆栈的说法，正确的是（ ）。",
+            question: `下列关于堆栈的说法，正确的是（ ）。`,
             options: ["先进先出", "后进先出", "支持下标访问", "底层通常由数组实现"],
             answer: 1,
             score: 2,
@@ -180,7 +180,7 @@ export const paperData = {
         {
             id: 10,
             type: "single",
-            question: "在 C++ 中，`new` 和 `malloc` 的区别不包括（ ）。",
+            question: `在 C++ 中，\`new\` 和 \`malloc\` 的区别不包括（ ）。`,
             options: ["new 是运算符，malloc 是函数", "new 会自动调用构造函数", "new 返回具体类型的指针，malloc 返回 void*", "new 只能在 Windows 系统使用"],
             answer: 3,
             score: 2,
@@ -190,7 +190,7 @@ export const paperData = {
         {
             id: 11,
             type: "single",
-            question: "唯一分解定理表明任何一个大于 1 的整数都可以唯一地表示为一系列（ ）的乘积。",
+            question: `唯一分解定理表明任何一个大于 1 的整数都可以唯一地表示为一系列（ ）的乘积。`,
             options: ["合数", "偶数", "质数", "奇数"],
             answer: 2,
             score: 2,
@@ -200,7 +200,7 @@ export const paperData = {
         {
             id: 12,
             type: "single",
-            question: "快速排序的基础操作是（ ）。",
+            question: `快速排序的基础操作是（ ）。`,
             options: ["分区", "合并", "筛选", "搜索"],
             answer: 0,
             score: 2,
@@ -210,7 +210,7 @@ export const paperData = {
         {
             id: 13,
             type: "single",
-            question: "在 C++ 中，下列哪个关键字用于声明命名空间（ ）。",
+            question: `在 C++ 中，下列哪个关键字用于声明命名空间（ ）。`,
             options: ["class", "struct", "namespace", "using"],
             answer: 2,
             score: 2,
@@ -220,7 +220,7 @@ export const paperData = {
         {
             id: 14,
             type: "single",
-            question: "下列哪个操作属于线性表的基本操作（ ）。",
+            question: `下列哪个操作属于线性表的基本操作（ ）。`,
             options: ["插入", "排序", "查找", "以上都是"],
             answer: 3,
             score: 2,
@@ -230,7 +230,7 @@ export const paperData = {
         {
             id: 15,
             type: "single",
-            question: "关于 C++ 的静态成员，下列说法错误的是（ ）。",
+            question: `关于 C++ 的静态成员，下列说法错误的是（ ）。`,
             options: ["静态成员变量为所有对象共有", "静态成员函数可以直接访问非静态成员变量", "静态成员需要在类外初始化", "可以通过类名直接调用静态成员函数"],
             answer: 1,
             score: 2,
@@ -240,7 +240,7 @@ export const paperData = {
         {
             id: 16,
             type: "judge",
-            question: "如果将双向链表的最后一个结点的下一项指针指向第一个结点，第一个结点的前一项指针指向最后一个结点，则该双向链表构成循环链表。",
+            question: `如果将双向链表的最后一个结点的下一项指针指向第一个结点，第一个结点的前一项指针指向最后一个结点，则该双向链表构成循环链表。`,
             options: ["正确", "错误"],
             answer: 0,
             score: 2,
@@ -250,7 +250,7 @@ export const paperData = {
         {
             id: 17,
             type: "judge",
-            question: "数组和链表都是线性表，链表的优点是插入删除不需要移动元素，并且能随机查找。",
+            question: `数组和链表都是线性表，链表的优点是插入删除不需要移动元素，并且能随机查找。`,
             options: ["正确", "错误"],
             answer: 1,
             score: 2,
@@ -260,7 +260,7 @@ export const paperData = {
         {
             id: 18,
             type: "judge",
-            question: "链表的存储空间物理上可以连续，也可以不连续。",
+            question: `链表的存储空间物理上可以连续，也可以不连续。`,
             options: ["正确", "错误"],
             answer: 0,
             score: 2,
@@ -270,7 +270,7 @@ export const paperData = {
         {
             id: 19,
             type: "judge",
-            question: "找出自然数 n 以内的所有质数，常用算法有埃拉托斯特尼（埃氏）筛法和线性筛法，其中埃氏筛法效率更高。",
+            question: `找出自然数 n 以内的所有质数，常用算法有埃拉托斯特尼（埃氏）筛法和线性筛法，其中埃氏筛法效率更高。`,
             options: ["正确", "错误"],
             answer: 1,
             score: 2,
@@ -280,7 +280,7 @@ export const paperData = {
         {
             id: 20,
             type: "judge",
-            question: "唯一分解定理表明任何一个大于 1 的整数都可以唯一地表示为一系列质数的乘积，即质因数分解是唯一的。",
+            question: `唯一分解定理表明任何一个大于 1 的整数都可以唯一地表示为一系列质数的乘积，即质因数分解是唯一的。`,
             options: ["正确", "错误"],
             answer: 0,
             score: 2,
@@ -290,7 +290,7 @@ export const paperData = {
         {
             id: 21,
             type: "judge",
-            question: "贪心算法通过每一步选择局部最优解来获得全局最优解，但并不一定能找到最优解。",
+            question: `贪心算法通过每一步选择局部最优解来获得全局最优解，但并不一定能找到最优解。`,
             options: ["正确", "错误"],
             answer: 0,
             score: 2,
@@ -300,7 +300,7 @@ export const paperData = {
         {
             id: 22,
             type: "judge",
-            question: "归并排序和快速排序都采用递归实现，也都是不稳定排序。",
+            question: `归并排序和快速排序都采用递归实现，也都是不稳定排序。`,
             options: ["正确", "错误"],
             answer: 1,
             score: 2,
@@ -310,7 +310,7 @@ export const paperData = {
         {
             id: 23,
             type: "judge",
-            question: "插入排序有时比快速排序时间复杂度更低。",
+            question: `插入排序有时比快速排序时间复杂度更低。`,
             options: ["正确", "错误"],
             answer: 0,
             score: 2,
@@ -320,7 +320,7 @@ export const paperData = {
         {
             id: 24,
             type: "judge",
-            question: "在进行全国人口普查时，将其分解为对每个省市县乡来进行普查和统计。这是典型的分治策略。",
+            question: `在进行全国人口普查时，将其分解为对每个省市县乡来进行普查和统计。这是典型的分治策略。`,
             options: ["正确", "错误"],
             answer: 0,
             score: 2,
@@ -330,7 +330,7 @@ export const paperData = {
         {
             id: 25,
             type: "judge",
-            question: "在 C++ 代码中，执行 `delete ptr;` 后，ptr 对应的数据被销毁，再次使用该指针会导致未定义行为。",
+            question: `在 C++ 代码中，执行 \`delete ptr;\` 后，ptr 对应的数据被销毁，再次使用该指针会导致未定义行为。`,
             options: ["正确", "错误"],
             answer: 0,
             score: 2,

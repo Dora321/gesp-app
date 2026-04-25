@@ -16,15 +16,15 @@ const programmingQuestions = [
 
 ## 题目描述
 
-班主任给上课专心听讲、认真完成作业的同学们分别发放了若干张课堂优秀券和作业优秀券。同学们可以使用这两种券找班主任兑换奖品。具体来说，可以使用 \$a\$ 张课堂优秀券和 \$b\$ 张作业优秀券兑换一份奖品，或者使用 \$b\$ 张课堂优秀券和 \$a\$ 张作业优秀券兑换一份奖品。
+班主任给上课专心听讲、认真完成作业的同学们分别发放了若干张课堂优秀券和作业优秀券。同学们可以使用这两种券找班主任兑换奖品。具体来说，可以使用 $a$ 张课堂优秀券和 $b$ 张作业优秀券兑换一份奖品，或者使用 $b$ 张课堂优秀券和 $a$ 张作业优秀券兑换一份奖品。
 
-现在小 A 有 \$n\$ 张课堂优秀券和 \$m\$ 张作业优秀券，他最多能兑换多少份奖品呢？
+现在小 A 有 $n$ 张课堂优秀券和 $m$ 张作业优秀券，他最多能兑换多少份奖品呢？
 
 ## 输入格式
 
-第一行，两个正整数 \$n,m\$，分别表示小 A 持有的课堂优秀券和作业优秀券的数量。
+第一行，两个正整数 $n,m$，分别表示小 A 持有的课堂优秀券和作业优秀券的数量。
 
-第二行，两个正整数 \$a,b\$，表示兑换一份奖品所需的两种券的数量。
+第二行，两个正整数 $a,b$，表示兑换一份奖品所需的两种券的数量。
 
 ## 输出格式
 
@@ -58,21 +58,21 @@ const programmingQuestions = [
 
 ## 题目描述
 
-对于两个正整数 \$a,b\$，他们的最大公因数记为 \$\\gcd(a,b)\$。对于 \$k > 3\$ 个正整数 \$c_1,c_2,\\dots,c_k\$，他们的最大公因数为：
+对于两个正整数 $a,b$，他们的最大公因数记为 $\\gcd(a,b)$。对于 $k > 3$ 个正整数 $c_1,c_2,\\dots,c_k$，他们的最大公因数为：
 
-\$\\gcd(c_1,c_2,\\dots,c_k)=\\gcd(\\gcd(c_1,c_2,\\dots,c_{k-1}),c_k)\$
+$\\gcd(c_1,c_2,\\dots,c_k)=\\gcd(\\gcd(c_1,c_2,\\dots,c_{k-1}),c_k)$
 
-给定 \$n\$ 个正整数 \$a_1,a_2,\\dots,a_n\$ 以及 \$q\$ 组询问。对于第 \$i(1 \\le i \\le q)\$ 组询问，请求出 \$a_1+i,a_2+i,\\dots,a_n+i\$ 的最大公因数，也即 \$\\gcd(a_1+i,a_2+i,\\dots,a_n+i)\$。
+给定 $n$ 个正整数 $a_1,a_2,\\dots,a_n$ 以及 $q$ 组询问。对于第 $i(1 \\le i \\le q)$ 组询问，请求出 $a_1+i,a_2+i,\\dots,a_n+i$ 的最大公因数，也即 $\\gcd(a_1+i,a_2+i,\\dots,a_n+i)$。
 
 ## 输入格式
 
-第一行，两个正整数 \$n,q\$，分别表示给定正整数的数量，以及询问组数。
+第一行，两个正整数 $n,q$，分别表示给定正整数的数量，以及询问组数。
 
-第二行，\$n\$ 个正整数 \$a_1,a_2,\\dots,a_n\$。
+第二行，$n$ 个正整数 $a_1,a_2,\\dots,a_n$。
 
 ## 输出格式
 
-输出共 \$q\$ 行，第 \$i\$ 行包含一个正整数，表示 \$a_1+i,a_2+i,\\dots,a_n+i\$ 的最大公因数。
+输出共 $q$ 行，第 $i$ 行包含一个正整数，表示 $a_1+i,a_2+i,\\dots,a_n+i$ 的最大公因数。
 `,
       score: 25,
       explanation: "将数组排序后，设所有相邻差值的 gcd 为 g，则 gcd(a_1+i,a_2+i,...,a_n+i) = gcd(g, a_1+i)。因此预处理一次差分 gcd 后，每次询问只需再求一次 gcd。",
@@ -95,7 +95,7 @@ export const paperData = {
         {
             id: 1,
             type: "single",
-            question: "与数组相比，链表在（ ）操作上通常具有更高的效率。",
+            question: `与数组相比，链表在（ ）操作上通常具有更高的效率。`,
             options: [
                 "随机访问元素",
                 "查找指定元素",
@@ -114,7 +114,7 @@ export const paperData = {
         {
             id: 2,
             type: "single",
-            question: "下面 C++ 代码实现双向链表。函数 is_empty() 判断链表是否为空，如链表为空返回 true，否则返回 false。横线处不能填写的是（ ）。",
+            question: `下面 C++ 代码实现双向链表。函数 is_empty() 判断链表是否为空，如链表为空返回 true，否则返回 false。横线处不能填写的是（ ）。`,
             options: [
                 "return head == nullptr;",
                 "return tail == nullptr;",
@@ -133,7 +133,7 @@ export const paperData = {
         {
             id: 3,
             type: "single",
-            question: "基于上题代码正确的前提下，填入相应代码完善 append() ，用于在双向链表尾部增加新节点，横线上应填 写（ ）。",
+            question: `基于上题代码正确的前提下，填入相应代码完善 append() ，用于在双向链表尾部增加新节点，横线上应填 写（ ）。`,
             options: [
                 "list->head->prev = list->head; list->tail->prev = list->head;",
                 "list->head->next = list->tail; list->tail->prev = list->head;",
@@ -152,7 +152,7 @@ export const paperData = {
         {
             id: 4,
             type: "single",
-            question: "下列 C++ 代码用循环链表解决约瑟夫问题。假设 n 个人围成一圈，从第一个人开始数，每次数到第 k 个人的人就出圈，输出最后留下的那个人的编号。横线上应填写的是（ ）。",
+            question: `下列 C++ 代码用循环链表解决约瑟夫问题。假设 n 个人围成一圈，从第一个人开始数，每次数到第 k 个人的人就出圈，输出最后留下的那个人的编号。横线上应填写的是（ ）。`,
             options: [
                 "[待补充选项]",
                 "选项B",
@@ -171,7 +171,7 @@ export const paperData = {
         {
             id: 5,
             type: "single",
-            question: "下列 C++ 代码判断一个正整数是否是质数，说法正确的是（ ）。",
+            question: `下列 C++ 代码判断一个正整数是否是质数，说法正确的是（ ）。`,
             options: [
                 "代码存在错误，比如 5 是质数，但因为5 % 5 余数是 0 返回了false",
                 "finish_number 的值应该是n / 2 ，当前写法将导致错误",
@@ -190,7 +190,7 @@ export const paperData = {
         {
             id: 6,
             type: "single",
-            question: "下列 C++ 代码用两种方式求解两个正整数的最大公约数，说法错误的是 ( ) 。",
+            question: `下列 C++ 代码用两种方式求解两个正整数的最大公约数，说法错误的是 ( ) 。`,
             options: [
                 "gcd0() 函数的时间复杂度较高，通常为 O(min(a,b)) 量级。",
                 "gcd1()（欧几里得算法）通常比枚举因子的做法更高效。",
@@ -209,7 +209,7 @@ export const paperData = {
         {
             id: 7,
             type: "single",
-            question: "下面的代码用于判断整数是否是质数，错误的说法是（ ）。",
+            question: `下面的代码用于判断整数是否是质数，错误的说法是（ ）。`,
             options: [
                 "埃⽒筛算法相对于上面的代码效率更高",
                 "线性筛算法相对于上面的代码效率更高",
@@ -228,7 +228,7 @@ export const paperData = {
         {
             id: 8,
             type: "single",
-            question: "唯一分解定理描述了关于正整数的什么性质？",
+            question: `唯一分解定理描述了关于正整数的什么性质？`,
             options: [
                 "任何正整数都可以表⽰为两个素数的和。",
                 "任何大于 1 的合数都可以唯一分解为有限个质数的乘积。",
@@ -247,7 +247,7 @@ export const paperData = {
         {
             id: 9,
             type: "single",
-            question: "下面的 C++ 代码，用于求一系列数据中的最大值。有关其算法说法错误的是（ ）。",
+            question: `下面的 C++ 代码，用于求一系列数据中的最大值。有关其算法说法错误的是（ ）。`,
             options: [
                 "该算法采用分治算法",
                 "该算法是递归实现",
@@ -266,12 +266,12 @@ export const paperData = {
         {
             id: 10,
             type: "single",
-            question: "下面的 C++ 代码用于求一系列数据中的最大值。有关其算法说法错误的是（ ）。",
+            question: `下面的 C++ 代码用于求一系列数据中的最大值。有关其算法说法错误的是（ ）。`,
             options: [
                 "本题 find_max() 函数采用的是迭代算法",
                 "本题 find_max() 函数的时间复杂度为 $O(N)$",
                 "和上一题的递归版 find_max() 相比，这里没有递归调用带来的栈开销",
-                "本题 find_max() 与上一题递归版的空间复杂度相同，都是 $O(\log n)$",
+                "本题 find_max() 与上一题递归版的空间复杂度相同，都是 $O(log n)$",
             ],
             answer: 3,
             score: 2,
@@ -285,7 +285,7 @@ export const paperData = {
         {
             id: 11,
             type: "single",
-            question: "下面的 C++ 代码用于在升序数组 lst 中查找目标值 target 最后一次出现的位置。相关说法，正确的是（ ）。",
+            question: `下面的 C++ 代码用于在升序数组 lst 中查找目标值 target 最后一次出现的位置。相关说法，正确的是（ ）。`,
             options: [
                 "当 lst 中存在重复的 target 时，该函数总能返回最后一个 target 的位置，即便 lst 全由相同元素组成",
                 "当 target 小于 lst 中所有元素时，该函数会返回 0",
@@ -304,7 +304,7 @@ export const paperData = {
         {
             id: 12,
             type: "single",
-            question: "有关下面使用二分法求平方根的 C++ 代码的说法，错误的是（ ）。",
+            question: `有关下面使用二分法求平方根的 C++ 代码的说法，错误的是（ ）。`,
             options: [
                 "“阶段 1”的目标是先判断正整数 n 是否有整数平方根",
                 "“阶段 2”的目标是当 n 不是完全平方数时，在相邻整数平方根之间继续二分逼近",
@@ -323,7 +323,7 @@ export const paperData = {
         {
             id: 13,
             type: "single",
-            question: "硬币找零问题中要求找给客户最少的硬币。coins 存储可用硬币面额，amount 为待找零金额。下面是其实现代码，相关说法正确的是（ ）。",
+            question: `硬币找零问题中要求找给客户最少的硬币。coins 存储可用硬币面额，amount 为待找零金额。下面是其实现代码，相关说法正确的是（ ）。`,
             options: [
                 "上述代码采用贪心算法实现",
                 "针对任意面额系统，上述代码总能找到最优解",
@@ -342,11 +342,11 @@ export const paperData = {
         {
             id: 14,
             type: "single",
-            question: "关于下述 C++ 代码的快速排序算法，说法错误的是（ ）。",
+            question: `关于下述 C++ 代码的快速排序算法，说法错误的是（ ）。`,
             options: [
                 "在 randomPartition 函数中，变量 i 的作用是记录不大于基准值元素区间的右边界",
                 "randomPartition 随机选择基准值，可以降低遇到最坏情况 $O(N^2)$ 的概率",
-                "快速排序的平均时间复杂度是 $O(n \log n)$",
+                "快速排序的平均时间复杂度是 $O(n log n)$",
                 "快速排序是稳定排序算法",
             ],
             answer: 3,
@@ -361,7 +361,7 @@ export const paperData = {
         {
             id: 15,
             type: "single",
-            question: "小杨编写了一个如下的高精度除法函数，则在把下一位加入余数时，横线上应填写的代码为（ ）。",
+            question: `小杨编写了一个如下的高精度除法函数，则在把下一位加入余数时，横线上应填写的代码为（ ）。`,
             options: [
                 "r.d[0] = a.d[i]; r.len++;",
                 "r.d[i] = a.d[i]; r.len++;",
@@ -380,7 +380,7 @@ export const paperData = {
         {
             id: 16,
             type: "judge",
-            question: "下面 C++ 代码是用欧⼏⾥得算法（辗转相除法）求两个正整数的最大公约数，a 大于b 还是小于b 都适用。",
+            question: `下面 C++ 代码是用欧⼏⾥得算法（辗转相除法）求两个正整数的最大公约数，a 大于b 还是小于b 都适用。`,
             options: [
                 "正确",
                 "错误",
@@ -397,7 +397,7 @@ export const paperData = {
         {
             id: 17,
             type: "judge",
-            question: "假设函数 gcd() 能正确求两个正整数的最大公约数，则下面的 lcm() 函数也能正确求出这两个数的最小公倍数。",
+            question: `假设函数 gcd() 能正确求两个正整数的最大公约数，则下面的 lcm() 函数也能正确求出这两个数的最小公倍数。`,
             options: [
                 "正确",
                 "错误",
@@ -414,7 +414,7 @@ export const paperData = {
         {
             id: 18,
             type: "judge",
-            question: "下面的C++代码用于输出每个数对应的质因数列表，输出形如： {5: [5], 6: [2, 3], 7: [7], 8: [2, 2, 2]} 。",
+            question: `下面的C++代码用于输出每个数对应的质因数列表，输出形如： {5: [5], 6: [2, 3], 7: [7], 8: [2, 2, 2]} 。`,
             options: [
                 "正确",
                 "错误",
@@ -431,7 +431,7 @@ export const paperData = {
         {
             id: 19,
             type: "judge",
-            question: "下面的 C++ 代码实现归并排序。代码在执行时，会输出多次 HERE 字符串，因为 merge() 会在递归过程中被多次调用。",
+            question: `下面的 C++ 代码实现归并排序。代码在执行时，会输出多次 HERE 字符串，因为 merge() 会在递归过程中被多次调用。`,
             options: [
                 "正确",
                 "错误",
@@ -448,7 +448,7 @@ export const paperData = {
         {
             id: 20,
             type: "judge",
-            question: "归并排序的最好、最坏和平均时间复杂度均为 $O(n \log n)$。",
+            question: `归并排序的最好、最坏和平均时间复杂度均为 $O(n log n)$。`,
             options: [
                 "正确",
                 "错误",
@@ -465,7 +465,7 @@ export const paperData = {
         {
             id: 21,
             type: "judge",
-            question: "查字典这个小学生必备技能，可以把字典视为一个已排序的数组。假设小杨要查找一个⾳⾸字母为 g 的单 词，他⾸先翻到字典约一半的页数，发现该页的⾸字母是 m ，由于字母表中 g 位于 m 之前，所以排除字典后半部 分，查找范围缩小到前半部分；不断重复上述步骤，直⾄找到⾸字母为 g 的页码。这种查字典的一系列操作可看作 二分查找。",
+            question: `查字典这个小学生必备技能，可以把字典视为一个已排序的数组。假设小杨要查找一个⾳⾸字母为 g 的单 词，他⾸先翻到字典约一半的页数，发现该页的⾸字母是 m ，由于字母表中 g 位于 m 之前，所以排除字典后半部 分，查找范围缩小到前半部分；不断重复上述步骤，直⾄找到⾸字母为 g 的页码。这种查字典的一系列操作可看作 二分查找。`,
             options: [
                 "正确",
                 "错误",
@@ -482,7 +482,7 @@ export const paperData = {
         {
             id: 22,
             type: "judge",
-            question: "求解图中 A 点到 D 点的最短路径，常用 Dijkstra 算法。它通过逐步选择当前距离起点最近的节点，求解非负权图的单源最短路径，因此可视为贪心算法。",
+            question: `求解图中 A 点到 D 点的最短路径，常用 Dijkstra 算法。它通过逐步选择当前距离起点最近的节点，求解非负权图的单源最短路径，因此可视为贪心算法。`,
             options: [
                 "正确",
                 "错误",
@@ -499,7 +499,7 @@ export const paperData = {
         {
             id: 23,
             type: "judge",
-            question: "分治算法将原问题可以分解成规模更小的子问题，使得求解问题的难度降低。但由于分治算法需要将问题进 ⾏分解，并且需要将多个子问题的解合并为原问题的解，所以分治算法的效率通常比直接求解原问题的效率低。",
+            question: `分治算法将原问题可以分解成规模更小的子问题，使得求解问题的难度降低。但由于分治算法需要将问题进 ⾏分解，并且需要将多个子问题的解合并为原问题的解，所以分治算法的效率通常比直接求解原问题的效率低。`,
             options: [
                 "正确",
                 "错误",
@@ -516,7 +516,7 @@ export const paperData = {
         {
             id: 24,
             type: "judge",
-            question: "函数 puzzle 定义如下，则调用 puzzle(7) 程序会无限递归。",
+            question: `函数 puzzle 定义如下，则调用 puzzle(7) 程序会无限递归。`,
             options: [
                 "正确",
                 "错误",
@@ -533,7 +533,7 @@ export const paperData = {
         {
             id: 25,
             type: "judge",
-            question: "如下为线性筛法，用于高效生成素数表，其核⼼思想是每个合数只被它的最小质因数筛掉一次，时间复杂 度为 。 } } void mergeSort(std::vector<int>& arr, int left, int right) { if (left >= right) { return; } int mid = left+(right-left) / 2; mergeSort(arr, left, mid); mergeSort(arr, mid+1, right); std::cout << \"HERE\"; merge(arr, left, mid, right); } 26 27 28 29 30 31 32 33 34 35 36 37 38 39 40 41 int puzzle(int n) { if (n == 1) return 1; if (n % 2 == 0) return puzzle(n / 2); return puzzle(3 * n+1); } 1 2 3 4 5 vector<int> linearSieve(int n) { vector<bool> is_prime(n+1, true); vector<int> primes; for (int i = 2; i <= n; ++i) { if (is_prime[i]) { primes.push_back(i); } for (int j = 0; j < primes.size() && i * primes[j] <= n; ++j) { 1 2 3 4 5 6 7 8 9 10",
+            question: `如下为线性筛法，用于高效生成素数表，其核⼼思想是每个合数只被它的最小质因数筛掉一次，时间复杂 度为 。 } } void mergeSort(std::vector<int>& arr, int left, int right) { if (left >= right) { return; } int mid = left+(right-left) / 2; mergeSort(arr, left, mid); mergeSort(arr, mid+1, right); std::cout << "HERE"; merge(arr, left, mid, right); } 26 27 28 29 30 31 32 33 34 35 36 37 38 39 40 41 int puzzle(int n) { if (n == 1) return 1; if (n % 2 == 0) return puzzle(n / 2); return puzzle(3 * n+1); } 1 2 3 4 5 vector<int> linearSieve(int n) { vector<bool> is_prime(n+1, true); vector<int> primes; for (int i = 2; i <= n; ++i) { if (is_prime[i]) { primes.push_back(i); } for (int j = 0; j < primes.size() && i * primes[j] <= n; ++j) { 1 2 3 4 5 6 7 8 9 10`,
             options: [
                 "正确",
                 "错误",

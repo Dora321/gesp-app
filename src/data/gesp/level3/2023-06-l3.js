@@ -16,7 +16,7 @@ export const paperData = {
     {
       id: 1,
       type: 'single',
-      question: '高级语言编写的程序需要经过以下（ ）操作，可以生成在计算机上运行的可执行代码。',
+      question: `高级语言编写的程序需要经过以下（ ）操作，可以生成在计算机上运行的可执行代码。`,
       options: ['编辑', '保存', '调试', '编译'],
       answer: 3,
       score: 2,
@@ -26,7 +26,7 @@ export const paperData = {
     {
       id: 2,
       type: 'single',
-      question: '二进制数 11.01 在十进制下是（ ）。',
+      question: `二进制数 11.01 在十进制下是（ ）。`,
       options: ['3.01', '3.05', '3.125', '3.25'],
       answer: 3,
       score: 2,
@@ -36,7 +36,7 @@ export const paperData = {
     {
       id: 3,
       type: 'single',
-      question: '已知大写字符\'A\'的 ASCII 编码的十六进制表示为 0x41，则字符\'F\'的 ASCII 编码的十六进制表示为（ ）。',
+      question: `已知大写字符'A'的 ASCII 编码的十六进制表示为 0x41，则字符'F'的 ASCII 编码的十六进制表示为（ ）。`,
       options: ['46', '47', '48', '49'],
       answer: 0,
       score: 2,
@@ -46,7 +46,7 @@ export const paperData = {
     {
       id: 4,
       type: 'single',
-      question: '以下哪个不是 C++语言中的运算符？（ ）',
+      question: `以下哪个不是 C++语言中的运算符？（ ）`,
       options: ['&', '&&', '*', '**'],
       answer: 3,
       score: 2,
@@ -56,7 +56,7 @@ export const paperData = {
     {
       id: 5,
       type: 'single',
-      question: '如果字符串定义为 char str[] = "Hello";，则字符数组 str 的长度为（ ）。',
+      question: `如果字符串定义为 char str[] = "Hello";，则字符数组 str 的长度为（ ）。`,
       options: ['0', '5', '6', '7'],
       answer: 2,
       score: 2,
@@ -66,7 +66,7 @@ export const paperData = {
     {
       id: 6,
       type: 'single',
-      question: '一个数组定义为 double array[3];，则这个数组占用内存的大小为（ ）。',
+      question: `一个数组定义为 double array[3];，则这个数组占用内存的大小为（ ）。`,
       options: ['24', '12', '6', '3'],
       answer: 0,
       score: 2,
@@ -76,7 +76,7 @@ export const paperData = {
     {
       id: 7,
       type: 'single',
-      question: '以下数组定义，符合 C++语言语法的是（ ）。',
+      question: `以下数组定义，符合 C++语言语法的是（ ）。`,
       options: ['int a[];', 'int b[\'3\'];', 'int c[3.0];', 'int[3] d;'],
       answer: 1,
       score: 2,
@@ -86,7 +86,7 @@ export const paperData = {
     {
       id: 8,
       type: 'single',
-      question: '下列关于进制的叙述，不正确的是（ ）。',
+      question: `下列关于进制的叙述，不正确的是（ ）。`,
       options: [
         '正整数的二进制表示中只会出现 0 和 1',
         '10 不是 2 的整数次幂，所以十进制数无法转换为二进制数',
@@ -101,7 +101,7 @@ export const paperData = {
     {
       id: 9,
       type: 'single',
-      question: '下列关于 C++语言中数组的叙述，不正确的是（ ）。',
+      question: `下列关于 C++语言中数组的叙述，不正确的是（ ）。`,
       options: [
         '数组必须先 definition 后使用',
         '数组的所有元素在内存中是连续存放的',
@@ -116,7 +116,7 @@ export const paperData = {
     {
       id: 10,
       type: 'single',
-      question: '一个 int 类型的值，做以下哪个操作，一定会变回原来的值？（ ）',
+      question: `一个 int 类型的值，做以下哪个操作，一定会变回原来的值？（ ）`,
       options: [
         '左移 3 位，再右移 3 位',
         '右移 3 位，再左移 3 位',
@@ -131,7 +131,7 @@ export const paperData = {
     {
       id: 11,
       type: 'single',
-      question: '如果 a 和 b 均为 int 类型的变量，下列表达式能正确判断“a 等于 b”的是（ ）。',
+      question: `如果 a 和 b 均为 int 类型的变量，下列表达式能正确判断“a 等于 b”的是（ ）。`,
       options: ['((a / b) == 1)', '((a & b) == a)', '((a ^ b) == 0)', '((a | b) == b)'],
       answer: 2,
       score: 2,
@@ -141,7 +141,7 @@ export const paperData = {
     {
       id: 12,
       type: 'single',
-      question: '如果 a 为 int 类型的变量，下列哪个表达式可以正确求出满足“小于等于 a 且是 4 的倍数”的整数中最大的？',
+      question: `如果 a 为 int 类型的变量，下列哪个表达式可以正确求出满足“小于等于 a 且是 4 的倍数”的整数中最大的？`,
       options: ['(a & (~3))', '((a << 2) >> 2)', '(a ^ 3)', '((a-1) | 3)+1'],
       answer: 0,
       score: 2,
@@ -151,7 +151,7 @@ export const paperData = {
     {
       id: 13,
       type: 'single',
-      question: '在下列代码的横线处填写（ ），可以使得输出是“24 12”\n`int a = 12, b = 24; a = a ^ b; ___________; a = a ^ b;`',
+      question: `在下列代码的横线处填写（ ），可以使得输出是“24 12”\n\`int a = 12, b = 24; a = a ^ b; ___________; a = a ^ b;\``,
       options: ['a = a ^ b', 'b = a ^ b', 'a = a+b', 'b = a+b'],
       answer: 1,
       score: 2,
@@ -173,7 +173,7 @@ export const paperData = {
     {
       id: 15,
       type: 'single',
-      question: '在下列代码的横线处填写（ ），可以使得输出不是“31”\n`int array[] = {1, 2, 4, 8, 16}; int res = 0;`\n`for (int i = 0; i < 5; i++) { ___________ }`',
+      question: `在下列代码的横线处填写（ ），可以使得输出不是“31”\n\`int array[] = {1, 2, 4, 8, 16}; int res = 0;\`\n\`for (int i = 0; i < 5; i++) { ___________ }\``,
       options: ['res = res+array[i]', 'res = res & array[i]', 'res = res | array[i]', 'res = res ^ array[i]'],
       answer: 1,
       score: 2,
@@ -183,7 +183,7 @@ export const paperData = {
     {
       id: 16,
       type: 'judge',
-      question: '一个算法可以用不同的形式来描述，但不能用自然语言描述。',
+      question: `一个算法可以用不同的形式来描述，但不能用自然语言描述。`,
       options: ['正确', '错误'],
       answer: 1,
       score: 2,
@@ -193,7 +193,7 @@ export const paperData = {
     {
       id: 17,
       type: 'judge',
-      question: 'CCF 官方网站域名是 gesp.ccf.org.cn，其中顶级域名是 gesp。',
+      question: `CCF 官方网站域名是 gesp.ccf.org.cn，其中顶级域名是 gesp。`,
       options: ['正确', '错误'],
       answer: 1,
       score: 2,
@@ -203,7 +203,7 @@ export const paperData = {
     {
       id: 18,
       type: 'judge',
-      question: '数据编码方式只有原码、反码、补码三种。',
+      question: `数据编码方式只有原码、反码、补码三种。`,
       options: ['正确', '错误'],
       answer: 1,
       score: 2,
@@ -213,7 +213,7 @@ export const paperData = {
     {
       id: 19,
       type: 'judge',
-      question: '长度为 n 的数组，合理的下标范围是从 0 到 n，包括 0 和 n。',
+      question: `长度为 n 的数组，合理的下标范围是从 0 到 n，包括 0 和 n。`,
       options: ['正确', '错误'],
       answer: 1,
       score: 2,
@@ -223,7 +223,7 @@ export const paperData = {
     {
       id: 20,
       type: 'judge',
-      question: '字符常量 \'\\0\' 常用来表示字符串结束，它和字符 \'0\' 是不同的。',
+      question: `字符常量 '\\0' 常用来表示字符串结束，它和字符 '0' 是不同的。`,
       options: ['正确', '错误'],
       answer: 0,
       score: 2,
@@ -233,7 +233,7 @@ export const paperData = {
     {
       id: 21,
       type: 'judge',
-      question: '在 C++中，可以使用字符（如 \'0\'）作为数组下标。',
+      question: `在 C++中，可以使用字符（如 '0'）作为数组下标。`,
       options: ['正确', '错误'],
       answer: 0,
       score: 2,
@@ -243,7 +243,7 @@ export const paperData = {
     {
       id: 22,
       type: 'judge',
-      question: '在 C++中，数组被定义时，其大小就确定了。',
+      question: `在 C++中，数组被定义时，其大小就确定了。`,
       options: ['正确', '错误'],
       answer: 0,
       score: 2,
@@ -253,7 +253,7 @@ export const paperData = {
     {
       id: 23,
       type: 'judge',
-      question: '编写程序时将所有十进制数改写为相同数值的二进制数，会使得运行效率更高。',
+      question: `编写程序时将所有十进制数改写为相同数值的二进制数，会使得运行效率更高。`,
       options: ['正确', '错误'],
       answer: 1,
       score: 2,
@@ -263,7 +263,7 @@ export const paperData = {
     {
       id: 24,
       type: 'judge',
-      question: '在 C++语言中，表达式 (0xf == 015) 的值为 true。',
+      question: `在 C++语言中，表达式 (0xf == 015) 的值为 true。`,
       options: ['正确', '错误'],
       answer: 1,
       score: 2,
@@ -273,7 +273,7 @@ export const paperData = {
     {
       id: 25,
       type: 'judge',
-      question: '如果 a 为变量，且表达式 ((a | 3) == 3) 为 true，说明 a 在 0 到 3 之间。',
+      question: `如果 a 为变量，且表达式 ((a | 3) == 3) 为 true，说明 a 在 0 到 3 之间。`,
       options: ['正确', '错误'],
       answer: 0,
       score: 2,

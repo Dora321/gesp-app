@@ -15,13 +15,13 @@ const programmingQuestions = [
 
 ## 题目描述
 
-每个正整数都可以分解成素数的乘积，例如： \$6=2\\times 3\$，\$20=2^2\\times5\$。
+每个正整数都可以分解成素数的乘积，例如： $6=2\\times 3$，$20=2^2\\times5$。
 
 现在，给定一个正整数，请按要求输出它的因数分解式。
 
 ## 输入格式
 
-输入第一行，包含一个正整数 \$N\$。约定 \$2 \\le N \\le 10^{12}\$。
+输入第一行，包含一个正整数 $N$。约定 $2 \\le N \\le 10^{12}$。
 
 ## 输出格式
 
@@ -50,25 +50,25 @@ const programmingQuestions = [
 
 小明参加了一个巧夺大奖的游戏节目。主持人宣布了游戏规则：
 
-1. 游戏分为 \$n\$ 个时间段，参加者每个时间段可以选择一个小游戏。
+1. 游戏分为 $n$ 个时间段，参加者每个时间段可以选择一个小游戏。
 
-2. 游戏中共有 \$n\$ 个小游戏可供选择。
+2. 游戏中共有 $n$ 个小游戏可供选择。
 
-3. 每个小游戏有规定的时限和奖励。对于第 \$i\$ 个小游戏，参加者必须在第 \$T_i\$ 个时间段结束前完成才能得到奖励 \$R_i\$。
+3. 每个小游戏有规定的时限和奖励。对于第 $i$ 个小游戏，参加者必须在第 $T_i$ 个时间段结束前完成才能得到奖励 $R_i$。
 
 小明发现，这些小游戏都很简单，不管选择哪个小游戏，他都能在一个时间段内完成。关键问题在于，如何安排每个时间段分别选择哪个小游戏，才能使得总奖励最高？
 
 ## 输入格式
 
-输入第一行，包含一个正整数 \$n\$。\$n\$ 既是游戏时间段的个数，也是小游戏的个数。约定 \$1\\le n\\le500\$。
+输入第一行，包含一个正整数 $n$。$n$ 既是游戏时间段的个数，也是小游戏的个数。约定 $1\\le n\\le500$。
 
-输入第二行，包含 \$n\$ 个正整数。第 \$i\$ 个正整数为 \$T_i\$，即第 \$i\$ 个小游戏的完成期限。约定 \$1\\le T_i\\le n\$。
+输入第二行，包含 $n$ 个正整数。第 $i$ 个正整数为 $T_i$，即第 $i$ 个小游戏的完成期限。约定 $1\\le T_i\\le n$。
 
-输入第三行，包含 \$n\$ 个正整数。第 \$i\$ 个正整数为 \$R_i\$，即第 \$i\$ 个小游戏的完成奖励。约定 \$1\\le R_i\\le 1000\$。
+输入第三行，包含 $n$ 个正整数。第 $i$ 个正整数为 $R_i$，即第 $i$ 个小游戏的完成奖励。约定 $1\\le R_i\\le 1000$。
 
 ## 输出格式
 
-输出一行，包含一个正整数 \$C\$，为最高可获得的奖励。
+输出一行，包含一个正整数 $C$，为最高可获得的奖励。
 `,
       score: 25,
       explanation: "贪心策略：优先选择奖励高的小游戏。对于每个奖励高的小游戏，尽量安排在其截止日期的最晚可用时间段完成。",
@@ -91,7 +91,7 @@ export const paperData = {
         {
             id: 1,
             type: "single",
-            question: "近年来，线上授课变得普遍，很多有助于改善教学效果的设备也逐渐流⾏，其中包括比较常用的⼿写板，那 么它属于哪类设备？（ ）。",
+            question: `近年来，线上授课变得普遍，很多有助于改善教学效果的设备也逐渐流⾏，其中包括比较常用的⼿写板，那 么它属于哪类设备？（ ）。`,
             options: [
                 "输入",
                 "输出",
@@ -110,7 +110,7 @@ export const paperData = {
         {
             id: 2,
             type: "single",
-            question: "如果a 和b 均为int类型的变量，且b 的值不为0，那么下列能正确判断 “a 是b 的 3 倍 ” 的表达式是（ ）。",
+            question: `如果a 和b 均为int类型的变量，且b 的值不为0，那么下列能正确判断 “a 是b 的 3 倍 ” 的表达式是（ ）。`,
             options: [
                 "(a >> 3 == b)",
                 "(a-b) % 3 == 0",
@@ -129,7 +129,7 @@ export const paperData = {
         {
             id: 3,
             type: "single",
-            question: "如果变量a 和b 分别为double类型 and int类型，则表达式(a = 6, b = 3 * (7+8) / 2, b += a)的 计算结果为（ ）。",
+            question: `如果变量a 和b 分别为double类型 and int类型，则表达式(a = 6, b = 3 * (7+8) / 2, b += a)的 计算结果为（ ）。`,
             options: [
                 "6",
                 "21",
@@ -148,7 +148,7 @@ export const paperData = {
         {
             id: 4,
             type: "single",
-            question: "有关下面 C++ 代码说法错误的是（ ）。",
+            question: `有关下面 C++ 代码说法错误的是（ ）。`,
             options: [
                 "sumA()用循环方式求从1 到N之和，sumB()用递归方式求从1 到N之和。",
                 "默认情况下，如果输入正整数1000，能实现求从1 到1000之和。",
@@ -167,7 +167,7 @@ export const paperData = {
         {
             id: 5,
             type: "single",
-            question: "下面 C++ 代码以递归方式实现字符串反序，横线处应填上代码是（ ）。",
+            question: `下面 C++ 代码以递归方式实现字符串反序，横线处应填上代码是（ ）。`,
             options: [
                 "sIn[sIn.length()-1]+sReverse(sIn.substr(0, sIn.length()-1));",
                 "sIn[0]+sReverse(sIn.substr(1, sIn.length()-1));",
@@ -186,7 +186,7 @@ export const paperData = {
         {
             id: 6,
             type: "single",
-            question: "印度古⽼的汉诺塔传说：三根柱子之间一次只能移动一个圆盘，小圆盘上不能放大圆盘。下面的 C++ 代码以递归方式实现汉诺塔，横线处应填入代码是（ ）。",
+            question: `印度古⽼的汉诺塔传说：三根柱子之间一次只能移动一个圆盘，小圆盘上不能放大圆盘。下面的 C++ 代码以递归方式实现汉诺塔，横线处应填入代码是（ ）。`,
             options: [
                 "Hanoi(B, C, A, N-2)",
                 "Hanoi(B, A, C, N-1)",
@@ -205,7 +205,7 @@ export const paperData = {
         {
             id: 7,
             type: "single",
-            question: "根据下面 C++ 代码的注释，两个横线处应分别填入（ ）。",
+            question: `根据下面 C++ 代码的注释，两个横线处应分别填入（ ）。`,
             options: [
                 "compare和isOdd(lstA[i])",
                 "compare(x1,y1)和isOdd",
@@ -224,7 +224,7 @@ export const paperData = {
         {
             id: 8,
             type: "single",
-            question: "有关下面代码正确的是（ ）。",
+            question: `有关下面代码正确的是（ ）。`,
             options: [
                 "checkNum()函数定义错误。",
                 "将isEven作为checkNum()参数将导致错误。",
@@ -243,7 +243,7 @@ export const paperData = {
         {
             id: 9,
             type: "single",
-            question: "有关下面 C++ 代码正确的是（ ）。",
+            question: `有关下面 C++ 代码正确的是（ ）。`,
             options: [
                 "checkNum()函数定义错误。",
                 "输出⾏A 的语句将导致编译错误。",
@@ -262,7 +262,7 @@ export const paperData = {
         {
             id: 10,
             type: "single",
-            question: "下面代码执⾏后的输出是（ ）。",
+            question: `下面代码执⾏后的输出是（ ）。`,
             options: [
                 "4#3#2#2#4",
                 "4#3#2#2#1#5",
@@ -281,7 +281,7 @@ export const paperData = {
         {
             id: 11,
             type: "single",
-            question: "下面代码中的isPrimeA()和isPrimeB()都用于判断参数N是否素数，有关其时间复杂度的正确说法是 （ ）。",
+            question: `下面代码中的isPrimeA()和isPrimeB()都用于判断参数N是否素数，有关其时间复杂度的正确说法是 （ ）。`,
             options: [
                 "isPrimeA()的最坏时间复杂度是 $O(N)$，isPrimeB()的最坏时间复杂度是 O(logN)。",
                 "isPrimeA()的最坏时间复杂度是 $O(N)$，isPrimeB()的最坏时间复杂度是 O(sqrt(N))。",
@@ -300,7 +300,7 @@ export const paperData = {
         {
             id: 12,
             type: "single",
-            question: "下面代码用于归并排序，其中merge()函数被调用次数为（ ）。",
+            question: `下面代码用于归并排序，其中merge()函数被调用次数为（ ）。`,
             options: [
                 "0",
                 "1",
@@ -319,7 +319,7 @@ export const paperData = {
         {
             id: 13,
             type: "single",
-            question: "在上题的归并排序算法中，涉及到的算法为（ ）。",
+            question: `在上题的归并排序算法中，涉及到的算法为（ ）。`,
             options: [
                 "搜索算法",
                 "分治算法",
@@ -338,7 +338,7 @@ export const paperData = {
         {
             id: 14,
             type: "single",
-            question: "归并排序算法的基本思想是（ ）。",
+            question: `归并排序算法的基本思想是（ ）。`,
             options: [
                 "将数组分成两个子数组，分别排序后再合并。",
                 "随机选择一个元素作为枢轴，将数组划分为两个部分。",
@@ -357,7 +357,7 @@ export const paperData = {
         {
             id: 15,
             type: "single",
-            question: "有关下面代码的说法正确的是（ ）。",
+            question: `有关下面代码的说法正确的是（ ）。`,
             options: [
                 "上述代码构成单向链表。",
                 "上述代码构成双向链表。",
@@ -376,7 +376,7 @@ export const paperData = {
         {
             id: 16,
             type: "judge",
-            question: "TCP/IP 的传输层的两个不同的协议分别是 UDP 和 TCP 。",
+            question: `TCP/IP 的传输层的两个不同的协议分别是 UDP 和 TCP 。`,
             options: [
                 "正确",
                 "错误",
@@ -393,7 +393,7 @@ export const paperData = {
         {
             id: 17,
             type: "judge",
-            question: "在特殊情况下流程图中可以出现三角框和圆形框。",
+            question: `在特殊情况下流程图中可以出现三角框和圆形框。`,
             options: [
                 "正确",
                 "错误",
@@ -410,7 +410,7 @@ export const paperData = {
         {
             id: 18,
             type: "judge",
-            question: "找出⾃然数N以内的所有质数，常用算法有埃⽒筛法和线性筛法，其中埃⽒筛法效率更高。",
+            question: `找出⾃然数N以内的所有质数，常用算法有埃⽒筛法和线性筛法，其中埃⽒筛法效率更高。`,
             options: [
                 "正确",
                 "错误",
@@ -427,7 +427,7 @@ export const paperData = {
         {
             id: 19,
             type: "judge",
-            question: "在 C++ 中，可以使用二分法查找链表中的元素。",
+            question: `在 C++ 中，可以使用二分法查找链表中的元素。`,
             options: [
                 "正确",
                 "错误",
@@ -444,7 +444,7 @@ export const paperData = {
         {
             id: 20,
             type: "judge",
-            question: "在 C++ 中，通过恰当的实现，可以将链表⾸尾相接，形成循环链表。",
+            question: `在 C++ 中，通过恰当的实现，可以将链表⾸尾相接，形成循环链表。`,
             options: [
                 "正确",
                 "错误",
@@ -461,7 +461,7 @@ export const paperData = {
         {
             id: 21,
             type: "judge",
-            question: "贪⼼算法的解可能不是最优解。",
+            question: `贪⼼算法的解可能不是最优解。`,
             options: [
                 "正确",
                 "错误",
@@ -478,14 +478,14 @@ export const paperData = {
         {
             id: 22,
             type: "judge",
-            question: "一般说来，冒泡排序算法优于归并排序。",
+            question: `一般说来，冒泡排序算法优于归并排序。`,
             options: [
                 "正确",
                 "错误",
             ],
             answer: 1,
             score: 2,
-            explanation: "冒泡排序平均时间复杂度为$O(N^2)$，归并排序为$O(n \log n)$，通常归并排序更优。",
+            explanation: "冒泡排序平均时间复杂度为$O(N^2)$，归并排序为$O(n log n)$，通常归并排序更优。",
             tags: [
                 "客观题",
                 "判断题",
@@ -495,7 +495,7 @@ export const paperData = {
         {
             id: 23,
             type: "judge",
-            question: "C++ 语⾔中的qsort库函数是不稳定排序。",
+            question: `C++ 语⾔中的qsort库函数是不稳定排序。`,
             options: [
                 "正确",
                 "错误",
@@ -512,7 +512,7 @@ export const paperData = {
         {
             id: 24,
             type: "judge",
-            question: "质数的判定和筛法的目的并不相同，质数判定旨在判断特定的正整数是否为质数，而质数筛法意在筛选出范围内的所有质数。",
+            question: `质数的判定和筛法的目的并不相同，质数判定旨在判断特定的正整数是否为质数，而质数筛法意在筛选出范围内的所有质数。`,
             options: [
                 "正确",
                 "错误",
@@ -529,7 +529,7 @@ export const paperData = {
         {
             id: 25,
             type: "judge",
-            question: "下面的 C++ 代码执⾏后将输出0 5 1 6 2 3 4 。",
+            question: `下面的 C++ 代码执⾏后将输出0 5 1 6 2 3 4 。`,
             options: [
                 "正确",
                 "错误",

@@ -24,23 +24,23 @@ const programmingQuestions = [
 
 ## 题目描述
 
-有 \$n\$ 名同学，每名同学有语文、数学、英语三科成绩，你需要按照如下规则对所有同学的成绩从高到低排序：
+有 $n$ 名同学，每名同学有语文、数学、英语三科成绩，你需要按照如下规则对所有同学的成绩从高到低排序：
 
 1. 比较总分，高者靠前；
 2. 如果总分相同，则比较语文和数学两科的总分，高者靠前；
 3. 如果仍相同，则比较语文和数学两科的最高分，高者靠前；
 4. 如果仍相同，则二人并列。
 
-你需要输出每位同学的排名，如遇 \$x\$ 人并列，则他们排名相同，并留空后面的 \$x - 1\$ 个名次。例如，有 \$3\$ 名同学并列第 \$1\$，则后一名同学自动成为第 \$4\$ 名。
+你需要输出每位同学的排名，如遇 $x$ 人并列，则他们排名相同，并留空后面的 $x - 1$ 个名次。例如，有 $3$ 名同学并列第 $1$，则后一名同学自动成为第 $4$ 名。
 
 ## 输入格式
 
-第一行一个整数 \$N\$，表示同学的人数。  
-接下来 \$N\$ 行，每行三个非负整数 \$c_i, m_i, e_i\$ 分别表示该名同学的语文、数学、英语成绩。
+第一行一个整数 $N$，表示同学的人数。 
+接下来 $N$ 行，每行三个非负整数 $c_i, m_i, e_i$ 分别表示该名同学的语文、数学、英语成绩。
 
 ## 输出格式
 
-输出 \$N\$ 行，按输入同学的顺序，输出他们的排名。  
+输出 $N$ 行，按输入同学的顺序，输出他们的排名。 
 **注意：请不要按排名输出同学的序号，而是按同学的顺序输出他们各自的排名。**
 `,
       score: 25,
@@ -62,17 +62,17 @@ const programmingQuestions = [
 
 ## 题目描述
 
-小杨同学想寻找一种名为 \$ B \$-smooth 数的正整数。 
+小杨同学想寻找一种名为 $ B $-smooth 数的正整数。 
 
-如果一个正整数的最大质因子不超过 \$ B \$，则该正整数为 \$ B \$-smooth 数。小杨同学想知道，对于给定的 \$ n \$ 和 \$ B \$，有多少个不超过 \$ n \$ 的 \$ B \$-smooth 数。
+如果一个正整数的最大质因子不超过 $ B $，则该正整数为 $ B $-smooth 数。小杨同学想知道，对于给定的 $ n $ 和 $ B $，有多少个不超过 $ n $ 的 $ B $-smooth 数。
 
 ## 输入格式
 
-第一行包含两个正整数 \$ n \$ 和 \$ B \$，含义如题面所示。
+第一行包含两个正整数 $ n $ 和 $ B $，含义如题面所示。
 
 ## 输出格式
 
-输出一个非负整数，表示不超过 \$ n \$ 的 \$ B \$-smooth 数的数量。
+输出一个非负整数，表示不超过 $ n $ 的 $ B $-smooth 数的数量。
 `,
       score: 25,
       explanation: "将所有牌的点数转换成数字（A为1和14），去重后排序。检查是否存在连续的 5 个数字。",
@@ -95,7 +95,7 @@ export const paperData = {
         {
             id: 1,
             type: "single",
-            question: "唯一分解定理描述的内容是（ ）？",
+            question: `唯一分解定理描述的内容是（ ）？`,
             options: [
                 "任意整数都可以分解为素数的乘积",
                 "每个大于1的整数都可以唯一分解为素数的乘积",
@@ -110,7 +110,7 @@ export const paperData = {
         {
             id: 2,
             type: "single",
-            question: "贪心算法的核心思想是（ ）。",
+            question: `贪心算法的核心思想是（ ）。`,
             options: [
                 "在每一步选择中都采取局部最优策略",
                 "在每一步选择中都采取全局最优策略",
@@ -125,7 +125,7 @@ export const paperData = {
         {
             id: 3,
             type: "single",
-            question: "下面的 C++ 代码片段用于计算阶乘。请在横线处填入（ ），实现正确的阶乘计算。",
+            question: `下面的 C++ 代码片段用于计算阶乘。请在横线处填入（ ），实现正确的阶乘计算。`,
             options: [
                 "return n * factorial(n-1);",
                 "return factorial(n-1) / n;",
@@ -140,7 +140,7 @@ export const paperData = {
         {
             id: 4,
             type: "single",
-            question: "下面的代码片段用于在双向链表中删除一个节点。请在横线处填入（ ），使其能正确实现相应功能。",
+            question: `下面的代码片段用于在双向链表中删除一个节点。请在横线处填入（ ），使其能正确实现相应功能。`,
             options: [
                 "if (current->next != nullptr) current->next->prev = current->prev;",
                 "current->prev->next = current->next;",
@@ -155,7 +155,7 @@ export const paperData = {
         {
             id: 5,
             type: "single",
-            question: "辗转相除法也被称为（ ）。",
+            question: `辗转相除法也被称为（ ）。`,
             options: ["高斯消元法", "费马定理", "欧几里得算法", "牛顿迭代法"],
             answer: 2,
             score: 2,
@@ -165,8 +165,8 @@ export const paperData = {
         {
             id: 6,
             type: "single",
-            question: "下面的代码片段用于计算斐波那契数列。该代码的时间复杂度是（ ）。",
-            options: ["$O(1)$", "$O(\log n)$", "O($2^N$)", "$O(N)$"],
+            question: `下面的代码片段用于计算斐波那契数列。该代码的时间复杂度是（ ）。`,
+            options: ["$O(1)$", "$O(log n)$", "O($2^N$)", "$O(N)$"],
             answer: 2,
             score: 2,
             explanation: "朴素递归 Fibonacci 会重复计算大量子问题，时间复杂度呈指数级增长，通常记为 O($2^N$)。",
@@ -175,7 +175,7 @@ export const paperData = {
         {
             id: 7,
             type: "single",
-            question: "下面的代码片段用于将两个高精度整数进行相加。请在横线处填入（ ），使其能正确实现相应功能。",
+            question: `下面的代码片段用于将两个高精度整数进行相加。请在横线处填入（ ），使其能正确实现相应功能。`,
             options: [
                 "result = to_string(sum % 10)+result;",
                 "result = to_string(carry % 10)+result;",
@@ -190,7 +190,7 @@ export const paperData = {
         {
             id: 8,
             type: "single",
-            question: "给定序列 1，3，6，9，17，31，39，52，61，79，81，90，96。使用给定代码二分查找元素 82 时，最后输出的 times 值为（ ）。",
+            question: `给定序列 1，3，6，9，17，31，39，52，61，79，81，90，96。使用给定代码二分查找元素 82 时，最后输出的 times 值为（ ）。`,
             options: ["2", "5", "3", "4"],
             answer: 3,
             score: 2,
@@ -200,7 +200,7 @@ export const paperData = {
         {
             id: 9,
             type: "single",
-            question: "下面的代码片段用于判断一个正整数是否为素数。请对以下代码进行修改，使其能正确实现相应功能。（ ）。",
+            question: `下面的代码片段用于判断一个正整数是否为素数。请对以下代码进行修改，使其能正确实现相应功能。（ ）。`,
             options: [
                 "num < 2 应该改为 num <= 2",
                 "循环条件 i * i < num 应该改为 i * i <= num",
@@ -215,23 +215,23 @@ export const paperData = {
         {
             id: 10,
             type: "single",
-            question: "在埃拉托斯特尼筛法中，要筛选出不大于 n 的所有素数，最外层循环应该遍历什么范围（ ）。",
+            question: `在埃拉托斯特尼筛法中，要筛选出不大于 n 的所有素数，最外层循环应该遍历什么范围（ ）。`,
             options: [
                 "for (int i = 2; i <= n; ++i)",
                 "for (int i = 1; i < n; ++i)",
-                "for (int i = 2; i <= $\sqrt{n}$; ++i)",
-                "for (int i = 1; i <= $\sqrt{n}$; ++i)"
+                "for (int i = 2; i <= $sqrt{n}$; ++i)",
+                "for (int i = 1; i <= $sqrt{n}$; ++i)"
             ],
             answer: 2,
             score: 2,
-            explanation: "埃氏筛只需要让外层质数筛到 $\sqrt{n}$ 即可，再大的合数都会在此前被更小的质因子筛掉，因此选 C。",
+            explanation: "埃氏筛只需要让外层质数筛到 $sqrt{n}$ 即可，再大的合数都会在此前被更小的质因子筛掉，因此选 C。",
             tags: ["客观题", "单选题", "GESP5级"]
         },
         {
             id: 11,
             type: "single",
-            question: "素数的线性筛法时间复杂度为（ ）。",
-            options: ["$O(N)$", "$O(n \log n)$", "O(N log log N)", "$O(N^2)$"],
+            question: `素数的线性筛法时间复杂度为（ ）。`,
+            options: ["$O(N)$", "$O(n log n)$", "O(N log log N)", "$O(N^2)$"],
             answer: 0,
             score: 2,
             explanation: "线性筛保证每个合数只被其最小质因子筛掉一次，因此总时间复杂度是 $O(N)$。",
@@ -240,7 +240,7 @@ export const paperData = {
         {
             id: 12,
             type: "single",
-            question: "归并排序的基本思想是（ ）。",
+            question: `归并排序的基本思想是（ ）。`,
             options: ["动态规划", "分治", "贪心", "搜索"],
             answer: 1,
             score: 2,
@@ -250,7 +250,7 @@ export const paperData = {
         {
             id: 13,
             type: "single",
-            question: "在快速排序中，选择的主元素（pivot）会影响算法的（ ）。",
+            question: `在快速排序中，选择的主元素（pivot）会影响算法的（ ）。`,
             options: [
                 "不影响",
                 "时间复杂度",
@@ -259,13 +259,13 @@ export const paperData = {
             ],
             answer: 1,
             score: 2,
-            explanation: "pivot 选得好时，划分更均衡，快速排序更接近 $O(n \log n)$；选得差时可能退化到 $O(N^2)$，因此它会影响时间复杂度。",
+            explanation: "pivot 选得好时，划分更均衡，快速排序更接近 $O(n log n)$；选得差时可能退化到 $O(N^2)$，因此它会影响时间复杂度。",
             tags: ["客观题", "单选题", "GESP5级"]
         },
         {
             id: 14,
             type: "single",
-            question: "递归函数在调用自身时，必须满足（ ），以避免无限递归？",
+            question: `递归函数在调用自身时，必须满足（ ），以避免无限递归？`,
             options: [
                 "有终止条件",
                 "函数参数递减（或递增）",
@@ -280,7 +280,7 @@ export const paperData = {
         {
             id: 15,
             type: "single",
-            question: "假设给定链表为某单链表，若调用 searchValue(head, 5)，函数返回值为（ ）。",
+            question: `假设给定链表为某单链表，若调用 searchValue(head, 5)，函数返回值为（ ）。`,
             options: [
                 "返回 1",
                 "返回 0",
@@ -295,7 +295,7 @@ export const paperData = {
         {
             id: 16,
             type: "judge",
-            question: "C++ 中可以使用 `const` 关键字定义常量。",
+            question: `C++ 中可以使用 \`const\` 关键字定义常量。`,
             options: ["正确", "错误"],
             answer: 0,
             score: 2,
@@ -305,7 +305,7 @@ export const paperData = {
         {
             id: 17,
             type: "judge",
-            question: "贪心算法保证能得到问题的全局最优解。",
+            question: `贪心算法保证能得到问题的全局最优解。`,
             options: ["正确", "错误"],
             answer: 1,
             score: 2,
@@ -315,17 +315,17 @@ export const paperData = {
         {
             id: 18,
             type: "judge",
-            question: "二分查找的时间复杂度是 $O(N)$。",
+            question: `二分查找的时间复杂度是 $O(N)$。`,
             options: ["正确", "错误"],
             answer: 1,
             score: 2,
-            explanation: "二分查找每次把搜索区间缩小一半，时间复杂度是 $O(\log n)$，不是 $O(N)$。",
+            explanation: "二分查找每次把搜索区间缩小一半，时间复杂度是 $O(log n)$，不是 $O(N)$。",
             tags: ["客观题", "判断题", "GESP5级"]
         },
         {
             id: 19,
             type: "judge",
-            question: "在 C++ 中，`std::vector` 的大小是可以在运行时动态改变的。",
+            question: `在 C++ 中，\`std::vector\` 的大小是可以在运行时动态改变的。`,
             options: ["正确", "错误"],
             answer: 0,
             score: 2,
@@ -335,7 +335,7 @@ export const paperData = {
         {
             id: 20,
             type: "judge",
-            question: "递归函数如果没有终止条件，会导致无限递归并最终栈溢出。",
+            question: `递归函数如果没有终止条件，会导致无限递归并最终栈溢出。`,
             options: ["正确", "错误"],
             answer: 0,
             score: 2,
@@ -345,7 +345,7 @@ export const paperData = {
         {
             id: 21,
             type: "judge",
-            question: "在 C++ 中，指针变量存储的是另一个变量的内存地址。",
+            question: `在 C++ 中，指针变量存储的是另一个变量的内存地址。`,
             options: ["正确", "错误"],
             answer: 0,
             score: 2,
@@ -355,7 +355,7 @@ export const paperData = {
         {
             id: 22,
             type: "judge",
-            question: "快速排序在最坏情况下的时间复杂度是 $O(n \log n)$。",
+            question: `快速排序在最坏情况下的时间复杂度是 $O(n log n)$。`,
             options: ["正确", "错误"],
             answer: 1,
             score: 2,
@@ -365,7 +365,7 @@ export const paperData = {
         {
             id: 23,
             type: "judge",
-            question: "C++ 中的类支持封装、继承和多态三大特性。",
+            question: `C++ 中的类支持封装、继承和多态三大特性。`,
             options: ["正确", "错误"],
             answer: 0,
             score: 2,
@@ -375,7 +375,7 @@ export const paperData = {
         {
             id: 24,
             type: "judge",
-            question: "在 C++ 中，`new` 操作符用于在堆上分配内存。",
+            question: `在 C++ 中，\`new\` 操作符用于在堆上分配内存。`,
             options: ["正确", "错误"],
             answer: 0,
             score: 2,
@@ -385,7 +385,7 @@ export const paperData = {
         {
             id: 25,
             type: "judge",
-            question: "归并排序是稳定的排序算法。",
+            question: `归并排序是稳定的排序算法。`,
             options: ["正确", "错误"],
             answer: 0,
             score: 2,

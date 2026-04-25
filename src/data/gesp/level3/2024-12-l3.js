@@ -20,7 +20,7 @@ export const paperData = {
         {
             id: 1,
             type: 'single',
-            question: '下列二进制表示的十进制数值分别是（ ）。\n[10000011]原 = （ ）\n[10000011]补 = （ ）',
+            question: `下列二进制表示的十进制数值分别是（ ）。\n[10000011]原 = （ ）\n[10000011]补 = （ ）`,
             options: ['-125，-3', '-3，-125', '-3，-3', '-125，-125'],
             answer: 1,
             score: 2,
@@ -29,7 +29,7 @@ export const paperData = {
         {
             id: 2,
             type: 'single',
-            question: '关于计算机中的编码，下列说法中错误的是（ ）。',
+            question: `关于计算机中的编码，下列说法中错误的是（ ）。`,
             options: ['对于无符号数，原码就是真值', '正数的反码是其本身', '负数的反码和补码是不一样的', '负数的反码，在其原码的基础上，各个位取反'],
             answer: 3,
             score: 2,
@@ -38,7 +38,7 @@ export const paperData = {
         {
             id: 3,
             type: 'single',
-            question: '16 进制数 B2025 转换成 8 进制数是（ ）。',
+            question: `16 进制数 B2025 转换成 8 进制数是（ ）。`,
             options: ['2620045', '2004526', '729125', '2420045'],
             answer: 0,
             score: 2,
@@ -47,7 +47,7 @@ export const paperData = {
         {
             id: 4,
             type: 'single',
-            question: '625.625 变成二进制是（ ）。',
+            question: `625.625 变成二进制是（ ）。`,
             options: ['1001110001.101', '101.101', '101.1001110001', '1001110001.1101'],
             answer: 0,
             score: 2,
@@ -56,7 +56,7 @@ export const paperData = {
         {
             id: 5,
             type: 'single',
-            question: '下面逻辑运算中，正确的是（ ）。',
+            question: `下面逻辑运算中，正确的是（ ）。`,
             options: ['5&&3==0', '5|3==8', '5||3==11', '5&3==0001'],
             answer: 3,
             score: 2,
@@ -65,7 +65,7 @@ export const paperData = {
         {
             id: 6,
             type: 'single',
-            question: '补码 1111 1101 进行运算 1111 1101 >> 1 以后得到的结果是（ ）。',
+            question: `补码 1111 1101 进行运算 1111 1101 >> 1 以后得到的结果是（ ）。`,
             options: ['1111 1100', '-2', '1111 1101', '1111 1010'],
             answer: 1,
             score: 2,
@@ -74,7 +74,7 @@ export const paperData = {
         {
             id: 7,
             type: 'single',
-            question: '下列代码输出的是（ ）。\nstring s = "1234@@chenadai";\nstring str = "12345";\ns.replace(1, 5, str);\n```cpp\ncout << s << endl;\n```',
+            question: `下列代码输出的是（ ）。\nstring s = "1234@@chenadai";\nstring str = "12345";\ns.replace(1, 5, str);\n\`\`\`cpp\ncout << s << endl;\n\`\`\``,
             options: ['12345', '2345@', '112345chenadai', '12345chenadai'],
             answer: 2,
             score: 2,
@@ -83,7 +83,7 @@ export const paperData = {
         {
             id: 8,
             type: 'single',
-            question: 'a|10（a 与 10 都是 10 进制，且二进制表示最高位为 1）运算的结果是（ ）。',
+            question: `a|10（a 与 10 都是 10 进制，且二进制表示最高位为 1）运算的结果是（ ）。`,
             options: ['使 a 的二进制表示从右往左的第二位为 1', '使 a 的二进制表示从右往左的第一位为 0', '使 a 的二进制表示从右往左第二位为 0', '使 a 的二进制表示最高位为 0'],
             answer: 0,
             score: 2,
@@ -92,7 +92,7 @@ export const paperData = {
         {
             id: 9,
             type: 'single',
-            question: '下列程序输出的是（ ）。\n```cpp\nstring ch = "hello";\nif (ch[5] == NULL) {\n    cout << "right" << endl;\n} else if (ch[5] == \'\\0\') {\n    cout << "wrong" << endl;\n} else {\n    cout << "hello" << endl;\n}\n```',
+            question: `下列程序输出的是（ ）。\n\`\`\`cpp\nstring ch = "hello";\nif (ch[5] == NULL) {\n cout << "right" << endl;\n} else if (ch[5] == '\\0') {\n cout << "wrong" << endl;\n} else {\n cout << "hello" << endl;\n}\n\`\`\``,
             options: ['right', 'wrong', 'hello', '不能正确执行'],
             answer: 0,
             score: 2,
@@ -101,7 +101,7 @@ export const paperData = {
         {
             id: 10,
             type: 'single',
-            question: '下列程序中，假设一个字符占用的内存空间是 1，下列程序中，ch 占用的内存空间是（ ）。\n```cpp\nchar ch[] = "hello world";\nsize_t ret = strlen(ch);\ncout << ret << endl;\n```',
+            question: `下列程序中，假设一个字符占用的内存空间是 1，下列程序中，ch 占用的内存空间是（ ）。\n\`\`\`cpp\nchar ch[] = "hello world";\nsize_t ret = strlen(ch);\ncout << ret << endl;\n\`\`\``,
             options: ['11', '10', '13', '12'],
             answer: 3,
             score: 2,
@@ -110,7 +110,7 @@ export const paperData = {
         {
             id: 11,
             type: 'single',
-            question: '下列程序最后输出的是（ ）。\n```cpp\nint a = 65;\ncout << tolower(a) << endl;\n```',
+            question: `下列程序最后输出的是（ ）。\n\`\`\`cpp\nint a = 65;\ncout << tolower(a) << endl;\n\`\`\``,
             options: ['65', 'A', 'a', '97'],
             answer: 3,
             score: 2,
@@ -119,7 +119,7 @@ export const paperData = {
         {
             id: 12,
             type: 'single',
-            question: '想要计算从数字 n 到数字 m 之间（包含 n 和 m）有多少个数字 d 出现，下列程序哪个能够实现（ ）。',
+            question: `想要计算从数字 n 到数字 m 之间（包含 n 和 m）有多少个数字 d 出现，下列程序哪个能够实现（ ）。`,
             options: [
                 'res 未初始化，且 for 从 n+1 开始，漏统计 n。',
                 '判断条件写成 if(temp % 10 = d)，把比较误写成赋值。',
@@ -133,7 +133,7 @@ export const paperData = {
         {
             id: 13,
             type: 'single',
-            question: '兔子五元一只，鸡三元一只，小鸭子一元三只。现在你有一百元要买一百只，兔子、鸡、鸭子每种必须至少一只。下列哪个程序能实现（ ）。\n（说明：本题原卷选项代码在官方 PDF 文本层中缺损，现按公开解析与官方答案做等价整理。）',
+            question: `兔子五元一只，鸡三元一只，小鸭子一元三只。现在你有一百元要买一百只，兔子、鸡、鸭子每种必须至少一只。下列哪个程序能实现（ ）。\n（说明：本题原卷选项代码在官方 PDF 文本层中缺损，现按公开解析与官方答案做等价整理。）`,
             options: [
                 '三重循环枚举 i,j,k，但金额条件写成 25*i+10*j+k == 300。',
                 '三重循环枚举 i,j,k，但金额条件写成 20*i+10*j+k == 300。',
@@ -147,7 +147,7 @@ export const paperData = {
         {
             id: 14,
             type: 'single',
-            question: '求小于等于 N 的素数的方法中，有一种方法是将所有从 2 到它本身减 1 的数都除一遍，如果不能整除，就是素数。下列哪个程序体现了这种方法（ ）。',
+            question: `求小于等于 N 的素数的方法中，有一种方法是将所有从 2 到它本身减 1 的数都除一遍，如果不能整除，就是素数。下列哪个程序体现了这种方法（ ）。`,
             options: [
                 '从 i=2 开始枚举，但内层在 i%j != 0 时就把 flag 置 1，逻辑错误。',
                 '用 if(N>=2){ for(int i=3;i<=N;i++){ ... } }，但没有输出 2。',
@@ -161,7 +161,7 @@ export const paperData = {
         {
             id: 15,
             type: 'single',
-            question: '工人工作一天，会得到一个金环作为工资报酬。某个工作需要 15 天完成，一条 15 个环的金环项链，为了严格执行每天工作结束时完成对工人工资的结算，最少需要将金环项链剪裁成几段，每段几个金环（ ）。',
+            question: `工人工作一天，会得到一个金环作为工资报酬。某个工作需要 15 天完成，一条 15 个环的金环项链，为了严格执行每天工作结束时完成对工人工资的结算，最少需要将金环项链剪裁成几段，每段几个金环（ ）。`,
             options: ['4 段，分别是 1、2、4、8', '15 段，每段 1 个', '6 段，分别是 3、3、3、3、2、1', '9 段，分别是 2、2、2、2、2、2、1、1、1'],
             answer: 0,
             score: 2,
@@ -170,7 +170,7 @@ export const paperData = {
         {
             id: 16,
             type: 'judge',
-            question: '为了简化计算机基本运算电路，使加减法都只需要通过加法电路实现，也就是让减去一个正数或加上一个负数这样的运算可以用加上一个正数来代替。于是改变负数存储的形式，存储成一种可以直接当成正数来相加的形式，这种形式就是补码。',
+            question: `为了简化计算机基本运算电路，使加减法都只需要通过加法电路实现，也就是让减去一个正数或加上一个负数这样的运算可以用加上一个正数来代替。于是改变负数存储的形式，存储成一种可以直接当成正数来相加的形式，这种形式就是补码。`,
             options: ['正确', '错误'],
             answer: 0,
             score: 2,
@@ -179,7 +179,7 @@ export const paperData = {
         {
             id: 17,
             type: 'judge',
-            question: '使用原码进行的计算，2+(-1) 的结果是 -3。',
+            question: `使用原码进行的计算，2+(-1) 的结果是 -3。`,
             options: ['正确', '错误'],
             answer: 0,
             score: 2,
@@ -188,7 +188,7 @@ export const paperData = {
         {
             id: 18,
             type: 'judge',
-            question: '反码计算加减法：加法与减法结果都是正确的，只是解决不了 -0 的问题。',
+            question: `反码计算加减法：加法与减法结果都是正确的，只是解决不了 -0 的问题。`,
             options: ['正确', '错误'],
             answer: 0,
             score: 2,
@@ -197,7 +197,7 @@ export const paperData = {
         {
             id: 19,
             type: 'judge',
-            question: '10 进制数 63，在转换成二进制的计算过程中，产生了如下式子：63/2=31 余1，31/2=15 余1，15/2=7 余1，7/2=3 余1，3/2=1 余1，1/2=0 余1。按照从前往后的顺序，获得 63 的二进制值是 111111。',
+            question: `10 进制数 63，在转换成二进制的计算过程中，产生了如下式子：63/2=31 余1，31/2=15 余1，15/2=7 余1，7/2=3 余1，3/2=1 余1，1/2=0 余1。按照从前往后的顺序，获得 63 的二进制值是 111111。`,
             options: ['正确', '错误'],
             answer: 0,
             score: 2,
@@ -206,7 +206,7 @@ export const paperData = {
         {
             id: 20,
             type: 'judge',
-            question: '下列程序输出的是 A。\n```cpp\nchar x = 65;\nx = x & 00001111;\ncout << x << endl;\n```',
+            question: `下列程序输出的是 A。\n\`\`\`cpp\nchar x = 65;\nx = x & 00001111;\ncout << x << endl;\n\`\`\``,
             options: ['正确', '错误'],
             answer: 1,
             score: 2,
@@ -215,7 +215,7 @@ export const paperData = {
         {
             id: 21,
             type: 'judge',
-            question: '下列可执行程序段中，最后 pos 的值是 4。\nstring str = "chenADai";\n```cpp\nint pos = str.find(\'D\');\n--pos & 11;\n```',
+            question: `下列可执行程序段中，最后 pos 的值是 4。\nstring str = "chenADai";\n\`\`\`cpp\nint pos = str.find('D');\n--pos & 11;\n\`\`\``,
             options: ['正确', '错误'],
             answer: 1,
             score: 2,
@@ -224,7 +224,7 @@ export const paperData = {
         {
             id: 22,
             type: 'judge',
-            question: '下列程序将不能正确执行。\nstring ch = "chen";\n```cpp\ncout << ch[4] << endl;\n```',
+            question: `下列程序将不能正确执行。\nstring ch = "chen";\n\`\`\`cpp\ncout << ch[4] << endl;\n\`\`\``,
             options: ['正确', '错误'],
             answer: 1,
             score: 2,
@@ -233,7 +233,7 @@ export const paperData = {
         {
             id: 23,
             type: 'judge',
-            question: '将输出 97。\n```cpp\nchar a = \'A\';\na = a+32;\ncout << (int)a << endl;\n```',
+            question: `将输出 97。\n\`\`\`cpp\nchar a = 'A';\na = a+32;\ncout << (int)a << endl;\n\`\`\``,
             options: ['正确', '错误'],
             answer: 0,
             score: 2,
@@ -242,7 +242,7 @@ export const paperData = {
         {
             id: 24,
             type: 'judge',
-            question: '自然界中，最小的素数是 2。',
+            question: `自然界中，最小的素数是 2。`,
             options: ['正确', '错误'],
             answer: 0,
             score: 2,
@@ -251,7 +251,7 @@ export const paperData = {
         {
             id: 25,
             type: 'judge',
-            question: 'CCF（十六进制）= 12363（七进制）。',
+            question: `CCF（十六进制）= 12363（七进制）。`,
             options: ['正确', '错误'],
             answer: 0,
             score: 2,
@@ -271,17 +271,17 @@ export const paperData = {
 
 ## 题目描述
 
-小杨有一个包含 \$n\$ 个数字的序列 \$A\$，即 \$A=[a_1,a_2,\\ldots,a_n]\$，他想将其中大于 \$k\$ 的数字都替换为序列的最大值，将其中小于 \$k\$ 的数字都替换为序列的最小值，请你帮他计算出替换后的序列。
+小杨有一个包含 $n$ 个数字的序列 $A$，即 $A=[a_1,a_2,\\ldots,a_n]$，他想将其中大于 $k$ 的数字都替换为序列的最大值，将其中小于 $k$ 的数字都替换为序列的最小值，请你帮他计算出替换后的序列。
 
 ## 输入格式
 
-第一行包含两个正整数 \$n,k\$，含义如题面所示。
+第一行包含两个正整数 $n,k$，含义如题面所示。
 
-第二行包含 \$n\$ 个数字，代表序列 \$A\$。
+第二行包含 $n$ 个数字，代表序列 $A$。
 
 ## 输出格式
 
-输出 \$n\$ 个整数，代表替换后的结果。
+输出 $n$ 个整数，代表替换后的结果。
 `,
       explanation: '先扫描一遍序列求出最小值和最大值，再按规则逐个修改：大于 k 的变成最大值，小于 k 的变成最小值，等于 k 的保持不变。',
       template: '#include <bits/stdc++.h>\nusing namespace std;\n\nint main() {\n    ios::sync_with_stdio(false);\n    cin.tie(nullptr);\n\n    // 在此编写代码\n    return 0;\n}',
@@ -305,7 +305,7 @@ export const paperData = {
 
 ## 题目描述
 
-小杨为数字 \$0,1,2\$ 和 \$3\$ 设计了一款表示形式，每个数字占用了 \$5\\times 5\$ 的网格。数字 \$0,1,2\$ 和 \$3\$ 的表示形式如下：
+小杨为数字 $0,1,2$ 和 $3$ 设计了一款表示形式，每个数字占用了 $5\\times 5$ 的网格。数字 $0,1,2$ 和 $3$ 的表示形式如下：
 
 \`\`\`plain
 ..... ****. ..... .....
@@ -315,11 +315,11 @@ export const paperData = {
 ..... ****. ..... .....
 \`\`\`
 
-小杨想请你将给定的数字 \$n\$ 转换为对应的表示形式。
+小杨想请你将给定的数字 $n$ 转换为对应的表示形式。
 
 ## 输入格式
 
-第一行包含一个非负整数代表 \$n\$。
+第一行包含一个非负整数代表 $n$。
 
 ## 输出格式
 

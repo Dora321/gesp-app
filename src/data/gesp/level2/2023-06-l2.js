@@ -9,32 +9,32 @@ export const paperData = {
     note: '首次开启5-8级',
     timeLimit: 90 * 60,
     questions: [
-        { id: 1, type: 'single', question: '高级语言编写的程序需要经过以下（ ）操作，才可以生成在计算机上运行的可执行代码。', options: ['编辑', '保存', '调试', '编译'], answer: 3, score: 2, explanation: '编译把高级语言转换为机器可执行代码。', tags: ['基础语法'] },
-        { id: 2, type: 'single', question: '能够实现“当条件不成立时反复执行语句块、条件成立时结束循环”流程图功能的伪代码是（ ）。', options: ['if 条件判断 then 语句块', 'if 条件判断 then 什么也不做 else 语句块', 'while 条件判断 do 语句块', 'while not 条件判断 do 语句块'], answer: 3, score: 2, explanation: '题意对应“条件不满足继续循环”。', tags: ['循环', '条件判断'] },
-        { id: 3, type: 'single', question: '下列关于 C++ 语言的叙述，正确的是（ ）。', options: ['char 类型变量不能赋值给 int 类型变量', '两个 int 类型变量相乘，结果仍为 int 类型', '两个 int 相乘溢出时程序会报错崩溃', 'double 相除且除数为 0.0 时程序会报错崩溃'], answer: 1, score: 2, explanation: 'int * int 的结果类型仍为 int。', tags: ['变量与标识符', '程序分析'] },
-        { id: 4, type: 'single', question: '下列关于 C++ 语句规则的叙述，不正确的是（ ）。', options: ['if 的判断条件必须放在小括号中', 'for 语句中间循环条件可省略，表示恒为真', '循环体有多条语句时用缩进即可消除二义性', '运算符有优先级，不仅有先乘除后加减'], answer: 2, score: 2, explanation: '多条语句必须用花括号，不是靠缩进。', tags: ['循环', '基础语法'] },
-        { id: 5, type: 'single', question: '以下哪个是 C++ 语言关键字（ ）。', options: ['main', 'max', 'double', 'sqrt'], answer: 2, score: 2, explanation: 'double 是关键字，其余是常见标识符/函数名。', tags: ['变量与标识符'] },
-        { id: 6, type: 'single', question: '以下哪个不是 C++ 语言运算符（ ）。', options: ['>=', '/=', '||', '<>'], answer: 3, score: 2, explanation: '<> 不是 C++ 运算符。', tags: ['运算符'] },
-        { id: 7, type: 'single', question: '若 a 为 int、b 为 char，下列哪个语句不符合 C++ 语法（ ）。', options: ['a = a+1.0;', 'a = (int)(b-\'0\');', 'b = (char)(a+\'0\');', '(int)b = a;'], answer: 3, score: 2, explanation: '强制类型转换结果不是可赋值左值。', tags: ['变量与标识符', '运算符'] },
-        { id: 8, type: 'single', question: '用 int 变量 a、b 表示平行四边形边长，int 变量 h 表示 a 边对应高，以下哪个表达式不能用于计算 b 边对应高（ ）。', options: ['a / b * (0.0+h)', '(0.0+a * h) / b', 'a * h / (b+0.0)', '(a+0.0) * h / b'], answer: 0, score: 2, explanation: 'A 中先发生 int/int，易丢失精度。', tags: ['运算符', '程序分析'] },
-        { id: 9, type: 'single', question: '以下哪个循环语句会无限次执行（ ）。', options: ['for (int a = 0; a; a++) ;', 'for (bool b = false; b <= true; b++) ;', 'for (char c = \'A\'; c < \'z\'; c++) ;', 'for (double d = 0.0; d < 10.0; d += 0.001) ;'], answer: 1, score: 2, explanation: 'bool 自增后会保持 true，条件始终成立。', tags: ['循环', '程序分析'] },
-        { id: 10, type: 'single', question: '若 char 变量 a 的值为 \'C\'（ASCII 67），执行 cout << (a+2); 输出（ ）。', options: ['E', 'C+2', 'C2', '69'], answer: 3, score: 2, explanation: '表达式提升为 int，输出数值 69。', tags: ['输入输出', '运算符'] },
-        { id: 11, type: 'single', question: '若 a、b 均为 int，能正确判断“a 等于 1 且 b 等于 1”的表达式是（ ）。', options: ['(a == b) && (b == 1)', '(a && b)', '(a == b == 1)', '(a * b == 1)'], answer: 0, score: 2, explanation: 'A 选项明确表达两个条件同时成立。', tags: ['条件判断', '运算符'] },
-        { id: 12, type: 'single', question: '若 a 为 char，哪个表达式可正确判断“a 是数字字符”（ ）。', options: ['\'0\' <= a && a <= \'9\'', '\'1\' <= a && a <= \'0\'', '\'0\' <= a <= \'9\'', '\'1\' <= a <= \'0\''], answer: 0, score: 2, explanation: '需使用 && 连接两个比较。', tags: ['条件判断', '运算符'] },
-        { id: 13, type: 'single', question: '在给定代码横线处填入（ ），使得最终输出字符是 9。', options: ['(a+b)', '(a+b-\'0\')', '(char)(a+b)', '(char)(a+b-\'0\')'], answer: 3, score: 2, explanation: '需先按 ASCII 计算并转换回 char。', tags: ['程序分析', '运算符'] },
-        { id: 14, type: 'single', question: '在给定循环代码横线处填写（ ），可以使输出为 42。', options: ['i % 3 == 0', '20 % i == 0', 'i <= 8', 'i >= 18'], answer: 1, score: 2, explanation: '根据原题程序模拟可得 B。', tags: ['循环', '程序分析'] },
-        { id: 15, type: 'single', question: '执行给定 C++ 程序后，输出结果是（ ）。', options: ['A', 'B', 'C', 'D'], answer: 2, score: 2, explanation: '根据原卷答案，第15题为 C。', tags: ['程序分析'] },
+        { id: 1, type: 'single', question: `高级语言编写的程序需要经过以下（ ）操作，才可以生成在计算机上运行的可执行代码。`, options: ['编辑', '保存', '调试', '编译'], answer: 3, score: 2, explanation: '编译把高级语言转换为机器可执行代码。', tags: ['基础语法'] },
+        { id: 2, type: 'single', question: `能够实现“当条件不成立时反复执行语句块、条件成立时结束循环”流程图功能的伪代码是（ ）。`, options: ['if 条件判断 then 语句块', 'if 条件判断 then 什么也不做 else 语句块', 'while 条件判断 do 语句块', 'while not 条件判断 do 语句块'], answer: 3, score: 2, explanation: '题意对应“条件不满足继续循环”。', tags: ['循环', '条件判断'] },
+        { id: 3, type: 'single', question: `下列关于 C++ 语言的叙述，正确的是（ ）。`, options: ['char 类型变量不能赋值给 int 类型变量', '两个 int 类型变量相乘，结果仍为 int 类型', '两个 int 相乘溢出时程序会报错崩溃', 'double 相除且除数为 0.0 时程序会报错崩溃'], answer: 1, score: 2, explanation: 'int * int 的结果类型仍为 int。', tags: ['变量与标识符', '程序分析'] },
+        { id: 4, type: 'single', question: `下列关于 C++ 语句规则的叙述，不正确的是（ ）。`, options: ['if 的判断条件必须放在小括号中', 'for 语句中间循环条件可省略，表示恒为真', '循环体有多条语句时用缩进即可消除二义性', '运算符有优先级，不仅有先乘除后加减'], answer: 2, score: 2, explanation: '多条语句必须用花括号，不是靠缩进。', tags: ['循环', '基础语法'] },
+        { id: 5, type: 'single', question: `以下哪个是 C++ 语言关键字（ ）。`, options: ['main', 'max', 'double', 'sqrt'], answer: 2, score: 2, explanation: 'double 是关键字，其余是常见标识符/函数名。', tags: ['变量与标识符'] },
+        { id: 6, type: 'single', question: `以下哪个不是 C++ 语言运算符（ ）。`, options: ['>=', '/=', '||', '<>'], answer: 3, score: 2, explanation: '<> 不是 C++ 运算符。', tags: ['运算符'] },
+        { id: 7, type: 'single', question: `若 a 为 int、b 为 char，下列哪个语句不符合 C++ 语法（ ）。`, options: ['a = a+1.0;', 'a = (int)(b-\'0\');', 'b = (char)(a+\'0\');', '(int)b = a;'], answer: 3, score: 2, explanation: '强制类型转换结果不是可赋值左值。', tags: ['变量与标识符', '运算符'] },
+        { id: 8, type: 'single', question: `用 int 变量 a、b 表示平行四边形边长，int 变量 h 表示 a 边对应高，以下哪个表达式不能用于计算 b 边对应高（ ）。`, options: ['a / b * (0.0+h)', '(0.0+a * h) / b', 'a * h / (b+0.0)', '(a+0.0) * h / b'], answer: 0, score: 2, explanation: 'A 中先发生 int/int，易丢失精度。', tags: ['运算符', '程序分析'] },
+        { id: 9, type: 'single', question: `以下哪个循环语句会无限次执行（ ）。`, options: ['for (int a = 0; a; a++) ;', 'for (bool b = false; b <= true; b++) ;', 'for (char c = \'A\'; c < \'z\'; c++) ;', 'for (double d = 0.0; d < 10.0; d += 0.001) ;'], answer: 1, score: 2, explanation: 'bool 自增后会保持 true，条件始终成立。', tags: ['循环', '程序分析'] },
+        { id: 10, type: 'single', question: `若 char 变量 a 的值为 'C'（ASCII 67），执行 cout << (a+2); 输出（ ）。`, options: ['E', 'C+2', 'C2', '69'], answer: 3, score: 2, explanation: '表达式提升为 int，输出数值 69。', tags: ['输入输出', '运算符'] },
+        { id: 11, type: 'single', question: `若 a、b 均为 int，能正确判断“a 等于 1 且 b 等于 1”的表达式是（ ）。`, options: ['(a == b) && (b == 1)', '(a && b)', '(a == b == 1)', '(a * b == 1)'], answer: 0, score: 2, explanation: 'A 选项明确表达两个条件同时成立。', tags: ['条件判断', '运算符'] },
+        { id: 12, type: 'single', question: `若 a 为 char，哪个表达式可正确判断“a 是数字字符”（ ）。`, options: ['\'0\' <= a && a <= \'9\'', '\'1\' <= a && a <= \'0\'', '\'0\' <= a <= \'9\'', '\'1\' <= a <= \'0\''], answer: 0, score: 2, explanation: '需使用 && 连接两个比较。', tags: ['条件判断', '运算符'] },
+        { id: 13, type: 'single', question: `在给定代码横线处填入（ ），使得最终输出字符是 9。`, options: ['(a+b)', '(a+b-\'0\')', '(char)(a+b)', '(char)(a+b-\'0\')'], answer: 3, score: 2, explanation: '需先按 ASCII 计算并转换回 char。', tags: ['程序分析', '运算符'] },
+        { id: 14, type: 'single', question: `在给定循环代码横线处填写（ ），可以使输出为 42。`, options: ['i % 3 == 0', '20 % i == 0', 'i <= 8', 'i >= 18'], answer: 1, score: 2, explanation: '根据原题程序模拟可得 B。', tags: ['循环', '程序分析'] },
+        { id: 15, type: 'single', question: `执行给定 C++ 程序后，输出结果是（ ）。`, options: ['A', 'B', 'C', 'D'], answer: 2, score: 2, explanation: '根据原卷答案，第15题为 C。', tags: ['程序分析'] },
 
-        { id: 16, type: 'judge', question: '内存 64KB 的 CEC-I 若存放 GB2312 的 6763 个汉字（每字 2 字节），占用不超过 1/5 内存。', options: ['正确', '错误'], answer: 1, score: 2, explanation: '约 13.21KB，超过 64KB 的 1/5。', tags: ['判断题'] },
-        { id: 17, type: 'judge', question: '域名 gesp.ccf.org.cn 的顶级域名是 gesp。', options: ['正确', '错误'], answer: 1, score: 2, explanation: '顶级域名是最右侧 cn。', tags: ['判断题'] },
-        { id: 18, type: 'judge', question: '在 C++ 中，使用 sqrt、abs 等数学函数前需包含 <cmath> 或 <math.h>。', options: ['正确', '错误'], answer: 0, score: 2, explanation: '数学函数通常需对应头文件声明。', tags: ['判断题'] },
-        { id: 19, type: 'judge', question: '在 C++ 中，下划线“_”既可用于标识符命名，也是运算符。', options: ['正确', '错误'], answer: 1, score: 2, explanation: '_ 不是 C++ 运算符。', tags: ['判断题'] },
-        { id: 20, type: 'judge', question: '若 a 为 double 且 a=3.5，则 a*10 结果是 35 且类型为 int。', options: ['正确', '错误'], answer: 1, score: 2, explanation: '结果类型为 double。', tags: ['判断题'] },
-        { id: 21, type: 'judge', question: 'if 语句中，若条件成立需执行多条语句，可用花括号把这些语句括起来。', options: ['正确', '错误'], answer: 0, score: 2, explanation: '这是标准写法。', tags: ['判断题'] },
-        { id: 22, type: 'judge', question: '循环语句的循环体有可能无限制执行下去。', options: ['正确', '错误'], answer: 0, score: 2, explanation: '循环条件始终为真时会无限循环。', tags: ['判断题'] },
-        { id: 23, type: 'judge', question: '++ 和 == 是 C++ 运算符，但 += 不是。', options: ['正确', '错误'], answer: 1, score: 2, explanation: '+= 也是运算符。', tags: ['判断题'] },
-        { id: 24, type: 'judge', question: '若 a 为 char 且值为大写字母 F，执行 a = a+1 后，a 变为 G。', options: ['正确', '错误'], answer: 0, score: 2, explanation: 'ASCII 顺延一位。', tags: ['判断题'] },
-        { id: 25, type: 'judge', question: '表达式 sqrt(9.0) 的结果为 3，且结果类型为 int。', options: ['正确', '错误'], answer: 1, score: 2, explanation: 'sqrt 返回 double。', tags: ['判断题'] }
+        { id: 16, type: 'judge', question: `内存 64KB 的 CEC-I 若存放 GB2312 的 6763 个汉字（每字 2 字节），占用不超过 1/5 内存。`, options: ['正确', '错误'], answer: 1, score: 2, explanation: '约 13.21KB，超过 64KB 的 1/5。', tags: ['判断题'] },
+        { id: 17, type: 'judge', question: `域名 gesp.ccf.org.cn 的顶级域名是 gesp。`, options: ['正确', '错误'], answer: 1, score: 2, explanation: '顶级域名是最右侧 cn。', tags: ['判断题'] },
+        { id: 18, type: 'judge', question: `在 C++ 中，使用 sqrt、abs 等数学函数前需包含 <cmath> 或 <math.h>。`, options: ['正确', '错误'], answer: 0, score: 2, explanation: '数学函数通常需对应头文件声明。', tags: ['判断题'] },
+        { id: 19, type: 'judge', question: `在 C++ 中，下划线“_”既可用于标识符命名，也是运算符。`, options: ['正确', '错误'], answer: 1, score: 2, explanation: '_ 不是 C++ 运算符。', tags: ['判断题'] },
+        { id: 20, type: 'judge', question: `若 a 为 double 且 a=3.5，则 a*10 结果是 35 且类型为 int。`, options: ['正确', '错误'], answer: 1, score: 2, explanation: '结果类型为 double。', tags: ['判断题'] },
+        { id: 21, type: 'judge', question: `if 语句中，若条件成立需执行多条语句，可用花括号把这些语句括起来。`, options: ['正确', '错误'], answer: 0, score: 2, explanation: '这是标准写法。', tags: ['判断题'] },
+        { id: 22, type: 'judge', question: `循环语句的循环体有可能无限制执行下去。`, options: ['正确', '错误'], answer: 0, score: 2, explanation: '循环条件始终为真时会无限循环。', tags: ['判断题'] },
+        { id: 23, type: 'judge', question: `++ 和 == 是 C++ 运算符，但 += 不是。`, options: ['正确', '错误'], answer: 1, score: 2, explanation: '+= 也是运算符。', tags: ['判断题'] },
+        { id: 24, type: 'judge', question: `若 a 为 char 且值为大写字母 F，执行 a = a+1 后，a 变为 G。`, options: ['正确', '错误'], answer: 0, score: 2, explanation: 'ASCII 顺延一位。', tags: ['判断题'] },
+        { id: 25, type: 'judge', question: `表达式 sqrt(9.0) 的结果为 3，且结果类型为 int。`, options: ['正确', '错误'], answer: 1, score: 2, explanation: 'sqrt 返回 double。', tags: ['判断题'] }
     ],
     programmingQuestions: [
     {
@@ -49,15 +49,15 @@ export const paperData = {
 
 ## 题目描述
 
-小明刚刚学习了素数的概念：如果一个大于 \$1\$ 的正整数，除了 \$1\$ 和它自身外，不能被其他正整数整除，则这个正整数是素数。现在，小明想找到两个正整数 \$A\$ 和 \$B\$ 之间（包括 \$A\$ 和 \$B\$）有多少个素数。
+小明刚刚学习了素数的概念：如果一个大于 $1$ 的正整数，除了 $1$ 和它自身外，不能被其他正整数整除，则这个正整数是素数。现在，小明想找到两个正整数 $A$ 和 $B$ 之间（包括 $A$ 和 $B$）有多少个素数。
 
 ## 输入格式
 
-输入只有一行两个正整数 \$A, B\$。约定 \$2 \\le A \\le B \\le 1000\$。
+输入只有一行两个正整数 $A, B$。约定 $2 \\le A \\le B \\le 1000$。
 
 ## 输出格式
 
-输出一行，包含一个整数 \$C\$，表示找到 \$C\$ 个素数。
+输出一行，包含一个整数 $C$，表示找到 $C$ 个素数。
 `,
       score: 25,
       explanation: "在区间 [A,B] 中枚举每个整数，判断它是否是素数；若是素数就把答案加一。",
@@ -92,17 +92,17 @@ F` }
 
 ## 题目描述
 
-自幂数是指，一个 \$N\$ 位数，满足各位数字 \$N\$ 次方之和是本身。例如，\$153\$ 是 \$3\$ 位数，其每位数的 \$3\$ 次方之和，\$1^3+5^3+3^3=153\$，因此 \$153\$ 是自幂数；\$1634\$ 是 \$4\$ 位数，其每位数的 \$4\$ 次方之和，\$1^4+6^4+3^4+4^4=1634\$，因此 \$1634\$ 是自幂数。现在，输入若干个正整数，请判断它们是否是自幂数。
+自幂数是指，一个 $N$ 位数，满足各位数字 $N$ 次方之和是本身。例如，$153$ 是 $3$ 位数，其每位数的 $3$ 次方之和，$1^3+5^3+3^3=153$，因此 $153$ 是自幂数；$1634$ 是 $4$ 位数，其每位数的 $4$ 次方之和，$1^4+6^4+3^4+4^4=1634$，因此 $1634$ 是自幂数。现在，输入若干个正整数，请判断它们是否是自幂数。
 
 ## 输入格式
 
-输入第一行是一个正整数 \$M\$，表示有 \$M\$ 个待判断的正整数。约定 \$1 \\le M \\le 100\$。
+输入第一行是一个正整数 $M$，表示有 $M$ 个待判断的正整数。约定 $1 \\le M \\le 100$。
 
-从第 \$2\$ 行开始的 \$M\$ 行，每行一个待判断的正整数。约定这些正整数均小于 \$10^8\$。
+从第 $2$ 行开始的 $M$ 行，每行一个待判断的正整数。约定这些正整数均小于 $10^8$。
 
 ## 输出格式
 
-输出 \$M\$ 行，如果对应的待判断正整数为自幂数，则输出英文大写字母 \$\\texttt T\$，否则输出英文大写字母 \$\\texttt F\$。
+输出 $M$ 行，如果对应的待判断正整数为自幂数，则输出英文大写字母 $\\texttt T$，否则输出英文大写字母 $\\texttt F$。
 
 提示：不需要等到所有输入结束在依次输出，可以输入一个数就判断一个数并输出，再输入下一个数。
 `,

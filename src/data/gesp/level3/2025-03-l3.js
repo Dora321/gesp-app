@@ -19,7 +19,7 @@ export const paperData = {
         {
             id: 1,
             type: 'single',
-            question: 'Base64 编码将每 3 字节的输入数据编码为 4 字节的输出数据。如果输入数据长度不是 3 的倍数，会用 = 号填充。在 Base64 编码中，如果输入字符串的长度为 10 字节，编码后的字符串长度是多少（ ）',
+            question: `Base64 编码将每 3 字节的输入数据编码为 4 字节的输出数据。如果输入数据长度不是 3 的倍数，会用 = 号填充。在 Base64 编码中，如果输入字符串的长度为 10 字节，编码后的字符串长度是多少（ ）`,
             options: ['12 字节', '13 字节', '14 字节', '16 字节'],
             answer: 3,
             score: 2,
@@ -28,7 +28,7 @@ export const paperData = {
         {
             id: 2,
             type: 'single',
-            question: 'UTF-8 编码规则如下：\n1 字节：0xxxxxxx\n2 字节：110xxxxx 10xxxxxx\n3 字节：1110xxxx 10xxxxxx 10xxxxxx\n4 字节：11110xxx 10xxxxxx 10xxxxxx 10xxxxxx\n以下哪个字节序列是合法的 UTF-8 编码（ ）',
+            question: `UTF-8 编码规则如下：\n1 字节：0xxxxxxx\n2 字节：110xxxxx 10xxxxxx\n3 字节：1110xxxx 10xxxxxx 10xxxxxx\n4 字节：11110xxx 10xxxxxx 10xxxxxx 10xxxxxx\n以下哪个字节序列是合法的 UTF-8 编码（ ）`,
             options: ['0xC0 0x80', '0xF0 0x90 0x80 0x80', '0x80 0x80 0x80', '0xFF 0xFE 0xFD'],
             answer: 1,
             score: 2,
@@ -37,7 +37,7 @@ export const paperData = {
         {
             id: 3,
             type: 'single',
-            question: '在 8 位二进制原码表示中，八进制数 -5 的二进制形式是什么（ ）',
+            question: `在 8 位二进制原码表示中，八进制数 -5 的二进制形式是什么（ ）`,
             options: ['10000101', '11111010', '11111011', '00000101'],
             answer: 0,
             score: 2,
@@ -46,7 +46,7 @@ export const paperData = {
         {
             id: 4,
             type: 'single',
-            question: '十进制数 111.111 的二进制表示可以是下面的（ ）',
+            question: `十进制数 111.111 的二进制表示可以是下面的（ ）`,
             options: ['1101111.0001110001', '1101110.1001110001', '1101111.1001110001', '1101111.0011110001'],
             answer: 0,
             score: 2,
@@ -55,7 +55,7 @@ export const paperData = {
         {
             id: 5,
             type: 'single',
-            question: '在 C++ 中，补码的主要作用是（ ）',
+            question: `在 C++ 中，补码的主要作用是（ ）`,
             options: ['提高浮点数的精度', '简化整数的加减法运算', '增加整数的表示范围', '优化内存分配'],
             answer: 1,
             score: 2,
@@ -64,7 +64,7 @@ export const paperData = {
         {
             id: 6,
             type: 'single',
-            question: '在 C++ 中，一个 8 位有符号整数（使用补码表示）的范围是（ ）',
+            question: `在 C++ 中，一个 8 位有符号整数（使用补码表示）的范围是（ ）`,
             options: ['-128 到 127', '-127 到 128', '-256 到 255', '0 到 255'],
             answer: 0,
             score: 2,
@@ -73,7 +73,7 @@ export const paperData = {
         {
             id: 7,
             type: 'single',
-            question: '在 C++ 中，以下代码的输出是什么（ ）\n```cpp\nint a = -5;\nunsigned int b = a;\ncout << b;\n```',
+            question: `在 C++ 中，以下代码的输出是什么（ ）\n\`\`\`cpp\nint a = -5;\nunsigned int b = a;\ncout << b;\n\`\`\``,
             options: ['-5', '5', '4294967291', '编译错误'],
             answer: 2,
             score: 2,
@@ -82,7 +82,7 @@ export const paperData = {
         {
             id: 8,
             type: 'single',
-            question: '下列程序的作用是（ ）\n```cpp\nint main() {\n    int decimal = 25;\n    cout << oct << decimal;\n    return 0;\n}\n```',
+            question: `下列程序的作用是（ ）\n\`\`\`cpp\nint main() {\n int decimal = 25;\n cout << oct << decimal;\n return 0;\n}\n\`\`\``,
             options: ['将十进制数转换成八进制数', '将八进制数转换成十进制数', '将二进制数转换成八进制数', '将八进制数转换成 16 进制数'],
             answer: 0,
             score: 2,
@@ -91,7 +91,7 @@ export const paperData = {
         {
             id: 9,
             type: 'single',
-            question: '下面程序是将十进制转十六进制，横线处应该填入的是（ ）\n```cpp\n#include <iostream>\nusing namespace std;\nint main() {\n    int decimal = 255;\n    ________________________\n    return 0;\n}\n```',
+            question: `下面程序是将十进制转十六进制，横线处应该填入的是（ ）\n\`\`\`cpp\n#include <iostream>\nusing namespace std;\nint main() {\n int decimal = 255;\n ________________________\n return 0;\n}\n\`\`\``,
             options: ['cout << oct << decimal;', 'cout << decimal << decimal;', 'cout << hex << decimal;', '不能正确执行'],
             answer: 2,
             score: 2,
@@ -100,7 +100,7 @@ export const paperData = {
         {
             id: 10,
             type: 'single',
-            question: '以下代码的说法正确的是什么（ ）\n```cpp\n#include <iostream>\nusing namespace std;\nint main() {\n    int a = 0b1101;\n    int b = 0b1011;\n    cout << (a ^ b);\n    return 0;\n}\n```',
+            question: `以下代码的说法正确的是什么（ ）\n\`\`\`cpp\n#include <iostream>\nusing namespace std;\nint main() {\n int a = 0b1101;\n int b = 0b1011;\n cout << (a ^ b);\n return 0;\n}\n\`\`\``,
             options: ['进行的是整体异或运算', '进行的是按位同或运算', '进行的是按位与运算', '进行的是按位异或运算'],
             answer: 3,
             score: 2,
@@ -109,7 +109,7 @@ export const paperData = {
         {
             id: 11,
             type: 'single',
-            question: '下面枚举法查找最大值索引程序中，横线处应该填写的是（ ）\n```cpp\n#include <iostream>\nusing namespace std;\nint main() {\n    int arr[] = {3, 7, 2, 9, 5};\n    int maxIndex = 0;\n    for (int i = 1; i < 5; i++) {\n        ____________________________\n        {\n            maxIndex = i;\n        }\n    }\n    cout << maxIndex;\n    return 0;\n}\n```',
+            question: `下面枚举法查找最大值索引程序中，横线处应该填写的是（ ）\n\`\`\`cpp\n#include <iostream>\nusing namespace std;\nint main() {\n int arr[] = {3, 7, 2, 9, 5};\n int maxIndex = 0;\n for (int i = 1; i < 5; i++) {\n ____________________________\n {\n maxIndex = i;\n }\n }\n cout << maxIndex;\n return 0;\n}\n\`\`\``,
             options: ['if (arr[maxIndex] > arr[i])', 'if (arr[i]-1 > arr[maxIndex])', 'if (arr[i]+1 > arr[maxIndex])', 'if (arr[i] > arr[maxIndex])'],
             answer: 3,
             score: 2,
@@ -118,7 +118,7 @@ export const paperData = {
         {
             id: 12,
             type: 'single',
-            question: '以下代码的功能是将数组中的奇数和偶数分别放在数组的前半部分和后半部分，横线处应该填入的是（ ）\n```cpp\nint arr[] = {1, 2, 3, 4, 5};\nint left = 0, right = 4;\nwhile (left < right) {\n    while (arr[left] % 2 == 1 && left < right) left++;\n    ________________________________\n    if (left < right) {\n        swap(arr[left], arr[right]);\n    }\n}\nfor (int i = 0; i < 5; i++) {\n    cout << arr[i] << " ";\n}\n```',
+            question: `以下代码的功能是将数组中的奇数和偶数分别放在数组的前半部分和后半部分，横线处应该填入的是（ ）\n\`\`\`cpp\nint arr[] = {1, 2, 3, 4, 5};\nint left = 0, right = 4;\nwhile (left < right) {\n while (arr[left] % 2 == 1 && left < right) left++;\n ________________________________\n if (left < right) {\n swap(arr[left], arr[right]);\n }\n}\nfor (int i = 0; i < 5; i++) {\n cout << arr[i] << " ";\n}\n\`\`\``,
             options: ['while (arr[left] % 2 == 0 && left < right) right--;', 'while (arr[right] % 2 == 0 && left < right) left--;', 'while (arr[right] % 2 != 0 && left < right) right--;', 'while (arr[right] % 2 == 0 && left < right) right--;'],
             answer: 3,
             score: 2,
@@ -127,7 +127,7 @@ export const paperData = {
         {
             id: 13,
             type: 'single',
-            question: '下面程序最后能够得到 HelloC++ 的是（ ）\n```cpp\nint main() {\n    string str = "HelloWorld";\n    ___________________\n    cout << str;\n    return 0;\n}\n```',
+            question: `下面程序最后能够得到 HelloC++ 的是（ ）\n\`\`\`cpp\nint main() {\n string str = "HelloWorld";\n ___________________\n cout << str;\n return 0;\n}\n\`\`\``,
             options: ['str.replace(0, 5, "C++");', 'str.replace(5, 5, "C++");', 'str.replace(1, 5, "C++");', 'str.replace(4, 5, "C++");'],
             answer: 1,
             score: 2,
@@ -136,7 +136,7 @@ export const paperData = {
         {
             id: 14,
             type: 'single',
-            question: '想要得到字符串 World，下面程序横线处应该填入的是（ ）\n```cpp\n#include <iostream>\n#include <string>\nusing namespace std;\nint main() {\n    string str = "HelloC++";\n    _________________\n    _________________\n    return 0;\n}\n```',
+            question: `想要得到字符串 World，下面程序横线处应该填入的是（ ）\n\`\`\`cpp\n#include <iostream>\n#include <string>\nusing namespace std;\nint main() {\n string str = "HelloC++";\n _________________\n _________________\n return 0;\n}\n\`\`\``,
             options: ['str.insert(4, "World");\ncout << str.substr(4, 4);', 'cout << str.substr(5, 5);', 'str.insert("World");\ncout << str.substr(5, 5);', 'str.insert(5, "World");\ncout << str.substr(5, 5);'],
             answer: 3,
             score: 2,
@@ -145,7 +145,7 @@ export const paperData = {
         {
             id: 15,
             type: 'single',
-            question: '有 n 个正整数，假设一个正整数是美丽数字当且仅当该正整数是 9 的倍数但不是 8 的倍数。下面的程序是编写计算 n 个正整数中美丽数字的数量，横线处应该填入的是（ ）\n```cpp\nfor (int i = 1; i <= n; i++) {\n    cin >> a;\n    ________________________\n        cnt++;\n}\n```',
+            question: `有 n 个正整数，假设一个正整数是美丽数字当且仅当该正整数是 9 的倍数但不是 8 的倍数。下面的程序是编写计算 n 个正整数中美丽数字的数量，横线处应该填入的是（ ）\n\`\`\`cpp\nfor (int i = 1; i <= n; i++) {\n cin >> a;\n ________________________\n cnt++;\n}\n\`\`\``,
             options: ['if (a % 9 != 0 && a % 8 != 0)', 'if (a % 9 == 0 & a % 8 == 0)', 'if (a % 9 == 0 && a % 8 != 0)', 'if (a % 9 == 0 & a % 8 != 0)'],
             answer: 2,
             score: 2,
@@ -154,7 +154,7 @@ export const paperData = {
         {
             id: 16,
             type: 'judge',
-            question: '判断一个三角形是否成立的条件只有：任意两边长度之和大于第三条边的长度。',
+            question: `判断一个三角形是否成立的条件只有：任意两边长度之和大于第三条边的长度。`,
             options: ['正确', '错误'],
             answer: 1,
             score: 2,
@@ -163,7 +163,7 @@ export const paperData = {
         {
             id: 17,
             type: 'judge',
-            question: '这段程序进行的是判断一个从键盘输入的字符的 ASCII 是否是奇数，若是，输出 YES，否则，输出 NO。\n```cpp\nint main() {\n    char x;\n    scanf("%c", &x);\n    int ASCII = (int)x;\n    cout << (x & 1 ? "YES" : "NO") << "\\n";\n    return 0;\n}\n```',
+            question: `这段程序进行的是判断一个从键盘输入的字符的 ASCII 是否是奇数，若是，输出 YES，否则，输出 NO。\n\`\`\`cpp\nint main() {\n char x;\n scanf("%c", &x);\n int ASCII = (int)x;\n cout << (x & 1 ? "YES" : "NO") << "\\n";\n return 0;\n}\n\`\`\``,
             options: ['正确', '错误'],
             answer: 0,
             score: 2,
@@ -172,7 +172,7 @@ export const paperData = {
         {
             id: 18,
             type: 'judge',
-            question: '闰年的定义：普通闰年是公历年份是 4 的倍数且不是 100 的倍数；世纪闰年必须是 400 的倍数。下面程序是判断是否是闰年的正确程序。\ncin >> n;\n```cpp\ncout << ((n % 4 == 0 && n % 100 != 0) || (n % 400 == 0)) ? 1 : 0;\nreturn 0;\n```',
+            question: `闰年的定义：普通闰年是公历年份是 4 的倍数且不是 100 的倍数；世纪闰年必须是 400 的倍数。下面程序是判断是否是闰年的正确程序。\ncin >> n;\n\`\`\`cpp\ncout << ((n % 4 == 0 && n % 100 != 0) || (n % 400 == 0)) ? 1 : 0;\nreturn 0;\n\`\`\``,
             options: ['正确', '错误'],
             answer: 0,
             score: 2,
@@ -181,7 +181,7 @@ export const paperData = {
         {
             id: 19,
             type: 'judge',
-            question: 'C++ 语句 cout << (n % 15 == 0 ? "YES" : "NO"); 能够判断一个整数能否被 3 和 5 同时整除。',
+            question: `C++ 语句 cout << (n % 15 == 0 ? "YES" : "NO"); 能够判断一个整数能否被 3 和 5 同时整除。`,
             options: ['正确', '错误'],
             answer: 0,
             score: 2,
@@ -190,7 +190,7 @@ export const paperData = {
         {
             id: 20,
             type: 'judge',
-            question: '有 n 个同学，从中抽取任意个人数来参加学校组织的大合唱，共有 2 的 n 次幂个方法。',
+            question: `有 n 个同学，从中抽取任意个人数来参加学校组织的大合唱，共有 2 的 n 次幂个方法。`,
             options: ['正确', '错误'],
             answer: 0,
             score: 2,
@@ -199,7 +199,7 @@ export const paperData = {
         {
             id: 21,
             type: 'judge',
-            question: '若将一个正整数化为二进制数，在此二进制数中，我们将数字 1 的个数是偶数的这类二进制数称为 A 类数，否则就称其为 B 类数。判断 (2025)10 化为二进制后，1 的个数为偶数个，因此 2025 为 A 类数。',
+            question: `若将一个正整数化为二进制数，在此二进制数中，我们将数字 1 的个数是偶数的这类二进制数称为 A 类数，否则就称其为 B 类数。判断 (2025)10 化为二进制后，1 的个数为偶数个，因此 2025 为 A 类数。`,
             options: ['正确', '错误'],
             answer: 0,
             score: 2,
@@ -208,7 +208,7 @@ export const paperData = {
         {
             id: 22,
             type: 'judge',
-            question: '该段程序将 n 不停地除以 2，并输出此时的商和余数，直到 n = 0 为止。\nlong long n;\ncin >> n;\n```cpp\nwhile (n != 0) {\n    cout << n / 2 << " " << n % 2 << "\\n";\n    n /= 2;\n}\n```',
+            question: `该段程序将 n 不停地除以 2，并输出此时的商和余数，直到 n = 0 为止。\nlong long n;\ncin >> n;\n\`\`\`cpp\nwhile (n != 0) {\n cout << n / 2 << " " << n % 2 << "\\n";\n n /= 2;\n}\n\`\`\``,
             options: ['正确', '错误'],
             answer: 0,
             score: 2,
@@ -217,7 +217,7 @@ export const paperData = {
         {
             id: 23,
             type: 'judge',
-            question: '两个 13 进制的数 A 和 B，在 10 进制下分别表示 10 和 11。 (A+B)13 = (18)13，也就是说 13 进制数 A 加上 13 进制数 B，和是 13 进制数 18。',
+            question: `两个 13 进制的数 A 和 B，在 10 进制下分别表示 10 和 11。 (A+B)13 = (18)13，也就是说 13 进制数 A 加上 13 进制数 B，和是 13 进制数 18。`,
             options: ['正确', '错误'],
             answer: 0,
             score: 2,
@@ -226,7 +226,7 @@ export const paperData = {
         {
             id: 24,
             type: 'judge',
-            question: 'k 进制，逢 k 进第二位，逢 k² 进百位，逢 k³ 进千位。',
+            question: `k 进制，逢 k 进第二位，逢 k² 进百位，逢 k³ 进千位。`,
             options: ['正确', '错误'],
             answer: 0,
             score: 2,
@@ -235,7 +235,7 @@ export const paperData = {
         {
             id: 25,
             type: 'judge',
-            question: 'CCF（十九进制）= 21AC（十三进制）（不区分大小写）。',
+            question: `CCF（十九进制）= 21AC（十三进制）（不区分大小写）。`,
             options: ['正确', '错误'],
             answer: 1,
             score: 2,
@@ -254,19 +254,19 @@ export const paperData = {
 
 ## 题目描述
 
-小 A 有一个整数 \$x\$，他想找到最小的正整数 \$y\$ 使得下式成立：
+小 A 有一个整数 $x$，他想找到最小的正整数 $y$ 使得下式成立：
 
-\$(x \\ \\operatorname{and} \\ y) + (x \\ \\operatorname{or} \\ y) = 2025\$
+$(x \\ \\operatorname{and} \\ y) + (x \\ \\operatorname{or} \\ y) = 2025$
 
-其中 \$\\operatorname{and}\$ 表示二进制按位与运算，\$\\operatorname{or}\$ 表示二进制按位或运算。如果不存在满足条件的 \$y\$，则输出 \$-1\$。
+其中 $\\operatorname{and}$ 表示二进制按位与运算，$\\operatorname{or}$ 表示二进制按位或运算。如果不存在满足条件的 $y$，则输出 $-1$。
 
 ## 输入格式
 
-一行，一个整数 \$x\$。
+一行，一个整数 $x$。
 
 ## 输出格式
 
-一行，一个整数，若满足条件的 \$y\$ 存在则输出 \$y\$，否则输出 \$-1\$。
+一行，一个整数，若满足条件的 $y$ 存在则输出 $y$，否则输出 $-1$。
 `,
       explanation: '由按位恒等式 (x & y)+(x | y) = x+y，可知只要 2025-x > 0，答案就是 2025-x；否则不存在正整数解。官方 PDF 参考程序使用 1..2025 暴力枚举，但可直接化简。',
       template: '#include <bits/stdc++.h>\nusing namespace std;\n\nint main() {\n    ios::sync_with_stdio(false);\n    cin.tie(nullptr);\n\n    // 在此编写代码\n    return 0;\n}',
@@ -292,15 +292,15 @@ apple`, output: `apple` }
 
 ## 题目描述
 
-在文本处理中，统计单词出现的频率是一个常见的任务。现在，给定 \$n\$ 个单词，你需要找出其中出现次数最多的单词。在本题中，忽略单词中字母的大小写（即 \`Apple\`、\`apple\`、\`APPLE\`、\`aPPle\` 等均视为同一个单词）。
+在文本处理中，统计单词出现的频率是一个常见的任务。现在，给定 $n$ 个单词，你需要找出其中出现次数最多的单词。在本题中，忽略单词中字母的大小写（即 \`Apple\`、\`apple\`、\`APPLE\`、\`aPPle\` 等均视为同一个单词）。
 
-请你编写一个程序，输入 \$n\$ 个单词，输出其中出现次数最多的单词。
+请你编写一个程序，输入 $n$ 个单词，输出其中出现次数最多的单词。
 
 ## 输入格式
 
-第一行，一个整数 \$n\$，表示单词的个数；
+第一行，一个整数 $n$，表示单词的个数；
 
-接下来 \$n\$ 行，每行包含一个单词，单词由大小写英文字母组成。
+接下来 $n$ 行，每行包含一个单词，单词由大小写英文字母组成。
 
 输入保证，出现次数最多的单词只会有一个。
 

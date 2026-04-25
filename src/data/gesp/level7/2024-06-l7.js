@@ -18,17 +18,17 @@ const programmingQuestions = [
 
 ## 题目描述
 
-小杨有一棵包含 \$n\$ 个节点的树，这棵树上的任意一个节点要么是白色，要么是黑色。小杨认为一棵树是美丽树当且仅当在删除所有白色节点之后，剩余节点仍然组成一棵树。
+小杨有一棵包含 $n$ 个节点的树，这棵树上的任意一个节点要么是白色，要么是黑色。小杨认为一棵树是美丽树当且仅当在删除所有白色节点之后，剩余节点仍然组成一棵树。
 
 小杨每次操作可以选择一个白色节点将它的颜色变为黑色，他想知道自己最少要执行多少次操作可以使得这棵树变为美丽树。
 
 ## 输入格式
 
-第一行包含一个正整数 \$n\$，代表树的节点数。
+第一行包含一个正整数 $n$，代表树的节点数。
 
-第二行包含 \$n\$ 个非负整数 \$a_1,a_2,\\ldots,a_n\$，其中如果 \$a_i=0\$，则节点 \$i\$ 的颜色为白色，否则为黑色。
+第二行包含 $n$ 个非负整数 $a_1,a_2,\\ldots,a_n$，其中如果 $a_i=0$，则节点 $i$ 的颜色为白色，否则为黑色。
 
-之后 \$n-1\$ 行，每行包含两个正整数 \$x_i,y_i\$，代表存在一条连接节点 \$x_i\$ 和 \$y_i\$ 的边。
+之后 $n-1$ 行，每行包含两个正整数 $x_i,y_i$，代表存在一条连接节点 $x_i$ 和 $y_i$ 的边。
 
 ## 输出格式
 
@@ -55,21 +55,21 @@ const programmingQuestions = [
 
 ## 题目描述
 
-小杨有一个包含 \$n\$ 个正整数的序列 \$A=[a_1,a_2,\\ldots,a_n]\$。
+小杨有一个包含 $n$ 个正整数的序列 $A=[a_1,a_2,\\ldots,a_n]$。
 
-小杨想知道有多少对 \$\\langle l,r\\rangle(1\\leq l\\leq r\\leq n)\$ 满足 \$a_l\\times a_{l+1}\\times\\ldots\\times a_r\$ 为完全平方数。
+小杨想知道有多少对 $\\langle l,r\\rangle(1\\leq l\\leq r\\leq n)$ 满足 $a_l\\times a_{l+1}\\times\\ldots\\times a_r$ 为完全平方数。
 
-一个正整数 \$x\$ 为完全平方数当且仅当存在一个正整数 \$y\$ 使得 \$x=y\\times y\$。
+一个正整数 $x$ 为完全平方数当且仅当存在一个正整数 $y$ 使得 $x=y\\times y$。
 
 ## 输入格式
 
-第一行包含一个正整数 \$n\$，代表正整数个数。
+第一行包含一个正整数 $n$，代表正整数个数。
 
-第二行包含 \$n\$ 个正整数 \$a_i\$，代表序列 \$A\$。
+第二行包含 $n$ 个正整数 $a_i$，代表序列 $A$。
 
 ## 输出格式
 
-输出一个整数，代表满足要求的 \$\\langle l,r\\rangle\$ 数量。
+输出一个整数，代表满足要求的 $\\langle l,r\\rangle$ 数量。
 `,
       score: 25,
       explanation: "把每个数分解质因数，只保留指数奇偶性，得到一个平方因子自由核的 bitmask。区间乘积是完全平方数，当且仅当前缀异或状态相同。统计相同前缀状态对数即可。",
@@ -93,7 +93,7 @@ export const paperData = {
         {
             id: 1,
             type: "single",
-            question: "下列 C++ 代码的输出结果是（ ）。",
+            question: `下列 C++ 代码的输出结果是（ ）。`,
             options: [
                 "0",
                 "1",
@@ -112,7 +112,7 @@ export const paperData = {
         {
             id: 2,
             type: "single",
-            question: "对于如下图的二叉树，说法正确的是（ ）。",
+            question: `对于如下图的二叉树，说法正确的是（ ）。`,
             options: [
                 "先序遍历是132。",
                 "中序遍历是123。",
@@ -131,7 +131,7 @@ export const paperData = {
         {
             id: 3,
             type: "single",
-            question: "已知两个序列 s1={1,3,4,5,6,7,7,8,1}、 s2={3,5,7,4,8,2,9,5,1}，则它们的最长公共子序列是（ ）。",
+            question: `已知两个序列 s1={1,3,4,5,6,7,7,8,1}、 s2={3,5,7,4,8,2,9,5,1}，则它们的最长公共子序列是（ ）。`,
             options: [
                 "{3,5,7,8,1}",
                 "{3,4,5,7,8}",
@@ -150,7 +150,7 @@ export const paperData = {
         {
             id: 4,
             type: "single",
-            question: "关于序列{2,7,1,5,6,4,3,8,9}，以下说法错误的是（ ）。",
+            question: `关于序列{2,7,1,5,6,4,3,8,9}，以下说法错误的是（ ）。`,
             options: [
                 "{2,5,6,8,9}是它的最长上升子序列",
                 "{1,5,6,8,9}是它的最长上升子序列",
@@ -169,7 +169,7 @@ export const paperData = {
         {
             id: 5,
             type: "single",
-            question: "关于图的深度优先搜索和⼴度优先搜索，下列说法错误的是（ ）。",
+            question: `关于图的深度优先搜索和⼴度优先搜索，下列说法错误的是（ ）。`,
             options: [
                 "二叉树是也是一种图。",
                 "二叉树的前序遍历和后序遍历都是深度优先搜索的一种。",
@@ -188,7 +188,7 @@ export const paperData = {
         {
             id: 6,
             type: "single",
-            question: "对于如下二叉树，下面访问顺序说法错误的是（ ）。",
+            question: `对于如下二叉树，下面访问顺序说法错误的是（ ）。`,
             options: [
                 "HDEBFIGCA 不是它的后序遍历序列",
                 "ABCDEFGHI 是它的⼴度优先遍历序列",
@@ -207,7 +207,7 @@ export const paperData = {
         {
             id: 7,
             type: "single",
-            question: "以下哪个方案不能合理解决或缓解哈希表冲突（ ）。",
+            question: `以下哪个方案不能合理解决或缓解哈希表冲突（ ）。`,
             options: [
                 "丢弃发生冲突的新元素。",
                 "在每个哈希表项处，使用不同的哈希函数再建⽴一个哈希表，管理该表项的冲突元素。",
@@ -226,7 +226,7 @@ export const paperData = {
         {
             id: 8,
             type: "single",
-            question: "在 C++ 中，关于运算符 & ，下面说法正确的是（ ）。",
+            question: `在 C++ 中，关于运算符 & ，下面说法正确的是（ ）。`,
             options: [
                 "2 & 3的结果是true",
                 "011 & 111的结果是3",
@@ -245,7 +245,7 @@ export const paperData = {
         {
             id: 9,
             type: "single",
-            question: "下面关于图的说法正确的是（ ）。",
+            question: `下面关于图的说法正确的是（ ）。`,
             options: [
                 "在无向图中，环是指⾄少包含三个不同顶点，并且第一个顶点和最后一个顶点是相同的路径。",
                 "在有向图中，环是指一个顶点经过⾄少另一个顶点到⾃⾝的路径。",
@@ -264,7 +264,7 @@ export const paperData = {
         {
             id: 10,
             type: "single",
-            question: "图的存储和遍历算法，下面说法错误的是（ ）。",
+            question: `图的存储和遍历算法，下面说法错误的是（ ）。`,
             options: [
                 "图的深度优先搜索和⼴度优先搜索对有向图和无向图都适用。",
                 "图的深度优先搜索和二叉树的先序遍历道理是不一样的。",
@@ -283,7 +283,7 @@ export const paperData = {
         {
             id: 11,
             type: "single",
-            question: "如下图所⽰的邻接表结构，表⽰的是下列哪个选项中的图？",
+            question: `如下图所⽰的邻接表结构，表⽰的是下列哪个选项中的图？`,
             options: [
                 "[待补充选项]",
                 "选项B",
@@ -302,7 +302,7 @@ export const paperData = {
         {
             id: 12,
             type: "single",
-            question: "如下图所⽰的邻接矩阵（ inf 表⽰无穷大），表⽰的是下列哪个选项中的图？",
+            question: `如下图所⽰的邻接矩阵（ inf 表⽰无穷大），表⽰的是下列哪个选项中的图？`,
             options: [
                 "[待补充选项]",
                 "选项B",
@@ -321,7 +321,7 @@ export const paperData = {
         {
             id: 13,
             type: "single",
-            question: "下面程序的输出为（ ）。",
+            question: `下面程序的输出为（ ）。`,
             options: [
                 "5",
                 "8",
@@ -340,7 +340,7 @@ export const paperData = {
         {
             id: 14,
             type: "single",
-            question: "下面count_triple函数的时间复杂度为 ( ) 。 #include <iostream> using namespace std; int fib(int n) { if (n <= 1) return n; return fib(n-1)+fib(n-2); } int main() { cout << fib(6) << endl; return 0; } 1 2 3 4 5 6 7 8 9 10 11 题号 1 2 3 4 5 6 7 8 9 10 答案",
+            question: `下面count_triple函数的时间复杂度为 ( ) 。 #include <iostream> using namespace std; int fib(int n) { if (n <= 1) return n; return fib(n-1)+fib(n-2); } int main() { cout << fib(6) << endl; return 0; } 1 2 3 4 5 6 7 8 9 10 11 题号 1 2 3 4 5 6 7 8 9 10 答案`,
             options: [
                 "[待补充选项]",
                 "选项B",
@@ -359,7 +359,7 @@ export const paperData = {
         {
             id: 15,
             type: "single",
-            question: "下列选项中，哪个可能是下图的深度优先遍历序列（ ）。",
+            question: `下列选项中，哪个可能是下图的深度优先遍历序列（ ）。`,
             options: [
                 "1, 3, 7, 5, 4, 2, 6, 8, 9",
                 "9, 4, 2, 1, 3, 5, 7, 6, 8",
@@ -378,7 +378,7 @@ export const paperData = {
         {
             id: 16,
             type: "judge",
-            question: "C++ 语⾔中，表达式6 & 5的结果类型为int、值为1。",
+            question: `C++ 语⾔中，表达式6 & 5的结果类型为int、值为1。`,
             options: [
                 "正确",
                 "错误",
@@ -395,7 +395,7 @@ export const paperData = {
         {
             id: 17,
             type: "judge",
-            question: "冒泡排序是稳定的排序算法。",
+            question: `冒泡排序是稳定的排序算法。`,
             options: [
                 "正确",
                 "错误",
@@ -412,7 +412,7 @@ export const paperData = {
         {
             id: 18,
             type: "judge",
-            question: "唯一分解定理（算术基本定理）指出，每个大于 1 的⾃然数都可以唯一地分解成若⼲个素数的乘积。因此， 我们可以很容易的对给定的⾃然数n进⾏质因数分解，时间复杂度仅为 。 int count_triple(int n) { int cnt = 0; for (int a = 1; a <= n; a++) for (int b = a; a+b <= n; b++) { int c = sqrt(a * a+b * b); if (a+b+c > n) break; if (a * a+b * b == c * c) cnt++; } return cnt; } 1 2 3 4 5 6 7 8 9 10 11 12",
+            question: `唯一分解定理（算术基本定理）指出，每个大于 1 的⾃然数都可以唯一地分解成若⼲个素数的乘积。因此， 我们可以很容易的对给定的⾃然数n进⾏质因数分解，时间复杂度仅为 。 int count_triple(int n) { int cnt = 0; for (int a = 1; a <= n; a++) for (int b = a; a+b <= n; b++) { int c = sqrt(a * a+b * b); if (a+b+c > n) break; if (a * a+b * b == c * c) cnt++; } return cnt; } 1 2 3 4 5 6 7 8 9 10 11 12`,
             options: [
                 "正确",
                 "错误",
@@ -429,7 +429,7 @@ export const paperData = {
         {
             id: 19,
             type: "judge",
-            question: "C++ 语⾔中，可以为同一个类定义多个构造函数。",
+            question: `C++ 语⾔中，可以为同一个类定义多个构造函数。`,
             options: [
                 "正确",
                 "错误",
@@ -446,7 +446,7 @@ export const paperData = {
         {
             id: 20,
             type: "judge",
-            question: "使用math.h或cmath头文件中的对数函数，表达式log(128)的结果类型为double、值约为7.0。",
+            question: `使用math.h或cmath头文件中的对数函数，表达式log(128)的结果类型为double、值约为7.0。`,
             options: [
                 "正确",
                 "错误",
@@ -463,7 +463,7 @@ export const paperData = {
         {
             id: 21,
             type: "judge",
-            question: "一颗N层的二叉树，⾄少有 个节点。",
+            question: `一颗N层的二叉树，⾄少有 个节点。`,
             options: [
                 "正确",
                 "错误",
@@ -480,7 +480,7 @@ export const paperData = {
         {
             id: 22,
             type: "judge",
-            question: "非连通图不能使用⼴度优先搜索算法进⾏遍历。",
+            question: `非连通图不能使用⼴度优先搜索算法进⾏遍历。`,
             options: [
                 "正确",
                 "错误",
@@ -497,7 +497,7 @@ export const paperData = {
         {
             id: 23,
             type: "judge",
-            question: "现使用有N个表项的哈希表，从M个元素中进⾏查找。该哈希表为解决哈希函数冲突，为每个表项处建⽴单 链表存储冲突元素。其查找操作的最坏情况时间复杂度为 。",
+            question: `现使用有N个表项的哈希表，从M个元素中进⾏查找。该哈希表为解决哈希函数冲突，为每个表项处建⽴单 链表存储冲突元素。其查找操作的最坏情况时间复杂度为 。`,
             options: [
                 "正确",
                 "错误",
@@ -514,7 +514,7 @@ export const paperData = {
         {
             id: 24,
             type: "judge",
-            question: "动态规划有递推实现和递归实现，对于很多问题，通过记录子问题的解，两种实现的时间复杂度是相同的。",
+            question: `动态规划有递推实现和递归实现，对于很多问题，通过记录子问题的解，两种实现的时间复杂度是相同的。`,
             options: [
                 "正确",
                 "错误",
@@ -531,7 +531,7 @@ export const paperData = {
         {
             id: 25,
             type: "judge",
-            question: "泛洪算法的递归方法容易造成溢出，因此大的二维地图算法中，一般不用递归方法。",
+            question: `泛洪算法的递归方法容易造成溢出，因此大的二维地图算法中，一般不用递归方法。`,
             options: [
                 "正确",
                 "错误",

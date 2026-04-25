@@ -12,7 +12,7 @@ export const paperData = {
         {
             id: 1,
             type: 'single',
-            question: "C++语言中，以下哪个变量命名是错误的？（ ）。",
+            question: `C++语言中，以下哪个变量命名是错误的？（ ）。`,
             options: ["my_var", "_var1", "123var", "var_123"],
             answer: 2,
             score: 2,
@@ -22,7 +22,7 @@ export const paperData = {
         {
             id: 2,
             type: 'single',
-            question: "在 C++ 中，与for(int i = 10; i < 20; i +=2) cout << i;输出结果相同的是 （ ） 。",
+            question: `在 C++ 中，与for(int i = 10; i < 20; i +=2) cout << i;输出结果相同的是 （ ） 。`,
             options: ["for(int i = 10; i < 19; i +=2) cout << i;", "for(int i = 11; i < 19; i +=2) cout << i;", "for(int i = 10; i < 21; i +=2) cout << i;", "以上均不对"],
             answer: 0,
             score: 2,
@@ -32,7 +32,7 @@ export const paperData = {
         {
             id: 3,
             type: 'single',
-            question: "以下 C++ 代码实现从小到大的顺序输出能整除 N 的数（ N 的因⼦），例如 N=18 时输出 1 2 3 6 9 18 ，横线处应填 入（ ）。",
+            question: `以下 C++ 代码实现从小到大的顺序输出能整除 N 的数（ N 的因⼦），例如 N=18 时输出 1 2 3 6 9 18 ，横线处应填 入（ ）。`,
             options: ["int i = 0; i < N; i++", "int i = 1; i < N; i++", "int i = 0; i < N+1; i++", "int i = 1; i < N+1; i++"],
             answer: 3,
             score: 2,
@@ -42,7 +42,7 @@ export const paperData = {
         {
             id: 4,
             type: 'single',
-            question: "下⾯ C++ 代码用于判断输入的整数是否为对称数，如 1221 . 12321 是对称数，但 123 . 972 不是对称数。下⾯ 对该题对应代码的说法，正确的是（ ）。",
+            question: `下⾯ C++ 代码用于判断输入的整数是否为对称数，如 1221 . 12321 是对称数，但 123 . 972 不是对称数。下⾯ 对该题对应代码的说法，正确的是（ ）。`,
             options: ["代码没有语法错误，如果 N 为对称数，第 8 行将能正确输出。", "代码没有语法错误，但如果 N 为负数，将导致死循环。", "代码存在语法错误，程序不能被执行。", "代码没有语法错误，但不能达到预期⽬标，因为循环结束 N 总为 0 。"],
             answer: 3,
             score: 2,
@@ -52,7 +52,7 @@ export const paperData = {
         {
             id: 5,
             type: 'single',
-            question: "下⾯ C++ 代码用于判断 N （大于等于 2 的正整数）是否为质数（素数）。下⾯对如下代码的说法，正确的是（ ）。",
+            question: `下⾯ C++ 代码用于判断 N （大于等于 2 的正整数）是否为质数（素数）。下⾯对如下代码的说法，正确的是（ ）。`,
             options: ["代码能正确判断 N 是否为质数。", "代码总是不能判断 N 是否质数。", "删除第 5 行break，将能正确判断 N 是否质数。", "代码存在漏洞，边界存在问题，应将第 2 行和第 7 行的N / 2改为 N / 2+1。"],
             answer: 3,
             score: 2,
@@ -62,7 +62,7 @@ export const paperData = {
         {
             id: 6,
             type: 'single',
-            question: "下⾯ C++ 代码执行后的输出是（ ）。",
+            question: `下⾯ C++ 代码执行后的输出是（ ）。`,
             options: ["2#3#0", "1#2#0", "1#0#", "2#3#"],
             answer: 0,
             score: 2,
@@ -72,7 +72,7 @@ export const paperData = {
         {
             id: 7,
             type: 'single',
-            question: "下面C++代码执行后的输出是（ ）。\n```cpp\nint cnt = 0;\nfor (int i = 1; i < 10; i++) {\n    if (i % 2 == 0) cnt++;\n}\ncout << cnt << \"#\";\n```",
+            question: `下面C++代码执行后的输出是（ ）。\n\`\`\`cpp\nint cnt = 0;\nfor (int i = 1; i < 10; i++) {\n if (i % 2 == 0) cnt++;\n}\ncout << cnt << "#";\n\`\`\``,
             options: ["5#", "8#", "9#", "4#"],
             answer: 3,
             score: 2,
@@ -82,7 +82,7 @@ export const paperData = {
         {
             id: 8,
             type: 'single',
-            question: "下面C++代码执行后的输出是（ ）。\n```cpp\nint N = 100;\nwhile (N % 2 == 0) {\n    if (N % 3 == 0) N -= 5;\n    else N -= 20;\n}\ncout << N;\n```",
+            question: `下面C++代码执行后的输出是（ ）。\n\`\`\`cpp\nint N = 100;\nwhile (N % 2 == 0) {\n if (N % 3 == 0) N -= 5;\n else N -= 20;\n}\ncout << N;\n\`\`\``,
             options: ["100", "80", "55", "40"],
             answer: 2,
             score: 2,
@@ -92,7 +92,7 @@ export const paperData = {
         {
             id: 9,
             type: 'single',
-            question: "下面C++代码执行后的输出是（ ）。\n```cpp\nint x = 1;\nwhile (x < 10) {\n    if (x % 3 != 0) cout << x << \",\";\n    if (x % 3 == 0) x = x+5+2;\n    else x += 2;\n}\n```",
+            question: `下面C++代码执行后的输出是（ ）。\n\`\`\`cpp\nint x = 1;\nwhile (x < 10) {\n if (x % 3 != 0) cout << x << ",";\n if (x % 3 == 0) x = x+5+2;\n else x += 2;\n}\n\`\`\``,
             options: ["1,3,", "1,3,10,", "1,7,", "1,10,"],
             answer: 3,
             score: 2,
@@ -102,7 +102,7 @@ export const paperData = {
         {
             id: 10,
             type: 'single',
-            question: "下面C++代码执行后的输出是（ ）。\n```cpp\nint cnt = 0;\nfor (int i = 0; i < 4; i++) {\n    for (int j = 0; j <= i; j++) {\n        cnt++;\n    }\n}\ncout << cnt;\n```",
+            question: `下面C++代码执行后的输出是（ ）。\n\`\`\`cpp\nint cnt = 0;\nfor (int i = 0; i < 4; i++) {\n for (int j = 0; j <= i; j++) {\n cnt++;\n }\n}\ncout << cnt;\n\`\`\``,
             options: ["5", "10", "15", "20"],
             answer: 1,
             score: 2,
@@ -112,7 +112,7 @@ export const paperData = {
         {
             id: 11,
             type: 'single',
-            question: "以下 C++ 代码用于输出 1-100 （含）的整数平⽅数（完全平⽅数），如 16 是 4 的平⽅，横线处应填写（ ）。",
+            question: `以下 C++ 代码用于输出 1-100 （含）的整数平⽅数（完全平⽅数），如 16 是 4 的平⽅，横线处应填写（ ）。`,
             options: ["int(sqrt(i)) * int(sqrt(i)) = i", "int(sqrt(i)) == sqrt(i)", "int(sqrt(i)) * int(sqrt(i)) == i", "int(sqrt(i)) = sqrt(i)"],
             answer: 2,
             score: 2,
@@ -122,7 +122,7 @@ export const paperData = {
         {
             id: 12,
             type: 'single',
-            question: "下⾯的 C++ 代码用于实现如下左图所示的效果，应在以下右图 C++ 代码中填入（ ）。",
+            question: `下⾯的 C++ 代码用于实现如下左图所示的效果，应在以下右图 C++ 代码中填入（ ）。`,
             options: ["与第 8 行下⾯填入一行：cout << nowNum;", "与第 2 行下⾯填入一行：cout << endl;", "与第 7 行下⾯填入一行：cout << nowNum;", "与第 9 行下⾯填入一行：cout << endl;"],
             answer: 3,
             score: 2,
@@ -132,7 +132,7 @@ export const paperData = {
         {
             id: 13,
             type: 'single',
-            question: "某公司新出了一款⽆⼈驾驶的小汽车，通过声控智能驾驶系统，乘客只要告诉汽车⽬的地，车⼦就能⾃动 选择一条优化路线，告诉乘客后驶达那里。请问下⾯哪项不是驾驶系统完成选路所必须的。（ ）",
+            question: `某公司新出了一款⽆⼈驾驶的小汽车，通过声控智能驾驶系统，乘客只要告诉汽车⽬的地，车⼦就能⾃动 选择一条优化路线，告诉乘客后驶达那里。请问下⾯哪项不是驾驶系统完成选路所必须的。（ ）`,
             options: ["麦克风", "扬声器", "油量表", "传感器"],
             answer: 2,
             score: 2,
@@ -142,7 +142,7 @@ export const paperData = {
         {
             id: 14,
             type: 'single',
-            question: "现代计算机是指电⼦计算机，它所基于的是（ ）体系结构。",
+            question: `现代计算机是指电⼦计算机，它所基于的是（ ）体系结构。`,
             options: ["艾伦·图灵", "冯·诺依曼", "阿塔纳索夫", "埃克特-莫克利"],
             answer: 1,
             score: 2,
@@ -152,7 +152,7 @@ export const paperData = {
         {
             id: 15,
             type: 'single',
-            question: "在下面的C++代码中，N必须是小于10大于1的整数，M为正整数。如果M被N整除则M为幸运数，如果M中含有N且能被N整除，则为超级幸运数。有关说法正确的是（ ）。",
+            question: `在下面的C++代码中，N必须是小于10大于1的整数，M为正整数。如果M被N整除则M为幸运数，如果M中含有N且能被N整除，则为超级幸运数。有关说法正确的是（ ）。`,
             options: ["如果N输入3，M输入36则将输出：36是3的超级幸运数", "如果N输入7，M输入21则将输出：21是7的幸运数", "如果N输入8，M输入36则将输出：36非8的超级幸运数", "如果N输入3，M输入63则将输出：63是3的超级幸运数"],
             answer: 1,
             score: 2,
@@ -162,7 +162,7 @@ export const paperData = {
         {
             id: 16,
             type: 'judge',
-            question: "计算机硬件主要包括运算器、控制器、存储器、输入设备和输出设备。",
+            question: `计算机硬件主要包括运算器、控制器、存储器、输入设备和输出设备。`,
             options: ['正确', '错误'],
             answer: 0,
             score: 2,
@@ -172,7 +172,7 @@ export const paperData = {
         {
             id: 17,
             type: 'judge',
-            question: "C++ 表达式 `2 * int('9') * 2` 的值为 36。",
+            question: `C++ 表达式 \`2 * int('9') * 2\` 的值为 36。`,
             options: ['正确', '错误'],
             answer: 1,
             score: 2,
@@ -182,7 +182,7 @@ export const paperData = {
         {
             id: 18,
             type: 'judge',
-            question: "C++ 表达式 `3+2 && 5-5` 的值为 `false`。",
+            question: `C++ 表达式 \`3+2 && 5-5\` 的值为 \`false\`。`,
             options: ['正确', '错误'],
             answer: 0,
             score: 2,
@@ -192,7 +192,7 @@ export const paperData = {
         {
             id: 19,
             type: 'judge',
-            question: "在 C++ 代码中，执行 `srand(0)` 后连续两次执行 `rand()` 的结果相等。",
+            question: `在 C++ 代码中，执行 \`srand(0)\` 后连续两次执行 \`rand()\` 的结果相等。`,
             options: ['正确', '错误'],
             answer: 1,
             score: 2,
@@ -202,7 +202,7 @@ export const paperData = {
         {
             id: 20,
             type: 'judge',
-            question: "C++ 代码中 `while(1){...}` 的判断条件不是逻辑值，将导致语法错误。",
+            question: `C++ 代码中 \`while(1){...}\` 的判断条件不是逻辑值，将导致语法错误。`,
             options: ['正确', '错误'],
             answer: 1,
             score: 2,
@@ -212,7 +212,7 @@ export const paperData = {
         {
             id: 21,
             type: 'judge',
-            question: "执行以下 C++ 代码后将输出 0。\n```cpp\nint cnt = 0;\nfor (int i = 1; i <= 10; i++) {\n    if (i % 3 == 0) continue;\n    cnt++;\n}\ncout << cnt % 3;\n```",
+            question: `执行以下 C++ 代码后将输出 0。\n\`\`\`cpp\nint cnt = 0;\nfor (int i = 1; i <= 10; i++) {\n if (i % 3 == 0) continue;\n cnt++;\n}\ncout << cnt % 3;\n\`\`\``,
             options: ['正确', '错误'],
             answer: 1,
             score: 2,
@@ -222,7 +222,7 @@ export const paperData = {
         {
             id: 22,
             type: 'judge',
-            question: "在 C++ 代码中，运算符只能处理相同的数据类型，不同类型之间必须转换为相同的数据类型。",
+            question: `在 C++ 代码中，运算符只能处理相同的数据类型，不同类型之间必须转换为相同的数据类型。`,
             options: ['正确', '错误'],
             answer: 1,
             score: 2,
@@ -232,7 +232,7 @@ export const paperData = {
         {
             id: 23,
             type: 'judge',
-            question: "在 C++ 代码中，虽然变量都有数据类型，但同一个变量也可以先后用不同类型的值赋值。",
+            question: `在 C++ 代码中，虽然变量都有数据类型，但同一个变量也可以先后用不同类型的值赋值。`,
             options: ['正确', '错误'],
             answer: 0,
             score: 2,
@@ -242,7 +242,7 @@ export const paperData = {
         {
             id: 24,
             type: 'judge',
-            question: "小杨最近在准备考 GESP，他用的 Dev C++ 来练习和运行程序，所以 Dev C++ 也是一个小型操作系统。",
+            question: `小杨最近在准备考 GESP，他用的 Dev C++ 来练习和运行程序，所以 Dev C++ 也是一个小型操作系统。`,
             options: ['正确', '错误'],
             answer: 1,
             score: 2,
@@ -252,7 +252,7 @@ export const paperData = {
         {
             id: 25,
             type: 'judge',
-            question: "表达式 `sqrt(9.0)` 的计算结果为 3，且结果类型为 int。",
+            question: `表达式 \`sqrt(9.0)\` 的计算结果为 3，且结果类型为 int。`,
             options: ['正确', '错误'],
             answer: 1,
             score: 2,
@@ -279,21 +279,21 @@ export const paperData = {
 
 ## 题目描述
 
-为了准备考试，小杨每天都要做题。第 \$1\$ 天，小杨做了 \$a\$ 道题；第 \$2\$ 天，小杨做了 \$b\$ 道题；从第 \$3\$ 天起，小杨每天做的题目数量是前两天的总和。
+为了准备考试，小杨每天都要做题。第 $1$ 天，小杨做了 $a$ 道题；第 $2$ 天，小杨做了 $b$ 道题；从第 $3$ 天起，小杨每天做的题目数量是前两天的总和。
 
-此外，小杨还规定，当自己某一天做了大于或等于 \$m\$ 题时，接下来的所有日子里，他就再也不做题了。
+此外，小杨还规定，当自己某一天做了大于或等于 $m$ 题时，接下来的所有日子里，他就再也不做题了。
 
-请问，到了第 \$N\$ 天，小杨总共做了多少题呢？
+请问，到了第 $N$ 天，小杨总共做了多少题呢？
 
 ## 输入格式
 
-总共 \$4\$ 行。第一行一个整数 \$a\$，第二行一个整数 \$b\$，第三行一个整数 \$m\$，第四行一个整数 \$N\$。
+总共 $4$ 行。第一行一个整数 $a$，第二行一个整数 $b$，第三行一个整数 $m$，第四行一个整数 $N$。
 
-保证 \$0 \\le a,b \\le 10\$；\$a,b < m \\le 1000\$；\$3 \\le N \\le 364\$。
+保证 $0 \\le a,b \\le 10$；$a,b < m \\le 1000$；$3 \\le N \\le 364$。
 
 ## 输出格式
 
-一行一个整数，表示小杨 \$N\$ 天里总共做了多少题目。
+一行一个整数，表示小杨 $N$ 天里总共做了多少题目。
 `,
       score: 25,
       explanation: "从前两天开始递推每天做题数；一旦某天做题数达到或超过 m，这天仍计入总和，但之后的天数都不再增加。",
@@ -324,7 +324,7 @@ export const paperData = {
 
 ## 题目描述
 
-小杨想要构造一个 \$N \\times N\$ 的 H 字矩阵（\$N\$ 为奇数），具体来说，这个矩阵共有 \$N\$ 行，每行 \$N\$ 个字符，其中最左列、最右列都是 \`|\` ，而中间一行（即第\$\\frac{N+1}{2}\$行）的第 \$2 \\sim N-1\$ 个字符都是 \`-\` ，其余所有字符都是半角小写字母 \`a\`。例如，一个 \$N=5\$ 的 H 字矩阵如下：
+小杨想要构造一个 $N \\times N$ 的 H 字矩阵（$N$ 为奇数），具体来说，这个矩阵共有 $N$ 行，每行 $N$ 个字符，其中最左列、最右列都是 \`|\` ，而中间一行（即第$\\frac{N+1}{2}$行）的第 $2 \\sim N-1$ 个字符都是 \`-\` ，其余所有字符都是半角小写字母 \`a\`。例如，一个 $N=5$ 的 H 字矩阵如下：
 \`\`\`
 |aaa|
 |aaa|
@@ -332,17 +332,17 @@ export const paperData = {
 |aaa|
 |aaa|
 \`\`\`
-请你帮小杨根据给定的 \$N\$ 打印出对应的“H 字矩阵”。
+请你帮小杨根据给定的 $N$ 打印出对应的“H 字矩阵”。
 
 ## 输入格式
 
-一行一个整数 \$N\$（\$5\\le N \\le 49\$ ，保证 \$N\$ 为奇数）。
+一行一个整数 $N$（$5\\le N \\le 49$ ，保证 $N$ 为奇数）。
 
 ## 输出格式
 
 输出对应的“H 字矩阵”。
 
-请严格按格式要求输出，不要擅自添加任何空格、标点、空行等任何符号。你应该恰好输出 \$N\$ 行，每行除了换行符外恰好包含 \$N\$ 个字符，这些字符要么是 - ，要么是 | ，要么是 a 。**你的输出必须和标准答案完全一致才能得分，请在提交前仔细检查。**
+请严格按格式要求输出，不要擅自添加任何空格、标点、空行等任何符号。你应该恰好输出 $N$ 行，每行除了换行符外恰好包含 $N$ 个字符，这些字符要么是 - ，要么是 | ，要么是 a 。**你的输出必须和标准答案完全一致才能得分，请在提交前仔细检查。**
 `,
       score: 25,
       explanation: "最左列和最右列始终输出 |；中间行的内部输出 -；其余位置输出 a。",

@@ -21,22 +21,22 @@ similar` }
 
 ## 题目描述
 
-对于两个字符串 \$A\$ 和 \$B\$，如果 \$A\$ 可以通过删除一个字符，**或**插入一个字符，**或**修改一个字符变成 \$B\$，那么我们说 \$A\$ 和 \$B\$ 是相似的。
+对于两个字符串 $A$ 和 $B$，如果 $A$ 可以通过删除一个字符，**或**插入一个字符，**或**修改一个字符变成 $B$，那么我们说 $A$ 和 $B$ 是相似的。
 
-比如 \$\\texttt{apple}\$ 可以通过插入一个字符变成 \$\\texttt{applee}\$，可以通过删除一个字符变成 \$\\texttt{appe}\$，也可以通过修改一个字符变成 \$\\texttt{bpple}\$。因此 \$\\texttt{apple}\$ 和 \$\\texttt{applee}\$、\$\\texttt{appe}\$、\$\\texttt{bpple}\$ 都是相似的。但 \$\\texttt{applee}\$ 并不能 通过任意一个操作变成 \$\\texttt{bpple}\$，因此它们并不相似。
+比如 $\\texttt{apple}$ 可以通过插入一个字符变成 $\\texttt{applee}$，可以通过删除一个字符变成 $\\texttt{appe}$，也可以通过修改一个字符变成 $\\texttt{bpple}$。因此 $\\texttt{apple}$ 和 $\\texttt{applee}$、$\\texttt{appe}$、$\\texttt{bpple}$ 都是相似的。但 $\\texttt{applee}$ 并不能 通过任意一个操作变成 $\\texttt{bpple}$，因此它们并不相似。
 
 特别地，两个完全相同的字符串也是相似的。
 
-给定 \$T\$ 组 \$A,B\$，请你分别判断它们是否相似。
+给定 $T$ 组 $A,B$，请你分别判断它们是否相似。
 
 ## 输入格式
 
-第一行一个正整数 \$T\$。  
-接下来 \$T\$ 行，每行两个用空格隔开的字符串 \$A\$ 和 \$B\$。
+第一行一个正整数 $T$。 
+接下来 $T$ 行，每行两个用空格隔开的字符串 $A$ 和 $B$。
 
 ## 输出格式
 
-对组 \$A,B\$，如果他们相似，输出 \`\`similar\`\`，否则输出 \`\`not similar\`\`。
+对组 $A,B$，如果他们相似，输出 \`\`similar\`\`，否则输出 \`\`not similar\`\`。
 `,
       score: 25,
       explanation: "相似字符串定义等价于编辑距离（Edit Distance）不超过 1。由于字符串长度较短，可以直接分类讨论：长度差为 0（修改或相同）或长度差为 1（增加或删除）。",
@@ -57,16 +57,16 @@ similar` }
 
 ## 题目描述
 
-小杨同学为了提高自己的实力制定了做题计划，在第 \$k\$ 天时，他必须要完成 \$k\$ 道题，否则他就会偷懒。
+小杨同学为了提高自己的实力制定了做题计划，在第 $k$ 天时，他必须要完成 $k$ 道题，否则他就会偷懒。
 
-小杨同学现在找到了一个题库，一共有 \$n\$ 套题单，每一套题单中有一定数量的题目。但是他十分挑剔，每套题单他只会使用一次，每一天也只能使用一套题单里的题目，之后那套题单就会弃之不用。对于每套题单，他不必完成题单内所有的题。
+小杨同学现在找到了一个题库，一共有 $n$ 套题单，每一套题单中有一定数量的题目。但是他十分挑剔，每套题单他只会使用一次，每一天也只能使用一套题单里的题目，之后那套题单就会弃之不用。对于每套题单，他不必完成题单内所有的题。
 
 那么问题来了，小杨同学最多做题几天才偷懒呢？
 
 ## 输入格式
 
-第一行，一个整数为 \$n\$，表示有多少套题单。  
-第二行 \$n\$ 个整数 \$a_1, a_2, \\dots a_n\$，分别表示每套题单有多少道题。
+第一行，一个整数为 $n$，表示有多少套题单。 
+第二行 $n$ 个整数 $a_1, a_2, \\dots a_n$，分别表示每套题单有多少道题。
 
 ## 输出格式
 
@@ -94,7 +94,7 @@ export const paperData = {
         {
             id: 1,
             type: "single",
-            question: "若函数声明为int f(int &x){ x+=3; return x; }，则对声明的变量int a=3，下面哪个调用能够改变a的值 ( ) 。",
+            question: `若函数声明为int f(int &x){ x+=3; return x; }，则对声明的变量int a=3，下面哪个调用能够改变a的值 ( ) 。`,
             options: ["f(&a);", "f(*a);", "f(a);", "f(a-3);"],
             answer: 2,
             score: 2,
@@ -104,7 +104,7 @@ export const paperData = {
         {
             id: 2,
             type: "single",
-            question: "下面 C++ 代码执行后，输出的是 ( ) 。\n```cpp\nint main() {\n    char *p = \"GESP\";\n    cout << *(p+2) << endl;\n    return 0;\n}\n```",
+            question: `下面 C++ 代码执行后，输出的是 ( ) 。\n\`\`\`cpp\nint main() {\n char *p = "GESP";\n cout << *(p+2) << endl;\n return 0;\n}\n\`\`\``,
             options: ["G", "e", "n", "S"],
             answer: 2,
             score: 2,
@@ -114,7 +114,7 @@ export const paperData = {
         {
             id: 3,
             type: "single",
-            question: "下面 C++ 代码执行后输出是 ( ) 。\n```cpp\nint main() {\n    int x[]={2, 0, 2, 4};\n    char geSP[]=\"Grade Examination of SP\";\n    cout << geSP[sizeof(x)] << endl;\n    return 0;\n}\n```",
+            question: `下面 C++ 代码执行后输出是 ( ) 。\n\`\`\`cpp\nint main() {\n int x[]={2, 0, 2, 4};\n char geSP[]="Grade Examination of SP";\n cout << geSP[sizeof(x)] << endl;\n return 0;\n}\n\`\`\``,
             options: ["G", "r", "a", "E"],
             answer: 3,
             score: 2,
@@ -124,7 +124,7 @@ export const paperData = {
         {
             id: 4,
             type: "single",
-            question: "对二维数组int arr[3][16];，则arr[1]占用内存的大小为（ ）字节。",
+            question: `对二维数组int arr[3][16];，则arr[1]占用内存的大小为（ ）字节。`,
             options: ["4", "16", "48", "64"],
             answer: 3,
             score: 2,
@@ -134,7 +134,7 @@ export const paperData = {
         {
             id: 5,
             type: "single",
-            question: "对二维数组int arr[3][16];，若arr的地址是0x28cbc0，则arr[1]的值是（ ）。",
+            question: `对二维数组int arr[3][16];，若arr的地址是0x28cbc0，则arr[1]的值是（ ）。`,
             options: ["0x28cbc4", "0x28cbd0", "0x28cc00", "0x28cc40"],
             answer: 2,
             score: 2,
@@ -144,7 +144,7 @@ export const paperData = {
         {
             id: 6,
             type: "single",
-            question: "下面 C++ 代码执行后输出是（ ）。\n```cpp\nint main() {\n    char *p = \"I love GESP!\";\n    cout << p+7 << endl;\n    return 0;\n}\n```",
+            question: `下面 C++ 代码执行后输出是（ ）。\n\`\`\`cpp\nint main() {\n char *p = "I love GESP!";\n cout << p+7 << endl;\n return 0;\n}\n\`\`\``,
             options: ["e", "I lov", "e GESP!", "GESP!"],
             answer: 2,
             score: 2,
@@ -154,7 +154,7 @@ export const paperData = {
         {
             id: 7,
             type: "single",
-            question: "下面 C++ 代码执行以后输出的是（ ）。\n```cpp\nint foo(float *f) { return int(*f * 2); }\nint main() {\n    float fnum[10] = {1.1};\n    fnum[1] = foo(fnum);\n    cout << fnum[0]+fnum[1] << endl;\n    return 0;\n}\n```",
+            question: `下面 C++ 代码执行以后输出的是（ ）。\n\`\`\`cpp\nint foo(float *f) { return int(*f * 2); }\nint main() {\n float fnum[10] = {1.1};\n fnum[1] = foo(fnum);\n cout << fnum[0]+fnum[1] << endl;\n return 0;\n}\n\`\`\``,
             options: ["1.1", "3.1", "3.3", "不确定"],
             answer: 3,
             score: 2,
@@ -164,7 +164,7 @@ export const paperData = {
         {
             id: 8,
             type: "single",
-            question: "下面 C++ 函数中采用的算法是（ ）。\n```cpp\nint fib(int n) {\n    int i, f[n]={0, 1};\n    for(int i=2; i<=n; i++) f[i]=f[i-1]+f[i-2];\n    return f[n];\n}\n```",
+            question: `下面 C++ 函数中采用的算法是（ ）。\n\`\`\`cpp\nint fib(int n) {\n int i, f[n]={0, 1};\n for(int i=2; i<=n; i++) f[i]=f[i-1]+f[i-2];\n return f[n];\n}\n\`\`\``,
             options: ["递推", "递归", "迭代", "分治"],
             answer: 0,
             score: 2,
@@ -174,8 +174,8 @@ export const paperData = {
         {
             id: 9,
             type: "single",
-            question: "插入排序在最好情况下的时间复杂度是（ ）。",
-            options: ["$O(1)$", "$O(N)$", "$O(n \log n)$", "$O(N^2)$"],
+            question: `插入排序在最好情况下的时间复杂度是（ ）。`,
+            options: ["$O(1)$", "$O(N)$", "$O(n log n)$", "$O(N^2)$"],
             answer: 2,
             score: 2,
             explanation: "插入排序在数组已经有序时，只需比较 $N-1$ 次，复杂度为 $O(N)$。",
@@ -184,7 +184,7 @@ export const paperData = {
         {
             id: 10,
             type: "single",
-            question: "在如下的 C++ 代码执行后，设第 11 和 12 行的输出地址值分别为X和Y，则下面正确的是（ ）。\n```cpp\nstruct pass {\n    int no;\n    char name[20];\n    int level;\n};\nint main() {\n    struct pass XiaoYang;\n    cout << &XiaoYang << endl; // 第 11 行\n    cout << &(XiaoYang.no) << endl; // 第 12 行\n    return 0;\n}\n```",
+            question: `在如下的 C++ 代码执行后，设第 11 和 12 行的输出地址值分别为X和Y，则下面正确的是（ ）。\n\`\`\`cpp\nstruct pass {\n int no;\n char name[20];\n int level;\n};\nint main() {\n struct pass XiaoYang;\n cout << &XiaoYang << endl; // 第 11 行\n cout << &(XiaoYang.no) << endl; // 第 12 行\n return 0;\n}\n\`\`\``,
             options: ["X > Y", "X == Y", "X < Y", "不确定"],
             answer: 1,
             score: 2,
@@ -194,7 +194,7 @@ export const paperData = {
         {
             id: 11,
             type: "single",
-            question: "如果文件 1.txt 中的内容为 `50 2024 3.16 I love GESP!`，则执行下面 C++ 代码时输出的 x 的值为（ ）。\n```cpp\nint main() {\n    ifstream fin;\n    string line; int x;\n    fin.open(\"1.txt\", ios::in);\n    for (int i=0; i<2; i++) fin >> line;\n    fin >> x;\n    cout << x << endl;\n    return 0;\n}\n```",
+            question: `如果文件 1.txt 中的内容为 \`50 2024 3.16 I love GESP!\`，则执行下面 C++ 代码时输出的 x 的值为（ ）。\n\`\`\`cpp\nint main() {\n ifstream fin;\n string line; int x;\n fin.open("1.txt", ios::in);\n for (int i=0; i<2; i++) fin >> line;\n fin >> x;\n cout << x << endl;\n return 0;\n}\n\`\`\``,
             options: ["50", "2024", "3", "0"],
             answer: 2,
             score: 2,
@@ -204,7 +204,7 @@ export const paperData = {
         {
             id: 12,
             type: "single",
-            question: "执行下列 C++ 代码时输出的第 2 行是（ ）。\n```cpp\nint main() {\n    char *s[]={(char*)\"2024\",(char*)\"3.16\",(char*)\"GESP\"};\n    for (int i=0; i<2; i++) cout << *s+i << endl;\n    return 0;\n}\n```",
+            question: `执行下列 C++ 代码时输出的第 2 行是（ ）。\n\`\`\`cpp\nint main() {\n char *s[]={(char*)"2024",(char*)"3.16",(char*)"GESP"};\n for (int i=0; i<2; i++) cout << *s+i << endl;\n return 0;\n}\n\`\`\``,
             options: ["2024", "024", "3.16", "16"],
             answer: 2,
             score: 2,
@@ -214,7 +214,7 @@ export const paperData = {
         {
             id: 13,
             type: "single",
-            question: "C++ 语言中下面哪个关键字能够限定对象的作用域（ ）。",
+            question: `C++ 语言中下面哪个关键字能够限定对象的作用域（ ）。`,
             options: ["extern", "static", "inline", "public"],
             answer: 1,
             score: 2,
@@ -224,7 +224,7 @@ export const paperData = {
         {
             id: 14,
             type: "single",
-            question: "小杨的父母最近刚刚给他买了一块华为手表，他说手表上跑的是鸿蒙，这个鸿蒙是（ ）。",
+            question: `小杨的父母最近刚刚给他买了一块华为手表，他说手表上跑的是鸿蒙，这个鸿蒙是（ ）。`,
             options: ["小程序", "计时器", "操作系统", "神话人物"],
             answer: 2,
             score: 2,
@@ -234,7 +234,7 @@ export const paperData = {
         {
             id: 15,
             type: "single",
-            question: "中国计算机学会（ CCF ）在 2024 年 1 月 27 日颁布了王选奖，王选先生的重大贡献是（ ）。",
+            question: `中国计算机学会（ CCF ）在 2024 年 1 月 27 日颁布了王选奖，王选先生的重大贡献是（ ）。`,
             options: ["制造自动驾驶汽车", "创立培训学校", "发明汉字激光照排系统", "成立方正公司"],
             answer: 2,
             score: 2,
@@ -244,7 +244,7 @@ export const paperData = {
         {
             id: 16,
             type: "judge",
-            question: "对int a[]={2,0,2,4,3,1,6}，执行第一趟选择排序处理后a中数据变为{0,2,2,4,3,1,6}。 ( )",
+            question: `对int a[]={2,0,2,4,3,1,6}，执行第一趟选择排序处理后a中数据变为{0,2,2,4,3,1,6}。 ( )`,
             options: ["正确", "错误"],
             answer: 0,
             score: 2,
@@ -254,7 +254,7 @@ export const paperData = {
         {
             id: 17,
             type: "judge",
-            question: "如果待排序数据不能都装进内存，需要使用外排序算法。（ ）",
+            question: `如果待排序数据不能都装进内存，需要使用外排序算法。（ ）`,
             options: ["正确", "错误"],
             answer: 0,
             score: 2,
@@ -264,7 +264,7 @@ export const paperData = {
         {
             id: 18,
             type: "judge",
-            question: "定义变量int a=5, 则cout << &++a会输出6。 ( )",
+            question: `定义变量int a=5, 则cout << &++a会输出6。 ( )`,
             options: ["正确", "错误"],
             answer: 1,
             score: 2,
@@ -274,7 +274,7 @@ export const paperData = {
         {
             id: 19,
             type: "judge",
-            question: "两个函数之间可以使用全局变量来传递数据。 ( )",
+            question: `两个函数之间可以使用全局变量来传递数据。 ( )`,
             options: ["正确", "错误"],
             answer: 0,
             score: 2,
@@ -284,7 +284,7 @@ export const paperData = {
         {
             id: 20,
             type: "judge",
-            question: "定义数组int a[2024][3][16]={2,0,2,4,3,1,6}，则cout << a[2023][2][15]的结果不确定。（ ）",
+            question: `定义数组int a[2024][3][16]={2,0,2,4,3,1,6}，则cout << a[2023][2][15]的结果不确定。（ ）`,
             options: ["正确", "错误"],
             answer: 1,
             score: 2,
@@ -294,7 +294,7 @@ export const paperData = {
         {
             id: 21,
             type: "judge",
-            question: "在 C++ 语言中，函数的参数为指针时，可以在函数内部修改该参数的值。（ ）",
+            question: `在 C++ 语言中，函数的参数为指针时，可以在函数内部修改该参数的值。（ ）`,
             options: ["正确", "错误"],
             answer: 0,
             score: 2,
@@ -304,7 +304,7 @@ export const paperData = {
         {
             id: 22,
             type: "judge",
-            question: "在 C++ 语言中try子句里抛出的结构体等类型的异常无法被catch捕获。（ ）",
+            question: `在 C++ 语言中try子句里抛出的结构体等类型的异常无法被catch捕获。（ ）`,
             options: ["正确", "错误"],
             answer: 1,
             score: 2,
@@ -314,7 +314,7 @@ export const paperData = {
         {
             id: 23,
             type: "judge",
-            question: "C++ 语言中cout << 9^2 << endl;会输出 81 。（ ）",
+            question: `C++ 语言中cout << 9^2 << endl;会输出 81 。（ ）`,
             options: ["正确", "错误"],
             answer: 1,
             score: 2,
@@ -324,7 +324,7 @@ export const paperData = {
         {
             id: 24,
             type: "judge",
-            question: "小杨今年春节回奶奶家了，奶奶家的数字电视要设置 ip 地址并接入到 WIFI 盒子才能收看节目，那这个 WIFI 盒子具有路由器的功能。（ ）",
+            question: `小杨今年春节回奶奶家了，奶奶家的数字电视要设置 ip 地址并接入到 WIFI 盒子才能收看节目，那这个 WIFI 盒子具有路由器的功能。（ ）`,
             options: ["正确", "错误"],
             answer: 1,
             score: 2,
@@ -334,7 +334,7 @@ export const paperData = {
         {
             id: 25,
             type: "judge",
-            question: "任何一个for循环都可以转化为等价的while循环（ ）。",
+            question: `任何一个for循环都可以转化为等价的while循环（ ）。`,
             options: ["正确", "错误"],
             answer: 0,
             score: 2,

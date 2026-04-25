@@ -28,20 +28,20 @@ No` }
 
 ## 题目描述
 
-小杨有一个 \$n\$ 行 \$m\$ 列的网格图，其中每个格子要么是白色，要么是黑色。
+小杨有一个 $n$ 行 $m$ 列的网格图，其中每个格子要么是白色，要么是黑色。
 小杨想知道网格图中是否存在一个满足如下条件的子矩形：
-- 子矩形由 \$4\$ 行 \$4\$ 列组成；
-- 子矩形的第 \$1\$ 行和第 \$4\$ 行只包含白色格子；
-- 对于子矩形的第 \$2\$ 行和第 \$3\$ 行，只有第 \$1\$ 个和第 \$4\$ 个格子是白色的，其余格子都是黑色的；
+- 子矩形由 $4$ 行 $4$ 列组成；
+- 子矩形的第 $1$ 行和第 $4$ 行只包含白色格子；
+- 对于子矩形的第 $2$ 行和第 $3$ 行，只有第 $1$ 个和第 $4$ 个格子是白色的，其余格子都是黑色的；
 
 请你编写程序帮助小杨判断。
 
 ## 输入格式
 
-第一行包含一个正整数 \$t\$，代表测试用例组数。  
-接下来是 \$t\$ 组测试用例。对于每组测试用例，一共 \$n+1\$ 行。  
-第一行包含两个正整数 \$n,m\$，含义如题面所示。  
-之后 \$n\$ 行，每行一个长度为 \$m\$ 的 \$01\$ 串，代表网格图第 \$i\$ 行格子的颜色，如果为 \$0\$，则对应格子为白色，否则为黑色。
+第一行包含一个正整数 $t$，代表测试用例组数。 
+接下来是 $t$ 组测试用例。对于每组测试用例，一共 $n+1$ 行。 
+第一行包含两个正整数 $n,m$，含义如题面所示。 
+之后 $n$ 行，每行一个长度为 $m$ 的 $01$ 串，代表网格图第 $i$ 行格子的颜色，如果为 $0$，则对应格子为白色，否则为黑色。
 
 ## 输出格式
 
@@ -70,22 +70,22 @@ No` }
 
 ## 题目描述
 
-小杨有一个包含 \$n\$ 个正整数的序列 \$a\$。
+小杨有一个包含 $n$ 个正整数的序列 $a$。
 
-小杨计划对序列进行多次升序排序，每次升序排序小杨会选择一个区间 \$[l,r]\$（\$l \\leq r\$）并对区间内所有数字，即进行升序 \$a_l, a_{l + 1}, \\dots a_r\$ 排序。每次升序排序会在上一次升序排序的结果上进行。
+小杨计划对序列进行多次升序排序，每次升序排序小杨会选择一个区间 $[l,r]$（$l \\leq r$）并对区间内所有数字，即进行升序 $a_l, a_{l + 1}, \\dots a_r$ 排序。每次升序排序会在上一次升序排序的结果上进行。
 
 小杨想请你计算出多次升序排序后的序列。
 
 ## 输入格式
 
-第一行包含一个正整数 \$n\$，含义如题面所示。   
-第二行包含 \$n\$ 个正整数 \$a_1, a_2, \\dots a_n\$，代表序列 \$a\$。  
-第三行包含一个正整数 \$q\$，代表排序次数。  
-之后 \$q\$ 行，每行包含两个正整数 \$l, r\$，代表将区间 \$[l_i, r_i]\$ 内所有数字进行升序排序。
+第一行包含一个正整数 $n$，含义如题面所示。 
+第二行包含 $n$ 个正整数 $a_1, a_2, \\dots a_n$，代表序列 $a$。 
+第三行包含一个正整数 $q$，代表排序次数。 
+之后 $q$ 行，每行包含两个正整数 $l, r$，代表将区间 $[l_i, r_i]$ 内所有数字进行升序排序。
 
 ## 输出格式
 
-输出一行包含 \$n\$ 个正整数，代表多次升序排序后的序列。
+输出一行包含 $n$ 个正整数，代表多次升序排序后的序列。
 `,
       score: 25,
       explanation: "直接按照题目要求，依次执行 m 次排序操作即可。每次操作使用 std::sort 进行区间排序。",
@@ -109,7 +109,7 @@ export const paperData = {
         {
             id: 1,
             type: "single",
-            question: "在 C++ 中，（ ）正确定义了一个返回整数值并接受两个整数参数的函数。",
+            question: `在 C++ 中，（ ）正确定义了一个返回整数值并接受两个整数参数的函数。`,
             options: [
                 "int add(int a, int b) { return a+b; }",
                 "void add(int a, int b) { return a+b; }",
@@ -124,7 +124,7 @@ export const paperData = {
         {
             id: 2,
             type: "single",
-            question: "在 C++ 中，形参与实参的关系描述正确的是（ ）。",
+            question: `在 C++ 中，形参与实参的关系描述正确的是（ ）。`,
             options: [
                 "形参在函数调用时指定，实参在函数定义时传递",
                 "形参在函数定义时指定，实参在函数调用时传递",
@@ -139,7 +139,7 @@ export const paperData = {
         {
             id: 3,
             type: "single",
-            question: "运行以下代码，屏幕上将输出（ ）。\n```cpp\nint var = 100;\nvoid function() {\n    int var = 200;\n    cout << var << \" \" << ::var << endl;\n}\n```",
+            question: `运行以下代码，屏幕上将输出（ ）。\n\`\`\`cpp\nint var = 100;\nvoid function() {\n int var = 200;\n cout << var << " " << ::var << endl;\n}\n\`\`\``,
             options: ["100 100", "200 100", "200 200", "100 200"],
             answer: 0,
             score: 2,
@@ -149,7 +149,7 @@ export const paperData = {
         {
             id: 4,
             type: "single",
-            question: "下列关于 C++ 中常量的说法，错误的是（ ）。",
+            question: `下列关于 C++ 中常量的说法，错误的是（ ）。`,
             options: [
                 "常量的值在程序运行期间不能改变",
                 "可以使用 const 关键字 define 常量",
@@ -164,7 +164,7 @@ export const paperData = {
         {
             id: 5,
             type: "single",
-            question: "关于 C++ 中的局部变量，下列说法正确的是（ ）。",
+            question: `关于 C++ 中的局部变量，下列说法正确的是（ ）。`,
             options: [
                 "局部变量在程序开始时创建，结束时销毁",
                 "局部变量在所有函数中都可见",
@@ -179,8 +179,8 @@ export const paperData = {
         {
             id: 6,
             type: "single",
-            question: "选择排序的时间复杂度是（ ）。",
-            options: ["$O(N)$", "$O(n \log n)$", "$O(N^2)$", "$O(\log n)$"],
+            question: `选择排序的时间复杂度是（ ）。`,
+            options: ["$O(N)$", "$O(n log n)$", "$O(N^2)$", "$O(log n)$"],
             answer: 0,
             score: 2,
             explanation: "选择排序平均和最坏情况均为 $O(N^2)$。",
@@ -189,8 +189,8 @@ export const paperData = {
         {
             id: 7,
             type: "single",
-            question: "插入排序在最好情况下的时间复杂度是（ ）。",
-            options: ["$O(1)$", "$O(N)$", "$O(N^2)$", "$O(n \log n)$"],
+            question: `插入排序在最好情况下的时间复杂度是（ ）。`,
+            options: ["$O(1)$", "$O(N)$", "$O(N^2)$", "$O(n log n)$"],
             answer: 1,
             score: 2,
             explanation: "当数组已有序时，插入排序仅需比较 $N-1$ 次。",
@@ -199,7 +199,7 @@ export const paperData = {
         {
             id: 8,
             type: "single",
-            question: "下列关于 C++ 异常处理的描述，错误的是（ ）。",
+            question: `下列关于 C++ 异常处理的描述，错误的是（ ）。`,
             options: [
                 "使用 try 块包含可能抛出异常的代码",
                 "使用 catch 块捕获异常并处理",
@@ -214,7 +214,7 @@ export const paperData = {
         {
             id: 9,
             type: "single",
-            question: "下列关于指针的说法，错误的是（ ）。",
+            question: `下列关于指针的说法，错误的是（ ）。`,
             options: [
                 "指针变量存储的是地址",
                 "可以通过解引用访问指针指向的值",
@@ -229,7 +229,7 @@ export const paperData = {
         {
             id: 10,
             type: "single",
-            question: "二维数组 int a[3][4] 中，元素 a[1][2] 的位置是（ ）。",
+            question: `二维数组 int a[3][4] 中，元素 a[1][2] 的位置是（ ）。`,
             options: ["第 1 行第 2 列", "第 2 行第 3 列", "第 1 行第 3 列", "第 2 行第 2 列"],
             answer: 1,
             score: 2,
@@ -239,7 +239,7 @@ export const paperData = {
         {
             id: 11,
             type: "single",
-            question: "递归函数必须包含（ ）。",
+            question: `递归函数必须包含（ ）。`,
             options: ["循环语句", "分支语句处理基准情况", "全局变量", "多个参数"],
             answer: 2,
             score: 2,
@@ -249,7 +249,7 @@ export const paperData = {
         {
             id: 12,
             type: "single",
-            question: "下列哪种算法通常采用分治思想实现（ ）。",
+            question: `下列哪种算法通常采用分治思想实现（ ）。`,
             options: ["归并排序", "冒泡排序", "插入排序", "选择排序"],
             answer: 0,
             score: 2,
@@ -259,7 +259,7 @@ export const paperData = {
         {
             id: 13,
             type: "single",
-            question: "在 C++ 中，`std::sort` 位于哪个头文件中（ ）。",
+            question: `在 C++ 中，\`std::sort\` 位于哪个头文件中（ ）。`,
             options: ["<iostream>", "<vector>", "<algorithm>", "<cmath>"],
             answer: 0,
             score: 2,
@@ -269,7 +269,7 @@ export const paperData = {
         {
             id: 14,
             type: "single",
-            question: "在 C++ 中，下列哪个关键字用于声明类（ ）。",
+            question: `在 C++ 中，下列哪个关键字用于声明类（ ）。`,
             options: ["class", "struct", "void", "static"],
             answer: 0,
             score: 2,
@@ -279,7 +279,7 @@ export const paperData = {
         {
             id: 15,
             type: "single",
-            question: "中国计算机学会（ CCF ）在 2024 年主办的 GESP 认证，9 月份考试的月份编号是（ ）。",
+            question: `中国计算机学会（ CCF ）在 2024 年主办的 GESP 认证，9 月份考试的月份编号是（ ）。`,
             options: ["1", "2", "3", "4"],
             answer: 2,
             score: 2,
@@ -289,7 +289,7 @@ export const paperData = {
         {
             id: 16,
             type: "judge",
-            question: "代码 int a = 10; int* p = &a; 可以正确定义指针和初始化指针。",
+            question: `代码 int a = 10; int* p = &a; 可以正确定义指针和初始化指针。`,
             options: ["正确", "错误"],
             answer: 0,
             score: 2,
@@ -299,7 +299,7 @@ export const paperData = {
         {
             id: 17,
             type: "judge",
-            question: "在 C++ 中，引用传递允许函数修改传递给它的参数的值。",
+            question: `在 C++ 中，引用传递允许函数修改传递给它的参数的值。`,
             options: ["正确", "错误"],
             answer: 0,
             score: 2,
@@ -309,7 +309,7 @@ export const paperData = {
         {
             id: 18,
             type: "judge",
-            question: "指针的大小与其所指向的变量的数据类型的单位大小相同。",
+            question: `指针的大小与其所指向的变量的数据类型的单位大小相同。`,
             options: ["正确", "错误"],
             answer: 1,
             score: 2,
@@ -319,7 +319,7 @@ export const paperData = {
         {
             id: 19,
             type: "judge",
-            question: "二维数组的行的大小必须在定义时确定，列的大小可以动态变化。",
+            question: `二维数组的行的大小必须在定义时确定，列的大小可以动态变化。`,
             options: ["正确", "错误"],
             answer: 1,
             score: 2,
@@ -329,7 +329,7 @@ export const paperData = {
         {
             id: 20,
             type: "judge",
-            question: "递推算法通过逐步求解当前状态和前一个或几个状态之间的关系来解决问题。",
+            question: `递推算法通过逐步求解当前状态和前一个或几个状态之间的关系来解决问题。`,
             options: ["正确", "错误"],
             answer: 0,
             score: 2,
@@ -339,7 +339,7 @@ export const paperData = {
         {
             id: 21,
             type: "judge",
-            question: "选择排序是稳定的排序算法。",
+            question: `选择排序是稳定的排序算法。`,
             options: ["正确", "错误"],
             answer: 1,
             score: 2,
@@ -349,7 +349,7 @@ export const paperData = {
         {
             id: 22,
             type: "judge",
-            question: "插入排序的时间复杂度总是比冒泡排序低。",
+            question: `插入排序的时间复杂度总是比冒泡排序低。`,
             options: ["正确", "错误"],
             answer: 1,
             score: 2,
@@ -359,7 +359,7 @@ export const paperData = {
         {
             id: 23,
             type: "judge",
-            question: "在 C++ 中，如果没有捕获到异常（没有匹配的 catch 块），程序会继续执行而不会终止。",
+            question: `在 C++ 中，如果没有捕获到异常（没有匹配的 catch 块），程序会继续执行而不会终止。`,
             options: ["正确", "错误"],
             answer: 1,
             score: 2,
@@ -369,7 +369,7 @@ export const paperData = {
         {
             id: 24,
             type: "judge",
-            question: "求斐波那契数列第 n 项，递推法的时间复杂度为 $O(N)$。",
+            question: `求斐波那契数列第 n 项，递推法的时间复杂度为 $O(N)$。`,
             options: ["正确", "错误"],
             answer: 0,
             score: 2,
@@ -379,7 +379,7 @@ export const paperData = {
         {
             id: 25,
             type: "judge",
-            question: "GESP 4 级认证要求掌握二维数组的使用。",
+            question: `GESP 4 级认证要求掌握二维数组的使用。`,
             options: ["正确", "错误"],
             answer: 0,
             score: 2,

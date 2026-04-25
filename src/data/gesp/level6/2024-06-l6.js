@@ -16,26 +16,26 @@ dabcabcabcabz`, output: `9` }
 
 ## 题目描述
 
-小杨想要计算由 \$m\$ 个小写字母组成的字符串的得分。
+小杨想要计算由 $m$ 个小写字母组成的字符串的得分。
 
-小杨设置了一个包含 \$n\$ 个正整数的计分序列 \$A=[a_1,a_2,\\ldots,a_n]\$，如果字符串的一个子串由 \$k(1\\leq k \\leq n)\$ 个 \$\\texttt{abc}\$ 首尾相接组成，那么能够得到分数 \$a_k\$，并且字符串包含的字符不能够重复计算得分，整个字符串的得分是计分子串的总和。
+小杨设置了一个包含 $n$ 个正整数的计分序列 $A=[a_1,a_2,\\ldots,a_n]$，如果字符串的一个子串由 $k(1\\leq k \\leq n)$ 个 $\\texttt{abc}$ 首尾相接组成，那么能够得到分数 $a_k$，并且字符串包含的字符不能够重复计算得分，整个字符串的得分是计分子串的总和。
 
-例如，假设 ，字符串 \$\\texttt{dabcabcabcabzabc}\$ 的所有可能计分方式如下：
-- \$\\texttt{d+abc+abcabc+abz+abc}\$ 或者 \$\\texttt{d+abcabc+abc+abz+abc}\$，其中 \$\\texttt{d}\$ 和 \$\\texttt{abz}\$ 不计算得分，总得分为 \$a_1+a_2+a_1\$。
-- \$\\texttt{d+abc+abc+abc+abz+abc}\$，总得分为 \$a_1+a_1+a_1+a_1\$。
-- \$\\texttt{d+abcabcabc+abz+abc}\$，总得分为 \$a_3+a_1\$。
+例如，假设 ，字符串 $\\texttt{dabcabcabcabzabc}$ 的所有可能计分方式如下：
+- $\\texttt{d+abc+abcabc+abz+abc}$ 或者 $\\texttt{d+abcabc+abc+abz+abc}$，其中 $\\texttt{d}$ 和 $\\texttt{abz}$ 不计算得分，总得分为 $a_1+a_2+a_1$。
+- $\\texttt{d+abc+abc+abc+abz+abc}$，总得分为 $a_1+a_1+a_1+a_1$。
+- $\\texttt{d+abcabcabc+abz+abc}$，总得分为 $a_3+a_1$。
 
 小杨想知道对于给定的字符串，最大总得分是多少。
 
 ## 输入格式
 
-- 第一行包含一个正整数 \$n\$，代表计分序列 \$A\$ 的长度。
+- 第一行包含一个正整数 $n$，代表计分序列 $A$ 的长度。
 
-- 第二行包含 \$n\$ 个正整数，代表计分序列 \$A\$。
+- 第二行包含 $n$ 个正整数，代表计分序列 $A$。
 
-- 第三行包含一个正整数 \$m\$，代表字符串的长度。
+- 第三行包含一个正整数 $m$，代表字符串的长度。
 
-- 第四行包含一个由 \$m\$ 个小写字母组成的字符串。
+- 第四行包含一个由 $m$ 个小写字母组成的字符串。
 
 ## 输出格式
 
@@ -66,25 +66,25 @@ dabcabcabcabz`, output: `9` }
 
 ## 题目描述
 
-小杨有一棵包含 \$n\$ 个节点的二叉树，且根节点的编号为 \$1\$。这棵二叉树任意一个节点要么是白色，要么是黑色。之后小杨会对这棵二叉树进行 \$q\$ 次操作，每次小杨会选择一个节点，将以这个节点为根的子树内所有节点的颜色反转，即黑色变成白色，白色变成黑色。
+小杨有一棵包含 $n$ 个节点的二叉树，且根节点的编号为 $1$。这棵二叉树任意一个节点要么是白色，要么是黑色。之后小杨会对这棵二叉树进行 $q$ 次操作，每次小杨会选择一个节点，将以这个节点为根的子树内所有节点的颜色反转，即黑色变成白色，白色变成黑色。
 
-小杨想知道 \$q\$ 次操作全部完成之后每个节点的颜色。
+小杨想知道 $q$ 次操作全部完成之后每个节点的颜色。
 
 ## 输入格式
 
-第一行一个正整数 \$n\$，表示二叉树的节点数量。
+第一行一个正整数 $n$，表示二叉树的节点数量。
 
-第二行 \$(n-1)\$ 个正整数，第 \$i\$（\$1\\le i\\le n-1\$）个数表示编号为 \$(i+1)\$ 的节点的父亲节点编号，数据保证是一棵二叉树。
+第二行 $(n-1)$ 个正整数，第 $i$（$1\\le i\\le n-1$）个数表示编号为 $(i+1)$ 的节点的父亲节点编号，数据保证是一棵二叉树。
 
-第三行一个长度为 \$n\$ 的 \$\\texttt{01}\$ 串，从左到右第 \$i\$（\$1\\le i\\le n\$）位如果为 \$\\texttt{0}\$，表示编号为 \$i\$ 的节点颜色为白色，否则为黑色。
+第三行一个长度为 $n$ 的 $\\texttt{01}$ 串，从左到右第 $i$（$1\\le i\\le n$）位如果为 $\\texttt{0}$，表示编号为 $i$ 的节点颜色为白色，否则为黑色。
 
-第四行一个正整数 \$q\$，表示操作次数。
+第四行一个正整数 $q$，表示操作次数。
 
-接下来 \$q\$ 行每行一个正整数 \$a_i\$（\$1\\le a_i\\le n\$），表示第 \$i\$ 次操作选择的节点编号。
+接下来 $q$ 行每行一个正整数 $a_i$（$1\\le a_i\\le n$），表示第 $i$ 次操作选择的节点编号。
 
 ## 输出格式
 
-输出一行一个长度为 \$n\$ 的 \$\\texttt{01}\$ 串，表示 \$q\$ 次操作全部完成之后每个节点的颜色。从左到右第 \$i\$（\$1\\le i\\le n\$） 位如果为 \$\\texttt{0}\$，表示编号为 \$i\$ 的节点颜色为白色，否则为黑色。
+输出一行一个长度为 $n$ 的 $\\texttt{01}$ 串，表示 $q$ 次操作全部完成之后每个节点的颜色。从左到右第 $i$（$1\\le i\\le n$） 位如果为 $\\texttt{0}$，表示编号为 $i$ 的节点颜色为白色，否则为黑色。
 `,
       score: 25,
       explanation: "对子树翻转而言，一个节点最终是否翻色，只取决于从根到它这条链上被操作了多少次。先把每次操作记到对应节点，再 DFS 传递翻转次数的奇偶性，奇数次就把该点颜色取反。",
@@ -107,7 +107,7 @@ export const paperData = {
         {
             id: 1,
             type: "single",
-            question: "面向对象的编程思想主要包括（ ）原则。",
+            question: `面向对象的编程思想主要包括（ ）原则。`,
             options: [
                 "贪⼼、动态规划、回溯",
                 "并发、并⾏、异步",
@@ -126,7 +126,7 @@ export const paperData = {
         {
             id: 2,
             type: "single",
-            question: "运⾏下列代码，屏幕上输出（ ）。",
+            question: `运⾏下列代码，屏幕上输出（ ）。`,
             options: [
                 "1 1 1 #include <iostream> using namespace std; class my_class { public: static int count; my_class() { count++; } ~my_class() { count--; } static void print_count() { cout << count << \" \"; } }; int my_class::count = 0; int main() { my_class obj1; my_class::print_count(); my_class obj2; obj2.print_count(); my_class obj3; obj3.print_count(); return 0; } 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26",
                 "1 2 3",
@@ -145,7 +145,7 @@ export const paperData = {
         {
             id: 3,
             type: "single",
-            question: "运⾏下列代码，屏幕上输出（ ）。 #include <iostream> using namespace std; class shape { protected: int width, height; public: shape(int a = 0, int b = 0) { width = a; height = b; } virtual int area() { cout << \"parent class area: \" <<endl; return 0; } }; class rectangle: public shape { public: rectangle(int a = 0, int b = 0) : shape(a, b) { } int area () { cout << \"rectangle area: \"; return (width * height); } }; class triangle: public shape { public: triangle(int a = 0, int b = 0) : shape(a, b) { } int area () { cout << \"triangle area: \"; return (width * height / 2); } }; int main() { shape *pshape; rectangle rec(10, 7); triangle tri(10, 5); pshape = &rec; pshape->area(); pshape = &tri; pshape->area(); return 0; 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27 28 29 30 31 32 33 34 35 36 37 38 39 40 41 42 43 44 45 46 47 48",
+            question: `运⾏下列代码，屏幕上输出（ ）。 #include <iostream> using namespace std; class shape { protected: int width, height; public: shape(int a = 0, int b = 0) { width = a; height = b; } virtual int area() { cout << "parent class area: " <<endl; return 0; } }; class rectangle: public shape { public: rectangle(int a = 0, int b = 0) : shape(a, b) { } int area () { cout << "rectangle area: "; return (width * height); } }; class triangle: public shape { public: triangle(int a = 0, int b = 0) : shape(a, b) { } int area () { cout << "triangle area: "; return (width * height / 2); } }; int main() { shape *pshape; rectangle rec(10, 7); triangle tri(10, 5); pshape = &rec; pshape->area(); pshape = &tri; pshape->area(); return 0; 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27 28 29 30 31 32 33 34 35 36 37 38 39 40 41 42 43 44 45 46 47 48`,
             options: [
                 "rectangle area: triangle area:",
                 "parent class area: parent class area:",
@@ -164,7 +164,7 @@ export const paperData = {
         {
             id: 4,
             type: "single",
-            question: "向一个栈顶为 hs 的链式栈中插入一个指针为 s 的结点时，应执⾏（ ）。",
+            question: `向一个栈顶为 hs 的链式栈中插入一个指针为 s 的结点时，应执⾏（ ）。`,
             options: [
                 "hs->next = s;",
                 "s->next = hs; hs = s;",
@@ -183,7 +183,7 @@ export const paperData = {
         {
             id: 5,
             type: "single",
-            question: "在栈数据结构中，元素的添加和删除是按照什么原则进⾏的？",
+            question: `在栈数据结构中，元素的添加和删除是按照什么原则进⾏的？`,
             options: [
                 "先进先出",
                 "先进后出",
@@ -202,7 +202,7 @@ export const paperData = {
         {
             id: 6,
             type: "single",
-            question: "要实现将一个输入的⼗进制正整数转化为二进制表⽰，下面横线上应填入的代码为（ ）。 }49 #include <iostream> using namespace std; stack<int> ten2bin(int n) { stack<int> st; int r, m; r = n % 2; m = n / 2; st.push(r); while (m != 1) { r = m % 2; st.push(r); m = m / 2; } st.push(m); return st; } int main() { int n; cin >> n; stack<int> bin; bin = ten2bin(n); while (!bin.empty()) { 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26",
+            question: `要实现将一个输入的⼗进制正整数转化为二进制表⽰，下面横线上应填入的代码为（ ）。 }49 #include <iostream> using namespace std; stack<int> ten2bin(int n) { stack<int> st; int r, m; r = n % 2; m = n / 2; st.push(r); while (m != 1) { r = m % 2; st.push(r); m = m / 2; } st.push(m); return st; } int main() { int n; cin >> n; stack<int> bin; bin = ten2bin(n); while (!bin.empty()) { 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26`,
             options: [
                 "cout << bin.top(); bin.pop();",
                 "bin.pop(); cout << bin.top();",
@@ -221,7 +221,7 @@ export const paperData = {
         {
             id: 7,
             type: "single",
-            question: "下面定义了一个循环队列的类，请补全判断队列是否满的函数，横向上应填写（ ）。 _____________________ // 在此处填入代码 } return 0; } 27 28 29 30 #include <iostream> using namespace std; class circular_queue { private: int *arr; // 数组用于存储队列元素 int capacity; // 队列容量 int front; // 队头指针 int rear; // 队尾指针 public: circular_queue(int size) { capacity = size+1; // 为了避免队列满时与队列空时指针相等的情况，多预留一个空间 arr = new int[capacity]; front = 0; rear = 0; } ~circular_queue() { delete[] arr; } bool is_empty() { return front == rear; } bool is_full() { ________________ // 在此处填入代码 } void en_queue(int data) { if (is_full()) { cout << \" 队列已满，无法入队！ \" << endl; return -1; } arr[rear] = data; rear = (rear+1) % capacity; return 1; } 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27 28 29 30 31 32 33 34 35 36 37 38 39 40 41",
+            question: `下面定义了一个循环队列的类，请补全判断队列是否满的函数，横向上应填写（ ）。 _____________________ // 在此处填入代码 } return 0; } 27 28 29 30 #include <iostream> using namespace std; class circular_queue { private: int *arr; // 数组用于存储队列元素 int capacity; // 队列容量 int front; // 队头指针 int rear; // 队尾指针 public: circular_queue(int size) { capacity = size+1; // 为了避免队列满时与队列空时指针相等的情况，多预留一个空间 arr = new int[capacity]; front = 0; rear = 0; } ~circular_queue() { delete[] arr; } bool is_empty() { return front == rear; } bool is_full() { ________________ // 在此处填入代码 } void en_queue(int data) { if (is_full()) { cout << " 队列已满，无法入队！ " << endl; return -1; } arr[rear] = data; rear = (rear+1) % capacity; return 1; } 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27 28 29 30 31 32 33 34 35 36 37 38 39 40 41`,
             options: [
                 "return (rear+1) % capacity == front;",
                 "return rear % capacity == front;",
@@ -240,7 +240,7 @@ export const paperData = {
         {
             id: 8,
             type: "single",
-            question: "对 “classmycls” 使用哈夫曼（ Huffman ）编码，最少需要（ ）比特。",
+            question: `对 “classmycls” 使用哈夫曼（ Huffman ）编码，最少需要（ ）比特。`,
             options: [
                 "10",
                 "20",
@@ -259,7 +259,7 @@ export const paperData = {
         {
             id: 9,
             type: "single",
-            question: "二叉树的（ ）第一个访问的节点是根节点。",
+            question: `二叉树的（ ）第一个访问的节点是根节点。`,
             options: [
                 "先序遍历",
                 "中序遍历",
@@ -278,7 +278,7 @@ export const paperData = {
         {
             id: 10,
             type: "single",
-            question: "一棵 5 层的满二叉树中节点数为（ ）。",
+            question: `一棵 5 层的满二叉树中节点数为（ ）。`,
             options: [
                 "31",
                 "32",
@@ -297,7 +297,7 @@ export const paperData = {
         {
             id: 11,
             type: "single",
-            question: "在求解最优化问题时，动态规划常常涉及到两个重要性质，即最优子结构和 ( ) 。",
+            question: `在求解最优化问题时，动态规划常常涉及到两个重要性质，即最优子结构和 ( ) 。`,
             options: [
                 "重叠子问题",
                 "分治法",
@@ -316,7 +316,7 @@ export const paperData = {
         {
             id: 12,
             type: "single",
-            question: "青蛙每次能跳 1 或 2 步，下面代码计算青蛙跳到第 n 步台阶有多少种不同跳法。则下列说法，错误的是 ( ) 。",
+            question: `青蛙每次能跳 1 或 2 步，下面代码计算青蛙跳到第 n 步台阶有多少种不同跳法。则下列说法，错误的是 ( ) 。`,
             options: [
                 "函数 jump_recur() 采用递归方式。",
                 "函数 jump_dp() 采用动态规划方法。",
@@ -335,7 +335,7 @@ export const paperData = {
         {
             id: 13,
             type: "single",
-            question: "阅读以下二叉树的⼴度优先搜索代码 : int jump_recur(int n) { if (n == 1) return 1; if (n == 2) return 2; return jump_recur(n-1)+jump_recur(n-2); } int jump_dp(int n) { vector<int> dp(n+1); // 创建一个动态规划数组，用于保存已计算的值 // 初始化前两个数 dp[1] = 1; dp[2] = 2; // 从第三个数开始计算斐波那契数列 for (int i = 3; i <= n; ++i) { dp[i] = dp[i-1]+dp[i-2]; } return dp[n]; } 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 #include <iostream> #include <queue> using namespace std; // 二叉树节点的定义 struct TreeNode { int val; TreeNode* left; TreeNode* right; TreeNode(int x) : val(x), left(nullptr), right(nullptr) {} }; // 宽度优先搜索（ BFS ）迭代实现 TreeNode* bfs(TreeNode* root, int a) { if (root == nullptr) return nullptr; queue<TreeNode*> q; q.push(root); while (!q.empty()) { TreeNode* node = q.front(); q.pop(); if (node->val == a) return node; 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26 使用以上算法，在以下这棵树搜索数值 时，可能的输出是 ( ) 。",
+            question: `阅读以下二叉树的⼴度优先搜索代码 : int jump_recur(int n) { if (n == 1) return 1; if (n == 2) return 2; return jump_recur(n-1)+jump_recur(n-2); } int jump_dp(int n) { vector<int> dp(n+1); // 创建一个动态规划数组，用于保存已计算的值 // 初始化前两个数 dp[1] = 1; dp[2] = 2; // 从第三个数开始计算斐波那契数列 for (int i = 3; i <= n; ++i) { dp[i] = dp[i-1]+dp[i-2]; } return dp[n]; } 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 #include <iostream> #include <queue> using namespace std; // 二叉树节点的定义 struct TreeNode { int val; TreeNode* left; TreeNode* right; TreeNode(int x) : val(x), left(nullptr), right(nullptr) {} }; // 宽度优先搜索（ BFS ）迭代实现 TreeNode* bfs(TreeNode* root, int a) { if (root == nullptr) return nullptr; queue<TreeNode*> q; q.push(root); while (!q.empty()) { TreeNode* node = q.front(); q.pop(); if (node->val == a) return node; 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26 使用以上算法，在以下这棵树搜索数值 时，可能的输出是 ( ) 。`,
             options: [
                 "5 2 -4 3 17 9",
                 "-4 2 3 5 9 17",
@@ -354,7 +354,7 @@ export const paperData = {
         {
             id: 14,
             type: "single",
-            question: "同上题中的二叉树，阅读以下二叉树的深度优先搜索代码 : cout << node->val << \" \"; // 先访问当前节点 if (node->left) q.push(node->left); // 将左子节点入队 if (node->right) q.push(node->right); // 将右子节点入队 } return nullptr; } 27 28 29 30 31 32 33 34 #include <iostream> #include <stack> using namespace std; // 非递归深度优先搜索（ DFS ） TreeNode* dfs(TreeNode* root, int a) { if (root == nullptr) return nullptr; stack<TreeNode*> stk; stk.push(root); while (!stk.empty()) { TreeNode* node = stk.top(); stk.pop(); if (node->val == a) return node; cout << node->val << \" \"; // 访问当前节点 if (node->right) stk.push(node->right); // 先压入右子节点 if (node->left) stk.push(node->left); // 再压入左子节点 } return nullptr; } 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 题号 1 2 3 4 5 6 7 8 9 10 答案 使用以上算法，在二叉树搜索数值 时，可能的输出是 ( ) 。",
+            question: `同上题中的二叉树，阅读以下二叉树的深度优先搜索代码 : cout << node->val << " "; // 先访问当前节点 if (node->left) q.push(node->left); // 将左子节点入队 if (node->right) q.push(node->right); // 将右子节点入队 } return nullptr; } 27 28 29 30 31 32 33 34 #include <iostream> #include <stack> using namespace std; // 非递归深度优先搜索（ DFS ） TreeNode* dfs(TreeNode* root, int a) { if (root == nullptr) return nullptr; stack<TreeNode*> stk; stk.push(root); while (!stk.empty()) { TreeNode* node = stk.top(); stk.pop(); if (node->val == a) return node; cout << node->val << " "; // 访问当前节点 if (node->right) stk.push(node->right); // 先压入右子节点 if (node->left) stk.push(node->left); // 再压入左子节点 } return nullptr; } 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 题号 1 2 3 4 5 6 7 8 9 10 答案 使用以上算法，在二叉树搜索数值 时，可能的输出是 ( ) 。`,
             options: [
                 "5 2 -4 3 17 9",
                 "-4 2 3 5 9 17",
@@ -373,7 +373,7 @@ export const paperData = {
         {
             id: 15,
             type: "single",
-            question: "在上题的树中搜索数值 时，采用深度优先搜索一共比较的节点数为（ ）。",
+            question: `在上题的树中搜索数值 时，采用深度优先搜索一共比较的节点数为（ ）。`,
             options: [
                 "2",
                 "3",
@@ -392,7 +392,7 @@ export const paperData = {
         {
             id: 16,
             type: "judge",
-            question: "哈夫曼编码本质上是一种贪⼼策略。",
+            question: `哈夫曼编码本质上是一种贪⼼策略。`,
             options: [
                 "正确",
                 "错误",
@@ -409,7 +409,7 @@ export const paperData = {
         {
             id: 17,
             type: "judge",
-            question: "创建一个对象时，会⾃动调用该对象所属类的构造函数。如果没有定义构造函数，编译器会⾃动生成一个默 认的构造函数。",
+            question: `创建一个对象时，会⾃动调用该对象所属类的构造函数。如果没有定义构造函数，编译器会⾃动生成一个默 认的构造函数。`,
             options: [
                 "正确",
                 "错误",
@@ -426,7 +426,7 @@ export const paperData = {
         {
             id: 18,
             type: "judge",
-            question: "定义一个类时，必须⼿动定义一个析构函数，用于释放对象所占用的资源。",
+            question: `定义一个类时，必须⼿动定义一个析构函数，用于释放对象所占用的资源。`,
             options: [
                 "正确",
                 "错误",
@@ -443,7 +443,7 @@ export const paperData = {
         {
             id: 19,
             type: "judge",
-            question: "C++ 中类内部可以嵌套定义类。",
+            question: `C++ 中类内部可以嵌套定义类。`,
             options: [
                 "正确",
                 "错误",
@@ -460,7 +460,7 @@ export const paperData = {
         {
             id: 20,
             type: "judge",
-            question: "000, 001, 011, 010, 110, 111, 101, 100 是一组格雷码。",
+            question: `000, 001, 011, 010, 110, 111, 101, 100 是一组格雷码。`,
             options: [
                 "正确",
                 "错误",
@@ -477,7 +477,7 @@ export const paperData = {
         {
             id: 21,
             type: "judge",
-            question: "n 个节点的双向循环链表，在其中查找某个节点的平均时间复杂度是 。",
+            question: `n 个节点的双向循环链表，在其中查找某个节点的平均时间复杂度是 。`,
             options: [
                 "正确",
                 "错误",
@@ -494,7 +494,7 @@ export const paperData = {
         {
             id: 22,
             type: "judge",
-            question: "完全二叉树可以用数组存储数据。",
+            question: `完全二叉树可以用数组存储数据。`,
             options: [
                 "正确",
                 "错误",
@@ -511,7 +511,7 @@ export const paperData = {
         {
             id: 23,
             type: "judge",
-            question: "在 C++ 中，静态成员函数只能访问静态成员变量。",
+            question: `在 C++ 中，静态成员函数只能访问静态成员变量。`,
             options: [
                 "正确",
                 "错误",
@@ -528,7 +528,7 @@ export const paperData = {
         {
             id: 24,
             type: "judge",
-            question: "在深度优先搜索中，通常使用队列来辅助实现。",
+            question: `在深度优先搜索中，通常使用队列来辅助实现。`,
             options: [
                 "正确",
                 "错误",
@@ -545,7 +545,7 @@ export const paperData = {
         {
             id: 25,
             type: "judge",
-            question: "对 0-1 背包问题，贪⼼算法一定能获得最优解。",
+            question: `对 0-1 背包问题，贪⼼算法一定能获得最优解。`,
             options: [
                 "正确",
                 "错误",
