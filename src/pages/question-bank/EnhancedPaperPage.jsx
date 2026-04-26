@@ -871,7 +871,7 @@ export default function EnhancedPaperPage({ forcedPaperId }) {
                                                 {/* 核心知识点 */}
                                                 <div className="bg-white border border-violet-100 rounded-lg p-3">
                                                     <div className="text-sm font-semibold text-violet-800 mb-1">💡 核心知识点</div>
-                                                    <p className="text-sm text-slate-700 leading-relaxed">{richAnalysis?.keyPoint || buildQuestionInsight(currentQ, paperData.level)}</p>
+                                                    <MarkdownRenderer content={richAnalysis?.keyPoint || buildQuestionInsight(currentQ, paperData.level)} className="text-sm text-slate-700 leading-relaxed" />
                                                 </div>
 
                                                 {/* 易错点 */}
@@ -893,7 +893,7 @@ export default function EnhancedPaperPage({ forcedPaperId }) {
                                                 {richAnalysis?.extension && (
                                                     <div className="bg-white border border-emerald-100 rounded-lg p-3">
                                                         <div className="text-sm font-semibold text-emerald-800 mb-1">🚀 知识延伸</div>
-                                                        <p className="text-sm text-slate-700 leading-relaxed">{richAnalysis.extension}</p>
+                                                        <MarkdownRenderer content={richAnalysis.extension} className="text-sm text-slate-700 leading-relaxed" />
                                                     </div>
                                                 )}
                                             </div>

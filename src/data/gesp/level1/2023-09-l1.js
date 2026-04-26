@@ -20,7 +20,17 @@ export const paperData = {
       options: ['输出设备', '输入设备', '存储设备', '打印设备'],
       answer: 2,
       score: 2,
-      explanation: '内存（RAM）是计算机的核心存储设备。',
+      explanation: `**答案：C**
+      
+      **解析：**
+      内存（RAM）是计算机的核心存储设备。
+      
+      - **A 输出设备**：错误。
+      - **B 输入设备**：错误。
+      - **C 存储设备**：正确答案。
+      - **D 打印设备**：错误。
+      
+      **考点：** 基础语法`,
       tags: [LEVEL1_TAGS.basics]
     },
     {
@@ -30,7 +40,17 @@ export const paperData = {
       options: ['redStar', 'RedStar', 'red_star', 'red star'],
       answer: 3,
       score: 2,
-      explanation: '变量名不能包含空格。',
+      explanation: `**答案：D**
+      
+      **解析：**
+      变量名不能包含空格。
+      
+      - **A redStar**：错误。
+      - **B RedStar**：错误。
+      - **C red_star**：错误。
+      - **D red star**：正确答案。
+      
+      **考点：** 基础语法`,
       tags: [LEVEL1_TAGS.basics]
     },
     {
@@ -40,7 +60,17 @@ export const paperData = {
       options: ['0', '1', '2', '3'],
       answer: 1,
       score: 2,
-      explanation: '1 && 2 的逻辑结果为 true (1)。',
+      explanation: `**答案：B**
+      
+      **解析：**
+      1 && 2 的逻辑结果为 true (1)。
+      
+      - **A 0**：错误。
+      - **B 1**：正确答案。
+      - **C 2**：错误。
+      - **D 3**：错误。
+      
+      **考点：** 运算符`,
       tags: [LEVEL1_TAGS.operator]
     },
     {
@@ -50,7 +80,17 @@ export const paperData = {
       options: ['3+4=7', '7', 'a+b=7', 'a+b=a+b'],
       answer: 2,
       score: 2,
-      explanation: '输出字符串 "a+b=" 后跟 a+b 的计算结果。',
+      explanation: `**答案：C**
+      
+      **解析：**
+      输出字符串 "a+b=" 后跟 a+b 的计算结果。
+      
+      - **A 3+4=7**：错误。
+      - **B 7**：错误。
+      - **C a+b=7**：正确答案。
+      - **D a+b=a+b**：错误。
+      
+      **考点：** 输入输出`,
       tags: [LEVEL1_TAGS.io]
     },
     {
@@ -60,7 +100,17 @@ export const paperData = {
       options: ['x > y || x > z', 'x != z-y', 'z > y+x', 'x < y || ! (x < z)'],
       answer: 3,
       score: 2,
-      explanation: 'x < y (2 < 4) 已经是 true。',
+      explanation: `**答案：D**
+      
+      **解析：**
+      x < y (2 < 4) 已经是 true。
+      
+      - **A x > y || x > z**：错误。
+      - **B x != z-y**：错误。
+      - **C z > y+x**：错误。
+      - **D x < y || ! (x < z)**：正确答案。
+      
+      **考点：** 条件判断、运算符`,
       tags: [LEVEL1_TAGS.condition, LEVEL1_TAGS.operator]
     },
     {
@@ -70,7 +120,17 @@ export const paperData = {
       options: ['c += 5;', 'b = c % 2.5;', 'a = (b = 3, c = 4, b+c);', 'a -= a = (b = 6) / (c = 2);'],
       answer: 1,
       score: 2,
-      explanation: '取模运算 % 的操作数必须为整数。',
+      explanation: `**答案：B**
+      
+      **解析：**
+      取模运算 % 的操作数必须为整数。
+      
+      - **A c += 5;**：错误。
+      - **B b = c % 2.5;**：正确答案。
+      - **C a = (b = 3, c = 4, b+c);**：错误。
+      - **D a -= a = (b = 6) / (c = 2);**：错误。
+      
+      **考点：** 基础语法、运算符`,
       tags: [LEVEL1_TAGS.basics, LEVEL1_TAGS.operator]
     },
     {
@@ -80,7 +140,17 @@ export const paperData = {
       options: ['12', '20', '8', '-8'],
       answer: 1,
       score: 2,
-      explanation: 'c = -8，不大于 0，输出 b。',
+      explanation: `**答案：B**
+      
+      **解析：**
+      c = -8，不大于 0，输出 b。
+      
+      - **A 12**：错误。
+      - **B 20**：正确答案。
+      - **C 8**：错误。
+      - **D -8**：错误。
+      
+      **考点：** 条件判断`,
       tags: [LEVEL1_TAGS.condition]
     },
     {
@@ -90,7 +160,17 @@ export const paperData = {
       options: ['A', 'B', 'C', '程序运行错误'],
       answer: 2,
       score: 2,
-      explanation: 'm, n 均为偶数，前两个条件均不成立。',
+      explanation: `**答案：C**
+      
+      **解析：**
+      m, n 均为偶数，前两个条件均不成立。
+      
+      - **A A**：错误。
+      - **B B**：错误。
+      - **C C**：正确答案。
+      - **D 程序运行错误**：错误。
+      
+      **考点：** 条件判断`,
       tags: [LEVEL1_TAGS.condition]
     },
     {
@@ -100,7 +180,17 @@ export const paperData = {
       options: ['0', '1', '2', '3'],
       answer: 0,
       score: 2,
-      explanation: '7 / 5 = 1，不等于 0。',
+      explanation: `**答案：A**
+      
+      **解析：**
+      7 / 5 = 1，不等于 0。
+      
+      - **A 0**：正确答案。
+      - **B 1**：错误。
+      - **C 2**：错误。
+      - **D 3**：错误。
+      
+      **考点：** 条件判断`,
       tags: [LEVEL1_TAGS.condition]
     },
     {
@@ -110,7 +200,17 @@ export const paperData = {
       options: ['1', '5', '15', '10'],
       answer: 2,
       score: 2,
-      explanation: '1 到 5 之和。',
+      explanation: `**答案：C**
+      
+      **解析：**
+      1 到 5 之和。
+      
+      - **A 1**：错误。
+      - **B 5**：错误。
+      - **C 15**：正确答案。
+      - **D 10**：错误。
+      
+      **考点：** 循环`,
       tags: [LEVEL1_TAGS.loop]
     },
     {
@@ -120,7 +220,17 @@ export const paperData = {
       options: ['7', '5', '4', '6'],
       answer: 1,
       score: 2,
-      explanation: '条件 n < 5 一开始就不成立，循环体不执行。',
+      explanation: `**答案：B**
+      
+      **解析：**
+      条件 n < 5 一开始就不成立，循环体不执行。
+      
+      - **A 7**：错误。
+      - **B 5**：正确答案。
+      - **C 4**：错误。
+      - **D 6**：错误。
+      
+      **考点：** 循环`,
       tags: [LEVEL1_TAGS.loop]
     },
     {
@@ -130,7 +240,17 @@ export const paperData = {
       options: ['3', '4', '5', '2'],
       answer: 1,
       score: 2,
-      explanation: 'n 依次为 5, 3, 1, -1。cnt 依次为 1, 2, 3, 4。',
+      explanation: `**答案：B**
+      
+      **解析：**
+      n 依次为 5, 3, 1, -1。cnt 依次为 1, 2, 3, 4。
+      
+      - **A 3**：错误。
+      - **B 4**：正确答案。
+      - **C 5**：错误。
+      - **D 2**：错误。
+      
+      **考点：** 循环`,
       tags: [LEVEL1_TAGS.loop]
     },
     {
@@ -140,7 +260,17 @@ export const paperData = {
       options: ['int i = 1; i < n; i+1', 'int i = 1; i < $n+1$; i+1', 'int i = 1; i < n; i = i+1', 'int i = 1; i <= n; i = i+1'],
       answer: 3,
       score: 2,
-      explanation: '循环变量应从 1 遍历到 n。',
+      explanation: `**答案：D**
+      
+      **解析：**
+      循环变量应从 1 遍历到 n。
+      
+      - **A int i = 1; i < n; i+1**：错误。
+      - **B int i = 1; i < $n+1$; i+1**：错误。
+      - **C int i = 1; i < n; i = i+1**：错误。
+      - **D int i = 1; i <= n; i = i+1**：正确答案。
+      
+      **考点：** 循环`,
       tags: [LEVEL1_TAGS.loop]
     },
     {
@@ -150,7 +280,17 @@ export const paperData = {
       options: ['10', '8', '4', '6'],
       answer: 3,
       score: 2,
-      explanation: 'n 依次为 10, 8, 6... 6%3==0 触发 break。',
+      explanation: `**答案：D**
+      
+      **解析：**
+      n 依次为 10, 8, 6... 6%3==0 触发 break。
+      
+      - **A 10**：错误。
+      - **B 8**：错误。
+      - **C 4**：错误。
+      - **D 6**：正确答案。
+      
+      **考点：** 循环`,
       tags: [LEVEL1_TAGS.loop]
     },
     {
@@ -160,7 +300,17 @@ export const paperData = {
       options: ['25', '10', '55', '30'],
       answer: 0,
       score: 2,
-      explanation: '1+3+5+7+9 = 25。',
+      explanation: `**答案：A**
+      
+      **解析：**
+      1+3+5+7+9 = 25。
+      
+      - **A 25**：正确答案。
+      - **B 10**：错误。
+      - **C 55**：错误。
+      - **D 30**：错误。
+      
+      **考点：** 循环`,
       tags: [LEVEL1_TAGS.loop]
     },
     {
@@ -170,8 +320,15 @@ export const paperData = {
       options: ['正确', '错误'],
       answer: 0,
       score: 2,
-      explanation: '汉卡的历史作用。',
-      tags: [LEVEL1_TAGS.judge, LEVEL1_TAGS.basics]
+      explanation: `**答案：正确**
+      
+      **判定依据：**
+      汉卡的历史作用。
+      
+      **易混概念：** 注意区分关键字与标识符、编译器与操作系统的职能边界。
+      
+      **考点：** 基础语法`,
+      tags: [LEVEL1_TAGS.basics]
     },
     {
       id: 17,
@@ -180,8 +337,15 @@ export const paperData = {
       options: ['正确', '错误'],
       answer: 0,
       score: 2,
-      explanation: '计算机常识。',
-      tags: [LEVEL1_TAGS.judge, LEVEL1_TAGS.basics]
+      explanation: `**答案：正确**
+      
+      **判定依据：**
+      计算机常识。
+      
+      **易混概念：** 注意区分关键字与标识符、编译器与操作系统的职能边界。
+      
+      **考点：** 基础语法`,
+      tags: [LEVEL1_TAGS.basics]
     },
     {
       id: 18,
@@ -190,8 +354,15 @@ export const paperData = {
       options: ['正确', '错误'],
       answer: 0,
       score: 2,
-      explanation: '强转截断小数。',
-      tags: [LEVEL1_TAGS.judge, LEVEL1_TAGS.basics]
+      explanation: `**答案：正确**
+      
+      **判定依据：**
+      强转截断小数。
+      
+      **易混概念：** 注意区分关键字与标识符、编译器与操作系统的职能边界。
+      
+      **考点：** 基础语法`,
+      tags: [LEVEL1_TAGS.basics]
     },
     {
       id: 19,
@@ -200,8 +371,17 @@ export const paperData = {
       options: ['正确', '错误'],
       answer: 1,
       score: 2,
-      explanation: '逗号表达式结果为最后一个值 "23"。',
-      tags: [LEVEL1_TAGS.judge, LEVEL1_TAGS.basics]
+      explanation: `**答案：错误**
+      
+      **判定依据：**
+      逗号表达式结果为最后一个值 "23"。
+      
+      **纠错：** 原命题说法有误。逗号表达式结果为最后一个值 "23"。
+      
+      **易混概念：** 注意区分关键字与标识符、编译器与操作系统的职能边界。
+      
+      **考点：** 基础语法`,
+      tags: [LEVEL1_TAGS.basics]
     },
     {
       id: 20,
@@ -210,8 +390,15 @@ export const paperData = {
       options: ['正确', '错误'],
       answer: 0,
       score: 2,
-      explanation: '循环语义描述。',
-      tags: [LEVEL1_TAGS.judge, LEVEL1_TAGS.loop]
+      explanation: `**答案：正确**
+      
+      **判定依据：**
+      循环语义描述。
+      
+      **易混概念：** 注意循环变量的终值是在循环外使用的，以及 continue/break 的区别。
+      
+      **考点：** 循环`,
+      tags: [LEVEL1_TAGS.loop]
     },
     {
       id: 21,
@@ -220,8 +407,17 @@ export const paperData = {
       options: ['正确', '错误'],
       answer: 1,
       score: 2,
-      explanation: '字符相加按照 ASCII 值相加。',
-      tags: [LEVEL1_TAGS.judge, LEVEL1_TAGS.basics]
+      explanation: `**答案：错误**
+      
+      **判定依据：**
+      字符相加按照 ASCII 值相加。
+      
+      **纠错：** 原命题说法有误。字符相加按照 ASCII 值相加。
+      
+      **易混概念：** 注意区分关键字与标识符、编译器与操作系统的职能边界。
+      
+      **考点：** 基础语法`,
+      tags: [LEVEL1_TAGS.basics]
     },
     {
       id: 22,
@@ -230,8 +426,15 @@ export const paperData = {
       options: ['正确', '错误'],
       answer: 0,
       score: 2,
-      explanation: '标准流提取操作符的行为。',
-      tags: [LEVEL1_TAGS.judge, LEVEL1_TAGS.io]
+      explanation: `**答案：正确**
+      
+      **判定依据：**
+      标准流提取操作符的行为。
+      
+      **易混概念：** 注意 printf 格式化占位符与参数类型的匹配，以及转义字符的用法。
+      
+      **考点：** 输入输出`,
+      tags: [LEVEL1_TAGS.io]
     },
     {
       id: 23,
@@ -240,8 +443,15 @@ export const paperData = {
       options: ['正确', '错误'],
       answer: 0,
       score: 2,
-      explanation: '强类型语言特性。',
-      tags: [LEVEL1_TAGS.judge, LEVEL1_TAGS.basics]
+      explanation: `**答案：正确**
+      
+      **判定依据：**
+      强类型语言特性。
+      
+      **易混概念：** 注意区分关键字与标识符、编译器与操作系统的职能边界。
+      
+      **考点：** 基础语法`,
+      tags: [LEVEL1_TAGS.basics]
     },
     {
       id: 24,
@@ -250,8 +460,17 @@ export const paperData = {
       options: ['正确', '错误'],
       answer: 1,
       score: 2,
-      explanation: '应当反过来。',
-      tags: [LEVEL1_TAGS.judge, LEVEL1_TAGS.basics]
+      explanation: `**答案：错误**
+      
+      **判定依据：**
+      应当反过来。
+      
+      **纠错：** 原命题说法有误。应当反过来。
+      
+      **易混概念：** 注意区分关键字与标识符、编译器与操作系统的职能边界。
+      
+      **考点：** 基础语法`,
+      tags: [LEVEL1_TAGS.basics]
     },
     {
       id: 25,
@@ -260,8 +479,17 @@ export const paperData = {
       options: ['正确', '错误'],
       answer: 1,
       score: 2,
-      explanation: 'else 是可选的。',
-      tags: [LEVEL1_TAGS.judge, LEVEL1_TAGS.condition]
+      explanation: `**答案：错误**
+      
+      **判定依据：**
+      else 是可选的。
+      
+      **纠错：** 原命题说法有误。else 是可选的。
+      
+      **易混概念：** 注意逻辑运算符 && 和 || 的短路求值特性，以及运算符优先级。
+      
+      **考点：** 条件判断`,
+      tags: [LEVEL1_TAGS.condition]
     },
     {
       id: 26,

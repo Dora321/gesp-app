@@ -25,7 +25,17 @@ export const paperData = {
       options: ['2021', '2022', '2023', '2024'],
       answer: 1,
       score: 2,
-      explanation: 'GESP (编程能力等级认证) 是由 CCF 于 2022 年底正式推出。',
+      explanation: `**答案：B**
+      
+      **解析：**
+      GESP (编程能力等级认证) 是由 CCF 于 2022 年底正式推出。
+      
+      - **A 2021**：错误。
+      - **B 2022**：正确答案。
+      - **C 2023**：错误。
+      - **D 2024**：错误。
+      
+      **考点：** 基础语法`,
       tags: [LEVEL1_TAGS.basics]
     },
     {
@@ -35,7 +45,17 @@ export const paperData = {
       options: ['晶体管', '电子管', '集成电路', '超大规模集成电路'],
       answer: 0,
       score: 2,
-      explanation: '计算机发展史知识。第一代是电子管，第二代是晶体管。',
+      explanation: `**答案：A**
+      
+      **解析：**
+      计算机发展史知识。第一代是电子管，第二代是晶体管。
+      
+      - **A 晶体管**：正确答案。
+      - **B 电子管**：错误。
+      - **C 集成电路**：错误。
+      - **D 超大规模集成电路**：错误。
+      
+      **考点：** 基础语法`,
       tags: [LEVEL1_TAGS.basics]
     },
     {
@@ -50,7 +70,17 @@ export const paperData = {
       ],
       answer: 0,
       score: 2,
-      explanation: '存储单位转换：1MB = 1024KB, 1KB = 1024B。',
+      explanation: `**答案：A**
+      
+      **解析：**
+      存储单位转换：1MB = 1024KB, 1KB = 1024B。
+      
+      - **A 512 * 1024 * 1024 字节**：正确答案。
+      - **B 512 * 1024 字节**：错误。
+      - **C 512 * 1000 * 1000 字节**：错误。
+      - **D 512 字节**：错误。
+      
+      **考点：** 基础语法`,
       tags: [LEVEL1_TAGS.basics]
     },
     {
@@ -60,7 +90,17 @@ export const paperData = {
       options: ['double', 'using', 'longlong', 'namespace'],
       answer: 2,
       score: 2,
-      explanation: '标准关键字是 long long（带空格），longlong 并非关键字。',
+      explanation: `**答案：C**
+      
+      **解析：**
+      标准关键字是 long long（带空格），longlong 并非关键字。
+      
+      - **A double**：错误。
+      - **B using**：错误。
+      - **C longlong**：正确答案。
+      - **D namespace**：错误。
+      
+      **考点：** 基础语法`,
       tags: [LEVEL1_TAGS.basics]
     },
     {
@@ -70,7 +110,17 @@ export const paperData = {
       options: ['0.6', '0', '1', '报错'],
       answer: 1,
       score: 2,
-      explanation: '浮点数赋值给整型变量会发生截断，向下取整。',
+      explanation: `**答案：B**
+      
+      **解析：**
+      浮点数赋值给整型变量会发生截断，向下取整。
+      
+      - **A 0.6**：错误。
+      - **B 0**：正确答案。
+      - **C 1**：错误。
+      - **D 报错**：错误。
+      
+      **考点：** 基础语法`,
       tags: [LEVEL1_TAGS.basics]
     },
     {
@@ -80,7 +130,17 @@ export const paperData = {
       options: ['8th_exam', 'exam 8th', 'exam#8th', 'exam_8th'],
       answer: 3,
       score: 2,
-      explanation: '标识符命名规则。',
+      explanation: `**答案：D**
+      
+      **解析：**
+      标识符命名规则。
+      
+      - **A 8th_exam**：错误。
+      - **B exam 8th**：错误。
+      - **C exam#8th**：错误。
+      - **D exam_8th**：正确答案。
+      
+      **考点：** 基础语法`,
       tags: [LEVEL1_TAGS.basics]
     },
     {
@@ -90,7 +150,17 @@ export const paperData = {
       options: ['a = 3+2;', 'a = (b = 3)+2;', 'int a = 3.5;', 'int a = 3.5 % 2;'],
       answer: 3,
       score: 2,
-      explanation: '取模运算符 % 左右必须为整数。3.5 是浮点数。',
+      explanation: `**答案：D**
+      
+      **解析：**
+      取模运算符 % 左右必须为整数。3.5 是浮点数。
+      
+      - **A a = 3+2;**：错误。
+      - **B a = (b = 3)+2;**：错误。
+      - **C int a = 3.5;**：错误。
+      - **D int a = 3.5 % 2;**：正确答案。
+      
+      **考点：** 运算符`,
       tags: [LEVEL1_TAGS.operator]
     },
     {
@@ -100,7 +170,17 @@ export const paperData = {
       options: ['15', '1.5', '1', '0'],
       answer: 0,
       score: 2,
-      explanation: '15 % 4 = 3; 3 * 10 = 30; 30 / 2 = 15。',
+      explanation: `**答案：A**
+      
+      **解析：**
+      15 % 4 = 3; 3 * 10 = 30; 30 / 2 = 15。
+      
+      - **A 15**：正确答案。
+      - **B 1.5**：错误。
+      - **C 1**：错误。
+      - **D 0**：错误。
+      
+      **考点：** 运算符`,
       tags: [LEVEL1_TAGS.operator]
     },
     {
@@ -110,7 +190,17 @@ export const paperData = {
       options: ['true', 'false', '0', '1'],
       answer: 0, // C++ 中任何非零值作为布尔判断均为真。
       score: 2,
-      explanation: '5 和 2 均为非零值，在逻辑与运算中判定为真。',
+      explanation: `**答案：A**
+      
+      **解析：**
+      5 和 2 均为非零值，在逻辑与运算中判定为真。
+      
+      - **A true**：正确答案。
+      - **B false**：错误。
+      - **C 0**：错误。
+      - **D 1**：错误。
+      
+      **考点：** 运算符`,
       tags: [LEVEL1_TAGS.operator]
     },
     {
@@ -120,7 +210,17 @@ export const paperData = {
       options: ['a = 2, b = 2', 'a = 0, b = 0', 'a = 1, b = 0', 'a = 2, b = 0'],
       answer: 3,
       score: 2,
-      explanation: '赋值表达式的结果是所赋的值。a=2后判定为真，继续执行 b=0。',
+      explanation: `**答案：D**
+      
+      **解析：**
+      赋值表达式的结果是所赋的值。a=2后判定为真，继续执行 b=0。
+      
+      - **A a = 2, b = 2**：错误。
+      - **B a = 0, b = 0**：错误。
+      - **C a = 1, b = 0**：错误。
+      - **D a = 2, b = 0**：正确答案。
+      
+      **考点：** 运算符、基础语法`,
       tags: [LEVEL1_TAGS.operator, LEVEL1_TAGS.basics]
     },
     {
@@ -130,7 +230,17 @@ export const paperData = {
       options: ['a / 2 == 0', 'a % 2 == 0', 'a % 2 = 0', 'a / 2 = 0'],
       answer: 1,
       score: 2,
-      explanation: '判断整除性。',
+      explanation: `**答案：B**
+      
+      **解析：**
+      判断整除性。
+      
+      - **A a / 2 == 0**：错误。
+      - **B a % 2 == 0**：正确答案。
+      - **C a % 2 = 0**：错误。
+      - **D a / 2 = 0**：错误。
+      
+      **考点：** 运算符、基础语法`,
       tags: [LEVEL1_TAGS.operator, LEVEL1_TAGS.basics]
     },
     {
@@ -145,7 +255,17 @@ export const paperData = {
       ],
       answer: 2,
       score: 2,
-      explanation: '任意两边之和大于第三边。',
+      explanation: `**答案：C**
+      
+      **解析：**
+      任意两边之和大于第三边。
+      
+      - **A a+b>c || a+c>b || b+c>a**：错误。
+      - **B a+b<c && a+c<b && b+c<a**：错误。
+      - **C a+b>c && a+c>b && b+c>a**：正确答案。
+      - **D a+b==c**：错误。
+      
+      **考点：** 条件判断、运算符`,
       tags: [LEVEL1_TAGS.condition, LEVEL1_TAGS.operator]
     },
     {
@@ -155,7 +275,17 @@ export const paperData = {
       options: ['5%2={1}', '5%%2={1}', '5%2={%d}', '5%%2={%d}'],
       answer: 1,
       score: 2,
-      explanation: '转义 %。',
+      explanation: `**答案：B**
+      
+      **解析：**
+      转义 %。
+      
+      - **A 5%2={1}**：错误。
+      - **B 5%%2={1}**：正确答案。
+      - **C 5%2={%d}**：错误。
+      - **D 5%%2={%d}**：错误。
+      
+      **考点：** 输入输出`,
       tags: [LEVEL1_TAGS.io]
     },
     {
@@ -165,7 +295,17 @@ export const paperData = {
       options: ['4', '10', '15', '0'],
       answer: 1,
       score: 2,
-      explanation: '1+2+3+4 = 10。',
+      explanation: `**答案：B**
+      
+      **解析：**
+      1+2+3+4 = 10。
+      
+      - **A 4**：错误。
+      - **B 10**：正确答案。
+      - **C 15**：错误。
+      - **D 0**：错误。
+      
+      **考点：** 循环`,
       tags: [LEVEL1_TAGS.loop]
     },
     {
@@ -175,7 +315,17 @@ export const paperData = {
       options: ['15', '10', '5', '0'],
       answer: 2,
       score: 2,
-      explanation: '10-5 = 5。',
+      explanation: `**答案：C**
+      
+      **解析：**
+      10-5 = 5。
+      
+      - **A 15**：错误。
+      - **B 10**：错误。
+      - **C 5**：正确答案。
+      - **D 0**：错误。
+      
+      **考点：** 条件判断、基础语法`,
       tags: [LEVEL1_TAGS.condition, LEVEL1_TAGS.basics]
     },
 
@@ -187,8 +337,17 @@ export const paperData = {
       options: ['正确', '错误'],
       answer: 1,
       score: 2,
-      explanation: '1KB = 1024B。',
-      tags: [LEVEL1_TAGS.judge, LEVEL1_TAGS.basics]
+      explanation: `**答案：错误**
+      
+      **判定依据：**
+      1KB = 1024B。
+      
+      **纠错：** 原命题说法有误。1KB = 1024B。
+      
+      **易混概念：** 注意区分关键字与标识符、编译器与操作系统的职能边界。
+      
+      **考点：** 基础语法`,
+      tags: [LEVEL1_TAGS.basics]
     },
     {
       id: 17,
@@ -197,8 +356,15 @@ export const paperData = {
       options: ['正确', '错误'],
       answer: 0,
       score: 2,
-      explanation: '编译型语言的核心过程。',
-      tags: [LEVEL1_TAGS.judge, LEVEL1_TAGS.basics]
+      explanation: `**答案：正确**
+      
+      **判定依据：**
+      编译型语言的核心过程。
+      
+      **易混概念：** 注意区分关键字与标识符、编译器与操作系统的职能边界。
+      
+      **考点：** 基础语法`,
+      tags: [LEVEL1_TAGS.basics]
     },
     {
       id: 18,
@@ -207,8 +373,17 @@ export const paperData = {
       options: ['正确', '错误'],
       answer: 1,
       score: 2,
-      explanation: 'C++ 严格区分大小写。',
-      tags: [LEVEL1_TAGS.judge, LEVEL1_TAGS.basics]
+      explanation: `**答案：错误**
+      
+      **判定依据：**
+      C++ 严格区分大小写。
+      
+      **纠错：** 原命题说法有误。C++ 严格区分大小写。
+      
+      **易混概念：** 注意区分关键字与标识符、编译器与操作系统的职能边界。
+      
+      **考点：** 基础语法`,
+      tags: [LEVEL1_TAGS.basics]
     },
     {
       id: 19,
@@ -217,8 +392,15 @@ export const paperData = {
       options: ['正确', '错误'],
       answer: 0,
       score: 2,
-      explanation: '正确。',
-      tags: [LEVEL1_TAGS.judge, LEVEL1_TAGS.basics]
+      explanation: `**答案：正确**
+      
+      **判定依据：**
+      正确。
+      
+      **易混概念：** 注意区分关键字与标识符、编译器与操作系统的职能边界。
+      
+      **考点：** 基础语法`,
+      tags: [LEVEL1_TAGS.basics]
     },
     {
       id: 20,
@@ -227,8 +409,17 @@ export const paperData = {
       options: ['正确', '错误'],
       answer: 1,
       score: 2,
-      explanation: '整除运算，结果为 1。',
-      tags: [LEVEL1_TAGS.judge, LEVEL1_TAGS.io, LEVEL1_TAGS.operator]
+      explanation: `**答案：错误**
+      
+      **判定依据：**
+      整除运算，结果为 1。
+      
+      **纠错：** 原命题说法有误。整除运算，结果为 1。
+      
+      **易混概念：** 注意运算符优先级与整除/取模的区分，容易混淆不同运算的结果。
+      
+      **考点：** 输入输出、运算符`,
+      tags: [LEVEL1_TAGS.io, LEVEL1_TAGS.operator]
     },
     {
       id: 21,
@@ -237,8 +428,17 @@ export const paperData = {
       options: ['正确', '错误'],
       answer: 1,
       score: 2,
-      explanation: '可以是任何能隐式转换为布尔值的类型（如整型，非零为真）。',
-      tags: [LEVEL1_TAGS.judge, LEVEL1_TAGS.condition]
+      explanation: `**答案：错误**
+      
+      **判定依据：**
+      可以是任何能隐式转换为布尔值的类型（如整型，非零为真）。
+      
+      **纠错：** 原命题说法有误。可以是任何能隐式转换为布尔值的类型（如整型，非零为真）。
+      
+      **易混概念：** 注意逻辑运算符 && 和 || 的短路求值特性，以及运算符优先级。
+      
+      **考点：** 条件判断`,
+      tags: [LEVEL1_TAGS.condition]
     },
     {
       id: 22,
@@ -247,8 +447,15 @@ export const paperData = {
       options: ['正确', '错误'],
       answer: 0,
       score: 2,
-      explanation: '如 for(;;)。',
-      tags: [LEVEL1_TAGS.judge, LEVEL1_TAGS.loop]
+      explanation: `**答案：正确**
+      
+      **判定依据：**
+      如 for(;;)。
+      
+      **易混概念：** 注意循环变量的终值是在循环外使用的，以及 continue/break 的区别。
+      
+      **考点：** 循环`,
+      tags: [LEVEL1_TAGS.loop]
     },
     {
       id: 23,
@@ -257,8 +464,15 @@ export const paperData = {
       options: ['正确', '错误'],
       answer: 0,
       score: 2,
-      explanation: '正确用途。',
-      tags: [LEVEL1_TAGS.judge, LEVEL1_TAGS.loop]
+      explanation: `**答案：正确**
+      
+      **判定依据：**
+      正确用途。
+      
+      **易混概念：** 注意循环变量的终值是在循环外使用的，以及 continue/break 的区别。
+      
+      **考点：** 循环`,
+      tags: [LEVEL1_TAGS.loop]
     },
     {
       id: 24,
@@ -267,8 +481,15 @@ export const paperData = {
       options: ['正确', '错误'],
       answer: 0,
       score: 2,
-      explanation: 'true || false 结果为真。',
-      tags: [LEVEL1_TAGS.judge, LEVEL1_TAGS.operator]
+      explanation: `**答案：正确**
+      
+      **判定依据：**
+      true || false 结果为真。
+      
+      **易混概念：** 注意运算符优先级与整除/取模的区分，容易混淆不同运算的结果。
+      
+      **考点：** 运算符`,
+      tags: [LEVEL1_TAGS.operator]
     },
     {
       id: 25,
@@ -277,8 +498,17 @@ export const paperData = {
       options: ['正确', '错误'],
       answer: 1,
       score: 2,
-      explanation: '只有需要使用输入输出流时才需要，最简单的程序可以不包含它。',
-      tags: [LEVEL1_TAGS.judge, LEVEL1_TAGS.basics]
+      explanation: `**答案：错误**
+      
+      **判定依据：**
+      只有需要使用输入输出流时才需要，最简单的程序可以不包含它。
+      
+      **纠错：** 原命题说法有误。只有需要使用输入输出流时才需要，最简单的程序可以不包含它。
+      
+      **易混概念：** 注意区分关键字与标识符、编译器与操作系统的职能边界。
+      
+      **考点：** 基础语法`,
+      tags: [LEVEL1_TAGS.basics]
     },
 
     // 26-27 编程题

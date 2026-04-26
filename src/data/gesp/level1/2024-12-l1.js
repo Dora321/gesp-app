@@ -30,7 +30,17 @@ export const paperData = {
       ],
       answer: 2,
       score: 2,
-      explanation: '2024年诺贝尔物理学奖授予约翰·霍普菲尔德和杰弗里·辛顿，表彰他们在使用人工神经网络进行机器学习方面的基础性发现和发明。',
+      explanation: `**答案：C**
+      
+      **解析：**
+      2024年诺贝尔物理学奖授予约翰·霍普菲尔德和杰弗里·辛顿，表彰他们在使用人工神经网络进行机器学习方面的基础性发现和发明。
+      
+      - **A 量子力学**：错误。
+      - **B 黑洞研究**：错误。
+      - **C 人工智能/神经网络**：正确答案。
+      - **D 引力波探测**：错误。
+      
+      **考点：** 基础语法`,
       tags: [LEVEL1_TAGS.basics]
     },
     {
@@ -40,7 +50,17 @@ export const paperData = {
       options: ['键盘', '打印机', '触摸屏', '扫描仪'],
       answer: 2,
       score: 2,
-      explanation: '触摸屏可以点击输入，也可以显示输出。',
+      explanation: `**答案：C**
+      
+      **解析：**
+      触摸屏可以点击输入，也可以显示输出。
+      
+      - **A 键盘**：错误。
+      - **B 打印机**：错误。
+      - **C 触摸屏**：正确答案。
+      - **D 扫描仪**：错误。
+      
+      **考点：** 基础语法、输入输出`,
       tags: [LEVEL1_TAGS.basics, LEVEL1_TAGS.io]
     },
     {
@@ -50,7 +70,17 @@ export const paperData = {
       options: ['123_xiaoyang', 'xiaoyang@bit', 'int', '_xiaoyang123'],
       answer: 3,
       score: 2,
-      explanation: '变量名不能以数字开头，不能包含特殊符号@，不能是关键字 int。下划线开头是合法的。',
+      explanation: `**答案：D**
+      
+      **解析：**
+      变量名不能以数字开头，不能包含特殊符号@，不能是关键字 int。下划线开头是合法的。
+      
+      - **A 123_xiaoyang**：错误。
+      - **B xiaoyang@bit**：错误。
+      - **C int**：错误。
+      - **D _xiaoyang123**：正确答案。
+      
+      **考点：** 基础语法`,
       tags: [LEVEL1_TAGS.basics]
     },
     {
@@ -60,7 +90,17 @@ export const paperData = {
       options: ['include', 'public', 'printf', 'main'],
       answer: 1,
       score: 2,
-      explanation: 'public 是类成员访问修饰关键字。include 是预处理指令，printf 是函数，main 是特殊函数名。',
+      explanation: `**答案：B**
+      
+      **解析：**
+      public 是类成员访问修饰关键字。include 是预处理指令，printf 是函数，main 是特殊函数名。
+      
+      - **A include**：错误。
+      - **B public**：正确答案。
+      - **C printf**：错误。
+      - **D main**：错误。
+      
+      **考点：** 基础语法`,
       tags: [LEVEL1_TAGS.basics]
     },
     {
@@ -70,7 +110,17 @@ export const paperData = {
       options: ['浮点型和整型', '整型和浮点型', '字符型和整型', '整型和字符型'],
       answer: 1,
       score: 2,
-      explanation: 'int 表示整型，double 表示双精度浮点型。',
+      explanation: `**答案：B**
+      
+      **解析：**
+      int 表示整型，double 表示双精度浮点型。
+      
+      - **A 浮点型和整型**：错误。
+      - **B 整型和浮点型**：正确答案。
+      - **C 字符型和整型**：错误。
+      - **D 整型和字符型**：错误。
+      
+      **考点：** 基础语法`,
       tags: [LEVEL1_TAGS.basics]
     },
     {
@@ -80,7 +130,17 @@ export const paperData = {
       options: ['非门', '或门', '异或门', '与门'],
       answer: 3,
       score: 2,
-      explanation: '与门（AND gate）的逻辑关系是“全 1 则 1”。',
+      explanation: `**答案：D**
+      
+      **解析：**
+      与门（AND gate）的逻辑关系是“全 1 则 1”。
+      
+      - **A 非门**：错误。
+      - **B 或门**：错误。
+      - **C 异或门**：错误。
+      - **D 与门**：正确答案。
+      
+      **考点：** 基础语法`,
       tags: [LEVEL1_TAGS.basics]
     },
     {
@@ -90,7 +150,17 @@ export const paperData = {
       options: ['10', '11', '9', '无尽次'],
       answer: 1,
       score: 2,
-      explanation: 'i 从 0 循环到 10，包含 0 和 10，共 11 次。',
+      explanation: `**答案：B**
+      
+      **解析：**
+      i 从 0 循环到 10，包含 0 和 10，共 11 次。
+      
+      - **A 10**：错误。
+      - **B 11**：正确答案。
+      - **C 9**：错误。
+      - **D 无尽次**：错误。
+      
+      **考点：** 循环`,
       tags: [LEVEL1_TAGS.loop]
     },
     {
@@ -100,7 +170,17 @@ export const paperData = {
       options: ['1 到 5', '0 到 5', '0 到 4', '1 到 4'],
       answer: 2,
       score: 2,
-      explanation: 'C++ 数组下标从 0 开始。',
+      explanation: `**答案：C**
+      
+      **解析：**
+      C++ 数组下标从 0 开始。
+      
+      - **A 1 到 5**：错误。
+      - **B 0 到 5**：错误。
+      - **C 0 到 4**：正确答案。
+      - **D 1 到 4**：错误。
+      
+      **考点：** 数组与字符串`,
       tags: [LEVEL1_TAGS.array]
     },
     {
@@ -110,7 +190,17 @@ export const paperData = {
       options: ['2', '4', '8', '16'],
       answer: 2,
       score: 2,
-      explanation: '标准环境下 double 占用 8 字节。',
+      explanation: `**答案：C**
+      
+      **解析：**
+      标准环境下 double 占用 8 字节。
+      
+      - **A 2**：错误。
+      - **B 4**：错误。
+      - **C 8**：正确答案。
+      - **D 16**：错误。
+      
+      **考点：** 基础语法`,
       tags: [LEVEL1_TAGS.basics]
     },
     {
@@ -120,7 +210,17 @@ export const paperData = {
       options: ['48', '65', '97', '98'],
       answer: 2,
       score: 2,
-      explanation: '\'a\' 的 ASCII 码是 97，\'A\' 是 65。',
+      explanation: `**答案：C**
+      
+      **解析：**
+      'a' 的 ASCII 码是 97，'A' 是 65。
+      
+      - **A 48**：错误。
+      - **B 65**：错误。
+      - **C 97**：正确答案。
+      - **D 98**：错误。
+      
+      **考点：** 基础语法`,
       tags: [LEVEL1_TAGS.basics]
     },
     {
@@ -130,7 +230,17 @@ export const paperData = {
       options: ['7', '7.0', '8', '7.5'],
       answer: 3,
       score: 2,
-      explanation: '浮点数除法。',
+      explanation: `**答案：D**
+      
+      **解析：**
+      浮点数除法。
+      
+      - **A 7**：错误。
+      - **B 7.0**：错误。
+      - **C 8**：错误。
+      - **D 7.5**：正确答案。
+      
+      **考点：** 运算符`,
       tags: [LEVEL1_TAGS.operator]
     },
     {
@@ -140,7 +250,17 @@ export const paperData = {
       options: ['true', '1', 'false', '0'],
       answer: 2,
       score: 2,
-      explanation: '!true 为 false，false || false 为 false。',
+      explanation: `**答案：C**
+      
+      **解析：**
+      !true 为 false，false || false 为 false。
+      
+      - **A true**：错误。
+      - **B 1**：错误。
+      - **C false**：正确答案。
+      - **D 0**：错误。
+      
+      **考点：** 运算符`,
       tags: [LEVEL1_TAGS.operator]
     },
     {
@@ -150,7 +270,17 @@ export const paperData = {
       options: ['#include <iostream.h>', '#include iostream', 'import iostream', '#include <iostream>'],
       answer: 3,
       score: 2,
-      explanation: 'C++ 标准头文件写法。',
+      explanation: `**答案：D**
+      
+      **解析：**
+      C++ 标准头文件写法。
+      
+      - **A #include <iostream.h>**：错误。
+      - **B #include iostream**：错误。
+      - **C import iostream**：错误。
+      - **D #include <iostream>**：正确答案。
+      
+      **考点：** 输入输出`,
       tags: [LEVEL1_TAGS.io]
     },
     {
@@ -160,7 +290,17 @@ export const paperData = {
       options: ['9', '11', '13', '15'],
       answer: 1,
       score: 2,
-      explanation: '1*8+0*4+1*2+1*1 = 11。',
+      explanation: `**答案：B**
+      
+      **解析：**
+      1*8+0*4+1*2+1*1 = 11。
+      
+      - **A 9**：错误。
+      - **B 11**：正确答案。
+      - **C 13**：错误。
+      - **D 15**：错误。
+      
+      **考点：** 基础语法`,
       tags: [LEVEL1_TAGS.basics]
     },
     {
@@ -170,7 +310,17 @@ export const paperData = {
       options: ['逻辑错误', '运行错误', '内存溢出', '语法错误'],
       answer: 3,
       score: 2,
-      explanation: '缺少分号。',
+      explanation: `**答案：D**
+      
+      **解析：**
+      缺少分号。
+      
+      - **A 逻辑错误**：错误。
+      - **B 运行错误**：错误。
+      - **C 内存溢出**：错误。
+      - **D 语法错误**：正确答案。
+      
+      **考点：** 基础语法`,
       tags: [LEVEL1_TAGS.basics]
     },
 
@@ -182,8 +332,15 @@ export const paperData = {
       options: ['正确', '错误'],
       answer: 0,
       score: 2,
-      explanation: '1946 年诞生于美国宾夕法尼亚大学。',
-      tags: [LEVEL1_TAGS.judge, LEVEL1_TAGS.basics]
+      explanation: `**答案：正确**
+      
+      **判定依据：**
+      1946 年诞生于美国宾夕法尼亚大学。
+      
+      **易混概念：** 注意区分关键字与标识符、编译器与操作系统的职能边界。
+      
+      **考点：** 基础语法`,
+      tags: [LEVEL1_TAGS.basics]
     },
     {
       id: 17,
@@ -192,8 +349,15 @@ export const paperData = {
       options: ['正确', '错误'],
       answer: 0,
       score: 2,
-      explanation: '它是指示性的输入设备。',
-      tags: [LEVEL1_TAGS.judge, LEVEL1_TAGS.io]
+      explanation: `**答案：正确**
+      
+      **判定依据：**
+      它是指示性的输入设备。
+      
+      **易混概念：** 注意 printf 格式化占位符与参数类型的匹配，以及转义字符的用法。
+      
+      **考点：** 输入输出`,
+      tags: [LEVEL1_TAGS.io]
     },
     {
       id: 18,
@@ -202,8 +366,17 @@ export const paperData = {
       options: ['正确', '错误'],
       answer: 1,
       score: 2,
-      explanation: '不能以数字开头。',
-      tags: [LEVEL1_TAGS.judge, LEVEL1_TAGS.basics]
+      explanation: `**答案：错误**
+      
+      **判定依据：**
+      不能以数字开头。
+      
+      **纠错：** 原命题说法有误。不能以数字开头。
+      
+      **易混概念：** 注意区分关键字与标识符、编译器与操作系统的职能边界。
+      
+      **考点：** 基础语法`,
+      tags: [LEVEL1_TAGS.basics]
     },
     {
       id: 19,
@@ -212,8 +385,15 @@ export const paperData = {
       options: ['正确', '错误'],
       answer: 0,
       score: 2,
-      explanation: '布尔型专门用于逻辑判断。',
-      tags: [LEVEL1_TAGS.judge, LEVEL1_TAGS.basics]
+      explanation: `**答案：正确**
+      
+      **判定依据：**
+      布尔型专门用于逻辑判断。
+      
+      **易混概念：** 注意区分关键字与标识符、编译器与操作系统的职能边界。
+      
+      **考点：** 基础语法`,
+      tags: [LEVEL1_TAGS.basics]
     },
     {
       id: 20,
@@ -222,8 +402,15 @@ export const paperData = {
       options: ['正确', '错误'],
       answer: 0,
       score: 2,
-      explanation: 'break 的核心功能。',
-      tags: [LEVEL1_TAGS.judge, LEVEL1_TAGS.loop]
+      explanation: `**答案：正确**
+      
+      **判定依据：**
+      break 的核心功能。
+      
+      **易混概念：** 注意循环变量的终值是在循环外使用的，以及 continue/break 的区别。
+      
+      **考点：** 循环`,
+      tags: [LEVEL1_TAGS.loop]
     },
     {
       id: 21,
@@ -232,8 +419,17 @@ export const paperData = {
       options: ['正确', '错误'],
       answer: 1,
       score: 2,
-      explanation: '可以省略，例如 for(;;)。',
-      tags: [LEVEL1_TAGS.judge, LEVEL1_TAGS.loop]
+      explanation: `**答案：错误**
+      
+      **判定依据：**
+      可以省略，例如 for(;;)。
+      
+      **纠错：** 原命题说法有误。可以省略，例如 for(;;)。
+      
+      **易混概念：** 注意循环变量的终值是在循环外使用的，以及 continue/break 的区别。
+      
+      **考点：** 循环`,
+      tags: [LEVEL1_TAGS.loop]
     },
     {
       id: 22,
@@ -242,8 +438,15 @@ export const paperData = {
       options: ['正确', '错误'],
       answer: 0,
       score: 2,
-      explanation: '逻辑与的特性。',
-      tags: [LEVEL1_TAGS.judge, LEVEL1_TAGS.operator]
+      explanation: `**答案：正确**
+      
+      **判定依据：**
+      逻辑与的特性。
+      
+      **易混概念：** 注意运算符优先级与整除/取模的区分，容易混淆不同运算的结果。
+      
+      **考点：** 运算符`,
+      tags: [LEVEL1_TAGS.operator]
     },
     {
       id: 23,
@@ -252,8 +455,15 @@ export const paperData = {
       options: ['正确', '错误'],
       answer: 0,
       score: 2,
-      explanation: '这是数组的核心特征，支持 $O(1)$ 随机访问。',
-      tags: [LEVEL1_TAGS.judge, LEVEL1_TAGS.array]
+      explanation: `**答案：正确**
+      
+      **判定依据：**
+      这是数组的核心特征，支持 $O(1)$ 随机访问。
+      
+      **易混概念：** 注意区分相关概念的适用范围和边界条件。
+      
+      **考点：** 数组与字符串`,
+      tags: [LEVEL1_TAGS.array]
     },
     {
       id: 24,
@@ -262,8 +472,17 @@ export const paperData = {
       options: ['正确', '错误'],
       answer: 1,
       score: 2,
-      explanation: '标准规定入口应为 int main()。',
-      tags: [LEVEL1_TAGS.judge, LEVEL1_TAGS.basics]
+      explanation: `**答案：错误**
+      
+      **判定依据：**
+      标准规定入口应为 int main()。
+      
+      **纠错：** 原命题说法有误。标准规定入口应为 int main()。
+      
+      **易混概念：** 注意区分关键字与标识符、编译器与操作系统的职能边界。
+      
+      **考点：** 基础语法`,
+      tags: [LEVEL1_TAGS.basics]
     },
     {
       id: 25,
@@ -272,8 +491,15 @@ export const paperData = {
       options: ['正确', '错误'],
       answer: 0,
       score: 2,
-      explanation: '注释仅供程序员阅读。',
-      tags: [LEVEL1_TAGS.judge, LEVEL1_TAGS.basics]
+      explanation: `**答案：正确**
+      
+      **判定依据：**
+      注释仅供程序员阅读。
+      
+      **易混概念：** 注意区分关键字与标识符、编译器与操作系统的职能边界。
+      
+      **考点：** 基础语法`,
+      tags: [LEVEL1_TAGS.basics]
     },
 
     // 26-27 编程题

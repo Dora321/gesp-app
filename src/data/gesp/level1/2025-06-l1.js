@@ -25,7 +25,17 @@ export const paperData = {
       options: ['处理器', '存储器', '输入设备', '输出设备'],
       answer: 2,
       score: 2,
-      explanation: '传感器获取外界信息并传递给计算机处理，其功能类似于计算器的输入设备。',
+      explanation: `**答案：C**
+      
+      **解析：**
+      传感器获取外界信息并传递给计算机处理，其功能类似于计算器的输入设备。
+      
+      - **A 处理器**：错误。
+      - **B 存储器**：错误。
+      - **C 输入设备**：正确答案。
+      - **D 输出设备**：错误。
+      
+      **考点：** 基础语法`,
       tags: [LEVEL1_TAGS.basics]
     },
     {
@@ -40,7 +50,17 @@ export const paperData = {
       ],
       answer: 0,
       score: 2,
-      explanation: '虽然标记为 L1 的代码行仅为变量声明与初始化，但在现代 IDE 中通常仍是可以设置断点并观察初始化的。',
+      explanation: `**答案：A**
+      
+      **解析：**
+      虽然标记为 L1 的代码行仅为变量声明与初始化，但在现代 IDE 中通常仍是可以设置断点并观察初始化的。
+      
+      - **A 断点不可以设置在L1标记的代码行**：正确答案。
+      - **B 执行暂停在L2标记的代码行时，可以检测N的值**：错误。
+      - **C 执行暂停在L3标记的代码行时，可以修改局部变量N**：错误。
+      - **D 执行有可能暂停在L4标记的代码行**：错误。
+      
+      **考点：** 基础语法`,
       tags: [LEVEL1_TAGS.basics]
     },
     {
@@ -55,7 +75,17 @@ export const paperData = {
       ],
       answer: 3,
       score: 2,
-      explanation: 'C++ 严格区分大小写，`first` 与 `First` 是不同的标识符。',
+      explanation: `**答案：D**
+      
+      **解析：**
+      C++ 严格区分大小写，\`first\` 与 \`First\` 是不同的标识符。
+      
+      - **A 执行后输出10**：错误。
+      - **B 执行后输出{First}**：错误。
+      - **C 执行后输出"First"**：错误。
+      - **D 编译报错，因为First应该是first**：正确答案。
+      
+      **考点：** 基础语法`,
       tags: [LEVEL1_TAGS.basics]
     },
     {
@@ -65,7 +95,17 @@ export const paperData = {
       options: ['X.cpp', 'X-cpp', 'X#cpp', 'X_cpp'],
       answer: 3,
       score: 2,
-      explanation: 'C++ 变量名只能包含字母、数字和下划线，且不能以数字开头。',
+      explanation: `**答案：D**
+      
+      **解析：**
+      C++ 变量名只能包含字母、数字和下划线，且不能以数字开头。
+      
+      - **A X.cpp**：错误。
+      - **B X-cpp**：错误。
+      - **C X#cpp**：错误。
+      - **D X_cpp**：正确答案。
+      
+      **考点：** 基础语法`,
       tags: [LEVEL1_TAGS.basics]
     },
     {
@@ -75,7 +115,17 @@ export const paperData = {
       options: ['0', '11', '13', '-67'],
       answer: 2,
       score: 2,
-      explanation: '优先级：* 和 % 相同，从左往右算。3*3=9, 9%2=1, 14-1=13。',
+      explanation: `**答案：C**
+      
+      **解析：**
+      优先级：* 和 % 相同，从左往右算。3*3=9, 9%2=1, 14-1=13。
+      
+      - **A 0**：错误。
+      - **B 11**：错误。
+      - **C 13**：正确答案。
+      - **D -67**：错误。
+      
+      **考点：** 运算符`,
       tags: [LEVEL1_TAGS.operator]
     },
     {
@@ -85,7 +135,17 @@ export const paperData = {
       options: ['10 20', '20 10', '10 10', '20 20'],
       answer: 1,
       score: 2,
-      explanation: '这是经典的通过三步加减法交换两个变量值的算法。x 最终为 20，y 最终为 10。',
+      explanation: `**答案：B**
+      
+      **解析：**
+      这是经典的通过三步加减法交换两个变量值的算法。x 最终为 20，y 最终为 10。
+      
+      - **A 10 20**：错误。
+      - **B 20 10**：正确答案。
+      - **C 10 10**：错误。
+      - **D 20 20**：错误。
+      
+      **考点：** 基础语法、运算符`,
       tags: [LEVEL1_TAGS.basics, LEVEL1_TAGS.operator]
     },
     {
@@ -95,7 +155,17 @@ export const paperData = {
       options: ['3', '17', '19', '20'],
       answer: 2,
       score: 2,
-      explanation: '++a 先使 a 变为 17，17 % 3 等于 2，此时 a 为 17，17+2 = 19。',
+      explanation: `**答案：C**
+      
+      **解析：**
+      ++a 先使 a 变为 17，17 % 3 等于 2，此时 a 为 17，17+2 = 19。
+      
+      - **A 3**：错误。
+      - **B 17**：错误。
+      - **C 19**：正确答案。
+      - **D 20**：错误。
+      
+      **考点：** 运算符、基础语法`,
       tags: [LEVEL1_TAGS.operator, LEVEL1_TAGS.basics]
     },
     {
@@ -105,7 +175,17 @@ export const paperData = {
       options: ['8 9', '9 9', '9 10', '编译错误，无法执行'],
       answer: 2,
       score: 2,
-      explanation: '++x 使 x 变为 9，并返回 lvalue (9)。(9)++ 返回当前值 9 后使 x 变为 10。',
+      explanation: `**答案：C**
+      
+      **解析：**
+      ++x 使 x 变为 9，并返回 lvalue (9)。(9)++ 返回当前值 9 后使 x 变为 10。
+      
+      - **A 8 9**：错误。
+      - **B 9 9**：错误。
+      - **C 9 10**：正确答案。
+      - **D 编译错误，无法执行**：错误。
+      
+      **考点：** 运算符`,
       tags: [LEVEL1_TAGS.operator]
     },
     {
@@ -120,7 +200,17 @@ export const paperData = {
       ],
       answer: 2,
       score: 2,
-      explanation: 'printf 中的 %d 对应第一个参数 a (3)，后续的 2 是普通字符。参数 b 和 a+b 因为没有对应的格式化占位符，不会被按预期方式打印。',
+      explanation: `**答案：C**
+      
+      **解析：**
+      printf 中的 %d 对应第一个参数 a (3)，后续的 2 是普通字符。参数 b 和 a+b 因为没有对应的格式化占位符，不会被按预期方式打印。
+      
+      - **A a+b=07#a+b={a+b}**：错误。
+      - **B a+b=34#a+b=7**：错误。
+      - **C a+b=32#a+b={a+b}**：正确答案。
+      - **D a+b=32#a+b=7**：错误。
+      
+      **考点：** 输入输出`,
       tags: [LEVEL1_TAGS.io]
     },
     {
@@ -130,7 +220,17 @@ export const paperData = {
       options: ['N % 2 = 0', 'N % 2 == 0', 'N / 2 == 0', 'N % 2 != 1'],
       answer: 1,
       score: 2,
-      explanation: '判断偶数通常使用取余运算 N % 2 == 0。',
+      explanation: `**答案：B**
+      
+      **解析：**
+      判断偶数通常使用取余运算 N % 2 == 0。
+      
+      - **A N % 2 = 0**：错误。
+      - **B N % 2 == 0**：正确答案。
+      - **C N / 2 == 0**：错误。
+      - **D N % 2 != 1**：错误。
+      
+      **考点：** 运算符、基础语法`,
       tags: [LEVEL1_TAGS.operator, LEVEL1_TAGS.basics]
     },
     {
@@ -140,7 +240,17 @@ export const paperData = {
       options: ['5 6', '6 5', '6 6', '5 5'],
       answer: 0,
       score: 2,
-      explanation: 'i和n向中间靠拢。i=1,n=10 -> i=2,n=9 -> i=3,n=8 -> i=4,n=7 -> i=5,n=6 -> i=6,n=5 (退出)。最终 n=5, i=6。',
+      explanation: `**答案：A**
+      
+      **解析：**
+      i和n向中间靠拢。i=1,n=10 -> i=2,n=9 -> i=3,n=8 -> i=4,n=7 -> i=5,n=6 -> i=6,n=5 (退出)。最终 n=5, i=6。
+      
+      - **A 5 6**：正确答案。
+      - **B 6 5**：错误。
+      - **C 6 6**：错误。
+      - **D 5 5**：错误。
+      
+      **考点：** 循环、基础语法`,
       tags: [LEVEL1_TAGS.loop, LEVEL1_TAGS.basics]
     },
     {
@@ -150,7 +260,17 @@ export const paperData = {
       options: ['8', '8.5', '4.5', '1.5'],
       answer: 1,
       score: 2,
-      explanation: '15 % 2 = 1；15 / 2.0 = 7.5。1+7.5 = 8.5。',
+      explanation: `**答案：B**
+      
+      **解析：**
+      15 % 2 = 1；15 / 2.0 = 7.5。1+7.5 = 8.5。
+      
+      - **A 8**：错误。
+      - **B 8.5**：正确答案。
+      - **C 4.5**：错误。
+      - **D 1.5**：错误。
+      
+      **考点：** 运算符`,
       tags: [LEVEL1_TAGS.operator]
     },
     {
@@ -160,7 +280,17 @@ export const paperData = {
       options: ['37', '45', '55', '18'],
       answer: 0,
       score: 2,
-      explanation: '1到10之和为 55。排除 3, 6, 9 (3+6+9=18)。55-18 = 37。',
+      explanation: `**答案：A**
+      
+      **解析：**
+      1到10之和为 55。排除 3, 6, 9 (3+6+9=18)。55-18 = 37。
+      
+      - **A 37**：正确答案。
+      - **B 45**：错误。
+      - **C 55**：错误。
+      - **D 18**：错误。
+      
+      **考点：** 循环、条件判断`,
       tags: [LEVEL1_TAGS.loop, LEVEL1_TAGS.condition]
     },
     {
@@ -170,7 +300,17 @@ export const paperData = {
       options: ['float', 'double', 'char', 'int'],
       answer: 3,
       score: 2,
-      explanation: 'int 是 integer 的缩写，用于定义整型变量。',
+      explanation: `**答案：D**
+      
+      **解析：**
+      int 是 integer 的缩写，用于定义整型变量。
+      
+      - **A float**：错误。
+      - **B double**：错误。
+      - **C char**：错误。
+      - **D int**：正确答案。
+      
+      **考点：** 基础语法`,
       tags: [LEVEL1_TAGS.basics]
     },
     {
@@ -180,7 +320,17 @@ export const paperData = {
       options: ['n / 100', 'n / 10 % 10', 'n % 100', 'n % 10'],
       answer: 0,
       score: 2,
-      explanation: '567 / 100 = 5（整除）。',
+      explanation: `**答案：A**
+      
+      **解析：**
+      567 / 100 = 5（整除）。
+      
+      - **A n / 100**：正确答案。
+      - **B n / 10 % 10**：错误。
+      - **C n % 100**：错误。
+      - **D n % 10**：错误。
+      
+      **考点：** 运算符、基础语法`,
       tags: [LEVEL1_TAGS.operator, LEVEL1_TAGS.basics]
     },
 
@@ -192,8 +342,15 @@ export const paperData = {
       options: ['正确', '错误'],
       answer: 0,
       score: 2,
-      explanation: '这是考试的基本纪律要求。',
-      tags: [LEVEL1_TAGS.judge, LEVEL1_TAGS.basics]
+      explanation: `**答案：正确**
+      
+      **判定依据：**
+      这是考试的基本纪律要求。
+      
+      **易混概念：** 注意区分关键字与标识符、编译器与操作系统的职能边界。
+      
+      **考点：** 基础语法`,
+      tags: [LEVEL1_TAGS.basics]
     },
     {
       id: 17,
@@ -202,8 +359,17 @@ export const paperData = {
       options: ['正确', '错误'],
       answer: 1,
       score: 2,
-      explanation: '!5 为 0，5+0 = 5。',
-      tags: [LEVEL1_TAGS.judge, LEVEL1_TAGS.operator]
+      explanation: `**答案：错误**
+      
+      **判定依据：**
+      !5 为 0，5+0 = 5。
+      
+      **纠错：** 原命题说法有误。!5 为 0，5+0 = 5。
+      
+      **易混概念：** 注意运算符优先级与整除/取模的区分，容易混淆不同运算的结果。
+      
+      **考点：** 运算符`,
+      tags: [LEVEL1_TAGS.operator]
     },
     {
       id: 18,
@@ -212,8 +378,15 @@ export const paperData = {
       options: ['正确', '错误'],
       answer: 0,
       score: 2,
-      explanation: '没有修改条件的语句会导致条件永远为真，产生死循环。',
-      tags: [LEVEL1_TAGS.judge, LEVEL1_TAGS.loop]
+      explanation: `**答案：正确**
+      
+      **判定依据：**
+      没有修改条件的语句会导致条件永远为真，产生死循环。
+      
+      **易混概念：** 注意循环变量的终值是在循环外使用的，以及 continue/break 的区别。
+      
+      **考点：** 循环`,
+      tags: [LEVEL1_TAGS.loop]
     },
     {
       id: 19,
@@ -222,8 +395,17 @@ export const paperData = {
       options: ['正确', '错误'],
       answer: 1,
       score: 2,
-      explanation: '变量在同一作用域内只能定义一次。',
-      tags: [LEVEL1_TAGS.judge, LEVEL1_TAGS.basics]
+      explanation: `**答案：错误**
+      
+      **判定依据：**
+      变量在同一作用域内只能定义一次。
+      
+      **纠错：** 原命题说法有误。变量在同一作用域内只能定义一次。
+      
+      **易混概念：** 注意区分关键字与标识符、编译器与操作系统的职能边界。
+      
+      **考点：** 基础语法`,
+      tags: [LEVEL1_TAGS.basics]
     },
     {
       id: 20,
@@ -232,8 +414,15 @@ export const paperData = {
       options: ['正确', '错误'],
       answer: 0,
       score: 2,
-      explanation: '浮点数除法。',
-      tags: [LEVEL1_TAGS.judge, LEVEL1_TAGS.operator]
+      explanation: `**答案：正确**
+      
+      **判定依据：**
+      浮点数除法。
+      
+      **易混概念：** 注意运算符优先级与整除/取模的区分，容易混淆不同运算的结果。
+      
+      **考点：** 运算符`,
+      tags: [LEVEL1_TAGS.operator]
     },
     {
       id: 21,
@@ -242,8 +431,15 @@ export const paperData = {
       options: ['正确', '错误'],
       answer: 0,
       score: 2,
-      explanation: '赋值表达式 x = 0 的值是 0，在 if 中判定为假。',
-      tags: [LEVEL1_TAGS.judge, LEVEL1_TAGS.basics, LEVEL1_TAGS.condition]
+      explanation: `**答案：正确**
+      
+      **判定依据：**
+      赋值表达式 x = 0 的值是 0，在 if 中判定为假。
+      
+      **易混概念：** 注意逻辑运算符 && 和 || 的短路求值特性，以及运算符优先级。
+      
+      **考点：** 基础语法、条件判断`,
+      tags: [LEVEL1_TAGS.basics, LEVEL1_TAGS.condition]
     },
     {
       id: 22,
@@ -252,8 +448,15 @@ export const paperData = {
       options: ['正确', '错误'],
       answer: 0,
       score: 2,
-      explanation: '标准逻辑运算符。',
-      tags: [LEVEL1_TAGS.judge, LEVEL1_TAGS.operator]
+      explanation: `**答案：正确**
+      
+      **判定依据：**
+      标准逻辑运算符。
+      
+      **易混概念：** 注意运算符优先级与整除/取模的区分，容易混淆不同运算的结果。
+      
+      **考点：** 运算符`,
+      tags: [LEVEL1_TAGS.operator]
     },
     {
       id: 23,
@@ -262,8 +465,15 @@ export const paperData = {
       options: ['正确', '错误'],
       answer: 0,
       score: 2,
-      explanation: 'i 从 0 到 9。',
-      tags: [LEVEL1_TAGS.judge, LEVEL1_TAGS.loop]
+      explanation: `**答案：正确**
+      
+      **判定依据：**
+      i 从 0 到 9。
+      
+      **易混概念：** 注意循环变量的终值是在循环外使用的，以及 continue/break 的区别。
+      
+      **考点：** 循环`,
+      tags: [LEVEL1_TAGS.loop]
     },
     {
       id: 24,
@@ -272,8 +482,15 @@ export const paperData = {
       options: ['正确', '错误'],
       answer: 0,
       score: 2,
-      explanation: '定义在 iostream 头文件中。',
-      tags: [LEVEL1_TAGS.judge, LEVEL1_TAGS.io]
+      explanation: `**答案：正确**
+      
+      **判定依据：**
+      定义在 iostream 头文件中。
+      
+      **易混概念：** 注意 printf 格式化占位符与参数类型的匹配，以及转义字符的用法。
+      
+      **考点：** 输入输出`,
+      tags: [LEVEL1_TAGS.io]
     },
     {
       id: 25,
@@ -282,8 +499,17 @@ export const paperData = {
       options: ['正确', '错误'],
       answer: 1,
       score: 2,
-      explanation: '应使用 x > 3 && x < 5。',
-      tags: [LEVEL1_TAGS.judge, LEVEL1_TAGS.basics]
+      explanation: `**答案：错误**
+      
+      **判定依据：**
+      应使用 x > 3 && x < 5。
+      
+      **纠错：** 原命题说法有误。应使用 x > 3 && x < 5。
+      
+      **易混概念：** 注意区分关键字与标识符、编译器与操作系统的职能边界。
+      
+      **考点：** 基础语法`,
+      tags: [LEVEL1_TAGS.basics]
     },
 
     // 26-27 编程题

@@ -27,7 +27,17 @@ export const paperData = {
       options: ['辐射传感器', '处理器', '内存单元', '输出设备'],
       answer: 1,
       score: 2,
-      explanation: '执行判断和计算的核心部件是处理器（CPU）。',
+      explanation: `**答案：B**
+      
+      **解析：**
+      执行判断和计算的核心部件是处理器（CPU）。
+      
+      - **A 辐射传感器**：错误。
+      - **B 处理器**：正确答案。
+      - **C 内存单元**：错误。
+      - **D 输出设备**：错误。
+      
+      **考点：** 基础语法`,
       tags: [LEVEL1_TAGS.basics],
     },
     {
@@ -42,7 +52,17 @@ export const paperData = {
       ],
       answer: 0,
       score: 2,
-      explanation: '在C++中，中英文符号不混用，中文逗号会导致“无效字符”编译错误。',
+      explanation: `**答案：A**
+      
+      **解析：**
+      在C++中，中英文符号不混用，中文逗号会导致“无效字符”编译错误。
+      
+      - **A L1行代码中的逗号很可能是中文逗号，应该改为英文逗号。**：正确答案。
+      - **B L1行应该分为两行，分别是 a = 3 和 b = 4 。**：错误。
+      - **C 代码运行前没有保存到文件。**：错误。
+      - **D L2和L3不能分为两行，应合并为一行。**：错误。
+      
+      **考点：** 基础语法`,
       tags: [LEVEL1_TAGS.basics],
     },
     {
@@ -57,7 +77,17 @@ export const paperData = {
       ],
       answer: 0,
       score: 2,
-      explanation: 'C++关键字（如 for, int, if 等）不能用作变量名。变量名第一个字符可以是下划线 _。',
+      explanation: `**答案：A**
+      
+      **解析：**
+      C++关键字（如 for, int, if 等）不能用作变量名。变量名第一个字符可以是下划线 _。
+      
+      - **A 不可以用 for 作为变量名，因为 for 是C++的关键字（保留字）。**：正确答案。
+      - **B _tnt 不可以是变量名，因为变量名的第一个字符必须是英文字母。**：错误。
+      - **C 变量名可以包含空格。**：错误。
+      - **D 所有的变量必须在 main 函数内部定义。**：错误。
+      
+      **考点：** 基础语法`,
       tags: [LEVEL1_TAGS.basics],
     },
     {
@@ -67,7 +97,17 @@ export const paperData = {
       options: ['3', '4', '5', '不确定'],
       answer: 2,
       score: 2,
-      explanation: '逗号表达式的结果是最后一个表达式的值。X=3后，X++使X变为4（但表达式值为3），++X使X变为5（表达式值为5）。',
+      explanation: `**答案：C**
+      
+      **解析：**
+      逗号表达式的结果是最后一个表达式的值。X=3后，X++使X变为4（但表达式值为3），++X使X变为5（表达式值为5）。
+      
+      - **A 3**：错误。
+      - **B 4**：错误。
+      - **C 5**：正确答案。
+      - **D 不确定**：错误。
+      
+      **考点：** 运算符`,
       tags: [LEVEL1_TAGS.operator],
     },
     {
@@ -77,7 +117,17 @@ export const paperData = {
       options: ['0', '4', '14', '50'],
       answer: 1,
       score: 2,
-      explanation: '优先级：* 和 % 高于 +。3 * 4 = 12, 12 % 5 = 2, 2+2 = 4。',
+      explanation: `**答案：B**
+      
+      **解析：**
+      优先级：* 和 % 高于 +。3 * 4 = 12, 12 % 5 = 2, 2+2 = 4。
+      
+      - **A 0**：错误。
+      - **B 4**：正确答案。
+      - **C 14**：错误。
+      - **D 50**：错误。
+      
+      **考点：** 运算符`,
       tags: [LEVEL1_TAGS.operator],
     },
     {
@@ -87,7 +137,17 @@ export const paperData = {
       options: ['4 4', '3 3', '3 4', '4 3'],
       answer: 0,
       score: 2,
-      explanation: '赋值运算符从右向左结合。a = 4 之后 a 为 4，b = a 之后 b 也为 4。',
+      explanation: `**答案：A**
+      
+      **解析：**
+      赋值运算符从右向左结合。a = 4 之后 a 为 4，b = a 之后 b 也为 4。
+      
+      - **A 4 4**：正确答案。
+      - **B 3 3**：错误。
+      - **C 3 4**：错误。
+      - **D 4 3**：错误。
+      
+      **考点：** 基础语法、运算符`,
       tags: [LEVEL1_TAGS.basics, LEVEL1_TAGS.operator],
     },
     {
@@ -97,7 +157,17 @@ export const paperData = {
       options: ['30=30', '10+20=30', '%(N+M)=30', '错误提示'],
       answer: 2,
       score: 2,
-      explanation: '%% 在 printf 中转义输出一个 %。结果为 %(N+M)=30。',
+      explanation: `**答案：C**
+      
+      **解析：**
+      %% 在 printf 中转义输出一个 %。结果为 %(N+M)=30。
+      
+      - **A 30=30**：错误。
+      - **B 10+20=30**：错误。
+      - **C %(N+M)=30**：正确答案。
+      - **D 错误提示**：错误。
+      
+      **考点：** 输入输出`,
       tags: [LEVEL1_TAGS.io],
     },
     {
@@ -107,7 +177,17 @@ export const paperData = {
       options: ['N % 4', 'N / 4', 'N % 3', 'N / 3'],
       answer: 0,
       score: 2,
-      explanation: '数列规律为 1, 2, 3, 2 | 1, 2, 3, 2 | ... 周期为4。M=N%4时，1->1, 2->2, 3->3, 4->0(输出2)，循环往复。',
+      explanation: `**答案：A**
+      
+      **解析：**
+      数列规律为 1, 2, 3, 2 | 1, 2, 3, 2 | ... 周期为4。M=N%4时，1->1, 2->2, 3->3, 4->0(输出2)，循环往复。
+      
+      - **A N % 4**：正确答案。
+      - **B N / 4**：错误。
+      - **C N % 3**：错误。
+      - **D N / 3**：错误。
+      
+      **考点：** 循环、基础语法`,
       tags: [LEVEL1_TAGS.loop, LEVEL1_TAGS.basics],
     },
     {
@@ -117,7 +197,17 @@ export const paperData = {
       options: ['99 99', '100 99', '99 100', '100 100'],
       answer: 3,
       score: 2,
-      explanation: '循环执行100次，tnt从0加到100。退出循环时 i 满足不小于100，即 i=100。',
+      explanation: `**答案：D**
+      
+      **解析：**
+      循环执行100次，tnt从0加到100。退出循环时 i 满足不小于100，即 i=100。
+      
+      - **A 99 99**：错误。
+      - **B 100 99**：错误。
+      - **C 99 100**：错误。
+      - **D 100 100**：正确答案。
+      
+      **考点：** 循环`,
       tags: [LEVEL1_TAGS.loop],
     },
     {
@@ -132,7 +222,17 @@ export const paperData = {
       ],
       answer: 1,
       score: 2,
-      explanation: 'i=1时序列为1,3,5,7,9；i=0时序列为0,2,4,6,8。结果不同。',
+      explanation: `**答案：B**
+      
+      **解析：**
+      i=1时序列为1,3,5,7,9；i=0时序列为0,2,4,6,8。结果不同。
+      
+      - **A L1 的 i < 10 改为 i < 11 结果相同。**：错误。
+      - **B L1 的 i = 1 改为 i = 0 结果相同。**：正确答案。
+      - **C tnt += i 与 tnt = tnt+i 结果相同。**：错误。
+      - **D tnt += i 与 tnt = i+tnt 结果相同。**：错误。
+      
+      **考点：** 循环`,
       tags: [LEVEL1_TAGS.loop],
     },
     {
@@ -142,7 +242,17 @@ export const paperData = {
       options: ['10#20#30#40#50#60#70#80#90#100 END', '100#100 END', '100 END', '110 END'],
       answer: 2,
       score: 2,
-      explanation: 'i 总是10的倍数，因此 i%10==0 始终成立，continue 跳过循环体。最后 i 增加到 100 退出循环。',
+      explanation: `**答案：C**
+      
+      **解析：**
+      i 总是10的倍数，因此 i%10==0 始终成立，continue 跳过循环体。最后 i 增加到 100 退出循环。
+      
+      - **A 10#20#30#40#50#60#70#80#90#100 END**：错误。
+      - **B 100#100 END**：错误。
+      - **C 100 END**：正确答案。
+      - **D 110 END**：错误。
+      
+      **考点：** 循环、条件判断`,
       tags: [LEVEL1_TAGS.loop, LEVEL1_TAGS.condition],
     },
     {
@@ -152,7 +262,17 @@ export const paperData = {
       options: ['N = N-M; M = M-N;', 'N -= M; M -= N;', 'N = M; M = N;', 'M = N; N = M;'],
       answer: 0,
       score: 2,
-      explanation: '更相减损术。大数减小数。选项A中第一个分号后是 M = M-N，实际 N>M 时只应执行 N = N-M，逻辑隐藏在该 ifelse 指令流中。',
+      explanation: `**答案：A**
+      
+      **解析：**
+      更相减损术。大数减小数。选项A中第一个分号后是 M = M-N，实际 N>M 时只应执行 N = N-M，逻辑隐藏在该 ifelse 指令流中。
+      
+      - **A N = N-M; M = M-N;**：正确答案。
+      - **B N -= M; M -= N;**：错误。
+      - **C N = M; M = N;**：错误。
+      - **D M = N; N = M;**：错误。
+      
+      **考点：** 循环、基础语法`,
       tags: [LEVEL1_TAGS.loop, LEVEL1_TAGS.basics],
     },
     {
@@ -162,7 +282,17 @@ export const paperData = {
       options: ['N % 10 == 0', 'N % 3 % 10 == 0', 'N % 10 % 3', 'N % 10 % 3 == 0'],
       answer: 3,
       score: 2,
-      explanation: 'N % 10 获取个位数，判断其是否能被3整除应为 (N % 10) % 3 == 0。',
+      explanation: `**答案：D**
+      
+      **解析：**
+      N % 10 获取个位数，判断其是否能被3整除应为 (N % 10) % 3 == 0。
+      
+      - **A N % 10 == 0**：错误。
+      - **B N % 3 % 10 == 0**：错误。
+      - **C N % 10 % 3**：错误。
+      - **D N % 10 % 3 == 0**：正确答案。
+      
+      **考点：** 循环、条件判断`,
       tags: [LEVEL1_TAGS.loop, LEVEL1_TAGS.condition],
     },
     {
@@ -177,7 +307,17 @@ export const paperData = {
       ],
       answer: 2,
       score: 2,
-      explanation: '判定 i 是否为 N 的奇因数：需满足 i 是因数 (N%i==0) 同时 i 是奇数 (i%2!=0)。',
+      explanation: `**答案：C**
+      
+      **解析：**
+      判定 i 是否为 N 的奇因数：需满足 i 是因数 (N%i==0) 同时 i 是奇数 (i%2!=0)。
+      
+      - **A (N % i == 0) || (i % 2 == 0)**：错误。
+      - **B (N % i == 0) || (i % 2 != 0)**：错误。
+      - **C (N % i == 0) && (i % 2 != 0)**：正确答案。
+      - **D (N % i == 0) && (i % 2 == 0)**：错误。
+      
+      **考点：** 循环、运算符`,
       tags: [LEVEL1_TAGS.loop, LEVEL1_TAGS.operator],
     },
     {
@@ -187,7 +327,17 @@ export const paperData = {
       options: ['tmp = i / 1000;', 'tmp = i % 1000;', 'tmp -= a * 1000;', 'tmp %= 100;'],
       answer: 2,
       score: 2,
-      explanation: 'a 取了千位。去掉千位后得到中间两位加个位，应为 tmp = tmp-a * 1000。',
+      explanation: `**答案：C**
+      
+      **解析：**
+      a 取了千位。去掉千位后得到中间两位加个位，应为 tmp = tmp-a * 1000。
+      
+      - **A tmp = i / 1000;**：错误。
+      - **B tmp = i % 1000;**：错误。
+      - **C tmp -= a * 1000;**：正确答案。
+      - **D tmp %= 100;**：错误。
+      
+      **考点：** 基础语法、运算符`,
       tags: [LEVEL1_TAGS.basics, LEVEL1_TAGS.operator],
     },
     {
@@ -197,8 +347,17 @@ export const paperData = {
       options: ['正确', '错误'],
       answer: 1,
       score: 2,
-      explanation: '翻译源程序是编译器的功能，操作系统负责管理硬件和软件资源，不包含翻译器的职能。',
-      tags: [LEVEL1_TAGS.judge, LEVEL1_TAGS.basics],
+      explanation: `**答案：错误**
+      
+      **判定依据：**
+      翻译源程序是编译器的功能，操作系统负责管理硬件和软件资源，不包含翻译器的职能。
+      
+      **纠错：** 原命题说法有误。翻译源程序是编译器的功能，操作系统负责管理硬件和软件资源，不包含翻译器的职能。
+      
+      **易混概念：** 注意区分关键字与标识符、编译器与操作系统的职能边界。
+      
+      **考点：** 基础语法`,
+      tags: [LEVEL1_TAGS.basics],
     },
     {
       id: 17,
@@ -207,8 +366,17 @@ export const paperData = {
       options: ['正确', '错误'],
       answer: 1,
       score: 2,
-      explanation: '40 % 6 = 4；20 % 3 = 2。不相同。',
-      tags: [LEVEL1_TAGS.judge, LEVEL1_TAGS.operator],
+      explanation: `**答案：错误**
+      
+      **判定依据：**
+      40 % 6 = 4；20 % 3 = 2。不相同。
+      
+      **纠错：** 原命题说法有误。40 % 6 = 4；20 % 3 = 2。不相同。
+      
+      **易混概念：** 注意运算符优先级与整除/取模的区分，容易混淆不同运算的结果。
+      
+      **考点：** 运算符`,
+      tags: [LEVEL1_TAGS.operator],
     },
     {
       id: 18,
@@ -217,8 +385,17 @@ export const paperData = {
       options: ['正确', '错误'],
       answer: 1,
       score: 2,
-      explanation: '在循环外输出 i，此时 i 已达到了 10。',
-      tags: [LEVEL1_TAGS.judge, LEVEL1_TAGS.loop],
+      explanation: `**答案：错误**
+      
+      **判定依据：**
+      在循环外输出 i，此时 i 已达到了 10。
+      
+      **纠错：** 原命题说法有误。在循环外输出 i，此时 i 已达到了 10。
+      
+      **易混概念：** 注意循环变量的终值是在循环外使用的，以及 continue/break 的区别。
+      
+      **考点：** 循环`,
+      tags: [LEVEL1_TAGS.loop],
     },
     {
       id: 19,
@@ -227,8 +404,17 @@ export const paperData = {
       options: ['正确', '错误'],
       answer: 1,
       score: 2,
-      explanation: '原代码由于 i 变为负数后会被置正，导致 i 开始无限循环（死循环），结果与 i < 10 的有限循环截然不同。',
-      tags: [LEVEL1_TAGS.judge, LEVEL1_TAGS.loop],
+      explanation: `**答案：错误**
+      
+      **判定依据：**
+      原代码由于 i 变为负数后会被置正，导致 i 开始无限循环（死循环），结果与 i < 10 的有限循环截然不同。
+      
+      **纠错：** 原命题说法有误。原代码由于 i 变为负数后会被置正，导致 i 开始无限循环（死循环），结果与 i < 10 的有限循环截然不同。
+      
+      **易混概念：** 注意循环变量的终值是在循环外使用的，以及 continue/break 的区别。
+      
+      **考点：** 循环`,
+      tags: [LEVEL1_TAGS.loop],
     },
     {
       id: 20,
@@ -237,8 +423,17 @@ export const paperData = {
       options: ['正确', '错误'],
       answer: 1,
       score: 2,
-      explanation: '0 到 99 共执行 100 次，cnt 为 100。',
-      tags: [LEVEL1_TAGS.judge, LEVEL1_TAGS.loop],
+      explanation: `**答案：错误**
+      
+      **判定依据：**
+      0 到 99 共执行 100 次，cnt 为 100。
+      
+      **纠错：** 原命题说法有误。0 到 99 共执行 100 次，cnt 为 100。
+      
+      **易混概念：** 注意循环变量的终值是在循环外使用的，以及 continue/break 的区别。
+      
+      **考点：** 循环`,
+      tags: [LEVEL1_TAGS.loop],
     },
     {
       id: 21,
@@ -247,8 +442,17 @@ export const paperData = {
       options: ['正确', '错误'],
       answer: 1,
       score: 2,
-      explanation: '该循环不断整除10，最终输出的是 N 的最高位，而不是个位（N % 10）。',
-      tags: [LEVEL1_TAGS.judge, LEVEL1_TAGS.basics],
+      explanation: `**答案：错误**
+      
+      **判定依据：**
+      该循环不断整除10，最终输出的是 N 的最高位，而不是个位（N % 10）。
+      
+      **纠错：** 原命题说法有误。该循环不断整除10，最终输出的是 N 的最高位，而不是个位（N % 10）。
+      
+      **易混概念：** 注意区分关键字与标识符、编译器与操作系统的职能边界。
+      
+      **考点：** 基础语法`,
+      tags: [LEVEL1_TAGS.basics],
     },
     {
       id: 22,
@@ -257,8 +461,17 @@ export const paperData = {
       options: ['正确', '错误'],
       answer: 1,
       score: 2,
-      explanation: 'N=8 时，N > 5 成立，利用“或锁存”效应直接输出 Y。',
-      tags: [LEVEL1_TAGS.judge, LEVEL1_TAGS.condition],
+      explanation: `**答案：错误**
+      
+      **判定依据：**
+      N=8 时，N > 5 成立，利用“或锁存”效应直接输出 Y。
+      
+      **纠错：** 原命题说法有误。N=8 时，N > 5 成立，利用“或锁存”效应直接输出 Y。
+      
+      **易混概念：** 注意逻辑运算符 && 和 || 的短路求值特性，以及运算符优先级。
+      
+      **考点：** 条件判断`,
+      tags: [LEVEL1_TAGS.condition],
     },
     {
       id: 23,
@@ -267,8 +480,17 @@ export const paperData = {
       options: ['正确', '错误'],
       answer: 1,
       score: 2,
-      explanation: 'printf 中的 %d 预期一个整数值，传入地址 &a 会导致结果不一致（输出地址）。',
-      tags: [LEVEL1_TAGS.judge, LEVEL1_TAGS.io],
+      explanation: `**答案：错误**
+      
+      **判定依据：**
+      printf 中的 %d 预期一个整数值，传入地址 &a 会导致结果不一致（输出地址）。
+      
+      **纠错：** 原命题说法有误。printf 中的 %d 预期一个整数值，传入地址 &a 会导致结果不一致（输出地址）。
+      
+      **易混概念：** 注意 printf 格式化占位符与参数类型的匹配，以及转义字符的用法。
+      
+      **考点：** 输入输出`,
+      tags: [LEVEL1_TAGS.io],
     },
     {
       id: 24,
@@ -277,8 +499,17 @@ export const paperData = {
       options: ['正确', '错误'],
       answer: 1,
       score: 2,
-      explanation: 'C++ 的三目运算符会进行隐式转换，将 int 提升为 double。',
-      tags: [LEVEL1_TAGS.judge, LEVEL1_TAGS.basics],
+      explanation: `**答案：错误**
+      
+      **判定依据：**
+      C++ 的三目运算符会进行隐式转换，将 int 提升为 double。
+      
+      **纠错：** 原命题说法有误。C++ 的三目运算符会进行隐式转换，将 int 提升为 double。
+      
+      **易混概念：** 注意区分关键字与标识符、编译器与操作系统的职能边界。
+      
+      **考点：** 基础语法`,
+      tags: [LEVEL1_TAGS.basics],
     },
     {
       id: 25,
@@ -287,8 +518,17 @@ export const paperData = {
       options: ['正确', '错误'],
       answer: 1,
       score: 2,
-      explanation: 'keyword 并不是 C++ 的保留关键字。',
-      tags: [LEVEL1_TAGS.judge, LEVEL1_TAGS.basics],
+      explanation: `**答案：错误**
+      
+      **判定依据：**
+      keyword 并不是 C++ 的保留关键字。
+      
+      **纠错：** 原命题说法有误。keyword 并不是 C++ 的保留关键字。
+      
+      **易混概念：** 注意区分关键字与标识符、编译器与操作系统的职能边界。
+      
+      **考点：** 基础语法`,
+      tags: [LEVEL1_TAGS.basics],
     },
     {
       id: 26,

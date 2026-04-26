@@ -25,7 +25,17 @@ export const paperData = {
       options: ['大电脑模型', '大规模智能', '智能单位', '大语言模型'],
       answer: 3,
       score: 2,
-      explanation: '在人工智能领域，“大模型”通常指大语言模型（Large Language Models），如 GPT 系列。',
+      explanation: `**答案：D**
+      
+      **解析：**
+      在人工智能领域，“大模型”通常指大语言模型（Large Language Models），如 GPT 系列。
+      
+      - **A 大电脑模型**：错误。
+      - **B 大规模智能**：错误。
+      - **C 智能单位**：错误。
+      - **D 大语言模型**：正确答案。
+      
+      **考点：** 基础语法`,
       tags: [LEVEL1_TAGS.basics]
     },
     {
@@ -35,7 +45,17 @@ export const paperData = {
       options: ['循环结构', '循环和分支结合', '仅使用顺序结构', '不使用分支结构'],
       answer: 2,
       score: 2,
-      explanation: '计算 1 到 10001 之间的偶数和需要重复操作，必须使用循环结构。仅用顺序结构无法实现。',
+      explanation: `**答案：C**
+      
+      **解析：**
+      计算 1 到 10001 之间的偶数和需要重复操作，必须使用循环结构。仅用顺序结构无法实现。
+      
+      - **A 循环结构**：错误。
+      - **B 循环和分支结合**：错误。
+      - **C 仅使用顺序结构**：正确答案。
+      - **D 不使用分支结构**：错误。
+      
+      **考点：** 循环、基础语法`,
       tags: [LEVEL1_TAGS.loop, LEVEL1_TAGS.basics]
     },
     {
@@ -50,7 +70,17 @@ export const paperData = {
       ],
       answer: 2,
       score: 2,
-      explanation: '变量名不能包含空格（B错误）或连字符（D错误）。拼音可以作为变量名（A错误）。xingming 是合法的变量名。',
+      explanation: `**答案：C**
+      
+      **解析：**
+      变量名不能包含空格（B错误）或连字符（D错误）。拼音可以作为变量名（A错误）。xingming 是合法的变量名。
+      
+      - **A XingMing 是汉语拼音，不能作为变量名**：错误。
+      - **B 可以将 XingMing 改为 Xing Ming**：错误。
+      - **C 可以将 XingMing 改为 xingming**：正确答案。
+      - **D 可以将 XingMing 改为 Xing-Ming**：错误。
+      
+      **考点：** 基础语法、输入输出`,
       tags: [LEVEL1_TAGS.basics, LEVEL1_TAGS.io]
     },
     {
@@ -60,7 +90,17 @@ export const paperData = {
       options: ['2.60', '23', '20', '以上都不准确'],
       answer: 2,
       score: 2,
-      explanation: 'a / b = 13 / 5 = 2（整除）；a % a = 13 % 13 = 0；0 * 5 = 0。连续输出 2 和 0，结果为 20。',
+      explanation: `**答案：C**
+      
+      **解析：**
+      a / b = 13 / 5 = 2（整除）；a % a = 13 % 13 = 0；0 * 5 = 0。连续输出 2 和 0，结果为 20。
+      
+      - **A 2.60**：错误。
+      - **B 23**：错误。
+      - **C 20**：正确答案。
+      - **D 以上都不准确**：错误。
+      
+      **考点：** 运算符、基础语法`,
       tags: [LEVEL1_TAGS.operator, LEVEL1_TAGS.basics]
     },
     {
@@ -70,7 +110,17 @@ export const paperData = {
       options: ['10', '5', '2', '0'],
       answer: 3,
       score: 2,
-      explanation: '3 * 4 = 12；12 % 5 = 2；2 / 6 = 0（整除）。',
+      explanation: `**答案：D**
+      
+      **解析：**
+      3 * 4 = 12；12 % 5 = 2；2 / 6 = 0（整除）。
+      
+      - **A 10**：错误。
+      - **B 5**：错误。
+      - **C 2**：错误。
+      - **D 0**：正确答案。
+      
+      **考点：** 运算符`,
       tags: [LEVEL1_TAGS.operator]
     },
     {
@@ -80,7 +130,17 @@ export const paperData = {
       options: ['30', '1020', '{N+M}', '不输出，继续等待输入'],
       answer: 0,
       score: 2,
-      explanation: 'scanf 以空格作为分隔符读取整数。N=10, M=20, N+M=30。',
+      explanation: `**答案：A**
+      
+      **解析：**
+      scanf 以空格作为分隔符读取整数。N=10, M=20, N+M=30。
+      
+      - **A 30**：正确答案。
+      - **B 1020**：错误。
+      - **C {N+M}**：错误。
+      - **D 不输出，继续等待输入**：错误。
+      
+      **考点：** 输入输出、基础语法`,
       tags: [LEVEL1_TAGS.io, LEVEL1_TAGS.basics]
     },
     {
@@ -90,7 +150,17 @@ export const paperData = {
       options: ['N % 12', '9+N % 12', '(9+N) / 12', '(9+N) % 12'],
       answer: 3,
       score: 2,
-      explanation: '月份计算通常使用取余运算。(9+N) % 12 能正确得到 N 个月后的月份（假设 0 代表 12 月）。',
+      explanation: `**答案：D**
+      
+      **解析：**
+      月份计算通常使用取余运算。(9+N) % 12 能正确得到 N 个月后的月份（假设 0 代表 12 月）。
+      
+      - **A N % 12**：错误。
+      - **B 9+N % 12**：错误。
+      - **C (9+N) / 12**：错误。
+      - **D (9+N) % 12**：正确答案。
+      
+      **考点：** 运算符、基础语法`,
       tags: [LEVEL1_TAGS.operator, LEVEL1_TAGS.basics]
     },
     {
@@ -100,7 +170,17 @@ export const paperData = {
       options: ['5050', '4950', '50', '49'],
       answer: 2,
       score: 2,
-      explanation: '循环 100 次，i % 2 在 0 和 1 之间交替，共 50 个 1，和为 50。',
+      explanation: `**答案：C**
+      
+      **解析：**
+      循环 100 次，i % 2 在 0 和 1 之间交替，共 50 个 1，和为 50。
+      
+      - **A 5050**：错误。
+      - **B 4950**：错误。
+      - **C 50**：正确答案。
+      - **D 49**：错误。
+      
+      **考点：** 循环、运算符`,
       tags: [LEVEL1_TAGS.loop, LEVEL1_TAGS.operator]
     },
     {
@@ -110,7 +190,17 @@ export const paperData = {
       options: ['0', '1', '2', '0.0'],
       answer: 3,
       score: 2,
-      explanation: 'abs(1.0) 为 1.0，floor(-1.0) 为 -1.0。1.0+(-1.0) = 0.0。注意浮点数结果。',
+      explanation: `**答案：D**
+      
+      **解析：**
+      abs(1.0) 为 1.0，floor(-1.0) 为 -1.0。1.0+(-1.0) = 0.0。注意浮点数结果。
+      
+      - **A 0**：错误。
+      - **B 1**：错误。
+      - **C 2**：错误。
+      - **D 0.0**：正确答案。
+      
+      **考点：** 基础语法、运算符`,
       tags: [LEVEL1_TAGS.basics, LEVEL1_TAGS.operator]
     },
     {
@@ -120,7 +210,17 @@ export const paperData = {
       options: ['10 20', '10 10', '20 20', '20 10'],
       answer: 1,
       score: 2,
-      explanation: 'a=10, b=20。a > b 为假，执行 b = a，则 b 变为 10。输出 10 10。',
+      explanation: `**答案：B**
+      
+      **解析：**
+      a=10, b=20。a > b 为假，执行 b = a，则 b 变为 10。输出 10 10。
+      
+      - **A 10 20**：错误。
+      - **B 10 10**：正确答案。
+      - **C 20 20**：错误。
+      - **D 20 10**：错误。
+      
+      **考点：** 条件判断、基础语法`,
       tags: [LEVEL1_TAGS.condition, LEVEL1_TAGS.basics]
     },
     {
@@ -130,7 +230,17 @@ export const paperData = {
       options: ['123', '3', '321', '6'],
       answer: 2,
       score: 2,
-      explanation: '该算法为数字反转。123 反转后为 321。',
+      explanation: `**答案：C**
+      
+      **解析：**
+      该算法为数字反转。123 反转后为 321。
+      
+      - **A 123**：错误。
+      - **B 3**：错误。
+      - **C 321**：正确答案。
+      - **D 6**：错误。
+      
+      **考点：** 循环、基础语法`,
       tags: [LEVEL1_TAGS.loop, LEVEL1_TAGS.basics]
     },
     {
@@ -140,7 +250,17 @@ export const paperData = {
       options: ['12345', '24', '135', '13'],
       answer: 2,
       score: 2,
-      explanation: 'continue 跳过偶数，输出 1, 3, 5。',
+      explanation: `**答案：C**
+      
+      **解析：**
+      continue 跳过偶数，输出 1, 3, 5。
+      
+      - **A 12345**：错误。
+      - **B 24**：错误。
+      - **C 135**：正确答案。
+      - **D 13**：错误。
+      
+      **考点：** 循环、条件判断`,
       tags: [LEVEL1_TAGS.loop, LEVEL1_TAGS.condition]
     },
     {
@@ -150,7 +270,17 @@ export const paperData = {
       options: ['6', '6.5', '7', '3'],
       answer: 0,
       score: 2,
-      explanation: '15 % 4 = 3；7 / 2 = 3（整除）。3+3 = 6。',
+      explanation: `**答案：A**
+      
+      **解析：**
+      15 % 4 = 3；7 / 2 = 3（整除）。3+3 = 6。
+      
+      - **A 6**：正确答案。
+      - **B 6.5**：错误。
+      - **C 7**：错误。
+      - **D 3**：错误。
+      
+      **考点：** 运算符`,
       tags: [LEVEL1_TAGS.operator]
     },
     {
@@ -160,7 +290,17 @@ export const paperData = {
       options: ['55', '19', '45', '10'],
       answer: 3,
       score: 2,
-      explanation: 'n=10, sum=10, n=9。n=9 时 9%3==0，break。输出 10。',
+      explanation: `**答案：D**
+      
+      **解析：**
+      n=10, sum=10, n=9。n=9 时 9%3==0，break。输出 10。
+      
+      - **A 55**：错误。
+      - **B 19**：错误。
+      - **C 45**：错误。
+      - **D 10**：正确答案。
+      
+      **考点：** 循环、条件判断`,
       tags: [LEVEL1_TAGS.loop, LEVEL1_TAGS.condition]
     },
     {
@@ -170,7 +310,17 @@ export const paperData = {
       options: ['终止程序运行', '让程序在特定位置暂停', '修改程序源代码', '提高运行速度'],
       answer: 1,
       score: 2,
-      explanation: '断点用于在调试时让程序运行到指定行暂停，以便观察变量状态。',
+      explanation: `**答案：B**
+      
+      **解析：**
+      断点用于在调试时让程序运行到指定行暂停，以便观察变量状态。
+      
+      - **A 终止程序运行**：错误。
+      - **B 让程序在特定位置暂停**：正确答案。
+      - **C 修改程序源代码**：错误。
+      - **D 提高运行速度**：错误。
+      
+      **考点：** 基础语法`,
       tags: [LEVEL1_TAGS.basics]
     },
 
@@ -182,8 +332,15 @@ export const paperData = {
       options: ['正确', '错误'],
       answer: 0,
       score: 2,
-      explanation: 'C++变量名命名规则：只能由字母、数字和下划线组成，且不能以数字开头。',
-      tags: [LEVEL1_TAGS.judge, LEVEL1_TAGS.basics]
+      explanation: `**答案：正确**
+      
+      **判定依据：**
+      C++变量名命名规则：只能由字母、数字和下划线组成，且不能以数字开头。
+      
+      **易混概念：** 注意区分关键字与标识符、编译器与操作系统的职能边界。
+      
+      **考点：** 基础语法`,
+      tags: [LEVEL1_TAGS.basics]
     },
     {
       id: 17,
@@ -192,8 +349,17 @@ export const paperData = {
       options: ['正确', '错误'],
       answer: 1,
       score: 2,
-      explanation: '在C++中应写为 x > 3 && x < 5。3 < x < 5 会先计算 3 < x 得到布尔值（0或1），再与 5 比较。',
-      tags: [LEVEL1_TAGS.judge, LEVEL1_TAGS.basics]
+      explanation: `**答案：错误**
+      
+      **判定依据：**
+      在C++中应写为 x > 3 && x < 5。3 < x < 5 会先计算 3 < x 得到布尔值（0或1），再与 5 比较。
+      
+      **纠错：** 原命题说法有误。在C++中应写为 x > 3 && x < 5。3 < x < 5 会先计算 3 < x 得到布尔值（0或1），再与 5 比较。
+      
+      **易混概念：** 注意区分关键字与标识符、编译器与操作系统的职能边界。
+      
+      **考点：** 基础语法`,
+      tags: [LEVEL1_TAGS.basics]
     },
     {
       id: 18,
@@ -202,8 +368,15 @@ export const paperData = {
       options: ['正确', '错误'],
       answer: 0,
       score: 2,
-      explanation: '如果初始条件不满足，while 循环体内的代码将不会执行。',
-      tags: [LEVEL1_TAGS.judge, LEVEL1_TAGS.loop]
+      explanation: `**答案：正确**
+      
+      **判定依据：**
+      如果初始条件不满足，while 循环体内的代码将不会执行。
+      
+      **易混概念：** 注意循环变量的终值是在循环外使用的，以及 continue/break 的区别。
+      
+      **考点：** 循环`,
+      tags: [LEVEL1_TAGS.loop]
     },
     {
       id: 19,
@@ -212,8 +385,15 @@ export const paperData = {
       options: ['正确', '错误'],
       answer: 0,
       score: 2,
-      explanation: 'for(;;) 是合法的死循环。',
-      tags: [LEVEL1_TAGS.judge, LEVEL1_TAGS.loop]
+      explanation: `**答案：正确**
+      
+      **判定依据：**
+      for(;;) 是合法的死循环。
+      
+      **易混概念：** 注意循环变量的终值是在循环外使用的，以及 continue/break 的区别。
+      
+      **考点：** 循环`,
+      tags: [LEVEL1_TAGS.loop]
     },
     {
       id: 20,
@@ -222,8 +402,15 @@ export const paperData = {
       options: ['正确', '错误'],
       answer: 0,
       score: 2,
-      explanation: '关系运算符 == 比较两边是否相等。',
-      tags: [LEVEL1_TAGS.judge, LEVEL1_TAGS.operator]
+      explanation: `**答案：正确**
+      
+      **判定依据：**
+      关系运算符 == 比较两边是否相等。
+      
+      **易混概念：** 注意运算符优先级与整除/取模的区分，容易混淆不同运算的结果。
+      
+      **考点：** 运算符`,
+      tags: [LEVEL1_TAGS.operator]
     },
     {
       id: 21,
@@ -232,8 +419,17 @@ export const paperData = {
       options: ['正确', '错误'],
       answer: 1,
       score: 2,
-      explanation: '3 > 5 为 false，!false 为 true。',
-      tags: [LEVEL1_TAGS.judge, LEVEL1_TAGS.operator]
+      explanation: `**答案：错误**
+      
+      **判定依据：**
+      3 > 5 为 false，!false 为 true。
+      
+      **纠错：** 原命题说法有误。3 > 5 为 false，!false 为 true。
+      
+      **易混概念：** 注意运算符优先级与整除/取模的区分，容易混淆不同运算的结果。
+      
+      **考点：** 运算符`,
+      tags: [LEVEL1_TAGS.operator]
     },
     {
       id: 22,
@@ -242,8 +438,15 @@ export const paperData = {
       options: ['正确', '错误'],
       answer: 0,
       score: 2,
-      explanation: '标准规定 char 占用 1 个字节（8位）。',
-      tags: [LEVEL1_TAGS.judge, LEVEL1_TAGS.basics]
+      explanation: `**答案：正确**
+      
+      **判定依据：**
+      标准规定 char 占用 1 个字节（8位）。
+      
+      **易混概念：** 注意区分关键字与标识符、编译器与操作系统的职能边界。
+      
+      **考点：** 基础语法`,
+      tags: [LEVEL1_TAGS.basics]
     },
     {
       id: 23,
@@ -252,8 +455,15 @@ export const paperData = {
       options: ['正确', '错误'],
       answer: 0,
       score: 2,
-      explanation: '斐波那契数列规律：F(n) = F($n-1$)+F(n-2)。1+1=2。',
-      tags: [LEVEL1_TAGS.judge, LEVEL1_TAGS.basics]
+      explanation: `**答案：正确**
+      
+      **判定依据：**
+      斐波那契数列规律：F(n) = F($n-1$)+F(n-2)。1+1=2。
+      
+      **易混概念：** 注意区分关键字与标识符、编译器与操作系统的职能边界。
+      
+      **考点：** 基础语法`,
+      tags: [LEVEL1_TAGS.basics]
     },
     {
       id: 24,
@@ -262,8 +472,15 @@ export const paperData = {
       options: ['正确', '错误'],
       answer: 0,
       score: 2,
-      explanation: '赋值表达式 x = 1 的值是 1，在 if 中判定为真，且会将 x 的值修改为 1。',
-      tags: [LEVEL1_TAGS.judge, LEVEL1_TAGS.basics, LEVEL1_TAGS.condition]
+      explanation: `**答案：正确**
+      
+      **判定依据：**
+      赋值表达式 x = 1 的值是 1，在 if 中判定为真，且会将 x 的值修改为 1。
+      
+      **易混概念：** 注意逻辑运算符 && 和 || 的短路求值特性，以及运算符优先级。
+      
+      **考点：** 基础语法、条件判断`,
+      tags: [LEVEL1_TAGS.basics, LEVEL1_TAGS.condition]
     },
     {
       id: 25,
@@ -272,8 +489,17 @@ export const paperData = {
       options: ['正确', '错误'],
       answer: 1,
       score: 2,
-      explanation: 'break 还可以用于 switch 语句。',
-      tags: [LEVEL1_TAGS.judge, LEVEL1_TAGS.basics]
+      explanation: `**答案：错误**
+      
+      **判定依据：**
+      break 还可以用于 switch 语句。
+      
+      **纠错：** 原命题说法有误。break 还可以用于 switch 语句。
+      
+      **易混概念：** 注意区分关键字与标识符、编译器与操作系统的职能边界。
+      
+      **考点：** 基础语法`,
+      tags: [LEVEL1_TAGS.basics]
     },
 
     // 26-27 编程题

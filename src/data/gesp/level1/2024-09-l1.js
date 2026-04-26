@@ -24,7 +24,17 @@ export const paperData = {
       options: ['内存', '磁盘', 'CPU', '显示器'],
       answer: 0,
       score: 2,
-      explanation: '磁心存储元件承担的是临时存储数据的作用，对应现代计算机中的内存。',
+      explanation: `**答案：A**
+      
+      **解析：**
+      磁心存储元件承担的是临时存储数据的作用，对应现代计算机中的内存。
+      
+      - **A 内存**：正确答案。
+      - **B 磁盘**：错误。
+      - **C CPU**：错误。
+      - **D 显示器**：错误。
+      
+      **考点：** 基础语法`,
       tags: [LEVEL1_TAGS.basics]
     },
     {
@@ -34,7 +44,17 @@ export const paperData = {
       options: ['阅读源代码', '单步调试', '输出执行中间结果', '跟踪汇编代码'],
       answer: 3,
       score: 2,
-      explanation: '跟踪汇编代码属于更底层的调试方式，一般不是一级阶段的常用手段。',
+      explanation: `**答案：D**
+      
+      **解析：**
+      跟踪汇编代码属于更底层的调试方式，一般不是一级阶段的常用手段。
+      
+      - **A 阅读源代码**：错误。
+      - **B 单步调试**：错误。
+      - **C 输出执行中间结果**：错误。
+      - **D 跟踪汇编代码**：正确答案。
+      
+      **考点：** 基础语法`,
       tags: [LEVEL1_TAGS.basics]
     },
     {
@@ -49,7 +69,16 @@ export const paperData = {
       ],
       answer: 3,
       score: 2,
-      explanation: '第 4 项的字符串定界符不匹配，会导致编译错误。',
+      explanation: `**答案：D**
+      
+      **解析：**
+      第 4 项的字符串定界符不匹配，会导致编译错误。
+      
+      - **A cout << "Hello,GESP!" << endl;**：错误。
+      - **B cout << """Hello,GESP!""" << endl;**：错误。
+      - **C cout << "Hello,GESP!\**：错误。
+      
+      **考点：** 输入输出、基础语法`,
       tags: [LEVEL1_TAGS.io, LEVEL1_TAGS.basics]
     },
     {
@@ -59,7 +88,17 @@ export const paperData = {
       options: ['14', '4', '1', '0'],
       answer: 1,
       score: 2,
-      explanation: '先算乘法 `3 * 2 = 6`，再算减法，结果是 `4`。',
+      explanation: `**答案：B**
+      
+      **解析：**
+      先算乘法 \`3 * 2 = 6\`，再算减法，结果是 \`4\`。
+      
+      - **A 14**：错误。
+      - **B 4**：正确答案。
+      - **C 1**：错误。
+      - **D 0**：错误。
+      
+      **考点：** 运算符`,
       tags: [LEVEL1_TAGS.operator]
     },
     {
@@ -69,7 +108,17 @@ export const paperData = {
       options: ['6', '4.3', '4', '2'],
       answer: 2,
       score: 2,
-      explanation: '`10 / 3 = 3`，`10 % 3 = 1`，相加得到 `4`。',
+      explanation: `**答案：C**
+      
+      **解析：**
+      \`10 / 3 = 3\`，\`10 % 3 = 1\`，相加得到 \`4\`。
+      
+      - **A 6**：错误。
+      - **B 4.3**：错误。
+      - **C 4**：正确答案。
+      - **D 2**：错误。
+      
+      **考点：** 运算符、输入输出`,
       tags: [LEVEL1_TAGS.operator, LEVEL1_TAGS.io]
     },
     {
@@ -79,7 +128,17 @@ export const paperData = {
       options: ['"6%2={6%2}"', '6%2={6%2}', '0=0', '6%2={0}'],
       answer: 3,
       score: 2,
-      explanation: '`%%` 会输出 `%`，`6 % 2` 的结果为 `0`。',
+      explanation: `**答案：D**
+      
+      **解析：**
+      \`%%\` 会输出 \`%\`，\`6 % 2\` 的结果为 \`0\`。
+      
+      - **A "6%2={6%2}"**：错误。
+      - **B 6%2={6%2}**：错误。
+      - **C 0=0**：错误。
+      - **D 6%2={0}**：正确答案。
+      
+      **考点：** 输入输出`,
       tags: [LEVEL1_TAGS.io]
     },
     {
@@ -94,7 +153,17 @@ export const paperData = {
       ],
       answer: 3,
       score: 2,
-      explanation: '题目没有说明 `a` 和 `b` 的类型，不同类型下 `a + b` 的含义不同。',
+      explanation: `**答案：D**
+      
+      **解析：**
+      题目没有说明 \`a\` 和 \`b\` 的类型，不同类型下 \`a + b\` 的含义不同。
+      
+      - **A 将输出整数 7**：错误。
+      - **B 将输出 52，5 和 2 之间没有空格**：错误。
+      - **C 将输出 5 和 2，5 和 2 之间有空格**：错误。
+      - **D 执行结果不确定，因为代码段没有显示 a 和 b 的数据类型**：正确答案。
+      
+      **考点：** 基础语法、输入输出`,
       tags: [LEVEL1_TAGS.basics, LEVEL1_TAGS.io]
     },
     {
@@ -104,7 +173,17 @@ export const paperData = {
       options: ['55', '45', '10', '9'],
       answer: 1,
       score: 2,
-      explanation: '`0 + 1 + 2 + ... + 9 = 45`。',
+      explanation: `**答案：B**
+      
+      **解析：**
+      \`0 + 1 + 2 + ... + 9 = 45\`。
+      
+      - **A 55**：错误。
+      - **B 45**：正确答案。
+      - **C 10**：错误。
+      - **D 9**：错误。
+      
+      **考点：** 循环`,
       tags: [LEVEL1_TAGS.loop]
     },
     {
@@ -114,7 +193,17 @@ export const paperData = {
       options: ['55', '45', '10', '9'],
       answer: 2,
       score: 2,
-      explanation: '循环执行 10 次，每次 `N` 增加 `1`，所以结果是 `10`。',
+      explanation: `**答案：C**
+      
+      **解析：**
+      循环执行 10 次，每次 \`N\` 增加 \`1\`，所以结果是 \`10\`。
+      
+      - **A 55**：错误。
+      - **B 45**：错误。
+      - **C 10**：正确答案。
+      - **D 9**：错误。
+      
+      **考点：** 循环`,
       tags: [LEVEL1_TAGS.loop]
     },
     {
@@ -124,7 +213,17 @@ export const paperData = {
       options: ['5', '4', '2', '0'],
       answer: 3,
       score: 2,
-      explanation: '`i` 依次为 `1、3、5、7、9`，每次都满足 `i % 2 == 1`，因此 `N` 不会增加。',
+      explanation: `**答案：D**
+      
+      **解析：**
+      \`i\` 依次为 \`1、3、5、7、9\`，每次都满足 \`i % 2 == 1\`，因此 \`N\` 不会增加。
+      
+      - **A 5**：错误。
+      - **B 4**：错误。
+      - **C 2**：错误。
+      - **D 0**：正确答案。
+      
+      **考点：** 循环、条件判断`,
       tags: [LEVEL1_TAGS.loop, LEVEL1_TAGS.condition]
     },
     {
@@ -134,7 +233,17 @@ export const paperData = {
       options: ['第5行代码2, 0', '第5行代码1, 0', '第7行代码 1', '第7行代码 0'],
       answer: 0,
       score: 2,
-      explanation: '`scanf("%d")` 读到 `+` 时停止，所以 `P = 14`。此时 `P % 3 = 2`，`P % 7 = 0`，进入 `if` 分支。',
+      explanation: `**答案：A**
+      
+      **解析：**
+      \`scanf("%d")\` 读到 \`+\` 时停止，所以 \`P = 14\`。此时 \`P % 3 = 2\`，\`P % 7 = 0\`，进入 \`if\` 分支。
+      
+      - **A 第5行代码2, 0**：正确答案。
+      - **B 第5行代码1, 0**：错误。
+      - **C 第7行代码 1**：错误。
+      - **D 第7行代码 0**：错误。
+      
+      **考点：** 条件判断、运算符、输入输出`,
       tags: [LEVEL1_TAGS.condition, LEVEL1_TAGS.operator, LEVEL1_TAGS.io]
     },
     {
@@ -144,7 +253,17 @@ export const paperData = {
       options: ['190 20', '95 10', '90 19', '90 10'],
       answer: 3,
       score: 2,
-      explanation: '每次循环中 `i` 实际增加两次，因此取值为 `0、2、4、...、18`，和为 `90`，循环次数为 `10`。',
+      explanation: `**答案：D**
+      
+      **解析：**
+      每次循环中 \`i\` 实际增加两次，因此取值为 \`0、2、4、...、18\`，和为 \`90\`，循环次数为 \`10\`。
+      
+      - **A 190 20**：错误。
+      - **B 95 10**：错误。
+      - **C 90 19**：错误。
+      - **D 90 10**：正确答案。
+      
+      **考点：** 循环、运算符`,
       tags: [LEVEL1_TAGS.loop, LEVEL1_TAGS.operator]
     },
     {
@@ -159,7 +278,17 @@ export const paperData = {
       ],
       answer: 2,
       score: 2,
-      explanation: '循环结束后 `N` 已经变成 `0`，应在输出时使用 `N0`。',
+      explanation: `**答案：C**
+      
+      **解析：**
+      循环结束后 \`N\` 已经变成 \`0\`，应在输出时使用 \`N0\`。
+      
+      - **A 变量 N0 占用额外空间，可以去掉**：错误。
+      - **B 代码对所有整数都能计算出正确位数**：错误。
+      - **C L11 标记的代码行简单修改后可以对正整数给出正确输出**：正确答案。
+      - **D L11 标记的代码行的输出格式有误**：错误。
+      
+      **考点：** 循环`,
       tags: [LEVEL1_TAGS.loop]
     },
     {
@@ -174,7 +303,17 @@ export const paperData = {
       ],
       answer: 3,
       score: 2,
-      explanation: '`M % 100 / 10` 取的是十位数，不是百位数。',
+      explanation: `**答案：D**
+      
+      **解析：**
+      \`M % 100 / 10\` 取的是十位数，不是百位数。
+      
+      - **A 如果输入 \`23221 23453 12345 11111 0\`，则最后一行中 ...**：错误。
+      - **B 如果输入 \`2322 2345 1234 1111 0\`，程序也能运行**：错误。
+      - **C 将 L6 改为 \`M = (M % 1000 / 100);\` 同样能实现题目要...**：错误。
+      - **D 将 L6 改为 \`M = (M % 100 / 10);\` 同样能实现题目要求**：正确答案。
+      
+      **考点：** 运算符`,
       tags: [LEVEL1_TAGS.operator]
     },
     {
@@ -184,7 +323,17 @@ export const paperData = {
       options: ['1', '2', '3', '4'],
       answer: 1,
       score: 2,
-      explanation: 'i) 可以直接判断；ii) 当枚举到 `i = X + 1` 时也能成立。iii) 和 iv) 受整数除法影响，不够严谨。',
+      explanation: `**答案：B**
+      
+      **解析：**
+      i) 可以直接判断；ii) 当枚举到 \`i = X + 1\` 时也能成立。iii) 和 iv) 受整数除法影响，不够严谨。
+      
+      - **A 1**：错误。
+      - **B 2**：正确答案。
+      - **C 3**：错误。
+      - **D 4**：错误。
+      
+      **考点：** 条件判断、运算符`,
       tags: [LEVEL1_TAGS.condition, LEVEL1_TAGS.operator]
     },
     {
@@ -194,8 +343,15 @@ export const paperData = {
       options: ['正确', '错误'],
       answer: 0,
       score: 2,
-      explanation: '这个说法正确。',
-      tags: [LEVEL1_TAGS.judge, LEVEL1_TAGS.basics]
+      explanation: `**答案：正确**
+      
+      **判定依据：**
+      这个说法正确。
+      
+      **易混概念：** 注意区分关键字与标识符、编译器与操作系统的职能边界。
+      
+      **考点：** 基础语法`,
+      tags: [LEVEL1_TAGS.basics]
     },
     {
       id: 17,
@@ -204,8 +360,17 @@ export const paperData = {
       options: ['正确', '错误'],
       answer: 1,
       score: 2,
-      explanation: '两者这次结果碰巧相同，但含义完全不同，不能互相替换。',
-      tags: [LEVEL1_TAGS.judge, LEVEL1_TAGS.operator]
+      explanation: `**答案：错误**
+      
+      **判定依据：**
+      两者这次结果碰巧相同，但含义完全不同，不能互相替换。
+      
+      **纠错：** 原命题说法有误。两者这次结果碰巧相同，但含义完全不同，不能互相替换。
+      
+      **易混概念：** 注意运算符优先级与整除/取模的区分，容易混淆不同运算的结果。
+      
+      **考点：** 运算符`,
+      tags: [LEVEL1_TAGS.operator]
     },
     {
       id: 18,
@@ -214,8 +379,17 @@ export const paperData = {
       options: ['正确', '错误'],
       answer: 1,
       score: 2,
-      explanation: '格式不匹配时读取会失败，但程序并不会因此“无法执行”。',
-      tags: [LEVEL1_TAGS.judge, LEVEL1_TAGS.io]
+      explanation: `**答案：错误**
+      
+      **判定依据：**
+      格式不匹配时读取会失败，但程序并不会因此“无法执行”。
+      
+      **纠错：** 原命题说法有误。格式不匹配时读取会失败，但程序并不会因此“无法执行”。
+      
+      **易混概念：** 注意 printf 格式化占位符与参数类型的匹配，以及转义字符的用法。
+      
+      **考点：** 输入输出`,
+      tags: [LEVEL1_TAGS.io]
     },
     {
       id: 19,
@@ -224,8 +398,17 @@ export const paperData = {
       options: ['正确', '错误'],
       answer: 1,
       score: 2,
-      explanation: '代码中没有给出 `Sum` 的声明，按题面原样并不能保证正确执行，因此该说法错误。',
-      tags: [LEVEL1_TAGS.judge, LEVEL1_TAGS.loop]
+      explanation: `**答案：错误**
+      
+      **判定依据：**
+      代码中没有给出 \`Sum\` 的声明，按题面原样并不能保证正确执行，因此该说法错误。
+      
+      **纠错：** 原命题说法有误。代码中没有给出 \`Sum\` 的声明，按题面原样并不能保证正确执行，因此该说法错误。
+      
+      **易混概念：** 注意循环变量的终值是在循环外使用的，以及 continue/break 的区别。
+      
+      **考点：** 循环`,
+      tags: [LEVEL1_TAGS.loop]
     },
     {
       id: 20,
@@ -234,8 +417,17 @@ export const paperData = {
       options: ['正确', '错误'],
       answer: 1,
       score: 2,
-      explanation: '`X` 先变成 `20`，逗号表达式最终取 `X + 1 = 22`，`22 / 10` 的整数结果是 `2`。',
-      tags: [LEVEL1_TAGS.judge, LEVEL1_TAGS.operator]
+      explanation: `**答案：错误**
+      
+      **判定依据：**
+      \`X\` 先变成 \`20\`，逗号表达式最终取 \`X + 1 = 22\`，\`22 / 10\` 的整数结果是 \`2\`。
+      
+      **纠错：** 原命题说法有误。\`X\` 先变成 \`20\`，逗号表达式最终取 \`X + 1 = 22\`，\`22 / 10\` 的整数结果是 \`2\`。
+      
+      **易混概念：** 注意运算符优先级与整除/取模的区分，容易混淆不同运算的结果。
+      
+      **考点：** 运算符`,
+      tags: [LEVEL1_TAGS.operator]
     },
     {
       id: 21,
@@ -244,8 +436,17 @@ export const paperData = {
       options: ['正确', '错误'],
       answer: 1,
       score: 2,
-      explanation: '输出依次是 `1、4、7`，最后一次输出不是 `10`。',
-      tags: [LEVEL1_TAGS.judge, LEVEL1_TAGS.loop]
+      explanation: `**答案：错误**
+      
+      **判定依据：**
+      输出依次是 \`1、4、7\`，最后一次输出不是 \`10\`。
+      
+      **纠错：** 原命题说法有误。输出依次是 \`1、4、7\`，最后一次输出不是 \`10\`。
+      
+      **易混概念：** 注意循环变量的终值是在循环外使用的，以及 continue/break 的区别。
+      
+      **考点：** 循环`,
+      tags: [LEVEL1_TAGS.loop]
     },
     {
       id: 22,
@@ -254,8 +455,17 @@ export const paperData = {
       options: ['正确', '错误'],
       answer: 1,
       score: 2,
-      explanation: '`break` 可以单独在 `switch` 或循环中使用，题目把它说成“通常与 if 配合”并不严谨，官方答案为错误。',
-      tags: [LEVEL1_TAGS.judge, LEVEL1_TAGS.condition]
+      explanation: `**答案：错误**
+      
+      **判定依据：**
+      \`break\` 可以单独在 \`switch\` 或循环中使用，题目把它说成“通常与 if 配合”并不严谨，官方答案为错误。
+      
+      **纠错：** 原命题说法有误。\`break\` 可以单独在 \`switch\` 或循环中使用，题目把它说成“通常与 if 配合”并不严谨，官方答案为错误。
+      
+      **易混概念：** 注意逻辑运算符 && 和 || 的短路求值特性，以及运算符优先级。
+      
+      **考点：** 条件判断`,
+      tags: [LEVEL1_TAGS.condition]
     },
     {
       id: 23,
@@ -264,8 +474,15 @@ export const paperData = {
       options: ['正确', '错误'],
       answer: 0,
       score: 2,
-      explanation: '变量名中确实不能使用减号。',
-      tags: [LEVEL1_TAGS.judge, LEVEL1_TAGS.basics]
+      explanation: `**答案：正确**
+      
+      **判定依据：**
+      变量名中确实不能使用减号。
+      
+      **易混概念：** 注意区分关键字与标识符、编译器与操作系统的职能边界。
+      
+      **考点：** 基础语法`,
+      tags: [LEVEL1_TAGS.basics]
     },
     {
       id: 24,
@@ -274,8 +491,15 @@ export const paperData = {
       options: ['正确', '错误'],
       answer: 0,
       score: 2,
-      explanation: '这些基础类型都可以参与比较运算，比较时会发生相应的类型转换。',
-      tags: [LEVEL1_TAGS.judge, LEVEL1_TAGS.operator]
+      explanation: `**答案：正确**
+      
+      **判定依据：**
+      这些基础类型都可以参与比较运算，比较时会发生相应的类型转换。
+      
+      **易混概念：** 注意运算符优先级与整除/取模的区分，容易混淆不同运算的结果。
+      
+      **考点：** 运算符`,
+      tags: [LEVEL1_TAGS.operator]
     },
     {
       id: 25,
@@ -284,8 +508,17 @@ export const paperData = {
       options: ['正确', '错误'],
       answer: 1,
       score: 2,
-      explanation: '`a < b` 的结果是 `0`，接着计算 `0 < c`，结果为真。',
-      tags: [LEVEL1_TAGS.judge, LEVEL1_TAGS.operator]
+      explanation: `**答案：错误**
+      
+      **判定依据：**
+      \`a < b\` 的结果是 \`0\`，接着计算 \`0 < c\`，结果为真。
+      
+      **纠错：** 原命题说法有误。\`a < b\` 的结果是 \`0\`，接着计算 \`0 < c\`，结果为真。
+      
+      **易混概念：** 注意运算符优先级与整除/取模的区分，容易混淆不同运算的结果。
+      
+      **考点：** 运算符`,
+      tags: [LEVEL1_TAGS.operator]
     },
     {
       id: 26,

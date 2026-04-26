@@ -24,7 +24,17 @@ export const paperData = {
       options: ['-13', '8', '2', '0'],
       answer: 1,
       score: 2,
-      explanation: '`(3 - 2) = 1`，所以结果是 `1 * 3 + 5 = 8`。',
+      explanation: `**答案：B**
+      
+      **解析：**
+      \`(3 - 2) = 1\`，所以结果是 \`1 * 3 + 5 = 8\`。
+      
+      - **A -13**：错误。
+      - **B 8**：正确答案。
+      - **C 2**：错误。
+      - **D 0**：错误。
+      
+      **考点：** 运算符`,
       tags: [LEVEL1_TAGS.operator]
     },
     {
@@ -34,7 +44,17 @@ export const paperData = {
       options: ['2 2', '1 1', '5%2=2', '5%2=1'],
       answer: 3,
       score: 2,
-      explanation: '字符串部分原样输出，`5 % 2` 的结果是 `1`。',
+      explanation: `**答案：D**
+      
+      **解析：**
+      字符串部分原样输出，\`5 % 2\` 的结果是 \`1\`。
+      
+      - **A 2 2**：错误。
+      - **B 1 1**：错误。
+      - **C 5%2=2**：错误。
+      - **D 5%2=1**：正确答案。
+      
+      **考点：** 运算符、输入输出`,
       tags: [LEVEL1_TAGS.operator, LEVEL1_TAGS.io]
     },
     {
@@ -49,7 +69,17 @@ export const paperData = {
       ],
       answer: 3,
       score: 2,
-      explanation: '`cin` 的读取行为依赖变量类型；如果变量未定义，会先在编译阶段出错。',
+      explanation: `**答案：D**
+      
+      **解析：**
+      \`cin\` 的读取行为依赖变量类型；如果变量未定义，会先在编译阶段出错。
+      
+      - **A 变量 a 将被赋值为整数 7**：错误。
+      - **B 变量 a 将被赋值为字符串，内容为 5+2**：错误。
+      - **C 语句执行将报错，不能输入表达式**：错误。
+      - **D 依赖于变量 a 的类型。如果没有定义，会有编译错误**：正确答案。
+      
+      **考点：** 输入输出、基础语法`,
       tags: [LEVEL1_TAGS.io, LEVEL1_TAGS.basics]
     },
     {
@@ -59,7 +89,17 @@ export const paperData = {
       options: ['a+1= 2', 'a+1=2', '2=2', '2= 2'],
       answer: 0,
       score: 2,
-      explanation: '字符串中本身有一个空格，所以输出为 `a+1= 2`。',
+      explanation: `**答案：A**
+      
+      **解析：**
+      字符串中本身有一个空格，所以输出为 \`a+1= 2\`。
+      
+      - **A a+1= 2**：正确答案。
+      - **B a+1=2**：错误。
+      - **C 2=2**：错误。
+      - **D 2= 2**：错误。
+      
+      **考点：** 输入输出、基础语法`,
       tags: [LEVEL1_TAGS.io, LEVEL1_TAGS.basics]
     },
     {
@@ -74,7 +114,17 @@ export const paperData = {
       ],
       answer: 1,
       score: 2,
-      explanation: '两个 `%d` 都需要对应的参数，因此只有第二项正确。',
+      explanation: `**答案：B**
+      
+      **解析：**
+      两个 \`%d\` 都需要对应的参数，因此只有第二项正确。
+      
+      - **A printf("%d=%d\\n", 2 2);**：错误。
+      - **B printf("%d=%d\\n", 2, 2);**：正确答案。
+      - **C printf("%d=%d\\n", 2);**：错误。
+      - **D printf("%d=%d\\n");**：错误。
+      
+      **考点：** 输入输出`,
       tags: [LEVEL1_TAGS.io]
     },
     {
@@ -89,7 +139,17 @@ export const paperData = {
       ],
       answer: 0,
       score: 2,
-      explanation: '`21` 能被 `3` 整除，因此进入第一个分支，后续 `else if` 不再执行。',
+      explanation: `**答案：A**
+      
+      **解析：**
+      \`21\` 能被 \`3\` 整除，因此进入第一个分支，后续 \`else if\` 不再执行。
+      
+      - **A 代码第 4 行被执行**：正确答案。
+      - **B 第 4 和第 7 行代码都被执行**：错误。
+      - **C 仅有代码第 7 行被执行**：错误。
+      - **D 第 8 行代码将被执行，因为 input() 输入为字符串**：错误。
+      
+      **考点：** 条件判断、基础语法`,
       tags: [LEVEL1_TAGS.condition, LEVEL1_TAGS.basics]
     },
     {
@@ -99,7 +159,17 @@ export const paperData = {
       options: ['10', '19', '20', '21'],
       answer: 2,
       score: 2,
-      explanation: '`i` 从 `-10` 到 `9`，一共 `20` 个整数。',
+      explanation: `**答案：C**
+      
+      **解析：**
+      \`i\` 从 \`-10\` 到 \`9\`，一共 \`20\` 个整数。
+      
+      - **A 10**：错误。
+      - **B 19**：错误。
+      - **C 20**：正确答案。
+      - **D 21**：错误。
+      
+      **考点：** 循环`,
       tags: [LEVEL1_TAGS.loop]
     },
     {
@@ -109,7 +179,17 @@ export const paperData = {
       options: ['0', '7', '18', '20'],
       answer: 3,
       score: 2,
-      explanation: '满足条件的是 `1、2、4、5、8`，和为 `20`。',
+      explanation: `**答案：D**
+      
+      **解析：**
+      满足条件的是 \`1、2、4、5、8\`，和为 \`20\`。
+      
+      - **A 0**：错误。
+      - **B 7**：错误。
+      - **C 18**：错误。
+      - **D 20**：正确答案。
+      
+      **考点：** 循环、条件判断、运算符`,
       tags: [LEVEL1_TAGS.loop, LEVEL1_TAGS.condition, LEVEL1_TAGS.operator]
     },
     {
@@ -119,7 +199,17 @@ export const paperData = {
       options: ['9#6#3#', '9#6#3#0#', '8#7#5#4#2#1#', '10#8#7#5#4#2#1#'],
       answer: 1,
       score: 2,
-      explanation: '`N` 会依次变成 `9` 到 `0`，其中能被 `3` 整除的是 `9、6、3、0`。',
+      explanation: `**答案：B**
+      
+      **解析：**
+      \`N\` 会依次变成 \`9\` 到 \`0\`，其中能被 \`3\` 整除的是 \`9、6、3、0\`。
+      
+      - **A 9#6#3#**：错误。
+      - **B 9#6#3#0#**：正确答案。
+      - **C 8#7#5#4#2#1#**：错误。
+      - **D 10#8#7#5#4#2#1#**：错误。
+      
+      **考点：** 循环、条件判断`,
       tags: [LEVEL1_TAGS.loop, LEVEL1_TAGS.condition]
     },
     {
@@ -129,7 +219,17 @@ export const paperData = {
       options: ['N % i', 'N % i == 0', 'N / i == 0', 'N / i'],
       answer: 1,
       score: 2,
-      explanation: '统计约数个数时，应判断 `i` 是否能整除 `N`。',
+      explanation: `**答案：B**
+      
+      **解析：**
+      统计约数个数时，应判断 \`i\` 是否能整除 \`N\`。
+      
+      - **A N % i**：错误。
+      - **B N % i == 0**：正确答案。
+      - **C N / i == 0**：错误。
+      - **D N / i**：错误。
+      
+      **考点：** 条件判断、循环`,
       tags: [LEVEL1_TAGS.condition, LEVEL1_TAGS.loop]
     },
     {
@@ -139,7 +239,17 @@ export const paperData = {
       options: ['x=(3.16);', 'x=3.16;', 'x=int(3.16);', 'x=3.16 int;'],
       answer: 3,
       score: 2,
-      explanation: '`x=3.16 int;` 不是合法的 C++ 赋值语句。',
+      explanation: `**答案：D**
+      
+      **解析：**
+      \`x=3.16 int;\` 不是合法的 C++ 赋值语句。
+      
+      - **A x=(3.16);**：错误。
+      - **B x=3.16;**：错误。
+      - **C x=int(3.16);**：错误。
+      - **D x=3.16 int;**：正确答案。
+      
+      **考点：** 基础语法`,
       tags: [LEVEL1_TAGS.basics]
     },
     {
@@ -149,7 +259,17 @@ export const paperData = {
       options: ['printf 语句', 'scanf 语句', 'default 语句', 'cout 语句'],
       answer: 1,
       score: 2,
-      explanation: '`scanf` 用于输入，`printf` 和 `cout` 用于输出。',
+      explanation: `**答案：B**
+      
+      **解析：**
+      \`scanf\` 用于输入，\`printf\` 和 \`cout\` 用于输出。
+      
+      - **A printf 语句**：错误。
+      - **B scanf 语句**：正确答案。
+      - **C default 语句**：错误。
+      - **D cout 语句**：错误。
+      
+      **考点：** 输入输出`,
       tags: [LEVEL1_TAGS.io]
     },
     {
@@ -159,7 +279,17 @@ export const paperData = {
       options: ['创建', '编辑', '编译', '调试'],
       answer: 2,
       score: 2,
-      explanation: '源代码需要经过编译后才能生成可执行文件。',
+      explanation: `**答案：C**
+      
+      **解析：**
+      源代码需要经过编译后才能生成可执行文件。
+      
+      - **A 创建**：错误。
+      - **B 编辑**：错误。
+      - **C 编译**：正确答案。
+      - **D 调试**：错误。
+      
+      **考点：** 基础语法`,
       tags: [LEVEL1_TAGS.basics]
     },
     {
@@ -169,7 +299,17 @@ export const paperData = {
       options: ['小程序', '计时器', '操作系统', '神话人物'],
       answer: 2,
       score: 2,
-      explanation: 'HarmonyOS（鸿蒙）是操作系统。',
+      explanation: `**答案：C**
+      
+      **解析：**
+      HarmonyOS（鸿蒙）是操作系统。
+      
+      - **A 小程序**：错误。
+      - **B 计时器**：错误。
+      - **C 操作系统**：正确答案。
+      - **D 神话人物**：错误。
+      
+      **考点：** 基础语法`,
       tags: [LEVEL1_TAGS.basics]
     },
     {
@@ -179,7 +319,17 @@ export const paperData = {
       options: ['制造自动驾驶汽车', '创办培训学校', '发明汉字激光照排系统', '成立软件公司'],
       answer: 2,
       score: 2,
-      explanation: '王选先生的重要贡献是汉字激光照排系统。',
+      explanation: `**答案：C**
+      
+      **解析：**
+      王选先生的重要贡献是汉字激光照排系统。
+      
+      - **A 制造自动驾驶汽车**：错误。
+      - **B 创办培训学校**：错误。
+      - **C 发明汉字激光照排系统**：正确答案。
+      - **D 成立软件公司**：错误。
+      
+      **考点：** 基础语法`,
       tags: [LEVEL1_TAGS.basics]
     },
     {
@@ -189,8 +339,15 @@ export const paperData = {
       options: ['正确', '错误'],
       answer: 0,
       score: 2,
-      explanation: '`27 % 10 = 7`。',
-      tags: [LEVEL1_TAGS.judge, LEVEL1_TAGS.basics]
+      explanation: `**答案：正确**
+      
+      **判定依据：**
+      \`27 % 10 = 7\`。
+      
+      **易混概念：** 注意区分关键字与标识符、编译器与操作系统的职能边界。
+      
+      **考点：** 基础语法`,
+      tags: [LEVEL1_TAGS.basics]
     },
     {
       id: 17,
@@ -199,8 +356,15 @@ export const paperData = {
       options: ['正确', '错误'],
       answer: 0,
       score: 2,
-      explanation: '两个 `%d` 会分别被 `2` 和 `3` 替换。',
-      tags: [LEVEL1_TAGS.judge, LEVEL1_TAGS.io]
+      explanation: `**答案：正确**
+      
+      **判定依据：**
+      两个 \`%d\` 会分别被 \`2\` 和 \`3\` 替换。
+      
+      **易混概念：** 注意 printf 格式化占位符与参数类型的匹配，以及转义字符的用法。
+      
+      **考点：** 输入输出`,
+      tags: [LEVEL1_TAGS.io]
     },
     {
       id: 18,
@@ -209,8 +373,17 @@ export const paperData = {
       options: ['正确', '错误'],
       answer: 1,
       score: 2,
-      explanation: '`scanf()` 的主要功能是按格式读取输入，不是负责提示输入。',
-      tags: [LEVEL1_TAGS.judge, LEVEL1_TAGS.io]
+      explanation: `**答案：错误**
+      
+      **判定依据：**
+      \`scanf()\` 的主要功能是按格式读取输入，不是负责提示输入。
+      
+      **纠错：** 原命题说法有误。\`scanf()\` 的主要功能是按格式读取输入，不是负责提示输入。
+      
+      **易混概念：** 注意 printf 格式化占位符与参数类型的匹配，以及转义字符的用法。
+      
+      **考点：** 输入输出`,
+      tags: [LEVEL1_TAGS.io]
     },
     {
       id: 19,
@@ -219,8 +392,15 @@ export const paperData = {
       options: ['正确', '错误'],
       answer: 0,
       score: 2,
-      explanation: '该说法正确。字符串字面量不能直接和整数做乘法运算。',
-      tags: [LEVEL1_TAGS.judge, LEVEL1_TAGS.basics]
+      explanation: `**答案：正确**
+      
+      **判定依据：**
+      该说法正确。字符串字面量不能直接和整数做乘法运算。
+      
+      **易混概念：** 注意区分关键字与标识符、编译器与操作系统的职能边界。
+      
+      **考点：** 基础语法`,
+      tags: [LEVEL1_TAGS.basics]
     },
     {
       id: 20,
@@ -229,8 +409,17 @@ export const paperData = {
       options: ['正确', '错误'],
       answer: 1,
       score: 2,
-      explanation: '`for (;;)` 也可以构成死循环。',
-      tags: [LEVEL1_TAGS.judge, LEVEL1_TAGS.loop]
+      explanation: `**答案：错误**
+      
+      **判定依据：**
+      \`for (;;)\` 也可以构成死循环。
+      
+      **纠错：** 原命题说法有误。\`for (;;)\` 也可以构成死循环。
+      
+      **易混概念：** 注意循环变量的终值是在循环外使用的，以及 continue/break 的区别。
+      
+      **考点：** 循环`,
+      tags: [LEVEL1_TAGS.loop]
     },
     {
       id: 21,
@@ -239,8 +428,17 @@ export const paperData = {
       options: ['正确', '错误'],
       answer: 1,
       score: 2,
-      explanation: '`break` 同样适用于 `for` 循环。',
-      tags: [LEVEL1_TAGS.judge, LEVEL1_TAGS.loop]
+      explanation: `**答案：错误**
+      
+      **判定依据：**
+      \`break\` 同样适用于 \`for\` 循环。
+      
+      **纠错：** 原命题说法有误。\`break\` 同样适用于 \`for\` 循环。
+      
+      **易混概念：** 注意循环变量的终值是在循环外使用的，以及 continue/break 的区别。
+      
+      **考点：** 循环`,
+      tags: [LEVEL1_TAGS.loop]
     },
     {
       id: 22,
@@ -249,8 +447,17 @@ export const paperData = {
       options: ['正确', '错误'],
       answer: 1,
       score: 2,
-      explanation: '它们数值上可以相等，但类型不同，占用存储空间不一定相同。',
-      tags: [LEVEL1_TAGS.judge, LEVEL1_TAGS.basics]
+      explanation: `**答案：错误**
+      
+      **判定依据：**
+      它们数值上可以相等，但类型不同，占用存储空间不一定相同。
+      
+      **纠错：** 原命题说法有误。它们数值上可以相等，但类型不同，占用存储空间不一定相同。
+      
+      **易混概念：** 注意区分关键字与标识符、编译器与操作系统的职能边界。
+      
+      **考点：** 基础语法`,
+      tags: [LEVEL1_TAGS.basics]
     },
     {
       id: 23,
@@ -259,8 +466,15 @@ export const paperData = {
       options: ['正确', '错误'],
       answer: 0,
       score: 2,
-      explanation: '从语言规则看，`cin` 不是 C++ 关键字，因此可以作为标识符；只是实际编程中不建议这样做。',
-      tags: [LEVEL1_TAGS.judge, LEVEL1_TAGS.basics]
+      explanation: `**答案：正确**
+      
+      **判定依据：**
+      从语言规则看，\`cin\` 不是 C++ 关键字，因此可以作为标识符；只是实际编程中不建议这样做。
+      
+      **易混概念：** 注意区分关键字与标识符、编译器与操作系统的职能边界。
+      
+      **考点：** 基础语法`,
+      tags: [LEVEL1_TAGS.basics]
     },
     {
       id: 24,
@@ -269,8 +483,15 @@ export const paperData = {
       options: ['正确', '错误'],
       answer: 0,
       score: 2,
-      explanation: '用户持续输入、系统实时反馈，符合交互式程序的特点。',
-      tags: [LEVEL1_TAGS.judge, LEVEL1_TAGS.basics]
+      explanation: `**答案：正确**
+      
+      **判定依据：**
+      用户持续输入、系统实时反馈，符合交互式程序的特点。
+      
+      **易混概念：** 注意区分关键字与标识符、编译器与操作系统的职能边界。
+      
+      **考点：** 基础语法`,
+      tags: [LEVEL1_TAGS.basics]
     },
     {
       id: 25,
@@ -279,8 +500,15 @@ export const paperData = {
       options: ['正确', '错误'],
       answer: 0,
       score: 2,
-      explanation: '`for (初始化; 条件; 更新)` 可以改写成对应的 `while` 结构。',
-      tags: [LEVEL1_TAGS.judge, LEVEL1_TAGS.loop]
+      explanation: `**答案：正确**
+      
+      **判定依据：**
+      \`for (初始化; 条件; 更新)\` 可以改写成对应的 \`while\` 结构。
+      
+      **易混概念：** 注意循环变量的终值是在循环外使用的，以及 continue/break 的区别。
+      
+      **考点：** 循环`,
+      tags: [LEVEL1_TAGS.loop]
     },
     {
       id: 26,

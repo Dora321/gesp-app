@@ -25,7 +25,17 @@ export const paperData = {
       options: ['CCF_GESP', 'CCF-GESP', 'CCFGESP', 'ccfGesp'],
       answer: 1,
       score: 2,
-      explanation: '变量名不能包含减号。',
+      explanation: `**答案：B**
+      
+      **解析：**
+      变量名不能包含减号。
+      
+      - **A CCF_GESP**：错误。
+      - **B CCF-GESP**：正确答案。
+      - **C CCFGESP**：错误。
+      - **D ccfGesp**：错误。
+      
+      **考点：** 基础语法`,
       tags: [LEVEL1_TAGS.basics]
     },
     {
@@ -35,7 +45,17 @@ export const paperData = {
       options: ['0', '1', '7', '10'],
       answer: 1,
       score: 2,
-      explanation: '10-3 * 3 % 10 = 10-9 = 1。',
+      explanation: `**答案：B**
+      
+      **解析：**
+      10-3 * 3 % 10 = 10-9 = 1。
+      
+      - **A 0**：错误。
+      - **B 1**：正确答案。
+      - **C 7**：错误。
+      - **D 10**：错误。
+      
+      **考点：** 运算符`,
       tags: [LEVEL1_TAGS.operator]
     },
     {
@@ -45,7 +65,17 @@ export const paperData = {
       options: ['(10+N) % 12', '(10+N) % 24', '(10+N) / 24', '10+N'],
       answer: 1,
       score: 2,
-      explanation: '使用取余运算计算 24 小时制时间。',
+      explanation: `**答案：B**
+      
+      **解析：**
+      使用取余运算计算 24 小时制时间。
+      
+      - **A (10+N) % 12**：错误。
+      - **B (10+N) % 24**：正确答案。
+      - **C (10+N) / 24**：错误。
+      - **D 10+N**：错误。
+      
+      **考点：** 运算符、基础语法`,
       tags: [LEVEL1_TAGS.operator, LEVEL1_TAGS.basics]
     },
     {
@@ -55,7 +85,17 @@ export const paperData = {
       options: ['N % 2 == 0', 'N / 2 == 0', 'N % 2 = 0', 'N % 2 != 0'],
       answer: 0,
       score: 2,
-      explanation: '常用判断偶数方法。',
+      explanation: `**答案：A**
+      
+      **解析：**
+      常用判断偶数方法。
+      
+      - **A N % 2 == 0**：正确答案。
+      - **B N / 2 == 0**：错误。
+      - **C N % 2 = 0**：错误。
+      - **D N % 2 != 0**：错误。
+      
+      **考点：** 运算符、基础语法`,
       tags: [LEVEL1_TAGS.operator, LEVEL1_TAGS.basics]
     },
     {
@@ -65,7 +105,17 @@ export const paperData = {
       options: ['3', '3.0', '9', '81'],
       answer: 1,
       score: 2,
-      explanation: 'sqrt 返回浮点数。',
+      explanation: `**答案：B**
+      
+      **解析：**
+      sqrt 返回浮点数。
+      
+      - **A 3**：错误。
+      - **B 3.0**：正确答案。
+      - **C 9**：错误。
+      - **D 81**：错误。
+      
+      **考点：** 运算符、基础语法`,
       tags: [LEVEL1_TAGS.operator, LEVEL1_TAGS.basics]
     },
     {
@@ -75,7 +125,17 @@ export const paperData = {
       options: ['int a = 10;', 'float a = 10;', 'char a = 10;', 'a = 10;'],
       answer: 0,
       score: 2,
-      explanation: '标准定义与初始化。',
+      explanation: `**答案：A**
+      
+      **解析：**
+      标准定义与初始化。
+      
+      - **A int a = 10;**：正确答案。
+      - **B float a = 10;**：错误。
+      - **C char a = 10;**：错误。
+      - **D a = 10;**：错误。
+      
+      **考点：** 基础语法`,
       tags: [LEVEL1_TAGS.basics]
     },
     {
@@ -85,7 +145,17 @@ export const paperData = {
       options: ['45', '50', '55', '60'],
       answer: 2,
       score: 2,
-      explanation: '1 到 10 之和为 55。',
+      explanation: `**答案：C**
+      
+      **解析：**
+      1 到 10 之和为 55。
+      
+      - **A 45**：错误。
+      - **B 50**：错误。
+      - **C 55**：正确答案。
+      - **D 60**：错误。
+      
+      **考点：** 循环`,
       tags: [LEVEL1_TAGS.loop]
     },
     {
@@ -95,7 +165,17 @@ export const paperData = {
       options: ['+', '*', '&&', '!'],
       answer: 3,
       score: 2,
-      explanation: '逻辑非 ! 的优先级最高。',
+      explanation: `**答案：D**
+      
+      **解析：**
+      逻辑非 ! 的优先级最高。
+      
+      - **A +**：错误。
+      - **B ***：错误。
+      - **C &&**：错误。
+      - **D !**：正确答案。
+      
+      **考点：** 运算符`,
       tags: [LEVEL1_TAGS.operator]
     },
     {
@@ -105,7 +185,17 @@ export const paperData = {
       options: ['cin', 'scanf', 'cout', 'abs'],
       answer: 2,
       score: 2,
-      explanation: 'cout 是标准输出流。',
+      explanation: `**答案：C**
+      
+      **解析：**
+      cout 是标准输出流。
+      
+      - **A cin**：错误。
+      - **B scanf**：错误。
+      - **C cout**：正确答案。
+      - **D abs**：错误。
+      
+      **考点：** 输入输出`,
       tags: [LEVEL1_TAGS.io]
     },
     {
@@ -115,7 +205,17 @@ export const paperData = {
       options: ['OK', 'KO', '2.5', '报错'],
       answer: 1,
       score: 2,
-      explanation: '5 / 2 = 2。2 > 2 不成立，输出 KO。',
+      explanation: `**答案：B**
+      
+      **解析：**
+      5 / 2 = 2。2 > 2 不成立，输出 KO。
+      
+      - **A OK**：错误。
+      - **B KO**：正确答案。
+      - **C 2.5**：错误。
+      - **D 报错**：错误。
+      
+      **考点：** 条件判断、运算符`,
       tags: [LEVEL1_TAGS.condition, LEVEL1_TAGS.operator]
     },
     {
@@ -125,7 +225,17 @@ export const paperData = {
       options: ['1', '2', '4', '8'],
       answer: 0,
       score: 2,
-      explanation: 'char 占 1 字节。',
+      explanation: `**答案：A**
+      
+      **解析：**
+      char 占 1 字节。
+      
+      - **A 1**：正确答案。
+      - **B 2**：错误。
+      - **C 4**：错误。
+      - **D 8**：错误。
+      
+      **考点：** 基础语法`,
       tags: [LEVEL1_TAGS.basics]
     },
     {
@@ -135,7 +245,17 @@ export const paperData = {
       options: ['11', '12', '13', '14'],
       answer: 2,
       score: 2,
-      explanation: '1*8+1*4+0*2+1*1 = 13。',
+      explanation: `**答案：C**
+      
+      **解析：**
+      1*8+1*4+0*2+1*1 = 13。
+      
+      - **A 11**：错误。
+      - **B 12**：错误。
+      - **C 13**：正确答案。
+      - **D 14**：错误。
+      
+      **考点：** 基础语法`,
       tags: [LEVEL1_TAGS.basics]
     },
     {
@@ -145,7 +265,17 @@ export const paperData = {
       options: ['编辑', '编译', '运行/调试', '发布'],
       answer: 3,
       score: 2,
-      explanation: '发布是软件交付的最后阶段。',
+      explanation: `**答案：D**
+      
+      **解析：**
+      发布是软件交付的最后阶段。
+      
+      - **A 编辑**：错误。
+      - **B 编译**：错误。
+      - **C 运行/调试**：错误。
+      - **D 发布**：正确答案。
+      
+      **考点：** 基础语法`,
       tags: [LEVEL1_TAGS.basics]
     },
     {
@@ -160,7 +290,17 @@ export const paperData = {
       ],
       answer: 3,
       score: 2,
-      explanation: '注释可以写在程序的任何位置。',
+      explanation: `**答案：D**
+      
+      **解析：**
+      注释可以写在程序的任何位置。
+      
+      - **A 注释不参与编译**：错误。
+      - **B // 用于单行注释**：错误。
+      - **C /* */ 用于多行注释**：错误。
+      - **D 注释必须写在代码之后**：正确答案。
+      
+      **考点：** 基础语法`,
       tags: [LEVEL1_TAGS.basics]
     },
     {
@@ -170,7 +310,17 @@ export const paperData = {
       options: ['图灵机', '冯·诺依曼架构', '哈佛架构', '神经元架构'],
       answer: 1,
       score: 2,
-      explanation: '现代通用计算机大多采用冯·诺依曼架构。',
+      explanation: `**答案：B**
+      
+      **解析：**
+      现代通用计算机大多采用冯·诺依曼架构。
+      
+      - **A 图灵机**：错误。
+      - **B 冯·诺依曼架构**：正确答案。
+      - **C 哈佛架构**：错误。
+      - **D 神经元架构**：错误。
+      
+      **考点：** 基础语法`,
       tags: [LEVEL1_TAGS.basics]
     },
 
@@ -182,8 +332,15 @@ export const paperData = {
       options: ['正确', '错误'],
       answer: 0,
       score: 2,
-      explanation: 'C++ 要求严格声明类型。',
-      tags: [LEVEL1_TAGS.judge, LEVEL1_TAGS.basics]
+      explanation: `**答案：正确**
+      
+      **判定依据：**
+      C++ 要求严格声明类型。
+      
+      **易混概念：** 注意区分关键字与标识符、编译器与操作系统的职能边界。
+      
+      **考点：** 基础语法`,
+      tags: [LEVEL1_TAGS.basics]
     },
     {
       id: 17,
@@ -192,8 +349,17 @@ export const paperData = {
       options: ['正确', '错误'],
       answer: 1,
       score: 2,
-      explanation: '逻辑与要求两边都为真。',
-      tags: [LEVEL1_TAGS.judge, LEVEL1_TAGS.operator]
+      explanation: `**答案：错误**
+      
+      **判定依据：**
+      逻辑与要求两边都为真。
+      
+      **纠错：** 原命题说法有误。逻辑与要求两边都为真。
+      
+      **易混概念：** 注意运算符优先级与整除/取模的区分，容易混淆不同运算的结果。
+      
+      **考点：** 运算符`,
+      tags: [LEVEL1_TAGS.operator]
     },
     {
       id: 18,
@@ -202,8 +368,15 @@ export const paperData = {
       options: ['正确', '错误'],
       answer: 0,
       score: 2,
-      explanation: '分号是语句结束符。',
-      tags: [LEVEL1_TAGS.judge, LEVEL1_TAGS.basics]
+      explanation: `**答案：正确**
+      
+      **判定依据：**
+      分号是语句结束符。
+      
+      **易混概念：** 注意区分关键字与标识符、编译器与操作系统的职能边界。
+      
+      **考点：** 基础语法`,
+      tags: [LEVEL1_TAGS.basics]
     },
     {
       id: 19,
@@ -212,8 +385,15 @@ export const paperData = {
       options: ['正确', '错误'],
       answer: 0,
       score: 2,
-      explanation: '以 0 开头的整数字面量表示八进制。',
-      tags: [LEVEL1_TAGS.judge, LEVEL1_TAGS.basics]
+      explanation: `**答案：正确**
+      
+      **判定依据：**
+      以 0 开头的整数字面量表示八进制。
+      
+      **易混概念：** 注意区分关键字与标识符、编译器与操作系统的职能边界。
+      
+      **考点：** 基础语法`,
+      tags: [LEVEL1_TAGS.basics]
     },
     {
       id: 20,
@@ -222,8 +402,15 @@ export const paperData = {
       options: ['正确', '错误'],
       answer: 0,
       score: 2,
-      explanation: '逻辑结论。',
-      tags: [LEVEL1_TAGS.judge, LEVEL1_TAGS.loop]
+      explanation: `**答案：正确**
+      
+      **判定依据：**
+      逻辑结论。
+      
+      **易混概念：** 注意循环变量的终值是在循环外使用的，以及 continue/break 的区别。
+      
+      **考点：** 循环`,
+      tags: [LEVEL1_TAGS.loop]
     },
     {
       id: 21,
@@ -232,8 +419,17 @@ export const paperData = {
       options: ['正确', '错误'],
       answer: 1,
       score: 2,
-      explanation: 'continue 只跳过当次。',
-      tags: [LEVEL1_TAGS.judge, LEVEL1_TAGS.loop]
+      explanation: `**答案：错误**
+      
+      **判定依据：**
+      continue 只跳过当次。
+      
+      **纠错：** 原命题说法有误。continue 只跳过当次。
+      
+      **易混概念：** 注意循环变量的终值是在循环外使用的，以及 continue/break 的区别。
+      
+      **考点：** 循环`,
+      tags: [LEVEL1_TAGS.loop]
     },
     {
       id: 22,
@@ -242,8 +438,17 @@ export const paperData = {
       options: ['正确', '错误'],
       answer: 1,
       score: 2,
-      explanation: 'C++ 从 0 开始。',
-      tags: [LEVEL1_TAGS.judge, LEVEL1_TAGS.array]
+      explanation: `**答案：错误**
+      
+      **判定依据：**
+      C++ 从 0 开始。
+      
+      **纠错：** 原命题说法有误。C++ 从 0 开始。
+      
+      **易混概念：** 注意区分相关概念的适用范围和边界条件。
+      
+      **考点：** 数组与字符串`,
+      tags: [LEVEL1_TAGS.array]
     },
     {
       id: 23,
@@ -252,8 +457,17 @@ export const paperData = {
       options: ['正确', '错误'],
       answer: 1,
       score: 2,
-      explanation: 'C++ 区分大小写。',
-      tags: [LEVEL1_TAGS.judge, LEVEL1_TAGS.basics]
+      explanation: `**答案：错误**
+      
+      **判定依据：**
+      C++ 区分大小写。
+      
+      **纠错：** 原命题说法有误。C++ 区分大小写。
+      
+      **易混概念：** 注意区分关键字与标识符、编译器与操作系统的职能边界。
+      
+      **考点：** 基础语法`,
+      tags: [LEVEL1_TAGS.basics]
     },
     {
       id: 24,
@@ -262,8 +476,15 @@ export const paperData = {
       options: ['正确', '错误'],
       answer: 0,
       score: 2,
-      explanation: '!(true) 为 false。',
-      tags: [LEVEL1_TAGS.judge, LEVEL1_TAGS.operator]
+      explanation: `**答案：正确**
+      
+      **判定依据：**
+      !(true) 为 false。
+      
+      **易混概念：** 注意运算符优先级与整除/取模的区分，容易混淆不同运算的结果。
+      
+      **考点：** 运算符`,
+      tags: [LEVEL1_TAGS.operator]
     },
     {
       id: 25,
@@ -272,8 +493,15 @@ export const paperData = {
       options: ['正确', '错误'],
       answer: 0,
       score: 2,
-      explanation: '编译器的主要工作。',
-      tags: [LEVEL1_TAGS.judge, LEVEL1_TAGS.basics]
+      explanation: `**答案：正确**
+      
+      **判定依据：**
+      编译器的主要工作。
+      
+      **易混概念：** 注意区分关键字与标识符、编译器与操作系统的职能边界。
+      
+      **考点：** 基础语法`,
+      tags: [LEVEL1_TAGS.basics]
     },
 
     // 26-27 编程题
