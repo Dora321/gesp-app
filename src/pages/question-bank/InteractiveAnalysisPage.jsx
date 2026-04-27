@@ -58,58 +58,69 @@ const buildRichAnalysis = (q, level) => {
         const optText = typeof opt === 'string' ? opt : String(opt);
         let reason = '';
 
+        // 优先从 explanation 中提取该选项的解析行
+        const letter = String.fromCharCode(65 + idx);
+        const optLineRegex = new RegExp(`-\\s*\\*\\*${letter}\\s+[^*]*\\*\\*[^：]*：\\s*(.+)`, 'i');
+        const optLineMatch = explanation.match(optLineRegex);
+
         if (isCorrect) {
-            const letter = String.fromCharCode(65 + idx);
-            const optLineRegex = new RegExp(`-\\s*\\*\\*${letter}\\s+[^*]*\\*\\*[^：]*：\\s*(.+)`, 'i');
-            const optLineMatch = explanation.match(optLineRegex);
             if (optLineMatch) {
                 reason = stripMarkdown(optLineMatch[1]);
             } else {
-                reason = '该选项与题意完全吻合。';
+                reason = '正确答案，与题意完全吻合。';
             }
         } else {
-            if (/变量|标识符|命名|关键字/i.test(optText) && /关键字|保留字/i.test(merged)) {
-                reason = /下划线|_|开头/i.test(optText)
-                    ? '下划线开头的标识符在 C++ 中是合法的，此说法有误。'
-                    : /关键字|保留字/i.test(optText)
-                        ? '混淆了关键字与标识符的规则。'
-                        : '对标识符命名规则理解有偏差。';
-            } else if (/循环|for|while|迭代/i.test(merged)) {
-                reason = /边界|少一次|多一次|off.?by/i.test(optText)
-                    ? '循环边界判断有误，常见 off-by-one 错误。'
-                    : /初始|开始|从.*起/i.test(optText)
-                        ? '循环变量初始值设定不当。'
-                        : '对循环执行次数或条件判断理解有偏差。';
-            } else if (/运算|表达式|优先级|算术/i.test(merged)) {
-                reason = /优先级|顺序/i.test(optText)
-                    ? '运算符优先级记忆有误，建议牢记：* / % > + -。'
-                    : /溢出|越界|范围/i.test(optText)
-                        ? '忽略了数据类型的表示范围限制。'
-                        : '运算过程推导有误，建议逐步代入验证。';
-            } else if (/条件|判断|if|else|逻辑|布尔/i.test(merged)) {
-                reason = /短路|逻辑与|逻辑或/i.test(optText)
-                    ? '逻辑运算的短路求值规则理解有误。'
-                    : /真假|true|false|0|1/i.test(optText)
-                        ? 'C++ 中非零即真，零即假，注意隐式转换。'
-                        : '条件表达式的求值顺序或逻辑关系判断有误。';
-            } else if (/数组|下标|索引|vector|越界/i.test(merged)) {
-                reason = /越界|范围|0.*n-1/i.test(optText)
-                    ? '数组下标从 0 开始，最大下标为 n-1。'
-                    : '对数组访问或遍历逻辑理解有偏差。';
-            } else if (/字符串|字符|ASCII|char/i.test(merged)) {
-                reason = /ASCII|编码|差值/i.test(optText)
-                    ? '字符运算本质是 ASCII 值运算，注意大小写差值。'
-                    : '对字符串/字符的处理方式理解有误。';
-            } else if (/位运算|按位|&|\||\^|<<|>>/i.test(merged)) {
-                reason = '位运算规则记忆有误，建议列出二进制逐位运算验证。';
-            } else if (/函数|递归|参数|返回值/i.test(merged)) {
-                reason = '对函数调用、参数传递或返回值逻辑理解有偏差。';
-            } else if (/输入|输出|printf|scanf|cin|cout|格式/i.test(merged)) {
-                reason = /格式|%d|%f|%g|%s/i.test(optText)
-                    ? '格式控制符的用法或默认行为理解有误。'
-                    : '输入输出的处理逻辑判断有偏差。';
+            if (optLineMatch) {
+                // 从 explanation 中提取到该选项的解析行，去掉"错误。"等前缀标记
+                reason = stripMarkdown(optLineMatch[1]).replace(/^错误[。，、]\s*/, '').replace(/^不正确[。，、]\s*/, '');
+            } else if (explanation) {
+                // explanation 存在但格式不标准，回退到通用提示
+                reason = '该选项与题意不符。';
             } else {
-                reason = '该选项与题意不符，属于常见干扰项。';
+                // 无 explanation，回退到关键词推断
+                if (/变量|标识符|命名|关键字/i.test(optText) && /关键字|保留字/i.test(merged)) {
+                    reason = /下划线|_|开头/i.test(optText)
+                        ? '下划线开头的标识符在 C++ 中是合法的，此说法有误。'
+                        : /关键字|保留字/i.test(optText)
+                            ? '混淆了关键字与标识符的规则。'
+                            : '对标识符命名规则理解有偏差。';
+                } else if (/循环|for|while|迭代/i.test(merged)) {
+                    reason = /边界|少一次|多一次|off.?by/i.test(optText)
+                        ? '循环边界判断有误，常见 off-by-one 错误。'
+                        : /初始|开始|从.*起/i.test(optText)
+                            ? '循环变量初始值设定不当。'
+                            : '对循环执行次数或条件判断理解有偏差。';
+                } else if (/运算|表达式|优先级|算术/i.test(merged)) {
+                    reason = /优先级|顺序/i.test(optText)
+                        ? '运算符优先级记忆有误，建议牢记：* / % > + -。'
+                        : /溢出|越界|范围/i.test(optText)
+                            ? '忽略了数据类型的表示范围限制。'
+                            : '运算过程推导有误，建议逐步代入验证。';
+                } else if (/条件|判断|if|else|逻辑|布尔/i.test(merged)) {
+                    reason = /短路|逻辑与|逻辑或/i.test(optText)
+                        ? '逻辑运算的短路求值规则理解有误。'
+                        : /真假|true|false|0|1/i.test(optText)
+                            ? 'C++ 中非零即真，零即假，注意隐式转换。'
+                            : '条件表达式的求值顺序或逻辑关系判断有误。';
+                } else if (/数组|下标|索引|vector|越界/i.test(merged)) {
+                    reason = /越界|范围|0.*n-1/i.test(optText)
+                        ? '数组下标从 0 开始，最大下标为 n-1。'
+                        : '对数组访问或遍历逻辑理解有偏差。';
+                } else if (/字符串|字符|ASCII|char/i.test(merged)) {
+                    reason = /ASCII|编码|差值/i.test(optText)
+                        ? '字符运算本质是 ASCII 值运算，注意大小写差值。'
+                        : '对字符串/字符的处理方式理解有误。';
+                } else if (/位运算|按位|&|\||\^|<<|>>/i.test(merged)) {
+                    reason = '位运算规则记忆有误，建议列出二进制逐位运算验证。';
+                } else if (/函数|递归|参数|返回值/i.test(merged)) {
+                    reason = '对函数调用、参数传递或返回值逻辑理解有偏差。';
+                } else if (/输入|输出|printf|scanf|cin|cout|格式/i.test(merged)) {
+                    reason = /格式|%d|%f|%g|%s/i.test(optText)
+                        ? '格式控制符的用法或默认行为理解有误。'
+                        : '输入输出的处理逻辑判断有偏差。';
+                } else {
+                    reason = '该选项与题意不符，属于常见干扰项。';
+                }
             }
         }
 
