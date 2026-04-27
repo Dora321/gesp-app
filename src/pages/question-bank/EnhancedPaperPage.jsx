@@ -243,6 +243,19 @@ const buildRichAnalysis = (q, level) => {
     const explanation = q.explanation?.trim() || '';
     const merged = `${questionText} ${options.join(' ')} ${explanation}`;
 
+    // --- 0. 从 explanation 中提取纯文本摘要（去除 Markdown 标记） ---
+    const stripMarkdown = (md) => {
+        if (!md) return '';
+        return md
+            .replace(/\*\*([^*]+)\*\*/g, '$1')   // **bold** → text
+            .replace(/\*([^*]+)\*/g, '$1')         // *italic* → text
+            .replace(/`([^`]+)`/g, '$1')           // `code` → text
+            .replace(/^#{1,6}\s+/gm, '')            // # heading → text
+            .replace(/^>\s+/gm, '')                  // > blockquote → text
+            .replace(/^[-*+]\s+/gm, '')              // - list item → text
+            .replace(/^\d+\.\s+/gm, '');             // 1. list item → text
+    };
+
     // --- 1. 选项逐项分析 ---
     const optionAnalysis = options.map((opt, idx) => {
         const isCorrect = idx === answerIdx;
@@ -250,7 +263,15 @@ const buildRichAnalysis = (q, level) => {
         let reason = '';
 
         if (isCorrect) {
-            reason = explanation || '该选项与题意完全吻合。';
+            // 正确选项：从 explanation 中提取该选项的解析行，而非整个 explanation
+            const letter = String.fromCharCode(65 + idx);
+            const optLineRegex = new RegExp(`-\\s*\\*\\*${letter}\\s+[^*]*\\*\\*[^：]*：\\s*(.+)`, 'i');
+            const optLineMatch = explanation.match(optLineRegex);
+            if (optLineMatch) {
+                reason = stripMarkdown(optLineMatch[1]);
+            } else {
+                reason = '该选项与题意完全吻合。';
+            }
         } else {
             // 尝试推断错误选项的典型错误类型
             if (/变量|标识符|命名|关键字/i.test(optText) && /关键字|保留字/i.test(merged)) {
@@ -324,7 +345,23 @@ const buildRichAnalysis = (q, level) => {
     }
 
     // --- 3. 核心知识点 ---
-    let keyPoint = explanation;
+    // 从 explanation 中提取核心解析部分（去除答案行和选项分析列表）
+    let keyPoint = '';
+    if (explanation) {
+        // 提取 **解析：** 之后到第一个 - ** 选项分析之前的内容
+        const analysisMatch = explanation.match(/\*\*解析[：:]\*\*\s*\n([\s\S]*?)(?=\n\s*-\s*\*\*[A-D]|$)/);
+        if (analysisMatch && analysisMatch[1].trim()) {
+            keyPoint = analysisMatch[1].trim();
+        } else {
+            // 回退：去除答案行和选项列表，保留其余内容
+            keyPoint = explanation
+                .replace(/\*\*答案[：:][^*]*\*\*\s*/g, '')
+                .replace(/\*\*考点[：:][^*]*\*\*\s*/g, '')
+                .replace(/\n\s*-\s*\*\*[A-D][^*]*\*\*[^\n]*/g, '')
+                .replace(/\*\*解析[：:]\*\*\s*/g, '')
+                .trim();
+        }
+    }
     if (!keyPoint) {
         if (/优先级|运算顺序/i.test(merged)) keyPoint = 'C++ 运算符优先级：算术 > 关系 > 逻辑，同级从左到右（赋值从右到左）。';
         else if (/循环|for|while/i.test(merged)) keyPoint = '循环三要素：初始值、终止条件、每次迭代的变化量。缺一不可。';
@@ -842,7 +879,7 @@ export default function EnhancedPaperPage({ forcedPaperId }) {
                                                                     <div className="flex-1 min-w-0">
                                                                         <div className="text-slate-700 leading-relaxed">{oa.text}</div>
                                                                         <div className={`mt-0.5 text-xs ${oa.isCorrect ? 'text-green-700' : 'text-slate-500'}`}>
-                                                                            {oa.isCorrect ? '✓ ' : '✗ '}{oa.reason}
+                                                                            {oa.isCorrect ? '✓ ' : '✗ '}<MarkdownRenderer content={oa.reason} inline={true} />
                                                                         </div>
                                                                     </div>
                                                                 </div>
@@ -926,7 +963,7 @@ export default function EnhancedPaperPage({ forcedPaperId }) {
                                             const core = `${getQuestionContent(currentQ)} ${(currentQ?.options || []).join(' ')}`;
                                             if (/循环|for|while/i.test(core)) return (
                                                 <>
-                                                    <p>• 循环结构是 GESP L{paperData.level} 的**核心考点**，几乎每次必考</p>
+                                                    <p>• 循环结构是 GESP L{paperData.level} 的<strong>核心考点</strong>，几乎每次必考</p>
                                                     <p>• 重点掌握 <code className="bg-slate-200 px-1 rounded text-xs">for</code>、<code className="bg-slate-200 px-1 rounded text-xs">while</code>、<code className="bg-slate-200 px-1 rounded text-xs">do-while</code> 三种循环的区别</p>
                                                     <p>• 嵌套循环的执行次数计算是高频题型</p>
                                                 </>

@@ -39,14 +39,34 @@ const buildRichAnalysis = (q, level) => {
     const explanation = q.explanation?.trim() || '';
     const merged = `${questionText} ${options.join(' ')} ${explanation}`;
 
-    // --- 选项逐项分析 ---
+    // --- 0. 从 explanation 中提取纯文本摘要（去除 Markdown 标记） ---
+    const stripMarkdown = (md) => {
+        if (!md) return '';
+        return md
+            .replace(/\*\*([^*]+)\*\*/g, '$1')
+            .replace(/\*([^*]+)\*/g, '$1')
+            .replace(/`([^`]+)`/g, '$1')
+            .replace(/^#{1,6}\s+/gm, '')
+            .replace(/^>\s+/gm, '')
+            .replace(/^[-*+]\s+/gm, '')
+            .replace(/^\d+\.\s+/gm, '');
+    };
+
+    // --- 1. 选项逐项分析 ---
     const optionAnalysis = options.map((opt, idx) => {
         const isCorrect = idx === answerIdx;
         const optText = typeof opt === 'string' ? opt : String(opt);
         let reason = '';
 
         if (isCorrect) {
-            reason = explanation || '该选项与题意完全吻合。';
+            const letter = String.fromCharCode(65 + idx);
+            const optLineRegex = new RegExp(`-\\s*\\*\\*${letter}\\s+[^*]*\\*\\*[^：]*：\\s*(.+)`, 'i');
+            const optLineMatch = explanation.match(optLineRegex);
+            if (optLineMatch) {
+                reason = stripMarkdown(optLineMatch[1]);
+            } else {
+                reason = '该选项与题意完全吻合。';
+            }
         } else {
             if (/变量|标识符|命名|关键字/i.test(optText) && /关键字|保留字/i.test(merged)) {
                 reason = /下划线|_|开头/i.test(optText)
@@ -115,7 +135,21 @@ const buildRichAnalysis = (q, level) => {
     }
 
     // --- 核心知识点 ---
-    let keyPoint = explanation;
+    // 从 explanation 中提取核心解析部分（去除答案行和选项分析列表）
+    let keyPoint = '';
+    if (explanation) {
+        const analysisMatch = explanation.match(/\*\*解析[：:]\*\*\s*\n([\s\S]*?)(?=\n\s*-\s*\*\*[A-D]|$)/);
+        if (analysisMatch && analysisMatch[1].trim()) {
+            keyPoint = analysisMatch[1].trim();
+        } else {
+            keyPoint = explanation
+                .replace(/\*\*答案[：:][^*]*\*\*\s*/g, '')
+                .replace(/\*\*考点[：:][^*]*\*\*\s*/g, '')
+                .replace(/\n\s*-\s*\*\*[A-D][^*]*\*\*[^\n]*/g, '')
+                .replace(/\*\*解析[：:]\*\*\s*/g, '')
+                .trim();
+        }
+    }
     if (!keyPoint) {
         if (/优先级|运算顺序/i.test(merged)) keyPoint = 'C++ 运算符优先级：算术 > 关系 > 逻辑，同级从左到右（赋值从右到左）。';
         else if (/循环|for|while/i.test(merged)) keyPoint = '循环三要素：初始值、终止条件、每次迭代的变化量。缺一不可。';
@@ -371,7 +405,7 @@ export default function InteractiveAnalysisPage({ paperData, paperId }) {
                                                             <div className="flex-1 min-w-0">
                                                                 <div className="text-slate-700 leading-relaxed">{oa.text}</div>
                                                                 <div className={`mt-0.5 text-xs ${oa.isCorrect ? 'text-green-700' : 'text-slate-500'}`}>
-                                                                    {oa.isCorrect ? '✓ ' : '✗ '}{oa.reason}
+                                                                    {oa.isCorrect ? '✓ ' : '✗ '}<MarkdownRenderer content={oa.reason} inline={true} />
                                                                 </div>
                                                             </div>
                                                         </div>
@@ -400,7 +434,7 @@ export default function InteractiveAnalysisPage({ paperData, paperId }) {
                                         {/* 核心知识点 */}
                                         <div className="bg-white border border-violet-100 rounded-lg p-3">
                                             <div className="text-sm font-semibold text-violet-800 mb-1">💡 核心知识点</div>
-                                            <p className="text-sm text-slate-700 leading-relaxed">{richAnalysis?.keyPoint || currentQ.explanation || '暂无解析'}</p>
+                                            <MarkdownRenderer content={richAnalysis?.keyPoint || currentQ.explanation || '暂无解析'} className="text-sm text-slate-700 leading-relaxed" />
                                         </div>
 
                                         {/* 易错点 */}
@@ -422,7 +456,7 @@ export default function InteractiveAnalysisPage({ paperData, paperId }) {
                                         {richAnalysis?.extension && (
                                             <div className="bg-white border border-emerald-100 rounded-lg p-3">
                                                 <div className="text-sm font-semibold text-emerald-800 mb-1">🚀 知识延伸</div>
-                                                <p className="text-sm text-slate-700 leading-relaxed">{richAnalysis.extension}</p>
+                                                <MarkdownRenderer content={richAnalysis.extension} className="text-sm text-slate-700 leading-relaxed" />
                                             </div>
                                         )}
 
