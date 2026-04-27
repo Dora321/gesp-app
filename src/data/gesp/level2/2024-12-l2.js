@@ -196,7 +196,7 @@ export const paperData = {
         空格规律为 height-i-1，星号规律为 2*i+1。
         
         - **A height-i, i * 2-1**：错误。空格数应为 height-i-1（多了一个），星号数应为 2*i+1（少了一个）
-        - **B height-i-1, i * 2+1**：正确答案。
+        - **B height-i-1, i * 2+1**：正确。空格规律为 height-i-1，星号规律为 2*i+1。
         - **C height-i, i * 2+1**：错误。空格数应为 height-i-1（多了一个），星号数正确
         - **D height-i-1, i * 2-1**：错误。空格数正确，但星号数应为 2*i+1（少了一个）
         

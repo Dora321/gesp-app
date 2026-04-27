@@ -255,7 +255,7 @@ export const paperData = {
             **解析：**
             答案依据官方答案。
             
-            - **A "(lineCount-i-1) * 2", "(lineCount-i) * ...**：正确答案。
+            - **A "(lineCount-i-1) * 2", "(lineCount-i) * ...**：正确。空格规律为 (lineCount-i-1)*2，星号规律为 (lineCount-i)*2-1。
             
             **考点：** tags: "输入输出", "程序分析"
             `,
