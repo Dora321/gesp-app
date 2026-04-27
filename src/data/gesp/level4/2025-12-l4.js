@@ -21,7 +21,12 @@ export const paperData = {
             ],
             answer: 2,
             score: 2,
-            explanation: "正确声明指针并指向变量地址的语法是 int *p = &x;。& 是取地址符。",
+            explanation: `**答案：C**
+            
+            **解析：**
+            正确声明指针并指向变量地址的语法是 int *p = &x;。& 是取地址符。
+            
+            **考点：** `,
             tags: ["客观题", "单选题", "GESP4级"]
         },
         {
@@ -36,7 +41,12 @@ export const paperData = {
             ],
             answer: 2,
             score: 2,
-            explanation: "p1 指向 a，p2 指向 p1 所指的对象（也是 a）。执行 *p2 = 10 直接修改了 a 的值为 10。因此 a、*p1、*p2 的值都变为 10。",
+            explanation: `**答案：C**
+            
+            **解析：**
+            p1 指向 a，p2 指向 p1 所指的对象（也是 a）。执行 *p2 = 10 直接修改了 a 的值为 10。因此 a、*p1、*p2 的值都变为 10。
+            
+            **考点：** `,
             tags: ["客观题", "单选题", "GESP4级"]
         },
         {
@@ -51,7 +61,12 @@ export const paperData = {
             ],
             answer: 1,
             score: 2,
-            explanation: "C++ 二维数组使用下标 [i][j] 访问。第 2 行对应索引 1，第 3 列对应索引 2（下标从 0 开始）。",
+            explanation: `**答案：B**
+            
+            **解析：**
+            C++ 二维数组使用下标 [i][j] 访问。第 2 行对应索引 1，第 3 列对应索引 2（下标从 0 开始）。
+            
+            **考点：** `,
             tags: ["客观题", "单选题", "GESP4级"]
         },
         {
@@ -66,7 +81,12 @@ export const paperData = {
             ],
             answer: 3,
             score: 2,
-            explanation: "二维数组在内存中按行优先存储。p 指向起始位置。p+5 偏移 5 个位置，对应元素是 arr[1][1]（第 0 行 4 个加第 1 行第 2 个）。arr[1][1] 的值是 6。*(p+5) 也是 6。",
+            explanation: `**答案：D**
+            
+            **解析：**
+            二维数组在内存中按行优先存储。p 指向起始位置。p+5 偏移 5 个位置，对应元素是 arr[1][1]（第 0 行 4 个加第 1 行第 2 个）。arr[1][1] 的值是 6。*(p+5) 也是 6。
+            
+            **考点：** `,
             tags: ["客观题", "单选题", "GESP4级"]
         },
         {
@@ -81,7 +101,12 @@ export const paperData = {
             ],
             answer: 1,
             score: 2,
-            explanation: "满足条件的索引 (i,j,k) 为：(0,0,0), (0,1,1), (0,2,0), (1,0,1), (1,1,0), (1,2,1)。对应值为：1, 4, 5, 8, 9, 12。总和为 39。",
+            explanation: `**答案：B**
+            
+            **解析：**
+            满足条件的索引 (i,j,k) 为：(0,0,0), (0,1,1), (0,2,0), (1,0,1), (1,1,0), (1,2,1)。对应值为：1, 4, 5, 8, 9, 12。总和为 39。
+            
+            **考点：** `,
             tags: ["客观题", "单选题", "GESP4级"]
         },
         {
@@ -96,7 +121,12 @@ export const paperData = {
             ],
             answer: 0,
             score: 2,
-            explanation: "test 函数内的局部 a 为 2。花括号内的 a 是另一个局部变量，不影响主局部 a。a++ 使局部 a 变为 3，输出 3。随后 main 中输出全局 a，值为 1。输出 3 1。",
+            explanation: `**答案：A**
+            
+            **解析：**
+            test 函数内的局部 a 为 2。花括号内的 a 是另一个局部变量，不影响主局部 a。a++ 使局部 a 变为 3，输出 3。随后 main 中输出全局 a，值为 1。输出 3 1。
+            
+            **考点：** `,
             tags: ["客观题", "单选题", "GESP4级"]
         },
         {
@@ -111,7 +141,12 @@ export const paperData = {
             ],
             answer: 2,
             score: 2,
-            explanation: "值传递不改变实参 (a 为 1)；引用传递改变实参 (b 变为 200)；指针传递改变实参 (c 变为 300)。",
+            explanation: `**答案：C**
+            
+            **解析：**
+            值传递不改变实参 (a 为 1)；引用传递改变实参 (b 变为 200)；指针传递改变实参 (c 变为 300)。
+            
+            **考点：** `,
             tags: ["客观题", "单选题", "GESP4级"]
         },
         {
@@ -126,7 +161,12 @@ export const paperData = {
             ],
             answer: 0,
             score: 2,
-            explanation: "rect.topLeft.x 被改为 5。p 指向 bottomRight，p->y = 5 将 bottomRight.y 改为 5。5+5 = 10。",
+            explanation: `**答案：A**
+            
+            **解析：**
+            rect.topLeft.x 被改为 5。p 指向 bottomRight，p->y = 5 将 bottomRight.y 改为 5。5+5 = 10。
+            
+            **考点：** `,
             tags: ["客观题", "单选题", "GESP4级"]
         },
         {
@@ -141,7 +181,12 @@ export const paperData = {
             ],
             answer: 1,
             score: 2,
-            explanation: "递推过程：i=3, b=3, a=2; i=4, b=5, a=3; i=5, b=8, a=5。返回 8。",
+            explanation: `**答案：B**
+            
+            **解析：**
+            递推过程：i=3, b=3, a=2; i=4, b=5, a=3; i=5, b=8, a=5。返回 8。
+            
+            **考点：** `,
             tags: ["客观题", "单选题", "GESP4级"]
         },
         {
@@ -156,7 +201,12 @@ export const paperData = {
             ],
             answer: 1,
             score: 2,
-            explanation: "原数列中 {3,'B'} 在 {3,'D'} 之前。结果中顺序反了，因此是不稳定的。",
+            explanation: `**答案：B**
+            
+            **解析：**
+            原数列中 {3,'B'} 在 {3,'D'} 之前。结果中顺序反了，因此是不稳定的。
+            
+            **考点：** `,
             tags: ["客观题", "单选题", "GESP4级"]
         },
         {
@@ -171,7 +221,12 @@ export const paperData = {
             ],
             answer: 1,
             score: 2,
-            explanation: "选择排序思想的一半应用。每一趟从当前位置 i 之后的剩余元素中找最大值，故 j 从 i+1 开始。",
+            explanation: `**答案：B**
+            
+            **解析：**
+            选择排序思想的一半应用。每一趟从当前位置 i 之后的剩余元素中找最大值，故 j 从 i+1 开始。
+            
+            **考点：** `,
             tags: ["客观题", "单选题", "GESP4级"]
         },
         {
@@ -186,7 +241,12 @@ export const paperData = {
             ],
             answer: 0,
             score: 2,
-            explanation: "如果分数增加，与前面的比较，若比前一个大则前一个后移 (i > 0 && score > players[i-1].score)；如果分数减少，与后面的比较，若比后一个小则后一个前移。",
+            explanation: `**答案：A**
+            
+            **解析：**
+            如果分数增加，与前面的比较，若比前一个大则前一个后移 (i > 0 && score > players[i-1].score)；如果分数减少，与后面的比较，若比后一个小则后一个前移。
+            
+            **考点：** `,
             tags: ["客观题", "单选题", "GESP4级"]
         },
         {
@@ -201,7 +261,12 @@ export const paperData = {
             ],
             answer: 1,
             score: 2,
-            explanation: "代码中包含两层嵌套循环，每层循环次数均为 n。因此时间复杂度为 $O(N^2)$。注意外层循环不再是 $2^n$。",
+            explanation: `**答案：B**
+            
+            **解析：**
+            代码中包含两层嵌套循环，每层循环次数均为 n。因此时间复杂度为 $O(N^2)$。注意外层循环不再是 $2^n$。
+            
+            **考点：** `,
             tags: ["客观题", "单选题", "GESP4级"]
         },
         {
@@ -216,7 +281,12 @@ export const paperData = {
             ],
             answer: 3,
             score: 2,
-            explanation: "fin >> s1 读取 'Happy'。getline 会读取当前行剩余的内容（即换行符或空），导致 s2 为空。因此输出 Happy|。",
+            explanation: `**答案：D**
+            
+            **解析：**
+            fin >> s1 读取 'Happy'。getline 会读取当前行剩余的内容（即换行符或空），导致 s2 为空。因此输出 Happy|。
+            
+            **考点：** `,
             tags: ["客观题", "单选题", "GESP4级"]
         },
         {
@@ -231,7 +301,12 @@ export const paperData = {
             ],
             answer: 1,
             score: 2,
-            explanation: "divide(10, 0) 抛出异常。catch 捕获并打印 'B'。result 被设为 -1，最后打印 result 的值 -1。输出 B-1。",
+            explanation: `**答案：B**
+            
+            **解析：**
+            divide(10, 0) 抛出异常。catch 捕获并打印 'B'。result 被设为 -1，最后打印 result 的值 -1。输出 B-1。
+            
+            **考点：** `,
             tags: ["客观题", "单选题", "GESP4级"]
         },
         {
@@ -241,7 +316,14 @@ export const paperData = {
             options: ["正确", "错误"],
             answer: 0,
             score: 2,
-            explanation: "正确。*p 访问 x 的值，x = 5+3 = 8。",
+            explanation: `**答案：A**
+            
+            **解析：**
+            正确。*p 访问 x 的值，x = 5+3 = 8。
+            
+            **易混概念：** 输入设备负责采集信息传入计算机，输出设备负责呈现结果。传感器属于输入设备。
+            
+            **考点：** `,
             tags: ["客观题", "判断题", "GESP4级"]
         },
         {
@@ -251,7 +333,14 @@ export const paperData = {
             options: ["正确", "错误"],
             answer: 1,
             score: 2,
-            explanation: "错误。C++ 支持结构体嵌套。",
+            explanation: `**答案：B**
+            
+            **解析：**
+            错误。C++ 支持结构体嵌套。
+            
+            **易混概念：** 前置 ++i 先增后用，后置 i++ 先用后增。在复杂表达式中混用容易出错。
+            
+            **考点：** `,
             tags: ["客观题", "判断题", "GESP4级"]
         },
         {
@@ -261,7 +350,14 @@ export const paperData = {
             options: ["正确", "错误"],
             answer: 0,
             score: 2,
-            explanation: "正确。C++ 数组在内存中是连续分配的，二维数组按行主序存储。",
+            explanation: `**答案：A**
+            
+            **解析：**
+            正确。C++ 数组在内存中是连续分配的，二维数组按行主序存储。
+            
+            **易混概念：** CPU 负责运算和判断，内存负责存储数据，两者职能不同。
+            
+            **考点：** `,
             tags: ["客观题", "判断题", "GESP4级"]
         },
         {
@@ -271,7 +367,14 @@ export const paperData = {
             options: ["正确", "错误"],
             answer: 0,
             score: 2,
-            explanation: "正确。引用传递会直接修改原变量的值。",
+            explanation: `**答案：A**
+            
+            **解析：**
+            正确。引用传递会直接修改原变量的值。
+            
+            **易混概念：** 引用是变量的别名，定义时必须初始化，之后不可更改绑定的对象。修改引用即修改实参。
+            
+            **考点：** `,
             tags: ["客观题", "判断题", "GESP4级"]
         },
         {
@@ -281,7 +384,14 @@ export const paperData = {
             options: ["正确", "错误"],
             answer: 1,
             score: 2,
-            explanation: "错误。指针相减返回的是中间间隔的元素个数（2），而不是字节数（8）。",
+            explanation: `**答案：B**
+            
+            **解析：**
+            错误。指针相减返回的是中间间隔的元素个数（2），而不是字节数（8）。
+            
+            **易混概念：** 前置 ++i 先增后用，后置 i++ 先用后增。在复杂表达式中混用容易出错。
+            
+            **考点：** `,
             tags: ["客观题", "判断题", "GESP4级"]
         },
         {
@@ -291,7 +401,14 @@ export const paperData = {
             options: ["正确", "错误"],
             answer: 0,
             score: 2,
-            explanation: "正确。单层循环线性增加，复杂度为 $O(N)$。",
+            explanation: `**答案：A**
+            
+            **解析：**
+            正确。单层循环线性增加，复杂度为 $O(N)$。
+            
+            **易混概念：** 前置 ++i 先增后用，后置 i++ 先用后增。在复杂表达式中混用容易出错。
+            
+            **考点：** `,
             tags: ["客观题", "判断题", "GESP4级"]
         },
         {
@@ -301,7 +418,14 @@ export const paperData = {
             options: ["正确", "错误"],
             answer: 0,
             score: 2,
-            explanation: "正确。两者的基本版本都是稳定的。",
+            explanation: `**答案：A**
+            
+            **解析：**
+            正确。两者的基本版本都是稳定的。
+            
+            **易混概念：** 冒泡排序和插入排序是稳定的，选择排序是不稳定的。稳定性指相等元素排序后相对位置不变。
+            
+            **考点：** `,
             tags: ["客观题", "判断题", "GESP4级"]
         },
         {
@@ -311,7 +435,14 @@ export const paperData = {
             options: ["正确", "错误"],
             answer: 1,
             score: 2,
-            explanation: "错误。该代码实现的是插入排序。",
+            explanation: `**答案：B**
+            
+            **解析：**
+            错误。该代码实现的是插入排序。
+            
+            **易混概念：** 前置 ++i 先增后用，后置 i++ 先用后增。在复杂表达式中混用容易出错。
+            
+            **考点：** `,
             tags: ["客观题", "判断题", "GESP4级"]
         },
         {
@@ -321,7 +452,14 @@ export const paperData = {
             options: ["正确", "错误"],
             answer: 1,
             score: 2,
-            explanation: "错误。由于重载函数 calculate(int) 与 calculate(int, int=10) 在只传一个参数时会产生二义性，导致编译失败。",
+            explanation: `**答案：B**
+            
+            **解析：**
+            错误。由于重载函数 calculate(int) 与 calculate(int, int=10) 在只传一个参数时会产生二义性，导致编译失败。
+            
+            **易混概念：** 函数可以没有参数（无参函数），也可以没有返回值（void 函数）。函数名是必须的。
+            
+            **考点：** `,
             tags: ["客观题", "判断题", "GESP4级"]
         },
         {
@@ -331,7 +469,14 @@ export const paperData = {
             options: ["正确", "错误"],
             answer: 0,
             score: 2,
-            explanation: "正确。10+20+30+40 = 100。",
+            explanation: `**答案：A**
+            
+            **解析：**
+            正确。10+20+30+40 = 100。
+            
+            **易混概念：** ifstream 用于读文件，ofstream 用于写文件，fstream 可同时读写。注意区分 cout 和文件流。
+            
+            **考点：** `,
             tags: ["客观题", "判断题", "GESP4级"]
         },
         {
