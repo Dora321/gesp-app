@@ -201,7 +201,7 @@ export const paperData = {
             **解析：**
             答案依据官方答案。
             
-            - **A "int(sqrt(i)) * int(sqrt(i)) = i", "int(...**：错误。该代码逻辑与题目要求不符，请逐步推演。
+            - **A "int(sqrt(i)) * int(sqrt(i)) = i", "int(...**：错误。int(sqrt(i)) 取整后再相乘不一定等于 i，存在精度损失
             
             **考点：** tags: "输入输出", "程序分析"
             `,

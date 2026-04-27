@@ -347,7 +347,7 @@ export const paperData = {
             - **A \`total_score += score\`\n\`high_count += 1...**：正确。总分应累加每位评委的分数；当分数不低于 6 时，高分人数加 1。
             - **B \`total_score += score\`\n\`high_count += s...**：错误。代码逻辑有误，总分应累加每位评委的分数；当分数不低于 6 时，高分人数加 1。
             - **C \`high_count += 1\`\n\`total_score += score...**：错误。代码逻辑有误，总分应累加每位评委的分数；当分数不低于 6 时，高分人数加 1。
-            - **D \`total_score *= score\`\n\`high_count *= 1...**：错误。与题目要求不符，请对照正确解析重新理解。
+            - **D \`total_score *= score\`\n\`high_count *= 1...**：错误。*= 是乘法赋值而非累加，high_count *= 1 也不会增加计数
             
             **考点：** 循环、程序分析
             `,

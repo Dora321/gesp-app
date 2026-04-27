@@ -266,7 +266,7 @@ export const paperData = {
             
             - **A distance += height / 2;**：错误。代码逻辑有误，每次落地前先把当前下落高度计入总路程，因此填 distance += height。
             - **B distance += height;**：正确。每次落地前先把当前下落高度计入总路程，因此填 distance += height。
-            - **C distance += height * 2;**：错误。与题目要求不符，请对照正确解析重新理解。
+            - **C distance += height * 2;**：错误。每次只需累加当前下落高度，乘以 2 会把反弹高度也计入，但反弹高度在下一轮循环中才会累加
             - **D distance += height+1;**：错误。代码逻辑有误，每次落地前先把当前下落高度计入总路程，因此填 distance += height。
             
             **考点：** 位运算、循环、逻辑判断
