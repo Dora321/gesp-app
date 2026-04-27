@@ -257,6 +257,7 @@ const buildRichAnalysis = (q, level) => {
     };
 
     // --- 1. 选项逐项分析 ---
+    const isJudge = q?.type === 'judge' || q?.type === 'tf';
     const optionAnalysis = options.map((opt, idx) => {
         const isCorrect = idx === answerIdx;
         const optText = typeof opt === 'string' ? opt : String(opt);
@@ -270,6 +271,10 @@ const buildRichAnalysis = (q, level) => {
         if (isCorrect) {
             if (optLineMatch) {
                 reason = stripMarkdown(optLineMatch[1]);
+            } else if (isJudge) {
+                // 判断题正确选项：从 explanation 提取判定依据
+                const basisMatch = explanation.match(/\*\*判定依据[：:]\*\*\s*\n([\s\S]*?)(?=\n\s*\*\*|$)/);
+                reason = basisMatch ? stripMarkdown(basisMatch[1].trim()) : '与题意判定一致。';
             } else {
                 reason = '正确答案，与题意完全吻合。';
             }
@@ -277,6 +282,17 @@ const buildRichAnalysis = (q, level) => {
             if (optLineMatch) {
                 // 从 explanation 中提取到该选项的解析行，去掉"错误。"等前缀标记
                 reason = stripMarkdown(optLineMatch[1]).replace(/^错误[。，、]\s*/, '').replace(/^不正确[。，、]\s*/, '');
+            } else if (isJudge) {
+                // 判断题错误选项：从 explanation 提取纠错或判定依据
+                const correctionMatch = explanation.match(/\*\*纠错[：:]\*\*\s*(.+?)(?=\n\s*\*\*|$)/);
+                const basisMatch = explanation.match(/\*\*判定依据[：:]\*\*\s*\n([\s\S]*?)(?=\n\s*\*\*|$)/);
+                if (correctionMatch) {
+                    reason = stripMarkdown(correctionMatch[1].trim());
+                } else if (basisMatch) {
+                    reason = stripMarkdown(basisMatch[1].trim());
+                } else {
+                    reason = '与题意判定不符。';
+                }
             } else if (explanation) {
                 // explanation 存在但格式不标准，回退到通用提示
                 reason = '该选项与题意不符。';
