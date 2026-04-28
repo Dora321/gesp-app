@@ -16,9 +16,13 @@
   },
   "dependencies": {
     "@tailwindcss/postcss": "^4.1.18",
+    "dotenv": "^17.4.2",
     "framer-motion": "^12.23.26",
+    "fs-extra": "^11.3.4",
     "katex": "^0.16.33",
     "lucide-react": "^0.562.0",
+    "openai": "^6.34.0",
+    "p-limit": "^7.3.0",
     "react": "^19.2.0",
     "react-dom": "^19.2.0",
     "react-markdown": "^10.1.0",

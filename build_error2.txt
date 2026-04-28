@@ -1,0 +1,25 @@
+
+> gesp-app@0.0.0 build
+> vite build
+
+[36mvite v5.4.21 [32mbuilding for production...[36m[39m
+transforming...
+[32m✓[39m 1170 modules transformed.
+[31mx[39m Build failed in 1.21s
+[31merror during build:
+[31msrc/data/gesp/level1/2023-03-l1.js (193:17): Expected ',', got '表达式'[31m
+file: [36mD:/OneNote/OneDrive/附件/c++课件/kejian/gesp-app/src/data/gesp/level1/2023-03-l1.js:193:17[31m
+[33m
+191: - **A 15**：对。计算步骤为：1) \id: 8,
+192:       type: 'single',
+193:       question: `表达式 15 % 4 * 10 / 2 的计算结果是（ ）。`,
+                      ^
+194:       options: ['15', '1.5', '1', '0'],
+195:       answer: 0,
+[31m
+    at getRollupError (file:///D:/OneNote/OneDrive/%E9%99%84%E4%BB%B6/c++%E8%AF%BE%E4%BB%B6/kejian/gesp-app/node_modules/rollup/dist/es/shared/parseAst.js:401:41)
+    at ParseError.initialise (file:///D:/OneNote/OneDrive/%E9%99%84%E4%BB%B6/c++%E8%AF%BE%E4%BB%B6/kejian/gesp-app/node_modules/rollup/dist/es/shared/node-entry.js:14534:28)
+    at convertNode (file:///D:/OneNote/OneDrive/%E9%99%84%E4%BB%B6/c++%E8%AF%BE%E4%BB%B6/kejian/gesp-app/node_modules/rollup/dist/es/shared/node-entry.js:16418:10)
+    at convertProgram (file:///D:/OneNote/OneDrive/%E9%99%84%E4%BB%B6/c++%E8%AF%BE%E4%BB%B6/kejian/gesp-app/node_modules/rollup/dist/es/shared/node-entry.js:15658:12)
+    at Module.setSource (file:///D:/OneNote/OneDrive/%E9%99%84%E4%BB%B6/c++%E8%AF%BE%E4%BB%B6/kejian/gesp-app/node_modules/rollup/dist/es/shared/node-entry.js:17418:24)
+    at async ModuleLoader.addModuleSource (file:///D:/OneNote/OneDrive/%E9%99%84%E4%BB%B6/c++%E8%AF%BE%E4%BB%B6/kejian/gesp-app/node_modules/rollup/dist/es/shared/node-entry.js:21448:13)[39m

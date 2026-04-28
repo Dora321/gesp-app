@@ -26,3 +26,9 @@ tmp/
 
 # WorkBuddy
 .workbuddy/
+
+# API keys and temp files
+.env
+scripts/temp_explanations.json
+scripts/apply_patch.js
+scripts/write_json.js
