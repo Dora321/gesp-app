@@ -42,15 +42,19 @@ const TEMPLATE_PATTERNS = [
   /需要验证循环条件是否最终会变为假/,
   /C\+\+ 对某些写法可能不会报错/,
   /逻辑运算符的使用方式与正确答案不同/,
-  /此选项说法有误/,
+  /此选项说法有误$/,
   /计算有误$/,
   /计算结果不正确$/,
   /代码逻辑与正确答案不符$/,
   /与正确答案.*不符$/,
   /此说法有误[，,]/,
   /代码逻辑有误[，,]/,
+  /代码逻辑有误$/,
   /正确结果为\s*-?\d+\.?\d*，此选项\s*-?\d+\.?\d*\s*计算有误/,
   /正确结果为\s*-?\d+\.?\d*，此选项\s*-?\d+\.?\d*\s*不正确/,
+  /请逐步推演/,
+  /数值与正确计算结果不符/,
+  /请重新验算/
 ];
 
 // 正确选项零解释模式
@@ -635,6 +639,23 @@ function processTemplateStringFile(filePath, level) {
   for (let i = 0; i < lines.length; i++) {
     const line = lines[i];
 
+    // 尝试匹配纯字符串形式的 explanation (主要针对编程题，或部分未升级的选择题)
+    const stringMatch = line.match(/^(\s*)explanation:\s*["'](.*)["'](,?)\s*$/);
+    if (stringMatch) {
+      const indent = stringMatch[1];
+      let content = stringMatch[2];
+      
+      // 如果还没有 **解析：**，则添加
+      if (!content.includes('**解析：**')) {
+        // 防止内部的 反引号 或 ${ 破坏 JS 模板字符串语法
+        content = content.replace(/`/g, '\\`').replace(/\$\{/g, '\\${');
+        let newExp = `\`\n${indent}**解析：**\n${indent}${content}\n${indent}\`${stringMatch[3]}`;
+        lines[i] = `${indent}explanation: ${newExp}`;
+        modified = true;
+      }
+      continue;
+    }
+
     // 检测 explanation 块开始
     if (line.match(/explanation:\s*`/)) {
       inExplanation = true;
@@ -666,14 +687,21 @@ function processTemplateStringFile(filePath, level) {
         }
 
           // === 处理 L2 合并行格式 ===
-          // 检测：选项行中所有选项挤在一行（双引号+逗号分隔格式）
+          // 检测：如果整个 explanation 块中只有一行含有 `- **A`，且没有 `- **B`，说明四个选项合并在一行了
+          let hasOptionA = false;
+          let hasOptionB = false;
+          let optionALineIdx = -1;
           for (let k = explanationStartLine + 1; k < i; k++) {
-            const optLine = lines[k];
-            // 合并行特征：- **A "opt1", "opt2", "opt3", "opt4"**
-            const mergedMatch = optLine.match(/^(\s*)-\s*\*\*A\s+"([^"]+)"\s*,\s*"([^"]+)"\s*,\s*"([^"]+)"\s*,\s*"([^"]+)"\*\*/);
-            if (mergedMatch && currentOptions.length === 4) {
-              const indent = mergedMatch[1];
-              // 拆分为4个独立选项行
+            if (/^\s*-\s*\*\*A\b/.test(lines[k])) { hasOptionA = true; optionALineIdx = k; }
+            if (/^\s*-\s*\*\*B\b/.test(lines[k])) { hasOptionB = true; }
+          }
+          
+          if (hasOptionA && !hasOptionB && currentOptions.length === 4) {
+            const optLine = lines[optionALineIdx];
+            const indentMatch = optLine.match(/^(\s*)-/);
+            const indent = indentMatch ? indentMatch[1] : '            ';
+            
+            // 拆分为4个独立选项行
               const optionLetters = ['A', 'B', 'C', 'D'];
               let newLines = [];
               for (let oi = 0; oi < 4; oi++) {
@@ -694,10 +722,9 @@ function processTemplateStringFile(filePath, level) {
                   newLines.push(`${indent}- **${letter} ${safeOptText}**：错误。${reason}`);
                 }
               }
-              lines[k] = newLines.join('\n');
-              mergedLineFixCount++;
-              modified = true;
-            }
+            lines[optionALineIdx] = newLines.join('\n');
+            mergedLineFixCount++;
+            modified = true;
           }
 
         // === 逐行修复选项分析 ===
@@ -719,8 +746,24 @@ function processTemplateStringFile(filePath, level) {
             correctFixCount++;
           }
 
-          // 2. 修复错误选项零解释（仅写"错误。"）
-          if (!isCorrect && WRONG_ZERO_EXPLANATION.test(newReason)) {
+          // 2. 剥离带有有效解析的前缀（主要针对 L2/L3 的“错误。计算有误。XXXX”或“错误。代码逻辑有误。XXXX”）
+          let prefixStripped = false;
+          if (!isCorrect) {
+            const prefixRegex = /^错误[。，、]\s*(?:计算有误|代码逻辑有误|此选项说法有误|此说法不正确|此说法有误|计算结果不正确)[。，、]\s*(.+)$/;
+            const prefixMatch = newReason.match(prefixRegex);
+            if (prefixMatch) {
+              const detail = prefixMatch[1].trim();
+              // 如果后面带有的内容足够长，并且本身不是纯粹的零解释/套话，就安全剥离前缀并保留后面的内容
+              if (detail.length > 3 && !hasTemplatePhrase(detail) && !WRONG_ZERO_EXPLANATION.test(detail)) {
+                newReason = `错误。${detail}`;
+                prefixStripped = true;
+                fixCount++;
+              }
+            }
+          }
+
+          // 3. 修复错误选项零解释（仅写"错误。"）
+          if (!isCorrect && !prefixStripped && WRONG_ZERO_EXPLANATION.test(newReason)) {
             const generated = generateWrongExplanation(
               parsed.optText, correctOptText, coreAnalysis,
               currentQuestionText, answerLetter, parsed.letter, currentOptions
@@ -729,8 +772,8 @@ function processTemplateStringFile(filePath, level) {
             zeroExplanationFixCount++;
           }
 
-          // 3. 修复模板套话
-          if (!isCorrect && hasTemplatePhrase(newReason)) {
+          // 4. 修复模板套话
+          if (!isCorrect && !prefixStripped && hasTemplatePhrase(newReason)) {
             let cleanReason = newReason.replace(/^错误[。，、]\s*/, '');
             const generated = generateWrongExplanation(
               parsed.optText, correctOptText, coreAnalysis,
@@ -782,11 +825,36 @@ function processL4File(filePath) {
   while (i < lines.length) {
     const line = lines[i];
 
-    // 匹配纯字符串 explanation: "..."
-    const singleLineMatch = line.match(/^(\s*)explanation:\s*"(.+)",?\s*$/);
-    if (singleLineMatch) {
-      const indent = singleLineMatch[1];
-      const explanationText = singleLineMatch[2];
+    // 尝试匹配模板字符串形式的 explanation (选择题/判断题)
+    const match = line.match(/^(\s*)explanation:\s*`([^`]*)`/);
+    
+    // 尝试匹配纯字符串形式的 explanation (主要针对编程题，或部分未升级的选择题)
+    const stringMatch = line.match(/^(\s*)explanation:\s*["'](.*)["'],?\s*$/);
+    
+    if (stringMatch) {
+      const indent = stringMatch[1];
+      let content = stringMatch[2];
+      
+      // 如果还没有 **解析：**，则添加
+      if (!content.includes('**解析：**')) {
+        let newExp = `\`**解析：**\n${indent}${content}\``;
+        if (line.endsWith(',')) {
+          newExp += ',';
+        }
+        lines[i] = `${indent}explanation: ${newExp}`;
+        modified = true;
+        // 这里只是转换格式，因为编程题没有选项，不需要逐行分析，直接跳过
+        i++;
+        continue;
+      }
+    }
+
+    if (!match) {
+      i++;
+      continue;
+    }
+      const indent = match[1];
+      const explanationText = match[2];
 
       // 向上搜索题目信息
       let questionText = '';
@@ -893,8 +961,6 @@ function processL4File(filePath) {
         modified = true;
         upgradeCount++;
       }
-    }
-
     i++;
   }
 
@@ -944,16 +1010,11 @@ if (stat.isDirectory()) {
   let totalFix = 0, totalCorrect = 0, totalZero = 0, totalMerged = 0, totalUpgrade = 0;
 
   for (const file of files) {
-    if (level === 4) {
-      const { upgradeCount } = processL4File(path.join(target, file));
-      totalUpgrade += upgradeCount;
-    } else {
-      const { fixCount, correctFixCount, zeroExplanationFixCount, mergedLineFixCount } = processTemplateStringFile(path.join(target, file), level);
-      totalFix += fixCount;
-      totalCorrect += correctFixCount;
-      totalZero += zeroExplanationFixCount;
-      totalMerged += mergedLineFixCount;
-    }
+    const { fixCount, correctFixCount, zeroExplanationFixCount, mergedLineFixCount } = processTemplateStringFile(path.join(target, file), level);
+    totalFix += fixCount;
+    totalCorrect += correctFixCount;
+    totalZero += zeroExplanationFixCount;
+    totalMerged += mergedLineFixCount;
   }
 
   console.log(`\n========== 总计 ==========`);
@@ -973,7 +1034,7 @@ if (stat.isDirectory()) {
   }
 
   if (level === 4) {
-    processL4File(target);
+    processTemplateStringFile(target);
   } else {
     processTemplateStringFile(target, level);
   }

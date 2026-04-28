@@ -29,7 +29,10 @@ const programmingQuestions = [
 一行，$n$ 个空格分隔的整数，表示 Recamán 数列的前 $n$ 项从小到大排序后的结果。
 `,
       score: 25,
-      explanation: "按照递推公式生成前 n 项。由于需要判断是否出现过，可以使用 std::set 或布尔数组（注意数值范围可能超过 n，实际前 10^5 项的最大值约 7*10^5）。最后对生成的 n 个数排序输出。",
+      explanation: `
+      **解析：**
+      按照递推公式生成前 n 项。由于需要判断是否出现过，可以使用 std::set 或布尔数组（注意数值范围可能超过 n，实际前 10^5 项的最大值约 7*10^5）。最后对生成的 n 个数排序输出。
+      `,
       tags: ["编程题", "递推", "排序", "哈希/布尔数组"],
       template: "#include <iostream>\n#include <vector>\n#include <algorithm>\nusing namespace std;\n\nint main() {\n    int n;\n    cin >> n;\n    // 在此编写代码\n    return 0;\n}",
       referenceCode: "#include <iostream>\n#include <vector>\n#include <algorithm>\n#include <set>\nusing namespace std;\nconst int MAX_VAL = 10000000;\nbool vis[MAX_VAL];\nint main() {\n    int n; cin >> n;\n    vector<long long> a(n);\n    a[0] = 0;\n    vis[0] = true;\n    for (int k = 1; k < n; k++) {\n        long long prev = a[k-1];\n        long long next = prev-k;\n        if (next > 0 && !vis[next]) {\n            a[k] = next;\n        } else {\n            a[k] = prev+k;\n        }\n        if (a[k] < MAX_VAL) vis[a[k]] = true;\n    }\n    sort(a.begin(), a.end());\n    for (int i = 0; i < n; i++) cout << a[i] << (i == n-1 ? \"\" : \" \");\n    cout << endl;\n    return 0;\n}",
@@ -76,7 +79,10 @@ gesp`, output: `1
 对于每组测试数据，如果存在满足条件的排列顺序，输出（一行一个）$\\texttt{1}$，否则输出（一行一个） $\\texttt{0}$。
 `,
       score: 25,
-      explanation: "由于拼接后的字符串必须是不降序列，那么每个单独的字符串本身也必须是不降序列。如果所有字符串内部都是不降的，我们将它们按首字母升序排序并拼接，检查拼接后的总字符串是否依然是不降的即可。",
+      explanation: `
+      **解析：**
+      由于拼接后的字符串必须是不降序列，那么每个单独的字符串本身也必须是不降序列。如果所有字符串内部都是不降的，我们将它们按首字母升序排序并拼接，检查拼接后的总字符串是否依然是不降的即可。
+      `,
       tags: ["编程题", "字符串", "排序", "贪心"],
       template: "#include <iostream>\n#include <string>\n#include <vector>\n\nusing namespace std;\n\nint main() {\n    int T;\n    cin >> T;\n    // 在此编写代码\n    return 0;\n}",
       referenceCode: "#include <iostream>\n#include <string>\n#include <vector>\n#include <algorithm>\nusing namespace std;\nbool isNonDescending(string s) {\n    for (int i = 1; i < s.size(); i++) if (s[i] < s[i-1]) return false;\n    return true;\n}\nvoid solve() {\n    int n; cin >> n;\n    vector<string> s(n);\n    bool possible = true;\n    for (int i = 0; i < n; i++) {\n        cin >> s[i];\n        if (!isNonDescending(s[i])) possible = false;\n    }\n    if (!possible) { cout << 0 << endl; return; }\n    sort(s.begin(), s.end());\n    string t = \"\";\n    for (auto x : s) t += x;\n    if (isNonDescending(t)) cout << 1 << endl;\n    else cout << 0 << endl;\n}\nint main() {\n    int T; cin >> T;\n    while (T--) solve();\n    return 0;\n}",
@@ -126,10 +132,10 @@ export const paperData = {
             **解析：**
             *p1 = *p2 将 p2 指向的值（20）赋给 p1 指向的变量（a）。a 变为 20，b 仍为 20。
             
-            - **A 输出 10 20**：错误。此说法不正确。*p1 = *p2 将 p2 指向的值（20）赋给 p1 指向的变量（a）。a 变为 20，b 仍为 20。
+            - **A 输出 10 20**：错误。*p1 = *p2 将 p2 指向的值（20）赋给 p1 指向的变量（a）。a 变为 20，b 仍为 20。
             - **B 输出 20 20**：正确。*p1 = *p2 将 p2 指向的值（20）赋给 p1 指向的变量（a）。a 变为 20，b 仍为 20。
-            - **C 输出 10 10**：错误。此说法不正确。*p1 = *p2 将 p2 指向的值（20）赋给 p1 指向的变量（a）。a 变为 20，b 仍为 20。
-            - **D 输出 20 10**：错误。此说法不正确。*p1 = *p2 将 p2 指向的值（20）赋给 p1 指向的变量（a）。a 变为 20，b 仍为 20。
+            - **C 输出 10 10**：错误。*p1 = *p2 将 p2 指向的值（20）赋给 p1 指向的变量（a）。a 变为 20，b 仍为 20。
+            - **D 输出 20 10**：错误。*p1 = *p2 将 p2 指向的值（20）赋给 p1 指向的变量（a）。a 变为 20，b 仍为 20。
             
             **考点：** `,
             tags: ["客观题", "单选题", "GESP4级"]
@@ -226,9 +232,9 @@ export const paperData = {
             **解析：**
             选择排序无论何种情况都需两层循环，复杂度 $O(N^2)$。
             
-            - **A $O(log n)$**：错误。此说法不正确。选择排序无论何种情况都需两层循环，复杂度 $O(N^2)$。
-            - **B $O(N)$**：错误。此说法不正确。选择排序无论何种情况都需两层循环，复杂度 $O(N^2)$。
-            - **C $O(n log n)$**：错误。此说法不正确。选择排序无论何种情况都需两层循环，复杂度 $O(N^2)$。
+            - **A $O(log n)$**：错误。选择排序无论何种情况都需两层循环，复杂度 $O(N^2)$。
+            - **B $O(N)$**：错误。选择排序无论何种情况都需两层循环，复杂度 $O(N^2)$。
+            - **C $O(n log n)$**：错误。选择排序无论何种情况都需两层循环，复杂度 $O(N^2)$。
             - **D $O(N^2)$**：正确。选择排序无论何种情况都需两层循环，复杂度 $O(N^2)$。
             
             **考点：** `,
@@ -306,10 +312,10 @@ export const paperData = {
             **解析：**
             C/C++ 中二维数组按行主序（row-major order）连续存储。
             
-            - **A 按列存储**：错误。此说法不正确。C/C++ 中二维数组按行主序（row-major order）连续存储。
+            - **A 按列存储**：错误。C/C++ 中二维数组按行主序（row-major order）连续存储。
             - **B 按行存储**：正确。C/C++ 中二维数组按行主序（row-major order）连续存储。
-            - **C 随机存储**：错误。此说法不正确。C/C++ 中二维数组按行主序（row-major order）连续存储。
-            - **D 树形存储**：错误。此说法不正确。C/C++ 中二维数组按行主序（row-major order）连续存储。
+            - **C 随机存储**：错误。C/C++ 中二维数组按行主序（row-major order）连续存储。
+            - **D 树形存储**：错误。C/C++ 中二维数组按行主序（row-major order）连续存储。
             
             **考点：** `,
             tags: ["客观题", "单选题", "GESP4级"]
@@ -328,8 +334,8 @@ export const paperData = {
             
             - **A 1**：错误。可能差一错误（off-by-one），如循环条件用了 <= 而非 <。正确结果为 2 或多个。
             - **B 2 或多个**：正确。分治通常将问题分解为 2 个或多个较小的子问题。
-            - **C N (数据总量)**：错误。此说法不正确。分治通常将问题分解为 2 个或多个较小的子问题。
-            - **D 不确定**：错误。此说法不正确。分治通常将问题分解为 2 个或多个较小的子问题。
+            - **C N (数据总量)**：错误。分治通常将问题分解为 2 个或多个较小的子问题。
+            - **D 不确定**：错误。分治通常将问题分解为 2 个或多个较小的子问题。
             
             **考点：** `,
             tags: ["客观题", "单选题", "GESP4级"]
@@ -347,9 +353,9 @@ export const paperData = {
             throw 用于显式抛出异常。
             
             - **A throw**：正确。throw 用于显式抛出异常。
-            - **B catch**：错误。此说法不正确。throw 用于显式抛出异常。
-            - **C try**：错误。此说法不正确。throw 用于显式抛出异常。
-            - **D finally**：错误。此说法不正确。throw 用于显式抛出异常。
+            - **B catch**：错误。throw 用于显式抛出异常。
+            - **C try**：错误。throw 用于显式抛出异常。
+            - **D finally**：错误。throw 用于显式抛出异常。
             
             **考点：** `,
             tags: ["客观题", "单选题", "GESP4级"]
@@ -366,10 +372,10 @@ export const paperData = {
             **解析：**
             归并排序是典型的递归分治算法。虽然二分查找可用递归，但最典型的是归并。
             
-            - **A 顺序查找**：错误。此说法不正确。归并排序是典型的递归分治算法。虽然二分查找可用递归，但最典型的是归并。
-            - **B 二分查找**：错误。此说法不正确。归并排序是典型的递归分治算法。虽然二分查找可用递归，但最典型的是归并。
+            - **A 顺序查找**：错误。归并排序是典型的递归分治算法。虽然二分查找可用递归，但最典型的是归并。
+            - **B 二分查找**：错误。归并排序是典型的递归分治算法。虽然二分查找可用递归，但最典型的是归并。
             - **C 归并排序**：正确。归并排序是典型的递归分治算法。虽然二分查找可用递归，但最典型的是归并。
-            - **D 以上都是**：错误。此说法不正确。归并排序是典型的递归分治算法。虽然二分查找可用递归，但最典型的是归并。
+            - **D 以上都是**：错误。归并排序是典型的递归分治算法。虽然二分查找可用递归，但最典型的是归并。
             
             **考点：** `,
             tags: ["客观题", "单选题", "GESP4级"]
@@ -387,9 +393,9 @@ export const paperData = {
             动态规划通常在 6 级及以上要求，4 级不涉及。
             
             - **A 一维数组**：正确。动态规划通常在 6 级及以上要求，4 级不涉及。
-            - **B 结构体**：错误。此说法不正确。动态规划通常在 6 级及以上要求，4 级不涉及。
-            - **C 动态规划**：错误。此说法不正确。动态规划通常在 6 级及以上要求，4 级不涉及。
-            - **D 函数嵌套调用**：错误。此说法不正确。动态规划通常在 6 级及以上要求，4 级不涉及。
+            - **B 结构体**：错误。动态规划通常在 6 级及以上要求，4 级不涉及。
+            - **C 动态规划**：错误。动态规划通常在 6 级及以上要求，4 级不涉及。
+            - **D 函数嵌套调用**：错误。动态规划通常在 6 级及以上要求，4 级不涉及。
             
             **考点：** `,
             tags: ["客观题", "单选题", "GESP4级"]

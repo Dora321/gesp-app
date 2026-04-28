@@ -48,7 +48,10 @@ No` }
 对于每组测试用例，如果存在，输出 Yes，否则输出 No。
 `,
       score: 25,
-      explanation: "由于网格规模较小，可以直接枚举所有可能的 2x2 子矩形左上角坐标 (i, j)，检查四个顶点格子是否均为 '0'。",
+      explanation: `
+      **解析：**
+      由于网格规模较小，可以直接枚举所有可能的 2x2 子矩形左上角坐标 (i, j)，检查四个顶点格子是否均为 '0'。
+      `,
       tags: ["编程题", "二维数组", "模拟"],
       template: "#include <iostream>\n#include <vector>\n#include <string>\nusing namespace std;\n\nint main() {\n    int T;\n    cin >> T;\n    // 在此编写代码\n    return 0;\n}",
       referenceCode: "#include <iostream>\n#include <vector>\n#include <string>\nusing namespace std;\nvoid solve() {\n    int n, m; cin >> n >> m;\n    vector<string> g(n);\n    for (int i = 0; i < n; i++) cin >> g[i];\n    bool ok = false;\n    if (n >= 2 && m >= 2) {\n        for (int i = 0; i < n-1; i++) {\n            for (int j = 0; j < m-1; j++) {\n                if (g[i][j] == '0' && g[i][j+1] == '0' && g[i+1][j] == '0' && g[i+1][j+1] == '0') {\n                    ok = true; break;\n                }\n            }\n            if (ok) break;\n        }\n    }\n    if (ok) cout << \"Yes\" << endl; else cout << \"No\" << endl;\n}\nint main() {\n    int T; cin >> T;\n    while (T--) solve();\n    return 0;\n}",
@@ -88,7 +91,10 @@ No` }
 输出一行包含 $n$ 个正整数，代表多次升序排序后的序列。
 `,
       score: 25,
-      explanation: "直接按照题目要求，依次执行 m 次排序操作即可。每次操作使用 std::sort 进行区间排序。",
+      explanation: `
+      **解析：**
+      直接按照题目要求，依次执行 m 次排序操作即可。每次操作使用 std::sort 进行区间排序。
+      `,
       tags: ["编程题", "排序", "模拟"],
       template: "#include <iostream>\n#include <vector>\n#include <algorithm>\nusing namespace std;\n\nint main() {\n    int n, m;\n    cin >> n >> m;\n    // 在此编写代码\n    return 0;\n}",
       referenceCode: "#include <iostream>\n#include <vector>\n#include <algorithm>\nusing namespace std;\nint main() {\n    int n, m; cin >> n >> m;\n    vector<int> a(n);\n    for (int i = 0; i < n; i++) cin >> a[i];\n    while (m--) {\n        int l, r; cin >> l >> r;\n        sort(a.begin()+l-1, a.begin()+r);\n    }\n    for (int i = 0; i < n; i++) cout << a[i] << (i == n-1 ? \"\" : \" \");\n    cout << endl;\n    return 0;\n}",
@@ -159,9 +165,9 @@ export const paperData = {
             var 访问局部变量（200），::var 访问全局变量（100）。
             
             - **A 100 100**：正确。var 访问局部变量（200），::var 访问全局变量（100）。
-            - **B 200 100**：错误。此说法不正确。var 访问局部变量（200），::var 访问全局变量（100）。
-            - **C 200 200**：错误。此说法不正确。var 访问局部变量（200），::var 访问全局变量（100）。
-            - **D 100 200**：错误。此说法不正确。var 访问局部变量（200），::var 访问全局变量（100）。
+            - **B 200 100**：错误。var 访问局部变量（200），::var 访问全局变量（100）。
+            - **C 200 200**：错误。var 访问局部变量（200），::var 访问全局变量（100）。
+            - **D 100 200**：错误。var 访问局部变量（200），::var 访问全局变量（100）。
             
             **考点：** `,
             tags: ["客观题", "单选题", "GESP4级"]
@@ -219,9 +225,9 @@ export const paperData = {
             选择排序平均和最坏情况均为 $O(N^2)$。
             
             - **A $O(N)$**：正确。选择排序平均和最坏情况均为 $O(N^2)$。
-            - **B $O(n log n)$**：错误。此说法不正确。选择排序平均和最坏情况均为 $O(N^2)$。
-            - **C $O(N^2)$**：错误。此说法不正确。选择排序平均和最坏情况均为 $O(N^2)$。
-            - **D $O(log n)$**：错误。此说法不正确。选择排序平均和最坏情况均为 $O(N^2)$。
+            - **B $O(n log n)$**：错误。选择排序平均和最坏情况均为 $O(N^2)$。
+            - **C $O(N^2)$**：错误。选择排序平均和最坏情况均为 $O(N^2)$。
+            - **D $O(log n)$**：错误。选择排序平均和最坏情况均为 $O(N^2)$。
             
             **考点：** `,
             tags: ["客观题", "单选题", "GESP4级"]
@@ -238,10 +244,10 @@ export const paperData = {
             **解析：**
             当数组已有序时，插入排序仅需比较 $N-1$ 次。
             
-            - **A $O(1)$**：错误。此说法不正确。当数组已有序时，插入排序仅需比较 $N-1$ 次。
+            - **A $O(1)$**：错误。当数组已有序时，插入排序仅需比较 $N-1$ 次。
             - **B $O(N)$**：正确。当数组已有序时，插入排序仅需比较 $N-1$ 次。
-            - **C $O(N^2)$**：错误。此说法不正确。当数组已有序时，插入排序仅需比较 $N-1$ 次。
-            - **D $O(n log n)$**：错误。此说法不正确。当数组已有序时，插入排序仅需比较 $N-1$ 次。
+            - **C $O(N^2)$**：错误。当数组已有序时，插入排序仅需比较 $N-1$ 次。
+            - **D $O(n log n)$**：错误。当数组已有序时，插入排序仅需比较 $N-1$ 次。
             
             **考点：** `,
             tags: ["客观题", "单选题", "GESP4级"]
@@ -298,10 +304,10 @@ export const paperData = {
             **解析：**
             下标从 0 开始。a[1][2] 表示第 2 行第 3 列。
             
-            - **A 第 1 行第 2 列**：错误。此说法不正确。下标从 0 开始。a[1][2] 表示第 2 行第 3 列。
+            - **A 第 1 行第 2 列**：错误。下标从 0 开始。a[1][2] 表示第 2 行第 3 列。
             - **B 第 2 行第 3 列**：正确。下标从 0 开始。a[1][2] 表示第 2 行第 3 列。
-            - **C 第 1 行第 3 列**：错误。此说法不正确。下标从 0 开始。a[1][2] 表示第 2 行第 3 列。
-            - **D 第 2 行第 2 列**：错误。此说法不正确。下标从 0 开始。a[1][2] 表示第 2 行第 3 列。
+            - **C 第 1 行第 3 列**：错误。下标从 0 开始。a[1][2] 表示第 2 行第 3 列。
+            - **D 第 2 行第 2 列**：错误。下标从 0 开始。a[1][2] 表示第 2 行第 3 列。
             
             **考点：** `,
             tags: ["客观题", "单选题", "GESP4级"]
@@ -318,8 +324,8 @@ export const paperData = {
             **解析：**
             递归必须有终止条件（基准情况）以防止无限递归。
             
-            - **A 循环语句**：错误。此说法不正确。递归必须有终止条件（基准情况）以防止无限递归。
-            - **B 分支语句处理基准情况**：错误。此说法不正确。递归必须有终止条件（基准情况）以防止无限递归。
+            - **A 循环语句**：错误。递归必须有终止条件（基准情况）以防止无限递归。
+            - **B 分支语句处理基准情况**：错误。递归必须有终止条件（基准情况）以防止无限递归。
             - **C 全局变量**：正确。递归必须有终止条件（基准情况）以防止无限递归。
             - **D 多个参数**：错误。对函数的定义或调用规则理解有误。
             
@@ -359,9 +365,9 @@ export const paperData = {
             排序算法位于 \`<algorithm>\`。
             
             - **A <iostream>**：正确。排序算法位于 \`<algorithm>\`。
-            - **B <vector>**：错误。此说法不正确。排序算法位于 \`<algorithm>\`。
-            - **C <algorithm>**：错误。此说法不正确。排序算法位于 \`<algorithm>\`。
-            - **D <cmath>**：错误。此说法不正确。排序算法位于 \`<algorithm>\`。
+            - **B <vector>**：错误。排序算法位于 \`<algorithm>\`。
+            - **C <algorithm>**：错误。排序算法位于 \`<algorithm>\`。
+            - **D <cmath>**：错误。排序算法位于 \`<algorithm>\`。
             
             **考点：** `,
             tags: ["客观题", "单选题", "GESP4级"]
@@ -379,9 +385,9 @@ export const paperData = {
             class 用于定义类。
             
             - **A class**：正确。class 用于定义类。
-            - **B struct**：错误。此说法不正确。class 用于定义类。
-            - **C void**：错误。此说法不正确。class 用于定义类。
-            - **D static**：错误。此说法不正确。class 用于定义类。
+            - **B struct**：错误。class 用于定义类。
+            - **C void**：错误。class 用于定义类。
+            - **D static**：错误。class 用于定义类。
             
             **考点：** `,
             tags: ["客观题", "单选题", "GESP4级"]

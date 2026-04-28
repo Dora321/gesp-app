@@ -510,7 +510,10 @@ export const paperData = {
 输出一个整数，代表在清除至多一个位置的杂物的情况下，最多能够开垦的荒地块数。
 `,
       score: 25,
-      explanation: "遍历矩阵中所有可能的 2x2 子矩阵的左上角位置 (i, j)，范围是 0 ≤ i < $n-1$ 且 0 ≤ j < $m-1$。对于每个位置，验证主对角线乘积 (A[i][j] * A[i+1][j+1]) 是否等于副对角线乘积 (A[i][j+1] * A[i+1][j])。如果相等，则计数器加一。",
+      explanation: `
+      **解析：**
+      遍历矩阵中所有可能的 2x2 子矩阵的左上角位置 (i, j)，范围是 0 ≤ i < $n-1$ 且 0 ≤ j < $m-1$。对于每个位置，验证主对角线乘积 (A[i][j] * A[i+1][j+1]) 是否等于副对角线乘积 (A[i][j+1] * A[i+1][j])。如果相等，则计数器加一。
+      `,
       tags: ["编程题", "GESP4级"],
       template: "#include <bits/stdc++.h>\nusing namespace std;\n\nint main() {\n    ios::sync_with_stdio(false);\n    cin.tie(nullptr);\n\n    // 在此编写代码\n\n    return 0;\n}",
       answer: '',
@@ -546,7 +549,10 @@ export const paperData = {
 一行，一个整数，表示 $A$ 中好的子矩阵的数量。
 `,
       score: 25,
-      explanation: "1. 预处理：判断每个点是否受邻居障碍物影响。2. 计算初始可开垦数量。3. 枚举每个障碍物，计算移除它后新增的可开垦格子（其自身及受其单方面影响的邻居）。4. 取最大值。",
+      explanation: `
+      **解析：**
+      1. 预处理：判断每个点是否受邻居障碍物影响。2. 计算初始可开垦数量。3. 枚举每个障碍物，计算移除它后新增的可开垦格子（其自身及受其单方面影响的邻居）。4. 取最大值。
+      `,
       tags: ["编程题", "GESP4级"],
       template: "#include <bits/stdc++.h>\nusing namespace std;\n\nint main() {\n    ios::sync_with_stdio(false);\n    cin.tie(nullptr);\n\n    // 在此编写代码\n\n    return 0;\n}",
       answer: '',
