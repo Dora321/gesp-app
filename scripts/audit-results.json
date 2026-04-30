@@ -1,0 +1,267 @@
+{
+  "results": {
+    "level1": {
+      "files": 13,
+      "questions": 351,
+      "critical": 14,
+      "high": 0,
+      "medium": 0,
+      "low": 0,
+      "highQuality": 194,
+      "oneLine": 0,
+      "empty": 0,
+      "issues": [
+        {
+          "file": "2023-03-l1.js",
+          "questionId": 9,
+          "questionType": "single",
+          "severity": "critical",
+          "type": "answer_mismatch",
+          "message": "解析声明答案 D，实际 answer 字段指向 A"
+        },
+        {
+          "file": "2023-03-l1.js",
+          "questionId": 13,
+          "questionType": "single",
+          "severity": "critical",
+          "type": "answer_mismatch",
+          "message": "解析声明答案 C，实际 answer 字段指向 B"
+        },
+        {
+          "file": "2023-03-l1.js",
+          "questionId": 14,
+          "questionType": "single",
+          "severity": "critical",
+          "type": "answer_mismatch",
+          "message": "解析声明答案 C，实际 answer 字段指向 B"
+        },
+        {
+          "file": "2023-03-l1.js",
+          "questionId": 15,
+          "questionType": "single",
+          "severity": "critical",
+          "type": "answer_mismatch",
+          "message": "解析声明答案 D，实际 answer 字段指向 C"
+        },
+        {
+          "file": "2023-03-l1.js",
+          "questionId": 18,
+          "questionType": "judge",
+          "severity": "critical",
+          "type": "answer_mismatch",
+          "message": "解析声明\"答案：正确\"但 answer=1（应为 0=正确）"
+        },
+        {
+          "file": "2023-03-l1.js",
+          "questionId": 19,
+          "questionType": "judge",
+          "severity": "critical",
+          "type": "answer_mismatch",
+          "message": "解析声明\"答案：错误\"但 answer=0（应为 1=错误）"
+        },
+        {
+          "file": "2023-03-l1.js",
+          "questionId": 20,
+          "questionType": "judge",
+          "severity": "critical",
+          "type": "answer_mismatch",
+          "message": "解析声明\"答案：正确\"但 answer=1（应为 0=正确）"
+        },
+        {
+          "file": "2023-03-l1.js",
+          "questionId": 21,
+          "questionType": "judge",
+          "severity": "critical",
+          "type": "answer_mismatch",
+          "message": "解析声明\"答案：正确\"但 answer=1（应为 0=正确）"
+        },
+        {
+          "file": "2023-03-l1.js",
+          "questionId": 22,
+          "questionType": "judge",
+          "severity": "critical",
+          "type": "answer_mismatch",
+          "message": "解析声明\"答案：错误\"但 answer=0（应为 1=错误）"
+        },
+        {
+          "file": "2024-03-l1.js",
+          "questionId": 9,
+          "questionType": "single",
+          "severity": "critical",
+          "type": "answer_mismatch",
+          "message": "解析声明答案 D，实际 answer 字段指向 B"
+        },
+        {
+          "file": "2024-03-l1.js",
+          "questionId": 9,
+          "questionType": "single",
+          "severity": "critical",
+          "type": "content_mismatch",
+          "message": "解析内容可能与题目不匹配（题目关键词与解析关键词无交集）"
+        },
+        {
+          "file": "2024-03-l1.js",
+          "questionId": 10,
+          "questionType": "single",
+          "severity": "critical",
+          "type": "answer_mismatch",
+          "message": "解析声明答案 A，实际 answer 字段指向 B"
+        },
+        {
+          "file": "2025-09-l1.js",
+          "questionId": 14,
+          "questionType": "single",
+          "severity": "critical",
+          "type": "answer_mismatch",
+          "message": "解析声明答案 A，实际 answer 字段指向 D"
+        },
+        {
+          "file": "2025-09-l1.js",
+          "questionId": 15,
+          "questionType": "single",
+          "severity": "critical",
+          "type": "answer_mismatch",
+          "message": "解析声明答案 D，实际 answer 字段指向 B"
+        }
+      ]
+    }
+  },
+  "summary": {
+    "totalFiles": 13,
+    "totalQuestions": 351,
+    "criticalIssues": 14,
+    "highIssues": 0,
+    "mediumIssues": 0,
+    "lowIssues": 0,
+    "highQualityCount": 194,
+    "oneLineCount": 0,
+    "emptyCount": 0,
+    "byLevel": {
+      "1": {
+        "files": 13,
+        "questions": 351,
+        "critical": 14,
+        "high": 0,
+        "medium": 0,
+        "low": 0,
+        "highQuality": 194,
+        "oneLine": 0,
+        "empty": 0,
+        "issues": [
+          {
+            "file": "2023-03-l1.js",
+            "questionId": 9,
+            "questionType": "single",
+            "severity": "critical",
+            "type": "answer_mismatch",
+            "message": "解析声明答案 D，实际 answer 字段指向 A"
+          },
+          {
+            "file": "2023-03-l1.js",
+            "questionId": 13,
+            "questionType": "single",
+            "severity": "critical",
+            "type": "answer_mismatch",
+            "message": "解析声明答案 C，实际 answer 字段指向 B"
+          },
+          {
+            "file": "2023-03-l1.js",
+            "questionId": 14,
+            "questionType": "single",
+            "severity": "critical",
+            "type": "answer_mismatch",
+            "message": "解析声明答案 C，实际 answer 字段指向 B"
+          },
+          {
+            "file": "2023-03-l1.js",
+            "questionId": 15,
+            "questionType": "single",
+            "severity": "critical",
+            "type": "answer_mismatch",
+            "message": "解析声明答案 D，实际 answer 字段指向 C"
+          },
+          {
+            "file": "2023-03-l1.js",
+            "questionId": 18,
+            "questionType": "judge",
+            "severity": "critical",
+            "type": "answer_mismatch",
+            "message": "解析声明\"答案：正确\"但 answer=1（应为 0=正确）"
+          },
+          {
+            "file": "2023-03-l1.js",
+            "questionId": 19,
+            "questionType": "judge",
+            "severity": "critical",
+            "type": "answer_mismatch",
+            "message": "解析声明\"答案：错误\"但 answer=0（应为 1=错误）"
+          },
+          {
+            "file": "2023-03-l1.js",
+            "questionId": 20,
+            "questionType": "judge",
+            "severity": "critical",
+            "type": "answer_mismatch",
+            "message": "解析声明\"答案：正确\"但 answer=1（应为 0=正确）"
+          },
+          {
+            "file": "2023-03-l1.js",
+            "questionId": 21,
+            "questionType": "judge",
+            "severity": "critical",
+            "type": "answer_mismatch",
+            "message": "解析声明\"答案：正确\"但 answer=1（应为 0=正确）"
+          },
+          {
+            "file": "2023-03-l1.js",
+            "questionId": 22,
+            "questionType": "judge",
+            "severity": "critical",
+            "type": "answer_mismatch",
+            "message": "解析声明\"答案：错误\"但 answer=0（应为 1=错误）"
+          },
+          {
+            "file": "2024-03-l1.js",
+            "questionId": 9,
+            "questionType": "single",
+            "severity": "critical",
+            "type": "answer_mismatch",
+            "message": "解析声明答案 D，实际 answer 字段指向 B"
+          },
+          {
+            "file": "2024-03-l1.js",
+            "questionId": 9,
+            "questionType": "single",
+            "severity": "critical",
+            "type": "content_mismatch",
+            "message": "解析内容可能与题目不匹配（题目关键词与解析关键词无交集）"
+          },
+          {
+            "file": "2024-03-l1.js",
+            "questionId": 10,
+            "questionType": "single",
+            "severity": "critical",
+            "type": "answer_mismatch",
+            "message": "解析声明答案 A，实际 answer 字段指向 B"
+          },
+          {
+            "file": "2025-09-l1.js",
+            "questionId": 14,
+            "questionType": "single",
+            "severity": "critical",
+            "type": "answer_mismatch",
+            "message": "解析声明答案 A，实际 answer 字段指向 D"
+          },
+          {
+            "file": "2025-09-l1.js",
+            "questionId": 15,
+            "questionType": "single",
+            "severity": "critical",
+            "type": "answer_mismatch",
+            "message": "解析声明答案 D，实际 answer 字段指向 B"
+          }
+        ]
+      }
+    }
+  }
+}

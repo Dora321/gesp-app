@@ -264,8 +264,15 @@ const buildRichAnalysis = (q, level) => {
         let reason = '';
 
         // 优先从 explanation 中提取该选项的解析行
+        // 支持多种格式：
+        //   - **A (选项文本)**：原因...
+        //   - **A. 选项文本** ✅/❌ 原因...
+        //   - **A (选项文本)**：❌ 错误。原因...
         const letter = String.fromCharCode(65 + idx);
-        const optLineRegex = new RegExp(`-\\s*\\*\\*${letter}\\s+[^*]*\\*\\*[^：]*：\\s*(.+)`, 'i');
+        const optLineRegex = new RegExp(
+            `-\\s*\\*\\*${letter}[\\s.(（][^*]*\\*\\*[^：:]*[：:]\\s*(.+)`,
+            'i'
+        );
         const optLineMatch = explanation.match(optLineRegex);
 
         if (isCorrect) {
@@ -370,21 +377,27 @@ const buildRichAnalysis = (q, level) => {
     }
 
     // --- 3. 核心知识点 ---
-    // 从 explanation 中提取核心解析部分（去除答案行和选项分析列表）
+    // 从 explanation 中提取核心知识点，优先使用 **考点：** 标签
     let keyPoint = '';
     if (explanation) {
-        // 提取 **解析：** 之后到第一个 - ** 选项分析之前的内容
-        const analysisMatch = explanation.match(/\*\*解析[：:]\*\*\s*\n([\s\S]*?)(?=\n\s*-\s*\*\*[A-D]|$)/);
-        if (analysisMatch && analysisMatch[1].trim()) {
-            keyPoint = analysisMatch[1].trim();
+        // 优先提取 **考点：** 后面的内容（高质量解析格式）
+        const examPointMatch = explanation.match(/\*\*考点[：:]\*\*\s*(.+)/m);
+        if (examPointMatch && examPointMatch[1].trim()) {
+            keyPoint = examPointMatch[1].trim();
         } else {
-            // 回退：去除答案行和选项列表，保留其余内容
-            keyPoint = explanation
-                .replace(/\*\*答案[：:][^*]*\*\*\s*/g, '')
-                .replace(/\*\*考点[：:][^*]*\*\*\s*/g, '')
-                .replace(/\n\s*-\s*\*\*[A-D][^*]*\*\*[^\n]*/g, '')
-                .replace(/\*\*解析[：:]\*\*\s*/g, '')
-                .trim();
+            // 回退：提取 **解析：** 之后到第一个选项分析之前的内容
+            const analysisMatch = explanation.match(/\*\*解析[：:]\*\*\s*\n([\s\S]*?)(?=\n\s*-\s*\*\*[A-D]|$)/);
+            if (analysisMatch && analysisMatch[1].trim()) {
+                keyPoint = analysisMatch[1].trim();
+            } else {
+                // 最后回退：去除答案行和选项列表，保留其余内容
+                keyPoint = explanation
+                    .replace(/\*\*答案[：:][^*]*\*\*\s*/g, '')
+                    .replace(/\*\*考点[：:]\*\*[^\n]*/g, '')
+                    .replace(/\n\s*-\s*\*\*[A-D][^*]*\*\*[^\n]*/g, '')
+                    .replace(/\*\*解析[：:]\*\*\s*/g, '')
+                    .trim();
+            }
         }
     }
     if (!keyPoint) {
