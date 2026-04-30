@@ -183,17 +183,23 @@ function auditQuestion(q, fileName) {
 function extractKeywords(text) {
   const keywords = [];
   const patterns = [
-    /printf/gi, /scanf/gi, /cout/gi, /cin/gi,
-    /for/gi, /while/gi, /if/gi, /else/gi,
-    /数组/g, /循环/g, /条件/g, /变量/g, /函数/g,
-    /指针/g, /链表/g, /排序/g, /递归/g,
-    /ASCII/gi, /字符/g, /整数/g, /浮点/g,
-    /作用域/g, /关键字/g, /标识符/g,
-    /奇数/g, /偶数/g, /取模/g, /余数/g,
-    /输出/g, /输入/g, /格式/g,
+    /printf/gi, /scanf/gi, /cout/gi, /cin/gi, /endl/gi,
+    /for/gi, /while/gi, /if/gi, /else/gi, /switch/gi, /case/gi,
+    /数组/g, /循环/g, /条件/g, /变量/g, /函数/g, /结构体/g, /类/g, /对象/g,
+    /指针/g, /链表/g, /排序/g, /递归/g, /栈/g, /队列/g, /树/g, /图/g, /堆/g,
+    /ASCII/gi, /字符/g, /串/g, /string/gi, /vector/gi, /list/gi, /map/gi, /set/gi,
+    /整数/g, /浮点/g, /双精度/g, /布尔/g, /int/gi, /char/gi, /double/gi, /float/gi, /bool/gi, /long/gi,
+    /作用域/g, /关键字/g, /标识符/g, /定义/g, /声明/g,
+    /奇数/g, /偶数/g, /取模/g, /余数/g, /整除/g, /因数/g, /质数/g, /素数/g,
+    /输出/g, /输入/g, /格式/g, /占位符/g, /转义/g,
+    /进制/g, /二进制/g, /八进制/g, /十进制/g, /十六进制/g, /补码/g, /原码/g, /反码/g,
+    /位运算/g, /与/g, /或/g, /非/g, /异或/g, /左移/g, /右移/g, /与或非/g,
+    /&|/g, /\|\|/g, /&&/g, /\^/g, /<</g, />>/g, /~/g,
     /%-?\d*d/g, /%d/g, /%f/g, /%s/g,
-    /i\+\+/g, /\+\+i/g, /i--/g,
-    /break/gi, /continue/gi, /return/gi,
+    /i\+\+/g, /\+\+i/g, /i--/g, /--i/g,
+    /break/gi, /continue/gi, /return/gi, /sizeof/gi,
+    /闰年/g, /最大/g, /最小/g, /max/gi, /min/gi, /sqrt/gi, /abs/gi,
+    /结点/g, /节点/g, /头结点/g, /尾结点/g, /空指针/g, /nullptr/gi, /NULL/gi,
   ];
 
   for (const p of patterns) {
