@@ -260,7 +260,8 @@ function extractQuestionsFromFile(filePath) {
         const typeM = block.match(/type:\s*['"`](\w+)['"`]/);
         const questionM = block.match(/question:\s*`([\s\S]*?)`/);
         const answerM = block.match(/answer:\s*(\d+)/);
-        const explanationM = block.match(/explanation:\s*`([\s\S]*?)`/);
+        const explanationM = block.match(/explanation:\s*`([\s\S]*?)`\s*,\s*(?:tags|score|template|id|answer|samples)/);
+
 
         if (!idM || !typeM) continue;
 

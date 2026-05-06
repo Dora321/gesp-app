@@ -392,10 +392,13 @@ export const paperData = {
             explanation: `**答案：C (青少年)**
 
 **选项逐项分析：**
-- **A 大学生 / B 职场人士 / D 科研人员**：❌ 错误。
-- **C 青少年**：✅ 正确。GESP（Programming Capability Level Examination for Youth）全称为“ CCF 编程能力等级认证”，是由中国计算机学会（CCF）主办，面向青少年群体的编程能力测评。
+- **A 大学生**：❌ 错误。
+- **B 职场人士**：❌ 错误。
+- **C 青少年**：✅ 正确。GESP（Programming Capability Level Examination for Youth）全称为“ CCF 编程能力等级认证”，主要面向青少年群体。
+- **D 科研人员**：❌ 错误。
 
 **考点：** GESP 认证体系基本常识。`,
+
             tags: ["客观题", "单选题", "GESP4级"]
         },
         {
