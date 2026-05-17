@@ -656,6 +656,8 @@ export default function EnhancedPaperPage({ forcedPaperId }) {
     const handleOptionSelect = (qId, optionIdx) => {
         if (revealed[qId]) return;
         setAnswers((prev) => ({ ...prev, [qId]: optionIdx }));
+        setRevealed((prev) => ({ ...prev, [qId]: true }));
+        setActiveTab('analysis');
     };
 
     const revealCurrent = () => {

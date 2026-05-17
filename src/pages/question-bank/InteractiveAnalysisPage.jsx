@@ -256,6 +256,8 @@ export default function InteractiveAnalysisPage({ paperData, paperId }) {
     const handleOptionSelect = (qId, optionIdx) => {
         if (revealed[qId]) return;
         setAnswers(prev => ({ ...prev, [qId]: optionIdx }));
+        setRevealed(prev => ({ ...prev, [qId]: true }));
+        setActiveTab('analysis');
     };
 
     const revealCurrent = () => {
@@ -507,7 +509,7 @@ export default function InteractiveAnalysisPage({ paperData, paperId }) {
                                         </div>
                                     </div>
                                 ) : (
-                                    <p className="text-sm text-slate-600 flex items-center gap-2"><RefreshCw size={14} /> 先在「作答」标签中选择答案并点击"查看答案与解析"。</p>
+                                    <p className="text-sm text-slate-600 flex items-center gap-2"><RefreshCw size={14} /> 先在「作答」标签中选择答案。</p>
                                 )}
                             </div>
                         )}
