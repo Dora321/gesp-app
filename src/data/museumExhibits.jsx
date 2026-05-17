@@ -810,7 +810,7 @@ export const allExhibits = [
     {
         id: 'www',
         title: '万维网',
-        rarity: '传世',
+        rarity: '夯',
         year: '1989',
         icon: <Globe className="w-12 h-12 text-emerald-400" />,
         color: 'from-emerald-500/20 to-green-600/20 border-emerald-500/50',
@@ -925,7 +925,7 @@ export const allExhibits = [
     {
         id: 'alphago',
         title: 'AlphaGo',
-        rarity: '传世',
+        rarity: '夯',
         year: '2016',
         icon: <Cpu className="w-12 h-12 text-teal-400" />,
         color: 'from-teal-500/20 to-cyan-600/20 border-teal-500/50',
@@ -1684,7 +1684,7 @@ export const allExhibits = [
     {
         id: 'quantum',
         title: '量子计算',
-        rarity: '传世',
+        rarity: '夯',
         year: '2019',
         icon: <Box className="w-12 h-12 text-violet-400" />,
         color: 'from-violet-500/20 to-purple-600/20 border-violet-500/50',
@@ -1730,7 +1730,7 @@ export const allExhibits = [
     {
         id: 'chatgpt',
         title: 'ChatGPT',
-        rarity: '传世',
+        rarity: '夯',
         year: '2022',
         icon: <Bot className="w-12 h-12 text-emerald-500" />,
         color: 'from-emerald-500/20 to-teal-600/20 border-emerald-500/50',
@@ -1845,7 +1845,7 @@ export const allExhibits = [
     {
         id: 'privacy',
         title: '个人隐私',
-        rarity: '绝版',
+        rarity: '夯',
         year: '20??',
         icon: <Eye className="w-12 h-12 text-red-600" />,
         color: 'from-red-500/20 to-rose-600/20 border-red-500/50',
@@ -1891,7 +1891,7 @@ export const allExhibits = [
     {
         id: 'biometrics',
         title: '生物识别',
-        rarity: '常见',
+        rarity: 'NPC',
         year: '2013',
         icon: <Fingerprint2 className="w-12 h-12 text-yellow-400" />,
         color: 'from-yellow-400/20 to-amber-500/20 border-yellow-400/50',
@@ -1937,7 +1937,7 @@ export const allExhibits = [
     {
         id: 'theranos',
         title: 'Theranos',
-        rarity: '史诗(负面)',
+        rarity: '拉完了',
         year: '2003',
         icon: <Skull className="w-12 h-12 text-rose-500" />,
         color: 'from-rose-500/20 to-red-600/20 border-rose-500/50',
@@ -1960,7 +1960,7 @@ export const allExhibits = [
     {
         id: 'silk_road',
         title: '丝绸之路',
-        rarity: '史诗(负面)',
+        rarity: '拉完了',
         year: '2011',
         icon: <Ban className="w-12 h-12 text-slate-500" />,
         color: 'from-slate-500/20 to-gray-600/20 border-slate-500/50',
@@ -1983,7 +1983,7 @@ export const allExhibits = [
     {
         id: 'wechat',
         title: '微信',
-        rarity: '传世',
+        rarity: '夯',
         year: '2011',
         icon: <MessageCircle className="w-12 h-12 text-green-500" />,
         color: 'from-green-500/20 to-emerald-600/20 border-green-500/50',
@@ -2006,7 +2006,7 @@ export const allExhibits = [
     {
         id: 'tiktok',
         title: 'TikTok',
-        rarity: '传世',
+        rarity: '夯',
         year: '2016',
         icon: <Video className="w-12 h-12 text-pink-500" />,
         color: 'from-pink-500/20 to-cyan-500/20 border-pink-500/50',
@@ -2029,7 +2029,7 @@ export const allExhibits = [
     {
         id: 'linux',
         title: 'Linux',
-        rarity: '传世',
+        rarity: '夯',
         year: '1991',
         icon: <Terminal className="w-12 h-12 text-yellow-300" />,
         color: 'from-yellow-400/20 to-orange-500/20 border-yellow-400/50',
@@ -2052,7 +2052,7 @@ export const allExhibits = [
     {
         id: 'mvp_future',
         title: '未来(你)',
-        rarity: '唯一',
+        rarity: '夯',
         year: '20??',
         icon: <Sparkles className="w-12 h-12 text-white animate-pulse" />,
         color: 'from-white/20 to-slate-200/20 border-white/50',
@@ -2144,7 +2144,7 @@ export const allExhibits = [
     {
         id: 'mandelbrot',
         title: '曼德勃罗集',
-        rarity: '传世',
+        rarity: '夯',
         year: '1980',
         icon: <Infinity className="w-12 h-12 text-violet-500" />,
         color: 'from-violet-500/20 to-fuchsia-600/20 border-violet-500/50',
@@ -2167,7 +2167,7 @@ export const allExhibits = [
     {
         id: 'p_vs_np',
         title: 'P vs NP',
-        rarity: '唯一',
+        rarity: '夯',
         year: '1971',
         icon: <HelpCircle className="w-12 h-12 text-red-500" />,
         color: 'from-red-500/20 to-rose-600/20 border-red-500/50',
@@ -2213,7 +2213,7 @@ export const allExhibits = [
     {
         id: 'bsod',
         title: '蓝屏死机',
-        rarity: '常见',
+        rarity: 'NPC',
         year: '1993',
         icon: <Skull2 className="w-12 h-12 text-blue-600" />,
         color: 'from-blue-600/20 to-indigo-700/20 border-blue-600/50',
@@ -2236,7 +2236,7 @@ export const allExhibits = [
     {
         id: 'stackoverflow',
         title: 'Stack Overflow',
-        rarity: '传世',
+        rarity: '夯',
         year: '2008',
         icon: <Layers className="w-12 h-12 text-orange-500" />,
         color: 'from-orange-500/20 to-amber-600/20 border-orange-500/50',
