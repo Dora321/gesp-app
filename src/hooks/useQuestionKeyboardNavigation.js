@@ -36,7 +36,7 @@ export default function useQuestionKeyboardNavigation({
             }
         };
 
-        window.addEventListener('keydown', handleKeyDown);
-        return () => window.removeEventListener('keydown', handleKeyDown);
+        document.addEventListener('keydown', handleKeyDown, { capture: true });
+        return () => document.removeEventListener('keydown', handleKeyDown, { capture: true });
     }, [enabled, questionCount, onPrevious, onNext]);
 }
