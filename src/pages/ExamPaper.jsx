@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useCallback, useEffect, useState } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import { Clock, ChevronLeft, CheckCircle, AlertTriangle, X, ChevronRight, Menu, Trophy, BookOpen, FileText, Lightbulb } from 'lucide-react';
 import LoadingScreen from '../components/LoadingScreen';
@@ -7,6 +7,7 @@ import { paperCodingMap } from '../data/gesp/paperCodingMap';
 import InteractiveAnalysisPage from './question-bank/InteractiveAnalysisPage';
 import { getEnhancedPaperComponent } from './question-bank/enhancedPaperRegistry';
 import MarkdownRenderer from '../components/MarkdownRenderer';
+import useQuestionKeyboardNavigation from '../hooks/useQuestionKeyboardNavigation';
 
 const PROGRAMMING_ACK = '__programming_acknowledged__';
 
@@ -108,6 +109,29 @@ const ExamPaper = () => {
         }, 1000);
         return () => clearInterval(timer);
     }, [isSubmitted, paperData, mode]);
+
+    const questionCountForKeyboard = paperData
+        ? [
+            ...(paperData.questions || []),
+            ...(paperData.programmingQuestions || []),
+            ...(paperData.codingQuestions || [])
+        ].length
+        : 0;
+
+    const goToPreviousQuestion = useCallback(() => {
+        setCurrentQuestionIndex((prev) => Math.max(0, prev - 1));
+    }, []);
+
+    const goToNextQuestion = useCallback(() => {
+        setCurrentQuestionIndex((prev) => Math.min(questionCountForKeyboard - 1, prev + 1));
+    }, [questionCountForKeyboard]);
+
+    useQuestionKeyboardNavigation({
+        enabled: mode === 'exam' && !showSubmitConfirm && !showResult,
+        questionCount: questionCountForKeyboard,
+        onPrevious: goToPreviousQuestion,
+        onNext: goToNextQuestion
+    });
 
     if (loading) {
         return <LoadingScreen message="正在加载试卷" variant="dark" />;
