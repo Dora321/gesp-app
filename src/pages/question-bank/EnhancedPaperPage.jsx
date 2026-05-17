@@ -1,4 +1,4 @@
-import React, { useMemo, useState, useEffect } from 'react';
+import React, { useCallback, useEffect, useMemo, useState } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
 import MarkdownRenderer from '../../components/MarkdownRenderer';
 import {
@@ -18,6 +18,7 @@ import LoadingScreen from '../../components/LoadingScreen';
 import { getPaper } from '../../data/gesp';
 import { luoguCodingByLevel } from '../../data/gesp/luoguCodingByLevel';
 import { paperCodingMap } from '../../data/gesp/paperCodingMap';
+import useQuestionKeyboardNavigation from '../../hooks/useQuestionKeyboardNavigation';
 
 const stripLeadingNumber = (questionText) => {
     if (typeof questionText !== 'string') return questionText || '';
@@ -573,6 +574,23 @@ export default function EnhancedPaperPage({ forcedPaperId }) {
     const [currentQuestionIndex, setCurrentQuestionIndex] = useState(0);
     const [answers, setAnswers] = useState({});
     const [revealed, setRevealed] = useState({});
+
+    const goToPreviousQuestion = useCallback(() => {
+        setCurrentQuestionIndex((prev) => Math.max(0, prev - 1));
+        setActiveTab('practice');
+    }, []);
+
+    const goToNextQuestion = useCallback(() => {
+        setCurrentQuestionIndex((prev) => Math.min(questions.length - 1, prev + 1));
+        setActiveTab('practice');
+    }, [questions.length]);
+
+    useQuestionKeyboardNavigation({
+        enabled: !loading && !!paperData,
+        questionCount: questions.length,
+        onPrevious: goToPreviousQuestion,
+        onNext: goToNextQuestion
+    });
 
     const answeredCount = useMemo(() => Object.keys(answers).length, [answers]);
     const revealedCount = useMemo(() => Object.keys(revealed).length, [revealed]);

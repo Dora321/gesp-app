@@ -1,7 +1,8 @@
-import React, { useMemo, useState } from 'react';
+import React, { useCallback, useMemo, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { ChevronLeft, ChevronRight, RefreshCw, BookOpen, CheckCircle2, Lightbulb, RotateCcw, Tags } from 'lucide-react';
 import MarkdownRenderer from '../../components/MarkdownRenderer';
+import useQuestionKeyboardNavigation from '../../hooks/useQuestionKeyboardNavigation';
 
 const stripLeadingNumber = (questionText) => {
     if (typeof questionText !== 'string') return questionText || '';
@@ -263,6 +264,22 @@ export default function InteractiveAnalysisPage({ paperData, paperId }) {
         setRevealed(prev => ({ ...prev, [currentQ.id]: true }));
         setActiveTab('analysis');
     };
+
+    const goToPreviousQuestion = useCallback(() => {
+        setCurrentQuestionIndex((prev) => Math.max(0, prev - 1));
+        setActiveTab('practice');
+    }, []);
+
+    const goToNextQuestion = useCallback(() => {
+        setCurrentQuestionIndex((prev) => Math.min(questions.length - 1, prev + 1));
+        setActiveTab('practice');
+    }, [questions.length]);
+
+    useQuestionKeyboardNavigation({
+        questionCount: questions.length,
+        onPrevious: goToPreviousQuestion,
+        onNext: goToNextQuestion
+    });
 
     if (!paperData || !questions.length) {
         return (
