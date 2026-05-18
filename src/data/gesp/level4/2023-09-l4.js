@@ -437,7 +437,7 @@ export const paperData = {
                 "正确",
                 "错误",
             ],
-            answer: 0,
+            answer: 1,
             score: 2,
             explanation: `**答案：错误**
 
@@ -503,7 +503,7 @@ export const paperData = {
                 "正确",
                 "错误",
             ],
-            answer: 0,
+            answer: 1,
             score: 2,
             explanation: `**答案：错误**
 
@@ -613,7 +613,7 @@ C++ 并不强制要求所有可能抛出异常的函数调用都必须放在 \`t
                 "正确",
                 "错误",
             ],
-            answer: 0,
+            answer: 1,
             score: 2,
             explanation: `**答案：错误**
 

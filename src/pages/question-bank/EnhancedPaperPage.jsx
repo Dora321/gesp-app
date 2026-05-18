@@ -19,6 +19,7 @@ import { getPaper } from '../../data/gesp';
 import { luoguCodingByLevel } from '../../data/gesp/luoguCodingByLevel';
 import { paperCodingMap } from '../../data/gesp/paperCodingMap';
 import useQuestionKeyboardNavigation from '../../hooks/useQuestionKeyboardNavigation';
+import { buildQuestionInsight, buildRichAnalysis } from './analysisEngine';
 
 const stripLeadingNumber = (questionText) => {
     if (typeof questionText !== 'string') return questionText || '';
@@ -108,373 +109,38 @@ const buildCodingGuide = (q) => {
     const text = `${q?.question || ''} ${q?.explanation || ''}`;
     const isGrid = /矩阵|网格|坐标|格|H\s*行|W\s*列/.test(text);
     const isNumberTheory = /取模|整除|质数|最大公约数|闰年|年份/.test(text);
+    const isSorting = /排序|冒泡|选择|插入|快排|归并/.test(text);
+    const isSearch = /二分|查找|搜索|DFS|BFS|队列|栈/.test(text);
 
-    const idea = isGrid
-        ? '把问题转成"遍历每个格子并判定是否满足条件"，统计满足条件的数量。'
-        : isNumberTheory
-            ? '先写判断函数，再按范围枚举并累加答案。'
-            : '先抽象状态与转移，再通过循环/函数逐步求解。';
+    let idea = '先抽象状态与转移，再通过循环/函数逐步求解。';
+    let steps = ['读入输入参数', '确定核心判定/转移', '循环或递归求解', '处理边界与特判', '输出结果'];
+    let complexity = '优先保证正确性，再评估复杂度并优化。';
+    let pitfalls = ['输入范围可能很大，注意类型溢出', '边界值（0/1/空）要单独验证', '输出格式要与题面完全一致'];
 
-    const steps = isGrid
-        ? ['读入 H、W、x', '双层循环遍历 (r,c)', '按公式判定是否满足', '满足则计数 +1', '输出计数']
-        : ['读入输入参数', '确定核心判定/转移', '循环或递归求解', '处理边界与特判', '输出结果'];
+    if (isGrid) {
+        idea = '把问题转成"遍历每个格子并判定是否满足条件"，统计满足条件的数量。';
+        steps = ['读入 H、W、x', '双层循环遍历 (r,c)', '按公式判定是否满足', '满足则计数 +1', '输出计数'];
+        complexity = '时间复杂度 O(H×W)，空间复杂度 O(1)。';
+        pitfalls = ['行列索引从 1 开始还是 0 开始要统一', '公式中开方比较建议注意浮点误差', '边界格子也要参与判定'];
+    } else if (isNumberTheory) {
+        idea = '先把数学判定写成函数或清晰条件，再按题目范围枚举、统计或构造答案。';
+        steps = ['读入数据', '整理整除/取模/质数等判定条件', '枚举候选值并应用判定', '维护答案或计数', '输出结果'];
+        complexity = '通常为 O(n) 或 O(n√n)，若数据范围较大要考虑筛法、预处理或数学化简。';
+        pitfalls = ['0、1、负数等边界值要单独判断', '取模表达式要加括号避免优先级误读', '乘法中间结果可能超过 int'];
+    } else if (isSorting) {
+        idea = '先明确排序关键字和方向，再判断题目需要完整排序、局部排序还是只取最值。';
+        steps = ['读入序列', '确定比较规则', '选择合适排序或维护结构', '处理相等元素顺序', '输出目标结果'];
+        complexity = '常规排序时间复杂度 O(n log n)，若只取最大/最小可优化到 O(n)。';
+        pitfalls = ['升序和降序不要写反', '多关键字排序要处理平局规则', '稳定性要求不能忽略'];
+    } else if (isSearch) {
+        idea = '把状态、边界和转移写清楚，再选择二分、DFS/BFS 或栈队列模拟。';
+        steps = ['定义状态和搜索范围', '确定转移或判定函数', '维护访问/边界信息', '找到目标或统计答案', '验证极端情况'];
+        complexity = '二分通常 O(log n)，图/网格搜索通常 O(状态数 + 转移数)。';
+        pitfalls = ['二分左右边界更新容易漏解', 'DFS/BFS 要标记 visited 防止重复访问', '队列和栈对应的遍历顺序不同'];
+    }
 
-    const complexity = isGrid ? '时间复杂度 O(H×W)，空间复杂度 O(1)。' : '优先保证正确性，再评估复杂度并优化。';
-
-    const pitfalls = isGrid
-        ? ['行列索引从 1 开始还是 0 开始要统一', '公式中开方比较建议注意浮点误差', '边界格子也要参与判定']
-        : ['输入范围可能很大，注意类型溢出', '边界值（0/1/空）要单独验证', '输出格式要与题面完全一致'];
-
-    return { idea, steps, complexity, pitfalls, isGrid };
+    return { idea, steps, complexity, pitfalls, isGrid, isNumberTheory, isSorting, isSearch };
 };
-
-/**
- * Build detailed analysis for objective questions.
- * Returns a Markdown string with structured sections:
- * - 核心解析 (main explanation)
- * - 选项分析 (option-by-option breakdown)
- * - 解题步骤 (step-by-step approach)
- * - 易错提醒 (common pitfalls)
- */
-const buildDetailedAnalysis = (q, level) => {
-    const explanation = q?.explanation?.trim();
-    const options = q?.options || [];
-    const answerIdx = q?.answer;
-    const isJudge = q?.type === 'judge' || q?.type === 'tf';
-    const core = `${q?.question || ''} ${options.join(' ')}`;
-
-    // --- 核心解析 ---
-    let mainAnalysis = '';
-    if (explanation) {
-        mainAnalysis = explanation;
-    } else {
-        // Fallback: generate a more detailed explanation based on keywords
-        if (/循环|for|while|do\s*while/i.test(core)) {
-            mainAnalysis = '本题核心在于**循环变量变化**与**终止条件**的准确把握。\n\n关键步骤：\n1. 确认循环变量的**初始值**\n2. 每轮循环中变量的**更新方式**（`i++` / `i+=2` 等）\n3. 循环终止的**边界条件**（`<` vs `<=`）\n4. 手动模拟前几轮，验证循环次数\n\n> 💡 常见陷阱：循环"少一次"或"多一次"，通常是因为边界条件用 `<` 还是 `<=` 导致。';
-        } else if (/if|else|条件|判断|switch|case/i.test(core)) {
-            mainAnalysis = '本题重点是**条件分支的触发顺序与逻辑判断**。\n\n关键步骤：\n1. 逐个分析每个 `if` / `else if` 分支的**条件表达式**\n2. 用最小样例**代入验证**各分支的真值\n3. 注意 `if-else` 链中，**只有第一个为真的分支会被执行**\n4. 检查是否有**遗漏条件**或**逻辑运算符优先级**问题\n\n> 💡 `&&` 和 `||` 的短路特性：`A && B` 中若 A 为假则不计算 B；`A || B` 中若 A 为真则不计算 B。';
-        } else if (/数组|下标|索引|vector|arr/i.test(core)) {
-            mainAnalysis = '本题关注**索引边界与访问顺序**。\n\n关键步骤：\n1. 确认数组的**合法下标范围**（`0` 到 `n-1`）\n2. 区分**越界访问**与**合法访问**\n3. 注意 `vector` 的 `.size()` 返回的是元素个数，最大下标为 `.size()-1`\n4. 二维数组注意行列顺序：`arr[行][列]`\n\n> 💡 数组越界是 C++ 中最常见的未定义行为之一，不会报错但结果不可预测。';
-        } else if (/指针|pointer|&|\*/i.test(core)) {
-            mainAnalysis = '本题涉及**指针与地址**的概念。\n\n关键步骤：\n1. 区分**指针变量**（存储地址）和**普通变量**（存储值）\n2. `*p` 是**解引用**，获取指针指向的值\n3. `&a` 是**取地址**，获取变量 a 的内存地址\n4. 注意指针类型必须与所指向的变量类型匹配\n\n> 💡 指针未初始化时是"野指针"，解引用会导致未定义行为。';
-        } else if (/函数|递归|参数|返回值|return/i.test(core)) {
-            mainAnalysis = '本题考察**函数定义与调用**相关概念。\n\n关键步骤：\n1. 区分**形参**（函数定义中的变量）和**实参**（调用时传入的值）\n2. 理解**值传递**（副本）vs **引用传递**（原始变量）\n3. 递归函数需要明确的**终止条件**（基准情形）\n4. 注意函数的**声明顺序**：调用前必须先声明或定义\n\n> 💡 值传递不会修改原变量，引用传递（`&`）和指针传递可以修改原变量。';
-        } else if (/排序|冒泡|选择|插入|快排|归并/i.test(core)) {
-            mainAnalysis = '本题涉及**排序算法**的原理与特性。\n\n关键步骤：\n1. 理解各排序算法的**基本思想**（比较交换 vs 分治）\n2. 掌握**时间复杂度**：冒泡/选择/插入 O(n²)，快排/归并 O(n log n)\n3. 注意**稳定性**：冒泡、插入稳定；选择、快排不稳定\n4. 根据题意判断考查的是**过程模拟**还是**复杂度分析**\n\n> 💡 稳定排序：相等元素的相对顺序在排序后不变。';
-        } else {
-            mainAnalysis = `该题属于 **GESP L${level}** 高频考点。\n\n解题策略：\n1. **定位题干关键词**：找出题目考查的核心概念\n2. **样例代入法**：用题目给定的最小样例手动推演\n3. **边界验证**：检查极端情况（0、1、空、最大值）\n4. **排除法**：对不确定的选项逐一排除\n\n> 💡 GESP 考试中，客观题通常不需要完整推导，善用排除法可以大幅提高效率。`;
-        }
-    }
-
-    // --- 选项分析 ---
-    let optionAnalysis = '';
-    if (!isJudge && options.length > 0 && answerIdx !== undefined) {
-        const optionLines = options.map((opt, idx) => {
-            const letter = String.fromCharCode(65 + idx);
-            if (idx === answerIdx) {
-                return `- **${letter}. ${opt}** ✅ 正确答案`;
-            }
-            return `- ${letter}. ${opt} ❌`;
-        });
-        optionAnalysis = optionLines.join('\n');
-    } else if (isJudge && answerIdx !== undefined) {
-        optionAnalysis = answerIdx === 0
-            ? '- **正确** ✅\n- 错误 ❌'
-            : '- 正确 ❌\n- **错误** ✅';
-    }
-
-    // --- 解题步骤 ---
-    let steps = '';
-    if (/循环|for|while/i.test(core)) {
-        steps = '1. 写出循环变量的**初始值、终止条件、更新方式**\n2. 手动模拟 2-3 轮循环，记录变量变化\n3. 确认循环结束时的变量状态\n4. 对比选项，选出匹配结果';
-    } else if (/if|else|条件|判断/i.test(core)) {
-        steps = '1. 列出所有条件分支及其表达式\n2. 代入样例数据，逐分支计算真值\n3. 确认哪个分支会被执行\n4. 检查是否有逻辑运算符优先级陷阱';
-    } else if (/数组|下标|索引/i.test(core)) {
-        steps = '1. 确认数组的维度和大小\n2. 画出数组示意图，标注下标\n3. 按题意逐步模拟访问/修改操作\n4. 检查边界条件是否正确';
-    } else {
-        steps = '1. 仔细阅读题干，提取关键信息\n2. 回忆相关概念的定义和规则\n3. 对每个选项逐一验证\n4. 排除明显错误的选项，缩小范围';
-    }
-
-    // --- 易错提醒 ---
-    let pitfalls = [];
-    if (/循环|for|while/i.test(core)) pitfalls = ['`<` 与 `<=` 差一', '`i++` 与 `++i` 在表达式中的区别', '嵌套循环的内外层变量不要混淆', '`break` 跳出最近一层循环，`continue` 跳过本轮'];
-    else if (/if|else|条件|判断/i.test(core)) pitfalls = ['`=` 赋值 vs `==` 比较', '`&&` 优先级高于 `||`', '`else` 只匹配最近的未配对 `if`', '整数除法截断小数部分'];
-    else if (/数组|下标|索引/i.test(core)) pitfalls = ['下标从 0 开始', '越界访问是未定义行为', '二维数组传参时第二维大小不能省', '`sizeof` 对指针不返回数组大小'];
-    else if (/指针|&|\*/i.test(core)) pitfalls = ['野指针必须初始化', '`*` 在声明中表示指针，在表达式中表示解引用', '`&` 在声明中表示引用，在表达式中表示取地址'];
-    else pitfalls = ['审题不清，漏看"不正确的是"', '概念混淆，如形参/实参、声明/定义', '忽略数据类型的取值范围', 'C++ 中整数除法截断而非四舍五入'];
-
-    // --- Assemble Markdown ---
-    const sections = [];
-    sections.push(`### 📖 核心解析\n\n${mainAnalysis}`);
-    if (optionAnalysis) sections.push(`### 🔍 选项分析\n\n${optionAnalysis}`);
-    sections.push(`### 📝 解题步骤\n\n${steps}`);
-    if (pitfalls.length > 0) {
-        sections.push(`### ⚠️ 易错提醒\n\n${pitfalls.map(p => `- ${p}`).join('\n')}`);
-    }
-
-    return sections.join('\n\n');
-};
-
-/**
- * Legacy compatibility: returns plain text for simple display contexts.
- */
-const buildQuestionInsight = (q, level) => {
-    const explanation = q?.explanation?.trim();
-    if (explanation) return explanation;
-
-    const core = `${q?.question || ''}${(q?.options || []).join(' ')}`;
-    if (/循环|for|while/i.test(core)) return '本题核心在于先明确循环变量变化，再判断终止条件和每轮状态更新，避免"少一次/多一次"边界错误。';
-    if (/if|else|条件|判断/i.test(core)) return '本题重点是条件分支触发顺序。建议先代入最小样例，逐分支验证表达式真值。';
-    if (/数组|下标|索引|vector/i.test(core)) return '本题关注索引边界与访问顺序，先确认合法下标范围，再处理更新逻辑。';
-    return `该题属于 GESP L${level} 高频考点，建议先定位题干关键词，再用"样例代入 + 边界验证"两步法完成推导。`;
-};
-
-/**
- * 生成结构化深度解析 —— 从题目内容、选项、已有explanation自动推导
- * 返回 { summary, optionAnalysis, steps, keyPoint, pitfall, extension }
- */
-const buildRichAnalysis = (q, level) => {
-    if (!q) return null;
-    const isProgramming = q.type === 'coding' || q.type === 'programming';
-    if (isProgramming) return null; // 编程题走已有的 codingGuide 逻辑
-
-    const questionText = getQuestionContent(q) || '';
-    const options = q.options || [];
-    const answerIdx = q.answer;
-    const explanation = q.explanation?.trim() || '';
-    const merged = `${questionText} ${options.join(' ')} ${explanation}`;
-
-    // --- 0. 从 explanation 中提取纯文本摘要（去除 Markdown 标记） ---
-    const stripMarkdown = (md) => {
-        if (!md) return '';
-        return md
-            .replace(/\*\*([^*]+)\*\*/g, '$1')   // **bold** → text
-            .replace(/\*([^*]+)\*/g, '$1')         // *italic* → text
-            .replace(/`([^`]+)`/g, '$1')           // `code` → text
-            .replace(/^#{1,6}\s+/gm, '')            // # heading → text
-            .replace(/^>\s+/gm, '')                  // > blockquote → text
-            .replace(/^[-*+]\s+/gm, '')              // - list item → text
-            .replace(/^\d+\.\s+/gm, '');             // 1. list item → text
-    };
-
-    // --- 1. 选项逐项分析 ---
-    const isJudge = q?.type === 'judge' || q?.type === 'tf';
-    const optionAnalysis = options.map((opt, idx) => {
-        const isCorrect = idx === answerIdx;
-        const optText = typeof opt === 'string' ? opt : String(opt);
-        let reason = '';
-
-        // 优先从 explanation 中提取该选项的解析行
-        // 支持多种格式：
-        //   - **A (选项文本)**：原因...
-        //   - **A. 选项文本** ✅/❌ 原因...
-        //   - **A (选项文本)**：❌ 错误。原因...
-        const letter = String.fromCharCode(65 + idx);
-        const optLineRegex = new RegExp(
-            `-\\s*\\*\\*${letter}[\\s.(（][^*]*\\*\\*[^：:]*[：:]\\s*(.+)`,
-            'i'
-        );
-        const optLineMatch = explanation.match(optLineRegex);
-
-        if (isCorrect) {
-            if (optLineMatch) {
-                reason = stripMarkdown(optLineMatch[1]);
-            } else if (isJudge) {
-                // 判断题正确选项：从 explanation 提取判定依据
-                const basisMatch = explanation.match(/\*\*判定依据[：:]\*\*\s*\n([\s\S]*?)(?=\n\s*\*\*|$)/);
-                reason = basisMatch ? stripMarkdown(basisMatch[1].trim()) : '与题意判定一致。';
-            } else {
-                reason = '正确答案，与题意完全吻合。';
-            }
-        } else {
-            if (optLineMatch) {
-                // 从 explanation 中提取到该选项的解析行，去掉"错误。"等前缀标记
-                reason = stripMarkdown(optLineMatch[1]).replace(/^错误[。，、]\s*/, '').replace(/^不正确[。，、]\s*/, '');
-            } else if (isJudge) {
-                // 判断题错误选项：从 explanation 提取纠错或判定依据
-                const correctionMatch = explanation.match(/\*\*纠错[：:]\*\*\s*(.+?)(?=\n\s*\*\*|$)/);
-                const basisMatch = explanation.match(/\*\*判定依据[：:]\*\*\s*\n([\s\S]*?)(?=\n\s*\*\*|$)/);
-                if (correctionMatch) {
-                    reason = stripMarkdown(correctionMatch[1].trim());
-                } else if (basisMatch) {
-                    reason = stripMarkdown(basisMatch[1].trim());
-                } else {
-                    reason = '与题意判定不符。';
-                }
-            } else if (explanation) {
-                // explanation 存在但格式不标准，回退到通用提示
-                reason = '该选项与题意不符。';
-            } else {
-                // 无 explanation，回退到关键词推断
-                if (/变量|标识符|命名|关键字/i.test(optText) && /关键字|保留字/i.test(merged)) {
-                    reason = /下划线|_|开头/i.test(optText)
-                        ? '下划线开头的标识符在 C++ 中是合法的，此说法有误。'
-                        : /关键字|保留字/i.test(optText)
-                            ? '混淆了关键字与标识符的规则。'
-                            : '对标识符命名规则理解有偏差。';
-                } else if (/循环|for|while|迭代/i.test(merged)) {
-                    reason = /边界|少一次|多一次|off.?by/i.test(optText)
-                        ? '循环边界判断有误，常见 off-by-one 错误。'
-                        : /初始|开始|从.*起/i.test(optText)
-                            ? '循环变量初始值设定不当。'
-                            : '对循环执行次数或条件判断理解有偏差。';
-                } else if (/运算|表达式|优先级|算术/i.test(merged)) {
-                    reason = /优先级|顺序/i.test(optText)
-                        ? '运算符优先级记忆有误，建议牢记：* / % > + -。'
-                        : /溢出|越界|范围/i.test(optText)
-                            ? '忽略了数据类型的表示范围限制。'
-                            : '运算过程推导有误，建议逐步代入验证。';
-                } else if (/条件|判断|if|else|逻辑|布尔/i.test(merged)) {
-                    reason = /短路|逻辑与|逻辑或/i.test(optText)
-                        ? '逻辑运算的短路求值规则理解有误。'
-                        : /真假|true|false|0|1/i.test(optText)
-                            ? 'C++ 中非零即真，零即假，注意隐式转换。'
-                            : '条件表达式的求值顺序或逻辑关系判断有误。';
-                } else if (/数组|下标|索引|vector|越界/i.test(merged)) {
-                    reason = /越界|范围|0.*n-1/i.test(optText)
-                        ? '数组下标从 0 开始，最大下标为 n-1。'
-                        : '对数组访问或遍历逻辑理解有偏差。';
-                } else if (/字符串|字符|ASCII|char/i.test(merged)) {
-                    reason = /ASCII|编码|差值/i.test(optText)
-                        ? '字符运算本质是 ASCII 值运算，注意大小写差值。'
-                        : '对字符串/字符的处理方式理解有误。';
-                } else if (/位运算|按位|&|\||\^|<<|>>/i.test(merged)) {
-                    reason = '位运算规则记忆有误，建议列出二进制逐位运算验证。';
-                } else if (/函数|递归|参数|返回值/i.test(merged)) {
-                    reason = '对函数调用、参数传递或返回值逻辑理解有偏差。';
-                } else if (/输入|输出|printf|scanf|cin|cout|格式/i.test(merged)) {
-                    reason = /格式|%d|%f|%g|%s/i.test(optText)
-                        ? '格式控制符的用法或默认行为理解有误。'
-                        : '输入输出的处理逻辑判断有偏差。';
-                } else if (/排序|冒泡|选择|插入/i.test(merged)) {
-                    reason = '排序算法的执行过程或比较次数计算有误。';
-                } else if (/复杂度|O\(/i.test(merged)) {
-                    reason = '时间/空间复杂度分析有误，建议数循环层数并估算。';
-                } else {
-                    reason = '该选项与题意不符，属于常见干扰项。';
-                }
-            }
-        }
-
-        return { idx, label: String.fromCharCode(65 + idx), text: optText, isCorrect, reason };
-    });
-
-    // --- 2. 解题步骤 ---
-    const steps = [];
-    const hasCode = /```|cin|cout|printf|scanf|for|while|if|int |return/i.test(questionText);
-
-    if (hasCode) {
-        steps.push({ icon: '📋', text: '审题：明确代码的输入、输出和核心逻辑' });
-        steps.push({ icon: '🔍', text: '追踪：逐行执行代码，记录关键变量的值变化' });
-        if (/for|while/i.test(questionText)) {
-            steps.push({ icon: '🔄', text: '模拟循环：列出每轮迭代中变量的取值' });
-        }
-        steps.push({ icon: '✅', text: '验证：将推导结果与选项逐一比对' });
-    } else {
-        steps.push({ icon: '📋', text: '审题：提取题干关键词，明确考查方向' });
-        steps.push({ icon: '💡', text: '回忆：调取相关知识点（概念、规则、语法）' });
-        steps.push({ icon: '🔍', text: '排除：逐项验证各选项，排除明显错误' });
-        steps.push({ icon: '✅', text: '确认：对剩余选项做代入验证，锁定答案' });
-    }
-
-    // --- 3. 核心知识点 ---
-    // 从 explanation 中提取核心知识点，优先使用 **考点：** 标签
-    let keyPoint = '';
-    if (explanation) {
-        // 优先提取 **考点：** 后面的内容（高质量解析格式）
-        const examPointMatch = explanation.match(/\*\*考点[：:]\*\*\s*(.+)/m);
-        if (examPointMatch && examPointMatch[1].trim()) {
-            keyPoint = examPointMatch[1].trim();
-        } else {
-            // 回退：提取 **解析：** 之后到第一个选项分析之前的内容
-            const analysisMatch = explanation.match(/\*\*解析[：:]\*\*\s*\n([\s\S]*?)(?=\n\s*-\s*\*\*[A-D]|$)/);
-            if (analysisMatch && analysisMatch[1].trim()) {
-                keyPoint = analysisMatch[1].trim();
-            } else {
-                // 最后回退：去除答案行和选项列表，保留其余内容
-                keyPoint = explanation
-                    .replace(/\*\*答案[：:][^*]*\*\*\s*/g, '')
-                    .replace(/\*\*考点[：:]\*\*[^\n]*/g, '')
-                    .replace(/\n\s*-\s*\*\*[A-D][^*]*\*\*[^\n]*/g, '')
-                    .replace(/\*\*解析[：:]\*\*\s*/g, '')
-                    .trim();
-            }
-        }
-    }
-    if (!keyPoint) {
-        if (/优先级|运算顺序/i.test(merged)) keyPoint = 'C++ 运算符优先级：算术 > 关系 > 逻辑，同级从左到右（赋值从右到左）。';
-        else if (/循环|for|while/i.test(merged)) keyPoint = '循环三要素：初始值、终止条件、每次迭代的变化量。缺一不可。';
-        else if (/if|else|条件|判断/i.test(merged)) keyPoint = '条件表达式求值：非零为真，零为假。注意赋值 = 与比较 == 的区别。';
-        else if (/数组|下标/i.test(merged)) keyPoint = '数组下标从 0 开始，最大下标为长度 - 1。越界访问是未定义行为。';
-        else if (/字符串|字符|ASCII/i.test(merged)) keyPoint = '字符本质是整数（ASCII 值），大写 A=65，小写 a=97，差值 32。';
-        else if (/位运算/i.test(merged)) keyPoint = '位运算在二进制层面操作：& 按位与、| 按位或、^ 按位异或、~ 取反、<< 左移、>> 右移。';
-        else if (/变量|标识符|关键字/i.test(merged)) keyPoint = '标识符规则：字母/下划线开头，由字母/数字/下划线组成，不能是关键字。';
-        else if (/整除|取模|余数/i.test(merged)) keyPoint = '整数除法向零取整，取模结果符号与被除数相同。注意负数取模的行为。';
-        else if (/函数|递归/i.test(merged)) keyPoint = '函数调用时实参到形参是值传递，递归需要明确的终止条件和状态转移。';
-        else if (/输入|输出|printf|格式/i.test(merged)) keyPoint = 'printf 格式符：%d 整数、%f 浮点、%g 自动、%s 字符串、%c 字符。';
-        else keyPoint = `该题考查 GESP L${level} 核心知识点，建议结合课程内容系统复习。`;
-    }
-
-    // --- 4. 易错点 ---
-    const pitfalls = [];
-    if (/for|while|循环/i.test(merged)) {
-        pitfalls.push('循环边界：i < n 还是 i <= n？差一次结果完全不同');
-        pitfalls.push('循环变量修改：i++ 写成 i-- 或忘记更新会导致死循环');
-    }
-    if (/i\s*%\s*\d|取模|余数/i.test(merged)) {
-        pitfalls.push('负数取模：C++ 中 -7 % 3 = -1，不是 2');
-    }
-    if (/int\s+\w+\s*=\s*[\d.]+f?|浮点|double|float/i.test(merged)) {
-        pitfalls.push('整数除法陷阱：5/2 = 2 而非 2.5，至少一个操作数需为浮点');
-    }
-    if (/=\s*=|赋值|比较/i.test(merged)) {
-        pitfalls.push('= 赋值 vs == 比较：if(a=5) 永远为真，且 a 被修改');
-    }
-    if (/数组|arr|下标/i.test(merged)) {
-        pitfalls.push('数组下标从 0 开始，arr[n] 已越界');
-    }
-    if (/char|ASCII|字符/i.test(merged)) {
-        pitfalls.push('字符与整数混用：\'0\' ≠ 0，\'0\' 的 ASCII 值是 48');
-    }
-    if (/位运算|&|\||\^|<<|>>/i.test(merged)) {
-        pitfalls.push('&& 与 &、|| 与 | 的区别：逻辑运算 vs 位运算');
-    }
-    if (/continue|break/i.test(merged)) {
-        pitfalls.push('continue 跳过本轮剩余语句进入下一轮，break 直接退出整个循环');
-    }
-    if (/递归/i.test(merged)) {
-        pitfalls.push('递归必须有终止条件，否则栈溢出；注意返回值的传递');
-    }
-    if (pitfalls.length === 0) {
-        pitfalls.push('审题不仔细：注意"不正确的是""错误的是"等反向提问');
-        pitfalls.push('代入验证：用最小样例手动推演，比凭直觉更可靠');
-    }
-
-    // --- 5. 知识延伸 ---
-    let extension = '';
-    if (/优先级|运算顺序/i.test(merged)) {
-        extension = '延伸：C++ 运算符优先级口诀 —— "单目算关逻，条赋逗最低"。单目 > 算术 > 关系 > 逻辑 > 条件 > 赋值 > 逗号。';
-    } else if (/for|while|do\s*while/i.test(merged)) {
-        extension = '延伸：for 与 while 本质等价，for 更适合计数循环，while 更适合条件循环。do-while 至少执行一次。';
-    } else if (/if|else|switch/i.test(merged)) {
-        extension = '延伸：多重 if-else 注意匹配规则（就近匹配），switch 需要 break 防止穿透。';
-    } else if (/数组|二维/i.test(merged)) {
-        extension = '延伸：二维数组按行存储，arr[i][j] 的地址 = 基地址 + i*列数 + j。';
-    } else if (/字符串|string|strlen|strcmp/i.test(merged)) {
-        extension = '延伸：C 风格字符串以 \'\\0\' 结尾，strlen 不计入；C++ string 类更安全方便。';
-    } else if (/位运算/i.test(merged)) {
-        extension = '延伸：位运算技巧 —— n & (n-1) 消去最低位 1，判断 2 的幂；n ^ n = 0，n ^ 0 = n。';
-    } else if (/变量|类型|int|long|double/i.test(merged)) {
-        extension = '延伸：int 范围约 ±21 亿，long long 约 ±9.2×10¹⁸。大数运算注意溢出。';
-    } else if (/递归/i.test(merged)) {
-        extension = '延伸：递归三要素 —— 终止条件、递推关系、返回值传递。尾递归可优化为循环。';
-    } else {
-        extension = `延伸：该知识点在 GESP L${level} 中反复出现，建议整理错题本，归纳同类题型的解题套路。`;
-    }
-
-    return { summary: explanation, optionAnalysis, steps, keyPoint, pitfalls, extension };
-};
-
 const sectionMetaByLevel = {
     1: { tone: '语法启蒙', focus: '语句规则与基础逻辑', color: 'from-emerald-500 to-teal-500' },
     2: { tone: '流程强化', focus: '循环与分支协同', color: 'from-blue-500 to-indigo-500' },
@@ -498,7 +164,9 @@ export default function EnhancedPaperPage({ forcedPaperId }) {
 
     useEffect(() => {
         let cancelled = false;
-        setLoading(true);
+        Promise.resolve().then(() => {
+            if (!cancelled) setLoading(true);
+        });
         getPaper(paperId).then(data => {
             if (!cancelled) {
                 setPaperData(data);

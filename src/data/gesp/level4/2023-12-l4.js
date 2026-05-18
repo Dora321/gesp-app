@@ -616,7 +616,7 @@ C++ 的 \`std::sort\` 函数是一个泛型算法，支持所有提供了随机�
                 "正确",
                 "错误",
             ],
-            answer: 0,
+            answer: 1,
             score: 2,
             explanation: `**答案：错误**
 

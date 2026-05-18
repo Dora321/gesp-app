@@ -148,36 +148,37 @@ export const paperData = {
         {
             id: 2,
             type: "single",
-            question: `下面 C++ 代码执行后，输出的是 ( ) 。\n\`\`\`cpp\nint main() {\n char *p = "GESP";\n cout << *(p+2) << endl;\n return 0;\n}\n\`\`\``,
-            options: ["G", "e", "n", "S"],
+            question: `下面 C++ 代码执行后，输出的是 ( ) 。\n\`\`\`cpp\nint main()\n{\n    int x[]={2, 0, 2, 4};\n    char geSP[]="Grade Examination of SP";\n    cout << geSP[sizeof(x)] << endl;\n\n    cout << endl;\n    return 0;\n}\n\`\`\``,
+            options: ["G", "e", "n", "P"],
             answer: 2,
             score: 2,
-            explanation: `**答案：D (S)**
+            explanation: `**答案：C (n)**
 
 **选项逐项分析：**
-- **A G**：❌ 错误。对应下标 0（即 \`*p\`）。
-- **B e**：❌ 错误。对应下标 1（即 \`*(p+1)\`）。
-- **C n**：❌ 错误。字符串中并无字符 'n'。
-- **D S**：✅ 正确。指针 \`p\` 指向字符串常量 "GESP" 的首地址。根据指针算术运算，\`p+2\` 指向该字符串的第 3 个字符（下标从 0 开始，即 0:G, 1:E, 2:S）。解引用后输出字符 'S'。
+- **A G**：❌ 错误。对应字符串下标 0。
+- **B e**：❌ 错误。对应字符串下标 4。
+- **C n**：✅ 正确。\`x\` 是 4 个 \`int\` 组成的数组，通常每个 \`int\` 占 4 字节，所以 \`sizeof(x)=16\`。字符串 \`"Grade Examination of SP"\` 从 0 开始计数，下标 16 的字符是 \`n\`。
+- **D P**：❌ 错误。字符 \`P\` 位于字符串末尾，不是下标 16 的位置。
 
-**考点：** 指针与字符串常量的偏移访问。`,
+**考点：** \`sizeof\` 运算符与字符数组下标访问。`,
             tags: ["客观题", "单选题", "GESP4级"]
         },
         {
             id: 3,
             type: "single",
-            question: `下面 C++ 代码执行后输出是 ( ) 。\n\`\`\`cpp\nint main() {\n int x[]={2, 0, 2, 4};\n char geSP[]="Grade Examination of SP";\n cout << geSP[sizeof(x)] << endl;\n return 0;\n}\n\`\`\``,
-            options: ["G", "r", "a", "E"],
+            question: `下面 C++ 代码执行后输出是 ( ) 。\n\`\`\`cpp\nint foo(float *f)\n{\n    return int(*f*2);\n}\n\nint main()\n{\n    float fnum[10]={1.1};\n    fnum[1]=foo(fnum);\n    cout << fnum[0]+fnum[1] << endl;\n\n    cout << endl;\n    return 0;\n}\n\`\`\``,
+            options: ["1", "1.1", "3", "3.1"],
             answer: 3,
             score: 2,
-            explanation: `**答案：D (E)**
+            explanation: `**答案：D (3.1)**
 
 **选项逐项分析：**
-- **A G** / **B r**：❌ 错误。偏移量不足以到达下标 16。
-- **C a**：❌ 错误。
-- **D E**：✅ 正确。\`sizeof(x)\` 为 16 (4个int)。\`geSP[16]\` 访问下标 16。字符串 "Grade Examination of SP" 下标 16 处是 'n'。*(注：真题倾向 D，此处按 standard offset 分析。)*
+- **A 1**：❌ 错误。没有只输出整数部分 1。
+- **B 1.1**：❌ 错误。这只是 \`fnum[0]\` 的初值。
+- **C 3**：❌ 错误。\`cout\` 输出的是浮点加法结果，不会自动截断成整数。
+- **D 3.1**：✅ 正确。\`foo(fnum)\` 接收到 \`fnum[0]\` 的地址，\`*f\` 为 1.1，\`int(1.1*2)\` 得到 2；因此 \`fnum[1]=2\`，输出 \`1.1+2=3.1\`。
 
-**考点：** sizeof 运算符与字符串下标偏移。`,
+**考点：** 指针传参、数组首元素地址与强制类型转换。`,
 
 
             tags: ["客观题", "单选题", "GESP4级"]
@@ -221,17 +222,17 @@ export const paperData = {
         {
             id: 6,
             type: "single",
-            question: `下面 C++ 代码执行后输出是（ ）。\n\`\`\`cpp\nint main() {\n char *p = "I love GESP!";\n cout << p+7 << endl;\n return 0;\n}\n\`\`\``,
+            question: `下面 C++ 代码执行后输出是（ ）。\n\`\`\`cpp\nint main()\n{\n    char *p="I love GESP!";\n    cout << p+5 << endl;\n\n    cout << endl;\n    return 0;\n}\n\`\`\``,
             options: ["e", "I lov", "e GESP!", "GESP!"],
             answer: 2,
             score: 2,
-            explanation: `**答案：D (GESP!)**
+            explanation: `**答案：C (e GESP!)**
 
 **选项逐项分析：**
-- **A e**：❌ 错误。这是 \`*(p+5)\` 的结果。
+- **A e**：❌ 错误。这是单个字符 \`*(p+5)\`，不是字符指针整体输出的结果。
 - **B I lov**：❌ 错误。
-- **C e GESP!**：❌ 错误。这是从下标 5 开始输出。
-- **D GESP!**：✅ 正确。\`p+7\` 指向下标 7 (字符 'G')。使用 \`cout\` 输出字符指针会从该地址输出至结束符。
+- **C e GESP!**：✅ 正确。字符串 \`"I love GESP!"\` 中下标 5 的字符是 \`e\`。用 \`cout\` 输出 \`char*\` 时，会从该地址开始一直输出到字符串结束符，所以结果为 \`e GESP!\`。
+- **D GESP!**：❌ 错误。这是从下标 7 的字符 \`G\` 开始输出的结果。
 
 **考点：** 字符指针算术运算与字符串流式输出。`,
 
@@ -240,18 +241,17 @@ export const paperData = {
         {
             id: 7,
             type: "single",
-            question: `下面 C++ 代码执行以后输出的是（ ）。\n\`\`\`cpp\nint foo(float *f) { return int(*f * 2); }\nint main() {\n float fnum[10] = {1.1};\n fnum[1] = foo(fnum);\n cout << fnum[0]+fnum[1] << endl;\n return 0;\n}\n\`\`\``,
-            options: ["1.1", "3.1", "3.3", "不确定"],
+            question: `下面 C++ 代码执行以后输出的是（ ）。\n\`\`\`cpp\nint rc=5;\nint main()\n{\n    int rc;\n    cout << ++rc << endl;\n\n    cout << endl;\n    return 0;\n}\n\`\`\``,
+            options: ["0", "1", "6", "不确定"],
             answer: 3,
             score: 2,
-            explanation: `**答案：B (3.1)**
+            explanation: `**答案：D (不确定)**
 
 **选项逐项分析：**
-- **A 1.1**：❌ 错误。
-- **B 3.1**：✅ 正确。\`foo(fnum)\` 传入 \`fnum[0]\` (1.1) 的地址，返回 \`int(1.1 * 2) = 2\`。\`fnum[1]\` 变为 2。输出 \`1.1 + 2 = 3.1\`。
-- **C 3.3 / D 不确定**：❌ 错误。
+- **A 0**、**B 1**、**C 6**：❌ 错误。程序中真正被自增的是 \`main\` 内部的局部变量 \`rc\`，而它没有初始化。
+- **D 不确定**：✅ 正确。局部变量 \`int rc;\` 会屏蔽全局变量 \`rc=5\`，但局部 \`rc\` 没有初值。对未初始化局部变量执行 \`++rc\` 结果不确定，程序行为不可靠，不能确定输出为某个固定值。
 
-**考点：** 传址调用与类型转换逻辑。`,
+**考点：** 局部变量屏蔽全局变量与未初始化变量。`,
 
             tags: ["客观题", "单选题", "GESP4级"]
         },
@@ -277,15 +277,16 @@ export const paperData = {
             id: 9,
             type: "single",
             question: `插入排序在最好情况下的时间复杂度是（ ）。`,
-            options: ["$O(1)$", "$O(N)$", "$O(n log n)$", "$O(N^2)$"],
+            options: ["$O(1)$", "$O(N/2)$", "$O(N)$", "$O(N^2)$"],
             answer: 2,
             score: 2,
-            explanation: `**答案：B ($O(N)$)**
+            explanation: `**答案：C ($O(N)$)**
 
 **选项逐项分析：**
 - **A $O(1)$**：❌ 错误。
-- **B $O(N)$**：✅ 正确。在有序情况下，内层循环仅比较一次即停止，总复杂度为 $O(N)$。
-- **C $O(n log n)$** / **D $O(N^2)$**：❌ 错误。
+- **B $O(N/2)$**：❌ 错误。大 O 表示法会忽略常数因子，不能把线性复杂度写成一个单独选项作为标准答案。
+- **C $O(N)$**：✅ 正确。在最好情况（原序列已经有序）下，每个元素只需和前一个元素比较一次，内层移动次数为 0，总比较次数与 $N$ 成正比。
+- **D $O(N^2)$**：❌ 错误。这是插入排序平均或最坏情况下的复杂度。
 
 **考点：** 插入排序在有序状态下的性能表现。`,
 
@@ -330,19 +331,20 @@ export const paperData = {
             id: 12,
             type: "single",
             question: `执行下列 C++ 代码时输出的第 2 行是（ ）。\n\`\`\`cpp\nint main() {\n char *s[]={(char*)"2024",(char*)"3.16",(char*)"GESP"};\n for (int i=0; i<2; i++) cout << *s+i << endl;\n return 0;\n}\n\`\`\``,
-            options: ["2024", "024", "3.16", "16"],
+            options: ["2024", "3.16", "024", "3"],
             answer: 2,
             score: 2,
-            explanation: `**答案：B (024)**
+            explanation: `**答案：C (024)**
 
 **选项逐项分析：**
 - **A 2024**：❌ 错误。这是循环第 1 次（i=0）的输出结果。
-- **B 024**：✅ 正确。
+- **B 3.16**：❌ 错误。程序使用的是 \`*s\`，也就是 \`s[0]\`，不会访问 \`s[1]\`。
+- **C 024**：✅ 正确。
   1. \`s\` 是指针数组，\`s[0]\` 指向字符串 "2024"。
   2. \`*s\` 等价于 \`s[0]\`。
   3. 循环第 1 次（i=0）：输出 \`*s + 0\`，即从 "2024" 的下标 0 开始输出，结果为 "2024"。
   4. 循环第 2 次（i=1）：输出 \`*s + 1\`，即从 "2024" 的下标 1 开始输出，结果为 "024"。
-- **C 3.16 / D 16**：❌ 错误。它们对应 \`s[1]\` 相关地址，但程序中固定使用了 \`*s\`。
+- **D 3**：❌ 错误。程序不会只输出单个字符 \`3\`。
 
 **考点：** 指针数组与指针算术运算的结合应用。`,
             tags: ["客观题", "单选题", "GESP4级"]

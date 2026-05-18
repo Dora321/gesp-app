@@ -82,6 +82,7 @@ function auditQuestion(q, fileName) {
   const exp = (q.explanation || '').trim();
   const qType = q.type || 'single';
   const isProgramming = qType === 'coding' || qType === 'programming';
+  const isJudge = qType === 'judge' || qType === 'tf';
 
   // ──── 1. 空解析检测 ────
   if (!exp) {
@@ -98,7 +99,6 @@ function auditQuestion(q, fileName) {
   }
 
   // ──── 2. 答案一致性 ────
-  const isJudge = qType === 'judge' || qType === 'tf';
   if (isJudge) {
     // 判断题：检查是否声明了"正确"或"错误"
     const declaredCorrect = /\*\*答案[：:]\s*正确/.test(exp);
@@ -163,18 +163,63 @@ function auditQuestion(q, fileName) {
 
   // ──── 4. 解析质量评估 ────
   const lines = exp.split('\n').filter(l => l.trim().length > 0);
+  const optionRefs = extractOptionRefs(exp);
   const hasStructuredFormat = /\*\*选项逐项分析/.test(exp) || /\*\*判定依据/.test(exp);
-  const hasOptionBreakdown = (exp.match(/-\s*\*\*[A-D]/g) || []).length >= 2;
+  const hasExamPoint = /\*\*考点[：:]\*\*/.test(exp);
+  const answerOnlyBody = exp
+    .replace(/\*\*答案[：:][^\n]*\n?/g, '')
+    .replace(/\*\*考点[：:]\*\*[^\n]*/g, '')
+    .replace(/\*\*选项逐项分析[：:]?\*\*/g, '')
+    .replace(/^\s*-\s*\*\*[A-D][^*]*\*\*[^\n]*/gm, '')
+    .trim();
+
+  if (answerOnlyBody.length < 12) {
+    issues.push({ severity: 'high', type: 'answer_only', message: '解析只有答案声明，缺少推理过程' });
+  }
+
+  if (!isJudge && q.options && q.options.length > 0) {
+    const expectedLabels = q.options.map((_, idx) => String.fromCharCode(65 + idx));
+    const missingLabels = expectedLabels.filter(label => !optionRefs.has(label));
+    if (missingLabels.length === expectedLabels.length) {
+      issues.push({ severity: 'high', type: 'option_breakdown_missing', message: '缺少选项逐项分析' });
+    } else if (missingLabels.length > 0) {
+      issues.push({ severity: 'high', type: 'option_breakdown_partial', message: `选项分析不完整，缺少 ${missingLabels.join('/')}` });
+    }
+  }
 
   if (lines.length <= 2 && !hasStructuredFormat) {
     issues.push({ severity: 'low', type: 'shallow', message: `解析为一句话简述 (${lines.length} 行)` });
-  } else if (hasStructuredFormat && hasOptionBreakdown) {
+  }
+
+  if (!hasExamPoint && !isJudge) {
+    issues.push({ severity: 'low', type: 'missing_exam_point', message: '缺少考点归纳' });
+  }
+
+  if (isJudge && !/\*\*判定依据[：:]\*\*/.test(exp)) {
+    issues.push({ severity: 'low', type: 'missing_judge_basis', message: '判断题缺少判定依据' });
+  }
+
+  if (hasStructuredFormat && (isJudge || optionRefs.size >= Math.min(q.options?.length || 0, 2))) {
     // 高质量解析，无问题
   } else if (lines.length >= 3) {
     // 中等质量
   }
 
   return issues;
+}
+
+/**
+ * 提取解析中已覆盖的选项字母，支持 "- **A**" 和 "- **C / D**" 合并写法。
+ */
+function extractOptionRefs(exp) {
+  const refs = new Set();
+  const optionLineRegex = /^\s*-\s*(?:\*\*)?([A-D](?:\s*[/、,，]\s*[A-D])*)/gmi;
+  let match;
+  while ((match = optionLineRegex.exec(exp)) !== null) {
+    const letters = match[1].match(/[A-D]/g) || [];
+    letters.forEach(letter => refs.add(letter));
+  }
+  return refs;
 }
 
 /**
@@ -320,8 +365,12 @@ function runAudit() {
         const isProgramming = q.type === 'coding' || q.type === 'programming';
         if (!isProgramming && exp.length > 0) {
           const hasStructured = /\*\*选项逐项分析/.test(exp) || /\*\*判定依据/.test(exp);
-          const hasOptions = (exp.match(/-\s*\*\*[A-D]/g) || []).length >= 2;
-          if (hasStructured && hasOptions) {
+          const hasExamPoint = /\*\*考点[：:]\*\*/.test(exp);
+          const optionRefs = extractOptionRefs(exp);
+          const expectedCount = q.type === 'judge' || q.type === 'tf'
+            ? 0
+            : Math.min((q.options || []).length, 2);
+          if (hasStructured && (expectedCount === 0 || optionRefs.size >= expectedCount) && (hasExamPoint || q.type === 'judge' || q.type === 'tf')) {
             summary.highQualityCount++;
             levelSummary.highQuality++;
           }
@@ -363,6 +412,9 @@ function printReport({ results, summary }) {
 
     if (ls.critical > 0) {
       console.log(c.red(`   🔴 严重问题: ${ls.critical}`));
+    }
+    if (ls.high > 0) {
+      console.log(c.red(`   🟠 高优先级质量问题: ${ls.high}`));
     }
     if (ls.medium > 0) {
       console.log(c.yellow(`   🟡 中等问题: ${ls.medium} (空解析)`));
