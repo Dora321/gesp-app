@@ -226,7 +226,7 @@ const inferWrongReason = (optText, merged, primaryTopic, questionText = '') => {
     if (/不正确|错误|不能|无法/.test(questionText) && /正确|可以|能够|合法/.test(optText)) {
         return '题干是反向提问，该选项虽然表述看似合理，但不符合本题要找的错误项。';
     }
-    if (/变量|标识符|命名|关键字|保留字/i.test(merged)) {
+    if (/标识符|命名|关键字|保留字/i.test(merged)) {
         if (/关键字|保留字/i.test(optText)) return '混淆了关键字与普通标识符，关键字不能作为变量名使用。';
         if (/数字.*开头|开头.*数字/i.test(optText)) return 'C++ 标识符不能以数字开头。';
         return '对标识符命名规则的适用条件判断不准确。';
