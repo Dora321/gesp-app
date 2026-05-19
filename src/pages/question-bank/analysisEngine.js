@@ -185,8 +185,11 @@ const topicRules = [
 
 const detectTopics = (text) => topicRules.filter((rule) => rule.regex.test(text));
 
-const inferWrongReason = (optText, merged, primaryTopic) => {
-    if (/不正确|错误|不能|无法/.test(merged) && /正确|可以|能够|合法/.test(optText)) {
+const inferWrongReason = (optText, merged, primaryTopic, questionText = '') => {
+    if (/以上|都不|均不|都不是|均不是/.test(optText)) {
+        return '题目中已经存在符合条件的正确选项，因此这个总括性的否定选项不成立。';
+    }
+    if (/不正确|错误|不能|无法/.test(questionText) && /正确|可以|能够|合法/.test(optText)) {
         return '题干是反向提问，该选项虽然表述看似合理，但不符合本题要找的错误项。';
     }
     if (/变量|标识符|命名|关键字|保留字/i.test(merged)) {
@@ -225,7 +228,8 @@ export const buildRichAnalysis = (q, level) => {
     const options = getOptions(q, isJudge);
     const answerIdx = normalizeAnswer(q.answer);
     const merged = `${questionText} ${options.join(' ')} ${explanation}`;
-    const topics = detectTopics(merged);
+    const topicSource = `${questionText} ${explanation}`;
+    const topics = detectTopics(topicSource).length ? detectTopics(topicSource) : detectTopics(merged);
     const primaryTopic = topics[0];
     const basis = extractBasis(explanation);
     const examPoint = extractExamPoint(explanation);
@@ -250,7 +254,7 @@ export const buildRichAnalysis = (q, level) => {
         }
 
         if (!reason) {
-            reason = inferWrongReason(text, merged, primaryTopic);
+            reason = inferWrongReason(text, merged, primaryTopic, questionText);
         }
 
         return { idx, label, text, isCorrect, reason };

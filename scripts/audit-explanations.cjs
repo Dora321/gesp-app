@@ -170,7 +170,6 @@ function auditQuestion(q, fileName) {
     .replace(/\*\*答案[：:][^\n]*\n?/g, '')
     .replace(/\*\*考点[：:]\*\*[^\n]*/g, '')
     .replace(/\*\*选项逐项分析[：:]?\*\*/g, '')
-    .replace(/^\s*-\s*\*\*[A-D][^*]*\*\*[^\n]*/gm, '')
     .trim();
 
   if (answerOnlyBody.length < 12) {
