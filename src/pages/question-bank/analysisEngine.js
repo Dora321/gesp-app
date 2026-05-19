@@ -12,7 +12,6 @@ const stripMarkdown = (md) => {
     if (!md) return '';
     return md
         .replace(/\*\*([^*]+)\*\*/g, '$1')
-        .replace(/\*([^*]+)\*/g, '$1')
         .replace(/`([^`]+)`/g, '$1')
         .replace(/^#{1,6}\s+/gm, '')
         .replace(/^>\s+/gm, '')
@@ -44,9 +43,29 @@ const extractExamPoint = (explanation) => {
     return match ? stripMarkdown(match[1]) : '';
 };
 
+const extractSection = (explanation, title) => {
+    if (!explanation) return '';
+    const pattern = new RegExp(`\\*\\*${title}[：:]\\*\\*\\s*\\n([\\s\\S]*?)(?=\\n\\s*\\*\\*|$)`);
+    const match = explanation.match(pattern);
+    return match ? match[1].trim() : '';
+};
+
+const extractListSection = (explanation, title) => {
+    const section = extractSection(explanation, title);
+    if (!section) return [];
+    const listItems = section
+        .split('\n')
+        .map((line) => stripMarkdown(line.replace(/^\s*[-*+]\s*/, '')))
+        .filter(Boolean);
+    return listItems.length > 0 ? listItems : [stripMarkdown(section)].filter(Boolean);
+};
+
 const extractBasis = (explanation) => {
     const basisMatch = explanation.match(/\*\*判定依据[：:]\*\*\s*\n([\s\S]*?)(?=\n\s*\*\*|$)/);
     if (basisMatch) return stripMarkdown(basisMatch[1]);
+
+    const coreMatch = explanation.match(/\*\*核心解析[：:]\*\*\s*\n([\s\S]*?)(?=\n\s*(?:\*\*选项|-\s*\*\*[A-F]|-\s*[A-F][.、）)]|\*\*易错提醒|\*\*知识延伸|\*\*考点|$))/);
+    if (coreMatch) return stripMarkdown(coreMatch[1]);
 
     const analysisMatch = explanation.match(/\*\*解析[：:]\*\*\s*\n([\s\S]*?)(?=\n\s*(?:\*\*选项|-\s*\*\*[A-F]|-\s*[A-F][.、）)]|\*\*考点|$))/);
     if (analysisMatch) return stripMarkdown(analysisMatch[1]);
@@ -64,8 +83,8 @@ const findOptionReason = (explanation, letter) => {
     if (!explanation) return '';
     const escaped = letter.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
     const patterns = [
-        new RegExp(`^\\s*-\\s*\\*\\*${escaped}(?:\\s*[./、）)]|\\s+|[（(])[^*]*\\*\\*\\s*[：:]?\\s*([\\s\\S]*?)(?=\\n\\s*-\\s*\\*\\*[A-F]|\\n\\s*\\*\\*考点|$)`, 'im'),
-        new RegExp(`^\\s*-\\s*${escaped}[.、）)]\\s*([\\s\\S]*?)(?=\\n\\s*-\\s*[A-F][.、）)]|\\n\\s*\\*\\*考点|$)`, 'im'),
+        new RegExp(`^\\s*-\\s*\\*\\*${escaped}(?:\\s*[./、）)]|\\s+|[（(])[^*]*\\*\\*\\s*[：:]?\\s*([\\s\\S]*?)(?=\\n\\s*-\\s*\\*\\*[A-F]|\\n\\s*\\*\\*(?:易错提醒|知识延伸|考点)|(?![\\s\\S]))`, 'im'),
+        new RegExp(`^\\s*-\\s*${escaped}[.、）)]\\s*([\\s\\S]*?)(?=\\n\\s*-\\s*[A-F][.、）)]|\\n\\s*\\*\\*(?:易错提醒|知识延伸|考点)|(?![\\s\\S]))`, 'im'),
     ];
     for (const pattern of patterns) {
         const match = explanation.match(pattern);
@@ -268,6 +287,8 @@ export const buildRichAnalysis = (q, level) => {
     const primaryTopic = choosePrimaryTopic(topics, topicSource);
     const basis = extractBasis(explanation);
     const examPoint = extractExamPoint(explanation);
+    const authoredPitfalls = extractListSection(explanation, '易错提醒');
+    const authoredExtension = extractSection(explanation, '知识延伸');
 
     const optionAnalysis = options.map((opt, idx) => {
         const label = OPTION_LABELS[idx] || String(idx + 1);
@@ -316,19 +337,23 @@ export const buildRichAnalysis = (q, level) => {
     }
 
     const keyPoint = examPoint || basis || primaryTopic?.keyPoint || `该题考查 GESP L${level} 核心知识点，建议结合题干关键词和选项差异完成推导。`;
-    const pitfalls = Array.from(new Set([
-        ...(primaryTopic?.pitfalls || []),
-        ...(topics[1]?.pitfalls?.slice(0, 1) || []),
-        ...(/不正确|错误|不能/.test(questionText) ? ['反向提问时要选“错误项”，不要被正确表述带偏'] : []),
-        ...(/整数|int|double|float|\/|%/.test(merged) ? ['数值题要区分整数除法、浮点除法和取模运算'] : []),
-    ])).slice(0, 4);
+    const pitfalls = authoredPitfalls.length > 0
+        ? authoredPitfalls.slice(0, 4)
+        : Array.from(new Set([
+            ...(primaryTopic?.pitfalls || []),
+            ...(topics[1]?.pitfalls?.slice(0, 1) || []),
+            ...(/不正确|错误|不能/.test(questionText) ? ['反向提问时要选“错误项”，不要被正确表述带偏'] : []),
+            ...(/整数|int|double|float|\/|%/.test(merged) ? ['数值题要区分整数除法、浮点除法和取模运算'] : []),
+        ])).slice(0, 4);
 
     if (pitfalls.length === 0) {
         pitfalls.push('不要只凭印象选答案，至少用一个最小样例或规则定义验证。');
         pitfalls.push('选项看起来相近时，优先比较限定词、边界和输出格式。');
     }
 
-    const extension = primaryTopic?.extension || `该知识点在 GESP L${level} 中反复出现，建议把错因归类到“概念、边界、格式、推演”之一，方便复盘。`;
+    const extension = authoredExtension
+        ? authoredExtension
+        : (primaryTopic?.extension || `该知识点在 GESP L${level} 中反复出现，建议把错因归类到“概念、边界、格式、推演”之一，方便复盘。`);
 
     return {
         summary: basis || explanation,
