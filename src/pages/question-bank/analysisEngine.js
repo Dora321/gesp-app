@@ -78,6 +78,19 @@ const findOptionReason = (explanation, letter) => {
 
 const topicRules = [
     {
+        id: 'bitwise',
+        regex: /位运算|按位|位移|补码|原码|反码|左移|右移|异或/i,
+        keyPoint: '位运算题要先把数转换到二进制或补码语境，再按位逐位处理，最后再转回十进制或布尔结果。',
+        steps: [
+            '确认参与运算的数值、位宽或补码表示方式',
+            '按运算符规则逐位计算，左移低位补 0，右移要留意符号位',
+            '把位运算后的结果转换回题目要求的输出形式',
+            '核对输出的是数值本身、真假值，还是表达式比较结果',
+        ],
+        pitfalls: ['把位运算当成普通逻辑运算', '忽略有符号整数右移时符号位可能被保留', '混淆表达式结果和最终输出格式'],
+        extension: '位运算题建议先写出关键二进制位，再做移位或按位运算，避免只凭十进制心算。',
+    },
+    {
         id: 'loop',
         regex: /循环|for|while|do\s*while|i\+\+|\+\+i|break|continue/i,
         keyPoint: '循环题要抓住三件事：初始值、继续条件、每轮更新。先列变量表，再判断循环结束时的状态。',
@@ -185,6 +198,27 @@ const topicRules = [
 
 const detectTopics = (text) => topicRules.filter((rule) => rule.regex.test(text));
 
+const choosePrimaryTopic = (topics, text) => {
+    const priorityHints = [
+        ['bitwise', /位运算|按位|位移|补码|原码|反码|左移|右移|异或/i],
+        ['string', /ASCII|字符串|string|字符|char|strlen|strcmp|'0'|'\\0'/i],
+        ['array', /数组|下标|索引|vector|二维|越界|arr\[/i],
+        ['operator', /运算符|优先级|表达式|算术|取模|余数|整除|%|\+\+|--|\*|\/|\+|-/i],
+        ['function', /函数|递归|参数|返回值|return|形参|实参/i],
+        ['algorithm', /排序|冒泡|选择|插入|快排|归并|二分|搜索|DFS|BFS|栈|队列|复杂度|O\(/i],
+        ['loop', /循环|for|while|do\s*while|i\+\+|\+\+i|break|continue/i],
+        ['condition', /条件|判断|if|else|switch|case|&&|\|\||布尔|true|false/i],
+        ['io', /输入|输出|cin|cout|printf|scanf|格式|%d|%f|endl|字符串字面量/i],
+    ];
+    for (const [id, regex] of priorityHints) {
+        if (regex.test(text)) {
+            const topic = topics.find((item) => item.id === id);
+            if (topic) return topic;
+        }
+    }
+    return topics[0];
+};
+
 const inferWrongReason = (optText, merged, primaryTopic, questionText = '') => {
     if (/以上|都不|均不|都不是|均不是/.test(optText)) {
         return '题目中已经存在符合条件的正确选项，因此这个总括性的否定选项不成立。';
@@ -201,6 +235,7 @@ const inferWrongReason = (optText, merged, primaryTopic, questionText = '') => {
         return '该选项的输出格式与程序实际拼接结果不一致，通常是漏看了空格、等号或字符串原样输出。';
     }
     if (primaryTopic?.id === 'operator') return '该选项的中间运算结果或优先级处理不正确，建议逐步列出表达式求值过程。';
+    if (primaryTopic?.id === 'bitwise') return '该选项的补码、移位或按位运算推导不符合实际执行结果。';
     if (primaryTopic?.id === 'loop') return '该选项对循环执行次数、边界或变量更新的判断不准确。';
     if (primaryTopic?.id === 'condition') return '该选项没有沿着实际命中的分支执行，或误解了条件短路/互斥关系。';
     if (primaryTopic?.id === 'array') return '该选项对下标范围、访问位置或更新顺序的判断不准确。';
@@ -230,7 +265,7 @@ export const buildRichAnalysis = (q, level) => {
     const merged = `${questionText} ${options.join(' ')} ${explanation}`;
     const topicSource = `${questionText} ${explanation}`;
     const topics = detectTopics(topicSource).length ? detectTopics(topicSource) : detectTopics(merged);
-    const primaryTopic = topics[0];
+    const primaryTopic = choosePrimaryTopic(topics, topicSource);
     const basis = extractBasis(explanation);
     const examPoint = extractExamPoint(explanation);
 
