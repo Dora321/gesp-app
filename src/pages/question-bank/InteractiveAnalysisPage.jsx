@@ -259,23 +259,6 @@ export default function InteractiveAnalysisPage({ paperData, paperId }) {
                                             </div>
                                         )}
 
-                                        {/* 解题步骤 */}
-                                        {richAnalysis?.steps?.length > 0 && (
-                                            <div className="bg-white border border-indigo-100 rounded-lg p-3">
-                                                <div className="text-sm font-semibold text-slate-800 mb-2">🔍 解题步骤</div>
-                                                <div className="flex flex-wrap items-center gap-2 text-xs">
-                                                    {richAnalysis.steps.map((step, idx) => (
-                                                        <React.Fragment key={idx}>
-                                                            <span className="px-2.5 py-1.5 rounded-lg bg-indigo-50 border border-indigo-200 text-indigo-700 leading-relaxed">
-                                                                {step.icon} {step.text}
-                                                            </span>
-                                                            {idx < richAnalysis.steps.length - 1 && <span className="text-indigo-300">→</span>}
-                                                        </React.Fragment>
-                                                    ))}
-                                                </div>
-                                            </div>
-                                        )}
-
                                         {/* 核心知识点 */}
                                         <div className="bg-white border border-violet-100 rounded-lg p-3">
                                             <div className="text-sm font-semibold text-violet-800 mb-1">💡 核心知识点</div>
