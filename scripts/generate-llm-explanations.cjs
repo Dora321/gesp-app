@@ -12,7 +12,7 @@
 
 const fs = require('fs');
 const path = require('path');
-const { execFileSync } = require('child_process');
+const { spawnSync } = require('child_process');
 const { pathToFileURL } = require('url');
 
 const OPTION_LABELS = ['A', 'B', 'C', 'D', 'E', 'F'];
@@ -113,7 +113,8 @@ function buildPrompt(paperData, questions) {
 3. 代码执行题必须逐行推导变量状态、表达式值、输出格式；概念题必须说明概念边界；错误选项必须分别解释“该选项本身为什么错”。
 4. 解析要面向 GESP 学员，专业、清楚、可复盘。避免炫技，避免口语化夸张。
 5. 每道选择题必须完整覆盖 A/B/C/D；判断题必须说明为什么“正确/错误”。
-6. 选择题的 ✅ 只能出现在 answer 指定的唯一正确选项上；所有非答案选项必须使用 ❌。遇到“不能/错误/不正确”这类反向题时，即使某个非答案选项本身是事实正确的，也要标 ❌，并说明“它不是本题要选的项”。
+6. 选择题的 ✅ 只能出现在 answer 指定的唯一正确选项上；所有非答案选项必须使用 ❌。遇到“不能/错误/不正确/不合法/不是”这类反向题时，即使某个非答案选项本身是事实正确的，也必须标 ❌，并写成“该项本身正确/合法，因此不是本题要选的错误项/不合法项”。绝对不要把非答案选项写成“✅ 合法/✅ 正确”。
+7. Claude CLI 外层会负责 JSON 包装，你的正文只需要遵守下面的纯文本块格式；explanation 中可以自然使用换行、反引号和 C++ 代码，但不要输出块格式以外的说明文字。
 
 选择题 explanation 格式必须严格为：
 **答案：A (选项文本)**
@@ -151,23 +152,112 @@ function buildPrompt(paperData, questions) {
 
 **考点：** 简洁考点归纳
 
-只输出 JSON，不要 Markdown 代码块，不要额外解释。JSON 结构：
-{
-  "items": [
-    { "id": 1, "answer": "A", "needsReview": false, "explanation": "..." }
-  ]
-}
+只输出以下纯文本块，不要 Markdown 代码块，不要 JSON，不要额外解释。每题一个块：
+@@ITEM id=1 answer=A needsReview=false
+@@EXPLANATION
+这里写完整 explanation，允许正常换行、反引号、英文双引号和 C++ 代码。
+@@END
 
 输入题目如下：
 ${JSON.stringify(payload, null, 2)}
 `;
 }
 
+function parseTaggedBlocks(text) {
+  const items = [];
+  const pattern = /@@ITEM\s+id=(\d+)\s+answer=([^\n]+?)\s+needsReview=(true|false)\s*\n@@EXPLANATION\n([\s\S]*?)\n@@END/g;
+  let match;
+  while ((match = pattern.exec(text)) !== null) {
+    items.push({
+      id: Number(match[1]),
+      answer: match[2].trim(),
+      needsReview: match[3] === 'true',
+      explanation: match[4].trim(),
+    });
+  }
+  if (!items.length) {
+    throw new Error('No tagged explanation blocks found');
+  }
+  return { items };
+}
+
+function normalizeParsedResult(parsed) {
+  if (Array.isArray(parsed.items)) return parsed;
+  if (Array.isArray(parsed.questions)) {
+    return {
+      items: parsed.questions.map((question) => ({
+        id: question.id,
+        answer: question.answer,
+        needsReview: Boolean(question.needsReview),
+        explanation: question.explanation,
+      })),
+    };
+  }
+  return parsed;
+}
+
 function parseClaudeJson(raw) {
   const outer = JSON.parse(raw);
   let text = outer.result || raw;
   text = text.trim().replace(/^```json\s*/i, '').replace(/^```\s*/i, '').replace(/```$/i, '').trim();
-  return JSON.parse(text);
+  if (text.includes('@@ITEM')) {
+    return parseTaggedBlocks(text);
+  }
+  try {
+    return normalizeParsedResult(JSON.parse(text));
+  } catch (err) {
+    const repaired = text.replace(/},\s*"id"\s*:/g, '},{"id":');
+    try {
+      return normalizeParsedResult(JSON.parse(repaired));
+    } catch (repairErr) {
+      return parseTaggedBlocks(text);
+    }
+  }
+}
+
+function validateOptionMarkers(item, source) {
+  if (source.type === 'judge' || source.type === 'tf') return;
+  const expected = source.answer;
+  const labels = OPTION_LABELS.slice(0, source.options.length);
+  const bad = [];
+  for (const label of labels) {
+    const pattern = new RegExp(`-\\s*\\*\\*${label}(?:[^*]*)\\*\\*\\s*[：:]?([^\\n]+)`);
+    const match = item.explanation.match(pattern);
+    if (!match) continue;
+    const line = match[1];
+    const hasCheck = /✅|✓/.test(line);
+    const hasCross = /❌|✗/.test(line);
+    if (label === expected && hasCross) bad.push(`${label} should be correct but has cross`);
+    if (label !== expected && hasCheck) bad.push(`${label} should be wrong but has check`);
+  }
+  if (bad.length) {
+    throw new Error(`Question ${item.id}: option marker mismatch: ${bad.join('; ')}`);
+  }
+}
+
+function normalizeOptionMarkers(item, source) {
+  if (source.type === 'judge' || source.type === 'tf') return item;
+  const expected = source.answer;
+  const reverseQuestion = /不可以|不能|无法|不合法|错误|不正确|不是|不属于|不能作为/.test(source.question);
+  const labels = OPTION_LABELS.slice(0, source.options.length).join('');
+  const linePattern = new RegExp(`(^\\s*-\\s*\\*\\*([${labels}])(?:[^*]*)\\*\\*\\s*[：:]?\\s*)([^\\n]*)`, 'gm');
+  item.explanation = item.explanation.replace(linePattern, (full, prefix, label, body) => {
+    const isAnswer = label === expected;
+    const icon = isAnswer ? '✅' : '❌';
+    let cleaned = body
+      .replace(/[✅❌✓✗]/g, '')
+      .replace(/^(?:(正确|错误|合法|非法|不合法)[。.]?\s*)+/, '')
+      .trim();
+    let verdict = isAnswer ? '正确' : '错误';
+    if (reverseQuestion && !isAnswer && /(合法|正确|可以|属于|输入设备|关键字)/.test(body)) {
+      verdict = '错误。该项本身符合规则，因此不是本题要选的项';
+    }
+    if (reverseQuestion && isAnswer && /(非法|不合法|不能|不可以|不属于|不是)/.test(body)) {
+      verdict = '正确。该项不符合题目限定，正是本题要选的项';
+    }
+    return `${prefix}${icon} ${verdict}${cleaned ? `。${cleaned}` : ''}`;
+  });
+  return item;
 }
 
 function escapeTemplateLiteral(value) {
@@ -188,13 +278,20 @@ function replaceQuestionExplanation(content, id, explanation) {
   if (next === -1) throw new Error(`Question ${id}: object end not found`);
   const end = next + '\n    },'.length;
   const block = content.slice(start, end);
-  const replaced = block.replace(
-    /(\n\s*explanation:\s*)(`(?:\\[\s\S]|[^`])*`|'(?:\\[\s\S]|[^'])*'|"(?:\\[\s\S]|[^"])*")(\s*,)/,
-    `$1\`${escapeTemplateLiteral(explanation)}\`$3`
-  );
-  if (replaced === block) {
+  const fieldMatch = block.match(/\n(\s*)explanation:\s*/);
+  if (!fieldMatch || fieldMatch.index === undefined) {
     throw new Error(`Question ${id}: explanation field not found`);
   }
+  const fieldStart = fieldMatch.index;
+  const valueStart = fieldStart + fieldMatch[0].length;
+  const tagsIndex = block.indexOf('\n      tags:', valueStart);
+  const valueEnd = tagsIndex === -1 ? block.lastIndexOf('\n    },') : tagsIndex;
+  if (valueEnd === -1 || valueEnd <= valueStart) {
+    throw new Error(`Question ${id}: explanation field end not found`);
+  }
+  const indent = fieldMatch[1];
+  const replacement = `\n${indent}explanation: \`${escapeTemplateLiteral(explanation)}\`,`;
+  const replaced = block.slice(0, fieldStart) + replacement + block.slice(valueEnd);
   return content.slice(0, start) + replaced + content.slice(end);
 }
 
@@ -236,12 +333,24 @@ async function main() {
     claudeArgs.push('--json-schema', JSON.stringify(OUTPUT_SCHEMA));
   }
 
-  const raw = execFileSync('claude', claudeArgs, {
+  const completed = spawnSync('claude', claudeArgs, {
     input: prompt,
     encoding: 'utf-8',
     maxBuffer: 1024 * 1024 * 20,
     timeout: Number(args.timeout || 120000),
   });
+  if (completed.error) {
+    throw completed.error;
+  }
+  if (completed.status !== 0) {
+    const details = [
+      `Claude exited with status ${completed.status}`,
+      completed.stdout ? `stdout:\n${completed.stdout.slice(-4000)}` : '',
+      completed.stderr ? `stderr:\n${completed.stderr.slice(-4000)}` : '',
+    ].filter(Boolean).join('\n\n');
+    throw new Error(details);
+  }
+  const raw = completed.stdout;
 
   const outDir = path.resolve(repoRoot, 'scratch', 'llm-explanations');
   fs.mkdirSync(outDir, { recursive: true });
@@ -255,12 +364,14 @@ async function main() {
   for (const item of result.items) {
     const source = byId.get(item.id);
     if (!source) throw new Error(`Unexpected item id ${item.id}`);
+    normalizeOptionMarkers(item, source);
     if (item.answer !== source.answer) {
       throw new Error(`Question ${item.id}: answer mismatch from Claude (${item.answer}) expected ${source.answer}`);
     }
     if (!item.explanation || item.explanation.length < 80) {
       throw new Error(`Question ${item.id}: explanation too short`);
     }
+    validateOptionMarkers(item, source);
   }
 
   const outPath = args.out
