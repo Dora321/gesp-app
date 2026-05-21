@@ -274,9 +274,12 @@ function replaceQuestionExplanation(content, id, explanation) {
     throw new Error(`Question ${id}: object start not found`);
   }
   const start = startMatch.index;
-  const next = content.indexOf('\n    },', start + 1);
-  if (next === -1) throw new Error(`Question ${id}: object end not found`);
-  const end = next + '\n    },'.length;
+  const nextObjectPattern = /\n\s*\{\s*\n\s*id:\s*\d+\s*,/g;
+  nextObjectPattern.lastIndex = start + 1;
+  const nextObject = nextObjectPattern.exec(content);
+  const questionsEnd = content.indexOf('\n    ]', start + 1);
+  const end = nextObject?.index ?? questionsEnd;
+  if (end === -1 || end <= start) throw new Error(`Question ${id}: object end not found`);
   const block = content.slice(start, end);
   const fieldMatch = block.match(/\n(\s*)explanation:\s*/);
   if (!fieldMatch || fieldMatch.index === undefined) {
@@ -284,8 +287,10 @@ function replaceQuestionExplanation(content, id, explanation) {
   }
   const fieldStart = fieldMatch.index;
   const valueStart = fieldStart + fieldMatch[0].length;
-  const tagsIndex = block.indexOf('\n      tags:', valueStart);
-  const valueEnd = tagsIndex === -1 ? block.lastIndexOf('\n    },') : tagsIndex;
+  const tagsMatch = /\n\s*tags:/.exec(block.slice(valueStart));
+  const tagsIndex = tagsMatch ? valueStart + tagsMatch.index : -1;
+  const closeMatch = /\n\s*\},?\s*$/.exec(block);
+  const valueEnd = tagsIndex === -1 ? closeMatch?.index : tagsIndex;
   if (valueEnd === -1 || valueEnd <= valueStart) {
     throw new Error(`Question ${id}: explanation field end not found`);
   }
