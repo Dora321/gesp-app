@@ -22,6 +22,13 @@ const stripMarkdown = (md) => {
         .trim();
 };
 
+const trimListMarker = (md) => (md || '').replace(/^\s*[-*+]\s*/, '').trim();
+
+const trimAnswerStatus = (md) => (md || '')
+    .replace(/^\s*[✅❌✓✗]\s*/, '')
+    .replace(/^(正确|错误|不合理|不正确|效率低|逻辑错误)[。，、：:]?\s*/, '')
+    .trim();
+
 const normalizeAnswer = (answer) => {
     if (typeof answer === 'number') return answer;
     if (typeof answer === 'string') {
@@ -40,7 +47,7 @@ const getOptions = (q, isJudge) => {
 
 const extractExamPoint = (explanation) => {
     const match = explanation.match(/\*\*考点[：:]\*\*\s*(.+)/m);
-    return match ? stripMarkdown(match[1]) : '';
+    return match ? match[1].trim() : '';
 };
 
 const extractSection = (explanation, title) => {
@@ -55,20 +62,20 @@ const extractListSection = (explanation, title) => {
     if (!section) return [];
     const listItems = section
         .split('\n')
-        .map((line) => stripMarkdown(line.replace(/^\s*[-*+]\s*/, '')))
+        .map(trimListMarker)
         .filter(Boolean);
-    return listItems.length > 0 ? listItems : [stripMarkdown(section)].filter(Boolean);
+    return listItems.length > 0 ? listItems : [section.trim()].filter(Boolean);
 };
 
 const extractBasis = (explanation) => {
     const basisMatch = explanation.match(/\*\*判定依据[：:]\*\*\s*\n([\s\S]*?)(?=\n\s*\*\*|$)/);
-    if (basisMatch) return stripMarkdown(basisMatch[1]);
+    if (basisMatch) return basisMatch[1].trim();
 
     const coreMatch = explanation.match(/\*\*核心解析[：:]\*\*\s*\n([\s\S]*?)(?=\n\s*(?:\*\*选项|-\s*\*\*[A-F]|-\s*[A-F][.、）)]|\*\*易错提醒|\*\*知识延伸|\*\*考点|$))/);
-    if (coreMatch) return stripMarkdown(coreMatch[1]);
+    if (coreMatch) return coreMatch[1].trim();
 
     const analysisMatch = explanation.match(/\*\*解析[：:]\*\*\s*\n([\s\S]*?)(?=\n\s*(?:\*\*选项|-\s*\*\*[A-F]|-\s*[A-F][.、）)]|\*\*考点|$))/);
-    if (analysisMatch) return stripMarkdown(analysisMatch[1]);
+    if (analysisMatch) return analysisMatch[1].trim();
 
     return stripMarkdown(
         explanation
@@ -83,13 +90,13 @@ const findOptionReason = (explanation, letter) => {
     if (!explanation) return '';
     const escaped = letter.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
     const patterns = [
-        new RegExp(`^\\s*-\\s*\\*\\*${escaped}(?:\\s*[./、）)]|\\s+|[（(])[^*]*\\*\\*\\s*[：:]?\\s*([\\s\\S]*?)(?=\\n\\s*-\\s*\\*\\*[A-F]|\\n\\s*\\*\\*(?:易错提醒|知识延伸|考点)|(?![\\s\\S]))`, 'im'),
+        new RegExp(`^\\s*-\\s*\\*\\*${escaped}(?:\\s*[./、）)]|\\s+|[（(])[^\\n]*?\\*\\*\\s*[：:]?\\s*([\\s\\S]*?)(?=\\n\\s*-\\s*\\*\\*[A-F]|\\n\\s*\\*\\*(?:易错提醒|知识延伸|考点)|(?![\\s\\S]))`, 'im'),
         new RegExp(`^\\s*-\\s*${escaped}[.、）)]\\s*([\\s\\S]*?)(?=\\n\\s*-\\s*[A-F][.、）)]|\\n\\s*\\*\\*(?:易错提醒|知识延伸|考点)|(?![\\s\\S]))`, 'im'),
     ];
     for (const pattern of patterns) {
         const match = explanation.match(pattern);
         if (match && match[1]) {
-            return stripMarkdown(match[1]).replace(/^(正确|错误|不正确)[。，、：:]?\s*/, '');
+            return trimAnswerStatus(match[1]);
         }
     }
     return '';
