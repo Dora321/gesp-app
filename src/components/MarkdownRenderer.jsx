@@ -73,6 +73,27 @@ const PreWithCopy = ({ children, ...props }) => {
     );
 };
 
+const normalizeMathDelimiters = (value) => {
+    if (typeof value !== 'string') return '';
+
+    return value
+        .split(/(```[\s\S]*?```)/g)
+        .map((block) => {
+            if (block.startsWith('```')) return block;
+
+            return block
+                .split(/(`+[^`]*`+)/g)
+                .map((part) => {
+                    if (part.startsWith('`')) return part;
+                    return part
+                        .replace(/\\\[((?:.|\n)*?)\\\]/g, (_, expr) => `$$${expr}$$`)
+                        .replace(/\\\(((?:.|\n)*?)\\\)/g, (_, expr) => `$${expr}$`);
+                })
+                .join('');
+        })
+        .join('');
+};
+
 /**
  * Shared Markdown Renderer component for consistent display of code blocks, 
  * math formulas, and GFM across the application.
@@ -86,17 +107,19 @@ const MarkdownRenderer = ({ content, className = "", inline = false }) => {
         : {
             pre: PreWithCopy,
           };
+    const Root = inline ? 'span' : 'div';
+    const normalizedContent = normalizeMathDelimiters(content);
 
     return (
-        <div className={`markdown-body ${inline ? 'inline-markdown' : ''} ${className}`}>
+        <Root className={`markdown-body ${inline ? 'inline-markdown' : ''} ${className}`}>
             <ReactMarkdown 
                 remarkPlugins={[remarkGfm, remarkMath]} 
                 rehypePlugins={[rehypeKatex, [rehypeHighlight, { detect: true }]]}
                 components={components}
             >
-                {content}
+                {normalizedContent}
             </ReactMarkdown>
-        </div>
+        </Root>
     );
 };
 

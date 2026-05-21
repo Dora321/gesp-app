@@ -227,9 +227,7 @@ export default function InteractiveAnalysisPage({ paperData, paperId }) {
                                             <span className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-green-50 border border-green-200 text-sm font-bold text-green-800">
                                                 <CheckCircle2 size={16} className="text-green-600" /> 正确答案：{String.fromCharCode(65 + currentQ.answer)}
                                             </span>
-                                            <span className="text-sm text-slate-600">
-                                                {currentQ.options[currentQ.answer]}
-                                            </span>
+                                            <MarkdownRenderer content={currentQ.options[currentQ.answer]} inline={true} className="text-sm text-slate-600" />
                                             {answers[currentQ.id] !== undefined && answers[currentQ.id] !== currentQ.answer && (
                                                 <span className="inline-flex items-center gap-1 px-2 py-1 rounded-lg bg-red-50 border border-red-200 text-xs text-red-600">
                                                     你选了 {String.fromCharCode(65 + answers[currentQ.id])}
@@ -248,7 +246,7 @@ export default function InteractiveAnalysisPage({ paperData, paperId }) {
                                                                 {oa.label}
                                                             </span>
                                                             <div className="flex-1 min-w-0">
-                                                                <div className="text-slate-700 leading-relaxed">{oa.text}</div>
+                                                                <MarkdownRenderer content={oa.text} inline={true} className="text-slate-700 leading-relaxed" />
                                                                 <div className={`mt-0.5 text-xs ${oa.isCorrect ? 'text-green-700' : 'text-slate-500'}`}>
                                                                     {oa.isCorrect ? '✓ ' : '✗ '}<MarkdownRenderer content={oa.reason} inline={true} />
                                                                 </div>
@@ -273,7 +271,7 @@ export default function InteractiveAnalysisPage({ paperData, paperId }) {
                                                     {richAnalysis.pitfalls.map((p, idx) => (
                                                         <li key={idx} className="text-sm text-slate-700 flex items-start gap-1.5">
                                                             <span className="text-amber-500 flex-shrink-0 mt-0.5">•</span>
-                                                            <span className="leading-relaxed">{p}</span>
+                                                            <MarkdownRenderer content={p} inline={true} className="leading-relaxed" />
                                                         </li>
                                                     ))}
                                                 </ul>
