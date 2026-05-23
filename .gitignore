@@ -32,3 +32,7 @@ tmp/
 scripts/temp_explanations.json
 scripts/apply_patch.js
 scripts/write_json.js
+
+# Build artifacts and scratch
+build_error*.txt
+scratch/
