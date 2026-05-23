@@ -335,7 +335,7 @@ function App() {
         if (activeSection < sections.length) {
             setActiveSection(activeSection + 1);
         } else {
-            navigate('/lesson13');
+            navigate('/lesson/1/13');
         }
     };
 

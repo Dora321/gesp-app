@@ -183,7 +183,7 @@ export default function Lesson3() {
               if (activeSection < sections.length) {
                 setActiveSection(activeSection + 1);
               } else {
-                navigate('/lesson4');
+                navigate('/lesson/1/4');
               }
             }}
             className={`px-6 py-2.5 rounded-lg flex items-center gap-2 font-bold transition-all shadow-sm
