@@ -1,7 +1,7 @@
-import React, { useMemo, useState, useEffect } from 'react';
+import React, { useMemo, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { BookOpen, Star, Trophy, Clock, ChevronRight, Search, Award } from 'lucide-react';
-import { getPaper, paperIds, paperMeta } from '../data/gesp';
+import { paperIds, paperMeta } from '../data/gesp';
 
 const QuestionBankHome = () => {
     const navigate = useNavigate();
@@ -20,49 +20,16 @@ const QuestionBankHome = () => {
         { id: 8, name: '八级', desc: '大师综合', color: 'purple' },
     ];
 
-    // Load paper metadata asynchronously to get question counts
-    const [paperDetails, setPaperDetails] = useState({});
-    useEffect(() => {
-        let cancelled = false;
-        const loadDetails = async () => {
-            const details = {};
-            for (const id of paperIds) {
-                try {
-                    const data = await getPaper(id);
-                    if (cancelled) return;
-                    if (data) {
-                        const questionCount = [
-                            ...(data.questions || []),
-                            ...(data.programmingQuestions || []),
-                            ...(data.codingQuestions || [])
-                        ].length;
-                        details[id] = {
-                            questionCount,
-                            isHistoricalPlaceholder: data.isHistoricalPlaceholder,
-                            isPlaceholder: data.level >= 3 && questionCount <= 4,
-                            timeLimit: data.timeLimit,
-                            note: data.note,
-                            session: data.session,
-                        };
-                    }
-                } catch (e) { /* skip failed loads */ }
-            }
-            if (!cancelled) setPaperDetails(details);
-        };
-        loadDetails();
-        return () => { cancelled = true; };
-    }, []);
-
+    // Papers are built directly from paperMeta (questionCount now pre-injected)
     const papers = useMemo(() => {
         return paperIds
             .map(id => {
                 const meta = paperMeta[id];
-                const detail = paperDetails[id];
                 if (!meta) return null;
-                if (detail?.isHistoricalPlaceholder) return null;
 
-                const questionCount = detail?.questionCount || 0;
-                const isPlaceholder = detail?.isPlaceholder ?? (meta.level >= 3);
+                const questionCount = meta.questionCount || 0;
+                // High-level papers with very few questions are placeholders
+                const isPlaceholder = meta.level >= 3 && questionCount <= 4;
                 const displayTitle = isPlaceholder
                     ? meta.title.replace('真题', '练习卷（待补全）')
                     : meta.title;
@@ -73,18 +40,16 @@ const QuestionBankHome = () => {
                     originalTitle: meta.title,
                     level: meta.level,
                     questions: questionCount,
-                    time: `${Math.round(((detail?.timeLimit || 90 * 60)) / 60)}分钟`,
+                    time: '90分钟',
                     year: meta.year,
                     month: meta.month,
                     difficulty: Math.max(1, Math.min(5, Math.floor(meta.level / 2) + (meta.month > 6 ? 1 : 0))),
-                    session: detail?.session,
-                    note: isPlaceholder ? (detail?.note ? `${detail.note} · 当前仅 ${questionCount} 题` : `当前仅 ${questionCount} 题`) : (detail?.note || ''),
                     isPlaceholder,
                 };
             })
             .filter(Boolean)
             .sort((a, b) => b.year - a.year || b.month - a.month || a.level - b.level);
-    }, [paperDetails]);
+    }, []);
 
     const filteredPapers = papers.filter(p =>
         p.level === selectedLevel &&
@@ -186,9 +151,9 @@ const QuestionBankHome = () => {
                                             <div className="bg-blue-50 text-blue-700 px-3 py-1 rounded text-xs font-bold font-mono w-fit">
                                                 {paper.year} 年 {paper.month} 月
                                             </div>
-                                            {paper.note && (
-                                                <div className={`px-2 py-1 rounded text-[11px] font-medium w-fit ${paper.isPlaceholder ? 'bg-amber-50 text-amber-700' : 'bg-slate-100 text-slate-600'}`}>
-                                                    {paper.note}
+                                            {paper.isPlaceholder && (
+                                                <div className="px-2 py-1 rounded text-[11px] font-medium w-fit bg-amber-50 text-amber-700">
+                                                    当前仅 {paper.questions} 题
                                                 </div>
                                             )}
                                         </div>

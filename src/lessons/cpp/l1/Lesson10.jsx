@@ -642,7 +642,7 @@ function App() {
     if (activeSection < sections.length) {
       setActiveSection(activeSection + 1);
     } else {
-      navigate('/lesson11');
+      navigate('/lesson/1/11');
     }
   };
 

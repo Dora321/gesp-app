@@ -25,7 +25,7 @@ export default function Lesson5() {
     if (activeSection < sections.length) {
       setActiveSection(activeSection + 1);
     } else {
-      navigate('/lesson6');
+      navigate('/lesson/1/6');
     }
   };
 

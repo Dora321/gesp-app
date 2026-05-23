@@ -796,7 +796,7 @@ const CppL1Lesson1 = () => {
               if (activeSection < sections.length) {
                 setActiveSection(activeSection + 1);
               } else {
-                navigate('/lesson2');
+                navigate('/lesson/1/2');
               }
             }}
             className={`px-6 py-2.5 rounded-lg flex items-center gap-2 font-bold transition-all shadow-sm

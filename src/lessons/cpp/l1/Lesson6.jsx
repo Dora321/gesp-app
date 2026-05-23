@@ -301,7 +301,7 @@ export default function App() {
     if (activeSection < sections.length) {
       setActiveSection(activeSection + 1);
     } else {
-      navigate('/lesson7');
+      navigate('/lesson/1/7');
     }
   };
 
