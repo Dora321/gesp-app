@@ -20,11 +20,7 @@ import { luoguCodingByLevel } from '../../data/gesp/luoguCodingByLevel';
 import { paperCodingMap } from '../../data/gesp/paperCodingMap';
 import useQuestionKeyboardNavigation from '../../hooks/useQuestionKeyboardNavigation';
 import { buildQuestionInsight, buildRichAnalysis } from './analysisEngine';
-
-const stripLeadingNumber = (questionText) => {
-    if (typeof questionText !== 'string') return questionText || '';
-    return questionText.replace(/^\s*\d+[.。、]\s*/, '');
-};
+import { formatOptionDisplay, stripLeadingNumber } from '../../utils/questionTextFormatting';
 
 const getQuestionContent = (q) => {
     if (!q) return '';
@@ -458,9 +454,9 @@ export default function EnhancedPaperPage({ forcedPaperId }) {
                         </div>
 
                         {!( (currentQ.type === 'coding' || currentQ.type === 'programming') && (getQuestionContent(currentQ) === programmingPracticeMarkdown || isReformed) ) && (
-                            <h2 className="text-lg md:text-xl font-bold text-slate-800 mb-5 leading-relaxed">
+                            <div className="text-lg md:text-xl font-bold text-slate-800 mb-5 leading-relaxed">
                                 <MarkdownRenderer content={stripLeadingNumber(getQuestionContent(currentQ))} />
-                            </h2>
+                            </div>
                         )}
 
                         {activeTab === 'practice' && (
@@ -498,22 +494,33 @@ export default function EnhancedPaperPage({ forcedPaperId }) {
                                         const isSelected = selected === idx;
                                         const optionState = isRevealed
                                             ? idx === currentQ.answer
-                                                ? 'bg-green-100 border-green-500 text-green-800'
+                                                ? 'border-emerald-400 bg-emerald-50 text-emerald-950 shadow-emerald-100'
                                                 : isSelected
-                                                    ? 'bg-red-100 border-red-400 text-red-700'
-                                                    : 'opacity-50'
+                                                    ? 'border-rose-300 bg-rose-50 text-rose-900 shadow-rose-100'
+                                                    : 'border-slate-200 bg-slate-50/70 text-slate-500 opacity-75'
                                             : isSelected
-                                                ? 'bg-indigo-50 border-indigo-500 text-indigo-800'
-                                                : 'hover:border-indigo-300 hover:bg-slate-50';
+                                                ? 'border-indigo-400 bg-indigo-50 text-indigo-950 shadow-indigo-100'
+                                                : 'border-slate-200 bg-white text-slate-800 hover:border-indigo-300 hover:bg-indigo-50/40 hover:shadow-md';
+                                        const badgeState = isRevealed
+                                            ? idx === currentQ.answer
+                                                ? 'bg-emerald-600 text-white'
+                                                : isSelected
+                                                    ? 'bg-rose-500 text-white'
+                                                    : 'bg-slate-200 text-slate-500'
+                                            : isSelected
+                                                ? 'bg-indigo-600 text-white'
+                                                : 'bg-slate-100 text-slate-600 group-hover:bg-indigo-100 group-hover:text-indigo-700';
 
                                         return (
                                             <button
                                                 key={idx}
                                                 onClick={() => handleOptionSelect(currentQ.id, idx)}
-                                                className={`w-full text-left p-4 rounded-xl border-2 transition-all ${optionState}`}
+                                                className={`question-option group w-full text-left rounded-xl border px-4 py-3.5 shadow-sm transition-all focus:outline-none focus-visible:ring-2 focus-visible:ring-indigo-500 focus-visible:ring-offset-2 ${optionState}`}
                                             >
-                                                <span className="font-semibold mr-2">{String.fromCharCode(65 + idx)}.</span>
-                                                <MarkdownRenderer content={opt} inline={true} className="inline-block" />
+                                                <span className={`option-badge ${badgeState}`}>{String.fromCharCode(65 + idx)}</span>
+                                                <span className="question-option-content">
+                                                    <MarkdownRenderer content={formatOptionDisplay(opt)} inline={true} className="text-inherit" />
+                                                </span>
                                             </button>
                                         );
                                     })
@@ -582,7 +589,7 @@ export default function EnhancedPaperPage({ forcedPaperId }) {
                                                     <span className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-green-50 border border-green-200 text-sm font-bold text-green-800">
                                                         <CheckCircle2 size={16} className="text-green-600" /> 正确答案：{String.fromCharCode(65 + currentQ.answer)}
                                                     </span>
-                                                    <MarkdownRenderer content={currentQ.options[currentQ.answer]} inline={true} className="text-sm text-slate-600" />
+                                                    <MarkdownRenderer content={formatOptionDisplay(currentQ.options[currentQ.answer])} inline={true} className="text-sm text-slate-600" />
                                                     {answers[currentQ.id] !== undefined && answers[currentQ.id] !== currentQ.answer && (
                                                         <span className="inline-flex items-center gap-1 px-2 py-1 rounded-lg bg-red-50 border border-red-200 text-xs text-red-600">
                                                             你选了 {String.fromCharCode(65 + answers[currentQ.id])}

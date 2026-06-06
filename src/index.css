@@ -189,6 +189,62 @@
   padding: 0;
 }
 
+/* ===== Question bank option cards ===== */
+.question-option {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.85rem;
+}
+.question-option .option-badge {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex: 0 0 1.8rem;
+  width: 1.8rem;
+  height: 1.8rem;
+  border-radius: 999px;
+  font-size: 0.9rem;
+  font-weight: 800;
+  line-height: 1;
+  transition: background-color 0.18s ease, color 0.18s ease;
+}
+.question-option-content {
+  flex: 1 1 auto;
+  min-width: 0;
+  padding-top: 0.08rem;
+  overflow-wrap: anywhere;
+  word-break: break-word;
+}
+.question-option-content .markdown-body {
+  color: inherit;
+  font-size: 15px;
+  line-height: 1.65;
+}
+.question-option-content .inline-markdown {
+  display: block;
+}
+.question-option-content .markdown-body code {
+  white-space: normal;
+  overflow-wrap: anywhere;
+  line-height: 1.65;
+}
+
+@media (max-width: 640px) {
+  .question-option {
+    gap: 0.7rem;
+    padding: 0.9rem 0.95rem;
+  }
+  .question-option .option-badge {
+    flex-basis: 1.65rem;
+    width: 1.65rem;
+    height: 1.65rem;
+    font-size: 0.82rem;
+  }
+  .question-option-content .markdown-body {
+    font-size: 14px;
+  }
+}
+
 /* ===== Luogu-style Problem Container ===== */
 .luogu-problem {
   background: #fff;
@@ -259,4 +315,3 @@
   background: #1e293b;
   margin: 0.5em 0;
 }
-

@@ -959,7 +959,22 @@ for (int i = 0; i < 10; i++) {
         {
             id: 22,
             type: 'judge',
-            question: `将 \`while (i != 0)\` 改为 \`while (abs(i))\` 在处理正整数数位分离时，其执行效果是相同的。`,
+            question: `下面的 C++ 代码段用于计算 1 到 N 之间且包含 N 的所有数字中含有的 3 的个数，如 1 到 40 含有 14 个 3，而 1 到 20 则只含有 2 个 3。如果将 \`while (i != 0)\` 改为 \`while (abs(i))\`，则执行结果相同。（ ）
+
+\`\`\`cpp
+cout << "请输入正整数N：";
+cin >> N;
+cnt = 0; // 保存3的个数
+for (k = 1; k < N + 1; k++) {
+    i = k;
+    while (i != 0) {
+        if (i % 10 == 3)
+            cnt += 1;
+        i /= 10;
+    }
+}
+cout << cnt;
+\`\`\``,
             options: ['正确', '错误'],
             answer: 0,
             score: 2,

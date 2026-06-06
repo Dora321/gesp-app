@@ -6,6 +6,7 @@ import rehypeKatex from 'rehype-katex';
 import rehypeHighlight from 'rehype-highlight';
 import 'katex/dist/katex.min.css';
 import 'highlight.js/styles/github-dark.css';
+import { normalizeEscapedLineBreaks } from '../utils/questionTextFormatting';
 
 /**
  * Copy button overlay for code blocks.
@@ -108,7 +109,7 @@ const MarkdownRenderer = ({ content, className = "", inline = false }) => {
             pre: PreWithCopy,
           };
     const Root = inline ? 'span' : 'div';
-    const normalizedContent = normalizeMathDelimiters(content);
+    const normalizedContent = normalizeMathDelimiters(normalizeEscapedLineBreaks(content));
 
     return (
         <Root className={`markdown-body ${inline ? 'inline-markdown' : ''} ${className}`}>
