@@ -4,10 +4,10 @@ import { paperCodingMap } from '../../data/gesp/paperCodingMap';
 import MarkdownRenderer from '../../components/MarkdownRenderer';
 import {
   isProgrammingQuestion,
-  stripLeadingNumber,
   getQuestionContent,
   buildProgrammingStatementMarkdown,
 } from '../../utils/questionHelpers';
+import { formatOptionDisplay, stripLeadingNumber } from '../../utils/questionTextFormatting';
 
 /**
  * Exam mode main content — question display, options, and programming question view
@@ -40,10 +40,10 @@ const ExamModeView = ({
 
           {/* Question text (non-programming or non-reformatted) */}
           {!(isProgramming && (getQuestionContent(currentQ) === currentProgrammingMarkdown || isReformed)) && (
-            <h2 className="text-xl md:text-2xl font-bold text-slate-800 mt-6 mb-8 leading-relaxed">
+            <div className="text-xl md:text-2xl font-bold text-slate-800 mt-6 mb-8 leading-relaxed">
               <span className="text-blue-500 mr-2">{currentQuestionIndex + 1}.</span>
-              <MarkdownRenderer content={stripLeadingNumber(getQuestionContent(currentQ))} inline={true} />
-            </h2>
+              <MarkdownRenderer content={stripLeadingNumber(getQuestionContent(currentQ))} />
+            </div>
           )}
           {isProgramming && (getQuestionContent(currentQ) === currentProgrammingMarkdown || isReformed) && (
             <h2 className="text-xl md:text-2xl font-bold text-slate-800 mt-6 mb-2 leading-relaxed">
@@ -79,11 +79,13 @@ const ExamModeView = ({
                 }
 
                 return (
-                  <div key={idx} onClick={() => onOptionSelect(currentQ.id, idx)} className={`w-full p-4 rounded-xl border-2 transition-all flex items-center gap-4 text-lg ${optionClass}`}>
+                  <div key={idx} onClick={() => onOptionSelect(currentQ.id, idx)} className={`question-option group w-full text-left rounded-xl border px-4 py-3.5 shadow-sm transition-all text-lg ${optionClass}`}>
                     <div className={`w-8 h-8 rounded-full flex items-center justify-center text-sm font-bold border ${isSelected || (showAnswer && idx === currentQ.answer) ? 'border-current' : 'border-slate-300 text-slate-400'}`}>
                       {String.fromCharCode(65 + idx)}
                     </div>
-                    <MarkdownRenderer content={opt} inline={true} className="flex-1" />
+                    <div className="question-option-content">
+                      <MarkdownRenderer content={formatOptionDisplay(opt)} inline={true} className="text-inherit" />
+                    </div>
                     {showAnswer && idx === currentQ.answer && <CheckCircle className="ml-auto text-green-600" />}
                     {showAnswer && isSelected && idx !== currentQ.answer && <X className="ml-auto text-red-500" />}
                   </div>
