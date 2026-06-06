@@ -48,6 +48,88 @@ export const normalizeEscapedLineBreaks = (value) => {
   return result;
 };
 
+const shouldPromoteInlineCode = (codeText) => {
+  const value = codeText.trim();
+  if (value.length < 36) return false;
+  if (value.includes('\n')) return false;
+  return /;/.test(value) && /[{}]|\b(for|while|if|else|cout|cin|printf|scanf|return)\b/.test(value);
+};
+
+const isStandaloneInlineCode = (source, offset) => {
+  const before = source.slice(0, offset);
+  const lineStart = before.lastIndexOf('\n') + 1;
+  const linePrefix = before.slice(lineStart);
+
+  return /^\s*$/.test(linePrefix) || /[:：]\s*$/.test(linePrefix);
+};
+
+const prettyPrintInlineCode = (codeText) => {
+  const value = codeText.trim();
+  let formatted = '';
+  let indent = 0;
+  let parenDepth = 0;
+
+  const appendLine = (line) => {
+    const trimmed = line.trim();
+    if (!trimmed) return;
+    formatted += `${'    '.repeat(Math.max(indent, 0))}${trimmed}\n`;
+  };
+
+  let current = '';
+  for (let i = 0; i < value.length; i += 1) {
+    const char = value[i];
+
+    if (char === '(') parenDepth += 1;
+    if (char === ')' && parenDepth > 0) parenDepth -= 1;
+
+    if (char === '{') {
+      current += char;
+      appendLine(current);
+      current = '';
+      indent += 1;
+      while (/\s/.test(value[i + 1] || '')) i += 1;
+      continue;
+    }
+
+    if (char === '}') {
+      appendLine(current);
+      current = '';
+      indent = Math.max(0, indent - 1);
+      appendLine(char);
+      while (/\s/.test(value[i + 1] || '')) i += 1;
+      continue;
+    }
+
+    current += char;
+
+    if (char === ';' && parenDepth === 0) {
+      appendLine(current);
+      current = '';
+      while (/\s/.test(value[i + 1] || '')) i += 1;
+    }
+  }
+
+  appendLine(current);
+  return formatted.trimEnd();
+};
+
+export const promoteLongInlineCodeBlocks = (value) => {
+  if (typeof value !== 'string') return value || '';
+
+  return value
+    .split(/(```[\s\S]*?```)/g)
+    .map((block) => {
+      if (block.startsWith('```')) return block;
+
+      return block.replace(/`([^`\n]+)`/g, (match, codeText, offset, source) => {
+        if (!shouldPromoteInlineCode(codeText)) return match;
+        if (!isStandaloneInlineCode(source, offset)) return match;
+        return `\n\n\`\`\`cpp\n${prettyPrintInlineCode(codeText)}\n\`\`\`\n\n`;
+      });
+    })
+    .join('');
+};
+
 export const formatOptionDisplay = (optionText) => {
   if (typeof optionText !== 'string') return optionText || '';
   const normalized = normalizeEscapedLineBreaks(optionText);
