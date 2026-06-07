@@ -43,6 +43,13 @@ const AI_PERSONAS = [
         systemPrompt: '你是一位资深技术专家，精通计算机科学各个领域。回答问题时要深入、专业、全面，可以涉及底层原理、最佳实践和进阶技巧。'
     },
     {
+        id: 'esp32_micropython',
+        name: 'ESP32 MicroPython 专家',
+        emoji: '📟',
+        description: 'ESP32 与 MicroPython 项目指导',
+        systemPrompt: '你是一位 ESP32 与 MicroPython 专家，擅长给学生讲解物联网、传感器、舵机、电机、屏幕、按键、Wi-Fi、蓝牙和常见开发板项目。回答时请优先使用 MicroPython 示例代码，并根据问题补充接线说明、引脚选择、库安装/固件烧录提示、常见报错排查和安全注意事项。解释要适合课堂教学，步骤清晰，代码可直接运行或容易改造。'
+    },
+    {
         id: 'encouraging',
         name: '鼓励型教练',
         emoji: '🎉',
@@ -50,6 +57,12 @@ const AI_PERSONAS = [
         systemPrompt: '你是一位充满正能量的编程教练！对用户要多加鼓励和表扬，即使他们犯错也要给予积极的反馈。用"太棒了！"、"你做得很好！"、"继续加油！"等鼓励性的话语，帮助用户建立信心。'
     }
 ];
+
+const AI_MODEL = {
+    id: 'deepseek-v4-flash',
+    name: 'DeepSeek V4 Flash',
+    description: '高速响应，适合日常对话、编程和课堂项目。'
+};
 
 const AIChatWidget = () => {
     const [isOpen, setIsOpen] = useState(false);
@@ -62,7 +75,7 @@ const AIChatWidget = () => {
     const [selectedPersona, setSelectedPersona] = useState(() => {
         return localStorage.getItem('ai_selected_persona_id') || 'default';
     });
-    const [selectedModel, setSelectedModel] = useState('deepseek-chat'); // 'deepseek-chat' or 'deepseek-reasoner'
+    const selectedModel = AI_MODEL.id;
     const [customPersona, setCustomPersona] = useState(null);
     const [editingCustomPersona, setEditingCustomPersona] = useState(null);
     const [size, setSize] = useState({ width: 360, height: 500 });
@@ -438,38 +451,23 @@ const AIChatWidget = () => {
                         </div>
                     </div>
 
-                    {/* Model Selection */}
+                    {/* Model */}
                     <div className="mb-4">
                         <div className="flex items-center gap-2 mb-2">
                             <BrainCircuit size={16} className="text-slate-500" />
                             <span className="text-sm font-medium text-slate-700">选择模型</span>
                         </div>
-                        <div className="grid grid-cols-2 gap-2">
-                            <button
-                                onClick={() => setSelectedModel('deepseek-chat')}
-                                className={`flex items-center justify-center gap-2 p-2 rounded-lg border text-sm transition-all ${selectedModel === 'deepseek-chat'
-                                    ? 'bg-indigo-50 border-indigo-500 text-indigo-700 ring-1 ring-indigo-500'
-                                    : 'bg-white border-slate-200 text-slate-600 hover:border-indigo-300'
-                                    }`}
-                            >
+                        <div className="flex items-center gap-2 p-2.5 rounded-lg border border-indigo-500 bg-indigo-50 text-indigo-700 ring-1 ring-indigo-500">
+                            <div className="w-8 h-8 rounded-lg bg-white/80 flex items-center justify-center shrink-0">
                                 <Sparkles size={14} />
-                                <span>DeepSeek V3</span>
-                            </button>
-                            <button
-                                onClick={() => setSelectedModel('deepseek-reasoner')}
-                                className={`flex items-center justify-center gap-2 p-2 rounded-lg border text-sm transition-all ${selectedModel === 'deepseek-reasoner'
-                                    ? 'bg-purple-50 border-purple-500 text-purple-700 ring-1 ring-purple-500'
-                                    : 'bg-white border-slate-200 text-slate-600 hover:border-purple-300'
-                                    }`}
-                            >
-                                <BrainCircuit size={14} />
-                                <span>DeepSeek R1</span>
-                            </button>
+                            </div>
+                            <div className="min-w-0">
+                                <div className="text-sm font-bold">{AI_MODEL.name}</div>
+                                <div className="text-xs text-indigo-600">{AI_MODEL.description}</div>
+                            </div>
                         </div>
                         <p className="text-xs text-slate-400 mt-1.5 px-1">
-                            {selectedModel === 'deepseek-chat'
-                                ? '🚀 V3: 速度快，适合日常对话和编程'
-                                : '🧠 R1: 深度推理，适合复杂逻辑 (会展示思考过程)'}
+                            固定使用 V4 Flash，不再提供 V3 / R1 切换。
                         </p>
                     </div>
 
@@ -705,7 +703,7 @@ const AIChatWidget = () => {
                                     <div className="flex items-center gap-2 text-slate-400">
                                         <Loader2 size={16} className="animate-spin" />
                                         <span className="text-xs">
-                                            {selectedModel === 'deepseek-reasoner' ? '深度思考中...' : '思考中...'}
+                                            思考中...
                                         </span>
                                     </div>
                                 )
