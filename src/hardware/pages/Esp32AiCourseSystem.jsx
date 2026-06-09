@@ -7,13 +7,19 @@ import {
     ChevronDown,
     ChevronLeft,
     ChevronUp,
+    CheckCircle2,
     ClipboardCheck,
+    ClipboardList,
+    Code2,
     Cpu,
     FileText,
     GraduationCap,
     Home,
     Lightbulb,
     ListChecks,
+    MessageSquareText,
+    PackageCheck,
+    Printer,
     Route,
     Sparkles,
     Target,
@@ -33,6 +39,7 @@ const courseData = {
             id: 1,
             title: '读懂 AI',
             subtitle: '学会阅读和验证 AI 生成的代码',
+            drivingQuestion: 'AI 写出来的代码，我们能不能相信？',
             color: 'emerald',
             lessons: '第 1-5 课',
             coreAbility: '能看懂 10 行 MicroPython 代码，能判断代码的运行结果',
@@ -89,6 +96,7 @@ const courseData = {
             id: 2,
             title: '指挥 AI',
             subtitle: '学会精确描述需求，让 AI 写出真正想要的代码',
+            drivingQuestion: '怎样把一个想法说清楚，让 AI 和硬件一起完成任务？',
             color: 'indigo',
             lessons: '第 6-10 课',
             coreAbility: '能独立向 AI 描述一个传感器项目的需求并拿到可用代码',
@@ -145,6 +153,7 @@ const courseData = {
             id: 3,
             title: '超越 AI',
             subtitle: '做 AI 做不到的事：创意、整合、解决真实问题',
+            drivingQuestion: '我们能不能用 ESP32 解决一个真实生活问题？',
             color: 'orange',
             lessons: '第 11-16 课',
             coreAbility: '能独立完成一个多模块项目，从创意到展示全流程',
@@ -262,6 +271,229 @@ const detailItems = [
     { label: '课后任务', key: 'homework', icon: Home }
 ];
 
+const handoutDetails = {
+    1: {
+        question: '怎样让 ESP32 按我们的命令点亮一盏灯？',
+        materials: ['ESP32 开发板', 'USB 数据线', 'Thonny 或 Mind+ Python 模式', '板载 LED'],
+        prompt: '我使用 ESP32 和 MicroPython，请生成一段让板载 LED 每 1 秒闪烁一次的代码，并逐行解释给小学生听。',
+        codeReading: ['Pin(2, Pin.OUT) 表示把 2 号引脚设置成输出', 'value(1) 是亮，value(0) 是灭', 'while True 表示一直重复'],
+        flow: ['观察板载 LED 在哪里', '读 AI 生成代码，不急着运行', '圈出 Pin、OUT、value 三个词', '运行代码并验证灯是否按节奏闪烁'],
+        output: '在讲义上写下：哪一行负责亮灯，哪一行负责灭灯。',
+        check: '能说清楚「输出」是什么意思，并能预测 value(0/1) 的结果。'
+    },
+    2: {
+        question: '灯光能不能像密码一样传递信息？',
+        materials: ['ESP32 开发板', '板载 LED', '摩斯密码表'],
+        prompt: '请用 ESP32 MicroPython 写一个 SOS 闪烁程序，短闪 0.2 秒，长闪 0.6 秒，每个字母之间停 1 秒，并解释循环结构。',
+        codeReading: ['sleep() 控制等待时间', 'for 循环用于重复短闪或长闪', '函数可以把“短闪”和“长闪”变成可复用动作'],
+        flow: ['先用手拍出 SOS 节奏', '读代码并标出短闪、长闪、停顿', '运行后和节奏表对照', '改一个数字，观察节奏变化'],
+        output: '设计自己姓名首字母的闪烁规则。',
+        check: '能把「亮多久、灭多久、重复几次」翻译成程序步骤。'
+    },
+    3: {
+        question: 'ESP32 怎么知道有人按下按钮？',
+        materials: ['ESP32 开发板', '按钮模块', '杜邦线', 'LED'],
+        prompt: '我把按钮接到 GPIO 14，LED 接到 GPIO 2。请写 MicroPython 代码：按下按钮 LED 亮，松开 LED 灭，并说明输入和输出的区别。',
+        codeReading: ['Pin.IN 表示输入', 'if 判断根据按钮读数选择动作', '不同按钮模块可能是按下为 0 或按下为 1'],
+        flow: ['画出按钮和 LED 接线', '读代码，找出输入引脚和输出引脚', '按下按钮测试逻辑是否相反', '如果相反，修改判断条件'],
+        output: '完成一张「我的接线说明卡」：按钮接哪里，LED 接哪里。',
+        check: '提问时能清楚写出硬件、引脚、想要的行为。'
+    },
+    4: {
+        question: '小屏幕为什么需要“库”才能说话？',
+        materials: ['ESP32 开发板', 'OLED 屏幕', 'DHT11 或模拟温度数据', 'I2C 线'],
+        prompt: '我使用 ESP32、MicroPython、SSD1306 OLED。请写代码在屏幕上显示我的名字和温度，并告诉我需要哪些库文件。',
+        codeReading: ['import 表示引入别人写好的工具', 'I2C 需要 SDA 和 SCL 两根线', 'show() 通常表示把缓存内容真正显示出来'],
+        flow: ['看 OLED 背面的芯片型号或模块说明', '确认 SDA/SCL 接线', '读代码中 import 和 I2C 初始化部分', '把显示文字改成自己的名字'],
+        output: '写下自己的 OLED 设备信息：型号、地址、SDA、SCL。',
+        check: '知道 AI 不认识具体硬件时，要补充型号、接线和库名。'
+    },
+    5: {
+        question: 'AI 写错代码时，我们怎样判断问题在哪里？',
+        materials: ['ESP32 开发板', '一段带 bug 的示例代码', '错误信息记录表'],
+        prompt: '下面这段 ESP32 MicroPython 代码报错了，请先解释错误信息，再给出最小修改方案。代码如下：<粘贴代码和报错>',
+        codeReading: ['NameError 常见于名字写错或变量没定义', 'SyntaxError 常见于冒号、括号、缩进错误', '报错行号是线索，不一定是唯一问题'],
+        flow: ['先运行错误代码', '把错误类型、行号、关键词抄下来', '不直接问“哪里错了”，而是把报错交给 AI', '验证 AI 的修改是否真的解决问题'],
+        output: '完成一张「错误侦探卡」：错误类型、原因猜测、修复方法。',
+        check: '遇到报错不慌，能先读错误信息，再求助 AI。'
+    },
+    6: {
+        question: '为什么同一个任务，问法不同，AI 答案差很多？',
+        materials: ['三份不同质量的提示词', 'ESP32 示例任务卡'],
+        prompt: '请比较这三个 ESP32 提问，指出哪个最清楚，并按“硬件 + 语言 + 行为 + 约束”的格式改写。',
+        codeReading: ['好提示词会说明硬件型号、引脚、编程语言、目标行为', '约束越明确，AI 越少猜', '需求文档比一句话提问更可靠'],
+        flow: ['看三个坏问题和好问题', '投票选出最可执行的问题', '用四要素模板重写', '让 AI 生成代码并比较差异'],
+        output: '写出自己的 ESP32 标准提问模板。',
+        check: '能判断一个提问缺少硬件、语言、行为还是约束。'
+    },
+    7: {
+        question: '温度数据怎样变成报警动作？',
+        materials: ['ESP32 开发板', 'DHT11 温湿度传感器', 'OLED 屏幕', 'LED'],
+        prompt: '我用 ESP32 MicroPython，DHT11 接 GPIO 15，OLED 是 SSD1306，LED 接 GPIO 2。请分步骤实现：读温湿度、OLED 显示、温度超过 30 度 LED 闪烁报警。',
+        codeReading: ['sensor.measure() 表示读取一次数据', 'temperature() 和 humidity() 是读取结果', 'if temp > 30 把数据变成判断'],
+        flow: ['先只读温湿度并打印', '再加入 OLED 显示', '最后加入 LED 报警', '每加一步都测试一次'],
+        output: '完成一份三步需求单：输入、处理、输出。',
+        check: '能把复杂项目拆成可测试的小步骤。'
+    },
+    8: {
+        question: '怎样让灯不是开关，而是慢慢变亮变暗？',
+        materials: ['ESP32 开发板', '光敏电阻模块', 'LED', '电阻或 LED 模块'],
+        prompt: 'ESP32 MicroPython 中，光敏传感器接 ADC GPIO 34，LED 接 PWM GPIO 2。请写代码：环境越暗，LED 越亮，并解释 ADC 和 PWM。',
+        codeReading: ['ADC 读取环境亮度数字', 'PWM duty 控制亮度强弱', 'map 或比例换算把输入范围变成输出范围'],
+        flow: ['遮住光敏，看数值变化', '找出亮和暗的大致范围', '把亮度数值映射到 PWM', '反转逻辑实现“越暗越亮”'],
+        output: '画一条关系线：光线变暗 → 数值变化 → LED 亮度变化。',
+        check: '能解释 ADC 是“看世界”，PWM 是“控制强弱”。'
+    },
+    9: {
+        question: '一条灯带怎样表现情绪和节奏？',
+        materials: ['ESP32 开发板', 'WS2812 灯带', '外接电源（视灯数而定）'],
+        prompt: '我用 ESP32 MicroPython 控制 8 颗 WS2812 灯珠，数据线接 GPIO 13。请做一个彩虹流水效果，速度可调，并解释颜色数组和循环。',
+        codeReading: ['每颗灯珠有 RGB 三个颜色值', 'np.write() 把颜色发送到灯带', '循环中的索引决定哪颗灯先亮'],
+        flow: ['先点亮一颗灯珠', '再点亮全部灯珠', '加入颜色变化', '调整速度和方向做出自己的效果'],
+        output: '写一份灯效需求文档：颜色、速度、方向、循环方式。',
+        check: '能用自然语言精确描述视觉效果。'
+    },
+    10: {
+        question: '一个项目开始前，怎样写清楚需求？',
+        materials: ['随机项目题卡', '需求文档模板', 'ESP32 常用模块清单'],
+        prompt: '请根据我的项目需求，帮我拆成 ESP32 MicroPython 的硬件清单、输入输出、实现步骤、测试方法和可能风险。需求如下：<粘贴需求>',
+        codeReading: ['先看需求，不先看代码', '把功能拆成输入、处理、输出', '每个模块都要有独立测试方法'],
+        flow: ['抽取项目题卡', '填写需求文档', '用 AI 检查是否缺信息', '按模块逐个实现并展示'],
+        output: '提交一份可执行的 ESP32 项目需求文档。',
+        check: '需求足够清楚，别人能按文档开始搭建。'
+    },
+    11: {
+        question: '生活中的小麻烦，能不能变成技术方案？',
+        materials: ['观察记录表', 'ESP32 模块清单', '便利贴'],
+        prompt: '我观察到一个生活问题：<描述问题>。请帮我 brainstorm 5 个 ESP32 解决方案，并按可行性、成本、展示效果评分。',
+        codeReading: ['这一课重点不是代码，而是问题定义', '好问题要具体、有场景、有判断标准', 'AI 可以给建议，但最终选题由学生决定'],
+        flow: ['写下真实场景和痛点', '让 AI 给出多个方案', '筛选最适合课堂实现的方案', '确定输入、处理、输出'],
+        output: '提交项目提案：问题、用户、方案、需要的传感器。',
+        check: '能把生活语言改写成技术需求。'
+    },
+    12: {
+        question: '大项目怎样拆成不会乱的小模块？',
+        materials: ['模块图模板', '输入/处理/输出卡片', '项目提案'],
+        prompt: '请把我的 ESP32 项目拆成模块图，按输入、处理、输出分类，并列出每个模块的独立测试方法。',
+        codeReading: ['模块图比完整代码更先出现', '每个模块都应该能单独测试', '模块之间要约定变量和数据格式'],
+        flow: ['画出输入、处理、输出', '给每个模块起名字', '写独立测试问题', '让 AI 检查遗漏和冲突'],
+        output: '完成项目模块图和 AI 问题清单。',
+        check: '能说明每个模块负责什么，不把所有功能混在一起。'
+    },
+    13: {
+        question: '怎样让每个零件先独立工作？',
+        materials: ['学生自选模块', '测试记录表', 'ESP32 开发板'],
+        prompt: '我的 ESP32 项目中有这个模块：<模块名和接线>。请只写这个模块的最小测试代码，不要加入其他功能。',
+        codeReading: ['最小测试代码越短越好', '一次只验证一个传感器或执行器', '测试结果要记录，方便后面整合'],
+        flow: ['按模块清单选择第一个模块', '让 AI 生成最小测试代码', '运行并记录结果', '失败时保存报错和修改过程'],
+        output: '提交至少 2 个模块的测试记录。',
+        check: '能坚持“先单测，再整合”。'
+    },
+    14: {
+        question: '多段代码合并时为什么容易冲突？',
+        materials: ['已测试模块代码', '整合记录表', '变量命名清单'],
+        prompt: '请帮我合并下面几段 ESP32 MicroPython 模块代码。要求：保留每个功能，统一引脚定义，避免重复 while True，并解释你改了哪里。',
+        codeReading: ['多个 while True 不能简单堆在一起', '重复变量名可能互相覆盖', '引脚定义要统一放在开头'],
+        flow: ['贴出已验证的模块代码', '让 AI 先说明合并策略', '合并后逐项测试功能', '发现冲突就回到模块层定位'],
+        output: '提交一份整合版代码和冲突处理记录。',
+        check: '知道合并不是复制粘贴，而是重新组织程序结构。'
+    },
+    15: {
+        question: '怎样让别人听懂我的技术项目？',
+        materials: ['展示稿模板', '项目照片或视频', '三分钟计时器'],
+        prompt: '请根据我的 ESP32 项目，帮我写一份 3 分钟展示稿。要求：先讲问题，再讲方案，再讲演示效果，语言适合小学展示。',
+        codeReading: ['展示时少讲代码细节，多讲问题和效果', '技术词要翻译成观众听得懂的话', '失败和改进也是故事的一部分'],
+        flow: ['整理项目照片和功能清单', '写三段式展示稿', '用 AI 帮忙润色但保留自己的表达', '计时练习并互相提建议'],
+        output: '完成三分钟演讲稿和项目展示页。',
+        check: '观众能听懂你的项目解决了什么问题。'
+    },
+    16: {
+        question: '一个完整科创项目，怎样接受反馈并继续改进？',
+        materials: ['项目成品', '评价表', '复盘表', '投票贴纸'],
+        prompt: '请根据我的项目展示反馈，帮我整理复盘：最大收获、最大问题、下一版改进计划。反馈如下：<粘贴反馈>',
+        codeReading: ['发布会重点是展示、体验和反馈', '复盘比“做完了”更重要', '下一版计划要具体到一个可实现改动'],
+        flow: ['全班轮流展示项目', '同学体验并填写反馈', '整理点赞和建议', '写项目复盘和下一版计划'],
+        output: '提交项目复盘：收获、问题、下一步。',
+        check: '能接受反馈，并提出具体改进方案。'
+    }
+};
+
+const allLessons = courseData.phases.flatMap((phase) =>
+    phase.units.map((unit) => ({
+        ...unit,
+        phaseId: phase.id,
+        phaseTitle: phase.title,
+        phaseColor: phase.color,
+        handout: handoutDetails[unit.num]
+    }))
+);
+
+const handoutUsage = [
+    { title: '老师备课视图', desc: '看驱动问题、课堂流程、验证方法和达成检查，快速判断这一课怎么推进。' },
+    { title: '学生任务视图', desc: '每课都有学生可见任务卡，明确今天要解决什么、观察什么、提交什么。' },
+    { title: '打印讲义视图', desc: '点击打印讲义，可直接投屏、打印或另存为 PDF，作为课堂学习单使用。' }
+];
+
+const pblCycle = [
+    { title: '发现问题', desc: '从生活现象或课堂挑战出发，先提出值得解决的问题。' },
+    { title: '拆解需求', desc: '把问题拆成输入、处理、输出和约束，形成可执行任务。' },
+    { title: 'AI 协作', desc: '用三轮对话让 AI 生成、解释、修正，而不是只复制答案。' },
+    { title: '制作验证', desc: '用 ESP32 运行、观察、记录证据，判断方案是否真的有效。' },
+    { title: '展示复盘', desc: '讲清楚问题、方案、证据、AI 的作用和下一版改进。' }
+];
+
+const finalProject = {
+    title: '最终挑战：做一个 ESP32 智能小发明',
+    drivingQuestion: '我们能不能用 ESP32 和 AI，做出一个能解决真实问题的作品？',
+    requirements: [
+        '解决一个校园、家庭或生活中的真实问题',
+        '至少使用 1 个输入模块和 1 个输出模块',
+        '至少保留 2 轮 AI 对话修改记录',
+        '有模块测试记录和整合调试记录',
+        '完成 3 分钟项目展示和项目复盘'
+    ],
+    deliverables: ['项目提案', '模块图', '测试记录', '整合代码', '展示稿', '项目复盘']
+};
+
+const rubric = [
+    {
+        criterion: '问题定义',
+        levels: ['问题模糊，像是在做练习', '能说出现象，但对象和场景不清楚', '问题具体，有使用场景和目标用户', '问题真实、有证据，并能说明为什么值得解决']
+    },
+    {
+        criterion: '工程实现',
+        levels: ['作品不能稳定运行', '单个模块能运行，但整合不稳定', '主要功能能运行，有基础测试记录', '功能稳定，测试充分，并能解释关键设计选择']
+    },
+    {
+        criterion: 'AI 协作',
+        levels: ['只复制 AI 代码', '能向 AI 提问，但缺少验证', '能让 AI 解释和修改，并记录过程', '能批判 AI 输出，用证据判断和迭代方案']
+    },
+    {
+        criterion: '表达展示',
+        levels: ['只展示现象，讲不清问题', '能介绍作品功能', '能按问题、方案、证据讲清项目', '表达有故事、有反思，能回应同伴反馈']
+    }
+];
+
+const makeStudentTasks = (lesson) => [
+    `我要解决：${lesson.handout.question}`,
+    `我要观察：运行结果是否符合“${lesson.project}”。`,
+    `我要验证：${lesson.handout.check}`,
+    `我要提交：${lesson.handout.output}`
+];
+
+const makeAiDialogue = (lesson) => [
+    { title: '第一问：生成方案', text: lesson.handout.prompt },
+    { title: '第二问：要求解释', text: '请逐行解释这段代码，指出我必须根据自己硬件修改的引脚、库名或参数。' },
+    { title: '第三问：带证据修正', text: '这是我的运行现象、报错信息和接线说明，请只修改必要部分，并解释为什么这样改。' }
+];
+
+const makeVerificationSteps = (lesson) => [
+    `现象验证：实际效果是否完成“${lesson.project}”。`,
+    '接线验证：逐一核对电源、GND、信号线和 GPIO 编号。',
+    '代码验证：改动一个关键参数，观察结果是否按预期变化。',
+    `理解验证：学生能用自己的话说明“${lesson.keySkill}”。`
+];
+
 function PrincipleGrid() {
     return (
         <section className="bg-white py-16">
@@ -308,6 +540,7 @@ function PhaseOverview() {
                                     </div>
                                 </div>
                                 <div className={`mb-5 rounded-xl p-4 text-sm leading-6 ${style.bg}`}>
+                                    <p className="mb-2 text-slate-700"><span className="font-bold">驱动问题：</span>{phase.drivingQuestion}</p>
                                     <p className="mb-2 text-slate-700"><span className="font-bold">能力目标：</span>{phase.coreAbility}</p>
                                     <p className="text-slate-700"><span className="font-bold">AI 角色：</span>{phase.aiRole}</p>
                                 </div>
@@ -321,6 +554,30 @@ function PhaseOverview() {
                             </div>
                         );
                     })}
+                </div>
+            </div>
+        </section>
+    );
+}
+
+function PblFramework() {
+    return (
+        <section className="bg-white py-16">
+            <div className="mx-auto max-w-6xl px-6">
+                <div className="mb-8 flex items-center gap-3">
+                    <Sparkles className="text-slate-900" size={24} />
+                    <h2 className="text-2xl font-black text-slate-900">PBL 学习路径</h2>
+                </div>
+                <div className="grid gap-4 md:grid-cols-5">
+                    {pblCycle.map((step, index) => (
+                        <div key={step.title} className="rounded-2xl border border-slate-200 bg-slate-50 p-5">
+                            <div className="mb-4 flex h-10 w-10 items-center justify-center rounded-xl bg-slate-900 text-sm font-black text-white">
+                                {index + 1}
+                            </div>
+                            <h3 className="mb-2 font-black text-slate-900">{step.title}</h3>
+                            <p className="text-sm leading-6 text-slate-600">{step.desc}</p>
+                        </div>
+                    ))}
                 </div>
             </div>
         </section>
@@ -368,6 +625,7 @@ function LessonDetails() {
                     <h3 className={`mb-2 text-xl font-black ${style.text}`}>
                         阶段 {phase.id}：{phase.title}
                     </h3>
+                    <p className="mb-2 text-base font-bold leading-7 text-slate-900">{phase.drivingQuestion}</p>
                     <p className="text-sm leading-6 text-slate-700">{phase.aiRole}</p>
                 </div>
 
@@ -415,6 +673,277 @@ function LessonDetails() {
     );
 }
 
+function HandoutGuide() {
+    return (
+        <section className="bg-slate-950 px-6 py-16 text-white">
+            <div className="mx-auto max-w-6xl">
+                <div className="mb-8 flex flex-col gap-4 md:flex-row md:items-end md:justify-between">
+                    <div>
+                        <div className="mb-3 inline-flex items-center gap-2 rounded-full bg-white/10 px-4 py-2 text-xs font-black uppercase tracking-widest text-cyan-200">
+                            <ClipboardList size={14} />
+                            Teaching Handout
+                        </div>
+                        <h2 className="text-3xl font-black md:text-4xl">可直接上课的网页讲义</h2>
+                        <p className="mt-3 max-w-2xl text-slate-300">
+                            下面 16 张课卡按课堂使用顺序展开，适合投屏讲解、学生自学，也可以打印成纸质讲义。
+                        </p>
+                    </div>
+                    <button
+                        type="button"
+                        onClick={() => window.print()}
+                        className="inline-flex items-center justify-center gap-2 rounded-2xl bg-cyan-300 px-5 py-3 text-sm font-black text-slate-950 transition-colors hover:bg-cyan-200"
+                    >
+                        <Printer size={18} />
+                        打印讲义
+                    </button>
+                </div>
+
+                <div className="grid gap-4 md:grid-cols-3">
+                    {handoutUsage.map((item) => (
+                        <div key={item.title} className="rounded-2xl border border-white/10 bg-white/5 p-5">
+                            <h3 className="mb-2 font-black text-white">{item.title}</h3>
+                            <p className="text-sm leading-6 text-slate-300">{item.desc}</p>
+                        </div>
+                    ))}
+                </div>
+            </div>
+        </section>
+    );
+}
+
+function InfoBlock({ icon: Icon, title, children, className = '' }) {
+    return (
+        <div className={`rounded-2xl border border-slate-200 bg-slate-50 p-5 ${className}`}>
+            <div className="mb-3 flex items-center gap-2 text-sm font-black text-slate-900">
+                <Icon size={18} className="text-blue-600" />
+                {title}
+            </div>
+            {children}
+        </div>
+    );
+}
+
+function LessonHandoutBook() {
+    return (
+        <section className="bg-white px-6 py-16">
+            <div className="mx-auto max-w-6xl">
+                <div className="space-y-8">
+                    {allLessons.map((lesson) => {
+                        const style = phaseStyles[lesson.phaseColor];
+                        const handout = lesson.handout;
+                        const studentTasks = makeStudentTasks(lesson);
+                        const aiDialogue = makeAiDialogue(lesson);
+                        const verificationSteps = makeVerificationSteps(lesson);
+
+                        return (
+                            <article key={lesson.num} className="break-inside-avoid rounded-3xl border border-slate-200 bg-white p-6 shadow-sm md:p-8">
+                                <div className="mb-6 flex flex-col gap-4 md:flex-row md:items-start md:justify-between">
+                                    <div>
+                                        <div className={`mb-3 inline-flex items-center gap-2 rounded-full border px-3 py-1 text-xs font-black ${style.border} ${style.bg} ${style.text}`}>
+                                            阶段 {lesson.phaseId} · {lesson.phaseTitle}
+                                        </div>
+                                        <h3 className="text-2xl font-black text-slate-950">
+                                            第 {lesson.num} 课：{lesson.title}
+                                        </h3>
+                                        <p className="mt-2 max-w-3xl text-slate-600">{lesson.goal}</p>
+                                    </div>
+                                    <div className={`flex h-14 w-14 shrink-0 items-center justify-center rounded-2xl text-xl font-black text-white ${style.solid}`}>
+                                        {lesson.num}
+                                    </div>
+                                </div>
+
+                                <div className={`mb-6 rounded-2xl border p-5 ${style.border} ${style.bg}`}>
+                                    <div className="mb-2 flex items-center gap-2 text-sm font-black text-slate-900">
+                                        <Lightbulb size={18} className={style.text} />
+                                        本课核心问题
+                                    </div>
+                                    <p className="text-lg font-bold leading-8 text-slate-900">{handout.question}</p>
+                                </div>
+
+                                <div className="mb-6 rounded-2xl border border-blue-200 bg-blue-50 p-5">
+                                    <div className="mb-3 flex items-center gap-2 text-sm font-black text-slate-900">
+                                        <GraduationCap size={18} className="text-blue-600" />
+                                        学生任务卡
+                                    </div>
+                                    <div className="grid gap-3 md:grid-cols-2">
+                                        {studentTasks.map((task) => (
+                                            <div key={task} className="flex gap-2 rounded-xl bg-white p-3 text-sm leading-6 text-slate-700 ring-1 ring-blue-100">
+                                                <CheckCircle2 size={16} className="mt-1 shrink-0 text-blue-600" />
+                                                <span>{task}</span>
+                                            </div>
+                                        ))}
+                                    </div>
+                                </div>
+
+                                <div className="grid gap-5 lg:grid-cols-2">
+                                    <InfoBlock icon={PackageCheck} title="准备器材">
+                                        <div className="flex flex-wrap gap-2">
+                                            {handout.materials.map((item) => (
+                                                <span key={item} className="rounded-full bg-white px-3 py-1 text-xs font-bold text-slate-600 ring-1 ring-slate-200">
+                                                    {item}
+                                                </span>
+                                            ))}
+                                        </div>
+                                    </InfoBlock>
+
+                                    <InfoBlock icon={Target} title="课堂项目">
+                                        <p className="text-sm leading-6 text-slate-700">{lesson.project}</p>
+                                    </InfoBlock>
+
+                                    <InfoBlock icon={MessageSquareText} title="AI 提问模板" className="lg:col-span-2">
+                                        <p className="rounded-xl bg-white p-4 font-mono text-sm leading-7 text-slate-700 ring-1 ring-slate-200">
+                                            {handout.prompt}
+                                        </p>
+                                    </InfoBlock>
+
+                                    <InfoBlock icon={Bot} title="三轮 AI 对话流程" className="lg:col-span-2">
+                                        <ol className="grid gap-3 md:grid-cols-3">
+                                            {aiDialogue.map((item, index) => (
+                                                <li key={item.title} className="rounded-xl bg-white p-4 ring-1 ring-slate-200">
+                                                    <div className={`mb-2 inline-flex h-7 w-7 items-center justify-center rounded-full text-xs font-black text-white ${style.solid}`}>
+                                                        {index + 1}
+                                                    </div>
+                                                    <h4 className="mb-2 text-sm font-black text-slate-900">{item.title}</h4>
+                                                    <p className="text-xs leading-6 text-slate-600">{item.text}</p>
+                                                </li>
+                                            ))}
+                                        </ol>
+                                    </InfoBlock>
+
+                                    <InfoBlock icon={Code2} title="代码阅读点">
+                                        <ul className="space-y-2">
+                                            {handout.codeReading.map((item) => (
+                                                <li key={item} className="flex gap-2 text-sm leading-6 text-slate-700">
+                                                    <CheckCircle2 size={16} className={`mt-1 shrink-0 ${style.text}`} />
+                                                    <span>{item}</span>
+                                                </li>
+                                            ))}
+                                        </ul>
+                                    </InfoBlock>
+
+                                    <InfoBlock icon={ClipboardList} title="课堂流程">
+                                        <ol className="space-y-2">
+                                            {handout.flow.map((item, index) => (
+                                                <li key={item} className="flex gap-3 text-sm leading-6 text-slate-700">
+                                                    <span className={`flex h-6 w-6 shrink-0 items-center justify-center rounded-full text-xs font-black text-white ${style.solid}`}>
+                                                        {index + 1}
+                                                    </span>
+                                                    <span>{item}</span>
+                                                </li>
+                                            ))}
+                                        </ol>
+                                    </InfoBlock>
+
+                                    <InfoBlock icon={ClipboardCheck} title="验证 AI 是否正确" className="lg:col-span-2">
+                                        <div className="grid gap-3 md:grid-cols-2">
+                                            {verificationSteps.map((item) => (
+                                                <div key={item} className="flex gap-2 rounded-xl bg-white p-3 text-sm leading-6 text-slate-700 ring-1 ring-slate-200">
+                                                    <CheckCircle2 size={16} className={`mt-1 shrink-0 ${style.text}`} />
+                                                    <span>{item}</span>
+                                                </div>
+                                            ))}
+                                        </div>
+                                    </InfoBlock>
+
+                                    <InfoBlock icon={FileText} title="学生提交成果">
+                                        <p className="text-sm leading-6 text-slate-700">{handout.output}</p>
+                                    </InfoBlock>
+
+                                    <InfoBlock icon={ClipboardCheck} title="达成检查">
+                                        <p className="text-sm leading-6 text-slate-700">{handout.check}</p>
+                                    </InfoBlock>
+                                </div>
+                            </article>
+                        );
+                    })}
+                </div>
+            </div>
+        </section>
+    );
+}
+
+function FinalProjectRubric() {
+    return (
+        <section className="bg-slate-50 px-6 py-16">
+            <div className="mx-auto max-w-6xl">
+                <div className="mb-8">
+                    <div className="mb-3 inline-flex items-center gap-2 rounded-full bg-orange-100 px-4 py-2 text-xs font-black uppercase tracking-widest text-orange-700">
+                        Final PBL Challenge
+                    </div>
+                    <h2 className="text-3xl font-black text-slate-950 md:text-4xl">{finalProject.title}</h2>
+                    <p className="mt-3 max-w-3xl text-lg font-bold leading-8 text-slate-700">{finalProject.drivingQuestion}</p>
+                </div>
+
+                <div className="mb-8 grid gap-5 lg:grid-cols-2">
+                    <div className="rounded-3xl border border-orange-200 bg-white p-6">
+                        <h3 className="mb-4 flex items-center gap-2 font-black text-slate-900">
+                            <Target size={20} className="text-orange-600" />
+                            项目要求
+                        </h3>
+                        <ul className="space-y-3">
+                            {finalProject.requirements.map((item) => (
+                                <li key={item} className="flex gap-2 text-sm leading-6 text-slate-700">
+                                    <CheckCircle2 size={16} className="mt-1 shrink-0 text-orange-600" />
+                                    <span>{item}</span>
+                                </li>
+                            ))}
+                        </ul>
+                    </div>
+
+                    <div className="rounded-3xl border border-blue-200 bg-white p-6">
+                        <h3 className="mb-4 flex items-center gap-2 font-black text-slate-900">
+                            <PackageCheck size={20} className="text-blue-600" />
+                            作品包提交物
+                        </h3>
+                        <div className="flex flex-wrap gap-2">
+                            {finalProject.deliverables.map((item) => (
+                                <span key={item} className="rounded-full bg-blue-50 px-3 py-1 text-sm font-bold text-blue-700 ring-1 ring-blue-100">
+                                    {item}
+                                </span>
+                            ))}
+                        </div>
+                    </div>
+                </div>
+
+                <div className="rounded-3xl border border-slate-200 bg-white p-6">
+                    <h3 className="mb-5 flex items-center gap-2 text-xl font-black text-slate-950">
+                        <ClipboardCheck size={22} className="text-slate-900" />
+                        PBL 评价量规
+                    </h3>
+                    <div className="overflow-x-auto">
+                        <table className="w-full min-w-[860px] border-collapse text-left text-sm">
+                            <thead>
+                                <tr className="border-b border-slate-200 text-slate-500">
+                                    <th className="w-32 px-3 py-3 font-black">维度</th>
+                                    <th className="px-3 py-3 font-black">1 级</th>
+                                    <th className="px-3 py-3 font-black">2 级</th>
+                                    <th className="px-3 py-3 font-black">3 级</th>
+                                    <th className="px-3 py-3 font-black">4 级</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                {rubric.map((row) => (
+                                    <tr key={row.criterion} className="border-b border-slate-100 align-top last:border-b-0">
+                                        <td className="px-3 py-4 font-black text-slate-900">{row.criterion}</td>
+                                        {row.levels.map((level, index) => (
+                                            <td key={level} className="px-3 py-4 leading-6 text-slate-600">
+                                                <span className="mb-2 inline-flex h-6 w-6 items-center justify-center rounded-full bg-slate-100 text-xs font-black text-slate-500">
+                                                    {index + 1}
+                                                </span>
+                                                <div>{level}</div>
+                                            </td>
+                                        ))}
+                                    </tr>
+                                ))}
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </section>
+    );
+}
+
 export default function Esp32AiCourseSystem() {
     const navigate = useNavigate();
 
@@ -452,6 +981,14 @@ export default function Esp32AiCourseSystem() {
                                     <Cpu size={16} />
                                     {courseData.overview.totalLessons}
                                 </span>
+                                <button
+                                    type="button"
+                                    onClick={() => window.print()}
+                                    className="inline-flex items-center gap-2 rounded-full bg-cyan-300 px-4 py-2 text-sm font-black text-slate-950 transition-colors hover:bg-cyan-200"
+                                >
+                                    <Printer size={16} />
+                                    打印讲义
+                                </button>
                             </div>
                         </div>
 
@@ -465,8 +1002,12 @@ export default function Esp32AiCourseSystem() {
             </section>
 
             <PrincipleGrid />
+            <PblFramework />
             <PhaseOverview />
             <LessonDetails />
+            <HandoutGuide />
+            <LessonHandoutBook />
+            <FinalProjectRubric />
         </div>
     );
 }
