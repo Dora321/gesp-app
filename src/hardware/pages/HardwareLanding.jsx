@@ -187,6 +187,52 @@ const ThreeEModel = () => (
     </section>
 );
 
+const Esp32AiSpotlight = ({ navigate }) => (
+    <section className="py-24 bg-slate-950 text-white relative overflow-hidden">
+        <div className="absolute inset-0 opacity-[0.08]" style={{ backgroundImage: 'linear-gradient(90deg, #38BDF8 1px, transparent 1px), linear-gradient(#38BDF8 1px, transparent 1px)', backgroundSize: '48px 48px' }}></div>
+        <div className="absolute inset-x-0 top-0 h-px bg-gradient-to-r from-transparent via-cyan-300/40 to-transparent"></div>
+
+        <div className="max-w-7xl mx-auto px-6 relative z-10 grid lg:grid-cols-[0.9fr_1.1fr] gap-10 items-center">
+            <div>
+                <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-cyan-400/10 text-cyan-200 border border-cyan-300/20 text-xs font-black uppercase tracking-wider mb-6">
+                    <Cpu size={14} />
+                    New ESP32 Course
+                </div>
+                <h2 className="text-3xl lg:text-5xl font-black leading-tight mb-5">
+                    ESP32 × AI 科创课程体系
+                </h2>
+                <p className="text-slate-300 text-lg leading-8 max-w-2xl">
+                    面向小学高年级的 16 课时项目制课程，从读懂 MicroPython 代码开始，逐步学会拆解需求、指挥 AI、调试硬件，并完成真实科创项目。
+                </p>
+                <button
+                    onClick={() => navigate('/hardware/esp32-ai')}
+                    className="mt-8 px-7 py-4 bg-cyan-400 hover:bg-cyan-300 text-slate-950 text-base font-black rounded-2xl shadow-xl shadow-cyan-950/40 flex items-center gap-3 transition-all hover:-translate-y-1"
+                >
+                    查看 ESP32 课程体系
+                    <ArrowRight size={20} />
+                </button>
+            </div>
+
+            <div className="grid sm:grid-cols-3 gap-4">
+                {[
+                    { title: '读懂 AI', desc: '看懂并验证 AI 生成的 MicroPython 代码', lessons: '1-5' },
+                    { title: '指挥 AI', desc: '把硬件、语言、行为和约束说清楚', lessons: '6-10' },
+                    { title: '超越 AI', desc: '从真实问题出发完成多模块项目', lessons: '11-16' }
+                ].map((phase, index) => (
+                    <div key={phase.title} className="rounded-3xl border border-white/10 bg-white/5 p-6 backdrop-blur-sm hover:bg-white/10 transition-colors">
+                        <div className="mb-5 flex h-12 w-12 items-center justify-center rounded-2xl bg-white text-slate-950 font-black">
+                            {index + 1}
+                        </div>
+                        <div className="text-xs font-black uppercase tracking-widest text-cyan-200 mb-2">第 {phase.lessons} 课</div>
+                        <h3 className="text-xl font-black mb-3">{phase.title}</h3>
+                        <p className="text-sm leading-6 text-slate-300">{phase.desc}</p>
+                    </div>
+                ))}
+            </div>
+        </div>
+    </section>
+);
+
 const MissionMap = ({ navigate }) => {
     const [activeTab, setActiveTab] = useState('realtime');
     const missions = hardwareLessons.filter(l => l.mode === activeTab);
@@ -364,6 +410,7 @@ export default function HardwareLanding() {
             <main>
                 <Hero onStart={() => navigate('/hardware/lesson/1')} />
                 <ThreeEModel />
+                <Esp32AiSpotlight navigate={navigate} />
                 <MissionMap navigate={navigate} />
                 <Resources />
             </main>

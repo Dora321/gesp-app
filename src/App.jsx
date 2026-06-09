@@ -62,6 +62,7 @@ const EkartParentPortal = lazy(() => import('./ekart/pages/ParentPortal'));
 const HardwareLayout = lazy(() => import('./hardware/HardwareLayout'));
 const HardwareLanding = lazy(() => import('./hardware/pages/HardwareLanding'));
 const HardwareLessonDetail = lazy(() => import('./hardware/pages/HardwareLessonDetail'));
+const Esp32AiCourseSystem = lazy(() => import('./hardware/pages/Esp32AiCourseSystem'));
 
 // Loading fallback
 import LoadingScreen from './components/LoadingScreen';
@@ -96,6 +97,7 @@ function App() {
           {/* Hardware Module Routes */}
           <Route path="/hardware" element={<HardwareLayout />}>
             <Route index element={<HardwareLanding />} />
+            <Route path="esp32-ai" element={<Esp32AiCourseSystem />} />
             <Route path="lesson/:id" element={<HardwareLessonDetail />} />
           </Route>
 

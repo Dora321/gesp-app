@@ -102,7 +102,7 @@ export default function Navigation({ darkMode = false, afterLogo = null, classNa
                         <nav className="hidden md:flex items-center gap-1">
                             {navItems.map((item) => (
                                 <button
-                                    key={item.path}
+                                    key={`${item.path}-${item.scrollTo || item.name}`}
                                     onClick={() => handleNavClick(item)}
                                     className={`
                                         px-4 py-2 rounded-full text-sm font-bold transition-all duration-300 flex items-center gap-2 relative group
@@ -153,7 +153,7 @@ export default function Navigation({ darkMode = false, afterLogo = null, classNa
                 <div className="w-full px-8 max-w-sm space-y-4">
                     {navItems.map((item, idx) => (
                         <button
-                            key={item.path}
+                            key={`${item.path}-${item.scrollTo || item.name}`}
                             onClick={() => {
                                 handleNavClick(item);
                                 setIsMobileMenuOpen(false);
