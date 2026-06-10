@@ -14,13 +14,17 @@ import {
     Cpu,
     FileText,
     GraduationCap,
+    Handshake,
+    HeartHandshake,
     Home,
     Lightbulb,
     ListChecks,
+    Lock,
     MessageSquareText,
     PackageCheck,
     Printer,
     Route,
+    ShieldCheck,
     Sparkles,
     Target,
     Wrench
@@ -48,11 +52,11 @@ const courseData = {
                 {
                     num: 1,
                     title: 'LED 亮了！',
-                    goal: '第一次接触 ESP32 和 AI 生成的代码',
+                    goal: '用 AI 生成的 3 行核心代码，第一次控制真实世界的小灯',
                     project: '控制板载 LED 亮灭',
-                    aiUsage: '老师当场向 AI 提问，学生观看全过程',
-                    keySkill: '认识 Pin / OUT / value() 三个概念',
-                    homework: '回家试着向 AI 提一个关于 LED 的问题'
+                    aiUsage: '老师当场向 AI 提问，学生观察「语言、硬件、引脚、效果」四要素',
+                    keySkill: '认识 Pin / OUT / value(1) / value(0)，并理解代码必须和硬件对应',
+                    homework: '把 3 行核心代码讲给家人听，并记录家人提出的一个问题'
                 },
                 {
                     num: 2,
@@ -83,12 +87,12 @@ const courseData = {
                 },
                 {
                     num: 5,
-                    title: 'AI 错了！',
-                    goal: '建立对 AI 输出的批判意识',
-                    project: '老师故意给「有 bug 的 AI 代码」，学生找错',
-                    aiUsage: '学生把报错信息粘贴给 AI，让 AI 自己改',
-                    keySkill: '读懂基本报错信息（NameError / SyntaxError）',
-                    homework: '记录一次「AI 出错 → 你发现 → 修好了」的过程'
+                    title: 'AI 会一本正经地胡说',
+                    goal: '理解 AI 是「概率生成」而非「真的懂」，建立判断标尺',
+                    project: '故意「考」AI 一个不存在的功能，亲眼看它自信地编，再学会验证',
+                    aiUsage: '学生主动考 AI：问它一个不存在的引脚/函数，观察它怎么编',
+                    keySkill: '建立四条判断标尺：会幻觉 / 不知你的接线 / 答案不唯一 / 能跑≠正确',
+                    homework: '记录一次「AI 自信地说错 → 你发现 → 你怎么验证」的过程'
                 }
             ]
         },
@@ -273,13 +277,56 @@ const detailItems = [
 
 const handoutDetails = {
     1: {
-        question: '怎样让 ESP32 按我们的命令点亮一盏灯？',
-        materials: ['ESP32 开发板', 'USB 数据线', 'Thonny 或 Mind+ Python 模式', '板载 LED'],
-        prompt: '我使用 ESP32 和 MicroPython，请生成一段让板载 LED 每 1 秒闪烁一次的代码，并逐行解释给小学生听。',
-        codeReading: ['Pin(2, Pin.OUT) 表示把 2 号引脚设置成输出', 'value(1) 是亮，value(0) 是灭', 'while True 表示一直重复'],
-        flow: ['观察板载 LED 在哪里', '读 AI 生成代码，不急着运行', '圈出 Pin、OUT、value 三个词', '运行代码并验证灯是否按节奏闪烁'],
-        output: '在讲义上写下：哪一行负责亮灯，哪一行负责灭灯。',
-        check: '能说清楚「输出」是什么意思，并能预测 value(0/1) 的结果。'
+        question: '不用开关，只用代码，怎样让 ESP32 上的小灯亮起来？',
+        materials: ['ESP32 开发板', 'USB 数据线', 'PyCharm + MicroPython Tools 插件', 'main.py', '板载 LED（GPIO2）'],
+        prompt: '我在用 MicroPython 编程，硬件是 ESP32 开发板。请给我最简单的代码，让板载 LED（GPIO2）亮起来。只要亮就行，不需要闪烁。',
+        concepts: [
+            { term: 'Pin', meaning: '引脚，板子边上的针脚', studentPrompt: '我想到的联想：__________' },
+            { term: 'OUT', meaning: '输出，ESP32 往外发信号', studentPrompt: '它像是在对外说：__________' },
+            { term: 'value(1) / value(0)', meaning: '开 / 关，让灯亮或灭', studentPrompt: '1 代表：____；0 代表：____' }
+        ],
+        coreCode: [
+            { code: 'from machine import Pin', hint: '从哪里拿出了什么工具？' },
+            { code: 'led = Pin(2, Pin.OUT)', hint: '2 是什么？OUT 是什么？' },
+            { code: 'led.value(1)', hint: '1 代表什么？0 呢？' }
+        ],
+        operationSteps: [
+            { title: '连接板子', text: '插 USB 线 → 打开 MicroPython Tools 面板 → 选端口 → 点连接，看到「已连接」才算成功。' },
+            { title: '写代码', text: '双击打开 main.py → 写入 3 行核心代码 → 按 Ctrl+S 保存。没保存的代码不会生效。' },
+            { title: '上传运行', text: '右键 main.py → 上传到设备 → 按板上 RST 小按钮重启，观察 LED。' }
+        ],
+        studentTasks: [
+            '基础任务 1：照「PyCharm 三步走」点亮 LED，并记录用了几分钟。',
+            '基础任务 2：把 led.value(1) 改成 led.value(0)，上传后写下观察结果。',
+            '进阶任务 3：把 Pin(2) 改成 Pin(4)，观察灯为什么不亮。',
+            '挑战任务 4：用提问四要素向 AI 询问「怎么让 LED 闪烁」。'
+        ],
+        aiDialogue: [
+            { title: '第一问：把四要素说清楚', text: '我使用 MicroPython，硬件是 ESP32，板载 LED 接在 GPIO2，我想让 LED 亮起来。' },
+            { title: '第二问：找出核心代码', text: '请只保留真正让 LED 亮起来的 3 行核心代码，并解释每一行。' },
+            { title: '第三问：提出下一步挑战', text: '如果我想让 LED 闪烁，需要新增什么代码？哪些是我已经学过的，哪些下节课再学？' }
+        ],
+        codeReading: [
+            'from machine import Pin：从 ESP32 的工具箱里拿出控制引脚的工具',
+            'led = Pin(2, Pin.OUT)：把 GPIO2 设置成输出，因为板载 LED 焊在 2 号引脚上',
+            'led.value(1)：让 LED 亮；改成 value(0) 就会灭',
+            '核心代码只有 3 行，AI 回复里的空行和注释是给人看的说明'
+        ],
+        flow: ['看老师用 AI 生成代码，先观察它如何提问', '逐行读懂 3 行核心代码，把每行意思写下来', '按 PyCharm 三步走连接、保存、上传、重启', '完成 value(0) 和 Pin(4) 实验，用现象验证代码'],
+        verificationSteps: [
+            '现象验证：value(1) 上传后灯亮，value(0) 上传后灯灭。',
+            '操作验证：只碰 main.py、连接按钮、上传按钮；出问题先查线、连接、保存。',
+            '映射验证：Pin(2) 能控制板载 LED，Pin(4) 不亮说明代码必须和真实硬件对应。',
+            '理解验证：能向同伴解释 Pin、OUT、value(1)/value(0) 的意思。'
+        ],
+        discoveries: ['代码能控制真实硬件。', 'AI 能写代码，但我必须读懂。', '改一个参数，真实世界的结果就会改变。'],
+        afterClass: [
+            '基础：把今天的 3 行核心代码讲给家人听，每一行是做什么的。',
+            '记录：写下家人问你的一个问题，下节课带来分享。',
+            '拓展：用「语言、硬件、引脚、效果」四要素向 AI 问一个 LED 问题，并保存截图。'
+        ],
+        output: '完成第 1 课学习单：三组新概念、3 行核心代码解释、基础/进阶任务观察记录、今日三大发现。',
+        check: '每组能点亮 LED，并能说出 Pin、OUT、value(1)/value(0) 的意思。'
     },
     2: {
         question: '灯光能不能像密码一样传递信息？',
@@ -309,13 +356,23 @@ const handoutDetails = {
         check: '知道 AI 不认识具体硬件时，要补充型号、接线和库名。'
     },
     5: {
-        question: 'AI 写错代码时，我们怎样判断问题在哪里？',
-        materials: ['ESP32 开发板', '一段带 bug 的示例代码', '错误信息记录表'],
-        prompt: '下面这段 ESP32 MicroPython 代码报错了，请先解释错误信息，再给出最小修改方案。代码如下：<粘贴代码和报错>',
-        codeReading: ['NameError 常见于名字写错或变量没定义', 'SyntaxError 常见于冒号、括号、缩进错误', '报错行号是线索，不一定是唯一问题'],
-        flow: ['先运行错误代码', '把错误类型、行号、关键词抄下来', '不直接问“哪里错了”，而是把报错交给 AI', '验证 AI 的修改是否真的解决问题'],
-        output: '完成一张「错误侦探卡」：错误类型、原因猜测、修复方法。',
-        check: '遇到报错不慌，能先读错误信息，再求助 AI。'
+        question: 'AI 写出来的代码、说出来的话，凭什么相信？它会不会在「骗」我们？',
+        materials: ['ESP32 开发板', '一段「能跑但结果错」的示例代码', 'AI 判断标尺卡', '错误信息记录表'],
+        prompt: '请告诉我 ESP32 MicroPython 里怎么用 `Pin.RAINBOW` 模式让板载 LED 显示七彩颜色，给出完整代码。',
+        codeReading: [
+            'AI 会编造不存在的东西（比如根本没有的 Pin.RAINBOW）——这叫「幻觉」',
+            'AI 不知道你的真实接线和硬件型号，它其实是在「猜」',
+            '同一个问题问两次，答案可能不一样：AI 不是查字典，是在「预测下一个字」',
+            '代码能跑通 ≠ 代码做对了你想要的事',
+        ],
+        flow: [
+            '故意「考」AI：问它一个不存在的引脚/函数（如 Pin.RAINBOW），看它会不会一本正经地编',
+            '把 AI 给的代码拿去运行，验证它说的到底是真是假',
+            '再读一段「能跑但结果错」的代码，体会「跑通也可能是错的」',
+            '最后把一个真实报错（不是编的）交给 AI 改，并验证它是否真的改对',
+        ],
+        output: '完成「AI 判断标尺卡」：写下今天抓到 AI 的几次「不靠谱」，以及你分别是怎么验证的。',
+        check: '能说出「AI 为什么会出错」的至少两个原因，遇到 AI 的回答会先验证、再相信。'
     },
     6: {
         question: '为什么同一个任务，问法不同，AI 答案差很多？',
@@ -434,6 +491,51 @@ const handoutUsage = [
     { title: '打印讲义视图', desc: '点击打印讲义，可直接投屏、打印或另存为 PDF，作为课堂学习单使用。' }
 ];
 
+const aiAgreements = [
+    {
+        phase: 1,
+        color: 'emerald',
+        icon: BrainCircuit,
+        title: '先自己读懂，再问 AI',
+        rule: '遇到不会的，先自己读、自己想 3 分钟，再请 AI 帮忙。AI 是帮我学，不是替我想。',
+        examples: [
+            '✅ 我先读了代码，不懂 value() 是什么，才去问 AI',
+            '❌ 题目还没看，直接把题目甩给 AI 要答案',
+        ],
+    },
+    {
+        phase: 2,
+        color: 'indigo',
+        icon: Handshake,
+        title: '我出想法，AI 出草稿，决定权在我',
+        rule: '需求是我定的，代码是 AI 写的草稿。用不用、怎么改，由我判断，也由我负责。',
+        examples: [
+            '✅ AI 给了 3 种做法，我比较后选了最适合我项目的',
+            '❌ AI 写啥我用啥，出了问题就怪 AI',
+        ],
+    },
+    {
+        phase: 3,
+        color: 'orange',
+        icon: HeartHandshake,
+        title: '有些事，只有人能做',
+        rule: '发现真问题、关心真实的人、为作品负责——这些 AI 做不了，是我作为「小创客」的价值。',
+        examples: [
+            '✅ 我观察到奶奶总忘记关灯，才决定做这个项目',
+            '❌ 让 AI 替我决定「做什么项目评委印象好」',
+        ],
+    },
+];
+
+const aiSafetyRedLine = {
+    title: '隐私红线（任何阶段都要守）',
+    items: [
+        '不要把家庭住址、电话、身份证号告诉 AI',
+        '不要上传自己或同学的正脸照片、真实全名',
+        '拿不准要不要发给 AI 的内容，先问老师',
+    ],
+};
+
 const pblCycle = [
     { title: '发现问题', desc: '从生活现象或课堂挑战出发，先提出值得解决的问题。' },
     { title: '拆解需求', desc: '把问题拆成输入、处理、输出和约束，形成可执行任务。' },
@@ -474,20 +576,20 @@ const rubric = [
     }
 ];
 
-const makeStudentTasks = (lesson) => [
+const makeStudentTasks = (lesson) => lesson.handout.studentTasks || [
     `我要解决：${lesson.handout.question}`,
     `我要观察：运行结果是否符合“${lesson.project}”。`,
     `我要验证：${lesson.handout.check}`,
     `我要提交：${lesson.handout.output}`
 ];
 
-const makeAiDialogue = (lesson) => [
+const makeAiDialogue = (lesson) => lesson.handout.aiDialogue || [
     { title: '第一问：生成方案', text: lesson.handout.prompt },
     { title: '第二问：要求解释', text: '请逐行解释这段代码，指出我必须根据自己硬件修改的引脚、库名或参数。' },
     { title: '第三问：带证据修正', text: '这是我的运行现象、报错信息和接线说明，请只修改必要部分，并解释为什么这样改。' }
 ];
 
-const makeVerificationSteps = (lesson) => [
+const makeVerificationSteps = (lesson) => lesson.handout.verificationSteps || [
     `现象验证：实际效果是否完成“${lesson.project}”。`,
     '接线验证：逐一核对电源、GND、信号线和 GPIO 编号。',
     '代码验证：改动一个关键参数，观察结果是否按预期变化。',
@@ -554,6 +656,62 @@ function PhaseOverview() {
                             </div>
                         );
                     })}
+                </div>
+            </div>
+        </section>
+    );
+}
+
+function AiAgreements() {
+    return (
+        <section className="bg-white py-16">
+            <div className="mx-auto max-w-6xl px-6">
+                <div className="mb-4 flex items-center gap-3">
+                    <ShieldCheck className="text-slate-900" size={24} />
+                    <h2 className="text-2xl font-black text-slate-900">AI 使用公约</h2>
+                </div>
+                <p className="mb-8 max-w-3xl leading-7 text-slate-600">
+                    用 AI 不只是「会用」，更要「用得对」。三条公约对应三个阶段——学生的主导权越大，承担的责任也一起长大。
+                </p>
+
+                <div className="grid gap-6 lg:grid-cols-3">
+                    {aiAgreements.map((item) => {
+                        const style = phaseStyles[item.color];
+                        return (
+                            <div key={item.phase} className={`flex flex-col rounded-2xl border bg-white p-6 shadow-sm ${style.border}`}>
+                                <div className="mb-4 flex items-center gap-3">
+                                    <div className={`flex h-11 w-11 shrink-0 items-center justify-center rounded-2xl text-white ${style.solid}`}>
+                                        <item.icon size={22} />
+                                    </div>
+                                    <div>
+                                        <div className="text-xs font-bold uppercase tracking-widest text-slate-400">阶段 {item.phase} 公约</div>
+                                        <h3 className="text-lg font-black text-slate-900">{item.title}</h3>
+                                    </div>
+                                </div>
+                                <p className={`mb-4 rounded-xl p-4 text-sm leading-7 text-slate-700 ${style.bg}`}>{item.rule}</p>
+                                <ul className="mt-auto space-y-2">
+                                    {item.examples.map((ex) => (
+                                        <li key={ex} className="text-sm leading-6 text-slate-600">{ex}</li>
+                                    ))}
+                                </ul>
+                            </div>
+                        );
+                    })}
+                </div>
+
+                <div className="mt-6 rounded-2xl border border-red-200 bg-red-50 p-6">
+                    <div className="mb-3 flex items-center gap-2 text-sm font-black text-red-700">
+                        <Lock size={18} />
+                        {aiSafetyRedLine.title}
+                    </div>
+                    <ul className="grid gap-2 md:grid-cols-3">
+                        {aiSafetyRedLine.items.map((item) => (
+                            <li key={item} className="flex gap-2 text-sm leading-6 text-slate-700">
+                                <span className="mt-1 shrink-0 text-red-500">●</span>
+                                <span>{item}</span>
+                            </li>
+                        ))}
+                    </ul>
                 </div>
             </div>
         </section>
@@ -775,6 +933,64 @@ function LessonHandoutBook() {
                                     </div>
                                 </div>
 
+                                {handout.concepts && (
+                                    <div className="mb-6 rounded-2xl border border-emerald-200 bg-emerald-50 p-5">
+                                        <div className="mb-3 flex items-center gap-2 text-sm font-black text-slate-900">
+                                            <BrainCircuit size={18} className="text-emerald-600" />
+                                            今天的三组新概念
+                                        </div>
+                                        <div className="grid gap-3 md:grid-cols-3">
+                                            {handout.concepts.map((concept) => (
+                                                <div key={concept.term} className="rounded-xl bg-white p-4 ring-1 ring-emerald-100">
+                                                    <h4 className="mb-2 text-base font-black text-slate-900">{concept.term}</h4>
+                                                    <p className="text-sm leading-6 text-slate-700">{concept.meaning}</p>
+                                                    <p className="mt-3 rounded-lg bg-emerald-50 px-3 py-2 text-xs font-bold leading-5 text-emerald-800">
+                                                        {concept.studentPrompt}
+                                                    </p>
+                                                </div>
+                                            ))}
+                                        </div>
+                                    </div>
+                                )}
+
+                                {(handout.coreCode || handout.operationSteps) && (
+                                    <div className="mb-6 grid gap-5 lg:grid-cols-2">
+                                        {handout.coreCode && (
+                                            <InfoBlock icon={Code2} title="AI 写的 3 行核心代码">
+                                                <div className="space-y-3">
+                                                    {handout.coreCode.map((line) => (
+                                                        <div key={line.code} className="rounded-xl bg-white p-4 ring-1 ring-slate-200">
+                                                            <code className="block font-mono text-sm font-bold text-slate-900">{line.code}</code>
+                                                            <p className="mt-2 text-xs leading-5 text-slate-500">{line.hint}</p>
+                                                        </div>
+                                                    ))}
+                                                </div>
+                                            </InfoBlock>
+                                        )}
+
+                                        {handout.operationSteps && (
+                                            <InfoBlock icon={ShieldCheck} title="PyCharm 三步走">
+                                                <div className="mb-4 rounded-xl bg-amber-50 px-4 py-3 text-sm font-bold leading-6 text-amber-800 ring-1 ring-amber-100">
+                                                    今天的规矩「三不碰」：只碰 main.py、连接按钮、上传按钮，其他一律不碰。
+                                                </div>
+                                                <ol className="space-y-3">
+                                                    {handout.operationSteps.map((step, index) => (
+                                                        <li key={step.title} className="flex gap-3 rounded-xl bg-white p-4 ring-1 ring-slate-200">
+                                                            <span className={`flex h-7 w-7 shrink-0 items-center justify-center rounded-full text-xs font-black text-white ${style.solid}`}>
+                                                                {index + 1}
+                                                            </span>
+                                                            <div>
+                                                                <h4 className="mb-1 text-sm font-black text-slate-900">{step.title}</h4>
+                                                                <p className="text-xs leading-6 text-slate-600">{step.text}</p>
+                                                            </div>
+                                                        </li>
+                                                    ))}
+                                                </ol>
+                                            </InfoBlock>
+                                        )}
+                                    </div>
+                                )}
+
                                 <div className="grid gap-5 lg:grid-cols-2">
                                     <InfoBlock icon={PackageCheck} title="准备器材">
                                         <div className="flex flex-wrap gap-2">
@@ -853,6 +1069,38 @@ function LessonHandoutBook() {
                                         <p className="text-sm leading-6 text-slate-700">{handout.check}</p>
                                     </InfoBlock>
                                 </div>
+
+                                {(handout.discoveries || handout.afterClass) && (
+                                    <div className="mt-6 grid gap-5 lg:grid-cols-2">
+                                        {handout.discoveries && (
+                                            <InfoBlock icon={Sparkles} title="今日三大发现">
+                                                <ol className="space-y-3">
+                                                    {handout.discoveries.map((item, index) => (
+                                                        <li key={item} className="flex gap-3 rounded-xl bg-white p-4 text-sm font-bold leading-6 text-slate-800 ring-1 ring-slate-200">
+                                                            <span className={`flex h-7 w-7 shrink-0 items-center justify-center rounded-full text-xs font-black text-white ${style.solid}`}>
+                                                                {index + 1}
+                                                            </span>
+                                                            <span>{item}</span>
+                                                        </li>
+                                                    ))}
+                                                </ol>
+                                            </InfoBlock>
+                                        )}
+
+                                        {handout.afterClass && (
+                                            <InfoBlock icon={Home} title="课后任务">
+                                                <ul className="space-y-3">
+                                                    {handout.afterClass.map((item) => (
+                                                        <li key={item} className="flex gap-2 text-sm leading-6 text-slate-700">
+                                                            <CheckCircle2 size={16} className={`mt-1 shrink-0 ${style.text}`} />
+                                                            <span>{item}</span>
+                                                        </li>
+                                                    ))}
+                                                </ul>
+                                            </InfoBlock>
+                                        )}
+                                    </div>
+                                )}
                             </article>
                         );
                     })}
@@ -1003,6 +1251,7 @@ export default function Esp32AiCourseSystem() {
 
             <PrincipleGrid />
             <PblFramework />
+            <AiAgreements />
             <PhaseOverview />
             <LessonDetails />
             <HandoutGuide />
