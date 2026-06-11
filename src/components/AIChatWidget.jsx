@@ -322,7 +322,6 @@ const AIChatWidget = () => {
             const reader = response.body.getReader();
             const decoder = new TextDecoder('utf-8');
             let assistantContent = '';
-            let assistantReasoning = '';
 
             // Add placeholder for assistant message
             setMessages(prev => [...prev, { role: 'assistant', content: '' }]);
@@ -342,10 +341,8 @@ const AIChatWidget = () => {
 
                             if (delta) {
                                 const content = delta.content || '';
-                                const reasoning = delta.reasoning_content || '';
 
                                 assistantContent += content;
-                                assistantReasoning += reasoning;
 
                                 // Update last message
                                 setMessages(prev => {
@@ -353,7 +350,6 @@ const AIChatWidget = () => {
                                     const lastMessage = updatedMessages[updatedMessages.length - 1];
                                     if (lastMessage.role === 'assistant') {
                                         lastMessage.content = assistantContent;
-                                        lastMessage.reasoning = assistantReasoning;
                                     }
                                     return updatedMessages;
                                 });
@@ -693,27 +689,14 @@ const AIChatWidget = () => {
                             {msg.role === 'user' ? (
                                 <div className="whitespace-pre-wrap break-words">{msg.content}</div>
                             ) : (
-                                msg.content || msg.reasoning ? (
-                                    <>
-                                        {msg.reasoning && (
-                                            <div className="mb-3 bg-slate-50 rounded-lg border border-slate-200 overflow-hidden">
-                                                <div className="bg-slate-100 px-3 py-1.5 text-xs font-semibold text-slate-500 flex items-center gap-1 border-b border-slate-200">
-                                                    <BrainCircuit size={12} />
-                                                    深度思考过程
-                                                </div>
-                                                <div className="p-3 text-xs text-slate-600 font-mono whitespace-pre-wrap leading-relaxed max-h-60 overflow-y-auto bg-slate-50/50">
-                                                    {msg.reasoning}
-                                                </div>
-                                            </div>
-                                        )}
-                                        <ReactMarkdown
-                                            remarkPlugins={[remarkGfm]}
-                                            rehypePlugins={[rehypeHighlight]}
-                                            components={chatMarkdownComponents}
-                                        >
-                                            {msg.content}
-                                        </ReactMarkdown>
-                                    </>
+                                msg.content ? (
+                                    <ReactMarkdown
+                                        remarkPlugins={[remarkGfm]}
+                                        rehypePlugins={[rehypeHighlight]}
+                                        components={chatMarkdownComponents}
+                                    >
+                                        {msg.content}
+                                    </ReactMarkdown>
                                 ) : (
                                     <div className="flex items-center gap-2 text-slate-400">
                                         <Loader2 size={16} className="animate-spin" />
