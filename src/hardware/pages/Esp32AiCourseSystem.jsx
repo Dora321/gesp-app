@@ -1,12 +1,13 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import {
+    ArrowLeft,
+    ArrowRight,
+    ArrowUp,
     Bot,
     BrainCircuit,
     Bug,
-    ChevronDown,
     ChevronLeft,
-    ChevronUp,
     CheckCircle2,
     ClipboardCheck,
     ClipboardList,
@@ -17,17 +18,15 @@ import {
     Handshake,
     HeartHandshake,
     Home,
+    LayoutList,
     Lightbulb,
-    ListChecks,
     Lock,
     MessageSquareText,
     PackageCheck,
     Printer,
-    Route,
     ShieldCheck,
     Sparkles,
-    Target,
-    Wrench
+    Target
 } from 'lucide-react';
 
 const courseData = {
@@ -267,13 +266,6 @@ const phaseStyles = {
         ring: 'ring-orange-100'
     }
 };
-
-const detailItems = [
-    { label: '项目', key: 'project', icon: Wrench },
-    { label: 'AI 用法', key: 'aiUsage', icon: Bot },
-    { label: '核心技能', key: 'keySkill', icon: Target },
-    { label: '课后任务', key: 'homework', icon: Home }
-];
 
 const handoutDetails = {
     1: {
@@ -596,41 +588,193 @@ const makeVerificationSteps = (lesson) => lesson.handout.verificationSteps || [
     `理解验证：学生能用自己的话说明“${lesson.keySkill}”。`
 ];
 
-function PrincipleGrid() {
+const NAV_ITEMS = [
+    { id: 'concept', label: '课程理念' },
+    { id: 'roadmap', label: '三阶段路线' },
+    { id: 'handbook', label: '课堂讲义' },
+    { id: 'assess', label: '成果评价' },
+];
+
+function scrollToId(id) {
+    if (typeof document !== 'undefined') {
+        document.getElementById(id)?.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    }
+}
+
+function SectionHeader({ eyebrow, title, desc }) {
     return (
-        <section className="bg-white py-16">
-            <div className="mx-auto max-w-6xl px-6">
-                <div className="mb-8 flex items-center gap-3">
-                    <ListChecks className="text-slate-900" size={24} />
-                    <h2 className="text-2xl font-black text-slate-900">设计原则</h2>
+        <div className="mb-10 max-w-3xl">
+            {eyebrow && (
+                <div className="mb-3 text-xs font-black uppercase tracking-[0.2em] text-blue-600">{eyebrow}</div>
+            )}
+            <h2 className="text-3xl font-black leading-tight text-slate-900 md:text-4xl">{title}</h2>
+            {desc && <p className="mt-4 text-base leading-7 text-slate-600">{desc}</p>}
+        </div>
+    );
+}
+
+function StickyNav() {
+    return (
+        <nav className="sticky top-0 z-40 border-b border-slate-200 bg-white/90 backdrop-blur print:hidden">
+            <div className="mx-auto flex max-w-6xl items-center justify-between gap-4 px-6 py-3">
+                <button
+                    type="button"
+                    onClick={() => scrollToId('top')}
+                    className="flex shrink-0 items-center gap-2 text-sm font-black text-slate-900"
+                >
+                    <Cpu size={18} className="text-blue-600" />
+                    <span className="hidden sm:inline">ESP32 × AI 课程</span>
+                </button>
+                <div className="flex items-center gap-1 overflow-x-auto">
+                    {NAV_ITEMS.map((item) => (
+                        <button
+                            key={item.id}
+                            type="button"
+                            onClick={() => scrollToId(item.id)}
+                            className="whitespace-nowrap rounded-full px-3 py-1.5 text-sm font-bold text-slate-600 transition-colors hover:bg-slate-100 hover:text-slate-900"
+                        >
+                            {item.label}
+                        </button>
+                    ))}
+                    <button
+                        type="button"
+                        onClick={() => window.print()}
+                        className="ml-1 inline-flex items-center gap-1.5 whitespace-nowrap rounded-full bg-slate-900 px-3 py-1.5 text-sm font-bold text-white transition-colors hover:bg-slate-700"
+                    >
+                        <Printer size={15} />
+                        <span className="hidden sm:inline">打印</span>
+                    </button>
                 </div>
+            </div>
+        </nav>
+    );
+}
+
+function BackToTop() {
+    const [show, setShow] = useState(false);
+    useEffect(() => {
+        const onScroll = () => setShow(window.scrollY > 600);
+        onScroll();
+        window.addEventListener('scroll', onScroll, { passive: true });
+        return () => window.removeEventListener('scroll', onScroll);
+    }, []);
+    if (!show) return null;
+    return (
+        <button
+            type="button"
+            onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
+            aria-label="回到顶部"
+            className="fixed bottom-6 right-6 z-40 flex h-12 w-12 items-center justify-center rounded-full bg-slate-900 text-white shadow-lg transition-colors hover:bg-slate-700 print:hidden"
+        >
+            <ArrowUp size={20} />
+        </button>
+    );
+}
+
+function ConceptSection() {
+    return (
+        <section id="concept" className="scroll-mt-20 bg-white py-20 md:py-24">
+            <div className="mx-auto max-w-6xl px-6">
+                <SectionHeader
+                    eyebrow="Why · 课程理念"
+                    title="不教语法，教 AI 时代的工程思维"
+                    desc="四条设计原则 + 一条 PBL 学习路径 + 三条 AI 使用公约，构成这门课的底层逻辑。"
+                />
+
                 <div className="grid gap-5 md:grid-cols-4">
                     {courseData.designPrinciples.map((principle) => (
                         <div key={principle.title} className="rounded-2xl border border-slate-200 bg-slate-50 p-5">
                             <principle.icon className="mb-4 text-blue-600" size={28} />
-                            <h3 className="mb-2 font-bold text-slate-900">{principle.title}</h3>
+                            <h3 className="mb-2 font-black text-slate-900">{principle.title}</h3>
                             <p className="text-sm leading-6 text-slate-600">{principle.desc}</p>
                         </div>
                     ))}
+                </div>
+
+                <div className="mt-14">
+                    <h3 className="mb-6 flex items-center gap-2 text-lg font-black text-slate-900">
+                        <Sparkles size={20} className="text-blue-600" />
+                        PBL 学习路径（每个项目都走这 5 步）
+                    </h3>
+                    <div className="grid gap-3 md:grid-cols-5">
+                        {pblCycle.map((step, index) => (
+                            <div key={step.title} className="rounded-2xl border border-slate-200 bg-slate-50 p-5">
+                                <div className="mb-3 flex h-9 w-9 items-center justify-center rounded-xl bg-slate-900 text-sm font-black text-white">
+                                    {index + 1}
+                                </div>
+                                <h4 className="mb-1 font-black text-slate-900">{step.title}</h4>
+                                <p className="text-sm leading-6 text-slate-600">{step.desc}</p>
+                            </div>
+                        ))}
+                    </div>
+                </div>
+
+                <div className="mt-14">
+                    <h3 className="mb-2 flex items-center gap-2 text-lg font-black text-slate-900">
+                        <ShieldCheck size={20} className="text-blue-600" />
+                        AI 使用公约
+                    </h3>
+                    <p className="mb-6 max-w-3xl text-sm leading-7 text-slate-600">
+                        主导权越大，责任越大——三条公约对应后面的三个阶段。
+                    </p>
+                    <div className="grid gap-6 lg:grid-cols-3">
+                        {aiAgreements.map((item) => {
+                            const style = phaseStyles[item.color];
+                            return (
+                                <div key={item.phase} className={`flex flex-col rounded-2xl border bg-white p-6 shadow-sm ${style.border}`}>
+                                    <div className="mb-4 flex items-center gap-3">
+                                        <div className={`flex h-11 w-11 shrink-0 items-center justify-center rounded-2xl text-white ${style.solid}`}>
+                                            <item.icon size={22} />
+                                        </div>
+                                        <div>
+                                            <div className="text-xs font-bold uppercase tracking-widest text-slate-400">阶段 {item.phase} 公约</div>
+                                            <h4 className="text-base font-black text-slate-900">{item.title}</h4>
+                                        </div>
+                                    </div>
+                                    <p className={`mb-4 rounded-xl p-4 text-sm leading-7 text-slate-700 ${style.bg}`}>{item.rule}</p>
+                                    <ul className="mt-auto space-y-2">
+                                        {item.examples.map((ex) => (
+                                            <li key={ex} className="text-sm leading-6 text-slate-600">{ex}</li>
+                                        ))}
+                                    </ul>
+                                </div>
+                            );
+                        })}
+                    </div>
+                    <div className="mt-6 rounded-2xl border border-red-200 bg-red-50 p-6">
+                        <div className="mb-3 flex items-center gap-2 text-sm font-black text-red-700">
+                            <Lock size={18} />
+                            {aiSafetyRedLine.title}
+                        </div>
+                        <ul className="grid gap-2 md:grid-cols-3">
+                            {aiSafetyRedLine.items.map((item) => (
+                                <li key={item} className="flex gap-2 text-sm leading-6 text-slate-700">
+                                    <span className="mt-1 shrink-0 text-red-500">●</span>
+                                    <span>{item}</span>
+                                </li>
+                            ))}
+                        </ul>
+                    </div>
                 </div>
             </div>
         </section>
     );
 }
 
-function PhaseOverview() {
+function RoadmapSection() {
     return (
-        <section className="bg-slate-50 py-16">
+        <section id="roadmap" className="scroll-mt-20 bg-slate-50 py-20 md:py-24">
             <div className="mx-auto max-w-6xl px-6">
-                <div className="mb-8 flex items-center gap-3">
-                    <Route className="text-slate-900" size={24} />
-                    <h2 className="text-2xl font-black text-slate-900">三阶段路线</h2>
-                </div>
+                <SectionHeader
+                    eyebrow="Roadmap · 学习路线"
+                    title="三阶段，AI 的角色逐步交还给学生"
+                    desc="读懂 AI → 指挥 AI → 超越 AI。每个阶段 AI 的角色都在变，学生的主导权一路变大。"
+                />
                 <div className="grid gap-6 lg:grid-cols-3">
                     {courseData.phases.map((phase) => {
                         const style = phaseStyles[phase.color];
                         return (
-                            <div key={phase.id} className={`rounded-2xl border bg-white p-6 shadow-sm ${style.border}`}>
+                            <div key={phase.id} className={`flex flex-col rounded-3xl border bg-white p-6 shadow-sm ${style.border}`}>
                                 <div className="mb-5 flex items-start gap-4">
                                     <div className={`flex h-12 w-12 shrink-0 items-center justify-center rounded-2xl text-lg font-black text-white ${style.solid}`}>
                                         {phase.id}
@@ -641,12 +785,12 @@ function PhaseOverview() {
                                         <p className="mt-1 text-sm text-slate-500">{phase.subtitle}</p>
                                     </div>
                                 </div>
-                                <div className={`mb-5 rounded-xl p-4 text-sm leading-6 ${style.bg}`}>
-                                    <p className="mb-2 text-slate-700"><span className="font-bold">驱动问题：</span>{phase.drivingQuestion}</p>
-                                    <p className="mb-2 text-slate-700"><span className="font-bold">能力目标：</span>{phase.coreAbility}</p>
+                                <div className={`mb-5 space-y-2 rounded-xl p-4 text-sm leading-6 ${style.bg}`}>
+                                    <p className="text-slate-700"><span className="font-bold">驱动问题：</span>{phase.drivingQuestion}</p>
+                                    <p className="text-slate-700"><span className="font-bold">能力目标：</span>{phase.coreAbility}</p>
                                     <p className="text-slate-700"><span className="font-bold">AI 角色：</span>{phase.aiRole}</p>
                                 </div>
-                                <div className="flex flex-wrap gap-2">
+                                <div className="mt-auto flex flex-wrap gap-2">
                                     {phase.units.map((unit) => (
                                         <span key={unit.num} className={`rounded-full border px-3 py-1 text-xs font-bold ${style.border} ${style.text} ${style.bg}`}>
                                             {unit.num}. {unit.title}
@@ -657,217 +801,22 @@ function PhaseOverview() {
                         );
                     })}
                 </div>
-            </div>
-        </section>
-    );
-}
-
-function AiAgreements() {
-    return (
-        <section className="bg-white py-16">
-            <div className="mx-auto max-w-6xl px-6">
-                <div className="mb-4 flex items-center gap-3">
-                    <ShieldCheck className="text-slate-900" size={24} />
-                    <h2 className="text-2xl font-black text-slate-900">AI 使用公约</h2>
-                </div>
-                <p className="mb-8 max-w-3xl leading-7 text-slate-600">
-                    用 AI 不只是「会用」，更要「用得对」。三条公约对应三个阶段——学生的主导权越大，承担的责任也一起长大。
-                </p>
-
-                <div className="grid gap-6 lg:grid-cols-3">
-                    {aiAgreements.map((item) => {
-                        const style = phaseStyles[item.color];
-                        return (
-                            <div key={item.phase} className={`flex flex-col rounded-2xl border bg-white p-6 shadow-sm ${style.border}`}>
-                                <div className="mb-4 flex items-center gap-3">
-                                    <div className={`flex h-11 w-11 shrink-0 items-center justify-center rounded-2xl text-white ${style.solid}`}>
-                                        <item.icon size={22} />
-                                    </div>
-                                    <div>
-                                        <div className="text-xs font-bold uppercase tracking-widest text-slate-400">阶段 {item.phase} 公约</div>
-                                        <h3 className="text-lg font-black text-slate-900">{item.title}</h3>
-                                    </div>
-                                </div>
-                                <p className={`mb-4 rounded-xl p-4 text-sm leading-7 text-slate-700 ${style.bg}`}>{item.rule}</p>
-                                <ul className="mt-auto space-y-2">
-                                    {item.examples.map((ex) => (
-                                        <li key={ex} className="text-sm leading-6 text-slate-600">{ex}</li>
-                                    ))}
-                                </ul>
-                            </div>
-                        );
-                    })}
-                </div>
-
-                <div className="mt-6 rounded-2xl border border-red-200 bg-red-50 p-6">
-                    <div className="mb-3 flex items-center gap-2 text-sm font-black text-red-700">
-                        <Lock size={18} />
-                        {aiSafetyRedLine.title}
-                    </div>
-                    <ul className="grid gap-2 md:grid-cols-3">
-                        {aiSafetyRedLine.items.map((item) => (
-                            <li key={item} className="flex gap-2 text-sm leading-6 text-slate-700">
-                                <span className="mt-1 shrink-0 text-red-500">●</span>
-                                <span>{item}</span>
-                            </li>
-                        ))}
-                    </ul>
-                </div>
-            </div>
-        </section>
-    );
-}
-
-function PblFramework() {
-    return (
-        <section className="bg-white py-16">
-            <div className="mx-auto max-w-6xl px-6">
-                <div className="mb-8 flex items-center gap-3">
-                    <Sparkles className="text-slate-900" size={24} />
-                    <h2 className="text-2xl font-black text-slate-900">PBL 学习路径</h2>
-                </div>
-                <div className="grid gap-4 md:grid-cols-5">
-                    {pblCycle.map((step, index) => (
-                        <div key={step.title} className="rounded-2xl border border-slate-200 bg-slate-50 p-5">
-                            <div className="mb-4 flex h-10 w-10 items-center justify-center rounded-xl bg-slate-900 text-sm font-black text-white">
-                                {index + 1}
-                            </div>
-                            <h3 className="mb-2 font-black text-slate-900">{step.title}</h3>
-                            <p className="text-sm leading-6 text-slate-600">{step.desc}</p>
-                        </div>
-                    ))}
-                </div>
-            </div>
-        </section>
-    );
-}
-
-function LessonDetails() {
-    const [activePhase, setActivePhase] = useState(0);
-    const [expandedUnit, setExpandedUnit] = useState(1);
-    const phase = courseData.phases[activePhase];
-    const style = phaseStyles[phase.color];
-
-    return (
-        <section className="bg-white py-16">
-            <div className="mx-auto max-w-6xl px-6">
-                <div className="mb-8 flex items-center gap-3">
-                    <FileText className="text-slate-900" size={24} />
-                    <h2 className="text-2xl font-black text-slate-900">详细教案</h2>
-                </div>
-
-                <div className="mb-8 grid gap-3 md:grid-cols-3">
-                    {courseData.phases.map((item, index) => {
-                        const itemStyle = phaseStyles[item.color];
-                        const isActive = activePhase === index;
-                        return (
-                            <button
-                                key={item.id}
-                                type="button"
-                                onClick={() => {
-                                    setActivePhase(index);
-                                    setExpandedUnit(item.units[0].num);
-                                }}
-                                className={`rounded-2xl border p-4 text-left transition-all ${isActive ? `${itemStyle.border} ${itemStyle.bg} ring-4 ${itemStyle.ring}` : 'border-slate-200 bg-white hover:bg-slate-50'}`}
-                            >
-                                <div className={`mb-1 text-sm font-black ${isActive ? itemStyle.text : 'text-slate-600'}`}>
-                                    阶段 {item.id} · {item.title}
-                                </div>
-                                <div className="text-xs text-slate-500">{item.lessons}</div>
-                            </button>
-                        );
-                    })}
-                </div>
-
-                <div className={`mb-6 rounded-2xl border p-6 ${style.border} ${style.bg}`}>
-                    <h3 className={`mb-2 text-xl font-black ${style.text}`}>
-                        阶段 {phase.id}：{phase.title}
-                    </h3>
-                    <p className="mb-2 text-base font-bold leading-7 text-slate-900">{phase.drivingQuestion}</p>
-                    <p className="text-sm leading-6 text-slate-700">{phase.aiRole}</p>
-                </div>
-
-                <div className="space-y-4">
-                    {phase.units.map((unit) => {
-                        const isExpanded = expandedUnit === unit.num;
-                        return (
-                            <div key={unit.num} className={`overflow-hidden rounded-2xl border bg-white ${isExpanded ? style.border : 'border-slate-200'}`}>
-                                <button
-                                    type="button"
-                                    onClick={() => setExpandedUnit(isExpanded ? null : unit.num)}
-                                    className="flex w-full items-center gap-4 p-5 text-left"
-                                >
-                                    <div className={`flex h-10 w-10 shrink-0 items-center justify-center rounded-xl font-black ${isExpanded ? `${style.solid} text-white` : 'bg-slate-100 text-slate-500'}`}>
-                                        {unit.num}
-                                    </div>
-                                    <div className="min-w-0 flex-1">
-                                        <h4 className="font-black text-slate-900">{unit.title}</h4>
-                                        <p className="truncate text-sm text-slate-500">{unit.goal}</p>
-                                    </div>
-                                    {isExpanded ? <ChevronUp className="text-slate-400" /> : <ChevronDown className="text-slate-400" />}
-                                </button>
-
-                                {isExpanded && (
-                                    <div className="border-t border-slate-100 px-5 pb-5">
-                                        <div className="grid gap-4 pt-5 md:grid-cols-2">
-                                            {detailItems.map((item) => (
-                                                <div key={item.key} className="flex gap-3 rounded-xl bg-slate-50 p-4">
-                                                    <item.icon className={`mt-0.5 shrink-0 ${style.text}`} size={18} />
-                                                    <div>
-                                                        <div className="mb-1 text-xs font-black uppercase tracking-wider text-slate-400">{item.label}</div>
-                                                        <div className="text-sm leading-6 text-slate-700">{unit[item.key]}</div>
-                                                    </div>
-                                                </div>
-                                            ))}
-                                        </div>
-                                    </div>
-                                )}
-                            </div>
-                        );
-                    })}
-                </div>
-            </div>
-        </section>
-    );
-}
-
-function HandoutGuide() {
-    return (
-        <section className="bg-slate-950 px-6 py-16 text-white">
-            <div className="mx-auto max-w-6xl">
-                <div className="mb-8 flex flex-col gap-4 md:flex-row md:items-end md:justify-between">
-                    <div>
-                        <div className="mb-3 inline-flex items-center gap-2 rounded-full bg-white/10 px-4 py-2 text-xs font-black uppercase tracking-widest text-cyan-200">
-                            <ClipboardList size={14} />
-                            Teaching Handout
-                        </div>
-                        <h2 className="text-3xl font-black md:text-4xl">可直接上课的网页讲义</h2>
-                        <p className="mt-3 max-w-2xl text-slate-300">
-                            下面 16 张课卡按课堂使用顺序展开，适合投屏讲解、学生自学，也可以打印成纸质讲义。
-                        </p>
-                    </div>
+                <div className="mt-8 flex justify-center">
                     <button
                         type="button"
-                        onClick={() => window.print()}
-                        className="inline-flex items-center justify-center gap-2 rounded-2xl bg-cyan-300 px-5 py-3 text-sm font-black text-slate-950 transition-colors hover:bg-cyan-200"
+                        onClick={() => scrollToId('handbook')}
+                        className="inline-flex items-center gap-2 rounded-full bg-slate-900 px-6 py-3 text-sm font-black text-white transition-colors hover:bg-slate-700"
                     >
-                        <Printer size={18} />
-                        打印讲义
+                        进入课堂讲义
+                        <ArrowRight size={16} />
                     </button>
-                </div>
-
-                <div className="grid gap-4 md:grid-cols-3">
-                    {handoutUsage.map((item) => (
-                        <div key={item.title} className="rounded-2xl border border-white/10 bg-white/5 p-5">
-                            <h3 className="mb-2 font-black text-white">{item.title}</h3>
-                            <p className="text-sm leading-6 text-slate-300">{item.desc}</p>
-                        </div>
-                    ))}
                 </div>
             </div>
         </section>
     );
 }
+
+
 
 function InfoBlock({ icon: Icon, title, children, className = '' }) {
     return (
@@ -881,20 +830,15 @@ function InfoBlock({ icon: Icon, title, children, className = '' }) {
     );
 }
 
-function LessonHandoutBook() {
-    return (
-        <section className="bg-white px-6 py-16">
-            <div className="mx-auto max-w-6xl">
-                <div className="space-y-8">
-                    {allLessons.map((lesson) => {
-                        const style = phaseStyles[lesson.phaseColor];
-                        const handout = lesson.handout;
-                        const studentTasks = makeStudentTasks(lesson);
-                        const aiDialogue = makeAiDialogue(lesson);
-                        const verificationSteps = makeVerificationSteps(lesson);
+function LessonHandout({ lesson }) {
+    const style = phaseStyles[lesson.phaseColor];
+    const handout = lesson.handout;
+    const studentTasks = makeStudentTasks(lesson);
+    const aiDialogue = makeAiDialogue(lesson);
+    const verificationSteps = makeVerificationSteps(lesson);
 
-                        return (
-                            <article key={lesson.num} className="break-inside-avoid rounded-3xl border border-slate-200 bg-white p-6 shadow-sm md:p-8">
+    return (
+        <article className="break-inside-avoid rounded-3xl border border-slate-200 bg-white p-6 shadow-sm md:p-8">
                                 <div className="mb-6 flex flex-col gap-4 md:flex-row md:items-start md:justify-between">
                                     <div>
                                         <div className={`mb-3 inline-flex items-center gap-2 rounded-full border px-3 py-1 text-xs font-black ${style.border} ${style.bg} ${style.text}`}>
@@ -1101,10 +1045,111 @@ function LessonHandoutBook() {
                                         )}
                                     </div>
                                 )}
-                            </article>
-                        );
-                    })}
+        </article>
+    );
+}
+
+function LessonStudio() {
+    const [activeNum, setActiveNum] = useState(1);
+    const [showAll, setShowAll] = useState(false);
+    const activeIndex = allLessons.findIndex((l) => l.num === activeNum);
+    const activeLesson = allLessons[activeIndex] || allLessons[0];
+    const goPrev = () => setActiveNum(allLessons[Math.max(0, activeIndex - 1)].num);
+    const goNext = () => setActiveNum(allLessons[Math.min(allLessons.length - 1, activeIndex + 1)].num);
+
+    return (
+        <section id="handbook" className="scroll-mt-20 bg-white py-20 md:py-24">
+            <div className="mx-auto max-w-6xl px-6">
+                <SectionHeader
+                    eyebrow="Handbook · 课堂讲义"
+                    title="16 课，一课一张学习单"
+                    desc="点下面的课程编号，选一课开始自学；每张讲义都含核心问题、提问模板、操作步骤和达成检查。"
+                />
+
+                <div className="mb-8 grid gap-3 sm:grid-cols-3">
+                    {handoutUsage.map((item) => (
+                        <div key={item.title} className="rounded-2xl border border-slate-200 bg-slate-50 p-4">
+                            <h3 className="mb-1 text-sm font-black text-slate-900">{item.title}</h3>
+                            <p className="text-xs leading-6 text-slate-500">{item.desc}</p>
+                        </div>
+                    ))}
                 </div>
+
+                <div className="mb-8 rounded-3xl border border-slate-200 bg-slate-50 p-5 md:p-6">
+                    <div className="mb-4 flex flex-wrap items-center justify-between gap-3">
+                        <h3 className="flex items-center gap-2 text-sm font-black text-slate-900">
+                            <LayoutList size={18} className="text-blue-600" />
+                            课程导航
+                        </h3>
+                        <button
+                            type="button"
+                            onClick={() => setShowAll((v) => !v)}
+                            className="inline-flex items-center gap-1.5 rounded-full border border-slate-300 bg-white px-3 py-1.5 text-xs font-bold text-slate-600 transition-colors hover:bg-slate-100"
+                        >
+                            {showAll ? '单课查看' : '展开全部（便于通读 / 打印）'}
+                        </button>
+                    </div>
+                    <div className="space-y-4">
+                        {courseData.phases.map((phase) => {
+                            const style = phaseStyles[phase.color];
+                            return (
+                                <div key={phase.id}>
+                                    <div className={`mb-2 text-xs font-black ${style.text}`}>
+                                        阶段 {phase.id} · {phase.title}
+                                    </div>
+                                    <div className="flex flex-wrap gap-2">
+                                        {phase.units.map((unit) => {
+                                            const isActive = !showAll && unit.num === activeNum;
+                                            return (
+                                                <button
+                                                    key={unit.num}
+                                                    type="button"
+                                                    onClick={() => { setShowAll(false); setActiveNum(unit.num); }}
+                                                    className={`rounded-xl border px-3 py-2 text-left text-xs font-bold transition-all ${isActive ? `${style.solid} border-transparent text-white shadow` : 'border-slate-200 bg-white text-slate-700 hover:border-slate-400'}`}
+                                                >
+                                                    <span className="mr-1 opacity-60">{unit.num}.</span>{unit.title}
+                                                </button>
+                                            );
+                                        })}
+                                    </div>
+                                </div>
+                            );
+                        })}
+                    </div>
+                </div>
+
+                {showAll ? (
+                    <div className="space-y-8">
+                        {allLessons.map((lesson) => (
+                            <LessonHandout key={lesson.num} lesson={lesson} />
+                        ))}
+                    </div>
+                ) : (
+                    <div>
+                        <LessonHandout lesson={activeLesson} />
+                        <div className="mt-6 flex items-center justify-between gap-4">
+                            <button
+                                type="button"
+                                onClick={goPrev}
+                                disabled={activeIndex <= 0}
+                                className="inline-flex items-center gap-2 rounded-full border border-slate-300 bg-white px-5 py-2.5 text-sm font-bold text-slate-700 transition-colors hover:bg-slate-100 disabled:cursor-not-allowed disabled:opacity-40"
+                            >
+                                <ArrowLeft size={16} />
+                                上一课
+                            </button>
+                            <span className="text-sm font-bold text-slate-400">{activeIndex + 1} / {allLessons.length}</span>
+                            <button
+                                type="button"
+                                onClick={goNext}
+                                disabled={activeIndex >= allLessons.length - 1}
+                                className="inline-flex items-center gap-2 rounded-full bg-slate-900 px-5 py-2.5 text-sm font-bold text-white transition-colors hover:bg-slate-700 disabled:cursor-not-allowed disabled:opacity-40"
+                            >
+                                下一课
+                                <ArrowRight size={16} />
+                            </button>
+                        </div>
+                    </div>
+                )}
             </div>
         </section>
     );
@@ -1112,7 +1157,7 @@ function LessonHandoutBook() {
 
 function FinalProjectRubric() {
     return (
-        <section className="bg-slate-50 px-6 py-16">
+        <section id="assess" className="scroll-mt-20 bg-slate-50 px-6 py-20 md:py-24">
             <div className="mx-auto max-w-6xl">
                 <div className="mb-8">
                     <div className="mb-3 inline-flex items-center gap-2 rounded-full bg-orange-100 px-4 py-2 text-xs font-black uppercase tracking-widest text-orange-700">
@@ -1197,7 +1242,7 @@ export default function Esp32AiCourseSystem() {
 
     return (
         <div className="min-h-screen bg-white text-slate-900">
-            <section className="bg-slate-950 px-6 py-20 text-white">
+            <section id="top" className="bg-slate-950 px-6 py-20 text-white">
                 <div className="mx-auto max-w-6xl">
                     <button
                         type="button"
@@ -1249,14 +1294,12 @@ export default function Esp32AiCourseSystem() {
                 </div>
             </section>
 
-            <PrincipleGrid />
-            <PblFramework />
-            <AiAgreements />
-            <PhaseOverview />
-            <LessonDetails />
-            <HandoutGuide />
-            <LessonHandoutBook />
+            <StickyNav />
+            <ConceptSection />
+            <RoadmapSection />
+            <LessonStudio />
             <FinalProjectRubric />
+            <BackToTop />
         </div>
     );
 }
