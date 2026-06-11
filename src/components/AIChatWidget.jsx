@@ -47,7 +47,7 @@ const AI_PERSONAS = [
         name: 'ESP32 MicroPython 专家',
         emoji: '📟',
         description: 'ESP32 与 MicroPython 项目指导',
-        systemPrompt: '你是一位 ESP32 与 MicroPython 专家，擅长给学生讲解物联网、传感器、舵机、电机、屏幕、按键、Wi-Fi、蓝牙和常见开发板项目。回答时请优先使用 MicroPython 示例代码，并根据问题补充接线说明、引脚选择、库安装/固件烧录提示、常见报错排查和安全注意事项。解释要适合课堂教学，步骤清晰，代码可直接运行或容易改造。'
+        systemPrompt: '你是 ESP32 MicroPython 课堂助教，服务小学高年级科创课。默认回答必须短、清楚、只围绕学生当前问题。格式固定：① 先给最小可运行代码；② 用 3 条以内解释关键行；③ 给 1 个下一步操作。总字数尽量控制在 150-300 字。不要主动展开固件烧录、编辑器安装、复杂排错、电气安全、扩展项目或百科背景；只有用户明确追问这些内容时才补充。遇到第 1 课 LED 点亮问题，只讲 Pin、OUT、value(1)/value(0) 和 GPIO2，不要讲 PWM、呼吸灯、固件烧录或电流细节。'
     },
     {
         id: 'encouraging',
@@ -64,10 +64,21 @@ const AI_MODEL = {
     description: '高速响应，适合日常对话、编程和课堂项目。'
 };
 
+const getMarkdownText = (value) => {
+    if (value === null || value === undefined || typeof value === 'boolean') return '';
+    if (typeof value === 'string' || typeof value === 'number') return String(value);
+    if (Array.isArray(value)) return value.map(getMarkdownText).join('');
+    if (React.isValidElement(value)) return getMarkdownText(value.props.children);
+    return '';
+};
+
 const chatMarkdownComponents = {
     code({ node, inline, className, children, ...props }) {
         const match = /language-(\w+)/.exec(className || '');
-        return !inline ? (
+        const content = getMarkdownText(children).replace(/\n$/, '');
+        const isBlockCode = Boolean(match) || content.includes('\n');
+
+        return isBlockCode ? (
             <div className="my-2 max-w-full overflow-hidden rounded-lg border border-slate-800 bg-slate-950">
                 <div className="bg-slate-800 text-slate-200 text-[11px] px-3 py-1 flex justify-between items-center">
                     <span>{match ? match[1] : 'code'}</span>
@@ -79,15 +90,15 @@ const chatMarkdownComponents = {
                 </pre>
             </div>
         ) : (
-            <code className="bg-slate-100 px-1 py-0.5 rounded text-indigo-600 font-mono text-xs break-words" {...props}>
-                {children}
+            <code className="rounded bg-indigo-50 px-1.5 py-0.5 font-mono text-[0.92em] font-semibold text-indigo-700 break-words" {...props}>
+                {content}
             </code>
         );
     },
-    p: ({ children }) => <p className="mb-2 last:mb-0 break-words">{children}</p>,
-    ul: ({ children }) => <ul className="list-disc pl-4 mb-2 space-y-1">{children}</ul>,
-    ol: ({ children }) => <ol className="list-decimal pl-4 mb-2 space-y-1">{children}</ol>,
-    li: ({ children }) => <li className="break-words">{children}</li>,
+    p: ({ children }) => <p className="mb-2 leading-6 last:mb-0 break-words">{children}</p>,
+    ul: ({ children }) => <ul className="list-disc pl-4 mb-2 space-y-1.5">{children}</ul>,
+    ol: ({ children }) => <ol className="list-decimal pl-4 mb-2 space-y-1.5">{children}</ol>,
+    li: ({ children }) => <li className="pl-1 leading-6 break-words">{children}</li>,
     h1: ({ children }) => <h1 className="text-lg font-bold mb-2 mt-2">{children}</h1>,
     h2: ({ children }) => <h2 className="text-base font-bold mb-2 mt-2">{children}</h2>,
     h3: ({ children }) => <h3 className="text-sm font-bold mb-1 mt-1">{children}</h3>,
@@ -306,6 +317,8 @@ const AIChatWidget = () => {
                 body: JSON.stringify({
                     model: selectedModel,
                     messages: apiMessages,
+                    max_tokens: currentPersona.id === 'esp32_micropython' ? 450 : undefined,
+                    temperature: currentPersona.id === 'esp32_micropython' ? 0.3 : undefined,
                     stream: true // Enable streaming
                 }),
                 signal: abortControllerRef.current.signal
