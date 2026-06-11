@@ -64,6 +64,27 @@ const AI_MODEL = {
     description: '高速响应，适合日常对话、编程和课堂项目。'
 };
 
+const CHAT_REQUEST_TIMEOUT_MS = 30000;
+
+const getEsp32GuardrailAnswer = (message, personaId) => {
+    if (personaId !== 'esp32_micropython') return null;
+    if (!/Pin\s*\.\s*RAINBOW|RAINBOW/i.test(message)) return null;
+
+    return `先纠错：MicroPython 的 \`Pin\` 没有 \`Pin.RAINBOW\` 模式，普通 ESP32 板载 LED 通常也只有单色，不能显示七彩颜色。
+
+\`\`\`python
+from machine import Pin
+
+led = Pin(2, Pin.OUT)
+led.value(1)
+\`\`\`
+
+关键点：
+1. \`Pin(2, Pin.OUT)\` 表示把 GPIO2 设为输出。
+2. \`led.value(1)\` 让板载 LED 亮起；如果不亮，试 \`led.value(0)\`。
+3. 想做七彩效果，需要外接 RGB LED 或 WS2812 灯珠。`;
+};
+
 const getMarkdownText = (value) => {
     if (value === null || value === undefined || typeof value === 'boolean') return '';
     if (typeof value === 'string' || typeof value === 'number') return String(value);
@@ -278,11 +299,15 @@ const AIChatWidget = () => {
             : (AI_PERSONAS.find(p => p.id === selectedPersona) || AI_PERSONAS[0]);
 
         const userMessage = { role: 'user', content: inputValue.trim() };
+        const guardedAnswer = getEsp32GuardrailAnswer(userMessage.content, currentPersona.id);
 
         // Optimistically add user message and empty assistant message placeholder
         const newMessages = [...messages, userMessage];
-        setMessages(newMessages); // Set messages with user message first
+        setMessages(guardedAnswer ? [...newMessages, { role: 'assistant', content: guardedAnswer }] : newMessages);
         setInputValue('');
+        if (guardedAnswer) {
+            return;
+        }
         setIsLoading(true);
 
         // Strengthen system prompt for custom persona
@@ -306,6 +331,11 @@ const AIChatWidget = () => {
 
         // Create new AbortController
         abortControllerRef.current = new AbortController();
+        let didTimeout = false;
+        const timeoutId = window.setTimeout(() => {
+            didTimeout = true;
+            abortControllerRef.current?.abort();
+        }, CHAT_REQUEST_TIMEOUT_MS);
 
         try {
             const response = await fetch('https://api.deepseek.com/chat/completions', {
@@ -335,6 +365,20 @@ const AIChatWidget = () => {
             const reader = response.body.getReader();
             const decoder = new TextDecoder('utf-8');
             let assistantContent = '';
+            let bufferedChunk = '';
+
+            const updateLastAssistantMessage = (content, replaceEmptyOnly = false) => {
+                setMessages(prev => {
+                    const updatedMessages = [...prev];
+                    const lastMessage = updatedMessages[updatedMessages.length - 1];
+                    if (lastMessage?.role === 'assistant') {
+                        lastMessage.content = replaceEmptyOnly && lastMessage.content ? lastMessage.content : content;
+                    } else {
+                        updatedMessages.push({ role: 'assistant', content });
+                    }
+                    return updatedMessages;
+                });
+            };
 
             // Add placeholder for assistant message
             setMessages(prev => [...prev, { role: 'assistant', content: '' }]);
@@ -344,12 +388,17 @@ const AIChatWidget = () => {
                 if (done) break;
 
                 const chunk = decoder.decode(value, { stream: true });
-                const lines = chunk.split('\n');
+                bufferedChunk += chunk;
+                const lines = bufferedChunk.split(/\r?\n/);
+                bufferedChunk = lines.pop() || '';
 
-                for (const line of lines) {
-                    if (line.startsWith('data: ') && line !== 'data: [DONE]') {
+                for (const rawLine of lines) {
+                    const line = rawLine.trim();
+                    if (line.startsWith('data:')) {
+                        const payload = line.slice(5).trim();
+                        if (!payload || payload === '[DONE]') continue;
                         try {
-                            const data = JSON.parse(line.slice(6));
+                            const data = JSON.parse(payload);
                             const delta = data.choices[0]?.delta;
 
                             if (delta) {
@@ -358,14 +407,7 @@ const AIChatWidget = () => {
                                 assistantContent += content;
 
                                 // Update last message
-                                setMessages(prev => {
-                                    const updatedMessages = [...prev];
-                                    const lastMessage = updatedMessages[updatedMessages.length - 1];
-                                    if (lastMessage.role === 'assistant') {
-                                        lastMessage.content = assistantContent;
-                                    }
-                                    return updatedMessages;
-                                });
+                                updateLastAssistantMessage(assistantContent);
                             }
                         } catch (e) {
                             console.error('Error parsing stream chunk', e);
@@ -374,17 +416,35 @@ const AIChatWidget = () => {
                 }
             }
 
+            if (!assistantContent.trim()) {
+                updateLastAssistantMessage('这次没有收到有效回答。请再问一次，或把问题缩短一点。如果是在问 `Pin.RAINBOW`，它不是 MicroPython 里的真实模式。', true);
+            }
+
         } catch (error) {
             if (error.name === 'AbortError') {
-                console.log('Generation stopped by user');
-                setMessages(prev => {
-                    const updatedMessages = [...prev];
-                    const lastMessage = updatedMessages[updatedMessages.length - 1];
-                    if (lastMessage.role === 'assistant') {
-                        lastMessage.content += " *(已停止)*";
-                    }
-                    return updatedMessages;
-                });
+                if (didTimeout) {
+                    setMessages(prev => {
+                        const updatedMessages = [...prev];
+                        const lastMessage = updatedMessages[updatedMessages.length - 1];
+                        const stoppedMessage = `请求超过 ${CHAT_REQUEST_TIMEOUT_MS / 1000} 秒没有完成，已自动停止。可以再试一次，或把问题缩短一点。`;
+                        if (lastMessage?.role === 'assistant') {
+                            lastMessage.content = lastMessage.content || stoppedMessage;
+                        } else {
+                            updatedMessages.push({ role: 'assistant', content: stoppedMessage });
+                        }
+                        return updatedMessages;
+                    });
+                } else {
+                    console.log('Generation stopped by user');
+                    setMessages(prev => {
+                        const updatedMessages = [...prev];
+                        const lastMessage = updatedMessages[updatedMessages.length - 1];
+                        if (lastMessage.role === 'assistant') {
+                            lastMessage.content += " *(已停止)*";
+                        }
+                        return updatedMessages;
+                    });
+                }
             } else {
                 setMessages(prev => [...prev, {
                     role: 'assistant',
@@ -392,6 +452,7 @@ const AIChatWidget = () => {
                 }]);
             }
         } finally {
+            window.clearTimeout(timeoutId);
             setIsLoading(false);
             abortControllerRef.current = null;
         }
