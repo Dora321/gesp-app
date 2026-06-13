@@ -73,7 +73,7 @@ const getMarkdownText = (value) => {
 };
 
 const chatMarkdownComponents = {
-    code({ node, inline, className, children, ...props }) {
+    code({ className, children, ...props }) {
         const match = /language-(\w+)/.exec(className || '');
         const content = getMarkdownText(children).replace(/\n$/, '');
         const isBlockCode = Boolean(match) || content.includes('\n');
@@ -138,7 +138,7 @@ const AIChatWidget = ({ onClose }) => {
     const abortControllerRef = useRef(null);
 
     // Initial resize handler
-    const startResize = (e) => {
+    const startResize = () => {
         isResizing.current = true;
         document.addEventListener('mousemove', handleResize);
         document.addEventListener('mouseup', stopResize);
@@ -437,10 +437,7 @@ const AIChatWidget = ({ onClose }) => {
         >
             {/* Header */}
             <header
-                className="flex justify-between items-center p-3 bg-gradient-to-r from-indigo-500 to-purple-600 text-white shrink-0 cursor-move"
-                onMouseDown={(e) => {
-                    // Optional: Add drag to move logic here if needed later
-                }}
+                className="flex justify-between items-center p-3 bg-gradient-to-r from-indigo-500 to-purple-600 text-white shrink-0"
             >
                 <div className="flex items-center gap-2 select-none">
                     <span className="text-xl">{currentPersonaInfo?.emoji}</span>
@@ -463,13 +460,6 @@ const AIChatWidget = ({ onClose }) => {
                         title="设置"
                     >
                         <Settings size={18} />
-                    </button>
-                    <button
-                        onClick={clearChat}
-                        className="p-1.5 hover:bg-white/20 rounded-lg transition-colors"
-                        title="清空记录"
-                    >
-                        <Trash2 size={18} />
                     </button>
                     <button
                         onClick={onClose}
