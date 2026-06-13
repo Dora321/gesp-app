@@ -457,8 +457,8 @@ for 循环 \`for(A; B; C) D;\` 的执行顺序是：A → 判断B → 执行D �
         {
             id: 13,
             type: 'single',
-            question: `关于“完整漂亮数”判定（指 N 能被 X 整除且 N 的各位数字之和也能被 X 整除）的代码实现，说法正确的是（ ）。`,
-            options: ['代码本身完全正确', '应在 L1 判定前先保存原始 N', 'while 循环中应增加 else 逻辑将标志位置 0', '输入 N=0, X=3 必导致除以零错误'],
+            question: "漂亮数的定义是：如果 N 能被 M 整除，或者某位是 M，或者 N 的每位数之和能被 M 整除，则说 N 是 M 的漂亮数。如果三个条件都满足，则是完整漂亮数。123 是 3 的完整漂亮数，因为 123 能被 3 整除，也含有 3，其每位数之和为 6 也能被 3 整除。下面的代码用于判断 N 是否为 M 的完整漂亮数并输出。相关说法正确的是（ ）。\n\n```cpp\nint N, M, Flag, Sum, num;\ncout << \"请输入N，不等于0的正整数：\";\ncin >> N;\ncout << \"请输入M：M必须大于1小于9：\";\ncin >> M;\nSum = 0;  // 记录各位数之和\nFlag = 0; // 假设记录 N 不含有 M\nwhile (N != 0) {\n    num = N % 10;\n    Sum += num;\n    if (num == M)\n        Flag = 1;\n    N /= 10;\n}\nif ((N % M == 0) && (Flag == 1) && (Sum % M == 0)) // L1\n    printf(\"%d 是 %d 的完整漂亮数\", N, M);\nelse\n    printf(\"%d 不是 %d 的完整漂亮数\", N, M);\n```",
+            options: ["代码能完成题目设定目标","应在 while 循环前保存原始 N，并在 L1 判定中使用原始值","while 循环中应增加 else 逻辑将标志位置 0","输入 N=0, M=3 肯定会输出完整漂亮数"],
             answer: 1,
             score: 2,
             explanation: `**答案：B (应在 L1 判定前先保存原始 N)**
@@ -523,7 +523,7 @@ for 循环 \`for(A; B; C) D;\` 的执行顺序是：A → 判断B → 执行D �
         {
             id: 15,
             type: 'single',
-            question: `“十佳歌手”评分程序（去掉最高分最低分求平均）中，说法正确的是（ ）。`,
+            question: "某学校举办“十佳歌手大奖赛”，经过选拔最终参赛选手有 25 人，评委 10 人，最终计分规则为去掉一个最高分、去掉一个最低分，并输出该参赛选手的最终得分。若单个评委可给满分为 10 分，则相关说法正确的是（ ）。\n\n```cpp\nfloat total_score, max_score, min_score, now_score;\nfor (int i = 0; i < 25; i++) {\n    max_score = 0;   // 记录最高分\n    min_score = 10;  // 记录最低分\n    total_score = 0; // 记录总分\n    for (int j = 0; j < 10; j++) {\n        cin >> now_score; // 录入评委打分\n        max_score = max(max_score, now_score); // L1\n        min_score = min(min_score, now_score); // L2\n        total_score += now_score;\n    }\n    cout << (total_score - max_score - min_score);\n}\n```",
             options: ['输入数据必须预先排序', 'max/min/total 初始化应移到外层循环外', 'L1 与 L2 关于 max/min 的更新可改写为 if 语句', '变量 total_score 无法实现自增累加'],
             answer: 2,
             score: 2,

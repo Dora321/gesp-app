@@ -289,7 +289,7 @@ cout << tnt;          // 输出最终结果
         {
             id: 8,
             type: 'single',
-            question: `下面代码输出 0 到 99 能被 7 整除但不能被 3 整除的数，横线处“不能”填入的代码是（ ）。`,
+            question: "下面代码输出 0 到 99 能被 7 整除但不能被 3 整除的数，横线处“不能”填入的代码是（ ）。\n\n```cpp\nfor (i = 0; i < 100; i++)\n    if (_____________)\n        cout << i << endl;\n```",
             options: ['i % 7 == 0 && i % 3 != 0', '!(i % 7) && i % 3 != 0', 'i % 7 && i % 3', 'i % 7 == 0 && !(i % 3 == 0)'],
             answer: 2,
             score: 2,
@@ -400,7 +400,7 @@ cout << tnt;          // 输出最终结果
         {
             id: 11,
             type: 'single',
-            question: `关于输出九九乘法表代码的说法，错误的是（ ）。`,
+            question: "下面 C++ 代码用于实现图示的九九乘法表。相关说法错误的是（ ）。\n\n```text\n1*1=1\n1*2=2 2*2=4\n1*3=3 2*3=6 3*3=9\n...\n1*9=9 2*9=18 3*9=27 4*9=36 5*9=45 6*9=54 7*9=63 8*9=72 9*9=81\n```\n\n```cpp\nfor (int Hang = 1; Hang < 10; Hang++) {\n    for (int Lie = 1; Lie < Hang + 1; Lie++) {\n        if (Lie * Hang > 9)\n            printf(\"%d*%d=%d \", Lie, Hang, Lie * Hang);\n        else\n            printf(\"%d*%d=%d \", Lie, Hang, Lie * Hang);\n        // L2\n    }\n    printf(\"\\n\"); // L1\n}\n```",
             options: ['将换行语句移入内层循环效果相同', 'printf("\\n") 与 cout << endl 效果一致', '%-2d 代表左对齐占据 2 个字符', '循环条件 Hang < 10 可改为 Hang <= 9'],
             answer: 0,
             score: 2,
@@ -484,7 +484,7 @@ cout << tnt;          // 输出最终结果
         {
             id: 14,
             type: 'single',
-            question: `输出高度为 5 的金字塔图形，第 i 行（i 从 0 开始）的空格和星号规律应为（ ）。`,
+            question: "下面 C++ 代码实现输出如下图形，横线应填入的代码是（ ）。\n\n```text\n高度:5\n*\n***\n*****\n*******\n*********\n```\n\n```cpp\nint height;\ncout << \"高度: \";\ncin >> height;\nfor (i = 0; i < height; i++) {\n    for (j = 0; j < _______________; j++)\n        cout << \" \";\n    for (k = 0; k < _______________; k++)\n        cout << \"*\";\n    cout << endl;\n}\n```",
             options: ['height-i, i * 2-1', 'height-i-1, i * 2+1', 'height-i, i * 2+1', 'height-i-1, i * 2-1'],
             answer: 1,
             score: 2,

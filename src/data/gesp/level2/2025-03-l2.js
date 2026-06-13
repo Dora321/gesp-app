@@ -510,7 +510,7 @@ while (j > 0) {           // 循环直到所有数位处理完毕
         {
             id: 13,
             type: 'single',
-            question: `关于输出结果 1-2-1-3-2-1-4-3-2-1-，代码中 j 的循环条件是（ ）。`,
+            question: "下面 C++ 代码实现输出如下图形，相关说法错误的是（ ）。\n\n```text\n请输入层数N：10\n1\n2 3\n4 5 6\n7 8 9 1\n2 3 4 5 6\n7 8 9 1 2 3\n4 5 6 7 8 9 1\n2 3 4 5 6 7 8 9\n1 2 3 4 5 6 7 8 9\n```\n\n```cpp\nint i, j;\nint last, N;\ncout << \"请输入层数N：\";\ncin >> N;\nlast = 1;\nfor (i = 1; i < N; i++) {\n    for (j = 1; j < i + 1; j++) { // L1\n        if (last > 9)\n            last = 1;\n        cout << last << \" \";\n        last += 1;\n    }\n    printf(\"\\n\");\n}\n```",
             options: ["j = i; j >= 1; j--", "j = 1; j <= i; j++", "j = N; j >= 1; j--", "j = 1; j <= N; j++"],
             answer: 0,
             score: 2,

@@ -841,7 +841,7 @@ for 循环的执行顺序为：初始化 → 条件判断 → 循环体 → 迭�
         {
             id: 25,
             type: 'judge',
-            question: `下面 C++ 代码执行后，如果输入 2024，则输出 4202。`,
+            question: "下面 C++ 代码执行时如果输入 2024，则输出是 4202。（ ）\n```cpp\nint N, flag = 0;\ncin >> N;\nwhile (N) {\n    if (!flag)\n        cout << N % 10;\n    N /= 10;\n    flag = (flag + 1) % 2;\n}\n```",
             options: ["正确", "错误"],
             answer: 1,
             score: 2,
