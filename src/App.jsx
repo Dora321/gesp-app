@@ -9,7 +9,6 @@ import AIChat from './components/AIChat';
 import ErrorBoundary from './components/ErrorBoundary';
 
 // Lazy loaded: route-level pages — only fetched when user navigates to them
-const Navigation = lazy(() => import('./Navigation'));
 const ComputingMuseum = lazy(() => import('./pages/ComputingMuseum'));
 const QuestionBankHome = lazy(() => import('./pages/QuestionBankHome'));
 const ExamPaper = lazy(() => import('./pages/ExamPaper'));
@@ -78,7 +77,6 @@ function App() {
         <ScrollToTop />
         <Suspense fallback={<PageLoader />}>
           <Routes>
-            <Route path="/navigation" element={<Navigation />} />
             <Route path="/museum" element={<ComputingMuseum />} />
             <Route path="/question-bank" element={<QuestionBankHome />} />
             <Route path="/question-bank/:level/:paperId" element={<ExamPaper />} />
