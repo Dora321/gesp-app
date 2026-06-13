@@ -47,7 +47,7 @@ const AI_PERSONAS = [
         name: 'ESP32 MicroPython 专家',
         emoji: '📟',
         description: 'ESP32 与 MicroPython 项目指导',
-        systemPrompt: '你是 ESP32 MicroPython 课堂助教，服务小学高年级科创课。回答要清楚、准确、适合课堂学习；优先给可运行代码，再解释关键点。用户问得简单时可以简洁，用户要求完整代码、排错、拓展或讲义式说明时要充分展开。不要编造不存在的 API；遇到硬件差异时说明可能原因并给出可验证的做法。'
+        systemPrompt: '你是 ESP32 MicroPython 课堂助教，服务小学高年级科创课。默认回复要精简、清楚、直接解决当前问题：优先给最小可运行代码，再用 2-4 条解释关键点，最后给 1 个下一步操作。不要主动展开背景知识、安装流程或复杂排错；只有用户明确要求“完整说明、排错、讲义、拓展”时才充分展开。不要编造不存在的 API；遇到硬件差异时用一句话说明可能原因，并给出可验证的做法。'
     },
     {
         id: 'encouraging',
@@ -133,7 +133,9 @@ const AIChatWidget = () => {
     const [editingCustomPersona, setEditingCustomPersona] = useState(null);
     const [size, setSize] = useState({ width: 360, height: 500 });
     const isResizing = useRef(false);
+    const messagesContainerRef = useRef(null);
     const messagesEndRef = useRef(null);
+    const shouldAutoScrollRef = useRef(true);
     const abortControllerRef = useRef(null);
 
     // Initial resize handler
@@ -198,9 +200,23 @@ const AIChatWidget = () => {
         sessionStorage.setItem('ai_chat_messages', JSON.stringify(messages));
     }, [messages]);
 
-    // Scroll to bottom when new messages arrive
+    const updateAutoScrollState = () => {
+        const container = messagesContainerRef.current;
+        if (!container) return;
+
+        const distanceToBottom = container.scrollHeight - container.scrollTop - container.clientHeight;
+        shouldAutoScrollRef.current = distanceToBottom < 80;
+    };
+
+    const scrollMessagesToBottom = (behavior = 'auto') => {
+        messagesEndRef.current?.scrollIntoView({ behavior });
+    };
+
+    // Follow new output only while the user is already near the bottom.
     useEffect(() => {
-        messagesEndRef.current?.scrollIntoView({ behavior: 'smooth' });
+        if (shouldAutoScrollRef.current) {
+            scrollMessagesToBottom();
+        }
     }, [messages]);
 
     const saveApiKey = () => {
@@ -213,6 +229,7 @@ const AIChatWidget = () => {
     };
 
     const clearChat = () => {
+        shouldAutoScrollRef.current = true;
         setMessages([]);
         sessionStorage.removeItem('ai_chat_messages');
     };
@@ -278,6 +295,7 @@ const AIChatWidget = () => {
             : (AI_PERSONAS.find(p => p.id === selectedPersona) || AI_PERSONAS[0]);
 
         const userMessage = { role: 'user', content: inputValue.trim() };
+        shouldAutoScrollRef.current = true;
 
         // Optimistically add user message and empty assistant message placeholder
         const newMessages = [...messages, userMessage];
@@ -671,7 +689,11 @@ const AIChatWidget = () => {
             )}
 
             {/* Messages Area */}
-            <div className="flex-1 overflow-y-auto p-3 space-y-3 bg-slate-50">
+            <div
+                ref={messagesContainerRef}
+                onScroll={updateAutoScrollState}
+                className="flex-1 overflow-y-auto p-3 space-y-3 bg-slate-50"
+            >
                 {!apiKey && messages.length === 0 && (
                     <div className="text-center py-8">
                         <div className="w-16 h-16 bg-indigo-100 rounded-full flex items-center justify-center mx-auto mb-4">
