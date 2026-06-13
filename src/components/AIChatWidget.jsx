@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useRef } from 'react';
-import { MessageCircle, X, Send, Settings, Trash2, Loader2, Bot, User, Key, UserCircle2, Plus, GripHorizontal, BrainCircuit, Sparkles, Pencil, Save, Square } from 'lucide-react';
+import { X, Send, Settings, Trash2, Loader2, Bot, User, Key, UserCircle2, Plus, GripHorizontal, BrainCircuit, Sparkles, Pencil, Save, Square } from 'lucide-react';
 import ReactMarkdown from 'react-markdown';
 import remarkGfm from 'remark-gfm';
 import rehypeHighlight from 'rehype-highlight';
@@ -117,8 +117,7 @@ const chatMarkdownComponents = {
     tr: ({ children }) => <tr className="last:[&_td]:border-b-0">{children}</tr>
 };
 
-const AIChatWidget = () => {
-    const [isOpen, setIsOpen] = useState(false);
+const AIChatWidget = ({ onClose }) => {
     const [apiKey, setApiKey] = useState('');
     const [tempApiKey, setTempApiKey] = useState('');
     const [showSettings, setShowSettings] = useState(false);
@@ -314,14 +313,6 @@ const AIChatWidget = () => {
             ...newMessages.map(m => ({ role: m.role, content: m.content }))
         ];
 
-        // Debug log - 调试用
-        console.log('=== AI Chat Debug ===');
-        console.log('selectedPersona ID:', selectedPersona);
-        console.log('customPersona:', customPersona);
-        console.log('currentPersona used:', currentPersona);
-        console.log('System prompt sent:', systemPrompt);
-        console.log('=====================');
-
         // Create new AbortController
         abortControllerRef.current = new AbortController();
 
@@ -429,24 +420,6 @@ const AIChatWidget = () => {
         }
     };
 
-    // Floating button when closed
-    if (!isOpen) {
-        return (
-            <button
-                onClick={() => setIsOpen(true)}
-                className="fixed bottom-24 right-6 z-[100] w-14 h-14 bg-gradient-to-br from-indigo-500 to-purple-600 text-white rounded-full shadow-2xl flex items-center justify-center hover:scale-110 hover:from-indigo-600 hover:to-purple-700 transition-all duration-300 group"
-                title="AI 问答助手"
-            >
-                <MessageCircle size={24} className="group-hover:rotate-12 transition-transform" />
-                {messages.length > 0 && (
-                    <span className="absolute -top-1 -right-1 w-5 h-5 bg-red-500 text-white text-xs font-bold rounded-full flex items-center justify-center border-2 border-white">
-                        {messages.length}
-                    </span>
-                )}
-            </button>
-        );
-    }
-
     const currentPersonaInfo = selectedPersona === 'custom' && customPersona
         ? customPersona
         : AI_PERSONAS.find(p => p.id === selectedPersona);
@@ -499,7 +472,7 @@ const AIChatWidget = () => {
                         <Trash2 size={18} />
                     </button>
                     <button
-                        onClick={() => setIsOpen(false)}
+                        onClick={onClose}
                         className="p-1.5 hover:bg-white/20 rounded-lg transition-colors"
                         title="关闭"
                     >

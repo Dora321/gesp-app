@@ -5,7 +5,8 @@ import { BrowserRouter, HashRouter, Routes, Route } from 'react-router-dom';
 import Home from './Home';
 import ClassroomPoints from './components/ClassroomPoints';
 import ScrollToTop from './components/ScrollToTop';
-import AIChatWidget from './components/AIChatWidget';
+import AIChat from './components/AIChat';
+import ErrorBoundary from './components/ErrorBoundary';
 
 // Lazy loaded: route-level pages — only fetched when user navigates to them
 const Navigation = lazy(() => import('./Navigation'));
@@ -73,72 +74,74 @@ function App() {
 
   return (
     <Router basename={import.meta.env.DEV ? '/' : '/'}>
-      <ScrollToTop />
-      <Suspense fallback={<PageLoader />}>
-        <Routes>
-          <Route path="/navigation" element={<Navigation />} />
-          <Route path="/museum" element={<ComputingMuseum />} />
-          <Route path="/question-bank" element={<QuestionBankHome />} />
-          <Route path="/question-bank/:level/:paperId" element={<ExamPaper />} />
-          <Route path="/" element={<Home />} />
+      <ErrorBoundary>
+        <ScrollToTop />
+        <Suspense fallback={<PageLoader />}>
+          <Routes>
+            <Route path="/navigation" element={<Navigation />} />
+            <Route path="/museum" element={<ComputingMuseum />} />
+            <Route path="/question-bank" element={<QuestionBankHome />} />
+            <Route path="/question-bank/:level/:paperId" element={<ExamPaper />} />
+            <Route path="/" element={<Home />} />
 
-          {/* C++ Lessons — parameterized: /lesson/:level(1-6)/:lessonId(1-16) */}
-          <Route path="/lesson/:level/:lessonId" element={<LessonRouter />} />
+            {/* C++ Lessons — parameterized: /lesson/:level(1-6)/:lessonId(1-16) */}
+            <Route path="/lesson/:level/:lessonId" element={<LessonRouter />} />
 
-          {/* E-Kart Lab Routes */}
-          <Route path="/ekart" element={<EkartLayout />}>
-            <Route index element={<EkartHome />} />
-            <Route path="roadmap" element={<EkartRoadmap />} />
-            <Route path="toolbox" element={<EkartToolbox />} />
-            <Route path="gallery" element={<EkartGallery />} />
-            <Route path="parent-portal" element={<EkartParentPortal />} />
-          </Route>
+            {/* E-Kart Lab Routes */}
+            <Route path="/ekart" element={<EkartLayout />}>
+              <Route index element={<EkartHome />} />
+              <Route path="roadmap" element={<EkartRoadmap />} />
+              <Route path="toolbox" element={<EkartToolbox />} />
+              <Route path="gallery" element={<EkartGallery />} />
+              <Route path="parent-portal" element={<EkartParentPortal />} />
+            </Route>
 
-          {/* Hardware Module Routes */}
-          <Route path="/hardware" element={<HardwareLayout />}>
-            <Route index element={<HardwareLanding />} />
-            <Route path="esp32-ai" element={<Esp32AiCourseSystem />} />
-            <Route path="lesson/:id" element={<HardwareLessonDetail />} />
-          </Route>
+            {/* Hardware Module Routes */}
+            <Route path="/hardware" element={<HardwareLayout />}>
+              <Route index element={<HardwareLanding />} />
+              <Route path="esp32-ai" element={<Esp32AiCourseSystem />} />
+              <Route path="lesson/:id" element={<HardwareLessonDetail />} />
+            </Route>
 
-          {/* Course Levels */}
-          <Route path="/level1" element={<CourseLevel1 />} />
-          <Route path="/level2" element={<CourseLevel2 />} />
-          <Route path="/level3" element={<CourseLevel3 />} />
-          <Route path="/level4" element={<CourseLevel4 />} />
-          <Route path="/level5" element={<CourseLevel5 />} />
-          <Route path="/level6" element={<CourseLevel6 />} />
-          <Route path="/level7" element={<CourseLevel7 />} />
-          <Route path="/level8" element={<CourseLevel8 />} />
+            {/* Course Levels */}
+            <Route path="/level1" element={<CourseLevel1 />} />
+            <Route path="/level2" element={<CourseLevel2 />} />
+            <Route path="/level3" element={<CourseLevel3 />} />
+            <Route path="/level4" element={<CourseLevel4 />} />
+            <Route path="/level5" element={<CourseLevel5 />} />
+            <Route path="/level6" element={<CourseLevel6 />} />
+            <Route path="/level7" element={<CourseLevel7 />} />
+            <Route path="/level8" element={<CourseLevel8 />} />
 
-          {/* Python Foundation */}
-          <Route path="/python/f1" element={<PythonFoundation1 />} />
-          <Route path="/python/f2" element={<PythonFoundation2 />} />
-          <Route path="/python/f3" element={<PythonFoundation3 />} />
-          <Route path="/python/f4" element={<PythonFoundation4 />} />
-          <Route path="/python/f5" element={<PythonFoundation5 />} />
-          <Route path="/python/f6" element={<PythonFoundation6 />} />
-          <Route path="/python/f7" element={<PythonFoundation7 />} />
+            {/* Python Foundation */}
+            <Route path="/python/f1" element={<PythonFoundation1 />} />
+            <Route path="/python/f2" element={<PythonFoundation2 />} />
+            <Route path="/python/f3" element={<PythonFoundation3 />} />
+            <Route path="/python/f4" element={<PythonFoundation4 />} />
+            <Route path="/python/f5" element={<PythonFoundation5 />} />
+            <Route path="/python/f6" element={<PythonFoundation6 />} />
+            <Route path="/python/f7" element={<PythonFoundation7 />} />
 
-          {/* Python Advanced */}
-          <Route path="/python/a1" element={<PythonAdvanced1 />} />
-          <Route path="/python/a2" element={<PythonAdvanced2 />} />
-          <Route path="/python/file-ops" element={<PythonFileOps />} />
-          <Route path="/python/ai" element={<PythonAI />} />
-          <Route path="/python/crawler" element={<PythonCrawler />} />
-          <Route path="/python/binary-search" element={<BinarySearchProject />} />
-          <Route path="/python/encryption" element={<PythonEncryptionProject />} />
-          <Route path="/python/sorting" element={<PythonSortingProject />} />
-          <Route path="/python/morse" element={<PythonMorseProject />} />
+            {/* Python Advanced */}
+            <Route path="/python/a1" element={<PythonAdvanced1 />} />
+            <Route path="/python/a2" element={<PythonAdvanced2 />} />
+            <Route path="/python/file-ops" element={<PythonFileOps />} />
+            <Route path="/python/ai" element={<PythonAI />} />
+            <Route path="/python/crawler" element={<PythonCrawler />} />
+            <Route path="/python/binary-search" element={<BinarySearchProject />} />
+            <Route path="/python/encryption" element={<PythonEncryptionProject />} />
+            <Route path="/python/sorting" element={<PythonSortingProject />} />
+            <Route path="/python/morse" element={<PythonMorseProject />} />
 
-          <Route path="/gesp/2025-12-l2" element={<GESP2_2025_12 />} />
+            <Route path="/gesp/2025-12-l2" element={<GESP2_2025_12 />} />
 
-          {/* Legacy lesson redirects — old /lessonN, /adv-lessonN etc. → /lesson/:level/:id */}
-          <Route path="/*" element={<LegacyLessonRedirect />} />
-        </Routes>
-      </Suspense>
-      <ClassroomPoints />
-      <AIChatWidget />
+            {/* Legacy lesson redirects — old /lessonN, /adv-lessonN etc. → /lesson/:level/:id */}
+            <Route path="/*" element={<LegacyLessonRedirect />} />
+          </Routes>
+        </Suspense>
+        <ClassroomPoints />
+        <AIChat />
+      </ErrorBoundary>
     </Router>
   );
 }
