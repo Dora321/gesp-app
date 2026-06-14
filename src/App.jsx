@@ -1,5 +1,5 @@
 import React, { Suspense, lazy } from 'react';
-import { BrowserRouter, HashRouter, Routes, Route } from 'react-router-dom';
+import { BrowserRouter, Routes, Route } from 'react-router-dom';
 
 // Eagerly loaded: home page + global components (needed on every page)
 import Home from './Home';
@@ -69,10 +69,13 @@ import LoadingScreen from './components/LoadingScreen';
 const PageLoader = () => <LoadingScreen message="正在为您加载" />;
 
 function App() {
-  const Router = import.meta.env.DEV ? BrowserRouter : HashRouter;
+  // Prod deploy serves 404.html (a copy of index.html) for unknown paths, so
+  // BrowserRouter deep links work as long as basename matches the base path
+  // (`/` in dev, `/gesp-app` in prod — derived from Vite's BASE_URL).
+  const basename = import.meta.env.BASE_URL.replace(/\/$/, '') || '/';
 
   return (
-    <Router basename={import.meta.env.DEV ? '/' : '/'}>
+    <BrowserRouter basename={basename}>
       <ErrorBoundary>
         <ScrollToTop />
         <Suspense fallback={<PageLoader />}>
@@ -140,7 +143,7 @@ function App() {
         <ClassroomPoints />
         <AIChat />
       </ErrorBoundary>
-    </Router>
+    </BrowserRouter>
   );
 }
 
