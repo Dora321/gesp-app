@@ -1,12 +1,13 @@
 import React, { useCallback, useEffect, useState } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
-import { Clock, ChevronLeft, AlertTriangle, FileText, Lightbulb, BookOpen, Menu } from 'lucide-react';
+import { Clock, ChevronLeft, ChevronRight, AlertTriangle, FileText, Lightbulb, BookOpen, Menu, RotateCcw } from 'lucide-react';
 import LoadingScreen from '../components/LoadingScreen';
 import { getPaper, paperMeta } from '../data/gesp/index';
 import InteractiveAnalysisPage from './question-bank/InteractiveAnalysisPage';
 import { getEnhancedPaperComponent } from './question-bank/enhancedPaperRegistry';
 import useQuestionKeyboardNavigation from '../hooks/useQuestionKeyboardNavigation';
 import { isProgrammingQuestion, PROGRAMMING_ACK } from '../utils/questionHelpers';
+import { loadExamProgress, saveExamProgress, clearExamProgress, hasResumableProgress } from '../utils/examProgress';
 import QuestionSidebar from './exam/QuestionSidebar';
 import ExamModeView from './exam/ExamModeView';
 import SubmitConfirmDialog from './exam/SubmitConfirmDialog';
@@ -32,6 +33,7 @@ const ExamPaper = () => {
   const [paperData, setPaperData] = useState(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
+  const [savedProgress, setSavedProgress] = useState(null);
   const EnhancedPaperComponent = getEnhancedPaperComponent(paperId);
 
   // ─── Data Loading ──────────────────────────────────────────────────
@@ -46,6 +48,7 @@ const ExamPaper = () => {
       if (data) {
         setPaperData(data);
         setTimeLeft(data.timeLimit || 90 * 60);
+        setSavedProgress(loadExamProgress(paperId));
       } else {
         setError('在此题库中未找到该试卷 (Registry Lookup Failed)');
       }
@@ -77,6 +80,13 @@ const ExamPaper = () => {
     }, 1000);
     return () => clearInterval(timer);
   }, [isSubmitted, paperData, mode]);
+
+  // Persist exam progress so an accidental refresh / tab close doesn't wipe
+  // answers and the clock mid-paper. Only saves while actively in exam mode.
+  useEffect(() => {
+    if (mode !== 'exam' || !paperData) return;
+    saveExamProgress(paperId, { answers, timeLeft, currentQuestionIndex, isSubmitted });
+  }, [mode, paperData, paperId, answers, timeLeft, currentQuestionIndex, isSubmitted]);
 
   // ─── Derived Values ────────────────────────────────────────────────
 
@@ -162,8 +172,31 @@ const ExamPaper = () => {
             <h1 className="text-3xl font-bold text-white mb-2">{paperData.title}</h1>
             <p className="text-indigo-200">请选择练习模式</p>
           </div>
+          {hasResumableProgress(savedProgress) && (
+            <button
+              onClick={() => {
+                setAnswers(savedProgress.answers || {});
+                setTimeLeft(typeof savedProgress.timeLeft === 'number' ? savedProgress.timeLeft : (paperData.timeLimit || 90 * 60));
+                setCurrentQuestionIndex(savedProgress.currentQuestionIndex || 0);
+                setIsSubmitted(Boolean(savedProgress.isSubmitted));
+                setMode('exam');
+              }}
+              className="w-full mb-6 flex items-center justify-between gap-4 bg-amber-400/10 border border-amber-300/40 rounded-2xl p-5 text-left hover:bg-amber-400/20 transition-all group"
+            >
+              <div className="flex items-center gap-4">
+                <div className="w-12 h-12 rounded-xl bg-amber-400 flex items-center justify-center shrink-0 group-hover:scale-110 transition-transform">
+                  <RotateCcw className="text-white" size={24} />
+                </div>
+                <div>
+                  <h3 className="text-lg font-bold text-white">继续上次练习</h3>
+                  <p className="text-amber-100/80 text-sm">剩余 {formatTime(savedProgress.timeLeft || 0)} · 已答 {Object.keys(savedProgress.answers || {}).length} 题</p>
+                </div>
+              </div>
+              <ChevronRight className="text-amber-200 group-hover:translate-x-1 transition-transform" size={22} />
+            </button>
+          )}
           <div className="grid md:grid-cols-2 gap-6">
-            <button onClick={() => { setCurrentQuestionIndex(0); setTimeLeft(paperData.timeLimit || 90 * 60); setMode('exam'); }}
+            <button onClick={() => { clearExamProgress(paperId); setSavedProgress(null); setAnswers({}); setIsSubmitted(false); setCurrentQuestionIndex(0); setTimeLeft(paperData.timeLimit || 90 * 60); setMode('exam'); }}
               className="bg-white/10 backdrop-blur-sm border border-white/20 rounded-2xl p-8 text-left hover:bg-white/20 hover:border-indigo-400 transition-all group">
               <div className="w-14 h-14 rounded-xl bg-indigo-500 flex items-center justify-center mb-4 group-hover:scale-110 transition-transform">
                 <FileText className="text-white" size={28} />
