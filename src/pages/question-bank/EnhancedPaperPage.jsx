@@ -16,7 +16,6 @@ import {
 } from 'lucide-react';
 import LoadingScreen from '../../components/LoadingScreen';
 import { getPaper } from '../../data/gesp';
-import { luoguCodingByLevel } from '../../data/gesp/luoguCodingByLevel';
 import { paperCodingMap } from '../../data/gesp/paperCodingMap';
 import useQuestionKeyboardNavigation from '../../hooks/useQuestionKeyboardNavigation';
 import { buildQuestionInsight, buildRichAnalysis } from './analysisEngine';
@@ -157,6 +156,7 @@ export default function EnhancedPaperPage({ forcedPaperId }) {
     const paperId = forcedPaperId || routePaperId;
     const [paperData, setPaperData] = useState(null);
     const [loading, setLoading] = useState(true);
+    const [luoguPool, setLuoguPool] = useState(null);
 
     useEffect(() => {
         let cancelled = false;
@@ -184,13 +184,35 @@ export default function EnhancedPaperPage({ forcedPaperId }) {
         ];
     }, [paperData]);
 
+    // Coding questions (Q26/Q27) are filled from the per-level Luogu problem
+    // set. Only papers that don't already embed those need it, so load that
+    // ~200KB dataset on demand instead of bundling it into the ExamPaper chunk.
+    const needsLuogu = useMemo(() => {
+        if (!paperData) return false;
+        const has26 = baseQuestions.some((q) => Number(q.id) === 26 || String(q.id) === '26');
+        const has27 = baseQuestions.some((q) => Number(q.id) === 27 || String(q.id) === '27');
+        return !(has26 && has27);
+    }, [paperData, baseQuestions]);
+
+    useEffect(() => {
+        if (!paperData || !needsLuogu) return;
+        let cancelled = false;
+        import('../../data/gesp/luoguCodingByLevel')
+            .then(({ luoguCodingByLevel }) => {
+                if (cancelled) return;
+                setLuoguPool(luoguCodingByLevel[String(paperData.level)] || luoguCodingByLevel[paperData.level] || []);
+            })
+            .catch(() => { if (!cancelled) setLuoguPool([]); });
+        return () => { cancelled = true; };
+    }, [needsLuogu, paperData]);
+
     const questions = useMemo(() => {
         if (!paperData) return [];
         const has26 = baseQuestions.some((q) => Number(q.id) === 26 || String(q.id) === '26');
         const has27 = baseQuestions.some((q) => Number(q.id) === 27 || String(q.id) === '27');
         if (has26 && has27) return baseQuestions.sort((a, b) => Number(a.id) - Number(b.id));
 
-        const pool = luoguCodingByLevel[String(paperData.level)] || luoguCodingByLevel[paperData.level] || [];
+        const pool = luoguPool || [];
         const byPid = new Map(pool.map((p) => [p.pid, p]));
         const mapped = paperCodingMap[paperId] || {};
         const p1 = byPid.get(mapped.q26) || null;
@@ -232,7 +254,7 @@ export default function EnhancedPaperPage({ forcedPaperId }) {
         if (!has26) merged.push(codingQ1);
         if (!has27) merged.push(codingQ2);
         return merged.sort((a, b) => Number(a.id) - Number(b.id));
-    }, [paperData, baseQuestions, paperId]);
+    }, [paperData, baseQuestions, paperId, luoguPool]);
 
     const [activeTab, setActiveTab] = useState('practice');
     const [currentQuestionIndex, setCurrentQuestionIndex] = useState(0);
@@ -260,7 +282,7 @@ export default function EnhancedPaperPage({ forcedPaperId }) {
     const revealedCount = useMemo(() => Object.keys(revealed).length, [revealed]);
 
     // --- Conditional returns AFTER all hooks ---
-    if (loading) {
+    if (loading || (needsLuogu && luoguPool === null)) {
         return <LoadingScreen message="正在拼命加载试卷" variant="dark" />;
     }
 
