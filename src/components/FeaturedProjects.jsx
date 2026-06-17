@@ -45,7 +45,7 @@ export default function FeaturedProjects() {
     ];
 
     return (
-        <section id="projects-section" className="py-24 bg-white relative overflow-hidden">
+        <section className="py-24 bg-white relative overflow-hidden">
             {/* Background Decoration */}
             <div className="absolute top-0 right-0 w-1/2 h-full bg-slate-50/50 skew-x-12 pointer-events-none"></div>
 

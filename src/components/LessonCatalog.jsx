@@ -375,7 +375,7 @@ export default function LessonCatalog() {
     const summary = subjectSummaries[activeSubject];
 
     return (
-        <section id="lesson-catalog" className="bg-white py-24">
+        <section className="bg-white py-24">
             <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
                 <div className="mb-10 grid gap-8 lg:grid-cols-[minmax(0,1fr)_24rem] lg:items-end">
                     <div>
