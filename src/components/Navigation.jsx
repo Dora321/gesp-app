@@ -1,21 +1,15 @@
 import React, { useState, useEffect } from 'react';
 import { useNavigate, useLocation } from 'react-router-dom';
 import {
-    Home,
-    Award,
-    Terminal,
-    Map,
-    Zap,
-    Compass,
     Menu,
     X,
     ChevronRight,
-    Search,
     BookOpen,
-    Trophy,
+    FileQuestion,
     Gamepad2,
     Rocket,
-    Cpu
+    Cpu,
+    Wrench
 } from 'lucide-react';
 
 export default function Navigation({ darkMode = false, afterLogo = null, className = '' }) {
@@ -33,11 +27,11 @@ export default function Navigation({ darkMode = false, afterLogo = null, classNa
     }, []);
 
     const navItems = [
-        { name: '探索挑战', path: '/', scrollTo: 'projects-section', icon: <Map size={18} /> },
-        { name: '全部课程', path: '/', scrollTo: 'lesson-catalog', icon: <BookOpen size={18} /> },
-        { name: '赛博博物馆', path: '/museum', icon: <Trophy size={18} /> },
-        { name: '游乐场', path: '/ekart', icon: <Gamepad2 size={18} /> },
-        { name: '硬件工坊', path: '/hardware', icon: <Cpu size={18} /> },
+        { name: '课程体系', path: '/', scrollTo: 'lesson-catalog', icon: <BookOpen size={18} /> },
+        { name: '真题题库', path: '/question-bank', icon: <FileQuestion size={18} /> },
+        { name: '项目课', path: '/', scrollTo: 'projects-section', icon: <Gamepad2 size={18} /> },
+        { name: '学习工具', path: '/', scrollTo: 'tools-section', icon: <Wrench size={18} /> },
+        { name: '探索内容', path: '/', scrollTo: 'explore-section', icon: <Cpu size={18} /> },
     ];
 
     const handleNavClick = (item) => {
@@ -86,7 +80,7 @@ export default function Navigation({ darkMode = false, afterLogo = null, classNa
                                 />
                             </div>
 
-                            <h1 className={`
+                            <div className={`
                                 font-bold tracking-tight transition-all duration-300 font-sans
                                 ${isScrolled ? 'text-lg' : 'text-2xl'}
                                 ${isScrolled ? 'text-slate-900' : (darkMode ? 'text-white' : 'text-slate-900')}
@@ -94,7 +88,7 @@ export default function Navigation({ darkMode = false, afterLogo = null, classNa
                                 <span className={`${isScrolled ? 'text-slate-900' : (darkMode ? 'text-white' : 'text-slate-900')} group-hover:text-blue-600 transition-colors`}>
                                     魔丸聚集地
                                 </span>
-                            </h1>
+                            </div>
                             {afterLogo}
                         </div>
 
@@ -119,12 +113,12 @@ export default function Navigation({ darkMode = false, afterLogo = null, classNa
                         {/* CTA Button */}
                         <div className="hidden md:flex items-center gap-4">
                             <button
-                                onClick={() => navigate('/level1')}
+                                onClick={() => navigate('/question-bank')}
                                 className="group relative px-6 py-2.5 rounded-full bg-blue-600 text-white font-bold text-sm shadow-lg shadow-blue-600/30 hover:shadow-blue-600/50 hover:-translate-y-0.5 transition-all overflow-hidden"
                             >
                                 <div className="absolute inset-0 bg-white/20 translate-y-full group-hover:translate-y-0 transition-transform duration-300"></div>
                                 <span className="relative flex items-center gap-2">
-                                    开始挑战 <Rocket size={16} className="group-hover:rotate-45 transition-transform" />
+                                    开始练习 <Rocket size={16} className="group-hover:rotate-45 transition-transform" />
                                 </span>
                             </button>
                         </div>
@@ -182,14 +176,14 @@ export default function Navigation({ darkMode = false, afterLogo = null, classNa
 
                     <button
                         onClick={() => {
-                            navigate('/level1');
+                            navigate('/question-bank');
                             setIsMobileMenuOpen(false);
                         }}
-                        aria-label="开始挑战"
+                        aria-label="开始练习"
                         className="w-full py-4 rounded-xl bg-gradient-to-r from-brand-blue to-blue-600 text-white shadow-xl shadow-brand-blue/30 flex items-center justify-center gap-2 text-lg font-bold mt-6 active:scale-95 transition-transform"
                     >
                         <Rocket size={20} />
-                        开始挑战
+                        开始练习
                     </button>
                 </div>
             </div>
