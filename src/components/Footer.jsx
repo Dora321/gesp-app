@@ -1,9 +1,10 @@
 import React from 'react';
-import { useNavigate } from 'react-router-dom';
+import { useLocation, useNavigate } from 'react-router-dom';
 import { Terminal, Github, Code2, MessageCircle } from 'lucide-react';
 
 export default function Footer() {
     const navigate = useNavigate();
+    const location = useLocation();
 
     const courseLinks = [
         { name: 'Python 趣味启蒙', path: '/python/f1' },
@@ -15,16 +16,20 @@ export default function Footer() {
     const resourceLinks = [
         { name: '在线编译器', path: '/ekart' },
         { name: '历年真题库', path: '/question-bank' },
-        { name: '学习路线图', scrollTo: 'maps-section' },
+        { name: '学习路线图', scrollTo: 'learning-paths' },
         { name: '计算博物馆', path: '/museum' },
     ];
 
     const handleLinkClick = (item) => {
         if (item.scrollTo) {
+            if (location.pathname === '/') {
+                document.getElementById(item.scrollTo)?.scrollIntoView({ behavior: 'smooth' });
+                return;
+            }
             navigate('/');
             setTimeout(() => {
                 document.getElementById(item.scrollTo)?.scrollIntoView({ behavior: 'smooth' });
-            }, 100);
+            }, 150);
         } else if (item.path) {
             navigate(item.path);
         }
