@@ -1,9 +1,9 @@
 import React from 'react';
 import { motion } from 'framer-motion';
 
-const KineticText = ({ text, className }) => {
+const KineticText = ({ text, className, as: Component = 'div' }) => {
     return (
-        <div className={`overflow-hidden flex flex-wrap gap-x-4 ${className}`}>
+        <Component className={`overflow-hidden flex flex-wrap gap-x-4 ${className}`}>
             {text.split(" ").map((word, i) => (
                 <div key={i} className="overflow-hidden">
                     <motion.span
@@ -17,7 +17,7 @@ const KineticText = ({ text, className }) => {
                     </motion.span>
                 </div>
             ))}
-        </div>
+        </Component>
     );
 };
 

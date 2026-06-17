@@ -1312,6 +1312,8 @@ export default function PythonAdvanced1() {
                 <button
                     onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
                     className="p-2 text-slate-600 hover:bg-slate-100 rounded-lg transition-colors"
+                    aria-label={isMobileMenuOpen ? '关闭课程目录' : '打开课程目录'}
+                    aria-expanded={isMobileMenuOpen}
                 >
                     {isMobileMenuOpen ? <X size={24} /> : <Menu size={24} />}
                 </button>
@@ -1343,7 +1345,10 @@ export default function PythonAdvanced1() {
                 {/* Mobile Header in Sidebar */}
                 <div className="p-4 border-b border-slate-100 md:hidden flex justify-between items-center bg-indigo-50">
                     <span className="font-bold text-indigo-700">课程目录</span>
-                    <button onClick={() => setIsMobileMenuOpen(false)}>
+                    <button
+                        onClick={() => setIsMobileMenuOpen(false)}
+                        aria-label="关闭课程目录"
+                    >
                         <X size={20} className="text-slate-500" />
                     </button>
                 </div>

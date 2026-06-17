@@ -28,7 +28,10 @@ const ToolCard = ({ title, type, size, icon: Icon, color, delay }) => {
                 <h3 className="text-xl font-bold text-white mb-1 group-hover:text-cyan-400 transition-colors">{title}</h3>
                 <div className="flex justify-between items-end mt-4">
                     <span className="text-xs font-mono text-gray-500">{size}</span>
-                    <button className="p-2 rounded-full bg-white/5 hover:bg-cyan-500 hover:text-black transition-all">
+                    <button
+                        className="p-2 rounded-full bg-white/5 hover:bg-cyan-500 hover:text-black transition-all"
+                        aria-label={`下载${title}`}
+                    >
                         <Download className="w-4 h-4" />
                     </button>
                 </div>

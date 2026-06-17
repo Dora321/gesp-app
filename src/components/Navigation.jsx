@@ -136,6 +136,8 @@ export default function Navigation({ darkMode = false, afterLogo = null, classNa
                                 : 'text-slate-600 hover:text-blue-600 hover:bg-slate-100'
                                 }`}
                             onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
+                            aria-label={isMobileMenuOpen ? '关闭导航菜单' : '打开导航菜单'}
+                            aria-expanded={isMobileMenuOpen}
                         >
                             {isMobileMenuOpen ? <X size={24} /> : <Menu size={24} />}
                         </button>
@@ -158,6 +160,7 @@ export default function Navigation({ darkMode = false, afterLogo = null, classNa
                                 handleNavClick(item);
                                 setIsMobileMenuOpen(false);
                             }}
+                            aria-label={item.name}
                             className={`
                                 w-full py-4 rounded-2xl bg-slate-50 border border-slate-100 hover:bg-white hover:border-brand-blue/30 hover:shadow-lg transition-all duration-300 flex items-center px-6 gap-4 group
                                 ${isActive(item.path) ? 'bg-blue-50 border-brand-blue/30 ring-1 ring-brand-blue/20' : ''}
@@ -182,6 +185,7 @@ export default function Navigation({ darkMode = false, afterLogo = null, classNa
                             navigate('/level1');
                             setIsMobileMenuOpen(false);
                         }}
+                        aria-label="开始挑战"
                         className="w-full py-4 rounded-xl bg-gradient-to-r from-brand-blue to-blue-600 text-white shadow-xl shadow-brand-blue/30 flex items-center justify-center gap-2 text-lg font-bold mt-6 active:scale-95 transition-transform"
                     >
                         <Rocket size={20} />

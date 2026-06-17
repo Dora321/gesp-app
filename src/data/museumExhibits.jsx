@@ -1,5 +1,5 @@
 import React from 'react';
-import { Bug, Cpu, Globe, Binary, Search, Sparkles, X, Database, Zap, Lock, RefreshCw, Box, Palette, Ban, MapPin, LockKeyhole, Swords, ToggleRight, Fingerprint, Dices, Network, Minimize2, Terminal, MousePointer2, Monitor, Gamepad2, Smartphone, Usb, Camera, Code2, Braces, Command, Layout, Server, Layers, Workflow, FileCode, AppWindow, Play, GitBranch, Cloud, Shield, Hash, Wifi, Radio, ShoppingCart, Video, MessageCircle, Link, Globe2, Share2, Rss, Eye, HardDrive, Brain, Rocket, Glasses, Gem, Ghost, Skull, Bot, Lightbulb, Satellite, Fingerprint as Fingerprint2, QrCode, Map as Map2, HelpCircle, Puzzle, Grid as Grid2, Skull as Skull2, AlertTriangle, Infinity } from 'lucide-react';
+import { Bug, Cpu, Globe, Binary, Search, Sparkles, X, Database, Zap, Lock, RefreshCw, Box, Palette, Ban, MapPin, LockKeyhole, Swords, ToggleRight, Fingerprint, Dices, Network, Minimize2, Terminal, MousePointer2, Monitor, Gamepad2, Smartphone, Usb, Camera, Code2, Braces, Command, Layout, Server, Layers, Workflow, FileCode, AppWindow, Play, GitBranch, Cloud, Shield, Hash, Wifi, Radio, ShoppingCart, Video, MessageCircle, Link, Globe2, Share2, Rss, Eye, HardDrive, Brain, Rocket, Glasses, Gem, Ghost, Skull, Bot, Lightbulb, Satellite, Fingerprint as Fingerprint2, QrCode, Map as Map2, HelpCircle, Puzzle, Grid as Grid2, Skull as Skull2, AlertTriangle, Infinity as InfinityIcon } from 'lucide-react';
 
 export const allExhibits = [
     {
@@ -26,7 +26,7 @@ export const allExhibits = [
         )
     },
     {
-        id: 'four_color',
+        id: 'four_color_computer_proof',
         title: '四色定理',
         rarity: '顶级',
         year: '1976',
@@ -72,7 +72,7 @@ export const allExhibits = [
         )
     },
     {
-        id: 'tsp',
+        id: 'tsp_optimization',
         title: '旅行商难题',
         rarity: '顶级',
         year: '1930s',
@@ -923,7 +923,7 @@ export const allExhibits = [
         )
     },
     {
-        id: 'alphago',
+        id: 'alphago_move37',
         title: 'AlphaGo',
         rarity: '夯',
         year: '2016',
@@ -2146,7 +2146,7 @@ export const allExhibits = [
         title: '曼德勃罗集',
         rarity: '夯',
         year: '1980',
-        icon: <Infinity className="w-12 h-12 text-violet-500" />,
+        icon: <InfinityIcon className="w-12 h-12 text-violet-500" />,
         color: 'from-violet-500/20 to-fuchsia-600/20 border-violet-500/50',
         accent: 'text-violet-500',
         description: '上帝的指纹。',

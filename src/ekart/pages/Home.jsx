@@ -48,6 +48,7 @@ const EkartHome = () => {
 
                         <div className="relative">
                             <KineticText
+                                as="h1"
                                 text="硬件启蒙站 打造未来工程师"
                                 className="text-6xl md:text-8xl font-black italic tracking-tighter leading-[1.1] text-transparent bg-clip-text bg-gradient-to-b from-white via-gray-100 to-gray-500"
                             />
@@ -152,7 +153,7 @@ const EkartHome = () => {
                 {/* Curriculum - Horizontal Scroll Style */}
                 <div className="mb-32">
                     <div className="flex items-end justify-between mb-12 border-b border-white/10 pb-6">
-                        <KineticText text="课程体系" className="text-4xl lg:text-5xl font-black text-white italic" />
+                        <KineticText as="h2" text="课程体系" className="text-4xl lg:text-5xl font-black text-white italic" />
                         <div className="text-gray-500 font-mono text-sm flex items-center gap-2">
                             <span className="w-2 h-2 rounded-full bg-cyan-500/50"></span>
                             CORE_MODULES
