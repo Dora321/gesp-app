@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Plus, Minus, Trophy, Trash2, UserPlus, RotateCcw, Download, History, X, Users, Minimize2, Maximize2 } from 'lucide-react';
+import { Trophy, Trash2, UserPlus, RotateCcw, Download, History, X, Users, Minimize2 } from 'lucide-react';
 
 const ClassroomPoints = () => {
     const [students, setStudents] = useState([]);
@@ -98,6 +98,7 @@ const ClassroomPoints = () => {
             <button
                 onClick={() => setIsOpen(true)}
                 className="fixed bottom-6 left-6 z-[100] w-14 h-14 bg-indigo-600 text-white rounded-full shadow-2xl flex items-center justify-center hover:scale-110 hover:bg-indigo-700 transition-all duration-300 animate-bounce group"
+                aria-label="打开课堂积分榜"
                 title="打开课堂积分榜"
             >
                 <Trophy size={24} className="group-hover:rotate-12 transition-transform" />
@@ -159,6 +160,7 @@ const ClassroomPoints = () => {
                         <button
                             onClick={() => setIsOpen(false)}
                             className="p-2 hover:bg-slate-100 rounded-full text-slate-500 transition-colors"
+                            aria-label="最小化课堂积分榜"
                         >
                             <Minimize2 size={24} />
                         </button>
@@ -209,6 +211,7 @@ const ClassroomPoints = () => {
                                         <button
                                             onClick={() => removeStudent(student.id)}
                                             className="absolute top-2 right-2 p-1 text-slate-300 hover:text-red-500 opacity-0 group-hover:opacity-100 transition-opacity"
+                                            aria-label={`删除${student.name}`}
                                         >
                                             <X size={14} />
                                         </button>

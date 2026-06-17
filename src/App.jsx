@@ -1,5 +1,5 @@
 import React, { Suspense, lazy } from 'react';
-import { BrowserRouter, Routes, Route } from 'react-router-dom';
+import { BrowserRouter, Routes, Route, useLocation } from 'react-router-dom';
 
 // Eagerly loaded: home page + global components (needed on every page)
 import Home from './Home';
@@ -67,6 +67,18 @@ const Esp32AiCourseSystem = lazy(() => import('./hardware/pages/Esp32AiCourseSys
 // Loading fallback
 import LoadingScreen from './components/LoadingScreen';
 const PageLoader = () => <LoadingScreen message="正在为您加载" />;
+
+const GlobalWidgets = () => {
+  const { pathname } = useLocation();
+  const isQuestionBankFlow = pathname.startsWith('/question-bank');
+
+  return (
+    <>
+      {!isQuestionBankFlow && <ClassroomPoints />}
+      <AIChat />
+    </>
+  );
+};
 
 function App() {
   // Prod deploy serves 404.html (a copy of index.html) for unknown paths, so
@@ -140,8 +152,7 @@ function App() {
             <Route path="/*" element={<LegacyLessonRedirect />} />
           </Routes>
         </Suspense>
-        <ClassroomPoints />
-        <AIChat />
+        <GlobalWidgets />
       </ErrorBoundary>
     </BrowserRouter>
   );

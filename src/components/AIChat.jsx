@@ -31,6 +31,7 @@ const AIChat = () => {
             <button
                 onClick={() => setIsOpen(true)}
                 className="fixed bottom-24 right-6 z-[100] w-14 h-14 bg-gradient-to-br from-indigo-500 to-purple-600 text-white rounded-full shadow-2xl flex items-center justify-center hover:scale-110 hover:from-indigo-600 hover:to-purple-700 transition-all duration-300 group"
+                aria-label="打开 AI 问答助手"
                 title="AI 问答助手"
             >
                 <MessageCircle size={24} className="group-hover:rotate-12 transition-transform" />

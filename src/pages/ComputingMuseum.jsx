@@ -1,12 +1,10 @@
 import React, { useState, useEffect } from 'react';
-import { useNavigate } from 'react-router-dom';
-import { Box, Lock, X, ArrowLeft, Search, Filter } from 'lucide-react';
+import { Box, Lock, X } from 'lucide-react';
 import { allExhibits } from '../data/museumExhibits';
 import Navigation from '../components/Navigation';
 import Footer from '../components/Footer';
 
 export default function ComputingMuseum() {
-    const navigate = useNavigate();
     const [selectedExhibit, setSelectedExhibit] = useState(null);
     const [collectedItems, setCollectedItems] = useState([]);
     const [isUnlocking, setIsUnlocking] = useState(false);
@@ -289,6 +287,7 @@ export default function ComputingMuseum() {
                             <button
                                 onClick={() => setSelectedExhibit(null)}
                                 className="p-2 rounded-full bg-slate-100 text-slate-500 hover:bg-slate-200 hover:text-slate-800 transition-colors"
+                                aria-label="关闭档案详情"
                             >
                                 <X size={20} />
                             </button>
@@ -328,7 +327,7 @@ export default function ComputingMuseum() {
                 </div>
             )}
 
-            <style jsx>{`
+            <style>{`
                 @keyframes float {
                     0%, 100% { transform: translateY(0px); }
                     50% { transform: translateY(-15px); }
