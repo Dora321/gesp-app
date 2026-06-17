@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import { Box, Lock, X } from 'lucide-react';
 import { allExhibits } from '../data/museumExhibits';
 import Navigation from '../components/Navigation';
@@ -6,17 +6,12 @@ import Footer from '../components/Footer';
 
 export default function ComputingMuseum() {
     const [selectedExhibit, setSelectedExhibit] = useState(null);
-    const [collectedItems, setCollectedItems] = useState([]);
+    const [collectedItems, setCollectedItems] = useState(() => {
+        const saved = localStorage.getItem('museum_collection');
+        return saved ? JSON.parse(saved) : [];
+    });
     const [isUnlocking, setIsUnlocking] = useState(false);
     const [newUnlock, setNewUnlock] = useState(null);
-
-    // Load progress from local storage on mount
-    useEffect(() => {
-        const saved = localStorage.getItem('museum_collection');
-        if (saved) {
-            setCollectedItems(JSON.parse(saved));
-        }
-    }, []);
 
     // Helper to get rarity visuals (Updated for Light Theme)
     const getRarityBadge = (rarity) => {

@@ -422,7 +422,11 @@ export default function PythonFileOps() {
                 {/* Mobile Header */}
                 <div className="md:hidden bg-white border-b border-slate-200 p-4 flex justify-between items-center">
                     <span className="font-bold text-indigo-600">文件操作</span>
-                    <button onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}>
+                    <button
+                        onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
+                        aria-label={isMobileMenuOpen ? '关闭课程目录' : '打开课程目录'}
+                        aria-expanded={isMobileMenuOpen}
+                    >
                         {isMobileMenuOpen ? <X /> : <Menu />}
                     </button>
                 </div>

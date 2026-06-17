@@ -60,7 +60,7 @@ const OverviewModule = ({ onStart }) => (
     <div className="grid md:grid-cols-3 gap-6">
       <div className="bg-white p-6 rounded-xl border border-slate-200 shadow-sm hover:shadow-md transition">
         <div className="w-12 h-12 bg-blue-100 text-blue-600 rounded-full flex items-center justify-center mb-4">
-          <gitCommit size={24} /> <GitCommit />
+          <GitCommit size={24} />
         </div>
         <h3 className="text-lg font-bold text-slate-800 mb-2">函数专题</h3>
         <p className="text-slate-600 text-sm">
@@ -886,6 +886,8 @@ export default function CourseLevel4() {
         <button
           onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
           className="p-2 text-slate-600 hover:bg-slate-100 rounded-lg"
+          aria-label={isMobileMenuOpen ? '关闭课程目录' : '打开课程目录'}
+          aria-expanded={isMobileMenuOpen}
         >
           {isMobileMenuOpen ? <X size={24} /> : <Menu size={24} />}
         </button>

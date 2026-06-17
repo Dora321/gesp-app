@@ -305,10 +305,10 @@ const QuizCard = ({ data, index, total, onNext, onPrev }) => {
                     {data.type === 'choice' ? '单选题' : '判断题'} {index + 1}/{total}
                 </span>
                 <div className="flex gap-2">
-                    <button onClick={onPrev} disabled={index === 0} className="p-2 hover:bg-gray-100 rounded-full disabled:opacity-30">
+                    <button onClick={onPrev} disabled={index === 0} className="p-2 hover:bg-gray-100 rounded-full disabled:opacity-30" aria-label="上一题">
                         <ChevronLeft size={20} />
                     </button>
-                    <button onClick={onNext} disabled={index === total - 1} className="p-2 hover:bg-gray-100 rounded-full disabled:opacity-30">
+                    <button onClick={onNext} disabled={index === total - 1} className="p-2 hover:bg-gray-100 rounded-full disabled:opacity-30" aria-label="下一题">
                         <ChevronRight size={20} />
                     </button>
                 </div>

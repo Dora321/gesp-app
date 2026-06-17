@@ -1280,7 +1280,12 @@ export default function PythonFoundation1() {
                 <div className="font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-indigo-600 to-purple-600 flex items-center gap-2">
                     <span className="text-lg">F1: Python 入门</span>
                 </div>
-                <button onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)} className="p-2 text-slate-600">
+                <button
+                    onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
+                    className="p-2 text-slate-600"
+                    aria-label={isMobileMenuOpen ? '关闭课程目录' : '打开课程目录'}
+                    aria-expanded={isMobileMenuOpen}
+                >
                     {isMobileMenuOpen ? <X /> : <Menu />}
                 </button>
             </div>
