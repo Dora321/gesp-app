@@ -27,6 +27,9 @@ tmp/
 # WorkBuddy
 .workbuddy/
 
+# Local assistant/tool config
+.claude/
+
 # API keys and temp files
 .env
 scripts/temp_explanations.json
