@@ -32,7 +32,7 @@ export default function TheLab() {
     ];
 
     return (
-        <section className="py-24 bg-slate-950 text-white relative overflow-hidden">
+        <section id="tools-section" className="py-24 bg-slate-950 text-white relative overflow-hidden">
             <div className="max-w-7xl mx-auto px-4 grid lg:grid-cols-2 gap-16 items-center relative z-10">
 
                 {/* Visualizer Area */}

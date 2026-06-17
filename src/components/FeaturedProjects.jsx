@@ -53,17 +53,17 @@ export default function FeaturedProjects() {
                 <div className="flex flex-col md:flex-row items-end justify-between mb-16 gap-6">
                     <div>
                         <h2 className="text-4xl font-extrabold text-brand-slate mb-4">
-                            学完能做什么？
+                            项目课：把语法变成作品
                         </h2>
                         <p className="text-xl text-slate-500 max-w-xl">
-                            别只学语法。在实战项目中，用代码解决真实问题，创造属于你的作品。
+                            语法课负责打基础，项目课负责把知识串起来。这里放适合展示、复盘和扩展的作品任务。
                         </p>
                     </div>
                     <button
-                        onClick={() => navigate('/level1')}
+                        onClick={() => navigate('/ekart')}
                         className="flex items-center gap-2 font-bold text-brand-blue hover:text-blue-600 transition-colors group"
                     >
-                        查看所有项目 <ChevronRight className="group-hover:translate-x-1 transition-transform" />
+                        查看项目专区 <ChevronRight className="group-hover:translate-x-1 transition-transform" />
                     </button>
                 </div>
 

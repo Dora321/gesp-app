@@ -4,17 +4,10 @@ import Footer from './components/Footer';
 
 import HeroSection from './components/HeroSection';
 import FeaturedProjects from './components/FeaturedProjects';
-
-// Placeholder components for sections
-// In a real refactor, these should be separate files in /components
-
-import RoadmapSection from './components/RoadmapSection';
-import CourseSystem from './components/CourseSystem';
+import LearningPaths from './components/LearningPaths';
+import ExploreMore from './components/ExploreMore';
 import TheLab from './components/TheLab';
-import HallOfFame from './components/HallOfFame';
 import LessonCatalog from './components/LessonCatalog';
-
-// Components imported above
 
 export default function Home() {
     return (
@@ -23,12 +16,11 @@ export default function Home() {
 
             <main>
                 <HeroSection />
-                <FeaturedProjects />
-                <RoadmapSection />
-                <CourseSystem />
+                <LearningPaths />
                 <LessonCatalog />
+                <FeaturedProjects />
                 <TheLab />
-                <HallOfFame />
+                <ExploreMore />
             </main>
 
             <Footer />
