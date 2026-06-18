@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { BookOpen, Code, Terminal, CheckCircle, AlertTriangle, Play, ChevronRight, Calculator, Cpu, Hash, Trophy, Eye, Lightbulb, Copy, Check, Unlock, ArrowRight, Grid, Info, ArrowRightLeft, RefreshCw, Clock, Target, XCircle, Layout, GitCommit, Layers, Box, AlignJustify, Menu, X } from 'lucide-react';
+import CppLevelSupport from '../components/CppLevelSupport';
 
 // --- Shared Components ---
 const Card = ({ children, className = "" }) => (
@@ -957,6 +958,7 @@ export default function CourseLevel4() {
 
         <main className="flex-1 overflow-y-auto p-8">
           <div className="max-w-5xl mx-auto">
+            {activeTab === 'overview' && <CppLevelSupport level={4} />}
             {activeTab === 'overview' && <OverviewModule onStart={setActiveTab} />}
             {activeTab === 'func' && <div className="animate-fade-in"><FuncModule /></div>}
             {activeTab === 'struct' && <div className="animate-fade-in"><StructModule /></div>}
@@ -966,6 +968,7 @@ export default function CourseLevel4() {
             {activeTab === 'tips' && <ExamTipsModule />}
             {activeTab === 'practice' && <PracticeModule />}
             {activeTab === 'checklist' && <div className="animate-fade-in"><CheckListModule /></div>}
+            <CppLevelSupport level={4} placement="bottom" />
           </div>
           <footer className="text-center text-slate-400 py-8 text-sm mt-8 border-t border-slate-100">
             GESP C++ 四级备考互动课件 | 模块化编程与结构化数据

@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { BookOpen, Code, Terminal, CheckCircle, AlertTriangle, Play, ChevronRight, Calculator, Cpu, Hash, Trophy, Eye, Lightbulb, Copy, Check, Unlock, ArrowRight, Grid, Info, ArrowRightLeft, RefreshCw, Clock, Target, XCircle, Layout, GitCommit, Layers, Box, AlignJustify, Divide, Table, Menu, X } from 'lucide-react';
+import CppLevelSupport from '../components/CppLevelSupport';
 
 // --- Shared Components ---
 const Card = ({ children, className = "" }) => (
@@ -885,6 +886,7 @@ export default function CourseLevel5() {
 
         <main className="flex-1 overflow-y-auto p-8">
           <div className="max-w-5xl mx-auto">
+            {activeTab === 'overview' && <CppLevelSupport level={5} />}
             {activeTab === 'overview' && <OverviewModule onStart={setActiveTab} />}
             {activeTab === 'math' && <div className="animate-fade-in"><MathModule /></div>}
             {activeTab === 'array2d' && <div className="animate-fade-in"><Array2DModule /></div>}
@@ -894,6 +896,7 @@ export default function CourseLevel5() {
             {activeTab === 'tips' && <div className="animate-fade-in"><ExamTipsModule /></div>}
             {activeTab === 'practice' && <div className="animate-fade-in"><PracticeModule /></div>}
             {activeTab === 'checklist' && <div className="animate-fade-in"><CheckListModule /></div>}
+            <CppLevelSupport level={5} placement="bottom" />
           </div>
           <footer className="text-center text-slate-400 py-8 text-sm mt-8 border-t border-slate-100">
             GESP C++ 五级备考互动课件 | 数论矩阵与高级字符串

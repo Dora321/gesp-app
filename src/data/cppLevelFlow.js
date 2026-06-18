@@ -48,6 +48,52 @@ const cppLevels = {
     practiceLinks: [{ label: '进入 GESP 三级真题库', path: '/question-bank' }],
     reviewTasks: ['用 3 个样例验证 getline、字符遍历和 ASCII 转换。', '给数组题写出下标范围和初始化方式。', '把枚举题的循环层数、数据范围和最坏次数写清楚。'],
   },
+  4: {
+    title: 'GESP C++ 四级',
+    path: '/level4',
+    badge: '函数、结构体与排序',
+    accent: 'indigo',
+    focus: '从专题解题过渡到模块化编程，重点掌握函数封装、结构体建模和基础排序。',
+    bridge: '四级开始要求学生把“会写过程”升级成“会设计结构”，为后续复杂算法和数据结构打底。',
+    goals: ['能用函数拆分输入、判断、计算和输出逻辑', '掌握结构体数组与自定义比较函数', '理解冒泡、选择、插入和 sort 的适用场景'],
+    deliverables: ['完成一份函数与结构体模板清单', '写出结构体排序的 cmp 规则并解释优先级', '完成至少 2 套四级真题复盘'],
+    checks: ['能区分值传递、引用传递和返回值', '能说明结构体字段如何参与排序', '能估算排序或多重循环的时间复杂度'],
+    previous: {
+      title: 'GESP C++ 三级',
+      path: '/level3',
+      reason: '四级会复用三级的字符串、数组和枚举能力，薄弱时先回三级补专题。',
+    },
+    next: {
+      title: 'GESP C++ 五级',
+      path: '/level5',
+      reason: '四级的模块化和排序能力稳定后，五级会进入筛法、GCD、二维数组和高级字符串。',
+    },
+    practiceLinks: [{ label: '进入 GESP 四级真题库', path: '/question-bank' }],
+    reviewTasks: ['把一个长程序拆成 3 个函数，并说明每个函数的输入输出。', '用结构体保存学生成绩，并写出两级排序规则。', '复盘真题时标出每道题使用的是函数、结构体还是排序模板。'],
+  },
+  5: {
+    title: 'GESP C++ 五级',
+    path: '/level5',
+    badge: '数论、矩阵与字符串进阶',
+    accent: 'red',
+    focus: '进入更强的算法意识：筛法、GCD/LCM、二维数组、矩阵遍历和字符串成员函数。',
+    bridge: '五级开始明显考察复杂度和数据处理组织能力，是从考级专题走向算法训练的关键层。',
+    goals: ['掌握埃氏筛、最大公约数、最小公倍数和质因数分解', '能用二维数组处理矩阵、行列、对角线和局部邻域', '熟悉 find、substr、insert、erase 和 stringstream 的使用边界'],
+    deliverables: ['完成一份五级数论与矩阵模板清单', '整理二维数组下标和字符串函数易错表', '完成至少 2 套五级真题复盘'],
+    checks: ['能判断何时需要筛法而不是逐个试除', '能写清二维数组的行列范围和边界判断', '能说明字符串函数的参数含义和返回值风险'],
+    previous: {
+      title: 'GESP C++ 四级',
+      path: '/level4',
+      reason: '五级的模板和复杂度要求更高，函数、结构体和排序不稳时应先回四级。',
+    },
+    next: {
+      title: 'GESP C++ 六级',
+      path: '/level6',
+      reason: '五级的数据处理和数学算法稳定后，可以进入更系统的递推、搜索和动态规划预备。',
+    },
+    practiceLinks: [{ label: '进入 GESP 五级真题库', path: '/question-bank' }],
+    reviewTasks: ['默写筛法和 gcd 模板，并说明复杂度。', '用一个 3x3 矩阵标出主对角线、副对角线和邻域位置。', '给每个字符串函数准备一个正常样例和一个边界样例。'],
+  },
 };
 
 export function getCppLevelSupport(level) {

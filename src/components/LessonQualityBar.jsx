@@ -22,6 +22,13 @@ const accentStyles = {
     bullet: 'bg-teal-600',
     heading: 'text-teal-900',
   },
+  red: {
+    border: 'border-red-100',
+    bg: 'bg-red-50',
+    icon: 'text-red-600',
+    bullet: 'bg-red-600',
+    heading: 'text-red-900',
+  },
 };
 
 const columns = [

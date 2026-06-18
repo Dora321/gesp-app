@@ -16,6 +16,12 @@ const accents = {
     icon: 'bg-white text-indigo-700 ring-indigo-100',
     line: 'bg-indigo-500',
   },
+  red: {
+    shell: 'border-red-100 bg-red-50/80',
+    badge: 'bg-red-600 text-white',
+    icon: 'bg-white text-red-700 ring-red-100',
+    line: 'bg-red-500',
+  },
 };
 
 function LevelBrief({ support }) {
