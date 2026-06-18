@@ -7,12 +7,12 @@ export default function FeaturedProjects() {
 
     const projects = [
         {
-            id: 'snake',
+            id: 'game2048',
             category: 'GAME DEV',
-            title: '贪吃蛇大作战',
-            desc: '不仅仅是游戏，更是 AI 入门。编写自动寻路算法，让你的蛇自己抓猎物。',
+            title: '2048 游戏工坊',
+            desc: '用二维列表表示棋盘，拆出移动、合并和随机生成方块的核心逻辑。',
             difficulty: 2,
-            time: '2h',
+            time: '3-4课时',
             icon: <Gamepad2 size={24} className="text-white" />,
             color: 'from-orange-400 to-red-500',
             bg: 'bg-orange-500/10',
@@ -20,27 +20,27 @@ export default function FeaturedProjects() {
         },
         {
             id: 'morse',
-            category: 'HACKER',
-            title: '007 摩斯密码',
-            desc: '编写加密与解密器，用字典映射发送秘密情报。像特工一样思考。',
+            category: 'SIGNAL CODE',
+            title: 'A8 摩斯电码',
+            desc: '用字典映射把文本和摩斯电码互相转换，封装成可测试的小工具。',
             difficulty: 1,
-            time: '45min',
+            time: '2-3课时',
             icon: <Shield size={24} className="text-white" />,
             color: 'from-blue-400 to-indigo-500',
             bg: 'bg-blue-500/10',
             path: '/python/morse'
         },
         {
-            id: 'maze',
+            id: 'bfs-maze',
             category: 'ALGORITHM',
-            title: '迷宫自动寻路',
-            desc: '广度优先搜索 (BFS) 可视化。看着算法像水流一样漫在迷宫中寻找出口。',
+            title: '图搜索与迷宫寻路',
+            desc: '进入 C++ 七级图论专题，用 BFS 理解无权最短路和迷宫分层扩散。',
             difficulty: 4,
-            time: '5h',
+            time: '4-5课时',
             icon: <GitBranch size={24} className="text-white" />,
             color: 'from-emerald-400 to-teal-500',
             bg: 'bg-emerald-500/10',
-            path: '/level6'
+            path: '/level7'
         }
     ];
 

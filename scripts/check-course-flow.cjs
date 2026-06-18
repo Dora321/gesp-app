@@ -54,19 +54,35 @@ function assertFileContains(relativePath, pattern, message) {
   assert(pattern.test(text), `${relativePath}: ${message}`);
 }
 
-function assertFeaturedProjectRoute(projectId, expectedPath) {
+function extractObjectField(objectText, fieldName) {
+  const match = objectText.match(new RegExp(`${fieldName}: '([^']+)'`));
+  return match?.[1] ?? null;
+}
+
+function assertFeaturedProjectCard(projectId, expected) {
   const featuredProjects = read('src/components/FeaturedProjects.jsx');
   const projectMatch = featuredProjects.match(
-    new RegExp(`id: '${projectId}',[\\s\\S]*?path: '([^']+)'`)
+    new RegExp(`\\{\\s*id: '${projectId}',[\\s\\S]*?\\n\\s*\\}`)
   );
 
   assert(projectMatch, `FeaturedProjects is missing project ${projectId}.`);
   if (!projectMatch) return;
 
-  assert(
-    projectMatch[1] === expectedPath,
-    `FeaturedProjects project ${projectId} should link to ${expectedPath}, got ${projectMatch[1]}.`
-  );
+  for (const [fieldName, expectedValue] of Object.entries(expected.fields)) {
+    const actualValue = extractObjectField(projectMatch[0], fieldName);
+    assert(
+      actualValue === expectedValue,
+      `FeaturedProjects project ${projectId} should use ${fieldName}=${expectedValue}, got ${actualValue}.`
+    );
+  }
+
+  for (const descSnippet of expected.descIncludes ?? []) {
+    const desc = extractObjectField(projectMatch[0], 'desc') ?? '';
+    assert(
+      desc.includes(descSnippet),
+      `FeaturedProjects project ${projectId} description should mention ${descSnippet}.`
+    );
+  }
 }
 
 function assertLearningPathRoute(pathId, expectedRoute) {
@@ -101,9 +117,30 @@ async function main() {
     extractFlowPaths('src/data/pythonProjectFlow.js')
   );
 
-  assertFeaturedProjectRoute('snake', '/python/a2');
-  assertFeaturedProjectRoute('morse', '/python/morse');
-  assertFeaturedProjectRoute('maze', '/level6');
+  assertFeaturedProjectCard('game2048', {
+    fields: {
+      title: '2048 游戏工坊',
+      time: '3-4课时',
+      path: '/python/a2',
+    },
+    descIncludes: ['二维列表', '移动', '合并'],
+  });
+  assertFeaturedProjectCard('morse', {
+    fields: {
+      title: 'A8 摩斯电码',
+      time: '2-3课时',
+      path: '/python/morse',
+    },
+    descIncludes: ['字典映射', '摩斯电码'],
+  });
+  assertFeaturedProjectCard('bfs-maze', {
+    fields: {
+      title: '图搜索与迷宫寻路',
+      time: '4-5课时',
+      path: '/level7',
+    },
+    descIncludes: ['C++ 七级', 'BFS', '最短路'],
+  });
 
   assertLearningPathRoute('gesp', '/question-bank');
   assertLearningPathRoute('python', '/python/f1');
