@@ -1052,6 +1052,7 @@ const StorySlide = () => {
 
 // 13. Challenge
 const ChallengeSlide = () => {
+    const navigate = useNavigate();
     const [answers, setAnswers] = useState({});
     const [score, setScore] = useState(null);
     const [showHints, setShowHints] = useState({});
@@ -1231,7 +1232,7 @@ const ChallengeSlide = () => {
                                 重新测试
                             </Button>
                             {score === questions.length && (
-                                <Button onClick={() => window.location.href = '/python/foundation/2'}>
+                                <Button onClick={() => navigate('/python/f2')}>
                                     进入下一课 →
                                 </Button>
                             )}
