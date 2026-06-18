@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
-import LessonQualityBar from '../../../components/LessonQualityBar';
 import CppL1LessonSupport from '../../../components/CppL1LessonSupport';
 import {
   Pizza,
@@ -33,11 +32,6 @@ const sections = [
   { id: 9, title: '总结与作业', icon: 'check-circle', component: () => <HomeworkSlide />, category: "实战演练" }
 ];
 
-const lessonQuality = {
-  goals: ['理解 int 和 double 在除法中的差异', '能判断整数除法会舍弃小数部分', '会用类型选择避免计算结果丢失'],
-  deliverables: ['完成平均分计算器', '解释一道整数除法真题', '写出一组 int/double 对比样例'],
-  checks: ['能预测 5 / 2 和 5.0 / 2 的结果', '能说明为什么小数会消失', '能把需要小数的表达式改成 double 计算'],
-};
 
 // --- 布局组件 ---
 const Icon = ({ name, size = 20, className = "" }) => {
@@ -174,12 +168,7 @@ export default function Lesson3() {
         {/* 内容滚动区 */}
         <main className="flex-1 overflow-y-auto p-8 pt-24 pb-20 custom-scrollbar scroll-smooth">
           <div className="max-w-5xl mx-auto">
-            <LessonQualityBar
-              goals={lessonQuality.goals}
-              deliverables={lessonQuality.deliverables}
-              checks={lessonQuality.checks}
-              accent="blue"
-            />
+            <CppL1LessonSupport lessonId={3} />
             <div className="bg-white rounded-2xl shadow-sm border border-slate-100 p-8">
               <ActiveComponent />
             </div>

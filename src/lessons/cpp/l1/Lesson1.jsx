@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
-import LessonQualityBar from '../../../components/LessonQualityBar';
 import CppL1LessonSupport from '../../../components/CppL1LessonSupport';
 import {
   Monitor, Keyboard, Mouse, Mic, Camera, Speaker, Printer,
@@ -651,11 +650,6 @@ const sections = [
   { id: 11, title: "总结与作业", icon: "save", component: SummarySlide, category: "C++ 初体验" }
 ];
 
-const lessonQuality = {
-  goals: ['认识计算机的输入、输出、存储和操作系统', '理解 C++ 程序从代码到运行的基本流程', '能写出并运行 Hello World'],
-  deliverables: ['画出一张计算机部件关系图', '完成一份 C++ 程序结构标注', '提交一个可运行的 Hello World 程序'],
-  checks: ['能区分硬件、软件和操作系统', '能说出 main、cout、分号的作用', '能根据报错定位漏分号或拼写错误'],
-};
 
 // --- 主组件 ---
 const CppL1Lesson1 = () => {
@@ -785,12 +779,7 @@ const CppL1Lesson1 = () => {
         {/* 内容滚动区 */}
         <main className="flex-1 overflow-y-auto p-6 md:p-10 bg-slate-50 custom-scrollbar">
           <div className="max-w-5xl mx-auto h-full flex flex-col">
-            <LessonQualityBar
-              goals={lessonQuality.goals}
-              deliverables={lessonQuality.deliverables}
-              checks={lessonQuality.checks}
-              accent="blue"
-            />
+            <CppL1LessonSupport lessonId={1} />
             <div className="flex-1 animate-in fade-in slide-in-from-bottom-4 duration-500">
               <ActiveComponent />
             </div>

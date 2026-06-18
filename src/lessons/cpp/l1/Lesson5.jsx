@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { Terminal, Key, Cpu, Shield, ArrowRight, CheckCircle, XCircle, RefreshCw, Lock, Unlock, Quote, ArrowDownUp, AlertTriangle, Play, BookOpen, User, Binary, Menu, X } from 'lucide-react';
-import LessonQualityBar from '../../../components/LessonQualityBar';
 import CppL1LessonSupport from '../../../components/CppL1LessonSupport';
 
 const sections = [
@@ -18,11 +17,6 @@ const sections = [
   { id: 11, title: '任务总结', icon: 'flag', component: () => <SummaryStage />, category: "实战演练" },
 ];
 
-const lessonQuality = {
-  goals: ['理解 char 保存单个字符、bool 保存真假结果', '知道字符背后对应 ASCII 编码', '能用字符运算完成大小写转换和简单判断'],
-  deliverables: ['完成字符解码器实验', '写出大小写转换小程序', '完成两道字符/布尔真题解析'],
-  checks: ['能区分单引号字符和双引号字符串', '能预测字符加减后的结果', '能解释 true、false 与 0、1 的关系'],
-};
 
 export default function Lesson5() {
   const navigate = useNavigate();
@@ -161,12 +155,7 @@ export default function Lesson5() {
         {/* Scrollable Content */}
         <main className="flex-1 overflow-y-auto p-4 md:p-8 bg-gray-50">
           <div className="max-w-4xl mx-auto">
-            <LessonQualityBar
-              goals={lessonQuality.goals}
-              deliverables={lessonQuality.deliverables}
-              checks={lessonQuality.checks}
-              accent="blue"
-            />
+            <CppL1LessonSupport lessonId={5} />
             <div className="bg-slate-900 rounded-2xl shadow-xl overflow-hidden min-h-[500px] p-8 border border-slate-700 text-slate-100">
               {/* 
                     This wrapper preserves the Dark Mode / Agent theme of the inner components 

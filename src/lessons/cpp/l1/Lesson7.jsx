@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
-import LessonQualityBar from '../../../components/LessonQualityBar';
 import CppL1LessonSupport from '../../../components/CppL1LessonSupport';
 import {
   Siren,
@@ -55,11 +54,6 @@ const sections = [
   { id: 9, title: "总结与作业", icon: "book", category: "实战演练" }
 ];
 
-const lessonQuality = {
-  goals: ['理解 if 语句如何根据条件决定是否执行', '掌握 if / else 的双分支写法', '能用比较符号完成基础条件判断'],
-  deliverables: ['完成红绿灯条件模拟', '写出奇偶数判断程序', '完成一组分号陷阱纠错题'],
-  checks: ['能解释条件为真和为假时分别执行什么', '能发现 if 后误加分号的问题', '能选择正确的比较运算符'],
-};
 
 // --- 互动组件：红绿灯模拟器 ---
 const TrafficLightSim = () => {
@@ -648,12 +642,7 @@ export default function App() {
 
         <main className="flex-1 overflow-y-auto p-8">
           <div className="max-w-4xl mx-auto">
-            <LessonQualityBar
-              goals={lessonQuality.goals}
-              deliverables={lessonQuality.deliverables}
-              checks={lessonQuality.checks}
-              accent="blue"
-            />
+            <CppL1LessonSupport lessonId={7} />
             {renderContent()}
             <CppL1LessonSupport lessonId={7} placement="bottom" />
           </div>
