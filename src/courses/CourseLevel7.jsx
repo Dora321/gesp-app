@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { BookOpen, Code, Terminal, CheckCircle, AlertTriangle, Play, ChevronRight, Calculator, Cpu, Hash, Trophy, Eye, Lightbulb, Copy, Check, Unlock, ArrowRight, Grid, Info, ArrowRightLeft, RefreshCw, Clock, Target, XCircle, Layout, GitBranch, Share2, Search, Map, Network, Route, Menu, X } from 'lucide-react';
+import CppLevelSupport from '../components/CppLevelSupport';
 
 // --- Shared Components ---
 const Card = ({ children, className = "" }) => (
@@ -886,6 +887,7 @@ export default function CourseLevel7() {
 
         <main className="flex-1 overflow-y-auto p-8">
           <div className="max-w-5xl mx-auto">
+            {activeTab === 'overview' && <CppLevelSupport level={7} />}
             {activeTab === 'overview' && <OverviewModule onStart={setActiveTab} />}
             {activeTab === 'tree' && <div className="animate-fade-in"><TreeModule /></div>}
             {activeTab === 'graph' && <div className="animate-fade-in"><GraphModule /></div>}
@@ -895,6 +897,7 @@ export default function CourseLevel7() {
             {activeTab === 'tips' && <div className="animate-fade-in"><ExamTipsModule /></div>}
             {activeTab === 'practice' && <div className="animate-fade-in"><PracticeModule /></div>}
             {activeTab === 'checklist' && <div className="animate-fade-in"><CheckListModule /></div>}
+            <CppLevelSupport level={7} placement="bottom" />
           </div>
           <footer className="text-center text-slate-400 py-8 text-sm mt-8 border-t border-slate-100">
             GESP C++ 七级备考互动课件 | 树与图论搜索
