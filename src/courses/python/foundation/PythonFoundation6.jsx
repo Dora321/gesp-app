@@ -1361,12 +1361,12 @@ export default function PythonFoundation6() {
                             if (activeSection < sections.length) {
                                 setActiveSection(prev => prev + 1);
                             } else {
-                                navigate('/python/a1');
+                                navigate('/python/f7');
                             }
                         }}
                         className="px-6 py-2 rounded-lg flex items-center gap-2 font-bold bg-indigo-600 text-white hover:bg-indigo-700 shadow-md transition-all hover:-translate-y-0.5"
                     >
-                        {activeSection === sections.length ? '完成课程' : '下一节'} <ArrowRight size={18} />
+                        {activeSection === sections.length ? '进入 F7' : '下一节'} <ArrowRight size={18} />
                     </button>
                 </div>
             </div>
