@@ -24,6 +24,7 @@ import {
     Menu,
     X
 } from 'lucide-react';
+import CppL1LessonSupport from '../../../components/CppL1LessonSupport';
 
 // --- 图标映射组件 ---
 const Icon = ({ name, size = 24, color = "currentColor", className = "" }) => {
@@ -898,6 +899,8 @@ export default function App() {
                     <button
                         onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
                         className="p-2 text-slate-600 hover:bg-slate-100 rounded-lg"
+                        aria-label={isMobileMenuOpen ? '关闭课程目录' : '打开课程目录'}
+                        aria-expanded={isMobileMenuOpen}
                     >
                         {isMobileMenuOpen ? <X size={24} /> : <Menu size={24} />}
                     </button>
@@ -919,7 +922,9 @@ export default function App() {
 
                 <main className="flex-1 overflow-y-auto p-8 z-0">
                     <div className="max-w-4xl mx-auto pb-12">
+                        <CppL1LessonSupport lessonId={15} />
                         {renderContent()}
+                        <CppL1LessonSupport lessonId={15} placement="bottom" />
                     </div>
                 </main>
 

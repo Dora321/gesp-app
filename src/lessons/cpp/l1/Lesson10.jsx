@@ -20,6 +20,7 @@ import {
   Calculator,
   CheckCircle
 } from 'lucide-react';
+import CppL1LessonSupport from '../../../components/CppL1LessonSupport';
 
 const Button = ({ children, onClick, variant = 'primary', className = '', disabled = false }) => {
   const variants = {
@@ -926,6 +927,8 @@ cout << cnt;`}
         <button
           onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
           className="p-2 text-slate-600 hover:bg-slate-100 rounded-lg"
+          aria-label={isMobileMenuOpen ? '关闭课程目录' : '打开课程目录'}
+          aria-expanded={isMobileMenuOpen}
         >
           {isMobileMenuOpen ? <X size={24} /> : <Menu size={24} />}
         </button>
@@ -1017,7 +1020,9 @@ cout << cnt;`}
 
         <main className="flex-1 overflow-y-auto p-8 z-0">
           <div className="max-w-4xl mx-auto pb-12">
+            <CppL1LessonSupport lessonId={10} />
             {renderContent()}
+            <CppL1LessonSupport lessonId={10} placement="bottom" />
           </div>
         </main>
 

@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import LessonQualityBar from '../../../components/LessonQualityBar';
+import CppL1LessonSupport from '../../../components/CppL1LessonSupport';
 import {
   Backpack,
   Box,
@@ -590,6 +591,7 @@ function App() {
             <div className="slide-enter">
               <ActiveComponent />
             </div>
+            <CppL1LessonSupport lessonId={2} placement="bottom" />
           </div>
         </main>
 

@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import LessonQualityBar from '../../../components/LessonQualityBar';
+import CppL1LessonSupport from '../../../components/CppL1LessonSupport';
 import {
   Pizza,
   Scissors,
@@ -182,6 +183,7 @@ export default function Lesson3() {
             <div className="bg-white rounded-2xl shadow-sm border border-slate-100 p-8">
               <ActiveComponent />
             </div>
+            <CppL1LessonSupport lessonId={3} placement="bottom" />
           </div>
         </main>
 

@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import LessonQualityBar from '../../../components/LessonQualityBar';
+import CppL1LessonSupport from '../../../components/CppL1LessonSupport';
 import {
   ChefHat,
   Utensils,
@@ -842,6 +843,7 @@ export default function App() {
               accent="blue"
             />
             {renderContent()}
+            <CppL1LessonSupport lessonId={8} placement="bottom" />
           </div>
         </main>
 

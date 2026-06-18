@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import LessonQualityBar from '../../../components/LessonQualityBar';
+import CppL1LessonSupport from '../../../components/CppL1LessonSupport';
 import {
   Monitor, Keyboard, Mouse, Mic, Camera, Speaker, Printer,
   Cpu, Save, FileText, Terminal, CheckCircle, XCircle,
@@ -793,6 +794,7 @@ const CppL1Lesson1 = () => {
             <div className="flex-1 animate-in fade-in slide-in-from-bottom-4 duration-500">
               <ActiveComponent />
             </div>
+            <CppL1LessonSupport lessonId={1} placement="bottom" />
           </div>
         </main>
 

@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { Terminal, Key, Cpu, Shield, ArrowRight, CheckCircle, XCircle, RefreshCw, Lock, Unlock, Quote, ArrowDownUp, AlertTriangle, Play, BookOpen, User, Binary, Menu, X } from 'lucide-react';
 import LessonQualityBar from '../../../components/LessonQualityBar';
+import CppL1LessonSupport from '../../../components/CppL1LessonSupport';
 
 const sections = [
   { id: 1, title: '任务简报', icon: 'shield', component: (props) => <WelcomeStage {...props} />, category: "概念引入" },
@@ -173,6 +174,7 @@ export default function Lesson5() {
                  */}
               {currentSection?.component({ onNext: nextSection })}
             </div>
+            <CppL1LessonSupport lessonId={5} placement="bottom" />
           </div>
         </main>
 
