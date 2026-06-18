@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
+import LessonQualityBar from '../../../components/LessonQualityBar';
 import {
   Users,
   Scissors,
@@ -46,6 +47,12 @@ const sections = [
   { id: 12, title: "侦探找茬：奇偶判断", icon: "percent", category: "魔法应用" },
   { id: 13, title: "总结与作业", icon: "check", category: "温故知新" }
 ];
+
+const lessonQuality = {
+  goals: ['理解 / 求商、% 求余数的不同用途', '能用整除和取模拆解时间、位数和分组问题', '掌握混合运算中的优先级和括号使用'],
+  deliverables: ['完成排队分组模拟', '写出分钟转小时分钟的小程序', '完成奇偶判断和个位数提取练习'],
+  checks: ['能说清 a / b 与 a % b 各表示什么', '能预测 17 / 5 和 17 % 5 的结果', '能把生活问题翻译成商和余数'],
+};
 
 // --- 互动演示组件：排队模型 ---
 const QueueSimulator = () => {
@@ -662,6 +669,12 @@ export default function App() {
 
         <main className="flex-1 overflow-y-auto p-8">
           <div className="max-w-4xl mx-auto">
+            <LessonQualityBar
+              goals={lessonQuality.goals}
+              deliverables={lessonQuality.deliverables}
+              checks={lessonQuality.checks}
+              accent="blue"
+            />
             {renderContent()}
           </div>
         </main>

@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
+import LessonQualityBar from '../../../components/LessonQualityBar';
 import {
   Backpack,
   Box,
@@ -29,6 +30,12 @@ const sections = [
   { id: 8, title: '真题实战 (2024.06)', icon: 'trophy', component: () => <QuizSlide data={{ question: '在 C++ 中，下列不可做变量的是（ ）。', options: ['five-Star', 'five_star', 'fiveStar', '_fiveStar'], correct: 0, analysis: 'A选项包含减号(-)，计算机认为是减法运算。B选项下划线是合法的。' }} />, category: "实战演练" },
   { id: 9, title: '上机实操 & 总结', icon: 'code', component: () => <SummarySlide />, category: "实战演练" }
 ];
+
+const lessonQuality = {
+  goals: ['理解变量是带名字的数据盒子', '掌握 C++ 变量命名的合法规则', '能用 int、double、char、string 表达不同数据'],
+  deliverables: ['完成一组合法/非法变量名分类题', '写出一个记录个人信息的小程序', '整理变量命名避坑表'],
+  checks: ['能解释为什么变量名不能有空格和减号', '能根据数据选择合适类型', '能发现未声明变量和关键字冲突问题'],
+};
 
 // --- 组件部分 ---
 
@@ -572,6 +579,12 @@ function App() {
         {/* 内容滚动区 */}
         <main className="flex-1 overflow-y-auto p-8 custom-scrollbar scroll-smooth">
           <div className="max-w-4xl mx-auto pb-12">
+            <LessonQualityBar
+              goals={lessonQuality.goals}
+              deliverables={lessonQuality.deliverables}
+              checks={lessonQuality.checks}
+              accent="blue"
+            />
             <div className="slide-enter">
               <ActiveComponent />
             </div>
