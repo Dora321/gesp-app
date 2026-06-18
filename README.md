@@ -39,7 +39,12 @@ npm run preview
 
 # 代码检查
 npm run lint
+
+# 课程流与内部链接检查
+npm run check
 ```
+
+`npm run check` 会验证课程目录、课程流数据、页面支撑组件和内部路由链接，适合在提交或部署前运行。
 
 ---
 
