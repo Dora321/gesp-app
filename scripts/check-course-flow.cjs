@@ -39,6 +39,41 @@ function extractFlowPaths(relativePath) {
   );
 }
 
+function extractReadyLessonIds(sectionId) {
+  const catalog = read('src/components/LessonCatalog.jsx');
+  const readyMapMatch = catalog.match(/const readyLessonIdsBySection = \{([\s\S]*?)\n\};/);
+
+  if (!readyMapMatch) {
+    fail('LessonCatalog is missing readyLessonIdsBySection.');
+    return [];
+  }
+
+  const escapedSectionId = sectionId.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+  const sectionMatch = readyMapMatch[1].match(
+    new RegExp(`['"]?${escapedSectionId}['"]?: \\[([^\\]]*)\\]`)
+  );
+
+  if (!sectionMatch) {
+    fail(`readyLessonIdsBySection is missing ${sectionId}.`);
+    return [];
+  }
+
+  return [...sectionMatch[1].matchAll(/\d+/g)].map((match) => Number(match[0]));
+}
+
+function getActualReadyCppLessonIds(level) {
+  const readyIds = [];
+
+  for (let lesson = 1; lesson <= 16; lesson += 1) {
+    const page = read(`src/lessons/cpp/l${level}/Lesson${lesson}.jsx`);
+    if (!/内容准备中|正在精心打造|敬请期待/.test(page)) {
+      readyIds.push(lesson);
+    }
+  }
+
+  return readyIds;
+}
+
 function assertSameArray(label, actual, expected) {
   const actualJson = JSON.stringify(actual);
   const expectedJson = JSON.stringify(expected);
@@ -145,6 +180,23 @@ async function main() {
   assertLearningPathRoute('gesp', '/question-bank');
   assertLearningPathRoute('python', '/python/f1');
   assertLearningPathRoute('project', '/python/a1');
+
+  const cppCatalogSections = [
+    ['basic', 1],
+    ['advanced', 2],
+    ['expert', 3],
+    ['senior', 4],
+    ['expert5', 5],
+    ['master', 6],
+  ];
+
+  for (const [sectionId, level] of cppCatalogSections) {
+    assertSameArray(
+      `C++ ${sectionId} ready lesson status`,
+      extractReadyLessonIds(sectionId),
+      getActualReadyCppLessonIds(level)
+    );
+  }
 
   for (let level = 1; level <= 8; level += 1) {
     const support = getCppLevelSupport(level);

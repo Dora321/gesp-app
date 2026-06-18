@@ -262,6 +262,21 @@ const lessonSections = [
     }
 ];
 
+const readyLessonIdsBySection = {
+    basic: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16],
+    advanced: [1, 2],
+    expert: [],
+    senior: [],
+    expert5: [],
+    master: [],
+    'python-basic': [1, 2, 3, 4, 5, 6, 7],
+    'python-advanced': [1, 2, 3, 4, 5, 6, 7, 8, 9],
+};
+
+function isLessonReady(sectionId, lessonId) {
+    return readyLessonIdsBySection[sectionId]?.includes(lessonId) ?? true;
+}
+
 const colorMap = {
     emerald: {
         bg: 'bg-emerald-600',
@@ -373,6 +388,12 @@ export default function LessonCatalog() {
     const activeSection = lessonSections.find(section => section.id === activeTab) || filteredSections[0];
     const activeColors = colorMap[activeSection.color];
     const summary = subjectSummaries[activeSubject];
+    const readyLessons = activeSection.lessons.filter(lesson => isLessonReady(activeSection.id, lesson.id));
+    const readyCount = readyLessons.length;
+    const hasReadyLessons = readyCount > 0;
+    const lessonStatusText = readyCount === activeSection.lessons.length
+        ? '全部上线'
+        : `${readyCount}/${activeSection.lessons.length} 已上线`;
 
     return (
         <section className="bg-white py-24">
@@ -440,6 +461,10 @@ export default function LessonCatalog() {
                         const colors = colorMap[section.color];
                         const isActive = activeTab === section.id;
                         const Icon = section.icon;
+                        const sectionReadyCount = section.lessons.filter(lesson => isLessonReady(section.id, lesson.id)).length;
+                        const sectionStatusText = sectionReadyCount === section.lessons.length
+                            ? '全部上线'
+                            : `${sectionReadyCount}/${section.lessons.length} 已上线`;
 
                         return (
                             <button
@@ -455,7 +480,9 @@ export default function LessonCatalog() {
                                 </span>
                                 <span>
                                     <span className="block">{section.title}</span>
-                                    <span className={`block text-xs ${isActive ? 'opacity-80' : 'text-slate-400'}`}>{section.badge}</span>
+                                    <span className={`block text-xs ${isActive ? 'opacity-80' : 'text-slate-400'}`}>
+                                        {section.badge} · {sectionStatusText}
+                                    </span>
                                 </span>
                             </button>
                         );
@@ -481,6 +508,9 @@ export default function LessonCatalog() {
                                 </div>
                                 <h3 className="text-2xl font-black text-slate-950">{activeSection.title}</h3>
                                 <p className="mt-3 text-sm leading-6 text-slate-600">{activeSection.goal}</p>
+                                <div className="mt-4 inline-flex rounded-lg bg-white px-3 py-1.5 text-xs font-black text-slate-600 ring-1 ring-slate-200">
+                                    课时状态：{lessonStatusText}
+                                </div>
 
                                 <div className="mt-6 space-y-4">
                                     <div>
@@ -516,11 +546,12 @@ export default function LessonCatalog() {
 
                                 <div className="mt-5 grid gap-2 sm:grid-cols-2 lg:grid-cols-1">
                                     <button
-                                        onClick={() => navigate(activeSection.lessons[0].path)}
-                                        className={`inline-flex items-center justify-center gap-2 rounded-lg px-4 py-3 text-sm font-black text-white transition ${activeColors.bg} hover:brightness-95`}
+                                        onClick={() => hasReadyLessons && navigate(readyLessons[0].path)}
+                                        disabled={!hasReadyLessons}
+                                        className={`inline-flex items-center justify-center gap-2 rounded-lg px-4 py-3 text-sm font-black text-white transition ${hasReadyLessons ? `${activeColors.bg} hover:brightness-95` : 'cursor-not-allowed bg-slate-300 text-slate-500'}`}
                                     >
-                                        从第一课开始
-                                        <ChevronRight size={16} />
+                                        {hasReadyLessons ? '从已上线课开始' : '课时建设中'}
+                                        {hasReadyLessons && <ChevronRight size={16} />}
                                     </button>
                                     <button
                                         onClick={() => navigate(activeSection.examPath)}
@@ -536,7 +567,11 @@ export default function LessonCatalog() {
                                 <div className="mb-5 flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
                                     <div>
                                         <h4 className="text-lg font-black text-slate-950">课时列表</h4>
-                                        <p className="text-sm text-slate-500">按顺序学习更稳，也可以直接进入当前薄弱点。</p>
+                                        <p className="text-sm text-slate-500">
+                                            {hasReadyLessons
+                                                ? '已上线课时可以直接进入，建设中课时先看冲刺课或真题复盘。'
+                                                : '本课段课时正在建设中，建议先看冲刺课和真题复盘。'}
+                                        </p>
                                     </div>
                                     <button
                                         onClick={() => navigate('/question-bank')}
@@ -548,26 +583,33 @@ export default function LessonCatalog() {
                                 </div>
 
                                 <div className="grid gap-3 sm:grid-cols-2 xl:grid-cols-4">
-                                    {activeSection.lessons.map((lesson) => (
+                                    {activeSection.lessons.map((lesson) => {
+                                        const lessonReady = isLessonReady(activeSection.id, lesson.id);
+                                        return (
                                         <button
                                             key={lesson.id}
-                                            onClick={() => navigate(lesson.path)}
-                                            className={`group flex min-h-[5.25rem] items-start gap-3 rounded-lg border border-slate-200 bg-slate-50/60 p-3 text-left transition hover:-translate-y-0.5 hover:bg-white hover:shadow-md ${activeColors.hoverBorder}`}
+                                            onClick={() => lessonReady && navigate(lesson.path)}
+                                            disabled={!lessonReady}
+                                            className={`group flex min-h-[5.25rem] items-start gap-3 rounded-lg border p-3 text-left transition ${lessonReady
+                                                ? `border-slate-200 bg-slate-50/60 hover:-translate-y-0.5 hover:bg-white hover:shadow-md ${activeColors.hoverBorder}`
+                                                : 'cursor-not-allowed border-slate-200 bg-slate-100/70 opacity-75'
+                                                }`}
                                         >
-                                            <span className={`flex h-8 w-8 shrink-0 items-center justify-center rounded-lg text-sm font-black ${activeColors.light} ${activeColors.text}`}>
+                                            <span className={`flex h-8 w-8 shrink-0 items-center justify-center rounded-lg text-sm font-black ${lessonReady ? `${activeColors.light} ${activeColors.text}` : 'bg-white text-slate-400'}`}>
                                                 {lesson.id}
                                             </span>
                                             <span className="min-w-0 flex-1">
-                                                <span className="line-clamp-2 text-sm font-black leading-5 text-slate-800 transition group-hover:text-blue-700">
+                                                <span className={`line-clamp-2 text-sm font-black leading-5 transition ${lessonReady ? 'text-slate-800 group-hover:text-blue-700' : 'text-slate-500'}`}>
                                                     {lesson.title}
                                                 </span>
-                                                <span className="mt-2 inline-flex items-center text-xs font-bold text-slate-400 group-hover:text-slate-600">
-                                                    开始学习
-                                                    <ChevronRight size={12} className="ml-1 transition group-hover:translate-x-0.5" />
+                                                <span className={`mt-2 inline-flex items-center text-xs font-bold ${lessonReady ? 'text-slate-400 group-hover:text-slate-600' : 'text-slate-400'}`}>
+                                                    {lessonReady ? '开始学习' : '建设中'}
+                                                    {lessonReady && <ChevronRight size={12} className="ml-1 transition group-hover:translate-x-0.5" />}
                                                 </span>
                                             </span>
                                         </button>
-                                    ))}
+                                        );
+                                    })}
                                 </div>
 
                                 {activeSubject === 'cpp' && (
