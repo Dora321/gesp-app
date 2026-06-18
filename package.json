@@ -13,6 +13,7 @@
     "legacy:check:objective": "node scripts/check-objective-level123.js",
     "legacy:qa:objective": "node scripts/qa-objective-level123.js",
     "validate:bank": "node scripts/validate-question-bank.js",
+    "check:course-flow": "node scripts/check-course-flow.cjs",
     "check:links": "node scripts/check-internal-links.cjs",
     "smoke": "node scripts/smoke-app.cjs",
     "generate:papers": "node scripts/generate-paper-registry.cjs"

@@ -1,0 +1,182 @@
+const fs = require('fs');
+const path = require('path');
+const { pathToFileURL } = require('url');
+
+const repoRoot = path.resolve(__dirname, '..');
+const srcRoot = path.join(repoRoot, 'src');
+
+const failures = [];
+
+function read(relativePath) {
+  return fs.readFileSync(path.join(repoRoot, relativePath), 'utf8');
+}
+
+function fail(message) {
+  failures.push(message);
+}
+
+function assert(condition, message) {
+  if (!condition) fail(message);
+}
+
+function extractCatalogPaths(sectionId) {
+  const catalog = read('src/components/LessonCatalog.jsx');
+  const sectionMatch = catalog.match(
+    new RegExp(`id: '${sectionId}',[\\s\\S]*?lessons: \\[([\\s\\S]*?)\\]\\n\\s*\\}`)
+  );
+
+  if (!sectionMatch) {
+    fail(`LessonCatalog is missing section ${sectionId}.`);
+    return [];
+  }
+
+  return [...sectionMatch[1].matchAll(/path: '([^']+)'/g)].map((match) => match[1]);
+}
+
+function extractFlowPaths(relativePath) {
+  return [...read(relativePath).matchAll(/\{ id: '[^']+', title: '[^']+', path: '([^']+)' \}/g)].map(
+    (match) => match[1]
+  );
+}
+
+function assertSameArray(label, actual, expected) {
+  const actualJson = JSON.stringify(actual);
+  const expectedJson = JSON.stringify(expected);
+  assert(actualJson === expectedJson, `${label} mismatch.\n  expected: ${expectedJson}\n  actual:   ${actualJson}`);
+}
+
+function countMatches(text, pattern) {
+  return (text.match(pattern) || []).length;
+}
+
+function assertFileContains(relativePath, pattern, message) {
+  const text = read(relativePath);
+  assert(pattern.test(text), `${relativePath}: ${message}`);
+}
+
+async function main() {
+  const [{ getCppLevelSupport }, { getCppL1LessonSupport }] = await Promise.all([
+    import(pathToFileURL(path.join(srcRoot, 'data', 'cppLevelFlow.js')).href),
+    import(pathToFileURL(path.join(srcRoot, 'data', 'cppL1CourseFlow.js')).href),
+  ]);
+
+  assertSameArray(
+    'Python foundation catalog order',
+    extractCatalogPaths('python-basic'),
+    extractFlowPaths('src/data/pythonFoundationFlow.js')
+  );
+  assertSameArray(
+    'Python project catalog order',
+    extractCatalogPaths('python-advanced'),
+    extractFlowPaths('src/data/pythonProjectFlow.js')
+  );
+
+  for (let level = 1; level <= 8; level += 1) {
+    const support = getCppLevelSupport(level);
+    assert(support, `C++ level ${level} is missing support data.`);
+    if (!support) continue;
+
+    assert(support.path === `/level${level}`, `C++ level ${level} has wrong path: ${support.path}`);
+    assert(support.goals?.length >= 3, `C++ level ${level} needs at least 3 goals.`);
+    assert(support.deliverables?.length >= 3, `C++ level ${level} needs at least 3 deliverables.`);
+    assert(support.checks?.length >= 3, `C++ level ${level} needs at least 3 checks.`);
+    assert(support.practiceLinks?.length >= 1, `C++ level ${level} needs practice links.`);
+    assert(support.reviewTasks?.length >= 3, `C++ level ${level} needs review tasks.`);
+    assert(level === 1 ? support.previous === null : support.previous?.path === `/level${level - 1}`, `C++ level ${level} has wrong previous link.`);
+    assert(
+      level === 8 ? support.next?.path === '/question-bank' : support.next?.path === `/level${level + 1}`,
+      `C++ level ${level} has wrong next link.`
+    );
+
+    const pagePath = `src/courses/CourseLevel${level}.jsx`;
+    assertFileContains(pagePath, new RegExp(`CppLevelSupport level=\\{${level}\\}`), `missing top CppLevelSupport for level ${level}.`);
+    assertFileContains(
+      pagePath,
+      new RegExp(`CppLevelSupport level=\\{${level}\\} placement="bottom"`),
+      `missing bottom CppLevelSupport for level ${level}.`
+    );
+  }
+
+  for (let lesson = 1; lesson <= 16; lesson += 1) {
+    const support = getCppL1LessonSupport(lesson);
+    assert(support?.quality?.goals?.length >= 3, `C++ L1 lesson ${lesson} needs at least 3 goals.`);
+    assert(support?.quality?.deliverables?.length >= 3, `C++ L1 lesson ${lesson} needs at least 3 deliverables.`);
+    assert(support?.quality?.checks?.length >= 3, `C++ L1 lesson ${lesson} needs at least 3 checks.`);
+    assert(support?.practiceLinks?.length >= 1, `C++ L1 lesson ${lesson} needs practice links.`);
+    assert(support?.reviewTasks?.length >= 2, `C++ L1 lesson ${lesson} needs review tasks.`);
+
+    const pagePath = `src/lessons/cpp/l1/Lesson${lesson}.jsx`;
+    const page = read(pagePath);
+    assert(
+      countMatches(page, new RegExp(`CppL1LessonSupport lessonId=\\{${lesson}\\}`, 'g')) >= 2,
+      `${pagePath}: should include top and bottom CppL1LessonSupport.`
+    );
+    assert(
+      new RegExp(`CppL1LessonSupport lessonId=\\{${lesson}\\} placement="bottom"`).test(page),
+      `${pagePath}: missing bottom CppL1LessonSupport.`
+    );
+  }
+
+  const foundationPages = [
+    ['f1', 'PythonFoundation1.jsx'],
+    ['f2', 'PythonFoundation2.jsx'],
+    ['f3', 'PythonFoundation3.jsx'],
+    ['f4', 'PythonFoundation4.jsx'],
+    ['f5', 'PythonFoundation5.jsx'],
+    ['f6', 'PythonFoundation6.jsx'],
+    ['f7', 'PythonFoundation7.jsx'],
+  ];
+
+  for (const [lessonId, fileName] of foundationPages) {
+    const pagePath = `src/courses/python/foundation/${fileName}`;
+    const page = read(pagePath);
+    assert(
+      countMatches(page, new RegExp(`PythonFoundationSupport lessonId="${lessonId}"`, 'g')) >= 2,
+      `${pagePath}: should include top and bottom PythonFoundationSupport.`
+    );
+    assert(
+      new RegExp(`PythonFoundationSupport lessonId="${lessonId}" placement="bottom"`).test(page),
+      `${pagePath}: missing bottom PythonFoundationSupport.`
+    );
+  }
+
+  const projectPages = [
+    ['a1', 'PythonAdvanced1.jsx'],
+    ['a2', 'PythonAdvanced2.jsx'],
+    ['ai', 'PythonAI.jsx'],
+    ['crawler', 'PythonCrawler.jsx'],
+    ['binary-search', 'BinarySearchProject.jsx'],
+    ['encryption', 'PythonEncryptionProject.jsx'],
+    ['sorting', 'PythonSortingProject.jsx'],
+    ['morse', 'PythonMorseProject.jsx'],
+    ['file-ops', 'PythonFileOps.jsx'],
+  ];
+
+  for (const [projectId, fileName] of projectPages) {
+    const pagePath = `src/courses/python/advanced/${fileName}`;
+    const page = read(pagePath);
+    assert(
+      countMatches(page, new RegExp(`PythonProjectSupport projectId="${projectId}"`, 'g')) >= 2,
+      `${pagePath}: should include top and bottom PythonProjectSupport.`
+    );
+    assert(
+      new RegExp(`PythonProjectSupport projectId="${projectId}" placement="bottom"`).test(page),
+      `${pagePath}: missing bottom PythonProjectSupport.`
+    );
+  }
+
+  if (failures.length > 0) {
+    console.error('Course flow checks failed:\n');
+    for (const failure of failures) {
+      console.error(`- ${failure}`);
+    }
+    process.exit(1);
+  }
+
+  console.log('Course flow checks passed.');
+}
+
+main().catch((error) => {
+  console.error(error);
+  process.exit(1);
+});
