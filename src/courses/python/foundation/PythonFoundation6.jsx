@@ -7,6 +7,7 @@ import {
     Sliders, Key, BarChart2, Calculator, Coins, ChevronUp, ChevronDown
 } from 'lucide-react';
 import LessonQualityBar from '../../../components/LessonQualityBar';
+import PythonFoundationSupport from '../../../components/PythonFoundationSupport';
 
 // --- Shared Helper Components (Reused style) ---
 const Button = ({ onClick, children, className, variant = 'primary', disabled = false }) => {
@@ -1332,6 +1333,7 @@ export default function PythonFoundation6() {
                             </h2>
                             <div className="h-1 w-20 bg-indigo-500 rounded-full"></div>
                         </header>
+                        <PythonFoundationSupport lessonId="f6" />
                         <LessonQualityBar
                             goals={lessonQuality.goals}
                             deliverables={lessonQuality.deliverables}
@@ -1339,6 +1341,7 @@ export default function PythonFoundation6() {
                             accent="teal"
                         />
                         <ActiveComponent />
+                        <PythonFoundationSupport lessonId="f6" placement="bottom" />
                     </div>
                 </div>
 

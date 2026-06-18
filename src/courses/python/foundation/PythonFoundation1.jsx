@@ -2,6 +2,7 @@ import React, { useState, useRef, useEffect } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { Terminal, Box, Calculator, MessageSquare, ArrowRight, Play, RefreshCw, CheckCircle, Tag, Bug, BookOpen, HelpCircle, Menu, X, Sparkles, Globe, Code, Palette, TrendingUp } from 'lucide-react';
 import LessonQualityBar from '../../../components/LessonQualityBar';
+import PythonFoundationSupport from '../../../components/PythonFoundationSupport';
 
 // --- Shared Components (will move to separate files later if needed) ---
 const Button = ({ onClick, children, className, variant = 'primary' }) => {
@@ -1419,6 +1420,8 @@ export default function PythonFoundation1() {
                             <div className="h-1 w-20 bg-indigo-500 rounded-full"></div>
                         </header>
 
+                        <PythonFoundationSupport lessonId="f1" />
+
                         <LessonQualityBar
                             goals={lessonQuality.goals}
                             deliverables={lessonQuality.deliverables}
@@ -1427,6 +1430,7 @@ export default function PythonFoundation1() {
                         />
 
                         <ActiveComponent />
+                        <PythonFoundationSupport lessonId="f1" placement="bottom" />
                     </div>
                 </div>
 

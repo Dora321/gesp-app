@@ -7,6 +7,7 @@ import {
     CheckCircle, List, FileQuestion, BookOpen
 } from 'lucide-react';
 import LessonQualityBar from '../../../components/LessonQualityBar';
+import PythonFoundationSupport from '../../../components/PythonFoundationSupport';
 
 // --- Shared Helper Components ---
 const Button = ({ onClick, children, className, variant = 'primary', disabled = false }) => {
@@ -822,6 +823,8 @@ export default function PythonFoundation7() {
                             <div className="h-1 w-20 bg-indigo-500 rounded-full"></div>
                         </header>
 
+                        <PythonFoundationSupport lessonId="f7" />
+
                         <LessonQualityBar
                             goals={lessonQuality.goals}
                             deliverables={lessonQuality.deliverables}
@@ -830,6 +833,7 @@ export default function PythonFoundation7() {
                         />
 
                         <ActiveComponent />
+                        <PythonFoundationSupport lessonId="f7" placement="bottom" />
                     </div>
                 </div>
 
