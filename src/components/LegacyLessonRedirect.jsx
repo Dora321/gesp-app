@@ -1,5 +1,6 @@
 import React from 'react';
 import { Navigate, useLocation } from 'react-router-dom';
+import NotFound from '../pages/NotFound';
 
 /**
  * Redirects old lesson paths to the new parameterized format.
@@ -35,8 +36,7 @@ function LegacyLessonRedirect() {
     }
   }
 
-  // Not a recognized legacy path
-  return <Navigate to="/" replace />;
+  return <NotFound />;
 }
 
 export default LegacyLessonRedirect;
