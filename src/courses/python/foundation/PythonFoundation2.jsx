@@ -1,6 +1,7 @@
 import React, { useState, useRef, useEffect } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { GitBranch, Repeat, HelpCircle, CheckCircle, AlertTriangle, ArrowRight, Play, RefreshCw, XCircle, Menu, X, Zap, List, Grid3x3, TreePine, TrendingUp, Code } from 'lucide-react';
+import LessonQualityBar from '../../../components/LessonQualityBar';
 
 // --- Shared Components ---
 const Button = ({ onClick, children, className, variant = 'primary', disabled = false }) => {
@@ -937,6 +938,12 @@ const sections = [
     { id: 7, title: '逻辑大师', icon: HelpCircle, component: QuizSlide },
 ];
 
+const lessonQuality = {
+    goals: ['理解 True、False 和比较运算的作用', '能用 if / elif / else 写出分支规则', '能用 for 和 while 表达重复任务'],
+    deliverables: ['完成一个分数等级判断程序', '写出至少一个循环小游戏或倒计时', '整理一张条件与循环易错清单'],
+    checks: ['能解释条件为什么进入某个分支', '能预测循环会执行几次', '能发现死循环和缩进错误'],
+};
+
 export default function PythonFoundation2() {
     const navigate = useNavigate();
     const [activeSection, setActiveSection] = useState(1);
@@ -1082,6 +1089,13 @@ export default function PythonFoundation2() {
                             </h2>
                             <div className="h-1 w-20 bg-blue-500 rounded-full"></div>
                         </header>
+
+                        <LessonQualityBar
+                            goals={lessonQuality.goals}
+                            deliverables={lessonQuality.deliverables}
+                            checks={lessonQuality.checks}
+                            accent="blue"
+                        />
 
                         <ActiveComponent />
                     </div>

@@ -1,6 +1,7 @@
 import React, { useState, useRef, useEffect } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
-import { Layers, List, Box, Key, Search, ArrowRight, RefreshCw, Plus, Trash2, Edit3 } from 'lucide-react';
+import { Layers, List, Box, Key, Search, ArrowRight, RefreshCw, Plus, Trash2, Edit3, Menu, X } from 'lucide-react';
+import LessonQualityBar from '../../../components/LessonQualityBar';
 
 // --- Shared Components ---
 const Button = ({ onClick, children, className, variant = 'primary', disabled = false }) => {
@@ -1065,9 +1066,16 @@ const sections = [
     { id: 3, title: '字符串 String', icon: Edit3, component: StringSlide },
 ];
 
+const lessonQuality = {
+    goals: ['会用列表保存一组有顺序的数据', '会用字典保存键值对应关系', '掌握常用字符串清洗、查找和拆分方法'],
+    deliverables: ['完成一个同学名单增删改查练习', '做出一张个人信息字典卡片', '完成字符串整理小工具'],
+    checks: ['能正确选择 list、dict 或 string', '能解释索引、键和值的区别', '能判断 append、pop、split、join 的结果'],
+};
+
 export default function PythonFoundation3() {
     const navigate = useNavigate();
     const [activeSection, setActiveSection] = useState(1);
+    const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
     const scrollRef = useRef(null);
 
     useEffect(() => {
@@ -1077,10 +1085,29 @@ export default function PythonFoundation3() {
     const ActiveComponent = sections.find(s => s.id === activeSection)?.component || (() => <div>Coming Soon</div>);
 
     return (
-        <div className="flex h-screen bg-slate-50 font-sans text-slate-800 selection:bg-teal-100">
+        <div className="flex flex-col md:flex-row h-screen bg-slate-50 font-sans text-slate-800 selection:bg-teal-100">
+            {/* Mobile Header */}
+            <div className="md:hidden bg-white border-b border-slate-200 p-4 flex justify-between items-center sticky top-0 z-20">
+                <div className="font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-teal-600 to-emerald-600 flex items-center gap-2">
+                    <span className="text-lg">F3: 列表与字典</span>
+                </div>
+                <button
+                    onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
+                    className="p-2 text-slate-600"
+                    aria-label={isMobileMenuOpen ? '关闭课程目录' : '打开课程目录'}
+                    aria-expanded={isMobileMenuOpen}
+                >
+                    {isMobileMenuOpen ? <X /> : <Menu />}
+                </button>
+            </div>
+
             {/* Sidebar */}
-            <div className="w-64 bg-white border-r border-slate-200 flex flex-col flex-shrink-0">
-                <div className="p-6 border-b border-slate-100">
+            <div className={`
+                fixed inset-y-0 left-0 z-50 w-64 bg-white border-r border-slate-200 flex flex-col transition-transform duration-300
+                md:relative md:translate-x-0
+                ${isMobileMenuOpen ? 'translate-x-0' : '-translate-x-full'}
+            `}>
+                <div className="p-6 border-b border-slate-100 hidden md:block">
                     <h1 className="text-xl font-bold text-teal-600 flex items-center gap-2">
                         <Link to="/" className="hover:opacity-80 transition-opacity">
                             <img src={`${import.meta.env.BASE_URL}logo.jpg`} alt="Logo" className="w-8 h-8 rounded-lg object-cover border border-slate-200 shadow-sm" />
@@ -1098,7 +1125,10 @@ export default function PythonFoundation3() {
                             {sections.map(section => (
                                 <button
                                     key={section.id}
-                                    onClick={() => setActiveSection(section.id)}
+                                    onClick={() => {
+                                        setActiveSection(section.id);
+                                        setIsMobileMenuOpen(false);
+                                    }}
                                     className={`w-full flex items-center gap-3 px-4 py-2.5 rounded-lg transition-colors text-sm ${activeSection === section.id
                                         ? 'bg-teal-50 text-teal-700 font-medium'
                                         : 'text-slate-600 hover:bg-slate-50'
@@ -1123,6 +1153,13 @@ export default function PythonFoundation3() {
                             </h2>
                             <div className="h-1 w-20 bg-teal-500 rounded-full"></div>
                         </header>
+
+                        <LessonQualityBar
+                            goals={lessonQuality.goals}
+                            deliverables={lessonQuality.deliverables}
+                            checks={lessonQuality.checks}
+                            accent="teal"
+                        />
 
                         <ActiveComponent />
                     </div>

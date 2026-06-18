@@ -1,6 +1,7 @@
 import React, { useState, useRef, useEffect } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { Terminal, Box, Calculator, MessageSquare, ArrowRight, Play, RefreshCw, CheckCircle, Tag, Bug, BookOpen, HelpCircle, Menu, X, Sparkles, Globe, Code, Palette, TrendingUp } from 'lucide-react';
+import LessonQualityBar from '../../../components/LessonQualityBar';
 
 // --- Shared Components (will move to separate files later if needed) ---
 const Button = ({ onClick, children, className, variant = 'primary' }) => {
@@ -1260,6 +1261,12 @@ const sections = [
     { id: 12, title: '萌新毕业考', icon: HelpCircle, component: ChallengeSlide },
 ];
 
+const lessonQuality = {
+    goals: ['知道 Python 能解决哪些真实问题', '会使用 print、input、变量和基础运算', '能读懂字符串、数字、布尔值的基本区别'],
+    deliverables: ['完成一个能问候同学的交互程序', '做出一段 ASCII 或 Emoji 输出作品', '完成入门小测并解释错题原因'],
+    checks: ['能预测简单 print 语句的输出', '能说清变量名和值分别是什么', '遇到括号、引号、拼写错误时能定位问题'],
+};
+
 
 export default function PythonFoundation1() {
     const navigate = useNavigate();
@@ -1411,6 +1418,13 @@ export default function PythonFoundation1() {
                             </h2>
                             <div className="h-1 w-20 bg-indigo-500 rounded-full"></div>
                         </header>
+
+                        <LessonQualityBar
+                            goals={lessonQuality.goals}
+                            deliverables={lessonQuality.deliverables}
+                            checks={lessonQuality.checks}
+                            accent="indigo"
+                        />
 
                         <ActiveComponent />
                     </div>
