@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useRef } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { Terminal, Key, Music, Lock, Unlock, Check, X, ArrowRight, Play, Info, Volume2, Lightbulb, RefreshCw, Trophy } from 'lucide-react';
 import PythonProjectSupport from '../../../components/PythonProjectSupport';
 
@@ -384,6 +384,7 @@ const AdvancedSlide = () => (
 
 
 const PythonMorseProject = () => {
+    const navigate = useNavigate();
     const [currentSlide, setCurrentSlide] = useState(0);
     const slides = [
         { id: 'intro', component: <IntroSlide /> },
@@ -437,11 +438,16 @@ const PythonMorseProject = () => {
                     SLIDE {currentSlide + 1} / {slides.length}
                 </div>
                 <button
-                    onClick={() => setCurrentSlide(Math.min(slides.length - 1, currentSlide + 1))}
-                    disabled={currentSlide === slides.length - 1}
+                    onClick={() => {
+                        if (currentSlide < slides.length - 1) {
+                            setCurrentSlide(currentSlide + 1);
+                        } else {
+                            navigate('/python/file-ops');
+                        }
+                    }}
                     className="px-6 py-2 rounded-lg bg-cyan-600 hover:bg-cyan-500 text-white disabled:opacity-50 disabled:cursor-not-allowed transition-all font-bold shadow-lg shadow-cyan-900/20 hover:shadow-cyan-500/30 flex items-center gap-2"
                 >
-                    Next <ArrowRight size={18} />
+                    {currentSlide === slides.length - 1 ? '进入文件操作' : 'Next'} <ArrowRight size={18} />
                 </button>
             </div>
 

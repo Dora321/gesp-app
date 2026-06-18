@@ -6,8 +6,8 @@ const pythonProjects = [
   { id: 'binary-search', title: 'A5：二分搜索项目', path: '/python/binary-search' },
   { id: 'encryption', title: 'A6：加密解密项目', path: '/python/encryption' },
   { id: 'sorting', title: 'A7：排序算法项目', path: '/python/sorting' },
-  { id: 'file-ops', title: 'A8：文件操作项目', path: '/python/file-ops' },
-  { id: 'morse', title: 'A9：摩斯电码项目', path: '/python/morse' },
+  { id: 'morse', title: 'A8：摩斯电码项目', path: '/python/morse' },
+  { id: 'file-ops', title: 'A9：文件操作项目', path: '/python/file-ops' },
 ];
 
 const projectDetails = {
@@ -137,9 +137,9 @@ const nextReason = {
   crawler: '会获取数据后，用二分搜索训练更高效的查找策略。',
   'binary-search': '查找之后进入加密项目，继续练字符、字符串和映射。',
   encryption: '字符映射稳定后，进入排序项目，观察列表状态如何一步步变化。',
-  sorting: '排序项目之后，学习文件操作，把程序结果保存下来。',
-  'file-ops': '文件读写之后，用摩斯项目把字典、字符串和函数组合成作品。',
-  morse: 'Python 项目线完成后，可以回到课程中心选择真题、硬件或更完整的作品迭代。',
+  sorting: '排序项目之后，用摩斯项目把字典、字符串和函数组合成作品。',
+  morse: '摩斯项目完成后，学习文件操作，把程序结果保存下来。',
+  'file-ops': 'Python 项目线完成后，可以回到课程中心选择真题、硬件或更完整的作品迭代。',
 };
 
 const previousReason = {
@@ -149,8 +149,8 @@ const previousReason = {
   'binary-search': '爬虫项目之后常会面对大量数据，二分搜索能提升查找效率。',
   encryption: '二分搜索训练边界控制，加密项目继续训练字符和函数封装。',
   sorting: '加密项目中的映射与遍历，是排序项目处理列表状态的前置练习。',
-  'file-ops': '排序项目输出的是内存结果，文件操作让结果可以保存和复用。',
-  morse: '文件和字符串处理稳定后，摩斯项目更容易做成可交付小工具。',
+  morse: '排序项目训练了列表、循环和过程观察，摩斯项目继续训练字符串与字典映射。',
+  'file-ops': '摩斯项目已经产出可转换的文本结果，文件操作让结果可以保存和复用。',
 };
 
 export function getPythonProjectSupport(projectId) {

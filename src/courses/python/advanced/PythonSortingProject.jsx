@@ -2321,13 +2321,13 @@ export default function PythonSortingProject() {
                             if (activeSection < sections.length) {
                                 setActiveSection(prev => prev + 1);
                             } else {
-                                navigate('/');
+                                navigate('/python/morse');
                             }
                         }}
                         className={`flex items-center gap-2 px-8 py-3 rounded-xl font-bold transition-all shadow-lg text-white hover:translate-x-1
                             ${activeSection === sections.length ? 'bg-orange-600 hover:bg-orange-700' : 'bg-orange-600 hover:bg-orange-700'}`}
                     >
-                        {activeSection === sections.length ? '下一课' : '下一节'}
+                        {activeSection === sections.length ? '进入摩斯' : '下一节'}
                         <ArrowRight size={20} />
                     </button>
                 </div>
