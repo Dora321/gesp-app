@@ -6,6 +6,7 @@ import {
     Wand2, Sparkles, PackageOpen, AlertTriangle, Check, Layers,
     Sliders, Key, BarChart2, Calculator, Coins, ChevronUp, ChevronDown
 } from 'lucide-react';
+import LessonQualityBar from '../../../components/LessonQualityBar';
 
 // --- Shared Helper Components (Reused style) ---
 const Button = ({ onClick, children, className, variant = 'primary', disabled = false }) => {
@@ -1251,6 +1252,12 @@ const sections = [
     { id: 14, title: '总结', icon: Trophy, component: SummarySlide },
 ];
 
+const lessonQuality = {
+    goals: ['理解 random 模块如何制造不确定性', '会使用 randint、choice、shuffle 和 random', '能把随机结果用于游戏规则和统计模拟'],
+    deliverables: ['完成一个猜数字或石头剪刀布小游戏', '做一次抛硬币统计实验', '写出一个随机密码生成器雏形'],
+    checks: ['能说明随机范围是否包含边界', '能判断列表被 choice 和 shuffle 后的变化', '能发现随机逻辑中的分支遗漏'],
+};
+
 export default function PythonFoundation6() {
     const navigate = useNavigate();
     const [activeSection, setActiveSection] = useState(1);
@@ -1270,7 +1277,12 @@ export default function PythonFoundation6() {
                 <div className="font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-indigo-600 to-purple-600 flex items-center gap-2">
                     <span className="text-lg">F6: 随机世界</span>
                 </div>
-                <button onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)} className="p-2 text-slate-600">
+                <button
+                    onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
+                    className="p-2 text-slate-600"
+                    aria-label={isMobileMenuOpen ? '关闭课程目录' : '打开课程目录'}
+                    aria-expanded={isMobileMenuOpen}
+                >
                     {isMobileMenuOpen ? <X /> : <Menu />}
                 </button>
             </div>
@@ -1320,6 +1332,12 @@ export default function PythonFoundation6() {
                             </h2>
                             <div className="h-1 w-20 bg-indigo-500 rounded-full"></div>
                         </header>
+                        <LessonQualityBar
+                            goals={lessonQuality.goals}
+                            deliverables={lessonQuality.deliverables}
+                            checks={lessonQuality.checks}
+                            accent="teal"
+                        />
                         <ActiveComponent />
                     </div>
                 </div>

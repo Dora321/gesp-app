@@ -1,6 +1,7 @@
 import React, { useState, useRef, useEffect } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { Box, Code, Package, Zap, ArrowRight, RefreshCw, Sparkles, BookOpen, AlertCircle, Menu, X, Play, Trophy, CheckCircle, XCircle, Star, Calculator, Dices, Clock } from 'lucide-react';
+import LessonQualityBar from '../../../components/LessonQualityBar';
 
 // --- Shared Components ---
 const Button = ({ onClick, children, className, variant = 'primary', disabled = false }) => {
@@ -852,6 +853,12 @@ const sections = [
     { id: 7, title: '挑战 Challenge', icon: Star, component: QuizSlide },
 ];
 
+const lessonQuality = {
+    goals: ['理解函数把重复代码封装成可复用工具', '会定义参数和返回值清晰的函数', '能用 import 调用模块中的能力'],
+    deliverables: ['完成一个可复用的计算函数', '把重复代码改造成函数调用', '整理一张常用模块速查表'],
+    checks: ['能解释形参、实参和返回值的区别', '能判断函数是否需要 return', '能定位函数名拼写、缩进和参数数量错误'],
+};
+
 export default function PythonFoundation4() {
     const navigate = useNavigate();
     const [activeSection, setActiveSection] = useState(1);
@@ -941,7 +948,12 @@ export default function PythonFoundation4() {
             <div className="flex-1 flex flex-col h-full overflow-hidden relative">
                 {/* Mobile Header */}
                 <header className="h-16 bg-white border-b border-slate-200 flex items-center justify-between px-6 md:hidden flex-shrink-0 z-20">
-                    <button onClick={() => setIsMobileMenuOpen(true)} className="p-2 -ml-2 text-slate-500 hover:bg-slate-100 rounded-lg">
+                    <button
+                        onClick={() => setIsMobileMenuOpen(true)}
+                        className="p-2 -ml-2 text-slate-500 hover:bg-slate-100 rounded-lg"
+                        aria-label="打开课程目录"
+                        aria-expanded={isMobileMenuOpen}
+                    >
                         <Menu size={24} />
                     </button>
                     <span className="font-bold text-slate-700">Section {activeSection}</span>
@@ -955,6 +967,13 @@ export default function PythonFoundation4() {
                             </h2>
                             <div className="h-1 w-20 bg-indigo-500 rounded-full"></div>
                         </header>
+
+                        <LessonQualityBar
+                            goals={lessonQuality.goals}
+                            deliverables={lessonQuality.deliverables}
+                            checks={lessonQuality.checks}
+                            accent="indigo"
+                        />
 
                         <ActiveComponent />
                     </div>

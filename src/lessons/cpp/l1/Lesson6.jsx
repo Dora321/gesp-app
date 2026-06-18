@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
+import LessonQualityBar from '../../../components/LessonQualityBar';
 import {
   Shield,
   Zap,
@@ -51,6 +52,12 @@ const sections = [
   { id: 8, title: "真题实战：优先级之争", icon: "calculator", category: "实战演练" },
   { id: 9, title: "总结与作业", icon: "check", category: "实战演练" }
 ];
+
+const lessonQuality = {
+  goals: ['理解 &&、||、! 三种逻辑运算', '掌握非零即真的 C++ 布尔规则', '能避免链式比较和优先级陷阱'],
+  deliverables: ['完成逻辑门模拟实验', '写出一个门票/权限判断程序', '整理逻辑表达式易错清单'],
+  checks: ['能预测复杂逻辑表达式的真假', '能把生活规则翻译成 && 和 ||', '能指出 1 < x < 10 为什么不可靠'],
+};
 
 // --- 互动组件：逻辑门模拟器 ---
 const LogicGateSimulator = ({ type }) => {
@@ -556,6 +563,8 @@ export default function App() {
         <button
           onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
           className="p-2 text-slate-600 hover:bg-slate-100 rounded-lg"
+          aria-label={isMobileMenuOpen ? '关闭课程目录' : '打开课程目录'}
+          aria-expanded={isMobileMenuOpen}
         >
           {isMobileMenuOpen ? <X size={24} /> : <Menu size={24} />}
         </button>
@@ -637,6 +646,12 @@ export default function App() {
 
         <main className="flex-1 overflow-y-auto p-8">
           <div className="max-w-4xl mx-auto">
+            <LessonQualityBar
+              goals={lessonQuality.goals}
+              deliverables={lessonQuality.deliverables}
+              checks={lessonQuality.checks}
+              accent="blue"
+            />
             {renderContent()}
           </div>
         </main>

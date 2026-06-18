@@ -481,6 +481,8 @@ function App() {
         <button
           onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
           className="p-2 text-slate-600 hover:bg-slate-100 rounded-lg"
+          aria-label={isMobileMenuOpen ? '关闭课程目录' : '打开课程目录'}
+          aria-expanded={isMobileMenuOpen}
         >
           {isMobileMenuOpen ? <X size={24} /> : <Menu size={24} />}
         </button>
