@@ -9,6 +9,22 @@ let browser;
 
 const wait = (ms) => new Promise((resolve) => setTimeout(resolve, ms));
 
+async function launchBrowser(chromium) {
+  try {
+    return await chromium.launch({ headless: true });
+  } catch (error) {
+    if (!error.message?.includes('Executable doesn')) {
+      throw error;
+    }
+
+    return chromium.launch({
+      channel: 'chrome',
+      headless: true,
+      args: ['--disable-extensions', '--disable-component-extensions-with-background-pages'],
+    });
+  }
+}
+
 async function waitForServer(url, timeoutMs = 30000) {
   const start = Date.now();
   while (Date.now() - start < timeoutMs) {
@@ -37,11 +53,7 @@ async function run() {
   }
 
   const { chromium } = await import('playwright');
-  browser = await chromium.launch({
-    channel: 'chrome',
-    headless: true,
-    args: ['--disable-extensions', '--disable-component-extensions-with-background-pages'],
-  });
+  browser = await launchBrowser(chromium);
   const page = await browser.newPage({ viewport: { width: 1366, height: 900 } });
   const messages = [];
   const panelRequests = [];
