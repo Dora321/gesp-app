@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { BookOpen, Code, Terminal, CheckCircle, AlertTriangle, Play, ChevronRight, Calculator, Cpu, Hash, Trophy, Eye, Lightbulb, Copy, Check, Unlock, ArrowRight, Grid, Info, ArrowRightLeft, RefreshCw, Clock, Target, XCircle, Menu, X } from 'lucide-react';
+import CppLevelSupport from '../components/CppLevelSupport';
 
 // --- 组件部分 ---
 
@@ -1102,6 +1103,7 @@ export default function CourseLevel3() {
 
                 <main className="flex-1 overflow-y-auto p-8">
                     <div className="max-w-5xl mx-auto">
+                        {activeTab === 'overview' && <CppLevelSupport level={3} />}
                         {activeTab === 'overview' && <OverviewModule onStart={setActiveTab} />}
                         {activeTab === 'string' && <div className="animate-fade-in"><StringModule /></div>}
                         {activeTab === 'array' && <div className="animate-fade-in"><ArrayModule /></div>}
@@ -1112,6 +1114,7 @@ export default function CourseLevel3() {
                         {activeTab === 'tips' && <ExamTipsModule />}
                         {activeTab === 'practice' && <PracticeModule />}
                         {activeTab === 'checklist' && <div className="animate-fade-in"><CheckListModule /></div>}
+                        <CppLevelSupport level={3} placement="bottom" />
                     </div>
                     <footer className="text-center text-slate-400 py-8 text-sm mt-8 border-t border-slate-100">
                         GESP C++ 三级备考互动课件 | 基于历年真题归纳
