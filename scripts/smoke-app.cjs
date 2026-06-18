@@ -81,6 +81,51 @@ async function run() {
   await page.goto(`${baseUrl}/definitely-not-a-real-page`, { waitUntil: 'domcontentloaded' });
   await page.getByText('页面没有找到').waitFor({ timeout: 10000 });
 
+  const mobilePage = await browser.newPage({
+    viewport: { width: 390, height: 844 },
+    isMobile: true,
+    deviceScaleFactor: 3,
+  });
+  mobilePage.on('console', (msg) => {
+    if (['error', 'warning'].includes(msg.type())) {
+      messages.push(`${msg.type()}: ${msg.text()}`);
+    }
+  });
+  mobilePage.on('pageerror', (error) => messages.push(`pageerror: ${error.message}`));
+
+  await mobilePage.goto(baseUrl, { waitUntil: 'domcontentloaded' });
+  await mobilePage.waitForTimeout(1500);
+  const mobileInitial = await mobilePage.evaluate(() => ({
+    innerWidth: window.innerWidth,
+    scrollWidth: document.documentElement.scrollWidth,
+    bodyScrollWidth: document.body.scrollWidth,
+  }));
+
+  await mobilePage.getByRole('button', { name: '打开导航菜单' }).click();
+  await mobilePage.getByRole('button', { name: '关闭导航菜单' }).waitFor({ timeout: 10000 });
+  const mobileMenu = await mobilePage.evaluate(() => {
+    const blockedPoint = document.elementFromPoint(40, window.innerHeight - 40);
+    return {
+      bodyOverflow: document.body.style.overflow,
+      elementAtFloatingArea: blockedPoint?.getAttribute('aria-label') || blockedPoint?.textContent?.trim() || '',
+    };
+  });
+
+  if (
+    mobileInitial.scrollWidth > mobileInitial.innerWidth ||
+    mobileInitial.bodyScrollWidth > mobileInitial.innerWidth
+  ) {
+    throw new Error(`Mobile layout overflows horizontally: ${JSON.stringify(mobileInitial)}`);
+  }
+
+  if (mobileMenu.bodyOverflow !== 'hidden') {
+    throw new Error('Mobile menu did not lock body scrolling.');
+  }
+
+  if (mobileMenu.elementAtFloatingArea.includes('课堂积分榜')) {
+    throw new Error('Floating classroom button appears above the open mobile menu.');
+  }
+
   await browser.close();
   browser = null;
 
