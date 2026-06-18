@@ -25,12 +25,12 @@ const paths = [
     },
     {
         id: 'project',
-        title: '项目实践路径',
+        title: 'Python 项目实践路径',
         audience: '适合已经会基础语法、想做作品的学生',
-        route: '/ekart',
-        cta: '查看项目课',
+        route: '/python/a1',
+        cta: '进入 A1 项目课',
         icon: Hammer,
-        steps: ['游戏与算法项目', '硬件与工程实践', '作品展示与迭代'],
+        steps: ['算法思维入门', '游戏、AI 与爬虫项目', '算法作品与文件收尾'],
         color: 'orange'
     }
 ];
@@ -71,7 +71,7 @@ export default function LearningPaths() {
                         先选目标，再进入课程
                     </h2>
                     <p className="mt-4 text-lg leading-8 text-slate-600">
-                        根据当前目标选择入口：准备 GESP、从 Python 入门，或者用项目把语法变成作品。
+                        根据当前目标选择入口：准备 GESP、从 Python 入门，或者进入项目课把语法变成作品。
                     </p>
                 </div>
 

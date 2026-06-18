@@ -69,6 +69,21 @@ function assertFeaturedProjectRoute(projectId, expectedPath) {
   );
 }
 
+function assertLearningPathRoute(pathId, expectedRoute) {
+  const learningPaths = read('src/components/LearningPaths.jsx');
+  const pathMatch = learningPaths.match(
+    new RegExp(`id: '${pathId}',[\\s\\S]*?route: '([^']+)'`)
+  );
+
+  assert(pathMatch, `LearningPaths is missing path ${pathId}.`);
+  if (!pathMatch) return;
+
+  assert(
+    pathMatch[1] === expectedRoute,
+    `LearningPaths path ${pathId} should route to ${expectedRoute}, got ${pathMatch[1]}.`
+  );
+}
+
 async function main() {
   const [{ getCppLevelSupport }, { getCppL1LessonSupport }] = await Promise.all([
     import(pathToFileURL(path.join(srcRoot, 'data', 'cppLevelFlow.js')).href),
@@ -89,6 +104,10 @@ async function main() {
   assertFeaturedProjectRoute('snake', '/python/a2');
   assertFeaturedProjectRoute('morse', '/python/morse');
   assertFeaturedProjectRoute('maze', '/level6');
+
+  assertLearningPathRoute('gesp', '/question-bank');
+  assertLearningPathRoute('python', '/python/f1');
+  assertLearningPathRoute('project', '/python/a1');
 
   for (let level = 1; level <= 8; level += 1) {
     const support = getCppLevelSupport(level);
