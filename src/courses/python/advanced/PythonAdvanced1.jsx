@@ -7,6 +7,7 @@ import {
     Search, Binary, Key
 } from 'lucide-react';
 import { Link, useNavigate } from 'react-router-dom';
+import PythonProjectSupport from '../../../components/PythonProjectSupport';
 
 // --- 辅助组件 ---
 const Icon = ({ name, size = 20, className = "" }) => {
@@ -1436,6 +1437,7 @@ export default function PythonAdvanced1() {
                 {/* Header - now just a label or removed if we want to clean it up. Keeping it simple */}
                 <div ref={scrollRef} className="flex-1 overflow-y-auto p-6 md:p-10 custom-scrollbar">
                     <div className="max-w-5xl mx-auto h-full flex flex-col">
+                        <PythonProjectSupport projectId="a1" />
                         <header className="mb-8">
                             <div className="flex items-center gap-3 mb-2">
                                 <div className="p-2 bg-indigo-100 text-indigo-600 rounded-lg">
@@ -1451,6 +1453,7 @@ export default function PythonAdvanced1() {
                         <div className="flex-1 animate-in fade-in slide-in-from-bottom-4 duration-500 h-full">
                             <ActiveComponent />
                         </div>
+                        <PythonProjectSupport projectId="a1" placement="bottom" />
                     </div>
                 </div>
 

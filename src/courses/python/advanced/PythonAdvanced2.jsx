@@ -6,6 +6,7 @@ import {
     CheckCircle, XCircle, MousePointer, Menu, X
 } from 'lucide-react';
 import { Link, useNavigate } from 'react-router-dom';
+import PythonProjectSupport from '../../../components/PythonProjectSupport';
 
 // --- 辅助组件 ---
 const Icon = ({ name, size = 20, className = "" }) => {
@@ -1030,6 +1031,8 @@ export default function PythonAdvanced2() {
                 <button
                     onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
                     className="p-2 text-slate-600 hover:bg-slate-100 rounded-lg transition-colors"
+                    aria-label={isMobileMenuOpen ? '关闭课程目录' : '打开课程目录'}
+                    aria-expanded={isMobileMenuOpen}
                 >
                     {isMobileMenuOpen ? <X size={24} /> : <Menu size={24} />}
                 </button>
@@ -1061,7 +1064,10 @@ export default function PythonAdvanced2() {
                 {/* Mobile Header in Sidebar */}
                 <div className="p-4 border-b border-slate-100 md:hidden flex justify-between items-center bg-orange-50">
                     <span className="font-bold text-orange-700">课程目录</span>
-                    <button onClick={() => setIsMobileMenuOpen(false)}>
+                    <button
+                        onClick={() => setIsMobileMenuOpen(false)}
+                        aria-label="关闭课程目录"
+                    >
                         <X size={20} className="text-slate-500" />
                     </button>
                 </div>
@@ -1149,6 +1155,7 @@ export default function PythonAdvanced2() {
                 {/* Content */}
                 <div ref={scrollRef} className="flex-1 overflow-y-auto p-6 md:p-10 custom-scrollbar">
                     <div className="max-w-5xl mx-auto h-full flex flex-col">
+                        <PythonProjectSupport projectId="a2" />
                         <header className="mb-8">
                             <div className="flex items-center gap-3 mb-2">
                                 <div className="p-2 bg-orange-100 text-orange-600 rounded-lg">
@@ -1164,6 +1171,7 @@ export default function PythonAdvanced2() {
                         <div className="flex-1 animate-in fade-in slide-in-from-bottom-4 duration-500 h-full">
                             <ActiveComponent />
                         </div>
+                        <PythonProjectSupport projectId="a2" placement="bottom" />
                     </div>
                 </div>
 

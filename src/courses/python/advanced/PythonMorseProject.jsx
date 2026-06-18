@@ -1,6 +1,7 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { Link } from 'react-router-dom';
 import { Terminal, Key, Music, Lock, Unlock, Check, X, ArrowRight, Play, Info, Volume2, Lightbulb, RefreshCw, Trophy } from 'lucide-react';
+import PythonProjectSupport from '../../../components/PythonProjectSupport';
 
 // --- Utility Functions ---
 
@@ -416,7 +417,9 @@ const PythonMorseProject = () => {
             <div className="flex-1 relative p-4 md:p-8 flex items-center justify-center overflow-hidden">
                 <div className="w-full max-w-5xl h-full flex flex-col transition-all duration-500 ease-in-out">
                     <div className="flex-1 overflow-y-auto custom-scrollbar">
+                        <PythonProjectSupport projectId="morse" theme="dark" />
                         {slides[currentSlide].component}
+                        <PythonProjectSupport projectId="morse" placement="bottom" theme="dark" />
                     </div>
                 </div>
             </div>

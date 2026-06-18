@@ -6,6 +6,7 @@ import {
     SearchCheck, Zap, Menu, X
 } from 'lucide-react';
 import { Link, useNavigate } from 'react-router-dom';
+import PythonProjectSupport from '../../../components/PythonProjectSupport';
 
 // --- 辅助组件 ---
 const Icon = ({ name, size = 20, className = "" }) => {
@@ -658,7 +659,12 @@ export default function BinarySearchProject() {
                 {/* Header with Mobile Menu Button */}
                 <header className="h-16 bg-white border-b border-slate-200 flex items-center justify-between px-6 md:px-8 flex-shrink-0 z-20">
                     <div className="flex items-center gap-3 md:hidden">
-                        <button onClick={() => setIsMobileMenuOpen(true)} className="p-2 -ml-2 text-slate-500 hover:bg-slate-100 rounded-lg">
+                        <button
+                            onClick={() => setIsMobileMenuOpen(true)}
+                            className="p-2 -ml-2 text-slate-500 hover:bg-slate-100 rounded-lg"
+                            aria-label="打开课程目录"
+                            aria-expanded={isMobileMenuOpen}
+                        >
                             <Menu size={24} />
                         </button>
                     </div>
@@ -679,8 +685,10 @@ export default function BinarySearchProject() {
 
                 <main ref={scrollRef} className="flex-1 overflow-y-auto p-4 md:p-8 custom-scrollbar relative">
                     <div className="max-w-4xl mx-auto pb-10">
+                        <PythonProjectSupport projectId="binary-search" />
                         {/* Dynamic Component */}
                         {currentSection && React.createElement(currentSection.component)}
+                        <PythonProjectSupport projectId="binary-search" placement="bottom" />
                     </div>
                 </main>
 

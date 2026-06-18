@@ -1,6 +1,7 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { Brain, Cpu, Database, Eye, Activity, Play, ArrowRight, RefreshCw, Zap, Target, ChevronDown } from 'lucide-react';
 import { Link, useNavigate } from 'react-router-dom';
+import PythonProjectSupport from '../../../components/PythonProjectSupport';
 
 // --- Shared Components ---
 const Button = ({ onClick, children, className, variant = 'primary', disabled = false }) => {
@@ -482,6 +483,7 @@ export default function PythonAI() {
                     <div className="absolute top-0 right-0 w-96 h-96 bg-yellow-600/5 rounded-full blur-[100px] pointer-events-none"></div>
 
                     <div className="max-w-4xl mx-auto">
+                        <PythonProjectSupport projectId="ai" theme="dark" />
                         <header className="mb-8">
                             <h2 className="text-3xl font-bold text-white mb-2 flex items-center gap-3">
                                 <span className="p-2 bg-yellow-500/10 rounded-lg">
@@ -495,6 +497,7 @@ export default function PythonAI() {
                         <div className="animate-in fade-in slide-in-from-bottom-4 duration-500 pb-10">
                             <ActiveComponent />
                         </div>
+                        <PythonProjectSupport projectId="ai" placement="bottom" theme="dark" />
                     </div>
                 </div>
 

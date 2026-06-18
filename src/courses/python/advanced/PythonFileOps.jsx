@@ -5,6 +5,7 @@ import {
     RefreshCw, Play, ArrowRight, CheckCircle, AlertTriangle,
     Book, Coffee, Database, HardDrive, Menu, X, Plus, Terminal
 } from 'lucide-react';
+import PythonProjectSupport from '../../../components/PythonProjectSupport';
 
 // --- Shared Helper Components ---
 const Button = ({ onClick, children, className, variant = 'primary', disabled = false }) => {
@@ -433,7 +434,9 @@ export default function PythonFileOps() {
 
                 <div className="flex-1 overflow-y-auto p-4 md:p-8">
                     <div className="max-w-4xl mx-auto">
+                        <PythonProjectSupport projectId="file-ops" />
                         <ActiveComponent />
+                        <PythonProjectSupport projectId="file-ops" placement="bottom" />
                     </div>
                 </div>
             </div>

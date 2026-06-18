@@ -1,6 +1,7 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { Shield, Lock, Unlock, Key, FileText, ArrowRight, RotateCcw, Check, X, Terminal, Binary, Hash, Eye, EyeOff, Menu, RefreshCw } from 'lucide-react';
+import PythonProjectSupport from '../../../components/PythonProjectSupport';
 
 const Icon = ({ name, className }) => {
     const icons = {
@@ -966,7 +967,12 @@ export default function PythonEncryptionProject() {
                 {/* Header with Mobile Menu Button */}
                 <header className="h-16 bg-slate-900/80 backdrop-blur-md border-b border-green-500/20 flex items-center justify-between px-6 md:px-8 flex-shrink-0 z-20">
                     <div className="flex items-center gap-3 md:hidden">
-                        <button onClick={() => setIsMobileMenuOpen(true)} className="p-2 -ml-2 text-slate-600 hover:bg-slate-800 rounded-lg">
+                        <button
+                            onClick={() => setIsMobileMenuOpen(true)}
+                            className="p-2 -ml-2 text-slate-600 hover:bg-slate-800 rounded-lg"
+                            aria-label="打开课程目录"
+                            aria-expanded={isMobileMenuOpen}
+                        >
                             <Menu size={24} />
                         </button>
                     </div>
@@ -985,8 +991,10 @@ export default function PythonEncryptionProject() {
                 {/* Scrollable Content Area */}
                 <main ref={scrollRef} className="flex-1 overflow-y-auto p-4 md:p-8 custom-scrollbar relative">
                     <div className="max-w-4xl mx-auto pb-10">
+                        <PythonProjectSupport projectId="encryption" theme="dark" />
                         {/* Dynamic Component */}
                         <currentSection.component />
+                        <PythonProjectSupport projectId="encryption" placement="bottom" theme="dark" />
                     </div>
                 </main>
 
