@@ -6,6 +6,7 @@ import {
     Scale, Zap, Repeat, HelpCircle, Scissors, Combine, Search,
     CheckCircle, List, FileQuestion, BookOpen
 } from 'lucide-react';
+import LessonQualityBar from '../../../components/LessonQualityBar';
 
 // --- Shared Helper Components ---
 const Button = ({ onClick, children, className, variant = 'primary', disabled = false }) => {
@@ -687,6 +688,12 @@ const sections = [
     { id: 8, title: '魔法笔记', icon: BookOpen, component: SummarySlide },
 ];
 
+const lessonQuality = {
+    goals: ['理解集合只保留唯一元素', '会用 in 快速判断成员关系', '掌握交集、并集、差集等集合运算'],
+    deliverables: ['完成一个名单去重工具', '做出两组兴趣标签的交并差分析', '整理 list 与 set 的使用场景对比'],
+    checks: ['能解释重复元素为什么会消失', '能根据题意选择列表或集合', '能预测 set 运算后的结果'],
+};
+
 export default function PythonFoundation7() {
     const navigate = useNavigate();
     const [activeSection, setActiveSection] = useState(1);
@@ -706,7 +713,12 @@ export default function PythonFoundation7() {
                 <div className="font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-indigo-600 to-purple-600 flex items-center gap-2">
                     <span className="text-lg">F7: 集合宝藏</span>
                 </div>
-                <button onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)} className="p-2 text-slate-600">
+                <button
+                    onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
+                    className="p-2 text-slate-600"
+                    aria-label={isMobileMenuOpen ? '关闭课程目录' : '打开课程目录'}
+                    aria-expanded={isMobileMenuOpen}
+                >
                     {isMobileMenuOpen ? <X /> : <Menu />}
                 </button>
             </div>
@@ -809,6 +821,13 @@ export default function PythonFoundation7() {
                             </h2>
                             <div className="h-1 w-20 bg-indigo-500 rounded-full"></div>
                         </header>
+
+                        <LessonQualityBar
+                            goals={lessonQuality.goals}
+                            deliverables={lessonQuality.deliverables}
+                            checks={lessonQuality.checks}
+                            accent="indigo"
+                        />
 
                         <ActiveComponent />
                     </div>

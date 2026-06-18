@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
+import LessonQualityBar from '../../../components/LessonQualityBar';
 import {
   ChefHat,
   Utensils,
@@ -50,6 +51,12 @@ const sections = [
   { id: 8, title: "语法秘籍：小贴士", icon: "book", category: "实战演练" },
   { id: 9, title: "总结与作业", icon: "check", category: "实战演练" }
 ];
+
+const lessonQuality = {
+  goals: ['理解 if / else if / else 的多重选择顺序', '能判断条件从上到下只会命中第一个分支', '会设计互斥条件避免遗漏和重复'],
+  deliverables: ['完成智能餐厅多分支模拟', '写出成绩等级判断程序', '完成多重选择真题讲解'],
+  checks: ['能预测多个条件同时满足时命中哪一支', '能解释 else if 顺序为什么重要', '能发现条件覆盖不完整的问题'],
+};
 
 // --- 互动演示组件：AI 餐厅 ---
 const RestaurantSimulator = () => {
@@ -735,6 +742,8 @@ export default function App() {
         <button
           onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
           className="p-2 text-slate-600 hover:bg-slate-100 rounded-lg"
+          aria-label={isMobileMenuOpen ? '关闭课程目录' : '打开课程目录'}
+          aria-expanded={isMobileMenuOpen}
         >
           {isMobileMenuOpen ? <X size={24} /> : <Menu size={24} />}
         </button>
@@ -826,6 +835,12 @@ export default function App() {
 
         <main className="flex-1 overflow-y-auto p-8 z-0">
           <div className="max-w-4xl mx-auto pb-12">
+            <LessonQualityBar
+              goals={lessonQuality.goals}
+              deliverables={lessonQuality.deliverables}
+              checks={lessonQuality.checks}
+              accent="blue"
+            />
             {renderContent()}
           </div>
         </main>
