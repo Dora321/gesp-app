@@ -28,7 +28,7 @@ export default function FeaturedProjects() {
             icon: <Shield size={24} className="text-white" />,
             color: 'from-blue-400 to-indigo-500',
             bg: 'bg-blue-500/10',
-            path: '/python/encryption'
+            path: '/python/morse'
         },
         {
             id: 'maze',

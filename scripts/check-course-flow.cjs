@@ -54,6 +54,21 @@ function assertFileContains(relativePath, pattern, message) {
   assert(pattern.test(text), `${relativePath}: ${message}`);
 }
 
+function assertFeaturedProjectRoute(projectId, expectedPath) {
+  const featuredProjects = read('src/components/FeaturedProjects.jsx');
+  const projectMatch = featuredProjects.match(
+    new RegExp(`id: '${projectId}',[\\s\\S]*?path: '([^']+)'`)
+  );
+
+  assert(projectMatch, `FeaturedProjects is missing project ${projectId}.`);
+  if (!projectMatch) return;
+
+  assert(
+    projectMatch[1] === expectedPath,
+    `FeaturedProjects project ${projectId} should link to ${expectedPath}, got ${projectMatch[1]}.`
+  );
+}
+
 async function main() {
   const [{ getCppLevelSupport }, { getCppL1LessonSupport }] = await Promise.all([
     import(pathToFileURL(path.join(srcRoot, 'data', 'cppLevelFlow.js')).href),
@@ -70,6 +85,10 @@ async function main() {
     extractCatalogPaths('python-advanced'),
     extractFlowPaths('src/data/pythonProjectFlow.js')
   );
+
+  assertFeaturedProjectRoute('snake', '/python/a2');
+  assertFeaturedProjectRoute('morse', '/python/morse');
+  assertFeaturedProjectRoute('maze', '/level6');
 
   for (let level = 1; level <= 8; level += 1) {
     const support = getCppLevelSupport(level);
