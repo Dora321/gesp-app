@@ -1,70 +1,181 @@
-import React, { useState } from 'react';
-import { useNavigate, Link } from 'react-router-dom';
-import { Menu, X, BookOpen } from 'lucide-react';
+import React, { useMemo, useState } from 'react';
+import { BrainCircuit, ClipboardCheck, Route, Search } from 'lucide-react';
+import CppLessonShell, { Callout, CodeBlock, CompareTable, MiniQuiz, StepList } from '../CppLessonShell';
 
-const CppL6Lesson11 = () => {
-    const navigate = useNavigate();
-    const [activeSection, setActiveSection] = useState(1);
-    const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+const sections = [
+    { id: 1, title: '课程导入', category: '状态与转移' },
+    { id: 2, title: 'DP 四件套', category: '定义状态' },
+    { id: 3, title: '递推顺序', category: '从小到大' },
+    { id: 4, title: '路径计数', category: '网格 DP' },
+    { id: 5, title: '练习与作业', category: '复盘输出' },
+];
 
-    const sections = [
-        { id: 1, title: '课程导入', category: '基础' },
-        { id: 2, title: '知识点讲解', category: '核心' },
-        { id: 3, title: '总结与作业', category: '复习' },
-    ];
+function GridDpLab() {
+    const [n, setN] = useState(4);
+    const dp = useMemo(() => {
+        const table = Array.from({ length: n }, () => Array(n).fill(0));
+        for (let i = 0; i < n; i++) {
+            for (let j = 0; j < n; j++) {
+                if (i === 0 && j === 0) table[i][j] = 1;
+                else table[i][j] = (i > 0 ? table[i - 1][j] : 0) + (j > 0 ? table[i][j - 1] : 0);
+            }
+        }
+        return table;
+    }, [n]);
 
     return (
-        <div className="flex h-screen overflow-hidden bg-slate-50 font-sans text-slate-800">
-            {/* Mobile Header */}
-            <div className="md:hidden fixed top-0 left-0 w-full z-50 bg-white border-b border-slate-200 p-4 flex items-center justify-between shadow-sm">
-                <h1 className="text-lg font-bold text-blue-700">C++ 大师 (GESP 六级) 第 11 课</h1>
-                <button onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}>
-                    {isMobileMenuOpen ? <X size={24} /> : <Menu size={24} />}
-                </button>
+        <div className="rounded-2xl border border-blue-100 bg-blue-50 p-6">
+            <div className="mb-5 flex items-center gap-2">
+                <BrainCircuit className="text-blue-700" />
+                <h3 className="text-xl font-black text-slate-950">网格 DP 推导台</h3>
             </div>
-
-            {/* Sidebar */}
-            <div className={`fixed inset-y-0 left-0 z-50 w-64 bg-white border-r border-slate-200 flex flex-col h-full shadow-lg transition-transform md:relative md:translate-x-0 ${isMobileMenuOpen ? 'translate-x-0' : '-translate-x-full'}`}>
-                <div className="p-6 border-b border-slate-100">
-                    <Link to="/" className="font-bold text-blue-600">返回首页</Link>
-                    <h2 className="text-sm text-slate-500 mt-2">C++ 大师 (GESP 六级) 闯关地图</h2>
+            <div className="grid gap-5 lg:grid-cols-[0.8fr_1.2fr]">
+                <div className="rounded-xl bg-white p-5 ring-1 ring-blue-100">
+                    <label className="block text-sm font-black text-slate-700">网格大小 {n} x {n}</label>
+                    <input type="range" min="2" max="7" value={n} onChange={(event) => setN(Number(event.target.value))} className="mt-3 w-full" />
+                    <p className="mt-4 text-sm font-semibold leading-6 text-slate-600">
+                        每个格子的路径数来自上方和左方：dp[i][j] = dp[i-1][j] + dp[i][j-1]。
+                    </p>
                 </div>
-                <div className="flex-1 overflow-y-auto w-full py-4">
-                    {sections.map(section => (
-                        <button
-                            key={section.id}
-                            onClick={() => { setActiveSection(section.id); setIsMobileMenuOpen(false); }}
-                            className={`w-full text-left px-6 py-3 transition-colors ${activeSection === section.id ? 'bg-blue-50 text-blue-700 border-r-4 border-blue-600' : 'text-slate-600 hover:bg-slate-50'}`}
-                        >
-                            {section.title}
-                        </button>
-                    ))}
-                </div>
-            </div>
-
-            {/* Main Content */}
-            <div className="flex-1 flex flex-col h-full pt-16 md:pt-0">
-                <header className="bg-white border-b border-slate-200 h-16 flex items-center px-6">
-                    <h2 className="text-lg font-bold">第 11 课：内容准备中...</h2>
-                </header>
-                <main className="flex-1 overflow-y-auto p-10 flex flex-col items-center justify-center text-center">
-                    <div className="bg-white p-20 rounded-3xl shadow-xl border-2 border-dashed border-slate-200 max-w-2xl">
-                        <BookOpen size={64} className="mx-auto text-blue-200 mb-6" />
-                        <h1 className="text-3xl font-extrabold text-slate-300">第 11 课内容正在精心打造中</h1>
-                        <p className="text-slate-400 mt-4 text-lg">这里的每一个魔法咒语都在酝酿之中，敬请期待！</p>
+                <div className="rounded-xl bg-white p-5 ring-1 ring-blue-100">
+                    <div className="grid w-fit gap-2" style={{ gridTemplateColumns: `repeat(${n}, 3rem)` }}>
+                        {dp.flatMap((row, i) => row.map((value, j) => (
+                            <div key={`${i}-${j}`} className="flex h-12 items-center justify-center rounded-lg bg-blue-100 font-mono text-sm font-black text-blue-800">
+                                {value}
+                            </div>
+                        )))}
                     </div>
-                </main>
-                <footer className="h-20 bg-white border-t border-slate-200 flex items-center justify-between px-8">
-                    <button onClick={() => setActiveSection(Math.max(1, activeSection - 1))} className="text-slate-500 font-bold hover:text-blue-600 transition-colors">
-                        上一节
-                    </button>
-                    <button onClick={() => setActiveSection(Math.min(sections.length, activeSection + 1))} className="bg-blue-600 text-white px-8 py-2.5 rounded-full font-bold shadow-lg shadow-blue-200 hover:bg-blue-500 transition-all">
-                        下一节
-                    </button>
-                </footer>
+                </div>
             </div>
         </div>
     );
-};
+}
 
-export default CppL6Lesson11;
+const quiz = [
+    {
+        question: 'DP 最先要写清楚什么？',
+        answer: '状态含义',
+        reason: '不知道 dp[i] 表示什么，就无法写转移。',
+    },
+    {
+        question: '转移方程回答什么问题？',
+        answer: '当前从哪里来',
+        reason: '它描述怎样由更小状态得到当前状态。',
+    },
+    {
+        question: 'DP 为什么要有初始值？',
+        answer: '递推起点',
+        reason: '没有起点，后面的状态都无法计算。',
+    },
+];
+
+export default function CppL6Lesson11() {
+    return (
+        <CppLessonShell
+            lessonNumber={11}
+            lessonTitle="记忆的魔法 (DP 基础)"
+            lessonSubtitle="把递归思路整理成表格"
+            accent="blue"
+            levelTitle="C++ 大师"
+            levelCode="L6"
+            sections={sections}
+            previousPath="/lesson/6/10"
+            nextPath="/lesson/6/12"
+            hero={{
+                title: '动态规划不是神秘公式，而是“状态定义 + 转移顺序”',
+                description: '本课用爬楼梯和网格路径建立 DP 四件套：状态、初值、转移、答案。',
+            }}
+            goals={['能写清楚 dp 状态含义', '能根据依赖关系确定递推顺序', '能完成基础路径计数 DP']}
+            childrenBySection={{
+                1: <GridDpLab />,
+                2: (
+                    <>
+                        <div>
+                            <h3 className="text-3xl font-black text-slate-950">DP 四件套：状态、初值、转移、答案</h3>
+                            <p className="mt-3 text-base font-semibold leading-7 text-slate-600">
+                                写 DP 时不要先背公式。先用一句话定义 <code>dp[i]</code> 或 <code>dp[i][j]</code> 的含义。
+                            </p>
+                        </div>
+                        <CompareTable
+                            headers={['步骤', '要回答的问题', '例子']}
+                            rows={[
+                                ['状态', 'dp 表示什么', 'dp[i] 表示到第 i 阶的方法数'],
+                                ['初值', '最小状态是多少', 'dp[0]=1, dp[1]=1'],
+                                ['转移', '当前从哪里来', 'dp[i]=dp[i-1]+dp[i-2]'],
+                                ['答案', '最终输出哪里', 'dp[n]'],
+                            ]}
+                        />
+                    </>
+                ),
+                3: (
+                    <>
+                        <div>
+                            <h3 className="text-3xl font-black text-slate-950">递推顺序：先算被依赖的状态</h3>
+                            <p className="mt-3 text-base font-semibold leading-7 text-slate-600">
+                                如果 <code>dp[i]</code> 依赖 <code>dp[i-1]</code>，就从小到大算；如果依赖右边或后面，顺序就要调整。
+                            </p>
+                        </div>
+                        <div className="grid gap-5 lg:grid-cols-[1fr_0.9fr]">
+                            <CodeBlock>{`int dp[1005];
+dp[0] = 1;
+dp[1] = 1;
+
+for (int i = 2; i <= n; i++) {
+  dp[i] = dp[i - 1] + dp[i - 2];
+}
+
+cout << dp[n] << endl;`}</CodeBlock>
+                            <StepList steps={[
+                                '定义 dp[i] 的含义',
+                                '写出最小状态初值',
+                                '观察当前状态依赖谁',
+                                '按依赖顺序循环递推',
+                            ]} />
+                        </div>
+                    </>
+                ),
+                4: (
+                    <>
+                        <div>
+                            <h3 className="text-3xl font-black text-slate-950">路径计数：二维 DP 的第一块拼图</h3>
+                            <p className="mt-3 text-base font-semibold leading-7 text-slate-600">
+                                从左上角走到当前位置，只能从上方或左方来，所以当前路径数就是两者相加。
+                            </p>
+                        </div>
+                        <CodeBlock>{`dp[1][1] = 1;
+for (int i = 1; i <= n; i++) {
+  for (int j = 1; j <= m; j++) {
+    if (i == 1 && j == 1) continue;
+    dp[i][j] = dp[i - 1][j] + dp[i][j - 1];
+  }
+}`}</CodeBlock>
+                        <Callout icon={Route} title="DP 检查口令" tone="blue">
+                            状态说清楚，初值不遗漏，转移只用已算状态，答案位置别输出错。
+                        </Callout>
+                    </>
+                ),
+                5: (
+                    <>
+                        <div>
+                            <h3 className="text-3xl font-black text-slate-950">练习与作业</h3>
+                            <p className="mt-3 text-base font-semibold leading-7 text-slate-600">
+                                DP 作业必须先写四件套，再写代码。否则很容易变成“看着答案抄公式”。
+                            </p>
+                        </div>
+                        <MiniQuiz items={quiz} />
+                        <Callout icon={ClipboardCheck} title="课后任务" tone="slate">
+                            <ul className="space-y-2">
+                                <li>完成爬楼梯方法数。</li>
+                                <li>完成无障碍网格路径计数。</li>
+                                <li>给每题写出状态、初值、转移、答案四件套。</li>
+                            </ul>
+                        </Callout>
+                        <Callout icon={Search} title="下一课衔接" tone="blue">
+                            下一课学习 0/1 背包，这是六级 DP 最经典的模型之一。
+                        </Callout>
+                    </>
+                ),
+            }}
+        />
+    );
+}
