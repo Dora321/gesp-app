@@ -1,70 +1,223 @@
-import React, { useState } from 'react';
-import { useNavigate, Link } from 'react-router-dom';
-import { Menu, X, BookOpen } from 'lucide-react';
+import React, { useMemo, useState } from 'react';
+import { ClipboardCheck, ListChecks, Route, Search } from 'lucide-react';
+import CppLessonShell, { Callout, CodeBlock, CompareTable, MiniQuiz, StepList } from '../CppLessonShell';
 
-const CppL6Lesson4 = () => {
-    const navigate = useNavigate();
-    const [activeSection, setActiveSection] = useState(1);
-    const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+const sections = [
+    { id: 1, title: '课程导入', category: '按层扩展' },
+    { id: 2, title: 'BFS 思想', category: '队列' },
+    { id: 3, title: '网格模板', category: '最短步数' },
+    { id: 4, title: '访问标记', category: '防止重复' },
+    { id: 5, title: '练习与作业', category: '复盘输出' },
+];
 
-    const sections = [
-        { id: 1, title: '课程导入', category: '基础' },
-        { id: 2, title: '知识点讲解', category: '核心' },
-        { id: 3, title: '总结与作业', category: '复习' },
-    ];
+const grid = [
+    ['S', '.', '.', '#', '.'],
+    ['#', '#', '.', '#', '.'],
+    ['.', '.', '.', '.', '.'],
+    ['.', '#', '#', '#', '.'],
+    ['.', '.', '.', 'T', '.'],
+];
+
+function calcDistances(maxLayer) {
+    const n = grid.length;
+    const m = grid[0].length;
+    const dist = Array.from({ length: n }, () => Array(m).fill(-1));
+    const queue = [[0, 0]];
+    dist[0][0] = 0;
+    const dirs = [[1, 0], [-1, 0], [0, 1], [0, -1]];
+
+    for (let head = 0; head < queue.length; head++) {
+        const [x, y] = queue[head];
+        if (dist[x][y] >= maxLayer) continue;
+        for (const [dx, dy] of dirs) {
+            const nx = x + dx;
+            const ny = y + dy;
+            if (nx < 0 || nx >= n || ny < 0 || ny >= m) continue;
+            if (grid[nx][ny] === '#' || dist[nx][ny] !== -1) continue;
+            dist[nx][ny] = dist[x][y] + 1;
+            queue.push([nx, ny]);
+        }
+    }
+
+    return dist;
+}
+
+function BfsLab() {
+    const [layer, setLayer] = useState(4);
+    const dist = useMemo(() => calcDistances(layer), [layer]);
 
     return (
-        <div className="flex h-screen overflow-hidden bg-slate-50 font-sans text-slate-800">
-            {/* Mobile Header */}
-            <div className="md:hidden fixed top-0 left-0 w-full z-50 bg-white border-b border-slate-200 p-4 flex items-center justify-between shadow-sm">
-                <h1 className="text-lg font-bold text-blue-700">C++ 大师 (GESP 六级) 第 4 课</h1>
-                <button onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}>
-                    {isMobileMenuOpen ? <X size={24} /> : <Menu size={24} />}
-                </button>
+        <div className="rounded-2xl border border-blue-100 bg-blue-50 p-6">
+            <div className="mb-5 flex items-center gap-2">
+                <Route className="text-blue-700" />
+                <h3 className="text-xl font-black text-slate-950">BFS 层序扩展演示台</h3>
             </div>
-
-            {/* Sidebar */}
-            <div className={`fixed inset-y-0 left-0 z-50 w-64 bg-white border-r border-slate-200 flex flex-col h-full shadow-lg transition-transform md:relative md:translate-x-0 ${isMobileMenuOpen ? 'translate-x-0' : '-translate-x-full'}`}>
-                <div className="p-6 border-b border-slate-100">
-                    <Link to="/" className="font-bold text-blue-600">返回首页</Link>
-                    <h2 className="text-sm text-slate-500 mt-2">C++ 大师 (GESP 六级) 闯关地图</h2>
+            <div className="grid gap-5 lg:grid-cols-[0.8fr_1.2fr]">
+                <div className="rounded-xl bg-white p-5 ring-1 ring-blue-100">
+                    <label className="block text-sm font-black text-slate-700">扩展到第 {layer} 层</label>
+                    <input type="range" min="0" max="10" value={layer} onChange={(event) => setLayer(Number(event.target.value))} className="mt-3 w-full" />
+                    <p className="mt-4 text-sm font-semibold leading-6 text-slate-600">
+                        BFS 像水波一样一层层扩散。第一次到达某个格子的距离，就是从起点到它的最短步数。
+                    </p>
                 </div>
-                <div className="flex-1 overflow-y-auto w-full py-4">
-                    {sections.map(section => (
-                        <button
-                            key={section.id}
-                            onClick={() => { setActiveSection(section.id); setIsMobileMenuOpen(false); }}
-                            className={`w-full text-left px-6 py-3 transition-colors ${activeSection === section.id ? 'bg-blue-50 text-blue-700 border-r-4 border-blue-600' : 'text-slate-600 hover:bg-slate-50'}`}
-                        >
-                            {section.title}
-                        </button>
-                    ))}
-                </div>
-            </div>
-
-            {/* Main Content */}
-            <div className="flex-1 flex flex-col h-full pt-16 md:pt-0">
-                <header className="bg-white border-b border-slate-200 h-16 flex items-center px-6">
-                    <h2 className="text-lg font-bold">第 4 课：内容准备中...</h2>
-                </header>
-                <main className="flex-1 overflow-y-auto p-10 flex flex-col items-center justify-center text-center">
-                    <div className="bg-white p-20 rounded-3xl shadow-xl border-2 border-dashed border-slate-200 max-w-2xl">
-                        <BookOpen size={64} className="mx-auto text-blue-200 mb-6" />
-                        <h1 className="text-3xl font-extrabold text-slate-300">第 4 课内容正在精心打造中</h1>
-                        <p className="text-slate-400 mt-4 text-lg">这里的每一个魔法咒语都在酝酿之中，敬请期待！</p>
+                <div className="rounded-xl bg-white p-5 ring-1 ring-blue-100">
+                    <div className="grid w-fit grid-cols-5 gap-2">
+                        {grid.flatMap((row, x) => row.map((cell, y) => {
+                            const value = dist[x][y];
+                            const isWall = cell === '#';
+                            const isSpecial = cell === 'S' || cell === 'T';
+                            return (
+                                <div key={`${x}-${y}`} className={`flex h-12 w-12 items-center justify-center rounded-lg font-mono text-sm font-black ${isWall
+                                    ? 'bg-slate-900 text-white'
+                                    : value >= 0
+                                        ? 'bg-blue-100 text-blue-800'
+                                        : 'bg-slate-100 text-slate-400'
+                                }`}>
+                                    {isWall ? '#' : isSpecial ? cell : value >= 0 ? value : '.'}
+                                </div>
+                            );
+                        }))}
                     </div>
-                </main>
-                <footer className="h-20 bg-white border-t border-slate-200 flex items-center justify-between px-8">
-                    <button onClick={() => setActiveSection(Math.max(1, activeSection - 1))} className="text-slate-500 font-bold hover:text-blue-600 transition-colors">
-                        上一节
-                    </button>
-                    <button onClick={() => setActiveSection(Math.min(sections.length, activeSection + 1))} className="bg-blue-600 text-white px-8 py-2.5 rounded-full font-bold shadow-lg shadow-blue-200 hover:bg-blue-500 transition-all">
-                        下一节
-                    </button>
-                </footer>
+                </div>
             </div>
         </div>
     );
-};
+}
 
-export default CppL6Lesson4;
+const quiz = [
+    {
+        question: 'BFS 用什么数据结构？',
+        answer: '队列',
+        reason: '先进先出保证按层扩展。',
+    },
+    {
+        question: '为什么第一次到达就是最短？',
+        answer: '按距离从小到大扩展',
+        reason: '更短路径一定会先被处理。',
+    },
+    {
+        question: 'visited 标记什么时候做最好？',
+        answer: '入队时',
+        reason: '避免同一个点被重复加入队列。',
+    },
+];
+
+export default function CppL6Lesson4() {
+    return (
+        <CppLessonShell
+            lessonNumber={4}
+            lessonTitle="地毯式搜索 (BFS)"
+            lessonSubtitle="用队列一层层找最短路"
+            accent="blue"
+            levelTitle="C++ 大师"
+            levelCode="L6"
+            sections={sections}
+            previousPath="/lesson/6/3"
+            nextPath="/lesson/6/5"
+            hero={{
+                title: 'BFS 的厉害之处是稳：一层一层推进，第一次到达就是最短',
+                description: '本课用迷宫最短路建立 BFS 队列模板，训练方向数组、访问标记和距离数组。',
+            }}
+            goals={['能解释 BFS 按层扩展的过程', '能写出网格最短路模板', '能正确使用队列、visited 和 dist']}
+            childrenBySection={{
+                1: <BfsLab />,
+                2: (
+                    <>
+                        <div>
+                            <h3 className="text-3xl font-black text-slate-950">BFS 思想：从起点开始，先近后远</h3>
+                            <p className="mt-3 text-base font-semibold leading-7 text-slate-600">
+                                队列保证先入队的点先处理。距离为 1 的点会在距离为 2 的点之前处理，所以 BFS 适合无权图最短路。
+                            </p>
+                        </div>
+                        <CompareTable
+                            headers={['搜索方式', '核心结构', '适合目标']}
+                            rows={[
+                                ['BFS', '队列', '最短步数、层序遍历'],
+                                ['DFS', '递归或栈', '连通块、枚举方案'],
+                                ['二分', '左右边界', '有单调性的答案'],
+                            ]}
+                        />
+                    </>
+                ),
+                3: (
+                    <>
+                        <div>
+                            <h3 className="text-3xl font-black text-slate-950">网格模板：方向数组让移动规则更干净</h3>
+                            <p className="mt-3 text-base font-semibold leading-7 text-slate-600">
+                                迷宫题通常用 <code>dx</code>、<code>dy</code> 表示四个方向，先检查边界和障碍，再入队。
+                            </p>
+                        </div>
+                        <div className="grid gap-5 lg:grid-cols-[1fr_0.9fr]">
+                            <CodeBlock>{`queue<pair<int, int>> q;
+q.push({sx, sy});
+dist[sx][sy] = 0;
+
+int dx[4] = {1, -1, 0, 0};
+int dy[4] = {0, 0, 1, -1};
+
+while (!q.empty()) {
+  auto [x, y] = q.front();
+  q.pop();
+
+  for (int k = 0; k < 4; k++) {
+    int nx = x + dx[k];
+    int ny = y + dy[k];
+    if (nx < 1 || nx > n || ny < 1 || ny > m) continue;
+    if (wall[nx][ny] || dist[nx][ny] != -1) continue;
+    dist[nx][ny] = dist[x][y] + 1;
+    q.push({nx, ny});
+  }
+}`}</CodeBlock>
+                            <StepList steps={[
+                                '起点入队并设置距离 0',
+                                '队首出队，扩展四个方向',
+                                '过滤越界、障碍、已访问',
+                                '新点记录距离并入队',
+                            ]} />
+                        </div>
+                    </>
+                ),
+                4: (
+                    <>
+                        <div>
+                            <h3 className="text-3xl font-black text-slate-950">访问标记：入队时就标记，别等出队</h3>
+                            <p className="mt-3 text-base font-semibold leading-7 text-slate-600">
+                                如果出队时才标记，同一个点可能被多个邻居重复入队，队列会膨胀，距离也更容易出错。
+                            </p>
+                        </div>
+                        <CodeBlock>{`// 推荐：入队时标记
+if (!visited[nx][ny]) {
+  visited[nx][ny] = true;
+  dist[nx][ny] = dist[x][y] + 1;
+  q.push({nx, ny});
+}`}</CodeBlock>
+                        <Callout icon={ListChecks} title="BFS 检查清单" tone="blue">
+                            起点是否入队？距离初值是否为 -1？障碍是否跳过？入队时是否立刻标记？
+                        </Callout>
+                    </>
+                ),
+                5: (
+                    <>
+                        <div>
+                            <h3 className="text-3xl font-black text-slate-950">练习与作业</h3>
+                            <p className="mt-3 text-base font-semibold leading-7 text-slate-600">
+                                BFS 题必须画出前两层扩展过程。这样能快速发现方向数组和访问标记问题。
+                            </p>
+                        </div>
+                        <MiniQuiz items={quiz} />
+                        <Callout icon={ClipboardCheck} title="课后任务" tone="slate">
+                            <ul className="space-y-2">
+                                <li>实现迷宫从 S 到 T 的最短步数。</li>
+                                <li>输出每个可达格子的最短距离。</li>
+                                <li>解释为什么有权边不能直接用普通 BFS 求最短路。</li>
+                            </ul>
+                        </Callout>
+                        <Callout icon={Search} title="下一课衔接" tone="blue">
+                            下一课学习 DFS。BFS 擅长最短距离，DFS 更擅长深入枚举、连通块和方案搜索。
+                        </Callout>
+                    </>
+                ),
+            }}
+        />
+    );
+}
