@@ -1,70 +1,191 @@
-import React, { useState } from 'react';
-import { useNavigate, Link } from 'react-router-dom';
-import { Menu, X, BookOpen } from 'lucide-react';
+import React, { useMemo, useState } from 'react';
+import { ClipboardCheck, Repeat2, Search, Waypoints } from 'lucide-react';
+import CppLessonShell, { Callout, CodeBlock, CompareTable, MiniQuiz, StepList } from '../CppLessonShell';
 
-const CppL5Lesson8 = () => {
-    const navigate = useNavigate();
-    const [activeSection, setActiveSection] = useState(1);
-    const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+const sections = [
+    { id: 1, title: '课程导入', category: '更多指针' },
+    { id: 2, title: '双向链表', category: 'prev + next' },
+    { id: 3, title: '循环链表', category: '尾接头' },
+    { id: 4, title: '选择哪一种', category: '结构判断' },
+    { id: 5, title: '练习与作业', category: '复盘输出' },
+];
 
-    const sections = [
-        { id: 1, title: '课程导入', category: '基础' },
-        { id: 2, title: '知识点讲解', category: '核心' },
-        { id: 3, title: '总结与作业', category: '复习' },
-    ];
+function ComplexListLab() {
+    const [mode, setMode] = useState('double');
+    const labels = useMemo(() => ['A', 'B', 'C', 'D'], []);
 
     return (
-        <div className="flex h-screen overflow-hidden bg-slate-50 font-sans text-slate-800">
-            {/* Mobile Header */}
-            <div className="md:hidden fixed top-0 left-0 w-full z-50 bg-white border-b border-slate-200 p-4 flex items-center justify-between shadow-sm">
-                <h1 className="text-lg font-bold text-blue-700">C++ 专家 (GESP 五级) 第 8 课</h1>
-                <button onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}>
-                    {isMobileMenuOpen ? <X size={24} /> : <Menu size={24} />}
-                </button>
+        <div className="rounded-2xl border border-amber-100 bg-amber-50 p-6">
+            <div className="mb-5 flex items-center gap-2">
+                <Waypoints className="text-amber-700" />
+                <h3 className="text-xl font-black text-slate-950">复杂链表模型台</h3>
             </div>
-
-            {/* Sidebar */}
-            <div className={`fixed inset-y-0 left-0 z-50 w-64 bg-white border-r border-slate-200 flex flex-col h-full shadow-lg transition-transform md:relative md:translate-x-0 ${isMobileMenuOpen ? 'translate-x-0' : '-translate-x-full'}`}>
-                <div className="p-6 border-b border-slate-100">
-                    <Link to="/" className="font-bold text-blue-600">返回首页</Link>
-                    <h2 className="text-sm text-slate-500 mt-2">C++ 专家 (GESP 五级) 闯关地图</h2>
-                </div>
-                <div className="flex-1 overflow-y-auto w-full py-4">
-                    {sections.map(section => (
-                        <button
-                            key={section.id}
-                            onClick={() => { setActiveSection(section.id); setIsMobileMenuOpen(false); }}
-                            className={`w-full text-left px-6 py-3 transition-colors ${activeSection === section.id ? 'bg-blue-50 text-blue-700 border-r-4 border-blue-600' : 'text-slate-600 hover:bg-slate-50'}`}
-                        >
-                            {section.title}
+            <div className="grid gap-5 lg:grid-cols-[0.75fr_1.25fr]">
+                <div className="rounded-xl bg-white p-5 ring-1 ring-amber-100">
+                    <div className="grid grid-cols-2 gap-2">
+                        <button onClick={() => setMode('double')} className={`rounded-lg px-3 py-2 text-sm font-black ${mode === 'double' ? 'bg-amber-500 text-slate-950' : 'bg-slate-100 text-slate-600'}`}>
+                            双向链表
                         </button>
-                    ))}
-                </div>
-            </div>
-
-            {/* Main Content */}
-            <div className="flex-1 flex flex-col h-full pt-16 md:pt-0">
-                <header className="bg-white border-b border-slate-200 h-16 flex items-center px-6">
-                    <h2 className="text-lg font-bold">第 8 课：内容准备中...</h2>
-                </header>
-                <main className="flex-1 overflow-y-auto p-10 flex flex-col items-center justify-center text-center">
-                    <div className="bg-white p-20 rounded-3xl shadow-xl border-2 border-dashed border-slate-200 max-w-2xl">
-                        <BookOpen size={64} className="mx-auto text-blue-200 mb-6" />
-                        <h1 className="text-3xl font-extrabold text-slate-300">第 8 课内容正在精心打造中</h1>
-                        <p className="text-slate-400 mt-4 text-lg">这里的每一个魔法咒语都在酝酿之中，敬请期待！</p>
+                        <button onClick={() => setMode('circle')} className={`rounded-lg px-3 py-2 text-sm font-black ${mode === 'circle' ? 'bg-amber-500 text-slate-950' : 'bg-slate-100 text-slate-600'}`}>
+                            循环链表
+                        </button>
                     </div>
-                </main>
-                <footer className="h-20 bg-white border-t border-slate-200 flex items-center justify-between px-8">
-                    <button onClick={() => setActiveSection(Math.max(1, activeSection - 1))} className="text-slate-500 font-bold hover:text-blue-600 transition-colors">
-                        上一节
-                    </button>
-                    <button onClick={() => setActiveSection(Math.min(sections.length, activeSection + 1))} className="bg-blue-600 text-white px-8 py-2.5 rounded-full font-bold shadow-lg shadow-blue-200 hover:bg-blue-500 transition-all">
-                        下一节
-                    </button>
-                </footer>
+                    <p className="mt-4 text-sm font-semibold leading-6 text-slate-600">
+                        双向链表能前后走，循环链表从尾部还能回到头部。
+                    </p>
+                </div>
+                <div className="overflow-x-auto rounded-xl bg-white p-5 ring-1 ring-amber-100">
+                    <div className="flex min-w-max items-center gap-3">
+                        {labels.map((label, index) => (
+                            <React.Fragment key={label}>
+                                {index > 0 && (
+                                    <span className="font-black text-amber-700">{mode === 'double' ? '&lt;-&gt;' : '-&gt;'}</span>
+                                )}
+                                <div className="rounded-xl border-2 border-amber-200 bg-amber-50 p-4 text-center font-mono font-black text-amber-900">
+                                    {label}
+                                    <div className="mt-1 text-xs text-slate-500">{mode === 'double' ? 'prev/data/next' : 'data/next'}</div>
+                                </div>
+                            </React.Fragment>
+                        ))}
+                        <span className="font-black text-amber-700">-&gt;</span>
+                        <span className="rounded-lg bg-slate-100 px-3 py-2 text-xs font-black text-slate-600">
+                            {mode === 'circle' ? 'head' : 'NULL'}
+                        </span>
+                    </div>
+                </div>
             </div>
         </div>
     );
-};
+}
 
-export default CppL5Lesson8;
+const quiz = [
+    {
+        question: '双向链表比单链表多了什么？',
+        answer: 'prev 指针',
+        reason: 'prev 指向前一个节点，可以向前遍历。',
+    },
+    {
+        question: '循环链表的尾节点 next 指向哪里？',
+        answer: '头节点',
+        reason: '这样从任意位置继续走都能回到起点。',
+    },
+    {
+        question: '复杂链表更难在哪里？',
+        answer: '要维护更多指针',
+        reason: '每次插入删除要同时修正多个方向的连接。',
+    },
+];
+
+export default function CppL5Lesson8() {
+    return (
+        <CppLessonShell
+            lessonNumber={8}
+            lessonTitle="复杂的链表 (双向/循环)"
+            lessonSubtitle="理解 prev 指针和尾接头结构"
+            accent="amber"
+            levelTitle="C++ 专家"
+            levelCode="L5"
+            sections={sections}
+            previousPath="/lesson/5/7"
+            nextPath="/lesson/5/9"
+            hero={{
+                title: '链表一复杂，规则反而要更清楚：每个指针都必须有去处',
+                description: '本课对比单链表、双向链表和循环链表，重点训练结构选择和指针维护顺序。',
+            }}
+            goals={['能写出双向链表节点结构', '能解释循环链表尾节点指向头节点', '能判断题目适合哪种链表结构']}
+            childrenBySection={{
+                1: <ComplexListLab />,
+                2: (
+                    <>
+                        <div>
+                            <h3 className="text-3xl font-black text-slate-950">双向链表：每个节点同时记住前后邻居</h3>
+                            <p className="mt-3 text-base font-semibold leading-7 text-slate-600">
+                                双向链表多了 <code>prev</code> 指针。好处是能从当前节点向前走，代价是插入删除要维护更多连接。
+                            </p>
+                        </div>
+                        <CodeBlock>{`struct Node {
+  int data;
+  Node *prev;
+  Node *next;
+};`}</CodeBlock>
+                        <CompareTable
+                            headers={['结构', '优点', '代价']}
+                            rows={[
+                                ['单链表', '结构简单', '只能向后走'],
+                                ['双向链表', '能前后移动', '插入删除要改更多指针'],
+                                ['循环链表', '适合环形过程', '停止条件更容易写错'],
+                            ]}
+                        />
+                    </>
+                ),
+                3: (
+                    <>
+                        <div>
+                            <h3 className="text-3xl font-black text-slate-950">循环链表：尾节点 next 回到 head</h3>
+                            <p className="mt-3 text-base font-semibold leading-7 text-slate-600">
+                                循环链表没有普通意义上的 <code>NULL</code> 结尾。遍历时要用计数或回到起点作为停止条件。
+                            </p>
+                        </div>
+                        <div className="grid gap-5 lg:grid-cols-[1fr_0.9fr]">
+                            <CodeBlock>{`tail->next = head;
+
+Node *cur = head;
+do {
+  cout << cur->data << " ";
+  cur = cur->next;
+} while (cur != head);`}</CodeBlock>
+                            <StepList steps={[
+                                '先确认链表非空',
+                                '尾节点 next 指向 head',
+                                '遍历至少访问 head 一次',
+                                '再次回到 head 时停止',
+                            ]} />
+                        </div>
+                    </>
+                ),
+                4: (
+                    <>
+                        <div>
+                            <h3 className="text-3xl font-black text-slate-950">选择哪一种：看题目需要的移动方式</h3>
+                            <p className="mt-3 text-base font-semibold leading-7 text-slate-600">
+                                不要因为双向链表看起来高级就乱用。结构越复杂，边界错误越多。
+                            </p>
+                        </div>
+                        <CompareTable
+                            headers={['题目需求', '推荐结构', '理由']}
+                            rows={[
+                                ['只从头到尾处理', '单链表', '简单稳定'],
+                                ['需要删除当前节点前后移动', '双向链表', '能直接找到前驱'],
+                                ['报数、轮流淘汰', '循环链表', '天然形成环'],
+                            ]}
+                        />
+                        <Callout icon={Repeat2} title="循环链表提醒" tone="amber">
+                            循环结构没有 <code>nullptr</code> 终点，必须自己设计停止条件，否则会无限循环。
+                        </Callout>
+                    </>
+                ),
+                5: (
+                    <>
+                        <div>
+                            <h3 className="text-3xl font-black text-slate-950">练习与作业</h3>
+                            <p className="mt-3 text-base font-semibold leading-7 text-slate-600">
+                                复杂链表练习请先写出“要改哪几条边”，再写 C++ 代码。
+                            </p>
+                        </div>
+                        <MiniQuiz items={quiz} />
+                        <Callout icon={ClipboardCheck} title="课后任务" tone="slate">
+                            <ul className="space-y-2">
+                                <li>定义双向链表节点，并实现从头到尾、从尾到头输出。</li>
+                                <li>把一条单链表改造成循环链表，并遍历一圈。</li>
+                                <li>说明单链表、双向链表、循环链表分别适合什么题型。</li>
+                            </ul>
+                        </Callout>
+                        <Callout icon={Search} title="下一课衔接" tone="blue">
+                            下一课用循环链表解决约瑟夫环，真正把链表结构用到综合问题里。
+                        </Callout>
+                    </>
+                ),
+            }}
+        />
+    );
+}

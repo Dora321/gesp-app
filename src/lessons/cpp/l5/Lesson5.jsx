@@ -1,70 +1,185 @@
-import React, { useState } from 'react';
-import { useNavigate, Link } from 'react-router-dom';
-import { Menu, X, BookOpen } from 'lucide-react';
+import React, { useMemo, useState } from 'react';
+import { ClipboardCheck, Hash, Search, Sigma } from 'lucide-react';
+import CppLessonShell, { Callout, CodeBlock, CompareTable, MiniQuiz, StepList } from '../CppLessonShell';
 
-const CppL5Lesson5 = () => {
-    const navigate = useNavigate();
-    const [activeSection, setActiveSection] = useState(1);
-    const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+const sections = [
+    { id: 1, title: '课程导入', category: '工具选择' },
+    { id: 2, title: '数论题拆解', category: '模型识别' },
+    { id: 3, title: '综合模板', category: '筛法 + GCD' },
+    { id: 4, title: '高精度衔接', category: '大数边界' },
+    { id: 5, title: '练习与作业', category: '复盘输出' },
+];
 
-    const sections = [
-        { id: 1, title: '课程导入', category: '基础' },
-        { id: 2, title: '知识点讲解', category: '核心' },
-        { id: 3, title: '总结与作业', category: '复习' },
-    ];
+function gcd(a, b) {
+    let x = Math.abs(a);
+    let y = Math.abs(b);
+    while (y !== 0) {
+        const r = x % y;
+        x = y;
+        y = r;
+    }
+    return x;
+}
+
+function FactorLab() {
+    const [a, setA] = useState(48);
+    const [b, setB] = useState(180);
+    const g = useMemo(() => gcd(a, b), [a, b]);
+    const factors = useMemo(() => {
+        return Array.from({ length: g }, (_, index) => index + 1).filter((value) => g % value === 0);
+    }, [g]);
 
     return (
-        <div className="flex h-screen overflow-hidden bg-slate-50 font-sans text-slate-800">
-            {/* Mobile Header */}
-            <div className="md:hidden fixed top-0 left-0 w-full z-50 bg-white border-b border-slate-200 p-4 flex items-center justify-between shadow-sm">
-                <h1 className="text-lg font-bold text-blue-700">C++ 专家 (GESP 五级) 第 5 课</h1>
-                <button onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}>
-                    {isMobileMenuOpen ? <X size={24} /> : <Menu size={24} />}
-                </button>
+        <div className="rounded-2xl border border-amber-100 bg-amber-50 p-6">
+            <div className="mb-5 flex items-center gap-2">
+                <Hash className="text-amber-700" />
+                <h3 className="text-xl font-black text-slate-950">公因数工具台</h3>
             </div>
-
-            {/* Sidebar */}
-            <div className={`fixed inset-y-0 left-0 z-50 w-64 bg-white border-r border-slate-200 flex flex-col h-full shadow-lg transition-transform md:relative md:translate-x-0 ${isMobileMenuOpen ? 'translate-x-0' : '-translate-x-full'}`}>
-                <div className="p-6 border-b border-slate-100">
-                    <Link to="/" className="font-bold text-blue-600">返回首页</Link>
-                    <h2 className="text-sm text-slate-500 mt-2">C++ 专家 (GESP 五级) 闯关地图</h2>
+            <div className="grid gap-5 lg:grid-cols-[0.85fr_1.15fr]">
+                <div className="rounded-xl bg-white p-5 ring-1 ring-amber-100">
+                    <label className="block text-sm font-black text-slate-700">a = {a}</label>
+                    <input type="range" min="2" max="240" value={a} onChange={(event) => setA(Number(event.target.value))} className="mt-3 w-full" />
+                    <label className="mt-5 block text-sm font-black text-slate-700">b = {b}</label>
+                    <input type="range" min="2" max="240" value={b} onChange={(event) => setB(Number(event.target.value))} className="mt-3 w-full" />
                 </div>
-                <div className="flex-1 overflow-y-auto w-full py-4">
-                    {sections.map(section => (
-                        <button
-                            key={section.id}
-                            onClick={() => { setActiveSection(section.id); setIsMobileMenuOpen(false); }}
-                            className={`w-full text-left px-6 py-3 transition-colors ${activeSection === section.id ? 'bg-blue-50 text-blue-700 border-r-4 border-blue-600' : 'text-slate-600 hover:bg-slate-50'}`}
-                        >
-                            {section.title}
-                        </button>
-                    ))}
-                </div>
-            </div>
-
-            {/* Main Content */}
-            <div className="flex-1 flex flex-col h-full pt-16 md:pt-0">
-                <header className="bg-white border-b border-slate-200 h-16 flex items-center px-6">
-                    <h2 className="text-lg font-bold">第 5 课：内容准备中...</h2>
-                </header>
-                <main className="flex-1 overflow-y-auto p-10 flex flex-col items-center justify-center text-center">
-                    <div className="bg-white p-20 rounded-3xl shadow-xl border-2 border-dashed border-slate-200 max-w-2xl">
-                        <BookOpen size={64} className="mx-auto text-blue-200 mb-6" />
-                        <h1 className="text-3xl font-extrabold text-slate-300">第 5 课内容正在精心打造中</h1>
-                        <p className="text-slate-400 mt-4 text-lg">这里的每一个魔法咒语都在酝酿之中，敬请期待！</p>
+                <div className="rounded-xl bg-white p-5 ring-1 ring-amber-100">
+                    <div className="font-mono text-lg font-black text-amber-800">gcd({a}, {b}) = {g}</div>
+                    <div className="mt-4 flex flex-wrap gap-2">
+                        {factors.map((factor) => (
+                            <span key={factor} className="rounded-lg bg-amber-100 px-3 py-2 font-mono text-sm font-black text-amber-800">
+                                {factor}
+                            </span>
+                        ))}
                     </div>
-                </main>
-                <footer className="h-20 bg-white border-t border-slate-200 flex items-center justify-between px-8">
-                    <button onClick={() => setActiveSection(Math.max(1, activeSection - 1))} className="text-slate-500 font-bold hover:text-blue-600 transition-colors">
-                        上一节
-                    </button>
-                    <button onClick={() => setActiveSection(Math.min(sections.length, activeSection + 1))} className="bg-blue-600 text-white px-8 py-2.5 rounded-full font-bold shadow-lg shadow-blue-200 hover:bg-blue-500 transition-all">
-                        下一节
-                    </button>
-                </footer>
+                    <p className="mt-4 text-xs font-bold text-slate-500">所有公因数一定是 gcd 的因数。</p>
+                </div>
             </div>
         </div>
     );
-};
+}
 
-export default CppL5Lesson5;
+const quiz = [
+    {
+        question: '批量判断素数优先用什么？',
+        answer: '筛法',
+        reason: '一次预处理后，每次查询只看标记数组。',
+    },
+    {
+        question: '求最多能平均分几组通常想到什么？',
+        answer: 'GCD',
+        reason: '每组相同要求同时整除多个数量。',
+    },
+    {
+        question: '答案可能特别大时要注意什么？',
+        answer: '高精度',
+        reason: '普通整数可能溢出，需要字符串或数组模拟。',
+    },
+];
+
+export default function CppL5Lesson5() {
+    return (
+        <CppLessonShell
+            lessonNumber={5}
+            lessonTitle="数论综合实战"
+            lessonSubtitle="在筛法、GCD、LCM 和高精度之间选择工具"
+            accent="amber"
+            levelTitle="C++ 专家"
+            levelCode="L5"
+            sections={sections}
+            previousPath="/lesson/5/4"
+            nextPath="/lesson/5/6"
+            hero={{
+                title: '数论综合题的关键不是会几个模板，而是知道什么时候用哪个模板',
+                description: '本课把前四节工具合并成解题流程：读数据范围、识别模型、选择模板、检查溢出和边界。',
+            }}
+            goals={['能根据题面选择筛法、GCD 或 LCM', '能把多个数论工具组合使用', '能识别答案溢出并切换高精度思路']}
+            childrenBySection={{
+                1: <FactorLab />,
+                2: (
+                    <>
+                        <div>
+                            <h3 className="text-3xl font-black text-slate-950">数论题拆解：先找关键词，再看数据范围</h3>
+                            <p className="mt-3 text-base font-semibold leading-7 text-slate-600">
+                                看到“素数”“约数”“倍数”“周期”“最简”“特别大”，不要急着套模板，先判断它到底在问哪类关系。
+                            </p>
+                        </div>
+                        <CompareTable
+                            headers={['题面信号', '常用工具', '提醒']}
+                            rows={[
+                                ['多次判断素数', '埃氏筛', '先预处理，再 O(1) 查询'],
+                                ['最多平均分组', 'GCD', '多个数可以连续取 gcd'],
+                                ['同时再次出现', 'LCM', '先除再乘，防止溢出'],
+                                ['答案位数巨大', '高精度', '字符串读入，数组计算'],
+                            ]}
+                        />
+                    </>
+                ),
+                3: (
+                    <>
+                        <div>
+                            <h3 className="text-3xl font-black text-slate-950">综合模板：筛出素数，再对目标做统计</h3>
+                            <p className="mt-3 text-base font-semibold leading-7 text-slate-600">
+                                常见综合题会先让你找素数，再统计满足条件的数量。把预处理和统计逻辑分开，程序会更稳。
+                            </p>
+                        </div>
+                        <div className="grid gap-5 lg:grid-cols-[1fr_0.9fr]">
+                            <CodeBlock>{`sieve(n);
+int count = 0;
+for (int x = 2; x <= n; x++) {
+  if (isPrime[x] && gcd(x, m) == 1) {
+    count++;
+  }
+}
+cout << count << endl;`}</CodeBlock>
+                            <StepList steps={[
+                                '先根据最大 n 做筛法预处理',
+                                '循环枚举候选数字',
+                                '用 isPrime 快速判断素数',
+                                '再叠加 gcd 等其他条件',
+                            ]} />
+                        </div>
+                    </>
+                ),
+                4: (
+                    <>
+                        <div>
+                            <h3 className="text-3xl font-black text-slate-950">高精度衔接：大数题也可能藏着数论</h3>
+                            <p className="mt-3 text-base font-semibold leading-7 text-slate-600">
+                                有些题答案特别大，但判断条件仍然是数论模型。例如阶乘、组合计数、重复乘法都可能需要高精度。
+                            </p>
+                        </div>
+                        <CodeBlock>{`vector<int> ans(1, 1);
+for (int i = 2; i <= n; i++) {
+  ans = mul(ans, i);
+}
+print(ans);`}</CodeBlock>
+                        <Callout icon={Sigma} title="判断顺序" tone="amber">
+                            先问“算法模型是什么”，再问“数据类型装不装得下”。这两个问题要分开判断。
+                        </Callout>
+                    </>
+                ),
+                5: (
+                    <>
+                        <div>
+                            <h3 className="text-3xl font-black text-slate-950">练习与作业</h3>
+                            <p className="mt-3 text-base font-semibold leading-7 text-slate-600">
+                                本节练习要求写出“工具选择理由”，不要只贴代码。
+                            </p>
+                        </div>
+                        <MiniQuiz items={quiz} />
+                        <Callout icon={ClipboardCheck} title="课后任务" tone="slate">
+                            <ul className="space-y-2">
+                                <li>统计 1 到 n 中与 m 互质的素数个数。</li>
+                                <li>求多个数的最大公约数和最小公倍数。</li>
+                                <li>用高精度计算 n!，并统计结果末尾 0 的个数。</li>
+                            </ul>
+                        </Callout>
+                        <Callout icon={Search} title="下一课衔接" tone="blue">
+                            下一课进入链表。数论处理“数字关系”，链表处理“节点关系”，两者都要求模型清楚。
+                        </Callout>
+                    </>
+                ),
+            }}
+        />
+    );
+}
