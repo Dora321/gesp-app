@@ -368,6 +368,68 @@ const seniorExamLinks = [
     { title: 'GESP 八级冲刺', desc: '图论算法与动态规划', path: '/level8' },
 ];
 
+function getSectionAction(section, subject) {
+    if (subject === 'cpp') {
+        return {
+            label: '查看冲刺课',
+            path: section.examPath,
+            Icon: Trophy
+        };
+    }
+
+    if (section.id === 'python-basic') {
+        return {
+            label: '进入项目线',
+            path: '/python/a1',
+            Icon: Terminal
+        };
+    }
+
+    return {
+        label: '回基础线复习',
+        path: '/python/f1',
+        Icon: BookOpen
+    };
+}
+
+function getPracticeAction(section, subject) {
+    if (subject === 'cpp') {
+        return {
+            label: '练真题',
+            path: '/question-bank',
+            hint: '已上线课时可以直接进入，建设中课时先看冲刺课或真题复盘。'
+        };
+    }
+
+    if (section.id === 'python-basic') {
+        return {
+            label: '看项目课',
+            path: '/python/a1',
+            hint: '基础课完成后进入项目课，把语法变成可展示的小作品。'
+        };
+    }
+
+    return {
+        label: '复习基础课',
+        path: '/python/f1',
+        hint: '项目课建议结合基础课回看前置概念，重点补变量、循环、函数和容器。'
+    };
+}
+
+function getPythonProgressionLinks(section) {
+    if (section.id === 'python-basic') {
+        return [
+            { title: '进入 Python 项目线', desc: '从算法思维开始，把基础语法连接到作品。', path: '/python/a1' },
+            { title: '回到学习路径', desc: '对比 Python、C++ 与项目制学习入口。', path: '/' },
+        ];
+    }
+
+    return [
+        { title: '复习 Python 基础', desc: '回看变量、循环、函数、列表和字典等前置能力。', path: '/python/f1' },
+        { title: '收束到文件项目', desc: '把项目输出保存、复盘并整理成可展示作品。', path: '/python/file-ops' },
+    ];
+}
+
 export default function LessonCatalog() {
     const navigate = useNavigate();
     const [activeSubject, setActiveSubject] = useState('cpp');
@@ -394,6 +456,12 @@ export default function LessonCatalog() {
     const lessonStatusText = readyCount === activeSection.lessons.length
         ? '全部上线'
         : `${readyCount}/${activeSection.lessons.length} 已上线`;
+    const sectionAction = getSectionAction(activeSection, activeSubject);
+    const practiceAction = getPracticeAction(activeSection, activeSubject);
+    const SectionActionIcon = sectionAction.Icon;
+    const pythonProgressionLinks = activeSubject === 'python'
+        ? getPythonProgressionLinks(activeSection)
+        : [];
 
     return (
         <section className="bg-white py-24">
@@ -554,11 +622,11 @@ export default function LessonCatalog() {
                                         {hasReadyLessons && <ChevronRight size={16} />}
                                     </button>
                                     <button
-                                        onClick={() => navigate(activeSection.examPath)}
+                                        onClick={() => navigate(sectionAction.path)}
                                         className="inline-flex items-center justify-center gap-2 rounded-lg border border-slate-200 bg-white px-4 py-3 text-sm font-black text-slate-800 transition hover:border-blue-200 hover:bg-blue-50"
                                     >
-                                        <Trophy size={16} />
-                                        查看冲刺课
+                                        <SectionActionIcon size={16} />
+                                        {sectionAction.label}
                                     </button>
                                 </div>
                             </aside>
@@ -569,15 +637,15 @@ export default function LessonCatalog() {
                                         <h4 className="text-lg font-black text-slate-950">课时列表</h4>
                                         <p className="text-sm text-slate-500">
                                             {hasReadyLessons
-                                                ? '已上线课时可以直接进入，建设中课时先看冲刺课或真题复盘。'
+                                                ? practiceAction.hint
                                                 : '本课段课时正在建设中，建议先看冲刺课和真题复盘。'}
                                         </p>
                                     </div>
                                     <button
-                                        onClick={() => navigate('/question-bank')}
+                                        onClick={() => navigate(practiceAction.path)}
                                         className="inline-flex items-center justify-center gap-2 rounded-lg bg-slate-100 px-4 py-2.5 text-sm font-black text-slate-700 transition hover:bg-slate-200"
                                     >
-                                        练真题
+                                        {practiceAction.label}
                                         <ChevronRight size={16} />
                                     </button>
                                 </div>
@@ -624,6 +692,30 @@ export default function LessonCatalog() {
                                                     key={link.path}
                                                     onClick={() => navigate(link.path)}
                                                     className="flex items-center justify-between gap-3 rounded-lg bg-white p-4 text-left ring-1 ring-slate-200 transition hover:ring-blue-200"
+                                                >
+                                                    <span>
+                                                        <span className="block text-sm font-black text-slate-900">{link.title}</span>
+                                                        <span className="mt-1 block text-xs font-semibold text-slate-500">{link.desc}</span>
+                                                    </span>
+                                                    <ChevronRight size={16} className="text-slate-400" />
+                                                </button>
+                                            ))}
+                                        </div>
+                                    </div>
+                                )}
+
+                                {activeSubject === 'python' && (
+                                    <div className="mt-6 rounded-lg border border-slate-200 bg-slate-50 p-4">
+                                        <div className="mb-3 flex items-center gap-2 text-sm font-black text-slate-800">
+                                            <BookOpen size={16} className="text-yellow-600" />
+                                            Python 学习衔接
+                                        </div>
+                                        <div className="grid gap-3 sm:grid-cols-2">
+                                            {pythonProgressionLinks.map((link) => (
+                                                <button
+                                                    key={link.path}
+                                                    onClick={() => navigate(link.path)}
+                                                    className="flex items-center justify-between gap-3 rounded-lg bg-white p-4 text-left ring-1 ring-slate-200 transition hover:ring-yellow-200"
                                                 >
                                                     <span>
                                                         <span className="block text-sm font-black text-slate-900">{link.title}</span>
