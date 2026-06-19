@@ -265,7 +265,7 @@ const lessonSections = [
 const readyLessonIdsBySection = {
     basic: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16],
     advanced: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16],
-    expert: [1, 2, 3, 4],
+    expert: [1, 2, 3, 4, 5, 6, 7, 8],
     senior: [],
     expert5: [],
     master: [],
