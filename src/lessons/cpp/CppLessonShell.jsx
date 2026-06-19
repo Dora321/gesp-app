@@ -61,10 +61,177 @@ const accentMap = {
     },
 };
 
+const cppTypes = new Set([
+    'bool',
+    'char',
+    'double',
+    'float',
+    'int',
+    'long',
+    'short',
+    'signed',
+    'string',
+    'unsigned',
+    'void',
+]);
+
+const cppKeywords = new Set([
+    'break',
+    'case',
+    'class',
+    'const',
+    'continue',
+    'default',
+    'do',
+    'else',
+    'false',
+    'for',
+    'if',
+    'namespace',
+    'return',
+    'sizeof',
+    'struct',
+    'switch',
+    'true',
+    'using',
+    'while',
+]);
+
+const cppBuiltins = new Set([
+    'cin',
+    'cout',
+    'endl',
+    'main',
+    'max',
+    'min',
+    'sort',
+    'swap',
+    'vector',
+]);
+
+const tokenClassMap = {
+    comment: 'text-emerald-400/80 italic',
+    directive: 'text-fuchsia-300',
+    string: 'text-amber-300',
+    number: 'text-orange-300',
+    type: 'text-sky-300',
+    keyword: 'text-violet-300',
+    builtin: 'text-cyan-300',
+    function: 'text-yellow-200',
+    operator: 'text-rose-300',
+    plain: 'text-slate-100',
+};
+
+const pushToken = (tokens, text, type = 'plain') => {
+    if (!text) return;
+    tokens.push({ text, type });
+};
+
+const readQuotedToken = (line, start) => {
+    const quote = line[start];
+    let index = start + 1;
+
+    while (index < line.length) {
+        if (line[index] === '\\') {
+            index += 2;
+            continue;
+        }
+
+        if (line[index] === quote) {
+            index += 1;
+            break;
+        }
+
+        index += 1;
+    }
+
+    return line.slice(start, index);
+};
+
+const tokenizeCppLine = (line) => {
+    const tokens = [];
+    let index = 0;
+
+    while (index < line.length) {
+        const rest = line.slice(index);
+
+        if (rest.startsWith('//')) {
+            pushToken(tokens, rest, 'comment');
+            break;
+        }
+
+        if (line[index] === '#') {
+            pushToken(tokens, rest, 'directive');
+            break;
+        }
+
+        if (line[index] === '"' || line[index] === "'") {
+            const quoted = readQuotedToken(line, index);
+            pushToken(tokens, quoted, 'string');
+            index += quoted.length;
+            continue;
+        }
+
+        const numberMatch = rest.match(/^\d+(?:\.\d+)?/);
+        if (numberMatch) {
+            pushToken(tokens, numberMatch[0], 'number');
+            index += numberMatch[0].length;
+            continue;
+        }
+
+        const wordMatch = rest.match(/^[A-Za-z_]\w*/);
+        if (wordMatch) {
+            const word = wordMatch[0];
+            const afterWord = line.slice(index + word.length);
+            const tokenType = cppTypes.has(word)
+                ? 'type'
+                : cppKeywords.has(word)
+                    ? 'keyword'
+                    : cppBuiltins.has(word)
+                        ? 'builtin'
+                        : /^\s*\(/.test(afterWord)
+                            ? 'function'
+                            : 'plain';
+
+            pushToken(tokens, word, tokenType);
+            index += word.length;
+            continue;
+        }
+
+        const operatorMatch = rest.match(/^(==|!=|<=|>=|\+\+|--|&&|\|\||<<|>>|[+\-*/%=<>!&|?:;,.[\]{}()])/);
+        if (operatorMatch) {
+            pushToken(tokens, operatorMatch[0], 'operator');
+            index += operatorMatch[0].length;
+            continue;
+        }
+
+        pushToken(tokens, line[index], 'plain');
+        index += 1;
+    }
+
+    return tokens;
+};
+
+const highlightCppCode = (code) => {
+    const normalizedCode = String(code ?? '').replace(/\n$/, '');
+
+    return normalizedCode.split('\n').map((line, lineIndex) => (
+        <span key={`line-${lineIndex}`} className="block min-h-7">
+            {tokenizeCppLine(line).map((token, tokenIndex) => (
+                <span key={`${lineIndex}-${tokenIndex}`} className={tokenClassMap[token.type]}>
+                    {token.text}
+                </span>
+            ))}
+        </span>
+    ));
+};
+
 export function CodeBlock({ children }) {
+    const highlightedCode = useMemo(() => highlightCppCode(children), [children]);
+
     return (
-        <pre className="overflow-x-auto rounded-xl bg-slate-950 p-4 text-sm leading-7 text-slate-100 shadow-inner">
-            <code>{children}</code>
+        <pre className="overflow-x-auto rounded-xl bg-slate-950 p-4 text-sm leading-7 shadow-inner ring-1 ring-white/10">
+            <code className="font-mono">{highlightedCode}</code>
         </pre>
     );
 }
