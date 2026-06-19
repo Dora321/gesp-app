@@ -1,70 +1,203 @@
-import React, { useState } from 'react';
-import { useNavigate, Link } from 'react-router-dom';
-import { Menu, X, BookOpen } from 'lucide-react';
+import React, { useMemo, useState } from 'react';
+import { ClipboardCheck, Filter, Search, ShieldCheck, Sparkles } from 'lucide-react';
+import CppLessonShell, { Callout, CodeBlock, CompareTable, MiniQuiz, StepList } from '../CppLessonShell';
 
-const CppL5Lesson1 = () => {
-    const navigate = useNavigate();
-    const [activeSection, setActiveSection] = useState(1);
-    const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+const sections = [
+    { id: 1, title: '课程导入', category: '素数密度' },
+    { id: 2, title: '从试除到筛法', category: '效率升级' },
+    { id: 3, title: '埃氏筛模板', category: '核心代码' },
+    { id: 4, title: '线性筛初识', category: '进阶视野' },
+    { id: 5, title: '练习与作业', category: '复盘输出' },
+];
 
-    const sections = [
-        { id: 1, title: '课程导入', category: '基础' },
-        { id: 2, title: '知识点讲解', category: '核心' },
-        { id: 3, title: '总结与作业', category: '复习' },
-    ];
+function primesUpTo(limit) {
+    const isPrime = Array(limit + 1).fill(true);
+    isPrime[0] = false;
+    isPrime[1] = false;
+
+    for (let i = 2; i * i <= limit; i++) {
+        if (!isPrime[i]) continue;
+        for (let j = i * i; j <= limit; j += i) {
+            isPrime[j] = false;
+        }
+    }
+
+    return Array.from({ length: limit - 1 }, (_, index) => index + 2).filter((value) => isPrime[value]);
+}
+
+function SieveLab() {
+    const [limit, setLimit] = useState(60);
+    const primes = useMemo(() => primesUpTo(limit), [limit]);
 
     return (
-        <div className="flex h-screen overflow-hidden bg-slate-50 font-sans text-slate-800">
-            {/* Mobile Header */}
-            <div className="md:hidden fixed top-0 left-0 w-full z-50 bg-white border-b border-slate-200 p-4 flex items-center justify-between shadow-sm">
-                <h1 className="text-lg font-bold text-blue-700">C++ 专家 (GESP 五级) 第 1 课</h1>
-                <button onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}>
-                    {isMobileMenuOpen ? <X size={24} /> : <Menu size={24} />}
-                </button>
+        <div className="rounded-2xl border border-amber-100 bg-amber-50 p-6">
+            <div className="mb-5 flex items-center gap-2">
+                <Filter className="text-amber-700" />
+                <h3 className="text-xl font-black text-slate-950">素数筛选实验台</h3>
             </div>
-
-            {/* Sidebar */}
-            <div className={`fixed inset-y-0 left-0 z-50 w-64 bg-white border-r border-slate-200 flex flex-col h-full shadow-lg transition-transform md:relative md:translate-x-0 ${isMobileMenuOpen ? 'translate-x-0' : '-translate-x-full'}`}>
-                <div className="p-6 border-b border-slate-100">
-                    <Link to="/" className="font-bold text-blue-600">返回首页</Link>
-                    <h2 className="text-sm text-slate-500 mt-2">C++ 专家 (GESP 五级) 闯关地图</h2>
+            <div className="grid gap-5 lg:grid-cols-[0.85fr_1.15fr]">
+                <div className="rounded-xl bg-white p-5 ring-1 ring-amber-100">
+                    <label className="block text-sm font-black text-slate-700">筛选范围：2 到 {limit}</label>
+                    <input
+                        type="range"
+                        min="20"
+                        max="120"
+                        value={limit}
+                        onChange={(event) => setLimit(Number(event.target.value))}
+                        className="mt-3 w-full"
+                    />
+                    <p className="mt-4 text-sm font-semibold leading-6 text-slate-600">
+                        埃氏筛会从小素数出发，把它的倍数批量划掉。
+                    </p>
                 </div>
-                <div className="flex-1 overflow-y-auto w-full py-4">
-                    {sections.map(section => (
-                        <button
-                            key={section.id}
-                            onClick={() => { setActiveSection(section.id); setIsMobileMenuOpen(false); }}
-                            className={`w-full text-left px-6 py-3 transition-colors ${activeSection === section.id ? 'bg-blue-50 text-blue-700 border-r-4 border-blue-600' : 'text-slate-600 hover:bg-slate-50'}`}
-                        >
-                            {section.title}
-                        </button>
-                    ))}
-                </div>
-            </div>
-
-            {/* Main Content */}
-            <div className="flex-1 flex flex-col h-full pt-16 md:pt-0">
-                <header className="bg-white border-b border-slate-200 h-16 flex items-center px-6">
-                    <h2 className="text-lg font-bold">第 1 课：内容准备中...</h2>
-                </header>
-                <main className="flex-1 overflow-y-auto p-10 flex flex-col items-center justify-center text-center">
-                    <div className="bg-white p-20 rounded-3xl shadow-xl border-2 border-dashed border-slate-200 max-w-2xl">
-                        <BookOpen size={64} className="mx-auto text-blue-200 mb-6" />
-                        <h1 className="text-3xl font-extrabold text-slate-300">第 1 课内容正在精心打造中</h1>
-                        <p className="text-slate-400 mt-4 text-lg">这里的每一个魔法咒语都在酝酿之中，敬请期待！</p>
+                <div className="rounded-xl bg-white p-5 ring-1 ring-amber-100">
+                    <div className="flex flex-wrap gap-2">
+                        {primes.map((prime) => (
+                            <span key={prime} className="rounded-lg bg-amber-100 px-3 py-2 font-mono text-sm font-black text-amber-800">
+                                {prime}
+                            </span>
+                        ))}
                     </div>
-                </main>
-                <footer className="h-20 bg-white border-t border-slate-200 flex items-center justify-between px-8">
-                    <button onClick={() => setActiveSection(Math.max(1, activeSection - 1))} className="text-slate-500 font-bold hover:text-blue-600 transition-colors">
-                        上一节
-                    </button>
-                    <button onClick={() => setActiveSection(Math.min(sections.length, activeSection + 1))} className="bg-blue-600 text-white px-8 py-2.5 rounded-full font-bold shadow-lg shadow-blue-200 hover:bg-blue-500 transition-all">
-                        下一节
-                    </button>
-                </footer>
+                    <p className="mt-4 text-xs font-bold text-slate-500">共 {primes.length} 个素数</p>
+                </div>
             </div>
         </div>
     );
-};
+}
 
-export default CppL5Lesson1;
+const quiz = [
+    {
+        question: '1 是素数吗？',
+        answer: '不是',
+        reason: '素数要求大于 1，并且只有 1 和自身两个正因数。',
+    },
+    {
+        question: '埃氏筛为什么从 i*i 开始划？',
+        answer: '更小倍数已被划过',
+        reason: '例如 2*i、3*i 这些小倍数早在处理 2、3 时已经处理。',
+    },
+    {
+        question: '筛法适合什么场景？',
+        answer: '批量判断素数',
+        reason: '如果要多次询问某个数是否为素数，预处理筛表更划算。',
+    },
+];
+
+export default function CppL5Lesson1() {
+    return (
+        <CppLessonShell
+            lessonNumber={1}
+            lessonTitle="素数大筛选 (埃氏/线性)"
+            lessonSubtitle="从一个个试除升级到批量预处理"
+            accent="amber"
+            levelTitle="C++ 专家"
+            levelCode="L5"
+            sections={sections}
+            previousPath="/lesson/4/16"
+            nextPath="/lesson/5/2"
+            hero={{
+                title: '筛法的本质：不用反复问“它是不是素数”，而是一次性标出所有答案',
+                description: '本课用埃氏筛建立批量素数判断能力，并初步认识线性筛为什么能进一步减少重复标记。',
+            }}
+            goals={['能解释素数定义和试除复杂度', '能写出埃氏筛模板', '能判断何时需要预处理素数表']}
+            childrenBySection={{
+                1: <SieveLab />,
+                2: (
+                    <>
+                        <div>
+                            <h3 className="text-3xl font-black text-slate-950">从试除到筛法：把重复判断变成预处理</h3>
+                            <p className="mt-3 text-base font-semibold leading-7 text-slate-600">
+                                判断一个数是否为素数，可以试除到平方根；但如果题目要判断很多个数，逐个试除会重复做很多工作。
+                            </p>
+                        </div>
+                        <CompareTable
+                            headers={['方法', '适合场景', '核心代价']}
+                            rows={[
+                                ['试除法', '只判断少量数字', '每个数最多试到 sqrt(n)'],
+                                ['埃氏筛', '批量判断 1..n', '预处理后 O(1) 查询'],
+                                ['线性筛', '更大范围预处理', '每个合数尽量只被标记一次'],
+                            ]}
+                        />
+                    </>
+                ),
+                3: (
+                    <>
+                        <div>
+                            <h3 className="text-3xl font-black text-slate-950">埃氏筛模板：素数留下，倍数划掉</h3>
+                            <p className="mt-3 text-base font-semibold leading-7 text-slate-600">
+                                初始假设所有大于 1 的数都是素数。遇到还没被划掉的 i，就把 i 的倍数划掉。
+                            </p>
+                        </div>
+                        <div className="grid gap-5 lg:grid-cols-[1fr_0.9fr]">
+                            <CodeBlock>{`const int N = 1000000;
+bool isPrime[N + 1];
+
+void sieve(int n) {
+  for (int i = 0; i <= n; i++) isPrime[i] = true;
+  isPrime[0] = isPrime[1] = false;
+
+  for (int i = 2; i * i <= n; i++) {
+    if (!isPrime[i]) continue;
+    for (int j = i * i; j <= n; j += i) {
+      isPrime[j] = false;
+    }
+  }
+}`}</CodeBlock>
+                            <StepList steps={[
+                                '初始化 isPrime 数组',
+                                '0 和 1 不是素数',
+                                '只用未被划掉的 i 去划倍数',
+                                '从 i*i 开始划，减少重复',
+                            ]} />
+                        </div>
+                    </>
+                ),
+                4: (
+                    <>
+                        <div>
+                            <h3 className="text-3xl font-black text-slate-950">线性筛初识：每个合数只被最小质因子划掉</h3>
+                            <p className="mt-3 text-base font-semibold leading-7 text-slate-600">
+                                线性筛的代码更抽象，五级阶段先理解思想：记录已经发现的素数，用“最小质因子”控制标记次数。
+                            </p>
+                        </div>
+                        <CodeBlock>{`vector<int> primes;
+bool isComposite[N + 1];
+
+for (int i = 2; i <= n; i++) {
+  if (!isComposite[i]) primes.push_back(i);
+  for (int p : primes) {
+    if (i * p > n) break;
+    isComposite[i * p] = true;
+    if (i % p == 0) break;
+  }
+}`}</CodeBlock>
+                        <Callout icon={Sparkles} title="先掌握埃氏筛" tone="amber">
+                            线性筛是加分项。做题时如果数据范围不极端，埃氏筛已经足够稳定。
+                        </Callout>
+                    </>
+                ),
+                5: (
+                    <>
+                        <div>
+                            <h3 className="text-3xl font-black text-slate-950">练习与作业</h3>
+                            <p className="mt-3 text-base font-semibold leading-7 text-slate-600">
+                                素数题请先判断是“单次判断”还是“批量查询”，这会直接决定方法。
+                            </p>
+                        </div>
+                        <MiniQuiz items={quiz} />
+                        <Callout icon={ClipboardCheck} title="课后任务" tone="slate">
+                            <ul className="space-y-2">
+                                <li>输出 1 到 n 之间所有素数。</li>
+                                <li>读入 q 次询问，每次判断 x 是否为素数。</li>
+                                <li>统计 1 到 n 中素数的个数。</li>
+                            </ul>
+                        </Callout>
+                        <Callout icon={Search} title="下一课衔接" tone="blue">
+                            下一课学习 GCD 和 LCM。素数和最大公约数都是数论题的基础工具。
+                        </Callout>
+                    </>
+                ),
+            }}
+        />
+    );
+}
