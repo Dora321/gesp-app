@@ -1,70 +1,173 @@
-import React, { useState } from 'react';
-import { useNavigate, Link } from 'react-router-dom';
-import { Menu, X, BookOpen } from 'lucide-react';
+import React, { useMemo, useState } from 'react';
+import { AlertTriangle, Boxes, ClipboardCheck, Search, Waypoints } from 'lucide-react';
+import CppLessonShell, { Callout, CodeBlock, CompareTable, MiniQuiz, StepList } from '../CppLessonShell';
 
-const CppL4Lesson6 = () => {
-    const navigate = useNavigate();
-    const [activeSection, setActiveSection] = useState(1);
-    const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+const sections = [
+    { id: 1, title: '课程导入', category: '数组地址' },
+    { id: 2, title: '数组名与首地址', category: '核心关系' },
+    { id: 3, title: '指针遍历数组', category: '等价写法' },
+    { id: 4, title: '数组参数再理解', category: '函数衔接' },
+    { id: 5, title: '练习与作业', category: '复盘输出' },
+];
 
-    const sections = [
-        { id: 1, title: '课程导入', category: '基础' },
-        { id: 2, title: '知识点讲解', category: '核心' },
-        { id: 3, title: '总结与作业', category: '复习' },
-    ];
+function ArrayPointerLab() {
+    const [index, setIndex] = useState(0);
+    const values = [6, 13, 20, 27, 34];
+    const address = useMemo(() => `a + ${index}`, [index]);
 
     return (
-        <div className="flex h-screen overflow-hidden bg-slate-50 font-sans text-slate-800">
-            {/* Mobile Header */}
-            <div className="md:hidden fixed top-0 left-0 w-full z-50 bg-white border-b border-slate-200 p-4 flex items-center justify-between shadow-sm">
-                <h1 className="text-lg font-bold text-blue-700">C++ 资深 (GESP 四级) 第 6 课</h1>
-                <button onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}>
-                    {isMobileMenuOpen ? <X size={24} /> : <Menu size={24} />}
-                </button>
+        <div className="rounded-2xl border border-indigo-100 bg-indigo-50 p-6">
+            <div className="mb-5 flex items-center gap-2">
+                <Boxes className="text-indigo-700" />
+                <h3 className="text-xl font-black text-slate-950">数组地址实验台</h3>
             </div>
-
-            {/* Sidebar */}
-            <div className={`fixed inset-y-0 left-0 z-50 w-64 bg-white border-r border-slate-200 flex flex-col h-full shadow-lg transition-transform md:relative md:translate-x-0 ${isMobileMenuOpen ? 'translate-x-0' : '-translate-x-full'}`}>
-                <div className="p-6 border-b border-slate-100">
-                    <Link to="/" className="font-bold text-blue-600">返回首页</Link>
-                    <h2 className="text-sm text-slate-500 mt-2">C++ 资深 (GESP 四级) 闯关地图</h2>
-                </div>
-                <div className="flex-1 overflow-y-auto w-full py-4">
-                    {sections.map(section => (
+            <div className="grid gap-5 lg:grid-cols-[1.1fr_0.9fr]">
+                <div className="grid grid-cols-5 gap-2 rounded-xl bg-white p-5 ring-1 ring-indigo-100">
+                    {values.map((value, i) => (
                         <button
-                            key={section.id}
-                            onClick={() => { setActiveSection(section.id); setIsMobileMenuOpen(false); }}
-                            className={`w-full text-left px-6 py-3 transition-colors ${activeSection === section.id ? 'bg-blue-50 text-blue-700 border-r-4 border-blue-600' : 'text-slate-600 hover:bg-slate-50'}`}
+                            key={value}
+                            onClick={() => setIndex(i)}
+                            className={`rounded-xl border p-3 font-black ${index === i ? 'border-indigo-500 bg-indigo-600 text-white' : 'border-slate-200 bg-white text-slate-700'}`}
                         >
-                            {section.title}
+                            <span className="block text-xs">a[{i}]</span>
+                            <span className="mt-1 block text-2xl">{value}</span>
                         </button>
                     ))}
                 </div>
-            </div>
-
-            {/* Main Content */}
-            <div className="flex-1 flex flex-col h-full pt-16 md:pt-0">
-                <header className="bg-white border-b border-slate-200 h-16 flex items-center px-6">
-                    <h2 className="text-lg font-bold">第 6 课：内容准备中...</h2>
-                </header>
-                <main className="flex-1 overflow-y-auto p-10 flex flex-col items-center justify-center text-center">
-                    <div className="bg-white p-20 rounded-3xl shadow-xl border-2 border-dashed border-slate-200 max-w-2xl">
-                        <BookOpen size={64} className="mx-auto text-blue-200 mb-6" />
-                        <h1 className="text-3xl font-extrabold text-slate-300">第 6 课内容正在精心打造中</h1>
-                        <p className="text-slate-400 mt-4 text-lg">这里的每一个魔法咒语都在酝酿之中，敬请期待！</p>
-                    </div>
-                </main>
-                <footer className="h-20 bg-white border-t border-slate-200 flex items-center justify-between px-8">
-                    <button onClick={() => setActiveSection(Math.max(1, activeSection - 1))} className="text-slate-500 font-bold hover:text-blue-600 transition-colors">
-                        上一节
-                    </button>
-                    <button onClick={() => setActiveSection(Math.min(sections.length, activeSection + 1))} className="bg-blue-600 text-white px-8 py-2.5 rounded-full font-bold shadow-lg shadow-blue-200 hover:bg-blue-500 transition-all">
-                        下一节
-                    </button>
-                </footer>
+                <div className="rounded-xl bg-white p-5 ring-1 ring-indigo-100">
+                    <p className="text-sm font-black text-slate-500">当前关系</p>
+                    <p className="mt-2 font-mono text-2xl font-black text-indigo-700">*(a + {index}) = {values[index]}</p>
+                    <p className="mt-3 font-mono text-sm font-black text-slate-600">{address} 等价于 &amp;a[{index}]</p>
+                </div>
             </div>
         </div>
     );
-};
+}
 
-export default CppL4Lesson6;
+const quiz = [
+    {
+        question: '数组名 a 常常表示什么？',
+        answer: '首元素地址',
+        reason: '在表达式中，a 通常可以理解为 &a[0]。',
+    },
+    {
+        question: '*(a + i) 等价于什么？',
+        answer: 'a[i]',
+        reason: '下标访问本质上和地址偏移有关。',
+    },
+    {
+        question: '数组参数为什么会影响原数组？',
+        answer: '传的是地址',
+        reason: '函数通过地址访问原数组元素，不是复制整份数组。',
+    },
+];
+
+export default function CppL4Lesson6() {
+    return (
+        <CppLessonShell
+            lessonNumber={6}
+            lessonTitle="指针与数组的纠葛"
+            lessonSubtitle="理解数组名、地址偏移和函数参数"
+            accent="indigo"
+            levelTitle="C++ 资深"
+            levelCode="L4"
+            sections={sections}
+            previousPath="/lesson/4/5"
+            nextPath="/lesson/4/7"
+            hero={{
+                title: '数组和指针的关系，是四级理解数组参数的关键',
+                description: '本课把数组名、首地址、地址偏移和 a[i] 的等价写法讲清楚，连接上一课指针和第 3 课数组进函数。',
+            }}
+            goals={['能解释数组名和首元素地址的关系', '能理解 a[i] 与 *(a + i) 的等价性', '能用地址模型解释数组参数']}
+            childrenBySection={{
+                1: <ArrayPointerLab />,
+                2: (
+                    <>
+                        <div>
+                            <h3 className="text-3xl font-black text-slate-950">数组名与首地址：a 常常代表 &amp;a[0]</h3>
+                            <p className="mt-3 text-base font-semibold leading-7 text-slate-600">
+                                数组是一串连续空间。数组名在很多表达式中会转换成第一个元素的地址。
+                            </p>
+                        </div>
+                        <CompareTable
+                            headers={['写法', '含义', '说明']}
+                            rows={[
+                                ['a[0]', '第一个元素的值', '普通 int'],
+                                ['&a[0]', '第一个元素地址', 'int*'],
+                                ['a', '通常代表首地址', '常可看成 &a[0]'],
+                            ]}
+                        />
+                        <CodeBlock>{`int a[3] = {10, 20, 30};
+cout << a[0];
+cout << *a; // 也得到 10`}</CodeBlock>
+                    </>
+                ),
+                3: (
+                    <>
+                        <div>
+                            <h3 className="text-3xl font-black text-slate-950">指针遍历数组：移动地址访问不同元素</h3>
+                            <p className="mt-3 text-base font-semibold leading-7 text-slate-600">
+                                <code>a + i</code> 表示从首元素地址向后移动 i 个元素，<code>*(a + i)</code> 就是第 i 个元素的值。
+                            </p>
+                        </div>
+                        <div className="grid gap-5 lg:grid-cols-[1fr_0.9fr]">
+                            <CodeBlock>{`for (int i = 0; i < n; i++) {
+  cout << *(a + i) << " ";
+}
+
+// 等价于
+for (int i = 0; i < n; i++) {
+  cout << a[i] << " ";
+}`}</CodeBlock>
+                            <StepList steps={[
+                                'a 是首元素地址',
+                                'a + i 移到第 i 个元素',
+                                '*(a + i) 取出该位置的值',
+                                '实际写题仍推荐 a[i]，更清楚',
+                            ]} />
+                        </div>
+                    </>
+                ),
+                4: (
+                    <>
+                        <div>
+                            <h3 className="text-3xl font-black text-slate-950">数组参数再理解：函数拿到的是访问入口</h3>
+                            <p className="mt-3 text-base font-semibold leading-7 text-slate-600">
+                                这就是为什么数组进函数不会复制整份数据，也为什么函数里改 <code>a[i]</code> 会影响原数组。
+                            </p>
+                        </div>
+                        <CodeBlock>{`void clearArray(int a[], int n) {
+  for (int i = 0; i < n; i++) {
+    a[i] = 0;
+  }
+}`}</CodeBlock>
+                        <Callout icon={AlertTriangle} title="不要用地址写法炫技" tone="amber">
+                            考试中优先写 <code>a[i]</code>，只有题目考查指针时再写 <code>*(a + i)</code>。清晰比花哨重要。
+                        </Callout>
+                    </>
+                ),
+                5: (
+                    <>
+                        <div>
+                            <h3 className="text-3xl font-black text-slate-950">练习与作业</h3>
+                            <p className="mt-3 text-base font-semibold leading-7 text-slate-600">
+                                本课目标不是把数组题全改成指针写法，而是理解数组参数为什么特殊。
+                            </p>
+                        </div>
+                        <MiniQuiz items={quiz} />
+                        <Callout icon={ClipboardCheck} title="课后任务" tone="slate">
+                            <ul className="space-y-2">
+                                <li>解释 <code>a[2]</code> 和 <code>*(a + 2)</code> 的关系。</li>
+                                <li>写函数把数组所有元素加一。</li>
+                                <li>手动画出长度为 5 的数组地址偏移示意。</li>
+                            </ul>
+                        </Callout>
+                        <Callout icon={Search} title="下一课衔接" tone="blue">
+                            下一课学习结构体。结构体解决的是“一个对象有多个字段”的组织问题。
+                        </Callout>
+                    </>
+                ),
+            }}
+        />
+    );
+}
