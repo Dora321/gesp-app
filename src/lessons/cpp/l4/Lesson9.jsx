@@ -1,70 +1,206 @@
-import React, { useState } from 'react';
-import { useNavigate, Link } from 'react-router-dom';
-import { Menu, X, BookOpen } from 'lucide-react';
+import React, { useMemo, useState } from 'react';
+import { ArrowRightLeft, ClipboardCheck, Repeat, Search } from 'lucide-react';
+import CppLessonShell, { Callout, CodeBlock, CompareTable, MiniQuiz, StepList } from '../CppLessonShell';
 
-const CppL4Lesson9 = () => {
-    const navigate = useNavigate();
-    const [activeSection, setActiveSection] = useState(1);
-    const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+const sections = [
+    { id: 1, title: '课程导入', category: '相邻比较' },
+    { id: 2, title: '冒泡思想', category: '排序模型' },
+    { id: 3, title: '代码模板', category: '双重循环' },
+    { id: 4, title: '边界与优化', category: '易错诊断' },
+    { id: 5, title: '练习与作业', category: '复盘输出' },
+];
 
-    const sections = [
-        { id: 1, title: '课程导入', category: '基础' },
-        { id: 2, title: '知识点讲解', category: '核心' },
-        { id: 3, title: '总结与作业', category: '复习' },
-    ];
+const startArray = [5, 1, 4, 2, 8];
+
+function bubbleStates() {
+    const states = [{ arr: [...startArray], note: '初始数组，还没有开始比较。' }];
+    const arr = [...startArray];
+
+    for (let i = 0; i < arr.length - 1; i++) {
+        for (let j = 0; j < arr.length - 1 - i; j++) {
+            if (arr[j] > arr[j + 1]) {
+                [arr[j], arr[j + 1]] = [arr[j + 1], arr[j]];
+            }
+        }
+        states.push({
+            arr: [...arr],
+            note: `第 ${i + 1} 轮结束：当前未排序区间里的最大值已经沉到右侧。`,
+        });
+    }
+
+    return states;
+}
+
+function BubbleSortLab() {
+    const [round, setRound] = useState(0);
+    const states = useMemo(() => bubbleStates(), []);
+    const current = states[round];
 
     return (
-        <div className="flex h-screen overflow-hidden bg-slate-50 font-sans text-slate-800">
-            {/* Mobile Header */}
-            <div className="md:hidden fixed top-0 left-0 w-full z-50 bg-white border-b border-slate-200 p-4 flex items-center justify-between shadow-sm">
-                <h1 className="text-lg font-bold text-blue-700">C++ 资深 (GESP 四级) 第 9 课</h1>
-                <button onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}>
-                    {isMobileMenuOpen ? <X size={24} /> : <Menu size={24} />}
-                </button>
+        <div className="rounded-2xl border border-indigo-100 bg-indigo-50 p-6">
+            <div className="mb-5 flex items-center gap-2">
+                <Repeat className="text-indigo-700" />
+                <h3 className="text-xl font-black text-slate-950">冒泡排序演示台</h3>
             </div>
-
-            {/* Sidebar */}
-            <div className={`fixed inset-y-0 left-0 z-50 w-64 bg-white border-r border-slate-200 flex flex-col h-full shadow-lg transition-transform md:relative md:translate-x-0 ${isMobileMenuOpen ? 'translate-x-0' : '-translate-x-full'}`}>
-                <div className="p-6 border-b border-slate-100">
-                    <Link to="/" className="font-bold text-blue-600">返回首页</Link>
-                    <h2 className="text-sm text-slate-500 mt-2">C++ 资深 (GESP 四级) 闯关地图</h2>
+            <div className="grid gap-5 lg:grid-cols-[0.9fr_1.1fr]">
+                <div className="rounded-xl bg-white p-5 ring-1 ring-indigo-100">
+                    <label className="block text-sm font-black text-slate-700">完成轮数：{round}</label>
+                    <input
+                        type="range"
+                        min="0"
+                        max={states.length - 1}
+                        value={round}
+                        onChange={(event) => setRound(Number(event.target.value))}
+                        className="mt-3 w-full"
+                    />
+                    <p className="mt-4 text-sm font-semibold leading-6 text-slate-600">{current.note}</p>
                 </div>
-                <div className="flex-1 overflow-y-auto w-full py-4">
-                    {sections.map(section => (
-                        <button
-                            key={section.id}
-                            onClick={() => { setActiveSection(section.id); setIsMobileMenuOpen(false); }}
-                            className={`w-full text-left px-6 py-3 transition-colors ${activeSection === section.id ? 'bg-blue-50 text-blue-700 border-r-4 border-blue-600' : 'text-slate-600 hover:bg-slate-50'}`}
-                        >
-                            {section.title}
-                        </button>
-                    ))}
-                </div>
-            </div>
-
-            {/* Main Content */}
-            <div className="flex-1 flex flex-col h-full pt-16 md:pt-0">
-                <header className="bg-white border-b border-slate-200 h-16 flex items-center px-6">
-                    <h2 className="text-lg font-bold">第 9 课：内容准备中...</h2>
-                </header>
-                <main className="flex-1 overflow-y-auto p-10 flex flex-col items-center justify-center text-center">
-                    <div className="bg-white p-20 rounded-3xl shadow-xl border-2 border-dashed border-slate-200 max-w-2xl">
-                        <BookOpen size={64} className="mx-auto text-blue-200 mb-6" />
-                        <h1 className="text-3xl font-extrabold text-slate-300">第 9 课内容正在精心打造中</h1>
-                        <p className="text-slate-400 mt-4 text-lg">这里的每一个魔法咒语都在酝酿之中，敬请期待！</p>
+                <div className="rounded-xl bg-white p-5 ring-1 ring-indigo-100">
+                    <div className="flex flex-wrap gap-3">
+                        {current.arr.map((value, index) => (
+                            <div
+                                key={`${value}-${index}`}
+                                className={`flex h-16 w-16 items-center justify-center rounded-xl font-mono text-xl font-black ${index >= current.arr.length - round && round > 0
+                                    ? 'bg-emerald-100 text-emerald-800 ring-2 ring-emerald-200'
+                                    : 'bg-indigo-100 text-indigo-800'
+                                }`}
+                            >
+                                {value}
+                            </div>
+                        ))}
                     </div>
-                </main>
-                <footer className="h-20 bg-white border-t border-slate-200 flex items-center justify-between px-8">
-                    <button onClick={() => setActiveSection(Math.max(1, activeSection - 1))} className="text-slate-500 font-bold hover:text-blue-600 transition-colors">
-                        上一节
-                    </button>
-                    <button onClick={() => setActiveSection(Math.min(sections.length, activeSection + 1))} className="bg-blue-600 text-white px-8 py-2.5 rounded-full font-bold shadow-lg shadow-blue-200 hover:bg-blue-500 transition-all">
-                        下一节
-                    </button>
-                </footer>
+                    <p className="mt-4 text-xs font-bold text-slate-500">绿色区域表示每轮已经归位的最大值。</p>
+                </div>
             </div>
         </div>
     );
-};
+}
 
-export default CppL4Lesson9;
+const quiz = [
+    {
+        question: '冒泡排序每一轮通常确定哪个元素？',
+        answer: '当前最大值',
+        reason: '升序排序时，大的数会通过相邻交换逐步移动到右侧。',
+    },
+    {
+        question: '为什么内层循环要减去 i？',
+        answer: '右侧已有 i 个元素归位',
+        reason: '归位元素不需要重复比较，否则只是浪费时间。',
+    },
+    {
+        question: '冒泡排序的核心动作是什么？',
+        answer: '相邻比较并交换',
+        reason: '只比较 a[j] 和 a[j+1]，顺序不对就交换。',
+    },
+];
+
+export default function CppL4Lesson9() {
+    return (
+        <CppLessonShell
+            lessonNumber={9}
+            lessonTitle="排队的智慧：冒泡排序"
+            lessonSubtitle="用相邻交换把最大值一轮轮送到队尾"
+            accent="indigo"
+            levelTitle="C++ 资深"
+            levelCode="L4"
+            sections={sections}
+            previousPath="/lesson/4/8"
+            nextPath="/lesson/4/10"
+            hero={{
+                title: '冒泡排序的诀窍：只盯住相邻两个人，顺序错了就交换',
+                description: '本课把排序拆成可观察的轮次：每一轮都把当前最大值推到右边，最终整个数组从小到大排好。',
+            }}
+            goals={['能解释冒泡排序每一轮的作用', '能写出双重循环边界', '能用交换模板修正相邻元素顺序']}
+            childrenBySection={{
+                1: <BubbleSortLab />,
+                2: (
+                    <>
+                        <div>
+                            <h3 className="text-3xl font-black text-slate-950">冒泡思想：比较相邻元素，让大的往后走</h3>
+                            <p className="mt-3 text-base font-semibold leading-7 text-slate-600">
+                                冒泡排序不需要一次看完整个数组。它只重复做一件事：比较相邻的两个数，如果前面比后面大，就交换。
+                            </p>
+                        </div>
+                        <CompareTable
+                            headers={['动作', '含义', '结果']}
+                            rows={[
+                                ['比较 a[j] 和 a[j+1]', '只看相邻两个元素', '判断顺序是否正确'],
+                                ['如果 a[j] > a[j+1]', '升序时前大后小不合理', '交换两个元素'],
+                                ['一轮结束', '最大值一路向右移动', '队尾确定一个元素'],
+                            ]}
+                        />
+                    </>
+                ),
+                3: (
+                    <>
+                        <div>
+                            <h3 className="text-3xl font-black text-slate-950">代码模板：外层轮数，内层相邻比较</h3>
+                            <p className="mt-3 text-base font-semibold leading-7 text-slate-600">
+                                数组有 n 个数，最多需要 n-1 轮。第 i 轮结束后，右侧 i 个元素已经有序，所以内层比较范围会变短。
+                            </p>
+                        </div>
+                        <div className="grid gap-5 lg:grid-cols-[1fr_0.9fr]">
+                            <CodeBlock>{`for (int i = 0; i < n - 1; i++) {
+  for (int j = 0; j < n - 1 - i; j++) {
+    if (a[j] > a[j + 1]) {
+      swap(a[j], a[j + 1]);
+    }
+  }
+}`}</CodeBlock>
+                            <StepList steps={[
+                                '外层 i 表示已经完成了几轮',
+                                '内层 j 扫描尚未归位的部分',
+                                '只访问 a[j] 和 a[j+1]',
+                                '比较范围必须保证 j+1 不越界',
+                            ]} />
+                        </div>
+                    </>
+                ),
+                4: (
+                    <>
+                        <div>
+                            <h3 className="text-3xl font-black text-slate-950">边界与优化：没有交换就可以提前结束</h3>
+                            <p className="mt-3 text-base font-semibold leading-7 text-slate-600">
+                                如果某一轮没有发生交换，说明数组已经有序，可以提前停止。
+                            </p>
+                        </div>
+                        <CodeBlock>{`for (int i = 0; i < n - 1; i++) {
+  bool changed = false;
+  for (int j = 0; j < n - 1 - i; j++) {
+    if (a[j] > a[j + 1]) {
+      swap(a[j], a[j + 1]);
+      changed = true;
+    }
+  }
+  if (!changed) break;
+}`}</CodeBlock>
+                        <Callout icon={ArrowRightLeft} title="边界提醒" tone="amber">
+                            内层条件写成 <code>j &lt; n - 1 - i</code>，因为循环体里会访问 <code>a[j + 1]</code>。
+                        </Callout>
+                    </>
+                ),
+                5: (
+                    <>
+                        <div>
+                            <h3 className="text-3xl font-black text-slate-950">练习与作业</h3>
+                            <p className="mt-3 text-base font-semibold leading-7 text-slate-600">
+                                做排序题时，先手推一轮，确认“谁被确定下来”，再写循环边界。
+                            </p>
+                        </div>
+                        <MiniQuiz items={quiz} />
+                        <Callout icon={ClipboardCheck} title="课后任务" tone="slate">
+                            <ul className="space-y-2">
+                                <li>读入 n 个整数，用冒泡排序升序输出。</li>
+                                <li>把冒泡排序改成降序排序。</li>
+                                <li>输出冒泡排序中一共发生了多少次交换。</li>
+                            </ul>
+                        </Callout>
+                        <Callout icon={Search} title="下一课衔接" tone="blue">
+                            下一课学习插入排序。它不再把最大值送到队尾，而是维护一个“左侧有序区”。
+                        </Callout>
+                    </>
+                ),
+            }}
+        />
+    );
+}
