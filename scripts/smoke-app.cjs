@@ -57,6 +57,7 @@ async function run() {
   const page = await browser.newPage({ viewport: { width: 1366, height: 900 } });
   const messages = [];
   const panelRequests = [];
+  const requestUrls = [];
 
   page.on('console', (msg) => {
     if (['error', 'warning'].includes(msg.type())) {
@@ -65,10 +66,27 @@ async function run() {
   });
   page.on('pageerror', (error) => messages.push(`pageerror: ${error.message}`));
   page.on('requestfinished', (request) => {
-    if (request.url().includes('ClassroomPointsPanel')) {
-      panelRequests.push(request.url());
+    const url = request.url();
+    requestUrls.push(url);
+    if (url.includes('ClassroomPointsPanel')) {
+      panelRequests.push(url);
     }
   });
+
+  const directQuestionBankStart = requestUrls.length;
+  await page.goto(`${baseUrl}/question-bank`, { waitUntil: 'domcontentloaded' });
+  await page.getByText('GESP 真题题库').waitFor({ timeout: 10000 });
+  const directQuestionBankRequests = requestUrls.slice(directQuestionBankStart);
+  const eagerHomeRequest = directQuestionBankRequests.find((url) => /\/Home-[^/]+\.js/.test(url));
+  if (eagerHomeRequest) {
+    throw new Error(`Question bank route eagerly loaded the home chunk: ${eagerHomeRequest}`);
+  }
+  const focusModeButtons = await page
+    .locator('button[aria-label="打开课堂积分榜"], button[aria-label="打开 AI 问答助手"]')
+    .count();
+  if (focusModeButtons !== 0) {
+    throw new Error('Question bank flow should not render global floating widgets.');
+  }
 
   await page.goto(baseUrl, { waitUntil: 'domcontentloaded' });
   await page.waitForTimeout(2500);
@@ -87,15 +105,6 @@ async function run() {
   const afterOpenPanelRequests = panelRequests.length;
   await page.getByRole('button', { name: '最小化课堂积分榜' }).click();
   await page.getByRole('button', { name: '打开课堂积分榜' }).waitFor({ timeout: 10000 });
-
-  await page.goto(`${baseUrl}/question-bank`, { waitUntil: 'domcontentloaded' });
-  await page.getByText('GESP 真题题库').waitFor({ timeout: 10000 });
-  const focusModeButtons = await page
-    .locator('button[aria-label="打开课堂积分榜"], button[aria-label="打开 AI 问答助手"]')
-    .count();
-  if (focusModeButtons !== 0) {
-    throw new Error('Question bank flow should not render global floating widgets.');
-  }
 
   await page.goto(`${baseUrl}/python/f1`, { waitUntil: 'domcontentloaded' });
   await page.getByText('什么是 Python?').waitFor({ timeout: 10000 });

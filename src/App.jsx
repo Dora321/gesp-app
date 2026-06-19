@@ -1,14 +1,14 @@
 import React, { Suspense, lazy } from 'react';
 import { BrowserRouter, Routes, Route, useLocation } from 'react-router-dom';
 
-// Eagerly loaded: home page + global components (needed on every page)
-import Home from './Home';
+// Eagerly loaded: global components needed on every page
 import ClassroomPoints from './components/ClassroomPoints';
 import ScrollToTop from './components/ScrollToTop';
 import AIChat from './components/AIChat';
 import ErrorBoundary from './components/ErrorBoundary';
 
 // Lazy loaded: route-level pages — only fetched when user navigates to them
+const Home = lazy(() => import('./Home'));
 const ComputingMuseum = lazy(() => import('./pages/ComputingMuseum'));
 const QuestionBankHome = lazy(() => import('./pages/QuestionBankHome'));
 const ExamPaper = lazy(() => import('./pages/ExamPaper'));
