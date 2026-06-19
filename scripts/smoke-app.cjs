@@ -88,6 +88,15 @@ async function run() {
   await page.getByRole('button', { name: '最小化课堂积分榜' }).click();
   await page.getByRole('button', { name: '打开课堂积分榜' }).waitFor({ timeout: 10000 });
 
+  await page.goto(`${baseUrl}/question-bank`, { waitUntil: 'domcontentloaded' });
+  await page.getByText('GESP 真题题库').waitFor({ timeout: 10000 });
+  const focusModeButtons = await page
+    .locator('button[aria-label="打开课堂积分榜"], button[aria-label="打开 AI 问答助手"]')
+    .count();
+  if (focusModeButtons !== 0) {
+    throw new Error('Question bank flow should not render global floating widgets.');
+  }
+
   await page.goto(`${baseUrl}/python/f1`, { waitUntil: 'domcontentloaded' });
   await page.getByText('什么是 Python?').waitFor({ timeout: 10000 });
 

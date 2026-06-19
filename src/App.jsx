@@ -72,9 +72,11 @@ const GlobalWidgets = () => {
   const { pathname } = useLocation();
   const isQuestionBankFlow = pathname.startsWith('/question-bank');
 
+  if (isQuestionBankFlow) return null;
+
   return (
     <>
-      {!isQuestionBankFlow && <ClassroomPoints />}
+      <ClassroomPoints />
       <AIChat />
     </>
   );
