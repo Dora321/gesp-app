@@ -53,17 +53,17 @@ export default function FeaturedProjects() {
                 <div className="flex flex-col md:flex-row items-end justify-between mb-16 gap-6">
                     <div>
                         <h2 className="text-4xl font-extrabold text-brand-slate mb-4">
-                            项目课：把语法变成作品
+                            项目与算法专题
                         </h2>
                         <p className="text-xl text-slate-500 max-w-xl">
-                            语法课负责打基础，项目课负责把知识串起来。这里放适合展示、复盘和扩展的作品任务。
+                            Python 项目负责把语法做成作品，C++ 算法专题负责把解题模型练扎实。
                         </p>
                     </div>
                     <button
-                        onClick={() => navigate('/ekart')}
+                        onClick={() => navigate('/python/a1')}
                         className="flex items-center gap-2 font-bold text-brand-blue hover:text-blue-600 transition-colors group"
                     >
-                        查看项目专区 <ChevronRight className="group-hover:translate-x-1 transition-transform" />
+                        进入 Python 项目线 <ChevronRight className="group-hover:translate-x-1 transition-transform" />
                     </button>
                 </div>
 

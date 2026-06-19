@@ -14,7 +14,7 @@ export default function Footer() {
     ];
 
     const resourceLinks = [
-        { name: '在线编译器', path: '/ekart' },
+        { name: 'E-Kart Lab', path: '/ekart' },
         { name: '历年真题库', path: '/question-bank' },
         { name: '学习路线图', scrollTo: 'learning-paths' },
         { name: '计算博物馆', path: '/museum' },
