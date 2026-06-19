@@ -1,6 +1,6 @@
 import React, { useMemo, useState } from 'react';
 import { ClipboardCheck, Hash, ListChecks, RotateCcw, ScanLine } from 'lucide-react';
-import CppL2LessonShell, { Callout, CodeBlock, CompareTable, MiniQuiz, StepList } from './CppL2LessonShell';
+import CppLessonShell, { Callout, CodeBlock, CompareTable, MiniQuiz, StepList } from '../CppLessonShell';
 
 const sections = [
     { id: 1, title: '课程导入', category: '数位拆解' },
@@ -87,7 +87,7 @@ const quiz = [
 
 export default function CppL2Lesson10() {
     return (
-        <CppL2LessonShell
+        <CppLessonShell
             lessonNumber={10}
             lessonTitle="数字拆拆看 (数位)"
             lessonSubtitle="用取余和整除把一个数一位位拆开"

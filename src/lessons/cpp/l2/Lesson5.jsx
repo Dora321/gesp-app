@@ -1,6 +1,6 @@
 import React, { useMemo, useState } from 'react';
 import { AlertTriangle, Blocks, ClipboardCheck, Repeat2, Target } from 'lucide-react';
-import CppL2LessonShell, { Callout, CodeBlock, CompareTable, MiniQuiz, StepList } from './CppL2LessonShell';
+import CppLessonShell, { Callout, CodeBlock, CompareTable, MiniQuiz, StepList } from '../CppLessonShell';
 
 const sections = [
     { id: 1, title: '课程导入', category: '双层循环' },
@@ -91,7 +91,7 @@ const quiz = [
 
 export default function CppL2Lesson5() {
     return (
-        <CppL2LessonShell
+        <CppLessonShell
             lessonNumber={5}
             lessonTitle="嵌套循环基础"
             lessonSubtitle="L2 核心能力：把二维过程拆成行与列"

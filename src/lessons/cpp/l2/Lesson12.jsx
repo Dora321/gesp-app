@@ -1,6 +1,6 @@
 import React, { useMemo, useState } from 'react';
 import { AlertTriangle, ClipboardCheck, Database, ListChecks, Search, Sigma } from 'lucide-react';
-import CppL2LessonShell, { Callout, CodeBlock, CompareTable, MiniQuiz, StepList } from './CppL2LessonShell';
+import CppLessonShell, { Callout, CodeBlock, CompareTable, MiniQuiz, StepList } from '../CppLessonShell';
 
 const sections = [
     { id: 1, title: '课程导入', category: '一组数据' },
@@ -83,7 +83,7 @@ const quiz = [
 
 export default function CppL2Lesson12() {
     return (
-        <CppL2LessonShell
+        <CppLessonShell
             lessonNumber={12}
             lessonTitle="一维数组初探"
             lessonSubtitle="从单个变量，升级到一排变量"

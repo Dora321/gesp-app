@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { ClipboardCheck, Clock, FileText, ListChecks, Trophy } from 'lucide-react';
-import CppL2LessonShell, { Callout, CodeBlock, CompareTable, MiniQuiz, StepList } from './CppL2LessonShell';
+import CppLessonShell, { Callout, CodeBlock, CompareTable, MiniQuiz, StepList } from '../CppLessonShell';
 
 const sections = [
     { id: 1, title: '课程导入', category: '模拟考试' },
@@ -66,7 +66,7 @@ const quiz = [
 
 export default function CppL2Lesson16() {
     return (
-        <CppL2LessonShell
+        <CppLessonShell
             lessonNumber={16}
             lessonTitle="全真模拟考试"
             lessonSubtitle="把二级知识链条收束成考试策略"

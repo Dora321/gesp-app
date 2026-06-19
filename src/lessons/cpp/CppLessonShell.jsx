@@ -35,6 +35,30 @@ const accentMap = {
         shadow: 'shadow-amber-200',
         gradient: 'from-amber-600 to-slate-900',
     },
+    rose: {
+        text: 'text-rose-700',
+        bg: 'bg-rose-600',
+        light: 'bg-rose-50',
+        border: 'border-rose-600',
+        shadow: 'shadow-rose-200',
+        gradient: 'from-rose-700 to-slate-900',
+    },
+    purple: {
+        text: 'text-purple-700',
+        bg: 'bg-purple-600',
+        light: 'bg-purple-50',
+        border: 'border-purple-600',
+        shadow: 'shadow-purple-200',
+        gradient: 'from-purple-700 to-slate-900',
+    },
+    teal: {
+        text: 'text-teal-700',
+        bg: 'bg-teal-600',
+        light: 'bg-teal-50',
+        border: 'border-teal-600',
+        shadow: 'shadow-teal-200',
+        gradient: 'from-teal-700 to-slate-900',
+    },
 };
 
 export function CodeBlock({ children }) {
@@ -65,6 +89,9 @@ export function Callout({ icon: Icon, title, children, tone = 'blue' }) {
         amber: 'border-amber-200 bg-amber-50 text-amber-950',
         red: 'border-red-200 bg-red-50 text-red-950',
         slate: 'border-slate-200 bg-white text-slate-950',
+        rose: 'border-rose-100 bg-rose-50 text-rose-950',
+        purple: 'border-purple-100 bg-purple-50 text-purple-950',
+        teal: 'border-teal-100 bg-teal-50 text-teal-950',
     };
 
     return (
@@ -112,7 +139,7 @@ export function MiniQuiz({ items }) {
 export function CompareTable({ headers, rows }) {
     return (
         <div className="overflow-hidden rounded-2xl border border-slate-200 bg-white shadow-sm">
-            <div className={`grid bg-slate-900 text-sm font-black text-white`} style={{ gridTemplateColumns: `repeat(${headers.length}, minmax(0, 1fr))` }}>
+            <div className="grid bg-slate-900 text-sm font-black text-white" style={{ gridTemplateColumns: `repeat(${headers.length}, minmax(0, 1fr))` }}>
                 {headers.map((header) => (
                     <div key={header} className="p-4">{header}</div>
                 ))}
@@ -134,7 +161,7 @@ export function CompareTable({ headers, rows }) {
     );
 }
 
-export default function CppL2LessonShell({
+export default function CppLessonShell({
     lessonNumber,
     lessonTitle,
     lessonSubtitle,
@@ -145,6 +172,10 @@ export default function CppL2LessonShell({
     previousPath,
     nextPath,
     accent = 'blue',
+    levelTitle = 'C++ 进阶',
+    levelCode = 'L2',
+    homePath = '/',
+    homeLabel = '返回首页',
 }) {
     const navigate = useNavigate();
     const [activeSection, setActiveSection] = useState(1);
@@ -180,7 +211,7 @@ export default function CppL2LessonShell({
     return (
         <div className="flex h-screen overflow-hidden bg-slate-50 font-sans text-slate-800">
             <div className="fixed left-0 top-0 z-50 flex w-full items-center justify-between border-b border-slate-200 bg-white p-4 shadow-sm md:hidden">
-                <h1 className={`text-lg font-black ${color.text}`}>C++ 进阶第 {lessonNumber} 课</h1>
+                <h1 className={`text-lg font-black ${color.text}`}>{levelTitle}第 {lessonNumber} 课</h1>
                 <button onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)} aria-label="打开课程目录">
                     {isMobileMenuOpen ? <X size={24} /> : <Menu size={24} />}
                 </button>
@@ -188,11 +219,11 @@ export default function CppL2LessonShell({
 
             <aside className={`fixed inset-y-0 left-0 z-50 flex h-full w-72 flex-col border-r border-slate-200 bg-white shadow-lg transition-transform md:relative md:translate-x-0 ${isMobileMenuOpen ? 'translate-x-0' : '-translate-x-full'}`}>
                 <div className="border-b border-slate-100 p-6">
-                    <Link to="/" className={`inline-flex items-center gap-2 font-black ${color.text}`}>
+                    <Link to={homePath} className={`inline-flex items-center gap-2 font-black ${color.text}`}>
                         <Home size={16} />
-                        返回首页
+                        {homeLabel}
                     </Link>
-                    <h2 className="mt-2 text-sm font-semibold text-slate-500">C++ 进阶 · L2-{lessonNumber}</h2>
+                    <h2 className="mt-2 text-sm font-semibold text-slate-500">{levelTitle} · {levelCode}-{lessonNumber}</h2>
                 </div>
                 <div className="flex-1 overflow-y-auto py-4">
                     {sections.map((section) => (

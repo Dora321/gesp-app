@@ -1,6 +1,6 @@
 import React, { useMemo, useState } from 'react';
 import { AlertTriangle, ClipboardCheck, Search, ShieldCheck, Sigma } from 'lucide-react';
-import CppL2LessonShell, { Callout, CodeBlock, CompareTable, MiniQuiz, StepList } from './CppL2LessonShell';
+import CppLessonShell, { Callout, CodeBlock, CompareTable, MiniQuiz, StepList } from '../CppLessonShell';
 
 const sections = [
     { id: 1, title: '课程导入', category: '质数判断' },
@@ -84,7 +84,7 @@ const quiz = [
 
 export default function CppL2Lesson9() {
     return (
-        <CppL2LessonShell
+        <CppLessonShell
             lessonNumber={9}
             lessonTitle="质数侦探 (Prime)"
             lessonSubtitle="用因数视角判断一个数是否孤独"

@@ -1,6 +1,6 @@
 import React, { useMemo, useState } from 'react';
 import { ClipboardCheck, Footprints, ListChecks, PlayCircle, Route } from 'lucide-react';
-import CppL2LessonShell, { Callout, CodeBlock, CompareTable, MiniQuiz, StepList } from './CppL2LessonShell';
+import CppLessonShell, { Callout, CodeBlock, CompareTable, MiniQuiz, StepList } from '../CppLessonShell';
 
 const sections = [
     { id: 1, title: '课程导入', category: '模拟思想' },
@@ -75,7 +75,7 @@ const quiz = [
 
 export default function CppL2Lesson13() {
     return (
-        <CppL2LessonShell
+        <CppLessonShell
             lessonNumber={13}
             lessonTitle="模拟算法实战 1"
             lessonSubtitle="把题目描述翻译成一步步状态变化"

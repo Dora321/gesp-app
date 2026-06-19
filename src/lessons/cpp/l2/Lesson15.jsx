@@ -1,6 +1,6 @@
 import React, { useMemo, useState } from 'react';
 import { AlertTriangle, ClipboardCheck, ListChecks, Search, ShieldAlert } from 'lucide-react';
-import CppL2LessonShell, { Callout, CodeBlock, CompareTable, MiniQuiz, StepList } from './CppL2LessonShell';
+import CppLessonShell, { Callout, CodeBlock, CompareTable, MiniQuiz, StepList } from '../CppLessonShell';
 
 const sections = [
     { id: 1, title: '课程导入', category: '错因分类' },
@@ -93,7 +93,7 @@ const quiz = [
 
 export default function CppL2Lesson15() {
     return (
-        <CppL2LessonShell
+        <CppLessonShell
             lessonNumber={15}
             lessonTitle="易错题诊疗室"
             lessonSubtitle="把常见丢分点变成检查清单"

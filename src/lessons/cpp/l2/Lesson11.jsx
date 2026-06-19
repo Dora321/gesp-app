@@ -1,6 +1,6 @@
 import React, { useMemo, useState } from 'react';
 import { AlertTriangle, Calculator, ClipboardCheck, ListChecks, Search, Sigma } from 'lucide-react';
-import CppL2LessonShell, { Callout, CodeBlock, CompareTable, MiniQuiz, StepList } from './CppL2LessonShell';
+import CppLessonShell, { Callout, CodeBlock, CompareTable, MiniQuiz, StepList } from '../CppLessonShell';
 
 const sections = [
     { id: 1, title: '课程导入', category: '整除关系' },
@@ -77,7 +77,7 @@ const quiz = [
 
 export default function CppL2Lesson11() {
     return (
-        <CppL2LessonShell
+        <CppLessonShell
             lessonNumber={11}
             lessonTitle="因数与倍数"
             lessonSubtitle="把整除关系变成可判断、可统计的代码"

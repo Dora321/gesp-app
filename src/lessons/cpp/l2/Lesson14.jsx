@@ -1,6 +1,6 @@
 import React, { useMemo, useState } from 'react';
 import { ClipboardCheck, Database, ListChecks, PlayCircle, ShieldCheck } from 'lucide-react';
-import CppL2LessonShell, { Callout, CodeBlock, CompareTable, MiniQuiz, StepList } from './CppL2LessonShell';
+import CppLessonShell, { Callout, CodeBlock, CompareTable, MiniQuiz, StepList } from '../CppLessonShell';
 
 const sections = [
     { id: 1, title: '课程导入', category: '综合模拟' },
@@ -73,7 +73,7 @@ const quiz = [
 
 export default function CppL2Lesson14() {
     return (
-        <CppL2LessonShell
+        <CppLessonShell
             lessonNumber={14}
             lessonTitle="模拟算法实战 2"
             lessonSubtitle="多个变量一起变化时，先稳住顺序"

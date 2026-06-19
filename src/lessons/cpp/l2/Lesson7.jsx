@@ -1,6 +1,6 @@
 import React, { useMemo, useState } from 'react';
 import { AlertTriangle, ClipboardCheck, Diamond, GitBranch, PlayCircle, Route } from 'lucide-react';
-import CppL2LessonShell, { Callout, CodeBlock, CompareTable, MiniQuiz, StepList } from './CppL2LessonShell';
+import CppLessonShell, { Callout, CodeBlock, CompareTable, MiniQuiz, StepList } from '../CppLessonShell';
 
 const sections = [
     { id: 1, title: '课程导入', category: '读图能力' },
@@ -82,7 +82,7 @@ const quiz = [
 
 export default function CppL2Lesson7() {
     return (
-        <CppL2LessonShell
+        <CppLessonShell
             lessonNumber={7}
             lessonTitle="流程图的秘密"
             lessonSubtitle="把图读成代码，把代码画成路线"

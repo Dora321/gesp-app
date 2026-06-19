@@ -1,6 +1,6 @@
 import React, { useMemo, useState } from 'react';
 import { AlertTriangle, ClipboardCheck, Grid3X3, Layers3, PencilRuler } from 'lucide-react';
-import CppL2LessonShell, { Callout, CodeBlock, CompareTable, MiniQuiz, StepList } from './CppL2LessonShell';
+import CppLessonShell, { Callout, CodeBlock, CompareTable, MiniQuiz, StepList } from '../CppLessonShell';
 
 const sections = [
     { id: 1, title: '课程导入', category: '图形问题' },
@@ -85,7 +85,7 @@ const quiz = [
 
 export default function CppL2Lesson6() {
     return (
-        <CppL2LessonShell
+        <CppLessonShell
             lessonNumber={6}
             lessonTitle="图形打印实战"
             lessonSubtitle="从看图写循环，到按行反推规则"
