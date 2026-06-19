@@ -1,70 +1,213 @@
-﻿import React, { useState } from 'react';
-import { useNavigate, Link } from 'react-router-dom';
-import { Menu, X, ArrowRight, BookOpen, Clock, Lightbulb } from 'lucide-react';
+import React, { useMemo, useState } from 'react';
+import { Calculator, ClipboardCheck, FunctionSquare, Ruler, Sigma, Triangle } from 'lucide-react';
+import CppL2LessonShell, { Callout, CodeBlock, CompareTable, MiniQuiz, StepList } from './CppL2LessonShell';
 
-const CppL2Lesson8 = () => {
-    const navigate = useNavigate();
-    const [activeSection, setActiveSection] = useState(1);
-    const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+const sections = [
+    { id: 1, title: '课程导入', category: '数学工具' },
+    { id: 2, title: '常用函数', category: 'cmath 基础' },
+    { id: 3, title: '类型与精度', category: '易错点' },
+    { id: 4, title: '几何应用', category: '实战题型' },
+    { id: 5, title: '练习与作业', category: '复盘输出' },
+];
 
-    const sections = [
-        { id: 1, title: '课程导入', category: '基础' },
-        { id: 2, title: '知识点讲解', category: '核心' },
-        { id: 3, title: '总结与作业', category: '复习' },
-    ];
+function MathToolLab() {
+    const [x, setX] = useState(12);
+    const [y, setY] = useState(5);
+
+    const result = useMemo(() => ({
+        sqrt: Math.sqrt(x).toFixed(3),
+        pow: Math.pow(x, 2).toFixed(0),
+        abs: Math.abs(x - y),
+        ceil: Math.ceil(x / y),
+        floor: Math.floor(x / y),
+    }), [x, y]);
 
     return (
-        <div className="flex h-screen overflow-hidden bg-slate-50 font-sans text-slate-800">
-            {/* Mobile Header */}
-            <div className="md:hidden fixed top-0 left-0 w-full z-50 bg-white border-b border-slate-200 p-4 flex items-center justify-between shadow-sm">
-                <h1 className="text-lg font-bold text-blue-700">C++ 进阶第 8 课</h1>
-                <button onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}>
-                    {isMobileMenuOpen ? <X size={24} /> : <Menu size={24} />}
-                </button>
+        <div className="rounded-2xl border border-amber-100 bg-amber-50 p-6">
+            <div className="mb-5 flex items-center gap-2">
+                <Calculator className="text-amber-700" />
+                <h3 className="text-xl font-black text-slate-950">cmath 工具实验台</h3>
             </div>
-
-            {/* Sidebar */}
-            <div className={`fixed inset-y-0 left-0 z-50 w-64 bg-white border-r border-slate-200 flex flex-col h-full shadow-lg transition-transform md:relative md:translate-x-0 ${isMobileMenuOpen ? 'translate-x-0' : '-translate-x-full'}`}>
-                <div className="p-6 border-b border-slate-100">
-                    <Link to="/" className="font-bold text-blue-600">返回首页</Link>
-                    <h2 className="text-sm text-slate-500 mt-2">C++ 进阶闯关地图</h2>
+            <div className="grid gap-5 lg:grid-cols-[0.85fr_1.15fr]">
+                <div className="rounded-xl bg-white p-5 ring-1 ring-amber-100">
+                    <label className="block text-sm font-black text-slate-700">x = {x}</label>
+                    <input
+                        type="range"
+                        min="1"
+                        max="50"
+                        value={x}
+                        onChange={(event) => setX(Number(event.target.value))}
+                        className="mt-3 w-full"
+                    />
+                    <label className="mt-5 block text-sm font-black text-slate-700">y = {y}</label>
+                    <input
+                        type="range"
+                        min="1"
+                        max="10"
+                        value={y}
+                        onChange={(event) => setY(Number(event.target.value))}
+                        className="mt-3 w-full"
+                    />
                 </div>
-                <div className="flex-1 overflow-y-auto w-full py-4">
-                    {sections.map(section => (
-                        <button
-                            key={section.id}
-                            onClick={() => { setActiveSection(section.id); setIsMobileMenuOpen(false); }}
-                            className={`w-full text-left px-6 py-3 transition-colors ${activeSection === section.id ? 'bg-blue-50 text-blue-700 border-r-4 border-blue-600' : 'text-slate-600 hover:bg-slate-50'}`}
-                        >
-                            {section.title}
-                        </button>
+                <div className="grid gap-3 sm:grid-cols-2">
+                    {[
+                        [`sqrt(x)`, result.sqrt],
+                        [`pow(x, 2)`, result.pow],
+                        [`abs(x - y)`, result.abs],
+                        [`ceil(x / y)`, result.ceil],
+                        [`floor(x / y)`, result.floor],
+                    ].map(([name, value]) => (
+                        <div key={name} className="rounded-xl bg-white p-4 ring-1 ring-amber-100">
+                            <div className="font-mono text-sm font-black text-amber-700">{name}</div>
+                            <div className="mt-2 text-2xl font-black text-slate-950">{value}</div>
+                        </div>
                     ))}
                 </div>
             </div>
-
-            {/* Main Content */}
-            <div className="flex-1 flex flex-col h-full pt-16 md:pt-0">
-                <header className="bg-white border-b border-slate-200 h-16 flex items-center px-6">
-                    <h2 className="text-lg font-bold">第 8 课：内容准备中...</h2>
-                </header>
-                <main className="flex-1 overflow-y-auto p-10 flex flex-col items-center justify-center text-center">
-                    <div className="bg-white p-20 rounded-3xl shadow-xl border-2 border-dashed border-slate-200 max-w-2xl">
-                        <BookOpen size={64} className="mx-auto text-blue-200 mb-6" />
-                        <h1 className="text-3xl font-extrabold text-slate-300">第 8 课内容正在精心打造中</h1>
-                        <p className="text-slate-400 mt-4 text-lg">这里的每一个魔法咒语都在酝酿之中，敬请期待！</p>
-                    </div>
-                </main>
-                <footer className="h-20 bg-white border-t border-slate-200 flex items-center justify-between px-8">
-                    <button onClick={() => setActiveSection(Math.max(1, activeSection - 1))} className="text-slate-500 font-bold hover:text-blue-600 transition-colors">
-                        上一节
-                    </button>
-                    <button onClick={() => setActiveSection(Math.min(sections.length, activeSection + 1))} className="bg-blue-600 text-white px-8 py-2.5 rounded-full font-bold shadow-lg shadow-blue-200 hover:bg-blue-500 transition-all">
-                        下一节
-                    </button>
-                </footer>
-            </div>
         </div>
     );
-};
+}
 
-export default CppL2Lesson8;
+const quiz = [
+    {
+        question: '使用 sqrt 前要包含哪个头文件？',
+        answer: '#include <cmath>',
+        reason: 'sqrt、pow、ceil、floor 等数学函数来自 cmath。',
+    },
+    {
+        question: 'pow(2, 10) 的返回值类型通常是什么？',
+        answer: '浮点类型',
+        reason: 'pow 返回 double，整数题里经常需要注意转换和精度。',
+    },
+    {
+        question: '向上取整应该用哪个函数？',
+        answer: 'ceil',
+        reason: 'ceil(2.1) 得到 3，floor(2.9) 得到 2。',
+    },
+];
+
+export default function CppL2Lesson8() {
+    return (
+        <CppL2LessonShell
+            lessonNumber={8}
+            lessonTitle="数学工具箱 (cmath)"
+            lessonSubtitle="用标准库函数减少重复造轮子"
+            accent="amber"
+            sections={sections}
+            previousPath="/lesson/2/7"
+            nextPath="/lesson/2/9"
+            hero={{
+                title: '会用数学工具，代码会短一截，也稳一截',
+                description: '平方根、幂、绝对值、上下取整是二级常见工具。关键不是背函数名，而是知道什么时候能用，什么时候要小心类型和精度。',
+            }}
+            goals={['会引入 cmath 并调用常用函数', '能区分 ceil 和 floor', '知道 pow/sqrt 的浮点精度风险']}
+            childrenBySection={{
+                1: <MathToolLab />,
+                2: (
+                    <>
+                        <div>
+                            <h3 className="text-3xl font-black text-slate-950">常用函数：先会读，再会用</h3>
+                            <p className="mt-3 text-base font-semibold leading-7 text-slate-600">
+                                <code>cmath</code> 里的函数能帮我们处理常见数学计算。考试里更常见的是阅读程序输出，所以要知道每个函数的含义。
+                            </p>
+                        </div>
+                        <CompareTable
+                            headers={['函数', '含义', '例子']}
+                            rows={[
+                                ['sqrt(x)', '平方根', 'sqrt(16) 得到 4'],
+                                ['pow(a, b)', 'a 的 b 次方', 'pow(2, 3) 得到 8'],
+                                ['abs(x)', '绝对值', 'abs(-7) 得到 7'],
+                                ['ceil(x)', '向上取整', 'ceil(3.2) 得到 4'],
+                                ['floor(x)', '向下取整', 'floor(3.8) 得到 3'],
+                            ]}
+                        />
+                        <CodeBlock>{`#include <iostream>
+#include <cmath>
+using namespace std;
+
+int main() {
+  cout << sqrt(25) << endl;
+  cout << pow(2, 5) << endl;
+  cout << ceil(7.0 / 3) << endl;
+  return 0;
+}`}</CodeBlock>
+                    </>
+                ),
+                3: (
+                    <>
+                        <div>
+                            <h3 className="text-3xl font-black text-slate-950">类型与精度：数学函数不是全都返回 int</h3>
+                            <p className="mt-3 text-base font-semibold leading-7 text-slate-600">
+                                <code>sqrt</code>、<code>pow</code>、<code>ceil</code>、<code>floor</code> 常和 double 打交道。整数题里要格外注意输出格式和强制转换。
+                            </p>
+                        </div>
+                        <div className="grid gap-5 lg:grid-cols-2">
+                            <CodeBlock>{`double a = sqrt(2);
+cout << a;        // 约等于 1.41421
+
+int b = sqrt(16);
+cout << b;        // 4`}</CodeBlock>
+                            <CodeBlock>{`int x = pow(10, 2);  // 通常可以
+
+// 大数或严格整数判断时，不要盲信浮点
+// 更稳做法：用循环或整数运算验证`}</CodeBlock>
+                        </div>
+                        <Callout icon={FunctionSquare} title="稳妥原则" tone="amber">
+                            如果题目要求精确整数结果，优先用整数运算；如果必须用 <code>pow</code> 或 <code>sqrt</code>，要检查转换后的值是否符合题意。
+                        </Callout>
+                    </>
+                ),
+                4: (
+                    <>
+                        <div>
+                            <h3 className="text-3xl font-black text-slate-950">几何应用：距离、圆、三角形</h3>
+                            <p className="mt-3 text-base font-semibold leading-7 text-slate-600">
+                                <code>cmath</code> 常出现在几何题中，例如两点距离、圆面积、勾股定理。先把公式翻译成代码，再处理输入输出。
+                            </p>
+                        </div>
+                        <div className="grid gap-5 lg:grid-cols-[1fr_0.9fr]">
+                            <CodeBlock>{`double x1, y1, x2, y2;
+cin >> x1 >> y1 >> x2 >> y2;
+
+double dx = x1 - x2;
+double dy = y1 - y2;
+double d = sqrt(dx * dx + dy * dy);
+
+cout << d;`}</CodeBlock>
+                            <StepList steps={[
+                                '读入两个点的坐标',
+                                '分别计算横向差和纵向差',
+                                '平方后相加',
+                                '开平方得到距离',
+                            ]} />
+                        </div>
+                        <Callout icon={Triangle} title="公式翻译" tone="emerald">
+                            数学公式不要整行硬塞进 cout。先拆成 <code>dx</code>、<code>dy</code>、<code>d</code>，中间结果更容易调试。
+                        </Callout>
+                    </>
+                ),
+                5: (
+                    <>
+                        <div>
+                            <h3 className="text-3xl font-black text-slate-950">练习与作业</h3>
+                            <p className="mt-3 text-base font-semibold leading-7 text-slate-600">
+                                这一课的目标是把数学函数用得准确，不是把所有公式背完。
+                            </p>
+                        </div>
+                        <MiniQuiz items={quiz} />
+                        <Callout icon={ClipboardCheck} title="课后任务" tone="slate">
+                            <ul className="space-y-2">
+                                <li>输入一个整数 n，输出它的平方根，保留 3 位小数。</li>
+                                <li>输入 a 和 b，输出 <code>a</code> 的 <code>b</code> 次方。</li>
+                                <li>输入两个点坐标，计算两点距离，并解释为什么要用 <code>sqrt</code>。</li>
+                            </ul>
+                        </Callout>
+                        <Callout icon={Ruler} title="下一课衔接" tone="blue">
+                            下一课进入质数判断。今天的 <code>sqrt(n)</code> 会直接派上用场：判断因数时只需要枚举到平方根附近。
+                        </Callout>
+                    </>
+                ),
+            }}
+        />
+    );
+}
