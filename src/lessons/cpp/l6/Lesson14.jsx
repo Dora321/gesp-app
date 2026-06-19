@@ -1,70 +1,201 @@
-import React, { useState } from 'react';
-import { useNavigate, Link } from 'react-router-dom';
-import { Menu, X, BookOpen } from 'lucide-react';
+import React, { useMemo, useState } from 'react';
+import { ClipboardCheck, Grid3X3, Route, Search } from 'lucide-react';
+import CppLessonShell, { Callout, CodeBlock, CompareTable, MiniQuiz, StepList } from '../CppLessonShell';
 
-const CppL6Lesson14 = () => {
-    const navigate = useNavigate();
-    const [activeSection, setActiveSection] = useState(1);
-    const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+const sections = [
+    { id: 1, title: '课程导入', category: '矩阵状态' },
+    { id: 2, title: '路径计数', category: '障碍处理' },
+    { id: 3, title: '最小路径和', category: '权值 DP' },
+    { id: 4, title: '编程模板', category: '边界初始化' },
+    { id: 5, title: '练习与作业', category: '复盘输出' },
+];
 
-    const sections = [
-        { id: 1, title: '课程导入', category: '基础' },
-        { id: 2, title: '知识点讲解', category: '核心' },
-        { id: 3, title: '总结与作业', category: '复习' },
-    ];
+const baseGrid = [
+    [1, 3, 1, 2],
+    [2, 8, 2, 1],
+    [4, 2, 1, 3],
+    [1, 5, 2, 1],
+];
+
+function minPathTable(size) {
+    const dp = Array.from({ length: size }, () => Array(size).fill(0));
+    for (let i = 0; i < size; i++) {
+        for (let j = 0; j < size; j++) {
+            const cost = baseGrid[i][j];
+            if (i === 0 && j === 0) dp[i][j] = cost;
+            else {
+                const up = i > 0 ? dp[i - 1][j] : Infinity;
+                const left = j > 0 ? dp[i][j - 1] : Infinity;
+                dp[i][j] = Math.min(up, left) + cost;
+            }
+        }
+    }
+    return dp;
+}
+
+function MatrixLab() {
+    const [size, setSize] = useState(4);
+    const dp = useMemo(() => minPathTable(size), [size]);
 
     return (
-        <div className="flex h-screen overflow-hidden bg-slate-50 font-sans text-slate-800">
-            {/* Mobile Header */}
-            <div className="md:hidden fixed top-0 left-0 w-full z-50 bg-white border-b border-slate-200 p-4 flex items-center justify-between shadow-sm">
-                <h1 className="text-lg font-bold text-blue-700">C++ 大师 (GESP 六级) 第 14 课</h1>
-                <button onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}>
-                    {isMobileMenuOpen ? <X size={24} /> : <Menu size={24} />}
-                </button>
+        <div className="rounded-2xl border border-blue-100 bg-blue-50 p-6">
+            <div className="mb-5 flex items-center gap-2">
+                <Grid3X3 className="text-blue-700" />
+                <h3 className="text-xl font-black text-slate-950">矩阵最小路径演示台</h3>
             </div>
-
-            {/* Sidebar */}
-            <div className={`fixed inset-y-0 left-0 z-50 w-64 bg-white border-r border-slate-200 flex flex-col h-full shadow-lg transition-transform md:relative md:translate-x-0 ${isMobileMenuOpen ? 'translate-x-0' : '-translate-x-full'}`}>
-                <div className="p-6 border-b border-slate-100">
-                    <Link to="/" className="font-bold text-blue-600">返回首页</Link>
-                    <h2 className="text-sm text-slate-500 mt-2">C++ 大师 (GESP 六级) 闯关地图</h2>
+            <div className="grid gap-5 lg:grid-cols-[0.8fr_1.2fr]">
+                <div className="rounded-xl bg-white p-5 ring-1 ring-blue-100">
+                    <label className="block text-sm font-black text-slate-700">矩阵大小 {size} x {size}</label>
+                    <input type="range" min="2" max="4" value={size} onChange={(event) => setSize(Number(event.target.value))} className="mt-3 w-full" />
+                    <p className="mt-4 text-sm font-semibold leading-6 text-slate-600">
+                        每格有进入代价，只能向右或向下走。dp[i][j] 表示走到当前位置的最小代价。
+                    </p>
                 </div>
-                <div className="flex-1 overflow-y-auto w-full py-4">
-                    {sections.map(section => (
-                        <button
-                            key={section.id}
-                            onClick={() => { setActiveSection(section.id); setIsMobileMenuOpen(false); }}
-                            className={`w-full text-left px-6 py-3 transition-colors ${activeSection === section.id ? 'bg-blue-50 text-blue-700 border-r-4 border-blue-600' : 'text-slate-600 hover:bg-slate-50'}`}
-                        >
-                            {section.title}
-                        </button>
-                    ))}
-                </div>
-            </div>
-
-            {/* Main Content */}
-            <div className="flex-1 flex flex-col h-full pt-16 md:pt-0">
-                <header className="bg-white border-b border-slate-200 h-16 flex items-center px-6">
-                    <h2 className="text-lg font-bold">第 14 课：内容准备中...</h2>
-                </header>
-                <main className="flex-1 overflow-y-auto p-10 flex flex-col items-center justify-center text-center">
-                    <div className="bg-white p-20 rounded-3xl shadow-xl border-2 border-dashed border-slate-200 max-w-2xl">
-                        <BookOpen size={64} className="mx-auto text-blue-200 mb-6" />
-                        <h1 className="text-3xl font-extrabold text-slate-300">第 14 课内容正在精心打造中</h1>
-                        <p className="text-slate-400 mt-4 text-lg">这里的每一个魔法咒语都在酝酿之中，敬请期待！</p>
+                <div className="rounded-xl bg-white p-5 ring-1 ring-blue-100">
+                    <div className="grid w-fit gap-2" style={{ gridTemplateColumns: `repeat(${size}, 4rem)` }}>
+                        {dp.flatMap((row, i) => row.map((value, j) => (
+                            <div key={`${i}-${j}`} className="rounded-lg bg-blue-100 p-2 text-center font-mono text-sm font-black text-blue-800">
+                                <div className="text-xs text-blue-500">w{baseGrid[i][j]}</div>
+                                <div>{value}</div>
+                            </div>
+                        )))}
                     </div>
-                </main>
-                <footer className="h-20 bg-white border-t border-slate-200 flex items-center justify-between px-8">
-                    <button onClick={() => setActiveSection(Math.max(1, activeSection - 1))} className="text-slate-500 font-bold hover:text-blue-600 transition-colors">
-                        上一节
-                    </button>
-                    <button onClick={() => setActiveSection(Math.min(sections.length, activeSection + 1))} className="bg-blue-600 text-white px-8 py-2.5 rounded-full font-bold shadow-lg shadow-blue-200 hover:bg-blue-500 transition-all">
-                        下一节
-                    </button>
-                </footer>
+                    <p className="mt-4 text-sm font-bold text-slate-500">右下角最小代价：{dp[size - 1][size - 1]}</p>
+                </div>
             </div>
         </div>
     );
-};
+}
 
-export default CppL6Lesson14;
+const quiz = [
+    {
+        question: '矩阵路径 DP 的状态常写成什么？',
+        answer: 'dp[i][j]',
+        reason: '它表示走到第 i 行第 j 列时的答案。',
+    },
+    {
+        question: '有障碍的格子应该怎样处理？',
+        answer: '不可转移',
+        reason: '障碍格不能到达，也不能作为后续路径来源。',
+    },
+    {
+        question: '最小路径和用什么转移？',
+        answer: 'min',
+        reason: '目标是总代价最小，所以从上方和左方取较小值。',
+    },
+];
+
+export default function CppL6Lesson14() {
+    return (
+        <CppLessonShell
+            lessonNumber={14}
+            lessonTitle="编程实战：矩阵与路径"
+            lessonSubtitle="把二维状态放进网格"
+            accent="blue"
+            levelTitle="C++ 大师"
+            levelCode="L6"
+            sections={sections}
+            previousPath="/lesson/6/13"
+            nextPath="/lesson/6/15"
+            hero={{
+                title: '矩阵 DP 是二维思维训练：当前位置的答案来自附近格子',
+                description: '本课用路径计数、障碍处理和最小路径和，把 DP 从一维背包扩展到二维网格。',
+            }}
+            goals={['能定义矩阵路径状态 dp[i][j]', '能处理边界和障碍格', '能写出路径计数与最小路径和模板']}
+            childrenBySection={{
+                1: <MatrixLab />,
+                2: (
+                    <>
+                        <div>
+                            <h3 className="text-3xl font-black text-slate-950">路径计数：障碍格没有路径，不能贡献给别人</h3>
+                            <p className="mt-3 text-base font-semibold leading-7 text-slate-600">
+                                如果只能向右或向下走，那么每个可达格子的路径数来自上方和左方。
+                            </p>
+                        </div>
+                        <CompareTable
+                            headers={['情况', '处理方式', '原因']}
+                            rows={[
+                                ['起点', 'dp[1][1] = 1', '递推起点'],
+                                ['障碍', 'dp[i][j] = 0', '不能走到这里'],
+                                ['普通格', '上方 + 左方', '只能从这两个方向进入'],
+                            ]}
+                        />
+                    </>
+                ),
+                3: (
+                    <>
+                        <div>
+                            <h3 className="text-3xl font-black text-slate-950">最小路径和：把“方案数相加”换成“代价取小”</h3>
+                            <p className="mt-3 text-base font-semibold leading-7 text-slate-600">
+                                同样是矩阵 DP，目标不同，转移运算也不同。求最小值时要用 <code>min</code>。
+                            </p>
+                        </div>
+                        <CodeBlock>{`dp[1][1] = cost[1][1];
+for (int i = 1; i <= n; i++) {
+  for (int j = 1; j <= m; j++) {
+    if (i == 1 && j == 1) continue;
+    dp[i][j] = min(dp[i - 1][j], dp[i][j - 1]) + cost[i][j];
+  }
+}`}</CodeBlock>
+                        <Callout icon={Route} title="目标决定转移" tone="blue">
+                            求方案数用加法；求最小代价用 min；求最大收益用 max。
+                        </Callout>
+                    </>
+                ),
+                4: (
+                    <>
+                        <div>
+                            <h3 className="text-3xl font-black text-slate-950">编程模板：边界初始化别偷懒</h3>
+                            <p className="mt-3 text-base font-semibold leading-7 text-slate-600">
+                                处理第一行、第一列时，经常会访问越界。可以单独初始化，也可以给不可达位置设极大值。
+                            </p>
+                        </div>
+                        <div className="grid gap-5 lg:grid-cols-[1fr_0.9fr]">
+                            <CodeBlock>{`const int INF = 1e9;
+for (int i = 0; i <= n; i++) {
+  for (int j = 0; j <= m; j++) {
+    dp[i][j] = INF;
+  }
+}
+
+dp[1][1] = cost[1][1];
+for (int i = 1; i <= n; i++) {
+  for (int j = 1; j <= m; j++) {
+    if (i == 1 && j == 1) continue;
+    dp[i][j] = min(dp[i - 1][j], dp[i][j - 1]) + cost[i][j];
+  }
+}`}</CodeBlock>
+                            <StepList steps={[
+                                '定义状态含义',
+                                '设置不可达初值',
+                                '处理起点',
+                                '按行列顺序递推',
+                            ]} />
+                        </div>
+                    </>
+                ),
+                5: (
+                    <>
+                        <div>
+                            <h3 className="text-3xl font-black text-slate-950">练习与作业</h3>
+                            <p className="mt-3 text-base font-semibold leading-7 text-slate-600">
+                                本课作业要把同一个网格分别做“路径数”和“最小代价”，看清目标如何改变转移。
+                            </p>
+                        </div>
+                        <MiniQuiz items={quiz} />
+                        <Callout icon={ClipboardCheck} title="课后任务" tone="slate">
+                            <ul className="space-y-2">
+                                <li>实现带障碍的网格路径计数。</li>
+                                <li>实现矩阵最小路径和。</li>
+                                <li>写出两题的状态、初值、转移、答案位置。</li>
+                            </ul>
+                        </Callout>
+                        <Callout icon={Search} title="下一课衔接" tone="blue">
+                            下一课进入易错题诊疗，把六级高频错误变成提交前检查清单。
+                        </Callout>
+                    </>
+                ),
+            }}
+        />
+    );
+}
