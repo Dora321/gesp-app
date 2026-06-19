@@ -73,6 +73,10 @@ async function run() {
   await page.goto(baseUrl, { waitUntil: 'domcontentloaded' });
   await page.waitForTimeout(2500);
   await page.getByText('魔丸聚集地').first().waitFor({ timeout: 10000 });
+  const homeCurrentNavLabels = await page.locator('nav button[aria-current="page"]').allTextContents();
+  if (homeCurrentNavLabels.length > 0) {
+    throw new Error(`Homepage scroll nav items should not be marked as current: ${homeCurrentNavLabels.join(', ')}`);
+  }
 
   await page.getByRole('button', { name: '课程体系' }).first().click();
   await page.getByText('C++ 基础闯关').first().waitFor({ timeout: 20000 });

@@ -58,9 +58,10 @@ export default function Navigation({ darkMode = false, afterLogo = null, classNa
         }
     };
 
-    const isActive = (path) => {
-        if (path === '/') return location.pathname === '/';
-        return location.pathname.startsWith(path);
+    const isActive = (item) => {
+        if (item.scrollTo) return false;
+        if (item.path === '/') return location.pathname === '/';
+        return location.pathname.startsWith(item.path);
     };
 
     return (
@@ -109,9 +110,10 @@ export default function Navigation({ darkMode = false, afterLogo = null, classNa
                                 <button
                                     key={`${item.path}-${item.scrollTo || item.name}`}
                                     onClick={() => handleNavClick(item)}
+                                    aria-current={isActive(item) ? 'page' : undefined}
                                     className={`
                                         px-4 py-2 rounded-full text-sm font-bold transition-all duration-300 flex items-center gap-2 relative group
-                                        ${isActive(item.path)
+                                        ${isActive(item)
                                             ? (darkMode && !isScrolled ? 'text-blue-400' : 'text-blue-600')
                                             : (darkMode && !isScrolled ? 'text-slate-200 hover:text-white hover:bg-white/10' : 'text-slate-600 hover:text-blue-600 hover:bg-slate-100')}
                                     `}
@@ -166,19 +168,20 @@ export default function Navigation({ darkMode = false, afterLogo = null, classNa
                                 setIsMobileMenuOpen(false);
                             }}
                             aria-label={item.name}
+                            aria-current={isActive(item) ? 'page' : undefined}
                             className={`
                                 w-full py-4 rounded-2xl bg-slate-50 border border-slate-100 hover:bg-white hover:border-brand-blue/30 hover:shadow-lg transition-all duration-300 flex items-center px-6 gap-4 group
-                                ${isActive(item.path) ? 'bg-blue-50 border-brand-blue/30 ring-1 ring-brand-blue/20' : ''}
+                                ${isActive(item) ? 'bg-blue-50 border-brand-blue/30 ring-1 ring-brand-blue/20' : ''}
                             `}
                             style={{ transitionDelay: `${idx * 50}ms`, transform: isMobileMenuOpen ? 'translateY(0)' : 'translateY(20px)' }}
                         >
                             <div className={`
                                 p-2 rounded-full transition-colors
-                                ${isActive(item.path) ? 'bg-brand-blue text-white' : 'bg-slate-200 text-slate-500 group-hover:bg-brand-blue group-hover:text-white'}
+                                ${isActive(item) ? 'bg-brand-blue text-white' : 'bg-slate-200 text-slate-500 group-hover:bg-brand-blue group-hover:text-white'}
                             `}>
                                 {React.cloneElement(item.icon, { size: 20 })}
                             </div>
-                            <span className={`text-lg font-bold ${isActive(item.path) ? 'text-brand-blue' : 'text-slate-600 group-hover:text-brand-slate'}`}>
+                            <span className={`text-lg font-bold ${isActive(item) ? 'text-brand-blue' : 'text-slate-600 group-hover:text-brand-slate'}`}>
                                 {item.name}
                             </span>
                             <ChevronRight className="ml-auto text-slate-400 group-hover:text-brand-blue" size={20} />
