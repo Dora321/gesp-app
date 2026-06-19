@@ -11,15 +11,21 @@ const sections = [
 ];
 
 function FlowNode({ children, kind = 'process', active = false }) {
-    const shapeClass = kind === 'decision'
-        ? 'rotate-45 rounded-xl'
-        : kind === 'terminal'
-            ? 'rounded-full'
-            : 'rounded-xl';
+    if (kind === 'decision') {
+        return (
+            <div className="mx-auto flex h-40 items-center justify-center">
+                <div className={`flex h-28 w-28 rotate-45 items-center justify-center border-2 bg-white text-center text-sm font-black shadow-sm ${active ? 'border-indigo-600 text-indigo-700' : 'border-slate-300 text-slate-700'}`}>
+                    <span className="-rotate-45 px-3">{children}</span>
+                </div>
+            </div>
+        );
+    }
+
+    const shapeClass = kind === 'terminal' ? 'rounded-full' : 'rounded-xl';
 
     return (
         <div className={`mx-auto flex h-20 w-40 items-center justify-center border-2 bg-white text-center text-sm font-black shadow-sm ${shapeClass} ${active ? 'border-indigo-600 text-indigo-700' : 'border-slate-300 text-slate-700'}`}>
-            <span className={kind === 'decision' ? '-rotate-45 px-4' : 'px-4'}>{children}</span>
+            <span className="px-4">{children}</span>
         </div>
     );
 }

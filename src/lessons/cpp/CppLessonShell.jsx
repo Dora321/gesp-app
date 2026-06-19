@@ -1,4 +1,4 @@
-import React, { useMemo, useState } from 'react';
+import React, { useEffect, useMemo, useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { ArrowRight, CheckCircle2, Home, Menu, X } from 'lucide-react';
 
@@ -185,6 +185,11 @@ export default function CppLessonShell({
     const currentIndex = sections.findIndex((section) => section.id === activeSection);
     const currentSection = sections[currentIndex] || sections[0];
     const activeContent = useMemo(() => childrenBySection[activeSection], [activeSection, childrenBySection]);
+
+    useEffect(() => {
+        setActiveSection(1);
+        setIsMobileMenuOpen(false);
+    }, [lessonNumber]);
 
     const goPrev = () => {
         if (activeSection > 1) {

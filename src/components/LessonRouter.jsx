@@ -11,6 +11,7 @@ import LoadingScreen from './LoadingScreen';
  */
 const LessonRouter = () => {
   const { level, lessonId } = useParams();
+  const lessonKey = `${level}-${lessonId}`;
 
   const LessonComponent = useMemo(() => {
     const lvl = parseInt(level, 10);
@@ -34,7 +35,7 @@ const LessonRouter = () => {
 
   return (
     <Suspense fallback={<LoadingScreen message="正在加载课程" />}>
-      <LessonComponent />
+      <LessonComponent key={lessonKey} />
     </Suspense>
   );
 };

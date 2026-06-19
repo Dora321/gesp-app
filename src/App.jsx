@@ -80,6 +80,11 @@ const GlobalWidgets = () => {
   );
 };
 
+const RoutedLesson = () => {
+  const { pathname } = useLocation();
+  return <LessonRouter key={pathname} />;
+};
+
 function App() {
   // Prod deploy serves 404.html (a copy of index.html) for unknown paths, so
   // BrowserRouter deep links work as long as basename matches the base path
@@ -101,7 +106,7 @@ function App() {
             <Route path="/" element={<Home />} />
 
             {/* C++ Lessons — parameterized: /lesson/:level(1-6)/:lessonId(1-16) */}
-            <Route path="/lesson/:level/:lessonId" element={<LessonRouter />} />
+            <Route path="/lesson/:level/:lessonId" element={<RoutedLesson />} />
 
             {/* E-Kart Lab Routes */}
             <Route path="/ekart" element={<EkartLayout />}>
