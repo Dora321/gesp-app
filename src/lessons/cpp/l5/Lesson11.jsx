@@ -1,70 +1,177 @@
-import React, { useState } from 'react';
-import { useNavigate, Link } from 'react-router-dom';
-import { Menu, X, BookOpen } from 'lucide-react';
+import React, { useMemo, useState } from 'react';
+import { ClipboardCheck, GitBranch, Layers2, Search } from 'lucide-react';
+import CppLessonShell, { Callout, CodeBlock, CompareTable, MiniQuiz, StepList } from '../CppLessonShell';
 
-const CppL5Lesson11 = () => {
-    const navigate = useNavigate();
-    const [activeSection, setActiveSection] = useState(1);
-    const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+const sections = [
+    { id: 1, title: '课程导入', category: '拆分问题' },
+    { id: 2, title: '分治三步', category: '拆解/解决/合并' },
+    { id: 3, title: '归并排序', category: '经典模板' },
+    { id: 4, title: '复杂度分析', category: '递归树' },
+    { id: 5, title: '练习与作业', category: '复盘输出' },
+];
 
-    const sections = [
-        { id: 1, title: '课程导入', category: '基础' },
-        { id: 2, title: '知识点讲解', category: '核心' },
-        { id: 3, title: '总结与作业', category: '复习' },
+function splitRanges(left, right, depth = 0) {
+    if (left === right) return [{ left, right, depth }];
+    const mid = Math.floor((left + right) / 2);
+    return [
+        { left, right, depth },
+        ...splitRanges(left, mid, depth + 1),
+        ...splitRanges(mid + 1, right, depth + 1),
     ];
+}
+
+function DivideLab() {
+    const [n, setN] = useState(8);
+    const ranges = useMemo(() => splitRanges(1, n), [n]);
 
     return (
-        <div className="flex h-screen overflow-hidden bg-slate-50 font-sans text-slate-800">
-            {/* Mobile Header */}
-            <div className="md:hidden fixed top-0 left-0 w-full z-50 bg-white border-b border-slate-200 p-4 flex items-center justify-between shadow-sm">
-                <h1 className="text-lg font-bold text-blue-700">C++ 专家 (GESP 五级) 第 11 课</h1>
-                <button onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}>
-                    {isMobileMenuOpen ? <X size={24} /> : <Menu size={24} />}
-                </button>
+        <div className="rounded-2xl border border-amber-100 bg-amber-50 p-6">
+            <div className="mb-5 flex items-center gap-2">
+                <GitBranch className="text-amber-700" />
+                <h3 className="text-xl font-black text-slate-950">分治拆分演示台</h3>
             </div>
-
-            {/* Sidebar */}
-            <div className={`fixed inset-y-0 left-0 z-50 w-64 bg-white border-r border-slate-200 flex flex-col h-full shadow-lg transition-transform md:relative md:translate-x-0 ${isMobileMenuOpen ? 'translate-x-0' : '-translate-x-full'}`}>
-                <div className="p-6 border-b border-slate-100">
-                    <Link to="/" className="font-bold text-blue-600">返回首页</Link>
-                    <h2 className="text-sm text-slate-500 mt-2">C++ 专家 (GESP 五级) 闯关地图</h2>
+            <div className="grid gap-5 lg:grid-cols-[0.75fr_1.25fr]">
+                <div className="rounded-xl bg-white p-5 ring-1 ring-amber-100">
+                    <label className="block text-sm font-black text-slate-700">区间长度 n = {n}</label>
+                    <input type="range" min="4" max="12" value={n} onChange={(event) => setN(Number(event.target.value))} className="mt-3 w-full" />
+                    <p className="mt-4 text-sm font-semibold leading-6 text-slate-600">
+                        分治会把大区间递归拆成小区间，再把小答案合并成大答案。
+                    </p>
                 </div>
-                <div className="flex-1 overflow-y-auto w-full py-4">
-                    {sections.map(section => (
-                        <button
-                            key={section.id}
-                            onClick={() => { setActiveSection(section.id); setIsMobileMenuOpen(false); }}
-                            className={`w-full text-left px-6 py-3 transition-colors ${activeSection === section.id ? 'bg-blue-50 text-blue-700 border-r-4 border-blue-600' : 'text-slate-600 hover:bg-slate-50'}`}
-                        >
-                            {section.title}
-                        </button>
-                    ))}
-                </div>
-            </div>
-
-            {/* Main Content */}
-            <div className="flex-1 flex flex-col h-full pt-16 md:pt-0">
-                <header className="bg-white border-b border-slate-200 h-16 flex items-center px-6">
-                    <h2 className="text-lg font-bold">第 11 课：内容准备中...</h2>
-                </header>
-                <main className="flex-1 overflow-y-auto p-10 flex flex-col items-center justify-center text-center">
-                    <div className="bg-white p-20 rounded-3xl shadow-xl border-2 border-dashed border-slate-200 max-w-2xl">
-                        <BookOpen size={64} className="mx-auto text-blue-200 mb-6" />
-                        <h1 className="text-3xl font-extrabold text-slate-300">第 11 课内容正在精心打造中</h1>
-                        <p className="text-slate-400 mt-4 text-lg">这里的每一个魔法咒语都在酝酿之中，敬请期待！</p>
+                <div className="rounded-xl bg-white p-5 ring-1 ring-amber-100">
+                    <div className="space-y-2">
+                        {ranges.slice(0, 14).map((range, index) => (
+                            <div key={`${range.left}-${range.right}-${index}`} className="font-mono text-sm font-black text-amber-800" style={{ paddingLeft: `${range.depth * 18}px` }}>
+                                [{range.left}, {range.right}]
+                            </div>
+                        ))}
                     </div>
-                </main>
-                <footer className="h-20 bg-white border-t border-slate-200 flex items-center justify-between px-8">
-                    <button onClick={() => setActiveSection(Math.max(1, activeSection - 1))} className="text-slate-500 font-bold hover:text-blue-600 transition-colors">
-                        上一节
-                    </button>
-                    <button onClick={() => setActiveSection(Math.min(sections.length, activeSection + 1))} className="bg-blue-600 text-white px-8 py-2.5 rounded-full font-bold shadow-lg shadow-blue-200 hover:bg-blue-500 transition-all">
-                        下一节
-                    </button>
-                </footer>
+                </div>
             </div>
         </div>
     );
-};
+}
 
-export default CppL5Lesson11;
+const quiz = [
+    {
+        question: '分治通常分成哪三步？',
+        answer: '拆分、解决、合并',
+        reason: '先分成子问题，分别解决，再合并结果。',
+    },
+    {
+        question: '递归出口有什么作用？',
+        answer: '停止继续拆分',
+        reason: '没有出口，递归会无限调用。',
+    },
+    {
+        question: '归并排序的合并过程做什么？',
+        answer: '合并两个有序区间',
+        reason: '左右两边已经有序，只需要双指针线性合并。',
+    },
+];
+
+export default function CppL5Lesson11() {
+    return (
+        <CppLessonShell
+            lessonNumber={11}
+            lessonTitle="分而治之 (分治思想)"
+            lessonSubtitle="把大问题拆成小问题，再合并答案"
+            accent="amber"
+            levelTitle="C++ 专家"
+            levelCode="L5"
+            sections={sections}
+            previousPath="/lesson/5/10"
+            nextPath="/lesson/5/12"
+            hero={{
+                title: '分治的力量：把一个难题拆成两个相似的小题',
+                description: '本课用区间拆分和归并排序建立分治框架，训练递归边界、子问题和合并过程。',
+            }}
+            goals={['能解释分治三步', '能写出区间递归框架', '能理解归并排序的拆分和合并']}
+            childrenBySection={{
+                1: <DivideLab />,
+                2: (
+                    <>
+                        <div>
+                            <h3 className="text-3xl font-black text-slate-950">分治三步：拆分、解决、合并</h3>
+                            <p className="mt-3 text-base font-semibold leading-7 text-slate-600">
+                                分治题的子问题通常和原问题长得很像，只是规模更小。递归负责解决子问题，合并负责得到总答案。
+                            </p>
+                        </div>
+                        <CompareTable
+                            headers={['步骤', '问题', '例子']}
+                            rows={[
+                                ['拆分', '怎么分成更小问题？', '区间分成左右两半'],
+                                ['解决', '子问题何时能直接回答？', '长度为 1 时已有序'],
+                                ['合并', '小答案如何变成大答案？', '合并两个有序数组'],
+                            ]}
+                        />
+                    </>
+                ),
+                3: (
+                    <>
+                        <div>
+                            <h3 className="text-3xl font-black text-slate-950">归并排序：分治最经典的排序例子</h3>
+                            <p className="mt-3 text-base font-semibold leading-7 text-slate-600">
+                                归并排序先把数组拆到单个元素，再两两合并成有序区间。
+                            </p>
+                        </div>
+                        <div className="grid gap-5 lg:grid-cols-[1fr_0.9fr]">
+                            <CodeBlock>{`void mergeSort(int l, int r) {
+  if (l >= r) return;
+  int mid = (l + r) / 2;
+  mergeSort(l, mid);
+  mergeSort(mid + 1, r);
+  merge(l, mid, r);
+}`}</CodeBlock>
+                            <StepList steps={[
+                                '递归出口：区间长度为 1',
+                                '拆成左右两个区间',
+                                '分别排序左右区间',
+                                '合并两个有序区间',
+                            ]} />
+                        </div>
+                    </>
+                ),
+                4: (
+                    <>
+                        <div>
+                            <h3 className="text-3xl font-black text-slate-950">复杂度分析：每层合并 O(n)，一共约 log n 层</h3>
+                            <p className="mt-3 text-base font-semibold leading-7 text-slate-600">
+                                归并排序每层都要处理全部元素，而拆分层数大约是 <code>log n</code>，所以复杂度是 <code>O(n log n)</code>。
+                            </p>
+                        </div>
+                        <CodeBlock>{`// 合并两个有序区间
+while (i <= mid && j <= r) {
+  if (a[i] <= a[j]) temp.push_back(a[i++]);
+  else temp.push_back(a[j++]);
+}`}</CodeBlock>
+                        <Callout icon={Layers2} title="空间代价" tone="amber">
+                            归并排序通常需要额外数组暂存合并结果，这也是它和原地排序的差异。
+                        </Callout>
+                    </>
+                ),
+                5: (
+                    <>
+                        <div>
+                            <h3 className="text-3xl font-black text-slate-950">练习与作业</h3>
+                            <p className="mt-3 text-base font-semibold leading-7 text-slate-600">
+                                分治题请先写出递归函数的参数含义，再写出口和拆分方式。
+                            </p>
+                        </div>
+                        <MiniQuiz items={quiz} />
+                        <Callout icon={ClipboardCheck} title="课后任务" tone="slate">
+                            <ul className="space-y-2">
+                                <li>实现归并排序并输出排序结果。</li>
+                                <li>用分治求数组最大值。</li>
+                                <li>画出 n=8 时递归拆分树。</li>
+                            </ul>
+                        </Callout>
+                        <Callout icon={Search} title="下一课衔接" tone="blue">
+                            下一课学习贪心。分治先拆问题，贪心则每一步都做当前最优选择。
+                        </Callout>
+                    </>
+                ),
+            }}
+        />
+    );
+}

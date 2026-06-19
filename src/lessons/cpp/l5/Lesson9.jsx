@@ -1,70 +1,192 @@
-import React, { useState } from 'react';
-import { useNavigate, Link } from 'react-router-dom';
-import { Menu, X, BookOpen } from 'lucide-react';
+import React, { useMemo, useState } from 'react';
+import { ClipboardCheck, RefreshCw, Search, UsersRound } from 'lucide-react';
+import CppLessonShell, { Callout, CodeBlock, CompareTable, MiniQuiz, StepList } from '../CppLessonShell';
 
-const CppL5Lesson9 = () => {
-    const navigate = useNavigate();
-    const [activeSection, setActiveSection] = useState(1);
-    const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+const sections = [
+    { id: 1, title: '课程导入', category: '环形淘汰' },
+    { id: 2, title: '问题建模', category: '循环链表' },
+    { id: 3, title: '模拟模板', category: '删除节点' },
+    { id: 4, title: '数组写法', category: '下标递推' },
+    { id: 5, title: '练习与作业', category: '复盘输出' },
+];
 
-    const sections = [
-        { id: 1, title: '课程导入', category: '基础' },
-        { id: 2, title: '知识点讲解', category: '核心' },
-        { id: 3, title: '总结与作业', category: '复习' },
-    ];
+function josephusOrder(n, k) {
+    const people = Array.from({ length: n }, (_, index) => index + 1);
+    const order = [];
+    let index = 0;
+
+    while (people.length > 0) {
+        index = (index + k - 1) % people.length;
+        order.push(people.splice(index, 1)[0]);
+    }
+
+    return order;
+}
+
+function JosephusLab() {
+    const [n, setN] = useState(7);
+    const [k, setK] = useState(3);
+    const order = useMemo(() => josephusOrder(n, k), [n, k]);
 
     return (
-        <div className="flex h-screen overflow-hidden bg-slate-50 font-sans text-slate-800">
-            {/* Mobile Header */}
-            <div className="md:hidden fixed top-0 left-0 w-full z-50 bg-white border-b border-slate-200 p-4 flex items-center justify-between shadow-sm">
-                <h1 className="text-lg font-bold text-blue-700">C++ 专家 (GESP 五级) 第 9 课</h1>
-                <button onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}>
-                    {isMobileMenuOpen ? <X size={24} /> : <Menu size={24} />}
-                </button>
+        <div className="rounded-2xl border border-amber-100 bg-amber-50 p-6">
+            <div className="mb-5 flex items-center gap-2">
+                <UsersRound className="text-amber-700" />
+                <h3 className="text-xl font-black text-slate-950">约瑟夫环演示台</h3>
             </div>
-
-            {/* Sidebar */}
-            <div className={`fixed inset-y-0 left-0 z-50 w-64 bg-white border-r border-slate-200 flex flex-col h-full shadow-lg transition-transform md:relative md:translate-x-0 ${isMobileMenuOpen ? 'translate-x-0' : '-translate-x-full'}`}>
-                <div className="p-6 border-b border-slate-100">
-                    <Link to="/" className="font-bold text-blue-600">返回首页</Link>
-                    <h2 className="text-sm text-slate-500 mt-2">C++ 专家 (GESP 五级) 闯关地图</h2>
+            <div className="grid gap-5 lg:grid-cols-[0.8fr_1.2fr]">
+                <div className="rounded-xl bg-white p-5 ring-1 ring-amber-100">
+                    <label className="block text-sm font-black text-slate-700">人数 n = {n}</label>
+                    <input type="range" min="5" max="12" value={n} onChange={(event) => setN(Number(event.target.value))} className="mt-3 w-full" />
+                    <label className="mt-5 block text-sm font-black text-slate-700">报数 k = {k}</label>
+                    <input type="range" min="2" max="6" value={k} onChange={(event) => setK(Number(event.target.value))} className="mt-3 w-full" />
                 </div>
-                <div className="flex-1 overflow-y-auto w-full py-4">
-                    {sections.map(section => (
-                        <button
-                            key={section.id}
-                            onClick={() => { setActiveSection(section.id); setIsMobileMenuOpen(false); }}
-                            className={`w-full text-left px-6 py-3 transition-colors ${activeSection === section.id ? 'bg-blue-50 text-blue-700 border-r-4 border-blue-600' : 'text-slate-600 hover:bg-slate-50'}`}
-                        >
-                            {section.title}
-                        </button>
-                    ))}
-                </div>
-            </div>
-
-            {/* Main Content */}
-            <div className="flex-1 flex flex-col h-full pt-16 md:pt-0">
-                <header className="bg-white border-b border-slate-200 h-16 flex items-center px-6">
-                    <h2 className="text-lg font-bold">第 9 课：内容准备中...</h2>
-                </header>
-                <main className="flex-1 overflow-y-auto p-10 flex flex-col items-center justify-center text-center">
-                    <div className="bg-white p-20 rounded-3xl shadow-xl border-2 border-dashed border-slate-200 max-w-2xl">
-                        <BookOpen size={64} className="mx-auto text-blue-200 mb-6" />
-                        <h1 className="text-3xl font-extrabold text-slate-300">第 9 课内容正在精心打造中</h1>
-                        <p className="text-slate-400 mt-4 text-lg">这里的每一个魔法咒语都在酝酿之中，敬请期待！</p>
+                <div className="rounded-xl bg-white p-5 ring-1 ring-amber-100">
+                    <div className="mb-3 text-sm font-black text-slate-500">出圈顺序</div>
+                    <div className="flex flex-wrap gap-2">
+                        {order.map((person, index) => (
+                            <span key={`${person}-${index}`} className="rounded-lg bg-amber-100 px-3 py-2 font-mono text-sm font-black text-amber-800">
+                                {index + 1}. {person}
+                            </span>
+                        ))}
                     </div>
-                </main>
-                <footer className="h-20 bg-white border-t border-slate-200 flex items-center justify-between px-8">
-                    <button onClick={() => setActiveSection(Math.max(1, activeSection - 1))} className="text-slate-500 font-bold hover:text-blue-600 transition-colors">
-                        上一节
-                    </button>
-                    <button onClick={() => setActiveSection(Math.min(sections.length, activeSection + 1))} className="bg-blue-600 text-white px-8 py-2.5 rounded-full font-bold shadow-lg shadow-blue-200 hover:bg-blue-500 transition-all">
-                        下一节
-                    </button>
-                </footer>
+                    <p className="mt-4 text-xs font-bold text-slate-500">最后留下的人：{order[order.length - 1]}</p>
+                </div>
             </div>
         </div>
     );
-};
+}
 
-export default CppL5Lesson9;
+const quiz = [
+    {
+        question: '约瑟夫环为什么适合循环链表？',
+        answer: '尾部会回到头部',
+        reason: '报数过程是环形的，循环链表天然表达这种结构。',
+    },
+    {
+        question: '数组模拟删除后下标怎么更新？',
+        answer: '(index+k-1)%size',
+        reason: '删除后下一轮从当前位置继续，取模保证回到开头。',
+    },
+    {
+        question: '链表删除时最怕什么？',
+        answer: '丢失后继节点',
+        reason: '要先保存或接好 next，再删除当前节点。',
+    },
+];
+
+export default function CppL5Lesson9() {
+    return (
+        <CppLessonShell
+            lessonNumber={9}
+            lessonTitle="链表综合应用 (约瑟夫环)"
+            lessonSubtitle="用循环结构模拟报数淘汰"
+            accent="amber"
+            levelTitle="C++ 专家"
+            levelCode="L5"
+            sections={sections}
+            previousPath="/lesson/5/8"
+            nextPath="/lesson/5/10"
+            hero={{
+                title: '约瑟夫环是一道“结构选择题”：环形过程就要想到循环结构',
+                description: '本课把循环链表用于真实问题，也对比数组模拟写法，训练删除节点和下标更新。',
+            }}
+            goals={['能解释约瑟夫环报数规则', '能用循环链表模拟淘汰过程', '能写出数组下标模拟版本']}
+            childrenBySection={{
+                1: <JosephusLab />,
+                2: (
+                    <>
+                        <div>
+                            <h3 className="text-3xl font-black text-slate-950">问题建模：人围成一圈，报到 k 的人出圈</h3>
+                            <p className="mt-3 text-base font-semibold leading-7 text-slate-600">
+                                约瑟夫环的关键不是数学故事，而是“删除后继续从下一个人开始”。这正好对应循环链表的尾接头结构。
+                            </p>
+                        </div>
+                        <CompareTable
+                            headers={['写法', '优点', '适合场景']}
+                            rows={[
+                                ['循环链表', '删除节点贴近题意', '学习链表综合应用'],
+                                ['数组/vector', '代码短，容易调试', '数据规模不大时'],
+                                ['递推公式', '最快', '只求最后幸存者时'],
+                            ]}
+                        />
+                    </>
+                ),
+                3: (
+                    <>
+                        <div>
+                            <h3 className="text-3xl font-black text-slate-950">模拟模板：找到前驱，再删除当前节点</h3>
+                            <p className="mt-3 text-base font-semibold leading-7 text-slate-600">
+                                单向循环链表删除当前节点时，需要知道它的前驱节点 <code>prev</code>，让 <code>prev-&gt;next</code> 跳过当前节点。
+                            </p>
+                        </div>
+                        <div className="grid gap-5 lg:grid-cols-[1fr_0.9fr]">
+                            <CodeBlock>{`Node *prev = tail;
+Node *cur = head;
+
+while (cur->next != cur) {
+  for (int count = 1; count < k; count++) {
+    prev = cur;
+    cur = cur->next;
+  }
+  cout << cur->data << " ";
+  prev->next = cur->next;
+  delete cur;
+  cur = prev->next;
+}`}</CodeBlock>
+                            <StepList steps={[
+                                'prev 记录当前节点的前驱',
+                                'cur 走到要淘汰的人',
+                                'prev->next 跳过 cur',
+                                'cur 移到下一轮起点',
+                            ]} />
+                        </div>
+                    </>
+                ),
+                4: (
+                    <>
+                        <div>
+                            <h3 className="text-3xl font-black text-slate-950">数组写法：用取模处理环形位置</h3>
+                            <p className="mt-3 text-base font-semibold leading-7 text-slate-600">
+                                如果只需要模拟结果，<code>vector</code> 删除更容易写。下标更新公式是核心。
+                            </p>
+                        </div>
+                        <CodeBlock>{`vector<int> people;
+for (int i = 1; i <= n; i++) people.push_back(i);
+
+int pos = 0;
+while (!people.empty()) {
+  pos = (pos + k - 1) % people.size();
+  cout << people[pos] << " ";
+  people.erase(people.begin() + pos);
+}`}</CodeBlock>
+                        <Callout icon={RefreshCw} title="取模意识" tone="amber">
+                            每次删除后人数变少，取模必须使用当前 <code>people.size()</code>。
+                        </Callout>
+                    </>
+                ),
+                5: (
+                    <>
+                        <div>
+                            <h3 className="text-3xl font-black text-slate-950">练习与作业</h3>
+                            <p className="mt-3 text-base font-semibold leading-7 text-slate-600">
+                                约瑟夫环请至少手推一组 n=5、k=2 的过程，再写程序。
+                            </p>
+                        </div>
+                        <MiniQuiz items={quiz} />
+                        <Callout icon={ClipboardCheck} title="课后任务" tone="slate">
+                            <ul className="space-y-2">
+                                <li>输出约瑟夫环的完整出圈顺序。</li>
+                                <li>只输出最后幸存者编号。</li>
+                                <li>分别用循环链表和 vector 模拟同一组数据。</li>
+                            </ul>
+                        </Callout>
+                        <Callout icon={Search} title="下一课衔接" tone="blue">
+                            下一课学习二分查找，从“一个个模拟”切换到“每次砍掉一半”。
+                        </Callout>
+                    </>
+                ),
+            }}
+        />
+    );
+}
