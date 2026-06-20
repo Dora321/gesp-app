@@ -221,6 +221,16 @@ function assertHeroUsesPaperStats() {
     !/\d+\s*套真题/.test(hero),
     'HeroSection should not hard-code the GESP paper count.'
   );
+  assert(
+    hero.includes('useShouldAnimateCodePulse') &&
+      hero.includes('(min-width: 1024px)') &&
+      hero.includes('(prefers-reduced-motion: reduce)'),
+    'HeroSection code animation should only run on large screens and respect reduced-motion preferences.'
+  );
+  assert(
+    hero.includes('if (!shouldAnimate)') && hero.includes('setInterval'),
+    'HeroSection code animation interval should be gated by shouldAnimate.'
+  );
 }
 
 function countPaperPlaceholderMarkers(paperId) {

@@ -3,8 +3,37 @@ import { useNavigate } from 'react-router-dom';
 import { ArrowRight, BookOpen, CheckCircle2, Code2, FileQuestion, Route } from 'lucide-react';
 import { paperStats } from '../data/gesp/_stats';
 
+function useShouldAnimateCodePulse() {
+    const [shouldAnimate, setShouldAnimate] = useState(false);
+
+    useEffect(() => {
+        if (typeof window === 'undefined' || typeof window.matchMedia !== 'function') {
+            return undefined;
+        }
+
+        const largeScreenQuery = window.matchMedia('(min-width: 1024px)');
+        const reducedMotionQuery = window.matchMedia('(prefers-reduced-motion: reduce)');
+
+        const updateAnimationPreference = () => {
+            setShouldAnimate(largeScreenQuery.matches && !reducedMotionQuery.matches);
+        };
+
+        updateAnimationPreference();
+        largeScreenQuery.addEventListener('change', updateAnimationPreference);
+        reducedMotionQuery.addEventListener('change', updateAnimationPreference);
+
+        return () => {
+            largeScreenQuery.removeEventListener('change', updateAnimationPreference);
+            reducedMotionQuery.removeEventListener('change', updateAnimationPreference);
+        };
+    }, []);
+
+    return shouldAnimate;
+}
+
 const CodePulse = () => {
     const [activeLine, setActiveLine] = useState(0);
+    const shouldAnimate = useShouldAnimateCodePulse();
     const lines = [
         'int score = solve(problem);',
         'if (score >= target) pass();',
@@ -13,11 +42,16 @@ const CodePulse = () => {
     ];
 
     useEffect(() => {
+        if (!shouldAnimate) {
+            setActiveLine(0);
+            return undefined;
+        }
+
         const timer = setInterval(() => {
             setActiveLine((line) => (line + 1) % lines.length);
         }, 900);
         return () => clearInterval(timer);
-    }, [lines.length]);
+    }, [lines.length, shouldAnimate]);
 
     return (
         <div className="absolute inset-0 overflow-hidden opacity-80" aria-hidden="true">
