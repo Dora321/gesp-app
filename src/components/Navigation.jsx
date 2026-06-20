@@ -11,10 +11,12 @@ import {
     Cpu,
     Wrench
 } from 'lucide-react';
+import { usePrefersReducedMotion } from '../hooks/useShouldRunDecorativeMotion';
 
 export default function Navigation({ darkMode = false, afterLogo = null, className = '' }) {
     const navigate = useNavigate();
     const location = useLocation();
+    const prefersReducedMotion = usePrefersReducedMotion();
     const [isScrolled, setIsScrolled] = useState(false);
     const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
 
@@ -45,13 +47,19 @@ export default function Navigation({ darkMode = false, afterLogo = null, classNa
         { name: '探索内容', path: '/', scrollTo: 'explore-section', icon: <Cpu size={18} /> },
     ];
 
+    const scrollToSection = (sectionId) => {
+        document.getElementById(sectionId)?.scrollIntoView({
+            behavior: prefersReducedMotion ? 'auto' : 'smooth'
+        });
+    };
+
     const handleNavClick = (item) => {
         if (item.scrollTo && location.pathname === '/') {
-            document.getElementById(item.scrollTo)?.scrollIntoView({ behavior: 'smooth' });
+            scrollToSection(item.scrollTo);
         } else if (item.scrollTo) {
             navigate('/');
             setTimeout(() => {
-                document.getElementById(item.scrollTo)?.scrollIntoView({ behavior: 'smooth' });
+                scrollToSection(item.scrollTo);
             }, 100);
         } else {
             navigate(item.path);
@@ -155,7 +163,8 @@ export default function Navigation({ darkMode = false, afterLogo = null, classNa
             {/* Mobile Menu Overlay */}
             <div
                 className={`
-                    md:hidden fixed inset-0 z-40 bg-white/95 backdrop-blur-xl transition-all duration-500 flex flex-col items-center justify-center gap-8
+                    md:hidden fixed inset-0 z-40 bg-white/95 backdrop-blur-xl flex flex-col items-center justify-center gap-8
+                    ${prefersReducedMotion ? 'transition-none' : 'transition-all duration-500'}
                     ${isMobileMenuOpen ? 'opacity-100 translate-y-0 visible' : 'opacity-0 translate-y-10 invisible pointer-events-none'}
                 `}
             >
@@ -170,10 +179,14 @@ export default function Navigation({ darkMode = false, afterLogo = null, classNa
                             aria-label={item.name}
                             aria-current={isActive(item) ? 'page' : undefined}
                             className={`
-                                w-full py-4 rounded-2xl bg-slate-50 border border-slate-100 hover:bg-white hover:border-brand-blue/30 hover:shadow-lg transition-all duration-300 flex items-center px-6 gap-4 group
+                                w-full py-4 rounded-2xl bg-slate-50 border border-slate-100 hover:bg-white hover:border-brand-blue/30 hover:shadow-lg flex items-center px-6 gap-4 group
+                                ${prefersReducedMotion ? 'transition-none' : 'transition-all duration-300'}
                                 ${isActive(item) ? 'bg-blue-50 border-brand-blue/30 ring-1 ring-brand-blue/20' : ''}
                             `}
-                            style={{ transitionDelay: `${idx * 50}ms`, transform: isMobileMenuOpen ? 'translateY(0)' : 'translateY(20px)' }}
+                            style={{
+                                transitionDelay: prefersReducedMotion ? '0ms' : `${idx * 50}ms`,
+                                transform: prefersReducedMotion || isMobileMenuOpen ? 'translateY(0)' : 'translateY(20px)'
+                            }}
                         >
                             <div className={`
                                 p-2 rounded-full transition-colors

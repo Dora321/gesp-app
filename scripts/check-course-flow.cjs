@@ -433,6 +433,34 @@ function assertLoadingScreenUsesMotionPreference() {
   );
 }
 
+function assertNavigationRespectsMotionPreference() {
+  const navigation = read('src/components/Navigation.jsx');
+  const motionHook = read('src/hooks/useShouldRunDecorativeMotion.js');
+
+  assert(
+    motionHook.includes('export function usePrefersReducedMotion()') &&
+      motionHook.includes('prefers-reduced-motion: reduce'),
+    'Motion hook should expose a reduced-motion preference reader for interaction components.'
+  );
+  assert(
+    navigation.includes("import { usePrefersReducedMotion } from '../hooks/useShouldRunDecorativeMotion';") &&
+      navigation.includes('const prefersReducedMotion = usePrefersReducedMotion();'),
+    'Navigation should read the reduced-motion preference.'
+  );
+  assert(
+    navigation.includes('const scrollToSection =') &&
+      navigation.includes("behavior: prefersReducedMotion ? 'auto' : 'smooth'") &&
+      !navigation.includes("scrollIntoView({ behavior: 'smooth' })"),
+    'Navigation section scrolling should avoid smooth scrolling when reduced motion is requested.'
+  );
+  assert(
+    navigation.includes("prefersReducedMotion ? 'transition-none'") &&
+      navigation.includes("transitionDelay: prefersReducedMotion ? '0ms'") &&
+      navigation.includes("transform: prefersReducedMotion || isMobileMenuOpen ? 'translateY(0)'"),
+    'Navigation mobile menu transitions should respect reduced-motion preferences.'
+  );
+}
+
 function countPaperPlaceholderMarkers(paperId) {
   const [, , , level] = paperId.match(/^(\d{4})-(\d{2})-l(\d)$/) || [];
   if (!level) {
@@ -500,6 +528,7 @@ async function main() {
   assertHeroUsesPaperStats();
   assertTheLabUsesMotionPreference();
   assertLoadingScreenUsesMotionPreference();
+  assertNavigationRespectsMotionPreference();
   assertQuestionBankReviewCopy();
   assertLearningPathsUseSharedData();
   assertFooterUsesSharedData();
