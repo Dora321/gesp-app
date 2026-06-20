@@ -8,7 +8,6 @@ import {
     Code, Cpu, Settings, ArrowRight, Sparkles
 } from 'lucide-react';
 import { hardwareLessons } from '../data/lessons';
-const hardwareHero = 'https://cdn.jsdelivr.net/gh/Dora321/gesp-assets@main/images/hardware/hardware-hero.png';
 import Navigation from '../../components/Navigation';
 import Footer from '../../components/Footer';
 
@@ -100,11 +99,46 @@ const Hero = ({ onStart }) => (
                 transition={{ duration: 0.8, ease: "easeOut" }}
                 className="relative z-10 w-full h-full flex items-center justify-center"
             >
-                <img
-                    src={hardwareHero}
-                    alt="Hardware Enlightenment Robot"
-                    className="w-full h-full object-contain drop-shadow-2xl hover:scale-105 transition-transform duration-700"
-                />
+                {/* Inline PCB illustration — replaces missing hardware-hero.png */}
+                <div className="relative w-64 h-64 lg:w-80 lg:h-80 hover:scale-105 transition-transform duration-700">
+                    {/* Board glow */}
+                    <div className="absolute inset-0 bg-gradient-to-br from-blue-500/40 to-purple-500/40 rounded-3xl blur-2xl" />
+                    {/* PCB card */}
+                    <div className="relative bg-gradient-to-br from-slate-800 to-slate-900 rounded-3xl border border-slate-700 shadow-2xl w-full h-full flex items-center justify-center overflow-hidden">
+                        {/* Grid traces */}
+                        <div className="absolute inset-0 opacity-[0.15]" style={{ backgroundImage: 'linear-gradient(#38BDF8 1px, transparent 1px), linear-gradient(90deg, #38BDF8 1px, transparent 1px)', backgroundSize: '20px 20px' }} />
+                        {/* SVG circuit traces */}
+                        <svg className="absolute inset-0 w-full h-full" xmlns="http://www.w3.org/2000/svg">
+                            <line x1="15%" y1="50%" x2="35%" y2="50%" stroke="#38BDF8" strokeWidth="2" opacity="0.5"/>
+                            <line x1="65%" y1="50%" x2="85%" y2="50%" stroke="#38BDF8" strokeWidth="2" opacity="0.5"/>
+                            <line x1="50%" y1="15%" x2="50%" y2="35%" stroke="#A78BFA" strokeWidth="2" opacity="0.5"/>
+                            <line x1="50%" y1="65%" x2="50%" y2="85%" stroke="#A78BFA" strokeWidth="2" opacity="0.5"/>
+                            <line x1="15%" y1="50%" x2="15%" y2="20%" stroke="#38BDF8" strokeWidth="2" opacity="0.3"/>
+                            <line x1="85%" y1="50%" x2="85%" y2="80%" stroke="#38BDF8" strokeWidth="2" opacity="0.3"/>
+                            <circle cx="15%" cy="50%" r="4" fill="#38BDF8" opacity="0.8"/>
+                            <circle cx="85%" cy="50%" r="4" fill="#38BDF8" opacity="0.8"/>
+                            <circle cx="50%" cy="15%" r="4" fill="#A78BFA" opacity="0.8"/>
+                            <circle cx="50%" cy="85%" r="4" fill="#A78BFA" opacity="0.8"/>
+                            <circle cx="15%" cy="20%" r="3" fill="#FB923C" opacity="0.8"/>
+                            <circle cx="85%" cy="80%" r="3" fill="#FB923C" opacity="0.8"/>
+                        </svg>
+                        {/* Center chip */}
+                        <div className="relative z-10 flex flex-col items-center gap-3">
+                            <div className="w-20 h-20 lg:w-24 lg:h-24 bg-gradient-to-br from-blue-500 to-purple-600 rounded-2xl flex items-center justify-center shadow-lg shadow-blue-500/50">
+                                <Cpu size={40} className="text-white" />
+                            </div>
+                            <div className="text-center">
+                                <div className="text-blue-300 font-mono text-xs font-bold tracking-widest">ESP32-S3</div>
+                                <div className="text-slate-500 font-mono text-[10px]">240MHz · WiFi · BT</div>
+                            </div>
+                        </div>
+                        {/* Corner mounting holes */}
+                        <div className="absolute top-3 left-3 w-3 h-3 rounded-full bg-amber-400 shadow-sm shadow-amber-400/60" />
+                        <div className="absolute top-3 right-3 w-3 h-3 rounded-full bg-amber-400 shadow-sm shadow-amber-400/60" />
+                        <div className="absolute bottom-3 left-3 w-3 h-3 rounded-full bg-amber-400 shadow-sm shadow-amber-400/60" />
+                        <div className="absolute bottom-3 right-3 w-3 h-3 rounded-full bg-amber-400 shadow-sm shadow-amber-400/60" />
+                    </div>
+                </div>
             </motion.div>
 
             {/* Floating Elements decoration */}
