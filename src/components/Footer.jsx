@@ -3,6 +3,7 @@ import { useLocation, useNavigate } from 'react-router-dom';
 import { Terminal, Github, Code2, MessageCircle } from 'lucide-react';
 import { getCppLevelCatalogItem } from '../data/cppLevelCatalog';
 import { pythonFoundationLessons, pythonProjects } from '../data/pythonCourseCatalog';
+import { usePrefersReducedMotion } from '../hooks/useShouldRunDecorativeMotion';
 
 const pythonStart = pythonFoundationLessons[0];
 const aiProject = pythonProjects.find((project) => project.id === 'ai');
@@ -19,6 +20,7 @@ const courseLinks = [
 export default function Footer() {
     const navigate = useNavigate();
     const location = useLocation();
+    const prefersReducedMotion = usePrefersReducedMotion();
 
     const resourceLinks = [
         { name: 'E-Kart Lab', path: '/ekart' },
@@ -27,15 +29,21 @@ export default function Footer() {
         { name: '计算博物馆', path: '/museum' },
     ];
 
+    const scrollToSection = (sectionId) => {
+        document.getElementById(sectionId)?.scrollIntoView({
+            behavior: prefersReducedMotion ? 'auto' : 'smooth'
+        });
+    };
+
     const handleLinkClick = (item) => {
         if (item.scrollTo) {
             if (location.pathname === '/') {
-                document.getElementById(item.scrollTo)?.scrollIntoView({ behavior: 'smooth' });
+                scrollToSection(item.scrollTo);
                 return;
             }
             navigate('/');
             setTimeout(() => {
-                document.getElementById(item.scrollTo)?.scrollIntoView({ behavior: 'smooth' });
+                scrollToSection(item.scrollTo);
             }, 150);
         } else if (item.path) {
             navigate(item.path);

@@ -1,6 +1,7 @@
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
 import { ArrowRight, Bot, Cpu, Landmark, Wrench } from 'lucide-react';
+import { usePrefersReducedMotion } from '../hooks/useShouldRunDecorativeMotion';
 
 const items = [
     {
@@ -35,13 +36,16 @@ const items = [
 
 export default function ExploreMore() {
     const navigate = useNavigate();
+    const prefersReducedMotion = usePrefersReducedMotion();
 
     const handleClick = (item) => {
         if (item.route) {
             navigate(item.route);
             return;
         }
-        document.getElementById(item.target)?.scrollIntoView({ behavior: 'smooth' });
+        document.getElementById(item.target)?.scrollIntoView({
+            behavior: prefersReducedMotion ? 'auto' : 'smooth'
+        });
     };
 
     return (

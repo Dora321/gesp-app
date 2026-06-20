@@ -1,7 +1,9 @@
 import React, { useState, useEffect } from 'react';
 import { ArrowUp } from 'lucide-react';
+import { usePrefersReducedMotion } from '../hooks/useShouldRunDecorativeMotion';
 
 export default function ScrollToTop() {
+    const prefersReducedMotion = usePrefersReducedMotion();
     const [isVisible, setIsVisible] = useState(false);
 
     // Show button when page is scrolled upto given distance
@@ -13,12 +15,10 @@ export default function ScrollToTop() {
         }
     };
 
-    // Set the top cordinate to 0
-    // make scrolling smooth
     const scrollToTop = () => {
         window.scrollTo({
             top: 0,
-            behavior: "smooth"
+            behavior: prefersReducedMotion ? 'auto' : 'smooth'
         });
     };
 

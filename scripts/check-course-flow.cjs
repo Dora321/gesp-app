@@ -372,7 +372,8 @@ function assertHeroUsesPaperStats() {
     'HeroSection should not hard-code the GESP paper count.'
   );
   assert(
-    hero.includes("import { useShouldRunDecorativeMotion } from '../hooks/useShouldRunDecorativeMotion';") &&
+    hero.includes("from '../hooks/useShouldRunDecorativeMotion';") &&
+      hero.includes('useShouldRunDecorativeMotion') &&
       hero.includes('const shouldAnimate = useShouldRunDecorativeMotion();') &&
       motionHook.includes('minWidth = 1024') &&
       motionHook.includes('`(min-width: ${minWidth}px)`') &&
@@ -461,6 +462,40 @@ function assertNavigationRespectsMotionPreference() {
   );
 }
 
+function assertHomeScrollControlsRespectMotionPreference() {
+  const hero = read('src/components/HeroSection.jsx');
+  const footer = read('src/components/Footer.jsx');
+  const explore = read('src/components/ExploreMore.jsx');
+  const scrollToTop = read('src/components/ScrollToTop.jsx');
+
+  for (const [label, source] of [
+    ['HeroSection', hero],
+    ['Footer', footer],
+    ['ExploreMore', explore],
+  ]) {
+    assert(
+      source.includes("usePrefersReducedMotion") &&
+        source.includes("behavior: prefersReducedMotion ? 'auto' : 'smooth'") &&
+        !source.includes("scrollIntoView({ behavior: 'smooth' })"),
+      `${label} home scroll controls should respect reduced-motion preferences.`
+    );
+  }
+  assert(
+    scrollToTop.includes("import { usePrefersReducedMotion } from '../hooks/useShouldRunDecorativeMotion';") &&
+      scrollToTop.includes('const prefersReducedMotion = usePrefersReducedMotion();') &&
+      scrollToTop.includes("behavior: prefersReducedMotion ? 'auto' : 'smooth'") &&
+      !scrollToTop.includes('behavior: "smooth"') &&
+      !scrollToTop.includes("behavior: 'smooth'"),
+    'ScrollToTop should avoid smooth scrolling when reduced motion is requested.'
+  );
+  assert(
+    hero.includes('const scrollToLearningPaths =') &&
+      footer.includes('const scrollToSection =') &&
+      explore.includes('const prefersReducedMotion = usePrefersReducedMotion();'),
+    'Home scroll entry points should centralize their reduced-motion aware scroll behavior.'
+  );
+}
+
 function countPaperPlaceholderMarkers(paperId) {
   const [, , , level] = paperId.match(/^(\d{4})-(\d{2})-l(\d)$/) || [];
   if (!level) {
@@ -529,6 +564,7 @@ async function main() {
   assertTheLabUsesMotionPreference();
   assertLoadingScreenUsesMotionPreference();
   assertNavigationRespectsMotionPreference();
+  assertHomeScrollControlsRespectMotionPreference();
   assertQuestionBankReviewCopy();
   assertLearningPathsUseSharedData();
   assertFooterUsesSharedData();

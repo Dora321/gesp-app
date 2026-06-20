@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { ArrowRight, BookOpen, CheckCircle2, Code2, FileQuestion, Route } from 'lucide-react';
 import { paperStats } from '../data/gesp/_stats';
-import { useShouldRunDecorativeMotion } from '../hooks/useShouldRunDecorativeMotion';
+import { usePrefersReducedMotion, useShouldRunDecorativeMotion } from '../hooks/useShouldRunDecorativeMotion';
 
 const CodePulse = () => {
     const [activeLine, setActiveLine] = useState(0);
@@ -66,6 +66,13 @@ const CodePulse = () => {
 
 export default function HeroSection() {
     const navigate = useNavigate();
+    const prefersReducedMotion = usePrefersReducedMotion();
+
+    const scrollToLearningPaths = () => {
+        document.getElementById('learning-paths')?.scrollIntoView({
+            behavior: prefersReducedMotion ? 'auto' : 'smooth'
+        });
+    };
 
     return (
         <section className="relative min-h-[86vh] overflow-hidden bg-slate-50 pt-24">
@@ -96,7 +103,7 @@ export default function HeroSection() {
                             <ArrowRight size={18} />
                         </button>
                         <button
-                            onClick={() => document.getElementById('learning-paths')?.scrollIntoView({ behavior: 'smooth' })}
+                            onClick={scrollToLearningPaths}
                             className="inline-flex items-center justify-center gap-2 rounded-xl border border-slate-200 bg-white px-6 py-4 text-base font-bold text-slate-800 shadow-sm transition hover:border-blue-200 hover:bg-blue-50"
                         >
                             <BookOpen size={20} />
