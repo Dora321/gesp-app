@@ -28,7 +28,7 @@ const ClassroomPoints = () => {
         return (
             <button
                 onClick={() => setIsOpen(true)}
-                className="fixed bottom-4 left-4 z-30 w-12 h-12 bg-gradient-to-br from-indigo-500 to-purple-600 text-white rounded-full shadow-2xl flex items-center justify-center hover:scale-110 hover:from-indigo-600 hover:to-purple-700 transition-all duration-300 group sm:bottom-24 sm:left-6 sm:w-14 sm:h-14"
+                className="fixed bottom-36 right-4 z-30 w-12 h-12 bg-gradient-to-br from-indigo-500 to-purple-600 text-white rounded-full shadow-2xl flex items-center justify-center hover:scale-110 hover:from-indigo-600 hover:to-purple-700 transition-all duration-300 group sm:bottom-56 sm:right-6 sm:w-14 sm:h-14"
                 aria-label="打开课堂积分榜"
                 title="打开课堂积分榜"
             >
