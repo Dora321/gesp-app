@@ -19,18 +19,19 @@ function assert(condition, message) {
   if (!condition) fail(message);
 }
 
-function extractCatalogLessonIds(sectionId) {
+function extractCppCatalogLessonIds(sectionId, level) {
   const catalog = read('src/components/LessonCatalog.jsx');
   const sectionMatch = catalog.match(
-    new RegExp(`id: '${sectionId}',[\\s\\S]*?lessons: \\[([\\s\\S]*?)\\]\\n\\s*\\}`)
+    new RegExp(`id: '${sectionId}',[\\s\\S]*?lessons: toCppLessons\\(${level}, \\[([\\s\\S]*?)\\]\\)`)
   );
 
   if (!sectionMatch) {
-    fail(`LessonCatalog is missing section ${sectionId}.`);
+    fail(`LessonCatalog is missing C++ generated lessons for section ${sectionId}.`);
     return [];
   }
 
-  return [...sectionMatch[1].matchAll(/id: (\d+)/g)].map((match) => Number(match[1]));
+  const lessonCount = [...sectionMatch[1].matchAll(/'[^']+'/g)].length;
+  return Array.from({ length: lessonCount }, (_, index) => index + 1);
 }
 
 function extractUnavailableLessonIds(sectionId) {
@@ -134,6 +135,20 @@ function assertCatalogSubjectCopy() {
   assert(
     catalog.includes('unavailableLessonIdsBySection'),
     'LessonCatalog should track only unavailable lesson exceptions.'
+  );
+  assert(
+    /function toCppLessons\(level, titles\)/.test(catalog),
+    'LessonCatalog should generate C++ lesson ids and paths from level and title lists.'
+  );
+  for (let level = 1; level <= 6; level += 1) {
+    assert(
+      catalog.includes(`lessons: toCppLessons(${level}, [`),
+      `LessonCatalog should generate C++ level ${level} lessons with toCppLessons.`
+    );
+  }
+  assert(
+    !catalog.includes("{ id: 1, title: '你好，计算机', path: '/lesson/1/1' }"),
+    'LessonCatalog should not hard-code C++ lesson id/path objects now that toCppLessons owns the route pattern.'
   );
   assert(
     catalog.includes("import { pythonFoundationLessons } from '../data/pythonFoundationFlow';") &&
@@ -343,7 +358,7 @@ async function main() {
   ];
 
   for (const [sectionId, level] of cppCatalogSections) {
-    const catalogLessonIds = extractCatalogLessonIds(sectionId);
+    const catalogLessonIds = extractCppCatalogLessonIds(sectionId, level);
     const readyLessonIds = getActualReadyCppLessonIds(level);
     const expectedUnavailableLessonIds = catalogLessonIds.filter(id => !readyLessonIds.includes(id));
 
