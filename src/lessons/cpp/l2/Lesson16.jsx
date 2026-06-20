@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { ClipboardCheck, Clock, FileText, ListChecks, Trophy } from 'lucide-react';
+import CppL2LessonSupport from '../../../components/CppL2LessonSupport';
 import CppLessonShell, { Callout, CodeBlock, CompareTable, MiniQuiz, StepList } from '../CppLessonShell';
 
 const sections = [
@@ -74,6 +75,8 @@ export default function CppL2Lesson16() {
             sections={sections}
             previousPath="/lesson/2/15"
             nextPath="/level2"
+            topSupport={<CppL2LessonSupport lessonId={16} />}
+            bottomSupport={<CppL2LessonSupport lessonId={16} placement="bottom" />}
             hero={{
                 title: '最后一课不是结束，是把知识变成稳定得分',
                 description: '二级课程已经覆盖分支、循环、数学、数位、数组和模拟。现在要用一套考试流程，把会的东西稳定交出来。',

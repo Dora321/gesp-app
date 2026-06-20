@@ -1,5 +1,6 @@
 import React, { useMemo, useState } from 'react';
 import { ClipboardCheck, Database, ListChecks, PlayCircle, ShieldCheck } from 'lucide-react';
+import CppL2LessonSupport from '../../../components/CppL2LessonSupport';
 import CppLessonShell, { Callout, CodeBlock, CompareTable, MiniQuiz, StepList } from '../CppLessonShell';
 
 const sections = [
@@ -81,6 +82,8 @@ export default function CppL2Lesson14() {
             sections={sections}
             previousPath="/lesson/2/13"
             nextPath="/lesson/2/15"
+            topSupport={<CppL2LessonSupport lessonId={14} />}
+            bottomSupport={<CppL2LessonSupport lessonId={14} placement="bottom" />}
             hero={{
                 title: '综合模拟题的难点，是同时照看几个会变的量',
                 description: '这一课把条件、循环、数组放在同一题里训练。重点是更新顺序、历史记录和样例调试。',

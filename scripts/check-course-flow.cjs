@@ -746,7 +746,7 @@ async function main() {
     );
   }
 
-  for (let lesson = 1; lesson <= 12; lesson += 1) {
+  for (let lesson = 1; lesson <= 16; lesson += 1) {
     const support = getCppL2LessonSupport(lesson);
     assert(support?.quality?.goals?.length >= 3, `C++ L2 lesson ${lesson} needs at least 3 goals.`);
     assert(support?.quality?.deliverables?.length >= 3, `C++ L2 lesson ${lesson} needs at least 3 deliverables.`);
@@ -759,7 +759,7 @@ async function main() {
       `C++ L2 lesson ${lesson} has wrong previous link.`
     );
     assert(
-      support.next?.path === `/lesson/2/${lesson + 1}`,
+      lesson === 16 ? support.next?.path === '/question-bank' : support.next?.path === `/lesson/2/${lesson + 1}`,
       `C++ L2 lesson ${lesson} has wrong next link.`
     );
 

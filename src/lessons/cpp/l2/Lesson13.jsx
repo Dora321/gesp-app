@@ -1,5 +1,6 @@
 import React, { useMemo, useState } from 'react';
 import { ClipboardCheck, Footprints, ListChecks, PlayCircle, Route } from 'lucide-react';
+import CppL2LessonSupport from '../../../components/CppL2LessonSupport';
 import CppLessonShell, { Callout, CodeBlock, CompareTable, MiniQuiz, StepList } from '../CppLessonShell';
 
 const sections = [
@@ -83,6 +84,8 @@ export default function CppL2Lesson13() {
             sections={sections}
             previousPath="/lesson/2/12"
             nextPath="/lesson/2/14"
+            topSupport={<CppL2LessonSupport lessonId={13} />}
+            bottomSupport={<CppL2LessonSupport lessonId={13} placement="bottom" />}
             hero={{
                 title: '模拟题不神秘，就是让程序照着规则走一遍',
                 description: '从这一课开始，我们把前面的条件、循环、数组组合起来。目标不是学新语法，而是学会把题目规则拆成状态和操作。',

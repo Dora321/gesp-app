@@ -1,5 +1,6 @@
 import React, { useMemo, useState } from 'react';
 import { AlertTriangle, ClipboardCheck, ListChecks, Search, ShieldAlert } from 'lucide-react';
+import CppL2LessonSupport from '../../../components/CppL2LessonSupport';
 import CppLessonShell, { Callout, CodeBlock, CompareTable, MiniQuiz, StepList } from '../CppLessonShell';
 
 const sections = [
@@ -101,6 +102,8 @@ export default function CppL2Lesson15() {
             sections={sections}
             previousPath="/lesson/2/14"
             nextPath="/lesson/2/16"
+            topSupport={<CppL2LessonSupport lessonId={15} />}
+            bottomSupport={<CppL2LessonSupport lessonId={15} placement="bottom" />}
             hero={{
                 title: '二级真正拉开差距的，不是会不会写，而是错不错边界',
                 description: '这一课集中处理循环、数组、类型、初始化和调试流程。目标是让学生形成提交前自查习惯。',
