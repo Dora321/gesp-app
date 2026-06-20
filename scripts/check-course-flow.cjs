@@ -220,6 +220,26 @@ function assertAnnouncementUsesSharedData() {
   );
 }
 
+function assertNotFoundUsesSharedData() {
+  const notFound = read('src/pages/NotFound.jsx');
+
+  assert(
+    notFound.includes("import { pythonFoundationLessons } from '../data/pythonCourseCatalog';") &&
+      notFound.includes('const pythonStart = pythonFoundationLessons[0];'),
+    'NotFound should derive its recovery course link from the shared Python catalog.'
+  );
+  assert(
+    notFound.includes('to={pythonStart.path}') &&
+      notFound.includes('{pythonStart.catalogTitle}'),
+    'NotFound should use shared Python route and title for the recovery CTA.'
+  );
+  assert(
+    !notFound.includes('to="/python/f1"') &&
+      !notFound.includes('Python F1'),
+    'NotFound should not hard-code the first Python course route or title.'
+  );
+}
+
 function assertCatalogSubjectCopy() {
   const catalog = read('src/components/LessonCatalog.jsx');
 
@@ -424,6 +444,7 @@ async function main() {
   assertLearningPathsUseSharedData();
   assertFooterUsesSharedData();
   assertAnnouncementUsesSharedData();
+  assertNotFoundUsesSharedData();
 
   const generatedQuestionCount = paperIds.reduce((sum, id) => sum + (paperMeta[id]?.questionCount || 0), 0);
   const generatedReviewPaperCount = paperIds.filter(id => paperMeta[id]?.needsReview).length;

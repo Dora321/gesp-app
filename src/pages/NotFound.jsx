@@ -1,6 +1,9 @@
 import React from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import { ArrowLeft, BookOpen, FileQuestion, Home, SearchX } from 'lucide-react';
+import { pythonFoundationLessons } from '../data/pythonCourseCatalog';
+
+const pythonStart = pythonFoundationLessons[0];
 
 export default function NotFound() {
   const { pathname } = useLocation();
@@ -40,11 +43,11 @@ export default function NotFound() {
             去题库
           </Link>
           <Link
-            to="/python/f1"
+            to={pythonStart.path}
             className="flex items-center justify-center gap-2 rounded-lg border border-slate-700 px-5 py-3 font-bold text-slate-100 transition hover:border-emerald-400 hover:text-emerald-200"
           >
             <BookOpen size={18} />
-            Python F1
+            {pythonStart.catalogTitle}
           </Link>
         </div>
 
