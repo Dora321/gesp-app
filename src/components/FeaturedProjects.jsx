@@ -17,6 +17,7 @@ function getPythonProjectCard(projectId, overrides) {
 }
 
 const cppLevel7 = getCppLevelCatalogItem(7);
+const pythonProjectStart = getPythonProjectSupport('a1');
 
 const projects = [
     getPythonProjectCard('a2', {
@@ -68,7 +69,9 @@ export default function FeaturedProjects() {
                         </p>
                     </div>
                     <button
-                        onClick={() => navigate('/python/a1')}
+                        type="button"
+                        onClick={() => navigate(pythonProjectStart.current.path)}
+                        aria-label={`从${pythonProjectStart.current.title}进入 Python 项目线`}
                         className="flex items-center gap-2 font-bold text-brand-blue hover:text-blue-600 transition-colors group"
                     >
                         进入 Python 项目线 <ChevronRight className="group-hover:translate-x-1 transition-transform" />

@@ -90,10 +90,16 @@ function assertFeaturedProjectsUseSharedData() {
   assert(
     featuredProjects.includes("getPythonProjectCard('a2'") &&
       featuredProjects.includes("getPythonProjectCard('morse'") &&
+      featuredProjects.includes("const pythonProjectStart = getPythonProjectSupport('a1');") &&
       featuredProjects.includes('support.current.title') &&
       featuredProjects.includes('support.brief.duration') &&
       featuredProjects.includes('support.current.path'),
     'FeaturedProjects Python cards should derive title, duration and path from Python project support data.'
+  );
+  assert(
+    featuredProjects.includes('navigate(pythonProjectStart.current.path)') &&
+      featuredProjects.includes('pythonProjectStart.current.title'),
+    'FeaturedProjects Python project line CTA should derive its route and label from the first project.'
   );
   assert(
     featuredProjects.includes('getCppLevelCatalogItem(7)') &&
@@ -107,6 +113,7 @@ function assertFeaturedProjectsUseSharedData() {
     "path: '/python/a2'",
     "path: '/python/morse'",
     "path: '/level7'",
+    "navigate('/python/a1')",
   ]) {
     assert(
       !featuredProjects.includes(staleSnippet),
@@ -396,6 +403,36 @@ function assertTheLabUsesMotionPreference() {
   );
 }
 
+function assertLoadingScreenUsesMotionPreference() {
+  const loading = read('src/components/LoadingScreen.jsx');
+
+  assert(
+    loading.includes("import { useShouldRunDecorativeMotion } from '../hooks/useShouldRunDecorativeMotion';") &&
+      loading.includes('const shouldAnimateDecorations = useShouldRunDecorativeMotion();'),
+    'LoadingScreen should use the shared decorative motion preference hook.'
+  );
+  assert(
+    loading.includes('if (!shouldAnimateDecorations)') &&
+      loading.includes("setDots('')") &&
+      loading.includes('setInterval') &&
+      loading.includes('[shouldAnimateDecorations]'),
+    'LoadingScreen animated dots should only run when decorative motion is allowed.'
+  );
+  assert(
+    loading.includes('!canvas || !shouldAnimateDecorations') &&
+      loading.includes('requestAnimationFrame(draw)'),
+    'LoadingScreen canvas particles should not start when decorative motion is disabled.'
+  );
+  assert(
+    loading.includes("shouldAnimateDecorations ? 'loader-spin") &&
+      loading.includes("shouldAnimateDecorations ? 'loader-pulse") &&
+      loading.includes("shouldAnimateDecorations ? 'loader-shimmer") &&
+      loading.includes("shouldAnimateDecorations ? 'loader-progress") &&
+      loading.includes("width: shouldAnimateDecorations ? undefined : '70%'"),
+    'LoadingScreen CSS animations should be gated by decorative motion preference.'
+  );
+}
+
 function countPaperPlaceholderMarkers(paperId) {
   const [, , , level] = paperId.match(/^(\d{4})-(\d{2})-l(\d)$/) || [];
   if (!level) {
@@ -462,6 +499,7 @@ async function main() {
   assertCatalogSubjectCopy();
   assertHeroUsesPaperStats();
   assertTheLabUsesMotionPreference();
+  assertLoadingScreenUsesMotionPreference();
   assertQuestionBankReviewCopy();
   assertLearningPathsUseSharedData();
   assertFooterUsesSharedData();

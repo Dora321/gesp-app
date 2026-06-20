@@ -1,4 +1,5 @@
 import React, { useEffect, useRef, useState } from 'react';
+import { useShouldRunDecorativeMotion } from '../hooks/useShouldRunDecorativeMotion';
 
 /**
  * LoadingScreen — A premium, cinematic loading animation.
@@ -15,20 +16,26 @@ import React, { useEffect, useRef, useState } from 'react';
  */
 export default function LoadingScreen({ message = '正在为您加载...', variant = 'dark' }) {
   const canvasRef = useRef(null);
+  const shouldAnimateDecorations = useShouldRunDecorativeMotion();
   const [dots, setDots] = useState('');
 
   // Animated dots
   useEffect(() => {
+    if (!shouldAnimateDecorations) {
+      setDots('');
+      return undefined;
+    }
+
     const id = setInterval(() => {
       setDots((prev) => (prev.length >= 3 ? '' : prev + '.'));
     }, 400);
     return () => clearInterval(id);
-  }, []);
+  }, [shouldAnimateDecorations]);
 
   // Canvas particles
   useEffect(() => {
     const canvas = canvasRef.current;
-    if (!canvas) return;
+    if (!canvas || !shouldAnimateDecorations) return undefined;
     const ctx = canvas.getContext('2d');
     let animId;
     let particles = [];
@@ -112,7 +119,7 @@ export default function LoadingScreen({ message = '正在为您加载...', varia
       window.removeEventListener('resize', resize);
       cancelAnimationFrame(animId);
     };
-  }, []);
+  }, [shouldAnimateDecorations]);
 
   const isDark = variant === 'dark';
 
@@ -156,7 +163,7 @@ export default function LoadingScreen({ message = '正在为您加载...', varia
             style={{
               borderTopColor: isDark ? '#818cf8' : '#6366f1',
               borderRightColor: isDark ? 'rgba(129,140,248,0.3)' : 'rgba(99,102,241,0.3)',
-              animation: 'loader-spin 2.5s linear infinite',
+              animation: shouldAnimateDecorations ? 'loader-spin 2.5s linear infinite' : 'none',
               boxShadow: isDark
                 ? '0 0 30px rgba(129,140,248,0.25), inset 0 0 30px rgba(129,140,248,0.05)'
                 : '0 0 20px rgba(99,102,241,0.15)',
@@ -169,7 +176,7 @@ export default function LoadingScreen({ message = '正在为您加载...', varia
               inset: '10px',
               borderBottomColor: isDark ? '#a78bfa' : '#8b5cf6',
               borderLeftColor: isDark ? 'rgba(167,139,250,0.3)' : 'rgba(139,92,246,0.3)',
-              animation: 'loader-spin 2s linear infinite reverse',
+              animation: shouldAnimateDecorations ? 'loader-spin 2s linear infinite reverse' : 'none',
               boxShadow: isDark
                 ? '0 0 25px rgba(167,139,250,0.2), inset 0 0 25px rgba(167,139,250,0.05)'
                 : '0 0 15px rgba(139,92,246,0.12)',
@@ -181,7 +188,7 @@ export default function LoadingScreen({ message = '正在为您加载...', varia
             style={{
               inset: '22px',
               borderTopColor: isDark ? '#c4b5fd' : '#a78bfa',
-              animation: 'loader-spin 1.5s linear infinite',
+              animation: shouldAnimateDecorations ? 'loader-spin 1.5s linear infinite' : 'none',
               boxShadow: isDark
                 ? '0 0 20px rgba(196,181,253,0.15)'
                 : '0 0 10px rgba(167,139,250,0.1)',
@@ -197,7 +204,7 @@ export default function LoadingScreen({ message = '正在为您加载...', varia
                 background: isDark
                   ? 'radial-gradient(circle, rgba(129,140,248,0.3) 0%, transparent 70%)'
                   : 'radial-gradient(circle, rgba(99,102,241,0.2) 0%, transparent 70%)',
-                animation: 'loader-pulse 2s ease-in-out infinite',
+                animation: shouldAnimateDecorations ? 'loader-pulse 2s ease-in-out infinite' : 'none',
               }}
             />
             <img
@@ -224,7 +231,7 @@ export default function LoadingScreen({ message = '正在为您加载...', varia
               backgroundSize: '200% 100%',
               WebkitBackgroundClip: 'text',
               WebkitTextFillColor: 'transparent',
-              animation: 'loader-shimmer 2s ease-in-out infinite',
+              animation: shouldAnimateDecorations ? 'loader-shimmer 2s ease-in-out infinite' : 'none',
             }}
           >
             {message}{dots}
@@ -243,7 +250,8 @@ export default function LoadingScreen({ message = '正在为您加载...', varia
                 background: isDark
                   ? 'linear-gradient(90deg, #818cf8, #c084fc)'
                   : 'linear-gradient(90deg, #6366f1, #8b5cf6)',
-                animation: 'loader-progress 1.8s ease-in-out infinite',
+                animation: shouldAnimateDecorations ? 'loader-progress 1.8s ease-in-out infinite' : 'none',
+                width: shouldAnimateDecorations ? undefined : '70%',
               }}
             />
           </div>
