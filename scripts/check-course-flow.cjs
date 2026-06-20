@@ -79,33 +79,38 @@ function assertFileContains(relativePath, pattern, message) {
   assert(pattern.test(text), `${relativePath}: ${message}`);
 }
 
-function extractObjectField(objectText, fieldName) {
-  const match = objectText.match(new RegExp(`${fieldName}: '([^']+)'`));
-  return match?.[1] ?? null;
-}
-
-function assertFeaturedProjectCard(projectId, expected) {
+function assertFeaturedProjectsUseSharedData() {
   const featuredProjects = read('src/components/FeaturedProjects.jsx');
-  const projectMatch = featuredProjects.match(
-    new RegExp(`\\{\\s*id: '${projectId}',[\\s\\S]*?\\n\\s*\\}`)
+
+  assert(
+    featuredProjects.includes("import { getCppLevelCatalogItem } from '../data/cppLevelCatalog';") &&
+      featuredProjects.includes("import { getPythonProjectSupport } from '../data/pythonProjectFlow';"),
+    'FeaturedProjects should derive featured project routes and copy from shared course data.'
   );
-
-  assert(projectMatch, `FeaturedProjects is missing project ${projectId}.`);
-  if (!projectMatch) return;
-
-  for (const [fieldName, expectedValue] of Object.entries(expected.fields)) {
-    const actualValue = extractObjectField(projectMatch[0], fieldName);
+  assert(
+    featuredProjects.includes("getPythonProjectCard('a2'") &&
+      featuredProjects.includes("getPythonProjectCard('morse'") &&
+      featuredProjects.includes('support.current.title') &&
+      featuredProjects.includes('support.brief.duration') &&
+      featuredProjects.includes('support.current.path'),
+    'FeaturedProjects Python cards should derive title, duration and path from Python project support data.'
+  );
+  assert(
+    featuredProjects.includes('getCppLevelCatalogItem(7)') &&
+      featuredProjects.includes('path: cppLevel7.path') &&
+      featuredProjects.includes('cppLevel7.title'),
+    'FeaturedProjects C++ algorithm card should derive its level route from the C++ catalog.'
+  );
+  for (const staleSnippet of [
+    "title: '2048 游戏工坊'",
+    "title: 'A8 摩斯电码'",
+    "path: '/python/a2'",
+    "path: '/python/morse'",
+    "path: '/level7'",
+  ]) {
     assert(
-      actualValue === expectedValue,
-      `FeaturedProjects project ${projectId} should use ${fieldName}=${expectedValue}, got ${actualValue}.`
-    );
-  }
-
-  for (const descSnippet of expected.descIncludes ?? []) {
-    const desc = extractObjectField(projectMatch[0], 'desc') ?? '';
-    assert(
-      desc.includes(descSnippet),
-      `FeaturedProjects project ${projectId} description should mention ${descSnippet}.`
+      !featuredProjects.includes(staleSnippet),
+      `FeaturedProjects should not hard-code stale card data: ${staleSnippet}`
     );
   }
 }
@@ -367,30 +372,7 @@ async function main() {
     }
   }
 
-  assertFeaturedProjectCard('game2048', {
-    fields: {
-      title: '2048 游戏工坊',
-      time: '3-4课时',
-      path: '/python/a2',
-    },
-    descIncludes: ['二维列表', '移动', '合并'],
-  });
-  assertFeaturedProjectCard('morse', {
-    fields: {
-      title: 'A8 摩斯电码',
-      time: '2-3课时',
-      path: '/python/morse',
-    },
-    descIncludes: ['字典映射', '摩斯电码'],
-  });
-  assertFeaturedProjectCard('bfs-maze', {
-    fields: {
-      title: '图搜索与迷宫寻路',
-      time: '4-5课时',
-      path: '/level7',
-    },
-    descIncludes: ['C++ 七级', 'BFS', '最短路'],
-  });
+  assertFeaturedProjectsUseSharedData();
 
   assertLearningPathRoute('gesp', '/question-bank');
 

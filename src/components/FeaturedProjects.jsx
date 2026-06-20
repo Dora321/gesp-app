@@ -1,48 +1,56 @@
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
 import { Gamepad2, Shield, GitBranch, Star, Clock, ChevronRight, Play } from 'lucide-react';
+import { getCppLevelCatalogItem } from '../data/cppLevelCatalog';
+import { getPythonProjectSupport } from '../data/pythonProjectFlow';
+
+function getPythonProjectCard(projectId, overrides) {
+    const support = getPythonProjectSupport(projectId);
+
+    return {
+        ...overrides,
+        title: support.current.title,
+        desc: `${support.brief.outcome}，产出：${support.brief.artifact}。`,
+        time: support.brief.duration,
+        path: support.current.path
+    };
+}
+
+const cppLevel7 = getCppLevelCatalogItem(7);
+
+const projects = [
+    getPythonProjectCard('a2', {
+        id: 'game2048',
+        category: 'GAME DEV',
+        difficulty: 2,
+        icon: <Gamepad2 size={24} className="text-white" />,
+        color: 'from-orange-400 to-red-500',
+        bg: 'bg-orange-500/10',
+    }),
+    getPythonProjectCard('morse', {
+        id: 'morse',
+        category: 'SIGNAL CODE',
+        difficulty: 1,
+        icon: <Shield size={24} className="text-white" />,
+        color: 'from-blue-400 to-indigo-500',
+        bg: 'bg-blue-500/10',
+    }),
+    {
+        id: 'bfs-maze',
+        category: 'ALGORITHM',
+        title: '图搜索与迷宫寻路',
+        desc: `${cppLevel7.title}专题，用 BFS 理解无权最短路和迷宫分层扩散。`,
+        difficulty: 4,
+        time: '4-5课时',
+        icon: <GitBranch size={24} className="text-white" />,
+        color: 'from-emerald-400 to-teal-500',
+        bg: 'bg-emerald-500/10',
+        path: cppLevel7.path
+    }
+];
 
 export default function FeaturedProjects() {
     const navigate = useNavigate();
-
-    const projects = [
-        {
-            id: 'game2048',
-            category: 'GAME DEV',
-            title: '2048 游戏工坊',
-            desc: '用二维列表表示棋盘，拆出移动、合并和随机生成方块的核心逻辑。',
-            difficulty: 2,
-            time: '3-4课时',
-            icon: <Gamepad2 size={24} className="text-white" />,
-            color: 'from-orange-400 to-red-500',
-            bg: 'bg-orange-500/10',
-            path: '/python/a2'
-        },
-        {
-            id: 'morse',
-            category: 'SIGNAL CODE',
-            title: 'A8 摩斯电码',
-            desc: '用字典映射把文本和摩斯电码互相转换，封装成可测试的小工具。',
-            difficulty: 1,
-            time: '2-3课时',
-            icon: <Shield size={24} className="text-white" />,
-            color: 'from-blue-400 to-indigo-500',
-            bg: 'bg-blue-500/10',
-            path: '/python/morse'
-        },
-        {
-            id: 'bfs-maze',
-            category: 'ALGORITHM',
-            title: '图搜索与迷宫寻路',
-            desc: '进入 C++ 七级图论专题，用 BFS 理解无权最短路和迷宫分层扩散。',
-            difficulty: 4,
-            time: '4-5课时',
-            icon: <GitBranch size={24} className="text-white" />,
-            color: 'from-emerald-400 to-teal-500',
-            bg: 'bg-emerald-500/10',
-            path: '/level7'
-        }
-    ];
 
     return (
         <section className="py-24 bg-white relative overflow-hidden">
