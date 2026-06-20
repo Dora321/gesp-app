@@ -1,4 +1,5 @@
-import { Boxes, Clock, PackageCheck, UsersRound } from 'lucide-react';
+import { ArrowRight, BookOpenCheck, Boxes, Clock, PackageCheck, UsersRound } from 'lucide-react';
+import { Link } from 'react-router-dom';
 import { getPythonProjectSupport } from '../data/pythonProjectFlow';
 import LessonNextSteps from './LessonNextSteps';
 import LessonQualityBar from './LessonQualityBar';
@@ -9,12 +10,14 @@ const themeStyles = {
     muted: 'text-slate-500',
     tile: 'border-slate-200 bg-slate-50',
     icon: 'bg-blue-600 text-white',
+    prereqLink: 'border-blue-100 bg-blue-50 text-blue-800 hover:border-blue-200 hover:bg-blue-100',
   },
   dark: {
     shell: 'border-slate-700 bg-slate-900/80 text-white',
     muted: 'text-slate-400',
     tile: 'border-slate-700 bg-slate-800/70',
     icon: 'bg-cyan-500 text-slate-950',
+    prereqLink: 'border-cyan-500/20 bg-cyan-500/10 text-cyan-100 hover:border-cyan-500/40 hover:bg-cyan-500/20',
   },
 };
 
@@ -46,6 +49,28 @@ function ProjectBrief({ support, theme = 'light' }) {
           </div>
         ))}
       </div>
+      {support.prerequisiteLinks?.length > 0 && (
+        <div className={`mt-3 rounded-lg border p-3 ${styles.tile}`}>
+          <div className="mb-2 flex items-center gap-2 text-sm font-black">
+            <span className={`flex h-7 w-7 items-center justify-center rounded-md ${styles.icon}`}>
+              <BookOpenCheck size={15} />
+            </span>
+            建议先复习
+          </div>
+          <div className="flex flex-wrap gap-2">
+            {support.prerequisiteLinks.map((item) => (
+              <Link
+                key={`${item.path}-${item.label}`}
+                to={item.path}
+                className={`inline-flex items-center gap-1.5 rounded-md border px-3 py-1.5 text-sm font-bold transition ${styles.prereqLink}`}
+              >
+                {item.label}
+                <ArrowRight size={13} />
+              </Link>
+            ))}
+          </div>
+        </div>
+      )}
     </section>
   );
 }

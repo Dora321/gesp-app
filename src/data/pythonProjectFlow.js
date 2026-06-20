@@ -1,9 +1,22 @@
 export { pythonProjects } from './pythonCourseCatalog.js';
-import { pythonProjects } from './pythonCourseCatalog.js';
+import { pythonFoundationLessons, pythonProjects } from './pythonCourseCatalog.js';
+
+const foundationLessonMap = Object.fromEntries(pythonFoundationLessons.map((lesson) => [lesson.id, lesson]));
+
+function toPrerequisiteLinks(prerequisiteIds = []) {
+  return prerequisiteIds.map((id) => {
+    const lesson = foundationLessonMap[id];
+    return {
+      label: lesson?.catalogTitle ? `复习 ${lesson.catalogTitle}` : `复习 ${id.toUpperCase()}`,
+      path: lesson?.path || '/python/f1',
+    };
+  });
+}
 
 const projectDetails = {
   a1: {
     accent: 'indigo',
+    prerequisiteIds: ['f2', 'f3', 'f4'],
     brief: {
       audience: '学完 Python 基础语法，准备进入算法和项目的学生',
       outcome: '能用枚举、贪心、递归描述解决问题的基本策略',
@@ -17,6 +30,7 @@ const projectDetails = {
   },
   a2: {
     accent: 'teal',
+    prerequisiteIds: ['f2', 'f3', 'f4', 'f6'],
     brief: {
       audience: '已经掌握列表、循环和函数的学生',
       outcome: '做出一个可玩的 2048 核心逻辑原型',
@@ -30,6 +44,7 @@ const projectDetails = {
   },
   ai: {
     accent: 'indigo',
+    prerequisiteIds: ['f2', 'f3', 'f4'],
     brief: {
       audience: '想了解 AI 但还没系统学机器学习的学生',
       outcome: '理解 KNN、神经网络、线性回归的直观含义',
@@ -43,19 +58,21 @@ const projectDetails = {
   },
   crawler: {
     accent: 'teal',
+    prerequisiteIds: ['f2', 'f3', 'f4'],
     brief: {
-      audience: '会函数和文件操作，想做自动化工具的学生',
+      audience: '会函数、字典和字符串处理，想做自动化工具的学生',
       outcome: '理解 HTTP 请求、网页结构和基础爬取流程',
       artifact: '一个遵守规则的网页信息抓取小工具',
       duration: '3-4 课时',
     },
     goals: ['理解请求、响应、状态码和请求头', '能用 Python 获取网页并解析目标信息', '建立爬虫伦理和 robots 规则意识'],
-    deliverables: ['完成一个网页请求实验', '解析并保存一段公开网页数据', '写出爬虫使用边界说明'],
+    deliverables: ['完成一个网页请求实验', '解析并整理一段公开网页数据', '写出爬虫使用边界说明'],
     checks: ['能解释 200、404、403 的含义', '能说明为什么要设置 User-Agent', '能区分公开数据练习和不应抓取的数据'],
-    practice: ['抓取一个公开页面标题并保存到文本文件。', '给项目写 3 条爬虫安全和合规规则。'],
+    practice: ['抓取一个公开页面标题，并用变量或列表整理结果。', '给项目写 3 条爬虫安全和合规规则。'],
   },
   'binary-search': {
     accent: 'indigo',
+    prerequisiteIds: ['f2', 'f3'],
     brief: {
       audience: '理解列表和循环，准备学习高效查找的学生',
       outcome: '掌握二分搜索的边界更新和效率优势',
@@ -69,6 +86,7 @@ const projectDetails = {
   },
   encryption: {
     accent: 'teal',
+    prerequisiteIds: ['f2', 'f3', 'f4'],
     brief: {
       audience: '对密码、字符和字符串处理感兴趣的学生',
       outcome: '做出凯撒密码类加密和解密工具',
@@ -82,6 +100,7 @@ const projectDetails = {
   },
   sorting: {
     accent: 'blue',
+    prerequisiteIds: ['f2', 'f3', 'f4'],
     brief: {
       audience: '已经学过列表、循环和比较的学生',
       outcome: '理解常见排序算法的过程和差异',
@@ -95,6 +114,7 @@ const projectDetails = {
   },
   'file-ops': {
     accent: 'indigo',
+    prerequisiteIds: ['f1', 'f3', 'f4'],
     brief: {
       audience: '想把程序结果保存下来、做小工具的学生',
       outcome: '掌握文本文件读取、写入和 with 语句',
@@ -108,6 +128,7 @@ const projectDetails = {
   },
   morse: {
     accent: 'teal',
+    prerequisiteIds: ['f3', 'f4'],
     brief: {
       audience: '学过字典、字符串和函数的学生',
       outcome: '做出文本和摩斯电码互相转换的小工具',
@@ -150,12 +171,16 @@ export function getPythonProjectSupport(projectId) {
   const previous = pythonProjects[index - 1];
   const next = pythonProjects[index + 1];
   const details = projectDetails[projectId];
+  const foundationExit = pythonFoundationLessons[pythonFoundationLessons.length - 1];
 
   if (!current || !details) return null;
+
+  const prerequisiteLinks = toPrerequisiteLinks(details.prerequisiteIds);
 
   return {
     current,
     brief: details.brief,
+    prerequisiteLinks,
     quality: {
       accent: details.accent,
       goals: details.goals,
@@ -168,7 +193,11 @@ export function getPythonProjectSupport(projectId) {
           path: previous.path,
           reason: previousReason[projectId],
         }
-      : null,
+      : {
+          title: foundationExit.title,
+          path: foundationExit.path,
+          reason: '项目线建立在基础语法之上，遇到卡点先回 F7 复盘整条基础线。',
+        },
     next: next
       ? {
           title: next.title,
@@ -180,7 +209,7 @@ export function getPythonProjectSupport(projectId) {
           path: '/',
           reason: nextReason[projectId],
         },
-    practiceLinks: [{ label: '回到 Python 基础线复习前置知识', path: '/python/f1' }],
+    practiceLinks: prerequisiteLinks,
     reviewTasks: details.practice,
   };
 }

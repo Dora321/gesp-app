@@ -552,6 +552,18 @@ function assertPythonFoundationSupportUsesQualityBar() {
   );
 }
 
+function assertPythonProjectSupportUsesPrerequisites() {
+  const projectSupport = read('src/components/PythonProjectSupport.jsx');
+
+  assert(
+    projectSupport.includes('support.prerequisiteLinks') &&
+      projectSupport.includes('建议先复习') &&
+      projectSupport.includes("import { Link } from 'react-router-dom';") &&
+      projectSupport.includes('BookOpenCheck'),
+    'PythonProjectSupport should surface project-specific prerequisite review links.'
+  );
+}
+
 function assertSameNumber(label, actual, expected) {
   assert(actual === expected, `${label} mismatch. expected ${expected}, got ${actual}`);
 }
@@ -563,7 +575,7 @@ async function main() {
     { paperIds, paperMeta },
     { paperStats },
     { pythonFoundationLessons, getPythonFoundationSupport },
-    { pythonProjects },
+    { pythonProjects, getPythonProjectSupport },
   ] = await Promise.all([
     import(pathToFileURL(path.join(srcRoot, 'data', 'cppLevelFlow.js')).href),
     import(pathToFileURL(path.join(srcRoot, 'data', 'cppL1CourseFlow.js')).href),
@@ -585,6 +597,7 @@ async function main() {
   assertAnnouncementUsesSharedData();
   assertNotFoundUsesSharedData();
   assertPythonFoundationSupportUsesQualityBar();
+  assertPythonProjectSupportUsesPrerequisites();
 
   const generatedQuestionCount = paperIds.reduce((sum, id) => sum + (paperMeta[id]?.questionCount || 0), 0);
   const generatedReviewPaperCount = paperIds.filter(id => paperMeta[id]?.needsReview).length;
@@ -728,6 +741,41 @@ async function main() {
   ];
 
   for (const [projectId, fileName] of projectPages) {
+    const support = getPythonProjectSupport(projectId);
+    assert(
+      projectId !== 'a1' || support?.previous?.path === '/python/f7',
+      'Python project A1 should link back to Python F7 as the foundation-to-project bridge.'
+    );
+    assert(support?.prerequisiteLinks?.length >= 2, `Python project ${projectId} needs at least 2 prerequisite review links.`);
+    const prerequisitePaths = new Set(support?.prerequisiteLinks?.map((item) => item.path));
+    assert(
+      support?.practiceLinks?.length === support?.prerequisiteLinks?.length,
+      `Python project ${projectId} practice links should mirror prerequisite review links.`
+    );
+    assert(
+      support?.practiceLinks?.every((item) => prerequisitePaths.has(item.path)),
+      `Python project ${projectId} practice links should point to its prerequisite review lessons.`
+    );
+    assert(
+      !(
+        support?.practiceLinks?.length === 1 &&
+        support.practiceLinks[0]?.path === '/python/f1'
+      ),
+      `Python project ${projectId} should not fall back to a single generic F1 review link.`
+    );
+    if (projectId === 'crawler') {
+      const crawlerText = [
+        support.brief.audience,
+        support.brief.artifact,
+        ...support.quality.deliverables,
+        ...support.reviewTasks,
+      ].join('\n');
+      assert(
+        !crawlerText.includes('文件操作') && !crawlerText.includes('保存到文本文件'),
+        'Python crawler should not require file operations before the A9 file-ops project.'
+      );
+    }
+
     const pagePath = `src/courses/python/advanced/${fileName}`;
     const page = read(pagePath);
     assert(
