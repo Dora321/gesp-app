@@ -33,32 +33,41 @@ function extractCatalogPaths(sectionId) {
   return [...sectionMatch[1].matchAll(/path: '([^']+)'/g)].map((match) => match[1]);
 }
 
+function extractCatalogLessonIds(sectionId) {
+  const catalog = read('src/components/LessonCatalog.jsx');
+  const sectionMatch = catalog.match(
+    new RegExp(`id: '${sectionId}',[\\s\\S]*?lessons: \\[([\\s\\S]*?)\\]\\n\\s*\\}`)
+  );
+
+  if (!sectionMatch) {
+    fail(`LessonCatalog is missing section ${sectionId}.`);
+    return [];
+  }
+
+  return [...sectionMatch[1].matchAll(/id: (\d+)/g)].map((match) => Number(match[1]));
+}
+
 function extractFlowPaths(relativePath) {
   return [...read(relativePath).matchAll(/\{ id: '[^']+', title: '[^']+', path: '([^']+)' \}/g)].map(
     (match) => match[1]
   );
 }
 
-function extractReadyLessonIds(sectionId) {
+function extractUnavailableLessonIds(sectionId) {
   const catalog = read('src/components/LessonCatalog.jsx');
-  const readyMapMatch = catalog.match(/const readyLessonIdsBySection = \{([\s\S]*?)\n\};/);
+  const unavailableMapMatch = catalog.match(/const unavailableLessonIdsBySection = \{([\s\S]*?)\n\};/);
 
-  if (!readyMapMatch) {
-    fail('LessonCatalog is missing readyLessonIdsBySection.');
+  if (!unavailableMapMatch) {
+    fail('LessonCatalog is missing unavailableLessonIdsBySection.');
     return [];
   }
 
   const escapedSectionId = sectionId.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
-  const sectionMatch = readyMapMatch[1].match(
+  const sectionMatch = unavailableMapMatch[1].match(
     new RegExp(`['"]?${escapedSectionId}['"]?: \\[([^\\]]*)\\]`)
   );
 
-  if (!sectionMatch) {
-    fail(`readyLessonIdsBySection is missing ${sectionId}.`);
-    return [];
-  }
-
-  return [...sectionMatch[1].matchAll(/\d+/g)].map((match) => Number(match[0]));
+  return sectionMatch ? [...sectionMatch[1].matchAll(/\d+/g)].map((match) => Number(match[0])) : [];
 }
 
 function getActualReadyCppLessonIds(level) {
@@ -138,6 +147,14 @@ function assertLearningPathRoute(pathId, expectedRoute) {
 function assertCatalogSubjectCopy() {
   const catalog = read('src/components/LessonCatalog.jsx');
 
+  assert(
+    !catalog.includes('readyLessonIdsBySection'),
+    'LessonCatalog should not duplicate every ready lesson id in a hard-coded allowlist.'
+  );
+  assert(
+    catalog.includes('unavailableLessonIdsBySection'),
+    'LessonCatalog should track only unavailable lesson exceptions.'
+  );
   assert(
     /function getSubjectSummaryStats\(subject\)/.test(catalog),
     'LessonCatalog should derive subject summary stats from lesson sections.'
@@ -327,10 +344,14 @@ async function main() {
   ];
 
   for (const [sectionId, level] of cppCatalogSections) {
+    const catalogLessonIds = extractCatalogLessonIds(sectionId);
+    const readyLessonIds = getActualReadyCppLessonIds(level);
+    const expectedUnavailableLessonIds = catalogLessonIds.filter(id => !readyLessonIds.includes(id));
+
     assertSameArray(
-      `C++ ${sectionId} ready lesson status`,
-      extractReadyLessonIds(sectionId),
-      getActualReadyCppLessonIds(level)
+      `C++ ${sectionId} unavailable lesson status`,
+      extractUnavailableLessonIds(sectionId),
+      expectedUnavailableLessonIds
     );
   }
 

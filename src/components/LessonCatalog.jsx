@@ -262,19 +262,11 @@ const lessonSections = [
     }
 ];
 
-const readyLessonIdsBySection = {
-    basic: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16],
-    advanced: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16],
-    expert: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16],
-    senior: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16],
-    expert5: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16],
-    master: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16],
-    'python-basic': [1, 2, 3, 4, 5, 6, 7],
-    'python-advanced': [1, 2, 3, 4, 5, 6, 7, 8, 9],
+const unavailableLessonIdsBySection = {
 };
 
 function isLessonReady(sectionId, lessonId) {
-    return readyLessonIdsBySection[sectionId]?.includes(lessonId) ?? true;
+    return !unavailableLessonIdsBySection[sectionId]?.includes(lessonId);
 }
 
 const colorMap = {
