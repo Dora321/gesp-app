@@ -125,6 +125,44 @@ function assertLearningPathRoute(pathId, expectedRoute) {
   );
 }
 
+function assertLearningPathsUseSharedData() {
+  const learningPaths = read('src/components/LearningPaths.jsx');
+
+  assert(
+    learningPaths.includes("import { getCppLevelCatalogItem } from '../data/cppLevelCatalog';") &&
+      learningPaths.includes("import { paperStats } from '../data/gesp/_stats';") &&
+      learningPaths.includes("import { pythonFoundationLessons, pythonProjects } from '../data/pythonCourseCatalog';"),
+    'LearningPaths should derive route steps from lightweight course catalog and paper data.'
+  );
+  assert(
+    learningPaths.includes('cppStart.title') &&
+      learningPaths.includes('cppEnd.title') &&
+      learningPaths.includes('paperStats.firstYear') &&
+      learningPaths.includes('paperStats.latestYear') &&
+      learningPaths.includes('paperStats.reviewPaperCount'),
+    'LearningPaths GESP path should stay aligned with C++ level and generated paper stats.'
+  );
+  assert(
+    learningPaths.includes('firstPythonLesson.path') &&
+      learningPaths.includes('firstPythonProject.path') &&
+      learningPaths.includes('lastPythonLesson.title') &&
+      learningPaths.includes('lastPythonProject.title'),
+    'LearningPaths Python paths should stay aligned with shared Python flow data.'
+  );
+  for (const staleStep of [
+    "steps: ['C++ 等级课程', '真题分卷练习', '解析复盘与错题回看']",
+    "steps: ['输入输出与变量', '条件循环与容器', '小项目巩固语法']",
+    "steps: ['算法思维入门', '游戏、AI 与爬虫项目', '算法作品与文件收尾']",
+    "route: '/python/f1'",
+    "route: '/python/a1'",
+  ]) {
+    assert(
+      !learningPaths.includes(staleStep),
+      `LearningPaths should not hard-code stale route step: ${staleStep}`
+    );
+  }
+}
+
 function assertCatalogSubjectCopy() {
   const catalog = read('src/components/LessonCatalog.jsx');
 
@@ -151,9 +189,8 @@ function assertCatalogSubjectCopy() {
     'LessonCatalog should not hard-code C++ lesson id/path objects now that toCppLessons owns the route pattern.'
   );
   assert(
-    catalog.includes("import { pythonFoundationLessons } from '../data/pythonFoundationFlow';") &&
-      catalog.includes("import { pythonProjects } from '../data/pythonProjectFlow';"),
-    'LessonCatalog should import Python catalog lessons from the shared Python flow modules.'
+    catalog.includes("import { pythonFoundationLessons, pythonProjects } from '../data/pythonCourseCatalog';"),
+    'LessonCatalog should import Python catalog lessons from the shared lightweight Python catalog module.'
   );
   assert(
     catalog.includes('lessons: toCatalogLessons(pythonFoundationLessons)') &&
@@ -299,6 +336,7 @@ async function main() {
   assertCatalogSubjectCopy();
   assertHeroUsesPaperStats();
   assertQuestionBankReviewCopy();
+  assertLearningPathsUseSharedData();
 
   const generatedQuestionCount = paperIds.reduce((sum, id) => sum + (paperMeta[id]?.questionCount || 0), 0);
   const generatedReviewPaperCount = paperIds.filter(id => paperMeta[id]?.needsReview).length;
@@ -355,8 +393,6 @@ async function main() {
   });
 
   assertLearningPathRoute('gesp', '/question-bank');
-  assertLearningPathRoute('python', '/python/f1');
-  assertLearningPathRoute('project', '/python/a1');
 
   const cppCatalogSections = [
     ['basic', 1],

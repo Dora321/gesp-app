@@ -1,6 +1,16 @@
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
 import { ArrowRight, FileQuestion, GraduationCap, Hammer, ListChecks, PlayCircle } from 'lucide-react';
+import { getCppLevelCatalogItem } from '../data/cppLevelCatalog';
+import { paperStats } from '../data/gesp/_stats';
+import { pythonFoundationLessons, pythonProjects } from '../data/pythonCourseCatalog';
+
+const cppStart = getCppLevelCatalogItem(1);
+const cppEnd = getCppLevelCatalogItem(8);
+const firstPythonLesson = pythonFoundationLessons[0];
+const lastPythonLesson = pythonFoundationLessons[pythonFoundationLessons.length - 1];
+const firstPythonProject = pythonProjects[0];
+const lastPythonProject = pythonProjects[pythonProjects.length - 1];
 
 const paths = [
     {
@@ -10,27 +20,39 @@ const paths = [
         route: '/question-bank',
         cta: '开始刷真题',
         icon: FileQuestion,
-        steps: ['C++ 等级课程', '真题分卷练习', '解析复盘与错题回看'],
+        steps: [
+            `${cppStart.title} 到 ${cppEnd.title}`,
+            `${paperStats.firstYear}-${paperStats.latestYear} 年真题分卷练习`,
+            `${paperStats.reviewPaperCount} 卷待精修标注，错题复盘`,
+        ],
         color: 'blue'
     },
     {
         id: 'python',
         title: 'Python 入门路径',
         audience: '适合零基础、想先建立编程兴趣的学生',
-        route: '/python/f1',
+        route: firstPythonLesson.path,
         cta: '进入 Python F1',
         icon: GraduationCap,
-        steps: ['输入输出与变量', '条件循环与容器', '小项目巩固语法'],
+        steps: [
+            `${firstPythonLesson.title} 起步`,
+            `${lastPythonLesson.title} 完成基础闭环`,
+            '进入项目线，把语法变成作品',
+        ],
         color: 'emerald'
     },
     {
         id: 'project',
         title: 'Python 项目实践路径',
         audience: '适合已经会基础语法、想做作品的学生',
-        route: '/python/a1',
+        route: firstPythonProject.path,
         cta: '进入 A1 项目课',
         icon: Hammer,
-        steps: ['算法思维入门', '游戏、AI 与爬虫项目', '算法作品与文件收尾'],
+        steps: [
+            `${firstPythonProject.title} 建立策略`,
+            '游戏、AI、爬虫与算法项目串联',
+            `${lastPythonProject.title} 收尾作品`,
+        ],
         color: 'orange'
     }
 ];

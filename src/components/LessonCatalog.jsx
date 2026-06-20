@@ -17,8 +17,7 @@ import {
     Trophy,
     Users
 } from 'lucide-react';
-import { pythonFoundationLessons } from '../data/pythonFoundationFlow';
-import { pythonProjects } from '../data/pythonProjectFlow';
+import { pythonFoundationLessons, pythonProjects } from '../data/pythonCourseCatalog';
 
 function toCatalogLessons(items) {
     return items.map((item, index) => ({

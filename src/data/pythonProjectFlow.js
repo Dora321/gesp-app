@@ -1,14 +1,5 @@
-export const pythonProjects = [
-  { id: 'a1', title: 'A1：算法思维入门', catalogTitle: '算法思维', path: '/python/a1' },
-  { id: 'a2', title: 'A2：2048 游戏项目', catalogTitle: '游戏工坊', path: '/python/a2' },
-  { id: 'ai', title: 'A3：AI 初探', catalogTitle: 'AI 入门', path: '/python/ai' },
-  { id: 'crawler', title: 'A4：网络爬虫项目', catalogTitle: '网络爬虫', path: '/python/crawler' },
-  { id: 'binary-search', title: 'A5：二分搜索项目', catalogTitle: '二分查找', path: '/python/binary-search' },
-  { id: 'encryption', title: 'A6：加密解密项目', catalogTitle: '加密解密', path: '/python/encryption' },
-  { id: 'sorting', title: 'A7：排序算法项目', catalogTitle: '排序可视化', path: '/python/sorting' },
-  { id: 'morse', title: 'A8：摩斯电码项目', catalogTitle: '摩斯密码', path: '/python/morse' },
-  { id: 'file-ops', title: 'A9：文件操作项目', catalogTitle: '文件操作', path: '/python/file-ops' },
-];
+export { pythonProjects } from './pythonCourseCatalog.js';
+import { pythonProjects } from './pythonCourseCatalog.js';
 
 const projectDetails = {
   a1: {

@@ -1,3 +1,5 @@
+import { getCppLevelCatalogItem } from './cppLevelCatalog.js';
+
 const cppLevels = {
   1: {
     title: 'GESP C++ 一级',
@@ -188,5 +190,8 @@ const cppLevels = {
 };
 
 export function getCppLevelSupport(level) {
-  return cppLevels[level] || null;
+  const support = cppLevels[level];
+  const catalog = getCppLevelCatalogItem(level);
+
+  return support && catalog ? { ...support, title: catalog.title, path: catalog.path } : support || null;
 }

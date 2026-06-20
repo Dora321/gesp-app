@@ -1,12 +1,5 @@
-export const pythonFoundationLessons = [
-  { id: 'f1', title: 'F1：Python 入门', catalogTitle: 'Python 入门', path: '/python/f1' },
-  { id: 'f2', title: 'F2：控制流程', catalogTitle: '控制流程', path: '/python/f2' },
-  { id: 'f3', title: 'F3：列表与字典', catalogTitle: '列表与字典', path: '/python/f3' },
-  { id: 'f4', title: 'F4：函数与模块', catalogTitle: '函数与模块', path: '/python/f4' },
-  { id: 'f5', title: 'F5：绘图魔法', catalogTitle: '绘图魔法', path: '/python/f5' },
-  { id: 'f6', title: 'F6：随机世界', catalogTitle: '随机世界', path: '/python/f6' },
-  { id: 'f7', title: 'F7：集合宝藏', catalogTitle: '集合宝藏', path: '/python/f7' },
-];
+export { pythonFoundationLessons } from './pythonCourseCatalog.js';
+import { pythonFoundationLessons } from './pythonCourseCatalog.js';
 
 const lessonDetails = {
   f1: {
