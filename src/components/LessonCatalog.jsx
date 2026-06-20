@@ -18,6 +18,16 @@ import {
     Users
 } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
+import { pythonFoundationLessons } from '../data/pythonFoundationFlow';
+import { pythonProjects } from '../data/pythonProjectFlow';
+
+function toCatalogLessons(items) {
+    return items.map((item, index) => ({
+        id: index + 1,
+        title: item.catalogTitle,
+        path: item.path,
+    }));
+}
 
 const lessonSections = [
     {
@@ -225,15 +235,7 @@ const lessonSections = [
         bridge: '完成后适合进入 Python 项目课，或转入 C++ 基础体系',
         checkpoints: ['能读写变量、条件和循环代码', '能使用列表、字典、集合组织数据', '能完成一个小型绘图或随机小游戏'],
         examPath: '/python/f1',
-        lessons: [
-            { id: 1, title: 'Python 入门', path: '/python/f1' },
-            { id: 2, title: '控制流程', path: '/python/f2' },
-            { id: 3, title: '列表与字典', path: '/python/f3' },
-            { id: 4, title: '函数与模块', path: '/python/f4' },
-            { id: 5, title: '绘图魔法', path: '/python/f5' },
-            { id: 6, title: '随机世界', path: '/python/f6' },
-            { id: 7, title: '集合宝藏', path: '/python/f7' },
-        ]
+        lessons: toCatalogLessons(pythonFoundationLessons)
     },
     {
         id: 'python-advanced',
@@ -248,17 +250,7 @@ const lessonSections = [
         bridge: '完成后适合做作品集，也能反向巩固算法和数据结构',
         checkpoints: ['能把需求拆成输入、处理、输出', '能读懂项目代码结构', '能解释作品的核心算法或模块'],
         examPath: '/python/a1',
-        lessons: [
-            { id: 1, title: '算法思维', path: '/python/a1' },
-            { id: 2, title: '游戏工坊', path: '/python/a2' },
-            { id: 3, title: 'AI 入门', path: '/python/ai' },
-            { id: 4, title: '网络爬虫', path: '/python/crawler' },
-            { id: 5, title: '二分查找', path: '/python/binary-search' },
-            { id: 6, title: '加密解密', path: '/python/encryption' },
-            { id: 7, title: '排序可视化', path: '/python/sorting' },
-            { id: 8, title: '摩斯密码', path: '/python/morse' },
-            { id: 9, title: '文件操作', path: '/python/file-ops' },
-        ]
+        lessons: toCatalogLessons(pythonProjects)
     }
 ];
 

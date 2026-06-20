@@ -19,20 +19,6 @@ function assert(condition, message) {
   if (!condition) fail(message);
 }
 
-function extractCatalogPaths(sectionId) {
-  const catalog = read('src/components/LessonCatalog.jsx');
-  const sectionMatch = catalog.match(
-    new RegExp(`id: '${sectionId}',[\\s\\S]*?lessons: \\[([\\s\\S]*?)\\]\\n\\s*\\}`)
-  );
-
-  if (!sectionMatch) {
-    fail(`LessonCatalog is missing section ${sectionId}.`);
-    return [];
-  }
-
-  return [...sectionMatch[1].matchAll(/path: '([^']+)'/g)].map((match) => match[1]);
-}
-
 function extractCatalogLessonIds(sectionId) {
   const catalog = read('src/components/LessonCatalog.jsx');
   const sectionMatch = catalog.match(
@@ -45,12 +31,6 @@ function extractCatalogLessonIds(sectionId) {
   }
 
   return [...sectionMatch[1].matchAll(/id: (\d+)/g)].map((match) => Number(match[1]));
-}
-
-function extractFlowPaths(relativePath) {
-  return [...read(relativePath).matchAll(/\{ id: '[^']+', title: '[^']+', path: '([^']+)' \}/g)].map(
-    (match) => match[1]
-  );
 }
 
 function extractUnavailableLessonIds(sectionId) {
@@ -154,6 +134,21 @@ function assertCatalogSubjectCopy() {
   assert(
     catalog.includes('unavailableLessonIdsBySection'),
     'LessonCatalog should track only unavailable lesson exceptions.'
+  );
+  assert(
+    catalog.includes("import { pythonFoundationLessons } from '../data/pythonFoundationFlow';") &&
+      catalog.includes("import { pythonProjects } from '../data/pythonProjectFlow';"),
+    'LessonCatalog should import Python catalog lessons from the shared Python flow modules.'
+  );
+  assert(
+    catalog.includes('lessons: toCatalogLessons(pythonFoundationLessons)') &&
+      catalog.includes('lessons: toCatalogLessons(pythonProjects)'),
+    'LessonCatalog should generate Python lesson lists from shared Python flow data.'
+  );
+  assert(
+    !catalog.includes("{ id: 1, title: 'Python 入门', path: '/python/f1' }") &&
+      !catalog.includes("{ id: 1, title: '算法思维', path: '/python/a1' }"),
+    'LessonCatalog should not hard-code Python lesson arrays now that shared flow data owns them.'
   );
   assert(
     /function getSubjectSummaryStats\(subject\)/.test(catalog),
@@ -265,11 +260,15 @@ async function main() {
     { getCppL1LessonSupport },
     { paperIds, paperMeta },
     { paperStats },
+    { pythonFoundationLessons },
+    { pythonProjects },
   ] = await Promise.all([
     import(pathToFileURL(path.join(srcRoot, 'data', 'cppLevelFlow.js')).href),
     import(pathToFileURL(path.join(srcRoot, 'data', 'cppL1CourseFlow.js')).href),
     import(pathToFileURL(path.join(srcRoot, 'data', 'gesp', '_generated.js')).href),
     import(pathToFileURL(path.join(srcRoot, 'data', 'gesp', '_stats.js')).href),
+    import(pathToFileURL(path.join(srcRoot, 'data', 'pythonFoundationFlow.js')).href),
+    import(pathToFileURL(path.join(srcRoot, 'data', 'pythonProjectFlow.js')).href),
   ]);
 
   assertCatalogSubjectCopy();
@@ -294,16 +293,16 @@ async function main() {
     );
   }
 
-  assertSameArray(
-    'Python foundation catalog order',
-    extractCatalogPaths('python-basic'),
-    extractFlowPaths('src/data/pythonFoundationFlow.js')
-  );
-  assertSameArray(
-    'Python project catalog order',
-    extractCatalogPaths('python-advanced'),
-    extractFlowPaths('src/data/pythonProjectFlow.js')
-  );
+  for (const [label, items] of [
+    ['Python foundation lessons', pythonFoundationLessons],
+    ['Python project lessons', pythonProjects],
+  ]) {
+    assert(items.length > 0, `${label} should not be empty.`);
+    for (const item of items) {
+      assert(item.path?.startsWith('/python/'), `${label} item ${item.id} should define a Python route.`);
+      assert(item.title && item.catalogTitle, `${label} item ${item.id} should define title and catalogTitle.`);
+    }
+  }
 
   assertFeaturedProjectCard('game2048', {
     fields: {
