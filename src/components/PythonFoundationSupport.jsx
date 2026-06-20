@@ -1,6 +1,7 @@
 import { ArrowRight, CheckCircle2, Route, Target } from 'lucide-react';
 import { getPythonFoundationSupport } from '../data/pythonFoundationFlow';
 import LessonNextSteps from './LessonNextSteps';
+import LessonQualityBar from './LessonQualityBar';
 
 const accents = {
   indigo: {
@@ -80,5 +81,15 @@ export default function PythonFoundationSupport({ lessonId, placement = 'top' })
     );
   }
 
-  return <FoundationBrief support={support} />;
+  return (
+    <>
+      <FoundationBrief support={support} />
+      <LessonQualityBar
+        goals={support.quality.goals}
+        deliverables={support.quality.deliverables}
+        checks={support.quality.checks}
+        accent={support.quality.accent}
+      />
+    </>
+  );
 }

@@ -538,6 +538,20 @@ function assertQuestionBankReviewCopy() {
   );
 }
 
+function assertPythonFoundationSupportUsesQualityBar() {
+  const foundationSupport = read('src/components/PythonFoundationSupport.jsx');
+
+  assert(
+    foundationSupport.includes("import LessonQualityBar from './LessonQualityBar';") &&
+      foundationSupport.includes('<LessonQualityBar') &&
+      foundationSupport.includes('goals={support.quality.goals}') &&
+      foundationSupport.includes('deliverables={support.quality.deliverables}') &&
+      foundationSupport.includes('checks={support.quality.checks}') &&
+      foundationSupport.includes('accent={support.quality.accent}'),
+    'PythonFoundationSupport should render the shared quality bar from foundation support data.'
+  );
+}
+
 function assertSameNumber(label, actual, expected) {
   assert(actual === expected, `${label} mismatch. expected ${expected}, got ${actual}`);
 }
@@ -548,7 +562,7 @@ async function main() {
     { getCppL1LessonSupport },
     { paperIds, paperMeta },
     { paperStats },
-    { pythonFoundationLessons },
+    { pythonFoundationLessons, getPythonFoundationSupport },
     { pythonProjects },
   ] = await Promise.all([
     import(pathToFileURL(path.join(srcRoot, 'data', 'cppLevelFlow.js')).href),
@@ -570,6 +584,7 @@ async function main() {
   assertFooterUsesSharedData();
   assertAnnouncementUsesSharedData();
   assertNotFoundUsesSharedData();
+  assertPythonFoundationSupportUsesQualityBar();
 
   const generatedQuestionCount = paperIds.reduce((sum, id) => sum + (paperMeta[id]?.questionCount || 0), 0);
   const generatedReviewPaperCount = paperIds.filter(id => paperMeta[id]?.needsReview).length;
@@ -682,6 +697,12 @@ async function main() {
   ];
 
   for (const [lessonId, fileName] of foundationPages) {
+    const support = getPythonFoundationSupport(lessonId);
+    assert(support?.quality?.goals?.length >= 3, `Python foundation ${lessonId} needs at least 3 goals.`);
+    assert(support?.quality?.deliverables?.length >= 3, `Python foundation ${lessonId} needs at least 3 deliverables.`);
+    assert(support?.quality?.checks?.length >= 3, `Python foundation ${lessonId} needs at least 3 checks.`);
+    assert(support?.reviewTasks?.length >= 2, `Python foundation ${lessonId} needs review tasks.`);
+
     const pagePath = `src/courses/python/foundation/${fileName}`;
     const page = read(pagePath);
     assert(
