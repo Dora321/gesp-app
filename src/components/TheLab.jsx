@@ -1,11 +1,18 @@
 import React, { useState, useEffect } from 'react';
 import { Bug, Play, RotateCcw, Activity } from 'lucide-react';
+import { useShouldRunDecorativeMotion } from '../hooks/useShouldRunDecorativeMotion';
 
 export default function TheLab() {
+    const shouldAnimate = useShouldRunDecorativeMotion();
     const [activeLine, setActiveLine] = useState(1);
     const [variables, setVariables] = useState({ x: 0, y: 0, sum: 0 });
 
     useEffect(() => {
+        if (!shouldAnimate) {
+            setActiveLine(1);
+            return undefined;
+        }
+
         const interval = setInterval(() => {
             setActiveLine(prev => {
                 if (prev >= 6) return 1;
@@ -13,7 +20,7 @@ export default function TheLab() {
             });
         }, 800);
         return () => clearInterval(interval);
-    }, []);
+    }, [shouldAnimate]);
 
     useEffect(() => {
         if (activeLine === 1) setVariables({ x: 0, y: 0, sum: 0 });

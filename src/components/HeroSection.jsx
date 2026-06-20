@@ -2,38 +2,11 @@ import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { ArrowRight, BookOpen, CheckCircle2, Code2, FileQuestion, Route } from 'lucide-react';
 import { paperStats } from '../data/gesp/_stats';
-
-function useShouldAnimateCodePulse() {
-    const [shouldAnimate, setShouldAnimate] = useState(false);
-
-    useEffect(() => {
-        if (typeof window === 'undefined' || typeof window.matchMedia !== 'function') {
-            return undefined;
-        }
-
-        const largeScreenQuery = window.matchMedia('(min-width: 1024px)');
-        const reducedMotionQuery = window.matchMedia('(prefers-reduced-motion: reduce)');
-
-        const updateAnimationPreference = () => {
-            setShouldAnimate(largeScreenQuery.matches && !reducedMotionQuery.matches);
-        };
-
-        updateAnimationPreference();
-        largeScreenQuery.addEventListener('change', updateAnimationPreference);
-        reducedMotionQuery.addEventListener('change', updateAnimationPreference);
-
-        return () => {
-            largeScreenQuery.removeEventListener('change', updateAnimationPreference);
-            reducedMotionQuery.removeEventListener('change', updateAnimationPreference);
-        };
-    }, []);
-
-    return shouldAnimate;
-}
+import { useShouldRunDecorativeMotion } from '../hooks/useShouldRunDecorativeMotion';
 
 const CodePulse = () => {
     const [activeLine, setActiveLine] = useState(0);
-    const shouldAnimate = useShouldAnimateCodePulse();
+    const shouldAnimate = useShouldRunDecorativeMotion();
     const lines = [
         'int score = solve(problem);',
         'if (score >= target) pass();',

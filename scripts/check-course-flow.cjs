@@ -354,6 +354,7 @@ function assertCatalogSubjectCopy() {
 
 function assertHeroUsesPaperStats() {
   const hero = read('src/components/HeroSection.jsx');
+  const motionHook = read('src/hooks/useShouldRunDecorativeMotion.js');
 
   assert(
     hero.includes("import { paperStats } from '../data/gesp/_stats';"),
@@ -364,14 +365,34 @@ function assertHeroUsesPaperStats() {
     'HeroSection should not hard-code the GESP paper count.'
   );
   assert(
-    hero.includes('useShouldAnimateCodePulse') &&
-      hero.includes('(min-width: 1024px)') &&
-      hero.includes('(prefers-reduced-motion: reduce)'),
-    'HeroSection code animation should only run on large screens and respect reduced-motion preferences.'
+    hero.includes("import { useShouldRunDecorativeMotion } from '../hooks/useShouldRunDecorativeMotion';") &&
+      hero.includes('const shouldAnimate = useShouldRunDecorativeMotion();') &&
+      motionHook.includes('minWidth = 1024') &&
+      motionHook.includes('`(min-width: ${minWidth}px)`') &&
+      motionHook.includes('(prefers-reduced-motion: reduce)') &&
+      motionHook.includes('matchMedia'),
+    'HeroSection code animation should use the shared decorative motion hook.'
   );
   assert(
     hero.includes('if (!shouldAnimate)') && hero.includes('setInterval'),
     'HeroSection code animation interval should be gated by shouldAnimate.'
+  );
+}
+
+function assertTheLabUsesMotionPreference() {
+  const lab = read('src/components/TheLab.jsx');
+
+  assert(
+    lab.includes("import { useShouldRunDecorativeMotion } from '../hooks/useShouldRunDecorativeMotion';") &&
+      lab.includes('const shouldAnimate = useShouldRunDecorativeMotion();'),
+    'TheLab should use the shared decorative motion preference hook.'
+  );
+  assert(
+    lab.includes('if (!shouldAnimate)') &&
+      lab.includes('setActiveLine(1)') &&
+      lab.includes('setInterval') &&
+      lab.includes('[shouldAnimate]'),
+    'TheLab debug animation interval should only run when decorative motion is allowed.'
   );
 }
 
@@ -440,6 +461,7 @@ async function main() {
 
   assertCatalogSubjectCopy();
   assertHeroUsesPaperStats();
+  assertTheLabUsesMotionPreference();
   assertQuestionBankReviewCopy();
   assertLearningPathsUseSharedData();
   assertFooterUsesSharedData();
