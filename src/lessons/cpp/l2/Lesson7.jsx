@@ -1,5 +1,6 @@
 import React, { useMemo, useState } from 'react';
 import { AlertTriangle, ClipboardCheck, Diamond, Route } from 'lucide-react';
+import CppL2LessonSupport from '../../../components/CppL2LessonSupport';
 import CppLessonShell, { Callout, CodeBlock, CodeTracer, CompareTable, MiniQuiz, StepList } from '../CppLessonShell';
 
 const sections = [
@@ -142,6 +143,8 @@ export default function CppL2Lesson7() {
             sections={sections}
             previousPath="/lesson/2/6"
             nextPath="/lesson/2/8"
+            topSupport={<CppL2LessonSupport lessonId={7} />}
+            bottomSupport={<CppL2LessonSupport lessonId={7} placement="bottom" />}
             hero={{
                 title: '流程图不是装饰，它是程序执行路线图',
                 description: 'GESP 二级常把程序逻辑画成流程图考你。会读符号、会顺箭头追踪变量，就能把图重新翻译成 if、while 和 for。',

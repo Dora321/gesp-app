@@ -1,5 +1,6 @@
 import React, { useMemo, useState } from 'react';
 import { AlertTriangle, ClipboardCheck, Grid3X3, Layers3, PencilRuler } from 'lucide-react';
+import CppL2LessonSupport from '../../../components/CppL2LessonSupport';
 import CppLessonShell, { Callout, CodeBlock, CodeTracer, CompareTable, MiniQuiz } from '../CppLessonShell';
 
 const sections = [
@@ -131,6 +132,8 @@ export default function CppL2Lesson6() {
             sections={sections}
             previousPath="/lesson/2/5"
             nextPath="/lesson/2/7"
+            topSupport={<CppL2LessonSupport lessonId={6} />}
+            bottomSupport={<CppL2LessonSupport lessonId={6} placement="bottom" />}
             hero={{
                 title: '图形题不是靠猜，是一行一行拆出来的',
                 description: '二级图形打印的核心不是星号，而是“第 i 行有几个空格、几个符号”。能把图形拆成行规则，代码就自然出来了。',

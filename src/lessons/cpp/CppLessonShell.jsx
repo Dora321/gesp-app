@@ -489,6 +489,8 @@ export default function CppLessonShell({
     childrenBySection,
     previousPath,
     nextPath,
+    topSupport = null,
+    bottomSupport = null,
     accent = 'blue',
     levelTitle = 'C++ 进阶',
     levelCode = 'L2',
@@ -595,6 +597,7 @@ export default function CppLessonShell({
                                     )}
                                 </div>
                                 <GoalCards goals={goals} />
+                                {topSupport}
                                 {activeContent}
                             </section>
                         )}
@@ -603,6 +606,7 @@ export default function CppLessonShell({
                                 {activeContent}
                             </section>
                         )}
+                        {activeSection === sections.length && bottomSupport}
                     </div>
                 </main>
 

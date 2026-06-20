@@ -1,5 +1,6 @@
 import React, { useMemo, useState } from 'react';
 import { Calculator, ClipboardCheck, FunctionSquare, Ruler, Sigma, Triangle } from 'lucide-react';
+import CppL2LessonSupport from '../../../components/CppL2LessonSupport';
 import CppLessonShell, { Callout, CodeBlock, CompareTable, MiniQuiz, StepList } from '../CppLessonShell';
 
 const sections = [
@@ -96,6 +97,8 @@ export default function CppL2Lesson8() {
             sections={sections}
             previousPath="/lesson/2/7"
             nextPath="/lesson/2/9"
+            topSupport={<CppL2LessonSupport lessonId={8} />}
+            bottomSupport={<CppL2LessonSupport lessonId={8} placement="bottom" />}
             hero={{
                 title: '会用数学工具，代码会短一截，也稳一截',
                 description: '平方根、幂、绝对值、上下取整是二级常见工具。关键不是背函数名，而是知道什么时候能用，什么时候要小心类型和精度。',

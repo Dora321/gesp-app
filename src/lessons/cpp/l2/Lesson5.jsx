@@ -1,5 +1,6 @@
 import React, { useMemo, useState } from 'react';
 import { AlertTriangle, Blocks, ClipboardCheck, Repeat2, Target } from 'lucide-react';
+import CppL2LessonSupport from '../../../components/CppL2LessonSupport';
 import CppLessonShell, { Callout, CodeBlock, CodeTracer, CompareTable, MiniQuiz } from '../CppLessonShell';
 
 const sections = [
@@ -135,6 +136,8 @@ export default function CppL2Lesson5() {
             sections={sections}
             previousPath="/lesson/2/4"
             nextPath="/lesson/2/6"
+            topSupport={<CppL2LessonSupport lessonId={5} />}
+            bottomSupport={<CppL2LessonSupport lessonId={5} placement="bottom" />}
             hero={{
                 title: '循环里面再放循环，题目就从“一排”变成“一片”',
                 description: '图形打印、乘法表、二维枚举都离不开嵌套循环。今天先不追求花活，把“外层控制轮次，内层完成每轮细节”这件事讲透。',

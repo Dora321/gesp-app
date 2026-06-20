@@ -594,6 +594,18 @@ function assertPythonProjectSupportUsesPrerequisites() {
   );
 }
 
+function assertCppLessonShellSupportsLessonSupport() {
+  const shell = read('src/lessons/cpp/CppLessonShell.jsx');
+
+  assert(
+    shell.includes('topSupport = null') &&
+      shell.includes('bottomSupport = null') &&
+      shell.includes('{topSupport}') &&
+      shell.includes('activeSection === sections.length && bottomSupport'),
+    'CppLessonShell should render optional top and bottom lesson support slots.'
+  );
+}
+
 function assertSameNumber(label, actual, expected) {
   assert(actual === expected, `${label} mismatch. expected ${expected}, got ${actual}`);
 }
@@ -630,6 +642,7 @@ async function main() {
   assertNotFoundUsesSharedData();
   assertPythonFoundationSupportUsesQualityBar();
   assertPythonProjectSupportUsesPrerequisites();
+  assertCppLessonShellSupportsLessonSupport();
 
   const generatedQuestionCount = paperIds.reduce((sum, id) => sum + (paperMeta[id]?.questionCount || 0), 0);
   const generatedReviewPaperCount = paperIds.filter(id => paperMeta[id]?.needsReview).length;
@@ -733,7 +746,7 @@ async function main() {
     );
   }
 
-  for (let lesson = 1; lesson <= 4; lesson += 1) {
+  for (let lesson = 1; lesson <= 8; lesson += 1) {
     const support = getCppL2LessonSupport(lesson);
     assert(support?.quality?.goals?.length >= 3, `C++ L2 lesson ${lesson} needs at least 3 goals.`);
     assert(support?.quality?.deliverables?.length >= 3, `C++ L2 lesson ${lesson} needs at least 3 deliverables.`);
@@ -756,14 +769,26 @@ async function main() {
       page.includes("import CppL2LessonSupport from '../../../components/CppL2LessonSupport';"),
       `${pagePath}: missing CppL2LessonSupport import.`
     );
-    assert(
-      countMatches(page, new RegExp(`CppL2LessonSupport lessonId=\\{${lesson}\\}`, 'g')) >= 2,
-      `${pagePath}: should include top and bottom CppL2LessonSupport.`
-    );
-    assert(
-      new RegExp(`CppL2LessonSupport lessonId=\\{${lesson}\\} placement="bottom"`).test(page),
-      `${pagePath}: missing bottom CppL2LessonSupport.`
-    );
+
+    if (lesson <= 4) {
+      assert(
+        countMatches(page, new RegExp(`CppL2LessonSupport lessonId=\\{${lesson}\\}`, 'g')) >= 2,
+        `${pagePath}: should include top and bottom CppL2LessonSupport.`
+      );
+      assert(
+        new RegExp(`CppL2LessonSupport lessonId=\\{${lesson}\\} placement="bottom"`).test(page),
+        `${pagePath}: missing bottom CppL2LessonSupport.`
+      );
+    } else {
+      assert(
+        new RegExp(`topSupport=\\{<CppL2LessonSupport lessonId=\\{${lesson}\\} />\\}`).test(page),
+        `${pagePath}: missing topSupport CppL2LessonSupport.`
+      );
+      assert(
+        new RegExp(`bottomSupport=\\{<CppL2LessonSupport lessonId=\\{${lesson}\\} placement="bottom" />\\}`).test(page),
+        `${pagePath}: missing bottomSupport CppL2LessonSupport.`
+      );
+    }
   }
 
   const foundationPages = [
