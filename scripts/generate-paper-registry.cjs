@@ -138,6 +138,7 @@ const stats = {
   questionCount: papers.reduce((sum, p) => sum + p.questionCount, 0),
   reviewPaperCount: papers.filter(p => p.placeholderCount > 0).length,
   levelCount: new Set(papers.map(p => p.level)).size,
+  firstYear: Math.min(...papers.map(p => p.year)),
   latestYear: Math.max(...papers.map(p => p.year)),
 };
 
@@ -149,6 +150,7 @@ export const paperStats = {
   questionCount: ${stats.questionCount},
   reviewPaperCount: ${stats.reviewPaperCount},
   levelCount: ${stats.levelCount},
+  firstYear: ${stats.firstYear},
   latestYear: ${stats.latestYear},
 };
 `;

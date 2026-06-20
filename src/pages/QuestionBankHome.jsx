@@ -87,7 +87,7 @@ const QuestionBankHome = () => {
                                 GESP 真题题库
                             </h1>
                             <p className="text-indigo-100 max-w-2xl text-lg">
-                                收录 2023-2026 年 GESP C++ 真题与练习卷，支持整卷练习与解析复盘，待精修卷已明确标注。
+                                收录 {paperStats.firstYear}-{paperStats.latestYear} 年 GESP C++ 真题与练习卷，支持整卷练习与解析复盘，待精修卷已明确标注。
                             </p>
                         </div>
                         {/* Stats */}

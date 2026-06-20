@@ -201,6 +201,14 @@ function assertQuestionBankReviewCopy() {
     questionBankHome.includes('paperStats.reviewPaperCount'),
     'QuestionBankHome should surface the count of papers that need review.'
   );
+  assert(
+    questionBankHome.includes('paperStats.firstYear') && questionBankHome.includes('paperStats.latestYear'),
+    'QuestionBankHome should render the paper year range from generated stats.'
+  );
+  assert(
+    !/收录\s+\d{4}-\d{4}\s+年/.test(questionBankHome),
+    'QuestionBankHome should not hard-code the paper year range.'
+  );
 }
 
 function assertSameNumber(label, actual, expected) {
@@ -230,6 +238,7 @@ async function main() {
   assertSameNumber('GESP stats questionCount', paperStats.questionCount, generatedQuestionCount);
   assertSameNumber('GESP stats reviewPaperCount', paperStats.reviewPaperCount, generatedReviewPaperCount);
   assertSameNumber('GESP stats levelCount', paperStats.levelCount, new Set(paperIds.map(id => paperMeta[id]?.level)).size);
+  assertSameNumber('GESP stats firstYear', paperStats.firstYear, Math.min(...paperIds.map(id => paperMeta[id]?.year)));
   assertSameNumber('GESP stats latestYear', paperStats.latestYear, Math.max(...paperIds.map(id => paperMeta[id]?.year)));
 
   for (const paperId of paperIds) {
