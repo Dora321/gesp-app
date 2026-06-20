@@ -201,6 +201,38 @@ function assertCatalogSubjectCopy() {
   const catalog = read('src/components/LessonCatalog.jsx');
 
   assert(
+    catalog.includes("import { getCppLevelCatalogItem } from '../data/cppLevelCatalog';") &&
+      catalog.includes("import { pythonFoundationLessons, pythonProjects } from '../data/pythonCourseCatalog';"),
+    'LessonCatalog should import C++ and Python catalog data from lightweight shared catalog modules.'
+  );
+  assert(
+    catalog.includes('pythonStart.path') &&
+      catalog.includes('pythonProjectStart.path') &&
+      catalog.includes('pythonFileProject.path') &&
+      catalog.includes('getCppLevelCatalogItem(7).path') &&
+      catalog.includes('getCppLevelCatalogItem(8).path'),
+    'LessonCatalog should derive C++ sprint and Python progression routes from shared catalogs.'
+  );
+  for (const staleRoute of [
+    "examPath: '/level1'",
+    "examPath: '/level2'",
+    "examPath: '/level3'",
+    "examPath: '/level4'",
+    "examPath: '/level5'",
+    "examPath: '/level6'",
+    "ctaPath: '/python/f1'",
+    "path: '/python/a1'",
+    "path: '/python/f1'",
+    "path: '/python/file-ops'",
+    "path: '/level7'",
+    "path: '/level8'",
+  ]) {
+    assert(
+      !catalog.includes(staleRoute),
+      `LessonCatalog should not hard-code stale catalog route: ${staleRoute}`
+    );
+  }
+  assert(
     !catalog.includes('readyLessonIdsBySection'),
     'LessonCatalog should not duplicate every ready lesson id in a hard-coded allowlist.'
   );
@@ -221,10 +253,6 @@ function assertCatalogSubjectCopy() {
   assert(
     !catalog.includes("{ id: 1, title: '你好，计算机', path: '/lesson/1/1' }"),
     'LessonCatalog should not hard-code C++ lesson id/path objects now that toCppLessons owns the route pattern.'
-  );
-  assert(
-    catalog.includes("import { pythonFoundationLessons, pythonProjects } from '../data/pythonCourseCatalog';"),
-    'LessonCatalog should import Python catalog lessons from the shared lightweight Python catalog module.'
   );
   assert(
     catalog.includes('lessons: toCatalogLessons(pythonFoundationLessons)') &&

@@ -17,7 +17,12 @@ import {
     Trophy,
     Users
 } from 'lucide-react';
+import { getCppLevelCatalogItem } from '../data/cppLevelCatalog';
 import { pythonFoundationLessons, pythonProjects } from '../data/pythonCourseCatalog';
+
+const pythonStart = pythonFoundationLessons[0];
+const pythonProjectStart = pythonProjects[0];
+const pythonFileProject = pythonProjects.find((project) => project.id === 'file-ops');
 
 function toCatalogLessons(items) {
     return items.map((item, index) => ({
@@ -48,7 +53,7 @@ const lessonSections = [
         goal: '把语法基础、条件、循环和简单模拟练扎实',
         bridge: '完成后适合进入 GESP 一级冲刺与基础真题',
         checkpoints: ['会读懂顺序/分支/循环程序', '能处理倍数、闰年、统计类题', '能独立完成一轮基础模拟卷'],
-        examPath: '/level1',
+        examPath: getCppLevelCatalogItem(1).path,
         lessons: toCppLessons(1, [
             '你好，计算机',
             '变量与数据',
@@ -80,7 +85,7 @@ const lessonSections = [
         goal: '补齐嵌套循环、数位拆解、数组和模拟题的稳定做法',
         bridge: '完成后建议刷二级近年真题，重点复盘循环边界',
         checkpoints: ['能拆解数位和因数倍数问题', '能用数组保存和统计数据', '能画出嵌套循环执行过程'],
-        examPath: '/level2',
+        examPath: getCppLevelCatalogItem(2).path,
         lessons: toCppLessons(2, [
             '计算机通识 (RAM/IP)',
             '字符的密码 (ASCII)',
@@ -112,7 +117,7 @@ const lessonSections = [
         goal: '把抽象数据表示转成可推演、可编码的解题步骤',
         bridge: '完成后适合做三级综合卷，重点看程序阅读和边界样例',
         checkpoints: ['能解释进制、补码和位运算结果', '能处理字符串与数组综合题', '能用枚举和模拟解决中等逻辑题'],
-        examPath: '/level3',
+        examPath: getCppLevelCatalogItem(3).path,
         lessons: toCppLessons(3, [
             '变身数字魔术师 (进制)',
             '负数的真面目 (补码)',
@@ -144,7 +149,7 @@ const lessonSections = [
         goal: '建立模块化编程能力，能把复杂题拆成函数和数据结构',
         bridge: '完成后建议做四级编程题专项，再进入排序与递推复盘',
         checkpoints: ['能设计函数并传入数组参数', '能使用结构体组织多字段数据', '能手写基础排序和二维数组遍历'],
-        examPath: '/level4',
+        examPath: getCppLevelCatalogItem(4).path,
         lessons: toCppLessons(4, [
             '代码的积木：自定义函数',
             '数据的替身：传值与传参',
@@ -176,7 +181,7 @@ const lessonSections = [
         goal: '集中训练数论、高精度、链表、二分、贪心和复杂度',
         bridge: '完成后建议刷五级编程题，错题按“算法选择”分类',
         checkpoints: ['能判断何时使用二分或贪心', '能处理大整数与链表基础题', '能估算复杂度并避开超时写法'],
-        examPath: '/level5',
+        examPath: getCppLevelCatalogItem(5).path,
         lessons: toCppLessons(5, [
             '素数大筛选 (埃氏/线性)',
             '公约数与公倍数 (GCD)',
@@ -208,7 +213,7 @@ const lessonSections = [
         goal: '把算法模型和 C++ 工程语法放进同一套训练框架',
         bridge: '完成后适合进入六级整卷训练，并开始准备 L7/L8 专题',
         checkpoints: ['能区分 BFS、DFS 和树遍历场景', '能写基础类与对象代码', '能建立背包和路径类 DP 状态'],
-        examPath: '/level6',
+        examPath: getCppLevelCatalogItem(6).path,
         lessons: toCppLessons(6, [
             '树的初相识 (性质/存储)',
             '树的遍历 (前/中/后序)',
@@ -240,7 +245,7 @@ const lessonSections = [
         goal: '通过输出、条件、容器、函数、绘图和随机项目建立基本编程直觉',
         bridge: '完成后适合进入 Python 项目课，或转入 C++ 基础体系',
         checkpoints: ['能读写变量、条件和循环代码', '能使用列表、字典、集合组织数据', '能完成一个小型绘图或随机小游戏'],
-        examPath: '/python/f1',
+        examPath: pythonStart.path,
         lessons: toCatalogLessons(pythonFoundationLessons)
     },
     {
@@ -255,7 +260,7 @@ const lessonSections = [
         goal: '用游戏、AI、爬虫、加密、排序和文件项目连接真实应用',
         bridge: '完成后适合做作品集，也能反向巩固算法和数据结构',
         checkpoints: ['能把需求拆成输入、处理、输出', '能读懂项目代码结构', '能解释作品的核心算法或模块'],
-        examPath: '/python/a1',
+        examPath: pythonProjectStart.path,
         lessons: toCatalogLessons(pythonProjects)
     }
 ];
@@ -347,13 +352,13 @@ const subjectSummaries = {
         title: '先建立兴趣，再把语法做成作品',
         description: '适合零基础启蒙、项目制学习和作品展示。基础课负责概念，进阶课负责把代码连接到真实任务。',
         cta: '从 Python F1 开始',
-        ctaPath: '/python/f1'
+        ctaPath: pythonStart.path
     }
 };
 
 const seniorExamLinks = [
-    { title: 'GESP 七级冲刺', desc: '树与图论搜索专题', path: '/level7' },
-    { title: 'GESP 八级冲刺', desc: '图论算法与动态规划', path: '/level8' },
+    { title: `${getCppLevelCatalogItem(7).title}冲刺`, desc: '树与图论搜索专题', path: getCppLevelCatalogItem(7).path },
+    { title: `${getCppLevelCatalogItem(8).title}冲刺`, desc: '图论算法与动态规划', path: getCppLevelCatalogItem(8).path },
 ];
 
 function getSubjectSummaryStats(subject) {
@@ -400,14 +405,14 @@ function getSectionAction(section, subject) {
     if (section.id === 'python-basic') {
         return {
             label: '进入项目线',
-            path: '/python/a1',
+            path: pythonProjectStart.path,
             Icon: Terminal
         };
     }
 
     return {
         label: '回基础线复习',
-        path: '/python/f1',
+        path: pythonStart.path,
         Icon: BookOpen
     };
 }
@@ -424,14 +429,14 @@ function getPracticeAction(section, subject) {
     if (section.id === 'python-basic') {
         return {
             label: '看项目课',
-            path: '/python/a1',
+            path: pythonProjectStart.path,
             hint: '基础课完成后进入项目课，把语法变成可展示的小作品。'
         };
     }
 
     return {
         label: '复习基础课',
-        path: '/python/f1',
+        path: pythonStart.path,
         hint: '项目课建议结合基础课回看前置概念，重点补变量、循环、函数和容器。'
     };
 }
@@ -451,14 +456,14 @@ function getUnavailableLessonHint(section, subject) {
 function getPythonProgressionLinks(section) {
     if (section.id === 'python-basic') {
         return [
-            { title: '进入 Python 项目线', desc: '从算法思维开始，把基础语法连接到作品。', path: '/python/a1' },
+            { title: '进入 Python 项目线', desc: '从算法思维开始，把基础语法连接到作品。', path: pythonProjectStart.path },
             { title: '回到学习路径', desc: '对比 Python、C++ 与项目制学习入口。', path: '/' },
         ];
     }
 
     return [
-        { title: '复习 Python 基础', desc: '回看变量、循环、函数、列表和字典等前置能力。', path: '/python/f1' },
-        { title: '收束到文件项目', desc: '把项目输出保存、复盘并整理成可展示作品。', path: '/python/file-ops' },
+        { title: '复习 Python 基础', desc: '回看变量、循环、函数、列表和字典等前置能力。', path: pythonStart.path },
+        { title: '收束到文件项目', desc: '把项目输出保存、复盘并整理成可展示作品。', path: pythonFileProject.path },
     ];
 }
 
