@@ -27,6 +27,7 @@ import {
     Building2,
     Layers
 } from 'lucide-react';
+import CppL2LessonSupport from '../../../components/CppL2LessonSupport';
 
 // --- 图标映射 ---
 const Icon = ({ name, size = 24, className = "" }) => {
@@ -1039,7 +1040,9 @@ export default function AdvLesson1() {
                 {/* Content Area */}
                 <main className="flex-1 overflow-y-auto p-4 md:p-10">
                     <div className="max-w-4xl mx-auto min-h-[500px]">
+                        {activeSection === 1 && <CppL2LessonSupport lessonId={1} />}
                         {renderContent()}
+                        {activeSection === totalSections && <CppL2LessonSupport lessonId={1} placement="bottom" />}
                     </div>
                 </main>
 

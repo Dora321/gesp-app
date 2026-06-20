@@ -12,6 +12,7 @@ import {
     Menu,
     X
 } from 'lucide-react';
+import CppL2LessonSupport from '../../../components/CppL2LessonSupport';
 
 const sections = [
     { id: 1, title: '课程导入', category: '问题场景' },
@@ -221,6 +222,7 @@ export default function CppL2Lesson3() {
 
                 <main className="flex-1 overflow-y-auto">
                     <div className="mx-auto max-w-5xl space-y-8 p-6 sm:p-10">
+                        {activeSection === 1 && <CppL2LessonSupport lessonId={3} />}
                         {activeSection === 1 && (
                             <section className="space-y-6">
                                 <div className="rounded-3xl bg-gradient-to-br from-blue-700 to-indigo-800 p-8 text-white shadow-xl">
@@ -416,6 +418,7 @@ cout << (char)x; // B`}</CodeBlock>
                                 </div>
                             </section>
                         )}
+                        {activeSection === sections.length && <CppL2LessonSupport lessonId={3} placement="bottom" />}
                     </div>
                 </main>
 

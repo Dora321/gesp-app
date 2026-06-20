@@ -19,6 +19,7 @@ import {
     Binary,
     ArrowDown
 } from 'lucide-react';
+import CppL2LessonSupport from '../../../components/CppL2LessonSupport';
 
 // --- 图标映射 ---
 const Icon = ({ name, size = 24, className = "" }) => {
@@ -817,7 +818,9 @@ export default function App() {
                 {/* Content Area */}
                 <main className="flex-1 overflow-y-auto p-4 md:p-10">
                     <div className="max-w-4xl mx-auto min-h-[500px]">
+                        {activeSection === 1 && <CppL2LessonSupport lessonId={2} />}
                         {renderContent()}
+                        {activeSection === totalSections && <CppL2LessonSupport lessonId={2} placement="bottom" />}
                     </div>
                 </main>
 

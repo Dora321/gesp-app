@@ -14,6 +14,7 @@ import {
     ShieldCheck,
     X
 } from 'lucide-react';
+import CppL2LessonSupport from '../../../components/CppL2LessonSupport';
 
 const sections = [
     { id: 1, title: '课程导入', category: '菜单选择' },
@@ -243,6 +244,7 @@ export default function CppL2Lesson4() {
 
                 <main className="flex-1 overflow-y-auto">
                     <div className="mx-auto max-w-5xl space-y-8 p-6 sm:p-10">
+                        {activeSection === 1 && <CppL2LessonSupport lessonId={4} />}
                         {activeSection === 1 && (
                             <section className="space-y-6">
                                 <div className="rounded-3xl bg-gradient-to-br from-indigo-700 to-slate-900 p-8 text-white shadow-xl">
@@ -428,6 +430,7 @@ switch (choice) {
                                 </div>
                             </section>
                         )}
+                        {activeSection === sections.length && <CppL2LessonSupport lessonId={4} placement="bottom" />}
                     </div>
                 </main>
 

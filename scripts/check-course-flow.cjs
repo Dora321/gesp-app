@@ -79,6 +79,36 @@ function assertFileContains(relativePath, pattern, message) {
   assert(pattern.test(text), `${relativePath}: ${message}`);
 }
 
+function assertPracticeLinksResolve(label, links, paperIds) {
+  for (const link of links || []) {
+    if (link.path === '/question-bank') continue;
+
+    const paperMatch = link.path.match(/^\/question-bank\/\d\/(.+)$/);
+    if (paperMatch) {
+      assert(paperIds.includes(paperMatch[1]), `${label} links to missing paper ${link.path}.`);
+      continue;
+    }
+
+    const gespMatch = link.path.match(/^\/gesp\/(.+)$/);
+    if (gespMatch) {
+      assert(paperIds.includes(gespMatch[1]), `${label} links to missing paper ${link.path}.`);
+      continue;
+    }
+
+    const lessonMatch = link.path.match(/^\/lesson\/(\d+)\/(\d+)$/);
+    if (lessonMatch) {
+      const [, level, lesson] = lessonMatch;
+      assert(
+        fs.existsSync(path.join(srcRoot, 'lessons', 'cpp', `l${level}`, `Lesson${lesson}.jsx`)),
+        `${label} links to missing lesson ${link.path}.`
+      );
+      continue;
+    }
+
+    fail(`${label} has unsupported practice link path: ${link.path}`);
+  }
+}
+
 function assertFeaturedProjectsUseSharedData() {
   const featuredProjects = read('src/components/FeaturedProjects.jsx');
 
@@ -572,6 +602,7 @@ async function main() {
   const [
     { getCppLevelSupport },
     { getCppL1LessonSupport },
+    { getCppL2LessonSupport },
     { paperIds, paperMeta },
     { paperStats },
     { pythonFoundationLessons, getPythonFoundationSupport },
@@ -579,6 +610,7 @@ async function main() {
   ] = await Promise.all([
     import(pathToFileURL(path.join(srcRoot, 'data', 'cppLevelFlow.js')).href),
     import(pathToFileURL(path.join(srcRoot, 'data', 'cppL1CourseFlow.js')).href),
+    import(pathToFileURL(path.join(srcRoot, 'data', 'cppL2CourseFlow.js')).href),
     import(pathToFileURL(path.join(srcRoot, 'data', 'gesp', '_generated.js')).href),
     import(pathToFileURL(path.join(srcRoot, 'data', 'gesp', '_stats.js')).href),
     import(pathToFileURL(path.join(srcRoot, 'data', 'pythonFoundationFlow.js')).href),
@@ -663,6 +695,7 @@ async function main() {
     assert(support.deliverables?.length >= 3, `C++ level ${level} needs at least 3 deliverables.`);
     assert(support.checks?.length >= 3, `C++ level ${level} needs at least 3 checks.`);
     assert(support.practiceLinks?.length >= 1, `C++ level ${level} needs practice links.`);
+    assertPracticeLinksResolve(`C++ level ${level}`, support.practiceLinks, paperIds);
     assert(support.reviewTasks?.length >= 3, `C++ level ${level} needs review tasks.`);
     assert(level === 1 ? support.previous === null : support.previous?.path === `/level${level - 1}`, `C++ level ${level} has wrong previous link.`);
     assert(
@@ -685,6 +718,7 @@ async function main() {
     assert(support?.quality?.deliverables?.length >= 3, `C++ L1 lesson ${lesson} needs at least 3 deliverables.`);
     assert(support?.quality?.checks?.length >= 3, `C++ L1 lesson ${lesson} needs at least 3 checks.`);
     assert(support?.practiceLinks?.length >= 1, `C++ L1 lesson ${lesson} needs practice links.`);
+    assertPracticeLinksResolve(`C++ L1 lesson ${lesson}`, support.practiceLinks, paperIds);
     assert(support?.reviewTasks?.length >= 2, `C++ L1 lesson ${lesson} needs review tasks.`);
 
     const pagePath = `src/lessons/cpp/l1/Lesson${lesson}.jsx`;
@@ -696,6 +730,39 @@ async function main() {
     assert(
       new RegExp(`CppL1LessonSupport lessonId=\\{${lesson}\\} placement="bottom"`).test(page),
       `${pagePath}: missing bottom CppL1LessonSupport.`
+    );
+  }
+
+  for (let lesson = 1; lesson <= 4; lesson += 1) {
+    const support = getCppL2LessonSupport(lesson);
+    assert(support?.quality?.goals?.length >= 3, `C++ L2 lesson ${lesson} needs at least 3 goals.`);
+    assert(support?.quality?.deliverables?.length >= 3, `C++ L2 lesson ${lesson} needs at least 3 deliverables.`);
+    assert(support?.quality?.checks?.length >= 3, `C++ L2 lesson ${lesson} needs at least 3 checks.`);
+    assert(support?.practiceLinks?.length >= 1, `C++ L2 lesson ${lesson} needs practice links.`);
+    assertPracticeLinksResolve(`C++ L2 lesson ${lesson}`, support.practiceLinks, paperIds);
+    assert(support?.reviewTasks?.length >= 2, `C++ L2 lesson ${lesson} needs review tasks.`);
+    assert(
+      lesson === 1 ? support.previous?.path === '/lesson/1/16' : support.previous?.path === `/lesson/2/${lesson - 1}`,
+      `C++ L2 lesson ${lesson} has wrong previous link.`
+    );
+    assert(
+      support.next?.path === `/lesson/2/${lesson + 1}`,
+      `C++ L2 lesson ${lesson} has wrong next link.`
+    );
+
+    const pagePath = `src/lessons/cpp/l2/Lesson${lesson}.jsx`;
+    const page = read(pagePath);
+    assert(
+      page.includes("import CppL2LessonSupport from '../../../components/CppL2LessonSupport';"),
+      `${pagePath}: missing CppL2LessonSupport import.`
+    );
+    assert(
+      countMatches(page, new RegExp(`CppL2LessonSupport lessonId=\\{${lesson}\\}`, 'g')) >= 2,
+      `${pagePath}: should include top and bottom CppL2LessonSupport.`
+    );
+    assert(
+      new RegExp(`CppL2LessonSupport lessonId=\\{${lesson}\\} placement="bottom"`).test(page),
+      `${pagePath}: missing bottom CppL2LessonSupport.`
     );
   }
 
