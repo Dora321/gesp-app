@@ -30,6 +30,7 @@ const QuestionBankHome = () => {
                 const questionCount = meta.questionCount || 0;
                 // High-level papers with very few questions are placeholders
                 const isPlaceholder = meta.level >= 3 && questionCount <= 4;
+                const needsReview = Boolean(meta.needsReview);
                 const displayTitle = isPlaceholder
                     ? meta.title.replace('真题', '练习卷（待补全）')
                     : meta.title;
@@ -45,6 +46,7 @@ const QuestionBankHome = () => {
                     month: meta.month,
                     difficulty: Math.max(1, Math.min(5, Math.floor(meta.level / 2) + (meta.month > 6 ? 1 : 0))),
                     isPlaceholder,
+                    needsReview,
                 };
             })
             .filter(Boolean)
@@ -63,6 +65,7 @@ const QuestionBankHome = () => {
             acc[level.id] = {
                 paperCount: levelPapers.length,
                 questionCount: levelPapers.reduce((sum, paper) => sum + paper.questions, 0),
+                reviewCount: levelPapers.filter(paper => paper.needsReview).length,
                 latestLabel: latestPaper ? `${latestPaper.year}.${String(latestPaper.month).padStart(2, '0')}` : '暂无',
             };
             return acc;
@@ -70,7 +73,7 @@ const QuestionBankHome = () => {
     }, [papers]);
 
     const selectedLevelInfo = levels.find(l => l.id === selectedLevel);
-    const selectedStats = levelStats[selectedLevel] || { paperCount: 0, questionCount: 0, latestLabel: '暂无' };
+    const selectedStats = levelStats[selectedLevel] || { paperCount: 0, questionCount: 0, reviewCount: 0, latestLabel: '暂无' };
 
     return (
         <div className="min-h-screen bg-slate-50 text-slate-800 font-sans pb-20">
@@ -84,7 +87,7 @@ const QuestionBankHome = () => {
                                 GESP 真题题库
                             </h1>
                             <p className="text-indigo-100 max-w-2xl text-lg">
-                                收录 2023-2026 年 GESP C++ 真题与练习卷，支持整卷练习与解析复盘。
+                                收录 2023-2026 年 GESP C++ 真题与练习卷，支持整卷练习与解析复盘，待精修卷已明确标注。
                             </p>
                         </div>
                         {/* Stats */}
@@ -100,6 +103,10 @@ const QuestionBankHome = () => {
                             <div className="bg-white/10 backdrop-blur-sm rounded-lg p-3 text-center min-w-[100px]">
                                 <div className="text-2xl font-bold">{paperStats.questionCount}</div>
                                 <div className="text-xs text-indigo-200">题目总数</div>
+                            </div>
+                            <div className="bg-white/10 backdrop-blur-sm rounded-lg p-3 text-center min-w-[100px]">
+                                <div className="text-2xl font-bold">{paperStats.reviewPaperCount}</div>
+                                <div className="text-xs text-indigo-200">待精修卷</div>
                             </div>
                         </div>
                     </div>
@@ -133,6 +140,11 @@ const QuestionBankHome = () => {
                                             <span className="block text-xs font-medium text-slate-400">
                                                 {levelStats[level.id]?.paperCount || 0} 卷 · {levelStats[level.id]?.questionCount || 0} 题
                                             </span>
+                                            {(levelStats[level.id]?.reviewCount || 0) > 0 && (
+                                                <span className="block text-xs font-semibold text-amber-600">
+                                                    {levelStats[level.id].reviewCount} 卷待精修
+                                                </span>
+                                            )}
                                         </span>
                                     </span>
                                     <ChevronRight size={16} className={`transition-transform ${selectedLevel === level.id ? 'opacity-100' : 'opacity-0'}`} />
@@ -153,6 +165,7 @@ const QuestionBankHome = () => {
                                 </h2>
                                 <p className="mt-1 text-sm text-slate-500">
                                     {selectedLevelInfo?.desc} · {selectedStats.paperCount} 卷 · {selectedStats.questionCount} 题 · 最新 {selectedStats.latestLabel}
+                                    {selectedStats.reviewCount > 0 && ` · ${selectedStats.reviewCount} 卷待精修`}
                                 </p>
                             </div>
 
@@ -184,6 +197,11 @@ const QuestionBankHome = () => {
                                             {paper.isPlaceholder && (
                                                 <div className="px-2 py-1 rounded text-[11px] font-medium w-fit bg-amber-50 text-amber-700">
                                                     当前仅 {paper.questions} 题
+                                                </div>
+                                            )}
+                                            {!paper.isPlaceholder && paper.needsReview && (
+                                                <div className="px-2 py-1 rounded text-[11px] font-medium w-fit bg-amber-50 text-amber-700">
+                                                    解析待精修
                                                 </div>
                                             )}
                                         </div>

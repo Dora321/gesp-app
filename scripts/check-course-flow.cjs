@@ -169,6 +169,40 @@ function assertHeroUsesPaperStats() {
   );
 }
 
+function countPaperPlaceholderMarkers(paperId) {
+  const [, , , level] = paperId.match(/^(\d{4})-(\d{2})-l(\d)$/) || [];
+  if (!level) {
+    fail(`Invalid paper id: ${paperId}`);
+    return 0;
+  }
+
+  const paper = read(`src/data/gesp/level${level}/${paperId}.js`);
+  const markers = [
+    /待补充/g,
+    /待补全/g,
+    /题面暂缺/g,
+    /提取异常/g,
+    /\[待补充选项\]/g,
+    /\/\*\s*TODO\s*\*\//g,
+    /\/\/\s*TODO/g,
+  ];
+
+  return markers.reduce((total, marker) => total + (paper.match(marker) || []).length, 0);
+}
+
+function assertQuestionBankReviewCopy() {
+  const questionBankHome = read('src/pages/QuestionBankHome.jsx');
+
+  assert(
+    questionBankHome.includes('解析待精修'),
+    'QuestionBankHome should label papers that still need explanation polish.'
+  );
+  assert(
+    questionBankHome.includes('paperStats.reviewPaperCount'),
+    'QuestionBankHome should surface the count of papers that need review.'
+  );
+}
+
 function assertSameNumber(label, actual, expected) {
   assert(actual === expected, `${label} mismatch. expected ${expected}, got ${actual}`);
 }
@@ -188,12 +222,24 @@ async function main() {
 
   assertCatalogSubjectCopy();
   assertHeroUsesPaperStats();
+  assertQuestionBankReviewCopy();
 
   const generatedQuestionCount = paperIds.reduce((sum, id) => sum + (paperMeta[id]?.questionCount || 0), 0);
+  const generatedReviewPaperCount = paperIds.filter(id => paperMeta[id]?.needsReview).length;
   assertSameNumber('GESP stats paperCount', paperStats.paperCount, paperIds.length);
   assertSameNumber('GESP stats questionCount', paperStats.questionCount, generatedQuestionCount);
+  assertSameNumber('GESP stats reviewPaperCount', paperStats.reviewPaperCount, generatedReviewPaperCount);
   assertSameNumber('GESP stats levelCount', paperStats.levelCount, new Set(paperIds.map(id => paperMeta[id]?.level)).size);
   assertSameNumber('GESP stats latestYear', paperStats.latestYear, Math.max(...paperIds.map(id => paperMeta[id]?.year)));
+
+  for (const paperId of paperIds) {
+    const placeholderCount = countPaperPlaceholderMarkers(paperId);
+    assertSameNumber(`GESP paper ${paperId} placeholderCount`, paperMeta[paperId]?.placeholderCount, placeholderCount);
+    assert(
+      paperMeta[paperId]?.needsReview === (placeholderCount > 0),
+      `GESP paper ${paperId} needsReview should match placeholderCount.`
+    );
+  }
 
   assertSameArray(
     'Python foundation catalog order',

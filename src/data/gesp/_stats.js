@@ -4,6 +4,7 @@
 export const paperStats = {
   paperCount: 93,
   questionCount: 2409,
+  reviewPaperCount: 42,
   levelCount: 8,
   latestYear: 2026,
 };
