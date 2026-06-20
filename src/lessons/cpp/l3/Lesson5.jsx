@@ -1,6 +1,6 @@
 import React, { useMemo, useState } from 'react';
 import { AlertTriangle, Boxes, ClipboardCheck, ListChecks, Search } from 'lucide-react';
-import CppLessonShell, { Callout, CodeBlock, CompareTable, MiniQuiz, StepList } from '../CppLessonShell';
+import CppLessonShell, { Callout, CodeBlock, CodeTracer, CompareTable, MiniQuiz } from '../CppLessonShell';
 
 const sections = [
     { id: 1, title: '课程导入', category: '数组模型' },
@@ -70,6 +70,46 @@ const quiz = [
     },
 ];
 
+const arrayTraverseDemo = [3, 1, 4, 1, 5];
+
+function ArrayTraverseTracer() {
+    const n = arrayTraverseDemo.length;
+    const steps = useMemo(() => {
+        const result = [{ active: [0, 1], vars: { n, i: '–' } }];
+        for (let i = 0; i < n; i += 1) {
+            result.push({
+                active: [2, 3],
+                vars: { n, i },
+                action: i === 0 ? '开始遍历' : '下一个 i',
+                row: [`i = ${i}`, `${i} < ${n} ✓`, arrayTraverseDemo[i], '输出'],
+            });
+        }
+        result.push({
+            active: [2],
+            vars: { n, i: n },
+            action: '判断并停止',
+            exit: `i = ${n}：${n} < ${n} ✗，停止（不会越界）`,
+            output: `cout 输出 ${arrayTraverseDemo.join(' ')}`,
+        });
+        return result;
+    }, [n]);
+
+    return (
+        <CodeTracer
+            title="数组遍历追踪器"
+            code={`int n = 5;
+int a[5] = {3, 1, 4, 1, 5};
+for (int i = 0; i < n; i++) {
+  cout << a[i] << " ";
+}`}
+            varOrder={['n', 'i']}
+            columns={['i', 'i < n ?', 'a[i]', '动作']}
+            steps={steps}
+            hint="点击「开始遍历」，看 i 从 0 走到 n-1 →"
+        />
+    );
+}
+
 export default function CppL3Lesson5() {
     return (
         <CppLessonShell
@@ -118,25 +158,7 @@ export default function CppL3Lesson5() {
                                 数组题通常不是单独访问一个格子，而是按顺序处理每个元素。标准模板是从 0 开始，到 n 之前停止。
                             </p>
                         </div>
-                        <div className="grid gap-5 lg:grid-cols-[1fr_0.9fr]">
-                            <CodeBlock>{`int n;
-int a[1005];
-cin >> n;
-
-for (int i = 0; i < n; i++) {
-  cin >> a[i];
-}
-
-for (int i = 0; i < n; i++) {
-  cout << a[i] << " ";
-}`}</CodeBlock>
-                            <StepList steps={[
-                                '读入 n，表示实际使用几个格子',
-                                '从 i = 0 开始',
-                                '每次访问 a[i]',
-                                '当 i == n 时停止，避免越界',
-                            ]} />
-                        </div>
+                        <ArrayTraverseTracer />
                     </>
                 ),
                 4: (

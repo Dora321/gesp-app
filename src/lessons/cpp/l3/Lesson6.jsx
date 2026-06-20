@@ -1,6 +1,6 @@
 import React, { useMemo, useState } from 'react';
 import { BarChart3, ClipboardCheck, Gauge, Search, Sigma } from 'lucide-react';
-import CppLessonShell, { Callout, CodeBlock, CompareTable, MiniQuiz, StepList } from '../CppLessonShell';
+import CppLessonShell, { Callout, CodeBlock, CodeTracer, CompareTable, MiniQuiz } from '../CppLessonShell';
 
 const sections = [
     { id: 1, title: '课程导入', category: '数组实战' },
@@ -80,6 +80,49 @@ const quiz = [
     },
 ];
 
+const sumDemo = [4, 8, 15, 16, 23];
+
+function SumTracer() {
+    const n = sumDemo.length;
+    const steps = useMemo(() => {
+        const result = [{ active: [0], vars: { i: '–', sum: 0 } }];
+        let sum = 0;
+        for (let i = 0; i < n; i += 1) {
+            const before = sum;
+            sum += sumDemo[i];
+            result.push({
+                active: [1, 2],
+                vars: { i, sum },
+                action: i === 0 ? '开始累加' : '下一个 i',
+                row: [`i = ${i}`, sumDemo[i], `${before} + ${sumDemo[i]} = ${sum}`],
+            });
+        }
+        result.push({
+            active: [1, 4],
+            vars: { i: n, sum },
+            action: '判断并退出',
+            exit: `i = ${n}，循环结束`,
+            output: `sum = ${sum}，avg = 1.0 * ${sum} / ${n} = ${(sum / n).toFixed(1)}`,
+        });
+        return result;
+    }, [n]);
+
+    return (
+        <CodeTracer
+            title="数组求和追踪器"
+            code={`int sum = 0;
+for (int i = 0; i < n; i++) {
+  sum += a[i];
+}
+double avg = 1.0 * sum / n;`}
+            varOrder={['i', 'sum']}
+            columns={['i', 'a[i]', 'sum += a[i]']}
+            steps={steps}
+            hint="点击「开始累加」，看 sum 一步步攒起来 →"
+        />
+    );
+}
+
 export default function CppL3Lesson6() {
     return (
         <CppLessonShell
@@ -107,20 +150,7 @@ export default function CppL3Lesson6() {
                                 求和题的核心变量叫累计变量。它保存“目前为止看到的总和”。
                             </p>
                         </div>
-                        <div className="grid gap-5 lg:grid-cols-[1fr_0.9fr]">
-                            <CodeBlock>{`int sum = 0;
-for (int i = 0; i < n; i++) {
-  sum += a[i];
-}
-
-double avg = 1.0 * sum / n;`}</CodeBlock>
-                            <StepList steps={[
-                                'sum 初始化为 0',
-                                '每次读到 a[i]',
-                                '执行 sum += a[i]',
-                                '平均数要注意转成小数计算',
-                            ]} />
-                        </div>
+                        <SumTracer />
                         <Callout icon={Sigma} title="平均数的类型坑" tone="rose">
                             如果写 <code>sum / n</code>，两个都是整数时会做整数除法。需要写 <code>1.0 * sum / n</code>。
                         </Callout>

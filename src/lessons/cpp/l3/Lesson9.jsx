@@ -1,6 +1,6 @@
 import React, { useMemo, useState } from 'react';
 import { ClipboardCheck, Hash, ListChecks, Search, TableProperties } from 'lucide-react';
-import CppLessonShell, { Callout, CodeBlock, CompareTable, MiniQuiz, StepList } from '../CppLessonShell';
+import CppLessonShell, { Callout, CodeBlock, CodeTracer, CompareTable, MiniQuiz } from '../CppLessonShell';
 
 const sections = [
     { id: 1, title: '课程导入', category: '综合模型' },
@@ -75,6 +75,55 @@ const quiz = [
     },
 ];
 
+function DedupeTracer() {
+    const s = 'banana';
+    const steps = useMemo(() => {
+        const result = [{ active: [0], vars: { i: '–', 输出: '' } }];
+        const seen = new Set();
+        let out = '';
+        for (let i = 0; i < s.length; i += 1) {
+            const c = s[i];
+            const first = !seen.has(c);
+            if (first) {
+                out += c;
+                seen.add(c);
+            }
+            result.push({
+                active: first ? [2, 3, 4, 5, 6] : [2, 3, 4],
+                vars: { i, 输出: out },
+                action: i === 0 ? '开始去重' : '下一个字符',
+                row: [`i = ${i}`, c, first ? 'false（没见过）' : 'true（见过）', first ? `输出 ${c}` : '跳过'],
+            });
+        }
+        result.push({
+            active: [8],
+            vars: { i: s.length, 输出: out },
+            action: '退出',
+            output: `cout 输出 ${out}`,
+        });
+        return result;
+    }, []);
+
+    return (
+        <CodeTracer
+            title="首次出现去重追踪器"
+            code={`bool seen[26] = {false};
+
+for (int i = 0; i < s.size(); i++) {
+  int id = s[i] - 'a';
+  if (!seen[id]) {
+    cout << s[i];
+    seen[id] = true;
+  }
+}`}
+            varOrder={['i', '输出']}
+            columns={['i', '字符', 'seen[id]?', '动作']}
+            steps={steps}
+            hint='点击「开始去重」，看 "banana" 只留首次出现 →'
+        />
+    );
+}
+
 export default function CppL3Lesson9() {
     return (
         <CppLessonShell
@@ -125,23 +174,7 @@ for (int i = 0; i < s.size(); i++) {
                                 如果题目要求“按首次出现顺序输出不同字符”，可以用布尔数组记录某个字符是否已经出现。
                             </p>
                         </div>
-                        <div className="grid gap-5 lg:grid-cols-[1fr_0.9fr]">
-                            <CodeBlock>{`bool seen[26] = {false};
-
-for (int i = 0; i < s.size(); i++) {
-  int id = s[i] - 'a';
-  if (!seen[id]) {
-    cout << s[i];
-    seen[id] = true;
-  }
-}`}</CodeBlock>
-                            <StepList steps={[
-                                '把字符转成 id',
-                                '检查 seen[id] 是否为 false',
-                                '第一次出现就输出',
-                                '输出后立刻标记为 true',
-                            ]} />
-                        </div>
+                        <DedupeTracer />
                     </>
                 ),
                 4: (

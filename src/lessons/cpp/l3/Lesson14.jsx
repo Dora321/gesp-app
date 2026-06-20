@@ -1,6 +1,6 @@
 import React, { useMemo, useState } from 'react';
 import { Binary, ClipboardCheck, Database, Repeat, Search } from 'lucide-react';
-import CppLessonShell, { Callout, CodeBlock, CompareTable, MiniQuiz, StepList } from '../CppLessonShell';
+import CppLessonShell, { Callout, CodeBlock, CodeTracer, CompareTable, MiniQuiz } from '../CppLessonShell';
 
 const sections = [
     { id: 1, title: '课程导入', category: '转换模型' },
@@ -59,6 +59,56 @@ const quiz = [
     },
 ];
 
+function BaseConvertTracer() {
+    const digits = '0123456789ABCDEF';
+    const k = 2;
+    const steps = useMemo(() => {
+        const result = [{ active: [0], vars: { n: 29, ans: '""' } }];
+        let n = 29;
+        let ans = '';
+        let round = 0;
+        while (n > 0) {
+            round += 1;
+            const before = n;
+            const r = n % k;
+            const ch = digits[r];
+            ans += ch;
+            n = Math.floor(n / k);
+            result.push({
+                active: [1, 2, 3],
+                vars: { n, ans: `"${ans}"` },
+                action: round === 1 ? '开始转换' : '下一轮',
+                row: [`第 ${round} 轮`, before, `${before} % ${k} = ${r}`, ch, `"${ans}"`],
+            });
+        }
+        const reversed = [...ans].reverse().join('');
+        result.push({
+            active: [1, 5],
+            vars: { n, ans: `"${ans}"` },
+            action: '退出并反转',
+            exit: 'n = 0，循环结束',
+            output: `reverse → ${reversed}（29 的二进制）`,
+        });
+        return result;
+    }, []);
+
+    return (
+        <CodeTracer
+            title="进制转换追踪器"
+            code={`string ans = "";
+while (n > 0) {
+  ans += digits[n % k];
+  n /= k;
+}
+reverse(ans.begin(), ans.end());`}
+            varOrder={['n', 'ans']}
+            columns={['轮次', 'n', 'n % k', 'digits[n%k]', 'ans']}
+            steps={steps}
+            hint="点击「开始转换」，看余数倒着拼、最后反转 →"
+        />
+    );
+}
+
 export default function CppL3Lesson14() {
     return (
         <CppLessonShell
@@ -86,28 +136,7 @@ export default function CppL3Lesson14() {
                                 每次 <code>n % k</code> 得到一位，<code>n /= k</code> 去掉这一位。余数顺序是从低位到高位，所以最后要反转。
                             </p>
                         </div>
-                        <div className="grid gap-5 lg:grid-cols-[1fr_0.9fr]">
-                            <CodeBlock>{`string toBase(int n, int k) {
-  if (n == 0) return "0";
-
-  string digits = "0123456789ABCDEF";
-  string ans = "";
-
-  while (n > 0) {
-    ans += digits[n % k];
-    n /= k;
-  }
-
-  reverse(ans.begin(), ans.end());
-  return ans;
-}`}</CodeBlock>
-                            <StepList steps={[
-                                '特判 n == 0',
-                                '不断取 n % k',
-                                '把余数转成字符',
-                                '反转得到正确顺序',
-                            ]} />
-                        </div>
+                        <BaseConvertTracer />
                     </>
                 ),
                 3: (

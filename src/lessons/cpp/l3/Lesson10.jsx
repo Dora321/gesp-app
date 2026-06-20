@@ -1,6 +1,6 @@
 import React, { useMemo, useState } from 'react';
 import { ClipboardCheck, ListFilter, Search, Target, Timer } from 'lucide-react';
-import CppLessonShell, { Callout, CodeBlock, CompareTable, MiniQuiz, StepList } from '../CppLessonShell';
+import CppLessonShell, { Callout, CodeBlock, CodeTracer, CompareTable, MiniQuiz } from '../CppLessonShell';
 
 const sections = [
     { id: 1, title: '课程导入', category: '枚举思想' },
@@ -68,6 +68,51 @@ const quiz = [
     },
 ];
 
+function EnumerateTracer() {
+    const n = 4;
+    const target = 5;
+    const steps = useMemo(() => {
+        const result = [{ active: [0], vars: { a: '–', b: '–' } }];
+        const hits = [];
+        for (let a = 1; a <= n; a += 1) {
+            for (let b = a; b <= n; b += 1) {
+                const hit = a + b === target;
+                if (hit) hits.push(`${a}+${b}`);
+                result.push({
+                    active: hit ? [0, 1, 2, 3] : [0, 1, 2],
+                    vars: { a, b },
+                    action: a === 1 && b === 1 ? '开始枚举' : '下一对',
+                    row: [`a=${a}, b=${b}`, `${a} + ${b} = ${a + b}`, hit ? '✓ 输出' : '✗'],
+                });
+            }
+        }
+        result.push({
+            active: [6],
+            vars: { a: n, b: n },
+            action: '退出',
+            output: `找到：${hits.join('、')}`,
+        });
+        return result;
+    }, []);
+
+    return (
+        <CodeTracer
+            title="枚举追踪器"
+            code={`for (int a = 1; a <= n; a++) {
+  for (int b = a; b <= n; b++) {
+    if (a + b == target) {
+      cout << a << " " << b << endl;
+    }
+  }
+}`}
+            varOrder={['a', 'b']}
+            columns={['枚举 (a, b)', 'a + b', '== 5 ?']}
+            steps={steps}
+            hint="点击「开始枚举」，看 b 从 a 起避免重复组合 →"
+        />
+    );
+}
+
 export default function CppL3Lesson10() {
     return (
         <CppLessonShell
@@ -114,21 +159,7 @@ for (int x = 1; x <= n; x++) {
                                 当答案由两个变量共同决定时，可以用两层循环。比如找两个数相加等于目标值。
                             </p>
                         </div>
-                        <div className="grid gap-5 lg:grid-cols-[1fr_0.9fr]">
-                            <CodeBlock>{`for (int a = 1; a <= n; a++) {
-  for (int b = a; b <= n; b++) {
-    if (a + b == target) {
-      cout << a << " " << b << endl;
-    }
-  }
-}`}</CodeBlock>
-                            <StepList steps={[
-                                '外层枚举第一个变量 a',
-                                '内层枚举第二个变量 b',
-                                '用 if 判断组合是否合法',
-                                '如果 a 和 b 不区分顺序，可令 b 从 a 开始',
-                            ]} />
-                        </div>
+                        <EnumerateTracer />
                     </>
                 ),
                 4: (

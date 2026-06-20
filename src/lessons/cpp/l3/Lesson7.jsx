@@ -1,6 +1,6 @@
 import React, { useMemo, useState } from 'react';
 import { ClipboardCheck, FileText, Search, Type, WholeWord } from 'lucide-react';
-import CppLessonShell, { Callout, CodeBlock, CompareTable, MiniQuiz, StepList } from '../CppLessonShell';
+import CppLessonShell, { Callout, CodeBlock, CodeTracer, CompareTable, MiniQuiz } from '../CppLessonShell';
 
 const sections = [
     { id: 1, title: '课程导入', category: 'string 模型' },
@@ -89,6 +89,44 @@ const quiz = [
     },
 ];
 
+function StringTraverseTracer() {
+    const s = 'hello';
+    const steps = useMemo(() => {
+        const result = [{ active: [0], vars: { i: '–', 's[i]': '–' } }];
+        for (let i = 0; i < s.length; i += 1) {
+            result.push({
+                active: [2, 3],
+                vars: { i, 's[i]': s[i] },
+                action: i === 0 ? '开始遍历' : '下一个 i',
+                row: [`i = ${i}`, s[i], `输出 ${i}: ${s[i]}`],
+            });
+        }
+        result.push({
+            active: [2],
+            vars: { i: s.length, 's[i]': '–' },
+            action: '判断并结束',
+            exit: `i = ${s.length}：${s.length} < s.size() ✗，结束`,
+            output: `逐行输出 ${[...s].map((ch, i) => `${i}:${ch}`).join('  ')}`,
+        });
+        return result;
+    }, []);
+
+    return (
+        <CodeTracer
+            title="字符串遍历追踪器"
+            code={`string s = "hello";
+
+for (int i = 0; i < s.size(); i++) {
+  cout << i << ": " << s[i] << endl;
+}`}
+            varOrder={['i', 's[i]']}
+            columns={['i', 's[i]', '输出']}
+            steps={steps}
+            hint="点击「开始遍历」，看每个 s[i] 都是一个 char →"
+        />
+    );
+}
+
 export default function CppL3Lesson7() {
     return (
         <CppLessonShell
@@ -137,19 +175,7 @@ cout << s.size() << endl;`}</CodeBlock>
                                 字符串同样从 0 开始编号。遍历时可以把 <code>s[i]</code> 当作一个字符处理。
                             </p>
                         </div>
-                        <div className="grid gap-5 lg:grid-cols-[1fr_0.9fr]">
-                            <CodeBlock>{`string s = "hello";
-
-for (int i = 0; i < s.size(); i++) {
-  cout << i << ": " << s[i] << endl;
-}`}</CodeBlock>
-                            <StepList steps={[
-                                's.size() 得到字符串长度',
-                                'i 从 0 开始',
-                                'i < s.size() 时访问 s[i]',
-                                '每个 s[i] 都是一个 char',
-                            ]} />
-                        </div>
+                        <StringTraverseTracer />
                     </>
                 ),
                 4: (

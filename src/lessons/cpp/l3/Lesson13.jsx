@@ -1,6 +1,6 @@
 import React, { useMemo, useState } from 'react';
 import { ClipboardCheck, Grid3X3, Layers, Search, Triangle } from 'lucide-react';
-import CppLessonShell, { Callout, CodeBlock, CompareTable, MiniQuiz, StepList } from '../CppLessonShell';
+import CppLessonShell, { Callout, CodeBlock, CodeTracer, CompareTable, MiniQuiz } from '../CppLessonShell';
 
 const sections = [
     { id: 1, title: '课程导入', category: '图形模型' },
@@ -76,6 +76,43 @@ const quiz = [
     },
 ];
 
+function TriangleTracer() {
+    const n = 4;
+    const steps = useMemo(() => {
+        const result = [{ active: [0], vars: { i: '–', 空格: '–', 星号: '–' } }];
+        for (let i = 1; i <= n; i += 1) {
+            const spaces = n - i;
+            const stars = 2 * i - 1;
+            result.push({
+                active: [0, 1, 4, 7],
+                vars: { i, 空格: spaces, 星号: stars },
+                action: i === 1 ? '画第 1 行' : '下一行',
+                row: [`第 ${i} 行`, spaces, stars, `${'·'.repeat(spaces)}${'★'.repeat(stars)}`],
+            });
+        }
+        return result;
+    }, []);
+
+    return (
+        <CodeTracer
+            title="三角形追踪器"
+            code={`for (int i = 1; i <= n; i++) {
+  for (int j = 1; j <= n - i; j++) {
+    cout << " ";
+  }
+  for (int j = 1; j <= 2 * i - 1; j++) {
+    cout << "*";
+  }
+  cout << endl;
+}`}
+            varOrder={['i', '空格', '星号']}
+            columns={['行', '空格 n-i', '星号 2i-1', '输出（·=空格）']}
+            steps={steps}
+            hint="点击「画第 1 行」，看空格递减、星号按 2i-1 递增 →"
+        />
+    );
+}
+
 export default function CppL3Lesson13() {
     return (
         <CppLessonShell
@@ -127,23 +164,7 @@ export default function CppL3Lesson13() {
                                 很多图形题错在忽略空格。金字塔每行先输出若干空格，再输出星号。
                             </p>
                         </div>
-                        <div className="grid gap-5 lg:grid-cols-[1fr_0.9fr]">
-                            <CodeBlock>{`for (int i = 1; i <= n; i++) {
-  for (int j = 1; j <= n - i; j++) {
-    cout << " ";
-  }
-  for (int j = 1; j <= 2 * i - 1; j++) {
-    cout << "*";
-  }
-  cout << endl;
-}`}</CodeBlock>
-                            <StepList steps={[
-                                '先确定第 i 行',
-                                '输出 n - i 个前导空格',
-                                '输出 2 * i - 1 个星号',
-                                '每行结束后换行',
-                            ]} />
-                        </div>
+                        <TriangleTracer />
                     </>
                 ),
                 4: (

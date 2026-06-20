@@ -1,6 +1,6 @@
 import React, { useMemo, useState } from 'react';
 import { ClipboardCheck, Footprints, Play, RefreshCw, Search } from 'lucide-react';
-import CppLessonShell, { Callout, CodeBlock, CompareTable, MiniQuiz, StepList } from '../CppLessonShell';
+import CppLessonShell, { Callout, CodeBlock, CodeTracer, CompareTable, MiniQuiz } from '../CppLessonShell';
 
 const sections = [
     { id: 1, title: '课程导入', category: '模拟思想' },
@@ -79,6 +79,58 @@ const quiz = [
     },
 ];
 
+function MoveTracer() {
+    const s = 'RRUL';
+    const steps = useMemo(() => {
+        const result = [{ active: [0, 1], vars: { x: 0, y: 0 } }];
+        let x = 0;
+        let y = 0;
+        const lineOf = { R: 4, L: 5, U: 6, D: 7 };
+        for (let i = 0; i < s.length; i += 1) {
+            const cmd = s[i];
+            if (cmd === 'R') x += 1;
+            if (cmd === 'L') x -= 1;
+            if (cmd === 'U') y += 1;
+            if (cmd === 'D') y -= 1;
+            result.push({
+                active: [3, lineOf[cmd]],
+                vars: { x, y },
+                action: i === 0 ? '开始走' : '下一步',
+                row: [`i = ${i}`, cmd, x, y],
+            });
+        }
+        result.push({
+            active: [3, 10],
+            vars: { x, y },
+            action: '退出',
+            exit: `i = ${s.length}，遍历结束`,
+            output: `cout 输出 ${x} ${y}（终点坐标）`,
+        });
+        return result;
+    }, []);
+
+    return (
+        <CodeTracer
+            title="坐标模拟追踪器"
+            code={`string s = "RRUL";
+int x = 0, y = 0;
+
+for (int i = 0; i < s.size(); i++) {
+  if (s[i] == 'R') x++;
+  if (s[i] == 'L') x--;
+  if (s[i] == 'U') y++;
+  if (s[i] == 'D') y--;
+}
+
+cout << x << " " << y;`}
+            varOrder={['x', 'y']}
+            columns={['i', '指令', 'x', 'y']}
+            steps={steps}
+            hint="点击「开始走」，看每条指令怎么改坐标 →"
+        />
+    );
+}
+
 export default function CppL3Lesson11() {
     return (
         <CppLessonShell
@@ -127,26 +179,7 @@ export default function CppL3Lesson11() {
                                 模拟坐标移动时，每个字符对应一个方向。程序要按输入顺序逐个处理。
                             </p>
                         </div>
-                        <div className="grid gap-5 lg:grid-cols-[1fr_0.9fr]">
-                            <CodeBlock>{`int x = 0, y = 0;
-string s;
-cin >> s;
-
-for (int i = 0; i < s.size(); i++) {
-  if (s[i] == 'R') x++;
-  if (s[i] == 'L') x--;
-  if (s[i] == 'U') y++;
-  if (s[i] == 'D') y--;
-}
-
-cout << x << " " << y;`}</CodeBlock>
-                            <StepList steps={[
-                                '初始化状态',
-                                '读入所有操作',
-                                '按顺序处理每个操作',
-                                '输出最终状态',
-                            ]} />
-                        </div>
+                        <MoveTracer />
                     </>
                 ),
                 4: (

@@ -1,6 +1,6 @@
 import React, { useMemo, useState } from 'react';
 import { CaseSensitive, ClipboardCheck, Search, Sparkles, TextSearch } from 'lucide-react';
-import CppLessonShell, { Callout, CodeBlock, CompareTable, MiniQuiz, StepList } from '../CppLessonShell';
+import CppLessonShell, { Callout, CodeBlock, CodeTracer, CompareTable, MiniQuiz } from '../CppLessonShell';
 
 const sections = [
     { id: 1, title: '课程导入', category: '字符串处理' },
@@ -84,6 +84,55 @@ const quiz = [
     },
 ];
 
+function CharCountTracer() {
+    const s = 'a1b2';
+    const steps = useMemo(() => {
+        const result = [{ active: [0, 1], vars: { i: '–', digit: 0, letter: 0 } }];
+        let digit = 0;
+        let letter = 0;
+        for (let i = 0; i < s.length; i += 1) {
+            const c = s[i];
+            const isDigit = c >= '0' && c <= '9';
+            const isLetter = (c >= 'a' && c <= 'z') || (c >= 'A' && c <= 'Z');
+            if (isDigit) digit += 1;
+            if (isLetter) letter += 1;
+            result.push({
+                active: [3, 4, 6, 7, 8],
+                vars: { i, digit, letter },
+                action: i === 0 ? '开始统计' : '下一个字符',
+                row: [`i = ${i}`, c, isDigit ? '数字 → digit++' : isLetter ? '字母 → letter++' : '其他', digit, letter],
+            });
+        }
+        result.push({
+            active: [9],
+            vars: { i: s.length, digit, letter },
+            action: '退出',
+            output: `digit = ${digit}，letter = ${letter}`,
+        });
+        return result;
+    }, []);
+
+    return (
+        <CodeTracer
+            title="字符统计追踪器"
+            code={`int digit = 0;
+int letter = 0;
+
+for (int i = 0; i < s.size(); i++) {
+  char c = s[i];
+
+  if (c >= '0' && c <= '9') digit++;
+  if ((c >= 'a' && c <= 'z') ||
+      (c >= 'A' && c <= 'Z')) letter++;
+}`}
+            varOrder={['i', 'digit', 'letter']}
+            columns={['i', 'c', '判断', 'digit', 'letter']}
+            steps={steps}
+            hint="点击「开始统计」，看 digit / letter 怎么累加 →"
+        />
+    );
+}
+
 export default function CppL3Lesson8() {
     return (
         <CppLessonShell
@@ -111,24 +160,7 @@ export default function CppL3Lesson8() {
                                 统计题的模板是遍历字符串，用 if 判断字符类型，满足条件就让计数器加一。
                             </p>
                         </div>
-                        <div className="grid gap-5 lg:grid-cols-[1fr_0.9fr]">
-                            <CodeBlock>{`int digit = 0;
-int letter = 0;
-
-for (int i = 0; i < s.size(); i++) {
-  char c = s[i];
-
-  if (c >= '0' && c <= '9') digit++;
-  if ((c >= 'a' && c <= 'z') ||
-      (c >= 'A' && c <= 'Z')) letter++;
-}`}</CodeBlock>
-                            <StepList steps={[
-                                '遍历字符串每个字符',
-                                '用 char c 保存当前字符',
-                                '判断字符是否在某个范围内',
-                                '满足条件就更新计数器',
-                            ]} />
-                        </div>
+                        <CharCountTracer />
                     </>
                 ),
                 3: (
