@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { ArrowRight, BookOpen, CheckCircle2, Code2, FileQuestion, Route } from 'lucide-react';
+import { paperStats } from '../data/gesp/_stats';
 
 const CodePulse = () => {
     const [activeLine, setActiveLine] = useState(0);
@@ -111,7 +112,7 @@ export default function HeroSection() {
                 <div className="mx-auto grid max-w-7xl gap-4 px-4 py-5 text-sm font-bold text-slate-500 sm:grid-cols-3 sm:px-6 lg:px-8">
                     <div className="flex items-center gap-2"><Code2 size={16} className="text-blue-500" /> C++ GESP Level 1-8</div>
                     <div className="flex items-center gap-2"><BookOpen size={16} className="text-emerald-500" /> Python 基础与项目课</div>
-                    <div className="flex items-center gap-2"><FileQuestion size={16} className="text-orange-500" /> 93 套真题与解析</div>
+                    <div className="flex items-center gap-2"><FileQuestion size={16} className="text-orange-500" /> {paperStats.paperCount} 套真题与解析</div>
                 </div>
             </div>
         </section>

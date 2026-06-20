@@ -156,13 +156,44 @@ function assertCatalogSubjectCopy() {
   );
 }
 
+function assertHeroUsesPaperStats() {
+  const hero = read('src/components/HeroSection.jsx');
+
+  assert(
+    hero.includes("import { paperStats } from '../data/gesp/_stats';"),
+    'HeroSection should read GESP paper counters from the lightweight stats module.'
+  );
+  assert(
+    !/\d+\s*套真题/.test(hero),
+    'HeroSection should not hard-code the GESP paper count.'
+  );
+}
+
+function assertSameNumber(label, actual, expected) {
+  assert(actual === expected, `${label} mismatch. expected ${expected}, got ${actual}`);
+}
+
 async function main() {
-  const [{ getCppLevelSupport }, { getCppL1LessonSupport }] = await Promise.all([
+  const [
+    { getCppLevelSupport },
+    { getCppL1LessonSupport },
+    { paperIds, paperMeta },
+    { paperStats },
+  ] = await Promise.all([
     import(pathToFileURL(path.join(srcRoot, 'data', 'cppLevelFlow.js')).href),
     import(pathToFileURL(path.join(srcRoot, 'data', 'cppL1CourseFlow.js')).href),
+    import(pathToFileURL(path.join(srcRoot, 'data', 'gesp', '_generated.js')).href),
+    import(pathToFileURL(path.join(srcRoot, 'data', 'gesp', '_stats.js')).href),
   ]);
 
   assertCatalogSubjectCopy();
+  assertHeroUsesPaperStats();
+
+  const generatedQuestionCount = paperIds.reduce((sum, id) => sum + (paperMeta[id]?.questionCount || 0), 0);
+  assertSameNumber('GESP stats paperCount', paperStats.paperCount, paperIds.length);
+  assertSameNumber('GESP stats questionCount', paperStats.questionCount, generatedQuestionCount);
+  assertSameNumber('GESP stats levelCount', paperStats.levelCount, new Set(paperIds.map(id => paperMeta[id]?.level)).size);
+  assertSameNumber('GESP stats latestYear', paperStats.latestYear, Math.max(...paperIds.map(id => paperMeta[id]?.year)));
 
   assertSameArray(
     'Python foundation catalog order',

@@ -2,6 +2,7 @@ import React, { useMemo, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { BookOpen, Star, Trophy, Clock, ChevronRight, Search, Award } from 'lucide-react';
 import { paperIds, paperMeta } from '../data/gesp';
+import { paperStats } from '../data/gesp/_stats';
 
 const levels = [
     { id: 1, name: '一级', desc: '零基础入门', badgeClass: 'bg-blue-500' },
@@ -89,15 +90,15 @@ const QuestionBankHome = () => {
                         {/* Stats */}
                         <div className="flex gap-4">
                             <div className="bg-white/10 backdrop-blur-sm rounded-lg p-3 text-center min-w-[100px]">
-                                <div className="text-2xl font-bold">8</div>
+                                <div className="text-2xl font-bold">{paperStats.levelCount}</div>
                                 <div className="text-xs text-indigo-200">覆盖等级</div>
                             </div>
                             <div className="bg-white/10 backdrop-blur-sm rounded-lg p-3 text-center min-w-[100px]">
-                                <div className="text-2xl font-bold">{papers.length}</div>
+                                <div className="text-2xl font-bold">{paperStats.paperCount}</div>
                                 <div className="text-xs text-indigo-200">收录试卷</div>
                             </div>
                             <div className="bg-white/10 backdrop-blur-sm rounded-lg p-3 text-center min-w-[100px]">
-                                <div className="text-2xl font-bold">{papers.reduce((sum, paper) => sum + paper.questions, 0)}</div>
+                                <div className="text-2xl font-bold">{paperStats.questionCount}</div>
                                 <div className="text-xs text-indigo-200">题目总数</div>
                             </div>
                         </div>
