@@ -1,6 +1,6 @@
 import React, { useMemo, useState } from 'react';
-import { AlertTriangle, ClipboardCheck, Diamond, Flag, RotateCcw, Route, SkipForward } from 'lucide-react';
-import CppLessonShell, { Callout, CodeBlock, CompareTable, MiniQuiz, StepList } from '../CppLessonShell';
+import { AlertTriangle, ClipboardCheck, Diamond, Route } from 'lucide-react';
+import CppLessonShell, { Callout, CodeBlock, CodeTracer, CompareTable, MiniQuiz, StepList } from '../CppLessonShell';
 
 const sections = [
     { id: 1, title: '课程导入', category: '读图能力' },
@@ -68,163 +68,49 @@ function FlowTraceLab() {
     );
 }
 
-const codeLines = [
-    [['kw', 'int'], ['pl', ' i = '], ['nm', '1'], ['pl', ', sum = '], ['nm', '0'], ['pl', ';']],
-    [['kw', 'while'], ['pl', ' (i <= '], ['nm', '5'], ['pl', ') {']],
-    [['pl', '  sum += i;']],
-    [['pl', '  i++;']],
-    [['pl', '}']],
-    [['fn', 'cout'], ['pl', ' << sum;']],
-];
-
-const tokenColor = {
-    kw: 'text-fuchsia-400',
-    fn: 'text-sky-400',
-    nm: 'text-orange-300',
-    pl: 'text-slate-200',
-};
-
-function TracedCode({ activeLines }) {
-    return (
-        <pre className="overflow-x-auto rounded-xl bg-slate-950 p-4 text-sm leading-7 shadow-inner ring-1 ring-white/10">
-            <code className="font-mono">
-                {codeLines.map((tokens, lineIndex) => {
-                    const active = activeLines.includes(lineIndex);
-                    return (
-                        <span
-                            key={`line-${lineIndex}`}
-                            className={`block min-h-7 -mx-2 rounded px-2 transition-colors ${active ? 'bg-indigo-500/25 ring-1 ring-inset ring-indigo-400/40' : ''}`}
-                        >
-                            {tokens.map(([type, text], tokenIndex) => (
-                                <span key={tokenIndex} className={tokenColor[type]}>{text}</span>
-                            ))}
-                        </span>
-                    );
-                })}
-            </code>
-        </pre>
-    );
-}
-
 function LoopTraceLab() {
-    const trace = useMemo(() => {
-        const rows = [];
+    const steps = useMemo(() => {
+        const result = [{ active: [0], vars: { i: 1, sum: 0 } }];
         let i = 1;
         let sum = 0;
+        let round = 0;
         while (i <= 5) {
+            round += 1;
             const startI = i;
             const startSum = sum;
             sum += i;
             i += 1;
-            rows.push({ round: rows.length + 1, startI, startSum, newSum: sum, newI: i });
+            result.push({
+                active: [1, 2, 3],
+                vars: { i, sum },
+                action: round === 1 ? '开始第 1 轮' : '下一轮',
+                row: [`第 ${round} 轮`, `${startI} ≤ 5 ✓`, `${startSum} + ${startI} = ${sum}`, `${i}`],
+            });
         }
-        return rows;
+        result.push({
+            active: [1, 5],
+            vars: { i, sum },
+            action: '判断并跳出',
+            exit: `${i} ≤ 5 ✗ 不成立，结束循环`,
+            output: `cout << sum; → 输出 ${sum}`,
+        });
+        return result;
     }, []);
 
-    const lastStep = trace.length + 1; // 0=初始, 1..5=每一轮, 6=跳出并输出
-    const [step, setStep] = useState(0);
-
-    const revealed = Math.min(step, trace.length);
-    const finished = step >= lastStep;
-    const current = step === 0
-        ? { i: 1, sum: 0 }
-        : { i: trace[revealed - 1].newI, sum: trace[revealed - 1].newSum };
-
-    let activeLines = [0];
-    if (finished) activeLines = [1, 5];
-    else if (step >= 1) activeLines = [1, 2, 3];
-
-    const nextLabel = step === 0 ? '开始第 1 轮' : step < trace.length ? '下一轮' : step === trace.length ? '判断并跳出' : '已结束';
-
     return (
-        <div className="rounded-2xl border border-indigo-100 bg-indigo-50 p-6">
-            <div className="mb-5 flex flex-wrap items-center justify-between gap-3">
-                <div className="flex items-center gap-2">
-                    <Route className="text-indigo-700" />
-                    <h3 className="text-xl font-black text-slate-950">循环追踪器</h3>
-                </div>
-                <div className="flex items-center gap-2">
-                    <button
-                        type="button"
-                        onClick={() => setStep((value) => Math.min(value + 1, lastStep))}
-                        disabled={finished}
-                        className="flex items-center gap-1.5 rounded-lg bg-indigo-600 px-4 py-2 text-sm font-black text-white shadow-sm transition hover:bg-indigo-700 disabled:cursor-not-allowed disabled:bg-slate-300"
-                    >
-                        <SkipForward size={16} />
-                        {nextLabel}
-                    </button>
-                    <button
-                        type="button"
-                        onClick={() => setStep(0)}
-                        className="flex items-center gap-1.5 rounded-lg bg-white px-3 py-2 text-sm font-black text-slate-600 ring-1 ring-slate-200 transition hover:bg-slate-50"
-                    >
-                        <RotateCcw size={16} />
-                        重置
-                    </button>
-                </div>
-            </div>
-
-            <div className="grid gap-5 lg:grid-cols-[1fr_1.1fr]">
-                <div className="space-y-4">
-                    <TracedCode activeLines={activeLines} />
-                    <div className="grid grid-cols-2 gap-3">
-                        <div className="rounded-xl bg-white p-4 text-center ring-1 ring-indigo-100">
-                            <div className="text-xs font-black uppercase tracking-wide text-slate-400">变量 i</div>
-                            <div className="mt-1 font-mono text-3xl font-black text-indigo-700">{current.i}</div>
-                        </div>
-                        <div className="rounded-xl bg-white p-4 text-center ring-1 ring-indigo-100">
-                            <div className="text-xs font-black uppercase tracking-wide text-slate-400">变量 sum</div>
-                            <div className="mt-1 font-mono text-3xl font-black text-indigo-700">{current.sum}</div>
-                        </div>
-                    </div>
-                </div>
-
-                <div className="rounded-xl bg-white p-5 ring-1 ring-indigo-100">
-                    <div className="overflow-x-auto">
-                        <table className="w-full border-collapse text-center text-sm">
-                            <thead>
-                                <tr className="text-xs font-black uppercase tracking-wide text-slate-400">
-                                    <th className="border-b border-slate-200 px-2 py-2">轮次</th>
-                                    <th className="border-b border-slate-200 px-2 py-2">i ≤ 5 ?</th>
-                                    <th className="border-b border-slate-200 px-2 py-2">sum += i</th>
-                                    <th className="border-b border-slate-200 px-2 py-2">i++ 后</th>
-                                </tr>
-                            </thead>
-                            <tbody className="font-mono font-bold text-slate-700">
-                                {trace.slice(0, revealed).map((row) => (
-                                    <tr key={row.round} className="odd:bg-slate-50">
-                                        <td className="px-2 py-2 font-sans font-black text-slate-900">第 {row.round} 轮</td>
-                                        <td className="px-2 py-2 text-emerald-600">{row.startI} ≤ 5 ✓</td>
-                                        <td className="px-2 py-2">{row.startSum} + {row.startI} = <span className="text-indigo-700">{row.newSum}</span></td>
-                                        <td className="px-2 py-2">{row.newI}</td>
-                                    </tr>
-                                ))}
-                                {finished && (
-                                    <tr className="bg-rose-50">
-                                        <td className="px-2 py-2 font-sans font-black text-slate-900">跳出</td>
-                                        <td className="px-2 py-2 text-rose-600" colSpan={3}>6 ≤ 5 ✗ 不成立，结束循环</td>
-                                    </tr>
-                                )}
-                                {revealed === 0 && !finished && (
-                                    <tr>
-                                        <td className="px-2 py-6 text-sm font-sans font-bold text-slate-400" colSpan={4}>
-                                            点击「开始第 1 轮」，逐轮看变量怎么变 →
-                                        </td>
-                                    </tr>
-                                )}
-                            </tbody>
-                        </table>
-                    </div>
-
-                    {finished && (
-                        <div className="mt-4 flex items-center gap-2 rounded-lg bg-slate-950 p-4 font-mono text-green-400">
-                            <Flag size={18} className="text-green-400" />
-                            cout &lt;&lt; sum; → 输出 {current.sum}
-                        </div>
-                    )}
-                </div>
-            </div>
-        </div>
+        <CodeTracer
+            title="循环追踪器"
+            code={`int i = 1, sum = 0;
+while (i <= 5) {
+  sum += i;
+  i++;
+}
+cout << sum;`}
+            varOrder={['i', 'sum']}
+            columns={['轮次', 'i ≤ 5 ?', 'sum += i', 'i++ 后']}
+            steps={steps}
+            hint="点击「开始第 1 轮」，逐轮看变量怎么变 →"
+        />
     );
 }
 

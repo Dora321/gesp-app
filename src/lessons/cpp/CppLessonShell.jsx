@@ -1,6 +1,6 @@
 import React, { useEffect, useMemo, useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
-import { ArrowRight, CheckCircle2, Home, Menu, X } from 'lucide-react';
+import { ArrowRight, CheckCircle2, Flag, Home, Menu, PlayCircle, RotateCcw, SkipForward, X } from 'lucide-react';
 
 const accentMap = {
     blue: {
@@ -324,6 +324,157 @@ export function CompareTable({ headers, rows }) {
                     ))}
                 </div>
             ))}
+        </div>
+    );
+}
+
+function TracerCode({ lines, activeLines }) {
+    return (
+        <pre className="overflow-x-auto rounded-xl bg-slate-950 p-4 text-sm leading-7 shadow-inner ring-1 ring-white/10">
+            <code className="font-mono">
+                {lines.map((tokens, lineIndex) => {
+                    const active = activeLines.includes(lineIndex);
+                    return (
+                        <span
+                            key={`line-${lineIndex}`}
+                            className={`-mx-2 block min-h-7 rounded px-2 transition-colors ${active ? 'bg-indigo-500/25 ring-1 ring-inset ring-indigo-400/40' : ''}`}
+                        >
+                            {tokens.map((token, tokenIndex) => (
+                                <span key={`${lineIndex}-${tokenIndex}`} className={tokenClassMap[token.type]}>
+                                    {token.text}
+                                </span>
+                            ))}
+                        </span>
+                    );
+                })}
+            </code>
+        </pre>
+    );
+}
+
+/**
+ * 交互式代码执行追踪器。课程只需提供原始代码字符串与逐步的 trace 数据，
+ * 组件负责：当前执行行高亮、实时变量卡片、逐步累积的追踪表、最终输出横幅。
+ *
+ * steps: Array<{
+ *   active?: number[]   // 本步高亮的代码行下标（从 0 起）
+ *   vars?: object       // 本步的变量快照，配合 varOrder 显示
+ *   action?: string     // 推进到「本步」的按钮文案（如「下一轮」）
+ *   row?: any[]         // 本步要追加到追踪表的一行（单元格数组，长度 = columns）
+ *   exit?: ReactNode    // 本步追加一条跨列的「跳出/结束」行
+ *   output?: ReactNode  // 到达本步后显示的输出横幅
+ * }>
+ */
+export function CodeTracer({ title = '执行追踪器', code, varOrder = [], columns = [], steps = [], hint }) {
+    const lines = useMemo(
+        () => String(code ?? '').replace(/\n$/, '').split('\n').map(tokenizeCppLine),
+        [code],
+    );
+    const [step, setStep] = useState(0);
+    const lastStep = steps.length - 1;
+    const safeStep = Math.min(step, lastStep);
+    const current = steps[safeStep] ?? {};
+    const revealed = steps.slice(0, safeStep + 1);
+    const tableRows = revealed.filter((entry) => entry.row || entry.exit);
+    const output = [...revealed].reverse().find((entry) => entry.output)?.output;
+    const finished = step >= lastStep;
+    const nextLabel = steps[safeStep + 1]?.action ?? '下一步';
+
+    return (
+        <div className="rounded-2xl border border-indigo-100 bg-indigo-50 p-6">
+            <div className="mb-5 flex flex-wrap items-center justify-between gap-3">
+                <div className="flex items-center gap-2">
+                    <PlayCircle className="text-indigo-700" />
+                    <h3 className="text-xl font-black text-slate-950">{title}</h3>
+                </div>
+                <div className="flex items-center gap-2">
+                    <button
+                        type="button"
+                        onClick={() => setStep((value) => Math.min(value + 1, lastStep))}
+                        disabled={finished}
+                        className="flex items-center gap-1.5 rounded-lg bg-indigo-600 px-4 py-2 text-sm font-black text-white shadow-sm transition hover:bg-indigo-700 disabled:cursor-not-allowed disabled:bg-slate-300"
+                    >
+                        <SkipForward size={16} />
+                        {finished ? '已结束' : nextLabel}
+                    </button>
+                    <button
+                        type="button"
+                        onClick={() => setStep(0)}
+                        className="flex items-center gap-1.5 rounded-lg bg-white px-3 py-2 text-sm font-black text-slate-600 ring-1 ring-slate-200 transition hover:bg-slate-50"
+                    >
+                        <RotateCcw size={16} />
+                        重置
+                    </button>
+                </div>
+            </div>
+
+            <div className="grid gap-5 lg:grid-cols-[1fr_1.1fr]">
+                <div className="space-y-4">
+                    <TracerCode lines={lines} activeLines={current.active ?? []} />
+                    {varOrder.length > 0 && (
+                        <div className={`grid gap-3 ${varOrder.length >= 3 ? 'grid-cols-3' : 'grid-cols-2'}`}>
+                            {varOrder.map((name) => (
+                                <div key={name} className="rounded-xl bg-white p-4 text-center ring-1 ring-indigo-100">
+                                    <div className="text-xs font-black uppercase tracking-wide text-slate-400">{name}</div>
+                                    <div className="mt-1 font-mono text-3xl font-black text-indigo-700">
+                                        {current.vars?.[name] ?? '–'}
+                                    </div>
+                                </div>
+                            ))}
+                        </div>
+                    )}
+                </div>
+
+                <div className="rounded-xl bg-white p-5 ring-1 ring-indigo-100">
+                    <div className="overflow-x-auto">
+                        <table className="w-full border-collapse text-center text-sm">
+                            <thead>
+                                <tr className="text-xs font-black uppercase tracking-wide text-slate-400">
+                                    {columns.map((header) => (
+                                        <th key={header} className="border-b border-slate-200 px-2 py-2">{header}</th>
+                                    ))}
+                                </tr>
+                            </thead>
+                            <tbody className="font-mono font-bold text-slate-700">
+                                {tableRows.map((entry, entryIndex) => (
+                                    entry.exit ? (
+                                        <tr key={`exit-${entryIndex}`} className="bg-rose-50">
+                                            <td className="px-2 py-2 text-rose-600" colSpan={columns.length}>
+                                                {entry.exit}
+                                            </td>
+                                        </tr>
+                                    ) : (
+                                        <tr key={`row-${entryIndex}`} className="odd:bg-slate-50">
+                                            {entry.row.map((cell, cellIndex) => (
+                                                <td
+                                                    key={cellIndex}
+                                                    className={`px-2 py-2 ${cellIndex === 0 ? 'font-sans font-black text-slate-900' : ''}`}
+                                                >
+                                                    {cell}
+                                                </td>
+                                            ))}
+                                        </tr>
+                                    )
+                                ))}
+                                {tableRows.length === 0 && (
+                                    <tr>
+                                        <td className="px-2 py-6 font-sans text-sm font-bold text-slate-400" colSpan={columns.length}>
+                                            {hint ?? '点击右上角按钮，逐步看变量怎么变 →'}
+                                        </td>
+                                    </tr>
+                                )}
+                            </tbody>
+                        </table>
+                    </div>
+
+                    {output && (
+                        <div className="mt-4 flex items-center gap-2 rounded-lg bg-slate-950 p-4 font-mono text-green-400">
+                            <Flag size={18} className="text-green-400" />
+                            {output}
+                        </div>
+                    )}
+                </div>
+            </div>
         </div>
     );
 }
