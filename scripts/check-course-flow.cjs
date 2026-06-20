@@ -139,6 +139,20 @@ function assertCatalogSubjectCopy() {
   const catalog = read('src/components/LessonCatalog.jsx');
 
   assert(
+    /function getSubjectSummaryStats\(subject\)/.test(catalog),
+    'LessonCatalog should derive subject summary stats from lesson sections.'
+  );
+  assert(
+    !/stats:\s*\[/.test(catalog),
+    'LessonCatalog subject summary stats should not be hard-coded arrays.'
+  );
+  for (const staleStat of ['6 个系统课段', '96 节等级课', 'L1-L8 冲刺入口', '7 节基础课', '9 个项目课']) {
+    assert(
+      !catalog.includes(staleStat),
+      `LessonCatalog should not hard-code stale summary stat: ${staleStat}`
+    );
+  }
+  assert(
     /function getUnavailableLessonHint\(section, subject\)/.test(catalog),
     'LessonCatalog should generate unavailable lesson hints by subject.'
   );

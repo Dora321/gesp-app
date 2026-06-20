@@ -349,7 +349,6 @@ const subjectSummaries = {
         label: 'C++ GESP 体系',
         title: '按等级推进，最后落到真题复盘',
         description: '适合目标明确、需要阶段考试反馈的学生。每一级先补概念和题型，再进入冲刺页与真题库。',
-        stats: ['6 个系统课段', '96 节等级课', 'L1-L8 冲刺入口'],
         cta: '进入真题题库',
         ctaPath: '/question-bank'
     },
@@ -357,7 +356,6 @@ const subjectSummaries = {
         label: 'Python 兴趣与项目体系',
         title: '先建立兴趣，再把语法做成作品',
         description: '适合零基础启蒙、项目制学习和作品展示。基础课负责概念，进阶课负责把代码连接到真实任务。',
-        stats: ['7 节基础课', '9 个项目课', '适合作品集'],
         cta: '从 Python F1 开始',
         ctaPath: '/python/f1'
     }
@@ -367,6 +365,30 @@ const seniorExamLinks = [
     { title: 'GESP 七级冲刺', desc: '树与图论搜索专题', path: '/level7' },
     { title: 'GESP 八级冲刺', desc: '图论算法与动态规划', path: '/level8' },
 ];
+
+function getSubjectSummaryStats(subject) {
+    const sections = lessonSections.filter(section => section.subject === subject);
+
+    if (subject === 'cpp') {
+        const lessonCount = sections.reduce((sum, section) => sum + section.lessons.length, 0);
+        const sprintEntryCount = sections.length + seniorExamLinks.length;
+
+        return [
+            `${sections.length} 个系统课段`,
+            `${lessonCount} 节等级课`,
+            `L1-L${sprintEntryCount} 冲刺入口`,
+        ];
+    }
+
+    const foundationCount = sections.find(section => section.id === 'python-basic')?.lessons.length || 0;
+    const projectCount = sections.find(section => section.id === 'python-advanced')?.lessons.length || 0;
+
+    return [
+        `${foundationCount} 节基础课`,
+        `${projectCount} 个项目课`,
+        '适合作品集',
+    ];
+}
 
 function getSectionAction(section, subject) {
     if (subject === 'cpp') {
@@ -462,6 +484,7 @@ export default function LessonCatalog() {
     const activeSection = lessonSections.find(section => section.id === activeTab) || filteredSections[0];
     const activeColors = colorMap[activeSection.color];
     const summary = subjectSummaries[activeSubject];
+    const summaryStats = getSubjectSummaryStats(activeSubject);
     const readyLessons = activeSection.lessons.filter(lesson => isLessonReady(activeSection.id, lesson.id));
     const readyCount = readyLessons.length;
     const hasReadyLessons = readyCount > 0;
@@ -498,7 +521,7 @@ export default function LessonCatalog() {
                         <h3 className="text-xl font-black text-slate-950">{summary.title}</h3>
                         <p className="mt-2 text-sm leading-6 text-slate-600">{summary.description}</p>
                         <div className="mt-4 grid grid-cols-3 gap-2 text-center text-xs font-bold text-slate-600">
-                            {summary.stats.map((stat) => (
+                            {summaryStats.map((stat) => (
                                 <div key={stat} className="rounded-lg bg-white px-2 py-3 ring-1 ring-slate-200">
                                     {stat}
                                 </div>
