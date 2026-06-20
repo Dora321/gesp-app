@@ -28,13 +28,13 @@ const ClassroomPoints = () => {
         return (
             <button
                 onClick={() => setIsOpen(true)}
-                className="fixed bottom-4 left-4 z-30 w-12 h-12 bg-indigo-600 text-white rounded-full shadow-2xl flex items-center justify-center hover:scale-110 hover:bg-indigo-700 transition-all duration-300 group sm:bottom-6 sm:left-6 sm:w-14 sm:h-14"
+                className="fixed bottom-4 left-4 z-30 w-12 h-12 bg-gradient-to-br from-indigo-500 to-purple-600 text-white rounded-full shadow-2xl flex items-center justify-center hover:scale-110 hover:from-indigo-600 hover:to-purple-700 transition-all duration-300 group sm:bottom-24 sm:left-6 sm:w-14 sm:h-14"
                 aria-label="打开课堂积分榜"
                 title="打开课堂积分榜"
             >
                 <Trophy size={22} className="group-hover:rotate-12 transition-transform sm:size-6" />
                 {studentCount > 0 && (
-                    <span className="absolute -top-1 -right-1 w-5 h-5 bg-red-500 text-white text-xs font-bold rounded-full flex items-center justify-center border-2 border-slate-900">
+                    <span className="absolute -top-1 -right-1 w-5 h-5 bg-red-500 text-white text-xs font-bold rounded-full flex items-center justify-center border-2 border-white">
                         {studentCount}
                     </span>
                 )}
