@@ -3,22 +3,21 @@ import { useNavigate } from 'react-router-dom';
 import { BookOpen, Star, Trophy, Clock, ChevronRight, Search, Award } from 'lucide-react';
 import { paperIds, paperMeta } from '../data/gesp';
 
+const levels = [
+    { id: 1, name: '一级', desc: '零基础入门', badgeClass: 'bg-blue-500' },
+    { id: 2, name: '二级', desc: '基础语法', badgeClass: 'bg-cyan-500' },
+    { id: 3, name: '三级', desc: '算法进阶', badgeClass: 'bg-teal-500' },
+    { id: 4, name: '四级', desc: '核心结构', badgeClass: 'bg-green-500' },
+    { id: 5, name: '五级', desc: '提高算法', badgeClass: 'bg-yellow-500' },
+    { id: 6, name: '六级', desc: '挑战难题', badgeClass: 'bg-orange-500' },
+    { id: 7, name: '七级', desc: '专家图论', badgeClass: 'bg-red-500' },
+    { id: 8, name: '八级', desc: '大师综合', badgeClass: 'bg-purple-500' },
+];
+
 const QuestionBankHome = () => {
     const navigate = useNavigate();
     const [selectedLevel, setSelectedLevel] = useState(1);
     const [searchTerm, setSearchTerm] = useState('');
-
-    // Sample Data for Structure
-    const levels = [
-        { id: 1, name: '一级', desc: '零基础入门', color: 'blue' },
-        { id: 2, name: '二级', desc: '基础语法', color: 'cyan' },
-        { id: 3, name: '三级', desc: '算法进阶', color: 'teal' },
-        { id: 4, name: '四级', desc: '核心结构', color: 'green' },
-        { id: 5, name: '五级', desc: '提高算法', color: 'yellow' },
-        { id: 6, name: '六级', desc: '挑战难题', color: 'orange' },
-        { id: 7, name: '七级', desc: '专家图论', color: 'red' },
-        { id: 8, name: '八级', desc: '大师综合', color: 'purple' },
-    ];
 
     // Papers are built directly from paperMeta (questionCount now pre-injected)
     const papers = useMemo(() => {
@@ -56,6 +55,22 @@ const QuestionBankHome = () => {
         p.title.toLowerCase().includes(searchTerm.toLowerCase())
     );
 
+    const levelStats = useMemo(() => {
+        return levels.reduce((acc, level) => {
+            const levelPapers = papers.filter(paper => paper.level === level.id);
+            const latestPaper = levelPapers[0];
+            acc[level.id] = {
+                paperCount: levelPapers.length,
+                questionCount: levelPapers.reduce((sum, paper) => sum + paper.questions, 0),
+                latestLabel: latestPaper ? `${latestPaper.year}.${String(latestPaper.month).padStart(2, '0')}` : '暂无',
+            };
+            return acc;
+        }, {});
+    }, [papers]);
+
+    const selectedLevelInfo = levels.find(l => l.id === selectedLevel);
+    const selectedStats = levelStats[selectedLevel] || { paperCount: 0, questionCount: 0, latestLabel: '暂无' };
+
     return (
         <div className="min-h-screen bg-slate-50 text-slate-800 font-sans pb-20">
             {/* Header Banner */}
@@ -79,7 +94,11 @@ const QuestionBankHome = () => {
                             </div>
                             <div className="bg-white/10 backdrop-blur-sm rounded-lg p-3 text-center min-w-[100px]">
                                 <div className="text-2xl font-bold">{papers.length}</div>
-                                <div className="text-xs text-indigo-200">真题试卷</div>
+                                <div className="text-xs text-indigo-200">收录试卷</div>
+                            </div>
+                            <div className="bg-white/10 backdrop-blur-sm rounded-lg p-3 text-center min-w-[100px]">
+                                <div className="text-2xl font-bold">{papers.reduce((sum, paper) => sum + paper.questions, 0)}</div>
+                                <div className="text-xs text-indigo-200">题目总数</div>
                             </div>
                         </div>
                     </div>
@@ -105,10 +124,15 @@ const QuestionBankHome = () => {
                                         }`}
                                 >
                                     <span className="flex items-center gap-3">
-                                        <span className={`w-6 h-6 rounded-full flex items-center justify-center text-xs text-white bg-${level.color}-500 font-bold`}>
+                                        <span className={`w-6 h-6 rounded-full flex items-center justify-center text-xs text-white ${level.badgeClass} font-bold`}>
                                             {level.id}
                                         </span>
-                                        {level.name}
+                                        <span>
+                                            <span className="block">{level.name}</span>
+                                            <span className="block text-xs font-medium text-slate-400">
+                                                {levelStats[level.id]?.paperCount || 0} 卷 · {levelStats[level.id]?.questionCount || 0} 题
+                                            </span>
+                                        </span>
                                     </span>
                                     <ChevronRight size={16} className={`transition-transform ${selectedLevel === level.id ? 'opacity-100' : 'opacity-0'}`} />
                                 </button>
@@ -121,10 +145,15 @@ const QuestionBankHome = () => {
 
                         {/* Filters & Search */}
                         <div className="bg-white p-4 rounded-xl shadow-sm border border-slate-200 flex flex-col md:flex-row gap-4 items-center justify-between">
-                            <h2 className="text-xl font-bold text-slate-800 flex items-center gap-2">
-                                <BookOpen className="text-blue-500" />
-                                {levels.find(l => l.id === selectedLevel)?.name}真题列表
-                            </h2>
+                            <div>
+                                <h2 className="text-xl font-bold text-slate-800 flex items-center gap-2">
+                                    <BookOpen className="text-blue-500" />
+                                    {selectedLevelInfo?.name}真题列表
+                                </h2>
+                                <p className="mt-1 text-sm text-slate-500">
+                                    {selectedLevelInfo?.desc} · {selectedStats.paperCount} 卷 · {selectedStats.questionCount} 题 · 最新 {selectedStats.latestLabel}
+                                </p>
+                            </div>
 
                             <div className="relative w-full md:w-64">
                                 <Search className="absolute left-3 top-1/2 -translate-y-1/2 text-slate-400" size={16} />

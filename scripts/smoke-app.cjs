@@ -76,6 +76,9 @@ async function run() {
   const directQuestionBankStart = requestUrls.length;
   await page.goto(`${baseUrl}/question-bank`, { waitUntil: 'domcontentloaded' });
   await page.getByText('GESP 真题题库').waitFor({ timeout: 10000 });
+  await page.getByText('题目总数').waitFor({ timeout: 10000 });
+  await page.getByText(/一级真题列表/).waitFor({ timeout: 10000 });
+  await page.getByText(/\d+ 卷 · \d+ 题 · 最新/).first().waitFor({ timeout: 10000 });
   const directQuestionBankRequests = requestUrls.slice(directQuestionBankStart);
   const eagerHomeRequest = directQuestionBankRequests.find((url) => /\/Home-[^/]+\.js/.test(url));
   if (eagerHomeRequest) {
