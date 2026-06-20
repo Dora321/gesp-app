@@ -1,5 +1,6 @@
 import React, { useMemo, useState } from 'react';
 import { AlertTriangle, Calculator, ClipboardCheck, ListChecks, Search, Sigma } from 'lucide-react';
+import CppL2LessonSupport from '../../../components/CppL2LessonSupport';
 import CppLessonShell, { Callout, CodeBlock, CodeTracer, CompareTable, MiniQuiz } from '../CppLessonShell';
 
 const sections = [
@@ -125,6 +126,8 @@ export default function CppL2Lesson11() {
             sections={sections}
             previousPath="/lesson/2/10"
             nextPath="/lesson/2/12"
+            topSupport={<CppL2LessonSupport lessonId={11} />}
+            bottomSupport={<CppL2LessonSupport lessonId={11} placement="bottom" />}
             hero={{
                 title: '因数倍数题，本质是反复问“能不能整除”',
                 description: '从质数判断到数位拆解，我们一直在用取余。今天把取余正式变成解题工具，用来找因数、判倍数、统计公因数。',

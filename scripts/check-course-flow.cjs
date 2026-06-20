@@ -746,7 +746,7 @@ async function main() {
     );
   }
 
-  for (let lesson = 1; lesson <= 8; lesson += 1) {
+  for (let lesson = 1; lesson <= 12; lesson += 1) {
     const support = getCppL2LessonSupport(lesson);
     assert(support?.quality?.goals?.length >= 3, `C++ L2 lesson ${lesson} needs at least 3 goals.`);
     assert(support?.quality?.deliverables?.length >= 3, `C++ L2 lesson ${lesson} needs at least 3 deliverables.`);

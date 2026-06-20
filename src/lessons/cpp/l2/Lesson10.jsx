@@ -1,5 +1,6 @@
 import React, { useMemo, useState } from 'react';
 import { ClipboardCheck, Hash, ListChecks, RotateCcw, ScanLine } from 'lucide-react';
+import CppL2LessonSupport from '../../../components/CppL2LessonSupport';
 import CppLessonShell, { Callout, CodeBlock, CodeTracer, CompareTable, MiniQuiz } from '../CppLessonShell';
 
 const sections = [
@@ -140,6 +141,8 @@ export default function CppL2Lesson10() {
             sections={sections}
             previousPath="/lesson/2/9"
             nextPath="/lesson/2/11"
+            topSupport={<CppL2LessonSupport lessonId={10} />}
+            bottomSupport={<CppL2LessonSupport lessonId={10} placement="bottom" />}
             hero={{
                 title: '一个整数不是黑盒，它是一串可以拆开的数字',
                 description: '数位和、反转数、回文数、统计某个数字出现次数，都从同一组动作开始：取个位，再去掉个位。',

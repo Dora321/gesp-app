@@ -1,5 +1,6 @@
 import React, { useMemo, useState } from 'react';
 import { AlertTriangle, ClipboardCheck, Database, ListChecks, Search, Sigma } from 'lucide-react';
+import CppL2LessonSupport from '../../../components/CppL2LessonSupport';
 import CppLessonShell, { Callout, CodeBlock, CompareTable, MiniQuiz, StepList } from '../CppLessonShell';
 
 const sections = [
@@ -91,6 +92,8 @@ export default function CppL2Lesson12() {
             sections={sections}
             previousPath="/lesson/2/11"
             nextPath="/lesson/2/13"
+            topSupport={<CppL2LessonSupport lessonId={12} />}
+            bottomSupport={<CppL2LessonSupport lessonId={12} placement="bottom" />}
             hero={{
                 title: '当数据不止一个，变量就该排队了',
                 description: '数组让我们保存一组同类型数据。二级常见任务包括读入 n 个数、求和、找最大值、统计满足条件的元素。',

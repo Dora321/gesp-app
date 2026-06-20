@@ -1,5 +1,6 @@
 import React, { useMemo, useState } from 'react';
 import { AlertTriangle, ClipboardCheck, Search, ShieldCheck, Sigma } from 'lucide-react';
+import CppL2LessonSupport from '../../../components/CppL2LessonSupport';
 import CppLessonShell, { Callout, CodeBlock, CodeTracer, CompareTable, MiniQuiz } from '../CppLessonShell';
 
 const sections = [
@@ -155,6 +156,8 @@ export default function CppL2Lesson9() {
             sections={sections}
             previousPath="/lesson/2/8"
             nextPath="/lesson/2/10"
+            topSupport={<CppL2LessonSupport lessonId={9} />}
+            bottomSupport={<CppL2LessonSupport lessonId={9} placement="bottom" />}
             hero={{
                 title: '质数题的核心，是找到“有没有第三个因数”',
                 description: '质数判断是二级高频题。今天从定义出发，先写稳定的试除法，再用平方根优化减少循环次数。',
