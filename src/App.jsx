@@ -2,9 +2,7 @@ import React, { Suspense, lazy } from 'react';
 import { BrowserRouter, Routes, Route, useLocation } from 'react-router-dom';
 
 // Eagerly loaded: global components needed on every page
-import ClassroomPoints from './components/ClassroomPoints';
 import ScrollToTop from './components/ScrollToTop';
-import AIChat from './components/AIChat';
 import ErrorBoundary from './components/ErrorBoundary';
 
 // Lazy loaded: route-level pages — only fetched when user navigates to them
@@ -64,6 +62,10 @@ const HardwareLanding = lazy(() => import('./hardware/pages/HardwareLanding'));
 const HardwareLessonDetail = lazy(() => import('./hardware/pages/HardwareLessonDetail'));
 const Esp32AiCourseSystem = lazy(() => import('./hardware/pages/Esp32AiCourseSystem'));
 
+// Floating widgets are useful outside focus flows, but should not tax deep links.
+const ClassroomPoints = lazy(() => import('./components/ClassroomPoints'));
+const AIChat = lazy(() => import('./components/AIChat'));
+
 // Loading fallback
 import LoadingScreen from './components/LoadingScreen';
 const PageLoader = () => <LoadingScreen message="正在为您加载" />;
@@ -75,10 +77,10 @@ const GlobalWidgets = () => {
   if (isQuestionBankFlow) return null;
 
   return (
-    <>
+    <Suspense fallback={null}>
       <ClassroomPoints />
       <AIChat />
-    </>
+    </Suspense>
   );
 };
 

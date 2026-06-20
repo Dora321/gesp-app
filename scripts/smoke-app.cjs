@@ -84,6 +84,10 @@ async function run() {
   if (eagerHomeRequest) {
     throw new Error(`Question bank route eagerly loaded the home chunk: ${eagerHomeRequest}`);
   }
+  const eagerWidgetRequest = directQuestionBankRequests.find((url) => /\/(AIChat|ClassroomPoints)-[^/]+\.js/.test(url));
+  if (eagerWidgetRequest) {
+    throw new Error(`Question bank route eagerly loaded a floating widget chunk: ${eagerWidgetRequest}`);
+  }
   const focusModeButtons = await page
     .locator('button[aria-label="打开课堂积分榜"], button[aria-label="打开 AI 问答助手"]')
     .count();
