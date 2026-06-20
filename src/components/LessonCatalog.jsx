@@ -24,7 +24,7 @@ const lessonSections = [
         id: 'basic',
         subject: 'cpp',
         title: 'C++ 基础闯关',
-        subtitle: '16 课时 · GESP 一级',
+        subtitle: 'GESP 一级',
         badge: 'L1',
         color: 'emerald',
         icon: Code,
@@ -56,7 +56,7 @@ const lessonSections = [
         id: 'advanced',
         subject: 'cpp',
         title: 'C++ 进阶闯关',
-        subtitle: '16 课时 · GESP 二级',
+        subtitle: 'GESP 二级',
         badge: 'L2',
         color: 'purple',
         icon: Cpu,
@@ -88,7 +88,7 @@ const lessonSections = [
         id: 'expert',
         subject: 'cpp',
         title: 'C++ 高阶闯关',
-        subtitle: '16 课时 · GESP 三级',
+        subtitle: 'GESP 三级',
         badge: 'L3',
         color: 'rose',
         icon: Binary,
@@ -120,7 +120,7 @@ const lessonSections = [
         id: 'senior',
         subject: 'cpp',
         title: 'C++ 资深闯关',
-        subtitle: '16 课时 · GESP 四级',
+        subtitle: 'GESP 四级',
         badge: 'L4',
         color: 'indigo',
         icon: Database,
@@ -152,7 +152,7 @@ const lessonSections = [
         id: 'expert5',
         subject: 'cpp',
         title: 'C++ 专家闯关',
-        subtitle: '16 课时 · GESP 五级',
+        subtitle: 'GESP 五级',
         badge: 'L5',
         color: 'amber',
         icon: Brain,
@@ -184,7 +184,7 @@ const lessonSections = [
         id: 'master',
         subject: 'cpp',
         title: 'C++ 大师闯关',
-        subtitle: '16 课时 · GESP 六级',
+        subtitle: 'GESP 六级',
         badge: 'L6',
         color: 'teal',
         icon: Layers,
@@ -216,7 +216,7 @@ const lessonSections = [
         id: 'python-basic',
         subject: 'python',
         title: 'Python 基础',
-        subtitle: '7 课时 · 趣味编程',
+        subtitle: '趣味编程',
         badge: 'F1-F7',
         color: 'yellow',
         icon: BookOpen,
@@ -239,7 +239,7 @@ const lessonSections = [
         id: 'python-advanced',
         subject: 'python',
         title: 'Python 进阶',
-        subtitle: '9 个项目 · 实战演练',
+        subtitle: '实战演练',
         badge: 'Project',
         color: 'blue',
         icon: Terminal,
@@ -388,6 +388,14 @@ function getSubjectSummaryStats(subject) {
         `${projectCount} 个项目课`,
         '适合作品集',
     ];
+}
+
+function getSectionSubtitle(section) {
+    const countLabel = section.id === 'python-advanced'
+        ? `${section.lessons.length} 个项目`
+        : `${section.lessons.length} 课时`;
+
+    return `${countLabel} · ${section.subtitle}`;
 }
 
 function getSectionAction(section, subject) {
@@ -608,7 +616,7 @@ export default function LessonCatalog() {
                                     {React.createElement(activeSection.icon, { size: 26 })}
                                 </div>
                                 <div className="mb-3 inline-flex rounded-lg bg-white px-2.5 py-1 text-xs font-black text-slate-500 ring-1 ring-slate-200">
-                                    {activeSection.subtitle}
+                                    {getSectionSubtitle(activeSection)}
                                 </div>
                                 <h3 className="text-2xl font-black text-slate-950">{activeSection.title}</h3>
                                 <p className="mt-3 text-sm leading-6 text-slate-600">{activeSection.goal}</p>

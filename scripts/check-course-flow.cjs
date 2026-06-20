@@ -143,10 +143,23 @@ function assertCatalogSubjectCopy() {
     'LessonCatalog should derive subject summary stats from lesson sections.'
   );
   assert(
+    /function getSectionSubtitle\(section\)/.test(catalog),
+    'LessonCatalog should derive section subtitles from each section lesson count.'
+  );
+  assert(
     !/stats:\s*\[/.test(catalog),
     'LessonCatalog subject summary stats should not be hard-coded arrays.'
   );
-  for (const staleStat of ['6 个系统课段', '96 节等级课', 'L1-L8 冲刺入口', '7 节基础课', '9 个项目课']) {
+  for (const staleStat of [
+    '6 个系统课段',
+    '96 节等级课',
+    'L1-L8 冲刺入口',
+    '7 节基础课',
+    '9 个项目课',
+    '16 课时 · GESP',
+    '7 课时 · 趣味编程',
+    '9 个项目 · 实战演练',
+  ]) {
     assert(
       !catalog.includes(staleStat),
       `LessonCatalog should not hard-code stale summary stat: ${staleStat}`
