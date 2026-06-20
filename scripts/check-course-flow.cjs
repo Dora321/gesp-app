@@ -197,6 +197,29 @@ function assertFooterUsesSharedData() {
   }
 }
 
+function assertAnnouncementUsesSharedData() {
+  const announcement = read('src/components/AnnouncementBar.jsx');
+
+  assert(
+    announcement.includes("import { getPythonProjectSupport } from '../data/pythonProjectFlow';") &&
+      announcement.includes("const featuredProject = getPythonProjectSupport('a2');"),
+    'AnnouncementBar should derive its featured project from Python project support data.'
+  );
+  assert(
+    announcement.includes('featuredProject.current.title') &&
+      announcement.includes('featuredProject.brief.artifact') &&
+      announcement.includes('featuredProject.current.path') &&
+      announcement.includes('useNavigate'),
+    'AnnouncementBar should use shared project title, artifact and route without a full page reload.'
+  );
+  assert(
+    !announcement.includes("const linkPath = '/python/a2';") &&
+      !announcement.includes('href={linkPath}') &&
+      !announcement.includes('Python 2048 趣味项目'),
+    'AnnouncementBar should not hard-code the featured project link or stale copy.'
+  );
+}
+
 function assertCatalogSubjectCopy() {
   const catalog = read('src/components/LessonCatalog.jsx');
 
@@ -400,6 +423,7 @@ async function main() {
   assertQuestionBankReviewCopy();
   assertLearningPathsUseSharedData();
   assertFooterUsesSharedData();
+  assertAnnouncementUsesSharedData();
 
   const generatedQuestionCount = paperIds.reduce((sum, id) => sum + (paperMeta[id]?.questionCount || 0), 0);
   const generatedReviewPaperCount = paperIds.filter(id => paperMeta[id]?.needsReview).length;

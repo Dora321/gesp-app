@@ -1,14 +1,19 @@
 import React, { useState, useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
 import { Megaphone, X, ArrowRight } from 'lucide-react';
+import { getPythonProjectSupport } from '../data/pythonProjectFlow';
+
+const featuredProject = getPythonProjectSupport('a2');
 
 const AnnouncementBar = () => {
+    const navigate = useNavigate();
     const [isVisible, setIsVisible] = useState(false);
 
     // Announcement configuration
     const announcementId = 'announcement_2024_01'; // Update this ID to show a new announcement
-    const message = '🎉 欢迎来到魔丸聚集地！全新的 Python 2048 趣味项目现已上线，快报名前往探索吧！';
+    const message = `欢迎来到魔丸聚集地！${featuredProject.current.title}现已上线，${featuredProject.brief.artifact}等你来做。`;
     const linkText = '查看项目';
-    const linkPath = '/python/a2';
+    const linkPath = featuredProject.current.path;
 
     useEffect(() => {
         const hasBeenClosed = localStorage.getItem(`closed_${announcementId}`);
@@ -56,12 +61,13 @@ const AnnouncementBar = () => {
                     <Megaphone className="w-5 h-5 text-yellow-300 animate-bounce" />
                     <strong className="font-semibold">{message}</strong>
                 </p>
-                <a
-                    href={linkPath}
+                <button
+                    type="button"
+                    onClick={() => navigate(linkPath)}
                     className="flex-none rounded-full bg-white/10 px-3.5 py-1 text-sm font-semibold text-white shadow-sm hover:bg-white/20 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-gray-900 transition-all flex items-center gap-1"
                 >
                     {linkText} <ArrowRight className="w-4 h-4" />
-                </a>
+                </button>
             </div>
 
             <div className="flex flex-1 justify-end">
