@@ -17,7 +17,6 @@ import {
     Trophy,
     Users
 } from 'lucide-react';
-import { motion, AnimatePresence } from 'framer-motion';
 import { pythonFoundationLessons } from '../data/pythonFoundationFlow';
 import { pythonProjects } from '../data/pythonProjectFlow';
 
@@ -593,15 +592,10 @@ export default function LessonCatalog() {
                     })}
                 </div>
 
-                <AnimatePresence mode="wait">
-                    <motion.div
-                        key={activeTab}
-                        initial={{ opacity: 0, y: 10 }}
-                        animate={{ opacity: 1, y: 0 }}
-                        exit={{ opacity: 0, y: -10 }}
-                        transition={{ duration: 0.18 }}
-                        className={`rounded-lg border ${activeColors.border} bg-white shadow-sm`}
-                    >
+                <div
+                    key={activeTab}
+                    className={`rounded-lg border ${activeColors.border} bg-white shadow-sm`}
+                >
                         <div className="grid gap-0 lg:grid-cols-[22rem_minmax(0,1fr)]">
                             <aside className={`${activeColors.light} border-b ${activeColors.border} p-6 lg:border-b-0 lg:border-r`}>
                                 <div className={`mb-5 flex h-12 w-12 items-center justify-center rounded-lg ${activeColors.bg} text-white`}>
@@ -765,8 +759,7 @@ export default function LessonCatalog() {
                                 )}
                             </div>
                         </div>
-                    </motion.div>
-                </AnimatePresence>
+                </div>
             </div>
         </section>
     );
