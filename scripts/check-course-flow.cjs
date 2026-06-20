@@ -135,11 +135,34 @@ function assertLearningPathRoute(pathId, expectedRoute) {
   );
 }
 
+function assertCatalogSubjectCopy() {
+  const catalog = read('src/components/LessonCatalog.jsx');
+
+  assert(
+    /function getUnavailableLessonHint\(section, subject\)/.test(catalog),
+    'LessonCatalog should generate unavailable lesson hints by subject.'
+  );
+  assert(
+    catalog.includes('建议先完成已上线基础课，再进入项目线做作品'),
+    'Python basic unavailable hint should point to the project path, not GESP exam review.'
+  );
+  assert(
+    catalog.includes('建议先复习 Python 基础课，再回到项目课继续推进'),
+    'Python project unavailable hint should point back to Python prerequisites.'
+  );
+  assert(
+    catalog.includes('建议先看冲刺课和真题复盘'),
+    'C++ unavailable hint should still point to GESP sprint and paper review.'
+  );
+}
+
 async function main() {
   const [{ getCppLevelSupport }, { getCppL1LessonSupport }] = await Promise.all([
     import(pathToFileURL(path.join(srcRoot, 'data', 'cppLevelFlow.js')).href),
     import(pathToFileURL(path.join(srcRoot, 'data', 'cppL1CourseFlow.js')).href),
   ]);
+
+  assertCatalogSubjectCopy();
 
   assertSameArray(
     'Python foundation catalog order',

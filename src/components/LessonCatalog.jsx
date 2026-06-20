@@ -416,6 +416,18 @@ function getPracticeAction(section, subject) {
     };
 }
 
+function getUnavailableLessonHint(section, subject) {
+    if (subject === 'cpp') {
+        return '本课段课时正在建设中，建议先看冲刺课和真题复盘。';
+    }
+
+    if (section.id === 'python-basic') {
+        return '本课段课时正在建设中，建议先完成已上线基础课，再进入项目线做作品。';
+    }
+
+    return '本课段课时正在建设中，建议先复习 Python 基础课，再回到项目课继续推进。';
+}
+
 function getPythonProgressionLinks(section) {
     if (section.id === 'python-basic') {
         return [
@@ -458,6 +470,7 @@ export default function LessonCatalog() {
         : `${readyCount}/${activeSection.lessons.length} 已上线`;
     const sectionAction = getSectionAction(activeSection, activeSubject);
     const practiceAction = getPracticeAction(activeSection, activeSubject);
+    const unavailableLessonHint = getUnavailableLessonHint(activeSection, activeSubject);
     const SectionActionIcon = sectionAction.Icon;
     const pythonProgressionLinks = activeSubject === 'python'
         ? getPythonProgressionLinks(activeSection)
@@ -638,7 +651,7 @@ export default function LessonCatalog() {
                                         <p className="text-sm text-slate-500">
                                             {hasReadyLessons
                                                 ? practiceAction.hint
-                                                : '本课段课时正在建设中，建议先看冲刺课和真题复盘。'}
+                                                : unavailableLessonHint}
                                         </p>
                                     </div>
                                     <button
