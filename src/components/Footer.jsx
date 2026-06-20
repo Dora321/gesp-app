@@ -1,17 +1,24 @@
 import React from 'react';
 import { useLocation, useNavigate } from 'react-router-dom';
 import { Terminal, Github, Code2, MessageCircle } from 'lucide-react';
+import { getCppLevelCatalogItem } from '../data/cppLevelCatalog';
+import { pythonFoundationLessons, pythonProjects } from '../data/pythonCourseCatalog';
+
+const pythonStart = pythonFoundationLessons[0];
+const aiProject = pythonProjects.find((project) => project.id === 'ai');
+const cppStart = getCppLevelCatalogItem(1);
+const algorithmStart = getCppLevelCatalogItem(5);
+
+const courseLinks = [
+    { name: 'Python 趣味启蒙', path: pythonStart.path },
+    { name: 'C++ GESP 考级', path: cppStart.path },
+    { name: aiProject.catalogTitle, path: aiProject.path },
+    { name: '算法竞赛之路', path: algorithmStart.path },
+];
 
 export default function Footer() {
     const navigate = useNavigate();
     const location = useLocation();
-
-    const courseLinks = [
-        { name: 'Python 趣味启蒙', path: '/python/f1' },
-        { name: 'C++ GESP 考级', path: '/level1' },
-        { name: '人工智能初探', path: '/python/ai' },
-        { name: '算法竞赛之路', path: '/level5' },
-    ];
 
     const resourceLinks = [
         { name: 'E-Kart Lab', path: '/ekart' },
@@ -62,7 +69,7 @@ export default function Footer() {
 
                     <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
                         <button
-                            onClick={() => navigate('/python/f1')}
+                            onClick={() => navigate(pythonStart.path)}
                             className="flex items-center gap-2 px-8 py-4 rounded-full bg-emerald-500 hover:bg-emerald-400 text-white font-bold transition-all shadow-lg shadow-emerald-500/20 hover:scale-105 active:scale-95"
                         >
                             <Code2 size={20} />

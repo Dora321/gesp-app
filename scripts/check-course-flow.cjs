@@ -168,6 +168,35 @@ function assertLearningPathsUseSharedData() {
   }
 }
 
+function assertFooterUsesSharedData() {
+  const footer = read('src/components/Footer.jsx');
+
+  assert(
+    footer.includes("import { getCppLevelCatalogItem } from '../data/cppLevelCatalog';") &&
+      footer.includes("import { pythonFoundationLessons, pythonProjects } from '../data/pythonCourseCatalog';"),
+    'Footer should derive course links from lightweight shared course catalogs.'
+  );
+  assert(
+    footer.includes('pythonStart.path') &&
+      footer.includes('cppStart.path') &&
+      footer.includes('algorithmStart.path') &&
+      footer.includes('aiProject.path'),
+    'Footer course links and primary CTA should use shared catalog paths.'
+  );
+  for (const staleSnippet of [
+    "path: '/python/f1'",
+    "path: '/level1'",
+    "path: '/level5'",
+    "path: '/python/ai'",
+    "navigate('/python/f1')",
+  ]) {
+    assert(
+      !footer.includes(staleSnippet),
+      `Footer should not hard-code stale course route: ${staleSnippet}`
+    );
+  }
+}
+
 function assertCatalogSubjectCopy() {
   const catalog = read('src/components/LessonCatalog.jsx');
 
@@ -342,6 +371,7 @@ async function main() {
   assertHeroUsesPaperStats();
   assertQuestionBankReviewCopy();
   assertLearningPathsUseSharedData();
+  assertFooterUsesSharedData();
 
   const generatedQuestionCount = paperIds.reduce((sum, id) => sum + (paperMeta[id]?.questionCount || 0), 0);
   const generatedReviewPaperCount = paperIds.filter(id => paperMeta[id]?.needsReview).length;
