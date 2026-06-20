@@ -1,6 +1,6 @@
 import React, { useMemo, useState } from 'react';
 import { AlertTriangle, Calculator, ClipboardCheck, ListChecks, Search, Sigma } from 'lucide-react';
-import CppLessonShell, { Callout, CodeBlock, CompareTable, MiniQuiz, StepList } from '../CppLessonShell';
+import CppLessonShell, { Callout, CodeBlock, CodeTracer, CompareTable, MiniQuiz } from '../CppLessonShell';
 
 const sections = [
     { id: 1, title: '课程导入', category: '整除关系' },
@@ -75,6 +75,46 @@ const quiz = [
     },
 ];
 
+function FactorTracer() {
+    const n = 12;
+    const steps = useMemo(() => {
+        const result = [{ active: [0], vars: { n, i: '–' } }];
+        const found = [];
+        for (let i = 1; i <= n; i += 1) {
+            const hit = n % i === 0;
+            if (hit) found.push(i);
+            result.push({
+                active: hit ? [0, 1, 2] : [0, 1],
+                vars: { n, i },
+                action: i === 1 ? '开始枚举' : '下一个 i',
+                row: [`i = ${i}`, `${n} % ${i} = ${n % i}`, hit ? '✓ 是因数，输出' : '✗ 跳过'],
+            });
+        }
+        result.push({
+            active: [4],
+            vars: { n, i: n },
+            action: '退出',
+            output: `cout 输出因数：${found.join(' ')}`,
+        });
+        return result;
+    }, []);
+
+    return (
+        <CodeTracer
+            title="因数枚举追踪器"
+            code={`for (int i = 1; i <= n; i++) {
+  if (n % i == 0) {
+    cout << i << " ";
+  }
+}`}
+            varOrder={['n', 'i']}
+            columns={['枚举', 'n % i', '是因数?']}
+            steps={steps}
+            hint="点击「开始枚举」，看哪些 i 能整除 12 →"
+        />
+    );
+}
+
 export default function CppL2Lesson11() {
     return (
         <CppLessonShell
@@ -119,19 +159,7 @@ if (a != 0 && b % a == 0) {
                                 最直观的写法是枚举每个 i，只要 n 能被 i 整除，就输出或统计它。
                             </p>
                         </div>
-                        <div className="grid gap-5 lg:grid-cols-[1fr_0.9fr]">
-                            <CodeBlock>{`for (int i = 1; i <= n; i++) {
-  if (n % i == 0) {
-    cout << i << " ";
-  }
-}`}</CodeBlock>
-                            <StepList steps={[
-                                'i 从 1 开始',
-                                '判断 n % i 是否等于 0',
-                                '成立则 i 是 n 的因数',
-                                '继续检查直到 i 等于 n',
-                            ]} />
-                        </div>
+                        <FactorTracer />
                         <Callout icon={Search} title="和质数判断的关系" tone="emerald">
                             质数判断是在找“有没有 1 和自己以外的因数”；枚举因数是在把所有能整除的 i 都找出来。
                         </Callout>

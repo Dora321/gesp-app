@@ -1,6 +1,6 @@
 import React, { useMemo, useState } from 'react';
 import { AlertTriangle, Blocks, ClipboardCheck, Repeat2, Target } from 'lucide-react';
-import CppLessonShell, { Callout, CodeBlock, CompareTable, MiniQuiz, StepList } from '../CppLessonShell';
+import CppLessonShell, { Callout, CodeBlock, CodeTracer, CompareTable, MiniQuiz } from '../CppLessonShell';
 
 const sections = [
     { id: 1, title: '课程导入', category: '双层循环' },
@@ -89,6 +89,42 @@ const quiz = [
     },
 ];
 
+function NestedLoopTracer() {
+    const steps = useMemo(() => {
+        const result = [{ active: [0], vars: { i: '–', j: '–' } }];
+        let stepNo = 0;
+        for (let i = 1; i <= 3; i += 1) {
+            for (let j = 1; j <= 4; j += 1) {
+                stepNo += 1;
+                const rowEnd = j === 4;
+                result.push({
+                    active: rowEnd ? [0, 1, 2, 4] : [0, 1, 2],
+                    vars: { i, j },
+                    action: stepNo === 1 ? '开始' : '下一步',
+                    row: [stepNo, i, j, rowEnd ? `${i},${j}  ⏎ 换行` : `${i},${j}`],
+                });
+            }
+        }
+        return result;
+    }, []);
+
+    return (
+        <CodeTracer
+            title="嵌套循环追踪器"
+            code={`for (int i = 1; i <= 3; i++) {
+  for (int j = 1; j <= 4; j++) {
+    cout << i << "," << j << " ";
+  }
+  cout << endl;
+}`}
+            varOrder={['i', 'j']}
+            columns={['步', 'i', 'j', '输出']}
+            steps={steps}
+            hint="点击「开始」，看 i 不动、j 跑完一整轮的执行顺序 →"
+        />
+    );
+}
+
 export default function CppL2Lesson5() {
     return (
         <CppLessonShell
@@ -114,21 +150,7 @@ export default function CppL2Lesson5() {
                                 不要把两个 for 看成同时变化。程序会先固定一个 i，然后让 j 从头跑到尾，再回到外层让 i 变成下一个值。
                             </p>
                         </div>
-                        <div className="grid gap-5 lg:grid-cols-[1.1fr_0.9fr]">
-                            <CodeBlock>{`for (int i = 1; i <= 3; i++) {
-  for (int j = 1; j <= 4; j++) {
-    cout << i << "," << j << " ";
-  }
-  cout << endl;
-}`}</CodeBlock>
-                            <StepList steps={[
-                                'i = 1，j 从 1 跑到 4',
-                                '输出第一行的 4 个坐标',
-                                '换行，i 变成 2',
-                                'j 重新从 1 跑到 4',
-                                '重复直到 i 超过 3',
-                            ]} />
-                        </div>
+                        <NestedLoopTracer />
                         <Callout icon={AlertTriangle} title="高频误区" tone="amber">
                             内层变量每次进入内层循环都会重新初始化。看到 <code>for (int j = 1; ...)</code>，就要意识到 j 不是接着上一行继续数。
                         </Callout>

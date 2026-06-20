@@ -1,6 +1,6 @@
 import React, { useMemo, useState } from 'react';
 import { AlertTriangle, ClipboardCheck, Grid3X3, Layers3, PencilRuler } from 'lucide-react';
-import CppLessonShell, { Callout, CodeBlock, CompareTable, MiniQuiz, StepList } from '../CppLessonShell';
+import CppLessonShell, { Callout, CodeBlock, CodeTracer, CompareTable, MiniQuiz } from '../CppLessonShell';
 
 const sections = [
     { id: 1, title: '课程导入', category: '图形问题' },
@@ -83,6 +83,44 @@ const quiz = [
     },
 ];
 
+function PyramidTracer() {
+    const n = 5;
+    const steps = useMemo(() => {
+        const result = [{ active: [0], vars: { i: '–', 空格: '–', 星号: '–' } }];
+        for (let i = 1; i <= n; i += 1) {
+            const spaces = n - i;
+            const stars = i;
+            result.push({
+                active: [1, 2, 5, 8],
+                vars: { i, 空格: spaces, 星号: stars },
+                action: i === 1 ? '画第 1 行' : '下一行',
+                row: [`第 ${i} 行`, spaces, stars, `${'·'.repeat(spaces)}${'★'.repeat(stars)}`],
+            });
+        }
+        return result;
+    }, []);
+
+    return (
+        <CodeTracer
+            title="金字塔追踪器"
+            code={`int n = 5;
+for (int i = 1; i <= n; i++) {
+  for (int s = 1; s <= n - i; s++) {
+    cout << " ";
+  }
+  for (int j = 1; j <= i; j++) {
+    cout << "*";
+  }
+  cout << endl;
+}`}
+            varOrder={['i', '空格', '星号']}
+            columns={['行', '空格 n-i', '星号 i', '输出（·=空格）']}
+            steps={steps}
+            hint="点击「画第 1 行」，看每行空格与星号怎么算 →"
+        />
+    );
+}
+
 export default function CppL2Lesson6() {
     return (
         <CppLessonShell
@@ -133,24 +171,7 @@ export default function CppL2Lesson6() {
                                 右对齐、金字塔、菱形都靠空格撑位置。考试里很多同学错在只数星号，不数空格。
                             </p>
                         </div>
-                        <div className="grid gap-5 lg:grid-cols-[1fr_0.9fr]">
-                            <CodeBlock>{`int n = 5;
-for (int i = 1; i <= n; i++) {
-  for (int s = 1; s <= n - i; s++) {
-    cout << " ";
-  }
-  for (int j = 1; j <= i; j++) {
-    cout << "*";
-  }
-  cout << endl;
-}`}</CodeBlock>
-                            <StepList steps={[
-                                '第 1 行：4 个空格，1 个星号',
-                                '第 2 行：3 个空格，2 个星号',
-                                '第 3 行：2 个空格，3 个星号',
-                                '第 i 行：n - i 个空格，i 个星号',
-                            ]} />
-                        </div>
+                        <PyramidTracer />
                         <Callout icon={AlertTriangle} title="调试技巧" tone="amber">
                             看不清空格时，可以临时把空格输出成点号 <code>.</code>，确认对齐后再改回空格。
                         </Callout>

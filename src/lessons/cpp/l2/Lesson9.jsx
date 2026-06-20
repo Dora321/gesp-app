@@ -1,6 +1,6 @@
 import React, { useMemo, useState } from 'react';
 import { AlertTriangle, ClipboardCheck, Search, ShieldCheck, Sigma } from 'lucide-react';
-import CppLessonShell, { Callout, CodeBlock, CompareTable, MiniQuiz, StepList } from '../CppLessonShell';
+import CppLessonShell, { Callout, CodeBlock, CodeTracer, CompareTable, MiniQuiz } from '../CppLessonShell';
 
 const sections = [
     { id: 1, title: '课程导入', category: '质数判断' },
@@ -82,6 +82,69 @@ const quiz = [
     },
 ];
 
+function PrimeTracer() {
+    const n = 13;
+    const steps = useMemo(() => {
+        const result = [{ active: [0, 1], vars: { n, i: '–', isPrime: 'true' } }];
+        let isPrime = true;
+        let i = 2;
+        for (; i * i <= n; i += 1) {
+            if (n % i === 0) {
+                isPrime = false;
+                result.push({
+                    active: [3, 4, 5, 6],
+                    vars: { n, i, isPrime: 'false' },
+                    action: '下一个 i',
+                    row: [`i = ${i}`, `${i}·${i}=${i * i} ≤ ${n} ✓`, `${n} % ${i} = 0`, '找到因数 → break'],
+                });
+                break;
+            }
+            result.push({
+                active: [3, 4],
+                vars: { n, i, isPrime: 'true' },
+                action: i === 2 ? '开始试除' : '下一个 i',
+                row: [`i = ${i}`, `${i}·${i}=${i * i} ≤ ${n} ✓`, `${n} % ${i} = ${n % i} ≠ 0`, '继续'],
+            });
+        }
+        if (isPrime) {
+            result.push({
+                active: [3, 8],
+                vars: { n, i, isPrime: 'true' },
+                action: '判断并退出',
+                exit: `${i}·${i}=${i * i} > ${n}，循环结束`,
+                output: `isPrime = true → ${n} 是质数`,
+            });
+        } else {
+            result.push({
+                active: [8],
+                vars: { n, i, isPrime: 'false' },
+                action: '退出',
+                output: `isPrime = false → ${n} 不是质数`,
+            });
+        }
+        return result;
+    }, []);
+
+    return (
+        <CodeTracer
+            title="质数判断追踪器"
+            code={`bool isPrime = true;
+if (n < 2) isPrime = false;
+
+for (int i = 2; i * i <= n; i++) {
+  if (n % i == 0) {
+    isPrime = false;
+    break;
+  }
+}`}
+            varOrder={['n', 'i', 'isPrime']}
+            columns={['试除', 'i·i ≤ n ?', 'n % i', '动作']}
+            steps={steps}
+            hint="点击「开始试除」，看试到平方根就够了 →"
+        />
+    );
+}
+
 export default function CppL2Lesson9() {
     return (
         <CppLessonShell
@@ -129,24 +192,7 @@ for (int i = 2; i <= n - 1; i++) {
                                 因数总是成对出现。只要小因数找不到，大因数也不会单独出现，所以试到平方根就够了。
                             </p>
                         </div>
-                        <div className="grid gap-5 lg:grid-cols-[1fr_0.9fr]">
-                            <CodeBlock>{`bool isPrime = true;
-if (n < 2) isPrime = false;
-
-for (int i = 2; i * i <= n; i++) {
-  if (n % i == 0) {
-    isPrime = false;
-    break;
-  }
-}`}</CodeBlock>
-                            <StepList steps={[
-                                '先排除 n 小于 2',
-                                '从 2 开始试除',
-                                '只要 i * i <= n 就继续',
-                                '找到因数就立刻 break',
-                                '没有找到因数则是质数',
-                            ]} />
-                        </div>
+                        <PrimeTracer />
                         <Callout icon={ShieldCheck} title="为什么用 i * i <= n" tone="emerald">
                             用 <code>i * i &lt;= n</code> 可以避免浮点平方根带来的精度细节，也更适合整数题。
                         </Callout>

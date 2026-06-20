@@ -1,6 +1,6 @@
 import React, { useMemo, useState } from 'react';
 import { ClipboardCheck, Hash, ListChecks, RotateCcw, ScanLine } from 'lucide-react';
-import CppLessonShell, { Callout, CodeBlock, CompareTable, MiniQuiz, StepList } from '../CppLessonShell';
+import CppLessonShell, { Callout, CodeBlock, CodeTracer, CompareTable, MiniQuiz } from '../CppLessonShell';
 
 const sections = [
     { id: 1, title: '课程导入', category: '数位拆解' },
@@ -85,6 +85,51 @@ const quiz = [
     },
 ];
 
+function DigitPeelTracer() {
+    const steps = useMemo(() => {
+        const result = [{ active: [0], vars: { n: 3729 } }];
+        let n = 3729;
+        let round = 0;
+        const digits = [];
+        while (n > 0) {
+            round += 1;
+            const before = n;
+            const digit = n % 10;
+            digits.push(digit);
+            n = Math.floor(n / 10);
+            result.push({
+                active: [1, 2, 3],
+                vars: { n },
+                action: round === 1 ? '开始拆' : '下一位',
+                row: [`第 ${round} 轮`, before, digit, n],
+            });
+        }
+        result.push({
+            active: [1, 4],
+            vars: { n },
+            action: '判断并退出',
+            exit: 'n = 0，循环结束',
+            output: `cout 依次输出 ${digits.join(' ')}`,
+        });
+        return result;
+    }, []);
+
+    return (
+        <CodeTracer
+            title="数位拆解追踪器"
+            code={`int n = 3729;
+while (n > 0) {
+  cout << n % 10;
+  n /= 10;
+}`}
+            varOrder={['n']}
+            columns={['轮次', 'n', 'n % 10 (个位)', 'n / 10 后']}
+            steps={steps}
+            hint="点击「开始拆」，看个位一个个被取走 →"
+        />
+    );
+}
+
 export default function CppL2Lesson10() {
     return (
         <CppLessonShell
@@ -110,17 +155,7 @@ export default function CppL2Lesson10() {
                                 数位题本质上是重复处理最后一位。<code>% 10</code> 拿到个位，<code>/ 10</code> 去掉个位。
                             </p>
                         </div>
-                        <div className="grid gap-5 lg:grid-cols-2">
-                            <CodeBlock>{`int n = 3729;
-cout << n % 10;  // 9
-cout << n / 10;  // 372`}</CodeBlock>
-                            <StepList steps={[
-                                '3729 % 10 得到 9',
-                                '3729 / 10 得到 372',
-                                '372 % 10 得到 2',
-                                '继续直到数字变成 0',
-                            ]} />
-                        </div>
+                        <DigitPeelTracer />
                         <Callout icon={ScanLine} title="读题关键词" tone="emerald">
                             看到“各位数字”“数位和”“反转”“回文”“出现次数”，基本都要想到 <code>% 10</code> 和 <code>/ 10</code>。
                         </Callout>
