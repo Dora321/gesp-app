@@ -1,5 +1,6 @@
 import React, { useMemo, useState } from 'react';
 import { AlertTriangle, ArrowRightLeft, ClipboardCheck, Database, Search } from 'lucide-react';
+import CppL4LessonSupport from '../../../components/CppL4LessonSupport';
 import CppLessonShell, { Callout, CodeBlock, CompareTable, MiniQuiz, StepList } from '../CppLessonShell';
 
 const sections = [
@@ -87,6 +88,8 @@ export default function CppL4Lesson2() {
             sections={sections}
             previousPath="/lesson/4/1"
             nextPath="/lesson/4/3"
+            topSupport={<CppL4LessonSupport lessonId={2} />}
+            bottomSupport={<CppL4LessonSupport lessonId={2} placement="bottom" />}
             hero={{
                 title: '传参决定函数能不能改动外面的变量',
                 description: '本课解决四级函数题的核心疑问：为什么函数里改了变量，main 里的值却没变？什么时候该用引用？',

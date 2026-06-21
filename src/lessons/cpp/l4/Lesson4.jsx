@@ -1,5 +1,6 @@
 import React, { useMemo, useState } from 'react';
 import { AlertTriangle, ClipboardCheck, GitBranch, Repeat, Search } from 'lucide-react';
+import CppL4LessonSupport from '../../../components/CppL4LessonSupport';
 import CppLessonShell, { Callout, CodeBlock, CompareTable, MiniQuiz, StepList } from '../CppLessonShell';
 
 const sections = [
@@ -84,6 +85,8 @@ export default function CppL4Lesson4() {
             sections={sections}
             previousPath="/lesson/4/3"
             nextPath="/lesson/4/5"
+            topSupport={<CppL4LessonSupport lessonId={4} />}
+            bottomSupport={<CppL4LessonSupport lessonId={4} placement="bottom" />}
             hero={{
                 title: '递归是函数能力的第一次升级：自己调用自己',
                 description: '本课从阶乘入门递归，重点理解递归关系、边界条件和调用展开。先建立直觉，再进入后续搜索与树。',

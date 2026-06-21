@@ -1,5 +1,6 @@
 import React, { useMemo, useState } from 'react';
 import { AlertTriangle, Boxes, ClipboardCheck, Search, Sigma } from 'lucide-react';
+import CppL4LessonSupport from '../../../components/CppL4LessonSupport';
 import CppLessonShell, { Callout, CodeBlock, CompareTable, MiniQuiz, StepList } from '../CppLessonShell';
 
 const sections = [
@@ -84,6 +85,8 @@ export default function CppL4Lesson3() {
             sections={sections}
             previousPath="/lesson/4/2"
             nextPath="/lesson/4/4"
+            topSupport={<CppL4LessonSupport lessonId={3} />}
+            bottomSupport={<CppL4LessonSupport lessonId={3} placement="bottom" />}
             hero={{
                 title: '数组进函数时，数据不会完整复制一份',
                 description: '本课把三级数组统计升级成函数版本，重点掌握数组参数、长度参数和常见数组函数模板。',

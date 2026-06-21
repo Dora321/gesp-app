@@ -1,5 +1,6 @@
 import React, { useMemo, useState } from 'react';
 import { ClipboardCheck, Database, GitBranch, Search, Target } from 'lucide-react';
+import CppL4LessonSupport from '../../../components/CppL4LessonSupport';
 import CppLessonShell, { Callout, CodeBlock, CompareTable, MiniQuiz, StepList } from '../CppLessonShell';
 
 const sections = [
@@ -78,6 +79,8 @@ export default function CppL4Lesson1() {
             sections={sections}
             previousPath="/lesson/3/16"
             nextPath="/lesson/4/2"
+            topSupport={<CppL4LessonSupport lessonId={1} />}
+            bottomSupport={<CppL4LessonSupport lessonId={1} placement="bottom" />}
             hero={{
                 title: '四级从函数开始：让程序从一长串代码变成模块组合',
                 description: '三级重点是会写循环、数组、字符串和模拟；四级开始要学会拆代码。函数就是第一块积木。',
