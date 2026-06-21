@@ -1,5 +1,6 @@
 import React, { useMemo, useState } from 'react';
 import { AlertTriangle, ClipboardCheck, Search, ShieldCheck } from 'lucide-react';
+import CppL6LessonSupport from '../../../components/CppL6LessonSupport';
 import CppLessonShell, { Callout, CodeBlock, CompareTable, MiniQuiz, StepList } from '../CppLessonShell';
 
 const sections = [
@@ -82,6 +83,8 @@ export default function CppL6Lesson15() {
             sections={sections}
             previousPath="/lesson/6/14"
             nextPath="/lesson/6/16"
+            topSupport={<CppL6LessonSupport lessonId={15} />}
+            bottomSupport={<CppL6LessonSupport lessonId={15} placement="bottom" />}
             hero={{
                 title: '六级冲刺的关键不是再学新名词，而是减少高频失误',
                 description: '本课把搜索、OOP、DP 的常见错误整理成诊断表和提交前检查清单。',

@@ -1,5 +1,6 @@
 import React, { useMemo, useState } from 'react';
 import { ClipboardCheck, Search, Timer, Trophy } from 'lucide-react';
+import CppL6LessonSupport from '../../../components/CppL6LessonSupport';
 import CppLessonShell, { Callout, CodeBlock, CompareTable, MiniQuiz, StepList } from '../CppLessonShell';
 
 const sections = [
@@ -87,6 +88,8 @@ export default function CppL6Lesson16() {
             sections={sections}
             previousPath="/lesson/6/15"
             nextPath="/level6"
+            topSupport={<CppL6LessonSupport lessonId={16} />}
+            bottomSupport={<CppL6LessonSupport lessonId={16} placement="bottom" />}
             hero={{
                 title: '六级收官要练的不是单点知识，而是整场考试的稳定性',
                 description: '本课把树、搜索、OOP、格雷码、DP 和背包整合成全真模拟流程。',

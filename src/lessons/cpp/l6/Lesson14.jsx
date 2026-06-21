@@ -1,5 +1,6 @@
 import React, { useMemo, useState } from 'react';
 import { ClipboardCheck, Grid3X3, Route, Search } from 'lucide-react';
+import CppL6LessonSupport from '../../../components/CppL6LessonSupport';
 import CppLessonShell, { Callout, CodeBlock, CompareTable, MiniQuiz, StepList } from '../CppLessonShell';
 
 const sections = [
@@ -97,6 +98,8 @@ export default function CppL6Lesson14() {
             sections={sections}
             previousPath="/lesson/6/13"
             nextPath="/lesson/6/15"
+            topSupport={<CppL6LessonSupport lessonId={14} />}
+            bottomSupport={<CppL6LessonSupport lessonId={14} placement="bottom" />}
             hero={{
                 title: '矩阵 DP 是二维思维训练：当前位置的答案来自附近格子',
                 description: '本课用路径计数、障碍处理和最小路径和，把 DP 从一维背包扩展到二维网格。',

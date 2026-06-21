@@ -928,7 +928,7 @@ async function main() {
     );
   }
 
-  for (let lesson = 1; lesson <= 12; lesson += 1) {
+  for (let lesson = 1; lesson <= 16; lesson += 1) {
     const support = getCppL6LessonSupport(lesson);
     assert(support?.quality?.goals?.length >= 3, `C++ L6 lesson ${lesson} needs at least 3 goals.`);
     assert(support?.quality?.deliverables?.length >= 3, `C++ L6 lesson ${lesson} needs at least 3 deliverables.`);
@@ -941,7 +941,7 @@ async function main() {
       `C++ L6 lesson ${lesson} has wrong previous link.`
     );
     assert(
-      support.next?.path === `/lesson/6/${lesson + 1}`,
+      support.next?.path === (lesson === 16 ? '/level6' : `/lesson/6/${lesson + 1}`),
       `C++ L6 lesson ${lesson} has wrong next link.`
     );
 

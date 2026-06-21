@@ -1,5 +1,6 @@
 import React, { useMemo, useState } from 'react';
 import { ClipboardCheck, PackageCheck, Repeat2, Search } from 'lucide-react';
+import CppL6LessonSupport from '../../../components/CppL6LessonSupport';
 import CppLessonShell, { Callout, CodeBlock, CompareTable, MiniQuiz, StepList } from '../CppLessonShell';
 
 const sections = [
@@ -96,6 +97,8 @@ export default function CppL6Lesson13() {
             sections={sections}
             previousPath="/lesson/6/12"
             nextPath="/lesson/6/14"
+            topSupport={<CppL6LessonSupport lessonId={13} />}
+            bottomSupport={<CppL6LessonSupport lessonId={13} placement="bottom" />}
             hero={{
                 title: '完全背包和 0/1 背包只差一步，但这一步决定循环方向',
                 description: '本课对比 0/1 背包与完全背包，并把 DP 思路扩展到计数和最值模型。',
