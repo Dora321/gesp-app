@@ -1,5 +1,6 @@
 import React, { useMemo, useState } from 'react';
 import { Binary, ClipboardCheck, Layers3, Lightbulb, ToggleLeft } from 'lucide-react';
+import CppL3LessonSupport from '../../../components/CppL3LessonSupport';
 import CppLessonShell, { Callout, CodeBlock, CompareTable, MiniQuiz, StepList } from '../CppLessonShell';
 
 const sections = [
@@ -84,6 +85,8 @@ export default function CppL3Lesson3() {
             sections={sections}
             previousPath="/lesson/3/2"
             nextPath="/lesson/3/4"
+            topSupport={<CppL3LessonSupport lessonId={3} />}
+            bottomSupport={<CppL3LessonSupport lessonId={3} placement="bottom" />}
             hero={{
                 title: '位运算不是神秘符号，而是在操作每一位开关',
                 description: '本课先掌握 &、|、^、~ 的基本含义。三级题里，很多看似复杂的表达式都可以按位拆开读。',

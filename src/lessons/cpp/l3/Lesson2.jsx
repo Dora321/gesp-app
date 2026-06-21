@@ -1,5 +1,6 @@
 import React, { useMemo, useState } from 'react';
 import { AlertTriangle, Binary, ClipboardCheck, LockKeyhole, RotateCcw } from 'lucide-react';
+import CppL3LessonSupport from '../../../components/CppL3LessonSupport';
 import CppLessonShell, { Callout, CodeBlock, CompareTable, MiniQuiz, StepList } from '../CppLessonShell';
 
 const sections = [
@@ -88,6 +89,8 @@ export default function CppL3Lesson2() {
             sections={sections}
             previousPath="/lesson/3/1"
             nextPath="/lesson/3/3"
+            topSupport={<CppL3LessonSupport lessonId={2} />}
+            bottomSupport={<CppL3LessonSupport lessonId={2} placement="bottom" />}
             hero={{
                 title: '负数不是多一个减号，而是一套固定宽度的编码规则',
                 description: '补码让加法器同时处理正数和负数。三级题里，补码常和二进制、位运算、溢出一起出现。',
@@ -174,6 +177,9 @@ export default function CppL3Lesson2() {
                                 <li>解释为什么 8 位有符号整数最小值是 -128。</li>
                                 <li>判断 <code>11110110</code> 作为 8 位补码表示哪个十进制数。</li>
                             </ul>
+                        </Callout>
+                        <Callout icon={Binary} title="下一课衔接" tone="blue">
+                            下一课进入位运算。补码训练的是“整数如何变成位模式”，位运算会直接对这些位模式逐位操作。
                         </Callout>
                     </>
                 ),

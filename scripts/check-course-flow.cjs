@@ -615,6 +615,7 @@ async function main() {
     { getCppLevelSupport },
     { getCppL1LessonSupport },
     { getCppL2LessonSupport },
+    { getCppL3LessonSupport },
     { paperIds, paperMeta },
     { paperStats },
     { pythonFoundationLessons, getPythonFoundationSupport },
@@ -623,6 +624,7 @@ async function main() {
     import(pathToFileURL(path.join(srcRoot, 'data', 'cppLevelFlow.js')).href),
     import(pathToFileURL(path.join(srcRoot, 'data', 'cppL1CourseFlow.js')).href),
     import(pathToFileURL(path.join(srcRoot, 'data', 'cppL2CourseFlow.js')).href),
+    import(pathToFileURL(path.join(srcRoot, 'data', 'cppL3CourseFlow.js')).href),
     import(pathToFileURL(path.join(srcRoot, 'data', 'gesp', '_generated.js')).href),
     import(pathToFileURL(path.join(srcRoot, 'data', 'gesp', '_stats.js')).href),
     import(pathToFileURL(path.join(srcRoot, 'data', 'pythonFoundationFlow.js')).href),
@@ -789,6 +791,39 @@ async function main() {
         `${pagePath}: missing bottomSupport CppL2LessonSupport.`
       );
     }
+  }
+
+  for (let lesson = 1; lesson <= 4; lesson += 1) {
+    const support = getCppL3LessonSupport(lesson);
+    assert(support?.quality?.goals?.length >= 3, `C++ L3 lesson ${lesson} needs at least 3 goals.`);
+    assert(support?.quality?.deliverables?.length >= 3, `C++ L3 lesson ${lesson} needs at least 3 deliverables.`);
+    assert(support?.quality?.checks?.length >= 3, `C++ L3 lesson ${lesson} needs at least 3 checks.`);
+    assert(support?.practiceLinks?.length >= 1, `C++ L3 lesson ${lesson} needs practice links.`);
+    assertPracticeLinksResolve(`C++ L3 lesson ${lesson}`, support.practiceLinks, paperIds);
+    assert(support?.reviewTasks?.length >= 2, `C++ L3 lesson ${lesson} needs review tasks.`);
+    assert(
+      lesson === 1 ? support.previous?.path === '/lesson/2/16' : support.previous?.path === `/lesson/3/${lesson - 1}`,
+      `C++ L3 lesson ${lesson} has wrong previous link.`
+    );
+    assert(
+      support.next?.path === `/lesson/3/${lesson + 1}`,
+      `C++ L3 lesson ${lesson} has wrong next link.`
+    );
+
+    const pagePath = `src/lessons/cpp/l3/Lesson${lesson}.jsx`;
+    const page = read(pagePath);
+    assert(
+      page.includes("import CppL3LessonSupport from '../../../components/CppL3LessonSupport';"),
+      `${pagePath}: missing CppL3LessonSupport import.`
+    );
+    assert(
+      new RegExp(`topSupport=\\{<CppL3LessonSupport lessonId=\\{${lesson}\\} />\\}`).test(page),
+      `${pagePath}: missing topSupport CppL3LessonSupport.`
+    );
+    assert(
+      new RegExp(`bottomSupport=\\{<CppL3LessonSupport lessonId=\\{${lesson}\\} placement="bottom" />\\}`).test(page),
+      `${pagePath}: missing bottomSupport CppL3LessonSupport.`
+    );
   }
 
   const foundationPages = [

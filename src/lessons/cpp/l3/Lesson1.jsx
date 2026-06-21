@@ -1,5 +1,6 @@
 import React, { useMemo, useState } from 'react';
 import { ClipboardCheck, Hash, Repeat2, Route, Search } from 'lucide-react';
+import CppL3LessonSupport from '../../../components/CppL3LessonSupport';
 import CppLessonShell, { Callout, CodeBlock, CompareTable, MiniQuiz, StepList } from '../CppLessonShell';
 
 const sections = [
@@ -94,6 +95,8 @@ export default function CppL3Lesson1() {
             sections={sections}
             previousPath="/lesson/2/16"
             nextPath="/lesson/3/2"
+            topSupport={<CppL3LessonSupport lessonId={1} />}
+            bottomSupport={<CppL3LessonSupport lessonId={1} placement="bottom" />}
             hero={{
                 title: '进制不是新数字，是同一个数量换了一套记号',
                 description: '三级开始会频繁出现二进制、八进制、十六进制。今天先把按权展开和短除法打稳，后面的补码和位运算才不会悬空。',

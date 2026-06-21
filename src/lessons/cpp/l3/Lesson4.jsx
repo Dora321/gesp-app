@@ -1,5 +1,6 @@
 import React, { useMemo, useState } from 'react';
 import { AlertTriangle, ArrowLeftRight, ClipboardCheck, MoveRight, Search } from 'lucide-react';
+import CppL3LessonSupport from '../../../components/CppL3LessonSupport';
 import CppLessonShell, { Callout, CodeBlock, CompareTable, MiniQuiz, StepList } from '../CppLessonShell';
 
 const sections = [
@@ -78,6 +79,8 @@ export default function CppL3Lesson4() {
             sections={sections}
             previousPath="/lesson/3/3"
             nextPath="/lesson/3/5"
+            topSupport={<CppL3LessonSupport lessonId={4} />}
+            bottomSupport={<CppL3LessonSupport lessonId={4} placement="bottom" />}
             hero={{
                 title: '移位让二进制整体搬家，也让位操作真正好用起来',
                 description: '本课接上 &、|、^，重点掌握 <<、>>、1 << k，以及检查、设置、清除某一位的常见模板。',
@@ -138,6 +141,7 @@ cout << (x >> 2); // 00000011 = 3`}</CodeBlock>
                             rows={[
                                 ['检查第 k 位', 'x & (1 << k)', '结果非 0 表示该位是 1'],
                                 ['设置第 k 位', 'x | (1 << k)', '把该位变成 1'],
+                                ['清除第 k 位', 'x & ~(1 << k)', '把该位变成 0'],
                                 ['翻转第 k 位', 'x ^ (1 << k)', '0 变 1，1 变 0'],
                             ]}
                         />
@@ -161,6 +165,7 @@ if (x & mask) {
                             <ul className="space-y-2">
                                 <li>手算 <code>7 &lt;&lt; 2</code> 和 <code>29 &gt;&gt; 3</code>。</li>
                                 <li>写程序判断整数 x 的第 k 位是否为 1。</li>
+                                <li>写程序把整数 x 的第 k 位清除为 0。</li>
                                 <li>写程序把整数 x 的第 k 位翻转。</li>
                             </ul>
                         </Callout>
