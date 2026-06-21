@@ -651,7 +651,7 @@ async function main() {
     { paperIds, paperMeta },
     { paperStats },
     { pythonFoundationLessons, getPythonFoundationSupport },
-    { pythonProjects, getPythonProjectSupport },
+    { pythonProjects, getPythonProjectSupport, GENERIC_PREREQUISITE_FOCUS },
   ] = await Promise.all([
     import(pathToFileURL(path.join(srcRoot, 'data', 'cppLevelFlow.js')).href),
     import(pathToFileURL(path.join(srcRoot, 'data', 'cppL1CourseFlow.js')).href),
@@ -1038,6 +1038,14 @@ async function main() {
       'Python project A1 should link back to Python F7 as the foundation-to-project bridge.'
     );
     assert(support?.prerequisiteLinks?.length >= 2, `Python project ${projectId} needs at least 2 prerequisite review links.`);
+    assert(
+      support?.prerequisiteLinks?.every((item) => typeof item.focus === 'string' && item.focus.length >= 12),
+      `Python project ${projectId} prerequisite links need project-specific review focus text.`
+    );
+    assert(
+      support?.prerequisiteLinks?.every((item) => item.focus !== GENERIC_PREREQUISITE_FOCUS),
+      `Python project ${projectId} prerequisite links should not fall back to generic review focus text.`
+    );
     const prerequisitePaths = new Set(support?.prerequisiteLinks?.map((item) => item.path));
     const practicePaths = support?.practiceLinks?.map((item) => item.path) || [];
     assert(

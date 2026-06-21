@@ -57,15 +57,18 @@ function ProjectBrief({ support, theme = 'light' }) {
             </span>
             建议先复习
           </div>
-          <div className="flex flex-wrap gap-2">
+          <div className="grid gap-2 md:grid-cols-2">
             {support.prerequisiteLinks.map((item) => (
               <Link
                 key={`${item.path}-${item.label}`}
                 to={item.path}
-                className={`inline-flex items-center gap-1.5 rounded-md border px-3 py-1.5 text-sm font-bold transition ${styles.prereqLink}`}
+                className={`group rounded-md border px-3 py-2 text-sm transition ${styles.prereqLink}`}
               >
-                {item.label}
-                <ArrowRight size={13} />
+                <span className="flex items-center justify-between gap-2 font-black">
+                  {item.label}
+                  <ArrowRight size={13} className="shrink-0 transition group-hover:translate-x-0.5" />
+                </span>
+                <span className="mt-1 block text-xs font-semibold leading-relaxed opacity-80">{item.focus}</span>
               </Link>
             ))}
           </div>

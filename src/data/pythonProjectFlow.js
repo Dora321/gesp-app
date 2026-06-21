@@ -3,12 +3,63 @@ import { pythonFoundationLessons, pythonProjects } from './pythonCourseCatalog.j
 
 const foundationLessonMap = Object.fromEntries(pythonFoundationLessons.map((lesson) => [lesson.id, lesson]));
 
-function toPrerequisiteLinks(prerequisiteIds = []) {
+export const GENERIC_PREREQUISITE_FOCUS = '回看这节课中的核心概念，并把它迁移到当前项目。';
+
+const prerequisiteFocusByProject = {
+  a1: {
+    f2: '用分支和循环把“尝试所有可能”表达清楚。',
+    f3: '用列表或字典记录候选方案、状态和对比结果。',
+    f4: '把枚举、贪心或递归拆成可复用的小函数。',
+  },
+  a2: {
+    f2: '用条件和循环控制每一轮移动、合并和胜负判断。',
+    f3: '用二维列表表示棋盘，用索引定位格子。',
+    f4: '把压缩、合并、生成新方块拆成独立函数。',
+    f6: '用随机数生成新方块，并理解随机结果的边界。',
+  },
+  ai: {
+    f2: '用条件判断解释模型为什么给出某一类结果。',
+    f3: '用列表保存样本，用字典描述输入特征。',
+    f4: '把预测、评分和可视化步骤封装成函数。',
+  },
+  crawler: {
+    f2: '用条件处理状态码、空结果和异常分支。',
+    f3: '用字符串、列表和字典整理网页中的目标信息。',
+    f4: '把请求、解析、清洗拆成清晰的函数。',
+  },
+  'binary-search': {
+    f2: '用 while 循环和条件分支控制 left、right、mid。',
+    f3: '理解有序列表、索引和目标值之间的关系。',
+  },
+  encryption: {
+    f2: '用条件处理大小写、非字母和边界回绕。',
+    f3: '用字符串遍历和映射表完成字符转换。',
+    f4: '把加密、解密和暴力尝试封装成函数。',
+  },
+  sorting: {
+    f2: '用嵌套循环和比较条件描述每一轮排序。',
+    f3: '用列表状态观察交换、插入和元素位置变化。',
+    f4: '把不同排序策略写成可对比的函数。',
+  },
+  morse: {
+    f3: '用字典建立字符和摩斯码的双向映射。',
+    f4: '把编码、解码和错误处理拆成函数。',
+  },
+  'file-ops': {
+    f1: '确认 print、input 和变量能产出可保存的文本。',
+    f3: '用字符串、列表或字典组织要写入文件的数据。',
+    f4: '把读文件、写文件和统计逻辑封装成函数。',
+  },
+};
+
+function toPrerequisiteLinks(projectId, prerequisiteIds = []) {
+  const projectFocus = prerequisiteFocusByProject[projectId] || {};
   return prerequisiteIds.map((id) => {
     const lesson = foundationLessonMap[id];
     return {
       label: lesson?.catalogTitle ? `复习 ${lesson.catalogTitle}` : `复习 ${id.toUpperCase()}`,
       path: lesson?.path || '/python/f1',
+      focus: projectFocus[id] || GENERIC_PREREQUISITE_FOCUS,
     };
   });
 }
@@ -214,7 +265,7 @@ export function getPythonProjectSupport(projectId) {
 
   if (!current || !details) return null;
 
-  const prerequisiteLinks = toPrerequisiteLinks(details.prerequisiteIds);
+  const prerequisiteLinks = toPrerequisiteLinks(projectId, details.prerequisiteIds);
 
   return {
     current,
