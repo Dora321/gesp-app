@@ -1,5 +1,6 @@
 import React, { useMemo, useState } from 'react';
 import { AlertTriangle, ClipboardCheck, MapPin, Search, Waypoints } from 'lucide-react';
+import CppL4LessonSupport from '../../../components/CppL4LessonSupport';
 import CppLessonShell, { Callout, CodeBlock, CompareTable, MiniQuiz, StepList } from '../CppLessonShell';
 
 const sections = [
@@ -65,6 +66,8 @@ export default function CppL4Lesson5() {
             sections={sections}
             previousPath="/lesson/4/4"
             nextPath="/lesson/4/6"
+            topSupport={<CppL4LessonSupport lessonId={5} />}
+            bottomSupport={<CppL4LessonSupport lessonId={5} placement="bottom" />}
             hero={{
                 title: '指针不是玄学，它只是保存地址的变量',
                 description: '本课把指针拆成三个动作：取地址、保存地址、通过地址访问值。先建立地址模型，再进入数组和指针的关系。',

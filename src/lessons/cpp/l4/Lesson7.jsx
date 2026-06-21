@@ -1,5 +1,6 @@
 import React, { useMemo, useState } from 'react';
 import { ClipboardCheck, Contact, Database, Search, Users } from 'lucide-react';
+import CppL4LessonSupport from '../../../components/CppL4LessonSupport';
 import CppLessonShell, { Callout, CodeBlock, CompareTable, MiniQuiz, StepList } from '../CppLessonShell';
 
 const sections = [
@@ -68,6 +69,8 @@ export default function CppL4Lesson7() {
             sections={sections}
             previousPath="/lesson/4/6"
             nextPath="/lesson/4/8"
+            topSupport={<CppL4LessonSupport lessonId={7} />}
+            bottomSupport={<CppL4LessonSupport lessonId={7} placement="bottom" />}
             hero={{
                 title: '结构体让数据从散装变量变成有名字的对象',
                 description: '当题目里一个学生有姓名、年龄、成绩，或者一本书有标题、价格、库存时，结构体比多个数组更清楚。',

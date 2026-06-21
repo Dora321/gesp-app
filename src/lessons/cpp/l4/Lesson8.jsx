@@ -1,5 +1,6 @@
 import React, { useMemo, useState } from 'react';
 import { ClipboardCheck, Grid3X3, Rows3, Search, Table2 } from 'lucide-react';
+import CppL4LessonSupport from '../../../components/CppL4LessonSupport';
 import CppLessonShell, { Callout, CodeBlock, CompareTable, MiniQuiz, StepList } from '../CppLessonShell';
 
 const sections = [
@@ -75,6 +76,8 @@ export default function CppL4Lesson8() {
             sections={sections}
             previousPath="/lesson/4/7"
             nextPath="/lesson/4/9"
+            topSupport={<CppL4LessonSupport lessonId={8} />}
+            bottomSupport={<CppL4LessonSupport lessonId={8} placement="bottom" />}
             hero={{
                 title: '二维数组是一张表：第一个下标管行，第二个下标管列',
                 description: '本课把一维数组升级成矩阵模型，学习声明、读入、遍历、行列统计和常见边界。',

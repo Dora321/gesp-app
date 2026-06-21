@@ -1,5 +1,6 @@
 import React, { useMemo, useState } from 'react';
 import { AlertTriangle, Boxes, ClipboardCheck, Search, Waypoints } from 'lucide-react';
+import CppL4LessonSupport from '../../../components/CppL4LessonSupport';
 import CppLessonShell, { Callout, CodeBlock, CompareTable, MiniQuiz, StepList } from '../CppLessonShell';
 
 const sections = [
@@ -74,6 +75,8 @@ export default function CppL4Lesson6() {
             sections={sections}
             previousPath="/lesson/4/5"
             nextPath="/lesson/4/7"
+            topSupport={<CppL4LessonSupport lessonId={6} />}
+            bottomSupport={<CppL4LessonSupport lessonId={6} placement="bottom" />}
             hero={{
                 title: '数组和指针的关系，是四级理解数组参数的关键',
                 description: '本课把数组名、首地址、地址偏移和 a[i] 的等价写法讲清楚，连接上一课指针和第 3 课数组进函数。',
