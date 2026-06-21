@@ -1,5 +1,6 @@
 import React, { useMemo, useState } from 'react';
 import { Binary, ClipboardCheck, Search, Target } from 'lucide-react';
+import CppL6LessonSupport from '../../../components/CppL6LessonSupport';
 import CppLessonShell, { Callout, CodeBlock, CompareTable, MiniQuiz, StepList } from '../CppLessonShell';
 
 const sections = [
@@ -99,6 +100,8 @@ export default function CppL6Lesson3() {
             sections={sections}
             previousPath="/lesson/6/2"
             nextPath="/lesson/6/4"
+            topSupport={<CppL6LessonSupport lessonId={3} />}
+            bottomSupport={<CppL6LessonSupport lessonId={3} placement="bottom" />}
             hero={{
                 title: '哈夫曼树的贪心选择很朴素：每次把最小的两个合并',
                 description: '本课从最优编码问题进入哈夫曼思想，理解优先队列和带权路径长度。',

@@ -1,5 +1,6 @@
 import React, { useMemo, useState } from 'react';
 import { ClipboardCheck, ListChecks, Route, Search } from 'lucide-react';
+import CppL6LessonSupport from '../../../components/CppL6LessonSupport';
 import CppLessonShell, { Callout, CodeBlock, CompareTable, MiniQuiz, StepList } from '../CppLessonShell';
 
 const sections = [
@@ -114,6 +115,8 @@ export default function CppL6Lesson4() {
             sections={sections}
             previousPath="/lesson/6/3"
             nextPath="/lesson/6/5"
+            topSupport={<CppL6LessonSupport lessonId={4} />}
+            bottomSupport={<CppL6LessonSupport lessonId={4} placement="bottom" />}
             hero={{
                 title: 'BFS 的厉害之处是稳：一层一层推进，第一次到达就是最短',
                 description: '本课用迷宫最短路建立 BFS 队列模板，训练方向数组、访问标记和距离数组。',

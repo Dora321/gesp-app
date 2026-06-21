@@ -595,6 +595,7 @@ function assertLessonQualityBarSupportsCourseAccents() {
     'src/data/cppL3CourseFlow.js',
     'src/data/cppL4CourseFlow.js',
     'src/data/cppL5CourseFlow.js',
+    'src/data/cppL6CourseFlow.js',
     'src/data/pythonFoundationFlow.js',
     'src/data/pythonProjectFlow.js',
   ];
@@ -646,6 +647,7 @@ async function main() {
     { getCppL3LessonSupport },
     { getCppL4LessonSupport },
     { getCppL5LessonSupport },
+    { getCppL6LessonSupport },
     { paperIds, paperMeta },
     { paperStats },
     { pythonFoundationLessons, getPythonFoundationSupport },
@@ -657,6 +659,7 @@ async function main() {
     import(pathToFileURL(path.join(srcRoot, 'data', 'cppL3CourseFlow.js')).href),
     import(pathToFileURL(path.join(srcRoot, 'data', 'cppL4CourseFlow.js')).href),
     import(pathToFileURL(path.join(srcRoot, 'data', 'cppL5CourseFlow.js')).href),
+    import(pathToFileURL(path.join(srcRoot, 'data', 'cppL6CourseFlow.js')).href),
     import(pathToFileURL(path.join(srcRoot, 'data', 'gesp', '_generated.js')).href),
     import(pathToFileURL(path.join(srcRoot, 'data', 'gesp', '_stats.js')).href),
     import(pathToFileURL(path.join(srcRoot, 'data', 'pythonFoundationFlow.js')).href),
@@ -922,6 +925,39 @@ async function main() {
     assert(
       new RegExp(`bottomSupport=\\{<CppL5LessonSupport lessonId=\\{${lesson}\\} placement="bottom" />\\}`).test(page),
       `${pagePath}: missing bottomSupport CppL5LessonSupport.`
+    );
+  }
+
+  for (let lesson = 1; lesson <= 4; lesson += 1) {
+    const support = getCppL6LessonSupport(lesson);
+    assert(support?.quality?.goals?.length >= 3, `C++ L6 lesson ${lesson} needs at least 3 goals.`);
+    assert(support?.quality?.deliverables?.length >= 3, `C++ L6 lesson ${lesson} needs at least 3 deliverables.`);
+    assert(support?.quality?.checks?.length >= 3, `C++ L6 lesson ${lesson} needs at least 3 checks.`);
+    assert(support?.practiceLinks?.length >= 1, `C++ L6 lesson ${lesson} needs practice links.`);
+    assertPracticeLinksResolve(`C++ L6 lesson ${lesson}`, support.practiceLinks, paperIds);
+    assert(support?.reviewTasks?.length >= 2, `C++ L6 lesson ${lesson} needs review tasks.`);
+    assert(
+      support.previous?.path === (lesson === 1 ? '/level6' : `/lesson/6/${lesson - 1}`),
+      `C++ L6 lesson ${lesson} has wrong previous link.`
+    );
+    assert(
+      support.next?.path === `/lesson/6/${lesson + 1}`,
+      `C++ L6 lesson ${lesson} has wrong next link.`
+    );
+
+    const pagePath = `src/lessons/cpp/l6/Lesson${lesson}.jsx`;
+    const page = read(pagePath);
+    assert(
+      page.includes("import CppL6LessonSupport from '../../../components/CppL6LessonSupport';"),
+      `${pagePath}: missing CppL6LessonSupport import.`
+    );
+    assert(
+      new RegExp(`topSupport=\\{<CppL6LessonSupport lessonId=\\{${lesson}\\} />\\}`).test(page),
+      `${pagePath}: missing topSupport CppL6LessonSupport.`
+    );
+    assert(
+      new RegExp(`bottomSupport=\\{<CppL6LessonSupport lessonId=\\{${lesson}\\} placement="bottom" />\\}`).test(page),
+      `${pagePath}: missing bottomSupport CppL6LessonSupport.`
     );
   }
 

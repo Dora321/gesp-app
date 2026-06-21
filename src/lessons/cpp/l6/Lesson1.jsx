@@ -1,5 +1,6 @@
 import React, { useMemo, useState } from 'react';
 import { ClipboardCheck, GitBranch, Network, Search } from 'lucide-react';
+import CppL6LessonSupport from '../../../components/CppL6LessonSupport';
 import CppLessonShell, { Callout, CodeBlock, CompareTable, MiniQuiz, StepList } from '../CppLessonShell';
 
 const sections = [
@@ -94,6 +95,8 @@ export default function CppL6Lesson1() {
             sections={sections}
             previousPath="/level6"
             nextPath="/lesson/6/2"
+            topSupport={<CppL6LessonSupport lessonId={1} />}
+            bottomSupport={<CppL6LessonSupport lessonId={1} placement="bottom" />}
             hero={{
                 title: '树是六级算法的入口：很多问题不再是一条线，而是一层层分叉',
                 description: '本课建立树的节点、边、根、父子关系和邻接表存储，为遍历、哈夫曼、BFS/DFS 打基础。',

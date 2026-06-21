@@ -1,5 +1,6 @@
 import React, { useMemo, useState } from 'react';
 import { ClipboardCheck, GitBranch, Route, Search } from 'lucide-react';
+import CppL6LessonSupport from '../../../components/CppL6LessonSupport';
 import CppLessonShell, { Callout, CodeBlock, CompareTable, MiniQuiz, StepList } from '../CppLessonShell';
 
 const sections = [
@@ -100,6 +101,8 @@ export default function CppL6Lesson2() {
             sections={sections}
             previousPath="/lesson/6/1"
             nextPath="/lesson/6/3"
+            topSupport={<CppL6LessonSupport lessonId={2} />}
+            bottomSupport={<CppL6LessonSupport lessonId={2} placement="bottom" />}
             hero={{
                 title: '遍历就是给树安排一条访问路线：每个节点一次，不重复不遗漏',
                 description: '本课用固定二叉树对比前序、中序、后序，训练递归访问左右子树的模板。',
