@@ -745,6 +745,15 @@ async function main() {
     assert(support.goals?.length >= 3, `C++ level ${level} needs at least 3 goals.`);
     assert(support.deliverables?.length >= 3, `C++ level ${level} needs at least 3 deliverables.`);
     assert(support.checks?.length >= 3, `C++ level ${level} needs at least 3 checks.`);
+    assert(support.readiness?.length >= 3, `C++ level ${level} needs at least 3 readiness checks.`);
+    assert(
+      support.readiness?.every((item) => item.label?.length >= 4 && item.focus?.length >= 16),
+      `C++ level ${level} readiness checks need concrete labels and focus text.`
+    );
+    assert(
+      new Set(support.readiness?.map((item) => item.label)).size === support.readiness?.length,
+      `C++ level ${level} readiness check labels should be unique.`
+    );
     assert(support.practiceLinks?.length >= 1, `C++ level ${level} needs practice links.`);
     assertPracticeLinksResolve(`C++ level ${level}`, support.practiceLinks, paperIds);
     assert(support.reviewTasks?.length >= 3, `C++ level ${level} needs review tasks.`);

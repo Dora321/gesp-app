@@ -1,4 +1,4 @@
-import { ArrowRight, ClipboardCheck, Route, Target } from 'lucide-react';
+import { ArrowRight, BookOpenCheck, ClipboardCheck, Route, Target } from 'lucide-react';
 import { getCppLevelSupport } from '../data/cppLevelFlow';
 import LessonNextSteps from './LessonNextSteps';
 import LessonQualityBar from './LessonQualityBar';
@@ -63,6 +63,25 @@ function LevelBrief({ support }) {
           </div>
         ))}
       </div>
+
+      {support.readiness?.length > 0 && (
+        <div className="mt-4 rounded-lg border border-white/80 bg-white/80 p-3 shadow-sm">
+          <div className="mb-3 flex items-center gap-2 text-sm font-black text-slate-800">
+            <span className={`flex h-7 w-7 items-center justify-center rounded-md ring-1 ${styles.icon}`}>
+              <BookOpenCheck size={15} />
+            </span>
+            进入前检查
+          </div>
+          <div className="grid gap-2 lg:grid-cols-3">
+            {support.readiness.map((item) => (
+              <div key={item.label} className="rounded-md border border-slate-100 bg-white px-3 py-2">
+                <div className="text-sm font-black text-slate-800">{item.label}</div>
+                <p className="mt-1 text-xs font-semibold leading-relaxed text-slate-500">{item.focus}</p>
+              </div>
+            ))}
+          </div>
+        </div>
+      )}
 
       <div className={`mt-4 h-1 w-24 rounded-full ${styles.line}`} />
     </section>
