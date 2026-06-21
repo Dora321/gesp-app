@@ -582,6 +582,34 @@ function assertPythonFoundationSupportUsesQualityBar() {
   );
 }
 
+function assertLessonQualityBarSupportsCourseAccents() {
+  const qualityBar = read('src/components/LessonQualityBar.jsx');
+  const styleMatch = qualityBar.match(/const accentStyles = \{([\s\S]*?)\n\};/);
+  const styleAccents = new Set(
+    styleMatch ? [...styleMatch[1].matchAll(/^\s{2}([a-z]+): \{/gm)].map((match) => match[1]) : []
+  );
+  const flowFiles = [
+    'src/data/cppLevelFlow.js',
+    'src/data/cppL1CourseFlow.js',
+    'src/data/cppL2CourseFlow.js',
+    'src/data/cppL3CourseFlow.js',
+    'src/data/cppL4CourseFlow.js',
+    'src/data/cppL5CourseFlow.js',
+    'src/data/pythonFoundationFlow.js',
+    'src/data/pythonProjectFlow.js',
+  ];
+  const requiredAccents = new Set(
+    flowFiles.flatMap((file) => [...read(file).matchAll(/accent: '([^']+)'/g)].map((match) => match[1]))
+  );
+
+  for (const accent of requiredAccents) {
+    assert(
+      styleAccents.has(accent),
+      `LessonQualityBar should define an explicit ${accent} accent style.`
+    );
+  }
+}
+
 function assertPythonProjectSupportUsesPrerequisites() {
   const projectSupport = read('src/components/PythonProjectSupport.jsx');
 
@@ -647,6 +675,7 @@ async function main() {
   assertAnnouncementUsesSharedData();
   assertNotFoundUsesSharedData();
   assertPythonFoundationSupportUsesQualityBar();
+  assertLessonQualityBarSupportsCourseAccents();
   assertPythonProjectSupportUsesPrerequisites();
   assertCppLessonShellSupportsLessonSupport();
 
