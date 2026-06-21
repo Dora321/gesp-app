@@ -1,5 +1,6 @@
 import React, { useMemo, useState } from 'react';
 import { CheckCircle2, ClipboardCheck, Coins, Search } from 'lucide-react';
+import CppL5LessonSupport from '../../../components/CppL5LessonSupport';
 import CppLessonShell, { Callout, CodeBlock, CompareTable, MiniQuiz, StepList } from '../CppLessonShell';
 
 const sections = [
@@ -97,6 +98,8 @@ export default function CppL5Lesson12() {
             sections={sections}
             previousPath="/lesson/5/11"
             nextPath="/lesson/5/13"
+            topSupport={<CppL5LessonSupport lessonId={12} />}
+            bottomSupport={<CppL5LessonSupport lessonId={12} placement="bottom" />}
             hero={{
                 title: '贪心不是“凭感觉选最大”，而是有理由地做局部最优选择',
                 description: '本课通过区间选择、硬币模型和反例意识，建立贪心策略的判断框架。',

@@ -1,5 +1,6 @@
 import React, { useMemo, useState } from 'react';
 import { ClipboardCheck, GitBranch, Layers2, Search } from 'lucide-react';
+import CppL5LessonSupport from '../../../components/CppL5LessonSupport';
 import CppLessonShell, { Callout, CodeBlock, CompareTable, MiniQuiz, StepList } from '../CppLessonShell';
 
 const sections = [
@@ -82,6 +83,8 @@ export default function CppL5Lesson11() {
             sections={sections}
             previousPath="/lesson/5/10"
             nextPath="/lesson/5/12"
+            topSupport={<CppL5LessonSupport lessonId={11} />}
+            bottomSupport={<CppL5LessonSupport lessonId={11} placement="bottom" />}
             hero={{
                 title: '分治的力量：把一个难题拆成两个相似的小题',
                 description: '本课用区间拆分和归并排序建立分治框架，训练递归边界、子问题和合并过程。',

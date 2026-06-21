@@ -1,5 +1,6 @@
 import React, { useMemo, useState } from 'react';
 import { ClipboardCheck, Gauge, Search, SplitSquareHorizontal } from 'lucide-react';
+import CppL5LessonSupport from '../../../components/CppL5LessonSupport';
 import CppLessonShell, { Callout, CodeBlock, CompareTable, MiniQuiz, StepList } from '../CppLessonShell';
 
 const sections = [
@@ -95,6 +96,8 @@ export default function CppL5Lesson10() {
             sections={sections}
             previousPath="/lesson/5/9"
             nextPath="/lesson/5/11"
+            topSupport={<CppL5LessonSupport lessonId={10} />}
+            bottomSupport={<CppL5LessonSupport lessonId={10} placement="bottom" />}
             hero={{
                 title: '二分不是只会找数，而是利用单调性缩小答案范围',
                 description: '本课从有序数组查找入门，再过渡到答案二分，建立“边界 + check”的思考框架。',

@@ -1,5 +1,6 @@
 import React, { useMemo, useState } from 'react';
 import { ClipboardCheck, RefreshCw, Search, UsersRound } from 'lucide-react';
+import CppL5LessonSupport from '../../../components/CppL5LessonSupport';
 import CppLessonShell, { Callout, CodeBlock, CompareTable, MiniQuiz, StepList } from '../CppLessonShell';
 
 const sections = [
@@ -87,6 +88,8 @@ export default function CppL5Lesson9() {
             sections={sections}
             previousPath="/lesson/5/8"
             nextPath="/lesson/5/10"
+            topSupport={<CppL5LessonSupport lessonId={9} />}
+            bottomSupport={<CppL5LessonSupport lessonId={9} placement="bottom" />}
             hero={{
                 title: '约瑟夫环是一道“结构选择题”：环形过程就要想到循环结构',
                 description: '本课把循环链表用于真实问题，也对比数组模拟写法，训练删除节点和下标更新。',
