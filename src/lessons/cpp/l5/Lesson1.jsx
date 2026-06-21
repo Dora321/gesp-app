@@ -1,5 +1,6 @@
 import React, { useMemo, useState } from 'react';
 import { ClipboardCheck, Filter, Search, ShieldCheck, Sparkles } from 'lucide-react';
+import CppL5LessonSupport from '../../../components/CppL5LessonSupport';
 import CppLessonShell, { Callout, CodeBlock, CompareTable, MiniQuiz, StepList } from '../CppLessonShell';
 
 const sections = [
@@ -95,6 +96,8 @@ export default function CppL5Lesson1() {
             sections={sections}
             previousPath="/lesson/4/16"
             nextPath="/lesson/5/2"
+            topSupport={<CppL5LessonSupport lessonId={1} />}
+            bottomSupport={<CppL5LessonSupport lessonId={1} placement="bottom" />}
             hero={{
                 title: '筛法的本质：不用反复问“它是不是素数”，而是一次性标出所有答案',
                 description: '本课用埃氏筛建立批量素数判断能力，并初步认识线性筛为什么能进一步减少重复标记。',

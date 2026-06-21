@@ -617,6 +617,7 @@ async function main() {
     { getCppL2LessonSupport },
     { getCppL3LessonSupport },
     { getCppL4LessonSupport },
+    { getCppL5LessonSupport },
     { paperIds, paperMeta },
     { paperStats },
     { pythonFoundationLessons, getPythonFoundationSupport },
@@ -627,6 +628,7 @@ async function main() {
     import(pathToFileURL(path.join(srcRoot, 'data', 'cppL2CourseFlow.js')).href),
     import(pathToFileURL(path.join(srcRoot, 'data', 'cppL3CourseFlow.js')).href),
     import(pathToFileURL(path.join(srcRoot, 'data', 'cppL4CourseFlow.js')).href),
+    import(pathToFileURL(path.join(srcRoot, 'data', 'cppL5CourseFlow.js')).href),
     import(pathToFileURL(path.join(srcRoot, 'data', 'gesp', '_generated.js')).href),
     import(pathToFileURL(path.join(srcRoot, 'data', 'gesp', '_stats.js')).href),
     import(pathToFileURL(path.join(srcRoot, 'data', 'pythonFoundationFlow.js')).href),
@@ -858,6 +860,39 @@ async function main() {
     assert(
       new RegExp(`bottomSupport=\\{<CppL4LessonSupport lessonId=\\{${lesson}\\} placement="bottom" />\\}`).test(page),
       `${pagePath}: missing bottomSupport CppL4LessonSupport.`
+    );
+  }
+
+  for (let lesson = 1; lesson <= 4; lesson += 1) {
+    const support = getCppL5LessonSupport(lesson);
+    assert(support?.quality?.goals?.length >= 3, `C++ L5 lesson ${lesson} needs at least 3 goals.`);
+    assert(support?.quality?.deliverables?.length >= 3, `C++ L5 lesson ${lesson} needs at least 3 deliverables.`);
+    assert(support?.quality?.checks?.length >= 3, `C++ L5 lesson ${lesson} needs at least 3 checks.`);
+    assert(support?.practiceLinks?.length >= 1, `C++ L5 lesson ${lesson} needs practice links.`);
+    assertPracticeLinksResolve(`C++ L5 lesson ${lesson}`, support.practiceLinks, paperIds);
+    assert(support?.reviewTasks?.length >= 2, `C++ L5 lesson ${lesson} needs review tasks.`);
+    assert(
+      support.previous?.path === (lesson === 1 ? '/lesson/4/16' : `/lesson/5/${lesson - 1}`),
+      `C++ L5 lesson ${lesson} has wrong previous link.`
+    );
+    assert(
+      support.next?.path === `/lesson/5/${lesson + 1}`,
+      `C++ L5 lesson ${lesson} has wrong next link.`
+    );
+
+    const pagePath = `src/lessons/cpp/l5/Lesson${lesson}.jsx`;
+    const page = read(pagePath);
+    assert(
+      page.includes("import CppL5LessonSupport from '../../../components/CppL5LessonSupport';"),
+      `${pagePath}: missing CppL5LessonSupport import.`
+    );
+    assert(
+      new RegExp(`topSupport=\\{<CppL5LessonSupport lessonId=\\{${lesson}\\} />\\}`).test(page),
+      `${pagePath}: missing topSupport CppL5LessonSupport.`
+    );
+    assert(
+      new RegExp(`bottomSupport=\\{<CppL5LessonSupport lessonId=\\{${lesson}\\} placement="bottom" />\\}`).test(page),
+      `${pagePath}: missing bottomSupport CppL5LessonSupport.`
     );
   }
 

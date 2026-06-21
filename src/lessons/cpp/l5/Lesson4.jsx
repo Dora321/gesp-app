@@ -1,5 +1,6 @@
 import React, { useMemo, useState } from 'react';
 import { ClipboardCheck, DivideCircle, Search, ShieldCheck, XCircle } from 'lucide-react';
+import CppL5LessonSupport from '../../../components/CppL5LessonSupport';
 import CppLessonShell, { Callout, CodeBlock, CompareTable, MiniQuiz, StepList } from '../CppLessonShell';
 
 const sections = [
@@ -106,6 +107,8 @@ export default function CppL5Lesson4() {
             sections={sections}
             previousPath="/lesson/5/3"
             nextPath="/lesson/5/5"
+            topSupport={<CppL5LessonSupport lessonId={4} />}
+            bottomSupport={<CppL5LessonSupport lessonId={4} placement="bottom" />}
             hero={{
                 title: '乘法继续从低位进位，除法则要从高位维护余数',
                 description: '本课先掌握最常考、最稳定的高精乘低精和高精除低精，为后续数论综合题打基础。',

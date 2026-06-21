@@ -1,5 +1,6 @@
 import React, { useMemo, useState } from 'react';
 import { ClipboardCheck, Divide, RefreshCw, Search, Sigma } from 'lucide-react';
+import CppL5LessonSupport from '../../../components/CppL5LessonSupport';
 import CppLessonShell, { Callout, CodeBlock, CompareTable, MiniQuiz, StepList } from '../CppLessonShell';
 
 const sections = [
@@ -87,6 +88,8 @@ export default function CppL5Lesson2() {
             sections={sections}
             previousPath="/lesson/5/1"
             nextPath="/lesson/5/3"
+            topSupport={<CppL5LessonSupport lessonId={2} />}
+            bottomSupport={<CppL5LessonSupport lessonId={2} placement="bottom" />}
             hero={{
                 title: 'GCD 是数论题的扳手：化简比例、处理周期、计算最小公倍数都靠它',
                 description: '本课从最大公约数出发，掌握欧几里得算法、最小公倍数公式和常见应用模型。',

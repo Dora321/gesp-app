@@ -1,5 +1,6 @@
 import React, { useMemo, useState } from 'react';
 import { ClipboardCheck, Calculator, Search, ShieldAlert, PlusCircle } from 'lucide-react';
+import CppL5LessonSupport from '../../../components/CppL5LessonSupport';
 import CppLessonShell, { Callout, CodeBlock, CompareTable, MiniQuiz, StepList } from '../CppLessonShell';
 
 const sections = [
@@ -91,6 +92,8 @@ export default function CppL5Lesson3() {
             sections={sections}
             previousPath="/lesson/5/2"
             nextPath="/lesson/5/4"
+            topSupport={<CppL5LessonSupport lessonId={3} />}
+            bottomSupport={<CppL5LessonSupport lessonId={3} placement="bottom" />}
             hero={{
                 title: '高精度的核心不是更大的类型，而是自己模拟竖式计算',
                 description: '本课学习如何用字符串和数组表示超长整数，完成加法进位和减法借位。',
