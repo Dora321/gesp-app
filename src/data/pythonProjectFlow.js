@@ -165,6 +165,45 @@ const previousReason = {
   'file-ops': '摩斯项目已经产出可转换的文本结果，文件操作让结果可以保存和复用。',
 };
 
+const practiceLinksByProject = {
+  a1: [
+    { label: '复盘 A1：算法策略对比表', path: '/python/a1' },
+    { label: '进入 A2：2048 游戏项目', path: '/python/a2' },
+  ],
+  a2: [
+    { label: '复盘 A2：2048 移动合并测试', path: '/python/a2' },
+    { label: '进入 A3：AI 初探', path: '/python/ai' },
+  ],
+  ai: [
+    { label: '复盘 A3：AI 输入、模型和输出', path: '/python/ai' },
+    { label: '进入 A4：网络爬虫项目', path: '/python/crawler' },
+  ],
+  crawler: [
+    { label: '复盘 A4：请求、解析和边界', path: '/python/crawler' },
+    { label: '进入 A5：二分搜索项目', path: '/python/binary-search' },
+  ],
+  'binary-search': [
+    { label: '复盘 A5：二分边界样例', path: '/python/binary-search' },
+    { label: '进入 A6：加密解密项目', path: '/python/encryption' },
+  ],
+  encryption: [
+    { label: '复盘 A6：字符位移和回绕', path: '/python/encryption' },
+    { label: '进入 A7：排序算法项目', path: '/python/sorting' },
+  ],
+  sorting: [
+    { label: '复盘 A7：排序过程记录', path: '/python/sorting' },
+    { label: '进入 A8：摩斯电码项目', path: '/python/morse' },
+  ],
+  morse: [
+    { label: '复盘 A8：字典映射和双向转换', path: '/python/morse' },
+    { label: '进入 A9：文件操作项目', path: '/python/file-ops' },
+  ],
+  'file-ops': [
+    { label: '复盘 A9：读写文件和异常处理', path: '/python/file-ops' },
+    { label: '回到课程中心选择下一条路线', path: '/' },
+  ],
+};
+
 export function getPythonProjectSupport(projectId) {
   const index = pythonProjects.findIndex((item) => item.id === projectId);
   const current = pythonProjects[index];
@@ -209,7 +248,7 @@ export function getPythonProjectSupport(projectId) {
           path: '/',
           reason: nextReason[projectId],
         },
-    practiceLinks: prerequisiteLinks,
+    practiceLinks: practiceLinksByProject[projectId] || [],
     reviewTasks: details.practice,
   };
 }

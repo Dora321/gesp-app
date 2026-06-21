@@ -882,6 +882,7 @@ async function main() {
     ['morse', 'PythonMorseProject.jsx'],
     ['file-ops', 'PythonFileOps.jsx'],
   ];
+  const projectPracticeSignatures = new Set();
 
   for (const [projectId, fileName] of projectPages) {
     const support = getPythonProjectSupport(projectId);
@@ -891,14 +892,28 @@ async function main() {
     );
     assert(support?.prerequisiteLinks?.length >= 2, `Python project ${projectId} needs at least 2 prerequisite review links.`);
     const prerequisitePaths = new Set(support?.prerequisiteLinks?.map((item) => item.path));
+    const practicePaths = support?.practiceLinks?.map((item) => item.path) || [];
     assert(
-      support?.practiceLinks?.length === support?.prerequisiteLinks?.length,
-      `Python project ${projectId} practice links should mirror prerequisite review links.`
+      support?.practiceLinks?.length >= 2,
+      `Python project ${projectId} needs project-specific practice links.`
     );
     assert(
-      support?.practiceLinks?.every((item) => prerequisitePaths.has(item.path)),
-      `Python project ${projectId} practice links should point to its prerequisite review lessons.`
+      support?.practiceLinks?.every((item) => pythonCoursePaths.has(item.path)),
+      `Python project ${projectId} has a practice link outside the Python course map.`
     );
+    assert(
+      practicePaths.some((itemPath) => !prerequisitePaths.has(itemPath)),
+      `Python project ${projectId} practice links should not only repeat prerequisite review lessons.`
+    );
+    assert(
+      JSON.stringify(practicePaths) !== JSON.stringify(support?.prerequisiteLinks?.map((item) => item.path)),
+      `Python project ${projectId} practice links should not mirror prerequisite review links.`
+    );
+    assert(
+      projectId === 'file-ops' || practicePaths.includes(support?.next?.path),
+      `Python project ${projectId} practice links should include the next project path.`
+    );
+    projectPracticeSignatures.add(JSON.stringify(practicePaths));
     assert(
       !(
         support?.practiceLinks?.length === 1 &&
@@ -930,6 +945,10 @@ async function main() {
       `${pagePath}: missing bottom PythonProjectSupport.`
     );
   }
+  assert(
+    projectPracticeSignatures.size > 1,
+    'Python project practice links should be project-specific instead of the same generic links for every project.'
+  );
 
   if (failures.length > 0) {
     console.error('Course flow checks failed:\n');
