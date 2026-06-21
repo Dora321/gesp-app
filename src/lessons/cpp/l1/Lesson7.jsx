@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import CppL1LessonSupport from '../../../components/CppL1LessonSupport';
 import {
@@ -190,7 +190,6 @@ const CafeteriaSim = () => {
 // --- 互动组件：分号陷阱 ---
 const SemicolonTrap = () => {
   const [hasSemicolon, setHasSemicolon] = useState(false);
-  const [aValue, setAValue] = useState(1); // a = 1, so a > 3 is false
 
   return (
     <div className="bg-red-50 p-6 rounded-xl border-2 border-red-200 my-4">

@@ -151,7 +151,7 @@ const DigitSplitter = () => {
   const [num, setNum] = useState(123);
   const [originalNum, setOriginalNum] = useState(123);
   const [count, setCount] = useState(0);
-  const [isRunning, setIsRunning] = useState(false);
+  const [, setIsRunning] = useState(false);
   const [logs, setLogs] = useState([]);
 
   const step = () => {

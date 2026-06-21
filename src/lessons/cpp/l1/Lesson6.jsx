@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import CppL1LessonSupport from '../../../components/CppL1LessonSupport';
 import {
@@ -186,7 +186,6 @@ const PitfallVisualizer = () => {
 
   // 逻辑分步计算
   const step1 = x > 3; // True(1) or False(0)
-  const step2 = (step1 ? 1 : 0) < 5; // 1 < 5 or 0 < 5 -> Always True
 
   return (
     <div className="bg-red-50 p-6 rounded-xl border-2 border-red-100 my-4">

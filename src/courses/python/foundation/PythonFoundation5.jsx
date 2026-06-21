@@ -376,7 +376,6 @@ const ArtSlide = () => {
 };
 
 const PenControlSlide = () => {
-    const [isDown, setIsDown] = useState(true);
     const [size, setSize] = useState(2);
 
     const commands = [
@@ -457,7 +456,7 @@ const ChallengeSlide = () => {
             title: '第二关：花朵 (The Flower)',
             desc: '画 8 个圆，每个旋转 45 度。',
             hint: `for i in range(8):\n    t.circle(50)\n    t.rt(45)`,
-            cmds: Array(8).fill(0).flatMap((_, i) => ['circle 50', 'rt 45'])
+            cmds: Array(8).fill(0).flatMap(() => ['circle 50', 'rt 45'])
         },
         3: {
             title: '第三关：奥运五环 (Olympic Rings)',

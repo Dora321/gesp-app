@@ -254,7 +254,6 @@ const LeapYearChecker = () => {
 
 // --- 互动组件 4：美丽数字筛选器 ---
 const BeautifulNumbers = () => {
-    const [n] = useState(5);
     const [k, setK] = useState(3);
     const [l, setL] = useState(2);
     const [numbers, setNumbers] = useState([6, 9, 10, 15, 12]);

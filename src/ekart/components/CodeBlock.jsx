@@ -1,7 +1,7 @@
 
 import React, { useState } from 'react';
 
-const CodeBlock = ({ code, language = 'cpp', title = 'Code' }) => {
+const CodeBlock = ({ code, title = 'Code' }) => {
     const [copied, setCopied] = useState(false);
 
     const handleCopy = () => {

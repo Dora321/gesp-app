@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import {
     Calculator,
@@ -221,7 +221,6 @@ const WeekCalculator = () => {
     // startDay is 1-based, we convert to 0-based for modulo, then back
     const resultDay = (startDay - 1 + daysPassed) % 7 + 1;
 
-    const weekDays = ["日", "一", "二", "三", "四", "五", "六"];
     // Map result 1-7 to array index (1->1... 7->0) for display purposes if we used standard JS date, 
     // but problem says 7 is Sunday.
     // Display string:

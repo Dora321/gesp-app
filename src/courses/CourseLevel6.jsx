@@ -150,7 +150,7 @@ const OverviewModule = ({ onStart }) => (
 // 专题一：类与对象 (ClassModule)
 const ClassModule = () => {
   // Class Inspector State
-  const [petName, setPetName] = useState("Lucky");
+  const [petName] = useState("Lucky");
   const [petAge, setPetAge] = useState(3);
   const [isPrivateVisible, setIsPrivateVisible] = useState(false);
   const [consoleOutput, setConsoleOutput] = useState([]);

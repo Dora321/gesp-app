@@ -645,8 +645,8 @@ const EnumCrackerSlide = () => {
 
 // 6.3 鸡兔同笼 (Chickens and Rabbits)
 const EnumChickenSlide = () => {
-    const [heads, setHeads] = useState(35);
-    const [feet, setFeet] = useState(94);
+    const [heads] = useState(35);
+    const [feet] = useState(94);
     const [solution, setSolution] = useState(null); // {chickens, rabbits}
     const [currentCheck, setCurrentCheck] = useState(null); // {c, r}
     const [isSolving, setIsSolving] = useState(false);

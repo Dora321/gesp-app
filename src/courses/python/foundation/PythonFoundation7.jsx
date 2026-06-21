@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useRef } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import {
     Sparkles, Trash2, Plus, AlertTriangle, Layers,
@@ -41,11 +41,6 @@ const CodeBlock = ({ code, highlightLine = -1 }) => (
 // --- Slides ---
 
 const IntroSlide = () => {
-    const [items, setItems] = useState([
-        { id: 1, val: '🍎', x: 0 },
-        { id: 2, val: '🍌', x: 50 },
-        { id: 3, val: '🍎', x: 100 }, // Duplicate
-    ]);
 
     return (
         <div className="space-y-6 animate-in fade-in slide-in-from-bottom-4 duration-500">
@@ -328,7 +323,6 @@ const DeduplicateSlide = () => {
 };
 
 const MembershipSlide = () => {
-    const [searchTerm, setSearchTerm] = useState('');
     const [listResult, setListResult] = useState(null);
     const [setResult, setSetResult] = useState(null);
     const [isSearching, setIsSearching] = useState(false);

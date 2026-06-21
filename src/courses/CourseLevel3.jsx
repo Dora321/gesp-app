@@ -305,7 +305,7 @@ getline(cin, s); // 此时才能正常读取字符串`}
 
 // 专题二：数组与模拟
 const ArrayModule = () => {
-    const [arrayData, setArrayData] = useState([12, 45, 7, 89, 23, 56]);
+    const [arrayData] = useState([12, 45, 7, 89, 23, 56]);
     const [currentIndex, setCurrentIndex] = useState(-1);
     const [maxVal, setMaxVal] = useState(-1);
     const [isRunning, setIsRunning] = useState(false);

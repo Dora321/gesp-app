@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useCallback, useRef } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import {
     Grid, ArrowUp, ArrowDown, ArrowLeft, ArrowRight,
     RotateCw, RefreshCw, Play, Code, Box,
@@ -63,7 +63,6 @@ const IntroSlide = () => {
     // 3. 移动总控
     const move = (dir) => {
         let newBoard = [...board];
-        let moved = false;
 
         // 根据方向变换矩阵，统一转换为“向左移”的问题
         if (dir === 'right') newBoard = reverse(newBoard);

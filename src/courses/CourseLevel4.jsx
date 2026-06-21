@@ -150,7 +150,6 @@ const OverviewModule = ({ onStart }) => (
 // 专题一：函数 (FuncModule)
 const FuncModule = () => {
   const [valX, setValX] = useState(10);
-  const [refY, setRefY] = useState(10);
   const [isRef, setIsRef] = useState(false); // Toggle between value and reference pass
   const [funcLog, setFuncLog] = useState([]);
 

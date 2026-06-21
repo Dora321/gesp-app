@@ -154,7 +154,7 @@ const OverviewModule = ({ onStart }) => (
 // -----------------------------------------------------------------------------
 // Module: Pattern Printing (Interactive)
 // -----------------------------------------------------------------------------
-const InteractiveCode = ({ type, n, onCorrect }) => {
+const InteractiveCode = ({ type, onCorrect }) => {
   const [inputs, setInputs] = useState({});
   const [status, setStatus] = useState('idle'); // idle, error, success
 

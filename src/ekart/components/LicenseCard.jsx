@@ -1,6 +1,5 @@
 
 import React from 'react';
-import { motion } from 'framer-motion';
 
 const LicenseCard = ({ name = "Student Name", level = "Intern Engineer", id = "EK-2026-001" }) => {
     return (

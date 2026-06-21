@@ -11,7 +11,6 @@ const ResultDialog = ({
   objectiveCorrectCount,
   objectiveWrongCount,
   programmingMarkedCount,
-  paperTimeLimit,
   onViewAnalysis,
   onBackToBank,
 }) => {

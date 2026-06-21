@@ -189,7 +189,7 @@ const RealWorldSlide = () => {
 
 // 3. Variables Slide (The Box Metaphor)
 const VariableSlide = () => {
-    const [boxName, setBoxName] = useState('score');
+    const [boxName] = useState('score');
     const [boxValue, setBoxValue] = useState(100);
     const [isAnimating, setIsAnimating] = useState(false);
 
@@ -726,7 +726,7 @@ else:
 // 8. Bug Hunter
 const BugHuntSlide = () => {
     const [fixed, setFixed] = useState(false);
-    const [code, setCode] = useState('print("Hello World)'); // Error: missing quote
+    const [, setCode] = useState('print("Hello World)'); // Error: missing quote
 
     const fixCode = () => {
         setCode('print("Hello World")');

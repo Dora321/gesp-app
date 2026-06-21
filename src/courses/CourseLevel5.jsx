@@ -150,7 +150,7 @@ const OverviewModule = ({ onStart }) => (
 // 专题一：数论 (MathModule)
 const MathModule = () => {
   // Sieve Visualizer State
-  const [sieveN, setSieveN] = useState(25);
+  const [sieveN] = useState(25);
   const [primes, setPrimes] = useState([]);
   const [vis, setVis] = useState(new Array(26).fill(false));
   const [currentI, setCurrentI] = useState(-1);

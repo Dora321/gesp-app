@@ -1,6 +1,6 @@
 
 import React, { useRef } from 'react';
-import { motion, useScroll, useTransform } from 'framer-motion';
+import { motion } from 'framer-motion';
 import { Camera, Trophy, Gauge, Users, Star, ArrowRight } from 'lucide-react';
 
 const GalleryItem = ({ title, titleCn, team, year, image, stats, index }) => {
@@ -49,8 +49,6 @@ const GalleryItem = ({ title, titleCn, team, year, image, stats, index }) => {
 
 const EkartGallery = () => {
     const scrollRef = useRef(null);
-    const { scrollYProgress } = useScroll({ target: scrollRef });
-    const x = useTransform(scrollYProgress, [0, 1], ["0%", "-50%"]);
 
     const showcases = [
         {

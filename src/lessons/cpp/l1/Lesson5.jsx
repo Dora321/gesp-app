@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { Terminal, Key, Cpu, Shield, ArrowRight, CheckCircle, XCircle, RefreshCw, Lock, Unlock, Quote, ArrowDownUp, AlertTriangle, Play, BookOpen, User, Binary, Menu, X } from 'lucide-react';
 import CppL1LessonSupport from '../../../components/CppL1LessonSupport';
@@ -199,7 +199,7 @@ export default function Lesson5() {
 }
 
 // 0. 欢迎界面 (Updated for layout)
-function WelcomeStage({ onNext }) {
+function WelcomeStage() {
   return (
     <div className="text-center space-y-6 animate-fadeIn">
       <div className="inline-block p-4 bg-slate-800 rounded-full mb-4 border border-green-500/30">
@@ -436,7 +436,7 @@ function AsciiTableStage() {
 
 // 4. 字符运算实验室
 function CharMathStage() {
-  const [baseChar, setBaseChar] = useState('A');
+  const [baseChar] = useState('A');
   const [addNum, setAddNum] = useState(1);
 
   const baseAscii = baseChar.charCodeAt(0);
@@ -499,10 +499,6 @@ function CharMathStage() {
 // 5. 大小写转换密室
 function CaseSwitcherStage() {
   const [offset, setOffset] = useState(0); // 0 or 32
-  const baseChar = 'A';
-  const baseAscii = 65;
-  const resultAscii = baseAscii + offset;
-  const resultChar = String.fromCharCode(resultAscii);
 
   return (
     <div className="space-y-6">

@@ -1,5 +1,5 @@
 import React from 'react';
-import { motion, useScroll, useTransform } from 'framer-motion';
+import { motion, useScroll } from 'framer-motion';
 import { Link } from 'react-router-dom';
 import { Flag, Gauge, Cpu, Wrench, Battery, Zap, ChevronRight, Activity, Database, Crosshair, Hexagon, MoveRight, Layers, Code, GraduationCap, Microscope } from 'lucide-react';
 
@@ -13,7 +13,6 @@ import AnimatedCounter from '../components/AnimatedCounter';
 
 const EkartHome = () => {
     const { scrollYProgress } = useScroll();
-    const scale = useTransform(scrollYProgress, [0, 1], [1, 1.5]);
 
     return (
         <div className="min-h-screen bg-[#050505] text-white relative overflow-x-hidden font-sans selection:bg-cyan-500/30">

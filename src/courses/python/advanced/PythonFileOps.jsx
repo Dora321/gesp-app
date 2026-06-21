@@ -1,5 +1,5 @@
-import React, { useState, useEffect, useRef } from 'react';
-import { Link, useNavigate } from 'react-router-dom';
+import React, { useState } from 'react';
+import { Link } from 'react-router-dom';
 import {
     Save, FileText, FolderOpen, PenTool, Edit3, Trash2,
     RefreshCw, Play, ArrowRight, CheckCircle, AlertTriangle,
@@ -141,10 +141,10 @@ const IntroSlide = () => {
 
 // --- 2. Reading files ---
 const ReadSlide = () => {
-    const [fileContent, setFileContent] = useState("Hello Python!\nThis is a text file.\nReading is fun!");
+    const [fileContent] = useState("Hello Python!\nThis is a text file.\nReading is fun!");
     const [readMode, setReadMode] = useState('read'); // read, readline, readlines
     const [output, setOutput] = useState(null);
-    const [cursor, setCursor] = useState(0);
+    const [, setCursor] = useState(0);
 
     const handleRun = async () => {
         setOutput(null);
@@ -374,7 +374,6 @@ const sections = [
 ];
 
 export default function PythonFileOps() {
-    const navigate = useNavigate();
     const [activeSection, setActiveSection] = useState(1);
     const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
 

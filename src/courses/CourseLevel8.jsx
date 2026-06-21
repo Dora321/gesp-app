@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { BookOpen, Code, Terminal, CheckCircle, AlertTriangle, Play, ChevronRight, Calculator, Cpu, Hash, Trophy, Eye, Lightbulb, Copy, Check, Unlock, ArrowRight, Grid, Info, ArrowRightLeft, RefreshCw, Clock, Target, XCircle, Layout, GitBranch, Share2, Search, Map, Network, Route, Database, Box, Menu, X } from 'lucide-react';
 import CppLevelSupport from '../components/CppLevelSupport';
@@ -280,14 +280,6 @@ while(!q.empty()) {
 const DPModule = () => {
   // 0/1 Knapsack: Cap=5. Items: (w2, v3), (w3, v4), (w4, v5), (w5, v6)
   // dp[i][j] = max(dp[i-1][j], dp[i-1][j-w] + v)
-  const [step, setStep] = useState(0);
-
-  // DP Table state for animation (simplified)
-  const items = [
-    { w: 2, v: 3 },
-    { w: 3, v: 4 },
-    { w: 4, v: 5 }
-  ];
   // Final table for reference
   //    0 1 2 3 4 5  (Capacity)
   // 0  0 0 0 0 0 0

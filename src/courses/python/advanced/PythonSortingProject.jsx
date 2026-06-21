@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useCallback, useRef } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import {
     ArrowUp, Play, RotateCcw, HelpCircle,
     Trophy, Code, ArrowRight, Sparkles,
@@ -749,12 +749,6 @@ const RadixSortSlide = () => {
                 <div className="flex flex-wrap justify-center gap-3 w-full mb-8">
                     {arr.map((val, idx) => {
                         let digitStr = String(val);
-                        // Pad with leading zeros conceptually for highlighting?
-                        // Or just highlight the relevant digit.
-                        let highlightIdx = -1;
-                        if (currentDigit === 1) highlightIdx = digitStr.length - 1;
-                        if (currentDigit === 10 && digitStr.length >= 2) highlightIdx = digitStr.length - 2;
-                        if (currentDigit === 100 && digitStr.length >= 3) highlightIdx = digitStr.length - 3;
 
                         return (
                             <div key={idx} className={`bg-slate-700 px-4 py-3 rounded-lg text-xl font-mono font-bold text-white transition-all ${isCollecting ? 'opacity-30' : 'opacity-100'}`}>
@@ -979,7 +973,7 @@ const AlgorithmBattleSlide = () => {
 const QuickSortSlide = () => {
     const [arr, setArr] = useState([50, 30, 80, 20, 90, 10, 60, 40]);
     const [pivotIdx, setPivotIdx] = useState(null);
-    const [leftPtr, setLeftPtr] = useState(null);
+    const [, setLeftPtr] = useState(null);
     const [rightPtr, setRightPtr] = useState(null);
     const [partitionRange, setPartitionRange] = useState([]); // [start, end]
     const [sorted, setSorted] = useState([]);
@@ -1079,7 +1073,6 @@ const QuickSortSlide = () => {
                 <div className="flex items-end gap-3 h-56 w-full justify-center px-4 relative z-10">
                     {arr.map((val, idx) => {
                         const isPivot = idx === pivotIdx;
-                        const isLeft = idx === leftPtr; // Actually tracking swap position
                         const isRight = idx === rightPtr; // Scanning
                         const isInRange = partitionRange.length === 2 && idx >= partitionRange[0] && idx <= partitionRange[1];
                         const isSorted = sorted.includes(idx);

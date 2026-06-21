@@ -560,7 +560,7 @@ const IPDeliverySim = () => {
 };
 
 // --- 题目组件 ---
-const Quiz = ({ question, options, correctIndex, explanation, type = "single" }) => {
+const Quiz = ({ question, options, correctIndex, explanation }) => {
     const [selected, setSelected] = useState(null);
     const [showExplanation, setShowExplanation] = useState(false);
 

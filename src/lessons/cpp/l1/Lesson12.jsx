@@ -226,16 +226,6 @@ const NestedLoopStepper = () => {
 
 // --- 互动组件 3：计数器实战 ---
 const CounterLogic = () => {
-    const [activeI, setActiveI] = useState(0);
-    const [totalLoop, setTotalLoop] = useState(0);
-
-    const calculate = (iVal) => {
-        // iVal goes from 1 to 4
-        // inner loop j goes from 0 to i-1. Count is i.
-        // 1->1, 2->2, 3->3, 4->4
-        return iVal;
-    };
-
     return (
         <div className="bg-orange-50 p-6 rounded-xl border-2 border-orange-200 my-4">
             <h3 className="font-bold text-lg text-orange-700 mb-4 flex items-center gap-2">
@@ -278,7 +268,6 @@ const CounterLogic = () => {
 // --- 互动组件 4：金字塔生成器 ---
 const PyramidGenerator = () => {
     const [rows, setRows] = useState(5);
-    const [formula, setFormula] = useState("2*i+1");
 
     return (
         <div className="bg-yellow-50 p-6 rounded-xl border-2 border-yellow-200 my-4">

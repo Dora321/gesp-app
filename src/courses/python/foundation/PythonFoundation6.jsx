@@ -1058,7 +1058,7 @@ const CoinFlipStatsSlide = () => {
 };
 
 const MonkeySortSlide = () => {
-    const [deck, setDeck] = useState([1, 2, 3, 4, 5]);
+    const [deck] = useState([1, 2, 3, 4, 5]);
     const [shuffled, setShuffled] = useState([...deck].sort(() => Math.random() - 0.5));
     const [attempts, setAttempts] = useState(0);
     const [sorting, setSorting] = useState(false);

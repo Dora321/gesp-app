@@ -310,7 +310,7 @@ const MissionMap = ({ navigate }) => {
 
                 <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
                     <AnimatePresence mode='wait'>
-                        {missions.map((mission, idx) => (
+                        {missions.map((mission) => (
                             <motion.div
                                 key={mission.id}
                                 layout

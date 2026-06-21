@@ -1,4 +1,4 @@
-﻿import React, { useState, useEffect } from 'react';
+﻿import React, { useState } from 'react';
 import {
     Terminal,
     Key,
@@ -59,7 +59,6 @@ const TelegraphDecoder = () => {
     const [input, setInput] = useState("");
     const [decoded, setDecoded] = useState("???");
 
-    const targetCode = "65 66 67";
 
     const handleDecrypt = () => {
         if (input.trim() === "65 66 67" || input.trim() === "65-66-67") {
@@ -299,7 +298,7 @@ const CharacterRuler = () => {
 };
 
 // --- 题目组件 ---
-const Quiz = ({ question, options, correctIndex, explanation, type = "single" }) => {
+const Quiz = ({ question, options, correctIndex, explanation }) => {
     const [selected, setSelected] = useState(null);
     const [showExplanation, setShowExplanation] = useState(false);
 

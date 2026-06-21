@@ -480,11 +480,6 @@ const DictSlide = () => {
     const [defaultVal, setDefaultVal] = useState("");
     const [methodOutput, setMethodOutput] = useState(null);
 
-    // 遍历相关状态
-    const [iterateKeys, setIterateKeys] = useState([]);
-    const [iterateIndex, setIterateIndex] = useState(-1);
-    const [iterateMode, setIterateMode] = useState('keys'); // 'keys', 'values', 'items'
-    const [isIterating, setIsIterating] = useState(false);
 
     // CREATE/UPDATE: dict[key] = value
     const updateDict = () => {
@@ -575,51 +570,6 @@ const DictSlide = () => {
         }
     };
 
-    // ITERATE: 遍历功能
-    const startDictIteration = () => {
-        const keys = Object.keys(profile);
-        if (keys.length === 0) return;
-        setIterateKeys(keys);
-        setIterateIndex(0);
-        setIsIterating(true);
-
-        const firstKey = keys[0];
-        const firstVal = profile[firstKey];
-        if (iterateMode === 'keys') {
-            setMethodOutput(`for key in dict:\n  key: '${firstKey}'`);
-        } else if (iterateMode === 'values') {
-            setMethodOutput(`for value in dict.values():\n  value: ${typeof firstVal === 'string' ? `'${firstVal}'` : firstVal}`);
-        } else {
-            setMethodOutput(`for key, value in dict.items():\n  ('${firstKey}', ${typeof firstVal === 'string' ? `'${firstVal}'` : firstVal})`);
-        }
-    };
-
-    const nextDictIteration = () => {
-        if (iterateIndex < iterateKeys.length - 1) {
-            const nextIdx = iterateIndex + 1;
-            setIterateIndex(nextIdx);
-            const key = iterateKeys[nextIdx];
-            const val = profile[key];
-
-            if (iterateMode === 'keys') {
-                setMethodOutput(`for key in dict:\n  key: '${key}'`);
-            } else if (iterateMode === 'values') {
-                setMethodOutput(`for value in dict.values():\n  value: ${typeof val === 'string' ? `'${val}'` : val}`);
-            } else {
-                setMethodOutput(`for key, value in dict.items():\n  ('${key}', ${typeof val === 'string' ? `'${val}'` : val})`);
-            }
-        } else {
-            setIsIterating(false);
-            setMethodOutput(`遍历完成！共 ${iterateKeys.length} 个键值对`);
-        }
-    };
-
-    const resetDictIteration = () => {
-        setIterateIndex(-1);
-        setIterateKeys([]);
-        setIsIterating(false);
-        setMethodOutput(null);
-    };
 
     return (
         <div className="space-y-8 animate-in fade-in slide-in-from-bottom-4 duration-500">
@@ -935,7 +885,7 @@ const StringSlide = () => {
                                     const e = sliceEnd === "" ? undefined : Number(sliceEnd);
                                     if ((s !== undefined && isNaN(s)) || (e !== undefined && isNaN(e))) return "Invalid Index";
                                     return `"${text.slice(s, e)}"`;
-                                } catch (err) { return "Error"; }
+                                } catch { return "Error"; }
                             })()}
                         </div>
                     </div>

@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useCallback, useRef } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import {
     Target, Play, RotateCcw, HelpCircle,
     Trophy, Code, ArrowRight, Sparkles,
@@ -75,7 +75,7 @@ const BattleSlide = () => {
     const [linearSteps, setLinearSteps] = useState(0);
     const [binarySteps, setBinarySteps] = useState(0);
     const [isRunning, setIsRunning] = useState(false);
-    const [target, setTarget] = useState(88);
+    const [target] = useState(88);
 
     // Visualization state for Binary Search
     const [visLow, setVisLow] = useState(1);

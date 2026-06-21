@@ -313,7 +313,6 @@ const BadBeanGame = () => {
 
 // --- 互动组件：对比PK台 ---
 const ComparisonArena = () => {
-    const [counts, setCounts] = useState([]);
     const [mode, setMode] = useState("normal"); // normal, break, continue
     const [currentStep, setCurrentStep] = useState(0);
     const [isRunning, setIsRunning] = useState(false);
@@ -557,7 +556,6 @@ const NestedLoopVisualizer = () => {
                             const cNum = c + 1;
                             const isCurrent = row === rNum && col === cNum;
                             const isProcessed = row > rNum || (row === rNum && col > cNum);
-                            const isSkipped = breakType === "inner" && cNum >= 3; // 演示效果简化
 
                             let bg = "bg-gray-100";
                             if (isCurrent) bg = "bg-indigo-500 ring-2 ring-indigo-300";
