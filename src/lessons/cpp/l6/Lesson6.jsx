@@ -1,5 +1,6 @@
 import React, { useMemo, useState } from 'react';
 import { Boxes, ClipboardCheck, Search, ShieldCheck } from 'lucide-react';
+import CppL6LessonSupport from '../../../components/CppL6LessonSupport';
 import CppLessonShell, { Callout, CodeBlock, CompareTable, MiniQuiz, StepList } from '../CppLessonShell';
 
 const sections = [
@@ -82,6 +83,8 @@ export default function CppL6Lesson6() {
             sections={sections}
             previousPath="/lesson/6/5"
             nextPath="/lesson/6/7"
+            topSupport={<CppL6LessonSupport lessonId={6} />}
+            bottomSupport={<CppL6LessonSupport lessonId={6} placement="bottom" />}
             hero={{
                 title: '类不是更复杂的 struct，而是给数据配上受控的行为',
                 description: '本课从蓝图、对象、成员变量、成员函数、构造函数和访问控制建立 OOP 基础。',

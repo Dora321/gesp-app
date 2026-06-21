@@ -1,5 +1,6 @@
 import React, { useMemo, useState } from 'react';
 import { ClipboardCheck, GitBranch, Search, Users } from 'lucide-react';
+import CppL6LessonSupport from '../../../components/CppL6LessonSupport';
 import CppLessonShell, { Callout, CodeBlock, CompareTable, MiniQuiz, StepList } from '../CppLessonShell';
 
 const sections = [
@@ -85,6 +86,8 @@ export default function CppL6Lesson7() {
             sections={sections}
             previousPath="/lesson/6/6"
             nextPath="/lesson/6/8"
+            topSupport={<CppL6LessonSupport lessonId={7} />}
+            bottomSupport={<CppL6LessonSupport lessonId={7} placement="bottom" />}
             hero={{
                 title: '继承解决的是重复：相同部分放父类，差异部分留给子类',
                 description: '本课用动物家族模型理解 public 继承、protected 成员和父子类构造顺序。',

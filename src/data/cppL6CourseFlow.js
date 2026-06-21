@@ -3,6 +3,10 @@ const cppL6Lessons = [
   { id: 2, title: '第 2 课：树的遍历 (前/中/后序)' },
   { id: 3, title: '第 3 课：最优二叉树 (哈夫曼)' },
   { id: 4, title: '第 4 课：地毯式搜索 (BFS)' },
+  { id: 5, title: '第 5 课：不撞南墙不回头 (DFS)' },
+  { id: 6, title: '第 6 课：类的蓝图 (封装/构造)' },
+  { id: 7, title: '第 7 课：家族传承 (继承/保护)' },
+  { id: 8, title: '第 8 课：千变万化 (多态/虚函数)' },
 ];
 
 const qualityByLesson = {
@@ -30,6 +34,30 @@ const qualityByLesson = {
     deliverables: ['画出样例网格前两层 BFS 扩展过程', '写出带 dist 数组的网格 BFS 模板', '整理入队、标记、出队和扩展的顺序清单'],
     checks: ['能说明队列先进先出如何保证按层扩展', '能理解无权图第一次到达就是最短距离', '能在入队时标记 visited 并拒绝用于带权最短路'],
   },
+  5: {
+    accent: 'purple',
+    goals: ['能解释 DFS 的递归调用过程', '能写出选择、递归、撤销的回溯模板', '能用 visited 求连通块'],
+    deliverables: ['画出全排列 DFS 的前三层递归树', '写出选择、递归、撤销的回溯模板', '完成网格连通块 DFS 并统计块数'],
+    checks: ['能明确递归出口和当前层参数含义', '能在进入分支前标记 used 或 visited', '能在回溯题中恢复 path 和 used 的现场'],
+  },
+  6: {
+    accent: 'teal',
+    goals: ['能区分类和对象', '能写出带构造函数的简单类', '能说明 public 和 private 的区别'],
+    deliverables: ['写出一个类的成员变量、构造函数和成员函数清单', '实现 Point 或 Counter 类并创建对象测试', '整理 public、private 和构造函数的职责表'],
+    checks: ['能说明类是蓝图、对象是实例', '能让构造函数把对象初始化为合法状态', '能避免为了方便把所有成员变量直接设为 public'],
+  },
+  7: {
+    accent: 'emerald',
+    goals: ['能判断适合继承的 is-a 关系', '能写出简单父类和派生类', '能解释 public、protected、private 的区别'],
+    deliverables: ['画出 Person/Student 或 Animal/Cat 的父子类图', '写出 public 继承和 protected 成员访问示例', '整理继承与组合的判断卡'],
+    checks: ['能先判断子类是不是一种父类', '能用初始化列表调用父类构造函数', '能区分外部访问、类内访问和子类访问范围'],
+  },
+  8: {
+    accent: 'rose',
+    goals: ['能解释虚函数和动态绑定', '能用基类指针调用派生类函数', '能说明 override 和虚析构的价值'],
+    deliverables: ['实现 Shape、Circle、Rectangle 的多态 area 示例', '对比去掉 virtual 前后的调用结果', '整理 virtual、override、虚析构和对象切片检查表'],
+    checks: ['能把父类接口声明为 virtual', '能通过指针或引用触发动态绑定', '能给基类析构函数加 virtual 并用 override 检查重写'],
+  },
 };
 
 const nextReasonByLesson = {
@@ -37,6 +65,10 @@ const nextReasonByLesson = {
   2: '遍历能手推和编码后，下一课用二叉树结构解决最优合并问题：哈夫曼树。',
   3: '哈夫曼练熟小根堆和合并代价后，下一课进入图与网格搜索的核心模板：BFS。',
   4: 'BFS 掌握按层扩展和最短步数后，下一课切换到一条路走到底再回退的 DFS。',
+  5: 'DFS 能处理搜索和回溯后，下一课切到 C++ 面向对象，把数据和操作封装在类里。',
+  6: '封装让单个对象更稳定；下一课用继承处理多个类之间的共同特征和差异行为。',
+  7: '继承建立父子类关系后，下一课进入多态：同一个父类接口调用不同子类实现。',
+  8: '多态完成 OOP 主线后，下一课回到算法编码规律，用格雷码连接递归、位运算和构造。',
 };
 
 const previousReasonByLesson = {
@@ -44,6 +76,10 @@ const previousReasonByLesson = {
   2: '遍历建立在树的节点、边和邻接表存储上，先确认第 1 课能画出父子关系并完成建树。',
   3: '哈夫曼属于二叉树上的最优结构，先确认第 2 课能稳定区分根、左子树和右子树。',
   4: 'BFS 从树扩展到图和网格，先确认第 3 课的小根堆与结构化过程追踪已经稳定。',
+  5: 'DFS 和 BFS 都是搜索，只是扩展顺序不同；先确认第 4 课能写出 visited 和方向数组。',
+  6: '进入类之前，先确认第 5 课的函数参数、状态恢复和结构化拆分已经稳定。',
+  7: '继承建立在类和对象之上，先确认第 6 课能把数据放 private、行为放 public。',
+  8: '多态建立在继承之上，先确认第 7 课能写出父类、派生类和 protected 成员访问。',
 };
 
 const practiceByLesson = {
@@ -51,6 +87,10 @@ const practiceByLesson = {
   2: [{ label: 'GESP 六级真题：树遍历与递归', path: '/question-bank/6/2023-12-l6' }],
   3: [{ label: 'GESP 六级真题：哈夫曼与优先队列', path: '/question-bank/6/2024-03-l6' }],
   4: [{ label: 'GESP 六级真题：BFS 与最短步数', path: '/question-bank/6/2024-06-l6' }],
+  5: [{ label: 'GESP 六级真题：DFS 与回溯搜索', path: '/question-bank/6/2024-09-l6' }],
+  6: [{ label: 'GESP 六级真题：类与封装基础', path: '/question-bank/6/2024-12-l6' }],
+  7: [{ label: 'GESP 六级真题：继承与访问控制', path: '/question-bank/6/2025-03-l6' }],
+  8: [{ label: 'GESP 六级真题：多态与虚函数', path: '/question-bank/6/2025-06-l6' }],
 };
 
 const reviewTasksByLesson = {
@@ -58,6 +98,10 @@ const reviewTasksByLesson = {
   2: ['手推同一棵树的三种遍历序列，再用程序输出验证。', '写一个递归遍历函数，并在访问根节点的位置旁写下注释。'],
   3: ['手推 5 个权值的哈夫曼合并过程，记录每轮堆中元素。', '用小根堆写哈夫曼总代价程序，并用 long long 存答案。'],
   4: ['画出一个迷宫从起点扩展的前两层 BFS 队列变化。', '写网格 BFS 最短路模板，单独测试起点等于终点和无路可达。'],
+  5: ['输出 1..n 的全排列，并在代码中标注选择、递归、撤销。', '用 DFS 统计一个网格中的连通块数量，并解释 visited 的标记时机。'],
+  6: ['写一个 Counter 类，支持 add、reset、getValue。', '把一个所有成员都是 public 的类改造成 private 数据加 public 接口。'],
+  7: ['写 Person 和 Student 两个类，并用初始化列表调用父类构造函数。', '判断 5 组关系该用继承还是组合，并写出理由。'],
+  8: ['写 Shape、Circle、Rectangle，并通过 Shape* 调用 area。', '去掉 virtual 观察输出变化，再补上 override 和虚析构。'],
 };
 
 export function getCppL6LessonSupport(lessonId) {
@@ -88,8 +132,8 @@ export function getCppL6LessonSupport(lessonId) {
           reason: nextReasonByLesson[lessonId],
         }
       : {
-          title: '第 5 课：不撞南墙不回头 (DFS)',
-          path: '/lesson/6/5',
+          title: '第 9 课：特殊的编码 (格雷码)',
+          path: '/lesson/6/9',
           reason: nextReasonByLesson[lessonId],
         },
     practiceLinks: practiceByLesson[lessonId] || [],

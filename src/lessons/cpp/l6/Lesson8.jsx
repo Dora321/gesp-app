@@ -1,5 +1,6 @@
 import React, { useMemo, useState } from 'react';
 import { ClipboardCheck, MousePointer2, Search, Sparkles } from 'lucide-react';
+import CppL6LessonSupport from '../../../components/CppL6LessonSupport';
 import CppLessonShell, { Callout, CodeBlock, CompareTable, MiniQuiz, StepList } from '../CppLessonShell';
 
 const sections = [
@@ -78,6 +79,8 @@ export default function CppL6Lesson8() {
             sections={sections}
             previousPath="/lesson/6/7"
             nextPath="/lesson/6/9"
+            topSupport={<CppL6LessonSupport lessonId={8} />}
+            bottomSupport={<CppL6LessonSupport lessonId={8} placement="bottom" />}
             hero={{
                 title: '多态让代码面向接口工作：不问你是谁，只调用共同能力',
                 description: '本课用图形面积模型讲清 virtual、override、基类指针和虚析构的使用场景。',

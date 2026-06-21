@@ -1,5 +1,6 @@
 import React, { useMemo, useState } from 'react';
 import { ClipboardCheck, GitBranch, ListChecks, Search } from 'lucide-react';
+import CppL6LessonSupport from '../../../components/CppL6LessonSupport';
 import CppLessonShell, { Callout, CodeBlock, CompareTable, MiniQuiz, StepList } from '../CppLessonShell';
 
 const sections = [
@@ -96,6 +97,8 @@ export default function CppL6Lesson5() {
             sections={sections}
             previousPath="/lesson/6/4"
             nextPath="/lesson/6/6"
+            topSupport={<CppL6LessonSupport lessonId={5} />}
+            bottomSupport={<CppL6LessonSupport lessonId={5} placement="bottom" />}
             hero={{
                 title: 'DFS 像一支铅笔：先把一条可能路线画到底，再擦回去换选择',
                 description: '本课用排列枚举、网格连通块和回溯模板建立 DFS 的递归思维。',
