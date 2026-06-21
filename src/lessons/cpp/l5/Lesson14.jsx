@@ -1,5 +1,6 @@
 import React, { useMemo, useState } from 'react';
 import { ClipboardCheck, Gauge, Search, Timer } from 'lucide-react';
+import CppL5LessonSupport from '../../../components/CppL5LessonSupport';
 import CppLessonShell, { Callout, CodeBlock, CompareTable, MiniQuiz, StepList } from '../CppLessonShell';
 
 const sections = [
@@ -90,6 +91,8 @@ export default function CppL5Lesson14() {
             sections={sections}
             previousPath="/lesson/5/13"
             nextPath="/lesson/5/15"
+            topSupport={<CppL5LessonSupport lessonId={14} />}
+            bottomSupport={<CppL5LessonSupport lessonId={14} placement="bottom" />}
             hero={{
                 title: '复杂度是考试里的“可行性雷达”：先判断跑不跑得完',
                 description: '本课训练从循环结构、数据规模和常见算法模型快速估算时间复杂度。',

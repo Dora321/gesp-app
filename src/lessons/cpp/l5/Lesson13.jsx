@@ -1,5 +1,6 @@
 import React, { useMemo, useState } from 'react';
 import { BrainCircuit, ClipboardCheck, Repeat2, Search } from 'lucide-react';
+import CppL5LessonSupport from '../../../components/CppL5LessonSupport';
 import CppLessonShell, { Callout, CodeBlock, CompareTable, MiniQuiz, StepList } from '../CppLessonShell';
 
 const sections = [
@@ -93,6 +94,8 @@ export default function CppL5Lesson13() {
             sections={sections}
             previousPath="/lesson/5/12"
             nextPath="/lesson/5/14"
+            topSupport={<CppL5LessonSupport lessonId={13} />}
+            bottomSupport={<CppL5LessonSupport lessonId={13} placement="bottom" />}
             hero={{
                 title: '记忆化递归的关键是识别“状态”，不是多写一个数组',
                 description: '本课用斐波那契、路径计数和选择问题建立记忆化递归模板，为动态规划打底。',

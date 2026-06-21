@@ -1,5 +1,6 @@
 import React, { useMemo, useState } from 'react';
 import { ClipboardCheck, Search, ShieldCheck, Trophy } from 'lucide-react';
+import CppL5LessonSupport from '../../../components/CppL5LessonSupport';
 import CppLessonShell, { Callout, CodeBlock, CompareTable, MiniQuiz, StepList } from '../CppLessonShell';
 
 const sections = [
@@ -87,6 +88,8 @@ export default function CppL5Lesson16() {
             sections={sections}
             previousPath="/lesson/5/15"
             nextPath="/level5"
+            topSupport={<CppL5LessonSupport lessonId={16} />}
+            bottomSupport={<CppL5LessonSupport lessonId={16} placement="bottom" />}
             hero={{
                 title: '五级收官不是再塞知识点，而是练稳定、节奏和复盘',
                 description: '本课用全真模拟策略把数论、高精度、链表、二分、贪心和记忆化串成考试闭环。',

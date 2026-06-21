@@ -1,5 +1,6 @@
 import React, { useMemo, useState } from 'react';
 import { ClipboardCheck, ListChecks, Search, Target } from 'lucide-react';
+import CppL5LessonSupport from '../../../components/CppL5LessonSupport';
 import CppLessonShell, { Callout, CodeBlock, CompareTable, MiniQuiz, StepList } from '../CppLessonShell';
 
 const sections = [
@@ -82,6 +83,8 @@ export default function CppL5Lesson15() {
             sections={sections}
             previousPath="/lesson/5/14"
             nextPath="/lesson/5/16"
+            topSupport={<CppL5LessonSupport lessonId={15} />}
+            bottomSupport={<CppL5LessonSupport lessonId={15} placement="bottom" />}
             hero={{
                 title: '专项训练要练“选择算法”的能力，而不是只刷代码量',
                 description: '本课把五级核心知识点组合成读题、选策略、写模板、查边界的完整流程。',
