@@ -1,5 +1,6 @@
 import React, { useMemo, useState } from 'react';
 import { CaseSensitive, ClipboardCheck, Search, Sparkles, TextSearch } from 'lucide-react';
+import CppL3LessonSupport from '../../../components/CppL3LessonSupport';
 import CppLessonShell, { Callout, CodeBlock, CodeTracer, CompareTable, MiniQuiz } from '../CppLessonShell';
 
 const sections = [
@@ -145,6 +146,8 @@ export default function CppL3Lesson8() {
             sections={sections}
             previousPath="/lesson/3/7"
             nextPath="/lesson/3/9"
+            topSupport={<CppL3LessonSupport lessonId={8} />}
+            bottomSupport={<CppL3LessonSupport lessonId={8} placement="bottom" />}
             hero={{
                 title: '字符串题本质是字符遍历加规则判断',
                 description: '本课把字符串处理拆成四类高频动作：统计字符、大小写转换、查找位置、截取子串。三级综合题经常把它们组合起来。',

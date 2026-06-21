@@ -1,5 +1,6 @@
 import React, { useMemo, useState } from 'react';
 import { AlertTriangle, Boxes, ClipboardCheck, ListChecks, Search } from 'lucide-react';
+import CppL3LessonSupport from '../../../components/CppL3LessonSupport';
 import CppLessonShell, { Callout, CodeBlock, CodeTracer, CompareTable, MiniQuiz } from '../CppLessonShell';
 
 const sections = [
@@ -122,6 +123,8 @@ export default function CppL3Lesson5() {
             sections={sections}
             previousPath="/lesson/3/4"
             nextPath="/lesson/3/6"
+            topSupport={<CppL3LessonSupport lessonId={5} />}
+            bottomSupport={<CppL3LessonSupport lessonId={5} placement="bottom" />}
             hero={{
                 title: '数组就是一排有编号的格子，适合保存一组数据',
                 description: '本课重点掌握数组声明、下标访问、循环遍历和输入输出模板。数组学稳后，统计、排序、字符串综合题都会顺很多。',

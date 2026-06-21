@@ -1,5 +1,6 @@
 import React, { useMemo, useState } from 'react';
 import { ClipboardCheck, FileText, Search, Type, WholeWord } from 'lucide-react';
+import CppL3LessonSupport from '../../../components/CppL3LessonSupport';
 import CppLessonShell, { Callout, CodeBlock, CodeTracer, CompareTable, MiniQuiz } from '../CppLessonShell';
 
 const sections = [
@@ -139,6 +140,8 @@ export default function CppL3Lesson7() {
             sections={sections}
             previousPath="/lesson/3/6"
             nextPath="/lesson/3/8"
+            topSupport={<CppL3LessonSupport lessonId={7} />}
+            bottomSupport={<CppL3LessonSupport lessonId={7} placement="bottom" />}
             hero={{
                 title: 'string 像一个字符数组，但更好用',
                 description: '本课学习 string 的读入、长度、下标访问、拼接和比较。字符串题的核心仍然是下标、循环和边界。',

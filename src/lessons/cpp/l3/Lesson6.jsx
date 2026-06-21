@@ -1,5 +1,6 @@
 import React, { useMemo, useState } from 'react';
 import { BarChart3, ClipboardCheck, Gauge, Search, Sigma } from 'lucide-react';
+import CppL3LessonSupport from '../../../components/CppL3LessonSupport';
 import CppLessonShell, { Callout, CodeBlock, CodeTracer, CompareTable, MiniQuiz } from '../CppLessonShell';
 
 const sections = [
@@ -135,6 +136,8 @@ export default function CppL3Lesson6() {
             sections={sections}
             previousPath="/lesson/3/5"
             nextPath="/lesson/3/7"
+            topSupport={<CppL3LessonSupport lessonId={6} />}
+            bottomSupport={<CppL3LessonSupport lessonId={6} placement="bottom" />}
             hero={{
                 title: '数组题的第一层能力，是把一组数据稳定扫完',
                 description: '本课把数组遍历变成四个高频模板：求和、最大最小、条件计数、前缀和。三级题里，这些模板经常组合出现。',
