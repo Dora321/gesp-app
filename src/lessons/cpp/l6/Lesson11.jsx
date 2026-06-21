@@ -1,5 +1,6 @@
 import React, { useMemo, useState } from 'react';
 import { BrainCircuit, ClipboardCheck, Route, Search } from 'lucide-react';
+import CppL6LessonSupport from '../../../components/CppL6LessonSupport';
 import CppLessonShell, { Callout, CodeBlock, CompareTable, MiniQuiz, StepList } from '../CppLessonShell';
 
 const sections = [
@@ -81,6 +82,8 @@ export default function CppL6Lesson11() {
             sections={sections}
             previousPath="/lesson/6/10"
             nextPath="/lesson/6/12"
+            topSupport={<CppL6LessonSupport lessonId={11} />}
+            bottomSupport={<CppL6LessonSupport lessonId={11} placement="bottom" />}
             hero={{
                 title: '动态规划不是神秘公式，而是“状态定义 + 转移顺序”',
                 description: '本课用爬楼梯和网格路径建立 DP 四件套：状态、初值、转移、答案。',

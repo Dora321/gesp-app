@@ -1,5 +1,6 @@
 import React, { useMemo, useState } from 'react';
 import { ClipboardCheck, PackageCheck, Search, ShoppingCart } from 'lucide-react';
+import CppL6LessonSupport from '../../../components/CppL6LessonSupport';
 import CppLessonShell, { Callout, CodeBlock, CompareTable, MiniQuiz, StepList } from '../CppLessonShell';
 
 const sections = [
@@ -97,6 +98,8 @@ export default function CppL6Lesson12() {
             sections={sections}
             previousPath="/lesson/6/11"
             nextPath="/lesson/6/13"
+            topSupport={<CppL6LessonSupport lessonId={12} />}
+            bottomSupport={<CppL6LessonSupport lessonId={12} placement="bottom" />}
             hero={{
                 title: '0/1 背包是 DP 的经典训练场：选择、不选、容量限制',
                 description: '本课从二维状态开始，再过渡到一维倒序优化，建立背包问题的核心模板。',

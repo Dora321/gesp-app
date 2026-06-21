@@ -1,5 +1,6 @@
 import React, { useMemo, useState } from 'react';
 import { ClipboardCheck, PackageCheck, Search, Users } from 'lucide-react';
+import CppL6LessonSupport from '../../../components/CppL6LessonSupport';
 import CppLessonShell, { Callout, CodeBlock, CompareTable, MiniQuiz, StepList } from '../CppLessonShell';
 
 const sections = [
@@ -82,6 +83,8 @@ export default function CppL6Lesson10() {
             sections={sections}
             previousPath="/lesson/6/9"
             nextPath="/lesson/6/11"
+            topSupport={<CppL6LessonSupport lessonId={10} />}
+            bottomSupport={<CppL6LessonSupport lessonId={10} placement="bottom" />}
             hero={{
                 title: 'OOP 综合题不是炫语法，而是把对象关系整理清楚',
                 description: '本课用图形面积项目串联封装、构造、继承、多态和接口设计。',

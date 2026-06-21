@@ -7,6 +7,10 @@ const cppL6Lessons = [
   { id: 6, title: '第 6 课：类的蓝图 (封装/构造)' },
   { id: 7, title: '第 7 课：家族传承 (继承/保护)' },
   { id: 8, title: '第 8 课：千变万化 (多态/虚函数)' },
+  { id: 9, title: '第 9 课：特殊的编码 (格雷码)' },
+  { id: 10, title: '第 10 课：OOP 综合实战' },
+  { id: 11, title: '第 11 课：记忆的魔法 (DP 基础)' },
+  { id: 12, title: '第 12 课：背包问题 (0/1 背包)' },
 ];
 
 const qualityByLesson = {
@@ -58,6 +62,30 @@ const qualityByLesson = {
     deliverables: ['实现 Shape、Circle、Rectangle 的多态 area 示例', '对比去掉 virtual 前后的调用结果', '整理 virtual、override、虚析构和对象切片检查表'],
     checks: ['能把父类接口声明为 virtual', '能通过指针或引用触发动态绑定', '能给基类析构函数加 virtual 并用 override 检查重写'],
   },
+  9: {
+    accent: 'slate',
+    goals: ['能解释格雷码相邻只差一位', '能用镜像法生成 n 位格雷码', '能写出 n^(n>>1) 公式'],
+    deliverables: ['输出 3 位和 4 位格雷码序列', '用 n^(n>>1) 生成 0 到 15 的格雷码表', '写出镜像构造中中间衔接只差一位的说明'],
+    checks: ['能保证第二半序列必须反向镜像', '能正确使用右移和异或运算符', '能按固定位数补前导 0 输出编码'],
+  },
+  10: {
+    accent: 'emerald',
+    goals: ['能从题面抽取类和对象', '能为类设计成员变量和 public 接口', '能在小项目中使用继承和多态'],
+    deliverables: ['为一个场景画出候选类和职责边界', '实现 Shape/Circle/Rectangle 面积统计项目', '整理类、接口、继承和多态在项目中的分工'],
+    checks: ['能从名词抽类、从动作抽成员函数', '能让 public 接口少而清晰', '能通过基类指针统一调用不同派生类实现'],
+  },
+  11: {
+    accent: 'blue',
+    goals: ['能写清楚 dp 状态含义', '能根据依赖关系确定递推顺序', '能完成基础路径计数 DP'],
+    deliverables: ['为爬楼梯写出状态、初值、转移和答案', '完成无障碍网格路径计数程序', '整理一张 DP 四件套检查表'],
+    checks: ['能先定义 dp 数组含义再写公式', '能确保转移只引用已经算好的状态', '能正确设置初值和最终输出位置'],
+  },
+  12: {
+    accent: 'amber',
+    goals: ['能定义前 i 件物品容量 j 的状态', '能写出选与不选的转移方程', '能解释一维优化为什么要倒序'],
+    deliverables: ['写出 0/1 背包二维 DP 模板', '把二维模板改成一维倒序优化', '用小样例说明正序枚举为什么会重复选物品'],
+    checks: ['能区分不选当前物品和选择当前物品两种来源', '能在容量不足时只继承上一行答案', '能坚持 0/1 背包一维容量倒序枚举'],
+  },
 };
 
 const nextReasonByLesson = {
@@ -69,6 +97,10 @@ const nextReasonByLesson = {
   6: '封装让单个对象更稳定；下一课用继承处理多个类之间的共同特征和差异行为。',
   7: '继承建立父子类关系后，下一课进入多态：同一个父类接口调用不同子类实现。',
   8: '多态完成 OOP 主线后，下一课回到算法编码规律，用格雷码连接递归、位运算和构造。',
+  9: '格雷码把递归构造和位运算练了一遍；下一课回到 OOP，用完整小项目收束类、继承和多态。',
+  10: 'OOP 综合项目训练建模边界后，下一课进入 DP：同样要先建模，只是对象换成状态。',
+  11: 'DP 四件套稳定后，下一课进入最经典的容量限制模型：0/1 背包。',
+  12: '0/1 背包理解“选或不选”后，下一课对比完全背包，重点观察容量枚举方向为什么改变。',
 };
 
 const previousReasonByLesson = {
@@ -80,6 +112,10 @@ const previousReasonByLesson = {
   6: '进入类之前，先确认第 5 课的函数参数、状态恢复和结构化拆分已经稳定。',
   7: '继承建立在类和对象之上，先确认第 6 课能把数据放 private、行为放 public。',
   8: '多态建立在继承之上，先确认第 7 课能写出父类、派生类和 protected 成员访问。',
+  9: '格雷码需要递归构造和位运算直觉，先确认第 8 课已经完成 OOP 主线并能回到算法表达。',
+  10: 'OOP 综合需要封装、继承和多态一起使用，先确认第 6-8 课的核心语法都能独立写出。',
+  11: 'DP 入门需要从项目建模切回状态建模，先确认第 10 课能把复杂问题拆成清晰职责。',
+  12: '背包建立在 DP 状态和转移之上，先确认第 11 课能写出状态、初值、转移和答案。',
 };
 
 const practiceByLesson = {
@@ -91,6 +127,10 @@ const practiceByLesson = {
   6: [{ label: 'GESP 六级真题：类与封装基础', path: '/question-bank/6/2024-12-l6' }],
   7: [{ label: 'GESP 六级真题：继承与访问控制', path: '/question-bank/6/2025-03-l6' }],
   8: [{ label: 'GESP 六级真题：多态与虚函数', path: '/question-bank/6/2025-06-l6' }],
+  9: [{ label: 'GESP 六级真题：格雷码与编码规律', path: '/question-bank/6/2025-09-l6' }],
+  10: [{ label: 'GESP 六级真题：OOP 综合建模', path: '/question-bank/6/2025-12-l6' }],
+  11: [{ label: 'GESP 六级真题：DP 状态与转移', path: '/question-bank/6/2026-03-l6' }],
+  12: [{ label: 'GESP 真题库：筛选六级背包与 DP 题', path: '/question-bank' }],
 };
 
 const reviewTasksByLesson = {
@@ -102,6 +142,10 @@ const reviewTasksByLesson = {
   6: ['写一个 Counter 类，支持 add、reset、getValue。', '把一个所有成员都是 public 的类改造成 private 数据加 public 接口。'],
   7: ['写 Person 和 Student 两个类，并用初始化列表调用父类构造函数。', '判断 5 组关系该用继承还是组合，并写出理由。'],
   8: ['写 Shape、Circle、Rectangle，并通过 Shape* 调用 area。', '去掉 virtual 观察输出变化，再补上 override 和虚析构。'],
+  9: ['分别用镜像法和公式法输出 4 位格雷码。', '解释为什么镜像构造的中间两个编码也只差一位。'],
+  10: ['完成 Shape/Circle/Rectangle 的面积统计程序。', '为图书馆系统设计 Book、Reader、Library 三个类并写职责说明。'],
+  11: ['完成爬楼梯和网格路径计数，并写出 DP 四件套。', '把一道递归计数题改写成表格递推。'],
+  12: ['先写二维 0/1 背包，再改成一维倒序优化。', '用一个容量小样例说明正序枚举会重复使用同一物品。'],
 };
 
 export function getCppL6LessonSupport(lessonId) {
@@ -132,8 +176,8 @@ export function getCppL6LessonSupport(lessonId) {
           reason: nextReasonByLesson[lessonId],
         }
       : {
-          title: '第 9 课：特殊的编码 (格雷码)',
-          path: '/lesson/6/9',
+          title: '第 13 课：完全背包与简单 DP',
+          path: '/lesson/6/13',
           reason: nextReasonByLesson[lessonId],
         },
     practiceLinks: practiceByLesson[lessonId] || [],

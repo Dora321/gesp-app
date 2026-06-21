@@ -50,6 +50,13 @@ const accentStyles = {
     bullet: 'bg-rose-600',
     heading: 'text-rose-900',
   },
+  slate: {
+    border: 'border-slate-200',
+    bg: 'bg-slate-50',
+    icon: 'text-slate-600',
+    bullet: 'bg-slate-600',
+    heading: 'text-slate-900',
+  },
   red: {
     border: 'border-red-100',
     bg: 'bg-red-50',

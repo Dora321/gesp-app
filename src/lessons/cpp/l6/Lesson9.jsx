@@ -1,5 +1,6 @@
 import React, { useMemo, useState } from 'react';
 import { Binary, ClipboardCheck, Repeat2, Search } from 'lucide-react';
+import CppL6LessonSupport from '../../../components/CppL6LessonSupport';
 import CppLessonShell, { Callout, CodeBlock, CompareTable, MiniQuiz, StepList } from '../CppLessonShell';
 
 const sections = [
@@ -86,6 +87,8 @@ export default function CppL6Lesson9() {
             sections={sections}
             previousPath="/lesson/6/8"
             nextPath="/lesson/6/10"
+            topSupport={<CppL6LessonSupport lessonId={9} />}
+            bottomSupport={<CppL6LessonSupport lessonId={9} placement="bottom" />}
             hero={{
                 title: '格雷码把二进制变化变得温柔：每次只动一位',
                 description: '本课从镜像构造和位运算公式理解格雷码，连接递归、编码和二进制操作。',
