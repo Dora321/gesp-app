@@ -78,33 +78,41 @@ export default function LessonQualityBar({
   checks = [],
   accent = 'blue',
   className = '',
+  bare = false,
 }) {
   const styles = accentStyles[accent] || accentStyles.blue;
   const data = { goals, deliverables, checks };
+
+  const grid = (
+    <div className="grid gap-3 md:grid-cols-3">
+      {columns.map(({ key, title, icon: Icon }) => (
+        <div key={key} className={`rounded-lg ${styles.bg} p-3`}>
+          <div className={`mb-2 flex items-center gap-2 text-sm font-bold ${styles.heading}`}>
+            <Icon size={16} className={styles.icon} />
+            {title}
+          </div>
+          <ul className="space-y-1.5 text-sm leading-relaxed text-slate-700">
+            {data[key].map((item) => (
+              <li key={item} className="flex gap-2">
+                <span className={`mt-1 h-1.5 w-1.5 flex-shrink-0 rounded-full ${styles.bullet}`} />
+                <span>{item}</span>
+              </li>
+            ))}
+          </ul>
+        </div>
+      ))}
+    </div>
+  );
+
+  // bare 模式：只渲染三栏网格，供父级合并卡内嵌，不带自己的外框
+  if (bare) return grid;
 
   return (
     <section
       className={`mb-6 rounded-lg border ${styles.border} bg-white p-4 shadow-sm ${className}`}
       aria-label="课程质量清单"
     >
-      <div className="grid gap-3 md:grid-cols-3">
-        {columns.map(({ key, title, icon: Icon }) => (
-          <div key={key} className={`rounded-lg ${styles.bg} p-3`}>
-            <div className={`mb-2 flex items-center gap-2 text-sm font-bold ${styles.heading}`}>
-              <Icon size={16} className={styles.icon} />
-              {title}
-            </div>
-            <ul className="space-y-1.5 text-sm leading-relaxed text-slate-700">
-              {data[key].map((item) => (
-                <li key={item} className="flex gap-2">
-                  <span className={`mt-1 h-1.5 w-1.5 flex-shrink-0 rounded-full ${styles.bullet}`} />
-                  <span>{item}</span>
-                </li>
-              ))}
-            </ul>
-          </div>
-        ))}
-      </div>
+      {grid}
     </section>
   );
 }
