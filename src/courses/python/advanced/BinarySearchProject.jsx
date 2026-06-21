@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useRef } from 'react';
+import React, { useState, useEffect, useRef, useMemo } from 'react';
 import {
     Target, Play, RotateCcw, HelpCircle,
     Trophy, Code, ArrowRight, Sparkles,
@@ -7,6 +7,7 @@ import {
 } from 'lucide-react';
 import { Link, useNavigate } from 'react-router-dom';
 import PythonProjectSupport from '../../../components/PythonProjectSupport';
+import PyCodeTracer from '../../../components/PyCodeTracer';
 
 // --- 辅助组件 ---
 const Icon = ({ name, size = 20, className = "" }) => {
@@ -465,68 +466,99 @@ const PlayerGuessSlide = () => {
 };
 
 // 4. 代码讲解
-const LogicSlide = () => (
-    <div className="slide-enter space-y-6 pb-20">
-        <h2 className="text-2xl font-bold text-slate-800 flex items-center gap-2">
-            <Code className="text-indigo-600" /> 代码魔法书：Python 实现
-        </h2>
-        <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
-            <div className="bg-slate-900 rounded-2xl overflow-hidden shadow-xl">
-                <div className="flex items-center justify-between px-6 py-3 bg-slate-800">
-                    <div className="flex gap-1.5">
-                        <div className="w-3 h-3 rounded-full bg-red-500"></div>
-                        <div className="w-3 h-3 rounded-full bg-yellow-500"></div>
-                        <div className="w-3 h-3 rounded-full bg-green-500"></div>
-                    </div>
-                    <span className="text-xs text-slate-400 font-mono">guess_number.py</span>
-                </div>
-                <pre className="p-6 text-sm font-mono leading-relaxed overflow-x-auto text-indigo-300">
-                    <code>{`def binary_search(target):
-    low = 1
-    high = 100
-    steps = 0
-    
-    while low <= high:
-        steps += 1
-        mid = (low + high) // 2  # 找中间
-        
-        if mid == target:
-            return steps
-        elif mid < target:
-            low = mid + 1      # 往右找
-        else:
-            high = mid - 1     # 往左找
-            
-    return -1`}</code>
-                </pre>
-            </div>
-            <div className="space-y-4">
+const LogicSlide = () => {
+    const target = 73;
+    const steps = useMemo(() => {
+        const result = [{ active: [0], vars: { low: 1, high: 100, mid: '–' } }];
+        let low = 1;
+        let high = 100;
+        let round = 0;
+        while (low <= high) {
+            round += 1;
+            const mid = Math.floor((low + high) / 2);
+            const rangeLabel = `[${low}, ${high}]`;
+            if (mid === target) {
+                result.push({
+                    active: [1, 2, 3, 4],
+                    vars: { low, high, mid },
+                    action: round === 1 ? '开始查找' : '下一步',
+                    row: [`第 ${round} 轮`, rangeLabel, mid, `= ${target}`, '命中！return'],
+                    output: `🎯 命中 ${target}！二分只用了 ${round} 步；从 1 开始一个个找要 ${target} 步。`,
+                });
+                break;
+            }
+            const goRight = mid < target;
+            result.push({
+                active: goRight ? [1, 2, 3, 5, 6] : [1, 2, 3, 7, 8],
+                vars: { low, high, mid },
+                action: round === 1 ? '开始查找' : '下一步',
+                row: [
+                    `第 ${round} 轮`,
+                    rangeLabel,
+                    mid,
+                    goRight ? `< ${target}` : `> ${target}`,
+                    goRight ? 'low = mid + 1' : 'high = mid - 1',
+                ],
+            });
+            if (goRight) low = mid + 1;
+            else high = mid - 1;
+        }
+        return result;
+    }, []);
+
+    return (
+        <div className="slide-enter space-y-6 pb-20">
+            <h2 className="text-2xl font-bold text-slate-800 flex items-center gap-2">
+                <Code className="text-indigo-600" /> 代码魔法书：Python 实现
+            </h2>
+            <p className="text-slate-600">
+                别死记代码。点「下一步」，盯住 <code>low</code>、<code>high</code> 怎么一步步逼近，区间怎么每次砍掉一半。这里在 1~100 里找 <strong>{target}</strong>。
+            </p>
+
+            <PyCodeTracer
+                title="二分查找追踪器（在 1~100 里找 73）"
+                code={`low, high = 1, 100
+while low <= high:
+    mid = (low + high) // 2
+    if mid == target:
+        return mid          # 找到了
+    elif mid < target:
+        low = mid + 1       # 太小，往右找
+    else:
+        high = mid - 1      # 太大，往左找`}
+                varOrder={['low', 'high', 'mid']}
+                columns={['轮次', '区间 [low, high]', 'mid', `mid ? ${target}`, '动作']}
+                steps={steps}
+                hint="每轮区间长度大约减半：100 → 50 → 25 → 13… 所以 100 个数最多 7 步就能找到。"
+            />
+
+            <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
                 <div className="p-5 bg-white rounded-xl border border-slate-100 shadow-sm flex gap-4">
                     <div className="w-10 h-10 rounded-lg bg-red-100 text-red-600 flex items-center justify-center shrink-0 font-bold">1</div>
-                    <p className="text-slate-600 text-sm">设定边界：<code>low</code> 代表左边界，<code>high</code> 代表右边界。</p>
+                    <p className="text-slate-600 text-sm">设定边界：<code>low</code> 是左边界，<code>high</code> 是右边界。</p>
                 </div>
                 <div className="p-5 bg-white rounded-xl border border-slate-100 shadow-sm flex gap-4">
                     <div className="w-10 h-10 rounded-lg bg-yellow-100 text-yellow-600 flex items-center justify-center shrink-0 font-bold">2</div>
-                    <p className="text-slate-600 text-sm">对半切开：计算中间位置 <code>mid</code>。</p>
+                    <p className="text-slate-600 text-sm">对半切开：计算中间位置 <code>mid</code> 并和目标比较。</p>
                 </div>
                 <div className="p-5 bg-white rounded-xl border border-slate-100 shadow-sm flex gap-4">
                     <div className="w-10 h-10 rounded-lg bg-blue-100 text-blue-600 flex items-center justify-center shrink-0 font-bold">3</div>
-                    <p className="text-slate-600 text-sm">更新范围：如果偏小，把 <code>low</code> 移到 <code>mid+1</code>；如果偏大，把 <code>high</code> 移到 <code>mid-1</code>。</p>
-                </div>
-                <div className="p-6 bg-indigo-600 text-white rounded-xl shadow-lg shadow-indigo-200">
-                    <div className="flex items-center gap-2 mb-2">
-                        <Sparkles size={18} />
-                        <h4 className="font-bold">核心笔记</h4>
-                    </div>
-                    <p className="text-sm opacity-90 leading-relaxed">
-                        这就是分而治之 (Divide and Conquer) 的思想。
-                        每猜一次，你就杀死了 50% 的竞争对手！
-                    </p>
+                    <p className="text-slate-600 text-sm">更新范围：偏小就把 <code>low</code> 提到 <code>mid+1</code>；偏大就把 <code>high</code> 降到 <code>mid-1</code>。</p>
                 </div>
             </div>
+
+            <div className="p-6 bg-indigo-600 text-white rounded-xl shadow-lg shadow-indigo-200">
+                <div className="flex items-center gap-2 mb-2">
+                    <Sparkles size={18} />
+                    <h4 className="font-bold">核心笔记</h4>
+                </div>
+                <p className="text-sm opacity-90 leading-relaxed">
+                    这就是分而治之 (Divide and Conquer) 的思想。每比较一次，就排除掉一半的可能，所以速度极快。
+                </p>
+            </div>
         </div>
-    </div>
-);
+    );
+};
 
 // --- 主布局 --－
 

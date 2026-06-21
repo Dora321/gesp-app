@@ -1,7 +1,8 @@
-import React, { useState, useRef, useEffect } from 'react';
+import React, { useState, useRef, useEffect, useMemo } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { GitBranch, Repeat, HelpCircle, CheckCircle, AlertTriangle, ArrowRight, Play, RefreshCw, XCircle, Menu, X, Zap, List, Grid3x3, TreePine, TrendingUp, Code } from 'lucide-react';
 import PythonFoundationSupport from '../../../components/PythonFoundationSupport';
+import PyCodeTracer from '../../../components/PyCodeTracer';
 
 // --- Shared Components ---
 const Button = ({ onClick, children, className, variant = 'primary', disabled = false }) => {
@@ -513,6 +514,29 @@ const LoopSlide = () => {
         setIsThinking(false);
     };
 
+    const traceSteps = useMemo(() => {
+        const result = [{ active: [0], vars: { i: '–' } }];
+        const printed = [];
+        for (let i = 0; i < 5; i++) {
+            printed.push(`第 ${i + 1} 步`);
+            result.push({
+                active: [0, 1],
+                vars: { i },
+                action: i === 0 ? '开始循环' : '下一轮',
+                row: [`第 ${i + 1} 次`, i, `第 ${i + 1} 步`],
+                output: printed.join('   '),
+            });
+        }
+        result.push({
+            active: [0],
+            vars: { i: 4 },
+            action: '结束',
+            exit: 'range(5) 把 0、1、2、3、4 取完了，循环自动停止',
+            output: printed.join('   '),
+        });
+        return result;
+    }, []);
+
     return (
         <div className="space-y-6 animate-in fade-in slide-in-from-bottom-4 duration-500">
             <div className="bg-indigo-100 p-6 rounded-2xl border border-indigo-200 text-indigo-900">
@@ -580,6 +604,24 @@ for i in range(${targetSteps}):
                         </div>
                     </div>
                 </div>
+            </div>
+
+            <div className="bg-white p-5 rounded-2xl border border-slate-200">
+                <h3 className="font-bold text-slate-700 mb-1 flex items-center gap-2">
+                    <Code size={18} className="text-indigo-600" /> 看清楚循环变量 <code>i</code> 到底取了哪些值
+                </h3>
+                <p className="text-sm text-slate-500 mb-4">
+                    很多同学以为 <code>range(5)</code> 是 1 到 5。点「下一步」看真相：<code>i</code> 从 <strong>0</strong> 开始，到 <strong>4</strong> 结束，正好 5 次。
+                </p>
+                <PyCodeTracer
+                    title="for 循环追踪器"
+                    code={`for i in range(5):
+    print("第", i + 1, "步")`}
+                    varOrder={['i']}
+                    columns={['第几次', 'i 的值', 'print 输出']}
+                    steps={traceSteps}
+                    hint="range(5) 给出 0,1,2,3,4——所以要打印「第 i+1 步」才是 1~5。"
+                />
             </div>
         </div>
     );

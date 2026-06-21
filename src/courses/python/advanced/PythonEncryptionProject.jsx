@@ -1,7 +1,8 @@
-import React, { useState, useEffect, useRef } from 'react';
+import React, { useState, useEffect, useRef, useMemo } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { Shield, Lock, Unlock, Key, FileText, ArrowRight, RotateCcw, Check, X, Terminal, Binary, Hash, Eye, EyeOff, Menu, RefreshCw } from 'lucide-react';
 import PythonProjectSupport from '../../../components/PythonProjectSupport';
+import PyCodeTracer from '../../../components/PyCodeTracer';
 
 const Icon = ({ name, className }) => {
     const icons = {
@@ -155,6 +156,33 @@ const CaesarSlide = () => {
         return () => clearTimeout(timer);
     }, [input, shift]);
 
+    const caesarSteps = useMemo(() => {
+        const text = 'HELLO';
+        const result = [{ active: [0], vars: { char: '–', result: '""' } }];
+        let acc = '';
+        for (let i = 0; i < text.length; i++) {
+            const ch = text[i];
+            const code = ch.charCodeAt(0) - 65;
+            const shifted = (code + 3) % 26;
+            const newCh = String.fromCharCode(shifted + 65);
+            acc += newCh;
+            result.push({
+                active: [1, 2, 3, 4],
+                vars: { char: `'${ch}'`, result: `"${acc}"` },
+                action: i === 0 ? '开始加密' : '下一个字符',
+                row: [ch, code, `(${code}+3)%26 = ${shifted}`, newCh, `"${acc}"`],
+            });
+        }
+        result.push({
+            active: [1],
+            vars: { char: '–', result: `"${acc}"` },
+            action: '结束',
+            exit: 'HELLO 五个字母都处理完了',
+            output: `HELLO → ${acc}（密钥 3）`,
+        });
+        return result;
+    }, []);
+
     return (
         <div className="slide-enter space-y-8">
             <h2 className="text-2xl font-bold text-green-400 flex items-center gap-2">
@@ -233,10 +261,33 @@ const CaesarSlide = () => {
                 </div>
             </div>
 
+            {/* 单步执行追踪器：看 result 怎么一个字符一个字符拼出来 */}
+            <div>
+                <h3 className="font-bold text-green-400 mb-2 flex items-center gap-2">
+                    <Terminal size={18} /> 一步步看循环怎么拼出密文
+                </h3>
+                <p className="text-slate-400 text-sm mb-4">
+                    上面的转盘演示了「单个字母」怎么替换。下面点「下一步」，看 <code className="text-green-300">for</code> 循环怎么逐个字母把空字符串 <code className="text-green-300">result</code> 拼成 <code className="text-green-300">KHOOR</code>。
+                </p>
+                <PyCodeTracer
+                    tone="dark"
+                    title="凯撒加密追踪器（HELLO，密钥 3）"
+                    code={`result = ""
+for char in "HELLO":
+    code = ord(char) - 65        # A→0, B→1 ...
+    new = (code + 3) % 26        # 位移 3，超过 Z 就绕回
+    result += chr(new + 65)      # 转回字母接到末尾`}
+                    varOrder={['char', 'result']}
+                    columns={['字符', 'ord-65', '(+3)%26', '新字母', 'result']}
+                    steps={caesarSteps}
+                    hint="% 26 是关键：比如 X(23)+3=26，% 26 绕回 0，也就是 A——字母表首尾相连。"
+                />
+            </div>
+
             {/* Python Code Implementation */}
             <div className="bg-green-900/20 p-6 rounded-xl border border-green-500/30">
                 <h3 className="font-bold text-green-400 mb-2 flex items-center gap-2">
-                    <Terminal size={18} /> Python 代码实现
+                    <Terminal size={18} /> 完整代码（加密 + 解密）
                 </h3>
                 <pre className="font-mono text-sm text-green-300 bg-black/50 p-4 rounded-lg border border-green-500/20 overflow-x-auto">
                     {`# 凯撒加密函数
