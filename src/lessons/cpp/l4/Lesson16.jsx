@@ -1,5 +1,6 @@
 import React, { useMemo, useState } from 'react';
 import { AlertTriangle, ClipboardCheck, Search, ShieldCheck, Trophy } from 'lucide-react';
+import CppL4LessonSupport from '../../../components/CppL4LessonSupport';
 import CppLessonShell, { Callout, CodeBlock, CompareTable, MiniQuiz, StepList } from '../CppLessonShell';
 
 const sections = [
@@ -90,6 +91,8 @@ export default function CppL4Lesson16() {
             sections={sections}
             previousPath="/lesson/4/15"
             nextPath="/level4"
+            topSupport={<CppL4LessonSupport lessonId={16} />}
+            bottomSupport={<CppL4LessonSupport lessonId={16} placement="bottom" />}
             hero={{
                 title: '最后一课不是再堆知识，而是把知识变成稳定得分动作',
                 description: '本课整理四级高频错误、模拟卷时间分配和复盘模板，让学生知道考场上先做什么、卡住时怎么办。',

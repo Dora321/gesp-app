@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { ClipboardCheck, FileText, FolderOpen, Save, Search } from 'lucide-react';
+import CppL4LessonSupport from '../../../components/CppL4LessonSupport';
 import CppLessonShell, { Callout, CodeBlock, CompareTable, MiniQuiz, StepList } from '../CppLessonShell';
 
 const sections = [
@@ -78,6 +79,8 @@ export default function CppL4Lesson13() {
             sections={sections}
             previousPath="/lesson/4/12"
             nextPath="/lesson/4/14"
+            topSupport={<CppL4LessonSupport lessonId={13} />}
+            bottomSupport={<CppL4LessonSupport lessonId={13} placement="bottom" />}
             hero={{
                 title: '文件输入输出并不改变算法，只改变数据从哪里来、到哪里去',
                 description: '本课学习竞赛中常见的 freopen 写法，建立本地调试和正式提交之间的切换习惯。',

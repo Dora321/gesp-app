@@ -1,5 +1,6 @@
 import React, { useMemo, useState } from 'react';
 import { Calculator, ClipboardCheck, ListChecks, Search, Target } from 'lucide-react';
+import CppL4LessonSupport from '../../../components/CppL4LessonSupport';
 import CppLessonShell, { Callout, CodeBlock, CompareTable, MiniQuiz, StepList } from '../CppLessonShell';
 
 const sections = [
@@ -88,6 +89,8 @@ export default function CppL4Lesson15() {
             sections={sections}
             previousPath="/lesson/4/14"
             nextPath="/lesson/4/16"
+            topSupport={<CppL4LessonSupport lessonId={15} />}
+            bottomSupport={<CppL4LessonSupport lessonId={15} placement="bottom" />}
             hero={{
                 title: '综合题不怕长，怕没拆开：先建模，再编码，再测试',
                 description: '本课以成绩排行为主线，把结构体、数组、函数、排序和复杂度检查串成完整解题流程。',

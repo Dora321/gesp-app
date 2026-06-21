@@ -1,5 +1,6 @@
 import React, { useMemo, useState } from 'react';
 import { AlertTriangle, ClipboardCheck, Gauge, Search, Timer } from 'lucide-react';
+import CppL4LessonSupport from '../../../components/CppL4LessonSupport';
 import CppLessonShell, { Callout, CodeBlock, CompareTable, MiniQuiz, StepList } from '../CppLessonShell';
 
 const sections = [
@@ -102,6 +103,8 @@ export default function CppL4Lesson14() {
             sections={sections}
             previousPath="/lesson/4/13"
             nextPath="/lesson/4/15"
+            topSupport={<CppL4LessonSupport lessonId={14} />}
+            bottomSupport={<CppL4LessonSupport lessonId={14} placement="bottom" />}
             hero={{
                 title: '好程序不只答案正确，还要在规定时间和边界里稳定运行',
                 description: '本课建立复杂度估算、边界样例和异常意识，帮助学生从“能写”走向“可靠”。',
