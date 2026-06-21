@@ -1,5 +1,6 @@
 import React, { useMemo, useState } from 'react';
 import { ClipboardCheck, Hash, ListChecks, Search, TableProperties } from 'lucide-react';
+import CppL3LessonSupport from '../../../components/CppL3LessonSupport';
 import CppLessonShell, { Callout, CodeBlock, CodeTracer, CompareTable, MiniQuiz } from '../CppLessonShell';
 
 const sections = [
@@ -136,6 +137,8 @@ export default function CppL3Lesson9() {
             sections={sections}
             previousPath="/lesson/3/8"
             nextPath="/lesson/3/10"
+            topSupport={<CppL3LessonSupport lessonId={9} />}
+            bottomSupport={<CppL3LessonSupport lessonId={9} placement="bottom" />}
             hero={{
                 title: '字符串负责提供字符，数组负责保存统计结果',
                 description: '本课把数组和字符串放在一起：字符频率、是否出现、去重输出。这是三级综合题非常常见的组合。',

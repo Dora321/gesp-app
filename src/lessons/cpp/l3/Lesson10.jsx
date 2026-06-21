@@ -1,5 +1,6 @@
 import React, { useMemo, useState } from 'react';
 import { ClipboardCheck, ListFilter, Search, Target, Timer } from 'lucide-react';
+import CppL3LessonSupport from '../../../components/CppL3LessonSupport';
 import CppLessonShell, { Callout, CodeBlock, CodeTracer, CompareTable, MiniQuiz } from '../CppLessonShell';
 
 const sections = [
@@ -125,6 +126,8 @@ export default function CppL3Lesson10() {
             sections={sections}
             previousPath="/lesson/3/9"
             nextPath="/lesson/3/11"
+            topSupport={<CppL3LessonSupport lessonId={10} />}
+            bottomSupport={<CppL3LessonSupport lessonId={10} placement="bottom" />}
             hero={{
                 title: '枚举不是乱试，而是有边界、有顺序地全部尝试',
                 description: '本课训练单层枚举、双层枚举和范围剪枝。三级很多逻辑题都可以先用枚举找到稳定解法。',

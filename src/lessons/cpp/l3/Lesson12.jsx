@@ -1,5 +1,6 @@
 import React, { useMemo, useState } from 'react';
 import { ClipboardCheck, KeyRound, LockKeyhole, RotateCw, Search } from 'lucide-react';
+import CppL3LessonSupport from '../../../components/CppL3LessonSupport';
 import CppLessonShell, { Callout, CodeBlock, CompareTable, MiniQuiz, StepList } from '../CppLessonShell';
 
 const sections = [
@@ -86,6 +87,8 @@ export default function CppL3Lesson12() {
             sections={sections}
             previousPath="/lesson/3/11"
             nextPath="/lesson/3/13"
+            topSupport={<CppL3LessonSupport lessonId={12} />}
+            bottomSupport={<CppL3LessonSupport lessonId={12} placement="bottom" />}
             hero={{
                 title: '加密题是字符串、ASCII 和取模的组合训练',
                 description: '本课以 Caesar 加密为核心，学习字符偏移、绕回处理、解密反推和非字母保留。',

@@ -1,5 +1,6 @@
 import React, { useMemo, useState } from 'react';
 import { ClipboardCheck, Footprints, Play, RefreshCw, Search } from 'lucide-react';
+import CppL3LessonSupport from '../../../components/CppL3LessonSupport';
 import CppLessonShell, { Callout, CodeBlock, CodeTracer, CompareTable, MiniQuiz } from '../CppLessonShell';
 
 const sections = [
@@ -143,6 +144,8 @@ export default function CppL3Lesson11() {
             sections={sections}
             previousPath="/lesson/3/10"
             nextPath="/lesson/3/12"
+            topSupport={<CppL3LessonSupport lessonId={11} />}
+            bottomSupport={<CppL3LessonSupport lessonId={11} placement="bottom" />}
             hero={{
                 title: '模拟题的本质，是让程序照着规则走一遍',
                 description: '本课训练状态变量、规则分支、循环推进和终止条件。只要状态设计清楚，模拟题就会从混乱变得可控。',
