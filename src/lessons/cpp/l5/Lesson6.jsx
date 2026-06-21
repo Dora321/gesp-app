@@ -1,5 +1,6 @@
 import React, { useMemo, useState } from 'react';
 import { ClipboardCheck, Link2, MousePointer2, Search } from 'lucide-react';
+import CppL5LessonSupport from '../../../components/CppL5LessonSupport';
 import CppLessonShell, { Callout, CodeBlock, CompareTable, MiniQuiz, StepList } from '../CppLessonShell';
 
 const sections = [
@@ -80,6 +81,8 @@ export default function CppL5Lesson6() {
             sections={sections}
             previousPath="/lesson/5/5"
             nextPath="/lesson/5/7"
+            topSupport={<CppL5LessonSupport lessonId={6} />}
+            bottomSupport={<CppL5LessonSupport lessonId={6} placement="bottom" />}
             hero={{
                 title: '链表不是一排连续格子，而是一串互相指路的节点',
                 description: '本课从结构体节点、头指针和遍历开始，建立链表的空间模型。',

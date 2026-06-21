@@ -1,5 +1,6 @@
 import React, { useMemo, useState } from 'react';
 import { AlertTriangle, ClipboardCheck, Plus, Search } from 'lucide-react';
+import CppL5LessonSupport from '../../../components/CppL5LessonSupport';
 import CppLessonShell, { Callout, CodeBlock, CompareTable, MiniQuiz, StepList } from '../CppLessonShell';
 
 const sections = [
@@ -90,6 +91,8 @@ export default function CppL5Lesson7() {
             sections={sections}
             previousPath="/lesson/5/6"
             nextPath="/lesson/5/8"
+            topSupport={<CppL5LessonSupport lessonId={7} />}
+            bottomSupport={<CppL5LessonSupport lessonId={7} placement="bottom" />}
             hero={{
                 title: '链表操作最怕“手一快”：顺序错了，后半条链就找不回来了',
                 description: '本课聚焦单链表插入、删除和头节点特判，训练每一步指针变化的可视化推演。',

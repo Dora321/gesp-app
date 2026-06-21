@@ -1,5 +1,6 @@
 import React, { useMemo, useState } from 'react';
 import { ClipboardCheck, Hash, Search, Sigma } from 'lucide-react';
+import CppL5LessonSupport from '../../../components/CppL5LessonSupport';
 import CppLessonShell, { Callout, CodeBlock, CompareTable, MiniQuiz, StepList } from '../CppLessonShell';
 
 const sections = [
@@ -88,6 +89,8 @@ export default function CppL5Lesson5() {
             sections={sections}
             previousPath="/lesson/5/4"
             nextPath="/lesson/5/6"
+            topSupport={<CppL5LessonSupport lessonId={5} />}
+            bottomSupport={<CppL5LessonSupport lessonId={5} placement="bottom" />}
             hero={{
                 title: '数论综合题的关键不是会几个模板，而是知道什么时候用哪个模板',
                 description: '本课把前四节工具合并成解题流程：读数据范围、识别模型、选择模板、检查溢出和边界。',

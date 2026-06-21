@@ -1,5 +1,6 @@
 import React, { useMemo, useState } from 'react';
 import { ClipboardCheck, Repeat2, Search, Waypoints } from 'lucide-react';
+import CppL5LessonSupport from '../../../components/CppL5LessonSupport';
 import CppLessonShell, { Callout, CodeBlock, CompareTable, MiniQuiz, StepList } from '../CppLessonShell';
 
 const sections = [
@@ -88,6 +89,8 @@ export default function CppL5Lesson8() {
             sections={sections}
             previousPath="/lesson/5/7"
             nextPath="/lesson/5/9"
+            topSupport={<CppL5LessonSupport lessonId={8} />}
+            bottomSupport={<CppL5LessonSupport lessonId={8} placement="bottom" />}
             hero={{
                 title: '链表一复杂，规则反而要更清楚：每个指针都必须有去处',
                 description: '本课对比单链表、双向链表和循环链表，重点训练结构选择和指针维护顺序。',
