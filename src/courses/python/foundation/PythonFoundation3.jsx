@@ -1,7 +1,6 @@
 import React, { useState, useRef, useEffect } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { Layers, List, Box, Key, Search, ArrowRight, RefreshCw, Plus, Trash2, Edit3, Menu, X } from 'lucide-react';
-import LessonQualityBar from '../../../components/LessonQualityBar';
 import PythonFoundationSupport from '../../../components/PythonFoundationSupport';
 
 // --- Shared Components ---
@@ -1017,12 +1016,6 @@ const sections = [
     { id: 3, title: '字符串 String', icon: Edit3, component: StringSlide },
 ];
 
-const lessonQuality = {
-    goals: ['会用列表保存一组有顺序的数据', '会用字典保存键值对应关系', '掌握常用字符串清洗、查找和拆分方法'],
-    deliverables: ['完成一个同学名单增删改查练习', '做出一张个人信息字典卡片', '完成字符串整理小工具'],
-    checks: ['能正确选择 list、dict 或 string', '能解释索引、键和值的区别', '能判断 append、pop、split、join 的结果'],
-};
-
 export default function PythonFoundation3() {
     const navigate = useNavigate();
     const [activeSection, setActiveSection] = useState(1);
@@ -1106,14 +1099,6 @@ export default function PythonFoundation3() {
                         </header>
 
                         <PythonFoundationSupport lessonId="f3" />
-
-                        <LessonQualityBar
-                            goals={lessonQuality.goals}
-                            deliverables={lessonQuality.deliverables}
-                            checks={lessonQuality.checks}
-                            accent="teal"
-                        />
-
                         <ActiveComponent />
                         <PythonFoundationSupport lessonId="f3" placement="bottom" />
                     </div>

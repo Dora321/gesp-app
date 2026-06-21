@@ -6,7 +6,6 @@ import {
     Wand2, Sparkles, PackageOpen, AlertTriangle, Check, Layers,
     Sliders, Key, BarChart2, Calculator, Coins, ChevronUp, ChevronDown
 } from 'lucide-react';
-import LessonQualityBar from '../../../components/LessonQualityBar';
 import PythonFoundationSupport from '../../../components/PythonFoundationSupport';
 
 // --- Shared Helper Components (Reused style) ---
@@ -1253,12 +1252,6 @@ const sections = [
     { id: 14, title: '总结', icon: Trophy, component: SummarySlide },
 ];
 
-const lessonQuality = {
-    goals: ['理解 random 模块如何制造不确定性', '会使用 randint、choice、shuffle 和 random', '能把随机结果用于游戏规则和统计模拟'],
-    deliverables: ['完成一个猜数字或石头剪刀布小游戏', '做一次抛硬币统计实验', '写出一个随机密码生成器雏形'],
-    checks: ['能说明随机范围是否包含边界', '能判断列表被 choice 和 shuffle 后的变化', '能发现随机逻辑中的分支遗漏'],
-};
-
 export default function PythonFoundation6() {
     const navigate = useNavigate();
     const [activeSection, setActiveSection] = useState(1);
@@ -1334,12 +1327,6 @@ export default function PythonFoundation6() {
                             <div className="h-1 w-20 bg-indigo-500 rounded-full"></div>
                         </header>
                         <PythonFoundationSupport lessonId="f6" />
-                        <LessonQualityBar
-                            goals={lessonQuality.goals}
-                            deliverables={lessonQuality.deliverables}
-                            checks={lessonQuality.checks}
-                            accent="teal"
-                        />
                         <ActiveComponent />
                         <PythonFoundationSupport lessonId="f6" placement="bottom" />
                     </div>

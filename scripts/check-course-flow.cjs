@@ -993,6 +993,18 @@ async function main() {
     const pagePath = `src/courses/python/foundation/${fileName}`;
     const page = read(pagePath);
     assert(
+      !page.includes("import LessonQualityBar from '../../../components/LessonQualityBar';"),
+      `${pagePath}: should derive quality bar through PythonFoundationSupport instead of importing LessonQualityBar directly.`
+    );
+    assert(
+      !page.includes('<LessonQualityBar'),
+      `${pagePath}: should not render a second hard-coded LessonQualityBar.`
+    );
+    assert(
+      !page.includes('const lessonQuality ='),
+      `${pagePath}: should not keep hard-coded lessonQuality once support data owns the quality checklist.`
+    );
+    assert(
       countMatches(page, new RegExp(`PythonFoundationSupport lessonId="${lessonId}"`, 'g')) >= 2,
       `${pagePath}: should include top and bottom PythonFoundationSupport.`
     );

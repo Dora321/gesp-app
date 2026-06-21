@@ -1,7 +1,6 @@
 import React, { useState, useRef, useEffect } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { Box, Code, Package, Zap, ArrowRight, RefreshCw, Sparkles, BookOpen, AlertCircle, Menu, X, Play, Trophy, CheckCircle, XCircle, Star, Calculator, Dices, Clock } from 'lucide-react';
-import LessonQualityBar from '../../../components/LessonQualityBar';
 import PythonFoundationSupport from '../../../components/PythonFoundationSupport';
 
 // --- Shared Components ---
@@ -854,12 +853,6 @@ const sections = [
     { id: 7, title: '挑战 Challenge', icon: Star, component: QuizSlide },
 ];
 
-const lessonQuality = {
-    goals: ['理解函数把重复代码封装成可复用工具', '会定义参数和返回值清晰的函数', '能用 import 调用模块中的能力'],
-    deliverables: ['完成一个可复用的计算函数', '把重复代码改造成函数调用', '整理一张常用模块速查表'],
-    checks: ['能解释形参、实参和返回值的区别', '能判断函数是否需要 return', '能定位函数名拼写、缩进和参数数量错误'],
-};
-
 export default function PythonFoundation4() {
     const navigate = useNavigate();
     const [activeSection, setActiveSection] = useState(1);
@@ -970,14 +963,6 @@ export default function PythonFoundation4() {
                         </header>
 
                         <PythonFoundationSupport lessonId="f4" />
-
-                        <LessonQualityBar
-                            goals={lessonQuality.goals}
-                            deliverables={lessonQuality.deliverables}
-                            checks={lessonQuality.checks}
-                            accent="indigo"
-                        />
-
                         <ActiveComponent />
                         <PythonFoundationSupport lessonId="f4" placement="bottom" />
                     </div>

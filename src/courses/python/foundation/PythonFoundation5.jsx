@@ -2,7 +2,6 @@ import React, { useState, useRef, useEffect } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { MousePointer2, Move, Square, Palette, Sparkles, ChevronRight, Home, PenTool, Trophy, BookOpen, Zap, Star, Target, Award, Menu, X, CheckCircle, RefreshCw, ArrowRight, Repeat, Terminal, Network } from 'lucide-react';
 import TurtleCanvas from '../../../components/TurtleCanvas';
-import LessonQualityBar from '../../../components/LessonQualityBar';
 import PythonFoundationSupport from '../../../components/PythonFoundationSupport';
 
 // --- Shared Helper Components ---
@@ -975,12 +974,6 @@ const sections = [
     { id: 12, title: '总结', icon: Star, component: SummarySlide },
 ];
 
-const lessonQuality = {
-    goals: ['掌握 turtle 的移动、转向、画笔和颜色控制', '能用循环画出规则图形', '理解坐标、角度和重复结构如何生成图案'],
-    deliverables: ['画出一个带颜色的几何作品', '完成一个循环绘图挑战', '保存一段可复用的绘图模板代码'],
-    checks: ['能预测 forward 和 right 后海龟的位置方向', '能解释为什么循环能画正多边形', '能排查未落笔、角度错误和颜色拼写问题'],
-};
-
 export default function PythonFoundation5() {
     const navigate = useNavigate();
     const [activeSection, setActiveSection] = useState(1);
@@ -1132,14 +1125,6 @@ export default function PythonFoundation5() {
                         </header>
 
                         <PythonFoundationSupport lessonId="f5" />
-
-                        <LessonQualityBar
-                            goals={lessonQuality.goals}
-                            deliverables={lessonQuality.deliverables}
-                            checks={lessonQuality.checks}
-                            accent="teal"
-                        />
-
                         <ActiveComponent />
                         <PythonFoundationSupport lessonId="f5" placement="bottom" />
                     </div>
