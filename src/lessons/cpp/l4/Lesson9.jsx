@@ -1,5 +1,6 @@
 import React, { useMemo, useState } from 'react';
 import { ArrowRightLeft, ClipboardCheck, Repeat, Search } from 'lucide-react';
+import CppL4LessonSupport from '../../../components/CppL4LessonSupport';
 import CppLessonShell, { Callout, CodeBlock, CompareTable, MiniQuiz, StepList } from '../CppLessonShell';
 
 const sections = [
@@ -106,6 +107,8 @@ export default function CppL4Lesson9() {
             sections={sections}
             previousPath="/lesson/4/8"
             nextPath="/lesson/4/10"
+            topSupport={<CppL4LessonSupport lessonId={9} />}
+            bottomSupport={<CppL4LessonSupport lessonId={9} placement="bottom" />}
             hero={{
                 title: '冒泡排序的诀窍：只盯住相邻两个人，顺序错了就交换',
                 description: '本课把排序拆成可观察的轮次：每一轮都把当前最大值推到右边，最终整个数组从小到大排好。',

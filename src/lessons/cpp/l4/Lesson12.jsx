@@ -1,5 +1,6 @@
 import React, { useMemo, useState } from 'react';
 import { ClipboardCheck, GitBranch, Search, TrendingUp } from 'lucide-react';
+import CppL4LessonSupport from '../../../components/CppL4LessonSupport';
 import CppLessonShell, { Callout, CodeBlock, CompareTable, MiniQuiz, StepList } from '../CppLessonShell';
 
 const sections = [
@@ -87,6 +88,8 @@ export default function CppL4Lesson12() {
             sections={sections}
             previousPath="/lesson/4/11"
             nextPath="/lesson/4/13"
+            topSupport={<CppL4LessonSupport lessonId={12} />}
+            bottomSupport={<CppL4LessonSupport lessonId={12} placement="bottom" />}
             hero={{
                 title: '递推不是猜答案，而是写清楚“下一步怎么来”',
                 description: '本课建立递推三要素：初始值、递推关系、计算顺序。它是后续动态规划的入口。',

@@ -1,5 +1,6 @@
 import React, { useMemo, useState } from 'react';
 import { ClipboardCheck, MoveLeft, Search, Rows3 } from 'lucide-react';
+import CppL4LessonSupport from '../../../components/CppL4LessonSupport';
 import CppLessonShell, { Callout, CodeBlock, CompareTable, MiniQuiz, StepList } from '../CppLessonShell';
 
 const sections = [
@@ -101,6 +102,8 @@ export default function CppL4Lesson10() {
             sections={sections}
             previousPath="/lesson/4/9"
             nextPath="/lesson/4/11"
+            topSupport={<CppL4LessonSupport lessonId={10} />}
+            bottomSupport={<CppL4LessonSupport lessonId={10} placement="bottom" />}
             hero={{
                 title: '插入排序像摸牌：新牌拿到后，插进左边正确的位置',
                 description: '本课强调“有序区”的概念：左边始终排好序，右边逐个取出元素插入进去。',

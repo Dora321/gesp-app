@@ -1,5 +1,6 @@
 import React, { useMemo, useState } from 'react';
 import { ClipboardCheck, MousePointer2, Search, Trophy } from 'lucide-react';
+import CppL4LessonSupport from '../../../components/CppL4LessonSupport';
 import CppLessonShell, { Callout, CodeBlock, CompareTable, MiniQuiz, StepList } from '../CppLessonShell';
 
 const sections = [
@@ -102,6 +103,8 @@ export default function CppL4Lesson11() {
             sections={sections}
             previousPath="/lesson/4/10"
             nextPath="/lesson/4/12"
+            topSupport={<CppL4LessonSupport lessonId={11} />}
+            bottomSupport={<CppL4LessonSupport lessonId={11} placement="bottom" />}
             hero={{
                 title: '选择排序的核心：先找到目标，再交换到边界',
                 description: '本课用升序排序讲“选择最小值”。同样的方法也可以改成每轮选择最大值，关键是记录目标下标。',
