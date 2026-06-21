@@ -93,6 +93,37 @@ const previousReason = {
   f7: '集合会和列表、循环、成员判断一起出现，F3 与 F6 都是重要前置。',
 };
 
+const practiceLinksByLesson = {
+  f1: [
+    { label: '复盘 F1：输入、输出与变量', path: '/python/f1' },
+    { label: '预习 F2：让程序会判断和重复', path: '/python/f2' },
+  ],
+  f2: [
+    { label: '复盘 F1：变量和类型地基', path: '/python/f1' },
+    { label: '预习 F3：列表、字典和字符串', path: '/python/f3' },
+  ],
+  f3: [
+    { label: '复盘 F2：条件和循环', path: '/python/f2' },
+    { label: '预习 F4：函数与模块封装', path: '/python/f4' },
+  ],
+  f4: [
+    { label: '复盘 F3：数据结构选择', path: '/python/f3' },
+    { label: '预习 F5：用 turtle 做可见作品', path: '/python/f5' },
+  ],
+  f5: [
+    { label: '复盘 F4：函数、参数和模块', path: '/python/f4' },
+    { label: '预习 F6：随机规则小游戏', path: '/python/f6' },
+  ],
+  f6: [
+    { label: '复盘 F2：循环和条件判断', path: '/python/f2' },
+    { label: '预习 F7：集合去重和关系分析', path: '/python/f7' },
+  ],
+  f7: [
+    { label: '复盘 F3：列表、字典和字符串', path: '/python/f3' },
+    { label: '进入 A1：算法思维入门', path: '/python/a1' },
+  ],
+};
+
 export function getPythonFoundationSupport(lessonId) {
   const index = pythonFoundationLessons.findIndex((item) => item.id === lessonId);
   const current = pythonFoundationLessons[index];
@@ -133,8 +164,8 @@ export function getPythonFoundationSupport(lessonId) {
           reason: nextReason[lessonId],
         },
     practiceLinks: [
-      { label: '回到首页查看 Python 学习路径', path: '/' },
-      { label: '进入 Python 项目线', path: '/python/a1' },
+      ...(practiceLinksByLesson[lessonId] || []),
+      { label: '查看 Python 学习路径', path: '/' },
     ],
     reviewTasks: details.reviewTasks,
   };

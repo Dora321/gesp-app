@@ -835,6 +835,12 @@ async function main() {
     ['f6', 'PythonFoundation6.jsx'],
     ['f7', 'PythonFoundation7.jsx'],
   ];
+  const pythonCoursePaths = new Set([
+    '/',
+    ...pythonFoundationLessons.map((lesson) => lesson.path),
+    ...pythonProjects.map((project) => project.path),
+  ]);
+  const foundationPracticeSignatures = new Set();
 
   for (const [lessonId, fileName] of foundationPages) {
     const support = getPythonFoundationSupport(lessonId);
@@ -842,6 +848,12 @@ async function main() {
     assert(support?.quality?.deliverables?.length >= 3, `Python foundation ${lessonId} needs at least 3 deliverables.`);
     assert(support?.quality?.checks?.length >= 3, `Python foundation ${lessonId} needs at least 3 checks.`);
     assert(support?.reviewTasks?.length >= 2, `Python foundation ${lessonId} needs review tasks.`);
+    assert(support?.practiceLinks?.length >= 2, `Python foundation ${lessonId} needs targeted practice links.`);
+    assert(
+      support?.practiceLinks?.every((item) => pythonCoursePaths.has(item.path)),
+      `Python foundation ${lessonId} has a practice link outside the Python course map.`
+    );
+    foundationPracticeSignatures.add(JSON.stringify(support?.practiceLinks?.map((item) => item.path)));
 
     const pagePath = `src/courses/python/foundation/${fileName}`;
     const page = read(pagePath);
@@ -854,6 +866,10 @@ async function main() {
       `${pagePath}: missing bottom PythonFoundationSupport.`
     );
   }
+  assert(
+    foundationPracticeSignatures.size > 1,
+    'Python foundation practice links should be lesson-specific instead of the same generic links for every lesson.'
+  );
 
   const projectPages = [
     ['a1', 'PythonAdvanced1.jsx'],
