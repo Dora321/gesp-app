@@ -1,8 +1,8 @@
-import React, { useState, useRef, useEffect, useMemo } from 'react';
-import { Link, useNavigate } from 'react-router-dom';
-import { GitBranch, Repeat, HelpCircle, CheckCircle, AlertTriangle, ArrowRight, Play, RefreshCw, XCircle, Menu, X, Zap, List, Grid3x3, TreePine, TrendingUp, Code } from 'lucide-react';
+import React, { useState, useMemo } from 'react';
+import { GitBranch, Repeat, HelpCircle, CheckCircle, AlertTriangle, Play, RefreshCw, XCircle, Zap, List, Grid3x3, TreePine, TrendingUp, Code } from 'lucide-react';
 import PythonFoundationSupport from '../../../components/PythonFoundationSupport';
 import PyCodeTracer from '../../../components/PyCodeTracer';
+import PythonLessonShell, { SlideHeader } from '../shell/PythonLessonShell';
 
 // --- Shared Components ---
 const Button = ({ onClick, children, className, variant = 'primary', disabled = false }) => {
@@ -42,16 +42,9 @@ const BooleanSlide = () => {
 
     return (
         <div className="space-y-6 animate-in fade-in slide-in-from-bottom-4 duration-500">
-            <div className="bg-blue-50 p-6 rounded-2xl border border-blue-100 text-blue-900">
-                <h2 className="text-2xl font-bold mb-4 flex items-center gap-2">
-                    <CheckCircle className="text-blue-600" />
-                    布尔逻辑：非黑即白
-                </h2>
-                <p className="text-lg mb-4">
-                    计算机的世界只有两种状态：<strong>True (真)</strong> 和 <strong>False (假)</strong>。
-                    这就像电灯的开关，要么开，要么关。
-                </p>
-            </div>
+            <SlideHeader accent="blue" icon={CheckCircle} title="布尔逻辑：非黑即白">
+                计算机的世界只有两种状态：<strong>True (真)</strong> 和 <strong>False (假)</strong>。这就像电灯的开关，要么开，要么关。
+            </SlideHeader>
 
             <div className="grid md:grid-cols-2 gap-8">
                 <div className="bg-white p-6 rounded-2xl shadow-lg border border-slate-100">
@@ -187,16 +180,9 @@ const ComparisonSlide = () => {
 
     return (
         <div className="space-y-6 animate-in fade-in slide-in-from-bottom-4 duration-500">
-            <div className="bg-emerald-100 p-6 rounded-2xl border border-emerald-200 text-emerald-900">
-                <h2 className="text-2xl font-bold mb-4 flex items-center gap-2">
-                    <Zap className="text-emerald-600" />
-                    比较运算符：谁大谁小？
-                </h2>
-                <p className="text-lg mb-4">
-                    比较运算符用来比较两个值的大小或是否相等。
-                    结果总是 <strong>True</strong> 或 <strong>False</strong>。
-                </p>
-            </div>
+            <SlideHeader accent="blue" icon={Zap} title="比较运算符：谁大谁小？">
+                比较运算符用来比较两个值的大小或是否相等。结果总是 <strong>True</strong> 或 <strong>False</strong>。
+            </SlideHeader>
 
             <div className="grid md:grid-cols-2 gap-8">
                 {/* Number Controls */}
@@ -315,16 +301,9 @@ const ConditionSlide = () => {
 
     return (
         <div className="space-y-6 animate-in fade-in slide-in-from-bottom-4 duration-500">
-            <div className="bg-orange-100 p-6 rounded-2xl border border-orange-200 text-orange-900">
-                <h2 className="text-2xl font-bold mb-4 flex items-center gap-2">
-                    <GitBranch className="text-orange-600" />
-                    条件判断：智慧抉择
-                </h2>
-                <p>
-                    <strong>if (如果)</strong>, <strong>elif (否则如果)</strong>, <strong>else (否则)</strong> 是程序的“大脑”。
-                    它们让程序根据不同的情况做出不同的反应。
-                </p>
-            </div>
+            <SlideHeader accent="blue" icon={GitBranch} title="条件判断：智慧抉择">
+                <strong>if (如果)</strong>、<strong>elif (否则如果)</strong>、<strong>else (否则)</strong> 是程序的“大脑”。它们让程序根据不同情况做出不同反应。
+            </SlideHeader>
 
             <div className="flex flex-col md:flex-row gap-8 items-center justify-center mt-10">
                 {/* Traffic Light */}
@@ -394,16 +373,9 @@ const NestedConditionSlide = () => {
 
     return (
         <div className="space-y-6 animate-in fade-in slide-in-from-bottom-4 duration-500">
-            <div className="bg-sky-100 p-6 rounded-2xl border border-sky-200 text-sky-900">
-                <h2 className="text-2xl font-bold mb-4 flex items-center gap-2">
-                    <TreePine className="text-sky-600" />
-                    嵌套条件：决策树
-                </h2>
-                <p>
-                    当一个 if 里面还有 if，就是<strong>嵌套条件</strong>。
-                    就像走迷宫，每个岔路口都要做选择！
-                </p>
-            </div>
+            <SlideHeader accent="blue" icon={TreePine} title="嵌套条件：决策树">
+                当一个 if 里面还有 if，就是<strong>嵌套条件</strong>。就像走迷宫，每个岔路口都要做选择！
+            </SlideHeader>
 
             <div className="grid md:grid-cols-2 gap-8">
                 {/* Controls */}
@@ -539,18 +511,9 @@ const LoopSlide = () => {
 
     return (
         <div className="space-y-6 animate-in fade-in slide-in-from-bottom-4 duration-500">
-            <div className="bg-indigo-100 p-6 rounded-2xl border border-indigo-200 text-indigo-900">
-                <h2 className="text-2xl font-bold mb-4 flex items-center gap-2">
-                    <Repeat className="text-indigo-600" />
-                    循环：不知疲倦的机器
-                </h2>
-                <p>
-                    <strong>for 循环</strong> 像是一个计数器，让程序重复执行特定的次数。
-                    输入想让机器人走的步数，看看它会走多远！
-                    <br />
-                    <span className="text-sm opacity-70">(假设一步是 0.5 米)</span>
-                </p>
-            </div>
+            <SlideHeader accent="blue" icon={Repeat} title="循环：不知疲倦的机器">
+                <strong>for 循环</strong> 像一个计数器，让程序重复执行特定的次数。输入想让机器人走的步数，看看它会走多远！<span className="text-sm opacity-70">（假设一步 0.5 米）</span>
+            </SlideHeader>
 
             <div className="grid md:grid-cols-2 gap-8 mt-8">
                 <div className="space-y-4">
@@ -777,16 +740,9 @@ const ChallengeSlide = () => {
 
     return (
         <div className="space-y-6 animate-in fade-in slide-in-from-bottom-4 duration-500">
-            <div className="bg-red-50 p-6 rounded-2xl border border-red-100 text-red-900">
-                <h2 className="text-2xl font-bold mb-4 flex items-center gap-2">
-                    <AlertTriangle className="text-red-600" />
-                    While 循环与中断
-                </h2>
-                <p>
-                    <strong>while</strong> 只要条件满足就会一直执行。小心不要写出<strong>死循环</strong>（永远停不下来）！
-                    我们可以用 <strong>break</strong> 紧急刹车。
-                </p>
-            </div>
+            <SlideHeader accent="blue" icon={AlertTriangle} title="While 循环与中断">
+                <strong>while</strong> 只要条件满足就会一直执行。小心别写出<strong>死循环</strong>（永远停不下来）！必要时用 <strong>break</strong> 紧急刹车。
+            </SlideHeader>
 
             <div className="bg-slate-900 rounded-2xl p-8 text-white relative overflow-hidden">
                 <div className="flex justify-between items-start z-10 relative">
@@ -874,15 +830,9 @@ const QuizSlide = () => {
 
     return (
         <div className="space-y-6 animate-in fade-in slide-in-from-bottom-4 duration-500">
-            <div className="bg-purple-100 p-6 rounded-2xl border border-purple-200 text-purple-900">
-                <h2 className="text-2xl font-bold mb-4 flex items-center gap-2">
-                    <HelpCircle className="text-purple-600" />
-                    逻辑大师挑战赛
-                </h2>
-                <p>
-                    证明你是逻辑鬼才的时候到了！
-                </p>
-            </div>
+            <SlideHeader accent="blue" icon={HelpCircle} title="逻辑大师挑战赛">
+                证明你是逻辑鬼才的时候到了！答对全部题目即可通关。
+            </SlideHeader>
 
             <div className="bg-white p-6 rounded-2xl shadow-lg border border-slate-100 space-y-6">
                 {questions.map((q, idx) => (
@@ -971,196 +921,33 @@ const QuizSlide = () => {
 };
 
 const sections = [
-    { id: 1, title: '布尔逻辑', icon: CheckCircle, component: BooleanSlide },
-    { id: 2, title: '比较运算', icon: Zap, component: ComparisonSlide },
-    { id: 3, title: '条件判断', icon: GitBranch, component: ConditionSlide },
-    { id: 4, title: '嵌套条件', icon: TreePine, component: NestedConditionSlide },
-    { id: 5, title: 'For 循环', icon: Repeat, component: LoopSlide },
-    { id: 6, title: 'While 火箭', icon: AlertTriangle, component: ChallengeSlide },
-    { id: 7, title: '逻辑大师', icon: HelpCircle, component: QuizSlide },
+    { id: 1, title: '布尔逻辑', category: '真与假', icon: CheckCircle, component: BooleanSlide },
+    { id: 2, title: '比较运算', category: '得到真假', icon: Zap, component: ComparisonSlide },
+    { id: 3, title: '条件判断', category: 'if / elif / else', icon: GitBranch, component: ConditionSlide },
+    { id: 4, title: '嵌套条件', category: '决策树', icon: TreePine, component: NestedConditionSlide },
+    { id: 5, title: 'For 循环', category: '按次数重复', icon: Repeat, component: LoopSlide },
+    { id: 6, title: 'While 火箭', category: '按条件重复', icon: AlertTriangle, component: ChallengeSlide },
+    { id: 7, title: '逻辑大师', category: '闯关测验', icon: HelpCircle, component: QuizSlide },
 ];
 
 export default function PythonFoundation2() {
-    const navigate = useNavigate();
-    const [activeSection, setActiveSection] = useState(1);
-    const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
-    const scrollRef = useRef(null);
-
-    useEffect(() => {
-        scrollRef.current?.scrollTo(0, 0);
-    }, [activeSection]);
-    const ActiveComponent = sections.find(s => s.id === activeSection)?.component || (() => <div>Coming Soon</div>);
-
     return (
-        <div className="flex flex-col md:flex-row h-screen bg-slate-50 font-sans text-slate-800 selection:bg-blue-100">
-            {/* Mobile Header */}
-            <div className="md:hidden bg-white border-b border-slate-200 p-4 flex justify-between items-center sticky top-0 z-20">
-                <div className="font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-blue-600 to-cyan-600 flex items-center gap-2">
-                    <span className="text-lg">F2: 控制流程</span>
-                </div>
-                <button
-                    onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-                    className="p-2 text-slate-600"
-                    aria-label={isMobileMenuOpen ? '关闭课程目录' : '打开课程目录'}
-                    aria-expanded={isMobileMenuOpen}
-                >
-                    {isMobileMenuOpen ? <X /> : <Menu />}
-                </button>
-            </div>
-
-            {/* Sidebar */}
-            <div className={`
-                fixed inset-y-0 left-0 z-50 w-64 bg-white border-r border-slate-200 flex flex-col transition-transform duration-300
-                md:relative md:translate-x-0
-                ${isMobileMenuOpen ? 'translate-x-0' : '-translate-x-full'}
-            `}>
-                <div className="p-6 border-b border-slate-100 hidden md:block">
-                    <h1 className="text-xl font-bold text-blue-600 flex items-center gap-2">
-                        <Link to="/" className="hover:opacity-80 transition-opacity">
-                            <img src={`${import.meta.env.BASE_URL}logo.jpg`} alt="Logo" className="w-8 h-8 rounded-lg object-cover border border-slate-200 shadow-sm" />
-                        </Link>
-                        <span className="bg-blue-600 text-white p-1 rounded text-sm">Python</span>
-                        F2: 控制流程
-                    </h1>
-                    <p className="text-xs text-slate-500 mt-2">Python 基础体系</p>
-                </div>
-
-                <div className="flex-1 overflow-y-auto p-4 space-y-6">
-                    {/* Group 1: 布尔 & 比较 */}
-                    <div>
-                        <div className="px-4 mb-2 text-xs font-bold text-slate-400 uppercase tracking-wider">🔢 布尔与比较</div>
-                        <div className="space-y-1">
-                            {sections.slice(0, 2).map(section => (
-                                <button
-                                    key={section.id}
-                                    onClick={() => {
-                                        setActiveSection(section.id);
-                                        setIsMobileMenuOpen(false);
-                                    }}
-                                    className={`w-full flex items-center gap-3 px-4 py-2.5 rounded-lg transition-colors text-sm ${activeSection === section.id
-                                        ? 'bg-blue-50 text-blue-700 font-medium'
-                                        : 'text-slate-600 hover:bg-slate-50'
-                                        }`}
-                                >
-                                    <section.icon size={18} className={activeSection === section.id ? 'text-blue-600' : 'text-slate-400'} />
-                                    {section.title}
-                                </button>
-                            ))}
-                        </div>
-                    </div>
-
-                    {/* Group 2: 条件判断 */}
-                    <div>
-                        <div className="px-4 mb-2 text-xs font-bold text-slate-400 uppercase tracking-wider">🚦 条件分支</div>
-                        <div className="space-y-1">
-                            {sections.slice(2, 4).map(section => (
-                                <button
-                                    key={section.id}
-                                    onClick={() => {
-                                        setActiveSection(section.id);
-                                        setIsMobileMenuOpen(false);
-                                    }}
-                                    className={`w-full flex items-center gap-3 px-4 py-2.5 rounded-lg transition-colors text-sm ${activeSection === section.id
-                                        ? 'bg-blue-50 text-blue-700 font-medium'
-                                        : 'text-slate-600 hover:bg-slate-50'
-                                        }`}
-                                >
-                                    <section.icon size={18} className={activeSection === section.id ? 'text-blue-600' : 'text-slate-400'} />
-                                    {section.title}
-                                </button>
-                            ))}
-                        </div>
-                    </div>
-
-                    {/* Group 3: 循环 */}
-                    <div>
-                        <div className="px-4 mb-2 text-xs font-bold text-slate-400 uppercase tracking-wider">🔁 循环结构</div>
-                        <div className="space-y-1">
-                            {sections.slice(4, 6).map(section => (
-                                <button
-                                    key={section.id}
-                                    onClick={() => {
-                                        setActiveSection(section.id);
-                                        setIsMobileMenuOpen(false);
-                                    }}
-                                    className={`w-full flex items-center gap-3 px-4 py-2.5 rounded-lg transition-colors text-sm ${activeSection === section.id
-                                        ? 'bg-blue-50 text-blue-700 font-medium'
-                                        : 'text-slate-600 hover:bg-slate-50'
-                                        }`}
-                                >
-                                    <section.icon size={18} className={activeSection === section.id ? 'text-blue-600' : 'text-slate-400'} />
-                                    {section.title}
-                                </button>
-                            ))}
-                        </div>
-                    </div>
-
-                    {/* Group 4: 挑战 */}
-                    <div>
-                        <div className="px-4 mb-2 text-xs font-bold text-slate-400 uppercase tracking-wider">🏆 毕业挑战</div>
-                        <div className="space-y-1">
-                            {sections.slice(6, 7).map(section => (
-                                <button
-                                    key={section.id}
-                                    onClick={() => {
-                                        setActiveSection(section.id);
-                                        setIsMobileMenuOpen(false);
-                                    }}
-                                    className={`w-full flex items-center gap-3 px-4 py-2.5 rounded-lg transition-colors text-sm ${activeSection === section.id
-                                        ? 'bg-blue-50 text-blue-700 font-medium'
-                                        : 'text-slate-600 hover:bg-slate-50'
-                                        }`}
-                                >
-                                    <section.icon size={18} className={activeSection === section.id ? 'text-blue-600' : 'text-slate-400'} />
-                                    {section.title}
-                                </button>
-                            ))}
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            {/* Main Content */}
-            <div className="flex-1 flex flex-col h-full overflow-hidden relative">
-                <div ref={scrollRef} className="flex-1 overflow-y-auto p-4 md:p-8">
-                    <div className="max-w-4xl mx-auto">
-                        <header className="mb-6 md:mb-8">
-                            <h2 className="text-2xl md:text-3xl font-bold text-slate-800 mb-2">
-                                {sections.find(s => s.id === activeSection)?.title}
-                            </h2>
-                            <div className="h-1 w-20 bg-blue-500 rounded-full"></div>
-                        </header>
-
-                        <PythonFoundationSupport lessonId="f2" />
-                        <ActiveComponent />
-                        <PythonFoundationSupport lessonId="f2" placement="bottom" />
-                    </div>
-                </div>
-
-                <div className="h-20 bg-white border-t border-slate-200 flex items-center justify-between px-8 z-20 flex-shrink-0">
-                    <button
-                        onClick={() => setActiveSection(prev => Math.max(1, prev - 1))}
-                        disabled={activeSection === 1}
-                        className={`px-5 py-2.5 rounded-lg flex items-center gap-2 font-bold transition-all
-                            ${activeSection === 1 ? 'text-gray-300 cursor-not-allowed' : 'text-gray-600 hover:bg-gray-100 hover:shadow-sm'}`}
-                    >
-                        <ArrowRight className="rotate-180" size={18} /> 上一节
-                    </button>
-
-                    <button
-                        onClick={() => {
-                            if (activeSection < sections.length) {
-                                setActiveSection(prev => prev + 1);
-                            } else {
-                                navigate('/python/f3');
-                            }
-                        }}
-                        className={`px-6 py-2.5 rounded-lg flex items-center gap-2 font-bold transition-all shadow-sm bg-blue-600 text-white hover:bg-blue-700 hover:shadow-md hover:-translate-y-0.5`}
-                    >
-                        {activeSection === sections.length ? '下一课' : '下一节'} <ArrowRight size={18} />
-                    </button>
-                </div>
-            </div>
-        </div>
+        <PythonLessonShell
+            eyebrow="PYTHON FOUNDATION"
+            lessonCode="F2"
+            lessonTitle="控制流程"
+            lessonSubtitle="让程序学会判断和重复"
+            accent="blue"
+            hero={{
+                title: '让程序学会“判断”和“重复”',
+                description: '这一课把程序从“一行一行往下走”，升级成会根据条件做选择、按规则重复——这是后面写任何小游戏和小工具的基础。',
+            }}
+            sections={sections}
+            previousPath="/python/f1"
+            nextPath="/python/f3"
+            nextLabel="下一课：F3 列表与字典"
+            topSupport={<PythonFoundationSupport lessonId="f2" />}
+            bottomSupport={<PythonFoundationSupport lessonId="f2" placement="bottom" />}
+        />
     );
 }

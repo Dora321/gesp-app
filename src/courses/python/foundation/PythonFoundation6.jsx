@@ -1,5 +1,5 @@
-import React, { useState, useRef, useEffect } from 'react';
-import { Link, useNavigate } from 'react-router-dom';
+import React, { useState, useEffect } from 'react';
+import { Link } from 'react-router-dom';
 import {
     Dices, Shuffle, HelpCircle, Trophy, BookOpen,
     Zap, Star, Menu, X, ArrowRight, MousePointer2,
@@ -7,6 +7,7 @@ import {
     Sliders, Key, BarChart2, Calculator, Coins, ChevronUp, ChevronDown
 } from 'lucide-react';
 import PythonFoundationSupport from '../../../components/PythonFoundationSupport';
+import PythonLessonShell from '../shell/PythonLessonShell';
 
 // --- Shared Helper Components (Reused style) ---
 const Button = ({ onClick, children, className, variant = 'primary', disabled = false }) => {
@@ -1253,110 +1254,24 @@ const sections = [
 ];
 
 export default function PythonFoundation6() {
-    const navigate = useNavigate();
-    const [activeSection, setActiveSection] = useState(1);
-    const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
-    const scrollRef = useRef(null);
-
-    useEffect(() => {
-        scrollRef.current?.scrollTo(0, 0);
-    }, [activeSection]);
-
-    const ActiveComponent = sections.find(s => s.id === activeSection)?.component || (() => <div>Error</div>);
-
     return (
-        <div className="flex flex-col md:flex-row h-screen bg-slate-50 font-sans text-slate-800 selection:bg-indigo-100">
-            {/* Mobile Header */}
-            <div className="md:hidden bg-white border-b border-slate-200 p-4 flex justify-between items-center sticky top-0 z-20">
-                <div className="font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-indigo-600 to-purple-600 flex items-center gap-2">
-                    <span className="text-lg">F6: 随机世界</span>
-                </div>
-                <button
-                    onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-                    className="p-2 text-slate-600"
-                    aria-label={isMobileMenuOpen ? '关闭课程目录' : '打开课程目录'}
-                    aria-expanded={isMobileMenuOpen}
-                >
-                    {isMobileMenuOpen ? <X /> : <Menu />}
-                </button>
-            </div>
-
-            {/* Sidebar */}
-            <div className={`
-                fixed inset-y-0 left-0 z-50 w-64 bg-white border-r border-slate-200 flex flex-col transition-transform duration-300
-                md:relative md:translate-x-0
-                ${isMobileMenuOpen ? 'translate-x-0' : '-translate-x-full'}
-            `}>
-                <div className="p-6 border-b border-slate-100 hidden md:block">
-                    <h1 className="text-xl font-bold text-emerald-600 flex items-center gap-2">
-                        <Link to="/" className="hover:opacity-80 transition-opacity">
-                            <img src={`${import.meta.env.BASE_URL}logo.jpg`} alt="Logo" className="w-8 h-8 rounded-lg object-cover border border-slate-200 shadow-sm" />
-                        </Link>
-                        <span className="bg-emerald-600 text-white p-1 rounded text-sm">Python</span>
-                        F6: 随机世界
-                    </h1>
-                </div>
-                <div className="flex-1 overflow-y-auto p-4 space-y-2">
-                    {sections.map(section => (
-                        <button
-                            key={section.id}
-                            onClick={() => {
-                                setActiveSection(section.id);
-                                setIsMobileMenuOpen(false);
-                            }}
-                            className={`w-full flex items-center gap-3 px-4 py-3 rounded-lg transition-colors text-sm font-medium ${activeSection === section.id
-                                ? 'bg-emerald-50 text-emerald-700 shadow-sm'
-                                : 'text-slate-600 hover:bg-slate-50'
-                                }`}
-                        >
-                            <section.icon size={18} className={activeSection === section.id ? 'text-emerald-600' : 'text-slate-400'} />
-                            {section.title}
-                        </button>
-                    ))}
-                </div>
-            </div>
-
-            {/* Main Content */}
-            <div className="flex-1 flex flex-col h-full overflow-hidden relative">
-                <div ref={scrollRef} className="flex-1 overflow-y-auto p-4 md:p-8">
-                    <div className="max-w-4xl mx-auto">
-                        <header className="mb-8">
-                            <h2 className="text-3xl font-bold text-slate-800 mb-2">
-                                {sections.find(s => s.id === activeSection)?.title}
-                            </h2>
-                            <div className="h-1 w-20 bg-indigo-500 rounded-full"></div>
-                        </header>
-                        <PythonFoundationSupport lessonId="f6" />
-                        <ActiveComponent />
-                        <PythonFoundationSupport lessonId="f6" placement="bottom" />
-                    </div>
-                </div>
-
-                {/* Footer Nav */}
-                <div className="h-20 bg-white border-t border-slate-200 flex items-center justify-between px-8 z-20 flex-shrink-0">
-                    <button
-                        onClick={() => setActiveSection(prev => Math.max(1, prev - 1))}
-                        disabled={activeSection === 1}
-                        className={`px-4 py-2 rounded-lg flex items-center gap-2 font-bold transition-all
-                            ${activeSection === 1 ? 'text-gray-300 cursor-not-allowed' : 'text-gray-600 hover:bg-gray-100'}`}
-                    >
-                        <ArrowRight className="rotate-180" size={18} /> 上一节
-                    </button>
-
-                    <button
-                        onClick={() => {
-                            if (activeSection < sections.length) {
-                                setActiveSection(prev => prev + 1);
-                            } else {
-                                navigate('/python/f7');
-                            }
-                        }}
-                        className="px-6 py-2 rounded-lg flex items-center gap-2 font-bold bg-indigo-600 text-white hover:bg-indigo-700 shadow-md transition-all hover:-translate-y-0.5"
-                    >
-                        {activeSection === sections.length ? '进入 F7' : '下一节'} <ArrowRight size={18} />
-                    </button>
-                </div>
-            </div>
-        </div>
+        <PythonLessonShell
+            eyebrow="PYTHON FOUNDATION"
+            lessonCode="F6"
+            lessonTitle="随机世界"
+            lessonSubtitle="让程序拥有不确定性"
+            accent="indigo"
+            hero={{
+                title: '让程序学会“掷骰子”',
+                description: '认识 random 模块，用 randint、choice、shuffle 做出有随机规则的小游戏和测试数据。',
+            }}
+            sections={sections}
+            previousPath="/python/f5"
+            nextPath="/python/f7"
+            nextLabel="下一课：F7 集合宝藏"
+            topSupport={<PythonFoundationSupport lessonId="f6" />}
+            bottomSupport={<PythonFoundationSupport lessonId="f6" placement="bottom" />}
+        />
     );
 }
+

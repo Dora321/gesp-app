@@ -1,7 +1,8 @@
-import React, { useState, useRef, useEffect } from 'react';
-import { Link, useNavigate } from 'react-router-dom';
+import React, { useState, useEffect } from 'react';
+import { Link } from 'react-router-dom';
 import { Layers, List, Box, Key, Search, ArrowRight, RefreshCw, Plus, Trash2, Edit3, Menu, X } from 'lucide-react';
 import PythonFoundationSupport from '../../../components/PythonFoundationSupport';
+import PythonLessonShell from '../shell/PythonLessonShell';
 
 // --- Shared Components ---
 const Button = ({ onClick, children, className, variant = 'primary', disabled = false }) => {
@@ -1017,117 +1018,24 @@ const sections = [
 ];
 
 export default function PythonFoundation3() {
-    const navigate = useNavigate();
-    const [activeSection, setActiveSection] = useState(1);
-    const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
-    const scrollRef = useRef(null);
-
-    useEffect(() => {
-        scrollRef.current?.scrollTo(0, 0);
-    }, [activeSection]);
-
-    const ActiveComponent = sections.find(s => s.id === activeSection)?.component || (() => <div>Coming Soon</div>);
-
     return (
-        <div className="flex flex-col md:flex-row h-screen bg-slate-50 font-sans text-slate-800 selection:bg-teal-100">
-            {/* Mobile Header */}
-            <div className="md:hidden bg-white border-b border-slate-200 p-4 flex justify-between items-center sticky top-0 z-20">
-                <div className="font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-teal-600 to-emerald-600 flex items-center gap-2">
-                    <span className="text-lg">F3: 列表与字典</span>
-                </div>
-                <button
-                    onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-                    className="p-2 text-slate-600"
-                    aria-label={isMobileMenuOpen ? '关闭课程目录' : '打开课程目录'}
-                    aria-expanded={isMobileMenuOpen}
-                >
-                    {isMobileMenuOpen ? <X /> : <Menu />}
-                </button>
-            </div>
-
-            {/* Sidebar */}
-            <div className={`
-                fixed inset-y-0 left-0 z-50 w-64 bg-white border-r border-slate-200 flex flex-col transition-transform duration-300
-                md:relative md:translate-x-0
-                ${isMobileMenuOpen ? 'translate-x-0' : '-translate-x-full'}
-            `}>
-                <div className="p-6 border-b border-slate-100 hidden md:block">
-                    <h1 className="text-xl font-bold text-teal-600 flex items-center gap-2">
-                        <Link to="/" className="hover:opacity-80 transition-opacity">
-                            <img src={`${import.meta.env.BASE_URL}logo.jpg`} alt="Logo" className="w-8 h-8 rounded-lg object-cover border border-slate-200 shadow-sm" />
-                        </Link>
-                        <span className="bg-teal-600 text-white p-1 rounded text-sm">Python</span>
-                        F3: 列表与字典
-                    </h1>
-                    <p className="text-xs text-slate-500 mt-2">Python 基础体系</p>
-                </div>
-                <div className="flex-1 overflow-y-auto p-4 space-y-6">
-                    {/* Group: 数据容器 */}
-                    <div>
-                        <div className="px-4 mb-2 text-xs font-bold text-slate-400 uppercase tracking-wider">📦 数据容器</div>
-                        <div className="space-y-1">
-                            {sections.map(section => (
-                                <button
-                                    key={section.id}
-                                    onClick={() => {
-                                        setActiveSection(section.id);
-                                        setIsMobileMenuOpen(false);
-                                    }}
-                                    className={`w-full flex items-center gap-3 px-4 py-2.5 rounded-lg transition-colors text-sm ${activeSection === section.id
-                                        ? 'bg-teal-50 text-teal-700 font-medium'
-                                        : 'text-slate-600 hover:bg-slate-50'
-                                        }`}
-                                >
-                                    <section.icon size={18} className={activeSection === section.id ? 'text-teal-600' : 'text-slate-400'} />
-                                    {section.title}
-                                </button>
-                            ))}
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            {/* Main Content */}
-            <div className="flex-1 flex flex-col h-full overflow-hidden relative">
-                <div ref={scrollRef} className="flex-1 overflow-y-auto p-4 md:p-8">
-                    <div className="max-w-4xl mx-auto">
-                        <header className="mb-6 md:mb-8">
-                            <h2 className="text-2xl md:text-3xl font-bold text-slate-800 mb-2">
-                                {sections.find(s => s.id === activeSection)?.title}
-                            </h2>
-                            <div className="h-1 w-20 bg-teal-500 rounded-full"></div>
-                        </header>
-
-                        <PythonFoundationSupport lessonId="f3" />
-                        <ActiveComponent />
-                        <PythonFoundationSupport lessonId="f3" placement="bottom" />
-                    </div>
-                </div>
-
-                <div className="h-20 bg-white border-t border-slate-200 flex items-center justify-between px-8 z-20 flex-shrink-0">
-                    <button
-                        onClick={() => setActiveSection(prev => Math.max(1, prev - 1))}
-                        disabled={activeSection === 1}
-                        className={`px-5 py-2.5 rounded-lg flex items-center gap-2 font-bold transition-all
-                            ${activeSection === 1 ? 'text-gray-300 cursor-not-allowed' : 'text-gray-600 hover:bg-gray-100 hover:shadow-sm'}`}
-                    >
-                        <ArrowRight className="rotate-180" size={18} /> 上一节
-                    </button>
-
-                    <button
-                        onClick={() => {
-                            if (activeSection < sections.length) {
-                                setActiveSection(prev => prev + 1);
-                            } else {
-                                navigate('/python/f4');
-                            }
-                        }}
-                        className={`px-6 py-2.5 rounded-lg flex items-center gap-2 font-bold transition-all shadow-sm bg-teal-600 text-white hover:bg-teal-700 hover:shadow-md hover:-translate-y-0.5`}
-                    >
-                        {activeSection === sections.length ? '下一课' : '下一节'} <ArrowRight size={18} />
-                    </button>
-                </div>
-            </div>
-        </div>
+        <PythonLessonShell
+            eyebrow="PYTHON FOUNDATION"
+            lessonCode="F3"
+            lessonTitle="列表与字典"
+            lessonSubtitle="用数据结构装住真实信息"
+            accent="teal"
+            hero={{
+                title: '用列表和字典装住真实世界的数据',
+                description: '学会用 list、dict、string 组织一组数据并完成增删查改——这是函数和项目处理信息的原料。',
+            }}
+            sections={sections}
+            previousPath="/python/f2"
+            nextPath="/python/f4"
+            nextLabel="下一课：F4 函数与模块"
+            topSupport={<PythonFoundationSupport lessonId="f3" />}
+            bottomSupport={<PythonFoundationSupport lessonId="f3" placement="bottom" />}
+        />
     );
 }
+

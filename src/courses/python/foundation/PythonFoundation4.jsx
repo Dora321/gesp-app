@@ -1,7 +1,8 @@
-import React, { useState, useRef, useEffect } from 'react';
-import { Link, useNavigate } from 'react-router-dom';
+import React, { useState } from 'react';
+import { Link } from 'react-router-dom';
 import { Box, Code, Package, Zap, ArrowRight, RefreshCw, Sparkles, BookOpen, AlertCircle, Menu, X, Play, Trophy, CheckCircle, XCircle, Star, Calculator, Dices, Clock } from 'lucide-react';
 import PythonFoundationSupport from '../../../components/PythonFoundationSupport';
+import PythonLessonShell from '../shell/PythonLessonShell';
 
 // --- Shared Components ---
 const Button = ({ onClick, children, className, variant = 'primary', disabled = false }) => {
@@ -854,149 +855,24 @@ const sections = [
 ];
 
 export default function PythonFoundation4() {
-    const navigate = useNavigate();
-    const [activeSection, setActiveSection] = useState(1);
-    const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
-    const scrollRef = useRef(null);
-
-    useEffect(() => {
-        scrollRef.current?.scrollTo(0, 0);
-    }, [activeSection]);
-    const ActiveComponent = sections.find(s => s.id === activeSection)?.component || (() => <div>Coming Soon</div>);
-
     return (
-        <div className="flex h-screen bg-slate-50 font-sans text-slate-800 selection:bg-indigo-100">
-            {/* Sidebar */}
-            <div className={`
-                fixed inset-y-0 left-0 z-50 w-64 bg-white border-r border-slate-200 flex flex-col transition-transform duration-300 md:relative md:translate-x-0
-                ${isMobileMenuOpen ? 'translate-x-0' : '-translate-x-full'}
-            `}>
-                <div className="p-6 border-b border-slate-100 hidden md:block">
-                    <h1 className="text-xl font-bold text-indigo-600 flex items-center gap-2">
-                        <Link to="/" className="hover:opacity-80 transition-opacity">
-                            <img src={`${import.meta.env.BASE_URL}logo.jpg`} alt="Logo" className="w-8 h-8 rounded-lg object-cover border border-slate-200 shadow-sm" />
-                        </Link>
-                        <span className="bg-indigo-600 text-white p-1 rounded text-sm">Python</span>
-                        F4: 函数与模块
-                    </h1>
-                    <p className="text-xs text-slate-500 mt-2">Python 基础体系</p>
-                </div>
-                <div className="flex-1 overflow-y-auto p-4 space-y-6">
-                    {/* Group 1: 核心概念 */}
-                    <div>
-                        <div className="px-4 mb-2 text-xs font-bold text-slate-400 uppercase tracking-wider">🧩 核心概念</div>
-                        <div className="space-y-1">
-                            {sections.slice(0, 3).map(section => (
-                                <NavButton
-                                    key={section.id}
-                                    section={section}
-                                    activeSection={activeSection}
-                                    onClick={() => {
-                                        setActiveSection(section.id);
-                                        setIsMobileMenuOpen(false);
-                                    }}
-                                />
-                            ))}
-                        </div>
-                    </div>
-
-                    {/* Group 2: 高级进阶 */}
-                    <div>
-                        <div className="px-4 mb-2 text-xs font-bold text-slate-400 uppercase tracking-wider">⚡ 高级进阶</div>
-                        <div className="space-y-1">
-                            {sections.slice(3, 5).map(section => (
-                                <NavButton
-                                    key={section.id}
-                                    section={section}
-                                    activeSection={activeSection}
-                                    onClick={() => {
-                                        setActiveSection(section.id);
-                                        setIsMobileMenuOpen(false);
-                                    }}
-                                />
-                            ))}
-                        </div>
-                    </div>
-
-                    {/* Group 3: 挑战 */}
-                    <div>
-                        <div className="px-4 mb-2 text-xs font-bold text-slate-400 uppercase tracking-wider">🏆 毕业挑战</div>
-                        <div className="space-y-1">
-                            {sections.slice(5, 6).map(section => (
-                                <NavButton
-                                    key={section.id}
-                                    section={section}
-                                    activeSection={activeSection}
-                                    onClick={() => {
-                                        setActiveSection(section.id);
-                                        setIsMobileMenuOpen(false);
-                                    }}
-                                />
-                            ))}
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            {/* Main Content */}
-            <div className="flex-1 flex flex-col h-full overflow-hidden relative">
-                {/* Mobile Header */}
-                <header className="h-16 bg-white border-b border-slate-200 flex items-center justify-between px-6 md:hidden flex-shrink-0 z-20">
-                    <button
-                        onClick={() => setIsMobileMenuOpen(true)}
-                        className="p-2 -ml-2 text-slate-500 hover:bg-slate-100 rounded-lg"
-                        aria-label="打开课程目录"
-                        aria-expanded={isMobileMenuOpen}
-                    >
-                        <Menu size={24} />
-                    </button>
-                    <span className="font-bold text-slate-700">Section {activeSection}</span>
-                </header>
-
-                <main ref={scrollRef} className="flex-1 overflow-y-auto p-8 relative">
-                    <div className="max-w-4xl mx-auto pb-10">
-                        <header className="mb-8">
-                            <h2 className="text-3xl font-bold text-slate-800 mb-2">
-                                {sections.find(s => s.id === activeSection)?.title}
-                            </h2>
-                            <div className="h-1 w-20 bg-indigo-500 rounded-full"></div>
-                        </header>
-
-                        <PythonFoundationSupport lessonId="f4" />
-                        <ActiveComponent />
-                        <PythonFoundationSupport lessonId="f4" placement="bottom" />
-                    </div>
-                </main>
-
-                {/* Sticky Footer */}
-                <div className="h-20 bg-white border-t border-slate-200 flex items-center justify-between px-8 z-20 flex-shrink-0">
-                    <button
-                        onClick={() => setActiveSection(prev => Math.max(1, prev - 1))}
-                        disabled={activeSection === 1}
-                        className={`flex items-center gap-2 px-6 py-2.5 rounded-xl font-bold transition-all
-                            ${activeSection === 1
-                                ? 'text-slate-300 cursor-not-allowed'
-                                : 'text-slate-600 hover:bg-slate-100 hover:text-slate-900'}`}
-                    >
-                        <ArrowRight className="rotate-180" size={20} /> 上一节
-                    </button>
-
-                    <button
-                        onClick={() => {
-                            if (activeSection < sections.length) {
-                                setActiveSection(prev => prev + 1);
-                            } else {
-                                navigate('/python/f5');
-                            }
-                        }}
-                        className={`flex items-center gap-2 px-8 py-3 rounded-xl font-bold transition-all shadow-lg text-white hover:translate-x-1
-                             bg-indigo-600 hover:bg-indigo-700`}
-                    >
-                        {activeSection === sections.length ? '下一课' : '下一节'}
-                        <ArrowRight size={20} />
-                    </button>
-                </div>
-            </div>
-        </div>
+        <PythonLessonShell
+            eyebrow="PYTHON FOUNDATION"
+            lessonCode="F4"
+            lessonTitle="函数与模块"
+            lessonSubtitle="把重复逻辑打包复用"
+            accent="indigo"
+            hero={{
+                title: '把重复的代码打包成函数',
+                description: '学会定义带参数和返回值的函数，并借用模块的现成能力——让代码可复用、可组合。',
+            }}
+            sections={sections}
+            previousPath="/python/f3"
+            nextPath="/python/f5"
+            nextLabel="下一课：F5 绘图魔法"
+            topSupport={<PythonFoundationSupport lessonId="f4" />}
+            bottomSupport={<PythonFoundationSupport lessonId="f4" placement="bottom" />}
+        />
     );
 }
+
