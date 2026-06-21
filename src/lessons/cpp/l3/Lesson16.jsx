@@ -1,5 +1,6 @@
 import React, { useMemo, useState } from 'react';
 import { AlertTriangle, CheckCircle2, ClipboardCheck, ListChecks, Search, Trophy } from 'lucide-react';
+import CppL3LessonSupport from '../../../components/CppL3LessonSupport';
 import CppLessonShell, { Callout, CodeBlock, CompareTable, MiniQuiz, StepList } from '../CppLessonShell';
 
 const sections = [
@@ -92,6 +93,8 @@ export default function CppL3Lesson16() {
             sections={sections}
             previousPath="/lesson/3/15"
             nextPath="/level3"
+            topSupport={<CppL3LessonSupport lessonId={16} />}
+            bottomSupport={<CppL3LessonSupport lessonId={16} placement="bottom" />}
             hero={{
                 title: '最后一课不是再学新知识，而是把失分点关掉',
                 description: '本课用考前清单、易错题诊疗、整卷策略和模拟卷任务，把 C++ 三级课程收束成可复习、可应考的闭环。',

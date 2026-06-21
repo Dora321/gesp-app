@@ -1,5 +1,6 @@
 import React, { useMemo, useState } from 'react';
 import { BrainCircuit, ClipboardCheck, GitBranch, Route, Search, Target } from 'lucide-react';
+import CppL3LessonSupport from '../../../components/CppL3LessonSupport';
 import CppLessonShell, { Callout, CodeBlock, CompareTable, MiniQuiz, StepList } from '../CppLessonShell';
 
 const sections = [
@@ -75,6 +76,8 @@ export default function CppL3Lesson15() {
             sections={sections}
             previousPath="/lesson/3/14"
             nextPath="/lesson/3/16"
+            topSupport={<CppL3LessonSupport lessonId={15} />}
+            bottomSupport={<CppL3LessonSupport lessonId={15} placement="bottom" />}
             hero={{
                 title: '综合题不是新知识，而是旧工具的组合选择',
                 description: '本课训练题型识别、拆题流程和综合样题推演，把数组、字符串、进制、枚举、模拟串成一套解题方法。',

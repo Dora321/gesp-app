@@ -1,5 +1,6 @@
 import React, { useMemo, useState } from 'react';
 import { Binary, ClipboardCheck, Database, Repeat, Search } from 'lucide-react';
+import CppL3LessonSupport from '../../../components/CppL3LessonSupport';
 import CppLessonShell, { Callout, CodeBlock, CodeTracer, CompareTable, MiniQuiz } from '../CppLessonShell';
 
 const sections = [
@@ -121,6 +122,8 @@ export default function CppL3Lesson14() {
             sections={sections}
             previousPath="/lesson/3/13"
             nextPath="/lesson/3/15"
+            topSupport={<CppL3LessonSupport lessonId={14} />}
+            bottomSupport={<CppL3LessonSupport lessonId={14} placement="bottom" />}
             hero={{
                 title: '进制转换靠两个方向：短除法和按权展开',
                 description: '本课把第 1 课的进制知识落实成代码模板，覆盖十进制转 k 进制、k 进制转十进制和十六进制字符处理。',

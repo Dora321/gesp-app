@@ -1,5 +1,6 @@
 import React, { useMemo, useState } from 'react';
 import { ClipboardCheck, Grid3X3, Layers, Search, Triangle } from 'lucide-react';
+import CppL3LessonSupport from '../../../components/CppL3LessonSupport';
 import CppLessonShell, { Callout, CodeBlock, CodeTracer, CompareTable, MiniQuiz } from '../CppLessonShell';
 
 const sections = [
@@ -125,6 +126,8 @@ export default function CppL3Lesson13() {
             sections={sections}
             previousPath="/lesson/3/12"
             nextPath="/lesson/3/14"
+            topSupport={<CppL3LessonSupport lessonId={13} />}
+            bottomSupport={<CppL3LessonSupport lessonId={13} placement="bottom" />}
             hero={{
                 title: '图形打印题考的不是画画，而是行列规律',
                 description: '本课用嵌套循环拆解矩形、三角形、金字塔和对齐问题，训练把图案转成每一行的输出规则。',
