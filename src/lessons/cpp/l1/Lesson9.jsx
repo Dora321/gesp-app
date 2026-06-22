@@ -726,9 +726,9 @@ cout << (N + i);`}
 
         <main className="flex-1 overflow-y-auto p-8 z-0">
           <div className="max-w-4xl mx-auto pb-12">
-            <CppL1LessonSupport lessonId={9} />
+            {activeSection === 1 && <CppL1LessonSupport lessonId={9} />}
             {renderContent()}
-            <CppL1LessonSupport lessonId={9} placement="bottom" />
+            {activeSection === sections.length && <CppL1LessonSupport lessonId={9} placement="bottom" />}
           </div>
         </main>
 

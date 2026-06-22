@@ -576,11 +576,11 @@ function App() {
         {/* 内容滚动区 */}
         <main className="flex-1 overflow-y-auto p-8 custom-scrollbar scroll-smooth">
           <div className="max-w-4xl mx-auto pb-12">
-            <CppL1LessonSupport lessonId={2} />
+            {activeSection === 1 && <CppL1LessonSupport lessonId={2} />}
             <div className="slide-enter">
               <ActiveComponent />
             </div>
-            <CppL1LessonSupport lessonId={2} placement="bottom" />
+            {activeSection === sections.length && <CppL1LessonSupport lessonId={2} placement="bottom" />}
           </div>
         </main>
 

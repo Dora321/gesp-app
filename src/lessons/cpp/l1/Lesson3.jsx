@@ -168,11 +168,11 @@ export default function Lesson3() {
         {/* 内容滚动区 */}
         <main className="flex-1 overflow-y-auto p-8 pt-24 pb-20 custom-scrollbar scroll-smooth">
           <div className="max-w-5xl mx-auto">
-            <CppL1LessonSupport lessonId={3} />
+            {activeSection === 1 && <CppL1LessonSupport lessonId={3} />}
             <div className="bg-white rounded-2xl shadow-sm border border-slate-100 p-8">
               <ActiveComponent />
             </div>
-            <CppL1LessonSupport lessonId={3} placement="bottom" />
+            {activeSection === sections.length && <CppL1LessonSupport lessonId={3} placement="bottom" />}
           </div>
         </main>
 

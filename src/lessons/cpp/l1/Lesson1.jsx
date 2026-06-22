@@ -779,11 +779,11 @@ const CppL1Lesson1 = () => {
         {/* 内容滚动区 */}
         <main className="flex-1 overflow-y-auto p-6 md:p-10 bg-slate-50 custom-scrollbar">
           <div className="max-w-5xl mx-auto h-full flex flex-col">
-            <CppL1LessonSupport lessonId={1} />
+            {activeSection === 1 && <CppL1LessonSupport lessonId={1} />}
             <div className="flex-1 animate-in fade-in slide-in-from-bottom-4 duration-500">
               <ActiveComponent />
             </div>
-            <CppL1LessonSupport lessonId={1} placement="bottom" />
+            {activeSection === sections.length && <CppL1LessonSupport lessonId={1} placement="bottom" />}
           </div>
         </main>
 

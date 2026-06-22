@@ -155,7 +155,7 @@ export default function Lesson5() {
         {/* Scrollable Content */}
         <main className="flex-1 overflow-y-auto p-4 md:p-8 bg-gray-50">
           <div className="max-w-4xl mx-auto">
-            <CppL1LessonSupport lessonId={5} />
+            {activeSection === 1 && <CppL1LessonSupport lessonId={5} />}
             <div className="bg-slate-900 rounded-2xl shadow-xl overflow-hidden min-h-[500px] p-8 border border-slate-700 text-slate-100">
               {/* 
                     This wrapper preserves the Dark Mode / Agent theme of the inner components 
@@ -163,7 +163,7 @@ export default function Lesson5() {
                  */}
               {currentSection?.component({ onNext: nextSection })}
             </div>
-            <CppL1LessonSupport lessonId={5} placement="bottom" />
+            {activeSection === sections.length && <CppL1LessonSupport lessonId={5} placement="bottom" />}
           </div>
         </main>
 

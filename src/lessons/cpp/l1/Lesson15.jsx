@@ -922,9 +922,9 @@ export default function App() {
 
                 <main className="flex-1 overflow-y-auto p-8 z-0">
                     <div className="max-w-4xl mx-auto pb-12">
-                        <CppL1LessonSupport lessonId={15} />
+                        {activeSection === 1 && <CppL1LessonSupport lessonId={15} />}
                         {renderContent()}
-                        <CppL1LessonSupport lessonId={15} placement="bottom" />
+                        {activeSection === sections.length && <CppL1LessonSupport lessonId={15} placement="bottom" />}
                     </div>
                 </main>
 
