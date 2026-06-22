@@ -40,17 +40,14 @@ const KNNDemo = () => {
 
     const predict = () => {
         if (!newPoint) return;
-        // Simple 1-NN (Nearest Neighbor)
-        let minDist = Infinity;
-        let nearestType = '';
-
-        points.forEach(p => {
-            const d = Math.sqrt(Math.pow(p.x - newPoint.x, 2) + Math.pow(p.y - newPoint.y, 2));
-            if (d < minDist) {
-                minDist = d;
-                nearestType = p.type;
-            }
-        });
+        // KNN：取最近的 K 个邻居，按多数投票决定类别
+        const K = 3;
+        const nearest = points
+            .map(p => ({ type: p.type, d: Math.sqrt(Math.pow(p.x - newPoint.x, 2) + Math.pow(p.y - newPoint.y, 2)) }))
+            .sort((a, b) => a.d - b.d)
+            .slice(0, K);
+        const catVotes = nearest.filter(p => p.type === 'cat').length;
+        const nearestType = catVotes > nearest.length / 2 ? 'cat' : 'dog';
 
         // Simulate a delay
         setTimeout(() => {
@@ -66,11 +63,11 @@ const KNNDemo = () => {
         <div className="space-y-6 animate-in fade-in slide-in-from-bottom-4 duration-500">
             <div className="bg-slate-800 p-6 rounded-2xl border border-slate-700">
                 <h3 className="text-xl font-bold text-yellow-400 mb-4 flex items-center gap-2">
-                    <Target size={20} /> 这是一个什么动物？(KNN 算法)
+                    <Target size={20} /> 这是一个什么动物？(KNN：K 近邻)
                 </h3>
                 <p className="text-slate-300 mb-4">
-                    点击屏幕放置一个新点。机器会计算它离谁最近，从而判断它是猫还是狗。
-                    <br /><span className="text-xs text-slate-500">原理：近朱者赤，近墨者黑 (K-Nearest Neighbors)</span>
+                    点击屏幕放置一个新点。机器会找出离它最近的 <strong className="text-yellow-300">K 个邻居</strong>（这里 K=3），看这 3 个里猫多还是狗多，就把它判成哪一类。
+                    <br /><span className="text-xs text-slate-500">原理：近朱者赤，近墨者黑——「K」就是参考最近的几个邻居；K 越大越稳，但太大会把离得远的也算进来。</span>
                 </p>
 
                 <div className="relative w-full h-80 bg-slate-900 rounded-xl border-2 border-slate-700 overflow-hidden cursor-crosshair" onClick={handlePlace}>
@@ -150,8 +147,11 @@ const NNDemo = () => {
                 <h3 className="text-xl font-bold text-green-400 mb-4 flex items-center gap-2">
                     <Activity size={20} /> 神经网络训练 (Neural Networks)
                 </h3>
-                <p className="text-slate-300 mb-6">
+                <p className="text-slate-300 mb-2">
                     大脑由无数个神经元连接而成。AI 模仿这个结构，通过不断“训练”来减少犯错（Loss）。
+                </p>
+                <p className="text-xs text-slate-500 mb-6">
+                    注：下面是一段<strong className="text-slate-400">示意动画</strong>，帮你建立“训练 = 错误一点点变小”的直觉；真正的训练会根据数据反复调整网络里的连接权重，而不是让数字自动下降。
                 </p>
 
                 <div className="flex flex-col md:flex-row gap-8 items-center">

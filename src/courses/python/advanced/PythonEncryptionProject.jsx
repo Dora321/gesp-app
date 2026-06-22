@@ -37,8 +37,8 @@ const IntroSlide = () => (
                     <p className="typing-effect">MESSAGE: "ATTACK AT DAWN"</p>
                 </div>
                 <p>
-                    如果这条消息就这样在网络传输，任何人（包括我们）都能一眼看穿。
-                    这就是为什么由于网络安全，我们需要<span className="text-yellow-400 font-bold">加密 (Encryption)</span>。
+                    如果这条消息就这样在网络上传输，任何人（包括敌人）都能一眼看穿。
+                    这正是我们需要<span className="text-yellow-400 font-bold">加密 (Encryption)</span> 的原因。
                 </p>
                 <p>
                     加密就像给消息加了一把只有发送者和接收者才有钥匙的锁。

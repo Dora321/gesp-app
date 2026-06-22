@@ -52,7 +52,7 @@ const IntroSlide = () => {
                 <p className="text-lg leading-relaxed mb-4">
                     想象一下，如果你能用一种“魔法语言”直接告诉电脑帮你写作业、画画、甚至控制机器人，那该多酷？
                     <br />
-                    <strong>Python 就是这种魔法语言！</strong> 它是世界上最受人们喜爱（包括科学家和骇客）的编程语言之一。
+                    <strong>Python 就是这种语言！</strong> 它是世界上最受欢迎的编程语言之一，工程师、科学家、艺术家都在用它。
                 </p>
                 <div className="grid md:grid-cols-2 gap-4 mt-6">
                     <div className="bg-white p-4 rounded-xl shadow-sm">
@@ -91,8 +91,8 @@ const RealWorldSlide = () => {
             icon: '🧠',
             color: 'from-purple-500 to-pink-500',
             examples: ['ChatGPT 聊天机器人', '人脸识别', '语音助手', '图像生成'],
-            description: 'Python 是 AI 和机器学习的首选语言！像 ChatGPT 这样的智能助手就是用 Python 开发的。',
-            fact: '全球 80% 的 AI 项目使用 Python'
+            description: 'Python 是 AI 和机器学习最常用的语言之一，很多智能助手的研究和原型都用它来写。',
+            fact: 'Python 是 AI 和数据科学最常用的语言之一'
         },
         {
             id: 'web',
@@ -100,8 +100,8 @@ const RealWorldSlide = () => {
             icon: '💻',
             color: 'from-blue-500 to-cyan-500',
             examples: ['Instagram', 'YouTube', 'Spotify', 'Netflix'],
-            description: '你每天使用的很多网站和应用都是用 Python 构建的！',
-            fact: 'Instagram 每天处理超过 10 亿张照片'
+            description: '你每天使用的很多网站和应用，后端都用到了 Python！',
+            fact: 'Instagram、YouTube 等大型网站都用 Python 构建后端'
         },
         {
             id: 'games',
@@ -118,7 +118,7 @@ const RealWorldSlide = () => {
             icon: '🚀',
             color: 'from-orange-500 to-red-500',
             examples: ['NASA 太空探索', '天气预报', '基因研究', '数据分析'],
-            description: 'NASA 使用 Python 来分析太空数据和控制火星探测器！',
+            description: 'NASA 用 Python 分析太空数据、处理火星探测器拍回的图像！',
             fact: 'NASA 的火星探测器使用 Python 处理图像'
         },
         {
@@ -290,6 +290,19 @@ const IOSlide = () => {
                     <Button onClick={handleSend} className="px-6">发送</Button>
                 </div>
             </div>
+
+            <div className="max-w-lg mx-auto rounded-2xl border-2 border-amber-200 bg-amber-50 p-5">
+                <div className="mb-2 font-black text-amber-800">⚠️ 初学者第一大坑：input() 给你的永远是「文本」</div>
+                <p className="text-sm font-semibold leading-7 text-amber-900">
+                    哪怕你输入的是数字，<code>input()</code> 拿到的也是字符串。想拿来算数，必须先用 <code>int()</code> 转成数字：
+                </p>
+                <div className="mt-3">
+                    <CodeBlock code={`age = input("你几岁了? ")   # age 是字符串，比如 "10"\nage = int(age)              # 转成数字 10\nprint(age + 1)              # 输出 11`} />
+                </div>
+                <p className="mt-3 text-xs font-bold text-amber-700">
+                    如果忘了 int()，写 <code>age + 1</code> 会直接报错：不能把文本和数字相加。
+                </p>
+            </div>
         </div>
     );
 };
@@ -326,7 +339,8 @@ const MathSlide = () => {
                     { op: '*', label: '乘法 (Mul)', res: a * b },
                     { op: '/', label: '除法 (Div)', res: b !== 0 ? (a / b).toFixed(2) : 'Error' },
                     { op: '//', label: '整除 (Floor)', res: b !== 0 ? Math.floor(a / b) : 'Error', highlight: true },
-                    { op: '%', label: '取余 (Mod)', res: b !== 0 ? a % b : 'Error', highlight: true },
+                    // Python 的 % 是向下取模（结果符号随除数），不同于 JS 的截断取余，故用 floor 公式
+                    { op: '%', label: '取余 (Mod)', res: b !== 0 ? a - Math.floor(a / b) * b : 'Error', highlight: true },
                 ].map((item, idx) => (
                     <div key={idx} className={`p-4 rounded-xl text-center border transition-all hover:scale-105 ${item.highlight ? 'bg-indigo-600 text-white shadow-lg ring-2 ring-indigo-200' : 'bg-white text-slate-700 shadow-sm'}`}>
                         <div className="text-xs opacity-70 mb-1">{item.label}</div>
