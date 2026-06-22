@@ -25,7 +25,6 @@ function ProjectBrief({ support, theme = 'light' }) {
   const styles = themeStyles[theme] || themeStyles.light;
   const items = [
     { label: '适合对象', value: support.brief.audience, icon: UsersRound },
-    { label: '项目产出', value: support.brief.artifact, icon: PackageCheck },
     { label: '学习结果', value: support.brief.outcome, icon: Boxes },
     { label: '建议课时', value: support.brief.duration, icon: Clock },
   ];
@@ -33,8 +32,22 @@ function ProjectBrief({ support, theme = 'light' }) {
   return (
     <section className={`mb-4 rounded-lg border p-4 shadow-sm ${styles.shell}`} aria-label="项目卡">
       <div className="mb-4">
-        <div className={`text-xs font-black uppercase tracking-wider ${styles.muted}`}>Python Project</div>
-        <h2 className="mt-1 text-2xl font-black">{support.current.title}</h2>
+        <div className={`text-xs font-black uppercase tracking-wider ${styles.muted}`}>今日项目闭环</div>
+        <h2 className="mt-1 text-2xl font-black">先做出一个可解释的成果</h2>
+      </div>
+      <div className={`mb-3 rounded-lg border p-3 ${styles.tile}`}>
+        <div className="mb-2 flex items-center gap-2 text-sm font-black">
+          <span className={`flex h-7 w-7 items-center justify-center rounded-md ${styles.icon}`}>
+            <PackageCheck size={15} />
+          </span>
+          本项目先交付
+        </div>
+        <p className={`text-sm font-semibold leading-relaxed ${styles.muted}`}>{support.brief.artifact}</p>
+        {support.quality.checks?.[0] && (
+          <p className={`mt-2 text-xs font-bold leading-relaxed ${styles.muted}`}>
+            离开前先确认：{support.quality.checks[0]}
+          </p>
+        )}
       </div>
       <div className="grid gap-3 md:grid-cols-2">
         {items.map(({ label, value, icon: Icon }) => (
@@ -99,6 +112,7 @@ export default function PythonProjectSupport({ projectId, placement = 'top', the
     <div className="mb-6">
       <ProjectBrief support={support} theme={theme} />
       <LessonQualityBar
+        bare
         goals={support.quality.goals}
         deliverables={support.quality.deliverables}
         checks={support.quality.checks}

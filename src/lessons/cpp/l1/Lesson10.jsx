@@ -21,6 +21,7 @@ import {
   CheckCircle
 } from 'lucide-react';
 import CppL1LessonSupport from '../../../components/CppL1LessonSupport';
+import { CodeTracer } from '../CppLessonShell';
 
 const Button = ({ children, onClick, variant = 'primary', className = '', disabled = false }) => {
   const variants = {
@@ -146,82 +147,72 @@ const CookieJar = () => {
   );
 };
 
+const digitSplitCode = `int n = 123;
+int count = 0;
+while (n > 0) {
+    int digit = n % 10;
+    count++;
+    n /= 10;
+}
+cout << count;`;
+
+const digitSplitRounds = [
+  { before: 123, digit: 3, after: 12, count: 1 },
+  { before: 12, digit: 2, after: 1, count: 2 },
+  { before: 1, digit: 1, after: 0, count: 3 },
+];
+
+const digitSplitTraceSteps = [
+  {
+    active: [0, 1],
+    vars: { n: 123, digit: '未取', count: 0 },
+    action: '判断 123',
+  },
+  ...digitSplitRounds.flatMap(({ before, digit, after, count }, index) => [
+    {
+      active: [2],
+      vars: { n: before, digit: index === 0 ? '未取' : digitSplitRounds[index - 1].digit, count: count - 1 },
+      row: [`判断第 ${index + 1} 次`, `${before} > 0`, '还没取', count - 1, '进入循环体'],
+      action: `取第 ${index + 1} 个个位`,
+    },
+    {
+      active: [3],
+      vars: { n: before, digit, count: count - 1 },
+      row: ['取个位', `${before} % 10`, digit, count - 1, `digit = ${digit}`],
+      action: '计数并删个位',
+    },
+    {
+      active: [4, 5],
+      vars: { n: after, digit, count },
+      row: ['更新状态', `${before} / 10`, digit, count, `n 变成 ${after}`],
+      action: after === 0 ? '检查退出条件' : `判断 ${after}`,
+    },
+  ]),
+  {
+    active: [2],
+    vars: { n: 0, digit: 1, count: 3 },
+    exit: '再次判断 0 > 0 为假，循环结束。此时 count 已经记录了 3 位。',
+    action: '查看输出',
+  },
+  {
+    active: [7],
+    vars: { n: 0, digit: 1, count: 3 },
+    action: '显示最终位数',
+    output: '123 一共有 3 位',
+  },
+];
+
 // --- 互动组件 2：数位分离流水线 ---
 const DigitSplitter = () => {
-  const [num, setNum] = useState(123);
-  const [originalNum, setOriginalNum] = useState(123);
-  const [count, setCount] = useState(0);
-  const [, setIsRunning] = useState(false);
-  const [logs, setLogs] = useState([]);
-
-  const step = () => {
-    if (num > 0) {
-      const digit = num % 10;
-      const newNum = Math.floor(num / 10);
-      setLogs(prev => [...prev, `🔍 还有 ${num} > 0，切掉 ${digit}，剩 ${newNum}，计数+1`]);
-      setNum(newNum);
-      setCount(c => c + 1);
-    } else {
-      setLogs(prev => [...prev, `🛑 ${num} 不大于 0，循环结束！总共 ${count} 位。`]);
-      setIsRunning(false);
-    }
-  };
-
-  const reset = () => {
-    const newN = Math.floor(Math.random() * 9000) + 1000;
-    setNum(newN);
-    setOriginalNum(newN);
-    setCount(0);
-    setLogs([]);
-    setIsRunning(true);
-  };
-
   return (
-    <div className="bg-indigo-50 p-6 rounded-xl border-2 border-indigo-200 my-4">
-      <h3 className="font-bold text-lg text-indigo-700 mb-4 flex items-center gap-2">
-        <Scissors className="text-indigo-600" /> 贪吃蛇数位切切乐
-      </h3>
-
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-        <div className="space-y-4">
-          <div className="bg-white p-4 rounded-lg shadow-sm">
-            <div className="flex justify-between items-center mb-2">
-              <span className="text-gray-500 text-sm">当前数字 n</span>
-              <span className="font-mono text-2xl font-bold text-indigo-600">{num}</span>
-            </div>
-            <div className="w-full bg-gray-200 rounded-full h-2.5">
-              <div className="bg-indigo-600 h-2.5 rounded-full transition-all duration-500" style={{ width: `${(num / originalNum) * 100}%` }}></div>
-            </div>
-          </div>
-
-          <div className="bg-white p-4 rounded-lg shadow-sm flex justify-between items-center">
-            <span className="text-gray-500 text-sm">计数器 count</span>
-            <span className="font-mono text-2xl font-bold text-green-600">{count}</span>
-          </div>
-
-          <div className="flex gap-2">
-            <button
-              onClick={step}
-              disabled={num === 0}
-              className="flex-1 py-2 bg-indigo-600 text-white rounded-lg font-bold hover:bg-indigo-700 disabled:opacity-50 disabled:cursor-not-allowed transition"
-            >
-              ✂️ 切掉一位 (n/10)
-            </button>
-            <button onClick={reset} className="px-4 py-2 bg-white border border-gray-300 rounded-lg hover:bg-gray-50">
-              <RotateCcw size={20} className="text-gray-600" />
-            </button>
-          </div>
-        </div>
-
-        <div className="bg-gray-900 text-green-400 p-4 rounded-lg font-mono text-xs h-48 overflow-y-auto shadow-inner">
-          <div className="text-gray-500 mb-2">// 运行日志</div>
-          {logs.length === 0 ? <span className="opacity-50">准备就绪...</span> : logs.map((log, i) => (
-            <div key={i} className="mb-1 border-b border-gray-800 pb-1">{log}</div>
-          ))}
-          {num === 0 && count > 0 && <div className="text-yellow-400 mt-2 font-bold">🎉 任务完成！</div>}
-        </div>
-      </div>
-    </div>
+    <CodeTracer
+      title="数位分离追踪器：n 怎样一位一位消失？"
+      code={digitSplitCode}
+      varOrder={['n', 'digit', 'count']}
+      columns={['阶段', '判断/运算', 'digit', 'count', '结果']}
+      steps={digitSplitTraceSteps}
+      hint="先观察 n，再看 % 取个位、/ 10 删个位。"
+    />
   );
 };
 
@@ -1004,9 +995,9 @@ cout << cnt;`}
         <div className="absolute bottom-0 left-0 w-96 h-96 bg-indigo-200/20 rounded-full blur-3xl pointer-events-none"></div>
 
         <header className="h-16 bg-white/90 backdrop-blur-md border-b border-gray-200 flex items-center justify-between px-8 shadow-sm z-10">
-          <h2 className="text-lg font-bold text-gray-800 truncate flex items-center gap-2">
-            <span className="bg-gray-100 text-gray-500 px-2 py-0.5 rounded text-xs">Section {activeSection}</span>
-            {sections.find(s => s.id === activeSection)?.title}
+          <h2 className="flex min-w-0 items-center gap-2 text-lg font-bold text-gray-800">
+            <span className="shrink-0 rounded bg-gray-100 px-2 py-0.5 text-xs text-gray-500">Section {activeSection}</span>
+            <span className="hidden min-w-0 truncate sm:inline">{sections.find(s => s.id === activeSection)?.title}</span>
           </h2>
           <div className="flex gap-2 text-sm text-gray-500">
             <div className="w-32 h-2 bg-gray-100 rounded-full overflow-hidden mt-2">

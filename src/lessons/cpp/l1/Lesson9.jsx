@@ -19,6 +19,7 @@ import {
   X
 } from 'lucide-react';
 import CppL1LessonSupport from '../../../components/CppL1LessonSupport';
+import { CodeTracer } from '../CppLessonShell';
 
 // --- 图标组件 ---
 const Icon = ({ name, size = 24, className = "" }) => {
@@ -210,79 +211,62 @@ const LoopStepper = () => {
   );
 };
 
+const trapCode = `int N = 0, i;
+for (i = 1; i < 10; i++)
+    N += 1;
+cout << (N + i);`;
+
+const trapTraceSteps = [
+  {
+    active: [0],
+    vars: { N: 0, i: '未定' },
+    action: '初始化 i = 1',
+  },
+  ...Array.from({ length: 9 }, (_, index) => {
+    const i = index + 1;
+    const beforeN = index;
+    const afterN = index + 1;
+
+    return [
+      {
+        active: [1],
+        vars: { N: beforeN, i },
+        row: [`判断 ${i}`, `${i} < 10`, '真', beforeN, '进入循环体'],
+        action: `执行第 ${i} 轮`,
+      },
+      {
+        active: [2],
+        vars: { N: afterN, i },
+        row: [`第 ${i} 轮`, `i = ${i}`, 'N += 1', afterN, i === 9 ? 'i++ 后变成 10' : `i++ 后变成 ${i + 1}`],
+        action: i === 9 ? '检查退出条件' : '检查下一轮条件',
+      },
+    ];
+  }).flat(),
+  {
+    active: [1],
+    vars: { N: 9, i: 10 },
+    exit: '再次判断 10 < 10 为假，循环结束。关键：此时 i 留在 10。',
+    action: '计算输出',
+  },
+  {
+    active: [3],
+    vars: { N: 9, i: 10 },
+    action: '显示最终结果',
+    output: 'N + i = 9 + 10 = 19',
+  },
+];
+
 // --- 互动组件：陷阱追踪器 ---
 const TrapTracer = () => {
-  const [i, setI] = useState(1);
-  const [N, setN] = useState(0);
-  const [isFinished, setIsFinished] = useState(false);
-
-  const runLoop = () => {
-    // Reset
-    let currentI = 1;
-    let currentN = 0;
-
-    // Simulate loop
-    while (currentI < 10) {
-      currentN += 1;
-      currentI++;
-    }
-
-    setI(currentI);
-    setN(currentN);
-    setIsFinished(true);
-  };
-
-  const reset = () => {
-    setI(1);
-    setN(0);
-    setIsFinished(false);
-  };
-
   return (
-    <div className="bg-red-50 p-6 rounded-xl border-2 border-red-200 my-4">
-      <h3 className="font-bold text-lg text-red-700 mb-4 flex items-center gap-2">
-        <AlertTriangle size={20} /> 陷阱追踪器
-      </h3>
-
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-        <div className="bg-white p-4 rounded-lg shadow-sm border font-mono text-sm">
-          <div className="text-gray-500 mb-2">Code:</div>
-          <div>int N = 0, i;</div>
-          <div><span className="text-purple-600">for</span> (i = 1; i &lt; 10; i++)</div>
-          <div className="pl-4">N += 1;</div>
-          <div className="mt-2 text-blue-600 font-bold">cout &lt;&lt; (N + i);</div>
-        </div>
-
-        <div className="flex flex-col justify-center gap-4">
-          <div className="flex gap-4">
-            <div className={`p-4 rounded-lg border-2 w-1/2 text-center ${isFinished ? 'bg-green-100 border-green-400' : 'bg-gray-100'}`}>
-              <div className="text-xs text-gray-500 uppercase">Variable N</div>
-              <div className="text-3xl font-mono font-bold text-gray-800">{N}</div>
-              {isFinished && <div className="text-xs text-green-600 mt-1">(跑了9次)</div>}
-            </div>
-            <div className={`p-4 rounded-lg border-2 w-1/2 text-center ${isFinished ? 'bg-red-100 border-red-400 animate-pulse' : 'bg-gray-100'}`}>
-              <div className="text-xs text-gray-500 uppercase">Variable i</div>
-              <div className="text-3xl font-mono font-bold text-red-600">{i}</div>
-              {isFinished && <div className="text-xs text-red-600 mt-1 font-bold">💥 变成10了!</div>}
-            </div>
-          </div>
-
-          {isFinished ? (
-            <div className="bg-white p-3 rounded border text-center">
-              <div className="text-gray-500 text-sm">最终计算 (N + i)</div>
-              <div className="text-2xl font-bold text-purple-600">
-                {N} + {i} = {N + i}
-              </div>
-              <button onClick={reset} className="mt-2 text-sm text-blue-500 underline">重置</button>
-            </div>
-          ) : (
-            <button onClick={runLoop} className="w-full py-3 bg-red-600 text-white rounded-lg font-bold hover:bg-red-700 shadow-md">
-              一键运行循环 🚀
-            </button>
-          )}
-        </div>
-      </div>
-    </div>
+    <CodeTracer
+      title="陷阱追踪器：循环结束时 i 到底是多少？"
+      code={trapCode}
+      varOrder={['N', 'i']}
+      columns={['阶段', 'i', '动作', 'N', '结果']}
+      steps={trapTraceSteps}
+      hint="先别猜答案，逐步看每次判断和更新。"
+    />
   );
 };
 
@@ -726,9 +710,9 @@ cout << (N + i);`}
         <div className="absolute bottom-0 left-0 w-96 h-96 bg-cyan-200/20 rounded-full blur-3xl pointer-events-none"></div>
 
         <header className="h-16 bg-white/90 backdrop-blur-md border-b border-gray-200 flex items-center justify-between px-8 shadow-sm z-10">
-          <h2 className="text-lg font-bold text-gray-800 truncate flex items-center gap-2">
-            <span className="bg-gray-100 text-gray-500 px-2 py-0.5 rounded text-xs">Section {activeSection}</span>
-            {sections.find(s => s.id === activeSection)?.title}
+          <h2 className="flex min-w-0 items-center gap-2 text-lg font-bold text-gray-800">
+            <span className="shrink-0 rounded bg-gray-100 px-2 py-0.5 text-xs text-gray-500">Section {activeSection}</span>
+            <span className="hidden min-w-0 truncate sm:inline">{sections.find(s => s.id === activeSection)?.title}</span>
           </h2>
           <div className="flex gap-2 text-sm text-gray-500">
             <div className="w-32 h-2 bg-gray-100 rounded-full overflow-hidden mt-2">

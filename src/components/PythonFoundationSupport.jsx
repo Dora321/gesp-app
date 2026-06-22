@@ -16,8 +16,8 @@ function FoundationOverview({ support }) {
     <section className={`mb-6 rounded-lg border bg-white p-5 shadow-sm ${styles.border}`} aria-label="基础课导航">
       <div className="flex flex-col gap-1 sm:flex-row sm:items-start sm:justify-between">
         <div>
-          <div className={`text-xs font-black uppercase tracking-wider ${styles.eyebrow}`}>Python Foundation</div>
-          <h2 className="mt-1 text-2xl font-black text-slate-900">{support.current.title}</h2>
+          <div className={`text-xs font-black uppercase tracking-wider ${styles.eyebrow}`}>今日学习闭环</div>
+          <h2 className="mt-1 text-2xl font-black text-slate-900">今天先做成一件事</h2>
         </div>
         <div className="flex items-center gap-2 text-sm font-bold text-slate-500">
           基础线
@@ -27,6 +27,13 @@ function FoundationOverview({ support }) {
       </div>
 
       <p className="mt-2 text-sm font-semibold leading-relaxed text-slate-600">{support.focus}</p>
+
+      {support.checkpoint && (
+        <div className={`mt-4 rounded-lg border ${styles.border} bg-slate-50 p-4`}>
+          <div className={`mb-1 text-xs font-black uppercase tracking-wider ${styles.eyebrow}`}>做到什么算过关</div>
+          <p className="text-sm font-bold leading-relaxed text-slate-800">{support.checkpoint}</p>
+        </div>
+      )}
 
       <div className="mt-4">
         <LessonQualityBar

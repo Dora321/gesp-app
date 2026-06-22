@@ -1,4 +1,4 @@
-import { ArrowLeft, ArrowRight, ClipboardCheck, FileQuestion, ListChecks } from 'lucide-react';
+import { ArrowLeft, ArrowRight, ClipboardCheck, FileQuestion, ListChecks, SearchCheck } from 'lucide-react';
 import { Link } from 'react-router-dom';
 
 const linkCardBase =
@@ -15,6 +15,9 @@ const variants = {
     practiceLink: 'bg-blue-50 text-blue-800 hover:bg-blue-100',
     reviewPanel: 'border-emerald-100 bg-white',
     reviewText: 'text-slate-700',
+    diagnosticPanel: 'border-amber-100 bg-amber-50',
+    diagnosticTitle: 'text-amber-800',
+    diagnosticText: 'text-slate-700',
   },
   dark: {
     shell: 'border-slate-700 bg-slate-900/80',
@@ -27,14 +30,33 @@ const variants = {
     practiceLink: 'bg-blue-500/10 text-blue-200 hover:bg-blue-500/20',
     reviewPanel: 'border-emerald-500/20 bg-slate-800/90',
     reviewText: 'text-slate-300',
+    diagnosticPanel: 'border-amber-500/20 bg-amber-500/10',
+    diagnosticTitle: 'text-amber-200',
+    diagnosticText: 'text-slate-300',
   },
 };
+
+const defaultDiagnosticPrompts = [
+  {
+    label: '复现',
+    text: '保留一组能暴露问题的输入、操作或样例，不要只说“运行错了”。',
+  },
+  {
+    label: '定位',
+    text: '写下出错的是变量变化、条件判断、循环边界、数据类型还是输出格式。',
+  },
+  {
+    label: '验证',
+    text: '只改一处，再用正常、边界、特殊三组样例检查是否真的修好。',
+  },
+];
 
 export default function LessonNextSteps({
   previous,
   next,
   practiceLinks = [],
   reviewTasks = [],
+  diagnosticPrompts = defaultDiagnosticPrompts,
   variant = 'light',
   className = '',
 }) {
@@ -53,7 +75,7 @@ export default function LessonNextSteps({
           </div>
           <h2 className={`mt-2 text-xl font-black ${styles.title}`}>学完这一课，别停在这里</h2>
         </div>
-        <p className={`text-sm font-medium ${styles.muted}`}>用复习、练习和下一课把知识接上。</p>
+        <p className={`text-sm font-medium ${styles.muted}`}>先复盘一题，再诊断一个错因，再接下一课。</p>
       </div>
 
       <div className="grid gap-3 lg:grid-cols-2">
@@ -123,6 +145,28 @@ export default function LessonNextSteps({
               </ul>
             </div>
           )}
+        </div>
+      )}
+
+      {diagnosticPrompts.length > 0 && (
+        <div className={`mt-4 rounded-lg border p-4 ${styles.diagnosticPanel}`}>
+          <div className={`mb-3 flex items-center gap-2 text-sm font-black ${styles.diagnosticTitle}`}>
+            <SearchCheck size={16} />
+            错因诊断
+          </div>
+          <ol className={`grid gap-3 text-sm leading-relaxed md:grid-cols-3 ${styles.diagnosticText}`}>
+            {diagnosticPrompts.map((prompt, index) => (
+              <li key={`${prompt.label}-${prompt.text}`} className="flex gap-3">
+                <span className="flex h-6 w-6 flex-shrink-0 items-center justify-center rounded-md bg-white text-xs font-black text-amber-700 ring-1 ring-amber-200">
+                  {index + 1}
+                </span>
+                <span>
+                  <span className={`block font-black ${styles.diagnosticTitle}`}>{prompt.label}</span>
+                  <span>{prompt.text}</span>
+                </span>
+              </li>
+            ))}
+          </ol>
         </div>
       )}
     </section>

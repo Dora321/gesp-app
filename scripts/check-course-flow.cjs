@@ -611,6 +611,54 @@ function assertLessonQualityBarSupportsCourseAccents() {
   }
 }
 
+function assertLessonQualityBarKeepsLearningLoop() {
+  const qualityBar = read('src/components/LessonQualityBar.jsx');
+
+  assert(
+    qualityBar.includes('今日学习闭环') &&
+      qualityBar.includes('马上动手') &&
+      qualityBar.includes('做完立刻检查'),
+    'LessonQualityBar should keep the short goal -> evidence -> immediate feedback learning loop.'
+  );
+}
+
+function assertLessonNextStepsKeepsErrorDiagnosis() {
+  const nextSteps = read('src/components/LessonNextSteps.jsx');
+
+  assert(
+    nextSteps.includes('错因诊断') &&
+      nextSteps.includes('复现') &&
+      nextSteps.includes('定位') &&
+      nextSteps.includes('验证') &&
+      nextSteps.includes('正常、边界、特殊三组样例'),
+    'LessonNextSteps should teach students to diagnose mistakes with reproduce -> locate -> verify prompts.'
+  );
+}
+
+function assertCppLoopLessonKeepsExecutionTrace() {
+  const lesson = read('src/lessons/cpp/l1/Lesson9.jsx');
+
+  assert(
+    lesson.includes('CodeTracer') &&
+      lesson.includes('陷阱追踪器：循环结束时 i 到底是多少？') &&
+      lesson.includes('再次判断 10 < 10 为假') &&
+      lesson.includes('N + i = 9 + 10 = 19'),
+    'C++ L1 lesson 9 should keep the step-by-step execution trace for the for-loop boundary trap.'
+  );
+}
+
+function assertCppWhileLessonKeepsDigitTrace() {
+  const lesson = read('src/lessons/cpp/l1/Lesson10.jsx');
+
+  assert(
+    lesson.includes('CodeTracer') &&
+      lesson.includes('数位分离追踪器：n 怎样一位一位消失？') &&
+      lesson.includes('再次判断 0 > 0 为假') &&
+      lesson.includes('123 一共有 3 位'),
+    'C++ L1 lesson 10 should keep the step-by-step digit-splitting trace for while-loop state changes.'
+  );
+}
+
 function assertPythonProjectSupportUsesPrerequisites() {
   const projectSupport = read('src/components/PythonProjectSupport.jsx');
 
@@ -679,6 +727,10 @@ async function main() {
   assertNotFoundUsesSharedData();
   assertPythonFoundationSupportUsesQualityBar();
   assertLessonQualityBarSupportsCourseAccents();
+  assertLessonQualityBarKeepsLearningLoop();
+  assertLessonNextStepsKeepsErrorDiagnosis();
+  assertCppLoopLessonKeepsExecutionTrace();
+  assertCppWhileLessonKeepsDigitTrace();
   assertPythonProjectSupportUsesPrerequisites();
   assertCppLessonShellSupportsLessonSupport();
 

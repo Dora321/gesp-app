@@ -40,14 +40,13 @@ const Icon = ({ name, size = 20, className = "" }) => {
 // 1. 趣味导入：乱糟糟的图书馆
 const IntroSlide = () => (
     <div className="slide-enter space-y-8">
-        <div className="bg-gradient-to-r from-orange-500 to-rose-500 rounded-3xl p-10 text-white relative overflow-hidden shadow-2xl">
-            <div className="absolute top-0 right-0 w-64 h-64 bg-white/10 rounded-full -mr-20 -mt-20 blur-3xl animate-pulse"></div>
-            <div className="relative z-10 flex flex-col items-center text-center">
-                <div className="w-24 h-24 bg-white/20 rounded-2xl flex items-center justify-center mb-6 backdrop-blur-md">
+        <div className="overflow-hidden rounded-3xl bg-gradient-to-r from-orange-500 to-rose-500 p-6 text-white shadow-2xl sm:p-10">
+            <div className="flex flex-col items-center text-center">
+                <div className="mb-6 flex h-20 w-20 items-center justify-center rounded-2xl bg-white/20 backdrop-blur-md sm:h-24 sm:w-24">
                     <Layers size={48} className="text-yellow-300" />
                 </div>
-                <h2 className="text-4xl font-extrabold mb-4">秩序之美：排序算法</h2>
-                <p className="text-xl opacity-90 max-w-2xl leading-relaxed">
+                <h2 className="mb-4 text-3xl font-extrabold sm:text-4xl">秩序之美：排序算法</h2>
+                <p className="max-w-2xl text-base leading-relaxed opacity-90 sm:text-xl">
                     想象一下，如果图书馆里的书是胡乱堆放的，你能找到想看的那本吗？
                     <span className="text-yellow-300 font-bold mx-1">排序</span>
                     是计算机世界里最基础也最重要的魔法，让杂乱无章变得井井有条。
@@ -2226,4 +2225,3 @@ export default function PythonSortingProject() {
         </>
     );
 }
-

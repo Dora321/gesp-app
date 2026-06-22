@@ -1,4 +1,4 @@
-import { CheckCircle2, ClipboardCheck, Target } from 'lucide-react';
+import { CheckCircle2, ClipboardCheck, Target, Timer } from 'lucide-react';
 
 const accentStyles = {
   blue: {
@@ -67,9 +67,9 @@ const accentStyles = {
 };
 
 const columns = [
-  { key: 'goals', title: '本课目标', icon: Target },
-  { key: 'deliverables', title: '课堂产出', icon: ClipboardCheck },
-  { key: 'checks', title: '自测标准', icon: CheckCircle2 },
+  { key: 'goals', title: '先做到', helper: '先抓住最少的核心能力', icon: Target },
+  { key: 'deliverables', title: '做出证据', helper: '用作品或记录证明学过', icon: ClipboardCheck },
+  { key: 'checks', title: '离开前自测', helper: '能说清、能验证、能改错', icon: CheckCircle2 },
 ];
 
 export default function LessonQualityBar({
@@ -82,14 +82,22 @@ export default function LessonQualityBar({
 }) {
   const styles = accentStyles[accent] || accentStyles.blue;
   const data = { goals, deliverables, checks };
+  const immediateTask = deliverables[0] || goals[0] || null;
+  const immediateCheck = checks[0] || null;
 
   const grid = (
     <div className="grid gap-3 md:grid-cols-3">
-      {columns.map(({ key, title, icon: Icon }) => (
+      {columns.map(({ key, title, helper, icon: Icon }, index) => (
         <div key={key} className={`rounded-lg ${styles.bg} p-3`}>
           <div className={`mb-2 flex items-center gap-2 text-sm font-bold ${styles.heading}`}>
-            <Icon size={16} className={styles.icon} />
+            <span className={`flex h-6 w-6 shrink-0 items-center justify-center rounded-md text-xs font-black text-white ${styles.bullet}`}>
+              {index + 1}
+            </span>
             {title}
+          </div>
+          <div className="mb-2 flex items-center gap-1.5 text-xs font-bold text-slate-600">
+            <Icon size={13} className={styles.icon} />
+            {helper}
           </div>
           <ul className="space-y-1.5 text-sm leading-relaxed text-slate-700">
             {data[key].map((item) => (
@@ -112,6 +120,33 @@ export default function LessonQualityBar({
       className={`mb-6 rounded-lg border ${styles.border} bg-white p-4 shadow-sm ${className}`}
       aria-label="课程质量清单"
     >
+      <div className="mb-4 flex flex-col gap-1 sm:flex-row sm:items-end sm:justify-between">
+        <div>
+          <div className={`inline-flex rounded-md px-2.5 py-1 text-xs font-black ${styles.bg} ${styles.heading}`}>
+            今日学习闭环
+          </div>
+          <h2 className="mt-2 text-xl font-black text-slate-950">先做小目标，再检查是否真的会</h2>
+        </div>
+        <p className="text-sm font-semibold text-slate-500">
+          每节课都按“目标、证据、自测”收束，避免只看懂、不迁移。
+        </p>
+      </div>
+      {immediateTask && (
+        <div className={`mb-4 rounded-lg border ${styles.border} ${styles.bg} p-4`}>
+          <div className={`mb-2 flex items-center gap-2 text-sm font-black ${styles.heading}`}>
+            <span className={`flex h-7 w-7 items-center justify-center rounded-md text-white ${styles.bullet}`}>
+              <Timer size={15} />
+            </span>
+            马上动手
+          </div>
+          <p className="text-sm font-bold leading-relaxed text-slate-800">{immediateTask}</p>
+          {immediateCheck && (
+            <p className="mt-2 text-xs font-semibold leading-relaxed text-slate-600">
+              做完立刻检查：{immediateCheck}
+            </p>
+          )}
+        </div>
+      )}
       {grid}
     </section>
   );
