@@ -1,5 +1,5 @@
 import React, { useState, useMemo } from 'react';
-import { GitBranch, Repeat, HelpCircle, CheckCircle, AlertTriangle, Play, RefreshCw, XCircle, Zap, List, Grid3x3, TreePine, TrendingUp, Code } from 'lucide-react';
+import { GitBranch, Repeat, HelpCircle, CheckCircle, AlertTriangle, Play, RefreshCw, XCircle, Zap, List, Grid3x3, TreePine, TrendingUp, Code, BookOpen } from 'lucide-react';
 import PythonFoundationSupport from '../../../components/PythonFoundationSupport';
 import PyCodeTracer from '../../../components/PyCodeTracer';
 import PythonLessonShell, { SlideHeader } from '../shell/PythonLessonShell';
@@ -920,6 +920,45 @@ const QuizSlide = () => {
     );
 };
 
+const SummarySlide = () => (
+    <div className="space-y-6 animate-in fade-in slide-in-from-bottom-4 duration-500">
+        <SlideHeader accent="blue" icon={BookOpen} title="小结与下一步">
+            这一课，你让程序学会了「判断」和「重复」。把下面三件事记牢，控制流程就稳了。
+        </SlideHeader>
+
+        <div className="grid gap-4 md:grid-cols-3">
+            {[
+                ['真与假', '布尔值和比较运算的结果只有 True / False，是所有判断的基础。'],
+                ['会判断', 'if / elif / else 让程序按条件走不同分支。'],
+                ['会重复', 'for 按次数重复，while 按条件重复——记得让条件能停下来。'],
+            ].map(([title, desc]) => (
+                <div key={title} className="rounded-2xl border border-slate-200 bg-white p-5 shadow-sm">
+                    <div className="mb-2 text-sm font-black text-blue-700">{title}</div>
+                    <p className="text-sm font-semibold leading-7 text-slate-600">{desc}</p>
+                </div>
+            ))}
+        </div>
+
+        <div className="rounded-2xl border border-slate-200 bg-white p-5 shadow-sm">
+            <div className="mb-3 flex items-center gap-2 font-black text-slate-800">
+                <CheckCircle size={16} className="text-blue-600" /> 学完自测
+            </div>
+            <ul className="grid gap-2 text-sm font-semibold text-slate-600 sm:grid-cols-3">
+                <li className="flex gap-2"><span className="text-blue-500">✓</span> 能说出条件真/假各走哪段代码</li>
+                <li className="flex gap-2"><span className="text-blue-500">✓</span> 能解释 range 的起点、终点和步长</li>
+                <li className="flex gap-2"><span className="text-blue-500">✓</span> 能避免 while 条件不变导致死循环</li>
+            </ul>
+        </div>
+
+        <div className="rounded-2xl border border-blue-100 bg-blue-50 p-5">
+            <div className="mb-1 font-black text-blue-800">下一课：F3 列表与字典</div>
+            <p className="text-sm font-semibold leading-7 text-blue-900">
+                控制流程让程序「动」起来；下一课用列表、字典和字符串「装」更多真实数据，再配合循环批量处理。
+            </p>
+        </div>
+    </div>
+);
+
 const sections = [
     { id: 1, title: '布尔逻辑', category: '真与假', icon: CheckCircle, component: BooleanSlide },
     { id: 2, title: '比较运算', category: '得到真假', icon: Zap, component: ComparisonSlide },
@@ -928,6 +967,7 @@ const sections = [
     { id: 5, title: 'For 循环', category: '按次数重复', icon: Repeat, component: LoopSlide },
     { id: 6, title: 'While 火箭', category: '按条件重复', icon: AlertTriangle, component: ChallengeSlide },
     { id: 7, title: '逻辑大师', category: '闯关测验', icon: HelpCircle, component: QuizSlide },
+    { id: 8, title: '小结与衔接', category: '复盘 + 下一步', icon: BookOpen, component: SummarySlide },
 ];
 
 export default function PythonFoundation2() {
