@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { Terminal, Box, Calculator, MessageSquare, ArrowRight, Play, RefreshCw, CheckCircle, Tag, Bug, BookOpen, HelpCircle, Menu, X, Sparkles, Globe, Code, Palette, TrendingUp } from 'lucide-react';
 import PythonFoundationSupport from '../../../components/PythonFoundationSupport';
-import PythonLessonShell from '../shell/PythonLessonShell';
+import PythonLessonShell, { SlideHeader } from '../shell/PythonLessonShell';
 
 // --- Shared Components (will move to separate files later if needed) ---
 const Button = ({ onClick, children, className, variant = 'primary' }) => {
@@ -201,16 +201,10 @@ const VariableSlide = () => {
 
     return (
         <div className="space-y-6 animate-in fade-in slide-in-from-bottom-4 duration-500">
-            <div className="bg-purple-100 p-6 rounded-2xl border border-purple-200 text-purple-900">
-                <h2 className="text-2xl font-bold mb-4 flex items-center gap-2">
-                    <Box className="text-purple-600" />
-                    变量：超级收纳盒
-                </h2>
-                <p className="text-lg mb-4">
-                    变量就像是一个贴了标签的<strong>盒子</strong>。我们可以把任何东西（数字、文字）放进去。
+            <SlideHeader accent="indigo" icon={Box} title="变量：超级收纳盒">
+                变量就像是一个贴了标签的<strong>盒子</strong>。我们可以把任何东西（数字、文字）放进去。
                     你可以随时把盒子里的东西拿出来用，或者换成新的东西。
-                </p>
-            </div>
+            </SlideHeader>
 
             <div className="grid md:grid-cols-2 gap-8 items-center">
                 <div className="bg-white p-6 rounded-2xl shadow-lg border border-slate-100">
@@ -264,16 +258,10 @@ const IOSlide = () => {
 
     return (
         <div className="space-y-6 animate-in fade-in slide-in-from-bottom-4 duration-500">
-            <div className="bg-blue-100 p-6 rounded-2xl border border-blue-200 text-blue-900">
-                <h2 className="text-2xl font-bold mb-4 flex items-center gap-2">
-                    <MessageSquare className="text-blue-600" />
-                    输入与输出
-                </h2>
-                <p>
-                    <strong>input()</strong> 是机器人的耳朵，用来听你说什么。<br />
+            <SlideHeader accent="indigo" icon={MessageSquare} title="输入与输出">
+                <strong>input()</strong> 是机器人的耳朵，用来听你说什么。<br />
                     <strong>print()</strong> 是机器人的嘴巴，用来回答你。
-                </p>
-            </div>
+            </SlideHeader>
 
             <div className="bg-slate-50 border border-slate-200 rounded-2xl p-4 max-w-lg mx-auto shadow-inner">
                 <div className="h-64 overflow-y-auto mb-4 space-y-3 p-2">
@@ -313,14 +301,10 @@ const MathSlide = () => {
 
     return (
         <div className="space-y-6 animate-in fade-in slide-in-from-bottom-4 duration-500">
-            <div className="bg-green-100 p-6 rounded-2xl border border-green-200 text-green-900">
-                <h2 className="text-2xl font-bold mb-4 flex items-center gap-2">
-                    <Calculator className="text-green-600" />
-                    运算游乐场
-                </h2>
-                <p>Python 是个超强的计算器。除了加减乘除，它还有两个特别厉害的符号：
-                    <br /><code>%</code> (取余数) 和 <code>//</code> (整除)。</p>
-            </div>
+            <SlideHeader accent="indigo" icon={Calculator} title="运算游乐场">
+                Python 是个超强的计算器。除了加减乘除，它还有两个特别厉害的符号：
+                    <br /><code>%</code> (取余数) 和 <code>//</code> (整除)。
+            </SlideHeader>
 
             <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
                 {/* Controls */}
@@ -519,16 +503,10 @@ const DataTypeSlide = () => {
 
     return (
         <div className="space-y-6 animate-in fade-in slide-in-from-bottom-4 duration-500">
-            <div className="bg-pink-100 p-6 rounded-2xl border border-pink-200 text-pink-900">
-                <h2 className="text-2xl font-bold mb-4 flex items-center gap-2">
-                    <Tag className="text-pink-600" />
-                    数据类型侦探
-                </h2>
-                <p>
-                    电脑看世界的方式和我们不一样。它把数据分成不同的<strong>类型(Type)</strong>。
+            <SlideHeader accent="indigo" icon={Tag} title="数据类型侦探">
+                电脑看世界的方式和我们不一样。它把数据分成不同的<strong>类型(Type)</strong>。
                     <br />最常见的三种：<strong>整数(int)</strong>、<strong>小数(float)</strong>、<strong>字符串(str)</strong>。
-                </p>
-            </div>
+            </SlideHeader>
 
             <div className="grid md:grid-cols-2 gap-8 items-center">
                 <div className="bg-white p-8 rounded-2xl shadow-lg border border-slate-100 flex flex-col items-center">
@@ -735,16 +713,10 @@ const BugHuntSlide = () => {
 
     return (
         <div className="space-y-6 animate-in fade-in slide-in-from-bottom-4 duration-500">
-            <div className="bg-red-50 p-6 rounded-2xl border border-red-200 text-red-900">
-                <h2 className="text-2xl font-bold mb-4 flex items-center gap-2">
-                    <Bug className="text-red-600" />
-                    捉虫特工队
-                </h2>
-                <p>
-                    程序里的错误叫做 <strong>Bug (臭虫)</strong>。哪怕只少了一个引号，程序也会罢工！
+            <SlideHeader accent="indigo" icon={Bug} title="捉虫特工队">
+                程序里的错误叫做 <strong>Bug (臭虫)</strong>。哪怕只少了一个引号，程序也会罢工！
                     <br />作为程序员，我们的工作就是找到并消灭它们。
-                </p>
-            </div>
+            </SlideHeader>
 
             <div className="bg-slate-900 p-6 rounded-2xl shadow-xl relative overflow-hidden">
                 <div className="flex items-center gap-2 mb-4 border-b border-slate-700 pb-2">
@@ -982,15 +954,9 @@ const StorySlide = () => {
 
     return (
         <div className="space-y-6 animate-in fade-in slide-in-from-bottom-4 duration-500">
-            <div className="bg-cyan-100 p-6 rounded-2xl border border-cyan-200 text-cyan-900">
-                <h2 className="text-2xl font-bold mb-4 flex items-center gap-2">
-                    <BookOpen className="text-cyan-600" />
-                    故事生成器
-                </h2>
-                <p>
-                    让我们把<strong>变量</strong>(名字)、<strong>数字</strong>(年龄)和<strong>输出</strong>结合在一起！
-                </p>
-            </div>
+            <SlideHeader accent="indigo" icon={BookOpen} title="故事生成器">
+                让我们把<strong>变量</strong>(名字)、<strong>数字</strong>(年龄)和<strong>输出</strong>结合在一起！
+            </SlideHeader>
 
             <div className="grid md:grid-cols-2 gap-8">
                 <div className="bg-white p-6 rounded-xl shadow-sm border border-slate-100 space-y-4">
@@ -1146,15 +1112,9 @@ const ChallengeSlide = () => {
 
     return (
         <div className="space-y-6 animate-in fade-in slide-in-from-bottom-4 duration-500">
-            <div className="bg-yellow-100 p-6 rounded-2xl border border-yellow-200 text-yellow-900">
-                <h2 className="text-2xl font-bold mb-4 flex items-center gap-2">
-                    <HelpCircle className="text-yellow-600" />
-                    小测验：萌新毕业考
-                </h2>
-                <p>
-                    完成下面的挑战，看看你掌握了多少知识！共 {questions.length} 题，加油！
-                </p>
-            </div>
+            <SlideHeader accent="indigo" icon={HelpCircle} title="小测验：萌新毕业考">
+                完成下面的挑战，看看你掌握了多少知识！共 {questions.length} 题，加油！
+            </SlideHeader>
 
             <div className="bg-white p-6 rounded-2xl shadow-lg border border-slate-100 space-y-6">
                 {questions.map((q, idx) => (

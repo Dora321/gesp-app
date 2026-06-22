@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 import { MousePointer2, Move, Square, Palette, Sparkles, ChevronRight, Home, PenTool, Trophy, BookOpen, Zap, Star, Target, Award, Menu, X, CheckCircle, RefreshCw, ArrowRight, Repeat, Terminal, Network } from 'lucide-react';
 import TurtleCanvas from '../../../components/TurtleCanvas';
 import PythonFoundationSupport from '../../../components/PythonFoundationSupport';
-import PythonLessonShell from '../shell/PythonLessonShell';
+import PythonLessonShell, { SlideHeader } from '../shell/PythonLessonShell';
 
 // --- Shared Helper Components ---
 const Button = ({ onClick, children, className, variant = 'primary' }) => {
@@ -30,16 +30,10 @@ const CodeBlock = ({ code }) => (
 
 const IntroSlide = () => (
     <div className="space-y-6 animate-in fade-in slide-in-from-bottom-4 duration-500">
-        <div className="bg-emerald-100 p-6 rounded-2xl border border-emerald-200 text-emerald-900">
-            <h2 className="text-2xl font-bold mb-4 flex items-center gap-2">
-                <MousePointer2 className="text-emerald-600" />
-                初识小海龟
-            </h2>
-            <p className="text-lg leading-relaxed">
+        <SlideHeader accent="teal" icon={MousePointer2} title="初识小海龟">
                 欢迎来到 <strong>小海龟</strong> 画图的世界！ <br />
                 想象一只小海龟听从你的每一个指令，它可以画出复杂的图案、形状和艺术作品！
-            </p>
-        </div>
+            </SlideHeader>
         <div className="flex justify-center">
             <TurtleCanvas
                 commands={[
@@ -60,19 +54,13 @@ const MoveSlide = () => {
 
     return (
         <div className="space-y-6 animate-in fade-in slide-in-from-bottom-4 duration-500">
-            <div className="bg-blue-100 p-6 rounded-2xl border border-blue-200 text-blue-900">
-                <h2 className="text-2xl font-bold mb-4 flex items-center gap-2">
-                    <Move className="text-blue-600" />
-                    第一步：移动
-                </h2>
-                <p>
-                    点击按钮来移动小海龟！
+            <SlideHeader accent="teal" icon={Move} title="第一步：移动">
+                点击按钮来移动小海龟！
                     <br />
                     <code>forward(100)</code>: 向前移动 100 步
                     <br />
                     <code>right(90)</code>: 向右旋转 90 度
-                </p>
-            </div>
+            </SlideHeader>
 
             <div className="grid md:grid-cols-2 gap-8">
                 <div className="bg-white p-6 rounded-2xl shadow-lg border border-slate-100">
@@ -112,17 +100,11 @@ const LoopSlide = () => {
 
     return (
         <div className="space-y-6 animate-in fade-in slide-in-from-bottom-4 duration-500">
-            <div className="bg-orange-100 p-6 rounded-2xl border border-orange-200 text-orange-900">
-                <h2 className="text-2xl font-bold mb-4 flex items-center gap-2">
-                    <Repeat className="text-orange-600" />
-                    循环魔法
-                </h2>
-                <p>
-                    聪明的程序员都会偷懒！与其一遍遍写重复的代码，不如使用 <code>for</code> 循环。
+            <SlideHeader accent="teal" icon={Repeat} title="循环魔法">
+                聪明的程序员都会偷懒！与其一遍遍写重复的代码，不如使用 <code>for</code> 循环。
                     <br />
                     <code>for i in range(4):</code> 的意思是“重复 4 次”。
-                </p>
-            </div>
+            </SlideHeader>
 
             <div className="grid md:grid-cols-2 gap-8">
                 <div className="bg-white p-6 rounded-2xl shadow-sm border border-slate-100">
@@ -190,16 +172,10 @@ const ShapeSlide = () => {
 
     return (
         <div className="space-y-6 animate-in fade-in slide-in-from-bottom-4 duration-500">
-            <div className="bg-purple-100 p-6 rounded-2xl border border-purple-200 text-purple-900">
-                <h2 className="text-2xl font-bold mb-4 flex items-center gap-2">
-                    <Square className="text-purple-600" />
-                    绘制图形
-                </h2>
-                <p>
-                    使用循环来绘制图形！公式很简单：<br />
+            <SlideHeader accent="teal" icon={Square} title="绘制图形">
+                使用循环来绘制图形！公式很简单：<br />
                     <strong>旋转角度 = 360 ÷ 边数</strong>
-                </p>
-            </div>
+            </SlideHeader>
 
             <div className="grid md:grid-cols-2 gap-8">
                 <div className="space-y-4">
@@ -248,16 +224,10 @@ const ColorSlide = () => {
 
     return (
         <div className="space-y-6 animate-in fade-in slide-in-from-bottom-4 duration-500">
-            <div className="bg-orange-100 p-6 rounded-2xl border border-orange-200 text-orange-900">
-                <h2 className="text-2xl font-bold mb-4 flex items-center gap-2">
-                    <Palette className="text-orange-600" />
-                    缤纷色彩
-                </h2>
-                <p>
-                    改变画笔颜色 (`pencolor`) 和填充颜色 (`fillcolor`)。
+            <SlideHeader accent="teal" icon={Palette} title="缤纷色彩">
+                改变画笔颜色 (`pencolor`) 和填充颜色 (`fillcolor`)。
                     别忘了 `begin_fill()` 和 `end_fill()`。
-                </p>
-            </div>
+            </SlideHeader>
 
             <div className="grid md:grid-cols-2 gap-8">
                 <div className="space-y-6">
@@ -329,15 +299,9 @@ const ArtSlide = () => {
 
     return (
         <div className="space-y-6 animate-in fade-in slide-in-from-bottom-4 duration-500">
-            <div className="bg-pink-100 p-6 rounded-2xl border border-pink-200 text-pink-900">
-                <h2 className="text-2xl font-bold mb-4 flex items-center gap-2">
-                    <Sparkles className="text-pink-600" />
-                    生成艺术
-                </h2>
-                <p>
-                    循环 + 变量 = 复杂的图案！选择一个图案来绘制。
-                </p>
-            </div>
+            <SlideHeader accent="teal" icon={Sparkles} title="生成艺术">
+                循环 + 变量 = 复杂的图案！选择一个图案来绘制。
+            </SlideHeader>
 
             <div className="grid md:grid-cols-2 gap-8">
                 <div className="flex flex-col justify-center space-y-4">
@@ -394,18 +358,12 @@ const PenControlSlide = () => {
 
     return (
         <div className="space-y-6 animate-in fade-in slide-in-from-bottom-4 duration-500">
-            <div className="bg-cyan-100 p-6 rounded-2xl border border-cyan-200 text-cyan-900">
-                <h2 className="text-2xl font-bold mb-4 flex items-center gap-2">
-                    <PenTool className="text-cyan-600" />
-                    画笔控制
-                </h2>
-                <p>
-                    掌控你的画笔！ <br />
+            <SlideHeader accent="teal" icon={PenTool} title="画笔控制">
+                掌控你的画笔！ <br />
                     <code>penup()</code>: 抬笔（移动时不留下痕迹）<br />
                     <code>pendown()</code>: 落笔（开始绘制）<br />
                     <code>pensize(width)</code>: 改变线条粗细
-                </p>
-            </div>
+            </SlideHeader>
 
             <div className="grid md:grid-cols-2 gap-8">
                 <div className="space-y-6">
@@ -595,17 +553,11 @@ const FractalTreeSlide = () => {
 
     return (
         <div className="space-y-6 animate-in fade-in slide-in-from-bottom-4 duration-500">
-            <div className="bg-emerald-100 p-6 rounded-2xl border border-emerald-200 text-emerald-900">
-                <h2 className="text-2xl font-bold mb-4 flex items-center gap-2">
-                    <Network className="text-emerald-600" />
-                    递归与分形树
-                </h2>
-                <p>
-                    <strong>递归 (Recursion)</strong> 就是函数自己调用自己。
+            <SlideHeader accent="teal" icon={Network} title="递归与分形树">
+                <strong>递归 (Recursion)</strong> 就是函数自己调用自己。
                     <br />
                     看！这棵树的每一根树枝，都是一棵更小的树。
-                </p>
-            </div>
+            </SlideHeader>
 
             <div className="grid md:grid-cols-2 gap-8">
                 <div className="bg-white p-6 rounded-2xl shadow-sm border border-slate-100">
@@ -794,19 +746,13 @@ const MonteCarloSlide = () => {
 
     return (
         <div className="space-y-6 animate-in fade-in slide-in-from-bottom-4 duration-500">
-            <div className="bg-indigo-100 p-6 rounded-2xl border border-indigo-200 text-indigo-900">
-                <h2 className="text-2xl font-bold mb-4 flex items-center gap-2">
-                    <Target className="text-indigo-600" />
-                    蒙特卡洛法求 π (Monte Carlo Pi)
-                </h2>
-                <p>
-                    <strong>蒙特卡洛方法</strong> 是一种通过随机采样来解决问题的方法。
+            <SlideHeader accent="teal" icon={Target} title="蒙特卡洛法求 π (Monte Carlo Pi)">
+                <strong>蒙特卡洛方法</strong> 是一种通过随机采样来解决问题的方法。
                     <br />
                     我们在一个正方形里画一个圆。随机扔豆子，落在圆里的豆子越多，π 的估算值就越准确！
                     <br />
                     公式：π ≈ 4 × (圆内点数 / 总点数)
-                </p>
-            </div>
+            </SlideHeader>
 
             <div className="grid md:grid-cols-2 gap-8">
                 <div className="bg-white p-6 rounded-2xl shadow-lg border border-slate-100">

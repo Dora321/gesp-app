@@ -7,7 +7,7 @@ import {
     CheckCircle, List, FileQuestion, BookOpen
 } from 'lucide-react';
 import PythonFoundationSupport from '../../../components/PythonFoundationSupport';
-import PythonLessonShell from '../shell/PythonLessonShell';
+import PythonLessonShell, { SlideHeader } from '../shell/PythonLessonShell';
 
 // --- Shared Helper Components ---
 const Button = ({ onClick, children, className, variant = 'primary', disabled = false }) => {
@@ -104,17 +104,11 @@ const CreateSetSlide = () => {
 
     return (
         <div className="space-y-6 animate-in fade-in slide-in-from-bottom-4 duration-500">
-            <div className="bg-blue-100 p-6 rounded-2xl border border-blue-200 text-blue-900">
-                <h2 className="text-2xl font-bold mb-4 flex items-center gap-2">
-                    <Sparkles className="text-blue-600" />
-                    创建集合
-                </h2>
-                <p>
-                    用大括号 <code>{`{}`}</code> 或者 <code>set()</code> 来创建集合。
+            <SlideHeader accent="teal" icon={Sparkles} title="创建集合">
+                用大括号 <code>{`{}`}</code> 或者 <code>set()</code> 来创建集合。
                     <br />
                     试着把同样的东西放进袋子，看看会发生什么？
-                </p>
-            </div>
+            </SlideHeader>
 
             <div className="grid md:grid-cols-2 gap-8 items-center">
                 <div className="space-y-4">
@@ -173,15 +167,9 @@ const OperationsSlide = () => {
 
     return (
         <div className="space-y-6 animate-in fade-in slide-in-from-bottom-4 duration-500">
-            <div className="bg-purple-100 p-6 rounded-2xl border border-purple-200 text-purple-900">
-                <h2 className="text-2xl font-bold mb-4 flex items-center gap-2">
-                    <Combine className="text-purple-600" />
-                    集合运算 (Venn Diagram)
-                </h2>
-                <p>
-                    集合最强大的功能是处理它们之间的关系。通过 <strong>韦恩图</strong> 可以直观地看到！
-                </p>
-            </div>
+            <SlideHeader accent="teal" icon={Combine} title="集合运算 (Venn Diagram)">
+                集合最强大的功能是处理它们之间的关系。通过 <strong>韦恩图</strong> 可以直观地看到！
+            </SlideHeader>
 
             <div className="flex justify-center gap-4 mb-4">
                 <Button variant={mode === 'union' ? 'primary' : 'secondary'} onClick={() => setMode('union')} className="w-32">
@@ -268,17 +256,11 @@ const DeduplicateSlide = () => {
 
     return (
         <div className="space-y-6 animate-in fade-in slide-in-from-bottom-4 duration-500">
-            <div className="bg-orange-100 p-6 rounded-2xl border border-orange-200 text-orange-900">
-                <h2 className="text-2xl font-bold mb-4 flex items-center gap-2">
-                    <Scissors className="text-orange-600" />
-                    实战技巧：秒杀重复元素
-                </h2>
-                <p>
-                    有一个列表充满了重复的数据，怎么最快把它变干净？
+            <SlideHeader accent="teal" icon={Scissors} title="实战技巧：秒杀重复元素">
+                有一个列表充满了重复的数据，怎么最快把它变干净？
                     <br />
                     <strong>列表 转 集合 再转回 列表</strong>，只需一行代码！
-                </p>
-            </div>
+            </SlideHeader>
 
             <div className="bg-white p-6 rounded-2xl border border-slate-200 text-center space-y-8">
                 <div className={`transition-all duration-500 ${step >= 0 ? 'opacity-100' : 'opacity-0'}`}>
@@ -353,19 +335,13 @@ const MembershipSlide = () => {
 
     return (
         <div className="space-y-6 animate-in fade-in slide-in-from-bottom-4 duration-500">
-            <div className="bg-pink-100 p-6 rounded-2xl border border-pink-200 text-pink-900">
-                <h2 className="text-2xl font-bold mb-4 flex items-center gap-2">
-                    <Zap className="text-pink-600" />
-                    闪电查找
-                </h2>
-                <p>
-                    为什么程序员喜欢用集合？因为它快！⚡
+            <SlideHeader accent="teal" icon={Zap} title="闪电查找">
+                为什么程序员喜欢用集合？因为它快！⚡
                     <br />
                     在列表中找东西，需要一个一个看。在集合中找东西，是<strong>瞬间</strong>的！
                     <br />
                     语法：<code>element in my_set</code>
-                </p>
-            </div>
+            </SlideHeader>
 
             <div className="grid md:grid-cols-2 gap-8">
                 {/* List Simulation */}
@@ -469,13 +445,9 @@ const QuizSlide = () => {
 
     return (
         <div className="space-y-6 animate-in fade-in slide-in-from-bottom-4 duration-500">
-            <div className="bg-indigo-100 p-6 rounded-2xl border border-indigo-200 text-indigo-900">
-                <h2 className="text-2xl font-bold mb-4 flex items-center gap-2">
-                    <FileQuestion className="text-indigo-600" />
-                    小测验 ({currentQ + 1}/{questions.length})
-                </h2>
-                <p>来看看你掌握了多少集合的魔法！</p>
-            </div>
+            <SlideHeader accent="teal" icon={FileQuestion} title={`小测验 (${currentQ + 1}/${questions.length})`}>
+                来看看你掌握了多少集合的魔法！
+            </SlideHeader>
 
             <div className="bg-white p-8 rounded-2xl shadow-lg border border-slate-100 max-w-2xl mx-auto">
                 <h3 className="text-xl font-bold text-slate-800 mb-6">{q.q}</h3>
@@ -526,13 +498,9 @@ const QuizSlide = () => {
 
 const SummarySlide = () => (
     <div className="space-y-6 animate-in fade-in slide-in-from-bottom-4 duration-500">
-        <div className="bg-teal-100 p-6 rounded-2xl border border-teal-200 text-teal-900">
-            <h2 className="text-2xl font-bold mb-4 flex items-center gap-2">
-                <BookOpen className="text-teal-600" />
-                魔法笔记 (Cheat Sheet)
-            </h2>
-            <p>集合的咒语都在这里了，快记下来！</p>
-        </div>
+        <SlideHeader accent="teal" icon={BookOpen} title="魔法笔记 (Cheat Sheet)">
+                集合的咒语都在这里了，快记下来！
+            </SlideHeader>
 
         <div className="grid md:grid-cols-2 gap-6">
             <div className="space-y-4">
@@ -617,16 +585,10 @@ const ChallengeSlide = () => {
 
     return (
         <div className="space-y-6 animate-in fade-in slide-in-from-bottom-4 duration-500">
-            <div className="bg-yellow-100 p-6 rounded-2xl border border-yellow-200 text-yellow-900">
-                <h2 className="text-2xl font-bold mb-4 flex items-center gap-2">
-                    <Star className="text-yellow-600" />
-                    厨师的挑战 (Chef's Challenge)
-                </h2>
-                <p>
-                    糊涂厨师买重复了好多食材！<br />
+            <SlideHeader accent="teal" icon={Star} title="厨师的挑战 (Chef's Challenge)">
+                糊涂厨师买重复了好多食材！<br />
                     请你使用 <strong>集合魔法</strong> 帮他整理一份“不重复”的食材清单。
-                </p>
-            </div>
+            </SlideHeader>
 
             <div className="grid md:grid-cols-2 gap-8">
                 <div className="bg-white p-6 rounded-2xl shadow-lg border border-slate-100 flex flex-col items-center">
@@ -704,4 +666,3 @@ export default function PythonFoundation7() {
         />
     );
 }
-

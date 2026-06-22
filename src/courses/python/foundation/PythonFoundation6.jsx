@@ -7,7 +7,7 @@ import {
     Sliders, Key, BarChart2, Calculator, Coins, ChevronUp, ChevronDown
 } from 'lucide-react';
 import PythonFoundationSupport from '../../../components/PythonFoundationSupport';
-import PythonLessonShell from '../shell/PythonLessonShell';
+import PythonLessonShell, { SlideHeader } from '../shell/PythonLessonShell';
 
 // --- Shared Helper Components (Reused style) ---
 const Button = ({ onClick, children, className, variant = 'primary', disabled = false }) => {
@@ -95,17 +95,11 @@ const ImportSlide = () => {
     const [summoned, setSummoned] = useState(false);
     return (
         <div className="space-y-6 animate-in fade-in slide-in-from-bottom-4 duration-500">
-            <div className="bg-blue-100 p-6 rounded-2xl border border-blue-200 text-blue-900">
-                <h2 className="text-2xl font-bold mb-4 flex items-center gap-2">
-                    <BookOpen className="text-blue-600" />
-                    开启工具箱：Import
-                </h2>
-                <p>
-                    Python 就像一个魔法师，他的法术都存在 <strong>模块 (Module)</strong> 工具箱里。
+            <SlideHeader accent="indigo" icon={BookOpen} title="开启工具箱：Import">
+                Python 就像一个魔法师，他的法术都存在 <strong>模块 (Module)</strong> 工具箱里。
                     <br />
                     想用谁，就先 <strong>召唤 (import)</strong> 谁：
-                </p>
-            </div>
+            </SlideHeader>
 
             <div className="grid md:grid-cols-2 gap-8 items-center">
                 <div className="space-y-4">
@@ -211,15 +205,9 @@ const RangeVisualizerSlide = () => {
 
     return (
         <div className="space-y-6 animate-in fade-in slide-in-from-bottom-4 duration-500">
-            <div className="bg-cyan-100 p-6 rounded-2xl border border-cyan-200 text-cyan-900">
-                <h2 className="text-2xl font-bold mb-4 flex items-center gap-2">
-                    <Dices className="text-cyan-600" />
-                    范围探索器
-                </h2>
-                <p>
-                    调整滑块来改变随机数的范围。观察结果如何受到 <code>a</code> 和 <code>b</code> 的影响。
-                </p>
-            </div>
+            <SlideHeader accent="indigo" icon={Dices} title="范围探索器">
+                调整滑块来改变随机数的范围。观察结果如何受到 <code>a</code> 和 <code>b</code> 的影响。
+            </SlideHeader>
 
             <div className="grid md:grid-cols-2 gap-8">
                 <div className="bg-white p-6 rounded-2xl shadow-sm border border-slate-100 space-y-6">
@@ -307,17 +295,11 @@ const ChoiceSlide = () => {
 
     return (
         <div className="space-y-6 animate-in fade-in slide-in-from-bottom-4 duration-500">
-            <div className="bg-purple-100 p-6 rounded-2xl border border-purple-200 text-purple-900">
-                <h2 className="text-2xl font-bold mb-4 flex items-center gap-2">
-                    <MousePointer2 className="text-purple-600" />
-                    随机召唤：choice
-                </h2>
-                <p>
-                    <code>random.choice(sequence)</code>
+            <SlideHeader accent="indigo" icon={MousePointer2} title="随机召唤：choice">
+                <code>random.choice(sequence)</code>
                     <br />
                     从一个列表（或其他序列）中随机选出一个元素。
-                </p>
-            </div>
+            </SlideHeader>
 
             <div className="grid md:grid-cols-2 gap-8 font-sans">
                 <div className="space-y-4">
@@ -387,16 +369,10 @@ const ShuffleSampleSlide = () => {
 
     return (
         <div className="space-y-6 animate-in fade-in slide-in-from-bottom-4 duration-500">
-            <div className="bg-pink-100 p-6 rounded-2xl border border-pink-200 text-pink-900">
-                <h2 className="text-2xl font-bold mb-4 flex items-center gap-2">
-                    <Sparkles className="text-pink-600" />
-                    魔术师的秘密：洗牌与抽样
-                </h2>
-                <p>
-                    <code>random.shuffle(list)</code>：打乱列表顺序（原地修改）<br />
+            <SlideHeader accent="indigo" icon={Sparkles} title="魔术师的秘密：洗牌与抽样">
+                <code>random.shuffle(list)</code>：打乱列表顺序（原地修改）<br />
                     <code>random.sample(list, k)</code>：随机抽取 k 个元素（不重复）
-                </p>
-            </div>
+            </SlideHeader>
 
             <div className="grid md:grid-cols-2 gap-8">
                 <div className="space-y-4">
@@ -545,15 +521,9 @@ const RPSSlide = () => {
 
     return (
         <div className="space-y-6 animate-in fade-in slide-in-from-bottom-4 duration-500">
-            <div className="bg-orange-100 p-6 rounded-2xl border border-orange-200 text-orange-900">
-                <h2 className="text-2xl font-bold mb-4 flex items-center gap-2">
-                    <Zap className="text-orange-600" />
-                    实战：石头剪刀布
-                </h2>
-                <p>
-                    想制作一个完整的随机游戏，我们需要几步“召唤咒语”。先来热热身！
-                </p>
-            </div>
+            <SlideHeader accent="indigo" icon={Zap} title="实战：石头剪刀布">
+                想制作一个完整的随机游戏，我们需要几步“召唤咒语”。先来热热身！
+            </SlideHeader>
 
             <div className="grid md:grid-cols-2 gap-8">
                 <div className="bg-slate-50 p-6 rounded-2xl border border-slate-200">
@@ -642,16 +612,10 @@ const GuessNumberSlide = () => {
 
     return (
         <div className="space-y-6 animate-in fade-in slide-in-from-bottom-4 duration-500">
-            <div className="bg-yellow-100 p-6 rounded-2xl border border-yellow-200 text-yellow-900">
-                <h2 className="text-2xl font-bold mb-4 flex items-center gap-2">
-                    <HelpCircle className="text-yellow-600" />
-                    大挑战：猜数字
-                </h2>
-                <p>
-                    经典的编程游戏。程序随机生成一个 1-100 的数字，你来猜。
+            <SlideHeader accent="indigo" icon={HelpCircle} title="大挑战：猜数字">
+                经典的编程游戏。程序随机生成一个 1-100 的数字，你来猜。
                     程序会提示你“大了”还是“小了”。
-                </p>
-            </div>
+            </SlideHeader>
 
             <div className="grid md:grid-cols-2 gap-8">
                 <div className="bg-white p-6 rounded-2xl shadow-lg border border-slate-100 flex flex-col items-center text-center">
@@ -714,15 +678,9 @@ const DebugSlide = () => {
     const [fixed, setFixed] = useState(false);
     return (
         <div className="space-y-6 animate-in fade-in slide-in-from-bottom-4 duration-500">
-            <div className="bg-red-100 p-6 rounded-2xl border border-red-200 text-red-900">
-                <h2 className="text-2xl font-bold mb-4 flex items-center gap-2">
-                    <AlertTriangle className="text-red-600" />
-                    魔法反噬：缩进错误
-                </h2>
-                <p>
-                    Python 的代码非常“整洁”，所有的代码必须对齐。如果缩进错了，魔法就会失效！
-                </p>
-            </div>
+            <SlideHeader accent="indigo" icon={AlertTriangle} title="魔法反噬：缩进错误">
+                Python 的代码非常“整洁”，所有的代码必须对齐。如果缩进错了，魔法就会失效！
+            </SlideHeader>
 
             <div className="grid md:grid-cols-2 gap-8">
                 <div className="space-y-4 font-sans">
@@ -783,19 +741,13 @@ const RandomFloatSlide = () => {
 
     return (
         <div className="space-y-6 animate-in fade-in slide-in-from-bottom-4 duration-500">
-            <div className="bg-teal-100 p-6 rounded-2xl border border-teal-200 text-teal-900">
-                <h2 className="text-2xl font-bold mb-4 flex items-center gap-2">
-                    <Calculator className="text-teal-600" />
-                    小数魔法：random() 与 uniform()
-                </h2>
-                <p>
-                    除了整数，Python 还能生成小数（浮点数）！
+            <SlideHeader accent="indigo" icon={Calculator} title="小数魔法：random() 与 uniform()">
+                除了整数，Python 还能生成小数（浮点数）！
                     <br />
                     <code>random.random()</code>：生成 0 到 1 之间的小数
                     <br />
                     <code>random.uniform(a, b)</code>：生成 a 到 b 之间的小数
-                </p>
-            </div>
+            </SlideHeader>
 
             <div className="grid md:grid-cols-2 gap-8">
                 <div className="bg-white p-6 rounded-2xl shadow-sm border border-slate-100 space-y-4">
@@ -883,15 +835,9 @@ const PasswordGeneratorSlide = () => {
 
     return (
         <div className="space-y-6 animate-in fade-in slide-in-from-bottom-4 duration-500">
-            <div className="bg-violet-100 p-6 rounded-2xl border border-violet-200 text-violet-900">
-                <h2 className="text-2xl font-bold mb-4 flex items-center gap-2">
-                    <Key className="text-violet-600" />
-                    实战项目：密码生成器
-                </h2>
-                <p>
-                    用 <code>random.choice()</code> 从字符池中随机挑选，组合成安全密码！
-                </p>
-            </div>
+            <SlideHeader accent="indigo" icon={Key} title="实战项目：密码生成器">
+                用 <code>random.choice()</code> 从字符池中随机挑选，组合成安全密码！
+            </SlideHeader>
 
             <div className="grid md:grid-cols-2 gap-8">
                 <div className="bg-white p-6 rounded-2xl shadow-sm border border-slate-100 space-y-4">
@@ -970,15 +916,9 @@ const CoinFlipStatsSlide = () => {
 
     return (
         <div className="space-y-6 animate-in fade-in slide-in-from-bottom-4 duration-500">
-            <div className="bg-amber-100 p-6 rounded-2xl border border-amber-200 text-amber-900">
-                <h2 className="text-2xl font-bold mb-4 flex items-center gap-2">
-                    <Coins className="text-amber-600" />
-                    概率实验：抛硬币统计
-                </h2>
-                <p>
-                    抛硬币无数次，正面和反面的比例会趋近于 <strong>50%</strong>。这就是<strong>大数定律</strong>！
-                </p>
-            </div>
+            <SlideHeader accent="indigo" icon={Coins} title="概率实验：抛硬币统计">
+                抛硬币无数次，正面和反面的比例会趋近于 <strong>50%</strong>。这就是<strong>大数定律</strong>！
+            </SlideHeader>
 
             <div className="grid md:grid-cols-2 gap-8">
                 <div className="bg-white p-6 rounded-2xl shadow-sm border border-slate-100 space-y-4">
@@ -1099,17 +1039,11 @@ const MonkeySortSlide = () => {
 
     return (
         <div className="space-y-6 animate-in fade-in slide-in-from-bottom-4 duration-500">
-            <div className="bg-fuchsia-100 p-6 rounded-2xl border border-fuchsia-200 text-fuchsia-900">
-                <h2 className="text-2xl font-bold mb-4 flex items-center gap-2">
-                    <Shuffle className="text-fuchsia-600" />
-                    趣味挑战：猴子排序 (Bogo Sort)
-                </h2>
-                <p>
-                    如果给一只无限寿命的猴子一个打字机，它最终能敲出《莎士比亚全集》。<br />
+            <SlideHeader accent="indigo" icon={Shuffle} title="趣味挑战：猴子排序 (Bogo Sort)">
+                如果给一只无限寿命的猴子一个打字机，它最终能敲出《莎士比亚全集》。<br />
                     同理，如果我们<strong>随机打乱</strong>一组数字足够多次，它们最终也会<strong>恰好排好序</strong>！
                     这就是著名的（极其低效的）<strong>猴子排序</strong>。
-                </p>
-            </div>
+            </SlideHeader>
 
             <div className="grid md:grid-cols-2 gap-8">
                 <div className="space-y-4">

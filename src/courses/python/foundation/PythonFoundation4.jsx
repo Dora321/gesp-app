@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { Box, Code, Package, Zap, ArrowRight, RefreshCw, Sparkles, BookOpen, AlertCircle, Menu, X, Play, Trophy, CheckCircle, XCircle, Star, Calculator, Dices, Clock } from 'lucide-react';
 import PythonFoundationSupport from '../../../components/PythonFoundationSupport';
-import PythonLessonShell from '../shell/PythonLessonShell';
+import PythonLessonShell, { SlideHeader } from '../shell/PythonLessonShell';
 
 // --- Shared Components ---
 const Button = ({ onClick, children, className, variant = 'primary', disabled = false }) => {
@@ -202,17 +202,11 @@ const ScopeSlide = () => {
 
     return (
         <div className="space-y-8 animate-in fade-in slide-in-from-bottom-4 duration-500">
-            <div className="bg-purple-100 p-6 rounded-2xl border border-purple-200 text-purple-900">
-                <h2 className="text-2xl font-bold mb-4 flex items-center gap-2">
-                    <Box className="text-purple-600" />
-                    作用域 (Scope)：谁能看见我？
-                </h2>
-                <p>
-                    <strong>变量</strong>是有“地盘”的。
+            <SlideHeader accent="indigo" icon={Box} title="作用域 (Scope)：谁能看见我？">
+                <strong>变量</strong>是有“地盘”的。
                     <strong>Global (全局)</strong> 就像在大街上，谁都能看见。
                     <strong>Local (局部)</strong> 就像在你的卧室里，只有屋里人（函数内部）能看见。
-                </p>
-            </div>
+            </SlideHeader>
 
             <div className="grid lg:grid-cols-2 gap-8">
                 {/* Visual Simulation */}
@@ -355,16 +349,10 @@ const ModuleSlide = () => {
 
     return (
         <div className="space-y-8 animate-in fade-in slide-in-from-bottom-4 duration-500">
-            <div className="bg-blue-100 p-6 rounded-2xl border border-blue-200 text-blue-900">
-                <h2 className="text-2xl font-bold mb-4 flex items-center gap-2">
-                    <Package className="text-blue-600" />
-                    模块 (Module)：英雄工具箱
-                </h2>
-                <p>
-                    Python 自带了很多强力工具包（Modules）。
+            <SlideHeader accent="indigo" icon={Package} title="模块 (Module)：英雄工具箱">
+                Python 自带了很多强力工具包（Modules）。
                     你不需要自己造轮子，只要 <strong>import</strong> 拿来就能用！
-                </p>
-            </div>
+            </SlideHeader>
 
             <div className="grid lg:grid-cols-2 gap-8">
                 {/* Visual Toolkit */}
@@ -460,16 +448,10 @@ const AdvancedFunctionSlide = () => {
 
     return (
         <div className="space-y-8 animate-in fade-in slide-in-from-bottom-4 duration-500">
-            <div className="bg-orange-100 p-6 rounded-2xl border border-orange-200 text-orange-900">
-                <h2 className="text-2xl font-bold mb-4 flex items-center gap-2">
-                    <Zap className="text-orange-600" />
-                    进阶函数：默认参数 (Default Args)
-                </h2>
-                <p>
-                    有时候我们不想每次都输入参数。如果没有给参数，函数可以使用一个<strong>默认值</strong>。
+            <SlideHeader accent="indigo" icon={Zap} title="进阶函数：默认参数 (Default Args)">
+                有时候我们不想每次都输入参数。如果没有给参数，函数可以使用一个<strong>默认值</strong>。
                     就像去餐厅，如果你不说吃什么，厨师就给你做“招牌菜”。
-                </p>
-            </div>
+            </SlideHeader>
 
             <div className="grid md:grid-cols-2 gap-8 items-center">
                 <div className="space-y-4">
@@ -526,16 +508,10 @@ make_sandwich("Ham")
 const LambdaSlide = () => {
     return (
         <div className="space-y-8 animate-in fade-in slide-in-from-bottom-4 duration-500">
-            <div className="bg-pink-100 p-6 rounded-2xl border border-pink-200 text-pink-900">
-                <h2 className="text-2xl font-bold mb-4 flex items-center gap-2">
-                    <Sparkles className="text-pink-600" />
-                    Lambda 函数：瞬发魔法卷轴
-                </h2>
-                <p>
-                    <strong>Lambda</strong> 是“匿名函数”。它不需要名字，写完即用，用完即走。
+            <SlideHeader accent="indigo" icon={Sparkles} title="Lambda 函数：瞬发魔法卷轴">
+                <strong>Lambda</strong> 是“匿名函数”。它不需要名字，写完即用，用完即走。
                     就像是一次性的魔法卷轴，适合写那些特别短小的逻辑。
-                </p>
-            </div>
+            </SlideHeader>
 
             <div className="grid md:grid-cols-2 gap-8">
                 {/* Regular Function */}
