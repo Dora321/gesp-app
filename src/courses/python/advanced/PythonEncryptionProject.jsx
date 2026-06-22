@@ -1,8 +1,9 @@
-import React, { useState, useEffect, useRef, useMemo } from 'react';
-import { Link, useNavigate } from 'react-router-dom';
+import React, { useState, useEffect, useMemo } from 'react';
+import { Link } from 'react-router-dom';
 import { Shield, Lock, Unlock, Key, FileText, ArrowRight, RotateCcw, Check, X, Terminal, Binary, Hash, Eye, EyeOff, Menu, RefreshCw } from 'lucide-react';
 import PythonProjectSupport from '../../../components/PythonProjectSupport';
 import PyCodeTracer from '../../../components/PyCodeTracer';
+import PythonLessonShell from '../shell/PythonLessonShell';
 
 const Icon = ({ name, className }) => {
     const icons = {
@@ -879,205 +880,43 @@ import { CheckCircle } from 'lucide-react'; // Adding this just in case.
 
 
 const sections = [
-    { id: 1, title: '任务简报', icon: 'file', component: IntroSlide },
-    { id: 2, title: 'ASCII 编码', icon: 'binary', component: ASCIISlide },
-    { id: 3, title: '凯撒密码', icon: 'lock', component: CaesarSlide },
-    { id: 4, title: '动手编程', icon: 'terminal', component: CodeChallengeSlide },
-    { id: 5, title: 'XOR 加密', icon: 'hash', component: XORSlide },
-    { id: 6, title: '特工实战', icon: 'shield', component: PracticeSlide },
+    { id: 1, title: '任务简报', category: '为什么加密', icon: FileText, component: IntroSlide },
+    { id: 2, title: 'ASCII 编码', category: '字符即数字', icon: Binary, component: ASCIISlide },
+    { id: 3, title: '凯撒密码', category: '字母位移', icon: Lock, component: CaesarSlide },
+    { id: 4, title: '动手编程', category: '写加密函数', icon: Terminal, component: CodeChallengeSlide },
+    { id: 5, title: 'XOR 加密', category: '异或魔法', icon: Hash, component: XORSlide },
+    { id: 6, title: '特工实战', category: '破解挑战', icon: Shield, component: PracticeSlide },
 ];
 
 export default function PythonEncryptionProject() {
-    const navigate = useNavigate();
-    const [activeSection, setActiveSection] = useState(1);
-    const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
-    const scrollRef = useRef(null);
-
-    useEffect(() => {
-        scrollRef.current?.scrollTo(0, 0);
-    }, [activeSection]);
-
-    const currentSection = sections.find(s => s.id === activeSection);
-
     return (
-        <div className="flex h-screen bg-black overflow-hidden font-sans relative">
-            <MatrixRain />
+        <>
             <style>{`
                 .slide-enter { animation: slideIn 0.4s ease-out; }
-                @keyframes slideIn { 
-                    from { opacity: 0; transform: translateY(10px); } 
-                    to { opacity: 1; transform: translateY(0); } 
+                @keyframes slideIn {
+                    from { opacity: 0; transform: translateY(10px); }
+                    to { opacity: 1; transform: translateY(0); }
                 }
-                .typing-effect {
-                    overflow: hidden;
-                    white-space: nowrap;
-                    border-right: 2px solid #22c55e;
-                    animation: typing 3.5s steps(40, end), blink-caret .75s step-end infinite;
-                    font-family: monospace;
-                    color: #22c55e;
-                }
-                @keyframes typing { from { width: 0 } to { width: 100% } }
-                @keyframes blink-caret { from, to { border-color: transparent } 50% { border-color: #22c55e; } }
             `}</style>
-
-            {/* Sidebar similar to BinarySearchProject but with Agent Theme */}
-            <div className={`
-                fixed inset-y-0 left-0 z-50 w-64 bg-slate-900 border-r border-slate-700 text-slate-100 shadow-2xl transition-transform duration-300 md:relative md:translate-x-0 md:shadow-none
-                ${isMobileMenuOpen ? 'translate-x-0' : '-translate-x-full'}
-            `}>
-                <div className="p-6 border-b border-slate-800 flex items-center gap-3">
-                    <Link to="/" className="hover:opacity-80 transition-opacity">
-                        <img src={`${import.meta.env.BASE_URL}logo.jpg`} alt="Logo" className="w-10 h-10 rounded-xl object-cover shadow-lg shadow-green-900/50" />
-                    </Link>
-                    <div>
-                        <h1 className="font-bold text-white leading-none tracking-wider">特工加密</h1>
-                        <p className="text-[10px] text-green-500 mt-1 uppercase tracking-widest font-bold">Encryption Master</p>
-                    </div>
-                </div>
-
-                <nav className="flex-1 overflow-y-auto p-4 space-y-6">
-                    {/* Group 1: 基础 */}
-                    <div>
-                        <div className="px-4 mb-2 text-xs font-bold text-slate-500 uppercase tracking-wider">🔰 任务入门</div>
-                        <div className="space-y-1">
-                            {sections.slice(0, 2).map(section => (
-                                <button
-                                    key={section.id}
-                                    onClick={() => {
-                                        setActiveSection(section.id);
-                                        setIsMobileMenuOpen(false);
-                                    }}
-                                    className={`w-full flex items-center gap-3 px-4 py-2.5 rounded-lg transition-colors text-sm ${activeSection === section.id
-                                        ? 'bg-green-500/10 text-green-400 font-medium'
-                                        : 'text-slate-400 hover:bg-slate-800 hover:text-white'
-                                        }`}
-                                >
-                                    <Icon name={section.icon} className={activeSection === section.id ? 'text-green-400' : 'text-slate-500'} />
-                                    {section.title}
-                                </button>
-                            ))}
-                        </div>
-                    </div>
-
-                    {/* Group 2: 加密算法 */}
-                    <div>
-                        <div className="px-4 mb-2 text-xs font-bold text-slate-500 uppercase tracking-wider">🔐 加密算法</div>
-                        <div className="space-y-1">
-                            {sections.slice(2, 5).map(section => (
-                                <button
-                                    key={section.id}
-                                    onClick={() => {
-                                        setActiveSection(section.id);
-                                        setIsMobileMenuOpen(false);
-                                    }}
-                                    className={`w-full flex items-center gap-3 px-4 py-2.5 rounded-lg transition-colors text-sm ${activeSection === section.id
-                                        ? 'bg-green-500/10 text-green-400 font-medium'
-                                        : 'text-slate-400 hover:bg-slate-800 hover:text-white'
-                                        }`}
-                                >
-                                    <Icon name={section.icon} className={activeSection === section.id ? 'text-green-400' : 'text-slate-500'} />
-                                    {section.title}
-                                </button>
-                            ))}
-                        </div>
-                    </div>
-
-                    {/* Group 3: 实战 */}
-                    <div>
-                        <div className="px-4 mb-2 text-xs font-bold text-slate-500 uppercase tracking-wider">🏆 特工实战</div>
-                        <div className="space-y-1">
-                            {sections.slice(5, 6).map(section => (
-                                <button
-                                    key={section.id}
-                                    onClick={() => {
-                                        setActiveSection(section.id);
-                                        setIsMobileMenuOpen(false);
-                                    }}
-                                    className={`w-full flex items-center gap-3 px-4 py-2.5 rounded-lg transition-colors text-sm ${activeSection === section.id
-                                        ? 'bg-green-500/10 text-green-400 font-medium'
-                                        : 'text-slate-400 hover:bg-slate-800 hover:text-white'
-                                        }`}
-                                >
-                                    <Icon name={section.icon} className={activeSection === section.id ? 'text-green-400' : 'text-slate-500'} />
-                                    {section.title}
-                                </button>
-                            ))}
-                        </div>
-                    </div>
-                </nav>
-
-                <div className="p-6 border-t border-slate-800">
-                    <Link to="/" className="flex items-center gap-2 text-slate-500 hover:text-green-400 transition-colors text-sm font-bold">
-                        <RotateCcw size={16} /> 返回总部
-                    </Link>
-                </div>
-            </div>
-
-            {/* Main Content */}
-            <div className="flex-1 flex flex-col h-full relative overflow-hidden bg-slate-950">
-                {/* Header with Mobile Menu Button */}
-                <header className="h-16 bg-slate-900/80 backdrop-blur-md border-b border-green-500/20 flex items-center justify-between px-6 md:px-8 flex-shrink-0 z-20">
-                    <div className="flex items-center gap-3 md:hidden">
-                        <button
-                            onClick={() => setIsMobileMenuOpen(true)}
-                            className="p-2 -ml-2 text-slate-600 hover:bg-slate-800 rounded-lg"
-                            aria-label="打开课程目录"
-                            aria-expanded={isMobileMenuOpen}
-                        >
-                            <Menu size={24} />
-                        </button>
-                    </div>
-
-                    <div className="flex items-center gap-3">
-                        <h2 className="text-xl font-black text-green-400 tracking-tight flex items-center gap-2">
-                            <span className="text-green-600">MISSION:</span> {currentSection.title}
-                        </h2>
-                    </div>
-
-                    <div className="hidden md:flex text-xs font-mono font-bold text-green-600 uppercase tracking-widest">
-                        STEP {activeSection} / {sections.length}
-                    </div>
-                </header>
-
-                {/* Scrollable Content Area */}
-                <main ref={scrollRef} className="flex-1 overflow-y-auto p-4 md:p-8 custom-scrollbar relative">
-                    <div className="max-w-4xl mx-auto pb-10">
-                        <PythonProjectSupport projectId="encryption" theme="dark" />
-                        {/* Dynamic Component */}
-                        <currentSection.component />
-                        <PythonProjectSupport projectId="encryption" placement="bottom" theme="dark" />
-                    </div>
-                </main>
-
-                {/* Sticky Footer */}
-                <div className="h-20 bg-slate-900/80 backdrop-blur-md border-t border-green-500/20 flex items-center justify-between px-8 z-20 flex-shrink-0">
-                    <button
-                        onClick={() => setActiveSection(prev => Math.max(1, prev - 1))}
-                        disabled={activeSection === 1}
-                        className={`flex items-center gap-2 px-6 py-2.5 rounded-xl font-bold transition-all
-                            ${activeSection === 1
-                                ? 'text-slate-600 cursor-not-allowed'
-                                : 'text-green-400 hover:bg-slate-800/50'}`}
-                    >
-                        <ArrowRight className="rotate-180" size={20} /> 上一节
-                    </button>
-
-                    <button
-                        onClick={() => {
-                            if (activeSection < sections.length) {
-                                setActiveSection(prev => prev + 1);
-                            } else {
-                                navigate('/python/morse');
-                            }
-                        }}
-                        className={`flex items-center gap-2 px-8 py-3 rounded-xl font-bold transition-all shadow-lg text-white hover:translate-x-1
-                            ${activeSection === sections.length ? 'bg-green-500 hover:bg-green-600 shadow-green-200' : 'bg-green-500 hover:bg-green-600 shadow-green-200'}`}
-                    >
-                        {activeSection === sections.length ? '下一课' : '下一节'}
-                        <ArrowRight size={20} />
-                    </button>
-                </div>
-            </div>
-        </div>
+            <PythonLessonShell
+                eyebrow="PYTHON 项目"
+                lessonCode="A4"
+                lessonTitle="加密解密项目"
+                lessonSubtitle="像特工一样保护消息"
+                accent="teal"
+                theme="dark"
+                hero={{
+                    title: '把消息变成只有自己人看得懂的密文',
+                    description: '从 ASCII 编码到凯撒密码、XOR 加密，理解字符与数字的转换，做一个能加密又能解密的文本工具。',
+                }}
+                sections={sections}
+                previousPath="/python/sorting"
+                nextPath="/python/morse"
+                nextLabel="下一个：A5 摩斯电码"
+                topSupport={<PythonProjectSupport projectId="encryption" theme="dark" />}
+                bottomSupport={<PythonProjectSupport projectId="encryption" placement="bottom" theme="dark" />}
+            />
+        </>
     );
-};
+}
+

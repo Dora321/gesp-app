@@ -70,6 +70,24 @@ export function Panel({ title, children, className = '' }) {
 
 /* ---------- 外壳 ---------- */
 
+// 外壳底色：浅色课与深色项目两套 chrome（内容区交由各课自己渲染）
+const CHROME = {
+    light: {
+        outer: 'bg-slate-50 text-slate-800', bar: 'border-slate-200 bg-white', aside: 'border-slate-200 bg-white',
+        divider: 'border-slate-100', title: 'text-slate-900', subtitle: 'text-slate-500',
+        sectionIdle: 'text-slate-600 hover:bg-slate-50', sectionIconIdle: 'bg-slate-100 text-slate-400', sectionCat: 'text-slate-400',
+        header: 'border-slate-200 bg-white', headerTitle: 'text-slate-950', headerSub: 'text-slate-500',
+        footer: 'border-slate-200 bg-white', prev: 'text-slate-500 hover:bg-slate-100 hover:text-slate-800', dotIdle: 'bg-slate-200',
+    },
+    dark: {
+        outer: 'bg-slate-950 text-slate-200', bar: 'border-slate-800 bg-slate-900', aside: 'border-slate-800 bg-slate-900',
+        divider: 'border-slate-800', title: 'text-white', subtitle: 'text-slate-400',
+        sectionIdle: 'text-slate-400 hover:bg-slate-800', sectionIconIdle: 'bg-slate-800 text-slate-500', sectionCat: 'text-slate-500',
+        header: 'border-slate-800 bg-slate-900', headerTitle: 'text-white', headerSub: 'text-slate-400',
+        footer: 'border-slate-800 bg-slate-900', prev: 'text-slate-400 hover:bg-slate-800 hover:text-white', dotIdle: 'bg-slate-700',
+    },
+};
+
 export default function PythonLessonShell({
     eyebrow = 'PYTHON FOUNDATION',
     lessonCode,
@@ -85,7 +103,9 @@ export default function PythonLessonShell({
     bottomSupport = null,
     homePath = '/',
     homeLabel = '返回课程',
+    theme = 'light',
 }) {
+    const t = CHROME[theme] || CHROME.light;
     const navigate = useNavigate();
     const [activeSection, setActiveSection] = useState(sections[0]?.id ?? 1);
     const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
@@ -112,9 +132,9 @@ export default function PythonLessonShell({
     };
 
     return (
-        <div className="flex h-screen overflow-hidden bg-slate-50 font-sans text-slate-800">
+        <div className={`flex h-screen overflow-hidden font-sans ${t.outer}`}>
             {/* 移动端顶栏 */}
-            <div className="fixed left-0 top-0 z-50 flex w-full items-center justify-between border-b border-slate-200 bg-white p-4 shadow-sm md:hidden">
+            <div className={`fixed left-0 top-0 z-50 flex w-full items-center justify-between border-b ${t.bar} p-4 shadow-sm md:hidden`}>
                 <h1 className={`text-lg font-black ${color.text}`}>{lessonCode}：{lessonTitle}</h1>
                 <button onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)} aria-label="打开课程目录" aria-expanded={isMobileMenuOpen}>
                     {isMobileMenuOpen ? <X size={24} /> : <Menu size={24} />}
@@ -122,15 +142,15 @@ export default function PythonLessonShell({
             </div>
 
             {/* 侧边栏 */}
-            <aside className={`fixed inset-y-0 left-0 z-50 flex h-full w-72 flex-col border-r border-slate-200 bg-white shadow-lg transition-transform md:relative md:translate-x-0 ${isMobileMenuOpen ? 'translate-x-0' : '-translate-x-full'}`}>
-                <div className="border-b border-slate-100 p-6">
+            <aside className={`fixed inset-y-0 left-0 z-50 flex h-full w-72 flex-col border-r ${t.aside} shadow-lg transition-transform md:relative md:translate-x-0 ${isMobileMenuOpen ? 'translate-x-0' : '-translate-x-full'}`}>
+                <div className={`border-b ${t.divider} p-6`}>
                     <Link to={homePath} className={`inline-flex items-center gap-2 text-sm font-black ${color.text}`}>
                         <Home size={16} />
                         {homeLabel}
                     </Link>
                     <div className={`mt-3 text-xs font-black uppercase tracking-wider ${color.text}`}>{eyebrow}</div>
-                    <h2 className="mt-1 text-lg font-black text-slate-900">{lessonCode}：{lessonTitle}</h2>
-                    {lessonSubtitle && <p className="mt-1 text-xs font-semibold text-slate-500">{lessonSubtitle}</p>}
+                    <h2 className={`mt-1 text-lg font-black ${t.title}`}>{lessonCode}：{lessonTitle}</h2>
+                    {lessonSubtitle && <p className={`mt-1 text-xs font-semibold ${t.subtitle}`}>{lessonSubtitle}</p>}
                 </div>
                 <div className="flex-1 overflow-y-auto py-4">
                     {sections.map((section, i) => {
@@ -140,14 +160,14 @@ export default function PythonLessonShell({
                             <button
                                 key={section.id}
                                 onClick={() => { setActiveSection(section.id); setIsMobileMenuOpen(false); }}
-                                className={`flex w-full items-center gap-3 px-6 py-3 text-left transition-colors ${active ? `border-r-4 ${color.border} ${color.light} ${color.text}` : 'text-slate-600 hover:bg-slate-50'}`}
+                                className={`flex w-full items-center gap-3 px-6 py-3 text-left transition-colors ${active ? `border-r-4 ${color.border} ${theme === 'dark' ? 'bg-slate-800 text-white' : `${color.light} ${color.text}`}` : t.sectionIdle}`}
                             >
-                                <span className={`flex h-7 w-7 shrink-0 items-center justify-center rounded-lg text-xs font-black ${active ? `${color.bg} text-white` : 'bg-slate-100 text-slate-400'}`}>
+                                <span className={`flex h-7 w-7 shrink-0 items-center justify-center rounded-lg text-xs font-black ${active ? `${color.bg} text-white` : t.sectionIconIdle}`}>
                                     {Icon ? <Icon size={15} /> : i + 1}
                                 </span>
                                 <span className="min-w-0">
                                     <span className="block truncate text-sm font-black">{section.title}</span>
-                                    {section.category && <span className="mt-0.5 block truncate text-xs font-semibold text-slate-400">{section.category}</span>}
+                                    {section.category && <span className={`mt-0.5 block truncate text-xs font-semibold ${t.sectionCat}`}>{section.category}</span>}
                                 </span>
                             </button>
                         );
@@ -157,10 +177,10 @@ export default function PythonLessonShell({
 
             {/* 主区 */}
             <div className="flex h-full flex-1 flex-col pt-16 md:pt-0">
-                <header className="flex h-16 items-center justify-between border-b border-slate-200 bg-white px-6">
+                <header className={`flex h-16 items-center justify-between border-b ${t.header} px-6`}>
                     <div className="min-w-0">
-                        <h2 className="truncate text-lg font-black text-slate-950">{lessonCode}：{lessonTitle}</h2>
-                        <p className="truncate text-xs font-bold text-slate-500">{currentSection?.category || ''} / {currentSection?.title}</p>
+                        <h2 className={`truncate text-lg font-black ${t.headerTitle}`}>{lessonCode}：{lessonTitle}</h2>
+                        <p className={`truncate text-xs font-bold ${t.headerSub}`}>{currentSection?.category || ''} / {currentSection?.title}</p>
                     </div>
                     <div className={`hidden shrink-0 rounded-full px-3 py-1 text-xs font-black sm:block ${color.light} ${color.text}`}>
                         {currentIndex + 1} / {sections.length}
@@ -192,17 +212,17 @@ export default function PythonLessonShell({
                     </div>
                 </main>
 
-                <footer className="flex h-20 shrink-0 items-center justify-between border-t border-slate-200 bg-white px-6">
+                <footer className={`flex h-20 shrink-0 items-center justify-between border-t ${t.footer} px-6`}>
                     <button
                         onClick={goPrev}
                         disabled={isFirst && !previousPath}
-                        className="rounded-lg px-4 py-2 text-sm font-black text-slate-500 transition hover:bg-slate-100 hover:text-slate-800 disabled:cursor-not-allowed disabled:opacity-40"
+                        className={`rounded-lg px-4 py-2 text-sm font-black transition disabled:cursor-not-allowed disabled:opacity-40 ${t.prev}`}
                     >
                         {isFirst ? '上一课' : '上一节'}
                     </button>
                     <div className="hidden items-center gap-1.5 sm:flex">
                         {sections.map((s, i) => (
-                            <span key={s.id} className={`h-1.5 rounded-full transition-all ${i === currentIndex ? `w-6 ${color.bg}` : 'w-1.5 bg-slate-200'}`} />
+                            <span key={s.id} className={`h-1.5 rounded-full transition-all ${i === currentIndex ? `w-6 ${color.bg}` : `w-1.5 ${t.dotIdle}`}`} />
                         ))}
                     </div>
                     <button

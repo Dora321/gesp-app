@@ -1,7 +1,8 @@
-import React, { useState, useEffect, useRef } from 'react';
+import React, { useState } from 'react';
 import { Globe, Search, Database, Code, Shield, Download, ArrowRight, Play, PlayCircle, RefreshCw, Smartphone, Key, ChevronDown, FileText, Layers, Cpu, Bug, CheckCircle, XCircle, AlertTriangle, AlertCircle, Info, Film, Terminal, User, Lock, Unlock } from 'lucide-react';
-import { Link, useNavigate } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import PythonProjectSupport from '../../../components/PythonProjectSupport';
+import PythonLessonShell from '../shell/PythonLessonShell';
 
 // --- Shared Components ---
 const Button = ({ onClick, children, className, variant = 'primary', disabled = false }) => {
@@ -1397,108 +1398,25 @@ const sections = [
 ];
 
 export default function PythonCrawler() {
-    const navigate = useNavigate();
-    const [activeSection, setActiveSection] = useState(1);
-    const scrollRef = useRef(null);
-
-    useEffect(() => {
-        scrollRef.current?.scrollTo(0, 0);
-    }, [activeSection]);
-
-    const ActiveComponent = sections.find(s => s.id === activeSection)?.component || (() => <div>Coming Soon</div>);
-
     return (
-        <div className="flex h-screen bg-slate-900 font-sans text-slate-200 selection:bg-cyan-500/30">
-            {/* Sidebar */}
-            <div className="w-64 bg-slate-900 border-r border-slate-800 flex flex-col flex-shrink-0">
-                <div className="p-6 border-b border-slate-800">
-                    <h1 className="text-xl font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 to-blue-500 flex items-center gap-2">
-                        <Link to="/" className="hover:opacity-80 transition-opacity">
-                            <img src={`${import.meta.env.BASE_URL}logo.jpg`} alt="Logo" className="w-8 h-8 rounded-lg object-cover border border-slate-700" />
-                        </Link>
-                        A4: 网络爬虫
-                    </h1>
-                    <p className="text-xs text-slate-500 mt-2 font-medium">Python 进阶项目</p>
-                </div>
-                <div className="flex-1 overflow-y-auto p-4 space-y-2">
-                    {sections.map(section => (
-                        <button
-                            key={section.id}
-                            onClick={() => setActiveSection(section.id)}
-                            className={`w-full text-left px-4 py-3 rounded-xl transition-all duration-200 flex items-center gap-3 font-medium border
-                        ${activeSection === section.id
-                                    ? 'bg-cyan-500/10 text-cyan-400 border-cyan-500/30 shadow-[0_0_10px_rgba(6,182,212,0.1)]'
-                                    : 'border-transparent text-slate-500 hover:bg-slate-800 hover:text-slate-300'}
-                    `}
-                        >
-                            <section.icon size={18} className={activeSection === section.id ? 'text-cyan-400' : 'text-slate-600'} />
-                            {section.title}
-                        </button>
-                    ))}
-                </div>
-
-                <div className="p-4 border-t border-slate-800 bg-black/20">
-                    <div className="bg-gradient-to-br from-cyan-600/20 to-blue-600/20 border border-cyan-500/20 rounded-xl p-4 text-slate-300 shadow-lg transform hover:scale-105 transition-transform cursor-pointer">
-                        <div className="flex justify-between items-start mb-2">
-                            <span className="text-cyan-500/50 text-xs font-bold uppercase tracking-wider">DONE</span>
-                            <Key size={16} className="text-cyan-500/50" />
-                        </div>
-                        <div className="font-bold text-sm text-cyan-100">全部课程已解锁 🔓</div>
-                    </div>
-                </div>
-            </div>
-
-            {/* Main Content */}
-            <div className="flex-1 flex flex-col h-full overflow-hidden relative">
-                <div ref={scrollRef} className="flex-1 overflow-y-auto p-8 relative custom-scrollbar">
-                    {/* Background Decor */}
-                    <div className="absolute top-0 left-0 w-full h-full bg-[radial-gradient(circle_at_50%_50%,rgba(17,24,39,1),rgba(0,0,0,1))] -z-10"></div>
-                    <div className="absolute bottom-0 right-0 w-96 h-96 bg-cyan-600/5 rounded-full blur-[100px] pointer-events-none"></div>
-
-                    <div className="max-w-4xl mx-auto">
-                        <PythonProjectSupport projectId="crawler" theme="dark" />
-                        <header className="mb-8">
-                            <h2 className="text-3xl font-bold text-white mb-2 flex items-center gap-3">
-                                <span className="p-2 bg-cyan-500/10 rounded-lg">
-                                    {React.createElement(sections.find(s => s.id === activeSection)?.icon, { size: 32, className: 'text-cyan-400' })}
-                                </span>
-                                {sections.find(s => s.id === activeSection)?.title}
-                            </h2>
-                            <div className="h-1 w-20 bg-gradient-to-r from-cyan-500 to-blue-500 rounded-full mt-4"></div>
-                        </header>
-
-                        <div className="animate-in fade-in slide-in-from-bottom-4 duration-500 pb-10">
-                            <ActiveComponent />
-                        </div>
-                        <PythonProjectSupport projectId="crawler" placement="bottom" theme="dark" />
-                    </div>
-                </div>
-
-                {/* Sticky Footer */}
-                <div className="h-20 bg-slate-900 border-t border-slate-800 flex items-center justify-between px-8 z-20 flex-shrink-0">
-                    <button
-                        onClick={() => setActiveSection(prev => Math.max(1, prev - 1))}
-                        disabled={activeSection === 1}
-                        className={`px-5 py-2.5 rounded-lg flex items-center gap-2 font-bold transition-all
-                            ${activeSection === 1 ? 'text-slate-600 cursor-not-allowed' : 'text-slate-400 hover:bg-slate-800 hover:text-white'}`}
-                    >
-                        <ChevronDown className="rotate-90" size={18} /> 上一节
-                    </button>
-
-                    <button
-                        onClick={() => {
-                            if (activeSection < sections.length) {
-                                setActiveSection(prev => prev + 1);
-                            } else {
-                                navigate('/');
-                            }
-                        }}
-                        className={`px-6 py-2.5 rounded-lg flex items-center gap-2 font-bold transition-all shadow-sm bg-cyan-500 text-black hover:bg-cyan-400 hover:shadow-[0_0_15px_rgba(6,182,212,0.4)] hover:-translate-y-0.5`}
-                    >
-                        {activeSection === sections.length ? '下一课' : '下一节'} <ArrowRight size={18} />
-                    </button>
-                </div>
-            </div>
-        </div>
+        <PythonLessonShell
+            eyebrow="PYTHON 项目"
+            lessonCode="A9"
+            lessonTitle="网络爬虫项目"
+            lessonSubtitle="搞清楚数据从哪里来"
+            accent="teal"
+            theme="dark"
+            hero={{
+                title: '让程序自己去网上"取数据"',
+                description: '理解 HTTP 请求、状态码、请求头和网页解析，做一个遵守 robots 规则的抓取小工具——项目线的收尾拓展。',
+            }}
+            sections={sections}
+            previousPath="/python/ai"
+            nextPath="/"
+            nextLabel="完成项目线 · 返回课程中心"
+            topSupport={<PythonProjectSupport projectId="crawler" theme="dark" />}
+            bottomSupport={<PythonProjectSupport projectId="crawler" placement="bottom" theme="dark" />}
+        />
     );
 }
+

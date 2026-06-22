@@ -1,7 +1,8 @@
 import React, { useState, useEffect } from 'react';
-import { Link, useNavigate } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import { Terminal, Key, Music, Lock, Unlock, Check, X, ArrowRight, Play, Info, Volume2, Lightbulb, RefreshCw, Trophy } from 'lucide-react';
 import PythonProjectSupport from '../../../components/PythonProjectSupport';
+import PythonLessonShell from '../shell/PythonLessonShell';
 
 // --- Utility Functions ---
 
@@ -383,98 +384,43 @@ const AdvancedSlide = () => (
 );
 
 
-const PythonMorseProject = () => {
-    const navigate = useNavigate();
-    const [currentSlide, setCurrentSlide] = useState(0);
-    const slides = [
-        { id: 'intro', component: <IntroSlide /> },
-        { id: 'sim', component: <SimulatorSlide /> },
-        { id: 'quiz', component: <QuizSlide /> },
-        { id: 'code', component: <CodingSlide /> },
-        { id: 'adv', component: <AdvancedSlide /> }
-    ];
+const sections = [
+    { id: 'intro', title: '摩斯电码简介', category: '点与划', icon: Info, component: IntroSlide },
+    { id: 'sim', title: '编码模拟器', category: '听声辨码', icon: Volume2, component: SimulatorSlide },
+    { id: 'quiz', title: '听音测验', category: '解码闯关', icon: Music, component: QuizSlide },
+    { id: 'code', title: '动手编程', category: '字典映射', icon: Terminal, component: CodingSlide },
+    { id: 'adv', title: '进阶挑战', category: '双向转换', icon: Trophy, component: AdvancedSlide },
+];
 
-    return (
-        <div className="min-h-screen bg-slate-950 text-white flex flex-col font-sans selection:bg-cyan-500/30">
-            {/* Header */}
-            <div className="h-16 bg-slate-900/80 backdrop-blur-md border-b border-slate-800 flex items-center justify-between px-6 sticky top-0 z-10">
-                <h1 className="font-bold text-lg flex items-center gap-2 text-cyan-400">
-                    <Link to="/" className="hover:opacity-80 transition-opacity">
-                        <img src={`${import.meta.env.BASE_URL}logo.jpg`} alt="Logo" className="w-8 h-8 rounded-lg object-cover border border-slate-700" />
-                    </Link>
-                    Project: Morse Translator
-                </h1>
-                <div className="flex gap-2">
-                    {slides.map((_, idx) => (
-                        <div
-                            key={idx}
-                            className={`h-1.5 rounded-full transition-all duration-300 ${currentSlide === idx ? 'bg-cyan-500 w-8' : 'bg-slate-700 w-2 hover:bg-slate-600'}`}
-                        />
-                    ))}
-                </div>
-            </div>
+const PythonMorseProject = () => (
+    <>
+        <style>{`
+            .slide-enter { animation: slideIn 0.4s ease-out; }
+            @keyframes slideIn {
+                from { opacity: 0; transform: translateY(10px); }
+                to { opacity: 1; transform: translateY(0); }
+            }
+        `}</style>
+        <PythonLessonShell
+            eyebrow="PYTHON 项目"
+            lessonCode="A5"
+            lessonTitle="摩斯电码项目"
+            lessonSubtitle="用字典做双向翻译"
+            accent="teal"
+            theme="dark"
+            hero={{
+                title: '点、划、空格：把文字翻译成摩斯码',
+                description: '用字典建立字符和摩斯码的双向映射，做一个能编码也能解码的翻译器——字符串与字典的综合应用。',
+            }}
+            sections={sections}
+            previousPath="/python/encryption"
+            nextPath="/python/file-ops"
+            nextLabel="下一个：A6 文件操作"
+            topSupport={<PythonProjectSupport projectId="morse" theme="dark" />}
+            bottomSupport={<PythonProjectSupport projectId="morse" placement="bottom" theme="dark" />}
+        />
+    </>
+);
 
-            {/* Main Content */}
-            <div className="flex-1 relative p-4 md:p-8 flex items-center justify-center overflow-hidden">
-                <div className="w-full max-w-5xl h-full flex flex-col transition-all duration-500 ease-in-out">
-                    <div className="flex-1 overflow-y-auto custom-scrollbar">
-                        <PythonProjectSupport projectId="morse" theme="dark" />
-                        {slides[currentSlide].component}
-                        <PythonProjectSupport projectId="morse" placement="bottom" theme="dark" />
-                    </div>
-                </div>
-            </div>
-
-            {/* Footer Controls */}
-            <div className="h-20 bg-slate-900 border-t border-slate-800 flex items-center justify-between px-8">
-                <button
-                    onClick={() => setCurrentSlide(Math.max(0, currentSlide - 1))}
-                    disabled={currentSlide === 0}
-                    className="px-6 py-2 rounded-lg bg-slate-800 hover:bg-slate-700 disabled:opacity-50 disabled:cursor-not-allowed transition-colors font-bold text-slate-300"
-                >
-                    Previous
-                </button>
-                <div className="text-slate-500 text-sm font-mono hidden md:block">
-                    SLIDE {currentSlide + 1} / {slides.length}
-                </div>
-                <button
-                    onClick={() => {
-                        if (currentSlide < slides.length - 1) {
-                            setCurrentSlide(currentSlide + 1);
-                        } else {
-                            navigate('/python/file-ops');
-                        }
-                    }}
-                    className="px-6 py-2 rounded-lg bg-cyan-600 hover:bg-cyan-500 text-white disabled:opacity-50 disabled:cursor-not-allowed transition-all font-bold shadow-lg shadow-cyan-900/20 hover:shadow-cyan-500/30 flex items-center gap-2"
-                >
-                    {currentSlide === slides.length - 1 ? '进入文件操作' : 'Next'} <ArrowRight size={18} />
-                </button>
-            </div>
-
-            <style>{`
-                .slide-enter {
-                    animation: fadeIn 0.5s ease-out;
-                }
-                @keyframes fadeIn {
-                    from { opacity: 0; transform: translateY(10px); }
-                    to { opacity: 1; transform: translateY(0); }
-                }
-                .custom-scrollbar::-webkit-scrollbar {
-                    width: 8px;
-                }
-                .custom-scrollbar::-webkit-scrollbar-track {
-                    background: #0f172a; 
-                }
-                .custom-scrollbar::-webkit-scrollbar-thumb {
-                    background: #334155; 
-                    border-radius: 4px;
-                }
-                .custom-scrollbar::-webkit-scrollbar-thumb:hover {
-                    background: #475569; 
-                }
-            `}</style>
-        </div>
-    );
-};
 
 export default PythonMorseProject;
