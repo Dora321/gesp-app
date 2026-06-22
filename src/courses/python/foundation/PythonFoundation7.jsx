@@ -659,8 +659,8 @@ export default function PythonFoundation7() {
             }}
             sections={sections}
             previousPath="/python/f6"
-            nextPath="/python/a1"
-            nextLabel="下一课：A1 算法思维"
+            nextPath="/python/bridge"
+            nextLabel="下一课：桥梁 · 猜数字大冒险"
             topSupport={<PythonFoundationSupport lessonId="f7" />}
             bottomSupport={<PythonFoundationSupport lessonId="f7" placement="bottom" />}
         />

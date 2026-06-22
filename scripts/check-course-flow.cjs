@@ -1043,8 +1043,8 @@ async function main() {
   for (const [projectId, fileName] of projectPages) {
     const support = getPythonProjectSupport(projectId);
     assert(
-      projectId !== 'a1' || support?.previous?.path === '/python/f7',
-      'Python project A1 should link back to Python F7 as the foundation-to-project bridge.'
+      projectId !== 'a1' || support?.previous?.path === '/python/bridge',
+      'Python project A1 should link back to the bridge lesson as the foundation-to-project bridge.'
     );
     assert(support?.prerequisiteLinks?.length >= 2, `Python project ${projectId} needs at least 2 prerequisite review links.`);
     assert(

@@ -36,6 +36,7 @@ const PythonFoundation4 = lazy(() => import('./courses/python/foundation/PythonF
 const PythonFoundation5 = lazy(() => import('./courses/python/foundation/PythonFoundation5'));
 const PythonFoundation6 = lazy(() => import('./courses/python/foundation/PythonFoundation6'));
 const PythonFoundation7 = lazy(() => import('./courses/python/foundation/PythonFoundation7'));
+const PythonBridge = lazy(() => import('./courses/python/foundation/PythonBridge'));
 
 // Python Advanced
 const PythonAdvanced1 = lazy(() => import('./courses/python/advanced/PythonAdvanced1'));
@@ -146,6 +147,7 @@ function App() {
             <Route path="/python/f5" element={<PythonFoundation5 />} />
             <Route path="/python/f6" element={<PythonFoundation6 />} />
             <Route path="/python/f7" element={<PythonFoundation7 />} />
+            <Route path="/python/bridge" element={<PythonBridge />} />
 
             {/* Python Advanced */}
             <Route path="/python/a1" element={<PythonAdvanced1 />} />

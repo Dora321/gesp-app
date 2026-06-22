@@ -286,7 +286,7 @@ export function getPythonProjectSupport(projectId) {
       : {
           title: foundationExit.title,
           path: foundationExit.path,
-          reason: '项目线建立在基础语法之上，遇到卡点先回 F7 复盘整条基础线。',
+          reason: '先在桥梁课把基础语法拼成一个完整程序，遇到卡点再回 F1–F7 复盘。',
         },
     next: next
       ? {

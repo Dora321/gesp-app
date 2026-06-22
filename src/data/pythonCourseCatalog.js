@@ -6,6 +6,7 @@ export const pythonFoundationLessons = [
   { id: 'f5', title: 'F5：绘图魔法', catalogTitle: '绘图魔法', path: '/python/f5' },
   { id: 'f6', title: 'F6：随机世界', catalogTitle: '随机世界', path: '/python/f6' },
   { id: 'f7', title: 'F7：集合宝藏', catalogTitle: '集合宝藏', path: '/python/f7' },
+  { id: 'bridge', title: '桥梁：猜数字大冒险', catalogTitle: '综合小程序', path: '/python/bridge' },
 ];
 
 export const pythonProjects = [
