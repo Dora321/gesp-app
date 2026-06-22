@@ -800,6 +800,42 @@ const ChallengeSlide = () => {
 }
 
 
+const SummarySlide = () => (
+    <div className="space-y-6 animate-in fade-in slide-in-from-bottom-4 duration-500">
+        <SlideHeader accent="indigo" icon={BookOpen} title="小结与下一步">
+            第一课，你已经让代码「听你的话」了。把这三件事记牢，Python 的地基就打好了。
+        </SlideHeader>
+        <div className="grid gap-4 md:grid-cols-3">
+            {[
+                ['会输出输入', 'print 把结果说给人听，input 把人的回答收进来。'],
+                ['会存信息', '变量给数据起名字；字符串、整数、小数是不同的数据类型。'],
+                ['会算', '加减乘除和取整、取余，让程序能处理数字。'],
+            ].map(([title, desc]) => (
+                <div key={title} className="rounded-2xl border border-slate-200 bg-white p-5 shadow-sm">
+                    <div className="mb-2 text-sm font-black text-indigo-700">{title}</div>
+                    <p className="text-sm font-semibold leading-7 text-slate-600">{desc}</p>
+                </div>
+            ))}
+        </div>
+        <div className="rounded-2xl border border-slate-200 bg-white p-5 shadow-sm">
+            <div className="mb-3 flex items-center gap-2 font-black text-slate-800">
+                <CheckCircle size={16} className="text-indigo-600" /> 学完自测
+            </div>
+            <ul className="grid gap-2 text-sm font-semibold text-slate-600 sm:grid-cols-3">
+                <li className="flex gap-2"><span className="text-indigo-500">✓</span> 能解释字符串为什么要加引号</li>
+                <li className="flex gap-2"><span className="text-indigo-500">✓</span> 能区分变量名和它存的值</li>
+                <li className="flex gap-2"><span className="text-indigo-500">✓</span> 能根据报错定位括号、引号或拼写</li>
+            </ul>
+        </div>
+        <div className="rounded-2xl border border-indigo-100 bg-indigo-50 p-5">
+            <div className="mb-1 font-black text-indigo-800">下一课：F2 控制流程</div>
+            <p className="text-sm font-semibold leading-7 text-indigo-900">
+                现在程序只会从上往下走；下一课让它学会「根据条件做选择」和「按规则重复」，真正动起来。
+            </p>
+        </div>
+    </div>
+);
+
 const sections = [
     { id: 1, title: '初识 Python', icon: Terminal, component: IntroSlide },
     { id: 2, title: 'Python 在现实世界', icon: Globe, component: RealWorldSlide },
@@ -810,6 +846,7 @@ const sections = [
     { id: 7, title: '代码游乐场', icon: Code, component: CodePlaygroundSlide },
     { id: 8, title: '捉虫特工队', icon: Bug, component: BugHuntSlide },
     { id: 9, title: '萌新毕业考', icon: HelpCircle, component: ChallengeSlide },
+    { id: 10, title: '小结与衔接', icon: BookOpen, component: SummarySlide },
 ];
 
 

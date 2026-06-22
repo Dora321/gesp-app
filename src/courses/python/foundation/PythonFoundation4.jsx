@@ -883,6 +883,42 @@ const TryExceptSlide = () => {
     );
 };
 
+const SummarySlide = () => (
+    <div className="space-y-6 animate-in fade-in slide-in-from-bottom-4 duration-500">
+        <SlideHeader accent="indigo" icon={CheckCircle} title="小结与下一步">
+            这一课，你学会了把重复的代码「打包」起来复用。函数是写大程序的关键一步。
+        </SlideHeader>
+        <div className="grid gap-4 md:grid-cols-3">
+            {[
+                ['定义函数', '用 def 把一段逻辑打包；参数是输入，return 是输出。'],
+                ['借用模块', 'import 现成的库，站在巨人肩膀上，不重复造轮子。'],
+                ['兜底出错', 'try / except 接住可能的报错，让程序不崩溃。'],
+            ].map(([title, desc]) => (
+                <div key={title} className="rounded-2xl border border-slate-200 bg-white p-5 shadow-sm">
+                    <div className="mb-2 text-sm font-black text-indigo-700">{title}</div>
+                    <p className="text-sm font-semibold leading-7 text-slate-600">{desc}</p>
+                </div>
+            ))}
+        </div>
+        <div className="rounded-2xl border border-slate-200 bg-white p-5 shadow-sm">
+            <div className="mb-3 flex items-center gap-2 font-black text-slate-800">
+                <CheckCircle size={16} className="text-indigo-600" /> 学完自测
+            </div>
+            <ul className="grid gap-2 text-sm font-semibold text-slate-600 sm:grid-cols-3">
+                <li className="flex gap-2"><span className="text-indigo-500">✓</span> 能区分 print 和 return</li>
+                <li className="flex gap-2"><span className="text-indigo-500">✓</span> 能说明形参和实参的关系</li>
+                <li className="flex gap-2"><span className="text-indigo-500">✓</span> 能判断哪些变量只在函数内有效</li>
+            </ul>
+        </div>
+        <div className="rounded-2xl border border-indigo-100 bg-indigo-50 p-5">
+            <div className="mb-1 font-black text-indigo-800">下一课：F5 绘图魔法</div>
+            <p className="text-sm font-semibold leading-7 text-indigo-900">
+                函数让代码可以复用；下一课用 turtle 把循环和函数变成看得见的图形作品。
+            </p>
+        </div>
+    </div>
+);
+
 const sections = [
     { id: 1, title: '函数 Function', icon: BookOpen, component: FunctionSlide },
     { id: 2, title: '作用域 Scope', icon: Box, component: ScopeSlide },
@@ -892,6 +928,7 @@ const sections = [
     { id: 6, title: 'Lambda 魔法', icon: Sparkles, component: LambdaSlide },
     { id: 7, title: '异常处理 try/except', icon: AlertCircle, component: TryExceptSlide },
     { id: 8, title: '挑战 Challenge', icon: Star, component: QuizSlide },
+    { id: 9, title: '小结与衔接', icon: CheckCircle, component: SummarySlide },
 ];
 
 export default function PythonFoundation4() {

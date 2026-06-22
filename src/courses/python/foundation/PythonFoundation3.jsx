@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
-import { Layers, List, Box, Key, Search, ArrowRight, RefreshCw, Plus, Trash2, Edit3, Menu, X, Grid3x3 } from 'lucide-react';
+import { Layers, List, Box, Key, Search, ArrowRight, RefreshCw, Plus, Trash2, Edit3, Menu, X, Grid3x3, BookOpen, CheckCircle } from 'lucide-react';
 import PythonFoundationSupport from '../../../components/PythonFoundationSupport';
 import PythonLessonShell, { SlideHeader } from '../shell/PythonLessonShell';
 
@@ -1059,11 +1059,48 @@ const Grid2DSlide = () => {
     );
 };
 
+const SummarySlide = () => (
+    <div className="space-y-6 animate-in fade-in slide-in-from-bottom-4 duration-500">
+        <SlideHeader accent="teal" icon={BookOpen} title="小结与下一步">
+            这一课，你学会了用三种「容器」装真实数据。选对容器，一半的题就解决了。
+        </SlideHeader>
+        <div className="grid gap-4 md:grid-cols-3">
+            {[
+                ['列表 List', '有序、可改，按下标取值；二维列表就是列表里装列表，像棋盘。'],
+                ['字典 Dict', '用「键」直接查「值」，适合描述一条信息的多个字段。'],
+                ['字符串 String', '字符的序列，可遍历、可切片、可拼接。'],
+            ].map(([title, desc]) => (
+                <div key={title} className="rounded-2xl border border-slate-200 bg-white p-5 shadow-sm">
+                    <div className="mb-2 text-sm font-black text-teal-700">{title}</div>
+                    <p className="text-sm font-semibold leading-7 text-slate-600">{desc}</p>
+                </div>
+            ))}
+        </div>
+        <div className="rounded-2xl border border-slate-200 bg-white p-5 shadow-sm">
+            <div className="mb-3 flex items-center gap-2 font-black text-slate-800">
+                <CheckCircle size={16} className="text-teal-600" /> 学完自测
+            </div>
+            <ul className="grid gap-2 text-sm font-semibold text-slate-600 sm:grid-cols-3">
+                <li className="flex gap-2"><span className="text-teal-500">✓</span> 能说明列表下标从 0 开始</li>
+                <li className="flex gap-2"><span className="text-teal-500">✓</span> 能选 list 还是 dict 解决任务</li>
+                <li className="flex gap-2"><span className="text-teal-500">✓</span> 能处理找不到键或下标越界</li>
+            </ul>
+        </div>
+        <div className="rounded-2xl border border-teal-100 bg-teal-50 p-5">
+            <div className="mb-1 font-black text-teal-800">下一课：F4 函数与模块</div>
+            <p className="text-sm font-semibold leading-7 text-teal-900">
+                数据结构能装住信息；下一课把「处理这些数据的步骤」打包成函数，让代码可复用、可组合。
+            </p>
+        </div>
+    </div>
+);
+
 const sections = [
     { id: 1, title: '列表 List', icon: List, component: ListSlide },
     { id: 2, title: '二维列表 Grid', icon: Grid3x3, component: Grid2DSlide },
     { id: 3, title: '字典 Dict', icon: Key, component: DictSlide },
     { id: 4, title: '字符串 String', icon: Edit3, component: StringSlide },
+    { id: 5, title: '小结与衔接', icon: BookOpen, component: SummarySlide },
 ];
 
 export default function PythonFoundation3() {
