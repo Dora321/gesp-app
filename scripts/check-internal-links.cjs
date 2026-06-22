@@ -13,7 +13,7 @@ const routeRules = [
   /^\/ekart(\/(roadmap|toolbox|gallery|parent-portal))?$/,
   /^\/hardware(\/esp32-ai|\/lesson\/([1-9]|1[0-6]))?$/,
   /^\/level[1-8]$/,
-  /^\/python\/(f[1-7]|a[1-2]|file-ops|ai|crawler|binary-search|encryption|sorting|morse)$/,
+  /^\/python\/(f[1-7]|bridge|a[1-2]|file-ops|ai|crawler|binary-search|encryption|sorting|morse)$/,
   /^\/gesp\/2025-12-l2$/,
 ];
 
