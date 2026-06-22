@@ -6,6 +6,7 @@ import {
     Book, Coffee, Database, HardDrive, Menu, X, Plus, Terminal
 } from 'lucide-react';
 import PythonProjectSupport from '../../../components/PythonProjectSupport';
+import PythonLessonShell from '../shell/PythonLessonShell';
 
 // --- Shared Helper Components ---
 const Button = ({ onClick, children, className, variant = 'primary', disabled = false }) => {
@@ -374,71 +375,24 @@ const sections = [
 ];
 
 export default function PythonFileOps() {
-    const [activeSection, setActiveSection] = useState(1);
-    const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
-
-    const ActiveComponent = sections.find(s => s.id === activeSection)?.component || (() => <div>Coming Soon</div>);
-
     return (
-        <div className="flex flex-col md:flex-row h-screen bg-slate-50 font-sans text-slate-800">
-            {/* Sidebar */}
-            <div className={`
-                fixed inset-y-0 left-0 z-50 w-64 bg-white border-r border-slate-200 flex flex-col transition-transform duration-300
-                md:relative md:translate-x-0
-                ${isMobileMenuOpen ? 'translate-x-0' : '-translate-x-full'}
-            `}>
-                <div className="p-6 border-b border-slate-100">
-                    <h1 className="text-xl font-bold text-indigo-600 flex items-center gap-2">
-                        <Link to="/" className="hover:opacity-80 transition-opacity">
-                            <FolderOpen className="w-8 h-8 text-indigo-600" />
-                        </Link>
-                        <span>文件大师</span>
-                    </h1>
-                    <p className="text-xs text-slate-500 mt-2">Python 进阶第九讲</p>
-                </div>
-
-                <div className="p-4 space-y-2 overflow-y-auto flex-1">
-                    {sections.map(section => (
-                        <button
-                            key={section.id}
-                            onClick={() => {
-                                setActiveSection(section.id);
-                                setIsMobileMenuOpen(false);
-                            }}
-                            className={`w-full flex items-center gap-3 px-4 py-3 rounded-xl transition-all font-medium text-sm ${activeSection === section.id
-                                    ? 'bg-indigo-50 text-indigo-700 shadow-sm ring-1 ring-indigo-200'
-                                    : 'text-slate-600 hover:bg-slate-50'
-                                }`}
-                        >
-                            <section.icon size={18} className={activeSection === section.id ? 'text-indigo-600' : 'text-slate-400'} />
-                            {section.title}
-                        </button>
-                    ))}
-                </div>
-            </div>
-
-            {/* Main Content */}
-            <div className="flex-1 flex flex-col h-full overflow-hidden relative">
-                {/* Mobile Header */}
-                <div className="md:hidden bg-white border-b border-slate-200 p-4 flex justify-between items-center">
-                    <span className="font-bold text-indigo-600">文件操作</span>
-                    <button
-                        onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-                        aria-label={isMobileMenuOpen ? '关闭课程目录' : '打开课程目录'}
-                        aria-expanded={isMobileMenuOpen}
-                    >
-                        {isMobileMenuOpen ? <X /> : <Menu />}
-                    </button>
-                </div>
-
-                <div className="flex-1 overflow-y-auto p-4 md:p-8">
-                    <div className="max-w-4xl mx-auto">
-                        <PythonProjectSupport projectId="file-ops" />
-                        <ActiveComponent />
-                        <PythonProjectSupport projectId="file-ops" placement="bottom" />
-                    </div>
-                </div>
-            </div>
-        </div>
+        <PythonLessonShell
+            eyebrow="PYTHON 项目"
+            lessonCode="A6"
+            lessonTitle="文件操作"
+            lessonSubtitle="把程序结果保存下来"
+            accent="indigo"
+            hero={{
+                title: '让程序的成果存得下、读得回',
+                description: '用 with open 安全地读写文本文件，把前面项目产出的结果保存成文件——这是做工具的最后一块拼图。',
+            }}
+            sections={sections}
+            previousPath="/python/morse"
+            nextPath="/python/a2"
+            nextLabel="下一个：A7 2048 游戏"
+            topSupport={<PythonProjectSupport projectId="file-ops" />}
+            bottomSupport={<PythonProjectSupport projectId="file-ops" placement="bottom" />}
+        />
     );
 }
+
