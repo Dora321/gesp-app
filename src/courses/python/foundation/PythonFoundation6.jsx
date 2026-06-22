@@ -374,6 +374,18 @@ const ShuffleSampleSlide = () => {
                     <code>random.sample(list, k)</code>：随机抽取 k 个元素（不重复）
             </SlideHeader>
 
+            <div className="rounded-xl border border-indigo-100 bg-indigo-50 p-4 text-sm leading-7 text-indigo-900">
+                <div className="mb-2 font-black">三个“随机选择”别搞混</div>
+                <div className="mb-2 grid gap-1 font-mono text-xs sm:grid-cols-3">
+                    <span><strong>choice(list)</strong> 取 1 个（可重复）</span>
+                    <span><strong>sample(list, k)</strong> 取 k 个（不重复）</span>
+                    <span><strong>shuffle(list)</strong> 原地打乱整列</span>
+                </div>
+                <p>
+                    最大的坑：<code>shuffle</code> 是<strong>原地修改</strong>，它<strong>返回 None</strong>——写成 <code>cards = random.shuffle(cards)</code> 会让 cards 变成 None！直接 <code>random.shuffle(cards)</code> 就好。<code>sample</code> 正相反：它<strong>不改原列表</strong>，而是返回一个新列表。
+                </p>
+            </div>
+
             <div className="grid md:grid-cols-2 gap-8">
                 <div className="space-y-4">
                     <CodeBlock code={`import random\n\ncards = ['🂡', '🂢', '🂣', '🂤', '🂥']\n\n# 洗牌\nrandom.shuffle(cards)\nprint(cards)\n\n# 抽取 3 张\nhand = random.sample(cards, 3)\nprint(hand)`} />
