@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
-import { Layers, List, Box, Key, Search, ArrowRight, RefreshCw, Plus, Trash2, Edit3, Menu, X } from 'lucide-react';
+import { Layers, List, Box, Key, Search, ArrowRight, RefreshCw, Plus, Trash2, Edit3, Menu, X, Grid3x3 } from 'lucide-react';
 import PythonFoundationSupport from '../../../components/PythonFoundationSupport';
-import PythonLessonShell from '../shell/PythonLessonShell';
+import PythonLessonShell, { SlideHeader } from '../shell/PythonLessonShell';
 
 // --- Shared Components ---
 const Button = ({ onClick, children, className, variant = 'primary', disabled = false }) => {
@@ -1011,10 +1011,59 @@ const StringSlide = () => {
 }
 
 
+const grid2dDemo = [[1, 2, 3], [4, 5, 6], [7, 8, 9]];
+
+const Grid2DSlide = () => {
+    const [pos, setPos] = useState({ r: 1, c: 2 });
+    const value = grid2dDemo[pos.r][pos.c];
+
+    return (
+        <div className="space-y-6 animate-in fade-in slide-in-from-bottom-4 duration-500">
+            <SlideHeader accent="teal" icon={Grid3x3} title="二维列表：表格与棋盘">
+                把列表放进列表，就得到<strong>二维列表</strong>——像一张表格或一个棋盘（2048、井字棋都用它）。用 <code>grid[行][列]</code> 取值：先选第几行，再选第几列；行、列都从 <strong>0</strong> 开始数。
+            </SlideHeader>
+
+            <div className="grid md:grid-cols-2 gap-8">
+                <div className="bg-white p-6 rounded-2xl shadow-sm border border-slate-200">
+                    <p className="mb-4 text-sm font-bold text-slate-500">点一个格子，看它的 [行][列] 坐标 →</p>
+                    <div className="inline-grid grid-cols-3 gap-2">
+                        {grid2dDemo.map((rowArr, r) =>
+                            rowArr.map((v, c) => {
+                                const active = pos.r === r && pos.c === c;
+                                return (
+                                    <button
+                                        key={`${r}-${c}`}
+                                        onClick={() => setPos({ r, c })}
+                                        className={`flex h-16 w-16 items-center justify-center rounded-xl font-mono text-xl font-black transition-all ${active ? 'scale-105 bg-teal-600 text-white shadow-lg' : 'bg-slate-100 text-slate-600 hover:bg-slate-200'}`}
+                                    >
+                                        {v}
+                                    </button>
+                                );
+                            })
+                        )}
+                    </div>
+                    <div className="mt-4 rounded-xl border border-teal-200 bg-teal-50 p-4 font-mono font-black text-teal-900">
+                        grid[<span className="text-teal-600">{pos.r}</span>][<span className="text-teal-600">{pos.c}</span>] = <span className="text-2xl">{value}</span>
+                    </div>
+                </div>
+
+                <div className="space-y-4">
+                    <CodeBlock code={`grid = [\n    [1, 2, 3],\n    [4, 5, 6],\n    [7, 8, 9],\n]\nprint(grid[${pos.r}][${pos.c}])  # 输出 ${value}`} />
+                    <div className="rounded-xl border border-slate-200 bg-white p-4 text-sm leading-7 text-slate-600">
+                        <p className="mb-2 font-bold text-slate-700">遍历整个棋盘 = 两层循环：</p>
+                        <CodeBlock code={`for r in range(3):\n    for c in range(3):\n        print(grid[r][c])`} />
+                    </div>
+                </div>
+            </div>
+        </div>
+    );
+};
+
 const sections = [
     { id: 1, title: '列表 List', icon: List, component: ListSlide },
-    { id: 2, title: '字典 Dict', icon: Key, component: DictSlide },
-    { id: 3, title: '字符串 String', icon: Edit3, component: StringSlide },
+    { id: 2, title: '二维列表 Grid', icon: Grid3x3, component: Grid2DSlide },
+    { id: 3, title: '字典 Dict', icon: Key, component: DictSlide },
+    { id: 4, title: '字符串 String', icon: Edit3, component: StringSlide },
 ];
 
 export default function PythonFoundation3() {

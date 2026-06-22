@@ -820,6 +820,69 @@ const LibrarySlide = () => {
     );
 };
 
+const TryExceptSlide = () => {
+    const [input, setInput] = useState('5');
+    const trimmed = input.trim();
+    let branch;
+    let line;
+    let ok;
+    if (!/^-?\d+$/.test(trimmed)) {
+        branch = 'except ValueError';
+        line = `读到 "${trimmed}"，int() 转换失败`;
+        ok = false;
+    } else if (Number(trimmed) === 0) {
+        branch = 'except ZeroDivisionError';
+        line = '10 / 0 —— 不能除以 0';
+        ok = false;
+    } else {
+        branch = 'try 正常结束';
+        line = `10 / ${trimmed} = ${(10 / Number(trimmed)).toFixed(2)}`;
+        ok = true;
+    }
+
+    return (
+        <div className="space-y-6 animate-in fade-in slide-in-from-bottom-4 duration-500">
+            <SlideHeader accent="indigo" icon={AlertCircle} title="异常处理：try / except">
+                程序运行时难免出错——用户乱输、除以 0、文件不存在。把可能出错的代码放进 <code>try</code>，出错时跳到 <code>except</code> 接住，程序就<strong>不会崩溃</strong>。后面的爬虫、文件操作都靠它兜底。
+            </SlideHeader>
+
+            <div className="grid md:grid-cols-2 gap-8">
+                <div className="space-y-4 rounded-2xl border border-slate-200 bg-white p-6 shadow-sm">
+                    <label className="block text-sm font-bold text-slate-600">模拟用户输入：</label>
+                    <input
+                        value={input}
+                        onChange={(e) => setInput(e.target.value)}
+                        className="w-full rounded-xl border border-slate-200 p-3 font-mono font-bold outline-none focus:border-indigo-400"
+                    />
+                    <div className="flex gap-2">
+                        {['5', '0', 'abc'].map((v) => (
+                            <button
+                                key={v}
+                                onClick={() => setInput(v)}
+                                className="rounded-lg bg-slate-100 px-3 py-1.5 text-sm font-bold text-slate-600 hover:bg-slate-200"
+                            >
+                                试 &quot;{v}&quot;
+                            </button>
+                        ))}
+                    </div>
+                    <CodeBlock code={`try:\n    n = int(user_input)\n    print(10 / n)\nexcept ValueError:\n    print("不是数字！")\nexcept ZeroDivisionError:\n    print("不能除以 0！")`} />
+                </div>
+
+                <div className="flex flex-col justify-center">
+                    <div className={`rounded-2xl border-2 p-6 ${ok ? 'border-emerald-200 bg-emerald-50' : 'border-amber-200 bg-amber-50'}`}>
+                        <div className={`text-xs font-black uppercase tracking-wider ${ok ? 'text-emerald-600' : 'text-amber-600'}`}>
+                            {ok ? '✅ 走 try 分支' : '🛡️ 被 except 接住'}
+                        </div>
+                        <div className="mt-2 font-mono text-lg font-black text-slate-800">{branch}</div>
+                        <div className="mt-2 text-sm font-semibold text-slate-600">{line}</div>
+                        <div className="mt-3 text-xs font-bold text-slate-400">不管输入什么，程序都不会崩溃——这就是 try/except 的意义。</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    );
+};
+
 const sections = [
     { id: 1, title: '函数 Function', icon: BookOpen, component: FunctionSlide },
     { id: 2, title: '作用域 Scope', icon: Box, component: ScopeSlide },
@@ -827,7 +890,8 @@ const sections = [
     { id: 4, title: '常用库 Library', icon: Box, component: LibrarySlide },
     { id: 5, title: '进阶 Advanced', icon: Zap, component: AdvancedFunctionSlide },
     { id: 6, title: 'Lambda 魔法', icon: Sparkles, component: LambdaSlide },
-    { id: 7, title: '挑战 Challenge', icon: Star, component: QuizSlide },
+    { id: 7, title: '异常处理 try/except', icon: AlertCircle, component: TryExceptSlide },
+    { id: 8, title: '挑战 Challenge', icon: Star, component: QuizSlide },
 ];
 
 export default function PythonFoundation4() {
