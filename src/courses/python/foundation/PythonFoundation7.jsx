@@ -236,13 +236,24 @@ const OperationsSlide = () => {
 
                 <div className="space-y-4">
                     <CodeBlock
-                        code={`A = {${setA.map(s => `'${s}'`).join(', ')}}\nB = {${setB.map(s => `'${s}'`).join(', ')}}\n\n# ${mode === 'union' ? '并集 (Union)' : mode === 'intersection' ? '交集 (Intersection)' : '差集 (Difference)'}\nresult = A ${mode === 'union' ? '|' : mode === 'intersection' ? '&' : '-'} B\nprint(result)`}
-                        highlightLine={3}
+                        code={`A = {${setA.map(s => `'${s}'`).join(', ')}}\nB = {${setB.map(s => `'${s}'`).join(', ')}}\n\nresult = A ${mode === 'union' ? '|' : mode === 'intersection' ? '&' : '-'} B${'   '}# 运算符写法\nresult = A.${mode === 'union' ? 'union' : mode === 'intersection' ? 'intersection' : 'difference'}(B)${'   '}# 等价的方法写法\nprint(result)`}
                     />
                     <div className="bg-slate-50 p-4 rounded-xl text-sm text-slate-600">
-                        {mode === 'union' && "A | B ：包含A和B中所有的元素（自动去重）。"}
-                        {mode === 'intersection' && "A & B ：只保留A和B都有的元素。"}
-                        {mode === 'difference' && "A - B ：从A中“减去”B中有的元素，只留下A独有的。"}
+                        {mode === 'union' && "A | B ：包含 A 和 B 中所有的元素（自动去重）。"}
+                        {mode === 'intersection' && "A & B ：只保留 A 和 B 都有的元素。"}
+                        {mode === 'difference' && "A - B ：从 A 中“减去”B 中有的元素，只留下 A 独有的。"}
+                    </div>
+                    {/* 拆解：为什么有运算符又有方法 */}
+                    <div className="rounded-xl border border-teal-100 bg-teal-50 p-4 text-sm leading-7 text-teal-900">
+                        <div className="mb-2 font-black">为什么用 &amp; 而不是 .intersection()？其实两个都行</div>
+                        <div className="mb-3 grid grid-cols-1 gap-1 font-mono text-xs sm:grid-cols-3">
+                            <span>并集 <strong>A | B</strong> ↔ A.union(B)</span>
+                            <span>交集 <strong>A &amp; B</strong> ↔ A.intersection(B)</span>
+                            <span>差集 <strong>A - B</strong> ↔ A.difference(B)</span>
+                        </div>
+                        <p>
+                            它们<strong>结果完全一样</strong>，是同一件事的两种写法：<code>&amp;</code> 更短，但左右<strong>都必须是集合</strong>；<code>.intersection()</code> 更灵活，括号里还能直接传列表，比如 <code>A.intersection([1, 2, 3])</code>。日常和考试多用 <code>&amp; | -</code>，但看到 <code>.intersection()</code> 别懵——它俩是一回事。
+                        </p>
                     </div>
                 </div>
             </div>

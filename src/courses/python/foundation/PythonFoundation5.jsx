@@ -177,6 +177,10 @@ const ShapeSlide = () => {
                     <strong>旋转角度 = 360 ÷ 边数</strong>
             </SlideHeader>
 
+            <div className="rounded-xl border border-teal-100 bg-teal-50 p-4 text-sm font-semibold leading-7 text-teal-900">
+                <strong>为什么是 360 ÷ 边数？</strong> 小海龟沿着图形走一圈回到起点时，朝向也转回了出发时的样子——也就是<strong>总共转了 360°</strong>。正多边形有几条边就转几次，所以每次转 <strong>360 ÷ 边数</strong>：三角形每次转 120°、正方形 90°、六边形 60°。
+            </div>
+
             <div className="grid md:grid-cols-2 gap-8">
                 <div className="space-y-4">
                     <div className="grid grid-cols-2 gap-3">

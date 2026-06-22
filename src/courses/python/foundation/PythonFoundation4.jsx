@@ -513,6 +513,10 @@ const LambdaSlide = () => {
                     就像是一次性的魔法卷轴，适合写那些特别短小的逻辑。
             </SlideHeader>
 
+            <div className="rounded-xl border border-amber-200 bg-amber-50 p-4 text-sm font-semibold leading-7 text-amber-900">
+                💡 <strong>这一节是「进阶 · 选做」</strong>：Lambda 只是一种简写技巧，不是必须掌握的。第一次学函数，先把上面的 <code>def</code> 用熟就够了；等以后写排序、回调时再回来看也不迟。
+            </div>
+
             <div className="grid md:grid-cols-2 gap-8">
                 {/* Regular Function */}
                 <div className="bg-white p-6 rounded-2xl border border-slate-200 relative overflow-hidden group">
@@ -925,7 +929,7 @@ const sections = [
     { id: 3, title: '模块 Module', icon: Package, component: ModuleSlide },
     { id: 4, title: '常用库 Library', icon: Box, component: LibrarySlide },
     { id: 5, title: '进阶 Advanced', icon: Zap, component: AdvancedFunctionSlide },
-    { id: 6, title: 'Lambda 魔法', icon: Sparkles, component: LambdaSlide },
+    { id: 6, title: 'Lambda 魔法', category: '进阶 · 选做', icon: Sparkles, component: LambdaSlide },
     { id: 7, title: '异常处理 try/except', icon: AlertCircle, component: TryExceptSlide },
     { id: 8, title: '挑战 Challenge', icon: Star, component: QuizSlide },
     { id: 9, title: '小结与衔接', icon: CheckCircle, component: SummarySlide },
