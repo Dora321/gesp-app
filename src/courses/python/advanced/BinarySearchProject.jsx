@@ -1,13 +1,14 @@
-import React, { useState, useEffect, useRef, useMemo } from 'react';
+import React, { useState, useMemo } from 'react';
 import {
     Target, Play, RotateCcw, HelpCircle,
     Trophy, Code, ArrowRight, Sparkles,
     Search, Gauge, Brain, ChevronRight,
     SearchCheck, Zap, Menu, X
 } from 'lucide-react';
-import { Link, useNavigate } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import PythonProjectSupport from '../../../components/PythonProjectSupport';
 import PyCodeTracer from '../../../components/PyCodeTracer';
+import PythonLessonShell from '../shell/PythonLessonShell';
 
 // --- 辅助组件 ---
 const Icon = ({ name, size = 20, className = "" }) => {
@@ -563,198 +564,41 @@ while low <= high:
 // --- 主布局 --－
 
 const sections = [
-    { id: 1, title: '魔法读心术', icon: 'brain', component: IntroSlide },
-    { id: 2, title: '效率大对决', icon: 'gauge', component: BattleSlide },
-    { id: 3, title: '挑战电脑 (反转)', icon: 'zap', component: UserPracticeSlide }, // New Section
-    { id: 4, title: '猜数字游戏', icon: 'play', component: PlayerGuessSlide },
-    { id: 5, title: '代码大解密', icon: 'code', component: LogicSlide },
+    { id: 1, title: '魔法读心术', category: '直觉导入', icon: Brain, component: IntroSlide },
+    { id: 2, title: '效率大对决', category: '可视化对比', icon: Gauge, component: BattleSlide },
+    { id: 3, title: '挑战电脑 (反转)', category: '动手练习', icon: Zap, component: UserPracticeSlide },
+    { id: 4, title: '猜数字游戏', category: '玩中学', icon: Play, component: PlayerGuessSlide },
+    { id: 5, title: '代码大解密', category: 'Python 实现', icon: Code, component: LogicSlide },
 ];
 
 export default function BinarySearchProject() {
-    const navigate = useNavigate();
-    const [activeSection, setActiveSection] = useState(1);
-    const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
-    const scrollRef = useRef(null);
-
-    useEffect(() => {
-        scrollRef.current?.scrollTo(0, 0);
-    }, [activeSection]);
-
-    const currentSection = sections.find(s => s.id === activeSection);
-
     return (
-        <div className="flex h-screen bg-slate-50 overflow-hidden font-sans">
+        <>
             <style>{`
                 .slide-enter { animation: slideIn 0.4s ease-out; }
-                @keyframes slideIn { 
-                    from { opacity: 0; transform: translateY(10px); } 
-                    to { opacity: 1; transform: translateY(0); } 
+                @keyframes slideIn {
+                    from { opacity: 0; transform: translateY(10px); }
+                    to { opacity: 1; transform: translateY(0); }
                 }
             `}</style>
-
-            {/* Layout follows common patterns in the app */}
-            {/* Sidebar */}
-            <div className={`
-                fixed inset-y-0 left-0 z-50 w-64 bg-white border-r border-slate-200 shadow-2xl transition-transform duration-300 md:relative md:translate-x-0 md:shadow-none
-                ${isMobileMenuOpen ? 'translate-x-0' : '-translate-x-full'}
-            `}>
-                <div className="p-6 border-b border-slate-100 flex items-center gap-3">
-                    <Link to="/" className="hover:opacity-80 transition-opacity">
-                        <img src={`${import.meta.env.BASE_URL}logo.jpg`} alt="Logo" className="w-10 h-10 rounded-xl object-cover shadow-lg shadow-indigo-100" />
-                    </Link>
-                    <div>
-                        <h1 className="font-bold text-slate-800 leading-none">二分搜索</h1>
-                        <p className="text-[10px] text-slate-400 mt-1 uppercase tracking-widest font-bold">Binary Search</p>
-                    </div>
-                </div>
-
-                <nav className="flex-1 overflow-y-auto p-4 space-y-6">
-                    {/* Group 1: 入门 */}
-                    <div>
-                        <div className="px-4 mb-2 text-xs font-bold text-slate-400 uppercase tracking-wider">🚀 入门体验</div>
-                        <div className="space-y-1">
-                            {sections.slice(0, 2).map(section => (
-                                <button
-                                    key={section.id}
-                                    onClick={() => {
-                                        setActiveSection(section.id);
-                                        setIsMobileMenuOpen(false);
-                                    }}
-                                    className={`w-full flex items-center gap-3 px-4 py-2.5 rounded-lg transition-colors text-sm ${activeSection === section.id
-                                        ? 'bg-indigo-50 text-indigo-700 font-medium'
-                                        : 'text-slate-600 hover:bg-slate-50'
-                                        }`}
-                                >
-                                    <Icon name={section.icon} className={activeSection === section.id ? 'text-indigo-600' : 'text-slate-400'} />
-                                    {section.title}
-                                </button>
-                            ))}
-                        </div>
-                    </div>
-
-                    {/* Group 2: 互动练习 */}
-                    <div>
-                        <div className="px-4 mb-2 text-xs font-bold text-slate-400 uppercase tracking-wider">🎮 互动练习</div>
-                        <div className="space-y-1">
-                            {sections.slice(2, 4).map(section => (
-                                <button
-                                    key={section.id}
-                                    onClick={() => {
-                                        setActiveSection(section.id);
-                                        setIsMobileMenuOpen(false);
-                                    }}
-                                    className={`w-full flex items-center gap-3 px-4 py-2.5 rounded-lg transition-colors text-sm ${activeSection === section.id
-                                        ? 'bg-indigo-50 text-indigo-700 font-medium'
-                                        : 'text-slate-600 hover:bg-slate-50'
-                                        }`}
-                                >
-                                    <Icon name={section.icon} className={activeSection === section.id ? 'text-indigo-600' : 'text-slate-400'} />
-                                    {section.title}
-                                </button>
-                            ))}
-                        </div>
-                    </div>
-
-                    {/* Group 3: 总结 */}
-                    <div>
-                        <div className="px-4 mb-2 text-xs font-bold text-slate-400 uppercase tracking-wider">🏆 代码解密</div>
-                        <div className="space-y-1">
-                            {sections.slice(4, 5).map(section => (
-                                <button
-                                    key={section.id}
-                                    onClick={() => {
-                                        setActiveSection(section.id);
-                                        setIsMobileMenuOpen(false);
-                                    }}
-                                    className={`w-full flex items-center gap-3 px-4 py-2.5 rounded-lg transition-colors text-sm ${activeSection === section.id
-                                        ? 'bg-indigo-50 text-indigo-700 font-medium'
-                                        : 'text-slate-600 hover:bg-slate-50'
-                                        }`}
-                                >
-                                    <Icon name={section.icon} className={activeSection === section.id ? 'text-indigo-600' : 'text-slate-400'} />
-                                    {section.title}
-                                </button>
-                            ))}
-                        </div>
-                    </div>
-                </nav>
-
-                <div className="p-6 border-t border-slate-50">
-                    <Link to="/" className="flex items-center gap-2 text-slate-400 hover:text-indigo-600 transition-colors text-sm font-bold">
-                        <RotateCcw size={16} /> 返回课程中心
-                    </Link>
-                </div>
-            </div>
-
-            {/* Main Content */}
-            <div className="flex-1 flex flex-col h-full overflow-hidden relative">
-                {/* Header with Mobile Menu Button */}
-                <header className="h-16 bg-white border-b border-slate-200 flex items-center justify-between px-6 md:px-8 flex-shrink-0 z-20">
-                    <div className="flex items-center gap-3 md:hidden">
-                        <button
-                            onClick={() => setIsMobileMenuOpen(true)}
-                            className="p-2 -ml-2 text-slate-500 hover:bg-slate-100 rounded-lg"
-                            aria-label="打开课程目录"
-                            aria-expanded={isMobileMenuOpen}
-                        >
-                            <Menu size={24} />
-                        </button>
-                    </div>
-
-                    <div className="flex items-center gap-3">
-                        <div className={`p-2 rounded-lg ${activeSection === sections.length ? 'bg-yellow-100 text-yellow-600' : 'bg-indigo-100 text-indigo-600'}`}>
-                            <Icon name={currentSection?.icon} size={20} />
-                        </div>
-                        <h2 className="font-bold text-slate-800 text-lg sm:text-lg truncate max-w-[200px] sm:max-w-md">
-                            {currentSection?.title}
-                        </h2>
-                    </div>
-
-                    <div className="hidden md:flex text-xs font-bold text-slate-400 uppercase tracking-widest">
-                        Section {activeSection} / {sections.length}
-                    </div>
-                </header>
-
-                <main ref={scrollRef} className="flex-1 overflow-y-auto p-4 md:p-8 custom-scrollbar relative">
-                    <div className="max-w-4xl mx-auto pb-10">
-                        <PythonProjectSupport projectId="binary-search" />
-                        {/* Dynamic Component */}
-                        {currentSection && React.createElement(currentSection.component)}
-                        <PythonProjectSupport projectId="binary-search" placement="bottom" />
-                    </div>
-                </main>
-
-                {/* Sticky Footer */}
-                <div className="h-20 bg-white border-t border-slate-200 flex items-center justify-between px-8 z-20 flex-shrink-0">
-                    <button
-                        onClick={() => setActiveSection(prev => Math.max(1, prev - 1))}
-                        disabled={activeSection === 1}
-                        className={`flex items-center gap-2 px-6 py-2.5 rounded-xl font-bold transition-all
-                            ${activeSection === 1
-                                ? 'text-slate-300 cursor-not-allowed'
-                                : 'text-slate-600 hover:bg-slate-100 hover:text-slate-900'}`}
-                    >
-                        <ArrowRight className="rotate-180" size={20} /> 上一节
-                    </button>
-
-                    <button
-                        onClick={() => {
-                            if (activeSection < sections.length) {
-                                setActiveSection(prev => prev + 1);
-                            } else {
-                                navigate('/python/sorting');
-                            }
-                        }}
-                        className={`flex items-center gap-2 px-8 py-3 rounded-xl font-bold transition-all shadow-lg text-white hover:translate-x-1
-                            ${activeSection === sections.length ? 'bg-indigo-600 hover:bg-indigo-700' : 'bg-indigo-600 hover:bg-indigo-700'}`}
-                    >
-                        {activeSection === sections.length ? '下一课' : '下一节'}
-                        <ArrowRight size={20} />
-                    </button>
-                </div>
-            </div>
-        </div>
+            <PythonLessonShell
+                eyebrow="PYTHON 项目"
+                lessonCode="A2"
+                lessonTitle="二分搜索"
+                lessonSubtitle="在有序数据里高效定位"
+                accent="indigo"
+                hero={{
+                    title: '7 次以内猜中 1–100：二分查找的魔力',
+                    description: '每比较一次就排除一半可能。本项目从猜数字的直觉出发，做出效率可视化对比和一个 Python 二分查找函数。',
+                }}
+                sections={sections}
+                previousPath="/python/a1"
+                nextPath="/python/sorting"
+                nextLabel="下一个：A3 排序算法"
+                topSupport={<PythonProjectSupport projectId="binary-search" />}
+                bottomSupport={<PythonProjectSupport projectId="binary-search" placement="bottom" />}
+            />
+        </>
     );
-};
-
+}
 
