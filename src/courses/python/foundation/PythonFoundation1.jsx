@@ -477,16 +477,9 @@ else:
 
     return (
         <div className="space-y-6 animate-in fade-in slide-in-from-bottom-4 duration-500">
-            <div className="bg-gradient-to-r from-cyan-100 to-blue-100 p-6 rounded-2xl border border-cyan-200 text-cyan-900">
-                <h2 className="text-2xl font-bold mb-4 flex items-center gap-2">
-                    <Code className="text-cyan-600" />
-                    代码游乐场
-                </h2>
-                <p>
-                    这里有一些有趣的 Python 代码示例！点击运行，看看会发生什么。
-                    你也可以修改代码，创造属于你自己的魔法！
-                </p>
-            </div>
+            <SlideHeader accent="indigo" icon={Code} title="代码游乐场">
+                这里有一些有趣的 Python 代码示例！点击运行，看看会发生什么。你也可以修改代码，创造属于你自己的魔法！
+            </SlideHeader>
 
             <div className="grid md:grid-cols-4 gap-3">
                 {examples.map((ex, idx) => (

@@ -147,9 +147,9 @@ const RandIntSlide = () => {
 
     return (
         <div className="space-y-6 animate-in fade-in slide-in-from-bottom-4 duration-500">
-            <div className="bg-emerald-100 p-6 rounded-2xl border border-emerald-200 text-emerald-900">
+            <div className="bg-indigo-50 p-6 rounded-2xl border border-indigo-100 text-indigo-900">
                 <h2 className="text-2xl font-bold mb-4 flex items-center gap-3">
-                    <Shuffle className="text-emerald-600" />
+                    <Shuffle className="text-indigo-600" />
                     召唤数字：randint
                 </h2>
                 <div className="flex items-center gap-4">
@@ -161,8 +161,8 @@ const RandIntSlide = () => {
                             生成一个 <strong>a 到 b 之间</strong> 的随机整数。
                         </p>
                     </div>
-                    <div className="bg-white/50 px-4 py-2 rounded-lg border border-emerald-300 animate-pulse">
-                        <span className="font-bold text-emerald-700">⚠️ 重点：包含 a 和 b</span>
+                    <div className="bg-white/50 px-4 py-2 rounded-lg border border-amber-300 animate-pulse">
+                        <span className="font-bold text-amber-700">⚠️ 重点：包含 a 和 b</span>
                     </div>
                 </div>
             </div>
