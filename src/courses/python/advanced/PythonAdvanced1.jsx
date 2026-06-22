@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useRef } from 'react';
+import React, { useState } from 'react';
 import {
     Layers, Repeat, AlertOctagon, Play, RotateCcw,
     Trophy, Code, ArrowRight, ChevronDown, Box,
@@ -6,8 +6,9 @@ import {
     TrendingUp, Footprints, Menu, X, Lock, Unlock,
     Search, Binary, Key
 } from 'lucide-react';
-import { Link, useNavigate } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import PythonProjectSupport from '../../../components/PythonProjectSupport';
+import PythonLessonShell from '../shell/PythonLessonShell';
 
 // --- 辅助组件 ---
 const Icon = ({ name, size = 20, className = "" }) => {
@@ -1276,241 +1277,32 @@ const QuizSlide = () => {
 // --- Main Layout Component ---
 
 const sections = [
-    { id: 1, title: '课程简介: 算法思维', icon: 'search', component: IntroSlide },
-    { id: 2, title: '枚举: 暴力破解', icon: 'lock', component: EnumerationSlide },
-    { id: 3, title: '贪心: 最佳策略', icon: 'coin', component: GreedySlide },
-    { id: 4, title: '递归: 分治之美', icon: 'layers', component: RecursionSlide },
-    { id: 5, title: '结业测验', icon: 'trophy', component: QuizSlide },
+    { id: 1, title: '课程简介: 算法思维', category: '导入', icon: Search, component: IntroSlide },
+    { id: 2, title: '枚举: 暴力破解', category: '试所有可能', icon: Lock, component: EnumerationSlide },
+    { id: 3, title: '贪心: 最佳策略', category: '每步选最好', icon: Box, component: GreedySlide },
+    { id: 4, title: '递归: 分治之美', category: '自己调自己', icon: Layers, component: RecursionSlide },
+    { id: 5, title: '结业测验', category: '闯关', icon: Trophy, component: QuizSlide },
 ];
 
 export default function PythonAdvanced1() {
-    const navigate = useNavigate();
-    const [activeSection, setActiveSection] = useState(1); // 1-based index
-    const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
-    const scrollRef = useRef(null);
-
-    useEffect(() => {
-        scrollRef.current?.scrollTo(0, 0);
-    }, [activeSection]);
-    const ActiveComponent = sections.find(s => s.id === activeSection)?.component || (() => <div>Coming Soon</div>);
-
     return (
-        <div className="flex h-screen overflow-hidden bg-slate-50 font-sans text-slate-800">
-            {/* 侧边栏 */}
-            {/* Mobile Menu Button - Fixed Top */}
-            <div className="md:hidden fixed top-0 left-0 w-full z-50 bg-white border-b border-indigo-100 p-4 flex items-center justify-between shadow-sm">
-                <div className="flex items-center gap-2">
-                    <Link to="/" className="block">
-                        <div className="w-8 h-8 bg-white rounded-lg flex items-center justify-center overflow-hidden border border-slate-200 shadow-sm">
-                            <img src={`${import.meta.env.BASE_URL}logo.jpg`} alt="Logo" className="w-full h-full object-cover" />
-                        </div>
-                    </Link>
-                    <h1 className="text-lg font-bold flex items-center gap-2 text-indigo-700">
-                        <span className="bg-indigo-600 text-white px-2 py-0.5 rounded text-xs">Python</span>
-                        <span>趣味魔法</span>
-                    </h1>
-                </div>
-                <button
-                    onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-                    className="p-2 text-slate-600 hover:bg-slate-100 rounded-lg transition-colors"
-                    aria-label={isMobileMenuOpen ? '关闭课程目录' : '打开课程目录'}
-                    aria-expanded={isMobileMenuOpen}
-                >
-                    {isMobileMenuOpen ? <X size={24} /> : <Menu size={24} />}
-                </button>
-            </div>
-
-            {/* Mobile Overlay */}
-            {isMobileMenuOpen && (
-                <div
-                    className="fixed inset-0 bg-black/50 z-40 md:hidden"
-                    onClick={() => setIsMobileMenuOpen(false)}
-                />
-            )}
-
-            {/* 侧边栏 */}
-            <div className={`
-                fixed md:relative top-0 left-0 h-full w-64 bg-white border-r border-slate-200 flex flex-col shadow-lg z-50 transition-transform duration-300 ease-in-out md:translate-x-0
-                ${isMobileMenuOpen ? 'translate-x-0' : '-translate-x-full'}
-            `}>
-                <div className="p-5 border-b border-slate-100 hidden md:block">
-                    <h1 className="text-lg font-bold flex items-center gap-2 text-indigo-700">
-                        <Link to="/" className="hover:opacity-80 transition-opacity">
-                            <img src={`${import.meta.env.BASE_URL}logo.jpg`} alt="Logo" className="w-8 h-8 rounded-lg object-cover border border-slate-200 shadow-sm" />
-                        </Link>
-                        <span className="bg-indigo-600 text-white p-1 rounded text-sm">Python</span>
-                        A1: 算法思维
-                    </h1>
-                    <p className="text-xs text-slate-500 mt-2">核心算法思维入门</p>
-                </div>
-                {/* Mobile Header in Sidebar */}
-                <div className="p-4 border-b border-slate-100 md:hidden flex justify-between items-center bg-indigo-50">
-                    <span className="font-bold text-indigo-700">课程目录</span>
-                    <button
-                        onClick={() => setIsMobileMenuOpen(false)}
-                        aria-label="关闭课程目录"
-                    >
-                        <X size={20} className="text-slate-500" />
-                    </button>
-                </div>
-
-                <div className="flex-1 overflow-y-auto p-4 space-y-6">
-                    {/* Group 1: 算法入门 */}
-                    <div>
-                        <div className="px-4 mb-2 text-xs font-bold text-slate-400 uppercase tracking-wider">🚀 算法入门</div>
-                        <div className="space-y-1">
-                            {sections.slice(0, 1).map((section) => (
-                                <button
-                                    key={section.id}
-                                    onClick={() => {
-                                        setActiveSection(section.id);
-                                        setIsMobileMenuOpen(false);
-                                    }}
-                                    className={`w-full flex items-center gap-3 px-4 py-2.5 rounded-lg transition-colors text-sm ${activeSection === section.id
-                                        ? 'bg-indigo-50 text-indigo-700 font-medium'
-                                        : 'text-slate-600 hover:bg-slate-50'
-                                        }`}
-                                >
-                                    <div className={`p-1.5 rounded-lg ${activeSection === section.id ? 'bg-white text-indigo-500' : 'bg-slate-100 text-slate-400'}`}>
-                                        <Icon name={section.icon} size={16} />
-                                    </div>
-                                    <span className="truncate">{section.title}</span>
-                                </button>
-                            ))}
-                        </div>
-                    </div>
-
-                    {/* Group 2: 核心算法 */}
-                    <div>
-                        <div className="px-4 mb-2 text-xs font-bold text-slate-400 uppercase tracking-wider">🧩 核心算法</div>
-                        <div className="space-y-1">
-                            {sections.slice(1, 4).map((section) => (
-                                <button
-                                    key={section.id}
-                                    onClick={() => {
-                                        setActiveSection(section.id);
-                                        setIsMobileMenuOpen(false);
-                                    }}
-                                    className={`w-full flex items-center gap-3 px-4 py-2.5 rounded-lg transition-colors text-sm ${activeSection === section.id
-                                        ? 'bg-indigo-50 text-indigo-700 font-medium'
-                                        : 'text-slate-600 hover:bg-slate-50'
-                                        }`}
-                                >
-                                    <div className={`p-1.5 rounded-lg ${activeSection === section.id ? 'bg-white text-indigo-500' : 'bg-slate-100 text-slate-400'}`}>
-                                        <Icon name={section.icon} size={16} />
-                                    </div>
-                                    <span className="truncate">{section.title}</span>
-                                </button>
-                            ))}
-                        </div>
-                    </div>
-
-                    {/* Group 3: 挑战 */}
-                    <div>
-                        <div className="px-4 mb-2 text-xs font-bold text-slate-400 uppercase tracking-wider">🏆 毕业挑战</div>
-                        <div className="space-y-1">
-                            {sections.slice(4, 5).map((section) => (
-                                <button
-                                    key={section.id}
-                                    onClick={() => {
-                                        setActiveSection(section.id);
-                                        setIsMobileMenuOpen(false);
-                                    }}
-                                    className={`w-full flex items-center gap-3 px-4 py-2.5 rounded-lg transition-colors text-sm ${activeSection === section.id
-                                        ? 'bg-indigo-50 text-indigo-700 font-medium'
-                                        : 'text-slate-600 hover:bg-slate-50'
-                                        }`}
-                                >
-                                    <div className={`p-1.5 rounded-lg ${activeSection === section.id ? 'bg-white text-indigo-500' : 'bg-slate-100 text-slate-400'}`}>
-                                        <Icon name={section.icon} size={16} />
-                                    </div>
-                                    <span className="truncate">{section.title}</span>
-                                </button>
-                            ))}
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            {/* 主内容区 */}
-            <div className="flex-1 flex flex-col h-full overflow-hidden relative bg-slate-50 pt-16 md:pt-0">
-                {/* Header - now just a label or removed if we want to clean it up. Keeping it simple */}
-                <div ref={scrollRef} className="flex-1 overflow-y-auto p-6 md:p-10 custom-scrollbar">
-                    <div className="max-w-5xl mx-auto h-full flex flex-col">
-                        <PythonProjectSupport projectId="a1" />
-                        <header className="mb-8">
-                            <div className="flex items-center gap-3 mb-2">
-                                <div className="p-2 bg-indigo-100 text-indigo-600 rounded-lg">
-                                    <Icon name={sections.find(s => s.id === activeSection)?.icon} size={20} />
-                                </div>
-                                <h2 className="text-2xl font-bold text-slate-800 truncate">
-                                    {sections.find(s => s.id === activeSection)?.title}
-                                </h2>
-                            </div>
-                            <div className="h-1 w-20 bg-indigo-500 rounded-full"></div>
-                        </header>
-
-                        <div className="flex-1 animate-in fade-in slide-in-from-bottom-4 duration-500 h-full">
-                            <ActiveComponent />
-                        </div>
-                        <PythonProjectSupport projectId="a1" placement="bottom" />
-                    </div>
-                </div>
-
-                {/* Sticky Footer */}
-                <div className="h-20 bg-white border-t border-slate-200 flex items-center justify-between px-8 z-20 flex-shrink-0">
-                    <button
-                        onClick={() => setActiveSection(prev => Math.max(1, prev - 1))}
-                        disabled={activeSection === 1}
-                        className={`px-5 py-2.5 rounded-lg flex items-center gap-2 font-bold transition-all
-                            ${activeSection === 1 ? 'text-gray-300 cursor-not-allowed' : 'text-gray-600 hover:bg-gray-100 hover:shadow-sm'}`}
-                    >
-                        <ChevronDown className="rotate-90" size={18} /> 上一节
-                    </button>
-
-                    <button
-                        onClick={() => {
-                            if (activeSection < sections.length) {
-                                setActiveSection(prev => prev + 1);
-                            } else {
-                                navigate('/python/binary-search');
-                            }
-                        }}
-                        className={`px-6 py-2.5 rounded-lg flex items-center gap-2 font-bold transition-all shadow-sm bg-indigo-600 text-white hover:bg-indigo-700 hover:shadow-md hover:-translate-y-0.5`}
-                    >
-                        {activeSection === sections.length ? '下一课' : '下一节'} <ArrowRight size={18} />
-                    </button>
-                </div>
-            </div>
-
-            <style>{`
-        @keyframes shake {
-          0%, 100% { transform: translateX(0); }
-          25% { transform: translateX(-5px); }
-          75% { transform: translateX(5px); }
-        }
-        .animate-shake {
-          animation: shake 0.5s cubic-bezier(.36,.07,.19,.97) both;
-        }
-        .custom-scrollbar::-webkit-scrollbar {
-          width: 6px;
-        }
-        .custom-scrollbar::-webkit-scrollbar-track {
-          background: transparent;
-        }
-        .custom-scrollbar::-webkit-scrollbar-thumb {
-          background-color: #cbd5e1;
-          border-radius: 20px;
-        }
-      `}</style>
-        </div>
+        <PythonLessonShell
+            eyebrow="PYTHON 项目"
+            lessonCode="A1"
+            lessonTitle="算法思维入门"
+            lessonSubtitle="枚举 · 贪心 · 递归"
+            accent="indigo"
+            hero={{
+                title: '做项目不止会写代码，更要"想得聪明"',
+                description: '枚举试所有可能、贪心每步选最好、递归自己调自己——三种最基础的算法思维，是整条项目线的解题底座。',
+            }}
+            sections={sections}
+            previousPath="/python/bridge"
+            nextPath="/python/binary-search"
+            nextLabel="下一个：A2 二分搜索"
+            topSupport={<PythonProjectSupport projectId="a1" />}
+            bottomSupport={<PythonProjectSupport projectId="a1" placement="bottom" />}
+        />
     );
-};
+}
 
-// 简单的 CheckCircle Icon 组件，用于 QuizSlide
-const CheckCircle = ({ className }) => (
-    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" className={className}>
-        <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path>
-        <polyline points="22 4 12 14.01 9 11.01"></polyline>
-    </svg>
-);

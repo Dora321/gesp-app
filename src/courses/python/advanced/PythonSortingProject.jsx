@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useRef } from 'react';
+import React, { useState, useEffect } from 'react';
 import {
     ArrowUp, Play, RotateCcw, HelpCircle,
     Trophy, Code, ArrowRight, Sparkles,
@@ -7,8 +7,9 @@ import {
     CheckCircle, StopCircle, Smartphone, Globe, Target, Rocket, GitMerge,
     ShoppingCart, Gamepad2, ListOrdered, Timer, Star, Dices, Share2
 } from 'lucide-react';
-import { Link, useNavigate } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import PythonProjectSupport from '../../../components/PythonProjectSupport';
+import PythonLessonShell from '../shell/PythonLessonShell';
 
 // --- 辅助组件 ---
 const Icon = ({ name, size = 20, className = "" }) => {
@@ -2179,152 +2180,50 @@ def is_sorted(arr):
 // --- 主布局 ---
 
 const sections = [
-    { id: 1, title: '秩序的意义', icon: 'brain', component: IntroSlide },
-    { id: 2, title: '冒泡可视化', icon: 'chart', component: BubbleSortSlide },
-    { id: 3, title: '选择排序', icon: 'target', component: SelectionSortSlide },
-    { id: 4, title: '插入排序', icon: 'insertion', component: InsertionSortSlide },
-    { id: 5, title: '算法对决', icon: 'zap', component: AlgorithmBattleSlide },
-    { id: 6, title: '归并排序', icon: 'merge', component: MergeSortSlide },
-    { id: 7, title: '堆排序', icon: 'heap', component: HeapSortSlide },
-    { id: 8, title: '快速排序', icon: 'rocket', component: QuickSortSlide },
-    { id: 9, title: '基数排序', icon: 'layers', component: RadixSortSlide },
-    { id: 10, title: '代码魔法书', icon: 'code', component: CodeSlide },
-    { id: 11, title: '猴子排序(彩蛋)', icon: 'dice', component: BogoSortSlide },
-    { id: 12, title: '真实应用', icon: 'globe', component: ApplicationSlide },
-    { id: 13, title: '挑战：排序大师', icon: 'trophy', component: HumanSortSlide },
-    { id: 14, title: '知识测验', icon: 'help', component: QuizSlide },
+    { id: 1, title: '秩序的意义', category: '为什么排序', icon: Brain, component: IntroSlide },
+    { id: 2, title: '冒泡可视化', category: '相邻交换', icon: BarChart2, component: BubbleSortSlide },
+    { id: 3, title: '选择排序', category: '每轮选最小', icon: Target, component: SelectionSortSlide },
+    { id: 4, title: '插入排序', category: '插到合适位', icon: ArrowRight, component: InsertionSortSlide },
+    { id: 5, title: '算法对决', category: '速度对比', icon: Zap, component: AlgorithmBattleSlide },
+    { id: 6, title: '归并排序', category: '分治合并', icon: GitMerge, component: MergeSortSlide },
+    { id: 7, title: '堆排序', category: '堆结构', icon: Share2, component: HeapSortSlide },
+    { id: 8, title: '快速排序', category: '基准划分', icon: Rocket, component: QuickSortSlide },
+    { id: 9, title: '基数排序', category: '按位分桶', icon: Layers, component: RadixSortSlide },
+    { id: 10, title: '代码魔法书', category: 'Python 实现', icon: Code, component: CodeSlide },
+    { id: 11, title: '猴子排序(彩蛋)', category: '反面教材', icon: Dices, component: BogoSortSlide },
+    { id: 12, title: '真实应用', category: '生活中的排序', icon: Globe, component: ApplicationSlide },
+    { id: 13, title: '挑战：排序大师', category: '动手闯关', icon: Trophy, component: HumanSortSlide },
+    { id: 14, title: '知识测验', category: '复盘', icon: HelpCircle, component: QuizSlide },
 ];
 
 export default function PythonSortingProject() {
-    const navigate = useNavigate();
-    const [activeSection, setActiveSection] = useState(1);
-    const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
-    const scrollRef = useRef(null);
-
-    useEffect(() => {
-        scrollRef.current?.scrollTo(0, 0);
-    }, [activeSection]);
-
-    const currentSection = sections.find(s => s.id === activeSection);
-
     return (
-        <div className="flex h-screen bg-slate-50 overflow-hidden font-sans relative">
+        <>
             <style>{`
                 .slide-enter { animation: slideIn 0.4s ease-out; }
-                @keyframes slideIn { 
-                    from { opacity: 0; transform: translateY(10px); } 
-                    to { opacity: 1; transform: translateY(0); } 
+                @keyframes slideIn {
+                    from { opacity: 0; transform: translateY(10px); }
+                    to { opacity: 1; transform: translateY(0); }
                 }
             `}</style>
-
-            {/* Sidebar */}
-            <div className={`
-                fixed inset-y-0 left-0 z-50 w-72 bg-white border-r border-slate-200 shadow-2xl transition-transform duration-300 md:relative md:translate-x-0 md:shadow-none
-                ${isMobileMenuOpen ? 'translate-x-0' : '-translate-x-full'}
-            `}>
-                <div className="p-6 border-b border-slate-100 flex items-center gap-3">
-                    <Link to="/" className="hover:opacity-80 transition-opacity">
-                        <img src={`${import.meta.env.BASE_URL}logo.jpg`} alt="Logo" className="w-10 h-10 rounded-xl object-cover shadow-lg shadow-orange-100" />
-                    </Link>
-                    <div>
-                        <h1 className="font-bold text-slate-800 leading-none">排序大师</h1>
-                        <p className="text-[10px] text-slate-400 mt-1 uppercase tracking-widest font-bold">Sorting Algorithms</p>
-                    </div>
-                </div>
-
-                <nav className="p-4 space-y-2">
-                    {sections.map(section => (
-                        <button
-                            key={section.id}
-                            onClick={() => {
-                                setActiveSection(section.id);
-                                setIsMobileMenuOpen(false);
-                            }}
-                            className={`w-full text-left px-4 py-3 rounded-2xl text-sm transition-all flex items-center gap-4 font-bold
-                                ${activeSection === section.id
-                                    ? 'bg-orange-600 text-white shadow-lg shadow-orange-100 scale-105'
-                                    : 'text-slate-500 hover:bg-slate-50 hover:text-slate-800'}`}
-                        >
-                            <Icon name={section.icon} className={activeSection === section.id ? 'text-white' : 'text-slate-400'} />
-                            {section.title}
-                        </button>
-                    ))}
-                </nav>
-
-                <div className="absolute bottom-0 left-0 w-full p-6 border-t border-slate-50">
-                    <Link to="/" className="flex items-center gap-2 text-slate-400 hover:text-orange-600 transition-colors text-sm font-bold">
-                        <RotateCcw size={16} /> 返回课程中心
-                    </Link>
-                </div>
-            </div>
-
-            {/* Main Content */}
-            <div className="flex-1 flex flex-col h-full relative overflow-hidden">
-                {/* Header with Mobile Menu Button */}
-                <header className="h-16 bg-white border-b border-slate-200 flex items-center justify-between px-6 md:px-8 flex-shrink-0 z-20">
-                    <div className="flex items-center gap-3 md:hidden">
-                        <button
-                            onClick={() => setIsMobileMenuOpen(true)}
-                            className="p-2 -ml-2 text-slate-500 hover:bg-slate-100 rounded-lg"
-                            aria-label="打开课程目录"
-                            aria-expanded={isMobileMenuOpen}
-                        >
-                            <Menu size={24} />
-                        </button>
-                    </div>
-
-                    <div className="flex items-center gap-3">
-                        <div className={`p-2 rounded-lg ${activeSection === sections.length ? 'bg-yellow-100 text-yellow-600' : 'bg-orange-100 text-orange-600'}`}>
-                            <Icon name={currentSection?.icon} size={20} />
-                        </div>
-                        <h2 className="font-bold text-slate-800 text-lg sm:text-lg truncate max-w-[200px] sm:max-w-md">
-                            {currentSection?.title}
-                        </h2>
-                    </div>
-
-                    <div className="hidden md:flex text-xs font-bold text-slate-400 uppercase tracking-widest">
-                        Section {activeSection} / {sections.length}
-                    </div>
-                </header>
-
-                <main ref={scrollRef} className="flex-1 overflow-y-auto p-4 md:p-8 custom-scrollbar relative">
-                    <div className="max-w-5xl mx-auto pb-10">
-                        <PythonProjectSupport projectId="sorting" />
-                        {/* Dynamic Component */}
-                        {currentSection && React.createElement(currentSection.component)}
-                        <PythonProjectSupport projectId="sorting" placement="bottom" />
-                    </div>
-                </main>
-
-                {/* Sticky Footer */}
-                <div className="h-20 bg-white border-t border-slate-200 flex items-center justify-between px-8 z-20 flex-shrink-0">
-                    <button
-                        onClick={() => setActiveSection(prev => Math.max(1, prev - 1))}
-                        disabled={activeSection === 1}
-                        className={`flex items-center gap-2 px-6 py-2.5 rounded-xl font-bold transition-all
-                            ${activeSection === 1
-                                ? 'text-slate-300 cursor-not-allowed'
-                                : 'text-slate-600 hover:bg-slate-100 hover:text-slate-900'}`}
-                    >
-                        <ArrowRight className="rotate-180" size={20} /> 上一节
-                    </button>
-
-                    <button
-                        onClick={() => {
-                            if (activeSection < sections.length) {
-                                setActiveSection(prev => prev + 1);
-                            } else {
-                                navigate('/python/encryption');
-                            }
-                        }}
-                        className={`flex items-center gap-2 px-8 py-3 rounded-xl font-bold transition-all shadow-lg text-white hover:translate-x-1
-                            ${activeSection === sections.length ? 'bg-orange-600 hover:bg-orange-700' : 'bg-orange-600 hover:bg-orange-700'}`}
-                    >
-                        {activeSection === sections.length ? '进入摩斯' : '下一节'}
-                        <ArrowRight size={20} />
-                    </button>
-                </div>
-            </div>
-        </div>
+            <PythonLessonShell
+                eyebrow="PYTHON 项目"
+                lessonCode="A3"
+                lessonTitle="排序算法项目"
+                lessonSubtitle="看清每种排序怎么动"
+                accent="blue"
+                hero={{
+                    title: '把"乱"变成"有序"的几种思路',
+                    description: '从冒泡到快排，用可视化看清每种排序每一步在做什么，并比较它们的快慢——排序是算法线的集大成项目。',
+                }}
+                sections={sections}
+                previousPath="/python/binary-search"
+                nextPath="/python/encryption"
+                nextLabel="下一个：A4 加密解密"
+                topSupport={<PythonProjectSupport projectId="sorting" />}
+                bottomSupport={<PythonProjectSupport projectId="sorting" placement="bottom" />}
+            />
+        </>
     );
-};
+}
+

@@ -1,12 +1,13 @@
-import React, { useState, useEffect, useRef } from 'react';
+import React, { useState } from 'react';
 import {
     Grid, ArrowUp, ArrowDown, ArrowLeft, ArrowRight,
     RotateCw, RefreshCw, Play, Code, Box,
     ChevronDown, Layers, Hash, HelpCircle, Trophy,
     CheckCircle, XCircle, MousePointer, Menu, X
 } from 'lucide-react';
-import { Link, useNavigate } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import PythonProjectSupport from '../../../components/PythonProjectSupport';
+import PythonLessonShell from '../shell/PythonLessonShell';
 
 // --- 辅助组件 ---
 const Icon = ({ name, size = 20, className = "" }) => {
@@ -989,239 +990,35 @@ const PackagingSlide = () => {
 // --- 主布局 ---
 
 const sections = [
-    { id: 1, title: '游戏初体验', icon: 'play', component: IntroSlide },
-    { id: 1.5, title: '开发任务书', icon: 'hash', component: RoadmapSlide }, // New Slide
-    { id: 2, title: '构建世界', icon: 'grid', component: DataStructureSlide },
-    { id: 3, title: '核心魔法', icon: 'arrow-up', component: MergeLogicSlide }, // Arrow left icon fallback to up if not precise match
-    { id: 4, title: '空间变换', icon: 'rotate', component: TransformSlide },
-    { id: 5, title: '代码全览', icon: 'code', component: SummarySlide },
-    { id: 6, title: '课间小测验', icon: 'trophy', component: QuizSlide },
-    { id: 7, title: '打包发布', icon: 'box', component: PackagingSlide },
+    { id: 1, title: '游戏初体验', category: '玩中学', icon: Play, component: IntroSlide },
+    { id: 1.5, title: '开发任务书', category: '拆需求', icon: Hash, component: RoadmapSlide },
+    { id: 2, title: '构建世界', category: '二维列表棋盘', icon: Grid, component: DataStructureSlide },
+    { id: 3, title: '核心魔法', category: '移动与合并', icon: ArrowUp, component: MergeLogicSlide },
+    { id: 4, title: '空间变换', category: '旋转复用', icon: RotateCw, component: TransformSlide },
+    { id: 5, title: '代码全览', category: 'Python 实现', icon: Code, component: SummarySlide },
+    { id: 6, title: '课间小测验', category: '闯关', icon: Trophy, component: QuizSlide },
+    { id: 7, title: '打包发布', category: '收尾', icon: Box, component: PackagingSlide },
 ];
 
 export default function PythonAdvanced2() {
-    const navigate = useNavigate();
-    const [activeSection, setActiveSection] = useState(1);
-    const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
-    const scrollRef = useRef(null);
-
-    useEffect(() => {
-        scrollRef.current?.scrollTo(0, 0);
-    }, [activeSection]);
-
-    const ActiveComponent = sections.find(s => s.id === activeSection)?.component || (() => <div>Coming Soon</div>);
-
     return (
-        <div className="flex h-screen overflow-hidden bg-slate-50 font-sans text-slate-800">
-            {/* 侧边栏 */}
-            {/* Mobile Menu Button - Fixed Top */}
-            <div className="md:hidden fixed top-0 left-0 w-full z-50 bg-white border-b border-orange-100 p-4 flex items-center justify-between shadow-sm">
-                <div className="flex items-center gap-2">
-                    <Link to="/" className="block">
-                        <div className="w-8 h-8 bg-white rounded-lg flex items-center justify-center overflow-hidden border border-slate-200 shadow-sm">
-                            <img src={`${import.meta.env.BASE_URL}logo.jpg`} alt="Logo" className="w-full h-full object-cover" />
-                        </div>
-                    </Link>
-                    <h1 className="text-lg font-bold flex items-center gap-2 text-orange-700">
-                        <span className="bg-orange-500 text-white px-2 py-0.5 rounded text-xs">Python</span>
-                        <span>实战课堂</span>
-                    </h1>
-                </div>
-                <button
-                    onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-                    className="p-2 text-slate-600 hover:bg-slate-100 rounded-lg transition-colors"
-                    aria-label={isMobileMenuOpen ? '关闭课程目录' : '打开课程目录'}
-                    aria-expanded={isMobileMenuOpen}
-                >
-                    {isMobileMenuOpen ? <X size={24} /> : <Menu size={24} />}
-                </button>
-            </div>
-
-            {/* Mobile Overlay */}
-            {isMobileMenuOpen && (
-                <div
-                    className="fixed inset-0 bg-black/50 z-40 md:hidden"
-                    onClick={() => setIsMobileMenuOpen(false)}
-                />
-            )}
-
-            {/* 侧边栏 */}
-            <div className={`
-                fixed md:relative top-0 left-0 h-full w-64 bg-white border-r border-slate-200 flex flex-col shadow-lg z-50 transition-transform duration-300 ease-in-out md:translate-x-0
-                ${isMobileMenuOpen ? 'translate-x-0' : '-translate-x-full'}
-            `}>
-                <div className="p-5 border-b border-slate-100 hidden md:block">
-                    <h1 className="text-lg font-bold flex items-center gap-2 text-orange-700">
-                        <Link to="/" className="hover:opacity-80 transition-opacity">
-                            <img src={`${import.meta.env.BASE_URL}logo.jpg`} alt="Logo" className="w-8 h-8 rounded-lg object-cover border border-slate-200 shadow-sm" />
-                        </Link>
-                        <span className="bg-orange-500 text-white p-1 rounded text-sm">Python</span>
-                        A2: 2048
-                    </h1>
-                    <p className="text-xs text-slate-500 mt-2">实战项目：2048 大作战</p>
-                </div>
-                {/* Mobile Header in Sidebar */}
-                <div className="p-4 border-b border-slate-100 md:hidden flex justify-between items-center bg-orange-50">
-                    <span className="font-bold text-orange-700">课程目录</span>
-                    <button
-                        onClick={() => setIsMobileMenuOpen(false)}
-                        aria-label="关闭课程目录"
-                    >
-                        <X size={20} className="text-slate-500" />
-                    </button>
-                </div>
-
-                <div className="flex-1 overflow-y-auto p-4 space-y-6">
-                    {/* Group 1: 游戏体验 */}
-                    <div>
-                        <div className="px-4 mb-2 text-xs font-bold text-slate-400 uppercase tracking-wider">🎮 游戏体验</div>
-                        <div className="space-y-1">
-                            {sections.slice(0, 2).map((section) => (
-                                <button
-                                    key={section.id}
-                                    onClick={() => {
-                                        setActiveSection(section.id);
-                                        setIsMobileMenuOpen(false);
-                                    }}
-                                    className={`w-full flex items-center gap-3 px-4 py-2.5 rounded-lg transition-colors text-sm ${activeSection === section.id
-                                        ? 'bg-orange-50 text-orange-700 font-medium'
-                                        : 'text-slate-600 hover:bg-slate-50'
-                                        }`}
-                                >
-                                    <div className={`p-1.5 rounded-lg ${activeSection === section.id ? 'bg-white text-orange-500' : 'bg-slate-100 text-slate-400'}`}>
-                                        <Icon name={section.icon} size={16} />
-                                    </div>
-                                    <span className="truncate">{section.title}</span>
-                                </button>
-                            ))}
-                        </div>
-                    </div>
-
-                    {/* Group 2: 核心开发 */}
-                    <div>
-                        <div className="px-4 mb-2 text-xs font-bold text-slate-400 uppercase tracking-wider">🧩 核心开发</div>
-                        <div className="space-y-1">
-                            {sections.slice(2, 5).map((section) => (
-                                <button
-                                    key={section.id}
-                                    onClick={() => {
-                                        setActiveSection(section.id);
-                                        setIsMobileMenuOpen(false);
-                                    }}
-                                    className={`w-full flex items-center gap-3 px-4 py-2.5 rounded-lg transition-colors text-sm ${activeSection === section.id
-                                        ? 'bg-orange-50 text-orange-700 font-medium'
-                                        : 'text-slate-600 hover:bg-slate-50'
-                                        }`}
-                                >
-                                    <div className={`p-1.5 rounded-lg ${activeSection === section.id ? 'bg-white text-orange-500' : 'bg-slate-100 text-slate-400'}`}>
-                                        <Icon name={section.icon} size={16} />
-                                    </div>
-                                    <span className="truncate">{section.title}</span>
-                                </button>
-                            ))}
-                        </div>
-                    </div>
-
-                    {/* Group 3: 总结与测验 */}
-                    <div>
-                        <div className="px-4 mb-2 text-xs font-bold text-slate-400 uppercase tracking-wider">🏆 总结测验</div>
-                        <div className="space-y-1">
-                            {sections.slice(5).map((section) => (
-                                <button
-                                    key={section.id}
-                                    onClick={() => {
-                                        setActiveSection(section.id);
-                                        setIsMobileMenuOpen(false);
-                                    }}
-                                    className={`w-full flex items-center gap-3 px-4 py-2.5 rounded-lg transition-colors text-sm ${activeSection === section.id
-                                        ? 'bg-orange-50 text-orange-700 font-medium'
-                                        : 'text-slate-600 hover:bg-slate-50'
-                                        }`}
-                                >
-                                    <div className={`p-1.5 rounded-lg ${activeSection === section.id ? 'bg-white text-orange-500' : 'bg-slate-100 text-slate-400'}`}>
-                                        <Icon name={section.icon} size={16} />
-                                    </div>
-                                    <span className="truncate">{section.title}</span>
-                                </button>
-                            ))}
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            {/* 主内容区 */}
-            <div className="flex-1 flex flex-col h-full overflow-hidden relative bg-slate-50 pt-16 md:pt-0">
-                {/* Content */}
-                <div ref={scrollRef} className="flex-1 overflow-y-auto p-6 md:p-10 custom-scrollbar">
-                    <div className="max-w-5xl mx-auto h-full flex flex-col">
-                        <PythonProjectSupport projectId="a2" />
-                        <header className="mb-8">
-                            <div className="flex items-center gap-3 mb-2">
-                                <div className="p-2 bg-orange-100 text-orange-600 rounded-lg">
-                                    <Icon name={sections.find(s => s.id === activeSection)?.icon} size={20} />
-                                </div>
-                                <h2 className="text-2xl font-bold text-slate-800 truncate">
-                                    {sections.find(s => s.id === activeSection)?.title}
-                                </h2>
-                            </div>
-                            <div className="h-1 w-20 bg-orange-500 rounded-full"></div>
-                        </header>
-
-                        <div className="flex-1 animate-in fade-in slide-in-from-bottom-4 duration-500 h-full">
-                            <ActiveComponent />
-                        </div>
-                        <PythonProjectSupport projectId="a2" placement="bottom" />
-                    </div>
-                </div>
-
-                {/* Sticky Footer */}
-                <div className="h-20 bg-white border-t border-slate-200 flex items-center justify-between px-8 z-20 flex-shrink-0">
-                    <button
-                        onClick={() => setActiveSection(prev => Math.max(1, prev - 1))} // activeSection logic here seems to rely on ID which might be 1-based or float (1.5). Let's check sections IDs.
-                        // Wait, IDs are 1, 1.5, 2 etc. Simpler numeric buttons won't iterate correctly if I just +1/-1.
-                        // I should iterate through the sections array index.
-                        // Let's refactor state to use index instead of ID, or just find index.
-                        // The original code used IDs, but IDs are 1.5. 
-                        // Let's change state to activeSectionIndex
-                        // BUT, sections finding logic depends on activeSection being an ID.
-                        // I will stick to iterating indices for next/prev.
-                        // Actually, I can use sections[currentIndex +/- 1].id
-                        disabled={activeSection === sections[0].id}
-                        className={`px-5 py-2.5 rounded-lg flex items-center gap-2 font-bold transition-all
-                            ${activeSection === sections[0].id ? 'text-gray-300 cursor-not-allowed' : 'text-gray-600 hover:bg-gray-100 hover:shadow-sm'}`}
-                    >
-                        <ChevronDown className="rotate-90" size={18} /> 上一步
-                    </button>
-
-                    <button
-                        onClick={() => {
-                            const currentIndex = sections.findIndex(s => s.id === activeSection);
-                            if (currentIndex < sections.length - 1) {
-                                setActiveSection(sections[currentIndex + 1].id);
-                            } else {
-                                navigate('/python/ai');
-                            }
-                        }}
-                        className={`px-6 py-2.5 rounded-lg flex items-center gap-2 font-bold transition-all shadow-sm bg-orange-600 text-white hover:bg-orange-700 hover:shadow-md hover:-translate-y-0.5`}
-                    >
-                        {activeSection === sections[sections.length - 1].id ? '下一课' : '下一节'} <ArrowRight size={18} />
-                    </button>
-                </div>
-            </div>
-
-            <style>{`
-        .custom-scrollbar::-webkit-scrollbar {
-          width: 6px;
-        }
-        .custom-scrollbar::-webkit-scrollbar-track {
-          background: transparent;
-        }
-        .custom-scrollbar::-webkit-scrollbar-thumb {
-          background-color: #cbd5e1;
-          border-radius: 20px;
-        }
-      `}</style>
-        </div>
+        <PythonLessonShell
+            eyebrow="PYTHON 项目"
+            lessonCode="A7"
+            lessonTitle="2048 游戏项目"
+            lessonSubtitle="用二维列表搭一个能玩的游戏"
+            accent="teal"
+            hero={{
+                title: '把语法拼成一个能玩的 2048',
+                description: '用二维列表当棋盘，把移动、合并、生成方块拆成函数——这是综合运用列表、循环、函数的第一个大项目。',
+            }}
+            sections={sections}
+            previousPath="/python/file-ops"
+            nextPath="/python/ai"
+            nextLabel="下一个：A8 AI 初探"
+            topSupport={<PythonProjectSupport projectId="a2" />}
+            bottomSupport={<PythonProjectSupport projectId="a2" placement="bottom" />}
+        />
     );
-};
+}
 
