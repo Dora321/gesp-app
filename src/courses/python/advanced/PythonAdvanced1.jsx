@@ -1473,7 +1473,7 @@ export default function PythonAdvanced1() {
                             if (activeSection < sections.length) {
                                 setActiveSection(prev => prev + 1);
                             } else {
-                                navigate('/python/a2');
+                                navigate('/python/binary-search');
                             }
                         }}
                         className={`px-6 py-2.5 rounded-lg flex items-center gap-2 font-bold transition-all shadow-sm bg-indigo-600 text-white hover:bg-indigo-700 hover:shadow-md hover:-translate-y-0.5`}

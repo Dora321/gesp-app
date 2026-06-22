@@ -9,14 +9,18 @@ export const pythonFoundationLessons = [
   { id: 'bridge', title: '桥梁：猜数字大冒险', catalogTitle: '综合小程序', path: '/python/bridge' },
 ];
 
+// 按"四轨道"重排：算法线 → 字符串·工具线 → 综合·拓展线（难度单调上升）
 export const pythonProjects = [
+  // 算法线
   { id: 'a1', title: 'A1：算法思维入门', catalogTitle: '算法思维', path: '/python/a1' },
-  { id: 'a2', title: 'A2：2048 游戏项目', catalogTitle: '游戏工坊', path: '/python/a2' },
-  { id: 'ai', title: 'A3：AI 初探', catalogTitle: 'AI 入门', path: '/python/ai' },
-  { id: 'crawler', title: 'A4：网络爬虫项目', catalogTitle: '网络爬虫', path: '/python/crawler' },
-  { id: 'binary-search', title: 'A5：二分搜索项目', catalogTitle: '二分查找', path: '/python/binary-search' },
-  { id: 'encryption', title: 'A6：加密解密项目', catalogTitle: '加密解密', path: '/python/encryption' },
-  { id: 'sorting', title: 'A7：排序算法项目', catalogTitle: '排序可视化', path: '/python/sorting' },
-  { id: 'morse', title: 'A8：摩斯电码项目', catalogTitle: '摩斯密码', path: '/python/morse' },
-  { id: 'file-ops', title: 'A9：文件操作项目', catalogTitle: '文件操作', path: '/python/file-ops' },
+  { id: 'binary-search', title: 'A2：二分搜索项目', catalogTitle: '二分查找', path: '/python/binary-search' },
+  { id: 'sorting', title: 'A3：排序算法项目', catalogTitle: '排序可视化', path: '/python/sorting' },
+  // 字符串·工具线
+  { id: 'encryption', title: 'A4：加密解密项目', catalogTitle: '加密解密', path: '/python/encryption' },
+  { id: 'morse', title: 'A5：摩斯电码项目', catalogTitle: '摩斯密码', path: '/python/morse' },
+  { id: 'file-ops', title: 'A6：文件操作项目', catalogTitle: '文件操作', path: '/python/file-ops' },
+  // 综合·拓展线
+  { id: 'a2', title: 'A7：2048 游戏项目', catalogTitle: '游戏工坊', path: '/python/a2' },
+  { id: 'ai', title: 'A8：AI 初探', catalogTitle: 'AI 入门', path: '/python/ai' },
+  { id: 'crawler', title: 'A9：网络爬虫项目', catalogTitle: '网络爬虫', path: '/python/crawler' },
 ];

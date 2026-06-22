@@ -2314,7 +2314,7 @@ export default function PythonSortingProject() {
                             if (activeSection < sections.length) {
                                 setActiveSection(prev => prev + 1);
                             } else {
-                                navigate('/python/morse');
+                                navigate('/python/encryption');
                             }
                         }}
                         className={`flex items-center gap-2 px-8 py-3 rounded-xl font-bold transition-all shadow-lg text-white hover:translate-x-1

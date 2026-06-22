@@ -742,7 +742,7 @@ export default function BinarySearchProject() {
                             if (activeSection < sections.length) {
                                 setActiveSection(prev => prev + 1);
                             } else {
-                                navigate('/python/encryption');
+                                navigate('/python/sorting');
                             }
                         }}
                         className={`flex items-center gap-2 px-8 py-3 rounded-xl font-bold transition-all shadow-lg text-white hover:translate-x-1

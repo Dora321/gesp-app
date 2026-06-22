@@ -194,63 +194,69 @@ const projectDetails = {
 };
 
 const nextReason = {
-  a1: '算法思维打底后，用 2048 项目训练列表、状态和规则拆解。',
-  a2: '游戏状态项目之后，继续看 AI 概念，理解数据如何影响判断。',
-  ai: 'AI 初探之后，进入网络爬虫，学习数据从哪里来。',
-  crawler: '会获取数据后，用二分搜索训练更高效的查找策略。',
-  'binary-search': '查找之后进入加密项目，继续练字符、字符串和映射。',
-  encryption: '字符映射稳定后，进入排序项目，观察列表状态如何一步步变化。',
-  sorting: '排序项目之后，用摩斯项目把字典、字符串和函数组合成作品。',
-  morse: '摩斯项目完成后，学习文件操作，把程序结果保存下来。',
-  'file-ops': 'Python 项目线完成后，可以回到课程中心选择真题、硬件或更完整的作品迭代。',
+  // 算法线
+  a1: '算法思维打底后，用二分查找把"在有序数据里高效定位"练扎实。',
+  'binary-search': '会了二分查找，再学排序——有序是二分的前提，排序负责把数据变有序。',
+  sorting: '排序练熟了列表与循环，进入加密项目，开始处理字符与映射。',
+  // 字符串·工具线
+  encryption: '加密练了字符位移，摩斯项目继续用字典做字符的双向映射。',
+  morse: '会做字符转换后，用文件操作把转换结果保存下来。',
+  'file-ops': '工具线收尾，进入综合大项目：用二维列表搭出可玩的 2048。',
+  // 综合·拓展线
+  a2: '做完游戏状态机，再看 AI 概念，理解数据如何影响判断。',
+  ai: 'AI 初探之后，进入网络爬虫，搞清楚数据从哪里来、边界在哪。',
+  crawler: 'Python 项目线完成，可以回到课程中心选择真题、硬件或作品迭代。',
 };
 
 const previousReason = {
-  a2: '如果算法策略还不清楚，先回看 A1 的枚举、贪心和递归。',
+  // 算法线
+  'binary-search': '算法思维（A1）讲了枚举、贪心和递归，二分查找是它的高效查找延伸。',
+  sorting: '二分查找需要有序数据，排序项目正好负责把数据变有序。',
+  // 字符串·工具线
+  encryption: '排序项目练了列表状态与循环，加密项目继续训练字符遍历与映射。',
+  morse: '加密项目里的字符映射，是摩斯项目字典双向转换的前置。',
+  'file-ops': '摩斯项目产出了可转换的文本，文件操作让这些结果能保存复用。',
+  // 综合·拓展线
+  a2: '工具线（A2–A6）练熟了列表、字典、字符串和函数，足够支撑 2048 的状态拆解。',
   ai: '2048 项目训练了状态和规则拆解，是理解模型输入输出的好前置。',
-  crawler: 'AI 项目需要数据意识，爬虫课继续回答数据来源和边界。',
-  'binary-search': '爬虫项目之后常会面对大量数据，二分搜索能提升查找效率。',
-  encryption: '二分搜索训练边界控制，加密项目继续训练字符和函数封装。',
-  sorting: '加密项目中的映射与遍历，是排序项目处理列表状态的前置练习。',
-  morse: '排序项目训练了列表、循环和过程观察，摩斯项目继续训练字符串与字典映射。',
-  'file-ops': '摩斯项目已经产出可转换的文本结果，文件操作让结果可以保存和复用。',
+  crawler: 'AI 项目建立了数据意识，爬虫课继续回答数据从哪里来、边界在哪。',
 };
 
 const practiceLinksByProject = {
   a1: [
     { label: '复盘 A1：算法策略对比表', path: '/python/a1' },
-    { label: '进入 A2：2048 游戏项目', path: '/python/a2' },
-  ],
-  a2: [
-    { label: '复盘 A2：2048 移动合并测试', path: '/python/a2' },
-    { label: '进入 A3：AI 初探', path: '/python/ai' },
-  ],
-  ai: [
-    { label: '复盘 A3：AI 输入、模型和输出', path: '/python/ai' },
-    { label: '进入 A4：网络爬虫项目', path: '/python/crawler' },
-  ],
-  crawler: [
-    { label: '复盘 A4：请求、解析和边界', path: '/python/crawler' },
-    { label: '进入 A5：二分搜索项目', path: '/python/binary-search' },
+    { label: '进入 A2：二分搜索项目', path: '/python/binary-search' },
   ],
   'binary-search': [
-    { label: '复盘 A5：二分边界样例', path: '/python/binary-search' },
-    { label: '进入 A6：加密解密项目', path: '/python/encryption' },
-  ],
-  encryption: [
-    { label: '复盘 A6：字符位移和回绕', path: '/python/encryption' },
-    { label: '进入 A7：排序算法项目', path: '/python/sorting' },
+    { label: '复盘 A2：二分边界样例', path: '/python/binary-search' },
+    { label: '进入 A3：排序算法项目', path: '/python/sorting' },
   ],
   sorting: [
-    { label: '复盘 A7：排序过程记录', path: '/python/sorting' },
-    { label: '进入 A8：摩斯电码项目', path: '/python/morse' },
+    { label: '复盘 A3：排序过程记录', path: '/python/sorting' },
+    { label: '进入 A4：加密解密项目', path: '/python/encryption' },
+  ],
+  encryption: [
+    { label: '复盘 A4：字符位移和回绕', path: '/python/encryption' },
+    { label: '进入 A5：摩斯电码项目', path: '/python/morse' },
   ],
   morse: [
-    { label: '复盘 A8：字典映射和双向转换', path: '/python/morse' },
-    { label: '进入 A9：文件操作项目', path: '/python/file-ops' },
+    { label: '复盘 A5：字典映射和双向转换', path: '/python/morse' },
+    { label: '进入 A6：文件操作项目', path: '/python/file-ops' },
   ],
   'file-ops': [
-    { label: '复盘 A9：读写文件和异常处理', path: '/python/file-ops' },
+    { label: '复盘 A6：读写文件和异常处理', path: '/python/file-ops' },
+    { label: '进入 A7：2048 游戏项目', path: '/python/a2' },
+  ],
+  a2: [
+    { label: '复盘 A7：2048 移动合并测试', path: '/python/a2' },
+    { label: '进入 A8：AI 初探', path: '/python/ai' },
+  ],
+  ai: [
+    { label: '复盘 A8：AI 输入、模型和输出', path: '/python/ai' },
+    { label: '进入 A9：网络爬虫项目', path: '/python/crawler' },
+  ],
+  crawler: [
+    { label: '复盘 A9：请求、解析和边界', path: '/python/crawler' },
     { label: '回到课程中心选择下一条路线', path: '/' },
   ],
 };

@@ -1067,7 +1067,7 @@ export default function PythonEncryptionProject() {
                             if (activeSection < sections.length) {
                                 setActiveSection(prev => prev + 1);
                             } else {
-                                navigate('/python/sorting');
+                                navigate('/python/morse');
                             }
                         }}
                         className={`flex items-center gap-2 px-8 py-3 rounded-xl font-bold transition-all shadow-lg text-white hover:translate-x-1

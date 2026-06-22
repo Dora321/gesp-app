@@ -1074,7 +1074,7 @@ async function main() {
       `Python project ${projectId} practice links should not mirror prerequisite review links.`
     );
     assert(
-      projectId === 'file-ops' || practicePaths.includes(support?.next?.path),
+      projectId === 'crawler' || practicePaths.includes(support?.next?.path),
       `Python project ${projectId} practice links should include the next project path.`
     );
     projectPracticeSignatures.add(JSON.stringify(practicePaths));
