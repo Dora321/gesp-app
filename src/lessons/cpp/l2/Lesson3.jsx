@@ -13,6 +13,7 @@ import {
     X
 } from 'lucide-react';
 import CppL2LessonSupport from '../../../components/CppL2LessonSupport';
+import CodeSnippet from '../CodeSnippet';
 
 const sections = [
     { id: 1, title: '课程导入', category: '问题场景' },
@@ -63,11 +64,7 @@ const quiz = [
 ];
 
 function CodeBlock({ children }) {
-    return (
-        <pre className="overflow-x-auto rounded-xl bg-slate-950 p-4 text-sm leading-7 text-slate-100 shadow-inner">
-            <code>{children}</code>
-        </pre>
-    );
+    return <CodeSnippet code={children} />;
 }
 
 function RuleCard({ rule }) {

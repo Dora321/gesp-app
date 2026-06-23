@@ -1,7 +1,7 @@
 import React, { useMemo, useState } from 'react';
 import { AlertTriangle, ClipboardCheck, Database, ListChecks, Search, Sigma } from 'lucide-react';
 import CppL2LessonSupport from '../../../components/CppL2LessonSupport';
-import CppLessonShell, { Callout, CodeBlock, CompareTable, MiniQuiz, StepList } from '../CppLessonShell';
+import CppLessonShell, { Callout, CodeBlock, CodeTracer, CompareTable, MiniQuiz, StepList } from '../CppLessonShell';
 
 const sections = [
     { id: 1, title: '课程导入', category: '一组数据' },
@@ -61,6 +61,73 @@ function ArrayLab() {
                 </div>
             </div>
         </div>
+    );
+}
+
+const traversalValues = [72, 88, 64, 95, 81];
+
+const arrayTraversalCode = `int a[5] = {72, 88, 64, 95, 81};
+int sum = 0;
+int mx = a[0];
+
+for (int i = 0; i < 5; i++) {
+  sum += a[i];
+  if (a[i] > mx) mx = a[i];
+}
+cout << sum << " " << mx;`;
+
+const arrayTraversalSteps = [
+    {
+        active: [0, 1, 2],
+        vars: { i: '未开始', sum: 0, mx: 72 },
+        action: '进入 i = 0',
+    },
+    ...traversalValues.flatMap((value, index) => {
+        const beforeSum = traversalValues.slice(0, index).reduce((total, item) => total + item, 0);
+        const afterSum = beforeSum + value;
+        const beforeMax = Math.max(...traversalValues.slice(0, Math.max(index, 1)));
+        const afterMax = Math.max(beforeMax, value);
+        const maxAction = value > beforeMax ? `更新 mx：${beforeMax} → ${value}` : `mx 保持 ${beforeMax}`;
+
+        return [
+            {
+                active: [4],
+                vars: { i: index, sum: beforeSum, mx: beforeMax },
+                row: [`检查 i=${index}`, `a[${index}]`, value, beforeSum, beforeMax, `${index} < 5，合法访问`],
+                action: `累加 a[${index}]`,
+            },
+            {
+                active: [5, 6],
+                vars: { i: index, sum: afterSum, mx: afterMax },
+                row: [`处理 a[${index}]`, `a[${index}]`, value, afterSum, afterMax, `sum += ${value}；${maxAction}`],
+                action: index === traversalValues.length - 1 ? '检查 i = 5' : `进入 i = ${index + 1}`,
+            },
+        ];
+    }),
+    {
+        active: [4],
+        vars: { i: 5, sum: 400, mx: 95 },
+        exit: '再次判断 5 < 5 为假，循环结束。关键：此时不能访问 a[5]，合法下标只到 a[4]。',
+        action: '查看输出',
+    },
+    {
+        active: [8],
+        vars: { i: 5, sum: 400, mx: 95 },
+        action: '显示最终结果',
+        output: 'sum = 400, mx = 95',
+    },
+];
+
+function ArrayTraversalTracer() {
+    return (
+        <CodeTracer
+            title="数组遍历追踪器：每次只访问一个合法下标"
+            code={arrayTraversalCode}
+            varOrder={['i', 'sum', 'mx']}
+            columns={['阶段', '访问位置', 'a[i]', 'sum', 'mx', '动作']}
+            steps={arrayTraversalSteps}
+            hint="先看 i 从 0 开始，再观察为什么 i = 5 时必须停下。"
+        />
     );
 }
 
@@ -167,6 +234,7 @@ for (int i = 0; i < n; i++) {
   sum += a[i];
 }`}</CodeBlock>
                         </div>
+                        <ArrayTraversalTracer />
                         <Callout icon={Search} title="找最大值模板" tone="emerald">
                             通常先令 <code>mx = a[0]</code>，再从下标 1 开始比较。不要随便把最大值初始成 0，因为数据可能全是负数。
                         </Callout>

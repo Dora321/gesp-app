@@ -1,7 +1,7 @@
 import React, { useMemo, useState } from 'react';
 import { ArrowRightLeft, ClipboardCheck, Repeat, Search } from 'lucide-react';
 import CppL4LessonSupport from '../../../components/CppL4LessonSupport';
-import CppLessonShell, { Callout, CodeBlock, CompareTable, MiniQuiz, StepList } from '../CppLessonShell';
+import CppLessonShell, { Callout, CodeBlock, CodeTracer, CompareTable, MiniQuiz, StepList } from '../CppLessonShell';
 
 const sections = [
     { id: 1, title: '课程导入', category: '相邻比较' },
@@ -74,6 +74,92 @@ function BubbleSortLab() {
                 </div>
             </div>
         </div>
+    );
+}
+
+const bubbleTraceCode = `int a[5] = {5, 1, 4, 2, 8};
+
+for (int i = 0; i < 4; i++) {
+  for (int j = 0; j < 4 - i; j++) {
+    if (a[j] > a[j + 1]) {
+      swap(a[j], a[j + 1]);
+    }
+  }
+}`;
+
+const formatArray = (items) => items.join(' ');
+
+const bubbleTraceSteps = (() => {
+    const arr = [...startArray];
+    const steps = [
+        {
+            active: [0],
+            vars: { i: '未开始', j: '-', '数组': formatArray(arr) },
+            action: '进入第 1 轮',
+        },
+    ];
+
+    for (let i = 0; i < arr.length - 1; i += 1) {
+        steps.push({
+            active: [2],
+            vars: { i, j: 0, '数组': formatArray(arr) },
+            row: [`第 ${i + 1} 轮开始`, i, '-', formatArray(arr), `右侧已有 ${i} 个元素归位`],
+            action: `比较 j = 0`,
+        });
+
+        for (let j = 0; j < arr.length - 1 - i; j += 1) {
+            const left = arr[j];
+            const right = arr[j + 1];
+            const shouldSwap = left > right;
+
+            steps.push({
+                active: [3, 4],
+                vars: { i, j, '数组': formatArray(arr) },
+                row: [`比较 a[${j}] 和 a[${j + 1}]`, i, j, `${left} 与 ${right}`, shouldSwap ? '前大后小，需要交换' : '顺序正确，不交换'],
+                action: shouldSwap ? `交换 ${left} 和 ${right}` : (j === arr.length - 2 - i ? '结束本轮扫描' : `比较 j = ${j + 1}`),
+            });
+
+            if (shouldSwap) {
+                [arr[j], arr[j + 1]] = [arr[j + 1], arr[j]];
+                steps.push({
+                    active: [5],
+                    vars: { i, j, '数组': formatArray(arr) },
+                    row: ['交换后', i, j, formatArray(arr), `${right} 向左，${left} 向右`],
+                    action: j === arr.length - 2 - i ? '结束本轮扫描' : `比较 j = ${j + 1}`,
+                });
+            }
+        }
+
+        steps.push({
+            active: [3],
+            vars: { i, j: arr.length - 1 - i, '数组': formatArray(arr) },
+            exit: i === arr.length - 2
+                ? `第 ${i + 1} 轮结束：最后两个元素也已经排好，冒泡排序完成。`
+                : `第 ${i + 1} 轮结束：${arr[arr.length - 1 - i]} 已经在右侧归位，下一轮内层条件变成 j < ${arr.length - 2 - i}。`,
+            action: i === arr.length - 2 ? '查看最终输出' : `进入第 ${i + 2} 轮`,
+        });
+    }
+
+    steps.push({
+        active: [7],
+        vars: { i: 4, j: '-', '数组': formatArray(arr) },
+        action: '显示最终结果',
+        output: `排序完成：${formatArray(arr)}`,
+    });
+
+    return steps;
+})();
+
+function BubbleSortTracer() {
+    return (
+        <CodeTracer
+            title="冒泡排序追踪器：相邻比较，把最大值送到右侧"
+            code={bubbleTraceCode}
+            varOrder={['i', 'j', '数组']}
+            columns={['阶段', 'i', 'j', '当前内容', '动作']}
+            steps={bubbleTraceSteps}
+            hint="先看一轮：只比较相邻两格，右侧会确定一个最大值。"
+        />
     );
 }
 
@@ -157,6 +243,7 @@ export default function CppL4Lesson9() {
                                 '比较范围必须保证 j+1 不越界',
                             ]} />
                         </div>
+                        <BubbleSortTracer />
                     </>
                 ),
                 4: (

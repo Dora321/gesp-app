@@ -26,6 +26,7 @@ import {
     X
 } from 'lucide-react';
 import CppL1LessonSupport from '../../../components/CppL1LessonSupport';
+import CodeSnippet from '../CodeSnippet';
 
 // --- 图标映射组件 ---
 const Icon = ({ name, size = 24, color = "currentColor", className = "" }) => {
@@ -473,9 +474,7 @@ while (i < 5) {
 
             <div className="bg-white p-5 rounded-lg border border-orange-100 shadow-sm">
                 <h4 className="font-bold text-gray-800 mb-2">{pitfalls[activeTab].title}</h4>
-                <div className="bg-gray-900 text-gray-300 p-4 rounded-lg font-mono text-sm mb-4 relative overflow-hidden">
-                    <pre>{pitfalls[activeTab].code}</pre>
-                </div>
+                <CodeSnippet className="mb-4" code={pitfalls[activeTab].code} />
                 <div className="flex items-start gap-3 bg-red-50 p-3 rounded-lg text-red-700 text-sm">
                     <Zap className="shrink-0 mt-0.5" size={16} />
                     {pitfalls[activeTab].tip}

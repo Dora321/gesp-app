@@ -72,7 +72,7 @@ export default function PyCodeTracer({
     const revealed = steps.slice(0, safeStep + 1);
     const tableRows = revealed.filter((entry) => entry.row || entry.exit);
     const output = [...revealed].reverse().find((entry) => entry.output)?.output;
-    const nextLabel = finished ? '已结束' : steps[safeStep + 1]?.action ?? '下一步';
+    const nextLabel = finished ? '已结束' : current.action ?? '下一步';
 
     const varCols = varOrder.length >= 3 ? 'grid-cols-3' : 'grid-cols-2';
 

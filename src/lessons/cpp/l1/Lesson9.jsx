@@ -20,6 +20,7 @@ import {
 } from 'lucide-react';
 import CppL1LessonSupport from '../../../components/CppL1LessonSupport';
 import { CodeTracer } from '../CppLessonShell';
+import CodeSnippet from '../CodeSnippet';
 
 // --- 图标组件 ---
 const Icon = ({ name, size = 24, className = "" }) => {
@@ -474,12 +475,12 @@ function App() {
 
             <div className="bg-orange-50 border-l-4 border-orange-500 p-4 mb-6">
               <h4 className="font-bold text-orange-800 mb-2">题目代码：</h4>
-              <pre className="font-mono text-sm bg-white p-3 rounded border border-orange-100">
-                {`int N = 0, i;
+              <CodeSnippet
+                code={`int N = 0, i;
 for (i = 1; i < 10; i++)
     N += 1;
 cout << (N + i);`}
-              </pre>
+              />
               <div className="mt-2 text-sm text-orange-700 flex items-center gap-2">
                 <AlertTriangle size={16} /> <strong>陷阱警报：</strong> 注意条件是 <code>i &lt; 10</code> (不包含10)，以及最后输出的是 <code>N + i</code>。
               </div>

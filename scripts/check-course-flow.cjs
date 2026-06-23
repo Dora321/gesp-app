@@ -672,6 +672,33 @@ function assertCppNestedLoopLessonKeepsExecutionTrace() {
   );
 }
 
+function assertCppArrayLessonKeepsTraversalTrace() {
+  const lesson = read('src/lessons/cpp/l2/Lesson12.jsx');
+
+  assert(
+    lesson.includes('CodeTracer') &&
+      lesson.includes('数组遍历追踪器：每次只访问一个合法下标') &&
+      lesson.includes('再次判断 5 < 5 为假') &&
+      lesson.includes('不能访问 a[5]') &&
+      lesson.includes('sum = 400, mx = 95'),
+    'C++ L2 lesson 12 should keep the step-by-step array traversal trace for index bounds, sum, and max updates.'
+  );
+}
+
+function assertCppBubbleSortLessonKeepsExecutionTrace() {
+  const lesson = read('src/lessons/cpp/l4/Lesson9.jsx');
+
+  assert(
+    lesson.includes('CodeTracer') &&
+      lesson.includes('冒泡排序追踪器：相邻比较，把最大值送到右侧') &&
+      lesson.includes('前大后小，需要交换') &&
+      lesson.includes('已经在右侧归位') &&
+      lesson.includes('const startArray = [5, 1, 4, 2, 8]') &&
+      lesson.includes('output: `排序完成：${formatArray(arr)}`'),
+    'C++ L4 lesson 9 should keep the step-by-step bubble-sort trace for adjacent comparisons, swaps, and sorted suffixes.'
+  );
+}
+
 function assertPythonProjectSupportUsesPrerequisites() {
   const projectSupport = read('src/components/PythonProjectSupport.jsx');
 
@@ -681,6 +708,104 @@ function assertPythonProjectSupportUsesPrerequisites() {
       projectSupport.includes("import { Link } from 'react-router-dom';") &&
       projectSupport.includes('BookOpenCheck'),
     'PythonProjectSupport should surface project-specific prerequisite review links.'
+  );
+}
+
+function assertPythonSortingProjectKeepsBubbleTrace() {
+  const project = read('src/courses/python/advanced/PythonSortingProject.jsx');
+
+  assert(
+    project.includes('PyCodeTracer') &&
+      project.includes('Python 冒泡追踪器：相邻比较，右侧逐轮归位') &&
+      project.includes('前大后小，交换') &&
+      project.includes('已经在右侧归位') &&
+      project.includes('排序完成：${formatPythonList(numbers)}'),
+    'Python sorting project should keep the step-by-step bubble-sort trace for adjacent comparisons, swaps, and sorted suffixes.'
+  );
+}
+
+function assertPythonFoundationListKeepsIndexTrace() {
+  const lesson = read('src/courses/python/foundation/PythonFoundation3.jsx');
+
+  assert(
+    lesson.includes('PyCodeTracer') &&
+      lesson.includes('列表下标追踪器：从 0 开始，越界会报错') &&
+      lesson.includes('items[-1]') &&
+      lesson.includes('IndexError') &&
+      lesson.includes('first = 剑, last = 地图, len = 3'),
+    'Python foundation F3 should keep the step-by-step list index trace for zero-based indexes, negative indexes, and IndexError.'
+  );
+}
+
+function assertPythonFoundationListKeepsFocusedPracticeFlow() {
+  const lesson = read('src/courses/python/foundation/PythonFoundation3.jsx');
+
+  assert(
+    lesson.includes('listFocusModes') &&
+      lesson.includes('别一次打开所有工具，按三步走') &&
+      lesson.includes('1 先读下标') &&
+      lesson.includes('2 再改背包') &&
+      lesson.includes('3 最后遍历') &&
+      lesson.includes("focusMode === 'modify'") &&
+      lesson.includes("focusMode === 'loop'") &&
+      lesson.includes('过关信号'),
+    'Python foundation F3 list playground should keep the focused three-step practice flow to reduce cognitive load.'
+  );
+}
+
+function assertPythonFoundationGridKeepsRowColumnTrace() {
+  const lesson = read('src/courses/python/foundation/PythonFoundation3.jsx');
+
+  assert(
+    lesson.includes('Grid2DTraceCard') &&
+      lesson.includes('二维列表追踪器：先选行，再选列') &&
+      lesson.includes('grid[1][2]') &&
+      lesson.includes('先拿到这一行，再从这一行里取第 2 列') &&
+      lesson.includes('合法行列号都是 0、1、2') &&
+      lesson.includes('grid[1][2] = 6；读作第 1 行、第 2 列') &&
+      lesson.includes('能用 grid[行][列] 读取二维列表'),
+    'Python foundation F3 should keep the 2D-list row/column trace and summary check.'
+  );
+}
+
+function assertPythonFoundationDictKeepsAccessTrace() {
+  const lesson = read('src/courses/python/foundation/PythonFoundation3.jsx');
+
+  assert(
+    lesson.includes('DictAccessTraceCard') &&
+      lesson.includes('字典访问追踪器：键不存在时，dict[key] 会报错') &&
+      lesson.includes('profile.get("job", "未设置")') &&
+      lesson.includes('KeyError：字典里没有这个键') &&
+      lesson.includes('先用 key in dict 或 get(default) 兜底'),
+    'Python foundation F3 should keep the step-by-step dictionary access trace for get defaults and KeyError.'
+  );
+}
+
+function assertPythonFoundationStringKeepsTraceAndFocusFlow() {
+  const lesson = read('src/courses/python/foundation/PythonFoundation3.jsx');
+
+  assert(
+    lesson.includes('StringTraceCard') &&
+      lesson.includes('字符串追踪器：切片左闭右开，变形会产生新字符串') &&
+      lesson.includes('text[1:4]') &&
+      lesson.includes('字符串不可变') &&
+      lesson.includes('切片是左闭右开；字符串方法通常返回新字符串。') &&
+      lesson.includes('stringFocusModes') &&
+      lesson.includes('字符串按“位置、查找、变形、拆合”走') &&
+      lesson.includes("focusMode === 'slice'") &&
+      lesson.includes("focusMode === 'search'") &&
+      lesson.includes("focusMode === 'transform'") &&
+      lesson.includes("focusMode === 'split'"),
+    'Python foundation F3 string slide should keep the step-by-step string trace and focused practice flow.'
+  );
+}
+
+function assertPyCodeTracerKeepsClearFinalActionLabel() {
+  const tracer = read('src/components/PyCodeTracer.jsx');
+
+  assert(
+    tracer.includes("current.action ?? '下一步'"),
+    'PyCodeTracer should use the current step action so each transition keeps a clear button label.'
   );
 }
 
@@ -745,7 +870,16 @@ async function main() {
   assertCppLoopLessonKeepsExecutionTrace();
   assertCppWhileLessonKeepsDigitTrace();
   assertCppNestedLoopLessonKeepsExecutionTrace();
+  assertCppArrayLessonKeepsTraversalTrace();
+  assertCppBubbleSortLessonKeepsExecutionTrace();
   assertPythonProjectSupportUsesPrerequisites();
+  assertPythonSortingProjectKeepsBubbleTrace();
+  assertPythonFoundationListKeepsIndexTrace();
+  assertPythonFoundationListKeepsFocusedPracticeFlow();
+  assertPythonFoundationGridKeepsRowColumnTrace();
+  assertPythonFoundationDictKeepsAccessTrace();
+  assertPythonFoundationStringKeepsTraceAndFocusFlow();
+  assertPyCodeTracerKeepsClearFinalActionLabel();
   assertCppLessonShellSupportsLessonSupport();
 
   const generatedQuestionCount = paperIds.reduce((sum, id) => sum + (paperMeta[id]?.questionCount || 0), 0);

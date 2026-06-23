@@ -25,6 +25,7 @@ import {
     X
 } from 'lucide-react';
 import CppL1LessonSupport from '../../../components/CppL1LessonSupport';
+import CodeSnippet from '../CodeSnippet';
 
 // --- 图标映射组件 ---
 const Icon = ({ name, size = 24, color = "currentColor", className = "" }) => {
@@ -467,11 +468,11 @@ const SimPitfalls = () => {
                 <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-4">
                     <div className="bg-red-50 p-3 rounded border border-red-100">
                         <div className="text-red-600 font-bold text-xs mb-1">❌ 错误写法</div>
-                        <pre className="text-xs font-mono text-gray-700 whitespace-pre-wrap">{current.badCode}</pre>
+                        <CodeSnippet code={current.badCode} />
                     </div>
                     <div className="bg-green-50 p-3 rounded border border-green-100">
                         <div className="text-green-600 font-bold text-xs mb-1">✅ 正确写法</div>
-                        <pre className="text-xs font-mono text-gray-700 whitespace-pre-wrap">{current.goodCode}</pre>
+                        <CodeSnippet code={current.goodCode} />
                     </div>
                 </div>
                 <div className="text-sm text-gray-600 flex gap-2">

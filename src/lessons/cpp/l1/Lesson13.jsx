@@ -25,6 +25,7 @@ import {
     X
 } from 'lucide-react';
 import CppL1LessonSupport from '../../../components/CppL1LessonSupport';
+import CodeSnippet from '../CodeSnippet';
 
 // --- 图标映射组件 ---
 const Icon = ({ name, size = 24, color = "currentColor", className = "" }) => {
@@ -463,13 +464,12 @@ const MathPitfalls = () => {
 
             <div className="bg-white p-5 rounded-lg border border-orange-100 shadow-sm transition-all duration-300">
                 <h4 className="font-bold text-gray-800 mb-2">{current.title}</h4>
-                <div className="bg-slate-900 text-green-400 p-4 rounded-lg font-mono text-sm mb-4 relative">
-                    <pre>{current.code}</pre>
+                <CodeSnippet className="relative mb-4" code={current.code}>
                     <div className="absolute top-4 right-4 flex flex-col gap-2">
                         <span className="text-red-400 text-xs line-through opacity-60">想的是: {current.wrong}</span>
                         <span className="text-white font-bold bg-green-600 px-2 py-1 rounded text-xs">实际输出: {current.result}</span>
                     </div>
-                </div>
+                </CodeSnippet>
                 <div className="text-gray-600 text-sm leading-relaxed flex items-start gap-2">
                     <div className="mt-1 text-orange-500"><Lightbulb size={16} fill="currentColor" /></div>
                     {current.desc}

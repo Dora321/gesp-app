@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { Layers, List, Box, Key, Search, ArrowRight, RefreshCw, Plus, Trash2, Edit3, Menu, X, Grid3x3, BookOpen, CheckCircle } from 'lucide-react';
 import PythonFoundationSupport from '../../../components/PythonFoundationSupport';
+import PyCodeTracer from '../../../components/PyCodeTracer';
 import PythonLessonShell, { SlideHeader } from '../shell/PythonLessonShell';
 
 // --- Shared Components ---
@@ -28,6 +29,179 @@ const CodeBlock = ({ code }) => (
 
 // --- Sections ---
 
+const listIndexCode = `items = ["剑", "药水", "地图"]
+first = items[0]
+last = items[-1]
+count = len(items)
+# items[3] 会 IndexError`;
+
+const listIndexSteps = [
+    {
+        active: [0],
+        vars: { index: '-', value: '-', count: '-' },
+        action: '读取第 1 个',
+    },
+    {
+        active: [1],
+        vars: { index: 0, value: '剑', count: '-' },
+        row: ['items[0]', '0', '剑', '正向索引从 0 开始，第 1 个元素'],
+        action: '读取最后一个',
+    },
+    {
+        active: [2],
+        vars: { index: -1, value: '地图', count: '-' },
+        row: ['items[-1]', '-1', '地图', '负数索引从右往左数，-1 是最后一个'],
+        action: '计算长度',
+    },
+    {
+        active: [3],
+        vars: { index: 'len', value: '-', count: 3 },
+        row: ['len(items)', '-', 3, '长度是 3，合法正向下标只有 0、1、2'],
+        action: '检查越界',
+    },
+    {
+        active: [4],
+        vars: { index: 3, value: '越界', count: 3 },
+        exit: '准备访问 items[3] 会触发 IndexError：长度为 3 的列表，最后一个合法正向下标是 2。',
+        action: '显示结果',
+    },
+    {
+        active: [1, 2, 3],
+        vars: { index: '0/-1', value: '剑 / 地图', count: 3 },
+        output: 'first = 剑, last = 地图, len = 3',
+    },
+];
+
+const ListIndexTraceCard = () => (
+    <PyCodeTracer
+        title="列表下标追踪器：从 0 开始，越界会报错"
+        code={listIndexCode}
+        varOrder={['index', 'value', 'count']}
+        columns={['表达式', '下标', '结果', '说明']}
+        steps={listIndexSteps}
+        hint="先确认合法范围，再访问列表；下标不是第几个学生，而是从 0 开始的位置编号。"
+    />
+);
+
+const listFocusModes = [
+    {
+        id: 'read',
+        label: '1 先读下标',
+        title: '先确认访问的是谁',
+        task: '用 index(x)、count(x)、x in list 验证一个元素是否存在，再说出它的位置。',
+        check: '能解释 items[0]、items[-1] 和 items[3] 的不同结果。',
+    },
+    {
+        id: 'modify',
+        label: '2 再改背包',
+        title: '一次只改一个地方',
+        task: '先 append 一个新物品，再 pop 或 remove 一个物品，观察背包状态如何变化。',
+        check: '能说清 append、insert、pop、remove 分别改变了列表的哪里。',
+    },
+    {
+        id: 'loop',
+        label: '3 最后遍历',
+        title: '把列表从头到尾处理一遍',
+        task: '用 for item 和 enumerate 各走一遍列表，再调整切片范围看高亮变化。',
+        check: '能区分“元素值 item”和“位置 index”，并知道切片左闭右开。',
+    },
+];
+
+const ListFocusGuide = ({ focusMode, onChange }) => {
+    const current = listFocusModes.find((mode) => mode.id === focusMode) || listFocusModes[0];
+
+    return (
+        <section className="rounded-2xl border border-teal-100 bg-white p-5 shadow-sm" aria-label="列表学习阶段">
+            <div className="mb-4 flex flex-col gap-2 sm:flex-row sm:items-end sm:justify-between">
+                <div>
+                    <div className="text-xs font-black uppercase tracking-wider text-teal-700">练习顺序</div>
+                    <h3 className="mt-1 text-xl font-black text-slate-900">别一次打开所有工具，按三步走</h3>
+                </div>
+                <p className="text-sm font-semibold leading-relaxed text-slate-500">
+                    每次只盯一个概念，做完再切到下一组。
+                </p>
+            </div>
+
+            <div className="grid gap-2 md:grid-cols-3">
+                {listFocusModes.map((mode) => {
+                    const active = focusMode === mode.id;
+                    return (
+                        <button
+                            key={mode.id}
+                            type="button"
+                            onClick={() => onChange(mode.id)}
+                            className={`rounded-xl border px-4 py-3 text-left text-sm font-black transition ${
+                                active
+                                    ? 'border-teal-500 bg-teal-600 text-white shadow-md'
+                                    : 'border-slate-200 bg-slate-50 text-slate-600 hover:border-teal-200 hover:bg-teal-50'
+                            }`}
+                            aria-pressed={active}
+                        >
+                            {mode.label}
+                        </button>
+                    );
+                })}
+            </div>
+
+            <div className="mt-4 rounded-xl border border-teal-100 bg-teal-50 p-4">
+                <div className="mb-1 flex items-center gap-2 text-sm font-black text-teal-900">
+                    <CheckCircle size={16} />
+                    {current.title}
+                </div>
+                <p className="text-sm font-bold leading-relaxed text-slate-700">{current.task}</p>
+                <p className="mt-2 text-xs font-semibold leading-relaxed text-slate-500">过关信号：{current.check}</p>
+            </div>
+        </section>
+    );
+};
+
+const dictAccessCode = `profile = {"name": "Hero", "level": 1}
+name = profile["name"]
+job = profile.get("job", "未设置")
+profile["job"]`;
+
+const dictAccessSteps = [
+    {
+        active: [0],
+        vars: { key: '-', value: '-', result: '-' },
+        action: '读取 name',
+    },
+    {
+        active: [1],
+        vars: { key: 'name', value: 'Hero', result: '成功' },
+        row: ['profile["name"]', 'name', 'Hero', '键存在，直接访问成功'],
+        action: '用 get 读取 job',
+    },
+    {
+        active: [2],
+        vars: { key: 'job', value: '未设置', result: '默认值' },
+        row: ['profile.get("job", "未设置")', 'job', '未设置', '键不存在，但 get 返回默认值'],
+        action: '直接访问 job',
+    },
+    {
+        active: [3],
+        vars: { key: 'job', value: 'KeyError', result: '报错' },
+        exit: 'profile["job"] 会触发 KeyError：字典里没有这个键，直接访问不会自动给默认值。',
+        action: '显示结论',
+    },
+    {
+        active: [1, 2, 3],
+        vars: { key: 'name/job', value: 'Hero / 未设置', result: '先判断' },
+        output: '先用 key in dict 或 get(default) 兜底，再决定是否直接访问 dict[key]。',
+    },
+];
+
+const DictAccessTraceCard = () => (
+    <PyCodeTracer
+        title="字典访问追踪器：键不存在时，dict[key] 会报错"
+        code={dictAccessCode}
+        varOrder={['key', 'value', 'result']}
+        columns={['表达式', '键', '结果', '说明']}
+        steps={dictAccessSteps}
+        hint="字典不是按第几个找，而是按 key 找；先问“有没有这个标签”，再打开柜子。"
+    />
+);
+
 // 1. Lists - The Backpack
 const ListSlide = () => {
     const [inventory, setInventory] = useState(['剑', '药水', '地图', '火把', '钥匙']);
@@ -43,6 +217,7 @@ const ListSlide = () => {
     const [iterateIndex, setIterateIndex] = useState(-1);
     const [iterateMode, setIterateMode] = useState('for'); // 'for' or 'enumerate'
     const [isIterating, setIsIterating] = useState(false);
+    const [focusMode, setFocusMode] = useState('read');
 
     // CREATE: append() - 在末尾添加
     const addItem = () => {
@@ -185,172 +360,197 @@ const ListSlide = () => {
                 </p>
             </div>
 
+            <ListIndexTraceCard />
+            <ListFocusGuide
+                focusMode={focusMode}
+                onChange={(mode) => {
+                    setFocusMode(mode);
+                    if (mode !== 'loop') resetIteration();
+                }}
+            />
+
             {/* Playground */}
             <div className="grid lg:grid-cols-2 gap-8">
                 {/* Operations Panel */}
                 <div className="space-y-6">
                     {/* CREATE 增 */}
-                    <div className="relative overflow-hidden bg-gradient-to-br from-green-50 to-emerald-50 p-6 rounded-2xl border border-green-200 shadow-lg hover:shadow-xl transition-shadow">
-                        <div className="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-green-400 to-emerald-500"></div>
-                        <h3 className="font-bold text-green-700 mb-4 flex items-center gap-2">
-                            <Plus size={20} className="text-green-600" /> 增 (Create)
-                        </h3>
+                    {focusMode === 'modify' && (
+                        <div className="relative overflow-hidden bg-gradient-to-br from-green-50 to-emerald-50 p-6 rounded-2xl border border-green-200 shadow-lg hover:shadow-xl transition-shadow">
+                            <div className="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-green-400 to-emerald-500"></div>
+                            <h3 className="font-bold text-green-700 mb-4 flex items-center gap-2">
+                                <Plus size={20} className="text-green-600" /> 增 (Create)
+                            </h3>
 
-                        {/* append() */}
-                        <div className="flex gap-2 mb-4">
-                            <input
-                                value={newItem}
-                                onChange={e => setNewItem(e.target.value)}
-                                onKeyDown={e => e.key === 'Enter' && addItem()}
-                                placeholder="新物品..."
-                                className="flex-1 border-2 border-green-200 rounded-lg px-3 py-2 focus:border-green-500 outline-none transition-colors"
-                            />
-                            <Button onClick={addItem} disabled={!newItem} className="bg-green-600 hover:bg-green-700">append()</Button>
-                        </div>
+                            {/* append() */}
+                            <div className="flex gap-2 mb-4">
+                                <input
+                                    value={newItem}
+                                    onChange={e => setNewItem(e.target.value)}
+                                    onKeyDown={e => e.key === 'Enter' && addItem()}
+                                    placeholder="新物品..."
+                                    className="flex-1 border-2 border-green-200 rounded-lg px-3 py-2 focus:border-green-500 outline-none transition-colors"
+                                />
+                                <Button onClick={addItem} disabled={!newItem} className="bg-green-600 hover:bg-green-700">append()</Button>
+                            </div>
 
-                        {/* insert() */}
-                        <div className="flex gap-2">
-                            <input
-                                type="number"
-                                value={insertIndex}
-                                onChange={e => setInsertIndex(Number(e.target.value))}
-                                className="w-16 border-2 border-green-200 rounded-lg px-2 py-2 text-center focus:border-green-500 outline-none"
-                                min={0}
-                                max={inventory.length}
-                            />
-                            <input
-                                value={insertItem}
-                                onChange={e => setInsertItem(e.target.value)}
-                                placeholder="插入物品..."
-                                className="flex-1 border-2 border-green-200 rounded-lg px-3 py-2 focus:border-green-500 outline-none"
-                            />
-                            <Button onClick={insertItemAt} disabled={!insertItem} variant="secondary" className="border-green-300 text-green-700 hover:bg-green-100">
-                                insert(i, x)
-                            </Button>
+                            {/* insert() */}
+                            <div className="flex gap-2">
+                                <input
+                                    type="number"
+                                    value={insertIndex}
+                                    onChange={e => setInsertIndex(Number(e.target.value))}
+                                    className="w-16 border-2 border-green-200 rounded-lg px-2 py-2 text-center focus:border-green-500 outline-none"
+                                    min={0}
+                                    max={inventory.length}
+                                />
+                                <input
+                                    value={insertItem}
+                                    onChange={e => setInsertItem(e.target.value)}
+                                    placeholder="插入物品..."
+                                    className="flex-1 border-2 border-green-200 rounded-lg px-3 py-2 focus:border-green-500 outline-none"
+                                />
+                                <Button onClick={insertItemAt} disabled={!insertItem} variant="secondary" className="border-green-300 text-green-700 hover:bg-green-100">
+                                    insert(i, x)
+                                </Button>
+                            </div>
                         </div>
-                    </div>
+                    )}
 
                     {/* READ 查 */}
-                    <div className="relative overflow-hidden bg-gradient-to-br from-blue-50 to-cyan-50 p-6 rounded-2xl border border-blue-200 shadow-lg hover:shadow-xl transition-shadow">
-                        <div className="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-blue-400 to-cyan-500"></div>
-                        <h3 className="font-bold text-blue-700 mb-4 flex items-center gap-2">
-                            <Search size={20} className="text-blue-600" /> 查 (Read)
-                        </h3>
-                        <div className="flex gap-2 mb-3">
+                    {focusMode === 'read' && (
+                        <div className="relative overflow-hidden bg-gradient-to-br from-blue-50 to-cyan-50 p-6 rounded-2xl border border-blue-200 shadow-lg hover:shadow-xl transition-shadow">
+                            <div className="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-blue-400 to-cyan-500"></div>
+                            <h3 className="font-bold text-blue-700 mb-4 flex items-center gap-2">
+                                <Search size={20} className="text-blue-600" /> 查 (Read)
+                            </h3>
+                            <div className="flex gap-2 mb-3">
+                                <input
+                                    value={searchItem}
+                                    onChange={e => setSearchItem(e.target.value)}
+                                    placeholder="查找物品..."
+                                    className="flex-1 border-2 border-blue-200 rounded-lg px-3 py-2 focus:border-blue-500 outline-none"
+                                />
+                            </div>
+                            <div className="grid grid-cols-3 gap-2">
+                                <Button variant="secondary" onClick={findIndex} disabled={!searchItem} className="border-blue-200 text-blue-700 hover:bg-blue-100 text-xs">
+                                    index(x)
+                                </Button>
+                                <Button variant="secondary" onClick={countItem} disabled={!searchItem} className="border-blue-200 text-blue-700 hover:bg-blue-100 text-xs">
+                                    count(x)
+                                </Button>
+                                <Button variant="secondary" onClick={checkIn} disabled={!searchItem} className="border-blue-200 text-blue-700 hover:bg-blue-100 text-xs">
+                                    x in list
+                                </Button>
+                            </div>
+                        </div>
+                    )}
+
+                    {/* UPDATE 改 */}
+                    {focusMode === 'modify' && (
+                        <div className="relative overflow-hidden bg-gradient-to-br from-amber-50 to-yellow-50 p-6 rounded-2xl border border-amber-200 shadow-lg hover:shadow-xl transition-shadow">
+                            <div className="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-amber-400 to-yellow-500"></div>
+                            <h3 className="font-bold text-amber-700 mb-4 flex items-center gap-2">
+                                <RefreshCw size={20} className="text-amber-600" /> 改 (Update)
+                            </h3>
+                            <div className="grid grid-cols-2 gap-3">
+                                <Button variant="secondary" onClick={sortItems} disabled={inventory.length < 2} className="border-amber-200 text-amber-700 hover:bg-amber-100">
+                                    sort()
+                                </Button>
+                                <Button variant="secondary" onClick={reverseItems} disabled={inventory.length < 2} className="border-amber-200 text-amber-700 hover:bg-amber-100">
+                                    reverse()
+                                </Button>
+                            </div>
+                        </div>
+                    )}
+
+                    {/* DELETE 删 */}
+                    {focusMode === 'modify' && (
+                        <div className="relative overflow-hidden bg-gradient-to-br from-red-50 to-pink-50 p-6 rounded-2xl border border-red-200 shadow-lg hover:shadow-xl transition-shadow">
+                            <div className="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-red-400 to-pink-500"></div>
+                            <h3 className="font-bold text-red-700 mb-4 flex items-center gap-2">
+                                <Trash2 size={20} className="text-red-600" /> 删 (Delete)
+                            </h3>
                             <input
                                 value={searchItem}
                                 onChange={e => setSearchItem(e.target.value)}
-                                placeholder="查找物品..."
-                                className="flex-1 border-2 border-blue-200 rounded-lg px-3 py-2 focus:border-blue-500 outline-none"
+                                placeholder="remove(x) 要删除的物品..."
+                                className="mb-3 w-full border-2 border-red-200 rounded-lg px-3 py-2 focus:border-red-500 outline-none"
                             />
+                            <div className="grid grid-cols-3 gap-2">
+                                <Button variant="danger" onClick={popItem} disabled={inventory.length === 0} className="text-xs">
+                                    pop()
+                                </Button>
+                                <Button variant="secondary" onClick={removeByValue} disabled={!searchItem} className="border-red-200 text-red-700 hover:bg-red-100 text-xs">
+                                    remove(x)
+                                </Button>
+                                <Button variant="danger" onClick={clearList} disabled={inventory.length === 0} className="text-xs">
+                                    clear()
+                                </Button>
+                            </div>
+                            <p className="text-xs text-red-400 mt-2">remove(x) 删除第一个匹配的值；按右侧垃圾桶是按下标删除。</p>
                         </div>
-                        <div className="grid grid-cols-3 gap-2">
-                            <Button variant="secondary" onClick={findIndex} disabled={!searchItem} className="border-blue-200 text-blue-700 hover:bg-blue-100 text-xs">
-                                index(x)
-                            </Button>
-                            <Button variant="secondary" onClick={countItem} disabled={!searchItem} className="border-blue-200 text-blue-700 hover:bg-blue-100 text-xs">
-                                count(x)
-                            </Button>
-                            <Button variant="secondary" onClick={checkIn} disabled={!searchItem} className="border-blue-200 text-blue-700 hover:bg-blue-100 text-xs">
-                                x in list
-                            </Button>
-                        </div>
-                    </div>
-
-                    {/* UPDATE 改 */}
-                    <div className="relative overflow-hidden bg-gradient-to-br from-amber-50 to-yellow-50 p-6 rounded-2xl border border-amber-200 shadow-lg hover:shadow-xl transition-shadow">
-                        <div className="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-amber-400 to-yellow-500"></div>
-                        <h3 className="font-bold text-amber-700 mb-4 flex items-center gap-2">
-                            <RefreshCw size={20} className="text-amber-600" /> 改 (Update)
-                        </h3>
-                        <div className="grid grid-cols-2 gap-3">
-                            <Button variant="secondary" onClick={sortItems} disabled={inventory.length < 2} className="border-amber-200 text-amber-700 hover:bg-amber-100">
-                                sort()
-                            </Button>
-                            <Button variant="secondary" onClick={reverseItems} disabled={inventory.length < 2} className="border-amber-200 text-amber-700 hover:bg-amber-100">
-                                reverse()
-                            </Button>
-                        </div>
-                    </div>
-
-                    {/* DELETE 删 */}
-                    <div className="relative overflow-hidden bg-gradient-to-br from-red-50 to-pink-50 p-6 rounded-2xl border border-red-200 shadow-lg hover:shadow-xl transition-shadow">
-                        <div className="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-red-400 to-pink-500"></div>
-                        <h3 className="font-bold text-red-700 mb-4 flex items-center gap-2">
-                            <Trash2 size={20} className="text-red-600" /> 删 (Delete)
-                        </h3>
-                        <div className="grid grid-cols-3 gap-2">
-                            <Button variant="danger" onClick={popItem} disabled={inventory.length === 0} className="text-xs">
-                                pop()
-                            </Button>
-                            <Button variant="secondary" onClick={removeByValue} disabled={!searchItem} className="border-red-200 text-red-700 hover:bg-red-100 text-xs">
-                                remove(x)
-                            </Button>
-                            <Button variant="danger" onClick={clearList} disabled={inventory.length === 0} className="text-xs">
-                                clear()
-                            </Button>
-                        </div>
-                        <p className="text-xs text-red-400 mt-2">* remove() 使用上方查找框中的值</p>
-                    </div>
+                    )}
 
                     {/* ITERATE 遍历 */}
-                    <div className="relative overflow-hidden bg-gradient-to-br from-purple-50 to-violet-50 p-6 rounded-2xl border border-purple-200 shadow-lg hover:shadow-xl transition-shadow">
-                        <div className="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-purple-400 to-violet-500"></div>
-                        <h3 className="font-bold text-purple-700 mb-4 flex items-center gap-2">
-                            <ArrowRight size={20} className="text-purple-600" /> 遍历 (Iterate)
-                        </h3>
+                    {focusMode === 'loop' && (
+                        <div className="relative overflow-hidden bg-gradient-to-br from-purple-50 to-violet-50 p-6 rounded-2xl border border-purple-200 shadow-lg hover:shadow-xl transition-shadow">
+                            <div className="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-purple-400 to-violet-500"></div>
+                            <h3 className="font-bold text-purple-700 mb-4 flex items-center gap-2">
+                                <ArrowRight size={20} className="text-purple-600" /> 遍历 (Iterate)
+                            </h3>
 
-                        {/* Mode Selection */}
-                        <div className="flex gap-2 mb-3">
-                            <button
-                                onClick={() => { setIterateMode('for'); resetIteration(); }}
-                                className={`flex-1 py-2 rounded text-xs font-mono transition-colors ${iterateMode === 'for'
-                                    ? 'bg-purple-600 text-white'
-                                    : 'bg-purple-100 text-purple-700 hover:bg-purple-200'
-                                    }`}
-                            >
-                                for item in list
-                            </button>
-                            <button
-                                onClick={() => { setIterateMode('enumerate'); resetIteration(); }}
-                                className={`flex-1 py-2 rounded text-xs font-mono transition-colors ${iterateMode === 'enumerate'
-                                    ? 'bg-purple-600 text-white'
-                                    : 'bg-purple-100 text-purple-700 hover:bg-purple-200'
-                                    }`}
-                            >
-                                enumerate(list)
-                            </button>
-                        </div>
+                            {/* Mode Selection */}
+                            <div className="flex gap-2 mb-3">
+                                <button
+                                    onClick={() => { setIterateMode('for'); resetIteration(); }}
+                                    className={`flex-1 py-2 rounded text-xs font-mono transition-colors ${iterateMode === 'for'
+                                        ? 'bg-purple-600 text-white'
+                                        : 'bg-purple-100 text-purple-700 hover:bg-purple-200'
+                                        }`}
+                                >
+                                    for item in list
+                                </button>
+                                <button
+                                    onClick={() => { setIterateMode('enumerate'); resetIteration(); }}
+                                    className={`flex-1 py-2 rounded text-xs font-mono transition-colors ${iterateMode === 'enumerate'
+                                        ? 'bg-purple-600 text-white'
+                                        : 'bg-purple-100 text-purple-700 hover:bg-purple-200'
+                                        }`}
+                                >
+                                    enumerate(list)
+                                </button>
+                            </div>
 
-                        {/* Controls */}
-                        <div className="grid grid-cols-3 gap-2">
-                            <Button
-                                onClick={startIteration}
-                                disabled={inventory.length === 0 || isIterating}
-                                variant="secondary"
-                                className="border-purple-200 text-purple-700 hover:bg-purple-100 text-xs"
-                            >
-                                开始
-                            </Button>
-                            <Button
-                                onClick={nextIteration}
-                                disabled={!isIterating}
-                                variant="secondary"
-                                className="border-purple-200 text-purple-700 hover:bg-purple-100 text-xs"
-                            >
-                                下一个
-                            </Button>
-                            <Button
-                                onClick={resetIteration}
-                                disabled={iterateIndex === -1}
-                                variant="secondary"
-                                className="border-purple-200 text-purple-700 hover:bg-purple-100 text-xs"
-                            >
-                                重置
-                            </Button>
+                            {/* Controls */}
+                            <div className="grid grid-cols-3 gap-2">
+                                <Button
+                                    onClick={startIteration}
+                                    disabled={inventory.length === 0 || isIterating}
+                                    variant="secondary"
+                                    className="border-purple-200 text-purple-700 hover:bg-purple-100 text-xs"
+                                >
+                                    开始
+                                </Button>
+                                <Button
+                                    onClick={nextIteration}
+                                    disabled={!isIterating}
+                                    variant="secondary"
+                                    className="border-purple-200 text-purple-700 hover:bg-purple-100 text-xs"
+                                >
+                                    下一个
+                                </Button>
+                                <Button
+                                    onClick={resetIteration}
+                                    disabled={iterateIndex === -1}
+                                    variant="secondary"
+                                    className="border-purple-200 text-purple-700 hover:bg-purple-100 text-xs"
+                                >
+                                    重置
+                                </Button>
+                            </div>
+                            <p className="text-xs text-purple-500 mt-2">点击“开始”逐步遍历列表。</p>
                         </div>
-                        <p className="text-xs text-purple-500 mt-2">* 点击"开始"逐步遍历列表</p>
-                    </div>
+                    )}
 
                     {/* Console Output */}
                     <div className="bg-slate-800 p-4 rounded-xl text-green-400 font-mono text-sm min-h-[3em] flex items-center border border-slate-700">
@@ -362,36 +562,38 @@ const ListSlide = () => {
                     </div>
 
                     {/* Slicing Controls */}
-                    <div className="bg-indigo-50 p-6 rounded-2xl border border-indigo-100">
-                        <h3 className="font-bold text-indigo-700 mb-4 flex items-center gap-2">
-                            <Search size={18} /> 切片 (Slicing) 预览
-                        </h3>
-                        <div className="flex items-center gap-4 mb-4">
-                            <div className="flex flex-col">
-                                <label className="text-xs font-bold text-indigo-400 uppercase">Start</label>
-                                <input
-                                    type="number"
-                                    value={sliceStart}
-                                    onChange={e => setSliceStart(Number(e.target.value))}
-                                    className="w-16 p-2 rounded border border-indigo-200 font-mono text-center"
-                                />
+                    {focusMode === 'loop' && (
+                        <div className="bg-indigo-50 p-6 rounded-2xl border border-indigo-100">
+                            <h3 className="font-bold text-indigo-700 mb-4 flex items-center gap-2">
+                                <Search size={18} /> 切片 (Slicing) 预览
+                            </h3>
+                            <div className="flex items-center gap-4 mb-4">
+                                <div className="flex flex-col">
+                                    <label className="text-xs font-bold text-indigo-400 uppercase">Start</label>
+                                    <input
+                                        type="number"
+                                        value={sliceStart}
+                                        onChange={e => setSliceStart(Number(e.target.value))}
+                                        className="w-16 p-2 rounded border border-indigo-200 font-mono text-center"
+                                    />
+                                </div>
+                                <span className="text-2xl text-indigo-300">:</span>
+                                <div className="flex flex-col">
+                                    <label className="text-xs font-bold text-indigo-400 uppercase">End</label>
+                                    <input
+                                        type="number"
+                                        value={sliceEnd}
+                                        onChange={e => setSliceEnd(Number(e.target.value))}
+                                        className="w-16 p-2 rounded border border-indigo-200 font-mono text-center"
+                                    />
+                                </div>
                             </div>
-                            <span className="text-2xl text-indigo-300">:</span>
-                            <div className="flex flex-col">
-                                <label className="text-xs font-bold text-indigo-400 uppercase">End</label>
-                                <input
-                                    type="number"
-                                    value={sliceEnd}
-                                    onChange={e => setSliceEnd(Number(e.target.value))}
-                                    className="w-16 p-2 rounded border border-indigo-200 font-mono text-center"
-                                />
+                            <div className="font-mono text-sm bg-indigo-900 text-indigo-100 p-3 rounded-lg">
+                                backpack[{sliceStart}:{sliceEnd}]
+                                <span className="text-indigo-400"> // 结果见右侧高亮</span>
                             </div>
                         </div>
-                        <div className="font-mono text-sm bg-indigo-900 text-indigo-100 p-3 rounded-lg">
-                            backpack[{sliceStart}:{sliceEnd}]
-                            <span className="text-indigo-400"> // 结果见右侧高亮</span>
-                        </div>
-                    </div>
+                    )}
                 </div>
 
                 {/* Visual View */}
@@ -410,13 +612,13 @@ const ListSlide = () => {
                         )}
                         {inventory.map((item, idx) => {
                             // Check if item is currently being iterated
-                            const isIteratingThis = idx === iterateIndex;
+                            const isIteratingThis = focusMode === 'loop' && idx === iterateIndex;
 
                             // Check if item is in current slice range
                             const len = inventory.length;
                             let start = sliceStart < 0 ? len + sliceStart : sliceStart;
                             let end = sliceEnd < 0 ? len + sliceEnd : sliceEnd;
-                            const isSliced = idx >= start && idx < end;
+                            const isSliced = focusMode === 'loop' && idx >= start && idx < end;
 
                             // Priority: iterating > sliced > normal
                             let colorClass = 'bg-white border-transparent text-slate-700 shadow-sm hover:border-slate-300';
@@ -589,6 +791,8 @@ const DictSlide = () => {
                 </p>
             </div>
 
+            <DictAccessTraceCard />
+
             <div className="grid lg:grid-cols-2 gap-8">
                 {/* Visual Cards */}
                 <div className="order-2 lg:order-1 bg-slate-100 p-6 rounded-2xl border border-slate-200">
@@ -747,6 +951,139 @@ const DictSlide = () => {
     );
 };
 
+const stringTraceCode = `text = "Python"
+part = text[1:4]
+lower = text.lower()
+changed = text.replace("P", "M")
+# text 仍然是 "Python"`;
+
+const stringTraceSteps = [
+    {
+        active: [0],
+        vars: { start: '-', end: '-', result: '-' },
+        action: '截取 1:4',
+    },
+    {
+        active: [1],
+        vars: { start: 1, end: 4, result: 'yth' },
+        row: ['text[1:4]', '取 1、2、3', 'yth', '左边包含，右边不包含'],
+        action: '转成小写',
+    },
+    {
+        active: [2],
+        vars: { start: '-', end: '-', result: 'python' },
+        row: ['text.lower()', '全部字符', 'python', '生成一个新字符串'],
+        action: '替换字符',
+    },
+    {
+        active: [3],
+        vars: { start: '-', end: '-', result: 'Mython' },
+        row: ['text.replace("P", "M")', 'P -> M', 'Mython', '仍然是生成新字符串'],
+        action: '检查原文本',
+    },
+    {
+        active: [4],
+        vars: { start: '-', end: '-', result: 'Python' },
+        exit: '字符串不可变：lower() 和 replace() 不会原地修改 text，除非写成 text = text.replace(...)。',
+        action: '显示结论',
+    },
+    {
+        active: [1, 2, 3, 4],
+        vars: { start: 1, end: 4, result: '新值要重新赋值' },
+        output: '切片是左闭右开；字符串方法通常返回新字符串。',
+    },
+];
+
+const StringTraceCard = () => (
+    <PyCodeTracer
+        title="字符串追踪器：切片左闭右开，变形会产生新字符串"
+        code={stringTraceCode}
+        varOrder={['start', 'end', 'result']}
+        columns={['表达式', '范围', '结果', '说明']}
+        steps={stringTraceSteps}
+        hint="字符串像一排固定字符，可以读、切、生成新结果；想保存新结果，要重新赋值。"
+    />
+);
+
+const stringFocusModes = [
+    {
+        id: 'slice',
+        label: '1 先切片',
+        title: '先看位置范围',
+        task: '调 start/end，看 text[start:end] 取哪些字符。',
+        check: '能说清右边界 end 不会被包含。',
+    },
+    {
+        id: 'search',
+        label: '2 再查找',
+        title: '再判断有没有',
+        task: '用 find、count、startswith、endswith 验证一段文字。',
+        check: '能解释 find 找不到时为什么返回 -1。',
+    },
+    {
+        id: 'transform',
+        label: '3 再变形',
+        title: '变形不是原地修改',
+        task: '试 strip 和 replace，观察当前文本什么时候真的变化。',
+        check: '能说清字符串方法通常返回新字符串。',
+    },
+    {
+        id: 'split',
+        label: '4 最后拆合',
+        title: '把一段文字变成列表',
+        task: '用 split 拆开，再用 join 合回去。',
+        check: '能区分字符串和字符串列表。',
+    },
+];
+
+const StringFocusGuide = ({ focusMode, onChange }) => {
+    const current = stringFocusModes.find((mode) => mode.id === focusMode) || stringFocusModes[0];
+
+    return (
+        <section className="rounded-2xl border border-blue-100 bg-white p-5 shadow-sm" aria-label="字符串学习阶段">
+            <div className="mb-4 flex flex-col gap-2 sm:flex-row sm:items-end sm:justify-between">
+                <div>
+                    <div className="text-xs font-black uppercase tracking-wider text-blue-700">练习顺序</div>
+                    <h3 className="mt-1 text-xl font-black text-slate-900">字符串按“位置、查找、变形、拆合”走</h3>
+                </div>
+                <p className="text-sm font-semibold leading-relaxed text-slate-500">
+                    每次只打开一组工具，先理解规则，再做操作。
+                </p>
+            </div>
+
+            <div className="grid gap-2 md:grid-cols-4">
+                {stringFocusModes.map((mode) => {
+                    const active = focusMode === mode.id;
+                    return (
+                        <button
+                            key={mode.id}
+                            type="button"
+                            onClick={() => onChange(mode.id)}
+                            className={`rounded-xl border px-4 py-3 text-left text-sm font-black transition ${
+                                active
+                                    ? 'border-blue-500 bg-blue-600 text-white shadow-md'
+                                    : 'border-slate-200 bg-slate-50 text-slate-600 hover:border-blue-200 hover:bg-blue-50'
+                            }`}
+                            aria-pressed={active}
+                        >
+                            {mode.label}
+                        </button>
+                    );
+                })}
+            </div>
+
+            <div className="mt-4 rounded-xl border border-blue-100 bg-blue-50 p-4">
+                <div className="mb-1 flex items-center gap-2 text-sm font-black text-blue-900">
+                    <CheckCircle size={16} />
+                    {current.title}
+                </div>
+                <p className="text-sm font-bold leading-relaxed text-slate-700">{current.task}</p>
+                <p className="mt-2 text-xs font-semibold leading-relaxed text-slate-500">过关信号：{current.check}</p>
+            </div>
+        </section>
+    );
+};
+
 // 3. String Ops
 const StringSlide = () => {
     const [text, setText] = useState("  Python is Cool  ");
@@ -756,6 +1093,7 @@ const StringSlide = () => {
     const [replaceFrom, setReplaceFrom] = useState("o");
     const [replaceTo, setReplaceTo] = useState("0");
     const [consoleOutput, setConsoleOutput] = useState(null);
+    const [focusMode, setFocusMode] = useState('slice');
 
     // Split & Join State
     const [splitText, setSplitText] = useState("apple,banana,orange");
@@ -828,6 +1166,9 @@ const StringSlide = () => {
                 </p>
             </div>
 
+            <StringTraceCard />
+            <StringFocusGuide focusMode={focusMode} onChange={setFocusMode} />
+
             <div className="grid lg:grid-cols-2 gap-8">
                 {/* Left Column - Input & Display */}
                 <div className="space-y-6">
@@ -859,36 +1200,38 @@ const StringSlide = () => {
                     </div>
 
                     {/* Slicing */}
-                    <div className="bg-indigo-50 p-6 rounded-2xl border border-indigo-100">
-                        <h3 className="font-bold text-indigo-700 mb-4">🔪 切片 (Slicing)</h3>
-                        <div className="flex items-center gap-2 mb-4">
-                            <span className="font-mono text-lg font-bold">text[</span>
-                            <input
-                                placeholder="0"
-                                value={sliceStart}
-                                onChange={e => setSliceStart(e.target.value)}
-                                className="w-12 p-1 text-center rounded border border-indigo-200 font-mono"
-                            />
-                            <span className="font-mono text-lg font-bold">:</span>
-                            <input
-                                placeholder="5"
-                                value={sliceEnd}
-                                onChange={e => setSliceEnd(e.target.value)}
-                                className="w-12 p-1 text-center rounded border border-indigo-200 font-mono"
-                            />
-                            <span className="font-mono text-lg font-bold">]</span>
+                    {focusMode === 'slice' && (
+                        <div className="bg-indigo-50 p-6 rounded-2xl border border-indigo-100">
+                            <h3 className="font-bold text-indigo-700 mb-4">切片 (Slicing)</h3>
+                            <div className="flex items-center gap-2 mb-4">
+                                <span className="font-mono text-lg font-bold">text[</span>
+                                <input
+                                    placeholder="0"
+                                    value={sliceStart}
+                                    onChange={e => setSliceStart(e.target.value)}
+                                    className="w-12 p-1 text-center rounded border border-indigo-200 font-mono"
+                                />
+                                <span className="font-mono text-lg font-bold">:</span>
+                                <input
+                                    placeholder="5"
+                                    value={sliceEnd}
+                                    onChange={e => setSliceEnd(e.target.value)}
+                                    className="w-12 p-1 text-center rounded border border-indigo-200 font-mono"
+                                />
+                                <span className="font-mono text-lg font-bold">]</span>
+                            </div>
+                            <div className="bg-indigo-900 text-indigo-100 p-4 rounded-xl shadow-inner font-mono text-sm min-h-[3rem] items-center flex">
+                                {(() => {
+                                    try {
+                                        const s = sliceStart === "" ? undefined : Number(sliceStart);
+                                        const e = sliceEnd === "" ? undefined : Number(sliceEnd);
+                                        if ((s !== undefined && isNaN(s)) || (e !== undefined && isNaN(e))) return "Invalid Index";
+                                        return `"${text.slice(s, e)}"`;
+                                    } catch { return "Error"; }
+                                })()}
+                            </div>
                         </div>
-                        <div className="bg-indigo-900 text-indigo-100 p-4 rounded-xl shadow-inner font-mono text-sm min-h-[3rem] items-center flex">
-                            {(() => {
-                                try {
-                                    const s = sliceStart === "" ? undefined : Number(sliceStart);
-                                    const e = sliceEnd === "" ? undefined : Number(sliceEnd);
-                                    if ((s !== undefined && isNaN(s)) || (e !== undefined && isNaN(e))) return "Invalid Index";
-                                    return `"${text.slice(s, e)}"`;
-                                } catch { return "Error"; }
-                            })()}
-                        </div>
-                    </div>
+                    )}
 
                     {/* Console Output */}
                     <div className="bg-slate-800 p-4 rounded-xl text-green-400 font-mono text-sm min-h-[3em] flex items-center border border-slate-700">
@@ -903,107 +1246,113 @@ const StringSlide = () => {
                 {/* Right Column - Operations */}
                 <div className="space-y-4">
                     {/* READ 查询 */}
-                    <div className="relative overflow-hidden bg-gradient-to-br from-blue-50 to-cyan-50 p-5 rounded-2xl border border-blue-200 shadow-lg hover:shadow-xl transition-shadow">
-                        <div className="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-blue-400 to-cyan-500"></div>
-                        <h3 className="font-bold text-blue-700 mb-3 flex items-center gap-2 text-sm">
-                            <Search size={18} className="text-blue-600" /> 查 (Read)
-                        </h3>
-                        <input
-                            value={searchStr}
-                            onChange={e => setSearchStr(e.target.value)}
-                            placeholder="搜索子串..."
-                            className="w-full border-2 border-blue-200 rounded-lg px-3 py-2 mb-3 focus:border-blue-500 outline-none text-sm"
-                        />
-                        <div className="grid grid-cols-2 gap-2">
-                            <button onClick={findSubstring} disabled={!searchStr} className="bg-blue-100 hover:bg-blue-200 disabled:opacity-50 py-2 rounded text-xs font-mono text-blue-700 transition-colors">
-                                find()
-                            </button>
-                            <button onClick={countSubstring} disabled={!searchStr} className="bg-blue-100 hover:bg-blue-200 disabled:opacity-50 py-2 rounded text-xs font-mono text-blue-700 transition-colors">
-                                count()
-                            </button>
-                            <button onClick={checkStartsWith} disabled={!searchStr} className="bg-blue-100 hover:bg-blue-200 disabled:opacity-50 py-2 rounded text-xs font-mono text-blue-700 transition-colors">
-                                startswith()
-                            </button>
-                            <button onClick={checkEndsWith} disabled={!searchStr} className="bg-blue-100 hover:bg-blue-200 disabled:opacity-50 py-2 rounded text-xs font-mono text-blue-700 transition-colors">
-                                endswith()
-                            </button>
+                    {focusMode === 'search' && (
+                        <div className="relative overflow-hidden bg-gradient-to-br from-blue-50 to-cyan-50 p-5 rounded-2xl border border-blue-200 shadow-lg hover:shadow-xl transition-shadow">
+                            <div className="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-blue-400 to-cyan-500"></div>
+                            <h3 className="font-bold text-blue-700 mb-3 flex items-center gap-2 text-sm">
+                                <Search size={18} className="text-blue-600" /> 查 (Read)
+                            </h3>
+                            <input
+                                value={searchStr}
+                                onChange={e => setSearchStr(e.target.value)}
+                                placeholder="搜索子串..."
+                                className="w-full border-2 border-blue-200 rounded-lg px-3 py-2 mb-3 focus:border-blue-500 outline-none text-sm"
+                            />
+                            <div className="grid grid-cols-2 gap-2">
+                                <button onClick={findSubstring} disabled={!searchStr} className="bg-blue-100 hover:bg-blue-200 disabled:opacity-50 py-2 rounded text-xs font-mono text-blue-700 transition-colors">
+                                    find()
+                                </button>
+                                <button onClick={countSubstring} disabled={!searchStr} className="bg-blue-100 hover:bg-blue-200 disabled:opacity-50 py-2 rounded text-xs font-mono text-blue-700 transition-colors">
+                                    count()
+                                </button>
+                                <button onClick={checkStartsWith} disabled={!searchStr} className="bg-blue-100 hover:bg-blue-200 disabled:opacity-50 py-2 rounded text-xs font-mono text-blue-700 transition-colors">
+                                    startswith()
+                                </button>
+                                <button onClick={checkEndsWith} disabled={!searchStr} className="bg-blue-100 hover:bg-blue-200 disabled:opacity-50 py-2 rounded text-xs font-mono text-blue-700 transition-colors">
+                                    endswith()
+                                </button>
+                            </div>
                         </div>
-                    </div>
+                    )}
 
                     {/* UPDATE 修改 */}
-                    <div className="relative overflow-hidden bg-gradient-to-br from-amber-50 to-yellow-50 p-5 rounded-2xl border border-amber-200 shadow-lg hover:shadow-xl transition-shadow">
-                        <div className="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-amber-400 to-yellow-500"></div>
-                        <h3 className="font-bold text-amber-700 mb-3 flex items-center gap-2 text-sm">
-                            <RefreshCw size={18} className="text-amber-600" /> 改 (Update)
-                        </h3>
+                    {focusMode === 'transform' && (
+                        <div className="relative overflow-hidden bg-gradient-to-br from-amber-50 to-yellow-50 p-5 rounded-2xl border border-amber-200 shadow-lg hover:shadow-xl transition-shadow">
+                            <div className="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-amber-400 to-yellow-500"></div>
+                            <h3 className="font-bold text-amber-700 mb-3 flex items-center gap-2 text-sm">
+                                <RefreshCw size={18} className="text-amber-600" /> 改 (Update)
+                            </h3>
 
-                        {/* Replace */}
-                        <div className="mb-3">
-                            <label className="text-xs text-amber-600 font-bold mb-1 block">replace(old, new)</label>
-                            <div className="flex gap-2 mb-2">
-                                <input
-                                    value={replaceFrom}
-                                    onChange={e => setReplaceFrom(e.target.value)}
-                                    placeholder="查找"
-                                    className="flex-1 border-2 border-amber-200 rounded-lg px-3 py-2 focus:border-amber-500 outline-none text-sm"
-                                />
-                                <input
-                                    value={replaceTo}
-                                    onChange={e => setReplaceTo(e.target.value)}
-                                    placeholder="替换为"
-                                    className="flex-1 border-2 border-amber-200 rounded-lg px-3 py-2 focus:border-amber-500 outline-none text-sm"
-                                />
+                            {/* Replace */}
+                            <div className="mb-3">
+                                <label className="text-xs text-amber-600 font-bold mb-1 block">replace(old, new)</label>
+                                <div className="flex gap-2 mb-2">
+                                    <input
+                                        value={replaceFrom}
+                                        onChange={e => setReplaceFrom(e.target.value)}
+                                        placeholder="查找"
+                                        className="flex-1 border-2 border-amber-200 rounded-lg px-3 py-2 focus:border-amber-500 outline-none text-sm"
+                                    />
+                                    <input
+                                        value={replaceTo}
+                                        onChange={e => setReplaceTo(e.target.value)}
+                                        placeholder="替换为"
+                                        className="flex-1 border-2 border-amber-200 rounded-lg px-3 py-2 focus:border-amber-500 outline-none text-sm"
+                                    />
+                                </div>
+                                <Button onClick={replaceText} disabled={!replaceFrom} variant="secondary" className="w-full border-amber-300 text-amber-700 hover:bg-amber-100 text-xs">
+                                    执行替换
+                                </Button>
                             </div>
-                            <Button onClick={replaceText} disabled={!replaceFrom} variant="secondary" className="w-full border-amber-300 text-amber-700 hover:bg-amber-100 text-xs">
-                                执行替换
-                            </Button>
-                        </div>
 
-                        {/* Strip */}
-                        <div className="border-t border-amber-200 pt-3">
-                            <Button onClick={stripText} variant="secondary" className="w-full border-amber-300 text-amber-700 hover:bg-amber-100 text-xs">
-                                strip() - 去除首尾空格
-                            </Button>
+                            {/* Strip */}
+                            <div className="border-t border-amber-200 pt-3">
+                                <Button onClick={stripText} variant="secondary" className="w-full border-amber-300 text-amber-700 hover:bg-amber-100 text-xs">
+                                    strip() - 去除首尾空格
+                                </Button>
+                            </div>
                         </div>
-                    </div>
+                    )}
 
                     {/* Split & Join */}
-                    <div className="relative overflow-hidden bg-gradient-to-br from-emerald-50 to-teal-50 p-5 rounded-2xl border border-emerald-200 shadow-lg hover:shadow-xl transition-shadow">
-                        <div className="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-emerald-400 to-teal-500"></div>
-                        <h3 className="font-bold text-emerald-800 mb-3 flex items-center gap-2 text-sm">
-                            <RefreshCw size={18} className="text-emerald-700" /> 拆分与组合
-                        </h3>
+                    {focusMode === 'split' && (
+                        <div className="relative overflow-hidden bg-gradient-to-br from-emerald-50 to-teal-50 p-5 rounded-2xl border border-emerald-200 shadow-lg hover:shadow-xl transition-shadow">
+                            <div className="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-emerald-400 to-teal-500"></div>
+                            <h3 className="font-bold text-emerald-800 mb-3 flex items-center gap-2 text-sm">
+                                <RefreshCw size={18} className="text-emerald-700" /> 拆分与组合
+                            </h3>
 
-                        {/* Split Section */}
-                        <div className="mb-3">
-                            <div className="flex justify-between items-center mb-2">
-                                <label className="text-xs font-bold text-emerald-600">.split(delimiter)</label>
+                            {/* Split Section */}
+                            <div className="mb-3">
+                                <div className="flex justify-between items-center mb-2">
+                                    <label className="text-xs font-bold text-emerald-600">.split(delimiter)</label>
+                                    <input
+                                        value={delimiter}
+                                        onChange={e => setDelimiter(e.target.value)}
+                                        placeholder=","
+                                        className="w-8 h-8 text-center rounded border border-emerald-300 font-mono text-sm"
+                                        maxLength={1}
+                                    />
+                                </div>
                                 <input
-                                    value={delimiter}
-                                    onChange={e => setDelimiter(e.target.value)}
-                                    placeholder=","
-                                    className="w-8 h-8 text-center rounded border border-emerald-300 font-mono text-sm"
-                                    maxLength={1}
+                                    value={splitText}
+                                    onChange={e => setSplitText(e.target.value)}
+                                    className="w-full p-2 rounded-lg border border-emerald-200 focus:border-emerald-500 outline-none font-mono text-sm mb-2"
                                 />
+                                <div className="bg-white p-2 rounded-lg border border-emerald-200 font-mono text-xs text-emerald-800 break-all">
+                                    [{splitResult.map(s => `"${s}"`).join(', ')}]
+                                </div>
                             </div>
-                            <input
-                                value={splitText}
-                                onChange={e => setSplitText(e.target.value)}
-                                className="w-full p-2 rounded-lg border border-emerald-200 focus:border-emerald-500 outline-none font-mono text-sm mb-2"
-                            />
-                            <div className="bg-white p-2 rounded-lg border border-emerald-200 font-mono text-xs text-emerald-800 break-all">
-                                [{splitResult.map(s => `"${s}"`).join(', ')}]
-                            </div>
-                        </div>
 
-                        {/* Join Section */}
-                        <div className="border-t border-emerald-200 pt-3">
-                            <label className="block text-xs font-bold text-emerald-600 mb-2">delimiter.join(list)</label>
-                            <div className="bg-emerald-600 text-white p-2 rounded-lg font-mono text-xs shadow-sm break-all">
-                                "{splitResult.join(delimiter)}"
+                            {/* Join Section */}
+                            <div className="border-t border-emerald-200 pt-3">
+                                <label className="block text-xs font-bold text-emerald-600 mb-2">delimiter.join(list)</label>
+                                <div className="bg-emerald-600 text-white p-2 rounded-lg font-mono text-xs shadow-sm break-all">
+                                    "{splitResult.join(delimiter)}"
+                                </div>
                             </div>
                         </div>
-                    </div>
+                    )}
                 </div>
             </div>
         </div>
@@ -1012,6 +1361,56 @@ const StringSlide = () => {
 
 
 const grid2dDemo = [[1, 2, 3], [4, 5, 6], [7, 8, 9]];
+
+const grid2dTraceCode = `grid = [
+    [1, 2, 3],
+    [4, 5, 6],
+    [7, 8, 9],
+]
+row = grid[1]
+value = grid[1][2]`;
+
+const grid2dTraceSteps = [
+    {
+        active: [0, 1, 2, 3, 4],
+        vars: { row: '-', col: '-', value: '-' },
+        action: '选第 1 行',
+    },
+    {
+        active: [5],
+        vars: { row: 1, col: '-', value: '[4, 5, 6]' },
+        row: ['grid[1]', '第 1 行', '-', '[4, 5, 6]', '行号从 0 开始，所以第 1 行是第二行'],
+        action: '选第 2 列',
+    },
+    {
+        active: [6],
+        vars: { row: 1, col: 2, value: 6 },
+        row: ['grid[1][2]', '第 1 行', '第 2 列', 6, '先拿到这一行，再从这一行里取第 2 列'],
+        action: '检查边界',
+    },
+    {
+        active: [6],
+        vars: { row: 1, col: 2, value: 6 },
+        exit: '二维列表访问顺序固定：grid[行][列]。3x3 表格的合法行列号都是 0、1、2。',
+        action: '显示结论',
+    },
+    {
+        active: [5, 6],
+        vars: { row: '0..2', col: '0..2', value: '先行后列' },
+        output: 'grid[1][2] = 6；读作第 1 行、第 2 列，不是第 1 列、第 2 行。',
+    },
+];
+
+const Grid2DTraceCard = () => (
+    <PyCodeTracer
+        title="二维列表追踪器：先选行，再选列"
+        code={grid2dTraceCode}
+        varOrder={['row', 'col', 'value']}
+        columns={['表达式', '行', '列', '结果', '说明']}
+        steps={grid2dTraceSteps}
+        hint="把二维列表想成表格：外层列表选行，内层列表选列；行列都从 0 开始。"
+    />
+);
 
 const Grid2DSlide = () => {
     const [pos, setPos] = useState({ r: 1, c: 2 });
@@ -1022,6 +1421,8 @@ const Grid2DSlide = () => {
             <SlideHeader accent="teal" icon={Grid3x3} title="二维列表：表格与棋盘">
                 把列表放进列表，就得到<strong>二维列表</strong>——像一张表格或一个棋盘（2048、井字棋都用它）。用 <code>grid[行][列]</code> 取值：先选第几行，再选第几列；行、列都从 <strong>0</strong> 开始数。
             </SlideHeader>
+
+            <Grid2DTraceCard />
 
             <div className="grid md:grid-cols-2 gap-8">
                 <div className="bg-white p-6 rounded-2xl shadow-sm border border-slate-200">
@@ -1080,8 +1481,9 @@ const SummarySlide = () => (
             <div className="mb-3 flex items-center gap-2 font-black text-slate-800">
                 <CheckCircle size={16} className="text-teal-600" /> 学完自测
             </div>
-            <ul className="grid gap-2 text-sm font-semibold text-slate-600 sm:grid-cols-3">
+            <ul className="grid gap-2 text-sm font-semibold text-slate-600 sm:grid-cols-2">
                 <li className="flex gap-2"><span className="text-teal-500">✓</span> 能说明列表下标从 0 开始</li>
+                <li className="flex gap-2"><span className="text-teal-500">✓</span> 能用 grid[行][列] 读取二维列表</li>
                 <li className="flex gap-2"><span className="text-teal-500">✓</span> 能选 list 还是 dict 解决任务</li>
                 <li className="flex gap-2"><span className="text-teal-500">✓</span> 能处理找不到键或下标越界</li>
             </ul>
@@ -1124,4 +1526,3 @@ export default function PythonFoundation3() {
         />
     );
 }
-

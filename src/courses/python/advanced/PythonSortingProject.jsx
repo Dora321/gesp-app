@@ -9,6 +9,7 @@ import {
 } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import PythonProjectSupport from '../../../components/PythonProjectSupport';
+import PyCodeTracer from '../../../components/PyCodeTracer';
 import PythonLessonShell from '../shell/PythonLessonShell';
 
 // --- 辅助组件 ---
@@ -92,6 +93,97 @@ const IntroSlide = () => (
 );
 
 // 2. 气泡上浮：冒泡排序可视化
+const bubbleTraceNumbers = [5, 1, 4, 2, 8];
+
+const bubbleTraceCode = `numbers = [5, 1, 4, 2, 8]
+
+for i in range(len(numbers) - 1):
+    for j in range(len(numbers) - 1 - i):
+        if numbers[j] > numbers[j + 1]:
+            numbers[j], numbers[j + 1] = numbers[j + 1], numbers[j]
+
+print(numbers)`;
+
+const formatPythonList = (items) => `[${items.join(', ')}]`;
+
+const bubbleTraceSteps = (() => {
+    const numbers = [...bubbleTraceNumbers];
+    const steps = [
+        {
+            active: [0],
+            vars: { i: '未开始', j: '-', numbers: formatPythonList(numbers) },
+            action: '进入第 1 轮',
+        },
+    ];
+
+    for (let i = 0; i < numbers.length - 1; i += 1) {
+        steps.push({
+            active: [2],
+            vars: { i, j: 0, numbers: formatPythonList(numbers) },
+            row: [`第 ${i + 1} 轮开始`, i, '-', formatPythonList(numbers), `右侧已有 ${i} 个元素归位`],
+            action: '比较 j = 0',
+        });
+
+        for (let j = 0; j < numbers.length - 1 - i; j += 1) {
+            const left = numbers[j];
+            const right = numbers[j + 1];
+            const shouldSwap = left > right;
+
+            steps.push({
+                active: [3, 4],
+                vars: { i, j, numbers: formatPythonList(numbers) },
+                row: [
+                    `比较 numbers[${j}] 和 numbers[${j + 1}]`,
+                    i,
+                    j,
+                    `${left} 与 ${right}`,
+                    shouldSwap ? '前大后小，交换' : '顺序正确，不交换',
+                ],
+                action: shouldSwap ? `交换 ${left} 和 ${right}` : (j === numbers.length - 2 - i ? '结束本轮扫描' : `比较 j = ${j + 1}`),
+            });
+
+            if (shouldSwap) {
+                [numbers[j], numbers[j + 1]] = [numbers[j + 1], numbers[j]];
+                steps.push({
+                    active: [5],
+                    vars: { i, j, numbers: formatPythonList(numbers) },
+                    row: ['交换后', i, j, formatPythonList(numbers), `${right} 向左，${left} 向右`],
+                    action: j === numbers.length - 2 - i ? '结束本轮扫描' : `比较 j = ${j + 1}`,
+                });
+            }
+        }
+
+        steps.push({
+            active: [3],
+            vars: { i, j: numbers.length - 1 - i, numbers: formatPythonList(numbers) },
+            exit: i === numbers.length - 2
+                ? `第 ${i + 1} 轮结束：最后两个元素也排好，冒泡排序完成。`
+                : `第 ${i + 1} 轮结束：${numbers[numbers.length - 1 - i]} 已经在右侧归位，下一轮比较范围变短。`,
+            action: i === numbers.length - 2 ? '查看最终输出' : `进入第 ${i + 2} 轮`,
+        });
+    }
+
+    steps.push({
+        active: [7],
+        vars: { i: 4, j: '-', numbers: formatPythonList(numbers) },
+        action: '显示最终结果',
+        output: `排序完成：${formatPythonList(numbers)}`,
+    });
+
+    return steps;
+})();
+
+const BubbleSortTraceCard = () => (
+    <PyCodeTracer
+        title="Python 冒泡追踪器：相邻比较，右侧逐轮归位"
+        code={bubbleTraceCode}
+        varOrder={['i', 'j', 'numbers']}
+        columns={['阶段', 'i', 'j', '当前内容', '动作']}
+        steps={bubbleTraceSteps}
+        hint="先看一轮：只比较相邻两个位置；每一轮结束，右侧会确定一个最大值。"
+    />
+);
+
 const BubbleSortSlide = () => {
     const [arr, setArr] = useState([50, 30, 80, 20, 90, 10, 60, 40]);
     const [comparing, setComparing] = useState([]); // Indices being compared
@@ -196,6 +288,8 @@ const BubbleSortSlide = () => {
                     <RotateCcw size={20} /> 重置
                 </button>
             </div>
+
+            <BubbleSortTraceCard />
         </div>
     );
 };
