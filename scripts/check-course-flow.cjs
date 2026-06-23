@@ -659,6 +659,19 @@ function assertCppWhileLessonKeepsDigitTrace() {
   );
 }
 
+function assertCppNestedLoopLessonKeepsExecutionTrace() {
+  const lesson = read('src/lessons/cpp/l1/Lesson12.jsx');
+
+  assert(
+    lesson.includes('CodeTracer') &&
+      lesson.includes('嵌套循环追踪器：外层定一行，内层跑全套') &&
+      lesson.includes('j 会重新初始化为 1') &&
+      lesson.includes('再次判断 4 <= 3 为假') &&
+      lesson.includes('输出顺序：1-1 1-2 1-3 1-4'),
+    'C++ L1 lesson 12 should keep the step-by-step nested-loop trace for outer/inner loop execution order.'
+  );
+}
+
 function assertPythonProjectSupportUsesPrerequisites() {
   const projectSupport = read('src/components/PythonProjectSupport.jsx');
 
@@ -731,6 +744,7 @@ async function main() {
   assertLessonNextStepsKeepsErrorDiagnosis();
   assertCppLoopLessonKeepsExecutionTrace();
   assertCppWhileLessonKeepsDigitTrace();
+  assertCppNestedLoopLessonKeepsExecutionTrace();
   assertPythonProjectSupportUsesPrerequisites();
   assertCppLessonShellSupportsLessonSupport();
 

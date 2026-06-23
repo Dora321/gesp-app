@@ -21,6 +21,7 @@ import {
     X
 } from 'lucide-react';
 import CppL1LessonSupport from '../../../components/CppL1LessonSupport';
+import { CodeTracer } from '../CppLessonShell';
 
 // --- 图标映射组件 ---
 const Icon = ({ name, size = 24, color = "currentColor", className = "" }) => {
@@ -141,86 +142,92 @@ const QueueDrill = () => {
     );
 };
 
-// --- 互动组件 2：嵌套循环步进器 ---
+const nestedLoopCode = `for (int i = 1; i <= 3; i++) {
+    for (int j = 1; j <= 4; j++) {
+        cout << i << "-" << j << " ";
+    }
+    cout << endl;
+}`;
+
+const nestedLoopRows = [1, 2, 3].map((i) => ({
+    i,
+    values: [1, 2, 3, 4].map((j) => `${i}-${j}`),
+}));
+
+const nestedLoopTraceSteps = [
+    {
+        active: [0],
+        vars: { i: '未开始', j: '-', '本行': '空' },
+        action: '进入 i = 1',
+    },
+    ...nestedLoopRows.flatMap(({ i, values }) => {
+        const rowSteps = [
+            {
+                active: [0],
+                vars: { i, j: '未开始', '本行': '空' },
+                row: [`第 ${i} 行`, `i = ${i}`, 'j 将从 1 开始', '外层先定住一行', '空'],
+                action: `进入第 ${i} 行内层`,
+            },
+            ...values.flatMap((value, index) => {
+                const j = index + 1;
+                const printed = values.slice(0, j).join(' ');
+
+                return [
+                    {
+                        active: [1],
+                        vars: { i, j, '本行': printed || '空' },
+                        row: [`判断 j=${j}`, `i = ${i}`, `${j} <= 4`, '真，进入内层', printed || '空'],
+                        action: `打印 ${value}`,
+                    },
+                    {
+                        active: [2],
+                        vars: { i, j, '本行': printed },
+                        row: [`打印第 ${j} 项`, `i = ${i}`, `j = ${j}`, `cout << "${value} "`, printed],
+                        action: j === 4 ? '检查内层退出' : `继续 j = ${j + 1}`,
+                    },
+                ];
+            }),
+            {
+                active: [1],
+                vars: { i, j: 5, '本行': values.join(' ') },
+                exit: `内层再次判断 5 <= 4 为假；第 ${i} 行结束。下一行开始时，j 会重新初始化为 1。`,
+                action: `第 ${i} 行换行`,
+            },
+            {
+                active: [4],
+                vars: { i, j: '-', '本行': values.join(' ') },
+                row: ['换行', `i = ${i}`, '-', 'cout << endl', i === 3 ? '全部行已完成' : '准备下一行'],
+                action: i === 3 ? '检查外层退出' : `进入 i = ${i + 1}`,
+            },
+        ];
+
+        return rowSteps;
+    }),
+    {
+        active: [0],
+        vars: { i: 4, j: '-', '本行': '已完成' },
+        exit: '再次判断 4 <= 3 为假，外层循环结束。总共打印 3 行，每行 4 项。',
+        action: '查看最终输出',
+    },
+    {
+        active: [4],
+        vars: { i: 4, j: '-', '本行': '已完成' },
+        action: '显示最终结果',
+        output: '输出顺序：1-1 1-2 1-3 1-4 / 2-1 2-2 2-3 2-4 / 3-1 3-2 3-3 3-4',
+    },
+];
+
+// --- 互动组件 2：嵌套循环追踪器 ---
 const NestedLoopStepper = () => {
-    const [i, setI] = useState(1);
-    const [j, setJ] = useState(1);
-    const [count, setCount] = useState(0);
-
-    // Logic limits
-    const maxI = 3;
-    const maxJ = 4;
-
-    const nextStep = () => {
-        if (j < maxJ) {
-            setJ(j + 1);
-            setCount(c => c + 1);
-        } else {
-            // Inner loop finished
-            if (i < maxI) {
-                setI(i + 1);
-                setJ(1); // Reset Inner
-                setCount(c => c + 1);
-            } else {
-                // All finished, reset
-                setI(1);
-                setJ(1);
-                setCount(0);
-            }
-        }
-    };
-
-    const isFinished = i === maxI && j === maxJ;
-
     return (
-        <div className="bg-indigo-50 p-6 rounded-xl border-2 border-indigo-200 my-4">
-            <h3 className="font-bold text-lg text-indigo-700 mb-4 flex items-center gap-2">
-                <Layers className="text-indigo-600" /> 执行流程：慢动作回放
-            </h3>
-
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                <div className="bg-white p-4 rounded-lg shadow-sm border border-indigo-100 flex flex-col justify-center items-center">
-                    <div className="text-gray-500 mb-2 font-bold">总执行次数: {count}</div>
-                    <div className="grid grid-cols-4 gap-2">
-                        {Array.from({ length: maxI * maxJ }).map((_, idx) => {
-                            const row = Math.floor(idx / maxJ) + 1;
-                            const col = (idx % maxJ) + 1;
-                            const isPast = (row < i) || (row === i && col <= j);
-                            const isCurrent = row === i && col === j;
-
-                            return (
-                                <div key={idx} className={`w-8 h-8 rounded flex items-center justify-center text-xs font-bold transition-all duration-300
-                  ${isCurrent ? 'bg-indigo-600 text-white scale-110 ring-2 ring-indigo-300' : (isPast ? 'bg-indigo-200 text-indigo-800' : 'bg-gray-100 text-gray-300')}
-                `}>
-                                    {row}-{col}
-                                </div>
-                            );
-                        })}
-                    </div>
-                    <div className="mt-2 text-xs text-gray-400">对应 (i-j) 坐标</div>
-                </div>
-
-                <div className="flex flex-col justify-between">
-                    <div className="bg-gray-900 text-green-400 p-4 rounded-lg font-mono text-sm mb-4">
-                        <div>i = {i} <span className="text-gray-500">(外层)</span></div>
-                        <div className="pl-4">j = {j} <span className="text-gray-500">(内层)</span></div>
-                        <div className="pl-4 mt-2 border-t border-gray-700 pt-2 text-yellow-300">
-                            cout &lt;&lt; "执行 {i}-{j}";
-                        </div>
-                    </div>
-
-                    <button
-                        onClick={nextStep}
-                        className={`w-full py-3 rounded-lg font-bold shadow-md transition-all flex justify-center items-center gap-2
-              ${isFinished ? 'bg-yellow-500 text-white hover:bg-yellow-600' : 'bg-indigo-600 text-white hover:bg-indigo-700'}
-            `}
-                    >
-                        {isFinished ? <RotateCcw size={18} /> : <Play size={18} />}
-                        {isFinished ? "演示结束 (重置)" : "下一步"}
-                    </button>
-                </div>
-            </div>
-        </div>
+        <CodeTracer
+            title="嵌套循环追踪器：外层定一行，内层跑全套"
+            code={nestedLoopCode}
+            varOrder={['i', 'j', '本行']}
+            columns={['阶段', 'i', 'j/判断', '动作', '本行输出']}
+            steps={nestedLoopTraceSteps}
+            hint="先不要背口诀，逐步看 j 为什么每一行都会重新从 1 开始。"
+        />
     );
 };
 

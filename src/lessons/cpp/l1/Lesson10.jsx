@@ -335,16 +335,16 @@ const BugFixer = () => {
       <div className="bg-gray-100 text-xs text-gray-500 mb-2 px-2 py-1 rounded inline-block font-mono">2024年9月 GESP 一级真题 第13题</div>
 
       <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-        <div className="bg-gray-800 text-white p-4 rounded-lg font-mono text-sm relative">
-          <div>int N, N0, rc=0;</div>
-          <div>cin &gt;&gt; N;</div>
-          <div>N0 = N; <span className="text-gray-500">// 备份</span></div>
-          <div>while (N) &#123;</div>
-          <div className="pl-4">rc++;</div>
-          <div className="pl-4">N /= 10;</div>
-          <div>&#125;</div>
+        <div className="bg-gray-800 text-slate-100 p-4 rounded-lg font-mono text-sm relative leading-relaxed">
+          <div><span className="text-sky-400">int</span> N, N0, rc <span className="text-pink-400">=</span> <span className="text-amber-300">0</span>;</div>
+          <div><span className="text-violet-300">cin</span> <span className="text-pink-400">&gt;&gt;</span> N;</div>
+          <div>N0 <span className="text-pink-400">=</span> N; <span className="text-slate-500">// 备份</span></div>
+          <div><span className="text-sky-400">while</span> (N) <span className="text-slate-400">&#123;</span></div>
+          <div className="pl-4">rc<span className="text-pink-400">++</span>;</div>
+          <div className="pl-4">N <span className="text-pink-400">/=</span> <span className="text-amber-300">10</span>;</div>
+          <div><span className="text-slate-400">&#125;</span></div>
           <div className={`mt-2 p-1 rounded transition-colors ${fixed ? 'bg-green-900/50 border border-green-500' : 'bg-red-900/50 border border-red-500'}`}>
-            printf("%d是%d位整数\n", <span className="font-bold text-yellow-300">{fixed ? "N0" : "N"}</span>, rc);
+            <span className="text-violet-300">printf</span>(<span className="text-emerald-300">"%d是%d位整数\n"</span>, <span className="font-bold text-yellow-300">{fixed ? "N0" : "N"}</span>, rc);
           </div>
           {!fixed && <div className="absolute right-2 bottom-16 text-red-400 text-xs">👈 这里的 N 变成 0 了！</div>}
         </div>
@@ -783,15 +783,15 @@ function App() {
             <div className="bg-gray-100 text-xs text-gray-500 mb-2 px-2 py-1 rounded inline-block font-mono">2023年12月 GESP 一级真题 第7题</div>
 
             <div className="bg-white p-6 rounded-xl border border-gray-200 mb-6">
-              <pre className="font-mono text-sm bg-gray-50 p-4 rounded border border-gray-200 mb-4">
-                {`N = 10; cnt = 0;
-while (1) {
-    if (N == 0) break; // 刹车！
-    cnt += 1;
-    N -= 2;
-}
-cout << cnt;`}
-              </pre>
+              <div className="bg-gray-800 text-slate-100 p-4 rounded-lg font-mono text-sm leading-relaxed mb-4">
+                <div>N <span className="text-pink-400">=</span> <span className="text-amber-300">10</span>; cnt <span className="text-pink-400">=</span> <span className="text-amber-300">0</span>;</div>
+                <div><span className="text-sky-400">while</span> (<span className="text-amber-300">1</span>) <span className="text-slate-400">&#123;</span></div>
+                <div className="pl-4"><span className="text-sky-400">if</span> (N <span className="text-pink-400">==</span> <span className="text-amber-300">0</span>) <span className="text-sky-400">break</span>; <span className="text-slate-500">// 刹车！</span></div>
+                <div className="pl-4">cnt <span className="text-pink-400">+=</span> <span className="text-amber-300">1</span>;</div>
+                <div className="pl-4">N <span className="text-pink-400">-=</span> <span className="text-amber-300">2</span>;</div>
+                <div><span className="text-slate-400">&#125;</span></div>
+                <div><span className="text-violet-300">cout</span> <span className="text-pink-400">&lt;&lt;</span> cnt;</div>
+              </div>
               <div className="space-y-2 text-sm text-gray-600">
                 <p><strong>人脑模拟：</strong></p>
                 <div className="flex flex-wrap gap-2">
