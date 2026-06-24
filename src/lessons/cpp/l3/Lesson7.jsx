@@ -1,7 +1,7 @@
 import React, { useMemo, useState } from 'react';
 import { ClipboardCheck, FileText, Search, Type, WholeWord } from 'lucide-react';
 import CppL3LessonSupport from '../../../components/CppL3LessonSupport';
-import CppLessonShell, { Callout, CodeBlock, CodeTracer, CompareTable, MiniQuiz } from '../CppLessonShell';
+import CppLessonShell, { Callout, CodeBlock, CodeTracer, CompareTable, MasteryCheck, MiniQuiz, PredictCheck } from '../CppLessonShell';
 
 const sections = [
     { id: 1, title: '课程导入', category: 'string 模型' },
@@ -128,6 +128,57 @@ for (int i = 0; i < s.size(); i++) {
     );
 }
 
+function StringPredictionChecks() {
+    return (
+        <div className="grid gap-4 lg:grid-cols-3">
+            <PredictCheck
+                prompt={'string s = "cat"; 最后一个字符写成 s[3] 取得到吗？'}
+                options={['取得到，是 t', '取不到，最后是 s[2]']}
+                correctIndex={1}
+                explanation="长度是 3，合法下标只有 0、1、2。最后一个是 s[2]，s[3] 已经越界。"
+                misconception="把字符串长度直接当成最后一个下标。"
+            />
+            <PredictCheck
+                prompt={'输入 hello world，用 cin >> s 读，s 里装的是？'}
+                options={['hello world 整句', '只有 hello']}
+                correctIndex={1}
+                explanation="cin 遇到空格就停下，所以只读到 hello。要带空格的整行，得用 getline(cin, s)。"
+                misconception="以为 cin 能一口气读入带空格的一整行。"
+            />
+            <PredictCheck
+                prompt={'s[i] 是一个字符，判断它是不是字母 a，应该写哪个？'}
+                options={['s[i] == "a"', "s[i] == 'a'"]}
+                correctIndex={1}
+                explanation={"s[i] 是 char，要和单引号的字符 'a' 比。\"a\" 是字符串，类型对不上。"}
+                misconception="分不清单引号字符和双引号字符串。"
+            />
+        </div>
+    );
+}
+
+const stringMasteryItems = [
+    {
+        label: '能说清 cin >> s 和 getline 的区别。',
+        evidence: '知道 cin 遇空格就停，带空格的整行要用 getline(cin, s)。',
+        retryHint: '回到“读入与长度”，想一下读 hello world 会发生什么。',
+    },
+    {
+        label: '能写出字符串最后一个字符的下标。',
+        evidence: '能说明长度 n 的字符串，最后一个是 s[n - 1]，s[n] 越界。',
+        retryHint: '回到下标实验台，把 size() 和最大合法下标分开写。',
+    },
+    {
+        label: '能手推一次字符串遍历，并知道 s[i] 是一个 char。',
+        evidence: '能解释 i 从 0 走到 size()-1，每个 s[i] 是单字符，要用单引号比较。',
+        retryHint: '回到字符串遍历追踪器，盯住 i = size() 时为什么停。',
+    },
+    {
+        label: '能把遍历模板迁移到统计类题目。',
+        evidence: '例如数某个字母出现几次，只改循环体里的 if 判断。',
+        retryHint: '先固定遍历框架，只改循环体那一行。',
+    },
+];
+
 export default function CppL3Lesson7() {
     return (
         <CppLessonShell
@@ -179,6 +230,7 @@ cout << s.size() << endl;`}</CodeBlock>
                             </p>
                         </div>
                         <StringTraverseTracer />
+                        <StringPredictionChecks />
                     </>
                 ),
                 4: (
@@ -215,6 +267,11 @@ if (both == "hello world") {
                             </p>
                         </div>
                         <MiniQuiz items={quiz} />
+                        <MasteryCheck
+                            title="C++ L3-7 字符串魔法离开前检查"
+                            description="字符串题最怕“看懂代码，但下标一写就越界、cin 一读就漏字”。勾选前先拿一个小例子手推一次。"
+                            items={stringMasteryItems}
+                        />
                         <Callout icon={ClipboardCheck} title="课后任务" tone="slate">
                             <ul className="space-y-2">
                                 <li>读入一个字符串，输出它的长度。</li>

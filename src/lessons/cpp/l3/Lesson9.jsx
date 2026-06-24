@@ -1,7 +1,7 @@
 import React, { useMemo, useState } from 'react';
 import { ClipboardCheck, Hash, ListChecks, Search, TableProperties } from 'lucide-react';
 import CppL3LessonSupport from '../../../components/CppL3LessonSupport';
-import CppLessonShell, { Callout, CodeBlock, CodeTracer, CompareTable, MiniQuiz } from '../CppLessonShell';
+import CppLessonShell, { Callout, CodeBlock, CodeTracer, CompareTable, MasteryCheck, MiniQuiz, PredictCheck } from '../CppLessonShell';
 
 const sections = [
     { id: 1, title: '课程导入', category: '综合模型' },
@@ -125,6 +125,57 @@ for (int i = 0; i < s.size(); i++) {
     );
 }
 
+function ArrayStringPredictionChecks() {
+    return (
+        <div className="grid gap-4 lg:grid-cols-3">
+            <PredictCheck
+                prompt={'用 cnt[c - \'a\'] 统计频率，如果字符串里混进了大写 A 会怎样？'}
+                options={['照样统计到 A', '下标算成负数，可能越界']}
+                correctIndex={1}
+                explanation={"'A' - 'a' = 65 - 97 = -32，是负下标，访问 cnt[-32] 越界。要先转小写，或只统计 a 到 z。"}
+                misconception="以为 cnt[c - 'a'] 对大写字母也成立。"
+            />
+            <PredictCheck
+                prompt={'bool seen[26]; 没写 = {false} 就直接用，里面是什么？'}
+                options={['全是 false', '可能是乱七八糟的值']}
+                correctIndex={1}
+                explanation="函数里的局部数组不初始化，里面是随机值，去重判断会出错。要写 bool seen[26] = {false}。"
+                misconception="以为数组一定义好就自动清零。"
+            />
+            <PredictCheck
+                prompt={'找出现最多的字母，并列时要字典序最小，循环怎么扫最稳？'}
+                options={['从 a 到 z 扫，只在严格更大时更新', '从 a 到 z 扫，>= 就更新']}
+                correctIndex={0}
+                explanation="从 a（下标 0）往后扫，只有严格大于当前最大才更新，并列时保留先遇到的，自然是字典序最小的。"
+                misconception="用 >= 更新，并列时反而取了字典序更大的字母。"
+            />
+        </div>
+    );
+}
+
+const arrayStringMasteryItems = [
+    {
+        label: '能把字符映射成数组下标，并先判范围。',
+        evidence: "知道小写字母用 c - 'a' 得到 0 到 25，访问前先确认它在 a 到 z。",
+        retryHint: '回到“映射关系”，想想大写 A 会算出什么下标。',
+    },
+    {
+        label: '能解释计数数组 cnt[26] 怎么统计频率。',
+        evidence: "能说出 cnt[c - 'a']++ 每次给对应字母加一。",
+        retryHint: '回到字符频率实验台，输入 banana 看每个格子怎么变。',
+    },
+    {
+        label: '能用布尔数组做去重，并记得初始化。',
+        evidence: '知道 bool seen[26] = {false}，只有首次出现才输出并标记。',
+        retryHint: '回到首次出现去重追踪器，盯住 seen[id] 何时变 true。',
+    },
+    {
+        label: '能把综合题拆成“下标含义 + 核心动作”。',
+        evidence: '动手前先写清数组下标代表字符、次数还是状态，再写循环。',
+        retryHint: '回到综合题套路表，先把“数组含义”这一列填出来。',
+    },
+];
+
 export default function CppL3Lesson9() {
     return (
         <CppLessonShell
@@ -196,6 +247,7 @@ for (int i = 0; i < s.size(); i++) {
                                 ['找最高频字母', 'cnt[i] 保存频率', '遍历 cnt 找最大值'],
                             ]}
                         />
+                        <ArrayStringPredictionChecks />
                     </>
                 ),
                 5: (
@@ -207,6 +259,11 @@ for (int i = 0; i < s.size(); i++) {
                             </p>
                         </div>
                         <MiniQuiz items={quiz} />
+                        <MasteryCheck
+                            title="C++ L3-9 数组与字符串综合离开前检查"
+                            description="综合题最怕“一上来就写循环”。勾选前先在纸上写清每个数组下标代表什么。"
+                            items={arrayStringMasteryItems}
+                        />
                         <Callout icon={ClipboardCheck} title="课后任务" tone="slate">
                             <ul className="space-y-2">
                                 <li>统计一个字符串中每个小写字母出现次数。</li>

@@ -1,7 +1,7 @@
 import React, { useMemo, useState } from 'react';
 import { CaseSensitive, ClipboardCheck, Search, Sparkles, TextSearch } from 'lucide-react';
 import CppL3LessonSupport from '../../../components/CppL3LessonSupport';
-import CppLessonShell, { Callout, CodeBlock, CodeTracer, CompareTable, MiniQuiz } from '../CppLessonShell';
+import CppLessonShell, { Callout, CodeBlock, CodeTracer, CompareTable, MasteryCheck, MiniQuiz, PredictCheck } from '../CppLessonShell';
 
 const sections = [
     { id: 1, title: '课程导入', category: '字符串处理' },
@@ -134,6 +134,57 @@ for (int i = 0; i < s.size(); i++) {
     );
 }
 
+function StringAdvPredictionChecks() {
+    return (
+        <div className="grid gap-4 lg:grid-cols-3">
+            <PredictCheck
+                prompt={'写 s[i] -= 32 转大写，如果不先判断范围，遇到数字 5 会怎样？'}
+                options={['没事，数字不受影响', '会被改成别的字符，结果出错']}
+                correctIndex={1}
+                explanation={"字符 5 的 ASCII 是 53，减 32 变成 21，是另一个字符。必须先确认 s[i] 在 'a' 到 'z' 之间再转。"}
+                misconception="以为减 32 只会影响字母，不会动到数字和标点。"
+            />
+            <PredictCheck
+                prompt={'s.find("ab") 没找到时返回什么？'}
+                options={['返回 -1', '返回 string::npos']}
+                correctIndex={1}
+                explanation="find 找不到会返回 string::npos（一个很大的数）。判断要写 pos != string::npos，不能写 pos != -1。"
+                misconception="把 find 的失败返回值当成 -1。"
+            />
+            <PredictCheck
+                prompt={'s.substr(2, 3) 截出来的是哪一段？'}
+                options={['下标 2 到下标 3 的字符', '从下标 2 开始的 3 个字符']}
+                correctIndex={1}
+                explanation="substr(pos, len) 第二个参数是长度，不是结束下标。所以是从下标 2 起数 3 个。"
+                misconception="把 substr 第二个参数当成结束位置。"
+            />
+        </div>
+    );
+}
+
+const advStringMasteryItems = [
+    {
+        label: '能写出“先判断范围，再转换”的大小写模板。',
+        evidence: '转换前先确认 s[i] 是目标字母，不会误改数字或标点。',
+        retryHint: '回到“只转换字母”，想想数字 5 减 32 会变成什么。',
+    },
+    {
+        label: '能手推一次字符统计：遍历 + if + 计数器。',
+        evidence: '能说出 digit、letter 各由哪条 if 累加出来。',
+        retryHint: '回到字符统计追踪器，逐字符点一次。',
+    },
+    {
+        label: '能正确判断 find 是否找到。',
+        evidence: '知道找不到返回 string::npos，要用 != string::npos 判断。',
+        retryHint: '别写成 != -1，回到查找与子串表格。',
+    },
+    {
+        label: '能把统计、转换、子串组合到一道综合题。',
+        evidence: '例如先统计再转换，最后用 substr 输出一段，拆成几个小循环完成。',
+        retryHint: '别想一次写完，先拆成独立的小步骤。',
+    },
+];
+
 export default function CppL3Lesson8() {
     return (
         <CppLessonShell
@@ -208,6 +259,7 @@ if (pos != string::npos) {
 }
 
 cout << s.substr(0, 5); // hello`}</CodeBlock>
+                        <StringAdvPredictionChecks />
                     </>
                 ),
                 5: (
@@ -219,6 +271,11 @@ cout << s.substr(0, 5); // hello`}</CodeBlock>
                             </p>
                         </div>
                         <MiniQuiz items={quiz} />
+                        <MasteryCheck
+                            title="C++ L3-8 字符串进阶离开前检查"
+                            description="进阶字符串题最怕“转换没判范围、find 没判 npos”。勾选前先用一个含数字的小例子手推一次。"
+                            items={advStringMasteryItems}
+                        />
                         <Callout icon={ClipboardCheck} title="课后任务" tone="slate">
                             <ul className="space-y-2">
                                 <li>读入一个字符串，统计其中数字字符的个数。</li>

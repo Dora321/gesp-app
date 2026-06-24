@@ -313,6 +313,11 @@ const forLoopMasteryItems = [
     evidence: '例如 i < 5 最后一次进入是 4，i <= 5 最后一次进入是 5。',
     retryHint: '把“最后一次进入”和“循环结束后”分成两列写。',
   },
+  {
+    label: '能判断什么时候该用 for 循环。',
+    evidence: '知道“次数已经数得出来”（跑固定圈数）时，for 比 while 更顺手。',
+    retryHint: '回到本课开头的任务，先问一句“我知道要跑几次吗”。',
+  },
 ];
 
 // --- 题目组件 ---
@@ -628,7 +633,7 @@ cout << (N + i);`}
               </div>
 
               <MasteryCheck
-                title="for 循环离开前检查"
+                title="C++ L1-9 for 循环离开前检查"
                 description="如果只会背口诀，还不算过关。至少要能手推一次结束边界。"
                 items={forLoopMasteryItems}
                 className="md:col-span-2"
