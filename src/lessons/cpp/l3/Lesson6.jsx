@@ -1,7 +1,7 @@
 import React, { useMemo, useState } from 'react';
 import { BarChart3, ClipboardCheck, Gauge, Search, Sigma } from 'lucide-react';
 import CppL3LessonSupport from '../../../components/CppL3LessonSupport';
-import CppLessonShell, { Callout, CodeBlock, CodeTracer, CompareTable, MiniQuiz } from '../CppLessonShell';
+import CppLessonShell, { Callout, CodeBlock, CodeTracer, CompareTable, MasteryCheck, MiniQuiz, PredictCheck } from '../CppLessonShell';
 
 const sections = [
     { id: 1, title: '课程导入', category: '数组实战' },
@@ -124,6 +124,57 @@ double avg = 1.0 * sum / n;`}
     );
 }
 
+function ArrayOpsPredictionChecks() {
+    return (
+        <div className="grid gap-4 lg:grid-cols-3">
+            <PredictCheck
+                prompt={'5 个数和是 12，写 double avg = sum / 5; avg 是多少？'}
+                options={['2.4', '2.0（先做了整数除法）']}
+                correctIndex={1}
+                explanation="sum 和 5 都是整数，先算 12 / 5 = 2，再赋给 double 还是 2.0。要写 1.0 * sum / 5。"
+                misconception="以为结果赋给 double 就会自动变成小数。"
+            />
+            <PredictCheck
+                prompt={'求最大值把 mx 初始成 0，数组全是负数会怎样？'}
+                options={['没问题', 'mx 错停在 0，比所有数都大']}
+                correctIndex={1}
+                explanation="全是负数时没有元素能超过 0，mx 停在 0，是个根本不存在的最大值。应初始化为 a[0]。"
+                misconception="以为最大值初始成 0 总是安全的。"
+            />
+            <PredictCheck
+                prompt={'前缀和 s[i] 是前 i 个的和，区间 [l, r] 的和写哪个？'}
+                options={['s[r] - s[l]', 's[r] - s[l - 1]']}
+                correctIndex={1}
+                explanation="s[r] - s[l] 会漏掉 a[l]。减 s[l - 1] 才包含从 l 到 r 的全部元素。"
+                misconception="减错了前缀和的起点，把左端点 a[l] 丢掉。"
+            />
+        </div>
+    );
+}
+
+const arrayOpsMasteryItems = [
+    {
+        label: '能用累计变量求和，并避开整数除法。',
+        evidence: '知道平均数要写 1.0 * sum / n，否则会被截成整数。',
+        retryHint: '回到“平均数的类型坑”，想想 12 / 5 等于几。',
+    },
+    {
+        label: '能正确初始化最大值和最小值。',
+        evidence: '用 a[0] 当初值、从 i = 1 开始比较，全负数也不会出错。',
+        retryHint: '回到“为什么从 i = 1 开始”，别再把 mx 设成 0。',
+    },
+    {
+        label: '能写出条件计数模板并换条件。',
+        evidence: '遍历 + if 判断 + cnt++，能从“偶数”改成“大于 x”。',
+        retryHint: '回到题型表，只改 if 那一行。',
+    },
+    {
+        label: '能用前缀和回答区间和。',
+        evidence: '知道区间 [l, r] 的和是 s[r] - s[l - 1]。',
+        retryHint: '回到前缀和模板，盯住为什么减的是 s[l - 1]。',
+    },
+];
+
 export default function CppL3Lesson6() {
     return (
         <CppLessonShell
@@ -203,6 +254,7 @@ for (int i = 1; i <= n; i++) {
 }
 
 cout << s[r] - s[l - 1];`}</CodeBlock>
+                        <ArrayOpsPredictionChecks />
                     </>
                 ),
                 5: (
@@ -214,6 +266,11 @@ cout << s[r] - s[l - 1];`}</CodeBlock>
                             </p>
                         </div>
                         <MiniQuiz items={quiz} />
+                        <MasteryCheck
+                            title="C++ L3-6 数组操作实战离开前检查"
+                            description="数组实战题最怕“模板背下来，但类型和边界悄悄写错”。勾选前先用一个小例子手推一次。"
+                            items={arrayOpsMasteryItems}
+                        />
                         <Callout icon={ClipboardCheck} title="课后任务" tone="slate">
                             <ul className="space-y-2">
                                 <li>读入 n 个整数，输出最大值和最小值。</li>

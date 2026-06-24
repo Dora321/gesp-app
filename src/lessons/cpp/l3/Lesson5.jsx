@@ -1,7 +1,7 @@
 import React, { useMemo, useState } from 'react';
 import { AlertTriangle, Boxes, ClipboardCheck, ListChecks, Search } from 'lucide-react';
 import CppL3LessonSupport from '../../../components/CppL3LessonSupport';
-import CppLessonShell, { Callout, CodeBlock, CodeTracer, CompareTable, MiniQuiz } from '../CppLessonShell';
+import CppLessonShell, { Callout, CodeBlock, CodeTracer, CompareTable, MasteryCheck, MiniQuiz, PredictCheck } from '../CppLessonShell';
 
 const sections = [
     { id: 1, title: '课程导入', category: '数组模型' },
@@ -111,6 +111,57 @@ for (int i = 0; i < n; i++) {
     );
 }
 
+function ArrayPredictionChecks() {
+    return (
+        <div className="grid gap-4 lg:grid-cols-3">
+            <PredictCheck
+                prompt={'int a[5]; 访问 a[5] 会怎样？'}
+                options={['正常，取第 5 个元素', '越界，最后一个是 a[4]']}
+                correctIndex={1}
+                explanation="长度 5 的数组下标只能是 0 到 4，a[5] 已经越界，结果不可预测。"
+                misconception="把数组长度直接当成最后一个合法下标。"
+            />
+            <PredictCheck
+                prompt={'容量 MAXN=1005，实际读入 n=3。遍历写 i < MAXN 会怎样？'}
+                options={['只处理这 3 个', '会扫到上千个没读入的垃圾值']}
+                correctIndex={1}
+                explanation="只读入了 3 个，i < MAXN 会一路访问到没赋值的格子，结果出错。要写 i < n。"
+                misconception="把数组容量当成本题实际长度来遍历。"
+            />
+            <PredictCheck
+                prompt={'遍历 n 个元素写 for (int i = 0; i <= n; i++)，问题在哪？'}
+                options={['没问题', 'i = n 时多访问一次 a[n]，越界']}
+                correctIndex={1}
+                explanation="i <= n 会让 i 取到 n，访问 a[n] 越界。遍历 n 个元素要写 i < n。"
+                misconception="把循环次数和下标边界混在一起。"
+            />
+        </div>
+    );
+}
+
+const arrayMasteryItems = [
+    {
+        label: '能说清长度 n 的数组合法下标是 0 到 n - 1。',
+        evidence: '随口举例：a[5] 对应 a[0] 到 a[4]，a[5] 越界。',
+        retryHint: '回到数组下标实验台，点最后一个格子看它的下标。',
+    },
+    {
+        label: '能手推一次遍历，解释 i = n 时为什么停。',
+        evidence: '能说出 i 走 0 到 n-1，i = n 时 i < n 为假就停止。',
+        retryHint: '回到数组遍历追踪器，盯住最后一次判断。',
+    },
+    {
+        label: '能区分数组容量 MAXN 和实际长度 n。',
+        evidence: '知道遍历写 i < n，不写 i < MAXN，避免扫到垃圾值。',
+        retryHint: '回到“容量与长度的区别”，分清最多放多少和这次给多少。',
+    },
+    {
+        label: '能把遍历模板迁移到倒序或取首尾。',
+        evidence: '倒序就让 i 从 n-1 走到 0；取首尾就用 a[0] 和 a[n-1]。',
+        retryHint: '先固定遍历框架，只改 i 的起点和终点。',
+    },
+];
+
 export default function CppL3Lesson5() {
     return (
         <CppLessonShell
@@ -162,6 +213,7 @@ export default function CppL3Lesson5() {
                             </p>
                         </div>
                         <ArrayTraverseTracer />
+                        <ArrayPredictionChecks />
                     </>
                 ),
                 4: (
@@ -199,6 +251,11 @@ for (int i = 0; i < n; i++) {
                             </p>
                         </div>
                         <MiniQuiz items={quiz} />
+                        <MasteryCheck
+                            title="C++ L3-5 一维数组离开前检查"
+                            description="数组题最怕“看懂代码，但下标一写就越界”。勾选前先拿一个小数组手推一次边界。"
+                            items={arrayMasteryItems}
+                        />
                         <Callout icon={ClipboardCheck} title="课后任务" tone="slate">
                             <ul className="space-y-2">
                                 <li>读入 n 个整数，原样输出。</li>
