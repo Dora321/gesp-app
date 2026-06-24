@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import CppL1LessonSupport from '../../../components/CppL1LessonSupport';
+import { MasteryCheck } from '../CppLessonShell';
 import {
   Monitor, Keyboard, Mouse, Mic, Camera, Speaker, Printer,
   Cpu, Save, FileText, Terminal, CheckCircle, XCircle,
@@ -8,6 +9,29 @@ import {
   RefreshCw, Coffee, HardDrive, AppWindow, Calculator,
   AlertTriangle, ArrowRight, Sparkles, Layout, X, Menu
 } from 'lucide-react';
+
+const lesson1MasteryItems = [
+  {
+    label: '能区分输入设备和输出设备。',
+    evidence: '能把键盘、鼠标、麦克风归为输入，把显示器、音箱、打印机归为输出。',
+    retryHint: '回到“计算机的眼耳口鼻”，用“信息进电脑/从电脑出来”重新分类。',
+  },
+  {
+    label: '能说出现代计算机的两个关键考点。',
+    evidence: '知道 ENIAC 使用电子管，现代计算机常讲冯·诺依曼体系结构。',
+    retryHint: '回到“计算机家谱”，把 ENIAC 和冯·诺依曼各写一句话。',
+  },
+  {
+    label: '能解释 C++ 最小程序结构。',
+    evidence: '能指出 #include、main、cout、分号分别负责什么。',
+    retryHint: '回到“魔法工坊”，按从上到下的顺序复述每一行。',
+  },
+  {
+    label: '能修正 Hello World 常见错误。',
+    evidence: '能发现箭头方向、双引号、分号这三类问题。',
+    retryHint: '回到“侦探找茬”，先只检查 cout 这一行。',
+  },
+];
 
 // --- 辅助组件 (保留原 Lesson1 的核心交互组件) ---
 
@@ -647,7 +671,22 @@ const sections = [
   { id: 8, title: "实战：Hello World", icon: "sparkles", component: HelloWorldSlide, category: "C++ 初体验" },
   { id: 9, title: "侦探找茬：代码纠错", icon: "alert-triangle", component: DebugSlide, category: "C++ 初体验" },
   { id: 10, title: "进阶挑战：数学计算", icon: "calculator", component: MathSlide, category: "C++ 初体验" },
-  { id: 11, title: "总结与作业", icon: "save", component: SummarySlide, category: "C++ 初体验" }
+  { id: 11, title: "总结与作业", icon: "save", component: SummarySlide, category: "C++ 初体验" },
+  {
+    id: 12,
+    title: "离开前检查",
+    icon: "check-circle",
+    category: "C++ 初体验",
+    component: () => (
+      <div className="py-6">
+        <MasteryCheck
+          title="C++ L1-1 你好计算机离开前检查"
+          description="如果能分清输入输出、说出计算机基础考点、解释最小程序、修掉 Hello World 错误，就可以进入变量课。"
+          items={lesson1MasteryItems}
+        />
+      </div>
+    ),
+  },
 ];
 
 

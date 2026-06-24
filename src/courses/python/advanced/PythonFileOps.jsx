@@ -6,7 +6,30 @@ import {
     Book, Coffee, Database, HardDrive, Menu, X, Plus, Terminal
 } from 'lucide-react';
 import PythonProjectSupport from '../../../components/PythonProjectSupport';
-import PythonLessonShell from '../shell/PythonLessonShell';
+import PythonLessonShell, { MasteryCheck } from '../shell/PythonLessonShell';
+
+const fileOpsMasteryItems = [
+    {
+        label: '能区分 r、w、a 三种打开模式。',
+        evidence: '知道 r 是读取，w 会覆盖写入，a 会追加到文件末尾。',
+        retryHint: '回到“写入与追加”，用同一个文件分别试一次 w 和 a。',
+    },
+    {
+        label: '能用 with open 安全读写文件。',
+        evidence: '能解释 with 结束后会自动关闭文件，不需要手动 close。',
+        retryHint: '回到“安全管家”，观察文件打开和关闭状态的变化。',
+    },
+    {
+        label: '能处理文件不存在或编码不对的情况。',
+        evidence: '能说出 FileNotFoundError 和 encoding 参数分别解决什么问题。',
+        retryHint: '先故意读一个不存在的文件，再给它加 try / except。',
+    },
+    {
+        label: '能把项目结果保存成可复盘的文本文件。',
+        evidence: '例如保存摩斯转换记录、加密结果或一段运行日志，并能重新读回来。',
+        retryHint: '先设计“要保存哪些字段”，再决定每行写什么格式。',
+    },
+];
 
 // --- Shared Helper Components ---
 const Button = ({ onClick, children, className, variant = 'primary', disabled = false }) => {
@@ -372,6 +395,21 @@ const sections = [
     { id: 3, title: '写入与追加', icon: Edit3, component: WriteSlide },
     { id: 4, title: '安全管家', icon: CheckCircle, component: WithSlide },
     { id: 5, title: '秘籍总结', icon: Terminal, component: SummarySlide },
+    {
+        id: 6,
+        title: '项目过关',
+        icon: CheckCircle,
+        component: () => (
+            <div className="space-y-6 animate-in fade-in slide-in-from-bottom-4 duration-500">
+                <MasteryCheck
+                    title="A6 文件操作项目过关检查"
+                    description="如果能区分模式、用 with 安全读写、处理文件错误、保存项目结果，就可以进入综合游戏项目。"
+                    accent="indigo"
+                    items={fileOpsMasteryItems}
+                />
+            </div>
+        ),
+    },
 ];
 
 export default function PythonFileOps() {
@@ -395,4 +433,3 @@ export default function PythonFileOps() {
         />
     );
 }
-

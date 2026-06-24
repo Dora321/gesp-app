@@ -1,8 +1,31 @@
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
-import { Terminal, Key, Music, Lock, Unlock, Check, X, ArrowRight, Play, Info, Volume2, Lightbulb, RefreshCw, Trophy } from 'lucide-react';
+import { Terminal, Key, Music, Lock, Unlock, Check, X, ArrowRight, Play, Info, Volume2, Lightbulb, RefreshCw, Trophy, CheckCircle } from 'lucide-react';
 import PythonProjectSupport from '../../../components/PythonProjectSupport';
-import PythonLessonShell from '../shell/PythonLessonShell';
+import PythonLessonShell, { MasteryCheck } from '../shell/PythonLessonShell';
+
+const morseMasteryItems = [
+    {
+        label: '能用字典建立字符到摩斯码的映射。',
+        evidence: '能说明为什么 A 对应 .-，程序用 morse_dict[char] 查表。',
+        retryHint: '回到“动手编程”，先只处理 A、B、C 三个字符。',
+    },
+    {
+        label: '能处理大小写、空格和未知字符。',
+        evidence: '能把输入先 upper()，用 / 表示单词空格，并给未知字符兜底。',
+        retryHint: '回到编码模拟器，用 SOS、HELLO WORLD 和带标点的句子测试。',
+    },
+    {
+        label: '能把字典翻转，完成摩斯码到文本的解码。',
+        evidence: '知道要从 {字母: 码} 变成 {码: 字母}，再按空格拆分密文。',
+        retryHint: '回到进阶挑战，先手写 3 组反向映射再写代码。',
+    },
+    {
+        label: '能用样例验证双向转换没有丢失信息。',
+        evidence: '例如 TEXT -> 摩斯 -> TEXT，结果应该和原文一致或能解释差异。',
+        retryHint: '先固定一个简单样例，再逐步加入空格、数字和未知字符。',
+    },
+];
 
 // --- Utility Functions ---
 
@@ -390,6 +413,23 @@ const sections = [
     { id: 'quiz', title: '听音测验', category: '解码闯关', icon: Music, component: QuizSlide },
     { id: 'code', title: '动手编程', category: '字典映射', icon: Terminal, component: CodingSlide },
     { id: 'adv', title: '进阶挑战', category: '双向转换', icon: Trophy, component: AdvancedSlide },
+    {
+        id: 'mastery',
+        title: '项目过关',
+        category: '进入 A6 前',
+        icon: CheckCircle,
+        component: () => (
+            <div className="slide-enter space-y-6 pb-20">
+                <MasteryCheck
+                    title="A5 摩斯电码项目过关检查"
+                    description="如果能查字典编码、处理空格和未知字符、翻转字典解码、验证双向转换，就可以进入文件操作。"
+                    accent="teal"
+                    theme="dark"
+                    items={morseMasteryItems}
+                />
+            </div>
+        ),
+    },
 ];
 
 const PythonMorseProject = () => (

@@ -7,7 +7,30 @@ import {
 } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import PythonProjectSupport from '../../../components/PythonProjectSupport';
-import PythonLessonShell from '../shell/PythonLessonShell';
+import PythonLessonShell, { MasteryCheck } from '../shell/PythonLessonShell';
+
+const game2048MasteryItems = [
+    {
+        label: '能用二维列表表示 2048 棋盘。',
+        evidence: '能用 grid[row][col] 指出任意格子，并解释 0 代表空格。',
+        retryHint: '回到“构建世界”，先画 4x4 表格，再写出对应列表。',
+    },
+    {
+        label: '能把一次移动拆成压缩、合并、再压缩。',
+        evidence: '能拿 [2, 0, 2, 2] 推出 [4, 2, 0, 0]，并说明不能重复合并。',
+        retryHint: '回到“核心魔法”，只跟踪一行数字，不急着处理整张棋盘。',
+    },
+    {
+        label: '能用旋转或转置复用同一套移动逻辑。',
+        evidence: '能解释为什么先变换棋盘方向，再统一做“向左移动”。',
+        retryHint: '回到“空间变换”，用箭头画出上、下、右如何转成左移。',
+    },
+    {
+        label: '能用样例测试胜负和随机生成方块。',
+        evidence: '至少准备满盘、可合并、不可移动、移动后生成新块四类样例。',
+        retryHint: '回到“开发任务书”，先写测试表，再补游戏规则。',
+    },
+];
 
 // --- 辅助组件 ---
 const Icon = ({ name, size = 20, className = "" }) => {
@@ -998,6 +1021,22 @@ const sections = [
     { id: 5, title: '代码全览', category: 'Python 实现', icon: Code, component: SummarySlide },
     { id: 6, title: '课间小测验', category: '闯关', icon: Trophy, component: QuizSlide },
     { id: 7, title: '打包发布', category: '收尾', icon: Box, component: PackagingSlide },
+    {
+        id: 8,
+        title: '项目过关',
+        category: '进入 A8 前',
+        icon: CheckCircle,
+        component: () => (
+            <div className="space-y-6 animate-in fade-in slide-in-from-bottom-4 duration-500">
+                <MasteryCheck
+                    title="A7 2048 游戏项目过关检查"
+                    description="如果能讲清棋盘表示、移动合并、方向复用和测试样例，就可以进入 AI 初探。"
+                    accent="teal"
+                    items={game2048MasteryItems}
+                />
+            </div>
+        ),
+    },
 ];
 
 export default function PythonAdvanced2() {
@@ -1021,4 +1060,3 @@ export default function PythonAdvanced2() {
         />
     );
 }
-

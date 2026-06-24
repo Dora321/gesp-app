@@ -10,7 +10,30 @@ import {
 import { Link } from 'react-router-dom';
 import PythonProjectSupport from '../../../components/PythonProjectSupport';
 import PyCodeTracer from '../../../components/PyCodeTracer';
-import PythonLessonShell from '../shell/PythonLessonShell';
+import PythonLessonShell, { MasteryCheck } from '../shell/PythonLessonShell';
+
+const sortingMasteryItems = [
+    {
+        label: '能追踪至少一种 O(n²) 排序每一轮确定了什么。',
+        evidence: '例如冒泡每轮把最大值送到右侧，选择排序每轮选出剩余最小值。',
+        retryHint: '回到冒泡或选择排序，用 5 个数字手写每一轮数组状态。',
+    },
+    {
+        label: '能用样例验证排序前后元素不丢、不多、不乱改。',
+        evidence: '能测试重复数字、空列表、已经有序、倒序四种情况。',
+        retryHint: '先写输入和期望输出，再运行排序函数对比。',
+    },
+    {
+        label: '能比较 O(n²) 和 O(n log n) 的适用场景。',
+        evidence: '能说明小数据可以用简单排序，大数据更适合归并或快速排序。',
+        retryHint: '回到“算法对决”，观察数据量变大后步骤数量怎么变化。',
+    },
+    {
+        label: '能把排序策略写成函数并解释核心循环。',
+        evidence: '至少能说明一个排序函数的外层循环和内层比较分别负责什么。',
+        retryHint: '回到“代码魔法书”，先给每一层循环写一句中文注释。',
+    },
+];
 
 // --- 辅助组件 ---
 const Icon = ({ name, size = 20, className = "" }) => {
@@ -2287,6 +2310,22 @@ const sections = [
     { id: 12, title: '真实应用', category: '生活中的排序', icon: Globe, component: ApplicationSlide },
     { id: 13, title: '挑战：排序大师', category: '动手闯关', icon: Trophy, component: HumanSortSlide },
     { id: 14, title: '知识测验', category: '复盘', icon: HelpCircle, component: QuizSlide },
+    {
+        id: 15,
+        title: '项目过关',
+        category: '进入 A4 前',
+        icon: CheckCircle,
+        component: () => (
+            <div className="slide-enter space-y-6 pb-20">
+                <MasteryCheck
+                    title="A3 排序算法项目过关检查"
+                    description="如果能追踪排序过程、设计测试样例、比较复杂度、解释循环，就可以进入字符串加密项目。"
+                    accent="blue"
+                    items={sortingMasteryItems}
+                />
+            </div>
+        ),
+    },
 ];
 
 export default function PythonSortingProject() {

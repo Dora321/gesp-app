@@ -1,8 +1,31 @@
 import React, { useState, useEffect } from 'react';
-import { Brain, Cpu, Database, Eye, Activity, Play, ArrowRight, RefreshCw, Zap, Target, ChevronDown } from 'lucide-react';
+import { Brain, Cpu, Database, Eye, Activity, Play, ArrowRight, RefreshCw, Zap, Target, ChevronDown, CheckCircle } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import PythonProjectSupport from '../../../components/PythonProjectSupport';
-import PythonLessonShell from '../shell/PythonLessonShell';
+import PythonLessonShell, { MasteryCheck } from '../shell/PythonLessonShell';
+
+const aiMasteryItems = [
+    {
+        label: '能说明 AI 不是魔法，而是根据数据找规律。',
+        evidence: '能用“输入特征 -> 模型判断 -> 输出结果”描述一个分类例子。',
+        retryHint: '回到 KNN 演示，先把点的位置、邻居和分类结果画出来。',
+    },
+    {
+        label: '能解释 KNN 为什么看最近的 K 个邻居。',
+        evidence: '能说出 K 太小容易受噪声影响，K 太大可能把远处样本也算进来。',
+        retryHint: '回到最近邻分类，试着改变新点位置，观察邻居投票。',
+    },
+    {
+        label: '能区分分类、回归和神经网络的直觉用途。',
+        evidence: '知道分类回答“是哪一类”，回归预测数值，神经网络用多层权重组合特征。',
+        retryHint: '回到三个可视化页，各写一句“它解决什么问题”。',
+    },
+    {
+        label: '能指出数据偏差会影响 AI 输出。',
+        evidence: '能举例说明训练样本不均衡、特征选错或样本太少会让判断不可靠。',
+        retryHint: '回到课后测验，把错误判断归因到数据或特征上。',
+    },
+];
 
 // --- Shared Components ---
 const Button = ({ onClick, children, className, variant = 'primary', disabled = false }) => {
@@ -422,6 +445,23 @@ const sections = [
     { id: 2, title: '神经网络可视化', category: '神经元直觉', icon: Activity, component: NNDemo },
     { id: 3, title: '线性回归 (Regression)', category: '拟合一条线', icon: Activity, component: LinearRegressionDemo },
     { id: 4, title: '课后测验 (Quiz)', category: '复盘', icon: Brain, component: Quiz },
+    {
+        id: 5,
+        title: '项目过关',
+        category: '进入 A9 前',
+        icon: CheckCircle,
+        component: () => (
+            <div className="space-y-6 animate-in fade-in slide-in-from-bottom-4 duration-500">
+                <MasteryCheck
+                    title="A8 AI 初探项目过关检查"
+                    description="如果能解释数据、模型、分类回归和偏差风险，就可以进入网络爬虫项目。"
+                    accent="indigo"
+                    theme="dark"
+                    items={aiMasteryItems}
+                />
+            </div>
+        ),
+    },
 ];
 
 export default function PythonAI() {

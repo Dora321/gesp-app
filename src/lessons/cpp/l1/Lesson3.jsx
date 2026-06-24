@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import CppL1LessonSupport from '../../../components/CppL1LessonSupport';
+import { MasteryCheck } from '../CppLessonShell';
 import {
   Pizza,
   Scissors,
@@ -19,6 +20,29 @@ import {
   X
 } from 'lucide-react';
 
+const lesson3MasteryItems = [
+  {
+    label: '能区分 int 和 double 的使用场景。',
+    evidence: '知道 int 存整数，double 存带小数点的数，7.0 属于 double。',
+    retryHint: '回到“整数盒子”和“小数盒子”，各写三个例子。',
+  },
+  {
+    label: '能解释整数除法为什么会去掉小数部分。',
+    evidence: '能说明 5 / 2 得到 2，不是 2.5，也不是四舍五入。',
+    retryHint: '回到“无情的去尾刀”，把 3.1、3.9、0.9 的结果再看一遍。',
+  },
+  {
+    label: '能让除法结果保留小数。',
+    evidence: '知道 5.0 / 2、5 / 2.0、1.0 * 5 / 2 都能得到 2.5。',
+    retryHint: '回到“魔法实验”，找出哪一边变成了小数。',
+  },
+  {
+    label: '能按运算优先级手算表达式。',
+    evidence: '能推导 3 - 3 * 3 / 5 的步骤，并解释中间的 9 / 5 变成 1。',
+    retryHint: '回到“真题实战”，一行只做一个运算步骤。',
+  },
+];
+
 // --- 课件内容数据 ---
 const sections = [
   { id: 1, title: '课程封面', icon: 'box', component: () => <CoverSlide />, category: "概念引入" },
@@ -29,7 +53,22 @@ const sections = [
   { id: 6, title: '魔法实验：保留小数', icon: 'brain', component: () => <MagicExperimentSlide />, category: "运算法则" },
   { id: 7, title: '真题实战：消失的数值', icon: 'trophy', component: () => <ExamWalkthroughSlide />, category: "实战演练" },
   { id: 8, title: '上机挑战：平均分计算器', icon: 'code', component: () => <CodeChallengeSlide />, category: "实战演练" },
-  { id: 9, title: '总结与作业', icon: 'check-circle', component: () => <HomeworkSlide />, category: "实战演练" }
+  { id: 9, title: '总结与作业', icon: 'check-circle', component: () => <HomeworkSlide />, category: "实战演练" },
+  {
+    id: 10,
+    title: '离开前检查',
+    icon: 'check-circle',
+    category: "实战演练",
+    component: () => (
+      <div className="py-6">
+        <MasteryCheck
+          title="C++ L1-3 数字的魔法离开前检查"
+          description="如果能区分 int/double、解释整数除法、保留小数、手算表达式，就可以进入输入输出课。"
+          items={lesson3MasteryItems}
+        />
+      </div>
+    ),
+  },
 ];
 
 

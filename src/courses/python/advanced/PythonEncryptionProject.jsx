@@ -1,9 +1,32 @@
 import React, { useState, useEffect, useMemo } from 'react';
 import { Link } from 'react-router-dom';
-import { Shield, Lock, Unlock, Key, FileText, ArrowRight, RotateCcw, Check, X, Terminal, Binary, Hash, Eye, EyeOff, Menu, RefreshCw } from 'lucide-react';
+import { Shield, Lock, Unlock, Key, FileText, ArrowRight, RotateCcw, Check, X, Terminal, Binary, Hash, Eye, EyeOff, Menu, RefreshCw, CheckCircle } from 'lucide-react';
 import PythonProjectSupport from '../../../components/PythonProjectSupport';
 import PyCodeTracer from '../../../components/PyCodeTracer';
-import PythonLessonShell from '../shell/PythonLessonShell';
+import PythonLessonShell, { MasteryCheck } from '../shell/PythonLessonShell';
+
+const encryptionMasteryItems = [
+    {
+        label: '能解释字符为什么可以用 ord / chr 转成数字再转回来。',
+        evidence: '能拿 A -> 65 或 a -> 97 举例，说清字符编码和位移的关系。',
+        retryHint: '回到 ASCII 编码，先把字符、数字、再转回字符画成箭头。',
+    },
+    {
+        label: '能处理大小写、非字母和边界回绕。',
+        evidence: '能说明 Z 右移 3 会回到 C，空格和标点不应该被乱改。',
+        retryHint: '回到凯撒密码，先分清大写起点、小写起点和非字母分支。',
+    },
+    {
+        label: '能证明加密和解密是可逆的一对操作。',
+        evidence: '能用同一条消息做 encrypt -> decrypt，最后回到原文。',
+        retryHint: '先用短词 HELLO 测，再加入 z、空格、标点做边界测试。',
+    },
+    {
+        label: '能说清凯撒密码为什么只是学习工具，不是真安全。',
+        evidence: '知道位移只有有限种，能通过尝试所有 shift 暴力破解。',
+        retryHint: '回到特工实战，观察尝试不同位移时密文如何被还原。',
+    },
+];
 
 const Icon = ({ name, className }) => {
     const icons = {
@@ -876,9 +899,6 @@ print(caesar_encrypt("HELLO", 3))  # 输出: KHOOR`}
     );
 };
 
-import { CheckCircle } from 'lucide-react'; // Adding this just in case.
-
-
 const sections = [
     { id: 1, title: '任务简报', category: '为什么加密', icon: FileText, component: IntroSlide },
     { id: 2, title: 'ASCII 编码', category: '字符即数字', icon: Binary, component: ASCIISlide },
@@ -886,6 +906,23 @@ const sections = [
     { id: 4, title: '动手编程', category: '写加密函数', icon: Terminal, component: CodeChallengeSlide },
     { id: 5, title: 'XOR 加密', category: '异或魔法', icon: Hash, component: XORSlide },
     { id: 6, title: '特工实战', category: '破解挑战', icon: Shield, component: PracticeSlide },
+    {
+        id: 7,
+        title: '项目过关',
+        category: '进入 A5 前',
+        icon: CheckCircle,
+        component: () => (
+            <div className="slide-enter space-y-6 pb-20">
+                <MasteryCheck
+                    title="A4 加密解密项目过关检查"
+                    description="如果能解释字符编码、处理边界、验证可逆性、说明安全局限，就可以进入摩斯项目。"
+                    accent="teal"
+                    theme="dark"
+                    items={encryptionMasteryItems}
+                />
+            </div>
+        ),
+    },
 ];
 
 export default function PythonEncryptionProject() {

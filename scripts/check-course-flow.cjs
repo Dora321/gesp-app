@@ -722,6 +722,46 @@ function assertCppLessonsKeepPredictionChecks() {
   );
 }
 
+function assertCppLevel1IntroLessonsKeepMasteryChecks() {
+  const lessons = [
+    {
+      path: 'src/lessons/cpp/l1/Lesson1.jsx',
+      title: 'C++ L1-1 你好计算机离开前检查',
+      concepts: ['输入设备和输出设备', 'ENIAC 使用电子管', '冯·诺依曼体系结构', '#include、main、cout、分号'],
+      nextPath: '/lesson/1/2',
+      message: 'C++ L1 lesson 1 should keep a mastery check for input/output devices, computing history, C++ skeleton, and Hello World errors.',
+    },
+    {
+      path: 'src/lessons/cpp/l1/Lesson2.jsx',
+      title: 'C++ L1-2 变量与数据离开前检查',
+      concepts: ['带名字的数据盒子', '类型、变量名、赋值号、初始值和分号', '空格/减号', 'apple + pen'],
+      nextPath: '/lesson/1/3',
+      message: 'C++ L1 lesson 2 should keep a mastery check for variable definition, naming rules, identifier traps, and simple output transfer.',
+    },
+    {
+      path: 'src/lessons/cpp/l1/Lesson3.jsx',
+      title: 'C++ L1-3 数字的魔法离开前检查',
+      concepts: ['int 和 double', '整数除法', '5.0 / 2', '3 - 3 * 3 / 5'],
+      nextPath: '/lesson/1/4',
+      message: 'C++ L1 lesson 3 should keep a mastery check for numeric types, integer division, decimal-preserving division, and expression tracing.',
+    },
+  ];
+
+  for (const lesson of lessons) {
+    const text = read(lesson.path);
+    assert(
+      text.includes('MasteryCheck') &&
+        text.includes(lesson.title) &&
+        lesson.concepts.every((concept) => text.includes(concept)),
+      lesson.message
+    );
+    assert(
+      text.includes(`navigate('${lesson.nextPath}')`),
+      `${lesson.path}: should keep the next lesson route ${lesson.nextPath}.`
+    );
+  }
+}
+
 function assertCppWhileLessonKeepsDigitTrace() {
   const lesson = read('src/lessons/cpp/l1/Lesson10.jsx');
 
@@ -952,6 +992,122 @@ function assertPythonFoundationCoreLessonsKeepMasteryChecks() {
   }
 }
 
+function assertPythonBridgeKeepsProjectReadinessCheck() {
+  const bridge = read('src/courses/python/foundation/PythonBridge.jsx');
+  const foundationFlow = read('src/data/pythonFoundationFlow.js');
+
+  assert(
+    bridge.includes('bridgeMasteryItems') &&
+      bridge.includes('项目线入口离开前检查') &&
+      bridge.includes('输入、状态、循环、判断、输出') &&
+      bridge.includes('F1-F7') &&
+      bridge.includes('answer=42、guess=30') &&
+      bridge.includes('限制最多猜 7 次') &&
+      bridge.includes('def make_hint') &&
+      bridge.includes('F5 的状态变化直觉') &&
+      bridge.includes('F7 的去重和成员判断'),
+    'Python bridge should keep a concrete before-project readiness check that proves decomposition, transfer, loop tracing, and project extension.'
+  );
+  assert(
+    foundationFlow.includes("label: '进入桥梁课：猜数字大冒险', path: '/python/bridge'") &&
+      !foundationFlow.includes("label: '进入 A1：算法思维入门', path: '/python/a1'"),
+    'Python F7 support links should route students through the bridge lesson before A1.'
+  );
+}
+
+function assertPythonProjectsKeepMasteryChecks() {
+  const projects = [
+    {
+      path: 'src/courses/python/advanced/PythonAdvanced1.jsx',
+      title: 'A1 算法思维项目过关检查',
+      concepts: ['输入、过程、输出', '枚举、贪心、递归', '递归一定要有终止条件', '最小代码实验'],
+      message: 'Python A1 should keep a project mastery check for decomposition, strategy choice, recursion base cases, and minimal experiments.',
+    },
+    {
+      path: 'src/courses/python/advanced/BinarySearchProject.jsx',
+      title: 'A2 二分搜索项目过关检查',
+      concepts: ['数据有序', 'low、high、mid', '找到、偏小、偏大、找不到', '三组边界样例'],
+      message: 'Python binary-search project should keep a mastery check for sorted preconditions, boundary updates, miss cases, and edge tests.',
+    },
+    {
+      path: 'src/courses/python/advanced/PythonSortingProject.jsx',
+      title: 'A3 排序算法项目过关检查',
+      concepts: ['O(n²)', '元素不丢、不多、不乱改', 'O(n log n)', '外层循环和内层比较'],
+      message: 'Python sorting project should keep a mastery check for process tracing, test cases, complexity comparison, and loop explanation.',
+    },
+    {
+      path: 'src/courses/python/advanced/PythonEncryptionProject.jsx',
+      title: 'A4 加密解密项目过关检查',
+      concepts: ['ord / chr', '大小写、非字母和边界回绕', '加密和解密是可逆', '凯撒密码为什么只是学习工具'],
+      nextPath: '/python/morse',
+      requiresDarkMasteryCheck: true,
+      message: 'Python encryption project should keep a mastery check for character encoding, edge cases, reversibility, and security limits.',
+    },
+    {
+      path: 'src/courses/python/advanced/PythonMorseProject.jsx',
+      title: 'A5 摩斯电码项目过关检查',
+      concepts: ['字符到摩斯码的映射', '大小写、空格和未知字符', '字典翻转', '双向转换'],
+      nextPath: '/python/file-ops',
+      requiresDarkMasteryCheck: true,
+      message: 'Python Morse project should keep a mastery check for dictionary mapping, unknown characters, reverse lookup, and round-trip verification.',
+    },
+    {
+      path: 'src/courses/python/advanced/PythonFileOps.jsx',
+      title: 'A6 文件操作项目过关检查',
+      concepts: ['r、w、a 三种打开模式', 'with open', 'FileNotFoundError', '保存成可复盘的文本文件'],
+      nextPath: '/python/a2',
+      message: 'Python file-ops project should keep a mastery check for modes, safe with-open usage, file errors, and saved artifacts.',
+    },
+    {
+      path: 'src/courses/python/advanced/PythonAdvanced2.jsx',
+      title: 'A7 2048 游戏项目过关检查',
+      concepts: ['二维列表表示 2048 棋盘', '压缩、合并、再压缩', '旋转或转置', '满盘、可合并、不可移动、移动后生成新块'],
+      nextPath: '/python/ai',
+      message: 'Python 2048 project should keep a mastery check for board representation, move decomposition, direction reuse, and rule tests.',
+    },
+    {
+      path: 'src/courses/python/advanced/PythonAI.jsx',
+      title: 'A8 AI 初探项目过关检查',
+      concepts: ['AI 不是魔法', '最近的 K 个邻居', '分类、回归和神经网络', '数据偏差'],
+      nextPath: '/python/crawler',
+      requiresDarkMasteryCheck: true,
+      message: 'Python AI project should keep a mastery check for data-model reasoning, KNN, task types, and bias risk.',
+    },
+    {
+      path: 'src/courses/python/advanced/PythonCrawler.jsx',
+      title: 'A9 网络爬虫项目过关检查',
+      concepts: ['请求、响应和状态码', 'robots、频率和公开数据边界', '请求、解析、清洗和存储', '空结果、分页和异常情况'],
+      nextPath: '/',
+      requiresDarkMasteryCheck: true,
+      message: 'Python crawler project should keep a mastery check for HTTP states, crawling boundaries, pipeline decomposition, and failure handling.',
+    },
+  ];
+
+  for (const project of projects) {
+    const text = read(project.path);
+    assert(
+      text.includes('MasteryCheck') &&
+        text.includes("title: '项目过关'") &&
+        text.includes(project.title) &&
+        project.concepts.every((concept) => text.includes(concept)),
+      project.message
+    );
+    if (project.nextPath) {
+      assert(
+        text.includes(`nextPath="${project.nextPath}"`),
+        `${project.path}: project mastery check should keep the next lesson route ${project.nextPath}.`
+      );
+    }
+    if (project.requiresDarkMasteryCheck) {
+      assert(
+        text.includes('theme="dark"') &&
+          /<MasteryCheck[\s\S]*?theme="dark"[\s\S]*?items=/.test(text),
+        `${project.path}: dark project pages should keep a dark-themed MasteryCheck.`
+      );
+    }
+  }
+}
+
 function assertPyCodeTracerKeepsClearFinalActionLabel() {
   const tracer = read('src/components/PyCodeTracer.jsx');
 
@@ -1022,6 +1178,7 @@ async function main() {
   assertCppLoopLessonKeepsExecutionTrace();
   assertCppPredictCheckKeepsLearningLoop();
   assertCppLessonsKeepPredictionChecks();
+  assertCppLevel1IntroLessonsKeepMasteryChecks();
   assertCppWhileLessonKeepsDigitTrace();
   assertCppNestedLoopLessonKeepsExecutionTrace();
   assertCppArrayLessonKeepsTraversalTrace();
@@ -1036,6 +1193,8 @@ async function main() {
   assertPythonLessonShellKeepsMasteryCheck();
   assertPythonFoundationCoreLessonsKeepMasteryChecks();
   assertPythonFoundationF3KeepsMasteryCheck();
+  assertPythonBridgeKeepsProjectReadinessCheck();
+  assertPythonProjectsKeepMasteryChecks();
   assertPyCodeTracerKeepsClearFinalActionLabel();
   assertCppLessonShellSupportsLessonSupport();
 

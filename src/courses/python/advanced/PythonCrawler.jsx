@@ -2,7 +2,30 @@ import React, { useState } from 'react';
 import { Globe, Search, Database, Code, Shield, Download, ArrowRight, Play, PlayCircle, RefreshCw, Smartphone, Key, ChevronDown, FileText, Layers, Cpu, Bug, CheckCircle, XCircle, AlertTriangle, AlertCircle, Info, Film, Terminal, User, Lock, Unlock } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import PythonProjectSupport from '../../../components/PythonProjectSupport';
-import PythonLessonShell from '../shell/PythonLessonShell';
+import PythonLessonShell, { MasteryCheck } from '../shell/PythonLessonShell';
+
+const crawlerMasteryItems = [
+    {
+        label: '能解释请求、响应和状态码的关系。',
+        evidence: '能说清 200、403、404 分别代表什么，以及程序应该怎么分支处理。',
+        retryHint: '回到 HTTP 状态码页，先把三个状态码写成 if / elif / else。',
+    },
+    {
+        label: '能遵守 robots、频率和公开数据边界。',
+        evidence: '能说出不抓登录数据、不高频请求、不绕过限制，并先看 robots.txt。',
+        retryHint: '回到爬虫协议页，给自己的项目写三条安全规则。',
+    },
+    {
+        label: '能把请求、解析、清洗和存储拆成函数。',
+        evidence: '能画出 get_html -> parse_items -> clean_data -> save_data 的流程。',
+        retryHint: '回到解析数据和数据存储页，先只处理一个字段。',
+    },
+    {
+        label: '能处理空结果、分页和异常情况。',
+        evidence: '知道页面没有目标元素、下一页不存在、网络失败时不能让程序直接崩掉。',
+        retryHint: '回到分页处理和实战挑战，给每一步加失败样例。',
+    },
+];
 
 // --- Shared Components ---
 const Button = ({ onClick, children, className, variant = 'primary', disabled = false }) => {
@@ -1395,6 +1418,23 @@ const sections = [
     { id: 10, title: '项目二: 必应壁纸', icon: Download, component: BingWallpaperProjectSlide },
     { id: 11, title: '项目三: B站热门', icon: PlayCircle, component: BilibiliProjectSlide },
     { id: 12, title: '实战挑战 (Challenge)', icon: Cpu, component: PracticeSlide },
+    {
+        id: 13,
+        title: '项目过关',
+        category: '项目线收尾',
+        icon: CheckCircle,
+        component: () => (
+            <div className="space-y-6 animate-in fade-in slide-in-from-bottom-4 duration-500">
+                <MasteryCheck
+                    title="A9 网络爬虫项目过关检查"
+                    description="如果能解释请求响应、遵守边界、拆清流程、处理失败情况，Python 项目线就完成了。"
+                    accent="teal"
+                    theme="dark"
+                    items={crawlerMasteryItems}
+                />
+            </div>
+        ),
+    },
 ];
 
 export default function PythonCrawler() {

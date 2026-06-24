@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import CppL1LessonSupport from '../../../components/CppL1LessonSupport';
+import { MasteryCheck } from '../CppLessonShell';
 import {
   Backpack,
   Box,
@@ -18,6 +19,29 @@ import {
   Menu
 } from 'lucide-react';
 
+const lesson2MasteryItems = [
+  {
+    label: '能说清变量是“带名字的数据盒子”。',
+    evidence: '能用 int a = 5; 说明类型、变量名、赋值号、初始值和分号。',
+    retryHint: '回到“造盒子：变量定义”，逐个点击代码组成部分。',
+  },
+  {
+    label: '能判断变量名是否合法。',
+    evidence: '能检查是否有空格/减号、是否数字开头、是否用了 int 等关键字。',
+    retryHint: '回到三条起名纪律，把每条规则各写一个反例。',
+  },
+  {
+    label: '能解释大小写和下划线在变量名里的作用。',
+    evidence: '知道 score、Score、my_score 是不同名字，下划线合法但减号不合法。',
+    retryHint: '回到侦探挑战，用 super_man 和 super-man 对比。',
+  },
+  {
+    label: '能写出两个变量并输出它们的和。',
+    evidence: '例如 int apple = 10; int pen = 20; cout << apple + pen;',
+    retryHint: '回到“上机实操 & 总结”，先模仿 final homework example。',
+  },
+];
+
 // --- 课件内容数据 ---
 const sections = [
   { id: 1, title: '乱糟糟的书包', icon: 'backpack', component: () => <IntroSlide />, category: "概念引入" },
@@ -28,7 +52,22 @@ const sections = [
   { id: 6, title: '侦探眼力大挑战', icon: 'search', component: () => <GameSlide />, category: "实战演练" },
   { id: 7, title: '真题实战 (2023.12)', icon: 'trophy', component: () => <QuizSlide data={{ question: '以下 C++ 不可以作为变量的名称的是（ ）。', options: ['CCF GESP', 'ccfGESP', 'CCFgesp', 'CCF_GESP'], correct: 0, analysis: 'A选项中间有空格，变量名必须连在一起！D选项下划线是合法的。' }} />, category: "实战演练" },
   { id: 8, title: '真题实战 (2024.06)', icon: 'trophy', component: () => <QuizSlide data={{ question: '在 C++ 中，下列不可做变量的是（ ）。', options: ['five-Star', 'five_star', 'fiveStar', '_fiveStar'], correct: 0, analysis: 'A选项包含减号(-)，计算机认为是减法运算。B选项下划线是合法的。' }} />, category: "实战演练" },
-  { id: 9, title: '上机实操 & 总结', icon: 'code', component: () => <SummarySlide />, category: "实战演练" }
+  { id: 9, title: '上机实操 & 总结', icon: 'code', component: () => <SummarySlide />, category: "实战演练" },
+  {
+    id: 10,
+    title: '离开前检查',
+    icon: 'check',
+    category: "实战演练",
+    component: () => (
+      <div className="py-6">
+        <MasteryCheck
+          title="C++ L1-2 变量与数据离开前检查"
+          description="如果能解释变量、判断变量名、区分大小写和下划线、写出两个变量求和，就可以进入数据类型课。"
+          items={lesson2MasteryItems}
+        />
+      </div>
+    ),
+  },
 ];
 
 

@@ -8,7 +8,30 @@ import {
 import { Link } from 'react-router-dom';
 import PythonProjectSupport from '../../../components/PythonProjectSupport';
 import PyCodeTracer from '../../../components/PyCodeTracer';
-import PythonLessonShell from '../shell/PythonLessonShell';
+import PythonLessonShell, { MasteryCheck } from '../shell/PythonLessonShell';
+
+const binarySearchMasteryItems = [
+    {
+        label: '能说明二分查找的前提是数据有序。',
+        evidence: '如果列表没排好，能解释为什么 mid 左右大小关系不可靠。',
+        retryHint: '回到“效率大对决”，先比较顺序找和二分找各依赖什么条件。',
+    },
+    {
+        label: '能手推 low、high、mid 的每一轮变化。',
+        evidence: '给定 1-100 找 73，能写出前几轮区间如何缩小。',
+        retryHint: '回到“代码大解密”，逐轮填表，不要直接背代码。',
+    },
+    {
+        label: '能处理找到、偏小、偏大、找不到四种结果。',
+        evidence: '能说出命中返回，mid 偏小时 low = mid + 1，偏大时 high = mid - 1，区间空了就是不存在。',
+        retryHint: '回到“猜数字游戏”，把每次提示对应到边界更新。',
+    },
+    {
+        label: '能用三组边界样例测试二分函数。',
+        evidence: '至少测试目标在开头、结尾、不存在，确认不会漏查或死循环。',
+        retryHint: '先写测试清单，再运行代码；不要只测刚好在中间的数。',
+    },
+];
 
 // --- 辅助组件 ---
 const Icon = ({ name, size = 20, className = "" }) => {
@@ -569,6 +592,22 @@ const sections = [
     { id: 3, title: '挑战电脑 (反转)', category: '动手练习', icon: Zap, component: UserPracticeSlide },
     { id: 4, title: '猜数字游戏', category: '玩中学', icon: Play, component: PlayerGuessSlide },
     { id: 5, title: '代码大解密', category: 'Python 实现', icon: Code, component: LogicSlide },
+    {
+        id: 6,
+        title: '项目过关',
+        category: '进入 A3 前',
+        icon: SearchCheck,
+        component: () => (
+            <div className="slide-enter space-y-6 pb-20">
+                <MasteryCheck
+                    title="A2 二分搜索项目过关检查"
+                    description="如果能说清有序前提、手推边界、处理找不到、设计边界测试，就可以进入排序项目。"
+                    accent="indigo"
+                    items={binarySearchMasteryItems}
+                />
+            </div>
+        ),
+    },
 ];
 
 export default function BinarySearchProject() {
@@ -601,4 +640,3 @@ export default function BinarySearchProject() {
         </>
     );
 }
-

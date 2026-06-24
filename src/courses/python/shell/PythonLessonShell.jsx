@@ -74,8 +74,10 @@ export function MasteryCheck({
     items = [],
     accent = 'teal',
     className = '',
+    theme = 'light',
 }) {
     const color = getAccent(accent);
+    const isDark = theme === 'dark';
     const [checked, setChecked] = useState(() => new Set());
     const total = items.length;
     const done = checked.size;
@@ -96,25 +98,25 @@ export function MasteryCheck({
     const reset = () => setChecked(new Set());
 
     return (
-        <section className={`rounded-2xl border border-slate-200 bg-white p-5 shadow-sm ${className}`} aria-label="离开前过关检查">
+        <section className={`rounded-2xl border p-5 shadow-sm ${isDark ? 'border-slate-700 bg-slate-900/80' : 'border-slate-200 bg-white'} ${className}`} aria-label="离开前过关检查">
             <div className="mb-4 flex flex-col gap-2 sm:flex-row sm:items-start sm:justify-between">
                 <div>
                     <div className={`inline-flex items-center gap-2 rounded-full px-3 py-1 text-xs font-black ring-1 ${color.light} ${color.text} ${color.ring}`}>
                         <CheckCircle2 size={14} />
                         掌握检查
                     </div>
-                    <h3 className="mt-2 text-xl font-black text-slate-950">{title}</h3>
-                    <p className="mt-1 text-sm font-semibold leading-6 text-slate-500">{description}</p>
+                    <h3 className={`mt-2 text-xl font-black ${isDark ? 'text-white' : 'text-slate-950'}`}>{title}</h3>
+                    <p className={`mt-1 text-sm font-semibold leading-6 ${isDark ? 'text-slate-400' : 'text-slate-500'}`}>{description}</p>
                 </div>
                 <div className="flex shrink-0 items-center gap-2">
-                    <span className={`rounded-full px-3 py-1 text-xs font-black ${ready ? 'bg-emerald-100 text-emerald-700' : 'bg-slate-100 text-slate-500'}`}>
+                    <span className={`rounded-full px-3 py-1 text-xs font-black ${ready ? (isDark ? 'bg-emerald-500/15 text-emerald-200 ring-1 ring-emerald-400/30' : 'bg-emerald-100 text-emerald-700') : (isDark ? 'bg-slate-800 text-slate-300 ring-1 ring-slate-700' : 'bg-slate-100 text-slate-500')}`}>
                         {done}/{total}
                     </span>
                     {done > 0 && (
                         <button
                             type="button"
                             onClick={reset}
-                            className="inline-flex items-center gap-1 rounded-md bg-slate-50 px-2.5 py-1 text-xs font-black text-slate-500 ring-1 ring-slate-200 transition hover:bg-slate-100"
+                            className={`inline-flex items-center gap-1 rounded-md px-2.5 py-1 text-xs font-black ring-1 transition ${isDark ? 'bg-slate-800 text-slate-300 ring-slate-700 hover:bg-slate-700' : 'bg-slate-50 text-slate-500 ring-slate-200 hover:bg-slate-100'}`}
                         >
                             <RotateCcw size={13} />
                             重置
@@ -132,19 +134,19 @@ export function MasteryCheck({
                             type="button"
                             onClick={() => toggle(index)}
                             aria-pressed={active}
-                            className={`rounded-xl border p-4 text-left transition ${active ? 'border-emerald-300 bg-emerald-50' : 'border-slate-200 bg-slate-50 hover:border-teal-200 hover:bg-white'}`}
+                            className={`rounded-xl border p-4 text-left transition ${active ? (isDark ? 'border-emerald-400/60 bg-emerald-500/15' : 'border-emerald-300 bg-emerald-50') : isDark ? 'border-slate-700 bg-slate-800/70 hover:border-teal-400/50 hover:bg-slate-800' : 'border-slate-200 bg-slate-50 hover:border-teal-200 hover:bg-white'}`}
                         >
                             <div className="flex gap-3">
-                                <span className={`mt-0.5 flex h-6 w-6 shrink-0 items-center justify-center rounded-md text-xs font-black ${active ? 'bg-emerald-600 text-white' : 'bg-white text-slate-400 ring-1 ring-slate-200'}`}>
+                                <span className={`mt-0.5 flex h-6 w-6 shrink-0 items-center justify-center rounded-md text-xs font-black ${active ? (isDark ? 'bg-emerald-300 text-slate-950' : 'bg-emerald-600 text-white') : isDark ? 'bg-slate-900 text-slate-400 ring-1 ring-slate-700' : 'bg-white text-slate-400 ring-1 ring-slate-200'}`}>
                                     {active ? '✓' : index + 1}
                                 </span>
                                 <span className="min-w-0">
-                                    <span className="block text-sm font-black leading-6 text-slate-900">{item.label}</span>
+                                    <span className={`block text-sm font-black leading-6 ${active ? (isDark ? 'text-emerald-50' : 'text-slate-900') : isDark ? 'text-slate-100' : 'text-slate-900'}`}>{item.label}</span>
                                     {item.evidence && (
-                                        <span className="mt-1 block text-sm font-semibold leading-6 text-slate-600">{item.evidence}</span>
+                                        <span className={`mt-1 block text-sm font-semibold leading-6 ${active ? (isDark ? 'text-emerald-100/80' : 'text-slate-600') : isDark ? 'text-slate-400' : 'text-slate-600'}`}>{item.evidence}</span>
                                     )}
                                     {item.retryHint && !active && (
-                                        <span className="mt-2 block text-xs font-bold leading-5 text-amber-700">还不稳：{item.retryHint}</span>
+                                        <span className={`mt-2 block text-xs font-bold leading-5 ${isDark ? 'text-amber-300' : 'text-amber-700'}`}>还不稳：{item.retryHint}</span>
                                     )}
                                 </span>
                             </div>
@@ -153,7 +155,7 @@ export function MasteryCheck({
                 })}
             </div>
 
-            <div className={`mt-4 rounded-xl px-4 py-3 text-sm font-bold leading-6 ${ready ? 'bg-emerald-50 text-emerald-800' : 'bg-amber-50 text-amber-800'}`}>
+            <div className={`mt-4 rounded-xl px-4 py-3 text-sm font-bold leading-6 ${ready ? (isDark ? 'bg-emerald-500/15 text-emerald-100 ring-1 ring-emerald-400/30' : 'bg-emerald-50 text-emerald-800') : (isDark ? 'bg-amber-500/15 text-amber-100 ring-1 ring-amber-300/30' : 'bg-amber-50 text-amber-800')}`}>
                 {ready
                     ? '可以进入下一课：你已经能用自己的解释和例子证明这节课不是只看懂。'
                     : '建议先补齐未勾选项：过关标准是能解释、能验证、能换一个例子做。'}
@@ -236,7 +238,7 @@ export default function PythonLessonShell({
             </div>
 
             {/* 侧边栏 */}
-            <aside className={`fixed inset-y-0 left-0 z-50 flex h-full w-72 flex-col border-r ${t.aside} shadow-lg transition-transform md:relative md:translate-x-0 ${isMobileMenuOpen ? 'translate-x-0' : '-translate-x-full'}`}>
+            <aside className={`fixed inset-y-0 left-0 z-50 flex h-full min-h-0 w-72 flex-col border-r ${t.aside} shadow-lg transition-transform md:relative md:translate-x-0 ${isMobileMenuOpen ? 'translate-x-0' : '-translate-x-full'}`}>
                 <div className={`border-b ${t.divider} p-6`}>
                     <Link to={homePath} className={`inline-flex items-center gap-2 text-sm font-black ${color.text}`}>
                         <Home size={16} />
@@ -246,7 +248,7 @@ export default function PythonLessonShell({
                     <h2 className={`mt-1 text-lg font-black ${t.title}`}>{lessonCode}：{lessonTitle}</h2>
                     {lessonSubtitle && <p className={`mt-1 text-xs font-semibold ${t.subtitle}`}>{lessonSubtitle}</p>}
                 </div>
-                <div className="flex-1 overflow-y-auto py-4">
+                <div className="min-h-0 flex-1 overflow-y-auto py-4">
                     {sections.map((section, i) => {
                         const active = activeSection === section.id;
                         const Icon = section.icon;
