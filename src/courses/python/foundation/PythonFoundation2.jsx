@@ -284,6 +284,15 @@ const ComparisonSlide = () => {
                     </div>
                 </div>
             </div>
+
+            <PredictCheck
+                title="先预测：链式比较"
+                prompt="x = 15。在 Python 里 print(1 < x < 10) 会输出什么？"
+                options={['True', 'False']}
+                correctIndex={1}
+                explanation="Python 支持链式比较：1 < x < 10 等价于 (1 < x) and (x < 10)。x = 15 时 x < 10 为假，所以整体是 False。"
+                misconception="C++ 不能这样写！在 C++ 里 1 < x < 10 会先算 1 < x 得 true（1），再算 1 < 10 永远成立——是经典陷阱。两套语言别记混。"
+            />
         </div>
     );
 };
@@ -595,6 +604,15 @@ for i in range(${targetSteps}):
                     hint="range(5) 给出 0,1,2,3,4——所以要打印「第 i+1 步」才是 1~5。"
                 />
             </div>
+
+            <PredictCheck
+                title="先预测：range 的终点"
+                prompt="for i in range(1, 5): 循环体执行几次？最后一次 i 是几？"
+                options={['5 次，最后 i = 5', '4 次，最后 i = 4']}
+                correctIndex={1}
+                explanation="range(1, 5) 取 1、2、3、4，不包含终点 5。所以执行 4 次，最后一次 i = 4。记住：range 的终点是「够不到」的。"
+                misconception="以为 range(1, 5) 会取到 5。终点永远取不到，这正是循环少跑或多跑一次的常见原因。"
+            />
         </div>
     );
 };
