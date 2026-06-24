@@ -7,7 +7,7 @@ import {
     Sliders, Key, BarChart2, Calculator, Coins, ChevronUp, ChevronDown
 } from 'lucide-react';
 import PythonFoundationSupport from '../../../components/PythonFoundationSupport';
-import PythonLessonShell, { SlideHeader } from '../shell/PythonLessonShell';
+import PythonLessonShell, { MasteryCheck, SlideHeader } from '../shell/PythonLessonShell';
 
 // --- Shared Helper Components (Reused style) ---
 const Button = ({ onClick, children, className, variant = 'primary', disabled = false }) => {
@@ -618,6 +618,29 @@ const RandomFloatSlide = () => {
     );
 };
 
+const f6MasteryItems = [
+    {
+        label: '能先 import random，再选择合适的随机工具。',
+        evidence: '能说出 randint 生成整数，choice 从序列里选一个，shuffle 打乱列表。',
+        retryHint: '回到“召唤”，先把 import 和工具名写在同一张小抄上。',
+    },
+    {
+        label: '能解释 randint(a, b) 的边界包含 a 和 b。',
+        evidence: '例如 random.randint(1, 6) 可能得到 1，也可能得到 6。',
+        retryHint: '回到“骰子”，把起点和终点都写进可能结果列表。',
+    },
+    {
+        label: '能区分 choice、shuffle 和 sample 的返回结果。',
+        evidence: '能说明 shuffle 原地改列表并返回 None，sample 返回新列表。',
+        retryHint: '回到“洗牌”，运行前先预测原列表和新变量会变成什么。',
+    },
+    {
+        label: '能用随机规则做一个小玩法或测试数据。',
+        evidence: '例如随机点名、随机骰子、随机抽奖，并能说出随机范围。',
+        retryHint: '回到“纠错”，先把输入、随机规则、输出结果分成三步。',
+    },
+];
+
 const SummarySlide = () => {
     return (
         <div className="space-y-8 animate-in fade-in slide-in-from-bottom-4 duration-500">
@@ -666,6 +689,13 @@ const SummarySlide = () => {
                     </div>
                 </div>
             </div>
+
+            <MasteryCheck
+                title="F6 随机世界离开前检查"
+                description="如果能选对随机工具、说清边界、避开 shuffle 返回 None 的坑、做出小玩法，就可以进入集合。"
+                accent="indigo"
+                items={f6MasteryItems}
+            />
         </div>
     );
 };
@@ -705,4 +735,3 @@ export default function PythonFoundation6() {
         />
     );
 }
-

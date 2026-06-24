@@ -1,7 +1,7 @@
 import React, { useMemo, useState } from 'react';
 import { AlertTriangle, ClipboardCheck, Database, ListChecks, Search, Sigma } from 'lucide-react';
 import CppL2LessonSupport from '../../../components/CppL2LessonSupport';
-import CppLessonShell, { Callout, CodeBlock, CodeTracer, CompareTable, MiniQuiz, StepList } from '../CppLessonShell';
+import CppLessonShell, { Callout, CodeBlock, CodeTracer, CompareTable, MasteryCheck, MiniQuiz, PredictCheck, StepList } from '../CppLessonShell';
 
 const sections = [
     { id: 1, title: '课程导入', category: '一组数据' },
@@ -131,6 +131,34 @@ function ArrayTraversalTracer() {
     );
 }
 
+function ArrayPredictionChecks() {
+    return (
+        <div className="grid gap-4 lg:grid-cols-3">
+            <PredictCheck
+                prompt="int a[5] 有 5 个元素，访问 a[5] 合法吗？"
+                options={['合法，因为有 5 个元素', '不合法，最后一个是 a[4]']}
+                correctIndex={1}
+                explanation="数组长度是 5，但下标从 0 开始，所以 5 个位置是 a[0]、a[1]、a[2]、a[3]、a[4]。"
+                misconception="把元素个数和最大合法下标混了。"
+            />
+            <PredictCheck
+                prompt="遍历 n 个元素时，for 条件更稳的是哪一个？"
+                options={['i < n', 'i <= n']}
+                correctIndex={0}
+                explanation="i < n 会让 i 走 0 到 n - 1，刚好覆盖 n 个合法下标。i <= n 会多访问一次 a[n]。"
+                misconception="只数循环次数，忘了循环体里会用 i 当下标。"
+            />
+            <PredictCheck
+                prompt="找最大值时，mx 一定可以先写成 0 吗？"
+                options={['可以，0 最方便', '不一定，最好先用 a[0]']}
+                correctIndex={1}
+                explanation="如果数组里全是负数，mx = 0 会比所有数据都大，答案就错了。用 a[0] 更稳。"
+                misconception="把练习里的正数样例当成所有题目的规律。"
+            />
+        </div>
+    );
+}
+
 const quiz = [
     {
         question: '长度为 5 的数组，下标范围是多少？',
@@ -146,6 +174,24 @@ const quiz = [
         question: 'a[5] 是第几个元素？',
         answer: '第 6 个',
         reason: '下标 0 对应第 1 个，下标 5 对应第 6 个。',
+    },
+];
+
+const arrayMasteryItems = [
+    {
+        label: '能说出长度为 n 的数组，合法下标为什么是 0 到 n - 1。',
+        evidence: '随口举例：长度 5 对应 a[0] 到 a[4]，a[5] 越界。',
+        retryHint: '回到“下标访问”小节，重新做 a[5] 预测题。',
+    },
+    {
+        label: '能手推一次遍历表，解释 i = 5 时为什么停下。',
+        evidence: '能写出 i = 0、1、2、3、4 访问了哪些元素，i = 5 不访问。',
+        retryHint: '回到数组遍历追踪器，一步一步点到循环结束。',
+    },
+    {
+        label: '能把求和模板迁移到计数或最大值题。',
+        evidence: '能说明变化的是循环体：sum += a[i]、cnt++ 或更新 mx。',
+        retryHint: '先改一行循环体，不要同时改循环边界。',
     },
 ];
 
@@ -213,6 +259,7 @@ cout << a[4];  // 50
                         <Callout icon={AlertTriangle} title="边界口诀" tone="amber">
                             有 n 个元素，循环通常写 <code>for (int i = 0; i &lt; n; i++)</code>，不是 <code>i &lt;= n</code>。
                         </Callout>
+                        <ArrayPredictionChecks />
                     </>
                 ),
                 4: (
@@ -249,6 +296,11 @@ for (int i = 0; i < n; i++) {
                             </p>
                         </div>
                         <MiniQuiz items={quiz} />
+                        <MasteryCheck
+                            title="数组课离开前检查"
+                            description="数组题最怕“看懂代码，但下标一写就越界”。勾选前先拿纸手推一个小例子。"
+                            items={arrayMasteryItems}
+                        />
                         <Callout icon={ClipboardCheck} title="课后任务" tone="slate">
                             <ul className="space-y-2">
                                 <li>输入 n 个整数，输出它们的总和。</li>

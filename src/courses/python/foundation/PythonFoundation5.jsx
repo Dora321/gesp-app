@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 import { MousePointer2, Move, Square, Palette, Sparkles, ChevronRight, Home, PenTool, Trophy, BookOpen, Zap, Star, Target, Award, Menu, X, CheckCircle, RefreshCw, ArrowRight, Repeat, Terminal, Network } from 'lucide-react';
 import TurtleCanvas from '../../../components/TurtleCanvas';
 import PythonFoundationSupport from '../../../components/PythonFoundationSupport';
-import PythonLessonShell, { SlideHeader } from '../shell/PythonLessonShell';
+import PythonLessonShell, { MasteryCheck, SlideHeader } from '../shell/PythonLessonShell';
 
 // --- Shared Helper Components ---
 const Button = ({ onClick, children, className, variant = 'primary' }) => {
@@ -532,6 +532,29 @@ const PlaygroundSlide = () => {
     );
 };
 
+const f5MasteryItems = [
+    {
+        label: '能用 forward 和 right 解释海龟每一步的位置和方向。',
+        evidence: '拿正方形举例，能说出每次前进多少、转多少度。',
+        retryHint: '回到“移动”和“形状”，先用纸画箭头，再运行代码。',
+    },
+    {
+        label: '能把重复画边的代码改成 for 循环。',
+        evidence: '能把 4 条边或 6 条边写成“重复次数 + 每次动作”。',
+        retryHint: '回到“循环魔法”，把一条边的动作圈出来再重复。',
+    },
+    {
+        label: '能控制画笔状态，不让不该连线的地方连上。',
+        evidence: '能说明什么时候用 penup()，什么时候用 pendown()。',
+        retryHint: '回到“画笔控制”，先区分“移动位置”和“留下线条”。',
+    },
+    {
+        label: '能改颜色、填充或角度，做出一个自己的图形变体。',
+        evidence: '不是照抄示例，而是能把边数、颜色或旋转角度换掉再解释效果。',
+        retryHint: '回到“生成艺术”，一次只改一个变量，观察图形怎么变。',
+    },
+];
+
 const SummarySlide = () => {
     return (
         <div className="space-y-8 animate-in fade-in slide-in-from-bottom-4 duration-500">
@@ -580,6 +603,13 @@ const SummarySlide = () => {
                     </Link>
                 </div>
             </div>
+
+            <MasteryCheck
+                title="F5 turtle 绘图离开前检查"
+                description="如果能解释海龟方向、用循环画图、控制画笔状态、做出图形变体，就可以进入随机世界。"
+                accent="teal"
+                items={f5MasteryItems}
+            />
         </div>
     );
 };

@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 import { Layers, List, Box, Key, Search, ArrowRight, RefreshCw, Plus, Trash2, Edit3, Menu, X, Grid3x3, BookOpen, CheckCircle } from 'lucide-react';
 import PythonFoundationSupport from '../../../components/PythonFoundationSupport';
 import PyCodeTracer from '../../../components/PyCodeTracer';
-import PythonLessonShell, { SlideHeader } from '../shell/PythonLessonShell';
+import PythonLessonShell, { MasteryCheck, SlideHeader } from '../shell/PythonLessonShell';
 
 // --- Shared Components ---
 const Button = ({ onClick, children, className, variant = 'primary', disabled = false }) => {
@@ -1460,6 +1460,29 @@ const Grid2DSlide = () => {
     );
 };
 
+const f3MasteryItems = [
+    {
+        label: '能判断什么时候用 list、dict、string 或二维 list。',
+        evidence: '能说出：一组有顺序的数据用 list；按标签查信息用 dict；文字处理用 string；棋盘/表格用二维 list。',
+        retryHint: '回看小结三张卡，再给“学生名单、学生档案、聊天文本、九宫格”各选一次容器。',
+    },
+    {
+        label: '能解释下标、key 和切片的不同访问规则。',
+        evidence: '能说明 list/string 用位置，dict 用 key；grid[行][列] 先选行；text[1:4] 不包含 4。',
+        retryHint: '分别重做列表、字典、字符串和二维列表的追踪器。',
+    },
+    {
+        label: '能处理越界或找不到键，不让程序直接崩掉。',
+        evidence: '能说出 items[3] 会 IndexError，profile["job"] 会 KeyError，可以先判断或用 get(default)。',
+        retryHint: '回看列表下标追踪器和字典访问追踪器，把错误名说出来。',
+    },
+    {
+        label: '能把一个小任务拆成“读数据、改数据、遍历处理”。',
+        evidence: '例如名单管理：先查名字是否存在，再 append/remove，最后 for 遍历输出。',
+        retryHint: '回到列表练习顺序，按“先读下标、再改背包、最后遍历”做一遍。',
+    },
+];
+
 const SummarySlide = () => (
     <div className="space-y-6 animate-in fade-in slide-in-from-bottom-4 duration-500">
         <SlideHeader accent="teal" icon={BookOpen} title="小结与下一步">
@@ -1488,6 +1511,12 @@ const SummarySlide = () => (
                 <li className="flex gap-2"><span className="text-teal-500">✓</span> 能处理找不到键或下标越界</li>
             </ul>
         </div>
+        <MasteryCheck
+            title="F3 数据结构离开前检查"
+            description="如果能选容器、说清访问规则、处理错误、迁移到小任务，就可以进入函数课。"
+            accent="teal"
+            items={f3MasteryItems}
+        />
         <div className="rounded-2xl border border-teal-100 bg-teal-50 p-5">
             <div className="mb-1 font-black text-teal-800">下一课：F4 函数与模块</div>
             <p className="text-sm font-semibold leading-7 text-teal-900">

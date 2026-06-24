@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { Box, Code, Package, Zap, ArrowRight, RefreshCw, Sparkles, BookOpen, AlertCircle, Menu, X, Play, Trophy, CheckCircle, XCircle, Star, Calculator, Dices, Clock } from 'lucide-react';
 import PythonFoundationSupport from '../../../components/PythonFoundationSupport';
-import PythonLessonShell, { SlideHeader } from '../shell/PythonLessonShell';
+import PythonLessonShell, { MasteryCheck, SlideHeader } from '../shell/PythonLessonShell';
 
 // --- Shared Components ---
 const Button = ({ onClick, children, className, variant = 'primary', disabled = false }) => {
@@ -887,6 +887,29 @@ const TryExceptSlide = () => {
     );
 };
 
+const f4MasteryItems = [
+    {
+        label: '能把一段重复代码改成函数。',
+        evidence: '能说出函数名、参数和 return 分别负责什么。',
+        retryHint: '回到函数定义，把“变化的部分”先圈出来当参数。',
+    },
+    {
+        label: '能区分 print 是展示，return 是交回结果。',
+        evidence: '能解释为什么一个函数想继续参与计算，通常要 return。',
+        retryHint: '回到“进阶函数”，用一个加法函数分别试 print 和 return。',
+    },
+    {
+        label: '能判断变量在函数里面还是外面有效。',
+        evidence: '看到局部变量和全局变量时，能说出谁能访问谁。',
+        retryHint: '回到“作用域”，用“房间内/房间外”的方式画边界。',
+    },
+    {
+        label: '能给可能失败的代码加 try / except。',
+        evidence: '例如把 int(input()) 包起来，并给用户一个能继续修改的提示。',
+        retryHint: '回到“异常处理”，先找最可能爆掉的那一行。',
+    },
+];
+
 const SummarySlide = () => (
     <div className="space-y-6 animate-in fade-in slide-in-from-bottom-4 duration-500">
         <SlideHeader accent="indigo" icon={CheckCircle} title="小结与下一步">
@@ -914,6 +937,12 @@ const SummarySlide = () => (
                 <li className="flex gap-2"><span className="text-indigo-500">✓</span> 能判断哪些变量只在函数内有效</li>
             </ul>
         </div>
+        <MasteryCheck
+            title="F4 函数与异常离开前检查"
+            description="如果能封装重复代码、说清 print/return、判断作用域、给错误兜底，就可以进入 turtle 项目。"
+            accent="indigo"
+            items={f4MasteryItems}
+        />
         <div className="rounded-2xl border border-indigo-100 bg-indigo-50 p-5">
             <div className="mb-1 font-black text-indigo-800">下一课：F5 绘图魔法</div>
             <p className="text-sm font-semibold leading-7 text-indigo-900">

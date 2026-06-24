@@ -647,6 +647,81 @@ function assertCppLoopLessonKeepsExecutionTrace() {
   );
 }
 
+function assertCppPredictCheckKeepsLearningLoop() {
+  const shell = read('src/lessons/cpp/CppLessonShell.jsx');
+
+  assert(
+    shell.includes('export function PredictCheck') &&
+      shell.includes('先预测，再验证') &&
+      shell.includes('常见错因') &&
+      shell.includes('再试一次'),
+    'CppLessonShell should export a reusable PredictCheck component for prediction -> feedback -> misconception learning loops.'
+  );
+  assert(
+    shell.includes("current.action ?? '下一步'") &&
+      !shell.includes("steps[safeStep + 1]?.action ?? '下一步'"),
+    'CppLessonShell CodeTracer should use the current step action so button labels match the next student action.'
+  );
+  assert(
+    shell.includes('export function MasteryCheck') &&
+      shell.includes('离开前过关检查') &&
+      shell.includes('能预测、能改错、能换一个例子再做') &&
+      shell.includes('可以进入下一课'),
+    'CppLessonShell should export a reusable MasteryCheck component for lightweight before-next-lesson checks.'
+  );
+}
+
+function assertCppLessonsKeepPredictionChecks() {
+  const loopLesson = read('src/lessons/cpp/l1/Lesson9.jsx');
+  const arrayLesson = read('src/lessons/cpp/l2/Lesson12.jsx');
+  const bubbleLesson = read('src/lessons/cpp/l4/Lesson9.jsx');
+
+  assert(
+    loopLesson.includes('ForLoopPredictionChecks') &&
+      loopLesson.includes('for (i = 1; i < 10; i++) 结束后') &&
+      loopLesson.includes('把最后一次执行的 i 值，当成循环结束后的 i 值') &&
+      loopLesson.includes('for (int i = 0; i < 5; i++) 最后一次进入循环体时 i 是多少？'),
+    'C++ L1 lesson 9 should keep for-loop prediction checks for execution count and final i traps.'
+  );
+  assert(
+    arrayLesson.includes('ArrayPredictionChecks') &&
+      arrayLesson.includes('访问 a[5] 合法吗？') &&
+      arrayLesson.includes('i < n') &&
+      arrayLesson.includes('mx 一定可以先写成 0 吗？') &&
+      arrayLesson.includes('把元素个数和最大合法下标混了'),
+    'C++ L2 lesson 12 should keep array prediction checks for bounds, traversal condition, and max initialization.'
+  );
+  assert(
+    bubbleLesson.includes('BubblePredictionChecks') &&
+      bubbleLesson.includes('做完第一轮冒泡后，谁会归位？') &&
+      bubbleLesson.includes('为什么内层边界是 j < n - 1 - i？') &&
+      bubbleLesson.includes('什么时候需要交换 a[j] 和 a[j+1]？') &&
+      bubbleLesson.includes('以为第一轮会排好所有数'),
+    'C++ L4 lesson 9 should keep bubble-sort prediction checks for pass outcome, shrinking bounds, and swap condition.'
+  );
+  assert(
+    loopLesson.includes('forLoopMasteryItems') &&
+      loopLesson.includes('for 循环离开前检查') &&
+      loopLesson.includes('能手推循环结束后 i 的值') &&
+      loopLesson.includes('把“最后一次进入”和“循环结束后”分成两列写'),
+    'C++ L1 lesson 9 should keep the before-next-lesson mastery check for loop boundaries.'
+  );
+  assert(
+    arrayLesson.includes('arrayMasteryItems') &&
+      arrayLesson.includes('数组课离开前检查') &&
+      arrayLesson.includes('能手推一次遍历表') &&
+      arrayLesson.includes('能把求和模板迁移到计数或最大值题'),
+    'C++ L2 lesson 12 should keep the before-next-lesson mastery check for array bounds and transfer.'
+  );
+  assert(
+    bubbleLesson.includes('bubbleMasteryItems') &&
+      bubbleLesson.includes('冒泡排序离开前检查') &&
+      bubbleLesson.includes('能手推第一轮冒泡') &&
+      bubbleLesson.includes('能把升序冒泡改成降序冒泡'),
+    'C++ L4 lesson 9 should keep the before-next-lesson mastery check for bubble-sort transfer.'
+  );
+}
+
 function assertCppWhileLessonKeepsDigitTrace() {
   const lesson = read('src/lessons/cpp/l1/Lesson10.jsx');
 
@@ -800,6 +875,83 @@ function assertPythonFoundationStringKeepsTraceAndFocusFlow() {
   );
 }
 
+function assertPythonLessonShellKeepsMasteryCheck() {
+  const shell = read('src/courses/python/shell/PythonLessonShell.jsx');
+
+  assert(
+    shell.includes('export function MasteryCheck') &&
+      shell.includes('离开前过关检查') &&
+      shell.includes('能解释、能验证、能换一个例子做') &&
+      shell.includes('可以进入下一课'),
+    'PythonLessonShell should export a reusable MasteryCheck component for before-next-lesson checks.'
+  );
+}
+
+function assertPythonFoundationF3KeepsMasteryCheck() {
+  const lesson = read('src/courses/python/foundation/PythonFoundation3.jsx');
+
+  assert(
+    lesson.includes('f3MasteryItems') &&
+      lesson.includes('F3 数据结构离开前检查') &&
+      lesson.includes('能判断什么时候用 list、dict、string 或二维 list') &&
+      lesson.includes('能解释下标、key 和切片的不同访问规则') &&
+      lesson.includes('能处理越界或找不到键') &&
+      lesson.includes('能把一个小任务拆成“读数据、改数据、遍历处理”'),
+    'Python foundation F3 should keep the before-next-lesson mastery check for data-structure selection, access rules, errors, and transfer.'
+  );
+}
+
+function assertPythonFoundationCoreLessonsKeepMasteryChecks() {
+  const lessons = [
+    {
+      path: 'src/courses/python/foundation/PythonFoundation1.jsx',
+      title: 'F1 入门基础离开前检查',
+      concepts: ['print、input 和变量', '字符串、整数和小数', '/、// 和 %', '括号、引号、拼写和缩进'],
+      message: 'Python foundation F1 should keep mastery checks for I/O, variables, types, arithmetic, and basic debugging.',
+    },
+    {
+      path: 'src/courses/python/foundation/PythonFoundation2.jsx',
+      title: 'F2 控制流程离开前检查',
+      concepts: ['if / elif / else', 'range(start, stop, step)', 'for 和 while', '死循环'],
+      message: 'Python foundation F2 should keep mastery checks for branching, range, loop choice, and infinite-loop diagnosis.',
+    },
+    {
+      path: 'src/courses/python/foundation/PythonFoundation4.jsx',
+      title: 'F4 函数与异常离开前检查',
+      concepts: ['重复代码改成函数', 'print 是展示，return 是交回结果', '变量在函数里面还是外面有效', 'try / except'],
+      message: 'Python foundation F4 should keep mastery checks for function extraction, return values, scope, and error handling.',
+    },
+    {
+      path: 'src/courses/python/foundation/PythonFoundation5.jsx',
+      title: 'F5 turtle 绘图离开前检查',
+      concepts: ['forward 和 right', 'for 循环', 'penup()', '图形变体'],
+      message: 'Python foundation F5 should keep mastery checks for turtle movement, loops, pen state, and visual transfer.',
+    },
+    {
+      path: 'src/courses/python/foundation/PythonFoundation6.jsx',
+      title: 'F6 随机世界离开前检查',
+      concepts: ['import random', 'randint(a, b)', 'shuffle 原地改列表并返回 None', '随机规则'],
+      message: 'Python foundation F6 should keep mastery checks for random APIs, boundaries, return values, and playful transfer.',
+    },
+    {
+      path: 'src/courses/python/foundation/PythonFoundation7.jsx',
+      title: 'F7 集合宝藏离开前检查',
+      concepts: ['唯一、无序、不能用下标访问', 'list(set(data))', 'name in seen', 'A | B、A & B、A - B'],
+      message: 'Python foundation F7 should keep mastery checks for set traits, deduplication, membership, and set operations.',
+    },
+  ];
+
+  for (const lesson of lessons) {
+    const text = read(lesson.path);
+    assert(
+      text.includes('MasteryCheck') &&
+        text.includes(lesson.title) &&
+        lesson.concepts.every((concept) => text.includes(concept)),
+      lesson.message
+    );
+  }
+}
+
 function assertPyCodeTracerKeepsClearFinalActionLabel() {
   const tracer = read('src/components/PyCodeTracer.jsx');
 
@@ -868,6 +1020,8 @@ async function main() {
   assertLessonQualityBarKeepsLearningLoop();
   assertLessonNextStepsKeepsErrorDiagnosis();
   assertCppLoopLessonKeepsExecutionTrace();
+  assertCppPredictCheckKeepsLearningLoop();
+  assertCppLessonsKeepPredictionChecks();
   assertCppWhileLessonKeepsDigitTrace();
   assertCppNestedLoopLessonKeepsExecutionTrace();
   assertCppArrayLessonKeepsTraversalTrace();
@@ -879,6 +1033,9 @@ async function main() {
   assertPythonFoundationGridKeepsRowColumnTrace();
   assertPythonFoundationDictKeepsAccessTrace();
   assertPythonFoundationStringKeepsTraceAndFocusFlow();
+  assertPythonLessonShellKeepsMasteryCheck();
+  assertPythonFoundationCoreLessonsKeepMasteryChecks();
+  assertPythonFoundationF3KeepsMasteryCheck();
   assertPyCodeTracerKeepsClearFinalActionLabel();
   assertCppLessonShellSupportsLessonSupport();
 

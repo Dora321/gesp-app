@@ -2,7 +2,7 @@ import React, { useState, useMemo } from 'react';
 import { GitBranch, Repeat, HelpCircle, CheckCircle, AlertTriangle, Play, RefreshCw, XCircle, Zap, List, Grid3x3, TreePine, TrendingUp, Code, BookOpen } from 'lucide-react';
 import PythonFoundationSupport from '../../../components/PythonFoundationSupport';
 import PyCodeTracer from '../../../components/PyCodeTracer';
-import PythonLessonShell, { SlideHeader } from '../shell/PythonLessonShell';
+import PythonLessonShell, { MasteryCheck, SlideHeader } from '../shell/PythonLessonShell';
 
 // --- Shared Components ---
 const Button = ({ onClick, children, className, variant = 'primary', disabled = false }) => {
@@ -920,6 +920,29 @@ const QuizSlide = () => {
     );
 };
 
+const f2MasteryItems = [
+    {
+        label: '能先预测 if / elif / else 会走哪一个分支。',
+        evidence: '给一个分数或年龄，能在运行前说出哪个条件最先变成 True。',
+        retryHint: '回到“条件判断”，按从上到下的顺序逐句判断真/假。',
+    },
+    {
+        label: '能解释 range(start, stop, step) 的终点为什么不包含。',
+        evidence: '能写出 range(2, 10, 2) 会产生 2、4、6、8，不会到 10。',
+        retryHint: '回到“循环”，把每次 i 的值写成一列，不要只看公式。',
+    },
+    {
+        label: '能判断 for 和 while 该选哪一个。',
+        evidence: '次数明确用 for，等某个条件发生再停用 while，并能说出停止条件。',
+        retryHint: '回到“While 循环与中断”，先问自己“我知道要重复几次吗”。',
+    },
+    {
+        label: '能找出一个死循环为什么停不下来。',
+        evidence: '能指出循环条件里的变量有没有在循环体里被改变。',
+        retryHint: '回到“逻辑大师挑战赛”，用表格追踪变量每一轮的变化。',
+    },
+];
+
 const SummarySlide = () => (
     <div className="space-y-6 animate-in fade-in slide-in-from-bottom-4 duration-500">
         <SlideHeader accent="blue" icon={BookOpen} title="小结与下一步">
@@ -949,6 +972,13 @@ const SummarySlide = () => (
                 <li className="flex gap-2"><span className="text-blue-500">✓</span> 能避免 while 条件不变导致死循环</li>
             </ul>
         </div>
+
+        <MasteryCheck
+            title="F2 控制流程离开前检查"
+            description="如果能预测分支、手推 range、区分 for/while、定位死循环，就可以进入数据结构。"
+            accent="blue"
+            items={f2MasteryItems}
+        />
 
         <div className="rounded-2xl border border-blue-100 bg-blue-50 p-5">
             <div className="mb-1 font-black text-blue-800">下一课：F3 列表与字典</div>

@@ -1,7 +1,7 @@
 import React, { useMemo, useState } from 'react';
 import { ArrowRightLeft, ClipboardCheck, Repeat, Search } from 'lucide-react';
 import CppL4LessonSupport from '../../../components/CppL4LessonSupport';
-import CppLessonShell, { Callout, CodeBlock, CodeTracer, CompareTable, MiniQuiz, StepList } from '../CppLessonShell';
+import CppLessonShell, { Callout, CodeBlock, CodeTracer, CompareTable, MasteryCheck, MiniQuiz, PredictCheck, StepList } from '../CppLessonShell';
 
 const sections = [
     { id: 1, title: '课程导入', category: '相邻比较' },
@@ -163,6 +163,34 @@ function BubbleSortTracer() {
     );
 }
 
+function BubblePredictionChecks() {
+    return (
+        <div className="grid gap-4 lg:grid-cols-3">
+            <PredictCheck
+                prompt="数组 [5, 1, 4, 2, 8] 做完第一轮冒泡后，谁会归位？"
+                options={['1 会到最左边', '8 会到最右边', '整组已经完全有序']}
+                correctIndex={1}
+                explanation="升序冒泡的一轮扫描会把当前未排序区间里的最大值一路换到右侧。"
+                misconception="以为第一轮会排好所有数，或者只盯住最小值往左走。"
+            />
+            <PredictCheck
+                prompt="为什么内层边界是 j < n - 1 - i？"
+                options={['因为右侧 i 个数已经归位', '因为 j 每次要加 2', '因为外层 i 不能参与比较']}
+                correctIndex={0}
+                explanation="第 i 轮开始前，右侧已经有 i 个元素确定位置，不需要再比较；同时还要保证 a[j + 1] 不越界。"
+                misconception="只背模板，没有把右侧已归位区和 j + 1 的访问范围连起来。"
+            />
+            <PredictCheck
+                prompt="什么时候需要交换 a[j] 和 a[j+1]？"
+                options={['升序时 a[j] > a[j+1]', '升序时 a[j] < a[j+1]', '每次比较都交换']}
+                correctIndex={0}
+                explanation="升序排序要让小的在左、大的在右；当前面比后面大，顺序才是错的。"
+                misconception="把升序和降序条件反了，或者误以为冒泡必须每次都交换。"
+            />
+        </div>
+    );
+}
+
 const quiz = [
     {
         question: '冒泡排序每一轮通常确定哪个元素？',
@@ -178,6 +206,24 @@ const quiz = [
         question: '冒泡排序的核心动作是什么？',
         answer: '相邻比较并交换',
         reason: '只比较 a[j] 和 a[j+1]，顺序不对就交换。',
+    },
+];
+
+const bubbleMasteryItems = [
+    {
+        label: '能手推第一轮冒泡，指出哪个数会归位。',
+        evidence: '用 [5, 1, 4, 2, 8] 能说出第一轮结束后 8 在最右边。',
+        retryHint: '回到“冒泡思想”小节，先只看相邻两格比较。',
+    },
+    {
+        label: '能解释 j < n - 1 - i 同时保护已归位区和 a[j + 1]。',
+        evidence: '能说清右边 i 个不用再比，且 j + 1 不能越过数组末尾。',
+        retryHint: '回到代码模板，把 n = 5、i = 0/1 代进去看。',
+    },
+    {
+        label: '能把升序冒泡改成降序冒泡。',
+        evidence: '知道只改比较方向：升序前大后小换，降序前小后大换。',
+        retryHint: '先别动双重循环，只改 if 里的比较符号。',
     },
 ];
 
@@ -218,6 +264,7 @@ export default function CppL4Lesson9() {
                                 ['一轮结束', '最大值一路向右移动', '队尾确定一个元素'],
                             ]}
                         />
+                        <BubblePredictionChecks />
                     </>
                 ),
                 3: (
@@ -278,6 +325,11 @@ export default function CppL4Lesson9() {
                             </p>
                         </div>
                         <MiniQuiz items={quiz} />
+                        <MasteryCheck
+                            title="冒泡排序离开前检查"
+                            description="排序题不能只背模板。离开前至少能手推一轮、解释边界、改一个方向。"
+                            items={bubbleMasteryItems}
+                        />
                         <Callout icon={ClipboardCheck} title="课后任务" tone="slate">
                             <ul className="space-y-2">
                                 <li>读入 n 个整数，用冒泡排序升序输出。</li>

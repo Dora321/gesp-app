@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { Terminal, Box, Calculator, MessageSquare, ArrowRight, Play, RefreshCw, CheckCircle, Tag, Bug, BookOpen, HelpCircle, Menu, X, Sparkles, Globe, Code, Palette, TrendingUp } from 'lucide-react';
 import PythonFoundationSupport from '../../../components/PythonFoundationSupport';
-import PythonLessonShell, { SlideHeader } from '../shell/PythonLessonShell';
+import PythonLessonShell, { MasteryCheck, SlideHeader } from '../shell/PythonLessonShell';
 
 // --- Shared Components (will move to separate files later if needed) ---
 const Button = ({ onClick, children, className, variant = 'primary' }) => {
@@ -813,6 +813,28 @@ const ChallengeSlide = () => {
     );
 }
 
+const f1MasteryItems = [
+    {
+        label: '能把 print、input 和变量连成一个小对话。',
+        evidence: '例如先问名字，再把名字放进一句欢迎语里输出。',
+        retryHint: '回到“输入与输出”，先画出“输入 -> 保存 -> 输出”的箭头。',
+    },
+    {
+        label: '能解释字符串、整数和小数为什么不能乱混着算。',
+        evidence: '能说出 "3" 和 3 的区别，并知道什么时候需要 int() 或 float()。',
+        retryHint: '回到“数据类型侦探”，用 type() 先查清数据身份。',
+    },
+    {
+        label: '能用一个数字例子验证 /、// 和 % 的结果。',
+        evidence: '拿 17 和 5 手算：除法、小商、余数分别是什么。',
+        retryHint: '回到“运算游乐场”，不要背符号，先做一次拆数。',
+    },
+    {
+        label: '能根据报错先查括号、引号、拼写和缩进。',
+        evidence: '看到 SyntaxError 或 NameError 时，能说出第一步要检查哪里。',
+        retryHint: '回到“捉虫特工队”，把错误信息里的行号和关键词圈出来。',
+    },
+];
 
 const SummarySlide = () => (
     <div className="space-y-6 animate-in fade-in slide-in-from-bottom-4 duration-500">
@@ -841,6 +863,12 @@ const SummarySlide = () => (
                 <li className="flex gap-2"><span className="text-indigo-500">✓</span> 能根据报错定位括号、引号或拼写</li>
             </ul>
         </div>
+        <MasteryCheck
+            title="F1 入门基础离开前检查"
+            description="如果能完成一个输入输出小程序、说清数据类型、手算运算结果、按报错定位问题，就可以进入控制流程。"
+            accent="indigo"
+            items={f1MasteryItems}
+        />
         <div className="rounded-2xl border border-indigo-100 bg-indigo-50 p-5">
             <div className="mb-1 font-black text-indigo-800">下一课：F2 控制流程</div>
             <p className="text-sm font-semibold leading-7 text-indigo-900">

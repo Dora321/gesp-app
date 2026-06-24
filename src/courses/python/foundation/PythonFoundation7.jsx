@@ -7,7 +7,7 @@ import {
     CheckCircle, List, FileQuestion, BookOpen
 } from 'lucide-react';
 import PythonFoundationSupport from '../../../components/PythonFoundationSupport';
-import PythonLessonShell, { SlideHeader } from '../shell/PythonLessonShell';
+import PythonLessonShell, { MasteryCheck, SlideHeader } from '../shell/PythonLessonShell';
 
 // --- Shared Helper Components ---
 const Button = ({ onClick, children, className, variant = 'primary', disabled = false }) => {
@@ -507,6 +507,29 @@ const QuizSlide = () => {
     );
 };
 
+const f7MasteryItems = [
+    {
+        label: '能解释集合唯一、无序、不能用下标访问。',
+        evidence: '看到 {1, 2, 2} 能说出重复会消失，也不能写 s[0]。',
+        retryHint: '回到“创建集合”，把集合和列表的访问方式分开比较。',
+    },
+    {
+        label: '能用 set 去重，并知道结果顺序不保证不变。',
+        evidence: '能把 list(set(data)) 说成“去重工具”，但不拿它保护原顺序。',
+        retryHint: '回到“去重技巧”，先问自己是否需要保留原来的排列。',
+    },
+    {
+        label: '能用 in 判断成员，并说出为什么集合查找更适合大量数据。',
+        evidence: '能把“找某个名字是否出现过”改成 name in seen。',
+        retryHint: '回到“闪电查找”，比较列表一个个找和集合直接问。',
+    },
+    {
+        label: '能用并集、交集、差集描述两个集合的关系。',
+        evidence: '给 A 和 B，能说出 A | B、A & B、A - B 分别代表什么。',
+        retryHint: '回到“集合运算”，先用韦恩图圈出每块区域。',
+    },
+];
+
 const SummarySlide = () => (
     <div className="space-y-6 animate-in fade-in slide-in-from-bottom-4 duration-500">
         <SlideHeader accent="teal" icon={BookOpen} title="魔法笔记 (Cheat Sheet)">
@@ -577,6 +600,13 @@ const SummarySlide = () => (
                 </div>
             </div>
         </div>
+
+        <MasteryCheck
+            title="F7 集合宝藏离开前检查"
+            description="如果能解释集合特性、正确去重、用 in 查找、用集合运算描述关系，就可以进入项目桥梁。"
+            accent="teal"
+            items={f7MasteryItems}
+        />
     </div>
 );
 

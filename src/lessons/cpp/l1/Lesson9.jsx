@@ -19,7 +19,7 @@ import {
   X
 } from 'lucide-react';
 import CppL1LessonSupport from '../../../components/CppL1LessonSupport';
-import { CodeTracer } from '../CppLessonShell';
+import { CodeTracer, MasteryCheck, PredictCheck } from '../CppLessonShell';
 import CodeSnippet from '../CodeSnippet';
 
 // --- 图标组件 ---
@@ -271,6 +271,50 @@ const TrapTracer = () => {
   );
 };
 
+const ForLoopPredictionChecks = () => (
+  <div className="my-6 grid gap-4 lg:grid-cols-3">
+    <PredictCheck
+      prompt="for (int i = 1; i <= 3; i++) 会执行几次循环体？"
+      options={['2 次', '3 次', '4 次']}
+      correctIndex={1}
+      explanation="i 会取 1、2、3 三个值。更新到 4 后，再判断 4 <= 3 为假，循环才结束。"
+      misconception="只看到了更新后的 4，忘了循环体只在条件为真时执行。"
+    />
+    <PredictCheck
+      prompt="for (i = 1; i < 10; i++) 结束后，i 停在几？"
+      options={['9', '10', '不确定']}
+      correctIndex={1}
+      explanation="最后一次执行时 i = 9，执行完 i++ 变成 10；再次判断 10 < 10 为假，所以停在 10。"
+      misconception="把最后一次执行的 i 值，当成循环结束后的 i 值。"
+    />
+    <PredictCheck
+      prompt="for (int i = 0; i < 5; i++) 最后一次进入循环体时 i 是多少？"
+      options={['4', '5', '6']}
+      correctIndex={0}
+      explanation="条件是 i < 5，所以 i = 0、1、2、3、4 都能进入；i = 5 时不能进入。"
+      misconception="把循环结束时的 i = 5，当成最后一次执行时的 i。"
+    />
+  </div>
+);
+
+const forLoopMasteryItems = [
+  {
+    label: '能说清 for 循环三段分别负责什么。',
+    evidence: '能把 int i = 1、i <= 3、i++ 分别说成起点、能否继续、跑完后更新。',
+    retryHint: '回到“代码咒语”小节，把三段分别遮住再解释。',
+  },
+  {
+    label: '能手推循环结束后 i 的值。',
+    evidence: '能解释 i = 9 执行完会先 i++ 到 10，再因为 10 < 10 为假停下。',
+    retryHint: '回到陷阱追踪器，不要跳过最后一次判断。',
+  },
+  {
+    label: '能换一个边界重新判断循环次数。',
+    evidence: '例如 i < 5 最后一次进入是 4，i <= 5 最后一次进入是 5。',
+    retryHint: '把“最后一次进入”和“循环结束后”分成两列写。',
+  },
+];
+
 // --- 题目组件 ---
 const Quiz = ({ question, options, correctIndex, explanation }) => {
   const [selected, setSelected] = useState(null);
@@ -510,6 +554,7 @@ cout << (N + i);`}
               <strong className="text-red-600">错！</strong> 为了打破循环，<code>i</code> 必须变成不满足条件的那个数。
             </p>
             <TrapTracer />
+            <ForLoopPredictionChecks />
             <div className="mt-6 bg-slate-800 text-white p-4 rounded-lg text-center shadow-lg">
               <span className="font-bold text-yellow-400 text-xl block mb-1">结论</span>
               循环结束时，i 的值通常比最后一次执行的值 <span className="bg-white text-slate-900 px-1 rounded font-bold">大 1</span> (对于 i++ 来说)。
@@ -581,6 +626,13 @@ cout << (N + i);`}
                   <li>出屋加一再回看。</li>
                 </ul>
               </div>
+
+              <MasteryCheck
+                title="for 循环离开前检查"
+                description="如果只会背口诀，还不算过关。至少要能手推一次结束边界。"
+                items={forLoopMasteryItems}
+                className="md:col-span-2"
+              />
 
               <div className="bg-gradient-to-br from-indigo-500 to-purple-600 text-white p-6 rounded-xl shadow-lg flex flex-col justify-center">
                 <h3 className="font-bold text-xl mb-4 flex items-center gap-2">
