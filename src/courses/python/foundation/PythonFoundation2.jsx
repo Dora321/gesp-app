@@ -2,7 +2,7 @@ import React, { useState, useMemo } from 'react';
 import { GitBranch, Repeat, HelpCircle, CheckCircle, AlertTriangle, Play, RefreshCw, XCircle, Zap, List, Grid3x3, TreePine, TrendingUp, Code, BookOpen } from 'lucide-react';
 import PythonFoundationSupport from '../../../components/PythonFoundationSupport';
 import PyCodeTracer from '../../../components/PyCodeTracer';
-import PythonLessonShell, { MasteryCheck, SlideHeader } from '../shell/PythonLessonShell';
+import PythonLessonShell, { MasteryCheck, PredictCheck, SlideHeader } from '../shell/PythonLessonShell';
 
 // --- Shared Components ---
 const Button = ({ onClick, children, className, variant = 'primary', disabled = false }) => {
@@ -346,6 +346,15 @@ else:
                     </div>
                 </div>
             </div>
+
+            <PredictCheck
+                title="先预测，再点灯"
+                prompt="light = 'red' 时，上面这段 if / elif / else 会打印几行？"
+                options={['3 行，每个分支都会查一遍', '1 行，命中 if 就停下']}
+                correctIndex={1}
+                explanation="if / elif / else 是一条链：命中第一个为真的分支就执行它，整条链立刻结束，不会再看后面的 elif / else。所以只打印 Stop! 一行。"
+                misconception="以为 if、elif、else 是三个各自独立的判断，会逐个都执行。"
+            />
         </div>
     );
 };

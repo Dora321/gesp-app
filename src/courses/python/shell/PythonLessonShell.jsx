@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
-import { ArrowRight, CheckCircle2, Home, Menu, RotateCcw, X } from 'lucide-react';
+import { ArrowRight, CheckCircle2, HelpCircle, Home, Menu, RotateCcw, X } from 'lucide-react';
 
 // 与 CppLessonShell 共用同一套配色 token，保证 C++ / Python 两套课视觉统一
 const accentMap = {
@@ -161,6 +161,115 @@ export function MasteryCheck({
                     : '建议先补齐未勾选项：过关标准是能解释、能验证、能换一个例子做。'}
             </div>
         </section>
+    );
+}
+
+// 先预测，再验证：强制学生在看答案前做一次预测，补齐「预测-运行-解释」闭环
+// 与 CppLessonShell 的 PredictCheck 视觉对齐（amber 预测色），支持浅色课 / 深色项目
+export function PredictCheck({
+    title = '先预测，再验证',
+    prompt,
+    options = [],
+    correctIndex = 0,
+    explanation,
+    misconception,
+    className = '',
+    theme = 'light',
+}) {
+    const isDark = theme === 'dark';
+    const [selected, setSelected] = useState(null);
+    const [revealed, setRevealed] = useState(false);
+    const normalizedOptions = options.map((option) => (typeof option === 'string' ? { label: option } : option));
+    const hasOptions = normalizedOptions.length > 0;
+    const isAnswered = selected !== null || revealed;
+    const isCorrect = selected === correctIndex;
+
+    const reset = () => {
+        setSelected(null);
+        setRevealed(false);
+    };
+
+    return (
+        <div className={`rounded-2xl border p-5 ${isDark ? 'border-amber-400/30 bg-amber-500/10' : 'border-amber-200 bg-amber-50'} ${className}`}>
+            <div className="mb-3 flex flex-wrap items-center justify-between gap-2">
+                <div className={`inline-flex items-center gap-2 rounded-full px-3 py-1 text-xs font-black ring-1 ${isDark ? 'bg-slate-900 text-amber-200 ring-amber-400/30' : 'bg-white text-amber-800 ring-amber-200'}`}>
+                    <HelpCircle size={14} />
+                    {title}
+                </div>
+                {isAnswered && (
+                    <button
+                        type="button"
+                        onClick={reset}
+                        className={`inline-flex items-center gap-1 rounded-md px-2.5 py-1 text-xs font-black ring-1 transition ${isDark ? 'bg-slate-900 text-slate-300 ring-amber-400/30 hover:bg-slate-800' : 'bg-white text-slate-500 ring-amber-200 hover:bg-amber-100'}`}
+                    >
+                        <RotateCcw size={13} />
+                        再试一次
+                    </button>
+                )}
+            </div>
+
+            <p className={`text-base font-black leading-7 ${isDark ? 'text-amber-50' : 'text-slate-950'}`}>{prompt}</p>
+
+            {hasOptions ? (
+                <div className="mt-4 grid gap-2 sm:grid-cols-2">
+                    {normalizedOptions.map((option, index) => {
+                        const chosen = selected === index;
+                        const correct = index === correctIndex;
+                        const showState = selected !== null;
+                        const stateClass = showState && correct
+                            ? (isDark ? 'border-emerald-400/60 bg-emerald-500/15 text-emerald-100' : 'border-emerald-500 bg-emerald-50 text-emerald-900')
+                            : showState && chosen
+                                ? (isDark ? 'border-rose-400/60 bg-rose-500/15 text-rose-100' : 'border-rose-400 bg-rose-50 text-rose-900')
+                                : (isDark ? 'border-slate-700 bg-slate-900 text-slate-200 hover:border-amber-400/40 hover:bg-slate-800' : 'border-white bg-white text-slate-700 hover:border-amber-300 hover:bg-amber-100');
+
+                        return (
+                            <button
+                                key={option.label}
+                                type="button"
+                                onClick={() => setSelected(index)}
+                                disabled={selected !== null}
+                                className={`min-h-14 rounded-lg border-2 px-3 py-2 text-left text-sm font-bold leading-6 transition disabled:cursor-default ${stateClass}`}
+                            >
+                                <span className={`mr-2 inline-flex h-6 w-6 items-center justify-center rounded-md text-xs font-black ring-1 ${isDark ? 'bg-slate-950 text-slate-400 ring-slate-700' : 'bg-white text-slate-500 ring-slate-200'}`}>
+                                    {String.fromCharCode(65 + index)}
+                                </span>
+                                {option.label}
+                            </button>
+                        );
+                    })}
+                </div>
+            ) : (
+                <button
+                    type="button"
+                    onClick={() => setRevealed(true)}
+                    disabled={revealed}
+                    className="mt-4 rounded-lg bg-amber-600 px-4 py-2 text-sm font-black text-white shadow-sm transition hover:bg-amber-700 disabled:cursor-default disabled:bg-slate-300"
+                >
+                    显示答案
+                </button>
+            )}
+
+            {isAnswered && (
+                <div className="mt-4 space-y-3">
+                    {hasOptions && (
+                        <div className={`inline-flex items-center gap-2 rounded-lg px-3 py-2 text-sm font-black ${isCorrect ? (isDark ? 'bg-emerald-500/15 text-emerald-200' : 'bg-emerald-100 text-emerald-800') : (isDark ? 'bg-rose-500/15 text-rose-200' : 'bg-rose-100 text-rose-800')}`}>
+                            <CheckCircle2 size={16} />
+                            {isCorrect ? '预测正确' : `正确答案：${normalizedOptions[correctIndex]?.label}`}
+                        </div>
+                    )}
+                    {explanation && (
+                        <p className={`rounded-lg p-3 text-sm font-bold leading-7 ring-1 ${isDark ? 'bg-slate-900 text-slate-200 ring-amber-400/20' : 'bg-white text-slate-700 ring-amber-100'}`}>
+                            {explanation}
+                        </p>
+                    )}
+                    {misconception && (
+                        <p className={`rounded-lg border p-3 text-sm font-semibold leading-7 ${isDark ? 'border-rose-400/30 bg-slate-900 text-rose-200' : 'border-rose-100 bg-white text-rose-700'}`}>
+                            常见错因：{misconception}
+                        </p>
+                    )}
+                </div>
+            )}
+        </div>
     );
 }
 
