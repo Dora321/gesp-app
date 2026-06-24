@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { Rocket, ListChecks, Repeat, FileCode2, Flag, Sparkles } from 'lucide-react';
-import PythonLessonShell, { SlideHeader, CodeBlock } from '../shell/PythonLessonShell';
+import PythonLessonShell, { MasteryCheck, SlideHeader, CodeBlock } from '../shell/PythonLessonShell';
 
 const skillMap = [
     ['想出一个 1–100 的答案', 'F6 随机', 'random.randint(1, 100)'],
@@ -8,13 +8,37 @@ const skillMap = [
     ['判断太大 / 太小 / 猜中', 'F2 控制流程', 'if / elif / else'],
     ['读入玩家输入的数字', 'F1 入门', 'int(input())'],
     ['记录每次猜的历史', 'F3 列表', 'history.append(n)'],
+    ['把提示规则封装出来', 'F4 函数', 'def make_hint(...)'],
     ['统计猜了几次', 'F1 + F2', '计数变量 + 累加'],
+];
+
+const bridgeMasteryItems = [
+    {
+        label: '能把一个小游戏拆成输入、状态、循环、判断、输出。',
+        evidence: '能指出猜数字里 input、answer、while、if、print 分别负责什么。',
+        retryHint: '回到“拆解规则”，先把游戏步骤写成一张表。',
+    },
+    {
+        label: '能把每个步骤连回 F1-F7 的旧知识，而不是当成新语法硬背。',
+        evidence: '至少能说出 F1 输入、F2 循环判断、F3 历史列表、F4 函数、F6 随机各在哪里出现。',
+        retryHint: '回到“完整程序”，逐行标注这行代码来自哪节基础课。',
+    },
+    {
+        label: '能在运行前预测一轮循环会发生什么。',
+        evidence: '给定 answer=42、guess=30，能说出提示、history 和 count 怎么变。',
+        retryHint: '回到“核心循环”，先手推一次“读输入 -> 比较 -> 记录 -> 输出”。',
+    },
+    {
+        label: '能设计一个小改造，把基础能力迁移到项目线。',
+        evidence: '例如限制最多猜 7 次、避免重复猜、记录最佳成绩，或把提示规则封装成函数。',
+        retryHint: '从一个最小改造开始，只加一个变量或一个函数，不要一次改太多。',
+    },
 ];
 
 const PreviewSlide = () => (
     <div className="space-y-6 animate-in fade-in slide-in-from-bottom-4 duration-500">
         <SlideHeader accent="violet" icon={Rocket} title="把学过的，拼成一个能玩的游戏">
-            这一课<strong>不学新语法</strong>。我们用 F1–F7 已经学会的全部本领，亲手拼出一个能玩的「猜数字大冒险」——这是从"学语法"迈向"做项目"的第一步。
+            这一课<strong>不学新语法</strong>。我们把 F1–F7 里最常用的本领组合起来，亲手拼出一个能玩的「猜数字大冒险」——这是从"学语法"迈向"做项目"的第一步。
         </SlideHeader>
         <div className="rounded-2xl border border-slate-200 bg-white p-6 shadow-sm">
             <div className="mb-3 text-sm font-black uppercase tracking-wider text-violet-600">成品预告</div>
@@ -120,12 +144,12 @@ const PlaySlide = () => {
 
 const FullCodeSlide = () => (
     <div className="space-y-6 animate-in fade-in slide-in-from-bottom-4 duration-500">
-        <SlideHeader accent="violet" icon={FileCode2} title="完整程序：六节课拼成一个游戏">
-            把刚才的核心循环加上"记录历史"，就是完整的程序。读一遍，注意它如何把 F1–F7 的本领串在一起。
+        <SlideHeader accent="violet" icon={FileCode2} title="完整程序：多节基础课拼成一个游戏">
+            把刚才的核心循环加上"函数封装"和"记录历史"，就是完整的程序。读一遍，注意它如何把基础课的本领串在一起。
         </SlideHeader>
-        <CodeBlock code={`import random                              # F6 随机\n\nanswer = random.randint(1, 100)           # F6 出题\nhistory = []                              # F3 列表记录\n\nwhile True:                               # F2 一直循环\n    guess = int(input("猜一个数: "))       # F1 读输入\n    history.append(guess)                 # F3 存历史\n    if guess == answer:                   # F2 判断\n        print("猜中了！用了", len(history), "次")\n        break                             # 跳出循环\n    elif guess < answer:\n        print("太小了")\n    else:\n        print("太大了")\n\nprint("你的猜测记录：", history)`} />
+        <CodeBlock code={`import random                              # F6 随机\n\ndef make_hint(guess, answer):              # F4 函数封装\n    if guess == answer:                    # F2 判断\n        return "猜中了！"\n    elif guess < answer:\n        return "太小了"\n    else:\n        return "太大了"\n\nanswer = random.randint(1, 100)           # F6 出题\nhistory = []                              # F3 列表记录\n\nwhile True:                               # F2 一直循环\n    guess = int(input("猜一个数: "))       # F1 读输入\n    history.append(guess)                 # F3 存历史\n    hint = make_hint(guess, answer)        # F4 调用函数\n    print(hint)\n    if guess == answer:\n        print("用了", len(history), "次")\n        break                             # 跳出循环\n\nprint("你的猜测记录：", history)`} />
         <div className="rounded-2xl border border-violet-100 bg-violet-50 p-5 text-sm font-semibold leading-7 text-violet-900">
-            看出来了吗？做项目不是学一堆全新的东西，而是<strong>把学过的小本领按规则拼起来</strong>。这正是接下来项目线要练的核心能力。
+            看出来了吗？做项目不是学一堆全新的东西，而是<strong>把学过的小本领按规则拼起来</strong>。F5 的状态变化直觉、F7 的去重和成员判断，也会在后面的游戏和数据项目里继续出现。
         </div>
     </div>
 );
@@ -151,6 +175,12 @@ const WrapSlide = () => (
                 </p>
             </div>
         </div>
+        <MasteryCheck
+            title="项目线入口离开前检查"
+            description="如果能拆规则、连回旧知识、手推一轮循环、设计一个小改造，就可以进入 A1。"
+            accent="violet"
+            items={bridgeMasteryItems}
+        />
     </div>
 );
 

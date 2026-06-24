@@ -120,7 +120,7 @@ const practiceLinksByLesson = {
   ],
   f7: [
     { label: '复盘 F3：列表、字典和字符串', path: '/python/f3' },
-    { label: '进入 A1：算法思维入门', path: '/python/a1' },
+    { label: '进入桥梁课：猜数字大冒险', path: '/python/bridge' },
   ],
 };
 
