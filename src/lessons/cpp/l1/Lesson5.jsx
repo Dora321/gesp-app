@@ -2,6 +2,30 @@ import React, { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { Terminal, Key, Cpu, Shield, ArrowRight, CheckCircle, XCircle, RefreshCw, Lock, Unlock, Quote, ArrowDownUp, AlertTriangle, Play, BookOpen, User, Binary, Menu, X } from 'lucide-react';
 import CppL1LessonSupport from '../../../components/CppL1LessonSupport';
+import { MasteryCheck } from '../CppLessonShell';
+
+const lesson5MasteryItems = [
+  {
+    label: '能区分单引号字符和双引号字符串。',
+    evidence: '知道 \'A\' 是 char，"A" 是字符串，\'AB\' 不适合表示多个字符。',
+    retryHint: '回到“第一条军规：单引号法则”，把字符和字符串各写一个例子。',
+  },
+  {
+    label: '能解释字符背后的 ASCII 编码。',
+    evidence: '能说出 \'A\'、\'a\'、\'0\' 都有数字编号，并能用编号比较大小。',
+    retryHint: '回到“情报局密码本”，查表解释为什么字符能比较。',
+  },
+  {
+    label: '能用字符加减做大小写转换。',
+    evidence: '知道 \'a\' - \'A\' 是 32，能把小写转大写或反过来。',
+    retryHint: '回到“大小写转换密室”，先写出原字符编号再加减。',
+  },
+  {
+    label: '能说明 bool、true、false 和 0/1 的关系。',
+    evidence: '知道比较表达式会得到真假，输出时常看到 1 或 0。',
+    retryHint: '回到“布尔测谎仪”，切换 true/false 并观察输出。',
+  },
+];
 
 const sections = [
   { id: 1, title: '任务简报', icon: 'shield', component: (props) => <WelcomeStage {...props} />, category: "概念引入" },
@@ -15,6 +39,19 @@ const sections = [
   { id: 9, title: '真题挑战 1', icon: 'check', component: () => <QuizStage1 />, category: "实战演练" },
   { id: 10, title: '真题挑战 2', icon: 'check', component: () => <QuizStage2 />, category: "实战演练" },
   { id: 11, title: '任务总结', icon: 'flag', component: () => <SummaryStage />, category: "实战演练" },
+  {
+    id: 12,
+    title: '离开前检查',
+    icon: 'check',
+    component: () => (
+      <MasteryCheck
+        title="C++ L1-5 字符与 ASCII 离开前检查"
+        description="如果能分清字符和字符串、解释 ASCII、做字符运算、说明 bool 的 0/1，就可以进入逻辑运算。"
+        items={lesson5MasteryItems}
+      />
+    ),
+    category: "实战演练",
+  },
 ];
 
 

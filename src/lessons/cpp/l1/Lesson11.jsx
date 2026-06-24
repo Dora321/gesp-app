@@ -26,6 +26,7 @@ import {
     X
 } from 'lucide-react';
 import CppL1LessonSupport from '../../../components/CppL1LessonSupport';
+import { MasteryCheck } from '../CppLessonShell';
 import CodeSnippet from '../CodeSnippet';
 
 // --- 图标映射组件 ---
@@ -56,6 +57,29 @@ const Icon = ({ name, size = 24, color = "currentColor", className = "" }) => {
     return icons[name] || null;
 };
 
+const lesson11MasteryItems = [
+    {
+        label: '能区分 break 和 continue。',
+        evidence: '能说清 break 结束整个循环，continue 只跳过本轮剩余代码。',
+        retryHint: '回到“急刹车 vs 捣蛋鬼”，用跑圈例子各说一遍。',
+    },
+    {
+        label: '能手推 continue 后下一步去哪。',
+        evidence: '知道 continue 后会回到循环更新或条件判断，而不是直接退出循环。',
+        retryHint: '回到“跳过坏豆子”，把被跳过的动作划掉。',
+    },
+    {
+        label: '能判断 break 在嵌套循环里只跳出一层。',
+        evidence: '知道内层 break 不会自动结束外层循环。',
+        retryHint: '回到“嵌套循环中的break”，圈出 break 所在的大括号。',
+    },
+    {
+        label: '能手推含 break/continue 的输出。',
+        evidence: '能逐轮记录 i 的变化、是否跳过、是否停止，并写出最终输出。',
+        retryHint: '回到两道真题，把每轮写成“i、动作、输出”三列。',
+    },
+];
+
 // --- 章节数据 ---
 const sections = [
     { id: 1, title: "课程导入：酷跑大赛", icon: "flag", category: "控制奥秘" },
@@ -67,7 +91,8 @@ const sections = [
     { id: 7, title: "真题实战 1：无限循环急刹车", icon: "stop", category: "实战与进阶" },
     { id: 8, title: "真题实战 2：混合双打", icon: "zap", category: "实战与进阶" },
     { id: 9, title: "高级知识：嵌套循环中的break", icon: "layers", category: "实战与进阶" },
-    { id: 10, title: "总结与作业", icon: "check", category: "实战与进阶" }
+    { id: 10, title: "总结与作业", icon: "check", category: "实战与进阶" },
+    { id: 11, title: "离开前检查", icon: "check", category: "实战与进阶" }
 ];
 
 // --- 互动组件 1：酷跑大赛模拟器 ---
@@ -987,6 +1012,16 @@ export default function App() {
                                 <RotateCcw size={18} /> 重新开始学习
                             </button>
                         </div>
+                    </div>
+                );
+            case 11:
+                return (
+                    <div className="slide-enter py-6">
+                        <MasteryCheck
+                            title="C++ L1-11 break 和 continue 离开前检查"
+                            description="如果能分清停止整个循环、跳过本轮、嵌套层级和输出手推，就可以进入嵌套循环。"
+                            items={lesson11MasteryItems}
+                        />
                     </div>
                 );
             default:

@@ -19,6 +19,7 @@ import {
     X
 } from 'lucide-react';
 import CppL1LessonSupport from '../../../components/CppL1LessonSupport';
+import { MasteryCheck } from '../CppLessonShell';
 
 // --- 图标映射组件 ---
 const Icon = ({ name, size = 24, color = "currentColor", className = "" }) => {
@@ -41,6 +42,29 @@ const Icon = ({ name, size = 24, color = "currentColor", className = "" }) => {
     return icons[name] || null;
 };
 
+const lesson16MasteryItems = [
+    {
+        label: '能审题后先列变量和类型。',
+        evidence: '能决定哪些数据用 int、double、bool 或 char，并知道 int 会截断小数。',
+        retryHint: '回到“变量饭盒”，把输入、过程变量、输出分开写。',
+    },
+    {
+        label: '能按优先级手推综合表达式。',
+        evidence: '遇到 !、算术、比较、&&、|| 混合时，能逐层算出最终 0/1。',
+        retryHint: '回到“运算交警”，给每一层运算编号。',
+    },
+    {
+        label: '能选择合适的分支或循环结构。',
+        evidence: '能说明什么时候用 if/else、for、while、break 或 continue。',
+        retryHint: '回到“循环跑道”和真题任务，把控制流画成箭头。',
+    },
+    {
+        label: '能用样例和边界值自查答案。',
+        evidence: '会用最小值、刚好满足条件、刚好不满足条件、最大值去验证程序。',
+        retryHint: '回到“最后叮嘱”，给自己的答案造 3 个反例测试。',
+    },
+];
+
 // --- 章节数据 ---
 const sections = [
     { id: 1, title: "封面：发射日", icon: "rocket", category: "考点总复习" },
@@ -52,7 +76,8 @@ const sections = [
     { id: 7, title: "任务2：吃书的老鼠", icon: "mouse", category: "真题实战" },
     { id: 8, title: "任务2：代码实现", icon: "terminal", category: "真题实战" },
     { id: 9, title: "发射口诀", icon: "cpu", category: "考前锦囊" },
-    { id: 10, title: "最后叮嘱", icon: "check", category: "考前锦囊" }
+    { id: 10, title: "最后叮嘱", icon: "check", category: "考前锦囊" },
+    { id: 11, title: "离开前检查", icon: "check", category: "考前锦囊" }
 ];
 
 // --- 互动组件 1：变量饭盒检测器 ---
@@ -559,6 +584,16 @@ export default function App() {
                                 <Rocket size={24} /> 一级火箭，发射成功！
                             </button>
                         </div>
+                    </div>
+                );
+            case 11:
+                return (
+                    <div className="slide-enter py-6">
+                        <MasteryCheck
+                            title="C++ L1-16 一级总复习离开前检查"
+                            description="如果能审题建变量、手推表达式、选择控制结构、用边界样例自查，就具备独立冲刺一级的底盘。"
+                            items={lesson16MasteryItems}
+                        />
                     </div>
                 );
             default:

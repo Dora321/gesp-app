@@ -25,6 +25,7 @@ import {
     X
 } from 'lucide-react';
 import CppL1LessonSupport from '../../../components/CppL1LessonSupport';
+import { MasteryCheck } from '../CppLessonShell';
 import CodeSnippet from '../CodeSnippet';
 
 // --- 图标映射组件 ---
@@ -53,6 +54,29 @@ const Icon = ({ name, size = 24, color = "currentColor", className = "" }) => {
     return icons[name] || null;
 };
 
+const lesson14MasteryItems = [
+    {
+        label: '能把模拟题拆成输入、状态、规则三部分。',
+        evidence: '能指出题目给了什么、程序要维护什么变量、每一步按什么规则变化。',
+        retryHint: '回到“模拟三部曲”，先写出三列表。',
+    },
+    {
+        label: '能逐步更新变量而不是凭感觉算答案。',
+        evidence: '能手推机器人位置、购物总价、剩余时间这类状态变化。',
+        retryHint: '回到“机器人大冒险”，每走一步都写一次变量值。',
+    },
+    {
+        label: '能处理条件分支对状态的影响。',
+        evidence: '遇到“如果...就...”能写出对应 if，并说明变量在哪一行改变。',
+        retryHint: '回到“模拟题雷区”，圈出改变状态的语句。',
+    },
+    {
+        label: '能用取模解决周期模拟。',
+        evidence: '知道星期、时钟、循环队列这类转圈问题通常要用 %。',
+        retryHint: '回到总结页的周期问题，把“转圈后落在哪”翻译成取模。',
+    },
+];
+
 // --- 章节数据 ---
 const sections = [
     { id: 1, title: "课程导入：逻辑便利店", icon: "store", category: "模拟奥义" },
@@ -61,7 +85,8 @@ const sections = [
     { id: 4, title: "避坑指南：模拟题雷区", icon: "alert", category: "模拟奥义" },
     { id: 5, title: "真题实战 1：买文具", icon: "bag", category: "实战与总结" },
     { id: 6, title: "真题实战 2：小杨的考试", icon: "calendar", category: "实战与总结" },
-    { id: 7, title: "总结与作业", icon: "check", category: "实战与总结" }
+    { id: 7, title: "总结与作业", icon: "check", category: "实战与总结" },
+    { id: 8, title: "离开前检查", icon: "check", category: "实战与总结" }
 ];
 
 // --- 互动组件 1：逻辑便利店收银台 ---
@@ -675,6 +700,16 @@ export default function App() {
                                 <RotateCcw size={18} /> 重新开始学习
                             </button>
                         </div>
+                    </div>
+                );
+            case 8:
+                return (
+                    <div className="slide-enter py-6">
+                        <MasteryCheck
+                            title="C++ L1-14 模拟题离开前检查"
+                            description="如果能拆输入/状态/规则、逐步更新变量、处理分支和周期，就可以进入计数筛选。"
+                            items={lesson14MasteryItems}
+                        />
                     </div>
                 );
             default:

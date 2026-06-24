@@ -25,6 +25,7 @@ import {
     X
 } from 'lucide-react';
 import CppL1LessonSupport from '../../../components/CppL1LessonSupport';
+import { MasteryCheck } from '../CppLessonShell';
 import CodeSnippet from '../CodeSnippet';
 
 // --- 图标映射组件 ---
@@ -54,6 +55,29 @@ const Icon = ({ name, size = 24, color = "currentColor", className = "" }) => {
     return icons[name] || null;
 };
 
+const lesson15MasteryItems = [
+    {
+        label: '能先初始化计数器。',
+        evidence: '知道 cnt、sum、ans 这类统计变量进入循环前通常要设为 0。',
+        retryHint: '回到“计数器的秘密”，先清空篮子再开始装。',
+    },
+    {
+        label: '能写出“遍历每个候选”的循环。',
+        evidence: '能根据题目范围写出 for (int i = 1; i <= n; i++) 这类扫描结构。',
+        retryHint: '回到“代码流水线”，先确定从谁扫到谁。',
+    },
+    {
+        label: '能把筛选条件放进 if。',
+        evidence: '能用 i % 2 == 0、N % i == 0 等条件判断是否计数。',
+        retryHint: '回到“因数扫描仪”，把符合条件的 i 圈出来。',
+    },
+    {
+        label: '能手推计数变量最终值。',
+        evidence: '能逐轮记录 i、条件真假、cnt 是否加一，并得到最终答案。',
+        retryHint: '回到两道真题，把每轮写成表格。',
+    },
+];
+
 // --- 章节数据 ---
 const sections = [
     { id: 1, title: "课程导入：体育老师的点名册", icon: "list", category: "计数与筛选" },
@@ -64,7 +88,8 @@ const sections = [
     { id: 6, title: "真题实战 1：奇偶大比拼", icon: "binary", category: "实战与总结" },
     { id: 7, title: "真题实战 2：小杨报数", icon: "terminal", category: "实战与总结" },
     { id: 8, title: "代码实验室", icon: "calc", category: "实战与总结" },
-    { id: 9, title: "总结与作业", icon: "check", category: "实战与总结" }
+    { id: 9, title: "总结与作业", icon: "check", category: "实战与总结" },
+    { id: 10, title: "离开前检查", icon: "check", category: "实战与总结" }
 ];
 
 // --- 互动组件 1：体育课点名模拟器 ---
@@ -810,6 +835,16 @@ export default function App() {
                                 <RotateCcw size={18} /> 重新开始学习
                             </button>
                         </div>
+                    </div>
+                );
+            case 10:
+                return (
+                    <div className="slide-enter py-6">
+                        <MasteryCheck
+                            title="C++ L1-15 计数与筛选离开前检查"
+                            description="如果能初始化计数器、遍历候选、筛选条件、手推 cnt 变化，就可以进入一级总复习。"
+                            items={lesson15MasteryItems}
+                        />
                     </div>
                 );
             default:

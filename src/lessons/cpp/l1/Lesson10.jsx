@@ -21,7 +21,7 @@ import {
   CheckCircle
 } from 'lucide-react';
 import CppL1LessonSupport from '../../../components/CppL1LessonSupport';
-import { CodeTracer } from '../CppLessonShell';
+import { CodeTracer, MasteryCheck } from '../CppLessonShell';
 import CodeSnippet from '../CodeSnippet';
 
 const Button = ({ children, onClick, variant = 'primary', className = '', disabled = false }) => {
@@ -71,6 +71,29 @@ const Icon = ({ name, size = 24, color = "currentColor" }) => {
   return icons[name] || null;
 };
 
+const lesson10MasteryItems = [
+  {
+    label: '能说清 while 是先判断再执行。',
+    evidence: '知道条件一开始为假时，循环体一次都不会执行。',
+    retryHint: '回到“语法解密：守门员 while”，把守门员先问的问题说出来。',
+  },
+  {
+    label: '能指出循环变量必须变化。',
+    evidence: '看到 while 条件中的变量没有更新时，能判断可能出现死循环。',
+    retryHint: '回到“危险警报：死循环”，标出哪一行让循环接近结束。',
+  },
+  {
+    label: '能手推数位分离过程。',
+    evidence: '能用 n % 10 取个位、n / 10 删个位，追踪 123 怎样变成 12、1、0。',
+    retryHint: '回到“数位分离追踪器”，把 n、digit、sum 三列写出来。',
+  },
+  {
+    label: '能判断什么时候用 while 而不是 for。',
+    evidence: '知道次数不固定、要等条件自然变假时，while 更合适。',
+    retryHint: '回到“For vs While”，比较“跑 10 圈”和“饼干吃完为止”。',
+  },
+];
+
 // --- 章节数据 ---
 const sections = [
   { id: 1, title: "课程导入：吃不完的饼干", icon: "cookie", category: "While 基础" },
@@ -82,7 +105,8 @@ const sections = [
   { id: 7, title: "实战：贪吃蛇数数", icon: "ghost", category: "实战与总结" },
   { id: 8, title: "实战：带刹车的循环", icon: "zap", category: "实战与总结" },
   { id: 9, title: "对比：For vs While", icon: "help", category: "实战与总结" },
-  { id: 10, title: "总结与作业", icon: "check", category: "实战与总结" }
+  { id: 10, title: "总结与作业", icon: "check", category: "实战与总结" },
+  { id: 11, title: "离开前检查", icon: "check", category: "实战与总结" }
 ];
 
 // --- 互动组件 1：吃饼干模拟器 (While 概念) ---
@@ -894,6 +918,16 @@ cout << cnt;`}
                 <RotateCcw size={18} /> 重新开始学习
               </button>
             </div>
+          </div>
+        );
+      case 11:
+        return (
+          <div className="slide-enter py-6">
+            <MasteryCheck
+              title="C++ L1-10 while 循环离开前检查"
+              description="如果能说明先判断、避免死循环、手推数位分离、选择 while 场景，就可以进入 break 和 continue。"
+              items={lesson10MasteryItems}
+            />
           </div>
         );
       default:

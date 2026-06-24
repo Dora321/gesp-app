@@ -25,6 +25,7 @@ import {
     X
 } from 'lucide-react';
 import CppL1LessonSupport from '../../../components/CppL1LessonSupport';
+import { MasteryCheck } from '../CppLessonShell';
 import CodeSnippet from '../CodeSnippet';
 
 // --- 图标映射组件 ---
@@ -55,6 +56,29 @@ const Icon = ({ name, size = 24, color = "currentColor", className = "" }) => {
     return icons[name] || null;
 };
 
+const lesson13MasteryItems = [
+    {
+        label: '能用 % 判断倍数和个位。',
+        evidence: '能解释 n % 7 == 0 表示 7 的倍数，n % 10 == 7 表示个位是 7。',
+        retryHint: '回到“倍数显形镜”和“逢七过”，把两个 % 的含义分开说。',
+    },
+    {
+        label: '能写出完整闰年条件。',
+        evidence: '知道能被 400 整除是闰年，能被 100 整除但不能被 400 整除不是闰年，普通年份看是否能被 4 整除。',
+        retryHint: '回到“时间魔法书”，把四年、百年、四百年三条规则排顺序。',
+    },
+    {
+        label: '能把 && 和 || 用在分类条件里。',
+        evidence: '能解释“是 5 的倍数但不是 10 的倍数”要写成 n % 5 == 0 && n % 10 != 0。',
+        retryHint: '回到“逻辑竞技场”，先把中文条件拆成两句话。',
+    },
+    {
+        label: '能把数学规则改写成程序判断。',
+        evidence: '看到“美丽数字”“逢七过”这类题，能先列规则，再写 if 条件。',
+        retryHint: '回到两道真题，先圈出题干里的关键词。',
+    },
+];
+
 // --- 章节数据 ---
 const sections = [
     { id: 1, title: "课程导入：体育老师的哨子", icon: "clock", category: "知识宝库" },
@@ -65,7 +89,8 @@ const sections = [
     { id: 6, title: "真题实战 1：日历机器人", icon: "terminal", category: "实战擂台" },
     { id: 7, title: "真题实战 2：寻找美丽数字", icon: "crown", category: "实战擂台" },
     { id: 8, title: "挑战：逢七过大闯关", icon: "game", category: "实战擂台" },
-    { id: 9, title: "总结与作业", icon: "check", category: "实战擂台" }
+    { id: 9, title: "总结与作业", icon: "check", category: "实战擂台" },
+    { id: 10, title: "离开前检查", icon: "check", category: "实战擂台" }
 ];
 
 // --- 互动组件 1：排队分组模拟器 ---
@@ -859,6 +884,16 @@ export default function App() {
                                 <RotateCcw size={18} /> 重新开始学习
                             </button>
                         </div>
+                    </div>
+                );
+            case 10:
+                return (
+                    <div className="slide-enter py-6">
+                        <MasteryCheck
+                            title="C++ L1-13 数学与取模综合离开前检查"
+                            description="如果能用取模表达倍数和个位、写出闰年条件、组合逻辑规则，就可以进入模拟题。"
+                            items={lesson13MasteryItems}
+                        />
                     </div>
                 );
             default:

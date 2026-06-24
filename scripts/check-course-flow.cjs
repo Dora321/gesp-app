@@ -745,6 +745,41 @@ function assertCppLevel1IntroLessonsKeepMasteryChecks() {
       nextPath: '/lesson/1/4',
       message: 'C++ L1 lesson 3 should keep a mastery check for numeric types, integer division, decimal-preserving division, and expression tracing.',
     },
+    {
+      path: 'src/lessons/cpp/l1/Lesson4.jsx',
+      title: 'C++ L1-4 余数的妙用离开前检查',
+      concepts: ['/ 求商和 % 求余数', '17 / 5', '生活问题翻译成商和余数', 'n % 2 == 0'],
+      nextPath: '/lesson/1/5',
+      message: 'C++ L1 lesson 4 should keep a mastery check for quotient/remainder meaning, life translation, priority tracing, and parity checks.',
+    },
+    {
+      path: 'src/lessons/cpp/l1/Lesson5.jsx',
+      title: 'C++ L1-5 字符与 ASCII 离开前检查',
+      concepts: ['单引号字符和双引号字符串', 'ASCII 编码', '小写转大写', 'bool、true、false 和 0/1'],
+      nextPath: '/lesson/1/6',
+      message: 'C++ L1 lesson 5 should keep a mastery check for char/string differences, ASCII, char arithmetic, and bool output.',
+    },
+    {
+      path: 'src/lessons/cpp/l1/Lesson6.jsx',
+      title: 'C++ L1-6 逻辑运算离开前检查',
+      concepts: ['&&、||、!', '只有 0 是 false', 'x > 1 && x < 10', '含逻辑运算的表达式'],
+      nextPath: '/lesson/1/7',
+      message: 'C++ L1 lesson 6 should keep a mastery check for logical operators, truthiness, chained-comparison traps, and expression tracing.',
+    },
+    {
+      path: 'src/lessons/cpp/l1/Lesson7.jsx',
+      title: 'C++ L1-7 条件判断离开前检查',
+      concepts: ['if 和 else 的分工', 'if (条件);', '==、!=、>、>=、<、<=', 'n % 2 == 0'],
+      nextPath: '/lesson/1/8',
+      message: 'C++ L1 lesson 7 should keep a mastery check for if/else flow, semicolon traps, comparison operators, and parity branching.',
+    },
+    {
+      path: 'src/lessons/cpp/l1/Lesson8.jsx',
+      title: 'C++ L1-8 多重选择结构离开前检查',
+      concepts: ['if / else if / else 的顺序', '只会命中第一个成立分支', '被 3 整除', '互斥且有兜底'],
+      nextPath: '/lesson/1/9',
+      message: 'C++ L1 lesson 8 should keep a mastery check for else-if order, first-match behavior, ordering traps, and exhaustive categorization.',
+    },
   ];
 
   for (const lesson of lessons) {
@@ -772,6 +807,16 @@ function assertCppWhileLessonKeepsDigitTrace() {
       lesson.includes('123 一共有 3 位'),
     'C++ L1 lesson 10 should keep the step-by-step digit-splitting trace for while-loop state changes.'
   );
+  assert(
+    lesson.includes('MasteryCheck') &&
+      lesson.includes('C++ L1-10 while 循环离开前检查') &&
+      lesson.includes('能说清 while 是先判断再执行') &&
+      lesson.includes('能指出循环变量必须变化') &&
+      lesson.includes('能手推数位分离过程') &&
+      lesson.includes('能判断什么时候用 while 而不是 for') &&
+      lesson.includes("navigate('/lesson/1/11')"),
+    'C++ L1 lesson 10 should keep a mastery check for while flow, loop progress, digit splitting, and while-vs-for choice.'
+  );
 }
 
 function assertCppNestedLoopLessonKeepsExecutionTrace() {
@@ -785,6 +830,78 @@ function assertCppNestedLoopLessonKeepsExecutionTrace() {
       lesson.includes('输出顺序：1-1 1-2 1-3 1-4'),
     'C++ L1 lesson 12 should keep the step-by-step nested-loop trace for outer/inner loop execution order.'
   );
+  assert(
+    lesson.includes('MasteryCheck') &&
+      lesson.includes('C++ L1-12 嵌套循环离开前检查') &&
+      lesson.includes('能说清外层循环和内层循环各负责什么') &&
+      lesson.includes('能手推内层每次都会重新开始') &&
+      lesson.includes('能计算双层循环总执行次数') &&
+      lesson.includes('能把图形题拆成行数、列数和换行') &&
+      lesson.includes("navigate('/lesson/1/13')"),
+    'C++ L1 lesson 12 should keep a mastery check for nested loop roles, inner-loop reset, execution counts, and pattern decomposition.'
+  );
+}
+
+function assertCppBreakContinueLessonKeepsMasteryCheck() {
+  const lesson = read('src/lessons/cpp/l1/Lesson11.jsx');
+
+  assert(
+    lesson.includes('MasteryCheck') &&
+      lesson.includes('C++ L1-11 break 和 continue 离开前检查') &&
+      lesson.includes('能区分 break 和 continue') &&
+      lesson.includes('能手推 continue 后下一步去哪') &&
+      lesson.includes('能判断 break 在嵌套循环里只跳出一层') &&
+      lesson.includes('能手推含 break/continue 的输出') &&
+      lesson.includes("navigate('/lesson/1/12')"),
+    'C++ L1 lesson 11 should keep a mastery check for break/continue differences, continue flow, nested break scope, and output tracing.'
+  );
+}
+
+function assertCppLevel1FinalLessonsKeepMasteryChecks() {
+  const lessons = [
+    {
+      path: 'src/lessons/cpp/l1/Lesson13.jsx',
+      title: 'C++ L1-13 数学与取模综合离开前检查',
+      concepts: ['能用 % 判断倍数和个位', '能写出完整闰年条件', '能把 && 和 || 用在分类条件里', '能把数学规则改写成程序判断'],
+      nextPath: '/lesson/1/14',
+      message: 'C++ L1 lesson 13 should keep a mastery check for modulo math, leap years, logical composition, and rule-to-code translation.',
+    },
+    {
+      path: 'src/lessons/cpp/l1/Lesson14.jsx',
+      title: 'C++ L1-14 模拟题离开前检查',
+      concepts: ['能把模拟题拆成输入、状态、规则三部分', '能逐步更新变量而不是凭感觉算答案', '能处理条件分支对状态的影响', '能用取模解决周期模拟'],
+      nextPath: '/lesson/1/15',
+      message: 'C++ L1 lesson 14 should keep a mastery check for simulation inputs, state updates, branch effects, and cyclic modulo modeling.',
+    },
+    {
+      path: 'src/lessons/cpp/l1/Lesson15.jsx',
+      title: 'C++ L1-15 计数与筛选离开前检查',
+      concepts: ['能先初始化计数器', '能写出“遍历每个候选”的循环', '能把筛选条件放进 if', '能手推计数变量最终值'],
+      nextPath: '/lesson/1/16',
+      message: 'C++ L1 lesson 15 should keep a mastery check for counter initialization, candidate traversal, filter conditions, and count tracing.',
+    },
+    {
+      path: 'src/lessons/cpp/l1/Lesson16.jsx',
+      title: 'C++ L1-16 一级总复习离开前检查',
+      concepts: ['能审题后先列变量和类型', '能按优先级手推综合表达式', '能选择合适的分支或循环结构', '能用样例和边界值自查答案'],
+      nextPath: '/',
+      message: 'C++ L1 lesson 16 should keep a final mastery check for variable modeling, expression tracing, control-flow choice, and boundary testing.',
+    },
+  ];
+
+  for (const lesson of lessons) {
+    const text = read(lesson.path);
+    assert(
+      text.includes('MasteryCheck') &&
+        text.includes(lesson.title) &&
+        lesson.concepts.every((concept) => text.includes(concept)),
+      lesson.message
+    );
+    assert(
+      text.includes(`navigate('${lesson.nextPath}')`),
+      `${lesson.path}: should keep the next route ${lesson.nextPath}.`
+    );
+  }
 }
 
 function assertCppArrayLessonKeepsTraversalTrace() {
@@ -1180,7 +1297,9 @@ async function main() {
   assertCppLessonsKeepPredictionChecks();
   assertCppLevel1IntroLessonsKeepMasteryChecks();
   assertCppWhileLessonKeepsDigitTrace();
+  assertCppBreakContinueLessonKeepsMasteryCheck();
   assertCppNestedLoopLessonKeepsExecutionTrace();
+  assertCppLevel1FinalLessonsKeepMasteryChecks();
   assertCppArrayLessonKeepsTraversalTrace();
   assertCppBubbleSortLessonKeepsExecutionTrace();
   assertPythonProjectSupportUsesPrerequisites();

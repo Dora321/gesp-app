@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import CppL1LessonSupport from '../../../components/CppL1LessonSupport';
+import { MasteryCheck } from '../CppLessonShell';
 import {
   Siren,
   GitBranch,
@@ -41,6 +42,29 @@ const Icon = ({ name, size = 24, color = "currentColor" }) => {
   return icons[name] || <HelpCircle size={size} color={color} />;
 };
 
+const lesson7MasteryItems = [
+  {
+    label: '能说清 if 和 else 的分工。',
+    evidence: '知道条件为真执行 if，条件为假才走 else。',
+    retryHint: '回到“十字路口”或“食堂打饭”，切换条件看分支。',
+  },
+  {
+    label: '能识别 if 后多写分号的陷阱。',
+    evidence: '看到 if (条件); 能说出后面的代码块会失去条件控制。',
+    retryHint: '回到“隐形炸弹：分号陷阱”，把分号圈出来。',
+  },
+  {
+    label: '能正确使用比较运算符。',
+    evidence: '能区分 ==、!=、>、>=、<、<=，并知道判断相等不能写 =。',
+    retryHint: '回到“侦探工具：比较符号”，把符号读成中文。',
+  },
+  {
+    label: '能用 if/else 写奇偶判断。',
+    evidence: '能解释 n % 2 == 0 走偶数分支，否则走奇数分支。',
+    retryHint: '回到“实战：奇偶数审判”，先算 n % 2。',
+  },
+];
+
 // --- 章节数据 ---
 const sections = [
   { id: 1, title: "课程导入：智慧交警", icon: "police", category: "分支逻辑" },
@@ -51,7 +75,8 @@ const sections = [
   { id: 6, title: "侦探工具：比较符号", icon: "scale", category: "避坑指南" },
   { id: 7, title: "实战：奇偶数审判", icon: "terminal", category: "实战演练" },
   { id: 8, title: "实战：严厉的安检", icon: "check", category: "实战演练" },
-  { id: 9, title: "总结与作业", icon: "book", category: "实战演练" }
+  { id: 9, title: "总结与作业", icon: "book", category: "实战演练" },
+  { id: 10, title: "离开前检查", icon: "check", category: "实战演练" }
 ];
 
 
@@ -529,6 +554,16 @@ export default function App() {
                 🔄 重新开始
               </button>
             </div>
+          </div>
+        );
+      case 10:
+        return (
+          <div className="slide-enter py-6">
+            <MasteryCheck
+              title="C++ L1-7 条件判断离开前检查"
+              description="如果能说明分支走向、识别分号陷阱、正确比较、写出奇偶判断，就可以进入多重选择。"
+              items={lesson7MasteryItems}
+            />
           </div>
         );
       default:

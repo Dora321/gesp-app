@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import CppL1LessonSupport from '../../../components/CppL1LessonSupport';
+import { MasteryCheck } from '../CppLessonShell';
 import {
   ChefHat,
   Utensils,
@@ -39,6 +40,29 @@ const Icon = ({ name, size = 24, color = "currentColor" }) => {
   return icons[name] || null;
 };
 
+const lesson8MasteryItems = [
+  {
+    label: '能说出 if / else if / else 的顺序。',
+    evidence: '知道 if 带头，else if 排队，else 兜底，电脑从上往下检查。',
+    retryHint: '回到“代码变身：多重选择结构”，把每一层编号。',
+  },
+  {
+    label: '能解释只会命中第一个成立分支。',
+    evidence: '能说明 N=20 时虽然也大于 5，但已经被 N > 10 拦截。',
+    retryHint: '回到“人体编译器”，拖动 N 观察哪个分支亮起。',
+  },
+  {
+    label: '能发现 else if 顺序导致的漏判。',
+    evidence: '能解释为什么“被 3 整除”放前面时，21 不会继续检查“被 7 整除”。',
+    retryHint: '回到“被忽略的 7”，把每个条件的检查顺序写出来。',
+  },
+  {
+    label: '能设计互斥且有兜底的多重选择。',
+    evidence: '能把成绩、天气或菜单分类写成不重叠的 if/else if/else。',
+    retryHint: '回到“总结与作业”，先列出所有可能情况，再排顺序。',
+  },
+];
+
 // --- 章节数据 ---
 const sections = [
   { id: 1, title: "课程导入：挑剔的美食家", icon: "chef", category: "多重选择" },
@@ -49,7 +73,8 @@ const sections = [
   { id: 6, title: "真题实战：到底谁是偶数", icon: "terminal", category: "实战演练" },
   { id: 7, title: "真题实战：被忽略的 7", icon: "alert", category: "实战演练" },
   { id: 8, title: "语法秘籍：小贴士", icon: "book", category: "实战演练" },
-  { id: 9, title: "总结与作业", icon: "check", category: "实战演练" }
+  { id: 9, title: "总结与作业", icon: "check", category: "实战演练" },
+  { id: 10, title: "离开前检查", icon: "check", category: "实战演练" }
 ];
 
 
@@ -708,6 +733,16 @@ export default function App() {
                 🔄 重新开始学习
               </button>
             </div>
+          </div>
+        );
+      case 10:
+        return (
+          <div className="slide-enter py-6">
+            <MasteryCheck
+              title="C++ L1-8 多重选择结构离开前检查"
+              description="如果能按顺序读分支、解释第一个命中、发现顺序漏判、设计兜底分类，就可以进入 switch。"
+              items={lesson8MasteryItems}
+            />
           </div>
         );
       default:

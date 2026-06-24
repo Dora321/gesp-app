@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import CppL1LessonSupport from '../../../components/CppL1LessonSupport';
+import { MasteryCheck } from '../CppLessonShell';
 import {
   Shield,
   Zap,
@@ -40,6 +41,29 @@ const Icon = ({ name, size = 24, color = "currentColor" }) => {
   return icons[name] || <Info size={size} color={color} />;
 };
 
+const lesson6MasteryItems = [
+  {
+    label: '能把 &&、||、! 翻译成自己的话。',
+    evidence: '能说清 && 是都要真，|| 是至少一个真，! 是真假反转。',
+    retryHint: '回到三个逻辑门模拟器，逐个切换输入看输出。',
+  },
+  {
+    label: '能判断 0 和非 0 在条件里的真假。',
+    evidence: '知道只有 0 是 false，2、-1、5 都会当作 true。',
+    retryHint: '回到“核心机密：非零即真”，输入正数、负数和 0。',
+  },
+  {
+    label: '能避开 1 < x < 10 连写陷阱。',
+    evidence: '能写出 x > 1 && x < 10，并解释为什么不能直接连写。',
+    retryHint: '回到“避坑指南：连写陷阱”，把判断拆成两段。',
+  },
+  {
+    label: '能按优先级手推含逻辑运算的表达式。',
+    evidence: '能先算算术和比较，再算 !、&&、||，并写出最终 0/1。',
+    retryHint: '回到“真题实战：优先级之争”，每一步写出中间真假。',
+  },
+];
+
 // --- 章节数据 ---
 const sections = [
   { id: 1, title: "课程导入：代码游乐园", icon: "ticket", category: "逻辑之门" },
@@ -50,7 +74,8 @@ const sections = [
   { id: 6, title: "避坑指南：连写陷阱", icon: "alert", category: "避坑指南" },
   { id: 7, title: "真题实战：冒牌警察", icon: "brain", category: "实战演练" },
   { id: 8, title: "真题实战：优先级之争", icon: "calculator", category: "实战演练" },
-  { id: 9, title: "总结与作业", icon: "check", category: "实战演练" }
+  { id: 9, title: "总结与作业", icon: "check", category: "实战演练" },
+  { id: 10, title: "离开前检查", icon: "check", category: "实战演练" }
 ];
 
 
@@ -528,6 +553,16 @@ export default function App() {
                 🔄 重新开始学习
               </button>
             </div>
+          </div>
+        );
+      case 10:
+        return (
+          <div className="slide-enter py-6">
+            <MasteryCheck
+              title="C++ L1-6 逻辑运算离开前检查"
+              description="如果能翻译三个逻辑符、判断 0/非 0、避开连写陷阱、手推表达式，就可以进入 if/else。"
+              items={lesson6MasteryItems}
+            />
           </div>
         );
       default:

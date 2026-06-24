@@ -21,7 +21,7 @@ import {
     X
 } from 'lucide-react';
 import CppL1LessonSupport from '../../../components/CppL1LessonSupport';
-import { CodeTracer } from '../CppLessonShell';
+import { CodeTracer, MasteryCheck } from '../CppLessonShell';
 
 // --- 图标映射组件 ---
 const Icon = ({ name, size = 24, color = "currentColor", className = "" }) => {
@@ -46,6 +46,29 @@ const Icon = ({ name, size = 24, color = "currentColor", className = "" }) => {
     return icons[name] || null;
 };
 
+const lesson12MasteryItems = [
+    {
+        label: '能说清外层循环和内层循环各负责什么。',
+        evidence: '能把 i 解释成行或轮次，把 j 解释成这一行里的次数。',
+        retryHint: '回到“排队报数”，用第几排、第几人解释 i 和 j。',
+    },
+    {
+        label: '能手推内层每次都会重新开始。',
+        evidence: '知道外层 i 变化一次，内层 j 会重新初始化为 1 并跑完整轮。',
+        retryHint: '回到“嵌套循环追踪器”，盯住 j 会重新初始化为 1 的步骤。',
+    },
+    {
+        label: '能计算双层循环总执行次数。',
+        evidence: '能算出 3 行 4 列会输出 12 次，并能迁移到 m 行 n 列。',
+        retryHint: '回到“累死人的计数”，先算外层次数再乘内层次数。',
+    },
+    {
+        label: '能把图形题拆成行数、列数和换行。',
+        evidence: '能说明金字塔或乘法表中外层控制行，内层控制每行打印多少个。',
+        retryHint: '回到“图形题攻略”，先画每行数量表再写循环。',
+    },
+];
+
 // --- 章节数据 ---
 const sections = [
     { id: 1, title: "课程导入：忙碌的时钟", icon: "clock", category: "嵌套奥义" },
@@ -56,7 +79,8 @@ const sections = [
     { id: 6, title: "实战：打印金字塔", icon: "star", category: "图形实战" },
     { id: 7, title: "技巧：图形题攻略", icon: "grid", category: "图形实战" },
     { id: 8, title: "避坑指南", icon: "alert", category: "避坑与总结" },
-    { id: 9, title: "总结与作业", icon: "check", category: "避坑与总结" }
+    { id: 9, title: "总结与作业", icon: "check", category: "避坑与总结" },
+    { id: 10, title: "离开前检查", icon: "check", category: "避坑与总结" }
 ];
 
 // --- 互动组件 1：排队报数模拟器 ---
@@ -632,6 +656,16 @@ function App() {
                                 <RotateCcw size={18} /> 重新开始学习
                             </button>
                         </div>
+                    </div>
+                );
+            case 10:
+                return (
+                    <div className="slide-enter py-6">
+                        <MasteryCheck
+                            title="C++ L1-12 嵌套循环离开前检查"
+                            description="如果能分清内外层、手推 j 重置、计算执行次数、拆图形题，就可以进入数组前的循环综合。"
+                            items={lesson12MasteryItems}
+                        />
                     </div>
                 );
             default:

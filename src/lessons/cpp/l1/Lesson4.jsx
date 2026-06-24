@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import CppL1LessonSupport from '../../../components/CppL1LessonSupport';
+import { MasteryCheck } from '../CppLessonShell';
 import {
   Users,
   Scissors,
@@ -30,6 +31,29 @@ const Icon = ({ name, size = 24, color = "currentColor" }) => {
   return icons[name] || null;
 };
 
+const lesson4MasteryItems = [
+  {
+    label: '能区分 / 求商和 % 求余数。',
+    evidence: '能预测 17 / 5 得到 3，17 % 5 得到 2，并说出各自含义。',
+    retryHint: '回到“体育课排队”，把完整小组和剩下同学分开画。',
+  },
+  {
+    label: '能把生活问题翻译成商和余数。',
+    evidence: '能用分钟转小时分钟、分组剩余、个位数提取解释 / 和 %。',
+    retryHint: '回到“时间的魔法”，先写出总分钟 / 60 和总分钟 % 60。',
+  },
+  {
+    label: '能按优先级手算混合表达式。',
+    evidence: '知道先乘除取模，再加减；不确定时能主动加括号。',
+    retryHint: '回到“运算优先级”，给每一步编号。',
+  },
+  {
+    label: '能用 % 写出奇偶判断。',
+    evidence: '能解释 n % 2 == 0 表示偶数，n % 2 == 1 表示奇数。',
+    retryHint: '回到“侦探找茬：奇偶判断”，把条件读成中文。',
+  },
+];
+
 // --- 章节数据 ---
 // --- 章节数据 ---
 const sections = [
@@ -45,7 +69,13 @@ const sections = [
   { id: 10, title: "高级技巧：数位拆解 (砍尾)", icon: "scissors", category: "魔法应用" },
   { id: 11, title: "综合练习：倒序输出", icon: "calculator", category: "魔法应用" },
   { id: 12, title: "侦探找茬：奇偶判断", icon: "percent", category: "魔法应用" },
-  { id: 13, title: "总结与作业", icon: "check", category: "温故知新" }
+  { id: 13, title: "总结与作业", icon: "check", category: "温故知新" },
+  {
+    id: 14,
+    title: "离开前检查",
+    icon: "check",
+    category: "温故知新",
+  },
 ];
 
 
@@ -554,6 +584,16 @@ export default function App() {
                 🔄 从头再来
               </button>
             </div>
+          </div>
+        );
+      case 14:
+        return (
+          <div className="slide-enter py-6">
+            <MasteryCheck
+              title="C++ L1-4 余数的妙用离开前检查"
+              description="如果能区分商和余数、翻译生活问题、手算优先级、写出奇偶判断，就可以进入字符和 bool。"
+              items={lesson4MasteryItems}
+            />
           </div>
         );
       default:
