@@ -16,6 +16,30 @@ import {
 } from 'lucide-react';
 import CppL2LessonSupport from '../../../components/CppL2LessonSupport';
 import CodeSnippet from '../CodeSnippet';
+import { MasteryCheck, PredictCheck } from '../CppLessonShell';
+
+const switchMasteryItems = [
+    {
+        label: '能读懂 switch-case 的执行顺序。',
+        evidence: '从匹配的 case 往下执行，遇到 break 才停。',
+        retryHint: '回到 break 穿透实验，逐句跟一遍。',
+    },
+    {
+        label: '能用 break 防止穿透。',
+        evidence: '每个 case 末尾写 break，避免落进下一个 case。',
+        retryHint: '回到「考试提醒」。',
+    },
+    {
+        label: '能区分 switch 和 if 的适用场景。',
+        evidence: '固定值用 switch，范围 / 大小判断用 if。',
+        retryHint: '回到「选择口诀」。',
+    },
+    {
+        label: '能用 default 兜底，并知道 case 后要常量。',
+        evidence: 'default 处理没命中；case 后是常量，不能写范围或变量。',
+        retryHint: '回到 default 兜底一节。',
+    },
+];
 
 const sections = [
     { id: 1, title: '课程导入', category: '菜单选择' },
@@ -328,6 +352,30 @@ switch (choice) {
                                         阅读 switch 程序时，不要看到匹配 case 就停。要继续往下看有没有 break，输出题尤其容易在这里设坑。
                                     </p>
                                 </div>
+
+                                <div className="grid gap-4 lg:grid-cols-3">
+                                    <PredictCheck
+                                        prompt={'x=1，case 1: cout<<"A"; case 2: cout<<"B"; break; （case 1 没 break）输出什么？'}
+                                        options={['A', 'AB（穿透到 case 2）']}
+                                        correctIndex={1}
+                                        explanation="case 1 没写 break，匹配后会继续往下执行 case 2 的语句，直到遇到 break。所以输出 AB。每个 case 后通常都要写 break。"
+                                        misconception="以为匹配 case 1 执行完就自动停下。"
+                                    />
+                                    <PredictCheck
+                                        prompt={'switch 能直接对 score >= 90 这种范围做判断吗？'}
+                                        options={['能', '不能，switch 只能匹配等于某个固定值']}
+                                        correctIndex={1}
+                                        explanation="case 后面必须是一个具体的常量值（如 case 1、case 'A'），不能写范围或条件。范围判断要用 if / else if。"
+                                        misconception="以为 switch 也能做范围或大小比较。"
+                                    />
+                                    <PredictCheck
+                                        prompt={'case 后面能写一个变量，比如 case x: 吗？'}
+                                        options={['能', '不能，case 后必须是常量']}
+                                        correctIndex={1}
+                                        explanation="case 标签必须是编译期常量（整数或字符常量），不能是变量或表达式。"
+                                        misconception="以为 case 后面可以放任意变量或表达式。"
+                                    />
+                                </div>
                             </section>
                         )}
 
@@ -413,6 +461,12 @@ switch (choice) {
                                         </div>
                                     ))}
                                 </div>
+
+                                <MasteryCheck
+                                    title="C++ L2-4 switch 多路选择离开前检查"
+                                    description="switch 最怕“漏 break 穿透、对范围硬套 switch”。勾选前先故意删一个 break，预测输出再验证。"
+                                    items={switchMasteryItems}
+                                />
 
                                 <div className="rounded-2xl border border-slate-200 bg-white p-6 shadow-sm">
                                     <h4 className="mb-4 flex items-center gap-2 text-xl font-black text-slate-900">
