@@ -1,7 +1,7 @@
 import React, { useMemo, useState } from 'react';
 import { ClipboardCheck, GitBranch, Network, Search } from 'lucide-react';
 import CppL6LessonSupport from '../../../components/CppL6LessonSupport';
-import CppLessonShell, { Callout, CodeBlock, CompareTable, MiniQuiz, StepList } from '../CppLessonShell';
+import CppLessonShell, { Callout, CodeBlock, CompareTable, MasteryCheck, MiniQuiz, PredictCheck, StepList } from '../CppLessonShell';
 
 const sections = [
     { id: 1, title: '课程导入', category: '非线性结构' },
@@ -83,6 +83,57 @@ const quiz = [
     },
 ];
 
+function TreePredictionChecks() {
+    return (
+        <div className="grid gap-4 lg:grid-cols-3">
+            <PredictCheck
+                prompt={'读入一棵 n 个节点的树，应该读多少条边？'}
+                options={['n 条', 'n - 1 条']}
+                correctIndex={1}
+                explanation="树的核心性质：n 个节点恰好 n-1 条边。循环写成 for(i=1;i<=n;i++) 多读一条会卡住或读到脏数据，应是 i<=n-1（或 i<n）。"
+                misconception="把节点数当成边数，循环次数多了一次。"
+            />
+            <PredictCheck
+                prompt={'题目给的是无向树边，建邻接表时只加 g[u].push_back(v) 够吗？'}
+                options={['够，一条边加一次', '不够，无向边要双向 g[u]→v 和 g[v]→u 都加']}
+                correctIndex={1}
+                explanation="无向边两个方向都能走。只加一边，从 v 就找不到 u，DFS/BFS 会漏掉半棵树。所以两条都要 push_back。"
+                misconception="按有向边的习惯只加一个方向。"
+            />
+            <PredictCheck
+                prompt={'邻接表存的是无根树，DFS 时怎么不走回父亲？'}
+                options={['不用管，反正能停', '传入并记录 parent，跳过等于父亲的邻居']}
+                correctIndex={1}
+                explanation="无向边里父亲也在邻接表里，不挡住就会在父子之间来回死循环。标准做法是 dfs(u, fa)，遍历邻居 v 时跳过 v==fa。"
+                misconception="忘了无向边会让 DFS 走回父节点，造成重复或死循环。"
+            />
+        </div>
+    );
+}
+
+const treeMasteryItems = [
+    {
+        label: '能说出树的 n-1 条边性质。',
+        evidence: 'n 个节点的树恰有 n-1 条边，连通且无环。',
+        retryHint: '回到树的性质一节。',
+    },
+    {
+        label: '能区分根/父/孩子/叶子。',
+        evidence: '根无父亲、叶子无孩子。',
+        retryHint: '回到概念对照表。',
+    },
+    {
+        label: '能用邻接表建无向树。',
+        evidence: '每条边 g[u]→v 和 g[v]→u 双向加入。',
+        retryHint: '回到建树模板，别只加一个方向。',
+    },
+    {
+        label: '能在遍历时避免走回父亲。',
+        evidence: 'dfs(u, fa) 跳过 v==fa 的邻居。',
+        retryHint: '回到遍历预测题。',
+    },
+];
+
 export default function CppL6Lesson1() {
     return (
         <CppLessonShell
@@ -102,6 +153,7 @@ export default function CppL6Lesson1() {
                 description: '本课建立树的节点、边、根、父子关系和邻接表存储，为遍历、哈夫曼、BFS/DFS 打基础。',
             }}
             goals={['能说出树的基本概念和 n-1 条边性质', '能区分父节点、孩子、叶子和根', '能用邻接表保存一棵树']}
+            prerequisites={['会用一维数组和 vector', '理解链表的「节点 + 指向」思想', '会写最简单的循环读入边']}
             childrenBySection={{
                 1: <TreeLab />,
                 2: (
@@ -168,6 +220,7 @@ for (int i = 1; i <= n - 1; i++) {
                         <Callout icon={Network} title="树题口令" tone="teal">
                             看到 n 个点、n-1 条边、连通关系，就先把它当树处理。
                         </Callout>
+                        <TreePredictionChecks />
                     </>
                 ),
                 5: (
@@ -179,6 +232,11 @@ for (int i = 1; i <= n - 1; i++) {
                             </p>
                         </div>
                         <MiniQuiz items={quiz} />
+                        <MasteryCheck
+                            title="C++ L6-1 树的初相识离开前检查"
+                            description="建树最怕“边数多读一条、无向边只加一边、DFS 走回父亲”。勾选前先画出样例树并手写邻接表。"
+                            items={treeMasteryItems}
+                        />
                         <Callout icon={ClipboardCheck} title="课后任务" tone="slate">
                             <ul className="space-y-2">
                                 <li>读入一棵 n 个点的树，输出每个点的度数。</li>

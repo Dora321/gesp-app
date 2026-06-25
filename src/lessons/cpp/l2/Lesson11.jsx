@@ -1,7 +1,7 @@
 import React, { useMemo, useState } from 'react';
 import { AlertTriangle, Calculator, ClipboardCheck, ListChecks, Search, Sigma } from 'lucide-react';
 import CppL2LessonSupport from '../../../components/CppL2LessonSupport';
-import CppLessonShell, { Callout, CodeBlock, CodeTracer, CompareTable, MiniQuiz } from '../CppLessonShell';
+import CppLessonShell, { Callout, CodeBlock, CodeTracer, CompareTable, MasteryCheck, MiniQuiz, PredictCheck } from '../CppLessonShell';
 
 const sections = [
     { id: 1, title: '课程导入', category: '整除关系' },
@@ -116,6 +116,57 @@ function FactorTracer() {
     );
 }
 
+function FactorPredictionChecks() {
+    return (
+        <div className="grid gap-4 lg:grid-cols-3">
+            <PredictCheck
+                prompt={'判断「a 是 b 的因数」，写成 a % b == 0 对吗？'}
+                options={['对', '反了，应是 b % a == 0']}
+                correctIndex={1}
+                explanation="a 是 b 的因数 = b 能被 a 整除 = b 除以 a 没余数 = b % a == 0。写成 a % b 是反过来判断 b 是不是 a 的因数。"
+                misconception="把被除数和除数写反，方向搞错。"
+            />
+            <PredictCheck
+                prompt={'枚举 n 的因数，循环写成 for(i=1;i<n;i++) 会漏掉谁？'}
+                options={['不会漏', '漏掉 n 自己（n 也是 n 的因数）']}
+                correctIndex={1}
+                explanation="n 能被自身整除，n 是自己的因数。条件要写 i<=n。用 i<n 会少输出一个 n，因数个数也少 1。"
+                misconception="忘了 n 本身也算因数，区间右端少取了一个。"
+            />
+            <PredictCheck
+                prompt={'统计 1..n 中 k 的倍数，写 if (k % i == 0) 对吗？'}
+                options={['对', '反了，应是 i % k == 0']}
+                correctIndex={1}
+                explanation="i 是 k 的倍数 = i 能被 k 整除 = i % k == 0。写成 k % i 变成了判断 k 是不是 i 的倍数，含义完全不同。"
+                misconception="倍数关系也把取余的两个数写反了。"
+            />
+        </div>
+    );
+}
+
+const factorMasteryItems = [
+    {
+        label: '能用取余判断整除方向。',
+        evidence: 'a 是 b 的因数 ⇔ b % a == 0（被除数在前）。',
+        retryHint: '回到定义翻译，别把 a、b 写反。',
+    },
+    {
+        label: '能完整枚举一个数的因数。',
+        evidence: 'for(i=1;i<=n;i++)，包含 1 和 n 自己。',
+        retryHint: '回到枚举因数，注意 i<=n。',
+    },
+    {
+        label: '能先排除除数为 0。',
+        evidence: '写 % a 前确认 a != 0。',
+        retryHint: '回到「先排除除数为 0」提醒。',
+    },
+    {
+        label: '能把倍数/公因数翻译成整除条件。',
+        evidence: 'i 是 k 的倍数 ⇔ i % k == 0；公因数要两个条件同时成立。',
+        retryHint: '回到题型迁移对照表。',
+    },
+];
+
 export default function CppL2Lesson11() {
     return (
         <CppLessonShell
@@ -133,6 +184,7 @@ export default function CppL2Lesson11() {
                 description: '从质数判断到数位拆解，我们一直在用取余。今天把取余正式变成解题工具，用来找因数、判倍数、统计公因数。',
             }}
             goals={['能用取余判断整除关系', '能枚举一个数的所有因数', '能处理倍数、公因数等常见题型']}
+            prerequisites={['理解取余运算 %（求余数）', '会写从 1 到 n 的 for 循环', '理解整除就是余数为 0']}
             childrenBySection={{
                 1: <FactorLab />,
                 2: (
@@ -190,6 +242,7 @@ for (int x = 1; x <= min(a, b); x++) {
     cnt++;
   }
 }`}</CodeBlock>
+                        <FactorPredictionChecks />
                     </>
                 ),
                 5: (
@@ -201,6 +254,11 @@ for (int x = 1; x <= min(a, b); x++) {
                             </p>
                         </div>
                         <MiniQuiz items={quiz} />
+                        <MasteryCheck
+                            title="C++ L2-11 因数与倍数离开前检查"
+                            description="因数倍数最怕“取余两数写反、枚举漏掉 n 自己”。勾选前先把「a 是 b 的因数」翻译成代码。"
+                            items={factorMasteryItems}
+                        />
                         <Callout icon={ClipboardCheck} title="课后任务" tone="slate">
                             <ul className="space-y-2">
                                 <li>输入 n，输出 n 的所有因数。</li>

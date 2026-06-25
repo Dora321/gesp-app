@@ -1,7 +1,7 @@
 import React, { useMemo, useState } from 'react';
 import { ClipboardCheck, GitBranch, Search, TrendingUp } from 'lucide-react';
 import CppL4LessonSupport from '../../../components/CppL4LessonSupport';
-import CppLessonShell, { Callout, CodeBlock, CompareTable, MiniQuiz, StepList } from '../CppLessonShell';
+import CppLessonShell, { Callout, CodeBlock, CompareTable, MasteryCheck, MiniQuiz, PredictCheck, StepList } from '../CppLessonShell';
 
 const sections = [
     { id: 1, title: '课程导入', category: '由前推后' },
@@ -76,6 +76,57 @@ const quiz = [
     },
 ];
 
+function RecurrencePredictionChecks() {
+    return (
+        <div className="grid gap-4 lg:grid-cols-3">
+            <PredictCheck
+                prompt={'斐波那契只写 f[0]=0，不写 f[1]=1，循环从 i=2 开始，行吗？'}
+                options={['行，f[1] 自动是 0', '不行，f[1] 没初始化，后面全错']}
+                correctIndex={1}
+                explanation="递推关系 f[i]=f[i-1]+f[i-2] 至少要两个起点 f[0] 和 f[1]。少一个，f[2] 就用到未定义/为 0 的 f[1]，整列都偏。初始值是递推三要素之一。"
+                misconception="只给一个初始值，以为递推能自己补齐起点。"
+            />
+            <PredictCheck
+                prompt={'把循环写成 for(i=n;i>=2;i--) f[i]=f[i-1]+f[i-2]，能算对吗？'}
+                options={['能，顺序无所谓', '不能，倒着算时 f[i-1]、f[i-2] 还没求出']}
+                correctIndex={1}
+                explanation="递推必须按依赖顺序：当前项依赖更小的项，所以要从小到大算。倒序时右边的值还没算好，等于用了空值。"
+                misconception="忽略「计算顺序」这一要素，以为循环方向随意。"
+            />
+            <PredictCheck
+                prompt={'爬楼梯每次走 1 或 2 阶，f[i] 的递推关系是？'}
+                options={['f[i] = f[i-1]（只看上一阶）', 'f[i] = f[i-1] + f[i-2]']}
+                correctIndex={1}
+                explanation="到第 i 阶，最后一步要么从 i-1 迈 1 阶、要么从 i-2 迈 2 阶，方法数相加。这正是斐波那契式递推，可迁移到一大类计数题。"
+                misconception="只考虑一种来源，漏掉「从 i-2 迈两阶」这条路径。"
+            />
+        </div>
+    );
+}
+
+const recurrenceMasteryItems = [
+    {
+        label: '能说全递推三要素。',
+        evidence: '初始值、递推关系、计算顺序，缺一不可。',
+        retryHint: '回到递推三要素表。',
+    },
+    {
+        label: '能写够初始值。',
+        evidence: '依赖前两项就要给 f[0] 和 f[1] 两个起点。',
+        retryHint: '回到斐波那契模板，确认起点数量。',
+    },
+    {
+        label: '能按依赖顺序从小到大算。',
+        evidence: '当前项只用已算过的更小项，循环正序。',
+        retryHint: '回到计算顺序预测题。',
+    },
+    {
+        label: '能为计数题列出递推关系。',
+        evidence: '爬楼梯 f[i]=f[i-1]+f[i-2]，按「最后一步来源」相加。',
+        retryHint: '回到递推题审题口令。',
+    },
+];
+
 export default function CppL4Lesson12() {
     return (
         <CppLessonShell
@@ -95,6 +146,7 @@ export default function CppL4Lesson12() {
                 description: '本课建立递推三要素：初始值、递推关系、计算顺序。它是后续动态规划的入口。',
             }}
             goals={['能找出递推初始值', '能写出简单递推关系', '能用数组从小到大计算答案']}
+            prerequisites={['会用数组按下标存取', '会写 for 循环并控制起止', '理解「当前结果依赖前面结果」']}
             childrenBySection={{
                 1: <RecurrenceLab />,
                 2: (
@@ -161,6 +213,7 @@ cout << f[n];`}</CodeBlock>
                         <Callout icon={GitBranch} title="递推题审题口令" tone="blue">
                             看到“第 n 项”“走到第 n 阶”“前一天影响后一天”，优先尝试写状态和递推关系。
                         </Callout>
+                        <RecurrencePredictionChecks />
                     </>
                 ),
                 5: (
@@ -172,6 +225,11 @@ cout << f[n];`}</CodeBlock>
                             </p>
                         </div>
                         <MiniQuiz items={quiz} />
+                        <MasteryCheck
+                            title="C++ L4-12 递推算法离开前检查"
+                            description="递推最怕“初始值给少了、循环倒着算、计数漏掉一种来源”。勾选前先手推斐波那契前 6 项。"
+                            items={recurrenceMasteryItems}
+                        />
                         <Callout icon={ClipboardCheck} title="课后任务" tone="slate">
                             <ul className="space-y-2">
                                 <li>计算斐波那契数列第 n 项。</li>

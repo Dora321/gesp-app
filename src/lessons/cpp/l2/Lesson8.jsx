@@ -1,7 +1,7 @@
 import React, { useMemo, useState } from 'react';
 import { Calculator, ClipboardCheck, FunctionSquare, Ruler, Sigma, Triangle } from 'lucide-react';
 import CppL2LessonSupport from '../../../components/CppL2LessonSupport';
-import CppLessonShell, { Callout, CodeBlock, CompareTable, MiniQuiz, StepList } from '../CppLessonShell';
+import CppLessonShell, { Callout, CodeBlock, CompareTable, MasteryCheck, MiniQuiz, PredictCheck, StepList } from '../CppLessonShell';
 
 const sections = [
     { id: 1, title: '课程导入', category: '数学工具' },
@@ -87,6 +87,57 @@ const quiz = [
     },
 ];
 
+function MathToolPredictionChecks() {
+    return (
+        <div className="grid gap-4 lg:grid-cols-3">
+            <PredictCheck
+                prompt={'int x = sqrt(25); 一定能稳妥得到 5 吗？'}
+                options={['一定，sqrt(25) 就是 5', '不一定，浮点可能算出 4.9999… 截断成 4']}
+                correctIndex={1}
+                explanation="sqrt 返回 double，结果可能是 4.9999999。直接赋给 int 是向零截断，可能变成 4。要精确整数平方根时，常用 round 或整数验证。"
+                misconception="以为浮点函数对完全平方数一定给出精确整数。"
+            />
+            <PredictCheck
+                prompt={'求 7÷3 向上取整，写 ceil(7 / 3) 对吗？'}
+                options={['对，得到 3', '不对，7/3 先按整数算成 2，ceil 还是 2']}
+                correctIndex={1}
+                explanation="7 和 3 都是 int，7/3 先做整数除法得 2，再 ceil 仍是 2。要先变浮点：ceil(7.0 / 3) 或 ceil((double)7 / 3) 才得 3。"
+                misconception="忘了 ceil 的参数已经被整数除法截断，取整来晚了。"
+            />
+            <PredictCheck
+                prompt={'用 cmath 的 sqrt、pow 前，只 #include <iostream> 够吗？'}
+                options={['够，都是标准函数', '不够，要 #include <cmath>']}
+                correctIndex={1}
+                explanation="sqrt、pow、ceil、floor、abs(浮点) 都来自 cmath。不包含会编译报错「未声明」。这是最常见的「函数用了但没引头文件」。"
+                misconception="以为常用数学函数随 iostream 一起就有了。"
+            />
+        </div>
+    );
+}
+
+const mathToolMasteryItems = [
+    {
+        label: '会引入 cmath 并调用函数。',
+        evidence: '用 sqrt/pow/ceil/floor 前 #include <cmath>。',
+        retryHint: '回到常用函数预测题。',
+    },
+    {
+        label: '知道这些函数多返回 double。',
+        evidence: 'sqrt(25) 可能是 4.9999…，赋给 int 会截断。',
+        retryHint: '回到类型与精度一节。',
+    },
+    {
+        label: '能避开整数除法再取整的坑。',
+        evidence: 'ceil(7.0/3) 才得 3，ceil(7/3) 仍是 2。',
+        retryHint: '回到取整预测题，先变浮点。',
+    },
+    {
+        label: '能区分 ceil 与 floor。',
+        evidence: 'ceil 向上、floor 向下；要精确整数时优先整数运算。',
+        retryHint: '回到「稳妥原则」提示。',
+    },
+];
+
 export default function CppL2Lesson8() {
     return (
         <CppLessonShell
@@ -104,6 +155,7 @@ export default function CppL2Lesson8() {
                 description: '平方根、幂、绝对值、上下取整是二级常见工具。关键不是背函数名，而是知道什么时候能用，什么时候要小心类型和精度。',
             }}
             goals={['会引入 cmath 并调用常用函数', '能区分 ceil 和 floor', '知道 pow/sqrt 的浮点精度风险']}
+            prerequisites={['理解 int 与 double 的区别', '知道整数除法会截断小数', '会写 #include 引入头文件']}
             childrenBySection={{
                 1: <MathToolLab />,
                 2: (
@@ -158,6 +210,7 @@ cout << b;        // 4`}</CodeBlock>
                         <Callout icon={FunctionSquare} title="稳妥原则" tone="amber">
                             如果题目要求精确整数结果，优先用整数运算；如果必须用 <code>pow</code> 或 <code>sqrt</code>，要检查转换后的值是否符合题意。
                         </Callout>
+                        <MathToolPredictionChecks />
                     </>
                 ),
                 4: (
@@ -198,6 +251,11 @@ cout << d;`}</CodeBlock>
                             </p>
                         </div>
                         <MiniQuiz items={quiz} />
+                        <MasteryCheck
+                            title="C++ L2-8 数学工具箱离开前检查"
+                            description="cmath 最怕“忘了引头文件、整数除法再取整、浮点截断丢精度”。勾选前先想 ceil(7/3) 到底等于几。"
+                            items={mathToolMasteryItems}
+                        />
                         <Callout icon={ClipboardCheck} title="课后任务" tone="slate">
                             <ul className="space-y-2">
                                 <li>输入一个整数 n，输出它的平方根，保留 3 位小数。</li>
