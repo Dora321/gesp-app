@@ -1,7 +1,7 @@
 import React, { useMemo, useState } from 'react';
 import { ClipboardCheck, ListFilter, Search, Target, Timer } from 'lucide-react';
 import CppL3LessonSupport from '../../../components/CppL3LessonSupport';
-import CppLessonShell, { Callout, CodeBlock, CodeTracer, CompareTable, MiniQuiz } from '../CppLessonShell';
+import CppLessonShell, { Callout, CodeBlock, CodeTracer, CompareTable, MasteryCheck, MiniQuiz, PredictCheck } from '../CppLessonShell';
 
 const sections = [
     { id: 1, title: '课程导入', category: '枚举思想' },
@@ -114,6 +114,57 @@ function EnumerateTracer() {
     );
 }
 
+function EnumeratePredictionChecks() {
+    return (
+        <div className="grid gap-4 lg:grid-cols-3">
+            <PredictCheck
+                prompt={'找 a+b=n 的无序对，内层 b 从 1 开始（不是从 a），会怎样？'}
+                options={['正常', '(2,5) 和 (5,2) 会被重复算两次']}
+                correctIndex={1}
+                explanation="内层 b 从 a 开始（b = a..n）能保证 a <= b，避免同一对的两种顺序重复。从 1 开始会把 (2,5) 和 (5,2) 都数进去。"
+                misconception="内层从头枚举，导致无序对被重复计数。"
+            />
+            <PredictCheck
+                prompt={'题目要「输出所有满足条件的解」，找到第一个就 break 对吗？'}
+                options={['对，省时间', '不对，会漏掉后面的解']}
+                correctIndex={1}
+                explanation="要全部解就不能提前 break，break 只适合「只要任意一个解」。要看题目是要全部还是要一个。"
+                misconception="不看题目要求，一律找到就 break。"
+            />
+            <PredictCheck
+                prompt={'n=10000 的两层枚举（O(n²)），大约要试多少次？'}
+                options={['1 万次，很快', '约 1 亿次，可能超时']}
+                correctIndex={1}
+                explanation="两层各 n 次是 n² = 10⁸ ≈ 1 亿次，对时限是危险的。n 大时两层枚举要谨慎，考虑剪枝或换算法。"
+                misconception="以为两层循环也只是几万次。"
+            />
+        </div>
+    );
+}
+
+const enumerateMasteryItems = [
+    {
+        label: '能确定枚举变量和范围。',
+        evidence: '想清楚枚举谁、从哪里开始、到哪里结束。',
+        retryHint: '回到「枚举三问」。',
+    },
+    {
+        label: '能写单层和双层枚举模板。',
+        evidence: '一层枚举一个量，两层枚举两个量的组合。',
+        retryHint: '回到双层枚举追踪器。',
+    },
+    {
+        label: '能用范围和去重做剪枝。',
+        evidence: 'b 从 a 起避免重复、要一个就 break、缩小范围。',
+        retryHint: '回到剪枝与范围表。',
+    },
+    {
+        label: '能估算枚举的复杂度。',
+        evidence: '一层 O(n)、两层 O(n²)，n 大时警惕超时。',
+        retryHint: '回到复杂度直觉。',
+    },
+];
+
 export default function CppL3Lesson10() {
     return (
         <CppLessonShell
@@ -133,6 +184,7 @@ export default function CppL3Lesson10() {
                 description: '本课训练单层枚举、双层枚举和范围剪枝。三级很多逻辑题都可以先用枚举找到稳定解法。',
             }}
             goals={['能确定枚举变量和范围', '能写出单层与双层枚举模板', '能用条件判断筛选合法答案']}
+            prerequisites={['会写单层和嵌套 for 循环', '会用 if 判断条件', '理解循环边界（起点和终点）']}
             childrenBySection={{
                 1: <EnumerateLab />,
                 2: (
@@ -184,6 +236,7 @@ for (int x = 1; x <= n; x++) {
                         <Callout icon={Timer} title="复杂度直觉" tone="amber">
                             一层循环大约是 O(n)，两层循环大约是 O(n²)。n 很大时，两层枚举要格外谨慎。
                         </Callout>
+                        <EnumeratePredictionChecks />
                     </>
                 ),
                 5: (
@@ -195,6 +248,11 @@ for (int x = 1; x <= n; x++) {
                             </p>
                         </div>
                         <MiniQuiz items={quiz} />
+                        <MasteryCheck
+                            title="C++ L3-10 枚举法离开前检查"
+                            description="枚举最怕“范围定错漏解、两层 O(n²) 没意识到会超时”。勾选前先想清这道题枚举谁、范围多大。"
+                            items={enumerateMasteryItems}
+                        />
                         <Callout icon={ClipboardCheck} title="课后任务" tone="slate">
                             <ul className="space-y-2">
                                 <li>枚举 1 到 n 中所有既能被 3 整除又能被 5 整除的数。</li>

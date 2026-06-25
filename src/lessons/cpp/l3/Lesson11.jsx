@@ -1,7 +1,7 @@
 import React, { useMemo, useState } from 'react';
 import { ClipboardCheck, Footprints, Play, RefreshCw, Search } from 'lucide-react';
 import CppL3LessonSupport from '../../../components/CppL3LessonSupport';
-import CppLessonShell, { Callout, CodeBlock, CodeTracer, CompareTable, MiniQuiz } from '../CppLessonShell';
+import CppLessonShell, { Callout, CodeBlock, CodeTracer, CompareTable, MasteryCheck, MiniQuiz, PredictCheck } from '../CppLessonShell';
 
 const sections = [
     { id: 1, title: '课程导入', category: '模拟思想' },
@@ -132,6 +132,57 @@ cout << x << " " << y;`}
     );
 }
 
+function SimulationPredictionChecks() {
+    return (
+        <div className="grid gap-4 lg:grid-cols-3">
+            <PredictCheck
+                prompt={'模拟里「判断是否到终点」和「更新位置」，应该先做哪个？'}
+                options={['先判断再更新', '看规则——通常先更新状态，再判断终止']}
+                correctIndex={1}
+                explanation="多数题是「走一步后看到没到」，所以先更新位置再判断。顺序反了会少走或多走一步。具体要按题目规则确定。"
+                misconception="不区分「更新」和「判断」的先后，导致差一步。"
+            />
+            <PredictCheck
+                prompt={'答题计分，答错扣 5 但分数不能低于 0，写 score -= 5; 够吗？'}
+                options={['够了', '不够，要 score = max(0, score-5) 防止负分']}
+                correctIndex={1}
+                explanation="题目限制「不低于 0」，直接减可能变成负分。要么 score = max(0, score-5)，要么减完再 if (score<0) score=0。"
+                misconception="忽略了状态的边界约束（分数有下限）。"
+            />
+            <PredictCheck
+                prompt={'模拟机器人移动，没写「遇到边界就停」，会怎样？'}
+                options={['自动停在边界', '可能走出边界 / 数组越界']}
+                correctIndex={1}
+                explanation="程序不会自己知道边界，必须显式判断：越界就不更新或停止。否则坐标会跑出范围、甚至数组越界。"
+                misconception="以为程序会自动在边界处停下来。"
+            />
+        </div>
+    );
+}
+
+const simulationMasteryItems = [
+    {
+        label: '能找出模拟题的状态变量。',
+        evidence: '位置、方向、分数、剩余次数等「当前局面」。',
+        retryHint: '回到状态变量表。',
+    },
+    {
+        label: '能按输入顺序更新状态。',
+        evidence: '读一个操作处理一次，顺序不能打乱。',
+        retryHint: '回到坐标模拟追踪器。',
+    },
+    {
+        label: '能处理边界与约束。',
+        evidence: '分数不低于 0、坐标不出界，更新时显式限制。',
+        retryHint: '回到边界与终止。',
+    },
+    {
+        label: '能把规则逐条翻译成 if + 状态更新。',
+        evidence: '不急着压缩代码，先把每条规则写清楚。',
+        retryHint: '出错时每步输出状态，对照手算找分歧点。',
+    },
+];
+
 export default function CppL3Lesson11() {
     return (
         <CppLessonShell
@@ -151,6 +202,7 @@ export default function CppL3Lesson11() {
                 description: '本课训练状态变量、规则分支、循环推进和终止条件。只要状态设计清楚，模拟题就会从混乱变得可控。',
             }}
             goals={['能找出模拟题的状态变量', '能按输入顺序更新状态', '能处理边界和终止条件']}
+            prerequisites={['会用变量保存和更新状态', '会写 for/while 循环和 if', '会用下标遍历字符串']}
             childrenBySection={{
                 1: <SimulationLab />,
                 2: (
@@ -206,6 +258,7 @@ export default function CppL3Lesson11() {
                         <Callout icon={Play} title="调试技巧" tone="blue">
                             模拟题出错时，可以在每一步后输出状态，检查程序和手算过程从哪一步开始不一致。
                         </Callout>
+                        <SimulationPredictionChecks />
                     </>
                 ),
                 5: (
@@ -217,6 +270,11 @@ export default function CppL3Lesson11() {
                             </p>
                         </div>
                         <MiniQuiz items={quiz} />
+                        <MasteryCheck
+                            title="C++ L3-11 模拟法离开前检查"
+                            description="模拟最怕“更新和判断顺序反了、忘了状态的边界约束”。勾选前先把题目规则逐条翻成状态更新。"
+                            items={simulationMasteryItems}
+                        />
                         <Callout icon={ClipboardCheck} title="课后任务" tone="slate">
                             <ul className="space-y-2">
                                 <li>读入一串 R/L/U/D，输出最终坐标。</li>
