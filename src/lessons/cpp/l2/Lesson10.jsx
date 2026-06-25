@@ -1,7 +1,7 @@
 import React, { useMemo, useState } from 'react';
 import { ClipboardCheck, Hash, ListChecks, RotateCcw, ScanLine } from 'lucide-react';
 import CppL2LessonSupport from '../../../components/CppL2LessonSupport';
-import CppLessonShell, { Callout, CodeBlock, CodeTracer, CompareTable, MiniQuiz } from '../CppLessonShell';
+import CppLessonShell, { Callout, CodeBlock, CodeTracer, CompareTable, MasteryCheck, MiniQuiz, PredictCheck } from '../CppLessonShell';
 
 const sections = [
     { id: 1, title: '课程导入', category: '数位拆解' },
@@ -131,6 +131,57 @@ while (n > 0) {
     );
 }
 
+function DigitPredictionChecks() {
+    return (
+        <div className="grid gap-4 lg:grid-cols-3">
+            <PredictCheck
+                prompt={'数位拆解循环里忘了写 n /= 10，会怎样？'}
+                options={['只是少处理几位', '死循环（n 一直 > 0）']}
+                correctIndex={1}
+                explanation="不删个位 n 永远不变，while (n > 0) 永远成立，变成死循环。每一轮必须 n /= 10 才能逼近 0。"
+                misconception="忘了更新 n，导致死循环。"
+            />
+            <PredictCheck
+                prompt={'n % 10 拿到的是哪一位？'}
+                options={['最高位', '个位（最低位）']}
+                correctIndex={1}
+                explanation="% 10 取余得到最后一位，也就是个位。要从最高位开始处理得换思路（比如先转成字符串）。"
+                misconception="以为 % 10 取的是最高位。"
+            />
+            <PredictCheck
+                prompt={'求反转数，rev = rev * 10 + d，写成 rev = d * 10 + rev 对吗？'}
+                options={['对', '不对，会算出完全不同的值']}
+                correctIndex={1}
+                explanation="反转要把已有结果整体左移一位（rev * 10），再把新个位 d 接到末尾。写成 d * 10 + rev 完全是另一个数。"
+                misconception="把反转公式里乘 10 的对象搞反了。"
+            />
+        </div>
+    );
+}
+
+const digitMasteryItems = [
+    {
+        label: '能用 % 10 取个位、/ 10 删个位。',
+        evidence: '每一轮取个位、处理、再删个位。',
+        retryHint: '回到「两把钥匙」。',
+    },
+    {
+        label: '能写 while (n>0) 拆数并记得更新 n。',
+        evidence: '循环里必须有 n /= 10，否则死循环。',
+        retryHint: '回到循环拆数表。',
+    },
+    {
+        label: '能写出反转数公式。',
+        evidence: 'rev = rev * 10 + d：左移已有结果再接新个位。',
+        retryHint: '回到反转数公式。',
+    },
+    {
+        label: '能把模板迁移到数位和 / 计数 / 回文。',
+        evidence: '框架相同，只改中间「怎么处理这一位」。',
+        retryHint: '回到典型应用。',
+    },
+];
+
 export default function CppL2Lesson10() {
     return (
         <CppLessonShell
@@ -148,6 +199,7 @@ export default function CppL2Lesson10() {
                 description: '数位和、反转数、回文数、统计某个数字出现次数，都从同一组动作开始：取个位，再去掉个位。',
             }}
             goals={['会用 n % 10 取个位', '会用 n / 10 去掉个位', '能写数位和、反转数等基础题']}
+            prerequisites={['理解取余 % 和整除 /', '会写 while 循环', '理解整数除法会舍去小数']}
             childrenBySection={{
                 1: <DigitLab />,
                 2: (
@@ -186,6 +238,7 @@ while (n > 0) {
                                 ['n /= 10', '删掉个位', '必须更新，否则死循环'],
                             ]}
                         />
+                        <DigitPredictionChecks />
                     </>
                 ),
                 4: (
@@ -225,6 +278,11 @@ while (n > 0) {
                             </p>
                         </div>
                         <MiniQuiz items={quiz} />
+                        <MasteryCheck
+                            title="C++ L2-10 数位拆解离开前检查"
+                            description="数位题最怕“忘了 n/=10 死循环、反转公式写反”。勾选前先手推 3729 的数位和与反转数。"
+                            items={digitMasteryItems}
+                        />
                         <Callout icon={ClipboardCheck} title="课后任务" tone="slate">
                             <ul className="space-y-2">
                                 <li>输入 n，输出 n 的数位和。</li>
