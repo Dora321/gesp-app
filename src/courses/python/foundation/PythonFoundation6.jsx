@@ -7,7 +7,7 @@ import {
     Sliders, Key, BarChart2, Calculator, Coins, ChevronUp, ChevronDown
 } from 'lucide-react';
 import PythonFoundationSupport from '../../../components/PythonFoundationSupport';
-import PythonLessonShell, { MasteryCheck, SlideHeader } from '../shell/PythonLessonShell';
+import PythonLessonShell, { MasteryCheck, PredictCheck, SlideHeader } from '../shell/PythonLessonShell';
 
 // --- Shared Helper Components (Reused style) ---
 const Button = ({ onClick, children, className, variant = 'primary', disabled = false }) => {
@@ -187,6 +187,14 @@ const RandIntSlide = () => {
                     </Button>
                 </div>
             </div>
+
+            <PredictCheck
+                prompt="random.randint(1, 6) 能不能取到 6 这个数？"
+                options={['不能，只会取 1 到 5', '能，randint 两端都包含']}
+                correctIndex={1}
+                explanation="randint(a, b) 两端都包含，能取到 1、2、3、4、5、6 共 6 个值——正好是一个骰子。这一点和 range(1, 6)（只到 5）不同，别记混。"
+                misconception="把 randint 当成 range，以为取不到右端点 b。"
+            />
         </div>
     );
 };

@@ -125,6 +125,14 @@ const LoopSlide = () => {
                     <TurtleCanvas key={count} commands={getCommands()} isRunning={true} />
                 </div>
             </div>
+
+            <PredictCheck
+                prompt="画正六边形时，每次 forward 之后应该 right 多少度？"
+                options={['120°（六边形的内角）', '60°（外角 = 360 / 6）']}
+                correctIndex={1}
+                explanation="小海龟每个角转的是「外角」，走一圈正好转满 360°。正 n 边形外角 = 360 / n，所以正六边形要转 60°，不是内角 120°。"
+                misconception="把内角当成转向角度，画出来的图形不闭合、转过头。"
+            />
         </div>
     );
 };
