@@ -1,7 +1,7 @@
 import React, { useMemo, useState } from 'react';
 import { AlertTriangle, ClipboardCheck, Search, ShieldCheck, Sigma } from 'lucide-react';
 import CppL2LessonSupport from '../../../components/CppL2LessonSupport';
-import CppLessonShell, { Callout, CodeBlock, CodeTracer, CompareTable, MiniQuiz } from '../CppLessonShell';
+import CppLessonShell, { Callout, CodeBlock, CodeTracer, CompareTable, MasteryCheck, MiniQuiz, PredictCheck } from '../CppLessonShell';
 
 const sections = [
     { id: 1, title: '课程导入', category: '质数判断' },
@@ -146,6 +146,57 @@ for (int i = 2; i * i <= n; i++) {
     );
 }
 
+function PrimePredictionChecks() {
+    return (
+        <div className="grid gap-4 lg:grid-cols-3">
+            <PredictCheck
+                prompt={'判断质数把循环写成 for (int i=2; i<=n; i++)（包含 n 自己），会怎样？'}
+                options={['正常', '所有数都被判成「非质数」']}
+                correctIndex={1}
+                explanation="i 一直试到 n，n % n == 0 总成立，于是每个数都被当成有因数 → 非质数。试除范围只能到 n-1 或 i*i<=n，不含 n 本身。"
+                misconception="试除范围包含了 n 自己，导致全部判成非质数。"
+            />
+            <PredictCheck
+                prompt={'判断 n=2，for (int i=2; i*i<=n; i++) 的循环体执行几次？'}
+                options={['1 次', '0 次（4 > 2，循环不进）']}
+                correctIndex={1}
+                explanation="n=2 时 i=2，i*i=4 > 2，条件一开始就为假，循环 0 次，isPrime 保持 true，正确判定 2 是质数。"
+                misconception="以为至少要试除一次才能下结论。"
+            />
+            <PredictCheck
+                prompt={'不写 if (n<2) 这个边界，1 会被判成什么？'}
+                options={['非质数', '质数（循环 0 次，isPrime 保持 true）']}
+                correctIndex={1}
+                explanation="n=1 时 i*i<=1 一开始就不成立，循环 0 次，isPrime 仍是 true，会错判 1 为质数。必须先 if (n<2) isPrime = false。"
+                misconception="以为不写边界，1 也能自动判成非质数。"
+            />
+        </div>
+    );
+}
+
+const primeMasteryItems = [
+    {
+        label: '能处理 n < 2 的边界。',
+        evidence: '先 if (n < 2) isPrime = false，知道 1 不是质数。',
+        retryHint: '回到「边界先处理」。',
+    },
+    {
+        label: '能写试除法且范围不含 n。',
+        evidence: 'i 从 2 到 n-1 或 i*i<=n，找到因数就 break。',
+        retryHint: '别把 n 自己也试除进去。',
+    },
+    {
+        label: '能解释平方根优化为什么成立。',
+        evidence: '因数成对出现，小因数找不到大因数也不会单独出现，i*i<=n 即可。',
+        retryHint: '回到平方根优化。',
+    },
+    {
+        label: '能迁移到统计 / 输出质数。',
+        evidence: '外层枚举 x，内层判质数，是质数就 cnt++。',
+        retryHint: '回到题型迁移表。',
+    },
+];
+
 export default function CppL2Lesson9() {
     return (
         <CppLessonShell
@@ -163,6 +214,7 @@ export default function CppL2Lesson9() {
                 description: '质数判断是二级高频题。今天从定义出发，先写稳定的试除法，再用平方根优化减少循环次数。',
             }}
             goals={['能准确处理 n 小于 2 的边界', '能写出试除判断质数', '能解释平方根优化为什么成立']}
+            prerequisites={['理解取余 n % i 判断整除', '会写 for 循环和 break', '理解因数的概念']}
             childrenBySection={{
                 1: <PrimeLab />,
                 2: (
@@ -199,6 +251,7 @@ for (int i = 2; i <= n - 1; i++) {
                         <Callout icon={ShieldCheck} title="为什么用 i * i <= n" tone="emerald">
                             用 <code>i * i &lt;= n</code> 可以避免浮点平方根带来的精度细节，也更适合整数题。
                         </Callout>
+                        <PrimePredictionChecks />
                     </>
                 ),
                 4: (
@@ -239,6 +292,11 @@ for (int x = 2; x <= n; x++) {
                             </p>
                         </div>
                         <MiniQuiz items={quiz} />
+                        <MasteryCheck
+                            title="C++ L2-9 质数侦探离开前检查"
+                            description="质数题最怕“漏了 n<2 边界、试除范围含 n 自己”。勾选前先用 n=1、2、9 各手推一遍。"
+                            items={primeMasteryItems}
+                        />
                         <Callout icon={ClipboardCheck} title="课后任务" tone="slate">
                             <ul className="space-y-2">
                                 <li>输入 n，判断 n 是否为质数。</li>

@@ -1,7 +1,7 @@
 import React, { useMemo, useState } from 'react';
 import { AlertTriangle, Blocks, ClipboardCheck, Repeat2, Target } from 'lucide-react';
 import CppL2LessonSupport from '../../../components/CppL2LessonSupport';
-import CppLessonShell, { Callout, CodeBlock, CodeTracer, CompareTable, MiniQuiz } from '../CppLessonShell';
+import CppLessonShell, { Callout, CodeBlock, CodeTracer, CompareTable, MasteryCheck, MiniQuiz, PredictCheck } from '../CppLessonShell';
 
 const sections = [
     { id: 1, title: '课程导入', category: '双层循环' },
@@ -126,6 +126,57 @@ function NestedLoopTracer() {
     );
 }
 
+function NestedLoopPredictionChecks() {
+    return (
+        <div className="grid gap-4 lg:grid-cols-3">
+            <PredictCheck
+                prompt={'外层跑 3 次、内层跑 5 次，cout 总共执行几次？'}
+                options={['8 次（3 + 5）', '15 次（3 × 5）']}
+                correctIndex={1}
+                explanation="内层每次都完整跑 5 次，外层 3 轮，所以是 3 × 5 = 15。嵌套循环的总次数是相乘，不是相加。"
+                misconception="把内外层次数相加，而不是相乘。"
+            />
+            <PredictCheck
+                prompt={'打印矩形，把换行 cout << endl 放在内层循环里面，会怎样？'}
+                options={['正常', '每个字符后都换行，变成竖着一列']}
+                correctIndex={1}
+                explanation="换行要放在内层循环结束之后、外层循环里面。放进内层，每输出一个字符就换行，图形结构全乱。"
+                misconception="把换行放进内层，破坏了每一行的结构。"
+            />
+            <PredictCheck
+                prompt={'内层 for (int j=1; j<=4; j++) 的 j，进入第二行时从几开始？'}
+                options={['接着上一行继续数', '每次进内层都重新从 1 开始']}
+                correctIndex={1}
+                explanation="每次进入内层循环，j 都重新初始化为 1，不会接着上一行的值继续数。"
+                misconception="以为 j 会跨行累计，不重新初始化。"
+            />
+        </div>
+    );
+}
+
+const nestedLoopMasteryItems = [
+    {
+        label: '能算双层循环的总执行次数。',
+        evidence: '总次数 = 外层次数 × 内层次数。',
+        retryHint: '回到执行实验，相乘不是相加。',
+    },
+    {
+        label: '能说清嵌套循环的执行顺序。',
+        evidence: '先固定 i，让 j 跑完一整轮，再换下一个 i。',
+        retryHint: '回到执行顺序，外一次、内一轮。',
+    },
+    {
+        label: '能给 i / j 分配角色并摆对换行。',
+        evidence: 'i 管行、j 管列，换行放在内层之后、外层之内。',
+        retryHint: '回到变量分工表。',
+    },
+    {
+        label: '能识别需要嵌套循环的题型。',
+        evidence: '矩形、乘法表、数对枚举都需要双层循环。',
+        retryHint: '回到「考试读题抓手」。',
+    },
+];
+
 export default function CppL2Lesson5() {
     return (
         <CppLessonShell
@@ -143,6 +194,7 @@ export default function CppL2Lesson5() {
                 description: '图形打印、乘法表、二维枚举都离不开嵌套循环。今天先不追求花活，把“外层控制轮次，内层完成每轮细节”这件事讲透。',
             }}
             goals={['能手动追踪 i 和 j 的变化', '能计算双层循环总次数', '能区分外层控制行、内层控制列']}
+            prerequisites={['会写单层 for 循环', '理解循环变量的初始化和更新', '会用 cout 输出和换行']}
             childrenBySection={{
                 1: <LoopTraceLab />,
                 2: (
@@ -178,6 +230,7 @@ export default function CppL2Lesson5() {
                         <Callout icon={Blocks} title="写题模板" tone="blue">
                             先问“我要重复几行”，写外层；再问“每一行要做几次”，写内层；最后再决定每个位置输出什么。
                         </Callout>
+                        <NestedLoopPredictionChecks />
                     </>
                 ),
                 4: (
@@ -218,6 +271,11 @@ for (int a = 1; a <= 5; a++) {
                             </p>
                         </div>
                         <MiniQuiz items={quiz} />
+                        <MasteryCheck
+                            title="C++ L2-5 嵌套循环离开前检查"
+                            description="嵌套循环最怕“次数算成相加、换行放错地方”。勾选前先用 i、j 追踪表手推一个 3×4 的输出。"
+                            items={nestedLoopMasteryItems}
+                        />
                         <Callout icon={ClipboardCheck} title="课后任务" tone="slate">
                             <ul className="space-y-2">
                                 <li>写程序输出 4 行 6 列的 <code>#</code> 矩形。</li>
