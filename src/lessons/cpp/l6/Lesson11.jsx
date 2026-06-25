@@ -1,7 +1,7 @@
 import React, { useMemo, useState } from 'react';
 import { BrainCircuit, ClipboardCheck, Route, Search } from 'lucide-react';
 import CppL6LessonSupport from '../../../components/CppL6LessonSupport';
-import CppLessonShell, { Callout, CodeBlock, CompareTable, MiniQuiz, StepList } from '../CppLessonShell';
+import CppLessonShell, { Callout, CodeBlock, CompareTable, MasteryCheck, MiniQuiz, PredictCheck, StepList } from '../CppLessonShell';
 
 const sections = [
     { id: 1, title: '课程导入', category: '状态与转移' },
@@ -70,6 +70,57 @@ const quiz = [
     },
 ];
 
+function DpBasicPredictionChecks() {
+    return (
+        <div className="grid gap-4 lg:grid-cols-3">
+            <PredictCheck
+                prompt={'写 DP 时第一步应该做什么？'}
+                options={['直接写转移方程', '先用一句话定义 dp[i] 的含义']}
+                correctIndex={1}
+                explanation="不先定义 dp[i] 表示什么，转移方程就没有意义、很容易抄错。状态定义是 DP 四件套的第一件。"
+                misconception="跳过状态定义，照着别人的公式抄。"
+            />
+            <PredictCheck
+                prompt={'dp[i] = dp[i-1] + dp[i-2]，循环却从 i = 0 正着套这个式子，会出问题吗？'}
+                options={['不会', '会，dp[0]、dp[1] 是初值要先设好']}
+                correctIndex={1}
+                explanation="i = 0、1 没有 i-1、i-2，必须当初值直接设定，循环从 i = 2 开始。否则会越界或用到未初始化的值。"
+                misconception="不区分「初值」和「转移」，对所有 i 都套转移方程。"
+            />
+            <PredictCheck
+                prompt={'网格 dp[i][j] = dp[i-1][j] + dp[i][j-1]，从右往左、从下往上算，对吗？'}
+                options={['对', '不对，会用到还没算的状态']}
+                correctIndex={1}
+                explanation="dp[i][j] 依赖左边和上边的格子，必须先算它们。逆着算会用到还没计算好的状态。递推顺序要顺着依赖走。"
+                misconception="忽略递推顺序，转移时用到了还没算出来的状态。"
+            />
+        </div>
+    );
+}
+
+const dpBasicMasteryItems = [
+    {
+        label: '能用一句话定义 dp 状态。',
+        evidence: '能说清 dp[i] 或 dp[i][j] 到底表示什么。',
+        retryHint: '回到 DP 四件套第一步，先定义再写转移。',
+    },
+    {
+        label: '能写对初值和边界。',
+        evidence: '最小状态（dp[0]/dp[1] 或 dp[1][1]）单独设定。',
+        retryHint: '区分「初值」和「转移」，别对最小状态套方程。',
+    },
+    {
+        label: '能按依赖关系确定递推顺序。',
+        evidence: '先算被依赖的状态，转移只用已经算好的。',
+        retryHint: '回到递推顺序，画一张依赖箭头图。',
+    },
+    {
+        label: '能把 DP 四件套迁移到新题。',
+        evidence: '爬楼梯、网格路径都能写出状态/初值/转移/答案。',
+        retryHint: '回到「DP 检查口令」。',
+    },
+];
+
 export default function CppL6Lesson11() {
     return (
         <CppLessonShell
@@ -89,6 +140,7 @@ export default function CppL6Lesson11() {
                 description: '本课用爬楼梯和网格路径建立 DP 四件套：状态、初值、转移、答案。',
             }}
             goals={['能写清楚 dp 状态含义', '能根据依赖关系确定递推顺序', '能完成基础路径计数 DP']}
+            prerequisites={['会写递归并理解重叠子问题', '会用一维和二维数组', '会写嵌套 for 循环']}
             childrenBySection={{
                 1: <GridDpLab />,
                 2: (
@@ -135,6 +187,7 @@ cout << dp[n] << endl;`}</CodeBlock>
                                 '按依赖顺序循环递推',
                             ]} />
                         </div>
+                        <DpBasicPredictionChecks />
                     </>
                 ),
                 4: (
@@ -166,6 +219,11 @@ for (int i = 1; i <= n; i++) {
                             </p>
                         </div>
                         <MiniQuiz items={quiz} />
+                        <MasteryCheck
+                            title="C++ L6-11 DP 基础离开前检查"
+                            description="DP 最怕“跳过状态定义直接抄公式”。勾选前先给爬楼梯写出状态、初值、转移、答案四句话。"
+                            items={dpBasicMasteryItems}
+                        />
                         <Callout icon={ClipboardCheck} title="课后任务" tone="slate">
                             <ul className="space-y-2">
                                 <li>完成爬楼梯方法数。</li>

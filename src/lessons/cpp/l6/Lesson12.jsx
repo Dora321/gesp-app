@@ -1,7 +1,7 @@
 import React, { useMemo, useState } from 'react';
 import { ClipboardCheck, PackageCheck, Search, ShoppingCart } from 'lucide-react';
 import CppL6LessonSupport from '../../../components/CppL6LessonSupport';
-import CppLessonShell, { Callout, CodeBlock, CompareTable, MiniQuiz, StepList } from '../CppLessonShell';
+import CppLessonShell, { Callout, CodeBlock, CompareTable, MasteryCheck, MiniQuiz, PredictCheck, StepList } from '../CppLessonShell';
 
 const sections = [
     { id: 1, title: '课程导入', category: '选择或不选' },
@@ -86,6 +86,57 @@ const quiz = [
     },
 ];
 
+function KnapsackPredictionChecks() {
+    return (
+        <div className="grid gap-4 lg:grid-cols-3">
+            <PredictCheck
+                prompt={'0/1 背包一维优化，容量循环写成正序（j 从小到大），会怎样？'}
+                options={['没问题', '同一件物品被重复选，变成完全背包']}
+                correctIndex={1}
+                explanation="正序时 dp[j - w] 已经是本轮（含当前物品）的值，导致一件物品被选多次。0/1 背包必须倒序枚举容量。"
+                misconception="以为正序、倒序只是写法差异，不影响结果。"
+            />
+            <PredictCheck
+                prompt={'二维背包「选当前物品」的转移，价值应该从哪里来？'}
+                options={['dp[i][j-w[i]] + v[i]', 'dp[i-1][j-w[i]] + v[i]']}
+                correctIndex={1}
+                explanation="选第 i 件后，剩余容量 j - w[i] 只能用「前 i-1 件」来装（每件只一次），所以是 dp[i-1][…]。用 dp[i][…] 会重复用第 i 件。"
+                misconception="转移里用了 dp[i][…]，让同一物品被选了多次。"
+            />
+            <PredictCheck
+                prompt={'0/1 背包和完全背包，一维代码唯一的关键区别是？'}
+                options={['转移方程不同', '容量枚举方向：0/1 倒序，完全正序']}
+                correctIndex={1}
+                explanation="两者一维转移几乎一样，区别就在容量循环方向。倒序保证每件只用一次，正序允许重复使用。"
+                misconception="以为两者要写完全不同的转移方程。"
+            />
+        </div>
+    );
+}
+
+const knapsackMasteryItems = [
+    {
+        label: '能定义前 i 件、容量 j 的状态。',
+        evidence: 'dp[i][j] 表示前 i 件、容量不超过 j 的最大价值。',
+        retryHint: '回到状态定义。',
+    },
+    {
+        label: '能写「选 / 不选」的二维转移。',
+        evidence: '不选 dp[i-1][j]；选 dp[i-1][j-w[i]] + v[i]，两者取 max。',
+        retryHint: '选当前物品后，剩余容量只能用前 i-1 件来装。',
+    },
+    {
+        label: '能解释一维优化为什么必须倒序。',
+        evidence: '倒序防止同一件物品在本轮被重复使用。',
+        retryHint: '回到背包口令，正序会退化成完全背包。',
+    },
+    {
+        label: '能区分 0/1 背包与完全背包。',
+        evidence: '0/1 倒序枚举容量、完全正序枚举容量。',
+        retryHint: '关键差异只在容量枚举方向。',
+    },
+];
+
 export default function CppL6Lesson12() {
     return (
         <CppLessonShell
@@ -105,6 +156,7 @@ export default function CppL6Lesson12() {
                 description: '本课从二维状态开始，再过渡到一维倒序优化，建立背包问题的核心模板。',
             }}
             goals={['能定义前 i 件物品容量 j 的状态', '能写出选与不选的转移方程', '能解释一维优化为什么要倒序']}
+            prerequisites={['理解 DP 状态与转移', '会用一维和二维数组', '会写嵌套 for 循环']}
             childrenBySection={{
                 1: <KnapsackLab />,
                 2: (
@@ -169,6 +221,7 @@ for (int i = 1; i <= n; i++) {
                         <Callout icon={PackageCheck} title="背包口令" tone="amber">
                             0/1 背包倒序枚举容量；完全背包正序枚举容量。顺序错了，模型就变了。
                         </Callout>
+                        <KnapsackPredictionChecks />
                     </>
                 ),
                 5: (
@@ -180,6 +233,11 @@ for (int i = 1; i <= n; i++) {
                             </p>
                         </div>
                         <MiniQuiz items={quiz} />
+                        <MasteryCheck
+                            title="C++ L6-12 0/1 背包离开前检查"
+                            description="背包最怕“一维优化把容量循环写正序，物品就被重复选了”。勾选前先用一个小样例验证正序为什么会重复选。"
+                            items={knapsackMasteryItems}
+                        />
                         <Callout icon={ClipboardCheck} title="课后任务" tone="slate">
                             <ul className="space-y-2">
                                 <li>用二维 DP 实现 0/1 背包。</li>
