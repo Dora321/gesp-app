@@ -14,6 +14,7 @@ import {
 } from 'lucide-react';
 import CppL2LessonSupport from '../../../components/CppL2LessonSupport';
 import CodeSnippet from '../CodeSnippet';
+import { MasteryCheck, PredictCheck } from '../CppLessonShell';
 
 const sections = [
     { id: 1, title: '课程导入', category: '问题场景' },
@@ -60,6 +61,29 @@ const quiz = [
         question: "cout << (int)'A'; 输出什么？",
         answer: '65',
         reason: "'A' 的 ASCII 编码是 65，强制转换为 int 后输出编码值。",
+    },
+];
+
+const typeMasteryItems = [
+    {
+        label: '能判断一个表达式的结果类型。',
+        evidence: '只要有 double 就提升成 double，全是 int 结果就是 int。',
+        retryHint: '回到类型提升实验室试不同组合。',
+    },
+    {
+        label: '能解释整数除法是截断而非四舍五入。',
+        evidence: '7 / 2 = 3、9 / 2 = 4，小数部分直接丢掉。',
+        retryHint: '回到「整数除法」一节。',
+    },
+    {
+        label: '能用强制转换修正整数除法。',
+        evidence: '写 (double)a / b 或 5 / 2.0，让至少一边变 double。',
+        retryHint: '回到推荐写法，别等赋值给 double 才补救。',
+    },
+    {
+        label: '能在 char 和 int 之间转换。',
+        evidence: "(int)'A'=65、(char)66='B'，记住 '0'=48、'A'=65、'a'=97。",
+        retryHint: '回到「记忆坐标」。',
     },
 ];
 
@@ -344,6 +368,30 @@ cout << ans;  // 2`}</CodeBlock>
                                 <CodeBlock>{`cout << 10 / 4;        // 2
 cout << 10 / 4.0;      // 2.5
 cout << (double)10 / 4;// 2.5`}</CodeBlock>
+
+                                <div className="grid gap-4 lg:grid-cols-3">
+                                    <PredictCheck
+                                        prompt={'double ans = 5 / 2; ans 是 2.5 吗？'}
+                                        options={['是 2.5', '是 2（右边先做了整数除法）']}
+                                        correctIndex={1}
+                                        explanation="5 和 2 都是 int，先算 5 / 2 = 2（整数除法），再赋给 double 还是 2.0。变量是 double 也救不回已经丢掉的小数。要写 5 / 2.0 或 (double)5 / 2。"
+                                        misconception="以为赋给 double 变量就会自动保留小数。"
+                                    />
+                                    <PredictCheck
+                                        prompt={'整数除法 7 / 2 = 3，那 9 / 2 等于几？'}
+                                        options={['5（四舍五入）', '4（去掉小数部分）']}
+                                        correctIndex={1}
+                                        explanation="整数除法是直接去掉小数部分（截断），不是四舍五入。9 / 2 = 4.5 → 4。"
+                                        misconception="以为整数除法会四舍五入。"
+                                    />
+                                    <PredictCheck
+                                        prompt={"cout << (int)'A'; 会输出什么？"}
+                                        options={['A', "65（'A' 的 ASCII 码）"]}
+                                        correctIndex={1}
+                                        explanation="char 在内存里存的是编码，'A' 的 ASCII 是 65，转成 int 就输出编码值。"
+                                        misconception="以为 (int)'A' 还是输出字母 A。"
+                                    />
+                                </div>
                             </section>
                         )}
 
@@ -401,6 +449,12 @@ cout << (char)x; // B`}</CodeBlock>
                                         </div>
                                     ))}
                                 </div>
+
+                                <MasteryCheck
+                                    title="C++ L2-3 类型转换离开前检查"
+                                    description="类型转换最怕“以为 double 变量能救回整数除法、整数除法当成四舍五入”。勾选前先口算 5/2、9/2、(int)'A'。"
+                                    items={typeMasteryItems}
+                                />
 
                                 <div className="rounded-2xl border border-slate-200 bg-white p-6 shadow-sm">
                                     <h4 className="mb-4 flex items-center gap-2 text-xl font-black text-slate-900">
