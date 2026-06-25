@@ -1,7 +1,7 @@
 import React, { useMemo, useState } from 'react';
 import { ClipboardCheck, GitBranch, ListChecks, Search } from 'lucide-react';
 import CppL6LessonSupport from '../../../components/CppL6LessonSupport';
-import CppLessonShell, { Callout, CodeBlock, CompareTable, MiniQuiz, StepList } from '../CppLessonShell';
+import CppLessonShell, { Callout, CodeBlock, CompareTable, MasteryCheck, MiniQuiz, PredictCheck, StepList } from '../CppLessonShell';
 
 const sections = [
     { id: 1, title: '课程导入', category: '深入搜索' },
@@ -85,6 +85,57 @@ const quiz = [
     },
 ];
 
+function DfsPredictionChecks() {
+    return (
+        <div className="grid gap-4 lg:grid-cols-3">
+            <PredictCheck
+                prompt={'回溯里只 push 选择、递归后忘了撤销（pop / used=false），会怎样？'}
+                options={['没事', '污染兄弟分支，方案重复或错乱']}
+                correctIndex={1}
+                explanation="不撤销，path 和 used 会带着上一条分支的选择进入下一条，导致方案重复、遗漏或越选。递归返回后必须恢复现场。"
+                misconception="以为递归返回会自动清掉这一层做过的选择。"
+            />
+            <PredictCheck
+                prompt={'连通块 DFS 不写 visited 标记，会怎样？'}
+                options={['慢一点但能出结果', '相邻点之间来回递归，死循环 / 爆栈']}
+                correctIndex={1}
+                explanation="没有 visited，A 访问 B、B 又访问 A，无限互相递归，栈溢出。必须一进入某个点就标记 visited。"
+                misconception="以为不标记只是慢一点，忽略了会无限递归。"
+            />
+            <PredictCheck
+                prompt={'求迷宫「最短步数」，DFS 和 BFS 哪个更直接？'}
+                options={['DFS', 'BFS（一层层扩展）']}
+                correctIndex={1}
+                explanation="BFS 按距离一层层扩展，第一次到达终点就是最短步数。DFS 一条路走到底，先到的不一定最短。"
+                misconception="以为 DFS 也能直接给出最短路。"
+            />
+        </div>
+    );
+}
+
+const dfsMasteryItems = [
+    {
+        label: '能解释 DFS 的递归与回退过程。',
+        evidence: '一条路走到底，返回上一个选择点再换下一条。',
+        retryHint: '回到 DFS 思想，动手画一棵递归树。',
+    },
+    {
+        label: '能写「选择 - 递归 - 撤销」回溯模板。',
+        evidence: 'push 选择、递归、pop 撤销，三步缺一不可。',
+        retryHint: '回到回溯模板，递归返回后一定撤销。',
+    },
+    {
+        label: '能用 visited 求连通块且不死递归。',
+        evidence: '一进入某点就标记 visited，再去扩展邻居。',
+        retryHint: '回到 DFS 检查清单，先标记再递归。',
+    },
+    {
+        label: '能区分 BFS 和 DFS 的用途。',
+        evidence: '最短步数用 BFS；枚举方案、找连通块用 DFS。',
+        retryHint: '回到 BFS / DFS 对比表。',
+    },
+];
+
 export default function CppL6Lesson5() {
     return (
         <CppLessonShell
@@ -104,6 +155,7 @@ export default function CppL6Lesson5() {
                 description: '本课用排列枚举、网格连通块和回溯模板建立 DFS 的递归思维。',
             }}
             goals={['能解释 DFS 的递归调用过程', '能写出选择、递归、撤销的回溯模板', '能用 visited 求连通块']}
+            prerequisites={['会写递归并定出口', '会遍历二维网格', '理解方向数组 dx/dy']}
             childrenBySection={{
                 1: <DfsLab />,
                 2: (
@@ -181,6 +233,7 @@ export default function CppL6Lesson5() {
                         <Callout icon={ListChecks} title="DFS 检查清单" tone="purple">
                             出口是否明确？visited 是否及时标记？回溯题是否撤销选择？方向数组是否覆盖所有方向？
                         </Callout>
+                        <DfsPredictionChecks />
                     </>
                 ),
                 5: (
@@ -192,6 +245,11 @@ export default function CppL6Lesson5() {
                             </p>
                         </div>
                         <MiniQuiz items={quiz} />
+                        <MasteryCheck
+                            title="C++ L6-5 DFS 离开前检查"
+                            description="DFS 最怕“回溯忘撤销、连通块忘标记 visited”。勾选前先画一棵递归树，标出每步选择和撤销。"
+                            items={dfsMasteryItems}
+                        />
                         <Callout icon={ClipboardCheck} title="课后任务" tone="slate">
                             <ul className="space-y-2">
                                 <li>输出 1..n 的全排列。</li>

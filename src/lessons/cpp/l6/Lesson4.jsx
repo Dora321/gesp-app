@@ -1,7 +1,7 @@
 import React, { useMemo, useState } from 'react';
 import { ClipboardCheck, ListChecks, Route, Search } from 'lucide-react';
 import CppL6LessonSupport from '../../../components/CppL6LessonSupport';
-import CppLessonShell, { Callout, CodeBlock, CompareTable, MiniQuiz, StepList } from '../CppLessonShell';
+import CppLessonShell, { Callout, CodeBlock, CompareTable, MasteryCheck, MiniQuiz, PredictCheck, StepList } from '../CppLessonShell';
 
 const sections = [
     { id: 1, title: '课程导入', category: '按层扩展' },
@@ -103,6 +103,57 @@ const quiz = [
     },
 ];
 
+function BfsPredictionChecks() {
+    return (
+        <div className="grid gap-4 lg:grid-cols-3">
+            <PredictCheck
+                prompt={'BFS 把 visited 标记放到「出队时」而不是「入队时」，会怎样？'}
+                options={['没区别', '同一点被多次入队，队列膨胀、距离可能出错']}
+                correctIndex={1}
+                explanation="出队才标记时，一个点可能被多个邻居重复入队。入队时立刻标记，才能保证每个点只进一次队。"
+                misconception="以为入队标记和出队标记效果一样。"
+            />
+            <PredictCheck
+                prompt={'无权迷宫里，BFS 第一次到达终点 T 时的距离，就是最短步数吗？'}
+                options={['不一定', '是，BFS 按距离从小到大扩展']}
+                correctIndex={1}
+                explanation="BFS 先处理距离小的点，第一次到达 T 一定来自最短路径——这正是 BFS 求最短步数的原理。"
+                misconception="以为还要把所有路径都搜完才能确定最短。"
+            />
+            <PredictCheck
+                prompt={'每步代价不同（带权）的最短路，能直接用普通 BFS 吗？'}
+                options={['能', '不能，普通 BFS 只对无权 / 等权图正确']}
+                correctIndex={1}
+                explanation="普通 BFS 假设每一步代价相同。带权最短路要用 Dijkstra 或 01-BFS，直接套 BFS 会算错。"
+                misconception="以为 BFS 对任意最短路问题都成立。"
+            />
+        </div>
+    );
+}
+
+const bfsMasteryItems = [
+    {
+        label: '能解释 BFS 按层扩展的过程。',
+        evidence: '队列先进先出，先近后远地推进。',
+        retryHint: '回到 BFS 思想，画前两层扩展。',
+    },
+    {
+        label: '能写网格最短路模板。',
+        evidence: '起点入队设距离 0，方向数组扩展，过滤越界 / 障碍 / 已访问。',
+        retryHint: '回到网格模板。',
+    },
+    {
+        label: '能在入队时正确标记 visited / dist。',
+        evidence: '入队即标记，避免同一点被重复入队。',
+        retryHint: '回到访问标记，别等出队才标记。',
+    },
+    {
+        label: '能判断什么时候不能用普通 BFS。',
+        evidence: '带权最短路要换 Dijkstra / 01-BFS。',
+        retryHint: '普通 BFS 只适用于无权 / 等权图。',
+    },
+];
+
 export default function CppL6Lesson4() {
     return (
         <CppLessonShell
@@ -122,6 +173,7 @@ export default function CppL6Lesson4() {
                 description: '本课用迷宫最短路建立 BFS 队列模板，训练方向数组、访问标记和距离数组。',
             }}
             goals={['能解释 BFS 按层扩展的过程', '能写出网格最短路模板', '能正确使用队列、visited 和 dist']}
+            prerequisites={['会用 queue 队列', '会遍历二维网格', '理解方向数组 dx/dy']}
             childrenBySection={{
                 1: <BfsLab />,
                 2: (
@@ -197,6 +249,7 @@ if (!visited[nx][ny]) {
                         <Callout icon={ListChecks} title="BFS 检查清单" tone="blue">
                             起点是否入队？距离初值是否为 -1？障碍是否跳过？入队时是否立刻标记？
                         </Callout>
+                        <BfsPredictionChecks />
                     </>
                 ),
                 5: (
@@ -208,6 +261,11 @@ if (!visited[nx][ny]) {
                             </p>
                         </div>
                         <MiniQuiz items={quiz} />
+                        <MasteryCheck
+                            title="C++ L6-4 BFS 离开前检查"
+                            description="BFS 最怕“出队才标记导致重复入队、对带权图错用普通 BFS”。勾选前先在迷宫上画出前两层扩展。"
+                            items={bfsMasteryItems}
+                        />
                         <Callout icon={ClipboardCheck} title="课后任务" tone="slate">
                             <ul className="space-y-2">
                                 <li>实现迷宫从 S 到 T 的最短步数。</li>
