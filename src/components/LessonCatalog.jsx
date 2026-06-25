@@ -19,6 +19,7 @@ import {
 } from 'lucide-react';
 import { getCppLevelCatalogItem } from '../data/cppLevelCatalog';
 import { pythonFoundationLessons, pythonProjects } from '../data/pythonCourseCatalog';
+import { getLessonStatus, LESSON_STATUS_META, readLessonProgress } from '../utils/lessonProgress';
 
 const pythonStart = pythonFoundationLessons[0];
 const pythonProjectStart = pythonProjects[0];
@@ -471,6 +472,19 @@ export default function LessonCatalog() {
     const navigate = useNavigate();
     const [activeSubject, setActiveSubject] = useState('cpp');
     const [activeTab, setActiveTab] = useState('basic');
+    const [progress, setProgress] = useState(() => readLessonProgress());
+
+    // Re-read learning status whenever the catalog regains focus, so finishing a
+    // lesson in another tab/route reflects here without a full reload.
+    useEffect(() => {
+        const refresh = () => setProgress(readLessonProgress());
+        window.addEventListener('focus', refresh);
+        document.addEventListener('visibilitychange', refresh);
+        return () => {
+            window.removeEventListener('focus', refresh);
+            document.removeEventListener('visibilitychange', refresh);
+        };
+    }, []);
 
     const filteredSections = useMemo(
         () => lessonSections.filter(section => section.subject === activeSubject),
@@ -490,6 +504,7 @@ export default function LessonCatalog() {
     const summaryStats = getSubjectSummaryStats(activeSubject);
     const readyLessons = activeSection.lessons.filter(lesson => isLessonReady(activeSection.id, lesson.id));
     const readyCount = readyLessons.length;
+    const masteredCount = readyLessons.filter(lesson => ['mastered', 'review'].includes(getLessonStatus(lesson.path, progress))).length;
     const hasReadyLessons = readyCount > 0;
     const lessonStatusText = readyCount === activeSection.lessons.length
         ? '全部上线'
@@ -684,9 +699,26 @@ export default function LessonCatalog() {
                                     </button>
                                 </div>
 
+                                {hasReadyLessons && (
+                                    <div className="mb-4 flex flex-wrap items-center gap-x-4 gap-y-2 text-xs font-bold">
+                                        {Object.entries(LESSON_STATUS_META).map(([key, meta]) => (
+                                            <span key={key} className="inline-flex items-center gap-1.5 text-slate-500">
+                                                <span className={`h-2 w-2 rounded-full ${meta.dot}`} />
+                                                {meta.label}
+                                            </span>
+                                        ))}
+                                        <span className="ml-auto inline-flex items-center gap-1 rounded-full bg-emerald-50 px-2.5 py-1 text-emerald-700 ring-1 ring-emerald-200">
+                                            本课段已过关 {masteredCount}/{readyCount}
+                                        </span>
+                                    </div>
+                                )}
+
                                 <div className="grid gap-3 sm:grid-cols-2 xl:grid-cols-4">
                                     {activeSection.lessons.map((lesson) => {
                                         const lessonReady = isLessonReady(activeSection.id, lesson.id);
+                                        const status = lessonReady ? getLessonStatus(lesson.path, progress) : null;
+                                        const statusMeta = status ? LESSON_STATUS_META[status] : null;
+                                        const passed = status === 'mastered' || status === 'review';
                                         return (
                                         <button
                                             key={lesson.id}
@@ -697,16 +729,24 @@ export default function LessonCatalog() {
                                                 : 'cursor-not-allowed border-slate-200 bg-slate-100/70 opacity-75'
                                                 }`}
                                         >
-                                            <span className={`flex h-8 w-8 shrink-0 items-center justify-center rounded-lg text-sm font-black ${lessonReady ? `${activeColors.light} ${activeColors.text}` : 'bg-white text-slate-400'}`}>
-                                                {lesson.id}
+                                            <span className={`relative flex h-8 w-8 shrink-0 items-center justify-center rounded-lg text-sm font-black ${passed ? 'bg-emerald-50 text-emerald-700' : lessonReady ? `${activeColors.light} ${activeColors.text}` : 'bg-white text-slate-400'}`}>
+                                                {passed ? <CheckCircle2 size={18} /> : lesson.id}
+                                                {statusMeta && status !== 'unseen' && (
+                                                    <span className={`absolute -right-1 -top-1 h-2.5 w-2.5 rounded-full ring-2 ring-white ${statusMeta.dot}`} />
+                                                )}
                                             </span>
                                             <span className="min-w-0 flex-1">
                                                 <span className={`line-clamp-2 text-sm font-black leading-5 transition ${lessonReady ? 'text-slate-800 group-hover:text-blue-700' : 'text-slate-500'}`}>
                                                     {lesson.title}
                                                 </span>
-                                                <span className={`mt-2 inline-flex items-center text-xs font-bold ${lessonReady ? 'text-slate-400 group-hover:text-slate-600' : 'text-slate-400'}`}>
-                                                    {lessonReady ? '开始学习' : '建设中'}
-                                                    {lessonReady && <ChevronRight size={12} className="ml-1 transition group-hover:translate-x-0.5" />}
+                                                <span className={`mt-2 inline-flex items-center gap-1 text-xs font-bold ${statusMeta ? statusMeta.text : 'text-slate-400'}`}>
+                                                    {lessonReady ? (
+                                                        <>
+                                                            {status !== 'unseen' && <span className={`h-1.5 w-1.5 rounded-full ${statusMeta.dot}`} />}
+                                                            {status === 'unseen' ? '开始学习' : statusMeta.label}
+                                                            <ChevronRight size={12} className="transition group-hover:translate-x-0.5" />
+                                                        </>
+                                                    ) : '建设中'}
                                                 </span>
                                             </span>
                                         </button>

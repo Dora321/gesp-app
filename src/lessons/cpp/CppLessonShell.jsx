@@ -1,6 +1,7 @@
 import React, { useEffect, useMemo, useState } from 'react';
-import { Link, useNavigate } from 'react-router-dom';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { ArrowRight, CheckCircle2, Flag, HelpCircle, Home, Menu, PlayCircle, RotateCcw, SkipForward, X } from 'lucide-react';
+import { recordLessonMastered, recordLessonVisit } from '../../utils/lessonProgress';
 
 const accentMap = {
     blue: {
@@ -719,6 +720,7 @@ export default function CppLessonShell({
     homeLabel = '返回首页',
 }) {
     const navigate = useNavigate();
+    const location = useLocation();
     const [activeSection, setActiveSection] = useState(1);
     const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
     const color = accentMap[accent] ?? accentMap.blue;
@@ -731,6 +733,18 @@ export default function CppLessonShell({
         setActiveSection(1);
         setIsMobileMenuOpen(false);
     }, [lessonNumber]);
+
+    // Learning-status tracking for the course catalog: opening = 学习中,
+    // reaching the last (exit-check) section = 已过关.
+    useEffect(() => {
+        recordLessonVisit(location.pathname);
+    }, [location.pathname]);
+
+    useEffect(() => {
+        if (sections.length > 0 && activeSection === sections[sections.length - 1].id) {
+            recordLessonMastered(location.pathname);
+        }
+    }, [activeSection, sections, location.pathname]);
 
     const goPrev = () => {
         if (activeSection > 1) {

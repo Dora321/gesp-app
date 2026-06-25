@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
-import { Link, useNavigate } from 'react-router-dom';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
+import { recordLessonMastered, recordLessonVisit } from '../../../utils/lessonProgress';
 import { ArrowRight, CheckCircle2, Flag, HelpCircle, Home, Menu, RotateCcw, X } from 'lucide-react';
 
 // 与 CppLessonShell 共用同一套配色 token，保证 C++ / Python 两套课视觉统一
@@ -335,6 +336,7 @@ export default function PythonLessonShell({
 }) {
     const t = CHROME[theme] || CHROME.light;
     const navigate = useNavigate();
+    const location = useLocation();
     const [activeSection, setActiveSection] = useState(sections[0]?.id ?? 1);
     const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
     const color = getAccent(accent);
@@ -349,6 +351,18 @@ export default function PythonLessonShell({
     useEffect(() => {
         scrollRef.current?.scrollTo(0, 0);
     }, [activeSection]);
+
+    // Learning-status tracking for the course catalog: opening = 学习中,
+    // reaching the last (小结与衔接) section = 已过关.
+    useEffect(() => {
+        recordLessonVisit(location.pathname);
+    }, [location.pathname]);
+
+    useEffect(() => {
+        if (isLast) {
+            recordLessonMastered(location.pathname);
+        }
+    }, [isLast, location.pathname]);
 
     const goPrev = () => {
         if (!isFirst) { setActiveSection(sections[currentIndex - 1].id); return; }
