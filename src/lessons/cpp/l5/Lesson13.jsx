@@ -1,7 +1,7 @@
 import React, { useMemo, useState } from 'react';
 import { BrainCircuit, ClipboardCheck, Repeat2, Search } from 'lucide-react';
 import CppL5LessonSupport from '../../../components/CppL5LessonSupport';
-import CppLessonShell, { Callout, CodeBlock, CompareTable, MiniQuiz, StepList } from '../CppLessonShell';
+import CppLessonShell, { Callout, CodeBlock, CompareTable, MasteryCheck, MiniQuiz, PredictCheck, StepList } from '../CppLessonShell';
 
 const sections = [
     { id: 1, title: '课程导入', category: '重复子问题' },
@@ -82,6 +82,57 @@ const quiz = [
     },
 ];
 
+function MemoPredictionChecks() {
+    return (
+        <div className="grid gap-4 lg:grid-cols-3">
+            <PredictCheck
+                prompt={'用 memo[x] 缓存答案，靠 memo[x] != 0 判断「算过没」，可靠吗？'}
+                options={['可靠', '不可靠，0 可能是真实答案']}
+                correctIndex={1}
+                explanation="如果某状态的真实答案就是 0，memo[x] != 0 会误判它「没算过」，于是反复重算甚至出错。要用单独的 done[x] 标记。"
+                misconception="把「答案为 0」和「还没算过」混为一谈。"
+            />
+            <PredictCheck
+                prompt={'记忆化递归里，应该先递归计算，还是先查缓存？'}
+                options={['先算再说', '先查缓存，命中就直接返回']}
+                correctIndex={1}
+                explanation="先查 done/memo，命中就返回，避免重复展开整棵子树。先算就失去了记忆化的意义。"
+                misconception="把缓存当成「算完顺手存一下」，忘了进门要先查。"
+            />
+            <PredictCheck
+                prompt={'fib(40) 普通递归很慢，根本原因是什么？'}
+                options={['递归这个机制本身慢', '同一个 fib 值被重复算了无数遍']}
+                correctIndex={1}
+                explanation="普通递归里 fib(n-2)、fib(n-3) 等被反复计算，调用次数指数级。记忆化让每个状态只算一次。"
+                misconception="以为是「递归」本身慢，而不是重复子问题。"
+            />
+        </div>
+    );
+}
+
+const memoMasteryItems = [
+    {
+        label: '能判断题目有没有重复子问题。',
+        evidence: '参数相同的递归调用，后面要解决的问题是否也相同。',
+        retryHint: '回到「状态口令」自问一遍。',
+    },
+    {
+        label: '能区分「未计算」和「答案为 0」。',
+        evidence: '用 done[] 标记，不靠 memo != 0 判断。',
+        retryHint: '回到递归模板，想答案恰好是 0 的情况。',
+    },
+    {
+        label: '能写「先查、再算、后存」的模板。',
+        evidence: '边界 → 查缓存 → 递归算 → 标记 done 并存 memo。',
+        retryHint: '进门先查，别先展开子树。',
+    },
+    {
+        label: '能用参数描述状态并迁移到路径题。',
+        evidence: '网格路径用 (i, j) 当状态，f[i][j] 缓存答案。',
+        retryHint: '写清「状态、边界、转移、答案位置」四句话。',
+    },
+];
+
 export default function CppL5Lesson13() {
     return (
         <CppLessonShell
@@ -101,6 +152,7 @@ export default function CppL5Lesson13() {
                 description: '本课用斐波那契、路径计数和选择问题建立记忆化递归模板，为动态规划打底。',
             }}
             goals={['能判断题目是否有重复子问题', '能用数组或 map 缓存递归答案', '能写出先查、再算、后存的模板']}
+            prerequisites={['会写递归函数并定边界', '会用数组保存中间结果', '理解函数参数决定子问题']}
             childrenBySection={{
                 1: <MemoLab />,
                 2: (
@@ -148,6 +200,7 @@ int dfs(int x) {
                                 '标记 done 并保存 memo',
                             ]} />
                         </div>
+                        <MemoPredictionChecks />
                     </>
                 ),
                 4: (
@@ -182,6 +235,11 @@ int dfs(int i, int j) {
                             </p>
                         </div>
                         <MiniQuiz items={quiz} />
+                        <MasteryCheck
+                            title="C++ L5-13 记忆化递归离开前检查"
+                            description="记忆化最怕“用 memo!=0 判断算没算过、先算才查缓存”。勾选前先把一道题的状态、边界、转移写成三句话。"
+                            items={memoMasteryItems}
+                        />
                         <Callout icon={ClipboardCheck} title="课后任务" tone="slate">
                             <ul className="space-y-2">
                                 <li>写出 fib(n) 的普通递归和记忆化递归，并比较调用次数。</li>

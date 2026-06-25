@@ -1,7 +1,7 @@
 import React, { useMemo, useState } from 'react';
 import { ClipboardCheck, Calculator, Search, ShieldAlert, PlusCircle } from 'lucide-react';
 import CppL5LessonSupport from '../../../components/CppL5LessonSupport';
-import CppLessonShell, { Callout, CodeBlock, CompareTable, MiniQuiz, StepList } from '../CppLessonShell';
+import CppLessonShell, { Callout, CodeBlock, CompareTable, MasteryCheck, MiniQuiz, PredictCheck, StepList } from '../CppLessonShell';
 
 const sections = [
     { id: 1, title: '课程导入', category: '大整数模型' },
@@ -80,6 +80,57 @@ const quiz = [
     },
 ];
 
+function BigIntPredictionChecks() {
+    return (
+        <div className="grid gap-4 lg:grid-cols-3">
+            <PredictCheck
+                prompt={'高精度把大整数存进数组，个位应该放在 a[0] 还是数组末尾？'}
+                options={['放数组末尾（按原顺序）', '放 a[0]（反向存）']}
+                correctIndex={1}
+                explanation="反向存：个位放 a[0]、十位 a[1]……这样进位时下标自然往后加 1，加减乘都顺手。"
+                misconception="按读入顺序正向存，导致进位方向别扭、容易写错。"
+            />
+            <PredictCheck
+                prompt={'算 999 + 1，循环条件只写 i < a.size()，结果对吗？'}
+                options={['对，得 1000', '错，会漏掉最高位的进位']}
+                correctIndex={1}
+                explanation="最后一位算完还有 carry = 1，必须让循环在 carry 还在时继续（… || carry），否则丢掉最高位得到 000。"
+                misconception="忘了「算完最后一位后可能还有进位」。"
+            />
+            <PredictCheck
+                prompt={'减法结果反向存成 [1, 0, 0]（高位是末尾的 0），直接输出会得到 "001"，对吗？'}
+                options={['对', '要先删高位前导零，只输出 1']}
+                correctIndex={1}
+                explanation="末尾的 0 是前导零（如 100 - 99 = 1），输出前要 while pop 掉；但如果结果就是 0，要至少保留一位。"
+                misconception="不处理前导零，输出一串多余的 0。"
+            />
+        </div>
+    );
+}
+
+const bigIntMasteryItems = [
+    {
+        label: '能解释高精度为什么反向存储。',
+        evidence: '个位放 a[0]，进位时下标自然向后加。',
+        retryHint: '回到「为什么反向存」。',
+    },
+    {
+        label: '能写加法并处理最后的进位。',
+        evidence: '循环条件带 || carry，999 + 1 能得到 1000。',
+        retryHint: '回到加法模板，最后一位别漏进位。',
+    },
+    {
+        label: '能写减法并处理借位和前导零。',
+        evidence: '不够减就借 10，算完删前导零但至少保留一位。',
+        retryHint: '回到「两个必要检查」。',
+    },
+    {
+        label: '能在减法前判断谁更大。',
+        evidence: 'a < b 时交换两数并在结果前输出负号。',
+        retryHint: '模板默认 a >= b，真实题要先比大小。',
+    },
+];
+
 export default function CppL5Lesson3() {
     return (
         <CppLessonShell
@@ -99,6 +150,7 @@ export default function CppL5Lesson3() {
                 description: '本课学习如何用字符串和数组表示超长整数，完成加法进位和减法借位。',
             }}
             goals={['能解释高精度整数的存储方式', '能写出高精加法模板', '能处理高精减法的借位和前导零']}
+            prerequisites={['会用下标遍历字符串', "理解字符转数字 s[i] - '0'", '会用数组 / vector 存一组数']}
             childrenBySection={{
                 1: <BigAddLab />,
                 2: (
@@ -179,6 +231,7 @@ for (int i = s.size() - 1; i >= 0; i--) {
                         <Callout icon={ShieldAlert} title="两个必要检查" tone="amber">
                             减法前比较大小；减法后删除前导零，但至少保留一位 0。
                         </Callout>
+                        <BigIntPredictionChecks />
                     </>
                 ),
                 5: (
@@ -190,6 +243,11 @@ for (int i = s.size() - 1; i >= 0; i--) {
                             </p>
                         </div>
                         <MiniQuiz items={quiz} />
+                        <MasteryCheck
+                            title="C++ L5-3 高精加减离开前检查"
+                            description="高精度最吃细节：反向存、最后进位、前导零。勾选前先用 999+1 和 100-99 两个小例子手推一遍。"
+                            items={bigIntMasteryItems}
+                        />
                         <Callout icon={ClipboardCheck} title="课后任务" tone="slate">
                             <ul className="space-y-2">
                                 <li>读入两个非负大整数，输出它们的和。</li>
