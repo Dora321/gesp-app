@@ -1,7 +1,7 @@
 import React, { useMemo, useState } from 'react';
 import { AlertTriangle, ClipboardCheck, Plus, Search } from 'lucide-react';
 import CppL5LessonSupport from '../../../components/CppL5LessonSupport';
-import CppLessonShell, { Callout, CodeBlock, CompareTable, MiniQuiz, StepList } from '../CppLessonShell';
+import CppLessonShell, { Callout, CodeBlock, CompareTable, MasteryCheck, MiniQuiz, PredictCheck, StepList } from '../CppLessonShell';
 
 const sections = [
     { id: 1, title: '课程导入', category: '先连后断' },
@@ -79,6 +79,57 @@ const quiz = [
     },
 ];
 
+function LinkedListPredictionChecks() {
+    return (
+        <div className="grid gap-4 lg:grid-cols-3">
+            <PredictCheck
+                prompt={'插入 x 时先写 p->next = x; 再写 x->next = p->next; 会怎样？'}
+                options={['正常插入', 'x 指向自己，后半段全丢']}
+                correctIndex={1}
+                explanation="先改 p->next = x 后，p 原来的后继地址就丢了；接着 x->next = p->next 此时 p->next 已是 x，于是 x 指向自己。必须先 x->next = p->next，再 p->next = x。"
+                misconception="颠倒了「先连后断」的顺序，先断了链才去连。"
+            />
+            <PredictCheck
+                prompt={'删除节点时先 delete q; 再用 q->next，可以吗？'}
+                options={['可以', '不行，delete 后 q->next 是悬空访问']}
+                correctIndex={1}
+                explanation="delete q 之后 q 指向的内存已释放，再读 q->next 是未定义行为。必须先用 q->next 把链改好，最后再 delete q。"
+                misconception="以为 delete 之后还能安全读这个节点的字段。"
+            />
+            <PredictCheck
+                prompt={'删除链表第一个节点，能套用「改前驱 next」的模板吗？'}
+                options={['能', '不能，头节点没有前驱']}
+                correctIndex={1}
+                explanation="头节点前面没有节点帮它跳过，必须直接 head = head->next，再 delete 旧 head。"
+                misconception="套用中间节点的删除模板，忘了头节点没有前驱。"
+            />
+        </div>
+    );
+}
+
+const linkedListMasteryItems = [
+    {
+        label: '能解释插入为什么要「先连后断」。',
+        evidence: '先 x->next = p->next 接住后半段，再 p->next = x。',
+        retryHint: '回到插入小节，想想颠倒顺序会发生什么。',
+    },
+    {
+        label: '能安全删除一个节点。',
+        evidence: '先保存/改链，再 delete，绝不在 delete 之后访问该节点。',
+        retryHint: '回到「不要直接 delete 后再访问」。',
+    },
+    {
+        label: '能处理头节点删除的特判。',
+        evidence: '头节点直接 head = head->next，因为它没有前驱。',
+        retryHint: '回到头节点特判表。',
+    },
+    {
+        label: '能先画箭头图再改指针。',
+        evidence: '插入/删除前先画出修改前、修改后的指针指向。',
+        retryHint: '别凭感觉改指针，先把 before/after 画出来。',
+    },
+];
+
 export default function CppL5Lesson7() {
     return (
         <CppLessonShell
@@ -98,6 +149,7 @@ export default function CppL5Lesson7() {
                 description: '本课聚焦单链表插入、删除和头节点特判，训练每一步指针变化的可视化推演。',
             }}
             goals={['能在指定节点后插入新节点', '能删除指定节点后的节点', '能处理头节点和空链表边界']}
+            prerequisites={['理解指针保存的是地址', '理解节点 node->next 指向下一个', '会在纸上画指针指向图']}
             childrenBySection={{
                 1: <InsertDeleteLab />,
                 2: (
@@ -162,6 +214,7 @@ if (q != nullptr) {
                                 ['尾节点', '有', 'prev->next 变成 nullptr'],
                             ]}
                         />
+                        <LinkedListPredictionChecks />
                     </>
                 ),
                 5: (
@@ -173,6 +226,11 @@ if (q != nullptr) {
                             </p>
                         </div>
                         <MiniQuiz items={quiz} />
+                        <MasteryCheck
+                            title="C++ L5-7 链表增删改离开前检查"
+                            description="链表增删最怕“手一快，顺序错了后半条链就找不回来”。勾选前先把插入和删除各画一张 before/after 箭头图。"
+                            items={linkedListMasteryItems}
+                        />
                         <Callout icon={ClipboardCheck} title="课后任务" tone="slate">
                             <ul className="space-y-2">
                                 <li>在单链表第 k 个节点后插入一个新值。</li>

@@ -1,7 +1,7 @@
 import React, { useMemo, useState } from 'react';
 import { ClipboardCheck, Gauge, Search, SplitSquareHorizontal } from 'lucide-react';
 import CppL5LessonSupport from '../../../components/CppL5LessonSupport';
-import CppLessonShell, { Callout, CodeBlock, CompareTable, MiniQuiz, StepList } from '../CppLessonShell';
+import CppLessonShell, { Callout, CodeBlock, CompareTable, MasteryCheck, MiniQuiz, PredictCheck, StepList } from '../CppLessonShell';
 
 const sections = [
     { id: 1, title: '课程导入', category: '折半思想' },
@@ -84,6 +84,57 @@ const quiz = [
     },
 ];
 
+function BinarySearchPredictionChecks() {
+    return (
+        <div className="grid gap-4 lg:grid-cols-3">
+            <PredictCheck
+                prompt={'二分里写 left = mid（而不是 mid + 1），会怎样？'}
+                options={['更精确', '区间不缩小，死循环']}
+                correctIndex={1}
+                explanation="当 left == right == mid 时，left = mid 没让区间变小，循环永远结束不了。排除中点后必须 left = mid + 1 或 right = mid - 1。"
+                misconception="以为 left = mid 也能收敛，忽略了区间不缩小会死循环。"
+            />
+            <PredictCheck
+                prompt={'对没排序的乱序数组用二分查找，能找对吗？'}
+                options={['能', '不能，二分要求有序/单调']}
+                correctIndex={1}
+                explanation="二分靠「中点比目标小还是大」判断答案在哪一半，乱序时这个判断不成立，会漏掉答案。必须先有序。"
+                misconception="以为二分对任意数组都能用。"
+            />
+            <PredictCheck
+                prompt={'mid 写成 (left + right) / 2，left、right 很大时有什么隐患？'}
+                options={['没问题', 'left + right 可能溢出']}
+                correctIndex={1}
+                explanation="left + right 可能超过 int 上限，溢出成负数。写 left + (right - left) / 2 更安全。"
+                misconception="忽略了两个大数相加的溢出风险。"
+            />
+        </div>
+    );
+}
+
+const binarySearchMasteryItems = [
+    {
+        label: '能写出标准二分查找模板。',
+        evidence: 'while (left <= right)，排除中点后 left = mid + 1 或 right = mid - 1。',
+        retryHint: '回到查找模板，守住 left/right/mid 的含义。',
+    },
+    {
+        label: '能解释为什么必须有序/单调。',
+        evidence: '靠中点判断丢掉一半，乱序时这个判断不成立。',
+        retryHint: '回到二分条件表。',
+    },
+    {
+        label: '能避免死循环和溢出。',
+        evidence: '排除中点用 mid ± 1；mid 写 left + (right - left) / 2。',
+        retryHint: '想一想 left == right 时区间会不会缩小。',
+    },
+    {
+        label: '能用 check(mid) 做答案二分。',
+        evidence: '答案范围单调时，用 check 判可行，再移动边界。',
+        retryHint: '回到「先写 check」，难点在表达「可行」。',
+    },
+];
+
 export default function CppL5Lesson10() {
     return (
         <CppLessonShell
@@ -103,6 +154,7 @@ export default function CppL5Lesson10() {
                 description: '本课从有序数组查找入门，再过渡到答案二分，建立“边界 + check”的思考框架。',
             }}
             goals={['能写出二分查找模板', '能解释单调性为何必要', '能初步使用 check 函数做答案二分']}
+            prerequisites={['会遍历数组并比较元素', '理解数组「有序」的含义', '会写 while 循环并控制边界']}
             childrenBySection={{
                 1: <BinaryLab />,
                 2: (
@@ -149,6 +201,7 @@ export default function CppL5Lesson10() {
                                 'mid 太大，移动 right',
                             ]} />
                         </div>
+                        <BinarySearchPredictionChecks />
                     </>
                 ),
                 4: (
@@ -183,6 +236,11 @@ while (left <= right) {
                             </p>
                         </div>
                         <MiniQuiz items={quiz} />
+                        <MasteryCheck
+                            title="C++ L5-10 二分查找离开前检查"
+                            description="二分最怕“边界写错就死循环、忘了有序前提就漏答案”。勾选前先用一个小数组手推一次 mid 和边界移动。"
+                            items={binarySearchMasteryItems}
+                        />
                         <Callout icon={ClipboardCheck} title="课后任务" tone="slate">
                             <ul className="space-y-2">
                                 <li>在升序数组中查找目标值下标。</li>
