@@ -4,6 +4,21 @@ const DEFAULT_PORT = 4176;
 const baseUrl = process.env.SMOKE_BASE_URL || `http://127.0.0.1:${DEFAULT_PORT}`;
 const shouldStartServer = !process.env.SMOKE_BASE_URL;
 
+// Representative course routes covering every C++ level (L1-L6) and the core
+// Python units. The sweep asserts each one renders real content on desktop and
+// does not overflow horizontally on mobile (where code blocks, compare tables
+// and long buttons are most likely to spill out of the viewport).
+const COURSE_ROUTES = [
+  '/lesson/1/9',   // C++ L1 · for 循环（CodeTracer + 出口检查）
+  '/lesson/2/12',  // C++ L2 · 一维数组（PredictCheck 模板）
+  '/lesson/3/7',   // C++ L3 · 字符串魔法
+  '/lesson/4/5',   // C++ L4 · 指针入门
+  '/lesson/5/1',   // C++ L5 · 素数筛
+  '/lesson/6/1',   // C++ L6 · 树的初相识
+  '/python/f2',    // Python · 控制流程（PredictCheck）
+  '/python/f3',    // Python · 列表与字典
+];
+
 let server;
 let browser;
 
@@ -122,6 +137,18 @@ async function run() {
   await page.goto(`${baseUrl}/definitely-not-a-real-page`, { waitUntil: 'domcontentloaded' });
   await page.getByText('页面没有找到').waitFor({ timeout: 10000 });
 
+  // Desktop sweep: every key course route must render real content (not a blank
+  // page or a crashed lazy chunk). Console errors are collected globally and
+  // asserted at the end of the run.
+  for (const route of COURSE_ROUTES) {
+    await page.goto(`${baseUrl}${route}`, { waitUntil: 'domcontentloaded' });
+    await page.waitForTimeout(900);
+    const textLength = await page.evaluate(() => document.body.innerText.trim().length);
+    if (textLength < 200) {
+      throw new Error(`Course route ${route} rendered almost no content (text length ${textLength}).`);
+    }
+  }
+
   const mobilePage = await browser.newPage({
     viewport: { width: 390, height: 844 },
     isMobile: true,
@@ -165,6 +192,24 @@ async function run() {
 
   if (mobileMenu.elementAtFloatingArea.includes('课堂积分榜')) {
     throw new Error('Floating classroom button appears above the open mobile menu.');
+  }
+
+  // Mobile sweep: every key course route must fit the viewport width. A small
+  // tolerance absorbs sub-pixel rounding; anything larger means a code block,
+  // table or button is spilling out horizontally on phones.
+  const OVERFLOW_TOLERANCE = 2;
+  for (const route of COURSE_ROUTES) {
+    await mobilePage.goto(`${baseUrl}${route}`, { waitUntil: 'domcontentloaded' });
+    await mobilePage.waitForTimeout(900);
+    const metrics = await mobilePage.evaluate(() => ({
+      innerWidth: window.innerWidth,
+      scrollWidth: document.documentElement.scrollWidth,
+      bodyScrollWidth: document.body.scrollWidth,
+    }));
+    const overflow = Math.max(metrics.scrollWidth, metrics.bodyScrollWidth) - metrics.innerWidth;
+    if (overflow > OVERFLOW_TOLERANCE) {
+      throw new Error(`Course route ${route} overflows horizontally on mobile by ${overflow}px: ${JSON.stringify(metrics)}`);
+    }
   }
 
   await browser.close();
