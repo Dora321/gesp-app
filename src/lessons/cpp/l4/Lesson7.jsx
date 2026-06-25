@@ -1,7 +1,7 @@
 import React, { useMemo, useState } from 'react';
 import { ClipboardCheck, Contact, Database, Search, Users } from 'lucide-react';
 import CppL4LessonSupport from '../../../components/CppL4LessonSupport';
-import CppLessonShell, { Callout, CodeBlock, CompareTable, MiniQuiz, StepList } from '../CppLessonShell';
+import CppLessonShell, { Callout, CodeBlock, CompareTable, MasteryCheck, MiniQuiz, PredictCheck, StepList } from '../CppLessonShell';
 
 const sections = [
     { id: 1, title: '课程导入', category: '结构体模型' },
@@ -57,6 +57,57 @@ const quiz = [
     },
 ];
 
+function StructPredictionChecks() {
+    return (
+        <div className="grid gap-4 lg:grid-cols-3">
+            <PredictCheck
+                prompt={'struct Student { ... } 后面忘了写分号，会怎样？'}
+                options={['没事，能编译', '编译报错']}
+                correctIndex={1}
+                explanation="结构体定义的右花括号后必须加分号 };。漏掉会编译报错——这是结构体头号笔误。"
+                misconception="以为花括号结束就完了，忘了结构体定义要用分号收尾。"
+            />
+            <PredictCheck
+                prompt={'读第 i 个学生的成绩，下面哪个写法对？'}
+                options={['a.score[i]', 'a[i].score']}
+                correctIndex={1}
+                explanation="a[i] 先选出第 i 个学生，再 .score 取他的成绩。a.score[i] 把对象和字段的顺序搞反了。"
+                misconception="把「数组下标」和「字段名」的顺序写反。"
+            />
+            <PredictCheck
+                prompt={'Student stu; 之后访问成绩，写 Student.score 对吗？'}
+                options={['对', '错，要写 stu.score']}
+                correctIndex={1}
+                explanation="点运算符作用在变量上，不是类型名上。Student 是类型，stu 才是具体对象。"
+                misconception="在类型名上用点访问字段。"
+            />
+        </div>
+    );
+}
+
+const structMasteryItems = [
+    {
+        label: '能定义结构体并记得收尾分号。',
+        evidence: 'struct Student { ... }; 右花括号后有分号。',
+        retryHint: '回到「定义结构体」，检查 } 后面的分号。',
+    },
+    {
+        label: '能用点运算符访问字段。',
+        evidence: 'stu.name、stu.score，点作用在具体变量上。',
+        retryHint: '记住：类型名不能加点，只有变量能。',
+    },
+    {
+        label: '能用结构体数组管理多个对象。',
+        evidence: 'a[i].score 表示第 i 个学生的成绩。',
+        retryHint: '回到「结构体数组的读法」。',
+    },
+    {
+        label: '能把一堆平行变量迁移成结构体。',
+        evidence: '把「姓名 + 分数」的题改写成 Student 数组版本。',
+        retryHint: '先列出一个对象到底有哪些字段。',
+    },
+];
+
 export default function CppL4Lesson7() {
     return (
         <CppLessonShell
@@ -76,6 +127,7 @@ export default function CppL4Lesson7() {
                 description: '当题目里一个学生有姓名、年龄、成绩，或者一本书有标题、价格、库存时，结构体比多个数组更清楚。',
             }}
             goals={['能定义结构体类型', '能用点运算符访问字段', '能用结构体数组保存多条记录']}
+            prerequisites={['会定义和使用变量', '会遍历一维数组', '理解 int / string 等不同类型']}
             childrenBySection={{
                 1: <StructLab />,
                 2: (
@@ -143,6 +195,7 @@ for (int i = 0; i < n; i++) {
                         <Callout icon={Users} title="结构体数组的读法" tone="indigo">
                             <code>a[i]</code> 表示第 i 个学生，<code>a[i].score</code> 表示第 i 个学生的成绩。
                         </Callout>
+                        <StructPredictionChecks />
                     </>
                 ),
                 5: (
@@ -154,6 +207,11 @@ for (int i = 0; i < n; i++) {
                             </p>
                         </div>
                         <MiniQuiz items={quiz} />
+                        <MasteryCheck
+                            title="C++ L4-7 结构体离开前检查"
+                            description="结构体最怕“定义漏分号、a[i].score 写反”。勾选前先自己定义一个 Book 并读出一个字段。"
+                            items={structMasteryItems}
+                        />
                         <Callout icon={ClipboardCheck} title="课后任务" tone="slate">
                             <ul className="space-y-2">
                                 <li>定义 <code>Book</code> 结构体，包含标题、价格、库存。</li>

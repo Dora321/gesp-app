@@ -1,7 +1,7 @@
 import React, { useMemo, useState } from 'react';
 import { ClipboardCheck, Grid3X3, Rows3, Search, Table2 } from 'lucide-react';
 import CppL4LessonSupport from '../../../components/CppL4LessonSupport';
-import CppLessonShell, { Callout, CodeBlock, CompareTable, MiniQuiz, StepList } from '../CppLessonShell';
+import CppLessonShell, { Callout, CodeBlock, CompareTable, MasteryCheck, MiniQuiz, PredictCheck, StepList } from '../CppLessonShell';
 
 const sections = [
     { id: 1, title: '课程导入', category: '矩阵模型' },
@@ -64,6 +64,57 @@ const quiz = [
     },
 ];
 
+function MatrixPredictionChecks() {
+    return (
+        <div className="grid gap-4 lg:grid-cols-3">
+            <PredictCheck
+                prompt={'a[2][3] 表示矩阵的哪个元素？'}
+                options={['第 3 行第 2 列', '第 2 行第 3 列']}
+                correctIndex={1}
+                explanation="第一个下标是行、第二个下标是列，所以 a[2][3] 是第 2 行第 3 列（都从 0 数起）。"
+                misconception="把行下标和列下标读反。"
+            />
+            <PredictCheck
+                prompt={'遍历 n 行 m 列，外层循环边界应该是哪个？'}
+                options={['i < m', 'i < n']}
+                correctIndex={1}
+                explanation="外层 i 扫行，范围是行数 n（i < n）；内层 j 扫列，范围是列数 m（j < m）。写反就会越界或漏扫。"
+                misconception="把行数 n 和列数 m 对应的循环范围搞混。"
+            />
+            <PredictCheck
+                prompt={'求第 r 行的和，循环要固定谁、动谁？'}
+                options={['固定列 j，动行 i', '固定行 r，动列 j']}
+                correctIndex={1}
+                explanation="一整行的和 = 固定行号 r，让列 j 从 0 扫到 m-1，累加 a[r][j]。"
+                misconception="把行统计和列统计的固定下标搞反。"
+            />
+        </div>
+    );
+}
+
+const matrixMasteryItems = [
+    {
+        label: '能声明和读入二维数组。',
+        evidence: 'int a[105][105]; 用双重循环逐格读入。',
+        retryHint: '回到「二维数组声明」。',
+    },
+    {
+        label: '能说清 a[i][j] 的行列含义。',
+        evidence: '第一个下标是行、第二个是列，都从 0 开始。',
+        retryHint: '回到矩阵实验台，对照 a[i][j] 的位置。',
+    },
+    {
+        label: '能写双重循环并定对边界。',
+        evidence: '外层 i < n 扫行，内层 j < m 扫列。',
+        retryHint: '别把行数 n 和列数 m 写反。',
+    },
+    {
+        label: '能把行/列统计迁移到对角线等。',
+        evidence: '行和固定 r 扫 j；主对角线是 a[i][i]。',
+        retryHint: '先固定一个下标，再想另一个怎么动。',
+    },
+];
+
 export default function CppL4Lesson8() {
     return (
         <CppLessonShell
@@ -83,6 +134,7 @@ export default function CppL4Lesson8() {
                 description: '本课把一维数组升级成矩阵模型，学习声明、读入、遍历、行列统计和常见边界。',
             }}
             goals={['能声明和读入二维数组', '能用双重循环遍历矩阵', '能完成行和列的统计任务']}
+            prerequisites={['会遍历一维数组', '会写嵌套 for 循环', '理解下标从 0 开始']}
             childrenBySection={{
                 1: <MatrixLab />,
                 2: (
@@ -158,6 +210,7 @@ for (int i = 0; i < n; i++) {
                         <Callout icon={Rows3} title="先固定一个下标" tone="indigo">
                             行统计固定 <code>i</code>，列统计固定 <code>j</code>。别把行列循环范围写反。
                         </Callout>
+                        <MatrixPredictionChecks />
                     </>
                 ),
                 5: (
@@ -169,6 +222,11 @@ for (int i = 0; i < n; i++) {
                             </p>
                         </div>
                         <MiniQuiz items={quiz} />
+                        <MasteryCheck
+                            title="C++ L4-8 二维数组离开前检查"
+                            description="二维数组最怕“行列读反、n/m 写反”。勾选前先画一个 3×4 小矩阵标好行列号，再写循环。"
+                            items={matrixMasteryItems}
+                        />
                         <Callout icon={ClipboardCheck} title="课后任务" tone="slate">
                             <ul className="space-y-2">
                                 <li>读入 n 行 m 列矩阵，原样输出。</li>
