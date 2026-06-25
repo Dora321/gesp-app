@@ -1,7 +1,7 @@
 import React, { useMemo, useState } from 'react';
 import { ClipboardCheck, Divide, RefreshCw, Search, Sigma } from 'lucide-react';
 import CppL5LessonSupport from '../../../components/CppL5LessonSupport';
-import CppLessonShell, { Callout, CodeBlock, CompareTable, MiniQuiz, StepList } from '../CppLessonShell';
+import CppLessonShell, { Callout, CodeBlock, CompareTable, MasteryCheck, MiniQuiz, PredictCheck, StepList } from '../CppLessonShell';
 
 const sections = [
     { id: 1, title: '课程导入', category: '公因数模型' },
@@ -76,6 +76,57 @@ const quiz = [
     },
 ];
 
+function GcdPredictionChecks() {
+    return (
+        <div className="grid gap-4 lg:grid-cols-3">
+            <PredictCheck
+                prompt={'求 lcm 写成 a * b / gcd(a,b)，a、b 很大时有什么风险？'}
+                options={['没问题', 'a * b 先算可能溢出']}
+                correctIndex={1}
+                explanation="a * b 可能超过 long long 范围而溢出。应写 a / gcd(a,b) * b，先除再乘，结果一样但不会溢出。"
+                misconception="以为先乘后除和先除后乘没区别，忽略了中间结果溢出。"
+            />
+            <PredictCheck
+                prompt={'欧几里得 gcd 的循环什么时候停下来？'}
+                options={['a == b 时', 'b == 0 时，返回 a']}
+                correctIndex={1}
+                explanation="不断把 (a, b) 变成 (b, a % b)，当 b 变成 0 时，a 就是最大公约数。"
+                misconception="以为要等两个数相等才停止。"
+            />
+            <PredictCheck
+                prompt={'gcd(a, b) 和 gcd(b, a % b) 相等吗？'}
+                options={['不一定', '相等，这正是欧几里得算法的核心']}
+                correctIndex={1}
+                explanation="a 和 b 的公约数也是 b 和余数 r = a % b 的公约数，所以 gcd(a,b) = gcd(b, a%b)，问题不断缩小。"
+                misconception="不理解为什么取余之后还能保留公约数。"
+            />
+        </div>
+    );
+}
+
+const gcdMasteryItems = [
+    {
+        label: '能手写循环和递归版 gcd。',
+        evidence: 'while (b) 把 (a,b) 变成 (b, a%b)；递归 b==0 ? a : gcd(b, a%b)。',
+        retryHint: '回到欧几里得算法。',
+    },
+    {
+        label: '能解释 gcd(a,b) = gcd(b, a%b)。',
+        evidence: '余数保留了两个数的公因数信息。',
+        retryHint: '回到核心关系式。',
+    },
+    {
+        label: '能用 gcd 算 lcm 且避免溢出。',
+        evidence: '写 a / gcd(a,b) * b，先除再乘。',
+        retryHint: '回到最小公倍数，别先算 a*b。',
+    },
+    {
+        label: '能识别周期 / 分组 / 比例的 gcd / lcm 模型。',
+        evidence: '最简比、平均分组用 gcd；共同周期用 lcm。',
+        retryHint: '回到应用题型表。',
+    },
+];
+
 export default function CppL5Lesson2() {
     return (
         <CppLessonShell
@@ -95,6 +146,7 @@ export default function CppL5Lesson2() {
                 description: '本课从最大公约数出发，掌握欧几里得算法、最小公倍数公式和常见应用模型。',
             }}
             goals={['能手写递归和循环版 gcd', '能用 gcd 计算 lcm', '能识别周期、比例、分组中的 gcd 模型']}
+            prerequisites={['理解取余运算 a % b', '会写 while 循环', '理解整除与公约数概念']}
             childrenBySection={{
                 1: <GcdLab />,
                 2: (
@@ -139,6 +191,7 @@ export default function CppL5Lesson2() {
   return b == 0 ? a : gcd(b, a % b);
 }`}</CodeBlock>
                         </Callout>
+                        <GcdPredictionChecks />
                     </>
                 ),
                 4: (
@@ -168,6 +221,11 @@ export default function CppL5Lesson2() {
                             </p>
                         </div>
                         <MiniQuiz items={quiz} />
+                        <MasteryCheck
+                            title="C++ L5-2 公约数与公倍数离开前检查"
+                            description="GCD 最怕“lcm 先乘 a*b 溢出、循环终止条件记错”。勾选前先手推一遍 gcd(84, 36)。"
+                            items={gcdMasteryItems}
+                        />
                         <Callout icon={ClipboardCheck} title="课后任务" tone="slate">
                             <ul className="space-y-2">
                                 <li>读入 a、b，输出 gcd 和 lcm。</li>

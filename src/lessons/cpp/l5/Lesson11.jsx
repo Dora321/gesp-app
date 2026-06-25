@@ -1,7 +1,7 @@
 import React, { useMemo, useState } from 'react';
 import { ClipboardCheck, GitBranch, Layers2, Search } from 'lucide-react';
 import CppL5LessonSupport from '../../../components/CppL5LessonSupport';
-import CppLessonShell, { Callout, CodeBlock, CompareTable, MiniQuiz, StepList } from '../CppLessonShell';
+import CppLessonShell, { Callout, CodeBlock, CompareTable, MasteryCheck, MiniQuiz, PredictCheck, StepList } from '../CppLessonShell';
 
 const sections = [
     { id: 1, title: '课程导入', category: '拆分问题' },
@@ -71,6 +71,57 @@ const quiz = [
     },
 ];
 
+function DivideConquerPredictionChecks() {
+    return (
+        <div className="grid gap-4 lg:grid-cols-3">
+            <PredictCheck
+                prompt={'归并排序里先 merge 合并、再递归排序左右两半，顺序对吗？'}
+                options={['对', '错，要先递归排好左右，再合并']}
+                correctIndex={1}
+                explanation="merge 假设左右两半已经有序。必须先 mergeSort(l,mid)、mergeSort(mid+1,r) 排好，再 merge。顺序反了，合并的就是乱序。"
+                misconception="把「先合并后排序」和「先排序后合并」搞反。"
+            />
+            <PredictCheck
+                prompt={'分治递归忘了写出口 if (l >= r) return;，会怎样？'}
+                options={['没事', '无限递归拆分，栈溢出']}
+                correctIndex={1}
+                explanation="没有出口，区间会一直往下拆（甚至 l > r），无限递归崩溃。分治必须有「小到能直接解决」的出口。"
+                misconception="以为递归会自己在单元素时停下来。"
+            />
+            <PredictCheck
+                prompt={'归并排序的时间复杂度是多少？'}
+                options={['O(n²)', 'O(n log n)']}
+                correctIndex={1}
+                explanation="每一层合并都处理全部 n 个元素，拆分大约 log n 层，所以是 O(n log n)，比冒泡/插入的 O(n²) 快得多。"
+                misconception="以为带递归就一定是 O(n²)，或不会做复杂度分析。"
+            />
+        </div>
+    );
+}
+
+const divideConquerMasteryItems = [
+    {
+        label: '能说清分治三步。',
+        evidence: '拆分子问题、递归解决、合并子答案，合并最关键。',
+        retryHint: '回到分治三步表。',
+    },
+    {
+        label: '能写区间递归框架并定出口。',
+        evidence: 'if (l >= r) return; 拆左右、分别递归、再合并。',
+        retryHint: '别忘了单元素的递归出口。',
+    },
+    {
+        label: '能解释归并排序的拆分与合并。',
+        evidence: '先递归排好左右，再用双指针线性合并两个有序区间。',
+        retryHint: 'merge 要求左右两半都先有序。',
+    },
+    {
+        label: '能分析归并排序的复杂度。',
+        evidence: '每层 O(n)、约 log n 层 → O(n log n)，且需要额外数组。',
+        retryHint: '回到复杂度分析。',
+    },
+];
+
 export default function CppL5Lesson11() {
     return (
         <CppLessonShell
@@ -90,6 +141,7 @@ export default function CppL5Lesson11() {
                 description: '本课用区间拆分和归并排序建立分治框架，训练递归边界、子问题和合并过程。',
             }}
             goals={['能解释分治三步', '能写出区间递归框架', '能理解归并排序的拆分和合并']}
+            prerequisites={['会写递归并定边界', '理解数组「有序」的含义', '会用双指针合并两个序列']}
             childrenBySection={{
                 1: <DivideLab />,
                 2: (
@@ -151,6 +203,7 @@ while (i <= mid && j <= r) {
                         <Callout icon={Layers2} title="空间代价" tone="amber">
                             归并排序通常需要额外数组暂存合并结果，这也是它和原地排序的差异。
                         </Callout>
+                        <DivideConquerPredictionChecks />
                     </>
                 ),
                 5: (
@@ -162,6 +215,11 @@ while (i <= mid && j <= r) {
                             </p>
                         </div>
                         <MiniQuiz items={quiz} />
+                        <MasteryCheck
+                            title="C++ L5-11 分治思想离开前检查"
+                            description="分治最怕“先合并后排序、漏了递归出口”。勾选前先画一棵 n=8 的递归拆分树。"
+                            items={divideConquerMasteryItems}
+                        />
                         <Callout icon={ClipboardCheck} title="课后任务" tone="slate">
                             <ul className="space-y-2">
                                 <li>实现归并排序并输出排序结果。</li>
