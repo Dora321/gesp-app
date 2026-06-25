@@ -1,7 +1,7 @@
 import React, { useMemo, useState } from 'react';
 import { AlertTriangle, ArrowRightLeft, ClipboardCheck, Database, Search } from 'lucide-react';
 import CppL4LessonSupport from '../../../components/CppL4LessonSupport';
-import CppLessonShell, { Callout, CodeBlock, CompareTable, MiniQuiz, StepList } from '../CppLessonShell';
+import CppLessonShell, { Callout, CodeBlock, CompareTable, MasteryCheck, MiniQuiz, PredictCheck, StepList } from '../CppLessonShell';
 
 const sections = [
     { id: 1, title: '课程导入', category: '传参模型' },
@@ -73,6 +73,57 @@ const quiz = [
         question: '只需要一个计算结果时优先用什么？',
         answer: '返回值',
         reason: '返回值表达清楚，副作用少，适合单结果函数。',
+    },
+];
+
+function ParamPredictionChecks() {
+    return (
+        <div className="grid gap-4 lg:grid-cols-3">
+            <PredictCheck
+                prompt={'void change(int x){ x = 100; } 调用 change(a) 后，main 里原本是 5 的 a 变成几？'}
+                options={['100', '5']}
+                correctIndex={1}
+                explanation="传值传的是副本，函数把副本改成 100，main 里的 a 完全不受影响，还是 5。"
+                misconception="以为函数里改了参数，外面的原变量就会跟着变。"
+            />
+            <PredictCheck
+                prompt={'swap 参数写成 int x, int y（没加 &），调用 swap(a, b) 后会交换吗？'}
+                options={['会交换', '不会，只换了副本']}
+                correctIndex={1}
+                explanation="没加 & 就是传值，函数只交换两个副本，main 里的 a、b 原封不动。要写 int &x, int &y。"
+                misconception="以为 swap 一定能换，忘了引用符号 &。"
+            />
+            <PredictCheck
+                prompt={'要让一个函数同时改 main 里的两个变量，应该用什么？'}
+                options={['返回值 return', '引用传参 &']}
+                correctIndex={1}
+                explanation="return 只能交回一个结果。要同时改两个外部变量，得用引用传参 int &a, int &b。"
+                misconception="以为 return 能一次性修改多个外部变量。"
+            />
+        </div>
+    );
+}
+
+const paramMasteryItems = [
+    {
+        label: '能解释传值为什么改不了原变量。',
+        evidence: '知道函数拿到的是副本，改副本不影响 main 里的原值。',
+        retryHint: '回到传参交换实验台，切到「传值」看外面变没变。',
+    },
+    {
+        label: '能写出用引用交换两个变量。',
+        evidence: '参数加 &，swapNum(int &x, int &y) 能让 main 里的 a、b 真交换。',
+        retryHint: '别漏掉参数名前面的 &。',
+    },
+    {
+        label: '能判断该用返回值还是引用。',
+        evidence: '单个结果用 return；要改多个外部变量才用引用。',
+        retryHint: '回到返回值 vs 引用表，先数「要交回几个结果」。',
+    },
+    {
+        label: '能把传参规则迁移到新函数。',
+        evidence: '写 addOne(int &x) 让传入变量加一，并验证 main 里真的变了。',
+        retryHint: '先确定要不要改原变量，再决定加不加 &。',
     },
 ];
 
@@ -167,6 +218,7 @@ int main() {
                         <Callout icon={Database} title="少用无意义引用" tone="blue">
                             不要为了“高级”乱用引用。引用会修改外部数据，使用前要非常明确。
                         </Callout>
+                        <ParamPredictionChecks />
                     </>
                 ),
                 5: (
@@ -178,6 +230,11 @@ int main() {
                             </p>
                         </div>
                         <MiniQuiz items={quiz} />
+                        <MasteryCheck
+                            title="C++ L4-2 传值与传参离开前检查"
+                            description="函数题最怕“以为改了，其实只改了副本”。勾选前先用一个小例子在纸上画出谁是副本、谁是原件。"
+                            items={paramMasteryItems}
+                        />
                         <Callout icon={ClipboardCheck} title="课后任务" tone="slate">
                             <ul className="space-y-2">
                                 <li>写一个传值函数，证明 main 中变量不会被修改。</li>

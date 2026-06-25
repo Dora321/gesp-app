@@ -1,7 +1,7 @@
 import React, { useMemo, useState } from 'react';
 import { ClipboardCheck, Database, GitBranch, Search, Target } from 'lucide-react';
 import CppL4LessonSupport from '../../../components/CppL4LessonSupport';
-import CppLessonShell, { Callout, CodeBlock, CompareTable, MiniQuiz, StepList } from '../CppLessonShell';
+import CppLessonShell, { Callout, CodeBlock, CompareTable, MasteryCheck, MiniQuiz, PredictCheck, StepList } from '../CppLessonShell';
 
 const sections = [
     { id: 1, title: '课程导入', category: '函数模型' },
@@ -64,6 +64,57 @@ const quiz = [
         question: '函数声明通常放在哪里？',
         answer: 'main 前面',
         reason: 'C++ 要先知道函数长什么样，后面才能调用。',
+    },
+];
+
+function FunctionPredictionChecks() {
+    return (
+        <div className="grid gap-4 lg:grid-cols-3">
+            <PredictCheck
+                prompt={'square 的定义写在 main 后面，main 里直接调用 square(a)，能编译过吗？'}
+                options={['能，顺序无所谓', '不能，要先声明或定义']}
+                correctIndex={1}
+                explanation="C++ 从上往下读，调用前必须先见过这个函数：把定义写在 main 前，或先写一行函数声明。"
+                misconception="以为函数写在哪都行，不用管定义和调用的先后顺序。"
+            />
+            <PredictCheck
+                prompt={'int add(int a, int b){ cout << a + b; } 这个函数有什么问题？'}
+                options={['没问题', '声明了 int 返回值却没 return']}
+                correctIndex={1}
+                explanation="返回类型是 int 就必须 return 一个 int。只 cout 不 return 是错的：要么 return a + b，要么把返回类型改成 void。"
+                misconception="以为 cout 输出就等于函数把结果返回了。"
+            />
+            <PredictCheck
+                prompt={'一个只负责打印、不需要交回结果的函数，返回类型该写什么？'}
+                options={['int', 'void']}
+                correctIndex={1}
+                explanation="不交回结果就用 void，函数体里可以不写 return。"
+                misconception="以为所有函数都得写 int 返回类型。"
+            />
+        </div>
+    );
+}
+
+const functionMasteryItems = [
+    {
+        label: '能说清函数为什么能降低复杂度。',
+        evidence: '能举例把重复或复杂的步骤封装成有名字的函数，main 只组织流程。',
+        retryHint: '回到「为什么要函数」对比表，找一段能拆出去的逻辑。',
+    },
+    {
+        label: '能写出函数定义和调用，并注意顺序。',
+        evidence: '知道定义（或声明）必须在调用之前。',
+        retryHint: '回到「函数定义与调用」，确认 square 在 main 前面。',
+    },
+    {
+        label: '能区分有返回值和 void 函数。',
+        evidence: '有返回类型就必须 return；只负责输出可以写 void。',
+        retryHint: '回到「void 函数没有返回值」。',
+    },
+    {
+        label: '能把一段重复代码迁移成函数。',
+        evidence: '把三级一道数组统计题改写成函数版本，main 调用它。',
+        retryHint: '先给这段逻辑起个名字，再想它要哪些参数。',
     },
 ];
 
@@ -155,6 +206,7 @@ int add(int a, int b) {
                         <Callout icon={Database} title="void 函数没有返回值" tone="blue">
                             如果函数只负责输出或修改外部状态，可以写 <code>void</code>。这种函数可以不写返回值。
                         </Callout>
+                        <FunctionPredictionChecks />
                     </>
                 ),
                 5: (
@@ -166,6 +218,11 @@ int add(int a, int b) {
                             </p>
                         </div>
                         <MiniQuiz items={quiz} />
+                        <MasteryCheck
+                            title="C++ L4-1 自定义函数离开前检查"
+                            description="函数入门最怕“会抄模板，但说不清返回值和调用顺序”。勾选前先自己写一个最小函数验证。"
+                            items={functionMasteryItems}
+                        />
                         <Callout icon={ClipboardCheck} title="课后任务" tone="slate">
                             <ul className="space-y-2">
                                 <li>写函数 <code>int square(int x)</code>，返回 x 的平方。</li>

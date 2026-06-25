@@ -1,7 +1,7 @@
 import React, { useMemo, useState } from 'react';
 import { AlertTriangle, Boxes, ClipboardCheck, Search, Sigma } from 'lucide-react';
 import CppL4LessonSupport from '../../../components/CppL4LessonSupport';
-import CppLessonShell, { Callout, CodeBlock, CompareTable, MiniQuiz, StepList } from '../CppLessonShell';
+import CppLessonShell, { Callout, CodeBlock, CompareTable, MasteryCheck, MiniQuiz, PredictCheck, StepList } from '../CppLessonShell';
 
 const sections = [
     { id: 1, title: '课程导入', category: '数组参数' },
@@ -70,6 +70,57 @@ const quiz = [
         question: '求数组最大值时 ans 可以初始化为 0 吗？',
         answer: '不稳',
         reason: '如果数组全是负数，初始化为 0 会得到错误答案。',
+    },
+];
+
+function ArrayParamPredictionChecks() {
+    return (
+        <div className="grid gap-4 lg:grid-cols-3">
+            <PredictCheck
+                prompt={'void addOne(int a[], int n){ ...a[i]++... } 调用后，main 里的原数组会变吗？'}
+                options={['不会，和传值一样', '会，数组传的是地址']}
+                correctIndex={1}
+                explanation="数组参数传的是首地址，函数操作的就是原数组。和普通 int 传值不同——这正是数组的特殊之处。"
+                misconception="把数组传参当成和 int 一样的「复制一份副本」。"
+            />
+            <PredictCheck
+                prompt={'int a[] 作为参数，函数自己能知道数组有多少个元素吗？'}
+                options={['能，数组自带长度', '不能，必须单独传 n']}
+                correctIndex={1}
+                explanation="int a[] 只告诉函数数组在哪里，不带长度信息。必须再传一个 n 才知道处理几个。"
+                misconception="以为数组参数会自动带上长度。"
+            />
+            <PredictCheck
+                prompt={'maxArray 里把 ans 初始化为 0，数组全是负数会怎样？'}
+                options={['没问题', '错，应初始化为 a[0]']}
+                correctIndex={1}
+                explanation="全是负数时没有元素大于 0，函数返回错误的 0。应该用 a[0] 当初值。"
+                misconception="沿用「最大值从 0 开始」的习惯，忽略了全负数的情形。"
+            />
+        </div>
+    );
+}
+
+const arrayParamMasteryItems = [
+    {
+        label: '能写数组作为函数参数的语法。',
+        evidence: '知道写成 int a[]，传的是地址而不是复制整份数据。',
+        retryHint: '回到「数组进函数」，看 sumArray 的参数列表。',
+    },
+    {
+        label: '能解释数组传参为什么能改原数组。',
+        evidence: '数组传首地址，函数里改 a[i] 就是改原数组——和上一课 int 传值相反。',
+        retryHint: '对照上一课的 int 传值，想清两者区别。',
+    },
+    {
+        label: '能说清长度 n 为什么要单独传。',
+        evidence: 'int a[] 不带长度，循环要靠传入的 n 控制 i < n。',
+        retryHint: '回到「长度必须单独传」，别在函数里猜长度。',
+    },
+    {
+        label: '能封装并迁移数组函数。',
+        evidence: '能写 sumArray / maxArray / reverseArray，让 main 变成读入 + 调用 + 输出。',
+        retryHint: '先固定 (int a[], int n) 签名，再改函数体。',
     },
 ];
 
@@ -163,6 +214,7 @@ export default function CppL4Lesson3() {
     a[i]++;
   }
 }`}</CodeBlock>
+                        <ArrayParamPredictionChecks />
                     </>
                 ),
                 5: (
@@ -174,6 +226,11 @@ export default function CppL4Lesson3() {
                             </p>
                         </div>
                         <MiniQuiz items={quiz} />
+                        <MasteryCheck
+                            title="C++ L4-3 数组进函数离开前检查"
+                            description="数组进函数最怕“以为复制了一份，其实改的是原数组”。勾选前先用一个小数组手推 addOne 的效果。"
+                            items={arrayParamMasteryItems}
+                        />
                         <Callout icon={ClipboardCheck} title="课后任务" tone="slate">
                             <ul className="space-y-2">
                                 <li>写函数 <code>int sumArray(int a[], int n)</code>。</li>
