@@ -1,7 +1,7 @@
 import React, { useMemo, useState } from 'react';
 import { AlertTriangle, ClipboardCheck, GitBranch, Repeat, Search } from 'lucide-react';
 import CppL4LessonSupport from '../../../components/CppL4LessonSupport';
-import CppLessonShell, { Callout, CodeBlock, CompareTable, MiniQuiz, StepList } from '../CppLessonShell';
+import CppLessonShell, { Callout, CodeBlock, CompareTable, MasteryCheck, MiniQuiz, PredictCheck, StepList } from '../CppLessonShell';
 
 const sections = [
     { id: 1, title: '课程导入', category: '递归模型' },
@@ -73,6 +73,57 @@ const quiz = [
     },
 ];
 
+function RecursionPredictionChecks() {
+    return (
+        <div className="grid gap-4 lg:grid-cols-3">
+            <PredictCheck
+                prompt={'int fact(int n){ return n * fact(n-1); } 漏了边界 if(n==1)，会怎样？'}
+                options={['算到 fact(0) 自动停', '一直往下调，栈溢出崩溃']}
+                correctIndex={1}
+                explanation="没有边界，n 会一路减到 0、-1、-2…… 永不停止，调用栈被撑爆，程序崩溃。必须先写 if(n==1) return 1。"
+                misconception="以为递归会自己在某个地方停下来。"
+            />
+            <PredictCheck
+                prompt={'写成 return n * fact(n)（参数没变小），会怎样？'}
+                options={['没问题', '参数不变，无限递归']}
+                correctIndex={1}
+                explanation="每次都用同样的 n 调用自己，永远到不了边界。递归关系必须让问题变小，比如 fact(n-1)。"
+                misconception="忘了每次调用都要更靠近边界。"
+            />
+            <PredictCheck
+                prompt={'求 fact(4) 时，最先算出具体数值的是哪一层？'}
+                options={['fact(4) 先算出来', 'fact(1) 先返回 1']}
+                correctIndex={1}
+                explanation="递归先一路调用到边界 fact(1)=1，再逐层往回乘：2、6、24。最外层最后才得到结果。"
+                misconception="以为从 fact(4) 就能直接算，没意识到要先到底再逐层返回。"
+            />
+        </div>
+    );
+}
+
+const recursionMasteryItems = [
+    {
+        label: '能说出递归的两个必备部分。',
+        evidence: '边界条件（最小问题答案）+ 递归关系（拆成更小的同类问题）。',
+        retryHint: '回到「两个部分」，缺哪个都会出问题。',
+    },
+    {
+        label: '能写出阶乘 / 求和递归并定对边界。',
+        evidence: 'if (n == 1) return 1; return n * fact(n - 1)。',
+        retryHint: '先写最小问题的答案，再写怎么把问题变小。',
+    },
+    {
+        label: '能解释为什么参数必须每次变小。',
+        evidence: '不变小就到不了边界，会无限递归直到栈溢出。',
+        retryHint: '回到「递归不能原地打转」。',
+    },
+    {
+        label: '能手动展开一次调用与返回。',
+        evidence: '能写出 fact(4) 一路调用到 fact(1)，再 1→2→6→24 逐层返回。',
+        retryHint: '回到递归展开表，分「等待什么」和「返回」两列。',
+    },
+];
+
 export default function CppL4Lesson4() {
     return (
         <CppLessonShell
@@ -92,6 +143,7 @@ export default function CppL4Lesson4() {
                 description: '本课从阶乘入门递归，重点理解递归关系、边界条件和调用展开。先建立直觉，再进入后续搜索与树。',
             }}
             goals={['能解释递归函数如何调用自己', '能写出阶乘递归', '能指出递归边界和递归关系']}
+            prerequisites={['会定义和调用函数', '理解函数有返回值 return', '会写 if 条件判断']}
             childrenBySection={{
                 1: <RecursionLab />,
                 2: (
@@ -153,6 +205,7 @@ export default function CppL4Lesson4() {
                                 ['fact(1)', '边界', '1'],
                             ]}
                         />
+                        <RecursionPredictionChecks />
                     </>
                 ),
                 5: (
@@ -164,6 +217,11 @@ export default function CppL4Lesson4() {
                             </p>
                         </div>
                         <MiniQuiz items={quiz} />
+                        <MasteryCheck
+                            title="C++ L4-4 递归初探离开前检查"
+                            description="递归最怕“能背阶乘，但说不清为什么会停、按什么顺序返回”。勾选前先用 fact(4) 手动展开一次。"
+                            items={recursionMasteryItems}
+                        />
                         <Callout icon={ClipboardCheck} title="课后任务" tone="slate">
                             <ul className="space-y-2">
                                 <li>写递归函数计算 n!。</li>

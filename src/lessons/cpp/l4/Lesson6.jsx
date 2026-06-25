@@ -1,7 +1,7 @@
 import React, { useMemo, useState } from 'react';
 import { AlertTriangle, Boxes, ClipboardCheck, Search, Waypoints } from 'lucide-react';
 import CppL4LessonSupport from '../../../components/CppL4LessonSupport';
-import CppLessonShell, { Callout, CodeBlock, CompareTable, MiniQuiz, StepList } from '../CppLessonShell';
+import CppLessonShell, { Callout, CodeBlock, CompareTable, MasteryCheck, MiniQuiz, PredictCheck, StepList } from '../CppLessonShell';
 
 const sections = [
     { id: 1, title: '课程导入', category: '数组地址' },
@@ -63,6 +63,57 @@ const quiz = [
     },
 ];
 
+function ArrayPointerPredictionChecks() {
+    return (
+        <div className="grid gap-4 lg:grid-cols-3">
+            <PredictCheck
+                prompt={'int a[3] = {10, 20, 30}; cout << *a; 输出什么？'}
+                options={['a 的地址', '10']}
+                correctIndex={1}
+                explanation="a 是首元素地址（相当于 &a[0]），*a 解引用就是 a[0] = 10。"
+                misconception="以为 *a 会输出地址，没分清 a 是地址、*a 才是值。"
+            />
+            <PredictCheck
+                prompt={'*(a + 2) 等价于下面哪个？'}
+                options={['a[3]', 'a[2]']}
+                correctIndex={1}
+                explanation="a + 2 从首地址向后移 2 个元素，*(a + 2) 就是 a[2]。下标 i 对应 *(a + i)。"
+                misconception="把偏移量和下标错位，多算了一个。"
+            />
+            <PredictCheck
+                prompt={'int 数组里，a + 1 的地址比 a 大多少？'}
+                options={['1 个字节', '1 个 int 的大小（通常 4 字节）']}
+                correctIndex={1}
+                explanation="指针加法按元素类型缩放，a + 1 跳过一个完整的 int，不是 1 个字节。"
+                misconception="以为 a + 1 只是把地址数值加 1。"
+            />
+        </div>
+    );
+}
+
+const arrayPointerMasteryItems = [
+    {
+        label: '能解释数组名和首地址的关系。',
+        evidence: 'a 通常代表 &a[0]，*a 就是 a[0]。',
+        retryHint: '回到「数组名与首地址」表。',
+    },
+    {
+        label: '能说明 a[i] 与 *(a + i) 等价。',
+        evidence: 'a + i 移到第 i 个元素，*(a + i) 取它的值。',
+        retryHint: '回到数组地址实验台，点不同下标看关系。',
+    },
+    {
+        label: '能解释指针加法按元素缩放。',
+        evidence: 'a + 1 跳过一个完整的 int，不是 1 个字节。',
+        retryHint: '把每一格想象成一个 int 那么宽。',
+    },
+    {
+        label: '能用地址模型解释数组参数。',
+        evidence: '函数拿到首地址，改 a[i] 会影响原数组，不复制整份。',
+        retryHint: '连回第 3 课「数组进函数」。',
+    },
+];
+
 export default function CppL4Lesson6() {
     return (
         <CppLessonShell
@@ -82,6 +133,7 @@ export default function CppL4Lesson6() {
                 description: '本课把数组名、首地址、地址偏移和 a[i] 的等价写法讲清楚，连接上一课指针和第 3 课数组进函数。',
             }}
             goals={['能解释数组名和首元素地址的关系', '能理解 a[i] 与 *(a + i) 的等价性', '能用地址模型解释数组参数']}
+            prerequisites={['理解指针保存地址', '会遍历一维数组', '理解 a[i] 下标访问']}
             childrenBySection={{
                 1: <ArrayPointerLab />,
                 2: (
@@ -129,6 +181,7 @@ for (int i = 0; i < n; i++) {
                                 '实际写题仍推荐 a[i]，更清楚',
                             ]} />
                         </div>
+                        <ArrayPointerPredictionChecks />
                     </>
                 ),
                 4: (
@@ -158,6 +211,11 @@ for (int i = 0; i < n; i++) {
                             </p>
                         </div>
                         <MiniQuiz items={quiz} />
+                        <MasteryCheck
+                            title="C++ L4-6 指针与数组离开前检查"
+                            description="这一课最怕“记住 a[i]=*(a+i)，但说不清偏移和缩放”。勾选前先画一张 5 格地址偏移图。"
+                            items={arrayPointerMasteryItems}
+                        />
                         <Callout icon={ClipboardCheck} title="课后任务" tone="slate">
                             <ul className="space-y-2">
                                 <li>解释 <code>a[2]</code> 和 <code>*(a + 2)</code> 的关系。</li>

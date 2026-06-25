@@ -1,7 +1,7 @@
 import React, { useMemo, useState } from 'react';
 import { AlertTriangle, ClipboardCheck, MapPin, Search, Waypoints } from 'lucide-react';
 import CppL4LessonSupport from '../../../components/CppL4LessonSupport';
-import CppLessonShell, { Callout, CodeBlock, CompareTable, MiniQuiz, StepList } from '../CppLessonShell';
+import CppLessonShell, { Callout, CodeBlock, CompareTable, MasteryCheck, MiniQuiz, PredictCheck, StepList } from '../CppLessonShell';
 
 const sections = [
     { id: 1, title: '课程导入', category: '地址模型' },
@@ -54,6 +54,57 @@ const quiz = [
     },
 ];
 
+function PointerPredictionChecks() {
+    return (
+        <div className="grid gap-4 lg:grid-cols-3">
+            <PredictCheck
+                prompt={'int x=10; int *p=&x; *p=20; 之后 cout << x 输出什么？'}
+                options={['10', '20']}
+                correctIndex={1}
+                explanation="p 保存的是 x 的地址，*p = 20 改的就是 x 这块内存，所以 x 变成 20。"
+                misconception="以为改 *p 不会影响 x，没意识到 p 指向的就是 x。"
+            />
+            <PredictCheck
+                prompt={'int *p; *p = 10; 这样写有什么问题？'}
+                options={['没问题', 'p 没指向任何变量，解引用是危险的']}
+                correctIndex={1}
+                explanation="p 没初始化，保存的是未知地址，*p = 10 往不知道哪里写，会出错甚至崩溃。要先让 p 指向合法变量。"
+                misconception="以为指针一定义出来就能直接用 *p。"
+            />
+            <PredictCheck
+                prompt={'int *p = &x; 里的两个 *，含义一样吗？'}
+                options={['一样，都是解引用', '不一样：声明里的 * 表示“这是指针”']}
+                correctIndex={1}
+                explanation="声明 int *p 里的 * 表示 p 是指针类型；表达式里的 *p 才是解引用取值。同一个符号，两种角色。"
+                misconception="把声明的 * 和解引用的 * 当成同一回事。"
+            />
+        </div>
+    );
+}
+
+const pointerMasteryItems = [
+    {
+        label: '能区分值、地址和指针。',
+        evidence: 'x 是值，&x 是地址，p 保存地址，*p 取回值。',
+        retryHint: '回到指针地址实验台，对照这四个量。',
+    },
+    {
+        label: '能写出取地址和解引用语法。',
+        evidence: 'int *p = &x; *p = 20 改的就是 x。',
+        retryHint: '回到「取地址与解引用」，一去一回。',
+    },
+    {
+        label: '能判断未初始化指针的风险。',
+        evidence: '没指向合法变量就 *p，是危险写法。',
+        retryHint: '回到「危险写法 vs 安全写法」。',
+    },
+    {
+        label: '能区分声明的 * 和解引用的 *。',
+        evidence: 'int *p 的 * 表示指针类型，表达式里的 *p 才是取值。',
+        retryHint: '把“声明”和“使用”分开读。',
+    },
+];
+
 export default function CppL4Lesson5() {
     return (
         <CppLessonShell
@@ -73,6 +124,7 @@ export default function CppL4Lesson5() {
                 description: '本课把指针拆成三个动作：取地址、保存地址、通过地址访问值。先建立地址模型，再进入数组和指针的关系。',
             }}
             goals={['能解释地址和指针的区别', '能写出取地址和解引用语法', '能识别未初始化指针的风险']}
+            prerequisites={['会定义和调用函数', '理解变量保存值', '知道传值与引用的区别']}
             childrenBySection={{
                 1: <PointerLab />,
                 2: (
@@ -139,6 +191,7 @@ cout << x; // 20`}</CodeBlock>
 int *p = &x;
 *p = 10;`}</CodeBlock>
                         </Callout>
+                        <PointerPredictionChecks />
                     </>
                 ),
                 5: (
@@ -150,6 +203,11 @@ int *p = &x;
                             </p>
                         </div>
                         <MiniQuiz items={quiz} />
+                        <MasteryCheck
+                            title="C++ L4-5 指针入门离开前检查"
+                            description="指针最怕“符号都认识，但分不清值、地址和指向”。勾选前先在纸上画出 x、&x、p、*p 四个量。"
+                            items={pointerMasteryItems}
+                        />
                         <Callout icon={ClipboardCheck} title="课后任务" tone="slate">
                             <ul className="space-y-2">
                                 <li>写程序输出变量 x 的值和地址。</li>
