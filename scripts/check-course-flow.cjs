@@ -701,9 +701,10 @@ function assertCppLessonsKeepPredictionChecks() {
   );
   assert(
     loopLesson.includes('forLoopMasteryItems') &&
-      loopLesson.includes('for 循环离开前检查') &&
+      loopLesson.includes('C++ L1-9 for 循环离开前检查') &&
       loopLesson.includes('能手推循环结束后 i 的值') &&
-      loopLesson.includes('把“最后一次进入”和“循环结束后”分成两列写'),
+      loopLesson.includes('把“最后一次进入”和“循环结束后”分成两列写') &&
+      loopLesson.includes('nextLessonPath="/lesson/1/10"'),
     'C++ L1 lesson 9 should keep the before-next-lesson mastery check for loop boundaries.'
   );
   assert(
@@ -791,7 +792,7 @@ function assertCppLevel1IntroLessonsKeepMasteryChecks() {
       lesson.message
     );
     assert(
-      text.includes(`navigate('${lesson.nextPath}')`),
+      text.includes(`navigate('${lesson.nextPath}')`) || text.includes(`nextLessonPath="${lesson.nextPath}"`),
       `${lesson.path}: should keep the next lesson route ${lesson.nextPath}.`
     );
   }
@@ -814,7 +815,7 @@ function assertCppWhileLessonKeepsDigitTrace() {
       lesson.includes('能指出循环变量必须变化') &&
       lesson.includes('能手推数位分离过程') &&
       lesson.includes('能判断什么时候用 while 而不是 for') &&
-      lesson.includes("navigate('/lesson/1/11')"),
+      lesson.includes('nextLessonPath="/lesson/1/11"'),
     'C++ L1 lesson 10 should keep a mastery check for while flow, loop progress, digit splitting, and while-vs-for choice.'
   );
 }
@@ -837,7 +838,7 @@ function assertCppNestedLoopLessonKeepsExecutionTrace() {
       lesson.includes('能手推内层每次都会重新开始') &&
       lesson.includes('能计算双层循环总执行次数') &&
       lesson.includes('能把图形题拆成行数、列数和换行') &&
-      lesson.includes("navigate('/lesson/1/13')"),
+      (lesson.includes("navigate('/lesson/1/13')") || lesson.includes('nextLessonPath="/lesson/1/13"')),
     'C++ L1 lesson 12 should keep a mastery check for nested loop roles, inner-loop reset, execution counts, and pattern decomposition.'
   );
 }
@@ -852,7 +853,7 @@ function assertCppBreakContinueLessonKeepsMasteryCheck() {
       lesson.includes('能手推 continue 后下一步去哪') &&
       lesson.includes('能判断 break 在嵌套循环里只跳出一层') &&
       lesson.includes('能手推含 break/continue 的输出') &&
-      lesson.includes("navigate('/lesson/1/12')"),
+      lesson.includes('nextLessonPath="/lesson/1/12"'),
     'C++ L1 lesson 11 should keep a mastery check for break/continue differences, continue flow, nested break scope, and output tracing.'
   );
 }
@@ -898,7 +899,7 @@ function assertCppLevel1FinalLessonsKeepMasteryChecks() {
       lesson.message
     );
     assert(
-      text.includes(`navigate('${lesson.nextPath}')`),
+      text.includes(`navigate('${lesson.nextPath}')`) || text.includes(`nextLessonPath="${lesson.nextPath}"`),
       `${lesson.path}: should keep the next route ${lesson.nextPath}.`
     );
   }

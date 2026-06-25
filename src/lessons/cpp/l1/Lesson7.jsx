@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
-import { Link, useNavigate } from 'react-router-dom';
 import CppL1LessonSupport from '../../../components/CppL1LessonSupport';
+import LegacyCppLessonShell from '../LegacyCppLessonShell';
 import { MasteryCheck, PredictCheck } from '../CppLessonShell';
 import {
   Siren,
@@ -321,21 +321,7 @@ const Quiz = ({ question, options, correctIndex, explanation, type = "normal" })
 
 // --- 主应用 ---
 export default function App() {
-  const navigate = useNavigate();
   const [activeSection, setActiveSection] = useState(1);
-  const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
-
-  const nextSection = () => {
-    if (activeSection < sections.length) {
-      setActiveSection(activeSection + 1);
-    } else {
-      navigate('/lesson/1/8');
-    }
-  };
-
-  const prevSection = () => {
-    if (activeSection > 1) setActiveSection(activeSection - 1);
-  };
 
   const renderContent = () => {
     switch (activeSection) {
@@ -581,142 +567,19 @@ export default function App() {
   };
 
   return (
-    <div className="flex h-screen overflow-hidden bg-gray-50 font-sans text-gray-900">
-      {/* 内嵌样式以支持动画 */}
-      <style>{`
-        .slide-enter { animation: slideIn 0.5s ease-out; }
-        @keyframes slideIn { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
-      `}</style>
-
-      {/* Mobile Menu Button - Fixed Top */}
-      <div className="md:hidden fixed top-0 left-0 w-full z-50 bg-white border-b border-slate-200 p-4 flex items-center justify-between shadow-sm">
-        <h1 className="text-lg font-bold text-blue-700 flex items-center gap-2">
-          <Link to="/" className="hover:opacity-80 transition-opacity">
-            <div className="w-8 h-8 bg-white rounded-lg flex items-center justify-center overflow-hidden border border-slate-200 shadow-sm">
-              <img src={`${import.meta.env.BASE_URL}logo.jpg`} alt="Logo" className="w-full h-full object-cover" />
-            </div>
-          </Link>
-          <span className="bg-blue-600 text-white px-2 py-0.5 rounded text-xs">C++</span>
-          <span>一级趣味课堂</span>
-        </h1>
-        <button
-          onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-          className="p-2 text-slate-600 hover:bg-slate-100 rounded-lg"
-          aria-label={isMobileMenuOpen ? '关闭课程目录' : '打开课程目录'}
-          aria-expanded={isMobileMenuOpen}
-        >
-          {isMobileMenuOpen ? <X size={24} /> : <Menu size={24} />}
-        </button>
-      </div>
-
-      {/* Sidebar Overlay (Mobile) */}
-      {isMobileMenuOpen && (
-        <div
-          className="fixed inset-0 bg-black/50 z-40 md:hidden"
-          onClick={() => setIsMobileMenuOpen(false)}
-        />
-      )}
-
-      {/* 侧边栏 */}
-      <div className={`
-        fixed inset-y-0 left-0 z-50 w-64 bg-white border-r border-slate-200 flex flex-col h-full shadow-lg z-40 transition-transform duration-300
-        md:relative md:translate-x-0
-        ${isMobileMenuOpen ? 'translate-x-0' : '-translate-x-full'}
-      `}>
-        <div className="p-6 border-b border-slate-100 bg-gradient-to-br from-blue-50/50 to-white/50 backdrop-blur-sm">
-          <Link to="/" className="flex items-center gap-3 hover:opacity-80 transition-opacity group">
-            <div className="w-10 h-10 bg-white rounded-xl flex items-center justify-center overflow-hidden border border-slate-200 shadow-sm group-hover:scale-105 transition-transform">
-              <img src={`${import.meta.env.BASE_URL}logo.jpg`} alt="Logo" className="w-full h-full object-cover" />
-            </div>
-            <div>
-              <h1 className="text-base font-bold text-slate-800 leading-tight">C++ 趣味课堂</h1>
-              <p className="text-xs text-blue-500 font-medium">第 7 课：条件判断</p>
-            </div>
-          </Link>
-        </div>
-
-        <div className="flex-1 overflow-y-auto w-full py-4 custom-scrollbar">
-          {sections.map((section, index) => {
-            const showCategory = index === 0 || sections[index - 1].category !== section.category;
-            return (
-              <React.Fragment key={section.id}>
-                {showCategory && (
-                  <div className="px-6 pb-2 pt-4 first:pt-0">
-                    <h3 className="text-xs font-bold text-slate-400 uppercase tracking-wider">{section.category}</h3>
-                  </div>
-                )}
-                <div className="px-3">
-                  <button
-                    onClick={() => {
-                      setActiveSection(section.id);
-                      setIsMobileMenuOpen(false);
-                    }}
-                    className={`w-full text-left px-3 py-2.5 rounded-lg transition-all duration-200 flex items-center gap-3 group relative mb-1
-                    ${activeSection === section.id
-                        ? 'bg-blue-50 text-blue-700 font-medium shadow-sm ring-1 ring-blue-100'
-                        : 'text-slate-600 hover:bg-slate-50 hover:text-slate-900'
-                      }`}
-                  >
-                    <div className={`
-                    p-1.5 rounded-md transition-colors flex-shrink-0
-                    ${activeSection === section.id ? 'bg-blue-100 text-blue-600' : 'bg-slate-100 text-slate-400 group-hover:bg-white group-hover:text-slate-500'}
-                  `}>
-                      <Icon name={section.icon} size={18} />
-                    </div>
-                    <span className="truncate text-sm">{section.title}</span>
-                  </button>
-                </div>
-              </React.Fragment>
-            );
-          })}
-        </div>
-      </div>
-
-      {/* 主内容区 */}
-      <div className="flex-1 flex flex-col h-full overflow-hidden pt-16 md:pt-0">
-        <header className="h-16 bg-white border-b border-gray-200 flex items-center justify-between px-8 shadow-sm z-10">
-          <h2 className="text-lg font-bold text-gray-800 truncate">
-            {sections.find(s => s.id === activeSection)?.title}
-          </h2>
-          <div className="flex gap-2 text-sm text-gray-500">
-            <span>{activeSection}</span> / <span>{sections.length}</span>
-          </div>
-        </header>
-
-        <main className="flex-1 overflow-y-auto p-8">
-          <div className="max-w-4xl mx-auto">
-            {activeSection === 1 && <CppL1LessonSupport lessonId={7} />}
-            {renderContent()}
-            {activeSection === sections.length && <CppL1LessonSupport lessonId={7} placement="bottom" />}
-          </div>
-        </main>
-
-        <footer className="h-16 bg-white border-t border-gray-200 flex items-center justify-between px-8">
-          <button
-            onClick={prevSection}
-            disabled={activeSection === 1}
-            className={`px-4 py-2 rounded flex items-center gap-2 font-medium transition
-              ${activeSection === 1 ? 'text-gray-300 cursor-not-allowed' : 'text-gray-600 hover:bg-gray-100'}`}
-          >
-            上一步
-          </button>
-
-          <div className="w-1/3 h-2 bg-gray-100 rounded-full overflow-hidden">
-            <div
-              className="h-full bg-blue-500 transition-all duration-300"
-              style={{ width: `${(activeSection / sections.length) * 100}%` }}
-            ></div>
-          </div>
-
-          <button
-            onClick={nextSection}
-            className={`px-4 py-2 rounded flex items-center gap-2 font-medium transition
-              ${activeSection === sections.length ? 'bg-green-600 text-white hover:bg-green-700 shadow-sm' : 'bg-blue-600 text-white hover:bg-blue-700 shadow-sm'}`}
-          >
-            {activeSection === sections.length ? '下一课' : '下一步'} <Icon name="arrow-right" size={16} color="white" />
-          </button>
-        </footer>
-      </div>
-    </div>
+    <LegacyCppLessonShell
+      lessonNumber={7}
+      lessonTitle="条件判断"
+      sections={sections}
+      activeSection={activeSection}
+      setActiveSection={setActiveSection}
+      nextLessonPath="/lesson/1/8"
+      renderIcon={(name, size) => <Icon name={name} size={size} />}
+      topSupport={<CppL1LessonSupport lessonId={7} />}
+      bottomSupport={<CppL1LessonSupport lessonId={7} placement="bottom" />}
+    >
+      {renderContent()}
+    </LegacyCppLessonShell>
   );
 }
+

@@ -16,6 +16,7 @@
     "check": "npm run check:course-flow && npm run check:links",
     "check:course-flow": "node scripts/check-course-flow.cjs",
     "check:links": "node scripts/check-internal-links.cjs",
+    "check:cpp-l1-mastery-ui": "node scripts/check-cpp-l1-mastery-ui.cjs",
     "smoke": "node scripts/smoke-app.cjs",
     "generate:papers": "node scripts/generate-paper-registry.cjs"
   },

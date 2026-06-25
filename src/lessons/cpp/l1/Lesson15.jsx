@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Link, useNavigate } from 'react-router-dom';
+import LegacyCppLessonShell from '../LegacyCppLessonShell';
 import {
     Filter,
     Calculator,
@@ -578,21 +578,7 @@ const PitfallGuide = () => {
 
 // --- 主应用 ---
 export default function App() {
-    const navigate = useNavigate();
     const [activeSection, setActiveSection] = useState(1);
-    const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
-
-    const nextSection = () => {
-        if (activeSection < sections.length) {
-            setActiveSection(activeSection + 1);
-        } else {
-            navigate('/lesson/1/16');
-        }
-    };
-
-    const prevSection = () => {
-        if (activeSection > 1) setActiveSection(activeSection - 1);
-    };
 
     const renderContent = () => {
         switch (activeSection) {
@@ -853,136 +839,19 @@ export default function App() {
     };
 
     return (
-        <div className="flex h-screen overflow-hidden bg-slate-50 font-sans text-gray-900">
-            <style>{`
-        .slide-enter { animation: slideIn 0.5s ease-out; }
-        @keyframes slideIn { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
-      `}</style>
-
-            {/* 侧边栏 */}
-            {/* Sidebar */}
-            <div className={`
-                fixed inset-y-0 left-0 z-50 w-64 bg-white border-r border-slate-200 flex flex-col h-full shadow-lg z-40 transition-transform duration-300
-                md:relative md:translate-x-0
-                ${isMobileMenuOpen ? 'translate-x-0' : '-translate-x-full'}
-            `}>
-                <div className="p-6 border-b border-slate-100 bg-gradient-to-br from-blue-50/50 to-white/50 backdrop-blur-sm">
-                    <Link to="/" className="flex items-center gap-3 hover:opacity-80 transition-opacity group">
-                        <div className="w-10 h-10 bg-white rounded-xl flex items-center justify-center overflow-hidden border border-slate-200 shadow-sm group-hover:scale-105 transition-transform">
-                            <img src={`${import.meta.env.BASE_URL}logo.jpg`} alt="Logo" className="w-full h-full object-cover" />
-                        </div>
-                        <div>
-                            <h1 className="text-base font-bold text-slate-800 leading-tight">C++ 趣味课堂</h1>
-                            <p className="text-xs text-blue-500 font-medium">第 15 课：综合训练 (一)</p>
-                        </div>
-                    </Link>
-                </div>
-
-                <div className="flex-1 overflow-y-auto w-full py-4 custom-scrollbar">
-                    {sections.map((section, index) => {
-                        const showCategory = index === 0 || sections[index - 1].category !== section.category;
-                        return (
-                            <React.Fragment key={section.id}>
-                                {showCategory && (
-                                    <div className="px-6 pb-2 pt-4 first:pt-0">
-                                        <h3 className="text-xs font-bold text-slate-400 uppercase tracking-wider">{section.category}</h3>
-                                    </div>
-                                )}
-                                <div className="px-3">
-                                    <button
-                                        onClick={() => {
-                                            setActiveSection(section.id);
-                                            setIsMobileMenuOpen(false);
-                                        }}
-                                        className={`w-full text-left px-3 py-2.5 rounded-lg transition-all duration-200 flex items-center gap-3 group relative mb-1
-                                        ${activeSection === section.id
-                                                ? 'bg-blue-50 text-blue-700 font-medium shadow-sm ring-1 ring-blue-100'
-                                                : 'text-slate-600 hover:bg-slate-50 hover:text-slate-900'
-                                            }`}
-                                    >
-                                        <div className={`
-                                        p-1.5 rounded-md transition-colors flex-shrink-0
-                                        ${activeSection === section.id ? 'bg-blue-100 text-blue-600' : 'bg-slate-100 text-slate-400 group-hover:bg-white group-hover:text-slate-500'}
-                                        `}>
-                                            <Icon name={section.icon} size={18} />
-                                        </div>
-                                        <span className="truncate text-sm">{section.title}</span>
-                                    </button>
-                                </div>
-                            </React.Fragment>
-                        );
-                    })}
-                </div>
-            </div>
-
-            {/* Main Content */}
-            <div className="flex-1 flex flex-col h-full overflow-hidden w-full relative pt-16 md:pt-0">
-                {/* 背景装饰 */}
-                <div className="absolute top-0 right-0 w-96 h-96 bg-blue-200/20 rounded-full blur-3xl pointer-events-none"></div>
-                <div className="absolute bottom-0 left-0 w-96 h-96 bg-indigo-200/20 rounded-full blur-3xl pointer-events-none"></div>
-
-                {/* Mobile Menu Button - Fixed Top */}
-                <div className="md:hidden fixed top-0 left-0 w-full z-50 bg-white border-b border-slate-200 p-4 flex items-center justify-between shadow-sm">
-                    <h1 className="text-lg font-bold text-blue-700 flex items-center gap-2">
-                        <Link to="/" className="hover:opacity-80 transition-opacity">
-                            <div className="w-8 h-8 bg-white rounded-lg flex items-center justify-center overflow-hidden border border-slate-200 shadow-sm">
-                                <img src={`${import.meta.env.BASE_URL}logo.jpg`} alt="Logo" className="w-full h-full object-cover" />
-                            </div>
-                        </Link>
-                        <span className="bg-blue-600 text-white px-2 py-0.5 rounded text-xs">C++</span>
-                        <span>一级趣味课堂</span>
-                    </h1>
-                    <button
-                        onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-                        className="p-2 text-slate-600 hover:bg-slate-100 rounded-lg"
-                        aria-label={isMobileMenuOpen ? '关闭课程目录' : '打开课程目录'}
-                        aria-expanded={isMobileMenuOpen}
-                    >
-                        {isMobileMenuOpen ? <X size={24} /> : <Menu size={24} />}
-                    </button>
-                </div>
-                <header className="h-16 bg-white/90 backdrop-blur-md border-b border-gray-200 flex items-center justify-between px-8 shadow-sm z-10">
-                    <h2 className="text-lg font-bold text-gray-800 truncate flex items-center gap-2">
-                        <span className="bg-gray-100 text-gray-500 px-2 py-0.5 rounded text-xs">Section {activeSection}</span>
-                        {sections.find(s => s.id === activeSection)?.title}
-                    </h2>
-                    <div className="flex gap-2 text-sm text-gray-500">
-                        <div className="w-32 h-2 bg-gray-100 rounded-full overflow-hidden mt-2">
-                            <div
-                                className="h-full bg-blue-500 transition-all duration-500 ease-out"
-                                style={{ width: `${(activeSection / sections.length) * 100}%` }}
-                            ></div>
-                        </div>
-                    </div>
-                </header>
-
-                <main className="flex-1 overflow-y-auto p-8 z-0">
-                    <div className="max-w-4xl mx-auto pb-12">
-                        {activeSection === 1 && <CppL1LessonSupport lessonId={15} />}
-                        {renderContent()}
-                        {activeSection === sections.length && <CppL1LessonSupport lessonId={15} placement="bottom" />}
-                    </div>
-                </main>
-
-                <footer className="h-20 bg-white border-t border-gray-200 flex items-center justify-between px-8 z-20">
-                    <button
-                        onClick={prevSection}
-                        disabled={activeSection === 1}
-                        className={`px-5 py-2.5 rounded-lg flex items-center gap-2 font-bold transition-all
-              ${activeSection === 1 ? 'text-gray-300 cursor-not-allowed' : 'text-gray-600 hover:bg-gray-100 hover:shadow-sm'}`}
-                    >
-                        <ArrowRight className="rotate-180" size={18} /> 上一步
-                    </button>
-
-                    <button
-                        onClick={nextSection}
-                        className={`px-6 py-2.5 rounded-lg flex items-center gap-2 font-bold transition-all shadow-sm
-              ${activeSection === sections.length ? 'bg-green-600 text-white hover:bg-green-700 shadow-sm' : 'bg-blue-600 text-white hover:bg-blue-700 hover:shadow-md hover:-translate-y-0.5'}`}
-                    >
-                        {activeSection === sections.length ? '下一课' : '下一步'} <ArrowRight size={18} color="white" />
-                    </button>
-                </footer>
-            </div>
-        </div>
+        <LegacyCppLessonShell
+            lessonNumber={15}
+            lessonTitle="综合训练 (一)"
+            accent="blueIndigo"
+            sections={sections}
+            activeSection={activeSection}
+            setActiveSection={setActiveSection}
+            nextLessonPath="/lesson/1/16"
+            renderIcon={(name, size) => <Icon name={name} size={size} />}
+            topSupport={<CppL1LessonSupport lessonId={15} />}
+            bottomSupport={<CppL1LessonSupport lessonId={15} placement="bottom" />}
+        >
+            {renderContent()}
+        </LegacyCppLessonShell>
     );
 }
