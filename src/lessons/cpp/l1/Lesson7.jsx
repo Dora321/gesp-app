@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import CppL1LessonSupport from '../../../components/CppL1LessonSupport';
-import { MasteryCheck } from '../CppLessonShell';
+import { MasteryCheck, PredictCheck } from '../CppLessonShell';
 import {
   Siren,
   GitBranch,
@@ -458,6 +458,15 @@ export default function App() {
                 </div>
               </div>
             </div>
+
+            <PredictCheck
+              title="先预测：一个等号的后果"
+              prompt="int x = 3; 如果写成 if (x = 5)（只有一个等号），会进入 if 吗？"
+              options={['不会，因为 3 不等于 5', '会，而且永远都会进']}
+              correctIndex={1}
+              explanation="一个等号是赋值：x = 5 先把 5 存进 x，整个式子的值就是 5（非 0 即“真”）。所以这个条件永远成立，和 x 原来是几无关。判断相等必须用两个等号 ==。"
+              misconception="把 = 当成 ==。= 是赋值并返回被赋的值，不是在比较大小。"
+            />
           </div>
         );
       case 7:
