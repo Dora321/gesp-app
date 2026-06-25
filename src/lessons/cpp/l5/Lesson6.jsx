@@ -1,7 +1,7 @@
 import React, { useMemo, useState } from 'react';
 import { ClipboardCheck, Link2, MousePointer2, Search } from 'lucide-react';
 import CppL5LessonSupport from '../../../components/CppL5LessonSupport';
-import CppLessonShell, { Callout, CodeBlock, CompareTable, MiniQuiz, StepList } from '../CppLessonShell';
+import CppLessonShell, { Callout, CodeBlock, CompareTable, MasteryCheck, MiniQuiz, PredictCheck, StepList } from '../CppLessonShell';
 
 const sections = [
     { id: 1, title: '课程导入', category: '节点模型' },
@@ -69,6 +69,57 @@ const quiz = [
     },
 ];
 
+function LinkedListIntroPredictionChecks() {
+    return (
+        <div className="grid gap-4 lg:grid-cols-3">
+            <PredictCheck
+                prompt={'想用 for (int i = 0; i < n; i++) 加下标遍历链表，可以吗？'}
+                options={['可以', '不行，链表没有连续下标']}
+                correctIndex={1}
+                explanation="链表节点在内存里不连续，没有 a[i] 这种下标。要用 cur = cur->next 顺着指针一步步走。"
+                misconception="把链表当数组，以为能用下标随机访问。"
+            />
+            <PredictCheck
+                prompt={'遍历条件写 while (cur->next != nullptr)，会漏掉谁？'}
+                options={['不漏', '漏掉最后一个节点']}
+                correctIndex={1}
+                explanation="应该写 while (cur != nullptr)。写成 cur->next != nullptr，当 cur 是最后一个节点时就停了，最后一个没被处理。"
+                misconception="把「还有下一个」错当成「当前还有效」。"
+            />
+            <PredictCheck
+                prompt={'通过指针 cur 访问节点的 data，写 cur.data 对吗？'}
+                options={['对', '错，指针要用 cur->data']}
+                correctIndex={1}
+                explanation="cur 是指针，访问成员要用箭头 cur->data（等价于 (*cur).data）。点号是用在对象本身上的。"
+                misconception="在指针上用点号访问成员。"
+            />
+        </div>
+    );
+}
+
+const linkedListIntroMasteryItems = [
+    {
+        label: '能写出链表节点结构体。',
+        evidence: 'struct Node { int data; Node *next; };。',
+        retryHint: '回到结构体节点，节点 = 数据 + next。',
+    },
+    {
+        label: '能解释 head 和 next 的作用。',
+        evidence: 'head 是入口，next 串起下一个，结尾 next = nullptr。',
+        retryHint: '回到成员表，head / next 各管什么。',
+    },
+    {
+        label: '能正确遍历到链表结尾。',
+        evidence: 'cur = head; while (cur != nullptr) { ...; cur = cur->next; }。',
+        retryHint: '别写 cur->next != nullptr，会漏掉最后一个。',
+    },
+    {
+        label: '能区分指针用箭头、对象用点。',
+        evidence: 'cur 是指针所以写 cur->data，对象才用点号。',
+        retryHint: '指针 ->，对象 . ，别混。',
+    },
+];
+
 export default function CppL5Lesson6() {
     return (
         <CppLessonShell
@@ -88,6 +139,7 @@ export default function CppL5Lesson6() {
                 description: '本课从结构体节点、头指针和遍历开始，建立链表的空间模型。',
             }}
             goals={['能写出链表节点结构体', '能解释 head 和 next 的作用', '能遍历一条单链表并输出数据']}
+            prerequisites={['理解指针保存的是地址', '会定义结构体', '会用 new 创建对象']}
             childrenBySection={{
                 1: <LinkedListLab />,
                 2: (
@@ -158,6 +210,7 @@ while (cur != nullptr) {
                         <Callout icon={MousePointer2} title="箭头运算符" tone="amber">
                             <code>cur-&gt;data</code> 等价于 <code>(*cur).data</code>，用于通过指针访问结构体成员。
                         </Callout>
+                        <LinkedListIntroPredictionChecks />
                     </>
                 ),
                 5: (
@@ -169,6 +222,11 @@ while (cur != nullptr) {
                             </p>
                         </div>
                         <MiniQuiz items={quiz} />
+                        <MasteryCheck
+                            title="C++ L5-6 链表的诞生离开前检查"
+                            description="链表入门最怕“还把它当数组用”。勾选前先画一条 3 节点的链，标出 head、每个 next 和结尾的 nullptr。"
+                            items={linkedListIntroMasteryItems}
+                        />
                         <Callout icon={ClipboardCheck} title="课后任务" tone="slate">
                             <ul className="space-y-2">
                                 <li>创建一条包含 n 个整数的单链表，并原样输出。</li>

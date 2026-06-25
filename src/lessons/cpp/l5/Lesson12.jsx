@@ -1,7 +1,7 @@
 import React, { useMemo, useState } from 'react';
 import { CheckCircle2, ClipboardCheck, Coins, Search } from 'lucide-react';
 import CppL5LessonSupport from '../../../components/CppL5LessonSupport';
-import CppLessonShell, { Callout, CodeBlock, CompareTable, MiniQuiz, StepList } from '../CppLessonShell';
+import CppLessonShell, { Callout, CodeBlock, CompareTable, MasteryCheck, MiniQuiz, PredictCheck, StepList } from '../CppLessonShell';
 
 const sections = [
     { id: 1, title: '课程导入', category: '局部最优' },
@@ -86,6 +86,57 @@ const quiz = [
     },
 ];
 
+function GreedyPredictionChecks() {
+    return (
+        <div className="grid gap-4 lg:grid-cols-3">
+            <PredictCheck
+                prompt={'最多不重叠区间，按「开始时间最早」排序来选，对吗？'}
+                options={['对', '不对，应按结束时间最早']}
+                correctIndex={1}
+                explanation="按开始最早可能先选了一个很长的区间，挡住后面好几个。按结束最早排序，每次给后面留最多空间，才能选最多。"
+                misconception="以为「先开始的先选」就是对的贪心规则。"
+            />
+            <PredictCheck
+                prompt={'面额 1、3、4 凑 6，每次拿最大面额，得到几枚？最优呢？'}
+                options={['都是 2 枚', '贪心 3 枚(4+1+1)，最优 2 枚(3+3)']}
+                correctIndex={1}
+                explanation="先拿 4 剩 2，只能 1+1，共 3 枚；最优是 3+3 共 2 枚。说明「每次拿最大面额」在这种币制下是错的贪心。"
+                misconception="以为「每次拿最大面额」总能凑出最少硬币。"
+            />
+            <PredictCheck
+                prompt={'一个贪心策略在样例上对了，就能直接用吗？'}
+                options={['能', '不能，要先试小反例']}
+                correctIndex={1}
+                explanation="样例对不代表策略正确。必须主动构造小反例；找不到反例（或能证明）才敢用。"
+                misconception="把样例通过当成贪心一定正确的证据。"
+            />
+        </div>
+    );
+}
+
+const greedyMasteryItems = [
+    {
+        label: '能说清贪心是「有理由的局部最优」。',
+        evidence: '能解释为什么这一步的选择不会让整体变差。',
+        retryHint: '回到贪心判断，说清「为什么不会后悔」。',
+    },
+    {
+        label: '能写区间选择贪心并定对排序键。',
+        evidence: '按结束时间升序，能选就选并更新 lastEnd。',
+        retryHint: '回到区间选择，排序键是 end 不是 start。',
+    },
+    {
+        label: '能为错误贪心构造反例。',
+        evidence: '硬币 1、3、4 凑 6：贪心 3 枚、最优 2 枚。',
+        retryHint: '回到反例意识，先写策略再试小数据。',
+    },
+    {
+        label: '能判断一题到底能不能用贪心。',
+        evidence: '找不到反例（或能证明）才用，否则换记忆化 / DP。',
+        retryHint: '回到「贪心检查口令」。',
+    },
+];
+
 export default function CppL5Lesson12() {
     return (
         <CppLessonShell
@@ -105,6 +156,7 @@ export default function CppL5Lesson12() {
                 description: '本课通过区间选择、硬币模型和反例意识，建立贪心策略的判断框架。',
             }}
             goals={['能说出贪心策略的局部选择', '能用排序辅助贪心', '能用反例检查贪心是否可靠']}
+            prerequisites={['会用 sort 排序', '理解区间 [start, end) 的含义', '会用循环维护状态变量']}
             childrenBySection={{
                 1: <GreedyLab />,
                 2: (
@@ -168,6 +220,7 @@ for (int i = 0; i < n; i++) {
                         <Callout icon={Coins} title="贪心检查口令" tone="amber">
                             先写策略，再试小反例。如果找到了反例，这题就不能用这个贪心。
                         </Callout>
+                        <GreedyPredictionChecks />
                     </>
                 ),
                 5: (
@@ -179,6 +232,11 @@ for (int i = 0; i < n; i++) {
                             </p>
                         </div>
                         <MiniQuiz items={quiz} />
+                        <MasteryCheck
+                            title="C++ L5-12 贪心策略离开前检查"
+                            description="贪心最怕“凭感觉选最大，没证明也没试反例”。勾选前先为一个错误贪心亲手造一个反例。"
+                            items={greedyMasteryItems}
+                        />
                         <Callout icon={ClipboardCheck} title="课后任务" tone="slate">
                             <ul className="space-y-2">
                                 <li>实现最多不重叠区间选择。</li>
