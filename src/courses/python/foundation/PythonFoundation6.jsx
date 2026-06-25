@@ -726,6 +726,7 @@ export default function PythonFoundation6() {
                 title: '让程序学会“掷骰子”',
                 description: '认识 random 模块，用 randint、choice、shuffle 做出有随机规则的小游戏和测试数据。',
             }}
+            prerequisites={['会用 import 引入模块', '会用循环和条件', '会用列表保存一组数据']}
             sections={sections}
             previousPath="/python/f5"
             nextPath="/python/f7"

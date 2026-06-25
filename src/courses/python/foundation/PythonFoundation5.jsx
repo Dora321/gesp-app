@@ -641,6 +641,7 @@ export default function PythonFoundation5() {
                 title: '用 turtle 把循环和角度画成作品',
                 description: '把循环、角度和坐标变成看得见的图形，在动手画画中建立对“状态变化”的直觉。',
             }}
+            prerequisites={['会调用函数并传参数', '会用 for 循环重复', '会用 import 引入模块']}
             sections={sections}
             previousPath="/python/f4"
             nextPath="/python/f6"

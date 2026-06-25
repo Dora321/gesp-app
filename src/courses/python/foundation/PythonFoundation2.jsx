@@ -1039,6 +1039,7 @@ export default function PythonFoundation2() {
                 title: '让程序学会“判断”和“重复”',
                 description: '这一课把程序从“一行一行往下走”，升级成会根据条件做选择、按规则重复——这是后面写任何小游戏和小工具的基础。',
             }}
+            prerequisites={['会用变量保存一个值', '会用 print 输出结果', '理解 True / False 两种结果']}
             sections={sections}
             previousPath="/python/f1"
             nextPath="/python/f3"

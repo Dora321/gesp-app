@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
-import { ArrowRight, CheckCircle2, HelpCircle, Home, Menu, RotateCcw, X } from 'lucide-react';
+import { ArrowRight, CheckCircle2, Flag, HelpCircle, Home, Menu, RotateCcw, X } from 'lucide-react';
 
 // 与 CppLessonShell 共用同一套配色 token，保证 C++ / Python 两套课视觉统一
 const accentMap = {
@@ -273,6 +273,28 @@ export function PredictCheck({
     );
 }
 
+// 前置知识：开课前先确认「我已经会哪些」。与 CppLessonShell.Prerequisites 视觉对齐
+export function Prerequisites({ items = [], theme = 'light' }) {
+    if (!items.length) return null;
+    const isDark = theme === 'dark';
+    return (
+        <div className={`rounded-2xl border p-5 ${isDark ? 'border-amber-400/30 bg-amber-500/10' : 'border-amber-200 bg-amber-50'}`}>
+            <h3 className={`mb-3 flex items-center gap-2 text-sm font-black uppercase tracking-wider ${isDark ? 'text-amber-200' : 'text-amber-800'}`}>
+                <Flag size={16} />
+                学这节课前，你应该已经会
+            </h3>
+            <ul className="grid gap-2 sm:grid-cols-2">
+                {items.map((item) => (
+                    <li key={item} className={`flex items-start gap-2 text-sm font-semibold leading-6 ${isDark ? 'text-amber-50' : 'text-amber-950'}`}>
+                        <span className="mt-2 h-1.5 w-1.5 shrink-0 rounded-full bg-amber-500" />
+                        {item}
+                    </li>
+                ))}
+            </ul>
+        </div>
+    );
+}
+
 /* ---------- 外壳 ---------- */
 
 // 外壳底色：浅色课与深色项目两套 chrome（内容区交由各课自己渲染）
@@ -299,6 +321,7 @@ export default function PythonLessonShell({
     lessonTitle,
     lessonSubtitle,
     hero,
+    prerequisites,
     sections,
     accent = 'blue',
     previousPath,
@@ -406,6 +429,8 @@ export default function PythonLessonShell({
                                 )}
                             </section>
                         )}
+
+                        {isFirst && prerequisites && <Prerequisites items={prerequisites} theme={theme} />}
 
                         {isFirst && topSupport}
 

@@ -913,6 +913,7 @@ export default function PythonFoundation1() {
                 title: '第一次，让代码听你的话',
                 description: '从最简单的 print 和 input 开始，认识变量、数据类型和运算——这是后面所有 Python 内容的共同地基。',
             }}
+            prerequisites={['会用键盘打英文字母和数字', '知道程序是一步一步执行的']}
             sections={sections}
             nextPath="/python/f2"
             nextLabel="下一课：F2 控制流程"

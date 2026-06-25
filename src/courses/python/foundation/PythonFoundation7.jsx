@@ -698,6 +698,7 @@ export default function PythonFoundation7() {
                 title: '用集合处理“唯一”和“关系”',
                 description: '用 set 去重、判断成员，并完成交集、并集、差集——基础语法线在这里闭环，准备进入项目实战。',
             }}
+            prerequisites={['会用列表和 for 遍历', '会用 in 判断成员', '理解“去掉重复”的需求']}
             sections={sections}
             previousPath="/python/f6"
             nextPath="/python/bridge"

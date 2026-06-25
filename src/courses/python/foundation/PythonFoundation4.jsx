@@ -976,6 +976,7 @@ export default function PythonFoundation4() {
                 title: '把重复的代码打包成函数',
                 description: '学会定义带参数和返回值的函数，并借用模块的现成能力——让代码可复用、可组合。',
             }}
+            prerequisites={['会写循环和条件', '会用变量传递数据', '读得懂多行缩进代码']}
             sections={sections}
             previousPath="/python/f3"
             nextPath="/python/f5"

@@ -1546,6 +1546,7 @@ export default function PythonFoundation3() {
                 title: '用列表和字典装住真实世界的数据',
                 description: '学会用 list、dict、string 组织一组数据并完成增删查改——这是函数和项目处理信息的原料。',
             }}
+            prerequisites={['会用变量和 for 循环', '会写 if 条件判断', '理解下标从 0 开始']}
             sections={sections}
             previousPath="/python/f2"
             nextPath="/python/f4"
