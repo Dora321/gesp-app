@@ -1,7 +1,7 @@
 import React, { useMemo, useState } from 'react';
 import { ClipboardCheck, PackageCheck, Repeat2, Search } from 'lucide-react';
 import CppL6LessonSupport from '../../../components/CppL6LessonSupport';
-import CppLessonShell, { Callout, CodeBlock, CompareTable, MiniQuiz, StepList } from '../CppLessonShell';
+import CppLessonShell, { Callout, CodeBlock, CompareTable, MasteryCheck, MiniQuiz, PredictCheck, StepList } from '../CppLessonShell';
 
 const sections = [
     { id: 1, title: '课程导入', category: '可重复选择' },
@@ -85,6 +85,57 @@ const quiz = [
     },
 ];
 
+function CompleteBagPredictionChecks() {
+    return (
+        <div className="grid gap-4 lg:grid-cols-3">
+            <PredictCheck
+                prompt={'完全背包一维优化，容量循环写成倒序，会变成什么？'}
+                options={['还是完全背包', '退化成 0/1 背包（每件只选一次）']}
+                correctIndex={1}
+                explanation="倒序时 dp[j-w] 是上一轮（不含当前物品）的值，每件只能用一次，就成了 0/1 背包。完全背包必须正序。"
+                misconception="以为方向只是写法，不影响物品能不能重复选。"
+            />
+            <PredictCheck
+                prompt={'求「凑出金额的方案数」，转移该用什么运算？'}
+                options={['max', '加法 dp[j] += dp[j-coin]']}
+                correctIndex={1}
+                explanation="求方案数是把各种凑法的数目累加，所以用加法。求最大价值才用 max。目标不同，转移运算就不同。"
+                misconception="不管求什么都套 max。"
+            />
+            <PredictCheck
+                prompt={'计数 DP 的初值 dp[0] 应该设成几？'}
+                options={['0', '1（凑出 0 元有 1 种方案：什么都不选）']}
+                correctIndex={1}
+                explanation="dp[0] = 1 表示凑出金额 0 有一种方案（空选）。设成 0 会让所有方案数连锁变成 0。"
+                misconception="把计数 DP 的初值也想当然设成 0。"
+            />
+        </div>
+    );
+}
+
+const completeBagMasteryItems = [
+    {
+        label: '能区分 0/1 与完全背包的循环方向。',
+        evidence: '0/1 倒序、完全正序，方向决定物品能否重复选。',
+        retryHint: '回到模型对比表。',
+    },
+    {
+        label: '能写完全背包一维正序模板。',
+        evidence: '容量从 w[i] 正序到 W，可以叠加同一件物品。',
+        retryHint: '回到一维模板。',
+    },
+    {
+        label: '能按目标选择转移运算。',
+        evidence: '求最大用 max、求方案数用加法、求可达用逻辑或。',
+        retryHint: '回到「迁移口令」。',
+    },
+    {
+        label: '能定对计数 DP 的初值。',
+        evidence: 'dp[0] = 1 表示「凑 0 元」的空方案。',
+        retryHint: '先问自己「凑 0 元有几种」。',
+    },
+];
+
 export default function CppL6Lesson13() {
     return (
         <CppLessonShell
@@ -104,6 +155,7 @@ export default function CppL6Lesson13() {
                 description: '本课对比 0/1 背包与完全背包，并把 DP 思路扩展到计数和最值模型。',
             }}
             goals={['能区分 0/1 背包和完全背包', '能写出完全背包一维正序模板', '能把 DP 四件套迁移到简单计数题']}
+            prerequisites={['理解 0/1 背包的状态与转移', '会用一维数组做 DP', '会写嵌套 for 循环']}
             childrenBySection={{
                 1: <CompleteBagLab />,
                 2: (
@@ -167,6 +219,7 @@ for (int i = 1; i <= n; i++) {
                         <Callout icon={Repeat2} title="迁移口令" tone="emerald">
                             先判断目标是最大、最小、计数还是可达，再决定转移里用 max、min、加法还是逻辑或。
                         </Callout>
+                        <CompleteBagPredictionChecks />
                     </>
                 ),
                 5: (
@@ -178,6 +231,11 @@ for (int i = 1; i <= n; i++) {
                             </p>
                         </div>
                         <MiniQuiz items={quiz} />
+                        <MasteryCheck
+                            title="C++ L6-13 完全背包离开前检查"
+                            description="完全背包最怕“方向写反就变回 0/1、计数题套了 max、初值忘了设 1”。勾选前先用一个小样例对比正序倒序。"
+                            items={completeBagMasteryItems}
+                        />
                         <Callout icon={ClipboardCheck} title="课后任务" tone="slate">
                             <ul className="space-y-2">
                                 <li>实现完全背包最大价值。</li>

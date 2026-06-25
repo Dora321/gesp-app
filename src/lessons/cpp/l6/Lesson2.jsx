@@ -1,7 +1,7 @@
 import React, { useMemo, useState } from 'react';
 import { ClipboardCheck, GitBranch, Route, Search } from 'lucide-react';
 import CppL6LessonSupport from '../../../components/CppL6LessonSupport';
-import CppLessonShell, { Callout, CodeBlock, CompareTable, MiniQuiz, StepList } from '../CppLessonShell';
+import CppLessonShell, { Callout, CodeBlock, CompareTable, MasteryCheck, MiniQuiz, PredictCheck, StepList } from '../CppLessonShell';
 
 const sections = [
     { id: 1, title: '课程导入', category: '三种顺序' },
@@ -89,6 +89,57 @@ const quiz = [
     },
 ];
 
+function TraversalPredictionChecks() {
+    return (
+        <div className="grid gap-4 lg:grid-cols-3">
+            <PredictCheck
+                prompt={'前序、中序、后序三种遍历的区别到底在哪？'}
+                options={['访问左右子树的顺序不同', '只在「访问根节点」的时机不同']}
+                correctIndex={1}
+                explanation="三种遍历都是先左子树后右子树递归，区别只在「什么时候访问根」：根在前=前序、根在中=中序、根在后=后序。"
+                misconception="以为连左右子树的递归顺序也跟着变。"
+            />
+            <PredictCheck
+                prompt={'写递归遍历时，忘了写 if (root == 0) return; 会怎样？'}
+                options={['没事', '对空节点继续递归，越界 / 死递归崩溃']}
+                correctIndex={1}
+                explanation="没有空节点边界，会对不存在的孩子继续递归，访问越界或无限递归崩溃。每个递归遍历都要先处理空节点。"
+                misconception="忘了递归遍历也需要边界（空节点要返回）。"
+            />
+            <PredictCheck
+                prompt={'已知前序 A B D…、中序 D B E A…，根是谁？怎么切左右子树？'}
+                options={['根是中序第一个 D', '根是前序第一个 A，中序里 A 左边是左子树、右边是右子树']}
+                correctIndex={1}
+                explanation="前序第一个就是根 A；在中序里找到 A，它左边的是左子树、右边的是右子树，再对每棵子树重复同样过程。"
+                misconception="在中序序列里直接拿第一个当根。"
+            />
+        </div>
+    );
+}
+
+const traversalMasteryItems = [
+    {
+        label: '能手推三种遍历序列。',
+        evidence: '同一棵树写出前 / 中 / 后序，区别只在根的位置。',
+        retryHint: '回到遍历演示台，切换三种看序列。',
+    },
+    {
+        label: '能写递归遍历模板并处理空节点。',
+        evidence: 'if (root == 0) return; 再按顺序访问根 / 左 / 右。',
+        retryHint: '回到递归模板，第一行先写空节点边界。',
+    },
+    {
+        label: '能说清三种遍历各自的用途。',
+        evidence: '前序复制结构、中序让 BST 有序、后序统计子树。',
+        retryHint: '回到遍历规则表。',
+    },
+    {
+        label: '能用前序 + 中序还原二叉树。',
+        evidence: '前序找根，中序切左右，再对子树重复。',
+        retryHint: '回到「还原口令」。',
+    },
+];
+
 export default function CppL6Lesson2() {
     return (
         <CppLessonShell
@@ -108,6 +159,7 @@ export default function CppL6Lesson2() {
                 description: '本课用固定二叉树对比前序、中序、后序，训练递归访问左右子树的模板。',
             }}
             goals={['能手推三种遍历序列', '能写出二叉树递归遍历模板', '能说明根节点访问时机的区别']}
+            prerequisites={['会写递归并定边界', '理解二叉树的左右子节点', '会用数组存树结构']}
             childrenBySection={{
                 1: <TraversalLab />,
                 2: (
@@ -176,6 +228,7 @@ void postorder(int root) {
                         <Callout icon={GitBranch} title="还原口令" tone="indigo">
                             先找根，再用中序切左右子树，然后对子树重复同样过程。
                         </Callout>
+                        <TraversalPredictionChecks />
                     </>
                 ),
                 5: (
@@ -187,6 +240,11 @@ void postorder(int root) {
                             </p>
                         </div>
                         <MiniQuiz items={quiz} />
+                        <MasteryCheck
+                            title="C++ L6-2 树的遍历离开前检查"
+                            description="遍历最怕“把根访问时机记混、漏了空节点边界”。勾选前先在一棵 7 节点树上手推三种序列。"
+                            items={traversalMasteryItems}
+                        />
                         <Callout icon={ClipboardCheck} title="课后任务" tone="slate">
                             <ul className="space-y-2">
                                 <li>给一棵 7 个节点的二叉树写出三种遍历序列。</li>
