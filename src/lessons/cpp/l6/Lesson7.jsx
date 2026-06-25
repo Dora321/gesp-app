@@ -1,7 +1,7 @@
 import React, { useMemo, useState } from 'react';
 import { ClipboardCheck, GitBranch, Search, Users } from 'lucide-react';
 import CppL6LessonSupport from '../../../components/CppL6LessonSupport';
-import CppLessonShell, { Callout, CodeBlock, CompareTable, MiniQuiz, StepList } from '../CppLessonShell';
+import CppLessonShell, { Callout, CodeBlock, CompareTable, MasteryCheck, MiniQuiz, PredictCheck, StepList } from '../CppLessonShell';
 
 const sections = [
     { id: 1, title: '课程导入', category: '复用代码' },
@@ -74,6 +74,57 @@ const quiz = [
     },
 ];
 
+function InheritancePredictionChecks() {
+    return (
+        <div className="grid gap-4 lg:grid-cols-3">
+            <PredictCheck
+                prompt={'「汽车有一个引擎（Car has Engine）」，适合让 Car 继承 Engine 吗？'}
+                options={['适合', '不适合，这是 has-a 组合关系']}
+                correctIndex={1}
+                explanation="继承表达 is-a（是一种），如 Cat 是 Animal。Car 有 Engine 是 has-a，应该用组合：在 Car 里放一个 Engine 成员。"
+                misconception="把「有一个」的组合关系也用继承来表达。"
+            />
+            <PredictCheck
+                prompt={'父类成员放在 private 里，子类能直接使用它吗？'}
+                options={['能', '不能，要放 protected 子类才能直接访问']}
+                correctIndex={1}
+                explanation="private 成员连子类都不能直接访问。希望子类能用、又不对外公开，就放 protected。"
+                misconception="以为子类能访问父类的所有成员（包括 private）。"
+            />
+            <PredictCheck
+                prompt={'创建子类 Student 对象时，父类和子类构造函数谁先执行？'}
+                options={['子类先', '父类先（先有父类部分才能初始化子类）']}
+                correctIndex={1}
+                explanation="先调用父类构造函数建好父类部分，再执行子类构造函数。销毁时通常相反，先子后父。"
+                misconception="以为先初始化子类自己的部分，再补父类。"
+            />
+        </div>
+    );
+}
+
+const inheritanceMasteryItems = [
+    {
+        label: '能判断 is-a 关系适不适合继承。',
+        evidence: 'is-a 用继承，has-a 用组合（成员对象）。',
+        retryHint: '回到继承关系表。',
+    },
+    {
+        label: '能写出父类和派生类。',
+        evidence: 'class Cat : public Animal，子类再加自己的行为。',
+        retryHint: '回到 protected 小节。',
+    },
+    {
+        label: '能区分 public / protected / private。',
+        evidence: 'private 仅类内、protected 加子类可用、public 对外。',
+        retryHint: 'protected 给子类用、外部看不到。',
+    },
+    {
+        label: '能说清父子类构造顺序。',
+        evidence: '先父后子，初始化列表给父类传参数。',
+        retryHint: '回到「继承口令」。',
+    },
+];
+
 export default function CppL6Lesson7() {
     return (
         <CppLessonShell
@@ -93,6 +144,7 @@ export default function CppL6Lesson7() {
                 description: '本课用动物家族模型理解 public 继承、protected 成员和父子类构造顺序。',
             }}
             goals={['能判断适合继承的 is-a 关系', '能写出简单父类和派生类', '能解释 public、protected、private 的区别']}
+            prerequisites={['理解类的封装和构造', '理解 public / private 访问控制', '会写带构造函数的类']}
             childrenBySection={{
                 1: <InheritanceLab />,
                 2: (
@@ -169,6 +221,7 @@ public:
                         <Callout icon={Users} title="继承口令" tone="emerald">
                             公共特征上移，特殊行为下放；构造时先父后子，销毁时通常先子后父。
                         </Callout>
+                        <InheritancePredictionChecks />
                     </>
                 ),
                 5: (
@@ -180,6 +233,11 @@ public:
                             </p>
                         </div>
                         <MiniQuiz items={quiz} />
+                        <MasteryCheck
+                            title="C++ L6-7 继承与保护离开前检查"
+                            description="继承最怕“把 has-a 也写成继承、以为子类能用父类 private”。勾选前先判断 5 组关系是继承还是组合。"
+                            items={inheritanceMasteryItems}
+                        />
                         <Callout icon={ClipboardCheck} title="课后任务" tone="slate">
                             <ul className="space-y-2">
                                 <li>写 Person 和 Student 两个类，Student 继承 Person。</li>
