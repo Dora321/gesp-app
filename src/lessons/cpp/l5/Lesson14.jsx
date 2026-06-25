@@ -1,7 +1,7 @@
 import React, { useMemo, useState } from 'react';
 import { ClipboardCheck, Gauge, Search, Timer } from 'lucide-react';
 import CppL5LessonSupport from '../../../components/CppL5LessonSupport';
-import CppLessonShell, { Callout, CodeBlock, CompareTable, MiniQuiz, StepList } from '../CppLessonShell';
+import CppLessonShell, { Callout, CodeBlock, CompareTable, MasteryCheck, MiniQuiz, PredictCheck, StepList } from '../CppLessonShell';
 
 const sections = [
     { id: 1, title: '课程导入', category: '规模估算' },
@@ -79,6 +79,57 @@ const quiz = [
     },
 ];
 
+function ComplexityPredictionChecks() {
+    return (
+        <div className="grid gap-4 lg:grid-cols-3">
+            <PredictCheck
+                prompt={'两层嵌套循环一定是 O(n²) 吗？'}
+                options={['一定', '不一定，内层次数可能递减或倍增']}
+                correctIndex={1}
+                explanation="比如内层 j 从 i 开始，或 j *= 2，总次数就不是 n²。要看内层实际执行多少次，不能只数缩进层数。"
+                misconception="看到两层循环就直接判 O(n²)。"
+            />
+            <PredictCheck
+                prompt={'O(2n + 100) 和 O(n²/2)，化简后的复杂度是？'}
+                options={['还是 O(2n+100) 和 O(n²/2)', 'O(n) 和 O(n²)（去掉常数系数和低次项）']}
+                correctIndex={1}
+                explanation="大 O 只看增长最快的主项，忽略常数系数和低次项。2n+100 → O(n)，n²/2 → O(n²)。"
+                misconception="把常数系数和加法常数也写进复杂度里。"
+            />
+            <PredictCheck
+                prompt={'n=100000 的题写两重循环 O(n²)，大约多少次操作？能过吗？'}
+                options={['约 20 万次，能过', '约 100 亿次，会超时']}
+                correctIndex={1}
+                explanation="n² = (10⁵)² = 10¹⁰ ≈ 100 亿，远超 1 秒约 1 亿的估算，会超时。n 大时要换 O(n log n) 或更优。"
+                misconception="没把 n² 算清，以为还是几十万次。"
+            />
+        </div>
+    );
+}
+
+const complexityMasteryItems = [
+    {
+        label: '能区分常见复杂度等级。',
+        evidence: 'O(log n) < O(n) < O(n log n) < O(n²) < O(2ⁿ)。',
+        retryHint: '回到 O 表示法表。',
+    },
+    {
+        label: '能从循环结构估算复杂度。',
+        evidence: '看实际执行次数：嵌套相乘、连续段取较大。',
+        retryHint: '回到循环分析，别只数缩进层数。',
+    },
+    {
+        label: '能化简大 O（去常数和低次项）。',
+        evidence: '2n + 100 → O(n)，只保留增长最快的主项。',
+        retryHint: '大 O 只看增长最快的部分。',
+    },
+    {
+        label: '能用数据范围反推该用什么算法。',
+        evidence: 'n≤20 可搜索、n≤1000 可 O(n²)、n≤10⁵ 要 O(n log n)。',
+        retryHint: '回到考试估算表。',
+    },
+];
+
 export default function CppL5Lesson14() {
     return (
         <CppLessonShell
@@ -98,6 +149,7 @@ export default function CppL5Lesson14() {
                 description: '本课训练从循环结构、数据规模和常见算法模型快速估算时间复杂度。',
             }}
             goals={['能区分 O(log n)、O(n)、O(n log n)、O(n^2)', '能根据数据范围选择算法', '能从循环结构估算复杂度']}
+            prerequisites={['会读懂循环和嵌套循环', '理解对数与指数增长的差别', '会估算一个循环大概执行多少次']}
             childrenBySection={{
                 1: <ComplexityLab />,
                 2: (
@@ -168,6 +220,7 @@ while (n > 1) {
                         <Callout icon={Timer} title="粗略经验" tone="amber">
                             1 秒通常按一千万到一亿级简单操作估算。具体还要看常数、语言和判题机。
                         </Callout>
+                        <ComplexityPredictionChecks />
                     </>
                 ),
                 5: (
@@ -179,6 +232,11 @@ while (n > 1) {
                             </p>
                         </div>
                         <MiniQuiz items={quiz} />
+                        <MasteryCheck
+                            title="C++ L5-14 复杂度离开前检查"
+                            description="复杂度最怕“两层就判 O(n²)、n=10万还写 O(n²)”。勾选前先把 n=10万的 O(n²) 操作数算出来看能否过。"
+                            items={complexityMasteryItems}
+                        />
                         <Callout icon={ClipboardCheck} title="课后任务" tone="slate">
                             <ul className="space-y-2">
                                 <li>判断 5 段循环代码的时间复杂度。</li>

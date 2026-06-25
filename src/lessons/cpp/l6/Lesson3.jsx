@@ -1,7 +1,7 @@
 import React, { useMemo, useState } from 'react';
 import { Binary, ClipboardCheck, Search, Target } from 'lucide-react';
 import CppL6LessonSupport from '../../../components/CppL6LessonSupport';
-import CppLessonShell, { Callout, CodeBlock, CompareTable, MiniQuiz, StepList } from '../CppLessonShell';
+import CppLessonShell, { Callout, CodeBlock, CompareTable, MasteryCheck, MiniQuiz, PredictCheck, StepList } from '../CppLessonShell';
 
 const sections = [
     { id: 1, title: '课程导入', category: '最优编码' },
@@ -88,6 +88,57 @@ const quiz = [
     },
 ];
 
+function HuffmanPredictionChecks() {
+    return (
+        <div className="grid gap-4 lg:grid-cols-3">
+            <PredictCheck
+                prompt={'哈夫曼要每次取最小，直接用 priority_queue<int> pq; 行吗？'}
+                options={['行', '不行，默认是大根堆，会取到最大']}
+                correctIndex={1}
+                explanation="C++ priority_queue 默认是大根堆，top() 是最大值。哈夫曼要最小，得写 priority_queue<int, vector<int>, greater<int>> 建小根堆。"
+                misconception="以为 priority_queue 默认就能取最小。"
+            />
+            <PredictCheck
+                prompt={'合并出的新权值 a+b，要不要放回队列？'}
+                options={['不用，已经算进代价了', '要放回，它还要继续参与后面的合并']}
+                correctIndex={1}
+                explanation="新合并出的节点会作为一个新权值，继续和别的权值合并，必须 push 回堆。不放回结果就错了。"
+                misconception="以为合并完就结束，忘了新节点还要继续参与。"
+            />
+            <PredictCheck
+                prompt={'每次「取两个最小合并」，能改成「取最小和最大合并」吗？'}
+                options={['能，结果一样', '不能，哈夫曼的最优性靠每次取两个最小']}
+                correctIndex={1}
+                explanation="哈夫曼贪心的正确性依赖每次合并两个最小权值（让小权值落在更深处）。取最大会破坏最优。"
+                misconception="以为合并顺序不影响总代价。"
+            />
+        </div>
+    );
+}
+
+const huffmanMasteryItems = [
+    {
+        label: '能手推哈夫曼合并过程。',
+        evidence: '每轮取两个最小合并，代价累加，新权值放回。',
+        retryHint: '回到哈夫曼合并演示台。',
+    },
+    {
+        label: '能用小根堆取最小权值。',
+        evidence: 'priority_queue<int, vector<int>, greater<int>>。',
+        retryHint: '默认是大根堆，要加 greater。',
+    },
+    {
+        label: '能解释为什么每次取两个最小最优。',
+        evidence: '小权值放在更深处、大权值靠近根，总代价最小。',
+        retryHint: '回到编码代价。',
+    },
+    {
+        label: '能识别哈夫曼题型。',
+        evidence: '合并果子、最优编码、每次合并有代价。',
+        retryHint: '回到题型提醒。',
+    },
+];
+
 export default function CppL6Lesson3() {
     return (
         <CppLessonShell
@@ -107,6 +158,7 @@ export default function CppL6Lesson3() {
                 description: '本课从最优编码问题进入哈夫曼思想，理解优先队列和带权路径长度。',
             }}
             goals={['能手推哈夫曼合并过程', '能用 priority_queue 取最小权值', '能计算合并总代价']}
+            prerequisites={['理解二叉树和带权路径', '会用 priority_queue 基本操作', '理解贪心思想']}
             childrenBySection={{
                 1: <HuffmanLab />,
                 2: (
@@ -158,6 +210,7 @@ while (pq.size() > 1) {
                                 '将新权值放回堆',
                             ]} />
                         </div>
+                        <HuffmanPredictionChecks />
                     </>
                 ),
                 4: (
@@ -187,6 +240,11 @@ while (pq.size() > 1) {
                             </p>
                         </div>
                         <MiniQuiz items={quiz} />
+                        <MasteryCheck
+                            title="C++ L6-3 哈夫曼离开前检查"
+                            description="哈夫曼最怕“默认大根堆取了最大、新权值忘了放回”。勾选前先手推 1/2/3/4/5 两轮合并。"
+                            items={huffmanMasteryItems}
+                        />
                         <Callout icon={ClipboardCheck} title="课后任务" tone="slate">
                             <ul className="space-y-2">
                                 <li>手推权值 1、2、3、4、5 的哈夫曼合并过程。</li>
