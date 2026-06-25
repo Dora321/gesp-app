@@ -7,7 +7,7 @@ import {
     CheckCircle, List, FileQuestion, BookOpen
 } from 'lucide-react';
 import PythonFoundationSupport from '../../../components/PythonFoundationSupport';
-import PythonLessonShell, { MasteryCheck, SlideHeader } from '../shell/PythonLessonShell';
+import PythonLessonShell, { MasteryCheck, PredictCheck, SlideHeader } from '../shell/PythonLessonShell';
 
 // --- Shared Helper Components ---
 const Button = ({ onClick, children, className, variant = 'primary', disabled = false }) => {
@@ -311,6 +311,15 @@ const DeduplicateSlide = () => {
             </div>
 
             <CodeBlock code={`data = [1, 2, 3, 2, 1, 4, 5, 5, 1]\n\n# 一行代码去重\nclean_data = list(set(data))\n\nprint(clean_data)`} />
+
+            <PredictCheck
+                title="先预测：去重后还保持原顺序吗"
+                prompt="data = [3, 1, 2, 1, 3]，list(set(data)) 一定按 3, 1, 2 的原顺序输出吗？"
+                options={['是，顺序不变', '不一定，集合是无序的']}
+                correctIndex={1}
+                explanation="set 会去掉重复，但集合本身无序，转回 list 的顺序不保证和原来一样。需要“保序去重”时要用别的写法（如遍历 + 已见集合）。"
+                misconception="以为 set 去重后还会保持原来的先后顺序。"
+            />
         </div>
     );
 };

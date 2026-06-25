@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { Box, Code, Package, Zap, ArrowRight, RefreshCw, Sparkles, BookOpen, AlertCircle, Menu, X, Play, Trophy, CheckCircle, XCircle, Star, Calculator, Dices, Clock } from 'lucide-react';
 import PythonFoundationSupport from '../../../components/PythonFoundationSupport';
-import PythonLessonShell, { MasteryCheck, SlideHeader } from '../shell/PythonLessonShell';
+import PythonLessonShell, { MasteryCheck, PredictCheck, SlideHeader } from '../shell/PythonLessonShell';
 
 // --- Shared Components ---
 const Button = ({ onClick, children, className, variant = 'primary', disabled = false }) => {
@@ -191,6 +191,15 @@ result = make_potion("${ingredient}")
                     </div>
                 </div>
             </div>
+
+            <PredictCheck
+                title="先预测：print 还是 return"
+                prompt="def add(a, b): print(a + b)，然后 x = add(2, 3)，x 是多少？"
+                options={['5', 'None']}
+                correctIndex={1}
+                explanation="add 只 print 不 return，函数默认返回 None，所以 x = None。想拿到结果给后面用，必须写 return a + b。"
+                misconception="以为屏幕上 print 出来的值，就是函数交回的返回值。"
+            />
         </div>
     );
 };

@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 import { Layers, List, Box, Key, Search, ArrowRight, RefreshCw, Plus, Trash2, Edit3, Menu, X, Grid3x3, BookOpen, CheckCircle } from 'lucide-react';
 import PythonFoundationSupport from '../../../components/PythonFoundationSupport';
 import PyCodeTracer from '../../../components/PyCodeTracer';
-import PythonLessonShell, { MasteryCheck, SlideHeader } from '../shell/PythonLessonShell';
+import PythonLessonShell, { MasteryCheck, PredictCheck, SlideHeader } from '../shell/PythonLessonShell';
 
 // --- Shared Components ---
 const Button = ({ onClick, children, className, variant = 'primary', disabled = false }) => {
@@ -665,6 +665,15 @@ const ListSlide = () => {
                     </div>
                 </div>
             </div>
+
+            <PredictCheck
+                title="先预测：下标越界"
+                prompt="nums = [10, 20, 30]，访问 nums[3] 会怎样？"
+                options={['返回 30', '报错 IndexError']}
+                correctIndex={1}
+                explanation="列表有 3 个元素，下标只能是 0、1、2。nums[3] 越界，Python 直接报 IndexError。最后一个是 nums[2]，也可以写 nums[-1]。"
+                misconception="把元素个数（3）当成最后一个合法下标。"
+            />
         </div>
     );
 };
@@ -1080,6 +1089,15 @@ const StringFocusGuide = ({ focusMode, onChange }) => {
                 <p className="text-sm font-bold leading-relaxed text-slate-700">{current.task}</p>
                 <p className="mt-2 text-xs font-semibold leading-relaxed text-slate-500">过关信号：{current.check}</p>
             </div>
+
+            <PredictCheck
+                title="先预测：访问不存在的键"
+                prompt={'d = {"a": 1}，访问 d["b"] 会怎样？'}
+                options={['返回 None', '报错 KeyError']}
+                correctIndex={1}
+                explanation={'字典里没有 "b" 这个键，d["b"] 直接报 KeyError。想安全取用就写 d.get("b")，键不存在时返回 None。'}
+                misconception="以为访问字典里不存在的键会自动返回 None。"
+            />
         </section>
     );
 };
