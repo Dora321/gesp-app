@@ -53,7 +53,8 @@ const sections = [
   { id: 6, title: "实战：谁是大陷阱？", icon: "alert", category: "实战与难点" },
   { id: 7, title: "难点：循环结束那一刻", icon: "calc", category: "实战与难点" },
   { id: 8, title: "避坑指南", icon: "x", category: "避坑与总结" },
-  { id: 9, title: "总结与作业", icon: "check", category: "避坑与总结" }
+  { id: 9, title: "总结与作业", icon: "book", category: "避坑与总结" },
+  { id: 10, title: "离开前检查", icon: "check", category: "避坑与总结" }
 ];
 
 // --- 互动组件：无限跑圈机器人 ---
@@ -632,13 +633,6 @@ cout << (N + i);`}
                 </ul>
               </div>
 
-              <MasteryCheck
-                title="C++ L1-9 for 循环离开前检查"
-                description="如果只会背口诀，还不算过关。至少要能手推一次结束边界。"
-                items={forLoopMasteryItems}
-                className="md:col-span-2"
-              />
-
               <div className="bg-gradient-to-br from-indigo-500 to-purple-600 text-white p-6 rounded-xl shadow-lg flex flex-col justify-center">
                 <h3 className="font-bold text-xl mb-4 flex items-center gap-2">
                   <Terminal size={24} /> 课后作业
@@ -658,6 +652,17 @@ cout << (N + i);`}
               </div>
             </div>
 
+          </div>
+        );
+      case 10:
+        return (
+          <div className="slide-enter">
+            <h2 className="text-3xl font-bold text-gray-800 mb-6">🏁 离开前检查</h2>
+            <MasteryCheck
+              title="C++ L1-9 for 循环离开前检查"
+              description="如果只会背口诀，还不算过关。至少要能手推一次结束边界。"
+              items={forLoopMasteryItems}
+            />
             <div className="mt-8 text-center">
               <button onClick={() => setActiveSection(1)} className="px-8 py-3 bg-gray-200 text-gray-700 rounded-full hover:bg-gray-300 transition font-bold shadow-sm flex items-center gap-2 mx-auto">
                 <RotateCw size={18} /> 重新开始学习
