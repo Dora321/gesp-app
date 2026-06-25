@@ -137,6 +137,7 @@ export default function CppL4Lesson1() {
                 description: '三级重点是会写循环、数组、字符串和模拟；四级开始要学会拆代码。函数就是第一块积木。',
             }}
             goals={['能解释函数为什么能降低复杂度', '能写出函数定义和调用', '能理解参数、返回值和 main 的关系']}
+            prerequisites={['会写完整的 main 程序', '用变量和表达式做计算', '写 for / if 基本结构']}
             childrenBySection={{
                 1: <FunctionFlowLab />,
                 2: (

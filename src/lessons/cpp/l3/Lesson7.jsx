@@ -198,6 +198,7 @@ export default function CppL3Lesson7() {
                 description: '本课学习 string 的读入、长度、下标访问、拼接和比较。字符串题的核心仍然是下标、循环和边界。',
             }}
             goals={['能读入和输出 string', '能用 size() 获取长度并遍历字符', '能理解 cin 和 getline 的区别']}
+            prerequisites={['用 cin / cout 读写数据', '写 for 循环按下标遍历', '理解数组下标从 0 开始']}
             childrenBySection={{
                 1: <StringLab />,
                 2: (

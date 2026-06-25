@@ -146,6 +146,7 @@ export default function CppL4Lesson2() {
                 description: '本课解决四级函数题的核心疑问：为什么函数里改了变量，main 里的值却没变？什么时候该用引用？',
             }}
             goals={['能区分传值和引用传参', '能写出引用交换两个变量', '能选择返回值或引用传参']}
+            prerequisites={['会定义和调用函数', '理解变量与赋值', '知道函数有参数和返回值']}
             childrenBySection={{
                 1: <SwapLab />,
                 2: (

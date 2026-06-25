@@ -143,6 +143,7 @@ export default function CppL4Lesson3() {
                 description: '本课把三级数组统计升级成函数版本，重点掌握数组参数、长度参数和常见数组函数模板。',
             }}
             goals={['能写数组作为函数参数的语法', '能解释为什么长度 n 要单独传入', '能封装求和、最大值和修改数组的函数']}
+            prerequisites={['会定义和调用函数', '会遍历一维数组', '理解传值与引用的区别']}
             childrenBySection={{
                 1: <ArrayFunctionLab />,
                 2: (

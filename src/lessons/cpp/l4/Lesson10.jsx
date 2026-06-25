@@ -160,6 +160,7 @@ export default function CppL4Lesson10() {
                 description: '本课强调“有序区”的概念：左边始终排好序，右边逐个取出元素插入进去。',
             }}
             goals={['能解释有序区和无序区', '能写出元素右移模板', '能区分插入排序和冒泡排序']}
+            prerequisites={['会遍历一维数组', '写 while 循环并控制边界', '会交换两个数组元素']}
             childrenBySection={{
                 1: <InsertionSortLab />,
                 2: (

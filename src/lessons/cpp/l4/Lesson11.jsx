@@ -161,6 +161,7 @@ export default function CppL4Lesson11() {
                 description: '本课用升序排序讲“选择最小值”。同样的方法也可以改成每轮选择最大值，关键是记录目标下标。',
             }}
             goals={['能用 minIndex 记录最小值位置', '能写出选择排序双重循环', '能比较冒泡、插入、选择三种策略']}
+            prerequisites={['会遍历一维数组', '写嵌套 for 循环', '用 swap 交换两个元素']}
             childrenBySection={{
                 1: <SelectionSortLab />,
                 2: (

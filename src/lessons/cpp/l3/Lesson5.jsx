@@ -181,6 +181,7 @@ export default function CppL3Lesson5() {
                 description: '本课重点掌握数组声明、下标访问、循环遍历和输入输出模板。数组学稳后，统计、排序、字符串综合题都会顺很多。',
             }}
             goals={['能解释数组下标从 0 开始', '能写出遍历数组的标准循环', '能避免 a[n] 这类越界错误']}
+            prerequisites={['用变量保存一个值', '写 for 循环重复执行', '用 cin 读入若干个数']}
             childrenBySection={{
                 1: <ArrayIndexLab />,
                 2: (

@@ -194,6 +194,7 @@ export default function CppL3Lesson6() {
                 description: '本课把数组遍历变成四个高频模板：求和、最大最小、条件计数、前缀和。三级题里，这些模板经常组合出现。',
             }}
             goals={['能用累计变量求和和平均数', '能正确初始化最大值和最小值', '能理解前缀和的区间查询思路']}
+            prerequisites={['定义并遍历一维数组', '写 for 循环累加', '分清整数除法和小数除法']}
             childrenBySection={{
                 1: <ArrayStatsLab />,
                 2: (

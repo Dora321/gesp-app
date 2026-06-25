@@ -249,6 +249,27 @@ export function GoalCards({ goals }) {
     );
 }
 
+// 前置知识：让孩子开课前先确认「我已经会哪些」，知道为什么学得动这节课
+export function Prerequisites({ items = [] }) {
+    if (!items.length) return null;
+    return (
+        <div className="rounded-2xl border border-amber-200 bg-amber-50 p-5">
+            <h3 className="mb-3 flex items-center gap-2 text-sm font-black uppercase tracking-wider text-amber-800">
+                <Flag size={16} />
+                学这节课前，你应该已经会
+            </h3>
+            <ul className="grid gap-2 sm:grid-cols-2">
+                {items.map((item) => (
+                    <li key={item} className="flex items-start gap-2 text-sm font-semibold leading-6 text-amber-950">
+                        <span className="mt-2 h-1.5 w-1.5 shrink-0 rounded-full bg-amber-500" />
+                        {item}
+                    </li>
+                ))}
+            </ul>
+        </div>
+    );
+}
+
 export function Callout({ icon: Icon, title, children, tone = 'blue' }) {
     const toneMap = {
         blue: 'border-blue-100 bg-blue-50 text-blue-950',
@@ -684,6 +705,7 @@ export default function CppLessonShell({
     lessonSubtitle,
     sections,
     goals,
+    prerequisites,
     hero,
     childrenBySection,
     previousPath,
@@ -795,6 +817,7 @@ export default function CppLessonShell({
                                         </div>
                                     )}
                                 </div>
+                                {prerequisites && <Prerequisites items={prerequisites} />}
                                 <GoalCards goals={goals} />
                                 {topSupport}
                                 {activeContent}

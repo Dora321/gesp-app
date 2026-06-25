@@ -195,6 +195,7 @@ export default function CppL3Lesson9() {
                 description: '本课把数组和字符串放在一起：字符频率、是否出现、去重输出。这是三级综合题非常常见的组合。',
             }}
             goals={['能把字符映射成数组下标', '能用计数数组统计频率', '能用标记数组做去重和出现判断']}
+            prerequisites={['定义并遍历一维数组', '用下标遍历字符串', "理解字符相减 c - 'a'"]}
             childrenBySection={{
                 1: <FrequencyLab />,
                 2: (

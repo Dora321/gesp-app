@@ -212,6 +212,7 @@ export default function CppL2Lesson12() {
                 description: '数组让我们保存一组同类型数据。二级常见任务包括读入 n 个数、求和、找最大值、统计满足条件的元素。',
             }}
             goals={['会定义和访问一维数组', '能解释下标从 0 开始', '能用循环遍历数组完成统计']}
+            prerequisites={['用变量保存一个值', '写 for 循环重复执行', '用 cin 读入数据']}
             childrenBySection={{
                 1: <ArrayLab />,
                 2: (

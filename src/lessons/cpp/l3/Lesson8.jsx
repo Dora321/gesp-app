@@ -204,6 +204,7 @@ export default function CppL3Lesson8() {
                 description: '本课把字符串处理拆成四类高频动作：统计字符、大小写转换、查找位置、截取子串。三级综合题经常把它们组合起来。',
             }}
             goals={['能统计数字、字母、空格等字符类型', '能用 ASCII 规则进行大小写转换', '能使用 find 和 substr 处理子串']}
+            prerequisites={['用下标遍历字符串', '知道字符就是 ASCII 数值', '写 for + if 做条件计数']}
             childrenBySection={{
                 1: <StringTransformLab />,
                 2: (
