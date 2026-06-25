@@ -1,7 +1,7 @@
 import React, { useMemo, useState } from 'react';
 import { ClipboardCheck, MousePointer2, Search, Sparkles } from 'lucide-react';
 import CppL6LessonSupport from '../../../components/CppL6LessonSupport';
-import CppLessonShell, { Callout, CodeBlock, CompareTable, MiniQuiz, StepList } from '../CppLessonShell';
+import CppLessonShell, { Callout, CodeBlock, CompareTable, MasteryCheck, MiniQuiz, PredictCheck, StepList } from '../CppLessonShell';
 
 const sections = [
     { id: 1, title: '课程导入', category: '同名不同形' },
@@ -67,6 +67,57 @@ const quiz = [
     },
 ];
 
+function PolymorphismPredictionChecks() {
+    return (
+        <div className="grid gap-4 lg:grid-cols-3">
+            <PredictCheck
+                prompt={'Shape* p = new Circle(3); 若 area() 没写 virtual，p->area() 调用谁？'}
+                options={['Circle 的 area', 'Shape 的 area（基类版本）']}
+                correctIndex={1}
+                explanation="没有 virtual 时按指针的静态类型（Shape）决定，调用基类 area 返回 0。加上 virtual 才会按真实对象 Circle 调用。"
+                misconception="以为基类指针总会调到真实对象的那个函数。"
+            />
+            <PredictCheck
+                prompt={'把子类对象按值赋给父类对象 Base b = derived; 还能多态吗？'}
+                options={['能', '不能，发生对象切片，只剩父类部分']}
+                correctIndex={1}
+                explanation="按值赋给父类对象会切掉派生类特有的部分（对象切片），调用的是父类版本。多态必须通过指针或引用。"
+                misconception="以为只要写了 virtual，按值传父类对象也能多态。"
+            />
+            <PredictCheck
+                prompt={'通过 Base* 指针 delete 一个 Derived 对象，基类析构没写 virtual，会怎样？'}
+                options={['没事', '只调用基类析构，派生类资源没释放']}
+                correctIndex={1}
+                explanation="基类析构不是 virtual 时，delete 基类指针只调用基类析构，派生类析构被跳过，可能泄漏资源。基类析构要写 virtual。"
+                misconception="以为 delete 基类指针会自动调用派生类析构。"
+            />
+        </div>
+    );
+}
+
+const polymorphismMasteryItems = [
+    {
+        label: '能解释虚函数和动态绑定。',
+        evidence: 'virtual 让基类指针按真实对象类型调用对应版本。',
+        retryHint: '回到虚函数表，对比有无 virtual。',
+    },
+    {
+        label: '能用基类指针调用派生类函数。',
+        evidence: 'virtual 接口 + 子类 override 重写 + 指针调用。',
+        retryHint: '回到基类指针小节。',
+    },
+    {
+        label: '能避免对象切片。',
+        evidence: '多态必须用指针 / 引用，不能按值传父类对象。',
+        retryHint: '回到常见坑，想想按值赋值会丢什么。',
+    },
+    {
+        label: '能说清虚析构的必要性。',
+        evidence: '通过基类指针 delete 派生对象时，基类析构要写 virtual。',
+        retryHint: '回到「多态口令」。',
+    },
+];
+
 export default function CppL6Lesson8() {
     return (
         <CppLessonShell
@@ -86,6 +137,7 @@ export default function CppL6Lesson8() {
                 description: '本课用图形面积模型讲清 virtual、override、基类指针和虚析构的使用场景。',
             }}
             goals={['能解释虚函数和动态绑定', '能用基类指针调用派生类函数', '能说明 override 和虚析构的价值']}
+            prerequisites={['理解类的封装和构造', '理解继承（父类 / 子类）', '理解指针保存地址']}
             childrenBySection={{
                 1: <PolymorphismLab />,
                 2: (
@@ -164,6 +216,7 @@ public:
                         <Callout icon={MousePointer2} title="多态口令" tone="rose">
                             父类接口写 virtual，子类重写写 override，通过指针或引用调用，基类析构函数也写 virtual。
                         </Callout>
+                        <PolymorphismPredictionChecks />
                     </>
                 ),
                 5: (
@@ -175,6 +228,11 @@ public:
                             </p>
                         </div>
                         <MiniQuiz items={quiz} />
+                        <MasteryCheck
+                            title="C++ L6-8 多态与虚函数离开前检查"
+                            description="多态最怕“忘了 virtual 调到基类、按值传父类对象切片”。勾选前先写两个派生类，去掉 virtual 看输出怎么变。"
+                            items={polymorphismMasteryItems}
+                        />
                         <Callout icon={ClipboardCheck} title="课后任务" tone="slate">
                             <ul className="space-y-2">
                                 <li>写 Shape、Circle、Rectangle，并通过 Shape* 调用 area。</li>

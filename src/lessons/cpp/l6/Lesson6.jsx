@@ -1,7 +1,7 @@
 import React, { useMemo, useState } from 'react';
 import { Boxes, ClipboardCheck, Search, ShieldCheck } from 'lucide-react';
 import CppL6LessonSupport from '../../../components/CppL6LessonSupport';
-import CppLessonShell, { Callout, CodeBlock, CompareTable, MiniQuiz, StepList } from '../CppLessonShell';
+import CppLessonShell, { Callout, CodeBlock, CompareTable, MasteryCheck, MiniQuiz, PredictCheck, StepList } from '../CppLessonShell';
 
 const sections = [
     { id: 1, title: '课程导入', category: '封装' },
@@ -71,6 +71,57 @@ const quiz = [
     },
 ];
 
+function ClassPredictionChecks() {
+    return (
+        <div className="grid gap-4 lg:grid-cols-3">
+            <PredictCheck
+                prompt={'构造函数前面写了返回类型 void Student()，还算构造函数吗？'}
+                options={['是', '不是，构造函数没有返回类型']}
+                correctIndex={1}
+                explanation="构造函数和类同名、且没有返回类型。写了 void 它就变成一个普通成员函数，不会在创建对象时自动调用。"
+                misconception="给构造函数加了返回类型，没意识到它就不再是构造函数。"
+            />
+            <PredictCheck
+                prompt={'成员变量在 private 里，外部 main 写 a.score = 90 直接改，可以吗？'}
+                options={['可以', '不行，private 外部不能直接访问']}
+                correctIndex={1}
+                explanation="private 成员只能在类内部访问。外部要改得通过 public 函数（如 setScore）。这正是封装的意义。"
+                misconception="以为对象所有成员都能像 struct 一样随便点出来改。"
+            />
+            <PredictCheck
+                prompt={'class 和 struct 定义成员，默认访问权限一样吗？'}
+                options={['一样', '不一样：class 默认 private，struct 默认 public']}
+                correctIndex={1}
+                explanation="class 的成员默认是 private，struct 默认是 public。这是两者唯一的本质区别。"
+                misconception="以为 class 和 struct 完全等价。"
+            />
+        </div>
+    );
+}
+
+const classMasteryItems = [
+    {
+        label: '能区分类和对象。',
+        evidence: '类是蓝图（定义），对象是按蓝图造出的具体实例。',
+        retryHint: '回到类与对象表。',
+    },
+    {
+        label: '能写出带构造函数的简单类。',
+        evidence: '构造函数与类同名、无返回类型，创建对象时自动调用。',
+        retryHint: '别给构造函数加返回类型。',
+    },
+    {
+        label: '能用 private / public 做封装。',
+        evidence: '数据放 private，操作通过 public 函数对外提供。',
+        retryHint: '回到「封装口令」。',
+    },
+    {
+        label: '能说清 class 与 struct 的区别。',
+        evidence: 'class 默认 private、struct 默认 public。',
+        retryHint: '想一想两者默认的访问权限。',
+    },
+];
+
 export default function CppL6Lesson6() {
     return (
         <CppLessonShell
@@ -90,6 +141,7 @@ export default function CppL6Lesson6() {
                 description: '本课从蓝图、对象、成员变量、成员函数、构造函数和访问控制建立 OOP 基础。',
             }}
             goals={['能区分类和对象', '能写出带构造函数的简单类', '能说明 public 和 private 的区别']}
+            prerequisites={['会用结构体组织多个字段', '会定义和调用函数', '理解变量的作用范围']}
             childrenBySection={{
                 1: <ClassLab />,
                 2: (
@@ -164,6 +216,7 @@ public:
                         <Callout icon={ShieldCheck} title="封装口令" tone="teal">
                             数据默认 private，外部需要什么操作，就提供清晰的 public 函数。
                         </Callout>
+                        <ClassPredictionChecks />
                     </>
                 ),
                 5: (
@@ -175,6 +228,11 @@ public:
                             </p>
                         </div>
                         <MiniQuiz items={quiz} />
+                        <MasteryCheck
+                            title="C++ L6-6 类与封装离开前检查"
+                            description="OOP 入门最怕“构造函数加了返回类型、private 还想从外面直接改”。勾选前先自己写一个最小 Counter 类验证。"
+                            items={classMasteryItems}
+                        />
                         <Callout icon={ClipboardCheck} title="课后任务" tone="slate">
                             <ul className="space-y-2">
                                 <li>写一个 Point 类，保存 x、y 并输出坐标。</li>
