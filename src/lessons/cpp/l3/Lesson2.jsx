@@ -1,7 +1,7 @@
 import React, { useMemo, useState } from 'react';
 import { AlertTriangle, Binary, ClipboardCheck, LockKeyhole, RotateCcw } from 'lucide-react';
 import CppL3LessonSupport from '../../../components/CppL3LessonSupport';
-import CppLessonShell, { Callout, CodeBlock, CompareTable, MiniQuiz, StepList } from '../CppLessonShell';
+import CppLessonShell, { Callout, CodeBlock, CompareTable, MasteryCheck, MiniQuiz, PredictCheck, StepList } from '../CppLessonShell';
 
 const sections = [
     { id: 1, title: '课程导入', category: '负数表示' },
@@ -77,6 +77,57 @@ const quiz = [
     },
 ];
 
+function ComplementPredictionChecks() {
+    return (
+        <div className="grid gap-4 lg:grid-cols-3">
+            <PredictCheck
+                prompt={'求 -5 的补码，「取反」之后忘了加 1，得到的是 -5 吗？'}
+                options={['是', '不是，取反加 1 才是补码（少加 1 会差 1）']}
+                correctIndex={1}
+                explanation="负数补码是「取反 + 1」。只取反得到的是反码，比补码小 1：8 位 -5 是 11111011，只取反是 11111010（那其实是 -6 的补码）。"
+                misconception="以为「取反」就是补码，漏掉了最后加 1。"
+            />
+            <PredictCheck
+                prompt={'8 位有符号整数的范围是 -127 到 127 吗？'}
+                options={['是，对称的', '不是，是 -128 到 127（负数多一个）']}
+                correctIndex={1}
+                explanation="8 位共 256 种状态，补码下负数能表示到 -128、正数到 127，所以不对称。最小值 -128 没有对应的正 128。"
+                misconception="以为正负范围对称，是 -127 到 127。"
+            />
+            <PredictCheck
+                prompt={'8 位补码 127 再加 1，结果是 128 吗？'}
+                options={['是 128', '不是，位模式变 10000000，补码下是 -128']}
+                correctIndex={1}
+                explanation="8 位装不下 128。01111111 + 1 = 10000000，最高位变 1，补码解释为 -128。这就是溢出。"
+                misconception="以为固定宽度整数会像数学一样无限增长。"
+            />
+        </div>
+    );
+}
+
+const complementMasteryItems = [
+    {
+        label: '能说清补码必须先定固定宽度。',
+        evidence: '8 / 16 / 32 位的最高位和可表示范围都不同。',
+        retryHint: '回到「宽度锁定」。',
+    },
+    {
+        label: '能求负数的 8 位补码。',
+        evidence: '正数二进制 → 取反 → 加 1，别漏掉加 1。',
+        retryHint: '回到补码规则，取反后一定 +1。',
+    },
+    {
+        label: '能说出 8 位有符号范围且知道不对称。',
+        evidence: '-128 到 127，负数比正数多一个。',
+        retryHint: '256 个状态，负数占一半多一个。',
+    },
+    {
+        label: '能解释固定宽度下的溢出。',
+        evidence: '127 + 1 的位模式变成 -128。',
+        retryHint: '回到溢出，固定宽度装不下更多。',
+    },
+];
+
 export default function CppL3Lesson2() {
     return (
         <CppLessonShell
@@ -96,6 +147,7 @@ export default function CppL3Lesson2() {
                 description: '补码让加法器同时处理正数和负数。三级题里，补码常和二进制、位运算、溢出一起出现。',
             }}
             goals={['知道补码必须在固定位数下讨论', '能求简单负数的 8 位补码', '能解释有符号整数范围和溢出风险']}
+            prerequisites={['会十进制转二进制', '理解按位取反 ~', '理解固定位数二进制表示']}
             childrenBySection={{
                 1: <ComplementLab />,
                 2: (
@@ -160,6 +212,7 @@ export default function CppL3Lesson2() {
                         <Callout icon={AlertTriangle} title="考试提醒" tone="amber">
                             题目问“8 位有符号整数”时，不能按普通数学无限增长理解。要回到固定宽度的位模式。
                         </Callout>
+                        <ComplementPredictionChecks />
                     </>
                 ),
                 5: (
@@ -171,6 +224,11 @@ export default function CppL3Lesson2() {
                             </p>
                         </div>
                         <MiniQuiz items={quiz} />
+                        <MasteryCheck
+                            title="C++ L3-2 补码离开前检查"
+                            description="补码最怕“取反忘了加 1、范围记成对称的 -127~127”。勾选前先手推 -5 和 -8 的 8 位补码。"
+                            items={complementMasteryItems}
+                        />
                         <Callout icon={ClipboardCheck} title="课后任务" tone="slate">
                             <ul className="space-y-2">
                                 <li>写出 -1、-8、-16 的 8 位补码。</li>

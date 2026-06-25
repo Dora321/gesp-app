@@ -1,7 +1,7 @@
 import React, { useMemo, useState } from 'react';
 import { ClipboardCheck, Hash, Repeat2, Route, Search } from 'lucide-react';
 import CppL3LessonSupport from '../../../components/CppL3LessonSupport';
-import CppLessonShell, { Callout, CodeBlock, CompareTable, MiniQuiz, StepList } from '../CppLessonShell';
+import CppLessonShell, { Callout, CodeBlock, CompareTable, MasteryCheck, MiniQuiz, PredictCheck, StepList } from '../CppLessonShell';
 
 const sections = [
     { id: 1, title: '课程导入', category: '进制直觉' },
@@ -83,6 +83,57 @@ const quiz = [
     },
 ];
 
+function BasePredictionChecks() {
+    return (
+        <div className="grid gap-4 lg:grid-cols-3">
+            <PredictCheck
+                prompt={'37 短除 2 取余依次得到 1,0,1,0,0,1，二进制是 101001 还是 100101？'}
+                options={['101001（按取余顺序读）', '100101（倒着读）']}
+                correctIndex={1}
+                explanation="短除法每次的余数是从低位开始产生的，最先得到的是最低位。所以要从最后一个余数倒着读：100101。"
+                misconception="按取余的先后顺序正着读，把高低位读反了。"
+            />
+            <PredictCheck
+                prompt={'二进制转十六进制分组，从左往右还是从右往左每 4 位一组？'}
+                options={['从左往右', '从右往左（左边不足补 0）']}
+                correctIndex={1}
+                explanation="必须从右（最低位）往左每 4 位一组，左边不足 4 位补 0。从左分组会让低位错位、结果全错。"
+                misconception="从左往右分组，导致分组边界错位。"
+            />
+            <PredictCheck
+                prompt={'十六进制的 C 等于十进制几？'}
+                options={['11', '12']}
+                correctIndex={1}
+                explanation="十六进制 A=10、B=11、C=12、D=13、E=14、F=15。"
+                misconception="把 A 当 10 后数错位，以为 C 是 11。"
+            />
+        </div>
+    );
+}
+
+const baseMasteryItems = [
+    {
+        label: '能用按权展开读懂任意进制数。',
+        evidence: '每一位 × 进制的幂再求和。',
+        retryHint: '回到按权展开。',
+    },
+    {
+        label: '能把十进制转二进制并倒读余数。',
+        evidence: '除 2 取余，从最后一个余数倒着读。',
+        retryHint: '回到短除法，记住余数要倒读。',
+    },
+    {
+        label: '能在二 / 八 / 十六进制间分组互转。',
+        evidence: '8 = 2³、16 = 2⁴，从右往左每 3 / 4 位一组。',
+        retryHint: '回到分组表，分组要从右往左。',
+    },
+    {
+        label: '能记住十六进制 A–F = 10–15。',
+        evidence: 'A=10、B=11、C=12、D=13、E=14、F=15。',
+        retryHint: '回到进制对照表。',
+    },
+];
+
 export default function CppL3Lesson1() {
     return (
         <CppLessonShell
@@ -102,6 +153,7 @@ export default function CppL3Lesson1() {
                 description: '三级开始会频繁出现二进制、八进制、十六进制。今天先把按权展开和短除法打稳，后面的补码和位运算才不会悬空。',
             }}
             goals={['能用按权展开读懂任意进制数', '能把十进制整数转成二进制', '能在二、八、十六进制之间建立联系']}
+            prerequisites={['理解十进制每一位的含义', '会做整数除法和取余', '会数位拆解 n%10、n/10']}
             childrenBySection={{
                 1: <BaseLab />,
                 2: (
@@ -173,6 +225,7 @@ export default function CppL3Lesson1() {
                         <Callout icon={Route} title="考试策略" tone="blue">
                             阅读题里看到很长的二进制数，不要硬按权展开。能分组时先分组，会快很多。
                         </Callout>
+                        <BasePredictionChecks />
                     </>
                 ),
                 5: (
@@ -184,6 +237,11 @@ export default function CppL3Lesson1() {
                             </p>
                         </div>
                         <MiniQuiz items={quiz} />
+                        <MasteryCheck
+                            title="C++ L3-1 进制离开前检查"
+                            description="进制最怕“短除余数读反、分组方向搞错”。勾选前先把 58 转二进制、再分组转十六进制。"
+                            items={baseMasteryItems}
+                        />
                         <Callout icon={ClipboardCheck} title="课后任务" tone="slate">
                             <ul className="space-y-2">
                                 <li>把 <code>(110101)_2</code> 转成十进制。</li>
