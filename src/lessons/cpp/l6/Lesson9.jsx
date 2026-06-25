@@ -1,7 +1,7 @@
 import React, { useMemo, useState } from 'react';
 import { Binary, ClipboardCheck, Repeat2, Search } from 'lucide-react';
 import CppL6LessonSupport from '../../../components/CppL6LessonSupport';
-import CppLessonShell, { Callout, CodeBlock, CompareTable, MiniQuiz, StepList } from '../CppLessonShell';
+import CppLessonShell, { Callout, CodeBlock, CompareTable, MasteryCheck, MiniQuiz, PredictCheck, StepList } from '../CppLessonShell';
 
 const sections = [
     { id: 1, title: '课程导入', category: '相邻只差一位' },
@@ -75,6 +75,57 @@ const quiz = [
     },
 ];
 
+function GrayPredictionChecks() {
+    return (
+        <div className="grid gap-4 lg:grid-cols-3">
+            <PredictCheck
+                prompt={'格雷码公式写成 n ^ (n << 1)（左移）行不行？'}
+                options={['行，左右移一样', '不行，必须是右移 n >> 1']}
+                correctIndex={1}
+                explanation="格雷码是 n ^ (n >> 1)。右移让每一位和它的高一位异或；左移会越界且改变最低位含义，得到的不是格雷码。"
+                misconception="把左移右移当成可互换，没理解公式里右移的作用。"
+            />
+            <PredictCheck
+                prompt={'镜像构造扩位时，第二半直接复制原序列（不反向）会怎样？'}
+                options={['没问题', '中间衔接处会差超过一位']}
+                correctIndex={1}
+                explanation="格雷码要求相邻只差一位。第二半必须反向，才能让 0 段最后一个和 1 段第一个仅前缀不同；不反向衔接处就会差两位。"
+                misconception="忽略了第二半反向的意义，以为只是加个前缀。"
+            />
+            <PredictCheck
+                prompt={'n 位格雷码一共有多少个编码？'}
+                options={['2n 个', '2ⁿ 个']}
+                correctIndex={1}
+                explanation="n 位二进制有 2ⁿ 种取值，格雷码是它们的一个重排，所以同样是 2ⁿ 个，每次镜像构造规模翻倍。"
+                misconception="把 2ⁿ 误算成 2n，规模量级完全不同。"
+            />
+        </div>
+    );
+}
+
+const grayMasteryItems = [
+    {
+        label: '能说出格雷码的核心性质。',
+        evidence: '相邻两个编码只差一位。',
+        retryHint: '回到课程导入观察台。',
+    },
+    {
+        label: '能用位运算公式求格雷码。',
+        evidence: 'gray = n ^ (n >> 1)，是右移不是左移。',
+        retryHint: '回到位运算公式一节。',
+    },
+    {
+        label: '能用镜像法递归生成。',
+        evidence: '原序列加 0，反向序列加 1，规模翻倍到 2ⁿ。',
+        retryHint: '回到递归生成，注意第二半要反向。',
+    },
+    {
+        label: '能解释镜像为什么保证只差一位。',
+        evidence: '反向让衔接处仅前缀不同，内部继承上一层性质。',
+        retryHint: '回到「递归口令」提示。',
+    },
+];
+
 export default function CppL6Lesson9() {
     return (
         <CppLessonShell
@@ -94,6 +145,7 @@ export default function CppL6Lesson9() {
                 description: '本课从镜像构造和位运算公式理解格雷码，连接递归、编码和二进制操作。',
             }}
             goals={['能解释格雷码相邻只差一位', '能用镜像法生成 n 位格雷码', '能写出 n^(n>>1) 公式']}
+            prerequisites={['理解二进制和位运算（^、>>）', '会写简单递归并理解返回值', '理解 2ⁿ 这种指数规模']}
             childrenBySection={{
                 1: <GrayLab />,
                 2: (
@@ -161,6 +213,7 @@ for (int i = 0; i < (1 << k); i++) {
                         <Callout icon={Repeat2} title="递归口令" tone="slate">
                             扩一位时不要打乱旧序列，第二半必须反向，才能保证中间衔接也只差一位。
                         </Callout>
+                        <GrayPredictionChecks />
                     </>
                 ),
                 5: (
@@ -172,6 +225,11 @@ for (int i = 0; i < (1 << k); i++) {
                             </p>
                         </div>
                         <MiniQuiz items={quiz} />
+                        <MasteryCheck
+                            title="C++ L6-9 格雷码离开前检查"
+                            description="格雷码最怕“公式记成左移、镜像第二半忘了反向”。勾选前先手推 2 位到 3 位的镜像扩展。"
+                            items={grayMasteryItems}
+                        />
                         <Callout icon={ClipboardCheck} title="课后任务" tone="slate">
                             <ul className="space-y-2">
                                 <li>输出 3 位和 4 位格雷码序列。</li>

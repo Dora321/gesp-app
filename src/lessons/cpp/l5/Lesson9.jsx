@@ -1,7 +1,7 @@
 import React, { useMemo, useState } from 'react';
 import { ClipboardCheck, RefreshCw, Search, UsersRound } from 'lucide-react';
 import CppL5LessonSupport from '../../../components/CppL5LessonSupport';
-import CppLessonShell, { Callout, CodeBlock, CompareTable, MiniQuiz, StepList } from '../CppLessonShell';
+import CppLessonShell, { Callout, CodeBlock, CompareTable, MasteryCheck, MiniQuiz, PredictCheck, StepList } from '../CppLessonShell';
 
 const sections = [
     { id: 1, title: '课程导入', category: '环形淘汰' },
@@ -76,6 +76,57 @@ const quiz = [
     },
 ];
 
+function JosephusPredictionChecks() {
+    return (
+        <div className="grid gap-4 lg:grid-cols-3">
+            <PredictCheck
+                prompt={'数组模拟里，删除后下标更新写成 (pos + k) % size 对吗？'}
+                options={['对', '不对，应是 (pos + k - 1) % size']}
+                correctIndex={1}
+                explanation="当前位置算「报数 1」，再报 k-1 步才到出圈的人，所以是 pos + (k-1)。多加 1 会跳过一个人，整组顺序全错。"
+                misconception="把「往前走 k 步」当成「报数到 k」，差了一格。"
+            />
+            <PredictCheck
+                prompt={'每轮取模都用固定的初始人数 n，可以吗？'}
+                options={['可以，n 不变', '不行，要用当前剩余人数 people.size()']}
+                correctIndex={1}
+                explanation="每删一个人，圈就变小。取模必须用当前剩余人数，否则下标会越界或定位到已出圈的位置。"
+                misconception="忘了人数在减少，一直拿原始 n 取模。"
+            />
+            <PredictCheck
+                prompt={'单向循环链表删除当前节点 cur，只有 cur 指针够吗？'}
+                options={['够，直接 delete cur', '不够，必须先有前驱 prev 接好 next']}
+                correctIndex={1}
+                explanation="单向链表删 cur 要让 prev->next 指向 cur->next。没有前驱就接不上后面的人，链表会断。所以模板里一路维护 prev。"
+                misconception="以为拿到要删的节点就能删，忽略单向链表得靠前驱接边。"
+            />
+        </div>
+    );
+}
+
+const josephusMasteryItems = [
+    {
+        label: '能解释约瑟夫环为何用循环结构。',
+        evidence: '报数是环形过程，尾接头天然对应。',
+        retryHint: '回到问题建模一节。',
+    },
+    {
+        label: '能写对数组模拟的下标递推。',
+        evidence: 'pos = (pos + k - 1) % people.size()。',
+        retryHint: '回到数组写法，注意 k-1 和当前 size。',
+    },
+    {
+        label: '能用循环链表删除当前节点。',
+        evidence: '靠 prev->next 跳过 cur 再 delete cur。',
+        retryHint: '回到模拟模板，先找前驱。',
+    },
+    {
+        label: '能选择合适写法。',
+        evidence: '只求幸存者用递推、要全过程用链表/数组模拟。',
+        retryHint: '回到写法对照表。',
+    },
+];
+
 export default function CppL5Lesson9() {
     return (
         <CppLessonShell
@@ -95,6 +146,7 @@ export default function CppL5Lesson9() {
                 description: '本课把循环链表用于真实问题，也对比数组模拟写法，训练删除节点和下标更新。',
             }}
             goals={['能解释约瑟夫环报数规则', '能用循环链表模拟淘汰过程', '能写出数组下标模拟版本']}
+            prerequisites={['理解循环链表尾接头结构', '会用 vector 增删元素', '理解取模运算处理环形位置']}
             childrenBySection={{
                 1: <JosephusLab />,
                 2: (
@@ -166,6 +218,7 @@ while (!people.empty()) {
                         <Callout icon={RefreshCw} title="取模意识" tone="amber">
                             每次删除后人数变少，取模必须使用当前 <code>people.size()</code>。
                         </Callout>
+                        <JosephusPredictionChecks />
                     </>
                 ),
                 5: (
@@ -177,6 +230,11 @@ while (!people.empty()) {
                             </p>
                         </div>
                         <MiniQuiz items={quiz} />
+                        <MasteryCheck
+                            title="C++ L5-9 约瑟夫环离开前检查"
+                            description="约瑟夫环最怕“下标少减 1、取模用错人数、链表删除没接前驱”。勾选前先手推 n=5、k=2 一遍。"
+                            items={josephusMasteryItems}
+                        />
                         <Callout icon={ClipboardCheck} title="课后任务" tone="slate">
                             <ul className="space-y-2">
                                 <li>输出约瑟夫环的完整出圈顺序。</li>

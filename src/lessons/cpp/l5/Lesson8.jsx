@@ -1,7 +1,7 @@
 import React, { useMemo, useState } from 'react';
 import { ClipboardCheck, Repeat2, Search, Waypoints } from 'lucide-react';
 import CppL5LessonSupport from '../../../components/CppL5LessonSupport';
-import CppLessonShell, { Callout, CodeBlock, CompareTable, MiniQuiz, StepList } from '../CppLessonShell';
+import CppLessonShell, { Callout, CodeBlock, CompareTable, MasteryCheck, MiniQuiz, PredictCheck, StepList } from '../CppLessonShell';
 
 const sections = [
     { id: 1, title: '课程导入', category: '更多指针' },
@@ -77,6 +77,57 @@ const quiz = [
     },
 ];
 
+function ComplexListPredictionChecks() {
+    return (
+        <div className="grid gap-4 lg:grid-cols-3">
+            <PredictCheck
+                prompt={'在双向链表中间删除节点 p，只改 p->prev->next 行不行？'}
+                options={['行，删掉就够了', '不行，还要改 p->next->prev']}
+                correctIndex={1}
+                explanation="双向链表删一个节点要同时修两条边：前驱的 next 跳过 p，后继的 prev 也要跳回前驱。只改一边，反向遍历就断了。"
+                misconception="只想着 next 方向，忘了 prev 方向也要接好。"
+            />
+            <PredictCheck
+                prompt={'遍历循环链表写成 while (cur != NULL)，会怎样？'}
+                options={['正常停止', '死循环，永远遇不到 NULL']}
+                correctIndex={1}
+                explanation="循环链表尾节点 next 指回 head，没有 NULL 结尾。停止条件要用「回到 head」或计数，否则无限循环。"
+                misconception="套用单链表的 NULL 终点判断，循环链表里根本不成立。"
+            />
+            <PredictCheck
+                prompt={'报数轮流淘汰（约瑟夫）类题目，最贴合的结构是？'}
+                options={['双向链表', '循环链表']}
+                correctIndex={1}
+                explanation="围成一圈反复报数淘汰，天然是环形。循环链表尾接头正好对应这个圈，不用手动处理「转回开头」。"
+                misconception="以为越复杂的结构越万能，没按题目的移动方式选结构。"
+            />
+        </div>
+    );
+}
+
+const complexListMasteryItems = [
+    {
+        label: '能写出双向链表节点结构。',
+        evidence: 'struct Node { int data; Node *prev; Node *next; };',
+        retryHint: '回到双向链表一节。',
+    },
+    {
+        label: '能说清双向链表删除要改两条边。',
+        evidence: 'p->prev->next 和 p->next->prev 都要接好。',
+        retryHint: '回到删除预测题，别只改一个方向。',
+    },
+    {
+        label: '能为循环链表写正确的停止条件。',
+        evidence: '用 do-while 回到 head 或计数，不靠 NULL。',
+        retryHint: '回到循环链表一节。',
+    },
+    {
+        label: '能按题目移动方式选结构。',
+        evidence: '只往后→单链表、需前驱→双向、报数成环→循环。',
+        retryHint: '回到「选择哪一种」对照表。',
+    },
+];
+
 export default function CppL5Lesson8() {
     return (
         <CppLessonShell
@@ -96,6 +147,7 @@ export default function CppL5Lesson8() {
                 description: '本课对比单链表、双向链表和循环链表，重点训练结构选择和指针维护顺序。',
             }}
             goals={['能写出双向链表节点结构', '能解释循环链表尾节点指向头节点', '能判断题目适合哪种链表结构']}
+            prerequisites={['理解单链表和 next 指针', '会用指针访问结构体成员（->）', '知道插入删除要先接边再断边']}
             childrenBySection={{
                 1: <ComplexListLab />,
                 2: (
@@ -165,6 +217,7 @@ do {
                         <Callout icon={Repeat2} title="循环链表提醒" tone="amber">
                             循环结构没有 <code>nullptr</code> 终点，必须自己设计停止条件，否则会无限循环。
                         </Callout>
+                        <ComplexListPredictionChecks />
                     </>
                 ),
                 5: (
@@ -176,6 +229,11 @@ do {
                             </p>
                         </div>
                         <MiniQuiz items={quiz} />
+                        <MasteryCheck
+                            title="C++ L5-8 复杂链表离开前检查"
+                            description="复杂链表最怕“删除只改一边、循环链表用 NULL 判停”。勾选前先在草稿上画出要改哪几条边。"
+                            items={complexListMasteryItems}
+                        />
                         <Callout icon={ClipboardCheck} title="课后任务" tone="slate">
                             <ul className="space-y-2">
                                 <li>定义双向链表节点，并实现从头到尾、从尾到头输出。</li>

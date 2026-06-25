@@ -1,7 +1,7 @@
 import React, { useMemo, useState } from 'react';
 import { ClipboardCheck, Grid3X3, Route, Search } from 'lucide-react';
 import CppL6LessonSupport from '../../../components/CppL6LessonSupport';
-import CppLessonShell, { Callout, CodeBlock, CompareTable, MiniQuiz, StepList } from '../CppLessonShell';
+import CppLessonShell, { Callout, CodeBlock, CompareTable, MasteryCheck, MiniQuiz, PredictCheck, StepList } from '../CppLessonShell';
 
 const sections = [
     { id: 1, title: '课程导入', category: '矩阵状态' },
@@ -86,6 +86,57 @@ const quiz = [
     },
 ];
 
+function MatrixPredictionChecks() {
+    return (
+        <div className="grid gap-4 lg:grid-cols-3">
+            <PredictCheck
+                prompt={'求最小路径和时，转移用 dp[i-1][j] + dp[i][j-1] 对吗？'}
+                options={['对，把两个方向加起来', '不对，应是 min(上, 左) + 当前代价']}
+                correctIndex={1}
+                explanation="一条路径只从一个方向进入。求最小代价是在两个来源里取较小的那个再加当前格代价，不是把两个方向相加（相加是路径计数的写法）。"
+                misconception="把「方案数相加」的转移套到「最小代价」上。"
+            />
+            <PredictCheck
+                prompt={'第一行某格只能从左边来，却也去取了上方 dp[i-1][j]，会怎样？'}
+                options={['没事，上方是 0', '会取到越界/未初始化值，结果偏小或出错']}
+                correctIndex={1}
+                explanation="第一行没有上方、第一列没有左方。不处理边界就会读到越界或脏值。常见做法：单独初始化首行首列，或把不可达位置设为 INF。"
+                misconception="忘了首行首列的来源只有一个方向，直接套通用转移。"
+            />
+            <PredictCheck
+                prompt={'带障碍的路径计数里，障碍格的 dp 值应设为？'}
+                options={['照常 = 上 + 左', '设为 0，且不向后传递']}
+                correctIndex={1}
+                explanation="障碍格走不到，路径数是 0；它也不能作为别人的来源。设 0 后继续递推，后面的格子自然不会经过它。"
+                misconception="对障碍格仍照常累加，等于允许穿墙。"
+            />
+        </div>
+    );
+}
+
+const matrixMasteryItems = [
+    {
+        label: '能定义矩阵路径状态。',
+        evidence: 'dp[i][j] = 走到第 i 行第 j 列的答案。',
+        retryHint: '回到课程导入演示台。',
+    },
+    {
+        label: '能按目标选对转移运算。',
+        evidence: '方案数用加法、最小代价用 min、最大收益用 max。',
+        retryHint: '回到「目标决定转移」提示。',
+    },
+    {
+        label: '能正确处理边界与障碍。',
+        evidence: '首行首列单独处理或设 INF；障碍格设 0 不传递。',
+        retryHint: '回到编程模板的边界初始化。',
+    },
+    {
+        label: '能写出完整递推顺序。',
+        evidence: '定状态→设初值→处理起点→按行列递推→读右下角。',
+        retryHint: '回到编程模板步骤列表。',
+    },
+];
+
 export default function CppL6Lesson14() {
     return (
         <CppLessonShell
@@ -105,6 +156,7 @@ export default function CppL6Lesson14() {
                 description: '本课用路径计数、障碍处理和最小路径和，把 DP 从一维背包扩展到二维网格。',
             }}
             goals={['能定义矩阵路径状态 dp[i][j]', '能处理边界和障碍格', '能写出路径计数与最小路径和模板']}
+            prerequisites={['理解一维 DP 的状态与转移', '会用二维数组 dp[i][j]', '理解「只能向右/向下走」的转移来源']}
             childrenBySection={{
                 1: <MatrixLab />,
                 2: (
@@ -175,6 +227,7 @@ for (int i = 1; i <= n; i++) {
                                 '按行列顺序递推',
                             ]} />
                         </div>
+                        <MatrixPredictionChecks />
                     </>
                 ),
                 5: (
@@ -186,6 +239,11 @@ for (int i = 1; i <= n; i++) {
                             </p>
                         </div>
                         <MiniQuiz items={quiz} />
+                        <MasteryCheck
+                            title="C++ L6-14 矩阵路径离开前检查"
+                            description="矩阵 DP 最怕“最小代价用了加法、边界没单独处理、障碍格照常累加”。勾选前先在 4×4 网格手推一遍。"
+                            items={matrixMasteryItems}
+                        />
                         <Callout icon={ClipboardCheck} title="课后任务" tone="slate">
                             <ul className="space-y-2">
                                 <li>实现带障碍的网格路径计数。</li>
