@@ -1,7 +1,7 @@
 import React, { useMemo, useState } from 'react';
 import { ClipboardCheck, DivideCircle, Search, ShieldCheck, XCircle } from 'lucide-react';
 import CppL5LessonSupport from '../../../components/CppL5LessonSupport';
-import CppLessonShell, { Callout, CodeBlock, CompareTable, MiniQuiz, StepList } from '../CppLessonShell';
+import CppLessonShell, { Callout, CodeBlock, CompareTable, MasteryCheck, MiniQuiz, PredictCheck, StepList } from '../CppLessonShell';
 
 const sections = [
     { id: 1, title: '课程导入', category: '竖式扩展' },
@@ -95,6 +95,57 @@ const quiz = [
     },
 ];
 
+function BigMulDivPredictionChecks() {
+    return (
+        <div className="grid gap-4 lg:grid-cols-3">
+            <PredictCheck
+                prompt={'高精乘低精和高精除低精，处理方向一样吗？'}
+                options={['都从低位开始', '不一样：乘从低位、除从高位']}
+                correctIndex={1}
+                explanation="乘法像加法从最低位开始处理进位；除法像竖式从最高位开始，维护当前余数往低位走。两者方向相反。"
+                misconception="以为所有高精度运算都从低位开始。"
+            />
+            <PredictCheck
+                prompt={'高精除法处理到某一位时，当前要除的值怎么算？'}
+                options={['就是当前位 a[i]', '上一轮余数 * 10 + 当前位']}
+                correctIndex={1}
+                explanation="除法竖式要把余数带到下一位：current = remainder * 10 + a[i]，商是 current / b，新余数是 current % b。"
+                misconception="只用当前位去除，忘了把上一轮余数带下来。"
+            />
+            <PredictCheck
+                prompt={'高精乘 0（A * 0），结果没删前导零直接输出，会怎样？'}
+                options={['输出 0', '可能输出一串 0（如 000）']}
+                correctIndex={1}
+                explanation="A * 0 每一位都是 0，不删前导零会输出多个 0。要删到只剩一位 0。"
+                misconception="忘了删前导零，把 0 输出成 000。"
+            />
+        </div>
+    );
+}
+
+const bigMulDivMasteryItems = [
+    {
+        label: '能写高精乘低精模板。',
+        evidence: '从低位 carry += a[i]*b，carry%10 当前位、carry/10 进位。',
+        retryHint: '回到高精乘低精一节。',
+    },
+    {
+        label: '能写高精除低精模板。',
+        evidence: '从高位 remainder = remainder*10 + a[i]，商 /b、余 %b。',
+        retryHint: '回到高精除低精一节。',
+    },
+    {
+        label: '能说清乘除处理方向相反。',
+        evidence: '乘法从低位、除法从高位。',
+        retryHint: '回到「存储方向提醒」。',
+    },
+    {
+        label: '能处理前导零和边界。',
+        evidence: '删前导零至少保留一位、结果为 0 等情况要小心。',
+        retryHint: '回到边界处理表。',
+    },
+];
+
 export default function CppL5Lesson4() {
     return (
         <CppLessonShell
@@ -114,6 +165,7 @@ export default function CppL5Lesson4() {
                 description: '本课先掌握最常考、最稳定的高精乘低精和高精除低精，为后续数论综合题打基础。',
             }}
             goals={['能写出高精乘低精模板', '能写出高精除低精模板', '能处理前导零、进位和余数']}
+            prerequisites={['理解高精加减的反向存储', '会用 vector 存一串数字', '会手算乘法和除法竖式']}
             childrenBySection={{
                 1: <BigMulDivLab />,
                 2: (
@@ -189,6 +241,7 @@ export default function CppL5Lesson4() {
                         <Callout icon={XCircle} title="当前范围" tone="blue">
                             本课先学“高精乘低精”和“高精除低精”。高精乘高精会在后续进阶题里再展开。
                         </Callout>
+                        <BigMulDivPredictionChecks />
                     </>
                 ),
                 5: (
@@ -200,6 +253,11 @@ export default function CppL5Lesson4() {
                             </p>
                         </div>
                         <MiniQuiz items={quiz} />
+                        <MasteryCheck
+                            title="C++ L5-4 高精乘除离开前检查"
+                            description="高精乘除最怕“方向记反、除法忘了带余数、前导零没删”。勾选前先用小数字对照竖式手推一遍。"
+                            items={bigMulDivMasteryItems}
+                        />
                         <Callout icon={ClipboardCheck} title="课后任务" tone="slate">
                             <ul className="space-y-2">
                                 <li>读入大整数 A 和整数 b，输出 A*b。</li>

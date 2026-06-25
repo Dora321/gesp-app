@@ -1,7 +1,7 @@
 import React, { useMemo, useState } from 'react';
 import { ClipboardCheck, Filter, Search, ShieldCheck, Sparkles } from 'lucide-react';
 import CppL5LessonSupport from '../../../components/CppL5LessonSupport';
-import CppLessonShell, { Callout, CodeBlock, CompareTable, MiniQuiz, StepList } from '../CppLessonShell';
+import CppLessonShell, { Callout, CodeBlock, CompareTable, MasteryCheck, MiniQuiz, PredictCheck, StepList } from '../CppLessonShell';
 
 const sections = [
     { id: 1, title: '课程导入', category: '素数密度' },
@@ -84,6 +84,57 @@ const quiz = [
     },
 ];
 
+function SievePredictionChecks() {
+    return (
+        <div className="grid gap-4 lg:grid-cols-3">
+            <PredictCheck
+                prompt={'埃氏筛划 i 的倍数，从 2*i 开始还是 i*i 开始更好？'}
+                options={['2*i（划得更全）', 'i*i（更小的倍数已被划过）']}
+                correctIndex={1}
+                explanation="i 的小倍数（2i、3i…(i-1)i）在处理 2、3… 时已经划过了，从 i*i 开始划不会漏，还能减少重复标记。"
+                misconception="从 2*i 开始，重复划那些早已划过的数。"
+            />
+            <PredictCheck
+                prompt={'筛法外层 for (int i=2; i*i<=n; i++)，只到 sqrt(n) 够吗？'}
+                options={['不够，要一路到 n', '够，大于 sqrt(n) 的数不会再有新倍数要划']}
+                correctIndex={1}
+                explanation="大于 sqrt(n) 的 i，它的 i*i 已经超过 n，没有倍数落在范围内要划。所以外层只需到 sqrt(n)。"
+                misconception="以为外层要一路枚举到 n。"
+            />
+            <PredictCheck
+                prompt={'只判断 1 个数是否素数，用埃氏筛（建整张表）划算吗？'}
+                options={['划算', '不划算，单次判断用试除更省']}
+                correctIndex={1}
+                explanation="筛法要 O(n) 的时间和空间建表，适合批量 / 多次查询。只判一个数，用试除到 sqrt 更省。看是单次还是批量。"
+                misconception="不分场景，单次判断也去建整张筛表。"
+            />
+        </div>
+    );
+}
+
+const sieveMasteryItems = [
+    {
+        label: '能区分试除法和筛法的适用场景。',
+        evidence: '少量数字用试除，批量 / 多次查询用筛法。',
+        retryHint: '回到方法对比表。',
+    },
+    {
+        label: '能写出埃氏筛模板。',
+        evidence: '只用还没被划掉的 i 去划倍数，从 i*i 开始。',
+        retryHint: '回到埃氏筛模板。',
+    },
+    {
+        label: '能解释为什么从 i*i 开始、外层到 sqrt。',
+        evidence: '小倍数已被划、大于 sqrt 的 i 没有倍数要划。',
+        retryHint: '回到模板的四个步骤。',
+    },
+    {
+        label: '能为素数题选对方法。',
+        evidence: '先判断是单次判断还是批量查询，再决定试除或筛。',
+        retryHint: '先问：这题要查几次素数？',
+    },
+];
+
 export default function CppL5Lesson1() {
     return (
         <CppLessonShell
@@ -103,6 +154,7 @@ export default function CppL5Lesson1() {
                 description: '本课用埃氏筛建立批量素数判断能力，并初步认识线性筛为什么能进一步减少重复标记。',
             }}
             goals={['能解释素数定义和试除复杂度', '能写出埃氏筛模板', '能判断何时需要预处理素数表']}
+            prerequisites={['理解素数定义和试除法', '会用布尔数组做标记', '会写嵌套 for 循环']}
             childrenBySection={{
                 1: <SieveLab />,
                 2: (
@@ -153,6 +205,7 @@ void sieve(int n) {
                                 '从 i*i 开始划，减少重复',
                             ]} />
                         </div>
+                        <SievePredictionChecks />
                     </>
                 ),
                 4: (
@@ -188,6 +241,11 @@ for (int i = 2; i <= n; i++) {
                             </p>
                         </div>
                         <MiniQuiz items={quiz} />
+                        <MasteryCheck
+                            title="C++ L5-1 素数筛离开前检查"
+                            description="筛法最怕“从 2*i 重复划、单次判断也建整张表”。勾选前先想清这题是单次还是批量查询。"
+                            items={sieveMasteryItems}
+                        />
                         <Callout icon={ClipboardCheck} title="课后任务" tone="slate">
                             <ul className="space-y-2">
                                 <li>输出 1 到 n 之间所有素数。</li>
