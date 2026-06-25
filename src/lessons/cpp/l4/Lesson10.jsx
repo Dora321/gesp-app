@@ -1,7 +1,7 @@
 import React, { useMemo, useState } from 'react';
 import { ClipboardCheck, MoveLeft, Search, Rows3 } from 'lucide-react';
 import CppL4LessonSupport from '../../../components/CppL4LessonSupport';
-import CppLessonShell, { Callout, CodeBlock, CompareTable, MiniQuiz, StepList } from '../CppLessonShell';
+import CppLessonShell, { Callout, CodeBlock, CompareTable, MasteryCheck, MiniQuiz, PredictCheck, StepList } from '../CppLessonShell';
 
 const sections = [
     { id: 1, title: '课程导入', category: '有序区' },
@@ -90,6 +90,57 @@ const quiz = [
     },
 ];
 
+function InsertionPredictionChecks() {
+    return (
+        <div className="grid gap-4 lg:grid-cols-3">
+            <PredictCheck
+                prompt={'插入排序里，不先写 int key = a[i] 就开始右移元素，会怎样？'}
+                options={['没影响', 'a[i] 被覆盖，原值丢了']}
+                correctIndex={1}
+                explanation="右移时 a[j + 1] = a[j] 会覆盖掉 a[i]。必须先把它存进 key，最后再放回空位。"
+                misconception="以为可以边移动边读 a[i]，忘了它已经被覆盖。"
+            />
+            <PredictCheck
+                prompt={'内层写成 while (a[j] > key)，漏了 j >= 0，会怎样？'}
+                options={['没问题', 'j 可能减到 -1，访问 a[-1] 越界']}
+                correctIndex={1}
+                explanation="当 key 比有序区所有数都小时，j 会一直减到 -1。没有 j >= 0 拦着，就会访问 a[-1] 越界。"
+                misconception="只盯着「比 key 大就右移」，忘了左边界保护。"
+            />
+            <PredictCheck
+                prompt={'外层循环为什么从 i = 1 开始，而不是 i = 0？'}
+                options={['从 0 开始也一样', '下标 0 单个元素天然有序']}
+                correctIndex={1}
+                explanation="只有一个元素时本来就有序，所以从第 2 个（下标 1）开始往左插。"
+                misconception="习惯所有循环都从 0 开始，没意识到第一个元素不用插。"
+            />
+        </div>
+    );
+}
+
+const insertionMasteryItems = [
+    {
+        label: '能解释有序区和无序区。',
+        evidence: '左边已排好，右边逐个取出 key 插入进去。',
+        retryHint: '回到插入排序演示台，盯住绿色有序区如何扩大。',
+    },
+    {
+        label: '能写出「先暂存 key，再右移」的模板。',
+        evidence: '知道 int key = a[i] 必须写在右移之前。',
+        retryHint: '回到「易错点」，想想不存 key 会丢掉什么。',
+    },
+    {
+        label: '能解释 while 两个条件缺一不可。',
+        evidence: 'j >= 0 防越界，a[j] > key 决定是否继续右移。',
+        retryHint: '想一想 key 最小时 j 会一直减到哪里。',
+    },
+    {
+        label: '能区分插入 / 冒泡 / 选择并迁移到降序。',
+        evidence: '插入右移、冒泡相邻交换、选择找最值；把 a[j] > key 改成 < 即降序。',
+        retryHint: '回到「对比冒泡」表，逐行说一遍核心动作。',
+    },
+];
+
 export default function CppL4Lesson10() {
     return (
         <CppLessonShell
@@ -156,6 +207,7 @@ export default function CppL4Lesson10() {
                                 '循环结束后把 key 放到 j+1',
                             ]} />
                         </div>
+                        <InsertionPredictionChecks />
                     </>
                 ),
                 4: (
@@ -188,6 +240,11 @@ export default function CppL4Lesson10() {
                             </p>
                         </div>
                         <MiniQuiz items={quiz} />
+                        <MasteryCheck
+                            title="C++ L4-10 插入排序离开前检查"
+                            description="插入排序最怕“没存 key 就右移”和“while 漏了 j>=0”。勾选前先用 5 张牌手推一轮。"
+                            items={insertionMasteryItems}
+                        />
                         <Callout icon={ClipboardCheck} title="课后任务" tone="slate">
                             <ul className="space-y-2">
                                 <li>读入 n 个整数，用插入排序升序输出。</li>

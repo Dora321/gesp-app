@@ -1,7 +1,7 @@
 import React, { useMemo, useState } from 'react';
 import { ClipboardCheck, MousePointer2, Search, Trophy } from 'lucide-react';
 import CppL4LessonSupport from '../../../components/CppL4LessonSupport';
-import CppLessonShell, { Callout, CodeBlock, CompareTable, MiniQuiz, StepList } from '../CppLessonShell';
+import CppLessonShell, { Callout, CodeBlock, CompareTable, MasteryCheck, MiniQuiz, PredictCheck, StepList } from '../CppLessonShell';
 
 const sections = [
     { id: 1, title: '课程导入', category: '挑选最小' },
@@ -91,6 +91,57 @@ const quiz = [
     },
 ];
 
+function SelectionPredictionChecks() {
+    return (
+        <div className="grid gap-4 lg:grid-cols-3">
+            <PredictCheck
+                prompt={'选择排序里，应该记录最小值本身，还是它的下标 minIndex？'}
+                options={['记录最小值', '记录下标 minIndex']}
+                correctIndex={1}
+                explanation="要记下标，因为一轮结束后要 swap(a[i], a[minIndex])。只记住「最小值是多少」就不知道它在哪、没法交换。"
+                misconception="只记住最小值是几，交换时却找不到它的位置。"
+            />
+            <PredictCheck
+                prompt={'内层循环 j 应该从哪里开始扫描？'}
+                options={['j = 0', 'j = i + 1']}
+                correctIndex={1}
+                explanation="i 左边已经排好，i 本身是当前候选，只需从 i+1 往后找更小的。从 0 开始是重复扫描。"
+                misconception="每轮都从头扫，没利用「左边已经有序」这个前提。"
+            />
+            <PredictCheck
+                prompt={'要把选择排序改成降序，怎么改最省事？'}
+                options={['把 j 从大到小循环', '把 a[j] < a[minIndex] 改成 a[j] > a[maxIndex]']}
+                correctIndex={1}
+                explanation="只要把比较方向反过来（改成找最大值下标），双重循环结构完全不变。"
+                misconception="以为要把循环方向整个倒过来重写。"
+            />
+        </div>
+    );
+}
+
+const selectionMasteryItems = [
+    {
+        label: '能解释为什么记录的是 minIndex 而不是最小值。',
+        evidence: '知道一轮末要 swap(a[i], a[minIndex])，必须有位置信息。',
+        retryHint: '回到代码模板，看 swap 用的是谁。',
+    },
+    {
+        label: '能写出选择排序的双重循环。',
+        evidence: '外层 i 定位置，内层 j 从 i+1 找最小下标，一轮只在最后交换一次。',
+        retryHint: '回到选择排序演示台，逐轮看绿色有序区扩大。',
+    },
+    {
+        label: '能比较冒泡 / 插入 / 选择每轮的任务。',
+        evidence: '冒泡相邻交换、插入右移插入、选择找最值下标。',
+        retryHint: '回到三种排序对比表，逐行说一遍关键词。',
+    },
+    {
+        label: '能迁移到降序或选最大值。',
+        evidence: '把比较改成找 maxIndex 即可，其他结构不变。',
+        retryHint: '只改比较那一行，别动循环边界。',
+    },
+];
+
 export default function CppL4Lesson11() {
     return (
         <CppLessonShell
@@ -155,6 +206,7 @@ export default function CppL4Lesson11() {
                                 '一轮只在最后交换一次',
                             ]} />
                         </div>
+                        <SelectionPredictionChecks />
                     </>
                 ),
                 4: (
@@ -187,6 +239,11 @@ export default function CppL4Lesson11() {
                             </p>
                         </div>
                         <MiniQuiz items={quiz} />
+                        <MasteryCheck
+                            title="C++ L4-11 选择排序离开前检查"
+                            description="选择排序最怕“记住了最小值，却忘了它在哪”。勾选前先用 5 个数手推一轮，盯住 minIndex。"
+                            items={selectionMasteryItems}
+                        />
                         <Callout icon={ClipboardCheck} title="课后任务" tone="slate">
                             <ul className="space-y-2">
                                 <li>读入 n 个整数，用选择排序升序输出。</li>
