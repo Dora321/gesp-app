@@ -9,14 +9,24 @@ const shouldStartServer = !process.env.SMOKE_BASE_URL;
 // does not overflow horizontally on mobile (where code blocks, compare tables
 // and long buttons are most likely to spill out of the viewport).
 const COURSE_ROUTES = [
-  '/lesson/1/9',   // C++ L1 · for 循环（CodeTracer + 出口检查）
+  '/lesson/1/9',   // C++ L1 · for 循环（迁移到 LegacyCppLessonShell）
+  '/lesson/1/16',  // C++ L1 · 考前冲刺（末课，回首页按钮）
+  '/lesson/2/8',   // C++ L2 · 数学工具箱 cmath（PredictCheck 网格）
+  '/lesson/2/11',  // C++ L2 · 因数与倍数（PredictCheck 网格）
   '/lesson/2/12',  // C++ L2 · 一维数组（PredictCheck 模板）
   '/lesson/3/7',   // C++ L3 · 字符串魔法
   '/lesson/4/5',   // C++ L4 · 指针入门
+  '/lesson/4/12',  // C++ L4 · 递推算法（PredictCheck 网格）
   '/lesson/5/1',   // C++ L5 · 素数筛
-  '/lesson/6/1',   // C++ L6 · 树的初相识
+  '/lesson/5/8',   // C++ L5 · 双向/循环链表（PredictCheck 网格）
+  '/lesson/5/9',   // C++ L5 · 约瑟夫环（PredictCheck 网格）
+  '/lesson/6/1',   // C++ L6 · 树的初相识（PredictCheck 网格）
+  '/lesson/6/9',   // C++ L6 · 格雷码（PredictCheck 网格）
+  '/lesson/6/14',  // C++ L6 · 矩阵与路径（PredictCheck 网格）
   '/python/f2',    // Python · 控制流程（PredictCheck）
   '/python/f3',    // Python · 列表与字典
+  '/python/f5',    // Python · 小海龟（PredictCheck）
+  '/python/f6',    // Python · random（PredictCheck）
 ];
 
 let server;
