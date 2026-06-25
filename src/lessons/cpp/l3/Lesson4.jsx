@@ -1,7 +1,7 @@
 import React, { useMemo, useState } from 'react';
 import { AlertTriangle, ArrowLeftRight, ClipboardCheck, MoveRight, Search } from 'lucide-react';
 import CppL3LessonSupport from '../../../components/CppL3LessonSupport';
-import CppLessonShell, { Callout, CodeBlock, CompareTable, MiniQuiz, StepList } from '../CppLessonShell';
+import CppLessonShell, { Callout, CodeBlock, CompareTable, MasteryCheck, MiniQuiz, PredictCheck, StepList } from '../CppLessonShell';
 
 const sections = [
     { id: 1, title: '课程导入', category: '移位操作' },
@@ -67,6 +67,57 @@ const quiz = [
     },
 ];
 
+function ShiftPredictionChecks() {
+    return (
+        <div className="grid gap-4 lg:grid-cols-3">
+            <PredictCheck
+                prompt={'cout << x << 1; 想输出 x 左移 1 位的结果，对吗？'}
+                options={['对', '不对，没加括号，<< 被当成输出运算符']}
+                correctIndex={1}
+                explanation="cout << x << 1 会被理解成「先输出 x，再输出 1」，不是移位。移位优先级低于流插入 <<，必须写 cout << (x << 1)。"
+                misconception="忘了给移位表达式加括号，和 cout 的 << 混在一起。"
+            />
+            <PredictCheck
+                prompt={'13 >> 1 等于几？（13 = 1101）'}
+                options={['7（四舍五入）', '6（丢掉低位，向下取整）']}
+                correctIndex={1}
+                explanation="右移丢掉最低位：1101 → 0110 = 6。相当于 13 / 2 向下取整，不是四舍五入。"
+                misconception="以为右移整除会四舍五入。"
+            />
+            <PredictCheck
+                prompt={'检查 x 第 k 位是否为 1，写 x & (1 << k)，结果一定是 0 或 1 吗？'}
+                options={['是 0 或 1', '是 0 或 2 的 k 次方（非 0 即该位为 1）']}
+                correctIndex={1}
+                explanation="x & (1 << k) 的结果是 0 或 1<<k（不是 1）。判断时用「非 0」即可：if (x & (1 << k))。想得到 0/1 还要再 >> k。"
+                misconception="以为 x & (1 << k) 会直接给出 0 或 1。"
+            />
+        </div>
+    );
+}
+
+const shiftMasteryItems = [
+    {
+        label: '能解释左移和右移的数值变化。',
+        evidence: '非负数 x << k 乘 2^k、x >> k 整除 2^k（向下取整）。',
+        retryHint: '回到移位实验台，看二进制怎么搬家。',
+    },
+    {
+        label: '能记得给移位表达式加括号。',
+        evidence: '写 cout << (x << 1)，因为移位优先级低于流插入 <<。',
+        retryHint: '回到「别忘了括号」。',
+    },
+    {
+        label: '能用 1 << k 做检查 / 设置 / 清除 / 翻转。',
+        evidence: 'x & (1<<k)、x | (1<<k)、x & ~(1<<k)、x ^ (1<<k)。',
+        retryHint: '回到位检查与设置表。',
+    },
+    {
+        label: '能正确判断某一位是否为 1。',
+        evidence: 'x & (1<<k) 非 0 即该位为 1（结果不是 0/1）。',
+        retryHint: '用「非 0」判断，别期待结果就是 0 或 1。',
+    },
+];
+
 export default function CppL3Lesson4() {
     return (
         <CppLessonShell
@@ -86,6 +137,7 @@ export default function CppL3Lesson4() {
                 description: '本课接上 &、|、^，重点掌握 <<、>>、1 << k，以及检查、设置、清除某一位的常见模板。',
             }}
             goals={['能解释左移和右移的数值变化', '能用 1 << k 生成掩码', '能写出检查、设置、清除某位的模板']}
+            prerequisites={['理解 &、|、^、~ 位运算', '会十进制转二进制', '理解乘除 2 与二进制移位的关系']}
             childrenBySection={{
                 1: <ShiftLab />,
                 2: (
@@ -150,6 +202,7 @@ cout << (x >> 2); // 00000011 = 3`}</CodeBlock>
 if (x & mask) {
   cout << "第 k 位是 1";
 }`}</CodeBlock>
+                        <ShiftPredictionChecks />
                     </>
                 ),
                 5: (
@@ -161,6 +214,11 @@ if (x & mask) {
                             </p>
                         </div>
                         <MiniQuiz items={quiz} />
+                        <MasteryCheck
+                            title="C++ L3-4 位运算（下）离开前检查"
+                            description="移位最怕“漏括号被 cout 抢、x&(1<<k) 当成 0/1”。勾选前先手推 7<<2 和 13>>1 的二进制。"
+                            items={shiftMasteryItems}
+                        />
                         <Callout icon={ClipboardCheck} title="课后任务" tone="slate">
                             <ul className="space-y-2">
                                 <li>手算 <code>7 &lt;&lt; 2</code> 和 <code>29 &gt;&gt; 3</code>。</li>

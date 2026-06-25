@@ -1,7 +1,7 @@
 import React, { useMemo, useState } from 'react';
 import { Binary, ClipboardCheck, Layers3, Lightbulb, ToggleLeft } from 'lucide-react';
 import CppL3LessonSupport from '../../../components/CppL3LessonSupport';
-import CppLessonShell, { Callout, CodeBlock, CompareTable, MiniQuiz, StepList } from '../CppLessonShell';
+import CppLessonShell, { Callout, CodeBlock, CompareTable, MasteryCheck, MiniQuiz, PredictCheck, StepList } from '../CppLessonShell';
 
 const sections = [
     { id: 1, title: '课程导入', category: '按位思维' },
@@ -73,6 +73,57 @@ const quiz = [
     },
 ];
 
+function BitwisePredictionChecks() {
+    return (
+        <div className="grid gap-4 lg:grid-cols-3">
+            <PredictCheck
+                prompt={'判断 x 是否奇数，写 x & 1 和 x && 1 一样吗？'}
+                options={['一样', '不一样：& 是按位与，&& 是逻辑与']}
+                correctIndex={1}
+                explanation="x & 1 取 x 的最低位（奇数=1、偶数=0），能判奇偶。x && 1 是逻辑与，只要 x 非 0 就是 1，判不了奇偶。一个 & 和两个 & 完全不同。"
+                misconception="把按位与 & 和逻辑与 && 混用。"
+            />
+            <PredictCheck
+                prompt={'x ^ 1（和 1 异或）会对 x 的最低位做什么？'}
+                options={['置成 1', '翻转（0↔1）']}
+                correctIndex={1}
+                explanation="异或 1 是翻转：最低位 0 变 1、1 变 0。和 0 异或才保持不变。"
+                misconception="以为 ^ 1 是把那一位强行置成 1。"
+            />
+            <PredictCheck
+                prompt={'6 & 3 等于几？（6 = 110，3 = 011）'}
+                options={['7', '2']}
+                correctIndex={1}
+                explanation="逐位与：110 & 011 = 010 = 2。不是相加也不是取最大，而是每一位都「都为 1 才为 1」。"
+                misconception="把 & 当成加法或别的整体运算，没有逐位算。"
+            />
+        </div>
+    );
+}
+
+const bitwiseMasteryItems = [
+    {
+        label: '能逐位算 &、|、^。',
+        evidence: '把两个数对齐，每一位独立按规则算，再转回十进制。',
+        retryHint: '回到位运算实验台，盯住二进制位。',
+    },
+    {
+        label: '能区分 & 和 &&、| 和 ||。',
+        evidence: '单个是按位运算，两个是逻辑运算。',
+        retryHint: 'x & 1 能判奇偶，x && 1 不行。',
+    },
+    {
+        label: '能用异或做翻转。',
+        evidence: 'x ^ 1 翻转那一位，x ^ 0 保持不变。',
+        retryHint: '回到「翻转记忆」。',
+    },
+    {
+        label: '能读懂掩码和 1 << k。',
+        evidence: '1 << k 是只有第 k 位为 1 的掩码，用 & 检查该位。',
+        retryHint: '回到「读掩码题」。',
+    },
+];
+
 export default function CppL3Lesson3() {
     return (
         <CppLessonShell
@@ -92,6 +143,7 @@ export default function CppL3Lesson3() {
                 description: '本课先掌握 &、|、^、~ 的基本含义。三级题里，很多看似复杂的表达式都可以按位拆开读。',
             }}
             goals={['能解释 &、|、^ 的逐位规则', '能手算 4 位以内位运算表达式', '能理解掩码筛选某些位的作用']}
+            prerequisites={['理解十进制转二进制', '会逐位读二进制', '理解奇偶与最低位的关系']}
             childrenBySection={{
                 1: <BitwiseLab />,
                 2: (
@@ -140,6 +192,7 @@ a | b = 1110`}</CodeBlock>
                         <Callout icon={ToggleLeft} title="翻转记忆" tone="teal">
                             <code>x ^ 1</code> 会把一位翻转，<code>x ^ 0</code> 会保持原样。这是很多位运算题的钥匙。
                         </Callout>
+                        <BitwisePredictionChecks />
                     </>
                 ),
                 4: (
@@ -170,6 +223,11 @@ if (x & mask) {
                             </p>
                         </div>
                         <MiniQuiz items={quiz} />
+                        <MasteryCheck
+                            title="C++ L3-3 位运算（上）离开前检查"
+                            description="位运算最怕“把 & 当 &&、不逐位算”。勾选前先把 6 & 3、6 ^ 3 在二进制上手推一遍。"
+                            items={bitwiseMasteryItems}
+                        />
                         <Callout icon={ClipboardCheck} title="课后任务" tone="slate">
                             <ul className="space-y-2">
                                 <li>手算 <code>12 & 10</code>、<code>12 | 10</code>、<code>12 ^ 10</code>。</li>
