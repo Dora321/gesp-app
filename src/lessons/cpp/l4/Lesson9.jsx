@@ -1,7 +1,7 @@
 import React, { useMemo, useState } from 'react';
 import { ArrowRightLeft, ClipboardCheck, Repeat, Search } from 'lucide-react';
 import CppL4LessonSupport from '../../../components/CppL4LessonSupport';
-import CppLessonShell, { Callout, CodeBlock, CodeTracer, CompareTable, MasteryCheck, MiniQuiz, PredictCheck, StepList } from '../CppLessonShell';
+import CppLessonShell, { Callout, CodeBlock, CodeTracer, CompareTable, MasteryCheck, MiniQuiz, PredictCheck, StepList, TransferCheck } from '../CppLessonShell';
 
 const sections = [
     { id: 1, title: '课程导入', category: '相邻比较' },
@@ -325,6 +325,16 @@ export default function CppL4Lesson9() {
                             </p>
                         </div>
                         <MiniQuiz items={quiz} />
+                        <TransferCheck
+                            prompt="换个例子：对 {5, 2, 4} 做升序冒泡排序，手推「第一轮」的每次相邻比较和交换，写出第一轮结束后的数组，并说出这一轮把谁确定到了最后。"
+                            hint="一轮里从左到右相邻两两比较，左边比右边大就交换；一轮能把当前最大值“冒”到末尾。"
+                            answer="第一轮后变成 {2, 4, 5}；这一轮把最大值 5 确定到了最后一位。"
+                            steps={[
+                                '比较 a[0],a[1]=5,2：5>2，交换 → {2, 5, 4}。',
+                                '比较 a[1],a[2]=5,4：5>4，交换 → {2, 4, 5}。',
+                                '第一轮结束：最大值 5 已沉到末尾，下一轮只需再处理前面 2 个元素。',
+                            ]}
+                        />
                         <MasteryCheck
                             title="冒泡排序离开前检查"
                             description="排序题不能只背模板。离开前至少能手推一轮、解释边界、改一个方向。"

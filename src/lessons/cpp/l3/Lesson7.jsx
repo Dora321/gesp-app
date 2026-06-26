@@ -1,7 +1,7 @@
 import React, { useMemo, useState } from 'react';
 import { ClipboardCheck, FileText, Search, Type, WholeWord } from 'lucide-react';
 import CppL3LessonSupport from '../../../components/CppL3LessonSupport';
-import CppLessonShell, { Callout, CodeBlock, CodeTracer, CompareTable, MasteryCheck, MiniQuiz, PredictCheck } from '../CppLessonShell';
+import CppLessonShell, { Callout, CodeBlock, CodeTracer, CompareTable, MasteryCheck, MiniQuiz, PredictCheck, TransferCheck } from '../CppLessonShell';
 
 const sections = [
     { id: 1, title: '课程导入', category: 'string 模型' },
@@ -268,6 +268,16 @@ if (both == "hello world") {
                             </p>
                         </div>
                         <MiniQuiz items={quiz} />
+                        <TransferCheck
+                            prompt={'换个例子：string s = "gesp";。请说出 s.length() 的值、s[0] 和 s[s.length()-1] 各是哪个字符，并写出把 s 变成 "gesp!" 的一行代码。'}
+                            hint="下标从 0 到 length()-1；在末尾加字符可以直接用 += 拼接。"
+                            answer={'length()=4；s[0]=\'g\'，s[3]=\'p\'；s += "!";（或 s = s + "!";）'}
+                            steps={[
+                                '"gesp" 有 4 个字符，所以 s.length()=4。',
+                                '合法下标是 0~3：s[0]=\'g\'，最后一个是 s[4-1]=s[3]=\'p\'（写 s[4] 会越界）。',
+                                '在末尾追加用拼接：s += "!"; 之后 s 变成 "gesp!"，length() 变 5。',
+                            ]}
+                        />
                         <MasteryCheck
                             title="C++ L3-7 字符串魔法离开前检查"
                             description="字符串题最怕“看懂代码，但下标一写就越界、cin 一读就漏字”。勾选前先拿一个小例子手推一次。"

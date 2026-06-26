@@ -2,7 +2,7 @@ import React, { useState, useMemo } from 'react';
 import { GitBranch, Repeat, HelpCircle, CheckCircle, AlertTriangle, Play, RefreshCw, XCircle, Zap, List, Grid3x3, TreePine, TrendingUp, Code, BookOpen } from 'lucide-react';
 import PythonFoundationSupport from '../../../components/PythonFoundationSupport';
 import PyCodeTracer from '../../../components/PyCodeTracer';
-import PythonLessonShell, { MasteryCheck, PredictCheck, SlideHeader } from '../shell/PythonLessonShell';
+import PythonLessonShell, { MasteryCheck, PredictCheck, SlideHeader, TransferCheck } from '../shell/PythonLessonShell';
 
 // --- Shared Components ---
 const Button = ({ onClick, children, className, variant = 'primary', disabled = false }) => {
@@ -612,6 +612,17 @@ for i in range(${targetSteps}):
                 correctIndex={1}
                 explanation="range(1, 5) 取 1、2、3、4，不包含终点 5。所以执行 4 次，最后一次 i = 4。记住：range 的终点是「够不到」的。"
                 misconception="以为 range(1, 5) 会取到 5。终点永远取不到，这正是循环少跑或多跑一次的常见原因。"
+            />
+
+            <TransferCheck
+                prompt="换个例子：for i in range(2, 8): 这个循环执行几次？第一次和最后一次的 i 各是多少？把所有 i 列出来。"
+                hint="range(a, b) 从 a 开始，到 b 之前停（取不到 b）；次数 = b - a。"
+                answer="执行 6 次；第一次 i=2，最后一次 i=7；i 依次是 2, 3, 4, 5, 6, 7。"
+                steps={[
+                    'range(2, 8) 从 2 开始，取不到终点 8，所以最大只到 7。',
+                    'i 依次是 2, 3, 4, 5, 6, 7，一共 8 - 2 = 6 个。',
+                    '第一次 i = 2，最后一次 i = 7（不是 8）。',
+                ]}
             />
         </div>
     );

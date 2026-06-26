@@ -1,7 +1,7 @@
 import React, { useMemo, useState } from 'react';
 import { AlertTriangle, ClipboardCheck, GitBranch, Repeat, Search } from 'lucide-react';
 import CppL4LessonSupport from '../../../components/CppL4LessonSupport';
-import CppLessonShell, { Callout, CodeBlock, CompareTable, MasteryCheck, MiniQuiz, PredictCheck, StepList } from '../CppLessonShell';
+import CppLessonShell, { Callout, CodeBlock, CompareTable, MasteryCheck, MiniQuiz, PredictCheck, StepList, TransferCheck } from '../CppLessonShell';
 
 const sections = [
     { id: 1, title: '课程导入', category: '递归模型' },
@@ -217,6 +217,17 @@ export default function CppL4Lesson4() {
                             </p>
                         </div>
                         <MiniQuiz items={quiz} />
+                        <TransferCheck
+                            prompt="换个例子：用递归求 1+2+...+n 的函数 sum(n)。请说出它的「终止条件」和「递归关系」，再手动展开 sum(4) 的计算过程。"
+                            hint="先想最小的情况（n 等于几时不用再递归），再想 sum(n) 怎么用 sum(n-1) 表示。"
+                            answer="终止条件 sum(1)=1（或 sum(0)=0）；递归关系 sum(n)=n+sum(n-1)；sum(4)=10。"
+                            steps={[
+                                '终止条件：n==1 时直接 return 1（否则会无限递归下去）。',
+                                '递归关系：sum(n) = n + sum(n-1)。',
+                                '展开 sum(4)=4+sum(3)=4+(3+sum(2))=4+3+(2+sum(1))=4+3+2+1。',
+                                '从最里层往外算：sum(1)=1 → sum(2)=3 → sum(3)=6 → sum(4)=10。',
+                            ]}
+                        />
                         <MasteryCheck
                             title="C++ L4-4 递归初探离开前检查"
                             description="递归最怕“能背阶乘，但说不清为什么会停、按什么顺序返回”。勾选前先用 fact(4) 手动展开一次。"

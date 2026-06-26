@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { recordLessonMastered, recordLessonVisit } from '../../../utils/lessonProgress';
-import { ArrowRight, CheckCircle2, Flag, HelpCircle, Home, Menu, RotateCcw, X } from 'lucide-react';
+import { ArrowRight, CheckCircle2, Flag, HelpCircle, Home, Menu, PlayCircle, Repeat2, RotateCcw, X } from 'lucide-react';
 
 // 与 CppLessonShell 共用同一套配色 token，保证 C++ / Python 两套课视觉统一
 const accentMap = {
@@ -65,6 +65,76 @@ export function Panel({ title, children, className = '' }) {
         <div className={`rounded-2xl border border-slate-200 bg-white p-6 shadow-sm ${className}`}>
             {title && <h3 className="mb-4 text-sm font-black uppercase tracking-wider text-slate-500">{title}</h3>}
             {children}
+        </div>
+    );
+}
+
+// 迁移练习：换个例子也能做。先自己推，再看解答，与 PredictCheck 互补。
+export function TransferCheck({
+    title = '迁移练习：换个例子也能做',
+    prompt,
+    hint,
+    answer,
+    steps = [],
+    className = '',
+    theme = 'light',
+}) {
+    const isDark = theme === 'dark';
+    const [revealed, setRevealed] = useState(false);
+
+    return (
+        <div className={`rounded-2xl border p-5 ${isDark ? 'border-emerald-400/30 bg-emerald-500/10' : 'border-emerald-200 bg-emerald-50'} ${className}`}>
+            <div className={`mb-3 inline-flex items-center gap-2 rounded-full px-3 py-1 text-xs font-black ring-1 ${isDark ? 'bg-slate-900 text-emerald-200 ring-emerald-400/30' : 'bg-white text-emerald-800 ring-emerald-200'}`}>
+                <Repeat2 size={14} />
+                {title}
+            </div>
+
+            <p className={`text-base font-black leading-7 ${isDark ? 'text-white' : 'text-slate-950'}`}>{prompt}</p>
+
+            {hint && (
+                <p className={`mt-2 text-sm font-semibold leading-6 ${isDark ? 'text-emerald-200/90' : 'text-emerald-700'}`}>提示：{hint}</p>
+            )}
+
+            {!revealed ? (
+                <button
+                    type="button"
+                    onClick={() => setRevealed(true)}
+                    className="mt-4 inline-flex items-center gap-2 rounded-lg bg-emerald-600 px-4 py-2 text-sm font-black text-white shadow-sm transition hover:bg-emerald-700"
+                >
+                    <PlayCircle size={16} />
+                    我推完了，看解答
+                </button>
+            ) : (
+                <button
+                    type="button"
+                    onClick={() => setRevealed(false)}
+                    className={`mt-4 inline-flex items-center gap-1 rounded-md px-2.5 py-1 text-xs font-black ring-1 transition ${isDark ? 'bg-slate-900 text-emerald-200 ring-emerald-400/30 hover:bg-slate-800' : 'bg-white text-slate-500 ring-emerald-200 hover:bg-emerald-100'}`}
+                >
+                    <RotateCcw size={13} />
+                    收起，再推一次
+                </button>
+            )}
+
+            {revealed && (
+                <div className="mt-4 space-y-3">
+                    {answer && (
+                        <div className={`inline-flex items-center gap-2 rounded-lg px-3 py-2 text-sm font-black ${isDark ? 'bg-emerald-500/20 text-emerald-100' : 'bg-emerald-100 text-emerald-800'}`}>
+                            <CheckCircle2 size={16} />
+                            答案：{answer}
+                        </div>
+                    )}
+                    {steps.length > 0 && (
+                        <ol className={`space-y-1 rounded-lg p-3 text-sm font-bold leading-7 ring-1 ${isDark ? 'bg-slate-900/60 text-slate-200 ring-emerald-400/20' : 'bg-white text-slate-700 ring-emerald-100'}`}>
+                            {steps.map((step, index) => (
+                                <li key={index} className="flex gap-2">
+                                    <span className="font-black text-emerald-500">{index + 1}.</span>
+                                    <span>{step}</span>
+                                </li>
+                            ))}
+                        </ol>
+                    )}
+                </div>
+            )}
         </div>
     );
 }

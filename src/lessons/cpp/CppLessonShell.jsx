@@ -1,6 +1,6 @@
 import React, { useEffect, useMemo, useState } from 'react';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
-import { ArrowRight, CheckCircle2, Flag, HelpCircle, Home, Menu, PlayCircle, RotateCcw, SkipForward, X } from 'lucide-react';
+import { ArrowRight, CheckCircle2, Flag, HelpCircle, Home, Menu, PlayCircle, Repeat2, RotateCcw, SkipForward, X } from 'lucide-react';
 import { recordLessonMastered, recordLessonVisit } from '../../utils/lessonProgress';
 
 const accentMap = {
@@ -425,6 +425,75 @@ export function PredictCheck({
                         <p className="rounded-lg border border-rose-100 bg-white p-3 text-sm font-semibold leading-7 text-rose-700">
                             常见错因：{misconception}
                         </p>
+                    )}
+                </div>
+            )}
+        </div>
+    );
+}
+
+// 迁移练习：用一道「换个例子」的新题，让学习者把刚学的方法迁移到新数据上，
+// 先自己推、再对照解答。与 PredictCheck（验证误区）互补，对应"换一个例子也能做"。
+export function TransferCheck({
+    title = '迁移练习：换个例子也能做',
+    prompt,
+    hint,
+    answer,
+    steps = [],
+    className = '',
+}) {
+    const [revealed, setRevealed] = useState(false);
+
+    return (
+        <div className={`rounded-xl border border-emerald-200 bg-emerald-50 p-5 ${className}`}>
+            <div className="mb-3 inline-flex items-center gap-2 rounded-full bg-white px-3 py-1 text-xs font-black text-emerald-800 ring-1 ring-emerald-200">
+                <Repeat2 size={14} />
+                {title}
+            </div>
+
+            <p className="text-base font-black leading-7 text-slate-950">{prompt}</p>
+
+            {hint && (
+                <p className="mt-2 text-sm font-semibold leading-6 text-emerald-700">提示：{hint}</p>
+            )}
+
+            {!revealed ? (
+                <button
+                    type="button"
+                    onClick={() => setRevealed(true)}
+                    className="mt-4 inline-flex items-center gap-2 rounded-lg bg-emerald-600 px-4 py-2 text-sm font-black text-white shadow-sm transition hover:bg-emerald-700"
+                >
+                    <PlayCircle size={16} />
+                    我推完了，看解答
+                </button>
+            ) : (
+                <button
+                    type="button"
+                    onClick={() => setRevealed(false)}
+                    className="mt-4 inline-flex items-center gap-1 rounded-md bg-white px-2.5 py-1 text-xs font-black text-slate-500 ring-1 ring-emerald-200 transition hover:bg-emerald-100"
+                >
+                    <RotateCcw size={13} />
+                    收起，再推一次
+                </button>
+            )}
+
+            {revealed && (
+                <div className="mt-4 space-y-3">
+                    {answer && (
+                        <div className="inline-flex items-center gap-2 rounded-lg bg-emerald-100 px-3 py-2 text-sm font-black text-emerald-800">
+                            <CheckCircle2 size={16} />
+                            答案：{answer}
+                        </div>
+                    )}
+                    {steps.length > 0 && (
+                        <ol className="space-y-1 rounded-lg bg-white p-3 text-sm font-bold leading-7 text-slate-700 ring-1 ring-emerald-100">
+                            {steps.map((step, index) => (
+                                <li key={index} className="flex gap-2">
+                                    <span className="font-black text-emerald-600">{index + 1}.</span>
+                                    <span>{step}</span>
+                                </li>
+                            ))}
+                        </ol>
                     )}
                 </div>
             )}

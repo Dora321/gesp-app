@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 import { Layers, List, Box, Key, Search, ArrowRight, RefreshCw, Plus, Trash2, Edit3, Menu, X, Grid3x3, BookOpen, CheckCircle } from 'lucide-react';
 import PythonFoundationSupport from '../../../components/PythonFoundationSupport';
 import PyCodeTracer from '../../../components/PyCodeTracer';
-import PythonLessonShell, { MasteryCheck, PredictCheck, SlideHeader } from '../shell/PythonLessonShell';
+import PythonLessonShell, { MasteryCheck, PredictCheck, SlideHeader, TransferCheck } from '../shell/PythonLessonShell';
 
 // --- Shared Components ---
 const Button = ({ onClick, children, className, variant = 'primary', disabled = false }) => {
@@ -673,6 +673,18 @@ const ListSlide = () => {
                 correctIndex={1}
                 explanation="列表有 3 个元素，下标只能是 0、1、2。nums[3] 越界，Python 直接报 IndexError。最后一个是 nums[2]，也可以写 nums[-1]。"
                 misconception="把元素个数（3）当成最后一个合法下标。"
+            />
+
+            <TransferCheck
+                prompt={'换个例子：scores = [88, 92, 75, 60]。要取「第一个」和「最后一个」分数，分别写下标；再用一行求出总人数。访问 scores[4] 会怎样？'}
+                hint="下标从 0 开始，最后一个可以用 -1 或 len(列表)-1；元素个数用 len()。"
+                answer={'第一个 scores[0]=88，最后一个 scores[-1]（或 scores[3]）=60；总人数 len(scores)=4；scores[4] 报 IndexError。'}
+                steps={[
+                    '第一个永远是 scores[0]=88。',
+                    '最后一个用 scores[-1] 最稳，等于 scores[4-1]=scores[3]=60。',
+                    '元素个数用 len(scores)=4。',
+                    '合法下标只有 0~3，scores[4] 越界 → IndexError。',
+                ]}
             />
         </div>
     );

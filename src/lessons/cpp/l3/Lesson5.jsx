@@ -1,7 +1,7 @@
 import React, { useMemo, useState } from 'react';
 import { AlertTriangle, Boxes, ClipboardCheck, ListChecks, Search } from 'lucide-react';
 import CppL3LessonSupport from '../../../components/CppL3LessonSupport';
-import CppLessonShell, { Callout, CodeBlock, CodeTracer, CompareTable, MasteryCheck, MiniQuiz, PredictCheck } from '../CppLessonShell';
+import CppLessonShell, { Callout, CodeBlock, CodeTracer, CompareTable, MasteryCheck, MiniQuiz, PredictCheck, TransferCheck } from '../CppLessonShell';
 
 const sections = [
     { id: 1, title: '课程导入', category: '数组模型' },
@@ -252,6 +252,16 @@ for (int i = 0; i < n; i++) {
                             </p>
                         </div>
                         <MiniQuiz items={quiz} />
+                        <TransferCheck
+                            prompt="换个例子：int a[5] = {3, 8, 1, 9, 4};。要把「最后一个元素」和「第一个元素」交换，你会用哪两个下标？交换后 a[0] 和 a[4] 各是多少？"
+                            hint="下标从 0 开始，n 个元素的最后一个是 a[n-1]，不是 a[n]。"
+                            answer="用下标 0 和 4；交换后 a[0]=4、a[4]=3。"
+                            steps={[
+                                '第一个元素是 a[0]=3；最后一个是 a[5-1]=a[4]=4（写 a[5] 就越界了）。',
+                                '交换要借助临时变量：int t=a[0]; a[0]=a[4]; a[4]=t;',
+                                '交换后 a[0]=4、a[4]=3，中间的 a[1]、a[2]、a[3] 不变。',
+                            ]}
+                        />
                         <MasteryCheck
                             title="C++ L3-5 一维数组离开前检查"
                             description="数组题最怕“看懂代码，但下标一写就越界”。勾选前先拿一个小数组手推一次边界。"

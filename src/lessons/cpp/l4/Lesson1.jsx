@@ -1,7 +1,7 @@
 import React, { useMemo, useState } from 'react';
 import { ClipboardCheck, Database, GitBranch, Search, Target } from 'lucide-react';
 import CppL4LessonSupport from '../../../components/CppL4LessonSupport';
-import CppLessonShell, { Callout, CodeBlock, CompareTable, MasteryCheck, MiniQuiz, PredictCheck, StepList } from '../CppLessonShell';
+import CppLessonShell, { Callout, CodeBlock, CompareTable, MasteryCheck, MiniQuiz, PredictCheck, StepList, TransferCheck } from '../CppLessonShell';
 
 const sections = [
     { id: 1, title: '课程导入', category: '函数模型' },
@@ -219,6 +219,17 @@ int add(int a, int b) {
                             </p>
                         </div>
                         <MiniQuiz items={quiz} />
+                        <TransferCheck
+                            prompt="换个例子：写一个函数 max2(int a, int b)，返回两个数里较大的那个。请说出它的返回类型、参数、以及函数体怎么写。再说 max2(7, 3) 的结果。"
+                            hint="函数名、参数、返回值三件事对应清楚；返回较大值可以用 if 或三目 a>b?a:b。"
+                            answer="返回类型 int；参数 (int a, int b)；函数体 return a > b ? a : b;。max2(7, 3) = 7。"
+                            steps={[
+                                '要返回一个整数，所以返回类型是 int。',
+                                '需要两个待比较的数，所以参数是 (int a, int b)。',
+                                '函数体：if (a > b) return a; else return b; 或更短的 return a > b ? a : b;',
+                                '调用 max2(7, 3)：7 > 3 成立，返回 7。',
+                            ]}
+                        />
                         <MasteryCheck
                             title="C++ L4-1 自定义函数离开前检查"
                             description="函数入门最怕“会抄模板，但说不清返回值和调用顺序”。勾选前先自己写一个最小函数验证。"
