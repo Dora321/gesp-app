@@ -1,7 +1,7 @@
 import React, { useMemo, useState } from 'react';
 import { AlertTriangle, Blocks, ClipboardCheck, Repeat2, Target } from 'lucide-react';
 import CppL2LessonSupport from '../../../components/CppL2LessonSupport';
-import CppLessonShell, { Callout, CodeBlock, CodeTracer, CompareTable, MasteryCheck, MiniQuiz, PredictCheck } from '../CppLessonShell';
+import CppLessonShell, { Callout, CodeBlock, CodeTracer, CompareTable, MasteryCheck, MiniQuiz, PredictCheck, TransferCheck } from '../CppLessonShell';
 
 const sections = [
     { id: 1, title: '课程导入', category: '双层循环' },
@@ -271,6 +271,16 @@ for (int a = 1; a <= 5; a++) {
                             </p>
                         </div>
                         <MiniQuiz items={quiz} />
+                        <TransferCheck
+                            prompt={'换个例子：for(i=1;i<=3;i++) for(j=1;j<=2;j++) cout<<i<<j<<" ";。一共输出几组？写出全部输出。'}
+                            hint="外层每跑一次，内层完整跑一遍；总次数 = 外层 × 内层。"
+                            answer="6 组：11 12 21 22 31 32。"
+                            steps={[
+                                '外层 i=1,2,3（3 次），内层 j=1,2（2 次）。',
+                                '总次数 3 × 2 = 6。',
+                                '按 i 固定、j 变化输出：11 12 21 22 31 32。',
+                            ]}
+                        />
                         <MasteryCheck
                             title="C++ L2-5 嵌套循环离开前检查"
                             description="嵌套循环最怕“次数算成相加、换行放错地方”。勾选前先用 i、j 追踪表手推一个 3×4 的输出。"

@@ -1,7 +1,7 @@
 import React, { useMemo, useState } from 'react';
 import { AlertTriangle, ClipboardCheck, Search, ShieldCheck, Sigma } from 'lucide-react';
 import CppL2LessonSupport from '../../../components/CppL2LessonSupport';
-import CppLessonShell, { Callout, CodeBlock, CodeTracer, CompareTable, MasteryCheck, MiniQuiz, PredictCheck } from '../CppLessonShell';
+import CppLessonShell, { Callout, CodeBlock, CodeTracer, CompareTable, MasteryCheck, MiniQuiz, PredictCheck, TransferCheck } from '../CppLessonShell';
 
 const sections = [
     { id: 1, title: '课程导入', category: '质数判断' },
@@ -292,6 +292,16 @@ for (int x = 2; x <= n; x++) {
                             </p>
                         </div>
                         <MiniQuiz items={quiz} />
+                        <TransferCheck
+                            prompt="换个例子：判断 21 是不是质数。只需要试除到哪个数为止？结论是什么？"
+                            hint="试除到 sqrt(n) 即可；找到一个能整除的因子就不是质数。"
+                            answer="试除到 sqrt(21)≈4；21 能被 3 整除 → 不是质数。"
+                            steps={[
+                                '只需试除 2 到 sqrt(21)≈4.58，即试 2、3、4。',
+                                '21 % 3 == 0 → 有因子 3。',
+                                '存在 1 和自身以外的因子 → 21 不是质数（=3×7）。',
+                            ]}
+                        />
                         <MasteryCheck
                             title="C++ L2-9 质数侦探离开前检查"
                             description="质数题最怕“漏了 n<2 边界、试除范围含 n 自己”。勾选前先用 n=1、2、9 各手推一遍。"

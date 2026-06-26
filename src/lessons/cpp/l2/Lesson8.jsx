@@ -1,7 +1,7 @@
 import React, { useMemo, useState } from 'react';
 import { Calculator, ClipboardCheck, FunctionSquare, Ruler, Sigma, Triangle } from 'lucide-react';
 import CppL2LessonSupport from '../../../components/CppL2LessonSupport';
-import CppLessonShell, { Callout, CodeBlock, CompareTable, MasteryCheck, MiniQuiz, PredictCheck, StepList } from '../CppLessonShell';
+import CppLessonShell, { Callout, CodeBlock, CompareTable, MasteryCheck, MiniQuiz, PredictCheck, StepList, TransferCheck } from '../CppLessonShell';
 
 const sections = [
     { id: 1, title: '课程导入', category: '数学工具' },
@@ -251,6 +251,16 @@ cout << d;`}</CodeBlock>
                             </p>
                         </div>
                         <MiniQuiz items={quiz} />
+                        <TransferCheck
+                            prompt={'换个例子：要算 ceil(10 / 4)（向上取整），直接写 ceil(10 / 4) 得几？怎么改才得 3？'}
+                            hint="10 和 4 都是 int，10/4 先整数除得 2；要先变浮点。"
+                            answer="ceil(10/4) 得 2（错）；应写 ceil(10.0 / 4) = 3。"
+                            steps={[
+                                '10 / 4 是整数除法，先得 2。',
+                                'ceil(2) 仍是 2。',
+                                '改成 ceil(10.0 / 4)：10.0/4=2.5，ceil(2.5)=3。',
+                            ]}
+                        />
                         <MasteryCheck
                             title="C++ L2-8 数学工具箱离开前检查"
                             description="cmath 最怕“忘了引头文件、整数除法再取整、浮点截断丢精度”。勾选前先想 ceil(7/3) 到底等于几。"

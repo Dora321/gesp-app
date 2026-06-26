@@ -1,7 +1,7 @@
 import React, { useMemo, useState } from 'react';
 import { ClipboardCheck, Hash, ListChecks, RotateCcw, ScanLine } from 'lucide-react';
 import CppL2LessonSupport from '../../../components/CppL2LessonSupport';
-import CppLessonShell, { Callout, CodeBlock, CodeTracer, CompareTable, MasteryCheck, MiniQuiz, PredictCheck } from '../CppLessonShell';
+import CppLessonShell, { Callout, CodeBlock, CodeTracer, CompareTable, MasteryCheck, MiniQuiz, PredictCheck, TransferCheck } from '../CppLessonShell';
 
 const sections = [
     { id: 1, title: '课程导入', category: '数位拆解' },
@@ -278,6 +278,16 @@ while (n > 0) {
                             </p>
                         </div>
                         <MiniQuiz items={quiz} />
+                        <TransferCheck
+                            prompt="换个例子：用 % 和 / 拆出整数 4276 的每一位（从个位开始）。写出每一步。"
+                            hint="n%10 取个位，n/=10 去掉个位，循环到 n 为 0。"
+                            answer="依次拆出 6、7、2、4。"
+                            steps={[
+                                '4276 % 10 = 6（个位），4276 / 10 = 427。',
+                                '427 % 10 = 7，427 / 10 = 42。',
+                                '42 % 10 = 2，42 / 10 = 4；4 % 10 = 4，4 / 10 = 0 停。',
+                            ]}
+                        />
                         <MasteryCheck
                             title="C++ L2-10 数位拆解离开前检查"
                             description="数位题最怕“忘了 n/=10 死循环、反转公式写反”。勾选前先手推 3729 的数位和与反转数。"

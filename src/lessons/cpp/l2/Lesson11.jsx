@@ -1,7 +1,7 @@
 import React, { useMemo, useState } from 'react';
 import { AlertTriangle, Calculator, ClipboardCheck, ListChecks, Search, Sigma } from 'lucide-react';
 import CppL2LessonSupport from '../../../components/CppL2LessonSupport';
-import CppLessonShell, { Callout, CodeBlock, CodeTracer, CompareTable, MasteryCheck, MiniQuiz, PredictCheck } from '../CppLessonShell';
+import CppLessonShell, { Callout, CodeBlock, CodeTracer, CompareTable, MasteryCheck, MiniQuiz, PredictCheck, TransferCheck } from '../CppLessonShell';
 
 const sections = [
     { id: 1, title: '课程导入', category: '整除关系' },
@@ -254,6 +254,16 @@ for (int x = 1; x <= min(a, b); x++) {
                             </p>
                         </div>
                         <MiniQuiz items={quiz} />
+                        <TransferCheck
+                            prompt="换个例子：求 18 的所有因数。循环范围怎么写？列出全部因数。"
+                            hint="枚举 i 从 1 到 18，n%i==0 就是因数；别漏了 18 自己。"
+                            answer="1, 2, 3, 6, 9, 18。"
+                            steps={[
+                                'for(i=1;i<=18;i++)，注意 i<=18 含 18 本身。',
+                                '18 % i == 0 的 i：1, 2, 3, 6, 9, 18。',
+                                '共 6 个因数。',
+                            ]}
+                        />
                         <MasteryCheck
                             title="C++ L2-11 因数与倍数离开前检查"
                             description="因数倍数最怕“取余两数写反、枚举漏掉 n 自己”。勾选前先把「a 是 b 的因数」翻译成代码。"

@@ -1,7 +1,7 @@
 import React, { useMemo, useState } from 'react';
 import { AlertTriangle, ClipboardCheck, Database, ListChecks, Search, Sigma } from 'lucide-react';
 import CppL2LessonSupport from '../../../components/CppL2LessonSupport';
-import CppLessonShell, { Callout, CodeBlock, CodeTracer, CompareTable, MasteryCheck, MiniQuiz, PredictCheck, StepList } from '../CppLessonShell';
+import CppLessonShell, { Callout, CodeBlock, CodeTracer, CompareTable, MasteryCheck, MiniQuiz, PredictCheck, StepList, TransferCheck } from '../CppLessonShell';
 
 const sections = [
     { id: 1, title: '课程导入', category: '一组数据' },
@@ -297,6 +297,16 @@ for (int i = 0; i < n; i++) {
                             </p>
                         </div>
                         <MiniQuiz items={quiz} />
+                        <TransferCheck
+                            prompt={'换个例子：int a[4]={7,3,9,5};。求所有元素的和，循环怎么写？和是多少？'}
+                            hint="设 sum=0，for(i=0;i<4;i++) sum+=a[i]；下标 0~3。"
+                            answer="和 = 24。"
+                            steps={[
+                                'sum=0，遍历下标 0 到 3。',
+                                'sum = 7 + 3 + 9 + 5。',
+                                '和 = 24。',
+                            ]}
+                        />
                         <MasteryCheck
                             title="数组课离开前检查"
                             description="数组题最怕“看懂代码，但下标一写就越界”。勾选前先拿纸手推一个小例子。"
