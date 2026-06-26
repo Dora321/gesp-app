@@ -7,7 +7,7 @@ import {
     CheckCircle, List, FileQuestion, BookOpen
 } from 'lucide-react';
 import PythonFoundationSupport from '../../../components/PythonFoundationSupport';
-import PythonLessonShell, { MasteryCheck, PredictCheck, SlideHeader } from '../shell/PythonLessonShell';
+import PythonLessonShell, { MasteryCheck, PredictCheck, SlideHeader, TransferCheck } from '../shell/PythonLessonShell';
 
 // --- Shared Helper Components ---
 const Button = ({ onClick, children, className, variant = 'primary', disabled = false }) => {
@@ -319,6 +319,17 @@ const DeduplicateSlide = () => {
                 correctIndex={1}
                 explanation="set 会去掉重复，但集合本身无序，转回 list 的顺序不保证和原来一样。需要“保序去重”时要用别的写法（如遍历 + 已见集合）。"
                 misconception="以为 set 去重后还会保持原来的先后顺序。"
+            />
+
+            <TransferCheck
+                prompt={'换个例子：s = set([3, 1, 2, 3, 1])。len(s) 是多少？里面有哪些元素？'}
+                hint="set 自动去重；元素无序，重复的只留一个。"
+                answer="len(s) = 3；元素是 {1, 2, 3}（顺序不固定）。"
+                steps={[
+                    'set 去掉重复：3、1、2、3、1 → 只留 3、1、2。',
+                    '去重后 3 个不同元素 → len(s) = 3。',
+                    '集合无序，打印顺序不一定是 1, 2, 3。',
+                ]}
             />
         </div>
     );

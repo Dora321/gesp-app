@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { Box, Code, Package, Zap, ArrowRight, RefreshCw, Sparkles, BookOpen, AlertCircle, Menu, X, Play, Trophy, CheckCircle, XCircle, Star, Calculator, Dices, Clock } from 'lucide-react';
 import PythonFoundationSupport from '../../../components/PythonFoundationSupport';
-import PythonLessonShell, { MasteryCheck, PredictCheck, SlideHeader } from '../shell/PythonLessonShell';
+import PythonLessonShell, { MasteryCheck, PredictCheck, SlideHeader, TransferCheck } from '../shell/PythonLessonShell';
 
 // --- Shared Components ---
 const Button = ({ onClick, children, className, variant = 'primary', disabled = false }) => {
@@ -199,6 +199,17 @@ result = make_potion("${ingredient}")
                 correctIndex={1}
                 explanation="add 只 print 不 return，函数默认返回 None，所以 x = None。想拿到结果给后面用，必须写 return a + b。"
                 misconception="以为屏幕上 print 出来的值，就是函数交回的返回值。"
+            />
+
+            <TransferCheck
+                prompt={'换个例子：def double(x): return x * 2。主程序 y = double(5)，y 是多少？若把 return 换成 print(x*2)，y 又会是什么？'}
+                hint="return 把值交回给调用者；print 只是显示，函数默认返回 None。"
+                answer="用 return 时 y=10；改成 print 时 y=None（值没交回）。"
+                steps={[
+                    'double(5) 里 return 5*2=10，把 10 交回 → y = 10。',
+                    '若改成 print(x*2)：屏幕显示 10，但函数没 return，默认返回 None。',
+                    '于是 y = None——print 出来的 ≠ 交回的返回值。',
+                ]}
             />
         </div>
     );

@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 import { MousePointer2, Move, Square, Palette, Sparkles, ChevronRight, Home, PenTool, Trophy, BookOpen, Zap, Star, Target, Award, Menu, X, CheckCircle, RefreshCw, ArrowRight, Repeat, Terminal, Network } from 'lucide-react';
 import TurtleCanvas from '../../../components/TurtleCanvas';
 import PythonFoundationSupport from '../../../components/PythonFoundationSupport';
-import PythonLessonShell, { MasteryCheck, SlideHeader } from '../shell/PythonLessonShell';
+import PythonLessonShell, { MasteryCheck, PredictCheck, SlideHeader, TransferCheck } from '../shell/PythonLessonShell';
 
 // --- Shared Helper Components ---
 const Button = ({ onClick, children, className, variant = 'primary' }) => {
@@ -132,6 +132,17 @@ const LoopSlide = () => {
                 correctIndex={1}
                 explanation="小海龟每个角转的是「外角」，走一圈正好转满 360°。正 n 边形外角 = 360 / n，所以正六边形要转 60°，不是内角 120°。"
                 misconception="把内角当成转向角度，画出来的图形不闭合、转过头。"
+            />
+
+            <TransferCheck
+                prompt="换个例子：用小海龟画正三角形，每次 forward 之后应该 right 转多少度？画正八边形又是多少度？"
+                hint="小海龟转的是外角，外角 = 360 / 边数。"
+                answer="正三角形转 120°（360/3）；正八边形转 45°（360/8）。"
+                steps={[
+                    '小海龟每个角转的是「外角」，走一圈共转满 360°。',
+                    '正三角形：360 / 3 = 120°。',
+                    '正八边形：360 / 8 = 45°。',
+                ]}
             />
         </div>
     );

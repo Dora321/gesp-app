@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { Terminal, Box, Calculator, MessageSquare, ArrowRight, Play, RefreshCw, CheckCircle, Tag, Bug, BookOpen, HelpCircle, Menu, X, Sparkles, Globe, Code, Palette, TrendingUp } from 'lucide-react';
 import PythonFoundationSupport from '../../../components/PythonFoundationSupport';
-import PythonLessonShell, { MasteryCheck, PredictCheck, SlideHeader } from '../shell/PythonLessonShell';
+import PythonLessonShell, { MasteryCheck, PredictCheck, SlideHeader, TransferCheck } from '../shell/PythonLessonShell';
 
 // --- Shared Components (will move to separate files later if needed) ---
 const Button = ({ onClick, children, className, variant = 'primary' }) => {
@@ -353,6 +353,17 @@ const MathSlide = () => {
                 correctIndex={1}
                 explanation="Python 的 / 永远做普通除法，结果是小数：7 / 2 = 3.5。想得到整数 3，要用整除 //（7 // 2 = 3）。"
                 misconception="以为 / 会自动取整。在 C++ 里 7 / 2 才等于 3，Python 不一样，别把两套规则记混。"
+            />
+
+            <TransferCheck
+                prompt="换个例子：在 Python 里，print(7 // 2) 和 print(7 % 2) 各输出什么？"
+                hint="// 是整除（向下取整），% 是取余数。"
+                answer="7 // 2 输出 3；7 % 2 输出 1。"
+                steps={[
+                    '// 整除：7 除以 2 商 3（去掉小数）→ 3。',
+                    '% 取余：7 = 2×3 + 1，余数 1 → 1。',
+                    '对比 7 / 2 = 3.5（普通除法带小数）。',
+                ]}
             />
         </div>
     )
