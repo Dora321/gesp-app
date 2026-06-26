@@ -14,7 +14,7 @@ import {
 } from 'lucide-react';
 import CppL2LessonSupport from '../../../components/CppL2LessonSupport';
 import CodeSnippet from '../CodeSnippet';
-import { MasteryCheck, PredictCheck } from '../CppLessonShell';
+import { MasteryCheck, PredictCheck, TransferCheck } from '../CppLessonShell';
 
 const sections = [
     { id: 1, title: '课程导入', category: '问题场景' },
@@ -450,6 +450,16 @@ cout << (char)x; // B`}</CodeBlock>
                                     ))}
                                 </div>
 
+                                <TransferCheck
+                                    prompt="换个例子：double x = 3.9; int y = x; 执行后 y 是多少？为什么不是 4？"
+                                    hint="double 转 int 是「截断」（直接去掉小数），不是四舍五入。"
+                                    answer="y = 3。"
+                                    steps={[
+                                        'x = 3.9，赋给 int y 时发生类型转换。',
+                                        'int 转换是截断：直接丢掉小数 .9，不进位。',
+                                        '所以 y = 3（不是 4）。要四舍五入得用 round。',
+                                    ]}
+                                />
                                 <MasteryCheck
                                     title="C++ L2-3 类型转换离开前检查"
                                     description="类型转换最怕“以为 double 变量能救回整数除法、整数除法当成四舍五入”。勾选前先口算 5/2、9/2、(int)'A'。"

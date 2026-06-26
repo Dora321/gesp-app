@@ -16,7 +16,7 @@ import {
 } from 'lucide-react';
 import CppL2LessonSupport from '../../../components/CppL2LessonSupport';
 import CodeSnippet from '../CodeSnippet';
-import { MasteryCheck, PredictCheck } from '../CppLessonShell';
+import { MasteryCheck, PredictCheck, TransferCheck } from '../CppLessonShell';
 
 const switchMasteryItems = [
     {
@@ -462,6 +462,16 @@ switch (choice) {
                                     ))}
                                 </div>
 
+                                <TransferCheck
+                                    prompt={'换个例子：int op=2; switch(op){ case 1: cout<<"A"; case 2: cout<<"B"; case 3: cout<<"C"; default: cout<<"X"; }（没写 break）输出什么？'}
+                                    hint="case 命中后若没有 break，会「穿透」继续执行后面的 case。"
+                                    answer="输出 BCX。"
+                                    steps={[
+                                        'op=2 命中 case 2，输出 B。',
+                                        '没有 break，穿透到 case 3 输出 C，再到 default 输出 X。',
+                                        '结果 BCX。要只输出 B，每个 case 末尾都要加 break。',
+                                    ]}
+                                />
                                 <MasteryCheck
                                     title="C++ L2-4 switch 多路选择离开前检查"
                                     description="switch 最怕“漏 break 穿透、对范围硬套 switch”。勾选前先故意删一个 break，预测输出再验证。"
