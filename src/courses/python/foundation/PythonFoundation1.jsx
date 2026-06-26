@@ -145,6 +145,7 @@ const RealWorldSlide = () => {
                 </p>
             </div>
 
+            <p className="text-sm font-semibold text-slate-500">点开任意一张卡片，看看 Python 在这个领域具体做什么 —— 这一关只需建立「Python 用途很广」的直觉，不用记住细节。</p>
             <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-4">
                 {applications.map(app => (
                     <div
@@ -176,12 +177,6 @@ const RealWorldSlide = () => {
                         )}
                     </div>
                 ))}
-            </div>
-
-            <div className="bg-gradient-to-r from-indigo-500 to-purple-600 p-6 rounded-2xl text-white text-center shadow-xl">
-                <Sparkles className="inline-block mb-2" size={32} />
-                <h3 className="text-xl font-bold mb-2">你的 Python 之旅从这里开始！</h3>
-                <p className="text-indigo-100">学会 Python，你也能创造改变世界的应用！</p>
             </div>
         </div>
     );
