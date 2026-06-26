@@ -18,6 +18,8 @@
     "check:links": "node scripts/check-internal-links.cjs",
     "check:cpp-l1-mastery-ui": "node scripts/check-cpp-l1-mastery-ui.cjs",
     "smoke": "node scripts/smoke-app.cjs",
+    "visual": "node scripts/visual-regression.cjs",
+    "visual:update": "node scripts/visual-regression.cjs --update",
     "generate:papers": "node scripts/generate-paper-registry.cjs"
   },
   "dependencies": {

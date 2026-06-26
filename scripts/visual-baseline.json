@@ -1,0 +1,194 @@
+{
+  "_lesson_1_9__desktop": {
+    "clientWidth": 1365,
+    "overflow": 0,
+    "docHeight": 900,
+    "textLen": 610,
+    "maxRight": 1365,
+    "counts": {
+      "pre": 0,
+      "table": 0,
+      "button": 15
+    }
+  },
+  "_lesson_2_12__desktop": {
+    "clientWidth": 1365,
+    "overflow": 0,
+    "docHeight": 900,
+    "textLen": 684,
+    "maxRight": 1341,
+    "counts": {
+      "pre": 0,
+      "table": 0,
+      "button": 16
+    }
+  },
+  "_lesson_3_7__desktop": {
+    "clientWidth": 1365,
+    "overflow": 0,
+    "docHeight": 900,
+    "textLen": 776,
+    "maxRight": 1341,
+    "counts": {
+      "pre": 0,
+      "table": 0,
+      "button": 18
+    }
+  },
+  "_lesson_4_9__desktop": {
+    "clientWidth": 1365,
+    "overflow": 0,
+    "docHeight": 900,
+    "textLen": 633,
+    "maxRight": 1341,
+    "counts": {
+      "pre": 0,
+      "table": 0,
+      "button": 10
+    }
+  },
+  "_lesson_5_10__desktop": {
+    "clientWidth": 1365,
+    "overflow": 0,
+    "docHeight": 900,
+    "textLen": 739,
+    "maxRight": 1341,
+    "counts": {
+      "pre": 0,
+      "table": 0,
+      "button": 10
+    }
+  },
+  "_lesson_6_2__desktop": {
+    "clientWidth": 1365,
+    "overflow": 0,
+    "docHeight": 900,
+    "textLen": 750,
+    "maxRight": 1341,
+    "counts": {
+      "pre": 0,
+      "table": 0,
+      "button": 10
+    }
+  },
+  "_python_f2__desktop": {
+    "clientWidth": 1365,
+    "overflow": 0,
+    "docHeight": 900,
+    "textLen": 843,
+    "maxRight": 1341,
+    "counts": {
+      "pre": 0,
+      "table": 0,
+      "button": 16
+    }
+  },
+  "_python_f3__desktop": {
+    "clientWidth": 1365,
+    "overflow": 0,
+    "docHeight": 900,
+    "textLen": 1452,
+    "maxRight": 1341,
+    "counts": {
+      "pre": 1,
+      "table": 1,
+      "button": 26
+    }
+  },
+  "_lesson_1_9__mobile": {
+    "clientWidth": 390,
+    "overflow": 0,
+    "docHeight": 844,
+    "textLen": 608,
+    "maxRight": 390,
+    "counts": {
+      "pre": 0,
+      "table": 0,
+      "button": 15
+    }
+  },
+  "_lesson_2_12__mobile": {
+    "clientWidth": 390,
+    "overflow": 0,
+    "docHeight": 844,
+    "textLen": 693,
+    "maxRight": 390,
+    "counts": {
+      "pre": 0,
+      "table": 0,
+      "button": 16
+    }
+  },
+  "_lesson_3_7__mobile": {
+    "clientWidth": 390,
+    "overflow": 0,
+    "docHeight": 844,
+    "textLen": 784,
+    "maxRight": 390,
+    "counts": {
+      "pre": 0,
+      "table": 0,
+      "button": 18
+    }
+  },
+  "_lesson_4_9__mobile": {
+    "clientWidth": 390,
+    "overflow": 0,
+    "docHeight": 844,
+    "textLen": 641,
+    "maxRight": 390,
+    "counts": {
+      "pre": 0,
+      "table": 0,
+      "button": 10
+    }
+  },
+  "_lesson_5_10__mobile": {
+    "clientWidth": 390,
+    "overflow": 0,
+    "docHeight": 844,
+    "textLen": 748,
+    "maxRight": 390,
+    "counts": {
+      "pre": 0,
+      "table": 0,
+      "button": 10
+    }
+  },
+  "_lesson_6_2__mobile": {
+    "clientWidth": 390,
+    "overflow": 0,
+    "docHeight": 844,
+    "textLen": 758,
+    "maxRight": 390,
+    "counts": {
+      "pre": 0,
+      "table": 0,
+      "button": 10
+    }
+  },
+  "_python_f2__mobile": {
+    "clientWidth": 390,
+    "overflow": 0,
+    "docHeight": 844,
+    "textLen": 845,
+    "maxRight": 390,
+    "counts": {
+      "pre": 0,
+      "table": 0,
+      "button": 16
+    }
+  },
+  "_python_f3__mobile": {
+    "clientWidth": 390,
+    "overflow": 0,
+    "docHeight": 844,
+    "textLen": 1455,
+    "maxRight": 390,
+    "counts": {
+      "pre": 1,
+      "table": 1,
+      "button": 26
+    }
+  }
+}
