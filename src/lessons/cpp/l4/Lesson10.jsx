@@ -1,7 +1,7 @@
 import React, { useMemo, useState } from 'react';
 import { ClipboardCheck, MoveLeft, Search, Rows3 } from 'lucide-react';
 import CppL4LessonSupport from '../../../components/CppL4LessonSupport';
-import CppLessonShell, { Callout, CodeBlock, CompareTable, MasteryCheck, MiniQuiz, PredictCheck, StepList } from '../CppLessonShell';
+import CppLessonShell, { Callout, CodeBlock, CompareTable, MasteryCheck, MiniQuiz, PredictCheck, StepList, TransferCheck } from '../CppLessonShell';
 
 const sections = [
     { id: 1, title: '课程导入', category: '有序区' },
@@ -241,6 +241,16 @@ export default function CppL4Lesson10() {
                             </p>
                         </div>
                         <MiniQuiz items={quiz} />
+                        <TransferCheck
+                            prompt="换个例子：对 {5, 2, 4, 1} 做升序插入排序。手推「把第 3 个元素 4 插入前面已排好部分」这一步，写出这步之后的数组。"
+                            hint="插入排序：把当前元素往左和已排好的比较，比它大的往右挪，腾出位置插入。"
+                            answer="插入 4 之后变成 {2, 4, 5, 1}。"
+                            steps={[
+                                '前两个 5、2 先排好 → {2, 5, 4, 1}。',
+                                '插入 4：和 5 比，5 > 4 → 5 右移；和 2 比，2 < 4 → 停，把 4 放在 2 后面。',
+                                '这步之后：{2, 4, 5, 1}（最后的 1 还没处理）。',
+                            ]}
+                        />
                         <MasteryCheck
                             title="C++ L4-10 插入排序离开前检查"
                             description="插入排序最怕“没存 key 就右移”和“while 漏了 j>=0”。勾选前先用 5 张牌手推一轮。"

@@ -1,7 +1,7 @@
 import React, { useMemo, useState } from 'react';
 import { AlertTriangle, Boxes, ClipboardCheck, Search, Waypoints } from 'lucide-react';
 import CppL4LessonSupport from '../../../components/CppL4LessonSupport';
-import CppLessonShell, { Callout, CodeBlock, CompareTable, MasteryCheck, MiniQuiz, PredictCheck, StepList } from '../CppLessonShell';
+import CppLessonShell, { Callout, CodeBlock, CompareTable, MasteryCheck, MiniQuiz, PredictCheck, StepList, TransferCheck } from '../CppLessonShell';
 
 const sections = [
     { id: 1, title: '课程导入', category: '数组地址' },
@@ -211,6 +211,16 @@ for (int i = 0; i < n; i++) {
                             </p>
                         </div>
                         <MiniQuiz items={quiz} />
+                        <TransferCheck
+                            prompt={'换个例子：int a[4] = {10,20,30,40}; int* p = a;。*(p + 2) 是几？它等价于哪种下标写法？'}
+                            hint="数组名就是首地址；p+2 指向第 2 个元素（从 0 数），*(p+2) 取它的值。"
+                            answer="*(p + 2) = 30，等价于 a[2]。"
+                            steps={[
+                                'p = a 指向 a[0]。',
+                                'p + 2 指向 a[2]（地址往后移 2 个 int）。',
+                                '*(p + 2) 取出 a[2] = 30。即 a[i] 等价于 *(a + i)。',
+                            ]}
+                        />
                         <MasteryCheck
                             title="C++ L4-6 指针与数组离开前检查"
                             description="这一课最怕“记住 a[i]=*(a+i)，但说不清偏移和缩放”。勾选前先画一张 5 格地址偏移图。"

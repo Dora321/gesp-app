@@ -1,7 +1,7 @@
 import React, { useMemo, useState } from 'react';
 import { AlertTriangle, ClipboardCheck, MapPin, Search, Waypoints } from 'lucide-react';
 import CppL4LessonSupport from '../../../components/CppL4LessonSupport';
-import CppLessonShell, { Callout, CodeBlock, CompareTable, MasteryCheck, MiniQuiz, PredictCheck, StepList } from '../CppLessonShell';
+import CppLessonShell, { Callout, CodeBlock, CompareTable, MasteryCheck, MiniQuiz, PredictCheck, StepList, TransferCheck } from '../CppLessonShell';
 
 const sections = [
     { id: 1, title: '课程导入', category: '地址模型' },
@@ -203,6 +203,16 @@ int *p = &x;
                             </p>
                         </div>
                         <MiniQuiz items={quiz} />
+                        <TransferCheck
+                            prompt={'换个例子：int x = 7; int* p = &x; *p = 20; cout << x;。输出几？p 和 *p 各是什么意思？'}
+                            hint="p 存的是 x 的地址；*p 是「访问 p 指向的那个变量」。"
+                            answer="输出 20。p 是地址，*p 通过地址改了 x。"
+                            steps={[
+                                'int* p = &x; 让 p 指向 x（存 x 的地址）。',
+                                '*p = 20; 通过地址把 x 改成 20。',
+                                '所以 cout << x 输出 20。记住：p 是地址、*p 是它指向的值。',
+                            ]}
+                        />
                         <MasteryCheck
                             title="C++ L4-5 指针入门离开前检查"
                             description="指针最怕“符号都认识，但分不清值、地址和指向”。勾选前先在纸上画出 x、&x、p、*p 四个量。"

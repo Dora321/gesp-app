@@ -1,7 +1,7 @@
 import React, { useMemo, useState } from 'react';
 import { AlertTriangle, ArrowRightLeft, ClipboardCheck, Database, Search } from 'lucide-react';
 import CppL4LessonSupport from '../../../components/CppL4LessonSupport';
-import CppLessonShell, { Callout, CodeBlock, CompareTable, MasteryCheck, MiniQuiz, PredictCheck, StepList } from '../CppLessonShell';
+import CppLessonShell, { Callout, CodeBlock, CompareTable, MasteryCheck, MiniQuiz, PredictCheck, StepList, TransferCheck } from '../CppLessonShell';
 
 const sections = [
     { id: 1, title: '课程导入', category: '传参模型' },
@@ -231,6 +231,16 @@ int main() {
                             </p>
                         </div>
                         <MiniQuiz items={quiz} />
+                        <TransferCheck
+                            prompt={'换个例子：void add5(int x){ x += 5; }，主函数里 int n = 10; add5(n); cout << n;。输出几？为什么？'}
+                            hint="普通参数是「传值」，函数里改的是复制品，不影响外面的 n。"
+                            answer="输出 10。add5 改的是副本 x，n 不变。"
+                            steps={[
+                                '调用 add5(n) 时，把 n 的值 10 复制给参数 x。',
+                                '函数里 x += 5 让 x 变 15，但那只是副本。',
+                                '外面的 n 仍是 10 → 输出 10。要真改 n 得用引用 int& 或指针。',
+                            ]}
+                        />
                         <MasteryCheck
                             title="C++ L4-2 传值与传参离开前检查"
                             description="函数题最怕“以为改了，其实只改了副本”。勾选前先用一个小例子在纸上画出谁是副本、谁是原件。"

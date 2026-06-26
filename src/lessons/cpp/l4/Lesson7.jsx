@@ -1,7 +1,7 @@
 import React, { useMemo, useState } from 'react';
 import { ClipboardCheck, Contact, Database, Search, Users } from 'lucide-react';
 import CppL4LessonSupport from '../../../components/CppL4LessonSupport';
-import CppLessonShell, { Callout, CodeBlock, CompareTable, MasteryCheck, MiniQuiz, PredictCheck, StepList } from '../CppLessonShell';
+import CppLessonShell, { Callout, CodeBlock, CompareTable, MasteryCheck, MiniQuiz, PredictCheck, StepList, TransferCheck } from '../CppLessonShell';
 
 const sections = [
     { id: 1, title: '课程导入', category: '结构体模型' },
@@ -207,6 +207,16 @@ for (int i = 0; i < n; i++) {
                             </p>
                         </div>
                         <MiniQuiz items={quiz} />
+                        <TransferCheck
+                            prompt={'换个例子：struct P { int x; int y; }; P a = {3, 4};。怎么把 a 的 y 改成 9？改完 a.x 和 a.y 各是多少？'}
+                            hint="结构体变量用「点」访问成员：a.成员名。"
+                            answer="用 a.y = 9;。改完 a.x = 3、a.y = 9。"
+                            steps={[
+                                'P a = {3, 4}; 按声明顺序 a.x = 3、a.y = 4。',
+                                '改 y 用点运算符：a.y = 9;。',
+                                '只改了 y，所以 a.x 仍是 3，a.y 变 9。',
+                            ]}
+                        />
                         <MasteryCheck
                             title="C++ L4-7 结构体离开前检查"
                             description="结构体最怕“定义漏分号、a[i].score 写反”。勾选前先自己定义一个 Book 并读出一个字段。"

@@ -1,7 +1,7 @@
 import React, { useMemo, useState } from 'react';
 import { AlertTriangle, Boxes, ClipboardCheck, Search, Sigma } from 'lucide-react';
 import CppL4LessonSupport from '../../../components/CppL4LessonSupport';
-import CppLessonShell, { Callout, CodeBlock, CompareTable, MasteryCheck, MiniQuiz, PredictCheck, StepList } from '../CppLessonShell';
+import CppLessonShell, { Callout, CodeBlock, CompareTable, MasteryCheck, MiniQuiz, PredictCheck, StepList, TransferCheck } from '../CppLessonShell';
 
 const sections = [
     { id: 1, title: '课程导入', category: '数组参数' },
@@ -227,6 +227,16 @@ export default function CppL4Lesson3() {
                             </p>
                         </div>
                         <MiniQuiz items={quiz} />
+                        <TransferCheck
+                            prompt={'换个例子：void fill(int a[], int n){ for(int i=0;i<n;i++) a[i]=0; }，主函数 int b[3]={5,6,7}; fill(b,3);。调用后 b 变成什么？为什么和传值不同？'}
+                            hint="数组名传进函数其实是传「首地址」，函数里改的就是原数组。"
+                            answer="b 变成 {0, 0, 0}。数组按地址传递，函数里改的是原数组本身。"
+                            steps={[
+                                '数组名 b 传进去的是首元素地址，不是整份拷贝。',
+                                '函数里 a[i]=0 直接改到原数组 b 上。',
+                                '所以调用后 b = {0,0,0}——这和普通变量「传值」不改外面不同。',
+                            ]}
+                        />
                         <MasteryCheck
                             title="C++ L4-3 数组进函数离开前检查"
                             description="数组进函数最怕“以为复制了一份，其实改的是原数组”。勾选前先用一个小数组手推 addOne 的效果。"

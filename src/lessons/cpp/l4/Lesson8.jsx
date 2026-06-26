@@ -1,7 +1,7 @@
 import React, { useMemo, useState } from 'react';
 import { ClipboardCheck, Grid3X3, Rows3, Search, Table2 } from 'lucide-react';
 import CppL4LessonSupport from '../../../components/CppL4LessonSupport';
-import CppLessonShell, { Callout, CodeBlock, CompareTable, MasteryCheck, MiniQuiz, PredictCheck, StepList } from '../CppLessonShell';
+import CppLessonShell, { Callout, CodeBlock, CompareTable, MasteryCheck, MiniQuiz, PredictCheck, StepList, TransferCheck } from '../CppLessonShell';
 
 const sections = [
     { id: 1, title: '课程导入', category: '矩阵模型' },
@@ -222,6 +222,16 @@ for (int i = 0; i < n; i++) {
                             </p>
                         </div>
                         <MiniQuiz items={quiz} />
+                        <TransferCheck
+                            prompt={'换个例子：int g[2][3] = {{1,2,3},{4,5,6}};。g[1][2] 是几？要遍历整个数组，外层和内层循环各跑几次？'}
+                            hint="g[行][列]，行下标 0~1、列下标 0~2；外层管行、内层管列。"
+                            answer="g[1][2] = 6；外层 2 次（行）、内层 3 次（列）。"
+                            steps={[
+                                'g[1][2]：第 1 行第 2 列（都从 0 数）= 6。',
+                                '有 2 行 → 外层 for 跑 2 次（i = 0..1）。',
+                                '每行 3 列 → 内层 for 跑 3 次（j = 0..2）。共访问 2 × 3 = 6 个元素。',
+                            ]}
+                        />
                         <MasteryCheck
                             title="C++ L4-8 二维数组离开前检查"
                             description="二维数组最怕“行列读反、n/m 写反”。勾选前先画一个 3×4 小矩阵标好行列号，再写循环。"

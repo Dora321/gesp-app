@@ -1,7 +1,7 @@
 import React, { useMemo, useState } from 'react';
 import { ClipboardCheck, GitBranch, Search, TrendingUp } from 'lucide-react';
 import CppL4LessonSupport from '../../../components/CppL4LessonSupport';
-import CppLessonShell, { Callout, CodeBlock, CompareTable, MasteryCheck, MiniQuiz, PredictCheck, StepList } from '../CppLessonShell';
+import CppLessonShell, { Callout, CodeBlock, CompareTable, MasteryCheck, MiniQuiz, PredictCheck, StepList, TransferCheck } from '../CppLessonShell';
 
 const sections = [
     { id: 1, title: '课程导入', category: '由前推后' },
@@ -225,6 +225,16 @@ cout << f[n];`}</CodeBlock>
                             </p>
                         </div>
                         <MiniQuiz items={quiz} />
+                        <TransferCheck
+                            prompt="换个例子：青蛙每次跳 1 级或 2 级台阶，跳上第 5 级有几种跳法？用递推 f[i] = f[i-1] + f[i-2] 算。"
+                            hint="f[1]=1、f[2]=2；之后每一级等于前两级之和。"
+                            answer="f[5] = 8 种。"
+                            steps={[
+                                'f[1]=1（跳 1 级，1 种）；f[2]=2（1+1 或 直接 2）。',
+                                'f[3]=f[2]+f[1]=3；f[4]=f[3]+f[2]=5。',
+                                'f[5]=f[4]+f[3]=5+3=8 种。',
+                            ]}
+                        />
                         <MasteryCheck
                             title="C++ L4-12 递推算法离开前检查"
                             description="递推最怕“初始值给少了、循环倒着算、计数漏掉一种来源”。勾选前先手推斐波那契前 6 项。"

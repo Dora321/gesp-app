@@ -1,7 +1,7 @@
 import React, { useMemo, useState } from 'react';
 import { ClipboardCheck, MousePointer2, Search, Trophy } from 'lucide-react';
 import CppL4LessonSupport from '../../../components/CppL4LessonSupport';
-import CppLessonShell, { Callout, CodeBlock, CompareTable, MasteryCheck, MiniQuiz, PredictCheck, StepList } from '../CppLessonShell';
+import CppLessonShell, { Callout, CodeBlock, CompareTable, MasteryCheck, MiniQuiz, PredictCheck, StepList, TransferCheck } from '../CppLessonShell';
 
 const sections = [
     { id: 1, title: '课程导入', category: '挑选最小' },
@@ -240,6 +240,16 @@ export default function CppL4Lesson11() {
                             </p>
                         </div>
                         <MiniQuiz items={quiz} />
+                        <TransferCheck
+                            prompt="换个例子：对 {5, 2, 4, 1} 做升序选择排序。手推「第一轮」：在整个数组里找最小值，和第一个位置交换，写出第一轮后的数组。"
+                            hint="选择排序每轮在「未排好部分」里挑最小，和该部分最前面交换。"
+                            answer="第一轮后是 {1, 2, 4, 5}。"
+                            steps={[
+                                '第一轮在 {5,2,4,1} 里找最小值 → 1（下标 3）。',
+                                '把最小值 1 和第一个位置的 5 交换。',
+                                '第一轮后：{1, 2, 4, 5}，1 已确定在最前面。',
+                            ]}
+                        />
                         <MasteryCheck
                             title="C++ L4-11 选择排序离开前检查"
                             description="选择排序最怕“记住了最小值，却忘了它在哪”。勾选前先用 5 个数手推一轮，盯住 minIndex。"
