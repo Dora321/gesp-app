@@ -1,7 +1,7 @@
 import React, { useMemo, useState } from 'react';
 import { Binary, ClipboardCheck, Layers3, Lightbulb, ToggleLeft } from 'lucide-react';
 import CppL3LessonSupport from '../../../components/CppL3LessonSupport';
-import CppLessonShell, { Callout, CodeBlock, CompareTable, MasteryCheck, MiniQuiz, PredictCheck, StepList } from '../CppLessonShell';
+import CppLessonShell, { Callout, CodeBlock, CompareTable, MasteryCheck, MiniQuiz, PredictCheck, StepList, TransferCheck } from '../CppLessonShell';
 
 const sections = [
     { id: 1, title: '课程导入', category: '按位思维' },
@@ -223,6 +223,16 @@ if (x & mask) {
                             </p>
                         </div>
                         <MiniQuiz items={quiz} />
+                        <TransferCheck
+                            prompt="换个例子：6 的二进制是 110，3 是 011。算出 6 & 3 和 6 | 3 的结果（十进制）。"
+                            hint="& 是按位与（都为 1 才 1），| 是按位或（有 1 就 1），逐位对齐算。"
+                            answer="6 & 3 = 2；6 | 3 = 7。"
+                            steps={[
+                                '6 = 110，3 = 011，对齐逐位。',
+                                '& ：1&0=0, 1&1=1, 0&1=0 → 010 = 2。',
+                                '| ：1|0=1, 1|1=1, 0|1=1 → 111 = 7。',
+                            ]}
+                        />
                         <MasteryCheck
                             title="C++ L3-3 位运算（上）离开前检查"
                             description="位运算最怕“把 & 当 &&、不逐位算”。勾选前先把 6 & 3、6 ^ 3 在二进制上手推一遍。"

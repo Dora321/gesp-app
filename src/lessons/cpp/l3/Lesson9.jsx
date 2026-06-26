@@ -1,7 +1,7 @@
 import React, { useMemo, useState } from 'react';
 import { ClipboardCheck, Hash, ListChecks, Search, TableProperties } from 'lucide-react';
 import CppL3LessonSupport from '../../../components/CppL3LessonSupport';
-import CppLessonShell, { Callout, CodeBlock, CodeTracer, CompareTable, MasteryCheck, MiniQuiz, PredictCheck } from '../CppLessonShell';
+import CppLessonShell, { Callout, CodeBlock, CodeTracer, CompareTable, MasteryCheck, MiniQuiz, PredictCheck, TransferCheck } from '../CppLessonShell';
 
 const sections = [
     { id: 1, title: '课程导入', category: '综合模型' },
@@ -260,6 +260,16 @@ for (int i = 0; i < s.size(); i++) {
                             </p>
                         </div>
                         <MiniQuiz items={quiz} />
+                        <TransferCheck
+                            prompt={'换个例子：string s = "banana";。统计字符 a 出现几次？写出循环思路。'}
+                            hint="遍历每个字符，等于目标字符就计数 +1。"
+                            answer="出现 3 次。"
+                            steps={[
+                                '设 cnt = 0，遍历 s 的每个字符 c。',
+                                "若 c == 'a' 则 cnt++。",
+                                '"banana" 里 a 在下标 1、3、5，共 3 个 → cnt = 3。',
+                            ]}
+                        />
                         <MasteryCheck
                             title="C++ L3-9 数组与字符串综合离开前检查"
                             description="综合题最怕“一上来就写循环”。勾选前先在纸上写清每个数组下标代表什么。"

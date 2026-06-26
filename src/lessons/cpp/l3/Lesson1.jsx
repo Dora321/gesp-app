@@ -1,7 +1,7 @@
 import React, { useMemo, useState } from 'react';
 import { ClipboardCheck, Hash, Repeat2, Route, Search } from 'lucide-react';
 import CppL3LessonSupport from '../../../components/CppL3LessonSupport';
-import CppLessonShell, { Callout, CodeBlock, CompareTable, MasteryCheck, MiniQuiz, PredictCheck, StepList } from '../CppLessonShell';
+import CppLessonShell, { Callout, CodeBlock, CompareTable, MasteryCheck, MiniQuiz, PredictCheck, StepList, TransferCheck } from '../CppLessonShell';
 
 const sections = [
     { id: 1, title: '课程导入', category: '进制直觉' },
@@ -237,6 +237,18 @@ export default function CppL3Lesson1() {
                             </p>
                         </div>
                         <MiniQuiz items={quiz} />
+                        <TransferCheck
+                            prompt="换个例子：把十进制 13 转成二进制。写出「不断除以 2 取余」的短除法过程，并给出最终二进制。"
+                            hint="不断除以 2 记下余数，最后把余数从下往上读。"
+                            answer="13 = 1101（二进制）。"
+                            steps={[
+                                '13 ÷ 2 = 6 余 1',
+                                '6 ÷ 2 = 3 余 0',
+                                '3 ÷ 2 = 1 余 1',
+                                '1 ÷ 2 = 0 余 1',
+                                '余数从下往上读：1101。',
+                            ]}
+                        />
                         <MasteryCheck
                             title="C++ L3-1 进制离开前检查"
                             description="进制最怕“短除余数读反、分组方向搞错”。勾选前先把 58 转二进制、再分组转十六进制。"

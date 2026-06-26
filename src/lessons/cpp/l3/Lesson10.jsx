@@ -1,7 +1,7 @@
 import React, { useMemo, useState } from 'react';
 import { ClipboardCheck, ListFilter, Search, Target, Timer } from 'lucide-react';
 import CppL3LessonSupport from '../../../components/CppL3LessonSupport';
-import CppLessonShell, { Callout, CodeBlock, CodeTracer, CompareTable, MasteryCheck, MiniQuiz, PredictCheck } from '../CppLessonShell';
+import CppLessonShell, { Callout, CodeBlock, CodeTracer, CompareTable, MasteryCheck, MiniQuiz, PredictCheck, TransferCheck } from '../CppLessonShell';
 
 const sections = [
     { id: 1, title: '课程导入', category: '枚举思想' },
@@ -248,6 +248,16 @@ for (int x = 1; x <= n; x++) {
                             </p>
                         </div>
                         <MiniQuiz items={quiz} />
+                        <TransferCheck
+                            prompt="换个例子：用枚举法求两个骰子（各 1~6）点数之和等于 7 的组合有几种？写出枚举思路。"
+                            hint="双重循环 i=1..6、j=1..6，统计 i + j == 7 的次数。"
+                            answer="6 种：(1,6)(2,5)(3,4)(4,3)(5,2)(6,1)。"
+                            steps={[
+                                '外层 i 从 1 到 6，内层 j 从 1 到 6，枚举所有点数组合。',
+                                '每对 (i, j) 判断 i + j 是否等于 7。',
+                                '满足的有 (1,6)(2,5)(3,4)(4,3)(5,2)(6,1)，共 6 种。',
+                            ]}
+                        />
                         <MasteryCheck
                             title="C++ L3-10 枚举法离开前检查"
                             description="枚举最怕“范围定错漏解、两层 O(n²) 没意识到会超时”。勾选前先想清这道题枚举谁、范围多大。"

@@ -1,7 +1,7 @@
 import React, { useMemo, useState } from 'react';
 import { CaseSensitive, ClipboardCheck, Search, Sparkles, TextSearch } from 'lucide-react';
 import CppL3LessonSupport from '../../../components/CppL3LessonSupport';
-import CppLessonShell, { Callout, CodeBlock, CodeTracer, CompareTable, MasteryCheck, MiniQuiz, PredictCheck } from '../CppLessonShell';
+import CppLessonShell, { Callout, CodeBlock, CodeTracer, CompareTable, MasteryCheck, MiniQuiz, PredictCheck, TransferCheck } from '../CppLessonShell';
 
 const sections = [
     { id: 1, title: '课程导入', category: '字符串处理' },
@@ -272,6 +272,15 @@ cout << s.substr(0, 5); // hello`}</CodeBlock>
                             </p>
                         </div>
                         <MiniQuiz items={quiz} />
+                        <TransferCheck
+                            prompt={'换个例子：string s = "abcdef";。s.substr(2, 3) 返回什么？s.find("cd") 返回什么？'}
+                            hint="substr(起始下标, 长度)；find 返回首次出现的起始下标，找不到返回 string::npos。"
+                            answer={'s.substr(2, 3) = "cde"；s.find("cd") = 2。'}
+                            steps={[
+                                'substr(2, 3)：从下标 2（字符 c）起，取 3 个字符 → "cde"。',
+                                'find("cd")：在 s 里首次出现 "cd" 的起始下标是 2。',
+                            ]}
+                        />
                         <MasteryCheck
                             title="C++ L3-8 字符串进阶离开前检查"
                             description="进阶字符串题最怕“转换没判范围、find 没判 npos”。勾选前先用一个含数字的小例子手推一次。"

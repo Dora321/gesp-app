@@ -1,7 +1,7 @@
 import React, { useMemo, useState } from 'react';
 import { AlertTriangle, Binary, ClipboardCheck, LockKeyhole, RotateCcw } from 'lucide-react';
 import CppL3LessonSupport from '../../../components/CppL3LessonSupport';
-import CppLessonShell, { Callout, CodeBlock, CompareTable, MasteryCheck, MiniQuiz, PredictCheck, StepList } from '../CppLessonShell';
+import CppLessonShell, { Callout, CodeBlock, CompareTable, MasteryCheck, MiniQuiz, PredictCheck, StepList, TransferCheck } from '../CppLessonShell';
 
 const sections = [
     { id: 1, title: '课程导入', category: '负数表示' },
@@ -224,6 +224,17 @@ export default function CppL3Lesson2() {
                             </p>
                         </div>
                         <MiniQuiz items={quiz} />
+                        <TransferCheck
+                            prompt="换个例子：用 8 位补码表示 -5。写出每一步。"
+                            hint="先写 +5 的二进制，按位取反，再加 1。"
+                            answer="-5 的 8 位补码是 11111011。"
+                            steps={[
+                                '+5 = 00000101',
+                                '按位取反 = 11111010',
+                                '末位加 1 = 11111011',
+                                '这就是 -5 的补码。',
+                            ]}
+                        />
                         <MasteryCheck
                             title="C++ L3-2 补码离开前检查"
                             description="补码最怕“取反忘了加 1、范围记成对称的 -127~127”。勾选前先手推 -5 和 -8 的 8 位补码。"

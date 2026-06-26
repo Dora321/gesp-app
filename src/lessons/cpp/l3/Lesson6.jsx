@@ -1,7 +1,7 @@
 import React, { useMemo, useState } from 'react';
 import { BarChart3, ClipboardCheck, Gauge, Search, Sigma } from 'lucide-react';
 import CppL3LessonSupport from '../../../components/CppL3LessonSupport';
-import CppLessonShell, { Callout, CodeBlock, CodeTracer, CompareTable, MasteryCheck, MiniQuiz, PredictCheck } from '../CppLessonShell';
+import CppLessonShell, { Callout, CodeBlock, CodeTracer, CompareTable, MasteryCheck, MiniQuiz, PredictCheck, TransferCheck } from '../CppLessonShell';
 
 const sections = [
     { id: 1, title: '课程导入', category: '数组实战' },
@@ -267,6 +267,17 @@ cout << s[r] - s[l - 1];`}</CodeBlock>
                             </p>
                         </div>
                         <MiniQuiz items={quiz} />
+                        <TransferCheck
+                            prompt="换个例子：int a[5] = {4, 9, 2, 9, 1};。写出「找最大值」的循环思路，并说出最大值是几、第一次出现在哪个下标。"
+                            hint="先假设第 0 个最大，遍历时遇到更大的（严格 >）才更新下标。"
+                            answer="最大值 9，第一次出现在下标 1。"
+                            steps={[
+                                '设 maxIdx = 0（先假设 a[0] 最大）。',
+                                '遍历 i = 1..4：只有 a[i] > a[maxIdx] 才更新 maxIdx。',
+                                'a[1]=9 > a[0]=4 → 更新到 1；a[3]=9 不 > a[1]=9 → 不更新，保留第一次出现。',
+                                '最大值 a[1]=9，下标 1。',
+                            ]}
+                        />
                         <MasteryCheck
                             title="C++ L3-6 数组操作实战离开前检查"
                             description="数组实战题最怕“模板背下来，但类型和边界悄悄写错”。勾选前先用一个小例子手推一次。"

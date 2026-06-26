@@ -1,7 +1,7 @@
 import React, { useMemo, useState } from 'react';
 import { ClipboardCheck, Footprints, Play, RefreshCw, Search } from 'lucide-react';
 import CppL3LessonSupport from '../../../components/CppL3LessonSupport';
-import CppLessonShell, { Callout, CodeBlock, CodeTracer, CompareTable, MasteryCheck, MiniQuiz, PredictCheck } from '../CppLessonShell';
+import CppLessonShell, { Callout, CodeBlock, CodeTracer, CompareTable, MasteryCheck, MiniQuiz, PredictCheck, TransferCheck } from '../CppLessonShell';
 
 const sections = [
     { id: 1, title: '课程导入', category: '模拟思想' },
@@ -270,6 +270,15 @@ export default function CppL3Lesson11() {
                             </p>
                         </div>
                         <MiniQuiz items={quiz} />
+                        <TransferCheck
+                            prompt="换个例子：5 个小朋友围成圈编号 1~5，从 1 号开始报数，报到 3 的人出圈，下一个人重新从 1 报。第一个出圈的是几号？"
+                            hint="模拟题就按规则一步步走，不要跳步心算。"
+                            answer="第一个出圈的是 3 号。"
+                            steps={[
+                                '1 号报 1，2 号报 2，3 号报 3 → 报到 3，3 号出圈。',
+                                '模拟的关键是严格按「报到 3 出圈」的规则逐个推进。',
+                            ]}
+                        />
                         <MasteryCheck
                             title="C++ L3-11 模拟法离开前检查"
                             description="模拟最怕“更新和判断顺序反了、忘了状态的边界约束”。勾选前先把题目规则逐条翻成状态更新。"

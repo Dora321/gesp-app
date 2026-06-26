@@ -1,7 +1,7 @@
 import React, { useMemo, useState } from 'react';
 import { AlertTriangle, ArrowLeftRight, ClipboardCheck, MoveRight, Search } from 'lucide-react';
 import CppL3LessonSupport from '../../../components/CppL3LessonSupport';
-import CppLessonShell, { Callout, CodeBlock, CompareTable, MasteryCheck, MiniQuiz, PredictCheck, StepList } from '../CppLessonShell';
+import CppLessonShell, { Callout, CodeBlock, CompareTable, MasteryCheck, MiniQuiz, PredictCheck, StepList, TransferCheck } from '../CppLessonShell';
 
 const sections = [
     { id: 1, title: '课程导入', category: '移位操作' },
@@ -214,6 +214,16 @@ if (x & mask) {
                             </p>
                         </div>
                         <MiniQuiz items={quiz} />
+                        <TransferCheck
+                            prompt="换个例子：用位运算判断整数 n 的「第 2 位（从右往左、从 0 数）」是不是 1。以 n=13 为例算出结果。"
+                            hint="取第 k 位用 (n >> k) & 1。"
+                            answer="(13 >> 2) & 1 = 1，所以 13 的第 2 位是 1。"
+                            steps={[
+                                '13 = 1101（二进制）。',
+                                '右移 2 位：13 >> 2 = 0011 = 3。',
+                                '再 & 1 取出最低位：3 & 1 = 1 → 第 2 位是 1。',
+                            ]}
+                        />
                         <MasteryCheck
                             title="C++ L3-4 位运算（下）离开前检查"
                             description="移位最怕“漏括号被 cout 抢、x&(1<<k) 当成 0/1”。勾选前先手推 7<<2 和 13>>1 的二进制。"
