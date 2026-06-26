@@ -3,7 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import { Terminal, Key, Cpu, Shield, ArrowRight, CheckCircle, XCircle, RefreshCw, Lock, Unlock, Quote, ArrowDownUp, AlertTriangle, Play, BookOpen, User, Binary, Menu, X } from 'lucide-react';
 import CppL1LessonSupport from '../../../components/CppL1LessonSupport';
 import LegacyCppLessonShell from '../LegacyCppLessonShell';
-import { MasteryCheck } from '../CppLessonShell';
+import { MasteryCheck, TransferCheck } from '../CppLessonShell';
 
 const lesson5MasteryItems = [
   {
@@ -45,11 +45,23 @@ const sections = [
     title: '离开前检查',
     icon: 'check',
     component: () => (
+      <>
+      <TransferCheck
+          prompt="换个例子：字母 A 的 ASCII 是 65，那么字母 C 的 ASCII 是多少？执行 char c = 65 + 2; 再以字符输出 c，会显示什么？"
+          hint="字母在 ASCII 表里是连续的；65 对应 A，往后逐个加 1。"
+          answer="C 的 ASCII 是 67；以字符输出 67 显示 C。"
+          steps={[
+              'A = 65，字母连续，C 比 A 大 2 → 65 + 2 = 67。',
+              'char c = 65 + 2; 让 c = 67，按字符显示就是 C。',
+              '输出 C。',
+          ]}
+      />
       <MasteryCheck
         title="C++ L1-5 字符与 ASCII 离开前检查"
         description="如果能分清字符和字符串、解释 ASCII、做字符运算、说明 bool 的 0/1，就可以进入逻辑运算。"
         items={lesson5MasteryItems}
       />
+      </>
     ),
     category: "实战演练",
   },

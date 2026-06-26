@@ -23,7 +23,7 @@ import {
 } from 'lucide-react';
 import CppL1LessonSupport from '../../../components/CppL1LessonSupport';
 import LegacyCppLessonShell from '../LegacyCppLessonShell';
-import { MasteryCheck } from '../CppLessonShell';
+import { MasteryCheck, TransferCheck } from '../CppLessonShell';
 import CodeSnippet from '../CodeSnippet';
 
 // --- 图标映射组件 ---
@@ -873,6 +873,16 @@ export default function App() {
             case 10:
                 return (
                     <div className="slide-enter py-6">
+                        <TransferCheck
+                            prompt="换个例子：判断 2024 是不是闰年。闰年条件：能被 4 整除但不能被 100 整除，或能被 400 整除。"
+                            hint="用 % 判断整除：(年%4==0 && 年%100!=0) || 年%400==0。"
+                            answer="2024 是闰年。"
+                            steps={[
+                                '2024 % 4 == 0（能被 4 整除）。',
+                                '2024 % 100 != 0（不能被 100 整除）。',
+                                '满足「被 4 整除且不被 100 整除」→ 是闰年。',
+                            ]}
+                        />
                         <MasteryCheck
                             title="C++ L1-13 数学与取模综合离开前检查"
                             description="如果能用取模表达倍数和个位、写出闰年条件、组合逻辑规则，就可以进入模拟题。"

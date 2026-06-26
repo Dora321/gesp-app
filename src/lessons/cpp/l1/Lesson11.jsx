@@ -24,7 +24,7 @@ import {
 } from 'lucide-react';
 import CppL1LessonSupport from '../../../components/CppL1LessonSupport';
 import LegacyCppLessonShell from '../LegacyCppLessonShell';
-import { MasteryCheck } from '../CppLessonShell';
+import { MasteryCheck, TransferCheck } from '../CppLessonShell';
 import CodeSnippet from '../CodeSnippet';
 
 // --- 图标映射组件 ---
@@ -1001,6 +1001,16 @@ export default function App() {
             case 11:
                 return (
                     <div className="slide-enter py-6">
+                        <TransferCheck
+                            prompt={'换个例子：for(int i=1;i<=5;i++){ if(i==3) continue; cout<<i; } 输出什么？把 continue 换成 break 又输出什么？'}
+                            hint="continue 跳过本次剩余、进下一次；break 直接结束整个循环。"
+                            answer="continue 输出 1245；break 输出 12。"
+                            steps={[
+                                'continue：i==3 时跳过输出，其余都输出 → 1 2 4 5。',
+                                'break：i==3 时直接退出循环 → 只输出 1 2。',
+                                'continue 跳一次，break 跳全部。',
+                            ]}
+                        />
                         <MasteryCheck
                             title="C++ L1-11 break 和 continue 离开前检查"
                             description="如果能分清停止整个循环、跳过本轮、嵌套层级和输出手推，就可以进入嵌套循环。"

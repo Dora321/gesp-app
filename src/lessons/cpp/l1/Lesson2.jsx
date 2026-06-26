@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import CppL1LessonSupport from '../../../components/CppL1LessonSupport';
 import LegacyCppLessonShell from '../LegacyCppLessonShell';
-import { MasteryCheck } from '../CppLessonShell';
+import { MasteryCheck, TransferCheck } from '../CppLessonShell';
 import {
   Backpack,
   Box,
@@ -60,6 +60,16 @@ const sections = [
     category: "实战演练",
     component: () => (
       <div className="py-6">
+        <TransferCheck
+            prompt={'换个例子：int age = 10; age = age + 5; 执行后 age 是多少？这两行分别做了什么？'}
+            hint="= 是赋值：把右边算出来的值放进左边的盒子。"
+            answer="age = 15。"
+            steps={[
+                'int age = 10; 创建盒子 age，放入 10。',
+                'age = age + 5; 先算右边 10+5=15，再存回 age。',
+                'age 变成 15。',
+            ]}
+        />
         <MasteryCheck
           title="C++ L1-2 变量与数据离开前检查"
           description="如果能解释变量、判断变量名、区分大小写和下划线、写出两个变量求和，就可以进入数据类型课。"

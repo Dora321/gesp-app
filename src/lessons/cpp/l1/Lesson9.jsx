@@ -17,7 +17,7 @@ import {
 } from 'lucide-react';
 import CppL1LessonSupport from '../../../components/CppL1LessonSupport';
 import LegacyCppLessonShell from '../LegacyCppLessonShell';
-import { CodeTracer, MasteryCheck, PredictCheck } from '../CppLessonShell';
+import { CodeTracer, MasteryCheck, PredictCheck, TransferCheck } from '../CppLessonShell';
 import CodeSnippet from '../CodeSnippet';
 
 // --- 图标组件 ---
@@ -642,6 +642,16 @@ cout << (N + i);`}
         return (
           <div className="slide-enter">
             <h2 className="text-3xl font-bold text-gray-800 mb-6">🏁 离开前检查</h2>
+            <TransferCheck
+                prompt={'换个例子：for(int i=1;i<=4;i++) cout<<i; 输出什么？循环结束后 i 是多少？'}
+                hint="i 从 1 到 4，每次输出后 i++；条件 i<=4 不成立时退出。"
+                answer="输出 1234；结束后 i = 5。"
+                steps={[
+                    'i=1,2,3,4 各输出一次 → 1234。',
+                    'i=4 输出后 i++ 变 5。',
+                    'i=5 时 5<=4 假，退出。所以结束后 i=5（不是 4）。',
+                ]}
+            />
             <MasteryCheck
               title="C++ L1-9 for 循环离开前检查"
               description="如果只会背口诀，还不算过关。至少要能手推一次结束边界。"

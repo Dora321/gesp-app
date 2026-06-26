@@ -21,7 +21,7 @@ import {
     X
 } from 'lucide-react';
 import CppL1LessonSupport from '../../../components/CppL1LessonSupport';
-import { CodeTracer, MasteryCheck } from '../CppLessonShell';
+import { CodeTracer, MasteryCheck, TransferCheck } from '../CppLessonShell';
 
 // --- 图标映射组件 ---
 const Icon = ({ name, size = 24, color = "currentColor", className = "" }) => {
@@ -647,6 +647,16 @@ function App() {
             case 10:
                 return (
                     <div className="slide-enter py-6">
+                        <TransferCheck
+                            prompt={'换个例子：for(i=1;i<=2;i++) for(j=1;j<=3;j++) cout<<i<<j<<" "; 一共输出几组？写出全部。'}
+                            hint="外层每次，内层完整跑一遍；总数 = 外 × 内。"
+                            answer="6 组：11 12 13 21 22 23。"
+                            steps={[
+                                '外层 i=1,2，内层 j=1,2,3。',
+                                'i=1：11 12 13；i=2：21 22 23。',
+                                '共 2×3 = 6 组。',
+                            ]}
+                        />
                         <MasteryCheck
                             title="C++ L1-12 嵌套循环离开前检查"
                             description="如果能分清内外层、手推 j 重置、计算执行次数、拆图形题，就可以进入数组前的循环综合。"

@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import CppL1LessonSupport from '../../../components/CppL1LessonSupport';
 import LegacyCppLessonShell from '../LegacyCppLessonShell';
-import { MasteryCheck } from '../CppLessonShell';
+import { MasteryCheck, TransferCheck } from '../CppLessonShell';
 import {
   ChefHat,
   Utensils,
@@ -724,6 +724,16 @@ export default function App() {
       case 10:
         return (
           <div className="slide-enter py-6">
+            <TransferCheck
+                prompt={'换个例子：score=85，用 if / else if 判断等级（>=90 优，>=80 良，>=60 及格，否则不及格）。85 落在哪个分支？为什么不会进「优」？'}
+                hint="if/else if 从上往下，命中第一个为真的就停，不再检查后面。"
+                answer="落在「良」（>=80）。"
+                steps={[
+                    '先判 >=90：85>=90 假，跳过。',
+                    '再判 >=80：85>=80 真 → 进「良」，并停止。',
+                    '后面的 >=60 不再检查；顺序写反会出错。',
+                ]}
+            />
             <MasteryCheck
               title="C++ L1-8 多重选择结构离开前检查"
               description="如果能按顺序读分支、解释第一个命中、发现顺序漏判、设计兜底分类，就可以进入 switch。"

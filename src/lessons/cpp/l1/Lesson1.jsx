@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import CppL1LessonSupport from '../../../components/CppL1LessonSupport';
 import LegacyCppLessonShell from '../LegacyCppLessonShell';
-import { MasteryCheck } from '../CppLessonShell';
+import { MasteryCheck, TransferCheck } from '../CppLessonShell';
 import {
   Monitor, Keyboard, Mouse, Mic, Camera, Speaker, Printer,
   Cpu, Save, FileText, Terminal, CheckCircle, XCircle,
@@ -679,6 +679,16 @@ const sections = [
     category: "C++ 初体验",
     component: () => (
       <div className="py-6">
+        <TransferCheck
+            prompt={'换个例子：用 cout 在一行里先输出 Hi 再输出数字 8（中间空一格）。这行代码怎么写？'}
+            hint="cout << ... << ...; 可以连续输出多个内容，用 << 隔开。"
+            answer={'cout << "Hi" << " " << 8;（也可写 cout << "Hi " << 8;）'}
+            steps={[
+                '用 << 把要输出的内容一个个串起来。',
+                'cout << "Hi" << " " << 8; 依次输出 Hi、空格、8。',
+                '屏幕显示：Hi 8。',
+            ]}
+        />
         <MasteryCheck
           title="C++ L1-1 你好计算机离开前检查"
           description="如果能分清输入输出、说出计算机基础考点、解释最小程序、修掉 Hello World 错误，就可以进入变量课。"

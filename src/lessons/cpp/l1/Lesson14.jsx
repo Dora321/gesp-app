@@ -25,7 +25,7 @@ import {
     X
 } from 'lucide-react';
 import CppL1LessonSupport from '../../../components/CppL1LessonSupport';
-import { MasteryCheck } from '../CppLessonShell';
+import { MasteryCheck, TransferCheck } from '../CppLessonShell';
 import CodeSnippet from '../CodeSnippet';
 
 // --- 图标映射组件 ---
@@ -691,6 +691,16 @@ export default function App() {
             case 8:
                 return (
                     <div className="slide-enter py-6">
+                        <TransferCheck
+                            prompt="换个例子：小球从第 1 格开始，每步前进 3 格，走 3 步后在第几格？一步步模拟。"
+                            hint="模拟就是按规则逐步更新位置，不要直接乘。"
+                            answer="第 10 格。"
+                            steps={[
+                                '起点第 1 格。',
+                                '走 1 步：1+3=4；走 2 步：4+3=7。',
+                                '走 3 步：7+3=10 → 第 10 格。',
+                            ]}
+                        />
                         <MasteryCheck
                             title="C++ L1-14 模拟题离开前检查"
                             description="如果能拆输入/状态/规则、逐步更新变量、处理分支和周期，就可以进入计数筛选。"

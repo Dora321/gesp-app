@@ -19,7 +19,7 @@ import {
 } from 'lucide-react';
 import CppL1LessonSupport from '../../../components/CppL1LessonSupport';
 import LegacyCppLessonShell from '../LegacyCppLessonShell';
-import { CodeTracer, MasteryCheck } from '../CppLessonShell';
+import { CodeTracer, MasteryCheck, TransferCheck } from '../CppLessonShell';
 import CodeSnippet from '../CodeSnippet';
 
 const Button = ({ children, onClick, variant = 'primary', className = '', disabled = false }) => {
@@ -907,6 +907,16 @@ cout << cnt;`}
       case 11:
         return (
           <div className="slide-enter py-6">
+            <TransferCheck
+                prompt={'换个例子：int n=8; while(n>1){ n=n/2; cout<<n<<" "; } 输出什么？'}
+                hint="每次 n 减半（整数除法），直到 n<=1 停。"
+                answer="输出 4 2 1。"
+                steps={[
+                    'n=8：8/2=4，输出 4。',
+                    'n=4：4/2=2，输出 2。',
+                    'n=2：2/2=1，输出 1；n=1 时 1>1 假，停。',
+                ]}
+            />
             <MasteryCheck
               title="C++ L1-10 while 循环离开前检查"
               description="如果能说明先判断、避免死循环、手推数位分离、选择 while 场景，就可以进入 break 和 continue。"

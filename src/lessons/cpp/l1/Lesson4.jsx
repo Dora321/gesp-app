@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import CppL1LessonSupport from '../../../components/CppL1LessonSupport';
 import LegacyCppLessonShell from '../LegacyCppLessonShell';
-import { MasteryCheck } from '../CppLessonShell';
+import { MasteryCheck, TransferCheck } from '../CppLessonShell';
 import {
   Users,
   Scissors,
@@ -575,6 +575,16 @@ export default function App() {
       case 14:
         return (
           <div className="slide-enter py-6">
+            <TransferCheck
+                prompt="换个例子：用 % 判断 2023 是奇数还是偶数。写出判断和结论。"
+                hint="n % 2 == 0 是偶数，否则是奇数。"
+                answer="2023 % 2 == 1 → 是奇数。"
+                steps={[
+                    '偶数能被 2 整除：n % 2 == 0。',
+                    '2023 % 2 = 1（不为 0）。',
+                    '所以 2023 是奇数。',
+                ]}
+            />
             <MasteryCheck
               title="C++ L1-4 余数的妙用离开前检查"
               description="如果能区分商和余数、翻译生活问题、手算优先级、写出奇偶判断，就可以进入字符和 bool。"

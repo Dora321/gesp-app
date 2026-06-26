@@ -25,7 +25,7 @@ import {
     X
 } from 'lucide-react';
 import CppL1LessonSupport from '../../../components/CppL1LessonSupport';
-import { MasteryCheck } from '../CppLessonShell';
+import { MasteryCheck, TransferCheck } from '../CppLessonShell';
 import CodeSnippet from '../CodeSnippet';
 
 // --- 图标映射组件 ---
@@ -826,6 +826,16 @@ export default function App() {
             case 10:
                 return (
                     <div className="slide-enter py-6">
+                        <TransferCheck
+                            prompt="换个例子：统计 1~10 里 3 的倍数有几个。怎么用计数器和循环？列出这些数。"
+                            hint="设 cnt=0，遍历 i=1..10，i%3==0 就 cnt++。"
+                            answer="3 个：3、6、9。"
+                            steps={[
+                                'cnt=0，遍历 1 到 10。',
+                                'i % 3 == 0 的有 3、6、9。',
+                                'cnt 累加到 3。',
+                            ]}
+                        />
                         <MasteryCheck
                             title="C++ L1-15 计数与筛选离开前检查"
                             description="如果能初始化计数器、遍历候选、筛选条件、手推 cnt 变化，就可以进入一级总复习。"

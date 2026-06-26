@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import CppL1LessonSupport from '../../../components/CppL1LessonSupport';
 import LegacyCppLessonShell from '../LegacyCppLessonShell';
-import { MasteryCheck, PredictCheck } from '../CppLessonShell';
+import { MasteryCheck, PredictCheck, TransferCheck } from '../CppLessonShell';
 import {
   Siren,
   GitBranch,
@@ -554,6 +554,16 @@ export default function App() {
       case 10:
         return (
           <div className="slide-enter py-6">
+            <TransferCheck
+                prompt={'换个例子：if (x = 3) 和 if (x == 3) 有什么不同？哪个才是「判断 x 是不是 3」？'}
+                hint="= 是赋值，== 是比较；条件里要用 ==。"
+                answer="if (x == 3) 才是判断；if (x = 3) 是赋值（恒为真）。"
+                steps={[
+                    '== 比较两边是否相等，结果是真/假。',
+                    '= 把 3 放进 x，表达式值是 3（非 0 即真）。',
+                    '所以条件判断必须用 ==，写成 = 是经典 bug。',
+                ]}
+            />
             <MasteryCheck
               title="C++ L1-7 条件判断离开前检查"
               description="如果能说明分支走向、识别分号陷阱、正确比较、写出奇偶判断，就可以进入多重选择。"

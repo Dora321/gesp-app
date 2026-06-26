@@ -20,7 +20,7 @@ import {
     X
 } from 'lucide-react';
 import CppL1LessonSupport from '../../../components/CppL1LessonSupport';
-import { MasteryCheck } from '../CppLessonShell';
+import { MasteryCheck, TransferCheck } from '../CppLessonShell';
 
 // --- 图标映射组件 ---
 const Icon = ({ name, size = 24, color = "currentColor", className = "" }) => {
@@ -577,6 +577,16 @@ export default function App() {
             case 11:
                 return (
                     <div className="slide-enter py-6">
+                        <TransferCheck
+                            prompt="换个例子（综合）：读入整数 n，输出 1+2+...+n。以 n=5 为例，写出循环思路和结果。"
+                            hint="设 sum=0，for(i=1;i<=n;i++) sum+=i。"
+                            answer="n=5 时 sum = 15。"
+                            steps={[
+                                'sum=0，i 从 1 到 5 累加。',
+                                'sum = 1+2+3+4+5。',
+                                '结果 15。',
+                            ]}
+                        />
                         <MasteryCheck
                             title="C++ L1-16 一级总复习离开前检查"
                             description="如果能审题建变量、手推表达式、选择控制结构、用边界样例自查，就具备独立冲刺一级的底盘。"

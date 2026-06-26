@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import CppL1LessonSupport from '../../../components/CppL1LessonSupport';
 import LegacyCppLessonShell from '../LegacyCppLessonShell';
-import { MasteryCheck } from '../CppLessonShell';
+import { MasteryCheck, TransferCheck } from '../CppLessonShell';
 import {
   Shield,
   Zap,
@@ -544,6 +544,16 @@ export default function App() {
       case 10:
         return (
           <div className="slide-enter py-6">
+            <TransferCheck
+                prompt={'换个例子：int x = 5; 判断 (x > 0 && x < 10) 和 (x > 10 || x == 5) 各是真还是假？'}
+                hint="&& 要两边都真才真；|| 有一边真就真。"
+                answer="第一个为真；第二个也为真。"
+                steps={[
+                    'x>0 真、x<10 真 → 真 && 真 = 真。',
+                    'x>10 假、x==5 真 → 假 || 真 = 真。',
+                    '两个都是真。',
+                ]}
+            />
             <MasteryCheck
               title="C++ L1-6 逻辑运算离开前检查"
               description="如果能翻译三个逻辑符、判断 0/非 0、避开连写陷阱、手推表达式，就可以进入 if/else。"

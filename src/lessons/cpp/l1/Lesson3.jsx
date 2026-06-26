@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import CppL1LessonSupport from '../../../components/CppL1LessonSupport';
 import LegacyCppLessonShell from '../LegacyCppLessonShell';
-import { MasteryCheck } from '../CppLessonShell';
+import { MasteryCheck, TransferCheck } from '../CppLessonShell';
 import {
   Pizza,
   Scissors,
@@ -61,6 +61,16 @@ const sections = [
     category: "实战演练",
     component: () => (
       <div className="py-6">
+        <TransferCheck
+            prompt={'换个例子：在 C++ 里 int 类型下，cout << 7 / 2; 输出几？想得到 3.5 该怎么写？'}
+            hint="两个整数相除是整数除法（去小数）；要小数得让其中一个是浮点。"
+            answer="7 / 2 输出 3；要 3.5 写 7.0 / 2。"
+            steps={[
+                '7 和 2 都是 int，7/2 做整数除法 = 3（丢掉 0.5）。',
+                '让一个变成浮点：7.0 / 2 = 3.5。',
+                '这就是整数除法的坑。',
+            ]}
+        />
         <MasteryCheck
           title="C++ L1-3 数字的魔法离开前检查"
           description="如果能区分 int/double、解释整数除法、保留小数、手算表达式，就可以进入输入输出课。"
