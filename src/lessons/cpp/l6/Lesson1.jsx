@@ -1,7 +1,7 @@
 import React, { useMemo, useState } from 'react';
 import { ClipboardCheck, GitBranch, Network, Search } from 'lucide-react';
 import CppL6LessonSupport from '../../../components/CppL6LessonSupport';
-import CppLessonShell, { Callout, CodeBlock, CompareTable, MasteryCheck, MiniQuiz, PredictCheck, StepList } from '../CppLessonShell';
+import CppLessonShell, { Callout, CodeBlock, CompareTable, MasteryCheck, MiniQuiz, PredictCheck, StepList, TransferCheck } from '../CppLessonShell';
 
 const sections = [
     { id: 1, title: '课程导入', category: '非线性结构' },
@@ -232,6 +232,15 @@ for (int i = 1; i <= n - 1; i++) {
                             </p>
                         </div>
                         <MiniQuiz items={quiz} />
+                        <TransferCheck
+                            prompt="换个例子：一棵树有 7 个节点，一定有多少条边？如果题目给了 7 条边，它还是树吗？"
+                            hint="n 个节点的树恰有 n-1 条边。"
+                            answer="7 个节点的树有 6 条边；给 7 条边就不是树（多一条会成环）。"
+                            steps={[
+                                '树的性质：n 个节点 → n-1 条边。7 节点 → 6 条边。',
+                                '7 条边比 6 多一条，必然出现环 → 不再是树。',
+                            ]}
+                        />
                         <MasteryCheck
                             title="C++ L6-1 树的初相识离开前检查"
                             description="建树最怕“边数多读一条、无向边只加一边、DFS 走回父亲”。勾选前先画出样例树并手写邻接表。"

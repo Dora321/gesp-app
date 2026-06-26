@@ -1,7 +1,7 @@
 import React, { useMemo, useState } from 'react';
 import { ClipboardCheck, PackageCheck, Repeat2, Search } from 'lucide-react';
 import CppL6LessonSupport from '../../../components/CppL6LessonSupport';
-import CppLessonShell, { Callout, CodeBlock, CompareTable, MasteryCheck, MiniQuiz, PredictCheck, StepList } from '../CppLessonShell';
+import CppLessonShell, { Callout, CodeBlock, CompareTable, MasteryCheck, MiniQuiz, PredictCheck, StepList, TransferCheck } from '../CppLessonShell';
 
 const sections = [
     { id: 1, title: '课程导入', category: '可重复选择' },
@@ -231,6 +231,16 @@ for (int i = 1; i <= n; i++) {
                             </p>
                         </div>
                         <MiniQuiz items={quiz} />
+                        <TransferCheck
+                            prompt="换个例子：完全背包，容量 6，物品（重,值）=(2,3) 可无限拿，最大价值是多少？"
+                            hint="完全背包每件可拿多次；dp[j]=max(dp[j], dp[j-w]+v)，j 从小到大。"
+                            answer="最大价值 9（拿 3 个：重 6、值 9）。"
+                            steps={[
+                                '每个 (2,3) 占重 2，容量 6 最多放 3 个。',
+                                '3 个总值 3×3=9，总重 3×2=6 正好。',
+                                '最大价值 9。',
+                            ]}
+                        />
                         <MasteryCheck
                             title="C++ L6-13 完全背包离开前检查"
                             description="完全背包最怕“方向写反就变回 0/1、计数题套了 max、初值忘了设 1”。勾选前先用一个小样例对比正序倒序。"

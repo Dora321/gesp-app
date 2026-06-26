@@ -1,7 +1,7 @@
 import React, { useMemo, useState } from 'react';
 import { ClipboardCheck, Calculator, Search, ShieldAlert, PlusCircle } from 'lucide-react';
 import CppL5LessonSupport from '../../../components/CppL5LessonSupport';
-import CppLessonShell, { Callout, CodeBlock, CompareTable, MasteryCheck, MiniQuiz, PredictCheck, StepList } from '../CppLessonShell';
+import CppLessonShell, { Callout, CodeBlock, CompareTable, MasteryCheck, MiniQuiz, PredictCheck, StepList, TransferCheck } from '../CppLessonShell';
 
 const sections = [
     { id: 1, title: '课程导入', category: '大整数模型' },
@@ -243,6 +243,16 @@ for (int i = s.size() - 1; i >= 0; i--) {
                             </p>
                         </div>
                         <MiniQuiz items={quiz} />
+                        <TransferCheck
+                            prompt="换个例子：用高精度竖式算 99 + 1。从哪一位开始？写出进位过程和结果。"
+                            hint="从最低位（个位）开始逐位相加，满 10 进 1。"
+                            answer="结果 100。"
+                            steps={[
+                                '个位 9+1=10 → 本位 0，进位 1。',
+                                '十位 9+0+进位1=10 → 本位 0，进位 1。',
+                                '最高位还剩进位 1 → 补一位 → 100。',
+                            ]}
+                        />
                         <MasteryCheck
                             title="C++ L5-3 高精加减离开前检查"
                             description="高精度最吃细节：反向存、最后进位、前导零。勾选前先用 999+1 和 100-99 两个小例子手推一遍。"

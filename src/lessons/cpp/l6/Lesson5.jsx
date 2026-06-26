@@ -1,7 +1,7 @@
 import React, { useMemo, useState } from 'react';
 import { ClipboardCheck, GitBranch, ListChecks, Search } from 'lucide-react';
 import CppL6LessonSupport from '../../../components/CppL6LessonSupport';
-import CppLessonShell, { Callout, CodeBlock, CompareTable, MasteryCheck, MiniQuiz, PredictCheck, StepList } from '../CppLessonShell';
+import CppLessonShell, { Callout, CodeBlock, CompareTable, MasteryCheck, MiniQuiz, PredictCheck, StepList, TransferCheck } from '../CppLessonShell';
 
 const sections = [
     { id: 1, title: '课程导入', category: '深入搜索' },
@@ -245,6 +245,16 @@ export default function CppL6Lesson5() {
                             </p>
                         </div>
                         <MiniQuiz items={quiz} />
+                        <TransferCheck
+                            prompt="换个例子：图的边 1-2, 1-3, 2-4。从 1 出发做 DFS（优先编号小、走到底再回头），写出访问顺序。"
+                            hint="DFS 沿一条路尽量深入，走不动再回退换另一条。"
+                            answer="1 2 4 3。"
+                            steps={[
+                                '从 1 进入，访问 1 → 走到邻居 2。',
+                                '访问 2 → 走到 4，4 无新邻居，回退。',
+                                '回到 1，走另一邻居 3。顺序：1 2 4 3。',
+                            ]}
+                        />
                         <MasteryCheck
                             title="C++ L6-5 DFS 离开前检查"
                             description="DFS 最怕“回溯忘撤销、连通块忘标记 visited”。勾选前先画一棵递归树，标出每步选择和撤销。"

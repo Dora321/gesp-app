@@ -1,7 +1,7 @@
 import React, { useMemo, useState } from 'react';
 import { Binary, ClipboardCheck, Repeat2, Search } from 'lucide-react';
 import CppL6LessonSupport from '../../../components/CppL6LessonSupport';
-import CppLessonShell, { Callout, CodeBlock, CompareTable, MasteryCheck, MiniQuiz, PredictCheck, StepList } from '../CppLessonShell';
+import CppLessonShell, { Callout, CodeBlock, CompareTable, MasteryCheck, MiniQuiz, PredictCheck, StepList, TransferCheck } from '../CppLessonShell';
 
 const sections = [
     { id: 1, title: '课程导入', category: '相邻只差一位' },
@@ -225,6 +225,16 @@ for (int i = 0; i < (1 << k); i++) {
                             </p>
                         </div>
                         <MiniQuiz items={quiz} />
+                        <TransferCheck
+                            prompt={'换个例子：用公式 gray = n ^ (n>>1) 求十进制 6 的格雷码。写出步骤。'}
+                            hint="n 的二进制和「n 右移一位」做按位异或。"
+                            answer="6 的格雷码是 101（二进制），即十进制 5。"
+                            steps={[
+                                '6 = 110。',
+                                '6 >> 1 = 011。',
+                                '110 ^ 011 = 101 → 格雷码 101（十进制 5）。',
+                            ]}
+                        />
                         <MasteryCheck
                             title="C++ L6-9 格雷码离开前检查"
                             description="格雷码最怕“公式记成左移、镜像第二半忘了反向”。勾选前先手推 2 位到 3 位的镜像扩展。"

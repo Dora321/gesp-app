@@ -1,7 +1,7 @@
 import React, { useMemo, useState } from 'react';
 import { ClipboardCheck, Gauge, Search, SplitSquareHorizontal } from 'lucide-react';
 import CppL5LessonSupport from '../../../components/CppL5LessonSupport';
-import CppLessonShell, { Callout, CodeBlock, CompareTable, MasteryCheck, MiniQuiz, PredictCheck, StepList } from '../CppLessonShell';
+import CppLessonShell, { Callout, CodeBlock, CompareTable, MasteryCheck, MiniQuiz, PredictCheck, StepList, TransferCheck } from '../CppLessonShell';
 
 const sections = [
     { id: 1, title: '课程导入', category: '折半思想' },
@@ -236,6 +236,16 @@ while (left <= right) {
                             </p>
                         </div>
                         <MiniQuiz items={quiz} />
+                        <TransferCheck
+                            prompt="换个例子：有序数组 {1,3,5,7,9,11}（下标 0~5），二分查找 7。写出每一步的 mid 和区间变化。"
+                            hint="mid=(l+r)/2，比较 a[mid] 与目标，决定往左半还是右半缩小区间。"
+                            answer="找到 7 在下标 3。"
+                            steps={[
+                                'l=0,r=5,mid=2,a[2]=5<7 → l=mid+1=3。',
+                                'l=3,r=5,mid=4,a[4]=9>7 → r=mid-1=3。',
+                                'l=3,r=3,mid=3,a[3]=7 命中 → 下标 3。',
+                            ]}
+                        />
                         <MasteryCheck
                             title="C++ L5-10 二分查找离开前检查"
                             description="二分最怕“边界写错就死循环、忘了有序前提就漏答案”。勾选前先用一个小数组手推一次 mid 和边界移动。"

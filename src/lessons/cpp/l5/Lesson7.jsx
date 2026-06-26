@@ -1,7 +1,7 @@
 import React, { useMemo, useState } from 'react';
 import { AlertTriangle, ClipboardCheck, Plus, Search } from 'lucide-react';
 import CppL5LessonSupport from '../../../components/CppL5LessonSupport';
-import CppLessonShell, { Callout, CodeBlock, CompareTable, MasteryCheck, MiniQuiz, PredictCheck, StepList } from '../CppLessonShell';
+import CppLessonShell, { Callout, CodeBlock, CompareTable, MasteryCheck, MiniQuiz, PredictCheck, StepList, TransferCheck } from '../CppLessonShell';
 
 const sections = [
     { id: 1, title: '课程导入', category: '先连后断' },
@@ -226,6 +226,16 @@ if (q != nullptr) {
                             </p>
                         </div>
                         <MiniQuiz items={quiz} />
+                        <TransferCheck
+                            prompt={'换个例子：链表 A→B，要在 A、B 之间插入新节点 X。按「先连后断」，两条赋值语句应该按什么顺序写？'}
+                            hint="先让 X 指向 B，再让 A 指向 X，顺序反了会丢失 B。"
+                            answer={'先 X->next = A->next;（X 指向 B），再 A->next = X;。'}
+                            steps={[
+                                '先 X->next = A->next; 让 X 接上 B（此刻 A->next 还是 B）。',
+                                '再 A->next = X; 让 A 指向 X。',
+                                '若顺序反了：先 A->next=X 会弄丢 B 的地址，再也接不回去。',
+                            ]}
+                        />
                         <MasteryCheck
                             title="C++ L5-7 链表增删改离开前检查"
                             description="链表增删最怕“手一快，顺序错了后半条链就找不回来”。勾选前先把插入和删除各画一张 before/after 箭头图。"

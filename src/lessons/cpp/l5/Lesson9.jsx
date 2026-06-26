@@ -1,7 +1,7 @@
 import React, { useMemo, useState } from 'react';
 import { ClipboardCheck, RefreshCw, Search, UsersRound } from 'lucide-react';
 import CppL5LessonSupport from '../../../components/CppL5LessonSupport';
-import CppLessonShell, { Callout, CodeBlock, CompareTable, MasteryCheck, MiniQuiz, PredictCheck, StepList } from '../CppLessonShell';
+import CppLessonShell, { Callout, CodeBlock, CompareTable, MasteryCheck, MiniQuiz, PredictCheck, StepList, TransferCheck } from '../CppLessonShell';
 
 const sections = [
     { id: 1, title: '课程导入', category: '环形淘汰' },
@@ -230,6 +230,16 @@ while (!people.empty()) {
                             </p>
                         </div>
                         <MiniQuiz items={quiz} />
+                        <TransferCheck
+                            prompt="换个例子：5 人围圈编号 1~5，从 1 开始报数，报到 2 的人出圈。写出前两个出圈的人。"
+                            hint="模拟：报到 2 出圈，下一个人重新从 1 报。"
+                            answer="第一个出圈 2 号，第二个出圈 4 号。"
+                            steps={[
+                                '1 报 1、2 报 2 → 2 号出圈。',
+                                '从 3 继续：3 报 1、4 报 2 → 4 号出圈。',
+                                '（再下去 5 报 1、1 报 2 → 1 号出圈……）',
+                            ]}
+                        />
                         <MasteryCheck
                             title="C++ L5-9 约瑟夫环离开前检查"
                             description="约瑟夫环最怕“下标少减 1、取模用错人数、链表删除没接前驱”。勾选前先手推 n=5、k=2 一遍。"

@@ -1,7 +1,7 @@
 import React, { useMemo, useState } from 'react';
 import { ClipboardCheck, Filter, Search, ShieldCheck, Sparkles } from 'lucide-react';
 import CppL5LessonSupport from '../../../components/CppL5LessonSupport';
-import CppLessonShell, { Callout, CodeBlock, CompareTable, MasteryCheck, MiniQuiz, PredictCheck, StepList } from '../CppLessonShell';
+import CppLessonShell, { Callout, CodeBlock, CompareTable, MasteryCheck, MiniQuiz, PredictCheck, StepList, TransferCheck } from '../CppLessonShell';
 
 const sections = [
     { id: 1, title: '课程导入', category: '素数密度' },
@@ -241,6 +241,16 @@ for (int i = 2; i <= n; i++) {
                             </p>
                         </div>
                         <MiniQuiz items={quiz} />
+                        <TransferCheck
+                            prompt="换个例子：用埃氏筛找出 2~20 里的素数。说出筛 2 时会划掉哪些数，并判断 17 是不是素数。"
+                            hint="从最小素数 2 开始，把它的倍数（4,6,8,…）划掉；没被划掉的就是素数。"
+                            answer="筛 2 划掉 4,6,8,…,20；17 没被划掉 → 是素数。"
+                            steps={[
+                                '从 2 开始：划掉 2 的倍数 4,6,8,…,20。',
+                                '再筛 3：划掉 9,15,…（6,12,18 已划过）。',
+                                '17 不是 2、3 的倍数，更小素因子都没有 → 17 是素数。',
+                            ]}
+                        />
                         <MasteryCheck
                             title="C++ L5-1 素数筛离开前检查"
                             description="筛法最怕“从 2*i 重复划、单次判断也建整张表”。勾选前先想清这题是单次还是批量查询。"

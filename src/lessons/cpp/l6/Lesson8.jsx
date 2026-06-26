@@ -1,7 +1,7 @@
 import React, { useMemo, useState } from 'react';
 import { ClipboardCheck, MousePointer2, Search, Sparkles } from 'lucide-react';
 import CppL6LessonSupport from '../../../components/CppL6LessonSupport';
-import CppLessonShell, { Callout, CodeBlock, CompareTable, MasteryCheck, MiniQuiz, PredictCheck, StepList } from '../CppLessonShell';
+import CppLessonShell, { Callout, CodeBlock, CompareTable, MasteryCheck, MiniQuiz, PredictCheck, StepList, TransferCheck } from '../CppLessonShell';
 
 const sections = [
     { id: 1, title: '课程导入', category: '同名不同形' },
@@ -228,6 +228,16 @@ public:
                             </p>
                         </div>
                         <MiniQuiz items={quiz} />
+                        <TransferCheck
+                            prompt={'换个例子：基类 Shape 有虚函数 area()，Circle 和 Square 各自重写。Shape* p = new Circle(); p->area(); 调用谁的 area？'}
+                            hint="虚函数 + 基类指针 → 运行时按对象实际类型调用（多态）。"
+                            answer={'调用 Circle 的 area()。'}
+                            steps={[
+                                'area() 是虚函数，调用按对象的实际类型决定。',
+                                'p 实际指向 Circle 对象。',
+                                '所以 p->area() 调用 Circle::area()，这就是多态。',
+                            ]}
+                        />
                         <MasteryCheck
                             title="C++ L6-8 多态与虚函数离开前检查"
                             description="多态最怕“忘了 virtual 调到基类、按值传父类对象切片”。勾选前先写两个派生类，去掉 virtual 看输出怎么变。"

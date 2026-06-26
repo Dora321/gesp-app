@@ -1,7 +1,7 @@
 import React, { useMemo, useState } from 'react';
 import { ClipboardCheck, Grid3X3, Route, Search } from 'lucide-react';
 import CppL6LessonSupport from '../../../components/CppL6LessonSupport';
-import CppLessonShell, { Callout, CodeBlock, CompareTable, MasteryCheck, MiniQuiz, PredictCheck, StepList } from '../CppLessonShell';
+import CppLessonShell, { Callout, CodeBlock, CompareTable, MasteryCheck, MiniQuiz, PredictCheck, StepList, TransferCheck } from '../CppLessonShell';
 
 const sections = [
     { id: 1, title: '课程导入', category: '矩阵状态' },
@@ -239,6 +239,16 @@ for (int i = 1; i <= n; i++) {
                             </p>
                         </div>
                         <MiniQuiz items={quiz} />
+                        <TransferCheck
+                            prompt="换个例子：3×3 网格，只能向右或向下走，从左上到右下一共有几条路径？"
+                            hint="dp[i][j]=dp[i-1][j]+dp[i][j-1]，首行首列都填 1。"
+                            answer="6 条。"
+                            steps={[
+                                '首行首列全填 1。',
+                                '中间每格 = 上 + 左：第二行 1,2,3；第三行 1,3,6。',
+                                '右下角 = 6 条路径。',
+                            ]}
+                        />
                         <MasteryCheck
                             title="C++ L6-14 矩阵路径离开前检查"
                             description="矩阵 DP 最怕“最小代价用了加法、边界没单独处理、障碍格照常累加”。勾选前先在 4×4 网格手推一遍。"

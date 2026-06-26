@@ -1,7 +1,7 @@
 import React, { useMemo, useState } from 'react';
 import { Binary, ClipboardCheck, Search, Target } from 'lucide-react';
 import CppL6LessonSupport from '../../../components/CppL6LessonSupport';
-import CppLessonShell, { Callout, CodeBlock, CompareTable, MasteryCheck, MiniQuiz, PredictCheck, StepList } from '../CppLessonShell';
+import CppLessonShell, { Callout, CodeBlock, CompareTable, MasteryCheck, MiniQuiz, PredictCheck, StepList, TransferCheck } from '../CppLessonShell';
 
 const sections = [
     { id: 1, title: '课程导入', category: '最优编码' },
@@ -240,6 +240,16 @@ while (pq.size() > 1) {
                             </p>
                         </div>
                         <MiniQuiz items={quiz} />
+                        <TransferCheck
+                            prompt="换个例子：权值 {2, 3, 4, 5}，用哈夫曼每次合并最小的两个。写出每次合并和最终总代价。"
+                            hint="每次取两个最小权值合并，代价=两者之和，新权值放回。"
+                            answer="总代价 = 5 + 9 + 14 = 28。"
+                            steps={[
+                                '取最小的 2 和 3 合并 = 5，代价 5。集合变 {4, 5, 5}。',
+                                '取 4 和 5 合并 = 9，代价 9。集合变 {5, 9}。',
+                                '取 5 和 9 合并 = 14。总代价 5+9+14 = 28。',
+                            ]}
+                        />
                         <MasteryCheck
                             title="C++ L6-3 哈夫曼离开前检查"
                             description="哈夫曼最怕“默认大根堆取了最大、新权值忘了放回”。勾选前先手推 1/2/3/4/5 两轮合并。"

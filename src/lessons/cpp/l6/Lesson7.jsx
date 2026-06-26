@@ -1,7 +1,7 @@
 import React, { useMemo, useState } from 'react';
 import { ClipboardCheck, GitBranch, Search, Users } from 'lucide-react';
 import CppL6LessonSupport from '../../../components/CppL6LessonSupport';
-import CppLessonShell, { Callout, CodeBlock, CompareTable, MasteryCheck, MiniQuiz, PredictCheck, StepList } from '../CppLessonShell';
+import CppLessonShell, { Callout, CodeBlock, CompareTable, MasteryCheck, MiniQuiz, PredictCheck, StepList, TransferCheck } from '../CppLessonShell';
 
 const sections = [
     { id: 1, title: '课程导入', category: '复用代码' },
@@ -233,6 +233,16 @@ public:
                             </p>
                         </div>
                         <MiniQuiz items={quiz} />
+                        <TransferCheck
+                            prompt={'换个例子：class Animal{ public: void eat(){} }; class Cat: public Animal{ public: void meow(){} };。Cat 对象能调用哪些方法？为什么？'}
+                            hint="公有继承下，子类继承父类的公有成员，还能加自己的。"
+                            answer={'Cat 对象能调用 eat() 和 meow()。'}
+                            steps={[
+                                'Cat 公有继承 Animal，继承了它的公有方法 eat()。',
+                                'Cat 自己又定义了 meow()。',
+                                '所以 Cat 对象既能 eat() 又能 meow()。',
+                            ]}
+                        />
                         <MasteryCheck
                             title="C++ L6-7 继承与保护离开前检查"
                             description="继承最怕“把 has-a 也写成继承、以为子类能用父类 private”。勾选前先判断 5 组关系是继承还是组合。"

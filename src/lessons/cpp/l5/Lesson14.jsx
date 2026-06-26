@@ -1,7 +1,7 @@
 import React, { useMemo, useState } from 'react';
 import { ClipboardCheck, Gauge, Search, Timer } from 'lucide-react';
 import CppL5LessonSupport from '../../../components/CppL5LessonSupport';
-import CppLessonShell, { Callout, CodeBlock, CompareTable, MasteryCheck, MiniQuiz, PredictCheck, StepList } from '../CppLessonShell';
+import CppLessonShell, { Callout, CodeBlock, CompareTable, MasteryCheck, MiniQuiz, PredictCheck, StepList, TransferCheck } from '../CppLessonShell';
 
 const sections = [
     { id: 1, title: '课程导入', category: '规模估算' },
@@ -232,6 +232,16 @@ while (n > 1) {
                             </p>
                         </div>
                         <MiniQuiz items={quiz} />
+                        <TransferCheck
+                            prompt={'换个例子：for(i=0;i<n;i++) for(j=0;j<n;j++) sum++; 这段是什么复杂度？n=1000 时大约执行多少次？'}
+                            hint="两层都跑满 n 次，次数相乘。"
+                            answer="O(n²)；n=1000 时约 100 万次。"
+                            steps={[
+                                '外层 n 次，内层每次也 n 次 → n × n。',
+                                '复杂度 O(n²)。',
+                                'n=1000：1000 × 1000 = 10⁶ ≈ 100 万次。',
+                            ]}
+                        />
                         <MasteryCheck
                             title="C++ L5-14 复杂度离开前检查"
                             description="复杂度最怕“两层就判 O(n²)、n=10万还写 O(n²)”。勾选前先把 n=10万的 O(n²) 操作数算出来看能否过。"

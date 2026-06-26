@@ -1,7 +1,7 @@
 import React, { useMemo, useState } from 'react';
 import { ClipboardCheck, Divide, RefreshCw, Search, Sigma } from 'lucide-react';
 import CppL5LessonSupport from '../../../components/CppL5LessonSupport';
-import CppLessonShell, { Callout, CodeBlock, CompareTable, MasteryCheck, MiniQuiz, PredictCheck, StepList } from '../CppLessonShell';
+import CppLessonShell, { Callout, CodeBlock, CompareTable, MasteryCheck, MiniQuiz, PredictCheck, StepList, TransferCheck } from '../CppLessonShell';
 
 const sections = [
     { id: 1, title: '课程导入', category: '公因数模型' },
@@ -221,6 +221,16 @@ export default function CppL5Lesson2() {
                             </p>
                         </div>
                         <MiniQuiz items={quiz} />
+                        <TransferCheck
+                            prompt="换个例子：用辗转相除法（欧几里得）求 gcd(24, 18)。写出每一步的余数。"
+                            hint="gcd(a,b)=gcd(b, a%b)，直到余数为 0，此时除数就是答案。"
+                            answer="gcd(24, 18) = 6。"
+                            steps={[
+                                '24 % 18 = 6 → 转成 gcd(18, 6)。',
+                                '18 % 6 = 0 → 余数为 0，停止。',
+                                '此时除数 6 就是最大公约数。',
+                            ]}
+                        />
                         <MasteryCheck
                             title="C++ L5-2 公约数与公倍数离开前检查"
                             description="GCD 最怕“lcm 先乘 a*b 溢出、循环终止条件记错”。勾选前先手推一遍 gcd(84, 36)。"

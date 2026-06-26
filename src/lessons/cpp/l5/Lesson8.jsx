@@ -1,7 +1,7 @@
 import React, { useMemo, useState } from 'react';
 import { ClipboardCheck, Repeat2, Search, Waypoints } from 'lucide-react';
 import CppL5LessonSupport from '../../../components/CppL5LessonSupport';
-import CppLessonShell, { Callout, CodeBlock, CompareTable, MasteryCheck, MiniQuiz, PredictCheck, StepList } from '../CppLessonShell';
+import CppLessonShell, { Callout, CodeBlock, CompareTable, MasteryCheck, MiniQuiz, PredictCheck, StepList, TransferCheck } from '../CppLessonShell';
 
 const sections = [
     { id: 1, title: '课程导入', category: '更多指针' },
@@ -229,6 +229,16 @@ do {
                             </p>
                         </div>
                         <MiniQuiz items={quiz} />
+                        <TransferCheck
+                            prompt={'换个例子：双向链表 …⇄P⇄Q⇄R⇄…，要删除节点 Q，需要改哪两条指针？'}
+                            hint="删 Q 要让前驱 P 和后继 R 直接相连——两个方向都要接。"
+                            answer={'P->next = R; 和 R->prev = P;（即 Q->prev->next=Q->next; Q->next->prev=Q->prev;）。'}
+                            steps={[
+                                '让前驱跳过 Q：Q->prev->next = Q->next（P->next = R）。',
+                                '让后继的 prev 跳回前驱：Q->next->prev = Q->prev（R->prev = P）。',
+                                '两条都改好后再 delete Q。',
+                            ]}
+                        />
                         <MasteryCheck
                             title="C++ L5-8 复杂链表离开前检查"
                             description="复杂链表最怕“删除只改一边、循环链表用 NULL 判停”。勾选前先在草稿上画出要改哪几条边。"

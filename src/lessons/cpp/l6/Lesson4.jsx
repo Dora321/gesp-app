@@ -1,7 +1,7 @@
 import React, { useMemo, useState } from 'react';
 import { ClipboardCheck, ListChecks, Route, Search } from 'lucide-react';
 import CppL6LessonSupport from '../../../components/CppL6LessonSupport';
-import CppLessonShell, { Callout, CodeBlock, CompareTable, MasteryCheck, MiniQuiz, PredictCheck, StepList } from '../CppLessonShell';
+import CppLessonShell, { Callout, CodeBlock, CompareTable, MasteryCheck, MiniQuiz, PredictCheck, StepList, TransferCheck } from '../CppLessonShell';
 
 const sections = [
     { id: 1, title: '课程导入', category: '按层扩展' },
@@ -261,6 +261,16 @@ if (!visited[nx][ny]) {
                             </p>
                         </div>
                         <MiniQuiz items={quiz} />
+                        <TransferCheck
+                            prompt="换个例子：图的边 1-2, 1-3, 2-4。从 1 出发做 BFS（同层按编号小的先），写出访问顺序。"
+                            hint="BFS 用队列，一层一层扩展：先起点，再它的邻居，再邻居的邻居。"
+                            answer="1 2 3 4。"
+                            steps={[
+                                '1 入队、出队访问，邻居 2、3 入队。',
+                                '出队访问 2，其邻居 4 入队；出队访问 3。',
+                                '出队访问 4。顺序：1 2 3 4。',
+                            ]}
+                        />
                         <MasteryCheck
                             title="C++ L6-4 BFS 离开前检查"
                             description="BFS 最怕“出队才标记导致重复入队、对带权图错用普通 BFS”。勾选前先在迷宫上画出前两层扩展。"

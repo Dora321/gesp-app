@@ -1,7 +1,7 @@
 import React, { useMemo, useState } from 'react';
 import { BrainCircuit, ClipboardCheck, Repeat2, Search } from 'lucide-react';
 import CppL5LessonSupport from '../../../components/CppL5LessonSupport';
-import CppLessonShell, { Callout, CodeBlock, CompareTable, MasteryCheck, MiniQuiz, PredictCheck, StepList } from '../CppLessonShell';
+import CppLessonShell, { Callout, CodeBlock, CompareTable, MasteryCheck, MiniQuiz, PredictCheck, StepList, TransferCheck } from '../CppLessonShell';
 
 const sections = [
     { id: 1, title: '课程导入', category: '重复子问题' },
@@ -235,6 +235,16 @@ int dfs(int i, int j) {
                             </p>
                         </div>
                         <MiniQuiz items={quiz} />
+                        <TransferCheck
+                            prompt="换个例子：用记忆化递归算 fib(5)。说明「避免重复计算」体现在哪一步。"
+                            hint="用数组 memo 存已算过的 fib(i)；再次需要时直接取，不重复递归。"
+                            answer="fib(5)=5；算 fib(5) 时 fib(3) 只真正算一次。"
+                            steps={[
+                                'fib(5)=fib(4)+fib(3)，fib(4)=fib(3)+fib(2)。',
+                                '算 fib(4) 时已经算出 fib(3) 并存进 memo。',
+                                '回到 fib(5) 需要 fib(3) 时直接读 memo，不再重复递归。',
+                            ]}
+                        />
                         <MasteryCheck
                             title="C++ L5-13 记忆化递归离开前检查"
                             description="记忆化最怕“用 memo!=0 判断算没算过、先算才查缓存”。勾选前先把一道题的状态、边界、转移写成三句话。"

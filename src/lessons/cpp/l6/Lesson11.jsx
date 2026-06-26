@@ -1,7 +1,7 @@
 import React, { useMemo, useState } from 'react';
 import { BrainCircuit, ClipboardCheck, Route, Search } from 'lucide-react';
 import CppL6LessonSupport from '../../../components/CppL6LessonSupport';
-import CppLessonShell, { Callout, CodeBlock, CompareTable, MasteryCheck, MiniQuiz, PredictCheck, StepList } from '../CppLessonShell';
+import CppLessonShell, { Callout, CodeBlock, CompareTable, MasteryCheck, MiniQuiz, PredictCheck, StepList, TransferCheck } from '../CppLessonShell';
 
 const sections = [
     { id: 1, title: '课程导入', category: '状态与转移' },
@@ -219,6 +219,16 @@ for (int i = 1; i <= n; i++) {
                             </p>
                         </div>
                         <MiniQuiz items={quiz} />
+                        <TransferCheck
+                            prompt="换个例子：爬楼梯每次 1 或 2 阶，用 DP 求到第 4 阶的方法数。写出 dp 数组。"
+                            hint="dp[i]=dp[i-1]+dp[i-2]，dp[1]=1, dp[2]=2。"
+                            answer="到第 4 阶有 5 种（dp[4]=5）。"
+                            steps={[
+                                'dp[1]=1, dp[2]=2。',
+                                'dp[3]=dp[2]+dp[1]=3。',
+                                'dp[4]=dp[3]+dp[2]=5。',
+                            ]}
+                        />
                         <MasteryCheck
                             title="C++ L6-11 DP 基础离开前检查"
                             description="DP 最怕“跳过状态定义直接抄公式”。勾选前先给爬楼梯写出状态、初值、转移、答案四句话。"

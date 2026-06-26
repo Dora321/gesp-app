@@ -1,7 +1,7 @@
 import React, { useMemo, useState } from 'react';
 import { ClipboardCheck, GitBranch, Route, Search } from 'lucide-react';
 import CppL6LessonSupport from '../../../components/CppL6LessonSupport';
-import CppLessonShell, { Callout, CodeBlock, CompareTable, MasteryCheck, MiniQuiz, PredictCheck, StepList } from '../CppLessonShell';
+import CppLessonShell, { Callout, CodeBlock, CompareTable, MasteryCheck, MiniQuiz, PredictCheck, StepList, TransferCheck } from '../CppLessonShell';
 
 const sections = [
     { id: 1, title: '课程导入', category: '三种顺序' },
@@ -240,6 +240,16 @@ void postorder(int root) {
                             </p>
                         </div>
                         <MiniQuiz items={quiz} />
+                        <TransferCheck
+                            prompt="换个例子：二叉树 根=1，左子=2，右子=3。写出前序、中序、后序遍历结果。"
+                            hint="前序=根左右，中序=左根右，后序=左右根。"
+                            answer="前序 1 2 3；中序 2 1 3；后序 2 3 1。"
+                            steps={[
+                                '前序（根左右）：1，再左 2，再右 3 → 1 2 3。',
+                                '中序（左根右）：左 2，根 1，右 3 → 2 1 3。',
+                                '后序（左右根）：左 2，右 3，根 1 → 2 3 1。',
+                            ]}
+                        />
                         <MasteryCheck
                             title="C++ L6-2 树的遍历离开前检查"
                             description="遍历最怕“把根访问时机记混、漏了空节点边界”。勾选前先在一棵 7 节点树上手推三种序列。"

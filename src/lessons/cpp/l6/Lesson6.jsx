@@ -1,7 +1,7 @@
 import React, { useMemo, useState } from 'react';
 import { Boxes, ClipboardCheck, Search, ShieldCheck } from 'lucide-react';
 import CppL6LessonSupport from '../../../components/CppL6LessonSupport';
-import CppLessonShell, { Callout, CodeBlock, CompareTable, MasteryCheck, MiniQuiz, PredictCheck, StepList } from '../CppLessonShell';
+import CppLessonShell, { Callout, CodeBlock, CompareTable, MasteryCheck, MiniQuiz, PredictCheck, StepList, TransferCheck } from '../CppLessonShell';
 
 const sections = [
     { id: 1, title: '课程导入', category: '封装' },
@@ -228,6 +228,16 @@ public:
                             </p>
                         </div>
                         <MiniQuiz items={quiz} />
+                        <TransferCheck
+                            prompt={'换个例子：class Dog{ public: string name; Dog(string n){ name=n; } };，Dog d("旺财"); 之后 d.name 是什么？构造函数起了什么作用？'}
+                            hint="构造函数在创建对象时自动调用，用来初始化成员。"
+                            answer={'d.name = "旺财"；构造函数把传入的 n 赋给了成员 name。'}
+                            steps={[
+                                'Dog d("旺财") 创建对象时自动调用构造函数 Dog(string n)。',
+                                '构造函数里 name = n; 把 "旺财" 存进成员 name。',
+                                '所以 d.name = "旺财"。',
+                            ]}
+                        />
                         <MasteryCheck
                             title="C++ L6-6 类与封装离开前检查"
                             description="OOP 入门最怕“构造函数加了返回类型、private 还想从外面直接改”。勾选前先自己写一个最小 Counter 类验证。"

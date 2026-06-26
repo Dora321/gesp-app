@@ -1,7 +1,7 @@
 import React, { useMemo, useState } from 'react';
 import { ClipboardCheck, GitBranch, Layers2, Search } from 'lucide-react';
 import CppL5LessonSupport from '../../../components/CppL5LessonSupport';
-import CppLessonShell, { Callout, CodeBlock, CompareTable, MasteryCheck, MiniQuiz, PredictCheck, StepList } from '../CppLessonShell';
+import CppLessonShell, { Callout, CodeBlock, CompareTable, MasteryCheck, MiniQuiz, PredictCheck, StepList, TransferCheck } from '../CppLessonShell';
 
 const sections = [
     { id: 1, title: '课程导入', category: '拆分问题' },
@@ -215,6 +215,16 @@ while (i <= mid && j <= r) {
                             </p>
                         </div>
                         <MiniQuiz items={quiz} />
+                        <TransferCheck
+                            prompt="换个例子：用分治求数组 {3, 8, 2, 5} 的最大值。说出怎么分成两半、再合并。"
+                            hint="分：左半最大、右半最大；治：两者取较大。"
+                            answer="最大值 8。"
+                            steps={[
+                                '分成左 {3,8} 和右 {2,5}。',
+                                '左半最大 = 8，右半最大 = 5。',
+                                '合并：max(8, 5) = 8。',
+                            ]}
+                        />
                         <MasteryCheck
                             title="C++ L5-11 分治思想离开前检查"
                             description="分治最怕“先合并后排序、漏了递归出口”。勾选前先画一棵 n=8 的递归拆分树。"

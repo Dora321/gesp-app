@@ -1,7 +1,7 @@
 import React, { useMemo, useState } from 'react';
 import { ClipboardCheck, Link2, MousePointer2, Search } from 'lucide-react';
 import CppL5LessonSupport from '../../../components/CppL5LessonSupport';
-import CppLessonShell, { Callout, CodeBlock, CompareTable, MasteryCheck, MiniQuiz, PredictCheck, StepList } from '../CppLessonShell';
+import CppLessonShell, { Callout, CodeBlock, CompareTable, MasteryCheck, MiniQuiz, PredictCheck, StepList, TransferCheck } from '../CppLessonShell';
 
 const sections = [
     { id: 1, title: '课程导入', category: '节点模型' },
@@ -222,6 +222,16 @@ while (cur != nullptr) {
                             </p>
                         </div>
                         <MiniQuiz items={quiz} />
+                        <TransferCheck
+                            prompt={'换个例子：链表 head→[10]→[20]→[30]→NULL。怎么从 head 访问到值 20？head->next->next 又是哪个节点？'}
+                            hint="->next 走到下一个节点；->data 取当前节点的值。"
+                            answer={'head->next->data = 20；head->next->next 是 [30] 节点。'}
+                            steps={[
+                                'head 指向 [10]。',
+                                'head->next 是 [20]，head->next->data = 20。',
+                                'head->next->next 再走一步是 [30]。',
+                            ]}
+                        />
                         <MasteryCheck
                             title="C++ L5-6 链表的诞生离开前检查"
                             description="链表入门最怕“还把它当数组用”。勾选前先画一条 3 节点的链，标出 head、每个 next 和结尾的 nullptr。"

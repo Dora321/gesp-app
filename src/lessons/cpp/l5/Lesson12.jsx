@@ -1,7 +1,7 @@
 import React, { useMemo, useState } from 'react';
 import { CheckCircle2, ClipboardCheck, Coins, Search } from 'lucide-react';
 import CppL5LessonSupport from '../../../components/CppL5LessonSupport';
-import CppLessonShell, { Callout, CodeBlock, CompareTable, MasteryCheck, MiniQuiz, PredictCheck, StepList } from '../CppLessonShell';
+import CppLessonShell, { Callout, CodeBlock, CompareTable, MasteryCheck, MiniQuiz, PredictCheck, StepList, TransferCheck } from '../CppLessonShell';
 
 const sections = [
     { id: 1, title: '课程导入', category: '局部最优' },
@@ -232,6 +232,16 @@ for (int i = 0; i < n; i++) {
                             </p>
                         </div>
                         <MiniQuiz items={quiz} />
+                        <TransferCheck
+                            prompt="换个例子：硬币面额 {1, 5, 10}，要凑 27 元，贪心地每次拿不超过剩余的最大面额，最少几枚？"
+                            hint="每次拿能用的最大面额，直到凑够。"
+                            answer="5 枚：10 + 10 + 5 + 1 + 1。"
+                            steps={[
+                                '先拿两个 10 → 剩 7。',
+                                '再拿一个 5 → 剩 2。',
+                                '拿两个 1 → 剩 0。共 2+1+2 = 5 枚。',
+                            ]}
+                        />
                         <MasteryCheck
                             title="C++ L5-12 贪心策略离开前检查"
                             description="贪心最怕“凭感觉选最大，没证明也没试反例”。勾选前先为一个错误贪心亲手造一个反例。"

@@ -1,7 +1,7 @@
 import React, { useMemo, useState } from 'react';
 import { ClipboardCheck, DivideCircle, Search, ShieldCheck, XCircle } from 'lucide-react';
 import CppL5LessonSupport from '../../../components/CppL5LessonSupport';
-import CppLessonShell, { Callout, CodeBlock, CompareTable, MasteryCheck, MiniQuiz, PredictCheck, StepList } from '../CppLessonShell';
+import CppLessonShell, { Callout, CodeBlock, CompareTable, MasteryCheck, MiniQuiz, PredictCheck, StepList, TransferCheck } from '../CppLessonShell';
 
 const sections = [
     { id: 1, title: '课程导入', category: '竖式扩展' },
@@ -253,6 +253,16 @@ export default function CppL5Lesson4() {
                             </p>
                         </div>
                         <MiniQuiz items={quiz} />
+                        <TransferCheck
+                            prompt="换个例子：高精乘低精算 25 × 3，从哪一位开始？写出每位的乘积和进位。"
+                            hint="和加法一样从最低位开始，每位乘 3 再加进位，满 10 进位。"
+                            answer="75。"
+                            steps={[
+                                '个位 5×3=15 → 本位 5，进位 1。',
+                                '十位 2×3=6，加进位 1 = 7 → 本位 7，进位 0。',
+                                '结果 75。',
+                            ]}
+                        />
                         <MasteryCheck
                             title="C++ L5-4 高精乘除离开前检查"
                             description="高精乘除最怕“方向记反、除法忘了带余数、前导零没删”。勾选前先用小数字对照竖式手推一遍。"

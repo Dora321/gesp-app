@@ -1,7 +1,7 @@
 import React, { useMemo, useState } from 'react';
 import { ClipboardCheck, PackageCheck, Search, ShoppingCart } from 'lucide-react';
 import CppL6LessonSupport from '../../../components/CppL6LessonSupport';
-import CppLessonShell, { Callout, CodeBlock, CompareTable, MasteryCheck, MiniQuiz, PredictCheck, StepList } from '../CppLessonShell';
+import CppLessonShell, { Callout, CodeBlock, CompareTable, MasteryCheck, MiniQuiz, PredictCheck, StepList, TransferCheck } from '../CppLessonShell';
 
 const sections = [
     { id: 1, title: '课程导入', category: '选择或不选' },
@@ -233,6 +233,16 @@ for (int i = 1; i <= n; i++) {
                             </p>
                         </div>
                         <MiniQuiz items={quiz} />
+                        <TransferCheck
+                            prompt="换个例子：0/1 背包，容量 5，物品（重,值）=(2,3),(3,4),(4,5)，每件最多一次，最大价值是多少？"
+                            hint="每件选或不选；dp[j]=max(dp[j], dp[j-w]+v)，j 从大到小。"
+                            answer="最大价值 7（拿前两件：重 2+3=5，值 3+4=7）。"
+                            steps={[
+                                '拿 (2,3)+(3,4)：重 5，值 7。',
+                                '(4,5) 单件值 5；(2,3)+(4,5) 重 6 超容量。',
+                                '最优是前两件，最大价值 7。',
+                            ]}
+                        />
                         <MasteryCheck
                             title="C++ L6-12 0/1 背包离开前检查"
                             description="背包最怕“一维优化把容量循环写正序，物品就被重复选了”。勾选前先用一个小样例验证正序为什么会重复选。"
