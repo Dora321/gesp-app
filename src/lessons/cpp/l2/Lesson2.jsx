@@ -20,6 +20,7 @@ import {
     ArrowDown
 } from 'lucide-react';
 import CppL2LessonSupport from '../../../components/CppL2LessonSupport';
+import LegacyCppLessonShell from '../LegacyCppLessonShell';
 
 // --- 图标映射 ---
 const Icon = ({ name, size = 24, className = "" }) => {
@@ -428,7 +429,6 @@ const CaseConverterChallenge = () => {
 // --- 主应用 ---
 export default function App() {
     const [activeSection, setActiveSection] = useState(1);
-    const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
 
     const totalSections = sections.length;
 
@@ -752,106 +752,20 @@ export default function App() {
     };
 
     return (
-        <div className="flex h-screen bg-slate-50 font-sans text-slate-900 overflow-hidden">
-            {/* Mobile Header */}
-            <div className="md:hidden fixed top-0 left-0 w-full z-50 bg-slate-900 text-white border-b border-slate-700 p-4 flex items-center justify-between shadow-sm">
-                <span className="font-bold font-mono text-green-400">GESP::L2_02</span>
-                <button onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)} className="p-2 bg-slate-800 rounded-lg text-gray-300">
-                    {isMobileMenuOpen ? <X size={24} /> : <Menu size={24} />}
-                </button>
-            </div>
-
-            {/* Sidebar */}
-            <div className={`
-        fixed inset-y-0 left-0 z-40 w-72 bg-slate-900 text-gray-300 border-r border-slate-700 transform transition-transform duration-300 ease-in-out flex flex-col
-        md:relative md:translate-x-0
-        ${isMobileMenuOpen ? 'translate-x-0' : '-translate-x-full'}
-      `}>
-                <div className="p-6 border-b border-slate-800 bg-slate-900">
-                    <h1 className="text-xl font-extrabold text-white flex items-center gap-2 tracking-tight">
-                        <Terminal className="text-green-500" /> C++ 特工学院
-                    </h1>
-                    <p className="text-xs text-green-500/80 mt-1 font-bold font-mono pl-8">LEVEL 2 ACCESS GRANTED</p>
-                </div>
-
-                <div className="flex-1 overflow-y-auto py-4 px-3 space-y-1">
-                    {sections.map((section, idx) => {
-                        const isCategoryStart = idx === 0 || sections[idx - 1].category !== section.category;
-                        return (
-                            <React.Fragment key={section.id}>
-                                {isCategoryStart && (
-                                    <div className="px-3 pt-4 pb-2 text-xs font-bold text-slate-500 uppercase tracking-wider font-mono">
-                                        {section.category}
-                                    </div>
-                                )}
-                                <button
-                                    onClick={() => {
-                                        setActiveSection(section.id);
-                                        setIsMobileMenuOpen(false);
-                                    }}
-                                    className={`w-full text-left px-4 py-3 rounded-xl transition-all flex items-center gap-3
-                    ${activeSection === section.id
-                                            ? 'bg-green-600/20 text-green-400 border border-green-600/50 font-bold'
-                                            : 'hover:bg-slate-800 text-gray-400'
-                                        }`}
-                                >
-                                    <Icon name={section.icon} size={18} className={activeSection === section.id ? "text-green-400" : "text-gray-500"} />
-                                    <span className="truncate text-sm">{section.title.split('：')[0]}</span>
-                                </button>
-                            </React.Fragment>
-                        );
-                    })}
-                </div>
-            </div>
-
-            {/* Main Content */}
-            <div className="flex-1 flex flex-col h-full pt-16 md:pt-0 relative bg-slate-50">
-                {/* Progress Bar */}
-                <div className="h-1 bg-gray-200 w-full">
-                    <div
-                        className="h-full bg-green-500 transition-all duration-300 shadow-[0_0_10px_rgba(34,197,94,0.5)]"
-                        style={{ width: `${(activeSection / totalSections) * 100}%` }}
-                    ></div>
-                </div>
-
-                {/* Content Area */}
-                <main className="flex-1 overflow-y-auto p-4 md:p-10">
-                    <div className="max-w-4xl mx-auto min-h-[500px]">
-                        {activeSection === 1 && <CppL2LessonSupport lessonId={2} />}
-                        {renderContent()}
-                        {activeSection === totalSections && <CppL2LessonSupport lessonId={2} placement="bottom" />}
-                    </div>
-                </main>
-
-                {/* Navigation Footer */}
-                <footer className="bg-white border-t border-gray-200 p-4 md:px-10 h-20 flex items-center justify-between shadow-[0_-4px_6px_-1px_rgba(0,0,0,0.05)] z-10">
-                    <button
-                        onClick={prevSection}
-                        disabled={activeSection === 1}
-                        className={`px-6 py-2 rounded-lg font-bold flex items-center gap-2 transition
-              ${activeSection === 1
-                                ? 'text-gray-300 cursor-not-allowed'
-                                : 'text-gray-600 hover:bg-gray-100 hover:text-green-600'}`}
-                    >
-                        <ArrowRight className="rotate-180" size={20} /> 上一步
-                    </button>
-
-                    <div className="text-gray-400 font-mono text-sm hidden md:block">
-                        FILE {activeSection} / {totalSections}
-                    </div>
-
-                    <button
-                        onClick={nextSection}
-                        disabled={activeSection === totalSections}
-                        className={`px-6 py-2 rounded-lg font-bold flex items-center gap-2 transition
-              ${activeSection === totalSections
-                                ? 'bg-gray-300 text-white cursor-not-allowed'
-                                : 'bg-green-600 text-white hover:bg-green-700 shadow-lg hover:shadow-green-200'}`}
-                    >
-                        {activeSection === totalSections ? "归档" : "下一步"} <ArrowRight size={20} />
-                    </button>
-                </footer>
-            </div>
-        </div>
+        <LegacyCppLessonShell
+            lessonNumber={2}
+            lessonTitle="字符与 ASCII 编码"
+            levelLabel="二级趣味课堂"
+            accent="bluePurple"
+            sections={sections}
+            activeSection={activeSection}
+            setActiveSection={setActiveSection}
+            nextLessonPath="/lesson/2/3"
+            renderIcon={(name, size) => <Icon name={name} size={size} />}
+            topSupport={<CppL2LessonSupport lessonId={2} />}
+            bottomSupport={<CppL2LessonSupport lessonId={2} placement="bottom" />}
+        >
+            {renderContent()}
+        </LegacyCppLessonShell>
     );
 }
