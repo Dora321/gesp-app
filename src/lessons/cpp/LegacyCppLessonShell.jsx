@@ -54,6 +54,7 @@ export default function LegacyCppLessonShell({
   bottomSupport,
   children,
   accent = 'blue',
+  levelLabel = '一级趣味课堂',
 }) {
   const navigate = useNavigate();
   const location = useLocation();
@@ -110,7 +111,7 @@ export default function LegacyCppLessonShell({
             </div>
           </Link>
           <span className="bg-blue-600 text-white px-2 py-0.5 rounded text-xs">C++</span>
-          <span>一级趣味课堂</span>
+          <span>{levelLabel}</span>
         </h1>
         <button
           onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
