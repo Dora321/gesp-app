@@ -450,9 +450,22 @@ const ShuffleSampleSlide = () => {
     );
 };
 
+// Fisher-Yates 洗牌；若洗出的恰好是正确顺序则末两项对调，保证初始一定是乱序
+const shuffledOrder = (n) => {
+    const order = Array.from({ length: n }, (_, i) => i);
+    for (let i = n - 1; i > 0; i--) {
+        const j = Math.floor(Math.random() * (i + 1));
+        [order[i], order[j]] = [order[j], order[i]];
+    }
+    if (n > 1 && order.every((v, i) => v === i)) {
+        [order[n - 1], order[n - 2]] = [order[n - 2], order[n - 1]];
+    }
+    return order;
+};
+
 const ParsonsProblem = ({ blocks, onCorrect }) => {
 
-    const [currentOrder, setCurrentOrder] = useState(blocks.map((b, i) => i).sort(() => Math.random() - 0.5));
+    const [currentOrder, setCurrentOrder] = useState(() => shuffledOrder(blocks.length));
     const [isCorrect, setIsCorrect] = useState(false);
 
     const moveUp = (index) => {

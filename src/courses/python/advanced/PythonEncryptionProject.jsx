@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useMemo } from 'react';
+import React, { useState, useEffect, useMemo, useRef } from 'react';
 import { Link } from 'react-router-dom';
 import { Shield, Lock, Unlock, Key, FileText, ArrowRight, RotateCcw, Check, X, Terminal, Binary, Hash, Eye, EyeOff, Menu, RefreshCw, CheckCircle } from 'lucide-react';
 import PythonProjectSupport from '../../../components/PythonProjectSupport';
@@ -156,6 +156,14 @@ const CaesarSlide = () => {
     const [input, setInput] = useState('HELLO');
     const [shift, setShift] = useState(3);
     const [animate, setAnimate] = useState(false);
+    const flashTimer = useRef(null);
+
+    // 输入变化时让密钥徽章闪一下：由事件触发，而不是 effect 监听 state
+    const flash = () => {
+        setAnimate(true);
+        clearTimeout(flashTimer.current);
+        flashTimer.current = setTimeout(() => setAnimate(false), 300);
+    };
 
     const encrypt = (text, s) => {
         return text.split('').map(char => {
@@ -174,11 +182,7 @@ const CaesarSlide = () => {
 
     const output = encrypt(input, shift);
 
-    useEffect(() => {
-        setAnimate(true);
-        const timer = setTimeout(() => setAnimate(false), 300);
-        return () => clearTimeout(timer);
-    }, [input, shift]);
+    useEffect(() => () => clearTimeout(flashTimer.current), []);
 
     const caesarSteps = useMemo(() => {
         const text = 'HELLO';
@@ -227,7 +231,7 @@ const CaesarSlide = () => {
                     <div className="flex items-center gap-4">
                         <input
                             value={input}
-                            onChange={(e) => setInput(e.target.value.toUpperCase())}
+                            onChange={(e) => { setInput(e.target.value.toUpperCase()); flash(); }}
                             className="flex-1 bg-slate-800 text-white p-4 rounded-xl font-mono text-xl tracking-widest border border-slate-700 focus:border-indigo-500 focus:outline-none placeholder-slate-600 uppercase"
                             placeholder=" 输入消息..."
                         />
@@ -251,7 +255,7 @@ const CaesarSlide = () => {
                         min="1"
                         max="25"
                         value={shift}
-                        onChange={(e) => setShift(parseInt(e.target.value))}
+                        onChange={(e) => { setShift(parseInt(e.target.value)); flash(); }}
                         className="w-full h-2 bg-slate-700 rounded-lg appearance-none cursor-pointer accent-indigo-500"
                     />
                     <div className="flex justify-between text-xs text-slate-500 mt-2 font-mono">
@@ -522,15 +526,16 @@ const PracticeSlide = () => {
     const [timeLeft, setTimeLeft] = useState(60); // 60 seconds total
 
     useEffect(() => {
-        let timer;
-        if (status === 'playing' && timeLeft > 0) {
-            timer = setInterval(() => {
-                setTimeLeft(prev => prev - 1);
-            }, 1000);
-        } else if (timeLeft === 0 && status === 'playing') {
-            setStatus('gameover');
-        }
-        return () => clearInterval(timer);
+        if (status !== 'playing') return undefined;
+        const timer = setTimeout(() => {
+            if (timeLeft <= 1) {
+                setTimeLeft(0);
+                setStatus('gameover');
+            } else {
+                setTimeLeft(timeLeft - 1);
+            }
+        }, 1000);
+        return () => clearTimeout(timer);
     }, [status, timeLeft]);
 
     const startGame = () => {

@@ -422,13 +422,7 @@ const DataTypeSlide = () => {
 };
 
 // 7. Code Playground
-const CodePlaygroundSlide = () => {
-    const [selectedExample, setSelectedExample] = useState(0);
-    const [code, setCode] = useState('');
-    const [output, setOutput] = useState('');
-    const [isRunning, setIsRunning] = useState(false);
-
-    const examples = [
+const examples = [
         {
             title: '🎨 彩虹打印',
             code: `# 打印彩色文字
@@ -488,7 +482,13 @@ else:
     print("晚上好! 🌙")`,
             output: `下午好! 🌤️`
         }
-    ];
+];
+
+const CodePlaygroundSlide = () => {
+    const [selectedExample, setSelectedExample] = useState(0);
+    const [code, setCode] = useState('');
+    const [output, setOutput] = useState('');
+    const [isRunning, setIsRunning] = useState(false);
 
     React.useEffect(() => {
         setCode(examples[selectedExample].code);

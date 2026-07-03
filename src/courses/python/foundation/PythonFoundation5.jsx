@@ -287,6 +287,7 @@ const ColorSlide = () => {
 const ArtSlide = () => {
     const [pattern, setPattern] = useState('spiral');
     const [run, setRun] = useState(false);
+    const [runId, setRunId] = useState(0);
 
     const patterns = {
         spiral: {
@@ -343,13 +344,13 @@ const ArtSlide = () => {
                         ))}
                     </div>
                     <CodeBlock code={currentP.code} />
-                    <Button onClick={() => setRun(prev => !prev)} variant="primary" className="w-full">
+                    <Button onClick={() => { setRun(prev => !prev); setRunId(id => id + 1); }} variant="primary" className="w-full">
                         {run ? '重新开始' : '开始绘制'}
                     </Button>
                 </div>
                 <div className="flex justify-center items-center bg-slate-50 rounded-2xl p-4 min-h-[350px]">
                     {run ? (
-                        <TurtleCanvas key={`${pattern}-${Date.now()}`} commands={currentP.getCmds()} isRunning={true} />
+                        <TurtleCanvas key={`${pattern}-${runId}`} commands={currentP.getCmds()} isRunning={true} />
                     ) : (
                         <div className="text-slate-400 flex flex-col items-center">
                             <Sparkles size={48} className="mb-2 opacity-20" />
@@ -511,11 +512,13 @@ const ChallengeSlide = () => {
 const PlaygroundSlide = () => {
     const [inputCode, setInputCode] = useState('pensize 2\ncolor blue\nfd 100\nrt 90\nfd 100\nrt 90\nfd 100\nrt 90\nfd 100');
     const [cmds, setCmds] = useState([]);
+    const [runId, setRunId] = useState(0);
 
     const runCode = () => {
         const lines = inputCode.split('\n');
         const parsed = lines.map(l => l.trim()).filter(l => l && !l.startsWith('#'));
         setCmds(parsed);
+        setRunId(id => id + 1);
     };
 
     return (
@@ -544,7 +547,7 @@ const PlaygroundSlide = () => {
                     <Button onClick={runCode} variant="success">运行代码</Button>
                 </div>
                 <div className="flex justify-center items-center bg-slate-50 rounded-2xl p-4 border-2 border-slate-200">
-                    <TurtleCanvas key={Date.now()} commands={cmds} isRunning={true} />
+                    <TurtleCanvas key={runId} commands={cmds} isRunning={true} />
                 </div>
             </div>
         </div>

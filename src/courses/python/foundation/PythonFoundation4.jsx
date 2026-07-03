@@ -341,6 +341,9 @@ print(gem)    # ${varLocation === 'global' ? '✅ OK (Everyone sees it)' : '❌ 
 };
 
 // 3. Modules - The Hero's Toolkit
+const LOOT_BOX = ['🗡️ Iron Sword', '🛡️ Wooden Shield', '💰 Gold Coin', '💊 Health Potion'];
+const rollLoot = () => LOOT_BOX[Math.floor(Math.random() * LOOT_BOX.length)];
+
 const ModuleSlide = () => {
     const [activeTool, setActiveTool] = useState(null);
     const [toolOutput, setToolOutput] = useState(null);
@@ -351,14 +354,12 @@ const ModuleSlide = () => {
         { id: 'math', name: 'math', icon: '📐', desc: 'Geo Analyzer', color: 'bg-purple-500' },
     ];
 
-    const useTool = (toolId) => {
+    const runTool = (toolId) => {
         setActiveTool(toolId);
         setToolOutput(null); // Reset
 
         if (toolId === 'random') {
-            const loot = ['🗡️ Iron Sword', '🛡️ Wooden Shield', '💰 Gold Coin', '💊 Health Potion'];
-            const item = loot[Math.floor(Math.random() * loot.length)];
-            setToolOutput({ cmd: 'random.choice(loot_box)', val: item });
+            setToolOutput({ cmd: 'random.choice(loot_box)', val: rollLoot() });
         } else if (toolId === 'time') {
             const time = new Date().toLocaleTimeString();
             setToolOutput({ cmd: 'time.ctime()', val: time });
@@ -390,7 +391,7 @@ const ModuleSlide = () => {
                         {tools.map(tool => (
                             <button
                                 key={tool.id}
-                                onClick={() => useTool(tool.id)}
+                                onClick={() => runTool(tool.id)}
                                 className={`aspect-square rounded-xl p-2 flex flex-col items-center justify-center gap-2 transition-all border-2
                                     ${activeTool === tool.id
                                         ? 'bg-slate-700 border-white shadow-[0_0_15px_rgba(255,255,255,0.3)] scale-105'
@@ -441,7 +442,7 @@ const ModuleSlide = () => {
                                 </div>
 
                                 <button
-                                    onClick={() => useTool(activeTool)}
+                                    onClick={() => runTool(activeTool)}
                                     className="absolute top-3 right-3 p-1.5 bg-slate-700 text-slate-300 rounded hover:bg-slate-600 hover:text-white transition-colors"
                                     title="Rerun"
                                 >
@@ -731,11 +732,8 @@ const QuizSlide = () => {
 
 
 // 3.5 Library Interface - The Tool Shed
-const LibrarySlide = () => {
-    const [output, setOutput] = useState(null);
-    const [activeLib, setActiveLib] = useState('math');
-
-    const labs = {
+// 静态演示数据放在组件外：val 里的随机/时间函数只在点击时执行，不参与渲染
+const LIBRARY_LABS = {
         math: {
             icon: <Calculator className="text-blue-400" size={24} />,
             color: 'bg-blue-500',
@@ -765,7 +763,12 @@ const LibrarySlide = () => {
                 { name: 'time.sleep(1)', val: 'Waiting...', action: 'wait', type: 'func' }
             ]
         }
-    };
+};
+
+const LibrarySlide = () => {
+    const [output, setOutput] = useState(null);
+    const [activeLib, setActiveLib] = useState('math');
+    const labs = LIBRARY_LABS;
 
     const runTool = (tool) => {
         if (tool.action === 'wait') {
