@@ -411,7 +411,7 @@ for 循环 \`for(A; B; C) D;\` 的执行顺序是：A → 判断B → 执行D �
 \`continue\` 在嵌套循环中只作用于**当前所在层**的循环体；若需跳过多层循环，需使用 \`goto\` 或设置多层标志位。
 
 **考点：** \`while\` 循环条件判断、\`continue\` 对控制流的影响、多个 \`if\` 语句的执行顺序`,
-            tags: ['循环', '判断']
+            tags: ['循环', '条件判断']
         },
         {
             id: 12,
@@ -482,7 +482,7 @@ for 循环 \`for(A; B; C) D;\` 的执行顺序是：A → 判断B → 执行D �
 数位分离类问题的标准模式：在 while 循环中用 \`N % 10\` 取末位、\`N /= 10\` 推进后，若后续需使用原数，必须在循环前保存副本。
 
 **考点：** 变量值破坏性修改的防御性编程、数位分离算法的状态管理`,
-            tags: ['程序分析', '变量']
+            tags: ['程序分析', '变量与标识符']
         },
         {
             id: 14,
@@ -552,7 +552,7 @@ for 循环 \`for(A; B; C) D;\` 的执行顺序是：A → 判断B → 执行D �
 \`max(a,b)\` 和 \`min(a,b)\` 均可由三元运算符或 if 语句实现，标准库提供是为了代码简洁；在不支持 C++ 标准库的环境下，手写 if 版本是常见替代方案。
 
 **考点：** 标准库函数与条件分支的逻辑等价性、累加变量的正确初始化`,
-            tags: ['语法', '算法']
+            tags: ['基础语法', '算法思维']
         },
         {
             id: 16,
@@ -704,7 +704,7 @@ cout << a << " " << b;
 C++ 中布尔与整数的双向隐式转换规则：\`true\` → \`1\`，\`false\` → \`0\`；非零整数 → \`true\`，\`0\` → \`false\`。这一规则在条件判断、三目运算符中均有体现。
 
 **考点：** 比较运算符的返回值类型与布尔隐式转换`,
-            tags: ['运算符', '判断']
+            tags: ['运算符', '条件判断']
         },
         {
             id: 21,
@@ -730,7 +730,7 @@ C++ 中布尔与整数的双向隐式转换规则：\`true\` → \`1\`，\`false
 字符相减得到的是整数差值，这个差值在大小写转换、字母距离计算等场景中经常用到，需熟记大小写字母的 ASCII 码分布规律。
 
 **考点：** 字符 ASCII 码值的大小关系与布尔表达式整型输出`,
-            tags: ['字符处理', '比较运算']
+            tags: ['字符与ASCII', '比较运算']
         },
         {
             id: 22,
@@ -812,7 +812,7 @@ C++ 中布尔与整数的双向隐式转换规则：\`true\` → \`1\`，\`false
 该模式对应组合数学中的求和公式 \`1 + 2 + ... + n = n(n+1)/2\`，在概率统计、计数问题中常见。
 
 **考点：** 嵌套循环次数的精确计算`,
-            tags: ['循环', '算法']
+            tags: ['循环', '算法思维']
         },
         {
             id: 25,
@@ -837,7 +837,7 @@ C++ 中布尔与整数的双向隐式转换规则：\`true\` → \`1\`，\`false
 格式化输出除换行外，还常用制表符 \`\\t\` 实现对齐，组成更复杂的表格结构（如课程表、成绩单等）。
 
 **考点：** 换行符在格式化输出中的必要性`,
-            tags: ['程序设计']
+            tags: ['程序分析']
         }
     ],
     programmingQuestions: [
@@ -881,7 +881,7 @@ cin >> n >> x;
 long long total = n + (n / x);
 cout << total << endl;
 \`\`\``,
-            tags: ["编程题", "模拟", "整数除法"],
+            tags: ['编程题', '模拟', '整数除法'],
             template: "#include <iostream>\nusing namespace std;\nint main() {\n    // 在此编写代码\n    return 0;\n}",
             referenceCode: "#include <iostream>\nusing namespace std;\nint main() {\n    int t; cin >> t;\n    while (t--) {\n        long long n, x;\n        cin >> n >> x;\n        cout << n + n / x << endl;\n    }\n    return 0;\n}"
         },
@@ -927,7 +927,7 @@ for (int r = 1; r <= h; r++) {
     }
 }
 \`\`\``,
-            tags: ["编程题", "枚举", "数学"],
+            tags: ['编程题', '枚举', '数学'],
             template: "#include <iostream>\n#include <cmath>\nusing namespace std;\nint main() {\n    // 在此编写代码\n    return 0;\n}",
             referenceCode: "#include <iostream>\n#include <cmath>\nusing namespace std;\nint main() {\n    long long h, w, x; \n    cin >> h >> w >> x;\n    long long ans = 0;\n    for (long long r = 1; r <= h; r++) {\n        for (long long c = 1; c <= w; c++) {\n            if (sqrt(1.0 * r * r + 1.0 * c * c) <= (double)x + r - c) ans++;\n        }\n    }\n    cout << ans << endl;\n    return 0;\n}"
         }

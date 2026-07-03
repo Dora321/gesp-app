@@ -240,7 +240,7 @@ cout << tnt;          // 输出最终结果
 在 \`for\` 循环中，\`continue\` 之后 \`i++\` 仍然会在本轮末尾执行（若 \`continue\` 位于循环体中部）。本题 \`continue\` 在 \`i++\` 之前，需注意循环变量的更新时机。
 
 **考点：** 循环控制语句 \`continue\`（跳过本次）与 \`break\`（终止循环）的执行逻辑`,
-            tags: ['循环控制']
+            tags: ['循环']
         },
         {
             id: 7,
@@ -423,7 +423,7 @@ cout << tnt;          // 输出最终结果
 九九乘法表是 GESP 二级的高频考点，核心在于嵌套循环的层次结构——外层循环控制"行"的完整性，内层循环控制"列"的完整性。类似地，打印菱形、三角形等图形也需严格区分换行语句的位置。
 
 **考点：** 嵌套循环逻辑、格式化输出控制`,
-            tags: ['程序设计']
+            tags: ['程序分析']
         },
         {
             id: 12,
@@ -451,7 +451,7 @@ cout << tnt;          // 输出最终结果
 累加器和累乘器的初始化是 GESP 二级的核心考点。类似题目如"求 1²+2²+...+n²"也需将累加器初始化为 0，但不需要额外的累乘器。阶乘类问题的难点在于同时处理两种累算逻辑。
 
 **考点：** 累加器与累乘器的初始化规范、循环区间边界控制`,
-            tags: ['算法']
+            tags: ['算法思维']
         },
         {
             id: 13,
@@ -507,7 +507,7 @@ cout << tnt;          // 输出最终结果
 金字塔图形是 GESP 二级"图形打印"类题目的典型代表。核心思想是将几何规律转化为等差/等比数列，再映射为循环参数。类似地，打印菱形需要区分上半部分和下半部分，空格数和星号数分别用不同公式控制。
 
 **考点：** 嵌套循环模拟字符图形、数学等差数列在编程中的映射`,
-            tags: ['图形输出']
+            tags: ['图形绘制']
         },
         {
             id: 15,
@@ -697,7 +697,7 @@ C++ 中标识符（变量名）的命名必须满足以下全部条件：①只�
 C++ 标识符可以包含汉字（UTF-8 编码下），例如 \`int 姓名 = 10;\` 是合法的，但 GESP 考试中一般不涉及此类情况。
 
 **考点：** 标识符命名规范`,
-            tags: ['变量命名']
+            tags: ['变量与标识符']
         },
         {
             id: 22,
@@ -828,7 +828,7 @@ while (i < 10) {
 循环结构的相互转换是 GESP 二级的重要考点，掌握等价变换有助于理解不同循环结构的本质。
 
 **考点：** 循环结构等价转换（for 与 while）`,
-            tags: ['循环结构']
+            tags: ['循环']
         }
     ],
     programmingQuestions: [
@@ -871,7 +871,7 @@ long long b = round(pow(a, 0.25));
 if (b * b * b * b == a) cout << b;
 else cout << -1;
 \`\`\``,
-            tags: ["编程题", "数学", "开方"],
+            tags: ['编程题', '数学', '开方'],
             template: "#include <iostream>\n#include <cmath>\nusing namespace std;\nint main() {\n    // 在此编写代码\n    return 0;\n}",
             referenceCode: "#include <iostream>\n#include <cmath>\n#include <algorithm>\nusing namespace std;\nint main() {\n    int t; cin >> t;\n    while(t--) {\n        long long a; cin >> a;\n        long long b = round(pow(a, 0.25));\n        if (b * b * b * b == a) cout << b << endl;\n        else cout << -1 << endl;\n    }\n    return 0;\n}"
         },
@@ -917,7 +917,7 @@ while (num > 0) {
 }
 res = max(res, current_sum);
 \`\`\``,
-            tags: ["编程题", "数位处理", "统计"],
+            tags: ['编程题', '数位处理', '统计'],
             template: "#include <iostream>\n#include <algorithm>\nusing namespace std;\nint main() {\n    // 在此编写代码\n    return 0;\n}",
             referenceCode: "#include <iostream>\n#include <algorithm>\nusing namespace std;\nint main() {\n    int n; cin >> n;\n    int ans = 0;\n    while(n--) {\n        long long a; cin >> a;\n        int s = 0;\n        while(a > 0) { s += a % 10; a /= 10; }\n        ans = max(ans, s);\n    }\n    cout << ans << endl;\n    return 0;\n}"
         }

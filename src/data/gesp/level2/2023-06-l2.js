@@ -553,7 +553,7 @@ char 与 int 的混合运算遵循"整型提升"规则：char、short、bool、u
             answer: 1,
             score: 2,
             explanation: "**答案：B (20 % i == 0)**\n\n**核心解析：**\n循环中 `i` 从 1 到 10。若填写 `20 % i == 0`，表示筛选 20 的因数，在这个范围内满足条件的是 1、2、4、5、10。\n\n累加结果为：`1 + 2 + 4 + 5 + 10 = 22`。\n\n**选项逐项分析：**\n- **A**：满足条件的是 3、6、9，和为 18。\n- **B**：满足条件的是 1、2、4、5、10，和为 22。\n- **C**：满足条件的是 1 到 8，和为 36。\n- **D**：循环范围只有 1 到 10，条件永远不成立，和为 0。\n\n**考点：** 循环累加、取模判断因数",
-            tags: ["循环", "运算符"]
+            tags: ['循环', '运算符']
         },
         {
             id: 15,
@@ -776,7 +776,7 @@ if (x > 0) {
 循环的三要素：初始条件、循环条件、循环变量的更新。任一环节出错都可能导致死循环。
 
 **考点：** 循环终止条件的控制逻辑`,
-            tags: ['循环结构']
+            tags: ['循环']
         },
         {
             id: 23,
@@ -920,7 +920,7 @@ bool isPrime(int x) {
     return true;
 }
 \`\`\``,
-            tags: ["编程题", "枚举", "素数"],
+            tags: ['编程题', '枚举', '素数'],
             template: "#include <bits/stdc++.h>\nusing namespace std;\n\nint main() {\n    int a, b;\n    cin >> a >> b;\n    // \n    return 0;\n}",
             referenceCode: "#include <bits/stdc++.h>\nusing namespace std;\n\nbool isPrime(int x) {\n    if (x < 2) return false;\n    for (int d = 2; d * d <= x; ++d) {\n        if (x % d == 0) return false;\n    }\n    return true;\n}\n\nint main() {\n    int A, B;\n    cin >> A >> B;\n    int ans = 0;\n    for (int x = A; x <= B; ++x) if (isPrime(x)) ++ans;\n    cout << ans << endl;\n    return 0;\n}",
             answer: '',
@@ -976,7 +976,7 @@ long long myPow(int a, int b) {
     return res;
 }
 \`\`\``,
-            tags: ["编程题", "模拟", "数位分解"],
+            tags: ['编程题', '模拟', '数位分解'],
             template: "#include <bits/stdc++.h>\nusing namespace std;\n\nint main() {\n    int m;\n    cin >> m;\n    // \n    return 0;\n}",
             referenceCode: "#include <bits/stdc++.h>\nusing namespace std;\n\nlong long ipow(long long a, int b) {\n    long long r = 1;\n    while (b--) r *= a;\n    return r;\n}\n\nbool ok(long long x) {\n    if (x == 0) return true;\n    int len = 0;\n    long long t = x;\n    while (t > 0) { len++; t /= 10; }\n    long long sum = 0; t = x;\n    while (t > 0) {\n        sum += ipow(t % 10, len);\n        t /= 10;\n    }\n    return sum == x;\n}\n\nint main() {\n    int M;\n    cin >> M;\n    while (M--) {\n        long long x;\n        cin >> x;\n        cout << (ok(x) ? 'T' : 'F') << endl;\n    }\n    return 0;\n}",
             answer: '',
