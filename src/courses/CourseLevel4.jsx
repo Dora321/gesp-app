@@ -2,6 +2,8 @@ import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { BookOpen, Code, Terminal, CheckCircle, AlertTriangle, Play, ChevronRight, Calculator, Cpu, Hash, Trophy, Eye, Lightbulb, Copy, Check, Unlock, ArrowRight, Grid, Info, ArrowRightLeft, RefreshCw, Clock, Target, XCircle, Layout, GitCommit, Layers, Box, AlignJustify, Menu, X } from 'lucide-react';
 import CppLevelSupport from '../components/CppLevelSupport';
+import CppLessonDirectory from '../components/CppLessonDirectory';
+import { cppL4Lessons } from '../data/cppL4CourseFlow';
 
 // --- Shared Components ---
 const Card = ({ children, className = "" }) => (
@@ -958,6 +960,9 @@ export default function CourseLevel4() {
         <main className="flex-1 overflow-y-auto p-8">
           <div className="max-w-5xl mx-auto">
             {activeTab === 'overview' && <CppLevelSupport level={4} />}
+            {activeTab === 'overview' && (
+              <div className="mb-6"><CppLessonDirectory level={4} lessons={cppL4Lessons} accent="indigo" /></div>
+            )}
             {activeTab === 'overview' && <OverviewModule onStart={setActiveTab} />}
             {activeTab === 'func' && <div className="animate-fade-in"><FuncModule /></div>}
             {activeTab === 'struct' && <div className="animate-fade-in"><StructModule /></div>}

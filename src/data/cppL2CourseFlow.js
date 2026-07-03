@@ -1,4 +1,4 @@
-const cppL2Lessons = [
+export const cppL2Lessons = [
   { id: 1, title: '第 1 课：存储器与网络基础' },
   { id: 2, title: '第 2 课：ASCII 与字符运算' },
   { id: 3, title: '第 3 课：类型转换与整数除法' },

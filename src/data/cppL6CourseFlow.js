@@ -1,4 +1,4 @@
-const cppL6Lessons = [
+export const cppL6Lessons = [
   { id: 1, title: '第 1 课：树的初相识 (性质/存储)' },
   { id: 2, title: '第 2 课：树的遍历 (前/中/后序)' },
   { id: 3, title: '第 3 课：最优二叉树 (哈夫曼)' },

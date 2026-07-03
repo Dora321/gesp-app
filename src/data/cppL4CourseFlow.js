@@ -1,4 +1,4 @@
-const cppL4Lessons = [
+export const cppL4Lessons = [
   { id: 1, title: '第 1 课：代码的积木：自定义函数' },
   { id: 2, title: '第 2 课：数据的替身：传值与传参' },
   { id: 3, title: '第 3 课：特殊的参数：数组进函数' },

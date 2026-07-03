@@ -1,4 +1,4 @@
-const cppL1Lessons = [
+export const cppL1Lessons = [
   { id: 1, title: '第 1 课：Hello World 与程序结构' },
   { id: 2, title: '第 2 课：变量与命名规则' },
   { id: 3, title: '第 3 课：整数、小数与类型转换' },

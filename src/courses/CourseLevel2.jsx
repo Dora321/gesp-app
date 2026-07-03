@@ -3,6 +3,8 @@ import { Link } from 'react-router-dom';
 import { BookOpen, Code, Calculator, Grid, Play, ChevronRight, Lightbulb, AlertTriangle, CheckCircle, ArrowRight, Bug, AlertOctagon, Trophy, Eye, Clock, Target, Zap, RefreshCw, XCircle, Copy, Check, Unlock, Award, FileCode, ArrowRightLeft, SkipForward, Info, MousePointerClick, Book, Menu, X, FileText } from 'lucide-react';
 import GESP2_2025_12 from '../data/gesp/level2/GESP2_2025_12';
 import CppLevelSupport from '../components/CppLevelSupport';
+import CppLessonDirectory from '../components/CppLessonDirectory';
+import { cppL2Lessons } from '../data/cppL2CourseFlow';
 
 // -----------------------------------------------------------------------------
 // Component: Navigation
@@ -1691,6 +1693,9 @@ export default function GESP_Level2_Courseware() {
         <main className="flex-1 overflow-y-auto p-8">
           <div className="max-w-5xl mx-auto animate-fade-in">
             {activeTab === 'overview' && <CppLevelSupport level={2} />}
+            {activeTab === 'overview' && (
+              <div className="mb-6"><CppLessonDirectory level={2} lessons={cppL2Lessons} accent="purple" /></div>
+            )}
             {renderContent()}
             <CppLevelSupport level={2} placement="bottom" />
           </div>

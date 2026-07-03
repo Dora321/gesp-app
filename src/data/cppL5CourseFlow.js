@@ -1,4 +1,4 @@
-const cppL5Lessons = [
+export const cppL5Lessons = [
   { id: 1, title: '第 1 课：素数大筛选 (埃氏/线性)' },
   { id: 2, title: '第 2 课：公约数与公倍数 (GCD)' },
   { id: 3, title: '第 3 课：超级计算器 (高精加减)' },
