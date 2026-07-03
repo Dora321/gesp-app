@@ -11,9 +11,10 @@ const sections = [
     { id: 5, title: '练习与作业', category: '复盘输出' },
 ];
 
+const values = [72, 88, 64, 95, 81, 59];
+
 function ArrayLab() {
     const [selected, setSelected] = useState(0);
-    const values = [72, 88, 64, 95, 81, 59];
 
     const summary = useMemo(() => ({
         sum: values.reduce((total, value) => total + value, 0),

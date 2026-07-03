@@ -616,25 +616,15 @@ const Quiz = ({ question, options, correctIndex, explanation }) => {
 export default function AdvLesson1() {
     const [activeSection, setActiveSection] = useState(1);
 
-    const totalSections = sections.length;
-
     // 键盘导航
     useEffect(() => {
         const handleKeyDown = (e) => {
-            if (e.key === 'ArrowRight') nextSection();
-            if (e.key === 'ArrowLeft') prevSection();
+            if (e.key === 'ArrowRight') setActiveSection((s) => (s < sections.length ? s + 1 : s));
+            if (e.key === 'ArrowLeft') setActiveSection((s) => (s > 1 ? s - 1 : s));
         };
         window.addEventListener('keydown', handleKeyDown);
         return () => window.removeEventListener('keydown', handleKeyDown);
-    }, [activeSection]);
-
-    const nextSection = () => {
-        if (activeSection < totalSections) setActiveSection(activeSection + 1);
-    };
-
-    const prevSection = () => {
-        if (activeSection > 1) setActiveSection(activeSection - 1);
-    };
+    }, []);
 
     const renderContent = () => {
         switch (activeSection) {

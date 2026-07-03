@@ -11,18 +11,20 @@ const sections = [
     { id: 5, title: '练习与作业', category: '复盘输出' },
 ];
 
+function analyzePrime(n) {
+    if (n < 2) return { prime: false, checks: [], reason: '小于 2 的整数不是质数' };
+    const checks = [];
+    for (let i = 2; i * i <= n; i += 1) {
+        checks.push({ divisor: i, ok: n % i !== 0 });
+        if (n % i === 0) return { prime: false, checks, reason: `${n} 能被 ${i} 整除` };
+    }
+    return { prime: true, checks, reason: '没有找到 2 到平方根范围内的因数' };
+}
+
 function PrimeLab() {
     const [n, setN] = useState(29);
 
-    const info = useMemo(() => {
-        if (n < 2) return { prime: false, checks: [], reason: '小于 2 的整数不是质数' };
-        const checks = [];
-        for (let i = 2; i * i <= n; i += 1) {
-            checks.push({ divisor: i, ok: n % i !== 0 });
-            if (n % i === 0) return { prime: false, checks, reason: `${n} 能被 ${i} 整除` };
-        }
-        return { prime: true, checks, reason: '没有找到 2 到平方根范围内的因数' };
-    }, [n]);
+    const info = useMemo(() => analyzePrime(n), [n]);
 
     return (
         <div className="rounded-2xl border border-blue-100 bg-blue-50 p-6">

@@ -430,16 +430,6 @@ const CaseConverterChallenge = () => {
 export default function App() {
     const [activeSection, setActiveSection] = useState(1);
 
-    const totalSections = sections.length;
-
-    const nextSection = () => {
-        if (activeSection < totalSections) setActiveSection(activeSection + 1);
-    };
-
-    const prevSection = () => {
-        if (activeSection > 1) setActiveSection(activeSection - 1);
-    };
-
     const renderContent = () => {
         switch (activeSection) {
             case 1:
