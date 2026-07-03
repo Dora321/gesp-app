@@ -88,7 +88,16 @@ for (const levelDir of LEVELS) {
 
     // Extract metadata from paperId: e.g., '2023-03-l1' → { year:2023, month:3, level:1 }
     const [, year, month, level] = paperId.match(/^(\d{4})-(\d{2})-l(\d)$/);
-    const title = `${year}年${month}月 GESP C++ ${'一二三四五六七八'[parseInt(level) - 1]}级真题`;
+    // Prefer the paper's own title (may carry disclaimers like “历史占位，非正式真题”).
+    // Search only between the paperData declaration and its first question array, so
+    // per-question titles (including hoisted programmingQuestions consts) don't match.
+    const paperStart = Math.max(0, content.search(/export\s+const\s+paperData\s*=/));
+    const afterPaper = content.slice(paperStart);
+    const arrCut = afterPaper.search(/(?:questions|programmingQuestions|codingQuestions)\s*:\s*\[/);
+    const head = arrCut >= 0 ? afterPaper.slice(0, arrCut) : afterPaper;
+    const fileTitle = head.match(/title\s*:\s*(['"`])([^'"`\n]+)\1/)?.[2];
+    const title = fileTitle || `${year}年${month}月 GESP C++ ${'一二三四五六七八'[parseInt(level) - 1]}级真题`;
+    const unofficial = /占位|非正式/.test(title);
 
     papers.push({
       id: paperId,
@@ -98,6 +107,7 @@ for (const levelDir of LEVELS) {
       title,
       questionCount,
       placeholderCount,
+      unofficial,
       relativePath,
     });
   }
@@ -110,7 +120,7 @@ papers.sort((a, b) => a.level - b.level || a.year - b.year || a.month - b.month)
 
 const paperIdsLine = papers.map(p => `  '${p.id}',`).join('\n');
 const paperMetaLines = papers.map(p =>
-  `  '${p.id}': { level: ${p.level}, year: ${p.year}, month: ${p.month}, title: '${p.title}', questionCount: ${p.questionCount}, placeholderCount: ${p.placeholderCount}, needsReview: ${p.placeholderCount > 0} },`
+  `  '${p.id}': { level: ${p.level}, year: ${p.year}, month: ${p.month}, title: '${p.title.replace(/'/g, "\\'")}', questionCount: ${p.questionCount}, placeholderCount: ${p.placeholderCount}, needsReview: ${p.placeholderCount > 0}, unofficial: ${p.unofficial} },`
 ).join('\n');
 const loadersLines = papers.map(p =>
   `    '${p.id}': () => import('${p.relativePath}').then(m => m.paperData),`

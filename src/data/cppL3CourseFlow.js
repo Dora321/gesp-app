@@ -1,4 +1,4 @@
-const cppL3Lessons = [
+export const cppL3Lessons = [
   { id: 1, title: '第 1 课：变身数字魔术师 (进制)' },
   { id: 2, title: '第 2 课：负数的真面目 (补码)' },
   { id: 3, title: '第 3 课：位运算大冒险 (上)' },

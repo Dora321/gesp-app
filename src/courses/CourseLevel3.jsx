@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { BookOpen, Code, Terminal, CheckCircle, AlertTriangle, Play, ChevronRight, Calculator, Cpu, Hash, Trophy, Eye, Lightbulb, Copy, Check, Unlock, ArrowRight, Grid, Info, ArrowRightLeft, RefreshCw, Clock, Target, XCircle, Menu, X } from 'lucide-react';
 import CppLevelSupport from '../components/CppLevelSupport';
+import { cppL3Lessons } from '../data/cppL3CourseFlow';
 
 // --- 组件部分 ---
 
@@ -49,6 +50,34 @@ const SectionTitle = ({ icon: Icon, title }) => (
 
 // --- 专题模块内容 ---
 
+// 16 节系统课程目录（与 /lesson/3/N 打通）
+const LessonDirectory = () => (
+    <div className="bg-white p-6 rounded-xl border border-slate-200 shadow-sm">
+        <div className="flex items-center justify-between mb-4 flex-wrap gap-2">
+            <h3 className="text-lg font-bold text-slate-800 flex items-center gap-2">
+                <BookOpen className="text-rose-500" /> 三级系统课程（16 课）
+            </h3>
+            <span className="text-xs text-slate-500">按顺序学：进制 → 位运算 → 数组 → 字符串 → 枚举与模拟 → 综合</span>
+        </div>
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3">
+            {cppL3Lessons.map((lesson) => (
+                <Link
+                    key={lesson.id}
+                    to={`/lesson/3/${lesson.id}`}
+                    className="group flex items-center gap-3 rounded-lg border border-slate-200 bg-slate-50 px-3 py-2.5 hover:border-rose-300 hover:bg-rose-50 hover:shadow-sm transition-all"
+                >
+                    <span className="flex h-7 w-7 shrink-0 items-center justify-center rounded-md bg-rose-500 text-xs font-bold text-white">
+                        {lesson.id}
+                    </span>
+                    <span className="text-sm font-medium text-slate-700 group-hover:text-rose-700">
+                        {lesson.title.replace(/^第 \d+ 课：/, '')}
+                    </span>
+                </Link>
+            ))}
+        </div>
+    </div>
+);
+
 // Overview Module
 const OverviewModule = ({ onStart }) => (
     <div className="space-y-6 animate-fade-in">
@@ -64,6 +93,8 @@ const OverviewModule = ({ onStart }) => (
                 开始学习 <ArrowRight size={18} />
             </button>
         </div>
+
+        <LessonDirectory />
 
         <div className="grid md:grid-cols-4 gap-6">
             <div className="bg-white p-6 rounded-xl border border-slate-200 shadow-sm hover:shadow-md transition">

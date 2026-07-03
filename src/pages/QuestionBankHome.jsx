@@ -47,6 +47,7 @@ const QuestionBankHome = () => {
                     difficulty: Math.max(1, Math.min(5, Math.floor(meta.level / 2) + (meta.month > 6 ? 1 : 0))),
                     isPlaceholder,
                     needsReview,
+                    unofficial: Boolean(meta.unofficial),
                 };
             })
             .filter(Boolean)
@@ -202,6 +203,11 @@ const QuestionBankHome = () => {
                                             {!paper.isPlaceholder && paper.needsReview && (
                                                 <div className="px-2 py-1 rounded text-[11px] font-medium w-fit bg-amber-50 text-amber-700">
                                                     解析待精修
+                                                </div>
+                                            )}
+                                            {paper.unofficial && (
+                                                <div className="px-2 py-1 rounded text-[11px] font-medium w-fit bg-slate-100 text-slate-600">
+                                                    历史占位 · 非正式真题
                                                 </div>
                                             )}
                                         </div>
