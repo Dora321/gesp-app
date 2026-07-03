@@ -1,7 +1,7 @@
 import React, { useMemo, useState } from 'react';
 import { ClipboardCheck, Footprints, ListChecks, PlayCircle, Route } from 'lucide-react';
 import CppL2LessonSupport from '../../../components/CppL2LessonSupport';
-import CppLessonShell, { Callout, CodeBlock, CompareTable, MiniQuiz, StepList } from '../CppLessonShell';
+import CppLessonShell, { Callout, CodeBlock, CompareTable, MasteryCheck, MiniQuiz, PredictCheck, StepList, TransferCheck } from '../CppLessonShell';
 
 const sections = [
     { id: 1, title: '课程导入', category: '模拟思想' },
@@ -15,11 +15,13 @@ function WalkSimulator() {
     const [commands, setCommands] = useState(['R', 'R', 'L', 'R', 'R']);
 
     const trace = useMemo(() => {
+        const rows = [];
         let position = 0;
-        return commands.map((command, index) => {
-            position += command === 'R' ? 1 : -1;
-            return { step: index + 1, command, position };
-        });
+        for (let index = 0; index < commands.length; index += 1) {
+            position += commands[index] === 'R' ? 1 : -1;
+            rows.push({ step: index + 1, command: commands[index], position });
+        }
+        return rows;
     }, [commands]);
 
     const toggleCommand = (index) => {
@@ -71,6 +73,57 @@ const quiz = [
         question: '模拟题适合强行套公式吗？',
         answer: '不适合',
         reason: '模拟题考的是按题意复现过程，不是背公式。',
+    },
+];
+
+function SimulationPredictionChecks() {
+    return (
+        <div className="grid gap-4 lg:grid-cols-3">
+            <PredictCheck
+                prompt={'指令串 "RRLRR"，pos 从 0 开始，左减右加，最终 pos 是多少？'}
+                options={['3（逐步左减右加）', '5（数指令条数）']}
+                correctIndex={0}
+                explanation="逐字符更新：R→1、R→2、L→1、R→2、R→3。L 会抵消一步，所以最终是 3，不是指令条数 5。"
+                misconception="把“走了几步”当成“位置变化”，忘了 L 会往回走。"
+            />
+            <PredictCheck
+                prompt={'计分规则“答对 +10、答错 -5、分数不能低于 0”。当前 0 分答错一题，分数变成多少？'}
+                options={['-5，最后输出时再改成 0', '0，每步更新后就要检查边界']}
+                correctIndex={1}
+                explanation="“不低于 0”是过程规则：每次扣分后立刻检查 if (score < 0) score = 0;。留到最后才处理，中间的状态都会错。"
+                misconception="把每一步都要生效的边界规则，拖到最后输出时才处理。"
+            />
+            <PredictCheck
+                prompt={'循环处理 n 条指令时，循环体里应该先做哪件事？'}
+                options={['先 cin 读入本轮指令，再更新状态', '先更新状态，再读入下一条']}
+                correctIndex={0}
+                explanation="每一轮要先拿到本轮输入，再按规则更新。顺序反了，更新用的就是上一轮的旧指令。"
+                misconception="觉得循环体里语句顺序无所谓，结果状态用了旧输入。"
+            />
+        </div>
+    );
+}
+
+const simulationMasteryItems = [
+    {
+        label: '能在读题时圈出状态变量和更新规则。',
+        evidence: '拿 L/R 移动题能说出：状态是 pos，规则是左减右加。',
+        retryHint: '回到“状态变量”小节的场景对照表。',
+    },
+    {
+        label: '能先写单步更新，再放进循环。',
+        evidence: '能解释循环体里为什么要先 cin 再更新状态。',
+        retryHint: '回到“输入输出设计”小节，对照两段代码。',
+    },
+    {
+        label: '能手推 2~3 轮草稿表验证顺序。',
+        evidence: '给 RRLRR 能列出每一步的 pos 变化表。',
+        retryHint: '回到“机器人行走模拟”，逐条指令点一遍。',
+    },
+    {
+        label: '能处理“分数不低于 0”这类每步边界。',
+        evidence: '能把 if (score < 0) score = 0; 放在每次扣分之后。',
+        retryHint: '重做计分边界预测题。',
     },
 ];
 
@@ -161,6 +214,7 @@ for (int i = 0; i < n; i++) {
   else if (cmd == 'R') pos++;
 }`}</CodeBlock>
                         </div>
+                        <SimulationPredictionChecks />
                     </>
                 ),
                 5: (
@@ -172,6 +226,21 @@ for (int i = 0; i < n; i++) {
                             </p>
                         </div>
                         <MiniQuiz items={quiz} />
+                        <TransferCheck
+                            prompt={'换个例子：指令串 "RRLLL"，起点 0。最终位置是多少？过程中离起点最远（|pos| 最大）是多少？'}
+                            hint="逐字符更新 pos，每步顺手记录 |pos| 的最大值。"
+                            answer="最终位置 -1；最远 |pos| = 2（走完第 2 步时）。"
+                            steps={[
+                                'R→1，R→2，L→1，L→0，L→-1。',
+                                '每步 |pos|：1、2、1、0、1。',
+                                '最终位置 -1，最远距离 2。',
+                            ]}
+                        />
+                        <MasteryCheck
+                            title="C++ L2-13 模拟算法（1）离开前检查"
+                            description="模拟题最怕“看懂规则，但更新顺序和边界一写就乱”。勾选前先拿 RRLRR 手推一张状态表。"
+                            items={simulationMasteryItems}
+                        />
                         <Callout icon={ClipboardCheck} title="课后任务" tone="slate">
                             <ul className="space-y-2">
                                 <li>输入一串 L/R 指令，输出机器人最终位置。</li>

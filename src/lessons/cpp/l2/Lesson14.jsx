@@ -1,7 +1,7 @@
 import React, { useMemo, useState } from 'react';
 import { ClipboardCheck, Database, ListChecks, PlayCircle, ShieldCheck } from 'lucide-react';
 import CppL2LessonSupport from '../../../components/CppL2LessonSupport';
-import CppLessonShell, { Callout, CodeBlock, CompareTable, MiniQuiz, StepList } from '../CppLessonShell';
+import CppLessonShell, { Callout, CodeBlock, CompareTable, MasteryCheck, MiniQuiz, PredictCheck, StepList, TransferCheck } from '../CppLessonShell';
 
 const sections = [
     { id: 1, title: '课程导入', category: '综合模拟' },
@@ -11,16 +11,19 @@ const sections = [
     { id: 5, title: '练习与作业', category: '复盘输出' },
 ];
 
+const scores = [10, 20, 10, 30, 20];
+
 function ScoreSimulator() {
     const [answers, setAnswers] = useState(['Y', 'N', 'Y', 'Y', 'N']);
-    const scores = [10, 20, 10, 30, 20];
 
     const trace = useMemo(() => {
+        const rows = [];
         let total = 0;
-        return answers.map((answer, index) => {
-            if (answer === 'Y') total += scores[index];
-            return { index: index + 1, answer, score: scores[index], total };
-        });
+        for (let index = 0; index < answers.length; index += 1) {
+            if (answers[index] === 'Y') total += scores[index];
+            rows.push({ index: index + 1, answer: answers[index], score: scores[index], total });
+        }
+        return rows;
     }, [answers]);
 
     const toggle = (index) => {
@@ -72,6 +75,57 @@ const quiz = [
     },
 ];
 
+function MultiStatePredictionChecks() {
+    return (
+        <div className="grid gap-4 lg:grid-cols-3">
+            <PredictCheck
+                prompt={'题目说“每次操作后记录最高累计分”。total=8、best=8，本次 +5，应该先更新谁？'}
+                options={['先 total 再 best（best 变 13）', '先 best 再 total（best 停在 8）']}
+                correctIndex={0}
+                explanation="题意是“操作后”的最高值：先 total += 5 得 13，再用 13 更新 best。顺序反了，best 永远慢一拍。"
+                misconception="多个状态的更新顺序随手写，没有对照题目里的时间点。"
+            />
+            <PredictCheck
+                prompt={'题目除了最终余额，还问“第 3 次操作后的余额是多少”。需要数组吗？'}
+                options={['不需要，一个变量够用', '需要，用 history[i] 把每步余额存下来']}
+                correctIndex={1}
+                explanation="只问最终值时边读边算即可；但要回查任何一步，就必须在循环里保存 history[i] = total。"
+                misconception="所有模拟题都想用一个变量硬撑，题目一问过程值就没数据了。"
+            />
+            <PredictCheck
+                prompt={'样例不通过，最快的定位方法是哪种？'}
+                options={['盯着最终输出反复改代码碰运气', '手算状态表，和程序输出逐步对比']}
+                correctIndex={1}
+                explanation="最终输出只能告诉你“错了”；逐步对比状态表能找到第一处分歧发生在哪一步，直接定位错误的更新语句。"
+                misconception="只看结果不看过程，调试全靠猜。"
+            />
+        </div>
+    );
+}
+
+const multiStateMasteryItems = [
+    {
+        label: '能按题意排出多个状态的更新顺序。',
+        evidence: '能解释“操作后记录最高值”为什么必须先 total 后 best。',
+        retryHint: '回到“多状态更新”小节，对照更新顺序检查框。',
+    },
+    {
+        label: '能判断什么时候需要数组保存历史。',
+        evidence: '能说出“只问最终值不用存，要回查过程就必须存”。',
+        retryHint: '回到“数组记录过程”小节的对照表。',
+    },
+    {
+        label: '能用状态表定位样例分歧的第一步。',
+        evidence: '拿一个失败样例，能指出从第几步开始和手算不一致。',
+        retryHint: '按“样例调试”的五个步骤重走一遍。',
+    },
+    {
+        label: '能处理“余额/分数不低于 0”这类每步边界。',
+        evidence: '扣到负数那一步能先归零再继续，best 不受影响。',
+        retryHint: '重做迁移练习里 -30 的那一步。',
+    },
+];
+
 export default function CppL2Lesson14() {
     return (
         <CppLessonShell
@@ -111,6 +165,7 @@ for (int i = 0; i < n; i++) {
                         <Callout icon={ShieldCheck} title="更新顺序检查" tone="emerald">
                             如果题目说“本次操作后记录最高值”，就先更新 total，再更新 best。顺序错一行，答案可能就变。
                         </Callout>
+                        <MultiStatePredictionChecks />
                     </>
                 ),
                 3: (
@@ -174,6 +229,23 @@ for (int i = 1; i < n; i++) {
                             </p>
                         </div>
                         <MiniQuiz items={quiz} />
+                        <TransferCheck
+                            prompt={'换个例子：5 次得分变化 +10、-5、+20、-30、+15，total 从 0 开始且每步后不允许低于 0，每步之后更新 best。最终 total 和 best 各是多少？'}
+                            hint="每步三个动作：先加减，再把负数归零，最后更新 best。"
+                            answer="total = 15，best = 25。"
+                            steps={[
+                                '+10 → total 10，best 10。',
+                                '-5 → total 5，best 10。',
+                                '+20 → total 25，best 25。',
+                                '-30 → total -5，归零为 0，best 仍是 25。',
+                                '+15 → total 15，best 25。',
+                            ]}
+                        />
+                        <MasteryCheck
+                            title="C++ L2-14 模拟算法（2）离开前检查"
+                            description="多状态模拟最怕“每个变量都会写，合在一起顺序就乱”。勾选前先把迁移练习的 5 步状态表默写一遍。"
+                            items={multiStateMasteryItems}
+                        />
                         <Callout icon={ClipboardCheck} title="课后任务" tone="slate">
                             <ul className="space-y-2">
                                 <li>模拟答题得分：答对加对应分值，输出总分和最高累计分。</li>

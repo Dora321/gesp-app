@@ -1,7 +1,7 @@
 import React, { useMemo, useState } from 'react';
 import { AlertTriangle, ClipboardCheck, Diamond, Route } from 'lucide-react';
 import CppL2LessonSupport from '../../../components/CppL2LessonSupport';
-import CppLessonShell, { Callout, CodeBlock, CodeTracer, CompareTable, MiniQuiz, StepList } from '../CppLessonShell';
+import CppLessonShell, { Callout, CodeBlock, CodeTracer, CompareTable, MasteryCheck, MiniQuiz, PredictCheck, StepList, TransferCheck } from '../CppLessonShell';
 
 const sections = [
     { id: 1, title: '课程导入', category: '读图能力' },
@@ -133,6 +133,57 @@ const quiz = [
     },
 ];
 
+function FlowPredictionChecks() {
+    return (
+        <div className="grid gap-4 lg:grid-cols-3">
+            <PredictCheck
+                prompt={'score = 60，流程图先判断 score >= 90（否），再判断 score >= 60，最后输出什么？'}
+                options={['通过（60 满足 >= 60）', '继续练习（60 不算及格）']}
+                correctIndex={0}
+                explanation=">= 是“大于或等于”，60 恰好落在 score >= 60 的 True 分支。边界值要代入符号计算，不能凭感觉。"
+                misconception="凭生活直觉判断边界值，忽略 >= 里的等号。"
+            />
+            <PredictCheck
+                prompt={'菱形“i <= 3?”的 False 箭头指向“输出 sum”。当 i = 4 时走哪条路？'}
+                options={['离开循环，直接输出 sum', '再执行一次循环体']}
+                correctIndex={0}
+                explanation="判断在前、执行在后：i = 4 时 i <= 3 为 False，沿 False 箭头离开循环，第 4 轮循环体不会执行。"
+                misconception="以为“走到判断就再跑一轮”，结果多算一次。"
+            />
+            <PredictCheck
+                prompt={'循环体里忘了 i++，这张流程图执行起来会怎样？'}
+                options={['多跑几轮后自己停下来', '条件永远相同，进入死循环']}
+                correctIndex={1}
+                explanation="没有更新语句，每次回到菱形时 i 都没变，判断结果永远一样。读图先检查回头箭头路径上有没有变量更新。"
+                misconception="以为循环跑够“次数”就会自动停。"
+            />
+        </div>
+    );
+}
+
+const flowMasteryItems = [
+    {
+        label: '能把三种符号对应到代码结构。',
+        evidence: '圆角框 = 开始/结束，矩形 = 语句，菱形 = 条件。',
+        retryHint: '回到“流程图符号”小节的对照表。',
+    },
+    {
+        label: '遇到菱形先写变量值，再判真假。',
+        evidence: '读分支图时会在草稿上标出当前 score，再选路径。',
+        retryHint: '回到“分支流程”，用 60 分重新走一遍。',
+    },
+    {
+        label: '能追踪循环直到条件不成立。',
+        evidence: '能列出 1 到 4 求和的每轮 i、sum 变量表。',
+        retryHint: '回到循环追踪实验，逐轮点击观察。',
+    },
+    {
+        label: '能识别死循环风险。',
+        evidence: '读图先检查回头箭头路径上是否有变量更新语句。',
+        retryHint: '重做 i++ 缺失的预测题。',
+    },
+];
+
 export default function CppL2Lesson7() {
     return (
         <CppLessonShell
@@ -224,6 +275,7 @@ export default function CppL2Lesson7() {
                         <Callout icon={AlertTriangle} title="考试坑点" tone="amber">
                             如果循环体里忘记更新 i，流程图会一直回到同一个判断，程序可能进入死循环。读图时一定检查变量有没有变化。
                         </Callout>
+                        <FlowPredictionChecks />
                     </>
                 ),
                 5: (
@@ -235,6 +287,21 @@ export default function CppL2Lesson7() {
                             </p>
                         </div>
                         <MiniQuiz items={quiz} />
+                        <TransferCheck
+                            prompt={'换个例子：流程图为 sum=0、i=1 → 菱形 i<=4?（True：sum+=i、i++ 后回到菱形；False：输出 sum）。最终输出多少？'}
+                            hint="列变量表：每轮记录 i 和 sum，直到 i <= 4 为 False。"
+                            answer="输出 10（1 + 2 + 3 + 4）。"
+                            steps={[
+                                'i=1，sum=1；i=2，sum=3。',
+                                'i=3，sum=6；i=4，sum=10。',
+                                'i=5 时 i<=4 为 False，离开循环输出 10。',
+                            ]}
+                        />
+                        <MasteryCheck
+                            title="C++ L2-7 流程图离开前检查"
+                            description="流程图题最怕“看着都懂，一到边界和回头箭头就走错”。勾选前先手推一遍 1 到 4 求和的变量表。"
+                            items={flowMasteryItems}
+                        />
                         <Callout icon={ClipboardCheck} title="课后任务" tone="slate">
                             <ul className="space-y-2">
                                 <li>把“判断奇偶”的 C++ 程序画成流程图。</li>
