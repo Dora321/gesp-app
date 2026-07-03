@@ -101,9 +101,10 @@ function compare(route, vp, base, cur, failures) {
 
 async function run() {
   if (shouldStartServer) {
+    // Node >= 18.20/20.12/22 拒绝直接 spawn *.cmd（CVE-2024-27980），Windows 上需要 shell
     server = spawn(process.platform === 'win32' ? 'npm.cmd' : 'npm',
       ['run', 'dev', '--', '--host', '127.0.0.1', '--port', String(DEFAULT_PORT)],
-      { stdio: ['ignore', 'pipe', 'pipe'] });
+      { stdio: ['ignore', 'pipe', 'pipe'], shell: process.platform === 'win32' });
     server.stdout.on('data', (c) => process.stdout.write(c));
     server.stderr.on('data', (c) => process.stderr.write(c));
     await waitForServer(baseUrl);

@@ -66,10 +66,11 @@ async function waitForServer(url, timeoutMs = 30000) {
 
 async function run() {
   if (shouldStartServer) {
+    // Node >= 18.20/20.12/22 拒绝直接 spawn *.cmd（CVE-2024-27980），Windows 上需要 shell
     server = spawn(
       process.platform === 'win32' ? 'npm.cmd' : 'npm',
       ['run', 'dev', '--', '--host', '127.0.0.1', '--port', String(DEFAULT_PORT)],
-      { stdio: ['ignore', 'pipe', 'pipe'] }
+      { stdio: ['ignore', 'pipe', 'pipe'], shell: process.platform === 'win32' }
     );
 
     server.stdout.on('data', (chunk) => process.stdout.write(chunk));
