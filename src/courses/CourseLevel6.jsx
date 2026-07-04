@@ -922,7 +922,9 @@ export default function CourseLevel6() {
             {activeTab === 'tips' && <div className="animate-fade-in"><ExamTipsModule /></div>}
             {activeTab === 'practice' && <div className="animate-fade-in"><PracticeModule /></div>}
             {activeTab === 'checklist' && <div className="animate-fade-in"><CheckListModule /></div>}
-            <CppLevelSupport level={6} placement="bottom" />
+            {activeTab === menuItems[menuItems.length - 1]?.id && (
+              <CppLevelSupport level={6} placement="bottom" />
+            )}
           </div>
           <footer className="text-center text-slate-400 py-8 text-sm mt-8 border-t border-slate-100">
             GESP C++ 六级备考互动课件 | 面向对象与指针

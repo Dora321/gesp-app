@@ -1697,7 +1697,9 @@ export default function GESP_Level2_Courseware() {
               <div className="mb-6"><CppLessonDirectory level={2} lessons={cppL2Lessons} accent="purple" /></div>
             )}
             {renderContent()}
-            <CppLevelSupport level={2} placement="bottom" />
+            {activeTab === tabs[tabs.length - 1]?.id && (
+              <CppLevelSupport level={2} placement="bottom" />
+            )}
           </div>
         </main>
       </div>

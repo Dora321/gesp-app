@@ -117,7 +117,9 @@ const GESPCourseware = () => {
             <div className="mb-6"><CppLessonDirectory level={1} lessons={cppL1Lessons} accent="blue" /></div>
           )}
           {renderContent()}
-          <CppLevelSupport level={1} placement="bottom" />
+          {activeTab === navItems[navItems.length - 1]?.id && (
+            <CppLevelSupport level={1} placement="bottom" />
+          )}
         </div>
       </main>
     </div>
