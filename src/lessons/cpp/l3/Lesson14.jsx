@@ -1,7 +1,7 @@
 import React, { useMemo, useState } from 'react';
 import { Binary, ClipboardCheck, Database, Repeat, Search } from 'lucide-react';
 import CppL3LessonSupport from '../../../components/CppL3LessonSupport';
-import CppLessonShell, { Callout, CodeBlock, CodeTracer, CompareTable, MiniQuiz } from '../CppLessonShell';
+import CppLessonShell, { Callout, CodeBlock, CodeTracer, CompareTable, MasteryCheck, MiniQuiz, PredictCheck, TransferCheck } from '../CppLessonShell';
 
 const sections = [
     { id: 1, title: '课程导入', category: '转换模型' },
@@ -110,6 +110,57 @@ reverse(ans.begin(), ans.end());`}
     );
 }
 
+function BasePredictionChecks() {
+    return (
+        <div className="grid gap-4 lg:grid-cols-3">
+            <PredictCheck
+                prompt={'用 while (n > 0) 的短除模板把 n = 0 转成二进制，会输出什么？'}
+                options={["'0'（模板自动处理）", '什么都不输出（空字符串）']}
+                correctIndex={1}
+                explanation={'n = 0 时循环一次都不进，ans 是空串。所以模板前必须特判：if (n == 0) ans = "0"。这是进制编程题最常见的丢分点。'}
+                misconception="以为模板对所有输入都成立，忘了 0 这个边界。"
+            />
+            <PredictCheck
+                prompt={'把 29 转二进制，取余依次得到 1、0、1、1、1。直接按这个顺序输出 10111 对吗？'}
+                options={['对，余数顺序就是答案', '错，要反转成 11101']}
+                correctIndex={1}
+                explanation="短除法先取到的是最低位。1、0、1、1、1 是从个位往高位排的，输出前必须 reverse，得到 11101。"
+                misconception="忘了余数是从低位开始产生的。"
+            />
+            <PredictCheck
+                prompt={"字符转数字时对 'B' 也用 c - '0'，会得到几？"}
+                options={['11（编译器自动认识字母）', "18（'B' 是 66，66 - 48 = 18，结果错误）"]}
+                correctIndex={1}
+                explanation="c - '0' 只对数字字符成立。字母必须单独分支：c - 'A' + 10，'B' 才能正确变成 11。"
+                misconception="把数字字符的转换套路套到所有字符上。"
+            />
+        </div>
+    );
+}
+
+const baseMasteryItems = [
+    {
+        label: '拿到题先判断转换方向。',
+        evidence: '能说出“离开十进制用短除，回到十进制用滚动乘加”。',
+        retryHint: '回到第 2、3 节各自的开头对照。',
+    },
+    {
+        label: '能写取余反转模板并处理 n = 0。',
+        evidence: '模板前有 if (n == 0) 特判，末尾有 reverse。',
+        retryHint: '重做 n = 0 预测题。',
+    },
+    {
+        label: '能用 ans = ans * k + 位值 滚动计算。',
+        evidence: '能手推 2F(16) → 2 → 47 的两步过程。',
+        retryHint: '回到滚动计算的手推表。',
+    },
+    {
+        label: '能双向处理 A-F 与 10-15。',
+        evidence: "数字转字符用 digits[x]，字符转数字分数字/字母两个分支。",
+        retryHint: '回到“代码模板”小节的两个工具函数。',
+    },
+];
+
 export default function CppL3Lesson14() {
     return (
         <CppLessonShell
@@ -140,6 +191,10 @@ export default function CppL3Lesson14() {
                             </p>
                         </div>
                         <BaseConvertTracer />
+                        <Callout icon={ClipboardCheck} title="别忘了 n = 0" tone="amber">
+                            <code>while (n &gt; 0)</code> 对 n = 0 一轮都不执行，输出会是空串。
+                            完整模板要先特判：<code>if (n == 0) ans = "0";</code>——真题评测里 0 几乎必在测试点里。
+                        </Callout>
                     </>
                 ),
                 3: (
@@ -165,6 +220,20 @@ int fromBase(string s, int k) {
                         <Callout icon={Database} title="滚动计算更适合写代码" tone="rose">
                             例如二进制 1011：从左到右依次得到 1、2、5、11。
                         </Callout>
+                        <div>
+                            <h4 className="text-xl font-black text-slate-900">手推一遍：十六进制 2F 转十进制</h4>
+                        </div>
+                        <CompareTable
+                            headers={['读到的字符', '位值 valueOf', '滚动计算 ans = ans * 16 + 位值', 'ans']}
+                            rows={[
+                                ['（初始）', '—', '—', '0'],
+                                ["'2'", '2', '0 × 16 + 2', '2'],
+                                ["'F'", '15', '2 × 16 + 15', '47'],
+                            ]}
+                        />
+                        <p className="text-sm font-semibold leading-6 text-slate-600">
+                            所以 (2F)₁₆ = 47。验算：47 = 32 + 15 = 2 × 16 + 15 ✓。滚动公式的本质就是按权展开的边读边算版。
+                        </p>
                     </>
                 ),
                 4: (
@@ -186,6 +255,7 @@ int fromBase(string s, int k) {
                         <Callout icon={Repeat} title="模板不是死背" tone="blue">
                             真题会改变输入形式和目标进制，但核心动作总是“取余反转”或“滚动乘加”。
                         </Callout>
+                        <BasePredictionChecks />
                     </>
                 ),
                 5: (
@@ -197,11 +267,27 @@ int fromBase(string s, int k) {
                             </p>
                         </div>
                         <MiniQuiz items={quiz} />
+                        <TransferCheck
+                            prompt={'换个例子：把十六进制 "3A" 转成十进制，再把结果转成二进制。写出两段完整过程。'}
+                            hint="先滚动乘加：ans = ans * 16 + 位值；再对结果做短除取余、反转。"
+                            answer="(3A)₁₆ = 58；58 = (111010)₂。"
+                            steps={[
+                                "滚动：'3' → 0×16+3 = 3；'A' → 3×16+10 = 58。",
+                                '短除 58：余数依次 0,1,0,1,1,1（58→29→14→7→3→1→0）。',
+                                '反转余数得 111010。验算：32+16+8+2 = 58 ✓。',
+                            ]}
+                        />
+                        <MasteryCheck
+                            title="C++ L3-14 进制编程离开前检查"
+                            description="进制编程最怕“方向搞反、忘了反转、漏了 0”。勾选前先默写两个模板并跑一遍 n = 0。"
+                            items={baseMasteryItems}
+                        />
                         <Callout icon={ClipboardCheck} title="课后任务" tone="slate">
                             <ul className="space-y-2">
-                                <li>读入十进制 n 和 k，输出 n 的 k 进制表示。</li>
+                                <li>读入十进制 n 和 k，输出 n 的 k 进制表示（n 可能为 0）。</li>
                                 <li>读入 k 进制字符串 s，输出它的十进制值。</li>
                                 <li>实现十六进制转十进制，支持 A-F。</li>
+                                <li>挑战：写 convert(s, a, b) 把 a 进制字符串转成 b 进制（先转十进制中转）。</li>
                             </ul>
                         </Callout>
                         <Callout icon={Search} title="下一课衔接" tone="blue">

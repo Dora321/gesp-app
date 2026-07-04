@@ -1,7 +1,7 @@
 import React, { useMemo, useState } from 'react';
 import { ClipboardCheck, Grid3X3, Layers, Search, Triangle } from 'lucide-react';
 import CppL3LessonSupport from '../../../components/CppL3LessonSupport';
-import CppLessonShell, { Callout, CodeBlock, CodeTracer, CompareTable, MiniQuiz } from '../CppLessonShell';
+import CppLessonShell, { Callout, CodeBlock, CodeTracer, CompareTable, MasteryCheck, MiniQuiz, PredictCheck, TransferCheck } from '../CppLessonShell';
 
 const sections = [
     { id: 1, title: '课程导入', category: '图形模型' },
@@ -114,6 +114,57 @@ function TriangleTracer() {
     );
 }
 
+function PatternPredictionChecks() {
+    return (
+        <div className="grid gap-4 lg:grid-cols-3">
+            <PredictCheck
+                prompt={'n = 4 的居中金字塔，第 3 行有几个星号？'}
+                options={['5 个（星号数 2i - 1）', '3 个（星号数就是行号 i）']}
+                correctIndex={0}
+                explanation="金字塔每行比上一行左右各长一格，星号数是 1、3、5、7 的等差数列，公式 2i - 1。第 3 行是 2×3-1 = 5。行号 i 是左下三角的规律，别直接搬过来。"
+                misconception="把左下三角“第 i 行 i 个星号”的规律套到金字塔上。"
+            />
+            <PredictCheck
+                prompt={'镂空正方形规则：i==1 || i==n || j==1 || j==n 时输出 *，否则输出空格。n = 4 时第 2 行是什么？'}
+                options={['*··*（两端星号，中间 2 个空格）', '****（每行都是满的）']}
+                correctIndex={0}
+                explanation="第 2 行 i=2，既不是第一行也不是最后一行，所以只有 j=1 和 j=4 两个边界列输出星号，中间全是空格。"
+                misconception="只看行条件不看列条件，把中间行也画满。"
+            />
+            <PredictCheck
+                prompt={'写金字塔时嫌麻烦，把输出空格的循环删掉了，图形会变成什么？'}
+                options={['还是金字塔，空格自动补上', '变成左对齐的奇数三角']}
+                correctIndex={1}
+                explanation="空格是输出内容，不是排版效果。没有前导空格，每行的 1、3、5、7 个星号都从最左边开始，金字塔塌成左对齐三角。"
+                misconception="以为控制台会自动居中，空格可以省略。"
+            />
+        </div>
+    );
+}
+
+const patternMasteryItems = [
+    {
+        label: '能推导金字塔星号数为什么是 2i - 1。',
+        evidence: '能说出“每行左右各长一格，等差 +2，首项 1”。',
+        retryHint: '回到三角形追踪器，逐行看星号列。',
+    },
+    {
+        label: '能写出常见图形的行规律表。',
+        evidence: '矩形 n、左三角 i、倒三角 n-i+1、金字塔空格 n-i 星号 2i-1。',
+        retryHint: '回到“矩形与三角形”的对照表默写一遍。',
+    },
+    {
+        label: '能用行列坐标条件画镂空图形。',
+        evidence: '能解释边框条件 i==1 || i==n || j==1 || j==n 的含义。',
+        retryHint: '回到“图形题拆解”的镂空正方形例子。',
+    },
+    {
+        label: '拿到新图形先手写 n = 4 的输出再翻译成循环。',
+        evidence: '能展示菱形的逐行空格数、星号数草稿表。',
+        retryHint: '重做迁移练习的菱形推导。',
+    },
+];
+
 export default function CppL3Lesson13() {
     return (
         <CppLessonShell
@@ -157,6 +208,26 @@ export default function CppL3Lesson13() {
   }
   cout << endl;
 }`}</CodeBlock>
+                        <div>
+                            <h4 className="text-xl font-black text-slate-900">输出的不一定是星号：数字图形</h4>
+                            <p className="mt-2 text-sm font-semibold leading-6 text-slate-600">
+                                三级真题喜欢把星号换成数字。规律不变，只是把 <code>cout &lt;&lt; "*"</code> 换成和 <code>j</code>（或 <code>i</code>）有关的内容。
+                            </p>
+                        </div>
+                        <div className="grid gap-5 lg:grid-cols-2">
+                            <CodeBlock>{`// 第 i 行输出 1 到 i
+for (int i = 1; i <= n; i++) {
+  for (int j = 1; j <= i; j++) {
+    cout << j;
+  }
+  cout << endl;
+}`}</CodeBlock>
+                            <CodeBlock>{`n = 4 的输出：
+1
+12
+123
+1234`}</CodeBlock>
+                        </div>
                     </>
                 ),
                 3: (
@@ -168,6 +239,11 @@ export default function CppL3Lesson13() {
                             </p>
                         </div>
                         <TriangleTracer />
+                        <Callout icon={Triangle} title="为什么金字塔星号数是 2i - 1" tone="rose">
+                            每往下一行，星号左右各多长一格，也就是每行比上一行多 2 个；首行 1 个。
+                            1、3、5、7…… 是首项为 1、公差为 2 的等差数列，第 i 项正是 <code>2i - 1</code>。
+                            考场上忘了公式，就默写前三行数一数。
+                        </Callout>
                     </>
                 ),
                 4: (
@@ -185,6 +261,40 @@ export default function CppL3Lesson13() {
                                 <li>每行结尾是否要多余空格？</li>
                             </ul>
                         </Callout>
+                        <div>
+                            <h4 className="text-xl font-black text-slate-900">进阶思路：用行列坐标条件画镂空图形</h4>
+                            <p className="mt-2 text-sm font-semibold leading-6 text-slate-600">
+                                复杂图形还有第二种拆法：把每个位置看成坐标 (i, j)，写一个“这个位置输出什么”的条件。
+                                镂空正方形（只画边框）就是典型：在边界上输出星号，其余输出空格。
+                            </p>
+                        </div>
+                        <div className="grid gap-5 lg:grid-cols-2">
+                            <CodeBlock>{`for (int i = 1; i <= n; i++) {
+  for (int j = 1; j <= n; j++) {
+    if (i == 1 || i == n ||
+        j == 1 || j == n) {
+      cout << "*";
+    } else {
+      cout << " ";
+    }
+  }
+  cout << endl;
+}`}</CodeBlock>
+                            <CodeBlock>{`n = 5 的输出：
+*****
+*   *
+*   *
+*   *
+*****`}</CodeBlock>
+                        </div>
+                        <CompareTable
+                            headers={['拆法', '适用图形', '思考方式']}
+                            rows={[
+                                ['按行计数', '三角、金字塔、倒三角', '第 i 行先输出几个空格、再输出几个符号'],
+                                ['按坐标条件', '镂空、对角线、棋盘', '位置 (i, j) 满足什么条件时输出目标字符'],
+                            ]}
+                        />
+                        <PatternPredictionChecks />
                     </>
                 ),
                 5: (
@@ -196,11 +306,27 @@ export default function CppL3Lesson13() {
                             </p>
                         </div>
                         <MiniQuiz items={quiz} />
+                        <TransferCheck
+                            prompt={'换个例子：n = 4 的菱形（上半 4 行金字塔 + 下半 3 行倒金字塔）。写出上、下半每行的空格数和星号数公式。'}
+                            hint="上半 i 从 1 到 n；下半就是上半去掉最后一行后倒着放，公式相同、i 反着跑。"
+                            answer="每行都是：空格 n - i 个、星号 2i - 1 个。上半 i = 1..4（星号 1,3,5,7），下半 i = 3..1（星号 5,3,1）。"
+                            steps={[
+                                '上半：i=1..4，空格 3,2,1,0，星号 1,3,5,7。',
+                                '下半是上半去掉第 4 行后上下翻转：i=3,2,1。',
+                                '两段共用同一套公式，只是第二个循环写成 for (int i = n - 1; i >= 1; i--)。',
+                            ]}
+                        />
+                        <MasteryCheck
+                            title="C++ L3-13 图形打印离开前检查"
+                            description="图形题最怕“看图会，公式一列就错”。勾选前先默写 n = 4 金字塔每行的空格数和星号数。"
+                            items={patternMasteryItems}
+                        />
                         <Callout icon={ClipboardCheck} title="课后任务" tone="slate">
                             <ul className="space-y-2">
-                                <li>打印 n 行左下三角。</li>
-                                <li>打印 n 行倒三角。</li>
-                                <li>打印 n 行居中金字塔。</li>
+                                <li>打印 n 行左下三角、倒三角、居中金字塔。</li>
+                                <li>打印 n 行数字三角：第 i 行输出 1 到 i。</li>
+                                <li>打印 n × n 镂空正方形（只画边框）。</li>
+                                <li>挑战：打印完整菱形，并解释上下两段循环的边界。</li>
                             </ul>
                         </Callout>
                         <Callout icon={Search} title="下一课衔接" tone="blue">

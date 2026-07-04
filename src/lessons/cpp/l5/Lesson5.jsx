@@ -1,7 +1,7 @@
 import React, { useMemo, useState } from 'react';
 import { ClipboardCheck, Hash, Search, Sigma } from 'lucide-react';
 import CppL5LessonSupport from '../../../components/CppL5LessonSupport';
-import CppLessonShell, { Callout, CodeBlock, CompareTable, MiniQuiz, StepList } from '../CppLessonShell';
+import CppLessonShell, { Callout, CodeBlock, CompareTable, MasteryCheck, MiniQuiz, PredictCheck, StepList, TransferCheck } from '../CppLessonShell';
 
 const sections = [
     { id: 1, title: '课程导入', category: '工具选择' },
@@ -77,6 +77,57 @@ const quiz = [
     },
 ];
 
+function NumberTheoryPredictionChecks() {
+    return (
+        <div className="grid gap-4 lg:grid-cols-3">
+            <PredictCheck
+                prompt={'求 LCM 时，a * b / gcd(a, b) 和 a / gcd(a, b) * b 哪种写法更安全？'}
+                options={['一样，乘除顺序不影响结果', '先除后乘更安全：a * b 可能先溢出']}
+                correctIndex={1}
+                explanation="a、b 都接近 10⁹ 时 a * b ≈ 10¹⁸，乘法先做就可能溢出。gcd 整除 a，先除不丢精度，中间值小得多。这是五级数论题的高频扣分点。"
+                misconception="以为数学上等价的式子在代码里也完全等价。"
+            />
+            <PredictCheck
+                prompt={'求三个数 12、18、24 的最大公约数，应该怎么算？'}
+                options={['两两求 gcd 取最小值', '滚动计算：gcd(gcd(12, 18), 24) = 6']}
+                correctIndex={1}
+                explanation="gcd 满足结合律，多个数直接滚动：先 gcd(12,18)=6，再 gcd(6,24)=6。lcm 同理滚动。“两两取最小”没有数学依据。"
+                misconception="对多个数的 gcd 没有滚动计算的概念，自创错误规则。"
+            />
+            <PredictCheck
+                prompt={'要回答 10⁵ 次“x 是不是素数”（x ≤ 10⁶），每次现场试除还是先筛？'}
+                options={['每次试除 O(√x)，代码短', '筛一次预处理，之后每次查询 O(1)']}
+                correctIndex={1}
+                explanation="试除总量 ≈ 10⁵ × 10³ = 10⁸，压着时限的天花板；埃氏筛预处理一次，之后每次查 isPrime[x] 是 O(1)。查询次数多时，预处理永远是第一选择。"
+                misconception="只估单次查询的成本，忽略查询次数的乘法效应。"
+            />
+        </div>
+    );
+}
+
+const numberTheoryMasteryItems = [
+    {
+        label: '能按题面信号选择工具。',
+        evidence: '多次判素数→筛法、平均分组→GCD、同时出现→LCM、答案巨大→高精度。',
+        retryHint: '回到“数论题拆解”的信号对照表。',
+    },
+    {
+        label: 'LCM 永远写成 a / gcd(a, b) * b。',
+        evidence: '能解释先乘后除为什么会溢出、先除为什么不丢精度。',
+        retryHint: '重做 LCM 溢出预测题。',
+    },
+    {
+        label: '多个数的 gcd / lcm 会滚动计算。',
+        evidence: '能写出 for 循环里 g = gcd(g, a[i]) 的滚动式。',
+        retryHint: '重做三个数 gcd 预测题。',
+    },
+    {
+        label: '会用“先定模型、再查类型”两步判断。',
+        evidence: '先确认算法，再估答案上限决定 int / long long / 高精度。',
+        retryHint: '回看“判断顺序”提示框。',
+    },
+];
+
 export default function CppL5Lesson5() {
     return (
         <CppLessonShell
@@ -141,6 +192,22 @@ cout << count << endl;`}</CodeBlock>
                                 '再叠加 gcd 等其他条件',
                             ]} />
                         </div>
+                        <div>
+                            <h4 className="text-xl font-black text-slate-900">多个数的 gcd / lcm：滚动着算</h4>
+                        </div>
+                        <div className="grid gap-5 lg:grid-cols-2">
+                            <CodeBlock>{`// n 个数的最大公约数
+int g = a[0];
+for (int i = 1; i < n; i++) {
+  g = gcd(g, a[i]);
+}`}</CodeBlock>
+                            <CodeBlock>{`// n 个数的最小公倍数
+long long l = a[0];
+for (int i = 1; i < n; i++) {
+  l = l / gcd(l, (long long)a[i]) * a[i];
+}   // 先除后乘，防溢出`}</CodeBlock>
+                        </div>
+                        <NumberTheoryPredictionChecks />
                     </>
                 ),
                 4: (
@@ -170,11 +237,28 @@ print(ans);`}</CodeBlock>
                             </p>
                         </div>
                         <MiniQuiz items={quiz} />
+                        <TransferCheck
+                            prompt={'换个例子：三路公交分别每 6、8、10 分钟发一班，刚才同时发车。多少分钟后三路再次同时发车？'}
+                            hint="“同时再次出现”是 LCM 信号；三个数滚动算，每步先除后乘。"
+                            answer="120 分钟后。lcm(6, 8) = 24，lcm(24, 10) = 120。"
+                            steps={[
+                                '识别模型：“同时再次发生”→ 最小公倍数。',
+                                'lcm(6, 8)：6 / gcd(6,8) × 8 = 6 / 2 × 8 = 24。',
+                                'lcm(24, 10)：24 / gcd(24,10) × 10 = 24 / 2 × 10 = 120。',
+                                '验证：120 = 6×20 = 8×15 = 10×12 ✓。',
+                            ]}
+                        />
+                        <MasteryCheck
+                            title="C++ L5-5 数论综合离开前检查"
+                            description="综合题拼的是工具选择速度。勾选前先不看笔记，把四类题面信号和对应工具默写出来。"
+                            items={numberTheoryMasteryItems}
+                        />
                         <Callout icon={ClipboardCheck} title="课后任务" tone="slate">
                             <ul className="space-y-2">
                                 <li>统计 1 到 n 中与 m 互质的素数个数。</li>
-                                <li>求多个数的最大公约数和最小公倍数。</li>
+                                <li>求多个数的最大公约数和最小公倍数（写滚动版）。</li>
                                 <li>用高精度计算 n!，并统计结果末尾 0 的个数。</li>
+                                <li>挑战：解释末尾 0 的个数为什么等于 1..n 中因子 5 的总个数，并用它验证高精度结果。</li>
                             </ul>
                         </Callout>
                         <Callout icon={Search} title="下一课衔接" tone="blue">

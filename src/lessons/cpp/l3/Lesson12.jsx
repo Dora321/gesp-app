@@ -1,7 +1,7 @@
 import React, { useMemo, useState } from 'react';
 import { ClipboardCheck, KeyRound, LockKeyhole, RotateCw, Search } from 'lucide-react';
 import CppL3LessonSupport from '../../../components/CppL3LessonSupport';
-import CppLessonShell, { Callout, CodeBlock, CompareTable, MiniQuiz, StepList } from '../CppLessonShell';
+import CppLessonShell, { Callout, CodeBlock, CompareTable, MasteryCheck, MiniQuiz, PredictCheck, StepList, TransferCheck } from '../CppLessonShell';
 
 const sections = [
     { id: 1, title: '课程导入', category: '字符偏移' },
@@ -75,6 +75,57 @@ const quiz = [
     },
 ];
 
+function CaesarPredictionChecks() {
+    return (
+        <div className="grid gap-4 lg:grid-cols-3">
+            <PredictCheck
+                prompt={"把 'z' 用 k=1 加密，直接写 c + 1 会得到什么？"}
+                options={["'a'（自动绕回字母表开头）", "'{'（z 的下一个 ASCII 字符）"]}
+                correctIndex={1}
+                explanation="ASCII 里 'z' 是 122，加 1 是 123，对应 '{'。字符加法不会自动在字母表内循环——绕回必须自己写：先转编号，(id + k) % 26，再转回字符。"
+                misconception="以为字符加法会自动在 a~z 之间循环。"
+            />
+            <PredictCheck
+                prompt={'解密时偷懒写 (id - k) % 26 不加 26。当 id=1、k=3 时，C++ 里这个表达式等于几？'}
+                options={['24（模运算自动变正）', '-2（负数，转出字母表外的字符）']}
+                correctIndex={1}
+                explanation="C++ 的 % 结果符号跟随被除数：-2 % 26 仍是 -2，'a' + (-2) 会落到字母表外。所以解密模板必须是 (id - k + 26) % 26。"
+                misconception="把数学课里“模总是非负”的直觉带进 C++。"
+            />
+            <PredictCheck
+                prompt={"加密大写 'C'（k=2）时写 'a' + ('C' - 'a' + 2) % 26，对吗？"}
+                options={['对，基准用哪个都一样', "错，大写字母必须用 'A' 做基准"]}
+                correctIndex={1}
+                explanation="'C' - 'a' = 67 - 97 = -30，编号一开始就是错的。大写字母的编号和还原都要用 'A'：'A' + ('C' - 'A' + 2) % 26 = 'E'。"
+                misconception="大小写混用同一个基准字符。"
+            />
+        </div>
+    );
+}
+
+const caesarMasteryItems = [
+    {
+        label: '能写出加密公式 (id + k) % 26 并解释为什么取模。',
+        evidence: "拿 'y' + 3 能算出绕回结果 'b'，而不是越界字符。",
+        retryHint: '回到“解密与取模”小节的绕回手推例。',
+    },
+    {
+        label: '能写出解密公式 (id - k + 26) % 26 并解释 +26。',
+        evidence: '能说出 C++ 里 -2 % 26 = -2，所以要先加 26 再取模。',
+        retryHint: '重做负数取模预测题。',
+    },
+    {
+        label: '能区分大小写基准，非字母原样保留。',
+        evidence: "小写基准 'a'、大写基准 'A'，空格数字标点不动。",
+        retryHint: '回到“综合模板”的字符分类表。',
+    },
+    {
+        label: '能把加密解密封装成函数并互相验证。',
+        evidence: '能解释 decrypt(encrypt(c, k), k) == c 恒成立并实测。',
+        retryHint: '把课后任务第 1、2 题连起来对拍。',
+    },
+];
+
 export default function CppL3Lesson12() {
     return (
         <CppLessonShell
@@ -112,6 +163,26 @@ export default function CppL3Lesson12() {
                         <Callout icon={KeyRound} title="编号思想" tone="rose">
                             <code>'a'</code> 到 <code>'z'</code> 先变成 0 到 25，做完数学运算后再变回字符。
                         </Callout>
+                        <div>
+                            <h4 className="text-xl font-black text-slate-900">手推一遍：attack 用 k = 3 加密</h4>
+                            <p className="mt-2 text-sm font-semibold leading-6 text-slate-600">
+                                考场上遇到加密题，先拿第一个单词手推一张表，再动手写代码。每个字符走同一条流水线：转编号 → 加偏移取模 → 转回字符。
+                            </p>
+                        </div>
+                        <CompareTable
+                            headers={['字符', "编号 c - 'a'", '(编号 + 3) % 26', '结果']}
+                            rows={[
+                                ['a', '0', '3', 'd'],
+                                ['t', '19', '22', 'w'],
+                                ['t', '19', '22', 'w'],
+                                ['a', '0', '3', 'd'],
+                                ['c', '2', '5', 'f'],
+                                ['k', '10', '13', 'n'],
+                            ]}
+                        />
+                        <p className="text-sm font-semibold leading-6 text-slate-600">
+                            所以 <code>attack</code> 加密后是 <code>dwwdfn</code>——这正是凯撒大帝当年用来传军令的写法。
+                        </p>
                     </>
                 ),
                 3: (
@@ -135,6 +206,20 @@ export default function CppL3Lesson12() {
                                 '对 26 取模后转回字符',
                             ]} />
                         </div>
+                        <div>
+                            <h4 className="text-xl font-black text-slate-900">两个必须会算的边界案例</h4>
+                        </div>
+                        <CompareTable
+                            headers={['案例', '计算过程', '结论']}
+                            rows={[
+                                ["加密 'y'，k = 3", '(24 + 3) % 26 = 1', "绕回得到 'b'，不取模会冲出字母表"],
+                                ["解密 'b'，k = 3", '(1 - 3 + 26) % 26 = 24', "得到 'y'；不加 26 时 -2 % 26 = -2，直接出错"],
+                            ]}
+                        />
+                        <Callout icon={RotateCw} title="C++ 的负数取模和数学课不一样" tone="amber">
+                            数学里模运算结果非负，但 C++ 的 <code>%</code> 结果符号跟随被除数：<code>-2 % 26</code> 等于 <code>-2</code>。
+                            这就是解密公式里 <code>+ 26</code> 一步都不能省的原因，也是三级选择题的常客。
+                        </Callout>
                     </>
                 ),
                 4: (
@@ -164,6 +249,7 @@ export default function CppL3Lesson12() {
                         <Callout icon={RotateCw} title="别把 ASCII 偏移写成纯加法" tone="amber">
                             直接写 <code>c + k</code> 会把 z 推到非字母字符。字母循环必须用取模处理。
                         </Callout>
+                        <CaesarPredictionChecks />
                     </>
                 ),
                 5: (
@@ -175,11 +261,33 @@ export default function CppL3Lesson12() {
                             </p>
                         </div>
                         <MiniQuiz items={quiz} />
+                        <TransferCheck
+                            prompt={'换个例子：把 "hello" 用 k = 5 加密（全小写）。逐字符写出编号和结果。'}
+                            hint="h→7、e→4、l→11、o→14；每个编号 +5 再对 26 取模，最后转回字符。"
+                            answer='密文是 "mjqqt"。这正是三级真题《凯撒密码》的样例。'
+                            steps={[
+                                'h：(7 + 5) % 26 = 12 → m。',
+                                'e：(4 + 5) % 26 = 9 → j。',
+                                'l：(11 + 5) % 26 = 16 → q（两个 l 都是 q）。',
+                                'o：(14 + 5) % 26 = 19 → t。',
+                                '拼起来：mjqqt。',
+                            ]}
+                        />
+                        <MasteryCheck
+                            title="C++ L3-12 加密与解密离开前检查"
+                            description="加密题最怕“公式背得出，边界一换就错”。勾选前先手算加密 'y'（k=3）和解密 'b'（k=3）。"
+                            items={caesarMasteryItems}
+                        />
+                        <Callout icon={LockKeyhole} title="真题连接" tone="rose">
+                            凯撒密码是三级编程题的常客：2025 年 6 月和 2026 年 3 月的三级卷都考了它（样例正是 hello → mjqqt）。
+                            底部的真题链接可以直接开卷练习。
+                        </Callout>
                         <Callout icon={ClipboardCheck} title="课后任务" tone="slate">
                             <ul className="space-y-2">
                                 <li>读入小写字符串和 k，输出 Caesar 加密结果。</li>
-                                <li>读入密文和 k，输出解密结果。</li>
+                                <li>读入密文和 k，输出解密结果，并用加密函数对拍验证。</li>
                                 <li>扩展到大小写字母都能处理，非字母保持不变。</li>
+                                <li>挑战：k 可能大于 26 或为负数，先把 k 规范到 0~25 再加密。</li>
                             </ul>
                         </Callout>
                         <Callout icon={Search} title="下一课衔接" tone="blue">

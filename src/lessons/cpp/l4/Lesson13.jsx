@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { ClipboardCheck, FileText, FolderOpen, Save, Search } from 'lucide-react';
 import CppL4LessonSupport from '../../../components/CppL4LessonSupport';
-import CppLessonShell, { Callout, CodeBlock, CompareTable, MiniQuiz, StepList } from '../CppLessonShell';
+import CppLessonShell, { Callout, CodeBlock, CompareTable, MasteryCheck, MiniQuiz, PredictCheck, StepList, TransferCheck } from '../CppLessonShell';
 
 const sections = [
     { id: 1, title: '课程导入', category: '文件场景' },
@@ -64,6 +64,57 @@ const quiz = [
         question: '使用 freopen 后还要改 cin/cout 吗？',
         answer: '不用',
         reason: '标准输入输出已经被重定向，后续写法保持不变。',
+    },
+];
+
+function FileIoPredictionChecks() {
+    return (
+        <div className="grid gap-4 lg:grid-cols-3">
+            <PredictCheck
+                prompt={'题目要求读 score.in，代码却写了 freopen("score.txt", "r", stdin)。运行时会发生什么？'}
+                options={['报错提示文件不存在', '编译运行都“正常”，但 cin 一直读不到数据']}
+                correctIndex={1}
+                explanation="freopen 打不开文件不会报错也不会崩溃：cin 会静默读取失败，变量保持原值。这是文件题最阴险的错——没有任何报错提示，只能靠逐字核对文件名排查。"
+                misconception="以为文件不存在时程序会报错提醒你。"
+            />
+            <PredictCheck
+                prompt={'已经写了 freopen("data.out", "w", stdout)，想临时 cout 一行调试信息到屏幕，能看到吗？'}
+                options={['能，调试信息会走屏幕', '不能，所有 cout 都进了文件；调试要改用 cerr']}
+                correctIndex={1}
+                explanation="重定向后所有标准输出都写进文件。调试信息应该用 cerr 输出——标准错误流不受 stdout 重定向影响，永远显示在屏幕上。"
+                misconception="以为 cout 能自动区分“答案”和“调试信息”。"
+            />
+            <PredictCheck
+                prompt={'用 "w" 模式打开一个已经存在的 data.out，旧内容会怎样？'}
+                options={['保留，新内容追加在后面', '被清空，从头开始写']}
+                correctIndex={1}
+                explanation='"w" 每次打开都会清空文件从头写，这正是评测需要的行为；想追加要用 "a"。调试时若要保留旧输出，先备份。'
+                misconception="以为写文件默认是追加模式。"
+            />
+        </div>
+    );
+}
+
+const fileIoMasteryItems = [
+    {
+        label: '能默写成对的 freopen 模板并写对文件名。',
+        evidence: '文件名和题面逐字符一致，包括大小写和后缀。',
+        retryHint: '回到文件名实验台改几个前缀看生成结果。',
+    },
+    {
+        label: '知道“打不开文件”的表现是静默失败。',
+        evidence: '排查顺序：核对文件名 → 确认 .in 在工作目录 → 检查模式字符串。',
+        retryHint: '回到“常见错误”对照表。',
+    },
+    {
+        label: '会用 cerr 输出调试信息。',
+        evidence: '能解释 cerr 为什么不受 stdout 重定向影响。',
+        retryHint: '重做 cout 进文件的预测题。',
+    },
+    {
+        label: '清楚 "w" 覆盖、"a" 追加，提交前按平台处理 freopen。',
+        evidence: '能说出平台不需要文件读写时要注释掉这两行。',
+        retryHint: '回看“提交提醒”。',
     },
 ];
 
@@ -166,6 +217,20 @@ int main() {
                         <Callout icon={FileText} title="提交提醒" tone="amber">
                             有些在线评测不允许或不需要 <code>freopen</code>。遇到运行错误时，先查看题面和平台说明。
                         </Callout>
+                        <div>
+                            <h4 className="text-xl font-black text-slate-900">调试小技巧：答案走 cout，调试走 cerr</h4>
+                        </div>
+                        <div className="grid gap-5 lg:grid-cols-[1fr_0.9fr]">
+                            <CodeBlock>{`freopen("data.out", "w", stdout);
+
+cout << ans << endl;          // 进文件，交给评测
+cerr << "n=" << n << endl;    // 上屏幕，只给自己看`}</CodeBlock>
+                            <div className="rounded-xl bg-slate-50 p-5 text-sm font-semibold leading-7 text-slate-600 ring-1 ring-slate-200">
+                                <code>cerr</code> 走标准错误流，不受 <code>stdout</code> 重定向影响，也不会混进输出文件。
+                                提交前不用删调试语句，评测只看输出文件——但保持好习惯，还是清理干净。
+                            </div>
+                        </div>
+                        <FileIoPredictionChecks />
                     </>
                 ),
                 5: (
@@ -177,11 +242,28 @@ int main() {
                             </p>
                         </div>
                         <MiniQuiz items={quiz} />
+                        <TransferCheck
+                            prompt={'换个例子：题目《求最大值》要求从 max.in 读入 n 和 n 个整数，把最大值写进 max.out。写出 main 开头两行和完整读写流程。'}
+                            hint="两行 freopen（注意文件名和模式），后面照常 cin/cout 打擂台。"
+                            answer='freopen("max.in", "r", stdin); freopen("max.out", "w", stdout); 然后 cin >> n，读入第一个数作初值，循环打擂台，最后 cout 最大值。'
+                            steps={[
+                                '第 1 行：freopen("max.in", "r", stdin);',
+                                '第 2 行：freopen("max.out", "w", stdout);',
+                                '读 n，再读第一个数当 mx 的初值（避免全负数出错）。',
+                                '循环读剩下 n-1 个数打擂台，最后 cout << mx。',
+                            ]}
+                        />
+                        <MasteryCheck
+                            title="C++ L4-13 文件读写离开前检查"
+                            description="文件题最怕“算法全对，文件名错一个字母得 0 分”。勾选前先把 sum.in/sum.out 的完整程序跑通一次。"
+                            items={fileIoMasteryItems}
+                        />
                         <Callout icon={ClipboardCheck} title="课后任务" tone="slate">
                             <ul className="space-y-2">
                                 <li>写一个从 <code>sum.in</code> 读取整数并输出总和到 <code>sum.out</code> 的程序。</li>
                                 <li>把第 12 课的递推程序改成文件输入输出版本。</li>
-                                <li>故意改错文件名，观察程序表现并记录排查过程。</li>
+                                <li>故意改错文件名，观察“静默失败”的表现并记录排查过程。</li>
+                                <li>挑战：在文件版程序里用 cerr 打印每步中间值，确认输出文件不受影响。</li>
                             </ul>
                         </Callout>
                         <Callout icon={Search} title="下一课衔接" tone="blue">
