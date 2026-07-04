@@ -955,7 +955,7 @@ export default function AdvLesson1() {
     return (
         <LegacyCppLessonShell
             lessonNumber={1}
-            lessonTitle="计算机的记忆与网络"
+            lessonTitle="计算机通识 (RAM/IP)"
             levelLabel="二级趣味课堂"
             accent="bluePurple"
             sections={sections}

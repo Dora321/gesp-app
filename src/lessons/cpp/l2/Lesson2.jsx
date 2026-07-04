@@ -744,7 +744,7 @@ export default function App() {
     return (
         <LegacyCppLessonShell
             lessonNumber={2}
-            lessonTitle="字符与 ASCII 编码"
+            lessonTitle="字符的密码 (ASCII)"
             levelLabel="二级趣味课堂"
             accent="bluePurple"
             sections={sections}

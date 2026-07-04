@@ -672,7 +672,7 @@ function App() {
     return (
         <LegacyCppLessonShell
             lessonNumber={12}
-            lessonTitle="多层循环"
+            lessonTitle="多重循环"
             accent="bluePurple"
             sections={sections}
             activeSection={activeSection}

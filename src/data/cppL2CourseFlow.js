@@ -1,8 +1,8 @@
 export const cppL2Lessons = [
-  { id: 1, title: '第 1 课：存储器与网络基础' },
-  { id: 2, title: '第 2 课：ASCII 与字符运算' },
-  { id: 3, title: '第 3 课：类型转换与整数除法' },
-  { id: 4, title: '第 4 课：switch 多路选择' },
+  { id: 1, title: '第 1 课：计算机通识 (RAM/IP)' },
+  { id: 2, title: '第 2 课：字符的密码 (ASCII)' },
+  { id: 3, title: '第 3 课：数据变形记 (类型转换)' },
+  { id: 4, title: '第 4 课：神奇的开关 (Switch)' },
   { id: 5, title: '第 5 课：嵌套循环基础' },
   { id: 6, title: '第 6 课：图形打印实战' },
   { id: 7, title: '第 7 课：流程图的秘密' },

@@ -851,7 +851,7 @@ export default function App() {
     return (
         <LegacyCppLessonShell
             lessonNumber={15}
-            lessonTitle="综合训练 (一)"
+            lessonTitle="筛选与统计"
             accent="blueIndigo"
             sections={sections}
             activeSection={activeSection}
