@@ -7,7 +7,7 @@ import {
 } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import PythonProjectSupport from '../../../components/PythonProjectSupport';
-import PythonLessonShell, { MasteryCheck } from '../shell/PythonLessonShell';
+import PythonLessonShell, { MasteryCheck, TransferCheck } from '../shell/PythonLessonShell';
 
 const game2048MasteryItems = [
     {
@@ -1028,6 +1028,16 @@ const sections = [
         icon: CheckCircle,
         component: () => (
             <div className="space-y-6 animate-in fade-in slide-in-from-bottom-4 duration-500">
+                <TransferCheck
+                    prompt="换个例子：2048 的一行是 [2, 2, 4, 4]，向左移动一次后这一行变成什么？这次移动得多少分？"
+                    hint="按「压缩 → 合并（每格一次）→ 再压缩」三步推，得分是本次所有合并产生的新数字之和。"
+                    answer="变成 [4, 8, 0, 0]，得分 4 + 8 = 12。"
+                    steps={[
+                        '压缩：没有空格，仍是 [2, 2, 4, 4]。',
+                        '合并：2+2=4（得 4 分），4+4=8（得 8 分）→ [4, 8]。',
+                        '再压缩补零：[4, 8, 0, 0]。注意合并后的 4 不会再和 8 前面的 4 连锁合并——每格每次移动只合并一次。',
+                    ]}
+                />
                 <MasteryCheck
                     title="A7 2048 游戏项目过关检查"
                     description="如果能讲清棋盘表示、移动合并、方向复用和测试样例，就可以进入 AI 初探。"

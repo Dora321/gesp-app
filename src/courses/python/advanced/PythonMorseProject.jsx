@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { Terminal, Key, Music, Lock, Unlock, Check, X, ArrowRight, Play, Info, Volume2, Lightbulb, RefreshCw, Trophy, CheckCircle } from 'lucide-react';
 import PythonProjectSupport from '../../../components/PythonProjectSupport';
-import PythonLessonShell, { MasteryCheck } from '../shell/PythonLessonShell';
+import PythonLessonShell, { MasteryCheck, TransferCheck } from '../shell/PythonLessonShell';
 
 const morseMasteryItems = [
     {
@@ -420,6 +420,17 @@ const sections = [
         icon: CheckCircle,
         component: () => (
             <div className="slide-enter space-y-6 pb-20">
+                <TransferCheck
+                    theme="dark"
+                    prompt='换个例子：已知 S = ···、O = ———、E = ·、T = —。① 把 "SOS" 编成摩斯码（字母间用空格隔开）；② 解码电文 "· —"。'
+                    hint="编码查字典、解码把电文按空格切开再反查（翻转后的字典）。"
+                    answer='① "··· ——— ···"；② "ET"。'
+                    steps={[
+                        '编码：逐字母查表 S→···、O→———、S→···，用空格拼接。',
+                        '解码：按空格切成 ["·", "—"]，反查得 E、T。',
+                        '双向验证：把 "ET" 再编码回去应得到 "· —"。',
+                    ]}
+                />
                 <MasteryCheck
                     title="A5 摩斯电码项目过关检查"
                     description="如果能查字典编码、处理空格和未知字符、翻转字典解码、验证双向转换，就可以进入文件操作。"

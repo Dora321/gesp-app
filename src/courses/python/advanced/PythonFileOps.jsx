@@ -6,7 +6,7 @@ import {
     Book, Coffee, Database, HardDrive, Menu, X, Plus, Terminal
 } from 'lucide-react';
 import PythonProjectSupport from '../../../components/PythonProjectSupport';
-import PythonLessonShell, { MasteryCheck } from '../shell/PythonLessonShell';
+import PythonLessonShell, { MasteryCheck, TransferCheck } from '../shell/PythonLessonShell';
 
 const fileOpsMasteryItems = [
     {
@@ -401,6 +401,16 @@ const sections = [
         icon: CheckCircle,
         component: () => (
             <div className="space-y-6 animate-in fade-in slide-in-from-bottom-4 duration-500">
+                <TransferCheck
+                    prompt="换个例子：依次执行三步：① 用 'w' 模式写入两行日记；② 用 'a' 模式再写一行；③ 又用 'w' 模式写一行。每一步之后文件里各有几行？"
+                    hint="'w' 打开就清空重写，'a' 在末尾追加。"
+                    answer="① 2 行 → ② 3 行 → ③ 1 行（第三步 'w' 把前面 3 行全部清掉了）。"
+                    steps={[
+                        "① 'w' 新建/清空后写入 2 行。",
+                        "② 'a' 保留原内容，在末尾追加 → 3 行。",
+                        "③ 'w' 再次打开即清空 → 只剩这次写入的 1 行。想保留历史必须用 'a'。",
+                    ]}
+                />
                 <MasteryCheck
                     title="A6 文件操作项目过关检查"
                     description="如果能区分模式、用 with 安全读写、处理文件错误、保存项目结果，就可以进入综合游戏项目。"

@@ -10,7 +10,7 @@ import {
 import { Link } from 'react-router-dom';
 import PythonProjectSupport from '../../../components/PythonProjectSupport';
 import PyCodeTracer from '../../../components/PyCodeTracer';
-import PythonLessonShell, { MasteryCheck } from '../shell/PythonLessonShell';
+import PythonLessonShell, { MasteryCheck, TransferCheck } from '../shell/PythonLessonShell';
 
 const sortingMasteryItems = [
     {
@@ -2317,6 +2317,17 @@ const sections = [
         icon: CheckCircle,
         component: () => (
             <div className="slide-enter space-y-6 pb-20">
+                <TransferCheck
+                    prompt="换个例子：对 [4, 2, 3, 1] 做升序冒泡排序，手推第一轮的每次相邻比较，写出第一轮结束后的列表。谁归位了？"
+                    hint="从左到右依次比较相邻两个，前者大就交换；第一轮结束时最大值到最右。"
+                    answer="第一轮后是 [2, 3, 1, 4]，最大值 4 归位到最右。"
+                    steps={[
+                        '4 vs 2：交换 → [2, 4, 3, 1]。',
+                        '4 vs 3：交换 → [2, 3, 4, 1]。',
+                        '4 vs 1：交换 → [2, 3, 1, 4]。',
+                        '3 次比较 3 次交换，4 沉底；下一轮只需比到倒数第二位。',
+                    ]}
+                />
                 <MasteryCheck
                     title="A3 排序算法项目过关检查"
                     description="如果能追踪排序过程、设计测试样例、比较复杂度、解释循环，就可以进入字符串加密项目。"

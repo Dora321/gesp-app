@@ -3,7 +3,7 @@ import { Link } from 'react-router-dom';
 import { Shield, Lock, Unlock, Key, FileText, ArrowRight, RotateCcw, Check, X, Terminal, Binary, Hash, Eye, EyeOff, Menu, RefreshCw, CheckCircle } from 'lucide-react';
 import PythonProjectSupport from '../../../components/PythonProjectSupport';
 import PyCodeTracer from '../../../components/PyCodeTracer';
-import PythonLessonShell, { MasteryCheck } from '../shell/PythonLessonShell';
+import PythonLessonShell, { MasteryCheck, TransferCheck } from '../shell/PythonLessonShell';
 
 const encryptionMasteryItems = [
     {
@@ -918,6 +918,18 @@ const sections = [
         icon: CheckCircle,
         component: () => (
             <div className="slide-enter space-y-6 pb-20">
+                <TransferCheck
+                    theme="dark"
+                    prompt='换个例子：把 "yes" 用位移 k = 3 的凯撒加密（全小写），逐字符写出结果。注意有一个字母会绕回字母表开头。'
+                    hint="y 的编号是 24，(24 + 3) % 26 = 1——绕回去了。"
+                    answer='密文是 "bhv"。'
+                    steps={[
+                        'y：(24 + 3) % 26 = 1 → b（绕回）。',
+                        'e：(4 + 3) % 26 = 7 → h。',
+                        's：(18 + 3) % 26 = 21 → v。',
+                        '验证可逆：对 "bhv" 用 k = 3 解密应还原出 "yes"。',
+                    ]}
+                />
                 <MasteryCheck
                     title="A4 加密解密项目过关检查"
                     description="如果能解释字符编码、处理边界、验证可逆性、说明安全局限，就可以进入摩斯项目。"

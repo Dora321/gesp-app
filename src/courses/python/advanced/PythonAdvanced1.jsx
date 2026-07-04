@@ -8,7 +8,7 @@ import {
 } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import PythonProjectSupport from '../../../components/PythonProjectSupport';
-import PythonLessonShell, { MasteryCheck } from '../shell/PythonLessonShell';
+import PythonLessonShell, { MasteryCheck, TransferCheck } from '../shell/PythonLessonShell';
 
 const a1MasteryItems = [
     {
@@ -1312,6 +1312,16 @@ const sections = [
         icon: CheckCircle,
         component: () => (
             <div className="space-y-6 animate-in fade-in slide-in-from-bottom-4 duration-500">
+                <TransferCheck
+                    prompt="换个例子：三个任务各配哪种策略？① 找出 1~100 里所有能被 7 整除的数；② 用最少的纸币凑出 87 元（每次拿不超过剩余的最大面额）；③ 计算 n!（n 的阶乘）。"
+                    hint="回忆三种策略的适用场景：全部试一遍 / 每步拿当前最优 / 问题能拆成更小的同类问题。"
+                    answer="① 枚举；② 贪心；③ 递归——且递归必须写终止条件（n 为 1 或 0 时返回 1）。"
+                    steps={[
+                        '① 范围明确、逐个检查 → 枚举 for i in range(1, 101)。',
+                        '② 每一步选当前最大面额 → 贪心（人民币面额下贪心恰好最优）。',
+                        '③ n! = n × (n-1)!，同类小问题 → 递归，先写终止再写递归式。',
+                    ]}
+                />
                 <MasteryCheck
                     title="A1 算法思维项目过关检查"
                     description="如果能拆输入输出、区分三种策略、找到递归终止条件、写最小实验，就可以进入二分搜索。"

@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { Brain, Cpu, Database, Eye, Activity, Play, ArrowRight, RefreshCw, Zap, Target, ChevronDown, CheckCircle } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import PythonProjectSupport from '../../../components/PythonProjectSupport';
-import PythonLessonShell, { MasteryCheck } from '../shell/PythonLessonShell';
+import PythonLessonShell, { MasteryCheck, TransferCheck } from '../shell/PythonLessonShell';
 
 const aiMasteryItems = [
     {
@@ -452,6 +452,17 @@ const sections = [
         icon: CheckCircle,
         component: () => (
             <div className="space-y-6 animate-in fade-in slide-in-from-bottom-4 duration-500">
+                <TransferCheck
+                    theme="dark"
+                    prompt="换个例子：用 KNN 给一张新图片分类。它最近的 3 个邻居标签是：猫、猫、狗。K = 3 时判成什么？如果 K = 1 且最近的那个恰好是狗呢？"
+                    hint="KNN 就是让最近的 K 个邻居投票，多数说了算。"
+                    answer="K = 3 时判成猫（2 票对 1 票）；K = 1 时判成狗（只听最近那一个）。"
+                    steps={[
+                        'K = 3：邻居投票 猫 2 : 狗 1 → 猫。',
+                        'K = 1：只看最近邻居 → 狗。',
+                        '同一份数据、不同的 K，结论可能不同——K 太小容易被个别噪声带偏，这就是参数选择的意义。',
+                    ]}
+                />
                 <MasteryCheck
                     title="A8 AI 初探项目过关检查"
                     description="如果能解释数据、模型、分类回归和偏差风险，就可以进入网络爬虫项目。"

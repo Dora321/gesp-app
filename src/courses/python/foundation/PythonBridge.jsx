@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { Rocket, ListChecks, Repeat, FileCode2, Flag, Sparkles } from 'lucide-react';
-import PythonLessonShell, { MasteryCheck, SlideHeader, CodeBlock } from '../shell/PythonLessonShell';
+import PythonLessonShell, { MasteryCheck, SlideHeader, CodeBlock, TransferCheck } from '../shell/PythonLessonShell';
 
 const skillMap = [
     ['想出一个 1–100 的答案', 'F6 随机', 'random.randint(1, 100)'],
@@ -175,6 +175,16 @@ const WrapSlide = () => (
                 </p>
             </div>
         </div>
+        <TransferCheck
+            prompt="换个例子：用「对半猜」策略猜 1~100 之间的神秘数字，最坏情况下几次一定能猜中？"
+            hint="每猜一次，剩余范围就砍一半：100 → 50 → 25 → …，数一数砍几刀能到 1。"
+            answer="7 次（2⁷ = 128 ≥ 100，7 次对半足以覆盖 100 个数）。"
+            steps={[
+                '每次猜区间正中间，无论大了还是小了，剩余范围都只剩一半。',
+                '100 → 50 → 25 → 13 → 7 → 4 → 2 → 1，共砍 7 刀。',
+                '这正是 A2 二分搜索要正式学的思想。',
+            ]}
+        />
         <MasteryCheck
             title="项目线入口离开前检查"
             description="如果能拆规则、连回旧知识、手推一轮循环、设计一个小改造，就可以进入 A1。"

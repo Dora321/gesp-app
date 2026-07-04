@@ -8,7 +8,7 @@ import {
 import { Link } from 'react-router-dom';
 import PythonProjectSupport from '../../../components/PythonProjectSupport';
 import PyCodeTracer from '../../../components/PyCodeTracer';
-import PythonLessonShell, { MasteryCheck } from '../shell/PythonLessonShell';
+import PythonLessonShell, { MasteryCheck, TransferCheck } from '../shell/PythonLessonShell';
 
 const binarySearchMasteryItems = [
     {
@@ -599,6 +599,16 @@ const sections = [
         icon: SearchCheck,
         component: () => (
             <div className="slide-enter space-y-6 pb-20">
+                <TransferCheck
+                    prompt="换个例子：范围扩大到 1~1000，用二分查找最坏几次一定能找到？1~100 万呢？"
+                    hint="找最小的 k 使 2 的 k 次方 ≥ 范围大小。"
+                    answer="1~1000 最坏 10 次（2¹⁰ = 1024）；1~100 万最坏 20 次（2²⁰ ≈ 105 万）。"
+                    steps={[
+                        '每比较一次范围砍半，k 次后剩 n / 2ᵏ 个候选。',
+                        '2¹⁰ = 1024 ≥ 1000，所以 10 次够。',
+                        '范围扩大 1000 倍，次数只多 10 次——这就是 O(log n) 的威力。',
+                    ]}
+                />
                 <MasteryCheck
                     title="A2 二分搜索项目过关检查"
                     description="如果能说清有序前提、手推边界、处理找不到、设计边界测试，就可以进入排序项目。"

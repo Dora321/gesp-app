@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { Globe, Search, Database, Code, Shield, Download, ArrowRight, Play, PlayCircle, RefreshCw, Smartphone, Key, ChevronDown, FileText, Layers, Cpu, Bug, CheckCircle, XCircle, AlertTriangle, AlertCircle, Info, Film, Terminal, User, Lock, Unlock } from 'lucide-react';
 import { Link } from 'react-router-dom';
 import PythonProjectSupport from '../../../components/PythonProjectSupport';
-import PythonLessonShell, { MasteryCheck } from '../shell/PythonLessonShell';
+import PythonLessonShell, { MasteryCheck, TransferCheck } from '../shell/PythonLessonShell';
 
 const crawlerMasteryItems = [
     {
@@ -1425,6 +1425,17 @@ const sections = [
         icon: CheckCircle,
         component: () => (
             <div className="space-y-6 animate-in fade-in slide-in-from-bottom-4 duration-500">
+                <TransferCheck
+                    theme="dark"
+                    prompt="换个例子：你要抓三个页面：A 返回状态码 200，B 返回 404，C 的 robots.txt 明确禁止抓取。哪些页面可以继续进入「解析」这一步？各是为什么？"
+                    hint="先想流程顺序：查 robots → 发请求 → 看状态码 → 再解析。"
+                    answer="只有 A。B 是 404（页面不存在，没有内容可解析）；C 被 robots 禁止，根本不该发请求。"
+                    steps={[
+                        'C 在发请求之前就该被排除——遵守 robots 是爬虫的底线。',
+                        'B 请求发了但 404，应记录失败并跳过，而不是硬解析空内容。',
+                        'A 返回 200 才进入解析、清洗、存储的后续流程。',
+                    ]}
+                />
                 <MasteryCheck
                     title="A9 网络爬虫项目过关检查"
                     description="如果能解释请求响应、遵守边界、拆清流程、处理失败情况，Python 项目线就完成了。"
