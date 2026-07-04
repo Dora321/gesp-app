@@ -23,8 +23,8 @@ There is **no test runner** (no `test` script, no jest/vitest). "Testing" the qu
 
 ## Architecture
 
-### Routing — dev vs. prod differ
-`src/App.jsx` is the single route table. **It uses `BrowserRouter` in dev but `HashRouter` in production** (`import.meta.env.DEV ? BrowserRouter : HashRouter`), because GitHub Pages can't do server-side SPA fallback. Consequence: production URLs are hash-based (`/gesp-app/#/question-bank`). Every page except `Home` is `lazy()`-loaded; `vite.config.js` further splits vendor libs (react, markdown, motion, katex) into separate chunks.
+### Routing
+`src/App.jsx` is the single route table, using **`BrowserRouter` unconditionally** (basename follows the Vite base path). GitHub Pages SPA fallback is handled by the deploy workflow copying `index.html` → `404.html`, so production URLs are clean paths (`/gesp-app/question-bank`). Every page except `Home` is `lazy()`-loaded; `vite.config.js` further splits vendor libs (react, markdown, motion, katex) into separate chunks.
 
 Two dynamic routers replace what would be hundreds of hand-written routes:
 - **`LessonRouter`** (`/lesson/:level/:lessonId`) dynamically imports `lessons/cpp/l{level}/Lesson{id}.jsx` (level 1–6, lesson 1–16).

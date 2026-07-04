@@ -1,5 +1,5 @@
 import React, { Suspense, lazy } from 'react';
-import { BrowserRouter, Routes, Route, useLocation } from 'react-router-dom';
+import { BrowserRouter, Routes, Route, Navigate, useLocation } from 'react-router-dom';
 
 // Eagerly loaded: global components needed on every page
 import ScrollToTop from './components/ScrollToTop';
@@ -27,7 +27,6 @@ const CourseLevel7 = lazy(() => import('./courses/CourseLevel7'));
 const CourseLevel8 = lazy(() => import('./courses/CourseLevel8'));
 
 // GESP special page
-const GESP2_2025_12 = lazy(() => import('./data/gesp/level2/GESP2_2025_12'));
 
 // Python Foundation
 const PythonFoundation1 = lazy(() => import('./courses/python/foundation/PythonFoundation1'));
@@ -162,7 +161,8 @@ function App() {
             <Route path="/python/sorting" element={<PythonSortingProject />} />
             <Route path="/python/morse" element={<PythonMorseProject />} />
 
-            <Route path="/gesp/2025-12-l2" element={<GESP2_2025_12 />} />
+            {/* 旧版内嵌真题页已并入题库，保留 URL 兼容 */}
+            <Route path="/gesp/2025-12-l2" element={<Navigate to="/question-bank/2/2025-12-l2" replace />} />
 
             {/* Legacy lesson redirects — old /lessonN, /adv-lessonN etc. → /lesson/:level/:id */}
             <Route path="/*" element={<LegacyLessonRedirect />} />

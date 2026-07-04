@@ -55,7 +55,7 @@ const cppLevels = {
     },
     practiceLinks: [
       { label: '进入 GESP 二级真题库', path: '/question-bank' },
-      { label: '查看 2025-12 二级真题解析', path: '/gesp/2025-12-l2' },
+      { label: '查看 2025-12 二级真题解析', path: '/question-bank/2/2025-12-l2' },
     ],
     reviewTasks: ['用一张表复盘图形打印题的行、列、输出字符。', '把数位拆解模板默写一遍，并解释 % 和 / 各自作用。', '做完真题后把错题分成边界、溢出、格式、模拟顺序四类。'],
   },

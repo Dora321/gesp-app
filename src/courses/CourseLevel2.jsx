@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import { BookOpen, Code, Calculator, Grid, Play, ChevronRight, Lightbulb, AlertTriangle, CheckCircle, ArrowRight, Bug, AlertOctagon, Trophy, Eye, Clock, Target, Zap, RefreshCw, XCircle, Copy, Check, Unlock, Award, FileCode, ArrowRightLeft, SkipForward, Info, MousePointerClick, Book, Menu, X, FileText } from 'lucide-react';
-import GESP2_2025_12 from '../data/gesp/level2/GESP2_2025_12';
 import CppLevelSupport from '../components/CppLevelSupport';
 import CppLessonDirectory from '../components/CppLessonDirectory';
 import { cppL2Lessons } from '../data/cppL2CourseFlow';
@@ -1599,7 +1598,19 @@ export default function GESP_Level2_Courseware() {
       case 'templates': return <TemplatesModule />;
       case 'tips': return <ExamTipsModule />;
       case 'practice': return <PracticeModule />;
-      case 'exam202512': return <GESP2_2025_12 />;
+      case 'exam202512': return (
+        <div className="animate-fade-in bg-white rounded-2xl border border-slate-200 p-10 text-center space-y-4">
+          <FileText size={40} className="mx-auto text-indigo-500" />
+          <h2 className="text-2xl font-bold text-slate-800">2025 年 12 月二级真题</h2>
+          <p className="text-slate-500">该卷已收录进题库，提供整卷模考与逐题交互解析两种模式。</p>
+          <Link
+            to="/question-bank/2/2025-12-l2"
+            className="inline-flex items-center gap-2 rounded-lg bg-indigo-600 px-6 py-3 font-bold text-white shadow hover:bg-indigo-700 transition"
+          >
+            进入题库练习 <ArrowRight size={18} />
+          </Link>
+        </div>
+      );
       default: return <OverviewModule />;
     }
   };
