@@ -34,6 +34,25 @@ let browser;
 
 const wait = (ms) => new Promise((resolve) => setTimeout(resolve, ms));
 
+function stopServer() {
+  if (!server || server.exitCode !== null) return;
+
+  if (process.platform === 'win32') {
+    const killer = spawn('taskkill', ['/pid', String(server.pid), '/t', '/f'], {
+      stdio: 'ignore',
+      windowsHide: true,
+    });
+    killer.unref();
+    return;
+  }
+
+  try {
+    process.kill(-server.pid, 'SIGTERM');
+  } catch {
+    server.kill('SIGTERM');
+  }
+}
+
 async function launchBrowser(chromium) {
   try {
     return await chromium.launch({ headless: true });
@@ -69,8 +88,12 @@ async function run() {
     // Node >= 18.20/20.12/22 拒绝直接 spawn *.cmd（CVE-2024-27980），Windows 上需要 shell
     server = spawn(
       process.platform === 'win32' ? 'npm.cmd' : 'npm',
-      ['run', 'dev', '--', '--host', '127.0.0.1', '--port', String(DEFAULT_PORT)],
-      { stdio: ['ignore', 'pipe', 'pipe'], shell: process.platform === 'win32' }
+      ['run', 'dev', '--', '--host', '127.0.0.1', '--port', String(DEFAULT_PORT), '--strictPort'],
+      {
+        stdio: ['ignore', 'pipe', 'pipe'],
+        shell: process.platform === 'win32',
+        detached: process.platform !== 'win32',
+      }
     );
 
     server.stdout.on('data', (chunk) => process.stdout.write(chunk));
@@ -247,6 +270,6 @@ run()
       browser.close().catch(() => {});
     }
     if (server) {
-      server.kill('SIGTERM');
+      stopServer();
     }
   });
