@@ -868,7 +868,7 @@ export default function CourseLevel6() {
             </Link>
             <h1 className="text-xl font-bold text-slate-800">GESP 六级</h1>
           </div>
-          <p className="text-xs text-slate-500">深度搜索 2025版</p>
+          <p className="text-xs text-slate-500">深度搜索 2026版</p>
         </div>
 
         <nav className="flex-1 overflow-y-auto p-4 space-y-2">
@@ -893,7 +893,7 @@ export default function CourseLevel6() {
         </nav>
 
         <div className="p-4 border-t border-slate-100 text-center">
-          <p className="text-xs text-slate-400">© 2025 GESP 备考互动课件</p>
+          <p className="text-xs text-slate-400">© 2026 GESP 备考互动课件</p>
         </div>
       </aside>
 
