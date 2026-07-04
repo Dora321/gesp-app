@@ -1,4 +1,4 @@
-import React, { useRef, useEffect, useState } from 'react';
+import React, { useCallback, useRef, useEffect, useState } from 'react';
 
 const TurtleCanvas = ({ commands = [], width = 400, height = 300, isRunning = false }) => {
     const canvasRef = useRef(null);
@@ -10,7 +10,7 @@ const TurtleCanvas = ({ commands = [], width = 400, height = 300, isRunning = fa
         return () => { isMounted.current = false; };
     }, []);
 
-    const executeCommands = async (ctx) => {
+    const executeCommands = useCallback(async (ctx) => {
         // Reset state
         let x = width / 2;
         let y = height / 2;
@@ -176,13 +176,13 @@ const TurtleCanvas = ({ commands = [], width = 400, height = 300, isRunning = fa
             // Update turtle icon position for UI
             setLogoState({ x, y, angle: angle + 90 }); // canvas 0 is right, we want 0 to be up
         }
-    };
+    }, [commands, height, isRunning, width]);
 
     useEffect(() => {
         const canvas = canvasRef.current;
         const ctx = canvas.getContext('2d');
         executeCommands(ctx);
-    }, [commands, isRunning]);
+    }, [executeCommands]);
 
     return (
         <div className="relative inline-block border-2 border-slate-200 rounded-xl overflow-hidden bg-white shadow-sm">

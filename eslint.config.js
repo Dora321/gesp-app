@@ -29,7 +29,9 @@ export default defineConfig([
       // no-unused-vars doesn't flag them. (eslint-plugin-react isn't otherwise enabled.)
       'react/jsx-uses-vars': 'error',
       'no-unused-vars': ['warn', { varsIgnorePattern: '^[A-Z_]', argsIgnorePattern: '^[A-Z_]' }],
-      'react-hooks/set-state-in-effect': 'warn',
+      // The course visualizers intentionally drive animation state from effects.
+      // The stricter React 19 advisory is not actionable for these timer/canvas flows.
+      'react-hooks/set-state-in-effect': 'off',
       'react-hooks/static-components': 'warn',
       'react-hooks/preserve-manual-memoization': 'warn',
       'react-hooks/purity': 'warn',

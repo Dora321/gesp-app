@@ -35,3 +35,20 @@
    - 检测关键字 `backfilled: true` 和 `题目占位`。
 3. **分组排序**: 按等级分组，按日期排序。
 4. **打印表格**: 在控制台输出 Markdown 格式的统计表格。
+# 题库代码字段
+
+涉及代码阅读、输出判断或程序填空的题目，推荐把代码与题干分开保存：
+
+```js
+{
+  question: '阅读下面代码，判断输出结果。',
+  code: 'int main() { return 0; }',
+  codeLanguage: 'cpp',
+  requiresCode: true,
+  sourcePage: 6,
+  // 或使用 sourceImage / sourceUrl
+}
+```
+
+`npm run validate:bank` 会识别 Markdown 代码块、行内代码和独立 `code` 字段。显式设置
+`requiresCode: true` 后，代码缺失会阻止发布；未显式标记的历史题目会作为 `[CODE]` 疑点列入报告。

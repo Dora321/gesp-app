@@ -20,6 +20,24 @@ const levelConfigs = [
 
 const badFragments = ['待复核', '？？', '图略', '原卷A', '原卷B', '原卷C', '原卷D'];
 
+const codePromptPatterns = [
+  /(?:以下|下列|下面|如下|给定|阅读|分析).{0,24}(?:C\+\+\s*)?(?:代码|代码片段|程序段).{0,32}(?:执行|运行|输出|结果|横线|空白|填入|改为|说法)/i,
+  /(?:代码|代码片段|程序段).{0,32}(?:如下|执行后|运行后|输出|横线|空白|应填|改为|逻辑判定)/i,
+];
+
+const hasCodeContent = (q, text) => {
+  if (typeof q.code === 'string' && q.code.trim().length >= 3) return true;
+  if (/```(?:cpp|c\+\+|c|text)?\s*\n[\s\S]{3,}?```/i.test(text)) return true;
+  if (/\b(?:printf|scanf)\s*\([^)]{2,}\)|\b(?:cout|cin)\s*(?:<<|>>)|\b(?:if|for|while|switch)\s*\([^)]{1,}\)/i.test(text)) return true;
+
+  const inlineCode = [...text.matchAll(/`([^`\n]+)`/g)].map(match => match[1].trim());
+  return inlineCode.some(code => code.length >= 6 && /[;{}]|\b(?:if|for|while|cout|cin|printf|scanf|return|int|bool|double)\b/i.test(code));
+};
+
+const requiresCodeContent = (q, text) => (
+  q.requiresCode === true || codePromptPatterns.some(pattern => pattern.test(text))
+);
+
 async function validateFile(filePath, cfg) {
   const errors = [];
   const warnings = [];
@@ -65,6 +83,16 @@ async function validateFile(filePath, cfg) {
     const text = String(q.question || '').trim();
     if (!text && q.type !== 'programming') {
       errors.push(`[ERROR] Q${qId}: Empty question text`);
+    }
+
+    if (requiresCodeContent(q, text) && !hasCodeContent(q, text)) {
+      const message = `Q${qId}: question refers to code, but no fenced, inline, or independent code content was found`;
+      if (q.requiresCode === true) errors.push(`[ERROR] ${message}`);
+      else warnings.push(`[CODE] ${message}`);
+    }
+
+    if (q.requiresCode === true && !q.sourcePage && !q.sourceImage && !q.sourceUrl) {
+      warnings.push(`[SOURCE] Q${qId}: requiresCode questions should include sourcePage, sourceImage, or sourceUrl for source comparison`);
     }
 
     // Fragments check (Dirty data)

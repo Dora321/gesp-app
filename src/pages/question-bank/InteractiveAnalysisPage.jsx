@@ -8,7 +8,9 @@ import { formatOptionDisplay, stripLeadingNumber } from '../../utils/questionTex
 
 const getQuestionContent = (q) => {
     if (!q) return '';
-    return q.question || q.description || q.summary || q.title || '';
+    const text = q.question || q.description || q.summary || q.title || '';
+    if (typeof q.code !== 'string' || !q.code.trim() || text.includes(q.code.trim())) return text;
+    return `${text}\n\n\`\`\`${q.codeLanguage || 'cpp'}\n${q.code.trim()}\n\`\`\``;
 };
 
 const inferTags = (q) => {

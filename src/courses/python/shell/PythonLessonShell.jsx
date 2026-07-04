@@ -448,7 +448,12 @@ export default function PythonLessonShell({
             {/* 移动端顶栏 */}
             <div className={`fixed left-0 top-0 z-50 flex w-full items-center justify-between border-b ${t.bar} p-4 shadow-sm md:hidden`}>
                 <h1 className={`text-lg font-black ${color.text}`}>{lessonCode}：{lessonTitle}</h1>
-                <button onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)} aria-label="打开课程目录" aria-expanded={isMobileMenuOpen}>
+                <button
+                    onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
+                    aria-label="打开课程目录"
+                    aria-expanded={isMobileMenuOpen}
+                    className="inline-flex h-11 w-11 shrink-0 items-center justify-center rounded-lg"
+                >
                     {isMobileMenuOpen ? <X size={24} /> : <Menu size={24} />}
                 </button>
             </div>
@@ -456,7 +461,7 @@ export default function PythonLessonShell({
             {/* 侧边栏 */}
             <aside className={`fixed inset-y-0 left-0 z-50 flex h-full min-h-0 w-72 flex-col border-r ${t.aside} shadow-lg transition-transform md:relative md:translate-x-0 ${isMobileMenuOpen ? 'translate-x-0' : '-translate-x-full'}`}>
                 <div className={`border-b ${t.divider} p-6`}>
-                    <Link to={homePath} className={`inline-flex items-center gap-2 text-sm font-black ${color.text}`}>
+                    <Link to={homePath} className={`inline-flex min-h-11 items-center gap-2 rounded-lg px-2 text-sm font-black ${color.text}`}>
                         <Home size={16} />
                         {homeLabel}
                     </Link>
@@ -530,7 +535,7 @@ export default function PythonLessonShell({
                     <button
                         onClick={goPrev}
                         disabled={isFirst && !previousPath}
-                        className={`rounded-lg px-4 py-2 text-sm font-black transition disabled:cursor-not-allowed disabled:opacity-40 ${t.prev}`}
+                        className={`min-h-11 rounded-lg px-4 py-2 text-sm font-black transition disabled:cursor-not-allowed disabled:opacity-40 ${t.prev}`}
                     >
                         {isFirst ? '上一课' : '上一节'}
                     </button>

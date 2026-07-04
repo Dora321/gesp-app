@@ -4,7 +4,7 @@
 export const paperStats = {
   paperCount: 93,
   questionCount: 2409,
-  reviewPaperCount: 42,
+  reviewPaperCount: 41,
   levelCount: 8,
   firstYear: 2023,
   latestYear: 2026,

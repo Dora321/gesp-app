@@ -705,7 +705,7 @@ const CppL1Lesson1 = () => {
   const [activeSection, setActiveSection] = useState(1);
 
   // 获取当前组件
-  const ActiveComponent = sections.find(s => s.id === activeSection)?.component || (() => <div className="p-10">内容建设中...</div>);
+  const ActiveComponent = sections.find(s => s.id === activeSection)?.component;
 
   return (
     <LegacyCppLessonShell
@@ -719,7 +719,7 @@ const CppL1Lesson1 = () => {
       topSupport={<CppL1LessonSupport lessonId={1} />}
       bottomSupport={<CppL1LessonSupport lessonId={1} placement="bottom" />}
     >
-      <ActiveComponent />
+      {ActiveComponent ? React.createElement(ActiveComponent) : <div className="p-10">内容建设中...</div>}
     </LegacyCppLessonShell>
   );
 };

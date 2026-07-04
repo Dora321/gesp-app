@@ -95,6 +95,7 @@ const ExamPaper = () => {
     ...(paperData.programmingQuestions || []).map(q => ({ ...q, type: q.type || 'programming' })),
     ...(paperData.codingQuestions || []).map(q => ({ ...q, type: q.type || 'programming' })),
   ].sort((a, b) => Number(a.id) - Number(b.id)) : [];
+  const questionCount = allQuestions.length;
 
   const objectiveQuestions = allQuestions.filter(q => q && !isProgrammingQuestion(q));
   const programmingQuestions = allQuestions.filter(q => isProgrammingQuestion(q));
@@ -131,7 +132,7 @@ const ExamPaper = () => {
 
   // Navigation
   const goToPrevious = useCallback(() => setCurrentQuestionIndex(prev => Math.max(0, prev - 1)), []);
-  const goToNext = useCallback(() => setCurrentQuestionIndex(prev => Math.min(allQuestions.length - 1, prev + 1)), [allQuestions.length]);
+  const goToNext = useCallback(() => setCurrentQuestionIndex(prev => Math.min(questionCount - 1, prev + 1)), [questionCount]);
 
   useQuestionKeyboardNavigation({
     enabled: mode === 'exam' && !showSubmitConfirm && !showResult,
@@ -224,7 +225,7 @@ const ExamPaper = () => {
   // ─── Analysis Mode ─────────────────────────────────────────────────
 
   if (mode === 'analysis') {
-    if (EnhancedPaperComponent) return <EnhancedPaperComponent />;
+    if (EnhancedPaperComponent) return React.createElement(EnhancedPaperComponent);
     return <InteractiveAnalysisPage paperData={paperData} paperId={paperId} />;
   }
 

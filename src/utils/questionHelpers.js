@@ -18,7 +18,10 @@ export const stripLeadingNumber = (questionText) => {
  */
 export const getQuestionContent = (q) => {
   if (!q) return '';
-  return q.question || q.description || q.summary || q.title || '';
+  const text = q.question || q.description || q.summary || q.title || '';
+  if (typeof q.code !== 'string' || !q.code.trim()) return text;
+  if (text.includes(q.code.trim())) return text;
+  return `${text}\n\n\`\`\`${q.codeLanguage || 'cpp'}\n${q.code.trim()}\n\`\`\``;
 };
 
 /**

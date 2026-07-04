@@ -81,7 +81,7 @@ function StickyNav() {
                     type="button"
                     onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
                     aria-label="回到页面顶部"
-                    className="flex shrink-0 items-center gap-2 text-sm font-black text-slate-900"
+                    className="flex min-h-11 shrink-0 items-center gap-2 rounded-lg px-2 text-sm font-black text-slate-900"
                 >
                     <Cpu size={18} className="text-blue-600" />
                     <span className="hidden sm:inline">ESP32 × AI 课程</span>
@@ -93,7 +93,7 @@ function StickyNav() {
                                 key={item.id}
                                 type="button"
                                 onClick={() => scrollToId(item.id)}
-                                className="whitespace-nowrap rounded-full px-3 py-1.5 text-sm font-bold text-slate-600 transition-colors hover:bg-slate-100 hover:text-slate-900"
+                                className="min-h-11 whitespace-nowrap rounded-full px-3 py-2 text-sm font-bold text-slate-600 transition-colors hover:bg-slate-100 hover:text-slate-900"
                             >
                                 {item.label}
                             </button>
@@ -102,7 +102,7 @@ function StickyNav() {
                             type="button"
                             onClick={() => window.print()}
                             aria-label="打印讲义"
-                            className="ml-1 inline-flex items-center gap-1.5 whitespace-nowrap rounded-full bg-slate-900 px-3 py-1.5 text-sm font-bold text-white transition-colors hover:bg-slate-700"
+                            className="ml-1 inline-flex min-h-11 items-center gap-1.5 whitespace-nowrap rounded-full bg-slate-900 px-3 py-2 text-sm font-bold text-white transition-colors hover:bg-slate-700"
                         >
                             <Printer size={15} />
                             <span className="hidden sm:inline">打印</span>
@@ -618,7 +618,7 @@ function LessonStudio() {
                                 type="button"
                                 onClick={goPrev}
                                 disabled={activeIndex <= 0}
-                                className="inline-flex items-center gap-2 rounded-full border border-slate-300 bg-white px-5 py-2.5 text-sm font-bold text-slate-700 transition-colors hover:bg-slate-100 disabled:cursor-not-allowed disabled:opacity-40"
+                                className="inline-flex min-h-11 items-center gap-2 rounded-full border border-slate-300 bg-white px-5 py-2.5 text-sm font-bold text-slate-700 transition-colors hover:bg-slate-100 disabled:cursor-not-allowed disabled:opacity-40"
                             >
                                 <ArrowLeft size={16} />
                                 上一课
@@ -628,7 +628,7 @@ function LessonStudio() {
                                 type="button"
                                 onClick={goNext}
                                 disabled={activeIndex >= allLessons.length - 1}
-                                className="inline-flex items-center gap-2 rounded-full bg-slate-900 px-5 py-2.5 text-sm font-bold text-white transition-colors hover:bg-slate-700 disabled:cursor-not-allowed disabled:opacity-40"
+                                className="inline-flex min-h-11 items-center gap-2 rounded-full bg-slate-900 px-5 py-2.5 text-sm font-bold text-white transition-colors hover:bg-slate-700 disabled:cursor-not-allowed disabled:opacity-40"
                             >
                                 下一课
                                 <ArrowRight size={16} />

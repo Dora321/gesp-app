@@ -102,7 +102,7 @@ export default function Lesson3() {
   const [activeSection, setActiveSection] = useState(1);
 
   // 获得当前组件
-  const ActiveComponent = sections.find(s => s.id === activeSection)?.component || (() => <div>Coming Soon</div>);
+  const ActiveComponent = sections.find(s => s.id === activeSection)?.component;
 
   return (
     <LegacyCppLessonShell
@@ -116,7 +116,7 @@ export default function Lesson3() {
       topSupport={<CppL1LessonSupport lessonId={3} />}
       bottomSupport={<CppL1LessonSupport lessonId={3} placement="bottom" />}
     >
-      <ActiveComponent />
+      {ActiveComponent ? React.createElement(ActiveComponent) : <div>Coming Soon</div>}
     </LegacyCppLessonShell>
   );
 }

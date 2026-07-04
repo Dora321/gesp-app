@@ -92,20 +92,20 @@ const QuestionBankHome = () => {
                             </p>
                         </div>
                         {/* Stats */}
-                        <div className="flex gap-4">
-                            <div className="bg-white/10 backdrop-blur-sm rounded-lg p-3 text-center min-w-[100px]">
+                        <div className="grid w-full grid-cols-2 gap-3 sm:flex sm:w-auto sm:gap-4">
+                            <div className="min-w-0 rounded-lg bg-white/10 p-3 text-center backdrop-blur-sm sm:min-w-[100px]">
                                 <div className="text-2xl font-bold">{paperStats.levelCount}</div>
                                 <div className="text-xs text-indigo-200">覆盖等级</div>
                             </div>
-                            <div className="bg-white/10 backdrop-blur-sm rounded-lg p-3 text-center min-w-[100px]">
+                            <div className="min-w-0 rounded-lg bg-white/10 p-3 text-center backdrop-blur-sm sm:min-w-[100px]">
                                 <div className="text-2xl font-bold">{paperStats.paperCount}</div>
                                 <div className="text-xs text-indigo-200">收录试卷</div>
                             </div>
-                            <div className="bg-white/10 backdrop-blur-sm rounded-lg p-3 text-center min-w-[100px]">
+                            <div className="min-w-0 rounded-lg bg-white/10 p-3 text-center backdrop-blur-sm sm:min-w-[100px]">
                                 <div className="text-2xl font-bold">{paperStats.questionCount}</div>
                                 <div className="text-xs text-indigo-200">题目总数</div>
                             </div>
-                            <div className="bg-white/10 backdrop-blur-sm rounded-lg p-3 text-center min-w-[100px]">
+                            <div className="min-w-0 rounded-lg bg-white/10 p-3 text-center backdrop-blur-sm sm:min-w-[100px]">
                                 <div className="text-2xl font-bold">{paperStats.reviewPaperCount}</div>
                                 <div className="text-xs text-indigo-200">待精修卷</div>
                             </div>

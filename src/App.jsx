@@ -4,6 +4,7 @@ import { BrowserRouter, Routes, Route, Navigate, useLocation } from 'react-route
 // Eagerly loaded: global components needed on every page
 import ScrollToTop from './components/ScrollToTop';
 import ErrorBoundary from './components/ErrorBoundary';
+import RouteSeo from './components/RouteSeo';
 
 // Lazy loaded: route-level pages — only fetched when user navigates to them
 const Home = lazy(() => import('./Home'));
@@ -102,6 +103,7 @@ function App() {
       future={{ v7_startTransition: true, v7_relativeSplatPath: true }}
     >
       <ErrorBoundary>
+        <RouteSeo />
         <ScrollToTop />
         <Suspense fallback={<PageLoader />}>
           <Routes>

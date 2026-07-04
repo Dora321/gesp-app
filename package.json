@@ -7,7 +7,7 @@
   "scripts": {
     "dev": "vite",
     "build": "vite build",
-    "lint": "eslint .",
+    "lint": "eslint . --max-warnings 0",
     "preview": "vite preview",
     "check:level1": "node scripts/check-level1-objective.js",
     "legacy:check:objective": "node scripts/check-objective-level123.js",
@@ -20,7 +20,8 @@
     "smoke": "node scripts/smoke-app.cjs",
     "visual": "node scripts/visual-regression.cjs",
     "visual:update": "node scripts/visual-regression.cjs --update",
-    "generate:papers": "node scripts/generate-paper-registry.cjs"
+    "generate:papers": "node scripts/generate-paper-registry.cjs && node scripts/generate-sitemap.cjs",
+    "generate:sitemap": "node scripts/generate-sitemap.cjs"
   },
   "dependencies": {
     "framer-motion": "^12.23.26",

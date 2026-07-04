@@ -22,7 +22,7 @@ const SpeedTunnel = () => {
                         duration: 2,
                         repeat: Infinity,
                         ease: "linear",
-                        delay: Math.random() * 2
+                        delay: (i * 7 % 20) / 10
                     }}
                     style={{ rotate: i * 18 }}
                 />

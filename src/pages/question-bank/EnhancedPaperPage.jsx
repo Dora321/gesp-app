@@ -23,10 +23,14 @@ import { formatOptionDisplay, stripLeadingNumber } from '../../utils/questionTex
 
 const getQuestionContent = (q) => {
     if (!q) return '';
-    if (q.type === 'coding' || q.type === 'programming') {
-        return q.question || q.title || q.summary || q.description || '';
+    const text = q.question || q.description || q.summary || q.title || '';
+    if (typeof q.code === 'string' && q.code.trim() && !text.includes(q.code.trim())) {
+        return `${text}\n\n\`\`\`${q.codeLanguage || 'cpp'}\n${q.code.trim()}\n\`\`\``;
     }
-    return q.question || q.description || q.summary || q.title || '';
+    if (q.type === 'coding' || q.type === 'programming') {
+        return text;
+    }
+    return text;
 };
 
 const inferKnowledgeTags = (q, level) => {
