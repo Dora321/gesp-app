@@ -1687,7 +1687,7 @@ export default function GESP_Level2_Courseware() {
           })}
         </nav>
         <div className="p-4 border-t border-slate-100 text-center">
-          <p className="text-xs text-slate-400">© 2025 GESP 备考系统</p>
+          <p className="text-xs text-slate-400">© 2026 GESP 备考系统</p>
         </div>
       </aside>
 
