@@ -70,9 +70,9 @@ const quiz = [
         reason: '余数保留了两个数的公因数信息。',
     },
     {
-        question: '为什么 lcm 常写成 a/gcd*a？',
+        question: '为什么 lcm 常写成 a / gcd(a,b) * b？',
         answer: '避免先乘溢出',
-        reason: '应写成 a / gcd(a,b) * b，先除再乘更安全。',
+        reason: '先除后乘能防止 a * b 中间结果溢出，且 gcd 整除 a，先除不丢精度。',
     },
 ];
 
