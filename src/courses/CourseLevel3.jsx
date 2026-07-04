@@ -1128,7 +1128,9 @@ export default function CourseLevel3() {
                         {activeTab === 'tips' && <ExamTipsModule />}
                         {activeTab === 'practice' && <PracticeModule />}
                         {activeTab === 'checklist' && <div className="animate-fade-in"><CheckListModule /></div>}
-                        <CppLevelSupport level={3} placement="bottom" />
+                        {activeTab === menuItems[menuItems.length - 1]?.id && (
+                            <CppLevelSupport level={3} placement="bottom" />
+                        )}
                     </div>
                     <footer className="text-center text-slate-400 py-8 text-sm mt-8 border-t border-slate-100">
                         GESP C++ 三级备考互动课件 | 基于历年真题归纳
