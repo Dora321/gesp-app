@@ -93,11 +93,26 @@ export const paperData = {
     session: 4,
     note: '年度收官',
     timeLimit: 5400,
+    source: {
+        officialPdf: 'https://raw.githubusercontent.com/Dora321/gesp-official-pdfs/main/pdfs/2023%E5%B9%B412%E6%9C%88-C%2B%2B7%E7%BA%A7.pdf',
+        notes: '客观题题面代码、选项与判断题答案已对照官方 PDF 校订；解析为本站补写。',
+    },
     questions: [
         {
             id: 1,
             type: "single",
-            question: `定义变量double x，如果下面代码输入为100，输出最接近 ( ) 。`,
+            question: `定义变量 double x，如果下面代码输入为 100，输出最接近 ( ) 。
+\`\`\`cpp
+#include <iostream>
+#include <cmath>
+using namespace std;
+int main() {
+    double x;
+    cin >> x;
+    cout << log10(x) - log2(x) << endl;
+    return 0;
+}
+\`\`\``,
             options: [
                 "0",
                 "-5",
@@ -106,7 +121,11 @@ export const paperData = {
             ],
             answer: 1,
             score: 2,
-            explanation: "答案依据试卷标准答案；解析待补充。",
+            explanation: `**答案：B (-5)**
+
+log10(100) = 2；log2(100) = ln100/ln2 ≈ 6.644。所以输出 2 − 6.644 ≈ −4.64，四个选项中最接近 −5。
+
+**考点**：cmath 的 log10 / log2 函数与对数换底估算。心算技巧：2¹⁰ = 1024 ≈ 10³，所以 log2(100) ≈ 10 × (2/3) ≈ 6.7。`,
             tags: [
                 "客观题",
                 "单选题",
@@ -116,16 +135,36 @@ export const paperData = {
         {
             id: 2,
             type: "single",
-            question: `对于下面动态规划方法实现的函数，以下选项中最适合表达其状态转移函数的为 ( ) 。`,
-            options: [
-                "选项A",
-                "选项B",
-                "选项C",
-                "选项D",
-            ],
+            question: `对于下面动态规划方法实现的函数（经典石子合并），以下选项中最适合表达其状态转移函数的为 ( ) 。
+\`\`\`cpp
+int s[MAX_N], f[MAX_N][MAX_N];
+int stone_merge(int n, int a[]) {
+    for (int i = 1; i <= n; i++)
+        s[i] = s[i - 1] + a[i];
+    for (int i = 1; i <= n; i++)
+        for (int j = 1; j <= n; j++)
+            if (i == j) f[i][j] = 0;
+            else f[i][j] = MAX_F;
+    for (int l = 1; l < n; l++)
+        for (int i = 1; i <= n - l; i++) {
+            int j = i + l;
+            for (int k = i; k < j; k++)
+                f[i][j] = min(f[i][j], f[i][k] + f[k + 1][j] + s[j] - s[i - 1]);
+        }
+    return f[1][n];
+}
+\`\`\``,
+            options: [`f(i,j) = min_{i≤k<j}( f(i,j), f(i,k) + f(k+1,j) + s(j) − s(i−1) )`, `f(i,j) = min_{i≤k<j}( f(i,j), f(i,k) + f(k+1,j) + Σ_{t=i..j} a(t) )`, `f(i,j) = min_{i≤k≤j}( f(i,k) + f(k+1,j) + Σ_{t=i..j+1} a(t) )`, `f(i,j) = min_{i≤k<j}( f(i,k) + f(k+1,j) ) + Σ_{t=i..j} a(t)`],
             answer: 3,
             score: 2,
-            explanation: "答案依据试卷标准答案；解析待补充。",
+            explanation: `**答案：D**
+
+代码是区间 DP 求石子合并最小代价：f[i][j] 表示合并第 i 到 j 堆的最小代价，s 为前缀和，s[j] − s[i−1] = a(i)+…+a(j) 是本次合并的代价。
+
+关键观察：s[j] − s[i−1] 与枚举变量 k 无关，可以提到 min 外面——所以数学上的状态转移函数就是 D：先对所有分割点 k 取 min(f(i,k) + f(k+1,j))，再加上整段的和。
+
+- **A、B**：把 f(i,j) 自己写进 min 里，那是代码为了滚动更新用 MAX_F 初值的实现写法，不是数学意义上的转移函数。
+- **C**：k 的范围写成 i≤k≤j（k=j 时 f(k+1,j) 无意义），求和上界 j+1 也错了。`,
             tags: [
                 "客观题",
                 "单选题",
@@ -135,7 +174,28 @@ export const paperData = {
         {
             id: 3,
             type: "single",
-            question: `下面代码可以用来求最长上升子序列（ LIS ）的长度，如果输入是：5 1 7 3 5 9，则输出是 ( ) 。`,
+            question: `下面代码可以用来求最长上升子序列（LIS）的长度，如果输入是：5 1 7 3 5 9，则输出是 ( ) 。
+\`\`\`cpp
+int a[2023], f[2023];
+int main() {
+    int n, i, j, ans = -1;
+    cin >> n;
+    for (i = 1; i <= n; i++) {
+        cin >> a[i];
+        f[i] = 1;
+    }
+    for (i = 1; i <= n; i++)
+        for (j = 1; j < i; j++)
+            if (a[j] < a[i])
+                f[i] = max(f[i], f[j] + 1);
+    for (i = 1; i <= n; i++) {
+        ans = max(ans, f[i]);
+        cout << f[i] << " ";
+    }
+    cout << ans << endl;
+    return 0;
+}
+\`\`\``,
             options: [
                 "9 7 5 1 1 9",
                 "1 2 2 3 4 4",
@@ -144,7 +204,17 @@ export const paperData = {
             ],
             answer: 1,
             score: 2,
-            explanation: "答案依据试卷标准答案；解析待补充。",
+            explanation: `**答案：B (1 2 2 3 4 4)**
+
+第一个数 5 是 n，序列为 1 7 3 5 9。f[i] 表示以 a[i] 结尾的 LIS 长度：
+
+| a[i] | 1 | 7 | 3 | 5 | 9 |
+|---|---|---|---|---|---|
+| f[i] | 1 | 2 | 2 | 3 | 4 |
+
+- f[2]=2（1,7）；f[3]=2（1,3）；f[4]=3（1,3,5）；f[5]=4（1,3,5,9）。
+
+最后一个循环边求 ans 边输出每个 f[i]，得 \`1 2 2 3 4\`，再输出 ans=4，整体为 \`1 2 2 3 4 4\`。`,
             tags: [
                 "客观题",
                 "单选题",
@@ -163,7 +233,12 @@ export const paperData = {
             ],
             answer: 2,
             score: 2,
-            explanation: "答案依据试卷标准答案；解析待补充。",
+            explanation: `**答案：C（不正确的是 C）**
+
+- **A** ✅ static 可以修饰成员函数，静态成员函数不依赖具体对象。
+- **B** ✅ 静态成员（含常量静态成员）可以在类外进行定义和初始化。
+- **C** ❌ 若常量静态成员只在类内用常量表达式初始化、而没有在类外提供定义，那么对它取地址（odr-use）在链接期会失败——"地址都可以访问"并不总成立。
+- **D** ✅ 静态全局对象在 main 执行前完成构造（静态初始化阶段），main 结束后按构造的逆序析构。`,
             tags: [
                 "客观题",
                 "单选题",
@@ -182,7 +257,11 @@ export const paperData = {
             ],
             answer: 3,
             score: 2,
-            explanation: "答案依据试卷标准答案；解析待补充。",
+            explanation: `**答案：D (9)**
+
+要让顶点数最少，就把 28 条边塞进尽可能"稠密"的连通分量：完全图 K₈ 恰好有 8×7/2 = 28 条边。
+
+但题目要求 G 是**非连通**图，K₈ 本身是连通的，所以至少还要加 1 个孤立顶点，共 8 + 1 = 9 个顶点。这道题的陷阱就在"非连通"三个字。`,
             tags: [
                 "客观题",
                 "单选题",
@@ -192,7 +271,25 @@ export const paperData = {
         {
             id: 6,
             type: "single",
-            question: `哈希表长 31 ，按照下面的程序依次输入4 17 28 30 4，则最后的4存入哪个位置？（ ）`,
+            question: `哈希表长 31，按照下面的程序依次输入 4 17 28 30 4，则最后的 4 存入哪个位置？（ ）
+\`\`\`cpp
+const int N = 31;
+int htab[N], flag[N];
+int main() {
+    int n, x, i, j, k;
+    cin >> n;
+    for (i = 0; i < n; i++) {
+        cin >> x;
+        k = x % 13;
+        while (flag[k]) k = (k + 1) % 13;
+        htab[k] = x;
+        flag[k] = 1;
+    }
+    for (i = 0; i < N; i++) cout << htab[i] << " ";
+    cout << endl;
+    return 0;
+}
+\`\`\``,
             options: [
                 "3",
                 "4",
@@ -201,7 +298,14 @@ export const paperData = {
             ],
             answer: 3,
             score: 2,
-            explanation: "答案依据试卷标准答案；解析待补充。",
+            explanation: `**答案：D (6)**
+
+注意两个陷阱：① 第一个输入 4 是元素个数 n，真正插入的是 17、28、30、4；② 表长 31 只是数组大小，哈希取模用的是 13，冲突用线性探测。
+
+- 17 % 13 = 4 → 存入位置 4
+- 28 % 13 = 2 → 存入位置 2
+- 30 % 13 = 4 → 4 被占 → 探测 5 → 存入位置 5
+- 4 % 13 = 4 → 4、5、6 依次探测：4 被占（17）、5 被占（30）、6 空 → **存入位置 6**`,
             tags: [
                 "客观题",
                 "单选题",
@@ -220,7 +324,15 @@ export const paperData = {
             ],
             answer: 1,
             score: 2,
-            explanation: "答案依据试卷标准答案；解析待补充。",
+            explanation: `**答案：B（T 的高为 4）**
+
+由先序 {A B D F C E G H} 和中序 {B F D A G E H C} 重建二叉树：
+
+1. 先序首元素 A 是根；中序中 A 左边 {B F D} 为左子树，右边 {G E H C} 为右子树。
+2. 左子树先序 B D F：B 为根，B 在中序 {B F D} 最左 → B 无左孩子，右孩子子树 {F D}；先序 D F → D 为根，中序 F D → F 是 D 的左孩子。
+3. 右子树先序 C E G H：C 为根，中序 {G E H} 都在 C 左边 → C 只有左孩子 E；E 的左右孩子分别是 G、H。
+
+树高 = 4（如路径 A→B→D→F）✅。叶节点是 F、G、H 共 **3** 个（C 错），根 A 有两个孩子、度为 2（A 错），故选 B。`,
             tags: [
                 "客观题",
                 "单选题",
@@ -230,16 +342,29 @@ export const paperData = {
         {
             id: 8,
             type: "single",
-            question: `下面代码段可以求两个字符串s1和s2的最长公共子串（ LCS ），下列相关描述不正确的是（ ）。`,
-            options: [
-                "代码的时间复杂度为",
-                "代码的空间复杂度为",
-                "空间复杂度已经最优",
-                "采用了动态规划求解",
-            ],
+            question: `下面代码段可以求两个字符串 s1 和 s2 的最长公共子串（LCS），下列相关描述不正确的是（ ）。
+\`\`\`cpp
+while (cin >> s1 >> s2) {
+    memset(dp, 0, sizeof(dp));
+    int n1 = strlen(s1), n2 = strlen(s2);
+    for (int i = 1; i <= n1; ++i)
+        for (int j = 1; j <= n2; ++j)
+            if (s1[i - 1] == s2[j - 1])
+                dp[i][j] = dp[i - 1][j - 1] + 1;
+            else
+                dp[i][j] = max(dp[i - 1][j], dp[i][j - 1]);
+    cout << dp[n1][n2] << endl;
+}
+\`\`\``,
+            options: [`代码的时间复杂度为 O(n²)`, `代码的空间复杂度为 O(n²)`, `空间复杂度已经最优`, `采用了动态规划求解`],
             answer: 2,
             score: 2,
-            explanation: "答案依据试卷标准答案；解析待补充。",
+            explanation: `**答案：C（不正确的是 C）**
+
+- **A** ✅ 双层循环 n1 × n2 次，时间复杂度 O(n²)。
+- **B** ✅ dp 是二维数组，空间 O(n²)。
+- **C** ❌ dp[i][j] 只依赖第 i−1 行和第 i 行，可以用滚动数组把空间压缩到 O(n)——O(n²) 并非最优。
+- **D** ✅ 这是标准的动态规划解法。`,
             tags: [
                 "客观题",
                 "单选题",
@@ -258,7 +383,11 @@ export const paperData = {
             ],
             answer: 1,
             score: 2,
-            explanation: "答案依据试卷标准答案；解析待补充。",
+            explanation: `**答案：B（队列）**
+
+BFS 的本质是按"离起点的距离"分层扩展，必须先进先出：先入队的顶点先扩展它的邻居。队列恰好提供 FIFO 语义。
+
+栈（LIFO）对应的是 DFS；哈希表和堆都不能维持逐层的访问顺序。`,
             tags: [
                 "客观题",
                 "单选题",
@@ -268,7 +397,26 @@ export const paperData = {
         {
             id: 10,
             type: "single",
-            question: `对关键字序列{44 ， 36 ， 23 ， 35 ， 52 ， 73 ， 90 ， 58}建⽴哈希表，哈希函数为h(k)=k%7，执⾏下面的 Insert函数，则等概率情况下的平均成功查找长度（即查找成功时的关键字比较次数的均值）为 ( ) 。`,
+            question: `对关键字序列 {44，36，23，35，52，73，90，58} 建立哈希表，哈希函数为 h(k)=k%7，执行下面的 Insert 函数（链地址法、头插），则等概率情况下的平均成功查找长度（即查找成功时的关键字比较次数的均值）为 ( ) 。
+\`\`\`cpp
+typedef struct Node {
+    int data;
+    struct Node *next;
+} Node;
+Node* hTab[7];
+int key[] = {44, 36, 23, 35, 52, 73, 90, 58, 0};
+void Insert() {
+    int i, j;
+    Node *x;
+    for (i = 0; key[i]; i++) {
+        j = key[i] % 7;
+        x = new Node;
+        x->data = key[i];
+        x->next = hTab[j];
+        hTab[j] = x;
+    }
+}
+\`\`\``,
             options: [
                 "7/8",
                 "1",
@@ -277,7 +425,16 @@ export const paperData = {
             ],
             answer: 2,
             score: 2,
-            explanation: "答案依据试卷标准答案；解析待补充。",
+            explanation: `**答案：C (1.5)**
+
+各关键字取模：44%7=2，36%7=1，23%7=2，35%7=0，52%7=3，73%7=3，90%7=6，58%7=2。
+
+链地址 + 头插，后插入的在链头，各槽的链为：
+- 槽 0：35；槽 1：36；槽 6：90（各 1 次比较）
+- 槽 2：58 → 23 → 44（比较次数 1、2、3）
+- 槽 3：73 → 52（比较次数 1、2）
+
+总比较次数 = 1+1+1 + (1+2+3) + (1+2) = 12，平均成功查找长度 = 12/8 = **1.5**。`,
             tags: [
                 "客观题",
                 "单选题",
@@ -296,7 +453,11 @@ export const paperData = {
             ],
             answer: 3,
             score: 2,
-            explanation: "答案依据试卷标准答案；解析待补充。",
+            explanation: `**答案：D（动态规划不可行）**
+
+"找到课程 C 的全部先修课"就是求反向图上从 C 出发的全部可达顶点（或沿入边回溯），这是可达性搜索问题：BFS、DFS 或两者组合都能完成。
+
+动态规划要求问题有最优子结构和明确的无环计算顺序，而"求可达顶点集合"不是最优化问题，且先修图的一般搜索并不依赖 DP——它不是求这个集合的可行方法。`,
             tags: [
                 "客观题",
                 "单选题",
@@ -315,7 +476,13 @@ export const paperData = {
             ],
             answer: 2,
             score: 2,
-            explanation: "答案依据试卷标准答案；解析待补充。",
+            explanation: `**答案：C (1012)**
+
+完全二叉树 2023 个结点：前 10 层放满共 2¹⁰−1 = 1023 个，剩下 2023 − 1023 = 1000 个在第 11 层（最多可放 1024）。
+
+叶结点 = 第 11 层的 1000 个 + 第 10 层中没有孩子的结点。第 10 层共 512 个结点，其中被这 1000 个孩子占用的父结点有 ⌈1000/2⌉ = 500 个，剩 512 − 500 = 12 个是叶子。
+
+合计 1000 + 12 = **1012**。`,
             tags: [
                 "客观题",
                 "单选题",
@@ -325,16 +492,34 @@ export const paperData = {
         {
             id: 13,
             type: "single",
-            question: `用下面的邻接表结构保存一个有向图G，InfoType和VertexType是定义好的类。设G有n个顶点、 e条弧，则求图G中某个顶点u（其顶点序号为k）的度的算法复杂度是 ( ) 。`,
-            options: [
-                "选项A",
-                "选项B",
-                "选项C",
-                "选项D",
-            ],
+            question: `用下面的邻接表结构保存一个有向图 G，InfoType 和 VertexType 是定义好的类。设 G 有 n 个顶点、e 条弧，则求图 G 中某个顶点 u（其顶点序号为 k）的度的算法复杂度是 ( ) 。
+\`\`\`cpp
+typedef struct ArcNode {
+    int adjvex;             // 该弧所指向的顶点的位置
+    struct ArcNode *nextarc; // 指向下一条弧的指针
+    InfoType *info;         // 该弧相关信息的指针
+} ArcNode;
+typedef struct VNode {
+    VertexType data;    // 顶点信息
+    ArcNode *firstarc;  // 指向第一条依附该顶点的弧
+} VNode, AdjList[MAX_VERTEX_NUM];
+typedef struct {
+    AdjList vertices;
+    int vexnum, arcnum;
+    int kind;
+} ALGraph;
+\`\`\``,
+            options: [`O(n)`, `O(e)`, `O(n + e)`, `O(n + 2e)`],
             answer: 1,
             score: 2,
-            explanation: "答案依据试卷标准答案；解析待补充。",
+            explanation: `**答案：B（O(e)）**
+
+有向图中顶点 u 的度 = 出度 + 入度。
+
+- **出度**：沿 vertices[k].firstarc 的链表走一遍即可，代价是 u 的出度，不超过 e。
+- **入度**：邻接表只记录"从谁出发"，要数指向 u 的弧必须把所有顶点的弧链都扫一遍，检查每条弧的 adjvex 是否等于 k——需要访问全部 e 条弧。
+
+整体由扫描全部弧主导，复杂度 O(e)。（若把访问 n 个表头也计入可写作 O(n+e)，本题按弧数主导取 O(e)。）`,
             tags: [
                 "客观题",
                 "单选题",
@@ -353,7 +538,11 @@ export const paperData = {
             ],
             answer: 3,
             score: 2,
-            explanation: "答案依据试卷标准答案；解析待补充。",
+            explanation: `**答案：D（不确定）**
+
+判断有向图是否有环，DFS（找返祖边）和基于 BFS 的拓扑排序（Kahn 算法）都可行，最坏时间复杂度同为 O(n+e)。
+
+谁"更快"取决于具体图的形态、环出现的位置和实现细节：环藏得深浅、入度分布如何，都可能让其中一种更早停下。没有普适的快慢结论，选"不确定"。`,
             tags: [
                 "客观题",
                 "单选题",
@@ -363,16 +552,21 @@ export const paperData = {
         {
             id: 15,
             type: "single",
-            question: `从顶点v1开始遍历下图G得到顶点访问序列，在下面所给的4个序列中符合⼴度优先的序列有⼏个？ ( ) {v1 v2 v3 v4 v5} ，{v1 v2 v4 v3 v5}，{v1 v4 v2 v3 v5}，{v1 v2 v4 v5 v3}`,
-            options: [
-                "4",
-                "3",
-                "2",
-                "1 题号 1 2 3 4 5 6 7 8 9 10 答案",
-            ],
+            question: `从顶点 v1 开始遍历下图 G 得到顶点访问序列（G 的边为：v1-v2、v1-v4、v2-v3、v2-v5、v3-v4、v3-v5），在下面所给的 4 个序列中符合广度优先的序列有几个？ ( )
+{v1 v2 v3 v4 v5}，{v1 v2 v4 v3 v5}，{v1 v4 v2 v3 v5}，{v1 v2 v4 v5 v3}`,
+            options: [`4`, `3`, `2`, `1`],
             answer: 1,
             score: 2,
-            explanation: "答案依据试卷标准答案；解析待补充。",
+            explanation: `**答案：B (3)**
+
+从 v1 出发按层划分：第 0 层 {v1}；第 1 层是 v1 的邻居 {v2, v4}；第 2 层 {v3, v5}。BFS 序列必须把第 1 层全部访问完才能进入第 2 层（同层内顺序任意）：
+
+- {v1 v2 v3 v4 v5} ❌ v3（第 2 层）出现在 v4（第 1 层）之前。
+- {v1 v2 v4 v3 v5} ✅
+- {v1 v4 v2 v3 v5} ✅
+- {v1 v2 v4 v5 v3} ✅（v2 的邻居按 v5、v3 顺序入队即可）
+
+共 3 个合法。`,
             tags: [
                 "客观题",
                 "单选题",
@@ -382,14 +576,29 @@ export const paperData = {
         {
             id: 16,
             type: "judge",
-            question: `小杨这学期准备参加 GESP 的 7 级考试，其中有关于三角函数的内容，他能够通过下面的代码找到结束循环的 角度值。 ( )`,
+            question: `小杨这学期准备参加 GESP 的 7 级考试，其中有关于三角函数的内容，他能够通过下面的代码找到结束循环的角度值。( )
+\`\`\`cpp
+int main() {
+    double x;
+    do {
+        cin >> x;
+        x = x / 180 * 3.14;
+    } while (int(sin(x) * sin(x) + cos(x) * cos(x)) == 1);
+    cout << sin(x) << " " << cos(x) << endl;
+    return 0;
+}
+\`\`\``,
             options: [
                 "正确",
                 "错误",
             ],
             answer: 0,
             score: 2,
-            explanation: "答案依据试卷标准答案；解析待补充。",
+            explanation: `**答案：正确**
+
+数学上 sin²x + cos²x ≡ 1，看似死循环。但程序用 double 浮点运算：结果通常是 0.9999…或 1.0000…1 这样的近似值。当结果略小于 1 时，\`int(...)\` 截断为 0，循环条件不成立，循环结束。
+
+所以确实存在能让循环结束的输入角度——浮点误差 + 强制取整截断是本题的考点。`,
             tags: [
                 "客观题",
                 "判断题",
@@ -399,14 +608,16 @@ export const paperData = {
         {
             id: 17,
             type: "judge",
-            question: `小杨在开发画笔刷小程序（ applet ），操作之一是选中黄颜⾊，然后在下面的左图的中间区域双击后，就变 成了右图。这个操作可以用图的泛洪算法来实现。 ( )`,
+            question: `小杨在开发画笔刷小程序（applet），操作之一是选中黄颜色，然后在图像的某个封闭白色区域内双击后，该连通区域被整体染成黄色。这个操作可以用图的泛洪算法来实现。( )`,
             options: [
                 "正确",
                 "错误",
             ],
             answer: 0,
             score: 2,
-            explanation: "答案依据试卷标准答案；解析待补充。",
+            explanation: `**答案：正确**
+
+"油漆桶"式填充正是泛洪算法（Flood Fill）的标准应用：把每个像素看作图的顶点、相邻同色像素之间连边，从双击点出发做 DFS/BFS，把可达的同色像素全部改成目标颜色。`,
             tags: [
                 "客观题",
                 "判断题",
@@ -416,14 +627,18 @@ export const paperData = {
         {
             id: 18,
             type: "judge",
-            question: `假设一棵完全二叉树共有 个节点，则树的深度为 。 ( )`,
+            question: `假设一棵完全二叉树共有 N 个节点，则树的深度为 log(N) + 1。( )`,
             options: [
                 "正确",
                 "错误",
             ],
-            answer: 0,
+            answer: 1,
             score: 2,
-            explanation: "答案依据试卷标准答案；解析待补充。",
+            explanation: `**答案：错误**
+
+完全二叉树的深度公式是 **⌊log₂N⌋ + 1**——必须以 2 为底并向下取整。题面写作 log(N)+1：既没有指明以 2 为底（数学惯例 log 常指以 10 为底或自然对数），也没有取整。
+
+例如 N = 6：⌊log₂6⌋+1 = 3 才是正确深度，而 log₂6+1 ≈ 3.58 根本不是整数。表述不严谨，判错误。`,
             tags: [
                 "客观题",
                 "判断题",
@@ -440,7 +655,11 @@ export const paperData = {
             ],
             answer: 0,
             score: 2,
-            explanation: "答案依据试卷标准答案；解析待补充。",
+            explanation: `**答案：正确**
+
+这是经典的最大子段和问题。设 f(i) 为以 A_i 结尾的最大子段和，则 f(i) = max(f(i−1) + A_i, A_i)，答案为 max f(i)。
+
+该问题具有最优子结构和无后效性，动态规划（Kadane 算法）O(n) 即可求解，判正确。`,
             tags: [
                 "客观题",
                 "判断题",
@@ -457,7 +676,15 @@ export const paperData = {
             ],
             answer: 0,
             score: 2,
-            explanation: "答案依据试卷标准答案；解析待补充。",
+            explanation: `**答案：正确**
+
+C++ 中 \`log\` 是自然对数（以 e 为底），所以 log(exp(x)) = x。
+
+于是命题变为：对任意 double 正数 x，是否恒有 x > log10(x)？
+- 0 < x ≤ 1 时：log10(x) ≤ 0 < x ✅
+- x > 1 时：x 增长远快于 log10(x)，且在 x=1 处 1 > 0，两函数之差恒为正 ✅
+
+恒成立，判正确。`,
             tags: [
                 "客观题",
                 "判断题",
@@ -472,9 +699,15 @@ export const paperData = {
                 "正确",
                 "错误",
             ],
-            answer: 0,
+            answer: 1,
             score: 2,
-            explanation: "答案依据试卷标准答案；解析待补充。",
+            explanation: `**答案：错误**
+
+求有向图顶点 u 的度（出度 + 入度）：
+- **邻接矩阵**：扫第 u 行得出度、第 u 列得入度，共 O(n)。
+- **邻接表**：出度沿 u 的弧链 O(出度)；但入度必须遍历所有顶点的弧链、检查 adjvex，代价 O(e)。
+
+两种存储结构的时间复杂度一般并不相同（O(n) vs O(e)），判错误。`,
             tags: [
                 "客观题",
                 "判断题",
@@ -489,9 +722,13 @@ export const paperData = {
                 "正确",
                 "错误",
             ],
-            answer: 0,
+            answer: 1,
             score: 2,
-            explanation: "答案依据试卷标准答案；解析待补充。",
+            explanation: `**答案：错误**
+
+模数 p 取素数只能让哈希值分布更均匀、**减少**冲突，不可能杜绝冲突：只要两个键关于 p 同余（例如 x 和 x+p），H(x) 就完全相同。
+
+键空间无限而表长有限，由鸽巢原理冲突必然存在，任何哈希函数都只能缓解、不能消除，判错误。`,
             tags: [
                 "客观题",
                 "判断题",
@@ -506,9 +743,16 @@ export const paperData = {
                 "正确",
                 "错误",
             ],
-            answer: 0,
+            answer: 1,
             score: 2,
-            explanation: "答案依据试卷标准答案；解析待补充。",
+            explanation: `**答案：错误**
+
+只有状态转移方程还不够：
+1. 还必须给出正确的**边界（初始）条件**，否则递归无法落地；
+2. 问题要满足最优子结构与无后效性；
+3. 直接按方程写朴素递归会重复计算子问题，复杂度可能指数级，未必能在可接受时间内"求出"最优解——还需要记忆化或递推。
+
+"只要…就…"的表述过强，判错误。`,
             tags: [
                 "客观题",
                 "判断题",
@@ -525,7 +769,11 @@ export const paperData = {
             ],
             answer: 0,
             score: 2,
-            explanation: "答案依据试卷标准答案；解析待补充。",
+            explanation: `**答案：正确**
+
+从任意顶点出发做一次 BFS，结束后检查是否所有顶点都被访问过：若是，图连通；若存在未访问顶点，则图不连通。
+
+BFS（或 DFS）遍历正是判断无向图连通性的标准方法，判正确。`,
             tags: [
                 "客观题",
                 "判断题",
@@ -540,9 +788,13 @@ export const paperData = {
                 "正确",
                 "错误",
             ],
-            answer: 0,
+            answer: 1,
             score: 2,
-            explanation: "答案依据试卷标准答案；解析待补充。",
+            explanation: `**答案：错误**
+
+一旦类定义了自己的构造函数，编译器就**不再隐式生成**缺省构造函数；创建对象时只调用与实参匹配的那一个构造函数。
+
+不存在"先执行缺省构造函数、再执行自定义构造函数"的两步过程——同一对象的构造只执行一个构造函数（基类/成员的构造是另一回事），判错误。`,
             tags: [
                 "客观题",
                 "判断题",
