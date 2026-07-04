@@ -4,8 +4,7 @@ const TAGS = {
   condition: '条件判断',
   loop: '循环',
   operator: '运算符',
-  judge: '判断题',
-  system: '计算机常识',
+  system: '计算机基础',
 };
 
 export const paperData = {
@@ -165,7 +164,7 @@ export const paperData = {
       explanation: `**答案：D**
 
 \`x=3.16 int;\` 不符合 C++ 语法。前三项虽然会发生类型转换或截断，但语法上可以成立。`,
-      tags: [TAGS.basics],
+      tags: ['数据类型', '变量与标识符'],
     },
     {
       id: 12,
@@ -225,7 +224,7 @@ export const paperData = {
       explanation: `**答案：正确**
 
 \`27 % 10\` 取个位，结果为 7。`,
-      tags: [TAGS.judge, TAGS.operator],
+      tags: [TAGS.operator],
     },
     {
       id: 17,
@@ -237,7 +236,7 @@ export const paperData = {
       explanation: `**答案：正确**
 
 两个 \`%d\` 分别被 2 和 3 替换，普通字符 \`#\`、\`&\` 原样输出。`,
-      tags: [TAGS.judge, TAGS.io],
+      tags: [TAGS.io],
     },
     {
       id: 18,
@@ -249,7 +248,7 @@ export const paperData = {
       explanation: `**答案：错误**
 
 \`scanf\` 的功能是读取输入，不是提示输入。提示信息通常应使用 \`printf\` 或 \`cout\` 输出。`,
-      tags: [TAGS.judge, TAGS.io],
+      tags: [TAGS.io],
     },
     {
       id: 19,
@@ -261,7 +260,7 @@ export const paperData = {
       explanation: `**答案：正确**
 
 C++ 不支持像 Python 那样用整数重复字符串，字符串字面量不能直接与整数相乘。`,
-      tags: [TAGS.judge, TAGS.basics],
+      tags: ['数据类型'],
     },
     {
       id: 20,
@@ -273,7 +272,7 @@ C++ 不支持像 Python 那样用整数重复字符串，字符串字面量不�
       explanation: `**答案：错误**
 
 \`for(;;)\` 就是典型的无限循环，因此 \`for\` 也可能写成死循环。`,
-      tags: [TAGS.judge, TAGS.loop],
+      tags: [TAGS.loop],
     },
     {
       id: 21,
@@ -285,7 +284,7 @@ C++ 不支持像 Python 那样用整数重复字符串，字符串字面量不�
       explanation: `**答案：错误**
 
 \`break\` 可以用于 \`for\`、\`while\`、\`do-while\` 循环，也可以用于 \`switch\`。`,
-      tags: [TAGS.judge, TAGS.loop],
+      tags: [TAGS.loop],
     },
     {
       id: 22,
@@ -297,7 +296,7 @@ C++ 不支持像 Python 那样用整数重复字符串，字符串字面量不�
       explanation: `**答案：错误**
 
 \`3.0\` 默认是浮点类型 \`double\`，\`3\` 是整型字面量。数值相等不代表类型和存储空间相同。`,
-      tags: [TAGS.judge, TAGS.basics],
+      tags: ['数据类型'],
     },
     {
       id: 23,
@@ -309,7 +308,7 @@ C++ 不支持像 Python 那样用整数重复字符串，字符串字面量不�
       explanation: `**答案：正确**
 
 \`cin\` 不是 C++ 关键字，语法上可以作为标识符。不过实际编程中不建议这样命名，容易与标准输入流混淆。`,
-      tags: [TAGS.judge, TAGS.basics],
+      tags: ['变量与标识符'],
     },
     {
       id: 24,
@@ -321,7 +320,7 @@ C++ 不支持像 Python 那样用整数重复字符串，字符串字面量不�
       explanation: `**答案：正确**
 
 用户通过遥控器输入，系统处理并返回搜索结果，符合交互式程序“输入、处理、输出”的特征。`,
-      tags: [TAGS.judge, TAGS.system],
+      tags: [TAGS.system],
     },
     {
       id: 25,
@@ -333,7 +332,7 @@ C++ 不支持像 Python 那样用整数重复字符串，字符串字面量不�
       explanation: `**答案：正确**
 
 \`for\` 循环的初始化、条件、更新部分都可以改写到 \`while\` 循环前、条件中和循环体末尾。`,
-      tags: [TAGS.judge, TAGS.loop],
+      tags: [TAGS.loop],
     },
     {
       id: 26,

@@ -6,7 +6,8 @@ import { fileURLToPath } from 'url';
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 const levelDir = path.join(__dirname, '..', 'src/data/gesp/level1');
-const registryFile = path.join(__dirname, '..', 'src/data/gesp/index.js');
+// 注册表现由 generate-paper-registry.cjs 生成，检查生成文件而不是薄壳 index.js
+const registryFile = path.join(__dirname, '..', 'src/data/gesp/_generated.js');
 
 const expectedPapers = [
   ['2023-03-l1', 1],
@@ -21,6 +22,7 @@ const expectedPapers = [
   ['2025-06-l1', 10],
   ['2025-09-l1', 11],
   ['2025-12-l1', 12],
+  ['2026-03-l1', 13],
 ];
 
 const issues = [];

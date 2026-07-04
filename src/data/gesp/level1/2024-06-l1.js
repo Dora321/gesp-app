@@ -4,8 +4,7 @@ const TAGS = {
   condition: '条件判断',
   loop: '循环',
   operator: '运算符',
-  judge: '判断题',
-  system: '计算机常识',
+  system: '计算机基础',
 };
 
 export const paperData = {
@@ -35,7 +34,7 @@ export const paperData = {
       explanation: `**答案：A**
 
 C++ 变量名只能由字母、数字、下划线组成，且不能以数字开头。\`five-Star\` 中的 \`-\` 会被当作减号，不是合法变量名字符。`,
-      tags: [TAGS.basics],
+      tags: ['变量与标识符'],
     },
     {
       id: 2,
@@ -230,7 +229,7 @@ ENIAC 属于第一代电子计算机，主要部件是电子管。`,
       explanation: `**答案：错误**
 
 如果 \`X\` 是浮点类型，\`X / 10\` 的结果约为 \`1.644\`，不一定输出 \`1\`。`,
-      tags: [TAGS.judge, TAGS.operator],
+      tags: [TAGS.operator],
     },
     {
       id: 17,
@@ -242,7 +241,7 @@ ENIAC 属于第一代电子计算机，主要部件是电子管。`,
       explanation: `**答案：错误**
 
 \`N / 4\` 为 \`2\`，\`N % 4\` 为 \`2\`，但 \`N / 4.0\` 是浮点除法，结果为 \`2.5\`。`,
-      tags: [TAGS.judge, TAGS.operator],
+      tags: [TAGS.operator],
     },
     {
       id: 18,
@@ -254,7 +253,7 @@ ENIAC 属于第一代电子计算机，主要部件是电子管。`,
       explanation: `**答案：正确**
 
 \`float\` 可以读取整数或浮点数，\`int(float(N))\` 会把数值转换为整数，转换时直接截断小数部分。`,
-      tags: [TAGS.judge, TAGS.basics, TAGS.io],
+      tags: [TAGS.basics, TAGS.io],
     },
     {
       id: 19,
@@ -266,7 +265,7 @@ ENIAC 属于第一代电子计算机，主要部件是电子管。`,
       explanation: `**答案：错误**
 
 \`%d\` 被 \`N\` 的值 5 替换，\`*2\` 是普通字符，原样输出，所以结果是 \`5*2\`。`,
-      tags: [TAGS.judge, TAGS.io],
+      tags: [TAGS.io],
     },
     {
       id: 20,
@@ -278,7 +277,7 @@ ENIAC 属于第一代电子计算机，主要部件是电子管。`,
       explanation: `**答案：正确**
 
 \`break\` 可以终止当前所在的 \`for\`、\`while\`、\`do-while\` 循环。`,
-      tags: [TAGS.judge, TAGS.loop],
+      tags: [TAGS.loop],
     },
     {
       id: 21,
@@ -290,7 +289,7 @@ ENIAC 属于第一代电子计算机，主要部件是电子管。`,
       explanation: `**答案：正确**
 
 \`continue\` 常用于“满足某个条件时跳过本次循环剩余语句”，因此通常会和 \`if\` 条件判断配合使用。`,
-      tags: [TAGS.judge, TAGS.loop, TAGS.condition],
+      tags: [TAGS.loop, TAGS.condition],
     },
     {
       id: 22,
@@ -302,7 +301,7 @@ ENIAC 属于第一代电子计算机，主要部件是电子管。`,
       explanation: `**答案：错误**
 
 \`printf\` 是标准库函数名，不是 C++ 关键字。实际编程中不建议重名，但“因为它是关键字”这个说法错误。`,
-      tags: [TAGS.judge, TAGS.basics],
+      tags: ['变量与标识符'],
     },
     {
       id: 23,
@@ -314,7 +313,7 @@ ENIAC 属于第一代电子计算机，主要部件是电子管。`,
       explanation: `**答案：错误**
 
 C++ 中 \`//\` 是单行注释的开始，不是整除运算符，因此不能把它理解为 \`8/(4/2)\`。`,
-      tags: [TAGS.judge, TAGS.basics],
+      tags: ['运算符'],
     },
     {
       id: 24,
@@ -326,7 +325,7 @@ C++ 中 \`//\` 是单行注释的开始，不是整除运算符，因此不能�
       explanation: `**答案：错误**
 
 \`!!N\` 会把 \`N\` 转换成布尔意义上的 \`0\` 或 \`1\`。例如 \`N = 5\` 时，\`!!N\` 的值是 \`1\`，不是 \`5\`。`,
-      tags: [TAGS.judge, TAGS.operator],
+      tags: [TAGS.operator],
     },
     {
       id: 25,
@@ -338,7 +337,7 @@ C++ 中 \`//\` 是单行注释的开始，不是整除运算符，因此不能�
       explanation: `**答案：正确**
 
 GESP 重点认证编程能力和计算思维。同一级别在不同语言之间的核心能力要求基本对齐。`,
-      tags: [TAGS.judge, TAGS.system],
+      tags: [TAGS.system],
     },
     {
       id: 26,
