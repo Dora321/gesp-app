@@ -46,7 +46,7 @@ const CodeBlock = ({ code, title }) => (
 const OverviewModule = ({ onStart }) => (
   <div className="space-y-6 animate-fade-in">
     <div className="bg-gradient-to-r from-blue-600 to-indigo-600 rounded-2xl p-8 text-white shadow-xl">
-      <h1 className="text-3xl font-bold mb-4">GESP C++ 七级冲刺指南</h1>
+      <h2 className="text-3xl font-bold mb-4">GESP C++ 七级冲刺指南</h2>
       <p className="text-blue-100 text-lg mb-6">
         探索非线性数据结构。掌握树与图的奥秘，精通 DFS 与 BFS 搜索算法，挑战复杂逻辑。
       </p>
@@ -804,7 +804,7 @@ export default function CourseLevel7() {
     <div className="flex h-screen bg-slate-50 overflow-hidden font-sans text-slate-900">
       {/* Mobile Menu Button - Fixed Top */}
       <div className="md:hidden fixed top-0 left-0 w-full z-50 bg-white border-b border-slate-200 p-4 flex items-center justify-between shadow-sm">
-        <h1 className="text-lg font-bold text-slate-800 flex items-center gap-2">
+        <div className="text-lg font-bold text-slate-800 flex items-center gap-2">
           <Link to="/" className="hover:opacity-80 transition-opacity">
             <div className="w-8 h-8 bg-white rounded-lg flex items-center justify-center overflow-hidden border border-slate-200 shadow-sm">
               <img src={`${import.meta.env.BASE_URL}logo.jpg`} alt="Logo" className="w-full h-full object-cover" />
@@ -812,7 +812,7 @@ export default function CourseLevel7() {
           </Link>
           <span className="bg-rose-600 text-white px-2 py-0.5 rounded text-xs">C++</span>
           GESP 七级
-        </h1>
+        </div>
         <button
           onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
           className="p-2 text-slate-600 hover:bg-slate-100 rounded-lg"

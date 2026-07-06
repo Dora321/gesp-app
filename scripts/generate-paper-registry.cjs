@@ -16,6 +16,7 @@ const DATA_DIR = path.resolve(__dirname, '../src/data/gesp');
 const LEVELS = ['level1', 'level2', 'level3', 'level4', 'level5', 'level6', 'level7', 'level8'];
 const OUTPUT_FILE = path.resolve(DATA_DIR, '_generated.js');
 const OUTPUT_STATS_FILE = path.resolve(DATA_DIR, '_stats.js');
+const VERIFIED_CORRECTIONS_FILE = path.resolve(DATA_DIR, 'verifiedQuestionCorrections.js');
 
 // ===== Utils =====
 
@@ -67,9 +68,56 @@ function countPlaceholderMarkers(content) {
   return markers.reduce((total, marker) => total + (content.match(marker) || []).length, 0);
 }
 
+function extractObjectBlock(content, key) {
+  const match = new RegExp(`${key}\\s*:\\s*\\{`).exec(content);
+  if (!match) return '';
+
+  let depth = 0;
+  let quote = '';
+  for (let i = match.index + match[0].length - 1; i < content.length; i++) {
+    const ch = content[i];
+    const prev = i > 0 ? content[i - 1] : '';
+    if (quote) {
+      if (ch === quote && prev !== '\\') quote = '';
+      continue;
+    }
+    if (ch === "'" || ch === '"' || ch === '`') {
+      quote = ch;
+      continue;
+    }
+    if (ch === '{') depth++;
+    if (ch === '}' && --depth === 0) return content.slice(match.index, i + 1);
+  }
+  return '';
+}
+
+function getStringField(content, key) {
+  return content.match(new RegExp(`${key}\\s*:\\s*(['\"\`])([^'\"\`\\n]+)\\1`))?.[2] || '';
+}
+
+function jsString(value) {
+  return `'${String(value || '').replace(/\\/g, '\\\\').replace(/'/g, "\\'")}'`;
+}
+
+function readVerifiedCorrectionMeta() {
+  if (!fs.existsSync(VERIFIED_CORRECTIONS_FILE)) return new Map();
+
+  const content = fs.readFileSync(VERIFIED_CORRECTIONS_FILE, 'utf8');
+  const paperPattern = /^\s{2}'(\d{4}-\d{2}-l\d)':\s*\{/gm;
+  const matches = [...content.matchAll(paperPattern)];
+
+  return new Map(matches.map((match, index) => {
+    const end = matches[index + 1]?.index ?? content.length;
+    const block = content.slice(match.index, end);
+    const sourceUrl = block.match(/sourceUrl:\s*'([^']+)'/)?.[1] || '';
+    return [match[1], { sourceUrl }];
+  }));
+}
+
 // ===== Scan & Generate =====
 
 const papers = [];
+const verifiedCorrectionMeta = readVerifiedCorrectionMeta();
 
 for (const levelDir of LEVELS) {
   const dirPath = path.join(DATA_DIR, levelDir);
@@ -98,7 +146,20 @@ for (const levelDir of LEVELS) {
     const fileTitle = head.match(/title\s*:\s*(['"`])([^'"`\n]+)\1/)?.[2];
     const title = fileTitle || `${year}年${month}月 GESP C++ ${'一二三四五六七八'[parseInt(level) - 1]}级真题`;
     const unofficial = /占位|非正式/.test(title);
+    const sourceBlock = extractObjectBlock(head, 'source');
+    const verificationBlock = extractObjectBlock(head, 'verification');
+    const sourceType = getStringField(sourceBlock, 'type');
+    const sourceUrl = getStringField(sourceBlock, 'officialPdf') || getStringField(sourceBlock, 'url');
+    const sourceNotes = getStringField(sourceBlock, 'notes');
+    const explicitStatus = getStringField(verificationBlock, 'status');
+    const reviewStatus = explicitStatus
+      || (sourceType === 'official-verified' ? 'verified' : '')
+      || (/已对照官方\s*PDF\s*校订/.test(sourceNotes) ? 'partial' : 'unverified');
+    const reviewedBy = getStringField(verificationBlock, 'reviewedBy');
+    const reviewedAt = getStringField(verificationBlock, 'reviewedAt');
+    const reviewScope = getStringField(verificationBlock, 'scope');
 
+    const correctionMeta = verifiedCorrectionMeta.get(paperId);
     papers.push({
       id: paperId,
       level: parseInt(level, 10),
@@ -108,8 +169,20 @@ for (const levelDir of LEVELS) {
       questionCount,
       placeholderCount,
       unofficial,
+      reviewStatus: correctionMeta ? 'partial' : reviewStatus,
+      reviewedBy: correctionMeta ? '本站校订' : reviewedBy,
+      reviewedAt: correctionMeta ? '2026-07-06' : reviewedAt,
+      reviewScope: correctionMeta ? '疑似缺失或错误的代码题已对照官方 PDF 校订。' : reviewScope,
+      sourceUrl: correctionMeta?.sourceUrl || sourceUrl,
       relativePath,
     });
+  }
+}
+
+const knownPaperIds = new Set(papers.map(paper => paper.id));
+for (const paperId of verifiedCorrectionMeta.keys()) {
+  if (!knownPaperIds.has(paperId)) {
+    throw new Error(`Verified correction references unknown paper: ${paperId}`);
   }
 }
 
@@ -120,7 +193,7 @@ papers.sort((a, b) => a.level - b.level || a.year - b.year || a.month - b.month)
 
 const paperIdsLine = papers.map(p => `  '${p.id}',`).join('\n');
 const paperMetaLines = papers.map(p =>
-  `  '${p.id}': { level: ${p.level}, year: ${p.year}, month: ${p.month}, title: '${p.title.replace(/'/g, "\\'")}', questionCount: ${p.questionCount}, placeholderCount: ${p.placeholderCount}, needsReview: ${p.placeholderCount > 0}, unofficial: ${p.unofficial} },`
+  `  '${p.id}': { level: ${p.level}, year: ${p.year}, month: ${p.month}, title: ${jsString(p.title)}, questionCount: ${p.questionCount}, placeholderCount: ${p.placeholderCount}, needsReview: ${p.placeholderCount > 0}, unofficial: ${p.unofficial}, reviewStatus: ${jsString(p.reviewStatus)}, reviewedBy: ${jsString(p.reviewedBy)}, reviewedAt: ${jsString(p.reviewedAt)}, reviewScope: ${jsString(p.reviewScope)}, sourceUrl: ${jsString(p.sourceUrl)} },`
 ).join('\n');
 const loadersLines = papers.map(p =>
   `    '${p.id}': () => import('${p.relativePath}').then(m => m.paperData),`
@@ -147,6 +220,9 @@ const stats = {
   paperCount: papers.length,
   questionCount: papers.reduce((sum, p) => sum + p.questionCount, 0),
   reviewPaperCount: papers.filter(p => p.placeholderCount > 0).length,
+  verifiedPaperCount: papers.filter(p => p.reviewStatus === 'verified').length,
+  partialPaperCount: papers.filter(p => p.reviewStatus === 'partial').length,
+  unverifiedPaperCount: papers.filter(p => p.reviewStatus === 'unverified').length,
   levelCount: new Set(papers.map(p => p.level)).size,
   firstYear: Math.min(...papers.map(p => p.year)),
   latestYear: Math.max(...papers.map(p => p.year)),
@@ -159,6 +235,9 @@ export const paperStats = {
   paperCount: ${stats.paperCount},
   questionCount: ${stats.questionCount},
   reviewPaperCount: ${stats.reviewPaperCount},
+  verifiedPaperCount: ${stats.verifiedPaperCount},
+  partialPaperCount: ${stats.partialPaperCount},
+  unverifiedPaperCount: ${stats.unverifiedPaperCount},
   levelCount: ${stats.levelCount},
   firstYear: ${stats.firstYear},
   latestYear: ${stats.latestYear},

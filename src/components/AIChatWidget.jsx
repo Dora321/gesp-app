@@ -2,7 +2,7 @@ import React, { useState, useEffect, useRef } from 'react';
 import { X, Send, Settings, Trash2, Loader2, Bot, User, Key, UserCircle2, Plus, GripHorizontal, BrainCircuit, Sparkles, Pencil, Save, Square } from 'lucide-react';
 import ReactMarkdown from 'react-markdown';
 import remarkGfm from 'remark-gfm';
-import rehypeHighlight from 'rehype-highlight';
+import rehypeCodeHighlight from '../utils/rehypeCodeHighlight';
 import 'highlight.js/styles/github-dark.css'; // 使用 GitHub Dark 主题代码高亮
 
 // AI 角色定义
@@ -704,7 +704,7 @@ const AIChatWidget = ({ onClose }) => {
                                 msg.content ? (
                                     <ReactMarkdown
                                         remarkPlugins={[remarkGfm]}
-                                        rehypePlugins={[rehypeHighlight]}
+                                        rehypePlugins={[[rehypeCodeHighlight, { detect: true }]]}
                                         components={chatMarkdownComponents}
                                     >
                                         {msg.content}

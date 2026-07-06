@@ -8,6 +8,16 @@ export const paperData = {
     session: 3,
     timeLimit: 5400,
     backfilled: true,
+    source: {
+        officialPdf: 'https://gesp.ccf.org.cn/101/attach/1570611272876064.pdf',
+        notes: '第 15 题代码已对照官方 PDF 图像恢复。'
+    },
+    verification: {
+        status: 'partial',
+        reviewedBy: '本站校订',
+        reviewedAt: '2026-07-06',
+        scope: '第 15 题代码已对照官方 PDF 校订。'
+    },
     questions: [
         {
             id: 1,
@@ -684,6 +694,20 @@ C++11 引入了"异常规格说明"（noexcept 关键字），可以指定函数
             id: 15,
             type: "single",
             question: `在下列代码的横线处填写（ ），完成对有n 个int类型元素的数组array由小到大排序。`,
+            code: `void BubbleSort(int array[], int n) {
+    for (int i = n; i >= 2; i--)
+        for (_______) // 在此处填入代码
+            if (array[j] > array[j + 1]) {
+                int t = array[j];
+                array[j] = array[j + 1];
+                array[j + 1] = t;
+            }
+}`,
+            requiresCode: true,
+            sourcePage: 4,
+            sourceVerified: true,
+            reviewedBy: '本站校订',
+            reviewedAt: '2026-07-06',
             options: [
                 "int j = 1; j < n; j++",
                 "int j = 0; j < n; j++",

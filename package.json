@@ -6,35 +6,42 @@
   "type": "module",
   "scripts": {
     "dev": "vite",
-    "build": "vite build",
+    "build": "vite build && node scripts/prerender-static-routes.mjs",
     "lint": "eslint . --max-warnings 0",
     "preview": "vite preview",
     "check:level1": "node scripts/check-level1-objective.js",
     "legacy:check:objective": "node scripts/check-objective-level123.js",
     "legacy:qa:objective": "node scripts/qa-objective-level123.js",
     "validate:bank": "node scripts/validate-question-bank.js",
+    "validate:bank:update-baseline": "node scripts/validate-question-bank.js --update-code-baseline",
     "check": "npm run check:course-flow && npm run check:links",
     "check:course-flow": "node scripts/check-course-flow.cjs",
     "check:links": "node scripts/check-internal-links.cjs",
+    "check:prerender": "node scripts/check-prerendered-routes.mjs",
     "check:cpp-l1-mastery-ui": "node scripts/check-cpp-l1-mastery-ui.cjs",
     "smoke": "node scripts/smoke-app.cjs",
     "visual": "node scripts/visual-regression.cjs",
     "visual:update": "node scripts/visual-regression.cjs --update",
+    "test": "node --test scripts/tests/*.test.mjs",
+    "audit:deps": "npm audit --audit-level=high",
     "generate:papers": "node scripts/generate-paper-registry.cjs && node scripts/generate-sitemap.cjs",
     "generate:sitemap": "node scripts/generate-sitemap.cjs"
   },
   "dependencies": {
     "framer-motion": "^12.23.26",
+    "hast-util-to-text": "^4.0.2",
+    "highlight.js": "^11.11.1",
     "katex": "^0.16.33",
+    "lowlight": "^3.3.0",
     "lucide-react": "^0.562.0",
     "react": "^19.2.0",
     "react-dom": "^19.2.0",
     "react-markdown": "^10.1.0",
     "react-router-dom": "^6.30.4",
-    "rehype-highlight": "^7.0.2",
     "rehype-katex": "^7.0.1",
     "remark-gfm": "^4.0.1",
-    "remark-math": "^6.0.0"
+    "remark-math": "^6.0.0",
+    "unist-util-visit": "^5.1.0"
   },
   "devDependencies": {
     "@eslint/js": "^9.39.1",
@@ -55,7 +62,7 @@
     "playwright": "^1.61.0",
     "postcss": "^8.5.10",
     "tailwindcss": "^4.1.18",
-    "vite": "^5.1.4"
+    "vite": "^6.4.3"
   },
   "overrides": {}
 }

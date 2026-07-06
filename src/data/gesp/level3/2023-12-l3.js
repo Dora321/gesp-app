@@ -15,6 +15,12 @@ export const paperData = {
         officialPdf: 'https://gesp.ccf.org.cn/101/attach/1584917876047904.pdf',
         notes: '客观题已补至 25 题；其中多道代码截图题按公开解析还原，已在文件头注明范围。'
     },
+    verification: {
+        status: 'partial',
+        reviewedBy: '本站校订',
+        reviewedAt: '2026-07-06',
+        scope: '第 3、13 题已对照官方 PDF 校订。'
+    },
     questions: [
         {
             id: 1,
@@ -88,6 +94,10 @@ export const paperData = {
             id: 3,
             type: 'single',
             question: `下面 C++ 代码执行后不能输出“GESP”的是（ ）。`,
+            sourcePage: 1,
+            sourceVerified: true,
+            reviewedBy: '本站校订',
+            reviewedAt: '2026-07-06',
             options: [
                 'string str("GESP"); cout << str << endl;',
                 'string str = "GESP"; cout << str << endl;',
@@ -456,6 +466,25 @@ cout << a / b * 1.0 << endl;
             id: 13,
             type: 'single',
             question: `C++ 代码用于抽取字符串中的电话号码。约定：电话号码全部是数字，数字之间没有其他符号如连字符或空格等。代码中变量 strSrc 仅仅是示例，可以包含更多字符。下面有关代码说法，正确的是（ ）。`,
+            code: `string strSrc="红十字：01084025890火警电话：119急救电话：120紧急求助：110";
+string tel="";
+for(int i=0;i<=strSrc.length();i++)
+{
+    if(strSrc[i]>='0'&&strSrc[i]<='9')
+    {
+        tel=tel+strSrc[i];
+    }
+    else if(tel!="")
+    {
+        cout<<tel<<endl;
+        tel="";
+    }
+}`,
+            requiresCode: true,
+            sourcePage: 4,
+            sourceVerified: true,
+            reviewedBy: '本站校订',
+            reviewedAt: '2026-07-06',
             options: [
                 '代码将换行输出各个含有数字的电话号码。',
                 '代码将不换行输出各个含有数字的电话号码，号码中间没有分隔。',

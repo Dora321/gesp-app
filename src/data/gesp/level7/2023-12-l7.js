@@ -97,6 +97,12 @@ export const paperData = {
         officialPdf: 'https://raw.githubusercontent.com/Dora321/gesp-official-pdfs/main/pdfs/2023%E5%B9%B412%E6%9C%88-C%2B%2B7%E7%BA%A7.pdf',
         notes: '客观题题面代码、选项与判断题答案已对照官方 PDF 校订；解析为本站补写。',
     },
+    verification: {
+        status: 'partial',
+        reviewedBy: '本站校订',
+        reviewedAt: '2026-07-04',
+        scope: '客观题题面、代码、选项与判断题答案',
+    },
     questions: [
         {
             id: 1,

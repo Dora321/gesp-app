@@ -946,13 +946,15 @@ function assertPythonProjectSupportUsesPrerequisites() {
 
 function assertPythonSortingProjectKeepsBubbleTrace() {
   const project = read('src/courses/python/advanced/PythonSortingProject.jsx');
+  const data = read('src/courses/python/advanced/sortingProjectData.js');
+  const source = `${project}\n${data}`;
 
   assert(
-    project.includes('PyCodeTracer') &&
-      project.includes('Python 冒泡追踪器：相邻比较，右侧逐轮归位') &&
-      project.includes('前大后小，交换') &&
-      project.includes('已经在右侧归位') &&
-      project.includes('排序完成：${formatPythonList(numbers)}'),
+    source.includes('PyCodeTracer') &&
+      source.includes('Python 冒泡追踪器：相邻比较，右侧逐轮归位') &&
+      source.includes('前大后小，交换') &&
+      source.includes('已经在右侧归位') &&
+      source.includes('排序完成：${formatPythonList(numbers)}'),
     'Python sorting project should keep the step-by-step bubble-sort trace for adjacent comparisons, swaps, and sorted suffixes.'
   );
 }
@@ -1149,6 +1151,7 @@ function assertPythonProjectsKeepMasteryChecks() {
     },
     {
       path: 'src/courses/python/advanced/PythonSortingProject.jsx',
+      supportPath: 'src/courses/python/advanced/sortingProjectData.js',
       title: 'A3 排序算法项目过关检查',
       concepts: ['O(n²)', '元素不丢、不多、不乱改', 'O(n log n)', '外层循环和内层比较'],
       message: 'Python sorting project should keep a mastery check for process tracing, test cases, complexity comparison, and loop explanation.',
@@ -1202,7 +1205,7 @@ function assertPythonProjectsKeepMasteryChecks() {
   ];
 
   for (const project of projects) {
-    const text = read(project.path);
+    const text = [project.path, project.supportPath].filter(Boolean).map(read).join('\n');
     assert(
       text.includes('MasteryCheck') &&
         text.includes("title: '项目过关'") &&

@@ -15,6 +15,12 @@ export const paperData = {
         officialPdf: 'https://gesp.ccf.org.cn/101/attach/1570611239321632.pdf',
         notes: '编程题与客观题已按官方 PDF 回填。'
     },
+    verification: {
+        status: 'partial',
+        reviewedBy: '本站校订',
+        reviewedAt: '2026-07-06',
+        scope: '第 13 题代码已对照官方 PDF 校订。'
+    },
     questions: [
         {
             id: 1,
@@ -448,6 +454,21 @@ C++ 中 \`(a ^ b) == 0\` 是判断相等的经典位运算技巧，比 \`a == b\
             id: 13,
             type: 'single',
             question: `在下列代码的横线处填写（ ），可以使得输出是“20 10”。`,
+            code: `#include <iostream>
+using namespace std;
+
+int main() {
+    int a = 10, b = 20;
+    a = (a << 8) | b;
+    ________; // 在此处填入代码
+    cout << a << " " << b << endl;
+    return 0;
+}`,
+            requiresCode: true,
+            sourcePage: 3,
+            sourceVerified: true,
+            reviewedBy: '本站校订',
+            reviewedAt: '2026-07-06',
             options: ['a = a >> 8; b = a & 0xff;', 'b = a >> 8; a = a & 0xff;', 'a = b; b = a & 0xff;', 'b = a; a = b;'],
             answer: 1,
             score: 2,

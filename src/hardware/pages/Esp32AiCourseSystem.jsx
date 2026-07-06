@@ -567,7 +567,7 @@ function LessonStudio() {
                         <button
                             type="button"
                             onClick={() => setShowAll((v) => !v)}
-                            className="inline-flex items-center gap-1.5 rounded-full border border-slate-300 bg-white px-3 py-1.5 text-xs font-bold text-slate-600 transition-colors hover:bg-slate-100"
+                            className="inline-flex min-h-11 items-center gap-1.5 rounded-full border border-slate-300 bg-white px-4 py-2 text-xs font-bold text-slate-600 transition-colors hover:bg-slate-100 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 focus-visible:ring-offset-2"
                         >
                             {showAll ? '单课查看' : '展开全部（便于通读 / 打印）'}
                         </button>
@@ -590,7 +590,7 @@ function LessonStudio() {
                                                     type="button"
                                                     aria-pressed={isActive}
                                                     onClick={() => { setShowAll(false); selectLesson(unit.num); }}
-                                                    className={`inline-flex items-center gap-1 rounded-xl border px-3 py-2.5 text-left text-xs font-bold transition-all ${isActive ? `${style.solid} border-transparent text-white shadow` : 'border-slate-200 bg-white text-slate-700 hover:border-slate-400'}`}
+                                                    className={`inline-flex min-h-11 items-center gap-1 rounded-xl border px-3 py-2.5 text-left text-xs font-bold transition-all focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 focus-visible:ring-offset-2 ${isActive ? `${style.solid} border-transparent text-white shadow` : 'border-slate-200 bg-white text-slate-700 hover:border-slate-400'}`}
                                                 >
                                                     {isViewed && !isActive && <CheckCircle2 size={12} className={`shrink-0 ${style.text}`} />}
                                                     <span><span className="mr-1 opacity-60">{unit.num}.</span>{unit.title}</span>

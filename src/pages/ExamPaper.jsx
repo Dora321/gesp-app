@@ -1,17 +1,17 @@
-import React, { useCallback, useEffect, useState } from 'react';
+import React, { Suspense, lazy, useCallback, useEffect, useState } from 'react';
 import { useParams, useNavigate } from 'react-router-dom';
 import { Clock, ChevronLeft, ChevronRight, AlertTriangle, FileText, Lightbulb, BookOpen, Menu, RotateCcw } from 'lucide-react';
 import LoadingScreen from '../components/LoadingScreen';
 import { getPaper, paperMeta } from '../data/gesp/index';
-import InteractiveAnalysisPage from './question-bank/InteractiveAnalysisPage';
-import { getEnhancedPaperComponent } from './question-bank/enhancedPaperRegistry';
 import useQuestionKeyboardNavigation from '../hooks/useQuestionKeyboardNavigation';
 import { isProgrammingQuestion, PROGRAMMING_ACK } from '../utils/questionHelpers';
 import { loadExamProgress, saveExamProgress, clearExamProgress, hasResumableProgress } from '../utils/examProgress';
 import QuestionSidebar from './exam/QuestionSidebar';
-import ExamModeView from './exam/ExamModeView';
 import SubmitConfirmDialog from './exam/SubmitConfirmDialog';
 import ResultDialog from './exam/ResultDialog';
+
+const EnhancedPaperPage = lazy(() => import('./question-bank/EnhancedPaperPage'));
+const ExamModeView = lazy(() => import('./exam/ExamModeView'));
 
 // ─── State Container ────────────────────────────────────────────────
 
@@ -34,7 +34,6 @@ const ExamPaper = () => {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
   const [savedProgress, setSavedProgress] = useState(null);
-  const EnhancedPaperComponent = getEnhancedPaperComponent(paperId);
 
   // ─── Data Loading ──────────────────────────────────────────────────
 
@@ -225,8 +224,11 @@ const ExamPaper = () => {
   // ─── Analysis Mode ─────────────────────────────────────────────────
 
   if (mode === 'analysis') {
-    if (EnhancedPaperComponent) return React.createElement(EnhancedPaperComponent);
-    return <InteractiveAnalysisPage paperData={paperData} paperId={paperId} />;
+    return (
+      <Suspense fallback={<LoadingScreen message="正在加载解析" variant="dark" />}>
+        <EnhancedPaperPage />
+      </Suspense>
+    );
   }
 
   // ─── Exam Mode (main) ─────────────────────────────────────────────
@@ -284,18 +286,20 @@ const ExamPaper = () => {
           onClose={() => setShowSidebar(false)}
         />
 
-        <ExamModeView
-          currentQ={currentQ}
-          currentQuestionIndex={currentQuestionIndex}
-          questions={allQuestions}
-          answers={answers}
-          isSubmitted={isSubmitted}
-          paperId={paperId}
-          onOptionSelect={handleOptionSelect}
-          onProgrammingMark={handleProgrammingMark}
-          onPrev={goToPrevious}
-          onNext={goToNext}
-        />
+        <Suspense fallback={<LoadingScreen message="正在加载题目" />}>
+          <ExamModeView
+            currentQ={currentQ}
+            currentQuestionIndex={currentQuestionIndex}
+            questions={allQuestions}
+            answers={answers}
+            isSubmitted={isSubmitted}
+            paperId={paperId}
+            onOptionSelect={handleOptionSelect}
+            onProgrammingMark={handleProgrammingMark}
+            onPrev={goToPrevious}
+            onNext={goToNext}
+          />
+        </Suspense>
       </div>
 
       {/* Dialogs */}

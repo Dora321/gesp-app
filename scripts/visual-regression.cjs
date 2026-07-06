@@ -17,7 +17,7 @@ const fs = require('fs');
 const path = require('path');
 
 const DEFAULT_PORT = 4178;
-const baseUrl = process.env.VISUAL_BASE_URL || `http://127.0.0.1:${DEFAULT_PORT}`;
+const baseUrl = process.env.VISUAL_BASE_URL || `http://127.0.0.1:${DEFAULT_PORT}/gesp-app`;
 const shouldStartServer = !process.env.VISUAL_BASE_URL;
 const isUpdate = process.argv.includes('--update');
 
@@ -29,6 +29,8 @@ const SHOTS_DIR = path.join(__dirname, '..', 'screenshots');
 const ROUTES = [
   '/lesson/1/9', '/lesson/2/12', '/lesson/3/7', '/lesson/4/9',
   '/lesson/5/10', '/lesson/6/2', '/python/f2', '/python/f3',
+  '/question-bank', '/question-bank/2/2026-03-l2',
+  '/hardware/esp32-ai', '/level7',
 ];
 const VIEWPORTS = [
   { name: 'desktop', width: 1365, height: 900, isMobile: false },
@@ -44,6 +46,19 @@ const TEXT_DROP_RATIO = 0.4; // fail if visible text shrinks by >40%
 let server;
 let browser;
 const wait = (ms) => new Promise((r) => setTimeout(r, ms));
+
+function stopServer() {
+  if (!server || server.exitCode !== null) return;
+  if (process.platform === 'win32') {
+    const killer = spawn('taskkill', ['/pid', String(server.pid), '/t', '/f'], {
+      stdio: 'ignore',
+      windowsHide: true,
+    });
+    killer.unref();
+    return;
+  }
+  server.kill('SIGTERM');
+}
 
 async function waitForServer(url, timeoutMs = 30000) {
   const start = Date.now();
@@ -101,10 +116,21 @@ function compare(route, vp, base, cur, failures) {
 
 async function run() {
   if (shouldStartServer) {
-    // Node >= 18.20/20.12/22 拒绝直接 spawn *.cmd（CVE-2024-27980），Windows 上需要 shell
-    server = spawn(process.platform === 'win32' ? 'npm.cmd' : 'npm',
-      ['run', 'dev', '--', '--host', '127.0.0.1', '--port', String(DEFAULT_PORT)],
-      { stdio: ['ignore', 'pipe', 'pipe'], shell: process.platform === 'win32' });
+    if (!fs.existsSync(path.join(__dirname, '..', 'dist', 'index.html'))) {
+      throw new Error('Visual regression requires a production build. Run npm run build first.');
+    }
+    // Test the production output so route chunks are already compiled and the
+    // URL base matches GitHub Pages.
+    const command = process.platform === 'win32'
+      ? {
+          file: process.env.ComSpec || 'cmd.exe',
+          args: ['/d', '/s', '/c', `npm run preview -- --host 127.0.0.1 --port ${DEFAULT_PORT} --strictPort`],
+        }
+      : {
+          file: 'npm',
+          args: ['run', 'preview', '--', '--host', '127.0.0.1', '--port', String(DEFAULT_PORT), '--strictPort'],
+        };
+    server = spawn(command.file, command.args, { stdio: ['ignore', 'pipe', 'pipe'], shell: false });
     server.stdout.on('data', (c) => process.stdout.write(c));
     server.stderr.on('data', (c) => process.stderr.write(c));
     await waitForServer(baseUrl);
@@ -129,8 +155,8 @@ async function run() {
       document.documentElement.appendChild(s);
     });
     for (const route of ROUTES) {
-      await page.goto(`${baseUrl}${route}`, { waitUntil: 'networkidle' });
-      await page.waitForTimeout(500);
+      await page.goto(`${baseUrl}${route}`, { waitUntil: 'domcontentloaded' });
+      await page.waitForTimeout(700);
       const fp = await fingerprint(page);
       const id = `${route.replace(/\//g, '_')}__${vp.name}`;
       next[id] = fp;
@@ -158,5 +184,5 @@ run()
   .catch((e) => { console.error(e.message || e); process.exitCode = 1; })
   .finally(() => {
     if (browser) browser.close().catch(() => {});
-    if (server) server.kill('SIGTERM');
+    stopServer();
   });

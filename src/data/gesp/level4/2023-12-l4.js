@@ -9,6 +9,16 @@ export const paperData = {
     note: '年度收官',
     timeLimit: 5400,
     backfilled: true,
+    source: {
+        officialPdf: 'https://gesp.ccf.org.cn/101/attach/1601236293910560.pdf',
+        notes: '客观题代码已对照官方 PDF 图像恢复。'
+    },
+    verification: {
+        status: 'partial',
+        reviewedBy: '本站校订',
+        reviewedAt: '2026-07-06',
+        scope: '第 2-7、9-12、19-20、22 题代码及第 20 题答案已对照官方 PDF 校订。'
+    },
     questions: [
         {
             id: 1,
@@ -51,6 +61,14 @@ C++ 中若希望在子函数中修改主函数变量的值，应使用引用传�
             id: 2,
             type: "single",
             question: `下面 C++ 代码执⾏后，输出的是 ( ) 。`,
+            code: `int arr[10]={1};
+string strArr="chen a dai";
+cout<<strArr[arr[1]]<<endl;`,
+            requiresCode: true,
+            sourcePage: 1,
+            sourceVerified: true,
+            reviewedBy: '本站校订',
+            reviewedAt: '2026-07-06',
             options: [
                 "chen",
                 "c",
@@ -93,6 +111,21 @@ C++ 中若希望在子函数中修改主函数变量的值，应使用引用传�
             id: 3,
             type: "single",
             question: `下面 C++ 代码最后执⾏后输出是 ( ) 。`,
+            code: `int fun1(int *n)
+{
+    return *n**n;
+}
+int main()
+{
+    int arr[10]={2};
+    arr[1]=fun1(arr);
+    cout<<arr[1]<<endl;
+}`,
+            requiresCode: true,
+            sourcePage: 1,
+            sourceVerified: true,
+            reviewedBy: '本站校订',
+            reviewedAt: '2026-07-06',
             options: [
                 "1",
                 "2",
@@ -145,6 +178,20 @@ fun1(arr);  // 假设 fun1 内部执行 *n * *n 并将结果赋给某个位置
             id: 4,
             type: "single",
             question: `下面 C++ 代码执⾏后的结果是 ( ) 。`,
+            code: `int arr[3][3]={{1,2,3},{4,5,6},{7,8,9}};
+for(int i=0;i<3;i++)
+{
+    for(int j=2;j>=0;j--)
+    {
+        cout<<arr[i][j]<<" ";
+    }
+    cout<<endl;
+}`,
+            requiresCode: true,
+            sourcePage: 2,
+            sourceVerified: true,
+            reviewedBy: '本站校订',
+            reviewedAt: '2026-07-06',
             options: [
                 "123 456 789",
                 "789 456 123",
@@ -209,6 +256,16 @@ for(int i = 0; i < 3; i++) {
             id: 5,
             type: "single",
             question: `下面 C++ 代码执⾏后输出是（ ）。`,
+            code: `int arr[3]={1,2,3};
+int *p=NULL;
+p=arr;
+p++;
+cout<<*p<<endl;`,
+            requiresCode: true,
+            sourcePage: 2,
+            sourceVerified: true,
+            reviewedBy: '本站校订',
+            reviewedAt: '2026-07-06',
             options: [
                 "1,2,3",
                 "1",
@@ -259,6 +316,16 @@ cout << *p;    // 解引用输出 2
             id: 6,
             type: "single",
             question: `如果变量 x 的地址是 0x6ffe14, 下面 C++ 代码执⾏以后输出的是（ ）。`,
+            code: `int *p=NULL;
+int x=2;
+p=&x;
+p++;
+cout<<p<<endl;`,
+            requiresCode: true,
+            sourcePage: 2,
+            sourceVerified: true,
+            reviewedBy: '本站校订',
+            reviewedAt: '2026-07-06',
             options: [
                 "0x6ffe11",
                 "0x6ffe14",
@@ -296,6 +363,22 @@ C++ 中 \`p + n\` 的实际地址偏移量为 \`(char*)p + n * sizeof(*p)\` 字�
             id: 7,
             type: "single",
             question: `在 C++ 中 , 执⾏下面代码后，输出的是（ ）。`,
+            code: `int point(int *p)
+{
+    return *p**p;
+}
+int main()
+{
+    int a=20;
+    int *p=&a;
+    *p=point(p);
+    cout<<*p<<endl;
+}`,
+            requiresCode: true,
+            sourcePage: 3,
+            sourceVerified: true,
+            reviewedBy: '本站校订',
+            reviewedAt: '2026-07-06',
             options: [
                 "400",
                 "200",
@@ -380,6 +463,38 @@ GESP 四级常结合考查逻辑运算符（\`&&\`、\`||\`、\`!\`）的短路�
             id: 9,
             type: "single",
             question: `在如下的 C++ 代码中实现了对字符串中出现的 26 个字母的个数统计，横线处应填入是（ ）。`,
+            code: `string str="HELLO CHEN A DAI";
+int strlen=str.length();
+char alpha[26]={65};
+int cnt[26]={0};
+for(int i=1;i<26;i++)
+{
+    ________________;
+}
+for(int i=0;i<26;i++)
+{
+    cout<<alpha[i]<<" ";
+}
+cout<<endl;
+for(int i=0;i<26;i++)
+{
+    for(int j=0;j<strlen;j++)
+    {
+        if(alpha[i]==str[j])
+        {
+            cnt[i]++;
+        }
+    }
+}
+for(int i=0;i<26;i++)
+{
+    cout<<cnt[i]<<" ";
+}`,
+            requiresCode: true,
+            sourcePage: 3,
+            sourceVerified: true,
+            reviewedBy: '本站校订',
+            reviewedAt: '2026-07-06',
             options: [
                 "alpha[i]=alpha[i-1]+1;",
                 "alpha[i]=alpha[i]+1;",
@@ -419,6 +534,26 @@ ASCII 码中大写字母 \`'A'\`~\`'Z'\` 连续编码（65~90），小写字母 
             id: 10,
             type: "single",
             question: `下面 C++ 代码执⾏后生成的文件其字节数为（ ）。`,
+            code: `ofstream fout;
+fout.open("1.txt");
+for(int i=1;i<=10;i++)
+{
+    if(i%5==0)
+    {
+        int x=6;
+        fout<<x;
+    }
+    else
+    {
+        char ch='A';
+        fout<<ch;
+    }
+}`,
+            requiresCode: true,
+            sourcePage: 4,
+            sourceVerified: true,
+            reviewedBy: '本站校订',
+            reviewedAt: '2026-07-06',
             options: [
                 "10",
                 "16",
@@ -458,6 +593,25 @@ GESP 四级常考文件流写入后的字节数推算：\`char\` 用 \`<<\` 写�
             id: 11,
             type: "single",
             question: `下列 C++ 代码输入1,2,3,4，执⾏后，将输出的是（ ）。`,
+            code: `string str="";
+cin>>str;
+int strlen=str.length();
+for(int i=0;i<strlen;i++)
+{
+    if(str[i]<='9'&&str[i]>='0')
+    {
+        cout<<str[i];
+    }
+    else
+    {
+        cout<<"#";
+    }
+}`,
+            requiresCode: true,
+            sourcePage: 4,
+            sourceVerified: true,
+            reviewedBy: '本站校订',
+            reviewedAt: '2026-07-06',
             options: [
                 "1#4#",
                 "1#3#",
@@ -499,6 +653,20 @@ GESP 四级常考文件流写入后的字节数推算：\`char\` 用 \`<<\` 写�
             id: 12,
             type: "single",
             question: `以下 C++ 代码用于实现每个整数对应的因数，如输入12，则输出1 2 3 4 6 12；如输入18，则输出1 2 3 6 9 18。横线处应填入代码是（ ）。`,
+            code: `int n;
+cin>>n;
+for(int i=1;i<=n;i++)
+{
+    ________
+    {
+        cout<<i<<" ";
+    }
+}`,
+            requiresCode: true,
+            sourcePage: 4,
+            sourceVerified: true,
+            reviewedBy: '本站校订',
+            reviewedAt: '2026-07-06',
             options: [
                 "if(n%i==0)",
                 "if(n/i==0)",
@@ -810,44 +978,24 @@ f(0) = 1（递归终止条件）
             id: 19,
             type: "judge",
             question: `在下面的C++代码中，将对1.txt文件写入 hello 。( )`,
+            code: `ifstream filein;
+ofstream fileout;
+filein.open("1.txt");
+fileout<<"hello";`,
+            requiresCode: true,
+            sourcePage: 5,
+            sourceVerified: true,
+            reviewedBy: '本站校订',
+            reviewedAt: '2026-07-06',
             options: [
                 "正确",
                 "错误",
             ],
-            answer: 0,
+            answer: 1,
             score: 2,
-            explanation: `**答案：正确**
+            explanation: `**答案：错误**
 
-**判定依据：**
-C++ 文件输出流的基本操作流程如下：
-
-\`\`\`cpp
-#include <fstream>
-using namespace std;
-
-int main() {
-    ofstream fout;        // 1. 创建输出文件流对象
-    fout.open("1.txt");  // 2. 打开文件，若不存在则创建
-    fout << "hello";     // 3. 使用流插入运算符写入数据
-    fout.close();        // 4. 关闭文件
-    return 0;
-}
-\`\`\`
-
-执行上述代码后：
-- 文件 \`1.txt\` 被创建（或清空已有内容）
-- 字符串 \`"hello"\` 被写入文件
-- 文件内容即为 \`hello\`（共5个字符）
-
-**易错提醒：**
-- \`ofstream\` 打开文件时默认模式为**覆盖写入**（out），若文件存在则原有内容被清空
-- 若想追加写入，需使用 \`ofstream fout("1.txt", ios::app)\`
-- 写入后不调用 \`close()\` 也不会丢失数据（析构时自动关闭），但显式关闭是良好习惯
-
-**知识延伸：**
-C++ 的文件流类包括 \`ifstream\`（输入）、\`ofstream\`（输出）和 \`fstream\`（输入输出）。使用 \`fstream\` 时可通过第二个参数指定打开模式，如 \`ios::in\`（读）、\`ios::out\`（写）、\`ios::app\`（追加）等。
-
-**考点：** C++ 文件输出流的基本操作`,
+代码只打开了输入流 \`filein\`，输出流 \`fileout\` 没有与任何文件关联。向未打开的输出流写入 \`"hello"\` 会失败，因此不会把内容写入 \`1.txt\`。`,
             tags: [
                 "客观题",
                 "判断题",
@@ -858,41 +1006,25 @@ C++ 的文件流类包括 \`ifstream\`（输入）、\`ofstream\`（输出）和
             id: 20,
             type: "judge",
             question: `文本文件 1.txt 第1⾏由 01234 共5个字符组成其间没有空格，当用C++代码正常打开文件成功并执⾏如下 代码以后，第1⾏长度为5（ ）`,
+            code: `ifstream filein;
+int buff;
+filein.open("1.txt");
+filein>>buff;
+cout<<buff<<endl;`,
+            requiresCode: true,
+            sourcePage: 6,
+            sourceVerified: true,
+            reviewedBy: '本站校订',
+            reviewedAt: '2026-07-06',
             options: [
                 "正确",
                 "错误",
             ],
-            answer: 0,
+            answer: 1,
             score: 2,
-            explanation: `**答案：正确**
+            explanation: `**答案：错误**
 
-**判定依据：**
-文本文件 \`1.txt\` 第1行内容为 \`01234\`，共5个字符。
-
-C++ 中文件读取的基本方式：
-- 使用 \`ifstream\` 打开文件后，可用 \`get()\` 逐字符读取，或用 \`>>\` 操作符读取字符串
-- 对于文本文件，读取操作以空白字符（空格、换行、制表符）为分隔符
-- 若第1行只有 \`01234\` 这5个可见字符，无空格，则无论哪种读取方式，读取到的字符数量都是5
-
-逐字符读取验证：
-- 第一次读取：\`'0'\`
-- 第二次读取：\`'1'\`
-- 第三次读取：\`'2'\`
-- 第四次读取：\`'3'\`
-- 第五次读取：\`'4'\`
-- 第六次读取：遇到换行符 \`\\n\` 或 EOF，停止
-
-读取到的有效字符数量始终为 **5**，第1行的长度（字符数）确为5。
-
-**易错提醒：**
-- 若误将换行符 \`\\n\` 也计入"第1行长度"，则会得到6，这是概念混淆
-- 题目中"长度为5"指的是**字符个数**，不包括行尾的换行符
-- 若文件以 \`\\r\\n\`（Windows 风格回车换行）存储，第1行末尾的换行符是 \`\\r\\n\` 两个字符，但仍不计入"第1行内容"的长度
-
-**知识延伸：**
-文本文件的"行"在 C++ 中以换行符 \`\\n\` 界定。使用 \`getline()\` 函数读取一行时，会读取包括可见字符在内的所有字符，直到遇到换行符（换行符不包含在返回的字符串中）。对于 \`01234\`，\`getline\` 返回的 \`string\` 长度为5。
-
-**考点：** 文本文件的行概念与字符计数`,
+变量 \`buff\` 是 \`int\`。读取文本 \`01234\` 时，前导零不会保留，\`buff\` 的值为 1234；输出内容是 \`1234\`，长度为 4，而不是 5。`,
             tags: [
                 "客观题",
                 "判断题",
@@ -936,6 +1068,16 @@ C++ 中所有非零值都视为真，输出时都显示为 \`1\`；零值视为�
             id: 22,
             type: "judge",
             question: `在 C++ 中，两个字符串相加的运算符为+相当于字符串的合并运算。下面 C++ 代码执⾏后，将输出 chenadai。（ ）`,
+            code: `string a="chen";
+string b="a";
+string c="dai";
+string name=a+b+c;
+cout<<name<<endl;`,
+            requiresCode: true,
+            sourcePage: 6,
+            sourceVerified: true,
+            reviewedBy: '本站校订',
+            reviewedAt: '2026-07-06',
             options: [
                 "正确",
                 "错误",

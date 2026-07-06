@@ -4,12 +4,15 @@
 <head>
   <meta charset="UTF-8" />
   <link rel="icon" type="image/jpeg" href="/logo.jpg" />
+  <link rel="apple-touch-icon" href="/logo.jpg" />
+  <link rel="manifest" href="/manifest.webmanifest" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <meta name="description"
     content="魔丸聚集地——面向青少年的 GESP C++/Python 编程备考平台：历年真题题库（1–8 级）、互动课程讲解、ESP32 硬件项目与内置 AI 编程助教。" />
   <meta name="keywords" content="GESP,C++,Python,少儿编程,编程备考,真题,题库,信息技术,ESP32,AI 助教" />
   <meta name="author" content="魔丸聚集地" />
   <meta name="theme-color" content="#6366f1" />
+  <meta name="mobile-web-app-capable" content="yes" />
   <title>魔丸聚集地 | GESP C++/Python 备考 · 真题题库 · AI 助教</title>
 
   <!-- Open Graph / 社交分享卡片 -->
@@ -25,13 +28,18 @@
   <meta name="twitter:description" content="GESP C++/Python 历年真题题库、互动课程讲解、ESP32 硬件项目与内置 AI 编程助教。" />
   <meta name="twitter:image" content="https://Dora321.github.io/gesp-app/logo.jpg" />
   <!-- Google tag (gtag.js) -->
-  <script async src="https://www.googletagmanager.com/gtag/js?id=G-T8HZPB84S8"></script>
   <script>
-    window.dataLayer = window.dataLayer || [];
-    function gtag() { dataLayer.push(arguments); }
-    gtag('js', new Date());
+    if (window.location.hostname === 'dora321.github.io') {
+      const analyticsScript = document.createElement('script');
+      analyticsScript.async = true;
+      analyticsScript.src = 'https://www.googletagmanager.com/gtag/js?id=G-T8HZPB84S8';
+      document.head.appendChild(analyticsScript);
 
-    gtag('config', 'G-T8HZPB84S8');
+      window.dataLayer = window.dataLayer || [];
+      window.gtag = function gtag() { window.dataLayer.push(arguments); };
+      window.gtag('js', new Date());
+      window.gtag('config', 'G-T8HZPB84S8');
+    }
   </script>
 </head>
 

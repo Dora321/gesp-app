@@ -15,6 +15,12 @@ export const paperData = {
         officialPdf: 'https://gesp.ccf.org.cn/101/attach/1602047101108256.pdf',
         notes: '客观题 25 题已补齐；判断题答案表系依据官方题面逐题复核补入；编程题已补 2 题摘要与参考代码。'
     },
+    verification: {
+        status: 'partial',
+        reviewedBy: '本站校订',
+        reviewedAt: '2026-07-06',
+        scope: '第 17 题已对照官方 PDF 校订。'
+    },
     questions: [
         {
             id: 1,
@@ -615,6 +621,10 @@ CCF 王选奖（原"CCF 创新奖"）设立于 2010 年，每年评选一次，�
             id: 17,
             type: 'judge',
             question: `对整型变量 int a = 3，执行 C++ 代码 a << 2 将把 2 输出到 a 中。`,
+            sourcePage: 5,
+            sourceVerified: true,
+            reviewedBy: '本站校订',
+            reviewedAt: '2026-07-06',
             options: ['正确', '错误'],
             answer: 1,
             score: 2,

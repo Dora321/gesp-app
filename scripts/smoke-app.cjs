@@ -27,6 +27,7 @@ const COURSE_ROUTES = [
   '/python/f3',    // Python · 列表与字典
   '/python/f5',    // Python · 小海龟（PredictCheck）
   '/python/f6',    // Python · random（PredictCheck）
+  '/python/sorting', // Python · 排序项目（数据与视图拆分）
 ];
 
 let server;
@@ -85,13 +86,21 @@ async function waitForServer(url, timeoutMs = 30000) {
 
 async function run() {
   if (shouldStartServer) {
-    // Node >= 18.20/20.12/22 拒绝直接 spawn *.cmd（CVE-2024-27980），Windows 上需要 shell
+    const command = process.platform === 'win32'
+      ? {
+          file: process.env.ComSpec || 'cmd.exe',
+          args: ['/d', '/s', '/c', `npm run dev -- --host 127.0.0.1 --port ${DEFAULT_PORT} --strictPort`],
+        }
+      : {
+          file: 'npm',
+          args: ['run', 'dev', '--', '--host', '127.0.0.1', '--port', String(DEFAULT_PORT), '--strictPort'],
+        };
     server = spawn(
-      process.platform === 'win32' ? 'npm.cmd' : 'npm',
-      ['run', 'dev', '--', '--host', '127.0.0.1', '--port', String(DEFAULT_PORT), '--strictPort'],
+      command.file,
+      command.args,
       {
         stdio: ['ignore', 'pipe', 'pipe'],
-        shell: process.platform === 'win32',
+        shell: false,
         detached: process.platform !== 'win32',
       }
     );
@@ -114,6 +123,11 @@ async function run() {
     }
   });
   page.on('pageerror', (error) => messages.push(`pageerror: ${error.message}`));
+  page.on('requestfailed', (request) => {
+    if (request.failure()?.errorText === 'net::ERR_CONNECTION_CLOSED') {
+      messages.push(`requestfailed: ${request.url()} (${request.failure().errorText})`);
+    }
+  });
   page.on('requestfinished', (request) => {
     const url = request.url();
     requestUrls.push(url);
@@ -194,6 +208,11 @@ async function run() {
     }
   });
   mobilePage.on('pageerror', (error) => messages.push(`pageerror: ${error.message}`));
+  mobilePage.on('requestfailed', (request) => {
+    if (request.failure()?.errorText === 'net::ERR_CONNECTION_CLOSED') {
+      messages.push(`requestfailed: ${request.url()} (${request.failure().errorText})`);
+    }
+  });
 
   await mobilePage.goto(baseUrl, { waitUntil: 'domcontentloaded' });
   await mobilePage.waitForTimeout(1500);
@@ -246,8 +265,49 @@ async function run() {
     }
   }
 
-  await browser.close();
-  browser = null;
+  for (const route of ['/level7', '/python/f2']) {
+    await mobilePage.goto(`${baseUrl}${route}`, { waitUntil: 'domcontentloaded' });
+    await mobilePage.waitForTimeout(700);
+    const headingCount = await mobilePage.locator('h1').count();
+    if (headingCount !== 1) {
+      throw new Error(`${route} should render exactly one h1, found ${headingCount}.`);
+    }
+  }
+
+  await mobilePage.goto(`${baseUrl}/hardware`, { waitUntil: 'domcontentloaded' });
+  await mobilePage.waitForTimeout(700);
+  const nestedMainCount = await mobilePage.locator('main main').count();
+  if (nestedMainCount !== 0) {
+    throw new Error(`Hardware routes should not nest main landmarks, found ${nestedMainCount}.`);
+  }
+
+  await mobilePage.goto(`${baseUrl}/hardware/esp32-ai`, { waitUntil: 'domcontentloaded' });
+  await mobilePage.getByText('ESP32 AI Workshop').waitFor({ timeout: 10000 });
+  const touchTargets = [
+    mobilePage.getByRole('link', { name: '返回首页' }),
+    mobilePage.getByRole('link', { name: '课程首页' }),
+    mobilePage.getByRole('button', { name: /展开全部/ }),
+  ];
+  for (const target of touchTargets) {
+    const box = await target.first().boundingBox();
+    if (!box || box.width < 43.5 || box.height < 43.5) {
+      throw new Error(`ESP32 key touch target is smaller than 44px: ${JSON.stringify(box)}.`);
+    }
+  }
+
+  const lessonTargets = mobilePage.locator('button[aria-pressed]');
+  const lessonTargetCount = Math.min(await lessonTargets.count(), 4);
+  for (let index = 0; index < lessonTargetCount; index++) {
+    const box = await lessonTargets.nth(index).boundingBox();
+    if (!box || box.height < 43.5) {
+      throw new Error(`ESP32 lesson target ${index + 1} is shorter than 44px: ${JSON.stringify(box)}.`);
+    }
+  }
+
+  // Let deferred imports settle before evaluating console output. Closing the
+  // browser first aborts in-flight requests and creates false
+  // ERR_CONNECTION_CLOSED errors.
+  await mobilePage.waitForTimeout(500);
 
   if (initialPanelRequests !== 0 || afterOpenPanelRequests < 1) {
     throw new Error('Classroom points panel did not lazy-load as expected.');
@@ -256,6 +316,9 @@ async function run() {
   if (messages.length > 0) {
     throw new Error(`Browser console produced warnings/errors:\n${messages.join('\n')}`);
   }
+
+  await browser.close();
+  browser = null;
 
   console.log('Smoke checks passed.');
 }

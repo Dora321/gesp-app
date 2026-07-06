@@ -6,6 +6,7 @@
 // to regenerate after adding/removing paper files.
 
 import { paperIds as _paperIds, paperMeta as _paperMeta, loaders as _loaders } from './_generated.js';
+import { applyVerifiedQuestionCorrections } from './verifiedQuestionCorrections.js';
 
 /**
  * Dynamic paper loader — only fetches the paper data when actually needed.
@@ -18,7 +19,7 @@ import { paperIds as _paperIds, paperMeta as _paperMeta, loaders as _loaders } f
 export async function getPaper(paperId) {
   const loader = _loaders[paperId];
   if (!loader) return null;
-  return loader();
+  return applyVerifiedQuestionCorrections(await loader());
 }
 
 /**

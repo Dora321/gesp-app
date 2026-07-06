@@ -1,6 +1,6 @@
 import React, { useMemo, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { BookOpen, Star, Trophy, Clock, ChevronRight, Search, Award, Tag } from 'lucide-react';
+import { BookOpen, Star, Trophy, Clock, ChevronRight, Search, Award, Tag, BadgeCheck, CircleDashed, FileCheck2 } from 'lucide-react';
 import { paperIds, paperMeta } from '../data/gesp';
 import { paperStats } from '../data/gesp/_stats';
 
@@ -14,6 +14,12 @@ const levels = [
     { id: 7, name: '七级', desc: '专家图论', badgeClass: 'bg-red-500' },
     { id: 8, name: '八级', desc: '大师综合', badgeClass: 'bg-purple-500' },
 ];
+
+const reviewStatusMeta = {
+    verified: { label: '已对照原卷核验', className: 'bg-emerald-50 text-emerald-700', Icon: BadgeCheck, priority: 0 },
+    partial: { label: '部分内容已核验', className: 'bg-blue-50 text-blue-700', Icon: FileCheck2, priority: 1 },
+    unverified: { label: '尚未完成原卷校验', className: 'bg-slate-100 text-slate-600', Icon: CircleDashed, priority: 2 },
+};
 
 const QuestionBankHome = () => {
     const navigate = useNavigate();
@@ -31,6 +37,7 @@ const QuestionBankHome = () => {
                 // High-level papers with very few questions are placeholders
                 const isPlaceholder = meta.level >= 3 && questionCount <= 4;
                 const needsReview = Boolean(meta.needsReview);
+                const reviewStatus = meta.reviewStatus || 'unverified';
                 const displayTitle = isPlaceholder
                     ? meta.title.replace('真题', '练习卷（待补全）')
                     : meta.title;
@@ -47,11 +54,21 @@ const QuestionBankHome = () => {
                     difficulty: Math.max(1, Math.min(5, Math.floor(meta.level / 2) + (meta.month > 6 ? 1 : 0))),
                     isPlaceholder,
                     needsReview,
+                    reviewStatus,
+                    reviewedBy: meta.reviewedBy,
+                    reviewedAt: meta.reviewedAt,
+                    reviewScope: meta.reviewScope,
+                    sourceUrl: meta.sourceUrl,
                     unofficial: Boolean(meta.unofficial),
                 };
             })
             .filter(Boolean)
-            .sort((a, b) => b.year - a.year || b.month - a.month || a.level - b.level);
+            .sort((a, b) => (
+                reviewStatusMeta[a.reviewStatus].priority - reviewStatusMeta[b.reviewStatus].priority
+                || b.year - a.year
+                || b.month - a.month
+                || a.level - b.level
+            ));
     }, []);
 
     const filteredPapers = papers.filter(p =>
@@ -62,11 +79,13 @@ const QuestionBankHome = () => {
     const levelStats = useMemo(() => {
         return levels.reduce((acc, level) => {
             const levelPapers = papers.filter(paper => paper.level === level.id);
-            const latestPaper = levelPapers[0];
+            const latestPaper = [...levelPapers].sort((a, b) => b.year - a.year || b.month - a.month)[0];
             acc[level.id] = {
                 paperCount: levelPapers.length,
                 questionCount: levelPapers.reduce((sum, paper) => sum + paper.questions, 0),
                 reviewCount: levelPapers.filter(paper => paper.needsReview).length,
+                verifiedCount: levelPapers.filter(paper => paper.reviewStatus === 'verified').length,
+                partialCount: levelPapers.filter(paper => paper.reviewStatus === 'partial').length,
                 latestLabel: latestPaper ? `${latestPaper.year}.${String(latestPaper.month).padStart(2, '0')}` : '暂无',
             };
             return acc;
@@ -74,7 +93,7 @@ const QuestionBankHome = () => {
     }, [papers]);
 
     const selectedLevelInfo = levels.find(l => l.id === selectedLevel);
-    const selectedStats = levelStats[selectedLevel] || { paperCount: 0, questionCount: 0, reviewCount: 0, latestLabel: '暂无' };
+    const selectedStats = levelStats[selectedLevel] || { paperCount: 0, questionCount: 0, reviewCount: 0, verifiedCount: 0, partialCount: 0, latestLabel: '暂无' };
 
     return (
         <div className="min-h-screen bg-slate-50 text-slate-800 font-sans pb-20">
@@ -106,8 +125,9 @@ const QuestionBankHome = () => {
                                 <div className="text-xs text-indigo-200">题目总数</div>
                             </div>
                             <div className="min-w-0 rounded-lg bg-white/10 p-3 text-center backdrop-blur-sm sm:min-w-[100px]">
-                                <div className="text-2xl font-bold">{paperStats.reviewPaperCount}</div>
-                                <div className="text-xs text-indigo-200">待精修卷</div>
+                                <div className="text-2xl font-bold">{paperStats.verifiedPaperCount}</div>
+                                <div className="text-xs text-indigo-200">已核验卷</div>
+                                <div className="mt-1 text-[11px] text-indigo-200">{paperStats.reviewPaperCount} 卷待精修</div>
                             </div>
                         </div>
                     </div>
@@ -166,7 +186,8 @@ const QuestionBankHome = () => {
                                 </h2>
                                 <p className="mt-1 text-sm text-slate-500">
                                     {selectedLevelInfo?.desc} · {selectedStats.paperCount} 卷 · {selectedStats.questionCount} 题 · 最新 {selectedStats.latestLabel}
-                                    {selectedStats.reviewCount > 0 && ` · ${selectedStats.reviewCount} 卷待精修`}
+                                    {` · ${selectedStats.verifiedCount} 卷已核验`}
+                                    {selectedStats.partialCount > 0 && ` · ${selectedStats.partialCount} 卷部分核验`}
                                 </p>
                             </div>
 
@@ -192,16 +213,22 @@ const QuestionBankHome = () => {
 
                         {/* Paper Grid */}
                         <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                            {filteredPapers.map(paper => (
-                                <div
+                            {filteredPapers.map(paper => {
+                                const status = reviewStatusMeta[paper.reviewStatus];
+                                const StatusIcon = status.Icon;
+                                return (
+                                <article
                                     key={paper.id}
-                                    className="bg-white rounded-xl border border-slate-200 p-5 hover:shadow-md hover:border-blue-300 transition-all group cursor-pointer"
-                                    onClick={() => navigate(`/question-bank/${paper.level}/${paper.id}`)}
+                                    className="group rounded-lg border border-slate-200 bg-white p-5 transition-all hover:border-blue-300 hover:shadow-md"
                                 >
                                     <div className="flex items-start justify-between mb-4 gap-3">
                                         <div className="flex flex-col gap-2">
                                             <div className="bg-blue-50 text-blue-700 px-3 py-1 rounded text-xs font-bold font-mono w-fit">
                                                 {paper.year} 年 {paper.month} 月
+                                            </div>
+                                            <div className={`inline-flex w-fit items-center gap-1.5 rounded px-2 py-1 text-[11px] font-semibold ${status.className}`}>
+                                                <StatusIcon size={13} aria-hidden="true" />
+                                                {status.label}
                                             </div>
                                             {paper.isPlaceholder && (
                                                 <div className="px-2 py-1 rounded text-[11px] font-medium w-fit bg-amber-50 text-amber-700">
@@ -234,6 +261,13 @@ const QuestionBankHome = () => {
                                         {paper.title}
                                     </h3>
 
+                                    {(paper.reviewedAt || paper.reviewScope) && (
+                                        <p className="mb-3 text-xs leading-5 text-slate-500">
+                                            {paper.reviewScope || '已校订内容'}
+                                            {paper.reviewedAt && ` · ${paper.reviewedAt}`}
+                                        </p>
+                                    )}
+
                                     <div className="flex items-center gap-4 text-xs text-slate-500 mb-4">
                                         <span className="flex items-center gap-1">
                                             <Clock size={14} /> {paper.time}
@@ -243,11 +277,16 @@ const QuestionBankHome = () => {
                                         </span>
                                     </div>
 
-                                    <button className="w-full py-2 bg-slate-50 text-slate-600 rounded-lg font-medium text-sm group-hover:bg-blue-600 group-hover:text-white transition-all flex items-center justify-center gap-2">
+                                    <button
+                                        type="button"
+                                        onClick={() => navigate(`/question-bank/${paper.level}/${paper.id}`)}
+                                        className="flex min-h-11 w-full items-center justify-center gap-2 rounded-lg bg-slate-50 py-2 text-sm font-medium text-slate-600 transition-all group-hover:bg-blue-600 group-hover:text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 focus-visible:ring-offset-2"
+                                    >
                                         立即练习 <ChevronRight size={14} />
                                     </button>
-                                </div>
-                            ))}
+                                </article>
+                                );
+                            })}
                         </div>
 
                         {filteredPapers.length === 0 && (

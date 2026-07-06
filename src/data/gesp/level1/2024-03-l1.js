@@ -19,6 +19,12 @@ export const paperData = {
     officialPdf: 'https://raw.githubusercontent.com/Dora321/gesp-official-pdfs/main/pdfs/2024%E5%B9%B43%E6%9C%88-C%2B%2B1%E7%BA%A7.pdf',
     type: 'official-verified',
   },
+  verification: {
+    status: 'verified',
+    reviewedBy: '本站校订',
+    reviewedAt: '2026-07-04',
+    scope: '题面、代码、选项与答案',
+  },
   confidence: {
     answer: 1.0,
     statement: 1.0,

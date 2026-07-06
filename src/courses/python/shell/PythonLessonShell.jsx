@@ -447,7 +447,7 @@ export default function PythonLessonShell({
         <div className={`flex h-screen overflow-hidden font-sans ${t.outer}`}>
             {/* 移动端顶栏 */}
             <div className={`fixed left-0 top-0 z-50 flex w-full items-center justify-between border-b ${t.bar} p-4 shadow-sm md:hidden`}>
-                <h1 className={`text-lg font-black ${color.text}`}>{lessonCode}：{lessonTitle}</h1>
+                <div className={`text-lg font-black ${color.text}`}>{lessonCode}：{lessonTitle}</div>
                 <button
                     onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
                     aria-label="打开课程目录"
@@ -466,7 +466,7 @@ export default function PythonLessonShell({
                         {homeLabel}
                     </Link>
                     <div className={`mt-3 text-xs font-black uppercase tracking-wider ${color.text}`}>{eyebrow}</div>
-                    <h2 className={`mt-1 text-lg font-black ${t.title}`}>{lessonCode}：{lessonTitle}</h2>
+                    <h1 className={`mt-1 text-lg font-black ${t.title}`}>{lessonCode}：{lessonTitle}</h1>
                     {lessonSubtitle && <p className={`mt-1 text-xs font-semibold ${t.subtitle}`}>{lessonSubtitle}</p>}
                 </div>
                 <div className="min-h-0 flex-1 overflow-y-auto py-4">
@@ -511,7 +511,7 @@ export default function PythonLessonShell({
                                 <div className="mb-4 inline-flex rounded-full bg-white/15 px-3 py-1 text-xs font-black uppercase tracking-wider">
                                     {lessonCode} · {eyebrow}
                                 </div>
-                                <h1 className="text-3xl font-black tracking-tight sm:text-4xl">{hero.title}</h1>
+                                <h2 className="text-3xl font-black tracking-tight sm:text-4xl">{hero.title}</h2>
                                 <p className="mt-4 max-w-2xl text-base font-semibold leading-8 text-white/80 sm:text-lg">{hero.description}</p>
                                 {lessonSubtitle && (
                                     <div className="mt-5 inline-flex rounded-full bg-white/10 px-4 py-2 text-sm font-black text-white/90">{lessonSubtitle}</div>
