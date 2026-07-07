@@ -61,6 +61,7 @@ jobs:
 
       - name: Visual and layout regression
         run: npm run visual
+        timeout-minutes: 5
       
       - name: Setup Pages
         uses: actions/configure-pages@v4

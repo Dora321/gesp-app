@@ -47,17 +47,47 @@ let server;
 let browser;
 const wait = (ms) => new Promise((r) => setTimeout(r, ms));
 
-function stopServer() {
+function waitForExit(child, timeoutMs) {
+  if (!child || child.exitCode !== null) return Promise.resolve(true);
+
+  return new Promise((resolve) => {
+    const finish = (exited) => {
+      clearTimeout(timer);
+      child.off('exit', onExit);
+      resolve(exited);
+    };
+    const onExit = () => finish(true);
+    const timer = setTimeout(() => finish(false), timeoutMs);
+    child.once('exit', onExit);
+  });
+}
+
+async function stopServer() {
   if (!server || server.exitCode !== null) return;
+
   if (process.platform === 'win32') {
     const killer = spawn('taskkill', ['/pid', String(server.pid), '/t', '/f'], {
       stdio: 'ignore',
       windowsHide: true,
     });
-    killer.unref();
+    await new Promise((resolve) => killer.once('close', resolve));
+    await waitForExit(server, 2000);
     return;
   }
-  server.kill('SIGTERM');
+
+  const killProcessGroup = (signal) => {
+    try {
+      process.kill(-server.pid, signal);
+    } catch {
+      server.kill(signal);
+    }
+  };
+
+  killProcessGroup('SIGTERM');
+  if (!(await waitForExit(server, 5000))) {
+    killProcessGroup('SIGKILL');
+    await waitForExit(server, 2000);
+  }
 }
 
 async function waitForServer(url, timeoutMs = 30000) {
@@ -130,7 +160,11 @@ async function run() {
           file: 'npm',
           args: ['run', 'preview', '--', '--host', '127.0.0.1', '--port', String(DEFAULT_PORT), '--strictPort'],
         };
-    server = spawn(command.file, command.args, { stdio: ['ignore', 'pipe', 'pipe'], shell: false });
+    server = spawn(command.file, command.args, {
+      stdio: ['ignore', 'pipe', 'pipe'],
+      shell: false,
+      detached: process.platform !== 'win32',
+    });
     server.stdout.on('data', (c) => process.stdout.write(c));
     server.stderr.on('data', (c) => process.stderr.write(c));
     await waitForServer(baseUrl);
@@ -180,9 +214,19 @@ async function run() {
   console.log(`Screenshots written to ${path.relative(process.cwd(), SHOTS_DIR)}/ (gitignored) for human review.`);
 }
 
-run()
-  .catch((e) => { console.error(e.message || e); process.exitCode = 1; })
-  .finally(() => {
-    if (browser) browser.close().catch(() => {});
-    stopServer();
-  });
+async function main() {
+  try {
+    await run();
+  } catch (e) {
+    console.error(e.message || e);
+    process.exitCode = 1;
+  } finally {
+    if (browser) await browser.close().catch(() => {});
+    await stopServer();
+  }
+}
+
+main().catch((e) => {
+  console.error(e.message || e);
+  process.exitCode = 1;
+});
