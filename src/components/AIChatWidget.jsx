@@ -1,5 +1,5 @@
 import React, { useState, useEffect, useRef } from 'react';
-import { X, Send, Settings, Trash2, Loader2, Bot, User, Key, UserCircle2, Plus, GripHorizontal, BrainCircuit, Sparkles, Pencil, Save, Square } from 'lucide-react';
+import { X, Send, Settings, Trash2, Loader2, Bot, User, Key, UserCircle2, Plus, GripHorizontal, BrainCircuit, Sparkles, Pencil, Save, Square, Copy, Check } from 'lucide-react';
 import ReactMarkdown from 'react-markdown';
 import remarkGfm from 'remark-gfm';
 import rehypeCodeHighlight from '../utils/rehypeCodeHighlight';
@@ -72,29 +72,69 @@ const getMarkdownText = (value) => {
     return '';
 };
 
-const chatMarkdownComponents = {
-    code({ className, children, ...props }) {
-        const match = /language-(\w+)/.exec(className || '');
-        const content = getMarkdownText(children).replace(/\n$/, '');
-        const isBlockCode = Boolean(match) || content.includes('\n');
+const writeClipboardText = async (text) => {
+    if (navigator.clipboard?.writeText) {
+        await navigator.clipboard.writeText(text);
+        return;
+    }
 
-        return isBlockCode ? (
-            <div className="my-2 max-w-full overflow-hidden rounded-lg border border-slate-800 bg-slate-950">
-                <div className="bg-slate-800 text-slate-200 text-[11px] px-3 py-1 flex justify-between items-center">
-                    <span>{match ? match[1] : 'code'}</span>
-                </div>
-                <pre className="max-w-full overflow-x-auto p-3 text-xs leading-relaxed text-white">
-                    <code className={`${className || ''} font-mono`} {...props}>
-                        {children}
-                    </code>
-                </pre>
+    const textarea = document.createElement('textarea');
+    textarea.value = text;
+    textarea.style.position = 'fixed';
+    textarea.style.opacity = '0';
+    document.body.appendChild(textarea);
+    textarea.select();
+    const copied = document.execCommand('copy');
+    document.body.removeChild(textarea);
+
+    if (!copied) throw new Error('Copy command was rejected');
+};
+
+const ChatCode = ({ className, children, ...props }) => {
+    const [copied, setCopied] = useState(false);
+    const match = /language-(\w+)/.exec(className || '');
+    const content = getMarkdownText(children).replace(/\n$/, '');
+    const isBlockCode = Boolean(match) || content.includes('\n');
+
+    const copyCode = async () => {
+        try {
+            await writeClipboardText(content);
+            setCopied(true);
+            window.setTimeout(() => setCopied(false), 1600);
+        } catch (error) {
+            console.error('Failed to copy code', error);
+        }
+    };
+
+    return isBlockCode ? (
+        <div className="my-2 max-w-full overflow-hidden rounded-lg border border-slate-800 bg-slate-950">
+            <div className="bg-slate-800 text-slate-200 text-[11px] px-3 py-1 flex justify-between items-center">
+                <span>{match ? match[1] : 'code'}</span>
+                <button
+                    type="button"
+                    onClick={copyCode}
+                    className="flex h-7 w-7 items-center justify-center rounded text-slate-300 transition-colors hover:bg-slate-700 hover:text-white focus:outline-none focus:ring-2 focus:ring-indigo-400"
+                    title={copied ? '已复制' : '复制代码'}
+                    aria-label={copied ? '代码已复制' : '复制代码'}
+                >
+                    {copied ? <Check size={14} /> : <Copy size={14} />}
+                </button>
             </div>
-        ) : (
-            <code className="rounded bg-indigo-50 px-1.5 py-0.5 font-mono text-[0.92em] font-semibold text-indigo-700 break-words" {...props}>
-                {content}
-            </code>
-        );
-    },
+            <pre className="max-w-full overflow-x-auto p-3 text-xs leading-relaxed text-white">
+                <code className={`${className || ''} font-mono`} {...props}>
+                    {children}
+                </code>
+            </pre>
+        </div>
+    ) : (
+        <code className="rounded bg-indigo-50 px-1.5 py-0.5 font-mono text-[0.92em] font-semibold text-indigo-700 break-words" {...props}>
+            {content}
+        </code>
+    );
+};
+
+const chatMarkdownComponents = {
+    code: ChatCode,
     p: ({ children }) => <p className="mb-2 leading-6 last:mb-0 break-words">{children}</p>,
     ul: ({ children }) => <ul className="list-disc pl-4 mb-2 space-y-1.5">{children}</ul>,
     ol: ({ children }) => <ol className="list-decimal pl-4 mb-2 space-y-1.5">{children}</ol>,
