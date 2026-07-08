@@ -848,7 +848,7 @@ int main() {
       template: `#include <bits/stdc++.h>\nusing namespace std;\n\nint main() {\n    // 在此填写代码\n    return 0;\n}`,
       answer: '',
       score: 25,
-      explanation: `**解题思路：**
+      explanation: `**解析：**
 
 1. 计算方案一：若 \`p >= x\` 则 \`p1 = p - y\`，否则 \`p1 = p\`（满减只能用一次）
 2. 计算方案二：\`p2 = p * n / 10.0\`（打 n 折）
@@ -895,7 +895,7 @@ int main() {
       template: `#include <bits/stdc++.h>\nusing namespace std;\n\nint main() {\n    // 在此填写代码\n    return 0;\n}`,
       answer: '',
       score: 25,
-      explanation: `**解题思路：**
+      explanation: `**解析：**
 
 1. 读入层数 n
 2. 循环 i 从 1 到 n，累加 \`i * i\` 到 sum

@@ -870,7 +870,7 @@ int main() {
       template: `#include <bits/stdc++.h>\nusing namespace std;\n\nint main() {\n    // 在此填写代码\n    return 0;\n}`,
       answer: '',
       score: 25,
-      explanation: `**解题思路：**
+      explanation: `**解析：**
 
 1. **逻辑核心**：本题考查的是限定条件下的数值计算。假期的总页数是 $n$，但小杨每天只能读 $k$ 页，假期总长为 $t$ 天。因此，他最多能读的物理上限是 $k \\times t$ 页。
 2. **取舍判定**：
@@ -919,7 +919,7 @@ int main() {
       template: `#include <bits/stdc++.h>\nusing namespace std;\n\nint main() {\n    // 在此填写代码\n    return 0;\n}`,
       answer: '',
       score: 25,
-      explanation: `**解题思路：**
+      explanation: `**解析：**
 
 1. **数学建模**：这道题本质上是寻找两个独立周期事件下一次“重合”的时间点。在数学上，这被称为求两个正整数 $m$ 和 $n$ 的**最小公倍数 (Least Common Multiple, LCM)**。
 2. **核心算法**：

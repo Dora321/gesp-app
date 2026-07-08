@@ -954,7 +954,7 @@ int main() {
       template: `#include <bits/stdc++.h>\nusing namespace std;\n\nint main() {\n    // 在此填写代码\n    return 0;\n}`,
       answer: '',
       score: 25,
-      explanation: `**解题思路：**
+      explanation: `**解析：**
 
 1. 分别计算两种运费：按体积 \`f1 = 0.5 * V\`，按重量 \`f2 = (G < 300) ? M : N\`
 2. 取两者中较小的值：\`min(f1, f2)\`
@@ -1016,7 +1016,7 @@ int main() {
       template: `#include <bits/stdc++.h>\nusing namespace std;\n\nint main() {\n    // 在此填写代码\n    return 0;\n}`,
       answer: '',
       score: 25,
-      explanation: `**解题思路：**
+      explanation: `**解析：**
 
 1. 读入数据组数 T，循环处理每组数据
 2. 对每组数据读入电量 P，用 if-else if-else 分三段判断：
