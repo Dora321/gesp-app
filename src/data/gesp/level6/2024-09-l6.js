@@ -26,7 +26,11 @@ const programmingQuestions = [
 输出一行一个整数表示答案。
 `,
       score: 25,
-      explanation: "这是“最少完全平方数分拆”。先用四平方定理：答案一定在 1~4 之间；依次判断是否本身是平方数、是否可写成两个平方数之和，再用 Legendre 三平方定理判断是否必须是 4，否则就是 3。",
+      explanation: `**解析：**
+      这是“最少完全平方数分拆”。先用四平方定理：答案一定在 1~4 之间；依次判断是否本身是平方数、是否可写成两个平方数之和，再用 Legendre 三平方定理判断是否必须是 4，否则就是 3。
+
+      **考点：** 动态规划
+      `,
       tags: ["编程题", "动态规划"],
       template: "#include <bits/stdc++.h>\nusing namespace std;\n\nint main() {\n    // 在此编写代码\n    return 0;\n}",
       referenceCode: "#include <bits/stdc++.h>\nusing namespace std;\n\nstatic bool isSquare(long long x) {\n    long long r = sqrtl((long double)x);\n    while (r * r < x) ++r;\n    while (r * r > x) --r;\n    return r * r == x;\n}\n\nint main() {\n    ios::sync_with_stdio(false);\n    cin.tie(nullptr);\n\n    long long n;\n    cin >> n;\n    if (isSquare(n)) {\n        cout << 1 << '\\n';\n        return 0;\n    }\n    for (long long i = 1; i * i <= n; ++i) {\n        if (isSquare(n-i * i)) {\n            cout << 2 << '\\n';\n            return 0;\n        }\n    }\n    long long x = n;\n    while (x % 4 == 0) x /= 4;\n    if (x % 8 == 7) cout << 4 << '\\n';\n    else cout << 3 << '\\n';\n    return 0;\n}",
@@ -66,7 +70,11 @@ const programmingQuestions = [
 输出一个整数，代表小杨最少需要学习题目的数量，如果不存在满足条件的方案，输出 -1。
 `,
       score: 25,
-      explanation: "先对每个知识点把题目价值从大到小排序，求出达到总掌握度至少 k 所需的最少题数 need_i。若某个知识点总和都不足 k，则无解。随后还要满足“相邻题知识点不同”，等价于所选题目能重排为相邻不同；若最大 need_i 过大，就必须从其他知识点再补选一些题直到 maxCnt <= total-maxCnt+1。",
+      explanation: `**解析：**
+      先对每个知识点把题目价值从大到小排序，求出达到总掌握度至少 k 所需的最少题数 need_i。若某个知识点总和都不足 k，则无解。随后还要满足“相邻题知识点不同”，等价于所选题目能重排为相邻不同；若最大 need_i 过大，就必须从其他知识点再补选一些题直到 maxCnt <= total-maxCnt+1。
+
+      **考点：** 贪心、排序
+      `,
       tags: ["编程题", "贪心", "排序"],
       template: "#include <bits/stdc++.h>\nusing namespace std;\n\nint main() {\n    // 在此编写代码\n    return 0;\n}",
       referenceCode: "#include <bits/stdc++.h>\nusing namespace std;\n\nint main() {\n    ios::sync_with_stdio(false);\n    cin.tie(nullptr);\n\n    int m, n;\n    long long k;\n    cin >> m >> n >> k;\n    vector<int> c(n);\n    for (int i = 0; i < n; ++i) cin >> c[i];\n    vector<long long> v(n);\n    for (int i = 0; i < n; ++i) cin >> v[i];\n\n    vector<vector<long long>> groups(m+1);\n    for (int i = 0; i < n; ++i) groups[c[i]].push_back(v[i]);\n\n    vector<int> need(m+1, 0), extra(m+1, 0);\n    long long total = 0;\n    int mx = 0, who = -1;\n    for (int i = 1; i <= m; ++i) {\n        auto &g = groups[i];\n        sort(g.begin(), g.end(), greater<long long>());\n        long long sum = 0;\n        while (need[i] < (int)g.size() && sum < k) {\n            sum += g[need[i]];\n            ++need[i];\n        }\n        if (sum < k) {\n            cout << -1 << '\\n';\n            return 0;\n        }\n        extra[i] = (int)g.size()-need[i];\n        total += need[i];\n        if (need[i] > mx) {\n            mx = need[i];\n            who = i;\n        }\n    }\n\n    long long others = total-mx;\n    long long needMore = max(0LL, 2LL * mx-others-1-mx); // extra items needed outside dominant color\n    long long available = 0;\n    for (int i = 1; i <= m; ++i) if (i != who) available += extra[i];\n    if (needMore > available) {\n        cout << -1 << '\\n';\n        return 0;\n    }\n    cout << total+needMore << '\\n';\n    return 0;\n}",
@@ -95,7 +103,18 @@ export const paperData = {
             ],
             answer: 1,
             score: 2,
-            explanation: "本题答案已依据试卷标准答案完成录入，可结合题干与选项复盘对应知识点。",
+            explanation: `**答案：B**
+
+            **解析：**
+            本题答案已依据试卷标准答案完成录入，可结合题干与选项复盘对应知识点。
+
+            - **A C++ 中构造一个 class 或 struct**：错误。该代码逻辑与题目要求不符，请逐步推演。
+            - **B C++ 中调用 printf 函数**：正确答案。
+            - **C C++ 中调用用户定义的类成员函数**：错误。该代码逻辑与题目要求不符，请逐步推演。
+            - **D C++ 中构造来源于同一基类的多个派生类**：错误。该代码逻辑与题目要求不符，请逐步推演。
+
+            **考点：** C++基础
+            `,
             tags: [
                 "客观题",
                 "单选题",
@@ -114,7 +133,18 @@ export const paperData = {
             ],
             answer: 0,
             score: 2,
-            explanation: "本题答案已依据试卷标准答案完成录入，可结合题干与选项复盘对应知识点。",
+            explanation: `**答案：A**
+
+            **解析：**
+            本题答案已依据试卷标准答案完成录入，可结合题干与选项复盘对应知识点。
+
+            - **A Line 1**：正确答案。
+            - **B Line 2**：错误。选项「Line 2」与题目考查的知识点不符，请对照正确解析理解。
+            - **C Line 3 #include <iostream> using namespa...**：错误。该代码逻辑与题目要求不符，请逐步推演。
+            - **D 没有编译错误**：错误。选项「没有编译错误」与题目考查的知识点不符，请对照正确解析理解。
+
+            **考点：** C++基础
+            `,
             tags: [
                 "客观题",
                 "单选题",
@@ -133,7 +163,18 @@ export const paperData = {
             ],
             answer: 2,
             score: 2,
-            explanation: "本题答案已依据试卷标准答案完成录入，可结合题干与选项复盘对应知识点。",
+            explanation: `**答案：C**
+
+            **解析：**
+            本题答案已依据试卷标准答案完成录入，可结合题干与选项复盘对应知识点。
+
+            - **A 5,4,3,6,1,2**：错误。选项「5,4,3,6,1,2」与题目考查的知识点不符，请对照正确解析理解。
+            - **B 4,5,3,1,2,6**：错误。选项「4,5,3,1,2,6」与题目考查的知识点不符，请对照正确解析理解。
+            - **C 3,4,6,5,2,1**：正确答案。
+            - **D 2,3,4,1,5,6**：错误。选项「2,3,4,1,5,6」与题目考查的知识点不符，请对照正确解析理解。
+
+            **考点：** 栈
+            `,
             tags: [
                 "客观题",
                 "单选题",
@@ -152,7 +193,18 @@ export const paperData = {
             ],
             answer: 0,
             score: 2,
-            explanation: "本题答案已依据试卷标准答案完成录入，可结合题干与选项复盘对应知识点。",
+            explanation: `**答案：A**
+
+            **解析：**
+            本题答案已依据试卷标准答案完成录入，可结合题干与选项复盘对应知识点。
+
+            - **A top = st.top(); st.pop();**：正确答案。
+            - **B st.pop(); top = st.top();**：错误。选项「st.pop(); top = st.top();」与题目考查的知识点不符，请对照正确解析理解。
+            - **C st.pop(); top = st.front();**：错误。选项「st.pop(); top = st.front();」与题目考查的知识点不符，请对照正确解析理解。
+            - **D top = st.front(); st.pop();**：错误。选项「top = st.front(); st.pop();」与题目考查的知识点不符，请对照正确解析理解。
+
+            **考点：** C++基础
+            `,
             tags: [
                 "客观题",
                 "单选题",
@@ -171,7 +223,18 @@ export const paperData = {
             ],
             answer: 1,
             score: 2,
-            explanation: "本题答案已依据试卷标准答案完成录入，可结合题干与选项复盘对应知识点。",
+            explanation: `**答案：B**
+
+            **解析：**
+            本题答案已依据试卷标准答案完成录入，可结合题干与选项复盘对应知识点。
+
+            - **A is_equal = (q.front() == a);**：错误。该代码逻辑与题目要求不符，请逐步推演。
+            - **B is_equal = (q.front() == a); q.pop();**：正确答案。
+            - **C q.pop(); is_equal = (q.front() == a);**：错误。该代码逻辑与题目要求不符，请逐步推演。
+            - **D q.pop(); is_equal = (q.top() == a);**：错误。该代码逻辑与题目要求不符，请逐步推演。
+
+            **考点：** 栈
+            `,
             tags: [
                 "客观题",
                 "单选题",
@@ -190,7 +253,18 @@ export const paperData = {
             ],
             answer: 1,
             score: 2,
-            explanation: "本题答案已依据试卷标准答案完成录入，可结合题干与选项复盘对应知识点。",
+            explanation: `**答案：B**
+
+            **解析：**
+            本题答案已依据试卷标准答案完成录入，可结合题干与选项复盘对应知识点。
+
+            - **A 4, 4, 1, 3, 2**：错误。选项「4, 4, 1, 3, 2」与题目考查的知识点不符，请对照正确解析理解。
+            - **B 3, 3, 2, 2, 2**：正确答案。
+            - **C 3, 3, 1, 2, 1**：错误。选项「3, 3, 1, 2, 1」与题目考查的知识点不符，请对照正确解析理解。
+            - **D 4, 4, 1, 2, 2**：错误。选项「4, 4, 1, 2, 2」与题目考查的知识点不符，请对照正确解析理解。
+
+            **考点：** C++基础
+            `,
             tags: [
                 "客观题",
                 "单选题",
@@ -209,7 +283,18 @@ export const paperData = {
             ],
             answer: 1,
             score: 2,
-            explanation: "本题答案已依据试卷标准答案完成录入，可结合题干与选项复盘对应知识点。",
+            explanation: `**答案：B**
+
+            **解析：**
+            本题答案已依据试卷标准答案完成录入，可结合题干与选项复盘对应知识点。
+
+            - **A graycode_list.push_back(\\**：错误。选项「graycode_list.push_back(\」与题目考查的知识点不符，请对照正确解析理解。
+            - **B graycode_list[j] = \\**：正确答案。
+            - **C graycode_list.push_back(\\**：错误。选项「graycode_list.push_back(\」与题目考查的知识点不符，请对照正确解析理解。
+            - **D graycode_list[j] = \\**：错误。选项「graycode_list[j] = \」与题目考查的知识点不符，请对照正确解析理解。
+
+            **考点：** 队列
+            `,
             tags: [
                 "客观题",
                 "单选题",
@@ -228,7 +313,18 @@ export const paperData = {
             ],
             answer: 0,
             score: 2,
-            explanation: "本题答案已依据试卷标准答案完成录入，可结合题干与选项复盘对应知识点。",
+            explanation: `**答案：A**
+
+            **解析：**
+            本题答案已依据试卷标准答案完成录入，可结合题干与选项复盘对应知识点。
+
+            - **A EDBGFCA**：正确答案。
+            - **B EDGBFCA**：错误。选项「EDGBFCA」与题目考查的知识点不符，请对照正确解析理解。
+            - **C DEBGFCA**：错误。选项「DEBGFCA」与题目考查的知识点不符，请对照正确解析理解。
+            - **D DBEGFCA**：错误。选项「DBEGFCA」与题目考查的知识点不符，请对照正确解析理解。
+
+            **考点：** C++基础
+            `,
             tags: [
                 "客观题",
                 "单选题",
@@ -247,7 +343,18 @@ export const paperData = {
             ],
             answer: 2,
             score: 2,
-            explanation: "本题答案已依据试卷标准答案完成录入，可结合题干与选项复盘对应知识点。",
+            explanation: `**答案：C**
+
+            **解析：**
+            本题答案已依据试卷标准答案完成录入，可结合题干与选项复盘对应知识点。
+
+            - **A 8, 18**：错误。选项「8, 18」与题目考查的知识点不符，请对照正确解析理解。
+            - **B 10, 18**：错误。选项「10, 18」与题目考查的知识点不符，请对照正确解析理解。
+            - **C 8, 19**：正确答案。
+            - **D 10, 19**：错误。选项「10, 19」与题目考查的知识点不符，请对照正确解析理解。
+
+            **考点：** 数组
+            `,
             tags: [
                 "客观题",
                 "单选题",
@@ -266,7 +373,18 @@ export const paperData = {
             ],
             answer: 2,
             score: 2,
-            explanation: "本题答案已依据试卷标准答案完成录入，可结合题干与选项复盘对应知识点。",
+            explanation: `**答案：C**
+
+            **解析：**
+            本题答案已依据试卷标准答案完成录入，可结合题干与选项复盘对应知识点。
+
+            - **A return left_depth+right_depth;**：错误。选项「return left_depth+right_depth;」与题目考查的知识点不符，请对照正确解析理解。
+            - **B return max(left_depth, right_depth);**：错误。选项「return max(left_depth, right_d…」与题目考查的知识点不符，请对照正确解析理解。
+            - **C return max(left_depth, right_depth)+1;**：正确答案。
+            - **D return left_depth+right_depth+1;**：错误。选项「return left_depth+right_depth+…」与题目考查的知识点不符，请对照正确解析理解。
+
+            **考点：** C++基础
+            `,
             tags: [
                 "客观题",
                 "单选题",
@@ -285,7 +403,18 @@ export const paperData = {
             ],
             answer: 0,
             score: 2,
-            explanation: "本题答案已依据试卷标准答案完成录入，可结合题干与选项复盘对应知识点。",
+            explanation: `**答案：A**
+
+            **解析：**
+            本题答案已依据试卷标准答案完成录入，可结合题干与选项复盘对应知识点。
+
+            - **A int level_size = q.size(); depth++;**：正确答案。
+            - **B int level_size = 2; depth++;**：错误。该代码逻辑与题目要求不符，请逐步推演。
+            - **C int level_size = q.size(); depth += leve...**：错误。选项「int level_size = q.size(); dep…」与题目考查的知识点不符，请对照正确解析理解。
+            - **D int level_size = 2; depth += level_size;**：错误。选项「int level_size = 2; depth += l…」与题目考查的知识点不符，请对照正确解析理解。
+
+            **考点：** C++基础
+            `,
             tags: [
                 "客观题",
                 "单选题",
@@ -304,7 +433,18 @@ export const paperData = {
             ],
             answer: 0,
             score: 2,
-            explanation: "本题答案已依据试卷标准答案完成录入，可结合题干与选项复盘对应知识点。",
+            explanation: `**答案：A**
+
+            **解析：**
+            本题答案已依据试卷标准答案完成录入，可结合题干与选项复盘对应知识点。
+
+            - **A [待补充选项]**：正确答案。
+            - **B 选项B**：错误。选项「选项B」与题目考查的知识点不符，请对照正确解析理解。
+            - **C 选项C**：错误。选项「选项C」与题目考查的知识点不符，请对照正确解析理解。
+            - **D // 定义二叉树的结点结构 struct tree_node { int val...**：错误。数组下标从 0 开始，请仔细验证下标范围。
+
+            **考点：** 队列
+            `,
             tags: [
                 "客观题",
                 "单选题",
@@ -323,7 +463,18 @@ export const paperData = {
             ],
             answer: 1,
             score: 2,
-            explanation: "本题答案已依据试卷标准答案完成录入，可结合题干与选项复盘对应知识点。",
+            explanation: `**答案：B**
+
+            **解析：**
+            本题答案已依据试卷标准答案完成录入，可结合题干与选项复盘对应知识点。
+
+            - **A [待补充选项]**：错误。选项「[待补充选项]」与题目考查的知识点不符，请对照正确解析理解。
+            - **B 选项B**：正确答案。
+            - **C 选项C**：错误。选项「选项C」与题目考查的知识点不符，请对照正确解析理解。
+            - **D 选项D**：错误。选项「选项D」与题目考查的知识点不符，请对照正确解析理解。
+
+            **考点：** 数组
+            `,
             tags: [
                 "客观题",
                 "单选题",
@@ -342,7 +493,18 @@ export const paperData = {
             ],
             answer: 1,
             score: 2,
-            explanation: "本题答案已依据试卷标准答案完成录入，可结合题干与选项复盘对应知识点。",
+            explanation: `**答案：B**
+
+            **解析：**
+            本题答案已依据试卷标准答案完成录入，可结合题干与选项复盘对应知识点。
+
+            - **A 无法分解的问题**：错误。选项「无法分解的问题」与题目考查的知识点不符，请对照正确解析理解。
+            - **B 可以分解成相互依赖的子问题的问题**：正确答案。
+            - **C 可以通过贪⼼算法解决的问题**：错误。选项「可以通过贪⼼算法解决的问题」与题目考查的知识点不符，请对照正确解析理解。
+            - **D 只能通过递归解决的问题**：错误。选项「只能通过递归解决的问题」与题目考查的知识点不符，请对照正确解析理解。
+
+            **考点：** 动态规划
+            `,
             tags: [
                 "客观题",
                 "单选题",
@@ -361,7 +523,18 @@ export const paperData = {
             ],
             answer: 2,
             score: 2,
-            explanation: "本题答案已依据试卷标准答案完成录入，可结合题干与选项复盘对应知识点。",
+            explanation: `**答案：C**
+
+            **解析：**
+            本题答案已依据试卷标准答案完成录入，可结合题干与选项复盘对应知识点。
+
+            - **A 90**：错误。该数值与正确计算结果不符，请重新验算。
+            - **B 100**：错误。该数值与正确计算结果不符，请重新验算。
+            - **C 110**：正确答案。
+            - **D 140**：错误。该数值与正确计算结果不符，请重新验算。
+
+            **考点：** 动态规划
+            `,
             tags: [
                 "客观题",
                 "单选题",
@@ -378,7 +551,15 @@ export const paperData = {
             ],
             answer: 0,
             score: 2,
-            explanation: "本题答案已依据试卷标准答案完成录入，可结合题干与选项复盘对应知识点。",
+            explanation: `**答案：正确**
+
+            **判定依据：**
+            本题答案已依据试卷标准答案完成录入，可结合题干与选项复盘对应知识点。
+
+            **易混概念：** 注意区分相关概念的适用范围和边界条件。
+
+            **考点：** C++基础
+            `,
             tags: [
                 "客观题",
                 "判断题",
@@ -395,7 +576,15 @@ export const paperData = {
             ],
             answer: 0,
             score: 2,
-            explanation: "本题答案已依据试卷标准答案完成录入，可结合题干与选项复盘对应知识点。",
+            explanation: `**答案：正确**
+
+            **判定依据：**
+            本题答案已依据试卷标准答案完成录入，可结合题干与选项复盘对应知识点。
+
+            **易混概念：** 注意区分相关概念的适用范围和边界条件。
+
+            **考点：** C++基础
+            `,
             tags: [
                 "客观题",
                 "判断题",
@@ -412,7 +601,15 @@ export const paperData = {
             ],
             answer: 0,
             score: 2,
-            explanation: "本题答案已依据试卷标准答案完成录入，可结合题干与选项复盘对应知识点。",
+            explanation: `**答案：正确**
+
+            **判定依据：**
+            本题答案已依据试卷标准答案完成录入，可结合题干与选项复盘对应知识点。
+
+            **易混概念：** 栈是后进先出（LIFO）。注意栈空时 pop 会出错，需先判空；递归/函数调用依赖调用栈，过深会栈溢出；单调栈用于找左右第一个更大/更小元素。
+
+            **考点：** 栈
+            `,
             tags: [
                 "客观题",
                 "判断题",
@@ -429,7 +626,15 @@ export const paperData = {
             ],
             answer: 0,
             score: 2,
-            explanation: "本题答案已依据试卷标准答案完成录入，可结合题干与选项复盘对应知识点。",
+            explanation: `**答案：正确**
+
+            **判定依据：**
+            本题答案已依据试卷标准答案完成录入，可结合题干与选项复盘对应知识点。
+
+            **易混概念：** DP 三要素：状态定义、转移方程、边界初始化。注意 INF 初值的选择、下标从 0 还是 1、以及空间优化（滚动数组）时的覆盖顺序。
+
+            **考点：** 动态规划
+            `,
             tags: [
                 "客观题",
                 "判断题",
@@ -446,7 +651,15 @@ export const paperData = {
             ],
             answer: 0,
             score: 2,
-            explanation: "本题答案已依据试卷标准答案完成录入，可结合题干与选项复盘对应知识点。",
+            explanation: `**答案：正确**
+
+            **判定依据：**
+            本题答案已依据试卷标准答案完成录入，可结合题干与选项复盘对应知识点。
+
+            **易混概念：** 注意区分相关概念的适用范围和边界条件。
+
+            **考点：** C++基础
+            `,
             tags: [
                 "客观题",
                 "判断题",
@@ -463,7 +676,15 @@ export const paperData = {
             ],
             answer: 0,
             score: 2,
-            explanation: "本题答案已依据试卷标准答案完成录入，可结合题干与选项复盘对应知识点。",
+            explanation: `**答案：正确**
+
+            **判定依据：**
+            本题答案已依据试卷标准答案完成录入，可结合题干与选项复盘对应知识点。
+
+            **易混概念：** 注意区分相关概念的适用范围和边界条件。
+
+            **考点：** C++基础
+            `,
             tags: [
                 "客观题",
                 "判断题",
@@ -480,7 +701,15 @@ export const paperData = {
             ],
             answer: 0,
             score: 2,
-            explanation: "本题答案已依据试卷标准答案完成录入，可结合题干与选项复盘对应知识点。",
+            explanation: `**答案：正确**
+
+            **判定依据：**
+            本题答案已依据试卷标准答案完成录入，可结合题干与选项复盘对应知识点。
+
+            **易混概念：** 注意区分相关概念的适用范围和边界条件。
+
+            **考点：** C++基础
+            `,
             tags: [
                 "客观题",
                 "判断题",
@@ -497,7 +726,15 @@ export const paperData = {
             ],
             answer: 0,
             score: 2,
-            explanation: "本题答案已依据试卷标准答案完成录入，可结合题干与选项复盘对应知识点。",
+            explanation: `**答案：正确**
+
+            **判定依据：**
+            本题答案已依据试卷标准答案完成录入，可结合题干与选项复盘对应知识点。
+
+            **易混概念：** 栈是后进先出（LIFO）。注意栈空时 pop 会出错，需先判空；递归/函数调用依赖调用栈，过深会栈溢出；单调栈用于找左右第一个更大/更小元素。
+
+            **考点：** 栈
+            `,
             tags: [
                 "客观题",
                 "判断题",
@@ -514,7 +751,15 @@ export const paperData = {
             ],
             answer: 0,
             score: 2,
-            explanation: "本题答案已依据试卷标准答案完成录入，可结合题干与选项复盘对应知识点。",
+            explanation: `**答案：正确**
+
+            **判定依据：**
+            本题答案已依据试卷标准答案完成录入，可结合题干与选项复盘对应知识点。
+
+            **易混概念：** DP 三要素：状态定义、转移方程、边界初始化。注意 INF 初值的选择、下标从 0 还是 1、以及空间优化（滚动数组）时的覆盖顺序。
+
+            **考点：** 动态规划
+            `,
             tags: [
                 "客观题",
                 "判断题",
@@ -531,7 +776,15 @@ export const paperData = {
             ],
             answer: 0,
             score: 2,
-            explanation: "本题答案已依据试卷标准答案完成录入，可结合题干与选项复盘对应知识点。",
+            explanation: `**答案：正确**
+
+            **判定依据：**
+            本题答案已依据试卷标准答案完成录入，可结合题干与选项复盘对应知识点。
+
+            **易混概念：** DP 三要素：状态定义、转移方程、边界初始化。注意 INF 初值的选择、下标从 0 还是 1、以及空间优化（滚动数组）时的覆盖顺序。
+
+            **考点：** 动态规划
+            `,
             tags: [
                 "客观题",
                 "判断题",
