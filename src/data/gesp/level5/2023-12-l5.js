@@ -61,7 +61,11 @@ lucky` }
 输出 $N$ 行，对于每个给定的 $x$ ，如果它是幸运数，请输出 \`lucky\`，否则请输出将其幸运化后的结果。
 `,
       score: 25,
-      explanation: "预处理：筛选出所有超级幸运数（完全平方数 ≥ a）及其倍数。然后对于查询 x，找到最近的幸运数。",
+      explanation: `**解析：**
+      预处理：筛选出所有超级幸运数（完全平方数 ≥ a）及其倍数。然后对于查询 x，找到最近的幸运数。
+
+      **考点：** 数论、埃氏筛
+      `,
       tags: ["编程题", "数论", "埃氏筛"],
       template: "#include <iostream>\nusing namespace std;\n\nint main() {\n    int a, n;\n    cin >> a >> n;\n    // 在此编写代码\n    return 0;\n}",
       referenceCode: "#include <iostream>\n#include <vector>\n#include <cmath>\nusing namespace std;\nconst int MAX = 2000005;\nbool is_lucky[MAX];\nint next_lucky[MAX];\nint main() {\n    int a, n;\n    cin >> a >> n;\n    for (long long i = 1; i * i < MAX; i++) {\n        long long sq = i * i;\n        if (sq >= a) {\n            for (long long j = sq; j < MAX; j += sq) is_lucky[j] = true;\n        }\n    }\n    int last = -1;\n    for (int i = MAX-1; i >= 1; i--) {\n        if (is_lucky[i]) last = i;\n        next_lucky[i] = last;\n    }\n    while (n--) {\n        int x; cin >> x;\n        if (is_lucky[x]) cout << \"lucky\" << endl;\n        else cout << next_lucky[x] << endl;\n    }\n    return 0;\n}",
@@ -102,7 +106,11 @@ lucky` }
 输出一行一个整数，表示最高的契合度。
 `,
       score: 25,
-      explanation: "从最高位开始考虑，如果当前位为 1 的数有至少两个，那么最终答案的这一位可以是 1，并保留这些数进入下一位的判断。",
+      explanation: `**解析：**
+      从最高位开始考虑，如果当前位为 1 的数有至少两个，那么最终答案的这一位可以是 1，并保留这些数进入下一位的判断。
+
+      **考点：** 位运算、贪心
+      `,
       tags: ["编程题", "位运算", "贪心"],
       template: "#include <iostream>\n#include <vector>\nusing namespace std;\n\nint main() {\n    int n;\n    cin >> n;\n    // 在此编写代码\n    return 0;\n}",
       referenceCode: "#include <iostream>\n#include <vector>\nusing namespace std;\nint main() {\n    int n; cin >> n;\n    vector<int> a(n);\n    for (int i = 0; i < n; i++) cin >> a[i];\n    int ans = 0;\n    vector<int> candidates = a;\n    for (int i = 30; i >= 0; i--) {\n        vector<int> next_candidates;\n        int target = ans | (1 << i);\n        for (int val : candidates) {\n            if ((val & target) == target) next_candidates.push_back(val);\n        }\n        if (next_candidates.size() >= 2) {\n            ans = target;\n            candidates = next_candidates;\n        }\n    }\n    cout << ans << endl;\n    return 0;\n}",
@@ -132,7 +140,18 @@ export const paperData = {
             ],
             answer: 2,
             score: 2,
-            explanation: "递归方式 fiboA 存在大量重复计算，效率远低于循环方式 fiboB。",
+            explanation: `**答案：C**
+
+            **解析：**
+            递归方式 fiboA 存在大量重复计算，效率远低于循环方式 fiboB。
+
+            - **A fiboA( )用递归方式，fiboB()循环方式**：错误。递归/递推的终止条件或状态传递有误，请检查递归出口和参数变化。
+            - **B fiboA( )更加符合斐波那契数列的数学定义，直观易于理解**：错误。选项「fiboA( )更加符合斐波那契数列的数学定义，直观易于理解」与题目考查的知识点不符，请对照正确解析理解。
+            - **C fiboA( )不仅仅更加符合数学定义，直观易于理解，且因代码量较少执⾏效率更高**：正确答案。
+            - **D fiboB( )虽然代码量有所增加，但其执⾏效率更高**：错误。选项「fiboB( )虽然代码量有所增加，但其执⾏效率更高」与题目考查的知识点不符，请对照正确解析理解。
+
+            **考点：** 递归
+            `,
             tags: [
                 "客观题",
                 "单选题",
@@ -151,7 +170,18 @@ export const paperData = {
             ],
             answer: 2,
             score: 2,
-            explanation: "归并排序将区间分为 [s, m] 和 [m+1, t]。",
+            explanation: `**答案：C**
+
+            **解析：**
+            归并排序将区间分为 [s, m] 和 [m+1, t]。
+
+            - **A mergeSort(SList, T2, s, m,len), mergeSor...**：错误。选项「mergeSort(SList, T2, s, m,len)…」与题目考查的知识点不符，请对照正确解析理解。
+            - **B mergeSort(SList, T2, s, $m-1$,len), merg...**：错误。选项「mergeSort(SList, T2, s, $m-1$,…」与题目考查的知识点不符，请对照正确解析理解。
+            - **C mergeSort(SList, T2, s, m,len), mergeSor...**：正确答案。
+            - **D mergeSort(SList, T2, s, $m-1$,len), merg...**：错误。选项「mergeSort(SList, T2, s, $m-1$,…」与题目考查的知识点不符，请对照正确解析理解。
+
+            **考点：** 递归
+            `,
             tags: [
                 "客观题",
                 "单选题",
@@ -170,7 +200,18 @@ export const paperData = {
             ],
             answer: 3,
             score: 2,
-            explanation: "考察全局变量 stepCount 的变化。第一次递归后增加，第二次从新值开始。",
+            explanation: `**答案：D**
+
+            **解析：**
+            考察全局变量 stepCount 的变化。第一次递归后增加，第二次从新值开始。
+
+            - **A 1->120<===>2->120**：错误。该代码逻辑与题目要求不符，请逐步推演。
+            - **B 1->120<===>1->120**：错误。该代码逻辑与题目要求不符，请逐步推演。
+            - **C 1->120<===>1->2->3->4->5->120**：错误。该代码逻辑与题目要求不符，请逐步推演。
+            - **D 1->120<===>2->3->4->5->6->120**：正确答案。
+
+            **考点：** 递归
+            `,
             tags: [
                 "客观题",
                 "单选题",
@@ -189,7 +230,18 @@ export const paperData = {
             ],
             answer: 1,
             score: 2,
-            explanation: "如果前一个是奇数且后一个是偶数，则需要交换位置（让偶数到前面）。",
+            explanation: `**答案：B**
+
+            **解析：**
+            如果前一个是奇数且后一个是偶数，则需要交换位置（让偶数到前面）。
+
+            - **A isEven(lstA[j]) && !isEven(lstA[j+1])**：错误。该代码逻辑与题目要求不符，请逐步推演。
+            - **B !isEven(lstA[j]) && isEven(lstA[j+1])**：正确答案。
+            - **C lstA[j] > lstA[j+1]**：错误。选项「lstA[j] > lstA[j+1]」与题目考查的知识点不符，请对照正确解析理解。
+            - **D lstA[j] < lstA[j+1]**：错误。选项「lstA[j] < lstA[j+1]」与题目考查的知识点不符，请对照正确解析理解。
+
+            **考点：** 排序算法
+            `,
             tags: [
                 "客观题",
                 "单选题",
@@ -208,7 +260,18 @@ export const paperData = {
             ],
             answer: 1,
             score: 2,
-            explanation: "插入节点时需检查后继节点是否存在，避免空指针解引用。",
+            explanation: `**答案：B**
+
+            **解析：**
+            插入节点时需检查后继节点是否存在，避免空指针解引用。
+
+            - **A if(pHead) {p->next = pHead->next, pHead-...**：错误。选项「if(pHead) {p->next = pHead->ne…」与题目考查的知识点不符，请对照正确解析理解。
+            - **B if(pHead->next) {p->next = pHead->next, ...**：正确答案。
+            - **C p->next = pHead->next, pHead->next->prev...**：错误。选项「p->next = pHead->next, pHead->…」与题目考查的知识点不符，请对照正确解析理解。
+            - **D 触发异常，不能对空指针进⾏操作。**：错误。指针或内存理解有误，请检查解引用和释放逻辑。
+
+            **考点：** 链表
+            `,
             tags: [
                 "客观题",
                 "单选题",
@@ -227,7 +290,18 @@ export const paperData = {
             ],
             answer: 0,
             score: 2,
-            explanation: "代码通过递归统计调用次数或特定条件。经分析，A选项表述正确。",
+            explanation: `**答案：A**
+
+            **解析：**
+            代码通过递归统计调用次数或特定条件。经分析，A选项表述正确。
+
+            - **A 如果x小于 10 ，rc值也不会超过 20**：正确答案。
+            - **B foo可能无限递归**：错误。递归/递推的终止条件或状态传递有误，请检查递归出口和参数变化。
+            - **C foo可以求出 x 和 y 的最大公共质因子**：错误。选项「foo可以求出 x 和 y 的最大公共质因子」与题目考查的知识点不符，请对照正确解析理解。
+            - **D foo能够求出 x 和 y 的最小公倍数**：错误。选项「foo能够求出 x 和 y 的最小公倍数」与题目考查的知识点不符，请对照正确解析理解。
+
+            **考点：** 递归
+            `,
             tags: [
                 "客观题",
                 "单选题",
@@ -246,7 +320,18 @@ export const paperData = {
             ],
             answer: 2,
             score: 2,
-            explanation: "快速排序拼接顺序应为：小于部分+基准值+大于部分。",
+            explanation: `**答案：C**
+
+            **解析：**
+            快速排序拼接顺序应为：小于部分+基准值+大于部分。
+
+            - **A qSort(less)+qSort(greater)+(vector<int>)...**：错误。选项「qSort(less)+qSort(greater)+(ve…」与题目考查的知识点不符，请对照正确解析理解。
+            - **B (vector<int>)pivot+(qSort(less)+qSort(gr...**：错误。选项「(vector<int>)pivot+(qSort(less…」与题目考查的知识点不符，请对照正确解析理解。
+            - **C (qSort(less)+(vector<int>)pivot+qSort(gr...**：正确答案。
+            - **D qSort(less)+pivot+qSort(greater)**：错误。选项「qSort(less)+pivot+qSort(greate…」与题目考查的知识点不符，请对照正确解析理解。
+
+            **考点：** 快速排序
+            `,
             tags: [
                 "客观题",
                 "单选题",
@@ -265,7 +350,18 @@ export const paperData = {
             ],
             answer: 1,
             score: 2,
-            explanation: "isPrimeB 通常采用遍历到 sqrt(N) 的优化，比 isPrimeA 遍历到 N/2 更高效。",
+            explanation: `**答案：B**
+
+            **解析：**
+            isPrimeB 通常采用遍历到 sqrt(N) 的优化，比 isPrimeA 遍历到 N/2 更高效。
+
+            - **A isPrimeA()优于isPrimeB()**：错误。选项「isPrimeA()优于isPrimeB()」与题目考查的知识点不符，请对照正确解析理解。
+            - **B isPrimeB()绝大多数情况下优于isPrimeA()**：正确答案。
+            - **C isPrimeA()的最坏时间复杂度是 O(sqrt(N))**：错误。复杂度分析有误，请重新估算最坏情况时间复杂度。
+            - **D isPrimeA()优于 isPrimeB()**：错误。选项「isPrimeA()优于 isPrimeB()」与题目考查的知识点不符，请对照正确解析理解。
+
+            **考点：** 筛法
+            `,
             tags: [
                 "客观题",
                 "单选题",
@@ -284,7 +380,18 @@ export const paperData = {
             ],
             answer: 3,
             score: 2,
-            explanation: "二分查找不属于动态规划算法。",
+            explanation: `**答案：D**
+
+            **解析：**
+            二分查找不属于动态规划算法。
+
+            - **A 代码采用二分法实现有序list的查找**：错误。二分查找的边界或 mid 更新有误，请验证循环条件和指针移动。
+            - **B 代码采用分治算法实现有序list的查找**：错误。选项「代码采用分治算法实现有序list的查找」与题目考查的知识点不符，请对照正确解析理解。
+            - **C 代码采用递归方式实现有序list的查找**：错误。递归/递推的终止条件或状态传递有误，请检查递归出口和参数变化。
+            - **D 代码采用动态规划算法实现有序list的查找**：正确答案。
+
+            **考点：** 二分查找
+            `,
             tags: [
                 "客观题",
                 "单选题",
@@ -303,7 +410,18 @@ export const paperData = {
             ],
             answer: 1,
             score: 2,
-            explanation: "二分查找的时间复杂度是 $O(log n)$。",
+            explanation: `**答案：B**
+
+            **解析：**
+            二分查找的时间复杂度是 $O(log n)$。
+
+            - **A $O(N)$**：错误。选项「$O(N)$」与题目考查的知识点不符，请对照正确解析理解。
+            - **B $O(log n)$**：正确答案。
+            - **C $O(n log n)$**：错误。选项「$O(n log n)$」与题目考查的知识点不符，请对照正确解析理解。
+            - **D $O(N^2)$**：错误。该代码逻辑与题目要求不符，请逐步推演。
+
+            **考点：** 二分查找
+            `,
             tags: [
                 "客观题",
                 "单选题",
@@ -322,7 +440,18 @@ export const paperData = {
             ],
             answer: 3,
             score: 2,
-            explanation: "t % 10 得到当前位，t / 10 得到进位。",
+            explanation: `**答案：D**
+
+            **解析：**
+            t % 10 得到当前位，t / 10 得到进位。
+
+            - **A c.push_back(t % 10), t = t % 10;**：错误。该代码逻辑与题目要求不符，请逐步推演。
+            - **B c.push_back(t / 10), t = t % 10;**：错误。该代码逻辑与题目要求不符，请逐步推演。
+            - **C c.push_back(t / 10), t = t / 10;**：错误。该代码逻辑与题目要求不符，请逐步推演。
+            - **D c.push_back(t % 10), t = t / 10;**：正确答案。
+
+            **考点：** 高精度
+            `,
             tags: [
                 "客观题",
                 "单选题",
@@ -341,7 +470,18 @@ export const paperData = {
             ],
             answer: 1,
             score: 2,
-            explanation: "代码中节点包含指向前驱和后继的指针，构成双向链表。",
+            explanation: `**答案：B**
+
+            **解析：**
+            代码中节点包含指向前驱和后继的指针，构成双向链表。
+
+            - **A 上述代码构成单向链表**：错误。对链表结构的理解有误，请重新分析节点的指针指向与边界情况。
+            - **B 上述代码构成双向链表**：正确答案。
+            - **C 上述代码构成循环链表**：错误。对链表结构的理解有误，请重新分析节点的指针指向与边界情况。
+            - **D 上述代码构成指针链表**：错误。对链表结构的理解有误，请重新分析节点的指针指向与边界情况。
+
+            **考点：** 链表
+            `,
             tags: [
                 "客观题",
                 "单选题",
@@ -360,7 +500,18 @@ export const paperData = {
             ],
             answer: 1,
             score: 2,
-            explanation: "卫星接收地球站发出的信号并转发，起到中继站作用。",
+            explanation: `**答案：B**
+
+            **解析：**
+            卫星接收地球站发出的信号并转发，起到中继站作用。
+
+            - **A 信息过滤**：错误。选项「信息过滤」与题目考查的知识点不符，请对照正确解析理解。
+            - **B 信号中继**：正确答案。
+            - **C 避免攻击**：错误。选项「避免攻击」与题目考查的知识点不符，请对照正确解析理解。
+            - **D 数据加密**：错误。选项「数据加密」与题目考查的知识点不符，请对照正确解析理解。
+
+            **考点：** C++基础
+            `,
             tags: [
                 "客观题",
                 "单选题",
@@ -379,7 +530,18 @@ export const paperData = {
             ],
             answer: 2,
             score: 2,
-            explanation: "素数判定没有单调性，不能使用二分答案。",
+            explanation: `**答案：C**
+
+            **解析：**
+            素数判定没有单调性，不能使用二分答案。
+
+            - **A 埃⽒筛法**：错误。筛法标记范围或起点有误，请逐步推演标记过程。
+            - **B 线性筛法**：错误。筛法标记范围或起点有误，请逐步推演标记过程。
+            - **C 二分答案**：正确答案。
+            - **D 枚举法**：错误。选项「枚举法」与题目考查的知识点不符，请对照正确解析理解。
+
+            **考点：** 二分查找
+            `,
             tags: [
                 "客观题",
                 "单选题",
@@ -398,7 +560,18 @@ export const paperData = {
             ],
             answer: 1,
             score: 2,
-            explanation: "快速排序每一趟确定一个基准值的位置，但不一定选出全局最大/最小。",
+            explanation: `**答案：B**
+
+            **解析：**
+            快速排序每一趟确定一个基准值的位置，但不一定选出全局最大/最小。
+
+            - **A 选择排序**：错误。不同排序算法的稳定性或复杂度理解有误，请对照正确解析。
+            - **B 快速排序**：正确答案。
+            - **C 堆排序**：错误。不同排序算法的稳定性或复杂度理解有误，请对照正确解析。
+            - **D 冒泡排序**：错误。不同排序算法的稳定性或复杂度理解有误，请对照正确解析。
+
+            **考点：** 快速排序
+            `,
             tags: [
                 "客观题",
                 "单选题",
@@ -415,7 +588,15 @@ export const paperData = {
             ],
             answer: 0,
             score: 2,
-            explanation: "归并排序在最好、平均、最坏情况下都是 $O(n log n)$。",
+            explanation: `**答案：正确**
+
+            **判定依据：**
+            归并排序在最好、平均、最坏情况下都是 $O(n log n)$。
+
+            **易混概念：** 归并排序 O(n log n)，稳定，需要额外 O(n) 空间；核心是分解到最小再合并两个有序序列。
+
+            **考点：** 归并排序
+            `,
             tags: [
                 "客观题",
                 "判断题",
@@ -432,7 +613,17 @@ export const paperData = {
             ],
             answer: 1,
             score: 2,
-            explanation: "虽然实际可以用二分答案，但考纲语境下该题判错，可能因‘二分法’概念界定问题。",
+            explanation: `**答案：错误**
+
+            **判定依据：**
+            虽然实际可以用二分答案，但考纲语境下该题判错，可能因‘二分法’概念界定问题。
+
+            **纠错：** 原命题说法有误。虽然实际可以用二分答案，但考纲语境下该题判错，可能因‘二分法’概念界定问题。
+
+            **易混概念：** 二分查找前提：序列有序。注意边界 while(left<=right) 还是 while(left<right)，mid 用 left+(right-left)/2 防溢出，以及更新左右边界时是否 ±1。
+
+            **考点：** 二分查找
+            `,
             tags: [
                 "客观题",
                 "判断题",
@@ -449,7 +640,17 @@ export const paperData = {
             ],
             answer: 1,
             score: 2,
-            explanation: "原题图中的代码可能缺少基准情况或逻辑有误。",
+            explanation: `**答案：错误**
+
+            **判定依据：**
+            原题图中的代码可能缺少基准情况或逻辑有误。
+
+            **纠错：** 原命题说法有误。原题图中的代码可能缺少基准情况或逻辑有误。
+
+            **易混概念：** 递归三要素：终止条件、递归调用、状态传递。注意递归深度限制，深层递归可能导致栈溢出；尾递归可被优化。
+
+            **考点：** 递归
+            `,
             tags: [
                 "客观题",
                 "判断题",
@@ -466,7 +667,15 @@ export const paperData = {
             ],
             answer: 0,
             score: 2,
-            explanation: "贪心算法的特性就是局部最优选择。",
+            explanation: `**答案：正确**
+
+            **判定依据：**
+            贪心算法的特性就是局部最优选择。
+
+            **易混概念：** 注意区分相关概念的适用范围和边界条件。
+
+            **考点：** C++基础
+            `,
             tags: [
                 "客观题",
                 "判断题",
@@ -483,7 +692,15 @@ export const paperData = {
             ],
             answer: 0,
             score: 2,
-            explanation: "素数分解定理保证了这种分解的存在性。",
+            explanation: `**答案：正确**
+
+            **判定依据：**
+            素数分解定理保证了这种分解的存在性。
+
+            **易混概念：** 埃氏筛：标记每个质数的倍数为合数，从 i*i 开始标记避免重复；欧拉筛每个合数只被最小质因子筛一次，效率更高。
+
+            **考点：** 筛法
+            `,
             tags: [
                 "客观题",
                 "判断题",
@@ -500,7 +717,15 @@ export const paperData = {
             ],
             answer: 0,
             score: 2,
-            explanation: "在数组几乎有序时，插入排序为 $O(N)$，快排退化可能更高。",
+            explanation: `**答案：正确**
+
+            **判定依据：**
+            在数组几乎有序时，插入排序为 $O(N)$，快排退化可能更高。
+
+            **易混概念：** 快速排序平均 O(n log n)，最坏 O(n²)（已有序且选端点为基准）。注意基准选取、partition 的双指针移动条件和边界。
+
+            **考点：** 快速排序
+            `,
             tags: [
                 "客观题",
                 "判断题",
@@ -517,7 +742,17 @@ export const paperData = {
             ],
             answer: 1,
             score: 2,
-            explanation: "进制转换需正确处理取模和除法顺序，图中代码有误。",
+            explanation: `**答案：错误**
+
+            **判定依据：**
+            进制转换需正确处理取模和除法顺序，图中代码有误。
+
+            **纠错：** 原命题说法有误。进制转换需正确处理取模和除法顺序，图中代码有误。
+
+            **易混概念：** 注意区分相关概念的适用范围和边界条件。
+
+            **考点：** C++基础
+            `,
             tags: [
                 "客观题",
                 "判断题",
@@ -534,7 +769,15 @@ export const paperData = {
             ],
             answer: 0,
             score: 2,
-            explanation: "sort 默认升序排序。",
+            explanation: `**答案：正确**
+
+            **判定依据：**
+            sort 默认升序排序。
+
+            **易混概念：** 常见排序复杂度：快排/归并/堆排 O(n log n)，冒泡/选择/插入 O(n²)。稳定：冒泡、插入、归并；不稳定：快排、选择、堆排。
+
+            **考点：** 排序算法
+            `,
             tags: [
                 "客观题",
                 "判断题",
@@ -551,7 +794,15 @@ export const paperData = {
             ],
             answer: 0,
             score: 2,
-            explanation: "只需要遍历到 sqrt(N) 即可找全所有因数。",
+            explanation: `**答案：正确**
+
+            **判定依据：**
+            只需要遍历到 sqrt(N) 即可找全所有因数。
+
+            **易混概念：** 注意区分相关概念的适用范围和边界条件。
+
+            **考点：** C++基础
+            `,
             tags: [
                 "客观题",
                 "判断题",
@@ -568,7 +819,15 @@ export const paperData = {
             ],
             answer: 0,
             score: 2,
-            explanation: "都是 $O(N^2)$。",
+            explanation: `**答案：正确**
+
+            **判定依据：**
+            都是 $O(N^2)$。
+
+            **易混概念：** 链表通过指针串联节点，插入/删除只需改指针指向，无需移动元素；注意空链表、头节点处理和指针丢失（先存后继再改指向）。
+
+            **考点：** 链表
+            `,
             tags: [
                 "客观题",
                 "判断题",
