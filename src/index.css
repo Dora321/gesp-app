@@ -96,6 +96,8 @@
   background: transparent;
   border: 0;
   color: #c9d1d9;
+  tab-size: 4;
+  -moz-tab-size: 4;
 }
 
 /* --- Table --- */
