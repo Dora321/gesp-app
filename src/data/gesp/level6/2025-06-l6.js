@@ -457,7 +457,7 @@ export const paperData = {
         {
             id: 13,
             type: "single",
-            question: `下面代码实现一个二叉排序树的插入函数（没有相同的数值），横线处应填入（ ）。`,
+            question: `下面代码实现一个二叉排序树的插入函数（没有相同的数值），横线处应填入（ ）。 struct TreeNode { int val; TreeNode* left; TreeNode* right; TreeNode(int x): val(x), left(nullptr), right(nullptr) {} }; void insert(TreeNode*& root, int key) { if (!root) { root = new TreeNode(key); return; } _______________________________ } 1 2 3 4 5 6 7 8 9 10 11 12 13 14 if (key < root->val) insert(root->left, key); else if (key > root->val) insert(root->right, key); 1 2 3 4`,
             options: [
                 "insert(root->left, val)",
                 "insert(root->right, val)",
@@ -472,7 +472,7 @@ export const paperData = {
             本题答案已依据试卷标准答案完成录入，可结合题干与选项复盘对应知识点。
 
             - **A insert(root->left, val)**：正确答案。
-            - **B int maxVal = INT_MIN; for (int i = 0; i ...**：错误。该代码逻辑与题目要求不符，请逐步推演。
+            - **B insert(root->right, val)**：错误。
             - **C root->left = new Node(val)**：错误。
             - **D root = root->left**：错误。
 
