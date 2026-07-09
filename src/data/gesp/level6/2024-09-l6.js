@@ -137,9 +137,9 @@ export const paperData = {
             本题答案已依据试卷标准答案完成录入，可结合题干与选项复盘对应知识点。
 
             - **A Line 1**：正确答案。
-            - **B Line 2**：错误。选项「Line 2」与题目考查的知识点不符，请对照正确解析理解。
+            - **B Line 2**：错误。
             - **C Line 3 #include <iostream> using namespa...**：错误。该代码逻辑与题目要求不符，请逐步推演。
-            - **D 没有编译错误**：错误。选项「没有编译错误」与题目考查的知识点不符，请对照正确解析理解。
+            - **D 没有编译错误**：错误。
 
             **考点：** C++基础
             `,
@@ -166,10 +166,10 @@ export const paperData = {
             **解析：**
             本题答案已依据试卷标准答案完成录入，可结合题干与选项复盘对应知识点。
 
-            - **A 5,4,3,6,1,2**：错误。选项「5,4,3,6,1,2」与题目考查的知识点不符，请对照正确解析理解。
-            - **B 4,5,3,1,2,6**：错误。选项「4,5,3,1,2,6」与题目考查的知识点不符，请对照正确解析理解。
+            - **A 5,4,3,6,1,2**：错误。
+            - **B 4,5,3,1,2,6**：错误。
             - **C 3,4,6,5,2,1**：正确答案。
-            - **D 2,3,4,1,5,6**：错误。选项「2,3,4,1,5,6」与题目考查的知识点不符，请对照正确解析理解。
+            - **D 2,3,4,1,5,6**：错误。
 
             **考点：** 栈
             `,
@@ -197,9 +197,9 @@ export const paperData = {
             本题答案已依据试卷标准答案完成录入，可结合题干与选项复盘对应知识点。
 
             - **A top = st.top(); st.pop();**：正确答案。
-            - **B st.pop(); top = st.top();**：错误。选项「st.pop(); top = st.top();」与题目考查的知识点不符，请对照正确解析理解。
-            - **C st.pop(); top = st.front();**：错误。选项「st.pop(); top = st.front();」与题目考查的知识点不符，请对照正确解析理解。
-            - **D top = st.front(); st.pop();**：错误。选项「top = st.front(); st.pop();」与题目考查的知识点不符，请对照正确解析理解。
+            - **B st.pop(); top = st.top();**：错误。
+            - **C st.pop(); top = st.front();**：错误。
+            - **D top = st.front(); st.pop();**：错误。
 
             **考点：** C++基础
             `,
@@ -256,10 +256,10 @@ export const paperData = {
             **解析：**
             本题答案已依据试卷标准答案完成录入，可结合题干与选项复盘对应知识点。
 
-            - **A 4, 4, 1, 3, 2**：错误。选项「4, 4, 1, 3, 2」与题目考查的知识点不符，请对照正确解析理解。
+            - **A 4, 4, 1, 3, 2**：错误。
             - **B 3, 3, 2, 2, 2**：正确答案。
-            - **C 3, 3, 1, 2, 1**：错误。选项「3, 3, 1, 2, 1」与题目考查的知识点不符，请对照正确解析理解。
-            - **D 4, 4, 1, 2, 2**：错误。选项「4, 4, 1, 2, 2」与题目考查的知识点不符，请对照正确解析理解。
+            - **C 3, 3, 1, 2, 1**：错误。
+            - **D 4, 4, 1, 2, 2**：错误。
 
             **考点：** C++基础
             `,
@@ -286,10 +286,10 @@ export const paperData = {
             **解析：**
             本题答案已依据试卷标准答案完成录入，可结合题干与选项复盘对应知识点。
 
-            - **A graycode_list.push_back(\\**：错误。选项「graycode_list.push_back(\」与题目考查的知识点不符，请对照正确解析理解。
+            - **A graycode_list.push_back(\\**：错误。
             - **B graycode_list[j] = \\**：正确答案。
-            - **C graycode_list.push_back(\\**：错误。选项「graycode_list.push_back(\」与题目考查的知识点不符，请对照正确解析理解。
-            - **D graycode_list[j] = \\**：错误。选项「graycode_list[j] = \」与题目考查的知识点不符，请对照正确解析理解。
+            - **C graycode_list.push_back(\\**：错误。
+            - **D graycode_list[j] = \\**：错误。
 
             **考点：** 队列
             `,
@@ -317,9 +317,9 @@ export const paperData = {
             本题答案已依据试卷标准答案完成录入，可结合题干与选项复盘对应知识点。
 
             - **A EDBGFCA**：正确答案。
-            - **B EDGBFCA**：错误。选项「EDGBFCA」与题目考查的知识点不符，请对照正确解析理解。
-            - **C DEBGFCA**：错误。选项「DEBGFCA」与题目考查的知识点不符，请对照正确解析理解。
-            - **D DBEGFCA**：错误。选项「DBEGFCA」与题目考查的知识点不符，请对照正确解析理解。
+            - **B EDGBFCA**：错误。
+            - **C DEBGFCA**：错误。
+            - **D DBEGFCA**：错误。
 
             **考点：** C++基础
             `,
@@ -346,10 +346,10 @@ export const paperData = {
             **解析：**
             本题答案已依据试卷标准答案完成录入，可结合题干与选项复盘对应知识点。
 
-            - **A 8, 18**：错误。选项「8, 18」与题目考查的知识点不符，请对照正确解析理解。
-            - **B 10, 18**：错误。选项「10, 18」与题目考查的知识点不符，请对照正确解析理解。
+            - **A 8, 18**：错误。
+            - **B 10, 18**：错误。
             - **C 8, 19**：正确答案。
-            - **D 10, 19**：错误。选项「10, 19」与题目考查的知识点不符，请对照正确解析理解。
+            - **D 10, 19**：错误。
 
             **考点：** 数组
             `,
@@ -376,10 +376,10 @@ export const paperData = {
             **解析：**
             本题答案已依据试卷标准答案完成录入，可结合题干与选项复盘对应知识点。
 
-            - **A return left_depth+right_depth;**：错误。选项「return left_depth+right_depth;」与题目考查的知识点不符，请对照正确解析理解。
-            - **B return max(left_depth, right_depth);**：错误。选项「return max(left_depth, right_d…」与题目考查的知识点不符，请对照正确解析理解。
+            - **A return left_depth+right_depth;**：错误。
+            - **B return max(left_depth, right_depth);**：错误。
             - **C return max(left_depth, right_depth)+1;**：正确答案。
-            - **D return left_depth+right_depth+1;**：错误。选项「return left_depth+right_depth+…」与题目考查的知识点不符，请对照正确解析理解。
+            - **D return left_depth+right_depth+1;**：错误。
 
             **考点：** C++基础
             `,
@@ -408,8 +408,8 @@ export const paperData = {
 
             - **A int level_size = q.size(); depth++;**：正确答案。
             - **B int level_size = 2; depth++;**：错误。该代码逻辑与题目要求不符，请逐步推演。
-            - **C int level_size = q.size(); depth += leve...**：错误。选项「int level_size = q.size(); dep…」与题目考查的知识点不符，请对照正确解析理解。
-            - **D int level_size = 2; depth += level_size;**：错误。选项「int level_size = 2; depth += l…」与题目考查的知识点不符，请对照正确解析理解。
+            - **C int level_size = q.size(); depth += leve...**：错误。
+            - **D int level_size = 2; depth += level_size;**：错误。
 
             **考点：** C++基础
             `,
@@ -424,11 +424,11 @@ export const paperData = {
             type: "single",
             question: `二叉搜索树中的每个结点，其左子树的所有结点值都小于该结点值，右子树的所有结点值都大于该结点 值。以下代码对给定的整数数组 ( 假设数组中没有数值相等的元素 ) ，构造一个对应的二叉搜索树，横线上应填写（ ） : ———————————————————————— // 在此处填入代码 } 18 19 20 #include <queue> int max_depth_bfs(tree_node* root) { if (root == nullptr) { return 0; // 如果树为空，深度为 0 } queue <tree_node*> q; q.push(root); int depth = 0; // 使用队列进行层序遍历 while (!q.empty()) { ———————————————————————— // 在此处填入代码 for (int i = 0; i < level_size; ++i) { tree_node* node = q.front(); q.pop(); if (node->left) { q.push(node->left); } if (node->right) { q.push(node->right); } } } return depth; } 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27 28 29`,
             options: [
-                "[待补充选项]",
-                "选项B",
-                "选项C",
-                "// 定义二叉树的结点结构 struct tree_node { int val; tree_node* left; tree_node* right; tree_node(int x) : val(x), left(nullptr), right(nullptr) {} }; // 插入结点到二叉搜索树中 tree_node* insert(tree_node* root, int val) { if (root == nullptr) { return new tree_node(val); } ———————————————————————— // 在此处填入代码 return root; } // 根据给定数组构造二叉搜索树 tree_node* constructBST(const int arr[], int size) { tree_node* root = nullptr; for (int i = 0; i < size; ++i) { root = insert(root, arr[i]); } return root; } 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27 28 29 if (val < root->val) root->left = insert(root->left, val); else root->right = insert(root->right, val); 1 2 3 4 if (val > root->val) root->left = insert(root->left, val); else root->right = insert(root->right, val); 1 2 3 4 if (val < root->val) root->left = insert(root, val); else root->right = insert(root, val); 1 2 3 4",
-            ],
+                "int level_size = q.size(); depth++;",
+                "int level_size = q.size();",
+                "depth++;",
+                "int level_size = 1; depth++;",
+],
             answer: 0,
             score: 2,
             explanation: `**答案：A**
@@ -436,9 +436,9 @@ export const paperData = {
             **解析：**
             本题答案已依据试卷标准答案完成录入，可结合题干与选项复盘对应知识点。
 
-            - **A [待补充选项]**：正确答案。
-            - **B 选项B**：错误。选项「选项B」与题目考查的知识点不符，请对照正确解析理解。
-            - **C 选项C**：错误。选项「选项C」与题目考查的知识点不符，请对照正确解析理解。
+            - **A int level_size = q.size(); depth++;**：正确答案。
+            - **B int level_size = q.size();**：错误。
+            - **C depth++;**：错误。
             - **D // 定义二叉树的结点结构 struct tree_node { int val...**：错误。数组下标从 0 开始，请仔细验证下标范围。
 
             **考点：** 队列
@@ -454,11 +454,11 @@ export const paperData = {
             type: "single",
             question: `对上题中的二叉搜素树，当输入数组为 时，构建二叉搜索树，并采用如下代码实现的遍历方式，得到 的输出是（ ）。`,
             options: [
-                "[待补充选项]",
-                "选项B",
-                "选项C",
-                "选项D",
-            ],
+                "3 1 2 5 4 6",
+                "1 2 3 4 5 6",
+                "6 5 4 3 2 1",
+                "1 3 5 2 4 6",
+],
             answer: 1,
             score: 2,
             explanation: `**答案：B**
@@ -466,10 +466,10 @@ export const paperData = {
             **解析：**
             本题答案已依据试卷标准答案完成录入，可结合题干与选项复盘对应知识点。
 
-            - **A [待补充选项]**：错误。选项「[待补充选项]」与题目考查的知识点不符，请对照正确解析理解。
-            - **B 选项B**：正确答案。
-            - **C 选项C**：错误。选项「选项C」与题目考查的知识点不符，请对照正确解析理解。
-            - **D 选项D**：错误。选项「选项D」与题目考查的知识点不符，请对照正确解析理解。
+            - **A 3 1 2 5 4 6**：错误。
+            - **B 1 2 3 4 5 6**：正确答案。
+            - **C 6 5 4 3 2 1**：错误。
+            - **D 1 3 5 2 4 6**：错误。
 
             **考点：** 数组
             `,
@@ -496,10 +496,10 @@ export const paperData = {
             **解析：**
             本题答案已依据试卷标准答案完成录入，可结合题干与选项复盘对应知识点。
 
-            - **A 无法分解的问题**：错误。选项「无法分解的问题」与题目考查的知识点不符，请对照正确解析理解。
+            - **A 无法分解的问题**：错误。
             - **B 可以分解成相互依赖的子问题的问题**：正确答案。
-            - **C 可以通过贪⼼算法解决的问题**：错误。选项「可以通过贪⼼算法解决的问题」与题目考查的知识点不符，请对照正确解析理解。
-            - **D 只能通过递归解决的问题**：错误。选项「只能通过递归解决的问题」与题目考查的知识点不符，请对照正确解析理解。
+            - **C 可以通过贪⼼算法解决的问题**：错误。
+            - **D 只能通过递归解决的问题**：错误。
 
             **考点：** 动态规划
             `,

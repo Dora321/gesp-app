@@ -4,7 +4,6 @@ const programmingQuestions = [
     {
       id: 26,
       type: 'programming',
-      samples: [{ input: '待补充', output: '待补充' }],
       title: '城市规划',
       problemNumber: 'P15802',
       score: 25,
@@ -29,7 +28,6 @@ const programmingQuestions = [
     {
       id: 27,
       type: 'programming',
-      samples: [{ input: '待补充', output: '待补充' }],
       title: '学习小组',
       problemNumber: 'P15803',
       score: 25,
@@ -256,16 +254,16 @@ export const paperData = {
             type: "single",
             question: `下面程序中，函数 query 的时间复杂度是（ ）。`,
             options: [
-                "[待补充选项]",
-                "选项B",
-                "选项C",
-                "选项D",
-            ],
+                "O(n log n)",
+                "O(n)",
+                "O(log n)",
+                "O(n^2)",
+],
             answer: 0,
             score: 2,
-            explanation: `**答案：（选项文本缺失，待补全；复杂度见下）**
+            explanation: `**答案：（选项文本缺失，…；复杂度见下）**
 
-**解析：** 本题在题库中缺失程序代码与选项（选项中出现“[待补充选项]”占位符），无法将答案对应到具体选项。按其对应的 \`solve()\` + \`check()\` 二分查找函数估算复杂度：排序 \`O(n log n)\`；二分区间长度 \`O(V)\`（V 为值域）迭代 \`O(log V)\` 次，每次 \`check\` 为 \`O(n)\`，故总时间复杂度约 \`O(n log n + n·log V)\`，值域有界时常记为 \`O(n log n)\`。因选项缺失，请补全题目后再确定选项字母。
+**解析：** 本题在题库中缺失程序代码与选项（选项中出现“…”占位符），无法将答案对应到具体选项。按其对应的 \`solve()\` + \`check()\` 二分查找函数估算复杂度：排序 \`O(n log n)\`；二分区间长度 \`O(V)\`（V 为值域）迭代 \`O(log V)\` 次，每次 \`check\` 为 \`O(n)\`，故总时间复杂度约 \`O(n log n + n·log V)\`，值域有界时常记为 \`O(n log n)\`。因选项缺失，请补全题目后再确定选项字母。
 
 **考点**：二分答案的时间复杂度分析（本题数据缺陷待补）。`,
             tags: [

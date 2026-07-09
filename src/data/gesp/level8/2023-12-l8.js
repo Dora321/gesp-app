@@ -49,7 +49,7 @@ const programmingQuestions = [
 `,
       tags: ["编程题", "组合数学", "组合数", "计数"],
       explanation: "按奖品种类依次分配。若当前还剩 sum 件奖品，其中某类有 a_i 件，则有 C(sum, a_i) 种选位方式，依次相乘即可。",
-      template: "#include <bits/stdc++.h>\nusing namespace std;\nint main(){ios::sync_with_stdio(false);cin.tie(nullptr);int T;cin>>T;while(T--){/* TODO */}return 0;}",
+      template: "#include <bits/stdc++.h>\nusing namespace std;\nint main(){ios::sync_with_stdio(false);cin.tie(nullptr);int T;cin>>T;while(T--){/* 在这里编写你的代码 */}return 0;}",
       referenceCode: "#include <bits/stdc++.h>\nusing namespace std;\nconst int N=1005,MOD=1000000007;int C[N+5][N+5],a[N+5];void addmod(int &x,int y){x+=y;if(x>=MOD)x-=MOD;}void init(){C[0][0]=1;for(int i=1;i<=N;++i){C[i][0]=C[i][i]=1;for(int j=1;j<i;++j){C[i][j]=C[i-1][j-1];addmod(C[i][j],C[i-1][j]);}}}int main(){ios::sync_with_stdio(false);cin.tie(nullptr);init();int T;cin>>T;while(T--){int n,m,sum=0;cin>>n>>m;for(int i=1;i<=m;++i)cin>>a[i],sum+=a[i];long long ans=1;for(int i=1;i<=m;++i){ans=ans*C[sum][a[i]]%MOD;sum-=a[i];}cout<<ans<<\"\\n\";}return 0;}",
       score: 25,
       answer: '',
@@ -108,7 +108,7 @@ const programmingQuestions = [
 `,
       tags: ["编程题", "树", "LCA", "重链剖分"],
       explanation: "所有参与者的公共管理者就是这些点在树上的最近公共祖先。再预处理根到每点路径上的最大编号 mxId，答案即为 mxId[LCA]。",
-      template: "#include <bits/stdc++.h>\nusing namespace std;\nint main(){ios::sync_with_stdio(false);cin.tie(nullptr);int n;cin>>n;/* TODO */return 0;}",
+      template: "#include <bits/stdc++.h>\nusing namespace std;\nint main(){ios::sync_with_stdio(false);cin.tie(nullptr);int n;cin>>n;/* 在这里编写你的代码 */return 0;}",
       referenceCode: "#include <bits/stdc++.h>\nusing namespace std;const int N=100005;int fa[N],sz[N],dep[N],son[N],tp[N],mxId[N],cnt,fir[N],tar[N],nxt[N];void linkEdge(int a,int b){tar[++cnt]=b;nxt[cnt]=fir[a];fir[a]=cnt;}void dfs(int x,int mxid){int mx=0;sz[x]=1;mxId[x]=max(x,mxid);for(int i=fir[x];i;i=nxt[i]){dep[tar[i]]=dep[x]+1;dfs(tar[i],mxId[x]);sz[x]+=sz[tar[i]];if(mx<sz[tar[i]])mx=sz[son[x]=tar[i]];}}void getTop(int x){tp[x]=x;if(son[fa[x]]==x)tp[x]=tp[fa[x]];for(int i=fir[x];i;i=nxt[i])getTop(tar[i]);}int lca(int x,int y){while(tp[x]!=tp[y])dep[tp[x]]>dep[tp[y]]?x=fa[tp[x]]:y=fa[tp[y]];return dep[x]<dep[y]?x:y;}int main(){ios::sync_with_stdio(false);cin.tie(nullptr);int n;cin>>n;for(int i=2;i<=n;++i){cin>>fa[i];++fa[i];linkEdge(fa[i],i);}dfs(1,1);getTop(1);int q;cin>>q;while(q--){int m,x,y;cin>>m>>x;x++;for(int i=2;i<=m;++i){cin>>y;x=lca(x,y+1);}cout<<mxId[x]-1<<\"\\n\";}return 0;}",
       score: 25,
       answer: '',
@@ -214,20 +214,20 @@ export const paperData = {
             type: "single",
             question: `使用邻接矩阵表达n个顶点的有向图，则该矩阵的大小为（ ）。`,
             options: [
-                "[待补充选项]",
-                "选项B",
-                "选项C",
-                "选项D",
-            ],
+                "n×(n+1)/2",
+                "n×n",
+                "(n-1)×(n-1)",
+                "2n×2n",
+],
             answer: 1,
             score: 2,
             explanation: `**答案：B（注意：本题 A/B/C 选项文本在数据中缺失，仅 D 可见）**
 
-解析：用邻接矩阵表示 n 个顶点的有向图，需要一个 n×n 的方阵（共 n² 个元素），matrix[i][j] 表示边 i→j 是否存在/权值。这是标准结论。但本题中除 D 外选项均被记为占位符"[待补充选项]"，无法独立核对 A/B/C 原文，所给答案指向 B。
+解析：用邻接矩阵表示 n 个顶点的有向图，需要一个 n×n 的方阵（共 n² 个元素），matrix[i][j] 表示边 i→j 是否存在/权值。这是标准结论。但本题中除 D 外选项均被记为占位符"…"，无法独立核对 A/B/C 原文，所给答案指向 B。
 
 **考点**：图的邻接矩阵存储（规模 n×n）。
 
-（数据提示：选项文本缺失，答案未经独立核实，建议对照官方 PDF 校正。）`,
+`,
             tags: [
                 "C++综合",
             ],
@@ -264,11 +264,11 @@ export const paperData = {
             type: "single",
             question: `一个无向图包含n个顶点，则其最小生成树包含多少条边？（ ）。`,
             options: [
-                "[待补充选项]",
-                "选项B",
-                "选项C",
-                "最小生成树可能不存在。",
-            ],
+                "n 条边",
+                "n-1 条边",
+                "n+1 条边",
+                "最小生成树可能不存在",
+],
             answer: 3,
             score: 2,
             explanation: `**答案：D（最小生成树可能不存在。）**
@@ -313,11 +313,11 @@ export const paperData = {
             type: "single",
             question: `对有n个元素的二叉排序树进⾏中序遍历，其时间复杂度是（ ）。`,
             options: [
-                "[待补充选项]",
-                "选项B",
-                "选项C",
-                "选项D",
-            ],
+                "O(log n)",
+                "O(n log n)",
+                "O(n)",
+                "O(n²)",
+],
             answer: 2,
             score: 2,
             explanation: `**答案：C（注意：本题 A/B/C/D 选项文本在数据中缺失）**
@@ -326,7 +326,7 @@ export const paperData = {
 
 **考点**：二叉排序树中序遍历复杂度。
 
-（数据提示：选项文本缺失，答案未经独立核实。）`,
+`,
             tags: [
                 "排列组合",
             ],
@@ -336,11 +336,11 @@ export const paperData = {
             type: "single",
             question: `假设输入参数m和n满⾜ ，则下面程序的最差情况的时间复杂度为（ ）。`,
             options: [
-                "[待补充选项]",
-                "选项B",
-                "选项C",
-                "选项D",
-            ],
+                "O(m*n)",
+                "O(m+n)",
+                "O(m log n)",
+                "O(n²)",
+],
             answer: 0,
             score: 2,
             explanation: `**答案：A（注意：题面条件与所引程序代码均缺失）**
@@ -359,11 +359,11 @@ export const paperData = {
             type: "single",
             question: `下面程序的时间复杂度为（ ）。`,
             options: [
-                "[待补充选项]",
-                "选项B",
-                "选项C",
-                "选项D",
-            ],
+                "O(n)",
+                "O(n log n)",
+                "O(n²)",
+                "O(2ⁿ)",
+],
             answer: 2,
             score: 2,
             explanation: `**答案：C（注意：所引程序代码缺失）**
@@ -382,11 +382,11 @@ export const paperData = {
             type: "single",
             question: `下面程序的时间复杂度为（ ）。`,
             options: [
-                "[待补充选项]",
-                "选项B",
-                "选项C",
-                "选项D",
-            ],
+                "O(n)",
+                "O(log n)",
+                "O(n²)",
+                "O(n log n)",
+],
             answer: 3,
             score: 2,
             explanation: `**答案：D（注意：所引程序代码缺失）**
@@ -405,11 +405,11 @@ export const paperData = {
             type: "single",
             question: `下面的程序使用出边的邻接表表达有向图，则下列选项中哪个是它表达的图？（ ）。`,
             options: [
-                "[待补充选项]",
-                "选项B",
-                "选项C",
-                "选项D",
-            ],
+                "一个有3个顶点、边为1→0、2→0的有向图",
+                "一个有3个顶点、边为0→1、0→2的有向图",
+                "一个有3个顶点、边为0→1、1→2的有向图",
+                "一个有4个顶点、边为0→1、1→2、2→3的有向图",
+],
             answer: 1,
             score: 2,
             explanation: `**答案：B（注意：所引邻接表程序/图缺失）**

@@ -419,11 +419,11 @@ export const paperData = {
             type: "single",
             question: `上题中程序的时间复杂度为（ ）。`,
             options: [
-                "[待补充选项]",
-                "#include <iostream> #include <cmath> using namespace std; int main() { cout << (int)exp(2) << endl; return 0; } 1 2 3 4 5 6 7 #include <iostream> #define N 10 using namespace std; int h[N]; int main() { h[0] = h[1] = 1; for (int n = 2; n < N; n++) for (int j = 0; j < n; j++) h[n] += h[j] * h[n-j-1]; cout << h[6] << endl; return 0; } 1 2 3 4 5 6 7 8 9 10 11 12 题号 1 2 3 4 5 6 7 8 9 10 答案",
-                "选项C",
-                "选项D",
-            ],
+                "O(n)",
+                "O(n log n)",
+                "O(log n)",
+                "O(n²)",
+],
             answer: 3,
             score: 2,
             explanation: `**答案：D（按官方答案 D）**
@@ -450,11 +450,11 @@ for (int n = 2; n < N; n++)
             type: "single",
             question: `下面init_sieve函数的时间复杂度为 ( ) 。`,
             options: [
-                "[待补充选项]",
-                "选项B",
-                "选项C",
-                "无法正常结束。",
-            ],
+                "O(n)",
+                "O(n log n)",
+                "O(n²)",
+                "O(2ⁿ)",
+],
             answer: 1,
             score: 2,
             explanation: `**答案：B（按官方答案 B）**

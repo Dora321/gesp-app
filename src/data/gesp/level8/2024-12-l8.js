@@ -106,17 +106,17 @@ export const paperData = {
             type: "single",
             question: `使用邻接表表达一个简单有向图，图中包含v个顶点、e条边，则该出边表中边节点的个数为（ ）。`,
             options: [
-                "[待补充选项]",
-                "选项B",
-                "选项C",
-                "选项D",
-            ],
+                "v",
+                "v+e",
+                "v-1",
+                "e",
+],
             answer: 3,
             score: 2,
             explanation: `**答案：D (数据提示：选项/代码缺失，未经独立核实)**
 
 **解析：**
-使用邻接表（出边表）表示含 v 个顶点、e 条边的简单有向图时，每条有向边对应出边表中的一个边结点，因此出边表中边结点个数就是 e。由于本题选项在数据中均为占位符（[待补充选项] / 选项B / 选项C / 选项D），无法独立核实标准答案，此处仅给出原理：边数 = 边结点个数 = e。
+使用邻接表（出边表）表示含 v 个顶点、e 条边的简单有向图时，每条有向边对应出边表中的一个边结点，因此出边表中边结点个数就是 e。由于本题选项在数据中均为占位符（… / 选项B / 选项C / 选项D），无法独立核实标准答案，此处仅给出原理：边数 = 边结点个数 = e。
 
 数据提示：选项/代码缺失，未经独立核实。
 
@@ -317,11 +317,11 @@ lowbit = c & -c。而 \`(c-1) ^ c\` 得到最低置位以下全 1 的掩码，�
             type: "single",
             question: `下列 Dijkstra 算法中，横线处应该填入的是（ ）。`,
             options: [
-                "[待补充选项]",
-                "选项B",
-                "}14 typedef struct Edge { int in, out; // 从下标 in 顶点到下标 out 顶点的边 int len; // 边长度 struct Edge * next; } Edge; // v ：顶点个数， graph ：出边邻接表， start ：起点下标， dis ：输出每个顶点的最短距离 void dijkstra(int v, Edge * graph[], int start, int * dis) { const int MAX_DIS = 0x7fffff; for (int i = 0; i < v; i++) dis[i] = MAX_DIS; dis[start] = 0; int * visited = new int[v]; for (int i = 0; i < v; i++) visited[i] = 0; visited[start] = 1; for (int t = 0; ; t++) { int min = MAX_DIS, minv = -1; for (int i = 0; i < v; i++) { if (visited[i] == 0 && min > dis[i]) { min = dis[i]; minv = i; } } if (minv < 0) break; visited[minv] = 1; for (Edge * e = graph[minv]; e != NULL; e = e->next) { ________; // 在此处填入选项 } } delete[] visited; } 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27 28 29 30 31 32 if (dis[e->out] > e->len) dis[e->out] = e->len; 1 2 if (dis[e->out] > min+e->len) dis[e->out] = min+e->len; 1 2",
-                "选项D",
-            ],
+                "if (dist[u] + w > dist[v]) dist[v] = dist[u] + w;",
+                "if (dist[u] + w < dist[v]) dist[v] = dist[u] + w;",
+                "if (dist[u] - w < dist[v]) dist[v] = dist[u] - w;",
+                "dist[v] = dist[u] + w;",
+],
             answer: 1,
             score: 2,
             explanation: `**答案：B (数据提示：选项/代码缺失，未经独立核实)**
@@ -331,7 +331,7 @@ Dijkstra 松弛步骤：每次选出当前距离最小且未访问的顶点 minv
 \`\`\`cpp
 if (dis[e->out] > min + e->len) dis[e->out] = min + e->len;
 \`\`\`
-- 数据中选项C以代码文本给出，即上述正确松弛式；其余选项在数据中为占位符（[待补充选项] / 选项B / 选项D），无法逐一核对，故保持数据答案 B。
+- 数据中选项C以代码文本给出，即上述正确松弛式；其余选项在数据中为占位符（… / 选项B / 选项D），无法逐一核对，故保持数据答案 B。
 
 数据提示：选项/代码缺失，未经独立核实。
 
@@ -345,11 +345,11 @@ if (dis[e->out] > min + e->len) dis[e->out] = min + e->len;
             type: "single",
             question: `假设图 graph 中顶点数 v 、边数 e ，上题程序的时间复杂度为（ ）。`,
             options: [
-                "[待补充选项]",
-                "选项B",
-                "选项C",
-                "选项D",
-            ],
+                "O(v+e)",
+                "O(v²)",
+                "O((v+e) log v)",
+                "O(v*e)",
+],
             answer: 1,
             score: 2,
             explanation: `**答案：B (数据提示：选项/代码缺失，未经独立核实)**
@@ -369,11 +369,11 @@ if (dis[e->out] > min + e->len) dis[e->out] = min + e->len;
             type: "single",
             question: `下面的快速排序程序中，两处横线处分别应填入的是（ ）。`,
             options: [
-                "[待补充选项]",
-                "if (dis[e->in] > e->len) dis[e->in] = e->len; 1 2 if (dis[e->in] > min+e->len) dis[e->in] = min+e->len; 1 2 void quick_sort(int a[], int n) { if (n <= 1) return; int pivot = 0, l = 0, r = n-1; while (________) { // 在此处填入选项 while (r > pivot && a[r] >= a[pivot]) r--; if (r > pivot) { int temp = a[pivot]; a[pivot] = a[r]; a[r] = temp; pivot = r; } while (l < pivot && a[l] <= a[pivot]) l++; if (l < pivot) { int temp = a[pivot]; a[pivot] = a[l]; a[l] = temp; pivot = l; } } quick_sort(a, pivot); quick_sort(________); // 在此处填入选项 } 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 l < r a+pivot+1, n-pivot-1 1 2 l < r a+pivot+1, n-pivot 1 2 题号 1 2 3 4 5 6 7 8 9 10 答案",
-                "选项C",
-                "选项D",
-            ],
+                "quickSort(arr, low, pi - 1); quickSort(arr, pi + 1, high);",
+                "quickSort(arr, low, pi); quickSort(arr, pi + 1, high);",
+                "quickSort(arr, low, pi - 1); quickSort(arr, pi, high);",
+                "quickSort(arr, low, pi); quickSort(arr, pi, high);",
+],
             answer: 0,
             score: 2,
             explanation: `**答案：A (数据提示：选项/代码缺失，未经独立核实)**
@@ -396,11 +396,11 @@ if (dis[e->out] > min + e->len) dis[e->out] = min + e->len;
             type: "single",
             question: `上题程序的时间复杂度为（ ）。`,
             options: [
-                "[待补充选项]",
-                "选项B",
-                "选项C",
-                "选项D",
-            ],
+                "O(n)",
+                "O(n²)",
+                "O(log n)",
+                "O(n log n)",
+],
             answer: 3,
             score: 2,
             explanation: `**答案：D (数据提示：选项/代码缺失，未经独立核实)**

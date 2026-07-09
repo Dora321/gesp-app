@@ -143,10 +143,10 @@ export const paperData = {
             **解析：**
             本题答案已依据试卷标准答案完成录入，可结合题干与选项复盘对应知识点。
 
-            - **A Block* newBlock = new Block(tail->index+...**：错误。选项「Block* newBlock = new Block(ta…」与题目考查的知识点不符，请对照正确解析理解。
+            - **A Block* newBlock = new Block(tail->index+...**：错误。
             - **B Block* newBlock = new Block(tail->index+...**：正确答案。
-            - **C Block* newBlock = new Block(tail->index+...**：错误。选项「Block* newBlock = new Block(ta…」与题目考查的知识点不符，请对照正确解析理解。
-            - **D Block* newBlock = new Block(tail->index+...**：错误。选项「Block* newBlock = new Block(ta…」与题目考查的知识点不符，请对照正确解析理解。
+            - **C Block* newBlock = new Block(tail->index+...**：错误。
+            - **D Block* newBlock = new Block(tail->index+...**：错误。
 
             **考点：** C++基础
             `,
@@ -383,10 +383,10 @@ export const paperData = {
             **解析：**
             本题答案已依据试卷标准答案完成录入，可结合题干与选项复盘对应知识点。
 
-            - **A $O(log n)$**：错误。选项「$O(log n)$」与题目考查的知识点不符，请对照正确解析理解。
-            - **B $O(N)$**：错误。选项「$O(N)$」与题目考查的知识点不符，请对照正确解析理解。
+            - **A $O(log n)$**：错误。
+            - **B $O(N)$**：错误。
             - **C $O(N^2)$**：正确答案。
-            - **D $O(n log n)$**：错误。选项「$O(n log n)$」与题目考查的知识点不符，请对照正确解析理解。
+            - **D $O(n log n)$**：错误。
 
             **考点：** 快速排序
             `,
@@ -414,9 +414,9 @@ export const paperData = {
             本题答案已依据试卷标准答案完成录入，可结合题干与选项复盘对应知识点。
 
             - **A 上述代码逻辑正确**：正确答案。
-            - **B 上述代码逻辑错误，while 循环条件应该用 l <= r**：错误。选项「上述代码逻辑错误，while 循环条件应该用 l <= r」与题目考查的知识点不符，请对照正确解析理解。
-            - **C 上述代码逻辑错误，mid 计算错误**：错误。选项「上述代码逻辑错误，mid 计算错误」与题目考查的知识点不符，请对照正确解析理解。
-            - **D 上述代码逻辑错误，边界条件不对**：错误。选项「上述代码逻辑错误，边界条件不对」与题目考查的知识点不符，请对照正确解析理解。
+            - **B 上述代码逻辑错误，while 循环条件应该用 l <= r**：错误。
+            - **C 上述代码逻辑错误，mid 计算错误**：错误。
+            - **D 上述代码逻辑错误，边界条件不对**：错误。
 
             **考点：** 数组
             `,
@@ -444,9 +444,9 @@ export const paperData = {
             本题答案已依据试卷标准答案完成录入，可结合题干与选项复盘对应知识点。
 
             - **A if (check(L, K, mid)) r = mid; else l = ...**：正确答案。
-            - **B if (check(L, K, mid)) r = mid+1; else l ...**：错误。选项「if (check(L, K, mid)) r = mid+…」与题目考查的知识点不符，请对照正确解析理解。
-            - **C if (check(L, K, mid)) r = mid+1; else l ...**：错误。选项「if (check(L, K, mid)) r = mid+…」与题目考查的知识点不符，请对照正确解析理解。
-            - **D if (check(L, K, mid)) r = mid+1; else l ...**：错误。选项「if (check(L, K, mid)) r = mid+…」与题目考查的知识点不符，请对照正确解析理解。
+            - **B if (check(L, K, mid)) r = mid+1; else l ...**：错误。
+            - **C if (check(L, K, mid)) r = mid+1; else l ...**：错误。
+            - **D if (check(L, K, mid)) r = mid+1; else l ...**：错误。
 
             **考点：** 二分查找
             `,
@@ -504,9 +504,9 @@ export const paperData = {
             本题答案已依据试卷标准答案完成录入，可结合题干与选项复盘对应知识点。
 
             - **A slot[t] = true; totalProfit += task.prof...**：正确答案。
-            - **B slot[t] = false; totalProfit += task.pro...**：错误。选项「slot[t] = false; totalProfit +…」与题目考查的知识点不符，请对照正确解析理解。
-            - **C slot[t] = true; totalProfit = task.profi...**：错误。选项「slot[t] = true; totalProfit = …」与题目考查的知识点不符，请对照正确解析理解。
-            - **D slot[t] = false; totalProfit = task.prof...**：错误。选项「slot[t] = false; totalProfit =…」与题目考查的知识点不符，请对照正确解析理解。
+            - **B slot[t] = false; totalProfit += task.pro...**：错误。
+            - **C slot[t] = true; totalProfit = task.profi...**：错误。
+            - **D slot[t] = false; totalProfit = task.prof...**：错误。
 
             **考点：** 排序算法
             `,
@@ -536,7 +536,7 @@ export const paperData = {
             - **A c.push_back(carry / 10); carry %= 10;**：错误。该代码逻辑与题目要求不符，请逐步推演。
             - **B c.push_back(carry % 10); carry /= 10;**：正确答案。
             - **C c.push_back(carry % 10);**：错误。该代码逻辑与题目要求不符，请逐步推演。
-            - **D c.push_back(carry); carry /= 10;**：错误。选项「c.push_back(carry); carry /= 1…」与题目考查的知识点不符，请对照正确解析理解。
+            - **D c.push_back(carry); carry /= 10;**：错误。
 
             **考点：** 高精度
             `,

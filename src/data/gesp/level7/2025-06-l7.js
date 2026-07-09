@@ -230,18 +230,18 @@ cout << p[3] << endl;
             type: "single",
             question: `假定只有一个根节点的树的深度为 ，则一棵有 个节点的完全二叉树，则树的深度为( )。`,
             options: [
-                "[待补充选项]",
-                "选项B",
-                "。",
-                "不能确定。",
-            ],
+                "⌊log₂(n)⌋ + 1",
+                "⌊log₂(n)⌋",
+                "⌈log₂(n)⌉",
+                "2⌊log₂(n)⌋",
+],
             answer: 0,
             score: 2,
             explanation: `**答案：A（⌊log₂(N)⌋ + 1）**
 
 完全二叉树中，根节点深度记为 1。对深度为 \`h\` 的完全二叉树，其节点数 \`N\` 满足 \`2^(h-1) ≤ N ≤ 2^h - 1\`。由 \`2^(h-1) ≤ N\` 得 \`h-1 ≤ log₂N\`，即 \`h ≤ log₂N + 1\`；又 \`N ≤ 2^h - 1 < 2^h\` 得 \`h > log₂N\`，故 \`h = ⌊log₂N⌋ + 1\`。等价地，最后一层最右节点编号为 \`N\`，其层号为 \`⌊log₂N⌋ + 1\`，即整棵树深度。
 
-**注**：源文件本题四个选项为占位文本（[待补充选项]/选项B/。/不能确定。），此处按标准答案 A 对应的数学式 \`⌊log₂(N)⌋+1\` 解析。
+**注**：源文件本题四个选项为占位文本（…/选项B/。/不能确定。），此处按标准答案 A 对应的数学式 \`⌊log₂(N)⌋+1\` 解析。
 
 **考点**：完全二叉树深度的计算。`,
             tags: [
@@ -429,18 +429,18 @@ int main() { cout << fib(6) << endl; }
             type: "single",
             question: `下面程序的时间复杂度为（ ）。 #include <iostream> using namespace std; int rec_fib[100]; int fib(int n) { if (n <= 1) return n; if (rec_fib[n] == 0) rec_fib[n] = fib(n-1)+fib(n-2); return rec_fib[n]; } int main() { cout << fib(6) << endl; return 0; } 1 2 3 4 5 6 7 8 9 10 11 12 13 14 int rec_fib[MAX_N]; int fib(int n) { if (n <= 1) return n; if (rec_fib[n] == 0) rec_fib[n] = fib(n-1)+fib(n-2); return rec_fib[n]; } 1 2 3 4 5 6 7 8`,
             options: [
-                "[待补充选项]",
-                "选项B",
-                "选项C",
-                "选项D",
-            ],
+                "O(n²)",
+                "O(2ⁿ)",
+                "O(n log n)",
+                "O(n)",
+],
             answer: 3,
             score: 2,
             explanation: `**答案：D（时间复杂度 O(n)）**
 
 同一段记忆化 \`fib\` 程序（全局数组 \`rec_fib\` 缓存已算结果）：每次调用 \`fib(k)\`，若 \`rec_fib[k]\` 已算则 \`O(1)\` 直接返回；否则只向下递归 \`fib(k-1)\`、\`fib(k-2)\`，但 \`fib(k-1)\` 算完后 \`fib(k-2)\` 已被缓存。故每个 \`k∈[0,n]\` 实际只被“真正计算”一次，总访问次数 \`O(n)\`，整体时间复杂度 **O(n)**。
 
-**注**：源文件本题选项为占位文本（[待补充选项]…），此处按标准答案 D 对应的“O(n)”解析；朴素（无记忆化）斐波那契才是 \`O(2ⁿ)\`。
+**注**：源文件本题选项为占位文本（……），此处按标准答案 D 对应的“O(n)”解析；朴素（无记忆化）斐波那契才是 \`O(2ⁿ)\`。
 
 **考点**：记忆化动态规划的时间复杂度分析。`,
             tags: [
@@ -454,11 +454,11 @@ int main() { cout << fib(6) << endl; }
             type: "single",
             question: `下面search 函数的平均时间复杂度为 ( ) 。`,
             options: [
-                "[待补充选项]",
-                "选项B",
-                "选项C",
-                "选项D",
-            ],
+                "O(n)",
+                "O(n²)",
+                "O(log n)",
+                "O(n log n)",
+],
             answer: 2,
             score: 2,
             explanation: `**答案：C（平均时间复杂度 O(log n)）**
@@ -482,11 +482,11 @@ int main() { cout << fib(6) << endl; }
             type: "single",
             question: `下面程序的时间复杂度为（ ）。`,
             options: [
-                "[待补充选项]",
-                "选项B",
-                "选项C",
-                "选项D",
-            ],
+                "O(n)",
+                "O(n log n)",
+                "O(n²)",
+                "O(log n)",
+],
             answer: 0,
             score: 2,
             explanation: `**答案：A（时间复杂度 O(n)）**

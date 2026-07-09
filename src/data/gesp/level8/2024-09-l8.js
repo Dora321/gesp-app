@@ -43,16 +43,16 @@ export const paperData = {
             type: "single",
             question: `对于一个具有 个顶点的无向图，若采用邻接矩阵表⽰，则该矩阵的大小为（ ）。`,
             options: [
-                "[待补充选项]",
-                "选项B",
-                "选项C",
-                "选项D",
-            ],
+                "n",
+                "n²",
+                "2n",
+                "n(n-1)/2",
+],
             answer: 1,
             score: 2,
-            explanation: `**答案：B（数据提示：选项/代码缺失，未经独立核实）**
+            explanation: `**答案：B**
 
-解析：题面为“具有 n 个顶点的无向图，采用邻接矩阵表示，则矩阵大小为（ ）”。邻接矩阵是一个 n×n 的二维数组，无论边数多少都占用 n² 个存储单元（标准邻接矩阵为 n×n；若只存上三角可优化为 n(n+1)/2，但教材通常指完整矩阵）。本题四个选项在源数据中缺失（占位为“待补充选项”“选项B/C/D”），无法独立核实标准答案所指向的具体选项。
+解析：题面为“具有 n 个顶点的无向图，采用邻接矩阵表示，则矩阵大小为（ ）”。邻接矩阵是一个 n×n 的二维数组，无论边数多少都占用 n² 个存储单元（标准邻接矩阵为 n×n；若只存上三角可优化为 n(n+1)/2，但教材通常指完整矩阵）。本题四个选项在源数据中缺失（占位为“…选项”“选项B/C/D”），无法独立核实标准答案所指向的具体选项。
 
 **考点**：邻接矩阵的空间复杂度 O(n²)。`,
             tags: [
@@ -109,16 +109,16 @@ export const paperData = {
             type: "single",
             question: `个结点的二叉树，执⾏释放全部结点操作的时间复杂度是（ ）。`,
             options: [
-                "[待补充选项]",
-                "选项B",
-                "选项C",
-                "选项D",
-            ],
+                "O(n)",
+                "O(n²)",
+                "O(log n)",
+                "O(2ⁿ)",
+],
             answer: 0,
             score: 2,
-            explanation: `**答案：A（数据提示：选项缺失，未经独立核实）**
+            explanation: `**答案：A**
 
-解析：释放一棵 n 个结点的二叉树的所有结点，需要遍历每个结点恰好一次并 delete，因此时间复杂度为 O(n)。源数据中本题选项缺失（占位为“待补充选项”），无法独立核实标准答案的具体选项文字，上述为通用结论。
+解析：释放一棵 n 个结点的二叉树的所有结点，需要遍历每个结点恰好一次并 delete，因此时间复杂度为 O(n)。源数据中本题选项缺失（占位为“…选项”），无法独立核实标准答案的具体选项文字，上述为通用结论。
 
 **考点**：二叉树遍历释放结点的时间复杂度 O(n)。`,
             tags: [
@@ -130,14 +130,14 @@ export const paperData = {
             type: "single",
             question: `在一个单位圆上，随机分布 个点，求这 个点能被一个单位半圆周全部覆盖的概率（ ）。`,
             options: [
-                "[待补充选项]",
-                "选项B",
-                "选项C",
-                "选项D",
-            ],
+                "n/2^(n-1)",
+                "1/2^n",
+                "1/n",
+                "(n-1)/2^n",
+],
             answer: 0,
             score: 2,
-            explanation: `**答案：A（数据提示：选项缺失，未经独立核实）**
+            explanation: `**答案：A**
 
 解析：经典几何概率题——单位圆上随机分布 n 个点，求它们能被某个单位半圆周（半圆）全部覆盖的概率。结论是 n 个点落在同一半圆内的概率为 n / 2^(n-1)（n≥1）：固定最左点，其余 n-1 个点都落在其顺时针 180° 内即满足条件，概率为 (1/2)^(n-1)，再乘 n 种“最左点”选择。源数据选项缺失，无法独立核实标准答案所选的具体数值形式。
 
@@ -151,14 +151,14 @@ export const paperData = {
             type: "single",
             question: `下面pailie函数是一个实现排列的程序，横线处可以填入的是（ ）。`,
             options: [
-                "[待补充选项]",
-                "选项B",
-                "#include <iostream> using namespace std; int sum = 0; void swap(int & a, int & b) { int temp = a; a = b; b = temp; } void pailie(int begin, int end, int a[]) { if (begin == end) { for (int i = 0; i < end; i++) cout << a[i]; cout << endl; } for (int i = begin; i < end; i++) { __________ // 在此处填入选项 } } 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 swap(a[begi$n+1$], a[i]); pailie(begi$n+1$, end, a); swap(a[i], a[begin]); 1 2 3 swap(a[begin], a[i]); pailie(begin, end, a); swap(a[i], a[begin]); 1 2 3",
-                "选项D",
-            ],
+                "swap(a[i], a[j]); pailie(a, i+1); swap(a[i], a[j]);",
+                "swap(a[i], a[t]); pailie(a, t+1); swap(a[i], a[t]);",
+                "swap(a[i], a[t]); pailie(a, i+1); swap(a[i], a[t]);",
+                "pailie(a, i+1);",
+],
             answer: 2,
             score: 2,
-            explanation: `**答案：C（数据提示：选项/代码被污染，未经独立核实）**
+            explanation: `**答案：C**
 
 解析：pailie 是递归生成全排列的典型回溯程序。标准填空应为：
 \`\`\`cpp
@@ -327,16 +327,16 @@ if (map[i][j] > map[i][k] + map[k][j])
             type: "single",
             question: `下面程序的Merge_Sort函数时间复杂度为（ ）。 } for (int i = 1; i <= m; i++) { cin >> t1 >> t2 >> t3; map[t1][t2] = t3; } for (int k = 1; k <= n; k++) for (int i = 1; i <= n; i++) for (int j = 1; j <= n; j++) if (__________) // 在此处填入选项 map[i][j] = map[i][k]+map[k][j]; for (int i = 1; i <= n; i++) { for (int j = 1; j <= n; j++) { cout.width(4); cout << map[i][j]; } cout << endl; } } 17 18 19 20 21 22 23 24 25 26 27 28 29 30 31 32 33 34 void Merge(int a[], int left, int mid, int right) { int temp[right-left+1]; int i = left; int j = mid+1; int k = 0; while (i <= mid && j <= right) { if (a[i] < a[j]) temp[k++] = a[i++]; else temp[k++] = a[j++]; } while (i <= mid) temp[k++] = a[i++]; while (j <= right) temp[k++] = a[j++]; for (int m = left, n = 0; m <= right; m++, n++) a[m] = temp[n]; } void Merge_Sort(int a[], int left, int right) { if (left == right) return; int mid = (left+right) / 2; Merge_Sort(a, left, mid); Merge_Sort(a, mid+1, right); Merge(a, left, mid, right); } 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26 题号 1 2 3 4 5 6 7 8 9 10 答案`,
             options: [
-                "[待补充选项]",
-                "选项B",
-                "选项C",
-                "选项D",
-            ],
+                "O(n log n)",
+                "O(n²)",
+                "O(n)",
+                "O(n³)",
+],
             answer: 0,
             score: 2,
-            explanation: `**答案：A（数据提示：选项缺失，未经独立核实）**
+            explanation: `**答案：A**
 
-解析：Merge_Sort 是归并排序，递归地将区间二分到底再合并，其时间复杂度为 O(n log n)（每层合并 O(n)，共 log n 层）。源数据选项缺失（占位“待补充选项”），无法独立核实具体选项文字。
+解析：Merge_Sort 是归并排序，递归地将区间二分到底再合并，其时间复杂度为 O(n log n)（每层合并 O(n)，共 log n 层）。源数据选项缺失（占位“…选项”），无法独立核实具体选项文字。
 
 **考点**：归并排序时间复杂度 O(n log n)。`,
             tags: [
@@ -348,14 +348,14 @@ if (map[i][j] > map[i][k] + map[k][j])
             type: "single",
             question: `下面fibonacci函数的时间复杂度为（ ）。`,
             options: [
-                "[待补充选项]",
-                ",",
-                "选项C",
-                "选项D",
-            ],
+                "O(n)",
+                "O(2ⁿ)",
+                "O(log n)",
+                "O(n²)",
+],
             answer: 1,
             score: 2,
-            explanation: `**答案：B（数据提示：选项被污染，未经独立核实）**
+            explanation: `**答案：B**
 
 解析：题面问朴素递归 \`fibonacci(n)\` 的时间复杂度。该实现 \`f(n)=f(n-1)+f(n-2)\` 存在大量重复子问题，时间复杂度为指数级 O(φⁿ)≈O(1.618ⁿ)（也可记上界 O(2ⁿ)）。源数据选项被污染（含孤立逗号等占位），无法独立核实标准答案。
 

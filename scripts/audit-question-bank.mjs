@@ -48,7 +48,18 @@ for (const level of levels) {
             cleanContent = cleanContent.replace(/export\s+(const|let|var|default)\s+/g, '$1 ');
             // mock LEVEL*_TAGS 为空对象（够用，只检查 tags 是否存在）
             const mockTags = `const LEVEL${level}_TAGS = new Proxy({}, { get: () => ({}), getOwnPropertyDescriptor: () => ({}) });`;
-            const fn = new Function(`${mockTags}\n${cleanContent}\nreturn typeof paperData !== 'undefined' ? paperData : null;`);
+            // L8 客观题内联，但编程题引用外部 programming.js 的 l8ProgrammingByPaper，需预加载
+            let prelude = mockTags;
+            if (level === 8) {
+                const progPath = path.join(GESP_DIR, 'level8', 'programming.js');
+                if (fs.existsSync(progPath)) {
+                    const pc = fs.readFileSync(progPath, 'utf8')
+                        .replace(/import\s+.*?from\s+['"].*?['"];?/g, '')
+                        .replace(/export\s+(const|let|var)\s+/g, '$1 ');
+                    prelude += `\n${pc}\n`;
+                }
+            }
+            const fn = new Function(`${prelude}\n${cleanContent}\nreturn typeof paperData !== 'undefined' ? paperData : null;`);
             paperData = fn();
             if (!paperData) {
                 paperDetails.push({ paperId, error: 'paperData 未定义' });

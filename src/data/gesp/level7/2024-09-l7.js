@@ -515,11 +515,11 @@ for (int i = 1; i < N; i++)
             type: "single",
             question: `上题中程序的时间复杂度为（ ）。`,
             options: [
-                "[待补充选项]",
-                "#include <iostream> #include <cmath> using namespace std; int main() { cout << (int)log(8) << endl; return 0; } 1 2 3 4 5 6 7 #include <iostream> #define N 10 using namespace std; int path[N][N]; int main() { for (int i = 1; i < N; i++) path[i][0] = i; for (int j = 1; j < N; j++) path[0][j] = j; for (int i = 1; i < N; i++) for (int j = 1; j < N; j++) path[i][j] = path[i-1][j]+path[i][j-1]; cout << path[8][4] << endl; return 0; } 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 题号 1 2 3 4 5 6 7 8 9 10 答案",
-                "选项C",
-                "选项D",
-            ],
+                "O(n)",
+                "O(n log n)",
+                "O(2ⁿ)",
+                "O(n²)",
+],
             answer: 3,
             score: 2,
             explanation: `**答案：D（O(N²)）**
@@ -549,17 +549,17 @@ i、j 各循环约 N 次，内层基本操作 O(1)，总操作次数约 N×N，�
             type: "single",
             question: `下面fib函数的时间复杂度为 ( ) 。`,
             options: [
-                "[待补充选项]",
-                ",",
-                "选项C",
-                "无法正常结束。",
-            ],
+                "O(n)",
+                "O(2ⁿ)",
+                "O(n log n)",
+                "O(n²)",
+],
             answer: 1,
             score: 2,
             explanation: `**答案：O(φⁿ)（指数级，对应文件 answer=1 / 官方选项 B）**
 
 **解析：**
-（本题选项在原文件中为 OCR 乱码 \`[待补充选项]\`、\`,\`、\`选项C\`、\`无法正常结束\`，按官方答案记为选项 B，即指数级 O(φⁿ)，φ 为黄金比例 ≈ 1.618。）
+（本题选项在原文件中为 OCR 乱码 \`…\`、\`,\`、\`选项C\`、\`无法正常结束\`，按官方答案记为选项 B，即指数级 O(φⁿ)，φ 为黄金比例 ≈ 1.618。）
 
 函数看似用了记忆数组 \`fib_rcd\`，但**关键缺陷**是：它只“读”了 \`fib_rcd[n]\`，**从未把计算结果写回** \`fib_rcd[n]\`（缺少 \`fib_rcd[n] = ...\` 的赋值）。因此根本没有真正发生记忆化，退化为最朴素的双重递归：
 

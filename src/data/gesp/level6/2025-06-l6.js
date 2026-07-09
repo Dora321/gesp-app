@@ -111,9 +111,9 @@ export const paperData = {
             **解析：**
             本题答案已依据试卷标准答案完成录入，可结合题干与选项复盘对应知识点。
 
-            - **A 继承**：错误。选项「继承」与题目考查的知识点不符，请对照正确解析理解。
-            - **B 封装**：错误。选项「封装」与题目考查的知识点不符，请对照正确解析理解。
-            - **C 多态**：错误。选项「多态」与题目考查的知识点不符，请对照正确解析理解。
+            - **A 继承**：错误。
+            - **B 封装**：错误。
+            - **C 多态**：错误。
             - **D 链接**：正确答案。
 
             **考点：** C++基础
@@ -142,9 +142,9 @@ export const paperData = {
             本题答案已依据试卷标准答案完成录入，可结合题干与选项复盘对应知识点。
 
             - **A Animal(name) class Animal { public: std:...**：正确答案。
-            - **B super(name)**：错误。选项「super(name)」与题目考查的知识点不符，请对照正确解析理解。
-            - **C Animal::Animal(name)**：错误。选项「Animal::Animal(name)」与题目考查的知识点不符，请对照正确解析理解。
-            - **D Animal()**：错误。选项「Animal()」与题目考查的知识点不符，请对照正确解析理解。
+            - **B super(name)**：错误。
+            - **C Animal::Animal(name)**：错误。
+            - **D Animal()**：错误。
 
             **考点：** C++基础
             `,
@@ -171,10 +171,10 @@ export const paperData = {
             **解析：**
             本题答案已依据试卷标准答案完成录入，可结合题干与选项复盘对应知识点。
 
-            - **A 输出 Animal speaks**：错误。选项「输出 Animal speaks」与题目考查的知识点不符，请对照正确解析理解。
+            - **A 输出 Animal speaks**：错误。
             - **B 输出 Dog barks**：正确答案。
-            - **C 编译错误**：错误。选项「编译错误」与题目考查的知识点不符，请对照正确解析理解。
-            - **D 程序崩溃**：错误。选项「程序崩溃」与题目考查的知识点不符，请对照正确解析理解。
+            - **C 编译错误**：错误。
+            - **D 程序崩溃**：错误。
 
             **考点：** C++基础
             `,
@@ -201,10 +201,10 @@ export const paperData = {
             **解析：**
             本题答案已依据试卷标准答案完成录入，可结合题干与选项复盘对应知识点。
 
-            - **A 1 3**：错误。选项「1 3」与题目考查的知识点不符，请对照正确解析理解。
+            - **A 1 3**：错误。
             - **B 3 1**：正确答案。
-            - **C 3 3**：错误。选项「3 3」与题目考查的知识点不符，请对照正确解析理解。
-            - **D 1 1**：错误。选项「1 1」与题目考查的知识点不符，请对照正确解析理解。
+            - **C 3 3**：错误。
+            - **D 1 1**：错误。
 
             **考点：** 栈
             `,
@@ -261,10 +261,10 @@ export const paperData = {
             **解析：**
             本题答案已依据试卷标准答案完成录入，可结合题干与选项复盘对应知识点。
 
-            - **A 完美二叉树**：错误。选项「完美二叉树」与题目考查的知识点不符，请对照正确解析理解。
+            - **A 完美二叉树**：错误。
             - **B 完全二叉树**：正确答案。
-            - **C 完满二叉树**：错误。选项「完满二叉树」与题目考查的知识点不符，请对照正确解析理解。
-            - **D 平衡二叉树**：错误。选项「平衡二叉树」与题目考查的知识点不符，请对照正确解析理解。
+            - **C 完满二叉树**：错误。
+            - **D 平衡二叉树**：错误。
 
             **考点：** C++基础
             `,
@@ -292,8 +292,8 @@ export const paperData = {
             本题答案已依据试卷标准答案完成录入，可结合题干与选项复盘对应知识点。
 
             - **A stack<int> s; queue<int> q; for (int i =...**：错误。对队列的先进先出特性或循环队列满判断理解有误。
-            - **B 选项B**：错误。选项「选项B」与题目考查的知识点不符，请对照正确解析理解。
-            - **C 选项C**：错误。选项「选项C」与题目考查的知识点不符，请对照正确解析理解。
+            - **B 选项B**：错误。
+            - **C 选项C**：错误。
             - **D 选项D**：正确答案。
 
             **考点：** 数组
@@ -321,9 +321,9 @@ export const paperData = {
             **解析：**
             本题答案已依据试卷标准答案完成录入，可结合题干与选项复盘对应知识点。
 
-            - **A ADFGEHMZ**：错误。选项「ADFGEHMZ」与题目考查的知识点不符，请对照正确解析理解。
-            - **B ADFGHMEZ**：错误。选项「ADFGHMEZ」与题目考查的知识点不符，请对照正确解析理解。
-            - **C AFDGEMZH**：错误。选项「AFDGEMZH」与题目考查的知识点不符，请对照正确解析理解。
+            - **A ADFGEHMZ**：错误。
+            - **B ADFGHMEZ**：错误。
+            - **C AFDGEMZH**：错误。
             - **D AFDHZMEG**：正确答案。
 
             **考点：** C++基础
@@ -339,11 +339,11 @@ export const paperData = {
             type: "single",
             question: `设有字符集 {a, b, c, d, e} ，其出现频率分别为 {5, 8, 12, 15, 20} ，得到的哈夫曼编码为（ ）。`,
             options: [
-                "[待补充选项]",
-                "选项B",
-                "选项C",
-                "选项D",
-            ],
+                "a:010, b:011, c:00, d:10, e:11",
+                "a:00, b:01, c:10, d:110, e:111",
+                "a:000, b:001, c:010, d:011, e:1",
+                "a:0, b:10, c:110, d:1110, e:1111",
+],
             answer: 0,
             score: 2,
             explanation: `**答案：A**
@@ -351,10 +351,10 @@ export const paperData = {
             **解析：**
             本题答案已依据试卷标准答案完成录入，可结合题干与选项复盘对应知识点。
 
-            - **A [待补充选项]**：正确答案。
-            - **B 选项B**：错误。选项「选项B」与题目考查的知识点不符，请对照正确解析理解。
-            - **C 选项C**：错误。选项「选项C」与题目考查的知识点不符，请对照正确解析理解。
-            - **D 选项D**：错误。选项「选项D」与题目考查的知识点不符，请对照正确解析理解。
+            - **A a:010, b:011, c:00, d:10, e:11**：正确答案。
+            - **B a:00, b:01, c:10, d:110, e:111**：错误。
+            - **C a:000, b:001, c:010, d:011, e:1**：错误。
+            - **D a:0, b:10, c:110, d:1110, e:1111**：错误。
 
             **考点：** C++基础
             `,
@@ -384,7 +384,7 @@ export const paperData = {
             - **A 100**：错误。该数值与正确计算结果不符，请重新验算。
             - **B 111**：错误。该数值与正确计算结果不符，请重新验算。
             - **C 110**：正确答案。
-            - **D 001 a: 010 b: 011 c: 00 d: 10 e: 11 1 2 ...**：错误。选项「001 a: 010 b: 011 c: 00 d: 10 …」与题目考查的知识点不符，请对照正确解析理解。
+            - **D 001 a: 010 b: 011 c: 00 d: 10 e: 11 1 2 ...**：错误。
 
             **考点：** C++基础
             `,
@@ -399,11 +399,11 @@ export const paperData = {
             type: "single",
             question: `请将下列 C++ 实现的深度优先搜索（DFS）代码补充完整，横线处应填入（ ）。`,
             options: [
-                "[待补充选项]",
-                "选项B",
-                "选项C",
-                "选项D",
-            ],
+                "!visited[v]",
+                "visited[v]",
+                "adj[u].size() > 0",
+                "v != u",
+],
             answer: 0,
             score: 2,
             explanation: `**答案：A**
@@ -411,10 +411,10 @@ export const paperData = {
             **解析：**
             本题答案已依据试卷标准答案完成录入，可结合题干与选项复盘对应知识点。
 
-            - **A [待补充选项]**：正确答案。
-            - **B 选项B**：错误。选项「选项B」与题目考查的知识点不符，请对照正确解析理解。
-            - **C 选项C**：错误。选项「选项C」与题目考查的知识点不符，请对照正确解析理解。
-            - **D 选项D**：错误。选项「选项D」与题目考查的知识点不符，请对照正确解析理解。
+            - **A !visited[v]**：正确答案。
+            - **B visited[v]**：错误。
+            - **C adj[u].size() > 0**：错误。
+            - **D v != u**：错误。
 
             **考点：** C++基础
             `,
@@ -429,11 +429,11 @@ export const paperData = {
             type: "single",
             question: `给定一个二叉树，返回每一层中最大的节点值，结果以数组形式返回，横线处应填入（ ）。 struct TreeNode { int val; TreeNode* left; TreeNode* right; TreeNode(int x): val(x), left(nullptr), right(nullptr) {} }; void dfs(TreeNode* root, vector<int>& result) { if (root == nullptr) return; __________________________ } 1 2 3 4 5 6 7 8 9 10 11 12 result.push_back(root->val); dfs(root->left); dfs(root->right); 1 2 3 result.push_back(root->left->val); dfs(root->right); dfs(root->left); 1 2 3 result.push_back(root->left->val); dfs(root->left); dfs(root->right); 1 2 3 result.push_back(root->right->val); dfs(root->right); dfs(root->left); 1 2 3 #include <vector> #include <queue> #include <algorithm> struct TreeNode { int val; TreeNode* left; TreeNode* right; TreeNode(int x): val(x), left(nullptr), right(nullptr) {} }; vector<int> largestValues(TreeNode* root) { vector<int> result; if (!root) return result; queue<TreeNode*> q; q.push(root); while (!q.empty()) { int sz = q.size(); 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20`,
             options: [
-                "[待补充选项]",
-                "选项B",
-                "选项C",
-                "选项D",
-            ],
+                "result.push_back(root->val); dfs(root->left); dfs(root->right);",
+                "result.push_back(root->left->val); dfs(root->right); dfs(root->left);",
+                "result.push_back(root->left->val); dfs(root->left); dfs(root->right);",
+                "result.push_back(root->right->val); dfs(root->right); dfs(root->left);",
+],
             answer: 3,
             score: 2,
             explanation: `**答案：D**
@@ -441,10 +441,10 @@ export const paperData = {
             **解析：**
             本题答案已依据试卷标准答案完成录入，可结合题干与选项复盘对应知识点。
 
-            - **A [待补充选项]**：错误。选项「[待补充选项]」与题目考查的知识点不符，请对照正确解析理解。
-            - **B 选项B**：错误。选项「选项B」与题目考查的知识点不符，请对照正确解析理解。
-            - **C 选项C**：错误。选项「选项C」与题目考查的知识点不符，请对照正确解析理解。
-            - **D 选项D**：正确答案。
+            - **A result.push_back(root->val); dfs(root->left); dfs(root->right);**：错误。
+            - **B result.push_back(root->left->val); dfs(root->right); dfs(root->left);**：错误。
+            - **C result.push_back(root->left->val); dfs(root->left); dfs(root->right);**：错误。
+            - **D result.push_back(root->right->val); dfs(root->right); dfs(root->left);**：正确答案。
 
             **考点：** 数组
             `,
@@ -459,11 +459,11 @@ export const paperData = {
             type: "single",
             question: `下面代码实现一个二叉排序树的插入函数（没有相同的数值），横线处应填入（ ）。`,
             options: [
-                "[待补充选项]",
-                "int maxVal = INT_MIN; for (int i = 0; i < sz; ++i) { TreeNode* node; _______________________________ maxVal = max(maxVal, node->val); if (node->left) q.push(node->left); if (node->right) q.push(node->right); } result.push_back(maxVal); } return result; } 21 22 23 24 25 26 27 28 29 30 31 32 33 node = q.end();1 node = q.front();1 q.pop(); node = q.front(); 1 2 node = q.front(); q.pop(); 1 2 struct TreeNode { int val; TreeNode* left; TreeNode* right; TreeNode(int x): val(x), left(nullptr), right(nullptr) {} }; void insert(TreeNode*& root, int key) { if (!root) { root = new TreeNode(key); return; } _______________________________ } 1 2 3 4 5 6 7 8 9 10 11 12 13 14 if (key < root->val) insert(root->left, key); else if (key > root->val) insert(root->right, key); 1 2 3 4 题号 1 2 3 4 5 6 7 8 9 10 答案",
-                "选项C",
-                "选项D",
-            ],
+                "insert(root->left, val)",
+                "insert(root->right, val)",
+                "root->left = new Node(val)",
+                "root = root->left",
+],
             answer: 0,
             score: 2,
             explanation: `**答案：A**
@@ -471,10 +471,10 @@ export const paperData = {
             **解析：**
             本题答案已依据试卷标准答案完成录入，可结合题干与选项复盘对应知识点。
 
-            - **A [待补充选项]**：正确答案。
+            - **A insert(root->left, val)**：正确答案。
             - **B int maxVal = INT_MIN; for (int i = 0; i ...**：错误。该代码逻辑与题目要求不符，请逐步推演。
-            - **C 选项C**：错误。选项「选项C」与题目考查的知识点不符，请对照正确解析理解。
-            - **D 选项D**：错误。选项「选项D」与题目考查的知识点不符，请对照正确解析理解。
+            - **C root->left = new Node(val)**：错误。
+            - **D root = root->left**：错误。
 
             **考点：** C++基础
             `,
@@ -501,10 +501,10 @@ export const paperData = {
             **解析：**
             本题答案已依据试卷标准答案完成录入，可结合题干与选项复盘对应知识点。
 
-            - **A 子问题相互独⽴，不重叠**：错误。选项「子问题相互独⽴，不重叠」与题目考查的知识点不符，请对照正确解析理解。
+            - **A 子问题相互独⽴，不重叠**：错误。
             - **B 问题包含重叠子问题和最优子结构**：正确答案。
-            - **C 只能从底⾄顶迭代求解**：错误。选项「只能从底⾄顶迭代求解」与题目考查的知识点不符，请对照正确解析理解。
-            - **D 必须使用递归实现，不能使用迭代**：错误。选项「必须使用递归实现，不能使用迭代」与题目考查的知识点不符，请对照正确解析理解。
+            - **C 只能从底⾄顶迭代求解**：错误。
+            - **D 必须使用递归实现，不能使用迭代**：错误。
 
             **考点：** 动态规划
             `,
@@ -534,7 +534,7 @@ export const paperData = {
             - **A 该算法不能处理背包容量为 0 的情况**：错误。动态规划的状态或转移方程有误，请检查边界初始化。
             - **B 外层循环 i 遍历背包容量，内层遍历物品**：错误。动态规划的状态或转移方程有误，请检查边界初始化。
             - **C 从大到小遍历 w 是为了避免重复使用同一物品**：正确答案。
-            - **D 这段代码计算的是最小重量而非最大价值**：错误。选项「这段代码计算的是最小重量而非最大价值」与题目考查的知识点不符，请对照正确解析理解。
+            - **D 这段代码计算的是最小重量而非最大价值**：错误。
 
             **考点：** 动态规划
             `,

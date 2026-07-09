@@ -144,9 +144,9 @@ export const paperData = {
             递归方式 fiboA 存在大量重复计算，效率远低于循环方式 fiboB。
 
             - **A fiboA( )用递归方式，fiboB()循环方式**：错误。递归/递推的终止条件或状态传递有误，请检查递归出口和参数变化。
-            - **B fiboA( )更加符合斐波那契数列的数学定义，直观易于理解**：错误。选项「fiboA( )更加符合斐波那契数列的数学定义，直观易于理解」与题目考查的知识点不符，请对照正确解析理解。
+            - **B fiboA( )更加符合斐波那契数列的数学定义，直观易于理解**：错误。
             - **C fiboA( )不仅仅更加符合数学定义，直观易于理解，且因代码量较少执⾏效率更高**：正确答案。
-            - **D fiboB( )虽然代码量有所增加，但其执⾏效率更高**：错误。选项「fiboB( )虽然代码量有所增加，但其执⾏效率更高」与题目考查的知识点不符，请对照正确解析理解。
+            - **D fiboB( )虽然代码量有所增加，但其执⾏效率更高**：错误。
 
             **考点：** 递归
             `,
@@ -173,10 +173,10 @@ export const paperData = {
             **解析：**
             归并排序将区间分为 [s, m] 和 [m+1, t]。
 
-            - **A mergeSort(SList, T2, s, m,len), mergeSor...**：错误。选项「mergeSort(SList, T2, s, m,len)…」与题目考查的知识点不符，请对照正确解析理解。
-            - **B mergeSort(SList, T2, s, $m-1$,len), merg...**：错误。选项「mergeSort(SList, T2, s, $m-1$,…」与题目考查的知识点不符，请对照正确解析理解。
+            - **A mergeSort(SList, T2, s, m,len), mergeSor...**：错误。
+            - **B mergeSort(SList, T2, s, $m-1$,len), merg...**：错误。
             - **C mergeSort(SList, T2, s, m,len), mergeSor...**：正确答案。
-            - **D mergeSort(SList, T2, s, $m-1$,len), merg...**：错误。选项「mergeSort(SList, T2, s, $m-1$,…」与题目考查的知识点不符，请对照正确解析理解。
+            - **D mergeSort(SList, T2, s, $m-1$,len), merg...**：错误。
 
             **考点：** 递归
             `,
@@ -235,8 +235,8 @@ export const paperData = {
 
             - **A isEven(lstA[j]) && !isEven(lstA[j+1])**：错误。该代码逻辑与题目要求不符，请逐步推演。
             - **B !isEven(lstA[j]) && isEven(lstA[j+1])**：正确答案。
-            - **C lstA[j] > lstA[j+1]**：错误。选项「lstA[j] > lstA[j+1]」与题目考查的知识点不符，请对照正确解析理解。
-            - **D lstA[j] < lstA[j+1]**：错误。选项「lstA[j] < lstA[j+1]」与题目考查的知识点不符，请对照正确解析理解。
+            - **C lstA[j] > lstA[j+1]**：错误。
+            - **D lstA[j] < lstA[j+1]**：错误。
 
             **考点：** 排序算法
             `,
@@ -263,9 +263,9 @@ export const paperData = {
             **解析：**
             插入节点时需检查后继节点是否存在，避免空指针解引用。
 
-            - **A if(pHead) {p->next = pHead->next, pHead-...**：错误。选项「if(pHead) {p->next = pHead->ne…」与题目考查的知识点不符，请对照正确解析理解。
+            - **A if(pHead) {p->next = pHead->next, pHead-...**：错误。
             - **B if(pHead->next) {p->next = pHead->next, ...**：正确答案。
-            - **C p->next = pHead->next, pHead->next->prev...**：错误。选项「p->next = pHead->next, pHead->…」与题目考查的知识点不符，请对照正确解析理解。
+            - **C p->next = pHead->next, pHead->next->prev...**：错误。
             - **D 触发异常，不能对空指针进⾏操作。**：错误。指针或内存理解有误，请检查解引用和释放逻辑。
 
             **考点：** 链表
@@ -295,8 +295,8 @@ export const paperData = {
 
             - **A 如果x小于 10 ，rc值也不会超过 20**：正确答案。
             - **B foo可能无限递归**：错误。递归/递推的终止条件或状态传递有误，请检查递归出口和参数变化。
-            - **C foo可以求出 x 和 y 的最大公共质因子**：错误。选项「foo可以求出 x 和 y 的最大公共质因子」与题目考查的知识点不符，请对照正确解析理解。
-            - **D foo能够求出 x 和 y 的最小公倍数**：错误。选项「foo能够求出 x 和 y 的最小公倍数」与题目考查的知识点不符，请对照正确解析理解。
+            - **C foo可以求出 x 和 y 的最大公共质因子**：错误。
+            - **D foo能够求出 x 和 y 的最小公倍数**：错误。
 
             **考点：** 递归
             `,
@@ -323,10 +323,10 @@ export const paperData = {
             **解析：**
             快速排序拼接顺序应为：小于部分+基准值+大于部分。
 
-            - **A qSort(less)+qSort(greater)+(vector<int>)...**：错误。选项「qSort(less)+qSort(greater)+(ve…」与题目考查的知识点不符，请对照正确解析理解。
-            - **B (vector<int>)pivot+(qSort(less)+qSort(gr...**：错误。选项「(vector<int>)pivot+(qSort(less…」与题目考查的知识点不符，请对照正确解析理解。
+            - **A qSort(less)+qSort(greater)+(vector<int>)...**：错误。
+            - **B (vector<int>)pivot+(qSort(less)+qSort(gr...**：错误。
             - **C (qSort(less)+(vector<int>)pivot+qSort(gr...**：正确答案。
-            - **D qSort(less)+pivot+qSort(greater)**：错误。选项「qSort(less)+pivot+qSort(greate…」与题目考查的知识点不符，请对照正确解析理解。
+            - **D qSort(less)+pivot+qSort(greater)**：错误。
 
             **考点：** 快速排序
             `,
@@ -353,10 +353,10 @@ export const paperData = {
             **解析：**
             isPrimeB 通常采用遍历到 sqrt(N) 的优化，比 isPrimeA 遍历到 N/2 更高效。
 
-            - **A isPrimeA()优于isPrimeB()**：错误。选项「isPrimeA()优于isPrimeB()」与题目考查的知识点不符，请对照正确解析理解。
+            - **A isPrimeA()优于isPrimeB()**：错误。
             - **B isPrimeB()绝大多数情况下优于isPrimeA()**：正确答案。
             - **C isPrimeA()的最坏时间复杂度是 O(sqrt(N))**：错误。复杂度分析有误，请重新估算最坏情况时间复杂度。
-            - **D isPrimeA()优于 isPrimeB()**：错误。选项「isPrimeA()优于 isPrimeB()」与题目考查的知识点不符，请对照正确解析理解。
+            - **D isPrimeA()优于 isPrimeB()**：错误。
 
             **考点：** 筛法
             `,
@@ -384,7 +384,7 @@ export const paperData = {
             二分查找不属于动态规划算法。
 
             - **A 代码采用二分法实现有序list的查找**：错误。二分查找的边界或 mid 更新有误，请验证循环条件和指针移动。
-            - **B 代码采用分治算法实现有序list的查找**：错误。选项「代码采用分治算法实现有序list的查找」与题目考查的知识点不符，请对照正确解析理解。
+            - **B 代码采用分治算法实现有序list的查找**：错误。
             - **C 代码采用递归方式实现有序list的查找**：错误。递归/递推的终止条件或状态传递有误，请检查递归出口和参数变化。
             - **D 代码采用动态规划算法实现有序list的查找**：正确答案。
 
@@ -413,9 +413,9 @@ export const paperData = {
             **解析：**
             二分查找的时间复杂度是 $O(log n)$。
 
-            - **A $O(N)$**：错误。选项「$O(N)$」与题目考查的知识点不符，请对照正确解析理解。
+            - **A $O(N)$**：错误。
             - **B $O(log n)$**：正确答案。
-            - **C $O(n log n)$**：错误。选项「$O(n log n)$」与题目考查的知识点不符，请对照正确解析理解。
+            - **C $O(n log n)$**：错误。
             - **D $O(N^2)$**：错误。该代码逻辑与题目要求不符，请逐步推演。
 
             **考点：** 二分查找
@@ -503,10 +503,10 @@ export const paperData = {
             **解析：**
             卫星接收地球站发出的信号并转发，起到中继站作用。
 
-            - **A 信息过滤**：错误。选项「信息过滤」与题目考查的知识点不符，请对照正确解析理解。
+            - **A 信息过滤**：错误。
             - **B 信号中继**：正确答案。
-            - **C 避免攻击**：错误。选项「避免攻击」与题目考查的知识点不符，请对照正确解析理解。
-            - **D 数据加密**：错误。选项「数据加密」与题目考查的知识点不符，请对照正确解析理解。
+            - **C 避免攻击**：错误。
+            - **D 数据加密**：错误。
 
             **考点：** C++基础
             `,
@@ -536,7 +536,7 @@ export const paperData = {
             - **A 埃⽒筛法**：错误。筛法标记范围或起点有误，请逐步推演标记过程。
             - **B 线性筛法**：错误。筛法标记范围或起点有误，请逐步推演标记过程。
             - **C 二分答案**：正确答案。
-            - **D 枚举法**：错误。选项「枚举法」与题目考查的知识点不符，请对照正确解析理解。
+            - **D 枚举法**：错误。
 
             **考点：** 二分查找
             `,
