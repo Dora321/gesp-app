@@ -13,7 +13,6 @@ const programmingQuestions = [
 3 2
 4 3`, output: `3 3 1 3` }
       ],
-      referenceCode: '// 待补充',
       question: `
 # [GESP202503 六级] 树上漫步
 
@@ -55,7 +54,6 @@ const programmingQuestions = [
         { input: `5
 -3 4 -5 1 3`, output: `5` }
       ],
-      referenceCode: '// 待补充',
       question: `
 # [GESP202503 六级] 环线
 

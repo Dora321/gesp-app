@@ -8,7 +8,6 @@ const programmingQuestions = [
         { input: `3 2
 URR`, output: `7` }
       ],
-      referenceCode: '// 待补充',
       question: `
 # [GESP202412 六级] 树上游走
 
@@ -58,7 +57,6 @@ URR`, output: `7` }
 9 0
 1 10000`, output: `40186` }
       ],
-      referenceCode: '// 待补充',
       question: `
 # [GESP202412 六级] 运送物资
 

@@ -21,7 +21,6 @@ const programmingQuestions = [
 -1
 -1` }
       ],
-      referenceCode: '// 待补充',
       question: `
 # [GESP202412 七级] 武器购买
 
@@ -61,7 +60,6 @@ const programmingQuestions = [
 2 5
 1 4`, output: `3` }
       ],
-      referenceCode: '// 待补充',
       question: `
 # [GESP202412 七级] 燃烧
 

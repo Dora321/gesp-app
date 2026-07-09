@@ -12,7 +12,6 @@ const programmingQuestions = [
 4
 -1` }
       ],
-      referenceCode: '// 待补充',
       question: `
 # [GESP202409 五级] 挑战怪物
 
@@ -56,7 +55,6 @@ const programmingQuestions = [
 9 9
 1 -1`, output: `10` }
       ],
-      referenceCode: '// 待补充',
       question: `
 # [GESP202409 五级] 小杨的武器
 

@@ -11,7 +11,6 @@ const programmingQuestions = [
 00011
 00011`, output: `6` }
       ],
-      referenceCode: '// 待补充',
       question: `
 # [GESP202406 五级] 黑白格
 
@@ -53,7 +52,6 @@ const programmingQuestions = [
 1
 0` }
       ],
-      referenceCode: '// 待补充',
       question: `
 # [GESP202406 五级] 小杨的幸运数字
 

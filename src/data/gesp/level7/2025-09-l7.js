@@ -16,7 +16,6 @@ const programmingQuestions = [
 3 1
 6 5`, output: `2` }
       ],
-      referenceCode: '// 待补充',
       question: `
 # [GESP202509 七级] 连通图
 
@@ -59,7 +58,6 @@ const programmingQuestions = [
 1 3
 2 4`, output: `3` }
       ],
-      referenceCode: '// 待补充',
       question: `
 # [GESP202509 七级] 金币收集
 

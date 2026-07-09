@@ -7,7 +7,6 @@ const programmingQuestions = [
       samples: [
         { input: `18`, output: `2` }
       ],
-      referenceCode: '// 待补充',
       question: `
 # [GESP202409 六级] 小杨和整数拆分
 
@@ -47,7 +46,6 @@ const programmingQuestions = [
 1 1 1 2
 1 2 7 10`, output: `-1` }
       ],
-      referenceCode: '// 待补充',
       question: `
 # [GESP202409 六级] 算法学习
 

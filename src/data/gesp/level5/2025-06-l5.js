@@ -10,7 +10,6 @@ const programmingQuestions = [
         { input: `314159 2653589
 27 1828`, output: `1599` }
       ],
-      referenceCode: '// 待补充',
       question: `
 # [GESP202506 五级] 奖品兑换
 
@@ -56,7 +55,6 @@ const programmingQuestions = [
 1
 4` }
       ],
-      referenceCode: '// 待补充',
       question: `
 # [GESP202506 五级] 最大公因数
 

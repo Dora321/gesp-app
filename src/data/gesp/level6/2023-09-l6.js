@@ -23,7 +23,6 @@ const programmingQuestions = [
 5 30
 3 20`, output: `no solution` }
       ],
-      referenceCode: '// 待补充',
       question: `
 # [GESP202309 六级] 小杨买饮料
 
@@ -71,7 +70,6 @@ const programmingQuestions = [
         { input: `6
 0 1 2 3 4 5`, output: `15` }
       ],
-      referenceCode: '// 待补充',
       question: `
 # [GESP202309 六级] 小杨的握手问题
 

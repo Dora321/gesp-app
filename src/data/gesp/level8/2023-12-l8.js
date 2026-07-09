@@ -22,7 +22,6 @@ const programmingQuestions = [
 895031741
 307187590` }
       ],
-      referenceCode: '// 待补充',
       question: `
 # [GESP202312 八级] 奖品分配
 
@@ -80,7 +79,6 @@ const programmingQuestions = [
 1
 0` }
       ],
-      referenceCode: '// 待补充',
       question: `
 # [GESP202312 八级] 大量的工作沟通
 

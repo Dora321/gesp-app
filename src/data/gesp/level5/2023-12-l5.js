@@ -36,7 +36,6 @@ lucky
 lucky 
 lucky` }
       ],
-      referenceCode: '// 待补充',
       question: `
 # [GESP202312 五级] 小杨的幸运数
 
@@ -80,7 +79,6 @@ lucky` }
         { input: `5
 5 6 2 10 13`, output: `8` }
       ],
-      referenceCode: '// 待补充',
       question: `
 # [GESP202312 五级] 烹饪问题
 

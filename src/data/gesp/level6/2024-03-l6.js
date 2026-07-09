@@ -9,7 +9,6 @@ const programmingQuestions = [
         { input: `114 51 4 1`, output: `176` },
         { input: `114514 191 9 810`, output: `384178446` }
       ],
-      referenceCode: '// 待补充',
       question: `
 # [GESP202403 六级] 游戏
 
@@ -53,7 +52,6 @@ const programmingQuestions = [
 1 2 3
 3 2 1`, output: `7` }
       ],
-      referenceCode: '// 待补充',
       question: `
 # [GESP202403 六级] 好斗的牛
 

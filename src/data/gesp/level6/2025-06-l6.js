@@ -10,7 +10,6 @@ const programmingQuestions = [
         { input: `8
 0 2 5 6 4 3 3 4`, output: `12` }
       ],
-      referenceCode: '// 待补充',
       question: `
 # [GESP202506 六级] 学习小组
 
@@ -54,7 +53,6 @@ const programmingQuestions = [
         { input: `1
 120 650`, output: `9` }
       ],
-      referenceCode: '// 待补充',
       question: `
 # [GESP202506 六级] 最大因数
 

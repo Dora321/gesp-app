@@ -14,7 +14,6 @@ const programmingQuestions = [
 3 3 4
 1 3 3` }
       ],
-      referenceCode: '// 待补充',
       question: `
 # [GESP202503 七级] 图上移动
 
@@ -48,7 +47,6 @@ aaaaabb`, output: `9` },
         { input: `9
 babacabab`, output: `2` }
       ],
-      referenceCode: '// 待补充',
       question: `
 # [GESP202503 七级] 等价消除
 

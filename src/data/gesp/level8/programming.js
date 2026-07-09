@@ -3,7 +3,6 @@ export const l8ProgrammingByPaper = {
     {
       type: 'programming', id: 26, title: '最远点对', problemNumber: '2024-06-l8-Q26',
       samples: [{ input: '待补充', output: '待补充' }],
-      referenceCode: '// 待补充',
       score: 25,
       description: '给定一棵 n 个节点的树，每个节点颜色为 0/1。求一对颜色不同的节点之间的最大距离（边数）。保证至少存在一对白黑颜色不同的节点。',
       inputDescription: '第一行一个正整数 n。第二行 n 个整数 c_i，0 表示白色，1 表示黑色。接下来 n-1 行每行两个正整数 u、v，表示树边。',
@@ -17,7 +16,6 @@ export const l8ProgrammingByPaper = {
     {
       type: 'programming', id: 27, title: '空间跳跃', problemNumber: '2024-06-l8-Q27',
       samples: [{ input: '待补充', output: '待补充' }],
-      referenceCode: '// 待补充',
       score: 25,
       description: '平面上有 n 个互不重叠的水平挡板。小杨从某个挡板的左端点出发，可以在挡板上水平移动；走到端点外侧会竖直下落到下方第一个能接住该 x 坐标的位置。水平移动和竖直下落都按长度/高度计时。求从起始挡板 s 到目标挡板 t 的最少耗时；若无法到达则输出 -1。',
       inputDescription: '第一行一个正整数 n。第二行两个正整数 s、t。接下来 n 行每行三个正整数 l_i、r_i、h_i，表示一个挡板。',
@@ -58,7 +56,6 @@ export const l8ProgrammingByPaper = {
     {
       type: 'programming',
       samples: [{ input: '待补充', output: '待补充' }],
-      referenceCode: '// 待补充',
       score: 25,
       id: 26,
       title: '消息查找',
@@ -80,7 +77,6 @@ export const l8ProgrammingByPaper = {
     {
       type: 'programming',
       samples: [{ input: '待补充', output: '待补充' }],
-      referenceCode: '// 待补充',
       score: 25,
       id: 27,
       title: '子图最短路',

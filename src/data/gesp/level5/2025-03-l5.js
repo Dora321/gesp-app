@@ -12,7 +12,6 @@ const programmingQuestions = [
 6 7 9 9
 1 2 10 12`, output: `35` }
       ],
-      referenceCode: '// 待补充',
       question: `
 # [GESP202503 五级] 平均分配
 
@@ -54,7 +53,6 @@ const programmingQuestions = [
 Yes
 No` }
       ],
-      referenceCode: '// 待补充',
       question: `
 # [GESP202503 五级] 原根判断
 

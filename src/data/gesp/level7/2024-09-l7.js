@@ -16,7 +16,6 @@ const programmingQuestions = [
 01?`, output: `4
 2` }
       ],
-      referenceCode: '// 待补充',
       question: `
 # [GESP202409 七级] 矩阵移动
 
@@ -63,7 +62,6 @@ const programmingQuestions = [
 3 5`, output: `Yes
 No` }
       ],
-      referenceCode: '// 待补充',
       question: `
 # [GESP202409 七级] 小杨寻宝
 

@@ -12,7 +12,6 @@ street
 blossoms
 1 1 2 3 5 8 13 21`, output: `8` }
       ],
-      referenceCode: '// 待补充',
       question: `
 # [GESP202509 六级] 划分字符串
 
@@ -61,7 +60,6 @@ blossoms
 6 5 1
 5 1 1`, output: `9` }
       ],
-      referenceCode: '// 待补充',
       question: `
 # [GESP202509 六级] 货物运输
 

@@ -8,7 +8,6 @@ const programmingQuestions = [
         { input: `2 5 2`, output: `9` },
         { input: `100 100 100`, output: `185233` }
       ],
-      referenceCode: '// 待补充',
       question: `
 # [GESP202403 八级] 公倍数问题
 
@@ -53,7 +52,6 @@ const programmingQuestions = [
 0
 2` }
       ],
-      referenceCode: '// 待补充',
       question: `
 # [GESP202403 八级] 接竹竿
 

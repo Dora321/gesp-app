@@ -18,7 +18,6 @@ const programmingQuestions = [
 2
 6` }
       ],
-      referenceCode: '// 待补充',
       question: `
 # [GESP202403 五级] 成绩排序
 
@@ -60,7 +59,6 @@ const programmingQuestions = [
       samples: [
         { input: `10 3`, output: `7` }
       ],
-      referenceCode: '// 待补充',
       question: `
 # [GESP202403 五级] B-smooth 数
 

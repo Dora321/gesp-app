@@ -15,7 +15,6 @@ const programmingQuestions = [
 3 4
 2 4`, output: `2` }
       ],
-      referenceCode: '// 待补充',
       question: `
 # [GESP202512 七级] 城市规划
 
@@ -55,7 +54,6 @@ A 国有 $n$ 座城市，城市之间由 $m$ 条双向道路连接，任意一�
 1 3 2 4 3 5 4 6
 0 2 5 6 4 3 3 4`, output: `21` }
       ],
-      referenceCode: '// 待补充',
       question: `
 # [GESP202512 七级] 学习小组
 

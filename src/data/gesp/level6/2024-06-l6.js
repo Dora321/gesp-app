@@ -10,7 +10,6 @@ const programmingQuestions = [
 13
 dabcabcabcabz`, output: `9` }
       ],
-      referenceCode: '// 待补充',
       question: `
 # [GESP202406 六级] 计算得分
 
@@ -64,7 +63,6 @@ dabcabcabcabz`, output: `9` }
 3
 2`, output: `010000` }
       ],
-      referenceCode: '// 待补充',
       question: `
 # [GESP202406 六级] 二叉树
 

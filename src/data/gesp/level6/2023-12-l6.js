@@ -12,7 +12,6 @@ const programmingQuestions = [
 2 3
 1 0 30 100 30 -1`, output: `101` }
       ],
-      referenceCode: '// 待补充',
       question: `
 # [GESP202312 六级] 闯关游戏
 
@@ -72,7 +71,6 @@ const programmingQuestions = [
 1
 0` }
       ],
-      referenceCode: '// 待补充',
       question: `
 # [GESP202312 六级] 工作沟通
 

@@ -22,7 +22,6 @@ const programmingQuestions = [
 3 5
 4 5`, output: `30` }
       ],
-      referenceCode: '// 待补充',
       question: `
 # [GESP202506 七级] 线图
 
@@ -70,7 +69,6 @@ const programmingQuestions = [
 8 2
 5 7`, output: `2` }
       ],
-      referenceCode: '// 待补充',
       question: `
 # [GESP202506 七级] 调味平衡
 

@@ -7,7 +7,6 @@ const programmingQuestions = [
       samples: [
         { input: `128`, output: `3` }
       ],
-      referenceCode: '// 待补充',
       question: `
 # [GESP202412 五级] 奇妙数字
 
@@ -50,7 +49,6 @@ const programmingQuestions = [
 3 1
 3 2`, output: `1` }
       ],
-      referenceCode: '// 待补充',
       question: `
 # [GESP202412 五级] 武器强化
 

@@ -8,7 +8,6 @@ const programmingQuestions = [
         { input: `6
 1 2 1 3 2 3`, output: `2` }
       ],
-      referenceCode: '// 待补充',
       question: `
 # [GESP202512 五级] 数字移动
 
@@ -52,7 +51,6 @@ const programmingQuestions = [
         { input: `5
 10 6 35 105 42`, output: `8` }
       ],
-      referenceCode: '// 待补充',
       question: `
 # [GESP202512 五级] 相等序列
 

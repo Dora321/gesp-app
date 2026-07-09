@@ -12,7 +12,6 @@ const programmingQuestions = [
 3 4
 3 5`, output: `2` }
       ],
-      referenceCode: '// 待补充',
       question: `
 # [GESP202406 七级] 黑白翻转
 
@@ -49,7 +48,6 @@ const programmingQuestions = [
         { input: `5
 3 2 4 3 2`, output: `2` }
       ],
-      referenceCode: '// 待补充',
       question: `
 # [GESP202406 七级] 区间乘积
 

@@ -12,7 +12,6 @@ const programmingQuestions = [
 1 1 2 2 3 3
 64 16 15 4 3 2 1`, output: `10` }
       ],
-      referenceCode: '// 待补充',
       question: `
 # [GESP202512 六级] 路径覆盖
 
@@ -59,7 +58,6 @@ const programmingQuestions = [
 40 33
 100 99`, output: `110` }
       ],
-      referenceCode: '// 待补充',
       question: `
 # [GESP202512 六级] 道具商店
 
