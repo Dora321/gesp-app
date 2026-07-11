@@ -1,7 +1,7 @@
 import React, { useMemo, useState } from 'react';
 import { AlertTriangle, ClipboardCheck, Search, ShieldCheck } from 'lucide-react';
 import CppL6LessonSupport from '../../../components/CppL6LessonSupport';
-import CppLessonShell, { Callout, CodeBlock, CompareTable, MiniQuiz, StepList } from '../CppLessonShell';
+import CppLessonShell, { Callout, CodeBlock, CompareTable, MasteryCheck, MiniQuiz, StepList } from '../CppLessonShell';
 
 const sections = [
     { id: 1, title: '课程导入', category: '错误分类' },
@@ -68,6 +68,29 @@ const quiz = [
         question: '多态失效先检查什么？',
         answer: 'virtual 和调用方式',
         reason: '没有 virtual，或不用指针/引用，都可能看不到动态绑定效果。',
+    },
+];
+
+const masteryItems = [
+    {
+        label: '能说出 BFS visited 的标记时机。',
+        evidence: '入队时立刻标记，防止同一个点被多个邻居重复加入队列。',
+        retryHint: '回到「搜索易错」的对照表。',
+    },
+    {
+        label: '能检查回溯是否恢复现场。',
+        evidence: '递归返回后 pop_back、used 恢复 false，画递归树检查兄弟分支。',
+        retryHint: '回到错因诊断台的「DFS 回溯漏撤销」。',
+    },
+    {
+        label: '能按清单排查多态失效。',
+        evidence: '父类函数加 virtual、子类加 override、通过指针或引用调用，三样缺一不可。',
+        retryHint: '回到「OOP 易错」的检查清单。',
+    },
+    {
+        label: '能用 DP 四件套定位背包异常。',
+        evidence: '状态含义、初值、转移来源、容量循环方向（0/1 背包一维要倒序）。',
+        retryHint: '回到「DP 易错」的调试表。',
     },
 ];
 
@@ -162,6 +185,11 @@ export default function CppL6Lesson15() {
                             </p>
                         </div>
                         <MiniQuiz items={quiz} />
+                        <MasteryCheck
+                            title="C++ L6-15 易错诊疗离开前检查"
+                            description="六级冲刺靠的是减少高频失误。勾选前先拿自己最近一道搜索或 DP 错题，按检查动作走一遍。"
+                            items={masteryItems}
+                        />
                         <Callout icon={ClipboardCheck} title="课后任务" tone="slate">
                             <ul className="space-y-2">
                                 <li>整理 5 道六级错题，标注搜索/OOP/DP/审题/输出格式。</li>

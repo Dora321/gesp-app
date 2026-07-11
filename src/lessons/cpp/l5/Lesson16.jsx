@@ -1,7 +1,7 @@
 import React, { useMemo, useState } from 'react';
 import { ClipboardCheck, Search, ShieldCheck, Trophy } from 'lucide-react';
 import CppL5LessonSupport from '../../../components/CppL5LessonSupport';
-import CppLessonShell, { Callout, CodeBlock, CompareTable, MiniQuiz, StepList } from '../CppLessonShell';
+import CppLessonShell, { Callout, CodeBlock, CompareTable, MasteryCheck, MiniQuiz, StepList } from '../CppLessonShell';
 
 const sections = [
     { id: 1, title: '课程导入', category: '模拟节奏' },
@@ -73,6 +73,29 @@ const quiz = [
         question: '赛后复盘最重要产物是什么？',
         answer: '下次检查动作',
         reason: '复盘要变成可执行习惯，而不是只知道答案。',
+    },
+];
+
+const masteryItems = [
+    {
+        label: '能说出全卷四阶段的时间安排。',
+        evidence: '前 5 分钟扫题标难度，中段拿稳分，后段冲难题，最后 5 分钟查格式和边界。',
+        retryHint: '回到「考试策略」的阶段表。',
+    },
+    {
+        label: '给每道题设了止损线。',
+        evidence: '卡住 8 到 10 分钟先跳过，不让一道题吞掉整场考试。',
+        retryHint: '回到「时间分配」的建议节奏。',
+    },
+    {
+        label: '能用五级复盘表归类错题。',
+        evidence: '知识点（数论/高精度/链表/二分/贪心/记忆化）加错因（审题/边界/算法选择/实现/复杂度/输出）。',
+        retryHint: '回到「错题复盘」的表格。',
+    },
+    {
+        label: '复盘后能写出下次检查动作。',
+        evidence: '没有产出「下次提交前要检查什么」，这次复盘就还没完成。',
+        retryHint: '回到「复盘标准」。',
     },
 ];
 
@@ -169,6 +192,11 @@ export default function CppL5Lesson16() {
                             </p>
                         </div>
                         <MiniQuiz items={quiz} />
+                        <MasteryCheck
+                            title="C++ L5-16 全真模拟离开前检查"
+                            description="五级收官练的是稳定输出。勾选前先把自己的模拟考时间表写在纸上，对照四个检查点。"
+                            items={masteryItems}
+                        />
                         <Callout icon={ClipboardCheck} title="课后任务" tone="slate">
                             <ul className="space-y-2">
                                 <li>完成一次五级限时模拟，并记录每题用时。</li>

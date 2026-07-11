@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { ClipboardCheck, Clock, FileText, ListChecks, Trophy } from 'lucide-react';
 import CppL2LessonSupport from '../../../components/CppL2LessonSupport';
-import CppLessonShell, { Callout, CodeBlock, CompareTable, MiniQuiz, StepList } from '../CppLessonShell';
+import CppLessonShell, { Callout, CodeBlock, CompareTable, MasteryCheck, MiniQuiz, StepList } from '../CppLessonShell';
 
 const sections = [
     { id: 1, title: '课程导入', category: '模拟考试' },
@@ -62,6 +62,29 @@ const quiz = [
         question: '考后复盘只看分数够吗？',
         answer: '不够',
         reason: '要按知识点和错因分类，才能知道下一轮怎么练。',
+    },
+];
+
+const masteryItems = [
+    {
+        label: '能按模块说出二级的四大考点。',
+        evidence: '分支 switch、嵌套循环、数学取余、数组与模拟。',
+        retryHint: '回到「考点地图」的模块表。',
+    },
+    {
+        label: '能说出考场上的答题顺序。',
+        evidence: '先做熟悉题拿稳分，编程题先过样例，最后查边界和类型。',
+        retryHint: '回到「答题节奏」的五步。',
+    },
+    {
+        label: '知道一道题卡住多久该先跳过。',
+        evidence: '8 到 10 分钟没有推进，先记下卡点跳过，保护整体完成度。',
+        retryHint: '回到「时间提醒」。',
+    },
+    {
+        label: '能用复盘模板归类一道错题。',
+        evidence: '题型、错因、修法、下次检查点，四项都写才算复盘完。',
+        retryHint: '回到「考后复盘」的模板。',
     },
 ];
 
@@ -150,6 +173,11 @@ export default function CppL2Lesson16() {
                             </p>
                         </div>
                         <MiniQuiz items={quiz} />
+                        <MasteryCheck
+                            title="C++ L2-16 全真模拟离开前检查"
+                            description="结课前确认考试流程真的能执行。勾选前先想象一场模拟考，把每一步在脑子里走一遍。"
+                            items={masteryItems}
+                        />
                         <Callout icon={ClipboardCheck} title="二级结课清单" tone="slate">
                             <ul className="space-y-2">
                                 <li>完成一套二级模拟卷，并按模块记录错题。</li>

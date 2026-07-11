@@ -1,7 +1,7 @@
 import React, { useMemo, useState } from 'react';
 import { AlertTriangle, CheckCircle2, ClipboardCheck, ListChecks, Search, Trophy } from 'lucide-react';
 import CppL3LessonSupport from '../../../components/CppL3LessonSupport';
-import CppLessonShell, { Callout, CodeBlock, CompareTable, MiniQuiz, StepList } from '../CppLessonShell';
+import CppLessonShell, { Callout, CodeBlock, CompareTable, MasteryCheck, MiniQuiz, StepList } from '../CppLessonShell';
 
 const sections = [
     { id: 1, title: '课程导入', category: '模拟考' },
@@ -78,6 +78,29 @@ const quiz = [
         question: '模拟题调试时最该输出什么？',
         answer: '每一步状态',
         reason: '对比手算过程，能快速定位从哪一步开始错。',
+    },
+];
+
+const masteryItems = [
+    {
+        label: '能列出三级考前清单的核心模块。',
+        evidence: '进制与补码、位运算、数组字符串、枚举与模拟，每块都要能做题验证。',
+        retryHint: '回到「考前清单」的自测表。',
+    },
+    {
+        label: '能把错题归因到具体类型，而不是「粗心」。',
+        evidence: '边界、初始化、字符范围、模拟顺序、输出格式，五类各对应一个检查动作。',
+        retryHint: '回到「易错题诊疗」的复盘模板。',
+    },
+    {
+        label: '记得字符串 find 没找到时返回什么。',
+        evidence: 'string::npos，不能当成 0——0 表示在开头就找到了。',
+        retryHint: '回到小测第二题。',
+    },
+    {
+        label: '能说出整卷三遍策略。',
+        evidence: '第一遍拿稳分，第二遍攻综合题，最后检查边界、格式和初始化。',
+        retryHint: '回到「整卷策略」的阶段表。',
     },
 ];
 
@@ -179,6 +202,11 @@ export default function CppL3Lesson16() {
                             </p>
                         </div>
                         <MiniQuiz items={quiz} />
+                        <MasteryCheck
+                            title="C++ L3-16 模拟避坑离开前检查"
+                            description="三级收官看的是失分点有没有关掉。勾选前先翻自己最近的 3 道错题，逐条对着检查。"
+                            items={masteryItems}
+                        />
                         <Callout icon={ClipboardCheck} title="课后任务" tone="slate">
                             <ul className="space-y-2">
                                 <li>完成一套 GESP 三级模拟卷，并记录每题耗时。</li>

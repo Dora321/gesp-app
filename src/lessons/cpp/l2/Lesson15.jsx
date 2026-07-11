@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { AlertTriangle, ClipboardCheck, ListChecks, Search, ShieldAlert } from 'lucide-react';
 import CppL2LessonSupport from '../../../components/CppL2LessonSupport';
-import CppLessonShell, { Callout, CodeBlock, CompareTable, MiniQuiz, StepList } from '../CppLessonShell';
+import CppLessonShell, { Callout, CodeBlock, CompareTable, MasteryCheck, MiniQuiz, StepList } from '../CppLessonShell';
 
 const sections = [
     { id: 1, title: '课程导入', category: '错因分类' },
@@ -89,6 +89,29 @@ const quiz = [
         question: '最大值为什么常用 a[0] 初始化？',
         answer: '数据范围更安全',
         reason: '不依赖额外假设，负数数据也能正确处理。',
+    },
+];
+
+const masteryItems = [
+    {
+        label: '能一眼判断循环边界该用 < 还是 <=。',
+        evidence: '遍历下标 0 到 n-1 用 i < n；枚举 1 到 n 用 i <= n。',
+        retryHint: '回到「边界错误」的对照表。',
+    },
+    {
+        label: '能解释整数除法为什么丢小数、怎么修。',
+        evidence: 'sum 和 n 都是 int 时先做整除；乘 1.0 让计算进入浮点。',
+        retryHint: '回到「类型错误」的两段代码对比。',
+    },
+    {
+        label: '能说出最大值为什么用 a[0] 初始化。',
+        evidence: 'mx = 0 在全负数数据下会输出不存在的结果。',
+        retryHint: '回到易错诊疗台的「最大值初始错误」。',
+    },
+    {
+        label: '能按调试流程定位第一步出错的位置。',
+        evidence: '复现样例、手算关键变量、临时输出、找到第一处不同。',
+        retryHint: '回到「调试流程」的五步清单。',
     },
 ];
 
@@ -182,6 +205,11 @@ double avg = 1.0 * sum / n;
                             </p>
                         </div>
                         <MiniQuiz items={quiz} />
+                        <MasteryCheck
+                            title="C++ L2-15 易错诊疗离开前检查"
+                            description="这节课的产出是提交前自查习惯。勾选前先用一道自己的错题过一遍四个检查点。"
+                            items={masteryItems}
+                        />
                         <Callout icon={ClipboardCheck} title="课后任务" tone="slate">
                             <ul className="space-y-2">
                                 <li>整理 5 个自己写错过的循环边界错误。</li>

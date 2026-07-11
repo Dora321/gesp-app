@@ -29,6 +29,7 @@ import {
 } from 'lucide-react';
 import CppL2LessonSupport from '../../../components/CppL2LessonSupport';
 import LegacyCppLessonShell from '../LegacyCppLessonShell';
+import { MasteryCheck } from '../CppLessonShell';
 
 // --- 图标映射 ---
 const Icon = ({ name, size = 24, className = "" }) => {
@@ -127,6 +128,29 @@ const sections = [
     { id: 9, title: "真题挑战 3：易错判断", icon: "help", category: "实战演练" },
     { id: 10, title: "总结回顾：口诀记忆", icon: "book", category: "总结" },
     { id: 11, title: "课后作业：小小观察员", icon: "disk", category: "总结" },
+];
+
+const masteryItems = [
+    {
+        label: '能说出存储器三兄弟的分工。',
+        evidence: '高速缓存最快最小，内存 RAM 负责临时中转，硬盘外存负责长期保存。',
+        retryHint: '回到「存储器三兄弟」。',
+    },
+    {
+        label: '能解释断电后哪些数据会丢。',
+        evidence: 'RAM 断电即忘，没保存的内容会消失；存进硬盘的数据还在。',
+        retryHint: '回到断电模拟器再试一次。',
+    },
+    {
+        label: '能区分 LAN 和 WAN。',
+        evidence: '局域网覆盖家和教室，广域网连接城市和国家，互联网是最大的广域网。',
+        retryHint: '回到「计算机的社交网络」。',
+    },
+    {
+        label: '能说出 IP 和 DNS 各管什么。',
+        evidence: 'IP 是设备的门牌号，DNS 把好记的域名翻译成 IP 地址。',
+        retryHint: '回到「域名系统 DNS」和「门牌号 IP」。',
+    },
 ];
 
 // --- 组件：断电模拟器 (Page 2) ---
@@ -936,6 +960,13 @@ export default function AdvLesson1() {
                                 </p>
                             </div>
                         </div>
+
+                        <MasteryCheck
+                            className="mt-8"
+                            title="C++ L2-1 计算机通识离开前检查"
+                            description="离开前确认存储和网络两条线都能自己讲出来，再进入下节课的字符密码。"
+                            items={masteryItems}
+                        />
 
                         <div className="mt-12 text-center">
                             <button

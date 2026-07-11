@@ -1,7 +1,7 @@
 import React, { useMemo, useState } from 'react';
 import { AlertTriangle, ClipboardCheck, Search, ShieldCheck, Trophy } from 'lucide-react';
 import CppL4LessonSupport from '../../../components/CppL4LessonSupport';
-import CppLessonShell, { Callout, CodeBlock, CompareTable, MiniQuiz, StepList } from '../CppLessonShell';
+import CppLessonShell, { Callout, CodeBlock, CompareTable, MasteryCheck, MiniQuiz, StepList } from '../CppLessonShell';
 
 const sections = [
     { id: 1, title: '课程导入', category: '考前策略' },
@@ -76,6 +76,29 @@ const quiz = [
         question: '错题复盘要记录什么？',
         answer: '错因和修正策略',
         reason: '只记答案没有用，要知道下次如何避免。',
+    },
+];
+
+const masteryItems = [
+    {
+        label: '能说出考场执行顺序的五步。',
+        evidence: '扫题看数据范围、先做熟悉题、综合题先搭框架、卡住保留部分分、最后重测边界。',
+        retryHint: '回到「模拟卷流程」。',
+    },
+    {
+        label: '能背出四级四大高频坑的检查动作。',
+        evidence: '函数传值不改原变量、数组下标越界、比较规则写反、递推初始值漏写。',
+        retryHint: '回到「四级高频坑」的对照表。',
+    },
+    {
+        label: '知道输出格式也是失分点。',
+        evidence: '多空格、少换行、输出顺序和题面不一致，算法对了也会丢分。',
+        retryHint: '回到「输出格式」的提醒。',
+    },
+    {
+        label: '复盘后能产出一句可执行提醒。',
+        evidence: '例如「排序题先手推比较规则，再写代码」。',
+        retryHint: '回到「复盘模板」。',
     },
 ];
 
@@ -174,6 +197,11 @@ export default function CppL4Lesson16() {
                             </p>
                         </div>
                         <MiniQuiz items={quiz} />
+                        <MasteryCheck
+                            title="C++ L4-16 模拟避坑离开前检查"
+                            description="四级收官要把知识变成考场动作。勾选前先把时间表和高频坑清单各口述一遍。"
+                            items={masteryItems}
+                        />
                         <Callout icon={ClipboardCheck} title="课后任务" tone="slate">
                             <ul className="space-y-2">
                                 <li>完成一套四级模拟卷，并记录每题用时。</li>

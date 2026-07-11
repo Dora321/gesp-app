@@ -21,6 +21,7 @@ import {
 } from 'lucide-react';
 import CppL2LessonSupport from '../../../components/CppL2LessonSupport';
 import LegacyCppLessonShell from '../LegacyCppLessonShell';
+import { MasteryCheck } from '../CppLessonShell';
 
 // --- 图标映射 ---
 const Icon = ({ name, size = 24, className = "" }) => {
@@ -53,6 +54,29 @@ const sections = [
     { id: 8, title: "真题实战 2：混合运算", icon: "cpu", category: "实战演练" },
     { id: 9, title: "总结：特工手册", icon: "code", category: "归档" },
     { id: 10, title: "课后挑战：小小加密专家", icon: "binary", category: "归档" },
+];
+
+const masteryItems = [
+    {
+        label: '能背出三个关键 ASCII 座号。',
+        evidence: '字符「0」是 48、「A」是 65、「a」是 97。',
+        retryHint: '回到「记住你的座号」。',
+    },
+    {
+        label: '能用差值 32 做大小写变身。',
+        evidence: '小写 = 大写 + 32，大写 = 小写 - 32。',
+        retryHint: '回到「特工变身术」。',
+    },
+    {
+        label: '能解释字符参与运算时发生什么。',
+        evidence: '字符先变成 ASCII 整数再计算，「A」+ 1 得到 66。',
+        retryHint: '回到「字符排队操」。',
+    },
+    {
+        label: '能判断混合运算的输出类型。',
+        evidence: 'char 和 int 相加结果是 int；想显示字母要转回 char。',
+        retryHint: '回到真题实战的「运算陷阱」。',
+    },
 ];
 
 // --- 组件：电报解密器 (Page 2) ---
@@ -725,6 +749,13 @@ export default function App() {
 
                             <CaseConverterChallenge />
                         </div>
+
+                        <MasteryCheck
+                            className="mt-8"
+                            title="C++ L2-2 字符密码离开前检查"
+                            description="离开前确认座号、变身差值和混合运算都能自己推出来，再进入类型转换。"
+                            items={masteryItems}
+                        />
 
                         <div className="mt-12 text-center">
                             <button

@@ -1,7 +1,7 @@
 import React, { useMemo, useState } from 'react';
 import { BrainCircuit, ClipboardCheck, GitBranch, Route, Search, Target } from 'lucide-react';
 import CppL3LessonSupport from '../../../components/CppL3LessonSupport';
-import CppLessonShell, { Callout, CodeBlock, CompareTable, MiniQuiz, StepList } from '../CppLessonShell';
+import CppLessonShell, { Callout, CodeBlock, CompareTable, MasteryCheck, MiniQuiz, StepList } from '../CppLessonShell';
 
 const sections = [
     { id: 1, title: '课程导入', category: '综合挑战' },
@@ -61,6 +61,29 @@ const quiz = [
         question: '综合题第一步该做什么？',
         answer: '拆输入输出',
         reason: '先明确题目给什么、要什么，再选算法工具。',
+    },
+];
+
+const masteryItems = [
+    {
+        label: '能从题面关键词判断该用什么工具。',
+        evidence: '「出现次数」想计数数组，「所有可能」想枚举，「按规则变化」想模拟，「进制」想转换模板。',
+        retryHint: '回到「题型识别」的关键词表。',
+    },
+    {
+        label: '能把综合题拆成四个盒子。',
+        evidence: '输入是什么、状态怎么存、规则怎么处理、最后输出什么。',
+        retryHint: '回到「拆题流程」的草稿模板。',
+    },
+    {
+        label: '能写出统计最高频字母的三段代码。',
+        evidence: "先遍历计数 cnt[s[i] - 'a']++，再枚举最大值，最后输出字母和次数。",
+        retryHint: '回到「综合样题」逐行读代码。',
+    },
+    {
+        label: '记得并列情况要单独看题目要求。',
+        evidence: '次数相同时，题目可能要字典序最小、最早出现或全部输出。',
+        retryHint: '回到「并列规则要看题目」的提醒。',
     },
 ];
 
@@ -172,6 +195,11 @@ cout << char('a' + best) << " " << cnt[best];`}</CodeBlock>
                             </p>
                         </div>
                         <MiniQuiz items={quiz} />
+                        <MasteryCheck
+                            title="C++ L3-15 综合逻辑离开前检查"
+                            description="综合题考的是工具选择。勾选前先拿一道课后任务题，口头说出「工具 + 状态 + 边界」三句话。"
+                            items={masteryItems}
+                        />
                         <Callout icon={ClipboardCheck} title="课后任务" tone="slate">
                             <ul className="space-y-2">
                                 <li>统计字符串中最高频小写字母，若并列输出字典序最小。</li>

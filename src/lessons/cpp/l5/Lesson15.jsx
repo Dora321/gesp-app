@@ -1,7 +1,7 @@
 import React, { useMemo, useState } from 'react';
 import { ClipboardCheck, ListChecks, Search, Target } from 'lucide-react';
 import CppL5LessonSupport from '../../../components/CppL5LessonSupport';
-import CppLessonShell, { Callout, CodeBlock, CompareTable, MiniQuiz, StepList } from '../CppLessonShell';
+import CppLessonShell, { Callout, CodeBlock, CompareTable, MasteryCheck, MiniQuiz, StepList } from '../CppLessonShell';
 
 const sections = [
     { id: 1, title: '课程导入', category: '题型识别' },
@@ -68,6 +68,29 @@ const quiz = [
         question: '调试时先看哪类数据？',
         answer: '最小和边界',
         reason: 'n=0/1、相等元素、极大值最容易暴露错误。',
+    },
+];
+
+const masteryItems = [
+    {
+        label: '能用读题四问提取题目信息。',
+        evidence: '输入规模多大、要答案还是方案、数据是否有序可分段、有哪些边界。',
+        retryHint: '回到「读题流程」的四问。',
+    },
+    {
+        label: '能把题面信号翻译成算法选择。',
+        evidence: '有序找答案想二分，区间不冲突想贪心，超 long long 想高精度，重复子问题想记忆化。',
+        retryHint: '回到「策略选择」的工具箱表。',
+    },
+    {
+        label: '每题写代码前能先报复杂度。',
+        evidence: '用数据范围反推：n 到 10 万时 O(n²) 通常过不了。',
+        retryHint: '回到题型信号选择器再练几组。',
+    },
+    {
+        label: '能按提交前清单查五类高频错误。',
+        evidence: '下标统一、long long、二分收敛、链表后继、输出格式。',
+        retryHint: '回到「调试清单」。',
     },
 ];
 
@@ -163,6 +186,11 @@ export default function CppL5Lesson15() {
                             </p>
                         </div>
                         <MiniQuiz items={quiz} />
+                        <MasteryCheck
+                            title="C++ L5-15 专项训练离开前检查"
+                            description="专项训练练的是「选择算法」。勾选前先拿一道课后任务题，只写策略和复杂度，不写代码。"
+                            items={masteryItems}
+                        />
                         <Callout icon={ClipboardCheck} title="课后任务" tone="slate">
                             <ul className="space-y-2">
                                 <li>完成 1 道数论、1 道二分、1 道贪心专项题。</li>

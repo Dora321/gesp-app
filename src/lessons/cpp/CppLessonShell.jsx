@@ -1,4 +1,4 @@
-import React, { useEffect, useMemo, useState } from 'react';
+import React, { useEffect, useMemo, useRef, useState } from 'react';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { ArrowRight, CheckCircle2, Flag, HelpCircle, Home, Menu, PlayCircle, Repeat2, RotateCcw, SkipForward, X } from 'lucide-react';
 import { recordLessonMastered, recordLessonVisit } from '../../utils/lessonProgress';
@@ -507,10 +507,17 @@ export function MasteryCheck({
     items = [],
     className = '',
 }) {
+    const location = useLocation();
     const [checked, setChecked] = useState(() => new Set());
     const total = items.length;
     const done = checked.size;
     const ready = total > 0 && done === total;
+
+    useEffect(() => {
+        if (ready) {
+            recordLessonMastered(location.pathname);
+        }
+    }, [location.pathname, ready]);
 
     const toggle = (index) => {
         setChecked((current) => {
@@ -790,34 +797,34 @@ export default function CppLessonShell({
 }) {
     const navigate = useNavigate();
     const location = useLocation();
-    const [activeSection, setActiveSection] = useState(1);
+    const [activeSection, setActiveSection] = useState(sections[0]?.id ?? 1);
     const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+    const scrollRef = useRef(null);
     const color = accentMap[accent] ?? accentMap.blue;
 
     const currentIndex = sections.findIndex((section) => section.id === activeSection);
     const currentSection = sections[currentIndex] || sections[0];
+    const isFirst = currentIndex <= 0;
+    const isLast = currentIndex === sections.length - 1;
+    const firstSectionId = sections[0]?.id ?? 1;
     const activeContent = useMemo(() => childrenBySection[activeSection], [activeSection, childrenBySection]);
 
     useEffect(() => {
-        setActiveSection(1);
+        setActiveSection(firstSectionId);
         setIsMobileMenuOpen(false);
-    }, [lessonNumber]);
+    }, [lessonNumber, firstSectionId]);
 
-    // Learning-status tracking for the course catalog: opening = 学习中,
-    // reaching the last (exit-check) section = 已过关.
+    useEffect(() => {
+        scrollRef.current?.scrollTo({ top: 0 });
+    }, [activeSection]);
+
     useEffect(() => {
         recordLessonVisit(location.pathname);
     }, [location.pathname]);
 
-    useEffect(() => {
-        if (sections.length > 0 && activeSection === sections[sections.length - 1].id) {
-            recordLessonMastered(location.pathname);
-        }
-    }, [activeSection, sections, location.pathname]);
-
     const goPrev = () => {
-        if (activeSection > 1) {
-            setActiveSection(activeSection - 1);
+        if (!isFirst) {
+            setActiveSection(sections[currentIndex - 1].id);
             return;
         }
 
@@ -827,8 +834,8 @@ export default function CppLessonShell({
     };
 
     const goNext = () => {
-        if (activeSection < sections.length) {
-            setActiveSection(activeSection + 1);
+        if (!isLast && currentIndex >= 0) {
+            setActiveSection(sections[currentIndex + 1].id);
             return;
         }
 
@@ -841,12 +848,25 @@ export default function CppLessonShell({
         <div className="flex h-screen overflow-hidden bg-slate-50 font-sans text-slate-800">
             <div className="fixed left-0 top-0 z-50 flex w-full items-center justify-between border-b border-slate-200 bg-white p-4 shadow-sm md:hidden">
                 <h1 className={`text-lg font-black ${color.text}`}>{levelTitle}第 {lessonNumber} 课</h1>
-                <button onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)} aria-label="打开课程目录">
+                <button
+                    onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
+                    aria-label={isMobileMenuOpen ? '关闭课程目录' : '打开课程目录'}
+                    aria-expanded={isMobileMenuOpen}
+                >
                     {isMobileMenuOpen ? <X size={24} /> : <Menu size={24} />}
                 </button>
             </div>
 
-            <aside className={`fixed inset-y-0 left-0 z-50 flex h-full w-72 flex-col border-r border-slate-200 bg-white shadow-lg transition-transform md:relative md:translate-x-0 ${isMobileMenuOpen ? 'translate-x-0' : '-translate-x-full'}`}>
+            {isMobileMenuOpen && (
+                <button
+                    type="button"
+                    aria-label="关闭课程目录遮罩"
+                    className="fixed inset-0 z-40 bg-black/50 md:hidden"
+                    onClick={() => setIsMobileMenuOpen(false)}
+                />
+            )}
+
+            <aside className={`fixed inset-y-0 left-0 z-50 flex h-full w-72 flex-col border-r border-slate-200 bg-white shadow-lg transition-transform md:relative md:visible md:translate-x-0 ${isMobileMenuOpen ? 'visible translate-x-0' : 'invisible -translate-x-full'}`}>
                 <div className="border-b border-slate-100 p-6">
                     <Link to={homePath} className={`inline-flex items-center gap-2 font-black ${color.text}`}>
                         <Home size={16} />
@@ -878,13 +898,13 @@ export default function CppLessonShell({
                         <p className="text-xs font-bold text-slate-500">{currentSection.category} / {currentSection.title}</p>
                     </div>
                     <div className={`hidden rounded-full px-3 py-1 text-xs font-black sm:block ${color.light} ${color.text}`}>
-                        {activeSection}/{sections.length}
+                        {currentIndex + 1}/{sections.length}
                     </div>
                 </header>
 
-                <main className="flex-1 overflow-y-auto">
+                <main ref={scrollRef} className="flex-1 overflow-y-auto">
                     <div className="mx-auto max-w-5xl space-y-8 p-6 sm:p-10">
-                        {activeSection === 1 && (
+                        {isFirst && (
                             <section className="space-y-6">
                                 <div className={`rounded-3xl bg-gradient-to-br ${color.gradient} p-8 text-white shadow-xl`}>
                                     <div className="mb-4 inline-flex rounded-full bg-white/15 px-3 py-1 text-xs font-black uppercase tracking-wider">
@@ -906,27 +926,28 @@ export default function CppLessonShell({
                                 {activeContent}
                             </section>
                         )}
-                        {activeSection !== 1 && (
+                        {!isFirst && (
                             <section className="space-y-6">
                                 {activeContent}
                             </section>
                         )}
-                        {activeSection === sections.length && bottomSupport}
+                        {isLast && bottomSupport}
                     </div>
                 </main>
 
                 <footer className="flex h-20 items-center justify-between border-t border-slate-200 bg-white px-6">
                     <button
                         onClick={goPrev}
-                        className="rounded-lg px-4 py-2 text-sm font-black text-slate-500 transition hover:bg-slate-100 hover:text-blue-700"
+                        disabled={isFirst && !previousPath}
+                        className="rounded-lg px-4 py-2 text-sm font-black text-slate-500 transition hover:bg-slate-100 hover:text-blue-700 disabled:cursor-not-allowed disabled:opacity-40"
                     >
-                        {activeSection === 1 ? '上一课' : '上一节'}
+                        {isFirst ? '上一课' : '上一节'}
                     </button>
                     <button
                         onClick={goNext}
                         className={`inline-flex items-center gap-2 rounded-lg px-6 py-3 text-sm font-black text-white shadow-lg transition hover:brightness-110 ${color.bg} ${color.shadow}`}
                     >
-                        {activeSection === sections.length ? '进入下一课' : '下一节'}
+                        {isLast ? '进入下一课' : '下一节'}
                         <ArrowRight size={16} />
                     </button>
                 </footer>

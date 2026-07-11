@@ -37,7 +37,7 @@ export function recordLessonVisit(path) {
     writeLessonProgress(progress);
 }
 
-// Mark a lesson as passed (reached its exit-check section). Refreshes the
+// Mark a lesson as passed (completed its exit-check). Refreshes the
 // timestamp so a re-completed lesson clears its "建议复习" flag.
 export function recordLessonMastered(path) {
     if (!path) return;

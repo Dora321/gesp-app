@@ -666,8 +666,24 @@ function assertCppPredictCheckKeepsLearningLoop() {
     shell.includes('export function MasteryCheck') &&
       shell.includes('离开前过关检查') &&
       shell.includes('能预测、能改错、能换一个例子再做') &&
-      shell.includes('可以进入下一课'),
+      shell.includes('可以进入下一课') &&
+      shell.includes('if (ready)') &&
+      shell.includes('recordLessonMastered(location.pathname)') &&
+      shell.includes('scrollRef.current?.scrollTo({ top: 0 })'),
     'CppLessonShell should export a reusable MasteryCheck component for lightweight before-next-lesson checks.'
+  );
+}
+
+function assertLegacyCppLessonShellKeepsLearningProgressAccurate() {
+  const shell = read('src/lessons/cpp/LegacyCppLessonShell.jsx');
+
+  assert(
+    shell.includes("import { recordLessonVisit } from '../../utils/lessonProgress'") &&
+      !shell.includes('recordLessonMastered') &&
+      shell.includes('scrollRef.current?.scrollTo({ top: 0 })') &&
+      shell.includes('setActiveSection(sections[currentIndex + 1].id)') &&
+      shell.includes('setActiveSection(sections[currentIndex - 1].id)'),
+    'LegacyCppLessonShell should track visits without granting mastery, reset content scroll, and navigate by section order.'
   );
 }
 
@@ -1042,7 +1058,10 @@ function assertPythonLessonShellKeepsMasteryCheck() {
     shell.includes('export function MasteryCheck') &&
       shell.includes('离开前过关检查') &&
       shell.includes('能解释、能验证、能换一个例子做') &&
-      shell.includes('可以进入下一课'),
+      shell.includes('可以进入下一课') &&
+      shell.includes('if (ready)') &&
+      shell.includes('recordLessonMastered(location.pathname)') &&
+      shell.includes('scrollRef.current?.scrollTo(0, 0)'),
     'PythonLessonShell should export a reusable MasteryCheck component for before-next-lesson checks.'
   );
 }
@@ -1245,7 +1264,7 @@ function assertCppLessonShellSupportsLessonSupport() {
     shell.includes('topSupport = null') &&
       shell.includes('bottomSupport = null') &&
       shell.includes('{topSupport}') &&
-      shell.includes('activeSection === sections.length && bottomSupport'),
+      shell.includes('isLast && bottomSupport'),
     'CppLessonShell should render optional top and bottom lesson support slots.'
   );
 }
@@ -1298,6 +1317,7 @@ async function main() {
   assertLessonNextStepsKeepsErrorDiagnosis();
   assertCppLoopLessonKeepsExecutionTrace();
   assertCppPredictCheckKeepsLearningLoop();
+  assertLegacyCppLessonShellKeepsLearningProgressAccurate();
   assertCppLessonsKeepPredictionChecks();
   assertCppLevel1IntroLessonsKeepMasteryChecks();
   assertCppWhileLessonKeepsDigitTrace();

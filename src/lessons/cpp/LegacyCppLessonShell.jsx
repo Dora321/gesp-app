@@ -1,7 +1,7 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { ArrowRight, Menu, X } from 'lucide-react';
-import { recordLessonMastered, recordLessonVisit } from '../../utils/lessonProgress';
+import { recordLessonVisit } from '../../utils/lessonProgress';
 
 const accentClasses = {
   blue: {
@@ -59,20 +59,20 @@ export default function LegacyCppLessonShell({
   const navigate = useNavigate();
   const location = useLocation();
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
-  const activeSectionMeta = sections.find((section) => section.id === activeSection);
+  const scrollRef = useRef(null);
+  const currentIndex = sections.findIndex((section) => section.id === activeSection);
+  const activeSectionMeta = sections[currentIndex] || sections[0];
+  const isFirst = currentIndex <= 0;
+  const isLast = currentIndex === sections.length - 1;
   const theme = accentClasses[accent] || accentClasses.blue;
 
-  // Learning-status tracking for the course catalog: opening = 学习中,
-  // reaching the last (exit-check) section = 已过关. Mirrors CppLessonShell.
   useEffect(() => {
     recordLessonVisit(location.pathname);
   }, [location.pathname]);
 
   useEffect(() => {
-    if (sections.length > 0 && activeSection === sections[sections.length - 1].id) {
-      recordLessonMastered(location.pathname);
-    }
-  }, [activeSection, sections, location.pathname]);
+    scrollRef.current?.scrollTo({ top: 0 });
+  }, [activeSection]);
 
   const goToSection = (sectionId) => {
     setActiveSection(sectionId);
@@ -80,8 +80,8 @@ export default function LegacyCppLessonShell({
   };
 
   const nextSection = () => {
-    if (activeSection < sections.length) {
-      setActiveSection(activeSection + 1);
+    if (!isLast && currentIndex >= 0) {
+      setActiveSection(sections[currentIndex + 1].id);
       return;
     }
 
@@ -91,8 +91,8 @@ export default function LegacyCppLessonShell({
   };
 
   const prevSection = () => {
-    if (activeSection > 1) {
-      setActiveSection(activeSection - 1);
+    if (!isFirst) {
+      setActiveSection(sections[currentIndex - 1].id);
     }
   };
 
@@ -126,7 +126,7 @@ export default function LegacyCppLessonShell({
       {isMobileMenuOpen && (
         <button
           type="button"
-          aria-label="关闭课程目录"
+          aria-label="关闭课程目录遮罩"
           className="fixed inset-0 bg-black/50 z-40 md:hidden"
           onClick={() => setIsMobileMenuOpen(false)}
         />
@@ -134,7 +134,7 @@ export default function LegacyCppLessonShell({
 
       <aside
         className={`fixed inset-y-0 left-0 z-50 w-64 bg-white border-r border-slate-200 flex flex-col h-full shadow-lg transition-transform duration-300 md:relative md:translate-x-0 ${
-          isMobileMenuOpen ? 'translate-x-0' : '-translate-x-full'
+          isMobileMenuOpen ? 'visible translate-x-0' : 'invisible -translate-x-full md:visible'
         }`}
       >
         <div className="p-6 border-b border-slate-100 bg-gradient-to-br from-blue-50/50 to-white/50 backdrop-blur-sm">
@@ -202,17 +202,17 @@ export default function LegacyCppLessonShell({
             <div className="w-32 h-2 bg-gray-100 rounded-full overflow-hidden mt-2">
               <div
                 className={`h-full ${theme.progress} transition-all duration-500 ease-out`}
-                style={{ width: `${(activeSection / sections.length) * 100}%` }}
+                style={{ width: `${((currentIndex + 1) / sections.length) * 100}%` }}
               />
             </div>
           </div>
         </header>
 
-        <main className="flex-1 overflow-y-auto p-8 z-0">
+        <main ref={scrollRef} className="flex-1 overflow-y-auto p-8 z-0">
           <div className="max-w-4xl mx-auto pb-12">
-            {activeSection === 1 && topSupport}
+            {isFirst && topSupport}
             {children}
-            {activeSection === sections.length && bottomSupport}
+            {isLast && bottomSupport}
           </div>
         </main>
 
@@ -220,9 +220,9 @@ export default function LegacyCppLessonShell({
           <button
             type="button"
             onClick={prevSection}
-            disabled={activeSection === 1}
+            disabled={isFirst}
             className={`px-5 py-2.5 rounded-lg flex items-center gap-2 font-bold transition-all ${
-              activeSection === 1 ? 'text-gray-300 cursor-not-allowed' : 'text-gray-600 hover:bg-gray-100 hover:shadow-sm'
+              isFirst ? 'text-gray-300 cursor-not-allowed' : 'text-gray-600 hover:bg-gray-100 hover:shadow-sm'
             }`}
           >
             <ArrowRight className="rotate-180" size={18} /> 上一步
@@ -232,12 +232,12 @@ export default function LegacyCppLessonShell({
             type="button"
             onClick={nextSection}
             className={`px-6 py-2.5 rounded-lg flex items-center gap-2 font-bold transition-all shadow-sm ${
-              activeSection === sections.length
+              isLast
                 ? 'bg-green-600 text-white hover:bg-green-700 shadow-sm'
                 : theme.next
             }`}
           >
-            {activeSection === sections.length ? '下一课' : '下一步'} <ArrowRight size={18} color="white" />
+            {isLast ? '下一课' : '下一步'} <ArrowRight size={18} color="white" />
           </button>
         </footer>
       </div>

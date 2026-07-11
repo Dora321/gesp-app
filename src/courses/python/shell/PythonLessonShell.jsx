@@ -147,12 +147,19 @@ export function MasteryCheck({
     className = '',
     theme = 'light',
 }) {
+    const location = useLocation();
     const color = getAccent(accent);
     const isDark = theme === 'dark';
     const [checked, setChecked] = useState(() => new Set());
     const total = items.length;
     const done = checked.size;
     const ready = total > 0 && done === total;
+
+    useEffect(() => {
+        if (ready) {
+            recordLessonMastered(location.pathname);
+        }
+    }, [location.pathname, ready]);
 
     const toggle = (index) => {
         setChecked((current) => {
@@ -422,17 +429,9 @@ export default function PythonLessonShell({
         scrollRef.current?.scrollTo(0, 0);
     }, [activeSection]);
 
-    // Learning-status tracking for the course catalog: opening = 学习中,
-    // reaching the last (小结与衔接) section = 已过关.
     useEffect(() => {
         recordLessonVisit(location.pathname);
     }, [location.pathname]);
-
-    useEffect(() => {
-        if (isLast) {
-            recordLessonMastered(location.pathname);
-        }
-    }, [isLast, location.pathname]);
 
     const goPrev = () => {
         if (!isFirst) { setActiveSection(sections[currentIndex - 1].id); return; }
@@ -450,7 +449,7 @@ export default function PythonLessonShell({
                 <div className={`text-lg font-black ${color.text}`}>{lessonCode}：{lessonTitle}</div>
                 <button
                     onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-                    aria-label="打开课程目录"
+                    aria-label={isMobileMenuOpen ? '关闭课程目录' : '打开课程目录'}
                     aria-expanded={isMobileMenuOpen}
                     className="inline-flex h-11 w-11 shrink-0 items-center justify-center rounded-lg"
                 >
@@ -458,8 +457,17 @@ export default function PythonLessonShell({
                 </button>
             </div>
 
+            {isMobileMenuOpen && (
+                <button
+                    type="button"
+                    aria-label="关闭课程目录遮罩"
+                    className="fixed inset-0 z-40 bg-black/50 md:hidden"
+                    onClick={() => setIsMobileMenuOpen(false)}
+                />
+            )}
+
             {/* 侧边栏 */}
-            <aside className={`fixed inset-y-0 left-0 z-50 flex h-full min-h-0 w-72 flex-col border-r ${t.aside} shadow-lg transition-transform md:relative md:translate-x-0 ${isMobileMenuOpen ? 'translate-x-0' : '-translate-x-full'}`}>
+            <aside className={`fixed inset-y-0 left-0 z-50 flex h-full min-h-0 w-72 flex-col border-r ${t.aside} shadow-lg transition-transform md:relative md:visible md:translate-x-0 ${isMobileMenuOpen ? 'visible translate-x-0' : 'invisible -translate-x-full'}`}>
                 <div className={`border-b ${t.divider} p-6`}>
                     <Link to={homePath} className={`inline-flex min-h-11 items-center gap-2 rounded-lg px-2 text-sm font-black ${color.text}`}>
                         <Home size={16} />

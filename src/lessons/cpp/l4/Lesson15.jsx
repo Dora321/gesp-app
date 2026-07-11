@@ -1,7 +1,7 @@
 import React, { useMemo, useState } from 'react';
 import { Calculator, ClipboardCheck, ListChecks, Search, Target } from 'lucide-react';
 import CppL4LessonSupport from '../../../components/CppL4LessonSupport';
-import CppLessonShell, { Callout, CodeBlock, CompareTable, MiniQuiz, StepList } from '../CppLessonShell';
+import CppLessonShell, { Callout, CodeBlock, CompareTable, MasteryCheck, MiniQuiz, StepList } from '../CppLessonShell';
 
 const sections = [
     { id: 1, title: '课程导入', category: '综合拆题' },
@@ -74,6 +74,29 @@ const quiz = [
         question: '排序规则复杂时应该先写什么？',
         answer: '比较规则',
         reason: '先用自然语言写清楚谁排前面，再转成代码条件。',
+    },
+];
+
+const masteryItems = [
+    {
+        label: '能为多字段数据选择结构体建模。',
+        evidence: '姓名、成绩、编号放进同一个 struct，比拆成零散数组清晰。',
+        retryHint: '回到「题目建模」的 Student 定义。',
+    },
+    {
+        label: '能把排序规则封装成比较函数。',
+        evidence: 'better(x, y) 先比分数，同分再比编号，主循环只问谁更靠前。',
+        retryHint: '回到「代码实现」的 better 函数。',
+    },
+    {
+        label: '知道排名题必测哪三类样例。',
+        evidence: '最小数据 n=1、同分数据、逆序数据。',
+        retryHint: '回到「测试与复盘」的样例表。',
+    },
+    {
+        label: '能估算排序复杂度并判断是否够用。',
+        evidence: '选择排序 O(n²)：n 到 1000 通常可接受，10 万就要换更快的排序。',
+        retryHint: '回到「复杂度复盘」。',
     },
 ];
 
@@ -185,6 +208,11 @@ for (int i = 0; i < n - 1; i++) {
                             </p>
                         </div>
                         <MiniQuiz items={quiz} />
+                        <MasteryCheck
+                            title="C++ L4-15 综合实战离开前检查"
+                            description="综合题看的是完整流程。勾选前先给课后任务第一题写出「建模、比较规则、测试样例」拆题表。"
+                            items={masteryItems}
+                        />
                         <Callout icon={ClipboardCheck} title="课后任务" tone="slate">
                             <ul className="space-y-2">
                                 <li>实现学生成绩排行：分数高者在前，同分编号小者在前。</li>

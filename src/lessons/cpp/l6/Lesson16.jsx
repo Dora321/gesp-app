@@ -1,7 +1,7 @@
 import React, { useMemo, useState } from 'react';
 import { ClipboardCheck, Search, Timer, Trophy } from 'lucide-react';
 import CppL6LessonSupport from '../../../components/CppL6LessonSupport';
-import CppLessonShell, { Callout, CodeBlock, CompareTable, MiniQuiz, StepList } from '../CppLessonShell';
+import CppLessonShell, { Callout, CodeBlock, CompareTable, MasteryCheck, MiniQuiz, StepList } from '../CppLessonShell';
 
 const sections = [
     { id: 1, title: '课程导入', category: '全真节奏' },
@@ -73,6 +73,29 @@ const quiz = [
         question: '模拟后最重要的动作是什么？',
         answer: '二轮订正',
         reason: '隔天重做能验证自己是真会了，不是刚看懂答案。',
+    },
+];
+
+const masteryItems = [
+    {
+        label: '能按题型安排六级作答顺序。',
+        evidence: '先扫全卷标出搜索、OOP、DP，先做最确定的模板题，再攻综合题。',
+        retryHint: '回到「时间策略」的阶段表。',
+    },
+    {
+        label: '动笔前会为每类题写专用草稿。',
+        evidence: '搜索画状态图，OOP 画类图，DP 写四件套，背包先定 0/1 还是完全、容量方向。',
+        retryHint: '回到「题型分配」的草稿模板。',
+    },
+    {
+        label: '能用六级复盘表归类错题。',
+        evidence: '题型、错因（审题/模型/初始化/循环方向/输出格式）、二轮订正日期。',
+        retryHint: '回到「赛后复盘」的表格。',
+    },
+    {
+        label: '知道错题什么时候才算真正掌握。',
+        evidence: '隔天能独立重做，才说明这道题进入了能力库。',
+        retryHint: '回到「复盘标准」。',
     },
 ];
 
@@ -169,6 +192,11 @@ DP 题：状态、初值、转移、答案
                             </p>
                         </div>
                         <MiniQuiz items={quiz} />
+                        <MasteryCheck
+                            title="C++ L6-16 全真模拟离开前检查"
+                            description="六级收官检查的是整场考试的稳定性。勾选前先把四类题的草稿模板各默写一遍。"
+                            items={masteryItems}
+                        />
                         <Callout icon={ClipboardCheck} title="课后任务" tone="slate">
                             <ul className="space-y-2">
                                 <li>完成一套六级限时模拟，记录每题用时和题型。</li>
