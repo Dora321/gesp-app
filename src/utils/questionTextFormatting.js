@@ -3,6 +3,14 @@ export const stripLeadingNumber = (questionText) => {
   return questionText.replace(/^\s*\d+[.。、]\s*/, '');
 };
 
+export const buildQuestionContent = (question) => {
+  if (!question) return '';
+  const text = question.question || question.description || question.summary || question.title || '';
+  const code = typeof question.code === 'string' ? question.code.trim() : '';
+  if (!code || text.includes(code)) return text;
+  return `${text}\n\n\`\`\`${question.codeLanguage || 'cpp'}\n${code}\n\`\`\``;
+};
+
 export const normalizeEscapedLineBreaks = (value) => {
   if (typeof value !== 'string') return value || '';
 

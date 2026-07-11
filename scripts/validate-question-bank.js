@@ -37,7 +37,8 @@ const codePromptPatterns = [
 ];
 
 const hasCodeContent = (q, text) => {
-  const content = [text, ...(Array.isArray(q.options) ? q.options : [])].join('\n');
+  // Options are answers, not the program context the student must inspect.
+  const content = text;
   if (typeof q.code === 'string' && q.code.trim().length >= 3) return true;
   if (/```(?:cpp|c\+\+|c|text)?\s*\n[\s\S]{3,}?```/i.test(content)) return true;
   if (/\b(?:printf|scanf)\s*\([^)]{2,}\)|\b(?:cout|cin)\s*(?:<<|>>)|\b(?:if|for|while|switch)\s*\([^)]{1,}\)/i.test(content)) return true;

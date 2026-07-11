@@ -19,29 +19,7 @@ import { getPaper } from '../../data/gesp';
 import { paperCodingMap } from '../../data/gesp/paperCodingMap';
 import useQuestionKeyboardNavigation from '../../hooks/useQuestionKeyboardNavigation';
 import { buildQuestionInsight, buildRichAnalysis } from './analysisEngine';
-import { formatOptionDisplay, stripLeadingNumber } from '../../utils/questionTextFormatting';
-
-const expandCodeIndent = (code) => {
-    if (!code) return '';
-    return code.split('\n').map(line => {
-        const match = line.match(/^(\s*)/);
-        if (!match || !match[1].length) return line;
-        const expanded = match[1] + match[1];
-        return expanded.length > 16 ? ' '.repeat(16) + line.slice(match[1].length) : expanded + line.slice(match[1].length);
-    }).join('\n');
-};
-
-const getQuestionContent = (q) => {
-    if (!q) return '';
-    const text = q.question || q.description || q.summary || q.title || '';
-    if (typeof q.code === 'string' && q.code.trim() && !text.includes(q.code.trim())) {
-        return `${text}\n\n\`\`\`${q.codeLanguage || 'cpp'}\n${expandCodeIndent(q.code.trim())}\n\`\`\``;
-    }
-    if (q.type === 'coding' || q.type === 'programming') {
-        return text;
-    }
-    return text;
-};
+import { buildQuestionContent as getQuestionContent, formatOptionDisplay, stripLeadingNumber } from '../../utils/questionTextFormatting';
 
 const inferKnowledgeTags = (q, level) => {
     const merged = `${getQuestionContent(q)} ${q?.explanation || ''} ${(q?.options || []).join(' ')}`;

@@ -1,22 +1,34 @@
 // 题库完整度扫描脚本
-import fs from 'fs';
-import path from 'path';
-import { fileURLToPath } from 'url';
+import fs from 'node:fs';
+import path from 'node:path';
+import { fileURLToPath, pathToFileURL } from 'node:url';
+import { paperMeta } from '../src/data/gesp/_generated.js';
+import { applyVerifiedQuestionCorrections } from '../src/data/gesp/verifiedQuestionCorrections.js';
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const GESP_DIR = path.join(__dirname, '..', 'src', 'data', 'gesp');
-
-// 读取 _generated.js 获取 paperMeta
-const genContent = fs.readFileSync(path.join(GESP_DIR, '_generated.js'), 'utf8');
-const metaStart = genContent.indexOf('export const paperMeta = {');
-const metaEnd = genContent.indexOf('export const loaders', metaStart);
-let metaBlock = genContent.slice(metaStart, metaEnd).replace('export const paperMeta = ', '').trim();
-// 去掉末尾的分号
-metaBlock = metaBlock.replace(/;$/, '');
-const paperMeta = eval(`(${metaBlock})`);
-
+const PAPER_FILE_PATTERN = /^\d{4}-\d{2}-l[1-8]\.js$/;
+const RICH_EXPLANATION_PATTERN = /\*\*(答案|解析|判定依据|易混|考点|纠错)/;
 const levels = [1, 2, 3, 4, 5, 6, 7, 8];
 const report = {};
+
+const isProgramming = question => ['programming', 'coding'].includes(question?.type);
+const hasTags = question => Array.isArray(question?.tags) && question.tags.length > 0;
+const hasRichExplanation = question => RICH_EXPLANATION_PATTERN.test(question?.explanation || '');
+
+const collectProgrammingQuestions = (paperData, questions) => {
+    const candidates = [
+        ...questions.filter(isProgramming),
+        ...(paperData.programmingQuestions || []),
+        ...(paperData.codingQuestions || []),
+    ];
+    const unique = new Map();
+    for (const question of candidates) {
+        const key = `${question.id ?? ''}:${question.title ?? question.question ?? ''}`;
+        unique.set(key, question);
+    }
+    return [...unique.values()];
+};
 
 for (const level of levels) {
     const levelDir = path.join(GESP_DIR, `level${level}`);
@@ -25,77 +37,56 @@ for (const level of levels) {
         continue;
     }
 
-    const files = fs.readdirSync(levelDir).filter(f => f.endsWith('.js') && f !== 'shared.js');
+    const files = fs.readdirSync(levelDir).filter(file => PAPER_FILE_PATTERN.test(file)).sort();
     let totalObjective = 0;
     let totalProgramming = 0;
     let withTags = 0;
     let withRichExplanation = 0;
-    let withPlaceholder = 0;
+    let papersWithPlaceholder = 0;
     let totalPlaceholder = 0;
     const paperDetails = [];
 
     for (const file of files) {
-        const paperId = file.replace('.js', '');
+        const paperId = file.replace(/\.js$/, '');
         const meta = paperMeta[paperId] || {};
-        const content = fs.readFileSync(path.join(levelDir, file), 'utf8');
-
-        // 简单解析：用 new Function 安全求值
         let paperData;
+
         try {
-            // 去掉 import 行，mock LEVEL*_TAGS
-            let cleanContent = content.replace(/import\s+.*?from\s+['"].*?['"];?/g, '');
-            // 把 export const/let/var 去掉 export
-            cleanContent = cleanContent.replace(/export\s+(const|let|var|default)\s+/g, '$1 ');
-            // mock LEVEL*_TAGS 为空对象（够用，只检查 tags 是否存在）
-            const mockTags = `const LEVEL${level}_TAGS = new Proxy({}, { get: () => ({}), getOwnPropertyDescriptor: () => ({}) });`;
-            // L8 客观题内联，但编程题引用外部 programming.js 的 l8ProgrammingByPaper，需预加载
-            let prelude = mockTags;
-            if (level === 8) {
-                const progPath = path.join(GESP_DIR, 'level8', 'programming.js');
-                if (fs.existsSync(progPath)) {
-                    const pc = fs.readFileSync(progPath, 'utf8')
-                        .replace(/import\s+.*?from\s+['"].*?['"];?/g, '')
-                        .replace(/export\s+(const|let|var)\s+/g, '$1 ');
-                    prelude += `\n${pc}\n`;
-                }
-            }
-            const fn = new Function(`${prelude}\n${cleanContent}\nreturn typeof paperData !== 'undefined' ? paperData : null;`);
-            paperData = fn();
-            if (!paperData) {
-                paperDetails.push({ paperId, error: 'paperData 未定义' });
-                continue;
-            }
-        } catch (e) {
-            paperDetails.push({ paperId, error: e.message.slice(0, 80) });
+            const fileUrl = pathToFileURL(path.join(levelDir, file)).href;
+            const module = await import(fileUrl);
+            paperData = applyVerifiedQuestionCorrections(module.paperData);
+            if (!paperData) throw new Error('paperData 未定义');
+        } catch (error) {
+            paperDetails.push({ paperId, error: error.message.slice(0, 80) });
             continue;
         }
 
         const questions = paperData.questions || [];
-        const progQs = paperData.programmingQuestions || paperData.codingQuestions || [];
+        const objectiveQuestions = questions.filter(question => !isProgramming(question));
+        const programmingQuestions = collectProgrammingQuestions(paperData, questions);
 
-        for (const q of questions) {
-            totalObjective++;
-            if (Array.isArray(q.tags) && q.tags.length > 0) withTags++;
-            // 检查是否为增强格式解析（含 **答案：** 或 **解析：** 等 Markdown）
-            if (q.explanation && /\*\*(答案|解析|判定依据|易混|考点|纠错)/.test(q.explanation)) {
-                withRichExplanation++;
-            }
-        }
-        totalProgramming += progQs.length;
+        totalObjective += objectiveQuestions.length;
+        totalProgramming += programmingQuestions.length;
+        withTags += objectiveQuestions.filter(hasTags).length;
+        withRichExplanation += objectiveQuestions.filter(hasRichExplanation).length;
 
-        const ph = meta.placeholderCount || 0;
-        if (ph > 0) {
-            withPlaceholder++;
-            totalPlaceholder += ph;
+        const placeholder = meta.placeholderCount || 0;
+        if (placeholder > 0) {
+            papersWithPlaceholder++;
+            totalPlaceholder += placeholder;
         }
 
         paperDetails.push({
             paperId,
-            objective: questions.length,
-            programming: progQs.length,
-            tagsCoverage: questions.length ? Math.round((questions.filter(q => Array.isArray(q.tags) && q.tags.length).length / questions.length) * 100) : 0,
-            richExpl: questions.length ? Math.round((questions.filter(q => q.explanation && /\*\*(答案|解析|判定依据|易混|考点|纠错)/.test(q.explanation)).length / questions.length) * 100) : 0,
-            placeholder: ph,
+            objective: objectiveQuestions.length,
+            programming: programmingQuestions.length,
+            tagsCoverage: objectiveQuestions.length
+                ? Math.round((objectiveQuestions.filter(hasTags).length / objectiveQuestions.length) * 100)
+                : 0,
+            richExpl: objectiveQuestions.length
+                ? Math.round((objectiveQuestions.filter(hasRichExplanation).length / objectiveQuestions.length) * 100)
+                : 0,
+            placeholder,
             reviewStatus: meta.reviewStatus || 'unknown',
             needsReview: meta.needsReview || false,
         });
@@ -107,13 +98,12 @@ for (const level of levels) {
         totalProgramming,
         tagsCoverage: totalObjective ? Math.round((withTags / totalObjective) * 100) : 0,
         richExplanation: totalObjective ? Math.round((withRichExplanation / totalObjective) * 100) : 0,
-        papersWithPlaceholder: withPlaceholder,
+        papersWithPlaceholder,
         totalPlaceholder,
         paperDetails,
     };
 }
 
-// 输出汇总
 console.log('='.repeat(80));
 console.log('GESP 题库完整度扫描报告');
 console.log('='.repeat(80));
@@ -122,20 +112,26 @@ console.log('\n## 各级汇总\n');
 console.log('| 级别 | 试卷 | 客观题 | 编程题 | tags覆盖 | 增强解析 | 占位题 | 需复查 |');
 console.log('|------|------|--------|--------|----------|----------|--------|--------|');
 for (const level of levels) {
-    const d = report[`L${level}`];
-    if (d.error) {
-        console.log(`| L${level} | ❌ ${d.error} | | | | | | |`);
+    const data = report[`L${level}`];
+    if (data.error) {
+        console.log(`| L${level} | ❌ ${data.error} | | | | | | |`);
         continue;
     }
-    const needsReviewCount = d.paperDetails.filter(p => p.needsReview).length;
-    console.log(`| L${level} | ${d.papers} | ${d.totalObjective} | ${d.totalProgramming} | ${d.tagsCoverage}% | ${d.richExplanation}% | ${d.totalPlaceholder} | ${needsReviewCount} |`);
+    const needsReviewCount = data.paperDetails.filter(paper => paper.needsReview).length;
+    console.log(`| L${level} | ${data.papers} | ${data.totalObjective} | ${data.totalProgramming} | ${data.tagsCoverage}% | ${data.richExplanation}% | ${data.totalPlaceholder} | ${needsReviewCount} |`);
 }
 
 console.log('\n## 逐卷明细（仅列出有问题的）\n');
 for (const level of levels) {
-    const d = report[`L${level}`];
-    if (d.error) continue;
-    const problematic = d.paperDetails.filter(p => p.tagsCoverage < 100 || p.richExpl < 100 || p.placeholder > 0 || p.needsReview || p.error);
+    const data = report[`L${level}`];
+    if (data.error) continue;
+    const problematic = data.paperDetails.filter(paper => (
+        paper.tagsCoverage < 100
+        || paper.richExpl < 100
+        || paper.placeholder > 0
+        || paper.needsReview
+        || paper.error
+    ));
     if (problematic.length === 0) {
         console.log(`### L${level} ✅ 全部正常\n`);
         continue;
@@ -143,22 +139,25 @@ for (const level of levels) {
     console.log(`### L${level}\n`);
     console.log('| 试卷 | 客观 | 编程 | tags | 增强解析 | 占位 | 状态 |');
     console.log('|------|------|------|------|----------|------|------|');
-    for (const p of problematic) {
+    for (const paper of problematic) {
+        if (paper.error) {
+            console.log(`| ${paper.paperId} | - | - | - | - | - | 导入失败：${paper.error} |`);
+            continue;
+        }
         const flags = [];
-        if (p.tagsCoverage < 100) flags.push(`tags${p.tagsCoverage}%`);
-        if (p.richExpl < 100) flags.push(`解析${p.richExpl}%`);
-        if (p.placeholder > 0) flags.push(`占位${p.placeholder}`);
-        if (p.needsReview) flags.push('需复查');
-        console.log(`| ${p.paperId} | ${p.objective} | ${p.programming} | ${p.tagsCoverage}% | ${p.richExpl}% | ${p.placeholder} | ${p.reviewStatus} ${flags.join(' · ')} |`);
+        if (paper.tagsCoverage < 100) flags.push(`tags${paper.tagsCoverage}%`);
+        if (paper.richExpl < 100) flags.push(`解析${paper.richExpl}%`);
+        if (paper.placeholder > 0) flags.push(`占位${paper.placeholder}`);
+        if (paper.needsReview) flags.push('需复查');
+        console.log(`| ${paper.paperId} | ${paper.objective} | ${paper.programming} | ${paper.tagsCoverage}% | ${paper.richExpl}% | ${paper.placeholder} | ${paper.reviewStatus} ${flags.join(' · ')} |`);
     }
     console.log('');
 }
 
-// 专题练习可用性
 console.log('## 专题练习可用性（tags 覆盖率 ≥ 80% 才可用）\n');
 for (const level of levels) {
-    const d = report[`L${level}`];
-    if (d.error) continue;
-    const usable = d.tagsCoverage >= 80;
-    console.log(`- L${level}: ${d.tagsCoverage}% ${usable ? '✅ 可用' : '⚠️ tags 不足，专题练习页会显示"暂未标注"'}`);
+    const data = report[`L${level}`];
+    if (data.error) continue;
+    const usable = data.tagsCoverage >= 80;
+    console.log(`- L${level}: ${data.tagsCoverage}% ${usable ? '✅ 可用' : '⚠️ tags 不足，专题练习页会显示"暂未标注"'}`);
 }

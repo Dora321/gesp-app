@@ -1,7 +1,7 @@
 const REVIEWED_BY = '本站校订';
 const REVIEWED_AT = '2026-07-06';
 
-const q = (sourcePage, code) => ({ sourcePage, code });
+const q = (sourcePage, code, fields = {}) => ({ sourcePage, code, ...fields });
 
 export const verifiedQuestionCorrections = {
   '2023-09-l5': {
@@ -686,6 +686,7 @@ int jump_dp(int n) {
   },
   '2024-09-l6': {
     sourceUrl: 'https://gesp.ccf.org.cn/101/attach/1633836295258144.pdf',
+    reviewedAt: '2026-07-10',
     questions: {
       4: q(2, `#include <iostream>
 #include <stack>
@@ -710,6 +711,89 @@ bool is_valid(string s) {
     }
     return st.empty();
 }`),
+      10: q(4, `// 定义二叉树的结点结构
+struct tree_node {
+    int val;
+    tree_node* left;
+    tree_node* right;
+    tree_node(int x) : val(x), left(nullptr), right(nullptr) {}
+};
+
+// 计算二叉树的深度
+int max_depth(tree_node* root) {
+    if (root == nullptr) {
+        return 0;
+    }
+    int left_depth = max_depth(root->left);
+    int right_depth = max_depth(root->right);
+    ______________________________ // 在此处填入代码
+}`),
+      11: q(5, `#include <queue>
+
+int max_depth_bfs(tree_node* root) {
+    if (root == nullptr) {
+        return 0;
+    }
+
+    queue<tree_node*> q;
+    q.push(root);
+    int depth = 0;
+
+    while (!q.empty()) {
+        ______________________________ // 在此处填入代码
+        for (int i = 0; i < level_size; ++i) {
+            tree_node* node = q.front();
+            q.pop();
+            if (node->left) q.push(node->left);
+            if (node->right) q.push(node->right);
+        }
+    }
+    return depth;
+}`),
+      12: q(6, `// 定义二叉树的结点结构
+struct tree_node {
+    int val;
+    tree_node* left;
+    tree_node* right;
+    tree_node(int x) : val(x), left(nullptr), right(nullptr) {}
+};
+
+// 插入结点到二叉搜索树中
+tree_node* insert(tree_node* root, int val) {
+    if (root == nullptr) {
+        return new tree_node(val);
+    }
+    ______________________________ // 在此处填入代码
+    return root;
+}
+
+// 根据给定数组构造二叉搜索树
+tree_node* constructBST(const int arr[], int size) {
+    tree_node* root = nullptr;
+    for (int i = 0; i < size; ++i) {
+        root = insert(root, arr[i]);
+    }
+    return root;
+}`, {
+        question: '二叉搜索树中的每个结点，其左子树的所有结点值都小于该结点值，右子树的所有结点值都大于该结点值。以下代码对给定的整数数组（假设数组中没有数值相等的元素）构造二叉搜索树，横线处应填写（ ）。',
+        options: [
+          'if (val < root->val) root->left = insert(root->left, val); else root->right = insert(root->right, val);',
+          'if (val > root->val) root->left = insert(root->left, val); else root->right = insert(root->right, val);',
+          'if (val < root->val) root->left = insert(root, val); else root->right = insert(root, val);',
+          'if (val > root->val) root->left = insert(root, val); else root->right = insert(root, val);',
+        ],
+        answer: 0,
+        explanation: `**答案：A**
+
+**解析：**
+二叉搜索树插入时，待插入值比当前结点小就递归进入左子树，否则进入右子树；递归返回的新子树根结点必须重新接回当前结点。
+
+- A：左右方向和递归参数都正确。
+- B：把较大的值插入左子树，破坏二叉搜索树性质。
+- C、D：递归时仍传入当前根结点，无法向子树推进，会造成无限递归。
+
+**考点：** 二叉搜索树的递归插入。`,
+      }),
       13: q(7, `#include <iostream>
 using namespace std;
 
@@ -719,7 +803,22 @@ void traversal(tree_node* root) {
     traversal(root->left);
     cout << root->val << " ";
     traversal(root->right);
-}`),
+}`, {
+        question: '对上题中的二叉搜索树，当输入数组为 [5, 3, 7, 2, 4, 6, 8] 时，构建二叉搜索树并采用如下遍历方式，得到的输出是（ ）。',
+        options: [
+          '5 3 7 2 4 6 8',
+          '2 3 4 5 6 7 8',
+          '2 4 3 6 8 7 5',
+          '2 4 3 5 6 7 8',
+        ],
+        answer: 1,
+        explanation: `**答案：B**
+
+**解析：**
+代码按照“左子树 → 根结点 → 右子树”的顺序遍历，这是二叉搜索树的中序遍历。二叉搜索树的中序遍历结果按结点值递增，因此输出为 \`2 3 4 5 6 7 8\`。
+
+**考点：** 二叉搜索树的中序遍历。`,
+      }),
     },
   },
   '2024-12-l6': {
@@ -1281,6 +1380,180 @@ int main() {
     char a = 'b';
     cout << a + 1;
     return 0;
+      }`),
+    },
+  },
+  '2024-12-l8': {
+    sourceUrl: 'https://gesp.ccf.org.cn/101/attach/1650239836520480.pdf',
+    reviewedAt: '2026-07-10',
+    questions: {
+      7: {
+        sourcePage: 2,
+        question: '二项式 $(x+y)^6$ 的展开式中 $x^3y^3$ 项的系数是（ ）。',
+        explanation: `**答案：C（20）**
+
+**解析：**
+二项式展开的通项为 $C_6^k x^{6-k}y^k$。要得到 $x^3y^3$，应取 $k=3$，系数为 $C_6^3=20$。
+
+**考点：** 二项式定理与组合数。`,
+        tags: ['组合数学'],
+      },
+      12: q(4, `typedef struct Edge {
+    int in, out;       // 从下标 in 顶点到下标 out 顶点的边
+    int len;           // 边长度
+    struct Edge* next;
+} Edge;
+
+// v：顶点个数，graph：出边邻接表，start：起点下标，dis：输出每个顶点的最短距离
+void dijkstra(int v, Edge* graph[], int start, int* dis) {
+    const int MAX_DIS = 0x7fffff;
+    for (int i = 0; i < v; i++) dis[i] = MAX_DIS;
+    dis[start] = 0;
+
+    int* visited = new int[v];
+    for (int i = 0; i < v; i++) visited[i] = 0;
+    visited[start] = 1;
+
+    for (int t = 0; ; t++) {
+        int min = MAX_DIS, minv = -1;
+        for (int i = 0; i < v; i++) {
+            if (visited[i] == 0 && min > dis[i]) {
+                min = dis[i];
+                minv = i;
+            }
+        }
+        if (minv < 0) break;
+        visited[minv] = 1;
+        for (Edge* e = graph[minv]; e != NULL; e = e->next) {
+            ______________________________ // 在此处填入代码
+        }
+    }
+    delete[] visited;
+}`, {
+        question: '下列 Dijkstra 算法中，横线处应该填入的是（ ）。',
+        options: [
+          'if (dis[e->out] > e->len) dis[e->out] = e->len;',
+          'if (dis[e->out] > min + e->len) dis[e->out] = min + e->len;',
+          'if (dis[e->in] > e->len) dis[e->in] = e->len;',
+          'if (dis[e->in] > min + e->len) dis[e->in] = min + e->len;',
+        ],
+        answer: 1,
+        explanation: `**答案：B**
+
+**解析：**
+当前选中的顶点是 \`minv\`，它到起点的最短距离为 \`min\`。遍历其出边 \`e\` 时，应尝试用 \`min + e->len\` 松弛终点 \`e->out\`：只有新路径更短时才更新。
+
+- A：漏加从起点到当前顶点的距离 \`min\`。
+- B：正确，是标准松弛操作。
+- C、D：更新了边的起点 \`e->in\`，方向错误。
+
+**考点：** Dijkstra 算法的松弛操作。`,
+        tags: ['最短路'],
+      }),
+      13: q(5, `typedef struct Edge {
+    int in, out;
+    int len;
+    struct Edge* next;
+} Edge;
+
+void dijkstra(int v, Edge* graph[], int start, int* dis) {
+    const int MAX_DIS = 0x7fffff;
+    for (int i = 0; i < v; i++) dis[i] = MAX_DIS;
+    dis[start] = 0;
+    int* visited = new int[v]();
+    visited[start] = 1;
+
+    for (int t = 0; ; t++) {
+        int min = MAX_DIS, minv = -1;
+        for (int i = 0; i < v; i++) {
+            if (visited[i] == 0 && min > dis[i]) {
+                min = dis[i];
+                minv = i;
+            }
+        }
+        if (minv < 0) break;
+        visited[minv] = 1;
+        for (Edge* e = graph[minv]; e != NULL; e = e->next) {
+            if (dis[e->out] > min + e->len)
+                dis[e->out] = min + e->len;
+        }
+    }
+    delete[] visited;
+}`, {
+        question: '假设图 graph 中顶点数为 v、边数为 e，上题程序的时间复杂度为（ ）。',
+        options: ['O(e)', 'O(v²)', 'O(v log v + e)', 'O((v + e) log v)'],
+        answer: 1,
+        explanation: `**答案：B（O(v²)）**
+
+**解析：**
+程序没有使用优先队列。每轮都线性扫描全部 v 个顶点寻找未访问的最小距离顶点，共进行至多 v 轮，因此这一部分是 O(v²)；遍历邻接表的总开销为 O(e)。整体为 O(v²+e)，在简单图中记为 O(v²)。
+
+**考点：** 朴素 Dijkstra 的时间复杂度。`,
+        tags: ['复杂度分析'],
+      }),
+      14: q(5, `void quick_sort(int a[], int n) {
+    if (n <= 1) return;
+    int pivot = 0, l = 0, r = n - 1;
+    while (________) { // 在此处填入选项
+        while (r > pivot && a[r] >= a[pivot]) r--;
+        if (r > pivot) {
+            int temp = a[pivot];
+            a[pivot] = a[r];
+            a[r] = temp;
+            pivot = r;
+        }
+        while (l < pivot && a[l] <= a[pivot]) l++;
+        if (l < pivot) {
+            int temp = a[pivot];
+            a[pivot] = a[l];
+            a[l] = temp;
+            pivot = l;
+        }
+    }
+    quick_sort(a, pivot);
+    quick_sort(________); // 在此处填入选项
+}`, {
+        question: '下面的快速排序程序中，两处横线处分别应填入的是（ ）。',
+        options: [
+          'l < r; a + pivot + 1, n - pivot - 1',
+          'l < r; a + pivot + 1, n - pivot',
+          'l <= r; a + pivot + 1, n - pivot - 1',
+          'l <= r; a + pivot + 1, n - pivot',
+        ],
+        answer: 0,
+        explanation: `**答案：A**
+
+**解析：**
+划分过程应在左右指针尚未相遇时继续，因此第一处为 \`l < r\`。枢轴最终位于下标 \`pivot\`，左段长度为 \`pivot\`，右段从 \`a + pivot + 1\` 开始，长度为 \`n - pivot - 1\`。
+
+- A：两个边界都正确。
+- B、D：右段长度多算 1，可能越界。
+- C、D：\`l <= r\` 会在指针相遇时多执行一次循环。
+
+**考点：** 快速排序的划分边界与递归区间。`,
+        tags: ['排序算法'],
+      }),
+      15: q(5, `void quick_sort(int a[], int n) {
+    if (n <= 1) return;
+    int pivot = 0, l = 0, r = n - 1;
+    while (l < r) {
+        while (r > pivot && a[r] >= a[pivot]) r--;
+        if (r > pivot) {
+            int temp = a[pivot];
+            a[pivot] = a[r];
+            a[r] = temp;
+            pivot = r;
+        }
+        while (l < pivot && a[l] <= a[pivot]) l++;
+        if (l < pivot) {
+            int temp = a[pivot];
+            a[pivot] = a[l];
+            a[l] = temp;
+            pivot = l;
+        }
+    }
+    quick_sort(a, pivot);
+    quick_sort(a + pivot + 1, n - pivot - 1);
 }`),
     },
   },
@@ -1344,6 +1617,7 @@ std::cout << arr[5];`),
 export function applyVerifiedQuestionCorrections(paper) {
   const correction = paper && verifiedQuestionCorrections[paper.id];
   if (!correction) return paper;
+  const reviewedAt = correction.reviewedAt || REVIEWED_AT;
 
   const questions = (paper.questions || []).map((question) => {
     const verified = correction.questions[question.id];
@@ -1354,7 +1628,7 @@ export function applyVerifiedQuestionCorrections(paper) {
       requiresCode: typeof verified.code === 'string',
       sourceVerified: true,
       reviewedBy: REVIEWED_BY,
-      reviewedAt: REVIEWED_AT,
+      reviewedAt,
     };
   });
 
@@ -1367,7 +1641,7 @@ export function applyVerifiedQuestionCorrections(paper) {
     verification: {
       status: 'partial',
       reviewedBy: REVIEWED_BY,
-      reviewedAt: REVIEWED_AT,
+      reviewedAt,
       scope: '疑似缺失代码题已对照官方 PDF 校订。',
     },
     questions,

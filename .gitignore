@@ -42,3 +42,6 @@ scratch/
 
 # Visual-regression screenshots (baseline fingerprint JSON is committed; PNGs are local-only)
 screenshots/
+
+# Python bytecode from maintenance scripts
+__pycache__/
