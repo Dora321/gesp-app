@@ -1,8 +1,12 @@
 const { spawn } = require('child_process');
 
 const DEFAULT_PORT = 4181;
+const serverMode = process.env.COURSE_MASTERY_SERVER === 'preview' ? 'preview' : 'dev';
 const externalBaseUrl = process.env.COURSE_MASTERY_BASE_URL || process.env.CPP_L1_MASTERY_BASE_URL;
-const baseUrl = externalBaseUrl || `http://127.0.0.1:${DEFAULT_PORT}`;
+const localBaseUrl = serverMode === 'preview'
+  ? `http://127.0.0.1:${DEFAULT_PORT}/gesp-app`
+  : `http://127.0.0.1:${DEFAULT_PORT}`;
+const baseUrl = externalBaseUrl || localBaseUrl;
 const shouldStartServer = !externalBaseUrl;
 
 const routeCases = [
@@ -265,21 +269,24 @@ async function verifyRealObjectiveOutcome(browserInstance) {
 
 async function run() {
   if (shouldStartServer) {
+    const serverArgs = ['run', serverMode, '--', '--host', '127.0.0.1', '--port', String(DEFAULT_PORT), '--strictPort'];
+    if (serverMode === 'preview') serverArgs.push('--base', '/gesp-app/');
+
     server = spawn(
       process.platform === 'win32' ? 'npm.cmd' : 'npm',
-      ['run', 'dev', '--', '--host', '127.0.0.1', '--port', String(DEFAULT_PORT)],
-      { stdio: ['ignore', 'pipe', 'pipe'] }
+      serverArgs,
+      { stdio: ['ignore', 'pipe', 'pipe'], detached: process.platform !== 'win32' }
     );
 
     server.stdout.on('data', (chunk) => process.stdout.write(chunk));
     server.stderr.on('data', (chunk) => process.stderr.write(chunk));
-    await waitForServer(baseUrl);
+    await waitForServer(serverMode === 'preview' ? `${baseUrl}/` : baseUrl);
   }
 
   const { chromium } = await import('playwright');
   browser = await launchBrowser(chromium);
 
-  for (const viewport of viewports) {
+  await Promise.all(viewports.map(async (viewport) => {
     const context = await browser.newContext({
       viewport: { width: viewport.width, height: viewport.height },
       isMobile: viewport.isMobile,
@@ -291,11 +298,31 @@ async function run() {
     }
 
     await context.close();
-  }
+  }));
 
   await verifyRealObjectiveOutcome(browser);
 
   console.log(`Cross-course mastery UI checks passed for ${routeCases.length * viewports.length} route/viewport cases plus one real objective outcome flow.`);
+}
+
+function stopServer() {
+  if (!server || server.killed) return;
+  // `npm run dev` spawns vite (and its esbuild workers) as children; a plain
+  // SIGTERM to npm is not forwarded, leaving orphans whose open stdio pipes keep
+  // this process alive. Kill the whole process group so nothing lingers.
+  if (server.pid && process.platform !== 'win32') {
+    try {
+      process.kill(-server.pid, 'SIGKILL');
+      return;
+    } catch {
+      // Group already gone or unavailable; fall back to a direct kill below.
+    }
+  }
+  try {
+    server.kill('SIGKILL');
+  } catch {
+    // Nothing left to kill.
+  }
 }
 
 run()
@@ -303,11 +330,12 @@ run()
     console.error(error);
     process.exitCode = 1;
   })
-  .finally(() => {
+  .finally(async () => {
     if (browser) {
-      browser.close().catch(() => {});
+      await browser.close().catch(() => {});
     }
-    if (server) {
-      server.kill('SIGTERM');
-    }
+    stopServer();
+    // Force exit: even after cleanup, lingering dev-server handles can keep the
+    // event loop alive and hang CI until the job timeout. The work is done here.
+    process.exit(process.exitCode ?? 0);
   });

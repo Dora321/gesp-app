@@ -47,18 +47,20 @@ jobs:
       - name: Run course and route checks
         run: npm run check
 
-      - name: Run cross-course mastery UI checks
-        run: npm run check:course-mastery-ui
-        timeout-minutes: 10
-
-      - name: Run unit tests
-        run: npm test
-
       - name: Build
         run: |
           npm run build
           cp dist/index.html dist/404.html
           touch dist/.nojekyll
+
+      - name: Run cross-course mastery UI checks
+        run: npm run check:course-mastery-ui
+        env:
+          COURSE_MASTERY_SERVER: preview
+        timeout-minutes: 10
+
+      - name: Run unit tests
+        run: npm test
 
       - name: Verify static route metadata and PWA assets
         run: npm run check:prerender
