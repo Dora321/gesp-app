@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
-import { Link, useNavigate } from 'react-router-dom';
-import { Terminal, Box, Calculator, MessageSquare, ArrowRight, Play, RefreshCw, CheckCircle, Tag, Bug, BookOpen, HelpCircle, Menu, X, Sparkles, Globe, Code, Palette, TrendingUp } from 'lucide-react';
+import { useNavigate } from 'react-router-dom';
+import { Terminal, Box, Calculator, MessageSquare, CheckCircle, Tag, Bug, BookOpen, HelpCircle } from 'lucide-react';
 import PythonFoundationSupport from '../../../components/PythonFoundationSupport';
 import PythonLessonShell, { MasteryCheck, PredictCheck, SlideHeader, TransferCheck } from '../shell/PythonLessonShell';
 
@@ -50,27 +50,20 @@ const IntroSlide = () => {
                     什么是 Python?
                 </h2>
                 <p className="text-lg leading-relaxed mb-4">
-                    想象一下，如果你能用一种“魔法语言”直接告诉电脑帮你写作业、画画、甚至控制机器人，那该多酷？
-                    <br />
-                    <strong>Python 就是这种语言！</strong> 它是世界上最受欢迎的编程语言之一，工程师、科学家、艺术家都在用它。
+                    Python 是一门用<strong>接近英语的写法</strong>给电脑下指令的编程语言。
+                    人工智能、网站后端、科学计算里都大量用到它——而对你来说，它是后面所有课程共同的工具。
                 </p>
-                <div className="grid md:grid-cols-2 gap-4 mt-6">
-                    <div className="bg-white p-4 rounded-xl shadow-sm">
-                        <h3 className="font-bold text-indigo-600 mb-2">简单易学</h3>
-                        <p className="text-sm text-slate-600">写代码就像写英语句子一样简单直观。</p>
-                    </div>
-                    <div className="bg-white p-4 rounded-xl shadow-sm">
-                        <h3 className="font-bold text-indigo-600 mb-2">无所不能</h3>
-                        <p className="text-sm text-slate-600">从做网站、开发游戏到人工智能，它样样精通。</p>
-                    </div>
-                </div>
+                <p className="text-sm font-semibold text-indigo-700">
+                    这节课学四个知识点：<strong>输出与输入、变量、数据类型、算术运算</strong>。
+                    每个知识点都按「讲解 → 先预测 → 动手验证」推进，最后用毕业考和离开前检查确认过关。
+                </p>
             </div>
 
             <div className="bg-slate-800 p-6 rounded-2xl shadow-xl text-center">
                 <h3 className="text-slate-300 mb-4 text-sm uppercase tracking-wider">你的第一行代码</h3>
                 <CodeBlock code={`print("Hello, World!")`} />
                 <p className="text-slate-400 mt-4 text-sm">
-                    点击“运行”按钮，看看电脑会说什么？
+                    print(...) 的意思是「把括号里的内容显示到屏幕上」。运行这行代码，电脑会输出：
                 </p>
                 <div className="mt-4 inline-block bg-black text-green-400 font-mono px-4 py-2 rounded border border-slate-700">
                     &gt; Hello, World!
@@ -80,109 +73,7 @@ const IntroSlide = () => {
     );
 };
 
-// 2. Python in Real World
-const RealWorldSlide = () => {
-    const [selectedApp, setSelectedApp] = useState(null);
-
-    const applications = [
-        {
-            id: 'ai',
-            title: '🤖 人工智能',
-            icon: '🧠',
-            color: 'from-purple-500 to-pink-500',
-            examples: ['ChatGPT 聊天机器人', '人脸识别', '语音助手', '图像生成'],
-            description: 'Python 是 AI 和机器学习最常用的语言之一，很多智能助手的研究和原型都用它来写。',
-            fact: 'Python 是 AI 和数据科学最常用的语言之一'
-        },
-        {
-            id: 'web',
-            title: '🌐 网站开发',
-            icon: '💻',
-            color: 'from-blue-500 to-cyan-500',
-            examples: ['Instagram', 'YouTube', 'Spotify', 'Netflix'],
-            description: '你每天使用的很多网站和应用，后端都用到了 Python！',
-            fact: 'Instagram、YouTube 等大型网站都用 Python 构建后端'
-        },
-        {
-            id: 'games',
-            title: '🎮 游戏开发',
-            icon: '🕹️',
-            color: 'from-green-500 to-emerald-500',
-            examples: ['Minecraft 模组', 'EVE Online', '独立游戏', '游戏工具'],
-            description: 'Python 可以用来开发游戏和创建游戏模组，让游戏更有趣！',
-            fact: 'Minecraft 的很多模组都是用 Python 编写的'
-        },
-        {
-            id: 'science',
-            title: '🔬 科学研究',
-            icon: '🚀',
-            color: 'from-orange-500 to-red-500',
-            examples: ['NASA 太空探索', '天气预报', '基因研究', '数据分析'],
-            description: 'NASA 用 Python 分析太空数据、处理火星探测器拍回的图像！',
-            fact: 'NASA 的火星探测器使用 Python 处理图像'
-        },
-        {
-            id: 'automation',
-            title: '🤖 自动化',
-            icon: '⚡',
-            color: 'from-yellow-500 to-amber-500',
-            examples: ['智能家居', '机器人控制', '自动化测试', '办公自动化'],
-            description: 'Python 可以帮你自动完成重复的任务，节省时间！',
-            fact: 'Python 可以控制机器人和智能设备'
-        }
-    ];
-
-    return (
-        <div className="space-y-6 animate-in fade-in slide-in-from-bottom-4 duration-500">
-            <div className="bg-gradient-to-r from-indigo-100 to-purple-100 p-6 rounded-2xl border border-indigo-200 text-indigo-900">
-                <h2 className="text-2xl font-bold mb-4 flex items-center gap-2">
-                    <Globe className="text-indigo-600" />
-                    Python 在现实世界中
-                </h2>
-                <p className="text-lg leading-relaxed">
-                    Python 不仅仅是一门编程语言，它正在<strong>改变世界</strong>！
-                    从你每天使用的应用到探索宇宙的太空船，Python 无处不在。
-                </p>
-            </div>
-
-            <p className="text-sm font-semibold text-slate-500">点开任意一张卡片，看看 Python 在这个领域具体做什么 —— 这一关只需建立「Python 用途很广」的直觉，不用记住细节。</p>
-            <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-4">
-                {applications.map(app => (
-                    <div
-                        key={app.id}
-                        onClick={() => setSelectedApp(selectedApp === app.id ? null : app.id)}
-                        className={`
-                            relative p-6 rounded-2xl cursor-pointer transition-all duration-300 transform hover:scale-105
-                            bg-gradient-to-br ${app.color} text-white shadow-lg hover:shadow-2xl
-                            ${selectedApp === app.id ? 'ring-4 ring-white scale-105' : ''}
-                        `}
-                    >
-                        <div className="text-4xl mb-3">{app.icon}</div>
-                        <h3 className="font-bold text-lg mb-2">{app.title}</h3>
-                        <div className={`transition-all duration-300 ${selectedApp === app.id ? 'max-h-96 opacity-100' : 'max-h-0 opacity-0 overflow-hidden'}`}>
-                            <p className="text-sm mb-3 text-white/90">{app.description}</p>
-                            <div className="space-y-1 mb-3">
-                                {app.examples.map((ex, idx) => (
-                                    <div key={idx} className="text-xs bg-white/20 rounded px-2 py-1 backdrop-blur-sm">
-                                        ✓ {ex}
-                                    </div>
-                                ))}
-                            </div>
-                            <div className="text-xs bg-white/30 rounded-lg p-2 backdrop-blur-sm">
-                                💡 {app.fact}
-                            </div>
-                        </div>
-                        {selectedApp !== app.id && (
-                            <div className="text-xs mt-2 opacity-75">点击了解更多 →</div>
-                        )}
-                    </div>
-                ))}
-            </div>
-        </div>
-    );
-};
-
-// 3. Variables Slide (The Box Metaphor)
+// 2. Variables Slide (The Box Metaphor)
 const VariableSlide = () => {
     const [boxName] = useState('score');
     const [boxValue, setBoxValue] = useState(100);
@@ -226,6 +117,15 @@ const VariableSlide = () => {
                     </div>
                 </div>
             </div>
+
+            <PredictCheck
+                title="先预测，再验证"
+                prompt="运行 a = 3，接着 a = a + 2，最后 print(a)，会输出什么？"
+                options={['5', '3', '报错：a = a + 2 在数学上不成立']}
+                correctIndex={0}
+                explanation="a = a + 2 不是数学等式，而是「先算右边 3 + 2 = 5，再把 5 放回盒子 a」。旧值 3 被新值 5 替换，所以输出 5。"
+                misconception="把 = 当成数学里的「相等」。在 Python 里 = 是赋值：先算右边，再把结果存进左边的盒子。"
+            />
         </div>
     );
 };
@@ -286,8 +186,17 @@ const IOSlide = () => {
                 </div>
             </div>
 
+            <PredictCheck
+                title="先预测，再验证"
+                prompt='运行 age = input("你几岁了? ") 时你输入 10，接着运行 print(age + 1)，会发生什么？'
+                options={['输出 11', '直接报错', '输出 101']}
+                correctIndex={1}
+                explanation='input() 交给你的永远是字符串："10" 不是数字 10。字符串不能和数字 1 相加，Python 会报 TypeError。先用 int(age) 转成数字才能算。'
+                misconception="以为输入的数字就是数字。input() 不管你敲什么，拿到的都是文本（字符串）。"
+            />
+
             <div className="max-w-lg mx-auto rounded-2xl border-2 border-amber-200 bg-amber-50 p-5">
-                <div className="mb-2 font-black text-amber-800">⚠️ 初学者第一大坑：input() 给你的永远是「文本」</div>
+                <div className="mb-2 font-black text-amber-800">⚠️ 修复方法：用 int() 把文本转成数字</div>
                 <p className="text-sm font-semibold leading-7 text-amber-900">
                     哪怕你输入的是数字，<code>input()</code> 拿到的也是字符串。想拿来算数，必须先用 <code>int()</code> 转成数字：
                 </p>
@@ -421,168 +330,7 @@ const DataTypeSlide = () => {
     );
 };
 
-// 7. Code Playground
-const examples = [
-        {
-            title: '🎨 彩虹打印',
-            code: `# 打印彩色文字
-colors = ["红", "橙", "黄", "绿", "蓝", "靛", "紫"]
-for color in colors:
-    print("🌈", color)`,
-            output: `🌈 红
-🌈 橙
-🌈 黄
-🌈 绿
-🌈 蓝
-🌈 靛
-🌈 紫`
-        },
-        {
-            title: '🎲 幸运数字',
-            code: `# 生成你的幸运数字
-name = "小明"
-lucky = len(name) * 7 + 3
-print(f"{name}的幸运数字是: {lucky}")`,
-            output: `小明的幸运数字是: 17`
-        },
-        {
-            title: '⭐ 星星金字塔',
-            code: `# 打印星星金字塔
-for i in range(1, 6):
-    stars = "⭐" * i
-    print(stars)`,
-            output: `⭐
-⭐⭐
-⭐⭐⭐
-⭐⭐⭐⭐
-⭐⭐⭐⭐⭐`
-        },
-        {
-            title: '🧮 倒计时',
-            code: `# 火箭发射倒计时
-for i in range(5, 0, -1):
-    print(f"{i}...")
-print("🚀 发射!")`,
-            output: `5...
-4...
-3...
-2...
-1...
-🚀 发射!`
-        },
-        {
-            title: '💬 智能问候',
-            code: `# 根据时间问候
-hour = 14
-if hour < 12:
-    print("早上好! ☀️")
-elif hour < 18:
-    print("下午好! 🌤️")
-else:
-    print("晚上好! 🌙")`,
-            output: `下午好! 🌤️`
-        }
-];
-
-const CodePlaygroundSlide = () => {
-    const [selectedExample, setSelectedExample] = useState(0);
-    const [code, setCode] = useState('');
-    const [output, setOutput] = useState('');
-    const [isRunning, setIsRunning] = useState(false);
-
-    React.useEffect(() => {
-        setCode(examples[selectedExample].code);
-        setOutput('');
-    }, [selectedExample]);
-
-    const runCode = () => {
-        setIsRunning(true);
-        setOutput('');
-        setTimeout(() => {
-            setOutput(examples[selectedExample].output);
-            setIsRunning(false);
-        }, 800);
-    };
-
-    return (
-        <div className="space-y-6 animate-in fade-in slide-in-from-bottom-4 duration-500">
-            <SlideHeader accent="indigo" icon={Code} title="代码游乐场">
-                这里有一些有趣的 Python 代码示例！点击运行，看看会发生什么。你也可以修改代码，创造属于你自己的魔法！
-            </SlideHeader>
-
-            <div className="grid md:grid-cols-4 gap-3">
-                {examples.map((ex, idx) => (
-                    <button
-                        key={idx}
-                        onClick={() => setSelectedExample(idx)}
-                        className={`p-4 rounded-xl text-left transition-all transform hover:scale-105 ${selectedExample === idx
-                            ? 'bg-gradient-to-br from-indigo-500 to-purple-600 text-white shadow-lg'
-                            : 'bg-white text-slate-700 border border-slate-200 hover:border-indigo-300'
-                            }`}
-                    >
-                        <div className="font-bold text-sm">{ex.title}</div>
-                    </button>
-                ))}
-            </div>
-
-            <div className="grid md:grid-cols-2 gap-6">
-                {/* Code Editor */}
-                <div className="bg-slate-900 rounded-2xl overflow-hidden shadow-2xl">
-                    <div className="bg-slate-800 px-4 py-2 flex items-center gap-2 border-b border-slate-700">
-                        <div className="w-3 h-3 rounded-full bg-red-500"></div>
-                        <div className="w-3 h-3 rounded-full bg-yellow-500"></div>
-                        <div className="w-3 h-3 rounded-full bg-green-500"></div>
-                        <span className="text-xs text-slate-400 ml-2">playground.py</span>
-                    </div>
-                    <textarea
-                        value={code}
-                        onChange={(e) => setCode(e.target.value)}
-                        className="w-full h-64 bg-slate-900 text-slate-100 font-mono text-sm p-4 focus:outline-none resize-none"
-                        spellCheck={false}
-                    />
-                    <div className="bg-slate-800 px-4 py-3 border-t border-slate-700">
-                        <Button
-                            onClick={runCode}
-                            className="w-full"
-                            disabled={isRunning}
-                        >
-                            {isRunning ? (
-                                <>
-                                    <RefreshCw className="animate-spin" size={18} />
-                                    运行中...
-                                </>
-                            ) : (
-                                <>
-                                    <Play size={18} />
-                                    运行代码
-                                </>
-                            )}
-                        </Button>
-                    </div>
-                </div>
-
-                {/* Output Console */}
-                <div className="bg-black rounded-2xl overflow-hidden shadow-2xl">
-                    <div className="bg-slate-800 px-4 py-2 border-b border-slate-700">
-                        <span className="text-xs text-green-400 font-mono">输出控制台</span>
-                    </div>
-                    <div className="h-64 p-4 font-mono text-sm text-green-400 overflow-y-auto whitespace-pre-wrap">
-                        {output || (
-                            <div className="text-slate-500 italic">
-                                点击"运行代码"查看输出...
-                            </div>
-                        )}
-                    </div>
-                    <div className="bg-slate-800 px-4 py-2 border-t border-slate-700 text-xs text-slate-500">
-                        {output && '✓ 程序执行成功'}
-                    </div>
-                </div>
-            </div>
-        </div>
-    );
-};
-
-// 8. Bug Hunter
+// 6. Bug Hunter
 const BugHuntSlide = () => {
     const [fixed, setFixed] = useState(false);
     const [, setCode] = useState('print("Hello World)'); // Error: missing quote
@@ -895,15 +643,13 @@ const SummarySlide = () => (
 
 const sections = [
     { id: 1, title: '初识 Python', icon: Terminal, component: IntroSlide },
-    { id: 2, title: 'Python 在现实世界', icon: Globe, component: RealWorldSlide },
-    { id: 3, title: '变量魔法', icon: Box, component: VariableSlide },
-    { id: 4, title: '与电脑对话', icon: MessageSquare, component: IOSlide },
-    { id: 5, title: '运算游乐场', icon: Calculator, component: MathSlide },
-    { id: 6, title: '数据侦探', icon: Tag, component: DataTypeSlide },
-    { id: 7, title: '代码游乐场', icon: Code, component: CodePlaygroundSlide },
-    { id: 8, title: '捉虫特工队', icon: Bug, component: BugHuntSlide },
-    { id: 9, title: '萌新毕业考', icon: HelpCircle, component: ChallengeSlide },
-    { id: 10, title: '小结与衔接', icon: BookOpen, component: SummarySlide },
+    { id: 2, title: '变量魔法', icon: Box, component: VariableSlide },
+    { id: 3, title: '与电脑对话', icon: MessageSquare, component: IOSlide },
+    { id: 4, title: '运算游乐场', icon: Calculator, component: MathSlide },
+    { id: 5, title: '数据侦探', icon: Tag, component: DataTypeSlide },
+    { id: 6, title: '捉虫特工队', icon: Bug, component: BugHuntSlide },
+    { id: 7, title: '萌新毕业考', icon: HelpCircle, component: ChallengeSlide },
+    { id: 8, title: '小结与衔接', icon: BookOpen, component: SummarySlide },
 ];
 
 

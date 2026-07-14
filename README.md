@@ -14,7 +14,7 @@ GESP App 是一个基于 **React + Vite** 的互动教学与题库网站，包�
 ## 技术栈
 
 - React 19
-- Vite 5
+- Vite 6
 - React Router DOM 6
 - Tailwind CSS 4
 - Framer Motion
@@ -42,9 +42,17 @@ npm run lint
 
 # 课程流与内部链接检查
 npm run check
+
+# 单元测试（node --test）
+npm test
+
+# 浏览器端验收（Playwright，自起本地服务）
+npm run smoke        # 关键路由 × 桌面/移动 冒烟
+npm run check:a11y   # 可访问性（axe-core）
+npm run visual       # 布局回归（对比基线）
 ```
 
-`npm run check` 会验证课程目录、课程流数据、页面支撑组件和内部路由链接，适合在提交或部署前运行。
+`npm run check` 会验证课程目录、课程流数据、页面支撑组件和内部路由链接，适合在提交或部署前运行。CI（deploy.yml）在部署前会跑上述全部门禁。
 
 ---
 

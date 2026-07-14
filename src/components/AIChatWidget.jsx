@@ -449,7 +449,6 @@ const AIChatWidget = ({ onClose }) => {
 
         } catch (error) {
             if (error.name === 'AbortError') {
-                console.log('Generation stopped by user');
                 setMessages(prev => {
                     const updatedMessages = [...prev];
                     const lastMessage = updatedMessages[updatedMessages.length - 1];

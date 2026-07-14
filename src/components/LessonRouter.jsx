@@ -1,4 +1,4 @@
-import React, { Suspense, lazy, useMemo } from 'react';
+import React, { Suspense, lazy } from 'react';
 import { useParams } from 'react-router-dom';
 import LoadingScreen from './LoadingScreen';
 
@@ -9,18 +9,29 @@ import LoadingScreen from './LoadingScreen';
  * URL format: /lesson/:level/:lessonId
  * Example: /lesson/1/5 → loads lessons/cpp/l1/Lesson5.jsx
  */
+
+// Module-level cache so each lazy component is created exactly once per
+// lesson — creating lazy() during render (even memoized) remounts the lesson
+// whenever React discards the memo cache.
+const lessonCache = new Map();
+
+const getLessonComponent = (level, lessonId) => {
+  const lvl = parseInt(level, 10);
+  const lid = parseInt(lessonId, 10);
+  if (isNaN(lvl) || isNaN(lid) || lvl < 1 || lvl > 6 || lid < 1 || lid > 16) {
+    return null;
+  }
+  const key = `${lvl}-${lid}`;
+  if (!lessonCache.has(key)) {
+    lessonCache.set(key, lazy(() => import(`../lessons/cpp/l${lvl}/Lesson${lid}.jsx`)));
+  }
+  return lessonCache.get(key);
+};
+
 const LessonRouter = () => {
   const { level, lessonId } = useParams();
   const lessonKey = `${level}-${lessonId}`;
-
-  const LessonComponent = useMemo(() => {
-    const lvl = parseInt(level, 10);
-    const lid = parseInt(lessonId, 10);
-    if (isNaN(lvl) || isNaN(lid) || lvl < 1 || lvl > 6 || lid < 1 || lid > 16) {
-      return null;
-    }
-    return lazy(() => import(`../lessons/cpp/l${lvl}/Lesson${lid}.jsx`));
-  }, [level, lessonId]);
+  const LessonComponent = getLessonComponent(level, lessonId);
 
   if (!LessonComponent) {
     return (
@@ -35,6 +46,7 @@ const LessonRouter = () => {
 
   return (
     <Suspense fallback={<LoadingScreen message="正在加载课程" />}>
+      {/* eslint-disable-next-line react-hooks/static-components -- component identity is stable: getLessonComponent returns from a module-level cache */}
       <LessonComponent key={lessonKey} />
     </Suspense>
   );
