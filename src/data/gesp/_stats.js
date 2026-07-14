@@ -3,11 +3,11 @@
 
 export const paperStats = {
   paperCount: 93,
-  questionCount: 2409,
+  questionCount: 2493,
   reviewPaperCount: 0,
   verifiedPaperCount: 3,
-  partialPaperCount: 34,
-  unverifiedPaperCount: 56,
+  partialPaperCount: 41,
+  unverifiedPaperCount: 49,
   levelCount: 8,
   firstYear: 2023,
   latestYear: 2026,

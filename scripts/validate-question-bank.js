@@ -36,8 +36,14 @@ const codePromptPatterns = [
   /(?:代码|代码片段|程序段).{0,32}(?:如下|执行后|运行后|输出|横线|空白|应填|改为|逻辑判定)/i,
 ];
 
+const looksLikeCode = (value) => {
+  const code = String(value || '').trim();
+  if (code.length < 12) return false;
+  return /[;{}]/.test(code)
+    && /\b(?:string|int|bool|double|char|auto|if|for|while|return|cout|cin|printf|scanf)\b|(?:<<|>>)/i.test(code);
+};
+
 const hasCodeContent = (q, text) => {
-  // Options are answers, not the program context the student must inspect.
   const content = text;
   if (typeof q.code === 'string' && q.code.trim().length >= 3) return true;
   if (/```(?:cpp|c\+\+|c|text)?\s*\n[\s\S]{3,}?```/i.test(content)) return true;
@@ -45,7 +51,12 @@ const hasCodeContent = (q, text) => {
   if (/\b[A-Za-z_]\w*\s*(?:<<|>>)\s*(?:[A-Za-z_]\w*|\d+)/.test(content)) return true;
 
   const inlineCode = [...content.matchAll(/`([^`\n]+)`/g)].map(match => match[1].trim());
-  return inlineCode.some(code => code.length >= 6 && /[;{}]|\b(?:if|for|while|cout|cin|printf|scanf|return|int|bool|double)\b/i.test(code));
+  if (inlineCode.some(code => code.length >= 6 && /[;{}]|\b(?:if|for|while|cout|cin|printf|scanf|return|int|bool|double)\b/i.test(code))) {
+    return true;
+  }
+
+  // Some official questions compare complete programs embedded in the options.
+  return Array.isArray(q.options) && q.options.filter(looksLikeCode).length >= 2;
 };
 
 const requiresCodeContent = (q, text) => (

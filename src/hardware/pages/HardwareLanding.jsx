@@ -5,172 +5,95 @@ import {
     Play, ChevronRight, Download, Box,
     BookOpen, FlaskConical, Hammer,
     Star, CheckCircle2,
-    Code, Cpu, Settings, ArrowRight, Sparkles
+    Code, Cpu, Settings, ArrowRight, ExternalLink
 } from 'lucide-react';
 import { hardwareLessons } from '../data/lessons';
 import Navigation from '../../components/Navigation';
 import Footer from '../../components/Footer';
 
-// Use same hero background as homepage for consistency
-const BackgroundDecorations = () => (
-    <div className="absolute inset-0 z-0 overflow-hidden pointer-events-none">
-        {/* Grid Pattern */}
-        <div className="absolute inset-0 opacity-[0.03]" style={{ backgroundImage: 'radial-gradient(#2563EB 1px, transparent 1px)', backgroundSize: '32px 32px' }}></div>
+const MINDPLUS_DOWNLOAD_URL = 'https://mindplus.cc/download.html';
+const CH340_DRIVER_URL = 'https://www.wch.cn/downloads/category/67.html?feature=USB%E8%BD%AC%E4%B8%B2%E5%8F%A3&product_name=CH340';
+const hardwareKitItems = [...new Set(hardwareLessons.flatMap((lesson) => lesson.components || []))];
 
-        {/* Blobs */}
-        <div className="absolute top-0 right-0 w-[600px] h-[600px] bg-brand-blue/5 rounded-full blur-[100px] animate-pulse"></div>
-        <div className="absolute bottom-0 left-0 w-[500px] h-[500px] bg-brand-orange/5 rounded-full blur-[80px] animate-pulse delay-1000"></div>
+const BackgroundDecorations = () => (
+    <div className="pointer-events-none absolute inset-0 z-0 overflow-hidden">
+        <div className="absolute inset-0 opacity-[0.035]" style={{ backgroundImage: 'linear-gradient(#2563eb 1px, transparent 1px), linear-gradient(90deg, #2563eb 1px, transparent 1px)', backgroundSize: '32px 32px' }} />
     </div>
 );
 
-const Hero = ({ onStart }) => (
-    <section className="relative pt-32 pb-20 lg:pt-48 lg:pb-32 px-6 max-w-7xl mx-auto grid lg:grid-cols-2 gap-12 lg:gap-20 items-center">
-        <div className="space-y-8 relative z-10">
-            <motion.div
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                className="inline-flex items-center gap-2 px-4 py-2 bg-gradient-to-r from-orange-50 to-orange-100 text-orange-600 rounded-full text-xs font-bold uppercase tracking-wider border border-orange-200 shadow-sm"
-            >
-                <Sparkles size={14} className="fill-current" />
-                <span className="tracking-wide">Hardware Workshop</span>
-            </motion.div>
-
-            <motion.h1
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ delay: 0.1 }}
-                className="text-5xl lg:text-7xl font-extrabold text-slate-900 leading-[1.1] relative z-20"
-            >
-                在比特魔法中<br />
-                <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-600 to-purple-500">
-                    创造未来
-                </span>
-            </motion.h1>
-
-            <motion.p
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ delay: 0.2 }}
-                className="text-lg md:text-xl text-slate-500 max-w-lg leading-relaxed font-medium"
-            >
-                专为小学生设计的硬件启蒙之旅。像工程师一样思考，用 Arduino 和 Mind+ 点亮你的第一个创意作品。
-            </motion.p>
-
-            <motion.div
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ delay: 0.3 }}
-                className="flex flex-wrap gap-4"
-            >
+const Hero = ({ onStart, onPreview }) => (
+    <section className="relative border-b border-slate-200 px-6 pb-12 pt-28 sm:pb-16 sm:pt-32 lg:py-16">
+        <div className="relative z-10 mx-auto grid max-w-7xl items-center gap-8 lg:grid-cols-[1.05fr_0.95fr] lg:gap-20">
+            <div className="space-y-5">
+                <div className="inline-flex items-center gap-2 rounded-md border border-orange-200 bg-orange-50 px-3 py-2 text-xs font-bold text-orange-700">
+                    <Cpu size={15} />
+                    硬件工程实践课
+                </div>
+                <h1 className="text-4xl font-black leading-tight text-slate-950 sm:text-5xl lg:text-6xl">
+                    Arduino 硬件实验课
+                </h1>
+                <p className="max-w-xl text-base font-medium leading-8 text-slate-600 sm:text-lg">
+                    从接线、读取传感器到控制输出，用 Mind+ 完成能运行、能展示、能复盘的硬件作品。
+                </p>
+                <div className="flex flex-wrap gap-3">
                 <button
+                    type="button"
                     onClick={onStart}
-                    className="px-8 py-4 bg-blue-600 hover:bg-blue-700 text-white text-lg font-bold rounded-full shadow-xl shadow-blue-500/30 flex items-center gap-3 transition-all hover:-translate-y-1 hover:shadow-blue-500/40"
+                    className="inline-flex min-h-12 items-center gap-2 rounded-lg bg-blue-600 px-6 py-3 text-base font-bold text-white shadow-md transition hover:bg-blue-700"
                 >
-                    <Play size={20} className="fill-current" />
-                    开启闯关
+                    <Play size={18} className="fill-current" />
+                    开始第一课
                 </button>
-                <button className="px-8 py-4 bg-white text-slate-900 border border-slate-200 text-lg font-bold rounded-full hover:border-blue-200 hover:bg-blue-50/50 transition-all flex items-center gap-3 group">
-                    <div className="w-8 h-8 bg-blue-100 rounded-full flex items-center justify-center group-hover:bg-blue-600 group-hover:text-white transition-colors">
-                        <Play size={12} className="ml-0.5 text-blue-600 fill-current group-hover:text-white transition-colors" />
-                    </div>
-                    1分钟演示
+                <button
+                    type="button"
+                    onClick={onPreview}
+                    className="inline-flex min-h-12 items-center gap-2 rounded-lg border border-slate-300 bg-white px-6 py-3 text-base font-bold text-slate-800 transition hover:border-blue-300 hover:bg-blue-50"
+                >
+                    <ChevronRight size={18} />
+                    查看课程路径
                 </button>
-            </motion.div>
+                </div>
+                <div className="flex flex-wrap gap-x-6 gap-y-2 pt-1 text-sm font-bold text-slate-500">
+                    <span className="flex items-center gap-2"><CheckCircle2 size={17} className="text-emerald-600" /> 12 节循序任务</span>
+                    <span className="flex items-center gap-2"><CheckCircle2 size={17} className="text-emerald-600" /> 每节都有作品证据</span>
+                </div>
+            </div>
 
-            {/* Trust Badges */}
-            <motion.div
-                initial={{ opacity: 0 }}
-                animate={{ opacity: 1 }}
-                transition={{ delay: 0.4 }}
-                className="flex items-center gap-6 pt-4 text-sm font-bold text-slate-400"
-            >
-                <span className="flex items-center gap-2"><CheckCircle2 size={18} className="text-emerald-500" /> 无需代码基础</span>
-                <span className="flex items-center gap-2"><CheckCircle2 size={18} className="text-emerald-500" /> 配套硬件盒子</span>
-            </motion.div>
-        </div>
-
-        {/* Hero Visual */}
-        <div className="relative h-[400px] lg:h-[600px] flex items-center justify-center perspective-1000">
-            <div className="absolute inset-0 bg-gradient-to-br from-blue-500/20 to-purple-500/20 rounded-full opacity-30 blur-3xl transform rotate-3 scale-75 animate-pulse" />
-
-            <motion.div
-                initial={{ opacity: 0, scale: 0.8, rotateY: 10 }}
-                animate={{ opacity: 1, scale: 1, rotateY: 0 }}
-                transition={{ duration: 0.8, ease: "easeOut" }}
-                className="relative z-10 w-full h-full flex items-center justify-center"
-            >
-                {/* Inline PCB illustration — replaces missing hardware-hero.png */}
-                <div className="relative w-64 h-64 lg:w-80 lg:h-80 hover:scale-105 transition-transform duration-700">
-                    {/* Board glow */}
-                    <div className="absolute inset-0 bg-gradient-to-br from-blue-500/40 to-purple-500/40 rounded-3xl blur-2xl" />
-                    {/* PCB card */}
-                    <div className="relative bg-gradient-to-br from-slate-800 to-slate-900 rounded-3xl border border-slate-700 shadow-2xl w-full h-full flex items-center justify-center overflow-hidden">
-                        {/* Grid traces */}
-                        <div className="absolute inset-0 opacity-[0.15]" style={{ backgroundImage: 'linear-gradient(#38BDF8 1px, transparent 1px), linear-gradient(90deg, #38BDF8 1px, transparent 1px)', backgroundSize: '20px 20px' }} />
-                        {/* SVG circuit traces */}
-                        <svg className="absolute inset-0 w-full h-full" xmlns="http://www.w3.org/2000/svg">
-                            <line x1="15%" y1="50%" x2="35%" y2="50%" stroke="#38BDF8" strokeWidth="2" opacity="0.5"/>
-                            <line x1="65%" y1="50%" x2="85%" y2="50%" stroke="#38BDF8" strokeWidth="2" opacity="0.5"/>
-                            <line x1="50%" y1="15%" x2="50%" y2="35%" stroke="#A78BFA" strokeWidth="2" opacity="0.5"/>
-                            <line x1="50%" y1="65%" x2="50%" y2="85%" stroke="#A78BFA" strokeWidth="2" opacity="0.5"/>
-                            <line x1="15%" y1="50%" x2="15%" y2="20%" stroke="#38BDF8" strokeWidth="2" opacity="0.3"/>
-                            <line x1="85%" y1="50%" x2="85%" y2="80%" stroke="#38BDF8" strokeWidth="2" opacity="0.3"/>
-                            <circle cx="15%" cy="50%" r="4" fill="#38BDF8" opacity="0.8"/>
-                            <circle cx="85%" cy="50%" r="4" fill="#38BDF8" opacity="0.8"/>
-                            <circle cx="50%" cy="15%" r="4" fill="#A78BFA" opacity="0.8"/>
-                            <circle cx="50%" cy="85%" r="4" fill="#A78BFA" opacity="0.8"/>
-                            <circle cx="15%" cy="20%" r="3" fill="#FB923C" opacity="0.8"/>
-                            <circle cx="85%" cy="80%" r="3" fill="#FB923C" opacity="0.8"/>
-                        </svg>
-                        {/* Center chip */}
-                        <div className="relative z-10 flex flex-col items-center gap-3">
-                            <div className="w-20 h-20 lg:w-24 lg:h-24 bg-gradient-to-br from-blue-500 to-purple-600 rounded-2xl flex items-center justify-center shadow-lg shadow-blue-500/50">
-                                <Cpu size={40} className="text-white" />
-                            </div>
-                            <div className="text-center">
-                                <div className="text-blue-300 font-mono text-xs font-bold tracking-widest">ESP32-S3</div>
-                                <div className="text-slate-500 font-mono text-[10px]">240MHz · WiFi · BT</div>
-                            </div>
+            <div className="flex items-center justify-center" aria-label="ESP32-S3 开发板示意">
+                <div className="relative aspect-square w-full max-w-[300px] overflow-hidden rounded-xl border border-slate-700 bg-slate-900 shadow-xl sm:max-w-[360px]">
+                    <div className="absolute inset-0 opacity-20" style={{ backgroundImage: 'linear-gradient(#38bdf8 1px, transparent 1px), linear-gradient(90deg, #38bdf8 1px, transparent 1px)', backgroundSize: '20px 20px' }} />
+                    <div className="absolute left-[15%] top-1/2 h-0.5 w-[70%] bg-sky-400/60" />
+                    <div className="absolute left-1/2 top-[15%] h-[70%] w-0.5 bg-emerald-400/50" />
+                    <div className="relative z-10 flex h-full flex-col items-center justify-center gap-4">
+                        <div className="flex h-24 w-24 items-center justify-center rounded-lg border border-blue-400 bg-blue-600 shadow-lg">
+                            <Cpu size={44} className="text-white" />
                         </div>
-                        {/* Corner mounting holes */}
-                        <div className="absolute top-3 left-3 w-3 h-3 rounded-full bg-amber-400 shadow-sm shadow-amber-400/60" />
-                        <div className="absolute top-3 right-3 w-3 h-3 rounded-full bg-amber-400 shadow-sm shadow-amber-400/60" />
-                        <div className="absolute bottom-3 left-3 w-3 h-3 rounded-full bg-amber-400 shadow-sm shadow-amber-400/60" />
-                        <div className="absolute bottom-3 right-3 w-3 h-3 rounded-full bg-amber-400 shadow-sm shadow-amber-400/60" />
+                        <div className="text-center">
+                            <div className="font-mono text-sm font-bold text-sky-300">ESP32-S3</div>
+                            <div className="mt-1 font-mono text-xs text-slate-400">Wi-Fi · Bluetooth · GPIO</div>
+                        </div>
                     </div>
+                    {['left-3 top-3', 'right-3 top-3', 'bottom-3 left-3', 'bottom-3 right-3'].map(position => (
+                        <span key={position} className={`absolute h-3 w-3 rounded-full bg-amber-400 ${position}`} />
+                    ))}
                 </div>
-            </motion.div>
-
-            {/* Floating Elements decoration */}
-            <motion.div
-                animate={{ y: [-10, 10, -10] }}
-                transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}
-                className="absolute top-20 right-10 bg-white p-3 rounded-2xl shadow-xl border border-slate-100 flex items-center gap-3"
-            >
-                <div className="w-10 h-10 bg-blue-100 rounded-xl flex items-center justify-center text-brand-blue">
-                    <Cpu size={20} />
-                </div>
-                <div>
-                    <div className="text-xs font-bold text-slate-400">STATUS</div>
-                    <div className="text-sm font-bold text-slate-800">Connected</div>
-                </div>
-            </motion.div>
+            </div>
         </div>
     </section>
 );
 
 const ThreeEModel = () => (
-    <section id="3e-model" className="py-24 bg-white relative overflow-hidden">
+    <section id="3e-model" className="relative overflow-hidden bg-white pb-16 pt-8 sm:pt-16 lg:pt-20">
         <div className="max-w-7xl mx-auto px-6 relative z-10">
-            <div className="text-center mb-20">
-                <span className="text-brand-blue font-bold tracking-wider text-sm uppercase mb-3 block">Methodology</span>
+            <div className="mb-12 text-center sm:mb-16">
+                <span className="mb-3 block text-sm font-bold text-blue-700">学习方法</span>
                 <h2 className="text-3xl lg:text-4xl font-black text-slate-900 mb-6">3E 探究模型</h2>
-                <p className="text-slate-500 text-xl max-w-2xl mx-auto">我们的学习像科学家一样严谨，像游戏一样有趣</p>
+                <p className="mx-auto max-w-2xl text-base leading-7 text-slate-600 sm:text-lg">每个实验都按探索、验证、制作三个步骤推进。</p>
             </div>
 
             <div className="grid md:grid-cols-3 gap-8 relative">
                 {/* Connector Line */}
-                <div className="hidden md:block absolute top-16 left-[16%] right-[16%] h-1 bg-gradient-to-r from-blue-100 via-purple-100 to-orange-100 -z-10" />
+                <div className="absolute left-[16%] right-[16%] top-16 -z-10 hidden h-1 bg-gradient-to-r from-blue-100 via-emerald-100 to-orange-100 md:block" />
 
                 {[
                     {
@@ -186,9 +109,9 @@ const ThreeEModel = () => (
                         icon: FlaskConical,
                         title: "Experiment 实验",
                         desc: "动手连接电路，验证你的猜想",
-                        color: "text-purple-500",
-                        bg: "bg-purple-50",
-                        border: "border-purple-100",
+                        color: "text-emerald-600",
+                        bg: "bg-emerald-50",
+                        border: "border-emerald-100",
                         step: "02"
                     },
                     {
@@ -204,11 +127,11 @@ const ThreeEModel = () => (
                     <motion.div
                         key={i}
                         whileHover={{ y: -8 }}
-                        className={`bg-white p-10 rounded-[2rem] border ${item.border} shadow-xl shadow-slate-200/50 text-center relative overflow-hidden group hover:shadow-2xl hover:shadow-${item.color.split('-')[1]}-500/10 transition-all duration-300`}
+                        className={`relative overflow-hidden rounded-lg border bg-white p-8 text-center shadow-sm transition-shadow hover:shadow-lg ${item.border}`}
                     >
-                        <div className={`w-32 h-32 mx-auto ${item.bg} rounded-full flex items-center justify-center mb-8 relative z-10 border-[6px] border-white shadow-lg mx-auto transition-transform group-hover:scale-110 duration-500`}>
+                        <div className={`relative z-10 mx-auto mb-7 flex h-24 w-24 items-center justify-center rounded-lg border border-white shadow-sm ${item.bg}`}>
                             <item.icon size={48} className={item.color} />
-                            <div className="absolute -bottom-2 bg-slate-900 text-white text-xs font-bold px-3 py-1 rounded-full border-4 border-white">
+                            <div className="absolute -bottom-2 rounded-md border-2 border-white bg-slate-900 px-3 py-1 text-xs font-bold text-white">
                                 STEP {item.step}
                             </div>
                         </div>
@@ -253,8 +176,8 @@ const Esp32AiSpotlight = ({ navigate }) => (
                     { title: '指挥 AI', desc: '把硬件、语言、行为和约束说清楚', lessons: '6-10' },
                     { title: '超越 AI', desc: '从真实问题出发完成多模块项目', lessons: '11-16' }
                 ].map((phase, index) => (
-                    <div key={phase.title} className="rounded-3xl border border-white/10 bg-white/5 p-6 backdrop-blur-sm hover:bg-white/10 transition-colors">
-                        <div className="mb-5 flex h-12 w-12 items-center justify-center rounded-2xl bg-white text-slate-950 font-black">
+                    <div key={phase.title} className="rounded-lg border border-white/10 bg-white/5 p-6 transition-colors hover:bg-white/10">
+                        <div className="mb-5 flex h-12 w-12 items-center justify-center rounded-lg bg-white font-black text-slate-950">
                             {index + 1}
                         </div>
                         <div className="text-xs font-black uppercase tracking-widest text-cyan-200 mb-2">第 {phase.lessons} 课</div>
@@ -285,20 +208,20 @@ const MissionMap = ({ navigate }) => {
                             <span className="text-orange-600 font-bold uppercase tracking-wider text-sm">Challenge Map</span>
                         </div>
                         <h2 className="text-3xl lg:text-4xl font-black text-slate-900">
-                            硬件闯关地图
+                            硬件课程路径
                         </h2>
                     </div>
 
-                    <div className="bg-white p-1.5 rounded-2xl shadow-sm border border-slate-200 inline-flex">
+                    <div className="inline-flex rounded-lg border border-slate-200 bg-white p-1 shadow-sm">
                         {[
-                            { id: 'realtime', label: '阶段一：魔法入门' },
-                            { id: 'upload', label: '阶段二：创造大师' }
+                            { id: 'realtime', label: '阶段一：基础接线' },
+                            { id: 'upload', label: '阶段二：综合制作' }
                         ].map(tab => (
                             <button
                                 key={tab.id}
                                 onClick={() => setActiveTab(tab.id)}
                                 className={`px-6 py-3 rounded-xl text-sm font-bold transition-all ${activeTab === tab.id
-                                    ? 'bg-orange-600 text-white shadow-md'
+                                    ? 'bg-orange-700 text-white shadow-md'
                                     : 'text-slate-500 hover:bg-slate-50'
                                     }`}
                             >
@@ -311,18 +234,19 @@ const MissionMap = ({ navigate }) => {
                 <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
                     <AnimatePresence>
                         {missions.map((mission) => (
-                            <motion.div
+                            <motion.button
+                                type="button"
                                 key={mission.id}
                                 layout
                                 initial={{ opacity: 0, scale: 0.9 }}
                                 animate={{ opacity: 1, scale: 1 }}
                                 exit={{ opacity: 0, scale: 0.9 }}
                                 onClick={() => navigate(`/hardware/lesson/${mission.id}`)}
-                                className="group bg-white rounded-3xl border-2 border-slate-100 p-6 cursor-pointer hover:border-brand-blue/50 hover:shadow-2xl hover:shadow-blue-500/10 transition-all relative overflow-hidden"
+                                className="group relative cursor-pointer overflow-hidden rounded-lg border border-slate-200 bg-white p-6 text-left transition hover:border-blue-300 hover:shadow-lg"
                             >
                                 {/* Level Badge */}
                                 <div className="flex justify-between items-start mb-6">
-                                    <div className="text-xs font-black text-slate-400 uppercase tracking-wider bg-slate-50 px-3 py-1.5 rounded-lg group-hover:bg-blue-50 group-hover:text-brand-blue transition-colors">
+                                    <div className="rounded-lg bg-slate-50 px-3 py-1.5 text-xs font-black uppercase tracking-wider text-slate-600 transition-colors group-hover:bg-blue-50 group-hover:text-blue-700">
                                         Level {mission.id.toString().padStart(2, '0')}
                                     </div>
                                     <div className="flex text-amber-400 bg-amber-50 px-2 py-1 rounded-lg">
@@ -349,7 +273,7 @@ const MissionMap = ({ navigate }) => {
                                 <div className="pt-4 border-t border-slate-100 flex items-center justify-between">
                                     <div className="flex gap-2">
                                         {(mission.tags || []).slice(0, 1).map((tag, t) => (
-                                            <span key={t} className="text-[10px] font-bold bg-slate-100 text-slate-500 px-2.5 py-1 rounded-md uppercase">
+                                            <span key={t} className="rounded-md bg-slate-100 px-2.5 py-1 text-[10px] font-bold uppercase text-slate-700">
                                                 {tag}
                                             </span>
                                         ))}
@@ -358,7 +282,7 @@ const MissionMap = ({ navigate }) => {
                                         <ArrowRight size={16} />
                                     </div>
                                 </div>
-                            </motion.div>
+                            </motion.button>
                         ))}
                     </AnimatePresence>
                 </div>
@@ -371,49 +295,70 @@ const Resources = () => (
     <section id="resources" className="py-24 bg-white">
         <div className="max-w-6xl mx-auto px-6">
             <div className="text-center mb-16">
-                <h2 className="text-3xl font-black text-slate-900 mb-4">装备与补给站</h2>
-                <p className="text-slate-500">工欲善其事，必先利其器</p>
+                <h2 className="mb-4 text-3xl font-black text-slate-900">课程准备</h2>
+                <p className="text-slate-500">安装软件并核对硬件后开始实验</p>
             </div>
 
             <div className="grid md:grid-cols-2 gap-12">
                 {/* Software Card */}
-                <div className="bg-gradient-to-br from-blue-50 to-white rounded-[2.5rem] p-10 border border-blue-100 shadow-2xl shadow-blue-500/5 flex flex-col items-center text-center group hover:scale-[1.02] transition-transform duration-500">
-                    <div className="w-24 h-24 bg-white rounded-3xl flex items-center justify-center shadow-lg shadow-blue-500/10 mb-8 rotate-3 group-hover:rotate-6 transition-transform">
+                <div className="flex flex-col items-center rounded-lg border border-blue-100 bg-blue-50 p-8 text-center shadow-sm">
+                    <div className="mb-7 flex h-20 w-20 items-center justify-center rounded-lg bg-white shadow-sm">
                         <Code size={48} className="text-blue-600" />
                     </div>
                     <h3 className="text-2xl font-black text-slate-900 mb-3">软件中心</h3>
-                    <p className="text-slate-500 text-sm mb-10 px-8 leading-relaxed">编程所需的 Mind+ 软件及驱动程序，支持 Windows 与 Mac 系统。</p>
+                    <p className="mb-10 px-8 text-sm leading-relaxed text-slate-600">编程所需的 Mind+ 软件及驱动程序，支持 Windows 与 Mac 系统。</p>
 
                     <div className="space-y-4 w-full max-w-sm">
-                        <button className="w-full flex items-center justify-between px-8 py-5 bg-white rounded-2xl shadow-sm hover:shadow-xl hover:shadow-blue-500/10 border border-blue-100 transition-all group/btn">
-                            <span className="font-bold text-slate-700">下载 Mind+ (V1.7.2)</span>
+                        <a
+                            href={MINDPLUS_DOWNLOAD_URL}
+                            target="_blank"
+                            rel="noreferrer"
+                            className="group/btn flex w-full items-center justify-between rounded-lg border border-blue-100 bg-white px-8 py-5 shadow-sm transition hover:border-blue-300 hover:shadow-md"
+                        >
+                            <span className="font-bold text-slate-700">Mind+ 官方下载</span>
+                            <ExternalLink size={22} className="text-slate-300 group-hover/btn:text-blue-600 transition-colors" />
+                        </a>
+                        <a
+                            href={CH340_DRIVER_URL}
+                            target="_blank"
+                            rel="noreferrer"
+                            className="group/btn flex w-full items-center justify-between rounded-lg border border-blue-100 bg-white px-8 py-5 shadow-sm transition hover:border-blue-300 hover:shadow-md"
+                        >
+                            <span className="font-bold text-slate-700">CH340 官方驱动</span>
                             <Download size={22} className="text-slate-300 group-hover/btn:text-blue-600 transition-colors" />
-                        </button>
-                        <button className="w-full flex items-center justify-between px-8 py-5 bg-white rounded-2xl shadow-sm hover:shadow-xl hover:shadow-blue-500/10 border border-blue-100 transition-all group/btn">
-                            <span className="font-bold text-slate-700">CH340 驱动程序</span>
-                            <Download size={22} className="text-slate-300 group-hover/btn:text-blue-600 transition-colors" />
-                        </button>
+                        </a>
                     </div>
                 </div>
 
                 {/* Hardware Card */}
-                <div className="bg-gradient-to-br from-orange-50 to-white rounded-[2.5rem] p-10 border border-orange-100 shadow-2xl shadow-orange-500/5 flex flex-col items-center text-center group hover:scale-[1.02] transition-transform duration-500">
-                    <div className="w-24 h-24 bg-white rounded-3xl flex items-center justify-center shadow-lg shadow-orange-500/10 mb-8 -rotate-3 group-hover:-rotate-6 transition-transform">
+                <div className="flex flex-col items-center rounded-lg border border-orange-100 bg-orange-50 p-8 text-center shadow-sm">
+                    <div className="mb-7 flex h-20 w-20 items-center justify-center rounded-lg bg-white shadow-sm">
                         <Box size={48} className="text-orange-600" />
                     </div>
                     <h3 className="text-2xl font-black text-slate-900 mb-3">硬件清单</h3>
-                    <p className="text-slate-500 text-sm mb-10 px-8 leading-relaxed">本课程配套的 Arduino 魔法盒子，包含所有只需的传感器与模块。</p>
+                    <p className="mb-8 px-4 text-sm leading-relaxed text-slate-600">本课程配套 Arduino 学习套件，包含课程所需的传感器与模块。</p>
 
                     <div className="grid grid-cols-2 gap-4 w-full max-w-sm text-left">
-                        {['Uno 主板', '扩展板 V5', 'LED 模块', '声音传感器', '舵机 9g', '杜邦线 x20'].map((item, i) => (
-                            <div key={i} className="flex items-center gap-3 text-sm font-bold text-slate-600 bg-white px-4 py-3 rounded-xl border border-orange-100 shadow-sm">
+                        {hardwareKitItems.slice(0, 6).map((item) => (
+                            <div key={item} className="flex items-center gap-3 rounded-lg border border-orange-100 bg-white px-4 py-3 text-sm font-bold text-slate-600 shadow-sm">
                                 <span className="w-2.5 h-2.5 rounded-full bg-orange-600" /> {item}
                             </div>
                         ))}
                     </div>
-                    <button className="mt-8 text-orange-600 font-bold text-sm hover:underline flex items-center gap-2 group/link">
-                        查看完整清单 <ChevronRight size={16} className="group-hover/link:translate-x-1 transition-transform" />
-                    </button>
+                    <details className="mt-8 w-full max-w-sm rounded-lg border border-orange-100 bg-white text-left">
+                        <summary className="flex min-h-12 cursor-pointer list-none items-center justify-between gap-2 px-5 text-sm font-bold text-orange-700 marker:hidden">
+                            查看完整清单（{hardwareKitItems.length} 类）
+                            <ChevronRight size={16} />
+                        </summary>
+                        <ul className="grid gap-2 border-t border-orange-100 px-5 py-4 text-sm font-semibold text-slate-600">
+                            {hardwareKitItems.map((item) => (
+                                <li key={item} className="flex items-start gap-2">
+                                    <CheckCircle2 size={16} className="mt-0.5 shrink-0 text-emerald-500" />
+                                    {item}
+                                </li>
+                            ))}
+                        </ul>
+                    </details>
                 </div>
             </div>
         </div>
@@ -422,6 +367,9 @@ const Resources = () => (
 
 export default function HardwareLanding() {
     const navigate = useNavigate();
+    const scrollToLearningFlow = () => {
+        document.getElementById('3e-model')?.scrollIntoView({ behavior: 'smooth' });
+    };
 
     return (
         <div className="bg-slate-50 min-h-screen font-sans selection:bg-brand-orange selection:text-white overflow-hidden">
@@ -433,8 +381,8 @@ export default function HardwareLanding() {
                         <div className="p-1.5 bg-blue-50 text-blue-600 rounded-lg">
                             <Cpu size={18} />
                         </div>
-                        <span className="font-bold text-lg bg-clip-text text-transparent bg-gradient-to-r from-blue-600 to-indigo-600 hidden sm:inline">
-                            Hardware Station
+                        <span className="hidden text-lg font-bold text-slate-800 sm:inline">
+                            硬件实验课
                         </span>
                     </div>
                 }
@@ -442,7 +390,7 @@ export default function HardwareLanding() {
             <BackgroundDecorations />
 
             <main>
-                <Hero onStart={() => navigate('/hardware/lesson/1')} />
+                <Hero onStart={() => navigate('/hardware/lesson/1')} onPreview={scrollToLearningFlow} />
                 <ThreeEModel />
                 <Esp32AiSpotlight navigate={navigate} />
                 <MissionMap navigate={navigate} />

@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { Bug, Play, RotateCcw, Activity } from 'lucide-react';
 import { useShouldRunDecorativeMotion } from '../hooks/useShouldRunDecorativeMotion';
+import LearningDataManager from './LearningDataManager';
 
 export default function TheLab() {
     const shouldAnimate = useShouldRunDecorativeMotion();
@@ -40,7 +41,8 @@ export default function TheLab() {
 
     return (
         <section className="py-24 bg-slate-950 text-white relative overflow-hidden">
-            <div className="max-w-7xl mx-auto px-4 grid lg:grid-cols-2 gap-16 items-center relative z-10">
+            <div className="relative z-10 mx-auto max-w-7xl px-4">
+                <div className="grid items-center gap-16 lg:grid-cols-2">
 
                 {/* Visualizer Area */}
                 <div className="relative rounded-2xl bg-slate-900 border border-slate-800 shadow-2xl p-6 font-mono font-sm">
@@ -125,7 +127,8 @@ export default function TheLab() {
                         </div>
                     </div>
                 </div>
-
+                </div>
+                <LearningDataManager />
             </div>
         </section>
     );

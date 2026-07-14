@@ -87,12 +87,44 @@ async function openMasteryCheck(page, routeCase, viewportName) {
   await sectionButtons.nth(sectionCount - 1).click();
   const check = page.getByLabel('离开前过关检查');
   await check.waitFor({ state: 'visible', timeout: 10000 });
+  const reviewChecklist = page.getByLabel('课程质量清单');
+  if ((await reviewChecklist.count()) !== 1) {
+    throw new Error(`${route} ${viewportName}: final section should contain one evidence review checklist.`);
+  }
 
   if (viewportName === 'mobile' && await sidebar.isVisible()) {
     throw new Error(`${route} mobile: selecting a section should close the course menu.`);
   }
 
   return check;
+}
+
+async function assertCompactOpening(page, route, viewportName) {
+  const startCard = page.getByLabel('本节开始任务');
+  await startCard.waitFor({ state: 'visible', timeout: 10000 });
+  const openingHeight = await startCard.evaluate((element) => Math.round(element.getBoundingClientRect().height));
+  if (openingHeight > 280) {
+    throw new Error(`${route} ${viewportName}: opening task is too tall (${openingHeight}px).`);
+  }
+
+  if ((await page.getByLabel('课程质量清单').count()) !== 0) {
+    throw new Error(`${route} ${viewportName}: full evidence checklist must not appear before lesson content.`);
+  }
+}
+
+async function recordObjectiveEvidence(page, route) {
+  await page.evaluate(({ lessonRoute }) => {
+    const storageKey = 'gesp_lesson_evidence_v1';
+    const evidence = JSON.parse(sessionStorage.getItem(storageKey) || '{}');
+    evidence[lessonRoute] = {
+      kinds: { predictCorrect: true },
+      updatedAt: Date.now(),
+    };
+    sessionStorage.setItem(storageKey, JSON.stringify(evidence));
+    window.dispatchEvent(new CustomEvent('gesp:lesson-evidence', {
+      detail: { path: lessonRoute, kind: 'predictCorrect' },
+    }));
+  }, { lessonRoute: route });
 }
 
 async function assertNoHorizontalOverflow(page, route, viewportName) {
@@ -113,9 +145,9 @@ async function waitForProgressStatus(page, route, expected, timeoutMs = 10000) {
 
   while (Date.now() - startedAt < timeoutMs) {
     const status = await page.evaluate(({ storageKey, lessonRoute }) => {
-      const progress = JSON.parse(localStorage.getItem(storageKey) || '{}');
-      return progress[lessonRoute]?.status;
-    }, { storageKey: 'gesp_lesson_progress', lessonRoute: route });
+      const learningData = JSON.parse(localStorage.getItem(storageKey) || '{}');
+      return learningData.lessons?.[lessonRoute]?.status;
+    }, { storageKey: 'gesp_learning_data', lessonRoute: route });
 
     if (status === expected) return;
     await wait(100);
@@ -160,6 +192,7 @@ async function verifyRoute(page, routeCase, viewportName) {
   const { route, family } = routeCase;
   await page.goto(`${baseUrl}${route}`, { waitUntil: 'networkidle' });
   await waitForProgressStatus(page, route, 'learning');
+  await assertCompactOpening(page, route, viewportName);
   await assertSectionChangeScrollsToTop(page, routeCase, viewportName);
   const check = await openMasteryCheck(page, routeCase, viewportName);
   await waitForProgressStatus(page, route, 'learning');
@@ -174,9 +207,60 @@ async function verifyRoute(page, routeCase, viewportName) {
     await itemButtons.nth(index).click();
   }
 
+  await waitForProgressStatus(page, route, 'learning');
+  await page.getByText(/自我勾选只是反思/).waitFor({ state: 'visible', timeout: 10000 });
+  await recordObjectiveEvidence(page, route);
   await page.getByText(/可以进入下一课/).waitFor({ state: 'visible', timeout: 10000 });
   await waitForProgressStatus(page, route, 'mastered');
   await assertNoHorizontalOverflow(page, route, viewportName);
+}
+
+async function verifyRealObjectiveOutcome(browserInstance) {
+  const context = await browserInstance.newContext({ viewport: { width: 1365, height: 900 } });
+  const page = await context.newPage();
+  const route = '/lesson/2/8';
+
+  await page.goto(`${baseUrl}${route}`, { waitUntil: 'networkidle' });
+  await page.evaluate(() => {
+    localStorage.removeItem('gesp_learning_data');
+    sessionStorage.removeItem('gesp_lesson_evidence_v1');
+  });
+  await page.reload({ waitUntil: 'networkidle' });
+  await waitForProgressStatus(page, route, 'learning');
+
+  const sidebar = page.locator('aside');
+  await sidebar.getByRole('button', { name: /类型与精度/ }).click();
+  const prompt = page.getByText('int x = sqrt(25); 一定能稳妥得到 5 吗？', { exact: true });
+  await prompt.waitFor({ state: 'visible', timeout: 10000 });
+  const predictionCard = prompt.locator('..');
+
+  await predictionCard.getByRole('button', { name: /一定，sqrt\(25\) 就是 5/ }).click();
+  const evidenceAfterWrongAnswer = await page.evaluate(() => {
+    const evidence = JSON.parse(sessionStorage.getItem('gesp_lesson_evidence_v1') || '{}');
+    return evidence['/lesson/2/8']?.kinds?.predictCorrect || false;
+  });
+  if (evidenceAfterWrongAnswer) throw new Error('Incorrect prediction must not create objective mastery evidence.');
+
+  await predictionCard.getByRole('button', { name: '再试一次', exact: true }).click();
+  await predictionCard.getByRole('button', { name: /不一定，浮点可能/ }).click();
+  const evidenceAfterCorrectAnswer = await page.evaluate(() => {
+    const evidence = JSON.parse(sessionStorage.getItem('gesp_lesson_evidence_v1') || '{}');
+    return evidence['/lesson/2/8']?.kinds?.predictCorrect || false;
+  });
+  if (!evidenceAfterCorrectAnswer) throw new Error('Correct prediction did not create objective mastery evidence.');
+
+  await sidebar.getByRole('button', { name: /练习与作业/ }).click();
+  const check = page.getByLabel('离开前过关检查');
+  await check.waitFor({ state: 'visible', timeout: 10000 });
+  const reflectionButtons = check.locator('button[aria-pressed]');
+  for (let index = 0; index < await reflectionButtons.count(); index += 1) {
+    await reflectionButtons.nth(index).click();
+  }
+  await waitForProgressStatus(page, route, 'mastered');
+
+  await page.reload({ waitUntil: 'networkidle' });
+  await waitForProgressStatus(page, route, 'mastered');
+  await context.close();
 }
 
 async function run() {
@@ -209,7 +293,9 @@ async function run() {
     await context.close();
   }
 
-  console.log(`Cross-course mastery UI checks passed for ${routeCases.length * viewports.length} route/viewport cases.`);
+  await verifyRealObjectiveOutcome(browser);
+
+  console.log(`Cross-course mastery UI checks passed for ${routeCases.length * viewports.length} route/viewport cases plus one real objective outcome flow.`);
 }
 
 run()

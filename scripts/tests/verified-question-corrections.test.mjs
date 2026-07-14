@@ -1,6 +1,7 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
 import { paperIds } from '../../src/data/gesp/_generated.js';
+import { getPaper } from '../../src/data/gesp/index.js';
 import { paperData as rawL6September2024 } from '../../src/data/gesp/level6/2024-09-l6.js';
 import { paperData as rawL8December2024 } from '../../src/data/gesp/level8/2024-12-l8.js';
 import { paperData as rawL8March2026 } from '../../src/data/gesp/level8/2026-03-l8.js';
@@ -56,4 +57,77 @@ test('L8 topic tags keep sorting, combinatorics, and dynamic programming distinc
   assert.deepEqual(tagOf(rawL8March2026, 4), ['组合数学']);
   assert.deepEqual(tagOf(rawL8March2026, 18), ['排序算法']);
   assert.deepEqual(tagOf(rawL8March2026, 25), ['动态规划']);
+});
+
+const contentAuditCases = [
+  ['2023-12-l5', 5, 1, 3, true],
+  ['2024-03-l5', 4, 1, 2, true],
+  ['2025-06-l5', 6, 3, 4, true],
+  ['2025-12-l5', 7, 0, 4, true],
+  ['2023-09-l6', 5, 0, 2, true],
+  ['2023-09-l6', 7, 3, 3, true],
+  ['2024-03-l6', 8, 2, 3, true],
+  ['2024-06-l6', 2, 1, 1, true],
+  ['2025-03-l6', 11, 0, 4, true],
+  ['2025-12-l6', 11, 0, 7, true],
+  ['2025-12-l6', 12, 2, 8, true],
+  ['2026-03-l6', 11, 1, 4, false],
+  ['2024-09-l8', 9, 0, 3, true],
+  ['2025-03-l8', 14, 1, 6, true],
+];
+
+test('content-audited questions retain official answers and traceability', async () => {
+  for (const [paperId, questionId, answer, sourcePage, requiresCode] of contentAuditCases) {
+    const paper = await getPaper(paperId);
+    const question = paper.questions.find(item => item.id === questionId);
+
+    assert.ok(question, `${paperId}:Q${questionId} is missing`);
+    assert.equal(question.answer, answer, `${paperId}:Q${questionId} answer drifted`);
+    assert.equal(question.sourcePage, sourcePage, `${paperId}:Q${questionId} source page drifted`);
+    assert.equal(question.sourceVerified, true, `${paperId}:Q${questionId} lost verification status`);
+    assert.equal(question.requiresCode, requiresCode, `${paperId}:Q${questionId} code requirement drifted`);
+    assert.match(paper.source.officialPdf, /^https:\/\/gesp\.ccf\.org\.cn\//);
+  }
+});
+
+const march2026OfficialKeys = {
+  '2026-03-l1': {
+    sourceUrl: 'https://gesp.ccf.org.cn/101/attach/1734124574343200.pdf',
+    answers: [1, 0, 3, 3, 0, 0, 1, 3, 3, 1, 1, 1, 3, 1, 0],
+  },
+  '2026-03-l2': {
+    sourceUrl: 'https://gesp.ccf.org.cn/101/attach/1734124601606176.pdf',
+    answers: [1, 3, 3, 2, 1, 0, 0, 2, 2, 0, 1, 2, 1, 0, 0],
+  },
+  '2026-03-l3': {
+    sourceUrl: 'https://gesp.ccf.org.cn/101/attach/1734775052173344.pdf',
+    answers: [2, 1, 2, 0, 3, 1, 1, 3, 1, 0, 1, 1, 2, 0, 3],
+  },
+  '2026-03-l4': {
+    sourceUrl: 'https://gesp.ccf.org.cn/101/attach/1734124643549216.pdf',
+    answers: [1, 1, 1, 1, 0, 1, 1, 1, 1, 1, 1, 2, 1, 1, 0],
+  },
+};
+
+test('latest L1-L4 papers expose bounded official verification', async () => {
+  for (const [paperId, expected] of Object.entries(march2026OfficialKeys)) {
+    const paper = await getPaper(paperId);
+    const allQuestions = [
+      ...(paper.questions || []),
+      ...(paper.programmingQuestions || []),
+      ...(paper.codingQuestions || []),
+    ];
+
+    assert.equal(paper.reviewStatus, 'partial', `${paperId} must not claim full verification`);
+    assert.equal(paper.reviewedBy, '本站校订');
+    assert.equal(paper.reviewedAt, '2026-07-14');
+    assert.equal(paper.sourceUrl, expected.sourceUrl);
+    assert.match(paper.reviewScope, /单选题 1-15/);
+    assert.equal(allQuestions.length, 27, `${paperId} must retain the complete paper structure`);
+    assert.deepEqual(
+      allQuestions.slice(0, 15).map(question => question.answer),
+      expected.answers,
+      `${paperId} official single-choice key drifted`,
+    );
+  }
 });

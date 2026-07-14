@@ -75,13 +75,14 @@ export default function HeroSection() {
     };
 
     return (
-        <section className="relative min-h-[86vh] overflow-hidden bg-slate-50 pt-24">
+        <section className="relative overflow-hidden bg-slate-50 pt-20 sm:pt-24 md:min-h-[86vh]">
             <CodePulse />
-            <div className="relative z-10 mx-auto flex min-h-[calc(86vh-6rem)] max-w-7xl items-center px-4 py-16 sm:px-6 lg:px-8">
+            <div className="relative z-10 mx-auto flex max-w-7xl items-center px-4 py-8 sm:px-6 sm:py-12 md:min-h-[calc(86vh-6rem)] lg:px-8 lg:py-16">
                 <div className="max-w-3xl">
-                    <div className="mb-6 inline-flex items-center gap-2 rounded-full border border-blue-100 bg-white/80 px-4 py-2 text-sm font-bold text-blue-700 shadow-sm backdrop-blur">
+                    <div className="mb-4 inline-flex items-center gap-2 rounded-full border border-blue-100 bg-white/80 px-3 py-2 text-xs font-bold text-blue-700 shadow-sm backdrop-blur sm:mb-6 sm:px-4 sm:text-sm">
                         <Route size={16} />
-                        少儿编程学习路径 · GESP 真题训练 · 项目实践
+                        <span className="sm:hidden">课程 · 真题 · 项目</span>
+                        <span className="hidden sm:inline">少儿编程学习路径 · GESP 真题训练 · 项目实践</span>
                     </div>
 
                     <h1 className="text-4xl font-black leading-tight tracking-tight text-slate-950 sm:text-6xl lg:text-7xl">
@@ -89,29 +90,31 @@ export default function HeroSection() {
                         <span className="block text-blue-600">一套清晰训练路径</span>
                     </h1>
 
-                    <p className="mt-6 max-w-2xl text-lg leading-8 text-slate-600 sm:text-xl">
-                        魔丸聚集地把 C++ GESP 备考、Python 入门和项目课收束成可执行的学习路线。学生知道下一步练什么，老师知道每节课要达成什么。
+                    <p className="mt-4 max-w-2xl text-base leading-7 text-slate-600 sm:mt-6 sm:text-xl sm:leading-8">
+                        按目标选择 C++ GESP、Python 或项目课。每节课都给出下一步，练习后再判断是否掌握。
                     </p>
 
-                    <div className="mt-9 flex flex-col gap-3 sm:flex-row">
+                    <div className="mt-6 grid grid-cols-2 gap-3 sm:mt-9 sm:flex sm:flex-row">
                         <button
                             onClick={() => navigate('/question-bank')}
-                            className="inline-flex items-center justify-center gap-2 rounded-xl bg-blue-600 px-6 py-4 text-base font-bold text-white shadow-lg shadow-blue-600/25 transition hover:-translate-y-0.5 hover:bg-blue-700"
+                            className="inline-flex min-h-12 items-center justify-center gap-2 rounded-lg bg-blue-600 px-3 py-3 text-sm font-bold text-white shadow-lg shadow-blue-600/25 transition hover:-translate-y-0.5 hover:bg-blue-700 sm:rounded-xl sm:px-6 sm:py-4 sm:text-base"
                         >
-                            <FileQuestion size={20} />
-                            进入 GESP 题库
-                            <ArrowRight size={18} />
+                            <FileQuestion size={19} />
+                            <span className="sm:hidden">练真题</span>
+                            <span className="hidden sm:inline">进入 GESP 题库</span>
+                            <ArrowRight size={18} className="hidden sm:block" />
                         </button>
                         <button
                             onClick={scrollToLearningPaths}
-                            className="inline-flex items-center justify-center gap-2 rounded-xl border border-slate-200 bg-white px-6 py-4 text-base font-bold text-slate-800 shadow-sm transition hover:border-blue-200 hover:bg-blue-50"
+                            className="inline-flex min-h-12 items-center justify-center gap-2 rounded-lg border border-slate-200 bg-white px-3 py-3 text-sm font-bold text-slate-800 shadow-sm transition hover:border-blue-200 hover:bg-blue-50 sm:rounded-xl sm:px-6 sm:py-4 sm:text-base"
                         >
-                            <BookOpen size={20} />
-                            选择学习路径
+                            <BookOpen size={19} />
+                            <span className="sm:hidden">选路径</span>
+                            <span className="hidden sm:inline">选择学习路径</span>
                         </button>
                     </div>
 
-                    <div className="mt-10 grid max-w-2xl gap-3 text-sm font-semibold text-slate-600 sm:grid-cols-3">
+                    <div className="mt-10 hidden max-w-2xl gap-3 text-sm font-semibold text-slate-600 sm:grid sm:grid-cols-3">
                         {['课程按阶段组织', '真题可练可复盘', '项目课承接兴趣'].map((item) => (
                             <div key={item} className="flex items-center gap-2 rounded-lg bg-white/70 px-3 py-2 shadow-sm ring-1 ring-slate-200 backdrop-blur">
                                 <CheckCircle2 size={16} className="text-emerald-500" />
@@ -123,10 +126,10 @@ export default function HeroSection() {
             </div>
 
             <div className="relative z-10 border-t border-slate-200 bg-white/75 backdrop-blur">
-                <div className="mx-auto grid max-w-7xl gap-4 px-4 py-5 text-sm font-bold text-slate-500 sm:grid-cols-3 sm:px-6 lg:px-8">
-                    <div className="flex items-center gap-2"><Code2 size={16} className="text-blue-500" /> C++ GESP Level 1-8</div>
-                    <div className="flex items-center gap-2"><BookOpen size={16} className="text-emerald-500" /> Python 基础与项目课</div>
-                    <div className="flex items-center gap-2"><FileQuestion size={16} className="text-orange-500" /> {paperStats.paperCount} 套真题与解析</div>
+                <div className="mx-auto grid max-w-7xl grid-cols-3 gap-2 px-4 py-3 text-xs font-bold text-slate-500 sm:gap-4 sm:px-6 sm:py-5 sm:text-sm lg:px-8">
+                    <div className="flex items-center justify-center gap-1.5 sm:justify-start sm:gap-2"><Code2 size={16} className="text-blue-500" /> <span className="sm:hidden">C++ L1-8</span><span className="hidden sm:inline">C++ GESP Level 1-8</span></div>
+                    <div className="flex items-center justify-center gap-1.5 sm:justify-start sm:gap-2"><BookOpen size={16} className="text-emerald-500" /> <span className="sm:hidden">Python 课程</span><span className="hidden sm:inline">Python 基础与项目课</span></div>
+                    <div className="flex items-center justify-center gap-1.5 sm:justify-start sm:gap-2"><FileQuestion size={16} className="text-orange-500" /> <span className="sm:hidden">{paperStats.paperCount} 套真题</span><span className="hidden sm:inline">{paperStats.paperCount} 套真题与解析</span></div>
                 </div>
             </div>
         </section>

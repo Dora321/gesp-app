@@ -6,6 +6,7 @@ const baseline = JSON.parse(fs.readFileSync(new URL('../question-code-baseline.j
 
 test('question-code baseline is unique and machine-addressable', () => {
   assert.ok(Array.isArray(baseline.issues));
+  assert.deepEqual(baseline.issues, [], 'Resolved code-content defects must not be accepted as baseline debt');
   assert.equal(new Set(baseline.issues).size, baseline.issues.length);
   baseline.issues.forEach(issue => assert.match(issue, /^\d{4}-\d{2}-l[1-8]:Q\w+$/));
 });

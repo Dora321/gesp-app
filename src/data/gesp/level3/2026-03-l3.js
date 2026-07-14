@@ -13,7 +13,14 @@ export const paperData = {
     timeLimit: 90 * 60,
     source: {
         officialPdf: 'https://gesp.ccf.org.cn/101/attach/1734775052173344.pdf',
+        type: 'official',
         notes: '少量流程图题按官方 PDF 做等价文字整理，保持答案与考点一致。',
+    },
+    verification: {
+        status: 'partial',
+        reviewedBy: '本站校订',
+        reviewedAt: '2026-07-14',
+        scope: '单选题 1-15 的答案与全卷题量已对照 CCF GESP 官方 PDF。',
     },
     questions: [
         {

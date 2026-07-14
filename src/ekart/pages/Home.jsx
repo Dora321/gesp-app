@@ -24,10 +24,10 @@ const EkartHome = () => {
                 style={{ scaleX: scrollYProgress, transformOrigin: "0%" }}
             />
 
-            <div className="relative z-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-24 pb-32">
+            <div className="relative z-10 mx-auto max-w-7xl px-4 pb-24 pt-10 sm:px-6 sm:pt-16 lg:px-8 lg:pb-32 lg:pt-24">
 
                 {/* Hero Section */}
-                <div className="grid lg:grid-cols-12 gap-12 items-center min-h-[85vh] mb-24 relative">
+                <div className="relative mb-16 grid items-center gap-12 py-8 lg:mb-24 lg:min-h-[85vh] lg:grid-cols-12 lg:py-0">
 
                     {/* Left Interface */}
                     <div className="lg:col-span-7 space-y-10 relative z-20">
@@ -36,26 +36,26 @@ const EkartHome = () => {
                             initial={{ opacity: 0, scale: 0.8 }}
                             animate={{ opacity: 1, scale: 1 }}
                             transition={{ duration: 0.5 }}
-                            className="inline-flex items-center gap-3 px-4 py-2 rounded-full bg-cyan-950/20 border border-cyan-500/30 backdrop-blur-md shadow-[0_0_20px_rgba(6,182,212,0.1)]"
+                            className="inline-flex items-center gap-3 rounded-md border border-blue-400/30 bg-blue-500/10 px-3 py-2"
                         >
                             <span className="relative flex h-2 w-2">
-                                <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-cyan-400 opacity-75"></span>
-                                <span className="relative inline-flex rounded-full h-2 w-2 bg-cyan-500"></span>
+                                <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-blue-400 opacity-75"></span>
+                                <span className="relative inline-flex rounded-full h-2 w-2 bg-blue-500"></span>
                             </span>
-                            <span className="text-cyan-400 text-xs font-mono tracking-[0.1em] font-bold">GESP · 硬件教学实训平台</span>
+                            <span className="text-blue-200 text-xs font-bold">项目制硬件课程</span>
                         </motion.div>
 
                         <div className="relative">
                             <KineticText
                                 as="h1"
-                                text="硬件启蒙站 打造未来工程师"
-                                className="text-6xl md:text-8xl font-black italic tracking-tighter leading-[1.1] text-transparent bg-clip-text bg-gradient-to-b from-white via-gray-100 to-gray-500"
+                                text="E-Kart 工程实践课"
+                                className="text-4xl font-black leading-tight text-white sm:text-5xl md:text-7xl"
                             />
                             <motion.div
                                 initial={{ width: 0 }}
                                 animate={{ width: "240px" }}
                                 transition={{ delay: 1, duration: 1, ease: "circOut" }}
-                                className="h-2 bg-gradient-to-r from-cyan-500 to-blue-600 mt-6 skew-x-[-20deg]"
+                                className="mt-6 h-1 bg-blue-500"
                             />
                         </div>
 
@@ -63,25 +63,23 @@ const EkartHome = () => {
                             initial={{ opacity: 0, x: -20 }}
                             animate={{ opacity: 1, x: 0 }}
                             transition={{ delay: 0.4 }}
-                            className="text-xl md:text-2xl text-gray-400 max-w-xl font-light border-l-2 border-cyan-500/50 pl-6 py-1 leading-relaxed"
+                            className="max-w-xl border-l-2 border-blue-500 pl-5 text-lg font-medium leading-8 text-slate-300 md:text-xl"
                         >
-                            <span className="text-white font-medium">以项目驱动学习，</span>融合机械、电路与编程。<br />
-                            让学生在工程实践中，探索科技的无限可能。
+                            亲手搭建一辆电动卡丁车，在真实任务中学习机械结构、电路连接与程序控制。
                         </motion.p>
 
                         <div className="flex flex-wrap gap-6 items-center pt-4">
                             <Link to="/ekart/roadmap">
-                                <MagneticButton className="group relative px-10 py-5 bg-white text-black font-black text-xl hover:bg-cyan-400 transition-colors clip-path-polygon rounded-sm">
-                                    <span className="absolute inset-0 bg-gradient-to-r from-cyan-400 to-blue-500 opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
-                                    <span className="flex items-center gap-2 relative z-10 transition-transform group-hover:translate-x-2">
+                                <MagneticButton className="group relative rounded-lg bg-blue-600 px-7 py-4 text-base font-black text-white transition-colors hover:bg-blue-500">
+                                    <span className="relative z-10 flex items-center gap-2">
                                         开始学习 <GraduationCap className="w-6 h-6" />
                                     </span>
                                 </MagneticButton>
                             </Link>
 
                             <Link to="/ekart/gallery">
-                                <MagneticButton className="px-8 py-5 text-white font-bold text-lg border border-white/20 hover:border-cyan-500/50 hover:bg-cyan-950/30 transition-all backdrop-blur-sm group rounded-sm">
-                                    <span className="group-hover:text-cyan-400 transition-colors">学员作品库</span>
+                                <MagneticButton className="group rounded-lg border border-slate-600 bg-slate-900/80 px-7 py-4 text-base font-bold text-white transition-colors hover:border-blue-400 hover:bg-slate-800">
+                                    <span>浏览学员作品</span>
                                 </MagneticButton>
                             </Link>
                         </div>

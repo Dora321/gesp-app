@@ -2,7 +2,7 @@ import { ArrowRight, BookOpenCheck, Boxes, Clock, PackageCheck, UsersRound } fro
 import { Link } from 'react-router-dom';
 import { getPythonProjectSupport } from '../data/pythonProjectFlow';
 import LessonNextSteps from './LessonNextSteps';
-import LessonQualityBar from './LessonQualityBar';
+import LessonQualityBar, { LessonStartCard } from './LessonQualityBar';
 
 const themeStyles = {
   light: {
@@ -98,26 +98,27 @@ export default function PythonProjectSupport({ projectId, placement = 'top', the
 
   if (placement === 'bottom') {
     return (
-      <LessonNextSteps
-        previous={support.previous}
-        next={support.next}
-        practiceLinks={support.practiceLinks}
-        reviewTasks={support.reviewTasks}
-        variant={theme}
-      />
+      <>
+        <div className="mb-6">
+          <ProjectBrief support={support} theme={theme} />
+          <LessonQualityBar {...support.quality} phase="review" />
+        </div>
+        <LessonNextSteps
+          previous={support.previous}
+          next={support.next}
+          practiceLinks={support.practiceLinks}
+          reviewTasks={support.reviewTasks}
+          variant={theme}
+        />
+      </>
     );
   }
 
   return (
-    <div className="mb-6">
-      <ProjectBrief support={support} theme={theme} />
-      <LessonQualityBar
-        bare
-        goals={support.quality.goals}
-        deliverables={support.quality.deliverables}
-        checks={support.quality.checks}
-        accent={support.quality.accent}
-      />
-    </div>
+    <LessonStartCard
+      goal={support.quality.goals[0]}
+      task={support.quality.deliverables[0]}
+      accent={support.quality.accent}
+    />
   );
 }

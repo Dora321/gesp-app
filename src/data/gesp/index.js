@@ -19,7 +19,17 @@ import { applyVerifiedQuestionCorrections } from './verifiedQuestionCorrections.
 export async function getPaper(paperId) {
   const loader = _loaders[paperId];
   if (!loader) return null;
-  return applyVerifiedQuestionCorrections(await loader());
+  const paper = applyVerifiedQuestionCorrections(await loader());
+  const meta = _paperMeta[paperId] || {};
+
+  return {
+    ...paper,
+    reviewStatus: meta.reviewStatus || 'unverified',
+    reviewedBy: meta.reviewedBy || '',
+    reviewedAt: meta.reviewedAt || '',
+    reviewScope: meta.reviewScope || '',
+    sourceUrl: meta.sourceUrl || paper?.source?.officialPdf || '',
+  };
 }
 
 /**

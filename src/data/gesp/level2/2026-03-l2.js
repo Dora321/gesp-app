@@ -7,6 +7,17 @@ export const paperData = {
     month: 3,
     session: 13,
     timeLimit: 90 * 60,
+    source: {
+        officialPdf: 'https://gesp.ccf.org.cn/101/attach/1734124601606176.pdf',
+        type: 'official',
+        notes: '题面来源为 CCF GESP 官方 PDF；代码与版式按网页展示需要做等价转写。',
+    },
+    verification: {
+        status: 'partial',
+        reviewedBy: '本站校订',
+        reviewedAt: '2026-07-14',
+        scope: '单选题 1-15 的答案与全卷题量已对照 CCF GESP 官方 PDF。',
+    },
     questions: [
         {
             id: 1,

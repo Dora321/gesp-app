@@ -1,3 +1,5 @@
+import { createSequentialCourseSupport, defineCourse } from './courseSchema.js';
+
 export const cppL3Lessons = [
   { id: 1, title: '第 1 课：变身数字魔术师 (进制)' },
   { id: 2, title: '第 2 课：负数的真面目 (补码)' },
@@ -192,39 +194,20 @@ const reviewTasksByLesson = {
   16: ['完成一套三级真题并记录每题耗时。', '把错题按边界、初始化、字符、模拟顺序、输出格式分类。'],
 };
 
+export const cppL3Course = defineCourse({
+  id: 'cpp-l3', title: 'GESP C++ 三级', language: 'cpp', kind: 'level',
+  items: cppL3Lessons, detailsById: qualityByLesson, pathFor: id => `/lesson/3/${id}`,
+});
+
+const buildCppL3LessonSupport = createSequentialCourseSupport(cppL3Course, {
+  previousReasons: previousReasonByLesson,
+  nextReasons: nextReasonByLesson,
+  practiceLinksById: practiceByLesson,
+  reviewTasksById: reviewTasksByLesson,
+  entry: ({ current }) => ({ title: '第 16 课：全真模拟考试', path: '/lesson/2/16', reason: previousReasonByLesson[current.id] }),
+  exit: ({ current }) => ({ title: 'C++ 三级课程总览', path: '/level3', reason: nextReasonByLesson[current.id] }),
+});
+
 export function getCppL3LessonSupport(lessonId) {
-  const lesson = cppL3Lessons.find((item) => item.id === lessonId);
-  const previousLesson = cppL3Lessons.find((item) => item.id === lessonId - 1);
-  const nextLesson = cppL3Lessons.find((item) => item.id === lessonId + 1);
-
-  if (!lesson) return null;
-
-  return {
-    lesson,
-    quality: qualityByLesson[lessonId],
-    previous: previousLesson
-      ? {
-          title: previousLesson.title,
-          path: `/lesson/3/${previousLesson.id}`,
-          reason: previousReasonByLesson[lessonId],
-        }
-      : {
-          title: '第 16 课：全真模拟考试',
-          path: '/lesson/2/16',
-          reason: previousReasonByLesson[lessonId],
-        },
-    next: nextLesson
-      ? {
-          title: nextLesson.title,
-          path: `/lesson/3/${nextLesson.id}`,
-          reason: nextReasonByLesson[lessonId],
-        }
-      : {
-          title: 'C++ 三级课程总览',
-          path: '/level3',
-          reason: nextReasonByLesson[lessonId],
-        },
-    practiceLinks: practiceByLesson[lessonId] || [],
-    reviewTasks: reviewTasksByLesson[lessonId] || [],
-  };
+  return buildCppL3LessonSupport(lessonId);
 }

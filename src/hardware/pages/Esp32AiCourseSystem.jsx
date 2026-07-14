@@ -38,8 +38,7 @@ import {
     makeVerificationSteps,
     NAV_ITEMS
 } from '../data/esp32AiCourse';
-
-const PROGRESS_KEY = 'esp32ai_progress';
+import { readLearningData, updateLearningData } from '../../utils/learningData';
 
 function scrollToId(id) {
     if (typeof document !== 'undefined') {
@@ -48,17 +47,12 @@ function scrollToId(id) {
 }
 
 function loadProgress() {
-    try {
-        const raw = localStorage.getItem(PROGRESS_KEY);
-        const data = raw ? JSON.parse(raw) : null;
-        const nums = allLessons.map((l) => l.num);
-        return {
-            activeNum: nums.includes(data?.activeNum) ? data.activeNum : 1,
-            viewed: Array.isArray(data?.viewed) ? data.viewed.filter((n) => nums.includes(n)) : []
-        };
-    } catch {
-        return { activeNum: 1, viewed: [] };
-    }
+    const data = readLearningData().hardware.esp32Ai;
+    const nums = allLessons.map((l) => l.num);
+    return {
+        activeNum: nums.includes(data?.activeNum) ? data.activeNum : 1,
+        viewed: Array.isArray(data?.viewed) ? data.viewed.filter((n) => nums.includes(n)) : []
+    };
 }
 
 function SectionHeader({ eyebrow, title, desc }) {
@@ -530,11 +524,13 @@ function LessonStudio() {
     const goNext = () => selectLesson(allLessons[Math.min(allLessons.length - 1, activeIndex + 1)].num);
 
     useEffect(() => {
-        try {
-            localStorage.setItem(PROGRESS_KEY, JSON.stringify({ activeNum, viewed }));
-        } catch {
-            /* localStorage 不可用时静默忽略 */
-        }
+        updateLearningData((data) => ({
+            ...data,
+            hardware: {
+                ...data.hardware,
+                esp32Ai: { activeNum, viewed },
+            },
+        }), 'esp32-ai-progress');
     }, [activeNum, viewed]);
 
     return (

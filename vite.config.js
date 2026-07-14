@@ -7,6 +7,7 @@ export default defineConfig(({ command }) => ({
   // 开发环境使用根路径，生产环境使用 GitHub Pages 路径
   base: command === 'serve' ? '/' : '/gesp-app/',
   build: {
+    manifest: true,
     rollupOptions: {
       output: {
         // Function form (not the object form): the object form hoists shared

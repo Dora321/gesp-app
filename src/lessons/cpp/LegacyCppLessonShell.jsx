@@ -1,7 +1,8 @@
 import React, { useEffect, useRef, useState } from 'react';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
-import { ArrowRight, Menu, X } from 'lucide-react';
+import { ArrowRight } from 'lucide-react';
 import { recordLessonVisit } from '../../utils/lessonProgress';
+import LessonMobileHeader from '../../components/LessonMobileHeader';
 
 const accentClasses = {
   blue: {
@@ -103,25 +104,11 @@ export default function LegacyCppLessonShell({
         @keyframes slideIn { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
       `}</style>
 
-      <div className="md:hidden fixed top-0 left-0 w-full z-50 bg-white border-b border-slate-200 p-4 flex items-center justify-between shadow-sm">
-        <h1 className="text-lg font-bold text-blue-700 flex items-center gap-2">
-          <Link to="/" className="hover:opacity-80 transition-opacity">
-            <div className="w-8 h-8 bg-white rounded-lg flex items-center justify-center overflow-hidden border border-slate-200 shadow-sm">
-              <img src={`${import.meta.env.BASE_URL}logo.jpg`} alt="Logo" className="w-full h-full object-cover" />
-            </div>
-          </Link>
-          <span className="bg-blue-600 text-white px-2 py-0.5 rounded text-xs">C++</span>
-          <span>{levelLabel}</span>
-        </h1>
-        <button
-          onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-          className="p-2 text-slate-600 hover:bg-slate-100 rounded-lg"
-          aria-label={isMobileMenuOpen ? '关闭课程目录' : '打开课程目录'}
-          aria-expanded={isMobileMenuOpen}
-        >
-          {isMobileMenuOpen ? <X size={24} /> : <Menu size={24} />}
-        </button>
-      </div>
+      <LessonMobileHeader
+        label={`C++ · ${levelLabel}`}
+        open={isMobileMenuOpen}
+        onToggle={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
+      />
 
       {isMobileMenuOpen && (
         <button
@@ -158,7 +145,7 @@ export default function LegacyCppLessonShell({
               <React.Fragment key={section.id}>
                 {showCategory && (
                   <div className="px-6 pb-2 pt-4 first:pt-0">
-                    <h3 className="text-xs font-bold text-slate-400 uppercase tracking-wider">{section.category}</h3>
+                    <h3 className="text-xs font-bold uppercase tracking-wider text-slate-600">{section.category}</h3>
                   </div>
                 )}
                 <div className="px-3">
@@ -195,7 +182,7 @@ export default function LegacyCppLessonShell({
 
         <header className="h-16 bg-white/90 backdrop-blur-md border-b border-gray-200 flex items-center justify-between px-8 shadow-sm z-10">
           <h2 className="flex min-w-0 items-center gap-2 text-lg font-bold text-gray-800">
-            <span className="shrink-0 rounded bg-gray-100 px-2 py-0.5 text-xs text-gray-500">Section {activeSection}</span>
+            <span className="shrink-0 rounded bg-gray-100 px-2 py-0.5 text-xs text-gray-600">Section {activeSection}</span>
             <span className="hidden min-w-0 truncate sm:inline">{activeSectionMeta?.title}</span>
           </h2>
           <div className="flex gap-2 text-sm text-gray-500">
@@ -211,7 +198,9 @@ export default function LegacyCppLessonShell({
         <main ref={scrollRef} className="flex-1 overflow-y-auto p-8 z-0">
           <div className="max-w-4xl mx-auto pb-12">
             {isFirst && topSupport}
-            {children}
+            <div data-lesson-active-content="true">
+              {children}
+            </div>
             {isLast && bottomSupport}
           </div>
         </main>

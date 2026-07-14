@@ -63,8 +63,15 @@ jobs:
       - name: Verify static route metadata and PWA assets
         run: npm run check:prerender
 
+      - name: Enforce bundle budgets
+        run: npm run check:bundle
+
       - name: Smoke test desktop and mobile routes
         run: npm run smoke
+
+      - name: Accessibility checks
+        run: npm run check:a11y
+        timeout-minutes: 5
 
       - name: Visual and layout regression
         run: npm run visual

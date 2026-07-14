@@ -14,6 +14,12 @@ export const paperData = {
     type: 'official',
     notes: '客观题与编程题均依据官方 PDF 回填；少量代码题按官方版式做等价转写。',
   },
+  verification: {
+    status: 'partial',
+    reviewedBy: '本站校订',
+    reviewedAt: '2026-07-14',
+    scope: '单选题 1-15 的答案与全卷题量已对照 CCF GESP 官方 PDF。',
+  },
   confidence: {
     answer: 1.0,
     statement: 1.0,

@@ -1,4 +1,4 @@
-import { CheckCircle2, ClipboardCheck, Target, Timer } from 'lucide-react';
+import { ArrowDown, CheckCircle2, ClipboardCheck, Target, Timer } from 'lucide-react';
 
 const accentStyles = {
   blue: {
@@ -72,6 +72,38 @@ const columns = [
   { key: 'checks', title: '离开前自测', helper: '能说清、能验证、能改错', icon: CheckCircle2 },
 ];
 
+export function LessonStartCard({ goal, task, accent = 'blue', className = '' }) {
+  const styles = accentStyles[accent] || accentStyles.blue;
+
+  const startLesson = () => {
+    const content = document.querySelector('[data-lesson-active-content="true"]');
+    if (!content) return;
+    const reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    content.scrollIntoView({ behavior: reduceMotion ? 'auto' : 'smooth', block: 'start' });
+  };
+
+  return (
+    <section
+      className={`mb-5 flex flex-col gap-4 rounded-lg border ${styles.border} ${styles.bg} p-4 sm:flex-row sm:items-center sm:justify-between ${className}`}
+      aria-label="本节开始任务"
+    >
+      <div className="min-w-0">
+        <div className={`text-xs font-black ${styles.heading}`}>本节目标</div>
+        <p className="mt-1 text-sm font-bold leading-6 text-slate-800">{goal}</p>
+        {task && <p className="mt-1 text-xs font-semibold leading-5 text-slate-600">动手任务：{task}</p>}
+      </div>
+      <button
+        type="button"
+        onClick={startLesson}
+        className={`inline-flex min-h-11 shrink-0 items-center justify-center gap-2 rounded-lg px-4 py-2 text-sm font-black text-white ${styles.bullet}`}
+      >
+        立即开始
+        <ArrowDown size={16} />
+      </button>
+    </section>
+  );
+}
+
 export default function LessonQualityBar({
   goals = [],
   deliverables = [],
@@ -79,11 +111,13 @@ export default function LessonQualityBar({
   accent = 'blue',
   className = '',
   bare = false,
+  phase = 'overview',
 }) {
   const styles = accentStyles[accent] || accentStyles.blue;
   const data = { goals, deliverables, checks };
   const immediateTask = deliverables[0] || goals[0] || null;
   const immediateCheck = checks[0] || null;
+  const isReview = phase === 'review';
 
   const grid = (
     <div className="grid gap-3 md:grid-cols-3">
@@ -123,12 +157,16 @@ export default function LessonQualityBar({
       <div className="mb-4 flex flex-col gap-1 sm:flex-row sm:items-end sm:justify-between">
         <div>
           <div className={`inline-flex rounded-md px-2.5 py-1 text-xs font-black ${styles.bg} ${styles.heading}`}>
-            今日学习闭环
+            {isReview ? '离开前验收' : '今日学习闭环'}
           </div>
-          <h2 className="mt-2 text-xl font-black text-slate-950">先做小目标，再检查是否真的会</h2>
+          <h2 className="mt-2 text-xl font-black text-slate-950">
+            {isReview ? '用证据确认这节课真的会' : '先做小目标，再检查是否真的会'}
+          </h2>
         </div>
         <p className="text-sm font-semibold text-slate-500">
-          每节课都按“目标、证据、自测”收束，避免只看懂、不迁移。
+          {isReview
+            ? '完成作品或记录，再做自测和迁移。'
+            : '每节课都按“目标、证据、自测”收束，避免只看懂、不迁移。'}
         </p>
       </div>
       {immediateTask && (
@@ -137,7 +175,7 @@ export default function LessonQualityBar({
             <span className={`flex h-7 w-7 items-center justify-center rounded-md text-white ${styles.bullet}`}>
               <Timer size={15} />
             </span>
-            马上动手
+            {isReview ? '首要证据' : '马上动手'}
           </div>
           <p className="text-sm font-bold leading-relaxed text-slate-800">{immediateTask}</p>
           {immediateCheck && (

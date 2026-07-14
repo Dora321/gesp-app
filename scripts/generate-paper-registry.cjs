@@ -17,6 +17,7 @@ const LEVELS = ['level1', 'level2', 'level3', 'level4', 'level5', 'level6', 'lev
 const OUTPUT_FILE = path.resolve(DATA_DIR, '_generated.js');
 const OUTPUT_STATS_FILE = path.resolve(DATA_DIR, '_stats.js');
 const VERIFIED_CORRECTIONS_FILE = path.resolve(DATA_DIR, 'verifiedQuestionCorrections.js');
+const VERIFIED_CORRECTIONS_DIR = path.resolve(DATA_DIR, 'verified-corrections');
 
 // ===== Utils =====
 
@@ -51,6 +52,17 @@ function countQuestions(content) {
       if (ids) total += ids.length;
     }
   }
+
+  // Some papers hoist programming questions into a file-level array and spread
+  // it into paperData.questions. Count those arrays without executing data files.
+  const hoistedQuestionArrays = /(?:const|let|var)\s+(?:programmingQuestions|codingQuestions)\s*=\s*\[/g;
+  let hoistedMatch;
+  while ((hoistedMatch = hoistedQuestionArrays.exec(content)) !== null) {
+    const block = extractArrayBlock(content, hoistedMatch.index + hoistedMatch[0].length - 1);
+    const ids = block.match(/{\s*(?:\/\/[^\n]*\n\s*)*id:/g);
+    if (ids) total += ids.length;
+  }
+
   return total;
 }
 
@@ -100,18 +112,34 @@ function jsString(value) {
 }
 
 function readVerifiedCorrectionMeta() {
-  if (!fs.existsSync(VERIFIED_CORRECTIONS_FILE)) return new Map();
+  const files = [];
+  if (fs.existsSync(VERIFIED_CORRECTIONS_FILE)) files.push(VERIFIED_CORRECTIONS_FILE);
+  if (fs.existsSync(VERIFIED_CORRECTIONS_DIR)) {
+    files.push(...fs.readdirSync(VERIFIED_CORRECTIONS_DIR)
+      .filter(file => file.endsWith('.js'))
+      .map(file => path.join(VERIFIED_CORRECTIONS_DIR, file)));
+  }
 
-  const content = fs.readFileSync(VERIFIED_CORRECTIONS_FILE, 'utf8');
-  const paperPattern = /^\s{2}'(\d{4}-\d{2}-l\d)':\s*\{/gm;
-  const matches = [...content.matchAll(paperPattern)];
+  const corrections = new Map();
+  for (const file of files) {
+    const content = fs.readFileSync(file, 'utf8');
+    const paperPattern = /^\s*'(\d{4}-\d{2}-l\d)':\s*\{/gm;
+    const matches = [...content.matchAll(paperPattern)];
 
-  return new Map(matches.map((match, index) => {
-    const end = matches[index + 1]?.index ?? content.length;
-    const block = content.slice(match.index, end);
-    const sourceUrl = block.match(/sourceUrl:\s*'([^']+)'/)?.[1] || '';
-    return [match[1], { sourceUrl }];
-  }));
+    matches.forEach((match, index) => {
+      const end = matches[index + 1]?.index ?? content.length;
+      const block = content.slice(match.index, end);
+      const sourceUrl = block.match(/sourceUrl:\s*'([^']+)'/)?.[1] || '';
+      corrections.set(match[1], { sourceUrl });
+    });
+
+    const appendedCorrectionPattern = /addVerifiedQuestionCorrections\(\s*'(\d{4}-\d{2}-l\d)',\s*'([^']+)'/g;
+    for (const match of content.matchAll(appendedCorrectionPattern)) {
+      corrections.set(match[1], { sourceUrl: match[2] });
+    }
+  }
+
+  return corrections;
 }
 
 // ===== Scan & Generate =====

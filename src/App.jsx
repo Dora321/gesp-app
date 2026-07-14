@@ -75,13 +75,20 @@ const PageLoader = () => <LoadingScreen message="正在为您加载" />;
 const GlobalWidgets = () => {
   const { pathname } = useLocation();
   const isQuestionBankFlow = pathname.startsWith('/question-bank');
+  const usesHeaderActions = pathname === '/' || pathname === '/museum';
 
   if (isQuestionBankFlow) return null;
 
   return (
     <Suspense fallback={null}>
-      <ClassroomPoints />
-      <AIChat />
+      <div
+        className={usesHeaderActions ? 'hidden md:contents' : 'hidden sm:contents'}
+        role="toolbar"
+        aria-label="快捷工具"
+      >
+        <ClassroomPoints mobileDocked={!usesHeaderActions} />
+        <AIChat mobileDocked={!usesHeaderActions} />
+      </div>
     </Suspense>
   );
 };

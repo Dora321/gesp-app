@@ -27,7 +27,7 @@ const QuestionSidebar = ({
           <div className="w-full bg-slate-100 rounded-full h-2 mb-1">
             <div className="bg-green-500 h-2 rounded-full transition-all duration-300" style={{ width: `${progress}%` }}></div>
           </div>
-          <div className="text-xs text-slate-400 text-right">{answeredCount} / {questions.length}</div>
+          <div className="text-xs text-slate-600 text-right">{answeredCount} / {questions.length}</div>
         </div>
 
         <div className="flex-1 overflow-y-auto p-4">

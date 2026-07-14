@@ -2,33 +2,29 @@
 // Lets a learner survive an accidental refresh / tab close during a timed
 // 90-minute paper without losing answers or the clock.
 
-const keyFor = (paperId) => `gesp_exam_progress_${paperId}`;
+import { readLearningData, updateLearningData } from './learningData.js';
 
 export function loadExamProgress(paperId) {
-    try {
-        const raw = localStorage.getItem(keyFor(paperId));
-        if (!raw) return null;
-        const data = JSON.parse(raw);
-        return data && typeof data === 'object' ? data : null;
-    } catch {
-        return null;
-    }
+    return readLearningData().exams[paperId] || null;
 }
 
 export function saveExamProgress(paperId, snapshot) {
-    try {
-        localStorage.setItem(keyFor(paperId), JSON.stringify({ ...snapshot, savedAt: Date.now() }));
-    } catch {
-        // Storage full / disabled (private mode) — persistence is best-effort.
-    }
+    if (!paperId) return;
+    updateLearningData((data) => ({
+        ...data,
+        exams: {
+            ...data.exams,
+            [paperId]: { ...snapshot, savedAt: Date.now() },
+        },
+    }), 'exam-progress');
 }
 
 export function clearExamProgress(paperId) {
-    try {
-        localStorage.removeItem(keyFor(paperId));
-    } catch {
-        // ignore
-    }
+    updateLearningData((data) => {
+        const exams = { ...data.exams };
+        delete exams[paperId];
+        return { ...data, exams };
+    }, 'exam-progress-clear');
 }
 
 // Only offer to resume work that is genuinely in progress: not yet submitted,

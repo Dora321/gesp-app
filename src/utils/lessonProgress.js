@@ -2,29 +2,18 @@
 // catalog can show 未学 / 学习中 / 已过关 / 建议复习. Keyed by the lesson's route
 // pathname (e.g. "/lesson/3/7" or "/python/f3"), which matches the catalog links.
 
-const STORAGE_KEY = 'gesp_lesson_progress';
+import { readLearningData, updateLearningData } from './learningData.js';
 
 // A mastered lesson older than this many days is surfaced as "建议复习".
 export const REVIEW_AFTER_DAYS = 30;
 const DAY_MS = 24 * 60 * 60 * 1000;
 
 export function readLessonProgress() {
-    try {
-        const raw = localStorage.getItem(STORAGE_KEY);
-        if (!raw) return {};
-        const data = JSON.parse(raw);
-        return data && typeof data === 'object' ? data : {};
-    } catch {
-        return {};
-    }
+    return readLearningData().lessons;
 }
 
 function writeLessonProgress(progress) {
-    try {
-        localStorage.setItem(STORAGE_KEY, JSON.stringify(progress));
-    } catch {
-        // Storage full / disabled (private mode) — tracking is best-effort.
-    }
+    updateLearningData((data) => ({ ...data, lessons: progress }), 'lesson-progress');
 }
 
 // Mark a lesson as opened. Never downgrades a mastered lesson back to learning.

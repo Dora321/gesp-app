@@ -3,7 +3,8 @@ import { useNavigate } from 'react-router-dom';
 import { ChevronLeft, ChevronRight, RefreshCw, BookOpen, CheckCircle2, Lightbulb, RotateCcw, Tags } from 'lucide-react';
 import MarkdownRenderer from '../../components/MarkdownRenderer';
 import useQuestionKeyboardNavigation from '../../hooks/useQuestionKeyboardNavigation';
-import { buildRichAnalysis } from './analysisEngine';
+import { buildGenericStudyHint, buildRichAnalysis } from './analysisEngine';
+import AnalysisTrustNotice from './AnalysisTrustNotice';
 import { buildQuestionContent as getQuestionContent, formatOptionDisplay, stripLeadingNumber } from '../../utils/questionTextFormatting';
 
 const inferTags = (q) => {
@@ -97,6 +98,11 @@ export default function InteractiveAnalysisPage({ paperData, paperId }) {
     const selected = answers[currentQ.id];
     const isRevealed = !!revealed[currentQ.id];
     const richAnalysis = buildRichAnalysis(currentQ, paperData.level);
+    const paperIsFullyVerified = paperData.reviewStatus === 'verified';
+    const useGenericHint = !paperIsFullyVerified || !richAnalysis || richAnalysis.qualityFlags.inferred;
+    const displayedAnalysis = useGenericHint
+        ? buildGenericStudyHint(currentQ, paperData.level)
+        : richAnalysis;
 
     return (
         <div className="min-h-screen bg-slate-100">
@@ -224,10 +230,15 @@ export default function InteractiveAnalysisPage({ paperData, paperId }) {
                             <div className="bg-blue-50 border border-blue-200 rounded-xl p-4 space-y-3">
                                 {isRevealed ? (
                                     <div className="space-y-3">
+                                        <AnalysisTrustNotice
+                                            paperIsFullyVerified={paperIsFullyVerified}
+                                            useGenericHint={useGenericHint}
+                                        />
                                         {/* 答案速览 */}
                                         <div className="flex items-center gap-3 flex-wrap">
                                             <span className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-green-50 border border-green-200 text-sm font-bold text-green-800">
-                                                <CheckCircle2 size={16} className="text-green-600" /> 正确答案：{String.fromCharCode(65 + currentQ.answer)}
+                                                <CheckCircle2 size={16} className="text-green-600" />
+                                                {paperIsFullyVerified ? '已核验答案' : '题库答案（尚未完成核验）'}：{String.fromCharCode(65 + currentQ.answer)}
                                             </span>
                                             <MarkdownRenderer content={formatOptionDisplay(currentQ.options[currentQ.answer])} inline={true} className="text-sm text-slate-600" />
                                             {answers[currentQ.id] !== undefined && answers[currentQ.id] !== currentQ.answer && (
@@ -238,11 +249,11 @@ export default function InteractiveAnalysisPage({ paperData, paperId }) {
                                         </div>
 
                                         {/* 选项逐项分析 */}
-                                        {richAnalysis?.optionAnalysis?.length > 0 && (
+                                        {displayedAnalysis?.optionAnalysis?.length > 0 && (
                                             <div className="bg-white border border-blue-100 rounded-lg p-3">
                                                 <div className="text-sm font-semibold text-slate-800 mb-2">📋 选项逐项分析</div>
                                                 <div className="space-y-2">
-                                                    {richAnalysis.optionAnalysis.map((oa) => (
+                                                    {displayedAnalysis.optionAnalysis.map((oa) => (
                                                         <div key={oa.idx} className={`flex items-start gap-2 text-sm p-2 rounded-lg ${oa.isCorrect ? 'bg-green-50' : 'bg-slate-50'}`}>
                                                             <span className={`flex-shrink-0 w-6 h-6 rounded-full flex items-center justify-center text-xs font-bold ${oa.isCorrect ? 'bg-green-200 text-green-800' : 'bg-slate-200 text-slate-600'}`}>
                                                                 {oa.label}
@@ -261,16 +272,16 @@ export default function InteractiveAnalysisPage({ paperData, paperId }) {
 
                                         {/* 核心知识点 */}
                                         <div className="bg-white border border-violet-100 rounded-lg p-3">
-                                            <div className="text-sm font-semibold text-violet-800 mb-1">💡 核心知识点</div>
-                                            <MarkdownRenderer content={richAnalysis?.keyPoint || currentQ.explanation || '暂无解析'} className="text-sm text-slate-700 leading-relaxed" />
+                                            <div className="text-sm font-semibold text-violet-800 mb-1">💡 {useGenericHint ? '通用解题提示' : '核心知识点'}</div>
+                                            <MarkdownRenderer content={displayedAnalysis?.keyPoint || '暂无解析'} className="text-sm text-slate-700 leading-relaxed" />
                                         </div>
 
                                         {/* 易错点 */}
-                                        {richAnalysis?.pitfalls?.length > 0 && (
+                                        {displayedAnalysis?.pitfalls?.length > 0 && (
                                             <div className="bg-white border border-amber-100 rounded-lg p-3">
                                                 <div className="text-sm font-semibold text-amber-800 mb-1.5">⚠️ 易错提醒</div>
                                                 <ul className="space-y-1">
-                                                    {richAnalysis.pitfalls.map((p, idx) => (
+                                                    {displayedAnalysis.pitfalls.map((p, idx) => (
                                                         <li key={idx} className="text-sm text-slate-700 flex items-start gap-1.5">
                                                             <span className="text-amber-500 flex-shrink-0 mt-0.5">•</span>
                                                             <MarkdownRenderer content={p} inline={true} className="leading-relaxed" />
@@ -281,10 +292,10 @@ export default function InteractiveAnalysisPage({ paperData, paperId }) {
                                         )}
 
                                         {/* 知识延伸 */}
-                                        {richAnalysis?.extension && (
+                                        {displayedAnalysis?.extension && (
                                             <div className="bg-white border border-emerald-100 rounded-lg p-3">
-                                                <div className="text-sm font-semibold text-emerald-800 mb-1">🚀 知识延伸</div>
-                                                <MarkdownRenderer content={richAnalysis.extension} className="text-sm text-slate-700 leading-relaxed" />
+                                                <div className="text-sm font-semibold text-emerald-800 mb-1">🚀 {useGenericHint ? '练习建议' : '知识延伸'}</div>
+                                                <MarkdownRenderer content={displayedAnalysis.extension} className="text-sm text-slate-700 leading-relaxed" />
                                             </div>
                                         )}
 

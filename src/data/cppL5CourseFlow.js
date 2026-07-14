@@ -1,3 +1,5 @@
+import { createSequentialCourseSupport, defineCourse } from './courseSchema.js';
+
 export const cppL5Lessons = [
   { id: 1, title: '第 1 课：素数大筛选 (埃氏/线性)' },
   { id: 2, title: '第 2 课：公约数与公倍数 (GCD)' },
@@ -192,39 +194,20 @@ const reviewTasksByLesson = {
   16: ['完成一次五级限时模拟并记录每题耗时。', '隔天重做 2 道错题，确认复盘动作是否真的有效。'],
 };
 
+export const cppL5Course = defineCourse({
+  id: 'cpp-l5', title: 'GESP C++ 五级', language: 'cpp', kind: 'level',
+  items: cppL5Lessons, detailsById: qualityByLesson, pathFor: id => `/lesson/5/${id}`,
+});
+
+const buildCppL5LessonSupport = createSequentialCourseSupport(cppL5Course, {
+  previousReasons: previousReasonByLesson,
+  nextReasons: nextReasonByLesson,
+  practiceLinksById: practiceByLesson,
+  reviewTasksById: reviewTasksByLesson,
+  entry: ({ current }) => ({ title: '第 16 课：全真模拟与避坑 (2)', path: '/lesson/4/16', reason: previousReasonByLesson[current.id] }),
+  exit: ({ current }) => ({ title: '五级课程总览', path: '/level5', reason: nextReasonByLesson[current.id] }),
+});
+
 export function getCppL5LessonSupport(lessonId) {
-  const lesson = cppL5Lessons.find((item) => item.id === lessonId);
-  const previousLesson = cppL5Lessons.find((item) => item.id === lessonId - 1);
-  const nextLesson = cppL5Lessons.find((item) => item.id === lessonId + 1);
-
-  if (!lesson) return null;
-
-  return {
-    lesson,
-    quality: qualityByLesson[lessonId],
-    previous: previousLesson
-      ? {
-          title: previousLesson.title,
-          path: `/lesson/5/${previousLesson.id}`,
-          reason: previousReasonByLesson[lessonId],
-        }
-      : {
-          title: '第 16 课：全真模拟与避坑 (2)',
-          path: '/lesson/4/16',
-          reason: previousReasonByLesson[lessonId],
-        },
-    next: nextLesson
-      ? {
-          title: nextLesson.title,
-          path: `/lesson/5/${nextLesson.id}`,
-          reason: nextReasonByLesson[lessonId],
-        }
-      : {
-          title: '五级课程总览',
-          path: '/level5',
-          reason: nextReasonByLesson[lessonId],
-        },
-    practiceLinks: practiceByLesson[lessonId] || [],
-    reviewTasks: reviewTasksByLesson[lessonId] || [],
-  };
+  return buildCppL5LessonSupport(lessonId);
 }

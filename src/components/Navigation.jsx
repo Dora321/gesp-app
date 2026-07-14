@@ -13,7 +13,7 @@ import {
 } from 'lucide-react';
 import { usePrefersReducedMotion } from '../hooks/useShouldRunDecorativeMotion';
 
-export default function Navigation({ darkMode = false, afterLogo = null, className = '' }) {
+export default function Navigation({ darkMode = false, afterLogo = null, mobileActions = null, className = '' }) {
     const navigate = useNavigate();
     const location = useLocation();
     const prefersReducedMotion = usePrefersReducedMotion();
@@ -84,32 +84,35 @@ export default function Navigation({ darkMode = false, afterLogo = null, classNa
                     <div className="flex items-center justify-between h-full">
 
                         {/* Logo Area */}
-                        <div
-                            className="flex items-center gap-3 cursor-pointer group"
-                            onClick={() => navigate('/')}
-                        >
-                            <div className={`
-                                relative flex items-center justify-center overflow-hidden rounded-xl bg-white shadow-lg shadow-blue-600/20 transition-all duration-500
-                                ${isScrolled ? 'w-8 h-8' : 'w-10 h-10 group-hover:scale-110'}
-                            `}>
-                                <div className="absolute inset-0 bg-white/20 opacity-0 group-hover:opacity-100 transition-opacity"></div>
-                                <img
-                                    src={`${import.meta.env.BASE_URL}logo.jpg`}
-                                    alt="Logo"
-                                    className="w-full h-full object-cover"
-                                />
-                            </div>
+                        <div className="flex min-w-0 items-center gap-3">
+                            <button
+                                type="button"
+                                onClick={() => navigate('/')}
+                                className="group flex min-h-11 min-w-0 items-center gap-3 rounded-lg text-left focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500 focus-visible:ring-offset-2"
+                                aria-label="返回网站首页"
+                            >
+                                <span className={`
+                                    relative flex shrink-0 items-center justify-center overflow-hidden rounded-xl bg-white shadow-lg shadow-blue-600/20 transition-all duration-500
+                                    ${isScrolled ? 'h-8 w-8' : 'h-10 w-10 group-hover:scale-110'}
+                                `}>
+                                    <span className="absolute inset-0 bg-white/20 opacity-0 transition-opacity group-hover:opacity-100"></span>
+                                    <img
+                                        src={`${import.meta.env.BASE_URL}logo.jpg`}
+                                        alt=""
+                                        className="h-full w-full object-cover"
+                                    />
+                                </span>
 
-                            <div className={`
-                                font-bold tracking-tight transition-all duration-300 font-sans
-                                ${isScrolled ? 'text-lg' : 'text-2xl'}
-                                ${isScrolled ? 'text-slate-900' : (darkMode ? 'text-white' : 'text-slate-900')}
-                            `}>
-                                <span className={`${isScrolled ? 'text-slate-900' : (darkMode ? 'text-white' : 'text-slate-900')} group-hover:text-blue-600 transition-colors`}>
+                                <span className={`
+                                    truncate font-sans font-bold tracking-tight transition-all duration-300
+                                    ${isScrolled ? 'text-lg' : 'text-2xl'}
+                                    ${isScrolled ? 'text-slate-900' : (darkMode ? 'text-white' : 'text-slate-900')}
+                                    group-hover:text-blue-600
+                                `}>
                                     魔丸聚集地
                                 </span>
-                            </div>
-                            {afterLogo}
+                            </button>
+                            {afterLogo && <div className="shrink-0">{afterLogo}</div>}
                         </div>
 
                         {/* Desktop Navigation */}
@@ -144,9 +147,15 @@ export default function Navigation({ darkMode = false, afterLogo = null, classNa
                             </button>
                         </div>
 
+                        {mobileActions && (
+                            <div className="ml-auto flex items-center gap-1 md:hidden">
+                                {mobileActions}
+                            </div>
+                        )}
+
                         {/* Mobile Menu Button */}
                         <button
-                            className={`md:hidden p-2 transition-colors relative z-50 rounded-lg ${darkMode && !isScrolled
+                            className={`relative z-50 flex h-11 w-11 shrink-0 items-center justify-center rounded-lg transition-colors md:hidden ${darkMode && !isScrolled
                                 ? 'text-white hover:bg-white/10'
                                 : 'text-slate-600 hover:text-blue-600 hover:bg-slate-100'
                                 }`}

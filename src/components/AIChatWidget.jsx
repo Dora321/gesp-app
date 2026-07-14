@@ -2,8 +2,6 @@ import React, { useState, useEffect, useRef } from 'react';
 import { X, Send, Settings, Trash2, Loader2, Bot, User, Key, UserCircle2, Plus, GripHorizontal, BrainCircuit, Sparkles, Pencil, Save, Square, Copy, Check } from 'lucide-react';
 import ReactMarkdown from 'react-markdown';
 import remarkGfm from 'remark-gfm';
-import rehypeCodeHighlight from '../utils/rehypeCodeHighlight';
-import 'highlight.js/styles/github-dark.css'; // 使用 GitHub Dark 主题代码高亮
 
 // AI 角色定义
 const AI_PERSONAS = [
@@ -63,6 +61,8 @@ const AI_MODEL = {
     name: 'DeepSeek V4 Flash',
     description: '高速响应，适合日常对话、编程和课堂项目。'
 };
+
+const API_KEY_STORAGE_KEY = 'deepseek_api_key';
 
 const getMarkdownText = (value) => {
     if (value === null || value === undefined || typeof value === 'boolean') return '';
@@ -209,9 +209,10 @@ const AIChatWidget = ({ onClose }) => {
         document.removeEventListener('mouseup', stopResize);
     };
 
-    // Load API key from localStorage
+    // API keys are scoped to this browser tab. Remove the legacy persistent copy.
     useEffect(() => {
-        const savedKey = localStorage.getItem('deepseek_api_key');
+        const savedKey = sessionStorage.getItem(API_KEY_STORAGE_KEY);
+        localStorage.removeItem(API_KEY_STORAGE_KEY);
         if (savedKey) {
             setApiKey(savedKey);
         }
@@ -259,12 +260,21 @@ const AIChatWidget = ({ onClose }) => {
     }, [messages]);
 
     const saveApiKey = () => {
-        if (tempApiKey.trim()) {
-            localStorage.setItem('deepseek_api_key', tempApiKey.trim());
-            setApiKey(tempApiKey.trim());
+        const nextApiKey = tempApiKey.trim();
+        if (nextApiKey) {
+            sessionStorage.setItem(API_KEY_STORAGE_KEY, nextApiKey);
+            localStorage.removeItem(API_KEY_STORAGE_KEY);
+            setApiKey(nextApiKey);
             setShowSettings(false);
             setTempApiKey('');
         }
+    };
+
+    const clearApiKey = () => {
+        sessionStorage.removeItem(API_KEY_STORAGE_KEY);
+        localStorage.removeItem(API_KEY_STORAGE_KEY);
+        setApiKey('');
+        setTempApiKey('');
     };
 
     const clearChat = () => {
@@ -468,6 +478,8 @@ const AIChatWidget = ({ onClose }) => {
     return (
         <div
             className="fixed bottom-24 right-6 z-[100] bg-white rounded-2xl shadow-2xl flex flex-col overflow-hidden animate-in zoom-in-95 duration-200 border border-slate-200"
+            role="dialog"
+            aria-label="AI 问答助手"
             style={{
                 width: `${size.width}px`,
                 height: `${size.height}px`,
@@ -485,26 +497,33 @@ const AIChatWidget = ({ onClose }) => {
                 </div>
                 <div className="flex items-center gap-1">
                     <button
+                        type="button"
                         onClick={clearChat}
-                        className="p-1.5 hover:bg-white/20 rounded-lg transition-colors"
+                        className="flex h-11 w-11 items-center justify-center rounded-lg transition-colors hover:bg-white/20 focus:outline-none focus:ring-2 focus:ring-white/80"
                         title="新对话"
+                        aria-label="新对话"
                     >
                         <Plus size={18} />
                     </button>
                     <button
+                        type="button"
                         onClick={() => {
                             setShowSettings(!showSettings);
                             setTempApiKey(apiKey);
                         }}
-                        className="p-1.5 hover:bg-white/20 rounded-lg transition-colors"
+                        className="flex h-11 w-11 items-center justify-center rounded-lg transition-colors hover:bg-white/20 focus:outline-none focus:ring-2 focus:ring-white/80"
                         title="设置"
+                        aria-label="打开 AI 设置"
+                        aria-expanded={showSettings}
                     >
                         <Settings size={18} />
                     </button>
                     <button
+                        type="button"
                         onClick={onClose}
-                        className="p-1.5 hover:bg-white/20 rounded-lg transition-colors"
+                        className="flex h-11 w-11 items-center justify-center rounded-lg transition-colors hover:bg-white/20 focus:outline-none focus:ring-2 focus:ring-white/80"
                         title="关闭"
+                        aria-label="关闭 AI 问答助手"
                     >
                         <X size={18} />
                     </button>
@@ -518,23 +537,42 @@ const AIChatWidget = ({ onClose }) => {
                     <div className="mb-4">
                         <div className="flex items-center gap-2 mb-2">
                             <Key size={16} className="text-slate-500" />
-                            <span className="text-sm font-medium text-slate-700">DeepSeek API Key</span>
+                            <label htmlFor="deepseek-api-key" className="text-sm font-medium text-slate-700">DeepSeek API Key</label>
                         </div>
-                        <div className="flex gap-2">
+                        <div className="flex flex-wrap gap-2">
                             <input
+                                id="deepseek-api-key"
                                 type="password"
                                 value={tempApiKey}
                                 onChange={(e) => setTempApiKey(e.target.value)}
                                 placeholder="输入你的 API Key..."
-                                className="flex-1 px-3 py-2 text-sm border border-slate-300 rounded-lg focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 outline-none"
+                                autoComplete="off"
+                                spellCheck={false}
+                                aria-describedby="deepseek-api-key-notice"
+                                className="min-h-11 min-w-0 flex-[1_1_180px] rounded-lg border border-slate-300 px-3 py-2 text-sm outline-none focus:border-indigo-500 focus:ring-2 focus:ring-indigo-500"
                             />
                             <button
+                                type="button"
                                 onClick={saveApiKey}
-                                className="px-4 py-2 bg-indigo-600 hover:bg-indigo-700 text-white text-sm font-medium rounded-lg transition-colors"
+                                disabled={!tempApiKey.trim()}
+                                className="min-h-11 rounded-lg bg-indigo-600 px-4 py-2 text-sm font-medium text-white transition-colors hover:bg-indigo-700 disabled:cursor-not-allowed disabled:bg-slate-300"
                             >
                                 保存
                             </button>
+                            {(apiKey || tempApiKey) && (
+                                <button
+                                    type="button"
+                                    onClick={clearApiKey}
+                                    className="flex min-h-11 items-center gap-1.5 rounded-lg border border-slate-300 bg-white px-3 py-2 text-sm font-medium text-slate-700 transition-colors hover:border-red-300 hover:text-red-700"
+                                >
+                                    <Trash2 size={15} aria-hidden="true" />
+                                    清除
+                                </button>
+                            )}
                         </div>
+                        <p id="deepseek-api-key-notice" className="mt-2 text-xs leading-5 text-slate-500">
+                            密钥仅保存在当前标签页会话中，关闭标签页后清除。提问时，密钥和对话内容由浏览器直接发送至 DeepSeek API，本网站服务器不接收或保存。
+                        </p>
                     </div>
 
                     {/* Model */}
@@ -744,7 +782,6 @@ const AIChatWidget = ({ onClose }) => {
                                 msg.content ? (
                                     <ReactMarkdown
                                         remarkPlugins={[remarkGfm]}
-                                        rehypePlugins={[[rehypeCodeHighlight, { detect: true }]]}
                                         components={chatMarkdownComponents}
                                     >
                                         {msg.content}

@@ -1,5 +1,6 @@
 export { pythonFoundationLessons } from './pythonCourseCatalog.js';
 import { pythonFoundationLessons } from './pythonCourseCatalog.js';
+import { createSequentialCourseSupport, defineCourse } from './courseSchema.js';
 
 const lessonDetails = {
   f1: {
@@ -124,49 +125,35 @@ const practiceLinksByLesson = {
   ],
 };
 
+export const pythonFoundationCourse = defineCourse({
+  id: 'python-foundation',
+  title: 'Python 基础课程',
+  language: 'python',
+  kind: 'foundation',
+  items: pythonFoundationLessons.filter(item => item.id !== 'bridge'),
+  detailsById: lessonDetails,
+});
+
+const foundationPracticeLinks = Object.fromEntries(
+  pythonFoundationCourse.items.map(item => [
+    item.id,
+    [...(practiceLinksByLesson[item.id] || []), { label: '查看 Python 学习路径', path: '/' }],
+  ]),
+);
+
+const buildPythonFoundationSupport = createSequentialCourseSupport(pythonFoundationCourse, {
+  previousReasons: previousReason,
+  nextReasons: nextReason,
+  practiceLinksById: foundationPracticeLinks,
+  exit: ({ current }) => ({ title: '桥梁：猜数字大冒险', path: '/python/bridge', reason: nextReason[current.id] }),
+  getExtra: current => ({
+    accent: current.details.accent,
+    focus: current.details.focus,
+    bridge: current.details.bridge,
+    checkpoint: current.details.checkpoint,
+  }),
+});
+
 export function getPythonFoundationSupport(lessonId) {
-  const index = pythonFoundationLessons.findIndex((item) => item.id === lessonId);
-  const current = pythonFoundationLessons[index];
-  const previous = pythonFoundationLessons[index - 1];
-  const next = pythonFoundationLessons[index + 1];
-  const details = lessonDetails[lessonId];
-
-  if (!current || !details) return null;
-
-  return {
-    current,
-    accent: details.accent,
-    focus: details.focus,
-    bridge: details.bridge,
-    checkpoint: details.checkpoint,
-    quality: {
-      accent: details.accent,
-      goals: details.goals,
-      deliverables: details.deliverables,
-      checks: details.checks,
-    },
-    previous: previous
-      ? {
-          title: previous.title,
-          path: previous.path,
-          reason: previousReason[lessonId],
-        }
-      : null,
-    next: next
-      ? {
-          title: next.title,
-          path: next.path,
-          reason: nextReason[lessonId],
-        }
-      : {
-          title: 'A1：算法思维入门',
-          path: '/python/a1',
-          reason: nextReason[lessonId],
-        },
-    practiceLinks: [
-      ...(practiceLinksByLesson[lessonId] || []),
-      { label: '查看 Python 学习路径', path: '/' },
-    ],
-    reviewTasks: details.reviewTasks,
-  };
+  return buildPythonFoundationSupport(lessonId);
 }

@@ -1,7 +1,14 @@
 import React, { useEffect, useState } from 'react';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { recordLessonMastered, recordLessonVisit } from '../../../utils/lessonProgress';
-import { ArrowRight, CheckCircle2, Flag, HelpCircle, Home, Menu, PlayCircle, Repeat2, RotateCcw, X } from 'lucide-react';
+import {
+    hasObjectiveLessonEvidence,
+    LESSON_EVIDENCE_EVENT,
+    recordLessonEvidence,
+    requiresFallbackEvidence,
+} from '../../../utils/lessonEvidence';
+import { ArrowRight, CheckCircle2, Flag, HelpCircle, Home, PlayCircle, Repeat2, RotateCcw } from 'lucide-react';
+import LessonMobileHeader from '../../../components/LessonMobileHeader';
 
 // 与 CppLessonShell 共用同一套配色 token，保证 C++ / Python 两套课视觉统一
 const accentMap = {
@@ -79,8 +86,16 @@ export function TransferCheck({
     className = '',
     theme = 'light',
 }) {
+    const location = useLocation();
     const isDark = theme === 'dark';
     const [revealed, setRevealed] = useState(false);
+    const [attempt, setAttempt] = useState('');
+
+    const revealAnswer = () => {
+        if (!attempt.trim()) return;
+        setRevealed(true);
+        recordLessonEvidence(location.pathname, 'transferAttempt');
+    };
 
     return (
         <div className={`rounded-2xl border p-5 ${isDark ? 'border-emerald-400/30 bg-emerald-500/10' : 'border-emerald-200 bg-emerald-50'} ${className}`}>
@@ -95,11 +110,23 @@ export function TransferCheck({
                 <p className={`mt-2 text-sm font-semibold leading-6 ${isDark ? 'text-emerald-200/90' : 'text-emerald-700'}`}>提示：{hint}</p>
             )}
 
+            <label className={`mt-4 block text-xs font-black ${isDark ? 'text-emerald-100' : 'text-emerald-900'}`}>先写下你的答案或思路</label>
+            <textarea
+                aria-label="迁移练习答案或思路"
+                value={attempt}
+                onChange={(event) => setAttempt(event.target.value)}
+                disabled={revealed}
+                rows={3}
+                className={`mt-2 w-full rounded-lg border px-3 py-2 text-sm font-semibold outline-none focus:ring-2 disabled:opacity-70 ${isDark ? 'border-emerald-400/30 bg-slate-900 text-slate-100 focus:border-emerald-400 focus:ring-emerald-400/20' : 'border-emerald-200 bg-white text-slate-800 focus:border-emerald-500 focus:ring-emerald-200'}`}
+                placeholder="可以写结果、关键步骤或代码片段"
+            />
+
             {!revealed ? (
                 <button
                     type="button"
-                    onClick={() => setRevealed(true)}
-                    className="mt-4 inline-flex items-center gap-2 rounded-lg bg-emerald-600 px-4 py-2 text-sm font-black text-white shadow-sm transition hover:bg-emerald-700"
+                    onClick={revealAnswer}
+                    disabled={!attempt.trim()}
+                    className="mt-3 inline-flex items-center gap-2 rounded-lg bg-emerald-600 px-4 py-2 text-sm font-black text-white shadow-sm transition hover:bg-emerald-700 disabled:cursor-not-allowed disabled:bg-slate-500"
                 >
                     <PlayCircle size={16} />
                     我推完了，看解答
@@ -151,9 +178,22 @@ export function MasteryCheck({
     const color = getAccent(accent);
     const isDark = theme === 'dark';
     const [checked, setChecked] = useState(() => new Set());
+    const [artifact, setArtifact] = useState('');
+    const [evidenceReady, setEvidenceReady] = useState(() => hasObjectiveLessonEvidence(location.pathname));
     const total = items.length;
     const done = checked.size;
-    const ready = total > 0 && done === total;
+    const reflectionReady = total > 0 && done === total;
+    const ready = reflectionReady && evidenceReady;
+    const needsFallback = requiresFallbackEvidence(location.pathname);
+
+    useEffect(() => {
+        setEvidenceReady(hasObjectiveLessonEvidence(location.pathname));
+        const handleEvidence = (event) => {
+            if (event.detail?.path === location.pathname) setEvidenceReady(true);
+        };
+        window.addEventListener(LESSON_EVIDENCE_EVENT, handleEvidence);
+        return () => window.removeEventListener(LESSON_EVIDENCE_EVENT, handleEvidence);
+    }, [location.pathname]);
 
     useEffect(() => {
         if (ready) {
@@ -175,6 +215,12 @@ export function MasteryCheck({
 
     const reset = () => setChecked(new Set());
 
+    const submitArtifact = () => {
+        if (artifact.trim().length < 12) return;
+        recordLessonEvidence(location.pathname, 'exitArtifact');
+        setEvidenceReady(true);
+    };
+
     return (
         <section className={`rounded-2xl border p-5 shadow-sm ${isDark ? 'border-slate-700 bg-slate-900/80' : 'border-slate-200 bg-white'} ${className}`} aria-label="离开前过关检查">
             <div className="mb-4 flex flex-col gap-2 sm:flex-row sm:items-start sm:justify-between">
@@ -188,7 +234,7 @@ export function MasteryCheck({
                 </div>
                 <div className="flex shrink-0 items-center gap-2">
                     <span className={`rounded-full px-3 py-1 text-xs font-black ${ready ? (isDark ? 'bg-emerald-500/15 text-emerald-200 ring-1 ring-emerald-400/30' : 'bg-emerald-100 text-emerald-700') : (isDark ? 'bg-slate-800 text-slate-300 ring-1 ring-slate-700' : 'bg-slate-100 text-slate-500')}`}>
-                        {done}/{total}
+                        {done}/{total} 反思
                     </span>
                     {done > 0 && (
                         <button
@@ -201,6 +247,38 @@ export function MasteryCheck({
                         </button>
                     )}
                 </div>
+            </div>
+
+            <div className={`mb-4 rounded-lg border p-4 ${evidenceReady ? (isDark ? 'border-emerald-400/30 bg-emerald-500/10' : 'border-emerald-200 bg-emerald-50') : (isDark ? 'border-amber-400/30 bg-amber-500/10' : 'border-amber-200 bg-amber-50')}`}>
+                <div className={`text-sm font-black ${evidenceReady ? (isDark ? 'text-emerald-200' : 'text-emerald-800') : (isDark ? 'text-amber-200' : 'text-amber-900')}`}>
+                    {evidenceReady ? '学习证据已完成' : '先完成一项可验证的学习证据'}
+                </div>
+                {!evidenceReady && !needsFallback && (
+                    <p className={`mt-1 text-sm font-semibold leading-6 ${isDark ? 'text-amber-100/80' : 'text-amber-800'}`}>
+                        请返回本课的预测题或迁移练习：预测题需答对，迁移练习需先写答案再对照。
+                    </p>
+                )}
+                {!evidenceReady && needsFallback && (
+                    <div className="mt-3 space-y-2">
+                        <label className={`block text-xs font-black ${isDark ? 'text-amber-100' : 'text-amber-900'}`}>提交本课代码、计算过程或错题订正</label>
+                        <textarea
+                            aria-label="离开前学习证据"
+                            value={artifact}
+                            onChange={(event) => setArtifact(event.target.value)}
+                            rows={3}
+                            className={`w-full rounded-lg border px-3 py-2 text-sm font-semibold outline-none focus:ring-2 ${isDark ? 'border-amber-400/30 bg-slate-900 text-slate-100 focus:border-amber-400 focus:ring-amber-400/20' : 'border-amber-200 bg-white text-slate-800 focus:border-amber-500 focus:ring-amber-200'}`}
+                            placeholder="至少 12 个字，说明你做了什么、如何验证"
+                        />
+                        <button
+                            type="button"
+                            onClick={submitArtifact}
+                            disabled={artifact.trim().length < 12}
+                            className="min-h-11 rounded-lg bg-amber-600 px-4 py-2 text-sm font-black text-white disabled:cursor-not-allowed disabled:bg-slate-500"
+                        >
+                            提交学习证据
+                        </button>
+                    </div>
+                )}
             </div>
 
             <div className="grid gap-3">
@@ -236,7 +314,9 @@ export function MasteryCheck({
             <div className={`mt-4 rounded-xl px-4 py-3 text-sm font-bold leading-6 ${ready ? (isDark ? 'bg-emerald-500/15 text-emerald-100 ring-1 ring-emerald-400/30' : 'bg-emerald-50 text-emerald-800') : (isDark ? 'bg-amber-500/15 text-amber-100 ring-1 ring-amber-300/30' : 'bg-amber-50 text-amber-800')}`}>
                 {ready
                     ? '可以进入下一课：你已经能用自己的解释和例子证明这节课不是只看懂。'
-                    : '建议先补齐未勾选项：过关标准是能解释、能验证、能换一个例子做。'}
+                    : evidenceReady
+                        ? '学习证据已完成，再补齐反思项即可过关。'
+                        : '自我勾选只是反思，完成一项预测、迁移或作品证据后才能过关。'}
             </div>
         </section>
     );
@@ -254,9 +334,11 @@ export function PredictCheck({
     className = '',
     theme = 'light',
 }) {
+    const location = useLocation();
     const isDark = theme === 'dark';
     const [selected, setSelected] = useState(null);
     const [revealed, setRevealed] = useState(false);
+    const [prediction, setPrediction] = useState('');
     const normalizedOptions = options.map((option) => (typeof option === 'string' ? { label: option } : option));
     const hasOptions = normalizedOptions.length > 0;
     const isAnswered = selected !== null || revealed;
@@ -265,6 +347,18 @@ export function PredictCheck({
     const reset = () => {
         setSelected(null);
         setRevealed(false);
+        setPrediction('');
+    };
+
+    const selectOption = (index) => {
+        setSelected(index);
+        if (index === correctIndex) recordLessonEvidence(location.pathname, 'predictCorrect');
+    };
+
+    const revealPrediction = () => {
+        if (!prediction.trim()) return;
+        setRevealed(true);
+        recordLessonEvidence(location.pathname, 'predictAttempt');
     };
 
     return (
@@ -304,7 +398,7 @@ export function PredictCheck({
                             <button
                                 key={option.label}
                                 type="button"
-                                onClick={() => setSelected(index)}
+                                onClick={() => selectOption(index)}
                                 disabled={selected !== null}
                                 className={`min-h-14 rounded-lg border-2 px-3 py-2 text-left text-sm font-bold leading-6 transition disabled:cursor-default ${stateClass}`}
                             >
@@ -317,14 +411,26 @@ export function PredictCheck({
                     })}
                 </div>
             ) : (
-                <button
-                    type="button"
-                    onClick={() => setRevealed(true)}
-                    disabled={revealed}
-                    className="mt-4 rounded-lg bg-amber-600 px-4 py-2 text-sm font-black text-white shadow-sm transition hover:bg-amber-700 disabled:cursor-default disabled:bg-slate-300"
-                >
-                    显示答案
-                </button>
+                <div className="mt-4 space-y-2">
+                    <label className={`block text-xs font-black ${isDark ? 'text-amber-100' : 'text-amber-900'}`}>先写下你的预测</label>
+                    <textarea
+                        aria-label="预测答案或推导步骤"
+                        value={prediction}
+                        onChange={(event) => setPrediction(event.target.value)}
+                        disabled={revealed}
+                        rows={2}
+                        className={`w-full rounded-lg border px-3 py-2 text-sm font-semibold outline-none focus:ring-2 disabled:opacity-70 ${isDark ? 'border-amber-400/30 bg-slate-900 text-slate-100 focus:border-amber-400 focus:ring-amber-400/20' : 'border-amber-200 bg-white text-slate-800 focus:border-amber-500 focus:ring-amber-200'}`}
+                        placeholder="写下结果或关键推导步骤"
+                    />
+                    <button
+                        type="button"
+                        onClick={revealPrediction}
+                        disabled={revealed || !prediction.trim()}
+                        className="rounded-lg bg-amber-600 px-4 py-2 text-sm font-black text-white shadow-sm transition hover:bg-amber-700 disabled:cursor-not-allowed disabled:bg-slate-500"
+                    >
+                        提交预测并显示答案
+                    </button>
+                </div>
             )}
 
             {isAnswered && (
@@ -380,7 +486,7 @@ const CHROME = {
     light: {
         outer: 'bg-slate-50 text-slate-800', bar: 'border-slate-200 bg-white', aside: 'border-slate-200 bg-white',
         divider: 'border-slate-100', title: 'text-slate-900', subtitle: 'text-slate-500',
-        sectionIdle: 'text-slate-600 hover:bg-slate-50', sectionIconIdle: 'bg-slate-100 text-slate-400', sectionCat: 'text-slate-400',
+        sectionIdle: 'text-slate-600 hover:bg-slate-50', sectionIconIdle: 'bg-slate-100 text-slate-600', sectionCat: 'text-slate-600',
         header: 'border-slate-200 bg-white', headerTitle: 'text-slate-950', headerSub: 'text-slate-500',
         footer: 'border-slate-200 bg-white', prev: 'text-slate-500 hover:bg-slate-100 hover:text-slate-800', dotIdle: 'bg-slate-200',
     },
@@ -445,17 +551,12 @@ export default function PythonLessonShell({
     return (
         <div className={`flex h-screen overflow-hidden font-sans ${t.outer}`}>
             {/* 移动端顶栏 */}
-            <div className={`fixed left-0 top-0 z-50 flex w-full items-center justify-between border-b ${t.bar} p-4 shadow-sm md:hidden`}>
-                <div className={`text-lg font-black ${color.text}`}>{lessonCode}：{lessonTitle}</div>
-                <button
-                    onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
-                    aria-label={isMobileMenuOpen ? '关闭课程目录' : '打开课程目录'}
-                    aria-expanded={isMobileMenuOpen}
-                    className="inline-flex h-11 w-11 shrink-0 items-center justify-center rounded-lg"
-                >
-                    {isMobileMenuOpen ? <X size={24} /> : <Menu size={24} />}
-                </button>
-            </div>
+            <LessonMobileHeader
+                label={`Python · ${lessonCode}`}
+                labelClass={`${color.bg} text-white`}
+                open={isMobileMenuOpen}
+                onToggle={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
+            />
 
             {isMobileMenuOpen && (
                 <button
@@ -531,7 +632,7 @@ export default function PythonLessonShell({
 
                         {isFirst && topSupport}
 
-                        <section className="space-y-6">
+                        <section className="space-y-6" data-lesson-active-content="true">
                             {Active && <Active />}
                         </section>
 

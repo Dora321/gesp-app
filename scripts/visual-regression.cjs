@@ -17,7 +17,7 @@ const fs = require('fs');
 const path = require('path');
 
 const DEFAULT_PORT = 4178;
-const baseUrl = process.env.VISUAL_BASE_URL || `http://127.0.0.1:${DEFAULT_PORT}/gesp-app`;
+const baseUrl = (process.env.VISUAL_BASE_URL || `http://127.0.0.1:${DEFAULT_PORT}/gesp-app/`).replace(/\/?$/, '/');
 const shouldStartServer = !process.env.VISUAL_BASE_URL;
 const isUpdate = process.argv.includes('--update');
 
@@ -27,10 +27,11 @@ const SHOTS_DIR = path.join(__dirname, '..', 'screenshots');
 // Representative routes spanning every C++ level + Python (the courses whose
 // PredictCheck/TransferCheck grids, tables and code blocks are the spill risk).
 const ROUTES = [
+  '/', '/museum',
   '/lesson/1/9', '/lesson/2/12', '/lesson/3/7', '/lesson/4/9',
   '/lesson/5/10', '/lesson/6/2', '/python/f2', '/python/f3',
   '/question-bank', '/question-bank/2/2026-03-l2',
-  '/hardware/esp32-ai', '/level7',
+  '/hardware', '/hardware/lesson/1', '/hardware/esp32-ai', '/ekart', '/level7',
 ];
 const VIEWPORTS = [
   { name: 'desktop', width: 1365, height: 900, isMobile: false },
@@ -42,6 +43,8 @@ const VIEWPORTS = [
 // spilling table does.
 const OVERFLOW_TOL = 2;
 const TEXT_DROP_RATIO = 0.4; // fail if visible text shrinks by >40%
+const MIN_VISIBLE_TEXT = 100;
+const MIN_NON_WHITE_RATIO = 0.005;
 
 let server;
 let browser;
@@ -132,9 +135,100 @@ async function fingerprint(page) {
   });
 }
 
+async function checkHomeMobileLayout(page, failures) {
+  const metrics = await page.evaluate(() => {
+    const hero = document.querySelector('main > section')?.getBoundingClientRect();
+    const pathHeading = document.querySelector('#learning-paths h2')?.getBoundingClientRect();
+    const launchers = ['打开课堂积分榜', '打开 AI 问答助手'].map((label) => {
+      const element = document.querySelector(`button[aria-label="${label}"]`);
+      const rect = element?.getBoundingClientRect();
+      return {
+        label,
+        position: element ? getComputedStyle(element).position : '',
+        width: rect?.width || 0,
+        height: rect?.height || 0,
+      };
+    });
+    return {
+      heroBottom: hero?.bottom || 0,
+      pathHeadingTop: pathHeading?.top || 0,
+      launchers,
+    };
+  });
+
+  if (metrics.heroBottom > 650) failures.push(`/ [mobile]: hero ends at ${Math.round(metrics.heroBottom)}px (limit 650px).`);
+  if (metrics.pathHeadingTop > 700) failures.push(`/ [mobile]: learning paths heading starts at ${Math.round(metrics.pathHeadingTop)}px (limit 700px).`);
+  for (const launcher of metrics.launchers) {
+    if (launcher.position === 'fixed') failures.push(`/ [mobile]: ${launcher.label} still floats over page content.`);
+    if (launcher.width < 44 || launcher.height < 44) {
+      failures.push(`/ [mobile]: ${launcher.label} tap target is ${Math.round(launcher.width)}×${Math.round(launcher.height)}px (minimum 44×44px).`);
+    }
+  }
+}
+
+async function checkMuseumLayout(page, viewport, failures) {
+  const metrics = await page.evaluate(() => ({
+    exhibitButtons: document.querySelectorAll('button[aria-label^="查看展品："]').length,
+    encryptedText: document.body.innerText.includes('ENCRYPTED'),
+    overflow: document.documentElement.scrollWidth - document.documentElement.clientWidth,
+  }));
+
+  if (metrics.exhibitButtons !== 100) failures.push(`/museum [${viewport}]: expected 100 browsable exhibits, found ${metrics.exhibitButtons}.`);
+  if (metrics.encryptedText) failures.push(`/museum [${viewport}]: locked ENCRYPTED cards returned.`);
+  if (metrics.overflow > OVERFLOW_TOL) failures.push(`/museum [${viewport}]: horizontal overflow is ${metrics.overflow}px.`);
+}
+
+async function checkHardwareLanding(page, viewport, failures) {
+  const metrics = await page.evaluate(() => {
+    const links = [...document.querySelectorAll('a')]
+      .filter((element) => /Mind\+ 官方下载|CH340 官方驱动/.test(element.textContent))
+      .map((element) => element.href);
+    const kitCount = document.querySelectorAll('#resources details li').length;
+    return { links, kitCount };
+  });
+
+  if (metrics.links.length !== 2 || metrics.links.some((href) => !href.startsWith('https://'))) {
+    failures.push(`/hardware [${viewport}]: official Mind+ and CH340 HTTPS resources are missing.`);
+  }
+  if (metrics.kitCount < 10) failures.push(`/hardware [${viewport}]: complete hardware kit list has only ${metrics.kitCount} items.`);
+}
+
+async function analyzeScreenshot(page, buffer) {
+  const src = `data:image/png;base64,${buffer.toString('base64')}`;
+  return page.evaluate(async (imageSrc) => {
+    const image = new Image();
+    image.src = imageSrc;
+    await image.decode();
+
+    const canvas = document.createElement('canvas');
+    canvas.width = image.naturalWidth;
+    canvas.height = image.naturalHeight;
+    const context = canvas.getContext('2d', { willReadFrequently: true });
+    context.drawImage(image, 0, 0);
+    const pixels = context.getImageData(0, 0, canvas.width, canvas.height).data;
+    let sampled = 0;
+    let nonWhite = 0;
+    const pixelStep = 12;
+
+    for (let y = 0; y < canvas.height; y += pixelStep) {
+      for (let x = 0; x < canvas.width; x += pixelStep) {
+        const offset = (y * canvas.width + x) * 4;
+        sampled += 1;
+        if (pixels[offset] < 248 || pixels[offset + 1] < 248 || pixels[offset + 2] < 248) {
+          nonWhite += 1;
+        }
+      }
+    }
+
+    return { sampled, nonWhite, nonWhiteRatio: sampled ? nonWhite / sampled : 0 };
+  }, src);
+}
+
 function compare(route, vp, base, cur, failures) {
   const key = `${route} [${vp}]`;
   if (cur.overflow > OVERFLOW_TOL) failures.push(`${key}: horizontal overflow ${cur.overflow}px (max element right ${cur.maxRight} > width ${cur.clientWidth}).`);
+  if (cur.textLen < MIN_VISIBLE_TEXT) failures.push(`${key}: only ${cur.textLen} visible text characters rendered.`);
+  if (cur.nonWhiteRatio < MIN_NON_WHITE_RATIO) failures.push(`${key}: screenshot is effectively blank (${(cur.nonWhiteRatio * 100).toFixed(3)}% sampled non-white pixels).`);
   if (!base) return; // new route in update mode
   if (base.textLen > 0 && cur.textLen < base.textLen * (1 - TEXT_DROP_RATIO)) {
     failures.push(`${key}: visible text dropped ${base.textLen} → ${cur.textLen} (>${TEXT_DROP_RATIO * 100}% gone — a section may have stopped rendering).`);
@@ -154,11 +248,11 @@ async function run() {
     const command = process.platform === 'win32'
       ? {
           file: process.env.ComSpec || 'cmd.exe',
-          args: ['/d', '/s', '/c', `npm run preview -- --host 127.0.0.1 --port ${DEFAULT_PORT} --strictPort`],
+          args: ['/d', '/s', '/c', `npm run preview -- --host 127.0.0.1 --port ${DEFAULT_PORT} --strictPort --base /gesp-app/`],
         }
       : {
           file: 'npm',
-          args: ['run', 'preview', '--', '--host', '127.0.0.1', '--port', String(DEFAULT_PORT), '--strictPort'],
+          args: ['run', 'preview', '--', '--host', '127.0.0.1', '--port', String(DEFAULT_PORT), '--strictPort', '--base', '/gesp-app/'],
         };
     server = spawn(command.file, command.args, {
       stdio: ['ignore', 'pipe', 'pipe'],
@@ -180,22 +274,35 @@ async function run() {
   const failures = [];
 
   for (const vp of VIEWPORTS) {
-    const ctx = await browser.newContext({ viewport: { width: vp.width, height: vp.height }, isMobile: vp.isMobile });
-    const page = await ctx.newPage();
-    // Kill animations so screenshots/geometry are deterministic.
-    await page.addInitScript(() => {
-      const s = document.createElement('style');
-      s.textContent = '*,*::before,*::after{animation:none!important;transition:none!important;}';
-      document.documentElement.appendChild(s);
+    const ctx = await browser.newContext({
+      viewport: { width: vp.width, height: vp.height },
+      isMobile: vp.isMobile,
+      reducedMotion: 'reduce',
     });
+    const page = await ctx.newPage();
     for (const route of ROUTES) {
-      await page.goto(`${baseUrl}${route}`, { waitUntil: 'domcontentloaded' });
-      await page.waitForTimeout(700);
+      await page.goto(`${baseUrl}${route.replace(/^\//, '')}`, { waitUntil: 'domcontentloaded' });
+      await page.waitForFunction(
+        (minimum) => document.body.innerText.trim().length >= minimum,
+        MIN_VISIBLE_TEXT,
+        { timeout: 15000 }
+      );
+      await page.evaluate(async () => {
+        await document.fonts?.ready;
+        await Promise.allSettled([...document.images].map((img) => img.decode()));
+      });
+      // Framer Motion can retain its initial opacity for a few frames even when
+      // reduced motion is requested. Wait for the final composited layout.
+      await page.waitForTimeout(1200);
       const fp = await fingerprint(page);
       const id = `${route.replace(/\//g, '_')}__${vp.name}`;
-      next[id] = fp;
-      await page.screenshot({ path: path.join(SHOTS_DIR, `${id}.png`), fullPage: false });
-      compare(route, vp.name, baseline[id], fp, failures);
+      const screenshot = await page.screenshot({ path: path.join(SHOTS_DIR, `${id}.png`), fullPage: false });
+      const pixels = await analyzeScreenshot(page, screenshot);
+      next[id] = { ...fp, ...pixels };
+      compare(route, vp.name, baseline[id], next[id], failures);
+      if (route === '/' && vp.name === 'mobile') await checkHomeMobileLayout(page, failures);
+      if (route === '/museum') await checkMuseumLayout(page, vp.name, failures);
+      if (route === '/hardware') await checkHardwareLanding(page, vp.name, failures);
     }
     await ctx.close();
   }

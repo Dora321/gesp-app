@@ -5,6 +5,8 @@ import Footer from './components/Footer';
 import HeroSection from './components/HeroSection';
 import LearningPaths from './components/LearningPaths';
 import DeferredSection from './components/DeferredSection';
+import ClassroomPoints from './components/ClassroomPoints';
+import AIChat from './components/AIChat';
 
 const LessonCatalog = lazy(() => import('./components/LessonCatalog'));
 const FeaturedProjects = lazy(() => import('./components/FeaturedProjects'));
@@ -18,7 +20,14 @@ const SectionFallback = ({ minHeight = 480 }) => (
 export default function Home() {
     return (
         <div className="font-sans text-brand-slate bg-slate-50 min-h-screen">
-            <Navigation />
+            <Navigation
+                mobileActions={(
+                    <div className="flex items-center gap-1" role="toolbar" aria-label="快捷工具">
+                        <ClassroomPoints mobileInline />
+                        <AIChat mobileInline />
+                    </div>
+                )}
+            />
 
             <main>
                 <HeroSection />

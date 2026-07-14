@@ -48,7 +48,7 @@ export default function HardwareLessonDetail() {
                     <span>返回列表</span>
                 </button>
                 <div className="flex items-center gap-3">
-                    <span className="text-slate-500 text-xs font-mono">LESSON {lesson.id.toString().padStart(2, '0')}</span>
+                    <span className="font-mono text-xs text-slate-400">LESSON {lesson.id.toString().padStart(2, '0')}</span>
                 </div>
             </div>
 
@@ -232,9 +232,9 @@ export default function HardwareLessonDetail() {
                     <button
                         onClick={() => navigate(lesson.id < 16 ? `/hardware/lesson/${lesson.id + 1}` : '#')}
                         disabled={lesson.id === 16}
-                        className={`px-6 py-3 rounded-xl font-bold flex items-center gap-2 transition-all ${lesson.id === 16
+                        className={`flex min-h-11 items-center gap-2 rounded-lg px-6 py-3 font-bold transition-all ${lesson.id === 16
                             ? 'bg-slate-800 text-slate-500 opacity-50 cursor-not-allowed'
-                            : 'bg-emerald-600 hover:bg-emerald-500 text-white shadow-lg shadow-emerald-900/20'
+                            : 'bg-emerald-700 text-white shadow-lg shadow-emerald-900/20 hover:bg-emerald-800'
                             }`}
                     >
                         {lesson.id === 16 ? '课程结束' : '下一课'}

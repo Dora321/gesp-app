@@ -1,3 +1,5 @@
+import { createSequentialCourseSupport, defineCourse } from './courseSchema.js';
+
 export const cppL1Lessons = [
   { id: 1, title: '第 1 课：你好，计算机' },
   { id: 2, title: '第 2 课：变量与数据' },
@@ -191,33 +193,19 @@ const reviewTasksByLesson = {
   16: ['整理自己的 3 个高频错因。', '做一套一级真题后，把错题按变量、运算、分支、循环分类。'],
 };
 
-export function getCppL1LessonSupport(lessonId) {
-  const lesson = cppL1Lessons.find((item) => item.id === lessonId);
-  const previousLesson = cppL1Lessons.find((item) => item.id === lessonId - 1);
-  const nextLesson = cppL1Lessons.find((item) => item.id === lessonId + 1);
+export const cppL1Course = defineCourse({
+  id: 'cpp-l1', title: 'GESP C++ 一级', language: 'cpp', kind: 'level',
+  items: cppL1Lessons, detailsById: qualityByLesson, pathFor: id => `/lesson/1/${id}`,
+});
 
-  return {
-    lesson,
-    quality: qualityByLesson[lessonId],
-    previous: previousLesson
-      ? {
-          title: previousLesson.title,
-          path: `/lesson/1/${previousLesson.id}`,
-          reason: previousReasonByLesson[lessonId],
-        }
-      : null,
-    next: nextLesson
-      ? {
-          title: nextLesson.title,
-          path: `/lesson/1/${nextLesson.id}`,
-          reason: nextReasonByLesson[lessonId],
-        }
-      : {
-          title: 'GESP 一级真题库',
-          path: '/question-bank',
-          reason: nextReasonByLesson[lessonId],
-        },
-    practiceLinks: practiceByLesson[lessonId] || [],
-    reviewTasks: reviewTasksByLesson[lessonId] || [],
-  };
+const buildCppL1LessonSupport = createSequentialCourseSupport(cppL1Course, {
+  previousReasons: previousReasonByLesson,
+  nextReasons: nextReasonByLesson,
+  practiceLinksById: practiceByLesson,
+  reviewTasksById: reviewTasksByLesson,
+  exit: ({ current }) => ({ title: 'GESP 一级真题库', path: '/question-bank', reason: nextReasonByLesson[current.id] }),
+});
+
+export function getCppL1LessonSupport(lessonId) {
+  return buildCppL1LessonSupport(lessonId);
 }

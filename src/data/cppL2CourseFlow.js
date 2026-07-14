@@ -1,3 +1,5 @@
+import { createSequentialCourseSupport, defineCourse } from './courseSchema.js';
+
 export const cppL2Lessons = [
   { id: 1, title: '第 1 课：计算机通识 (RAM/IP)' },
   { id: 2, title: '第 2 课：字符的密码 (ASCII)' },
@@ -191,39 +193,20 @@ const reviewTasksByLesson = {
   16: ['完成一套二级模拟卷并按模块统计错题。', '把 3 道错题重写到不看答案也能通过样例。'],
 };
 
+export const cppL2Course = defineCourse({
+  id: 'cpp-l2', title: 'GESP C++ 二级', language: 'cpp', kind: 'level',
+  items: cppL2Lessons, detailsById: qualityByLesson, pathFor: id => `/lesson/2/${id}`,
+});
+
+const buildCppL2LessonSupport = createSequentialCourseSupport(cppL2Course, {
+  previousReasons: previousReasonByLesson,
+  nextReasons: nextReasonByLesson,
+  practiceLinksById: practiceByLesson,
+  reviewTasksById: reviewTasksByLesson,
+  entry: { title: '第 16 课：一级考前冲刺', path: '/lesson/1/16', reason: '二级课程默认已经掌握一级的变量、分支和循环基础，卡住时先回 L1-16 做总复盘。' },
+  exit: ({ current }) => ({ title: 'GESP 二级真题复盘', path: '/question-bank', reason: nextReasonByLesson[current.id] }),
+});
+
 export function getCppL2LessonSupport(lessonId) {
-  const lesson = cppL2Lessons.find((item) => item.id === lessonId);
-  const previousLesson = cppL2Lessons.find((item) => item.id === lessonId - 1);
-  const nextLesson = cppL2Lessons.find((item) => item.id === lessonId + 1);
-
-  if (!lesson) return null;
-
-  return {
-    lesson,
-    quality: qualityByLesson[lessonId],
-    previous: previousLesson
-      ? {
-          title: previousLesson.title,
-          path: `/lesson/2/${previousLesson.id}`,
-          reason: previousReasonByLesson[lessonId],
-        }
-      : {
-          title: '第 16 课：一级考前冲刺',
-          path: '/lesson/1/16',
-          reason: '二级课程默认已经掌握一级的变量、分支和循环基础，卡住时先回 L1-16 做总复盘。',
-        },
-    next: nextLesson
-      ? {
-          title: nextLesson.title,
-          path: `/lesson/2/${nextLesson.id}`,
-          reason: nextReasonByLesson[lessonId],
-        }
-      : {
-          title: 'GESP 二级真题复盘',
-          path: '/question-bank',
-          reason: nextReasonByLesson[lessonId],
-        },
-    practiceLinks: practiceByLesson[lessonId] || [],
-    reviewTasks: reviewTasksByLesson[lessonId] || [],
-  };
+  return buildCppL2LessonSupport(lessonId);
 }

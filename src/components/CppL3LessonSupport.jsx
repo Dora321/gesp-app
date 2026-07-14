@@ -1,6 +1,6 @@
 import { getCppL3LessonSupport } from '../data/cppL3CourseFlow';
 import LessonNextSteps from './LessonNextSteps';
-import LessonQualityBar from './LessonQualityBar';
+import LessonQualityBar, { LessonStartCard } from './LessonQualityBar';
 
 export default function CppL3LessonSupport({ lessonId, placement = 'top' }) {
   const support = getCppL3LessonSupport(lessonId);
@@ -8,21 +8,21 @@ export default function CppL3LessonSupport({ lessonId, placement = 'top' }) {
   if (!support) return null;
 
   if (placement === 'bottom') {
-    return (
+    return (<>
+      <LessonQualityBar {...support.quality} phase="review" />
       <LessonNextSteps
         previous={support.previous}
         next={support.next}
         practiceLinks={support.practiceLinks}
         reviewTasks={support.reviewTasks}
       />
-    );
+    </>);
   }
 
   return (
-    <LessonQualityBar
-      goals={support.quality.goals}
-      deliverables={support.quality.deliverables}
-      checks={support.quality.checks}
+    <LessonStartCard
+      goal={support.quality.goals[0]}
+      task={support.quality.deliverables[0]}
       accent={support.quality.accent}
     />
   );

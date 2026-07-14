@@ -11,6 +11,25 @@ function read(relativePath) {
   return fs.readFileSync(path.join(repoRoot, relativePath), 'utf8');
 }
 
+function readSourceSet(...relativePaths) {
+  const readEntry = (relativePath) => {
+    const absolutePath = path.join(repoRoot, relativePath);
+    const stat = fs.statSync(absolutePath);
+    if (stat.isFile()) return fs.readFileSync(absolutePath, 'utf8');
+
+    return fs.readdirSync(absolutePath, { withFileTypes: true })
+      .sort((a, b) => a.name.localeCompare(b.name))
+      .flatMap(entry => {
+        const childPath = path.join(relativePath, entry.name);
+        if (entry.isDirectory()) return [readEntry(childPath)];
+        return /\.(?:js|jsx)$/.test(entry.name) ? [read(childPath)] : [];
+      })
+      .join('\n');
+  };
+
+  return relativePaths.map(readEntry).join('\n');
+}
+
 function fail(message) {
   failures.push(message);
 }
@@ -181,7 +200,7 @@ function assertLearningPathsUseSharedData() {
       learningPaths.includes('cppEnd.title') &&
       learningPaths.includes('paperStats.firstYear') &&
       learningPaths.includes('paperStats.latestYear') &&
-      learningPaths.includes('paperStats.reviewPaperCount'),
+      learningPaths.includes('paperStats.verifiedPaperCount'),
     'LearningPaths GESP path should stay aligned with C++ level and generated paper stats.'
   );
   assert(
@@ -434,33 +453,29 @@ function assertTheLabUsesMotionPreference() {
   );
 }
 
-function assertLoadingScreenUsesMotionPreference() {
+function assertLoadingScreenIsLightweight() {
   const loading = read('src/components/LoadingScreen.jsx');
 
   assert(
-    loading.includes("import { useShouldRunDecorativeMotion } from '../hooks/useShouldRunDecorativeMotion';") &&
-      loading.includes('const shouldAnimateDecorations = useShouldRunDecorativeMotion();'),
-    'LoadingScreen should use the shared decorative motion preference hook.'
+    !loading.includes('<canvas') &&
+      !loading.includes('cxk-dance.gif') &&
+      !loading.includes('requestAnimationFrame') &&
+      !loading.includes('setInterval'),
+    'LoadingScreen should remain a lightweight CSS skeleton without canvas, GIF, animation frames, or timers.'
   );
   assert(
-    loading.includes('if (!shouldAnimateDecorations)') &&
-      loading.includes("setDots('')") &&
-      loading.includes('setInterval') &&
-      loading.includes('[shouldAnimateDecorations]'),
-    'LoadingScreen animated dots should only run when decorative motion is allowed.'
+    loading.includes('role="status"') &&
+      loading.includes('aria-live="polite"') &&
+      loading.includes('aria-busy="true"'),
+    'LoadingScreen should expose its loading state to assistive technology.'
   );
   assert(
-    loading.includes('!canvas || !shouldAnimateDecorations') &&
-      loading.includes('requestAnimationFrame(draw)'),
-    'LoadingScreen canvas particles should not start when decorative motion is disabled.'
+    loading.includes('motion-reduce:animate-none'),
+    'LoadingScreen CSS motion should stop when reduced motion is requested.'
   );
   assert(
-    loading.includes("shouldAnimateDecorations ? 'loader-spin") &&
-      loading.includes("shouldAnimateDecorations ? 'loader-pulse") &&
-      loading.includes("shouldAnimateDecorations ? 'loader-shimmer") &&
-      loading.includes("shouldAnimateDecorations ? 'loader-progress") &&
-      loading.includes("width: shouldAnimateDecorations ? undefined : '70%'"),
-    'LoadingScreen CSS animations should be gated by decorative motion preference.'
+    !fs.existsSync(path.join(repoRoot, 'public', 'cxk-dance.gif')),
+    'The retired 195KB loading GIF should not be restored to public assets.'
   );
 }
 
@@ -555,8 +570,10 @@ function assertQuestionBankReviewCopy() {
     'QuestionBankHome should label papers that still need explanation polish.'
   );
   assert(
-    questionBankHome.includes('paperStats.reviewPaperCount'),
-    'QuestionBankHome should surface the count of papers that need review.'
+    questionBankHome.includes('paperStats.verifiedPaperCount') &&
+      questionBankHome.includes('paperStats.partialPaperCount') &&
+      questionBankHome.includes('paperStats.unverifiedPaperCount'),
+    'QuestionBankHome should surface verified, partial, and unverified paper counts.'
   );
   assert(
     questionBankHome.includes('paperStats.firstYear') && questionBankHome.includes('paperStats.latestYear'),
@@ -572,12 +589,11 @@ function assertPythonFoundationSupportUsesQualityBar() {
   const foundationSupport = read('src/components/PythonFoundationSupport.jsx');
 
   assert(
-    foundationSupport.includes("import LessonQualityBar from './LessonQualityBar';") &&
+    foundationSupport.includes("from './LessonQualityBar';") &&
+      foundationSupport.includes('LessonQualityBar') &&
       foundationSupport.includes('<LessonQualityBar') &&
-      foundationSupport.includes('goals={support.quality.goals}') &&
-      foundationSupport.includes('deliverables={support.quality.deliverables}') &&
-      foundationSupport.includes('checks={support.quality.checks}') &&
-      foundationSupport.includes('accent={support.quality.accent}'),
+      foundationSupport.includes('{...support.quality}') &&
+      foundationSupport.includes('phase="review"'),
     'PythonFoundationSupport should render the shared quality bar from foundation support data.'
   );
 }
@@ -648,7 +664,10 @@ function assertCppLoopLessonKeepsExecutionTrace() {
 }
 
 function assertCppPredictCheckKeepsLearningLoop() {
-  const shell = read('src/lessons/cpp/CppLessonShell.jsx');
+  const shell = readSourceSet(
+    'src/lessons/cpp/CppLessonShell.jsx',
+    'src/lessons/cpp/CppLessonComponents.jsx'
+  );
 
   assert(
     shell.includes('export function PredictCheck') &&
@@ -961,9 +980,13 @@ function assertPythonProjectSupportUsesPrerequisites() {
 }
 
 function assertPythonSortingProjectKeepsBubbleTrace() {
-  const project = read('src/courses/python/advanced/PythonSortingProject.jsx');
-  const data = read('src/courses/python/advanced/sortingProjectData.js');
-  const source = `${project}\n${data}`;
+  const source = readSourceSet(
+    'src/courses/python/advanced/PythonSortingProject.jsx',
+    'src/courses/python/advanced/sortingProjectData.js',
+    'src/courses/python/advanced/sortingProjectBasicSlides.jsx',
+    'src/courses/python/advanced/sortingProjectAdvancedSlides.jsx',
+    'src/courses/python/advanced/sortingProjectReviewSlides.jsx'
+  );
 
   assert(
     source.includes('PyCodeTracer') &&
@@ -976,7 +999,10 @@ function assertPythonSortingProjectKeepsBubbleTrace() {
 }
 
 function assertPythonFoundationListKeepsIndexTrace() {
-  const lesson = read('src/courses/python/foundation/PythonFoundation3.jsx');
+  const lesson = readSourceSet(
+    'src/courses/python/foundation/PythonFoundation3.jsx',
+    'src/courses/python/foundation/foundation3'
+  );
 
   assert(
     lesson.includes('PyCodeTracer') &&
@@ -989,7 +1015,10 @@ function assertPythonFoundationListKeepsIndexTrace() {
 }
 
 function assertPythonFoundationListKeepsFocusedPracticeFlow() {
-  const lesson = read('src/courses/python/foundation/PythonFoundation3.jsx');
+  const lesson = readSourceSet(
+    'src/courses/python/foundation/PythonFoundation3.jsx',
+    'src/courses/python/foundation/foundation3'
+  );
 
   assert(
     lesson.includes('listFocusModes') &&
@@ -1005,7 +1034,10 @@ function assertPythonFoundationListKeepsFocusedPracticeFlow() {
 }
 
 function assertPythonFoundationGridKeepsRowColumnTrace() {
-  const lesson = read('src/courses/python/foundation/PythonFoundation3.jsx');
+  const lesson = readSourceSet(
+    'src/courses/python/foundation/PythonFoundation3.jsx',
+    'src/courses/python/foundation/foundation3'
+  );
 
   assert(
     lesson.includes('Grid2DTraceCard') &&
@@ -1020,7 +1052,10 @@ function assertPythonFoundationGridKeepsRowColumnTrace() {
 }
 
 function assertPythonFoundationDictKeepsAccessTrace() {
-  const lesson = read('src/courses/python/foundation/PythonFoundation3.jsx');
+  const lesson = readSourceSet(
+    'src/courses/python/foundation/PythonFoundation3.jsx',
+    'src/courses/python/foundation/foundation3'
+  );
 
   assert(
     lesson.includes('DictAccessTraceCard') &&
@@ -1033,7 +1068,10 @@ function assertPythonFoundationDictKeepsAccessTrace() {
 }
 
 function assertPythonFoundationStringKeepsTraceAndFocusFlow() {
-  const lesson = read('src/courses/python/foundation/PythonFoundation3.jsx');
+  const lesson = readSourceSet(
+    'src/courses/python/foundation/PythonFoundation3.jsx',
+    'src/courses/python/foundation/foundation3'
+  );
 
   assert(
     lesson.includes('StringTraceCard') &&
@@ -1057,7 +1095,8 @@ function assertPythonLessonShellKeepsMasteryCheck() {
   assert(
     shell.includes('export function MasteryCheck') &&
       shell.includes('离开前过关检查') &&
-      shell.includes('能解释、能验证、能换一个例子做') &&
+      shell.includes('reflectionReady && evidenceReady') &&
+      shell.includes('自我勾选只是反思') &&
       shell.includes('可以进入下一课') &&
       shell.includes('if (ready)') &&
       shell.includes('recordLessonMastered(location.pathname)') &&
@@ -1067,7 +1106,10 @@ function assertPythonLessonShellKeepsMasteryCheck() {
 }
 
 function assertPythonFoundationF3KeepsMasteryCheck() {
-  const lesson = read('src/courses/python/foundation/PythonFoundation3.jsx');
+  const lesson = readSourceSet(
+    'src/courses/python/foundation/PythonFoundation3.jsx',
+    'src/courses/python/foundation/foundation3'
+  );
 
   assert(
     lesson.includes('f3MasteryItems') &&
@@ -1090,12 +1132,14 @@ function assertPythonFoundationCoreLessonsKeepMasteryChecks() {
     },
     {
       path: 'src/courses/python/foundation/PythonFoundation2.jsx',
+      modules: ['src/courses/python/foundation/foundation2'],
       title: 'F2 控制流程离开前检查',
       concepts: ['if / elif / else', 'range(start, stop, step)', 'for 和 while', '死循环'],
       message: 'Python foundation F2 should keep mastery checks for branching, range, loop choice, and infinite-loop diagnosis.',
     },
     {
       path: 'src/courses/python/foundation/PythonFoundation4.jsx',
+      modules: ['src/courses/python/foundation/foundation4'],
       title: 'F4 函数与异常离开前检查',
       concepts: ['重复代码改成函数', 'print 是展示，return 是交回结果', '变量在函数里面还是外面有效', 'try / except'],
       message: 'Python foundation F4 should keep mastery checks for function extraction, return values, scope, and error handling.',
@@ -1121,7 +1165,7 @@ function assertPythonFoundationCoreLessonsKeepMasteryChecks() {
   ];
 
   for (const lesson of lessons) {
-    const text = read(lesson.path);
+    const text = readSourceSet(lesson.path, ...(lesson.modules || []));
     assert(
       text.includes('MasteryCheck') &&
         text.includes(lesson.title) &&
@@ -1303,7 +1347,7 @@ async function main() {
   assertCatalogSubjectCopy();
   assertHeroUsesPaperStats();
   assertTheLabUsesMotionPreference();
-  assertLoadingScreenUsesMotionPreference();
+  assertLoadingScreenIsLightweight();
   assertNavigationRespectsMotionPreference();
   assertHomeScrollControlsRespectMotionPreference();
   assertQuestionBankReviewCopy();

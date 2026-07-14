@@ -34,7 +34,7 @@ const ExamModeView = ({
       <div className="max-w-3xl mx-auto space-y-8">
         {/* Question Card */}
         <div className="bg-white rounded-2xl shadow-sm border border-slate-200 p-6 md:p-10 animate-fade-in relative overflow-hidden">
-          <div className="absolute top-0 left-0 bg-slate-100 px-4 py-1.5 rounded-br-xl text-xs font-bold text-slate-500 uppercase tracking-wider">
+          <div className="absolute top-0 left-0 bg-slate-100 px-4 py-1.5 rounded-br-xl text-xs font-bold text-slate-600 uppercase tracking-wider">
             {isProgramming ? '编程题' : currentQ.type === 'single' ? '单选题' : '判断题'} &bull; {currentQ.score}分
           </div>
 
@@ -79,7 +79,14 @@ const ExamModeView = ({
                 }
 
                 return (
-                  <div key={idx} onClick={() => onOptionSelect(currentQ.id, idx)} className={`question-option group w-full text-left rounded-xl border px-4 py-3.5 shadow-sm transition-all text-lg ${optionClass}`}>
+                  <button
+                    key={idx}
+                    type="button"
+                    onClick={() => onOptionSelect(currentQ.id, idx)}
+                    disabled={isSubmitted}
+                    aria-pressed={isSelected}
+                    className={`question-option group w-full rounded-xl border px-4 py-3.5 text-left text-lg shadow-sm transition-all ${optionClass}`}
+                  >
                     <div className={`w-8 h-8 rounded-full flex items-center justify-center text-sm font-bold border ${isSelected || (showAnswer && idx === currentQ.answer) ? 'border-current' : 'border-slate-300 text-slate-400'}`}>
                       {String.fromCharCode(65 + idx)}
                     </div>
@@ -88,7 +95,7 @@ const ExamModeView = ({
                     </div>
                     {showAnswer && idx === currentQ.answer && <CheckCircle className="ml-auto text-green-600" />}
                     {showAnswer && isSelected && idx !== currentQ.answer && <X className="ml-auto text-red-500" />}
-                  </div>
+                  </button>
                 );
               })}
             </div>

@@ -20,7 +20,7 @@ const PanelFallback = () => (
     </div>
 );
 
-const ClassroomPoints = () => {
+const ClassroomPoints = ({ mobileDocked = false, mobileInline = false }) => {
     const [isOpen, setIsOpen] = useState(false);
     const studentCount = isOpen ? 0 : getStudentCount();
 
@@ -28,7 +28,12 @@ const ClassroomPoints = () => {
         return (
             <button
                 onClick={() => setIsOpen(true)}
-                className="fixed bottom-36 right-4 z-30 w-12 h-12 bg-gradient-to-br from-indigo-500 to-purple-600 text-white rounded-full shadow-2xl flex items-center justify-center hover:scale-110 hover:from-indigo-600 hover:to-purple-700 transition-all duration-300 group sm:bottom-56 sm:right-6 sm:w-14 sm:h-14"
+                className={`${mobileInline
+                    ? 'relative flex h-11 w-11 items-center justify-center rounded-lg bg-amber-500 text-white shadow-sm'
+                    : mobileDocked
+                        ? 'relative flex h-11 w-11 items-center justify-center rounded-full bg-amber-500 text-white shadow-sm sm:fixed sm:bottom-56 sm:right-6 sm:z-30 sm:h-14 sm:w-14 sm:shadow-xl'
+                        : 'fixed bottom-36 right-4 z-30 flex h-12 w-12 items-center justify-center rounded-full bg-amber-500 text-white shadow-xl sm:bottom-56 sm:right-6 sm:h-14 sm:w-14'
+                    } group transition hover:scale-105 hover:bg-amber-600`}
                 aria-label="打开课堂积分榜"
                 title="打开课堂积分榜"
             >

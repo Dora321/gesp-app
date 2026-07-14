@@ -1,3 +1,5 @@
+import { createSequentialCourseSupport, defineCourse } from './courseSchema.js';
+
 export const cppL6Lessons = [
   { id: 1, title: '第 1 课：树的初相识 (性质/存储)' },
   { id: 2, title: '第 2 课：树的遍历 (前/中/后序)' },
@@ -192,39 +194,20 @@ const reviewTasksByLesson = {
   16: ['完成一套六级限时模拟并记录每题用时和题型。', '隔天重做 2 道错题，确认是否能独立写出关键草稿和代码。'],
 };
 
+export const cppL6Course = defineCourse({
+  id: 'cpp-l6', title: 'GESP C++ 六级', language: 'cpp', kind: 'level',
+  items: cppL6Lessons, detailsById: qualityByLesson, pathFor: id => `/lesson/6/${id}`,
+});
+
+const buildCppL6LessonSupport = createSequentialCourseSupport(cppL6Course, {
+  previousReasons: previousReasonByLesson,
+  nextReasons: nextReasonByLesson,
+  practiceLinksById: practiceByLesson,
+  reviewTasksById: reviewTasksByLesson,
+  entry: ({ current }) => ({ title: '六级课程总览', path: '/level6', reason: previousReasonByLesson[current.id] }),
+  exit: ({ current }) => ({ title: '六级课程总览', path: '/level6', reason: nextReasonByLesson[current.id] }),
+});
+
 export function getCppL6LessonSupport(lessonId) {
-  const lesson = cppL6Lessons.find((item) => item.id === lessonId);
-  const previousLesson = cppL6Lessons.find((item) => item.id === lessonId - 1);
-  const nextLesson = cppL6Lessons.find((item) => item.id === lessonId + 1);
-
-  if (!lesson) return null;
-
-  return {
-    lesson,
-    quality: qualityByLesson[lessonId],
-    previous: previousLesson
-      ? {
-          title: previousLesson.title,
-          path: `/lesson/6/${previousLesson.id}`,
-          reason: previousReasonByLesson[lessonId],
-        }
-      : {
-          title: '六级课程总览',
-          path: '/level6',
-          reason: previousReasonByLesson[lessonId],
-        },
-    next: nextLesson
-      ? {
-          title: nextLesson.title,
-          path: `/lesson/6/${nextLesson.id}`,
-          reason: nextReasonByLesson[lessonId],
-        }
-      : {
-          title: '六级课程总览',
-          path: '/level6',
-          reason: nextReasonByLesson[lessonId],
-        },
-    practiceLinks: practiceByLesson[lessonId] || [],
-    reviewTasks: reviewTasksByLesson[lessonId] || [],
-  };
+  return buildCppL6LessonSupport(lessonId);
 }

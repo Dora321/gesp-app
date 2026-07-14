@@ -139,7 +139,9 @@ async function run() {
   const directQuestionBankStart = requestUrls.length;
   await page.goto(`${baseUrl}/question-bank`, { waitUntil: 'domcontentloaded' });
   await page.getByText('GESP 真题题库').waitFor({ timeout: 10000 });
-  await page.getByText('题目总数').waitFor({ timeout: 10000 });
+  await page.getByText('完整核验', { exact: true }).waitFor({ timeout: 10000 });
+  await page.getByText('部分核验', { exact: true }).waitFor({ timeout: 10000 });
+  await page.getByText('尚未核验', { exact: true }).waitFor({ timeout: 10000 });
   await page.getByText(/一级真题列表/).waitFor({ timeout: 10000 });
   await page.getByText(/\d+ 卷 · \d+ 题 · 最新/).first().waitFor({ timeout: 10000 });
   const directQuestionBankRequests = requestUrls.slice(directQuestionBankStart);
@@ -156,6 +158,16 @@ async function run() {
     .count();
   if (focusModeButtons !== 0) {
     throw new Error('Question bank flow should not render global floating widgets.');
+  }
+
+  await page.goto(`${baseUrl}/question-bank/2/2026-03-l2`, { waitUntil: 'domcontentloaded' });
+  await page.getByRole('button', { name: /解析模式/ }).click();
+  await page.locator('.question-option').first().waitFor({ timeout: 10000 });
+  await page.locator('.question-option').first().click();
+  await page.getByText('通用解题提示', { exact: true }).first().waitFor({ timeout: 10000 });
+  await page.getByText(/题库答案（尚未完成核验）/).waitFor({ timeout: 10000 });
+  if (await page.getByText('选项逐项分析', { exact: false }).count()) {
+    throw new Error('Unverified papers must not render inferred option-by-option analysis.');
   }
 
   await page.goto(baseUrl, { waitUntil: 'domcontentloaded' });
@@ -175,6 +187,93 @@ async function run() {
   const afterOpenPanelRequests = panelRequests.length;
   await page.getByRole('button', { name: '最小化课堂积分榜' }).click();
   await page.getByRole('button', { name: '打开课堂积分榜' }).waitFor({ timeout: 10000 });
+
+  await page.evaluate(() => localStorage.setItem('deepseek_api_key', 'legacy-persistent-key'));
+  await page.getByRole('button', { name: '打开 AI 问答助手' }).click();
+  await page.getByRole('dialog', { name: 'AI 问答助手' }).waitFor({ timeout: 10000 });
+  await page.getByRole('button', { name: '打开 AI 设置' }).click();
+  await page.getByLabel('DeepSeek API Key').fill('session-only-key');
+  await page.getByRole('button', { name: '保存', exact: true }).click();
+
+  const savedApiKeyState = await page.evaluate(() => ({
+    session: sessionStorage.getItem('deepseek_api_key'),
+    persistent: localStorage.getItem('deepseek_api_key'),
+  }));
+  if (savedApiKeyState.session !== 'session-only-key' || savedApiKeyState.persistent !== null) {
+    throw new Error(`AI API key storage is not session-only: ${JSON.stringify(savedApiKeyState)}`);
+  }
+
+  await page.getByRole('button', { name: '打开 AI 设置' }).click();
+  await page.getByRole('button', { name: '清除', exact: true }).click();
+  const clearedApiKeyState = await page.evaluate(() => ({
+    session: sessionStorage.getItem('deepseek_api_key'),
+    persistent: localStorage.getItem('deepseek_api_key'),
+  }));
+  if (clearedApiKeyState.session !== null || clearedApiKeyState.persistent !== null) {
+    throw new Error(`AI API key clear action left stored data: ${JSON.stringify(clearedApiKeyState)}`);
+  }
+  await page.getByRole('button', { name: '关闭 AI 问答助手' }).click();
+
+  await page.getByRole('button', { name: '学习工具', exact: true }).click();
+  await page.getByRole('heading', { name: '管理我的学习进度' }).waitFor({ timeout: 10000 });
+  const downloadPromise = page.waitForEvent('download');
+  await page.getByRole('button', { name: '导出', exact: true }).click();
+  const learningDataDownload = await downloadPromise;
+  if (!/^gesp-learning-data-\d{4}-\d{2}-\d{2}\.json$/.test(learningDataDownload.suggestedFilename())) {
+    throw new Error(`Unexpected learning data filename: ${learningDataDownload.suggestedFilename()}`);
+  }
+
+  const importPayload = JSON.stringify({
+    schema: 'gesp-learning-data',
+    version: 2,
+    data: {
+      lessons: { '/python/f2': { status: 'mastered', visitedAt: 100, masteredAt: 200 } },
+      exams: { 'smoke-paper': { answers: { 0: 'A' }, currentQuestionIndex: 1, timeLeft: 120, isSubmitted: false } },
+      hardware: { esp32Ai: { activeNum: 2, viewed: [1, 2] } },
+      museum: { collected: [] },
+    },
+  });
+  page.once('dialog', (dialog) => dialog.accept());
+  await page.getByLabel('选择学习数据文件').setInputFiles({
+    name: 'learning-data.json',
+    mimeType: 'application/json',
+    buffer: Buffer.from(importPayload),
+  });
+  await page.getByText('学习数据已导入，下次打开课程时生效').waitFor({ timeout: 10000 });
+  const importedLearningData = await page.evaluate(() => JSON.parse(localStorage.getItem('gesp_learning_data') || 'null'));
+  if (importedLearningData?.version !== 2 || importedLearningData?.lessons?.['/python/f2']?.status !== 'mastered') {
+    throw new Error('Learning data import did not persist the versioned progress document.');
+  }
+
+  await page.evaluate(() => localStorage.setItem('ai_selected_persona_id', 'tutor'));
+  page.once('dialog', (dialog) => dialog.accept());
+  await page.getByRole('button', { name: '一键重置', exact: true }).click();
+  await page.getByText('学习进度已重置').waitFor({ timeout: 10000 });
+  const resetLearningDataState = await page.evaluate(() => ({
+    learning: localStorage.getItem('gesp_learning_data'),
+    persona: localStorage.getItem('ai_selected_persona_id'),
+  }));
+  if (resetLearningDataState.learning !== null || resetLearningDataState.persona !== 'tutor') {
+    throw new Error(`Learning reset exceeded its data scope: ${JSON.stringify(resetLearningDataState)}`);
+  }
+
+  await page.goto(`${baseUrl}/question-bank/2/2026-03-l2`, { waitUntil: 'domcontentloaded' });
+  await page.getByRole('button', { name: /考试模式/ }).click();
+  await page.locator('.question-option').first().waitFor({ state: 'visible', timeout: 10000 });
+  await page.locator('.question-option').first().click();
+  await page.getByRole('button', { name: /下一题/ }).click();
+  await page.waitForFunction(() => {
+    const data = JSON.parse(localStorage.getItem('gesp_learning_data') || '{}');
+    const draft = data.exams?.['2026-03-l2'];
+    return draft?.currentQuestionIndex === 1 && Object.keys(draft.answers || {}).length === 1;
+  });
+  await page.reload({ waitUntil: 'domcontentloaded' });
+  await page.getByRole('button', { name: /继续上次练习/ }).click();
+  await page.getByRole('button', { name: '上一题', exact: true }).click();
+  const restoredAnswers = await page.locator('.question-option[aria-pressed="true"]').count();
+  if (restoredAnswers !== 1) {
+    throw new Error(`Exam draft did not restore the selected answer after reload (selected ${restoredAnswers}).`);
+  }
 
   await page.goto(`${baseUrl}/python/f1`, { waitUntil: 'domcontentloaded' });
   await page.getByText('什么是 Python?').waitFor({ timeout: 10000 });
@@ -247,6 +346,28 @@ async function run() {
     throw new Error('Floating classroom button appears above the open mobile menu.');
   }
 
+  await mobilePage.goto(`${baseUrl}/question-bank`, { waitUntil: 'domcontentloaded' });
+  await mobilePage.getByText('GESP 真题题库').waitFor({ timeout: 10000 });
+  const levelButtons = mobilePage.locator('button[aria-pressed]');
+  if (await levelButtons.count() !== 8) {
+    throw new Error(`Question bank should expose 8 level choices, found ${await levelButtons.count()}.`);
+  }
+  const levelSelectorMetrics = await levelButtons.first().evaluate((button) => {
+    const container = button.parentElement;
+    const firstPaper = document.querySelector('article');
+    return {
+      clientWidth: container?.clientWidth || 0,
+      scrollWidth: container?.scrollWidth || 0,
+      firstPaperTop: firstPaper?.getBoundingClientRect().top || 0,
+    };
+  });
+  if (levelSelectorMetrics.scrollWidth <= levelSelectorMetrics.clientWidth) {
+    throw new Error(`Mobile level choices should use a horizontal scroller: ${JSON.stringify(levelSelectorMetrics)}`);
+  }
+  if (levelSelectorMetrics.firstPaperTop <= 0 || levelSelectorMetrics.firstPaperTop > 1100) {
+    throw new Error(`Mobile question-bank list starts too far below the viewport: ${JSON.stringify(levelSelectorMetrics)}`);
+  }
+
   // Mobile sweep: every key course route must fit the viewport width. A small
   // tolerance absorbs sub-pixel rounding; anything larger means a code block,
   // table or button is spilling out horizontally on phones.
@@ -284,8 +405,8 @@ async function run() {
   await mobilePage.goto(`${baseUrl}/hardware/esp32-ai`, { waitUntil: 'domcontentloaded' });
   await mobilePage.getByText('ESP32 AI Workshop').waitFor({ timeout: 10000 });
   const touchTargets = [
-    mobilePage.getByRole('link', { name: '返回首页' }),
-    mobilePage.getByRole('link', { name: '课程首页' }),
+    mobilePage.getByRole('button', { name: '返回网站首页' }),
+    mobilePage.getByRole('link', { name: '硬件实验课首页' }),
     mobilePage.getByRole('button', { name: /展开全部/ }),
   ];
   for (const target of touchTargets) {

@@ -78,7 +78,7 @@ export default function Footer() {
                     <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
                         <button
                             onClick={() => navigate(pythonStart.path)}
-                            className="flex items-center gap-2 px-8 py-4 rounded-full bg-emerald-500 hover:bg-emerald-400 text-white font-bold transition-all shadow-lg shadow-emerald-500/20 hover:scale-105 active:scale-95"
+                            className="flex items-center gap-2 rounded-full bg-emerald-700 px-8 py-4 font-bold text-white shadow-lg shadow-emerald-700/20 transition-all hover:scale-105 hover:bg-emerald-600 active:scale-95"
                         >
                             <Code2 size={20} />
                             在线运行 "Hello World"
@@ -110,7 +110,7 @@ export default function Footer() {
                             致力于为青少年提供最硬核、最有趣的计算机科学教育。从 GESP 考级到 AI 算法，让每一个孩子都能理解代码的力量。
                         </p>
                         <div className="flex gap-4">
-                            <a href="https://github.com/Dora321/gesp-app" target="_blank" rel="noopener noreferrer" className="p-2 bg-slate-800 rounded-full hover:bg-blue-600 hover:text-white transition-colors">
+                            <a href="https://github.com/Dora321/gesp-app" target="_blank" rel="noopener noreferrer" aria-label="查看 GitHub 代码仓" className="flex h-11 w-11 items-center justify-center rounded-full bg-slate-800 transition-colors hover:bg-blue-600 hover:text-white">
                                 <Github size={20} />
                             </a>
                         </div>

@@ -381,3 +381,62 @@ export const buildRichAnalysis = (q, level) => {
         },
     };
 };
+
+export const buildGenericStudyHint = (q, level) => {
+    if (!q || q.type === 'coding' || q.type === 'programming') return null;
+
+    const questionText = getQuestionContent(q);
+    const isJudge = q.type === 'judge' || q.type === 'tf';
+    const options = getOptions(q, isJudge);
+    const merged = `${questionText} ${options.join(' ')}`;
+    const topics = detectTopics(questionText).length ? detectTopics(questionText) : detectTopics(merged);
+    const primaryTopic = choosePrimaryTopic(topics, questionText);
+    const hasCode = /```|cin|cout|printf|scanf|for|while|if|int |return|#include/i.test(questionText);
+    const steps = [];
+
+    if (hasCode) {
+        steps.push({ icon: '📋', text: '审题：明确代码输入、输出目标和会改变结果的语句' });
+        steps.push({ icon: '🔍', text: '追踪：逐行执行代码，记录关键变量或输出片段' });
+        if (primaryTopic?.steps?.length) {
+            steps.push({ icon: '🧭', text: primaryTopic.steps[1] || primaryTopic.steps[0] });
+        }
+        steps.push({ icon: '✅', text: '验证：用最终变量状态或输出结果逐项排除' });
+    } else if (primaryTopic?.steps?.length) {
+        primaryTopic.steps.forEach((step, idx) => {
+            steps.push({ icon: ['📋', '💡', '🔍', '✅'][idx] || '•', text: step });
+        });
+    } else {
+        steps.push({ icon: '📋', text: '审题：找出题干限定词，特别留意“正确、错误、不正确”' });
+        steps.push({ icon: '💡', text: '定位：判断题目考查的是语法规则、运行结果还是概念辨析' });
+        steps.push({ icon: '🔍', text: '排除：对每个选项都用题干条件验证一遍' });
+        steps.push({ icon: '✅', text: '确认：保留最能解释题干全部条件的选项' });
+    }
+
+    const pitfalls = Array.from(new Set([
+        ...(primaryTopic?.pitfalls || []),
+        ...(topics[1]?.pitfalls?.slice(0, 1) || []),
+        ...(/不正确|错误|不能/.test(questionText) ? ['反向提问时先圈出否定词，再逐项判断'] : []),
+        ...(/整数|int|double|float|\/|%/.test(merged) ? ['数值题要区分整数除法、浮点除法和取模运算'] : []),
+    ])).slice(0, 4);
+
+    if (pitfalls.length === 0) {
+        pitfalls.push('不要只凭印象选答案，至少用一个最小样例或规则定义验证。');
+        pitfalls.push('选项相近时，优先比较限定词、边界和输出格式。');
+    }
+
+    return {
+        summary: '',
+        optionAnalysis: [],
+        steps,
+        keyPoint: primaryTopic?.keyPoint || `这是一道 GESP L${level} 知识应用题。先定位题干关键词，再通过规则定义、逐行推演或最小样例完成验证。`,
+        pitfalls,
+        extension: primaryTopic?.extension || `完成后把错因归类到“概念、边界、格式、推演”之一，并找一道同类题再次验证。`,
+        qualityFlags: {
+            hasExplanation: false,
+            hasExamPoint: false,
+            hasOptionReasons: 0,
+            inferred: true,
+            genericOnly: true,
+        },
+    };
+};

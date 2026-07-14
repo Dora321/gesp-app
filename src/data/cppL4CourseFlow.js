@@ -1,3 +1,5 @@
+import { createSequentialCourseSupport, defineCourse } from './courseSchema.js';
+
 export const cppL4Lessons = [
   { id: 1, title: '第 1 课：代码的积木：自定义函数' },
   { id: 2, title: '第 2 课：数据的替身：传值与传参' },
@@ -192,39 +194,20 @@ const reviewTasksByLesson = {
   16: ['限时完成一套四级真题，并记录选择、判断、编程题耗时。', '挑 3 道错题写出错因、修正代码和同类变式。'],
 };
 
+export const cppL4Course = defineCourse({
+  id: 'cpp-l4', title: 'GESP C++ 四级', language: 'cpp', kind: 'level',
+  items: cppL4Lessons, detailsById: qualityByLesson, pathFor: id => `/lesson/4/${id}`,
+});
+
+const buildCppL4LessonSupport = createSequentialCourseSupport(cppL4Course, {
+  previousReasons: previousReasonByLesson,
+  nextReasons: nextReasonByLesson,
+  practiceLinksById: practiceByLesson,
+  reviewTasksById: reviewTasksByLesson,
+  entry: ({ current }) => ({ title: '第 16 课：全真模拟与避坑', path: '/lesson/3/16', reason: previousReasonByLesson[current.id] }),
+  exit: ({ current }) => ({ title: 'GESP C++ 四级总览', path: '/level4', reason: nextReasonByLesson[current.id] }),
+});
+
 export function getCppL4LessonSupport(lessonId) {
-  const lesson = cppL4Lessons.find((item) => item.id === lessonId);
-  const previousLesson = cppL4Lessons.find((item) => item.id === lessonId - 1);
-  const nextLesson = cppL4Lessons.find((item) => item.id === lessonId + 1);
-
-  if (!lesson) return null;
-
-  return {
-    lesson,
-    quality: qualityByLesson[lessonId],
-    previous: previousLesson
-      ? {
-          title: previousLesson.title,
-          path: `/lesson/4/${previousLesson.id}`,
-          reason: previousReasonByLesson[lessonId],
-        }
-      : {
-          title: '第 16 课：全真模拟与避坑',
-          path: '/lesson/3/16',
-          reason: previousReasonByLesson[lessonId],
-        },
-    next: nextLesson
-      ? {
-          title: nextLesson.title,
-          path: `/lesson/4/${nextLesson.id}`,
-          reason: nextReasonByLesson[lessonId],
-        }
-      : {
-          title: 'GESP C++ 四级总览',
-          path: '/level4',
-          reason: nextReasonByLesson[lessonId],
-        },
-    practiceLinks: practiceByLesson[lessonId] || [],
-    reviewTasks: reviewTasksByLesson[lessonId] || [],
-  };
+  return buildCppL4LessonSupport(lessonId);
 }

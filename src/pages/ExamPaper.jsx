@@ -5,6 +5,7 @@ import LoadingScreen from '../components/LoadingScreen';
 import { getPaper, paperMeta } from '../data/gesp/index';
 import useQuestionKeyboardNavigation from '../hooks/useQuestionKeyboardNavigation';
 import { isProgrammingQuestion, PROGRAMMING_ACK } from '../utils/questionHelpers';
+import { scoreExam } from '../utils/examScoring';
 import { loadExamProgress, saveExamProgress, clearExamProgress, hasResumableProgress } from '../utils/examProgress';
 import QuestionSidebar from './exam/QuestionSidebar';
 import SubmitConfirmDialog from './exam/SubmitConfirmDialog';
@@ -96,20 +97,18 @@ const ExamPaper = () => {
   ].sort((a, b) => Number(a.id) - Number(b.id)) : [];
   const questionCount = allQuestions.length;
 
-  const objectiveQuestions = allQuestions.filter(q => q && !isProgrammingQuestion(q));
-  const programmingQuestions = allQuestions.filter(q => isProgrammingQuestion(q));
   const currentQ = allQuestions[currentQuestionIndex] || allQuestions[0] || null;
 
   const answeredCount = Object.keys(answers).length;
   const unansweredCount = Math.max(allQuestions.length - answeredCount, 0);
   const progress = allQuestions.length ? (answeredCount / allQuestions.length) * 100 : 0;
-  const programmingMarkedCount = programmingQuestions.filter(q => answers[q.id] !== undefined).length;
-
-  // Score calculation
-  const calculateObjectiveScore = () => objectiveQuestions.reduce((t, q) => t + (answers[q.id] === q.answer ? q.score : 0), 0);
-  const objectiveScoreTotal = objectiveQuestions.reduce((s, q) => s + (q.score || 0), 0);
-  const objectiveCorrectCount = objectiveQuestions.filter(q => answers[q.id] === q.answer).length;
-  const objectiveWrongCount = objectiveQuestions.filter(q => answers[q.id] !== undefined && answers[q.id] !== q.answer).length;
+  const {
+    objectiveScore,
+    objectiveScoreTotal,
+    objectiveCorrectCount,
+    objectiveWrongCount,
+    programmingMarkedCount,
+  } = scoreExam(allQuestions, answers);
 
   const formatTime = (seconds) => {
     const m = Math.floor(seconds / 60);
@@ -254,7 +253,14 @@ const ExamPaper = () => {
       {/* Header */}
       <header className="bg-white border-b border-slate-200 h-16 px-4 flex items-center justify-between sticky top-0 z-30 shadow-sm">
         <div className="flex items-center gap-4">
-          <button onClick={() => navigate(-1)} className="p-2 hover:bg-slate-100 rounded-lg text-slate-500"><ChevronLeft size={20} /></button>
+          <button
+            type="button"
+            onClick={() => navigate(-1)}
+            className="h-11 w-11 min-w-11 shrink-0 inline-flex items-center justify-center hover:bg-slate-100 rounded-lg text-slate-600"
+            aria-label="返回题库"
+          >
+            <ChevronLeft size={20} />
+          </button>
           <h1 className="font-bold text-slate-800 hidden md:block">{paperData.title}</h1>
           <span className="bg-blue-100 text-blue-700 text-xs px-2 py-1 rounded font-mono font-bold">等级 {paperData.level}</span>
         </div>
@@ -268,7 +274,15 @@ const ExamPaper = () => {
             className={`px-6 py-2 rounded-full font-bold text-sm transition-all shadow-md ${isSubmitted ? 'bg-slate-100 text-slate-400 cursor-not-allowed' : 'bg-indigo-600 text-white hover:bg-indigo-700 hover:shadow-indigo-200'}`}>
             {isSubmitted ? '已交卷' : '现在交卷'}
           </button>
-          <button className="md:hidden p-2" onClick={() => setShowSidebar(!showSidebar)}><Menu /></button>
+          <button
+            type="button"
+            className="md:hidden h-11 w-11 min-w-11 shrink-0 inline-flex items-center justify-center rounded-lg text-slate-700 hover:bg-slate-100"
+            onClick={() => setShowSidebar(!showSidebar)}
+            aria-label={showSidebar ? '关闭题号面板' : '打开题号面板'}
+            aria-expanded={showSidebar}
+          >
+            <Menu />
+          </button>
         </div>
       </header>
 
@@ -315,7 +329,7 @@ const ExamPaper = () => {
 
       {showResult && (
         <ResultDialog
-          objectiveScore={calculateObjectiveScore()}
+          objectiveScore={objectiveScore}
           objectiveScoreTotal={objectiveScoreTotal}
           timeElapsed={(paperData?.timeLimit || 90 * 60) - timeLeft}
           objectiveCorrectCount={objectiveCorrectCount}

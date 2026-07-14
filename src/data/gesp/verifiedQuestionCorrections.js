@@ -1,1234 +1,215 @@
+import { q } from './verifiedQuestionCorrectionHelpers.js';
+import { verifiedCorrectionsPart1 } from './verified-corrections/part1.js';
+import { verifiedCorrectionsPart2 } from './verified-corrections/part2.js';
+import { verifiedCorrectionsPart3 } from './verified-corrections/part3.js';
+
 const REVIEWED_BY = '本站校订';
 const REVIEWED_AT = '2026-07-06';
 
-const q = (sourcePage, code, fields = {}) => ({ sourcePage, code, ...fields });
-
 export const verifiedQuestionCorrections = {
-  '2023-09-l5': {
-    sourceUrl: 'https://gesp.ccf.org.cn/101/attach/1570611325304864.pdf',
-    questions: {
-      4: q(2, `// sumA() 和 sumB() 用于求从 1 到 N 之和
-#include <iostream>
-using namespace std;
-int sumA(int n) {
-    int sum = 0;
-    for (int i = 1; i < n + 1; i++)
-        sum += i;
-    return sum;
-}
-int sumB(int n) {
-    if (n == 1)
-        return 1;
-    else
-        return n + sumB(n - 1);
-}
-int main() {
-    int n = 0;
-    cin >> n;
-    cout << sumA(n) << " " << sumB(n) << endl;
-    return 0;
-}`),
-      5: q(2, `// 字符串反序
-#include <iostream>
-#include <string>
-using namespace std;
-string sReverse(string sIn) {
-    if (sIn.length() <= 1) {
-        return sIn;
-    } else {
-        return ________; // 此处填写代码
-    }
-}
-int main() {
-    string sIn;
-    cin >> sIn;
-    cout << sReverse(sIn) << endl;
-    return 0;
-}`),
-      6: q(3, `#include <iostream>
-using namespace std;
-// 递归实现汉诺塔，将 N 个圆盘从 A 通过 B 移到 C
-// 圆盘从底到顶，半径必须从大到小
-void Hanoi(string A, string B, string C, int N) {
-    if (N == 1) {
-        cout << A << " -> " << C << endl;
-    } else {
-        Hanoi(A, C, B, N - 1);
-        cout << A << " -> " << C << endl;
-        ________; // 此处填写代码
-    }
-}
-int main() {
-    Hanoi("甲", "乙", "丙", 3);
-    return 0;
-}`),
-      7: q(4, `#include <iostream>
-#include <vector>
-#include <algorithm>
-using namespace std;
-
-bool isOdd(int N) {
-    return N % 2 == 1;
-}
-bool compare(int a, int b) {
-    if (a % 2 == 0 && b % 2 == 1)
-        return true;
-    return false;
-}
-int main() {
-    vector<int> lstA;
-    for (int i = 1; i < 100; i++)
-        lstA.push_back(i);
-    sort(lstA.begin(), lstA.end(), ________); // 此处填写代码 1
-
-    vector<int> lstB;
-    for (int i = 0; i < lstA.size(); i++)
-        if (________) // 此处填写代码 2
-            lstB.push_back(lstA[i]);
-
-    cout << "lstA: ";
-    for (int i = 0; i < lstA.size(); i++) cout << lstA[i] << " ";
-    cout << endl;
-    cout << "lstB: ";
-    for (int i = 0; i < lstB.size(); i++) cout << lstB[i] << " ";
-    cout << endl;
-    return 0;
-}`),
-      10: q(6, `#include <iostream>
-using namespace std;
-
-int jumpFloor(int N) {
-    cout << N << "#";
-    if (N == 1 || N == 2) {
-        return N;
-    } else {
-        return jumpFloor(N - 1) + jumpFloor(N - 2);
-    }
-}
-int main() {
-    cout << jumpFloor(4) << endl;
-    return 0;
-}`),
-      15: q(9, `#include <iostream>
-
-class Node {
-public:
-    int Value;
-    Node * Next;
-
-    Node(int Val, Node * Nxt = nullptr) {
-        Value = Val;
-        Next = Nxt;
-    }
+  ...verifiedCorrectionsPart1,
+  ...verifiedCorrectionsPart2,
+  ...verifiedCorrectionsPart3,
 };
 
-int main() {
-    Node * firstNode = new Node(10);
-    firstNode->Next = new Node(100);
-    firstNode->Next->Next = new Node(111, firstNode);
-    return 0;
-}`),
-      25: q(10, `#include <iostream>
-#include <algorithm>
-using namespace std;
+const CONTENT_AUDIT_REVIEWED_AT = '2026-07-14';
 
-bool compareModulo5(int a, int b) {
-    return a % 5 < b % 5;
-}
-int main() {
-    int lst[7];
-    for (int i = 0; i < 7; i++)
-        lst[i] = i;
-    sort(lst, lst + 7, compareModulo5);
-    for (int i = 0; i < 7; i++)
-        cout << lst[i] << " ";
-    cout << endl;
-    return 0;
-}`),
-    },
-  },
-  '2023-12-l5': {
-    sourceUrl: 'https://gesp.ccf.org.cn/101/attach/1599969567965216.pdf',
+const addVerifiedQuestionCorrections = (paperId, sourceUrl, questions) => {
+  const current = verifiedQuestionCorrections[paperId] || {};
+  verifiedQuestionCorrections[paperId] = {
+    ...current,
+    sourceUrl,
+    reviewedAt: CONTENT_AUDIT_REVIEWED_AT,
     questions: {
-      2: q(1, `void mergeSort(int SList[], int TList[], int s, int t, int len)
-{
-    if (s == t) {
-        TList[s] = SList[s];
-        return;
-    }
-    int *T2 = new int[len]; // 保存中间结果
-    int m = (s + t) / 2;
-    ________________________________________________;
-    merge(T2, SList, s, m, t);
-    delete T2;
-    return;
-}`),
-      3: q(2, `int stepCount = 0;
-int fracA(int N)
-{
-    stepCount += 1;
-    cout << stepCount << "->";
-    int rtn = 1;
-    for (int i = 1; i <= N; i++)
-        rtn *= i;
-    return rtn;
-}
-int fracB(int N)
-{
-    stepCount += 1;
-    cout << stepCount << "->";
-    if (N == 1)
-        return 1;
-    return N * fracB(N - 1);
-}
-int main()
-{
-    cout << fracA(5);
-    cout << "<===>";
-    cout << fracB(5);
-    return 0;
-}`),
-      6: q(4, `int rc;
-int foo(int x, int y)
-{
-    int r;
-    if (y == 0)
-        r = x;
-    else {
-        r = foo(y, x % y);
-        rc++;
-    }
-    return r;
-}`),
-      7: q(4, `vector<int> operator + (vector<int> lA, vector<int> lB)
-{
-    vector<int> lst;
-    for (int i = 1; i < lA.size(); i++)
-        lst.push_back(lA[i]);
-    for (int i = 1; i < lB.size(); i++)
-        lst.push_back(lB[i]);
-    return lst;
-}
-
-vector<int> qSort(vector<int> lst)
-{
-    if (lst.size() < 2) return lst;
-    int pivot = lst[0];
-    vector<int> less, greater;
-    for (int i = 1; i < lst.size(); i++)
-        if (lst[i] <= pivot) less.push_back(lst[i]);
-        else greater.push_back(lst[i]);
-    return __________________________________________;
-}`),
-      9: q(5, `int _binarySearch(vector<int> lst, int Low, int High, int Target)
-{
-    if (Low > High) return -1;
-    int Mid = (Low + High) / 2;
-    if (Target == lst[Mid]) return Mid;
-    else if (Target < lst[Mid])
-        return _binarySearch(lst, Low, Mid - 1, Target);
-    else
-        return _binarySearch(lst, Mid + 1, High, Target);
-}
-int bSearch(vector<int> lst, int Val)
-{
-    return _binarySearch(lst, 0, lst.size(), Val);
-}`),
-      12: q(6, `class Node
-{
-public:
-    int Value;
-    Node* Prev;
-    Node* Next;
-    Node(int Val, Node* Prv = NULL, Node* Nxt = NULL);
+      ...(current.questions || {}),
+      ...questions,
+    },
+  };
 };
 
-Node::Node(int Val, Node* Prv, Node* Nxt)
-{
-    this->Value = Val;
-    this->Prev = Prv;
-    this->Next = Nxt;
-}
+// Corrections from the 2026-07 content audit of code-dependent questions.
+addVerifiedQuestionCorrections(
+  '2023-12-l5',
+  'https://gesp.ccf.org.cn/101/attach/1599969567965216.pdf',
+  {
+    5: q(3, `typedef struct Node {
+    string str;
+    int ref;
+    struct Node *next, *prev;
+} Node;
 
-int main()
+Node *Insert(Node *pHead, string s)
 {
-    Node firstNode = Node(10);
-    firstNode.Next = new Node(100, &firstNode);
-    firstNode.Next->Next = new Node(111, firstNode.Next);
-}`),
-      22: q(7, `char s[10];
-int main()
-{
-    int N;
-    cin >> N;
-    string rst = "";
-    while (N != 0)
-    {
-        s[0] = N % 8 + '0';
-        rst += string(s);
-        N /= 8;
-    }
-    cout << rst << endl;
-    return 0;
-}`),
-    },
-  },
-  '2024-03-l5': {
-    sourceUrl: 'https://gesp.ccf.org.cn/101/attach/1602047172411424.pdf',
-    questions: {
-      3: q(2, `int factorial(int n) {
-    if (n == 0 || n == 1) {
-        return 1;
-    } else {
-        _________________________________ // 在此处填入代码
-    }
-}`),
-      7: q(4, `string add(string num1, string num2) {
-    string result;
-    int carry = 0;
-    int i = num1.size() - 1, j = num2.size() - 1;
-    while (i >= 0 || j >= 0 || carry) {
-        int x = (i >= 0) ? num1[i--] - '0' : 0;
-        int y = (j >= 0) ? num2[j--] - '0' : 0;
-        int sum = x + y + carry;
-        carry = sum / 10;
-        _______________________________________
-    }
-    return result;
-}`),
-      8: q(4, `int binarySearch(const std::vector<int>& arr, int target) {
-    int left = 0;
-    int right = arr.size() - 1;
-    int times = 0;
-    while (left <= right) {
-        times++;
-        int mid = left + (right - left) / 2;
-        if (arr[mid] == target) {
-            cout << times << endl;
-            return mid;
-        } else if (arr[mid] < target) {
-            left = mid + 1;
-        } else {
-            right = mid - 1;
+    Node *p = pHead->next;
+    Node *q;
+    while (p) {
+        if (p->str == s) {
+            p->ref++;
+            p->next->prev = p->prev;
+            p->prev->next = p->next;
+            break;
         }
+        p = p->next;
     }
-    cout << times << endl;
-    return -1;
-}`),
-    },
+    if (!p) {
+        p = new Node;
+        p->str = s;
+        p->ref = 0;
+        p->next = p->prev = NULL;
+    }
+    __________________________________________
+    pHead->next = p, p->prev = pHead;
+    return pHead;
+}`, {
+      question: '下面的 C++ 代码用于将字符串保存到带头节点的双向链表中，并对重复的串计数，然后将最新访问的串的节点放在链头便于查找。横线处应填入代码是（ ）。',
+      options: [
+        'if (pHead) { p->next = pHead->next; pHead->next->prev = p; }',
+        'if (pHead->next) { p->next = pHead->next; pHead->next->prev = p; }',
+        'p->next = pHead->next; pHead->next->prev = p;',
+        '触发异常，不能对空指针进行操作。',
+      ],
+      answer: 1,
+      explanation: '应先判断原链表的第一个数据节点是否存在；存在时把它接到 p 后并更新其 prev，再把 p 接到头节点之后。',
+      tags: ['双向链表'],
+    }),
   },
-  '2025-03-l5': {
-    sourceUrl: 'https://gesp.ccf.org.cn/101/attach/1684804529553440.pdf',
-    questions: {
-      3: q(2, `// 链表结点
-template <typename T>
-struct ListNode {
-    T data;
-    ListNode* prev;
-    ListNode* next;
-    explicit ListNode(const T& val = T())
-        : data(val), prev(nullptr), next(nullptr) {}
-};
+);
 
-struct LinkedList {
-    ListNode<T>* head;
-    ListNode<T>* tail;
-};
+addVerifiedQuestionCorrections(
+  '2024-03-l5',
+  'https://gesp.ccf.org.cn/101/attach/1602047172411424.pdf',
+  {
+    4: q(2, `void deleteNode(DoublyListNode*& head, int value) {
+    DoublyListNode* current = head;
+    while (current != nullptr && current->val != value) {
+        current = current->next;
+    }
+    if (current != nullptr) {
+        if (current->prev != nullptr) {
+            __________________________________ // 在此处填入代码
+        } else {
+            head = current->next;
+        }
+        if (current->next != nullptr) {
+            current->next->prev = current->prev;
+        }
+        delete current;
+    }
+}`, {
+      answer: 1,
+      explanation: '删除中间节点时，前驱节点的 next 应越过 current，指向 current->next。',
+      tags: ['双向链表'],
+    }),
+  },
+);
 
-void InitLinkedList(LinkedList* list) {
-    list->head = new ListNode<T>;
-    list->tail = new ListNode<T>;
-    ________________________________ // 在此处填入代码
-};`),
-      6: q(3, `vector<int> sieve_linear(int n) {
+addVerifiedQuestionCorrections(
+  '2025-06-l5',
+  'https://gesp.ccf.org.cn/101/attach/1749477555699744.pdf',
+  {
+    6: q(4, `int gcd0(int big, int small) {
+    if (big < small) {
+        swap(big, small);
+    }
+    if (big % small == 0) {
+        return small;
+    }
+    return gcd0(small, big % small);
+}
+
+int gcd1(int big, int small) {
+    if (big < small) {
+        swap(big, small);
+    }
+    for (int i = small; i >= 1; --i) {
+        if (big % i == 0 && small % i == 0)
+            return i;
+    }
+    return 1;
+}`, {
+      question: '下列 C++ 代码用两种方式求解两个正整数的最大公约数，说法错误的是（ ）。',
+      options: [
+        'gcd0() 函数的时间复杂度为 O(log n)',
+        'gcd1() 函数的时间复杂度为 O(n)',
+        '一般说来，gcd0() 的效率高于 gcd1()',
+        'gcd1() 中的代码 for (int i = small; i >= 1; --i) 应该修改为 for (int i = small; i > 1; --i)',
+      ],
+      answer: 3,
+      explanation: '两个正整数的最大公约数可能为 1，因此 gcd1 的循环必须检查 i == 1，D 项修改会漏掉互质情况。',
+      tags: ['最大公约数', '时间复杂度'],
+    }),
+  },
+);
+
+addVerifiedQuestionCorrections(
+  '2025-12-l5',
+  'https://gesp.ccf.org.cn/101/attach/1727912539586592.pdf',
+  {
+    7: q(4, `vector<int> linear_sieve(int n) {
     vector<bool> is_prime(n + 1, true);
     vector<int> primes;
-    if (n < 2) return primes;
-    is_prime[0] = is_prime[1] = false;
-    for (int i = 2; i <= n / 2; i++) {
-        if (is_prime[i])
+
+    is_prime[0] = is_prime[1] = 0;
+    for (int i = 2; i <= n; ++i) {
+        if (is_prime[i]) {
             primes.push_back(i);
-        for (int j = 0; ________________________________; j++) {
-            is_prime[i * primes[j]] = false;
+        }
+        __________________________________________ {
+            is_prime[i * primes[j]] = 0;
             if (i % primes[j] == 0)
                 break;
         }
     }
-    for (int i = n / 2 + 1; i <= n; i++) {
-        if (is_prime[i])
-            primes.push_back(i);
-    }
+
     return primes;
-}`),
-    },
+}`, {
+      options: [
+        'for (int j = 0; j < primes.size() && i * primes[j] <= n; j++)',
+        'for (int j = sqrt(n); j <= n && i * primes[j] <= n; j++)',
+        'for (int j = 1; j <= sqrt(n); j++)',
+        'for (int j = 1; j < n && i * primes[j] <= n; j++)',
+      ],
+      answer: 0,
+      explanation: '线性筛应从 primes[0] 开始枚举，并同时限制质数下标与乘积不越界。',
+      tags: ['线性筛', '质数'],
+    }),
   },
-  '2025-06-l5': {
-    sourceUrl: 'https://gesp.ccf.org.cn/101/attach/1749477555699744.pdf',
-    questions: {
-      3: q(2, `void append(int data) {
-    Node* newNode = new Node{data, nullptr, nullptr};
-    if (is_empty()) {
-        head = tail = newNode;
-    } else {
-        _______________________
-    }
-    ++size;
-}`),
-      5: q(3, `bool is_prime(int n) {
-    if (n <= 1) return false;
-    if (n == 2 || n == 3 || n == 5) return true;
-    if (n % 2 == 0 || n % 3 == 0 || n % 5 == 0) return false;
+);
 
-    int i = 7;
-    int step = 4;
-    int finish_number = sqrt(n) + 1;
-    while (i <= finish_number) {
-        if (n % i == 0) return false;
-        i += step;
-        step = 6 - step;
-    }
-    return true;
-}`),
-      7: q(4, `bool is_prime(int n) {
-    if (n <= 1) return false;
-    int finish_number = static_cast<int>(sqrt(n)) + 1;
-    for (int i = 2; i < finish_number; ++i) {
-        if (n % i == 0)
-            return false;
-    }
-    return true;
-}`),
-      9: q(5, `int find_max_recursive(const vector<int>& nums, int left, int right) {
-    if (left == right) return nums[left];
-    int mid = left + (right - left) / 2;
-    int left_max = find_max_recursive(nums, left, mid);
-    int right_max = find_max_recursive(nums, mid + 1, right);
-    return max(left_max, right_max);
-}
-
-int find_max(const vector<int>& nums) {
-    if (nums.empty())
-        throw invalid_argument("输入数组不能为空");
-    return find_max_recursive(nums, 0, nums.size() - 1);
-}`),
-      10: q(5, `int find_max(const vector<int>& nums) {
-    if (nums.empty())
-        throw invalid_argument("输入数组不能为空");
-    int max_value = nums[0];
-    for (int num : nums) {
-        if (num > max_value)
-            max_value = num;
-    }
-    return max_value;
-}`),
-      12: q(6, `double sqrt_binary(long long n, double epsilon = 1e-10) {
-    if (n < 0) throw invalid_argument("输入必须为非负整数");
-    if (n == 0 || n == 1) return n;
-
-    // 阶段 1
-    long long low = 1, high = n;
-    long long k = 0;
-    while (low <= high) {
-        long long mid = (low + high) / 2;
-        long long mid_sq = mid * mid;
-        if (mid_sq == n) return mid;
-        if (mid_sq < n) {
-            k = mid;
-            low = mid + 1;
-        } else {
-            high = mid - 1;
-        }
-    }
-
-    long long next_k = k + 1;
-    if (next_k * next_k == n) return next_k;
-
-    // 阶段 2
-    double low_d = (double)k;
-    double high_d = (double)(k + 1);
-    double mid;
-    while (high_d - low_d >= epsilon) {
-        mid = (low_d + high_d) / 2;
-        double mid_sq = mid * mid;
-        if (mid_sq < n) low_d = mid;
-        else high_d = mid;
-    }
-    double result = (low_d + high_d) / 2;
-    long long check_int = (long long)(result + 0.5);
-    if (check_int * check_int == n) return check_int;
-    return result;
-}`),
-      13: q(7, `const int MAX_COINS = 10;
-int result[MAX_COINS] = {0}; // 假设最多 10 种面额
-
-int find_coins(const vector<int>& coins, int amount) {
-    sort(coins.begin(), coins.end(), greater<int>());
-    int n = coins.size();
-    for (int i = 0; i < n; ++i) {
-        int coin = coins[i];
-        int num = amount / coin;
-        result[i] = num;
-        amount -= num * coin;
-        if (amount == 0) break;
-    }
-    cout << "找零方案如下：" << endl;
-    for (int i = 0; i < n; ++i)
-        cout << sorted_coins[i] << "角需要" << result[i] << "枚" << endl;
-    return 0;
-}`),
-      18: q(11, `int main() {
-    int n, m;
-    cin >> n >> m;
-    if (n > m) swap(n, m);
-    map<int, vector<int>> prime_factor;
-    for (int i = n; i <= m; ++i) {
-        int j = 2, k = i;
-        while (k != 1) {
-            if (k % j == 0) {
-                prime_factor[i] = prime_factor[i] + j;
-                k /= j;
-            } else {
-                ++j;
-            }
-        }
-    }
-    for (auto& p : prime_factor) {
-        cout << p.first << ": ";
-        for (int v : p.second) cout << v << " ";
-        cout << endl;
-    }
-    return 0;
-}`),
-      19: q(11, `void merge(std::vector<int>& arr, int left, int mid, int right) {
-    std::vector<int> temp(right - left + 1);
-    int i = left, j = mid + 1, k = 0;
-    while (i <= mid && j <= right) {
-        if (arr[i] <= arr[j]) temp[k++] = arr[i++];
-        else temp[k++] = arr[j++];
-    }
-    while (i <= mid) temp[k++] = arr[i++];
-    while (j <= right) temp[k++] = arr[j++];
-    for (int p = 0; p < k; ++p) arr[left + p] = temp[p];
-}
-
-void mergeSort(std::vector<int>& arr, int left, int right) {
-    if (left >= right) return;
-    int mid = left + (right - left) / 2;
-    mergeSort(arr, left, mid);
-    mergeSort(arr, mid + 1, right);
-    std::cout << "HERE";
-    merge(arr, left, mid, right);
-}`),
-    },
-  },
-  '2025-09-l5': {
-    sourceUrl: 'https://gesp.ccf.org.cn/101/attach/1704013600915488.pdf',
-    questions: {
-      5: q(3, `int gcd0(int a, int b) {
-    if (a < b) swap(a, b);
-    while (b != 0) {
-        int temp = a % b;
-        a = b;
-        b = temp;
-    }
-    return ______;
-}`),
-      12: q(5, `void merge(vector<int>& nums, int left, int mid, int right) {
-    vector<int> tmp(right - left + 1);
-    int i = left, j = mid + 1, k = 0;
-    while (i <= mid && j <= right) {
-        if (nums[i] <= nums[j]) tmp[k++] = nums[i++];
-        else tmp[k++] = nums[j++];
-    }
-    while (i <= mid) tmp[k++] = nums[i++];
-    while (________) {
-        tmp[k++] = nums[j++];
-    }
-    for (k = 0; k < tmp.size(); k++) nums[left + k] = tmp[k];
-}
-
-void mergeSort(vector<int>& nums, int left, int right) {
-    if (left >= right) return;
-    int mid = (left + right) / 2;
-    mergeSort(nums, left, mid);
-    mergeSort(nums, mid + 1, right);
-    merge(nums, left, mid, right);
-}`),
-      14: q(7, `int crossSum(vector<int>& nums, int left, int mid, int right) {
-    int leftSum = INT_MIN, rightSum = INT_MIN;
-    int sum = 0;
-    for (int i = mid; i >= left; i--) {
-        sum += nums[i];
-        leftSum = max(leftSum, sum);
-    }
-    sum = 0;
-    for (int i = mid + 1; i <= right; i++) {
-        sum += nums[i];
-        rightSum = max(rightSum, sum);
-    }
-    return leftSum + rightSum;
-}
-int helper(vector<int>& nums, int left, int right) {
-    if (left == right) return nums[left];
-    int mid = left + (right - left) / 2;
-    int leftMax = helper(nums, left, mid);
-    int rightMax = helper(nums, mid + 1, right);
-    int crossMax = crossSum(nums, left, mid, right);
-    return max({leftMax, rightMax, crossMax});
-}
-int maxSubArray(vector<int>& nums) {
-    return helper(nums, 0, nums.size() - 1);
-}`),
-      15: q(7, `vector<int> plusOne(vector<int>& digits) {
-    for (int i = (int)digits.size() - 1; i >= 0; --i) {
-        if (digits[i] < 9) {
-            digits[i] += 1;
-            return digits;
-        }
-        ________________ // 在此处填入代码
-    }
-    digits.insert(digits.begin(), 1);
-    return digits;
-}`),
-    },
-  },
-  '2025-12-l5': {
-    sourceUrl: 'https://gesp.ccf.org.cn/101/attach/1727912539586592.pdf',
-    questions: {
-      5: q(4, `int gcd1(int a, int b) {
-    return b == 0 ? a : gcd1(b, a % b);
-}
-int gcd2(int a, int b) {
-    while (b != 0) {
-        int temp = b;
-        b = a % b;
-        a = temp;
-    }
-    return a;
-}`),
-      9: q(5, `void merge(vector<int>& arr, vector<int>& temp, int l, int mid, int r) {
-    int i = l, j = mid + 1, k = l;
-    while (i <= mid && j <= r) {
-        if (arr[i] <= arr[j]) temp[k++] = arr[i++];
-        else temp[k++] = arr[j++];
-    }
-    while (i <= mid) temp[k++] = arr[i++];
-    while (j <= r) temp[k++] = arr[j++];
-    for (int p = l; p <= r; p++) arr[p] = temp[p];
-}
-void mergeSort(vector<int>& arr, vector<int>& temp, int l, int r) {
-    if (l >= r) return;
-    int mid = l + (r - l) / 2;
-    mergeSort(arr, temp, l, mid);
-    mergeSort(arr, temp, mid + 1, r);
-    merge(arr, temp, l, mid, r);
-}`),
-      15: q(8, `vector<int> add(vector<int> a, vector<int> b) {
-    vector<int> c;
-    int carry = 0;
-    for (int i = 0; i < a.size() || i < b.size(); i++) {
-        if (i < a.size()) carry += a[i];
-        if (i < b.size()) carry += b[i];
-        _______________________ // 在此处填入代码
-    }
-    if (carry) c.push_back(carry);
-    return c;
-}`),
-    },
-  },
-  '2026-03-l5': {
-    sourceUrl: 'https://gesp.ccf.org.cn/101/attach/1734457367199776.pdf',
-    questions: {
-      4: q(2, `int gcd(int a, int b) {
-    return b == 0 ? a : gcd(b, a % b);
-}`),
-    },
-  },
-  '2024-03-l6': {
-    sourceUrl: 'https://gesp.ccf.org.cn/101/attach/1602047203868704.pdf',
-    questions: {
-      5: q(2, `TreeNode* search(TreeNode* root, int target) {
-    if (root == NULL || root->val == target) {
-        return root;
-    }
-    if (_______________) {
-        return search(root->left, target);
-    } else {
-        return search(root->right, target);
-    }
-}`),
-      14: q(4, `int gcd(int a, int b) {
-    while (b != 0) {
-        ______________________
-    }
-    return a;
-}`),
-    },
-  },
-  '2024-06-l6': {
-    sourceUrl: 'https://gesp.ccf.org.cn/101/attach/1621071589539872.pdf',
-    questions: {
-      12: q(6, `int jump_recur(int n) {
-    if (n == 1) return 1;
-    if (n == 2) return 2;
-    return jump_recur(n - 1) + jump_recur(n - 2);
-}
-int jump_dp(int n) {
-    vector<int> dp(n + 1);
-    dp[1] = 1;
-    dp[2] = 2;
-    for (int i = 3; i <= n; ++i) {
-        dp[i] = dp[i - 1] + dp[i - 2];
-    }
-    return dp[n];
-}`),
-    },
-  },
-  '2024-09-l6': {
-    sourceUrl: 'https://gesp.ccf.org.cn/101/attach/1633836295258144.pdf',
-    reviewedAt: '2026-07-10',
-    questions: {
-      4: q(2, `#include <iostream>
-#include <stack>
+addVerifiedQuestionCorrections(
+  '2023-09-l6',
+  'https://gesp.ccf.org.cn/101/attach/1718304913752096.pdf',
+  {
+    5: q(2, `#include <iostream>
 #include <string>
 using namespace std;
 
-bool is_valid(string s) {
-    stack<char> st;
-    char top;
-    for (char& ch : s) {
-        if (ch == '(' || ch == '{' || ch == '[') {
-            st.push(ch);
-        } else {
-            if (st.empty()) return false;
-            ________________________ // 在此处填入代码
-            if ((ch == ')' && top != '(') ||
-                (ch == '}' && top != '{') ||
-                (ch == ']' && top != '[')) {
-                return false;
-            }
-        }
-    }
-    return st.empty();
-}`),
-      10: q(4, `// 定义二叉树的结点结构
-struct tree_node {
-    int val;
-    tree_node* left;
-    tree_node* right;
-    tree_node(int x) : val(x), left(nullptr), right(nullptr) {}
+class MyStr {
+    string data;
+public:
+    MyStr(string _data): data(_data) {}
 };
 
-// 计算二叉树的深度
-int max_depth(tree_node* root) {
-    if (root == nullptr) {
-        return 0;
-    }
-    int left_depth = max_depth(root->left);
-    int right_depth = max_depth(root->right);
-    ______________________________ // 在此处填入代码
-}`),
-      11: q(5, `#include <queue>
-
-int max_depth_bfs(tree_node* root) {
-    if (root == nullptr) {
-        return 0;
-    }
-
-    queue<tree_node*> q;
-    q.push(root);
-    int depth = 0;
-
-    while (!q.empty()) {
-        ______________________________ // 在此处填入代码
-        for (int i = 0; i < level_size; ++i) {
-            tree_node* node = q.front();
-            q.pop();
-            if (node->left) q.push(node->left);
-            if (node->right) q.push(node->right);
-        }
-    }
-    return depth;
-}`),
-      12: q(6, `// 定义二叉树的结点结构
-struct tree_node {
-    int val;
-    tree_node* left;
-    tree_node* right;
-    tree_node(int x) : val(x), left(nullptr), right(nullptr) {}
-};
-
-// 插入结点到二叉搜索树中
-tree_node* insert(tree_node* root, int val) {
-    if (root == nullptr) {
-        return new tree_node(val);
-    }
-    ______________________________ // 在此处填入代码
-    return root;
-}
-
-// 根据给定数组构造二叉搜索树
-tree_node* constructBST(const int arr[], int size) {
-    tree_node* root = nullptr;
-    for (int i = 0; i < size; ++i) {
-        root = insert(root, arr[i]);
-    }
-    return root;
+int main() {
+    MyStr st("ABC");
+    cout << st << endl;
+    return 0;
 }`, {
-        question: '二叉搜索树中的每个结点，其左子树的所有结点值都小于该结点值，右子树的所有结点值都大于该结点值。以下代码对给定的整数数组（假设数组中没有数值相等的元素）构造二叉搜索树，横线处应填写（ ）。',
-        options: [
-          'if (val < root->val) root->left = insert(root->left, val); else root->right = insert(root->right, val);',
-          'if (val > root->val) root->left = insert(root->left, val); else root->right = insert(root->right, val);',
-          'if (val < root->val) root->left = insert(root, val); else root->right = insert(root, val);',
-          'if (val > root->val) root->left = insert(root, val); else root->right = insert(root, val);',
-        ],
-        answer: 0,
-        explanation: `**答案：A**
-
-**解析：**
-二叉搜索树插入时，待插入值比当前结点小就递归进入左子树，否则进入右子树；递归返回的新子树根结点必须重新接回当前结点。
-
-- A：左右方向和递归参数都正确。
-- B：把较大的值插入左子树，破坏二叉搜索树性质。
-- C、D：递归时仍传入当前根结点，无法向子树推进，会造成无限递归。
-
-**考点：** 二叉搜索树的递归插入。`,
-      }),
-      13: q(7, `#include <iostream>
-using namespace std;
-
-// 遍历二叉搜索树，输出结点值
-void traversal(tree_node* root) {
-    if (root == nullptr) return;
-    traversal(root->left);
-    cout << root->val << " ";
-    traversal(root->right);
-}`, {
-        question: '对上题中的二叉搜索树，当输入数组为 [5, 3, 7, 2, 4, 6, 8] 时，构建二叉搜索树并采用如下遍历方式，得到的输出是（ ）。',
-        options: [
-          '5 3 7 2 4 6 8',
-          '2 3 4 5 6 7 8',
-          '2 4 3 6 8 7 5',
-          '2 4 3 5 6 7 8',
-        ],
-        answer: 1,
-        explanation: `**答案：B**
-
-**解析：**
-代码按照“左子树 → 根结点 → 右子树”的顺序遍历，这是二叉搜索树的中序遍历。二叉搜索树的中序遍历结果按结点值递增，因此输出为 \`2 3 4 5 6 7 8\`。
-
-**考点：** 二叉搜索树的中序遍历。`,
-      }),
-    },
-  },
-  '2024-12-l6': {
-    sourceUrl: 'https://gesp.ccf.org.cn/101/attach/1733580036243488.pdf',
-    questions: {
-      12: q(5, `#include <queue>
-void bfs(TreeNode* root) {
-    if (root == NULL) return;
-    queue<TreeNode*> q;
-    q.push(root);
-    while (!q.empty()) {
-        ________________________ // 在此处填入代码
-        cout << node->val << " ";
-        if (node->left) q.push(node->left);
-        if (node->right) q.push(node->right);
-    }
-}`),
-    },
-  },
-  '2025-03-l6': {
-    sourceUrl: 'https://gesp.ccf.org.cn/101/attach/1669256961851424.pdf',
-    questions: {
-      12: q(5, `vector<string> generateGrayCode(int n) {
-    if (n == 0) return {"0"};
-    if (n == 1) return {"0", "1"};
-    vector<string> prev = generateGrayCode(n - 1);
-    vector<string> result;
-    for (string s : prev) {
-        result.push_back("0" + s);
-    }
-    for (int i = prev.size() - 1; i >= 0; i--) {
-        ________________________ // 在此处填入代码
-    }
-    return result;
-}`),
-      14: q(6, `bool isBalanced(string s) {
-    stack<char> st;
-    for (char c : s) {
-        if (c == '(' || c == '[' || c == '{') {
-            st.push(c);
-        } else {
-            if (st.empty()) return false;
-            char top = st.top();
-            st.pop();
-            if ((c == ')' && top != '(') ||
-                (c == ']' && top != '[') ||
-                (c == '}' && top != '{')) {
-                return false;
-            }
-        }
-    }
-    return ________________; // 在此处填入代码
-}`),
-      15: q(6, `class Shape {
-protected:
-    string name;
-public:
-    Shape(const string& n) : name(n) {}
-    virtual double area() const { return 0.0; }
-};
-
-class Circle : public Shape {
-private:
-    double radius;
-public:
-    Circle(const string& n, double r) : Shape(n), radius(r) {}
-    double area() const override { return 3.14159 * radius * radius; }
-};
-
-class Rectangle : public Shape {
-private:
-    double width;
-    double height;
-public:
-    Rectangle(const string& n, double w, double h)
-        : Shape(n), width(w), height(h) {}
-    double area() const override { return width * height; }
-};
-
-int main() {
-    Circle circle("MyCircle", 5.0);
-    Rectangle rectangle("MyRectangle", 4.0, 6.0);
-    Shape* shapePtr = &circle;
-    cout << "Area: " << shapePtr->area() << endl;
-    shapePtr = &rectangle;
-    cout << "Area: " << shapePtr->area() << endl;
-    return 0;
-}`),
-    },
-  },
-  '2025-06-l6': {
-    sourceUrl: 'https://gesp.ccf.org.cn/101/attach/1687196042002464.pdf',
-    questions: {
-      4: q(2, `stack<int> s;
-queue<int> q;
-for (int i = 1; i <= 3; ++i) {
-    s.push(i);
-    q.push(i);
-}
-cout << s.top() << " " << q.front() << endl;`),
-      11: q(4, `struct TreeNode {
-    int val;
-    TreeNode* left;
-    TreeNode* right;
-    TreeNode(int x): val(x), left(nullptr), right(nullptr) {}
-};
-
-void dfs(TreeNode* root, vector<int>& result) {
-    if (root == nullptr) return;
-    __________________________
-}`),
-      15: q(6, `int knapsack1D(int W, vector<int>& wt, vector<int>& val, int n) {
-    vector<int> dp(W + 1, 0);
-    for (int i = 0; i < n; ++i) {
-        for (int w = W; w >= wt[i]; --w) {
-            dp[w] = max(dp[w], dp[w - wt[i]] + val[i]);
-        }
-    }
-    return dp[W];
-}`),
-    },
-  },
-  '2025-09-l6': {
-    sourceUrl: 'https://gesp.ccf.org.cn/101/attach/1703973079744544.pdf',
-    questions: {
-      3: q(2, `class Vehicle {
-private:
-    string brand;
-public:
-    Vehicle(string b) : brand(b) {}
-    void setBrand(const string& b) { brand = b; }
-    string getBrand() const { return brand; }
-    virtual void move() const {
-        cout << brand << " is moving..." << endl;
-    }
-};
-
-class Car : public Vehicle {
-private:
-    int seatCount;
-public:
-    Car(string b, int seats) : Vehicle(b), seatCount(seats) {}
-    void showInfo() const {
-        cout << "This car is a " << getBrand()
-             << " with " << seatCount << " seats." << endl;
-    }
-    void move() const override {
-        cout << getBrand() << " car is driving on the road!" << endl;
-    }
-};
-
-class Bike : public Vehicle {
-public:
-    Bike(string b) : Vehicle(b) {}
-    void move() const override {
-        cout << getBrand() << " bike is cycling on the path!" << endl;
-    }
-};
-
-int main() {
-    Vehicle* v1 = new Car("Toyota", 5);
-    Vehicle* v2 = new Bike("Giant");
-    v1->move();
-    v2->move();
-    delete v1;
-    delete v2;
-    return 0;
-}`),
-      10: q(4, `vector<string> grayCode(int n) {
-    if (n == 0) return {"0"};
-    if (n == 1) return {"0", "1"};
-    vector<string> prev = grayCode(n - 1);
-    vector<string> result;
-    for (string s : prev) {
-        result.push_back("0" + s);
-    }
-    for (_______________) { // 在此处填写代码
-        result.push_back("1" + prev[i]);
-    }
-    return result;
-}`),
-      11: q(4, `struct TreeNode {
-    int val;
-    TreeNode* left;
-    TreeNode* right;
-    TreeNode(int x): val(x), left(nullptr), right(nullptr) {}
-};
-
-void dfs(TreeNode* root) {
-    if (!root) return;
-    ______<TreeNode*> temp; // 在此处填写代码
-    temp.push(root);
-    while (!temp.empty()) {
-        TreeNode* node = temp.top();
-        temp.pop();
-        cout << node->val << " ";
-        if (node->right) temp.push(node->right);
-        if (node->left) temp.push(node->left);
-    }
-}`),
-      22: q(6, `//     1
-//    / \\
-//   2   3
-//  / \\   \\
-// 4   5   6
-struct TreeNode {
-    int val;
-    TreeNode* left;
-    TreeNode* right;
-    TreeNode(int x) : val(x), left(nullptr), right(nullptr) {}
-};
-
-void inorderIterative(TreeNode* root) {
-    stack<TreeNode*> st;
-    TreeNode* curr = root;
-    while (curr || !st.empty()) {
-        while (curr) {
-            st.push(curr);
-            curr = curr->left;
-        }
-        curr = st.top();
-        st.pop();
-        cout << curr->val << " ";
-        curr = curr->right;
-    }
-}`),
-    },
-  },
-  '2025-12-l6': {
-    sourceUrl: 'https://gesp.ccf.org.cn/101/attach/1727912589918240.pdf',
-    questions: {
-      2: q(1, `class Instrument {
-public:
-    virtual void play() { cout << "乐器在演奏声音" << endl; }
-    virtual ~Instrument() {}
-};
-class Piano : public Instrument {
-public:
-    void play() override { cout << "钢琴：叮咚叮咚" << endl; }
-};
-class Guitar : public Instrument {
-public:
-    void play() override { cout << "吉他：咚咚当当" << endl; }
-};
-int main() {
-    Instrument* instruments[2];
-    instruments[0] = new Piano();
-    instruments[1] = new Guitar();
-    for (int i = 0; i < 2; ++i) instruments[i]->play();
-    for (int i = 0; i < 2; ++i) delete instruments[i];
-    return 0;
-}`),
-      3: q(2, `class Instrument {
-public:
-    void play() { cout << "乐器在演奏声音" << endl; }
-    virtual ~Instrument() {}
-};
-class Piano : public Instrument {
-public:
-    void play() override { cout << "钢琴：叮咚叮咚" << endl; }
-};
-class Guitar : public Instrument {
-public:
-    void play() override { cout << "吉他：咚咚当当" << endl; }
-};
-int main() {
-    Instrument* instruments[2];
-    instruments[0] = new Piano();
-    instruments[1] = new Guitar();
-    for (int i = 0; i < 2; ++i) instruments[i]->play();
-    for (int i = 0; i < 2; ++i) delete instruments[i];
-    return 0;
-}`),
-      8: q(4, `struct Symbol {
-    char ch;
-    long long freq;
-    string code;
-};
-struct Node {
-    long long w;
-    int l, r;
-    int sym;
-    Node(long long _w=0, int _l=-1, int _r=-1, int _sym=-1)
-        : w(_w), l(_l), r(_r), sym(_sym) {}
-};
-
-static int PopMinNode(const vector<Node>& nodes,
-                      const vector<int>& leafIdx, int n, int& pA,
-                      const vector<int>& internalIdx, int& pB) {
-    if (pA < n && (pB >= (int)internalIdx.size() ||
-        nodes[leafIdx[pA]].w <= nodes[internalIdx[pB]].w)) {
-        return leafIdx[pA++];
-    }
-    return internalIdx[pB++];
-}
-
-static void DFSBuildCodes(int u, const vector<Node>& nodes,
-                          Symbol sym[], string& path) {
-    if (u == -1) return;
-    if (nodes[u].sym != -1) {
-        sym[nodes[u].sym].code = path;
-        return;
-    }
-    path.push_back('0');
-    DFSBuildCodes(nodes[u].l, nodes, sym, path);
-    path.pop_back();
-    path.push_back('1');
-    DFSBuildCodes(nodes[u].r, nodes, sym, path);
-    path.pop_back();
-}
-
-int BuildHuffmanCodes(Symbol sym[], int n) {
-    for (int i = 0; i < n; i++) sym[i].code.clear();
-    if (n <= 0) return -1;
-    if (n == 1) {
-        sym[0].code = "0";
-        return 0;
-    }
-    vector<Node> nodes;
-    nodes.reserve(2 * n);
-    vector<int> leafIdx(n);
-    for (int i = 0; i < n; i++) {
-        leafIdx[i] = (int)nodes.size();
-        nodes.push_back(Node(sym[i].freq, -1, -1, i));
-    }
-    sort(leafIdx.begin(), leafIdx.end(), [&](int a, int b) {
-        if (nodes[a].w != nodes[b].w) return nodes[a].w < nodes[b].w;
-        return nodes[a].sym < nodes[b].sym;
-    });
-    vector<int> internalIdx;
-    internalIdx.reserve(n);
-    int pA = 0, pB = 0;
-    for (int k = 1; k < n; k++) {
-        int x = PopMinNode(nodes, leafIdx, n, pA, internalIdx, pB);
-        int y = PopMinNode(nodes, leafIdx, n, pA, internalIdx, pB);
-        int z = (int)nodes.size();
-        ________________________ // 在此处填写代码
-    }
-    int root = internalIdx.back();
-    string path;
-    DFSBuildCodes(root, nodes, sym, path);
-    return root;
-}`),
-      14: q(8, `for each item (w, v):
-    for (int j = W; j >= w; --j)
-        dp[j] = max(dp[j], dp[j-w] + v);`),
-    },
-  },
-  '2026-03-l6': {
-    sourceUrl: 'https://gesp.ccf.org.cn/101/attach/1738426015547424.pdf',
-    questions: {
-      2: q(1, `class Shape {
-public:
-    virtual void draw() { cout << "绘制图形" << endl; }
-    virtual ~Shape() {}
-};
-class Circle : public Shape {
-public:
-    void draw() override { cout << "绘制圆形" << endl; }
-};
-class Rectangle : public Shape {
-public:
-    void draw() override { cout << "绘制矩形" << endl; }
-};
-int main() {
-    Shape* s1 = new Circle();
-    Shape* s2 = new Rectangle();
-    s1->draw();
-    s2->draw();
-    delete s1;
-    delete s2;
-    return 0;
-}`),
-      3: q(2, `class Pet {
-public:
-    Pet(string n, int a) : name(n), age(a) {}
-    string getName() { return name; }
-    void birthday() { age++; }
-private:
-    string name;
-    int age;
-};
-int main() {
-    Pet cat("奶茶", 2);
-    cout << cat.getName(); // ①
-    cat.birthday();        // ②
-    cat.name = "大橘";     // ③
-    cout << cat.getName(); // ④
-}`),
-      8: {
-        sourcePage: 4,
-        question: '下列关于树的遍历的说法中，正确的一项是（ ）。',
-        options: [
-          '对任意一棵树进行深度优先遍历，所得序列一定唯一。',
-          '已知一棵二叉树的先序遍历和后序遍历序列，可以唯一确定这棵二叉树。',
-          '已知一棵二叉树的先序遍历和中序遍历序列，可以唯一确定这棵二叉树。',
-          '已知一棵二叉树的先序遍历序列，可以唯一确定这棵二叉树。',
-        ],
-        answer: 2,
-      },
-    },
-  },
-  '2023-09-l6': {
-    sourceUrl: 'https://gesp.ccf.org.cn/101/attach/1718304913752096.pdf',
-    questions: {
-      8: q(3, `#include <iostream>
+      options: [
+        '代码 cout << st << endl; 会报错，因为没有为 MyStr 类重载 << 运算符。',
+        '第 6 行代码的 data 是 MyStr 类的成员变量。',
+        '代码 MyStr st("ABC"); 不会报错，将执行构造函数。',
+        '代码 cout << st.data << endl; 可输出 ABC。',
+      ],
+      answer: 0,
+      explanation: '官方答案为 A。该题按原卷录入；MyStr 没有提供 operator<<，因此直接输出对象 st 不成立。',
+      tags: ['类', '运算符重载'],
+    }),
+    7: q(3, `#include <iostream>
 using namespace std;
 
 class ManyData {
-    int * __data;
+    int *__data;
     int head, tail, capacity;
 public:
     ManyData(int cap) {
@@ -1246,6 +227,7 @@ public:
         return tail - head;
     }
 };
+
 int main() {
     auto myData = ManyData(100);
     myData.push(1);
@@ -1255,364 +237,288 @@ int main() {
     cout << myData.size() << endl;
     cout << myData.pop() << endl;
     return 0;
-}`),
-    },
+}`, {
+      question: '有关下面 C++ 代码的说法，正确的是（ ）。',
+      options: [
+        '这段代码不能正常运行。',
+        'ManyData 类可用于构造队列（Queue）数据结构。',
+        '在上面代码环境，代码 cout << myData.__data[0] << endl; 可以增加到 main 函数末尾（return 0; 之前），且不会导致报错。',
+        '可以为 ManyData 类的 push()、pop() 函数增加异常处理代码，否则在使用 ManyData 类时可能导致运行时错误或逻辑错误（不一定局限于上述代码中的 main 函数）。',
+      ],
+      answer: 3,
+      explanation: 'push 和 pop 都没有检查容量或空栈边界，超量压入或空栈弹出时可能越界，应增加异常处理。',
+      tags: ['栈', '异常处理'],
+    }),
   },
-  '2023-12-l6': {
-    sourceUrl: 'https://gesp.ccf.org.cn/101/attach/1584918408724512.pdf',
-    questions: {
-      2: q(1, `class Rectangle
-{
-private:
-    class Point
-    {
-    public:
-        double x;
-        double y;
-    };
-    Point a, b, c, d;
-    double length;
-    double width;
-public:
-    // ...
-};`),
-      3: q(2, `using namespace std;
-class newClass
-{
-public:
-    static int objCounter;
-};
-int newClass::objCounter = 2;
-int main()
-{
-    newClass classA;
-    newClass classB;
-    cout << newClass::objCounter << endl;
-    cout << classB.objCounter << endl;
-}`),
-      4: q(2, `struct BiNode {
-    char data;
-    BiNode* lchid, *rchid;
-};
-class BiTree {
-private:
-    BiNode* Creat();
-    void Release(BiNode* bt);
-    BiNode* root;
-public:
-    BiTree() {
-        root = Creat();
-    }
-    ~BiTree() {
-        Release(root);
-    }
-};`),
-      6: q(3, `void Order(BiNode* bt) {
-    if (bt == nullptr)
+);
+
+addVerifiedQuestionCorrections(
+  '2024-03-l6',
+  'https://gesp.ccf.org.cn/101/attach/1602047203868704.pdf',
+  {
+    8: q(3, `void bfs(TreeNode* root) {
+    if (root == NULL) {
         return;
-    else {
-        cout << bt->data;
-        Order(bt->lchid);
-        Order(bt->rchid);
     }
-}`),
-      7: q(3, `typedef struct LinkList {
-    int data;
-    LinkList* next;
-    LinkList* prev;
-} LinkList, LinkNode;
-
-bool ListInit(LinkList* &L) {
-    L = new LinkNode;
-    if (!L) return false;
-    L->next = NULL;
-    L->prev = NULL;
-    L->data = -1;
-    return true;
-}`),
-      10: q(4, `int Depth(BiTree T)
-{
-    if (T == NULL) {
-        return 0;
-    } else {
-        int m = Depth(T->lchild);
-        int n = Depth(T->rchild);
-        if (m > n) {
-            return m + 1;
-        } else {
-            return n + 1;
+    queue<TreeNode*> q;
+    q.push(root);
+    while (!q.empty()) {
+        TreeNode* current = q.front();
+        q.pop();
+        cout << current->val << " ";
+        if (current->left) {
+            q.push(current->left);
+        }
+        if (current->right) {
+            q.push(current->right);
         }
     }
-}`),
-    },
+}
+
+// 树结构：
+//         1
+//        / \
+//       2   3
+//      / \   \
+//     8   9   6
+//    / \       \
+//   4   5       7
+//              / \
+//             10 11`, {
+      question: '阅读以下广度优先搜索的代码，使用以上算法遍历下列树，可能的输出是（ ）。',
+      options: [
+        '1 2 8 9 4 5 3 6 7 10 11',
+        '1 2 3 4 5 6 7 8 9 10 11',
+        '1 2 3 8 9 6 4 5 7 10 11',
+        '1 2 3 8 9 4 5 6 7 10 11',
+      ],
+      answer: 2,
+      explanation: '广度优先搜索按层从左到右访问，顺序为 1、2、3、8、9、6、4、5、7、10、11。',
+      tags: ['广度优先搜索', '二叉树'],
+    }),
   },
-  '2024-06-l7': {
-    sourceUrl: 'https://gesp.ccf.org.cn/101/attach/1621071620997152.pdf',
-    questions: {
-      1: q(1, `#include <iostream>
-#include <cmath>
+);
+
+addVerifiedQuestionCorrections(
+  '2024-06-l6',
+  'https://gesp.ccf.org.cn/101/attach/1621071589539872.pdf',
+  {
+    2: q(1, `#include <iostream>
 using namespace std;
-int main() {
-    cout << sin(3.1415926 / 2);
-    return 0;
-}`),
-    },
-  },
-  '2024-09-l7': {
-    sourceUrl: 'https://gesp.ccf.org.cn/101/attach/1633836324618272.pdf',
-    questions: {
-      1: q(1, `#include <iostream>
-using namespace std;
-int main() {
-    char a = 'b';
-    a++;
-    cout << a;
-    return 0;
-}`),
-    },
-  },
-  '2024-12-l7': {
-    sourceUrl: 'https://gesp.ccf.org.cn/101/attach/1650239779897376.pdf',
-    questions: {
-      1: q(1, `#include <iostream>
-using namespace std;
-int main() {
-    char a = 'b';
-    cout << a + 1;
-    return 0;
-      }`),
-    },
-  },
-  '2024-12-l8': {
-    sourceUrl: 'https://gesp.ccf.org.cn/101/attach/1650239836520480.pdf',
-    reviewedAt: '2026-07-10',
-    questions: {
-      7: {
-        sourcePage: 2,
-        question: '二项式 $(x+y)^6$ 的展开式中 $x^3y^3$ 项的系数是（ ）。',
-        explanation: `**答案：C（20）**
 
-**解析：**
-二项式展开的通项为 $C_6^k x^{6-k}y^k$。要得到 $x^3y^3$，应取 $k=3$，系数为 $C_6^3=20$。
-
-**考点：** 二项式定理与组合数。`,
-        tags: ['组合数学'],
-      },
-      12: q(4, `typedef struct Edge {
-    int in, out;       // 从下标 in 顶点到下标 out 顶点的边
-    int len;           // 边长度
-    struct Edge* next;
-} Edge;
-
-// v：顶点个数，graph：出边邻接表，start：起点下标，dis：输出每个顶点的最短距离
-void dijkstra(int v, Edge* graph[], int start, int* dis) {
-    const int MAX_DIS = 0x7fffff;
-    for (int i = 0; i < v; i++) dis[i] = MAX_DIS;
-    dis[start] = 0;
-
-    int* visited = new int[v];
-    for (int i = 0; i < v; i++) visited[i] = 0;
-    visited[start] = 1;
-
-    for (int t = 0; ; t++) {
-        int min = MAX_DIS, minv = -1;
-        for (int i = 0; i < v; i++) {
-            if (visited[i] == 0 && min > dis[i]) {
-                min = dis[i];
-                minv = i;
-            }
-        }
-        if (minv < 0) break;
-        visited[minv] = 1;
-        for (Edge* e = graph[minv]; e != NULL; e = e->next) {
-            ______________________________ // 在此处填入代码
-        }
+class my_class {
+public:
+    static int count;
+    my_class() {
+        count++;
     }
-    delete[] visited;
-}`, {
-        question: '下列 Dijkstra 算法中，横线处应该填入的是（ ）。',
-        options: [
-          'if (dis[e->out] > e->len) dis[e->out] = e->len;',
-          'if (dis[e->out] > min + e->len) dis[e->out] = min + e->len;',
-          'if (dis[e->in] > e->len) dis[e->in] = e->len;',
-          'if (dis[e->in] > min + e->len) dis[e->in] = min + e->len;',
-        ],
-        answer: 1,
-        explanation: `**答案：B**
-
-**解析：**
-当前选中的顶点是 \`minv\`，它到起点的最短距离为 \`min\`。遍历其出边 \`e\` 时，应尝试用 \`min + e->len\` 松弛终点 \`e->out\`：只有新路径更短时才更新。
-
-- A：漏加从起点到当前顶点的距离 \`min\`。
-- B：正确，是标准松弛操作。
-- C、D：更新了边的起点 \`e->in\`，方向错误。
-
-**考点：** Dijkstra 算法的松弛操作。`,
-        tags: ['最短路'],
-      }),
-      13: q(5, `typedef struct Edge {
-    int in, out;
-    int len;
-    struct Edge* next;
-} Edge;
-
-void dijkstra(int v, Edge* graph[], int start, int* dis) {
-    const int MAX_DIS = 0x7fffff;
-    for (int i = 0; i < v; i++) dis[i] = MAX_DIS;
-    dis[start] = 0;
-    int* visited = new int[v]();
-    visited[start] = 1;
-
-    for (int t = 0; ; t++) {
-        int min = MAX_DIS, minv = -1;
-        for (int i = 0; i < v; i++) {
-            if (visited[i] == 0 && min > dis[i]) {
-                min = dis[i];
-                minv = i;
-            }
-        }
-        if (minv < 0) break;
-        visited[minv] = 1;
-        for (Edge* e = graph[minv]; e != NULL; e = e->next) {
-            if (dis[e->out] > min + e->len)
-                dis[e->out] = min + e->len;
-        }
+    ~my_class() {
+        count--;
     }
-    delete[] visited;
-}`, {
-        question: '假设图 graph 中顶点数为 v、边数为 e，上题程序的时间复杂度为（ ）。',
-        options: ['O(e)', 'O(v²)', 'O(v log v + e)', 'O((v + e) log v)'],
-        answer: 1,
-        explanation: `**答案：B（O(v²)）**
-
-**解析：**
-程序没有使用优先队列。每轮都线性扫描全部 v 个顶点寻找未访问的最小距离顶点，共进行至多 v 轮，因此这一部分是 O(v²)；遍历邻接表的总开销为 O(e)。整体为 O(v²+e)，在简单图中记为 O(v²)。
-
-**考点：** 朴素 Dijkstra 的时间复杂度。`,
-        tags: ['复杂度分析'],
-      }),
-      14: q(5, `void quick_sort(int a[], int n) {
-    if (n <= 1) return;
-    int pivot = 0, l = 0, r = n - 1;
-    while (________) { // 在此处填入选项
-        while (r > pivot && a[r] >= a[pivot]) r--;
-        if (r > pivot) {
-            int temp = a[pivot];
-            a[pivot] = a[r];
-            a[r] = temp;
-            pivot = r;
-        }
-        while (l < pivot && a[l] <= a[pivot]) l++;
-        if (l < pivot) {
-            int temp = a[pivot];
-            a[pivot] = a[l];
-            a[l] = temp;
-            pivot = l;
-        }
+    static void print_count() {
+        cout << count << " ";
     }
-    quick_sort(a, pivot);
-    quick_sort(________); // 在此处填入选项
-}`, {
-        question: '下面的快速排序程序中，两处横线处分别应填入的是（ ）。',
-        options: [
-          'l < r; a + pivot + 1, n - pivot - 1',
-          'l < r; a + pivot + 1, n - pivot',
-          'l <= r; a + pivot + 1, n - pivot - 1',
-          'l <= r; a + pivot + 1, n - pivot',
-        ],
-        answer: 0,
-        explanation: `**答案：A**
-
-**解析：**
-划分过程应在左右指针尚未相遇时继续，因此第一处为 \`l < r\`。枢轴最终位于下标 \`pivot\`，左段长度为 \`pivot\`，右段从 \`a + pivot + 1\` 开始，长度为 \`n - pivot - 1\`。
-
-- A：两个边界都正确。
-- B、D：右段长度多算 1，可能越界。
-- C、D：\`l <= r\` 会在指针相遇时多执行一次循环。
-
-**考点：** 快速排序的划分边界与递归区间。`,
-        tags: ['排序算法'],
-      }),
-      15: q(5, `void quick_sort(int a[], int n) {
-    if (n <= 1) return;
-    int pivot = 0, l = 0, r = n - 1;
-    while (l < r) {
-        while (r > pivot && a[r] >= a[pivot]) r--;
-        if (r > pivot) {
-            int temp = a[pivot];
-            a[pivot] = a[r];
-            a[r] = temp;
-            pivot = r;
-        }
-        while (l < pivot && a[l] <= a[pivot]) l++;
-        if (l < pivot) {
-            int temp = a[pivot];
-            a[pivot] = a[l];
-            a[l] = temp;
-            pivot = l;
-        }
-    }
-    quick_sort(a, pivot);
-    quick_sort(a + pivot + 1, n - pivot - 1);
-}`),
-    },
-  },
-  '2025-03-l7': {
-    sourceUrl: 'https://gesp.ccf.org.cn/101/attach/1669256997503008.pdf',
-    questions: {
-      2: q(1, `int main() {
-    int a = 5, b = 2;
-    cout << (a >> b) << endl;
-}`),
-      3: q(1, `int main() {
-    int a = 10;
-    int *p = &a;
-    int *&q = p;
-    *q = 20;
-    cout << a << endl;
-    return 0;
-}`),
-      4: q(2, `int main() {
-    int arr[5] = {1, 2, 3, 4, 5};
-    int *p = arr + 2;
-    cout << *p << endl;
-    return 0;
-}`),
-    },
-  },
-  '2025-06-l7': {
-    sourceUrl: 'https://gesp.ccf.org.cn/101/attach/1687196062973984.pdf',
-    questions: {
-      1: q(1, `#include <iostream>
-using namespace std;
-int main() {
-    char a = 'b' ^ 4;
-    cout << a;
-    return 0;
-}`),
-    },
-  },
-  '2025-09-l7': {
-    sourceUrl: 'https://gesp.ccf.org.cn/101/attach/1703973098618912.pdf',
-    questions: {
-      1: q(1, `#include <iostream>
-using namespace std;
-int main() {
-    char a = 'b' + 1;
-    cout << a;
-    return 0;
-}`),
-    },
-  },
-  '2025-09-l8': {
-    sourceUrl: 'https://gesp.ccf.org.cn/101/attach/1703973115396128.pdf',
-    questions: {
-      17: q(6, `int n = 5;
-int arr[n] = {1, 2, 3};
-std::cout << arr[5];`),
-    },
-  },
 };
+int my_class::count = 0;
+
+int main() {
+    my_class obj1;
+    my_class::print_count();
+    my_class obj2;
+    obj2.print_count();
+    my_class obj3;
+    obj3.print_count();
+    return 0;
+}`, {
+      options: ['1 1 1', '1 2 3', '1 1 2', '1 2 2'],
+      answer: 1,
+      explanation: 'count 是所有对象共享的静态成员；三个对象依次构造后，输出分别为 1、2、3。',
+      tags: ['静态成员', '类'],
+    }),
+  },
+);
+
+addVerifiedQuestionCorrections(
+  '2025-03-l6',
+  'https://gesp.ccf.org.cn/101/attach/1669256961851424.pdf',
+  {
+    11: q(4, `TreeNode* findNode(TreeNode* root, int target) {
+    if (root == nullptr) return nullptr;
+
+    queue<TreeNode*> q;
+    q.push(root);
+    while (!q.empty()) {
+        TreeNode* current = q.front();
+        q.pop();
+
+        if (current->val == target) {
+            return current;
+        }
+
+        ______________________________________
+    }
+    return nullptr;
+}`, {
+      answer: 0,
+      explanation: '广度优先搜索应把当前节点存在的左右孩子依次加入队列。',
+      tags: ['广度优先搜索', '二叉树'],
+    }),
+  },
+);
+
+addVerifiedQuestionCorrections(
+  '2025-12-l6',
+  'https://gesp.ccf.org.cn/101/attach/1727912589918240.pdf',
+  {
+    11: q(7, `struct TreeNode {
+    int val;
+    TreeNode* left;
+    TreeNode* right;
+    TreeNode(int x): val(x), left(nullptr), right(nullptr) {}
+};
+
+void dfs(TreeNode* root) {
+    if (!root) return;
+    stack<TreeNode*> st;
+    st.push(root);
+    while (!st.empty()) {
+        TreeNode* node = st.top(); st.pop();
+        cout << node->val << " ";
+        if (node->right) st.push(node->right);
+        _________________________
+    }
+}`, {
+      answer: 0,
+      explanation: '栈后进先出；先压右孩子、再压左孩子，才能按根、左、右的顺序遍历。',
+      tags: ['深度优先搜索', '二叉树'],
+    }),
+    12: q(8, `struct TreeNode {
+    int val;
+    TreeNode* left;
+    TreeNode* right;
+    TreeNode(int x): val(x), left(nullptr), right(nullptr) {}
+};
+
+TreeNode* bfsFind(TreeNode* root, int x) {
+    if (!root) return nullptr;
+
+    queue<TreeNode*> q;
+    q.push(root);
+
+    while (!q.empty()) {
+        TreeNode* cur = q.front(); q.pop();
+        if (cur->val == x) return cur;
+        __________________
+    }
+    return nullptr;
+}`, {
+      question: '给定一棵普通二叉树（节点值没有大小规律），下面代码判断是否存在值为 x 的结点，则横线处应填入（ ）。',
+      options: [
+        'q.push(cur);',
+        'if (cur->right) q.push(cur->right);',
+        'if (cur->left) q.push(cur->left);\nif (cur->right) q.push(cur->right);',
+        'q.push(cur->left);\nq.push(cur->right);',
+      ],
+      answer: 2,
+      explanation: '普通二叉树没有大小规律，广度优先搜索需要把存在的左右孩子都加入队列。',
+      tags: ['广度优先搜索', '二叉树'],
+    }),
+  },
+);
+
+addVerifiedQuestionCorrections(
+  '2026-03-l6',
+  'https://gesp.ccf.org.cn/101/attach/1738426015547424.pdf',
+  {
+    11: {
+      sourcePage: 4,
+      question: '关于格雷编码（Gray Code），下列说法正确的是（ ）。',
+      options: [
+        '格雷编码中，编码位数越多，相邻编码之间变化的位数也越多',
+        '格雷编码中，相邻两个编码的二进制位恰好有一位不同',
+        '格雷编码就是把普通二进制编码按位取反后得到的结果',
+        '格雷编码不能用于数字电路和状态转换的设计中',
+      ],
+      answer: 1,
+      explanation: '格雷编码的核心性质是相邻两个编码恰好只有一位不同，可减少状态切换时的瞬时错误。',
+      tags: ['格雷编码'],
+    },
+  },
+);
+
+addVerifiedQuestionCorrections(
+  '2024-09-l8',
+  'https://gesp.ccf.org.cn/101/attach/1633836360269856.pdf',
+  {
+    9: q(3, `#include <iostream>
+using namespace std;
+#define N 35
+int a[N][N];
+
+int main() {
+    int n;
+    cin >> n;
+    for (int i = 1; i <= n; i++)
+        for (int j = 1; j <= i; j++) {
+            if (j == 1 || j == i)
+                a[i][j] = 1;
+            else
+                __________________; // 在此处填入选项
+        }
+    for (int i = 1; i <= n; i++) {
+        for (int j = 1; j <= i; j++)
+            cout << a[i][j];
+        cout << endl;
+    }
+    return 0;
+}`, {
+      options: [
+        'a[i][j] = a[i - 1][j - 1] + a[i - 1][j];',
+        'a[i][j] = a[i][j - 1] + a[i - 1][j];',
+        'a[i][j] = a[i - 1][j] + a[i - 1][j];',
+        'a[i][j] = a[i - 1][j - 1] + a[i][j];',
+      ],
+      answer: 0,
+      explanation: '杨辉三角的内部元素等于上一行左上方与正上方两个元素之和。',
+      tags: ['动态规划', '杨辉三角'],
+    }),
+  },
+);
+
+addVerifiedQuestionCorrections(
+  '2025-03-l8',
+  'https://gesp.ccf.org.cn/101/attach/1669257026863136.pdf',
+  {
+    14: q(6, `#include <iostream>
+using namespace std;
+#define N 35
+int a[N];
+
+int main() {
+    int n;
+    cin >> n;
+    for (int i = 0; i < n; i++) {
+        a[i] = 1;
+        for (int j = i - 1; j > 0; j--)
+            __________; // 在此处填入选项
+        for (int j = 0; j <= i; j++)
+            cout << a[j] << " ";
+        cout << endl;
+    }
+    return 0;
+}`, {
+      options: [
+        'a[j] += a[j + 1]',
+        'a[j] += a[j - 1]',
+        'a[j - 1] += a[j]',
+        'a[j + 1] += a[j]',
+      ],
+      answer: 1,
+      explanation: '一维数组原地生成杨辉三角时必须从右向左更新，使 a[j] 仍能使用上一行的 a[j - 1]。',
+      tags: ['动态规划', '杨辉三角'],
+    }),
+  },
+);
 
 export function applyVerifiedQuestionCorrections(paper) {
   const correction = paper && verifiedQuestionCorrections[paper.id];

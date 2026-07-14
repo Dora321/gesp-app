@@ -1,21 +1,5 @@
 {
   "description": "Known questions that mention code but still require manual comparison with the official paper. New issues fail validation.",
-  "updatedAt": "2026-07-10",
-  "issues": [
-    "2023-09-l6:Q5",
-    "2023-09-l6:Q7",
-    "2023-12-l3:Q3",
-    "2023-12-l5:Q5",
-    "2024-03-l5:Q4",
-    "2024-03-l6:Q8",
-    "2024-06-l6:Q2",
-    "2024-09-l8:Q9",
-    "2025-03-l6:Q11",
-    "2025-03-l8:Q14",
-    "2025-06-l5:Q6",
-    "2025-12-l5:Q7",
-    "2025-12-l6:Q11",
-    "2025-12-l6:Q12",
-    "2026-03-l6:Q11"
-  ]
+  "updatedAt": "2026-07-14",
+  "issues": []
 }

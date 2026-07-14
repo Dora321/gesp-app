@@ -1,6 +1,6 @@
 import React, { useMemo, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { BookOpen, Star, Trophy, Clock, ChevronRight, Search, Award, Tag, BadgeCheck, CircleDashed, FileCheck2 } from 'lucide-react';
+import { BookOpen, Trophy, Clock, ChevronRight, Search, Award, Tag, BadgeCheck, CircleDashed, FileCheck2 } from 'lucide-react';
 import { paperIds, paperMeta } from '../data/gesp';
 import { paperStats } from '../data/gesp/_stats';
 
@@ -51,7 +51,6 @@ const QuestionBankHome = () => {
                     time: '90分钟',
                     year: meta.year,
                     month: meta.month,
-                    difficulty: Math.max(1, Math.min(5, Math.floor(meta.level / 2) + (meta.month > 6 ? 1 : 0))),
                     isPlaceholder,
                     needsReview,
                     reviewStatus,
@@ -83,9 +82,9 @@ const QuestionBankHome = () => {
             acc[level.id] = {
                 paperCount: levelPapers.length,
                 questionCount: levelPapers.reduce((sum, paper) => sum + paper.questions, 0),
-                reviewCount: levelPapers.filter(paper => paper.needsReview).length,
                 verifiedCount: levelPapers.filter(paper => paper.reviewStatus === 'verified').length,
                 partialCount: levelPapers.filter(paper => paper.reviewStatus === 'partial').length,
+                unverifiedCount: levelPapers.filter(paper => paper.reviewStatus === 'unverified').length,
                 latestLabel: latestPaper ? `${latestPaper.year}.${String(latestPaper.month).padStart(2, '0')}` : '暂无',
             };
             return acc;
@@ -93,7 +92,7 @@ const QuestionBankHome = () => {
     }, [papers]);
 
     const selectedLevelInfo = levels.find(l => l.id === selectedLevel);
-    const selectedStats = levelStats[selectedLevel] || { paperCount: 0, questionCount: 0, reviewCount: 0, verifiedCount: 0, partialCount: 0, latestLabel: '暂无' };
+    const selectedStats = levelStats[selectedLevel] || { paperCount: 0, questionCount: 0, verifiedCount: 0, partialCount: 0, unverifiedCount: 0, latestLabel: '暂无' };
 
     return (
         <div className="min-h-screen bg-slate-50 text-slate-800 font-sans pb-20">
@@ -107,27 +106,26 @@ const QuestionBankHome = () => {
                                 GESP 真题题库
                             </h1>
                             <p className="text-indigo-100 max-w-2xl text-lg">
-                                收录 {paperStats.firstYear}-{paperStats.latestYear} 年 GESP C++ 真题与练习卷，支持整卷练习与解析复盘，待精修卷已明确标注。
+                                收录 {paperStats.firstYear}-{paperStats.latestYear} 年、{paperStats.levelCount} 个等级共 {paperStats.questionCount} 题。每套试卷均标明核验状态与范围。
                             </p>
                         </div>
                         {/* Stats */}
-                        <div className="grid w-full grid-cols-2 gap-3 sm:flex sm:w-auto sm:gap-4">
-                            <div className="min-w-0 rounded-lg bg-white/10 p-3 text-center backdrop-blur-sm sm:min-w-[100px]">
-                                <div className="text-2xl font-bold">{paperStats.levelCount}</div>
-                                <div className="text-xs text-indigo-200">覆盖等级</div>
-                            </div>
+                        <div className="grid w-full grid-cols-2 gap-3 sm:grid-cols-4 md:w-auto">
                             <div className="min-w-0 rounded-lg bg-white/10 p-3 text-center backdrop-blur-sm sm:min-w-[100px]">
                                 <div className="text-2xl font-bold">{paperStats.paperCount}</div>
                                 <div className="text-xs text-indigo-200">收录试卷</div>
                             </div>
                             <div className="min-w-0 rounded-lg bg-white/10 p-3 text-center backdrop-blur-sm sm:min-w-[100px]">
-                                <div className="text-2xl font-bold">{paperStats.questionCount}</div>
-                                <div className="text-xs text-indigo-200">题目总数</div>
+                                <div className="text-2xl font-bold">{paperStats.verifiedPaperCount}</div>
+                                <div className="text-xs text-indigo-200">完整核验</div>
                             </div>
                             <div className="min-w-0 rounded-lg bg-white/10 p-3 text-center backdrop-blur-sm sm:min-w-[100px]">
-                                <div className="text-2xl font-bold">{paperStats.verifiedPaperCount}</div>
-                                <div className="text-xs text-indigo-200">已核验卷</div>
-                                <div className="mt-1 text-[11px] text-indigo-200">{paperStats.reviewPaperCount} 卷待精修</div>
+                                <div className="text-2xl font-bold">{paperStats.partialPaperCount}</div>
+                                <div className="text-xs text-indigo-200">部分核验</div>
+                            </div>
+                            <div className="min-w-0 rounded-lg bg-white/10 p-3 text-center backdrop-blur-sm sm:min-w-[100px]">
+                                <div className="text-2xl font-bold">{paperStats.unverifiedPaperCount}</div>
+                                <div className="text-xs text-indigo-200">尚未核验</div>
                             </div>
                         </div>
                     </div>
@@ -138,16 +136,17 @@ const QuestionBankHome = () => {
                 <div className="flex flex-col md:flex-row gap-8">
 
                     {/* Level Sidebar */}
-                    <div className="w-full md:w-64 flex-shrink-0 bg-white rounded-xl shadow-sm border border-slate-200 overflow-hidden h-fit">
-                        <div className="p-4 bg-slate-50 border-b border-slate-100 font-bold text-slate-700 flex items-center gap-2">
+                    <div className="h-fit w-full flex-shrink-0 overflow-hidden rounded-xl border border-slate-200 bg-white shadow-sm md:w-64">
+                        <div className="flex items-center gap-2 border-b border-slate-100 bg-slate-50 p-3 font-bold text-slate-700 md:p-4">
                             <Award size={18} /> 选择等级
                         </div>
-                        <div className="p-2 space-y-1">
+                        <div className="flex gap-2 overflow-x-auto p-2 md:block md:space-y-1">
                             {levels.map(level => (
                                 <button
                                     key={level.id}
                                     onClick={() => setSelectedLevel(level.id)}
-                                    className={`w-full text-left px-4 py-3 rounded-lg flex items-center justify-between transition-all ${selectedLevel === level.id
+                                    aria-pressed={selectedLevel === level.id}
+                                    className={`flex min-w-[160px] items-center justify-between rounded-lg px-3 py-3 text-left transition-all md:w-full md:min-w-0 md:px-4 ${selectedLevel === level.id
                                         ? 'bg-blue-50 text-blue-600 font-bold shadow-sm'
                                         : 'text-slate-600 hover:bg-slate-50 hover:text-slate-900'
                                         }`}
@@ -158,17 +157,17 @@ const QuestionBankHome = () => {
                                         </span>
                                         <span>
                                             <span className="block">{level.name}</span>
-                                            <span className="block text-xs font-medium text-slate-400">
+                                            <span className="block text-xs font-medium text-slate-600">
                                                 {levelStats[level.id]?.paperCount || 0} 卷 · {levelStats[level.id]?.questionCount || 0} 题
                                             </span>
-                                            {(levelStats[level.id]?.reviewCount || 0) > 0 && (
-                                                <span className="block text-xs font-semibold text-amber-600">
-                                                    {levelStats[level.id].reviewCount} 卷待精修
+                                            {((levelStats[level.id]?.partialCount || 0) + (levelStats[level.id]?.unverifiedCount || 0)) > 0 && (
+                                                <span className="block text-xs font-semibold text-amber-800">
+                                                    {(levelStats[level.id]?.partialCount || 0) + (levelStats[level.id]?.unverifiedCount || 0)} 卷待完成核验
                                                 </span>
                                             )}
                                         </span>
                                     </span>
-                                    <ChevronRight size={16} className={`transition-transform ${selectedLevel === level.id ? 'opacity-100' : 'opacity-0'}`} />
+                                    <ChevronRight size={16} className={`hidden transition-transform md:block ${selectedLevel === level.id ? 'opacity-100' : 'opacity-0'}`} />
                                 </button>
                             ))}
                         </div>
@@ -188,13 +187,14 @@ const QuestionBankHome = () => {
                                     {selectedLevelInfo?.desc} · {selectedStats.paperCount} 卷 · {selectedStats.questionCount} 题 · 最新 {selectedStats.latestLabel}
                                     {` · ${selectedStats.verifiedCount} 卷已核验`}
                                     {selectedStats.partialCount > 0 && ` · ${selectedStats.partialCount} 卷部分核验`}
+                                    {selectedStats.unverifiedCount > 0 && ` · ${selectedStats.unverifiedCount} 卷未核验`}
                                 </p>
                             </div>
 
                             <div className="flex w-full flex-col gap-3 md:w-auto md:flex-row md:items-center">
                                 <button
                                     onClick={() => navigate(`/question-bank/topics/${selectedLevel}`)}
-                                    className="inline-flex items-center justify-center gap-2 rounded-lg bg-emerald-600 px-4 py-2 text-sm font-bold text-white shadow-sm transition hover:bg-emerald-700"
+                                    className="inline-flex items-center justify-center gap-2 rounded-lg bg-emerald-700 px-4 py-2 text-sm font-bold text-white shadow-sm transition hover:bg-emerald-800"
                                 >
                                     <Tag size={15} /> 按考点练习
                                 </button>
@@ -245,15 +245,6 @@ const QuestionBankHome = () => {
                                                     历史占位 · 非正式真题
                                                 </div>
                                             )}
-                                        </div>
-                                        <div className="flex gap-0.5 shrink-0">
-                                            {Array.from({ length: 3 }).map((_, i) => (
-                                                <Star
-                                                    key={i}
-                                                    size={14}
-                                                    className={i < paper.difficulty ? "fill-yellow-400 text-yellow-400" : "text-slate-200"}
-                                                />
-                                            ))}
                                         </div>
                                     </div>
 

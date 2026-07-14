@@ -1,347 +1,362 @@
-import React, { useState } from 'react';
-import { Box, Lock, X } from 'lucide-react';
+import React, { useEffect, useMemo, useState } from 'react';
+import { Archive, Bookmark, Check, Dices, Search, X } from 'lucide-react';
 import { allExhibits } from '../data/museumExhibits';
 import Navigation from '../components/Navigation';
 import Footer from '../components/Footer';
+import ClassroomPoints from '../components/ClassroomPoints';
+import AIChat from '../components/AIChat';
+import { readLearningData, updateLearningData } from '../utils/learningData';
+
+const ERA_DEFINITIONS = [
+    { id: 'origins', label: '早期思想', range: '公元前 150 年 - 1949 年', min: Number.NEGATIVE_INFINITY, max: 1949 },
+    { id: 'foundations', label: '计算机基础', range: '1950 - 1989 年', min: 1950, max: 1989 },
+    { id: 'internet', label: '互联网兴起', range: '1990 - 2009 年', min: 1990, max: 2009 },
+    { id: 'intelligence', label: '智能时代', range: '2010 年至今', min: 2010, max: Number.POSITIVE_INFINITY },
+    { id: 'unknown', label: '年份未定', range: '跨时代概念与文化', min: null, max: null },
+];
+
+const parseExhibitYear = (value) => {
+    const year = String(value || '').trim();
+    if (/^-\d+$/.test(year)) return Number(year);
+    if (/^\d{4}(?:s)?$/.test(year)) return Number.parseInt(year, 10);
+    return null;
+};
+
+const getEraId = (item) => {
+    const year = parseExhibitYear(item.year);
+    if (year === null) return 'unknown';
+    return ERA_DEFINITIONS.find((era) => era.min !== null && year >= era.min && year <= era.max)?.id || 'unknown';
+};
+
+const readCollection = () => {
+    if (typeof window === 'undefined') return [];
+    const saved = readLearningData().museum.collected;
+    const validIds = new Set(allExhibits.map((item) => item.id));
+    return Array.isArray(saved) ? [...new Set(saved.filter((id) => validIds.has(id)))] : [];
+};
+
+const getRarityBadge = (rarity) => {
+    switch (rarity) {
+        case '夯': return 'border-amber-200 bg-amber-50 text-amber-700';
+        case '顶级': return 'border-fuchsia-200 bg-fuchsia-50 text-fuchsia-700';
+        case '人上人': return 'border-blue-200 bg-blue-50 text-blue-700';
+        case 'NPC': return 'border-emerald-200 bg-emerald-50 text-emerald-700';
+        default: return 'border-slate-200 bg-slate-100 text-slate-600';
+    }
+};
 
 export default function ComputingMuseum() {
     const [selectedExhibit, setSelectedExhibit] = useState(null);
-    const [collectedItems, setCollectedItems] = useState(() => {
-        const saved = localStorage.getItem('museum_collection');
-        return saved ? JSON.parse(saved) : [];
-    });
-    const [isUnlocking, setIsUnlocking] = useState(false);
-    const [newUnlock, setNewUnlock] = useState(null);
+    const [selectedEra, setSelectedEra] = useState('all');
+    const [query, setQuery] = useState('');
+    const [collectionMode, setCollectionMode] = useState(false);
+    const [collectedItems, setCollectedItems] = useState(readCollection);
 
-    // Helper to get rarity visuals (Updated for Light Theme)
-    const getRarityBadge = (rarity) => {
-        switch (rarity) {
-            case '夯': return 'bg-yellow-100 text-yellow-700 border-yellow-200';
-            case '顶级': return 'bg-purple-100 text-purple-700 border-purple-200';
-            case '人上人': return 'bg-blue-100 text-blue-700 border-blue-200';
-            case 'NPC': return 'bg-emerald-100 text-emerald-700 border-emerald-200';
-            case '拉完了': return 'bg-slate-100 text-slate-600 border-slate-200';
-            default: return 'bg-slate-100 text-slate-600 border-slate-200';
-        }
+    const collectionSet = useMemo(() => new Set(collectedItems), [collectedItems]);
+    const normalizedQuery = query.trim().toLocaleLowerCase('zh-CN');
+
+    const groups = useMemo(() => {
+        const matches = allExhibits
+            .filter((item) => selectedEra === 'all' || getEraId(item) === selectedEra)
+            .filter((item) => {
+                if (!normalizedQuery) return true;
+                return [item.title, item.description, item.year, item.rarity]
+                    .some((value) => String(value || '').toLocaleLowerCase('zh-CN').includes(normalizedQuery));
+            })
+            .sort((a, b) => {
+                const yearA = parseExhibitYear(a.year);
+                const yearB = parseExhibitYear(b.year);
+                if (yearA === null && yearB !== null) return 1;
+                if (yearA !== null && yearB === null) return -1;
+                if (yearA !== yearB) return yearA - yearB;
+                return a.title.localeCompare(b.title, 'zh-CN');
+            });
+
+        return ERA_DEFINITIONS
+            .map((era) => ({ ...era, items: matches.filter((item) => getEraId(item) === era.id) }))
+            .filter((era) => era.items.length > 0);
+    }, [normalizedQuery, selectedEra]);
+
+    const visibleItems = groups.flatMap((group) => group.items);
+
+    useEffect(() => {
+        if (!selectedExhibit) return undefined;
+        const closeOnEscape = (event) => {
+            if (event.key === 'Escape') setSelectedExhibit(null);
+        };
+        const previousOverflow = document.body.style.overflow;
+        document.body.style.overflow = 'hidden';
+        window.addEventListener('keydown', closeOnEscape);
+        return () => {
+            document.body.style.overflow = previousOverflow;
+            window.removeEventListener('keydown', closeOnEscape);
+        };
+    }, [selectedExhibit]);
+
+    const toggleCollection = (id) => {
+        setCollectedItems((current) => {
+            const next = current.includes(id) ? current.filter((itemId) => itemId !== id) : [...current, id];
+            updateLearningData((data) => ({
+                ...data,
+                museum: { ...data.museum, collected: next },
+            }), 'museum-collection');
+            return next;
+        });
     };
 
-    // Unlock Mechanism
-    const handleDecrypt = () => {
-        if (isUnlocking) return;
-
-        // Find items not yet collected
-        const uncollected = allExhibits.filter(item => !collectedItems.includes(item.id));
-
-        if (uncollected.length === 0) {
-            // alert("档案库已完整！你已收集所有藏品。");
-            return;
-        }
-
-        setIsUnlocking(true);
-
-        // Simulation of decryption animation time
-        setTimeout(() => {
-            const randomItem = uncollected[Math.floor(Math.random() * uncollected.length)];
-
-            // Save to state and storage
-            const newCollection = [...collectedItems, randomItem.id];
-            setCollectedItems(newCollection);
-            localStorage.setItem('museum_collection', JSON.stringify(newCollection));
-
-            setNewUnlock(randomItem);
-            setIsUnlocking(false);
-        }, 2000);
+    const openRandomExhibit = () => {
+        const pool = visibleItems.length > 0 ? visibleItems : allExhibits;
+        setSelectedExhibit(pool[Math.floor(Math.random() * pool.length)]);
     };
 
     return (
-        <div className="font-sans text-brand-slate bg-slate-50 min-h-screen flex flex-col">
-            <Navigation />
+        <div className="flex min-h-screen flex-col bg-slate-50 font-sans text-brand-slate">
+            <Navigation
+                mobileActions={(
+                    <div className="flex items-center gap-1" role="toolbar" aria-label="快捷工具">
+                        <ClassroomPoints mobileInline />
+                        <AIChat mobileInline />
+                    </div>
+                )}
+            />
 
-            <main className="flex-grow pt-24 pb-20 px-4">
-                <div className="max-w-7xl mx-auto">
-
-                    {/* Hero / Blind Box Section */}
-                    <section className="relative mb-24 flex flex-col items-center justify-center py-12">
-                        {/* Background Decor */}
-                        <div className="absolute inset-0 overflow-hidden pointer-events-none">
-                            <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] bg-blue-100/50 rounded-full blur-3xl opacity-50"></div>
-                            <div className="absolute top-0 right-0 w-96 h-96 bg-purple-100/50 rounded-full blur-3xl opacity-40"></div>
-                        </div>
-
-                        <div className="relative z-10 flex flex-col items-center">
-                            <h1 className="text-4xl md:text-5xl font-black text-slate-900 mb-4 tracking-tight">
-                                计算博物馆
-                            </h1>
-                            <p className="text-slate-500 text-lg mb-12 max-w-2xl text-center">
-                                收集散落在历史长河中的数字碎片，重构计算机科学的文明图谱。
+            <main className="flex-grow pb-20 pt-20">
+                <section className="border-b border-slate-200 bg-white">
+                    <div className="mx-auto max-w-7xl px-4 py-10 sm:px-6 sm:py-14 lg:px-8">
+                        <div className="max-w-3xl">
+                            <div className="mb-3 inline-flex items-center gap-2 rounded-full bg-blue-50 px-3 py-1.5 text-xs font-bold text-blue-700">
+                                <Archive size={15} />
+                                计算文明时间线
+                            </div>
+                            <h1 className="text-4xl font-black tracking-tight text-slate-950 sm:text-5xl">计算博物馆</h1>
+                            <p className="mt-4 max-w-2xl text-base leading-7 text-slate-600 sm:text-lg sm:leading-8">
+                                从古代算法到人工智能，按年代浏览 100 件计算史展品。阅读不需要解锁；收藏只是可选的探索记录。
                             </p>
+                        </div>
 
-                            {/* The Cube / Box */}
-                            <div className="relative w-64 h-64 flex items-center justify-center mb-10 group">
-                                {/* Outer Glow */}
-                                <div className={`absolute inset-0 rounded-full bg-gradient-to-tr from-blue-400/20 to-purple-400/20 blur-2xl transition-all duration-1000 ${isUnlocking ? 'scale-125 opacity-100' : 'scale-100 opacity-50'}`}></div>
-
-                                {/* The Cube Itself */}
-                                <div className={`
-                                    relative w-40 h-40 bg-white/40 backdrop-blur-xl border border-white/60 rounded-3xl shadow-[0_8px_32px_rgba(37,99,235,0.15)] flex items-center justify-center transition-all duration-700
-                                    ${isUnlocking ? 'animate-spin scale-110 border-blue-400 shadow-[0_0_50px_rgba(37,99,235,0.4)]' : 'animate-float hover:scale-105 hover:shadow-[0_12px_40px_rgba(37,99,235,0.2)]'}
-                                `}>
-                                    {/* Inner Cube / Icon */}
-                                    <div className={`relative z-10 transition-transform duration-500 ${isUnlocking ? 'scale-75' : 'scale-100'}`}>
-                                        <Box size={80} strokeWidth={1} className={`text-brand-blue drop-shadow-lg ${isUnlocking ? 'animate-pulse' : ''}`} />
-                                    </div>
-
-                                    {/* Decorative Elements on Cube */}
-                                    <div className="absolute top-4 left-4 w-2 h-2 rounded-full bg-blue-400/50"></div>
-                                    <div className="absolute bottom-4 right-4 w-2 h-2 rounded-full bg-purple-400/50"></div>
+                        <div className="mt-8 grid gap-4 lg:grid-cols-[minmax(0,1fr)_auto] lg:items-end">
+                            <div>
+                                <label htmlFor="museum-search" className="mb-2 block text-sm font-bold text-slate-700">搜索展品</label>
+                                <div className="relative max-w-xl">
+                                    <Search className="pointer-events-none absolute left-3 top-1/2 -translate-y-1/2 text-slate-400" size={19} />
+                                    <input
+                                        id="museum-search"
+                                        type="search"
+                                        value={query}
+                                        onChange={(event) => setQuery(event.target.value)}
+                                        placeholder="搜索人物、技术、年份或关键词"
+                                        className="min-h-12 w-full rounded-lg border border-slate-300 bg-white py-3 pl-10 pr-4 text-base text-slate-900 outline-none transition focus:border-blue-500 focus:ring-2 focus:ring-blue-100"
+                                    />
                                 </div>
                             </div>
 
-                            {/* Action Button */}
-                            <button
-                                onClick={handleDecrypt}
-                                disabled={isUnlocking || collectedItems.length === allExhibits.length}
-                                className={`
-                                    px-10 py-4 rounded-full font-bold text-lg shadow-lg transition-all duration-300 transform
-                                    ${isUnlocking
-                                        ? 'bg-slate-100 text-slate-400 cursor-wait scale-95'
-                                        : collectedItems.length === allExhibits.length
-                                            ? 'bg-emerald-100 text-emerald-600 cursor-default'
-                                            : 'bg-gradient-to-r from-brand-blue to-blue-600 text-white hover:shadow-blue-500/30 hover:-translate-y-1 hover:scale-105 active:scale-95'
-                                    }
-                                `}
-                            >
-                                {isUnlocking ? '正在解析时空信号...' : collectedItems.length === allExhibits.length ? '档案库已完整' : '解析历史碎片'}
-                            </button>
-
-                            <div className="mt-6 flex items-center gap-2 px-4 py-2 bg-white/50 rounded-full border border-slate-200/50 backdrop-blur-sm">
-                                <span className="text-xs font-bold text-slate-400 uppercase tracking-wider">Collection Progress</span>
-                                <div className="h-4 w-px bg-slate-300"></div>
-                                <span className="text-sm font-bold text-brand-blue">{collectedItems.length}</span>
-                                <span className="text-xs text-slate-400">/</span>
-                                <span className="text-sm font-bold text-slate-600">{allExhibits.length}</span>
+                            <div className="flex flex-wrap gap-2">
+                                <button
+                                    type="button"
+                                    onClick={() => setCollectionMode((current) => !current)}
+                                    role="switch"
+                                    aria-checked={collectionMode}
+                                    className={`inline-flex min-h-11 items-center gap-2 rounded-lg border px-4 py-2 text-sm font-bold transition ${collectionMode
+                                        ? 'border-amber-300 bg-amber-50 text-amber-800'
+                                        : 'border-slate-300 bg-white text-slate-700 hover:border-slate-400'
+                                        }`}
+                                >
+                                    <Bookmark size={18} fill={collectionMode ? 'currentColor' : 'none'} />
+                                    收集模式
+                                    <span className="text-xs font-semibold">{collectedItems.length}/{allExhibits.length}</span>
+                                </button>
+                                <button
+                                    type="button"
+                                    onClick={openRandomExhibit}
+                                    className="inline-flex min-h-11 items-center gap-2 rounded-lg bg-slate-900 px-4 py-2 text-sm font-bold text-white transition hover:bg-slate-700"
+                                >
+                                    <Dices size={18} />
+                                    随机逛一件
+                                </button>
                             </div>
                         </div>
-                    </section>
 
-                    {/* Collection Grid */}
-                    <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
-                        {allExhibits.map((item) => {
-                            const isUnlocked = collectedItems.includes(item.id);
-
-                            return (
-                                <div
-                                    key={item.id}
-                                    onClick={() => isUnlocked && setSelectedExhibit(item)}
-                                    className={`
-                                        group relative p-6 rounded-3xl border transition-all duration-300 overflow-hidden
-                                        ${isUnlocked
-                                            ? 'bg-white border-slate-100 shadow-sm cursor-pointer hover:shadow-xl hover:border-blue-100 hover:-translate-y-1'
-                                            : 'bg-slate-50 border-slate-100 opacity-60 cursor-not-allowed grayscale-[0.8]'
-                                        }
-                                    `}
+                        <div className="mt-6 flex gap-2 overflow-x-auto pb-1" aria-label="按年代筛选">
+                            <button
+                                type="button"
+                                onClick={() => setSelectedEra('all')}
+                                aria-pressed={selectedEra === 'all'}
+                                className={`min-h-11 shrink-0 rounded-lg px-4 text-sm font-bold transition ${selectedEra === 'all' ? 'bg-blue-600 text-white' : 'bg-slate-100 text-slate-600 hover:bg-slate-200'}`}
+                            >
+                                全部年代
+                            </button>
+                            {ERA_DEFINITIONS.map((era) => (
+                                <button
+                                    key={era.id}
+                                    type="button"
+                                    onClick={() => setSelectedEra(era.id)}
+                                    aria-pressed={selectedEra === era.id}
+                                    className={`min-h-11 shrink-0 rounded-lg px-4 text-sm font-bold transition ${selectedEra === era.id ? 'bg-blue-600 text-white' : 'bg-slate-100 text-slate-600 hover:bg-slate-200'}`}
                                 >
-                                    {isUnlocked ? (
-                                        <>
-                                            <div className="flex justify-between items-start mb-6">
-                                                <div className={`p-4 rounded-2xl bg-slate-50 group-hover:bg-blue-50 transition-colors duration-300`}>
-                                                    {React.cloneElement(item.icon, { size: 32, strokeWidth: 1.5 })}
-                                                </div>
-                                                <span className={`text-[10px] font-bold px-2.5 py-1 rounded-full border uppercase tracking-wide ${getRarityBadge(item.rarity)}`}>
-                                                    {item.rarity}
-                                                </span>
-                                            </div>
+                                    {era.label}
+                                </button>
+                            ))}
+                        </div>
+                    </div>
+                </section>
 
-                                            <div className="mb-2">
-                                                <span className="inline-block text-[10px] font-mono font-bold text-slate-400 mb-1 tracking-wider">
-                                                    {item.year === '-' ? 'UNKNOWN' : item.year}
-                                                </span>
-                                                <h4 className="text-xl font-bold text-slate-800 group-hover:text-brand-blue transition-colors">{item.title}</h4>
-                                            </div>
-
-                                            <p className="text-slate-500 text-sm leading-relaxed line-clamp-2">
-                                                {item.description}
-                                            </p>
-
-                                            {/* Corner Decoration */}
-                                            <div className="absolute -bottom-4 -right-4 w-24 h-24 bg-gradient-to-tl from-slate-50 to-transparent rounded-full opacity-0 group-hover:opacity-100 transition-opacity"></div>
-                                        </>
-                                    ) : (
-                                        <div className="h-full flex flex-col items-center justify-center py-8 gap-4 text-slate-300">
-                                            <div className="p-4 rounded-full bg-slate-100/50">
-                                                <Lock className="w-8 h-8" />
-                                            </div>
-                                            <p className="font-mono text-xs font-bold tracking-widest text-slate-400">ENCRYPTED</p>
-                                        </div>
-                                    )}
-                                </div>
-                            );
-                        })}
+                <div className="mx-auto max-w-7xl px-4 py-10 sm:px-6 lg:px-8">
+                    <div className="mb-8 flex items-center justify-between gap-4">
+                        <p className="text-sm font-semibold text-slate-500" aria-live="polite">
+                            当前显示 <span className="font-black text-slate-900">{visibleItems.length}</span> 件展品
+                        </p>
+                        {query && (
+                            <button type="button" onClick={() => setQuery('')} className="min-h-11 text-sm font-bold text-blue-600 hover:text-blue-800">
+                                清除搜索
+                            </button>
+                        )}
                     </div>
 
+                    {groups.length > 0 ? (
+                        <div className="space-y-14">
+                            {groups.map((group) => (
+                                <section key={group.id} aria-labelledby={`museum-era-${group.id}`}>
+                                    <div className="mb-5 flex items-end justify-between gap-4 border-b border-slate-200 pb-4">
+                                        <div>
+                                            <h2 id={`museum-era-${group.id}`} className="text-2xl font-black text-slate-950">{group.label}</h2>
+                                            <p className="mt-1 text-sm font-semibold text-slate-500">{group.range}</p>
+                                        </div>
+                                        <span className="shrink-0 rounded-full bg-white px-3 py-1 text-xs font-bold text-slate-500 ring-1 ring-slate-200">
+                                            {group.items.length} 件
+                                        </span>
+                                    </div>
+
+                                    <div className="grid gap-5 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
+                                        {group.items.map((item) => {
+                                            const isCollected = collectionSet.has(item.id);
+                                            return (
+                                                <article key={item.id} className="flex h-full flex-col overflow-hidden rounded-lg border border-slate-200 bg-white shadow-sm transition hover:border-blue-200 hover:shadow-md">
+                                                    <button
+                                                        type="button"
+                                                        onClick={() => setSelectedExhibit(item)}
+                                                        className="flex min-h-56 flex-1 flex-col p-5 text-left focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-blue-500"
+                                                        aria-label={`查看展品：${item.title}`}
+                                                    >
+                                                        <div className="mb-5 flex items-start justify-between gap-3">
+                                                            <span className="flex h-12 w-12 items-center justify-center rounded-lg bg-slate-100">
+                                                                {React.cloneElement(item.icon, { size: 28, strokeWidth: 1.5 })}
+                                                            </span>
+                                                            <div className="flex items-center gap-2">
+                                                                {isCollected && <Check size={18} className="text-emerald-600" aria-label="已收藏" />}
+                                                                <span className={`rounded-full border px-2.5 py-1 text-[11px] font-bold ${getRarityBadge(item.rarity)}`}>
+                                                                    {item.rarity}
+                                                                </span>
+                                                            </div>
+                                                        </div>
+                                                        <span className="font-mono text-xs font-bold text-blue-600">{item.year === '-' ? '年份未定' : item.year}</span>
+                                                        <h3 className="mt-1 text-xl font-black text-slate-900">{item.title}</h3>
+                                                        <p className="mt-3 line-clamp-2 text-sm leading-6 text-slate-500">{item.description}</p>
+                                                        <span className="mt-auto pt-5 text-sm font-bold text-blue-600">打开档案</span>
+                                                    </button>
+
+                                                    {collectionMode && (
+                                                        <button
+                                                            type="button"
+                                                            onClick={() => toggleCollection(item.id)}
+                                                            aria-pressed={isCollected}
+                                                            className={`mx-5 mb-5 inline-flex min-h-11 items-center justify-center gap-2 rounded-lg border px-3 text-sm font-bold transition ${isCollected
+                                                                ? 'border-emerald-200 bg-emerald-50 text-emerald-700'
+                                                                : 'border-slate-200 bg-slate-50 text-slate-600 hover:border-amber-300 hover:bg-amber-50 hover:text-amber-800'
+                                                                }`}
+                                                        >
+                                                            {isCollected ? <Check size={17} /> : <Bookmark size={17} />}
+                                                            {isCollected ? '已收入收藏' : '加入我的收藏'}
+                                                        </button>
+                                                    )}
+                                                </article>
+                                            );
+                                        })}
+                                    </div>
+                                </section>
+                            ))}
+                        </div>
+                    ) : (
+                        <div className="border-y border-slate-200 py-20 text-center">
+                            <Search className="mx-auto text-slate-300" size={36} />
+                            <h2 className="mt-4 text-xl font-black text-slate-800">没有找到相关展品</h2>
+                            <p className="mt-2 text-sm text-slate-500">换一个关键词，或查看全部年代。</p>
+                            <button
+                                type="button"
+                                onClick={() => { setQuery(''); setSelectedEra('all'); }}
+                                className="mt-5 min-h-11 rounded-lg bg-blue-600 px-5 text-sm font-bold text-white hover:bg-blue-700"
+                            >
+                                查看全部展品
+                            </button>
+                        </div>
+                    )}
                 </div>
             </main>
 
             <Footer />
 
-            {/* NEW UNLOCK MODAL - ENHANCED */}
-            {newUnlock && (
-                <div className="fixed inset-0 z-[100] flex items-center justify-center p-4">
-                    <div className="absolute inset-0 bg-slate-900/60 backdrop-blur-md animate-fade-in" onClick={() => setNewUnlock(null)}></div>
-                    <div className="relative bg-white w-full max-w-2xl max-h-[90vh] overflow-y-auto rounded-[2rem] shadow-2xl animate-slide-up flex flex-col">
-
-                        {/* Confetti / Ray Effect Background */}
-                        <div className="absolute inset-x-0 top-0 h-48 bg-gradient-to-b from-blue-50 to-transparent pointer-events-none"></div>
-
-                        {/* Modal Header Area */}
-                        <div className="relative z-10 px-8 pt-8 pb-4 flex flex-col items-center text-center">
-
-                            {/* Icon with Glow */}
-                            <div className="relative mb-4">
-                                <div className={`absolute inset-0 rounded-full bg-gradient-to-br ${newUnlock.color.split(' ')[0]} blur-2xl opacity-50 animate-pulse`}></div>
-                                <div className="relative z-10 w-20 h-20 bg-white rounded-2xl shadow-lg flex items-center justify-center border border-slate-100">
-                                    {React.cloneElement(newUnlock.icon, { size: 40, strokeWidth: 1.5 })}
-                                </div>
-                            </div>
-
-                            <h2 className="text-3xl font-black text-slate-900 mb-1 tracking-tight">
-                                解锁新碎片!
-                            </h2>
-                            <div className={`mt-2 inline-block px-3 py-1 rounded-full border ${getRarityBadge(newUnlock.rarity)} text-xs font-bold uppercase`}>
-                                RARITY: {newUnlock.rarity}
-                            </div>
-                        </div>
-
-                        {/* Modal Content (Scrollable) */}
-                        <div className="px-8 pb-8 relative z-10">
-
-                            {/* Title & Info */}
-                            <div className="mb-6 text-center">
-                                <h3 className="text-2xl font-bold text-brand-blue mb-2">{newUnlock.title}</h3>
-                                <div className="flex items-center justify-center gap-3">
-                                    <span className="font-mono text-slate-400 text-xs font-bold">ID: {newUnlock.id.toUpperCase()}</span>
-                                    <span className="w-1 h-1 rounded-full bg-slate-300"></span>
-                                    <span className="font-mono text-slate-600 text-xs font-bold">YEAR: {newUnlock.year}</span>
-                                </div>
-                            </div>
-
-                            {/* Details (Terminal Style) */}
-                            <div className="prose prose-slate prose-lg max-w-none mb-6">
-                                <div className="bg-slate-900 rounded-2xl p-6 text-slate-300 shadow-inner">
-                                    <div className="flex items-center gap-2 mb-4 text-slate-500 border-b border-slate-800 pb-2">
-                                        <div className="w-3 h-3 rounded-full bg-red-500"></div>
-                                        <div className="w-3 h-3 rounded-full bg-yellow-500"></div>
-                                        <div className="w-3 h-3 rounded-full bg-green-500"></div>
-                                        <span className="ml-2 font-mono text-xs">DECRYPTED_DATA_STREAM</span>
-                                    </div>
-                                    {newUnlock.details}
-                                </div>
-                            </div>
-
-                            <div className="text-center">
-                                <p className="text-slate-500 text-sm italic">
-                                    "{newUnlock.description}"
-                                </p>
-                            </div>
-                        </div>
-
-                        {/* Fixed Footer Action */}
-                        <div className="p-6 border-t border-slate-100 bg-slate-50 flex justify-center sticky bottom-0 z-20 rounded-b-[2rem]">
-                            <button
-                                onClick={() => setNewUnlock(null)}
-                                className="w-full max-w-sm py-3.5 bg-slate-900 text-white font-bold rounded-xl hover:bg-slate-800 transition-colors shadow-lg hover:shadow-xl active:scale-95 duration-200 flex items-center justify-center gap-2"
-                            >
-                                <span className="text-lg">收入档案馆</span>
-                            </button>
-                        </div>
-                    </div>
-                </div>
-            )}
-
-            {/* DETAIL MODAL */}
             {selectedExhibit && (
-                <div className="fixed inset-0 z-[100] flex items-center justify-center p-4">
-                    <div className="absolute inset-0 bg-slate-900/20 backdrop-blur-sm animate-fade-in" onClick={() => setSelectedExhibit(null)}></div>
-                    <div className="relative bg-white w-full max-w-2xl max-h-[90vh] overflow-y-auto rounded-3xl shadow-2xl animate-slide-up flex flex-col">
-
-                        {/* Modal Header */}
-                        <div className="sticky top-0 z-10 bg-white/80 backdrop-blur-md border-b border-slate-100 p-6 flex items-start justify-between">
-                            <div className="flex items-center gap-5">
-                                <div className={`p-4 rounded-2xl bg-slate-50 border border-slate-100`}>
-                                    {React.cloneElement(selectedExhibit.icon, { size: 32, strokeWidth: 1.5 })}
-                                </div>
-                                <div>
-                                    <h2 className="text-2xl font-bold text-slate-900">{selectedExhibit.title}</h2>
-                                    <div className="flex items-center gap-3 mt-1">
-                                        <span className="font-mono text-slate-400 text-xs font-bold">ID: {selectedExhibit.id.toUpperCase()}</span>
-                                        <span className="w-1 h-1 rounded-full bg-slate-300"></span>
-                                        <span className="font-mono text-slate-600 text-xs font-bold">YEAR: {selectedExhibit.year}</span>
-                                    </div>
+                <div className="fixed inset-0 z-[100] flex items-center justify-center p-4" role="dialog" aria-modal="true" aria-labelledby="museum-dialog-title">
+                    <button
+                        type="button"
+                        className="absolute inset-0 bg-slate-950/60 backdrop-blur-sm"
+                        onClick={() => setSelectedExhibit(null)}
+                        aria-label="关闭档案详情"
+                    />
+                    <div className="relative flex max-h-[90vh] w-full max-w-2xl flex-col overflow-y-auto rounded-lg bg-white shadow-2xl">
+                        <div className="sticky top-0 z-10 flex items-start justify-between gap-4 border-b border-slate-200 bg-white/95 p-5 backdrop-blur sm:p-6">
+                            <div className="flex min-w-0 items-center gap-4">
+                                <span className="flex h-12 w-12 shrink-0 items-center justify-center rounded-lg bg-slate-100">
+                                    {React.cloneElement(selectedExhibit.icon, { size: 28, strokeWidth: 1.5 })}
+                                </span>
+                                <div className="min-w-0">
+                                    <h2 id="museum-dialog-title" className="text-xl font-black text-slate-950 sm:text-2xl">{selectedExhibit.title}</h2>
+                                    <p className="mt-1 font-mono text-xs font-bold text-slate-500">{selectedExhibit.year} · {selectedExhibit.rarity}</p>
                                 </div>
                             </div>
                             <button
+                                type="button"
                                 onClick={() => setSelectedExhibit(null)}
-                                className="p-2 rounded-full bg-slate-100 text-slate-500 hover:bg-slate-200 hover:text-slate-800 transition-colors"
+                                className="flex h-11 w-11 shrink-0 items-center justify-center rounded-lg bg-slate-100 text-slate-600 transition hover:bg-slate-200"
                                 aria-label="关闭档案详情"
                             >
                                 <X size={20} />
                             </button>
                         </div>
 
-                        {/* Modal Content */}
-                        <div className="p-8">
-                            <div className="prose prose-slate prose-lg max-w-none">
-                                <div className="bg-slate-900 rounded-2xl p-6 text-slate-300 shadow-inner">
-                                    <div className="flex items-center gap-2 mb-4 text-slate-500 border-b border-slate-800 pb-2">
-                                        <div className="w-3 h-3 rounded-full bg-red-500"></div>
-                                        <div className="w-3 h-3 rounded-full bg-yellow-500"></div>
-                                        <div className="w-3 h-3 rounded-full bg-green-500"></div>
-                                        <span className="ml-2 font-mono text-xs">ARCHIVE_READER_V1.0</span>
-                                    </div>
-                                    {selectedExhibit.details}
+                        <div className="p-5 sm:p-8">
+                            <p className="mb-6 text-base font-semibold leading-7 text-slate-600">{selectedExhibit.description}</p>
+                            <div className="rounded-lg bg-slate-900 p-5 text-slate-300 shadow-inner sm:p-6">
+                                <div className="mb-4 flex items-center gap-2 border-b border-slate-700 pb-3 font-mono text-xs text-slate-500">
+                                    <span className="h-2.5 w-2.5 rounded-full bg-red-500" />
+                                    <span className="h-2.5 w-2.5 rounded-full bg-yellow-500" />
+                                    <span className="h-2.5 w-2.5 rounded-full bg-emerald-500" />
+                                    <span className="ml-2">ARCHIVE_READER</span>
                                 </div>
-                            </div>
-
-                            <div className="mt-8 text-center">
-                                <p className="text-slate-400 text-sm italic">
-                                    "{selectedExhibit.description}"
-                                </p>
+                                {selectedExhibit.details}
                             </div>
                         </div>
 
-                        {/* Modal Footer */}
-                        <div className="p-6 border-t border-slate-100 bg-slate-50 flex justify-end rounded-b-3xl">
+                        <div className="sticky bottom-0 flex flex-col-reverse gap-2 border-t border-slate-200 bg-slate-50 p-4 sm:flex-row sm:justify-end sm:p-5">
                             <button
+                                type="button"
                                 onClick={() => setSelectedExhibit(null)}
-                                className="px-8 py-2.5 rounded-full bg-brand-blue hover:bg-blue-600 text-white font-bold transition-all shadow-lg shadow-blue-500/30"
+                                className="min-h-11 rounded-lg border border-slate-300 bg-white px-5 text-sm font-bold text-slate-700 hover:bg-slate-100"
                             >
-                                关闭档案
+                                关闭
+                            </button>
+                            <button
+                                type="button"
+                                onClick={() => toggleCollection(selectedExhibit.id)}
+                                aria-pressed={collectionSet.has(selectedExhibit.id)}
+                                className={`inline-flex min-h-11 items-center justify-center gap-2 rounded-lg px-5 text-sm font-bold text-white ${collectionSet.has(selectedExhibit.id) ? 'bg-emerald-600 hover:bg-emerald-700' : 'bg-amber-500 hover:bg-amber-600'}`}
+                            >
+                                {collectionSet.has(selectedExhibit.id) ? <Check size={17} /> : <Bookmark size={17} />}
+                                {collectionSet.has(selectedExhibit.id) ? '已收入收藏' : '加入我的收藏'}
                             </button>
                         </div>
                     </div>
                 </div>
             )}
-
-            <style>{`
-                @keyframes float {
-                    0%, 100% { transform: translateY(0px); }
-                    50% { transform: translateY(-15px); }
-                }
-                .animate-float {
-                    animation: float 5s ease-in-out infinite;
-                }
-                 @keyframes spin {
-                    from { transform: rotate(0deg); }
-                    to { transform: rotate(360deg); }
-                }
-                @keyframes slide-up {
-                     from { transform: translateY(20px); opacity: 0; }
-                     to { transform: translateY(0); opacity: 1; }
-                }
-                .animate-slide-up {
-                    animation: slide-up 0.4s cubic-bezier(0.16, 1, 0.3, 1);
-                }
-            `}</style>
         </div>
     );
 }
