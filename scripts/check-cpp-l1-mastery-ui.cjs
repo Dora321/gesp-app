@@ -286,7 +286,11 @@ async function run() {
   const { chromium } = await import('playwright');
   browser = await launchBrowser(chromium);
 
-  await Promise.all(viewports.map(async (viewport) => {
+  // Run viewports sequentially: two contexts navigating heavy lesson pages in
+  // parallel against one browser/preview server starve each other and make
+  // `waitForProgressStatus` flake out non-deterministically (different route each
+  // run). Sequential completes all 48 cases in ~70s, well under the CI timeout.
+  for (const viewport of viewports) {
     const context = await browser.newContext({
       viewport: { width: viewport.width, height: viewport.height },
       isMobile: viewport.isMobile,
@@ -298,7 +302,7 @@ async function run() {
     }
 
     await context.close();
-  }));
+  }
 
   await verifyRealObjectiveOutcome(browser);
 
