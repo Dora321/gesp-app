@@ -207,12 +207,6 @@ int fun(int a, int b) {
  else
  return fun(b, a % b);
 }
-1
-2
-3
-4
-5
-6
 void sieve_Eratosthenes(int n) {
  vector<bool> is_prime(n + 1, true);
  vector<int> primes;
@@ -231,33 +225,10 @@ void sieve_Eratosthenes(int n) {
  }
  return primes;
 }
-1
-2
-3
-4
-5
-6
-7
-8
-9
-10
-11
-12
-13
-14
-15
-16
-17
-18
-19
-20
-21
 vector<int> sieve_linear(int n) {
  vector<bool> is_prime(n + 1, true);
-1
-2
 
-> ⚠️ 原卷此处配有代码/图片，官方 PDF 未提供文本层，本站暂无法还原。`,
+> ⚠️ 原卷此处配有代码或图片。官方 PDF 中该部分为图片，或其文本层与相邻试题混排、无法可靠切分，本站尚未还原。请对照原卷阅读代码。`,
             options: ["for (int j = 0; j < primes.size() && i * primes[j] <= n; j++)", "for (int j = 1; j < primes.size() && i * j <= n; j++)", "for (int j = 2; j < primes.size() && i * primes[j] <= n; j++)", "以上都不对"],
             answer: 0,
             score: 2,
@@ -356,7 +327,7 @@ vector<int> sieve_linear(int n) {
             question: `现在有n个人要过河，每只船最多载 2 人，船的承重为 100kg 。下列代码中，数组weight中保存有n个人
 的体重（单位为 kg ），已经按从小到大排好序，代码输出过河所需要的船的数目，采用的思想为（ ）。
 
-> ⚠️ 原卷此处配有代码/图片，官方 PDF 未提供文本层，本站暂无法还原。`,
+> ⚠️ 原卷此处配有代码或图片。官方 PDF 中该部分为图片，或其文本层与相邻试题混排、无法可靠切分，本站尚未还原。请对照原卷阅读代码。`,
             options: ["枚举算法", "贪心算法", "迭代算法", "递归算法"],
             answer: 1,
             score: 2,

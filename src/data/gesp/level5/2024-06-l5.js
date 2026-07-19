@@ -277,22 +277,6 @@ vector<int> linear_sieve(int n) {
  }
  return primes;
 }
-1
-2
-3
-4
-5
-6
-7
-8
-9
-10
-11
-12
-13
-14
-15
-16
 void qsort(vector<int>& arr, int left, int right) {
  int i, j, mid;
  int pivot;
@@ -311,28 +295,8 @@ void qsort(vector<int>& arr, int left, int right) {
  if (left < j) qsort(arr, left, j); // 对左子数组进行快速排序
  if (i < right) qsort(arr, i, right); // 对右子数组进行快速排序
 }
-1
-2
-3
-4
-5
-6
-7
-8
-9
-10
-11
-12
-13
-14
-15
-16
-17
-18
-19
-20
 
-> ⚠️ 原卷此处配有代码/图片，官方 PDF 未提供文本层，本站暂无法还原。`,
+> ⚠️ 原卷此处配有代码或图片。官方 PDF 中该部分为图片，或其文本层与相邻试题混排、无法可靠切分，本站尚未还原。请对照原卷阅读代码。`,
             options: ["while (i <= mid)", "while (i < mid)", "while (i < j)", "while (i <= j)"],
             answer: 3,
             score: 2,
@@ -477,11 +441,6 @@ int fun(int n) {
  if (n == 2) return 2;
  return fun(n - 2) - fun(n - 1);
 }
-1
-2
-3
-4
-5
 题号 1 2 3 4 5 6 7 8 9 10
 答案
 则当 时，屏幕上输出序列为（ ）。`,

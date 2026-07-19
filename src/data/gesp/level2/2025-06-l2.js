@@ -513,7 +513,37 @@ for 循环的循环体可以是单条语句（无需花括号），也可以是�
         {
             id: 15,
             type: 'single',
-            question: "下面 C++ 代码实现输出如下图形，相关说法错误的是（ ）。\n\n```text\n请输入层数: 10\n0\n12\n345\n6789\n01234\n567890\n1234567\n89012345\n678901234\n5678901234\n```\n\n```cpp\nint line_number, now_number;\nint i, row;\ncout << \"请输入行数: \";\ncin >> line_number;\nnow_number = 0;\nfor (row = 1; row < line_number + 1; row++) { // L1\n    for (i = 0; i < row; i++) { // L2\n        cout << now_number;\n        now_number += 1;\n        if (now_number == 10) now_number = 0; // L3\n    }\n    cout << endl;\n}\n```",
+            question: `下面 C++ 代码实现输出如下图形，相关说法错误的是（ ）。
+
+\`\`\`text
+请输入层数: 10
+0
+12
+345
+6789
+01234
+567890
+1234567
+89012345
+678901234
+5678901234
+\`\`\`
+
+\`\`\`cpp
+int line_number, now_number;
+int i, row;
+cout << "请输入行数: ";
+cin >> line_number;
+now_number = 0;
+for (row = 1; row < line_number + 1; row++) { // L1
+    for (i = 0; i < row; i++) { // L2
+        cout << now_number;
+        now_number += 1;
+        if (now_number == 10) now_number = 0; // L3
+    }
+    cout << endl;
+}
+\`\`\``,
             options: ["将计数器 now_number = 0 移到外层循环内侧效果不变", "now_number += 1 与 now_number = 1 + now_number 等价", "now_number == 10 与 now_number > 9 在此时逻辑等价", "cout << endl 与 cout << \"\\n\" 在此功能一致"],
             answer: 0,
             score: 2,

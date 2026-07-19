@@ -159,25 +159,8 @@ void removeElements(LinkedNode* head, int val) {
  while(cur ->next ！= nullptr) {
  if(cur->next->val == val) {
  LinkedNode* tmp = cur->next;
-1
-2
-3
-4
-5
-6
-7
-8
-9
-10
-11
-12
-13
-14
-15
-16
-17
 
-> ⚠️ 原卷此处配有代码/图片，官方 PDF 未提供文本层，本站暂无法还原。`,
+> ⚠️ 原卷此处配有代码或图片。官方 PDF 中该部分为图片，或其文本层与相邻试题混排、无法可靠切分，本站尚未还原。请对照原卷阅读代码。`,
             options: ["dummyHead->next = head; cur = dummyHead;", "dummyHead->next = head->next; cur = dummyHead;", "dummyHead->next = head; cur = dummyHead->next;", "dummyHead->next = head->next; cur = dummyHead->next;"],
             answer: 0,
             score: 2,
@@ -229,7 +212,7 @@ void removeElements(LinkedNode* head, int val) {
             question: `唯一分解定理表明，每个大于 1 的自然数可以唯一地写成若干个质数的乘积。下面函数将自然数 的所有质因
 素找出来，横线上能填写的最佳代码是（ ）。
 
-> ⚠️ 原卷此处配有代码/图片，官方 PDF 未提供文本层，本站暂无法还原。`,
+> ⚠️ 原卷此处配有代码或图片。官方 PDF 中该部分为图片，或其文本层与相邻试题混排、无法可靠切分，本站尚未还原。请对照原卷阅读代码。`,
             options: ["for (int i = 3; i <= n; i ++)", "for (int i = 3; i * i <= n; i ++)", "for (int i = 3; i <= n; i += 2)", "for (int i = 3; i * i <= n; i += 2)"],
             answer: 3,
             score: 2,
@@ -254,14 +237,6 @@ int gcd(int a, int b) {
  }
  return gcd(small, big % small);
 }
-1
-2
-3
-4
-5
-6
-7
-8
 #include <vector>
 vector<int> get_prime_factors(int n) {
  vector<int> factors;
@@ -284,34 +259,9 @@ vector<int> get_prime_factors(int n) {
  }
  return factors;
 }
-1
-2
-3
-4
-5
-6
-7
-8
-9
-10
-11
-12
-13
-14
-15
-16
-17
-18
-19
-20
-21
-22
-23
-24
-25
 下面说法，正确的是（ ）。
 
-> ⚠️ 原卷此处配有代码/图片，官方 PDF 未提供文本层，本站暂无法还原。`,
+> ⚠️ 原卷此处配有代码或图片。官方 PDF 中该部分为图片，或其文本层与相邻试题混排、无法可靠切分，本站尚未还原。请对照原卷阅读代码。`,
             options: ["代码的时间复杂度是 。", "在标记非素数时，代码从 开始，可以减少重复标记。", "代码会输出所有小于等于 的奇数。", "调用函数sieve_Eratosthenes(10)，函数返回值的数组中包含的元素有：2, 3, 5, 7, 9。"],
             answer: 1,
             score: 2,
@@ -346,28 +296,6 @@ vector<int> sieve_Eratosthenes(int n) {
  }
  return primes;
 }
-1
-2
-3
-4
-5
-6
-7
-8
-9
-10
-11
-12
-13
-14
-15
-16
-17
-18
-19
-20
-21
-22
 vector<int> sieve_linear(int n) {
  vector<bool> is_prime(n +1, true);
  vector<int> primes;
@@ -385,29 +313,8 @@ vector<int> sieve_linear(int n) {
  primes.push_back(i);
  }
  return primes;
-1
-2
-3
-4
-5
-6
-7
-8
-9
-10
-11
-12
-13
-14
-15
-16
-17
-18
-19
-20
-21
 
-> ⚠️ 原卷此处配有代码/图片，官方 PDF 未提供文本层，本站暂无法还原。`,
+> ⚠️ 原卷此处配有代码或图片。官方 PDF 中该部分为图片，或其文本层与相邻试题混排、无法可靠切分，本站尚未还原。请对照原卷阅读代码。`,
             options: ["线性筛的时间复杂度是 。", "每个合数会被其所有的质因子标记一次。", "线性筛和埃拉托色尼筛的实现思路完全相同。", "以上都不对"],
             answer: 0,
             score: 2,
@@ -426,7 +333,7 @@ vector<int> sieve_linear(int n) {
             question: `考虑以下 C++ 代码实现的快速排序算法：
 以下关于快速排序的说法，正确的是（ ）。
 
-> ⚠️ 原卷此处配有代码/图片，官方 PDF 未提供文本层，本站暂无法还原。`,
+> ⚠️ 原卷此处配有代码或图片。官方 PDF 中该部分为图片，或其文本层与相邻试题混排、无法可靠切分，本站尚未还原。请对照原卷阅读代码。`,
             options: ["快速排序通过递归对子问题进行求解。", "快速排序的最坏时间复杂度是 。", "快速排序是一个稳定的排序算法。", "在最优情况下，快速排序的时间复杂度是 。"],
             answer: 0,
             score: 2,
@@ -489,28 +396,6 @@ void quickSort(vector<int>& arr, int left, int right) {
  quickSort(arr, pi + 1, right);
  }
 }
-1
-2
-3
-4
-5
-6
-7
-8
-9
-10
-11
-12
-13
-14
-15
-16
-17
-18
-19
-20
-21
-22
 关于上述函数，描述不正确的是（ ）。`,
             options: ["函数采用二分查找，每次计算搜索当前搜索区间的中点，然后根据中点的元素值排除一半搜索区间。", "函数采用递归求解，每次问题的规模减小一半。", "递归的终止条件是中间元素的值等于target，若数组中不包含该元素，递归不会终止。", "算法的复杂度为 ."],
             answer: 2,
@@ -550,7 +435,7 @@ void quickSort(vector<int>& arr, int left, int right) {
 们发饼干，每个孩子最多只能给一块饼干。饼干的尺寸大于等于孩子的胃口时，孩子才能得到满足。小杨的目标是
 尽可能满足越多数量的孩子，因此打算采用贪心算法来找出能满足的孩子的数目，则横线上应填写的代码为（ ）。
 
-> ⚠️ 原卷此处配有代码/图片，官方 PDF 未提供文本层，本站暂无法还原。`,
+> ⚠️ 原卷此处配有代码或图片。官方 PDF 中该部分为图片，或其文本层与相邻试题混排、无法可靠切分，本站尚未还原。请对照原卷阅读代码。`,
             options: ["result++; index--;", "result--; index--;", "result--; index++;", "result++; index++;"],
             answer: 0,
             score: 2,
