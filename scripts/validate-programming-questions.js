@@ -54,21 +54,42 @@ async function main() {
 
   const tmpDir = fs.mkdtempSync(path.join(os.tmpdir(), 'gesp-progcheck-'));
 
-  // Apple clang has no <bits/stdc++.h>; provide a shim so contest-style code
-  // compiles the same way it does with GNU g++ on CI.
-  const shimDir = path.join(tmpDir, 'include');
-  fs.mkdirSync(path.join(shimDir, 'bits'), { recursive: true });
-  fs.writeFileSync(
-    path.join(shimDir, 'bits', 'stdc++.h'),
-    ['#pragma once',
-      ...['algorithm', 'array', 'bitset', 'cassert', 'cctype', 'cmath', 'cstdint', 'cstdio',
-        'cstdlib', 'cstring', 'deque', 'functional', 'iomanip', 'iostream', 'iterator', 'limits',
-        'list', 'map', 'numeric', 'queue', 'random', 'set', 'sstream', 'stack', 'string',
-        'tuple', 'unordered_map', 'unordered_set', 'utility', 'vector']
-        .map((h) => `#include <${h}>`),
-    ].join('\n'),
-    'utf8'
-  );
+  // Apple clang ships no <bits/stdc++.h>. Provide a shim ONLY when the toolchain
+  // lacks it: on CI (GNU libstdc++) the real header exists, and shadowing it with
+  // a partial shim silently changed what compiled — an earlier version of this
+  // shim omitted <climits>, so code using LLONG_MIN/INT_MAX passed locally and
+  // failed on CI. Probing keeps the two environments honest.
+  const probeSrc = path.join(tmpDir, 'probe.cpp');
+  fs.writeFileSync(probeSrc, '#include <bits/stdc++.h>\nint main(){return 0;}\n', 'utf8');
+  let hasRealHeader = true;
+  try {
+    execFileSync('g++', ['-std=c++17', '-fsyntax-only', probeSrc], { stdio: 'ignore', timeout: 60000 });
+  } catch {
+    hasRealHeader = false;
+  }
+
+  const includeArgs = [];
+  if (!hasRealHeader) {
+    const shimDir = path.join(tmpDir, 'include');
+    fs.mkdirSync(path.join(shimDir, 'bits'), { recursive: true });
+    fs.writeFileSync(
+      path.join(shimDir, 'bits', 'stdc++.h'),
+      ['#pragma once',
+        ...['algorithm', 'array', 'bitset', 'cassert', 'cctype', 'cfloat', 'climits', 'cmath',
+          'complex', 'cstdarg', 'cstddef', 'cstdint', 'cstdio', 'cstdlib', 'cstring', 'ctime',
+          'deque', 'exception', 'forward_list', 'fstream', 'functional', 'initializer_list',
+          'iomanip', 'ios', 'iosfwd', 'iostream', 'istream', 'iterator', 'limits', 'list',
+          'locale', 'map', 'memory', 'new', 'numeric', 'ostream', 'queue', 'random', 'ratio',
+          'regex', 'set', 'sstream', 'stack', 'stdexcept', 'streambuf', 'string', 'tuple',
+          'type_traits', 'typeinfo', 'unordered_map', 'unordered_set', 'utility', 'valarray',
+          'vector']
+          .map((h) => `#include <${h}>`),
+      ].join('\n'),
+      'utf8'
+    );
+    includeArgs.push('-I', shimDir);
+    console.log('Note: toolchain lacks <bits/stdc++.h>; using a local shim.');
+  }
 
   for (let level = 1; level <= 8; level++) {
     const dir = path.join(root, `level${level}`);
@@ -121,7 +142,7 @@ async function main() {
         const binPath = path.join(tmpDir, `${paper.id}-q${q.id}.bin`);
         fs.writeFileSync(srcPath, code, 'utf8');
         try {
-          execFileSync('g++', ['-std=c++17', '-O2', '-I', shimDir, '-o', binPath, srcPath], {
+          execFileSync('g++', ['-std=c++17', '-O2', ...includeArgs, '-o', binPath, srcPath], {
             stdio: ['ignore', 'pipe', 'pipe'],
             timeout: 60000,
           });
