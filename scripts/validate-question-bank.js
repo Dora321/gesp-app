@@ -143,7 +143,12 @@ async function validateFile(filePath, cfg) {
     if (requiresCodeContent(q, text) && !hasCodeContent(q, text)) {
       const message = `Q${qId}: question refers to code, but no fenced, inline, or independent code content was found`;
       if (q.requiresCode === true) errors.push(`[ERROR] ${message}`);
-      else {
+      else if (q.sourceIntegrity === 'missing-figure') {
+        // Already recorded in the data as a known missing code image, and the UI
+        // warns the learner about it. Re-reporting it here would just be noise —
+        // the structured flag is a stronger record than the baseline file.
+        warnings.push(`[CODE-FLAGGED] ${message}`);
+      } else {
         const issueKey = `${paperId}:Q${qId}`;
         inferredCodeIssues.push(issueKey);
         if (updateCodeBaseline || codeBaseline.has(issueKey)) warnings.push(`[CODE-BASELINE] ${message}`);

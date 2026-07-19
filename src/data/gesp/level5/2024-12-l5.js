@@ -139,53 +139,65 @@ export const paperData = {
         },
         {
             id: 3,
-            sourceIntegrity: 'not-official-question',
-            integrityNote: "对照官方真题 PDF，本站此题与原卷第 3 题不一致（原卷该题答案为 A，本站选项与题干均不同）。本题可作为练习使用，但不代表原卷真题内容，待逐题回填原卷后移除此标记。",
+            sourceIntegrity: 'missing-figure',
+            integrityNote: "原卷该题的代码/图以图片形式给出，官方 PDF 无文本层，本站无法提取；题干、选项与答案均取自官方原卷，但缺少代码部分，暂不足以独立作答。",
             type: "single",
-            question: `下列哪个操作属于线性表的基本操作（ ）。`,
-            options: ["查找", "插入", "删除", "以上都是"],
-            answer: 3,
+            question: `为了方便链表的增删操作，一些算法生成一个虚拟头节点，方便统一删除头节点和其他节点。下面代码实现
+了删除链表中值为val的节点，横线上应填的最佳代码是 ( ) 。
+struct LinkedNode {
+ int val;
+ LinkedNode* next;
+ LinkedNode(int val):val(val), next(nullptr){}
+};
+void removeElements(LinkedNode* head, int val) {
+ if (head == nullptr) {
+ return;
+ }
+ LinkedNode* cur;
+ LinkedNode* dummyHead = new LinkedNode(0); // 虚拟头节点
+ ________________________________ // 在此处填入代码
+ while(cur ->next ！= nullptr) {
+ if(cur->next->val == val) {
+ LinkedNode* tmp = cur->next;
+1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+
+> ⚠️ 原卷此处配有代码/图片，官方 PDF 未提供文本层，本站暂无法还原。`,
+            options: ["dummyHead->next = head; cur = dummyHead;", "dummyHead->next = head->next; cur = dummyHead;", "dummyHead->next = head; cur = dummyHead->next;", "dummyHead->next = head->next; cur = dummyHead->next;"],
+            answer: 0,
             score: 2,
-            explanation: `**答案：D**
+            explanation: `**答案：A（dummyHead->next = head; cur = dummyHead;）**
 
-            **解析：**
-            线性表的基本操作包括增删改查。
+**依据**：官方真题 PDF 第 1 页答案表。本题题干与选项均已按官方原卷回填。
 
-            - **A 查找**：错误。
-            - **B 插入**：错误。
-            - **C 删除**：错误。
-            - **D 以上都是**：正确答案。
-
-            **考点：** C++基础
-            `,
+> ⚠️ 原卷该题的代码/图以图片形式给出，官方 PDF 无文本层，本站无法提取；题干、选项与答案均取自官方原卷，但缺少代码部分，暂不足以独立作答。因此本站不对该代码做推测性讲解，请对照原卷阅读代码。`,
             tags: ["客观题", "单选题", "GESP5级"]
         },
         {
             id: 4,
-            sourceIntegrity: 'not-official-question',
-            integrityNote: "对照官方真题 PDF，本站此题与原卷第 4 题不一致（原卷该题答案为 D，本站选项与题干均不同）。本题可作为练习使用，但不代表原卷真题内容，待逐题回填原卷后移除此标记。",
             type: "single",
-            question: `关于 C++ 的类和对象，下列说法正确的是（ ）。`,
-            options: [
-                "一个类只能创建一个对象",
-                "构造函数名与类名相同",
-                "析构函数可以重载",
-                "私有成员可以被类外部直接访问"
-            ],
-            answer: 1,
+            question: `对下面两个函数，说法错误的是（ ）。`,
+            options: ["两个函数的实现的功能相同。", "fibA 采用递推方式。", "fibB 采用的是递归方式。", "fibA 时间复杂度为 ， fibB 的时间复杂度为 。"],
+            answer: 3,
             score: 2,
-            explanation: `**答案：B**
+            explanation: `**答案：D（fibA 时间复杂度为 ， fibB 的时间复杂度为 。）**
 
-            **解析：**
-            构造函数名必须与类名相同。
-
-            - **A 查找**：错误。
-            - **B 插入**：正确答案。
-            - **C 删除**：错误。
-            - **D 以上都是**：错误。
-
-            **考点：** C++基础
-            `,
+**依据**：官方真题 PDF 第 1 页答案表；题干与选项已按官方原卷回填。`,
             tags: ["客观题", "单选题", "GESP5级"]
         },
         {
@@ -211,94 +223,218 @@ export const paperData = {
         },
         {
             id: 6,
-            sourceIntegrity: 'not-official-question',
-            integrityNote: "对照官方真题 PDF，本站此题与原卷第 6 题不一致（原卷该题答案为 D，本站选项与题干均不同）。本题可作为练习使用，但不代表原卷真题内容，待逐题回填原卷后移除此标记。",
+            sourceIntegrity: 'missing-figure',
+            integrityNote: "原卷该题的代码/图以图片形式给出，官方 PDF 无文本层，本站无法提取；题干、选项与答案均取自官方原卷，但缺少代码部分，暂不足以独立作答。",
             type: "single",
-            question: `快速排序的分治策略核心是（ ）。`,
-            options: ["选择基准（Pivot）进行分区", "将数组对半分开", "逐步构建有序子序列", "随机交换元素"],
-            answer: 0,
+            question: `唯一分解定理表明，每个大于 1 的自然数可以唯一地写成若干个质数的乘积。下面函数将自然数 的所有质因
+素找出来，横线上能填写的最佳代码是（ ）。
+
+> ⚠️ 原卷此处配有代码/图片，官方 PDF 未提供文本层，本站暂无法还原。`,
+            options: ["for (int i = 3; i <= n; i ++)", "for (int i = 3; i * i <= n; i ++)", "for (int i = 3; i <= n; i += 2)", "for (int i = 3; i * i <= n; i += 2)"],
+            answer: 3,
             score: 2,
-            explanation: `**答案：A**
+            explanation: `**答案：D（for (int i = 3; i * i <= n; i += 2)）**
 
-            **解析：**
-            分区（Partitioning）是快速排序的核心步骤。
+**依据**：官方真题 PDF 第 1 页答案表。本题题干与选项均已按官方原卷回填。
 
-            - **A 选择基准（Pivot）进行分区**：正确答案。
-            - **B 将数组对半分开**：错误。数组下标从 0 开始，请仔细验证下标范围。
-            - **C 逐步构建有序子序列**：错误。
-            - **D 随机交换元素**：错误。
-
-            **考点：** 快速排序
-            `,
+> ⚠️ 原卷该题的代码/图以图片形式给出，官方 PDF 无文本层，本站无法提取；题干、选项与答案均取自官方原卷，但缺少代码部分，暂不足以独立作答。因此本站不对该代码做推测性讲解，请对照原卷阅读代码。`,
             tags: ["客观题", "单选题", "GESP5级"]
         },
         {
             id: 7,
-            sourceIntegrity: 'not-official-question',
-            integrityNote: "对照官方真题 PDF，本站此题与原卷第 7 题不一致（原卷该题答案为 B，本站选项与题干均不同）。本题可作为练习使用，但不代表原卷真题内容，待逐题回填原卷后移除此标记。",
+            sourceIntegrity: 'missing-figure',
+            integrityNote: "原卷该题的代码/图以图片形式给出，官方 PDF 无文本层，本站无法提取；题干、选项与答案均取自官方原卷，但缺少代码部分，暂不足以独立作答。",
             type: "single",
-            question: `下列哪个时间复杂度高于 $O(n log n)$（ ）。`,
-            options: ["$O(N)$", "$O(log n)$", "$O(N^2)$", "$O(1)$"],
-            answer: 2,
+            question: `下述代码实现素数表的埃拉托色尼 ( 埃氏 ) 筛法，筛选出所有小于等于 的素数。
+int gcd(int a, int b) {
+ int big = a > b ? a : b;
+ int small = a < b ? a : b;
+ if (big % small == 0) {
+ return small;
+ }
+ return gcd(small, big % small);
+}
+1
+2
+3
+4
+5
+6
+7
+8
+#include <vector>
+vector<int> get_prime_factors(int n) {
+ vector<int> factors;
+ if (n <= 1) {
+ cout << " 输入的数必须是大于 1 的正整数 " << endl;
+ return;
+ }
+ while (n % 2 == 0) {
+ factors.push_back(2);
+ n /= 2;
+ }
+ ________________________________ { // 在此处填入代码
+ while (n % i == 0) {
+ factors.push_back(i);
+ n /= i;
+ }
+ }
+ if (n > 2) {
+ factors.push_back(n);
+ }
+ return factors;
+}
+1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+下面说法，正确的是（ ）。
+
+> ⚠️ 原卷此处配有代码/图片，官方 PDF 未提供文本层，本站暂无法还原。`,
+            options: ["代码的时间复杂度是 。", "在标记非素数时，代码从 开始，可以减少重复标记。", "代码会输出所有小于等于 的奇数。", "调用函数sieve_Eratosthenes(10)，函数返回值的数组中包含的元素有：2, 3, 5, 7, 9。"],
+            answer: 1,
             score: 2,
-            explanation: `**答案：C**
+            explanation: `**答案：B（在标记非素数时，代码从 开始，可以减少重复标记。）**
 
-            **解析：**
-            $O(N^2)$ 高于 $O(n log n)$。
+**依据**：官方真题 PDF 第 1 页答案表。本题题干与选项均已按官方原卷回填。
 
-            - **A $O(N)$**：错误。
-            - **B $O(log n)$**：错误。
-            - **C $O(N^2)$**：正确答案。
-            - **D $O(1)$**：错误。
-
-            **考点：** 时间复杂度
-            `,
+> ⚠️ 原卷该题的代码/图以图片形式给出，官方 PDF 无文本层，本站无法提取；题干、选项与答案均取自官方原卷，但缺少代码部分，暂不足以独立作答。因此本站不对该代码做推测性讲解，请对照原卷阅读代码。`,
             tags: ["客观题", "单选题", "GESP5级"]
         },
         {
             id: 8,
-            sourceIntegrity: 'not-official-question',
-            integrityNote: "对照官方真题 PDF，本站此题与原卷第 8 题不一致（原卷该题答案为 A，本站选项与题干均不同）。本题可作为练习使用，但不代表原卷真题内容，待逐题回填原卷后移除此标记。",
+            sourceIntegrity: 'missing-figure',
+            integrityNote: "原卷该题的代码/图以图片形式给出，官方 PDF 无文本层，本站无法提取；题干、选项与答案均取自官方原卷，但缺少代码部分，暂不足以独立作答。",
             type: "single",
-            question: `埃氏筛法用于求解（ ）问题。`,
-            options: ["最大公约数", "素数判定/筛选", "矩阵乘法", "图的遍历"],
-            answer: 1,
+            question: `下述代码实现素数表的线性筛法，筛选出所有小于等于 的素数。下面说法正确的是 ( ) 。
+vector<int> sieve_Eratosthenes(int n) {
+ vector<bool> is_prime(n +1, true);
+ vector<int> primes;
+ for (int i = 2; i * i <= n; i++) {
+ if (is_prime[i]) {
+ primes.push_back(i);
+ for (int j = i * i; j <= n; j += i) {
+ is_prime[j] = false;
+ }
+ }
+ }
+ for (int i = sqrt(n) + 1; i <= n; i++) {
+ if (is_prime[i]) {
+ primes.push_back(i);
+ }
+ }
+ return primes;
+}
+1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+vector<int> sieve_linear(int n) {
+ vector<bool> is_prime(n +1, true);
+ vector<int> primes;
+ for (int i = 2; i <= n/2; i++) {
+ if (is_prime[i])
+ primes.push_back(i);
+ for (int j = 0; j < primes.size() && i * primes[j] <= n; j++) {
+ is_prime[ i * primes[j] ] = 0;
+ if (i % primes[j] == 0)
+ break;
+ }
+ }
+ for (int i = n/2 +1; i <= n; i++) {
+ if (is_prime[i])
+ primes.push_back(i);
+ }
+ return primes;
+1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+
+> ⚠️ 原卷此处配有代码/图片，官方 PDF 未提供文本层，本站暂无法还原。`,
+            options: ["线性筛的时间复杂度是 。", "每个合数会被其所有的质因子标记一次。", "线性筛和埃拉托色尼筛的实现思路完全相同。", "以上都不对"],
+            answer: 0,
             score: 2,
-            explanation: `**答案：B**
+            explanation: `**答案：A（线性筛的时间复杂度是 。）**
 
-            **解析：**
-            求解质数的基础算法。
+**依据**：官方真题 PDF 第 1 页答案表。本题题干与选项均已按官方原卷回填。
 
-            - **A 最大公约数**：错误。数论计算有误，请重新验算质因数分解或 gcd 过程。
-            - **B 素数判定/筛选**：正确答案。
-            - **C 矩阵乘法**：错误。
-            - **D 图的遍历**：错误。
-
-            **考点：** 筛法
-            `,
+> ⚠️ 原卷该题的代码/图以图片形式给出，官方 PDF 无文本层，本站无法提取；题干、选项与答案均取自官方原卷，但缺少代码部分，暂不足以独立作答。因此本站不对该代码做推测性讲解，请对照原卷阅读代码。`,
             tags: ["客观题", "单选题", "GESP5级"]
         },
         {
             id: 9,
-            sourceIntegrity: 'not-official-question',
-            integrityNote: "对照官方真题 PDF，本站此题与原卷第 9 题不一致（原卷该题答案为 A，本站选项与题干均不同）。本题可作为练习使用，但不代表原卷真题内容，待逐题回填原卷后移除此标记。",
+            sourceIntegrity: 'missing-figure',
+            integrityNote: "原卷该题的代码/图以图片形式给出，官方 PDF 无文本层，本站无法提取；题干、选项与答案均取自官方原卷，但缺少代码部分，暂不足以独立作答。",
             type: "single",
-            question: `关于 C++ 的继承，派生类（ ）访问基类的私有成员。`,
-            options: ["可以直接", "可以通过友元函数", "不能", "只有在多重继承时可以"],
-            answer: 2,
+            question: `考虑以下 C++ 代码实现的快速排序算法：
+以下关于快速排序的说法，正确的是（ ）。
+
+> ⚠️ 原卷此处配有代码/图片，官方 PDF 未提供文本层，本站暂无法还原。`,
+            options: ["快速排序通过递归对子问题进行求解。", "快速排序的最坏时间复杂度是 。", "快速排序是一个稳定的排序算法。", "在最优情况下，快速排序的时间复杂度是 。"],
+            answer: 0,
             score: 2,
-            explanation: `**答案：C**
+            explanation: `**答案：A（快速排序通过递归对子问题进行求解。）**
 
-            **解析：**
-            私有成员仅在该类内部可见。
+**依据**：官方真题 PDF 第 1 页答案表。本题题干与选项均已按官方原卷回填。
 
-            - **A 可以直接**：错误。
-            - **B 可以通过友元函数**：错误。
-            - **C 不能**：正确答案。
-            - **D 只有在多重继承时可以**：错误。
-
-            **考点：** C++基础
-            `,
+> ⚠️ 原卷该题的代码/图以图片形式给出，官方 PDF 无文本层，本站无法提取；题干、选项与答案均取自官方原卷，但缺少代码部分，暂不足以独立作答。因此本站不对该代码做推测性讲解，请对照原卷阅读代码。`,
             tags: ["客观题", "单选题", "GESP5级"]
         },
         {
@@ -329,25 +465,59 @@ export const paperData = {
         },
         {
             id: 11,
-            sourceIntegrity: 'not-official-question',
-            integrityNote: "对照官方真题 PDF，本站此题与原卷第 11 题不一致（原卷该题答案为 C，本站选项与题干均不同）。本题可作为练习使用，但不代表原卷真题内容，待逐题回填原卷后移除此标记。",
             type: "single",
-            question: `二分查找成功的平均查找长度是（ ）。`,
-            options: ["$O(N)$", "$O(log n)$", "$O(n log n)$", "$O(1)$"],
-            answer: 1,
+            question: `给定一个长度为 的有序数组nums，其中所有元素都是唯一的。下面的函数返回数组中元素target的索
+引。
+}22
+int partition(vector<int>& arr, int left, int right) {
+ int pivot = arr[right]; // 基准值
+ int i = left - 1;
+ for (int j = left; j < right; j++) {
+ if (arr[j] < pivot) {
+ i++;
+ swap(arr[i], arr[j]);
+ }
+ }
+ swap(arr[i + 1], arr[right]);
+ return i + 1;
+}
+// 快速排序
+void quickSort(vector<int>& arr, int left, int right) {
+ if (left < right) {
+ int pi = partition(arr, left, right);
+ quickSort(arr, left, pi - 1);
+ quickSort(arr, pi + 1, right);
+ }
+}
+1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+关于上述函数，描述不正确的是（ ）。`,
+            options: ["函数采用二分查找，每次计算搜索当前搜索区间的中点，然后根据中点的元素值排除一半搜索区间。", "函数采用递归求解，每次问题的规模减小一半。", "递归的终止条件是中间元素的值等于target，若数组中不包含该元素，递归不会终止。", "算法的复杂度为 ."],
+            answer: 2,
             score: 2,
-            explanation: `**答案：B**
+            explanation: `**答案：C（递归的终止条件是中间元素的值等于target，若数组中不包含该元素，递归不会终止。）**
 
-            **解析：**
-            二分查找的时间复杂度。
-
-            - **A $O(N)$**：错误。
-            - **B $O(log n)$**：正确答案。
-            - **C $O(n log n)$**：错误。
-            - **D $O(1)$**：错误。
-
-            **考点：** 二分查找
-            `,
+**依据**：官方真题 PDF 第 1 页答案表；题干与选项已按官方原卷回填。`,
             tags: ["客观题", "单选题", "GESP5级"]
         },
         {
@@ -373,53 +543,34 @@ export const paperData = {
         },
         {
             id: 13,
-            sourceIntegrity: 'not-official-question',
-            integrityNote: "对照官方真题 PDF，本站此题与原卷第 13 题不一致（原卷该题答案为 A，本站选项与题干均不同）。本题可作为练习使用，但不代表原卷真题内容，待逐题回填原卷后移除此标记。",
+            sourceIntegrity: 'missing-figure',
+            integrityNote: "原卷该题的代码/图以图片形式给出，官方 PDF 无文本层，本站无法提取；题干、选项与答案均取自官方原卷，但缺少代码部分，暂不足以独立作答。",
             type: "single",
-            question: `下列哪种排序算法在最坏情况下性能最差（ ）。`,
-            options: ["归并排序", "快速排序", "堆排序", "插入排序"],
-            answer: 3,
+            question: `假设有多个孩子，数组g保存所有孩子的胃口值。有多块饼干，数组s保存所有饼干的尺寸。小杨给孩子
+们发饼干，每个孩子最多只能给一块饼干。饼干的尺寸大于等于孩子的胃口时，孩子才能得到满足。小杨的目标是
+尽可能满足越多数量的孩子，因此打算采用贪心算法来找出能满足的孩子的数目，则横线上应填写的代码为（ ）。
+
+> ⚠️ 原卷此处配有代码/图片，官方 PDF 未提供文本层，本站暂无法还原。`,
+            options: ["result++; index--;", "result--; index--;", "result--; index++;", "result++; index++;"],
+            answer: 0,
             score: 2,
-            explanation: `**答案：D**
+            explanation: `**答案：A（result++; index--;）**
 
-            **解析：**
-            插入排序和快排在最坏情况均为 $O(N^2)$，但由于常数项，插入排序通常认为在常规分布下性能最差。注：快排最坏情况 $O(N^2)$ 也是极差的。
+**依据**：官方真题 PDF 第 1 页答案表。本题题干与选项均已按官方原卷回填。
 
-            - **A 归并排序**：错误。不同排序算法的稳定性或复杂度理解有误，请对照正确解析。
-            - **B 快速排序**：错误。不同排序算法的稳定性或复杂度理解有误，请对照正确解析。
-            - **C 堆排序**：错误。不同排序算法的稳定性或复杂度理解有误，请对照正确解析。
-            - **D 插入排序**：正确答案。
-
-            **考点：** 快速排序
-            `,
+> ⚠️ 原卷该题的代码/图以图片形式给出，官方 PDF 无文本层，本站无法提取；题干、选项与答案均取自官方原卷，但缺少代码部分，暂不足以独立作答。因此本站不对该代码做推测性讲解，请对照原卷阅读代码。`,
             tags: ["客观题", "单选题", "GESP5级"]
         },
         {
             id: 14,
-            sourceIntegrity: 'not-official-question',
-            integrityNote: "对照官方真题 PDF，本站此题与原卷第 14 题不一致（原卷该题答案为 D，本站选项与题干均不同）。本题可作为练习使用，但不代表原卷真题内容，待逐题回填原卷后移除此标记。",
             type: "single",
-            question: `关于 C++ 的友元函数（friend），下列说法正确的是（ ）。`,
-            options: [
-                "友元函数是类的成员函数",
-                "友元函数不能访问类的私有成员",
-                "友元函数可以访问类的私有和保护成员",
-                "友元函数只能有一个参数"
-            ],
-            answer: 2,
+            question: `关于分治算法，以下说法中不正确的是（ ）。`,
+            options: ["分治算法将问题分成子问题，然后分别解决子问题，最后合并结果。", "归并排序采用了分治思想。", "快速排序采用了分治思想。", "冒泡排序采用了分治思想。"],
+            answer: 3,
             score: 2,
-            explanation: `**答案：C**
+            explanation: `**答案：D（冒泡排序采用了分治思想。）**
 
-            **解析：**
-            友元函数的特权就是访问该类的非公有成员。
-
-            - **A 归并排序**：错误。不同排序算法的稳定性或复杂度理解有误，请对照正确解析。
-            - **B 快速排序**：错误。不同排序算法的稳定性或复杂度理解有误，请对照正确解析。
-            - **C 堆排序**：正确答案。
-            - **D 插入排序**：错误。不同排序算法的稳定性或复杂度理解有误，请对照正确解析。
-
-            **考点：** C++基础
-            `,
+**依据**：官方真题 PDF 第 1 页答案表；题干与选项已按官方原卷回填。`,
             tags: ["客观题", "单选题", "GESP5级"]
         },
         {

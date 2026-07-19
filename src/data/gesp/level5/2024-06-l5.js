@@ -202,25 +202,15 @@ export const paperData = {
         },
         {
             id: 6,
-            sourceIntegrity: 'not-official-question',
-            integrityNote: "对照官方真题 PDF，本站此题与原卷第 6 题不一致（原卷该题答案为 D，本站选项与题干均不同）。本题可作为练习使用，但不代表原卷真题内容，待逐题回填原卷后移除此标记。",
             type: "single",
-            question: `下列哪个算法用于寻找质数（ ）。`,
-            options: ["冒泡排序", "二分查找", "埃氏筛法", "贪心算法"],
-            answer: 2,
+            question: `欧几里得算法还可以写成如下形式 :
+下面有关说法，错误的是（ ）。`,
+            options: ["本题的gcd()实现为递归方式。", "本题的gcd()代码量少，更容易理解其辗转相除的思想。", "当 较大时，本题的gcd()实现会多次调用自身，需要较多额外的辅助空间。", "当 较大时，相比上题中的gcd()的实现，本题的gcd()执行效率更高。"],
+            answer: 3,
             score: 2,
-            explanation: `**答案：C**
+            explanation: `**答案：D（当 较大时，相比上题中的gcd()的实现，本题的gcd()执行效率更高。）**
 
-            **解析：**
-            埃拉托斯特尼筛法（埃氏筛）是著名的求素数算法。
-
-            - **A 冒泡排序**：错误。不同排序算法的稳定性或复杂度理解有误，请对照正确解析。
-            - **B 二分查找**：错误。二分查找的边界或 mid 更新有误，请验证循环条件和指针移动。
-            - **C 埃氏筛法**：正确答案。
-            - **D 贪心算法**：错误。
-
-            **考点：** 筛法
-            `,
+**依据**：官方真题 PDF 第 1 页答案表；题干与选项已按官方原卷回填。`,
             tags: ["客观题", "单选题", "GESP5级"]
         },
         {
@@ -267,48 +257,102 @@ export const paperData = {
         },
         {
             id: 9,
-            sourceIntegrity: 'not-official-question',
-            integrityNote: "对照官方真题 PDF，本站此题与原卷第 9 题不一致（原卷该题答案为 D，本站选项与题干均不同）。本题可作为练习使用，但不代表原卷真题内容，待逐题回填原卷后移除此标记。",
+            sourceIntegrity: 'missing-figure',
+            integrityNote: "原卷该题的代码/图以图片形式给出，官方 PDF 无文本层，本站无法提取；题干、选项与答案均取自官方原卷，但缺少代码部分，暂不足以独立作答。",
             type: "single",
-            question: `下列关于堆栈的说法，正确的是（ ）。`,
-            options: ["先进先出", "后进先出", "支持下标访问", "底层通常由数组实现"],
-            answer: 1,
+            question: `为了正确实现快速排序，下面横线上的代码应为（ ）。
+vector<int> linear_sieve(int n) {
+ vector<bool> is_prime(n + 1, true);
+ vector<int> primes;
+ is_prime[0] = is_prime[1] = 0; //0 和 1 两个数特殊处理
+ for (int i = 2; i <= n; ++i) {
+ if (is_prime[i]) {
+ primes.push_back(i);
+ }
+ ________________________________ { // 在此处填入代码
+ is_prime[i * primes[j]] = 0;
+ if (i % primes[j] == 0)
+ break;
+ }
+ }
+ return primes;
+}
+1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+void qsort(vector<int>& arr, int left, int right) {
+ int i, j, mid;
+ int pivot;
+ i = left;
+ j = right;
+ mid = (left + right) / 2; // 计算中间元素的索引
+ pivot = arr[mid]; // 选择中间元素作为基准值
+ do {
+ while (arr[i] < pivot) i++;
+ while (arr[j] > pivot) j--;
+ if (i <= j) {
+ swap(arr[i], arr[j]); // 交换两个元素
+ i++; j--;
+ }
+ } ________________________________; // 在此处填入代码
+ if (left < j) qsort(arr, left, j); // 对左子数组进行快速排序
+ if (i < right) qsort(arr, i, right); // 对右子数组进行快速排序
+}
+1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+
+> ⚠️ 原卷此处配有代码/图片，官方 PDF 未提供文本层，本站暂无法还原。`,
+            options: ["while (i <= mid)", "while (i < mid)", "while (i < j)", "while (i <= j)"],
+            answer: 3,
             score: 2,
-            explanation: `**答案：B**
+            explanation: `**答案：D（while (i <= j)）**
 
-            **解析：**
-            栈（Stack）是后进先出（LIFO）的数据结构。
+**依据**：官方真题 PDF 第 1 页答案表。本题题干与选项均已按官方原卷回填。
 
-            - **A 先进先出**：错误。
-            - **B 后进先出**：正确答案。
-            - **C 支持下标访问**：错误。数组下标从 0 开始，请仔细验证下标范围。
-            - **D 底层通常由数组实现**：错误。数组下标从 0 开始，请仔细验证下标范围。
-
-            **考点：** C++基础
-            `,
+> ⚠️ 原卷该题的代码/图以图片形式给出，官方 PDF 无文本层，本站无法提取；题干、选项与答案均取自官方原卷，但缺少代码部分，暂不足以独立作答。因此本站不对该代码做推测性讲解，请对照原卷阅读代码。`,
             tags: ["客观题", "单选题", "GESP5级"]
         },
         {
             id: 10,
-            sourceIntegrity: 'not-official-question',
-            integrityNote: "对照官方真题 PDF，本站此题与原卷第 10 题不一致（原卷该题答案为 A，本站选项与题干均不同）。本题可作为练习使用，但不代表原卷真题内容，待逐题回填原卷后移除此标记。",
             type: "single",
-            question: `在 C++ 中，\`new\` 和 \`malloc\` 的区别不包括（ ）。`,
-            options: ["new 是运算符，malloc 是函数", "new 会自动调用构造函数", "new 返回具体类型的指针，malloc 返回 void*", "new 只能在 Windows 系统使用"],
-            answer: 3,
+            question: `关于分治算法，以下哪个说法正确？`,
+            options: ["分治算法将问题分成子问题，然后分别解决子问题，最后合并结果。", "归并排序不是分治算法的应用。", "分治算法通常用于解决小规模问题。", "分治算法的时间复杂度总是优于 。"],
+            answer: 0,
             score: 2,
-            explanation: `**答案：D**
+            explanation: `**答案：A（分治算法将问题分成子问题，然后分别解决子问题，最后合并结果。）**
 
-            **解析：**
-            new 和 malloc 都是标准的动态内存分配方式，跨平台通用。
-
-            - **A new 是运算符，malloc 是函数**：错误。
-            - **B new 会自动调用构造函数**：错误。
-            - **C new 返回具体类型的指针，malloc 返回 void***：错误。指针或内存理解有误，请检查解引用和释放逻辑。
-            - **D new 只能在 Windows 系统使用**：正确答案。
-
-            **考点：** 指针与内存
-            `,
+**依据**：官方真题 PDF 第 1 页答案表；题干与选项已按官方原卷回填。`,
             tags: ["客观题", "单选题", "GESP5级"]
         },
         {
@@ -397,25 +441,56 @@ export const paperData = {
         },
         {
             id: 15,
-            sourceIntegrity: 'not-official-question',
-            integrityNote: "对照官方真题 PDF，本站此题与原卷第 15 题不一致（原卷该题答案为 C，本站选项与题干均不同）。本题可作为练习使用，但不代表原卷真题内容，待逐题回填原卷后移除此标记。",
             type: "single",
-            question: `关于 C++ 的静态成员，下列说法错误的是（ ）。`,
-            options: ["静态成员变量为所有对象共有", "静态成员函数可以直接访问非静态成员变量", "静态成员需要在类外初始化", "可以通过类名直接调用静态成员函数"],
-            answer: 1,
+            question: `给定如下函数（函数功能同上题，增加输出打印）：
+ a[i] += 10;
+ }
+ t = a[i] - b[i];
+ c.push_back(t);
+ }
+ for (; i < len1; i++)
+ c.push_back(a[i]);
+ len3 = c.size();
+ while (c[len3 - 1] == 0) {// 去除前导 0
+ c.pop_back();
+ len3--;
+ }
+ return c;
+}
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+int fun(int n) {
+ if (n == 1) return 1;
+ if (n == 2) return 2;
+ return fun(n - 2) - fun(n - 1);
+}
+1
+2
+3
+4
+5
+题号 1 2 3 4 5 6 7 8 9 10
+答案
+则当 时，屏幕上输出序列为（ ）。`,
+            options: ["4 3 2 1", "1 2 3 4", "4 2 3 1 2", "4 2 3 2 1"],
+            answer: 2,
             score: 2,
-            explanation: `**答案：B**
+            explanation: `**答案：C（4 2 3 1 2）**
 
-            **解析：**
-            静态成员函数没有 this 指针，无法直接访问非静态（实例）成员变量。
-
-            - **A 静态成员变量为所有对象共有**：错误。
-            - **B 静态成员函数可以直接访问非静态成员变量**：正确答案。
-            - **C 静态成员需要在类外初始化**：错误。
-            - **D 可以通过类名直接调用静态成员函数**：错误。
-
-            **考点：** 指针与内存
-            `,
+**依据**：官方真题 PDF 第 1 页答案表；题干与选项已按官方原卷回填。`,
             tags: ["客观题", "单选题", "GESP5级"]
         },
         {
