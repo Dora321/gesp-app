@@ -170,7 +170,7 @@ async function validateFile(filePath, cfg) {
       errors.push(`[INTEGRITY] Q${qId}: explanation admits reconstructed options/figure but question lacks sourceIntegrity flag`);
     }
     if (q.sourceIntegrity) {
-      const allowed = ['options-reconstructed', 'missing-figure', 'contaminated-stem'];
+      const allowed = ['options-reconstructed', 'missing-figure', 'contaminated-stem', 'not-official-question'];
       if (!allowed.includes(q.sourceIntegrity)) {
         errors.push(`[INTEGRITY] Q${qId}: unknown sourceIntegrity "${q.sourceIntegrity}"`);
       }

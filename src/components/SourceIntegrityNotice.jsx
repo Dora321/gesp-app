@@ -5,6 +5,7 @@ const STATUS_LABELS = {
     'options-reconstructed': '本题选项非原卷原文',
     'missing-figure': '本题缺少原卷配图',
     'contaminated-stem': '本题题干曾串入其他题目内容',
+    'not-official-question': '本题与官方原卷同题号题目不一致',
 };
 
 /**

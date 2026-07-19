@@ -137,6 +137,8 @@ export const paperData = {
         },
         {
             id: 3,
+            sourceIntegrity: 'not-official-question',
+            integrityNote: "对照官方真题 PDF，本站此题与原卷第 3 题不一致（原卷该题答案为 B，本站选项与题干均不同）。本题可作为练习使用，但不代表原卷真题内容，待逐题回填原卷后移除此标记。",
             type: "single",
             question: `关于双向链表，下列说法错误的是（ ）。`,
             options: ["每个节点包含指向前驱和后继的指针", "可以在 $O(1)$ 时间内删除已知节点", "支持随机访问", "支持双向遍历"],
@@ -200,6 +202,8 @@ export const paperData = {
         },
         {
             id: 6,
+            sourceIntegrity: 'not-official-question',
+            integrityNote: "对照官方真题 PDF，本站此题与原卷第 6 题不一致（原卷该题答案为 D，本站选项与题干均不同）。本题可作为练习使用，但不代表原卷真题内容，待逐题回填原卷后移除此标记。",
             type: "single",
             question: `下列哪个算法用于寻找质数（ ）。`,
             options: ["冒泡排序", "二分查找", "埃氏筛法", "贪心算法"],
@@ -263,6 +267,8 @@ export const paperData = {
         },
         {
             id: 9,
+            sourceIntegrity: 'not-official-question',
+            integrityNote: "对照官方真题 PDF，本站此题与原卷第 9 题不一致（原卷该题答案为 D，本站选项与题干均不同）。本题可作为练习使用，但不代表原卷真题内容，待逐题回填原卷后移除此标记。",
             type: "single",
             question: `下列关于堆栈的说法，正确的是（ ）。`,
             options: ["先进先出", "后进先出", "支持下标访问", "底层通常由数组实现"],
@@ -284,6 +290,8 @@ export const paperData = {
         },
         {
             id: 10,
+            sourceIntegrity: 'not-official-question',
+            integrityNote: "对照官方真题 PDF，本站此题与原卷第 10 题不一致（原卷该题答案为 A，本站选项与题干均不同）。本题可作为练习使用，但不代表原卷真题内容，待逐题回填原卷后移除此标记。",
             type: "single",
             question: `在 C++ 中，\`new\` 和 \`malloc\` 的区别不包括（ ）。`,
             options: ["new 是运算符，malloc 是函数", "new 会自动调用构造函数", "new 返回具体类型的指针，malloc 返回 void*", "new 只能在 Windows 系统使用"],
@@ -389,6 +397,8 @@ export const paperData = {
         },
         {
             id: 15,
+            sourceIntegrity: 'not-official-question',
+            integrityNote: "对照官方真题 PDF，本站此题与原卷第 15 题不一致（原卷该题答案为 C，本站选项与题干均不同）。本题可作为练习使用，但不代表原卷真题内容，待逐题回填原卷后移除此标记。",
             type: "single",
             question: `关于 C++ 的静态成员，下列说法错误的是（ ）。`,
             options: ["静态成员变量为所有对象共有", "静态成员函数可以直接访问非静态成员变量", "静态成员需要在类外初始化", "可以通过类名直接调用静态成员函数"],

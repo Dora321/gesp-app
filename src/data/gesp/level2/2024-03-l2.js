@@ -182,6 +182,8 @@ C++ 基于范围的 for 循环语法：\`for (auto x : container)\`，其中 \`a
         },
         {
             id: 7,
+            sourceIntegrity: 'not-official-question',
+            integrityNote: "对照官方真题 PDF，本站此题与原卷第 7 题不一致（原卷该题答案为 D，本站选项与题干均不同）。本题可作为练习使用，但不代表原卷真题内容，待逐题回填原卷后移除此标记。",
             type: 'single',
             question: `下面 C++ 代码执行后的输出是（ ）。\n\`\`\`cpp\nint x = 1;\nwhile (x < 15) {\n    x += 2;\n    if (x % 3 == 0) cout << x << "#";\n}\n\`\`\``,
             options: ["3#9#15#", "3#9#", "3#6#9#12#15#", "3#15#"],

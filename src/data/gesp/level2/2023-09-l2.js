@@ -172,6 +172,8 @@ C++ 中获取向下取整应使用 \`floor()\` 函数：\`floor(-12.3123) = -13.
         },
         {
             id: 6,
+            sourceIntegrity: 'not-official-question',
+            integrityNote: "对照官方真题 PDF，本站此题与原卷第 6 题不一致（原卷该题答案为 C，本站选项与题干均不同）。本题可作为练习使用，但不代表原卷真题内容，待逐题回填原卷后移除此标记。",
             type: 'single',
             question: `下面 C++ 代码用于输出 N 的所有因子。横线处应填入（ ）。\n\`\`\`cpp\nfor (int i = 1; i < N + 1; i++) {\n    if (N % i == 0)\n        cout << i << " ";\n}\n\`\`\``,
             options: ["N 的所有因子，包含 1 和 N", "N 的所有因子，不包含 1 和 N", "N 的所有质因子", "N 是否为质数"],
@@ -461,6 +463,8 @@ cout << cnt;
         },
         {
             id: 12,
+            sourceIntegrity: 'not-official-question',
+            integrityNote: "对照官方真题 PDF，本站此题与原卷第 12 题不一致（原卷该题答案为 B，本站选项与题干均不同）。本题可作为练习使用，但不代表原卷真题内容，待逐题回填原卷后移除此标记。",
             type: 'single',
             question: `下面 C++ 代码执行后的输出是（ ）。\n\`\`\`cpp\nint x = 1;\nwhile (x < 15) {\n    x += 2;\n    if (x % 3 == 0 || x == 11) {\n        if (x / 10) cout << x;\n        else cout << x << ",";\n    }\n}\n\`\`\``,
             options: ["3,9,15", "3,9,11", "3,9,1115", "3,9,1115,"],

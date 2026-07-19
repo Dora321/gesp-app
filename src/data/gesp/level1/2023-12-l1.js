@@ -20,6 +20,8 @@ export const paperData = {
     // 1-15 单选题
     {
       id: 1,
+      sourceIntegrity: 'not-official-question',
+      integrityNote: "对照官方真题 PDF，本站此题与原卷第 1 题不一致（原卷该题答案为 A，本站选项与题干均不同）。本题可作为练习使用，但不代表原卷真题内容，待逐题回填原卷后移除此标记。",
       type: 'single',
       question: `下列不可做变量名的是( )。`,
       options: ['CCF_GESP', 'CCF-GESP', 'CCFGESP', 'ccfGesp'],
@@ -203,6 +205,8 @@ double sqrt(double x);
         },
     {
       id: 6,
+      sourceIntegrity: 'not-official-question',
+      integrityNote: "对照官方真题 PDF，本站此题与原卷第 6 题不一致（原卷该题答案为 C，本站选项与题干均不同）。本题可作为练习使用，但不代表原卷真题内容，待逐题回填原卷后移除此标记。",
       type: 'single',
       question: `下列哪个语句可以定义一个整型变量 a 并初始化为 10？`,
       options: ['int a = 10;', 'float a = 10;', 'char a = 10;', 'a = 10;'],
@@ -238,6 +242,8 @@ C++ 是一种强类型语言，每个变量都必须有明确的数据类型。�
         },
     {
       id: 7,
+      sourceIntegrity: 'not-official-question',
+      integrityNote: "对照官方真题 PDF，本站此题与原卷第 7 题不一致（原卷该题答案为 A，本站选项与题干均不同）。本题可作为练习使用，但不代表原卷真题内容，待逐题回填原卷后移除此标记。",
       type: 'single',
       question: `代码执行后的输出是 ( )。\n\`\`\`cpp\nint Sum = 0;\nfor (int i = 1; i <= 10; i++)\n Sum += i;\ncout << Sum;\n\`\`\``,
       options: ['45', '50', '55', '60'],
@@ -334,6 +340,8 @@ C++ 运算符优先级表（从高到低，取主要类别）：
         },
     {
       id: 9,
+      sourceIntegrity: 'not-official-question',
+      integrityNote: "对照官方真题 PDF，本站此题与原卷第 9 题不一致（原卷该题答案为 D，本站选项与题干均不同）。本题可作为练习使用，但不代表原卷真题内容，待逐题回填原卷后移除此标记。",
       type: 'single',
       question: `下列哪个函数用于在终端输出内容？`,
       options: ['cin', 'scanf', 'cout', 'abs'],
@@ -367,6 +375,8 @@ C++ 的 I/O 流机制是其标准库的重要特性。相比 C 语言的 \`print
         },
     {
       id: 10,
+      sourceIntegrity: 'not-official-question',
+      integrityNote: "对照官方真题 PDF，本站此题与原卷第 10 题不一致（原卷该题答案为 D，本站选项与题干均不同）。本题可作为练习使用，但不代表原卷真题内容，待逐题回填原卷后移除此标记。",
       type: 'single',
       question: `代码执行后的输出是 ( )。\n\`\`\`cpp\nint a = 5, b = 2;\nif (a / b > 2) cout << "OK";\nelse cout << "KO";\n\`\`\``,
       options: ['OK', 'KO', '2.5', '报错'],
@@ -409,6 +419,8 @@ else cout << "KO";
         },
     {
       id: 11,
+      sourceIntegrity: 'not-official-question',
+      integrityNote: "对照官方真题 PDF，本站此题与原卷第 11 题不一致（原卷该题答案为 B，本站选项与题干均不同）。本题可作为练习使用，但不代表原卷真题内容，待逐题回填原卷后移除此标记。",
       type: 'single',
       question: `在 C++ 中，char 类型的变量占用的内存字节数是( )。`,
       options: ['1', '2', '4', '8'],
@@ -437,6 +449,8 @@ C++ 中 \`sizeof(char)\` 的值始终为 1，\`sizeof\` 运算符返回的是字
         },
     {
       id: 12,
+      sourceIntegrity: 'not-official-question',
+      integrityNote: "对照官方真题 PDF，本站此题与原卷第 12 题不一致（原卷该题答案为 D，本站选项与题干均不同）。本题可作为练习使用，但不代表原卷真题内容，待逐题回填原卷后移除此标记。",
       type: 'single',
       question: `二进制数 1101 转换为十进制数是( )。`,
       options: ['11', '12', '13', '14'],
@@ -473,6 +487,8 @@ C++ 中 \`sizeof(char)\` 的值始终为 1，\`sizeof\` 运算符返回的是字
         },
     {
       id: 13,
+      sourceIntegrity: 'not-official-question',
+      integrityNote: "对照官方真题 PDF，本站此题与原卷第 13 题不一致（原卷该题答案为 B，本站选项与题干均不同）。本题可作为练习使用，但不代表原卷真题内容，待逐题回填原卷后移除此标记。",
       type: 'single',
       question: `C++ 程序开发的最后一个步骤通常是( )。`,
       options: ['编辑', '编译', '运行/调试', '发布'],
@@ -501,6 +517,8 @@ C++ 中 \`sizeof(char)\` 的值始终为 1，\`sizeof\` 运算符返回的是字
         },
     {
       id: 14,
+      sourceIntegrity: 'not-official-question',
+      integrityNote: "对照官方真题 PDF，本站此题与原卷第 14 题不一致（原卷该题答案为 C，本站选项与题干均不同）。本题可作为练习使用，但不代表原卷真题内容，待逐题回填原卷后移除此标记。",
       type: 'single',
       question: `下列关于注释的说法，错误的是( )。`,
       options: [

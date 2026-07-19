@@ -1,0 +1,1376 @@
+[
+  {
+    "id": "2023-03-l1",
+    "status": "no-answer-table"
+  },
+  {
+    "id": "2023-06-l1",
+    "status": "no-answer-table"
+  },
+  {
+    "id": "2023-09-l1",
+    "status": "ok",
+    "compared": 15,
+    "answerErrors": [],
+    "notOfficial": [
+      {
+        "q": 7,
+        "bank": "B",
+        "pdf": "A",
+        "bankText": "20",
+        "pdfText": "都是偶数",
+        "stemSim": 0.69
+      }
+    ],
+    "reordered": [],
+    "unknown": []
+  },
+  {
+    "id": "2023-12-l1",
+    "status": "ok",
+    "compared": 15,
+    "answerErrors": [],
+    "notOfficial": [
+      {
+        "q": 1,
+        "bank": "B",
+        "pdf": "A",
+        "bankText": "ccf-gesp",
+        "pdfText": "ccfgesp",
+        "stemSim": 0.33
+      },
+      {
+        "q": 6,
+        "bank": "A",
+        "pdf": "C",
+        "bankText": "inta=10",
+        "pdfText": "3",
+        "stemSim": 0
+      },
+      {
+        "q": 7,
+        "bank": "C",
+        "pdf": "A",
+        "bankText": "55",
+        "pdfText": "90",
+        "stemSim": 0.54
+      },
+      {
+        "q": 9,
+        "bank": "C",
+        "pdf": "D",
+        "bankText": "cout",
+        "pdfText": "cnt+=1",
+        "stemSim": 0
+      },
+      {
+        "q": 10,
+        "bank": "B",
+        "pdf": "D",
+        "bankText": "ko",
+        "pdfText": "提⽰有编译错误",
+        "stemSim": 0.09
+      },
+      {
+        "q": 11,
+        "bank": "A",
+        "pdf": "B",
+        "bankText": "1",
+        "pdfText": "21",
+        "stemSim": 0.17
+      },
+      {
+        "q": 12,
+        "bank": "C",
+        "pdf": "D",
+        "bankText": "13",
+        "pdfText": "c=char66",
+        "stemSim": 0
+      },
+      {
+        "q": 13,
+        "bank": "D",
+        "pdf": "B",
+        "bankText": "发布",
+        "pdfText": "35",
+        "stemSim": 0.13
+      },
+      {
+        "q": 14,
+        "bank": "D",
+        "pdf": "C",
+        "bankText": "注释必须写在代码之后",
+        "pdfText": "油量表",
+        "stemSim": 0
+      }
+    ],
+    "reordered": [],
+    "unknown": [
+      {
+        "q": 8,
+        "bank": "D",
+        "pdf": "C",
+        "stemSim": null
+      }
+    ]
+  },
+  {
+    "id": "2024-03-l1",
+    "status": "ok",
+    "compared": 15,
+    "answerErrors": [],
+    "notOfficial": [],
+    "reordered": [],
+    "unknown": []
+  },
+  {
+    "id": "2024-06-l1",
+    "status": "ok",
+    "compared": 15,
+    "answerErrors": [],
+    "notOfficial": [],
+    "reordered": [],
+    "unknown": []
+  },
+  {
+    "id": "2024-09-l1",
+    "status": "ok",
+    "compared": 15,
+    "answerErrors": [],
+    "notOfficial": [],
+    "reordered": [],
+    "unknown": []
+  },
+  {
+    "id": "2024-12-l1",
+    "status": "no-answer-table"
+  },
+  {
+    "id": "2025-03-l1",
+    "status": "ok",
+    "compared": 15,
+    "answerErrors": [],
+    "notOfficial": [],
+    "reordered": [],
+    "unknown": []
+  },
+  {
+    "id": "2025-06-l1",
+    "status": "ok",
+    "compared": 15,
+    "answerErrors": [
+      {
+        "q": 7,
+        "bank": "C",
+        "pdf": "D",
+        "bankText": "19",
+        "pdfText": "20",
+        "stemSim": 0.89
+      }
+    ],
+    "notOfficial": [
+      {
+        "q": 9,
+        "bank": "C",
+        "pdf": "A",
+        "bankText": "a+b=32#a+b=a+b",
+        "pdfText": "a+b=07#a+b=a+b",
+        "stemSim": 0.72
+      },
+      {
+        "q": 12,
+        "bank": "B",
+        "pdf": "C",
+        "bankText": "85",
+        "pdfText": "i>1",
+        "stemSim": 0
+      },
+      {
+        "q": 13,
+        "bank": "A",
+        "pdf": "D",
+        "bankText": "37",
+        "pdfText": "4",
+        "stemSim": 0.46
+      },
+      {
+        "q": 14,
+        "bank": "D",
+        "pdf": "C",
+        "bankText": "int",
+        "pdfText": "输出103",
+        "stemSim": 0.11
+      },
+      {
+        "q": 15,
+        "bank": "A",
+        "pdf": "B",
+        "bankText": "n/100",
+        "pdfText": "intb=i/10%10",
+        "stemSim": 0.14
+      }
+    ],
+    "reordered": [],
+    "unknown": []
+  },
+  {
+    "id": "2025-09-l1",
+    "status": "no-answer-table"
+  },
+  {
+    "id": "2025-12-l1",
+    "status": "ok",
+    "compared": 15,
+    "answerErrors": [],
+    "notOfficial": [],
+    "reordered": [],
+    "unknown": []
+  },
+  {
+    "id": "2026-03-l1",
+    "status": "ok",
+    "compared": 15,
+    "answerErrors": [],
+    "notOfficial": [],
+    "reordered": [],
+    "unknown": []
+  },
+  {
+    "id": "2023-03-l2",
+    "status": "no-answer-table"
+  },
+  {
+    "id": "2023-06-l2",
+    "status": "no-answer-table"
+  },
+  {
+    "id": "2023-09-l2",
+    "status": "ok",
+    "compared": 15,
+    "answerErrors": [],
+    "notOfficial": [
+      {
+        "q": 6,
+        "bank": "A",
+        "pdf": "C",
+        "bankText": "n的所有因子包含1和n",
+        "pdfText": "inti=ni>0i--",
+        "stemSim": 0.33
+      },
+      {
+        "q": 12,
+        "bank": "C",
+        "pdf": "B",
+        "bankText": "391115",
+        "pdfText": "3911",
+        "stemSim": 0.69
+      }
+    ],
+    "reordered": [],
+    "unknown": []
+  },
+  {
+    "id": "2023-12-l2",
+    "status": "ok",
+    "compared": 15,
+    "answerErrors": [],
+    "notOfficial": [],
+    "reordered": [],
+    "unknown": []
+  },
+  {
+    "id": "2024-03-l2",
+    "status": "ok",
+    "compared": 15,
+    "answerErrors": [],
+    "notOfficial": [
+      {
+        "q": 7,
+        "bank": "A",
+        "pdf": "D",
+        "bankText": "3#9#15#",
+        "pdfText": "81",
+        "stemSim": 0.69
+      }
+    ],
+    "reordered": [],
+    "unknown": []
+  },
+  {
+    "id": "2024-06-l2",
+    "status": "ok",
+    "compared": 15,
+    "answerErrors": [],
+    "notOfficial": [
+      {
+        "q": 1,
+        "bank": "D",
+        "pdf": "C",
+        "bankText": "大语言模型",
+        "pdfText": "3",
+        "stemSim": 0
+      },
+      {
+        "q": 9,
+        "bank": "A",
+        "pdf": "C",
+        "bankText": "i%3==0",
+        "pdfText": "36",
+        "stemSim": 0.38
+      },
+      {
+        "q": 11,
+        "bank": "C",
+        "pdf": "D",
+        "bankText": "该循环将成为死循环",
+        "pdfText": "执⾏上⾯代码将陷⼊死循环可将whilen改为whilen==0",
+        "stemSim": 0.1
+      },
+      {
+        "q": 15,
+        "bank": "A",
+        "pdf": "D",
+        "bankText": "是相关数因为它能被7整除",
+        "pdfText": "如果n输⼊3m输⼊63则将输出63是3的超级幸运数",
+        "stemSim": 0.34
+      }
+    ],
+    "reordered": [
+      {
+        "q": 10,
+        "bank": "A",
+        "pdf": "C",
+        "stemSim": 0.62
+      }
+    ],
+    "unknown": []
+  },
+  {
+    "id": "2024-09-l2",
+    "status": "ok",
+    "compared": 15,
+    "answerErrors": [],
+    "notOfficial": [],
+    "reordered": [],
+    "unknown": []
+  },
+  {
+    "id": "2024-12-l2",
+    "status": "ok",
+    "compared": 15,
+    "answerErrors": [],
+    "notOfficial": [
+      {
+        "q": 10,
+        "bank": "C",
+        "pdf": "A",
+        "bankText": "1#22",
+        "pdfText": "0010120123",
+        "stemSim": 0.29
+      }
+    ],
+    "reordered": [
+      {
+        "q": 4,
+        "bank": "A",
+        "pdf": "B",
+        "stemSim": 0.69
+      },
+      {
+        "q": 7,
+        "bank": "A",
+        "pdf": "C",
+        "stemSim": 0.54
+      }
+    ],
+    "unknown": [
+      {
+        "q": 14,
+        "bank": "B",
+        "pdf": "D",
+        "stemSim": null
+      }
+    ]
+  },
+  {
+    "id": "2025-03-l2",
+    "status": "ok",
+    "compared": 15,
+    "answerErrors": [],
+    "notOfficial": [
+      {
+        "q": 6,
+        "bank": "B",
+        "pdf": "A",
+        "bankText": "8",
+        "pdfText": "10",
+        "stemSim": 0.67
+      },
+      {
+        "q": 11,
+        "bank": "D",
+        "pdf": "C",
+        "bankText": "以上均正确",
+        "pdfText": "实现1因为应⽤了前项计算结果计算量更⼩因此效率⾼",
+        "stemSim": 0.13
+      },
+      {
+        "q": 13,
+        "bank": "A",
+        "pdf": "B",
+        "bankText": "j=ij>=1j--",
+        "pdfText": "last+=1修改为last=last+1执⾏效果相同",
+        "stemSim": 0.8
+      }
+    ],
+    "reordered": [
+      {
+        "q": 5,
+        "bank": "C",
+        "pdf": "D",
+        "stemSim": 0.69
+      }
+    ],
+    "unknown": []
+  },
+  {
+    "id": "2025-06-l2",
+    "status": "ok",
+    "compared": 15,
+    "answerErrors": [],
+    "notOfficial": [],
+    "reordered": [],
+    "unknown": []
+  },
+  {
+    "id": "2025-09-l2",
+    "status": "ok",
+    "compared": 15,
+    "answerErrors": [],
+    "notOfficial": [],
+    "reordered": [],
+    "unknown": []
+  },
+  {
+    "id": "2025-12-l2",
+    "status": "ok",
+    "compared": 15,
+    "answerErrors": [],
+    "notOfficial": [
+      {
+        "q": 10,
+        "bank": "A",
+        "pdf": "B",
+        "bankText": "inti=0whilei<10i+=1cout<<i",
+        "pdfText": "c",
+        "stemSim": 0.51
+      }
+    ],
+    "reordered": [],
+    "unknown": []
+  },
+  {
+    "id": "2026-03-l2",
+    "status": "ok",
+    "compared": 15,
+    "answerErrors": [],
+    "notOfficial": [],
+    "reordered": [],
+    "unknown": []
+  },
+  {
+    "id": "2023-06-l3",
+    "status": "no-answer-table"
+  },
+  {
+    "id": "2023-09-l3",
+    "status": "ok",
+    "compared": 15,
+    "answerErrors": [],
+    "notOfficial": [],
+    "reordered": [],
+    "unknown": []
+  },
+  {
+    "id": "2023-12-l3",
+    "status": "ok",
+    "compared": 15,
+    "answerErrors": [],
+    "notOfficial": [],
+    "reordered": [],
+    "unknown": []
+  },
+  {
+    "id": "2024-03-l3",
+    "status": "ok",
+    "compared": 15,
+    "answerErrors": [],
+    "notOfficial": [],
+    "reordered": [],
+    "unknown": []
+  },
+  {
+    "id": "2024-06-l3",
+    "status": "ok",
+    "compared": 15,
+    "answerErrors": [],
+    "notOfficial": [],
+    "reordered": [],
+    "unknown": []
+  },
+  {
+    "id": "2024-09-l3",
+    "status": "ok",
+    "compared": 15,
+    "answerErrors": [],
+    "notOfficial": [],
+    "reordered": [],
+    "unknown": []
+  },
+  {
+    "id": "2024-12-l3",
+    "status": "ok",
+    "compared": 15,
+    "answerErrors": [],
+    "notOfficial": [],
+    "reordered": [],
+    "unknown": []
+  },
+  {
+    "id": "2025-03-l3",
+    "status": "ok",
+    "compared": 15,
+    "answerErrors": [],
+    "notOfficial": [],
+    "reordered": [],
+    "unknown": []
+  },
+  {
+    "id": "2025-06-l3",
+    "status": "ok",
+    "compared": 15,
+    "answerErrors": [],
+    "notOfficial": [],
+    "reordered": [],
+    "unknown": []
+  },
+  {
+    "id": "2025-09-l3",
+    "status": "no-answer-table"
+  },
+  {
+    "id": "2025-12-l3",
+    "status": "ok",
+    "compared": 15,
+    "answerErrors": [],
+    "notOfficial": [],
+    "reordered": [],
+    "unknown": []
+  },
+  {
+    "id": "2026-03-l3",
+    "status": "ok",
+    "compared": 15,
+    "answerErrors": [],
+    "notOfficial": [],
+    "reordered": [],
+    "unknown": []
+  },
+  {
+    "id": "2023-06-l4",
+    "status": "no-answer-table"
+  },
+  {
+    "id": "2023-09-l4",
+    "status": "ok",
+    "compared": 15,
+    "answerErrors": [],
+    "notOfficial": [],
+    "reordered": [],
+    "unknown": []
+  },
+  {
+    "id": "2023-12-l4",
+    "status": "ok",
+    "compared": 15,
+    "answerErrors": [],
+    "notOfficial": [],
+    "reordered": [],
+    "unknown": []
+  },
+  {
+    "id": "2024-03-l4",
+    "status": "ok",
+    "compared": 15,
+    "answerErrors": [],
+    "notOfficial": [],
+    "reordered": [],
+    "unknown": []
+  },
+  {
+    "id": "2024-06-l4",
+    "status": "ok",
+    "compared": 15,
+    "answerErrors": [],
+    "notOfficial": [],
+    "reordered": [],
+    "unknown": []
+  },
+  {
+    "id": "2024-09-l4",
+    "status": "ok",
+    "compared": 15,
+    "answerErrors": [],
+    "notOfficial": [],
+    "reordered": [],
+    "unknown": []
+  },
+  {
+    "id": "2024-12-l4",
+    "status": "ok",
+    "compared": 15,
+    "answerErrors": [],
+    "notOfficial": [
+      {
+        "q": 9,
+        "bank": "D",
+        "pdf": "A",
+        "bankText": "冒泡排序",
+        "pdfText": "b",
+        "stemSim": 0
+      },
+      {
+        "q": 15,
+        "bank": "C",
+        "pdf": "A",
+        "bankText": "动态规划",
+        "pdfText": "屏幕上输出caughtruntimeerroroccurred",
+        "stemSim": 0.18
+      }
+    ],
+    "reordered": [],
+    "unknown": []
+  },
+  {
+    "id": "2025-03-l4",
+    "status": "ok",
+    "compared": 15,
+    "answerErrors": [],
+    "notOfficial": [],
+    "reordered": [],
+    "unknown": []
+  },
+  {
+    "id": "2025-06-l4",
+    "status": "ok",
+    "compared": 15,
+    "answerErrors": [],
+    "notOfficial": [],
+    "reordered": [],
+    "unknown": []
+  },
+  {
+    "id": "2025-09-l4",
+    "status": "ok",
+    "compared": 15,
+    "answerErrors": [],
+    "notOfficial": [],
+    "reordered": [],
+    "unknown": []
+  },
+  {
+    "id": "2025-12-l4",
+    "status": "ok",
+    "compared": 15,
+    "answerErrors": [],
+    "notOfficial": [],
+    "reordered": [],
+    "unknown": []
+  },
+  {
+    "id": "2026-03-l4",
+    "status": "ok",
+    "compared": 15,
+    "answerErrors": [],
+    "notOfficial": [],
+    "reordered": [],
+    "unknown": []
+  },
+  {
+    "id": "2023-09-l5",
+    "status": "ok",
+    "compared": 15,
+    "answerErrors": [],
+    "notOfficial": [],
+    "reordered": [],
+    "unknown": []
+  },
+  {
+    "id": "2023-12-l5",
+    "status": "ok",
+    "compared": 15,
+    "answerErrors": [],
+    "notOfficial": [
+      {
+        "q": 4,
+        "bank": "B",
+        "pdf": "A",
+        "bankText": "isevenlstaj&&isevenlstaj+1",
+        "pdfText": "bisevenlstaj&&isevenlstaj+1",
+        "stemSim": 0.83
+      }
+    ],
+    "reordered": [],
+    "unknown": []
+  },
+  {
+    "id": "2024-03-l5",
+    "status": "ok",
+    "compared": 15,
+    "answerErrors": [],
+    "notOfficial": [],
+    "reordered": [],
+    "unknown": []
+  },
+  {
+    "id": "2024-06-l5",
+    "status": "ok",
+    "compared": 15,
+    "answerErrors": [],
+    "notOfficial": [
+      {
+        "q": 3,
+        "bank": "C",
+        "pdf": "B",
+        "bankText": "支持随机访问",
+        "pdfText": "c",
+        "stemSim": 0.08
+      },
+      {
+        "q": 6,
+        "bank": "C",
+        "pdf": "D",
+        "bankText": "埃氏筛法",
+        "pdfText": "当较⼤时相⽐上题中的gcd的实现本题的gcd执⾏效率更⾼",
+        "stemSim": 0.09
+      },
+      {
+        "q": 9,
+        "bank": "B",
+        "pdf": "D",
+        "bankText": "后进先出",
+        "pdfText": "whilei<=j",
+        "stemSim": 0.08
+      },
+      {
+        "q": 10,
+        "bank": "D",
+        "pdf": "A",
+        "bankText": "new只能在windows系统使用",
+        "pdfText": "分治算法将问题分成⼦问题然后分别解决⼦问题最后合并结果",
+        "stemSim": 0
+      },
+      {
+        "q": 15,
+        "bank": "B",
+        "pdf": "C",
+        "bankText": "静态成员函数可以直接访问非静态成员变量",
+        "pdfText": "42312",
+        "stemSim": 0.06
+      }
+    ],
+    "reordered": [],
+    "unknown": [
+      {
+        "q": 8,
+        "bank": "C",
+        "pdf": "D",
+        "stemSim": null
+      }
+    ]
+  },
+  {
+    "id": "2024-09-l5",
+    "status": "ok",
+    "compared": 15,
+    "answerErrors": [],
+    "notOfficial": [
+      {
+        "q": 3,
+        "bank": "D",
+        "pdf": "C",
+        "bankText": "所有递归问题都可以直接用循环迭代解决",
+        "pdfText": "sumb函数⽐suma的时间效率更⾼",
+        "stemSim": 0.45
+      },
+      {
+        "q": 4,
+        "bank": "D",
+        "pdf": "C",
+        "bankText": "const成员变量可以在构造函数体中通过赋值初始化",
+        "pdfText": "4",
+        "stemSim": 0
+      },
+      {
+        "q": 6,
+        "bank": "B",
+        "pdf": "A",
+        "bankText": "筛选出1到n之间的所有质数",
+        "pdfText": "forintj=0j<primessize&&i*primesj<=nj++",
+        "stemSim": 0.11
+      },
+      {
+        "q": 8,
+        "bank": "B",
+        "pdf": "A",
+        "bankText": "局部最优选择导致全局最优的问题",
+        "pdfText": "b",
+        "stemSim": 0
+      },
+      {
+        "q": 9,
+        "bank": "B",
+        "pdf": "C",
+        "bankText": "new",
+        "pdfText": "快速排序对于此类输⼊的时间复杂度是",
+        "stemSim": 0
+      },
+      {
+        "q": 10,
+        "bank": "C",
+        "pdf": "B",
+        "bankText": "不可访问",
+        "pdfText": "c",
+        "stemSim": 0.11
+      },
+      {
+        "q": 11,
+        "bank": "A",
+        "pdf": "B",
+        "bankText": "有序",
+        "pdfText": "贪⼼算法",
+        "stemSim": 0
+      },
+      {
+        "q": 12,
+        "bank": "D",
+        "pdf": "A",
+        "bankText": "贪心选择",
+        "pdfText": "分治算法将问题分成⼦问题然后分别解决⼦问题最后合并结果",
+        "stemSim": 0.17
+      }
+    ],
+    "reordered": [],
+    "unknown": []
+  },
+  {
+    "id": "2024-12-l5",
+    "status": "ok",
+    "compared": 15,
+    "answerErrors": [],
+    "notOfficial": [
+      {
+        "q": 3,
+        "bank": "D",
+        "pdf": "A",
+        "bankText": "以上都是",
+        "pdfText": "dummyhead->next=headcur=dummyhead",
+        "stemSim": 0.14
+      },
+      {
+        "q": 4,
+        "bank": "B",
+        "pdf": "D",
+        "bankText": "构造函数名与类名相同",
+        "pdfText": "fiba时间复杂度为fibb的时间复杂度为",
+        "stemSim": 0.17
+      },
+      {
+        "q": 6,
+        "bank": "A",
+        "pdf": "D",
+        "bankText": "选择基准pivot进行分区",
+        "pdfText": "forinti=3i*i<=ni+=2",
+        "stemSim": 0
+      },
+      {
+        "q": 7,
+        "bank": "C",
+        "pdf": "B",
+        "bankText": "$on^2$",
+        "pdfText": "在标记⾮素数时代码从开始可以减少重复标记",
+        "stemSim": 0
+      },
+      {
+        "q": 8,
+        "bank": "B",
+        "pdf": "A",
+        "bankText": "素数判定/筛选",
+        "pdfText": "线性筛的时间复杂度是",
+        "stemSim": 0.11
+      },
+      {
+        "q": 9,
+        "bank": "C",
+        "pdf": "A",
+        "bankText": "不能",
+        "pdfText": "快速排序通过递归对⼦问题进⾏求解",
+        "stemSim": 0.16
+      },
+      {
+        "q": 11,
+        "bank": "B",
+        "pdf": "C",
+        "bankText": "$ologn$",
+        "pdfText": "递归的终⽌条件是中间元素的值等于target若数组中不包含该元素递归不会终⽌",
+        "stemSim": 0.08
+      },
+      {
+        "q": 13,
+        "bank": "D",
+        "pdf": "A",
+        "bankText": "插入排序",
+        "pdfText": "result++index--",
+        "stemSim": 0.06
+      },
+      {
+        "q": 14,
+        "bank": "C",
+        "pdf": "D",
+        "bankText": "友元函数可以访问类的私有和保护成员",
+        "pdfText": "冒泡排序采⽤了分治思想",
+        "stemSim": 0.33
+      }
+    ],
+    "reordered": [],
+    "unknown": []
+  },
+  {
+    "id": "2025-03-l5",
+    "status": "ok",
+    "compared": 15,
+    "answerErrors": [],
+    "notOfficial": [],
+    "reordered": [],
+    "unknown": []
+  },
+  {
+    "id": "2025-06-l5",
+    "status": "ok",
+    "compared": 15,
+    "answerErrors": [],
+    "notOfficial": [],
+    "reordered": [],
+    "unknown": [
+      {
+        "q": 10,
+        "bank": "D",
+        "pdf": "C",
+        "stemSim": null
+      }
+    ]
+  },
+  {
+    "id": "2025-09-l5",
+    "status": "ok",
+    "compared": 15,
+    "answerErrors": [],
+    "notOfficial": [
+      {
+        "q": 2,
+        "bank": "B",
+        "pdf": "C",
+        "bankText": "node*del=cur->nextcur->next=del->nextdeletedel",
+        "pdfText": "d",
+        "stemSim": 0.98
+      }
+    ],
+    "reordered": [],
+    "unknown": []
+  },
+  {
+    "id": "2025-12-l5",
+    "status": "ok",
+    "compared": 15,
+    "answerErrors": [],
+    "notOfficial": [],
+    "reordered": [],
+    "unknown": []
+  },
+  {
+    "id": "2026-03-l5",
+    "status": "no-answer-table"
+  },
+  {
+    "id": "2023-09-l6",
+    "status": "ok",
+    "compared": 15,
+    "answerErrors": [],
+    "notOfficial": [],
+    "reordered": [],
+    "unknown": []
+  },
+  {
+    "id": "2023-12-l6",
+    "status": "ok",
+    "compared": 15,
+    "answerErrors": [],
+    "notOfficial": [],
+    "reordered": [],
+    "unknown": []
+  },
+  {
+    "id": "2024-03-l6",
+    "status": "ok",
+    "compared": 15,
+    "answerErrors": [],
+    "notOfficial": [],
+    "reordered": [],
+    "unknown": []
+  },
+  {
+    "id": "2024-06-l6",
+    "status": "ok",
+    "compared": 15,
+    "answerErrors": [],
+    "notOfficial": [],
+    "reordered": [],
+    "unknown": []
+  },
+  {
+    "id": "2024-09-l6",
+    "status": "ok",
+    "compared": 15,
+    "answerErrors": [],
+    "notOfficial": [],
+    "reordered": [],
+    "unknown": []
+  },
+  {
+    "id": "2024-12-l6",
+    "status": "ok",
+    "compared": 15,
+    "answerErrors": [],
+    "notOfficial": [],
+    "reordered": [],
+    "unknown": []
+  },
+  {
+    "id": "2025-03-l6",
+    "status": "ok",
+    "compared": 15,
+    "answerErrors": [],
+    "notOfficial": [],
+    "reordered": [],
+    "unknown": []
+  },
+  {
+    "id": "2025-06-l6",
+    "status": "ok",
+    "compared": 15,
+    "answerErrors": [],
+    "notOfficial": [],
+    "reordered": [],
+    "unknown": []
+  },
+  {
+    "id": "2025-09-l6",
+    "status": "no-answer-table"
+  },
+  {
+    "id": "2025-12-l6",
+    "status": "ok",
+    "compared": 15,
+    "answerErrors": [],
+    "notOfficial": [],
+    "reordered": [],
+    "unknown": []
+  },
+  {
+    "id": "2026-03-l6",
+    "status": "ok",
+    "compared": 15,
+    "answerErrors": [],
+    "notOfficial": [],
+    "reordered": [],
+    "unknown": []
+  },
+  {
+    "id": "2023-12-l7",
+    "status": "ok",
+    "compared": 15,
+    "answerErrors": [],
+    "notOfficial": [],
+    "reordered": [],
+    "unknown": []
+  },
+  {
+    "id": "2024-03-l7",
+    "status": "ok",
+    "compared": 15,
+    "answerErrors": [],
+    "notOfficial": [],
+    "reordered": [],
+    "unknown": []
+  },
+  {
+    "id": "2024-06-l7",
+    "status": "ok",
+    "compared": 15,
+    "answerErrors": [],
+    "notOfficial": [],
+    "reordered": [],
+    "unknown": []
+  },
+  {
+    "id": "2024-09-l7",
+    "status": "ok",
+    "compared": 15,
+    "answerErrors": [],
+    "notOfficial": [],
+    "reordered": [],
+    "unknown": []
+  },
+  {
+    "id": "2024-12-l7",
+    "status": "ok",
+    "compared": 15,
+    "answerErrors": [],
+    "notOfficial": [],
+    "reordered": [],
+    "unknown": []
+  },
+  {
+    "id": "2025-03-l7",
+    "status": "ok",
+    "compared": 15,
+    "answerErrors": [],
+    "notOfficial": [],
+    "reordered": [],
+    "unknown": []
+  },
+  {
+    "id": "2025-06-l7",
+    "status": "ok",
+    "compared": 15,
+    "answerErrors": [],
+    "notOfficial": [],
+    "reordered": [],
+    "unknown": []
+  },
+  {
+    "id": "2025-09-l7",
+    "status": "ok",
+    "compared": 15,
+    "answerErrors": [],
+    "notOfficial": [],
+    "reordered": [],
+    "unknown": []
+  },
+  {
+    "id": "2025-12-l7",
+    "status": "ok",
+    "compared": 15,
+    "answerErrors": [],
+    "notOfficial": [],
+    "reordered": [],
+    "unknown": []
+  },
+  {
+    "id": "2026-03-l7",
+    "status": "ok",
+    "compared": 15,
+    "answerErrors": [],
+    "notOfficial": [
+      {
+        "q": 2,
+        "bank": "A",
+        "pdf": "D",
+        "bankText": "$\\1856\\$",
+        "pdfText": "唯⼀分解定理是埃⽒筛时间复杂度为的根本原因",
+        "stemSim": 0
+      },
+      {
+        "q": 3,
+        "bank": "D",
+        "pdf": "B",
+        "bankText": "3",
+        "pdfText": "它们⾄少有5个公共字符",
+        "stemSim": 0
+      },
+      {
+        "q": 5,
+        "bank": "B",
+        "pdf": "D",
+        "bankText": "32",
+        "pdfText": "查找哈希表的时间复杂度总是",
+        "stemSim": 0
+      },
+      {
+        "q": 9,
+        "bank": "B",
+        "pdf": "A",
+        "bankText": "34",
+        "pdfText": "hidebjfgca",
+        "stemSim": 0.01
+      },
+      {
+        "q": 11,
+        "bank": "C",
+        "pdf": "B",
+        "bankText": "18",
+        "pdfText": "4",
+        "stemSim": 0.19
+      },
+      {
+        "q": 13,
+        "bank": "B",
+        "pdf": "D",
+        "bankText": "$on\\logn$",
+        "pdfText": "64",
+        "stemSim": 0
+      }
+    ],
+    "reordered": [],
+    "unknown": [
+      {
+        "q": 1,
+        "bank": "A",
+        "pdf": "D",
+        "stemSim": null
+      }
+    ]
+  },
+  {
+    "id": "2023-12-l8",
+    "status": "ok",
+    "compared": 15,
+    "answerErrors": [],
+    "notOfficial": [],
+    "reordered": [],
+    "unknown": []
+  },
+  {
+    "id": "2024-03-l8",
+    "status": "ok",
+    "compared": 15,
+    "answerErrors": [],
+    "notOfficial": [
+      {
+        "q": 6,
+        "bank": "C",
+        "pdf": "D",
+        "bankText": "n个顶点的无向完全图有棵生成树",
+        "pdfText": "n个顶点的⽆向图⽣成树包含n-1条边",
+        "stemSim": 0.82
+      }
+    ],
+    "reordered": [],
+    "unknown": []
+  },
+  {
+    "id": "2024-06-l8",
+    "status": "ok",
+    "compared": 15,
+    "answerErrors": [],
+    "notOfficial": [],
+    "reordered": [],
+    "unknown": []
+  },
+  {
+    "id": "2024-09-l8",
+    "status": "ok",
+    "compared": 15,
+    "answerErrors": [],
+    "notOfficial": [],
+    "reordered": [],
+    "unknown": []
+  },
+  {
+    "id": "2024-12-l8",
+    "status": "ok",
+    "compared": 15,
+    "answerErrors": [],
+    "notOfficial": [],
+    "reordered": [],
+    "unknown": []
+  },
+  {
+    "id": "2025-03-l8",
+    "status": "ok",
+    "compared": 15,
+    "answerErrors": [],
+    "notOfficial": [],
+    "reordered": [],
+    "unknown": []
+  },
+  {
+    "id": "2025-06-l8",
+    "status": "ok",
+    "compared": 15,
+    "answerErrors": [],
+    "notOfficial": [],
+    "reordered": [],
+    "unknown": []
+  },
+  {
+    "id": "2025-09-l8",
+    "status": "ok",
+    "compared": 15,
+    "answerErrors": [],
+    "notOfficial": [],
+    "reordered": [],
+    "unknown": []
+  },
+  {
+    "id": "2025-12-l8",
+    "status": "ok",
+    "compared": 15,
+    "answerErrors": [],
+    "notOfficial": [],
+    "reordered": [],
+    "unknown": []
+  },
+  {
+    "id": "2026-03-l8",
+    "status": "ok",
+    "compared": 15,
+    "answerErrors": [],
+    "notOfficial": [
+      {
+        "q": 1,
+        "bank": "B",
+        "pdf": "D",
+        "bankText": "2160000",
+        "pdfText": "288",
+        "stemSim": 0.09
+      },
+      {
+        "q": 3,
+        "bank": "A",
+        "pdf": "B",
+        "bankText": "12012",
+        "pdfText": "c",
+        "stemSim": 0
+      },
+      {
+        "q": 4,
+        "bank": "D",
+        "pdf": "C",
+        "bankText": "112",
+        "pdfText": "80",
+        "stemSim": 0
+      },
+      {
+        "q": 15,
+        "bank": "B",
+        "pdf": "A",
+        "bankText": "一定不能选入mst在此扫描顺序下",
+        "pdfText": "1688811",
+        "stemSim": 0
+      }
+    ],
+    "reordered": [],
+    "unknown": []
+  }
+]

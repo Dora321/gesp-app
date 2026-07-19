@@ -14,6 +14,8 @@ export const paperData = {
         ...l8ProgrammingByPaper['2026-03-l8'],
         {
             id: 1,
+            sourceIntegrity: 'not-official-question',
+            integrityNote: "对照官方真题 PDF，本站此题与原卷第 1 题不一致（原卷该题答案为 D，本站选项与题干均不同）。本题可作为练习使用，但不代表原卷真题内容，待逐题回填原卷后移除此标记。",
             type: "single",
             question: `某平台生成 “ 取件码 ” 由 6 个字符组成：前 4 位为数字（0– 9），后 2 位为大写字母（A– Z），其中字母不能 为 I、O。假设数字和字母均可重复使用，要求整个取件码中恰好有 2 个数字为奇数。共有多少种不同取件码？（ ）`,
             options: [
@@ -71,6 +73,8 @@ export const paperData = {
         },
         {
             id: 3,
+            sourceIntegrity: 'not-official-question',
+            integrityNote: "对照官方真题 PDF，本站此题与原卷第 3 题不一致（原卷该题答案为 B，本站选项与题干均不同）。本题可作为练习使用，但不代表原卷真题内容，待逐题回填原卷后移除此标记。",
             type: "single",
             question: `某社团有男生 8 ⼈、⼥生 7 ⼈。现需选出 1 名队长（性别不限）、 1 名副队长（性别不限）、 2 名宣传委员（两 ⼈无角⾊区别，且必须⾄少 1 名⼥生）。假如一⼈不能兼任多职，共有多少种不同选法？（ ）`,
             options: [
@@ -102,6 +106,8 @@ export const paperData = {
         },
         {
             id: 4,
+            sourceIntegrity: 'not-official-question',
+            integrityNote: "对照官方真题 PDF，本站此题与原卷第 4 题不一致（原卷该题答案为 C，本站选项与题干均不同）。本题可作为练习使用，但不代表原卷真题内容，待逐题回填原卷后移除此标记。",
             type: "single",
             question: `二项式 $(x-2)^8$ 的展开式中 $x^6$ 项的系数为（ ）。`,
             options: [
@@ -388,6 +394,8 @@ LCS 状态转移：若 \`a[i-1]==b[j-1]\`，则 \`dp[i][j]=dp[i-1][j-1]+1\`；�
         },
         {
             id: 15,
+            sourceIntegrity: 'not-official-question',
+            integrityNote: "对照官方真题 PDF，本站此题与原卷第 15 题不一致（原卷该题答案为 A，本站选项与题干均不同）。本题可作为练习使用，但不代表原卷真题内容，待逐题回填原卷后移除此标记。",
             type: "single",
             question: `对连通无向图执⾏ Kruskal 算法。已按边权从小到大依次扫描到某条边 。此时在已经构建的部分 MST 结构中， 已在同一连通块内。关于边 的处理，下列说法正确的是（ ）。`,
             options: [

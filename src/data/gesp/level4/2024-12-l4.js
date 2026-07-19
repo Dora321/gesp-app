@@ -411,6 +411,8 @@ GESP 四级常考的稳定排序有：冒泡排序、插入排序、归并排序
         },
         {
             id: 9,
+            sourceIntegrity: 'not-official-question',
+            integrityNote: "对照官方真题 PDF，本站此题与原卷第 9 题不一致（原卷该题答案为 A，本站选项与题干均不同）。本题可作为练习使用，但不代表原卷真题内容，待逐题回填原卷后移除此标记。",
             type: "single",
             question: `在 C++ 中，\`std::sort\` 函数默认采用的排序方法（底层实现）通常不包括（ ）。`,
             options: ["插入排序", "快速排序", "堆排序", "冒泡排序"],
@@ -609,6 +611,8 @@ C++ 异常处理的执行路径：\`try\` 块中 \`throw\` 后，程序沿调用
         },
         {
             id: 15,
+            sourceIntegrity: 'not-official-question',
+            integrityNote: "对照官方真题 PDF，本站此题与原卷第 15 题不一致（原卷该题答案为 A，本站选项与题干均不同）。本题可作为练习使用，但不代表原卷真题内容，待逐题回填原卷后移除此标记。",
             type: "single",
             question: `GESP 4 级认证不包含下列哪个知识点（ ）。`,
             options: ["一维数组", "结构体", "动态规划", "函数嵌套调用"],

@@ -227,6 +227,8 @@ C++ 中的Swap算法有多种实现方式。除了加减法（仅适用于整数
         },
     {
       id: 7,
+      sourceIntegrity: 'not-official-question',
+      integrityNote: "对照官方真题 PDF，本站此题与原卷第 7 题不一致（原卷该题答案为 D，本站选项与题干均不同）。本题可作为练习使用，但不代表原卷真题内容，待逐题回填原卷后移除此标记。",
       type: 'single',
       question: `定义整型变量 int a = 16，则执行 a += ++a % 3 之后，a 的值会是 ( )。`,
       options: ['3', '17', '19', '20'],
@@ -300,6 +302,8 @@ C++ 中的Swap算法有多种实现方式。除了加减法（仅适用于整数
     },
     {
       id: 9,
+      sourceIntegrity: 'not-official-question',
+      integrityNote: "对照官方真题 PDF，本站此题与原卷第 9 题不一致（原卷该题答案为 A，本站选项与题干均不同）。本题可作为练习使用，但不代表原卷真题内容，待逐题回填原卷后移除此标记。",
       type: 'single',
       question: `下面 C++ 代码执行后的输出是 ( )。\n\`\`\`cpp\nint a = 3, b = 4;\nprintf("a+b=%d2#a+b={a+b}", a, b, a+b);\n\`\`\``,
       options: [
@@ -421,6 +425,8 @@ C++ 中的Swap算法有多种实现方式。除了加减法（仅适用于整数
         },
     {
       id: 12,
+      sourceIntegrity: 'not-official-question',
+      integrityNote: "对照官方真题 PDF，本站此题与原卷第 12 题不一致（原卷该题答案为 C，本站选项与题干均不同）。本题可作为练习使用，但不代表原卷真题内容，待逐题回填原卷后移除此标记。",
       type: 'single',
       question: `15 % 2+15 / 2.0 的值是 ( )。`,
       options: ['8', '8.5', '4.5', '1.5'],
@@ -461,6 +467,8 @@ C++ 的"类型提升（Promotion）"规则要求：当二元运算符的两个�
         },
     {
       id: 13,
+      sourceIntegrity: 'not-official-question',
+      integrityNote: "对照官方真题 PDF，本站此题与原卷第 13 题不一致（原卷该题答案为 D，本站选项与题干均不同）。本题可作为练习使用，但不代表原卷真题内容，待逐题回填原卷后移除此标记。",
       type: 'single',
       question: `下面 C++ 代码执行后的输出是 ( )。\n\`\`\`cpp\nint n = 10, sum = 0;\nfor (int i = 1; i <= n; i++) {\n if (i % 3 == 0) continue;\n sum += i;\n}\ncout << sum;\n\n\`\`\``,
       options: ['37', '45', '55', '18'],
@@ -500,6 +508,8 @@ C++ 的"类型提升（Promotion）"规则要求：当二元运算符的两个�
         },
     {
       id: 14,
+      sourceIntegrity: 'not-official-question',
+      integrityNote: "对照官方真题 PDF，本站此题与原卷第 14 题不一致（原卷该题答案为 C，本站选项与题干均不同）。本题可作为练习使用，但不代表原卷真题内容，待逐题回填原卷后移除此标记。",
       type: 'single',
       question: `在 C++ 中，下列哪个关键字用于定义整型变量？`,
       options: ['float', 'double', 'char', 'int'],
@@ -539,6 +549,8 @@ C++ 中定义变量时，关键字直接决定了变量能存储的数据类型�
         },
     {
       id: 15,
+      sourceIntegrity: 'not-official-question',
+      integrityNote: "对照官方真题 PDF，本站此题与原卷第 15 题不一致（原卷该题答案为 B，本站选项与题干均不同）。本题可作为练习使用，但不代表原卷真题内容，待逐题回填原卷后移除此标记。",
       type: 'single',
       question: `已知整型变量 n = 567，下列哪个表达式可以得到其百位上的数字 5？`,
       options: ['n / 100', 'n / 10 % 10', 'n % 100', 'n % 10'],

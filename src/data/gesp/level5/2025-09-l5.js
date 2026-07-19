@@ -116,6 +116,8 @@ export const paperData = {
         },
         {
             id: 2,
+            sourceIntegrity: 'not-official-question',
+            integrityNote: "对照官方真题 PDF，本站此题与原卷第 2 题不一致（原卷该题答案为 C，本站选项与题干均不同）。本题可作为练习使用，但不代表原卷真题内容，待逐题回填原卷后移除此标记。",
             type: "single",
             question: `函数 removeElements 删除单链表中所有结点值等于 val 的结点，并返回新的头结点。其中链表头结点为 head，则横线处应填写（ ）。`,
             options: [

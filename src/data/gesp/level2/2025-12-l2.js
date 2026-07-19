@@ -311,6 +311,8 @@ cnt = 1 + 3 + 5 + 7 + 9 = 25
         },
         {
             id: 10,
+            sourceIntegrity: 'not-official-question',
+            integrityNote: "对照官方真题 PDF，本站此题与原卷第 10 题不一致（原卷该题答案为 B，本站选项与题干均不同）。本题可作为练习使用，但不代表原卷真题内容，待逐题回填原卷后移除此标记。",
             type: 'single',
             question: `下面代码段，与题干 given 代码 \`for (i = 0; i < 10; i++) cout << i;\` 输出效果“不一致”的是（ ）。`,
             options: [

@@ -218,6 +218,8 @@ export const paperData = {
         },
         {
             id: 4,
+            sourceIntegrity: 'not-official-question',
+            integrityNote: "对照官方真题 PDF，本站此题与原卷第 4 题不一致（原卷该题答案为 A，本站选项与题干均不同）。本题可作为练习使用，但不代表原卷真题内容，待逐题回填原卷后移除此标记。",
             type: "single",
             question: `下面的C++用于对 lstA 排序，使得偶数在前奇数在后，横线处应填入( )。`,
             options: [

@@ -139,6 +139,8 @@ export const paperData = {
         },
         {
             id: 3,
+            sourceIntegrity: 'not-official-question',
+            integrityNote: "对照官方真题 PDF，本站此题与原卷第 3 题不一致（原卷该题答案为 A，本站选项与题干均不同）。本题可作为练习使用，但不代表原卷真题内容，待逐题回填原卷后移除此标记。",
             type: "single",
             question: `下列哪个操作属于线性表的基本操作（ ）。`,
             options: ["查找", "插入", "删除", "以上都是"],
@@ -160,6 +162,8 @@ export const paperData = {
         },
         {
             id: 4,
+            sourceIntegrity: 'not-official-question',
+            integrityNote: "对照官方真题 PDF，本站此题与原卷第 4 题不一致（原卷该题答案为 D，本站选项与题干均不同）。本题可作为练习使用，但不代表原卷真题内容，待逐题回填原卷后移除此标记。",
             type: "single",
             question: `关于 C++ 的类和对象，下列说法正确的是（ ）。`,
             options: [
@@ -207,6 +211,8 @@ export const paperData = {
         },
         {
             id: 6,
+            sourceIntegrity: 'not-official-question',
+            integrityNote: "对照官方真题 PDF，本站此题与原卷第 6 题不一致（原卷该题答案为 D，本站选项与题干均不同）。本题可作为练习使用，但不代表原卷真题内容，待逐题回填原卷后移除此标记。",
             type: "single",
             question: `快速排序的分治策略核心是（ ）。`,
             options: ["选择基准（Pivot）进行分区", "将数组对半分开", "逐步构建有序子序列", "随机交换元素"],
@@ -228,6 +234,8 @@ export const paperData = {
         },
         {
             id: 7,
+            sourceIntegrity: 'not-official-question',
+            integrityNote: "对照官方真题 PDF，本站此题与原卷第 7 题不一致（原卷该题答案为 B，本站选项与题干均不同）。本题可作为练习使用，但不代表原卷真题内容，待逐题回填原卷后移除此标记。",
             type: "single",
             question: `下列哪个时间复杂度高于 $O(n log n)$（ ）。`,
             options: ["$O(N)$", "$O(log n)$", "$O(N^2)$", "$O(1)$"],
@@ -249,6 +257,8 @@ export const paperData = {
         },
         {
             id: 8,
+            sourceIntegrity: 'not-official-question',
+            integrityNote: "对照官方真题 PDF，本站此题与原卷第 8 题不一致（原卷该题答案为 A，本站选项与题干均不同）。本题可作为练习使用，但不代表原卷真题内容，待逐题回填原卷后移除此标记。",
             type: "single",
             question: `埃氏筛法用于求解（ ）问题。`,
             options: ["最大公约数", "素数判定/筛选", "矩阵乘法", "图的遍历"],
@@ -270,6 +280,8 @@ export const paperData = {
         },
         {
             id: 9,
+            sourceIntegrity: 'not-official-question',
+            integrityNote: "对照官方真题 PDF，本站此题与原卷第 9 题不一致（原卷该题答案为 A，本站选项与题干均不同）。本题可作为练习使用，但不代表原卷真题内容，待逐题回填原卷后移除此标记。",
             type: "single",
             question: `关于 C++ 的继承，派生类（ ）访问基类的私有成员。`,
             options: ["可以直接", "可以通过友元函数", "不能", "只有在多重继承时可以"],
@@ -317,6 +329,8 @@ export const paperData = {
         },
         {
             id: 11,
+            sourceIntegrity: 'not-official-question',
+            integrityNote: "对照官方真题 PDF，本站此题与原卷第 11 题不一致（原卷该题答案为 C，本站选项与题干均不同）。本题可作为练习使用，但不代表原卷真题内容，待逐题回填原卷后移除此标记。",
             type: "single",
             question: `二分查找成功的平均查找长度是（ ）。`,
             options: ["$O(N)$", "$O(log n)$", "$O(n log n)$", "$O(1)$"],
@@ -359,6 +373,8 @@ export const paperData = {
         },
         {
             id: 13,
+            sourceIntegrity: 'not-official-question',
+            integrityNote: "对照官方真题 PDF，本站此题与原卷第 13 题不一致（原卷该题答案为 A，本站选项与题干均不同）。本题可作为练习使用，但不代表原卷真题内容，待逐题回填原卷后移除此标记。",
             type: "single",
             question: `下列哪种排序算法在最坏情况下性能最差（ ）。`,
             options: ["归并排序", "快速排序", "堆排序", "插入排序"],
@@ -380,6 +396,8 @@ export const paperData = {
         },
         {
             id: 14,
+            sourceIntegrity: 'not-official-question',
+            integrityNote: "对照官方真题 PDF，本站此题与原卷第 14 题不一致（原卷该题答案为 D，本站选项与题干均不同）。本题可作为练习使用，但不代表原卷真题内容，待逐题回填原卷后移除此标记。",
             type: "single",
             question: `关于 C++ 的友元函数（friend），下列说法正确的是（ ）。`,
             options: [

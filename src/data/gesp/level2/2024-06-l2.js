@@ -10,6 +10,8 @@ export const paperData = {
     questions: [
         {
             id: 1,
+            sourceIntegrity: 'not-official-question',
+            integrityNote: "对照官方真题 PDF，本站此题与原卷第 1 题不一致（原卷该题答案为 C，本站选项与题干均不同）。本题可作为练习使用，但不代表原卷真题内容，待逐题回填原卷后移除此标记。",
             type: 'single',
             question: `人工智能（AI）在近期非常火爆，其中经常被提及的“大模型”最贴切是指（ ）。`,
             options: ["大电脑模型", "大规模智能", "智能的单位", "大语言模型"],
@@ -293,6 +295,8 @@ switch 语句中，如果 case 对应的语句块末尾没有 break，会依次�
         },
         {
             id: 9,
+            sourceIntegrity: 'not-official-question',
+            integrityNote: "对照官方真题 PDF，本站此题与原卷第 9 题不一致（原卷该题答案为 C，本站选项与题干均不同）。本题可作为练习使用，但不代表原卷真题内容，待逐题回填原卷后移除此标记。",
             type: 'single',
             question: `下面 C++ 代码用于输出 1-100 之间能被 3 整除的数，横线处应填入（ ）。\n\`\`\`cpp\nfor (int i = 1; i <= 100; i++) {\n    if (____) cout << i << " ";\n}\n\`\`\``,
             options: ["i % 3 == 0", "i / 3 == 0", "i % 3 = 0", "i / 3 = 0"],
@@ -390,6 +394,8 @@ for (int i = 1; i <= 100; i++) {
         },
         {
             id: 11,
+            sourceIntegrity: 'not-official-question',
+            integrityNote: "对照官方真题 PDF，本站此题与原卷第 11 题不一致（原卷该题答案为 D，本站选项与题干均不同）。本题可作为练习使用，但不代表原卷真题内容，待逐题回填原卷后移除此标记。",
             type: 'single',
             question: `关于 while(N) 循环的说法，若 N 为正整数且循环体内没有修改 N 的值，说法正确的是（ ）。`,
             options: ["该循环一次都不会执行", "该循环执行一次后退出", "该循环将成为死循环", "该循环能否执行取决于 N 是否为偶数"],
@@ -545,6 +551,8 @@ if-else 链与独立 if 的区别：if-else 链中最多只有一个分支执行
         },
         {
             id: 15,
+            sourceIntegrity: 'not-official-question',
+            integrityNote: "对照官方真题 PDF，本站此题与原卷第 15 题不一致（原卷该题答案为 D，本站选项与题干均不同）。本题可作为练习使用，但不代表原卷真题内容，待逐题回填原卷后移除此标记。",
             type: 'single',
             question: `判断 21 是否为 7 的相关数（指能被整除或数位中包含 7），说法正确的是（ ）。`,
             options: ["是相关数，因为它能被 7 整除", "不是相关数，因为 2+1 不等于 7", "是相关数，因为 21 的某位是 7", "不是相关数，因为它不满足整除条件"],

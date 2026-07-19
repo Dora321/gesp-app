@@ -90,6 +90,8 @@ export const paperData = {
         },
         {
             id: 2,
+            sourceIntegrity: 'not-official-question',
+            integrityNote: "对照官方真题 PDF，本站此题与原卷第 2 题不一致（原卷该题答案为 D，本站选项与题干均不同）。本题可作为练习使用，但不代表原卷真题内容，待逐题回填原卷后移除此标记。",
             type: "single",
             question: `已知三个序列：$s_1 = \\{3, 1, 8, 2, 5, 6, 7, 4\\}$，$s_2 = \\{1, 5, 1, 8, 6, 4, 7, 5, 6\\}$，$s_3 = \\{1, 8, 3, 5, 7, 6, 2, 4\\}$。以下哪个序列是它们的最长公共子序列（ ）。`,
             options: [
@@ -119,6 +121,8 @@ export const paperData = {
         },
         {
             id: 3,
+            sourceIntegrity: 'not-official-question',
+            integrityNote: "对照官方真题 PDF，本站此题与原卷第 3 题不一致（原卷该题答案为 B，本站选项与题干均不同）。本题可作为练习使用，但不代表原卷真题内容，待逐题回填原卷后移除此标记。",
             type: "single",
             question: `现有一个地址区间为 $[0, $n-1$]$ 的哈希表，当出现冲突情况，会往后找第一个空的地址存储（到 $n-1$ 冲突了就从 $0$ 开始往后），现在要依次存储 $\\{20, 30, 20, 15, 6\\}$，哈希函数为 $H(key) = key \\bmod 7$。其中 $6$ 存储在哈希表哪个地址中 （ ）。`,
             options: [
@@ -176,6 +180,8 @@ export const paperData = {
         },
         {
             id: 5,
+            sourceIntegrity: 'not-official-question',
+            integrityNote: "对照官方真题 PDF，本站此题与原卷第 5 题不一致（原卷该题答案为 D，本站选项与题干均不同）。本题可作为练习使用，但不代表原卷真题内容，待逐题回填原卷后移除此标记。",
             type: "single",
             question: `一棵深度为 6（根节点深度为 1）的完全二叉树，节点总数最少有（ ）。`,
             options: [
@@ -274,6 +280,8 @@ export const paperData = {
         },
         {
             id: 9,
+            sourceIntegrity: 'not-official-question',
+            integrityNote: "对照官方真题 PDF，本站此题与原卷第 9 题不一致（原卷该题答案为 A，本站选项与题干均不同）。本题可作为练习使用，但不代表原卷真题内容，待逐题回填原卷后移除此标记。",
             type: "single",
             question: `有 5 个字符，它们出现的次数分别为 2 次、 2 次、 3 次、 3 次、 5 次。现在要用哈夫曼编码的方式来为这些字符进 ⾏编码，最小加权路径长度 WPL （每个字符的出现次数 它的编码长度，再把每个字符结果加起来）的值为（ ）。`,
             options: [
@@ -326,6 +334,8 @@ WPL = 所有内部结点权值之和 = 4+6+9+15 = 34。也可按带权路径：2
         },
         {
             id: 11,
+            sourceIntegrity: 'not-official-question',
+            integrityNote: "对照官方真题 PDF，本站此题与原卷第 11 题不一致（原卷该题答案为 B，本站选项与题干均不同）。本题可作为练习使用，但不代表原卷真题内容，待逐题回填原卷后移除此标记。",
             type: "single",
             question: `一个简单无向图有 36 条边，且每个顶点的度数都为 4，则图的顶点个数为（ ）。`,
             options: [
@@ -376,6 +386,8 @@ WPL = 所有内部结点权值之和 = 4+6+9+15 = 34。也可按带权路径：2
         },
         {
             id: 13,
+            sourceIntegrity: 'not-official-question',
+            integrityNote: "对照官方真题 PDF，本站此题与原卷第 13 题不一致（原卷该题答案为 D，本站选项与题干均不同）。本题可作为练习使用，但不代表原卷真题内容，待逐题回填原卷后移除此标记。",
             type: "single",
             question: `假设一个算法时间复杂度的递推式是 $T(n) = 2T(n/2)+n$ ($n$ 为正整数)，且 $T(1) = 1$，那么这个算法的时间复杂度是（ ）。`,
             options: [

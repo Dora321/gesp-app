@@ -152,6 +152,8 @@ export const paperData = {
         },
         {
             id: 3,
+            sourceIntegrity: 'not-official-question',
+            integrityNote: "对照官方真题 PDF，本站此题与原卷第 3 题不一致（原卷该题答案为 C，本站选项与题干均不同）。本题可作为练习使用，但不代表原卷真题内容，待逐题回填原卷后移除此标记。",
             type: "single",
             question: `对递归和迭代，说法错误的是（ ）。`,
             options: [
@@ -178,6 +180,8 @@ export const paperData = {
         },
         {
             id: 4,
+            sourceIntegrity: 'not-official-question',
+            integrityNote: "对照官方真题 PDF，本站此题与原卷第 4 题不一致（原卷该题答案为 C，本站选项与题干均不同）。本题可作为练习使用，但不代表原卷真题内容，待逐题回填原卷后移除此标记。",
             type: "single",
             question: `下列关于 C++ 中 const 的说法，错误的是（ ）。`,
             options: [
@@ -225,6 +229,8 @@ export const paperData = {
         },
         {
             id: 6,
+            sourceIntegrity: 'not-official-question',
+            integrityNote: "对照官方真题 PDF，本站此题与原卷第 6 题不一致（原卷该题答案为 A，本站选项与题干均不同）。本题可作为练习使用，但不代表原卷真题内容，待逐题回填原卷后移除此标记。",
             type: "single",
             question: `埃氏筛法的主要功能是（ ）。`,
             options: ["求两个数的最大公约数", "筛选出 1 到 N 之间的所有质数", "判断一个数是否为质数", "对一个数进行质因数分解"],
@@ -267,6 +273,8 @@ export const paperData = {
         },
         {
             id: 8,
+            sourceIntegrity: 'not-official-question',
+            integrityNote: "对照官方真题 PDF，本站此题与原卷第 8 题不一致（原卷该题答案为 A，本站选项与题干均不同）。本题可作为练习使用，但不代表原卷真题内容，待逐题回填原卷后移除此标记。",
             type: "single",
             question: `贪心算法通常解决（ ）问题。`,
             options: ["所有全局最优解", "局部最优选择导致全局最优的问题", "需要枚举所有可能性的问题", "需要通过动态规划解决的问题"],
@@ -288,6 +296,8 @@ export const paperData = {
         },
         {
             id: 9,
+            sourceIntegrity: 'not-official-question',
+            integrityNote: "对照官方真题 PDF，本站此题与原卷第 9 题不一致（原卷该题答案为 C，本站选项与题干均不同）。本题可作为练习使用，但不代表原卷真题内容，待逐题回填原卷后移除此标记。",
             type: "single",
             question: `下列哪个操作符用于动态分配内存并调用构造函数（ ）。`,
             options: ["malloc", "new", "calloc", "alloc"],
@@ -309,6 +319,8 @@ export const paperData = {
         },
         {
             id: 10,
+            sourceIntegrity: 'not-official-question',
+            integrityNote: "对照官方真题 PDF，本站此题与原卷第 10 题不一致（原卷该题答案为 B，本站选项与题干均不同）。本题可作为练习使用，但不代表原卷真题内容，待逐题回填原卷后移除此标记。",
             type: "single",
             question: `在 C++ 中，基类中的私有成员在公有派生类中（ ）。`,
             options: ["变为公有", "变为保护", "不可访问", "保持私有"],
@@ -330,6 +342,8 @@ export const paperData = {
         },
         {
             id: 11,
+            sourceIntegrity: 'not-official-question',
+            integrityNote: "对照官方真题 PDF，本站此题与原卷第 11 题不一致（原卷该题答案为 B，本站选项与题干均不同）。本题可作为练习使用，但不代表原卷真题内容，待逐题回填原卷后移除此标记。",
             type: "single",
             question: `二分查找的基础要求是序列（ ）。`,
             options: ["有序", "无序", "长度为 2 的幂", "由整数组成"],
@@ -351,6 +365,8 @@ export const paperData = {
         },
         {
             id: 12,
+            sourceIntegrity: 'not-official-question',
+            integrityNote: "对照官方真题 PDF，本站此题与原卷第 12 题不一致（原卷该题答案为 A，本站选项与题干均不同）。本题可作为练习使用，但不代表原卷真题内容，待逐题回填原卷后移除此标记。",
             type: "single",
             question: `分治策略不包括下列哪个步骤（ ）。`,
             options: ["分解", "解决", "合并", "贪心选择"],

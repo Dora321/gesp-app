@@ -214,6 +214,8 @@ cout << tnt;
         },
         {
             id: 6,
+            sourceIntegrity: 'not-official-question',
+            integrityNote: "对照官方真题 PDF，本站此题与原卷第 6 题不一致（原卷该题答案为 A，本站选项与题干均不同）。本题可作为练习使用，但不代表原卷真题内容，待逐题回填原卷后移除此标记。",
             type: 'single',
             question: `下面 C++ 代码执行后输出是（ ）。\n\`\`\`cpp\nint i = 0;\nfor (i = 0; i < 10; i++) {\n    if (i % 2) continue;\n    if (i == 8) break;\n}\ncout << i;\n\`\`\``,
             options: ["10", "8", "0", "不确定"],
@@ -453,6 +455,8 @@ while (j > 0) {           // 循环直到所有数位处理完毕
         },
         {
             id: 11,
+            sourceIntegrity: 'not-official-question',
+            integrityNote: "对照官方真题 PDF，本站此题与原卷第 11 题不一致（原卷该题答案为 C，本站选项与题干均不同）。本题可作为练习使用，但不代表原卷真题内容，待逐题回填原卷后移除此标记。",
             type: 'single',
             question: `能正确判断 “a 等于 0 且 b 等于 0” 的是（ ）。`,
             options: ["!a && !b", "!(a || b)", "a == 0 && b == 0", "以上均正确"],
@@ -509,6 +513,8 @@ while (j > 0) {           // 循环直到所有数位处理完毕
         },
         {
             id: 13,
+            sourceIntegrity: 'not-official-question',
+            integrityNote: "对照官方真题 PDF，本站此题与原卷第 13 题不一致（原卷该题答案为 B，本站选项与题干均不同）。本题可作为练习使用，但不代表原卷真题内容，待逐题回填原卷后移除此标记。",
             type: 'single',
             question: "下面 C++ 代码实现输出如下图形，相关说法错误的是（ ）。\n\n```text\n请输入层数N：10\n1\n2 3\n4 5 6\n7 8 9 1\n2 3 4 5 6\n7 8 9 1 2 3\n4 5 6 7 8 9 1\n2 3 4 5 6 7 8 9\n1 2 3 4 5 6 7 8 9\n```\n\n```cpp\nint i, j;\nint last, N;\ncout << \"请输入层数N：\";\ncin >> N;\nlast = 1;\nfor (i = 1; i < N; i++) {\n    for (j = 1; j < i + 1; j++) { // L1\n        if (last > 9)\n            last = 1;\n        cout << last << \" \";\n        last += 1;\n    }\n    printf(\"\\n\");\n}\n```",
             options: ["j = i; j >= 1; j--", "j = 1; j <= i; j++", "j = N; j >= 1; j--", "j = 1; j <= N; j++"],

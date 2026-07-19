@@ -232,6 +232,8 @@ C++ 中取模运算符 \`%\` 要求左右操作数均为整数类型。\`2.5\` �
         },
     {
       id: 7,
+      sourceIntegrity: 'not-official-question',
+      integrityNote: "对照官方真题 PDF，本站此题与原卷第 7 题不一致（原卷该题答案为 A，本站选项与题干均不同）。本题可作为练习使用，但不代表原卷真题内容，待逐题回填原卷后移除此标记。",
       type: 'single',
       question: `下面 C++ 代码执行后的输出是（ ）。\n\`\`\`cpp\nint a = 12, b = 20;\nint c = a-b;\nif (c > 0) cout << a;\nelse cout << b;\n\`\`\``,
       options: ['12', '20', '8', '-8'],

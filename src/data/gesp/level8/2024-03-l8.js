@@ -239,6 +239,8 @@ C++ 在定义并初始化二维数组时，只有第一维（行数）可以省�
         },
         {
             id: 6,
+            sourceIntegrity: 'not-official-question',
+            integrityNote: "对照官方真题 PDF，本站此题与原卷第 6 题不一致（原卷该题答案为 D，本站选项与题干均不同）。本题可作为练习使用，但不代表原卷真题内容，待逐题回填原卷后移除此标记。",
             type: "single",
             question: `关于生成树的说法，错误的是（ ）。`,
             options: [

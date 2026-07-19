@@ -359,6 +359,8 @@ cout << tnt;          // 输出最终结果
         },
         {
             id: 10,
+            sourceIntegrity: 'not-official-question',
+            integrityNote: "对照官方真题 PDF，本站此题与原卷第 10 题不一致（原卷该题答案为 A，本站选项与题干均不同）。本题可作为练习使用，但不代表原卷真题内容，待逐题回填原卷后移除此标记。",
             type: 'single',
             question: `执行下面 C++ 代码后其输出是（ ）。\n\`\`\`cpp\nint a = 3, b = 2;\nif (a = b) cout << "1#";\nelse cout << "2#";\ncout << a << b;\n\`\`\``,
             options: ['1#32', '2#32', '1#22', '2#22'],
