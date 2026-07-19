@@ -538,7 +538,7 @@ const DebugSlide = () => {
                                 {`print(random.randint(1, 10))`}
                             </span>
                         </pre>
-                        {!fixed && <div className="absolute top-2 right-4 text-red-400 text-xs animate-pulse">IndentationError!</div>}
+                        {!fixed && <div className="absolute top-2 right-4 text-red-300 text-xs animate-pulse">IndentationError!</div>}
                     </div>
                     <Button
                         onClick={() => setFixed(!fixed)}

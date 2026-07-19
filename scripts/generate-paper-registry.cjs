@@ -207,6 +207,32 @@ for (const levelDir of LEVELS) {
   }
 }
 
+// Merge the source registry (authoritative for links/hashes) into paper meta.
+// Papers previously stored a mirror link under `source.officialPdf`, which made
+// mirrors look like official CCF links; the registry keeps the two apart.
+{
+  const sourcesFile = path.resolve(DATA_DIR, 'paperSources.js');
+  if (fs.existsSync(sourcesFile)) {
+    const text = fs.readFileSync(sourcesFile, 'utf-8');
+    const entries = new Map();
+    const blockRe = /'([\d-]+l\d)':\s*\{([\s\S]*?)\}/g;
+    let match;
+    while ((match = blockRe.exec(text)) !== null) {
+      const body = match[2];
+      const read = key => body.match(new RegExp(`${key}:\\s*'([^']*)'`))?.[1] || '';
+      entries.set(match[1], { officialUrl: read('officialUrl'), mirrorUrl: read('mirrorUrl') });
+    }
+    for (const paper of papers) {
+      const entry = entries.get(paper.id);
+      if (!entry) continue;
+      paper.officialUrl = entry.officialUrl;
+      paper.mirrorUrl = entry.mirrorUrl;
+      // sourceUrl stays the single "best available" link for existing consumers.
+      paper.sourceUrl = entry.officialUrl || entry.mirrorUrl || paper.sourceUrl;
+    }
+  }
+}
+
 const knownPaperIds = new Set(papers.map(paper => paper.id));
 for (const paperId of verifiedCorrectionMeta.keys()) {
   if (!knownPaperIds.has(paperId)) {
@@ -221,7 +247,7 @@ papers.sort((a, b) => a.level - b.level || a.year - b.year || a.month - b.month)
 
 const paperIdsLine = papers.map(p => `  '${p.id}',`).join('\n');
 const paperMetaLines = papers.map(p =>
-  `  '${p.id}': { level: ${p.level}, year: ${p.year}, month: ${p.month}, title: ${jsString(p.title)}, questionCount: ${p.questionCount}, placeholderCount: ${p.placeholderCount}, needsReview: ${p.placeholderCount > 0}, unofficial: ${p.unofficial}, reviewStatus: ${jsString(p.reviewStatus)}, reviewedBy: ${jsString(p.reviewedBy)}, reviewedAt: ${jsString(p.reviewedAt)}, reviewScope: ${jsString(p.reviewScope)}, sourceUrl: ${jsString(p.sourceUrl)} },`
+  `  '${p.id}': { level: ${p.level}, year: ${p.year}, month: ${p.month}, title: ${jsString(p.title)}, questionCount: ${p.questionCount}, placeholderCount: ${p.placeholderCount}, needsReview: ${p.placeholderCount > 0}, unofficial: ${p.unofficial}, reviewStatus: ${jsString(p.reviewStatus)}, reviewedBy: ${jsString(p.reviewedBy)}, reviewedAt: ${jsString(p.reviewedAt)}, reviewScope: ${jsString(p.reviewScope)}, sourceUrl: ${jsString(p.sourceUrl)}, officialUrl: ${jsString(p.officialUrl)}, mirrorUrl: ${jsString(p.mirrorUrl)} },`
 ).join('\n');
 const loadersLines = papers.map(p =>
   `    '${p.id}': () => import('${p.relativePath}').then(m => m.paperData),`

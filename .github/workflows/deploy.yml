@@ -39,6 +39,9 @@ jobs:
       - name: Validate programming questions (compile + run samples)
         run: npm run validate:programming:run
 
+      - name: Check paper source registry
+        run: npm run check:sources
+
       - name: Verify sitemap is current
         run: |
           npm run generate:sitemap

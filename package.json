@@ -13,6 +13,8 @@
     "legacy:check:objective": "node scripts/check-objective-level123.js",
     "legacy:qa:objective": "node scripts/qa-objective-level123.js",
     "validate:bank": "node scripts/validate-question-bank.js",
+    "check:sources": "node scripts/check-paper-sources.mjs",
+    "check:sources:online": "node scripts/check-paper-sources.mjs --online",
     "validate:programming": "node scripts/validate-programming-questions.js",
     "validate:programming:compile": "node scripts/validate-programming-questions.js --compile",
     "validate:programming:run": "node scripts/validate-programming-questions.js --run",

@@ -60,6 +60,8 @@ const QuestionBankHome = () => {
                     reviewedAt: meta.reviewedAt,
                     reviewScope: meta.reviewScope,
                     sourceUrl: meta.sourceUrl,
+                    officialUrl: meta.officialUrl,
+                    mirrorUrl: meta.mirrorUrl,
                     unofficial: Boolean(meta.unofficial),
                     dimensions: resolveVerification(meta).dimensions,
                 };
@@ -283,6 +285,21 @@ const QuestionBankHome = () => {
                                         <p className="mb-3 text-xs leading-5 text-slate-500">
                                             {paper.reviewScope || '已校订内容'}
                                             {paper.reviewedAt && ` · ${paper.reviewedAt}`}
+                                        </p>
+                                    )}
+
+                                    {(paper.officialUrl || paper.mirrorUrl) && (
+                                        <p className="mb-3 text-xs text-slate-500">
+                                            原卷来源：
+                                            <a
+                                                href={paper.officialUrl || paper.mirrorUrl}
+                                                target="_blank"
+                                                rel="noreferrer"
+                                                onClick={(e) => e.stopPropagation()}
+                                                className="font-medium text-blue-600 underline-offset-2 hover:underline"
+                                            >
+                                                {paper.officialUrl ? 'CCF 官方 PDF' : '镜像 PDF（暂无官方直链）'}
+                                            </a>
                                         </p>
                                     )}
 

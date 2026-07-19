@@ -414,7 +414,7 @@ export const ListSlide = () => {
                                     clear()
                                 </Button>
                             </div>
-                            <p className="text-xs text-red-400 mt-2">remove(x) 删除第一个匹配的值；按右侧垃圾桶是按下标删除。</p>
+                            <p className="text-xs text-red-300 mt-2">remove(x) 删除第一个匹配的值；按右侧垃圾桶是按下标删除。</p>
                         </div>
                     )}
 

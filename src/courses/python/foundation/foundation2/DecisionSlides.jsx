@@ -55,19 +55,19 @@ export const BooleanSlide = () => {
 
                     <div className="flex justify-between items-center bg-slate-700/50 p-3 rounded-lg">
                         <span>A <span className="text-orange-400">and</span> B</span>
-                        <span className={switches.a && switches.b ? 'text-green-400' : 'text-red-400'}>
+                        <span className={switches.a && switches.b ? 'text-green-400' : 'text-red-300'}>
                             {String(switches.a && switches.b)}
                         </span>
                     </div>
                     <div className="flex justify-between items-center bg-slate-700/50 p-3 rounded-lg">
                         <span>A <span className="text-orange-400">or</span> B</span>
-                        <span className={switches.a || switches.b ? 'text-green-400' : 'text-red-400'}>
+                        <span className={switches.a || switches.b ? 'text-green-400' : 'text-red-300'}>
                             {String(switches.a || switches.b)}
                         </span>
                     </div>
                     <div className="flex justify-between items-center bg-slate-700/50 p-3 rounded-lg">
                         <span><span className="text-orange-400">not</span> A</span>
-                        <span className={!switches.a ? 'text-green-400' : 'text-red-400'}>
+                        <span className={!switches.a ? 'text-green-400' : 'text-red-300'}>
                             {String(!switches.a)}
                         </span>
                     </div>

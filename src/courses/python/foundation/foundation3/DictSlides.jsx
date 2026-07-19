@@ -314,7 +314,7 @@ export const DictSlide = () => {
                                 clear()
                             </Button>
                         </div>
-                        <p className="text-xs text-red-400 mt-2">* pop() 使用查找框中的键 | 点击卡片也可删除</p>
+                        <p className="text-xs text-red-300 mt-2">* pop() 使用查找框中的键 | 点击卡片也可删除</p>
                     </div>
 
                     {/* Console Output */}
