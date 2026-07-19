@@ -49,7 +49,7 @@ sort(a.begin(), a.end());
 \`\`\``,
       tags: ["编程题", "递推", "排序", "哈希/布尔数组"],
       template: "#include <iostream>\n#include <vector>\n#include <algorithm>\nusing namespace std;\n\nint main() {\n    int n;\n    cin >> n;\n    // 在此编写代码\n    return 0;\n}",
-      referenceCode: "#include <iostream>\n#include <vector>\n#include <algorithm>\n#include <set>\nusing namespace std;\nconst int MAX_VAL = 10000000;\nbool vis[MAX_VAL];\nint main() {\n    int n; cin >> n;\n    vector<long long> a(n);\n    a[0] = 0;\n    vis[0] = true;\n    for (int k = 1; k < n; k++) {\n        long long prev = a[k-1];\n        long long next = prev-k;\n        if (next > 0 && !vis[next]) {\n            a[k] = next;\n        } else {\n            a[k] = prev+k;\n        }\n        if (a[k] < MAX_VAL) vis[a[k]] = true;\n    }\n    sort(a.begin(), a.end());\n    for (int i = 0; i < n; i++) cout << a[i] << (i == n-1 ? \"\" : \" \");\n    cout << endl;\n    return 0;\n}",
+      referenceCode: "#include <iostream>\n#include <vector>\n#include <algorithm>\n#include <set>\nusing namespace std;\n\nint main() {\n    int n;\n    cin >> n;\n    vector<long long> a(n);\n    set<long long> seen;\n    a[0] = 1;\n    seen.insert(1);\n    for (int k = 2; k <= n; k++) {\n        long long down = a[k - 2] - k;\n        a[k - 1] = (down > 0 && !seen.count(down)) ? down : a[k - 2] + k;\n        seen.insert(a[k - 1]);\n    }\n    sort(a.begin(), a.end());\n    for (int i = 0; i < n; i++) cout << a[i] << (i == n - 1 ? \"\\n\" : \" \");\n    return 0;\n}",
       answer: '',
     },
     {

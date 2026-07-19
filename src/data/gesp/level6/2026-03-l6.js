@@ -6,7 +6,7 @@ const programmingQuestions = [
       type: 'programming',
       title: '路径覆盖',
       problemNumber: 'P15800',
-      description: '给定一棵有根树，把若干节点染黑，使每条叶子到根的路径上至少有一个黑点。节点 i 染黑代价为 c_i，求最小总代价。',
+      description: '给定一棵有根树，把若干节点染黑，使树中每条边至少有一个端点是黑点。节点 i 染黑代价为 c_i，求最小总代价。（题面按官方样例校订：原先记录的“叶到根路径覆盖”与样例答案矛盾，按样例反推应为树上最小权点覆盖，待官方 PDF 复核。）',
       inputDescription: '第一行 n。第二行 n-1 个父节点。第三行 n 个代价 c_i。',
       outputDescription: '输出最小总代价。',
       samples: [
@@ -17,13 +17,13 @@ const programmingQuestions = [
       ],
       score: 25,
       explanation: `**解析：**
-      树形 DP。设 $f[u]$ 表示覆盖 $u$ 子树内所有叶根路径的最小代价：要么直接把 $u$ 染黑，花 $c_u$；要么不染 $u$，而把责任交给所有儿子分别完成，代价为 $\\\\sum f[v]$。叶子必须被染黑，所以叶子答案就是 $c_u$。
+      树上最小权点覆盖的树形 DP。设 $f[u][1]$ 表示 $u$ 染黑时覆盖 $u$ 子树内所有边的最小代价，$f[u][0]$ 表示 $u$ 不染黑时的最小代价。若 $u$ 不染黑，则它与每个儿子 $v$ 之间的边只能靠 $v$ 覆盖，故 $f[u][0]=\\\\sum f[v][1]$；若 $u$ 染黑，则儿子可黑可不黑，$f[u][1]=c_u+\\\\sum \\\\min(f[v][0],f[v][1])$。答案为 $\\\\min(f[root][0], f[root][1])$。样例中链 $1\\\\!-\\\\!2\\\\!-\\\\!3\\\\!-\\\\!4$ 取 $\\\\{1,3\\\\}$，代价 $5+2=7$。
 
-      **考点：** 树形DP
+      **考点：** 树形DP、最小权点覆盖
       `,
       tags: ["编程题", "树形DP"],
       template: "#include <bits/stdc++.h>\nusing namespace std;\n\nint main() {\n    // 在此编写代码\n    return 0;\n}",
-      referenceCode: "#include <bits/stdc++.h>\nusing namespace std;\n\nint main() {\n    ios::sync_with_stdio(false);\n    cin.tie(nullptr);\n\n    int n;\n    cin >> n;\n    vector<vector<int>> g(n + 1);\n    for (int i = 2; i <= n; ++i) {\n        int p;\n        cin >> p;\n        g[p].push_back(i);\n    }\n    vector<long long> c(n + 1);\n    for (int i = 1; i <= n; ++i) cin >> c[i];\n\n    vector<long long> dp(n + 1, 0);\n    function<void(int)> dfs = [&](int u) {\n        if (g[u].empty()) {\n            dp[u] = c[u];\n            return;\n        }\n        long long sum = 0;\n        for (int v : g[u]) {\n            dfs(v);\n            sum += dp[v];\n        }\n        dp[u] = min(c[u], sum);\n    };\n    dfs(1);\n    cout << dp[1] << '\\n';\n    return 0;\n}",
+      referenceCode: "#include <bits/stdc++.h>\nusing namespace std;\n\nint n;\nvector<vector<int>> g;\nvector<long long> c;\nvector<array<long long, 2>> dp;\n\nvoid dfs(int u) {\n    dp[u][0] = 0;\n    dp[u][1] = c[u];\n    for (int v : g[u]) {\n        dfs(v);\n        dp[u][0] += dp[v][1];\n        dp[u][1] += min(dp[v][0], dp[v][1]);\n    }\n}\n\nint main() {\n    ios::sync_with_stdio(false);\n    cin.tie(nullptr);\n\n    cin >> n;\n    g.assign(n + 1, {});\n    for (int i = 2; i <= n; ++i) {\n        int p;\n        cin >> p;\n        g[p].push_back(i);\n    }\n    c.assign(n + 1, 0);\n    for (int i = 1; i <= n; ++i) cin >> c[i];\n    dp.assign(n + 1, {0, 0});\n    dfs(1);\n    cout << min(dp[1][0], dp[1][1]) << '\\n';\n    return 0;\n}",
     },
     {
       id: 27,

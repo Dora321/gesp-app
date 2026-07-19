@@ -1044,6 +1044,7 @@ for (int i = 0; i <= M - 3; i++) {
 \`\`\``,
       tags: ["编程题", "GESP4级"],
       template: "#include <bits/stdc++.h>\nusing namespace std;\n\nint main() {\n    ios::sync_with_stdio(false);\n    cin.tie(nullptr);\n\n    // 在此编写代码\n\n    return 0;\n}",
+      referenceCode: "#include <iostream>\n#include <vector>\n#include <algorithm>\nusing namespace std;\n\nint main() {\n    int m, n;\n    long long h;\n    cin >> m >> n >> h;\n    vector<vector<long long>> a(m, vector<long long>(n));\n    for (auto &row : a) for (auto &x : row) cin >> x;\n    long long best = -1;\n    for (int i = 0; i + 2 < m; ++i)\n        for (int j = 0; j + 2 < n; ++j) {\n            long long mx = a[i][j], mn = a[i][j], sum = 0;\n            for (int di = 0; di < 3; ++di)\n                for (int dj = 0; dj < 3; ++dj) {\n                    long long v = a[i + di][j + dj];\n                    mx = max(mx, v); mn = min(mn, v); sum += v;\n                }\n            if (mx - mn <= h) best = max(best, sum);\n        }\n    cout << best << endl;\n    return 0;\n}",
       answer: '',
     },
         {
@@ -1114,6 +1115,7 @@ for (string s : bought) cout << s << endl;
 \`\`\``,
       tags: ["编程题", "GESP4级"],
       template: "#include <bits/stdc++.h>\nusing namespace std;\n\nint main() {\n    ios::sync_with_stdio(false);\n    cin.tie(nullptr);\n\n    // 在此编写代码\n\n    return 0;\n}",
+      referenceCode: "#include <iostream>\n#include <vector>\n#include <string>\n#include <algorithm>\nusing namespace std;\n\nstruct Item { string name; long long price; long long pri; };\n\nint main() {\n    long long m;\n    int n;\n    cin >> m >> n;\n    vector<Item> items(n);\n    for (auto &it : items) cin >> it.name >> it.price >> it.pri;\n    sort(items.begin(), items.end(), [](const Item &x, const Item &y) {\n        if (x.pri != y.pri) return x.pri < y.pri;\n        if (x.price != y.price) return x.price < y.price;\n        return x.name < y.name;\n    });\n    vector<string> bought;\n    for (const auto &it : items)\n        if (it.price <= m) { m -= it.price; bought.push_back(it.name); }\n    sort(bought.begin(), bought.end());\n    for (const auto &name : bought) cout << name << \"\\n\";\n    return 0;\n}",
       answer: '',
     }
     ]

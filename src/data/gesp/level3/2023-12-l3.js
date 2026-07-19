@@ -909,13 +909,15 @@ C++ 中三种循环语句（\`while\`、\`do-while\`、\`for\`）的计算能力
 
 ## 题目描述
 
-海滩上有一堆鱼，$N$ 只小猫来分。第一只小猫把这堆鱼平均分为 $N$ 份，多了 $i
+海滩上有一堆鱼，$N$ 只小猫来分。第一只小猫把这堆鱼平均分为 $N$ 份，多了 $i$ 条，它把多的 $i$ 条扔进海里，拿走了其中的一份。第二只小猫接着把剩下的鱼平均分为 $N$ 份，又多了 $i$ 条，它同样把多的 $i$ 条扔进海里，拿走了其中的一份。之后的小猫都按同样的方式分鱼，直到第 $N$ 只小猫也拿走了自己的一份（每只小猫分得的一份都不能为空）。
+
+请问海滩上最少有多少条鱼，才能让上述过程顺利完成？
 
 ## 输入格式
 
 总共 $2$ 行。第一行一个整数 $N$，第二行一个整数 $i$。
 
-保证 $0
+保证 $0 < i < N \\le 9$。
 
 ## 输出格式
 
@@ -928,7 +930,7 @@ C++ 中三种循环语句（\`while\`、\`do-while\`、\`for\`）的计算能力
       template: '#include <bits/stdc++.h>\nusing namespace std;\n\nint main() {\n    ios::sync_with_stdio(false);\n    cin.tie(nullptr);\n\n    // 在此编写代码\n    return 0;\n}',
       score: 25,
       tags: ['编程题', '模拟', '枚举'],
-      referenceCode: '#include <bits/stdc++.h>\nusing namespace std;\n\nbool check(long long x, int N, int i) {\n    long long cur = x;\n    for (int t = 0; t < N; ++t) {\n        if (cur % N != i) return false;\n        cur -= i;\n        if (cur < 0 || cur % N != 0) return false;\n        cur = cur / N * (N-1);\n    }\n    return true;\n}\n\nint main() {\n    ios::sync_with_stdio(false);\n    cin.tie(nullptr);\n\n    int N, i;\n    cin >> N >> i;\n    for (long long x = 1; ; ++x) {\n        if (check(x, N, i)) {\n            cout << x << "\\n";\n            break;\n        }\n    }\n    return 0;\n}',
+      referenceCode: "#include <iostream>\nusing namespace std;\n\nbool check(long long x, int n, int i) {\n    long long cur = x;\n    for (int t = 0; t < n; t++) {\n        if (cur % n != i) return false;\n        long long share = (cur - i) / n;\n        if (share < 1) return false;\n        cur = share * (n - 1);\n    }\n    return true;\n}\n\nint main() {\n    int n, i;\n    cin >> n >> i;\n    for (long long x = 1; ; x++) {\n        if (check(x, n, i)) {\n            cout << x << endl;\n            return 0;\n        }\n    }\n}",
       answer: '',
     },
         {

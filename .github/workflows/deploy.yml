@@ -36,6 +36,9 @@ jobs:
       - name: Validate question bank
         run: npm run validate:bank
 
+      - name: Validate programming questions (compile + run samples)
+        run: npm run validate:programming:run
+
       - name: Verify sitemap is current
         run: |
           npm run generate:sitemap

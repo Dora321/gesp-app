@@ -5,6 +5,8 @@ import MarkdownRenderer from '../../components/MarkdownRenderer';
 import useQuestionKeyboardNavigation from '../../hooks/useQuestionKeyboardNavigation';
 import { buildGenericStudyHint, buildRichAnalysis } from './analysisEngine';
 import AnalysisTrustNotice from './AnalysisTrustNotice';
+import { resolveVerification } from '../../data/gesp/verificationModel';
+import SourceIntegrityNotice from '../../components/SourceIntegrityNotice';
 import { buildQuestionContent as getQuestionContent, formatOptionDisplay, stripLeadingNumber } from '../../utils/questionTextFormatting';
 
 const inferTags = (q) => {
@@ -98,8 +100,12 @@ export default function InteractiveAnalysisPage({ paperData, paperId }) {
     const selected = answers[currentQ.id];
     const isRevealed = !!revealed[currentQ.id];
     const richAnalysis = buildRichAnalysis(currentQ, paperData.level);
-    const paperIsFullyVerified = paperData.reviewStatus === 'verified';
-    const useGenericHint = !paperIsFullyVerified || !richAnalysis || richAnalysis.qualityFlags.inferred;
+    // Answer and explanation are verified independently — a checked answer key
+    // does not make the site-written explanation a verified one.
+    const verification = resolveVerification(paperData);
+    const answerVerified = verification.dimensions.answer === 'verified';
+    const explanationVerified = verification.dimensions.explanation === 'verified';
+    const useGenericHint = !answerVerified || !richAnalysis || richAnalysis.qualityFlags.inferred;
     const displayedAnalysis = useGenericHint
         ? buildGenericStudyHint(currentQ, paperData.level)
         : richAnalysis;
@@ -178,6 +184,12 @@ export default function InteractiveAnalysisPage({ paperData, paperId }) {
                             </div>
                         </div>
 
+                        {currentQ.sourceIntegrity && (
+                            <div className="mb-4">
+                                <SourceIntegrityNotice status={currentQ.sourceIntegrity} note={currentQ.integrityNote} />
+                            </div>
+                        )}
+
                         <div className="text-lg md:text-xl font-bold text-slate-800 mb-5 leading-relaxed">
                             <MarkdownRenderer content={stripLeadingNumber(getQuestionContent(currentQ))} />
                         </div>
@@ -231,14 +243,15 @@ export default function InteractiveAnalysisPage({ paperData, paperId }) {
                                 {isRevealed ? (
                                     <div className="space-y-3">
                                         <AnalysisTrustNotice
-                                            paperIsFullyVerified={paperIsFullyVerified}
+                                            answerVerified={answerVerified}
+                                            explanationVerified={explanationVerified}
                                             useGenericHint={useGenericHint}
                                         />
                                         {/* 答案速览 */}
                                         <div className="flex items-center gap-3 flex-wrap">
                                             <span className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-green-50 border border-green-200 text-sm font-bold text-green-800">
                                                 <CheckCircle2 size={16} className="text-green-600" />
-                                                {paperIsFullyVerified ? '已核验答案' : '题库答案（尚未完成核验）'}：{String.fromCharCode(65 + currentQ.answer)}
+                                                {answerVerified ? '已核验答案' : '题库答案（尚未完成核验）'}：{String.fromCharCode(65 + currentQ.answer)}
                                             </span>
                                             <MarkdownRenderer content={formatOptionDisplay(currentQ.options[currentQ.answer])} inline={true} className="text-sm text-slate-600" />
                                             {answers[currentQ.id] !== undefined && answers[currentQ.id] !== currentQ.answer && (

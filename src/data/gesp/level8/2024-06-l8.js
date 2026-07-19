@@ -84,6 +84,8 @@ export const paperData = {
         },
         {
             id: 4,
+            sourceIntegrity: 'options-reconstructed',
+            integrityNote: "原卷选项在本站源文件中为占位文本，现有选项按标准答案反推补写，并非原卷原文。",
             type: "single",
             question: `有 V 个顶点、 E 条边的图的深度优先搜索遍历时间复杂度为（ ）。`,
             options: [

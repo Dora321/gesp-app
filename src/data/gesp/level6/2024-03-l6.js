@@ -38,7 +38,7 @@ const programmingQuestions = [
       `,
       tags: ["编程题", "动态规划", "递推"],
       template: "#include <bits/stdc++.h>\nusing namespace std;\n\nint main() {\n    // 在此编写代码\n    return 0;\n}",
-      referenceCode: "#include <bits/stdc++.h>\nusing namespace std;\n\nint main() {\n    ios::sync_with_stdio(false);\n    cin.tie(nullptr);\n\n    long long n, a, b, mod;\n    cin >> n >> a >> b >> mod;\n    vector<long long> f(n+1, 0);\n    for (long long x = 1; x <= n; ++x) {\n        long long v1 = (x <= a ? 1 : f[x-a]);\n        long long v2 = (x <= b ? 1 : f[x-b]);\n        f[x] = (v1+v2) % mod;\n    }\n    cout << f[n] % mod << '\\n';\n    return 0;\n}",
+      referenceCode: "#include <iostream>\n#include <vector>\nusing namespace std;\n\nconst long long MOD = 1000000007;\n\nint main() {\n    long long n, a, b, c;\n    cin >> n >> a >> b >> c;\n    if (n <= c) { cout << 1 << endl; return 0; }\n    // ways[x]：血量为 x 时到游戏结束的操作序列数；x <= c 时游戏已结束，只有空序列\n    vector<long long> ways(n + 1, 0);\n    auto get = [&](long long x) { return x <= c ? 1LL : ways[x]; };\n    for (long long x = c + 1; x <= n; x++) {\n        ways[x] = (get(x - a) + get(x - b)) % MOD;\n    }\n    cout << ways[n] << endl;\n    return 0;\n}",
       answer: '',
     },
     {
@@ -79,7 +79,7 @@ const programmingQuestions = [
       `,
       tags: ["编程题", "贪心", "构造"],
       template: "#include <bits/stdc++.h>\nusing namespace std;\n\nint main() {\n    // 在此编写代码\n    return 0;\n}",
-      referenceCode: "#include <bits/stdc++.h>\nusing namespace std;\n\nint main() {\n    ios::sync_with_stdio(false);\n    cin.tie(nullptr);\n\n    int n;\n    cin >> n;\n    long long sum = 0;\n    int mn = INT_MAX;\n    for (int i = 0; i < n; ++i) {\n        int x;\n        cin >> x;\n        sum += x;\n        mn = min(mn, x);\n    }\n    cout << sum-mn+n << '\\n';\n    return 0;\n}",
+      referenceCode: "#include <iostream>\n#include <vector>\n#include <algorithm>\nusing namespace std;\n\nint main() {\n    int n;\n    cin >> n;\n    vector<long long> a(n), b(n);\n    for (auto &x : a) cin >> x;\n    for (auto &x : b) cin >> x;\n    // 相邻两头牛 i(左)、j(右) 之间至少空 max(b_i, a_j) 个牛棚。\n    // 用状压 DP 求排列的最小间隔和（官方数据 n 较小）。\n    int full = 1 << n;\n    vector<vector<long long>> dp(full, vector<long long>(n, -1));\n    for (int i = 0; i < n; i++) dp[1 << i][i] = 0;\n    for (int mask = 1; mask < full; mask++) {\n        for (int last = 0; last < n; last++) {\n            if (dp[mask][last] < 0) continue;\n            for (int next = 0; next < n; next++) {\n                if (mask & (1 << next)) continue;\n                int nm = mask | (1 << next);\n                long long cost = dp[mask][last] + max(b[last], a[next]);\n                if (dp[nm][next] < 0 || cost < dp[nm][next]) dp[nm][next] = cost;\n            }\n        }\n    }\n    long long best = -1;\n    for (int last = 0; last < n; last++) {\n        if (dp[full - 1][last] >= 0 && (best < 0 || dp[full - 1][last] < best)) best = dp[full - 1][last];\n    }\n    cout << best + n << endl;\n    return 0;\n}",
       answer: '',
     }
 ];

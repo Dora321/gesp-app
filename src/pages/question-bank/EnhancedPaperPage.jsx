@@ -20,6 +20,8 @@ import { paperCodingMap } from '../../data/gesp/paperCodingMap';
 import useQuestionKeyboardNavigation from '../../hooks/useQuestionKeyboardNavigation';
 import { buildGenericStudyHint, buildQuestionInsight, buildRichAnalysis } from './analysisEngine';
 import AnalysisTrustNotice from './AnalysisTrustNotice';
+import { resolveVerification } from '../../data/gesp/verificationModel';
+import SourceIntegrityNotice from '../../components/SourceIntegrityNotice';
 import { buildQuestionContent as getQuestionContent, formatOptionDisplay, stripLeadingNumber } from '../../utils/questionTextFormatting';
 
 const inferKnowledgeTags = (q, level) => {
@@ -355,8 +357,11 @@ export default function EnhancedPaperPage({ forcedPaperId }) {
     const tags = inferKnowledgeTags(currentQ, paperData.level);
     const codingGuide = (currentQ?.type === 'coding' || currentQ?.type === 'programming') ? buildCodingGuide(currentQ) : null;
     const richAnalysis = buildRichAnalysis(currentQ, paperData.level);
-    const paperIsFullyVerified = paperData.reviewStatus === 'verified';
-    const useGenericHint = !paperIsFullyVerified || !richAnalysis || richAnalysis.qualityFlags.inferred;
+    // Answer and explanation are verified independently — see verificationModel.
+    const verification = resolveVerification(paperData);
+    const answerVerified = verification.dimensions.answer === 'verified';
+    const explanationVerified = verification.dimensions.explanation === 'verified';
+    const useGenericHint = !answerVerified || !richAnalysis || richAnalysis.qualityFlags.inferred;
     const displayedAnalysis = useGenericHint
         ? buildGenericStudyHint(currentQ, paperData.level)
         : richAnalysis;
@@ -473,6 +478,12 @@ export default function EnhancedPaperPage({ forcedPaperId }) {
                             </div>
                         </div>
 
+                        {currentQ.sourceIntegrity && (
+                            <div className="mb-4">
+                                <SourceIntegrityNotice status={currentQ.sourceIntegrity} note={currentQ.integrityNote} />
+                            </div>
+                        )}
+
                         {!( (currentQ.type === 'coding' || currentQ.type === 'programming') && (getQuestionContent(currentQ) === programmingPracticeMarkdown || isReformed) ) && (
                             <div className="text-lg md:text-xl font-bold text-slate-800 mb-5 leading-relaxed">
                                 <MarkdownRenderer content={stripLeadingNumber(getQuestionContent(currentQ))} />
@@ -561,7 +572,8 @@ export default function EnhancedPaperPage({ forcedPaperId }) {
                                 {isRevealed ? (
                                     <>
                                         <AnalysisTrustNotice
-                                            paperIsFullyVerified={paperIsFullyVerified}
+                                            answerVerified={answerVerified}
+                                            explanationVerified={explanationVerified}
                                             useGenericHint={useGenericHint}
                                         />
                                         {(currentQ.type === 'coding' || currentQ.type === 'programming') ? (
@@ -612,7 +624,7 @@ export default function EnhancedPaperPage({ forcedPaperId }) {
                                                 <div className="flex items-center gap-3 flex-wrap">
                                                     <span className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-green-50 border border-green-200 text-sm font-bold text-green-800">
                                                         <CheckCircle2 size={16} className="text-green-600" />
-                                                        {paperIsFullyVerified ? '已核验答案' : '题库答案（尚未完成核验）'}：{String.fromCharCode(65 + currentQ.answer)}
+                                                        {answerVerified ? '已核验答案' : '题库答案（尚未完成核验）'}：{String.fromCharCode(65 + currentQ.answer)}
                                                     </span>
                                                     <MarkdownRenderer content={formatOptionDisplay(currentQ.options[currentQ.answer])} inline={true} className="text-sm text-slate-600" />
                                                     {answers[currentQ.id] !== undefined && answers[currentQ.id] !== currentQ.answer && (

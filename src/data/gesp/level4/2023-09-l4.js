@@ -1137,7 +1137,7 @@ for (char c : s) {
 \`\`\``,
       tags: ["编程题", "进制转换"],
       template: "#include <iostream>\n#include <string>\n#include <algorithm>\nusing namespace std;\n\nint main() {\n    long long n;\n    int b;\n    cin >> n >> b;\n    // 在此编写代码\n    return 0;\n}",
-      referenceCode: "#include <iostream>\n#include <string>\n#include <algorithm>\nusing namespace std;\nchar getChar(int x) {\n    if (x < 10) return x+'0';\n    return x-10+'A';\n}\nint main() {\n    long long n; int b; cin >> n >> b;\n    if (n == 0) { cout << 0 << endl; return 0; }\n    string res = \"\";\n    while (n > 0) {\n        res += getChar(n % b);\n        n /= b;\n    }\n    reverse(res.begin(), res.end());\n    cout << res << endl;\n    return 0;\n}",
+      referenceCode: "#include <iostream>\n#include <string>\nusing namespace std;\n\nint digitValue(char c) {\n    if (c >= '0' && c <= '9') return c - '0';\n    return c - 'A' + 10;\n}\n\nint main() {\n    int n;\n    cin >> n;\n    while (n--) {\n        int k;\n        string s;\n        cin >> k >> s;\n        long long value = 0;\n        for (char c : s) value = value * k + digitValue(c);\n        cout << value << \"\\n\";\n    }\n    return 0;\n}",
     },
     {
       id: 27,

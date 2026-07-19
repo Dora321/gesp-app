@@ -8,6 +8,7 @@ import {
   buildProgrammingStatementMarkdown,
 } from '../../utils/questionHelpers';
 import { formatOptionDisplay, stripLeadingNumber } from '../../utils/questionTextFormatting';
+import SourceIntegrityNotice from '../../components/SourceIntegrityNotice';
 
 /**
  * Exam mode main content — question display, options, and programming question view
@@ -37,6 +38,12 @@ const ExamModeView = ({
           <div className="absolute top-0 left-0 bg-slate-100 px-4 py-1.5 rounded-br-xl text-xs font-bold text-slate-600 uppercase tracking-wider">
             {isProgramming ? '编程题' : currentQ.type === 'single' ? '单选题' : '判断题'} &bull; {currentQ.score}分
           </div>
+
+          {currentQ.sourceIntegrity && (
+            <div className="mt-4">
+              <SourceIntegrityNotice status={currentQ.sourceIntegrity} note={currentQ.integrityNote} />
+            </div>
+          )}
 
           {/* Question text (non-programming or non-reformatted) */}
           {!(isProgramming && (getQuestionContent(currentQ) === currentProgrammingMarkdown || isReformed)) && (

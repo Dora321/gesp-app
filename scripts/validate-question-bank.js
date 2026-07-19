@@ -161,6 +161,24 @@ async function validateFile(filePath, cfg) {
       if (!/^\d{4}-\d{2}-\d{2}$/.test(q.reviewedAt || '')) errors.push(`[ERROR] Q${qId}: sourceVerified questions must include reviewedAt as YYYY-MM-DD`);
     }
 
+    // A question whose explanation admits its options/figure were reconstructed
+    // must carry the structured sourceIntegrity flag, so the UI can warn about
+    // it instead of the admission staying buried in prose.
+    const explanationText = String(q.explanation || '');
+    const admitsReconstruction = /选项为占位文本|选项原文为占位符|未包含.{0,6}配图|未包含原图|反推各遍历|串入了无关|录入串味/.test(explanationText);
+    if (admitsReconstruction && !q.sourceIntegrity) {
+      errors.push(`[INTEGRITY] Q${qId}: explanation admits reconstructed options/figure but question lacks sourceIntegrity flag`);
+    }
+    if (q.sourceIntegrity) {
+      const allowed = ['options-reconstructed', 'missing-figure', 'contaminated-stem'];
+      if (!allowed.includes(q.sourceIntegrity)) {
+        errors.push(`[INTEGRITY] Q${qId}: unknown sourceIntegrity "${q.sourceIntegrity}"`);
+      }
+      if (!String(q.integrityNote || '').trim()) {
+        errors.push(`[INTEGRITY] Q${qId}: sourceIntegrity requires an integrityNote`);
+      }
+    }
+
     // Fragments check (Dirty data)
     badFragments.forEach(frag => {
       if (text.includes(frag) || String(q.explanation || '').includes(frag)) {

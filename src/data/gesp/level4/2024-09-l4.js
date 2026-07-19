@@ -72,7 +72,7 @@ for (int i = 0; i <= n - 4; i++) {
 \`\`\``,
       tags: ["编程题", "二维数组", "模拟"],
       template: "#include <iostream>\n#include <vector>\n#include <string>\nusing namespace std;\n\nint main() {\n    int T;\n    cin >> T;\n    // 在此编写代码\n    return 0;\n}",
-      referenceCode: "#include <iostream>\n#include <vector>\n#include <string>\nusing namespace std;\nvoid solve() {\n    int n, m; cin >> n >> m;\n    vector<string> g(n);\n    for (int i = 0; i < n; i++) cin >> g[i];\n    bool ok = false;\n    if (n >= 2 && m >= 2) {\n        for (int i = 0; i < n-1; i++) {\n            for (int j = 0; j < m-1; j++) {\n                if (g[i][j] == '0' && g[i][j+1] == '0' && g[i+1][j] == '0' && g[i+1][j+1] == '0') {\n                    ok = true; break;\n                }\n            }\n            if (ok) break;\n        }\n    }\n    if (ok) cout << \"Yes\" << endl; else cout << \"No\" << endl;\n}\nint main() {\n    int T; cin >> T;\n    while (T--) solve();\n    return 0;\n}",
+      referenceCode: "#include <iostream>\n#include <vector>\n#include <string>\nusing namespace std;\n\nint main() {\n    int t;\n    cin >> t;\n    while (t--) {\n        int n, m;\n        cin >> n >> m;\n        vector<string> g(n);\n        for (auto &row : g) cin >> row;\n        bool found = false;\n        for (int i = 0; i + 3 < n && !found; i++) {\n            for (int j = 0; j + 3 < m && !found; j++) {\n                bool ok = true;\n                for (int c = 0; c < 4; c++) {\n                    if (g[i][j + c] != '0' || g[i + 3][j + c] != '0') ok = false;\n                }\n                for (int r = 1; r <= 2; r++) {\n                    if (g[i + r][j] != '0' || g[i + r][j + 3] != '0') ok = false;\n                    if (g[i + r][j + 1] != '1' || g[i + r][j + 2] != '1') ok = false;\n                }\n                if (ok) found = true;\n            }\n        }\n        cout << (found ? \"Yes\" : \"No\") << \"\\n\";\n    }\n    return 0;\n}",
       answer: '',
     },
     {
@@ -126,7 +126,7 @@ while (q--) {
 \`\`\``,
       tags: ["编程题", "排序", "模拟"],
       template: "#include <iostream>\n#include <vector>\n#include <algorithm>\nusing namespace std;\n\nint main() {\n    int n, m;\n    cin >> n >> m;\n    // 在此编写代码\n    return 0;\n}",
-      referenceCode: "#include <iostream>\n#include <vector>\n#include <algorithm>\nusing namespace std;\nint main() {\n    int n, m; cin >> n >> m;\n    vector<int> a(n);\n    for (int i = 0; i < n; i++) cin >> a[i];\n    while (m--) {\n        int l, r; cin >> l >> r;\n        sort(a.begin()+l-1, a.begin()+r);\n    }\n    for (int i = 0; i < n; i++) cout << a[i] << (i == n-1 ? \"\" : \" \");\n    cout << endl;\n    return 0;\n}",
+      referenceCode: "#include <iostream>\n#include <vector>\n#include <algorithm>\nusing namespace std;\n\nint main() {\n    int n;\n    cin >> n;\n    vector<int> a(n);\n    for (auto &x : a) cin >> x;\n    int q;\n    cin >> q;\n    while (q--) {\n        int l, r;\n        cin >> l >> r;\n        sort(a.begin() + l - 1, a.begin() + r);\n    }\n    for (int i = 0; i < n; i++) cout << a[i] << (i == n - 1 ? \"\\n\" : \" \");\n    return 0;\n}",
       answer: '',
     }
 ];

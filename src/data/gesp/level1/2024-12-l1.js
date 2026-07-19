@@ -835,8 +835,8 @@ int main() {
     cin >> k;
     c = k - 273.15;
     f = c * 1.8 + 32;
-    if (f > 212) cout << "Temperature is too high!\n";
-    else cout << fixed << setprecision(2) << c << " " << f << "\n";
+    if (f > 212) cout << "Temperature is too high!\\n";
+    else cout << fixed << setprecision(2) << c << " " << f << "\\n";
     return 0;
 }`,
       question: `
@@ -863,7 +863,7 @@ $
 
 否则，输出两个由空格分隔的实数 $C$ 和 $F$，分别表示摄氏温度和华氏度，保留两位小数。
 `,
-      template: `#include <bits/stdc++.h>\nusing namespace std;\n\nint main() {\n    // 在此填写代码\n    return 0;\n}`,
+      template: `#include <bits/stdc++.h>\\nusing namespace std;\\n\nint main() {\\n    // 在此填写代码\\n    return 0;\\n}`,
       answer: '',
       score: 25,
       explanation: `
@@ -894,7 +894,7 @@ int main() {
         if(x % 2 != 0) odd++;
         else even++;
     }
-    cout << odd << " " << even << "\n";
+    cout << odd << " " << even << "\\n";
     return 0;
 }`,
       question: `
@@ -914,7 +914,7 @@ int main() {
 
 输出两个正整数（英文空格间隔），代表奇数的个数和偶数的个数。如奇数或偶数的个数为 $0$，则对应输出 $0$。
 `,
-      template: `#include <bits/stdc++.h>\nusing namespace std;\n\nint main() {\n    // 在此填写代码\n    return 0;\n}`,
+      template: `#include <bits/stdc++.h>\\nusing namespace std;\\n\nint main() {\\n    // 在此填写代码\\n    return 0;\\n}`,
       answer: '',
       score: 25,
       explanation: `

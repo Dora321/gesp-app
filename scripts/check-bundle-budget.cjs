@@ -50,25 +50,46 @@ const assertBudget = (label, assets, limits) => {
   if (metrics.gzip > limits.gzip) failures.push(`${label} gzip ${kb(metrics.gzip)} > ${kb(limits.gzip)}`);
 };
 
-const findKey = predicate => {
+const findKey = (predicate, label) => {
   const entry = Object.entries(manifest).find(([key, value]) => predicate(value, key));
-  if (!entry) throw new Error('Required bundle entry is missing from the Vite manifest.');
+  if (!entry) throw new Error(`Required bundle entry is missing from the Vite manifest: ${label}`);
   return entry[0];
 };
 
-const entryKey = findKey(value => value.isEntry);
-const markdownKey = findKey(value => value.name === 'MarkdownRenderer');
-const mathKey = findKey(value => value.src === 'src/components/MathMarkdownContent.jsx');
-const museumKey = findKey(value => value.src === 'src/pages/ComputingMuseum.jsx');
-const luoguKey = findKey(value => value.src === 'src/data/gesp/luoguCodingByLevel.js');
+const entryKey = findKey(value => value.isEntry, 'entry');
+const mathKey = findKey(value => value.src === 'src/components/MathMarkdownContent.jsx', 'MathMarkdownContent');
+const museumKey = findKey(value => value.src === 'src/pages/ComputingMuseum.jsx', 'ComputingMuseum');
+const luoguKey = findKey(value => value.src === 'src/data/gesp/luoguCodingByLevel.js', 'luoguCodingByLevel');
 
 const entryAssets = collectStaticAssets(entryKey);
-const markdownAssets = collectStaticAssets(markdownKey);
 const mathAssets = collectStaticAssets(mathKey);
 
 assertBudget('Initial app graph', entryAssets, { raw: 550 * 1024, gzip: 112 * 1024 });
-assertBudget('Base Markdown incremental graph', difference(markdownAssets, entryAssets), { raw: 170 * 1024, gzip: 52 * 1024 });
-assertBudget('On-demand math incremental graph', difference(mathAssets, markdownAssets), { raw: 315 * 1024, gzip: 92 * 1024 });
+
+// The markdown/katex families must stay off the first-paint path and must not
+// grow unbounded. Measuring the shipped bytes directly (rather than the size of
+// one specific shared chunk) keeps this budget meaningful even when Rollup
+// regroups chunks — the earlier version asserted on a `MarkdownRenderer` shared
+// chunk that silently stopped existing when imports shifted.
+const MARKDOWN_RUNTIME_SIGNATURES = ['react-markdown', 'micromark', 'remark-gfm', 'remarkGfm'];
+const containsMarkdownRuntime = relativePath => {
+  const text = fs.readFileSync(path.join(distDir, relativePath), 'utf8');
+  return MARKDOWN_RUNTIME_SIGNATURES.some(signature => text.includes(signature));
+};
+
+const firstPaintMarkdown = [...entryAssets].filter(asset => asset.endsWith('.js') && containsMarkdownRuntime(asset));
+if (firstPaintMarkdown.length > 0) {
+  failures.push(`Markdown runtime leaked onto the first-paint path: ${firstPaintMarkdown.join(', ')}`);
+}
+
+const markdownAssets = new Set(
+  fs.readdirSync(path.join(distDir, 'assets'))
+    .filter(entry => entry.endsWith('.js'))
+    .map(entry => `assets/${entry}`)
+    .filter(containsMarkdownRuntime)
+);
+assertBudget('Markdown runtime (all lazy chunks)', markdownAssets, { raw: 470 * 1024, gzip: 140 * 1024 });
+assertBudget('On-demand math incremental graph', difference(mathAssets, entryAssets), { raw: 480 * 1024, gzip: 140 * 1024 });
 assertBudget('Museum route chunk', new Set([manifest[museumKey].file]), { raw: 135 * 1024, gzip: 36 * 1024 });
 assertBudget('Luogu question data chunk', new Set([manifest[luoguKey].file]), { raw: 190 * 1024, gzip: 52 * 1024 });
 

@@ -812,7 +812,7 @@ C++ 属于编译型语言，其编译流程大致为：源代码 (.cpp) → 预�
         { input: `5
 3`, output: `1` }
       ],
-      referenceCode: `#include <iostream>\nusing namespace std;\nint main() {\n    int x, y;\n    cin >> x >> y;\n    int res = (y+x-1) % 7;\n    if (res == 0) res = 7;\n    cout << res << endl;\n    return 0;\n}`,
+      referenceCode: "#include <iostream>\nusing namespace std;\nint main() {\n    int x, n;\n    cin >> x >> n;\n    int res = (x + n) % 7;\n    if (res == 0) res = 7;\n    cout << res << endl;\n    return 0;\n}",
       question: `
 # [GESP202312 一级] 小杨的考试
 
@@ -854,7 +854,7 @@ C++ 属于编译型语言，其编译流程大致为：源代码 (.cpp) → 预�
 8
 10` }
       ],
-      referenceCode: `#include <iostream>\nusing namespace std;\nbool contains(int n, int x) {\n    while (n > 0) {\n        if (n % 10 == x) return true;\n        n /= 10;\n    }\n    return false;\n}\nint main() {\n    int n, x, count = 0;\n    cin >> n >> x;\n    for (int i = 1; i <= n; i++) {\n        if (i % x == 0 || contains(i, x)) {\n            count++;\n        }\n    }\n    cout << count << endl;\n    return 0;\n}`,
+      referenceCode: "#include <iostream>\nusing namespace std;\nint main() {\n    int n, m;\n    cin >> n >> m;\n    for (int i = 1; i <= n; i++) {\n        if (i % m != 0) {\n            cout << i << \"\\n\";\n        }\n    }\n    return 0;\n}",
       question: `
 # [GESP202312 一级] 小杨报数
 

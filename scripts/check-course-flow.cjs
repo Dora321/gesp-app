@@ -1385,14 +1385,20 @@ async function main() {
   assertPyCodeTracerKeepsClearFinalActionLabel();
   assertCppLessonShellSupportsLessonSupport();
 
-  const generatedQuestionCount = paperIds.reduce((sum, id) => sum + (paperMeta[id]?.questionCount || 0), 0);
-  const generatedReviewPaperCount = paperIds.filter(id => paperMeta[id]?.needsReview).length;
-  assertSameNumber('GESP stats paperCount', paperStats.paperCount, paperIds.length);
-  assertSameNumber('GESP stats questionCount', paperStats.questionCount, generatedQuestionCount);
+  // Papers flagged `unofficial` are practice material, not past papers: they are
+  // counted separately so the 真题 figures shown on the site stay truthful.
+  const officialIds = paperIds.filter(id => !paperMeta[id]?.unofficial);
+  const practiceIds = paperIds.filter(id => paperMeta[id]?.unofficial);
+  const sumQuestions = (ids) => ids.reduce((sum, id) => sum + (paperMeta[id]?.questionCount || 0), 0);
+  const generatedReviewPaperCount = officialIds.filter(id => paperMeta[id]?.needsReview).length;
+  assertSameNumber('GESP stats paperCount', paperStats.paperCount, officialIds.length);
+  assertSameNumber('GESP stats questionCount', paperStats.questionCount, sumQuestions(officialIds));
+  assertSameNumber('GESP stats practicePaperCount', paperStats.practicePaperCount, practiceIds.length);
+  assertSameNumber('GESP stats practiceQuestionCount', paperStats.practiceQuestionCount, sumQuestions(practiceIds));
   assertSameNumber('GESP stats reviewPaperCount', paperStats.reviewPaperCount, generatedReviewPaperCount);
-  assertSameNumber('GESP stats levelCount', paperStats.levelCount, new Set(paperIds.map(id => paperMeta[id]?.level)).size);
-  assertSameNumber('GESP stats firstYear', paperStats.firstYear, Math.min(...paperIds.map(id => paperMeta[id]?.year)));
-  assertSameNumber('GESP stats latestYear', paperStats.latestYear, Math.max(...paperIds.map(id => paperMeta[id]?.year)));
+  assertSameNumber('GESP stats levelCount', paperStats.levelCount, new Set(officialIds.map(id => paperMeta[id]?.level)).size);
+  assertSameNumber('GESP stats firstYear', paperStats.firstYear, Math.min(...officialIds.map(id => paperMeta[id]?.year)));
+  assertSameNumber('GESP stats latestYear', paperStats.latestYear, Math.max(...officialIds.map(id => paperMeta[id]?.year)));
 
   for (const paperId of paperIds) {
     const placeholderCount = countPaperPlaceholderMarkers(paperId);

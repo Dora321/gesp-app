@@ -3,6 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import { BookOpen, Trophy, Clock, ChevronRight, Search, Award, Tag, BadgeCheck, CircleDashed, FileCheck2 } from 'lucide-react';
 import { paperIds, paperMeta } from '../data/gesp';
 import { paperStats } from '../data/gesp/_stats';
+import { DIMENSION_STATUS, VERIFICATION_DIMENSIONS, resolveVerification } from '../data/gesp/verificationModel';
 
 const levels = [
     { id: 1, name: '一级', desc: '零基础入门', badgeClass: 'bg-blue-500' },
@@ -25,6 +26,7 @@ const QuestionBankHome = () => {
     const navigate = useNavigate();
     const [selectedLevel, setSelectedLevel] = useState(1);
     const [searchTerm, setSearchTerm] = useState('');
+    const [showPractice, setShowPractice] = useState(false);
 
     // Papers are built directly from paperMeta (questionCount now pre-injected)
     const papers = useMemo(() => {
@@ -59,6 +61,7 @@ const QuestionBankHome = () => {
                     reviewScope: meta.reviewScope,
                     sourceUrl: meta.sourceUrl,
                     unofficial: Boolean(meta.unofficial),
+                    dimensions: resolveVerification(meta).dimensions,
                 };
             })
             .filter(Boolean)
@@ -70,14 +73,22 @@ const QuestionBankHome = () => {
             ));
     }, []);
 
-    const filteredPapers = papers.filter(p =>
+    // Unofficial papers (historical placeholders) are practice material, not past
+    // papers: they stay out of the default list and every 真题 counter, and are
+    // only reachable through an explicit toggle.
+    const officialPapers = useMemo(() => papers.filter(p => !p.unofficial), [papers]);
+    const practicePapers = useMemo(() => papers.filter(p => p.unofficial), [papers]);
+
+    const visiblePapers = showPractice ? practicePapers : officialPapers;
+    const filteredPapers = visiblePapers.filter(p =>
         p.level === selectedLevel &&
         p.title.toLowerCase().includes(searchTerm.toLowerCase())
     );
+    const practiceCountForLevel = practicePapers.filter(p => p.level === selectedLevel).length;
 
     const levelStats = useMemo(() => {
         return levels.reduce((acc, level) => {
-            const levelPapers = papers.filter(paper => paper.level === level.id);
+            const levelPapers = officialPapers.filter(paper => paper.level === level.id);
             const latestPaper = [...levelPapers].sort((a, b) => b.year - a.year || b.month - a.month)[0];
             acc[level.id] = {
                 paperCount: levelPapers.length,
@@ -89,7 +100,7 @@ const QuestionBankHome = () => {
             };
             return acc;
         }, {});
-    }, [papers]);
+    }, [officialPapers]);
 
     const selectedLevelInfo = levels.find(l => l.id === selectedLevel);
     const selectedStats = levelStats[selectedLevel] || { paperCount: 0, questionCount: 0, verifiedCount: 0, partialCount: 0, unverifiedCount: 0, latestLabel: '暂无' };
@@ -211,6 +222,22 @@ const QuestionBankHome = () => {
                             </div>
                         </div>
 
+                        {(practiceCountForLevel > 0 || showPractice) && (
+                            <div className="mb-4 flex flex-wrap items-center gap-3 rounded-lg border border-slate-200 bg-slate-50 px-4 py-3">
+                                <span className="text-sm text-slate-600">
+                                    {showPractice
+                                        ? '当前显示：模拟练习卷（非官方正式真题，不计入真题统计）'
+                                        : `本等级另有 ${practiceCountForLevel} 套模拟练习卷（非官方正式真题）`}
+                                </span>
+                                <button
+                                    onClick={() => setShowPractice(prev => !prev)}
+                                    className="rounded-md border border-slate-300 bg-white px-3 py-1.5 text-xs font-semibold text-slate-700 transition hover:bg-slate-100"
+                                >
+                                    {showPractice ? '返回真题列表' : '查看模拟练习'}
+                                </button>
+                            </div>
+                        )}
+
                         {/* Paper Grid */}
                         <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
                             {filteredPapers.map(paper => {
@@ -259,6 +286,27 @@ const QuestionBankHome = () => {
                                         </p>
                                     )}
 
+                                    <div className="mb-3 flex flex-wrap gap-1.5">
+                                        {VERIFICATION_DIMENSIONS.map(({ key, label }) => {
+                                            const state = paper.dimensions[key];
+                                            const tone = state === 'verified'
+                                                ? 'bg-emerald-50 text-emerald-700 border-emerald-200'
+                                                : state === 'partial'
+                                                    ? 'bg-blue-50 text-blue-700 border-blue-200'
+                                                    : 'bg-slate-50 text-slate-500 border-slate-200';
+                                            return (
+                                                <span
+                                                    key={key}
+                                                    className={`rounded border px-1.5 py-0.5 text-[11px] font-medium ${tone}`}
+                                                    title={`${label}：${DIMENSION_STATUS[state].label}`}
+                                                >
+                                                    {label}
+                                                    {state === 'verified' ? ' ✓' : state === 'partial' ? ' ~' : ' —'}
+                                                </span>
+                                            );
+                                        })}
+                                    </div>
+
                                     <div className="flex items-center gap-4 text-xs text-slate-500 mb-4">
                                         <span className="flex items-center gap-1">
                                             <Clock size={14} /> {paper.time}
@@ -285,7 +333,9 @@ const QuestionBankHome = () => {
                                 <div className="inline-flex items-center justify-center w-16 h-16 rounded-full bg-slate-50 mb-4">
                                     <Search size={32} className="text-slate-300" />
                                 </div>
-                                <p className="text-slate-500">该等级暂无相关真题，请稍后再试。</p>
+                                <p className="text-slate-500">
+                                    {showPractice ? '该等级暂无模拟练习卷。' : '该等级暂无相关真题，请稍后再试。'}
+                                </p>
                             </div>
                         )}
                     </div>

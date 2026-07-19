@@ -870,7 +870,7 @@ if (age >= 18) {
 5`, output: `No
 5` }
       ],
-      referenceCode: `#include <iostream>\nusing namespace std;\nint main() {\n    long long x, a, b, c, n, m, k;\n    cin >> x >> a >> b >> c >> n >> m >> k;\n    long long total = a * n+b * m+c * k;\n    cout << x-total << endl;\n    return 0;\n}`,
+      referenceCode: "#include <iostream>\nusing namespace std;\nint main() {\n    int x, y, z, q;\n    cin >> x >> y >> z >> q;\n    int cost = 2 * x + 5 * y + 3 * z;\n    if (q >= cost) {\n        cout << \"Yes\" << endl << q - cost << endl;\n    } else {\n        cout << \"No\" << endl << cost - q << endl;\n    }\n    return 0;\n}",
       question: `
 # [GESP202309 一级] 买文具
 
@@ -912,7 +912,7 @@ if (age >= 18) {
 10
 20`, output: `31` }
       ],
-      referenceCode: `#include <iostream>\nusing namespace std;\nint main() {\n    long long l, r, k, sum = 0;\n    cin >> l >> r >> k;\n    for (long long i = l; i <= r; i++) {\n        if (i % k == 0 || i % 10 == k) {\n            sum += i;\n        }\n    }\n    cout << sum << endl;\n    return 0;\n}`,
+      referenceCode: "#include <iostream>\nusing namespace std;\nint main() {\n    long long k, l, r, sum = 0;\n    cin >> k >> l >> r;\n    for (long long i = l; i <= r; i++) {\n        if (i % 10 == k || i % k == 0) {\n            sum += i;\n        }\n    }\n    cout << sum << endl;\n    return 0;\n}",
       question: `
 # [GESP202309 一级] 小明的幸运数
 

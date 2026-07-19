@@ -50,7 +50,7 @@ const programmingQuestions = [
       explanation: "原图中一个顶点 v 若度数为 deg(v)，则所有与 v 相连的边两两之间都会在线图中形成相邻关系，一共贡献 C(deg(v),2) 条边。因为原图是简单图，两条不同边至多只有一个公共端点，所以不会重复计数。答案就是所有顶点贡献之和 Σ C(deg(v),2)。",
       tags: ["编程题", "图论", "计数", "度数统计"],
       template: "#include <bits/stdc++.h>\nusing namespace std;\n\nint main() {\n    ios::sync_with_stdio(false);\n    cin.tie(nullptr);\n\n    int n, m;\n    cin >> n >> m;\n    // 在此编写代码\n    return 0;\n}",
-      referenceCode: "#include <bits/stdc++.h>\nusing namespace std;\n\nint main() {\n    ios::sync_with_stdio(false);\n    cin.tie(nullptr);\n\n    int n, m;\n    cin >> n >> m;\n    vector<long long> deg($n+1$, 0);\n    for (int i = 0; i < m; ++i) {\n        int u, v;\n        cin >> u >> v;\n        deg[u]++;\n        deg[v]++;\n    }\n\n    long long ans = 0;\n    for (int i = 1; i <= n; ++i) {\n        ans += deg[i] * (deg[i]-1) / 2;\n    }\n    cout << ans << '\n';\n    return 0;\n}",
+      referenceCode: "#include <bits/stdc++.h>\nusing namespace std;\n\nint main() {\n    ios::sync_with_stdio(false);\n    cin.tie(nullptr);\n\n    int n, m;\n    cin >> n >> m;\n    vector<long long> deg(n+1, 0);\n    for (int i = 0; i < m; ++i) {\n        int u, v;\n        cin >> u >> v;\n        deg[u]++;\n        deg[v]++;\n    }\n\n    long long ans = 0;\n    for (int i = 1; i <= n; ++i) {\n        ans += deg[i] * (deg[i]-1) / 2;\n    }\n    cout << ans << '\\n';\n    return 0;\n}",
       score: 25,
       answer: '',
     },
@@ -91,7 +91,7 @@ const programmingQuestions = [
       explanation: "把每种食材看成“差值”为 d_i=a_i-b_i、“价值”为 w_i=a_i+b_i 的物品。选择若干食材后若总差值为 0，就恰好满足总酸度等于总甜度；同时我们要最大化总价值。因此可做一个以“差值”为维度的 0/1 背包：dp[delta] 表示达到该差值时最大的 S+T。差值可能为负，所以用偏移量把下标平移到非负区间。最后读取差值 0 对应的状态即可。",
       tags: ["编程题", "动态规划", "0/1背包"],
       template: "#include <bits/stdc++.h>\nusing namespace std;\n\nint main() {\n    ios::sync_with_stdio(false);\n    cin.tie(nullptr);\n\n    int n;\n    cin >> n;\n    // 在此编写代码\n    return 0;\n}",
-      referenceCode: "#include <bits/stdc++.h>\nusing namespace std;\n\nint main() {\n    ios::sync_with_stdio(false);\n    cin.tie(nullptr);\n\n    int n;\n    cin >> n;\n    vector<pair<int, int>> items(n);\n    int sumDiff = 0;\n    for (int i = 0; i < n; ++i) {\n        int a, b;\n        cin >> a >> b;\n        items[i] = {a, b};\n        sumDiff += abs(a-b);\n    }\n\n    const int NEG = -1000000000;\n    int offset = sumDiff;\n    vector<int> dp(offset * 2+1, NEG);\n    dp[offset] = 0;\n\n    for (auto [a, b] : items) {\n        int diff = a-b;\n        int val = a+b;\n        vector<int> ndp = dp;\n        for (int i = 0; i <= offset * 2; ++i) {\n            if ($dp[i]$ <= NEG / 2) continue;\n            int ni = i+diff;\n            if (0 <= ni && ni <= offset * 2) {\n                ndp[ni] = max(ndp[ni], $dp[i]$+val);\n            }\n        }\n        dp.swap(ndp);\n    }\n\n    cout << max(0, dp[offset]) << '\n';\n    return 0;\n}",
+      referenceCode: "#include <bits/stdc++.h>\nusing namespace std;\n\nint main() {\n    ios::sync_with_stdio(false);\n    cin.tie(nullptr);\n\n    int n;\n    cin >> n;\n    vector<pair<int, int>> items(n);\n    int sumDiff = 0;\n    for (int i = 0; i < n; ++i) {\n        int a, b;\n        cin >> a >> b;\n        items[i] = {a, b};\n        sumDiff += abs(a-b);\n    }\n\n    const int NEG = -1000000000;\n    int offset = sumDiff;\n    vector<int> dp(offset * 2+1, NEG);\n    dp[offset] = 0;\n\n    for (auto [a, b] : items) {\n        int diff = a-b;\n        int val = a+b;\n        vector<int> ndp = dp;\n        for (int i = 0; i <= offset * 2; ++i) {\n            if (dp[i] <= NEG / 2) continue;\n            int ni = i+diff;\n            if (0 <= ni && ni <= offset * 2) {\n                ndp[ni] = max(ndp[ni], dp[i]+val);\n            }\n        }\n        dp.swap(ndp);\n    }\n\n    cout << max(0, dp[offset]) << '\\n';\n    return 0;\n}",
       score: 25,
       answer: '',
     }
@@ -193,8 +193,23 @@ cout << a;
         },
         {
             id: 4,
+            sourceIntegrity: 'contaminated-stem',
+            integrityNote: "题干在录入时串入了其他题目的代码或答案表片段，已清理但仍需对照原卷复核。",
             type: "single",
-            question: `下列 C++ 代码的输出是（ ）。 #include <iostream> using namespace std; int main() { char a = 'b' ^ 4; cout << a; return 0; } 1 2 3 4 5 6 7`,
+            question: `下列 C++ 代码的输出是（ ）。
+
+\`\`\`cpp
+#include <iostream>
+using namespace std;
+int main() {
+    int arr[5] = {2, 4, 6, 8, 10};
+    int * p = arr + 2;
+    cout << p[3] << endl;
+    return 0;
+}
+\`\`\`
+
+> ⚠️ 本站源文件此处曾串入另一题的代码（\`char a = 'b' ^ 4;\`），与本题选项和标准答案均不匹配。上方代码依据本题选项（6/8）、标准答案与解析重建，待对照官方 PDF 复核。`,
             options: [
                 "6",
                 "8",
@@ -227,6 +242,8 @@ cout << p[3] << endl;
         },
         {
             id: 5,
+            sourceIntegrity: 'options-reconstructed',
+            integrityNote: "原卷选项在本站源文件中为占位文本，现有选项按标准答案反推补写，并非原卷原文。",
             type: "single",
             question: `假定只有一个根节点的树的深度为 ，则一棵有 个节点的完全二叉树，则树的深度为( )。`,
             options: [
@@ -252,6 +269,8 @@ cout << p[3] << endl;
         },
         {
             id: 6,
+            sourceIntegrity: 'missing-figure',
+            integrityNote: "原卷配图缺失，题目依赖该图才能作答，现有解析按标准答案反推。",
             type: "single",
             question: `对于如下图的二叉树，说法正确的是（ ）。`,
             options: [
@@ -308,10 +327,12 @@ cout << p[3] << endl;
         },
         {
             id: 8,
+            sourceIntegrity: 'contaminated-stem',
+            integrityNote: "题干在录入时串入了其他题目的代码或答案表片段，已清理但仍需对照原卷复核。",
             type: "single",
             question: `一个连通的简单有向图，共有28条边，则该图⾄少有( )个顶点。`,
             options: [
-                "5 #include <iostream> using namespace std; int main() { int arr[5] = {2, 4, 6, 8, 10}; int * p = arr+2; cout << p[3] << endl; return 0; } 1 2 3 4 5 6 7 8",
+                "5",
                 "6",
                 "7",
                 "8",
@@ -426,6 +447,8 @@ int main() { cout << fib(6) << endl; }
         },
         {
             id: 12,
+            sourceIntegrity: 'options-reconstructed',
+            integrityNote: "原卷选项在本站源文件中为占位文本，现有选项按标准答案反推补写，并非原卷原文。",
             type: "single",
             question: `下面程序的时间复杂度为（ ）。 #include <iostream> using namespace std; int rec_fib[100]; int fib(int n) { if (n <= 1) return n; if (rec_fib[n] == 0) rec_fib[n] = fib(n-1)+fib(n-2); return rec_fib[n]; } int main() { cout << fib(6) << endl; return 0; } 1 2 3 4 5 6 7 8 9 10 11 12 13 14 int rec_fib[MAX_N]; int fib(int n) { if (n <= 1) return n; if (rec_fib[n] == 0) rec_fib[n] = fib(n-1)+fib(n-2); return rec_fib[n]; } 1 2 3 4 5 6 7 8`,
             options: [
@@ -451,6 +474,8 @@ int main() { cout << fib(6) << endl; }
         },
         {
             id: 13,
+            sourceIntegrity: 'options-reconstructed',
+            integrityNote: "原卷选项在本站源文件中为占位文本，现有选项按标准答案反推补写，并非原卷原文。",
             type: "single",
             question: `下面search 函数的平均时间复杂度为 ( ) 。`,
             options: [
@@ -479,6 +504,8 @@ int main() { cout << fib(6) << endl; }
         },
         {
             id: 14,
+            sourceIntegrity: 'options-reconstructed',
+            integrityNote: "原卷选项在本站源文件中为占位文本，现有选项按标准答案反推补写，并非原卷原文。",
             type: "single",
             question: `下面程序的时间复杂度为（ ）。`,
             options: [
@@ -504,8 +531,12 @@ int main() { cout << fib(6) << endl; }
         },
         {
             id: 15,
+            sourceIntegrity: 'missing-figure',
+            integrityNote: "原卷配图缺失，题目依赖该图才能作答，现有解析按标准答案反推。",
             type: "single",
-            question: `下列选项中，哪个不可能是下图的⼴度优先遍历序列（ ）。 int search(int n, int * p, int target) { int low = 0, high = n; while (low < high) { int middle = (low+high) / 2; if (target == p[middle]) { return middle; } else if (target > p[middle]) { low = middle+1; } else { high = middle; } } return -1; } 1 2 3 4 5 6 7 8 9 10 11 12 13 14 int primes[MAXP], num = 0; bool isPrime[MAXN] = {false}; void sieve() { for (int n = 2; n <= MAXN; n++) { if (!isPrime[n]) primes[num++] = n; for (int i = 0; i < num && n * primes[i] <= MAXN; i++) { isPrime[n * primes[i]] = true; if (n % primes[i] == 0) break; } } } 1 2 3 4 5 6 7 8 9 10 11 12 13 题号 1 2 3 4 5 6 7 8 9 10 答案`,
+            question: `下列选项中，哪个不可能是下图的⼴度优先遍历序列（ ）。
+
+> ⚠️ 原卷此处配有一张无向图，本站源文件未包含该图，因此无法据题作答；下方解析按标准答案与 BFS 层序原理反推。`,
             options: [
                 "1, 2, 4, 5, 3, 7, 6, 8, 9",
                 "1, 2, 5, 4, 3, 7, 8, 6, 9",

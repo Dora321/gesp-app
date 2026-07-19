@@ -854,7 +854,7 @@ C++ 中存在两套完全不同的运算符：
         { input: `4`, output: `20` },
         { input: `10`, output: `220` }
       ],
-      referenceCode: `#include <iostream>\nusing namespace std;\nint main() {\n    int n, x, min_val = 1001;\n    cin >> n;\n    for (int i = 0; i < n; i++) {\n        cin >> x;\n        if (x < min_val) {\n            min_val = x;\n        }\n    }\n    cout << min_val << endl;\n    return 0;\n}`,
+      referenceCode: "#include <iostream>\nusing namespace std;\nint main() {\n    int n;\n    cin >> n;\n    long long inner = 0, total = 0;\n    for (int i = 1; i <= n; i++) {\n        inner += i;\n        total += inner;\n    }\n    cout << total << endl;\n    return 0;\n}",
       question: `
 # [GESP202306 一级] 累计相加
 

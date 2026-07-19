@@ -845,7 +845,7 @@ using namespace std;
 int main() {
     long long n, k, t;
     cin >> n >> k >> t;
-    cout << (n < k * t ? n : k * t) << "\n";
+    cout << (n < k * t ? n : k * t) << "\\n";
     return 0;
 }`,
       question: `
@@ -867,7 +867,7 @@ int main() {
 
 一行，一个整数，表示假期中所能阅读的最多页数。
 `,
-      template: `#include <bits/stdc++.h>\nusing namespace std;\n\nint main() {\n    // 在此填写代码\n    return 0;\n}`,
+      template: `#include <bits/stdc++.h>\\nusing namespace std;\\n\nint main() {\\n    // 在此填写代码\\n    return 0;\\n}`,
       answer: '',
       score: 25,
       explanation: `**解析：**
@@ -896,7 +896,7 @@ long long gcd(long long a, long long b) {
 int main() {
     long long m, n;
     cin >> m >> n;
-    cout << (m / gcd(m, n)) * n << "\n";
+    cout << (m / gcd(m, n)) * n << "\\n";
     return 0;
 }`,
       question: `
@@ -916,7 +916,7 @@ int main() {
 
 一行，一个整数，表示至少多少天后他们会再次同一天值日。
 `,
-      template: `#include <bits/stdc++.h>\nusing namespace std;\n\nint main() {\n    // 在此填写代码\n    return 0;\n}`,
+      template: `#include <bits/stdc++.h>\\nusing namespace std;\\n\nint main() {\\n    // 在此填写代码\\n    return 0;\\n}`,
       answer: '',
       score: 25,
       explanation: `**解析：**

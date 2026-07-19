@@ -1295,7 +1295,7 @@ for (char c : S) {
 \`\`\``,
       tags: ["编程题", "哈希", "集合"],
       template: "#include <iostream>\n#include <string>\n#include <set>\nusing namespace std;\n\nint main() {\n    int n;\n    cin >> n;\n    // 在此编写代码\n    return 0;\n}",
-      referenceCode: "#include <iostream>\n#include <string>\n#include <set>\nusing namespace std;\nint main() {\n    int n; cin >> n;\n    set<string> dict;\n    while (n--) {\n        int op; string s; cin >> op >> s;\n        if (op == 1) dict.insert(s);\n        else {\n            if (dict.count(s)) cout << 1 << endl;\n            else cout << 0 << endl;\n        }\n    }\n    return 0;\n}",
+      referenceCode: "#include <iostream>\n#include <string>\n#include <map>\nusing namespace std;\n\nint main() {\n    int n;\n    cin >> n;\n    map<string, string> dict;\n    for (int i = 0; i < n; i++) {\n        string a, b;\n        cin >> a >> b;\n        dict[a] = b;\n    }\n    string s;\n    cin >> s;\n    string result, word;\n    auto flush = [&]() {\n        if (word.empty()) return;\n        auto it = dict.find(word);\n        result += (it != dict.end()) ? it->second : string(\"UNK\");\n        word.clear();\n    };\n    for (char c : s) {\n        if (c >= 'a' && c <= 'z') {\n            word += c;\n        } else {\n            flush();\n            result += c;\n        }\n    }\n    flush();\n    cout << result << endl;\n    return 0;\n}",
     },
     {
       id: 27,
@@ -1353,7 +1353,7 @@ while (my_left <= my_right) {
 \`\`\``,
       tags: ["编程题", "贪心", "双指针"],
       template: "#include <iostream>\n#include <vector>\n#include <algorithm>\nusing namespace std;\n\nint main() {\n    int n;\n    cin >> n;\n    // 在此编写代码\n    return 0;\n}",
-      referenceCode: "#include <iostream>\n#include <vector>\n#include <algorithm>\nusing namespace std;\nint main() {\n    int n; cin >> n;\n    vector<int> a(n), b(n);\n    for (int i = 0; i < n; i++) cin >> a[i];\n    for (int i = 0; i < n; i++) cin >> b[i];\n    sort(a.begin(), a.end());\n    sort(b.begin(), b.end());\n    int la = 0, ra = n-1, lb = 0, rb = n-1;\n    int ans = 0;\n    while (la <= ra) {\n        if (a[ra] > b[rb]) { ans++; ra--; rb--; }\n        else if (a[la] > b[lb]) { ans++; la++; lb++; }\n        else {\n            if (a[la] < b[rb]) ans--;\n            la++; rb--;\n        }\n    }\n    cout << ans << endl;\n    return 0;\n}",
+      referenceCode: "#include <iostream>\n#include <vector>\n#include <algorithm>\nusing namespace std;\n\nint main() {\n    int n;\n    cin >> n;\n    vector<int> u(n), v(n);\n    for (auto &x : u) cin >> x;\n    for (auto &x : v) cin >> x;\n    sort(u.begin(), u.end());\n    sort(v.begin(), v.end());\n    int wins = 0, i = 0;\n    for (int j = 0; i < n && j < n; i++) {\n        if (u[i] > v[j]) { wins++; j++; }\n    }\n    cout << wins << endl;\n    return 0;\n}",
     }
 ];
 

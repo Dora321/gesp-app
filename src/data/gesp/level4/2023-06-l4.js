@@ -942,7 +942,7 @@ int main() {
     while (n--) {
         long long x;
         cin >> x;
-        cout << (judge(x) ? "T" : "F") << "\n";
+        cout << (judge(x) ? "T" : "F") << "\\n";
     }
     return 0;
 }`,
@@ -1109,12 +1109,12 @@ int main() {
     for (int c = 0; c < 16; c++) {
         cout << itrans(color[c] / 16) << itrans(color[c] % 16);
     }
-    cout << "\n";
+    cout << "\\n";
     for (int i = 0; i < n; i++) {
         for (int j = 0; j < m; j++) {
             cout << itrans(cpimg[i][j]);
         }
-        cout << "\n";
+        cout << "\\n";
     }
     return 0;
 }`,

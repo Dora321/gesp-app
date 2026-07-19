@@ -28,7 +28,17 @@ const programmingQuestions = [
 输出一行一个整数，表示最少的花费。特别地，如果无法通过交换换取商品 $b$ ，请输出 \`No solution\`。
 `,
       score: 25,
-      explanation: "把每种商品看作图上的点，每次交易看作一条有向边，边权为手续费加上换货需要补的差价（若得到更贵商品则补差，得到更便宜商品则相当于负代价）。答案就是从 s 到 t 的最短路。",
+      samples: [
+        { input: `3 3 0 2
+5 3 10
+0 1
+1 2
+0 2`, output: `6` },
+        { input: `2 1 0 1
+1 2
+1 0`, output: `No solution` }
+      ],
+      explanation: "把每种商品看作图上的点，每次交易看作一条有向边，边权为手续费加上换货需要补的差价（若得到更贵商品则补差，得到更便宜商品则相当于负代价）。任何一条 a→b 路径的总花费 = 交易次数 + v_b - v_a，因此最优解等价于求 a 到 b 的最少交易次数。样例说明：样例 1 中直接用商品 0 换商品 2，花费 1 + 10 - 5 = 6，比经商品 1 中转（-1 + 8 = 7）更优。注：官方样例缺失，此处样例为本站按题意构造并经参考程序验证，待官方 PDF 复核。",
       tags: ["编程题", "图论", "最短路"],
       template: "#include <bits/stdc++.h>\nusing namespace std;\n\nint main() {\n    ios::sync_with_stdio(false);\n    cin.tie(nullptr);\n    return 0;\n}",
       referenceCode: "#include <bits/stdc++.h>\nusing namespace std;\n\nint main() {\n    ios::sync_with_stdio(false);\n    cin.tie(nullptr);\n\n    int n, m, s, t;\n    cin >> n >> m >> s >> t;\n    vector<long long> val(n);\n    for (int i = 0; i < n; ++i) cin >> val[i];\n    vector<vector<pair<int,long long>>> g(n);\n    for (int i = 0; i < m; ++i) {\n        int x, y;\n        cin >> x >> y;\n        long long w = 1+val[y]-val[x];\n        g[x].push_back({y, w});\n    }\n\n    const long long INF = (1LL << 60);\n    vector<long long> dist(n, INF);\n    vector<int> inq(n, 0), cnt(n, 0);\n    queue<int> q;\n    dist[s] = 0;\n    q.push(s);\n    inq[s] = 1;\n    while (!q.empty()) {\n        int u = q.front(); q.pop();\n        inq[u] = 0;\n        for (auto [v, w] : g[u]) {\n            if (dist[u] != INF && dist[v] > dist[u]+w) {\n                dist[v] = dist[u]+w;\n                if (!inq[v]) {\n                    q.push(v);\n                    inq[v] = 1;\n                }\n            }\n        }\n    }\n    if (dist[t] == INF) cout << \"No solution\\n\";\n    else cout << dist[t] << '\\n';\n    return 0;\n}",
@@ -79,7 +89,7 @@ _i\\in{0,1,2}$。
       explanation: "设 dp[k][j] 表示当前手牌为 k、已经换了 j 次时的最大得分。每轮可以继续沿用上一轮的牌，或者从其他状态换牌过来，多出的罚分在最后统一扣除或在转移时体现。",
       tags: ["编程题", "动态规划"],
       template: "#include <bits/stdc++.h>\nusing namespace std;\n\nint main() {\n    ios::sync_with_stdio(false);\n    cin.tie(nullptr);\n    return 0;\n}",
-      referenceCode: "#include <bits/stdc++.h>\nusing namespace std;\n\nint score(int me, int he, int winScore) {\n    if ((me == 1 && he == 0) || (me == 2 && he == 1) || (me == 0 && he == 2)) return 2 * winScore;\n    if (me == he) return winScore;\n    return 0;\n}\n\nint main() {\n    ios::sync_with_stdio(false);\n    cin.tie(nullptr);\n\n    int n;\n    cin >> n;\n    vector<int> a($n+1$), b($n+1$, 0), c($n+1$);\n    for (int i = 1; i <= n; ++i) cin >> a[i];\n    for (int i = 1; i < n; ++i) cin >> b[i];\n    for (int i = 1; i <= n; ++i) cin >> c[i];\n\n    const int NEG = -1e9;\n    vector<vector<int>> dp(3, vector<int>($n+1$, NEG));\n    for (int k = 0; k < 3; ++k) dp[k][0] = score(k, c[1], a[1]);\n\n    for (int i = 2; i <= n; ++i) {\n        vector<vector<int>> ndp(3, vector<int>($n+1$, NEG));\n        for (int last = 0; last < 3; ++last) {\n            for (int j = 0; j <= i-2; ++j) if (dp[last][j] > NEG / 2) {\n                ndp[last][j] = max(ndp[last][j], dp[last][j]+score(last, c[i], a[i]));\n                for (int now = 0; now < 3; ++now) if (now != last) {\n                    ndp[now][j+1] = max(ndp[now][j+1], dp[last][j]+score(now, c[i], a[i]));\n                }\n            }\n        }\n        dp.swap(ndp);\n    }\n\n    int ans = 0;\n    for (int k = 0; k < 3; ++k) {\n        for (int j = 0; j < n; ++j) ans = max(ans, dp[k][j]-b[j]);\n    }\n    cout << ans << '\\n';\n    return 0;\n}",
+      referenceCode: "#include <bits/stdc++.h>\nusing namespace std;\n\nint roundScore(int me, int he, long long a) {\n    if ((me == 1 && he == 0) || (me == 2 && he == 1) || (me == 0 && he == 2)) return 2 * a;\n    if (me == he) return a;\n    return 0;\n}\n\nint main() {\n    ios::sync_with_stdio(false);\n    cin.tie(nullptr);\n\n    int n;\n    cin >> n;\n    vector<long long> a(n + 1), b(n, 0), c(n + 1);\n    for (int i = 1; i <= n; ++i) cin >> a[i];\n    for (int i = 1; i <= n - 1; ++i) cin >> b[i];\n    for (int i = 1; i <= n; ++i) cin >> c[i];\n    vector<long long> prefB(n, 0);\n    for (int i = 1; i <= n - 1; ++i) prefB[i] = prefB[i - 1] + b[i];\n\n    const long long NEG = LLONG_MIN / 4;\n    // dp[card][t]：当前轮出 card、已换 t 次牌时的最大累计得分（不含罚分）\n    vector<array<long long, 3>> dp(n, {NEG, NEG, NEG});\n    for (int card = 0; card < 3; ++card) dp[0][card] = roundScore(card, c[1], a[1]);\n    for (int i = 2; i <= n; ++i) {\n        vector<array<long long, 3>> next(n, {NEG, NEG, NEG});\n        for (int t = 0; t < i - 1; ++t) {\n            for (int card = 0; card < 3; ++card) {\n                if (dp[t][card] == NEG) continue;\n                long long base = dp[t][card];\n                for (int now = 0; now < 3; ++now) {\n                    int nt = t + (now == card ? 0 : 1);\n                    long long val = base + roundScore(now, c[i], a[i]);\n                    if (val > next[nt][now]) next[nt][now] = val;\n                }\n            }\n        }\n        dp = move(next);\n    }\n    long long best = NEG;\n    for (int t = 0; t < n; ++t) {\n        for (int card = 0; card < 3; ++card) {\n            if (dp[t][card] == NEG) continue;\n            best = max(best, dp[t][card] - prefB[t]);\n        }\n    }\n    cout << best << '\\n';\n    return 0;\n}",
       answer: '',
     }
 ];

@@ -79,7 +79,7 @@ const programmingQuestions = [
       `,
       tags: ["编程题", "模拟"],
       template: "#include <iostream>\nusing namespace std;\n\nint main() {\n    int L, R;\n    cin >> L >> R;\n    // 在此编写代码\n    return 0;\n}",
-      referenceCode: "#include <iostream>\n#include <string>\nusing namespace std;\nbool isLucky(int n) {\n    if (n % 7 == 0) return true;\n    string s = to_string(n);\n    if (s.find('7') != string::npos) return true;\n    return false;\n}\nint main() {\n    int L, R; cin >> L >> R;\n    long long sum = 0;\n    for (int i = L; i <= R; i++) {\n        if (isLucky(i)) sum += i;\n    }\n    cout << sum << endl;\n    return 0;\n}",
+      referenceCode: "#include <iostream>\nusing namespace std;\n\nint distinctPrimeFactors(long long x) {\n    int count = 0;\n    for (long long p = 2; p * p <= x; p++) {\n        if (x % p == 0) {\n            count++;\n            while (x % p == 0) x /= p;\n        }\n    }\n    if (x > 1) count++;\n    return count;\n}\n\nint main() {\n    int n;\n    cin >> n;\n    while (n--) {\n        long long x;\n        cin >> x;\n        cout << (distinctPrimeFactors(x) == 2 ? 1 : 0) << \"\\n\";\n    }\n    return 0;\n}",
       answer: '',
     }
 ];

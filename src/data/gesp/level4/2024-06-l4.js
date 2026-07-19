@@ -51,7 +51,7 @@ int ones = s[r2][c2] - s[r1-1][c2] - s[r2][c1-1] + s[r1-1][c1-1];
 \`\`\``,
       tags: ["编程题", "二维前缀和", "暴力枚举"],
       template: "#include <iostream>\n#include <string>\n#include <vector>\nusing namespace std;\n\nint main() {\n    int n, m;\n    cin >> n >> m;\n    // 在此编写代码\n    return 0;\n}",
-      referenceCode: "#include <iostream>\n#include <vector>\n#include <string>\nusing namespace std;\nint main() {\n    int n, m; cin >> n >> m;\n    vector<vector<int>> s($n+1$, vector<int>(m+1, 0));\n    for (int i = 1; i <= n; i++) {\n        string row; cin >> row;\n        for (int j = 1; j <= m; j++) {\n            s[i][j] = s[i-1][j]+s[i][j-1]-s[i-1][j-1]+(row[j-1]-'0');\n        }\n    }\n    int max_area = 0;\n    for (int r1 = 1; r1 <= n; r1++) {\n        for (int c1 = 1; c1 <= m; c1++) {\n            for (int r2 = r1; r2 <= n; r2++) {\n                for (int c2 = c1; c2 <= m; c2++) {\n                    int area = (r2-r1+1) * (c2-c1+1);\n                    if (area % 2 != 0) continue;\n                    int ones = s[r2][c2]-s[r1-1][c2]-s[r2][c1-1]+s[r1-1][c1-1];\n                    if (ones * 2 == area) max_area = max(max_area, area);\n                }\n            }\n        }\n    }\n    cout << max_area << endl;\n    return 0;\n}",
+      referenceCode: "#include <iostream>\n#include <vector>\n#include <string>\nusing namespace std;\nint main() {\n    int n, m; cin >> n >> m;\n    vector<vector<int>> s(n+1, vector<int>(m+1, 0));\n    for (int i = 1; i <= n; i++) {\n        string row; cin >> row;\n        for (int j = 1; j <= m; j++) {\n            s[i][j] = s[i-1][j]+s[i][j-1]-s[i-1][j-1]+(row[j-1]-'0');\n        }\n    }\n    int max_area = 0;\n    for (int r1 = 1; r1 <= n; r1++) {\n        for (int c1 = 1; c1 <= m; c1++) {\n            for (int r2 = r1; r2 <= n; r2++) {\n                for (int c2 = c1; c2 <= m; c2++) {\n                    int area = (r2-r1+1) * (c2-c1+1);\n                    if (area % 2 != 0) continue;\n                    int ones = s[r2][c2]-s[r1-1][c2]-s[r2][c1-1]+s[r1-1][c1-1];\n                    if (ones * 2 == area) max_area = max(max_area, area);\n                }\n            }\n        }\n    }\n    cout << max_area << endl;\n    return 0;\n}",
       answer: '',
     },
     {
@@ -108,7 +108,7 @@ for (int r = 0; r < n; r++) {
 \`\`\``,
       tags: ["编程题", "贪心", "排序"],
       template: "#include <iostream>\n#include <algorithm>\n#include <vector>\nusing namespace std;\n\nint main() {\n    int n;\n    cin >> n;\n    // 在此编写代码\n    return 0;\n}",
-      referenceCode: "#include <iostream>\n#include <algorithm>\n#include <vector>\nusing namespace std;\nint main() {\n    int n; cin >> n;\n    vector<int> a(n);\n    for (int i = 0; i < n; i++) cin >> a[i];\n    sort(a.begin(), a.end());\n    int day = 0;\n    for (int i = 0; i < n; i++) {\n        if (a[i] >= day+1) day++;\n    }\n    cout << day << endl;\n    return 0;\n}",
+      referenceCode: "#include <iostream>\n#include <vector>\n#include <algorithm>\nusing namespace std;\n\nint main() {\n    int n;\n    long long k;\n    cin >> n >> k;\n    vector<long long> a(n);\n    for (auto &x : a) cin >> x;\n    sort(a.begin(), a.end());\n    long long best = 0, sum = 0;\n    int l = 0;\n    for (int r = 0; r < n; r++) {\n        sum += a[r];\n        while (a[r] - a[l] > k) sum -= a[l++];\n        best = max(best, sum);\n    }\n    cout << best << endl;\n    return 0;\n}",
       answer: '',
     }
 ];

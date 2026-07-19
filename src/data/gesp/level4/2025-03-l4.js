@@ -935,6 +935,7 @@ bool can(int r, int c, const vector<string>& grid) {
 \`\`\``,
       tags: ["编程题", "GESP4级"],
       template: "#include <bits/stdc++.h>\nusing namespace std;\n\nint main() {\n    ios::sync_with_stdio(false);\n    cin.tie(nullptr);\n\n    // 在此编写代码\n\n    return 0;\n}",
+      referenceCode: "#include <iostream>\n#include <vector>\n#include <string>\nusing namespace std;\n\nint n, m;\nvector<string> g;\n\nbool clearAround(int r, int c) {\n    static const int dr[] = {-1, 1, 0, 0}, dc[] = {0, 0, -1, 1};\n    for (int k = 0; k < 4; ++k) {\n        int nr = r + dr[k], nc = c + dc[k];\n        if (nr >= 0 && nr < n && nc >= 0 && nc < m && g[nr][nc] == '#') return false;\n    }\n    return true;\n}\n\nint countAll() {\n    int cnt = 0;\n    for (int i = 0; i < n; ++i)\n        for (int j = 0; j < m; ++j)\n            if (g[i][j] == '.' && clearAround(i, j)) cnt++;\n    return cnt;\n}\n\nint main() {\n    cin >> n >> m;\n    g.resize(n);\n    for (auto &row : g) cin >> row;\n    int best = countAll();\n    for (int i = 0; i < n; ++i)\n        for (int j = 0; j < m; ++j)\n            if (g[i][j] == '#') {\n                g[i][j] = '.';\n                int cur = countAll();\n                if (cur > best) best = cur;\n                g[i][j] = '#';\n            }\n    cout << best << endl;\n    return 0;\n}",
       answer: '',
     },
         {
@@ -991,6 +992,7 @@ for (int i = 0; i < n - 1; i++) {
 \`\`\``,
       tags: ["编程题", "GESP4级"],
       template: "#include <bits/stdc++.h>\nusing namespace std;\n\nint main() {\n    ios::sync_with_stdio(false);\n    cin.tie(nullptr);\n\n    // 在此编写代码\n\n    return 0;\n}",
+      referenceCode: "#include <iostream>\n#include <vector>\nusing namespace std;\n\nint main() {\n    int n, m;\n    cin >> n >> m;\n    vector<vector<long long>> a(n, vector<long long>(m));\n    for (auto &row : a) for (auto &x : row) cin >> x;\n    long long cnt = 0;\n    for (int i = 0; i + 1 < n; ++i)\n        for (int j = 0; j + 1 < m; ++j)\n            if (a[i][j] * a[i + 1][j + 1] == a[i][j + 1] * a[i + 1][j]) cnt++;\n    cout << cnt << endl;\n    return 0;\n}",
       answer: '',
     }
     ]
