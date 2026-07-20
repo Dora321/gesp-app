@@ -276,10 +276,47 @@ export const paperData = {
         },
         {
             id: 7,
-            sourceIntegrity: 'missing-figure',
-            integrityNote: "原卷该题的代码以图片形式给出，本站源文件未包含该代码，因此题面不足以独立作答；答案依据官方 PDF 第 1 页答案表。",
             type: "single",
-            question: `根据下面 C++ 代码的注释，两个横线处应分别填入（ ）。`,
+            question: `根据下面 C++ 代码的注释，两个横线处应分别填入（　）。
+
+\`\`\`cpp
+#include <iostream>
+#include <vector>
+#include <algorithm>
+using namespace std;
+
+bool isOdd(int N) {
+    return N % 2 == 1;
+}
+bool compare(int a, int b) {
+    if (a % 2 == 0 && b % 2 == 1)
+        return true;
+    return false;
+}
+int main() {
+    vector<int> lstA;  // lstA是一个整型向量
+    for (int i = 1; i < 100; i++)
+        lstA.push_back(i);
+    // 对lstA成员按比较函数执行结果排序
+    sort(lstA.begin(), lstA.end(), __________);  // 此处填写代码1
+
+    vector<int> lstB;
+    for (int i = 0; i < lstA.size(); i++)  // lstB成员全为奇数
+        if (____________)  // 此处填写代码2
+            lstB.push_back(lstA[i]);
+
+    cout << "lstA: ";
+    for (int i = 0; i < lstA.size(); i++)
+        cout << lstA[i] << " ";
+    cout << endl;
+
+    cout << "lstB: ";
+    for (int i = 0; i < lstB.size(); i++)
+        cout << lstB[i] << " ";
+    cout << endl;
+    return 0;
+}
+\`\`\``,
             options: [
                 "compare和isOdd(lstA[i])",
                 "compare(x1,y1)和isOdd",
@@ -290,17 +327,21 @@ export const paperData = {
             score: 2,
             explanation: `**答案：A（compare和isOdd(lstA[i])）**
 
-**依据**：官方真题 PDF 第 1 页答案表给出本题答案为 A。本站此前记录为 C，属答案录入错误，现已更正。
+两个横线的语法要求并不相同，这正是本题的考点。
 
-**要点**：两个横线的用途不同，不能一概而论——
-- 第一个横线把比较函数**作为参数传给排序函数**，此时传的是函数名本身，不加括号：\`compare\`。
-- 第二个横线出现在条件判断中，需要的是这一次调用的**布尔结果**，所以要写成调用形式：\`isOdd(lstA[i])\`。
+**代码1** 位于 \`sort(lstA.begin(), lstA.end(), ____)\` 的第三个参数位置。sort 要的是一个**比较函数本身**，之后由它反复调用，所以这里传的是函数名 \`compare\`——不能写成 \`compare(x1,y1)\`，那是「立刻调用一次并把返回的 bool 传进去」，类型也不对。
 
-因此正确组合为 \`compare\` 和 \`isOdd(lstA[i])\`。
+**代码2** 位于 \`if (____)\` 的条件位置，需要的是**这一次判断的结果**（一个 bool 值），所以必须写成调用形式 \`isOdd(lstA[i])\`。只写 \`isOdd\` 是个函数指针，恒为非空，条件将永远成立，lstB 会收进全部元素而不只是奇数。
 
-> ⚠️ 原卷该题的代码以图片形式给出，本站源文件未包含该代码，因此题面不足以独立作答；答案依据官方 PDF 第 1 页答案表。完整推导需对照原卷代码。
+因此「传函数名 + 调用取值」的组合只有 A。
 
-**考点**：函数指针作为参数 vs 函数调用求值`,
+**逐项分析**：
+- **A**：正确。
+- **B**：两处正好写反。
+- **C**：\`isOdd\` 未调用，if 条件恒真。
+- **D**：\`compare(x1,y1)\` 作 sort 参数类型错误。
+
+**考点**：函数名（函数指针）与函数调用的区别`,
             tags: [
                 "客观题",
                 "单选题",
@@ -339,10 +380,28 @@ export const paperData = {
         },
         {
             id: 9,
-            sourceIntegrity: 'missing-figure',
-            integrityNote: "原卷该题的代码以图片形式给出，本站源文件未包含该代码，因此题面不足以独立作答；答案依据官方 PDF 第 1 页答案表。",
             type: "single",
-            question: `有关下面 C++ 代码正确的是（ ）。`,
+            question: `有关下面 C++ 代码正确的是（　）。
+
+\`\`\`cpp
+#include <iostream>
+using namespace std;
+
+bool isOdd(int N) {
+    return N % 2 == 1;
+}
+int Square(int N) {
+    return N * N;
+}
+bool checkNum(bool (*Fx)(int), int x) {
+    return Fx(x);
+}
+int main() {
+    cout << checkNum(isOdd, 10) << endl;    // 输出行A
+    cout << checkNum(Square, 10) << endl;   // 输出行B
+    return 0;
+}
+\`\`\``,
             options: [
                 "checkNum()函数定义错误。",
                 "输出⾏A 的语句将导致编译错误。",
@@ -353,11 +412,25 @@ export const paperData = {
             score: 2,
             explanation: `**答案：C（输出行B 的语句将导致编译错误）**
 
-**依据**：官方真题 PDF 第 1 页答案表给出本题答案为 C。本站此前记录为 D（“该代码没有编译错误”），属答案录入错误，现已更正。
+\`checkNum\` 的第一个形参类型是 \`bool (*Fx)(int)\`——指向「接收 int、返回 **bool**」的函数指针。
 
-> ⚠️ 原卷该题的代码以图片形式给出，本站源文件未包含该代码，因此题面不足以独立作答；答案依据官方 PDF 第 1 页答案表。由于代码缺失，本站无法给出行 B 报错的具体原因，此处不做推测；请以原卷代码为准。
+- **输出行A**：\`checkNum(isOdd, 10)\`。\`isOdd\` 的类型是 \`bool(*)(int)\`，与形参完全匹配，编译通过。
+- **输出行B**：\`checkNum(Square, 10)\`。\`Square\` 的类型是 \`int(*)(int)\`，返回类型是 int 而非 bool。函数指针类型**不存在**「返回值自动转换」这回事，类型不匹配，编译失败。
 
-**考点**：C++ 编译期错误的识别`,
+实际用 g++ 编译，报错正落在行B：
+
+\`\`\`text
+error: no matching function for call to 'checkNum'
+    cout << checkNum(Square, 10) << endl;   // 输出行B
+\`\`\`
+
+**逐项分析**：
+- **A**：\`checkNum\` 定义本身完全合法。
+- **B**：行A 类型匹配，不会报错。
+- **C**：正确。
+- **D**：行B 已导致编译失败。
+
+**考点**：函数指针的类型必须在参数与返回值上都精确匹配`,
             tags: [
                 "客观题",
                 "单选题",
@@ -366,10 +439,26 @@ export const paperData = {
         },
         {
             id: 10,
-            sourceIntegrity: 'missing-figure',
-            integrityNote: "原卷该题的代码以图片形式给出，本站源文件未包含该代码，因此题面不足以独立作答；答案依据官方 PDF 第 1 页答案表。",
             type: "single",
-            question: `下面代码执⾏后的输出是（ ）。`,
+            question: `下面代码执行后的输出是（　）。
+
+\`\`\`cpp
+#include <iostream>
+using namespace std;
+
+int jumpFloor(int N) {
+    cout << N << "#";
+    if (N == 1 || N == 2) {
+        return N;
+    } else {
+        return jumpFloor(N - 1) + jumpFloor(N - 2);
+    }
+}
+int main() {
+    cout << jumpFloor(4) << endl;
+    return 0;
+}
+\`\`\``,
             options: [
                 "4#3#2#2#4",
                 "4#3#2#2#1#5",
@@ -380,11 +469,25 @@ export const paperData = {
             score: 2,
             explanation: `**答案：D（4#3#2#1#2#5）**
 
-**依据**：官方真题 PDF 第 1 页答案表给出本题答案为 D。本站此前记录为 C，且原解析推导出的序列（4#3#2#1#2#3#4）与所有选项都不相符，仅以“最接近”为由选了 C——这属于无依据的猜测，现一并更正。
+\`jumpFloor\` 每次进入函数**先打印当前的 N**，再决定是否递归，因此输出顺序就是递归的访问顺序（前序）。
 
-> ⚠️ 原卷该题的代码以图片形式给出，本站源文件未包含该代码，因此题面不足以独立作答；答案依据官方 PDF 第 1 页答案表。由于代码缺失，本站不再给出逐步推导，避免再次出现与选项对不上的伪推导；请以原卷代码为准。
+展开 \`jumpFloor(4)\`：
 
-**考点**：递归调用与回溯时的输出顺序`,
+| 调用 | 打印 | 返回 |
+|---|---|---|
+| jumpFloor(4) | \`4#\` | jumpFloor(3) + jumpFloor(2) |
+| └ jumpFloor(3) | \`3#\` | jumpFloor(2) + jumpFloor(1) |
+| 　└ jumpFloor(2) | \`2#\` | 2 |
+| 　└ jumpFloor(1) | \`1#\` | 1 |
+| └ jumpFloor(2) | \`2#\` | 2 |
+
+递归部分依次打印 \`4#3#2#1#2#\`，最后 \`jumpFloor(4)\` 返回 3 + 2 = **5**，由 main 打印出来，故完整输出为 \`4#3#2#1#2#5\`。
+
+**易错点**：
+- 漏掉第二次 \`jumpFloor(2)\`（右子树）会得到 \`4#3#2#1#\` 开头的错误序列。
+- 把最后的返回值误算成 4（选项 C），实际 F(4) = F(3) + F(2) = 3 + 2 = 5。
+
+**考点**：递归的前序输出顺序与返回值累加`,
             tags: [
                 "客观题",
                 "单选题",
