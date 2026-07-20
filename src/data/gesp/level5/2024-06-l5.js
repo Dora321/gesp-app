@@ -257,54 +257,48 @@ export const paperData = {
         },
         {
             id: 9,
-            sourceIntegrity: 'missing-figure',
-            integrityNote: "原卷该题的代码/图以图片形式给出，官方 PDF 无文本层，本站无法提取；题干、选项与答案均取自官方原卷，但缺少代码部分，暂不足以独立作答。",
             type: "single",
-            question: `为了正确实现快速排序，下面横线上的代码应为（ ）。
-vector<int> linear_sieve(int n) {
- vector<bool> is_prime(n + 1, true);
- vector<int> primes;
- is_prime[0] = is_prime[1] = 0; //0 和 1 两个数特殊处理
- for (int i = 2; i <= n; ++i) {
- if (is_prime[i]) {
- primes.push_back(i);
- }
- ________________________________ { // 在此处填入代码
- is_prime[i * primes[j]] = 0;
- if (i % primes[j] == 0)
- break;
- }
- }
- return primes;
-}
-void qsort(vector<int>& arr, int left, int right) {
- int i, j, mid;
- int pivot;
- i = left;
- j = right;
- mid = (left + right) / 2; // 计算中间元素的索引
- pivot = arr[mid]; // 选择中间元素作为基准值
- do {
- while (arr[i] < pivot) i++;
- while (arr[j] > pivot) j--;
- if (i <= j) {
- swap(arr[i], arr[j]); // 交换两个元素
- i++; j--;
- }
- } ________________________________; // 在此处填入代码
- if (left < j) qsort(arr, left, j); // 对左子数组进行快速排序
- if (i < right) qsort(arr, i, right); // 对右子数组进行快速排序
-}
+            question: `为了正确实现快速排序，下面横线上的代码应为（　）。
 
-> ⚠️ 原卷此处配有代码或图片。官方 PDF 中该部分为图片，或其文本层与相邻试题混排、无法可靠切分，本站尚未还原。请对照原卷阅读代码。`,
+\`\`\`cpp
+void qsort(vector<int>& arr, int left, int right) {
+    int i, j, mid;
+    int pivot;
+    i = left;
+    j = right;
+    mid = (left + right) / 2;  // 计算中间元素的索引
+    pivot = arr[mid];          // 选择中间元素作为基准值
+    do {
+        while (arr[i] < pivot) i++;
+        while (arr[j] > pivot) j--;
+        if (i <= j) {
+            swap(arr[i], arr[j]);  // 交换两个元素
+            i++; j--;
+        }
+    } ________________________________;  // 在此处填入代码
+    if (left < j) qsort(arr, left, j);   // 对左子数组进行快速排序
+    if (i < right) qsort(arr, i, right); // 对右子数组进行快速排序
+}
+\`\`\``,
             options: ["while (i <= mid)", "while (i < mid)", "while (i < j)", "while (i <= j)"],
             answer: 3,
             score: 2,
             explanation: `**答案：D（while (i <= j)）**
 
-**依据**：官方真题 PDF 第 1 页答案表。本题题干与选项均已按官方原卷回填。
+横线在 \`do { ... } ____;\` 的位置，要填的是 **do-while 循环的结束条件**。
 
-> ⚠️ 原卷该题的代码/图以图片形式给出，官方 PDF 无文本层，本站无法提取；题干、选项与答案均取自官方原卷，但缺少代码部分，暂不足以独立作答。因此本站不对该代码做推测性讲解，请对照原卷阅读代码。`,
+这一轮划分的目标是：让 i 和 j 从两端相向扫描，把小于基准的换到左边、大于基准的换到右边，**直到两个指针交错为止**。所以只要 \`i <= j\`（尚未交错）就应继续下一轮扫描，即 \`while (i <= j)\`。
+
+循环结束时必然有 \`i > j\`，数组被分成 \`[left, j]\` 和 \`[i, right]\` 两段，正好对应后面两行递归调用。
+
+**逐项分析**：
+- **A \`while (i <= mid)\` / B \`while (i < mid)\`**：\`mid\` 只是最初用来取基准值的下标，划分过程中并不更新它，拿它当循环条件既不能保证扫描完成，还可能死循环。
+- **C \`while (i < j)\`**：当 \`i == j\` 时循环就退出了，此时该位置的元素还没和基准比较过，划分不完整，后续递归的边界也会出错。
+- **D \`while (i <= j)\`**：正确，扫描到两指针交错才停止。
+
+**易错点**：C 和 D 只差一个等号。快排划分必须让 \`i == j\` 这一格也参与比较，否则会漏掉一个元素。
+
+**考点**：快速排序划分阶段的指针交错条件`,
             tags: ["客观题", "单选题", "GESP5级"]
         },
         {
