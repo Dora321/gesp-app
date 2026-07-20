@@ -139,36 +139,45 @@ export const paperData = {
         },
         {
             id: 3,
-            sourceIntegrity: 'missing-figure',
-            integrityNote: "原卷该题的代码/图以图片形式给出，官方 PDF 无文本层，本站无法提取；题干、选项与答案均取自官方原卷，但缺少代码部分，暂不足以独立作答。",
             type: "single",
-            question: `为了方便链表的增删操作，一些算法生成一个虚拟头节点，方便统一删除头节点和其他节点。下面代码实现
-了删除链表中值为val的节点，横线上应填的最佳代码是 ( ) 。
+            question: `为了方便链表的增删操作，一些算法生成一个虚拟头节点，方便统一删除头节点和其他节点。下面代码实现了删除链表中值为 val 的节点，横线上应填的最佳代码是（　）。
+
+\`\`\`cpp
 struct LinkedNode {
- int val;
- LinkedNode* next;
- LinkedNode(int val):val(val), next(nullptr){}
+    int val;
+    LinkedNode* next;
+    LinkedNode(int val):val(val), next(nullptr){}
 };
 void removeElements(LinkedNode* head, int val) {
- if (head == nullptr) {
- return;
- }
- LinkedNode* cur;
- LinkedNode* dummyHead = new LinkedNode(0); // 虚拟头节点
- ________________________________ // 在此处填入代码
- while(cur ->next ！= nullptr) {
- if(cur->next->val == val) {
- LinkedNode* tmp = cur->next;
+    if (head == nullptr) {
+        return;
+    }
+    LinkedNode* cur;
+    LinkedNode* dummyHead = new LinkedNode(0); // 虚拟头节点
+    ________________________________     // 在此处填入代码
+    while(cur ->next != nullptr) {
+        if(cur->next->val == val) {
+            LinkedNode* tmp = cur->next;
+\`\`\`
 
-> ⚠️ 原卷此处配有代码或图片。官方 PDF 中该部分为图片，或其文本层与相邻试题混排、无法可靠切分，本站尚未还原。请对照原卷阅读代码。`,
+> ⚠️ 原卷该代码在官方 PDF 中跨栏排版，末尾若干行未能完整提取，其余部分与原卷一致。`,
             options: ["dummyHead->next = head; cur = dummyHead;", "dummyHead->next = head->next; cur = dummyHead;", "dummyHead->next = head; cur = dummyHead->next;", "dummyHead->next = head->next; cur = dummyHead->next;"],
             answer: 0,
             score: 2,
             explanation: `**答案：A（dummyHead->next = head; cur = dummyHead;）**
 
-**依据**：官方真题 PDF 第 1 页答案表。本题题干与选项均已按官方原卷回填。
+虚拟头节点的作用是让「删除头节点」和「删除中间节点」用同一套代码处理。要做到这一点需要两件事：
 
-> ⚠️ 原卷该题的代码/图以图片形式给出，官方 PDF 无文本层，本站无法提取；题干、选项与答案均取自官方原卷，但缺少代码部分，暂不足以独立作答。因此本站不对该代码做推测性讲解，请对照原卷阅读代码。`,
+1. **把虚拟头接到真实链表前面**：\`dummyHead->next = head\`，这样原来的头节点就变成了「某个节点的 next」，不再特殊。
+2. **让遍历指针从虚拟头开始**：\`cur = dummyHead\`。循环里判断的是 \`cur->next->val == val\` 并删除 \`cur->next\`，所以 cur 必须停在待删节点的**前一个**位置。若 \`cur = dummyHead->next\`（即真实头节点），就永远无法删除头节点本身。
+
+**逐项分析**：
+- **A**：正确，两个条件都满足。
+- **B**：\`dummyHead->next = head->next\` 直接跳过了原头节点，头节点被漏掉。
+- **C**：接链正确，但 cur 从真实头开始，删不掉头节点。
+- **D**：两处都错。
+
+**考点**：虚拟头节点（dummy head）的作用与遍历指针的起点`,
             tags: ["客观题", "单选题", "GESP5级"]
         },
         {
@@ -206,123 +215,143 @@ void removeElements(LinkedNode* head, int val) {
         },
         {
             id: 6,
-            sourceIntegrity: 'missing-figure',
-            integrityNote: "原卷该题的代码/图以图片形式给出，官方 PDF 无文本层，本站无法提取；题干、选项与答案均取自官方原卷，但缺少代码部分，暂不足以独立作答。",
             type: "single",
-            question: `唯一分解定理表明，每个大于 1 的自然数可以唯一地写成若干个质数的乘积。下面函数将自然数 的所有质因
-素找出来，横线上能填写的最佳代码是（ ）。
+            question: `唯一分解定理表明，每个大于 1 的自然数可以唯一地写成若干个质数的乘积。下面函数将自然数 n 的所有质因数找出来，横线上能填写的最佳代码是（　）。
 
-> ⚠️ 原卷此处配有代码或图片。官方 PDF 中该部分为图片，或其文本层与相邻试题混排、无法可靠切分，本站尚未还原。请对照原卷阅读代码。`,
+\`\`\`cpp
+#include <vector>
+vector<int> get_prime_factors(int n) {
+    vector<int> factors;
+    if (n <= 1) {
+        cout << " 输入的数必须是大于 1 的正整数 " << endl;
+        return;
+    }
+    while (n % 2 == 0) {
+        factors.push_back(2);
+        n /= 2;
+    }
+    ________________________________    {    // 在此处填入代码
+        while (n % i == 0) {
+            factors.push_back(i);
+            n /= i;
+        }
+    }
+    if (n > 2) {
+        factors.push_back(n);
+    }
+    return factors;
+}
+\`\`\``,
             options: ["for (int i = 3; i <= n; i ++)", "for (int i = 3; i * i <= n; i ++)", "for (int i = 3; i <= n; i += 2)", "for (int i = 3; i * i <= n; i += 2)"],
             answer: 3,
             score: 2,
             explanation: `**答案：D（for (int i = 3; i * i <= n; i += 2)）**
 
-**依据**：官方真题 PDF 第 1 页答案表。本题题干与选项均已按官方原卷回填。
+函数已经在前面把所有因子 2 除尽，所以进入循环时 n 一定是奇数，接下来只需检查奇数因子。两个优化各自对应选项中的一半：
 
-> ⚠️ 原卷该题的代码/图以图片形式给出，官方 PDF 无文本层，本站无法提取；题干、选项与答案均取自官方原卷，但缺少代码部分，暂不足以独立作答。因此本站不对该代码做推测性讲解，请对照原卷阅读代码。`,
+- **上界用 \`i * i <= n\`**：若 n 还有大于 \`√n\` 的质因子，它只可能剩一个，循环结束后由 \`if (n > 2) factors.push_back(n)\` 兜底。写成 \`i <= n\` 虽然结果也对，但会白跑大量无用循环。
+- **步长用 \`i += 2\`**：偶数已在前面处理干净，再检查偶数毫无意义。
+
+两个优化都用上的只有 D。
+
+**逐项分析**：
+- **A \`i <= n\`**：结果正确但最慢，两个优化都没用。
+- **B \`i * i <= n; i++\`**：用了平方上界，但仍在检查偶数。
+- **C \`i <= n; i += 2\`**：跳过了偶数，但上界没优化。
+- **D**：正确，兼顾两点。
+
+**考点**：质因数分解的循环上界与步长优化`,
             tags: ["客观题", "单选题", "GESP5级"]
         },
         {
             id: 7,
-            sourceIntegrity: 'missing-figure',
-            integrityNote: "原卷该题的代码/图以图片形式给出，官方 PDF 无文本层，本站无法提取；题干、选项与答案均取自官方原卷，但缺少代码部分，暂不足以独立作答。",
             type: "single",
-            question: `下述代码实现素数表的埃拉托色尼 ( 埃氏 ) 筛法，筛选出所有小于等于 的素数。
-int gcd(int a, int b) {
- int big = a > b ? a : b;
- int small = a < b ? a : b;
- if (big % small == 0) {
- return small;
- }
- return gcd(small, big % small);
-}
-#include <vector>
-vector<int> get_prime_factors(int n) {
- vector<int> factors;
- if (n <= 1) {
- cout << " 输入的数必须是大于 1 的正整数 " << endl;
- return;
- }
- while (n % 2 == 0) {
- factors.push_back(2);
- n /= 2;
- }
- ________________________________ { // 在此处填入代码
- while (n % i == 0) {
- factors.push_back(i);
- n /= i;
- }
- }
- if (n > 2) {
- factors.push_back(n);
- }
- return factors;
-}
-下面说法，正确的是（ ）。
+            question: `下述代码实现素数表的埃拉托色尼（埃氏）筛法，筛选出所有小于等于 n 的素数。下面说法，正确的是（　）。
 
-> ⚠️ 原卷此处配有代码或图片。官方 PDF 中该部分为图片，或其文本层与相邻试题混排、无法可靠切分，本站尚未还原。请对照原卷阅读代码。`,
+\`\`\`cpp
+vector<int> sieve_Eratosthenes(int n) {
+    vector<bool> is_prime(n +1, true);
+    vector<int> primes;
+    for (int i = 2; i * i <= n; i++) {
+        if (is_prime[i]) {
+            primes.push_back(i);
+            for (int j = i * i; j <= n; j += i) {
+                is_prime[j] = false;
+            }
+        }
+    }
+    for (int i = sqrt(n) + 1; i <= n; i++) {
+        if (is_prime[i]) {
+            primes.push_back(i);
+        }
+    }
+    return primes;
+}
+\`\`\`
+
+> ⚠️ 本题部分选项中的数学式（如复杂度表达式）在原卷中为公式图片，官方 PDF 文本层未包含，本站选项文字因此缺少该部分符号。答案与解析依据官方答案表。`,
             options: ["代码的时间复杂度是 。", "在标记非素数时，代码从 开始，可以减少重复标记。", "代码会输出所有小于等于 的奇数。", "调用函数sieve_Eratosthenes(10)，函数返回值的数组中包含的元素有：2, 3, 5, 7, 9。"],
             answer: 1,
             score: 2,
-            explanation: `**答案：B（在标记非素数时，代码从 开始，可以减少重复标记。）**
+            explanation: `**答案：B（在标记非素数时，代码从 i * i 开始，可以减少重复标记）**
 
-**依据**：官方真题 PDF 第 1 页答案表。本题题干与选项均已按官方原卷回填。
+看内层循环的起点：\`for (int j = i * i; j <= n; j += i)\`。
 
-> ⚠️ 原卷该题的代码/图以图片形式给出，官方 PDF 无文本层，本站无法提取；题干、选项与答案均取自官方原卷，但缺少代码部分，暂不足以独立作答。因此本站不对该代码做推测性讲解，请对照原卷阅读代码。`,
+对质数 i，比 \`i * i\` 小的合数倍数（\`2i, 3i, …, (i-1)i\`）都含有一个比 i 更小的质因子，在处理那个更小的质数时**已经被标记过了**。所以从 \`i * i\` 起标记不会漏，且避免了重复标记——这正是埃氏筛的标准优化。
+
+**考点**：埃氏筛为什么从 i² 开始标记`,
             tags: ["客观题", "单选题", "GESP5级"]
         },
         {
             id: 8,
-            sourceIntegrity: 'missing-figure',
-            integrityNote: "原卷该题的代码/图以图片形式给出，官方 PDF 无文本层，本站无法提取；题干、选项与答案均取自官方原卷，但缺少代码部分，暂不足以独立作答。",
             type: "single",
-            question: `下述代码实现素数表的线性筛法，筛选出所有小于等于 的素数。下面说法正确的是 ( ) 。
-vector<int> sieve_Eratosthenes(int n) {
- vector<bool> is_prime(n +1, true);
- vector<int> primes;
- for (int i = 2; i * i <= n; i++) {
- if (is_prime[i]) {
- primes.push_back(i);
- for (int j = i * i; j <= n; j += i) {
- is_prime[j] = false;
- }
- }
- }
- for (int i = sqrt(n) + 1; i <= n; i++) {
- if (is_prime[i]) {
- primes.push_back(i);
- }
- }
- return primes;
-}
-vector<int> sieve_linear(int n) {
- vector<bool> is_prime(n +1, true);
- vector<int> primes;
- for (int i = 2; i <= n/2; i++) {
- if (is_prime[i])
- primes.push_back(i);
- for (int j = 0; j < primes.size() && i * primes[j] <= n; j++) {
- is_prime[ i * primes[j] ] = 0;
- if (i % primes[j] == 0)
- break;
- }
- }
- for (int i = n/2 +1; i <= n; i++) {
- if (is_prime[i])
- primes.push_back(i);
- }
- return primes;
+            question: `下述代码实现素数表的线性筛法，筛选出所有小于等于 n 的素数。下面说法正确的是（　）。
 
-> ⚠️ 原卷此处配有代码或图片。官方 PDF 中该部分为图片，或其文本层与相邻试题混排、无法可靠切分，本站尚未还原。请对照原卷阅读代码。`,
+\`\`\`cpp
+vector<int> sieve_linear(int n) {
+    vector<bool> is_prime(n +1, true);
+    vector<int> primes;
+    for (int i = 2; i <= n/2; i++) {
+        if (is_prime[i])
+            primes.push_back(i);
+        for (int j = 0; j < primes.size() && i * primes[j] <= n; j++) {
+            is_prime[ i * primes[j] ] = 0;
+            if (i % primes[j] == 0)
+                break;
+        }
+    }
+    for (int i = n/2 +1; i <= n; i++) {
+        if (is_prime[i])
+            primes.push_back(i);
+    }
+    return primes;
+\`\`\`
+
+> ⚠️ 原卷该代码在官方 PDF 中跨栏排版，末尾若干行未能完整提取，其余部分与原卷一致。
+
+> ⚠️ 本题部分选项中的数学式（如复杂度表达式）在原卷中为公式图片，官方 PDF 文本层未包含，本站选项文字因此缺少该部分符号。答案与解析依据官方答案表。`,
             options: ["线性筛的时间复杂度是 。", "每个合数会被其所有的质因子标记一次。", "线性筛和埃拉托色尼筛的实现思路完全相同。", "以上都不对"],
             answer: 0,
             score: 2,
-            explanation: `**答案：A（线性筛的时间复杂度是 。）**
+            explanation: `**答案：A（线性筛的时间复杂度是 O(n)）**
 
-**依据**：官方真题 PDF 第 1 页答案表。本题题干与选项均已按官方原卷回填。
+线性筛之所以是 **O(n)**，关键在内层的 break：
 
-> ⚠️ 原卷该题的代码/图以图片形式给出，官方 PDF 无文本层，本站无法提取；题干、选项与答案均取自官方原卷，但缺少代码部分，暂不足以独立作答。因此本站不对该代码做推测性讲解，请对照原卷阅读代码。`,
+\`\`\`cpp
+is_prime[ i * primes[j] ] = 0;
+if (i % primes[j] == 0)
+    break;
+\`\`\`
+
+当 \`i % primes[j] == 0\` 时，\`primes[j]\` 就是 i 的最小质因子。此时立刻停止，保证**每个合数只会被它的最小质因子筛掉恰好一次**；由于每个合数只被处理一次，总操作数与 n 成正比，故为 O(n)。
+
+**逐项分析**：
+- **A**：正确，线性筛的时间复杂度为 O(n)。
+- **B 每个合数会被其所有的质因子标记一次**：错误。那是**埃氏筛**的行为，正是线性筛用 break 消除掉的重复。
+- **C 两者实现思路完全相同**：错误。埃氏筛从质数出发标记其倍数，线性筛从每个数出发乘以不超过其最小质因子的质数，思路不同。
+- **D 以上都不对**：A 已正确。
+
+**考点**：线性筛的时间复杂度及其与埃氏筛的区别`,
             tags: ["客观题", "单选题", "GESP5级"]
         },
         {
