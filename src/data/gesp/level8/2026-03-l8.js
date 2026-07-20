@@ -361,7 +361,7 @@ LCS 状态转移：若 \`a[i-1]==b[j-1]\`，则 \`dp[i][j]=dp[i-1][j-1]+1\`；�
         {
             id: 15,
             sourceIntegrity: 'missing-figure',
-            integrityNote: "原卷该题的代码/图以图片形式给出，官方 PDF 无文本层，本站无法提取；题干、选项与答案均取自官方原卷，但缺少代码部分，暂不足以独立作答。",
+            integrityNote: "原卷该代码在官方 PDF 中既非内嵌图片、文本层也未包含（应为矢量绘制）。",
             type: "single",
             question: `在 64 位操作系统下（ LP64 / LLP64 模型），下面代码的输出结果是（）。
 

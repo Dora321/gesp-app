@@ -198,7 +198,7 @@ export const paperData = {
         {
             id: 6,
             sourceIntegrity: 'missing-figure',
-            integrityNote: "原卷该题的代码/图以图片形式给出，官方 PDF 无文本层，本站无法提取；题干、选项与答案均取自官方原卷，但缺少代码部分，暂不足以独立作答。",
+            integrityNote: "原卷该题为线性筛代码，官方 PDF 文本层中该函数仅提取到开头两行即被截断；同页另一段完整代码是相邻题的埃氏筛，不能替代。",
             type: "single",
             question: `下述代码实现素数表的线性筛法，筛选出所有小于等于n的素数，则横线上应填的代码是 ( ) 。
 int fun(int a, int b) {

@@ -357,7 +357,7 @@ if (i % primes[j] == 0)
         {
             id: 9,
             sourceIntegrity: 'missing-figure',
-            integrityNote: "原卷该题的代码/图以图片形式给出，官方 PDF 无文本层，本站无法提取；题干、选项与答案均取自官方原卷，但缺少代码部分，暂不足以独立作答。",
+            integrityNote: "原卷该代码在官方 PDF 中既非内嵌图片、文本层也未包含（应为矢量绘制）。",
             type: "single",
             question: `考虑以下 C++ 代码实现的快速排序算法：
 以下关于快速排序的说法，正确的是（ ）。
@@ -458,7 +458,7 @@ void quickSort(vector<int>& arr, int left, int right) {
         {
             id: 13,
             sourceIntegrity: 'missing-figure',
-            integrityNote: "原卷该题的代码/图以图片形式给出，官方 PDF 无文本层，本站无法提取；题干、选项与答案均取自官方原卷，但缺少代码部分，暂不足以独立作答。",
+            integrityNote: "原卷该代码在官方 PDF 中既非内嵌图片、文本层也未包含（应为矢量绘制）。",
             type: "single",
             question: `假设有多个孩子，数组g保存所有孩子的胃口值。有多块饼干，数组s保存所有饼干的尺寸。小杨给孩子
 们发饼干，每个孩子最多只能给一块饼干。饼干的尺寸大于等于孩子的胃口时，孩子才能得到满足。小杨的目标是

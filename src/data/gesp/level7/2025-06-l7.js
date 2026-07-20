@@ -551,7 +551,7 @@ int main() { cout << fib(6) << endl; }
         {
             id: 15,
             sourceIntegrity: 'missing-figure',
-            integrityNote: "原卷配图缺失，题目依赖该图才能作答，现有解析按标准答案反推。",
+            integrityNote: "原卷该题依赖一张无向图配图，官方 PDF 未提供；同页两段文本代码（二分查找、素数筛）均属于其他试题。",
             type: "single",
             question: `下列选项中，哪个不可能是下图的⼴度优先遍历序列（ ）。
 
