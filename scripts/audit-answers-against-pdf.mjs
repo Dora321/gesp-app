@@ -197,6 +197,7 @@ for (const id of targets) {
   const notOfficial = [];    // bank question differs from the official paper
   const reordered = [];      // same answer text, options listed in another order
   const unknown = [];        // could not extract options from the PDF
+  const knownDisputes = [];  // manually reviewed answer-key conflicts
   let compared = 0;
   // The first table is the single-choice section (questions 1..N).
   for (const [num, letter] of tables[0]) {
@@ -206,6 +207,16 @@ for (const id of targets) {
     if (expected < 0 || expected > 3) continue;
     compared++;
     if (q.answer === expected) continue;
+
+    if (q.sourceIntegrity === 'answer-key-conflict') {
+      knownDisputes.push({
+        q: num,
+        bank: String.fromCharCode(65 + q.answer),
+        pdf: letter,
+        note: q.integrityNote,
+      });
+      continue;
+    }
 
     const stemSim = stemSimilarity(q.question, extractPdfStem(section, num));
     const verdict = classify(q.options, q.answer, extractPdfOptions(section, num), expected, stemSim);
@@ -224,7 +235,7 @@ for (const id of targets) {
   }
   comparedTotal += compared;
   mismatchTotal += answerErrors.length + notOfficial.length + unknown.length;
-  report.push({ id, status: 'ok', compared, answerErrors, notOfficial, reordered, unknown });
+  report.push({ id, status: 'ok', compared, answerErrors, notOfficial, reordered, unknown, knownDisputes });
   if (answerErrors.length) {
     console.log(`❌ ${id} ANSWER-WRONG ${answerErrors.length}/${compared}: ` +
       answerErrors.map((x) => `Q${x.q} bank=${x.bank} pdf=${x.pdf}`).join(', '));
@@ -237,6 +248,10 @@ for (const id of targets) {
     console.log(`?  ${id} UNDETERMINED ${unknown.length}/${compared}: ` +
       unknown.map((x) => `Q${x.q}`).join(', '));
   }
+  if (knownDisputes.length) {
+    console.log(`⚖️  ${id} KNOWN-DISPUTE ${knownDisputes.length}/${compared}: ` +
+      knownDisputes.map((x) => `Q${x.q} bank=${x.bank} pdf=${x.pdf}`).join(', '));
+  }
 }
 
 const sum = (key) => report.reduce((n, r) => n + (r[key]?.length || 0), 0);
@@ -247,6 +262,7 @@ console.log(`Total mismatches:      ${mismatchTotal}`);
 console.log(`  ANSWER-WRONG:        ${sum('answerErrors')}  (same options, key points at different text)`);
 console.log(`  NOT-OFFICIAL:        ${sum('notOfficial')}  (bank question is not the official one)`);
 console.log(`  UNDETERMINED:        ${sum('unknown')}  (could not read PDF options)`);
+console.log(`  KNOWN-DISPUTE:       ${sum('knownDisputes')}  (excluded from scoring pending clarification)`);
 console.log(`  reordered (benign):  ${sum('reordered')}  (same answer text, options in another order)`);
 const skipped = report.filter((r) => r.status !== 'ok');
 if (skipped.length) {

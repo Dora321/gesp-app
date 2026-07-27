@@ -487,7 +487,16 @@ export const paperData = {
         {
             id: 14,
             type: "single",
-            question: `以下代码使用了辗转相除法求解最大公因数，请在横线处填入（ ），使其能正确实现相应功能。 题号 1 2 3 4 5 6 7 8 9 10 答案`,
+            question: `以下代码使用了辗转相除法求解最大公因数，请在横线处填入（ ），使其能正确实现相应功能。
+
+\`\`\`cpp
+int gcd(int a, int b) {
+    while (b != 0) {
+        ______________________
+    }
+    return a;
+}
+\`\`\``,
             options: [
                 "int temp = b; b = a / b; a = temp;",
                 "int temp = a; a = b / a; b = temp;",
@@ -496,18 +505,27 @@ export const paperData = {
             ],
             answer: 2,
             score: 2,
+            sourceVerified: true,
+            sourcePage: 5,
+            reviewedBy: '本站校订',
+            reviewedAt: '2026-07-27',
             explanation: `**答案：C**
 
-            **解析：**
-            本题答案已依据试卷标准答案完成录入，可结合题干与选项复盘对应知识点。
+**推导过程：**
 
-            - **A int temp = b; b = a / b; a = temp;**：错误。
-            - **B int temp = a; a = b / a; b = temp;**：错误。
-            - **C int temp = b; b = a % b; a = temp;**：正确答案。
-            - **D b = a % b; a = b;**：错误。
+辗转相除法利用 \`gcd(a, b) = gcd(b, a % b)\`。每轮必须先保存旧的 \`b\`，再令 \`b\` 变为余数，最后令 \`a\` 变为旧的 \`b\`：
 
-            **考点：** C++基础
-            `,
+\`\`\`cpp
+int temp = b;
+b = a % b;
+a = temp;
+\`\`\`
+
+A 使用商 \`a / b\` 而不是余数；B 的赋值方向和除法都不符合递推关系；D 在保存旧 \`b\` 前就覆盖了它，随后 \`a\` 与 \`b\` 变成同一个值。
+
+**最小验证：** 取 \`a = 18, b = 12\`，正确更新为 \`(12, 6)\`，下一轮为 \`(6, 0)\`，返回 6。
+
+**考点：** 欧几里得算法、最大公因数、变量交换。`,
             tags: [
                 "客观题",
                 "单选题",

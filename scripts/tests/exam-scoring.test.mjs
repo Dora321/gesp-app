@@ -17,6 +17,7 @@ test('exam scoring counts correct, wrong, unanswered, and programming results se
     objectiveWrongCount: 1,
     objectiveUnansweredCount: 1,
     programmingMarkedCount: 1,
+    excludedObjectiveCount: 0,
   });
 });
 
@@ -25,4 +26,21 @@ test('zero-valued option answers are scored and programming points are never aut
   assert.equal(result.objectiveScore, 6);
   assert.equal(result.objectiveScoreTotal, 6);
   assert.equal(result.programmingMarkedCount, 1);
+});
+
+test('questions with source-integrity risks never affect exam scoring', () => {
+  const riskyQuestion = {
+    id: 5,
+    type: 'single',
+    answer: 0,
+    score: 10,
+    sourceIntegrity: 'contaminated-stem',
+  };
+  const result = scoreExam([...questions, riskyQuestion], { 1: 0, 5: 0 });
+
+  assert.equal(result.objectiveScore, 2);
+  assert.equal(result.objectiveScoreTotal, 6);
+  assert.equal(result.objectiveCorrectCount, 1);
+  assert.equal(result.objectiveUnansweredCount, 2);
+  assert.equal(result.excludedObjectiveCount, 1);
 });

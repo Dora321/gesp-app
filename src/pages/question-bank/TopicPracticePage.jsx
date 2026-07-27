@@ -1,7 +1,8 @@
 import React, { useEffect, useMemo, useState } from 'react';
 import { useNavigate, useParams, useSearchParams, Link } from 'react-router-dom';
-import { ChevronLeft, Tags, Loader2, BookOpen } from 'lucide-react';
+import { ChevronLeft, Tags, Loader2, BookOpen, ShieldCheck, TriangleAlert } from 'lucide-react';
 import { loadLevelTopics, buildTopicPaper } from '../../data/gesp/topics';
+import { TOPIC_GROUP_ORDER } from '../../data/gesp/topicTaxonomy';
 import InteractiveAnalysisPage from './InteractiveAnalysisPage';
 
 const LEVELS = [1, 2, 3, 4, 5, 6, 7, 8];
@@ -13,26 +14,49 @@ export default function TopicPracticePage() {
     const [searchParams, setSearchParams] = useSearchParams();
     const level = Math.min(8, Math.max(1, Number(levelParam) || 1));
     const activeTag = searchParams.get('tag') || '';
+    const includePending = searchParams.get('includePending') === '1';
 
-    // data.level 与当前 level 不一致即视为加载中，避免在 effect 里同步 setState
+    // data 的筛选条件与当前 URL 不一致即视为加载中，避免显示上一组计数。
     const [data, setData] = useState(null);
 
     useEffect(() => {
         let cancelled = false;
-        loadLevelTopics(level).then((result) => {
-            if (!cancelled) setData({ level, ...result });
+        loadLevelTopics(level, { includePending }).then((result) => {
+            if (!cancelled) setData({ level, includePending, ...result });
         });
         return () => { cancelled = true; };
-    }, [level]);
+    }, [includePending, level]);
 
-    const loading = data?.level !== level;
-    const topics = loading ? [] : data.topics;
+    const loading = data?.level !== level || data?.includePending !== includePending;
+    const topics = useMemo(() => (loading ? [] : data.topics), [data, loading]);
     const tagMap = loading ? null : data.tagMap;
+    const stats = loading ? null : data.stats;
+    const topicGroups = useMemo(() => {
+        const grouped = new Map(TOPIC_GROUP_ORDER.map(group => [group, []]));
+        for (const topic of topics) {
+            if (!grouped.has(topic.group)) grouped.set(topic.group, []);
+            grouped.get(topic.group).push(topic);
+        }
+        return [...grouped.entries()].filter(([, items]) => items.length > 0);
+    }, [topics]);
 
     const topicPaper = useMemo(() => {
         if (!activeTag || !tagMap?.has(activeTag)) return null;
         return buildTopicPaper(level, activeTag, tagMap.get(activeTag));
     }, [activeTag, tagMap, level]);
+
+    const updatePendingMode = () => {
+        const next = new URLSearchParams();
+        if (!includePending) next.set('includePending', '1');
+        setSearchParams(next);
+    };
+
+    const openTopic = (tag) => {
+        const next = new URLSearchParams();
+        next.set('tag', tag);
+        if (includePending) next.set('includePending', '1');
+        setSearchParams(next);
+    };
 
     // 选中考点后整页交给现成的交互解析页；浏览器返回即回到考点列表
     if (topicPaper) {
@@ -53,7 +77,7 @@ export default function TopicPracticePage() {
                         <Tags size={32} /> 按考点练习
                     </h1>
                     <p className="text-emerald-50">
-                        选一个知识点，把 GESP {LEVEL_NAMES[level - 1]}级历年真题里的相关题目一次练完。
+                        默认只使用正式试卷中题面完整的客观题，按知识点集中练习。
                     </p>
                 </div>
             </div>
@@ -64,7 +88,7 @@ export default function TopicPracticePage() {
                     {LEVELS.map((lv) => (
                         <Link
                             key={lv}
-                            to={`/question-bank/topics/${lv}`}
+                            to={`/question-bank/topics/${lv}${includePending ? '?includePending=1' : ''}`}
                             className={`rounded-lg px-4 py-2 text-sm font-bold transition ${lv === level
                                 ? 'bg-emerald-600 text-white shadow'
                                 : 'bg-white text-slate-600 border border-slate-200 hover:border-emerald-300'}`}
@@ -72,6 +96,48 @@ export default function TopicPracticePage() {
                             {LEVEL_NAMES[lv - 1]}级
                         </Link>
                     ))}
+                </div>
+
+                <div className={`flex flex-col gap-3 rounded-lg border px-4 py-4 sm:flex-row sm:items-center sm:justify-between ${includePending
+                    ? 'border-amber-300 bg-amber-50'
+                    : 'border-emerald-200 bg-emerald-50'
+                    }`}>
+                    <div className="flex items-start gap-3">
+                        {includePending
+                            ? <TriangleAlert className="mt-0.5 shrink-0 text-amber-600" size={20} />
+                            : <ShieldCheck className="mt-0.5 shrink-0 text-emerald-700" size={20} />}
+                        <div>
+                            <div className="text-sm font-bold text-slate-800">
+                                {includePending ? '当前包含待核验题' : '当前仅包含题面完整真题'}
+                            </div>
+                            <p className="mt-1 text-xs leading-5 text-slate-600">
+                                {includePending
+                                    ? '风险题会显示完整性提示；历史占位卷仍不会进入练习。'
+                                    : '带完整性风险标记的题目和历史占位卷均已排除。'}
+                                {stats && (includePending
+                                    ? ` 当前可练 ${stats.availableQuestionCount} 题，其中 ${stats.pendingQuestionCount} 道待核验。`
+                                    : ` 当前可练 ${stats.availableQuestionCount} 题${stats.pendingQuestionCount > 0 ? `，该级另有 ${stats.pendingQuestionCount} 道待核验题` : ''}。`)}
+                            </p>
+                        </div>
+                    </div>
+                    <button
+                        type="button"
+                        role="switch"
+                        aria-checked={includePending}
+                        onClick={updatePendingMode}
+                        className={`inline-flex min-h-11 shrink-0 items-center justify-center gap-2 rounded-lg border px-4 py-2 text-sm font-bold transition ${includePending
+                            ? 'border-amber-400 bg-white text-amber-800 hover:bg-amber-100'
+                            : 'border-emerald-300 bg-white text-emerald-800 hover:bg-emerald-100'
+                            }`}
+                    >
+                        <span
+                            aria-hidden="true"
+                            className={`relative inline-block h-5 w-9 rounded-full transition ${includePending ? 'bg-amber-500' : 'bg-slate-300'}`}
+                        >
+                            <span className={`absolute top-0.5 h-4 w-4 rounded-full bg-white shadow transition ${includePending ? 'left-[18px]' : 'left-0.5'}`} />
+                        </span>
+                        包含待核验题
+                    </button>
                 </div>
 
                 {loading ? (
@@ -91,20 +157,34 @@ export default function TopicPracticePage() {
                                 <BookOpen className="text-emerald-500" size={20} />
                                 {LEVEL_NAMES[level - 1]}级考点（{topics.length} 个）
                             </h2>
-                            <span className="text-xs text-slate-400">点击考点进入练习 · 数字为真题数量</span>
+                            <span className="text-xs text-slate-500">
+                                点击考点进入练习 · 数字为当前模式的可练题数
+                            </span>
                         </div>
-                        <div className="flex flex-wrap gap-2.5">
-                            {topics.map(({ tag, count }) => (
-                                <button
-                                    key={tag}
-                                    onClick={() => setSearchParams({ tag })}
-                                    className="group inline-flex items-center gap-2 rounded-full border border-slate-200 bg-slate-50 px-4 py-2 text-sm font-bold text-slate-700 transition hover:border-emerald-400 hover:bg-emerald-50 hover:text-emerald-700"
-                                >
-                                    {tag}
-                                    <span className="rounded-full bg-white px-2 py-0.5 text-xs font-black text-slate-400 ring-1 ring-slate-200 group-hover:text-emerald-600 group-hover:ring-emerald-200">
-                                        {count}
-                                    </span>
-                                </button>
+                        <div className="space-y-5">
+                            {topicGroups.map(([group, items]) => (
+                                <section key={group} aria-labelledby={`topic-group-${group}`}>
+                                    <h3
+                                        id={`topic-group-${group}`}
+                                        className="mb-2 text-xs font-bold text-slate-500"
+                                    >
+                                        {group}
+                                    </h3>
+                                    <div className="flex flex-wrap gap-2.5">
+                                        {items.map(({ tag, count }) => (
+                                            <button
+                                                key={tag}
+                                                onClick={() => openTopic(tag)}
+                                                className="group inline-flex items-center gap-2 rounded-full border border-slate-200 bg-slate-50 px-4 py-2 text-sm font-bold text-slate-700 transition hover:border-emerald-400 hover:bg-emerald-50 hover:text-emerald-700"
+                                            >
+                                                {tag}
+                                                <span className="rounded-full bg-white px-2 py-0.5 text-xs font-black text-slate-400 ring-1 ring-slate-200 group-hover:text-emerald-600 group-hover:ring-emerald-200">
+                                                    {count}
+                                                </span>
+                                            </button>
+                                        ))}
+                                    </div>
+                                </section>
                             ))}
                         </div>
                     </div>

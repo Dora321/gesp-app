@@ -75,9 +75,12 @@ const ExamModeView = ({
             <div className="space-y-3">
               {currentQ.options.map((opt, idx) => {
                 const isSelected = answers[currentQ.id] === idx;
-                const showAnswer = isSubmitted;
+                const isExcluded = Boolean(currentQ.sourceIntegrity);
+                const showAnswer = isSubmitted && !isExcluded;
                 let optionClass = 'hover:border-blue-400 hover:bg-slate-50 cursor-pointer';
-                if (showAnswer) {
+                if (isExcluded) {
+                  optionClass = 'border-slate-200 bg-slate-50 text-slate-500 cursor-not-allowed';
+                } else if (showAnswer) {
                   if (idx === currentQ.answer) optionClass = 'bg-green-100 border-green-500 text-green-800 font-bold';
                   else if (isSelected && idx !== currentQ.answer) optionClass = 'bg-red-100 border-red-500 text-red-800 opacity-60';
                   else optionClass = 'opacity-50 grayscale cursor-default';
@@ -90,7 +93,7 @@ const ExamModeView = ({
                     key={idx}
                     type="button"
                     onClick={() => onOptionSelect(currentQ.id, idx)}
-                    disabled={isSubmitted}
+                    disabled={isSubmitted || isExcluded}
                     aria-pressed={isSelected}
                     className={`question-option group w-full rounded-xl border px-4 py-3.5 text-left text-lg shadow-sm transition-all ${optionClass}`}
                   >

@@ -503,7 +503,44 @@ export const paperData = {
         {
             id: 14,
             type: "single",
-            question: `同上题中的二叉树，阅读以下二叉树的深度优先搜索代码 : cout << node->val << " "; // 先访问当前节点 if (node->left) q.push(node->left); // 将左子节点入队 if (node->right) q.push(node->right); // 将右子节点入队 } return nullptr; } 27 28 29 30 31 32 33 34 #include <iostream> #include <stack> using namespace std; // 非递归深度优先搜索（ DFS ） TreeNode* dfs(TreeNode* root, int a) { if (root == nullptr) return nullptr; stack<TreeNode*> stk; stk.push(root); while (!stk.empty()) { TreeNode* node = stk.top(); stk.pop(); if (node->val == a) return node; cout << node->val << " "; // 访问当前节点 if (node->right) stk.push(node->right); // 先压入右子节点 if (node->left) stk.push(node->left); // 再压入左子节点 } return nullptr; } 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 题号 1 2 3 4 5 6 7 8 9 10 答案 使用以上算法，在二叉树搜索数值 时，可能的输出是 ( ) 。`,
+            question: `同上题中的二叉树如下，阅读以下二叉树的深度优先搜索代码：
+
+\`\`\`text
+        5
+       / \\
+      2   17
+     / \\  /
+   -4   3 9
+\`\`\`
+
+\`\`\`cpp
+#include <iostream>
+#include <stack>
+using namespace std;
+
+// 非递归深度优先搜索（DFS）
+TreeNode* dfs(TreeNode* root, int a) {
+    if (root == nullptr) return nullptr;
+
+    stack<TreeNode*> stk;
+    stk.push(root);
+
+    while (!stk.empty()) {
+        TreeNode* node = stk.top();
+        stk.pop();
+        if (node->val == a)
+            return node;
+
+        cout << node->val << " "; // 访问当前节点
+
+        if (node->right) stk.push(node->right); // 先压入右子节点
+        if (node->left) stk.push(node->left);   // 再压入左子节点
+    }
+    return nullptr;
+}
+\`\`\`
+
+使用以上算法，在二叉树搜索数值 20 时，可能的输出是（ ）。`,
             options: [
                 "5 2 -4 3 17 9",
                 "-4 2 3 5 9 17",
@@ -512,18 +549,23 @@ export const paperData = {
             ],
             answer: 0,
             score: 2,
+            sourceVerified: true,
+            sourcePage: 7,
+            reviewedBy: '本站校订',
+            reviewedAt: '2026-07-27',
             explanation: `**答案：A**
 
-            **解析：**
-            本题答案已依据试卷标准答案完成录入，可结合题干与选项复盘对应知识点。
+**推导过程：**
 
-            - **A 5 2 -4 3 17 9**：正确答案。
-            - **B -4 2 3 5 9 17**：错误。该数值与正确计算结果不符，请重新验算。
-            - **C 5 2 17 -4 3 9**：错误。
-            - **D 以上都不对**：错误。
+栈是后进先出。代码先压右孩子、再压左孩子，因此弹栈时左孩子先被访问，整体得到“根、左子树、右子树”的先序遍历。数值 20 不在树中，所以所有结点都会在查找失败前输出：
 
-            **考点：** C++基础
-            `,
+\`5 -> 2 -> -4 -> 3 -> 17 -> 9\`
+
+B 是中序遍历结果；C 在访问根后先走右子树，与实际压栈顺序相反；因此 D 也不成立。
+
+**易错点：** “先压入右孩子”并不等于“先访问右孩子”；由于栈的后进先出性质，后压入的左孩子会先弹出。
+
+**考点：** 二叉树、非递归深度优先搜索、栈、先序遍历。`,
             tags: [
                 "客观题",
                 "单选题",

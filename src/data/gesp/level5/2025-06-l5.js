@@ -371,32 +371,45 @@ export const paperData = {
         {
             id: 10,
             type: "single",
-            question: `下面的 C++ 代码用于求一系列数据中的最大值。有关其算法说法错误的是（ ）。`,
+            question: `下面的 C++ 代码，用于求一系列数据中的最大值。有关其算法说法错误的是（　）。`,
             options: [
                 "本题 find_max() 函数采用的是迭代算法",
-                "本题 find_max() 函数的时间复杂度为 $O(N)$",
-                "和上一题的递归版 find_max() 相比，这里没有递归调用带来的栈开销",
-                "本题 find_max() 与上一题递归版的空间复杂度相同，都是 $O(log n)$",
+                "本题 find_max() 函数的时间复杂度为 $O(n)$",
+                "和上一题的 find_max() 相比，因为没有递归，所以没有栈的创建和销毁开销",
+                "本题 find_max() 函数和上一题的 find_max() 空间复杂度相同",
             ],
             answer: 3,
             score: 2,
-            explanation: `**答案：D**
+            explanation: `**答案：D（两者空间复杂度相同）**
 
-            **解析：**
-            本题答案已依据试卷标准答案完成录入，可结合题干与选项复盘对应知识点。
+本题代码用 \`for\` 循环逐个检查数组元素，是迭代算法。数组中的 n 个元素都要检查一次，所以时间复杂度为 $O(n)$；除 \`max_value\` 和循环变量外没有随 n 增长的额外存储，辅助空间复杂度为 $O(1)$。
 
-            - **A 本题 find_max() 函数采用的是迭代算法**：错误。
-            - **B 本题 find_max() 函数的时间复杂度为 $O(N)$**：错误。复杂度分析有误，请重新估算最坏情况时间复杂度。
-            - **C 和上一题的递归版 find_max() 相比，这里没有递归调用带来的栈开销**：错误。递归/递推的终止条件或状态传递有误，请检查递归出口和参数变化。
-            - **D 本题 find_max() 与上一题递归版的空间复杂度相同，都是 $O(log ...**：正确答案。
+上一题的递归版本会建立递归调用栈，辅助空间复杂度为 $O(\log n)$。因此：
+- A 正确：当前版本是迭代算法。
+- B 正确：遍历一次数组，时间复杂度为 $O(n)$。
+- C 正确：没有递归调用栈的创建与销毁。
+- D 错误：当前版本为 $O(1)$，上一题为 $O(\log n)$，二者并不相同。
 
-            **考点：** C++基础
-            `,
+**考点**：迭代与递归、时间复杂度、辅助空间复杂度。`,
             tags: [
-                "客观题",
-                "单选题",
-                "GESP5级",
-            ]
+                "复杂度",
+                "迭代",
+                "递归",
+            ],
+            sourceVerified: true,
+            sourcePage: 5,
+            sourcePages: [5, 6],
+            sourceUrl: 'https://gesp.ccf.org.cn/101/attach/1749477555699744.pdf',
+            sourceIntegrity: 'answer-key-conflict',
+            integrityNote: '当前 CCF 下载版答案表标为 C，另一存档版标为 D；按题面代码分析，C 为真、D 为假，本站暂保留 D 并停止该题计分，等待官方澄清。',
+            answerDispute: {
+                currentOfficialKey: 2,
+                archivedOfficialKey: 3,
+                siteAnswer: 3,
+                status: 'unresolved',
+            },
+            reviewedBy: '本站校订',
+            reviewedAt: '2026-07-27'
         },
         {
             id: 11,

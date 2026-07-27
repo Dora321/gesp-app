@@ -598,13 +598,17 @@ C/C++ 多维数组按行优先（row-major）存储，最内层（最后一维�
         {
             id: 25,
             type: "judge",
-            question: `要求解一元二次方程 ，需要先判断表达式a ^ 2-b * 4 >= 0是否为真。 l <= r a+pivot+1, n-pivot-1 1 2 l <= r a+pivot+1, n-pivot 1 2 子任务编号 数据点占比 特殊性质 1 20% 树的形态为一条链 2 20% 3 60%`,
+            question: `要求解一元二次方程 x² + ax + b = 0，需要先判断表达式 a ^ 2 - b * 4 >= 0 是否为真。`,
             options: [
                 "正确",
                 "错误",
             ],
             answer: 1,
             score: 2,
+            sourceVerified: true,
+            sourcePage: 6,
+            reviewedBy: '本站校订',
+            reviewedAt: '2026-07-26',
             explanation: `**答案：错误**
 
 **解析：**

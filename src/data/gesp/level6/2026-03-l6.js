@@ -454,27 +454,58 @@ export const paperData = {
         {
             id: 14,
             type: "single",
-            question: `0/1 背包（每件物品最多选一次）问题通常可用一维动态规划求解，核⼼代码如下。则下面说法正确的是（ ）。 struct TreeNode { int val; TreeNode* left; TreeNode* right; TreeNode(int x): val(x), left(nullptr), right(nullptr) {} }; TreeNode* bfsFind(TreeNode* root, int x) { if (!root) return nullptr; queue<TreeNode*> q; q.push(root); while (!q.empty()) { TreeNode* cur = q.front(); q.pop(); if (cur->val == x) return cur; ________________________ } return nullptr; } 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 if (cur->left) q.push(cur->left); if (cur->right) q.push(cur->right); 1 2 3 4 q.push(cur->left); q.push(cur->right); 1 2 bool find(Node* root, int x) { while (root) { if (root->val == x) return true; root = (x < root->val) ? root->left : root->right; } return false; } 1 2 3 4 5 6 7 for each item (w, v): for (int j = W; j >= w; --j) dp[j] = max(dp[j], dp[j-w]+v); 1 2 3 第 8 页 / 共 13 页 题号 1 2 3 4 5 6 7 8 9 10 答案`,
+            question: `小朋友们去邻里拜年，每个家里有不同数量的糖果。规则是：不能连续进入两个相邻的房子（即不能同时取相邻两家的糖果）。目标是拿到最多糖果。以下是代码实现，请补全横线。
+
+\`\`\`cpp
+int visit(vector<int>& nums) {
+    if (nums.empty()) {
+        return 0;
+    }
+    int size = nums.size();
+    if (size == 1) {
+        return nums[0];
+    }
+    vector<int> dp = vector<int>(size, 0);
+    dp[0] = nums[0];
+    dp[1] = max(nums[0], nums[1]);
+
+    for (int i = 2; i < size; i++) {
+        dp[i] = ______; // 在此处填写代码
+    }
+
+    return dp[size - 1];
+}
+\`\`\``,
             options: [
-                "内层 j 必须从小到大，否则会漏解",
-                "内层 j 必须从大到小，否则同一件物品会被用多次",
-                "j 从大到小或从小到大都一样",
-                "只要 dp 初始为 0，方向无所谓",
+                "dp[i] = dp[i - 1] + nums[i];",
+                "dp[i] = max(dp[i - 1], dp[i - 2] * nums[i]);",
+                "dp[i] = max(dp[i - 1], dp[i - 2] + nums[i]);",
+                "dp[i] = dp[i - 2] + nums[i];",
             ],
             answer: 2,
             score: 2,
+            sourceVerified: true,
+            sourcePage: 6,
+            reviewedBy: '本站校订',
+            reviewedAt: '2026-07-27',
             explanation: `**答案：C**
 
-            **解析：**
-            本题答案已依据试卷标准答案完成录入，可结合题干与选项复盘对应知识点。
+**推导过程：**
 
-            - **A 内层 j 必须从小到大，否则会漏解**：错误。
-            - **B 内层 j 必须从大到小，否则同一件物品会被用多次**：错误。
-            - **C j 从大到小或从小到大都一样**：正确答案。
-            - **D 只要 dp 初始为 0，方向无所谓**：错误。动态规划的状态或转移方程有误，请检查边界初始化。
+令 \`dp[i]\` 表示只考虑第 0 到第 i 家时能拿到的最多糖果。处理第 i 家有两种互斥选择：
 
-            **考点：** 动态规划
-            `,
+- 不进入第 i 家，最优值为 \`dp[i - 1]\`；
+- 进入第 i 家，则不能进入第 i - 1 家，最优值为 \`dp[i - 2] + nums[i]\`。
+
+取两者较大值，状态转移为：
+
+\`dp[i] = max(dp[i - 1], dp[i - 2] + nums[i]);\`
+
+A 会把相邻房子的糖果相加；B 错把“累加”写成乘法；D 强制进入第 i 家，忽略“不进入当前房子可能更优”的情况。
+
+**最小验证：** 对 \`nums = [2, 1, 4]\`，\`dp[2] = max(2, 2 + 4) = 6\`，选择第 0、2 家。
+
+**考点：** 动态规划、最优子结构、相邻元素互斥选择。`,
             tags: [
                 "客观题",
                 "单选题",

@@ -465,19 +465,13 @@ void init_sieve(int n) {
         {
             id: 14,
             type: "single",
-            question: `下面count_triple函数的时间复杂度为 ( ) 。 #include <iostream> using namespace std; int fib(int n) { if (n == 0) return 1; return fib(n-1)+fib(n-2); } int main() { cout << fib(6) << endl; return 0; } 1 2 3 4 5 6 7 8 9 10 11 int rec_fib[MAX_N]; int fib(int n) { if (n <= 1) return n; if (rec_fib[n] != 0) return rec_fib[n]; return fib(n-1)+fib(n-2); } 1 2 3 4 5 6 7 8 int sieve[MAX_N]; void init_sieve(int n) { for (int i = 1; i <= n; i++) sieve[i] = i; for (int i = 2; i <= n; i++) for (int j = i; j <= n; j += i) sieve[j]--; } 1 2 3 4 5 6 7 8 int gcd(int m, int n) { if (m == 0) return n; return gcd(n % m, m); } int count_triple(int n) { 1 2 3 4 5 题号 1 2 3 4 5 6 7 8 9 10 答案`,
-            options: [
-                "O(n)",
-                "O(n log n)",
-                "O(n²)",
-                "O(n³)",
-],
-            answer: 2,
-            score: 2,
-            explanation: `**答案：C（O(n log n)）**
+            question: `下面 \`count_triple\` 函数的时间复杂度为（ ）。
 
 \`\`\`cpp
-int gcd(int m, int n) { if (m == 0) return n; return gcd(n % m, m); }
+int gcd(int m, int n) {
+    if (m == 0) return n;
+    return gcd(n % m, m);
+}
 int count_triple(int n) {
     int cnt = 0;
     for (int v = 1; v * v * 4 <= n; v++)
@@ -490,11 +484,33 @@ int count_triple(int n) {
             }
     return cnt;
 }
-\`\`\`
+\`\`\``,
+            options: [
+                "O(n²)",
+                "O(n² log n)",
+                "O(n log n)",
+                "O(n)",
+            ],
+            answer: 2,
+            score: 2,
+            sourceVerified: true,
+            sourcePage: 3,
+            sourceUrl: 'https://gesp.ccf.org.cn/101/attach/1703973098618912.pdf',
+            reviewedBy: '本站校订',
+            reviewedAt: '2026-07-27',
+            explanation: `**答案：C（O(n log n)）**
 
-双循环枚举本原勾股数：\`v\` 上限约 √(n/4)，\`u\` 上限约 √n，循环体总迭代约 O(n) 次；每次调用 \`gcd\` 为 O(log n)，故总时间复杂度 O(n log n)（\`cnt += n/(a+b+c)\` 为 O(1)）。
+先估算双层循环：
 
-**考点**：枚举算法的复杂度估计（含 gcd 开销）。`,
+- 外层条件 \`4v² <= n\`，所以 \`v\` 有 O(√n) 个取值；
+- 固定 \`v\` 后，内层条件 \`2u(u + v) <= n\` 使 \`u\` 也至多增长到 O(√n)，因此 \`(u, v)\` 的枚举总数为 O(n)；
+- 每次枚举都调用一次欧几里得算法 \`gcd(u, v)\`，其最坏时间复杂度为 O(log n)。
+
+循环体其余加减乘除都是 O(1)，所以总时间复杂度为 O(n log n)。A、B 把双层循环分别粗略当成 n 次甚至 n² 次后又高估；D 则漏掉了每次 \`gcd\` 的对数开销。
+
+**最小验证思路**：把 n 放大 4 倍时，\`u\`、\`v\` 的上界都约放大 2 倍，候选数约放大 4 倍，符合线性于 n 的枚举规模；再乘上 \`gcd\` 的 O(log n)。
+
+**原卷核验**：题干与代码起始于官方 PDF 第 3 页，代码结尾与选项见第 4 页；答案表见第 1 页。`,
             tags: [
                 "客观题",
                 "单选题",

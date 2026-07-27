@@ -99,15 +99,17 @@ const ExamPaper = () => {
 
   const currentQ = allQuestions[currentQuestionIndex] || allQuestions[0] || null;
 
-  const answeredCount = Object.keys(answers).length;
-  const unansweredCount = Math.max(allQuestions.length - answeredCount, 0);
-  const progress = allQuestions.length ? (answeredCount / allQuestions.length) * 100 : 0;
+  const gradableQuestions = allQuestions.filter((question) => !question.sourceIntegrity);
+  const answeredCount = gradableQuestions.filter((question) => answers[question.id] !== undefined).length;
+  const unansweredCount = Math.max(gradableQuestions.length - answeredCount, 0);
+  const progress = gradableQuestions.length ? (answeredCount / gradableQuestions.length) * 100 : 0;
   const {
     objectiveScore,
     objectiveScoreTotal,
     objectiveCorrectCount,
     objectiveWrongCount,
     programmingMarkedCount,
+    excludedObjectiveCount,
   } = scoreExam(allQuestions, answers);
 
   const formatTime = (seconds) => {
@@ -119,7 +121,7 @@ const ExamPaper = () => {
   // ─── Handlers ──────────────────────────────────────────────────────
 
   const handleOptionSelect = (qId, optionIdx) => {
-    if (isSubmitted || isProgrammingQuestion(currentQ)) return;
+    if (isSubmitted || currentQ?.sourceIntegrity || isProgrammingQuestion(currentQ)) return;
     setAnswers(prev => ({ ...prev, [qId]: optionIdx }));
   };
 
@@ -322,6 +324,7 @@ const ExamPaper = () => {
           answeredCount={answeredCount}
           unansweredCount={unansweredCount}
           programmingMarkedCount={programmingMarkedCount}
+          excludedObjectiveCount={excludedObjectiveCount}
           onCancel={() => setShowSubmitConfirm(false)}
           onConfirm={() => { setIsSubmitted(true); setShowResult(true); setShowSubmitConfirm(false); }}
         />
@@ -335,6 +338,7 @@ const ExamPaper = () => {
           objectiveCorrectCount={objectiveCorrectCount}
           objectiveWrongCount={objectiveWrongCount}
           programmingMarkedCount={programmingMarkedCount}
+          excludedObjectiveCount={excludedObjectiveCount}
           onViewAnalysis={() => setShowResult(false)}
           onBackToBank={() => navigate('/question-bank')}
         />

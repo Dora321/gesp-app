@@ -116,34 +116,77 @@ export const paperData = {
         },
         {
             id: 2,
-            sourceIntegrity: 'not-official-question',
-            integrityNote: "对照官方真题 PDF，本站此题与原卷第 2 题不一致（原卷该题答案为 C，本站选项与题干均不同）。本题可作为练习使用，但不代表原卷真题内容，待逐题回填原卷后移除此标记。",
             type: "single",
-            question: `函数 removeElements 删除单链表中所有结点值等于 val 的结点，并返回新的头结点。其中链表头结点为 head，则横线处应填写（ ）。`,
+            question: `函数 removeElements 删除单链表中所有结点值等于 val 的结点，并返回新的头结点，其中链表头结点为 head，则横线处填写（ ）。
+
+\`\`\`cpp
+// 结点结构体
+struct Node {
+    int val;
+    Node* next;
+
+    Node() : val(0), next(nullptr) {}
+    Node(int x) : val(x), next(nullptr) {}
+    Node(int x, Node *next) : val(x), next(next) {}
+};
+
+Node* removeElements(Node* head, int val) {
+    Node dummy(0, head); // 哑结点，统一处理头结点
+    Node* cur = &dummy;
+    while (cur->next) {
+        if (cur->next->val == val) {
+            _______________________ // 在此填入代码
+        }
+        else {
+            cur = cur->next;
+        }
+    }
+    return dummy.next;
+}
+\`\`\``,
             options: [
-                "Node* del = cur->next; cur->next = del; delete del;",
-                "Node* del = cur->next; cur->next = del->next; delete del;",
-                "Node* del = cur; cur = del->next; delete del;",
-                "Node* del = cur->next; delete del; cur->next = del->next;",
+                "Node* del = cur;\ncur = del->next;\ndelete del;",
+                "Node* del = cur->next;\ncur->next = del;\ndelete del;",
+                "Node* del = cur->next;\ncur->next = del->next;\ndelete del;",
+                "Node* del = cur->next;\ndelete del;\ncur->next = del->next;",
             ],
-            answer: 1,
+            answer: 2,
             score: 2,
-            explanation: `**答案：B**
+            sourceVerified: true,
+            sourcePage: 1,
+            sourcePages: [1, 2],
+            sourceUrl: 'https://gesp.ccf.org.cn/101/attach/1704013600915488.pdf',
+            reviewedBy: '本站校订',
+            reviewedAt: '2026-07-27',
+            explanation: `**答案：C**
 
-            **解析：**
-            本题答案已依据试卷标准答案完成录入，可结合题干与选项复盘对应知识点。
+**推导过程：**
 
-            - **A Node* del = cur->next; cur->next = del; ...**：错误。
-            - **B Node* del = cur->next; cur->next = del->...**：正确答案。
-            - **C Node* del = cur; cur = del->next; delete...**：错误。
-            - **D Node* del = cur->next; delete del; cur->...**：错误。
+\`cur\` 指向待检查结点的前驱，真正要删除的是 \`cur->next\`。删除一个单链表结点必须按以下顺序完成：
 
-            **考点：** 链表
-            `,
+1. 用 \`del = cur->next\` 保存待删除结点；
+2. 用 \`cur->next = del->next\` 让前驱绕过待删除结点；
+3. 最后 \`delete del\` 释放该结点。
+
+删除后 \`cur\` 不向后移动，下一轮仍检查新的 \`cur->next\`，因此连续多个值等于 \`val\` 的结点也能全部删除。
+
+**逐项分析：**
+
+- **A** 删除的是前驱 \`cur\`，而 \`cur\` 还可能指向栈上的哑结点，逻辑和内存管理都错误。
+- **B** 把 \`cur->next\` 重新指向原结点，没有把它从链表中摘除，随后释放该结点会留下悬空指针。
+- **C** 先保存目标结点，再连接其后继，最后释放，顺序正确。
+- **D** 先释放 \`del\`，再读取 \`del->next\`，属于释放后使用，行为未定义。
+
+**最小验证：** 对链表 \`1 -> 2 -> 2 -> 3\` 删除 2。第一次删除后 \`cur\` 仍指向 1，新的 \`cur->next\` 是第二个 2；再次执行同样三行后得到 \`1 -> 3\`。
+
+**考点：** 单链表删除、哑结点、指针更新、动态内存管理。`,
             tags: [
                 "客观题",
                 "单选题",
                 "GESP5级",
+                "链表",
+                "指针",
+                "动态内存",
             ]
         },
         {

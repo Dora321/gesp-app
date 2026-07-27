@@ -1,7 +1,12 @@
 import { isProgrammingQuestion } from './questionHelpers.js';
 
 export function scoreExam(questions = [], answers = {}) {
-    const objectiveQuestions = questions.filter((question) => question && !isProgrammingQuestion(question));
+    const objectiveQuestions = questions.filter((question) => (
+        question && !isProgrammingQuestion(question) && !question.sourceIntegrity
+    ));
+    const excludedObjectiveCount = questions.filter((question) => (
+        question && !isProgrammingQuestion(question) && question.sourceIntegrity
+    )).length;
     const programmingQuestions = questions.filter((question) => isProgrammingQuestion(question));
     const objectiveCorrectCount = objectiveQuestions.filter((question) => answers[question.id] === question.answer).length;
     const objectiveWrongCount = objectiveQuestions.filter((question) => (
@@ -17,5 +22,6 @@ export function scoreExam(questions = [], answers = {}) {
         objectiveWrongCount,
         objectiveUnansweredCount: objectiveQuestions.length - objectiveCorrectCount - objectiveWrongCount,
         programmingMarkedCount: programmingQuestions.filter((question) => answers[question.id] !== undefined).length,
+        excludedObjectiveCount,
     };
 }

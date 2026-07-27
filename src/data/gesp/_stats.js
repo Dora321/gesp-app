@@ -5,13 +5,13 @@
 // unofficial (historical placeholders) are counted separately as practice.
 export const paperStats = {
   paperCount: 92,
-  questionCount: 2468,
+  questionCount: 2484,
   practicePaperCount: 1,
   practiceQuestionCount: 25,
   reviewPaperCount: 0,
-  verifiedPaperCount: 3,
-  partialPaperCount: 41,
-  unverifiedPaperCount: 48,
+  verifiedPaperCount: 10,
+  partialPaperCount: 40,
+  unverifiedPaperCount: 42,
   levelCount: 8,
   firstYear: 2023,
   latestYear: 2026,

@@ -58,13 +58,25 @@ const PreWithCopy = ({ children, ...props }) => {
     );
 };
 
+// 题图等资源放在 public/ 下，markdown 里写成 `/question-assets/...`。
+// 生产环境部署在 /gesp-app/ 子路径下，根绝对路径需补上 Vite 的 base。
+const withBaseUrl = (src) => {
+    if (typeof src !== 'string' || !src.startsWith('/') || src.startsWith('//')) return src;
+    return `${import.meta.env.BASE_URL.replace(/\/$/, '')}${src}`;
+};
+
+const MarkdownImage = ({ src, alt, ...props }) => (
+    <img {...props} src={withBaseUrl(src)} alt={alt || ''} loading="lazy" />
+);
+
 const MarkdownContent = ({ content, inline = false, remarkPlugins = [], rehypePlugins = [] }) => {
     const components = inline
         ? {
             p: ({ children }) => <span className="inline-p">{children}</span>,
             div: ({ children }) => <span className="inline-div">{children}</span>,
+            img: MarkdownImage,
           }
-        : { pre: PreWithCopy };
+        : { pre: PreWithCopy, img: MarkdownImage };
 
     return (
         <ReactMarkdown

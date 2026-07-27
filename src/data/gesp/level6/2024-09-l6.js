@@ -512,7 +512,33 @@ export const paperData = {
         {
             id: 15,
             type: "single",
-            question: `阅读以下用动态规划解决的 0-1 背包问题的函数，假设背包的容量 是 10kg ，假设输入 4 个物品的重量 分别为 （单位为 kg ），每个物品对应的价值 分别为 ，则函数的输出为（ ）。 if (val > root->val) root->left = insert(root, val); else root->right = insert(root, val); 1 2 3 4 #include <iostream> using namespace std; // 遍历二叉搜索树，输出结点值 void traversal(tree_node* root) { if (root == nullptr) { return; } traversal(root->left); cout << root->val << " "; traversal(root->right); } 1 2 3 4 5 6 7 8 9 10 11 12 13 #include <iostream> #include <vector> using namespace std; // 0/1 背包问题 int knapsack(int W, const vector<int>& weights, const vector<int>& values, int n) { vector<vector<int>> dp(n+1, vector<int>(W+1, 0)); for (int i = 1; i <= n; ++i) { for (int w = 0; w <= W; ++w) { if (weights[i-1] <= w) { 1 2 3 4 5 6 7 8 9 10 11 题号 1 2 3 4 5 6 7 8 9 10 答案`,
+            question: `阅读以下用动态规划解决的 0-1 背包问题的函数。假设背包容量 \`W\` 为 10kg，输入 4 个物品的重量 \`weights\` 分别为 1、3、4、6（单位为 kg），每个物品对应的价值 \`values\` 分别为 20、30、50、60，则函数的输出为（ ）。
+
+\`\`\`cpp
+#include <iostream>
+#include <vector>
+using namespace std;
+
+// 0/1 背包问题
+int knapsack(int W, const vector<int>& weights,
+             const vector<int>& values, int n) {
+    vector<vector<int>> dp(n + 1, vector<int>(W + 1, 0));
+
+    for (int i = 1; i <= n; ++i) {
+        for (int w = 0; w <= W; ++w) {
+            if (weights[i - 1] <= w) {
+                dp[i][w] = max(dp[i - 1][w],
+                               dp[i - 1][w - weights[i - 1]]
+                                   + values[i - 1]);
+            } else {
+                dp[i][w] = dp[i - 1][w];
+            }
+        }
+    }
+
+    return dp[n][W];
+}
+\`\`\``,
             options: [
                 "90",
                 "100",
@@ -521,18 +547,26 @@ export const paperData = {
             ],
             answer: 2,
             score: 2,
-            explanation: `**答案：C**
+            sourceVerified: true,
+            sourcePage: 7,
+            reviewedBy: '本站校订',
+            reviewedAt: '2026-07-27',
+            explanation: `**答案：C（110）**
 
-            **解析：**
-            本题答案已依据试卷标准答案完成录入，可结合题干与选项复盘对应知识点。
+**推导过程：**
 
-            - **A 90**：错误。该数值与正确计算结果不符，请重新验算。
-            - **B 100**：错误。该数值与正确计算结果不符，请重新验算。
-            - **C 110**：正确答案。
-            - **D 140**：错误。该数值与正确计算结果不符，请重新验算。
+容量为 10。四件物品为 \`(重量, 价值) = (1,20)、(3,30)、(4,50)、(6,60)\`。比较主要可行组合：
 
-            **考点：** 动态规划
-            `,
+- 选重量 4 和 6：总重量 10，总价值 110；
+- 选重量 1、3 和 4：总重量 8，总价值 100；
+- 选重量 3 和 6：总重量 9，总价值 90；
+- 四件全选的价值虽为 160，但总重量 14，超过容量。
+
+因此最优值是 110。A 和 B 分别只得到次优组合；D 的 140 不对应任何不超过容量 10 的可行组合。
+
+**易错点：** 0-1 背包中每件物品最多选一次；判断组合时必须同时检查总价值与总重量。
+
+**考点：** 动态规划、0-1 背包、状态转移。`,
             tags: [
                 "客观题",
                 "单选题",

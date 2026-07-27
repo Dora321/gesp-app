@@ -397,7 +397,7 @@ export default function EnhancedPaperPage({ forcedPaperId }) {
                     </button>
                 </div>
 
-                <div className="max-w-6xl mx-auto px-4 pb-4 grid md:grid-cols-4 gap-2 text-xs">
+                <div className="max-w-6xl mx-auto px-4 pb-4 grid grid-cols-2 md:grid-cols-4 gap-2 text-xs">
                     <div className="rounded-lg bg-slate-50 border border-slate-200 px-3 py-2">
                         <div className="text-slate-500">答题进度</div>
                         <div className="font-semibold text-slate-700">{answeredCount}/{questions.length}</div>
@@ -414,7 +414,7 @@ export default function EnhancedPaperPage({ forcedPaperId }) {
                         <div className="text-slate-500">当前题号</div>
                         <div className="font-semibold text-slate-700">第 {currentQuestionIndex + 1} 题</div>
                     </div>
-                    <div className="md:col-span-4">
+                    <div className="col-span-2 md:col-span-4">
                         <div className="w-full bg-slate-200 rounded-full h-2">
                             <div className="bg-indigo-600 h-2 rounded-full transition-all" style={{ width: `${progress}%` }} />
                         </div>
@@ -422,12 +422,12 @@ export default function EnhancedPaperPage({ forcedPaperId }) {
                 </div>
             </header>
 
-            <main className="max-w-6xl mx-auto grid md:grid-cols-[240px_1fr] gap-4 p-4">
-                <aside className="bg-white rounded-xl border border-slate-200 p-3 h-fit">
+            <main className="max-w-6xl mx-auto grid grid-cols-[minmax(0,1fr)] md:grid-cols-[240px_minmax(0,1fr)] gap-4 p-4">
+                <aside className="min-w-0 bg-white rounded-xl border border-slate-200 p-3 h-fit">
                     <div className="flex items-center gap-2 text-sm font-semibold text-slate-700 mb-3">
                         <ClipboardList size={15} /> 题号导航
                     </div>
-                    <div className="grid grid-cols-5 md:grid-cols-4 gap-2">
+                    <div className="grid grid-cols-6 md:grid-cols-4 gap-1.5 md:gap-2">
                         {questions.map((q, idx) => {
                             const isCurrent = idx === currentQuestionIndex;
                             const hasAnswer = answers[q.id] !== undefined;
@@ -443,7 +443,7 @@ export default function EnhancedPaperPage({ forcedPaperId }) {
                                         setCurrentQuestionIndex(idx);
                                         setActiveTab('practice');
                                     }}
-                                    className={`aspect-square rounded-lg border text-sm font-semibold ${classes}`}
+                                    className={`h-11 md:h-auto md:aspect-square rounded-lg border text-sm font-semibold ${classes}`}
                                 >
                                     {idx + 1}
                                 </button>
@@ -452,7 +452,7 @@ export default function EnhancedPaperPage({ forcedPaperId }) {
                     </div>
                 </aside>
 
-                <section className="space-y-4">
+                <section className="min-w-0 space-y-4">
                     <div className="bg-white rounded-2xl border border-slate-200 p-5 md:p-8">
                         <div className="flex items-center justify-between mb-4">
                             <div className="text-sm text-slate-500">第 {currentQuestionIndex + 1} 题 / 共 {questions.length} 题</div>

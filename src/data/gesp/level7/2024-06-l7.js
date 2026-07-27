@@ -436,21 +436,44 @@ fib(6) = fib(5)+fib(4) = 5+3 = 8（fib 数列：0,1,1,2,3,5,8,...）。输出 8�
         {
             id: 14,
             type: "single",
-            question: `下面count_triple函数的时间复杂度为 ( ) 。 #include <iostream> using namespace std; int fib(int n) { if (n <= 1) return n; return fib(n-1)+fib(n-2); } int main() { cout << fib(6) << endl; return 0; } 1 2 3 4 5 6 7 8 9 10 11 题号 1 2 3 4 5 6 7 8 9 10 答案`,
+            question: `下面 \`count_triple\` 函数的时间复杂度为（ ）。
+
+\`\`\`cpp
+int count_triple(int n) {
+    int cnt = 0;
+    for (int a = 1; a <= n; a++)
+        for (int b = a; a + b <= n; b++) {
+            int c = sqrt(a * a + b * b);
+            if (a + b + c > n)
+                break;
+            if (a * a + b * b == c * c)
+                cnt++;
+        }
+    return cnt;
+}
+\`\`\``,
             options: [
                 "O(n)",
-                "O(2ⁿ)",
                 "O(n²)",
-                "O(log n)",
-],
+                "O(n³)",
+                "O(n⁴)",
+            ],
             answer: 1,
             score: 2,
-            explanation: `**答案：B（选项 B）**
-依据官方标准答案，正确选项为 B。题干给出函数 \`count_triple\`（枚举整数三元组 a,b,c 满足 a²+b²=c² 的计数），问其时间复杂度。
-- 外层 a 循环 1..n，内层 b 从 a 起、条件 a+b≤n，c = √(a²+b²) 为 O(1)，总复杂度约 O(n²) 量级（∑_{a}(n−a) = O(n²)）。
-- 选项 B 描述为 O(n²) 级别，与标准答案一致。
+            sourceVerified: true,
+            sourcePage: 5,
+            sourceUrl: 'https://gesp.ccf.org.cn/101/attach/1621071620997152.pdf',
+            reviewedBy: '本站校订',
+            reviewedAt: '2026-07-27',
+            explanation: `**答案：B（O(n²)）**
 
-**注**：题干末附带的「题号/答案」串为扫描噪点，忽略；按标准答案取 B。`,
+外层循环让 \`a\` 从 1 增长到 n。对固定的 \`a\`，内层从 \`b = a\` 开始递增；即使考虑 \`a + b + c > n\` 的提前退出，单个 \`a\` 对应的 \`b\` 仍至多有 O(n) 个，因此总迭代次数上界为 O(n²)。
+
+这个上界也是紧的：例如取 \`a, b <= n / 4\` 且 \`b >= a\`，有 \`c = floor(sqrt(a² + b²)) <= a + b\`，从而 \`a + b + c <= 2(a + b) <= n\`，不会触发提前退出。这样的 \`(a, b)\` 数量为 Θ(n²)，所以总时间复杂度为 Θ(n²)。
+
+\`sqrt\`、加减乘和比较在本题的复杂度模型中均按 O(1) 计算；是否找到勾股数组合只影响 \`cnt\`，不改变循环次数。A 低估了两层枚举，C、D 则不是紧确复杂度。
+
+**原卷核验**：题干起始于官方 PDF 第 5 页，完整代码与选项见第 6 页；答案表见第 1 页。`,
             tags: [
                 "客观题",
                 "单选题",

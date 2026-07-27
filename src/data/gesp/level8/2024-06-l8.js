@@ -84,21 +84,24 @@ export const paperData = {
         },
         {
             id: 4,
-            sourceIntegrity: 'options-reconstructed',
-            integrityNote: "原卷选项在本站源文件中为占位文本，现有选项按标准答案反推补写，并非原卷原文。",
             type: "single",
             question: `有 V 个顶点、 E 条边的图的深度优先搜索遍历时间复杂度为（ ）。`,
             options: [
                 "O(V)",
                 "O(E)",
                 "O(V+E)",
-                "O(V*E)",
-],
+                "O(log(V+E))",
+            ],
             answer: 2,
             score: 2,
+            sourceVerified: true,
+            sourcePage: 1,
+            sourceUrl: "https://gesp.ccf.org.cn/101/attach/1621071654551584.pdf",
+            reviewedBy: "本站校订",
+            reviewedAt: "2026-07-27",
             explanation: `**答案：C（时间复杂度为 O(|V|+|E|) 的选项）**
 
-**解析：** 对含 V 个顶点、E 条边的图做深度优先搜索（DFS），每个顶点和每条边都只被访问常数次，因此时间复杂度为 O(V+E)（也记作 O(|V|+|E|)）。本题选项原文为占位符，正确选项应为表达 O(V+E) 的那一项。
+**解析：** 使用邻接表存图时，深度优先搜索会访问每个顶点一次，并沿邻接表检查每条边常数次，因此总时间复杂度为 O(V+E)（也记作 O(|V|+|E|)）。
 
 **考点**：图的 DFS 时间复杂度。`,
             tags: [
@@ -348,7 +351,23 @@ export const paperData = {
         {
             id: 15,
             type: "single",
-            question: `下面程序的输出为（ ）。 bool notPrime[N] = {false}; void sieve() { for (int n = 2; n * n < N; n++) if (!notPrime[n]) for (int i = n * n; i < N; i += n) notPrime[i] = true; } 1 2 3 4 5 6 7 int gcd(int m, int n) { if (m == 0) return n; return gcd(n % m, m); } 1 2 3 4 5 题号 1 2 3 4 5 6 7 8 9 10 答案`,
+            question: `下面程序的输出为（ ）。
+
+\`\`\`cpp
+#include <iostream>
+using namespace std;
+
+int main() {
+    int cnt = 0;
+    for (int x = 0; x <= 10; x++)
+        for (int y = 0; y <= 10; y++)
+            for (int z = 0; z <= 10; z++)
+                if (x + y + z <= 15)
+                    cnt++;
+    cout << cnt << endl;
+    return 0;
+}
+\`\`\``,
             options: [
                 "90",
                 "91",
@@ -357,13 +376,32 @@ export const paperData = {
             ],
             answer: 3,
             score: 2,
+            sourceVerified: true,
+            sourcePage: 4,
+            reviewedBy: '本站校订',
+            reviewedAt: '2026-07-27',
             explanation: `**答案：D（711）**
 
-**解析：** 程序先用埃氏筛 \`sieve()\` 标记合数（notPrime 数组），再用 \`gcd()\` 计算最大公约数。结合选项，该程序统计的是素数/互质相关的计数（如互质对计数或素数求和类结果），最终输出为 711。注意题面混入了编程题的“题号/答案”表格噪声，核心为筛法 + gcd 的计数程序。
+**解析：** 程序统计满足
+\`0 <= x,y,z <= 10\` 且 \`x+y+z <= 15\` 的有序三元组数量。
 
-**考点**：埃氏筛、gcd 与计数。`,
+先忽略每个变量不超过 10 的限制。令 \`w = 15-x-y-z\`，则
+\`x+y+z+w=15\` 的非负整数解有
+\`C(18,3)=816\` 个。
+
+再排除 \`x\`、\`y\` 或 \`z\` 至少为 11 的情况。以 \`x >= 11\` 为例，令
+\`x'=x-11\`，有 \`x'+y+z+w=4\`，共 \`C(7,3)=35\` 个解。
+三个变量对称，需减去 \`3*35=105\`。两个变量不可能同时至少为 11，
+所以没有重复扣除：
+
+\`816-105=711\`。
+
+- A、B 只接近某个固定和的解数，没有累计 \`x+y+z <= 15\` 的全部情况。
+- C 比正确结果少 1，容易漏掉 \`x=y=z=0\`。
+
+**考点**：循环计数、隔板法、容斥原理。`,
             tags: [
-                "最小生成树",
+                "组合计数",
             ],
         },
         {
@@ -544,16 +582,20 @@ export const paperData = {
         {
             id: 25,
             type: "judge",
-            question: `要判断无向图的连通性，在深度优先搜索和⼴度优先搜索中选择，深度优先的平均时间复杂度更低。 #include <iostream> using namespace std; int main() { int cnt = 0; for (int x = 0; x <= 10; x++) for (int y = 0; y <= 10; y++) for (int z = 0; z <= 10; z++) if (x+y+z <= 15) cnt++; cout << cnt << endl; return 0; } 1 2 3 4 5 6 7 8 9 10 11 12 子任务编号 数据点占比 特殊条件 1 30% 树的形态为一条链 2 30% 3 40%`,
+            question: `要判断无向图的连通性，在深度优先搜索和广度优先搜索中选择，深度优先的平均时间复杂度更低。`,
             options: [
                 "正确",
                 "错误",
             ],
             answer: 1,
             score: 2,
+            sourceVerified: true,
+            sourcePage: 4,
+            reviewedBy: '本站校订',
+            reviewedAt: '2026-07-26',
             explanation: `**答案：错误**
 
-**解析：** 判断无向图连通性，DFS 与 BFS 的最坏与平均时间复杂度都是 O(V+E)，二者并无“DFS 平均更低”的差别。题干结论不成立，故错误。（题面混入的 \`cnt\` 三重循环代码为编程题噪声，与判断无关。）
+**解析：** 判断无向图连通性，DFS 与 BFS 的时间复杂度都是 O(V+E)，二者并无“DFS 平均时间复杂度更低”的差别。题干结论不成立，故错误。
 
 **考点**：DFS/BFS 判连通复杂度。`,
             tags: [

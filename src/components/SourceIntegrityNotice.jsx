@@ -6,6 +6,8 @@ const STATUS_LABELS = {
     'missing-figure': '本题缺少原卷配图',
     'contaminated-stem': '本题题干曾串入其他题目内容',
     'not-official-question': '本题与官方原卷同题号题目不一致',
+    'answer-key-conflict': '本题官方答案存在版本冲突',
+    'official-source-defect': '本题原卷题面存在缺陷',
 };
 
 /**

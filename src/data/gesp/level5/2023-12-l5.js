@@ -218,34 +218,68 @@ export const paperData = {
         },
         {
             id: 4,
-            sourceIntegrity: 'not-official-question',
-            integrityNote: "对照官方真题 PDF，本站此题与原卷第 4 题不一致（原卷该题答案为 A，本站选项与题干均不同）。本题可作为练习使用，但不代表原卷真题内容，待逐题回填原卷后移除此标记。",
             type: "single",
-            question: `下面的C++用于对 lstA 排序，使得偶数在前奇数在后，横线处应填入( )。`,
+            question: `下面的 C++ 用于对 \`lstA\` 排序，使得偶数在前奇数在后，横线处应填入（ ）。
+
+\`\`\`cpp
+bool isEven(int N)
+{
+    return N % 2 == 0;
+}
+
+void swap(int &a, int &b)
+{
+    int t;
+    t=a,a=b,b=t;
+    return;
+}
+
+void sortA(int lstA[], int n)
+{
+    int i,j,t;
+    for (i = n-1; i > 0; i--)
+        for(j = 0; j < i; j++)
+            if(______________________________)
+                swap(lstA[j], lstA[j+1]);
+
+    return;
+}
+\`\`\``,
             options: [
-                "isEven(lstA[j]) && !isEven(lstA[j+1])",
                 "!isEven(lstA[j]) && isEven(lstA[j+1])",
+                "isEven(lstA[j]) && !isEven(lstA[j+1])",
                 "lstA[j] > lstA[j+1]",
                 "lstA[j] < lstA[j+1]",
             ],
-            answer: 1,
+            answer: 0,
             score: 2,
-            explanation: `**答案：B**
+            sourceVerified: true,
+            sourcePage: 2,
+            sourcePages: [2, 3],
+            sourceUrl: 'https://gesp.ccf.org.cn/101/attach/1599969567965216.pdf',
+            reviewedBy: '本站校订',
+            reviewedAt: '2026-07-27',
+            explanation: `**答案：A（\`!isEven(lstA[j]) && isEven(lstA[j+1])\`）**
 
-            **解析：**
-            如果前一个是奇数且后一个是偶数，则需要交换位置（让偶数到前面）。
+**推导过程：**
 
-            - **A isEven(lstA[j]) && !isEven(lstA[j+1])**：错误。该代码逻辑与题目要求不符，请逐步推演。
-            - **B !isEven(lstA[j]) && isEven(lstA[j+1])**：正确答案。
-            - **C lstA[j] > lstA[j+1]**：错误。
-            - **D lstA[j] < lstA[j+1]**：错误。
+1. \`isEven(x)\` 在 \`x\` 为偶数时返回 \`true\`。
+2. 要让偶数移动到奇数前面，只需在相邻元素呈“前奇后偶”时交换。
+3. “前奇”写作 \`!isEven(lstA[j])\`，“后偶”写作 \`isEven(lstA[j+1])\`，合并后正是 A。
+4. 外层循环不断缩小未处理区间，内层循环通过相邻交换消除所有“前奇后偶”的逆序对，最终形成偶数在前、奇数在后的分区。
 
-            **考点：** 排序算法
-            `,
+**选项辨析：** B 会在“前偶后奇”时交换，结果方向相反；C、D 按数值大小排序，不能保证只按奇偶分区。
+
+**最小验证：** 对 \`[1, 2]\`，A 条件为真并交换成 \`[2, 1]\`；对 \`[2, 1]\`，条件为假，顺序保持不变。
+
+**考点：** 冒泡式相邻交换、奇偶判断、数组分区。`,
             tags: [
                 "客观题",
                 "单选题",
                 "GESP5级",
+                "排序",
+                "奇偶判断",
+                "数组分区",
             ]
         },
         {

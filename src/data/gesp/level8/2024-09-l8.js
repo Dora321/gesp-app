@@ -338,24 +338,65 @@ if (map[i][j] > map[i][k] + map[k][j])
         {
             id: 14,
             type: "single",
-            question: `下面程序的Merge_Sort函数时间复杂度为（ ）。 } for (int i = 1; i <= m; i++) { cin >> t1 >> t2 >> t3; map[t1][t2] = t3; } for (int k = 1; k <= n; k++) for (int i = 1; i <= n; i++) for (int j = 1; j <= n; j++) if (__________) // 在此处填入选项 map[i][j] = map[i][k]+map[k][j]; for (int i = 1; i <= n; i++) { for (int j = 1; j <= n; j++) { cout.width(4); cout << map[i][j]; } cout << endl; } } 17 18 19 20 21 22 23 24 25 26 27 28 29 30 31 32 33 34 void Merge(int a[], int left, int mid, int right) { int temp[right-left+1]; int i = left; int j = mid+1; int k = 0; while (i <= mid && j <= right) { if (a[i] < a[j]) temp[k++] = a[i++]; else temp[k++] = a[j++]; } while (i <= mid) temp[k++] = a[i++]; while (j <= right) temp[k++] = a[j++]; for (int m = left, n = 0; m <= right; m++, n++) a[m] = temp[n]; } void Merge_Sort(int a[], int left, int right) { if (left == right) return; int mid = (left+right) / 2; Merge_Sort(a, left, mid); Merge_Sort(a, mid+1, right); Merge(a, left, mid, right); } 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26 题号 1 2 3 4 5 6 7 8 9 10 答案`,
+            question: `下面程序的 \`Merge_Sort\` 函数时间复杂度为（ ）。
+
+\`\`\`cpp
+void Merge(int a[], int left, int mid, int right) {
+    int temp[right - left + 1];
+    int i = left;
+    int j = mid + 1;
+    int k = 0;
+    while (i <= mid && j <= right) {
+        if (a[i] < a[j])
+            temp[k++] = a[i++];
+        else
+            temp[k++] = a[j++];
+    }
+    while (i <= mid)
+        temp[k++] = a[i++];
+    while (j <= right)
+        temp[k++] = a[j++];
+    for (int m = left, n = 0; m <= right; m++, n++)
+        a[m] = temp[n];
+}
+
+void Merge_Sort(int a[], int left, int right) {
+    if (left == right)
+        return;
+    int mid = (left + right) / 2;
+    Merge_Sort(a, left, mid);
+    Merge_Sort(a, mid + 1, right);
+    Merge(a, left, mid, right);
+}
+\`\`\``,
             options: [
                 "O(n log n)",
                 "O(n²)",
-                "O(n)",
-                "O(n³)",
-],
+                "O(2ⁿ)",
+                "O(log n)",
+            ],
             answer: 0,
             score: 2,
-            explanation: `**答案：A**
+            sourceVerified: true,
+            sourcePage: 7,
+            reviewedBy: '本站校订',
+            reviewedAt: '2026-07-27',
+            explanation: `**答案：A（O(n log n)）**
 
-**解析：**
-\`Merge_Sort\` 是归并排序：将区间二分递归到底，再自底向上合并。每层合并的总工作量为 O(n)，递归深度为 O(log n)，因此整体时间复杂度为 O(n log n)。
+**解析：** \`Merge_Sort\` 每次把长度为 \`n\` 的区间分成两个约为
+\`n/2\` 的子区间，递归排序后再调用 \`Merge\`。一次合并会顺序处理区间中的
+\`n\` 个元素，因此递推式为：
 
-- **A \`O(n log n)\`**：正确。归并排序的标准时间复杂度。
-- **B \`O(n²)\`**：错误。这是简单插入、选择或冒泡排序的复杂度。
-- **C \`O(n)\`**：错误。线性扫描才可能达到，归并排序还需额外的合并开销。
-- **D \`O(n³)\`**：错误。远高于实际复杂度。`,
+\`T(n)=2T(n/2)+O(n)\`。
+
+递归树共有 \`O(log n)\` 层，每一层所有合并处理的元素总数都是
+\`O(n)\`，所以总时间复杂度是 \`O(n log n)\`。
+
+- B 的 \`O(n²)\` 常见于两层完整嵌套扫描，不符合这里“二分后线性合并”的结构。
+- C 的 \`O(2ⁿ)\` 常见于产生大量重复子问题的指数递归；这里两个子区间互不重叠。
+- D 的 \`O(log n)\` 只计算了递归深度，漏掉了每层的合并工作。
+
+**考点**：归并排序、递归树、时间复杂度。`,
             tags: [
                 "复杂度分析",
             ],
@@ -556,16 +597,20 @@ if (map[i][j] > map[i][k] + map[k][j])
         {
             id: 25,
             type: "judge",
-            question: `诚实国公民只说实话，说谎国公民只说谎话。你来到一处分岔⼝，一条通往诚实国，一条通往说谎国，但 不知是哪一条通往哪⾥。正在为难之际，走来两位路⼈，他们都⾃称是诚实国公民，都说对方是说谎国公民。你想 去说谎国，可以这样问其中一位路⼈： “ 我要去说谎国，如果我去问另一个路⼈，他会指向哪一条路？ ” 。 int fibonacci(int n) { if (n <= 1) return n; else return fibonacci(n-1)+fibonacci(n-2); } 1 2 3 4 5 6 子任务编号 数据点占比 1 30% 2 30% 3 40%`,
+            question: `诚实国公民只说实话，说谎国公民只说谎话。你来到一处分岔口，一条通往诚实国，一条通往说谎国，但不知是哪一条通往哪里。正在为难之际，走来两位路人，他们都自称是诚实国公民，都说对方是说谎国公民。你想去说谎国，可以这样问其中一位路人：“我要去说谎国，如果我去问另一个路人，他会指向哪一条路？”`,
             options: [
                 "正确",
                 "错误",
             ],
             answer: 0,
             score: 2,
-            explanation: `**答案：正确（数据提示：题干尾部混入了编程题代码，按逻辑谜题本身判正确）**
+            sourceVerified: true,
+            sourcePage: 8,
+            reviewedBy: '本站校订',
+            reviewedAt: '2026-07-26',
+            explanation: `**答案：正确**
 
-解析：两人中一诚实一说谎（都自称诚实、互指对方说谎）。问其中一人：“我去问另一个人，他会指向哪条通往说谎国的路？”——无论问到谁，得到的都会是指向诚实国的路（诚实者如实转述说谎者的谎话；说谎者谎报诚实者的真话），因此走“相反方向”即到说谎国。这种“借对方之口取反”的问法是经典且有效的，故方法正确。题干末尾被污染进了 fibonacci 代码与子任务说明，属数据损坏。
+解析：两人中一诚实一说谎。无论问到谁，关于“另一个人会指向哪条路”的回答都会指向诚实国：诚实者会如实转述说谎者的错误指向，说谎者则会对诚实者的正确指向说谎。因此走回答所指方向的相反方向即可到达说谎国，题干方法正确。
 
 **考点**：诚实者/说谎者逻辑谜题（双重否定取反）。`,
             tags: [

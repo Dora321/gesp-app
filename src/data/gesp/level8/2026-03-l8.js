@@ -55,35 +55,30 @@ export const paperData = {
         },
         {
             id: 3,
-            sourceIntegrity: 'not-official-question',
-            integrityNote: "对照官方真题 PDF，本站此题与原卷第 3 题不一致（原卷该题答案为 B，本站选项与题干均不同）。本题可作为练习使用，但不代表原卷真题内容，待逐题回填原卷后移除此标记。",
             type: "single",
-            question: `某社团有男生 8 ⼈、⼥生 7 ⼈。现需选出 1 名队长（性别不限）、 1 名副队长（性别不限）、 2 名宣传委员（两 ⼈无角⾊区别，且必须⾄少 1 名⼥生）。假如一⼈不能兼任多职，共有多少种不同选法？（ ）`,
+            question: `下列代码实现了快速幂算法，其时间复杂度为（ ）。\n\`\`\`cpp\nlong long fastPow(long long b, long long e, long long mod) {\n    long long result = 1;\n    while (e > 0) {\n        if (e & 1)\n            result = result * b % mod;\n        b = b * b % mod;\n        e >>= 1;\n    }\n    return result;\n}\n\`\`\``,
             options: [
-                "12012",
-                "11844",
-                "12474",
-                "11025",
+                "O(log b)",
+                "O(log e)",
+                "O(log mod)",
+                "O(e)",
             ],
-            answer: 0,
+            answer: 1,
             score: 2,
-            explanation: `**答案：A（12,012）**
+            sourceVerified: true,
+            sourcePage: 1,
+            sourceUrl: "https://raw.githubusercontent.com/Dora321/gesp-official-pdfs/main/pdfs/2026%E5%B9%B43%E6%9C%88-C%2B%2B8%E7%BA%A7.pdf",
+            reviewedBy: "本站校订",
+            reviewedAt: "2026-07-27",
+            explanation: `**答案：B（O(log e)）**
 
 **解析：**
-按“队长、副队长（有序、不可兼任）→ 2 名宣传委员（无序、至少 1 名女生）”分步。设男生 8 人、女生 7 人。先选队长、副队长共 15×14=210 种，再按二者性别分类计算剩余 13 人中“至少 1 女”的无序 2 人组合数：
-- 队长女、副队长女（7×6=42）：剩 5 女 8 男，合法委员对 = C(13,2)−C(8,2)=78−28=50 → 42×50=2100。
-- 队长女、副队长男（7×8=56）：剩 6 女 7 男，=78−C(7,2)=78−21=57 → 56×57=3192。
-- 队长男、副队长女（8×7=56）：同上 3192。
-- 队长男、副队长男（8×7=56）：剩 7 女 6 男，=78−C(6,2)=78−15=63 → 56×63=3528。
-合计 2100+3192+3192+3528 = 12,012。
+\`e >>= 1\` 每轮把指数右移一位，也就是将其除以 2。循环次数是使 \`e\` 变为 0 所需的二进制位数，约为 \`⌊log₂e⌋+1\`。循环体内的乘法、取模和位运算按本题模型视为常数时间，因此总时间复杂度为 O(log e)。
 
-**选项：**
-- A 12,012：正确。
-- B 11,844、C 12,474、D 11,025：均不符。
-
-**考点**：排列组合的分步与分类计数（带“至少 1 女”约束的选取）。`,
+**考点**：快速幂、二进制拆分、时间复杂度。`,
             tags: [
-                "排列组合",
+                "快速幂",
+                "时间复杂度",
             ],
         },
         {
@@ -360,22 +355,28 @@ LCS 状态转移：若 \`a[i-1]==b[j-1]\`，则 \`dp[i][j]=dp[i-1][j-1]+1\`；�
         },
         {
             id: 15,
-            sourceIntegrity: 'missing-figure',
-            integrityNote: "原卷该代码在官方 PDF 中既非内嵌图片、文本层也未包含（应为矢量绘制）。",
             type: "single",
-            question: `在 64 位操作系统下（ LP64 / LLP64 模型），下面代码的输出结果是（）。
-
-> ⚠️ 原卷此处配有代码或图片。官方 PDF 中该部分为图片，或其文本层与相邻试题混排、无法可靠切分，本站尚未还原。请对照原卷阅读代码。`,
+            question: `在 64 位操作系统下（LP64 / LLP64 模型），下面代码的输出结果是（ ）。\n\`\`\`cpp\n#include <iostream>\nusing namespace std;\n\nint main() {\n    int a[4] = {1, 2, 3, 4};\n    int (*p)[4] = &a;\n    int *q = a;\n\n    cout << sizeof(a) << " ";\n    cout << sizeof(p) << " ";\n    cout << sizeof(p + 1) << " ";\n    cout << sizeof(q + 1) << " ";\n    cout << (p + 1) - p << " ";\n    cout << (q + 1) - q << endl;\n}\n\`\`\``,
             options: ["16 8 8 8 1 1", "16 8 16 8 1 1", "16 8 8 4 4 1", "16 8 8 8 4 1"],
             answer: 0,
             score: 2,
+            sourceVerified: true,
+            sourcePage: 4,
+            sourceUrl: "https://raw.githubusercontent.com/Dora321/gesp-official-pdfs/main/pdfs/2026%E5%B9%B43%E6%9C%88-C%2B%2B8%E7%BA%A7.pdf",
+            reviewedBy: "本站校订",
+            reviewedAt: "2026-07-27",
             explanation: `**答案：A（16 8 8 8 1 1）**
 
-**依据**：官方真题 PDF 第 1 页答案表。本题题干与选项均已按官方原卷回填。
+**解析：**
+- \`a\` 是含 4 个 \`int\` 的数组，\`sizeof(a) = 4 × 4 = 16\`。
+- \`p\` 和表达式 \`p + 1\` 的类型都是指针；64 位环境下指针大小为 8 字节。
+- \`q + 1\` 同样是指针表达式，其大小为 8 字节。
+- 指针相减得到的不是字节数，而是相隔的同类型元素个数。\`p + 1\` 虽跨过一个含 4 个整数的数组，\`(p + 1) - p\` 仍为 1；\`(q + 1) - q\` 也为 1。
 
-> ⚠️ 原卷该题的代码/图以图片形式给出，官方 PDF 无文本层，本站无法提取；题干、选项与答案均取自官方原卷，但缺少代码部分，暂不足以独立作答。因此本站不对该代码做推测性讲解，请对照原卷阅读代码。`,
+**考点**：数组与指针的 \`sizeof\`、指针算术、指针差。`,
             tags: [
-                "最小生成树",
+                "指针",
+                "sizeof",
             ],
         },
         {

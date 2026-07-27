@@ -11,59 +11,43 @@
 
 const fs = require('fs');
 const path = require('path');
+const { pathToFileURL } = require('url');
 
 const DATA_DIR = path.resolve(__dirname, '../src/data/gesp');
 const LEVELS = ['level1', 'level2', 'level3', 'level4', 'level5', 'level6', 'level7', 'level8'];
-const OUTPUT_FILE = path.resolve(DATA_DIR, '_generated.js');
-const OUTPUT_STATS_FILE = path.resolve(DATA_DIR, '_stats.js');
-const VERIFIED_CORRECTIONS_FILE = path.resolve(DATA_DIR, 'verifiedQuestionCorrections.js');
-const VERIFIED_CORRECTIONS_DIR = path.resolve(DATA_DIR, 'verified-corrections');
+const OUTPUT_FILE = process.env.GESP_REGISTRY_OUTPUT_FILE
+  ? path.resolve(process.env.GESP_REGISTRY_OUTPUT_FILE)
+  : path.resolve(DATA_DIR, '_generated.js');
+const OUTPUT_STATS_FILE = process.env.GESP_REGISTRY_STATS_OUTPUT_FILE
+  ? path.resolve(process.env.GESP_REGISTRY_STATS_OUTPUT_FILE)
+  : path.resolve(DATA_DIR, '_stats.js');
+const VERIFIED_CORRECTIONS_FILE = process.env.GESP_VERIFIED_CORRECTIONS_FILE
+  ? path.resolve(process.env.GESP_VERIFIED_CORRECTIONS_FILE)
+  : path.resolve(DATA_DIR, 'verifiedQuestionCorrections.js');
+const VERIFIED_CORRECTIONS_DIR = process.env.GESP_VERIFIED_CORRECTIONS_DIR
+  ? path.resolve(process.env.GESP_VERIFIED_CORRECTIONS_DIR)
+  : path.resolve(DATA_DIR, 'verified-corrections');
 
 // ===== Utils =====
 
-function extractArrayBlock(content, startPos) {
-  let i = startPos;
-  let depth = 0;
-  let inTemplate = false, inSingleQuote = false, inDoubleQuote = false;
+function countRuntimeQuestions(paperData) {
+  const collections = [
+    paperData?.questions,
+    paperData?.programmingQuestions,
+    paperData?.codingQuestions,
+  ].filter(Array.isArray);
+  const questionIds = new Set();
+  let questionsWithoutId = 0;
 
-  while (i < content.length) {
-    const ch = content[i];
-    const prev = i > 0 ? content[i - 1] : '';
-    if (ch === '`' && prev !== '\\' && !inSingleQuote && !inDoubleQuote) inTemplate = !inTemplate;
-    else if (ch === "'" && prev !== '\\' && !inTemplate && !inDoubleQuote) inSingleQuote = !inSingleQuote;
-    else if (ch === '"' && prev !== '\\' && !inTemplate && !inSingleQuote) inDoubleQuote = !inDoubleQuote;
-    if (!inTemplate && !inSingleQuote && !inDoubleQuote) {
-      if (ch === '[') depth++;
-      else if (ch === ']') { depth--; if (depth === 0) return content.substring(startPos, i + 1); }
-    }
-    i++;
-  }
-  return content.substring(startPos);
-}
-
-function countQuestions(content) {
-  let total = 0;
-  for (const key of ['questions', 'programmingQuestions', 'codingQuestions']) {
-    const re = new RegExp(`${key}\\s*:\\s*\\[`, 'g');
-    let match;
-    while ((match = re.exec(content)) !== null) {
-      const block = extractArrayBlock(content, match.index + match[0].length - 1);
-      const ids = block.match(/{\s*(?:\/\/[^\n]*\n\s*)*id:/g);
-      if (ids) total += ids.length;
+  for (const question of collections.flat()) {
+    if (question?.id === undefined || question?.id === null) {
+      questionsWithoutId++;
+    } else {
+      questionIds.add(question.id);
     }
   }
 
-  // Some papers hoist programming questions into a file-level array and spread
-  // it into paperData.questions. Count those arrays without executing data files.
-  const hoistedQuestionArrays = /(?:const|let|var)\s+(?:programmingQuestions|codingQuestions)\s*=\s*\[/g;
-  let hoistedMatch;
-  while ((hoistedMatch = hoistedQuestionArrays.exec(content)) !== null) {
-    const block = extractArrayBlock(content, hoistedMatch.index + hoistedMatch[0].length - 1);
-    const ids = block.match(/{\s*(?:\/\/[^\n]*\n\s*)*id:/g);
-    if (ids) total += ids.length;
-  }
-
-  return total;
+  return questionIds.size + questionsWithoutId;
 }
 
 function countPlaceholderMarkers(content) {
@@ -144,23 +128,28 @@ function readVerifiedCorrectionMeta() {
 
 // ===== Scan & Generate =====
 
-const papers = [];
-const verifiedCorrectionMeta = readVerifiedCorrectionMeta();
+async function generateRegistry() {
+  const papers = [];
+  const verifiedCorrectionMeta = readVerifiedCorrectionMeta();
 
-for (const levelDir of LEVELS) {
-  const dirPath = path.join(DATA_DIR, levelDir);
-  if (!fs.existsSync(dirPath)) continue;
+  for (const levelDir of LEVELS) {
+    const dirPath = path.join(DATA_DIR, levelDir);
+    if (!fs.existsSync(dirPath)) continue;
 
-  const files = fs.readdirSync(dirPath).filter(f => f.endsWith('.js') && f !== 'shared.js' && /^\d{4}-\d{2}-l\d\.js$/.test(f));
+    const files = fs.readdirSync(dirPath).filter(f => f.endsWith('.js') && f !== 'shared.js' && /^\d{4}-\d{2}-l\d\.js$/.test(f));
 
-  for (const file of files) {
-    const filePath = path.join(dirPath, file);
-    const paperId = file.replace(/\.js$/, '');
-    const relativePath = `./${levelDir}/${file}`;
+    for (const file of files) {
+      const filePath = path.join(dirPath, file);
+      const paperId = file.replace(/\.js$/, '');
+      const relativePath = `./${levelDir}/${file}`;
 
-    const content = fs.readFileSync(filePath, 'utf-8');
-    const questionCount = countQuestions(content);
-    const placeholderCount = countPlaceholderMarkers(content);
+      const content = fs.readFileSync(filePath, 'utf-8');
+      const module = await import(pathToFileURL(filePath).href);
+      if (!module.paperData) {
+        throw new Error(`Paper module does not export paperData: ${paperId}`);
+      }
+      const questionCount = countRuntimeQuestions(module.paperData);
+      const placeholderCount = countPlaceholderMarkers(content);
 
     // Extract metadata from paperId: e.g., '2023-03-l1' → { year:2023, month:3, level:1 }
     const [, year, month, level] = paperId.match(/^(\d{4})-(\d{2})-l(\d)$/);
@@ -187,25 +176,26 @@ for (const levelDir of LEVELS) {
     const reviewedAt = getStringField(verificationBlock, 'reviewedAt');
     const reviewScope = getStringField(verificationBlock, 'scope');
 
-    const correctionMeta = verifiedCorrectionMeta.get(paperId);
-    papers.push({
-      id: paperId,
-      level: parseInt(level, 10),
-      year: parseInt(year, 10),
-      month: parseInt(month, 10),
-      title,
-      questionCount,
-      placeholderCount,
-      unofficial,
-      reviewStatus: correctionMeta ? 'partial' : reviewStatus,
-      reviewedBy: correctionMeta ? '本站校订' : reviewedBy,
-      reviewedAt: correctionMeta ? '2026-07-06' : reviewedAt,
-      reviewScope: correctionMeta ? '疑似缺失或错误的代码题已对照官方 PDF 校订。' : reviewScope,
-      sourceUrl: correctionMeta?.sourceUrl || sourceUrl,
-      relativePath,
-    });
+      const correctionMeta = verifiedCorrectionMeta.get(paperId);
+      const useCorrectionReview = correctionMeta && !explicitStatus;
+      papers.push({
+        id: paperId,
+        level: parseInt(level, 10),
+        year: parseInt(year, 10),
+        month: parseInt(month, 10),
+        title,
+        questionCount,
+        placeholderCount,
+        unofficial,
+        reviewStatus: useCorrectionReview ? 'partial' : reviewStatus,
+        reviewedBy: useCorrectionReview ? '本站校订' : reviewedBy,
+        reviewedAt: useCorrectionReview ? '2026-07-06' : reviewedAt,
+        reviewScope: useCorrectionReview ? '疑似缺失或错误的代码题已对照官方 PDF 校订。' : reviewScope,
+        sourceUrl: correctionMeta?.sourceUrl || sourceUrl,
+        relativePath,
+      });
+    }
   }
-}
 
 // Merge the source registry (authoritative for links/hashes) into paper meta.
 // Papers previously stored a mirror link under `source.officialPdf`, which made
@@ -314,3 +304,9 @@ fs.writeFileSync(OUTPUT_STATS_FILE, statsOutput, 'utf-8');
 console.log(`Generated ${OUTPUT_FILE} with ${papers.length} papers.`);
 console.log(`Generated ${OUTPUT_STATS_FILE}.`);
 console.log(`Total question count across all papers: ${stats.questionCount}`);
+}
+
+generateRegistry().catch(error => {
+  console.error(error);
+  process.exitCode = 1;
+});

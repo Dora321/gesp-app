@@ -197,47 +197,68 @@ export const paperData = {
         },
         {
             id: 6,
-            sourceIntegrity: 'missing-figure',
-            integrityNote: "原卷该题为线性筛代码，官方 PDF 文本层中该函数仅提取到开头两行即被截断；同页另一段完整代码是相邻题的埃氏筛，不能替代。",
             type: "single",
-            question: `下述代码实现素数表的线性筛法，筛选出所有小于等于n的素数，则横线上应填的代码是 ( ) 。
-int fun(int a, int b) {
- if (a % b == 0)
- return b;
- else
- return fun(b, a % b);
-}
-void sieve_Eratosthenes(int n) {
- vector<bool> is_prime(n + 1, true);
- vector<int> primes;
- for (int i = 2; i * i <= n; i++) {
- if (is_prime[i]) {
- primes.push_back(i);
- ________________________________ { // 在此处填入代码
- is_prime[j] = false;
- }
- }
- }
- for (int i = sqrt(n) + 1; i <= n; i++) {
- if (is_prime[i]) {
- primes.push_back(i);
- }
- }
- return primes;
-}
-vector<int> sieve_linear(int n) {
- vector<bool> is_prime(n + 1, true);
+            question: `下述代码实现素数表的线性筛法，筛选出所有小于等于 n 的素数，则横线上应填的代码是（ ）。
 
-> ⚠️ 原卷此处配有代码或图片。官方 PDF 中该部分为图片，或其文本层与相邻试题混排、无法可靠切分，本站尚未还原。请对照原卷阅读代码。`,
-            options: ["for (int j = 0; j < primes.size() && i * primes[j] <= n; j++)", "for (int j = 1; j < primes.size() && i * j <= n; j++)", "for (int j = 2; j < primes.size() && i * primes[j] <= n; j++)", "以上都不对"],
+\`\`\`cpp
+vector<int> sieve_linear(int n) {
+    vector<bool> is_prime(n + 1, true);
+    vector<int> primes;
+
+    for (int i = 2; i <= n / 2; i++) {
+        if (is_prime[i])
+            primes.push_back(i);
+        ________________________________ {   // 在此处填入代码
+            is_prime[i * primes[j]] = 0;
+            if (i % primes[j] == 0)
+                break;
+        }
+    }
+
+    for (int i = n / 2 + 1; i <= n; i++) {
+        if (is_prime[i])
+            primes.push_back(i);
+    }
+
+    return primes;
+}
+\`\`\``,
+            options: [
+                "for (int j = 0; j < primes.size() && i * primes[j] <= n; j++)",
+                "for (int j = 1; j < primes.size() && i * j <= n; j++)",
+                "for (int j = 2; j < primes.size() && i * primes[j] <= n; j++)",
+                "以上都不对"
+            ],
             answer: 0,
             score: 2,
-            explanation: `**答案：A（for (int j = 0; j < primes.size() && i * primes[j] <= n; j++)）**
+            explanation: `**答案：A（\`for (int j = 0; j < primes.size() && i * primes[j] <= n; j++)\`）**
 
-**依据**：官方真题 PDF 第 1 页答案表。本题题干与选项均已按官方原卷回填。
+**复算：**
 
-> ⚠️ 原卷该题的代码/图以图片形式给出，官方 PDF 无文本层，本站无法提取；题干、选项与答案均取自官方原卷，但缺少代码部分，暂不足以独立作答。因此本站不对该代码做推测性讲解，请对照原卷阅读代码。`,
-            tags: ["客观题", "单选题", "GESP5级"]
+线性筛需要依次用已经找到的质数 \`primes[j]\` 去标记 \`i * primes[j]\`。因此：
+
+1. \`j\` 必须从 \`0\` 开始，不能漏掉质数 2。
+2. \`j < primes.size()\` 保证访问质数表时不越界。
+3. \`i * primes[j] <= n\` 保证被标记的下标在筛选范围内。
+4. 当 \`primes[j]\` 整除 \`i\` 时立即 \`break\`，使每个合数只由它的最小质因数筛掉一次。
+
+**逐项判断：**
+
+- **A** 同时满足质数表下标和乘积边界要求，正确。
+- **B** 把循环变量 \`j\` 本身当作乘数，且从 1 开始，不能实现线性筛。
+- **C** 从 \`j = 2\` 开始会跳过质数表前两个元素，无法正确筛去大量合数。
+- **D** 错误，因为 A 正确。
+
+**最小验证：** 当 \`i = 2\` 时，A 从 \`primes[0] = 2\` 开始标记 4；随后因 \`2 % 2 == 0\` 退出，符合线性筛规则。
+
+**考点：** 线性筛、最小质因数、循环边界`,
+            tags: ["客观题", "单选题", "线性筛", "素数筛法", "GESP5级"],
+            sourceVerified: true,
+            sourcePage: 3,
+            sourcePages: [2, 3],
+            sourceUrl: 'https://gesp.ccf.org.cn/101/attach/1633836261703712.pdf',
+            reviewedBy: '本站校订',
+            reviewedAt: '2026-07-27'
         },
         {
             id: 7,
@@ -262,26 +283,39 @@ vector<int> sieve_linear(int n) {
         },
         {
             id: 8,
-            sourceIntegrity: 'not-official-question',
-            integrityNote: "对照官方真题 PDF，本站此题与原卷第 8 题不一致（原卷该题答案为 A，本站选项与题干均不同）。本题可作为练习使用，但不代表原卷真题内容，待逐题回填原卷后移除此标记。",
             type: "single",
-            question: `贪心算法通常解决（ ）问题。`,
-            options: ["所有全局最优解", "局部最优选择导致全局最优的问题", "需要枚举所有可能性的问题", "需要通过动态规划解决的问题"],
-            answer: 1,
+            question: `现在用如下代码来计算 $x^n$（$n$ 个 $x$ 相乘），其时间复杂度为（ ）。
+
+\`\`\`cpp
+double quick_power(double x, unsigned n) {
+    if (n == 0) return 1;
+    if (n == 1) return x;
+    return quick_power(x, n / 2) * quick_power(x, n / 2) * ((n & 1) ? x : 1);
+}
+\`\`\``,
+            options: ["$O(n)$", "$O(n^2)$", "$O(\\log n)$", "$O(n\\log n)$"],
+            answer: 0,
             score: 2,
-            explanation: `**答案：B**
+            explanation: `**答案：A（$O(n)$）**
 
-            **解析：**
-            贪心算法适用于具备贪心选择性质的问题，即局部最优能推导到全局最优。
+**复算：**
 
-            - **A 所有全局最优解**：错误。
-            - **B 局部最优选择导致全局最优的问题**：正确答案。
-            - **C 需要枚举所有可能性的问题**：错误。
-            - **D 需要通过动态规划解决的问题**：错误。
+每次调用都会执行两次完全相同的 \`quick_power(x, n / 2)\`，没有缓存中间结果。因此递推式为：
 
-            **考点：** C++基础
-            `,
-            tags: ["客观题", "单选题", "GESP5级"]
+$T(n) = 2T(n/2) + O(1)$
+
+按主定理可得 $T(n) = O(n)$。也可以从递归树理解：第 $k$ 层有 $2^k$ 个调用，树高约为 $\\log_2 n$，所有层的调用总数约为 $1 + 2 + 4 + \\cdots + n = O(n)$。
+
+**易错点：** 若先把 \`quick_power(x, n / 2)\` 保存到变量中，再用该变量自乘，每层只递归一次，复杂度才会降为 $O(\\log n)$；原代码没有这样做。
+
+**考点：** 递归时间复杂度、递归树、快速幂`,
+            tags: ["客观题", "单选题", "递归复杂度", "快速幂", "GESP5级"],
+            sourceVerified: true,
+            sourcePage: 4,
+            sourcePages: [4],
+            sourceUrl: 'https://gesp.ccf.org.cn/101/attach/1633836261703712.pdf',
+            reviewedBy: '本站校订',
+            reviewedAt: '2026-07-27'
         },
         {
             id: 9,
@@ -298,26 +332,81 @@ vector<int> sieve_linear(int n) {
         },
         {
             id: 10,
-            sourceIntegrity: 'not-official-question',
-            integrityNote: "对照官方真题 PDF，本站此题与原卷第 10 题不一致（原卷该题答案为 B，本站选项与题干均不同）。本题可作为练习使用，但不代表原卷真题内容，待逐题回填原卷后移除此标记。",
             type: "single",
-            question: `在 C++ 中，基类中的私有成员在公有派生类中（ ）。`,
-            options: ["变为公有", "变为保护", "不可访问", "保持私有"],
-            answer: 2,
+            question: `考虑以下 C++ 代码实现的归并排序算法：
+
+\`\`\`cpp
+void merge(int arr[], int left, int mid, int right) {
+    int n1 = mid - left + 1;
+    int n2 = right - mid;
+
+    int L[n1], R[n2];
+
+    for (int i = 0; i < n1; i++)
+        L[i] = arr[left + i];
+    for (int j = 0; j < n2; j++)
+        R[j] = arr[mid + 1 + j];
+
+    int i = 0, j = 0, k = left;
+    while (i < n1 && j < n2) {
+        if (L[i] <= R[j]) {
+            arr[k] = L[i];
+            i++;
+        }
+        else {
+            arr[k] = R[j];
+            j++;
+        }
+        k++;
+    }
+
+    while (i < n1) {
+        arr[k] = L[i];
+        i++;
+        k++;
+    }
+
+    while (j < n2) {
+        arr[k] = R[j];
+        j++;
+        k++;
+    }
+}
+
+void merge_sort(int arr[], int left, int right) {
+    if (left < right) {
+        int mid = left + (right - left) / 2;
+
+        merge_sort(arr, left, mid);
+        merge_sort(arr, mid + 1, right);
+
+        merge(arr, left, mid, right);
+    }
+}
+\`\`\`
+
+对长度为 $n$ 的数组 \`arr\`，调用函数 \`merge_sort(a, 0, n-1)\`，在排序过程中 \`merge\` 函数的递归调用次数大约是（ ）。`,
+            options: ["$O(1)$", "$O(n)$", "$O(\\log n)$", "$O(n\\log n)$"],
+            answer: 1,
             score: 2,
-            explanation: `**答案：C**
+            explanation: `**答案：B（$O(n)$）**
 
-            **解析：**
-            基类的 private 成员在派生类中是不可直接访问的（无论何种继承方式）。
+**复算：**
 
-            - **A 变为公有**：错误。
-            - **B 变为保护**：错误。
-            - **C 不可访问**：正确答案。
-            - **D 保持私有**：错误。
+长度为 $n$ 的数组不断二分，递归树约有 $n$ 个叶子结点；每个非叶子结点在两个子区间排好序后调用一次 \`merge\`。一棵有 $n$ 个叶子的满二叉树有 $n-1$ 个非叶子结点，因此 \`merge\` 的调用次数约为 $n-1$，数量级是 $O(n)$。
 
-            **考点：** C++基础
-            `,
-            tags: ["客观题", "单选题", "GESP5级"]
+**区别：** 单次 \`merge\` 的工作量与当前区间长度成正比；把所有层的工作量相加，归并排序的总时间复杂度是 $O(n\\log n)$。但本题只问 \`merge\` 被调用了多少次，不问所有调用的总执行成本。
+
+**最小验证：** 当 $n=4$ 时，长度为 1 的四个子数组需要先合并成两个长度为 2 的数组，再合并成一个长度为 4 的数组，共调用 \`merge\` 3 次，即 $n-1$ 次。
+
+**考点：** 归并排序、递归树、函数调用次数`,
+            tags: ["客观题", "单选题", "归并排序", "递归树", "复杂度分析", "GESP5级"],
+            sourceVerified: true,
+            sourcePage: 5,
+            sourcePages: [4, 5],
+            sourceUrl: 'https://gesp.ccf.org.cn/101/attach/1633836261703712.pdf',
+            reviewedBy: '本站校订',
+            reviewedAt: '2026-07-27'
         },
         {
             id: 11,

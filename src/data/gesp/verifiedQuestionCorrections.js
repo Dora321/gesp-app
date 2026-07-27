@@ -533,8 +533,8 @@ export function applyVerifiedQuestionCorrections(paper) {
       ...verified,
       requiresCode: typeof verified.code === 'string',
       sourceVerified: true,
-      reviewedBy: REVIEWED_BY,
-      reviewedAt,
+      reviewedBy: verified.reviewedBy || question.reviewedBy || REVIEWED_BY,
+      reviewedAt: verified.reviewedAt || question.reviewedAt || reviewedAt,
     };
   });
 

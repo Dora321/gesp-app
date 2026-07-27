@@ -1,4 +1,16 @@
 // 2025年12月 GESP C++ 二级真题 (第12次认证)
+//
+// 全卷 27 题（15 单选 + 10 判断 + 2 编程）已逐页对照 CCF GESP 原卷镜像校订。
+// 镜像文件的 git blob 为 f952766f38fa8e9b063924ef18a68a055a14dab2
+//（1518016 字节），与 paperSources.js 登记值一致。
+//
+// 客观题答案均取自原卷答案表：
+//   单选题：B B A B B D A D C B B B B B C
+//   判断题：× √ × √ √ × √ × √ ×
+const SOURCE_URL = 'https://raw.githubusercontent.com/Dora321/gesp-official-pdfs/main/pdfs/2025%E5%B9%B412%E6%9C%88-C%2B%2B2%E7%BA%A7.pdf';
+const REVIEWED_BY = '本站校订';
+const REVIEWED_AT = '2026-07-27';
+
 export const paperData = {
     id: '2025-12-l2',
     title: '2025年12月 GESP C++ 二级真题',
@@ -7,14 +19,42 @@ export const paperData = {
     month: 12,
     session: 12,
     timeLimit: 90 * 60,
+    source: {
+        officialPdf: SOURCE_URL,
+        type: 'archived-official',
+        notes: '题面、代码、选项、答案表、编程题样例与参考程序均按 CCF GESP 原卷镜像逐页转录。',
+    },
+    reviewStatus: 'verified',
+    reviewScope: '全卷 27 题（单选 15 + 判断 10 + 编程 2）的题面、代码、选项、答案、解析，以及两道编程题的题意、约束、样例与原卷参考程序，均已逐题核验。',
+    reviewedBy: '本站校订',
+    reviewedAt: '2026-07-27',
+    verification: {
+        status: 'verified',
+        reviewedBy: '本站校订',
+        reviewedAt: '2026-07-27',
+        scope: '全卷 27 题均已逐题对照 CCF GESP 原卷镜像核验；单选题答案取自第 1 页答案表，判断题答案按第 6 页矢量标记逐格读取。',
+        dimensions: {
+            statement: 'verified',
+            options: 'verified',
+            answer: 'verified',
+            explanation: 'verified',
+            referenceCode: 'verified',
+        },
+    },
     questions: [
         {
             id: 1,
             type: 'single',
-            question: `飞行控制系统中执行“判断与决策”的核心部件最可能是（ ）。`,
+            question: `近日，空中客车公司表示，约 6000 架空客 A320 系列飞机需要紧急更换一种易受太阳辐射影响的飞行控制软件。空客表示，在对一起飞行事故分析后的结果显示，强烈的太阳辐射可能会损坏飞行控制系统所需的关键数据，导致判断失误，进而引发飞行异常。那这里的飞行控制系统执行判断的部件最可能是下面的（ ）。`,
             options: ['辐射传感器', '处理器', '内存单元', '输出设备'],
             answer: 1,
             score: 2,
+            sourceVerified: true,
+            sourcePage: 1,
+            sourcePages: [1],
+            reviewedBy: REVIEWED_BY,
+            reviewedAt: REVIEWED_AT,
+            sourceUrl: SOURCE_URL,
             explanation: `**答案：B (处理器)**
 
 **核心解析：**
@@ -39,10 +79,16 @@ export const paperData = {
         {
             id: 2,
             type: 'single',
-            question: `教学楼内局域范围使用的网络类型通常是（ ）。`,
+            question: `小明最近为了备考 GESP，开始看 B 站上关于网络知识的视频。其中提到计算机网络系统有不同的划分标准，那他平时上学所在的教学楼内的网络是一个（ ）。`,
             options: ['PAN', 'LAN', 'MAN', 'WAN'],
             answer: 1,
             score: 2,
+            sourceVerified: true,
+            sourcePage: 1,
+            sourcePages: [1],
+            reviewedBy: REVIEWED_BY,
+            reviewedAt: REVIEWED_AT,
+            sourceUrl: SOURCE_URL,
             explanation: `**答案：B (LAN)**
 
 **核心解析：**
@@ -67,10 +113,21 @@ export const paperData = {
         {
             id: 3,
             type: 'single',
-            question: `关于 C++ 变量命名，说法正确的是（ ）。`,
-            options: ['for 不能作变量名，因为它是关键字', '_tnt 不能作变量名', '_tnt_ 不能作变量名', 'printf 是关键字，所以不建议作变量名'],
+            question: `下面有关 C++ 变量的说法，正确的是（ ）。`,
+            options: [
+                '不可以用 for 作为变量名，因为 for 是 C++ 的关键字（保留字）',
+                '_tnt 不可以是变量名，因为变量名的第一个字符必须是英文字母',
+                '_tnt_ 不可以是变量名，因为最后一个字符容易与减号混淆',
+                '可以用 printf 作为变量名，因为 printf 是关键字，但这不是好习惯，因为 printf 有约定的功能与含义',
+            ],
             answer: 0,
             score: 2,
+            sourceVerified: true,
+            sourcePage: 1,
+            sourcePages: [1],
+            reviewedBy: REVIEWED_BY,
+            reviewedAt: REVIEWED_AT,
+            sourceUrl: SOURCE_URL,
             explanation: `**答案：A (for 不能作变量名，因为它是关键字)**
 
 **核心解析：**
@@ -78,14 +135,14 @@ C++ 中标识符（变量名、函数名等）的命名必须遵循以下规则�
 
 **选项逐项分析：**
 - **A for 不能作变量名，因为它是关键字**：✅ 正确。\`for\` 是 C++ 用于循环结构的keyword（关键字），被语言保留，编译器据此识别 for 循环语法，故不能用作标识符。
-- **B _tnt 不能作变量名**：❌ 错误（该说法本身错误）。以下划线开头的标识符在 C++ 中是合法的，\`_tnt\` 符合标识符命名规则，可以作为变量名。
-- **C _tnt_ 不能作变量名**：❌ 错误（该说法本身错误）。下划线可以出现在标识符的任意位置（开头、中间、结尾），\`_tnt_\` 完全符合命名规范。
+- **B _tnt 不能作变量名**：❌ 说法过于绝对。它满足标识符的字符规则，在块作用域可由用户使用；但“下划线开头且后接小写字母”的名字在全局命名空间中保留给实现，因此实际代码不应这样命名。
+- **C _tnt_ 不能作变量名**：❌ 同理，末尾下划线并不是非法原因；真正需要注意的是它以下划线开头时的作用域保留规则。
 - **D printf 是关键字，所以不建议作变量名**：❌ 错误（该说法本身错误）。\`printf\` 是标准库函数的名称，属于预定义标识符，并非 C++ 语言关键字。虽然实践中不建议将其用作变量名（会造成命名冲突），但语法上是被允许的。本选项前半句"printf 是关键字"本身就是错误的。
 
 **易错提醒：**
 - C++ 关键字数量有限（几十个），建议熟记常见关键字（如 if、else、for、while、int、float、return 等）。
 - 预定义标识符（如 printf、scanf、cin、cout）不是关键字，可以作为变量名使用，但不推荐，以免混淆。
-- 以下划线开头的标识符虽然合法，但在标准库实现中可能被保留用于特殊用途，实际编程中应谨慎使用。
+- 下划线开头的标识符有细分规则：双下划线、下划线后接大写字母的名字在任何作用域保留；其他下划线开头的名字在全局命名空间保留。入门阶段最稳妥的做法是避免以下划线开头。
 
 **知识延伸：**
 C++ 标准规定的关键字列表是固定的，任何版本都不会将 \`_tnt\` 这类普通标识符定义为关键字。而 \`printf\` 属于标准库提供的函数名，是库实现层面的命名，与语言层面的关键字完全不同。
@@ -96,10 +153,16 @@ C++ 标准规定的关键字列表是固定的，任何版本都不会将 \`_tnt
         {
             id: 4,
             type: 'single',
-            question: `小数 0.123123123... 的第 N 位数字可由下列哪一表达式得到（ ）。`,
+            question: `一个小数是 0.123123123…… 无限循环，其小数点后 1 位是 1，后 2 位是 2，依此类推，求第 N 位的值。横线处应填入的代码是（ ）。\n\n\`\`\`cpp\nint N;\ncin >> N;\nremainder = ______________;\n\nif (remainder == 0)\n    cout << 1;\nelse if (remainder == 1)\n    cout << 2;\nelse\n    cout << 3;\n\`\`\``,
             options: ['N % 3', '(N-1) % 3', 'N / 3', '(N-1) / 3'],
             answer: 1,
             score: 2,
+            sourceVerified: true,
+            sourcePage: 1,
+            sourcePages: [1, 2],
+            reviewedBy: REVIEWED_BY,
+            reviewedAt: REVIEWED_AT,
+            sourceUrl: SOURCE_URL,
             explanation: `**答案：B ((N-1) % 3)**
 
 **核心解析：**
@@ -131,16 +194,27 @@ C++ 标准规定的关键字列表是固定的，任何版本都不会将 \`_tnt
         {
             id: 5,
             type: 'single',
-            question: `printf("%g", 3 + 3.1415926535) 输出 6.14159 的最可能原因是（ ）。`,
-            options: ['整数与浮点运算存在精度误差', 'printf 的 %g 默认控制显示位数', '3.1415926535 是无限循环小数', 'CPU 运算错误'],
+            question: `某同学执行 C++ 代码时 \`printf("%g\\n", (3 + 3.1415926535));\` 输出 \`6.14159\`，其原因最可能是（ ）。`,
+            options: [
+                'C++ 中整数和浮点数相加时，整数会被转换为浮点数，而某些十进制小数无法精确表示为二进制小数，从而产生某些舍入误差',
+                'C++ 的 printf 函数在输出浮点数时根据格式有默认小数点位数，因此输出了较少的位数',
+                '3.1415926535 是一个无限循环小数，在计算机中无法精确表示',
+                '由于计算机 CPU 的运算错误导致',
+            ],
             answer: 1,
             score: 2,
+            sourceVerified: true,
+            sourcePage: 2,
+            sourcePages: [2],
+            reviewedBy: REVIEWED_BY,
+            reviewedAt: REVIEWED_AT,
+            sourceUrl: SOURCE_URL,
             explanation: `**答案：B (printf 的 %g 默认控制显示位数)**
 
 **核心解析：**
 C 语言中 \`printf\` 函数的 \`%g\` 格式说明符遵循以下规则：自动选择 \`%f\`（定点十进制）或 \`%e\`（科学计数法）中更简洁的形式，并默认使用 **6 位有效数字**的精度。
 
-执行表达式 \`3 + 3.1415926535\` 时，整数 \`3\` 会隐式转换为 \`double\` 类型参与浮点运算，结果约为 \`6.1415926535\`。使用 \`%g\` 输出时，由于只保留 6 位有效数字，该数值被舍入/截断为 \`6.14159\`（实际输出结果取决于具体实现）。
+执行表达式 \`3 + 3.1415926535\` 时，整数 \`3\` 会隐式转换为 \`double\` 类型参与浮点运算，结果接近 \`6.1415926535\`。使用未指定精度的 \`%g\` 输出时，默认保留 6 位有效数字，所以按格式化规则输出 \`6.14159\`。
 
 **选项逐项分析：**
 - **A 整数与浮点运算存在精度误差**：❌ 错误。虽然浮点数在 IEEE 754 标准下确实存在精度误差（如 0.1 + 0.2 ≠ 0.3），但这类误差通常在第 7-8 位有效数字才会显现。本题显示到第 6 位有效数字，其差异来自格式控制而非运算误差。
@@ -153,7 +227,7 @@ C 语言中 \`printf\` 函数的 \`%g\` 格式说明符遵循以下规则：自�
 - \`%.6g\` 与 \`%g\` 默认精度均为 6 位有效数字，\`%f\` 默认精度为 6 位小数，两者在显示位数上容易混淆，但含义不同。
 
 **知识延伸：**
-printf 的常用格式符精度含义如下：\`%f\` 默认 6 位小数，\`%e\` 默认 6 位有效数字，\`%g\` 默认 6 位有效数字（取两者中更紧凑的表示）。若需自定义精度，可使用 \`%.10f\`、\`%.10g\` 等形式指定。
+printf 的常用格式符精度含义如下：\`%f\` 和 \`%e\` 未指定精度时，小数点后默认 6 位；\`%g\` 未指定精度时，默认 6 位有效数字，并在定点或科学计数法中选择合适形式。若需自定义精度，可使用 \`%.10f\`、\`%.10g\` 等形式指定。
 
 **考点：** printf 格式说明符（%g）的精度规则`,
             tags: ['输入输出', '数据类型']
@@ -161,10 +235,16 @@ printf 的常用格式符精度含义如下：\`%f\` 默认 6 位小数，\`%e\`
         {
             id: 6,
             type: 'single',
-            question: `在一段工号校验程序中，需要对输入的四个数 N 分别整除以 3 并累加到 rst，最后输出 rst 对 10 的余数。两处横线应分别填写（ ）。\n\`\`\`cpp\nfor (int i=0; i<4; i++) { \n    cin >> N; \n    rst += ______; \n} \ncout << ______;\n\`\`\``,
+            question: `某单位工号的编码规则：编码总长 5 位，均为数字，前 4 位依次整除以 3，其值累加之和除以 10 的余数为第 5 位数字。如某工号为 76587，前 4 位分别整除以 3 后，商分别为 2、2、1、2，其累加之和为 7，除以 10 的余数为 7，故第 5 位为 7。下面代码依次输入前 4 位后，两个横线处分别应填的是（ ）。\n\n\`\`\`cpp\nint rst = 0, N;\nfor (int i = 0; i < 4; i++) {\n    cin >> N;\n    rst += ___________; // L1\n}\ncout << ___________; // L2\n\`\`\``,
             options: ['N % 3；rst / 10', 'N % 3；rst % 10', 'N / 3；rst / 10', 'N / 3；rst % 10'],
             answer: 3,
             score: 2,
+            sourceVerified: true,
+            sourcePage: 2,
+            sourcePages: [2],
+            reviewedBy: REVIEWED_BY,
+            reviewedAt: REVIEWED_AT,
+            sourceUrl: SOURCE_URL,
             explanation: `**答案：D (N / 3；rst % 10)**
 
 **核心解析：**
@@ -178,11 +258,11 @@ printf 的常用格式符精度含义如下：\`%f\` 默认 6 位小数，\`%e\`
 - **D (N / 3；rst % 10)**：✅ 正确。第一空整除得到商，第二空取模得到余数，均符合题目语义。
 
 **易错提醒：**
-- 区分 \`/\` 和 \`%\`：整数除法 \`/\` 向下取整得到商，取模 \`%\` 得到余数，两者不可混用。
+- 区分 \`/\` 和 \`%\`：整数除法 \`/\` 向零截断得到商，取模 \`%\` 得到余数，两者不可混用。
 - 审题关键词："整除"对应 \`/\`，"余数"对应 \`%\`。
 
 **知识延伸：**
-C++ 中整数除法自动向下取整（向零取整），例如 \`7/3=2\`，而 \`%\` 运算符常用于判断整除性或循环周期性，在 GESP 各级考试中频繁出现。
+C++ 中整数除法向零截断，例如 \`7/3=2\`、\`-7/3=-2\`；\`%\` 运算符则常用于判断整除性或循环周期性。
 
 **考点：** 整除运算符 \`/\` 与取模运算符 \`%\` 的语义区分`,
             tags: ['程序分析', '运算符']
@@ -194,6 +274,12 @@ C++ 中整数除法自动向下取整（向零取整），例如 \`7/3=2\`，而
             options: ['-1#1#', '-1#0#1#', '-2#-1#1#', '-2#-1#1#2#'],
             answer: 0,
             score: 2,
+            sourceVerified: true,
+            sourcePage: 3,
+            sourcePages: [3],
+            reviewedBy: REVIEWED_BY,
+            reviewedAt: REVIEWED_AT,
+            sourceUrl: SOURCE_URL,
             explanation: `**答案：A (-1#1#)**
 
 **核心解析：**
@@ -230,6 +316,12 @@ C++ 中取模结果符号与被除数相同，而非与除数相同。这是与�
             options: ['100', '55', '45', '25'],
             answer: 3,
             score: 2,
+            sourceVerified: true,
+            sourcePage: 3,
+            sourcePages: [3],
+            reviewedBy: REVIEWED_BY,
+            reviewedAt: REVIEWED_AT,
+            sourceUrl: SOURCE_URL,
             explanation: `**答案：D (25)**
 
 **核心解析：**
@@ -270,101 +362,104 @@ cnt = 1 + 3 + 5 + 7 + 9 = 25
         {
             id: 9,
             type: 'single',
-            question: `给定 C++ 代码执行后其输出是（ ）。\n\`\`\`cpp\nfor (int i=1; i<=12; i++) {\n    if (i % 2 == 0) continue;\n    int j;\n    for (j = 0; j < i; j++)\n        if (i * j % 2 == 0) { cout << i * j << " "; break; }\n    if (j < i) break;\n}\n\`\`\``,
+            question: `下面 C++ 代码执行后其输出是（ ）。\n\n\`\`\`cpp\nint i, j;\n\nfor (i = 1; i < 12; i++) {\n    if (i % 2 == 0)\n        continue;\n\n    for (j = 0; j < i; j++)\n        if (i * j % 2 == 0)\n            break;\n    if (j >= i)\n        cout << i * j << " ";\n}\nif (i >= 12)\n    cout << (i * j);\n\`\`\``,
             options: ['0 0', '11', '0', '0 11'],
             answer: 2,
             score: 2,
+            sourceVerified: true,
+            sourcePage: 3,
+            sourcePages: [3],
+            reviewedBy: REVIEWED_BY,
+            reviewedAt: REVIEWED_AT,
+            sourceUrl: SOURCE_URL,
             explanation: `**答案：C (0)**
 
 **核心解析：**
-分析双重循环的执行流程，注意 continue、break 语句对控制流的影响。
+外层循环中：
+- \`i\` 为偶数时，\`continue\` 直接进入下一轮，内层循环不执行。
+- \`i\` 为奇数时，内层循环从 \`j=0\` 开始。此时 \`i*j=0\`，满足“是偶数”，所以立刻 \`break\`，留下 \`j=0\`。
+- 因为 \`j=0<i\`，\`if (j >= i)\` 始终不成立，循环内部没有输出。
 
-**逐次分析 i 的值：**
+外层循环结束时 \`i=12\`，最近一次奇数轮留下的 \`j\` 仍为 0。因此最后的条件 \`i >= 12\` 成立，输出 \`i*j=12*0=0\`。
 
-**i = 1**（奇数，continue 不执行）：
-- 进入内层循环，j 初始化为 0
-- j = 0：\`i * j = 1 * 0 = 0\`，\`0 % 2 = 0\`，条件成立
-- 输出 \`0 \`，执行 \`break\`
-- 此时 j = 0，满足 \`j < i\`（0 < 1），执行外层 \`break\`
-- 循环终止，输出结束
-
-**后续 i = 2, 3, 4, ... 12 不会执行**，因为外层循环已在 i=1 时被 break 语句终止。
-
-因此，程序仅在 i=1, j=0 时输出一个 \`0\`，之后立即终止。
-
-**选项逐项分析：**
-- **A (0 0)**：❌ 错误。程序在输出第一个 0 后立即 break 终止外层循环，不会再次进入外层循环。
-- **B (11)**：❌ 错误。\`11\` 可能是对某个 i*j 值的误判，但程序在 i=1 时就会终止。
-- **C (0)**：✅ 正确。如上推导，程序仅输出一个 0 后终止。
-- **D (0 11)**：❌ 错误。程序不可能执行到第二个输出就已经终止。
+**选项排除：**
+- A、D 都多输出了一个数；循环体实际从未输出。
+- B 把循环结束前的奇数 11 误当成结果，但程序输出的是乘积。
+- C 与逐步执行结果一致。
 
 **易错提醒：**
-- 内层循环的 \`break\` 只会跳出内层循环，不会跳出外层循环。
-- 本题中外层 \`if(j < i) break;\` 是在内层循环结束后才检查的，当 j=0 < i=1 时才执行外层 break。
-- 看似 i 会继续增长到 2,3,...，但外层 break 已终止了整个循环。
-
-**知识延伸：**
-\`break\` 语句只能跳出包含它的最近一层循环。本题结构为外层 for 循环包含内层 for 循环，内层 break 只跳出一层，需要外层再执行 break 才能完全终止。这种嵌套 break 的控制流是 GESP 二级的重要考点。
+- \`break\` 只退出内层循环；原卷代码没有退出外层循环的 \`break\`。
+- \`j\` 在外层循环前声明，循环结束后仍保留最后一次赋值。
 
 **考点：** break 语句的作用范围、双层循环控制流、乘法与取模运算`,
             tags: ['循环', '程序分析']
         },
         {
             id: 10,
-            sourceIntegrity: 'not-official-question',
-            integrityNote: "对照官方真题 PDF，本站此题与原卷第 10 题不一致（原卷该题答案为 B，本站选项与题干均不同）。本题可作为练习使用，但不代表原卷真题内容，待逐题回填原卷后移除此标记。",
             type: 'single',
-            question: `下面代码段，与题干 given 代码 \`for (i = 0; i < 10; i++) cout << i;\` 输出效果“不一致”的是（ ）。`,
+            question: `与下面 C++ 代码输出效果不一致的代码是（ ）。
+
+\`\`\`cpp
+int i;
+for (i = 0; i < 10; i++)
+    cout << i;
+\`\`\``,
             options: [
-                'int i = 0; while (i < 10){ i += 1; cout << i; }',
                 'int i = 0; while (i < 10){ cout << i; i += 1; }',
-                'int i = 0; while (true){ if (i >= 10) break; cout << i; i += 1; }',
-                'int i = 0; while (true){ cout << i; i += 1; if (i >= 10) break; }'
+                'int i = 0; while (i < 10){ i += 1; cout << i; }',
+                'int i = 0; while (true){ cout << i; i += 1; if (i >= 10) break; }',
+                'int i = 0; while (true){ if (i >= 10) break; cout << i; i += 1; }'
             ],
-            answer: 0,
+            answer: 1,
             score: 2,
-            explanation: `**答案：A (int i = 0; while (i < 10){ i += 1; cout << i; })**
+            sourceVerified: true,
+            sourcePage: 3,
+            sourcePages: [3, 4],
+            reviewedBy: '本站校订',
+            reviewedAt: '2026-07-27',
+            sourceUrl: SOURCE_URL,
+            explanation: `**答案：B（int i = 0; while (i < 10){ i += 1; cout << i; }）**
 
 **核心解析：**
-原代码 \`for (i = 0; i < 10; i++) cout << i;\` 的输出序列为：\`0 1 2 3 4 5 6 7 8 9\`（共10个数字）。
+原代码没有输出分隔符，因此实际输出为 \`0123456789\`（依次输出 0 到 9）。
 
 逐个分析四个选项的输出：
 
-**选项A**：\`int i = 0; while (i < 10){ i += 1; cout << i; }\`
+**选项B**：\`int i = 0; while (i < 10){ i += 1; cout << i; }\`
 - 初始 i=0
 - 先自增：i 变为 1，输出 1
 - i=2 时输出 2，...，i=10 时输出 10
-- 输出序列：\`1 2 3 4 5 6 7 8 9 10\`（从1到10，共10个数字）
+- 输出内容：\`12345678910\`
 - **与原代码不一致** ❌
 
-**选项B**：\`int i = 0; while (i < 10){ cout << i; i += 1; }\`
+**选项A**：\`int i = 0; while (i < 10){ cout << i; i += 1; }\`
 - 初始 i=0，输出 0，然后自增
 - 循环输出：0, 1, 2, 3, 4, 5, 6, 7, 8, 9
-- 输出序列：\`0 1 2 3 4 5 6 7 8 9\`
+- 输出内容：\`0123456789\`
 - **与原代码一致** ✅
 
-**选项C**：\`int i = 0; while (true){ if(i >= 10) break; cout << i; i += 1; }\`
+**选项D**：\`int i = 0; while (true){ if(i >= 10) break; cout << i; i += 1; }\`
 - i=0: 0<10，不 break，输出 0，i++ → 1
 - i=1: 1<10，不 break，输出 1，i++ → 2
 - ...
 - i=9: 9<10，不 break，输出 9，i++ → 10
 - i=10: 10>=10，break
-- 输出序列：\`0 1 2 3 4 5 6 7 8 9\`
+- 输出内容：\`0123456789\`
 - **与原代码一致** ✅
 
-**选项D**：\`int i = 0; while (true){ cout << i; i += 1; if(i >= 10) break; }\`
+**选项C**：\`int i = 0; while (true){ cout << i; i += 1; if(i >= 10) break; }\`
 - i=0: 输出 0，i++ → 1，1<10，不 break
 - i=1: 输出 1，i++ → 2，2<10，不 break
 - ...
 - i=9: 输出 9，i++ → 10，10>=10，break
-- 输出序列：\`0 1 2 3 4 5 6 7 8 9\`
+- 输出内容：\`0123456789\`
 - **与原代码一致** ✅
 
 **选项逐项分析：**
-- **A**：✅ 正确。\`i += 1\` 在 \`cout\` 之前，导致输出从 1 开始而非 0，输出的最后一个值是 10 而非 9，与原代码不一致。 为答案
-- **B**：❌ 错误。先输出后自增，完美模拟原 for 循环逻辑。
-- **C**：❌ 错误。使用 while(true) 加条件 break，等价于原循环。
-- **D**：❌ 错误。先输出后自增，在自增后判断是否 break，同样等价于原循环。
+- **A**：错误。先输出后自增，完整模拟原 for 循环逻辑。
+- **B**：正确。\`i += 1\` 在 \`cout\` 之前，导致输出从 1 开始，最后输出 10，与原代码不一致。
+- **C**：错误。先输出后自增，在自增后判断是否退出，输出仍为 0 到 9。
+- **D**：错误。先判断再输出，也与原循环等价。
 
 **易错提醒：**
 - 自增运算符 \`++\` 的位置决定输出值：在 \`cout\` 之前自增则输出增大后的值，在 \`cout\` 之后自增则输出原值。
@@ -373,44 +468,38 @@ cnt = 1 + 3 + 5 + 7 + 9 = 25
 **知识延伸：**
 for 循环 \`for(A; B; C) D;\` 的执行顺序是：A → 判断B → 执行D → 执行C → 判断B → ...。本题中 \`cout << i\` 对应 D，\`i++\` 对应 C，因此先输出 i 的当前值再增加。
 
+**依据：** 官方原卷第 3-4 页题面及第 1 页答案表。
+
 **考点：** 循环结构等价性、自增运算符位置对输出的影响`,
             tags: ['循环', '等价变换']
         },
         {
             id: 11,
             type: 'single',
-            question: `给定 C++ 代码执行后的输出结果是（ ）。\n\`\`\`cpp\nint num = 0; \nwhile (num <= 5) {\n    num += 1;\n    if (num % 3) continue;\n    printf("%d#", num);\n    if (num > 5) printf("%d", num);\n}\n\`\`\``,
+            question: `下面 C++ 代码执行后输出是（ ）。\n\n\`\`\`cpp\nint num = 0;\nwhile (num <= 5) {\n    num += 1;\n    if (num % 3)\n        continue;\n    printf("%d#", num);\n}\nif (num > 5)\n    printf("%d", num);\n\`\`\``,
             options: ['3#6#', '3#6#6', '1#2#3#4#5#6#', '1#2#3#4#5#6#6'],
             answer: 1,
             score: 2,
+            sourceVerified: true,
+            sourcePage: 4,
+            sourcePages: [4],
+            reviewedBy: REVIEWED_BY,
+            reviewedAt: REVIEWED_AT,
+            sourceUrl: SOURCE_URL,
             explanation: `**答案：B (3#6#6)**
 
 **核心解析：**
-逐行追踪 \`num\` 变量状态与控制流：
+每轮先把 \`num\` 加 1。条件 \`if (num % 3) continue;\` 在余数非 0 时跳过输出，因此只有 \`num\` 是 3 的倍数时执行循环内的 \`printf\`：
+- \`num=1,2\`：余数非 0，跳过。
+- \`num=3\`：余数为 0，输出 \`3#\`。
+- \`num=4,5\`：跳过。
+- \`num=6\`：进入这一轮时循环条件检查的是加 1 前的 5，所以本轮仍执行，并输出 \`6#\`。
 
-1. **初始化**：\`num = 0\`
-2. **第1轮循环**：\`num <= 5\` → \`num = 1\`，\`1 % 3 = 1\`（非0）→ 不执行 \`continue\` → 输出 \`1#\`，\`1 > 5\` 为假，不输出
-3. **第2轮循环**：\`num <= 5\` → \`num = 2\`，\`2 % 3 = 2\`（非0）→ 不执行 \`continue\` → 输出 \`2#\`，\`2 > 5\` 为假，不输出
-4. **第3轮循环**：\`num <= 5\` → \`num = 3\`，\`3 % 3 = 0\` → **执行 \`continue\`**，跳过本轮 \`printf\`，但 \`if (num > 5)\` 在 \`continue\` 之前不执行 → 无输出
-5. **第4轮循环**：\`num <= 5\` → \`num = 4\`，\`4 % 3 = 1\`（非0）→ 不执行 \`continue\` → 输出 \`4#\`，\`4 > 5\` 为假，不输出
-6. **第5轮循环**：\`num <= 5\` → \`num = 5\`，\`5 % 3 = 2\`（非0）→ 不执行 \`continue\` → 输出 \`5#\`，\`5 > 5\` 为假，不输出
-7. **第6轮循环**：\`num <= 5\` → \`num = 6\`，\`6 % 3 = 0\` → **执行 \`continue\`**，跳过 \`printf("%d#", num)\` → 但紧接着 \`if (num > 5)\` 此时 \`num = 6\` 为真 → **输出 \`6\`**
-8. **循环终止**：\`num = 6\`，\`6 <= 5\` 不成立，循环结束
-
-最终输出顺序：\`3#\`（第3轮前）、\`6#\`（第6轮被continue跳过）、\`6\`（第6轮末尾的if输出）→ **3#6#6**
-
-**选项逐项分析：**
-- **A (3#6#)**：❌ 错误。遗漏了 \`if (num > 5)\` 的输出——当 \`num\` 从5递增到6时，虽然 \`continue\` 跳过了 \`#\` 输出，但 \`num > 5\` 条件成立，底部的 \`printf("%d", num)\` 仍会执行。
-- **B (3#6#6)**：✅ 正确。完整追踪了 \`continue\` 与后续 \`if\` 的执行关系。
-- **C (1#2#3#4#5#6#)**：❌ 错误。\`continue\` 仅在 \`num % 3 == 0\` 时触发（即 \`num\` 为3、6时），并非每次都跳过，因此 \`1#\` 和 \`2#\` 根本不会输出。
-- **D (1#2#3#4#5#6#6)**：❌ 错误。同 C 选项，\`1#\`、\`2#\` 不会输出；此外若 \`6#\` 被输出，则 \`continue\` 未生效，与代码逻辑矛盾。
+下一次检查时 \`num=6\`，\`num<=5\` 为假，循环结束。循环外 \`num>5\` 成立，再输出 \`6\`。最终是 \`3#6#6\`。
 
 **易错提醒：**
-- \`continue\` 只跳过**本次循环**中其后的语句，不会跳过同一行中在其之前的语句（如 \`num += 1\` 已执行完毕）。
-- 误以为 \`continue\` 会跳过整个循环体，导致漏掉 \`if (num > 5)\` 这个独立 \`if\` 的执行机会。
-
-**知识延伸：**
-\`continue\` 在嵌套循环中只作用于**当前所在层**的循环体；若需跳过多层循环，需使用 \`goto\` 或设置多层标志位。
+- 非零条件才进入 \`continue\`；不要把它误读成“能被 3 整除时跳过”。
+- 最后的 \`if\` 在 \`while\` 的右花括号之后，不受 \`continue\` 影响。
 
 **考点：** \`while\` 循环条件判断、\`continue\` 对控制流的影响、多个 \`if\` 语句的执行顺序`,
             tags: ['循环', '条件判断']
@@ -418,10 +507,16 @@ for 循环 \`for(A; B; C) D;\` 的执行顺序是：A → 判断B → 执行D �
         {
             id: 12,
             type: 'single',
-            question: `关于给定代码段的执行结果，正确选项是（ ）。\n\`\`\`cpp\nint cnt = 0; \nfor (int i = 0; i < 5; i++) \n    for (int j = i; j < 4; j++) \n        cnt += 1; \ncout << cnt;\n\`\`\``,
+            question: `下面 C++ 代码执行后，其输出是（ ）。\n\n\`\`\`cpp\nint cnt = 0;\nfor (int i = 0; i < 5; i++)\n    for (int j = i; j < 4; j++)\n        cnt += 1;\ncout << cnt;\n\`\`\``,
             options: ['9', '10', '14', '20'],
             answer: 1,
             score: 2,
+            sourceVerified: true,
+            sourcePage: 4,
+            sourcePages: [4],
+            reviewedBy: REVIEWED_BY,
+            reviewedAt: REVIEWED_AT,
+            sourceUrl: SOURCE_URL,
             explanation: `**答案：B (10)**
 
 **核心解析：**
@@ -441,10 +536,10 @@ for 循环 \`for(A; B; C) D;\` 的执行顺序是：A → 判断B → 执行D �
 总次数 = 4 + 3 + 2 + 1 + 0 = **10 次**。
 
 **选项逐项分析：**
-- **A (9)**：❌ 错误地少算了某次内层循环的迭代次数，可能误以为 i=4 时 j 还有一次执行，或将边界条件 j<4 误判为 j≤4。
+- **A (9)**：❌ 与逐轮统计的 \`4+3+2+1+0\` 不符，少算 1 次。
 - **B (10)**：✅ 正确。准确统计了 i=0,1,2,3 时的内层循环次数之和。
-- **C (14)**：❌ 错误。将内层边界误判为 j < 5（而非 j < 4），导致多算了 4 次。
-- **D (20)**：❌ 错误。将内层边界误判为 j < 5 且外层 i < 5，导致计算出 5×4=20 的错误结果。
+- **C (14)**：❌ 与逐轮统计不符，多算 4 次。
+- **D (20)**：❌ 把内层循环误当成每轮固定执行 4 次；实际起点 j 会随 i 增大。
 
 **易错提醒：**
 - 内层循环上界是 \`j < 4\`，而非 \`j <= 3\`（两者等价，但若误写成 \`j <= 4\` 则多执行一次）。
@@ -460,21 +555,32 @@ for 循环 \`for(A; B; C) D;\` 的执行顺序是：A → 判断B → 执行D �
             id: 13,
             type: 'single',
             question: "漂亮数的定义是：如果 N 能被 M 整除，或者某位是 M，或者 N 的每位数之和能被 M 整除，则说 N 是 M 的漂亮数。如果三个条件都满足，则是完整漂亮数。123 是 3 的完整漂亮数，因为 123 能被 3 整除，也含有 3，其每位数之和为 6 也能被 3 整除。下面的代码用于判断 N 是否为 M 的完整漂亮数并输出。相关说法正确的是（ ）。\n\n```cpp\nint N, M, Flag, Sum, num;\ncout << \"请输入N，不等于0的正整数：\";\ncin >> N;\ncout << \"请输入M：M必须大于1小于9：\";\ncin >> M;\nSum = 0;  // 记录各位数之和\nFlag = 0; // 假设记录 N 不含有 M\nwhile (N != 0) {\n    num = N % 10;\n    Sum += num;\n    if (num == M)\n        Flag = 1;\n    N /= 10;\n}\nif ((N % M == 0) && (Flag == 1) && (Sum % M == 0)) // L1\n    printf(\"%d 是 %d 的完整漂亮数\", N, M);\nelse\n    printf(\"%d 不是 %d 的完整漂亮数\", N, M);\n```",
-            options: ["代码能完成题目设定目标","应在 while 循环前保存原始 N，并在 L1 判定中使用原始值","while 循环中应增加 else 逻辑将标志位置 0","输入 N=0, M=3 肯定会输出完整漂亮数"],
+            options: [
+                '代码能完成题目设定目标',
+                '在 while 循环中 N 最终将变成 0，因此 L1 行代码中 N % M 将总是满足条件；可以在 while 前增加一行代码 int old_num = N，并将 L1 开始这 4 行代码中的 N 都改为 old_num，就可以做出正确的判定',
+                'while 循环中 if 判断语句可以增加 else 子句，其内容为 Flag = 0',
+                '如果先后输入 0 和 3，则肯定会输出“0 是 3 的完整漂亮数”',
+            ],
             answer: 1,
             score: 2,
+            sourceVerified: true,
+            sourcePage: 4,
+            sourcePages: [4, 5],
+            reviewedBy: REVIEWED_BY,
+            reviewedAt: REVIEWED_AT,
+            sourceUrl: SOURCE_URL,
             explanation: `**答案：B (应在 L1 判定前先保存原始 N)**
 
 **核心解析：**
 代码中 \`while (N > 0)\` 循环通过 \`N /= 10\` 逐位提取数字，每轮提取后 \`N\` 的值被覆盖。
 
-若后续需要用原始 \`N\` 进行整除判定（L1 处的 \`N % X == 0\`），此时 \`N\` 已被修改为 0，无法正确判定。因此必须在进入 while 循环前保存 \`N\` 的原始值，例如 \`int original_N = N;\`，供后续判定使用。
+若后续需要用原始 \`N\` 进行整除判定和结果输出，此时 \`N\` 已被修改为 0。因此必须在进入 while 循环前保存原值，例如 \`int old_num = N;\`，并将 L1 开始的判定以及两个输出分支中的 N 都改为 \`old_num\`。
 
 **选项逐项分析：**
 - **A (代码本身完全正确)**：❌ 错误。\`while\` 循环会破坏 \`N\` 的值，导致后续整除判定失效，这是典型的"变量污染"问题。
-- **B (应在 L1 判定前先保存原始 N)**：✅ 正确。防御性编程要求在修改变量前备份原值，确保后续逻辑使用正确的数据。
+- **B（保存原始 N，并在最后四行使用 old_num）**：✅ 正确。这样整除判断使用原数，输出也不会错误地显示 0。
 - **C (while 循环中应增加 else 逻辑将标志位置 0)**：❌ 错误。循环逻辑本身无缺陷，问题在于变量状态管理，而非缺少分支判断。
-- **D (输入 N=0, X=3 必导致除以零错误)**：❌ 错误。判定条件是 \`N % X\`，X=3 为非零数，0%3=0 不产生除以零错误。除以零仅在除数（%右侧）为 0 时发生。
+- **D（输入 0 和 3 肯定判为完整漂亮数）**：❌ 错误。循环不执行，\`Flag\` 仍为 0，所以三个条件的合取为假，程序输出“0 不是 3 的完整漂亮数”。
 
 **易错提醒：**
 - 误以为 \`N\` 整除判定是在 while 循环内部，实际上应在循环之后使用原始 \`N\` 判定。
@@ -489,10 +595,21 @@ for 循环 \`for(A; B; C) D;\` 的执行顺序是：A → 判断B → 执行D �
         {
             id: 14,
             type: 'single',
-            question: `输入 N=5 时，代码 \`for(i=0; i<n; i++) { for(j=0; j<n-i-1; j++) cout << " "; for(k=0; k<2*i+1; k++) cout << "*"; cout << endl; }\` 输出的字符图形是（ ）。`,
-            options: ['倒等腰三角形', '正等腰金字塔形', '左对齐直角三角形', '右对齐直角三角形'],
+            question: `阅读下面的 C++ 代码。执行后如输入 5，其输出的字符图形是（ ）。\n\n\`\`\`cpp\nint n, i, j, k;\ncin >> n;\nfor (i = 0; i < n; i++) {\n    for (j = 0; j < n - i - 1; j++)\n        cout << " ";\n    for (k = 0; k < 2 * i + 1; k++)\n        cout << "*";\n    cout << endl;\n}\n\`\`\``,
+            options: [
+                '*****\n ****\n  ***\n   **\n    *',
+                '    *\n   ***\n  *****\n *******\n*********',
+                '*\n**\n***\n****\n*****',
+                '    *\n   **\n  ***\n ****\n*****',
+            ],
             answer: 1,
             score: 2,
+            sourceVerified: true,
+            sourcePage: 5,
+            sourcePages: [5, 6],
+            reviewedBy: REVIEWED_BY,
+            reviewedAt: REVIEWED_AT,
+            sourceUrl: SOURCE_URL,
             explanation: `**答案：B (正等腰金字塔形)**
 
 **核心解析：**
@@ -526,9 +643,20 @@ for 循环 \`for(A; B; C) D;\` 的执行顺序是：A → 判断B → 执行D �
             id: 15,
             type: 'single',
             question: "某学校举办“十佳歌手大奖赛”，经过选拔最终参赛选手有 25 人，评委 10 人，最终计分规则为去掉一个最高分、去掉一个最低分，并输出该参赛选手的最终得分。若单个评委可给满分为 10 分，则相关说法正确的是（ ）。\n\n```cpp\nfloat total_score, max_score, min_score, now_score;\nfor (int i = 0; i < 25; i++) {\n    max_score = 0;   // 记录最高分\n    min_score = 10;  // 记录最低分\n    total_score = 0; // 记录总分\n    for (int j = 0; j < 10; j++) {\n        cin >> now_score; // 录入评委打分\n        max_score = max(max_score, now_score); // L1\n        min_score = min(min_score, now_score); // L2\n        total_score += now_score;\n    }\n    cout << (total_score - max_score - min_score);\n}\n```",
-            options: ['输入数据必须预先排序', 'max/min/total 初始化应移到外层循环外', 'L1 与 L2 关于 max/min 的更新可改写为 if 语句', '变量 total_score 无法实现自增累加'],
+            options: [
+                '程序总体逻辑错误。因为要去掉最高分和最低分，需要排序，而程序没有相关代码',
+                '内层循环和外层循环之间的三行代码，也就是从 max_score = 0 开始的三行代码，应该移动到外层循环外',
+                'L1 和 L2 标记的两行代码可以分别改为简单的 if 语句或 ? : 语句',
+                'total_score += now_score 不可以更改为 total_score = total_score + now_score',
+            ],
             answer: 2,
             score: 2,
+            sourceVerified: true,
+            sourcePage: 6,
+            sourcePages: [6],
+            reviewedBy: REVIEWED_BY,
+            reviewedAt: REVIEWED_AT,
+            sourceUrl: SOURCE_URL,
             explanation: `**答案：C (L1 与 L2 关于 max/min 的更新可改写为 if 语句)**
 
 **核心解析：**
@@ -544,7 +672,7 @@ for 循环 \`for(A; B; C) D;\` 的执行顺序是：A → 判断B → 执行D �
 - **A (输入数据必须预先排序)**：❌ 错误。求最大值、最小值和总和只需线性扫描一遍，无需排序；排序反而增加 O(n log n) 复杂度。
 - **B (max/min/total 初始化应移到外层循环外)**：❌ 错误。若有多组评分数据，初始化在外层循环外会导致前一组数据影响后一组的 max/min 初始化，产生错误结果。
 - **C (L1 与 L2 关于 max/min 的更新可改写为 if 语句)**：✅ 正确。\`max(a,b)\` 的语义等价于 \`a > b ? a : b\`，即 \`if (b > a) a = b;\`，逻辑完全等价。
-- **D (变量 total_score 无法实现自增累加)**：❌ 错误。\`total_score += score\` 是标准的累加写法，完全可以实现自增累加功能。
+- **D（\`+=\` 不可改成完整赋值式）**：❌ 错误。\`total_score += now_score\` 与 \`total_score = total_score + now_score\` 等价。
 
 **易错提醒：**
 - \`max()\` 和 \`min()\` 是标准库函数，需包含 \`<algorithm>\` 头文件。
@@ -559,10 +687,16 @@ for 循环 \`for(A; B; C) D;\` 的执行顺序是：A → 判断B → 执行D �
         {
             id: 16,
             type: 'judge',
-            question: `操作系统（如鸿蒙 HarmonyOS）能够将用户编写的正确源程序直接翻译成二进制目标程序并运行。`,
+            question: `鸿蒙是华为公司开发的一款操作系统，那么它能够将正确的源程序翻译成目标程序，并运行。`,
             options: ['正确', '错误'],
             answer: 1,
             score: 2,
+            sourceVerified: true,
+            sourcePage: 6,
+            sourcePages: [6],
+            reviewedBy: REVIEWED_BY,
+            reviewedAt: REVIEWED_AT,
+            sourceUrl: SOURCE_URL,
             explanation: `**答案：错误**
 
 **判定依据：**
@@ -587,14 +721,20 @@ for 循环 \`for(A; B; C) D;\` 的执行顺序是：A → 判断B → 执行D �
         {
             id: 17,
             type: 'judge',
-            question: `C++ 表达式 \`5 < 10 && 20\` 的逻辑计算结果为 \`true\`。`,
+            question: `C++ 表达式 \`5 < 10 && 20\` 对应的逻辑值为 \`true\`。`,
             options: ['正确', '错误'],
             answer: 0,
             score: 2,
+            sourceVerified: true,
+            sourcePage: 6,
+            sourcePages: [6],
+            reviewedBy: REVIEWED_BY,
+            reviewedAt: REVIEWED_AT,
+            sourceUrl: SOURCE_URL,
             explanation: `**答案：正确**
 
 **判定依据：**
-1. **运算符优先级分析**：\`&&\`（逻辑与）的优先级高于\`<\`（小于），因此表达式 \`5 < 10 && 20\` 被解析为 \`(5 < 10) && (20)\`。
+1. **运算符优先级分析**：\`<\`（关系运算）的优先级高于 \`&&\`（逻辑与），因此表达式 \`5 < 10 && 20\` 被解析为 \`(5 < 10) && 20\`。
 
 2. **左侧运算**：\`5 < 10\` 进行关系比较，结果为 \`true\`（数值为 1）。
 
@@ -615,10 +755,16 @@ C++ 中 \`&&\` 和 \`||\` 采用短路求值（Short-circuit evaluation）：若
         {
             id: 18,
             type: 'judge',
-            question: `C++ 表达式 \`10 / 0.333333 == 10 / (1 / 3)\` 的结果为 \`true\`。`,
+            question: `C++ 表达式 \`10 / 0.333333 == 10 / (1 / 3)\` 的值为 \`true\`。`,
             options: ['正确', '错误'],
             answer: 1,
             score: 2,
+            sourceVerified: true,
+            sourcePage: 7,
+            sourcePages: [7],
+            reviewedBy: REVIEWED_BY,
+            reviewedAt: REVIEWED_AT,
+            sourceUrl: SOURCE_URL,
             explanation: `**答案：错误**
 
 **判定依据：**
@@ -626,9 +772,9 @@ C++ 中 \`&&\` 和 \`||\` 采用短路求值（Short-circuit evaluation）：若
 
 2. **分析右侧** \`10 / (1 / 3)\`：
    - 括号内 \`1 / 3\` 是**整数除法**（两个操作数都是整数），结果为 \`0\`（直接截断小数部分）。
-   - 整个表达式变为 \`10 / 0\`，发生**除以零错误**。
+   - 整个表达式变为 \`10 / 0\`。整数除以零在 C++ 中属于**未定义行为**，不能得到一个可参与比较的正常结果。
 
-3. **整体结果**：右侧表达式在运行时会触发除零异常（运行时错误），程序无法正常完成比较。即使考虑不报错的情况，左侧约 30 与右侧无法计算的 10/0 也绝不相等。
+3. **整体结果**：右侧没有合法的数学值，不能把整个比较判为 \`true\`。具体运行时表现不由 C++ 标准保证，不能笼统说成“一定抛出异常”。
 
 **易错提醒：**
 - 容易忽略 \`1 / 3\` 是整数除法，直接得出 \`0.333...\`，导致误判两边相等。
@@ -643,10 +789,16 @@ C++ 中 \`&&\` 和 \`||\` 采用短路求值（Short-circuit evaluation）：若
         {
             id: 19,
             type: 'judge',
-            question: `给定代码中 N 为整数，执行 \`while(N) N /= 10; cout << N;\` 无论输入负数、0 或正数，输出结果都恒为 0。`,
+            question: `下面 C++ 代码中 N 是整数，执行时无论输入负整数、0 或正整数，其输出都将是 0。\n\n\`\`\`cpp\ncin >> N;\nwhile (N)\n    N /= 10;\ncout << N;\n\`\`\``,
             options: ['正确', '错误'],
             answer: 0,
             score: 2,
+            sourceVerified: true,
+            sourcePage: 7,
+            sourcePages: [7],
+            reviewedBy: REVIEWED_BY,
+            reviewedAt: REVIEWED_AT,
+            sourceUrl: SOURCE_URL,
             explanation: `**答案：正确**
 
 **判定依据：**
@@ -660,7 +812,7 @@ C++ 中 \`&&\` 和 \`||\` 采用短路求值（Short-circuit evaluation）：若
 
 **关键点：**
 - 循环条件 \`while(N)\` 等价于 \`while(N != 0)\`，只要 N 非零就继续。
-- \`N /= 10\` 是整数除法，正数向下截断，负数向零截断（如 \`-4 / 10 = 0\`）。
+- \`N /= 10\` 是整数除法，C++ 对正负整数都向零截断（如 \`45/10=4\`，\`-4/10=0\`）。
 - 无论正负，任意整数的绝对值每次除以 10 都会递减，有限步后必然达到 0。
 - 当 N 变为 0 时，循环条件不满足，程序输出 \`0\`。
 
@@ -677,10 +829,16 @@ C++ 中 \`&&\` 和 \`||\` 采用短路求值（Short-circuit evaluation）：若
         {
             id: 20,
             type: 'judge',
-            question: `给定代码执行后输出结果是 “4 0”：\n\`int a = 4, b = (a == 5); cout << a << " " << b;\``,
+            question: `下面的 C++ 代码执行后，其输出是 \`4 0\`。\n\n\`\`\`cpp\nint a, b;\na = 4;\nb = a == 5;\ncout << a << ' ' << b;\n\`\`\``,
             options: ['正确', '错误'],
             answer: 0,
             score: 2,
+            sourceVerified: true,
+            sourcePage: 7,
+            sourcePages: [7],
+            reviewedBy: REVIEWED_BY,
+            reviewedAt: REVIEWED_AT,
+            sourceUrl: SOURCE_URL,
             explanation: `**答案：正确**
 
 **判定依据：**
@@ -700,7 +858,7 @@ cout << a << " " << b;
 
 **易错提醒：**
 - 容易误以为 \`b\` 被赋值为布尔字面值 \`false\` 本身，而忽略布尔到整数的隐式转换规则。
-- 注意 \`b = (a == 5)\` 中的括号不是必需的（\`==\` 优先级低于 \`=\`），但不影响结果。
+- 原卷写作 \`b = a == 5;\`。因为 \`==\` 的优先级高于赋值运算符 \`=\`，它等价于 \`b = (a == 5);\`。
 
 **知识延伸：**
 C++ 中布尔与整数的双向隐式转换规则：\`true\` → \`1\`，\`false\` → \`0\`；非零整数 → \`true\`，\`0\` → \`false\`。这一规则在条件判断、三目运算符中均有体现。
@@ -711,10 +869,16 @@ C++ 中布尔与整数的双向隐式转换规则：\`true\` → \`1\`，\`false
         {
             id: 21,
             type: 'judge',
-            question: `表达式 \`('Z' - 'A') < ('z' - 'A')\` 的计算结果在 C++ 中输出为 0。`,
+            question: `C++ 代码中对表达式 \`('Z' - 'A') < ('z' - 'A')\` 的结果输出为 0。`,
             options: ['正确', '错误'],
             answer: 1,
             score: 2,
+            sourceVerified: true,
+            sourcePage: 7,
+            sourcePages: [7],
+            reviewedBy: REVIEWED_BY,
+            reviewedAt: REVIEWED_AT,
+            sourceUrl: SOURCE_URL,
             explanation: `**答案：错误**
 
 **判定依据：**
@@ -737,24 +901,30 @@ C++ 中布尔与整数的双向隐式转换规则：\`true\` → \`1\`，\`false
         {
             id: 22,
             type: 'judge',
-            question: `在判断正整数 N 位数的代码中，利用逻辑 \`if (N / pow(10, k) == 0)\` 可以确定其位数。`,
+            question: `下面的 C++ 代码可以用于判断正整数 N 的位数（即几位数，如 123 是 3 位数，12 为 2 位数）。\n\n\`\`\`cpp\nint N, N10, i;\ncin >> N;\nN10 = 10, i = 1;\nwhile (1) {\n    if (N % N10 == N) {\n        printf("%d 是 %d 位数", N, i);\n        break;\n    }\n    i++, N10 *= 10;\n}\n\`\`\``,
             options: ['正确', '错误'],
             answer: 0,
             score: 2,
+            sourceVerified: true,
+            sourcePage: 7,
+            sourcePages: [7],
+            reviewedBy: REVIEWED_BY,
+            reviewedAt: REVIEWED_AT,
+            sourceUrl: SOURCE_URL,
             explanation: `**答案：正确**
 
 **判定依据：**
-1. 令 \`k\` 为正整数，\`pow(10, k)\` 计算 10 的 k 次方。
-2. 当 \`N / pow(10, k) == 0\` 时，说明分子 N 小于分母 10^k，即 N 的位数严格小于 k+1。
-3. 通过逐步增大 k，找到最小的 k 使得条件成立，此时 k 的值即为 N 的位数。
-4. 例如 N = 456：\`456/100 = 4 ≠ 0\`，\`456/1000 = 0\`，因此位数为 3（k=3）。
+1. 初始 \`N10=10\`、\`i=1\`，分别代表当前测试的十进制边界和位数。
+2. 对正整数，当 \`N < N10\` 时，\`N % N10 == N\`；此时 N 不足以产生更高位，位数就是 i。
+3. 若条件不成立，则把 \`N10\` 乘 10，同时把 i 加 1，继续测试下一条十进制边界。
+4. 例如 N=123：\`123%10=3\`、\`123%100=23\`，均不等于 N；\`123%1000=123\`，所以输出 3 位数。
 
 **易错提醒：**
-- \`pow\` 函数返回 \`double\` 类型，当 N 较大时可能存在浮点精度误差，建议使用整数运算或 \`if (N < pow(10, k))\` 替代。
-- 该逻辑要求 k 从 1 开始逐次测试，需配合循环结构使用。
+- 关键判断是取模 \`N % N10 == N\`，不是浮点除法。
+- 题目限定 N 为正整数；若考虑超大整数，还需防止 \`N10 *= 10\` 溢出，但这不影响原题范围内的判断。
 
 **知识延伸：**
-数位判断是 GESP 二级高频考点，除本方法外，还常用"不断除以 10 计数"的循环方式，两者本质相同。
+对正整数，\`N % 10^k == N\` 与 \`N < 10^k\` 等价。代码找到第一个满足该条件的 k，也就找到了十进制位数。
 
 **考点：** 数位判定的数学原理`,
             tags: ['程序分析']
@@ -762,10 +932,16 @@ C++ 中布尔与整数的双向隐式转换规则：\`true\` → \`1\`，\`false
         {
             id: 23,
             type: 'judge',
-            question: `在循环中将状态翻转语句 \`Flag = -Flag\` 修改为 \`Flag -= Flag\`，其逻辑效果保持一致。`,
+            question: `计算交叉加减的结果，形如 \`1-2+3-4+5-……\`。下面 C++ 代码中的变量都是整型，则将 \`Flag = -Flag\` 改为 \`Flag -= Flag\` 效果相同。\n\n\`\`\`cpp\ncin >> N;\nFlag = -1;\ntnt = 0;\nfor (i = 1; i < N + 1; i++) {\n    Flag = -Flag;\n    tnt += Flag * i;\n}\ncout << tnt;\n\`\`\``,
             options: ['正确', '错误'],
             answer: 1,
             score: 2,
+            sourceVerified: true,
+            sourcePage: 7,
+            sourcePages: [7],
+            reviewedBy: REVIEWED_BY,
+            reviewedAt: REVIEWED_AT,
+            sourceUrl: SOURCE_URL,
             explanation: `**答案：错误**
 
 **判定依据：**
@@ -788,10 +964,16 @@ C++ 中布尔与整数的双向隐式转换规则：\`true\` → \`1\`，\`false
         {
             id: 24,
             type: 'judge',
-            question: `给定代码段执行后计数器 \`cnt\` 将输出 55：\n\`int cnt = 0; for (int i = 0; i < 10; i++) for (int j = i; j < 10; j++) cnt++;\``,
+            question: `下列 C++ 代码段执行后将输出 55。\n\n\`\`\`cpp\nint cnt = 0;\nfor (i = 0; i < 10; i++)\n    for (j = i; j < 10; j++)\n        cnt += 1;\ncout << cnt;\n\`\`\``,
             options: ['正确', '错误'],
             answer: 0,
             score: 2,
+            sourceVerified: true,
+            sourcePage: 7,
+            sourcePages: [7],
+            reviewedBy: REVIEWED_BY,
+            reviewedAt: REVIEWED_AT,
+            sourceUrl: SOURCE_URL,
             explanation: `**答案：正确**
 
 **判定依据：**
@@ -819,16 +1001,22 @@ C++ 中布尔与整数的双向隐式转换规则：\`true\` → \`1\`，\`false
         {
             id: 25,
             type: 'judge',
-            question: `在编写九九乘法表程序时，如果删除每行结束后的换行语句，并不会影响控制台的输出排版效果。`,
+            question: `下面 C++ 代码执行后输出如下，因为代码 \`printf("\\n")\` 没有任何可读内容，删除不影响输出效果。\n\n预期输出：\n\`\`\`text\n  1  2  3  4  5  6  7  8  9\n  2  4  6  8 10 12 14 16 18\n  3  6  9 12 15 18 21 24 27\n  4  8 12 16 20 24 28 32 36\n  5 10 15 20 25 30 35 40 45\n  6 12 18 24 30 36 42 48 54\n  7 14 21 28 35 42 49 56 63\n  8 16 24 32 40 48 56 64 72\n  9 18 27 36 45 54 63 72 81\n\`\`\`\n\n\`\`\`cpp\nfor (int i = 1; i < 10; i++) {\n    for (int j = 1; j < 10; j++)\n        printf("%3d", i * j);\n    printf("\\n");\n}\n\`\`\``,
             options: ['正确', '错误'],
             answer: 1,
             score: 2,
+            sourceVerified: true,
+            sourcePage: 7,
+            sourcePages: [7, 8],
+            reviewedBy: REVIEWED_BY,
+            reviewedAt: REVIEWED_AT,
+            sourceUrl: SOURCE_URL,
             explanation: `**答案：错误**
 
 **判定依据：**
 1. 换行语句（如 \`cout << endl;\` 或 \`cout << '\\n';\`）的作用是将光标移动到下一行行首。
 2. 九九乘法表是二维表格结构，每行对应一个固定的 i 值（如 1×1, 1×2, ...），各行必须独占一行。
-3. 删除换行后，所有乘法项（如 \`1*1=1 1*2=2 1*3=3 ... 9*9=81\`）将在控制台同一行连续输出，无法区分不同行。
+3. 删除换行后，\`%3d\` 输出的 81 个乘积将在控制台同一行连续出现，无法区分九个行组。
 4. 控制台默认不会自动换行，除非显式输出换行符。因此删除换行语句会严重破坏输出排版效果。
 
 **易错提醒：**
@@ -847,6 +1035,12 @@ C++ 中布尔与整数的双向隐式转换规则：\`true\` → \`1\`，\`false
             id: 26,
             type: 'programming',
             title: "环保能量球",
+            sourceVerified: true,
+            sourcePage: 8,
+            sourcePages: [8, 9],
+            reviewedBy: REVIEWED_BY,
+            reviewedAt: REVIEWED_AT,
+            sourceUrl: SOURCE_URL,
             samples: [
                 {
                     input: `3\n5\n2\n10\n3\n2\n5`,
@@ -858,39 +1052,64 @@ C++ 中布尔与整数的双向隐式转换规则：\`true\` → \`1\`，\`false
 
 ## 题目描述
 
-小杨每行走 1 公里可以获得 1 点“环保能量”。此外，小杨每行走 $x$ 公里，游戏就会额外奖励 1 点能量。已知小杨总共行走了 $n$ 公里，请计算他一共能获得多少点环保能量？
+小杨最近在玩一个环保主题的游戏。在游戏中，小杨每行走 1 公里就可以获得 1 点“环保能量”。
+
+为了激励玩家，游戏设置了“里程奖励”：小杨每行走 $x$ 公里，游戏就会额外奖励 1 点能量。
+
+现在已知小杨总共行走了 $n$ 公里，请你帮他计算，他一共能获得多少点环保能量？
 
 ## 输入格式
 
 第一行包含一个正整数 $t$，代表测试数据组数。
+
 对于每组测试数据：
-- 第一行包含一个正整数 $n$。
-- 第二行包含一个正整数 $x$。
+- 第一行包含一个正整数 $n$，代表行走的公里数。
+- 第二行包含一个正整数 $x$，代表奖励触发的间隔。
 
 ## 输出格式
 
-对于每组数据输出一个整数。
+对于每组测试数据，输出一个整数，代表小杨获得的环保能量总数。
+
+## 样例解释
+
+- 第 1 组：$n=5,x=2$。基础能量为 5，在第 2、4 公里各获得 1 点额外奖励，总计 7 点。
+- 第 2 组：$n=10,x=3$。基础能量为 10，在第 3、6、9 公里各获得 1 点额外奖励，总计 13 点。
+- 第 3 组：$n=2,x=5$。路程不足 5 公里，没有额外奖励，总计 2 点。
+
+## 数据范围
+
+$1 \\le t \\le 100$，$1 \\le n,x \\le 1000$。
 `,
             score: 25,
             explanation: `**解析：**
 1. **基础能量**：行走了 $n$ 公里，基础能量即为 $n$。
-2. **奖励能量**：每 $x$ 公里奖励 1 点，总奖励点数为 $\lfloor n / x \rfloor$（即 $n$ 除以 $x$ 的商）。
+2. **奖励能量**：每 $x$ 公里奖励 1 点，总奖励点数为 $\\lfloor n / x \\rfloor$（即 $n$ 除以 $x$ 的整数商）。
 3. **总和**：结果 = $n + (n / x)$。
 
-**核心逻辑提示：**
+原卷参考程序采用逐公里模拟：每走 1 公里先增加 1 点基础能量，若当前公里数是 $x$ 的倍数，再增加 1 点奖励。这个写法直接对应题意，也便于二级学习者观察“循环 + 取模”的关系。
+
+**最小验证：**
+- $n=5,x=2$：第 1 至 5 公里给 5 点，第 2、4 公里再各给 1 点，得到 7。
+- $n<x$ 时，\`i % x == 0\` 从不成立，结果就是 n。
+
+**等价公式：**
 \`\`\`cpp
-cin >> n >> x;
-long long total = n + (n / x);
-cout << total << endl;
+int ans = n + n / x;
 \`\`\``,
             tags: ['编程题', '模拟', '整数除法'],
             template: "#include <iostream>\nusing namespace std;\nint main() {\n    // 在此编写代码\n    return 0;\n}",
-            referenceCode: "#include <iostream>\nusing namespace std;\nint main() {\n    int t; cin >> t;\n    while (t--) {\n        long long n, x;\n        cin >> n >> x;\n        cout << n + n / x << endl;\n    }\n    return 0;\n}"
+            referenceCode: "#include <iostream>\nusing namespace std;\nint main() {\n    int t, n, x;\n    if (!(cin >> t)) return 0;\n    while (t--) {\n        cin >> n >> x;\n        int ans = 0;\n        for (int i = 1; i <= n; i++) {\n            ans += 1;      // 基础能量\n            if (i % x == 0) {\n                ans += 1;  // 额外奖励\n            }\n        }\n        cout << ans << endl;\n    }\n    return 0;\n}"
         },
         {
             id: 27,
             type: 'programming',
             title: "黄金格",
+            sourceVerified: true,
+            sourcePage: 9,
+            sourcePages: [9, 10],
+            reviewedBy: REVIEWED_BY,
+            reviewedAt: REVIEWED_AT,
+            sourceUrl: SOURCE_URL,
             samples: [
                 {
                     input: `4\n4\n2`,
@@ -902,7 +1121,13 @@ cout << total << endl;
 
 ## 题目描述
 
-地图有 $H$ 行和 $W$ 列。格子坐标为 $(r, c)$，满足 $\\sqrt{r^2 + c^2} \\leq x + r - c$ 的格子被称为“黄金格”。给定 $H, W, x$，计算黄金格的数量。
+小杨在探险时发现了一张神奇的矩形地图，地图有 $H$ 行和 $W$ 列。每个格子的坐标是 $(r,c)$，其中 $r$ 表示行号，取值从 1 到 $H$；$c$ 表示列号，取值从 1 到 $W$。
+
+小杨听说地图中隐藏着一些“黄金格”，这些格子满足一个神秘的数学挑战：当格子坐标 $(r,c)$ 代入特定的不等式关系成立时，该格子就是黄金格。具体来说，黄金格的条件是：
+
+$$\\sqrt{r^2+c^2} \\le x+r-c$$
+
+例如，如果参数 $x=5$，那么格子 $(4,3)$ 就是黄金格。因为左边 $\\sqrt{4^2+3^2}=5$，右边 $5+4-3=6$，满足 $5\\le6$。
 
 ## 输入格式
 
@@ -911,27 +1136,44 @@ cout << total << endl;
 ## 输出格式
 
 一个整数，代表黄金格数量。
+
+## 样例解释
+
+当 $H=4,W=4,x=2$ 时，黄金格为 $(1,1)$、$(2,1)$、$(3,1)$、$(4,1)$，共 4 个。
+
+## 数据范围
+
+对于所有测试点，保证给出的正整数不超过 1000。
 `,
             score: 25,
             explanation: `**解析：**
-1. **遍历矩阵**：使用双重循环遍历行 $r \in [1, H]$ 和列 $c \in [1, W]$。
+1. **遍历矩阵**：使用双重循环遍历行 $r \\in [1, H]$ 和列 $c \\in [1, W]$。
 2. **条件判定**：
    - 计算左边：\`sqrt(r*r + c*c)\`。
    - 计算右边：\`x + r - c\`。
-   - 注意：\`r*r\` 可能会非常大，建议使用 \`long long\` 存储平方和后再开方。
+   - 原卷约束中各正整数不超过 1000，\`int\` 足以保存平方和。
 3. **计数**：满足条件的格子自增计数器。
 
-**核心逻辑提示：**
+**样例复算：**
+在 $4\\times4$ 地图、$x=2$ 时，逐格检验后只有第一列的四个格子满足条件，所以答案是 4。
+
+**易错点：**
+- 坐标从 1 开始，不是从 0 开始。
+- 右侧 \`x+r-c\` 可能随列号增大而减小，不能只看距离原点的大小。
+- 直接按原不等式比较即可，不必平方变形；平方前还需要额外处理右侧为负的情况。
+
+**核心循环：**
 \`\`\`cpp
-for (int r = 1; r <= h; r++) {
-    for (int c = 1; c <= w; c++) {
-        if (sqrt(1.0*r*r + 1.0*c*c) <= x + r - c) ans++;
+for (int r = 1; r <= H; ++r) {
+    for (int c = 1; c <= W; ++c) {
+        if (sqrt(r * r + c * c) <= x + r - c)
+            ans++;
     }
 }
 \`\`\``,
             tags: ['编程题', '枚举', '数学'],
             template: "#include <iostream>\n#include <cmath>\nusing namespace std;\nint main() {\n    // 在此编写代码\n    return 0;\n}",
-            referenceCode: "#include <iostream>\n#include <cmath>\nusing namespace std;\nint main() {\n    long long h, w, x; \n    cin >> h >> w >> x;\n    long long ans = 0;\n    for (long long r = 1; r <= h; r++) {\n        for (long long c = 1; c <= w; c++) {\n            if (sqrt(1.0 * r * r + 1.0 * c * c) <= (double)x + r - c) ans++;\n        }\n    }\n    cout << ans << endl;\n    return 0;\n}"
+            referenceCode: "#include <iostream>\n#include <cmath>\nusing namespace std;\nint main() {\n    int H, W, x;\n    cin >> H >> W >> x;\n    int ans = 0;\n    for (int r = 1; r <= H; ++r) {\n        for (int c = 1; c <= W; ++c) {\n            if (sqrt(r * r + c * c) <= x + r - c) {\n                // cout << r << \" \" << c << endl;\n                ans++;\n            }\n        }\n    }\n    cout << ans << \"\\n\";\n    return 0;\n}"
         }
     ]
 };

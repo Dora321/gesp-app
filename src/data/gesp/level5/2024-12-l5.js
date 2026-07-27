@@ -356,22 +356,63 @@ if (i % primes[j] == 0)
         },
         {
             id: 9,
-            sourceIntegrity: 'missing-figure',
-            integrityNote: "原卷该代码在官方 PDF 中既非内嵌图片、文本层也未包含（应为矢量绘制）。",
             type: "single",
             question: `考虑以下 C++ 代码实现的快速排序算法：
-以下关于快速排序的说法，正确的是（ ）。
 
-> ⚠️ 原卷此处配有代码或图片。官方 PDF 中该部分为图片，或其文本层与相邻试题混排、无法可靠切分，本站尚未还原。请对照原卷阅读代码。`,
-            options: ["快速排序通过递归对子问题进行求解。", "快速排序的最坏时间复杂度是 。", "快速排序是一个稳定的排序算法。", "在最优情况下，快速排序的时间复杂度是 。"],
+\`\`\`cpp
+int partition(vector<int>& arr, int left, int right) {
+    int pivot = arr[right]; // 基准值
+    int i = left - 1;
+
+    for (int j = left; j < right; j++) {
+        if (arr[j] < pivot) {
+            i++;
+            swap(arr[i], arr[j]);
+        }
+    }
+    swap(arr[i + 1], arr[right]);
+    return i + 1;
+}
+
+// 快速排序
+void quickSort(vector<int>& arr, int left, int right) {
+    if (left < right) {
+        int pi = partition(arr, left, right);
+        quickSort(arr, left, pi - 1);
+        quickSort(arr, pi + 1, right);
+    }
+}
+\`\`\`
+
+以下关于快速排序的说法，正确的是（ ）。`,
+            options: [
+                "快速排序通过递归对子问题进行求解。",
+                "快速排序的最坏时间复杂度是 $O(n \\log n)$。",
+                "快速排序是一个稳定的排序算法。",
+                "在最优情况下，快速排序的时间复杂度是 $O(n)$。",
+            ],
             answer: 0,
             score: 2,
+            sourceVerified: true,
+            sourcePage: 5,
+            sourcePages: [5],
+            sourceUrl: 'https://gesp.ccf.org.cn/101/attach/1733577765027904.pdf',
+            reviewedBy: '本站校订',
+            reviewedAt: '2026-07-27',
             explanation: `**答案：A（快速排序通过递归对子问题进行求解。）**
 
-**依据**：官方真题 PDF 第 1 页答案表。本题题干与选项均已按官方原卷回填。
+**推导过程：**
 
-> ⚠️ 原卷该题的代码/图以图片形式给出，官方 PDF 无文本层，本站无法提取；题干、选项与答案均取自官方原卷，但缺少代码部分，暂不足以独立作答。因此本站不对该代码做推测性讲解，请对照原卷阅读代码。`,
-            tags: ["客观题", "单选题", "GESP5级"]
+1. \`partition\` 以区间最右元素为基准，把小于基准的元素移到左侧，并返回基准的最终位置 \`pi\`。
+2. \`quickSort\` 随后递归处理 \`[left, pi - 1]\` 和 \`[pi + 1, right]\` 两个子区间，所以 A 正确。
+3. 若每次基准都落在区间一端，递归规模依次为 $n-1,n-2,\\ldots,1$，总比较次数为 $O(n^2)$，因此 B 错误。
+4. 分区中的交换可能改变相等元素的先后次序，快速排序通常不稳定，因此 C 错误。
+5. 划分最均衡时递归深度为 $O(\\log n)$，每层处理 $O(n)$ 个元素，最优时间复杂度为 $O(n\\log n)$，因此 D 错误。
+
+**最小验证：** 对已经升序的数组使用最右元素作基准，每轮只能确定一个元素，正好出现最坏的 $O(n^2)$ 情况。
+
+**考点：** 快速排序、分治、递归、时间复杂度、排序稳定性。`,
+            tags: ["客观题", "单选题", "GESP5级", "快速排序", "分治", "递归", "时间复杂度", "排序稳定性"]
         },
         {
             id: 10,
@@ -457,23 +498,51 @@ void quickSort(vector<int>& arr, int left, int right) {
         },
         {
             id: 13,
-            sourceIntegrity: 'missing-figure',
-            integrityNote: "原卷该代码在官方 PDF 中既非内嵌图片、文本层也未包含（应为矢量绘制）。",
             type: "single",
             question: `假设有多个孩子，数组g保存所有孩子的胃口值。有多块饼干，数组s保存所有饼干的尺寸。小杨给孩子
 们发饼干，每个孩子最多只能给一块饼干。饼干的尺寸大于等于孩子的胃口时，孩子才能得到满足。小杨的目标是
 尽可能满足越多数量的孩子，因此打算采用贪心算法来找出能满足的孩子的数目，则横线上应填写的代码为（ ）。
 
-> ⚠️ 原卷此处配有代码或图片。官方 PDF 中该部分为图片，或其文本层与相邻试题混排、无法可靠切分，本站尚未还原。请对照原卷阅读代码。`,
+\`\`\`cpp
+int cooki4children(vector<int>& g, vector<int>& s) {
+    sort(g.begin(), g.end());
+    sort(s.begin(), s.end());
+
+    int index = s.size() - 1; // 饼干数组下标
+    int result = 0;
+    for (int i = g.size() - 1; i >= 0; i--) {
+        if (index >= 0 && s[index] >= g[i]) {
+            ________________________________ // 在此处填入代码
+        }
+    }
+    return result;
+}
+\`\`\``,
             options: ["result++; index--;", "result--; index--;", "result--; index++;", "result++; index++;"],
             answer: 0,
             score: 2,
+            sourceVerified: true,
+            sourcePage: 7,
+            sourcePages: [7],
+            sourceUrl: 'https://gesp.ccf.org.cn/101/attach/1733577765027904.pdf',
+            reviewedBy: '本站校订',
+            reviewedAt: '2026-07-27',
             explanation: `**答案：A（result++; index--;）**
 
-**依据**：官方真题 PDF 第 1 页答案表。本题题干与选项均已按官方原卷回填。
+**推导过程：**
 
-> ⚠️ 原卷该题的代码/图以图片形式给出，官方 PDF 无文本层，本站无法提取；题干、选项与答案均取自官方原卷，但缺少代码部分，暂不足以独立作答。因此本站不对该代码做推测性讲解，请对照原卷阅读代码。`,
-            tags: ["客观题", "单选题", "GESP5级"]
+两个数组升序排序后，循环从胃口最大的孩子开始检查，\`index\` 始终指向当前最大的未使用饼干。
+
+- 当 \`s[index] >= g[i]\` 时，这块饼干能满足当前孩子，已满足人数应执行 \`result++\`。
+- 一块饼干最多使用一次，分配成功后必须执行 \`index--\`，转向下一块未使用饼干。
+- 若最大饼干也无法满足当前孩子，本轮不消耗饼干，循环自然继续检查胃口更小的孩子。
+
+因此横线应填写 \`result++; index--;\`。B、C 会错误减少已满足人数；C、D 还会让下标向数组右侧增长，既重复使用或跳过饼干，也可能越界。
+
+**最小验证：** $g=[1,2]$、$s=[1,2]$。先用尺寸 2 的饼干满足胃口 2 的孩子，得到 \`result=1,index=0\`；再用尺寸 1 的饼干满足胃口 1 的孩子，最终返回 2。
+
+**考点：** 贪心算法、排序、双指针。`,
+            tags: ["客观题", "单选题", "GESP5级", "贪心算法", "排序", "双指针"]
         },
         {
             id: 14,

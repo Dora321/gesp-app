@@ -36,6 +36,26 @@ const codePromptPatterns = [
   /(?:代码|代码片段|程序段).{0,32}(?:如下|执行后|运行后|输出|横线|空白|应填|改为|逻辑判定)/i,
 ];
 
+const objectiveStemContaminationPatterns = [
+  { label: '子任务编号', pattern: /子任务\s*(?:编号|号)/u },
+  { label: '数据点占比', pattern: /(?:数据点|测试点)\s*(?:编号\s*)?(?:占比|比例)/u },
+  {
+    label: '题号/答案表',
+    pattern: /(?:题号\s*(?:[\u002f／、|]\s*)?答案|答案\s*(?:[\u002f／、|]\s*)?题号)|题号(?:\s*[:：]?\s*(?:\d{1,2}|[A-D])){2,}[\s\S]{0,120}?答案/u,
+  },
+];
+
+export const getObjectiveStemIntegrityErrors = (question, questionId = question?.id || '?') => {
+  if (!['single', 'judge'].includes(question?.type) || question.sourceIntegrity) return [];
+
+  const stem = String(question.question || '');
+  return objectiveStemContaminationPatterns
+    .filter(({ pattern }) => pattern.test(stem))
+    .map(({ label }) => (
+      `[INTEGRITY] Q${questionId}: objective question stem contains suspected OCR/cross-question fragment "${label}" but lacks sourceIntegrity flag`
+    ));
+};
+
 const looksLikeCode = (value) => {
   const code = String(value || '').trim();
   if (code.length < 12) return false;
@@ -140,6 +160,8 @@ async function validateFile(filePath, cfg) {
       errors.push(`[ERROR] Q${qId}: Empty question text`);
     }
 
+    errors.push(...getObjectiveStemIntegrityErrors(q, qId));
+
     if (requiresCodeContent(q, text) && !hasCodeContent(q, text)) {
       const message = `Q${qId}: question refers to code, but no fenced, inline, or independent code content was found`;
       if (q.requiresCode === true) errors.push(`[ERROR] ${message}`);
@@ -175,7 +197,14 @@ async function validateFile(filePath, cfg) {
       errors.push(`[INTEGRITY] Q${qId}: explanation admits reconstructed options/figure but question lacks sourceIntegrity flag`);
     }
     if (q.sourceIntegrity) {
-      const allowed = ['options-reconstructed', 'missing-figure', 'contaminated-stem', 'not-official-question'];
+      const allowed = [
+        'options-reconstructed',
+        'missing-figure',
+        'contaminated-stem',
+        'not-official-question',
+        'answer-key-conflict',
+        'official-source-defect',
+      ];
       if (!allowed.includes(q.sourceIntegrity)) {
         errors.push(`[INTEGRITY] Q${qId}: unknown sourceIntegrity "${q.sourceIntegrity}"`);
       }
@@ -278,7 +307,9 @@ async function run() {
   }
 }
 
-run().catch(err => {
-  console.error(err);
-  process.exit(1);
-});
+if (process.argv[1] && path.resolve(process.argv[1]) === __filename) {
+  run().catch(err => {
+    console.error(err);
+    process.exit(1);
+  });
+}

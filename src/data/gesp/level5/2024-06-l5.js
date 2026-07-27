@@ -137,26 +137,54 @@ export const paperData = {
         },
         {
             id: 3,
-            sourceIntegrity: 'not-official-question',
-            integrityNote: "对照官方真题 PDF，本站此题与原卷第 3 题不一致（原卷该题答案为 B，本站选项与题干均不同）。本题可作为练习使用，但不代表原卷真题内容，待逐题回填原卷后移除此标记。",
             type: "single",
-            question: `关于双向链表，下列说法错误的是（ ）。`,
-            options: ["每个节点包含指向前驱和后继的指针", "可以在 $O(1)$ 时间内删除已知节点", "支持随机访问", "支持双向遍历"],
-            answer: 2,
+            question: `小杨采用如下双链表结构保存他喜欢的歌曲列表：
+
+\`\`\`cpp
+struct dl_node {
+    string song;
+    dl_node* next;
+    dl_node* prev;
+};
+\`\`\`
+
+小杨想在头指针为 \`head\` 的双链表中查找他喜欢的某首歌曲，采用如下查询函数，该操作的时间复杂度为（ ）。
+
+\`\`\`cpp
+dl_node* search(dl_node* head, string my_song) {
+    dl_node* temp = head;
+    while (temp != nullptr) {
+        if (temp->song == my_song)
+            return temp;
+        temp = temp->next;
+    }
+    return nullptr;
+}
+\`\`\``,
+            options: ["$O(1)$", "$O(n)$", "$O(\\log n)$", "$O(n^2)$"],
+            answer: 1,
             score: 2,
-            explanation: `**答案：C**
+            sourceVerified: true,
+            sourcePage: 2,
+            sourcePages: [2],
+            sourceUrl: 'https://gesp.ccf.org.cn/101/attach/1621071558082592.pdf',
+            reviewedBy: '本站校订',
+            reviewedAt: '2026-07-27',
+            explanation: `**答案：B（$O(n)$）**
 
-            **解析：**
-            链表不支持随机访问（即无法在 $O(1)$ 时间内访问任意下标的元素）。
+**推导过程：**
 
-            - **A 每个节点包含指向前驱和后继的指针**：错误。指针或内存理解有误，请检查解引用和释放逻辑。
-            - **B 可以在 $O(1)$ 时间内删除已知节点**：错误。
-            - **C 支持随机访问**：正确答案。
-            - **D 支持双向遍历**：错误。
+1. \`temp\` 从头结点 \`head\` 开始。
+2. 每次循环只检查当前歌曲并沿 \`next\` 前进一个结点，单次循环是常数时间。
+3. 最坏情况下，目标歌曲位于链尾或不存在，需要访问全部 $n$ 个结点。
+4. 因此总操作次数与结点数成正比，最坏时间复杂度为 $O(n)$。
 
-            **考点：** 链表
-            `,
-            tags: ["客观题", "单选题", "GESP5级"]
+**选项辨析：** $O(1)$ 只适用于目标已知或直接访问的情况；链表没有支持二分查找的随机访问能力，因此不是 $O(\\log n)$；代码只有一重遍历，也不是 $O(n^2)$。
+
+**最小验证：** 若链表依次有 4 首歌且目标不存在，循环恰好检查 4 个结点，规模翻倍时检查次数也约翻倍。
+
+**考点：** 双向链表、顺序查找、时间复杂度。`,
+            tags: ["客观题", "单选题", "GESP5级", "双向链表", "顺序查找", "时间复杂度"]
         },
         {
             id: 4,
@@ -237,23 +265,47 @@ export const paperData = {
         {
             id: 8,
             type: "single",
-            question: `归并排序合并两个长度为 N 的有序数组，最坏情况下的比较次数是（ ）。`,
-            options: ["$O(1)$", "$O(log n)$", "$O(N)$", "$O(n log n)$"],
-            answer: 2,
+            question: `上题的线性筛代码如下，其时间复杂度是（　）。
+
+\`\`\`cpp
+vector<int> linear_sieve(int n) {
+    vector<bool> is_prime(n + 1, true);
+    vector<int> primes;
+    is_prime[0] = is_prime[1] = 0;
+    for (int i = 2; i <= n; ++i) {
+        if (is_prime[i]) {
+            primes.push_back(i);
+        }
+        for (int j = 0;
+             j < primes.size() && i * primes[j] <= n;
+             j++) {
+            is_prime[i * primes[j]] = 0;
+            if (i % primes[j] == 0)
+                break;
+        }
+    }
+    return primes;
+}
+\`\`\``,
+            options: ["$O(n^2)$", "$O(n\\log n)$", "$O(n\\log\\log n)$", "$O(n)$"],
+            answer: 3,
             score: 2,
-            explanation: `**答案：C**
+            explanation: `**答案：D（O(n)）**
 
-            **解析：**
-            合并操作的时间复杂度是 $O(N)$。
+这段程序是线性筛（欧拉筛）。内层循环看似嵌套在外层循环中，但不能简单地把两层循环相乘为 $O(n^2)$。
 
-            - **A $O(1)$**：错误。
-            - **B $O(log n)$**：错误。
-            - **C $O(N)$**：正确答案。
-            - **D $O(n log n)$**：错误。
+关键在于 \`if (i % primes[j] == 0) break;\`：每个合数只会被“它的最小质因子”筛掉一次。把所有 i 的内层操作合起来看，总操作次数与 n 同阶，因此整体时间复杂度为 $O(n)$。
 
-            **考点：** 归并排序
-            `,
-            tags: ["客观题", "单选题", "GESP5级"]
+**易错点**：看到两层循环就判断为 $O(n^2)$。复杂度要看循环体实际执行总次数，而不是只看代码缩进层数。
+
+**考点**：线性筛、均摊分析、时间复杂度。`,
+            tags: ["数论", "线性筛", "复杂度"],
+            sourceVerified: true,
+            sourcePage: 4,
+            sourcePages: [3, 4],
+            sourceUrl: 'https://raw.githubusercontent.com/Dora321/gesp-official-pdfs/main/pdfs/2024%E5%B9%B46%E6%9C%88-C%2B%2B5%E7%BA%A7.pdf',
+            reviewedBy: '本站校订',
+            reviewedAt: '2026-07-27'
         },
         {
             id: 9,
@@ -401,49 +453,40 @@ void qsort(vector<int>& arr, int left, int right) {
             id: 15,
             type: "single",
             question: `给定如下函数（函数功能同上题，增加输出打印）：
- a[i] += 10;
- }
- t = a[i] - b[i];
- c.push_back(t);
- }
- for (; i < len1; i++)
- c.push_back(a[i]);
- len3 = c.size();
- while (c[len3 - 1] == 0) {// 去除前导 0
- c.pop_back();
- len3--;
- }
- return c;
-}
-11
-12
-13
-14
-15
-16
-17
-18
-19
-20
-21
-22
-23
-24
-25
+
+\`\`\`cpp
 int fun(int n) {
- if (n == 1) return 1;
- if (n == 2) return 2;
- return fun(n - 2) - fun(n - 1);
+    cout << n << " ";
+    if (n == 1) return 1;
+    if (n == 2) return 2;
+    return fun(n - 2) - fun(n - 1);
 }
-题号 1 2 3 4 5 6 7 8 9 10
-答案
-则当 时，屏幕上输出序列为（ ）。`,
+\`\`\`
+
+则当 \`n = 4\` 时，屏幕上输出序列为（ ）。`,
             options: ["4 3 2 1", "1 2 3 4", "4 2 3 1 2", "4 2 3 2 1"],
             answer: 2,
             score: 2,
+            sourceVerified: true,
+            sourcePage: 7,
+            reviewedBy: '本站校订',
+            reviewedAt: '2026-07-27',
             explanation: `**答案：C（4 2 3 1 2）**
 
-**依据**：官方真题 PDF 第 1 页答案表；题干与选项已按官方原卷回填。`,
+**推导过程：**
+
+按本题官方答案采用的从左到右求值顺序展开：
+
+1. 调用 \`fun(4)\`，先输出 \`4\`；
+2. 求 \`fun(2)\`，输出 \`2\` 后直接返回；
+3. 再求 \`fun(3)\`，先输出 \`3\`；
+4. \`fun(3)\` 内依次调用 \`fun(1)\`、\`fun(2)\`，分别输出 \`1\`、\`2\`。
+
+所以输出顺序为 \`4 2 3 1 2\`。A 把调用顺序误当成简单倒序；B 不符合递归展开；D 把 \`fun(3)\` 的两个子调用顺序或节点重复关系判断错了。
+
+**易错点：** 输出发生在函数入口，而不是函数返回时；同一个参数可能在不同递归分支中多次出现。严格按 C++ 语言标准，减号两侧操作数的求值先后并未保证，本题答案采用官方试卷预期的左侧调用先求值。
+
+**考点：** 递归调用顺序、递归树、表达式求值。`,
             tags: ["客观题", "单选题", "GESP5级"]
         },
         {

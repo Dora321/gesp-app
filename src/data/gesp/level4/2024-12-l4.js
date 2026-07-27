@@ -411,38 +411,37 @@ GESP 四级常考的稳定排序有：冒泡排序、插入排序、归并排序
         },
         {
             id: 9,
-            sourceIntegrity: 'not-official-question',
-            integrityNote: "对照官方真题 PDF，本站此题与原卷第 9 题不一致（原卷该题答案为 A，本站选项与题干均不同）。本题可作为练习使用，但不代表原卷真题内容，待逐题回填原卷后移除此标记。",
             type: "single",
-            question: `在 C++ 中，\`std::sort\` 函数默认采用的排序方法（底层实现）通常不包括（ ）。`,
-            options: ["插入排序", "快速排序", "堆排序", "冒泡排序"],
-            answer: 3,
+            question: `下面代码采用递推算法来计算斐波那契数列 $f(n)=f(n-1)+f(n-2)$，则横线上应填写（ ）。\n\`\`\`cpp\nint fib(int n) {\n    if (n == 0 || n == 1)\n        return n;\n\n    int f1 = 0;\n    int f2 = 1;\n    int result = 0;\n    for (int i = 2; i <= n; i++) {\n        ________________________________ // 在此处填入代码\n    }\n    return result;\n}\n\`\`\``,
+            options: [
+                "result = f1 + f2;\nf1 = f2;\nf2 = result;",
+                "result += f1 + f2;\nf1 = f2;\nf2 = result;",
+                "result += f1 + f2;\nf2 = result;\nf1 = f2;",
+                "result = f1 + f2;\nf2 = result;\nf1 = f2;"
+            ],
+            answer: 0,
             score: 2,
-            explanation: `**答案：D (冒泡排序)**
+            sourceVerified: true,
+            sourcePage: 4,
+            sourcePages: [4, 5],
+            sourceUrl: "https://raw.githubusercontent.com/Dora321/gesp-official-pdfs/main/pdfs/2024%E5%B9%B412%E6%9C%88-C%2B%2B4%E7%BA%A7.pdf",
+            reviewedBy: "Codex",
+            reviewedAt: "2026-07-27",
+            explanation: `**答案：A**
 
 **核心解析：**
-C++ 标准库 \`std::sort\` 的实现通常采用**内省排序（Introsort）**，这是一种混合排序策略，组合了三种排序算法以在不同场景下均获得优异性能：
-1. **主体使用快速排序**——分区递归，平均 O(N log N)；
-2. **递归过深时切换为堆排序**——保证最坏时间复杂度仍是 O(N log N)，避免快速排序退化到 O(N²)；
-3. **数据规模较小时切换为插入排序**——当子数组长度低于某个阈值（如 16 或 32）时，插入排序的常数因子更小，实际更快。
-
-冒泡排序的时间复杂度稳定为 O(N²)，效率远低于上述三种算法，C++ 标准库从未将其纳入 \`std::sort\` 的底层实现。
+\`f1\` 和 \`f2\` 分别保存相邻的两个斐波那契数。每轮循环先计算当前项 \`result = f1 + f2\`，再把窗口向后移动：旧的 \`f2\` 成为新的 \`f1\`，当前项成为新的 \`f2\`。
 
 **选项逐项分析：**
-- **A (插入排序)**：❌ 错误。\`std::sort\` 在处理小规模子数组时通常会切换到插入排序，因此它是底层实现中**包含**的算法，不是本题要选的"不包括"项。
-- **B (快速排序)**：❌ 错误。快速排序是 Introsort 的核心主体，\`std::sort\` 默认以它为起点进行分区排序，因此它是**包含**的算法，不是本题要选的"不包括"项。
-- **C (堆排序)**：❌ 错误。当快速排序递归深度超过阈值（通常约 2 log₂N），\`std::sort\` 会切换到堆排序以保证最坏 O(N log N)，因此它是**包含**的算法，不是本题要选的"不包括"项。
-- **D (冒泡排序)**：✅ 正确。冒泡排序因效率低下从未被 \`std::sort\` 采用，是本题所问的"通常不包括"的排序方法。
+- **A**：先计算当前项，再按正确顺序更新两个状态，能够保持循环不变量。
+- **B、C**：使用 \`+=\` 会累加旧的 \`result\`，不再是相邻两项之和。
+- **D**：先令 \`f2 = result\`，再令 \`f1 = f2\`，会使 \`f1\`、\`f2\` 同时变成当前项，丢失前一项。
 
 **易错提醒：**
-- 本题是反向选择题（"不包括"），容易误把正确的描述当成答案——A、B、C 三项都是 \`std::sort\` 实际包含的算法，切勿因为某句话本身正确就选它。
-- 容易混淆"插入排序"和"冒泡排序"的地位：插入排序在小规模数据上效率尚可，被标准库保留；冒泡排序在所有规模上均不占优，未被采用。
+状态更新有先后依赖时，要先使用旧状态完成计算，再按顺序覆盖变量。可用 \`n=2\`、\`n=3\` 手算检查，正确结果应依次为 1、2。
 
-**知识延伸：**
-\`std::stable_sort\` 通常基于归并排序实现，以牺牲空间换取稳定性；而 \`std::sort\` 不保证稳定性，优先追求速度。同类 GESP 考点还包括不同排序算法的时间复杂度、稳定性对比，以及 C++ 中 \`<algorithm>\` 头文件的核心函数用法。
-
-**考点：** C++ 标准库 \`std::sort\` 的 Introsort 混合排序策略`,
-            tags: ["客观题", "单选题", "GESP4级"]
+**考点：** 递推、循环不变量、状态更新顺序`,
+            tags: ["客观题", "单选题", "GESP4级", "递推", "斐波那契数列"]
         },
         {
             id: 10,
@@ -611,40 +610,38 @@ C++ 异常处理的执行路径：\`try\` 块中 \`throw\` 后，程序沿调用
         },
         {
             id: 15,
-            sourceIntegrity: 'not-official-question',
-            integrityNote: "对照官方真题 PDF，本站此题与原卷第 15 题不一致（原卷该题答案为 A，本站选项与题干均不同）。本题可作为练习使用，但不代表原卷真题内容，待逐题回填原卷后移除此标记。",
             type: "single",
-            question: `GESP 4 级认证不包含下列哪个知识点（ ）。`,
-            options: ["一维数组", "结构体", "动态规划", "函数嵌套调用"],
-            answer: 2,
+            question: `运行下面的代码，将出现什么情况？（ ）\n\`\`\`cpp\ndouble hmean(double a, double b) {\n    if (a == -b)\n        throw runtime_error("Runtime error occurred");\n    return 2.0 * a * b / (a + b);\n}\n\nint main() {\n    double x = 10;\n    double y = -10;\n\n    try {\n        int result = hmean(x, y);\n        cout << "hmean: " << result << endl;\n    }\n    catch (const runtime_error& e) {\n        cout << "Caught: " << e.what() << endl;\n    } catch (...) {\n        cout << "Caught an unknown exception." << endl;\n    }\n    return 0;\n}\n\`\`\``,
+            options: [
+                "屏幕上输出 Caught: Runtime error occurred",
+                "屏幕上输出 Caught an unknown exception",
+                "程序调用 std::terminate()",
+                "编译错误"
+            ],
+            answer: 0,
             score: 2,
-            explanation: `**答案：C (动态规划)**
+            sourceVerified: true,
+            sourcePage: 6,
+            sourcePages: [6, 7],
+            sourceUrl: "https://raw.githubusercontent.com/Dora321/gesp-official-pdfs/main/pdfs/2024%E5%B9%B412%E6%9C%88-C%2B%2B4%E7%BA%A7.pdf",
+            reviewedBy: "Codex",
+            reviewedAt: "2026-07-27",
+            explanation: `**答案：A**
 
 **核心解析：**
-GESP C++ 各级别考察的知识点范围由官方大纲明确规定。4 级考试的核心知识点包括：
-- 基本语法与程序结构；
-- 一维数组与简单二维数组；
-- 结构体（自定义数据类型）；
-- 函数定义、调用与嵌套调用；
-- 递归基础；
-- 基础算法（排序、二分查找等）；
-- 异常处理基础。
+调用 \`hmean(10, -10)\` 时，条件 \`a == -b\` 成立，因此函数抛出一个 \`runtime_error\` 对象。控制流立即离开 \`hmean\` 和 \`try\` 块，由第一个类型匹配的 \`catch (const runtime_error& e)\` 捕获。随后 \`e.what()\` 返回构造异常时传入的消息。
 
 **选项逐项分析：**
-- **A (一维数组)**：❌ 错误。一维数组是 1-3 级的重点内容，4 级要求熟练掌握并在复杂题目中应用。
-- **B (结构体)**：❌ 错误。结构体是 3-4 级的核心考点，要求理解结构体的定义、成员的访问以及在函数中的应用。
-- **C (动态规划)**：✅ 正确。动态规划（Dynamic Programming）是 6 级及以上的高阶考点，涉及最优子结构与重叠子问题的识别，4 级大纲中不包含此内容。
-- **D (函数嵌套调用)**：❌ 错误。函数嵌套调用是 4 级的核心考点，要求理解参数传递、返回值处理以及多层调用栈的概念。
+- **A**：\`runtime_error\` 与第一个 \`catch\` 精确匹配，输出异常消息。
+- **B**：\`catch (...)\` 只有在前面的具体类型均不匹配时才会执行。
+- **C**：异常已被匹配的处理器捕获，不会调用 \`std::terminate()\`。
+- **D**：在已包含所需头文件并使用相应命名空间的题目上下文中，代码可以编译。
 
 **易错提醒：**
-- GESP 各级别知识点的划分是考试重点，备考时应以官方大纲为依据，不要超纲学习但也不要遗漏前置知识点。
-- 动态规划是 6 级内容，但其前置知识（如递归、数组）分布在 4-5 级，需循序渐进。
+异常处理器按书写顺序匹配，因此具体异常类型应放在 \`catch (...)\` 之前；后者通常作为兜底处理器。
 
-**知识延伸：**
-GESP 4 级可视为 C++ 语法与基础算法的分水岭，5 级引入搜索（图、DFS、BFS），6 级引入动态规划与复杂数据结构。
-
-**考点：** GESP C++ 等级考试大纲知识点分布`,
-            tags: ["客观题", "单选题", "GESP4级"]
+**考点：** 异常抛出、\`catch\` 类型匹配、\`what()\``,
+            tags: ["客观题", "单选题", "GESP4级", "异常处理"]
         },
         {
             id: 16,

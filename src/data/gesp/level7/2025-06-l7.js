@@ -193,8 +193,6 @@ cout << a;
         },
         {
             id: 4,
-            sourceIntegrity: 'contaminated-stem',
-            integrityNote: "题干在录入时串入了其他题目的代码或答案表片段，已清理但仍需对照原卷复核。",
             type: "single",
             question: `下列 C++ 代码的输出是（ ）。
 
@@ -207,33 +205,34 @@ int main() {
     cout << p[3] << endl;
     return 0;
 }
-\`\`\`
-
-> ⚠️ 本站源文件此处曾串入另一题的代码（\`char a = 'b' ^ 4;\`），与本题选项和标准答案均不匹配。上方代码依据本题选项（6/8）、标准答案与解析重建，待对照官方 PDF 复核。`,
+\`\`\``,
             options: [
                 "6",
                 "8",
-                "编译出错，无法运⾏。",
-                "不确定，可能发生运⾏时异常。",
+                "编译出错，无法运行。",
+                "不确定，可能发生运行时异常。",
             ],
             answer: 3,
             score: 2,
+            sourceVerified: true,
+            sourcePage: 1,
+            sourceUrl: 'https://gesp.ccf.org.cn/101/attach/1687196062973984.pdf',
+            reviewedBy: '本站校订',
+            reviewedAt: '2026-07-27',
             explanation: `**答案：D（不确定，可能发生运行时异常。）**
 
-本题实际程序为：
-\`\`\`cpp
-int arr[5] = {2, 4, 6, 8, 10};
-int * p = arr + 2;
-cout << p[3] << endl;
-\`\`\`
-\`arr\` 首地址为下标 0（元素 2），\`p = arr + 2\` 指向下标 2（元素 6），即 \`p[0]\`。于是 \`p[1]\`=8、\`p[2]\`=10、\`p[3]\` 对应 \`arr[5]\`，已超出数组 \`arr[0..4]\` 的合法范围，属于越界访问。越界读取是未定义行为（UB），可能输出随机值、也可能运行时崩溃，因此结果“不确定”。
-- A/B：6、8 分别是 \`p[0]\`、\`p[1]\`，并非 \`p[3]\`。
-- C：语法上 \`p[3]\` 合法，不会编译出错。
-- D：正确，越界访问为 UB，结果不确定。
+\`p = arr + 2\` 使 \`p\` 指向 \`arr[2]\`，也就是元素 6。数组下标等价于指针运算，因此：
 
-**注**：源文件本题题干内嵌的代码文本（\`char a = 'b' ^ 4;\`）与选项中的 6/8 不匹配，应为录入串味；以上按选项与标准答案所对应的“指针越界”题意解析。
+- \`p[0]\` 是 \`arr[2]\`，值为 6；
+- \`p[1]\` 是 \`arr[3]\`，值为 8；
+- \`p[2]\` 是 \`arr[4]\`，值为 10；
+- \`p[3]\` 等价于 \`arr[5]\`，已经越过合法范围 \`arr[0]..arr[4]\`。
 
-**考点**：指针偏移、数组下标越界与未定义行为。`,
+形成指向数组末尾后一个位置的指针本身是允许的，但解引用该位置属于未定义行为。程序语法正确，通常可以通过编译；运行时可能输出任意值，也可能异常终止，所以 A、B、C 都不能保证，D 正确。
+
+**易错点**：\`p[3]\` 不是从数组首元素计算，而是从 \`p\` 当前指向的 \`arr[2]\` 再向后移动 3 个元素。
+
+**原卷核验**：题干见官方 PDF 第 1 页，完整代码与选项见第 2 页；答案表见第 1 页。`,
             tags: [
                 "客观题",
                 "单选题",
@@ -242,23 +241,24 @@ cout << p[3] << endl;
         },
         {
             id: 5,
-            sourceIntegrity: 'options-reconstructed',
-            integrityNote: "原卷选项在本站源文件中为占位文本，现有选项按标准答案反推补写，并非原卷原文。",
             type: "single",
-            question: `假定只有一个根节点的树的深度为 ，则一棵有 个节点的完全二叉树，则树的深度为( )。`,
+            question: `假定只有一个根节点的树的深度为 1，则一棵有 $N$ 个节点的完全二叉树，其深度为（ ）。`,
             options: [
-                "⌊log₂(n)⌋ + 1",
-                "⌊log₂(n)⌋",
-                "⌈log₂(n)⌉",
-                "2⌊log₂(n)⌋",
-],
+                "⌊log₂(N)⌋ + 1",
+                "⌊log₂(N)⌋",
+                "⌈log₂(N)⌉",
+                "不能确定",
+            ],
             answer: 0,
             score: 2,
+            sourceVerified: true,
+            sourcePage: 2,
+            sourceUrl: "https://gesp.ccf.org.cn/101/attach/1687196062973984.pdf",
+            reviewedBy: "本站校订",
+            reviewedAt: "2026-07-27",
             explanation: `**答案：A（⌊log₂(N)⌋ + 1）**
 
 完全二叉树中，根节点深度记为 1。对深度为 \`h\` 的完全二叉树，其节点数 \`N\` 满足 \`2^(h-1) ≤ N ≤ 2^h - 1\`。由 \`2^(h-1) ≤ N\` 得 \`h-1 ≤ log₂N\`，即 \`h ≤ log₂N + 1\`；又 \`N ≤ 2^h - 1 < 2^h\` 得 \`h > log₂N\`，故 \`h = ⌊log₂N⌋ + 1\`。等价地，最后一层最右节点编号为 \`N\`，其层号为 \`⌊log₂N⌋ + 1\`，即整棵树深度。
-
-**注**：源文件本题四个选项为占位文本（…/选项B/。/不能确定。），此处按标准答案 A 对应的数学式 \`⌊log₂(N)⌋+1\` 解析。
 
 **考点**：完全二叉树深度的计算。`,
             tags: [
@@ -346,10 +346,8 @@ cout << p[3] << endl;
         },
         {
             id: 8,
-            sourceIntegrity: 'contaminated-stem',
-            integrityNote: "题干在录入时串入了其他题目的代码或答案表片段，已清理但仍需对照原卷复核。",
             type: "single",
-            question: `一个连通的简单有向图，共有28条边，则该图⾄少有( )个顶点。`,
+            question: `一个连通的简单有向图，共有 28 条边，则该图至少有（ ）个顶点。`,
             options: [
                 "5",
                 "6",
@@ -358,16 +356,21 @@ cout << p[3] << endl;
             ],
             answer: 1,
             score: 2,
+            sourceVerified: true,
+            sourcePage: 2,
+            sourceUrl: 'https://gesp.ccf.org.cn/101/attach/1687196062973984.pdf',
+            reviewedBy: '本站校订',
+            reviewedAt: '2026-07-27',
             explanation: `**答案：B（6）**
 
-n 个顶点的简单有向图（无自环、无重边、边有方向）最多有 \`n(n-1)\` 条边（每对顶点间最多一条有向边）。要使顶点数最少，应让边数尽量“撑满”：
-- n=5：最多 \`5×4 = 20\` 条边 < 28，不够；
-- n=6：最多 \`6×5 = 30\` 条边 ≥ 28，可行。
-又要求图**连通**（任意两顶点间有向路径），6 个顶点构成强连通图只需 6 条边即可，而 28 条边完全能在 6 顶点内安排且保持连通。故至少 6 个顶点。
+简单有向图没有自环和重边。对任意一对不同顶点 \`u, v\`，最多同时存在 \`u -> v\` 和 \`v -> u\` 两条有向边，因此 n 个顶点最多有 \`n(n - 1)\` 条边。
 
-**注**：源文件本题 A 选项文本串入了无关代码，按题意“连通简单有向图 28 条边”解析，答案为 6。
+- 当 \`n = 5\` 时，最多有 \`5 * 4 = 20\` 条边，容纳不了 28 条边；
+- 当 \`n = 6\` 时，最多有 \`6 * 5 = 30\` 条边。由 6 个顶点的完全有向图删去两条边，仍可保持连通，所以 28 条边可以实现。
 
-**考点**：简单有向图边数的上界与连通性。`,
+因此满足 \`n(n - 1) >= 28\` 的最小整数是 6。连通条件不会把最小值提高到 7；容易误用的 \`n(n - 1) / 2\` 是简单无向图的边数上界。
+
+**原卷核验**：题干与 A 选项见官方 PDF 第 2 页，其余选项见第 3 页；答案表见第 1 页。`,
             tags: [
                 "客观题",
                 "单选题",
@@ -466,23 +469,25 @@ int main() { cout << fib(6) << endl; }
         },
         {
             id: 12,
-            sourceIntegrity: 'options-reconstructed',
-            integrityNote: "原卷选项在本站源文件中为占位文本，现有选项按标准答案反推补写，并非原卷原文。",
             type: "single",
-            question: `下面程序的时间复杂度为（ ）。 #include <iostream> using namespace std; int rec_fib[100]; int fib(int n) { if (n <= 1) return n; if (rec_fib[n] == 0) rec_fib[n] = fib(n-1)+fib(n-2); return rec_fib[n]; } int main() { cout << fib(6) << endl; return 0; } 1 2 3 4 5 6 7 8 9 10 11 12 13 14 int rec_fib[MAX_N]; int fib(int n) { if (n <= 1) return n; if (rec_fib[n] == 0) rec_fib[n] = fib(n-1)+fib(n-2); return rec_fib[n]; } 1 2 3 4 5 6 7 8`,
+            question: `下面程序的时间复杂度为（ ）。\n\`\`\`cpp\nint rec_fib[MAX_N];\nint fib(int n) {\n    if (n <= 1)\n        return n;\n    if (rec_fib[n] == 0)\n        rec_fib[n] = fib(n - 1) + fib(n - 2);\n    return rec_fib[n];\n}\n\`\`\``,
             options: [
-                "O(n²)",
                 "O(2ⁿ)",
-                "O(n log n)",
+                "O(φⁿ)，其中 φ = (√5 - 1) / 2",
+                "O(n²)",
                 "O(n)",
-],
+            ],
             answer: 3,
             score: 2,
+            sourceVerified: true,
+            sourcePage: 3,
+            sourcePages: [3, 4],
+            sourceUrl: "https://gesp.ccf.org.cn/101/attach/1687196062973984.pdf",
+            reviewedBy: "本站校订",
+            reviewedAt: "2026-07-27",
             explanation: `**答案：D（时间复杂度 O(n)）**
 
 同一段记忆化 \`fib\` 程序（全局数组 \`rec_fib\` 缓存已算结果）：每次调用 \`fib(k)\`，若 \`rec_fib[k]\` 已算则 \`O(1)\` 直接返回；否则只向下递归 \`fib(k-1)\`、\`fib(k-2)\`，但 \`fib(k-1)\` 算完后 \`fib(k-2)\` 已被缓存。故每个 \`k∈[0,n]\` 实际只被“真正计算”一次，总访问次数 \`O(n)\`，整体时间复杂度 **O(n)**。
-
-**注**：源文件本题选项为占位文本（……），此处按标准答案 D 对应的“O(n)”解析；朴素（无记忆化）斐波那契才是 \`O(2ⁿ)\`。
 
 **考点**：记忆化动态规划的时间复杂度分析。`,
             tags: [
@@ -493,26 +498,27 @@ int main() { cout << fib(6) << endl; }
         },
         {
             id: 13,
-            sourceIntegrity: 'options-reconstructed',
-            integrityNote: "原卷选项在本站源文件中为占位文本，现有选项按标准答案反推补写，并非原卷原文。",
             type: "single",
-            question: `下面search 函数的平均时间复杂度为 ( ) 。`,
+            question: `下面 \`search\` 函数的平均时间复杂度为（ ）。\n\`\`\`cpp\nint search(int n, int* p, int target) {\n    int low = 0, high = n;\n    while (low < high) {\n        int middle = (low + high) / 2;\n        if (target == p[middle]) {\n            return middle;\n        } else if (target > p[middle]) {\n            low = middle + 1;\n        } else {\n            high = middle;\n        }\n    }\n    return -1;\n}\n\`\`\``,
             options: [
-                "O(n)",
-                "O(n²)",
-                "O(log n)",
                 "O(n log n)",
-],
+                "O(n)",
+                "O(log n)",
+                "O(1)",
+            ],
             answer: 2,
             score: 2,
+            sourceVerified: true,
+            sourcePage: 4,
+            sourceUrl: "https://gesp.ccf.org.cn/101/attach/1687196062973984.pdf",
+            reviewedBy: "本站校订",
+            reviewedAt: "2026-07-27",
             explanation: `**答案：C（平均时间复杂度 O(log n)）**
 
 所给 \`search\` 为二分查找：在 \`[low, high)\` 区间内反复取中点 \`middle = (low+high)/2\`，比较 \`p[middle]\` 与 \`target\`，相等即返回，否则把区间折半（左半或右半）。每次循环区间长度减半，至多进行 \`⌈log₂(n+1)⌉\` 次比较，故时间复杂度 \`O(log n)\`；平均（成功/失败）比较次数同为 \`O(log n)\` 量级。
-- A：O(n) 是顺序查找的复杂度，不符。
-- B：O(n log n) 常见于排序，不符。
+- A：O(n log n) 常见于高效比较排序，不符。
+- B：O(n) 是顺序查找的复杂度，不符。
 - D：O(1) 仅在特例（如哈希）成立，二分查找不是。
-
-**注**：源文件本题选项为占位文本，按标准答案 C 对应的“O(log n)”解析。
 
 **考点**：二分查找的时间复杂度。`,
             tags: [
@@ -523,23 +529,24 @@ int main() { cout << fib(6) << endl; }
         },
         {
             id: 14,
-            sourceIntegrity: 'options-reconstructed',
-            integrityNote: "原卷选项在本站源文件中为占位文本，现有选项按标准答案反推补写，并非原卷原文。",
             type: "single",
-            question: `下面程序的时间复杂度为（ ）。`,
+            question: `下面程序的时间复杂度为（ ）。\n\`\`\`cpp\nint primes[MAXP], num = 0;\nbool isPrime[MAXN] = {false};\nvoid sieve() {\n    for (int n = 2; n <= MAXN; n++) {\n        if (!isPrime[n])\n            primes[num++] = n;\n        for (int i = 0; i < num && n * primes[i] <= MAXN; i++) {\n            isPrime[n * primes[i]] = true;\n            if (n % primes[i] == 0)\n                break;\n        }\n    }\n}\n\`\`\``,
             options: [
                 "O(n)",
                 "O(n log n)",
+                "O(n log log n)",
                 "O(n²)",
-                "O(log n)",
-],
+            ],
             answer: 0,
             score: 2,
+            sourceVerified: true,
+            sourcePage: 4,
+            sourceUrl: "https://gesp.ccf.org.cn/101/attach/1687196062973984.pdf",
+            reviewedBy: "本站校订",
+            reviewedAt: "2026-07-27",
             explanation: `**答案：A（时间复杂度 O(n)）**
 
 所给 \`sieve\` 是欧拉筛（线性筛）：外层 \`n\` 从 2 到 \`MAXN\`，若 \`n\` 未被标记则为素数存入 \`primes\`；内层用已得素数 \`primes[i]\` 标记 \`n*primes[i]\` 为合数，且当 \`n % primes[i] == 0\` 时 \`break\`。关键性质：每个合数**只被它的最小质因子标记一次**，故总标记次数 \`O(MAXN)\`，整体时间复杂度 **O(n)**（线性）。
-
-**注**：源文件本题选项为占位文本，按标准答案 A 对应的“O(n)”解析；普通埃氏筛为 \`O(n log log n)\`。
 
 **考点**：欧拉筛（线性筛）的原理与时间复杂度。`,
             tags: [
@@ -550,12 +557,10 @@ int main() { cout << fib(6) << endl; }
         },
         {
             id: 15,
-            sourceIntegrity: 'missing-figure',
-            integrityNote: "原卷该题依赖一张无向图配图，官方 PDF 未提供；同页两段文本代码（二分查找、素数筛）均属于其他试题。",
             type: "single",
-            question: `下列选项中，哪个不可能是下图的⼴度优先遍历序列（ ）。
+            question: `下列选项中，哪个不可能是下图的广度优先遍历序列（ ）。
 
-> ⚠️ 原卷此处配有一张无向图，本站源文件未包含该图，因此无法据题作答；下方解析按标准答案与 BFS 层序原理反推。`,
+![题目中的有向图](/question-assets/2025-06-l7/q15-graph.png)`,
             options: [
                 "1, 2, 4, 5, 3, 7, 6, 8, 9",
                 "1, 2, 5, 4, 3, 7, 8, 6, 9",
@@ -564,13 +569,19 @@ int main() { cout << fib(6) << endl; }
             ],
             answer: 1,
             score: 2,
+            sourceVerified: true,
+            sourcePage: 4,
+            sourcePages: [4, 5],
+            sourceUrl: "https://gesp.ccf.org.cn/101/attach/1687196062973984.pdf",
+            reviewedBy: "本站校订",
+            reviewedAt: "2026-07-27",
             explanation: `**答案：B（1, 2, 5, 4, 3, 7, 8, 6, 9）**
 
-广度优先遍历（BFS）要求：从起点出发，**同一层（同距离）的节点必须全部访问完，才能进入下一层**；同层内顺序可因邻接表顺序不同而变化。
-- A（1,2,4,5,3,7,6,8,9）、C（1,4,5,2,7,3,8,6,9）、D（1,5,4,2,7,3,8,6,9）均可由某种合法的层内顺序得到。
-- B（1,2,5,4,3,…）中，第 1 层节点尚未排完就出现了应属更外层的节点（如 3），违反“先满层再进层”的规则，故**不可能**是 BFS 序列。
+从 1 出发，第一层可到达的节点是 2、4、5，它们的先后顺序可以随邻接表顺序变化，但必须先于第二层节点出队。
 
-**注**：源文件未包含原图配图，且题干内嵌了无关的素数筛代码，以上按标准答案 B（即“不可能的序列”）结合 BFS 层序原理解析。
+- 若序列以 \`1, 2, ...\` 开始，处理节点 2 时会发现节点 3，并将其排在后来处理 5、4 所发现的新节点之前。
+- 选项 B 却把由 5 或 4 发现的节点 7、8 排在 3 前面，因此不可能由 BFS 得到。
+- A、C、D 均能通过调整同层邻接点的访问顺序产生。
 
 **考点**：广度优先遍历的层序约束。`,
             tags: [

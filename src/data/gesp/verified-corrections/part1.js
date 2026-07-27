@@ -209,12 +209,6 @@ void mergeSort(vector<int>& arr, vector<int>& temp, int l, int r) {
         return search(root->right, target);
     }
 }`),
-      14: q(4, `int gcd(int a, int b) {
-    while (b != 0) {
-        ______________________
-    }
-    return a;
-}`),
     },
   },
 '2024-09-l6': {

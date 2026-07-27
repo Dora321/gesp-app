@@ -11,6 +11,7 @@ const ResultDialog = ({
   objectiveCorrectCount,
   objectiveWrongCount,
   programmingMarkedCount,
+  excludedObjectiveCount,
   onViewAnalysis,
   onBackToBank,
 }) => {
@@ -32,13 +33,14 @@ const ResultDialog = ({
         <div className="text-6xl font-black text-indigo-600 mb-2 font-mono tracking-tighter">
           {objectiveScore} <span className="text-2xl text-slate-400 font-normal">/ {objectiveScoreTotal}</span>
         </div>
-        <div className="grid grid-cols-4 gap-2 mb-8 mt-6">
+        <div className="grid grid-cols-2 gap-2 mb-6 mt-6 sm:grid-cols-5">
           <div className="bg-slate-50 p-3 rounded-lg"><div className="text-xs text-slate-400 uppercase">用时</div><div className="font-bold text-slate-700 font-mono">{formatTime(timeElapsed)}</div></div>
           <div className="bg-green-50 p-3 rounded-lg"><div className="text-xs text-green-600 uppercase">客观正确</div><div className="font-bold text-green-700">{objectiveCorrectCount}</div></div>
           <div className="bg-red-50 p-3 rounded-lg"><div className="text-xs text-red-600 uppercase">客观错误</div><div className="font-bold text-red-700">{objectiveWrongCount}</div></div>
           <div className="bg-violet-50 p-3 rounded-lg"><div className="text-xs text-violet-700 uppercase">编程已标记</div><div className="font-bold text-violet-700">{programmingMarkedCount}</div></div>
+          <div className="bg-orange-50 p-3 rounded-lg"><div className="text-xs text-orange-700 uppercase">不计分题</div><div className="font-bold text-orange-700">{excludedObjectiveCount}</div></div>
         </div>
-        <p className="text-sm text-slate-500 mb-6">编程题当前不支持自动判分，请结合解析模式或人工评阅继续复盘。</p>
+        <p className="text-sm text-slate-500 mb-6">编程题不自动判分；题面待核验的客观题也不计入分数，请结合官方原卷复盘。</p>
         <div className="flex gap-3">
           <button onClick={onViewAnalysis} className="flex-1 py-3 bg-slate-100 text-slate-700 rounded-xl font-bold hover:bg-slate-200 transition-colors">查看解析</button>
           <button onClick={onBackToBank} className="flex-1 py-3 bg-indigo-600 text-white rounded-xl font-bold hover:bg-indigo-700 transition-colors">返回题库</button>
