@@ -225,7 +225,7 @@ const HumanCompiler = () => {
 const TrapVisualizer = () => {
   const [nInput, setNInput] = useState(21);
 
-  let output = "";
+  let output;
   let step1 = false;
   let step2 = false;
 

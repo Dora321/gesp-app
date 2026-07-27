@@ -35,6 +35,30 @@ let browser;
 
 const wait = (ms) => new Promise((resolve) => setTimeout(resolve, ms));
 
+// Papers get verified one by one, so hardcoding an id for the "unverified paper"
+// assertions goes stale the moment that paper is reviewed. Pick one from the
+// registry instead, matching the same condition the UI uses (`answerVerified`).
+async function pickUnverifiedPaper() {
+  const path = require('path');
+  const { pathToFileURL } = require('url');
+  const load = (rel) => import(pathToFileURL(path.resolve(__dirname, rel)).href);
+  const [{ paperMeta }, { resolveVerification }] = await Promise.all([
+    load('../src/data/gesp/index.js'),
+    load('../src/data/gesp/verificationModel.js'),
+  ]);
+
+  const candidate = Object.entries(paperMeta)
+    .map(([id, meta]) => ({ id, ...meta }))
+    .filter((meta) => !meta.unofficial && meta.questionCount > 0)
+    .filter((meta) => resolveVerification(meta).dimensions.answer !== 'verified')
+    .sort((a, b) => a.id.localeCompare(b.id))[0];
+
+  if (!candidate) {
+    throw new Error('No unverified paper left; update the generic-hint assertions in this smoke test.');
+  }
+  return candidate;
+}
+
 function stopServer() {
   if (!server || server.exitCode !== null) return;
 
@@ -160,14 +184,15 @@ async function run() {
     throw new Error('Question bank flow should not render global floating widgets.');
   }
 
-  await page.goto(`${baseUrl}/question-bank/2/2026-03-l2`, { waitUntil: 'domcontentloaded' });
+  const unverifiedPaper = await pickUnverifiedPaper();
+  await page.goto(`${baseUrl}/question-bank/${unverifiedPaper.level}/${unverifiedPaper.id}`, { waitUntil: 'domcontentloaded' });
   await page.getByRole('button', { name: /解析模式/ }).click();
   await page.locator('.question-option').first().waitFor({ timeout: 10000 });
   await page.locator('.question-option').first().click();
   await page.getByText('通用解题提示', { exact: true }).first().waitFor({ timeout: 10000 });
   await page.getByText(/题库答案（尚未完成核验）/).waitFor({ timeout: 10000 });
   if (await page.getByText('选项逐项分析', { exact: false }).count()) {
-    throw new Error('Unverified papers must not render inferred option-by-option analysis.');
+    throw new Error(`Unverified paper ${unverifiedPaper.id} must not render inferred option-by-option analysis.`);
   }
 
   await page.goto(baseUrl, { waitUntil: 'domcontentloaded' });

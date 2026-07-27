@@ -1,6 +1,7 @@
 import { useState } from 'react';
 import { RotateCcw, Trophy, ArrowRight, StopCircle, CheckCircle } from 'lucide-react';
 import { Icon } from './Shared';
+import { StorySlide, MatryoshkaSlide, CodeSlide, RocketSlide, StairsSlide } from './RecursionSlides';
 
 export const RecursionSlide = () => {
     const [activeTab, setActiveTab] = useState('story');

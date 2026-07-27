@@ -1,5 +1,6 @@
 import { useState } from 'react';
 import { Book, Calculator, Code, Play, ChevronRight, Star, Zap, Trophy, MousePointerClick, Clock } from 'lucide-react';
+import { CaseCard } from './PracticeModules';
 
 export const OverviewSection = ({ changeTab }) => (
   <div className="space-y-8 animate-fade-in">
