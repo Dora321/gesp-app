@@ -209,11 +209,13 @@ const AIChatWidget = ({ onClose }) => {
         document.removeEventListener('mouseup', stopResize);
     };
 
-    // API keys are scoped to this browser tab. Remove the legacy persistent copy.
+    // Persist the API key in this browser and migrate any existing session-only key.
     useEffect(() => {
-        const savedKey = sessionStorage.getItem(API_KEY_STORAGE_KEY);
-        localStorage.removeItem(API_KEY_STORAGE_KEY);
+        const savedKey = localStorage.getItem(API_KEY_STORAGE_KEY)
+            || sessionStorage.getItem(API_KEY_STORAGE_KEY);
         if (savedKey) {
+            localStorage.setItem(API_KEY_STORAGE_KEY, savedKey);
+            sessionStorage.removeItem(API_KEY_STORAGE_KEY);
             setApiKey(savedKey);
         }
 
@@ -262,8 +264,8 @@ const AIChatWidget = ({ onClose }) => {
     const saveApiKey = () => {
         const nextApiKey = tempApiKey.trim();
         if (nextApiKey) {
-            sessionStorage.setItem(API_KEY_STORAGE_KEY, nextApiKey);
-            localStorage.removeItem(API_KEY_STORAGE_KEY);
+            localStorage.setItem(API_KEY_STORAGE_KEY, nextApiKey);
+            sessionStorage.removeItem(API_KEY_STORAGE_KEY);
             setApiKey(nextApiKey);
             setShowSettings(false);
             setTempApiKey('');
@@ -570,7 +572,7 @@ const AIChatWidget = ({ onClose }) => {
                             )}
                         </div>
                         <p id="deepseek-api-key-notice" className="mt-2 text-xs leading-5 text-slate-500">
-                            密钥仅保存在当前标签页会话中，关闭标签页后清除。提问时，密钥和对话内容由浏览器直接发送至 DeepSeek API，本网站服务器不接收或保存。
+                            密钥会保存在当前浏览器中，直到你点击“清除”或清理浏览器数据。请仅在私人设备上保存。提问时，密钥和对话内容由浏览器直接发送至 DeepSeek API，本网站服务器不接收或保存。
                         </p>
                     </div>
 
