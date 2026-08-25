@@ -43,6 +43,13 @@ const requiresCodeContent = (q, text) => (
   q.requiresCode === true || codePromptPatterns.some(pattern => pattern.test(text))
 );
 
+const isInlineExpressionQuestion = (q, text) => (
+  !q.code
+  && !/```/.test(text)
+  && /执行\s*(?:C\+\+\s*)?代码/u.test(text)
+  && !/(?:下面|下列|以下|如下|代码片段|程序段|横线|空白|阅读|分析)/u.test(text)
+);
+
 const paperIdToOfficialMarkdownFile = (paperId) => {
   const match = paperId.match(/^(\d{4})-(\d{2})-l([1-8])$/);
   if (!match) return '';
@@ -163,7 +170,7 @@ for (const file of paperFiles) {
 
     if (!hasCodeContent(question, text)) {
       gaps.push(row);
-    } else if (!hasStructuredCodeContent(question, text) && !question.sourceIntegrity) {
+    } else if (!hasStructuredCodeContent(question, text) && !isInlineExpressionQuestion(question, text) && !question.sourceIntegrity) {
       inline.push(row);
     }
   }
@@ -183,7 +190,7 @@ const templateString = (value) => `\`${String(value)
 const writeCorrections = (rows, filePath) => {
   const grouped = new Map();
   for (const row of rows) {
-    if (!row.code || !row.sourcePage) continue;
+    if (!row.code) continue;
     if (!grouped.has(row.paperId)) grouped.set(row.paperId, []);
     grouped.get(row.paperId).push(row);
   }

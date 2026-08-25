@@ -13,6 +13,28 @@ export const verifiedCorrectionsPart4 = {
 cout << Sum;`),
     },
   },
+  '2023-12-l5': {
+    sourceUrl: 'https://raw.githubusercontent.com/Dora321/gesp-official-pdfs/main/pdfs/2023%E5%B9%B412%E6%9C%88-C%2B%2B5%E7%BA%A7.pdf',
+    reviewedAt: '2026-08-25',
+    questions: {
+      11: q(5, `vector<int> operator +(vector<int> a, vector<int> b)
+{
+    vector<int> c;
+    int t = 0;
+
+    for (int i = 0; i < a.size() || i < b.size(); i++)
+    {
+        if (i < a.size()) t = t + a[i];
+        if (i < b.size()) t = t + b[i];
+        ____
+    }
+
+    if (t) c.push_back(t);
+
+    return c;
+}`),
+    },
+  },
   '2023-12-l6': {
     sourceUrl: 'https://raw.githubusercontent.com/Dora321/gesp-official-pdfs/main/pdfs/2023%E5%B9%B412%E6%9C%88-C%2B%2B6%E7%BA%A7.pdf',
     reviewedAt: '2026-08-25',

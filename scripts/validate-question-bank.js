@@ -87,6 +87,13 @@ const requiresCodeContent = (q, text) => (
   q.requiresCode === true || codePromptPatterns.some(pattern => pattern.test(text))
 );
 
+const isInlineExpressionQuestion = (q, text) => (
+  !q.code
+  && !/```/.test(text)
+  && /执行\s*(?:C\+\+\s*)?代码/u.test(text)
+  && !/(?:下面|下列|以下|如下|代码片段|程序段|横线|空白|阅读|分析)/u.test(text)
+);
+
 const paperIdToOfficialMarkdownFile = (paperId) => {
   const match = paperId.match(/^(\d{4})-(\d{2})-l([1-8])$/);
   if (!match) return '';
@@ -258,7 +265,13 @@ async function validateFile(filePath, cfg) {
         const issueKey = `${paperId}:Q${qId}`;
         if (officialMentionsCode && officialCodeLines >= 2 && !hasCodeContent(q, text)) {
           errors.push(`[OFFICIAL-CODE-MISSING] ${issueKey}: official Markdown contains code, but local question has no code content`);
-        } else if (officialMentionsCode && officialCodeLines >= 2 && !hasStructuredCodeContent(q, text) && !q.sourceIntegrity) {
+        } else if (
+          officialMentionsCode
+          && officialCodeLines >= 2
+          && !hasStructuredCodeContent(q, text)
+          && !isInlineExpressionQuestion(q, text)
+          && !q.sourceIntegrity
+        ) {
           warnings.push(`[OFFICIAL-CODE-INLINE] ${issueKey}: official Markdown contains multi-line code; prefer a fenced or independent code field locally`);
         }
       }
