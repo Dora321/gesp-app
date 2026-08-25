@@ -12,6 +12,7 @@ const __dirname = path.dirname(__filename);
 const root = path.join(__dirname, '..', 'src/data/gesp');
 const codeBaselinePath = path.join(__dirname, 'question-code-baseline.json');
 const updateCodeBaseline = process.argv.includes('--update-code-baseline');
+const officialMarkdownDir = process.env.GESP_OFFICIAL_MARKDOWN_DIR || '';
 const codeBaseline = new Set(
   fs.existsSync(codeBaselinePath)
     ? JSON.parse(fs.readFileSync(codeBaselinePath, 'utf8')).issues || []
@@ -63,10 +64,13 @@ const looksLikeCode = (value) => {
     && /\b(?:string|int|bool|double|char|auto|if|for|while|return|cout|cin|printf|scanf)\b|(?:<<|>>)/i.test(code);
 };
 
+const hasStructuredCodeContent = (q, text) => (
+  typeof q.code === 'string' && q.code.trim().length >= 3
+) || /```(?:cpp|c\+\+|c|text)?\s*\n[\s\S]{3,}?```/i.test(text);
+
 const hasCodeContent = (q, text) => {
   const content = text;
-  if (typeof q.code === 'string' && q.code.trim().length >= 3) return true;
-  if (/```(?:cpp|c\+\+|c|text)?\s*\n[\s\S]{3,}?```/i.test(content)) return true;
+  if (hasStructuredCodeContent(q, content)) return true;
   if (/\b(?:printf|scanf)\s*\([^)]{2,}\)|\b(?:cout|cin)\s*(?:<<|>>)|\b(?:if|for|while|switch)\s*\([^)]{1,}\)/i.test(content)) return true;
   if (/\b[A-Za-z_]\w*\s*(?:<<|>>)\s*(?:[A-Za-z_]\w*|\d+)/.test(content)) return true;
 
@@ -82,6 +86,73 @@ const hasCodeContent = (q, text) => {
 const requiresCodeContent = (q, text) => (
   q.requiresCode === true || codePromptPatterns.some(pattern => pattern.test(text))
 );
+
+const paperIdToOfficialMarkdownFile = (paperId) => {
+  const match = paperId.match(/^(\d{4})-(\d{2})-l([1-8])$/);
+  if (!match) return '';
+  const [, year, month, level] = match;
+  return `${year}年${Number(month)}月-C++${level}级.md`;
+};
+
+const extractOfficialObjectiveChunks = (markdown) => {
+  const normalized = markdown.replace(/\r\n/g, '\n');
+  const judgeIndex = normalized.search(/\n\s*判断题/u);
+  const programmingIndex = normalized.search(/\n\s*(?:编程题|三、?\s*编程题|3\s*\n\s*编程题)/u);
+  const singleSection = judgeIndex >= 0 ? normalized.slice(0, judgeIndex) : normalized;
+  const judgeSection = judgeIndex >= 0
+    ? normalized.slice(judgeIndex, programmingIndex >= 0 ? programmingIndex : undefined)
+    : '';
+
+  const chunks = new Map();
+  const collect = (section, offset, maxQuestionNumber) => {
+    const matches = [...section.matchAll(/第\s*(\d{1,2})\s*题/g)];
+    for (let i = 0; i < matches.length; i++) {
+      const num = Number(matches[i][1]);
+      if (!Number.isInteger(num) || num < 1 || num > maxQuestionNumber) continue;
+      const start = matches[i].index || 0;
+      const end = i + 1 < matches.length ? matches[i + 1].index : section.length;
+      const globalId = offset + num;
+      if (!chunks.has(globalId)) chunks.set(globalId, section.slice(start, end));
+    }
+  };
+
+  collect(singleSection, 0, 15);
+  collect(judgeSection, 15, 10);
+  return chunks;
+};
+
+const getOfficialQuestionChunks = (() => {
+  const cache = new Map();
+  return (paperId) => {
+    if (!officialMarkdownDir) return null;
+    if (cache.has(paperId)) return cache.get(paperId);
+
+    const filePath = path.join(officialMarkdownDir, paperIdToOfficialMarkdownFile(paperId));
+    if (!fs.existsSync(filePath)) {
+      cache.set(paperId, null);
+      return null;
+    }
+
+    const chunks = extractOfficialObjectiveChunks(fs.readFileSync(filePath, 'utf8'));
+    cache.set(paperId, chunks);
+    return chunks;
+  };
+})();
+
+const countOfficialCodeLines = (text) => {
+  const lines = String(text || '')
+    .split(/\r?\n/)
+    .map(line => line.trim())
+    .filter(Boolean)
+    .filter(line => !/^\d+$/.test(line))
+    .filter(line => !/^第\s*\d+\s*页/.test(line))
+    .filter(line => !/^[A-D]\./.test(line));
+
+  return lines.filter(line => (
+    /[;{}]/.test(line)
+    && /\b(?:string|int|bool|double|char|auto|if|for|while|return|cout|cin|printf|scanf)\b|(?:<<|>>)/i.test(line)
+  )).length;
+};
 
 async function validateFile(filePath, cfg) {
   const errors = [];
@@ -146,6 +217,7 @@ async function validateFile(filePath, cfg) {
 
   // Question validation
   const questions = paper.questions || [];
+  const officialQuestionChunks = getOfficialQuestionChunks(paperId);
   questions.forEach((q, index) => {
     const qId = q.id || `idx_${index}`;
     
@@ -175,6 +247,20 @@ async function validateFile(filePath, cfg) {
         inferredCodeIssues.push(issueKey);
         if (updateCodeBaseline || codeBaseline.has(issueKey)) warnings.push(`[CODE-BASELINE] ${message}`);
         else errors.push(`[CODE-NEW] ${message}`);
+      }
+    }
+
+    if (officialQuestionChunks && ['single', 'judge'].includes(q.type)) {
+      const officialText = officialQuestionChunks.get(Number(q.id));
+      if (officialText) {
+        const officialCodeLines = countOfficialCodeLines(officialText);
+        const officialMentionsCode = requiresCodeContent(q, officialText);
+        const issueKey = `${paperId}:Q${qId}`;
+        if (officialMentionsCode && officialCodeLines >= 2 && !hasCodeContent(q, text)) {
+          errors.push(`[OFFICIAL-CODE-MISSING] ${issueKey}: official Markdown contains code, but local question has no code content`);
+        } else if (officialMentionsCode && officialCodeLines >= 2 && !hasStructuredCodeContent(q, text) && !q.sourceIntegrity) {
+          warnings.push(`[OFFICIAL-CODE-INLINE] ${issueKey}: official Markdown contains multi-line code; prefer a fenced or independent code field locally`);
+        }
       }
     }
 

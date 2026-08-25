@@ -217,15 +217,15 @@ async function run() {
   await page.getByRole('button', { name: '打开 AI 问答助手' }).click();
   await page.getByRole('dialog', { name: 'AI 问答助手' }).waitFor({ timeout: 10000 });
   await page.getByRole('button', { name: '打开 AI 设置' }).click();
-  await page.getByLabel('DeepSeek API Key').fill('session-only-key');
+  await page.getByLabel('DeepSeek API Key').fill('persistent-key');
   await page.getByRole('button', { name: '保存', exact: true }).click();
 
   const savedApiKeyState = await page.evaluate(() => ({
     session: sessionStorage.getItem('deepseek_api_key'),
     persistent: localStorage.getItem('deepseek_api_key'),
   }));
-  if (savedApiKeyState.session !== 'session-only-key' || savedApiKeyState.persistent !== null) {
-    throw new Error(`AI API key storage is not session-only: ${JSON.stringify(savedApiKeyState)}`);
+  if (savedApiKeyState.session !== null || savedApiKeyState.persistent !== 'persistent-key') {
+    throw new Error(`AI API key storage is not persistent-only: ${JSON.stringify(savedApiKeyState)}`);
   }
 
   await page.getByRole('button', { name: '打开 AI 设置' }).click();

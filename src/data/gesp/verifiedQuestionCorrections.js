@@ -2,15 +2,32 @@ import { q } from './verifiedQuestionCorrectionHelpers.js';
 import { verifiedCorrectionsPart1 } from './verified-corrections/part1.js';
 import { verifiedCorrectionsPart2 } from './verified-corrections/part2.js';
 import { verifiedCorrectionsPart3 } from './verified-corrections/part3.js';
+import { verifiedCorrectionsPart4 } from './verified-corrections/part4.js';
 
 const REVIEWED_BY = '本站校订';
 const REVIEWED_AT = '2026-07-06';
 
-export const verifiedQuestionCorrections = {
-  ...verifiedCorrectionsPart1,
-  ...verifiedCorrectionsPart2,
-  ...verifiedCorrectionsPart3,
-};
+const mergeVerifiedCorrections = (...parts) => parts.reduce((merged, part) => {
+  for (const [paperId, correction] of Object.entries(part)) {
+    const current = merged[paperId] || {};
+    merged[paperId] = {
+      ...current,
+      ...correction,
+      questions: {
+        ...(current.questions || {}),
+        ...(correction.questions || {}),
+      },
+    };
+  }
+  return merged;
+}, {});
+
+export const verifiedQuestionCorrections = mergeVerifiedCorrections(
+  verifiedCorrectionsPart1,
+  verifiedCorrectionsPart2,
+  verifiedCorrectionsPart3,
+  verifiedCorrectionsPart4,
+);
 
 const CONTENT_AUDIT_REVIEWED_AT = '2026-07-14';
 

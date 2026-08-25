@@ -39,6 +39,7 @@ scripts/write_json.js
 # Build artifacts and scratch
 build_error*.txt
 scratch/
+.cache/
 
 # Visual-regression screenshots (baseline fingerprint JSON is committed; PNGs are local-only)
 screenshots/
