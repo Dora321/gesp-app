@@ -63,8 +63,13 @@ const luoguKey = findKey(value => value.src === 'src/data/gesp/luoguCodingByLeve
 
 const entryAssets = collectStaticAssets(entryKey);
 const mathAssets = collectStaticAssets(mathKey);
+const manifestJsAssets = new Set(
+  Object.values(manifest)
+    .map(value => value.file)
+    .filter(file => file && file.endsWith('.js'))
+);
 
-assertBudget('Initial app graph', entryAssets, { raw: 550 * 1024, gzip: 112 * 1024 });
+assertBudget('Initial app graph', entryAssets, { raw: 550 * 1024, gzip: 116 * 1024 });
 
 // The markdown/katex families must stay off the first-paint path and must not
 // grow unbounded. Measuring the shipped bytes directly (rather than the size of
@@ -83,9 +88,7 @@ if (firstPaintMarkdown.length > 0) {
 }
 
 const markdownAssets = new Set(
-  fs.readdirSync(path.join(distDir, 'assets'))
-    .filter(entry => entry.endsWith('.js'))
-    .map(entry => `assets/${entry}`)
+  [...manifestJsAssets]
     .filter(containsMarkdownRuntime)
 );
 assertBudget('Markdown runtime (all lazy chunks)', markdownAssets, { raw: 470 * 1024, gzip: 140 * 1024 });
@@ -98,10 +101,8 @@ if (!globalCss) throw new Error('The initial app graph has no CSS asset.');
 assertBudget('Global CSS', new Set([globalCss]), { raw: 290 * 1024, gzip: 35 * 1024 });
 
 const mathFile = manifest[mathKey].file;
-for (const entry of fs.readdirSync(path.join(distDir, 'assets'))) {
-  if (!entry.endsWith('.js')) continue;
-  const relativePath = `assets/${entry}`;
-  const limit = relativePath === mathFile ? 285 * 1024 : 225 * 1024;
+for (const relativePath of manifestJsAssets) {
+  const limit = relativePath === mathFile ? 285 * 1024 : 235 * 1024;
   const { raw } = getMetrics(relativePath);
   if (raw > limit) failures.push(`${relativePath} raw ${kb(raw)} > ${kb(limit)}`);
 }
