@@ -423,6 +423,8 @@ C 风格字符串和 C++ string 都以 \`\\0\` 结尾。\`strlen()\` 正是通�
         {
             id: 12,
             type: 'single',
+            sourceIntegrity: "missing-code",
+            integrityNote: "原卷此题引用的程序代码在录入时未收录，仅凭当前题面无法推导答案。本题已排除出计分与考点练习，待补齐原卷代码后恢复。",
             question: `想要计算从数字 n 到数字 m 之间（包含 n 和 m）有多少个数字 d 出现，下列程序哪个能够实现（ ）。`,
             options: [
                 'res 未初始化，且 for 从 n+1 开始，漏统计 n。',

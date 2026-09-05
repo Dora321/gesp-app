@@ -14,6 +14,7 @@ const ResultDialog = ({
   excludedObjectiveCount,
   onViewAnalysis,
   onBackToBank,
+  onOpenReview,
 }) => {
   const formatTime = (seconds) => {
     const m = Math.floor(seconds / 60);
@@ -40,11 +41,15 @@ const ResultDialog = ({
           <div className="bg-violet-50 p-3 rounded-lg"><div className="text-xs text-violet-700 uppercase">编程已标记</div><div className="font-bold text-violet-700">{programmingMarkedCount}</div></div>
           <div className="bg-orange-50 p-3 rounded-lg"><div className="text-xs text-orange-700 uppercase">不计分题</div><div className="font-bold text-orange-700">{excludedObjectiveCount}</div></div>
         </div>
-        <p className="text-sm text-slate-500 mb-6">编程题不自动判分；题面待核验的客观题也不计入分数，请结合官方原卷复盘。</p>
+        <p className="text-sm text-slate-500 mb-3">编程题不自动判分；题面待核验的客观题也不计入分数，请结合官方原卷复盘。</p>
+        <p className="text-sm text-slate-500 mb-6">本次成绩与错题已记入错题本，关掉这个窗口也不会丢。</p>
         <div className="flex gap-3">
           <button onClick={onViewAnalysis} className="flex-1 py-3 bg-slate-100 text-slate-700 rounded-xl font-bold hover:bg-slate-200 transition-colors">查看解析</button>
           <button onClick={onBackToBank} className="flex-1 py-3 bg-indigo-600 text-white rounded-xl font-bold hover:bg-indigo-700 transition-colors">返回题库</button>
         </div>
+        <button onClick={onOpenReview} className="mt-3 w-full py-3 rounded-xl font-bold text-indigo-700 hover:bg-indigo-50 transition-colors">
+          打开错题本
+        </button>
       </div>
     </div>
   );

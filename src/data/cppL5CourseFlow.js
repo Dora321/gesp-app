@@ -1,23 +1,7 @@
 import { createSequentialCourseSupport, defineCourse } from './courseSchema.js';
+import { cppL5Lessons } from './cppLessonTitles.js';
 
-export const cppL5Lessons = [
-  { id: 1, title: '第 1 课：素数大筛选 (埃氏/线性)' },
-  { id: 2, title: '第 2 课：公约数与公倍数 (GCD)' },
-  { id: 3, title: '第 3 课：超级计算器 (高精加减)' },
-  { id: 4, title: '第 4 课：超级计算器 (高精乘除)' },
-  { id: 5, title: '第 5 课：数论综合实战' },
-  { id: 6, title: '第 6 课：链表的诞生 (节点/指针)' },
-  { id: 7, title: '第 7 课：链表的增删改 (先连后断)' },
-  { id: 8, title: '第 8 课：复杂的链表 (双向/循环)' },
-  { id: 9, title: '第 9 课：链表综合应用 (约瑟夫环)' },
-  { id: 10, title: '第 10 课：猜数字的艺术 (二分查找)' },
-  { id: 11, title: '第 11 课：分而治之 (分治思想)' },
-  { id: 12, title: '第 12 课：眼下的最优 (贪心策略)' },
-  { id: 13, title: '第 13 课：递归的进阶 (记忆化)' },
-  { id: 14, title: '第 14 课：算法有多快？(复杂度)' },
-  { id: 15, title: '第 15 课：编程题专项训练' },
-  { id: 16, title: '第 16 课：全真模拟与技巧' },
-];
+export { cppL5Lessons } from './cppLessonTitles.js';
 
 const qualityByLesson = {
   1: {

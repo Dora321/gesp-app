@@ -1,6 +1,6 @@
 import React, { useMemo, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { BookOpen, Trophy, Clock, ChevronRight, Search, Award, Tag, BadgeCheck, CircleDashed, FileCheck2 } from 'lucide-react';
+import { BookOpen, Trophy, Clock, ChevronRight, Search, Award, Tag, BadgeCheck, CircleDashed, FileCheck2, NotebookPen } from 'lucide-react';
 import { paperIds, paperMeta } from '../data/gesp';
 import { paperStats } from '../data/gesp/_stats';
 import { DIMENSION_STATUS, VERIFICATION_DIMENSIONS, resolveVerification } from '../data/gesp/verificationModel';
@@ -63,6 +63,7 @@ const QuestionBankHome = () => {
                     officialUrl: meta.officialUrl,
                     mirrorUrl: meta.mirrorUrl,
                     unofficial: Boolean(meta.unofficial),
+                    integrityFlaggedCount: meta.integrityFlaggedCount || 0,
                     dimensions: resolveVerification(meta).dimensions,
                 };
             })
@@ -211,6 +212,12 @@ const QuestionBankHome = () => {
                                 >
                                     <Tag size={15} /> 按考点练习
                                 </button>
+                                <button
+                                    onClick={() => navigate('/question-bank/review')}
+                                    className="inline-flex items-center justify-center gap-2 rounded-lg border border-indigo-200 bg-indigo-50 px-4 py-2 text-sm font-bold text-indigo-700 shadow-sm transition hover:bg-indigo-100"
+                                >
+                                    <NotebookPen size={15} /> 错题本
+                                </button>
                                 <div className="relative w-full md:w-64">
                                     <Search className="absolute left-3 top-1/2 -translate-y-1/2 text-slate-400" size={16} />
                                     <input
@@ -272,6 +279,11 @@ const QuestionBankHome = () => {
                                             {paper.unofficial && (
                                                 <div className="px-2 py-1 rounded text-[11px] font-medium w-fit bg-slate-100 text-slate-600">
                                                     历史占位 · 非正式真题
+                                                </div>
+                                            )}
+                                            {paper.integrityFlaggedCount > 0 && (
+                                                <div className="px-2 py-1 rounded text-[11px] font-medium w-fit bg-orange-50 text-orange-800">
+                                                    {paper.integrityFlaggedCount} 题原卷内容缺失 · 不计分
                                                 </div>
                                             )}
                                         </div>

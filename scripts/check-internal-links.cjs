@@ -8,6 +8,7 @@ const routeRules = [
   /^\/$/,
   /^\/museum$/,
   /^\/question-bank$/,
+  /^\/question-bank\/review$/,
   /^\/question-bank\/[^/]+\/[^/]+$/,
   /^\/lesson\/[1-6]\/([1-9]|1[0-6])$/,
   /^\/ekart(\/(roadmap|toolbox|gallery|parent-portal))?$/,

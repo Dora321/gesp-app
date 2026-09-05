@@ -623,6 +623,8 @@ C++ 中逻辑运算符 \`&&\`、\`||\`、\`!\` 的操作数会隐式转换为 bo
         {
             id: 17,
             type: 'judge',
+            sourceIntegrity: "missing-code",
+            integrityNote: "原卷此题引用的程序代码在录入时未收录，仅凭当前题面无法推导答案。本题已排除出计分与考点练习，待补齐原卷代码后恢复。",
             question: `【题面按公开解析还原】C++ 程序执行后，输入 chen a dai，输出应该为：chen。`,
             options: ['正确', '错误'],
             answer: 0,

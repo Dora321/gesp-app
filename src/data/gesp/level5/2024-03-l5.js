@@ -294,6 +294,8 @@ export const paperData = {
         {
             id: 9,
             type: "single",
+            sourceIntegrity: "missing-code",
+            integrityNote: "原卷此题引用的程序代码在录入时未收录，仅凭当前题面无法推导答案。本题已排除出计分与考点练习，待补齐原卷代码后恢复。",
             question: `下面的代码片段用于判断一个正整数是否为素数。请对以下代码进行修改，使其能正确实现相应功能。（ ）。`,
             options: [
                 "num < 2 应该改为 num <= 2",

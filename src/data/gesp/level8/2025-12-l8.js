@@ -43,6 +43,8 @@ export const paperData = {
         {
             id: 2,
             type: "single",
+            sourceIntegrity: "missing-code",
+            integrityNote: "原卷此题引用的程序代码在录入时未收录，仅凭当前题面无法推导答案。本题已排除出计分与考点练习，待补齐原卷代码后恢复。",
             question: `下列代码实现了归并排序（ Merge Sort ）的分治部分。为了正确地将数组 a 的 [left, right] 区间进⾏ 排序，横线处应该填入的是（ ）。`,
             options: [
                 "merge_sort(a, mid, right)",
@@ -149,6 +151,8 @@ export const paperData = {
         {
             id: 6,
             type: "single",
+            sourceIntegrity: "missing-code",
+            integrityNote: "原卷此题引用的程序代码在录入时未收录，仅凭当前题面无法推导答案。本题已排除出计分与考点练习，待补齐原卷代码后恢复。",
             question: `下面程序使用动态规划求两个字符串的最长公共子序列（ LCS ）长度，横线处应填入的是（ ）。`,
             options: [
                 "$dp[i]$[j] = dp[i-1][j]+$dp[i]$[j-1];",
@@ -222,6 +226,8 @@ export const paperData = {
         {
             id: 9,
             type: "single",
+            sourceIntegrity: "missing-code",
+            integrityNote: "原卷此题引用的程序代码在录入时未收录，仅凭当前题面无法推导答案。本题已排除出计分与考点练习，待补齐原卷代码后恢复。",
             question: `下列代码的时间复杂度（以 为⾃变量，忽略常数与低阶项）是（ ）。`,
             options: [
                 "O(1)",
@@ -249,6 +255,8 @@ export const paperData = {
         {
             id: 10,
             type: "single",
+            sourceIntegrity: "missing-code",
+            integrityNote: "原卷此题引用的程序代码在录入时未收录，仅凭当前题面无法推导答案。本题已排除出计分与考点练习，待补齐原卷代码后恢复。",
             question: `下列程序实现了线性筛法（欧拉筛），用于在 时间内求出 之间的所有质数。为了保证每个合数 只被其最小质因子筛掉，横线处应填入的语句是（ ）。`,
             options: [
                 "i+primes[j] == n",
@@ -298,6 +306,8 @@ export const paperData = {
         {
             id: 12,
             type: "single",
+            sourceIntegrity: "missing-code",
+            integrityNote: "原卷此题引用的程序代码在录入时未收录，仅凭当前题面无法推导答案。本题已排除出计分与考点练习，待补齐原卷代码后恢复。",
             question: `当输入 6 时，下列程序的输出结果为（ ）。`,
             options: [
                 "14",
@@ -351,6 +361,8 @@ export const paperData = {
         {
             id: 14,
             type: "single",
+            sourceIntegrity: "missing-code",
+            integrityNote: "原卷此题引用的程序代码在录入时未收录，仅凭当前题面无法推导答案。本题已排除出计分与考点练习，待补齐原卷代码后恢复。",
             question: `当输入 2023 时，下列程序的输出结果为（ ）。`,
             options: [
                 "7",

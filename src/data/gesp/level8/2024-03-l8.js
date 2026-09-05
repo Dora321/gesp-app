@@ -341,6 +341,8 @@ r*r*t/2 - r*r*sin(t)/2 = r*r*(t - sin(t)) / 2
         {
             id: 10,
             type: "single",
+            sourceIntegrity: "missing-code",
+            integrityNote: "原卷此题引用的程序代码在录入时未收录，仅凭当前题面无法推导答案。本题已排除出计分与考点练习，待补齐原卷代码后恢复。",
             question: `下面程序的时间复杂度为（ ）。`,
             options: [
                 "O(1)",
@@ -367,6 +369,8 @@ r*r*t/2 - r*r*sin(t)/2 = r*r*(t - sin(t)) / 2
         {
             id: 11,
             type: "single",
+            sourceIntegrity: "missing-code",
+            integrityNote: "原卷此题引用的程序代码在录入时未收录，仅凭当前题面无法推导答案。本题已排除出计分与考点练习，待补齐原卷代码后恢复。",
             question: `下面程序的时间复杂度为（ ）。`,
             options: [
                 "O(1)",
@@ -393,6 +397,8 @@ r*r*t/2 - r*r*sin(t)/2 = r*r*(t - sin(t)) / 2
         {
             id: 12,
             type: "single",
+            sourceIntegrity: "missing-code",
+            integrityNote: "原卷此题引用的程序代码在录入时未收录，仅凭当前题面无法推导答案。本题已排除出计分与考点练习，待补齐原卷代码后恢复。",
             question: `下面程序的时间复杂度为（ ）。`,
             options: [
                 "int fib(int n) { if (n <= 1) return 1; return fib(n-1)+fib(n-2); } 1 2 3 4 5 int choose(int n, int m) { if (m == 0 || m == n) return 1; return choose(n-1, m-1)+choose(n-1, m); } 1 2 3 4 5 int primes[MAXP], num = 0; bool isPrime[MAXN] = {false}; void sieve() { for (int n = 2; n <= MAXN; n++) { if (!isPrime[n]) primes[num++] = n; for (int i = 0; i < num && n * primes[i] <= MAXN; i++) { isPrime[n * primes[i]] = true; if (n % primes[i] == 0) break; } } } 1 2 3 4 5 6 7 8 9 10 11 12 13",
@@ -421,6 +427,8 @@ r*r*t/2 - r*r*sin(t)/2 = r*r*(t - sin(t)) / 2
         {
             id: 13,
             type: "single",
+            sourceIntegrity: "missing-code",
+            integrityNote: "原卷此题引用的程序代码在录入时未收录，仅凭当前题面无法推导答案。本题已排除出计分与考点练习，待补齐原卷代码后恢复。",
             question: `下面程序的输出为（ ）。`,
             options: [
                 "4",
@@ -444,6 +452,8 @@ r*r*t/2 - r*r*sin(t)/2 = r*r*(t - sin(t)) / 2
         {
             id: 14,
             type: "single",
+            sourceIntegrity: "missing-code",
+            integrityNote: "原卷此题引用的程序代码在录入时未收录，仅凭当前题面无法推导答案。本题已排除出计分与考点练习，待补齐原卷代码后恢复。",
             question: `下面程序的输出为（ ）。`,
             options: [
                 "90",

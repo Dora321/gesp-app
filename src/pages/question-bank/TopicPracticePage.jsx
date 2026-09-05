@@ -79,6 +79,9 @@ export default function TopicPracticePage() {
                     <p className="text-emerald-50">
                         默认只使用正式试卷中题面完整的客观题，按知识点集中练习。
                     </p>
+                    <p className="mt-1 text-sm text-emerald-100/90">
+                        部分试卷未标注知识点，其考点归类由题面关键词自动推断，可能不够精确。
+                    </p>
                 </div>
             </div>
 
@@ -90,7 +93,7 @@ export default function TopicPracticePage() {
                             key={lv}
                             to={`/question-bank/topics/${lv}${includePending ? '?includePending=1' : ''}`}
                             className={`rounded-lg px-4 py-2 text-sm font-bold transition ${lv === level
-                                ? 'bg-emerald-600 text-white shadow'
+                                ? 'bg-emerald-700 text-white shadow'
                                 : 'bg-white text-slate-600 border border-slate-200 hover:border-emerald-300'}`}
                         >
                             {LEVEL_NAMES[lv - 1]}级
@@ -178,7 +181,7 @@ export default function TopicPracticePage() {
                                                 className="group inline-flex items-center gap-2 rounded-full border border-slate-200 bg-slate-50 px-4 py-2 text-sm font-bold text-slate-700 transition hover:border-emerald-400 hover:bg-emerald-50 hover:text-emerald-700"
                                             >
                                                 {tag}
-                                                <span className="rounded-full bg-white px-2 py-0.5 text-xs font-black text-slate-400 ring-1 ring-slate-200 group-hover:text-emerald-600 group-hover:ring-emerald-200">
+                                                <span className="rounded-full bg-white px-2 py-0.5 text-xs font-black text-slate-600 ring-1 ring-slate-200 group-hover:text-emerald-700 group-hover:ring-emerald-200">
                                                     {count}
                                                 </span>
                                             </button>

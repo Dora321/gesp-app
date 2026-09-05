@@ -32,9 +32,22 @@ const levelConfigs = [
 
 const badFragments = ['待复核', '？？', '图略', '原卷A', '原卷B', '原卷C', '原卷D'];
 
+// A demonstrative ("下面/以下/…") followed closely by a code artifact. The gap is
+// deliberately tight — only light modifiers such as "的", "这段", "C++" may sit
+// between them — because a loose gap matches prose questions that merely mention
+// a program in passing ("下列关于实现该程序时采用的控制结构…"), which legitimately
+// carry no code.
+const codeArtifactReference = '(?:以下|下列|下面|如下|上述)(?:\\s*的?\\s*(?:这段|这个|这份|该)?\\s*(?:C\\s*\\+\\+|C)?\\s*(?:语言)?\\s*)(?:代码|代码片段|代码段|程序|程序段|程序片段)';
+
 const codePromptPatterns = [
   /(?:以下|下列|下面|如下|给定|阅读|分析).{0,24}(?:C\+\+\s*)?(?:代码|代码片段|程序段).{0,32}(?:执行|运行|输出|结果|横线|空白|填入|改为|说法)/i,
   /(?:代码|代码片段|程序段).{0,32}(?:如下|执行后|运行后|输出|横线|空白|应填|改为|逻辑判定)/i,
+  // The two patterns above only recognise the literal words 代码/代码片段/程序段,
+  // so the very common higher-level phrasing "下面程序的输出为（ ）" slipped past
+  // the gate entirely — that blind spot is why 6–8 级 accumulated dozens of
+  // questions referring to programs the data never stored.
+  new RegExp(`${codeArtifactReference}[^。？\\n]{0,40}(?:执行|运行|输出|结果|横线|空白|填入|应填|改为|说法|实现|功能|作用|正确|错误|复杂度|返回|打印|描述)`, 'i'),
+  new RegExp(`(?:代码|代码片段|代码段|程序|程序段|程序片段)(?:\\s*的?\\s*)(?:如下|执行后|运行后)`, 'i'),
 ];
 
 const objectiveStemContaminationPatterns = [
@@ -85,6 +98,16 @@ const hasCodeContent = (q, text) => {
 
 const requiresCodeContent = (q, text) => (
   q.requiresCode === true || codePromptPatterns.some(pattern => pattern.test(text))
+);
+
+/** Does this question's stem promise the learner a code/program artifact? */
+export const questionReferencesCode = (question) => (
+  requiresCodeContent(question, String(question?.question || '').trim())
+);
+
+/** Does the question actually ship that artifact anywhere the UI can render it? */
+export const questionHasCodeContent = (question) => (
+  hasCodeContent(question, String(question?.question || '').trim())
 );
 
 const isInlineExpressionQuestion = (q, text) => (
@@ -244,10 +267,12 @@ async function validateFile(filePath, cfg) {
     if (requiresCodeContent(q, text) && !hasCodeContent(q, text)) {
       const message = `Q${qId}: question refers to code, but no fenced, inline, or independent code content was found`;
       if (q.requiresCode === true) errors.push(`[ERROR] ${message}`);
-      else if (q.sourceIntegrity === 'missing-figure') {
-        // Already recorded in the data as a known missing code image, and the UI
-        // warns the learner about it. Re-reporting it here would just be noise —
-        // the structured flag is a stronger record than the baseline file.
+      else if (q.sourceIntegrity === 'missing-figure' || q.sourceIntegrity === 'missing-code') {
+        // Already recorded in the data as a known missing code image/snippet, and
+        // the UI warns the learner about it. Re-reporting it here would just be
+        // noise — the structured flag is a stronger record than the baseline
+        // file, because it also removes the question from scoring and from topic
+        // practice instead of only silencing a build warning.
         warnings.push(`[CODE-FLAGGED] ${message}`);
       } else {
         const issueKey = `${paperId}:Q${qId}`;
@@ -299,6 +324,7 @@ async function validateFile(filePath, cfg) {
       const allowed = [
         'options-reconstructed',
         'missing-figure',
+        'missing-code',
         'contaminated-stem',
         'not-official-question',
         'answer-key-conflict',

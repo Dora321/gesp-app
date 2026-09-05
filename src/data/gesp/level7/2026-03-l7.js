@@ -203,6 +203,8 @@ export const paperData = {
         {
             id: 7,
             type: "single",
+            sourceIntegrity: "missing-code",
+            integrityNote: "原卷此题引用的程序代码在录入时未收录，仅凭当前题面无法推导答案。本题已排除出计分与考点练习，待补齐原卷代码后恢复。",
             question: `下面程序的运⾏结果为（ ）。`,
             options: [
                 "2",
@@ -226,6 +228,8 @@ export const paperData = {
         {
             id: 8,
             type: "single",
+            sourceIntegrity: "missing-code",
+            integrityNote: "原卷此题引用的程序代码在录入时未收录，仅凭当前题面无法推导答案。本题已排除出计分与考点练习，待补齐原卷代码后恢复。",
             question: `下面程序中，函数 query 的时间复杂度是（ ）。`,
             options: [
                 "O(n log n)",
@@ -299,6 +303,8 @@ int main() {
         {
             id: 10,
             type: "single",
+            sourceIntegrity: "missing-code",
+            integrityNote: "原卷此题引用的程序代码在录入时未收录，仅凭当前题面无法推导答案。本题已排除出计分与考点练习，待补齐原卷代码后恢复。",
             question: `下面程序的运⾏结果为（ ）。`,
             options: [
                 "10",

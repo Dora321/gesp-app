@@ -1,23 +1,7 @@
 import { createSequentialCourseSupport, defineCourse } from './courseSchema.js';
+import { cppL3Lessons } from './cppLessonTitles.js';
 
-export const cppL3Lessons = [
-  { id: 1, title: '第 1 课：变身数字魔术师 (进制)' },
-  { id: 2, title: '第 2 课：负数的真面目 (补码)' },
-  { id: 3, title: '第 3 课：位运算大冒险 (上)' },
-  { id: 4, title: '第 4 课：位运算大冒险 (下)' },
-  { id: 5, title: '第 5 课：一维数组的奥秘' },
-  { id: 6, title: '第 6 课：数组操作实战' },
-  { id: 7, title: '第 7 课：字符串魔法 (string)' },
-  { id: 8, title: '第 8 课：字符串进阶操作' },
-  { id: 9, title: '第 9 课：数组与字符串综合' },
-  { id: 10, title: '第 10 课：暴力破解 (枚举法)' },
-  { id: 11, title: '第 11 课：按部就班 (模拟法)' },
-  { id: 12, title: '第 12 课：加密与解密' },
-  { id: 13, title: '第 13 课：图形打印大师' },
-  { id: 14, title: '第 14 课：进制转换编程专场' },
-  { id: 15, title: '第 15 课：综合逻辑挑战' },
-  { id: 16, title: '第 16 课：全真模拟与避坑' },
-];
+export { cppL3Lessons } from './cppLessonTitles.js';
 
 const qualityByLesson = {
   1: {

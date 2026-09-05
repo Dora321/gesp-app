@@ -31,8 +31,16 @@ export function classifyExplanation(question) {
   const explanation = String(question?.explanation || '').trim();
   const categories = [];
 
-  if (TEMPLATE_PATTERNS.some(pattern => pattern.test(explanation))) {
+  const isTemplate = TEMPLATE_PATTERNS.some(pattern => pattern.test(explanation));
+  if (isTemplate) {
     categories.push('template');
+  }
+
+  // 模板解析会给每个未被选中的选项自动写上「：错误。」。在「以下说法不正确的是」
+  // 这类题上这是反的——那几个选项本身是正确说法，只是不该选。真正写过分析的解析
+  // 里出现「：错误。」是有依据的，所以这条只针对模板解析。
+  if (isTemplate && /：错误。/.test(explanation)) {
+    categories.push('fabricated-verdict');
   }
   if (explanation.length < 80) {
     categories.push('short');
@@ -53,6 +61,7 @@ export function classifyExplanation(question) {
 export async function collectExplanationIssues() {
   const issues = {
     template: [],
+    'fabricated-verdict': [],
     short: [],
     truncated: [],
     contradictory: [],
@@ -95,21 +104,42 @@ const writeBaseline = issues => {
       month: '2-digit',
       day: '2-digit',
     }).format(new Date()),
-    policy: 'Existing issue keys may disappear, but no new issue key may be introduced.',
+    policy: '棘轮：既不允许出现新的问题条目，也不允许修好之后不收紧基线。'
+      + '数量下降时 --check 会失败并提示重新记录，使 limits 只降不升，债务趋势留在 git 历史里。',
+    limits: summarize(issues),
     issues,
   };
   fs.writeFileSync(BASELINE_PATH, `${JSON.stringify(baseline, null, 2)}\n`);
 };
 
+// 旧策略只做「不许新增 key」。那能挡住恶化，却让 437 条模板解析可以永远停在
+// 基线里——修不修都是绿的，没有任何收敛压力。改成棘轮：数量降下来之后必须
+// 重新记录基线，上限因此只降不升，每次下降都在 git 历史里留下痕迹。
 const checkAgainstBaseline = (issues, baseline) => {
-  const regressions = [];
+  const problems = [];
+  const counts = summarize(issues);
+
   for (const [category, keys] of Object.entries(issues)) {
     const allowed = new Set(baseline?.issues?.[category] || []);
     for (const key of keys) {
-      if (!allowed.has(key)) regressions.push(`${category}: ${key}`);
+      if (!allowed.has(key)) problems.push(`新增问题条目 ${category}: ${key}`);
     }
   }
-  return regressions;
+
+  for (const [category, count] of Object.entries(counts)) {
+    const limit = baseline?.limits?.[category];
+    if (!Number.isInteger(limit)) continue;
+    if (count > limit) {
+      problems.push(`${category} 数量 ${count} 超过基线上限 ${limit}`);
+    } else if (count < limit) {
+      problems.push(
+        `${category} 已从 ${limit} 降到 ${count}——请运行 `
+        + '`node scripts/audit-explanation-quality.mjs --update-baseline` 收紧基线，把这次改进固化下来',
+      );
+    }
+  }
+
+  return problems;
 };
 
 async function main() {
@@ -135,7 +165,7 @@ async function main() {
     }
     const regressions = checkAgainstBaseline(issues, baseline);
     if (regressions.length) {
-      console.error('\nNew explanation quality regressions:');
+      console.error('\n解析质量棘轮未通过：');
       for (const regression of regressions) console.error(`- ${regression}`);
       process.exitCode = 1;
       return;

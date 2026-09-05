@@ -6,6 +6,14 @@ import {
     getTopicGroup,
     normalizeTopicTags,
 } from './topicTaxonomy.js';
+import { inferTopicTags } from './topicInference.js';
+
+// 人工标签优先；只有一道题完全没有知识点标签时，才用规则表兜底推断考点。
+// 4~7 级的卷子只带元标签，没有这层兜底它们在「按考点练习」里几乎全部消失。
+export const resolveTopicTags = (question) => {
+    const authored = normalizeTopicTags(question.tags);
+    return authored.length > 0 ? authored : inferTopicTags(question);
+};
 
 export { isMetaTag } from './topicTaxonomy.js';
 
@@ -31,7 +39,7 @@ export async function loadLevelTopics(level, { includePending = false } = {}) {
         const ym = `${data.year}·${String(data.month).padStart(2, '0')}`;
         for (const q of data.questions || []) {
             if (q.type !== 'single' && q.type !== 'judge') continue;
-            const topicTags = normalizeTopicTags(q.tags);
+            const topicTags = resolveTopicTags(q);
             if (topicTags.length === 0) continue;
             if (q.sourceIntegrity) {
                 pendingQuestionCount += 1;
@@ -72,7 +80,7 @@ export function buildTopicPaper(level, tag, tagQuestions) {
         id: index + 1,
         tags: [
             ...new Set([
-                ...normalizeTopicTags(q.tags),
+                ...resolveTopicTags(q),
                 `${q.sourceIntegrity ? '待核验' : '真题'} ${q.sourceLabel}`,
             ]),
         ],

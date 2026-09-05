@@ -1,23 +1,7 @@
 import { createSequentialCourseSupport, defineCourse } from './courseSchema.js';
+import { cppL6Lessons } from './cppLessonTitles.js';
 
-export const cppL6Lessons = [
-  { id: 1, title: '第 1 课：树的初相识 (性质/存储)' },
-  { id: 2, title: '第 2 课：树的遍历 (前/中/后序)' },
-  { id: 3, title: '第 3 课：最优二叉树 (哈夫曼)' },
-  { id: 4, title: '第 4 课：地毯式搜索 (BFS)' },
-  { id: 5, title: '第 5 课：不撞南墙不回头 (DFS)' },
-  { id: 6, title: '第 6 课：类的蓝图 (封装/构造)' },
-  { id: 7, title: '第 7 课：家族传承 (继承/保护)' },
-  { id: 8, title: '第 8 课：千变万化 (多态/虚函数)' },
-  { id: 9, title: '第 9 课：特殊的编码 (格雷码)' },
-  { id: 10, title: '第 10 课：OOP 综合实战' },
-  { id: 11, title: '第 11 课：记忆的魔法 (DP 基础)' },
-  { id: 12, title: '第 12 课：背包问题 (0/1 背包)' },
-  { id: 13, title: '第 13 课：完全背包与简单 DP' },
-  { id: 14, title: '第 14 课：编程实战：矩阵与路径' },
-  { id: 15, title: '第 15 课：易错题诊疗室' },
-  { id: 16, title: '第 16 课：全真模拟考试' },
-];
+export { cppL6Lessons } from './cppLessonTitles.js';
 
 const qualityByLesson = {
   1: {

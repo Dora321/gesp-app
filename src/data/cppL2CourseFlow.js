@@ -1,23 +1,7 @@
 import { createSequentialCourseSupport, defineCourse } from './courseSchema.js';
+import { cppL2Lessons } from './cppLessonTitles.js';
 
-export const cppL2Lessons = [
-  { id: 1, title: '第 1 课：计算机通识 (RAM/IP)' },
-  { id: 2, title: '第 2 课：字符的密码 (ASCII)' },
-  { id: 3, title: '第 3 课：数据变形记 (类型转换)' },
-  { id: 4, title: '第 4 课：神奇的开关 (Switch)' },
-  { id: 5, title: '第 5 课：嵌套循环基础' },
-  { id: 6, title: '第 6 课：图形打印实战' },
-  { id: 7, title: '第 7 课：流程图的秘密' },
-  { id: 8, title: '第 8 课：数学工具箱 (cmath)' },
-  { id: 9, title: '第 9 课：质数侦探 (Prime)' },
-  { id: 10, title: '第 10 课：数字拆拆看 (数位)' },
-  { id: 11, title: '第 11 课：因数与倍数' },
-  { id: 12, title: '第 12 课：一维数组初探' },
-  { id: 13, title: '第 13 课：模拟算法实战 1' },
-  { id: 14, title: '第 14 课：模拟算法实战 2' },
-  { id: 15, title: '第 15 课：易错题诊疗室' },
-  { id: 16, title: '第 16 课：全真模拟考试' },
-];
+export { cppL2Lessons } from './cppLessonTitles.js';
 
 const qualityByLesson = {
   1: {
