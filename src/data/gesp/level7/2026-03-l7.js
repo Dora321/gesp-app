@@ -177,7 +177,7 @@ export const paperData = {
             question: `对于如下二叉树，下面关于访问的顺序说法错误的是（ ）。`,
             options: [
                 "D E B F H J I G C A 是它的后序遍历序列。",
-                "A B C D E F G H I J 是它的⼴度优先遍历序列。",
+                "A B C D E F G H I J 是它的广度优先遍历序列。",
                 "A B D E C F G H I J 是它的先序遍历序列。",
                 "D B E A F C H G J I 是它的中序遍历序列。",
             ],
@@ -205,7 +205,7 @@ export const paperData = {
             type: "single",
             sourceIntegrity: "missing-code",
             integrityNote: "原卷此题引用的程序代码在录入时未收录，仅凭当前题面无法推导答案。本题已排除出计分与考点练习，待补齐原卷代码后恢复。",
-            question: `下面程序的运⾏结果为（ ）。`,
+            question: `下面程序的运行结果为（ ）。`,
             options: [
                 "2",
                 "3",
@@ -305,7 +305,7 @@ int main() {
             type: "single",
             sourceIntegrity: "missing-code",
             integrityNote: "原卷此题引用的程序代码在录入时未收录，仅凭当前题面无法推导答案。本题已排除出计分与考点练习，待补齐原卷代码后恢复。",
-            question: `下面程序的运⾏结果为（ ）。`,
+            question: `下面程序的运行结果为（ ）。`,
             options: [
                 "10",
                 "16",
@@ -450,7 +450,7 @@ int main() {
         {
             id: 16,
             type: "judge",
-            question: `C++ 语⾔中，表达式3 ^ 2的结果类型为int，值为9。`,
+            question: `C++ 语言中，表达式3 ^ 2的结果类型为int，值为9。`,
             options: [
                 "正确",
                 "错误",

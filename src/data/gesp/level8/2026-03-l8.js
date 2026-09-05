@@ -30,7 +30,7 @@ export const paperData = {
         {
             id: 2,
             type: "single",
-            question: `下列代码实现了归并排序（ Merge Sort ）的分治部分。为了正确地将数组 a 的 [left, right] 区间进⾏ 排序，横线处应该填入的是（ ）。\n\n\`\`\`cpp\nvoid merge_sort(int a[], int left, int right) {\n if (left >= right) return;\n int mid = (left+right) / 2;\n merge_sort(a, left, mid);\n ________________; // 横线处\n merge(a, left, mid, right);\n}\n\`\`\``,
+            question: `下列代码实现了归并排序（ Merge Sort ）的分治部分。为了正确地将数组 a 的 [left, right] 区间进行 排序，横线处应该填入的是（ ）。\n\n\`\`\`cpp\nvoid merge_sort(int a[], int left, int right) {\n if (left >= right) return;\n int mid = (left+right) / 2;\n merge_sort(a, left, mid);\n ________________; // 横线处\n merge(a, left, mid, right);\n}\n\`\`\``,
             options: [
                 "merge_sort(a, mid, right)",
                 "merge_sort(a, mid+1, right)",
@@ -98,7 +98,7 @@ export const paperData = {
         {
             id: 5,
             type: "single",
-            question: `下面是使用邻接矩阵实现的 Dijkstra 算法的核⼼⽚段，用于求单源最短路径。在找到当前距离起点最近的顶点 u 后，需要更新其邻接点 j 的距离。横线处应填入的代码是（ ）。\n\n\`\`\`cpp\nfor (int j = 1; j <= n; j++) {\n if (!visited[j] && graph[u][j] < INF) {\n if (________) { // 横线处\n dis[j] = dis[u]+graph[u][j];\n }\n }\n}\n\`\`\``,
+            question: `下面是使用邻接矩阵实现的 Dijkstra 算法的核心片段，用于求单源最短路径。在找到当前距离起点最近的顶点 u 后，需要更新其邻接点 j 的距离。横线处应填入的代码是（ ）。\n\n\`\`\`cpp\nfor (int j = 1; j <= n; j++) {\n if (!visited[j] && graph[u][j] < INF) {\n if (________) { // 横线处\n dis[j] = dis[u]+graph[u][j];\n }\n }\n}\n\`\`\``,
             options: [
                 "dis[j] < dis[u]+graph[u][j]",
                 "dis[j] > dis[u]+graph[u][j]",
@@ -176,7 +176,7 @@ LCS 状态转移：若 \`a[i-1]==b[j-1]\`，则 \`dp[i][j]=dp[i-1][j-1]+1\`；�
         {
             id: 8,
             type: "single",
-            question: `已知 int a = 10;，执⾏ int &b = a; b = 20; 后，变量 a 的值是（ ）。`,
+            question: `已知 int a = 10;，执行 int &b = a; b = 20; 后，变量 a 的值是（ ）。`,
             options: [
                 "10",
                 "20",
@@ -258,12 +258,12 @@ LCS 状态转移：若 \`a[i-1]==b[j-1]\`，则 \`dp[i][j]=dp[i-1][j-1]+1\`；�
         {
             id: 11,
             type: "single",
-            question: `在 C++ 语⾔中，关于类的继承和访问权限，下列说法正确的是（ ）。`,
+            question: `在 C++ 语言中，关于类的继承和访问权限，下列说法正确的是（ ）。`,
             options: [
                 "派生类可以访问基类的 private 成员。",
                 "基类的 protected 成员在私有继承（ private inheritance ）后，在派生类中变为 public。",
-                "派生类对象在创建时，会先调用基类的构造函数，再调用派生类⾃⼰的构造函数。",
-                "派生类对象在销毁时，会先调用基类的析构函数，再调用派生类⾃⼰的析构函数。",
+                "派生类对象在创建时，会先调用基类的构造函数，再调用派生类自己的构造函数。",
+                "派生类对象在销毁时，会先调用基类的析构函数，再调用派生类自己的析构函数。",
             ],
             answer: 2,
             score: 2,
@@ -310,7 +310,7 @@ LCS 状态转移：若 \`a[i-1]==b[j-1]\`，则 \`dp[i][j]=dp[i-1][j-1]+1\`；�
         {
             id: 13,
             type: "single",
-            question: `从 1 到 999 这 999 个正整数中，⼗进制表⽰中数字 5 恰好出现一次的数有多少个？（ ）`,
+            question: `从 1 到 999 这 999 个正整数中，十进制表示中数字 5 恰好出现一次的数有多少个？（ ）`,
             options: [
                 "243",
                 "271",
@@ -406,7 +406,7 @@ LCS 状态转移：若 \`a[i-1]==b[j-1]\`，则 \`dp[i][j]=dp[i-1][j-1]+1\`；�
         {
             id: 17,
             type: "judge",
-            question: `在 C++ 语⾔中，引用一旦被初始化，就不能再改为引用另一个变量。`,
+            question: `在 C++ 语言中，引用一旦被初始化，就不能再改为引用另一个变量。`,
             options: [
                 "正确",
                 "错误",
@@ -550,7 +550,7 @@ C++ 中引用（reference）在定义时必须初始化，且一旦绑定到某�
         {
             id: 24,
             type: "judge",
-            question: `在 C++ 语⾔中，一个类可以拥有多个构造函数，也可以拥有多个析构函数。`,
+            question: `在 C++ 语言中，一个类可以拥有多个构造函数，也可以拥有多个析构函数。`,
             options: [
                 "正确",
                 "错误",

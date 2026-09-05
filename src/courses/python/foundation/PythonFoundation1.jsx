@@ -3,6 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import { Terminal, Box, Calculator, MessageSquare, CheckCircle, Tag, Bug, BookOpen, HelpCircle } from 'lucide-react';
 import PythonFoundationSupport from '../../../components/PythonFoundationSupport';
 import PythonLessonShell, { MasteryCheck, PredictCheck, SlideHeader, TransferCheck } from '../shell/PythonLessonShell';
+import { PlainCodeBlock as CodeBlock } from '../../../components/CodeBlock';
 
 // --- Shared Components (will move to separate files later if needed) ---
 const Button = ({ onClick, children, className, variant = 'primary' }) => {
@@ -19,11 +20,6 @@ const Button = ({ onClick, children, className, variant = 'primary' }) => {
     );
 };
 
-const CodeBlock = ({ code }) => (
-    <div className="bg-slate-900 text-slate-100 p-4 rounded-xl font-mono text-sm shadow-inner border border-slate-700 overflow-x-auto">
-        <pre>{code}</pre>
-    </div>
-);
 
 const NavButton = ({ section, activeSection, onClick }) => (
     <button

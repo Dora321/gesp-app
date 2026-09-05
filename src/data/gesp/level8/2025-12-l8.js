@@ -45,7 +45,7 @@ export const paperData = {
             type: "single",
             sourceIntegrity: "missing-code",
             integrityNote: "原卷此题引用的程序代码在录入时未收录，仅凭当前题面无法推导答案。本题已排除出计分与考点练习，待补齐原卷代码后恢复。",
-            question: `下列代码实现了归并排序（ Merge Sort ）的分治部分。为了正确地将数组 a 的 [left, right] 区间进⾏ 排序，横线处应该填入的是（ ）。`,
+            question: `下列代码实现了归并排序（ Merge Sort ）的分治部分。为了正确地将数组 a 的 [left, right] 区间进行 排序，横线处应该填入的是（ ）。`,
             options: [
                 "merge_sort(a, mid, right)",
                 "merge_sort(a, mid+1, right)",
@@ -71,7 +71,7 @@ export const paperData = {
         {
             id: 3,
             type: "single",
-            question: `某社团有男生 8 ⼈、⼥生 7 ⼈。现需选出 1 名队长（性别不限）、 1 名副队长（性别不限）、 2 名宣传委员（两 ⼈无角⾊区别，且必须⾄少 1 名⼥生）。假如一⼈不能兼任多职，共有多少种不同选法？（ ）`,
+            question: `某社团有男生 8 人、女生 7 人。现需选出 1 名队长（性别不限）、 1 名副队长（性别不限）、 2 名宣传委员（两 人无角色区别，且必须至少 1 名女生）。假如一人不能兼任多职，共有多少种不同选法？（ ）`,
             options: [
                 "12012",
                 "11844",
@@ -125,7 +125,7 @@ export const paperData = {
         {
             id: 5,
             type: "single",
-            question: `下面是使用邻接矩阵实现的 Dijkstra 算法的核⼼⽚段，用于求单源最短路径。在找到当前距离起点最近的顶点 u 后，需要更新其邻接点 j 的距离。横线处应填入的代码是（ ）。`,
+            question: `下面是使用邻接矩阵实现的 Dijkstra 算法的核心片段，用于求单源最短路径。在找到当前距离起点最近的顶点 u 后，需要更新其邻接点 j 的距离。横线处应填入的代码是（ ）。`,
             options: [
                 "dis[j] < dis[u]+graph[u][j]",
                 "dis[j] > dis[u]+graph[u][j]",
@@ -205,7 +205,7 @@ export const paperData = {
         {
             id: 8,
             type: "single",
-            question: `已知 int a = 10;，执⾏ int &b = a; b = 20; 后，变量 a 的值是（ ）。`,
+            question: `已知 int a = 10;，执行 int &b = a; b = 20; 后，变量 a 的值是（ ）。`,
             options: [
                 "10",
                 "20",
@@ -228,7 +228,7 @@ export const paperData = {
             type: "single",
             sourceIntegrity: "missing-code",
             integrityNote: "原卷此题引用的程序代码在录入时未收录，仅凭当前题面无法推导答案。本题已排除出计分与考点练习，待补齐原卷代码后恢复。",
-            question: `下列代码的时间复杂度（以 为⾃变量，忽略常数与低阶项）是（ ）。`,
+            question: `下列代码的时间复杂度（以 为自变量，忽略常数与低阶项）是（ ）。`,
             options: [
                 "O(1)",
                 "O(n)",
@@ -281,12 +281,12 @@ export const paperData = {
         {
             id: 11,
             type: "single",
-            question: `在 C++ 语⾔中，关于类的继承和访问权限，下列说法正确的是（ ）。`,
+            question: `在 C++ 语言中，关于类的继承和访问权限，下列说法正确的是（ ）。`,
             options: [
                 "派生类可以访问基类的 private 成员。",
                 "基类的 protected 成员在私有继承（ private inheritance ）后，在派生类中变为 public。",
-                "派生类对象在创建时，会先调用基类的构造函数，再调用派生类⾃⼰的构造函数。",
-                "派生类对象在销毁时，会先调用基类的析构函数，再调用派生类⾃⼰的析构函数。",
+                "派生类对象在创建时，会先调用基类的构造函数，再调用派生类自己的构造函数。",
+                "派生类对象在销毁时，会先调用基类的析构函数，再调用派生类自己的析构函数。",
             ],
             answer: 2,
             score: 2,
@@ -335,7 +335,7 @@ export const paperData = {
         {
             id: 13,
             type: "single",
-            question: `从 1 到 999 这 999 个正整数中，⼗进制表⽰中数字 5 恰好出现一次的数有多少个？（ ）`,
+            question: `从 1 到 999 这 999 个正整数中，十进制表示中数字 5 恰好出现一次的数有多少个？（ ）`,
             options: [
                 "243",
                 "271",
@@ -390,7 +390,7 @@ export const paperData = {
         {
             id: 15,
             type: "single",
-            question: `对连通无向图执⾏ Kruskal 算法。已按边权从小到大依次扫描到某条边 。此时在已经构建的部分 MST 结构中， 已在同一连通块内。关于边 的处理，下列说法正确的是（ ）。`,
+            question: `对连通无向图执行 Kruskal 算法。已按边权从小到大依次扫描到某条边 。此时在已经构建的部分 MST 结构中， 已在同一连通块内。关于边 的处理，下列说法正确的是（ ）。`,
             options: [
                 "必须选入 MST ，否则可能不连通。",
                 "一定不能选入 MST （在此扫描顺序下）。",
@@ -435,7 +435,7 @@ export const paperData = {
         {
             id: 17,
             type: "judge",
-            question: `在 C++ 语⾔中，引用一旦被初始化，就不能再改为引用另一个变量。`,
+            question: `在 C++ 语言中，引用一旦被初始化，就不能再改为引用另一个变量。`,
             options: [
                 "正确",
                 "错误",
@@ -568,7 +568,7 @@ export const paperData = {
         {
             id: 24,
             type: "judge",
-            question: `在 C++ 语⾔中，一个类可以拥有多个构造函数，也可以拥有多个析构函数。`,
+            question: `在 C++ 语言中，一个类可以拥有多个构造函数，也可以拥有多个析构函数。`,
             options: [
                 "正确",
                 "错误",

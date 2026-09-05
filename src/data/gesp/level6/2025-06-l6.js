@@ -157,7 +157,7 @@ export const paperData = {
         {
             id: 3,
             type: "single",
-            question: `代码同上一题，代码执⾏结果是（ ）。`,
+            question: `代码同上一题，代码执行结果是（ ）。`,
             options: [
                 "输出 Animal speaks",
                 "输出 Dog barks",
@@ -185,7 +185,7 @@ export const paperData = {
         {
             id: 4,
             type: "single",
-            question: `以下关于栈和队列的代码，执⾏后输出是（ ）。`,
+            question: `以下关于栈和队列的代码，执行后输出是（ ）。`,
             options: [
                 "1 3",
                 "3 1",
@@ -275,7 +275,7 @@ export const paperData = {
         {
             id: 7,
             type: "single",
-            question: `在使用数组表⽰完全二叉树时，如果一个节点的索引为 （从 开始计数），那么其左子节点的索引通常是（ ）。`,
+            question: `在使用数组表示完全二叉树时，如果一个节点的索引为 （从 开始计数），那么其左子节点的索引通常是（ ）。`,
             options: [
                 "stack<int> s; queue<int> q; for (int i = 1; i <= 3; ++i) { s.push(i); q.push(i); } cout << s.top() << \" \" << q.front() << endl; 1 2 3 4 5 6 7 8",
                 "选项B",
@@ -491,9 +491,9 @@ export const paperData = {
             type: "single",
             question: `以下关于动态规划算法特性的描述，正确的是（ ）。`,
             options: [
-                "子问题相互独⽴，不重叠",
+                "子问题相互独立，不重叠",
                 "问题包含重叠子问题和最优子结构",
-                "只能从底⾄顶迭代求解",
+                "只能从底至顶迭代求解",
                 "必须使用递归实现，不能使用迭代",
             ],
             answer: 1,
@@ -503,9 +503,9 @@ export const paperData = {
             **解析：**
             本题答案已依据试卷标准答案完成录入，可结合题干与选项复盘对应知识点。
 
-            - **A 子问题相互独⽴，不重叠**：不是本题答案。
+            - **A 子问题相互独立，不重叠**：不是本题答案。
             - **B 问题包含重叠子问题和最优子结构**：正确答案。
-            - **C 只能从底⾄顶迭代求解**：不是本题答案。
+            - **C 只能从底至顶迭代求解**：不是本题答案。
             - **D 必须使用递归实现，不能使用迭代**：不是本题答案。
 
             **考点：** 动态规划
@@ -519,7 +519,7 @@ export const paperData = {
         {
             id: 15,
             type: "single",
-            question: `给定 个物品和一个最大承重为 的背包，每个物品有一个重量 和价值 ，每个物品只能选择放或 不放。目标是选择若⼲个物品放入背包，使得总价值最大，且总重量不超过 。关于下面代码，说法正确的是（ ）。`,
+            question: `给定 个物品和一个最大承重为 的背包，每个物品有一个重量 和价值 ，每个物品只能选择放或 不放。目标是选择若干个物品放入背包，使得总价值最大，且总重量不超过 。关于下面代码，说法正确的是（ ）。`,
             options: [
                 "该算法不能处理背包容量为 0 的情况",
                 "外层循环 i 遍历背包容量，内层遍历物品",
@@ -599,7 +599,7 @@ export const paperData = {
         {
             id: 18,
             type: "judge",
-            question: `为了实现一个队列，使其出队操作（ pop ）的时间复杂度为 并且避免数组删除⾸元素的 问题，一 种常见且有效的方法是使用环形数组，通过调整队⾸和队尾指针来实现。 if (key < root->val) insert(root->right, key); else if (key > root->val) insert(root->left, key); 1 2 3 4 insert(root->left, key); insert(root->right, key); 1 2 insert(root->right, key); insert(root->left, key); 1 2 int knapsack1D(int W, vector<int>& wt, vector<int>& val, int n) { vector<int> dp(W+1, 0); for (int i = 0; i < n; ++i) { for (int w = W; w >= wt[i]; --w) { dp[w] = max(dp[w], dp[w-wt[i]]+val[i]); } } return dp[W]; } 1 2 3 4 5 6 7 8 9`,
+            question: `为了实现一个队列，使其出队操作（ pop ）的时间复杂度为 并且避免数组删除首元素的 问题，一 种常见且有效的方法是使用环形数组，通过调整队首和队尾指针来实现。 if (key < root->val) insert(root->right, key); else if (key > root->val) insert(root->left, key); 1 2 3 4 insert(root->left, key); insert(root->right, key); 1 2 insert(root->right, key); insert(root->left, key); 1 2 int knapsack1D(int W, vector<int>& wt, vector<int>& val, int n) { vector<int> dp(W+1, 0); for (int i = 0; i < n; ++i) { for (int w = W; w >= wt[i]; --w) { dp[w] = max(dp[w], dp[w-wt[i]]+val[i]); } } return dp[W]; } 1 2 3 4 5 6 7 8 9`,
             options: [
                 "正确",
                 "错误",
@@ -624,7 +624,7 @@ export const paperData = {
         {
             id: 19,
             type: "judge",
-            question: `对一棵二叉排序树进⾏中序遍历，可以得到一个递增的有序序列。`,
+            question: `对一棵二叉排序树进行中序遍历，可以得到一个递增的有序序列。`,
             options: [
                 "正确",
                 "错误",
@@ -674,7 +674,7 @@ export const paperData = {
         {
             id: 21,
             type: "judge",
-            question: `执⾏下列代码， my_dog.name 的最终值是 Charlie 。`,
+            question: `执行下列代码， my_dog.name 的最终值是 Charlie 。`,
             options: [
                 "正确",
                 "错误",
@@ -697,7 +697,7 @@ export const paperData = {
         {
             id: 22,
             type: "judge",
-            question: `下列 C++ 代码可以成功编译，并且子类 Child 的实例能通过其成员函数访问⽗类 Parent 的属性 value 。`,
+            question: `下列 C++ 代码可以成功编译，并且子类 Child 的实例能通过其成员函数访问父类 Parent 的属性 value 。`,
             options: [
                 "正确",
                 "错误",
@@ -722,7 +722,7 @@ export const paperData = {
         {
             id: 23,
             type: "judge",
-            question: `下列代码中的 tree 向量，表⽰的是一棵完全二叉树 ( -1 代表空节点)按照层序遍历的结果。`,
+            question: `下列代码中的 tree 向量，表示的是一棵完全二叉树 ( -1 代表空节点)按照层序遍历的结果。`,
             options: [
                 "正确",
                 "错误",
@@ -772,7 +772,7 @@ export const paperData = {
         {
             id: 25,
             type: "judge",
-            question: `下面代码采用动态规划求解零钱兑换问题：给定 种硬币，第 𝑖 种硬币的面值为 𝑐𝑜𝑖𝑛𝑠[𝑖 − 1] ，目标⾦额为 𝑎𝑚𝑡 ，每种硬币可以重复选取，求能够凑出目标⾦额的最少硬币数量；如果不能凑出目标⾦额，返回 -1 。 class Dog { public: std::string name; Dog(std::string str) : name(str) {} }; int main() { Dog my_dog("Buddy"); my_dog.name = "Charlie"; return 0; } 1 2 3 4 5 6 7 8 9 10 11 class Parent { private: int value = 100; }; class Child : public Parent { public: int get_private_val() { return value; // 尝试访问父类的私有成员 } }; 1 2 3 4 5 6 7 8 9 10 #include <vector> std::vector<int> tree = {1, 2, 3, 4, -1, 6, 7}; 1 2 int coinChangeDPComp(vector<int> &coins, int amt) { int n = coins.size(); int MAX = amt+1; vector<int> dp(amt+1, MAX); dp[0] = 0; for (int i = 1; i <= n; i++) { for (int a = 1; a <= amt; a++) { if (coins[i-1] > a) dp[a] = dp[a]; else dp[a] = min(dp[a], dp[a-coins[i-1]]+1); } } return dp[amt] != MAX ? dp[amt] : -1; } 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17`,
+            question: `下面代码采用动态规划求解零钱兑换问题：给定 种硬币，第 𝑖 种硬币的面值为 𝑐𝑜𝑖𝑛𝑠[𝑖 − 1] ，目标金额为 𝑎𝑚𝑡 ，每种硬币可以重复选取，求能够凑出目标金额的最少硬币数量；如果不能凑出目标金额，返回 -1 。 class Dog { public: std::string name; Dog(std::string str) : name(str) {} }; int main() { Dog my_dog("Buddy"); my_dog.name = "Charlie"; return 0; } 1 2 3 4 5 6 7 8 9 10 11 class Parent { private: int value = 100; }; class Child : public Parent { public: int get_private_val() { return value; // 尝试访问父类的私有成员 } }; 1 2 3 4 5 6 7 8 9 10 #include <vector> std::vector<int> tree = {1, 2, 3, 4, -1, 6, 7}; 1 2 int coinChangeDPComp(vector<int> &coins, int amt) { int n = coins.size(); int MAX = amt+1; vector<int> dp(amt+1, MAX); dp[0] = 0; for (int i = 1; i <= n; i++) { for (int a = 1; a <= amt; a++) { if (coins[i-1] > a) dp[a] = dp[a]; else dp[a] = min(dp[a], dp[a-coins[i-1]]+1); } } return dp[amt] != MAX ? dp[amt] : -1; } 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17`,
             options: [
                 "正确",
                 "错误",

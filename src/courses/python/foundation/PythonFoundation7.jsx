@@ -8,6 +8,7 @@ import {
 } from 'lucide-react';
 import PythonFoundationSupport from '../../../components/PythonFoundationSupport';
 import PythonLessonShell, { MasteryCheck, PredictCheck, SlideHeader, TransferCheck } from '../shell/PythonLessonShell';
+import { HighlightableCodeBlock as CodeBlock } from '../../../components/CodeBlock';
 
 // --- Shared Helper Components ---
 const Button = ({ onClick, children, className, variant = 'primary', disabled = false }) => {
@@ -25,18 +26,6 @@ const Button = ({ onClick, children, className, variant = 'primary', disabled = 
     );
 };
 
-const CodeBlock = ({ code, highlightLine = -1 }) => (
-    <div className="bg-slate-900 text-slate-100 p-4 rounded-xl font-mono text-sm shadow-inner border border-slate-700 overflow-x-auto relative">
-        <div className="absolute top-2 right-4 text-slate-500 text-xs uppercase tracking-widest">Python</div>
-        <pre className="relative z-10">
-            {code.split('\n').map((line, i) => (
-                <div key={`line-${i}`} className={`${highlightLine === i ? 'bg-indigo-500/30 -mx-4 px-4 border-l-4 border-indigo-400' : ''}`}>
-                    {line}
-                </div>
-            ))}
-        </pre>
-    </div>
-);
 
 // --- Slides ---
 

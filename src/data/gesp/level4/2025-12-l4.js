@@ -49,7 +49,7 @@ export const paperData = {
         {
             id: 2,
             type: "single",
-            question: `小杨写了如下的指针接力程序，程序执⾏完后变量 a、*p1和*p2的值分别是（ ）。\n\`\`\`cpp\nint a = 5;\nint* p1 = &a;\nint* p2 = p1;\n*p2 = 10;\n\`\`\``,
+            question: `小杨写了如下的指针接力程序，程序执行完后变量 a、*p1和*p2的值分别是（ ）。\n\`\`\`cpp\nint a = 5;\nint* p1 = &a;\nint* p2 = p1;\n*p2 = 10;\n\`\`\``,
             options: [
                 "5 10 10",
                 "5 10 15",
@@ -88,7 +88,7 @@ export const paperData = {
         {
             id: 3,
             type: "single",
-            question: `小杨用一个二维数组表⽰棋盘，其中 1 表⽰有棋子， 0 表⽰没有棋子。他想知道第 2 ⾏ 第 3 列有没有棋子， 可采用的代码是：（ ）。\n\`\`\`cpp\nint a[3][4] = {\n {1, 0, 1, 0},\n {0, 1, 0, 1},\n {1, 1, 0, 0}\n};\n\`\`\``,
+            question: `小杨用一个二维数组表示棋盘，其中 1 表示有棋子， 0 表示没有棋子。他想知道第 2 行 第 3 列有没有棋子， 可采用的代码是：（ ）。\n\`\`\`cpp\nint a[3][4] = {\n {1, 0, 1, 0},\n {0, 1, 0, 1},\n {1, 1, 0, 0}\n};\n\`\`\``,
             options: [
                 "cout << a[1, 2] << endl;",
                 "cout << a[1][2] << endl;",
@@ -126,7 +126,7 @@ export const paperData = {
         {
             id: 4,
             type: "single",
-            question: `执⾏完下面的代码后，*(p+5) 和 arr[1][1]的值分别是（ ）。\n\`\`\`cpp\nint arr[3][4] = {{1,2,3,4}, {5,6,7,8}, {9,10,11,12}};\nint* p = &arr[0][0];\n\`\`\``,
+            question: `执行完下面的代码后，*(p+5) 和 arr[1][1]的值分别是（ ）。\n\`\`\`cpp\nint arr[3][4] = {{1,2,3,4}, {5,6,7,8}, {9,10,11,12}};\nint* p = &arr[0][0];\n\`\`\``,
             options: [
                 "5 6",
                 "6 5",
@@ -173,7 +173,7 @@ export const paperData = {
         {
             id: 5,
             type: "single",
-            question: `执⾏完下面的代码后，sum 的值是（ ）。\n\`\`\`cpp\nint arr[2][3][2] = {\n {{1,2}, {3,4}, {5,6}},\n {{7,8}, {9,10}, {11,12}}\n};\nint sum = 0;\nfor(int i = 0; i < 2; i++)\n for(int j = 0; j < 3; j++)\n for(int k = 0; k < 2; k++)\n if((i+j+k) % 2 == 0)\n sum += arr[i][j][k];\n\`\`\``,
+            question: `执行完下面的代码后，sum 的值是（ ）。\n\`\`\`cpp\nint arr[2][3][2] = {\n {{1,2}, {3,4}, {5,6}},\n {{7,8}, {9,10}, {11,12}}\n};\nint sum = 0;\nfor(int i = 0; i < 2; i++)\n for(int j = 0; j < 3; j++)\n for(int k = 0; k < 2; k++)\n if((i+j+k) % 2 == 0)\n sum += arr[i][j][k];\n\`\`\``,
             options: [
                 "36",
                 "39",
@@ -230,7 +230,7 @@ export const paperData = {
         {
             id: 6,
             type: "single",
-            question: `执⾏完下面的代码后，输出是（ ）。\n\`\`\`cpp\nint a = 1;\nvoid test() {\n int a = 2;\n {\n int a = 3;\n a++;\n }\n a++;\n cout << a << " ";\n}\nint main() {\n test();\n cout << a;\n return 0;\n}\n\`\`\``,
+            question: `执行完下面的代码后，输出是（ ）。\n\`\`\`cpp\nint a = 1;\nvoid test() {\n int a = 2;\n {\n int a = 3;\n a++;\n }\n a++;\n cout << a << " ";\n}\nint main() {\n test();\n cout << a;\n return 0;\n}\n\`\`\``,
             options: [
                 "3 1",
                 "4 1",
@@ -282,7 +282,7 @@ export const paperData = {
         {
             id: 7,
             type: "single",
-            question: `执⾏完下面的代码后，a 、b 和 c 的值分别是（ ）。\n\`\`\`cpp\nvoid byValue(int x) { x = 100; }\nvoid byRef(int& x) { x = 200; }\nvoid byPointer(int* x) { *x = 300; }\nint main() {\n int a = 1, b = 2, c = 3;\n byValue(a);\n byRef(b);\n byPointer(&c);\n return 0;\n}\n\`\`\``,
+            question: `执行完下面的代码后，a 、b 和 c 的值分别是（ ）。\n\`\`\`cpp\nvoid byValue(int x) { x = 100; }\nvoid byRef(int& x) { x = 200; }\nvoid byPointer(int* x) { *x = 300; }\nint main() {\n int a = 1, b = 2, c = 3;\n byValue(a);\n byRef(b);\n byPointer(&c);\n return 0;\n}\n\`\`\``,
             options: [
                 "100 200 300",
                 "1 2 3",
@@ -326,7 +326,7 @@ export const paperData = {
         {
             id: 8,
             type: "single",
-            question: `运⾏如下代码会输出（ ）。\n\`\`\`cpp\nstruct Point { int x, y; };\nstruct Rectangle { Point topLeft; Point bottomRight; };\nint main() {\n Rectangle rect = {{10, 10}, {20, 20}};\n rect.topLeft.x = 5;\n Point* p = &rect.bottomRight;\n p->y = 5;\n cout << rect.topLeft.x+rect.bottomRight.y;\n return 0;\n}\n\`\`\``,
+            question: `运行如下代码会输出（ ）。\n\`\`\`cpp\nstruct Point { int x, y; };\nstruct Rectangle { Point topLeft; Point bottomRight; };\nint main() {\n Rectangle rect = {{10, 10}, {20, 20}};\n rect.topLeft.x = 5;\n Point* p = &rect.bottomRight;\n p->y = 5;\n cout << rect.topLeft.x+rect.bottomRight.y;\n return 0;\n}\n\`\`\``,
             options: [
                 "10",
                 "30",
@@ -427,7 +427,7 @@ export const paperData = {
         {
             id: 10,
             type: "single",
-            question: `对如下 4 个扑克牌进⾏排序， 使用某排序算法按 value 排序后，结果为 : {3,'D'}, {3,'B'}, {5,'A'}, {5,'C'}，则这个排序算法是稳定的吗？\n\`\`\`cpp\nstruct Card { int value; char suit; };\nCard cards[4] = {{5,'A'}, {3,'B'}, {5,'C'}, {3,'D'}};\n\`\`\``,
+            question: `对如下 4 个扑克牌进行排序， 使用某排序算法按 value 排序后，结果为 : {3,'D'}, {3,'B'}, {5,'A'}, {5,'C'}，则这个排序算法是稳定的吗？\n\`\`\`cpp\nstruct Card { int value; char suit; };\nCard cards[4] = {{5,'A'}, {3,'B'}, {5,'C'}, {3,'D'}};\n\`\`\``,
             options: [
                 "稳定，因为相同 value 的元素相对顺序保持不变",
                 "不稳定，因为 {3,'D'} 出现在 {3,'B'} 之前",
@@ -481,7 +481,7 @@ export const paperData = {
         {
             id: 11,
             type: "single",
-            question: `下面的函数 selectTopK() 实现从 n 个学生中选出前 k 名成绩最好的学生颁发奖学⾦，则横线上应填写（ ）。\n\`\`\`cpp\nstruct Student { string name; int score; };\nvoid selectTopK(Student students[], int n, int k) {\n for (int i = 0; i < k; i++) {\n int maxIdx = i;\n for (____________________) { // 在此处填入代码\n if (students[j].score > students[maxIdx].score) {\n maxIdx = j;\n }\n }\n if (maxIdx != i) {\n Student temp = students[i];\n students[i] = students[maxIdx];\n students[maxIdx] = temp;\n }\n }\n}\n\`\`\``,
+            question: `下面的函数 selectTopK() 实现从 n 个学生中选出前 k 名成绩最好的学生颁发奖学金，则横线上应填写（ ）。\n\`\`\`cpp\nstruct Student { string name; int score; };\nvoid selectTopK(Student students[], int n, int k) {\n for (int i = 0; i < k; i++) {\n int maxIdx = i;\n for (____________________) { // 在此处填入代码\n if (students[j].score > students[maxIdx].score) {\n maxIdx = j;\n }\n }\n if (maxIdx != i) {\n Student temp = students[i];\n students[i] = students[maxIdx];\n students[maxIdx] = temp;\n }\n }\n}\n\`\`\``,
             options: [
                 "int j = 0; j < n; j++",
                 "int j = i+1; j < n; j++",
@@ -518,7 +518,7 @@ export const paperData = {
         {
             id: 12,
             type: "single",
-            question: `某游戏的排⾏榜系统需要实时更新玩家分数。每次只有一个玩家的分数发生变化，排⾏榜已经是按分数降序排列的。现在需要将更新后的玩家调整到正确位置。下面的函数 updateRanking() 要实现上述功能，则两处横线上应分别填写（ ）。\n\`\`\`cpp\nvoid updateRanking(Player players[], int size, int playerIdx) {\n Player updatedPlayer = players[playerIdx];\n if (playerIdx > 0 && updatedPlayer.score > players[playerIdx-1].score) {\n int i = playerIdx;\n while (____________________) {\n players[i] = players[i-1];\n i--;\n }\n players[i] = updatedPlayer;\n } else if (playerIdx < size-1 && updatedPlayer.score < players[playerIdx+1].score) {\n int i = playerIdx;\n while (____________________) {\n players[i] = players[i+1];\n i++;\n }\n players[i] = updatedPlayer;\n }\n}\n\`\`\``,
+            question: `某游戏的排行榜系统需要实时更新玩家分数。每次只有一个玩家的分数发生变化，排行榜已经是按分数降序排列的。现在需要将更新后的玩家调整到正确位置。下面的函数 updateRanking() 要实现上述功能，则两处横线上应分别填写（ ）。\n\`\`\`cpp\nvoid updateRanking(Player players[], int size, int playerIdx) {\n Player updatedPlayer = players[playerIdx];\n if (playerIdx > 0 && updatedPlayer.score > players[playerIdx-1].score) {\n int i = playerIdx;\n while (____________________) {\n players[i] = players[i-1];\n i--;\n }\n players[i] = updatedPlayer;\n } else if (playerIdx < size-1 && updatedPlayer.score < players[playerIdx+1].score) {\n int i = playerIdx;\n while (____________________) {\n players[i] = players[i+1];\n i++;\n }\n players[i] = updatedPlayer;\n }\n}\n\`\`\``,
             options: [
                 "i > 0 && updatedPlayer.score > players[i-1].score | i < size-1 && updatedPlayer.score < players[i+1].score",
                 "i < size-1 && updatedPlayer.score < players[i+1].score | i > 0 && updatedPlayer.score > players[i-1].score",
@@ -592,7 +592,7 @@ export const paperData = {
         {
             id: 14,
             type: "single",
-            question: `执⾏下面 C++ 程序，会输出（ ）。\n\`\`\`cpp\nint main() {\n ofstream fout("test.txt");\n fout << "Happy" << endl;\n fout << "New Year";\n fout.close();\n ifstream fin("test.txt");\n string s1, s2;\n fin >> s1;\n getline(fin, s2);\n fin.close();\n cout << s1 << "|" << s2;\n return 0;\n}\n\`\`\``,
+            question: `执行下面 C++ 程序，会输出（ ）。\n\`\`\`cpp\nint main() {\n ofstream fout("test.txt");\n fout << "Happy" << endl;\n fout << "New Year";\n fout.close();\n ifstream fin("test.txt");\n string s1, s2;\n fin >> s1;\n getline(fin, s2);\n fin.close();\n cout << s1 << "|" << s2;\n return 0;\n}\n\`\`\``,
             options: [
                 "Happy|New Year",
                 "Happy| New Year",
@@ -630,7 +630,7 @@ export const paperData = {
         {
             id: 15,
             type: "single",
-            question: `执⾏下面 C++ 代码，会输出 ( ) 。\n\`\`\`cpp\nint divide(int a, int b) {\n if(b == 0) throw "Division by zero";\n return a / b;\n}\nint main() {\n int result = 0;\n try {\n result = divide(10, 0);\n cout << "A";\n } catch(const char* msg) {\n cout << "B";\n result = -1;\n }\n cout << result;\n return 0;\n}\n\`\`\``,
+            question: `执行下面 C++ 代码，会输出 ( ) 。\n\`\`\`cpp\nint divide(int a, int b) {\n if(b == 0) throw "Division by zero";\n return a / b;\n}\nint main() {\n int result = 0;\n try {\n result = divide(10, 0);\n cout << "A";\n } catch(const char* msg) {\n cout << "B";\n result = -1;\n }\n cout << result;\n return 0;\n}\n\`\`\``,
             options: [
                 "A0",
                 "B-1",
@@ -672,7 +672,7 @@ C++ 异常处理机制确保：一旦异常被抛出，控制流会跳转到第�
         {
             id: 16,
             type: "judge",
-            question: `小杨正在调试他的温度传感器程序，其中变量 x 保存当前温度。下面这段代码运⾏后，变量 x 的值变成 了 8。\n\`\`\`cpp\nint x = 5;\nint *p = &x;\n*p = *p+3;\n\`\`\``,
+            question: `小杨正在调试他的温度传感器程序，其中变量 x 保存当前温度。下面这段代码运行后，变量 x 的值变成 了 8。\n\`\`\`cpp\nint x = 5;\nint *p = &x;\n*p = *p+3;\n\`\`\``,
             options: ["正确", "错误"],
             answer: 0,
             score: 2,
@@ -733,7 +733,7 @@ struct Rectangle {
         {
             id: 18,
             type: "judge",
-            question: `在 C++ 中，定义如下二维数组：int a[3][4];，数组 a 在内存中是按⾏优先连续存放的。`,
+            question: `在 C++ 中，定义如下二维数组：int a[3][4];，数组 a 在内存中是按行优先连续存放的。`,
             options: ["正确", "错误"],
             answer: 0,
             score: 2,
@@ -760,7 +760,7 @@ C++ 标准规定，二维数组在内存中的物理存储采用**行主序（Ro
         {
             id: 19,
             type: "judge",
-            question: `执⾏下面程序后，变量 a 的值会变成 15。\n\`\`\`cpp\nvoid add(int &x){ x += 10; }\nint a = 5;\nadd(a);\n\`\`\``,
+            question: `执行下面程序后，变量 a 的值会变成 15。\n\`\`\`cpp\nvoid add(int &x){ x += 10; }\nint a = 5;\nadd(a);\n\`\`\``,
             options: ["正确", "错误"],
             answer: 0,
             score: 2,
@@ -785,7 +785,7 @@ C++ 标准规定，二维数组在内存中的物理存储采用**行主序（Ro
         {
             id: 20,
             type: "judge",
-            question: `执⾏下面的 C++ 代码，会输出 8。\n\`\`\`cpp\nint arr[5] = {1, 2, 3, 4, 5};\nint* p1 = arr;\nint* p2 = arr+2;\ncout << p2-p1;\n\`\`\``,
+            question: `执行下面的 C++ 代码，会输出 8。\n\`\`\`cpp\nint arr[5] = {1, 2, 3, 4, 5};\nint* p1 = arr;\nint* p2 = arr+2;\ncout << p2-p1;\n\`\`\``,
             options: ["正确", "错误"],
             answer: 1,
             score: 2,
@@ -939,7 +939,7 @@ C++ 函数重载规则：在候选函数中，优先选择更"特殊"的版本�
         {
             id: 25,
             type: "judge",
-            question: `执⾏下面代码会输出 100。\n\`\`\`cpp\nint main() {\n ofstream fout("data.txt");\n fout << 10 << " " << 20 << endl;\n fout << 30 << " " << 40;\n fout.close();\n ifstream fin("data.txt");\n int a, b, c, d;\n fin >> a >> b >> c >> d;\n fin.close();\n cout << a+b+c+d;\n return 0;\n}\n\`\`\``,
+            question: `执行下面代码会输出 100。\n\`\`\`cpp\nint main() {\n ofstream fout("data.txt");\n fout << 10 << " " << 20 << endl;\n fout << 30 << " " << 40;\n fout.close();\n ifstream fin("data.txt");\n int a, b, c, d;\n fin >> a >> b >> c >> d;\n fin.close();\n cout << a+b+c+d;\n return 0;\n}\n\`\`\``,
             options: ["正确", "错误"],
             answer: 0,
             score: 2,

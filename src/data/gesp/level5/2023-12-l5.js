@@ -133,8 +133,8 @@ export const paperData = {
             options: [
                 "fiboA( )用递归方式，fiboB()循环方式",
                 "fiboA( )更加符合斐波那契数列的数学定义，直观易于理解",
-                "fiboA( )不仅仅更加符合数学定义，直观易于理解，且因代码量较少执⾏效率更高",
-                "fiboB( )虽然代码量有所增加，但其执⾏效率更高",
+                "fiboA( )不仅仅更加符合数学定义，直观易于理解，且因代码量较少执行效率更高",
+                "fiboB( )虽然代码量有所增加，但其执行效率更高",
             ],
             answer: 2,
             score: 2,
@@ -145,8 +145,8 @@ export const paperData = {
 
             - **A fiboA( )用递归方式，fiboB()循环方式**：不是本题答案。
             - **B fiboA( )更加符合斐波那契数列的数学定义，直观易于理解**：不是本题答案。
-            - **C fiboA( )不仅仅更加符合数学定义，直观易于理解，且因代码量较少执⾏效率更高**：正确答案。
-            - **D fiboB( )虽然代码量有所增加，但其执⾏效率更高**：不是本题答案。
+            - **C fiboA( )不仅仅更加符合数学定义，直观易于理解，且因代码量较少执行效率更高**：正确答案。
+            - **D fiboB( )虽然代码量有所增加，但其执行效率更高**：不是本题答案。
             **考点：** 递归
             `,
             tags: [
@@ -188,7 +188,7 @@ export const paperData = {
         {
             id: 3,
             type: "single",
-            question: `阅读下面的C++代码，执⾏后其输出是( )。`,
+            question: `阅读下面的C++代码，执行后其输出是( )。`,
             options: [
                 "1->120<===>2->120",
                 "1->120<===>1->120",
@@ -289,7 +289,7 @@ void sortA(int lstA[], int n)
                 "if(pHead) {p->next = pHead->next, pHead->next->prev = p;}",
                 "if(pHead->next) {p->next = pHead->next, pHead->next->prev = p;}",
                 "p->next = pHead->next, pHead->next->prev = p;",
-                "触发异常，不能对空指针进⾏操作。",
+                "触发异常，不能对空指针进行操作。",
             ],
             answer: 1,
             score: 2,
@@ -301,7 +301,7 @@ void sortA(int lstA[], int n)
             - **A if(pHead) {p->next = pHead->next, pHead-...**：错误。
             - **B if(pHead->next) {p->next = pHead->next, ...**：正确答案。
             - **C p->next = pHead->next, pHead->next->prev...**：错误。
-            - **D 触发异常，不能对空指针进⾏操作。**：错误。指针或内存理解有误，请检查解引用和释放逻辑。
+            - **D 触发异常，不能对空指针进行操作。**：错误。指针或内存理解有误，请检查解引用和释放逻辑。
 
             **考点：** 链表
             `,
@@ -521,7 +521,7 @@ void sortA(int lstA[], int n)
         {
             id: 13,
             type: "single",
-            question: `通讯卫星在通信⽹络系统中主要起到（）的作用。`,
+            question: `通讯卫星在通信网络系统中主要起到（）的作用。`,
             options: [
                 "信息过滤",
                 "信号中继",
@@ -553,7 +553,7 @@ void sortA(int lstA[], int n)
             type: "single",
             question: `判断任意输入的整数 N 是否为素数的程序，下面哪个方法不合适？（ ）`,
             options: [
-                "埃⽒筛法",
+                "埃氏筛法",
                 "线性筛法",
                 "二分答案",
                 "枚举法",
@@ -565,7 +565,7 @@ void sortA(int lstA[], int n)
             **解析：**
             素数判定没有单调性，不能使用二分答案。
 
-            - **A 埃⽒筛法**：错误。筛法标记范围或起点有误，请逐步推演标记过程。
+            - **A 埃氏筛法**：错误。筛法标记范围或起点有误，请逐步推演标记过程。
             - **B 线性筛法**：错误。筛法标记范围或起点有误，请逐步推演标记过程。
             - **C 二分答案**：正确答案。
             - **D 枚举法**：错误。
@@ -690,7 +690,7 @@ void sortA(int lstA[], int n)
         {
             id: 19,
             type: "judge",
-            question: `贪⼼算法可以达到局部最优，但可能不是全局最优解。 ( )`,
+            question: `贪心算法可以达到局部最优，但可能不是全局最优解。 ( )`,
             options: [
                 "正确",
                 "错误",
@@ -715,7 +715,7 @@ void sortA(int lstA[], int n)
         {
             id: 20,
             type: "judge",
-            question: `拆数程序能将非质数 N 转换成若⼲个质数的乘积。（ ）`,
+            question: `拆数程序能将非质数 N 转换成若干个质数的乘积。（ ）`,
             options: [
                 "正确",
                 "错误",
@@ -765,7 +765,7 @@ void sortA(int lstA[], int n)
         {
             id: 22,
             type: "judge",
-            question: `下面的 C++ 代码能实现⼗进制正整数 N 转换为⼋进制并输出。（ ）`,
+            question: `下面的 C++ 代码能实现十进制正整数 N 转换为八进制并输出。（ ）`,
             options: [
                 "正确",
                 "错误",

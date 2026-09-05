@@ -92,7 +92,7 @@ export const paperData = {
         {
             id: 1,
             type: "single",
-            question: `以下（ ）没有涉及 C++ 语⾔的面向对象特性支持。`,
+            question: `以下（ ）没有涉及 C++ 语言的面向对象特性支持。`,
             options: [
                 "C++ 中构造一个 class 或 struct",
                 "C++ 中调用 printf 函数",
@@ -124,7 +124,7 @@ export const paperData = {
             type: "single",
             sourceIntegrity: "missing-code",
             integrityNote: "原卷此题引用的程序代码在录入时未收录，仅凭当前题面无法推导答案。本题已排除出计分与考点练习，待补齐原卷代码后恢复。",
-            question: `关于以下 C++ 代码，（ ）⾏代码会引起编译错误。`,
+            question: `关于以下 C++ 代码，（ ）行代码会引起编译错误。`,
             options: [
                 "Line 1",
                 "Line 2",
@@ -244,7 +244,7 @@ export const paperData = {
         {
             id: 6,
             type: "single",
-            question: `假设字母表{a,b,c,d,e}在字符串出现的频率分别为 10% ， 15% ， 30% ， 16% ， 29% 。若使用哈夫曼编码方 式对字母进⾏二进制编码，则字符abcdef分别对应的一组哈夫曼编码的长度分别为（ ）。`,
+            question: `假设字母表{a,b,c,d,e}在字符串出现的频率分别为 10% ， 15% ， 30% ， 16% ， 29% 。若使用哈夫曼编码方 式对字母进行二进制编码，则字符abcdef分别对应的一组哈夫曼编码的长度分别为（ ）。`,
             options: [
                 "4, 4, 1, 3, 2",
                 "3, 3, 2, 2, 2",
@@ -334,7 +334,7 @@ export const paperData = {
         {
             id: 9,
             type: "single",
-            question: `一棵有 个结点的完全二叉树用数组进⾏存储与表⽰，已知根结点存储在数组的第 个位置。若存储在数组第 个位置的结点存在兄弟结点和两个子结点，则它的兄弟结点和右子结点的位置分别是（ ）。`,
+            question: `一棵有 个结点的完全二叉树用数组进行存储与表示，已知根结点存储在数组的第 个位置。若存储在数组第 个位置的结点存在兄弟结点和两个子结点，则它的兄弟结点和右子结点的位置分别是（ ）。`,
             options: [
                 "8, 18",
                 "10, 18",
@@ -394,7 +394,7 @@ export const paperData = {
         {
             id: 11,
             type: "single",
-            question: `上一题的二叉树深度计算还可以采用二叉树的⼴度优先搜索来实现。以下基于二叉树的⼴度优先搜索实现 的深度计算函数中横线上应填写（ ）。`,
+            question: `上一题的二叉树深度计算还可以采用二叉树的广度优先搜索来实现。以下基于二叉树的广度优先搜索实现 的深度计算函数中横线上应填写（ ）。`,
             options: [
                 "int level_size = q.size(); depth++;",
                 "int level_size = 2; depth++;",
@@ -488,7 +488,7 @@ export const paperData = {
             options: [
                 "无法分解的问题",
                 "可以分解成相互依赖的子问题的问题",
-                "可以通过贪⼼算法解决的问题",
+                "可以通过贪心算法解决的问题",
                 "只能通过递归解决的问题",
             ],
             answer: 1,
@@ -500,7 +500,7 @@ export const paperData = {
 
             - **A 无法分解的问题**：不是本题答案。
             - **B 可以分解成相互依赖的子问题的问题**：正确答案。
-            - **C 可以通过贪⼼算法解决的问题**：不是本题答案。
+            - **C 可以通过贪心算法解决的问题**：不是本题答案。
             - **D 只能通过递归解决的问题**：不是本题答案。
 
             **考点：** 动态规划
@@ -578,7 +578,7 @@ int knapsack(int W, const vector<int>& weights,
         {
             id: 16,
             type: "judge",
-            question: `C++ 、 Python 和 JAVA 等都是面向对象的编程语⾔。`,
+            question: `C++ 、 Python 和 JAVA 等都是面向对象的编程语言。`,
             options: [
                 "正确",
                 "错误",
@@ -653,7 +653,7 @@ int knapsack(int W, const vector<int>& weights,
         {
             id: 19,
             type: "judge",
-            question: `运⾏以下 C++ 代码，屏幕将输出 “derived class” 。 dp[i][w] = max(dp[i-1][w], dp[i-1][w-weights[i-1]]+values[i-1]); } else { dp[i][w] = dp[i-1][w]; } } } return dp[n][W]; } 12 13 14 15 16 17 18 19 20 21 22 #include <iostream> using namespace std; class base { public: virtual void show() { cout << "base class" << endl; } }; class derived : public base { public: void show() override { cout << "derived class" << endl; } }; int main() { base* b; derived d; b = &d; 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21`,
+            question: `运行以下 C++ 代码，屏幕将输出 “derived class” 。 dp[i][w] = max(dp[i-1][w], dp[i-1][w-weights[i-1]]+values[i-1]); } else { dp[i][w] = dp[i-1][w]; } } } return dp[n][W]; } 12 13 14 15 16 17 18 19 20 21 22 #include <iostream> using namespace std; class base { public: virtual void show() { cout << "base class" << endl; } }; class derived : public base { public: void show() override { cout << "derived class" << endl; } }; int main() { base* b; derived d; b = &d; 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21`,
             options: [
                 "正确",
                 "错误",
@@ -678,7 +678,7 @@ int knapsack(int W, const vector<int>& weights,
         {
             id: 20,
             type: "judge",
-            question: `如下列代码所⽰的基类（ base ）及其派生类（ derived ），则生成一个派生类的对象时，只调用派生类的构造 函数。`,
+            question: `如下列代码所示的基类（ base ）及其派生类（ derived ），则生成一个派生类的对象时，只调用派生类的构造 函数。`,
             options: [
                 "正确",
                 "错误",
@@ -703,7 +703,7 @@ int knapsack(int W, const vector<int>& weights,
         {
             id: 21,
             type: "judge",
-            question: `哈夫曼编码本质上是一种贪⼼策略。`,
+            question: `哈夫曼编码本质上是一种贪心策略。`,
             options: [
                 "正确",
                 "错误",
@@ -753,7 +753,7 @@ int knapsack(int W, const vector<int>& weights,
         {
             id: 23,
             type: "judge",
-            question: `在非递归实现的树的⼴度优先搜索中，通常使用栈来辅助实现。`,
+            question: `在非递归实现的树的广度优先搜索中，通常使用栈来辅助实现。`,
             options: [
                 "正确",
                 "错误",
@@ -778,7 +778,7 @@ int knapsack(int W, const vector<int>& weights,
         {
             id: 24,
             type: "judge",
-            question: `状态转移方程是动态规划的核⼼，可以通过递推方式表⽰问题状态的变化。`,
+            question: `状态转移方程是动态规划的核心，可以通过递推方式表示问题状态的变化。`,
             options: [
                 "正确",
                 "错误",

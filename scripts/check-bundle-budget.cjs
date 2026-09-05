@@ -69,7 +69,12 @@ const manifestJsAssets = new Set(
     .filter(file => file && file.endsWith('.js'))
 );
 
-assertBudget('Initial app graph', entryAssets, { raw: 550 * 1024, gzip: 116 * 1024 });
+// 预算要拦的是「意外把一整块东西拉上首屏」这类回归——比如把 96 节课的课程流
+// 元数据从 routeMeta 引进来，一次就让 gzip 从 115KB 冲到 149KB。余量卡到 0.3%
+// 则相反：任何一次正常改动都会红，唯一的修法永远是抬高数字，防线就名存实亡。
+// 这里按当前值留约 7% 余量，既能挡住上面那种量级的回归，又不会天天误报。
+// 首屏三块：vendor-react ~73KB gzip（不可再拆）、全局 CSS ~32KB、入口 ~11KB。
+assertBudget('Initial app graph', entryAssets, { raw: 570 * 1024, gzip: 124 * 1024 });
 
 // The markdown/katex families must stay off the first-paint path and must not
 // grow unbounded. Measuring the shipped bytes directly (rather than the size of
@@ -92,7 +97,8 @@ const markdownAssets = new Set(
     .filter(containsMarkdownRuntime)
 );
 assertBudget('Markdown runtime (all lazy chunks)', markdownAssets, { raw: 470 * 1024, gzip: 140 * 1024 });
-assertBudget('On-demand math incremental graph', difference(mathAssets, entryAssets), { raw: 480 * 1024, gzip: 140 * 1024 });
+// 同样的理由：gzip 余量此前只有 1%。
+assertBudget('On-demand math incremental graph', difference(mathAssets, entryAssets), { raw: 500 * 1024, gzip: 149 * 1024 });
 assertBudget('Museum route chunk', new Set([manifest[museumKey].file]), { raw: 135 * 1024, gzip: 36 * 1024 });
 assertBudget('Luogu question data chunk', new Set([manifest[luoguKey].file]), { raw: 190 * 1024, gzip: 52 * 1024 });
 

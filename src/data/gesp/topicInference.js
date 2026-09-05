@@ -1,3 +1,5 @@
+import { normalizeCjkRadicals } from './textNormalization.js';
+
 // 4~7 级的题目在录入时只带了 `客观题` / `单选题` / `GESP7级` 这类元标签，没有知识点
 // 标签。元标签被 normalizeTopicTags 正确剥离后就什么都不剩，于是「按考点练习」在这
 // 几级几乎是空页（七级 250 道题只剩 1 道可练）。
@@ -92,10 +94,9 @@ export const INFERRED_TOPIC_TAGS = INFERENCE_RULES.map(([tag]) => tag);
  * 从题面推断考点。仅供 topics.js 在一道题没有任何人工知识点标签时兜底使用。
  * 返回的标签已是规范名，不需要再过 ALIASES。
  */
-// 题面是从官方 PDF 提取的，混进了康熙部首字符：`贪⼼` 的 `⼼` 是 U+2F3C，不是
-// U+5FC3 的 `心`，`⾏`/`⽹`/`⼿` 同理。肉眼看不出差别，正则却全都匹配不上。
-// NFKC 会把这些兼容字符折叠回常规汉字。
-const normalize = (value) => String(value || '').normalize('NFKC');
+// 题库数据已在入库时做过部首归一化（见 textNormalization.js），这里再兜一层：
+// 新录入的卷子在通过校验之前也可能带着部首码位，匹配失败是静默的，代价太大。
+const normalize = normalizeCjkRadicals;
 
 export function inferTopicTags(question) {
     const stem = normalize(question?.question);

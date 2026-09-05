@@ -6,6 +6,7 @@ import {
   applyVerifiedQuestionCorrections,
   verifiedQuestionCorrections,
 } from '../src/data/gesp/verifiedQuestionCorrections.js';
+import { hasCjkRadicals, normalizeCjkRadicals } from '../src/data/gesp/textNormalization.js';
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
@@ -263,6 +264,22 @@ async function validateFile(filePath, cfg) {
     }
 
     errors.push(...getObjectiveStemIntegrityErrors(q, qId));
+
+    // PDF 提取会把「行/心/网」写成康熙部首区的同形字。看不出来，但所有文本匹配
+    // （站内搜索、考点推断、下面这些片段检查）都会静默失效，所以入库前必须归一化。
+    const radicalFields = ['question', 'code', 'explanation', 'integrityNote']
+      .filter(field => hasCjkRadicals(q[field]))
+      .concat(Array.isArray(q.options) && q.options.some(hasCjkRadicals) ? ['options'] : []);
+    if (radicalFields.length > 0) {
+      const samples = [...new Set(
+        [...String(radicalFields.map(field => JSON.stringify(q[field])).join(''))]
+          .filter(hasCjkRadicals),
+      )].slice(0, 6);
+      errors.push(
+        `[TEXT] Q${qId}: ${radicalFields.join('/')} 含 CJK 部首区字符 `
+        + `${samples.map(ch => `${ch}(U+${ch.codePointAt(0).toString(16).toUpperCase()}→${normalizeCjkRadicals(ch)})`).join(' ')}`,
+      );
+    }
 
     if (requiresCodeContent(q, text) && !hasCodeContent(q, text)) {
       const message = `Q${qId}: question refers to code, but no fenced, inline, or independent code content was found`;

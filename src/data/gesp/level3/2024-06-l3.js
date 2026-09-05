@@ -985,7 +985,7 @@ C++ 中数值字面量的前缀规则：前导 \`0\` 表示八进制（如 \`011
 
 ## 题目描述
 
-小杨学习了加密技术移位，所有大写字母都向后按照⼀个固定数目进行偏移。偏移过程会将字母表视作首尾相接的环，例如，当偏移量是 $3$ 的时候，大写字母 A 会替换成 D，大写字母 Z 会替换成 C，总体来看，大写字母表 ABCDEFGHIJKLMNOPQRSTUVWXYZ 会被替换成 DEFGHIJKLMNOPQRSTUVWXYZABC。
+小杨学习了加密技术移位，所有大写字母都向后按照一个固定数目进行偏移。偏移过程会将字母表视作首尾相接的环，例如，当偏移量是 $3$ 的时候，大写字母 A 会替换成 D，大写字母 Z 会替换成 C，总体来看，大写字母表 ABCDEFGHIJKLMNOPQRSTUVWXYZ 会被替换成 DEFGHIJKLMNOPQRSTUVWXYZABC。
 
 注：当偏移量是 $26$ 的倍数时，每个大写字母经过偏移后会恰好回到原来的位置，即大写字母表 ABCDEFGHIJKLMNOPQRSTUVWXYZ 经过偏移后会保持不变。
 

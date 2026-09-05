@@ -17,7 +17,7 @@ export const paperData = {
                 "函数multiply的定义应该放到函数main之前。",
                 "函数声明int multiply(int x, int y);中明确指定了函数multiply()的返回值为整数类型。",
                 "在main函数中，函数multiply通过multiply(a, b)被调用，其中a和b是定义在main函数中的变量，它们作为实参传递给了multiply函数的形参x and y。",
-                "运⾏上述代码，将输出The result is: 20。",
+                "运行上述代码，将输出The result is: 20。",
             ],
             answer: 0,
             score: 2,
@@ -35,7 +35,7 @@ C++ 编译器的工作方式是：从上到下扫描源代码，当遇到函数�
 - **A 函数multiply的定义应该放到函数main之前**：✅ 正确。错误。这是本题要找的错误选项。在 C++ 中，只要在调用函数之前提供了该函数的**前向声明**（函数原型），函数定义可以放在程序的任意位置，包括 main 函数之后。
 - **B 函数声明int multiply(int x, int y);中明确指定了函数multiply()的返回值为整数类型**：❌ 错误。该项本身符合规则，因此不是本题要选的项。正确。声明中的 \`int\` 表示返回类型为 \`int\`。
 - **C 在main函数中，函数multiply通过multiply(a, b)被调用，其中a和b是定义在main函数中的变量，它们作为实参传递给了multiply函数的形参x and y**：❌ 错误。该项本身符合规则，因此不是本题要选的项。正确。这是标准的按值传递（Pass by Value）过程：实参 \`a\`、\`b\` 的值被复制给形参 \`x\`、\`y\`。
-- **D 运⾏上述代码，将输出The result is: 20**：❌ 错误。该项本身符合规则，因此不是本题要选的项。正确。\`multiply(4, 5)\` 执行 \`4 * 5 = 20\`，main 中输出 "The result is: 20"。
+- **D 运行上述代码，将输出The result is: 20**：❌ 错误。该项本身符合规则，因此不是本题要选的项。正确。\`multiply(4, 5)\` 执行 \`4 * 5 = 20\`，main 中输出 "The result is: 20"。
 
 **易错提醒：**
 - 混淆**声明**（Declaration）和**定义**（Definition）的概念。声明只告诉编译器"有这个东西"，定义才是实际的实现代码。只要声明在前，定义可以在任何位置。
@@ -50,7 +50,7 @@ C++ 中分离声明与定义的做法支持将函数声明放在头文件中，�
         {
             id: 2,
             type: "single",
-            question: `执⾏下述代码将输出（ ）。\n\`\`\`cpp\nint x = 10;\nvoid func() {\n int x = 20;\n std::cout << x;\n}\nint main() {\n func();\n std::cout << x;\n return 0;\n}\n\`\`\``,
+            question: `执行下述代码将输出（ ）。\n\`\`\`cpp\nint x = 10;\nvoid func() {\n int x = 20;\n std::cout << x;\n}\nint main() {\n func();\n std::cout << x;\n return 0;\n}\n\`\`\``,
             options: [
                 "2020",
                 "2010",
@@ -92,7 +92,7 @@ C++ 中分离声明与定义的做法支持将函数声明放在头文件中，�
         {
             id: 3,
             type: "single",
-            question: `执⾏下述代码后，变量a的值为（ ）。\n\`\`\`cpp\nint a = 10;\nint* p = &a;\n*p = 20;\n\`\`\``,
+            question: `执行下述代码后，变量a的值为（ ）。\n\`\`\`cpp\nint a = 10;\nint* p = &a;\n*p = 20;\n\`\`\``,
             options: [
                 "10",
                 "20",
@@ -196,7 +196,7 @@ C++11 引入了**移动语义**（Move Semantics）和**右值引用**（\`T&&\`
         {
             id: 5,
             type: "single",
-            question: `执⾏下述代码，将输出（ ）。\n\`\`\`cpp\nvoid swap(int a, int &b) {\n int temp = a;\n a = b;\n b = temp;\n}\nint main() {\n int x = 1, y = 2;\n swap(x, y);\n std::cout << x << y;\n return 0;\n}\n\`\`\``,
+            question: `执行下述代码，将输出（ ）。\n\`\`\`cpp\nvoid swap(int a, int &b) {\n int temp = a;\n a = b;\n b = temp;\n}\nint main() {\n int x = 1, y = 2;\n swap(x, y);\n std::cout << x << y;\n return 0;\n}\n\`\`\``,
             options: [
                 "12",
                 "21",
@@ -517,7 +517,7 @@ GESP 常考的稳定排序包括：冒泡排序、插入排序、归并排序；
         {
             id: 13,
             type: "single",
-            question: `对数组arr[]={5, 3, 8, 1}进⾏升序排序，执⾏第一轮冒泡排序后数组arr中的内容为（ ）。`,
+            question: `对数组arr[]={5, 3, 8, 1}进行升序排序，执行第一轮冒泡排序后数组arr中的内容为（ ）。`,
             options: [
                 "3, 5, 1, 8",
                 "3, 1, 5, 8",
@@ -557,7 +557,7 @@ GESP 常考的稳定排序包括：冒泡排序、插入排序、归并排序；
         {
             id: 14,
             type: "single",
-            question: `运⾏下面的代码，将输出（ ）。\n\`\`\`cpp\ndouble hmean(double a, double b) {\n if (a == -b) throw std::runtime_error("Runtime error occurred.");\n return 2.0*a*b/(a+b);\n}\nint main() {\n double x = 10;\n double y = -10;\n try {\n int result = hmean(x, y);\n std::cout << "hmean: " << result << std::endl;\n } catch (const std::runtime_error& e) {\n std::cout << "Caught: " << e.what() << std::endl;\n } catch (...) {\n std::cout << "Caught an unknown exception." << std::endl;\n }\n return 0;\n}\n\`\`\``,
+            question: `运行下面的代码，将输出（ ）。\n\`\`\`cpp\ndouble hmean(double a, double b) {\n if (a == -b) throw std::runtime_error("Runtime error occurred.");\n return 2.0*a*b/(a+b);\n}\nint main() {\n double x = 10;\n double y = -10;\n try {\n int result = hmean(x, y);\n std::cout << "hmean: " << result << std::endl;\n } catch (const std::runtime_error& e) {\n std::cout << "Caught: " << e.what() << std::endl;\n } catch (...) {\n std::cout << "Caught an unknown exception." << std::endl;\n }\n return 0;\n}\n\`\`\``,
             options: [
                 "Caught: Runtime error occurred.",
                 "Caught an unknown exception.",
@@ -629,7 +629,7 @@ C++ 标准库提供多种异常类：\`std::exception\`（基类）、\`std::run
         {
             id: 16,
             type: "judge",
-            question: `函数是 C++ 中的核⼼概念，用于封装可重用的代码块。`,
+            question: `函数是 C++ 中的核心概念，用于封装可重用的代码块。`,
             options: ["正确", "错误"],
             answer: 0,
             score: 2,
@@ -831,7 +831,7 @@ void print(int arr[][], int rows, int cols) { ... }  // 编译错误
         {
             id: 24,
             type: "judge",
-            question: `对数组arr[]={4, 3, 1, 5, 2}进⾏升序排序，执⾏第一轮选择排序后数组 arr 中的内容是{1, 4, 3, 5, 2}。`,
+            question: `对数组arr[]={4, 3, 1, 5, 2}进行升序排序，执行第一轮选择排序后数组 arr 中的内容是{1, 4, 3, 5, 2}。`,
             options: ["正确", "错误"],
             answer: 1,
             score: 2,
@@ -859,7 +859,7 @@ void print(int arr[][], int rows, int cols) { ... }  // 编译错误
         {
             id: 25,
             type: "judge",
-            question: `未捕获异常会调用 std::terminate 终⽌程序。`,
+            question: `未捕获异常会调用 std::terminate 终止程序。`,
             options: ["正确", "错误"],
             answer: 0,
             score: 2,

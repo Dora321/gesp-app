@@ -4,6 +4,7 @@ import { MousePointer2, Move, Square, Palette, Sparkles, ChevronRight, Home, Pen
 import TurtleCanvas from '../../../components/TurtleCanvas';
 import PythonFoundationSupport from '../../../components/PythonFoundationSupport';
 import PythonLessonShell, { MasteryCheck, PredictCheck, SlideHeader, TransferCheck } from '../shell/PythonLessonShell';
+import { PlainCodeBlock as CodeBlock } from '../../../components/CodeBlock';
 
 // --- Shared Helper Components ---
 const Button = ({ onClick, children, className, variant = 'primary' }) => {
@@ -20,11 +21,6 @@ const Button = ({ onClick, children, className, variant = 'primary' }) => {
     );
 };
 
-const CodeBlock = ({ code }) => (
-    <div className="bg-slate-900 text-slate-100 p-4 rounded-xl font-mono text-sm shadow-inner border border-slate-700 overflow-x-auto">
-        <pre>{code}</pre>
-    </div>
-);
 
 // --- Slides ---
 

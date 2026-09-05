@@ -115,8 +115,8 @@ export const paperData = {
             type: "single",
             question: `面向对象的编程思想主要包括（ ）原则。`,
             options: [
-                "贪⼼、动态规划、回溯",
-                "并发、并⾏、异步",
+                "贪心、动态规划、回溯",
+                "并发、并行、异步",
                 "递归、循环、分治",
                 "封装、继承、多态",
             ],
@@ -127,8 +127,8 @@ export const paperData = {
             **解析：**
             本题答案已依据试卷标准答案完成录入，可结合题干与选项复盘对应知识点。
 
-            - **A 贪⼼、动态规划、回溯**：不是本题答案。动态规划的状态或转移方程有误，请检查边界初始化。
-            - **B 并发、并⾏、异步**：不是本题答案。
+            - **A 贪心、动态规划、回溯**：不是本题答案。动态规划的状态或转移方程有误，请检查边界初始化。
+            - **B 并发、并行、异步**：不是本题答案。
             - **C 递归、循环、分治**：不是本题答案。
             - **D 封装、继承、多态**：正确答案。
 
@@ -143,7 +143,7 @@ export const paperData = {
         {
             id: 2,
             type: "single",
-            question: `运⾏下列代码，屏幕上输出（ ）。`,
+            question: `运行下列代码，屏幕上输出（ ）。`,
             options: [
                 "1 1 1 #include <iostream> using namespace std; class my_class { public: static int count; my_class() { count++; } ~my_class() { count--; } static void print_count() { cout << count << \" \"; } }; int my_class::count = 0; int main() { my_class obj1; my_class::print_count(); my_class obj2; obj2.print_count(); my_class obj3; obj3.print_count(); return 0; } 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26",
                 "1 2 3",
@@ -173,11 +173,11 @@ export const paperData = {
         {
             id: 3,
             type: "single",
-            question: `运⾏下列代码，屏幕上输出（ ）。 #include <iostream> using namespace std; class shape { protected: int width, height; public: shape(int a = 0, int b = 0) { width = a; height = b; } virtual int area() { cout << "parent class area: " <<endl; return 0; } }; class rectangle: public shape { public: rectangle(int a = 0, int b = 0) : shape(a, b) { } int area () { cout << "rectangle area: "; return (width * height); } }; class triangle: public shape { public: triangle(int a = 0, int b = 0) : shape(a, b) { } int area () { cout << "triangle area: "; return (width * height / 2); } }; int main() { shape *pshape; rectangle rec(10, 7); triangle tri(10, 5); pshape = &rec; pshape->area(); pshape = &tri; pshape->area(); return 0; 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27 28 29 30 31 32 33 34 35 36 37 38 39 40 41 42 43 44 45 46 47 48`,
+            question: `运行下列代码，屏幕上输出（ ）。 #include <iostream> using namespace std; class shape { protected: int width, height; public: shape(int a = 0, int b = 0) { width = a; height = b; } virtual int area() { cout << "parent class area: " <<endl; return 0; } }; class rectangle: public shape { public: rectangle(int a = 0, int b = 0) : shape(a, b) { } int area () { cout << "rectangle area: "; return (width * height); } }; class triangle: public shape { public: triangle(int a = 0, int b = 0) : shape(a, b) { } int area () { cout << "triangle area: "; return (width * height / 2); } }; int main() { shape *pshape; rectangle rec(10, 7); triangle tri(10, 5); pshape = &rec; pshape->area(); pshape = &tri; pshape->area(); return 0; 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27 28 29 30 31 32 33 34 35 36 37 38 39 40 41 42 43 44 45 46 47 48`,
             options: [
                 "rectangle area: triangle area:",
                 "parent class area: parent class area:",
-                "运⾏时报错",
+                "运行时报错",
                 "编译时报错",
             ],
             answer: 0,
@@ -189,7 +189,7 @@ export const paperData = {
 
             - **A rectangle area: triangle area:**：正确答案。
             - **B parent class area: parent class area:**：不是本题答案。
-            - **C 运⾏时报错**：不是本题答案。
+            - **C 运行时报错**：不是本题答案。
             - **D 编译时报错**：不是本题答案。
 
             **考点：** 面向对象
@@ -203,7 +203,7 @@ export const paperData = {
         {
             id: 4,
             type: "single",
-            question: `向一个栈顶为 hs 的链式栈中插入一个指针为 s 的结点时，应执⾏（ ）。`,
+            question: `向一个栈顶为 hs 的链式栈中插入一个指针为 s 的结点时，应执行（ ）。`,
             options: [
                 "hs->next = s;",
                 "s->next = hs; hs = s;",
@@ -233,7 +233,7 @@ export const paperData = {
         {
             id: 5,
             type: "single",
-            question: `在栈数据结构中，元素的添加和删除是按照什么原则进⾏的？`,
+            question: `在栈数据结构中，元素的添加和删除是按照什么原则进行的？`,
             options: [
                 "先进先出",
                 "先进后出",
@@ -263,7 +263,7 @@ export const paperData = {
         {
             id: 6,
             type: "single",
-            question: `要实现将一个输入的⼗进制正整数转化为二进制表⽰，下面横线上应填入的代码为（ ）。 }49 #include <iostream> using namespace std; stack<int> ten2bin(int n) { stack<int> st; int r, m; r = n % 2; m = n / 2; st.push(r); while (m != 1) { r = m % 2; st.push(r); m = m / 2; } st.push(m); return st; } int main() { int n; cin >> n; stack<int> bin; bin = ten2bin(n); while (!bin.empty()) { 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26`,
+            question: `要实现将一个输入的十进制正整数转化为二进制表示，下面横线上应填入的代码为（ ）。 }49 #include <iostream> using namespace std; stack<int> ten2bin(int n) { stack<int> st; int r, m; r = n % 2; m = n / 2; st.push(r); while (m != 1) { r = m % 2; st.push(r); m = m / 2; } st.push(m); return st; } int main() { int n; cin >> n; stack<int> bin; bin = ten2bin(n); while (!bin.empty()) { 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26`,
             options: [
                 "cout << bin.top(); bin.pop();",
                 "bin.pop(); cout << bin.top();",
@@ -419,7 +419,7 @@ export const paperData = {
             options: [
                 "重叠子问题",
                 "分治法",
-                "贪⼼策略",
+                "贪心策略",
                 "回溯算法 int de_queue() { if (is_empty()) { cout << \" 队列为空，无法出队！ \" << endl; return -1; // 出队失败，返回一个特殊值 } int data = arr[front]; front = (front+1) % capacity; return data; } }; 42 43 44 45 46 47 48 49 50 51",
             ],
             answer: 0,
@@ -431,7 +431,7 @@ export const paperData = {
 
             - **A 重叠子问题**：正确答案。
             - **B 分治法**：不是本题答案。
-            - **C 贪⼼策略**：不是本题答案。
+            - **C 贪心策略**：不是本题答案。
             - **D 回溯算法 int de_queue() { if (is_empty()) { ...**：不是本题答案。对队列的先进先出特性或循环队列满判断理解有误。
 
             **考点：** 动态规划
@@ -449,8 +449,8 @@ export const paperData = {
             options: [
                 "函数 jump_recur() 采用递归方式。",
                 "函数 jump_dp() 采用动态规划方法。",
-                "当 n 较大时，函数 jump_recur() 存在大量重复计算，执⾏效率低。",
-                "函数 jump_recur() 代码量小，执⾏效率高。",
+                "当 n 较大时，函数 jump_recur() 存在大量重复计算，执行效率低。",
+                "函数 jump_recur() 代码量小，执行效率高。",
             ],
             answer: 3,
             score: 2,
@@ -461,8 +461,8 @@ export const paperData = {
 
             - **A 函数 jump_recur() 采用递归方式。**：不是本题答案。
             - **B 函数 jump_dp() 采用动态规划方法。**：不是本题答案。动态规划的状态或转移方程有误，请检查边界初始化。
-            - **C 当 n 较大时，函数 jump_recur() 存在大量重复计算，执⾏效率低。**：不是本题答案。
-            - **D 函数 jump_recur() 代码量小，执⾏效率高。**：正确答案。
+            - **C 当 n 较大时，函数 jump_recur() 存在大量重复计算，执行效率低。**：不是本题答案。
+            - **D 函数 jump_recur() 代码量小，执行效率高。**：正确答案。
 
             **考点：** STL容器、动态规划
             `,
@@ -475,7 +475,7 @@ export const paperData = {
         {
             id: 13,
             type: "single",
-            question: `阅读以下二叉树的⼴度优先搜索代码 : int jump_recur(int n) { if (n == 1) return 1; if (n == 2) return 2; return jump_recur(n-1)+jump_recur(n-2); } int jump_dp(int n) { vector<int> dp(n+1); // 创建一个动态规划数组，用于保存已计算的值 // 初始化前两个数 dp[1] = 1; dp[2] = 2; // 从第三个数开始计算斐波那契数列 for (int i = 3; i <= n; ++i) { dp[i] = dp[i-1]+dp[i-2]; } return dp[n]; } 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 #include <iostream> #include <queue> using namespace std; // 二叉树节点的定义 struct TreeNode { int val; TreeNode* left; TreeNode* right; TreeNode(int x) : val(x), left(nullptr), right(nullptr) {} }; // 宽度优先搜索（ BFS ）迭代实现 TreeNode* bfs(TreeNode* root, int a) { if (root == nullptr) return nullptr; queue<TreeNode*> q; q.push(root); while (!q.empty()) { TreeNode* node = q.front(); q.pop(); if (node->val == a) return node; 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26 使用以上算法，在以下这棵树搜索数值 时，可能的输出是 ( ) 。`,
+            question: `阅读以下二叉树的广度优先搜索代码 : int jump_recur(int n) { if (n == 1) return 1; if (n == 2) return 2; return jump_recur(n-1)+jump_recur(n-2); } int jump_dp(int n) { vector<int> dp(n+1); // 创建一个动态规划数组，用于保存已计算的值 // 初始化前两个数 dp[1] = 1; dp[2] = 2; // 从第三个数开始计算斐波那契数列 for (int i = 3; i <= n; ++i) { dp[i] = dp[i-1]+dp[i-2]; } return dp[n]; } 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 #include <iostream> #include <queue> using namespace std; // 二叉树节点的定义 struct TreeNode { int val; TreeNode* left; TreeNode* right; TreeNode(int x) : val(x), left(nullptr), right(nullptr) {} }; // 宽度优先搜索（ BFS ）迭代实现 TreeNode* bfs(TreeNode* root, int a) { if (root == nullptr) return nullptr; queue<TreeNode*> q; q.push(root); while (!q.empty()) { TreeNode* node = q.front(); q.pop(); if (node->val == a) return node; 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26 使用以上算法，在以下这棵树搜索数值 时，可能的输出是 ( ) 。`,
             options: [
                 "5 2 -4 3 17 9",
                 "-4 2 3 5 9 17",
@@ -607,7 +607,7 @@ B 是中序遍历结果；C 在访问根后先走右子树，与实际压栈顺�
         {
             id: 16,
             type: "judge",
-            question: `哈夫曼编码本质上是一种贪⼼策略。`,
+            question: `哈夫曼编码本质上是一种贪心策略。`,
             options: [
                 "正确",
                 "错误",
@@ -632,7 +632,7 @@ B 是中序遍历结果；C 在访问根后先走右子树，与实际压栈顺�
         {
             id: 17,
             type: "judge",
-            question: `创建一个对象时，会⾃动调用该对象所属类的构造函数。如果没有定义构造函数，编译器会⾃动生成一个默 认的构造函数。`,
+            question: `创建一个对象时，会自动调用该对象所属类的构造函数。如果没有定义构造函数，编译器会自动生成一个默 认的构造函数。`,
             options: [
                 "正确",
                 "错误",
@@ -657,7 +657,7 @@ B 是中序遍历结果；C 在访问根后先走右子树，与实际压栈顺�
         {
             id: 18,
             type: "judge",
-            question: `定义一个类时，必须⼿动定义一个析构函数，用于释放对象所占用的资源。`,
+            question: `定义一个类时，必须手动定义一个析构函数，用于释放对象所占用的资源。`,
             options: [
                 "正确",
                 "错误",
@@ -830,7 +830,7 @@ B 是中序遍历结果；C 在访问根后先走右子树，与实际压栈顺�
         {
             id: 25,
             type: "judge",
-            question: `对 0-1 背包问题，贪⼼算法一定能获得最优解。`,
+            question: `对 0-1 背包问题，贪心算法一定能获得最优解。`,
             options: [
                 "正确",
                 "错误",
