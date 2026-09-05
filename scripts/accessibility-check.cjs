@@ -7,6 +7,8 @@ const shouldStartServer = !process.env.A11Y_BASE_URL;
 const ROUTES = [
   '/',
   '/question-bank',
+  '/question-bank/topics/7',
+  '/question-bank/review',
   '/question-bank/2/2026-03-l2',
   '/lesson/1/9',
   '/python/f2',

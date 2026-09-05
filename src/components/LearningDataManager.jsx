@@ -65,6 +65,7 @@ export default function LearningDataManager() {
         { label: '已学课程', value: summary.lessons },
         { label: '已过关', value: summary.masteredLessons },
         { label: '试卷草稿', value: summary.examDrafts },
+        { label: '交卷记录', value: summary.examAttempts },
         { label: '硬件课', value: summary.hardwareLessons },
         { label: '博物馆收集', value: summary.museumItems },
     ];

@@ -315,6 +315,8 @@ if (s[i] != '0') {
         {
             id: 9,
             type: "single",
+            sourceIntegrity: "missing-code",
+            integrityNote: "原卷此题引用的程序代码在录入时未收录，仅凭当前题面无法推导答案。本题已排除出计分与考点练习，待补齐原卷代码后恢复。",
             question: `给定一个无向图，图的节点编号从 0 到 $n-1$，图的边以邻接表的形式给出。下面程序使用深度优先搜索（DFS）遍历该图，并输出遍历的节点顺序。横线处应该填入的是（ ）。`,
             options: [
                 "nl + nr == n",
@@ -348,6 +350,8 @@ for (int neighbor : graph[node]) {
         {
             id: 10,
             type: "single",
+            sourceIntegrity: "missing-code",
+            integrityNote: "原卷此题引用的程序代码在录入时未收录，仅凭当前题面无法推导答案。本题已排除出计分与考点练习，待补齐原卷代码后恢复。",
             question: `给定一个整数数组 nums，找到其中最长的严格上升子序列的长度。子序列是指从原数组中删除一些元素（或不删除）后，剩余元素保持原有顺序的序列。下面的程序横线处应该填入的是（ ）。`,
             options: [
                 "$dp[i]$ = max($dp[i]$, $dp[j]$);",
@@ -398,6 +402,8 @@ for (int neighbor : graph[node]) {
         {
             id: 12,
             type: "single",
+            sourceIntegrity: "missing-code",
+            integrityNote: "原卷此题引用的程序代码在录入时未收录，仅凭当前题面无法推导答案。本题已排除出计分与考点练习，待补齐原卷代码后恢复。",
             question: `给定两个无向图 G1 和 G2，判断它们是否同构。图的同构是指两个图的节点可以通过某种重新编号的方式完全匹配，且边的连接关系一致。为了简化问题，假设图的节点编号从 0 到 $n-1$，并且图的边以邻接表形式给出。下面程序中横线处应该填入的是（ ）。`,
             options: [
                 "hash += to_string(neighbor);",

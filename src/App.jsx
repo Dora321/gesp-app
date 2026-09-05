@@ -12,6 +12,7 @@ const ComputingMuseum = lazy(() => import('./pages/ComputingMuseum'));
 const QuestionBankHome = lazy(() => import('./pages/QuestionBankHome'));
 const ExamPaper = lazy(() => import('./pages/ExamPaper'));
 const TopicPractice = lazy(() => import('./pages/question-bank/TopicPracticePage'));
+const QuestionBankReview = lazy(() => import('./pages/question-bank/ReviewPage'));
 
 // Lesson router — dynamically loads lesson by level + lessonId
 const LessonRouter = lazy(() => import('./components/LessonRouter'));
@@ -116,6 +117,7 @@ function App() {
           <Routes>
             <Route path="/museum" element={<ComputingMuseum />} />
             <Route path="/question-bank" element={<QuestionBankHome />} />
+            <Route path="/question-bank/review" element={<QuestionBankReview />} />
             <Route path="/question-bank/topics/:level" element={<TopicPractice />} />
             <Route path="/question-bank/:level/:paperId" element={<ExamPaper />} />
             <Route path="/" element={<Home />} />

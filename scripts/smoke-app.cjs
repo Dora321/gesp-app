@@ -248,9 +248,11 @@ async function run() {
     throw new Error(`Unexpected learning data filename: ${learningDataDownload.suggestedFilename()}`);
   }
 
+  // 故意用一份旧版本导出做夹具：导入必须能把它向前迁移，而不是原样收下。
+  const LEGACY_EXPORT_VERSION = 2;
   const importPayload = JSON.stringify({
     schema: 'gesp-learning-data',
-    version: 2,
+    version: LEGACY_EXPORT_VERSION,
     data: {
       lessons: { '/python/f2': { status: 'mastered', visitedAt: 100, masteredAt: 200 } },
       exams: { 'smoke-paper': { answers: { 0: 'A' }, currentQuestionIndex: 1, timeLeft: 120, isSubmitted: false } },
@@ -266,7 +268,13 @@ async function run() {
   });
   await page.getByText('学习数据已导入，下次打开课程时生效').waitFor({ timeout: 10000 });
   const importedLearningData = await page.evaluate(() => JSON.parse(localStorage.getItem('gesp_learning_data') || 'null'));
-  if (importedLearningData?.version !== 2 || importedLearningData?.lessons?.['/python/f2']?.status !== 'mastered') {
+  // 只断言「不倒退 + 内容迁移过来了」，不写死版本号——否则每次 schema 升级都会
+  // 因为这条断言变红，而它本来要保护的是迁移行为，不是某个具体版本。
+  if (
+    !Number.isInteger(importedLearningData?.version)
+    || importedLearningData.version < LEGACY_EXPORT_VERSION
+    || importedLearningData?.lessons?.['/python/f2']?.status !== 'mastered'
+  ) {
     throw new Error('Learning data import did not persist the versioned progress document.');
   }
 

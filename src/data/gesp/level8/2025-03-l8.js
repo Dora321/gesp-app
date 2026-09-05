@@ -222,6 +222,8 @@ export const paperData = {
         {
             id: 9,
             type: "single",
+            sourceIntegrity: "missing-code",
+            integrityNote: "原卷此题引用的程序代码在录入时未收录，仅凭当前题面无法推导答案。本题已排除出计分与考点练习，待补齐原卷代码后恢复。",
             question: `下面程序横线处应填入的是（ ）。`,
             options: [
                 "nl + nr == n",
@@ -247,6 +249,8 @@ export const paperData = {
         {
             id: 10,
             type: "single",
+            sourceIntegrity: "missing-code",
+            integrityNote: "原卷此题引用的程序代码在录入时未收录，仅凭当前题面无法推导答案。本题已排除出计分与考点练习，待补齐原卷代码后恢复。",
             question: `下面程序的时间复杂度为（ ）。`,
             options: [
                 "O(N)",
@@ -372,6 +376,8 @@ Floyd–Warshall 算法对每对“中间点 k、起点 i、终点 j”进行三
         {
             id: 15,
             type: "single",
+            sourceIntegrity: "missing-code",
+            integrityNote: "原卷此题引用的程序代码在录入时未收录，仅凭当前题面无法推导答案。本题已排除出计分与考点练习，待补齐原卷代码后恢复。",
             question: `下列程序实现了输出杨辉三角形，其时间复杂度为（ ）。`,
             options: [
                 "O(n)",

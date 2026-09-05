@@ -1,5 +1,9 @@
 export const LEARNING_DATA_SCHEMA = 'gesp-learning-data';
-export const LEARNING_DATA_VERSION = 2;
+export const LEARNING_DATA_VERSION = 3;
+
+// 每张卷保留最近若干次交卷记录。备考期一张卷刷十几遍是常态，但更早的记录对
+// 复盘没有价值，无上限增长只会把 localStorage 撑爆。
+export const MAX_ATTEMPTS_PER_PAPER = 20;
 export const LEARNING_DATA_STORAGE_KEY = 'gesp_learning_data';
 export const LEARNING_DATA_EVENT = 'gesp:learning-data';
 
@@ -20,6 +24,7 @@ const emptyLearningData = () => ({
     updatedAt: null,
     lessons: {},
     exams: {},
+    attempts: {},
     hardware: { esp32Ai: null },
     museum: { collected: [] },
 });
@@ -80,6 +85,46 @@ const normalizeExams = (value) => cleanEntries(value, (entry) => {
     return snapshot;
 });
 
+const nonNegativeInt = (value) => (
+    Number.isInteger(value) && value >= 0 ? value : undefined
+);
+
+// 一次交卷的结果快照。只保留复盘用得上的字段：分数、对错计数、错题号。
+// 不存作答明细——那是 exams 里的草稿该管的事，两份数据分开才不会互相污染。
+const normalizeAttempt = (entry) => {
+    if (!isRecord(entry)) return null;
+    const at = finiteNumber(entry.at);
+    if (at === undefined) return null;
+
+    const attempt = { at };
+    for (const key of ['score', 'total']) {
+        const number = finiteNumber(entry[key]);
+        if (number !== undefined && number >= 0) attempt[key] = number;
+    }
+    for (const key of ['correct', 'wrong', 'unanswered', 'excluded']) {
+        const number = nonNegativeInt(entry[key]);
+        if (number !== undefined) attempt[key] = number;
+    }
+    const elapsed = nonNegativeInt(entry.elapsedSeconds);
+    if (elapsed !== undefined) attempt.elapsedSeconds = elapsed;
+
+    attempt.wrongIds = Array.isArray(entry.wrongIds)
+        ? [...new Set(entry.wrongIds.filter((id) => typeof id === 'string' || Number.isFinite(id)))]
+        : [];
+
+    return attempt;
+};
+
+const normalizeAttempts = (value) => cleanEntries(value, (list) => {
+    if (!Array.isArray(list)) return null;
+    const entries = list
+        .map(normalizeAttempt)
+        .filter(Boolean)
+        .sort((a, b) => b.at - a.at)
+        .slice(0, MAX_ATTEMPTS_PER_PAPER);
+    return entries.length > 0 ? entries : null;
+});
+
 const normalizeEsp32Ai = (value) => {
     if (!isRecord(value)) return null;
     const activeNum = Number.isInteger(value.activeNum) && value.activeNum >= 1 && value.activeNum <= 16
@@ -112,6 +157,8 @@ export function normalizeLearningData(value) {
         updatedAt: finiteNumber(source.updatedAt) ?? null,
         lessons: normalizeLessons(lessons),
         exams: normalizeExams(exams),
+        // v1/v2 没有 attempts，缺省为空即可——旧数据里本来就没有成绩历史。
+        attempts: normalizeAttempts(source.attempts),
         hardware: { esp32Ai: normalizeEsp32Ai(esp32Ai) },
         museum: { collected: normalizeCollection(collected) },
     };
@@ -248,10 +295,13 @@ export function resetLearningData() {
 }
 
 export function summarizeLearningData(data = readLearningData()) {
+    const attemptLists = Object.values(data.attempts);
     return {
         lessons: Object.keys(data.lessons).length,
         masteredLessons: Object.values(data.lessons).filter((entry) => entry.status === 'mastered').length,
         examDrafts: Object.keys(data.exams).length,
+        examAttempts: attemptLists.reduce((total, list) => total + list.length, 0),
+        papersAttempted: attemptLists.length,
         hardwareLessons: data.hardware.esp32Ai?.viewed.length || 0,
         museumItems: data.museum.collected.length,
     };

@@ -20,6 +20,15 @@ import {
   loadExamProgress,
   saveExamProgress,
 } from '../../src/utils/examProgress.js';
+import {
+  MAX_ATTEMPTS_PER_PAPER,
+  clearPaperAttempts,
+  latestWrongIdsByPaper,
+  readPaperAttempts,
+  recordExamAttempt,
+  summarizePaperAttempts,
+} from '../../src/utils/examHistory.js';
+import { PROGRAMMING_ACK } from '../../src/utils/questionHelpers.js';
 
 class MemoryStorage {
   #values = new Map();
@@ -106,6 +115,8 @@ test('lesson mastery and exam drafts persist through the shared data layer', () 
     lessons: 1,
     masteredLessons: 1,
     examDrafts: 1,
+    examAttempts: 0,
+    papersAttempted: 0,
     hardwareLessons: 0,
     museumItems: 0,
   });
@@ -131,4 +142,123 @@ test('export contains only canonical learning data and reset preserves unrelated
   assert.equal(storage.getItem(LEARNING_DATA_STORAGE_KEY), null);
   assert.equal(storage.getItem('ai_selected_persona_id'), 'tutor');
   assert.equal(storage.getItem('classroom_history'), '[1]');
+});
+
+// ─── 交卷记录 / 错题本 ──────────────────────────────────────────────
+
+test('submitting an exam records a score snapshot that outlives the result dialog', () => {
+  installStorage();
+
+  const questions = [
+    { id: 1, type: 'single', answer: 0, score: 2 },
+    { id: 2, type: 'single', answer: 1, score: 2 },
+    { id: 3, type: 'judge', answer: 0, score: 2 },
+    { id: 4, type: 'single', answer: 2, score: 2, sourceIntegrity: 'missing-code' },
+    { id: 5, type: 'programming' },
+  ];
+  const attempt = recordExamAttempt('2025-12-l8', {
+    questions,
+    answers: { 1: 0, 2: 0, 4: 3, 5: PROGRAMMING_ACK },
+    elapsedSeconds: 1234,
+  });
+
+  // 编程题与 sourceIntegrity 题都不参与判分，也不该进错题本。
+  assert.equal(attempt.total, 6);
+  assert.equal(attempt.score, 2);
+  assert.equal(attempt.correct, 1);
+  assert.deepEqual(attempt.wrongIds, [2]);
+  assert.equal(attempt.unanswered, 1);
+  assert.equal(attempt.excluded, 1);
+  assert.equal(attempt.elapsedSeconds, 1234);
+
+  assert.equal(readPaperAttempts('2025-12-l8').length, 1);
+  assert.equal(summarizeLearningData().examAttempts, 1);
+});
+
+test('the wrong-answer book only keeps questions still wrong on the latest attempt', () => {
+  installStorage();
+  const questions = [
+    { id: 1, type: 'single', answer: 0, score: 2 },
+    { id: 2, type: 'single', answer: 0, score: 2 },
+  ];
+
+  recordExamAttempt('2026-03-l7', { questions, answers: { 1: 1, 2: 1 } });
+  assert.deepEqual(latestWrongIdsByPaper()['2026-03-l7'].sort(), [1, 2]);
+
+  // 订正后重做，只有第 2 题还错着。
+  recordExamAttempt('2026-03-l7', { questions, answers: { 1: 0, 2: 1 } });
+  assert.deepEqual(latestWrongIdsByPaper()['2026-03-l7'], [2]);
+
+  // 全做对之后错题本清空，而不是永远留着历史错题。
+  recordExamAttempt('2026-03-l7', { questions, answers: { 1: 0, 2: 0 } });
+  assert.equal(latestWrongIdsByPaper()['2026-03-l7'], undefined);
+});
+
+test('attempt history is capped and summarised newest-first', () => {
+  installStorage();
+  const questions = [{ id: 1, type: 'single', answer: 0, score: 10 }];
+
+  for (let index = 0; index < MAX_ATTEMPTS_PER_PAPER + 5; index += 1) {
+    recordExamAttempt('2025-06-l5', { questions, answers: { 1: index === 0 ? 1 : 0 } });
+  }
+
+  const list = readPaperAttempts('2025-06-l5');
+  assert.equal(list.length, MAX_ATTEMPTS_PER_PAPER);
+  assert.ok(list[0].at >= list[list.length - 1].at, '最近一次应排在最前');
+
+  const summary = summarizePaperAttempts(list);
+  assert.equal(summary.attemptCount, MAX_ATTEMPTS_PER_PAPER);
+  assert.equal(summary.latestRate, 1);
+  assert.equal(summary.bestRate, 1);
+});
+
+test('clearing one paper leaves other papers untouched', () => {
+  installStorage();
+  const questions = [{ id: 1, type: 'single', answer: 0, score: 2 }];
+  recordExamAttempt('2024-09-l1', { questions, answers: { 1: 1 } });
+  recordExamAttempt('2024-09-l2', { questions, answers: { 1: 1 } });
+
+  clearPaperAttempts('2024-09-l1');
+
+  assert.deepEqual(readPaperAttempts('2024-09-l1'), []);
+  assert.equal(readPaperAttempts('2024-09-l2').length, 1);
+});
+
+test('version 2 documents migrate forward with an empty attempt history', () => {
+  const storage = installStorage();
+  storage.setItem(LEARNING_DATA_STORAGE_KEY, JSON.stringify({
+    version: 2,
+    updatedAt: 1,
+    lessons: { '/lesson/1/9': { status: 'mastered', visitedAt: 1, masteredAt: 2 } },
+    exams: { '2024-09-l1': { answers: { 1: 0 }, isSubmitted: false } },
+    hardware: { esp32Ai: null },
+    museum: { collected: [] },
+  }));
+
+  const data = readLearningData();
+  assert.equal(data.version, LEARNING_DATA_VERSION);
+  assert.deepEqual(data.attempts, {});
+  assert.equal(data.lessons['/lesson/1/9'].status, 'mastered');
+});
+
+test('imported attempt records are sanitised', () => {
+  installStorage();
+  const imported = importLearningData({
+    schema: LEARNING_DATA_SCHEMA,
+    version: LEARNING_DATA_VERSION,
+    data: {
+      attempts: {
+        '2025-03-l6': [
+          { at: 5, score: 4, total: 10, correct: 2, wrong: 1, wrongIds: [3, 3, null, 'x'] },
+          { score: 1 }, // 没有时间戳，无法定位，丢弃
+        ],
+        __proto__: [{ at: 1 }],
+        broken: 'not-an-array',
+      },
+    },
+  });
+
+  assert.deepEqual(Object.keys(imported.attempts), ['2025-03-l6']);
+  assert.equal(imported.attempts['2025-03-l6'].length, 1);
+  assert.deepEqual(imported.attempts['2025-03-l6'][0].wrongIds, [3, 'x']);
 });

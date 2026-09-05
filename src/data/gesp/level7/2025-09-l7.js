@@ -370,6 +370,8 @@ BFS 对每个顶点入队出队各一次、对每条边考察一次，最优时�
         {
             id: 11,
             type: "single",
+            sourceIntegrity: "missing-code",
+            integrityNote: "原卷此题引用的程序代码在录入时未收录，仅凭当前题面无法推导答案。本题已排除出计分与考点练习，待补齐原卷代码后恢复。",
             question: `下面程序的输出为（ ）。`,
             options: [
                 "8",
@@ -400,6 +402,8 @@ int fib(int n) {
         {
             id: 12,
             type: "single",
+            sourceIntegrity: "missing-code",
+            integrityNote: "原卷此题引用的程序代码在录入时未收录，仅凭当前题面无法推导答案。本题已排除出计分与考点练习，待补齐原卷代码后恢复。",
             question: `下面程序的时间复杂度为（ ）。`,
             options: [
                 "O(n²)",

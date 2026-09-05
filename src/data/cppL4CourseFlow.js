@@ -1,23 +1,7 @@
 import { createSequentialCourseSupport, defineCourse } from './courseSchema.js';
+import { cppL4Lessons } from './cppLessonTitles.js';
 
-export const cppL4Lessons = [
-  { id: 1, title: '第 1 课：代码的积木：自定义函数' },
-  { id: 2, title: '第 2 课：数据的替身：传值与传参' },
-  { id: 3, title: '第 3 课：特殊的参数：数组进函数' },
-  { id: 4, title: '第 4 课：递归初探 (函数调用自己)' },
-  { id: 5, title: '第 5 课：神秘的门牌号：指针入门' },
-  { id: 6, title: '第 6 课：指针与数组的纠葛' },
-  { id: 7, title: '第 7 课：超级档案袋：结构体 (Struct)' },
-  { id: 8, title: '第 8 课：二维数组与矩阵' },
-  { id: 9, title: '第 9 课：排队的智慧：冒泡排序' },
-  { id: 10, title: '第 10 课：打扑克牌：插入排序' },
-  { id: 11, title: '第 11 课：挑选最小的：选择排序' },
-  { id: 12, title: '第 12 课：找规律高手：递推算法' },
-  { id: 13, title: '第 13 课：文件小管家 (freopen)' },
-  { id: 14, title: '第 14 课：异常处理与复杂度' },
-  { id: 15, title: '第 15 课：综合编程实战 (1)' },
-  { id: 16, title: '第 16 课：全真模拟与避坑 (2)' },
-];
+export { cppL4Lessons } from './cppLessonTitles.js';
 
 const qualityByLesson = {
   1: {

@@ -202,6 +202,8 @@ LCS 状态转移：若 \`a[i-1]==b[j-1]\`，则 \`dp[i][j]=dp[i-1][j-1]+1\`；�
         {
             id: 9,
             type: "single",
+            sourceIntegrity: "missing-code",
+            integrityNote: "原卷此题引用的程序代码在录入时未收录，仅凭当前题面无法推导答案。本题已排除出计分与考点练习，待补齐原卷代码后恢复。",
             question: `下列代码的时间复杂度（以 $n$ 为自变量，忽略常数与低阶项）是（ ）。`,
             options: [
                 "$O(N)$",
@@ -229,6 +231,8 @@ LCS 状态转移：若 \`a[i-1]==b[j-1]\`，则 \`dp[i][j]=dp[i-1][j-1]+1\`；�
         {
             id: 10,
             type: "single",
+            sourceIntegrity: "missing-code",
+            integrityNote: "原卷此题引用的程序代码在录入时未收录，仅凭当前题面无法推导答案。本题已排除出计分与考点练习，待补齐原卷代码后恢复。",
             question: `下列程序实现了线性筛法（欧拉筛），用于在 $O(N)$ 时间内求出 $2 sim n$ 之间的所有质数。为了保证每个合数只被其最小质因子筛掉，横线处应填入的语句是（ ）。`,
             options: [
                 "i+primes[j] == n",

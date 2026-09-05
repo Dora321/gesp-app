@@ -50,6 +50,15 @@ function countRuntimeQuestions(paperData) {
   return questionIds.size + questionsWithoutId;
 }
 
+// Objective questions carrying a structured sourceIntegrity flag. These are
+// excluded from scoring and from topic practice, so the paper card has to say
+// how many there are — otherwise a learner only discovers it mid-paper.
+function countIntegrityFlaggedQuestions(paperData) {
+  return (paperData?.questions || [])
+    .filter(question => ['single', 'judge'].includes(question?.type) && question?.sourceIntegrity)
+    .length;
+}
+
 function countPlaceholderMarkers(content) {
   const markers = [
     /待补充/g,
@@ -150,6 +159,7 @@ async function generateRegistry() {
       }
       const questionCount = countRuntimeQuestions(module.paperData);
       const placeholderCount = countPlaceholderMarkers(content);
+      const integrityFlaggedCount = countIntegrityFlaggedQuestions(module.paperData);
 
     // Extract metadata from paperId: e.g., '2023-03-l1' → { year:2023, month:3, level:1 }
     const [, year, month, level] = paperId.match(/^(\d{4})-(\d{2})-l(\d)$/);
@@ -186,6 +196,7 @@ async function generateRegistry() {
         title,
         questionCount,
         placeholderCount,
+        integrityFlaggedCount,
         unofficial,
         reviewStatus: useCorrectionReview ? 'partial' : reviewStatus,
         reviewedBy: useCorrectionReview ? '本站校订' : reviewedBy,
@@ -237,7 +248,7 @@ papers.sort((a, b) => a.level - b.level || a.year - b.year || a.month - b.month)
 
 const paperIdsLine = papers.map(p => `  '${p.id}',`).join('\n');
 const paperMetaLines = papers.map(p =>
-  `  '${p.id}': { level: ${p.level}, year: ${p.year}, month: ${p.month}, title: ${jsString(p.title)}, questionCount: ${p.questionCount}, placeholderCount: ${p.placeholderCount}, needsReview: ${p.placeholderCount > 0}, unofficial: ${p.unofficial}, reviewStatus: ${jsString(p.reviewStatus)}, reviewedBy: ${jsString(p.reviewedBy)}, reviewedAt: ${jsString(p.reviewedAt)}, reviewScope: ${jsString(p.reviewScope)}, sourceUrl: ${jsString(p.sourceUrl)}, officialUrl: ${jsString(p.officialUrl)}, mirrorUrl: ${jsString(p.mirrorUrl)} },`
+  `  '${p.id}': { level: ${p.level}, year: ${p.year}, month: ${p.month}, title: ${jsString(p.title)}, questionCount: ${p.questionCount}, placeholderCount: ${p.placeholderCount}, integrityFlaggedCount: ${p.integrityFlaggedCount}, needsReview: ${p.placeholderCount > 0}, unofficial: ${p.unofficial}, reviewStatus: ${jsString(p.reviewStatus)}, reviewedBy: ${jsString(p.reviewedBy)}, reviewedAt: ${jsString(p.reviewedAt)}, reviewScope: ${jsString(p.reviewScope)}, sourceUrl: ${jsString(p.sourceUrl)}, officialUrl: ${jsString(p.officialUrl)}, mirrorUrl: ${jsString(p.mirrorUrl)} },`
 ).join('\n');
 const loadersLines = papers.map(p =>
   `    '${p.id}': () => import('${p.relativePath}').then(m => m.paperData),`

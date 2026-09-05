@@ -1,7 +1,20 @@
 import fs from 'fs';
 import path from 'path';
 import { fileURLToPath } from 'url';
-import { getRouteSeo, SITE_ORIGIN } from '../src/seo/routeMeta.js';
+import { getRouteSeo, lessonRouteMeta, SITE_ORIGIN, withSiteMeta } from '../src/seo/routeMeta.js';
+import { cppLessonIndex, getCppLesson } from '../src/data/cppLessonIndex.js';
+
+// 课名索引在构建期没有体积代价，静态 shell 直接用精修标题，
+// 让爬虫看到 96 个各不相同的页面而不是一套模板。
+const seoFor = (pathname) => {
+  const lessonMatch = pathname.match(/^\/lesson\/(\d+)\/(\d+)$/);
+  if (lessonMatch) {
+    const [, level, lessonId] = lessonMatch;
+    const refined = lessonRouteMeta(level, lessonId, getCppLesson(level, lessonId));
+    if (refined) return withSiteMeta(refined, pathname);
+  }
+  return getRouteSeo(pathname);
+};
 
 const __dirname = path.dirname(fileURLToPath(import.meta.url));
 const root = path.resolve(__dirname, '..');
@@ -22,8 +35,32 @@ const setMeta = (html, attribute, key, value) => {
   return pattern.test(html) ? html.replace(pattern, replacement) : html.replace('</head>', `  ${replacement}\n</head>`);
 };
 
+// 之前每个 shell 的 <body> 可见文本长度都是 0——只有 meta，没有任何内容。
+// Google 会执行 JS 所以还能收，但目标用户主要来自百度和微信内置浏览器，两者
+// 基本不渲染 JS，等于整站内容对它们不存在。这里给每个路由塞一段真实首屏文本：
+// React 挂载时会用 root 的内容替换掉它，用户看不到，爬虫看得到。
+const renderNoscriptContent = (pathname, seo) => {
+  const lines = [`<h1>${escapeHtml(seo.title)}</h1>`, `<p>${escapeHtml(seo.description)}</p>`];
+
+  const lessonMatch = pathname.match(/^\/lesson\/(\d+)\/(\d+)$/);
+  if (lessonMatch) {
+    const lesson = getCppLesson(lessonMatch[1], lessonMatch[2]);
+    if (lesson) {
+      lines.push(`<p>本课属于 GESP C++ ${lessonMatch[1]} 级互动课程，共 16 课。</p>`);
+      lines.push('<ul>');
+      for (const sibling of cppLessonIndex.filter(item => item.level === lesson.level)) {
+        lines.push(`<li><a href="${SITE_ORIGIN}${sibling.path}">${escapeHtml(sibling.fullTitle)}</a></li>`);
+      }
+      lines.push('</ul>');
+    }
+  }
+
+  lines.push(`<p><a href="${SITE_ORIGIN}/">返回首页</a> · <a href="${SITE_ORIGIN}/question-bank">GESP 真题题库</a></p>`);
+  return lines.join('\n      ');
+};
+
 const renderRoute = (template, pathname) => {
-  const seo = getRouteSeo(pathname);
+  const seo = seoFor(pathname);
   let html = template.replace(/<title>[\s\S]*?<\/title>/i, `<title>${escapeHtml(seo.fullTitle)}</title>`);
   html = setMeta(html, 'name', 'description', seo.description);
   html = setMeta(html, 'property', 'og:title', seo.fullTitle);
@@ -35,6 +72,10 @@ const renderRoute = (template, pathname) => {
   html = /<link\s+rel="canonical"[^>]*>/i.test(html)
     ? html.replace(/<link\s+rel="canonical"[^>]*>/i, canonical)
     : html.replace('</head>', `  ${canonical}\n</head>`);
+
+  // React 一挂载就会清掉 #root 的内容，所以这段文本只对不执行 JS 的爬虫可见。
+  const fallback = `<div id="root"><div data-prerendered-summary>\n      ${renderNoscriptContent(pathname, seo)}\n    </div></div>`;
+  html = html.replace('<div id="root"></div>', fallback);
   return html;
 };
 

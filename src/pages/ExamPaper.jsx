@@ -7,6 +7,7 @@ import useQuestionKeyboardNavigation from '../hooks/useQuestionKeyboardNavigatio
 import { isProgrammingQuestion, PROGRAMMING_ACK } from '../utils/questionHelpers';
 import { scoreExam } from '../utils/examScoring';
 import { loadExamProgress, saveExamProgress, clearExamProgress, hasResumableProgress } from '../utils/examProgress';
+import { recordExamAttempt } from '../utils/examHistory';
 import QuestionSidebar from './exam/QuestionSidebar';
 import SubmitConfirmDialog from './exam/SubmitConfirmDialog';
 import ResultDialog from './exam/ResultDialog';
@@ -128,6 +129,19 @@ const ExamPaper = () => {
   const handleProgrammingMark = () => {
     if (isSubmitted || !currentQ || !isProgrammingQuestion(currentQ)) return;
     setAnswers(prev => ({ ...prev, [currentQ.id]: PROGRAMMING_ACK }));
+  };
+
+  // 交卷即落盘一条成绩快照。ResultDialog 关掉之后，这是学生唯一能回看
+  // 「这次考了多少、错在哪几题」的地方。
+  const handleSubmit = () => {
+    recordExamAttempt(paperId, {
+      questions: allQuestions,
+      answers,
+      elapsedSeconds: (paperData?.timeLimit || 90 * 60) - timeLeft,
+    });
+    setIsSubmitted(true);
+    setShowResult(true);
+    setShowSubmitConfirm(false);
   };
 
   // Navigation
@@ -326,7 +340,7 @@ const ExamPaper = () => {
           programmingMarkedCount={programmingMarkedCount}
           excludedObjectiveCount={excludedObjectiveCount}
           onCancel={() => setShowSubmitConfirm(false)}
-          onConfirm={() => { setIsSubmitted(true); setShowResult(true); setShowSubmitConfirm(false); }}
+          onConfirm={handleSubmit}
         />
       )}
 
@@ -341,6 +355,7 @@ const ExamPaper = () => {
           excludedObjectiveCount={excludedObjectiveCount}
           onViewAnalysis={() => setShowResult(false)}
           onBackToBank={() => navigate('/question-bank')}
+          onOpenReview={() => navigate('/question-bank/review')}
         />
       )}
     </div>
