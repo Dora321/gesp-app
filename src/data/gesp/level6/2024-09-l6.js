@@ -334,6 +334,8 @@ export const paperData = {
         {
             id: 9,
             type: "single",
+            sourceIntegrity: "missing-formula",
+            integrityNote: "原卷此题的公式或数值在文本提取时丢失，题干留下空档，仅凭当前内容无法作答。本题已排除出计分与考点练习，待补齐原卷公式后恢复。",
             question: `一棵有 个结点的完全二叉树用数组进行存储与表示，已知根结点存储在数组的第 个位置。若存储在数组第 个位置的结点存在兄弟结点和两个子结点，则它的兄弟结点和右子结点的位置分别是（ ）。`,
             options: [
                 "8, 18",
@@ -728,6 +730,8 @@ int knapsack(int W, const vector<int>& weights,
         {
             id: 22,
             type: "judge",
+            sourceIntegrity: "missing-formula",
+            integrityNote: "原卷此题的公式或数值在文本提取时丢失，题干留下空档，仅凭当前内容无法作答。本题已排除出计分与考点练习，待补齐原卷公式后恢复。",
             question: `如果根结点的深度记为 ，则一棵恰有 个叶结点的二叉树的深度最少是 。`,
             options: [
                 "正确",

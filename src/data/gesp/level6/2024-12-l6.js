@@ -349,6 +349,8 @@ export const paperData = {
         {
             id: 9,
             type: "single",
+            sourceIntegrity: "missing-formula",
+            integrityNote: "原卷此题的公式或数值在文本提取时丢失，题干留下空档，仅凭当前内容无法作答。本题已排除出计分与考点练习，待补齐原卷公式后恢复。",
             question: `( ) 是 位格雷编码。`,
             options: [
                 "000 001 011 010 110 111 101 100",
@@ -549,6 +551,8 @@ export const paperData = {
         {
             id: 15,
             type: "single",
+            sourceIntegrity: "missing-formula",
+            integrityNote: "原卷此题的公式或数值在文本提取时丢失，题干留下空档，仅凭当前内容无法作答。本题已排除出计分与考点练习，待补齐原卷公式后恢复。",
             question: `假设背包的最大容量 ，共有有 个物品可供选择， 4 个物品的重量分别为 ，对应 的价值分别为 ，则该 0/1 背包问题中，背包的最大价值为（ ）。`,
             options: [
                 "70",

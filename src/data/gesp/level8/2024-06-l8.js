@@ -491,6 +491,8 @@ int main() {
         {
             id: 20,
             type: "judge",
+            sourceIntegrity: "missing-formula",
+            integrityNote: "原卷此题的公式或数值在文本提取时丢失，题干留下空档，仅凭当前内容无法作答。本题已排除出计分与考点练习，待补齐原卷公式后恢复。",
             question: `在一个包含v个顶点、e条边的带权连通简单有向图上使用 Dijkstra 算法求最短路径，时间复杂度为 ， 可进一步优化至 。`,
             options: [
                 "正确",
@@ -510,6 +512,8 @@ int main() {
         {
             id: 21,
             type: "judge",
+            sourceIntegrity: "missing-formula",
+            integrityNote: "原卷此题的公式或数值在文本提取时丢失，题干留下空档，仅凭当前内容无法作答。本题已排除出计分与考点练习，待补齐原卷公式后恢复。",
             question: `在 个元素的二叉排序树中查找一个元素，最差情况的时间复杂度是 。`,
             options: [
                 "正确",

@@ -60,6 +60,25 @@ const objectiveStemContaminationPatterns = [
   },
 ];
 
+// PDF 的公式是图片或特殊字形，文本层提取时会整块消失，只在中文句子里留下一个
+// 空档：「一棵有 个节点的完全二叉树，深度为 。」——量词前没有数字、句子在
+// 「为/是」后直接收尾。这类题看起来完整，实际根本无法作答，必须标记出来。
+const droppedFormulaPatterns = [
+  { label: '量词前缺数值', pattern: /[有共为是到][ 　]+[个位条项步层级]/u },
+  { label: '句末缺公式', pattern: /(?:复杂度|深度|高度|长度|结果|输出|个数|边)(?:为|是)[ 　]*[。，）)]/u },
+];
+
+export const getDroppedFormulaErrors = (question, questionId = question?.id || '?') => {
+  if (!['single', 'judge'].includes(question?.type) || question.sourceIntegrity) return [];
+
+  const stem = String(question.question || '');
+  return droppedFormulaPatterns
+    .filter(({ pattern }) => pattern.test(stem))
+    .map(({ label }) => (
+      `[INTEGRITY] Q${questionId}: 题干疑似丢失公式或数值（${label}），无法作答但未标记 sourceIntegrity`
+    ));
+};
+
 export const getObjectiveStemIntegrityErrors = (question, questionId = question?.id || '?') => {
   if (!['single', 'judge'].includes(question?.type) || question.sourceIntegrity) return [];
 
@@ -264,6 +283,7 @@ async function validateFile(filePath, cfg) {
     }
 
     errors.push(...getObjectiveStemIntegrityErrors(q, qId));
+    errors.push(...getDroppedFormulaErrors(q, qId));
 
     // PDF 提取会把「行/心/网」写成康熙部首区的同形字。看不出来，但所有文本匹配
     // （站内搜索、考点推断、下面这些片段检查）都会静默失效，所以入库前必须归一化。
@@ -342,6 +362,7 @@ async function validateFile(filePath, cfg) {
         'options-reconstructed',
         'missing-figure',
         'missing-code',
+        'missing-formula',
         'contaminated-stem',
         'not-official-question',
         'answer-key-conflict',

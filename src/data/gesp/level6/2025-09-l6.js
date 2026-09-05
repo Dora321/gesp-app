@@ -608,6 +608,8 @@ export const paperData = {
         {
             id: 18,
             type: "judge",
+            sourceIntegrity: "missing-formula",
+            integrityNote: "原卷此题的公式或数值在文本提取时丢失，题干留下空档，仅凭当前内容无法作答。本题已排除出计分与考点练习，待补齐原卷公式后恢复。",
             question: `一个含有 个节点的完全二叉树，高度为 。`,
             options: [
                 "正确",
@@ -683,6 +685,8 @@ export const paperData = {
         {
             id: 21,
             type: "judge",
+            sourceIntegrity: "missing-formula",
+            integrityNote: "原卷此题的公式或数值在文本提取时丢失，题干留下空档，仅凭当前内容无法作答。本题已排除出计分与考点练习，待补齐原卷公式后恢复。",
             question: `一棵有 个节点的二叉树一定有 条边。`,
             options: [
                 "正确",

@@ -517,6 +517,8 @@ Floyd–Warshall 算法对每对“中间点 k、起点 i、终点 j”进行三
         {
             id: 22,
             type: "judge",
+            sourceIntegrity: "missing-formula",
+            integrityNote: "原卷此题的公式或数值在文本提取时丢失，题干留下空档，仅凭当前内容无法作答。本题已排除出计分与考点练习，待补齐原卷公式后恢复。",
             question: `在 个节点的平衡二叉树中查找指定元素的最差时间复杂度为 。`,
             options: [
                 "正确",

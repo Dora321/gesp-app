@@ -652,6 +652,8 @@ C++ 中 \`log\` 是以 **e 为底的自然对数**（非以 2 或 10 为底）�
         {
             id: 21,
             type: "judge",
+            sourceIntegrity: "missing-formula",
+            integrityNote: "原卷此题的公式或数值在文本提取时丢失，题干留下空档，仅凭当前内容无法作答。本题已排除出计分与考点练习，待补齐原卷公式后恢复。",
             question: `一棵有 个节点的完全二叉树，则树的深度为 。 ( )`,
             options: [
                 "正确",

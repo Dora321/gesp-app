@@ -746,6 +746,8 @@ A 使用商 \`a / b\` 而不是余数；B 的赋值方向和除法都不符合�
         {
             id: 23,
             type: "judge",
+            sourceIntegrity: "missing-formula",
+            integrityNote: "原卷此题的公式或数值在文本提取时丢失，题干留下空档，仅凭当前内容无法作答。本题已排除出计分与考点练习，待补齐原卷公式后恢复。",
             question: `二叉搜索树的查找操作的时间复杂度是 。 int gcd(int a, int b) { while (b != 0) { ______________________ } return a; } 1 2 3 4 5 6 ListNode* reverseLinkedList(ListNode* head) { ListNode* prev = nullptr; ListNode* current = head; while (current != nullptr) { ListNode* next = current->next; current->next = next; prev = current; current = next; } return prev; } 1 2 3 4 5 6 7 8 9 10 11`,
             options: [
                 "正确",

@@ -1,6 +1,7 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
 import {
+  getDroppedFormulaErrors,
   getObjectiveStemIntegrityErrors,
   questionHasCodeContent,
   questionReferencesCode,
@@ -106,5 +107,49 @@ test('every question that promises code either ships it or is flagged missing-co
     unflagged,
     [],
     `这些题的题干承诺了代码但题面没有代码，必须补 sourceIntegrity: 'missing-code'：${unflagged.join(', ')}`,
+  );
+});
+
+// 官方 PDF 的公式是图片/特殊字形，文本层提取会整块吞掉，只在中文句子里留下空档。
+// 这类题看着完整，实际无法作答——六到八级尤其密集。
+test('stems whose formula was dropped during extraction are caught', () => {
+  const broken = [
+    '假定只有一个根节点的树的深度为 1 ，则一棵有 个节点的完全二叉树，则树的深度为 。',
+    '在 个元素的二叉排序树中查找一个元素，平均情况的时间复杂度是 。',
+    '一棵有 个节点的二叉树一定有 条边。',
+  ];
+  broken.forEach((question, index) => {
+    const errors = getDroppedFormulaErrors({ type: 'judge', question }, index + 1);
+    assert.ok(errors.length > 0, question);
+    assert.match(errors[0], /疑似丢失公式或数值/);
+  });
+});
+
+test('complete stems with real numbers are not mistaken for dropped formulas', () => {
+  const intact = [
+    '一棵有 2023 个节点的完全二叉树，则树的深度为（ ）。',
+    '在 n 个元素的二叉排序树中查找一个元素，平均情况的时间复杂度是 O(log n)。',
+    '下列关于二叉树的说法，正确的是（ ）。',
+  ];
+  intact.forEach((question) => {
+    assert.deepEqual(getDroppedFormulaErrors({ type: 'single', question }), [], question);
+  });
+});
+
+test('every objective question with a dropped formula carries sourceIntegrity', async () => {
+  const unflagged = [];
+  for (const paperId of paperIds) {
+    if (paperMeta[paperId]?.unofficial) continue;
+    const paper = await getPaper(paperId);
+    for (const question of paper.questions || []) {
+      if (getDroppedFormulaErrors(question, question.id).length > 0) {
+        unflagged.push(`${paperId}:Q${question.id}`);
+      }
+    }
+  }
+  assert.deepEqual(
+    unflagged,
+    [],
+    `这些题的公式在提取时丢失，必须补 sourceIntegrity: 'missing-formula'：${unflagged.join(', ')}`,
   );
 });

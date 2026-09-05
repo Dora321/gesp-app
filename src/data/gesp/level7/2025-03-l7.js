@@ -599,6 +599,8 @@ for (int neighbor : graph[node]) {
         {
             id: 21,
             type: "judge",
+            sourceIntegrity: "missing-formula",
+            integrityNote: "原卷此题的公式或数值在文本提取时丢失，题干留下空档，仅凭当前内容无法作答。本题已排除出计分与考点练习，待补齐原卷公式后恢复。",
             question: `一颗 层的满二叉树，一定有 个结点。`,
             options: [
                 "正确",

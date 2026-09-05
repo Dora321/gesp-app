@@ -41,6 +41,8 @@ export const paperData = {
         {
             id: 2,
             type: "single",
+            sourceIntegrity: "missing-formula",
+            integrityNote: "原卷此题的公式或数值在文本提取时丢失，题干留下空档，仅凭当前内容无法作答。本题已排除出计分与考点练习，待补齐原卷公式后恢复。",
             question: `对于一个具有 个顶点的无向图，若采用邻接矩阵表示，则该矩阵的大小为（ ）。`,
             options: [
                 "n",
@@ -539,6 +541,8 @@ void Merge_Sort(int a[], int left, int right) {
         {
             id: 22,
             type: "judge",
+            sourceIntegrity: "missing-formula",
+            integrityNote: "原卷此题的公式或数值在文本提取时丢失，题干留下空档，仅凭当前内容无法作答。本题已排除出计分与考点练习，待补齐原卷公式后恢复。",
             question: `现有 个完全相同的元素，要将其分为 组，允许每组可以有 个元素，则一共有 种分组方案。`,
             options: [
                 "正确",
@@ -577,6 +581,8 @@ void Merge_Sort(int a[], int left, int right) {
         {
             id: 24,
             type: "judge",
+            sourceIntegrity: "missing-formula",
+            integrityNote: "原卷此题的公式或数值在文本提取时丢失，题干留下空档，仅凭当前内容无法作答。本题已排除出计分与考点练习，待补齐原卷公式后恢复。",
             question: `已知等差数列的通项公式 ，则前 项和的求和公式为 。使用这一公 式计算 的时间复杂度是 。`,
             options: [
                 "正确",

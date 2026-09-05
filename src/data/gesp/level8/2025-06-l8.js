@@ -460,6 +460,8 @@ int weight[4][4] = {
         {
             id: 18,
             type: "judge",
+            sourceIntegrity: "missing-formula",
+            integrityNote: "原卷此题的公式或数值在文本提取时丢失，题干留下空档，仅凭当前内容无法作答。本题已排除出计分与考点练习，待补齐原卷公式后恢复。",
             question: `对 个元素的数组进行归并排序，最差情况的时间复杂度为 。`,
             options: [
                 "正确",
@@ -583,6 +585,8 @@ int weight[4][4] = {
         {
             id: 24,
             type: "judge",
+            sourceIntegrity: "missing-formula",
+            integrityNote: "原卷此题的公式或数值在文本提取时丢失，题干留下空档，仅凭当前内容无法作答。本题已排除出计分与考点练习，待补齐原卷公式后恢复。",
             question: `有 个顶点、 条边的图的深度优先搜索遍历时间复杂度为 。`,
             options: [
                 "正确",

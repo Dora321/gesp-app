@@ -585,6 +585,8 @@ a, (b = b), a
         {
             id: 19,
             type: "judge",
+            sourceIntegrity: "missing-formula",
+            integrityNote: "原卷此题的公式或数值在文本提取时丢失，题干留下空档，仅凭当前内容无法作答。本题已排除出计分与考点练习，待补齐原卷公式后恢复。",
             question: `个顶点的无向完全图有 条边。`,
             options: [
                 "正确",
@@ -604,6 +606,8 @@ n 个顶点的无向完全图中任意两顶点间恰有一条边，其边数为
         {
             id: 20,
             type: "judge",
+            sourceIntegrity: "missing-formula",
+            integrityNote: "原卷此题的公式或数值在文本提取时丢失，题干留下空档，仅凭当前内容无法作答。本题已排除出计分与考点练习，待补齐原卷公式后恢复。",
             question: `为解决哈希函数冲突，在哈希表项内设置链表存储该项内的所有冲突元素，则该哈希表内查找元素的最差时 间复杂度为 。`,
             options: [
                 "正确",
@@ -626,6 +630,8 @@ n 个顶点的无向完全图中任意两顶点间恰有一条边，其边数为
         {
             id: 21,
             type: "judge",
+            sourceIntegrity: "missing-formula",
+            integrityNote: "原卷此题的公式或数值在文本提取时丢失，题干留下空档，仅凭当前内容无法作答。本题已排除出计分与考点练习，待补齐原卷公式后恢复。",
             question: `求一个包含v个顶点、e条边的带权连通无向图的最小生成树， Prim 算法的时间复杂度为 。`,
             options: [
                 "正确",
@@ -695,6 +701,8 @@ S = sqrt( ((a+b+c)/2) * ((b+c-a)/2) * ((a+c-b)/2) * ((a+b-c)/2) )
         {
             id: 24,
             type: "judge",
+            sourceIntegrity: "missing-formula",
+            integrityNote: "原卷此题的公式或数值在文本提取时丢失，题干留下空档，仅凭当前内容无法作答。本题已排除出计分与考点练习，待补齐原卷公式后恢复。",
             question: `在 个元素的二叉排序树中查找一个元素，平均情况的时间复杂度是 。`,
             options: [
                 "正确",

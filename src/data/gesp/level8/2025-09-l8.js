@@ -434,6 +434,8 @@ Prim 算法在将顶点 u 加入生成树后，需对所有“尚未访问”的
         {
             id: 18,
             type: "judge",
+            sourceIntegrity: "missing-formula",
+            integrityNote: "原卷此题的公式或数值在文本提取时丢失，题干留下空档，仅凭当前内容无法作答。本题已排除出计分与考点练习，待补齐原卷公式后恢复。",
             question: `对 个元素的数组进行排序，最差情况的时间复杂度为 。`,
             options: [
                 "正确",
@@ -549,6 +551,8 @@ Prim 算法在将顶点 u 加入生成树后，需对所有“尚未访问”的
         {
             id: 24,
             type: "judge",
+            sourceIntegrity: "missing-formula",
+            integrityNote: "原卷此题的公式或数值在文本提取时丢失，题干留下空档，仅凭当前内容无法作答。本题已排除出计分与考点练习，待补齐原卷公式后恢复。",
             question: `Dijkstra 算法的时间复杂度为 ，其中 为图中顶点的数量。`,
             options: [
                 "正确",

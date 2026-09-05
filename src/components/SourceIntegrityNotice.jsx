@@ -5,6 +5,7 @@ const STATUS_LABELS = {
     'options-reconstructed': '本题选项非原卷原文',
     'missing-figure': '本题缺少原卷配图',
     'missing-code': '本题缺少原卷代码',
+    'missing-formula': '本题缺少原卷公式或数值',
     'contaminated-stem': '本题题干曾串入其他题目内容',
     'not-official-question': '本题与官方原卷同题号题目不一致',
     'answer-key-conflict': '本题官方答案存在版本冲突',

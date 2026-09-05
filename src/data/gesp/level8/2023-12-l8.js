@@ -597,6 +597,8 @@ export const paperData = {
         {
             id: 19,
             type: "judge",
+            sourceIntegrity: "missing-formula",
+            integrityNote: "原卷此题的公式或数值在文本提取时丢失，题干留下空档，仅凭当前内容无法作答。本题已排除出计分与考点练习，待补齐原卷公式后恢复。",
             question: `个顶点的有向完全图（不带自环）有 条边。`,
             options: [
                 "正确",
@@ -691,6 +693,8 @@ n 个顶点的有向完全图（不含自环）中，任意两个不同的有序
         {
             id: 24,
             type: "judge",
+            sourceIntegrity: "missing-formula",
+            integrityNote: "原卷此题的公式或数值在文本提取时丢失，题干留下空档，仅凭当前内容无法作答。本题已排除出计分与考点练习，待补齐原卷公式后恢复。",
             question: `在 个元素的二叉排序树中查找一个元素，最好情况的时间复杂度是 。`,
             options: [
                 "正确",
