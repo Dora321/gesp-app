@@ -84,6 +84,11 @@ if (!fs.existsSync(indexPath)) throw new Error('dist/index.html does not exist. 
 const template = fs.readFileSync(indexPath, 'utf8');
 const sitemap = fs.readFileSync(sitemapPath, 'utf8');
 const urls = [...sitemap.matchAll(/<loc>([^<]+)<\/loc>/g)].map(match => match[1]);
+// 内容全部来自访客本机的学习记录，对爬虫没有任何可索引的东西，所以不进 sitemap。
+// 但仍要生成静态 shell：否则 GitHub Pages 会回落到 404.html——页面能打开（那本来
+// 就是 index.html 的副本），HTTP 状态却是 404，分享和收藏都会被当成失效链接。
+const PRERENDER_ONLY_ROUTES = ['/question-bank/review'];
+
 const routes = urls.map(url => {
   const pathname = new URL(url).pathname;
   const route = pathname.startsWith(new URL(SITE_ORIGIN).pathname)
@@ -92,12 +97,18 @@ const routes = urls.map(url => {
   return route || '/';
 });
 
-for (const route of routes) {
+const allRoutes = [...new Set([...routes, ...PRERENDER_ONLY_ROUTES])];
+
+for (const route of allRoutes) {
   const outputPath = route === '/'
     ? indexPath
     : path.join(distDir, ...route.split('/').filter(Boolean), 'index.html');
+  let html = renderRoute(template, route);
+  if (PRERENDER_ONLY_ROUTES.includes(route)) {
+    html = html.replace('</head>', '  <meta name="robots" content="noindex" />\n</head>');
+  }
   fs.mkdirSync(path.dirname(outputPath), { recursive: true });
-  fs.writeFileSync(outputPath, renderRoute(template, route), 'utf8');
+  fs.writeFileSync(outputPath, html, 'utf8');
 }
 
-console.log(`Generated static metadata shells for ${routes.length} routes.`);
+console.log(`Generated static metadata shells for ${allRoutes.length} routes.`);
