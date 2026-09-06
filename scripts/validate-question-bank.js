@@ -112,10 +112,33 @@ const brokenPresentationChecks = [
     }),
   },
   {
+    // 「左孩子位于2i」和「左孩子位于 2i」是同一句话，只差一个空格——学生选
+    // 哪个都对，却只有一个被判正确（2025-09-l6:Q8 的 A、D 正是如此）。
+    //
+    // 但空白不能一律抹掉：一级有大量「输出格式」题，四个选项恰恰是靠空格区分的
+    // （"a+1= 2" vs "a+1=2"），ASCII 图形题更是只有空白不同。所以只对「中文散文
+    // 选项」归一化空白，带换行或明显是程序输出的选项一律按原文比。
+    //
+    // 另外只在重复项里包含正确答案时才算缺陷：两个错误选项写重了虽然马虎，
+    // 题目仍然可以作答，不该因此把它从题库里摘掉。
     label: '选项内容重复无法区分',
     test: (q) => {
-      const options = (q.options || []).map(option => String(option).trim()).filter(Boolean);
-      return options.length >= 2 && new Set(options).size < options.length;
+      const raw = (q.options || []).map(option => String(option));
+      if (raw.length < 2) return false;
+
+      const isProse = (option) => /[一-鿿]/u.test(option)
+        && !/[\n|#*]/u.test(option)
+        && !/\s{2,}/u.test(option);
+
+      const key = (option) => {
+        const trimmed = option.trim();
+        return isProse(trimmed) ? trimmed.replace(/\s+/gu, '') : trimmed;
+      };
+
+      const keys = raw.map(key);
+      const answerKey = keys[q.answer];
+      if (!answerKey) return false;
+      return keys.filter(item => item === answerKey).length > 1;
     },
   },
 ];

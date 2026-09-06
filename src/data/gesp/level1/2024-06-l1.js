@@ -122,6 +122,8 @@ C++ 变量名只能由字母、数字、下划线组成，且不能以数字开�
     {
       id: 8,
       type: 'single',
+      sourceIntegrity: "options-reconstructed",
+      integrityNote: "选项 A「第5行代码1」与正确答案 C「第5行代码 1」只差一个空格，是同一句话；学生选 A 会被判错，但两者含义完全相同。本题已排除出计分与考点练习，待对照原卷确认选项原文后恢复。",
       question: `下面 C++ 代码执行时输入 \`10\` 后，正确的输出是（ ）。\n\n\`\`\`cpp\nint N;\ncout << "请输入正整数：";\ncin >> N;\nif (N % 3)\n    printf("第5行代码%2d", N % 3);\nelse\n    printf("第6行代码%2d", N % 3);\n\`\`\``,
       options: ['第5行代码1', '第6行代码1', '第5行代码 1', '第6行代码 1'],
       answer: 2,
