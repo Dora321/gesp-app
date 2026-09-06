@@ -173,16 +173,19 @@ function assertFeaturedProjectsUseSharedData() {
 
 function assertLearningPathRoute(pathId, expectedRoute) {
   const learningPaths = read('src/components/LearningPaths.jsx');
+  // route 可以是字面量，也可以是从共享目录取出的表达式（如 cppStart.path）——
+  // 后者反而是更想要的写法，所以两种都接受。
   const pathMatch = learningPaths.match(
-    new RegExp(`id: '${pathId}',[\\s\\S]*?route: '([^']+)'`)
+    new RegExp(`id: '${pathId}',[\\s\\S]*?route: (?:'([^']+)'|([\\w.]+))`)
   );
 
   assert(pathMatch, `LearningPaths is missing path ${pathId}.`);
   if (!pathMatch) return;
 
+  const actual = pathMatch[1] || pathMatch[2];
   assert(
-    pathMatch[1] === expectedRoute,
-    `LearningPaths path ${pathId} should route to ${expectedRoute}, got ${pathMatch[1]}.`
+    actual === expectedRoute,
+    `LearningPaths path ${pathId} should route to ${expectedRoute}, got ${actual}.`
   );
 }
 
@@ -191,17 +194,27 @@ function assertLearningPathsUseSharedData() {
 
   assert(
     learningPaths.includes("import { getCppLevelCatalogItem } from '../data/cppLevelCatalog';") &&
-      learningPaths.includes("import { paperStats } from '../data/gesp/_stats';") &&
+      learningPaths.includes("import { cppLessonIndex } from '../data/cppLessonIndex';") &&
       learningPaths.includes("import { pythonFoundationLessons, pythonProjects } from '../data/pythonCourseCatalog';"),
-    'LearningPaths should derive route steps from lightweight course catalog and paper data.'
+    'LearningPaths should derive route steps from lightweight course catalog data.'
   );
   assert(
     learningPaths.includes('cppStart.title') &&
       learningPaths.includes('cppEnd.title') &&
-      learningPaths.includes('paperStats.firstYear') &&
-      learningPaths.includes('paperStats.latestYear') &&
-      learningPaths.includes('paperStats.verifiedPaperCount'),
-    'LearningPaths GESP path should stay aligned with C++ level and generated paper stats.'
+      learningPaths.includes('CPP_LESSON_COUNT'),
+    'LearningPaths GESP path should stay aligned with the C++ level catalog and lesson count.'
+  );
+
+  // 真题统计从路径卡搬到了主页的题库区块。数字必须继续从生成的 paperStats 取，
+  // 不能手写——手写的数字在题库继续核验后马上就会过期。
+  const bankHighlight = read('src/components/QuestionBankHighlight.jsx');
+  assert(
+    bankHighlight.includes("import { paperStats } from '../data/gesp/_stats';") &&
+      bankHighlight.includes('paperStats.questionCount') &&
+      bankHighlight.includes('paperStats.paperCount') &&
+      bankHighlight.includes('paperStats.verifiedPaperCount') &&
+      bankHighlight.includes('paperStats.integrityFlaggedQuestionCount'),
+    'QuestionBankHighlight should read every advertised number from generated paper stats.'
   );
   assert(
     learningPaths.includes('firstPythonLesson.path') &&
@@ -1422,7 +1435,7 @@ async function main() {
 
   assertFeaturedProjectsUseSharedData();
 
-  assertLearningPathRoute('gesp', '/question-bank');
+  assertLearningPathRoute('gesp', 'cppStart.path');
 
   const cppCatalogSections = [
     ['basic', 1],
