@@ -16,7 +16,7 @@ import {
 } from 'lucide-react';
 import LoadingScreen from '../../components/LoadingScreen';
 import { getPaper } from '../../data/gesp';
-import { paperCodingMap } from '../../data/gesp/paperCodingMap';
+import { getLuoguProblemUrl, loadLuoguPool, needsSynthesizedCoding, withSynthesizedCoding } from '../../data/gesp/codingQuestions';
 import useQuestionKeyboardNavigation from '../../hooks/useQuestionKeyboardNavigation';
 import { buildGenericStudyHint, buildQuestionInsight, buildRichAnalysis } from './analysisEngine';
 import AnalysisTrustNotice from './AnalysisTrustNotice';
@@ -182,74 +182,26 @@ export default function EnhancedPaperPage({ forcedPaperId }) {
     // Coding questions (Q26/Q27) are filled from the per-level Luogu problem
     // set. Only papers that don't already embed those need it, so load that
     // ~200KB dataset on demand instead of bundling it into the ExamPaper chunk.
-    const needsLuogu = useMemo(() => {
-        if (!paperData) return false;
-        const has26 = baseQuestions.some((q) => Number(q.id) === 26 || String(q.id) === '26');
-        const has27 = baseQuestions.some((q) => Number(q.id) === 27 || String(q.id) === '27');
-        return !(has26 && has27);
-    }, [paperData, baseQuestions]);
+    // 合成逻辑与考试模式共用（见 data/gesp/codingQuestions.js）：同一张卷子
+    // 在两种模式下必须是同样的题数，此前各写一套，考试模式那份漏掉了。
+    const needsLuogu = useMemo(
+        () => Boolean(paperData) && needsSynthesizedCoding(baseQuestions),
+        [paperData, baseQuestions],
+    );
 
     useEffect(() => {
-        if (!paperData || !needsLuogu) return;
+        if (!paperData || !needsLuogu) return undefined;
         let cancelled = false;
-        import('../../data/gesp/luoguCodingByLevel')
-            .then(({ luoguCodingByLevel }) => {
-                if (cancelled) return;
-                setLuoguPool(luoguCodingByLevel[String(paperData.level)] || luoguCodingByLevel[paperData.level] || []);
-            })
-            .catch(() => { if (!cancelled) setLuoguPool([]); });
+        loadLuoguPool(paperData.level).then((pool) => {
+            if (!cancelled) setLuoguPool(pool);
+        });
         return () => { cancelled = true; };
     }, [needsLuogu, paperData]);
 
-    const questions = useMemo(() => {
-        if (!paperData) return [];
-        const has26 = baseQuestions.some((q) => Number(q.id) === 26 || String(q.id) === '26');
-        const has27 = baseQuestions.some((q) => Number(q.id) === 27 || String(q.id) === '27');
-        if (has26 && has27) return baseQuestions.sort((a, b) => Number(a.id) - Number(b.id));
-
-        const pool = luoguPool || [];
-        const byPid = new Map(pool.map((p) => [p.pid, p]));
-        const mapped = paperCodingMap[paperId] || {};
-        const p1 = byPid.get(mapped.q26) || null;
-        const p2 = byPid.get(mapped.q27) || null;
-
-        const toMarkdown = (p) => {
-            if (!p) return '题面暂缺，请稍后补齐。';
-            const sections = [];
-            sections.push(`## ${p.pid} ${p.title}`);
-            if (p.background) sections.push(`### 题目背景\n${p.background}`);
-            if (p.description) sections.push(`### 题目描述\n${p.description}`);
-            if (p.inputFormat) sections.push(`### 输入格式\n${p.inputFormat}`);
-            if (p.outputFormat) sections.push(`### 输出格式\n${p.outputFormat}`);
-            sections.push(`### 原题链接\n${p.url}`);
-            return sections.join('\n\n');
-        };
-
-        const codingQ1 = {
-            id: 26,
-            type: 'coding',
-            score: 25,
-            question: p1 ? `第26题（上机编程）：${p1.pid} ${p1.title}` : '第26题（上机编程）',
-            options: [],
-            explanation: toMarkdown(p1),
-            tags: ['上机编程', '洛谷原题', p1?.pid || '题面待补']
-        };
-
-        const codingQ2 = {
-            id: 27,
-            type: 'coding',
-            score: 25,
-            question: p2 ? `第27题（上机编程）：${p2.pid} ${p2.title}` : '第27题（上机编程）',
-            options: [],
-            explanation: toMarkdown(p2),
-            tags: ['上机编程', '洛谷原题', p2?.pid || '题面待补']
-        };
-
-        const merged = [...baseQuestions];
-        if (!has26) merged.push(codingQ1);
-        if (!has27) merged.push(codingQ2);
-        return merged.sort((a, b) => Number(a.id) - Number(b.id));
-    }, [paperData, baseQuestions, paperId, luoguPool]);
+    const questions = useMemo(
+        () => (paperData ? withSynthesizedCoding(baseQuestions, { paperId, luoguPool }) : []),
+        [paperData, baseQuestions, paperId, luoguPool],
+    );
 
     const [activeTab, setActiveTab] = useState('practice');
     const [currentQuestionIndex, setCurrentQuestionIndex] = useState(0);
@@ -504,12 +456,10 @@ export default function EnhancedPaperPage({ forcedPaperId }) {
                                         </div>
                                     </div>
                                     {(() => {
-                                        const mapped = paperCodingMap[paperId] || {};
-                                        const pid = mapped[`q${currentQ.id}`];
-                                        const hasLink = pid && !pid.startsWith('P0000');
-                                        return hasLink ? (
+                                        const luoguUrl = getLuoguProblemUrl(paperId, currentQ.id);
+                                        return luoguUrl ? (
                                             <a
-                                                href={`https://www.luogu.com.cn/problem/${pid}`}
+                                                href={luoguUrl}
                                                 target="_blank"
                                                 rel="noopener noreferrer"
                                                 className="w-full py-3 rounded-xl font-semibold flex items-center justify-center gap-2 bg-green-600 text-white hover:bg-green-700 transition-colors"

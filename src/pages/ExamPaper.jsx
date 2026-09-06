@@ -8,6 +8,7 @@ import { isProgrammingQuestion, PROGRAMMING_ACK } from '../utils/questionHelpers
 import { scoreExam } from '../utils/examScoring';
 import { loadExamProgress, saveExamProgress, clearExamProgress, hasResumableProgress } from '../utils/examProgress';
 import { recordExamAttempt } from '../utils/examHistory';
+import { loadLuoguPool, needsSynthesizedCoding, withSynthesizedCoding } from '../data/gesp/codingQuestions';
 import QuestionSidebar from './exam/QuestionSidebar';
 import SubmitConfirmDialog from './exam/SubmitConfirmDialog';
 import ResultDialog from './exam/ResultDialog';
@@ -36,6 +37,8 @@ const ExamPaper = () => {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
   const [savedProgress, setSavedProgress] = useState(null);
+  // 洛谷题面约 180KB，只在这张卷确实缺上机题时才动态取。
+  const [luoguPool, setLuoguPool] = useState([]);
 
   // ─── Data Loading ──────────────────────────────────────────────────
 
@@ -61,6 +64,25 @@ const ExamPaper = () => {
     });
     return () => { cancelled = true; };
   }, [paperId]);
+
+  useEffect(() => {
+    if (!paperData) return undefined;
+    const embedded = [
+      ...(paperData.questions || []),
+      ...(paperData.programmingQuestions || []),
+      ...(paperData.codingQuestions || []),
+    ];
+    if (!needsSynthesizedCoding(embedded)) {
+      setLuoguPool([]);
+      return undefined;
+    }
+
+    let cancelled = false;
+    loadLuoguPool(paperData.level).then((pool) => {
+      if (!cancelled) setLuoguPool(pool);
+    });
+    return () => { cancelled = true; };
+  }, [paperData]);
 
   // Reset on paperId change
   useEffect(() => {
@@ -91,11 +113,14 @@ const ExamPaper = () => {
 
   // ─── Derived Values ────────────────────────────────────────────────
 
-  const allQuestions = paperData ? [
+  // 四到八级的卷文件没有内嵌上机编程题，而这部分占 GESP 总分一半。解析模式
+  // 一直会从洛谷题池补齐第 26、27 题，考试模式却不会——同一张卷在两种模式下
+  // 题数不同（25 vs 27），学生在考试模式练的是半张卷还看不出来。
+  const allQuestions = paperData ? withSynthesizedCoding([
     ...(paperData.questions || []),
     ...(paperData.programmingQuestions || []).map(q => ({ ...q, type: q.type || 'programming' })),
     ...(paperData.codingQuestions || []).map(q => ({ ...q, type: q.type || 'programming' })),
-  ].sort((a, b) => Number(a.id) - Number(b.id)) : [];
+  ], { paperId, luoguPool }) : [];
   const questionCount = allQuestions.length;
 
   const currentQ = allQuestions[currentQuestionIndex] || allQuestions[0] || null;
