@@ -14,6 +14,8 @@ import {
     cppL4Lessons,
     cppL5Lessons,
     cppL6Lessons,
+    cppL7Lessons,
+    cppL8Lessons,
 } from './cppLessonTitles.js';
 
 const LESSONS_BY_LEVEL = {
@@ -23,6 +25,20 @@ const LESSONS_BY_LEVEL = {
     4: cppL4Lessons,
     5: cppL5Lessons,
     6: cppL6Lessons,
+    7: cppL7Lessons,
+    8: cppL8Lessons,
+};
+
+// 七、八级的大纲已排定但课时在分批建设。索引只收已经有页面的课时——
+// 未建成的课如果进了 sitemap 和预渲染，爬虫拿到的会是一个 404 壳子。
+const BUILT_LESSON_IDS = {
+    7: new Set([1]),
+    8: new Set(),
+};
+
+const isBuilt = (level, lessonId) => {
+    const built = BUILT_LESSON_IDS[level];
+    return !built || built.has(lessonId);
 };
 
 // 「第 9 课：for 循环」→「for 循环」。题号在 title 里重复出现，
@@ -30,7 +46,7 @@ const LESSONS_BY_LEVEL = {
 const stripLessonNumber = (title) => String(title || '').replace(/^第\s*\d+\s*课[:：]\s*/, '').trim();
 
 export const cppLessonIndex = Object.entries(LESSONS_BY_LEVEL).flatMap(([level, lessons]) => (
-    (lessons || []).map((lesson) => ({
+    (lessons || []).filter((lesson) => isBuilt(Number(level), lesson.id)).map((lesson) => ({
         level: Number(level),
         id: lesson.id,
         path: `/lesson/${level}/${lesson.id}`,

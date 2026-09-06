@@ -18,7 +18,7 @@ const lessonCache = new Map();
 const getLessonComponent = (level, lessonId) => {
   const lvl = parseInt(level, 10);
   const lid = parseInt(lessonId, 10);
-  if (isNaN(lvl) || isNaN(lid) || lvl < 1 || lvl > 6 || lid < 1 || lid > 16) {
+  if (isNaN(lvl) || isNaN(lid) || lvl < 1 || lvl > 8 || lid < 1 || lid > 16) {
     return null;
   }
   const key = `${lvl}-${lid}`;

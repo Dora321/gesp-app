@@ -235,6 +235,70 @@ const lessonSections = [
         ])
     },
     {
+        id: 'sprint',
+        subject: 'cpp',
+        title: 'C++ 冲刺闯关',
+        subtitle: 'GESP 七级',
+        badge: 'L7',
+        color: 'indigo',
+        icon: Layers,
+        audience: '已完成六级、要系统攻克搜索与动态规划的学生',
+        goal: '把复杂度意识、图搜索和 DP 建模串成一条可复用的解题路径',
+        bridge: '完成后适合进入七级整卷训练，并衔接八级的综合建模',
+        checkpoints: ['能根据数据范围反推该用什么复杂度的算法', '能写出 DFS/BFS 与判重剪枝', '能独立设计线性 DP 与背包状态'],
+        examPath: getCppLevelCatalogItem(7).path,
+        lessons: toCppLessons(7, [
+            '复杂度分析实战',
+            '二叉树的存储与遍历',
+            '二叉排序树与平衡',
+            '哈希表与冲突处理',
+            '图的存储：邻接表与邻接矩阵',
+            '深度优先搜索 DFS',
+            '广度优先搜索 BFS',
+            '搜索的剪枝与状态判重',
+            '动态规划入门：线性 DP',
+            '背包问题家族',
+            '类、封装与构造析构',
+            '继承、虚函数与多态',
+            '命名空间与作用域',
+            '排序算法的稳定性与选择',
+            '易错题诊疗室',
+            '全真模拟与应试策略',
+        ])
+    },
+    {
+        id: 'summit',
+        subject: 'cpp',
+        title: 'C++ 登顶闯关',
+        subtitle: 'GESP 八级',
+        badge: 'L8',
+        color: 'rose',
+        icon: Layers,
+        audience: '目标八级、需要计数、图论与综合建模能力的学生',
+        goal: '把排列组合、图论算法与 C++ 工程细节整合成竞赛级解题能力',
+        bridge: '完成后可直接进入八级整卷训练与竞赛方向',
+        checkpoints: ['能用计数原理拆解带限制的问题', '能选择并实现最短路与最小生成树', '能严格分析递归与均摊复杂度'],
+        examPath: getCppLevelCatalogItem(8).path,
+        lessons: toCppLessons(8, [
+            '计数原理与排列组合',
+            '组合数与杨辉三角',
+            '概率与期望初步',
+            '面向对象进阶：拷贝与资源管理',
+            '运算符重载与模板',
+            '图论基础回顾与建模',
+            '最短路：Dijkstra 与 Floyd',
+            '最小生成树：Prim 与 Kruskal',
+            '动态规划：区间与树形',
+            '数论：质数、gcd 与快速幂',
+            '进制转换与位运算技巧',
+            '复杂度的严格分析',
+            '分治与递归优化',
+            'C++ 综合：指针、内存与异常',
+            '易错题诊疗室',
+            '全真模拟与应试策略',
+        ])
+    },
+    {
         id: 'python-basic',
         subject: 'python',
         title: 'Python 基础',
@@ -266,7 +330,11 @@ const lessonSections = [
     }
 ];
 
+// 七、八级的大纲已按题库的真实考点分布排定，课时正在分批建设。
+// 未建成的课时在目录里标为未开放，而不是给出一个点开就 404 的入口。
 const unavailableLessonIdsBySection = {
+    sprint: [2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16],
+    summit: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16],
 };
 
 function isLessonReady(sectionId, lessonId) {
