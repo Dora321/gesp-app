@@ -10,9 +10,8 @@ const routeRules = [
   /^\/question-bank$/,
   /^\/question-bank\/review$/,
   /^\/question-bank\/[^/]+\/[^/]+$/,
-  // 七级 16 课已建成，八级尚未开工——刻意不放开 8，
-  // 否则指向未建成课时的链接会静默通过，线上是个白屏。
-  /^\/lesson\/[1-7]\/([1-9]|1[0-6])$/,
+  // 一到八级各 16 课全部建成。
+  /^\/lesson\/[1-8]\/([1-9]|1[0-6])$/,
   /^\/ekart(\/(roadmap|toolbox|gallery|parent-portal))?$/,
   /^\/hardware(\/esp32-ai|\/esp32-curriculum|\/esp32-map|\/esp32-contest|\/esp32\/([1-9]|[12]\d|3[0-5])|\/lesson\/([1-9]|1[0-6]))?$/,
   /^\/level[1-8]$/,

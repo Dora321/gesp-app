@@ -31,11 +31,9 @@ const LESSONS_BY_LEVEL = {
 
 // 七、八级的大纲已排定但课时在分批建设。索引只收已经有页面的课时——
 // 未建成的课如果进了 sitemap 和预渲染，爬虫拿到的会是一个 404 壳子。
-const BUILT_LESSON_IDS = {
-    // 七级 16 课已全部建成。
-    7: null,
-    8: new Set(),
-};
+// 七、八级 16 课均已建成，不再需要白名单。
+// 这张表留着是为了将来新增等级时能继续用同样的机制分批上线。
+const BUILT_LESSON_IDS = {};
 
 const isBuilt = (level, lessonId) => {
     const built = BUILT_LESSON_IDS[level];
