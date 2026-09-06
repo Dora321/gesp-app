@@ -251,6 +251,8 @@ export const paperData = {
         {
             id: 6,
             type: "single",
+            sourceIntegrity: "missing-code",
+            integrityNote: "原卷此题引用的程序代码在录入时未收录，仅凭当前题面无法推导答案。本题已排除出计分与考点练习，待补齐原卷代码后恢复。",
             question: `以下函数 check() 用于判断一棵二叉树是否为（ ）。`,
             options: [
                 "满二叉树",
@@ -375,6 +377,8 @@ export const paperData = {
         {
             id: 10,
             type: "single",
+            sourceIntegrity: "missing-code",
+            integrityNote: "原卷此题引用的程序代码在录入时未收录，仅凭当前题面无法推导答案。本题已排除出计分与考点练习，待补齐原卷代码后恢复。",
             question: `以下函数实现了二叉排序树（BST）的（ ）操作。`,
             options: [
                 "查找",
@@ -707,6 +711,8 @@ export const paperData = {
         {
             id: 22,
             type: "judge",
+            sourceIntegrity: "missing-code",
+            integrityNote: "原卷此题引用的程序代码在录入时未收录，仅凭当前题面无法推导答案。本题已排除出计分与考点练习，待补齐原卷代码后恢复。",
             question: `下面的函数能正确判断一棵树是不是二叉排序树（左边的数字要比当前数字小，右边的数字要比当前数字大）。`,
             options: [
                 "正确",

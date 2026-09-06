@@ -64,6 +64,8 @@ export const paperData = {
         {
             id: 1,
             type: "single",
+            sourceIntegrity: "answer-key-suspect",
+            integrityNote: "所录答案为 A「虚函数用于支持运行时多态」，但该说法成立，不可能是「错误的」那一项。C++ 明确禁止把构造函数声明为虚函数，因此错误项应为 C。已排除计分，请对照官方原卷核实。",
             question: `在面向对象编程中，下列关于 虚函数 的描述中，错误的是（ ）。`,
             options: [
                 "虚函数用于支持运行时多态",
@@ -94,6 +96,8 @@ export const paperData = {
         {
             id: 2,
             type: "single",
+            sourceIntegrity: "contaminated-stem",
+            integrityNote: "题干称程序会输出「钢琴：叮咚叮咚」和「吉他：咚咚当当」，但所收录的代码是 Shape / Circle / Rectangle，实际输出「绘制圆形」「绘制矩形」。题干与代码分别来自不同题目，且记录的答案「封装」与代码演示的多态不符。",
             question: `执行如下代码，会输出 钢琴：叮咚叮咚 和 吉他：咚咚当当。这体现了面向对象编程的（ ）特性。`,
             options: [
                 "继承",
@@ -124,6 +128,8 @@ export const paperData = {
         {
             id: 3,
             type: "single",
+            sourceIntegrity: "options-reconstructed",
+            integrityNote: "选项 A、B 的内容（「钢琴：叮咚叮咚」「乐器在演奏声音」）属于本卷第 2 题，并非本题原选项。题干与代码本身完整：Pet 类的 name 是私有成员，main 中 cat.name 赋值会导致编译错误。",
             question: `关于以下代码，说法正确的是（ ）。`,
             options: [
                 "执行代码会输出两行，内容分别为：钢琴：叮咚叮咚 和 吉他：咚咚当当",
@@ -154,6 +160,8 @@ export const paperData = {
         {
             id: 4,
             type: "single",
+            sourceIntegrity: "contaminated-stem",
+            integrityNote: "题干问的是栈的两次撤销结果，所收录的代码却是循环队列的入队出队实现，两者无关。题干本身可独立作答，但并排显示的代码会误导。",
             question: `某文本编辑器把用户输入的字符依次压入栈 S 。用户依次输入 A, B, C, D 后，用户按了两次撤销（每次 撤销，弹出栈顶一个字符）。此时栈从栈底到栈顶的内容是：（ ）。`,
             options: [
                 "A B",
@@ -214,6 +222,8 @@ export const paperData = {
         {
             id: 6,
             type: "single",
+            sourceIntegrity: "missing-code",
+            integrityNote: "原卷此题引用的程序代码在录入时未收录，仅凭当前题面无法推导答案。本题已排除出计分与考点练习，待补齐原卷代码后恢复。",
             question: `以下函数 check() 用于判断一棵二叉树是否为（ ）。`,
             options: [
                 "满二叉树",
@@ -306,6 +316,8 @@ export const paperData = {
         {
             id: 9,
             type: "single",
+            sourceIntegrity: "answer-key-suspect",
+            integrityNote: "所录答案为 D「哈夫曼编码不能用于数据压缩」，但哈夫曼编码正是经典的无损压缩方法，该说法不成立。题目要选「正确的」，应为 B（哈夫曼编码是前缀码，任一字符的编码都不是另一字符编码的前缀）。已排除计分，请对照官方原卷核实。",
             question: `以下关于哈夫曼编码的说法，正确的是（ ）。`,
             options: [
                 "哈夫曼编码是定长编码",
@@ -338,6 +350,8 @@ export const paperData = {
         {
             id: 10,
             type: "single",
+            sourceIntegrity: "missing-code",
+            integrityNote: "原卷此题引用的程序代码在录入时未收录，仅凭当前题面无法推导答案。本题已排除出计分与考点练习，待补齐原卷代码后恢复。",
             question: `以下函数实现了二叉排序树（BST）的（ ）操作。`,
             options: [
                 "查找",
@@ -398,6 +412,8 @@ export const paperData = {
         {
             id: 12,
             type: "single",
+            sourceIntegrity: "options-reconstructed",
+            integrityNote: "题面把两道题拼在了一起（二叉排序树插入函数 op() 与用栈实现的 DFS），并混入 PDF 页脚；选项 C、D 仍是「选项C」「选项D」占位符。",
             question: `给定一棵普通二叉树（节点值没有大小规律），下面代码判断是否存在值为 x 的结点，则横线处应填入（ ）。 TreeNode* op(TreeNode* root, int x) { if (!root) return new TreeNode(x); if (x < root->val) root->left = op(root->left, x); else root->right = op(root->right, x); return root; } 1 2 3 4 5 6 7 8 struct TreeNode { int val; TreeNode* left; TreeNode* right; TreeNode(int x): val(x), left(nullptr), right(nullptr) {} }; void dfs(TreeNode* root) { if (!root) return; stack<TreeNode*> st; st.push(root); while (!st.empty()) { TreeNode* node = st.top(); st.pop(); cout << node->val << " "; if (node->right) st.push(node->right); ________________________ } } 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 第 7 页 / 共 13 页`,
             options: [
                 "q.push(cur);",
@@ -428,6 +444,8 @@ export const paperData = {
         {
             id: 13,
             type: "single",
+            sourceIntegrity: "missing-formula",
+            integrityNote: "选项 A、B 的复杂度公式在提取时丢失，只剩「最坏情况下，访问结点数是」，两个选项内容完全相同，无法区分。",
             question: `在二叉排序树（ Binary Search Tree, BST ）中，假设节点值互不相同。给定如下搜索函数，以下说法一定正 确的是（ ）。`,
             options: [
                 "最坏情况下，访问结点数是",
@@ -519,6 +537,8 @@ A 会把相邻房子的糖果相加；B 错把“累加”写成乘法；D 强�
         {
             id: 15,
             type: "single",
+            sourceIntegrity: "answer-key-suspect",
+            integrityNote: "所录答案为 A「动态规划通常能够列出递推公式」，但该说法成立，不可能是「错误的」那一项。B「时间复杂度通常为状态的个数」忽略了每个状态的转移代价，更像是本题要选的错误项。已排除计分，请对照官方原卷核实。",
             question: `以下关于动态规划的说法中，错误的是（ ）。`,
             options: [
                 "动态规划方法通常能够列出递推公式。",
@@ -549,6 +569,8 @@ A 会把相邻房子的糖果相加；B 错把“累加”写成乘法；D 强�
         {
             id: 16,
             type: "judge",
+            sourceIntegrity: "missing-code",
+            integrityNote: "题干称「以下代码中，构造函数被调用的次数是 1 次」，但代码未随本题收录——该段 Test 类代码实际出现在本卷第 22 题的题面里。",
             question: `以下代码中，构造函数被调用的次数是 1 次。`,
             options: [
                 "正确",
@@ -682,6 +704,8 @@ A 会把相邻房子的糖果相加；B 错把“累加”写成乘法；D 强�
         {
             id: 21,
             type: "judge",
+            sourceIntegrity: "answer-key-suspect",
+            integrityNote: "所录答案为「正确」，但左子树为空只说明该结点是其所在子树的最小值，未必是整棵树的最小值（例如根的右子结点若无左孩子，仍大于根）。该说法应判「错误」。已排除计分，请对照官方原卷核实。",
             question: `在二叉排序树（ BST ）中，若某结点的左子树为空，则该结点一定是整棵树中的最小值结点。`,
             options: [
                 "正确",
@@ -707,6 +731,8 @@ A 会把相邻房子的糖果相加；B 错把“累加”写成乘法；D 强�
         {
             id: 22,
             type: "judge",
+            sourceIntegrity: "contaminated-stem",
+            integrityNote: "题干问的是判断二叉排序树的函数，实际收录的内容是第 16 题的 Test 类构造函数代码加第 18 题的 countLeaf 函数，并混入 PDF 页脚。",
             question: `下面的函数能正确判断一棵树是不是二叉排序树（左边的数字要比当前数字小，右边的数字要比当前数字 大）。 class Test { public: Test() { cout << "T "; } }; int main() { Test a; Test b = a; } 1 2 3 4 5 6 7 8 9 int countLeaf(TreeNode* root) { if (!root) return 0; if (!root->left && !root->right) return 1; return countLeaf(root->left)+countLeaf(root->right); } 1 2 3 4 5 bool isBST(TreeNode* root, int minVal, int maxVal) { if (!root) return true; if (root->val <= minVal || root->val >= maxVal) return false; return isBST(root->left, minVal, root->val) && isBST(root->right, root->val, maxVal); } 1 2 3 4 5 6 7 第 9 页 / 共 13 页`,
             options: [
                 "正确",
@@ -734,6 +760,8 @@ A 会把相邻房子的糖果相加；B 错把“累加”写成乘法；D 强�
         {
             id: 23,
             type: "judge",
+            sourceIntegrity: "answer-key-suspect",
+            integrityNote: "所录答案为「正确」，但格雷编码的定义正是相邻两个编码「恰好有一位」不同，题干所述「必须有多位不同」与之相反。该说法应判「错误」。已排除计分，请对照官方原卷核实。",
             question: `格雷编码相邻两个编码之间必须有多位不同，以避免数据传输错误。`,
             options: [
                 "正确",

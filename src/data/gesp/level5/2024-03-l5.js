@@ -226,6 +226,8 @@ export const paperData = {
         {
             id: 6,
             type: "single",
+            sourceIntegrity: "missing-code",
+            integrityNote: "原卷此题引用的程序代码在录入时未收录，仅凭当前题面无法推导答案。本题已排除出计分与考点练习，待补齐原卷代码后恢复。",
             question: `下面的代码片段用于计算斐波那契数列。该代码的时间复杂度是（ ）。`,
             options: ["$O(1)$", "$O(log n)$", "O($2^N$)", "$O(N)$"],
             answer: 2,

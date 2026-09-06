@@ -275,6 +275,8 @@ export const paperData = {
         {
             id: 7,
             type: "single",
+            sourceIntegrity: "options-reconstructed",
+            integrityNote: "题干的索引公式在提取时丢失（「索引为 （从 开始计数）」），选项 A 是另一道题的栈/队列代码，选项 B、C、D 仍是占位符，本题内容基本未收录。",
             question: `在使用数组表示完全二叉树时，如果一个节点的索引为 （从 开始计数），那么其左子节点的索引通常是（ ）。`,
             options: [
                 "stack<int> s; queue<int> q; for (int i = 1; i <= 3; ++i) { s.push(i); q.push(i); } cout << s.top() << \" \" << q.front() << endl; 1 2 3 4 5 6 7 8",

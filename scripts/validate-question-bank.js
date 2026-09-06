@@ -38,7 +38,9 @@ const badFragments = ['待复核', '？？', '图略', '原卷A', '原卷B', '�
 // between them — because a loose gap matches prose questions that merely mention
 // a program in passing ("下列关于实现该程序时采用的控制结构…"), which legitimately
 // carry no code.
-const codeArtifactReference = '(?:以下|下列|下面|如下|上述)(?:\\s*的?\\s*(?:这段|这个|这份|该)?\\s*(?:C\\s*\\+\\+|C)?\\s*(?:语言)?\\s*)(?:代码|代码片段|代码段|程序|程序段|程序片段)';
+// 「函数 / 方法」和「代码 / 程序」一样是被引用的代码实体：「以下函数 check()
+// 用于判断一棵二叉树是否为（ ）」如果没有附代码，同样无从作答。
+const codeArtifactReference = '(?:以下|下列|下面|如下|上述|有如下)(?:\\s*的?\\s*(?:这段|这个|这份|该)?\\s*(?:C\\s*\\+\\+|C)?\\s*(?:语言)?\\s*)(?:代码|代码片段|代码段|程序|程序段|程序片段|函数|方法)';
 
 const codePromptPatterns = [
   /(?:以下|下列|下面|如下|给定|阅读|分析).{0,24}(?:C\+\+\s*)?(?:代码|代码片段|程序段).{0,32}(?:执行|运行|输出|结果|横线|空白|填入|改为|说法)/i,
@@ -47,7 +49,7 @@ const codePromptPatterns = [
   // so the very common higher-level phrasing "下面程序的输出为（ ）" slipped past
   // the gate entirely — that blind spot is why 6–8 级 accumulated dozens of
   // questions referring to programs the data never stored.
-  new RegExp(`${codeArtifactReference}[^。？\\n]{0,40}(?:执行|运行|输出|结果|横线|空白|填入|应填|改为|说法|实现|功能|作用|正确|错误|复杂度|返回|打印|描述)`, 'i'),
+  new RegExp(`${codeArtifactReference}[^。？\\n]{0,40}(?:执行|运行|输出|结果|横线|空白|填入|应填|改为|说法|实现|功能|作用|正确|错误|复杂度|返回|打印|描述|用于|判断)`, 'i'),
   new RegExp(`(?:代码|代码片段|代码段|程序|程序段|程序片段)(?:\\s*的?\\s*)(?:如下|执行后|运行后)`, 'i'),
 ];
 
@@ -76,6 +78,34 @@ export const getDroppedFormulaErrors = (question, questionId = question?.id || '
     .filter(({ pattern }) => pattern.test(stem))
     .map(({ label }) => (
       `[INTEGRITY] Q${questionId}: 题干疑似丢失公式或数值（${label}），无法作答但未标记 sourceIntegrity`
+    ));
+};
+
+// 提取事故的另外三种形态，和「公式丢失」一样让题目无法作答：
+// 选项还是占位符、题干里混进 PDF 页脚（说明抓取跨页串了内容）、选项末尾的
+// 公式被吞掉（「最坏情况下，访问结点数是」后面什么都没有）。
+const brokenPresentationChecks = [
+  {
+    label: '选项仍是占位符',
+    test: (q) => (q.options || []).some(option => /^(?:选项\s*[A-D]|待补充|TODO|N\/A)\s*$/i.test(String(option).trim())),
+  },
+  {
+    label: '题干混入 PDF 页脚',
+    test: (q) => /第\s*\d+\s*页\s*[/／]\s*共\s*\d+\s*页/.test(`${q.question || ''}${q.code || ''}`),
+  },
+  {
+    label: '选项末尾公式丢失',
+    test: (q) => (q.options || []).some(option => /(?:复杂度|结点数|节点数|个数|深度|次数)(?:是|为)[ 　]*$/.test(String(option).trim())),
+  },
+];
+
+export const getBrokenPresentationErrors = (question, questionId = question?.id || '?') => {
+  if (!['single', 'judge'].includes(question?.type) || question.sourceIntegrity) return [];
+
+  return brokenPresentationChecks
+    .filter(({ test }) => test(question))
+    .map(({ label }) => (
+      `[INTEGRITY] Q${questionId}: ${label}，题目无法作答但未标记 sourceIntegrity`
     ));
 };
 
@@ -284,6 +314,7 @@ async function validateFile(filePath, cfg) {
 
     errors.push(...getObjectiveStemIntegrityErrors(q, qId));
     errors.push(...getDroppedFormulaErrors(q, qId));
+    errors.push(...getBrokenPresentationErrors(q, qId));
 
     // PDF 提取会把「行/心/网」写成康熙部首区的同形字。看不出来，但所有文本匹配
     // （站内搜索、考点推断、下面这些片段检查）都会静默失效，所以入库前必须归一化。
@@ -366,6 +397,7 @@ async function validateFile(filePath, cfg) {
         'contaminated-stem',
         'not-official-question',
         'answer-key-conflict',
+        'answer-key-suspect',
         'official-source-defect',
       ];
       if (!allowed.includes(q.sourceIntegrity)) {

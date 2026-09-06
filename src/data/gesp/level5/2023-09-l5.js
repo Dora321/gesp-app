@@ -498,6 +498,8 @@ int main() {
         {
             id: 11,
             type: "single",
+            sourceIntegrity: "missing-code",
+            integrityNote: "原卷此题引用的程序代码在录入时未收录，仅凭当前题面无法推导答案。本题已排除出计分与考点练习，待补齐原卷代码后恢复。",
             question: `下面代码中的isPrimeA()和isPrimeB()都用于判断参数N是否素数，有关其时间复杂度的正确说法是 （ ）。`,
             options: [
                 "isPrimeA()的最坏时间复杂度是 $O(N)$，isPrimeB()的最坏时间复杂度是 O(logN)。",
@@ -528,6 +530,8 @@ int main() {
         {
             id: 12,
             type: "single",
+            sourceIntegrity: "missing-code",
+            integrityNote: "原卷此题引用的程序代码在录入时未收录，仅凭当前题面无法推导答案。本题已排除出计分与考点练习，待补齐原卷代码后恢复。",
             question: `下面代码用于归并排序，其中merge()函数被调用次数为（ ）。`,
             options: [
                 "0",

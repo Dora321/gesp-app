@@ -158,6 +158,8 @@ export const paperData = {
         {
             id: 5,
             type: "single",
+            sourceIntegrity: "missing-formula",
+            integrityNote: "选项 C、D 末尾的复杂度公式在提取时丢失（「链地址法在最坏情况下查找时间复杂度为」「查找哈希表的时间复杂度总是」后无内容），而记录答案正是 D，无法据以判断。",
             question: `关于哈希表（ Hash Table ）在不考虑扩容且采用简单均匀哈希函数的前提下，下列说法中错误的是（ ）。`,
             options: ["装载因子越大，发生冲突的概率通常越高", "开放定址法在删除元素时实现相对复杂", "链地址法在最坏情况下查找时间复杂度为", "查找哈希表的时间复杂度总是"],
             answer: 3,

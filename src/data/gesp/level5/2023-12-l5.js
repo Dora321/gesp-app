@@ -129,6 +129,8 @@ export const paperData = {
         {
             id: 1,
             type: "single",
+            sourceIntegrity: "missing-code",
+            integrityNote: "原卷此题引用的程序代码在录入时未收录，仅凭当前题面无法推导答案。本题已排除出计分与考点练习，待补齐原卷代码后恢复。",
             question: `下面 C++ 代码用于求斐波那契数列，该数列第 1 、 2 项为 1 ，以后各项均是前两项之和。下面有关说法错误的是 ( ) 。`,
             options: [
                 "fiboA( )用递归方式，fiboB()循环方式",

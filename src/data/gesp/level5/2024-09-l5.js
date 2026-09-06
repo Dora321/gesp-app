@@ -164,6 +164,8 @@ export const paperData = {
         {
             id: 4,
             type: "single",
+            sourceIntegrity: "missing-code",
+            integrityNote: "原卷此题引用的程序代码在录入时未收录，仅凭当前题面无法推导答案。本题已排除出计分与考点练习，待补齐原卷代码后恢复。",
             question: `有如下函数fun，则fun(20, 12)的返回值为（ ）。`,
             options: ["20", "12", "4", "2"],
             answer: 2,

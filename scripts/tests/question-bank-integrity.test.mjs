@@ -1,6 +1,7 @@
 import test from 'node:test';
 import assert from 'node:assert/strict';
 import {
+  getBrokenPresentationErrors,
   getDroppedFormulaErrors,
   getObjectiveStemIntegrityErrors,
   questionHasCodeContent,
@@ -152,4 +153,57 @@ test('every objective question with a dropped formula carries sourceIntegrity', 
     [],
     `这些题的公式在提取时丢失，必须补 sourceIntegrity: 'missing-formula'：${unflagged.join(', ')}`,
   );
+});
+
+// 提取事故的其余形态：选项还是占位符、题干混进 PDF 页脚（说明抓取跨页串了内容）、
+// 选项末尾的复杂度公式被吞掉。三者都让题目无法作答。
+test('placeholder options, page footers and truncated options are caught', () => {
+  const cases = [
+    {
+      type: 'single',
+      question: '下面代码的输出是（ ）。',
+      options: ['stack<int> s;', '选项B', '选项C', '选项D'],
+      expect: /选项仍是占位符/,
+    },
+    {
+      type: 'single',
+      question: '横线处应填入（ ）。 第 7 页 / 共 13 页',
+      options: ['a', 'b', 'c', 'd'],
+      expect: /题干混入 PDF 页脚/,
+    },
+    {
+      type: 'single',
+      question: '以下说法一定正确的是（ ）。',
+      options: ['最坏情况下，访问结点数是', '最坏情况下，访问结点数是', 'c', 'd'],
+      expect: /选项末尾公式丢失/,
+    },
+  ];
+
+  cases.forEach(({ expect, ...question }, index) => {
+    const errors = getBrokenPresentationErrors(question, index + 1);
+    assert.equal(errors.length, 1);
+    assert.match(errors[0], expect);
+  });
+});
+
+test('well-formed questions are not flagged as broken presentation', () => {
+  assert.deepEqual(getBrokenPresentationErrors({
+    type: 'single',
+    question: '下面代码的输出是（ ）。',
+    options: ['0', '5', '55', '无法确定。'],
+  }), []);
+});
+
+test('every objective question with a broken presentation carries sourceIntegrity', async () => {
+  const unflagged = [];
+  for (const paperId of paperIds) {
+    if (paperMeta[paperId]?.unofficial) continue;
+    const paper = await getPaper(paperId);
+    for (const question of paper.questions || []) {
+      if (getBrokenPresentationErrors(question, question.id).length > 0) {
+        unflagged.push(`${paperId}:Q${question.id}`);
+      }
+    }
+  }
+  assert.deepEqual(unflagged, [], `这些题的题面已损坏但未标记：${unflagged.join(', ')}`);
 });

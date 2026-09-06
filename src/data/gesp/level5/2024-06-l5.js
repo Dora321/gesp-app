@@ -96,6 +96,8 @@ export const paperData = {
         {
             id: 1,
             type: "single",
+            sourceIntegrity: "missing-code",
+            integrityNote: "原卷此题引用的程序代码在录入时未收录，仅凭当前题面无法推导答案。本题已排除出计分与考点练习，待补齐原卷代码后恢复。",
             question: `下面 C++ 代码用于求斐波那契数列，该数列第 1、2 项为 1，以后各项均是前两项之和。函数 fibo() 属于 ( ) 。`,
             options: ["枚举算法", "贪心算法", "迭代算法", "递归算法"],
             answer: 2,
