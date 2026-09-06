@@ -31,7 +31,7 @@ const ROUTES = [
   '/lesson/1/9', '/lesson/2/12', '/lesson/3/7', '/lesson/4/9',
   '/lesson/5/10', '/lesson/6/2', '/python/f2', '/python/f3',
   '/question-bank', '/question-bank/2/2026-03-l2',
-  '/hardware', '/hardware/lesson/1', '/hardware/esp32-ai', '/ekart', '/level7',
+  '/hardware', '/hardware/esp32-map', '/hardware/esp32-contest', '/ekart', '/level7',
 ];
 const VIEWPORTS = [
   { name: 'desktop', width: 1365, height: 900, isMobile: false },
@@ -181,14 +181,14 @@ async function checkMuseumLayout(page, viewport, failures) {
 async function checkHardwareLanding(page, viewport, failures) {
   const metrics = await page.evaluate(() => {
     const links = [...document.querySelectorAll('a')]
-      .filter((element) => /Mind\+ 官方下载|CH340 官方驱动/.test(element.textContent))
+      .filter((element) => /PyCharm Community 下载|CH340 官方驱动/.test(element.textContent))
       .map((element) => element.href);
     const kitCount = document.querySelectorAll('#resources details li').length;
     return { links, kitCount };
   });
 
   if (metrics.links.length !== 2 || metrics.links.some((href) => !href.startsWith('https://'))) {
-    failures.push(`/hardware [${viewport}]: official Mind+ and CH340 HTTPS resources are missing.`);
+    failures.push(`/hardware [${viewport}]: official PyCharm and CH340 HTTPS resources are missing.`);
   }
   if (metrics.kitCount < 10) failures.push(`/hardware [${viewport}]: complete hardware kit list has only ${metrics.kitCount} items.`);
 }

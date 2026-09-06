@@ -7,13 +7,18 @@ import {
     Star, CheckCircle2,
     Code, Cpu, Settings, ArrowRight, ExternalLink
 } from 'lucide-react';
-import { hardwareLessons } from '../data/lessons';
+import { esp32Lessons, esp32LessonsByStage, esp32Stages } from '../data/esp32Curriculum';
 import Navigation from '../../components/Navigation';
 import Footer from '../../components/Footer';
 
-const MINDPLUS_DOWNLOAD_URL = 'https://mindplus.cc/download.html';
+const PYCHARM_DOWNLOAD_URL = 'https://www.jetbrains.com/pycharm/download/';
 const CH340_DRIVER_URL = 'https://www.wch.cn/downloads/category/67.html?feature=USB%E8%BD%AC%E4%B8%B2%E5%8F%A3&product_name=CH340';
-const hardwareKitItems = [...new Set(hardwareLessons.flatMap((lesson) => lesson.components || []))];
+// ESP32 课程的器材按阶段递增，清单跟着课程走。
+const hardwareKitItems = [
+    'ESP32 开发板（每组 1 块）', 'USB 数据线', '面包板与杜邦线', 'LED 与限流电阻',
+    '轻触按钮', 'OLED 屏（SSD1306）', 'DHT11 温湿度传感器', '光敏电阻',
+    '有源蜂鸣器', 'WS2812 灯带', '舵机（SG90）', '超声波测距模块',
+];
 
 const BackgroundDecorations = () => (
     <div className="pointer-events-none absolute inset-0 z-0 overflow-hidden">
@@ -27,13 +32,14 @@ const Hero = ({ onStart, onPreview }) => (
             <div className="space-y-5">
                 <div className="inline-flex items-center gap-2 rounded-md border border-orange-200 bg-orange-50 px-3 py-2 text-xs font-bold text-orange-700">
                     <Cpu size={15} />
-                    硬件工程实践课
+                    AI 硬件科创课
                 </div>
                 <h1 className="text-4xl font-black leading-tight text-slate-950 sm:text-5xl lg:text-6xl">
-                    Arduino 硬件实验课
+                    ESP32 × AI 科创课程
                 </h1>
                 <p className="max-w-xl text-base font-medium leading-8 text-slate-600 sm:text-lg">
-                    从接线、读取传感器到控制输出，用 Mind+ 完成能运行、能展示、能复盘的硬件作品。
+                    {esp32Lessons.length} 课时项目制课程。主线不是 MicroPython 语法，而是学生与 AI 关系的演进——
+                    从只敢读 AI 写的代码，到把 AI 装进自己的作品里。
                 </p>
                 <div className="flex flex-wrap gap-3">
                 <button
@@ -50,12 +56,13 @@ const Hero = ({ onStart, onPreview }) => (
                     className="inline-flex min-h-12 items-center gap-2 rounded-lg border border-slate-300 bg-white px-6 py-3 text-base font-bold text-slate-800 transition hover:border-blue-300 hover:bg-blue-50"
                 >
                     <ChevronRight size={18} />
-                    查看课程路径
+                    查看学习地图
                 </button>
                 </div>
                 <div className="flex flex-wrap gap-x-6 gap-y-2 pt-1 text-sm font-bold text-slate-500">
-                    <span className="flex items-center gap-2"><CheckCircle2 size={17} className="text-emerald-600" /> 12 节循序任务</span>
-                    <span className="flex items-center gap-2"><CheckCircle2 size={17} className="text-emerald-600" /> 每节都有作品证据</span>
+                    <span className="flex items-center gap-2"><CheckCircle2 size={17} className="text-emerald-600" /> {esp32Stages.length} 阶段 {esp32Lessons.length} 课</span>
+                    <span className="flex items-center gap-2"><CheckCircle2 size={17} className="text-emerald-600" /> 自学 / 上课双模式</span>
+                    <span className="flex items-center gap-2"><CheckCircle2 size={17} className="text-emerald-600" /> 每课带完成检查单</span>
                 </div>
             </div>
 
@@ -156,138 +163,145 @@ const Esp32AiSpotlight = ({ navigate }) => (
                     New ESP32 Course
                 </div>
                 <h2 className="text-3xl lg:text-5xl font-black leading-tight mb-5">
-                    ESP32 × AI 科创课程体系
+                    AI 角色的五段演进
                 </h2>
                 <p className="text-slate-300 text-lg leading-8 max-w-2xl">
-                    面向小学高年级的 16 课时项目制课程，从读懂 MicroPython 代码开始，逐步学会拆解需求、指挥 AI、调试硬件，并完成真实科创项目。
+                    每个阶段重新定义一次「AI 是我的什么」。从代码打印机到协作伙伴，
+                    学生的位置从旁观者一路挪到主导者。
                 </p>
-                <button
-                    onClick={() => navigate('/hardware/esp32-curriculum')}
-                    className="mt-8 px-7 py-4 bg-cyan-400 hover:bg-cyan-300 text-slate-950 text-base font-black rounded-2xl shadow-xl shadow-cyan-950/40 flex items-center gap-3 transition-all hover:-translate-y-1"
-                >
-                    查看 35 课时课程体系
-                    <ArrowRight size={20} />
-                </button>
-                {/* 前 16 课的教学法详解仍保留独立入口：那页讲的是 PBL 循环、
-                    评价量规和 AI 使用公约，与按阶段浏览课时是两种需求。 */}
-                <button
-                    type="button"
-                    onClick={() => navigate('/hardware/esp32-ai')}
-                    className="mt-3 px-6 py-3 rounded-2xl border border-cyan-400/40 text-cyan-200 text-sm font-bold transition-all hover:bg-cyan-400/10"
-                >
-                    教学法与评价量规
-                </button>
+                <div className="mt-8 flex flex-wrap gap-3">
+                    <button
+                        onClick={() => navigate('/hardware/esp32-curriculum')}
+                        className="px-7 py-4 bg-cyan-400 hover:bg-cyan-300 text-slate-950 text-base font-black rounded-2xl shadow-xl shadow-cyan-950/40 flex items-center gap-3 transition-all hover:-translate-y-1"
+                    >
+                        逐课浏览 {esp32Lessons.length} 课
+                        <ArrowRight size={20} />
+                    </button>
+                    <button
+                        type="button"
+                        onClick={() => navigate('/hardware/esp32-map')}
+                        className="px-6 py-4 rounded-2xl border border-cyan-400/40 text-cyan-200 text-sm font-bold transition-all hover:bg-cyan-400/10"
+                    >
+                        打开学习地图
+                    </button>
+                    <button
+                        type="button"
+                        onClick={() => navigate('/hardware/esp32-contest')}
+                        className="px-6 py-4 rounded-2xl border border-cyan-400/40 text-cyan-200 text-sm font-bold transition-all hover:bg-cyan-400/10"
+                    >
+                        竞赛延伸班
+                    </button>
+                </div>
             </div>
 
-            <div className="grid sm:grid-cols-3 gap-4">
-                {[
-                    { title: '读懂 AI', desc: '看懂并验证 AI 生成的 MicroPython 代码', lessons: '1-5' },
-                    { title: '指挥 AI', desc: '把硬件、语言、行为和约束说清楚', lessons: '6-10' },
-                    { title: '超越 AI', desc: '从真实问题出发完成多模块项目', lessons: '11-16' }
-                ].map((phase, index) => (
-                    <div key={phase.title} className="rounded-lg border border-white/10 bg-white/5 p-6 transition-colors hover:bg-white/10">
+            <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+                {esp32Stages.map((phase) => (
+                    <button
+                        type="button"
+                        key={phase.id}
+                        onClick={() => navigate('/hardware/esp32-curriculum')}
+                        className="rounded-lg border border-white/10 bg-white/5 p-6 text-left transition-colors hover:bg-white/10"
+                    >
                         <div className="mb-5 flex h-12 w-12 items-center justify-center rounded-lg bg-white font-black text-slate-950">
-                            {index + 1}
+                            {phase.id}
                         </div>
-                        <div className="text-xs font-black uppercase tracking-widest text-cyan-200 mb-2">第 {phase.lessons} 课</div>
-                        <h3 className="text-xl font-black mb-3">{phase.title}</h3>
-                        <p className="text-sm leading-6 text-slate-300">{phase.desc}</p>
-                    </div>
+                        <div className="text-xs font-black uppercase tracking-widest text-cyan-200 mb-2">
+                            {phase.lessonRange} · {phase.lessonCount} 课
+                        </div>
+                        <h3 className="text-xl font-black mb-2">{phase.title}</h3>
+                        <p className="text-xs font-bold text-cyan-100/80 mb-3">{phase.aiRole}</p>
+                        <p className="text-sm leading-6 text-slate-300">{phase.description}</p>
+                    </button>
                 ))}
             </div>
         </div>
     </section>
 );
 
+// 课程路径直接读 esp32Curriculum：以前这里读的是另一套 16 课 Arduino 数据，
+// 于是落地页和课程页说的是两门不同的课。现在只有一个数据源。
 const MissionMap = ({ navigate }) => {
-    const [activeTab, setActiveTab] = useState('realtime');
-    const missions = hardwareLessons.filter(l => l.mode === activeTab);
+    const [activeStage, setActiveStage] = useState(esp32Stages[0].id);
+    const missions = esp32LessonsByStage(activeStage);
+    const stage = esp32Stages.find((item) => item.id === activeStage) || esp32Stages[0];
 
     return (
         <section id="missions" className="py-24 bg-slate-50 relative">
             <div className="absolute inset-0 opacity-[0.03]" style={{ backgroundImage: 'radial-gradient(#F97316 1px, transparent 1px)', backgroundSize: '32px 32px' }}></div>
 
             <div className="max-w-7xl mx-auto px-6 relative z-10">
-                <div className="flex flex-col md:flex-row md:items-end justify-between gap-8 mb-16">
+                <div className="flex flex-col md:flex-row md:items-end justify-between gap-8 mb-10">
                     <div>
                         <div className="flex items-center gap-3 mb-4">
                             <span className="w-12 h-12 bg-orange-600 rounded-2xl flex items-center justify-center text-white shadow-lg shadow-orange-500/30 rotate-3">
                                 <Settings size={28} className="animate-spin-slow" />
                             </span>
-                            <span className="text-orange-600 font-bold uppercase tracking-wider text-sm">Challenge Map</span>
+                            <span className="text-orange-600 font-bold uppercase tracking-wider text-sm">Course Map</span>
                         </div>
                         <h2 className="text-3xl lg:text-4xl font-black text-slate-900">
-                            硬件课程路径
+                            课程路径
                         </h2>
                     </div>
 
-                    <div className="inline-flex rounded-lg border border-slate-200 bg-white p-1 shadow-sm">
-                        {[
-                            { id: 'realtime', label: '阶段一：基础接线' },
-                            { id: 'upload', label: '阶段二：综合制作' }
-                        ].map(tab => (
+                    <div className="flex flex-wrap gap-2 rounded-lg border border-slate-200 bg-white p-1 shadow-sm">
+                        {esp32Stages.map((item) => (
                             <button
-                                key={tab.id}
-                                onClick={() => setActiveTab(tab.id)}
-                                className={`px-6 py-3 rounded-xl text-sm font-bold transition-all ${activeTab === tab.id
+                                key={item.id}
+                                type="button"
+                                aria-pressed={activeStage === item.id}
+                                onClick={() => setActiveStage(item.id)}
+                                className={`min-h-11 rounded-xl px-4 py-2.5 text-sm font-bold transition-all ${activeStage === item.id
                                     ? 'bg-orange-700 text-white shadow-md'
                                     : 'text-slate-500 hover:bg-slate-50'
                                     }`}
                             >
-                                {tab.label}
+                                {item.id}. {item.title}
                             </button>
                         ))}
                     </div>
                 </div>
+
+                <p className="mb-8 max-w-3xl text-sm font-bold leading-6 text-slate-600">
+                    {stage.drivingQuestion}
+                </p>
 
                 <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
                     <AnimatePresence>
                         {missions.map((mission) => (
                             <motion.button
                                 type="button"
-                                key={mission.id}
+                                key={mission.num}
                                 layout
                                 initial={{ opacity: 0, scale: 0.9 }}
                                 animate={{ opacity: 1, scale: 1 }}
                                 exit={{ opacity: 0, scale: 0.9 }}
-                                onClick={() => navigate(`/hardware/lesson/${mission.id}`)}
+                                onClick={() => navigate(`/hardware/esp32/${mission.num}`)}
                                 className="group relative cursor-pointer overflow-hidden rounded-lg border border-slate-200 bg-white p-6 text-left transition hover:border-blue-300 hover:shadow-lg"
                             >
-                                {/* Level Badge */}
-                                <div className="flex justify-between items-start mb-6">
+                                <div className="mb-5 flex items-start justify-between gap-2">
                                     <div className="rounded-lg bg-slate-50 px-3 py-1.5 text-xs font-black uppercase tracking-wider text-slate-600 transition-colors group-hover:bg-blue-50 group-hover:text-blue-700">
-                                        Level {mission.id.toString().padStart(2, '0')}
+                                        L{mission.num.toString().padStart(2, '0')}
                                     </div>
-                                    <div className="flex text-amber-400 bg-amber-50 px-2 py-1 rounded-lg">
-                                        {[1, 2, 3].map(i => (
-                                            <Star key={i} size={12} className={i <= (mission.difficulty || 2) ? "fill-current" : "text-amber-200"} />
-                                        ))}
-                                    </div>
+                                    {mission.referenceCode?.length > 0 && (
+                                        <span className="rounded-md bg-emerald-50 px-2 py-1 text-[10px] font-bold text-emerald-700">
+                                            带参考代码
+                                        </span>
+                                    )}
                                 </div>
 
-                                {/* Icon Block */}
-                                <div className="w-20 h-20 bg-blue-50 rounded-2xl flex items-center justify-center mb-6 group-hover:scale-110 transition-transform duration-500 group-hover:bg-blue-600 group-hover:shadow-lg group-hover:shadow-blue-500/20">
-                                    <mission.icon size={36} className="text-blue-600 group-hover:text-white transition-colors duration-300" />
-                                </div>
-
-                                <h3 className="text-lg font-black text-slate-800 mb-3 line-clamp-1 group-hover:text-brand-blue transition-colors">
-                                    {mission.title.split('：')[1] || mission.title}
+                                <h3 className="mb-3 text-lg font-black leading-6 text-slate-800 transition-colors group-hover:text-brand-blue">
+                                    {mission.title}
                                 </h3>
 
-                                <p className="text-slate-500 text-sm leading-relaxed line-clamp-2 h-10 mb-6">
-                                    {mission.description}
+                                <p className="mb-6 line-clamp-3 text-sm leading-relaxed text-slate-500">
+                                    {mission.hook || mission.goal}
                                 </p>
 
-                                {/* Bottom Status */}
-                                <div className="pt-4 border-t border-slate-100 flex items-center justify-between">
-                                    <div className="flex gap-2">
-                                        {(mission.tags || []).slice(0, 1).map((tag, t) => (
-                                            <span key={t} className="rounded-md bg-slate-100 px-2.5 py-1 text-[10px] font-bold uppercase text-slate-700">
-                                                {tag}
-                                            </span>
-                                        ))}
-                                    </div>
-                                    <div className="w-8 h-8 rounded-full bg-slate-50 flex items-center justify-center text-slate-300 group-hover:bg-brand-blue group-hover:text-white transition-all transform group-hover:translate-x-1">
+                                <div className="flex items-center justify-between border-t border-slate-100 pt-4">
+                                    <span className="rounded-md bg-slate-100 px-2.5 py-1 text-[10px] font-bold text-slate-700">
+                                        {mission.lessonType}
+                                    </span>
+                                    <div className="flex h-8 w-8 items-center justify-center rounded-full bg-slate-50 text-slate-300 transition-all group-hover:translate-x-1 group-hover:bg-brand-blue group-hover:text-white">
                                         <ArrowRight size={16} />
                                     </div>
                                 </div>
@@ -315,16 +329,16 @@ const Resources = () => (
                         <Code size={48} className="text-blue-600" />
                     </div>
                     <h3 className="text-2xl font-black text-slate-900 mb-3">软件中心</h3>
-                    <p className="mb-10 px-8 text-sm leading-relaxed text-slate-600">编程所需的 Mind+ 软件及驱动程序，支持 Windows 与 Mac 系统。</p>
+                    <p className="mb-10 px-8 text-sm leading-relaxed text-slate-600">PyCharm Community + MicroPython Tools 插件，配 CH340 串口驱动，Windows / Mac 通用。</p>
 
                     <div className="space-y-4 w-full max-w-sm">
                         <a
-                            href={MINDPLUS_DOWNLOAD_URL}
+                            href={PYCHARM_DOWNLOAD_URL}
                             target="_blank"
                             rel="noreferrer"
                             className="group/btn flex w-full items-center justify-between rounded-lg border border-blue-100 bg-white px-8 py-5 shadow-sm transition hover:border-blue-300 hover:shadow-md"
                         >
-                            <span className="font-bold text-slate-700">Mind+ 官方下载</span>
+                            <span className="font-bold text-slate-700">PyCharm Community 下载</span>
                             <ExternalLink size={22} className="text-slate-300 group-hover/btn:text-blue-600 transition-colors" />
                         </a>
                         <a
@@ -345,7 +359,7 @@ const Resources = () => (
                         <Box size={48} className="text-orange-600" />
                     </div>
                     <h3 className="text-2xl font-black text-slate-900 mb-3">硬件清单</h3>
-                    <p className="mb-8 px-4 text-sm leading-relaxed text-slate-600">本课程配套 Arduino 学习套件，包含课程所需的传感器与模块。</p>
+                    <p className="mb-8 px-4 text-sm leading-relaxed text-slate-600">每组一块 ESP32 开发板，传感器与模块按课程阶段逐步加入。</p>
 
                     <div className="grid grid-cols-2 gap-4 w-full max-w-sm text-left">
                         {hardwareKitItems.slice(0, 6).map((item) => (
@@ -399,7 +413,7 @@ export default function HardwareLanding() {
             <BackgroundDecorations />
 
             <main>
-                <Hero onStart={() => navigate('/hardware/lesson/1')} onPreview={scrollToLearningFlow} />
+                <Hero onStart={() => navigate('/hardware/esp32/1')} onPreview={scrollToLearningFlow} />
                 <ThreeEModel />
                 <Esp32AiSpotlight navigate={navigate} />
                 <MissionMap navigate={navigate} />

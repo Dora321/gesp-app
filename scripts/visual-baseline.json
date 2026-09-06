@@ -2,8 +2,8 @@
   "___desktop": {
     "clientWidth": 1365,
     "overflow": 0,
-    "docHeight": 5505,
-    "textLen": 999,
+    "docHeight": 5957,
+    "textLen": 1462,
     "maxRight": 1487,
     "counts": {
       "pre": 0,
@@ -11,14 +11,14 @@
       "button": 33
     },
     "sampled": 8550,
-    "nonWhite": 4349,
-    "nonWhiteRatio": 0.5086549707602339
+    "nonWhite": 4378,
+    "nonWhiteRatio": 0.512046783625731
   },
   "_museum__desktop": {
     "clientWidth": 1365,
     "overflow": 0,
-    "docHeight": 9158,
-    "textLen": 3843,
+    "docHeight": 9186,
+    "textLen": 3850,
     "maxRight": 1365,
     "counts": {
       "pre": 0,
@@ -33,7 +33,7 @@
     "clientWidth": 1365,
     "overflow": 0,
     "docHeight": 900,
-    "textLen": 338,
+    "textLen": 386,
     "maxRight": 1365,
     "counts": {
       "pre": 0,
@@ -41,8 +41,8 @@
       "button": 16
     },
     "sampled": 8550,
-    "nonWhite": 4448,
-    "nonWhiteRatio": 0.5202339181286549
+    "nonWhite": 5067,
+    "nonWhiteRatio": 0.5926315789473684
   },
   "_lesson_2_12__desktop": {
     "clientWidth": 1365,
@@ -78,7 +78,7 @@
     "clientWidth": 1365,
     "overflow": 0,
     "docHeight": 900,
-    "textLen": 366,
+    "textLen": 410,
     "maxRight": 1341,
     "counts": {
       "pre": 0,
@@ -86,8 +86,8 @@
       "button": 11
     },
     "sampled": 8550,
-    "nonWhite": 3872,
-    "nonWhiteRatio": 0.4528654970760234
+    "nonWhite": 4045,
+    "nonWhiteRatio": 0.47309941520467835
   },
   "_lesson_5_10__desktop": {
     "clientWidth": 1365,
@@ -152,17 +152,17 @@
   "_question-bank__desktop": {
     "clientWidth": 1365,
     "overflow": 0,
-    "docHeight": 2180,
-    "textLen": 1290,
+    "docHeight": 2714,
+    "textLen": 2070,
     "maxRight": 1259,
     "counts": {
       "pre": 0,
       "table": 0,
-      "button": 22
+      "button": 23
     },
     "sampled": 8550,
-    "nonWhite": 2383,
-    "nonWhiteRatio": 0.27871345029239764
+    "nonWhite": 2641,
+    "nonWhiteRatio": 0.3088888888888889
   },
   "_question-bank_2_2026-03-l2__desktop": {
     "clientWidth": 1365,
@@ -182,53 +182,53 @@
   "_hardware__desktop": {
     "clientWidth": 1365,
     "overflow": 0,
-    "docHeight": 4526,
-    "textLen": 1405,
+    "docHeight": 4603,
+    "textLen": 1702,
     "maxRight": 1365,
     "counts": {
       "pre": 0,
       "table": 0,
-      "button": 39
+      "button": 46
     },
     "sampled": 8550,
-    "nonWhite": 2510,
-    "nonWhiteRatio": 0.2935672514619883
+    "nonWhite": 2528,
+    "nonWhiteRatio": 0.29567251461988303
   },
-  "_hardware_lesson_1__desktop": {
+  "_hardware_esp32-map__desktop": {
     "clientWidth": 1365,
     "overflow": 0,
-    "docHeight": 3342,
-    "textLen": 903,
+    "docHeight": 3966,
+    "textLen": 1667,
     "maxRight": 1365,
     "counts": {
       "pre": 0,
       "table": 0,
-      "button": 29
+      "button": 27
     },
     "sampled": 8550,
-    "nonWhite": 8512,
-    "nonWhiteRatio": 0.9955555555555555
+    "nonWhite": 5413,
+    "nonWhiteRatio": 0.6330994152046784
   },
-  "_hardware_esp32-ai__desktop": {
+  "_hardware_esp32-contest__desktop": {
     "clientWidth": 1365,
     "overflow": 0,
-    "docHeight": 8613,
-    "textLen": 4930,
+    "docHeight": 3861,
+    "textLen": 1724,
     "maxRight": 1365,
     "counts": {
       "pre": 0,
-      "table": 1,
-      "button": 53
+      "table": 0,
+      "button": 33
     },
     "sampled": 8550,
-    "nonWhite": 5424,
-    "nonWhiteRatio": 0.6343859649122807
+    "nonWhite": 4683,
+    "nonWhiteRatio": 0.547719298245614
   },
   "_ekart__desktop": {
     "clientWidth": 1365,
     "overflow": 0,
-    "docHeight": 2943,
-    "textLen": 867,
+    "docHeight": 2971,
+    "textLen": 874,
     "maxRight": 1508,
     "counts": {
       "pre": 0,
@@ -257,8 +257,8 @@
   "___mobile": {
     "clientWidth": 390,
     "overflow": 0,
-    "docHeight": 6429,
-    "textLen": 760,
+    "docHeight": 7617,
+    "textLen": 1212,
     "maxRight": 390,
     "counts": {
       "pre": 0,
@@ -266,14 +266,14 @@
       "button": 33
     },
     "sampled": 2343,
-    "nonWhite": 811,
-    "nonWhiteRatio": 0.3461374306444729
+    "nonWhite": 860,
+    "nonWhiteRatio": 0.36705078958600085
   },
   "_museum__mobile": {
     "clientWidth": 390,
     "overflow": 0,
-    "docHeight": 28266,
-    "textLen": 3814,
+    "docHeight": 28294,
+    "textLen": 3821,
     "maxRight": 612,
     "counts": {
       "pre": 0,
@@ -288,7 +288,7 @@
     "clientWidth": 390,
     "overflow": 0,
     "docHeight": 844,
-    "textLen": 216,
+    "textLen": 264,
     "maxRight": 390,
     "counts": {
       "pre": 0,
@@ -296,8 +296,8 @@
       "button": 16
     },
     "sampled": 2343,
-    "nonWhite": 1814,
-    "nonWhiteRatio": 0.774221084080239
+    "nonWhite": 1835,
+    "nonWhiteRatio": 0.7831839521980367
   },
   "_lesson_2_12__mobile": {
     "clientWidth": 390,
@@ -333,7 +333,7 @@
     "clientWidth": 390,
     "overflow": 0,
     "docHeight": 844,
-    "textLen": 311,
+    "textLen": 355,
     "maxRight": 390,
     "counts": {
       "pre": 0,
@@ -341,8 +341,8 @@
       "button": 11
     },
     "sampled": 2343,
-    "nonWhite": 1223,
-    "nonWhiteRatio": 0.5219803670507895
+    "nonWhite": 1563,
+    "nonWhiteRatio": 0.6670934699103713
   },
   "_lesson_5_10__mobile": {
     "clientWidth": 390,
@@ -407,17 +407,17 @@
   "_question-bank__mobile": {
     "clientWidth": 390,
     "overflow": 0,
-    "docHeight": 4156,
-    "textLen": 1290,
+    "docHeight": 5239,
+    "textLen": 2070,
     "maxRight": 1361,
     "counts": {
       "pre": 0,
       "table": 0,
-      "button": 22
+      "button": 23
     },
     "sampled": 2343,
-    "nonWhite": 1238,
-    "nonWhiteRatio": 0.5283824157063594
+    "nonWhite": 1292,
+    "nonWhiteRatio": 0.5514297908664105
   },
   "_question-bank_2_2026-03-l2__mobile": {
     "clientWidth": 390,
@@ -437,53 +437,53 @@
   "_hardware__mobile": {
     "clientWidth": 390,
     "overflow": 0,
-    "docHeight": 9587,
-    "textLen": 1370,
+    "docHeight": 8777,
+    "textLen": 1667,
     "maxRight": 390,
     "counts": {
       "pre": 0,
       "table": 0,
-      "button": 39
+      "button": 46
     },
     "sampled": 2343,
-    "nonWhite": 1312,
-    "nonWhiteRatio": 0.5599658557405036
+    "nonWhite": 1272,
+    "nonWhiteRatio": 0.5428937259923176
   },
-  "_hardware_lesson_1__mobile": {
+  "_hardware_esp32-map__mobile": {
     "clientWidth": 390,
     "overflow": 0,
-    "docHeight": 4615,
-    "textLen": 868,
-    "maxRight": 493,
+    "docHeight": 6794,
+    "textLen": 1632,
+    "maxRight": 390,
     "counts": {
       "pre": 0,
       "table": 0,
-      "button": 29
+      "button": 27
     },
     "sampled": 2343,
-    "nonWhite": 2311,
-    "nonWhiteRatio": 0.9863422962014511
+    "nonWhite": 1704,
+    "nonWhiteRatio": 0.7272727272727273
   },
-  "_hardware_esp32-ai__mobile": {
+  "_hardware_esp32-contest__mobile": {
     "clientWidth": 390,
     "overflow": 0,
-    "docHeight": 16402,
-    "textLen": 4893,
-    "maxRight": 909,
+    "docHeight": 5915,
+    "textLen": 1689,
+    "maxRight": 390,
     "counts": {
       "pre": 0,
-      "table": 1,
-      "button": 53
+      "table": 0,
+      "button": 33
     },
     "sampled": 2343,
-    "nonWhite": 2293,
-    "nonWhiteRatio": 0.9786598378147674
+    "nonWhite": 1224,
+    "nonWhiteRatio": 0.5224071702944942
   },
   "_ekart__mobile": {
     "clientWidth": 390,
     "overflow": 0,
-    "docHeight": 4171,
-    "textLen": 761,
+    "docHeight": 4199,
+    "textLen": 768,
     "maxRight": 543,
     "counts": {
       "pre": 0,

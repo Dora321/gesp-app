@@ -129,7 +129,7 @@ export default function Esp32Curriculum() {
                                         <div className={`text-xs font-bold ${isActive ? 'text-slate-300' : 'text-slate-500'}`}>
                                             阶段 {item.id} · {item.lessonRange}
                                         </div>
-                                        <div className="mt-1 font-black">{item.title}</div>
+                                        <div className={`mt-1 font-black ${isActive ? '' : 'text-slate-900'}`}>{item.title}</div>
                                         <div className={`mt-1 text-xs leading-5 ${isActive ? 'text-slate-300' : 'text-slate-600'}`}>
                                             {item.aiRole}
                                         </div>
@@ -178,12 +178,20 @@ export default function Esp32Curriculum() {
                         每课均配教案、学生讲义与课堂 PPT 三件套；实操课的起步代码在本页可直接展开查看，
                         学生在能跑通的基础上迭代，而不是从空白文件开始。
                     </p>
-                    <Link
-                        to="/hardware/esp32-ai"
-                        className="mt-5 inline-flex min-h-11 items-center gap-2 rounded-lg bg-slate-900 px-5 py-2.5 text-sm font-bold text-white transition hover:bg-slate-700"
-                    >
-                        查看前 16 课的教学法详解 <ArrowRight size={16} aria-hidden="true" />
-                    </Link>
+                    <div className="mt-5 flex flex-wrap gap-3">
+                        <Link
+                            to="/hardware/esp32-map"
+                            className="inline-flex min-h-11 items-center gap-2 rounded-lg bg-slate-900 px-5 py-2.5 text-sm font-bold text-white transition hover:bg-slate-700"
+                        >
+                            打开学习地图看进度 <ArrowRight size={16} aria-hidden="true" />
+                        </Link>
+                        <Link
+                            to="/hardware/esp32-contest"
+                            className="inline-flex min-h-11 items-center gap-2 rounded-lg border border-slate-300 px-5 py-2.5 text-sm font-bold text-slate-800 transition hover:border-slate-400 hover:bg-slate-50"
+                        >
+                            竞赛延伸班（选修 7 讲） <ArrowRight size={16} aria-hidden="true" />
+                        </Link>
+                    </div>
                 </section>
             </div>
         </div>

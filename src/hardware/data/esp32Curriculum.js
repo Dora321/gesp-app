@@ -13,6 +13,7 @@ import { stage2Lessons } from './esp32/stage2.js';
 import { stage3Lessons } from './esp32/stage3.js';
 import { stage4Lessons } from './esp32/stage4.js';
 import { stage5Lessons } from './esp32/stage5.js';
+import { esp32ReferenceCode } from './esp32/referenceCode.js';
 
 export const esp32Stages = [
  {
@@ -68,13 +69,17 @@ export const esp32Stages = [
 ];
 
 
+// 参考代码单独存放（见 esp32/referenceCode.js），在这里挂回对应课次，
+// 页面拿到的仍是一个完整的课时对象。
 export const esp32Lessons = [
     ...stage1Lessons,
     ...stage2Lessons,
     ...stage3Lessons,
     ...stage4Lessons,
     ...stage5Lessons,
-];
+].map((lesson) => (esp32ReferenceCode[lesson.num]
+    ? { ...lesson, referenceCode: esp32ReferenceCode[lesson.num] }
+    : lesson));
 
 const STAGE_BY_ID = new Map(esp32Stages.map((stage) => [stage.id, stage]));
 

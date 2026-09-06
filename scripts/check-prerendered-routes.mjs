@@ -10,9 +10,9 @@ const cases = [
     canonical: 'https://Dora321.github.io/gesp-app/question-bank/2/2026-03-l2',
   },
   {
-    file: 'dist/hardware/esp32-ai/index.html',
-    title: 'ESP32 × MicroPython × AI 课程',
-    canonical: 'https://Dora321.github.io/gesp-app/hardware/esp32-ai',
+    file: 'dist/hardware/esp32-map/index.html',
+    title: 'ESP32 × AI 科创课程学习地图',
+    canonical: 'https://Dora321.github.io/gesp-app/hardware/esp32-map',
   },
 ];
 

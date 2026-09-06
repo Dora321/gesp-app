@@ -101,12 +101,17 @@
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://Dora321.github.io/gesp-app/hardware/esp32-ai</loc>
+    <loc>https://Dora321.github.io/gesp-app/hardware/esp32-curriculum</loc>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
   <url>
-    <loc>https://Dora321.github.io/gesp-app/hardware/esp32-curriculum</loc>
+    <loc>https://Dora321.github.io/gesp-app/hardware/esp32-map</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://Dora321.github.io/gesp-app/hardware/esp32-contest</loc>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>

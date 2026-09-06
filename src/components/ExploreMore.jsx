@@ -12,8 +12,8 @@ const items = [
         icon: Landmark
     },
     {
-        title: '硬件工坊',
-        desc: '从 ESP32、Arduino 到工程小实验，把代码接到真实设备上。',
+        title: 'ESP32 × AI 科创课',
+        desc: '35 课时项目制课程，五个阶段走完从「读懂 AI」到「把 AI 装进作品」，另有 7 讲竞赛延伸。',
         action: '查看硬件课',
         route: '/hardware',
         icon: Cpu

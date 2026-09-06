@@ -302,7 +302,9 @@ export function summarizeLearningData(data = readLearningData()) {
         examDrafts: Object.keys(data.exams).length,
         examAttempts: attemptLists.reduce((total, list) => total + list.length, 0),
         papersAttempted: attemptLists.length,
-        hardwareLessons: data.hardware.esp32Ai?.viewed.length || 0,
+        // 旧的 esp32Ai.viewed 曾是硬件课进度来源，那个页面已被 35 课新体系取代。
+        // 现在硬件课进度和 C++ 课走同一套 lessons 记录，按路径前缀区分。
+        hardwareLessons: Object.keys(data.lessons).filter((path) => path.startsWith('/hardware/esp32/')).length,
         museumItems: data.museum.collected.length,
     };
 }

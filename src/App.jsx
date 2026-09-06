@@ -62,10 +62,10 @@ const EkartParentPortal = lazy(() => import('./ekart/pages/ParentPortal'));
 // Hardware Module
 const HardwareLayout = lazy(() => import('./hardware/HardwareLayout'));
 const HardwareLanding = lazy(() => import('./hardware/pages/HardwareLanding'));
-const HardwareLessonDetail = lazy(() => import('./hardware/pages/HardwareLessonDetail'));
-const Esp32AiCourseSystem = lazy(() => import('./hardware/pages/Esp32AiCourseSystem'));
 const Esp32Curriculum = lazy(() => import('./hardware/pages/Esp32Curriculum'));
 const Esp32LessonPage = lazy(() => import('./hardware/pages/Esp32LessonPage'));
+const Esp32LearningMap = lazy(() => import('./hardware/pages/Esp32LearningMap'));
+const Esp32Contest = lazy(() => import('./hardware/pages/Esp32Contest'));
 
 // Floating widgets are useful outside focus flows, but should not tax deep links.
 const ClassroomPoints = lazy(() => import('./components/ClassroomPoints'));
@@ -139,10 +139,14 @@ function App() {
             {/* Hardware Module Routes */}
             <Route path="/hardware" element={<HardwareLayout />}>
               <Route index element={<HardwareLanding />} />
-              <Route path="esp32-ai" element={<Esp32AiCourseSystem />} />
               <Route path="esp32-curriculum" element={<Esp32Curriculum />} />
+              <Route path="esp32-map" element={<Esp32LearningMap />} />
+              <Route path="esp32-contest" element={<Esp32Contest />} />
               <Route path="esp32/:num" element={<Esp32LessonPage />} />
-              <Route path="lesson/:id" element={<HardwareLessonDetail />} />
+              {/* 旧的两套硬件课（esp32-ai 的 16 课旧版、lesson/:id 的 Arduino 套件课）
+                  已被 35 课新体系取代。URL 保留重定向，老书签和外链不至于 404。 */}
+              <Route path="esp32-ai" element={<Navigate to="/hardware/esp32-curriculum" replace />} />
+              <Route path="lesson/:id" element={<Navigate to="/hardware/esp32-curriculum" replace />} />
             </Route>
 
             {/* Course Levels */}

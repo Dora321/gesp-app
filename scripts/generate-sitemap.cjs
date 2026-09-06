@@ -10,7 +10,7 @@ const coreRoutes = [
   '/', '/museum', '/question-bank',
   ...Array.from({ length: 8 }, (_, index) => `/level${index + 1}`),
   ...Array.from({ length: 8 }, (_, index) => `/question-bank/topics/${index + 1}`),
-  '/hardware', '/hardware/esp32-ai', '/hardware/esp32-curriculum',
+  '/hardware', '/hardware/esp32-curriculum', '/hardware/esp32-map', '/hardware/esp32-contest',
   ...Array.from({ length: 35 }, (_, index) => `/hardware/esp32/${index + 1}`),
   '/ekart', '/ekart/roadmap', '/ekart/toolbox', '/ekart/gallery', '/ekart/parent-portal',
   ...Array.from({ length: 7 }, (_, index) => `/python/f${index + 1}`),

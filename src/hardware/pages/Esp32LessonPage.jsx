@@ -2,7 +2,7 @@ import React, { useEffect, useMemo, useState } from 'react';
 import { Link, useParams } from 'react-router-dom';
 import {
     AlertTriangle, ArrowLeft, ArrowRight, BookOpen, Check, ClipboardList,
-    Copy, GraduationCap, Lightbulb, ListChecks, Package, Target,
+    Copy, FileCode2, GraduationCap, Lightbulb, ListChecks, Package, Target,
 } from 'lucide-react';
 
 import { esp32Lessons, getEsp32Lesson, getEsp32Stage } from '../data/esp32Curriculum';
@@ -76,6 +76,72 @@ const Bullets = ({ items }) => (
         ))}
     </ul>
 );
+
+// 完整参考代码默认折叠：学生该先照「起步代码」自己迭代，卡住了才来对答案。
+// 摊开放在页面上等于把作业答案印在题目下面。
+function ReferenceCode({ items }) {
+    const [open, setOpen] = useState(false);
+    const [active, setActive] = useState(0);
+    const current = items[Math.min(active, items.length - 1)];
+
+    return (
+        <section className="rounded-2xl border border-slate-200 bg-white p-5">
+            <div className="flex flex-wrap items-center justify-between gap-3">
+                <div>
+                    <h2 className="flex items-center gap-2 text-base font-bold text-slate-800">
+                        <FileCode2 className="text-slate-500" size={18} aria-hidden="true" />
+                        完整参考代码
+                    </h2>
+                    <p className="mt-1 text-xs leading-5 text-slate-500">
+                        教师保底模板，直接能跑。先自己试，卡住再看——共 {items.length} 份。
+                    </p>
+                </div>
+                <button
+                    type="button"
+                    onClick={() => setOpen((prev) => !prev)}
+                    aria-expanded={open}
+                    className="inline-flex min-h-11 items-center gap-1.5 rounded-lg bg-slate-100 px-4 py-2 text-sm font-bold text-slate-700 transition hover:bg-slate-200"
+                >
+                    {open ? '收起' : '我卡住了，看参考'}
+                </button>
+            </div>
+
+            {open && (
+                <div className="mt-4">
+                    {items.length > 1 && (
+                        <div className="mb-3 flex flex-wrap gap-2" role="tablist" aria-label="参考代码版本">
+                            {items.map((item, index) => (
+                                <button
+                                    key={item.label}
+                                    type="button"
+                                    role="tab"
+                                    aria-selected={index === active}
+                                    onClick={() => setActive(index)}
+                                    className={`min-h-11 rounded-lg px-3 py-1.5 text-xs font-bold transition ${
+                                        index === active
+                                            ? 'bg-slate-900 text-white'
+                                            : 'bg-slate-100 text-slate-600 hover:bg-slate-200'
+                                    }`}
+                                >
+                                    {item.label}
+                                </button>
+                            ))}
+                        </div>
+                    )}
+                    <div className="rounded-xl border border-slate-700 bg-slate-900 p-4">
+                        <div className="mb-3 flex items-center justify-between gap-3">
+                            <span className="text-xs font-bold text-slate-300">{current.label}</span>
+                            <CopyButton text={current.code} />
+                        </div>
+                        <pre tabIndex={0} className="overflow-x-auto text-xs leading-6 text-slate-100">
+                            <code>{current.code}</code>
+                        </pre>
+                    </div>
+                </div>
+            )}
+        </section>
+    );
+}
 
 export default function Esp32LessonPage() {
     const { num } = useParams();
@@ -195,7 +261,8 @@ export default function Esp32LessonPage() {
                                 <p className="mb-3 text-xs leading-5 text-slate-400">
                                     先把这几行跑通，看到预期结果再往下做——不要从空白文件开始写。
                                 </p>
-                                <pre className="overflow-x-auto text-sm leading-6 text-slate-100">
+                                {/* 横向滚动区必须可聚焦，否则只能用鼠标拖 */}
+                                <pre tabIndex={0} className="overflow-x-auto text-sm leading-6 text-slate-100">
                                     <code>{lesson.starterCode}</code>
                                 </pre>
                             </section>
@@ -211,6 +278,10 @@ export default function Esp32LessonPage() {
                             <Block icon={Package} title="④ 动手任务">
                                 <Bullets items={lesson.tasks} />
                             </Block>
+                        )}
+
+                        {lesson.referenceCode?.length > 0 && (
+                            <ReferenceCode items={lesson.referenceCode} />
                         )}
 
                         {lesson.checklist.length > 0 && (

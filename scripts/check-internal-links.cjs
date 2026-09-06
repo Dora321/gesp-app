@@ -12,7 +12,7 @@ const routeRules = [
   /^\/question-bank\/[^/]+\/[^/]+$/,
   /^\/lesson\/[1-6]\/([1-9]|1[0-6])$/,
   /^\/ekart(\/(roadmap|toolbox|gallery|parent-portal))?$/,
-  /^\/hardware(\/esp32-ai|\/esp32-curriculum|\/esp32\/([1-9]|[12]\d|3[0-5])|\/lesson\/([1-9]|1[0-6]))?$/,
+  /^\/hardware(\/esp32-ai|\/esp32-curriculum|\/esp32-map|\/esp32-contest|\/esp32\/([1-9]|[12]\d|3[0-5])|\/lesson\/([1-9]|1[0-6]))?$/,
   /^\/level[1-8]$/,
   /^\/python\/(f[1-7]|bridge|a[1-2]|file-ops|ai|crawler|binary-search|encryption|sorting|morse)$/,
   /^\/gesp\/2025-12-l2$/,

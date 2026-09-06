@@ -45,7 +45,8 @@ export const routeMeta = (pathname) => {
   match = pathname.match(/^\/hardware\/esp32\/(\d+)$/);
   if (match) return { title: `ESP32 × AI 第 ${match[1]} 课`, description: `ESP32 × AI 科创课程第 ${match[1]} 课：自学模式给出目标、起步代码、操作要点与完成检查单；上课模式给出保底目标、课前准备与常见问题预案。` };
   if (pathname === '/hardware/esp32-curriculum') return { title: 'ESP32 × AI 科创课程 35 课时', description: '面向小学高年级的 ESP32 与 MicroPython 课程体系：五个阶段 35 课时，主线是学生与 AI 关系的演进，实操课均附可运行起步代码。' };
-  if (pathname === '/hardware/esp32-ai') return { title: 'ESP32 × MicroPython × AI 课程', description: '和 AI 协作学习 ESP32、MicroPython、传感器与智能硬件项目。' };
+  if (pathname === '/hardware/esp32-map') return { title: 'ESP32 × AI 科创课程学习地图', description: '五阶段 35 课加 7 讲竞赛延伸的全程地图，每一课标注学习状态，可打印贴墙。' };
+  if (pathname === '/hardware/esp32-contest') return { title: 'ESP32 科创竞赛延伸班', description: '选修 7 讲：不写代码，把做好的硬件作品整理成一句话课题、实验记录、数据图表、说明书展板与答辩问答共七样参赛材料。' };
   if (pathname.startsWith('/hardware')) return { title: 'ESP32 智能硬件实验室', description: '使用 ESP32 和 MicroPython 完成循序渐进的智能硬件项目。' };
   if (pathname.startsWith('/ekart')) return { title: 'E-Kart 智能车实验室', description: '智能车学习路线、工具箱、作品展示与家长学习报告。' };
 

@@ -437,26 +437,46 @@ async function run() {
     throw new Error(`Hardware routes should not nest main landmarks, found ${nestedMainCount}.`);
   }
 
-  await mobilePage.goto(`${baseUrl}/hardware/esp32-ai`, { waitUntil: 'domcontentloaded' });
-  await mobilePage.getByText('ESP32 AI Workshop').waitFor({ timeout: 10000 });
-  const touchTargets = [
-    mobilePage.getByRole('button', { name: '返回网站首页' }),
-    mobilePage.getByRole('link', { name: '硬件实验课首页' }),
-    mobilePage.getByRole('button', { name: /展开全部/ }),
-  ];
-  for (const target of touchTargets) {
-    const box = await target.first().boundingBox();
-    if (!box || box.width < 43.5 || box.height < 43.5) {
-      throw new Error(`ESP32 key touch target is smaller than 44px: ${JSON.stringify(box)}.`);
+  // 学习地图是整个硬件板块的入口页：35 课的格子必须都在，而且手机上点得到。
+  await mobilePage.goto(`${baseUrl}/hardware/esp32-map`, { waitUntil: 'domcontentloaded' });
+  await mobilePage.getByRole('heading', { name: /全程地图/ }).waitFor({ timeout: 10000 });
+  const mapCells = mobilePage.locator('a[href*="/hardware/esp32/"]');
+  const mapCellCount = await mapCells.count();
+  if (mapCellCount !== 35) {
+    throw new Error(`Learning map should link all 35 lessons, found ${mapCellCount}.`);
+  }
+  const printButton = mobilePage.getByRole('button', { name: /打印贴墙上/ });
+  for (const target of [mapCells.first(), mapCells.nth(20), printButton]) {
+    const box = await target.boundingBox();
+    if (!box || box.height < 43.5) {
+      throw new Error(`Learning map touch target is shorter than 44px: ${JSON.stringify(box)}.`);
     }
   }
 
-  const lessonTargets = mobilePage.locator('button[aria-pressed]');
-  const lessonTargetCount = Math.min(await lessonTargets.count(), 4);
-  for (let index = 0; index < lessonTargetCount; index++) {
-    const box = await lessonTargets.nth(index).boundingBox();
+  // 竞赛延伸班：7 讲切换按钮，以及每讲的三层任务。
+  await mobilePage.goto(`${baseUrl}/hardware/esp32-contest`, { waitUntil: 'domcontentloaded' });
+  await mobilePage.getByRole('heading', { name: '把作品变成参赛项目' }).waitFor({ timeout: 10000 });
+  const contestTabs = mobilePage.locator('nav[aria-label="竞赛延伸班课次"] button');
+  const contestTabCount = await contestTabs.count();
+  if (contestTabCount !== 7) {
+    throw new Error(`Contest package should expose 7 sessions, found ${contestTabCount}.`);
+  }
+  for (let index = 0; index < contestTabCount; index += 3) {
+    const box = await contestTabs.nth(index).boundingBox();
     if (!box || box.height < 43.5) {
-      throw new Error(`ESP32 lesson target ${index + 1} is shorter than 44px: ${JSON.stringify(box)}.`);
+      throw new Error(`Contest tab ${index + 1} is shorter than 44px: ${JSON.stringify(box)}.`);
+    }
+  }
+  await contestTabs.nth(6).click();
+  await mobilePage.getByRole('heading', { name: '赛前冲刺' }).waitFor({ timeout: 5000 });
+
+  // 旧的两套硬件课已下线，URL 必须重定向到新体系而不是留白。
+  for (const legacy of ['/hardware/esp32-ai', '/hardware/lesson/1']) {
+    await mobilePage.goto(`${baseUrl}${legacy}`, { waitUntil: 'domcontentloaded' });
+    await mobilePage.waitForTimeout(400);
+    const landed = new URL(mobilePage.url()).pathname;
+    if (!landed.endsWith('/hardware/esp32-curriculum')) {
+      throw new Error(`Retired route ${legacy} should redirect to the curriculum, landed on ${landed}.`);
     }
   }
 

@@ -10,5 +10,6 @@ test('question paper routes receive unique paper metadata', () => {
 
 test('course and hardware routes receive route-specific metadata', () => {
   assert.match(getRouteSeo('/level7').fullTitle, /7级知识体系/);
-  assert.match(getRouteSeo('/hardware/esp32-ai').fullTitle, /ESP32 × MicroPython × AI/);
+  assert.match(getRouteSeo('/hardware/esp32-map').fullTitle, /学习地图/);
+  assert.match(getRouteSeo('/hardware/esp32-contest').fullTitle, /竞赛延伸班/);
 });
