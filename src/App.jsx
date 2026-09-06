@@ -65,6 +65,7 @@ const HardwareLanding = lazy(() => import('./hardware/pages/HardwareLanding'));
 const HardwareLessonDetail = lazy(() => import('./hardware/pages/HardwareLessonDetail'));
 const Esp32AiCourseSystem = lazy(() => import('./hardware/pages/Esp32AiCourseSystem'));
 const Esp32Curriculum = lazy(() => import('./hardware/pages/Esp32Curriculum'));
+const Esp32LessonPage = lazy(() => import('./hardware/pages/Esp32LessonPage'));
 
 // Floating widgets are useful outside focus flows, but should not tax deep links.
 const ClassroomPoints = lazy(() => import('./components/ClassroomPoints'));
@@ -140,6 +141,7 @@ function App() {
               <Route index element={<HardwareLanding />} />
               <Route path="esp32-ai" element={<Esp32AiCourseSystem />} />
               <Route path="esp32-curriculum" element={<Esp32Curriculum />} />
+              <Route path="esp32/:num" element={<Esp32LessonPage />} />
               <Route path="lesson/:id" element={<HardwareLessonDetail />} />
             </Route>
 

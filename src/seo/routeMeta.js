@@ -42,6 +42,8 @@ export const routeMeta = (pathname) => {
   if (match) return { title: `GESP C++ ${match[1]}级知识体系`, description: `系统学习 GESP C++ ${match[1]}级知识点、代码模板和实战方法。` };
 
   if (pathname.startsWith('/python/')) return { title: 'Python 互动编程课程', description: '面向青少年的 Python 基础、进阶与项目式互动课程。' };
+  match = pathname.match(/^\/hardware\/esp32\/(\d+)$/);
+  if (match) return { title: `ESP32 × AI 第 ${match[1]} 课`, description: `ESP32 × AI 科创课程第 ${match[1]} 课：自学模式给出目标、起步代码、操作要点与完成检查单；上课模式给出保底目标、课前准备与常见问题预案。` };
   if (pathname === '/hardware/esp32-curriculum') return { title: 'ESP32 × AI 科创课程 35 课时', description: '面向小学高年级的 ESP32 与 MicroPython 课程体系：五个阶段 35 课时，主线是学生与 AI 关系的演进，实操课均附可运行起步代码。' };
   if (pathname === '/hardware/esp32-ai') return { title: 'ESP32 × MicroPython × AI 课程', description: '和 AI 协作学习 ESP32、MicroPython、传感器与智能硬件项目。' };
   if (pathname.startsWith('/hardware')) return { title: 'ESP32 智能硬件实验室', description: '使用 ESP32 和 MicroPython 完成循序渐进的智能硬件项目。' };

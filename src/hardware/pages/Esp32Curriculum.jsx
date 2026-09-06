@@ -24,12 +24,21 @@ function LessonCard({ lesson, tone }) {
                 <span className={`mt-1 h-2 w-2 shrink-0 rounded-full ${tone.dot}`} aria-hidden="true" />
                 <div className="min-w-0 flex-1">
                     <h4 className="font-bold text-slate-800">
-                        第 {lesson.num} 课 · {lesson.title}
+                        <Link to={`/hardware/esp32/${lesson.num}`} className="hover:text-cyan-700 hover:underline">
+                            第 {lesson.num} 课 · {lesson.title}
+                        </Link>
                     </h4>
                     {lesson.hook && (
                         <p className="mt-1 text-sm leading-6 text-slate-500">{lesson.hook}</p>
                     )}
                     <p className="mt-2 text-sm leading-6 text-slate-700">{lesson.goal}</p>
+
+                    <Link
+                        to={`/hardware/esp32/${lesson.num}`}
+                        className="mt-3 inline-flex min-h-11 items-center gap-1.5 text-xs font-bold text-cyan-700 hover:underline"
+                    >
+                        进入这一课 <ArrowRight size={13} aria-hidden="true" />
+                    </Link>
 
                     {lesson.starterCode && (
                         <>
