@@ -49,7 +49,7 @@ const codePromptPatterns = [
   // so the very common higher-level phrasing "下面程序的输出为（ ）" slipped past
   // the gate entirely — that blind spot is why 6–8 级 accumulated dozens of
   // questions referring to programs the data never stored.
-  new RegExp(`${codeArtifactReference}[^。？\\n]{0,40}(?:执行|运行|输出|结果|横线|空白|填入|应填|改为|说法|实现|功能|作用|正确|错误|复杂度|返回|打印|描述|用于|判断)`, 'i'),
+  new RegExp(`${codeArtifactReference}[^。？\\n]{0,40}(?:执行|运行|输出|结果|横线|空白|填入|应填|改为|说法|实现|功能|作用|正确|错误|复杂度|返回|打印|描述|用于|判断|距离|路径|面积|周长|次数|表达)`, 'i'),
   new RegExp(`(?:代码|代码片段|代码段|程序|程序段|程序片段)(?:\\s*的?\\s*)(?:如下|执行后|运行后)`, 'i'),
 ];
 
@@ -66,8 +66,10 @@ const objectiveStemContaminationPatterns = [
 // 空档：「一棵有 个节点的完全二叉树，深度为 。」——量词前没有数字、句子在
 // 「为/是」后直接收尾。这类题看起来完整，实际根本无法作答，必须标记出来。
 const droppedFormulaPatterns = [
-  { label: '量词前缺数值', pattern: /[有共为是到][ 　]+[个位条项步层级]/u },
-  { label: '句末缺公式', pattern: /(?:复杂度|深度|高度|长度|结果|输出|个数|边)(?:为|是)[ 　]*[。，）)]/u },
+  { label: '量词前缺数值', pattern: /[有共为是到][ 　]+[个位条项步层级棵种次张行列组套件]/u },
+  { label: '句末缺公式', pattern: /(?:复杂度|深度|高度|长度|结果|输出|个数|边|距离|面积|周长|值)(?:为|是)[ 　]*[。，）)]/u },
+  // 「其值大于等于 ，」「当 n 小于 时」——比较词后面的数值被吞掉。
+  { label: '比较式缺数值', pattern: /(?:大于等于|小于等于|不小于|不大于|大于|小于|等于)[ 　]+[。，）)、]/u },
 ];
 
 export const getDroppedFormulaErrors = (question, questionId = question?.id || '?') => {
@@ -97,6 +99,25 @@ const brokenPresentationChecks = [
     label: '选项末尾公式丢失',
     test: (q) => (q.options || []).some(option => /(?:复杂度|结点数|节点数|个数|深度|次数)(?:是|为)[ 　]*$/.test(String(option).trim())),
   },
+  {
+    // 「A. 、」「B. 、」——公式被整块吞掉后，选项只剩一个顿号。这不会触发任何
+    // 「空值」检查，因为字符串并不是空的。
+    //
+    // 只认中文标点：选项本身就是运算符（`=` `&&` `**`）或 ASCII 图形（`*****`）
+    // 的题目是正常的，不能误伤——「以下哪个不是 C++ 的运算符」正是这种题。
+    label: '选项只剩标点',
+    test: (q) => (q.options || []).some(option => {
+      const text = String(option).trim();
+      return text.length > 0 && /^[、，。：；？！（）「」…—·]+$/u.test(text);
+    }),
+  },
+  {
+    label: '选项内容重复无法区分',
+    test: (q) => {
+      const options = (q.options || []).map(option => String(option).trim()).filter(Boolean);
+      return options.length >= 2 && new Set(options).size < options.length;
+    },
+  },
 ];
 
 export const getBrokenPresentationErrors = (question, questionId = question?.id || '?') => {
@@ -112,12 +133,25 @@ export const getBrokenPresentationErrors = (question, questionId = question?.id 
 export const getObjectiveStemIntegrityErrors = (question, questionId = question?.id || '?') => {
   if (!['single', 'judge'].includes(question?.type) || question.sourceIntegrity) return [];
 
+  // 抓取跨页时，答案表/子任务表会串进来。此前只检查题干，但同样的碎片也会落到
+  // 选项里——2023-12-l8:Q15 的选项 C 末尾就挂着「题号 1 2 3 4 5 6 7 8」。
   const stem = String(question.question || '');
-  return objectiveStemContaminationPatterns
+  const errors = objectiveStemContaminationPatterns
     .filter(({ pattern }) => pattern.test(stem))
     .map(({ label }) => (
       `[INTEGRITY] Q${questionId}: objective question stem contains suspected OCR/cross-question fragment "${label}" but lacks sourceIntegrity flag`
     ));
+
+  const options = (question.options || []).map(option => String(option || ''));
+  for (const { label, pattern } of objectiveStemContaminationPatterns) {
+    if (options.some(option => pattern.test(option))) {
+      errors.push(
+        `[INTEGRITY] Q${questionId}: 选项中混入疑似跨题碎片「${label}」，但未标记 sourceIntegrity`,
+      );
+    }
+  }
+
+  return errors;
 };
 
 const looksLikeCode = (value) => {

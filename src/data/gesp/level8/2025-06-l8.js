@@ -546,6 +546,8 @@ int weight[4][4] = {
         {
             id: 22,
             type: "judge",
+            sourceIntegrity: "missing-formula",
+            integrityNote: "原卷此题的公式或数值在文本提取时丢失，题干留下空档，仅凭当前内容无法作答。本题已排除出计分与考点练习，待补齐原卷公式后恢复。",
             question: `个顶点的无向完全图，有 棵生成树。`,
             options: [
                 "正确",
@@ -605,6 +607,8 @@ int weight[4][4] = {
         {
             id: 25,
             type: "judge",
+            sourceIntegrity: "missing-formula",
+            integrityNote: "原卷此题的公式或数值在文本提取时丢失，题干留下空档，仅凭当前内容无法作答。本题已排除出计分与考点练习，待补齐原卷公式后恢复。",
             question: `从 32 名学生中选出 4 人分别担任班长、副班长、学习委员和组织委员，老师要求班级综合成绩排名最后的 4 名学生不得参选班长或学习委员（仍可以参选副班长和组织委员），则共有 种不同的选法。`,
             options: [
                 "正确",

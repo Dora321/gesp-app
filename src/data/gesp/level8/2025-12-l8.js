@@ -100,6 +100,8 @@ export const paperData = {
         {
             id: 4,
             type: "single",
+            sourceIntegrity: "official-source-defect",
+            integrityNote: "题干问 $(x-2)^8$ 展开式中 $x^6$ 项的系数，按二项式定理该值为 C(8,2)·(-2)^2 = 112，但四个选项为 ±1792、±7168，均不含 112。所录答案 -1792 对应的是 $x^3$ 项（C(8,5)·(-2)^5），说明题干中的指数在提取时出错。本题已排除出计分与考点练习，待对照原卷更正。",
             question: `二项式 $(x-2)^8$ 的展开式中 $x^6$ 项的系数为（ ）。`,
             options: [
                 "-7168",

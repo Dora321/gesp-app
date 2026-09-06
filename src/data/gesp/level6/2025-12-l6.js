@@ -559,6 +559,8 @@ export const paperData = {
         {
             id: 16,
             type: "judge",
+            sourceIntegrity: "missing-code",
+            integrityNote: "原卷此题引用的程序代码在录入时未收录，仅凭当前题面无法推导答案。本题已排除出计分与考点练习，待补齐原卷代码后恢复。",
             question: `以下代码中，构造函数被调用的次数是 1 次。`,
             options: [
                 "正确",

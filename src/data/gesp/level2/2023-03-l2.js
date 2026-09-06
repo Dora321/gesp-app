@@ -477,6 +477,8 @@ for 循环的执行次数由初值、终值和迭代步长共同决定。对于 
         {
             id: 14,
             type: 'single',
+            sourceIntegrity: "options-reconstructed",
+            integrityNote: "本题选项在文本提取时受损——公式被吞掉后多个选项内容完全相同或只剩标点，无法区分。本题已排除出计分与考点练习，待对照原卷补全后恢复。",
             question: `下列代码执行后，其输出是（ ）。\n\`\`\`cpp\nfor(int i = 1; i <= 3; i++) {\n  for(int j = 1; j <= i; j++)\n    cout << j;\n}\n\`\`\``,
             options: ["123", "112123", "122333", "112123"],
             answer: 3,

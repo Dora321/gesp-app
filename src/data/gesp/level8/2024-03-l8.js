@@ -284,6 +284,8 @@ c = sqrt(a*a + b*b - 2*a*b*cos(theta))
         {
             id: 8,
             type: "single",
+            sourceIntegrity: "options-reconstructed",
+            integrityNote: "本题选项在文本提取时受损——公式被吞掉后多个选项内容完全相同或只剩标点，无法区分。本题已排除出计分与考点练习，待对照原卷补全后恢复。",
             question: `在有n个元素的二叉排序树中进行查找，其最好、最差时间复杂度分别为（ ）。`,
             options: [
                 "、",
@@ -487,6 +489,8 @@ r*r*t/2 - r*r*sin(t)/2 = r*r*(t - sin(t)) / 2
         {
             id: 15,
             type: "single",
+            sourceIntegrity: "missing-code",
+            integrityNote: "原卷此题引用的程序代码在录入时未收录，仅凭当前题面无法推导答案。本题已排除出计分与考点练习，待补齐原卷代码后恢复。",
             question: `下面的程序使用邻接矩阵表达的带权无向图，则从顶点 0 到顶点 3 的最短距离为（ ）。`,
             options: [
                 "100",
@@ -725,6 +729,8 @@ S = sqrt( ((a+b+c)/2) * ((b+c-a)/2) * ((a+c-b)/2) * ((a+b-c)/2) )
         {
             id: 25,
             type: "judge",
+            sourceIntegrity: "missing-formula",
+            integrityNote: "原卷此题的公式或数值在文本提取时丢失，题干留下空档，仅凭当前内容无法作答。本题已排除出计分与考点练习，待补齐原卷公式后恢复。",
             question: `给定double类型的变量x，且其值大于等于 ，我们可以通过二分法求出 的近似值。`,
             options: [
                 "正确",

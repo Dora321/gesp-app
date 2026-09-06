@@ -174,15 +174,16 @@ test('placeholder options, page footers and truncated options are caught', () =>
     {
       type: 'single',
       question: '以下说法一定正确的是（ ）。',
-      options: ['最坏情况下，访问结点数是', '最坏情况下，访问结点数是', 'c', 'd'],
+      options: ['最坏情况下，访问结点数是', '最坏情况下，访问结点数为', 'c', 'd'],
       expect: /选项末尾公式丢失/,
     },
   ];
 
   cases.forEach(({ expect, ...question }, index) => {
     const errors = getBrokenPresentationErrors(question, index + 1);
-    assert.equal(errors.length, 1);
-    assert.match(errors[0], expect);
+    // 一道题可能同时命中多条（截断的选项往往也彼此重复），断言命中了期望的那条即可。
+    assert.ok(errors.length > 0, JSON.stringify(question));
+    assert.ok(errors.some(error => expect.test(error)), errors.join(' | '));
   });
 });
 
@@ -206,4 +207,20 @@ test('every objective question with a broken presentation carries sourceIntegrit
     }
   }
   assert.deepEqual(unflagged, [], `这些题的题面已损坏但未标记：${unflagged.join(', ')}`);
+});
+
+// 选项本身就是运算符或 ASCII 图形的题目是正常的（「以下哪个不是 C++ 的运算符」），
+// 「只剩标点」这条检查不能把它们误伤。
+test('operator and ASCII-art options are not mistaken for stripped punctuation', () => {
+  assert.deepEqual(getBrokenPresentationErrors({
+    type: 'single',
+    question: '以下哪个不是 C++ 语言的运算符？',
+    options: ['=', '==', '/=', '\\='],
+  }), []);
+
+  assert.deepEqual(getBrokenPresentationErrors({
+    type: 'single',
+    question: '执行后输出的字符图形是（ ）。',
+    options: ['*****\n ****', '    *\n   ***', '*\n**', '    *\n   **'],
+  }), []);
 });

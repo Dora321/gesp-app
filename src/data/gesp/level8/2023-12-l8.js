@@ -427,6 +427,8 @@ export const paperData = {
         {
             id: 12,
             type: "single",
+            sourceIntegrity: "missing-code",
+            integrityNote: "原卷此题引用的程序代码在录入时未收录，仅凭当前题面无法推导答案。本题已排除出计分与考点练习，待补齐原卷代码后恢复。",
             question: `下面的程序使用出边的邻接表表达有向图，则下列选项中哪个是它表达的图？（ ）。`,
             options: [
                 "一个有3个顶点、边为1→0、2→0的有向图",
@@ -512,6 +514,8 @@ export const paperData = {
         {
             id: 15,
             type: "single",
+            sourceIntegrity: "contaminated-stem",
+            integrityNote: "选项 C 末尾串入了原卷的答案表碎片（「题号 1 2 3 4 …答案」），说明抓取跨页时混入了其他内容，选项文本已不可信。本题已排除出计分与考点练习。",
             question: `下面的程序中，二维数组h和v分别代表如下图所示的网格中的水平边的时间消耗和垂直边的时间消耗。 程序使用动态规划计算从左下角到右上角的最小时间消耗，则横线处应该填写下列哪个选项的代码？（ ）。`,
             options: [
                 "dis[i][j] = min(dis[i-1][j]+v[i-1][j], dis[i][j-1]+h[i][j-1]);",
@@ -714,6 +718,8 @@ n 个顶点的有向完全图（不含自环）中，任意两个不同的有序
         {
             id: 25,
             type: "judge",
+            sourceIntegrity: "missing-formula",
+            integrityNote: "原卷此题的公式或数值在文本提取时丢失，题干留下空档，仅凭当前内容无法作答。本题已排除出计分与考点练习，待补齐原卷公式后恢复。",
             question: `给定double类型的变量x，且其值大于等于 ，我们可以通过二分法求出 的近似值。`,
             options: [
                 "正确",

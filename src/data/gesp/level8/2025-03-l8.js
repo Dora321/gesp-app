@@ -574,6 +574,8 @@ Floyd–Warshall 算法对每对“中间点 k、起点 i、终点 j”进行三
         {
             id: 25,
             type: "judge",
+            sourceIntegrity: "missing-formula",
+            integrityNote: "原卷此题的公式或数值在文本提取时丢失，题干留下空档，仅凭当前内容无法作答。本题已排除出计分与考点练习，待补齐原卷公式后恢复。",
             question: `从 32 名学生中选出 4 人分别担任班长、副班长、学习委员和组织委员，共有 种不同的选法。`,
             options: [
                 "正确",

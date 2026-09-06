@@ -214,6 +214,8 @@ export const paperData = {
         {
             id: 5,
             type: "single",
+            sourceIntegrity: "missing-formula",
+            integrityNote: "原卷此题的公式或数值在文本提取时丢失，题干留下空档，仅凭当前内容无法作答。本题已排除出计分与考点练习，待补齐原卷公式后恢复。",
             question: `下面代码判断队列的第一个元素是否等于 ，并删除该元素，横向上应填写（ ）。 #include <iostream> #include <stack> #include <string> using namespace std; bool is_valid(string s) { stack<char> st; char top; for (char& ch : s) { if (ch == '(' || ch == '{' || ch == '[') { st.push(ch); // 左括号入栈 } else { if (st.empty()) return false; ———————————————————————— // 在此处填入代码 if ((ch == ')' && top != '(') || (ch == '}' && top != '{') || (ch == ']' && top != '[')) { return false; } } } return st.empty(); // 栈为空则说明所有括号匹配成功 } 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27 28 29`,
             options: [
                 "is_equal = (q.front() == a);",
