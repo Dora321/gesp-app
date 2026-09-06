@@ -71,8 +71,14 @@ export default function Footer() {
                     <h2 className="text-3xl md:text-4xl font-bold text-white mb-6 font-sans">
                         准备好写下第一行代码了吗？
                     </h2>
+                    {/*
+                      原文案是「不需要安装任何复杂的软件，就在浏览器里」＋「在线运行 Hello World」，
+                      但站内并没有代码执行能力（没有 Pyodide / WASM / eval，PyCodeTracer 渲染的是
+                      预先写好的步骤数据）。按钮实际跳到 Python 第一课。承诺做不到的事，损失的是
+                      这个站最该经营的东西，所以改成对应真实能力的说法。
+                    */}
                     <p className="text-lg text-slate-400 mb-8 max-w-2xl mx-auto">
-                        不需要安装任何复杂的软件，就在浏览器里，开启你的"创世"之旅。
+                        每节课都有可以逐步推演的例子和离开前的自查，跟着走就能把语法变成自己的东西。
                     </p>
 
                     <div className="flex flex-col sm:flex-row items-center justify-center gap-4">
@@ -81,14 +87,14 @@ export default function Footer() {
                             className="flex items-center gap-2 rounded-full bg-emerald-700 px-8 py-4 font-bold text-white shadow-lg shadow-emerald-700/20 transition-all hover:scale-105 hover:bg-emerald-600 active:scale-95"
                         >
                             <Code2 size={20} />
-                            在线运行 "Hello World"
+                            从 Python 第一课开始
                         </button>
                         <button
-                            onClick={() => navigate('/hardware')}
+                            onClick={() => navigate('/question-bank')}
                             className="flex items-center gap-2 px-8 py-4 rounded-full bg-slate-700 hover:bg-slate-600 text-white font-bold transition-all hover:scale-105 active:scale-95"
                         >
                             <MessageCircle size={20} />
-                            硬件启蒙工坊
+                            看看 GESP 真题
                         </button>
                     </div>
                 </div>

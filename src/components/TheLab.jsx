@@ -1,7 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import { Bug, Play, RotateCcw, Activity } from 'lucide-react';
 import { useShouldRunDecorativeMotion } from '../hooks/useShouldRunDecorativeMotion';
-import LearningDataManager from './LearningDataManager';
+// 学习数据的导出/导入/重置是设置项，不是首页内容，已移到错题本页面
+// （/question-bank/review）——那里正是学生查看自己学习记录的地方。
 
 export default function TheLab() {
     const shouldAnimate = useShouldRunDecorativeMotion();
@@ -128,7 +129,6 @@ export default function TheLab() {
                     </div>
                 </div>
                 </div>
-                <LearningDataManager />
             </div>
         </section>
     );

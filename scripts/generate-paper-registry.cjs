@@ -286,6 +286,9 @@ const stats = {
   verifiedPaperCount: officialPapers.filter(p => p.reviewStatus === 'verified').length,
   partialPaperCount: officialPapers.filter(p => p.reviewStatus === 'partial').length,
   unverifiedPaperCount: officialPapers.filter(p => p.reviewStatus === 'unverified').length,
+  // 主页把这个数字当作可信度的证据展示。生成出来而不是手写，否则每次继续核验
+  // 题库都要记得去改主页，很快就会对不上。
+  integrityFlaggedQuestionCount: officialPapers.reduce((sum, p) => sum + p.integrityFlaggedCount, 0),
   levelCount: new Set(officialPapers.map(p => p.level)).size,
   firstYear: Math.min(...officialPapers.map(p => p.year)),
   latestYear: Math.max(...officialPapers.map(p => p.year)),
@@ -305,6 +308,7 @@ export const paperStats = {
   verifiedPaperCount: ${stats.verifiedPaperCount},
   partialPaperCount: ${stats.partialPaperCount},
   unverifiedPaperCount: ${stats.unverifiedPaperCount},
+  integrityFlaggedQuestionCount: ${stats.integrityFlaggedQuestionCount},
   levelCount: ${stats.levelCount},
   firstYear: ${stats.firstYear},
   latestYear: ${stats.latestYear},

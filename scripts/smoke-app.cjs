@@ -239,7 +239,9 @@ async function run() {
   }
   await page.getByRole('button', { name: '关闭 AI 问答助手' }).click();
 
-  await page.getByRole('button', { name: '学习工具', exact: true }).click();
+  // 学习数据的导出/导入/重置已从首页移到错题本页——那里才是学生查看和管理
+  // 自己学习记录的地方，首页放一个设置面板既占版面又不合语境。
+  await page.goto(`${baseUrl}/question-bank/review`, { waitUntil: 'networkidle' });
   await page.getByRole('heading', { name: '管理我的学习进度' }).waitFor({ timeout: 10000 });
   const downloadPromise = page.waitForEvent('download');
   await page.getByRole('button', { name: '导出', exact: true }).click();

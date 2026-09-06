@@ -2,9 +2,10 @@ import React from 'react';
 import { useNavigate } from 'react-router-dom';
 import { ArrowRight, FileQuestion, GraduationCap, Hammer, ListChecks, PlayCircle } from 'lucide-react';
 import { getCppLevelCatalogItem } from '../data/cppLevelCatalog';
-import { paperStats } from '../data/gesp/_stats';
 import { pythonFoundationLessons, pythonProjects } from '../data/pythonCourseCatalog';
+import { cppLessonIndex } from '../data/cppLessonIndex';
 
+const CPP_LESSON_COUNT = cppLessonIndex.length;
 const cppStart = getCppLevelCatalogItem(1);
 const cppEnd = getCppLevelCatalogItem(8);
 const firstPythonLesson = pythonFoundationLessons[0];
@@ -14,16 +15,19 @@ const lastPythonProject = pythonProjects[pythonProjects.length - 1];
 
 const paths = [
     {
+        // 这张卡原本指向题库，三行说明也在讲真题与核验——和下方的「真题题库」
+        // 区块逐字重复。改为指向课程侧：这一块负责「跟着课程学」，题库那块负责
+        // 「练习与复盘」，两者不再抢同一件事。
         id: 'gesp',
-        title: 'GESP 备考路径',
+        title: 'C++ GESP 课程路径',
         audience: '适合目标明确、需要考级训练的学生',
-        route: '/question-bank',
-        cta: '开始刷真题',
+        route: cppStart.path,
+        cta: `进入 ${cppStart.title}`,
         icon: FileQuestion,
         steps: [
-            `${cppStart.title} 到 ${cppEnd.title}`,
-            `${paperStats.firstYear}-${paperStats.latestYear} 年真题分卷练习`,
-            `${paperStats.verifiedPaperCount} 卷完整核验，其余试卷均标注核验状态`,
+            `${cppStart.title} 到 ${cppEnd.title}，共 ${CPP_LESSON_COUNT} 节互动课`,
+            '每节课都有动手任务和离开前的掌握自查',
+            '学完一级再去题库按年份或考点检验',
         ],
         color: 'blue'
     },

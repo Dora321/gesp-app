@@ -3,7 +3,9 @@ import Navigation from './components/Navigation';
 import Footer from './components/Footer';
 
 import HeroSection from './components/HeroSection';
+import ContinueLearning from './components/ContinueLearning';
 import LearningPaths from './components/LearningPaths';
+import QuestionBankHighlight from './components/QuestionBankHighlight';
 import DeferredSection from './components/DeferredSection';
 import ClassroomPoints from './components/ClassroomPoints';
 import AIChat from './components/AIChat';
@@ -31,7 +33,11 @@ export default function Home() {
 
             <main>
                 <HeroSection />
+                {/* 有学习记录时才出现；新访客直接看到下面的路径卡，不会多出空白 */}
+                <ContinueLearning />
                 <LearningPaths />
+                {/* 题库是最强资产，放在路径卡之后、课程目录之前 */}
+                <QuestionBankHighlight />
                 <DeferredSection id="lesson-catalog" minHeight={1180} rootMargin="300px 0px">
                     <Suspense fallback={<SectionFallback minHeight={1180} />}>
                         <LessonCatalog />
@@ -42,14 +48,14 @@ export default function Home() {
                         <FeaturedProjects />
                     </Suspense>
                 </DeferredSection>
-                <DeferredSection id="tools-section" minHeight={620}>
-                    <Suspense fallback={<SectionFallback minHeight={620} />}>
-                        <TheLab />
-                    </Suspense>
-                </DeferredSection>
-                <DeferredSection id="explore-section" minHeight={520}>
-                    <Suspense fallback={<SectionFallback minHeight={520} />}>
-                        <ExploreMore />
+                {/* 工具演示与课后探索同属一条暗色带，合成一个延迟区块，
+                    去掉中间那道 dark→dark 的接缝和重复的区块标题。 */}
+                <DeferredSection id="tools-section" minHeight={900}>
+                    <Suspense fallback={<SectionFallback minHeight={900} />}>
+                        <>
+                            <TheLab />
+                            <ExploreMore />
+                        </>
                     </Suspense>
                 </DeferredSection>
             </main>

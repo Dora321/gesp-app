@@ -14,6 +14,7 @@ import {
     summarizePaperAttempts,
 } from '../../utils/examHistory';
 import { LEARNING_DATA_EVENT } from '../../utils/learningData';
+import LearningDataManager from '../../components/LearningDataManager';
 
 const LEVEL_NAMES = '一二三四五六七八';
 
@@ -245,6 +246,10 @@ export default function ReviewPage() {
                         </section>
                     </>
                 )}
+
+                {/* 导出/导入/重置从首页移来：学生查看自己学习记录的地方，
+                    也正是想备份或清空这些记录的地方。 */}
+                <LearningDataManager />
             </div>
         </div>
     );
