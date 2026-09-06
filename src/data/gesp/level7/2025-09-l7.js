@@ -524,6 +524,8 @@ int count_triple(int n) {
         {
             id: 15,
             type: "single",
+            sourceIntegrity: "missing-figure",
+            integrityNote: "本题依赖原卷的图结构判断 DFS 遍历序列，而该图未随题目收录。解析中已注明具体分析依赖试卷原图、只能照抄官方答案。本题已排除出计分与考点练习，待补齐原卷配图后恢复。",
             question: `下列选项中，哪个不可能是下图的深度优先遍历序列（ ）。`,
             options: [
                 "2, 3, 5, 7, 8, 9, 6, 4, 1",

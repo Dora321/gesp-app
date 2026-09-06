@@ -130,6 +130,30 @@ export const getBrokenPresentationErrors = (question, questionId = question?.id 
     ));
 };
 
+// 有些解析会自己承认「原题以图片给出、文本无法恢复，此处依据官方答案确定」。
+// 这是最可靠的一类信号——写解析的人已经确认过推不出来了，只是没有把这件事
+// 变成结构化标记，于是题目照常计分，学生做错了也不知道为什么。
+//
+// 只收对「来源」的明确供述。像「a>>1 丢失最低位，无法还原」这种讲算法性质的
+// 说法必须放过，所以不能只匹配「无法还原」。
+const unrecoverableAdmissionPatterns = [
+  /以图片(?:\/公式)?形式给出/u,
+  /无法从文本恢复/u,
+  /依据官方答案确定/u,
+  /具体分析依赖试卷原图/u,
+  /基于选项特征推断/u,
+  /待代码补充后需复核/u,
+];
+
+export const getUnrecoverableAdmissionErrors = (question, questionId = question?.id || '?') => {
+  if (!['single', 'judge'].includes(question?.type) || question.sourceIntegrity) return [];
+
+  const explanation = String(question.explanation || '');
+  return unrecoverableAdmissionPatterns.some(pattern => pattern.test(explanation))
+    ? [`[INTEGRITY] Q${questionId}: 解析自认原题无法从文本恢复（只能照抄官方答案），但未标记 sourceIntegrity`]
+    : [];
+};
+
 export const getObjectiveStemIntegrityErrors = (question, questionId = question?.id || '?') => {
   if (!['single', 'judge'].includes(question?.type) || question.sourceIntegrity) return [];
 
@@ -349,6 +373,7 @@ async function validateFile(filePath, cfg) {
     errors.push(...getObjectiveStemIntegrityErrors(q, qId));
     errors.push(...getDroppedFormulaErrors(q, qId));
     errors.push(...getBrokenPresentationErrors(q, qId));
+    errors.push(...getUnrecoverableAdmissionErrors(q, qId));
 
     // PDF 提取会把「行/心/网」写成康熙部首区的同形字。看不出来，但所有文本匹配
     // （站内搜索、考点推断、下面这些片段检查）都会静默失效，所以入库前必须归一化。

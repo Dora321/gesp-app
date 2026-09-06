@@ -2,6 +2,7 @@ import test from 'node:test';
 import assert from 'node:assert/strict';
 import {
   getBrokenPresentationErrors,
+  getUnrecoverableAdmissionErrors,
   getDroppedFormulaErrors,
   getObjectiveStemIntegrityErrors,
   questionHasCodeContent,
@@ -223,4 +224,39 @@ test('operator and ASCII-art options are not mistaken for stripped punctuation',
     question: '执行后输出的字符图形是（ ）。',
     options: ['*****\n ****', '    *\n   ***', '*\n**', '    *\n   **'],
   }), []);
+});
+
+// 最可靠的一类信号：写解析的人已经确认推不出来了，只是没把它变成结构化标记，
+// 于是题目照常计分。「a>>1 丢失最低位，无法还原」这种讲算法性质的说法必须放过。
+test('explanations that admit the source is unrecoverable require sourceIntegrity', () => {
+  const admissions = [
+    '由于原题的表长与哈希函数均以图片形式给出、无法从文本恢复，此处依据官方答案确定为 D。',
+    '具体分析依赖试卷原图结构。',
+    '以下解析基于选项特征推断程序逻辑，待代码补充后需复核。',
+  ];
+  admissions.forEach((explanation, index) => {
+    const errors = getUnrecoverableAdmissionErrors({ type: 'single', explanation }, index + 1);
+    assert.equal(errors.length, 1, explanation);
+    assert.match(errors[0], /解析自认原题无法从文本恢复/);
+  });
+
+  // 讲算法性质的「无法还原」不是对来源的供述，不能误伤。
+  assert.deepEqual(getUnrecoverableAdmissionErrors({
+    type: 'single',
+    explanation: '`a>>1` 丢失了最低位信息，无法还原原值，因此该操作不可逆。',
+  }), []);
+});
+
+test('no objective question ships an unflagged unrecoverable admission', async () => {
+  const unflagged = [];
+  for (const paperId of paperIds) {
+    if (paperMeta[paperId]?.unofficial) continue;
+    const paper = await getPaper(paperId);
+    for (const question of paper.questions || []) {
+      if (getUnrecoverableAdmissionErrors(question, question.id).length > 0) {
+        unflagged.push(`${paperId}:Q${question.id}`);
+      }
+    }
+  }
+  assert.deepEqual(unflagged, [], `这些题的解析自认无法推导，必须标记：${unflagged.join(', ')}`);
 });

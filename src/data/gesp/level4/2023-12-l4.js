@@ -592,6 +592,8 @@ GESP 四级常考文件流写入后的字节数推算：\`char\` 用 \`<<\` 写�
         {
             id: 11,
             type: "single",
+            sourceIntegrity: "missing-code",
+            integrityNote: "题干称「下列 C++ 代码」，但代码未随本题收录。解析中已注明只能依据选项特征反推程序逻辑，并非按代码推导。本题已排除出计分与考点练习，待补齐原卷代码后恢复。",
             question: `下列 C++ 代码输入1,2,3,4，执行后，将输出的是（ ）。`,
             code: `string str="";
 cin>>str;
