@@ -162,11 +162,20 @@ const Esp32AiSpotlight = ({ navigate }) => (
                     面向小学高年级的 16 课时项目制课程，从读懂 MicroPython 代码开始，逐步学会拆解需求、指挥 AI、调试硬件，并完成真实科创项目。
                 </p>
                 <button
-                    onClick={() => navigate('/hardware/esp32-ai')}
+                    onClick={() => navigate('/hardware/esp32-curriculum')}
                     className="mt-8 px-7 py-4 bg-cyan-400 hover:bg-cyan-300 text-slate-950 text-base font-black rounded-2xl shadow-xl shadow-cyan-950/40 flex items-center gap-3 transition-all hover:-translate-y-1"
                 >
-                    查看 ESP32 课程体系
+                    查看 35 课时课程体系
                     <ArrowRight size={20} />
+                </button>
+                {/* 前 16 课的教学法详解仍保留独立入口：那页讲的是 PBL 循环、
+                    评价量规和 AI 使用公约，与按阶段浏览课时是两种需求。 */}
+                <button
+                    type="button"
+                    onClick={() => navigate('/hardware/esp32-ai')}
+                    className="mt-3 px-6 py-3 rounded-2xl border border-cyan-400/40 text-cyan-200 text-sm font-bold transition-all hover:bg-cyan-400/10"
+                >
+                    教学法与评价量规
                 </button>
             </div>
 
