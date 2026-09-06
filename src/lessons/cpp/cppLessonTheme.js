@@ -1,5 +1,8 @@
+// bg 是 500/600 档，用作装饰底色；solid 是 700 档，专门给「要压白字」的表面用。
+// 两者分开的原因：白字压在 amber-500 上对比度只有 2.13，压在 amber-700 上是 5.03。
 export const accentMap = {
     blue: {
+        solid: 'bg-blue-700',
         text: 'text-blue-700',
         bg: 'bg-blue-600',
         light: 'bg-blue-50',
@@ -8,6 +11,7 @@ export const accentMap = {
         gradient: 'from-blue-700 to-slate-900',
     },
     indigo: {
+        solid: 'bg-indigo-700',
         text: 'text-indigo-700',
         bg: 'bg-indigo-600',
         light: 'bg-indigo-50',
@@ -16,6 +20,7 @@ export const accentMap = {
         gradient: 'from-indigo-700 to-slate-900',
     },
     emerald: {
+        solid: 'bg-emerald-700',
         text: 'text-emerald-700',
         bg: 'bg-emerald-600',
         light: 'bg-emerald-50',
@@ -24,6 +29,7 @@ export const accentMap = {
         gradient: 'from-emerald-700 to-slate-900',
     },
     amber: {
+        solid: 'bg-amber-700',
         text: 'text-amber-700',
         bg: 'bg-amber-500',
         light: 'bg-amber-50',
@@ -32,6 +38,7 @@ export const accentMap = {
         gradient: 'from-amber-600 to-slate-900',
     },
     rose: {
+        solid: 'bg-rose-700',
         text: 'text-rose-700',
         bg: 'bg-rose-600',
         light: 'bg-rose-50',
@@ -40,6 +47,7 @@ export const accentMap = {
         gradient: 'from-rose-700 to-slate-900',
     },
     purple: {
+        solid: 'bg-purple-700',
         text: 'text-purple-700',
         bg: 'bg-purple-600',
         light: 'bg-purple-50',
@@ -48,11 +56,41 @@ export const accentMap = {
         gradient: 'from-purple-700 to-slate-900',
     },
     teal: {
+        solid: 'bg-teal-700',
         text: 'text-teal-700',
         bg: 'bg-teal-600',
         light: 'bg-teal-50',
         border: 'border-teal-600',
         shadow: 'shadow-teal-200',
         gradient: 'from-teal-700 to-slate-900',
+    },
+    // 七级大纲给图论与搜索那几课排的是 violet / cyan / orange。
+    // 这三个键此前不存在，accent 会静默退回蓝色——四课长得一模一样。
+    violet: {
+        solid: 'bg-violet-700',
+        text: 'text-violet-700',
+        bg: 'bg-violet-600',
+        light: 'bg-violet-50',
+        border: 'border-violet-600',
+        shadow: 'shadow-violet-200',
+        gradient: 'from-violet-700 to-slate-900',
+    },
+    cyan: {
+        solid: 'bg-cyan-700',
+        text: 'text-cyan-700',
+        bg: 'bg-cyan-600',
+        light: 'bg-cyan-50',
+        border: 'border-cyan-600',
+        shadow: 'shadow-cyan-200',
+        gradient: 'from-cyan-700 to-slate-900',
+    },
+    orange: {
+        solid: 'bg-orange-700',
+        text: 'text-orange-700',
+        bg: 'bg-orange-600',
+        light: 'bg-orange-50',
+        border: 'border-orange-600',
+        shadow: 'shadow-orange-200',
+        gradient: 'from-orange-700 to-slate-900',
     },
 };

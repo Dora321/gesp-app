@@ -241,7 +241,18 @@ export function Callout({ icon: Icon, title, children, tone = 'blue' }) {
     );
 }
 
-export function StepList({ steps }) {
+// title 此前没被接住：调用方传了「动手任务」这样的标题，却从不渲染。
+// 标题放在 ol 外面——放进去会被当成一个列表项算进序号。
+export function StepList({ title, steps }) {
+    if (title) {
+        return (
+            <section>
+                <h4 className="mb-3 text-base font-black text-slate-900">{title}</h4>
+                <StepList steps={steps} />
+            </section>
+        );
+    }
+
     return (
         <ol className="space-y-3">
             {steps.map((step, index) => (
@@ -597,7 +608,7 @@ export function MasteryCheck({
                             type="button"
                             onClick={submitArtifact}
                             disabled={artifact.trim().length < 12}
-                            className="min-h-11 rounded-lg bg-amber-600 px-4 py-2 text-sm font-black text-white disabled:cursor-not-allowed disabled:bg-slate-300"
+                            className="min-h-11 rounded-lg bg-amber-700 px-4 py-2 text-sm font-black text-white disabled:cursor-not-allowed disabled:bg-slate-300"
                         >
                             提交学习证据
                         </button>

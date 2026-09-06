@@ -92,7 +92,7 @@ export default function CppLessonShell({
         <div className="flex h-screen overflow-hidden bg-slate-50 font-sans text-slate-800">
             <LessonMobileHeader
                 label={`${levelTitle} · ${levelCode}-${lessonNumber}`}
-                labelClass={`${color.bg} text-white`}
+                labelClass={`${color.solid} text-white`}
                 open={isMobileMenuOpen}
                 onToggle={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
             />
@@ -125,7 +125,7 @@ export default function CppLessonShell({
                             className={`w-full px-6 py-3 text-left transition-colors ${activeSection === section.id ? `border-r-4 ${color.border} ${color.light} ${color.text}` : 'text-slate-600 hover:bg-slate-50'}`}
                         >
                             <span className="block text-sm font-black">{section.title}</span>
-                            <span className="mt-1 block text-xs font-semibold text-slate-400">{section.category}</span>
+                            <span className="mt-1 block text-xs font-semibold text-slate-600">{section.category}</span>
                         </button>
                     ))}
                 </div>
@@ -185,7 +185,7 @@ export default function CppLessonShell({
                     </button>
                     <button
                         onClick={goNext}
-                        className={`inline-flex items-center gap-2 rounded-lg px-6 py-3 text-sm font-black text-white shadow-lg transition hover:brightness-110 ${color.bg} ${color.shadow}`}
+                        className={`inline-flex items-center gap-2 rounded-lg px-6 py-3 text-sm font-black text-white shadow-lg transition hover:brightness-110 ${color.solid} ${color.shadow}`}
                     >
                         {isLast ? '进入下一课' : '下一节'}
                         <ArrowRight size={16} />

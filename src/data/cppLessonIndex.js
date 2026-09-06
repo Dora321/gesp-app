@@ -32,7 +32,7 @@ const LESSONS_BY_LEVEL = {
 // 七、八级的大纲已排定但课时在分批建设。索引只收已经有页面的课时——
 // 未建成的课如果进了 sitemap 和预渲染，爬虫拿到的会是一个 404 壳子。
 const BUILT_LESSON_IDS = {
-    7: new Set([1]),
+    7: new Set([1, 2, 3, 4, 5, 6, 7, 8]),
     8: new Set(),
 };
 

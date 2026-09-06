@@ -11,6 +11,12 @@ const ROUTES = [
   '/question-bank/review',
   '/question-bank/2/2026-03-l2',
   '/lesson/1/9',
+  // 七级这几课各自带手写的交互实验台，配色是逐课挑的，必须单独查对比度。
+  '/lesson/7/2',
+  '/lesson/7/4',
+  '/lesson/7/6',
+  '/lesson/7/7',
+  '/lesson/7/8',
   '/python/f2',
   '/museum',
   '/hardware',
