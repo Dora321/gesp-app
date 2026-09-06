@@ -418,6 +418,39 @@ export function PredictCheck({
 
 // 迁移练习：用一道「换个例子」的新题，让学习者把刚学的方法迁移到新数据上，
 // 先自己推、再对照解答。与 PredictCheck（验证误区）互补，对应"换一个例子也能做"。
+// answer 原本一律渲染成一个 inline-flex 小胶囊，那是为「O(n log n)」这类
+// 短答案设计的。七级有几道迁移题的参考答案是多段论证（400~550 字），
+// 塞进胶囊会挤成一团，段落也全丢了。短答案保持原样，长答案分段成块。
+function TransferAnswer({ answer }) {
+    const paragraphs = String(answer).split(/\n\s*\n/).map((part) => part.trim()).filter(Boolean);
+    const isLong = paragraphs.length > 1 || String(answer).length > 120;
+
+    if (!isLong) {
+        return (
+            <div className="inline-flex items-center gap-2 rounded-lg bg-emerald-100 px-3 py-2 text-sm font-black text-emerald-800">
+                <CheckCircle2 size={16} />
+                答案：{answer}
+            </div>
+        );
+    }
+
+    return (
+        <div className="rounded-lg bg-emerald-100 p-4">
+            <h5 className="flex items-center gap-2 text-sm font-black text-emerald-800">
+                <CheckCircle2 size={16} />
+                参考答案
+            </h5>
+            <div className="mt-2 space-y-2">
+                {paragraphs.map((paragraph) => (
+                    <p key={paragraph} className="text-sm font-semibold leading-7 text-emerald-900">
+                        {paragraph}
+                    </p>
+                ))}
+            </div>
+        </div>
+    );
+}
+
 export function TransferCheck({
     title = '迁移练习：换个例子也能做',
     prompt,
@@ -483,12 +516,7 @@ export function TransferCheck({
 
             {revealed && (
                 <div className="mt-4 space-y-3">
-                    {answer && (
-                        <div className="inline-flex items-center gap-2 rounded-lg bg-emerald-100 px-3 py-2 text-sm font-black text-emerald-800">
-                            <CheckCircle2 size={16} />
-                            答案：{answer}
-                        </div>
-                    )}
+                    {answer && <TransferAnswer answer={answer} />}
                     {steps.length > 0 && (
                         <ol className="space-y-1 rounded-lg bg-white p-3 text-sm font-bold leading-7 text-slate-700 ring-1 ring-emerald-100">
                             {steps.map((step, index) => (
