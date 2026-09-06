@@ -91,6 +91,7 @@ const masteryItems = [
 export default function CppL2Lesson16() {
     return (
         <CppLessonShell
+            prerequisites={['已完成二级易错题诊疗室', '熟悉 GESP 二级的题型分布', '会在限定时间内先做有把握的题']}
             lessonNumber={16}
             lessonTitle="全真模拟考试"
             lessonSubtitle="把二级知识链条收束成考试策略"

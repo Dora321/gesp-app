@@ -97,6 +97,7 @@ const masteryItems = [
 export default function CppL5Lesson15() {
     return (
         <CppLessonShell
+            prerequisites={['会用链表、递归和排序解题', '会读懂题目给出的数据范围', '会把大问题拆成小函数']}
             lessonNumber={15}
             lessonTitle="编程题专项训练"
             lessonSubtitle="从题面信号到算法选择"

@@ -131,6 +131,7 @@ const numberTheoryMasteryItems = [
 export default function CppL5Lesson5() {
     return (
         <CppLessonShell
+            prerequisites={['会用循环判断素数', '会用取模做整除判断', '会用数组记录标记信息']}
             lessonNumber={5}
             lessonTitle="数论综合实战"
             lessonSubtitle="在筛法、GCD、LCM 和高精度之间选择工具"

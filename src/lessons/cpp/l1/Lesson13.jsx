@@ -897,6 +897,7 @@ export default function App() {
 
     return (
         <LegacyCppLessonShell
+            prerequisites={['会用循环做累加与计数', '会用取模判断整除', '知道整数除法和取模的区别']}
             lessonNumber={13}
             lessonTitle="数学应用"
             sections={sections}

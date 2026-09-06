@@ -601,6 +601,7 @@ export default function App() {
 
     return (
         <LegacyCppLessonShell
+            prerequisites={['已完成一级前 15 课的主要内容', '会读题目的输入输出格式要求', '遇到结果不对时会手动追踪变量']}
             lessonNumber={16}
             lessonTitle="考前冲刺"
             accent="blueIndigo"

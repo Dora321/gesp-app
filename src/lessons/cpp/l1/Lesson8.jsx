@@ -748,6 +748,7 @@ export default function App() {
 
   return (
     <LegacyCppLessonShell
+        prerequisites={['会写单个 if / else', '会用 && 和 || 组合条件', '能手算一个条件表达式的真假']}
       lessonNumber={8}
       lessonTitle="多重选择结构"
       accent="orangePurple"

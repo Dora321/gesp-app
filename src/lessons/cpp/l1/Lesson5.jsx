@@ -101,6 +101,7 @@ export default function Lesson5() {
 
   return (
     <LegacyCppLessonShell
+        prerequisites={['会定义并使用 int 变量', '知道 char 存的是单个字符', '会用 cout 输出变量的值']}
       lessonNumber={5}
       lessonTitle="字符与ASCII码"
       sections={sections}

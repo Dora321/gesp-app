@@ -230,6 +230,7 @@ const bubbleMasteryItems = [
 export default function CppL4Lesson9() {
     return (
         <CppLessonShell
+            prerequisites={['会用数组存储并遍历一批数据', '会写嵌套循环', '会交换两个变量的值']}
             lessonNumber={9}
             lessonTitle="排队的智慧：冒泡排序"
             lessonSubtitle="用相邻交换把最大值一轮轮送到队尾"

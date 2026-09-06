@@ -671,6 +671,7 @@ function App() {
 
     return (
         <LegacyCppLessonShell
+            prerequisites={['会写单层循环并手算次数', '知道循环体里可以再放语句块', '会用两个变量分别计数']}
             lessonNumber={12}
             lessonTitle="多重循环"
             accent="bluePurple"

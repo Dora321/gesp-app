@@ -599,6 +599,7 @@ export default function App() {
 
   return (
     <LegacyCppLessonShell
+        prerequisites={['会做加减乘除四则运算的表达式', '知道整数除法会丢掉小数部分', '会用变量保存中间结果']}
       lessonNumber={4}
       lessonTitle="余数的妙用"
       sections={sections}

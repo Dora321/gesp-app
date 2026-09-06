@@ -102,6 +102,7 @@ const masteryItems = [
 export default function CppL6Lesson16() {
     return (
         <CppLessonShell
+            prerequisites={['已完成六级易错题诊疗室', '熟悉 GESP 六级的题型分布', '会在限定时间内取舍难题']}
             lessonNumber={16}
             lessonTitle="全真模拟考试"
             lessonSubtitle="用流程把能力稳定输出"

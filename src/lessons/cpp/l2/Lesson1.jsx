@@ -420,6 +420,7 @@ export default function AdvLesson1() {
 
     return (
         <LegacyCppLessonShell
+            prerequisites={['会写完整的 C++ 输入输出程序', '知道计算机由硬件和软件组成', '对存储单位有基本印象']}
             lessonNumber={1}
             lessonTitle="计算机通识 (RAM/IP)"
             levelLabel="二级趣味课堂"

@@ -145,6 +145,7 @@ const complexityMasteryItems = [
 export default function CppL4Lesson14() {
     return (
         <CppLessonShell
+            prerequisites={['会用循环和数组解题', '能估算一段代码大致执行多少次', '知道程序出错时会中断执行']}
             lessonNumber={14}
             lessonTitle="异常处理与复杂度"
             lessonSubtitle="让程序既能跑对，也能跑得完"

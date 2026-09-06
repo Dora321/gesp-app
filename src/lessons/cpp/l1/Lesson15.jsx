@@ -850,6 +850,7 @@ export default function App() {
 
     return (
         <LegacyCppLessonShell
+            prerequisites={['会用循环遍历一批数据', '会用 if 挑出符合条件的数', '会用计数器和累加器']}
             lessonNumber={15}
             lessonTitle="筛选与统计"
             accent="blueIndigo"

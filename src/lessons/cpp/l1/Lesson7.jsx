@@ -578,6 +578,7 @@ export default function App() {
 
   return (
     <LegacyCppLessonShell
+        prerequisites={['会写比较运算与逻辑运算', '知道 true / false 代表什么', '会用大括号把多条语句括成一块']}
       lessonNumber={7}
       lessonTitle="条件判断"
       sections={sections}

@@ -125,6 +125,7 @@ const oopMasteryItems = [
 export default function CppL6Lesson10() {
     return (
         <CppLessonShell
+            prerequisites={['会定义类并使用构造函数', '知道成员变量和成员函数的区别', '会用指针访问对象']}
             lessonNumber={10}
             lessonTitle="OOP 综合实战"
             lessonSubtitle="从题面到类图再到代码"

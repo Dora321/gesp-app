@@ -176,6 +176,7 @@ const patternMasteryItems = [
 export default function CppL2Lesson6() {
     return (
         <CppLessonShell
+            prerequisites={['会写嵌套循环并手算次数', '会用 cout 输出空格和换行', '能把行号列号和输出位置对应起来']}
             lessonNumber={6}
             lessonTitle="图形打印实战"
             lessonSubtitle="从看图写循环，到按行反推规则"

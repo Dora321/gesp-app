@@ -371,6 +371,7 @@ export default function App() {
 
     return (
         <LegacyCppLessonShell
+            prerequisites={['会写 for 和 while 循环', '知道循环条件不成立时循环就结束', '会用变量统计次数']}
             lessonNumber={11}
             lessonTitle="循环控制"
             sections={sections}

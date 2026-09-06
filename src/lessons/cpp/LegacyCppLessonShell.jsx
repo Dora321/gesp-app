@@ -3,6 +3,7 @@ import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { ArrowRight } from 'lucide-react';
 import { recordLessonVisit } from '../../utils/lessonProgress';
 import LessonMobileHeader from '../../components/LessonMobileHeader';
+import { Prerequisites } from './CppLessonComponents';
 
 const accentClasses = {
   blue: {
@@ -53,6 +54,9 @@ export default function LegacyCppLessonShell({
   renderIcon,
   topSupport,
   bottomSupport,
+  // 这个 shell 此前不接受 prerequisites，于是用它的一级 16 节课加二级前两课
+  // 一律没有前置提示——学生点进去不会被告知「你得先会什么」。
+  prerequisites,
   children,
   accent = 'blue',
   levelLabel = '一级趣味课堂',
@@ -197,6 +201,11 @@ export default function LegacyCppLessonShell({
 
         <main ref={scrollRef} className="flex-1 overflow-y-auto p-8 z-0">
           <div className="max-w-4xl mx-auto pb-12">
+            {isFirst && prerequisites?.length > 0 && (
+              <div className="mb-6">
+                <Prerequisites items={prerequisites} />
+              </div>
+            )}
             {isFirst && topSupport}
             <div data-lesson-active-content="true">
               {children}

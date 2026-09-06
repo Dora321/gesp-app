@@ -129,6 +129,7 @@ const multiStateMasteryItems = [
 export default function CppL2Lesson14() {
     return (
         <CppLessonShell
+            prerequisites={['已完成模拟算法实战 1', '会用嵌套循环处理二维过程', '会在模拟中及时打印中间结果排错']}
             lessonNumber={14}
             lessonTitle="模拟算法实战 2"
             lessonSubtitle="多个变量一起变化时，先稳住顺序"

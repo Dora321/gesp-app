@@ -164,6 +164,7 @@ const baseMasteryItems = [
 export default function CppL3Lesson14() {
     return (
         <CppLessonShell
+            prerequisites={['会用取模和整除拆分数位', '知道二进制、八进制、十六进制的含义', '会用循环逐位处理一个整数']}
             lessonNumber={14}
             lessonTitle="进制转换编程专场"
             lessonSubtitle="把进制知识写成稳定模板"

@@ -671,6 +671,7 @@ cout << (N + i);`}
 
   return (
     <LegacyCppLessonShell
+        prerequisites={['会用 if 做分支判断', '会定义变量并让它累加', '能手算一段代码执行几次']}
       lessonNumber={9}
       lessonTitle="for 循环"
       sections={sections}

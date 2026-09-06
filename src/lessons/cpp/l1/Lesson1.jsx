@@ -709,6 +709,7 @@ const CppL1Lesson1 = () => {
 
   return (
     <LegacyCppLessonShell
+        prerequisites={['会用鼠标和键盘操作电脑', '知道文件和文件夹的区别', '愿意跟着老师一步步敲字符']}
       lessonNumber={1}
       lessonTitle="你好，计算机"
       sections={sections}

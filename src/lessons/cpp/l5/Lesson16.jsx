@@ -102,6 +102,7 @@ const masteryItems = [
 export default function CppL5Lesson16() {
     return (
         <CppLessonShell
+            prerequisites={['已完成五级编程题专项训练', '熟悉 GESP 五级的题型分布', '会先写暴力解再想优化']}
             lessonNumber={16}
             lessonTitle="全真模拟与技巧"
             lessonSubtitle="把能力转化成稳定得分"

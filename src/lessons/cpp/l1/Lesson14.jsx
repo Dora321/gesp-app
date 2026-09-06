@@ -715,6 +715,7 @@ export default function App() {
 
     return (
         <LegacyCppLessonShell
+            prerequisites={['会用嵌套循环遍历二维范围', '会用 if 在循环里做判断', '能按题意一步步模拟过程']}
             lessonNumber={14}
             lessonTitle="模拟与逻辑"
             accent="greenTeal"

@@ -187,6 +187,7 @@ const flowMasteryItems = [
 export default function CppL2Lesson7() {
     return (
         <CppLessonShell
+            prerequisites={['会读懂 if / else 和循环的执行顺序', '会手动追踪变量的变化', '知道程序有唯一的执行入口']}
             lessonNumber={7}
             lessonTitle="流程图的秘密"
             lessonSubtitle="把图读成代码，把代码画成路线"

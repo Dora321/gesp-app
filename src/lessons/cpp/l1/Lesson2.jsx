@@ -492,6 +492,7 @@ function App() {
 
   return (
     <LegacyCppLessonShell
+        prerequisites={['知道程序是从上往下一行行执行的', '会写并运行 Hello World', '能分清英文标点和中文标点']}
       lessonNumber={2}
       lessonTitle="变量与数据"
       sections={sections}

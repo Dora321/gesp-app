@@ -774,6 +774,7 @@ export default function App() {
 
     return (
         <LegacyCppLessonShell
+            prerequisites={['知道 char 类型存的是单个字符', '会用 int 和 char 互相赋值', '会用循环遍历一串字符']}
             lessonNumber={2}
             lessonTitle="字符的密码 (ASCII)"
             levelLabel="二级趣味课堂"

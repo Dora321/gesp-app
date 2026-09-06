@@ -106,6 +106,7 @@ export default function Lesson3() {
 
   return (
     <LegacyCppLessonShell
+        prerequisites={['会用 int 定义变量并赋值', '会用 cin 读入、cout 输出', '知道整数和小数在计算机里不一样']}
       lessonNumber={3}
       lessonTitle="数字的魔法"
       sections={sections}

@@ -107,6 +107,7 @@ const masteryItems = [
 export default function CppL3Lesson16() {
     return (
         <CppLessonShell
+            prerequisites={['已学完三级前 15 课', '会读懂题目的数据范围要求', '会在动手前先想清楚边界情况']}
             lessonNumber={16}
             lessonTitle="全真模拟与避坑"
             lessonSubtitle="用清单和错因复盘完成三级闭环"

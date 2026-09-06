@@ -105,6 +105,7 @@ const masteryItems = [
 export default function CppL4Lesson16() {
     return (
         <CppLessonShell
+            prerequisites={['已完成四级综合编程实战 (1)', '熟悉 GESP 四级的题型分布', '会在限定时间内分配做题顺序']}
             lessonNumber={16}
             lessonTitle="全真模拟与避坑 (2)"
             lessonSubtitle="把四级知识点整理成考试执行流程"

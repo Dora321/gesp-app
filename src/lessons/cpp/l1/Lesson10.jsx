@@ -931,6 +931,7 @@ cout << cnt;`}
 
   return (
     <LegacyCppLessonShell
+        prerequisites={['会写 for 循环的三段结构', '知道循环变量什么时候更新', '会在循环里累加求和']}
       lessonNumber={10}
       lessonTitle="while 循环"
       sections={sections}

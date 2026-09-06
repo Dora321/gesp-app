@@ -118,6 +118,7 @@ const masteryItems = [
 export default function CppL2Lesson15() {
     return (
         <CppLessonShell
+            prerequisites={['已学完二级前 14 课', '会手算循环次数与边界', '遇到结果不对时会缩小样例定位']}
             lessonNumber={15}
             lessonTitle="易错题诊疗室"
             lessonSubtitle="把常见丢分点变成检查清单"

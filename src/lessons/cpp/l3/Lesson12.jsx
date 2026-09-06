@@ -129,6 +129,7 @@ const caesarMasteryItems = [
 export default function CppL3Lesson12() {
     return (
         <CppLessonShell
+            prerequisites={['会用循环遍历字符串的每个字符', '知道字符和 ASCII 码可以互相转换', '会用取模做循环位移']}
             lessonNumber={12}
             lessonTitle="加密与解密"
             lessonSubtitle="用字符偏移和取模处理字母变换"

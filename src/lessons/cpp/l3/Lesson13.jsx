@@ -168,6 +168,7 @@ const patternMasteryItems = [
 export default function CppL3Lesson13() {
     return (
         <CppLessonShell
+            prerequisites={['会写嵌套循环控制行列', '会用 cout 控制空格与换行', '能推导第 i 行要打印几个字符']}
             lessonNumber={13}
             lessonTitle="图形打印大师"
             lessonSubtitle="用行列规律控制输出形状"

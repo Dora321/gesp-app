@@ -97,6 +97,7 @@ const masteryItems = [
 export default function CppL6Lesson15() {
     return (
         <CppLessonShell
+            prerequisites={['已学完六级前 14 课', '会手推二叉树的三种遍历', '会分析一段代码的时间复杂度']}
             lessonNumber={15}
             lessonTitle="易错题诊疗室"
             lessonSubtitle="把错误变成提交前动作"

@@ -90,6 +90,7 @@ const masteryItems = [
 export default function CppL3Lesson15() {
     return (
         <CppLessonShell
+            prerequisites={['会用数组存一批数据', '会组合循环、分支和函数解题', '会用样例验证自己的思路']}
             lessonNumber={15}
             lessonTitle="综合逻辑挑战"
             lessonSubtitle="把三级工具组合成完整解法"

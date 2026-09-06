@@ -103,6 +103,7 @@ const masteryItems = [
 export default function CppL4Lesson15() {
     return (
         <CppLessonShell
+            prerequisites={['会用函数、数组和结构体组织代码', '会写基础排序与查找', '会用样例检验程序输出']}
             lessonNumber={15}
             lessonTitle="综合编程实战 (1)"
             lessonSubtitle="用结构体、函数和排序解决成绩排行题"

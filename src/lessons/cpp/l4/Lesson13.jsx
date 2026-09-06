@@ -121,6 +121,7 @@ const fileIoMasteryItems = [
 export default function CppL4Lesson13() {
     return (
         <CppLessonShell
+            prerequisites={['会写完整的输入输出程序', '知道文件和标准输入输出的区别', '会用循环读入不定数量的数据']}
             lessonNumber={13}
             lessonTitle="文件小管家 (freopen)"
             lessonSubtitle="把键盘输入和屏幕输出切换到文件"

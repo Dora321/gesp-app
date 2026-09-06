@@ -568,6 +568,7 @@ export default function App() {
 
   return (
     <LegacyCppLessonShell
+        prerequisites={['会写比较运算（>、<、==）', '知道比较的结果只有成立和不成立两种', '会用变量存储比较结果']}
       lessonNumber={6}
       lessonTitle="逻辑运算"
       sections={sections}
