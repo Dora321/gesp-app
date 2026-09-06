@@ -638,6 +638,8 @@ export const paperData = {
         {
             id: 19,
             type: "judge",
+            sourceIntegrity: "answer-key-suspect",
+            integrityNote: "所录答案为「正确」，但广度优先遍历需要先进先出的队列；改用栈会得到深度优先的访问顺序。该说法应判「错误」（同题在 2026-03-l6 中即录为「错误」）。已排除计分，请对照官方原卷核实。",
             question: `广度优先遍历二叉树可用栈来实现。`,
             options: [
                 "正确",
@@ -688,6 +690,8 @@ export const paperData = {
         {
             id: 21,
             type: "judge",
+            sourceIntegrity: "answer-key-suspect",
+            integrityNote: "所录答案为「正确」，但左子树为空只说明该结点是其所在子树的最小值，未必是整棵树的最小值（例如根的右子结点若无左孩子，仍大于根）。该说法应判「错误」。已排除计分，请对照官方原卷核实。",
             question: `在二叉排序树（ BST ）中，若某结点的左子树为空，则该结点一定是整棵树中的最小值结点。`,
             options: [
                 "正确",
@@ -767,6 +771,8 @@ export const paperData = {
         {
             id: 24,
             type: "judge",
+            sourceIntegrity: "answer-key-suspect",
+            integrityNote: "所录答案为「正确」，但按 cost = [0,3,5,2,4] 计算，从第 1 关到第 4 关的最小体力是 1→3→4 的 2+4=6（若计入起点 cost[1] 则为 9），均不等于题面所称的 7。该说法应判「错误」（同题在 2026-03-l6 中即录为「错误」）。已排除计分，请对照官方原卷核实。",
             question: `小杨在玩一个闯关游戏，从第 1 关走到第 4 关。每一关的体力消耗如下（下标表示关卡编号）：cost = [ 0, 3, 5, 2, 4 ]，其中 cost[i] 表示到达第 i 关需要消耗的体力，cost[0]=0 表示在开始状态，体力消耗为 0 。小杨每次可以从当前关卡 前进 1 步或 2 步。按照上述规则，从第 1 关到第 4 关所需消耗的最小体力为 7 。`,
             options: [
                 "正确",
