@@ -583,6 +583,8 @@ export const paperData = {
         {
             id: 16,
             type: "judge",
+            sourceIntegrity: "answer-key-suspect",
+            integrityNote: "本卷 10 道判断题的答案在数据里全部是「正确」，且解析全为占位模板。GESP 真题的判断题对错大致各半，整卷同值几乎可以肯定是答案未录入、被批量填成了默认值。本题已排除出计分与考点练习，待逐题对照官方原卷补录后恢复。",
             question: `构造函数是一种特殊的类成员函数，构造函数的名称和类名相同。但通过函数重载，可以创建多个同名的构 造函数，条件是每个构造函数的参数列表不同。`,
             options: [
                 "正确",
@@ -608,6 +610,8 @@ export const paperData = {
         {
             id: 17,
             type: "judge",
+            sourceIntegrity: "answer-key-suspect",
+            integrityNote: "本卷 10 道判断题的答案在数据里全部是「正确」，且解析全为占位模板。GESP 真题的判断题对错大致各半，整卷同值几乎可以肯定是答案未录入、被批量填成了默认值。本题已排除出计分与考点练习，待逐题对照官方原卷补录后恢复。",
             question: `类的静态成员函数既能访问类的静态数据成员，也能访问非静态数据成员。`,
             options: [
                 "正确",
@@ -633,6 +637,8 @@ export const paperData = {
         {
             id: 18,
             type: "judge",
+            sourceIntegrity: "answer-key-suspect",
+            integrityNote: "本卷 10 道判断题的答案在数据里全部是「正确」，且解析全为占位模板。GESP 真题的判断题对错大致各半，整卷同值几乎可以肯定是答案未录入、被批量填成了默认值。本题已排除出计分与考点练习，待逐题对照官方原卷补录后恢复。",
             question: `栈中元素的插入和删除操作都在栈的顶端进行，所以方便用单向链表实现。`,
             options: [
                 "正确",
@@ -658,6 +664,8 @@ export const paperData = {
         {
             id: 19,
             type: "judge",
+            sourceIntegrity: "answer-key-suspect",
+            integrityNote: "本卷 10 道判断题的答案在数据里全部是「正确」，且解析全为占位模板。GESP 真题的判断题对错大致各半，整卷同值几乎可以肯定是答案未录入、被批量填成了默认值。本题已排除出计分与考点练习，待逐题对照官方原卷补录后恢复。",
             question: `下面代码构建的树一定是完全二叉树： struct TreeNode { int value; TreeNode* left; TreeNode* right; }; TreeNode* buildCompleteBinaryTree() { TreeNode* root = new TreeNode{1}; root->left = new TreeNode{2}; root->right = new TreeNode{3}; root->left->left = new TreeNode{4}; root->left->right = new TreeNode{5}; root->right->left = new TreeNode{6}; return root; 1 2 3 4 5 6 7 8 9 10 11 12 13 14`,
             options: [
                 "正确",
@@ -683,6 +691,8 @@ export const paperData = {
         {
             id: 20,
             type: "judge",
+            sourceIntegrity: "answer-key-suspect",
+            integrityNote: "本卷 10 道判断题的答案在数据里全部是「正确」，且解析全为占位模板。GESP 真题的判断题对错大致各半，整卷同值几乎可以肯定是答案未录入、被批量填成了默认值。本题已排除出计分与考点练习，待逐题对照官方原卷补录后恢复。",
             question: `在二叉排序树中，左子树所有节点的值都大于根节点的值，右子树所有节点的值都小于根节点的值。`,
             options: [
                 "正确",
@@ -708,6 +718,8 @@ export const paperData = {
         {
             id: 21,
             type: "judge",
+            sourceIntegrity: "answer-key-suspect",
+            integrityNote: "本卷 10 道判断题的答案在数据里全部是「正确」，且解析全为占位模板。GESP 真题的判断题对错大致各半，整卷同值几乎可以肯定是答案未录入、被批量填成了默认值。本题已排除出计分与考点练习，待逐题对照官方原卷补录后恢复。",
             question: `在生成一个派生类的对象时，只调用派生类的构造函数。`,
             options: [
                 "正确",
@@ -760,6 +772,8 @@ export const paperData = {
         {
             id: 23,
             type: "judge",
+            sourceIntegrity: "answer-key-suspect",
+            integrityNote: "本卷 10 道判断题的答案在数据里全部是「正确」，且解析全为占位模板。GESP 真题的判断题对错大致各半，整卷同值几乎可以肯定是答案未录入、被批量填成了默认值。本题已排除出计分与考点练习，待逐题对照官方原卷补录后恢复。",
             question: `宽度优先搜索算法（ BFS ）保证了每个节点在最短路径的情况下被访问。`,
             options: [
                 "正确",
@@ -785,6 +799,8 @@ export const paperData = {
         {
             id: 24,
             type: "judge",
+            sourceIntegrity: "answer-key-suspect",
+            integrityNote: "本卷 10 道判断题的答案在数据里全部是「正确」，且解析全为占位模板。GESP 真题的判断题对错大致各半，整卷同值几乎可以肯定是答案未录入、被批量填成了默认值。本题已排除出计分与考点练习，待逐题对照官方原卷补录后恢复。",
             question: `在解决简单背包问题时，动态规划的状态转移方程如下： 该方程表示：在考虑第 i 个物品时，当前背包容量为 w，如果不放物品 i，则最大价值是 dp[i-1][w]；如果 放入物品 i，则最大价值是 dp[i-1][w-weights[i-1]]+values[i-1]，其中数组weights和values分 别表示所有物品的重量和价值，数组下标从0开始。`,
             options: [
                 "正确",
@@ -810,6 +826,8 @@ export const paperData = {
         {
             id: 25,
             type: "judge",
+            sourceIntegrity: "answer-key-suspect",
+            integrityNote: "本卷 10 道判断题的答案在数据里全部是「正确」，且解析全为占位模板。GESP 真题的判断题对错大致各半，整卷同值几乎可以肯定是答案未录入、被批量填成了默认值。本题已排除出计分与考点练习，待逐题对照官方原卷补录后恢复。",
             question: `栈中元素的插入和删除操作都在栈的顶端进行，所以方便用双向链表比单向链表更合适表实现。`,
             options: [
                 "正确",

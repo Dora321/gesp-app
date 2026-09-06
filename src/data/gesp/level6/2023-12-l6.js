@@ -578,6 +578,8 @@ export const paperData = {
         {
             id: 16,
             type: "judge",
+            sourceIntegrity: "answer-key-suspect",
+            integrityNote: "本卷 10 道判断题的答案在数据里全部是「正确」，且解析全为占位模板。GESP 真题的判断题对错大致各半，整卷同值几乎可以肯定是答案未录入、被批量填成了默认值。本题已排除出计分与考点练习，待逐题对照官方原卷补录后恢复。",
             question: `在面向对象中，方法在 C++ 的 class 中表现为 class 内定义的函数。 ( )`,
             options: [
                 "正确",
@@ -603,6 +605,8 @@ export const paperData = {
         {
             id: 17,
             type: "judge",
+            sourceIntegrity: "answer-key-suspect",
+            integrityNote: "本卷 10 道判断题的答案在数据里全部是「正确」，且解析全为占位模板。GESP 真题的判断题对错大致各半，整卷同值几乎可以肯定是答案未录入、被批量填成了默认值。本题已排除出计分与考点练习，待逐题对照官方原卷补录后恢复。",
             question: `C++ 类的定义中，可以没有构造函数，会给出默认的构造函数（ ）`,
             options: [
                 "正确",
@@ -628,6 +632,8 @@ export const paperData = {
         {
             id: 18,
             type: "judge",
+            sourceIntegrity: "answer-key-suspect",
+            integrityNote: "本卷 10 道判断题的答案在数据里全部是「正确」，且解析全为占位模板。GESP 真题的判断题对错大致各半，整卷同值几乎可以肯定是答案未录入、被批量填成了默认值。本题已排除出计分与考点练习，待逐题对照官方原卷补录后恢复。",
             question: `如果某个 C++ 对象（ object ）支持下标运算符（方括号运算符），则该对象在所对应 class 中以成员函数的形式 进行了重载。 ( )`,
             options: [
                 "正确",
@@ -653,6 +659,8 @@ export const paperData = {
         {
             id: 19,
             type: "judge",
+            sourceIntegrity: "answer-key-suspect",
+            integrityNote: "本卷 10 道判断题的答案在数据里全部是「正确」，且解析全为占位模板。GESP 真题的判断题对错大致各半，整卷同值几乎可以肯定是答案未录入、被批量填成了默认值。本题已排除出计分与考点练习，待逐题对照官方原卷补录后恢复。",
             question: `深度优先搜索（ DFS ， Depth First Search 的简写）属于图算法，其过程是对每一个可能的分支路径深入到不 能再深入为止，而且每个节点只能访问一次。 ( )`,
             options: [
                 "正确",
@@ -678,6 +686,8 @@ export const paperData = {
         {
             id: 20,
             type: "judge",
+            sourceIntegrity: "answer-key-suspect",
+            integrityNote: "本卷 10 道判断题的答案在数据里全部是「正确」，且解析全为占位模板。GESP 真题的判断题对错大致各半，整卷同值几乎可以肯定是答案未录入、被批量填成了默认值。本题已排除出计分与考点练习，待逐题对照官方原卷补录后恢复。",
             question: `哈夫曼编码（ Huffman Coding ）具有唯一性，因此有确定的压缩率。 ( )`,
             options: [
                 "正确",
@@ -703,6 +713,8 @@ export const paperData = {
         {
             id: 21,
             type: "judge",
+            sourceIntegrity: "answer-key-suspect",
+            integrityNote: "本卷 10 道判断题的答案在数据里全部是「正确」，且解析全为占位模板。GESP 真题的判断题对错大致各半，整卷同值几乎可以肯定是答案未录入、被批量填成了默认值。本题已排除出计分与考点练习，待逐题对照官方原卷补录后恢复。",
             question: `在下面 C++ 代码中，由于删除了变量 ptr，因此 ptr 所对应的数据也随之删除，故第 8 行代码被执行时， 将报错。（ ）`,
             options: [
                 "正确",
@@ -755,6 +767,8 @@ export const paperData = {
         {
             id: 23,
             type: "judge",
+            sourceIntegrity: "answer-key-suspect",
+            integrityNote: "本卷 10 道判断题的答案在数据里全部是「正确」，且解析全为占位模板。GESP 真题的判断题对错大致各半，整卷同值几乎可以肯定是答案未录入、被批量填成了默认值。本题已排除出计分与考点练习，待逐题对照官方原卷补录后恢复。",
             question: `二叉搜索树可以是空树（没有任何节点）或者单节点树（只有一个节点），或者多节点。如果是多节点，则 左节点的值小于父节点的值，右节点的值大于父节点的值，由此推理，右节点树的值都大于根节点的值，左节点树 的值都小于根节点的值。（ ）`,
             options: [
                 "正确",
@@ -780,6 +794,8 @@ export const paperData = {
         {
             id: 24,
             type: "judge",
+            sourceIntegrity: "answer-key-suspect",
+            integrityNote: "本卷 10 道判断题的答案在数据里全部是「正确」，且解析全为占位模板。GESP 真题的判断题对错大致各半，整卷同值几乎可以肯定是答案未录入、被批量填成了默认值。本题已排除出计分与考点练习，待逐题对照官方原卷补录后恢复。",
             question: `小杨想写一个程序来算出正整数 N 有多少个因数，经过思考他写出了一个重复没有超过 N/2 次的循环就能够算 出来了。（ ）`,
             options: [
                 "正确",
@@ -803,6 +819,8 @@ export const paperData = {
         {
             id: 25,
             type: "judge",
+            sourceIntegrity: "answer-key-suspect",
+            integrityNote: "本卷 10 道判断题的答案在数据里全部是「正确」，且解析全为占位模板。GESP 真题的判断题对错大致各半，整卷同值几乎可以肯定是答案未录入、被批量填成了默认值。本题已排除出计分与考点练习，待逐题对照官方原卷补录后恢复。",
             question: `同样的整数序列分别保存在单链表和双向链中，这两种链表上的简单冒泡排序的复杂度相同。（ ）`,
             options: [
                 "正确",

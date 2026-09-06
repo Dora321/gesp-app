@@ -573,6 +573,8 @@ export const paperData = {
         {
             id: 16,
             type: "judge",
+            sourceIntegrity: "answer-key-suspect",
+            integrityNote: "本卷 10 道判断题的答案在数据里全部是「正确」，且解析全为占位模板。GESP 真题的判断题对错大致各半，整卷同值几乎可以肯定是答案未录入、被批量填成了默认值。本题已排除出计分与考点练习，待逐题对照官方原卷补录后恢复。",
             question: `TCP/IP的传输层的两个不同的协议分别是UDP和TCP。`,
             options: [
                 "正确",
@@ -598,6 +600,8 @@ export const paperData = {
         {
             id: 17,
             type: "judge",
+            sourceIntegrity: "answer-key-suspect",
+            integrityNote: "本卷 10 道判断题的答案在数据里全部是「正确」，且解析全为占位模板。GESP 真题的判断题对错大致各半，整卷同值几乎可以肯定是答案未录入、被批量填成了默认值。本题已排除出计分与考点练习，待逐题对照官方原卷补录后恢复。",
             question: `5G网络中，5G中的G表示Gigabytes/s，其中 1 GB = 1024 MB。`,
             options: [
                 "正确",
@@ -623,6 +627,8 @@ export const paperData = {
         {
             id: 18,
             type: "judge",
+            sourceIntegrity: "answer-key-suspect",
+            integrityNote: "本卷 10 道判断题的答案在数据里全部是「正确」，且解析全为占位模板。GESP 真题的判断题对错大致各半，整卷同值几乎可以肯定是答案未录入、被批量填成了默认值。本题已排除出计分与考点练习，待逐题对照官方原卷补录后恢复。",
             question: `在面向对象中，类是对象的实例。`,
             options: [
                 "正确",
@@ -648,6 +654,8 @@ export const paperData = {
         {
             id: 19,
             type: "judge",
+            sourceIntegrity: "answer-key-suspect",
+            integrityNote: "本卷 10 道判断题的答案在数据里全部是「正确」，且解析全为占位模板。GESP 真题的判断题对错大致各半，整卷同值几乎可以肯定是答案未录入、被批量填成了默认值。本题已排除出计分与考点练习，待逐题对照官方原卷补录后恢复。",
             question: `在C++类的定义中，使用 static修饰符定义的静态成员被该类的所有对象共享。`,
             options: [
                 "正确",
@@ -673,6 +681,8 @@ export const paperData = {
         {
             id: 20,
             type: "judge",
+            sourceIntegrity: "answer-key-suspect",
+            integrityNote: "本卷 10 道判断题的答案在数据里全部是「正确」，且解析全为占位模板。GESP 真题的判断题对错大致各半，整卷同值几乎可以肯定是答案未录入、被批量填成了默认值。本题已排除出计分与考点练习，待逐题对照官方原卷补录后恢复。",
             question: `在C++类的定义中，可以定义初始化函数或运算符函数等。`,
             options: [
                 "正确",
@@ -698,6 +708,8 @@ export const paperData = {
         {
             id: 21,
             type: "judge",
+            sourceIntegrity: "answer-key-suspect",
+            integrityNote: "本卷 10 道判断题的答案在数据里全部是「正确」，且解析全为占位模板。GESP 真题的判断题对错大致各半，整卷同值几乎可以肯定是答案未录入、被批量填成了默认值。本题已排除出计分与考点练习，待逐题对照官方原卷补录后恢复。",
             question: `DFS是深度优先算法的英文简写。`,
             options: [
                 "正确",
@@ -723,6 +735,8 @@ export const paperData = {
         {
             id: 22,
             type: "judge",
+            sourceIntegrity: "answer-key-suspect",
+            integrityNote: "本卷 10 道判断题的答案在数据里全部是「正确」，且解析全为占位模板。GESP 真题的判断题对错大致各半，整卷同值几乎可以肯定是答案未录入、被批量填成了默认值。本题已排除出计分与考点练习，待逐题对照官方原卷补录后恢复。",
             question: `哈夫曼编码是一种有损压缩算法。`,
             options: [
                 "正确",
@@ -748,6 +762,8 @@ export const paperData = {
         {
             id: 23,
             type: "judge",
+            sourceIntegrity: "answer-key-suspect",
+            integrityNote: "本卷 10 道判断题的答案在数据里全部是「正确」，且解析全为占位模板。GESP 真题的判断题对错大致各半，整卷同值几乎可以肯定是答案未录入、被批量填成了默认值。本题已排除出计分与考点练习，待逐题对照官方原卷补录后恢复。",
             question: `有些算法或数据结构在C/C++语言中使用指针实现，一个典型的例子就是链表。因此，链表这一数据结构在 C/C++语言中只能使用指针来实现。`,
             options: [
                 "正确",
@@ -800,6 +816,8 @@ export const paperData = {
         {
             id: 25,
             type: "judge",
+            sourceIntegrity: "answer-key-suspect",
+            integrityNote: "本卷 10 道判断题的答案在数据里全部是「正确」，且解析全为占位模板。GESP 真题的判断题对错大致各半，整卷同值几乎可以肯定是答案未录入、被批量填成了默认值。本题已排除出计分与考点练习，待逐题对照官方原卷补录后恢复。",
             question: `二叉搜索树的左右子树也是二叉搜索树。`,
             options: [
                 "正确",

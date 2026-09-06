@@ -582,6 +582,8 @@ int knapsack(int W, const vector<int>& weights,
         {
             id: 16,
             type: "judge",
+            sourceIntegrity: "answer-key-suspect",
+            integrityNote: "本卷 10 道判断题的答案在数据里全部是「正确」，且解析全为占位模板。GESP 真题的判断题对错大致各半，整卷同值几乎可以肯定是答案未录入、被批量填成了默认值。本题已排除出计分与考点练习，待逐题对照官方原卷补录后恢复。",
             question: `C++ 、 Python 和 JAVA 等都是面向对象的编程语言。`,
             options: [
                 "正确",
@@ -607,6 +609,8 @@ int knapsack(int W, const vector<int>& weights,
         {
             id: 17,
             type: "judge",
+            sourceIntegrity: "answer-key-suspect",
+            integrityNote: "本卷 10 道判断题的答案在数据里全部是「正确」，且解析全为占位模板。GESP 真题的判断题对错大致各半，整卷同值几乎可以肯定是答案未录入、被批量填成了默认值。本题已排除出计分与考点练习，待逐题对照官方原卷补录后恢复。",
             question: `在 C++ 中，类的静态成员变量只能被该类对象的成员函数访问。`,
             options: [
                 "正确",
@@ -632,6 +636,8 @@ int knapsack(int W, const vector<int>& weights,
         {
             id: 18,
             type: "judge",
+            sourceIntegrity: "answer-key-suspect",
+            integrityNote: "本卷 10 道判断题的答案在数据里全部是「正确」，且解析全为占位模板。GESP 真题的判断题对错大致各半，整卷同值几乎可以肯定是答案未录入、被批量填成了默认值。本题已排除出计分与考点练习，待逐题对照官方原卷补录后恢复。",
             question: `栈是一种线性结构，可通过数组或链表来实现。二者相比，数组实现占用的内存较少，链表实现的入队和出 队操作的时间复杂度较低。`,
             options: [
                 "正确",
@@ -657,6 +663,8 @@ int knapsack(int W, const vector<int>& weights,
         {
             id: 19,
             type: "judge",
+            sourceIntegrity: "answer-key-suspect",
+            integrityNote: "本卷 10 道判断题的答案在数据里全部是「正确」，且解析全为占位模板。GESP 真题的判断题对错大致各半，整卷同值几乎可以肯定是答案未录入、被批量填成了默认值。本题已排除出计分与考点练习，待逐题对照官方原卷补录后恢复。",
             question: `运行以下 C++ 代码，屏幕将输出 “derived class” 。 dp[i][w] = max(dp[i-1][w], dp[i-1][w-weights[i-1]]+values[i-1]); } else { dp[i][w] = dp[i-1][w]; } } } return dp[n][W]; } 12 13 14 15 16 17 18 19 20 21 22 #include <iostream> using namespace std; class base { public: virtual void show() { cout << "base class" << endl; } }; class derived : public base { public: void show() override { cout << "derived class" << endl; } }; int main() { base* b; derived d; b = &d; 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21`,
             options: [
                 "正确",
@@ -682,6 +690,8 @@ int knapsack(int W, const vector<int>& weights,
         {
             id: 20,
             type: "judge",
+            sourceIntegrity: "answer-key-suspect",
+            integrityNote: "本卷 10 道判断题的答案在数据里全部是「正确」，且解析全为占位模板。GESP 真题的判断题对错大致各半，整卷同值几乎可以肯定是答案未录入、被批量填成了默认值。本题已排除出计分与考点练习，待逐题对照官方原卷补录后恢复。",
             question: `如下列代码所示的基类（ base ）及其派生类（ derived ），则生成一个派生类的对象时，只调用派生类的构造 函数。`,
             options: [
                 "正确",
@@ -707,6 +717,8 @@ int knapsack(int W, const vector<int>& weights,
         {
             id: 21,
             type: "judge",
+            sourceIntegrity: "answer-key-suspect",
+            integrityNote: "本卷 10 道判断题的答案在数据里全部是「正确」，且解析全为占位模板。GESP 真题的判断题对错大致各半，整卷同值几乎可以肯定是答案未录入、被批量填成了默认值。本题已排除出计分与考点练习，待逐题对照官方原卷补录后恢复。",
             question: `哈夫曼编码本质上是一种贪心策略。`,
             options: [
                 "正确",
@@ -759,6 +771,8 @@ int knapsack(int W, const vector<int>& weights,
         {
             id: 23,
             type: "judge",
+            sourceIntegrity: "answer-key-suspect",
+            integrityNote: "本卷 10 道判断题的答案在数据里全部是「正确」，且解析全为占位模板。GESP 真题的判断题对错大致各半，整卷同值几乎可以肯定是答案未录入、被批量填成了默认值。本题已排除出计分与考点练习，待逐题对照官方原卷补录后恢复。",
             question: `在非递归实现的树的广度优先搜索中，通常使用栈来辅助实现。`,
             options: [
                 "正确",
@@ -784,6 +798,8 @@ int knapsack(int W, const vector<int>& weights,
         {
             id: 24,
             type: "judge",
+            sourceIntegrity: "answer-key-suspect",
+            integrityNote: "本卷 10 道判断题的答案在数据里全部是「正确」，且解析全为占位模板。GESP 真题的判断题对错大致各半，整卷同值几乎可以肯定是答案未录入、被批量填成了默认值。本题已排除出计分与考点练习，待逐题对照官方原卷补录后恢复。",
             question: `状态转移方程是动态规划的核心，可以通过递推方式表示问题状态的变化。`,
             options: [
                 "正确",
@@ -809,6 +825,8 @@ int knapsack(int W, const vector<int>& weights,
         {
             id: 25,
             type: "judge",
+            sourceIntegrity: "answer-key-suspect",
+            integrityNote: "本卷 10 道判断题的答案在数据里全部是「正确」，且解析全为占位模板。GESP 真题的判断题对错大致各半，整卷同值几乎可以肯定是答案未录入、被批量填成了默认值。本题已排除出计分与考点练习，待逐题对照官方原卷补录后恢复。",
             question: `应用动态规划算法时，识别并存储重叠子问题的解是必须的。`,
             options: [
                 "正确",

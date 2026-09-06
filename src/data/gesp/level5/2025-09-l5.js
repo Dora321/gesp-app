@@ -584,6 +584,8 @@ Node* removeElements(Node* head, int val) {
         {
             id: 16,
             type: "judge",
+            sourceIntegrity: "answer-key-suspect",
+            integrityNote: "本卷 10 道判断题的答案在数据里全部是「正确」，且解析全为占位模板。GESP 真题的判断题对错大致各半，整卷同值几乎可以肯定是答案未录入、被批量填成了默认值。本题已排除出计分与考点练习，待逐题对照官方原卷补录后恢复。",
             question: `基于下面定义的函数，通过判断 isDivisibleBy9(n) == isDigitSumDivisibleBy9(n)，可用于验算：如果一个数能被 9 整除，则它的各位数字之和也能被 9 整除。`,
             options: [
                 "正确",
@@ -607,6 +609,8 @@ Node* removeElements(Node* head, int val) {
         {
             id: 17,
             type: "judge",
+            sourceIntegrity: "answer-key-suspect",
+            integrityNote: "本卷 10 道判断题的答案在数据里全部是「正确」，且解析全为占位模板。GESP 真题的判断题对错大致各半，整卷同值几乎可以肯定是答案未录入、被批量填成了默认值。本题已排除出计分与考点练习，待逐题对照官方原卷补录后恢复。",
             question: `假设函数gcd()能正确求两个正整数的最大公约数，则下面的findMusicalPattern(4 ， 6)函数返回 2 。`,
             options: [
                 "正确",
@@ -632,6 +636,8 @@ Node* removeElements(Node* head, int val) {
         {
             id: 18,
             type: "judge",
+            sourceIntegrity: "answer-key-suspect",
+            integrityNote: "本卷 10 道判断题的答案在数据里全部是「正确」，且解析全为占位模板。GESP 真题的判断题对错大致各半，整卷同值几乎可以肯定是答案未录入、被批量填成了默认值。本题已排除出计分与考点练习，待逐题对照官方原卷补录后恢复。",
             question: `下面递归实现的斐波那契数列的时间复杂度为指数级。`,
             options: [
                 "正确",
@@ -657,6 +663,8 @@ Node* removeElements(Node* head, int val) {
         {
             id: 19,
             type: "judge",
+            sourceIntegrity: "answer-key-suspect",
+            integrityNote: "本卷 10 道判断题的答案在数据里全部是「正确」，且解析全为占位模板。GESP 真题的判断题对错大致各半，整卷同值几乎可以肯定是答案未录入、被批量填成了默认值。本题已排除出计分与考点练习，待逐题对照官方原卷补录后恢复。",
             question: `链表通过更改指针实现高效的结点插入与删除，但结点访问效率低、占用内存较多，且对缓存利用不友好。`,
             options: [
                 "正确",
@@ -682,6 +690,8 @@ Node* removeElements(Node* head, int val) {
         {
             id: 20,
             type: "judge",
+            sourceIntegrity: "answer-key-suspect",
+            integrityNote: "本卷 10 道判断题的答案在数据里全部是「正确」，且解析全为占位模板。GESP 真题的判断题对错大致各半，整卷同值几乎可以肯定是答案未录入、被批量填成了默认值。本题已排除出计分与考点练习，待逐题对照官方原卷补录后恢复。",
             question: `二分查找依赖数据的有序性，通过循环逐步缩减一半搜索区间来进行查找，且仅适用于数组或基于数组实现的数据结构。`,
             options: [
                 "正确",
@@ -707,6 +717,8 @@ Node* removeElements(Node* head, int val) {
         {
             id: 21,
             type: "judge",
+            sourceIntegrity: "answer-key-suspect",
+            integrityNote: "本卷 10 道判断题的答案在数据里全部是「正确」，且解析全为占位模板。GESP 真题的判断题对错大致各半，整卷同值几乎可以肯定是答案未录入、被批量填成了默认值。本题已排除出计分与考点练习，待逐题对照官方原卷补录后恢复。",
             question: `线性筛的关键性质是“每个合数只会被其最小质因子筛到一次”，因此其时间复杂度为 $O(N)$。`,
             options: [
                 "正确",
@@ -732,6 +744,8 @@ Node* removeElements(Node* head, int val) {
         {
             id: 22,
             type: "judge",
+            sourceIntegrity: "answer-key-suspect",
+            integrityNote: "本卷 10 道判断题的答案在数据里全部是「正确」，且解析全为占位模板。GESP 真题的判断题对错大致各半，整卷同值几乎可以肯定是答案未录入、被批量填成了默认值。本题已排除出计分与考点练习，待逐题对照官方原卷补录后恢复。",
             question: `快速排序和归并排序都是稳定的排序算法。`,
             options: [
                 "正确",
@@ -784,6 +798,8 @@ Node* removeElements(Node* head, int val) {
         {
             id: 24,
             type: "judge",
+            sourceIntegrity: "answer-key-suspect",
+            integrityNote: "本卷 10 道判断题的答案在数据里全部是「正确」，且解析全为占位模板。GESP 真题的判断题对错大致各半，整卷同值几乎可以肯定是答案未录入、被批量填成了默认值。本题已排除出计分与考点练习，待逐题对照官方原卷补录后恢复。",
             question: `所有递归算法都可以转换为迭代算法。`,
             options: [
                 "正确",
@@ -809,6 +825,8 @@ Node* removeElements(Node* head, int val) {
         {
             id: 25,
             type: "judge",
+            sourceIntegrity: "answer-key-suspect",
+            integrityNote: "本卷 10 道判断题的答案在数据里全部是「正确」，且解析全为占位模板。GESP 真题的判断题对错大致各半，整卷同值几乎可以肯定是答案未录入、被批量填成了默认值。本题已排除出计分与考点练习，待逐题对照官方原卷补录后恢复。",
             question: `贪心算法并不总能得到全局最优解。`,
             options: [
                 "正确",

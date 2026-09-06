@@ -588,6 +588,8 @@ continue 语句常用于循环中跳过特定条件的处理，但需注意其�
     {
       id: 16,
       type: 'judge',
+      sourceIntegrity: "answer-key-suspect",
+      integrityNote: "本卷 10 道判断题的答案在数据里全部是「错误」，且解析全为占位模板。GESP 真题的判断题对错大致各半，整卷同值几乎可以肯定是答案未录入、被批量填成了默认值。本题已排除出计分与考点练习，待逐题对照官方原卷补录后恢复。",
       question: `鸿蒙是华为公司开发的一款操作系统，那么它能够将正确的源程序翻译成目标程序，并运行。`,
       options: ['正确', '错误'],
       answer: 1,
@@ -618,6 +620,8 @@ C++ 代码从源码到可执行文件一般经过四个阶段：预处理（.cpp
     {
       id: 17,
       type: 'judge',
+      sourceIntegrity: "answer-key-suspect",
+      integrityNote: "本卷 10 道判断题的答案在数据里全部是「错误」，且解析全为占位模板。GESP 真题的判断题对错大致各半，整卷同值几乎可以肯定是答案未录入、被批量填成了默认值。本题已排除出计分与考点练习，待逐题对照官方原卷补录后恢复。",
       question: `C++表达式 \`10 * 4 % 6\` 和 \`10 * 2 % 3\` 的结果相同。`,
       options: ['正确', '错误'],
       answer: 1,
@@ -653,6 +657,8 @@ C++ 代码从源码到可执行文件一般经过四个阶段：预处理（.cpp
     {
       id: 18,
       type: 'judge',
+      sourceIntegrity: "answer-key-suspect",
+      integrityNote: "本卷 10 道判断题的答案在数据里全部是「错误」，且解析全为占位模板。GESP 真题的判断题对错大致各半，整卷同值几乎可以肯定是答案未录入、被批量填成了默认值。本题已排除出计分与考点练习，待逐题对照官方原卷补录后恢复。",
       question: `下面C++代码执行后输出 0。\n\`\`\`cpp\nint i;\nfor (i = 0; i < 10; i++)\n if (i % 3 == 0)\n continue;\ncout << i;\n\`\`\``,
       options: ['正确', '错误'],
       answer: 1,
@@ -690,6 +696,8 @@ continue 语句在循环中的作用是"跳过本次循环剩余语句，直接�
     {
       id: 19,
       type: 'judge',
+      sourceIntegrity: "answer-key-suspect",
+      integrityNote: "本卷 10 道判断题的答案在数据里全部是「错误」，且解析全为占位模板。GESP 真题的判断题对错大致各半，整卷同值几乎可以肯定是答案未录入、被批量填成了默认值。本题已排除出计分与考点练习，待逐题对照官方原卷补录后恢复。",
       question: `下面C++代码中的 \`i > -10; i--\` 改为 \`i < 10; i++\` 执行结果相同。\n\`\`\`cpp\nint tnt = 0;\nfor (int i = 0; i > -10; i--){\n if (i < 0)\n i = -i;\n tnt += i;\n}\ncout << tnt;\n\`\`\``,
       options: ['正确', '错误'],
       answer: 1,
@@ -733,6 +741,8 @@ continue 语句在循环中的作用是"跳过本次循环剩余语句，直接�
     {
       id: 20,
       type: 'judge',
+      sourceIntegrity: "answer-key-suspect",
+      integrityNote: "本卷 10 道判断题的答案在数据里全部是「错误」，且解析全为占位模板。GESP 真题的判断题对错大致各半，整卷同值几乎可以肯定是答案未录入、被批量填成了默认值。本题已排除出计分与考点练习，待逐题对照官方原卷补录后恢复。",
       question: `下面C++代码执行后将输出 99，因为 \`i < 100\` 不包括 100，而是到 99。\n\`\`\`cpp\nint cnt = 0;\nfor (int i = 0; i < 100; i++)\n cnt++;\ncout << cnt;\n\`\`\``,
       options: ['正确', '错误'],
       answer: 1,
@@ -772,6 +782,8 @@ continue 语句在循环中的作用是"跳过本次循环剩余语句，直接�
     {
       id: 21,
       type: 'judge',
+      sourceIntegrity: "answer-key-suspect",
+      integrityNote: "本卷 10 道判断题的答案在数据里全部是「错误」，且解析全为占位模板。GESP 真题的判断题对错大致各半，整卷同值几乎可以肯定是答案未录入、被批量填成了默认值。本题已排除出计分与考点练习，待逐题对照官方原卷补录后恢复。",
       question: `下面C++代码执行后，其输出为 \`N % 10\`。\n\`\`\`cpp\nint N;\ncin >> N;\nwhile (N > 10)\n N /= 10;\ncout << N;\n\`\`\``,
       options: ['正确', '错误'],
       answer: 1,
@@ -799,6 +811,8 @@ continue 语句在循环中的作用是"跳过本次循环剩余语句，直接�
     {
       id: 22,
       type: 'judge',
+      sourceIntegrity: "answer-key-suspect",
+      integrityNote: "本卷 10 道判断题的答案在数据里全部是「错误」，且解析全为占位模板。GESP 真题的判断题对错大致各半，整卷同值几乎可以肯定是答案未录入、被批量填成了默认值。本题已排除出计分与考点练习，待逐题对照官方原卷补录后恢复。",
       question: `执行下面C++代码，如果输入 7，将输出 'Y' ；如果输入 8，将输出 'N'。\n\`\`\`cpp\nint N;\ncin >> N;\nif (N > 5 || N < 10 && N % 2 != 0)\n cout << 'Y';\nelse\n cout << 'N';\n\`\`\``,
       options: ['正确', '错误'],
       answer: 1,
@@ -826,6 +840,8 @@ continue 语句在循环中的作用是"跳过本次循环剩余语句，直接�
     {
       id: 23,
       type: 'judge',
+      sourceIntegrity: "answer-key-suspect",
+      integrityNote: "本卷 10 道判断题的答案在数据里全部是「错误」，且解析全为占位模板。GESP 真题的判断题对错大致各半，整卷同值几乎可以肯定是答案未录入、被批量填成了默认值。本题已排除出计分与考点练习，待逐题对照官方原卷补录后恢复。",
       question: `把 C++ 代码中所有 \`cout << a;\` 改为 \`printf("%d", &a);\` ，执行结果可能仍然相同。`,
       options: ['正确', '错误'],
       answer: 1,
@@ -852,6 +868,8 @@ C++ 中 \`printf\` 来自 C 语言库，\`cout\` 是 C++ 的流对象。两者�
     {
       id: 24,
       type: 'judge',
+      sourceIntegrity: "answer-key-suspect",
+      integrityNote: "本卷 10 道判断题的答案在数据里全部是「错误」，且解析全为占位模板。GESP 真题的判断题对错大致各半，整卷同值几乎可以肯定是答案未录入、被批量填成了默认值。本题已排除出计分与考点练习，待逐题对照官方原卷补录后恢复。",
       question: `如果 x 是C++代码中的 \`double\` 型变量，则对 \`cout << ( x? 1227 : 12.27);\` 编译时将报错，因为 1227 和 12.27 分别是 \`int\` 和 \`double\` 类型，导致识别混乱。`,
       options: ['正确', '错误'],
       answer: 1,
@@ -879,6 +897,8 @@ C++ 中 \`printf\` 来自 C 语言库，\`cout\` 是 C++ 的流对象。两者�
     {
       id: 25,
       type: 'judge',
+      sourceIntegrity: "answer-key-suspect",
+      integrityNote: "本卷 10 道判断题的答案在数据里全部是「错误」，且解析全为占位模板。GESP 真题的判断题对错大致各半，整卷同值几乎可以肯定是答案未录入、被批量填成了默认值。本题已排除出计分与考点练习，待逐题对照官方原卷补录后恢复。",
       question: `在C++代码中，不可以将变量命名为 \`keyword\` ，因为它是C++语言的关键字。`,
       options: ['正确', '错误'],
       answer: 1,

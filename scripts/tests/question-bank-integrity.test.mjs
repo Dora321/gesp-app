@@ -2,6 +2,7 @@ import test from 'node:test';
 import assert from 'node:assert/strict';
 import {
   getBrokenPresentationErrors,
+  getUniformJudgeAnswerErrors,
   getUnrecoverableAdmissionErrors,
   getDroppedFormulaErrors,
   getObjectiveStemIntegrityErrors,
@@ -259,4 +260,45 @@ test('no objective question ships an unflagged unrecoverable admission', async (
     }
   }
   assert.deepEqual(unflagged, [], `这些题的解析自认无法推导，必须标记：${unflagged.join(', ')}`);
+});
+
+// GESP 每卷 10 道判断题，真题里对错大致各半。一整卷答案全是同一个值不是巧合，
+// 而是这批答案根本没录入、被填了默认值——本库曾有 11 张卷子如此，合计 103 道，
+// 且它们的解析无一例外都是占位模板，两个证据互相印证。
+//
+// 这类题最危险：题面完整、看不出任何异常，学生照着做、照着对答案，却有近一半
+// 会被判反。
+test('a paper never records the same answer for all of its judge questions', () => {
+  const uniform = getUniformJudgeAnswerErrors({
+    id: 'fixture',
+    questions: Array.from({ length: 10 }, (_, index) => ({ id: index + 1, type: 'judge', answer: 0 })),
+  }, 'fixture');
+  assert.equal(uniform.length, 1);
+  assert.match(uniform[0], /答案全是「正确」/);
+
+  // 对错混合是正常的，不能误报。
+  const mixed = getUniformJudgeAnswerErrors({
+    id: 'fixture',
+    questions: Array.from({ length: 10 }, (_, index) => ({ id: index + 1, type: 'judge', answer: index % 2 })),
+  }, 'fixture');
+  assert.deepEqual(mixed, []);
+
+  // 已经标记过的题不再重复报告，否则修好之后门禁永远红着。
+  const flagged = getUniformJudgeAnswerErrors({
+    id: 'fixture',
+    questions: Array.from({ length: 10 }, (_, index) => ({
+      id: index + 1, type: 'judge', answer: 0, sourceIntegrity: 'answer-key-suspect',
+    })),
+  }, 'fixture');
+  assert.deepEqual(flagged, []);
+});
+
+test('no official paper ships an unflagged uniform judge answer key', async () => {
+  const offenders = [];
+  for (const paperId of paperIds) {
+    if (paperMeta[paperId]?.unofficial) continue;
+    const paper = await getPaper(paperId);
+    offenders.push(...getUniformJudgeAnswerErrors(paper, paperId));
+  }
+  assert.deepEqual(offenders, [], `整卷判断题答案同值：\n${offenders.join('\n')}`);
 });

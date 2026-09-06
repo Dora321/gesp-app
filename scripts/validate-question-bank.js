@@ -177,6 +177,33 @@ export const getUnrecoverableAdmissionErrors = (question, questionId = question?
     : [];
 };
 
+/**
+ * 整卷判断题答案是否全都是同一个值。
+ *
+ * GESP 每卷有 10 道判断题，真题里对错大致各半。若一整卷 10 道答案全是「正确」，
+ * 那不是巧合——是这批答案根本没录入，被批量填成了默认值。本库里有 10 张卷子
+ * 正是如此（合计 100 道），且它们的解析无一例外都是模板占位符，两个证据互相印证。
+ *
+ * 这类题最危险：题面完整、看不出任何异常，学生照着做、照着对答案，
+ * 却有近一半会被判反。
+ */
+export const getUniformJudgeAnswerErrors = (paper, paperId = paper?.id || '?') => {
+  const judges = (paper?.questions || []).filter(question => question.type === 'judge');
+  if (judges.length < 6) return [];
+
+  const unflagged = judges.filter(question => !question.sourceIntegrity);
+  if (unflagged.length < 6) return [];
+
+  const answers = new Set(unflagged.map(question => question.answer));
+  if (answers.size > 1) return [];
+
+  const value = [...answers][0] === 0 ? '正确' : '错误';
+  return [
+    `[INTEGRITY] ${paperId}: ${unflagged.length} 道判断题的答案全是「${value}」，`
+    + '几乎可以肯定是整批未录入而填了默认值，需要逐题对照原卷补录',
+  ];
+};
+
 export const getObjectiveStemIntegrityErrors = (question, questionId = question?.id || '?') => {
   if (!['single', 'judge'].includes(question?.type) || question.sourceIntegrity) return [];
 
@@ -378,6 +405,7 @@ async function validateFile(filePath, cfg) {
 
   // Question validation
   const questions = paper.questions || [];
+  errors.push(...getUniformJudgeAnswerErrors(paper, paperId));
   const officialQuestionChunks = getOfficialQuestionChunks(paperId);
   questions.forEach((q, index) => {
     const qId = q.id || `idx_${index}`;
