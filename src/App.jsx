@@ -5,6 +5,7 @@ import { BrowserRouter, Routes, Route, Navigate, useLocation } from 'react-route
 import ScrollToTop from './components/ScrollToTop';
 import ErrorBoundary from './components/ErrorBoundary';
 import RouteSeo from './components/RouteSeo';
+import PageAnnotations from './components/PageAnnotations';
 
 // Lazy loaded: route-level pages — only fetched when user navigates to them
 const Home = lazy(() => import('./Home'));
@@ -188,6 +189,7 @@ function App() {
           </Routes>
         </Suspense>
         <GlobalWidgets />
+        <PageAnnotations />
       </ErrorBoundary>
     </BrowserRouter>
   );
