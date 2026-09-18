@@ -1,3 +1,4 @@
+import CppProgrammingPractice from './CppProgrammingPractice';
 import { getCppL3LessonSupport } from '../data/cppL3CourseFlow';
 import LessonNextSteps from './LessonNextSteps';
 import LessonQualityBar, { LessonStartCard } from './LessonQualityBar';
@@ -9,6 +10,7 @@ export default function CppL3LessonSupport({ lessonId, placement = 'top' }) {
 
   if (placement === 'bottom') {
     return (<>
+      <CppProgrammingPractice level={3} lessonId={lessonId} />
       <LessonQualityBar {...support.quality} phase="review" />
       <LessonNextSteps
         previous={support.previous}

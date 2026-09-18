@@ -2,6 +2,7 @@ import { ArrowRight, BookOpenCheck, ClipboardCheck, Route, Target } from 'lucide
 import { getCppLevelSupport } from '../data/cppLevelFlow';
 import LessonNextSteps from './LessonNextSteps';
 import LessonQualityBar from './LessonQualityBar';
+import { CppProgrammingRoadmap } from './CppProgrammingPractice';
 
 const accents = {
   blue: {
@@ -107,6 +108,7 @@ export default function CppLevelSupport({ level, placement = 'top' }) {
   return (
     <>
       <LevelBrief support={support} />
+      <CppProgrammingRoadmap level={level} />
       <LessonQualityBar
         goals={support.goals}
         deliverables={support.deliverables}

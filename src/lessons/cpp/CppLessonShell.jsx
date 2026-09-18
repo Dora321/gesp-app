@@ -1,3 +1,4 @@
+import useLessonPracticeAnchor from '../../hooks/useLessonPracticeAnchor';
 import { useEffect, useMemo, useRef, useState } from 'react';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { ArrowRight, Home } from 'lucide-react';
@@ -65,6 +66,8 @@ export default function CppLessonShell({
     useEffect(() => {
         recordLessonVisit(location.pathname);
     }, [location.pathname]);
+
+    useLessonPracticeAnchor(sections, activeSection, setActiveSection);
 
     const goPrev = () => {
         if (!isFirst) {

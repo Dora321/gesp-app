@@ -1,3 +1,4 @@
+import useLessonPracticeAnchor from '../../hooks/useLessonPracticeAnchor';
 import React, { useEffect, useRef, useState } from 'react';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { ArrowRight } from 'lucide-react';
@@ -78,6 +79,8 @@ export default function LegacyCppLessonShell({
   useEffect(() => {
     scrollRef.current?.scrollTo({ top: 0 });
   }, [activeSection]);
+
+  useLessonPracticeAnchor(sections, activeSection, setActiveSection);
 
   const goToSection = (sectionId) => {
     setActiveSection(sectionId);
