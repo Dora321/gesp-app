@@ -1,0 +1,837 @@
+<!DOCTYPE html>
+<html lang="zh-CN" data-themes="memphis-pop,neo-brutalism,soft-pastel,minimal-white" data-theme-base="../assets/themes/">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>第 1 课 · 让小灯亮起来</title>
+<link rel="stylesheet" href="../assets/fonts.css">
+<link rel="stylesheet" href="../assets/base.css">
+<link rel="stylesheet" id="theme-link" href="../assets/themes/memphis-pop.css">
+<link rel="stylesheet" href="../assets/animations/animations.css">
+<link rel="stylesheet" href="../assets/course.css">
+</head>
+<body class="kc">
+<div class="deck">
+
+<!-- ═══════════════ 1 · 封面 ═══════════════ -->
+<section class="slide full-center" data-title="开场 · 封面">
+  <div style="text-align:center">
+    <span class="chip cyan" data-anim="fade-down">15 节科创探究课 · 第一单元「电路是怎么工作的？」</span>
+    <h1 class="hero mt-m" data-anim="rise-in">第 1 课<br>让小灯亮起来</h1>
+    <p class="h3 mt-m" data-anim="fade-up" style="font-weight:700;color:var(--text-2)">
+      一颗电池　两根线　一个小灯珠
+    </p>
+    <div class="row mt-l" style="justify-content:center;gap:14px;flex-wrap:wrap" data-anim="fade-up">
+      <span class="chip">90 分钟 · 两节连堂</span>
+      <span class="chip yellow">动手为主</span>
+      <span class="chip pink">每人一套器材</span>
+    </div>
+  </div>
+  <aside class="notes">
+    <p>开场<strong>先别发器材</strong>。手里拿一个已经点亮的 LED，走一圈，让每个孩子都看清楚。</p>
+    <p>「今天每个人手里都会有一盏灯。<strong>不是台灯，不是手电</strong>——就一颗电池、两根线、一个比米粒还小的灯珠。谁能让它亮起来？」</p>
+    <p>心里记住今天的<strong>保底目标</strong>：每人独立点亮一次，并且能说出「<strong>长脚接＋</strong>」。只要这两条做到了，这节课就是成功的，其他都是加分。</p>
+    <p>还有一句提醒给自己：今天九成的失败来自<strong>鳄鱼夹夹错位置</strong>，不是孩子想错了。巡视的时候先看夹子，再看逻辑。</p>
+  </aside>
+</section>
+
+<!-- ═══════════════ 2 · 今天怎么上 ═══════════════ -->
+<section class="slide" data-title="开场 · 今天走 5 步">
+  <p class="chip pink" data-anim="fade-down">今天，我们走 5 步</p>
+  <h2 class="h2 mt-s" data-anim="fade-up">一步都不能跳。</h2>
+  <div class="grid mt-l anim-stagger-list" style="grid-template-columns:repeat(5,1fr)" data-anim="stagger-list">
+    <div class="pop yellow" style="text-align:center">
+      <div class="badge sq" style="margin:0 auto 12px">1</div>
+      <div class="h3">撞现象</div>
+      <p class="cap" style="margin-top:8px">它灭了，为什么？</p>
+    </div>
+    <div class="pop" style="text-align:center">
+      <div class="badge pink sq" style="margin:0 auto 12px">2</div>
+      <div class="h3">自己试</div>
+      <p class="cap" style="margin-top:8px">没有图，没有示范</p>
+    </div>
+    <div class="pop cyan" style="text-align:center">
+      <div class="badge sq" style="margin:0 auto 12px;background:#fff;color:var(--ink)">3</div>
+      <div class="h3">找规律</div>
+      <p class="cap" style="margin-top:8px">四种接法全试一遍</p>
+    </div>
+    <div class="pop" style="text-align:center">
+      <div class="badge cyan sq" style="margin:0 auto 12px">4</div>
+      <div class="h3">起名字</div>
+      <p class="cap" style="margin-top:8px">现在才告诉你它叫啥</p>
+    </div>
+    <div class="pop pink" style="text-align:center">
+      <div class="badge sq" style="margin:0 auto 12px;background:#fff;color:var(--ink)">5</div>
+      <div class="h3">过关</div>
+      <p class="cap" style="margin-top:8px">拆掉，自己再装一次</p>
+    </div>
+  </div>
+  <p class="lede mt-l" data-anim="fade-up">
+    最后一步是<mark>一个一个过</mark>——我会走到你桌子前面，看你自己装。
+  </p>
+  <aside class="notes">
+    <p>这页只花<strong>一分钟</strong>，别展开讲。目的就一个：让孩子知道今天<strong>要动手</strong>，而且最后<strong>要一个人过关</strong>。</p>
+    <p>重点强调第 5 步：「最后我会走到每个人桌子前面，看你自己装一次。不是看同桌装，是看你自己装。」——先把这个预期立起来，后面 Evaluate 逐人验收才不会乱。</p>
+    <p>不要在这页解释 5 个步骤的教学原理，孩子不关心。说完直接翻页，进入悬念。</p>
+  </aside>
+</section>
+
+<!-- ═══════════════ 3 · Engage 悬念 ═══════════════ -->
+<section class="slide full-center" data-title="① 撞现象 · 我一根线都没拆">
+  <div class="stage-rail"><b>① 撞现象</b><i class="on"></i><i></i><i></i><i></i><i></i></div>
+  <div class="ask">
+    <p class="chip yellow" data-anim="fade-down">看好了，我什么都不拆</p>
+    <p class="q mt-m" data-anim="zoom-pop">我一根线<br>都没拆。</p>
+    <p class="sub mt-m" data-anim="fade-up">为什么它<mark class="pink">灭了</mark>？</p>
+  </div>
+  <aside class="notes">
+    <p><strong>演示动作</strong>：举起亮着的 LED 走一圈 → 「看好了，我现在什么都不拆，一根线都不动。」 → 当众把电池盒里的<strong>电池整组翻个面</strong> → 灯灭。</p>
+    <p>翻电池的动作要<strong>慢</strong>，要让所有人看清楚你没碰线。有的孩子会喊「你偷偷拔了」——把线举起来给他看。</p>
+    <p>「灭了。线一根都没动，灯珠也没换。<strong>为什么？</strong>」</p>
+    <p>问完<strong>不要接话</strong>。等 5 秒，让教室安静下来，让他们自己难受一下。这个「不舒服」就是今天整节课的发动机。</p>
+    <p>然后再翻页去收猜想。注意：这里<strong>绝对不要揭晓答案</strong>，也不要说「这跟方向有关」。</p>
+  </aside>
+</section>
+
+<!-- ═══════════════ 4 · 猜想墙 ═══════════════ -->
+<section class="slide" data-title="① 撞现象 · 猜想墙">
+  <div class="stage-rail"><b>① 撞现象</b><i class="on"></i><i></i><i></i><i></i><i></i></div>
+  <h2 class="h2" data-anim="fade-up">先猜。<mark>猜错一点都不丢人。</mark></h2>
+  <p class="lede mt-s" data-anim="fade-up">你猜什么，我就写在黑板上。等会儿我们一条一条去验。</p>
+  <div class="grid g3 mt-l anim-stagger-list" data-anim="stagger-list">
+    <div class="pop" style="text-align:center">
+      <div class="badge" style="margin:0 auto 14px">?</div>
+      <div class="h3">电用完了？</div>
+    </div>
+    <div class="pop" style="text-align:center">
+      <div class="badge cyan" style="margin:0 auto 14px">?</div>
+      <div class="h3">灯坏了？</div>
+    </div>
+    <div class="pop" style="text-align:center">
+      <div class="badge pink" style="margin:0 auto 14px">?</div>
+      <div class="h3">线断了？</div>
+    </div>
+  </div>
+  <p class="lede mt-l" data-anim="fade-up" style="font-weight:800;color:var(--text-1)">
+    还有别的猜法吗？说出来，一起写上去。
+  </p>
+  <aside class="notes">
+    <p><strong>这页是今天最关键的教学动作之一：猜想上墙。</strong>把孩子说的每一条都写到黑板左边的「猜想墙」上，一条一行，字写大。</p>
+    <p>「先别急着说答案，先猜。猜错一点都不丢人——今天我们要干的事，就是把大家猜的东西<strong>一个一个试出来</strong>。谁猜什么，我全写黑板上。」</p>
+    <p>写的时候<strong>不评价、不点头、不否定</strong>。不要说「这个想法很好」，也不要说「不太可能」。你的表情一旦有倾向，后面的探究就变成猜老师心思了。</p>
+    <p>通常会出现「电用完了」「灯坏了」「线断了」这三类。如果有孩子说出别的（比如「你把开关关了」），照样写上去，等会儿一起划。</p>
+    <p><strong>猜想墙整节课不擦</strong>，第 4 步还要回来用。</p>
+  </aside>
+</section>
+
+<!-- ═══════════════ 5 · 安全三条 ═══════════════ -->
+<section class="slide" data-title="② 自己试 · 安全三条">
+  <div class="stage-rail"><b>② 自己试</b><i class="done"></i><i class="on"></i><i></i><i></i><i></i></div>
+  <p class="chip pink" data-anim="fade-down">发器材之前，先记住 3 条</p>
+  <h2 class="h2 mt-s" data-anim="fade-up">这 3 条，破一条就收器材。</h2>
+  <div class="checks mt-l anim-stagger-list" data-anim="stagger-list">
+    <div class="check">
+      <div class="badge pink">1</div>
+      <div><div class="ct">电池不进嘴，也不进口袋</div>
+      <div class="cs">下课要原样放回自封袋，一节都不能少</div></div>
+    </div>
+    <div class="check">
+      <div class="badge cyan">2</div>
+      <div><div class="ct">两个夹子不许互相咬</div>
+      <div class="cs">咬在一起电池会发烫——发现了马上分开，举手告诉我</div></div>
+    </div>
+    <div class="check">
+      <div class="badge">3</div>
+      <div><div class="ct">灯珠的腿，只准弯一次</div>
+      <div class="cs">来回弯会从根上断掉，断了就真的不亮了</div></div>
+    </div>
+  </div>
+  <aside class="notes">
+    <p>这页<strong>必须讲，而且要快</strong>，60 秒讲完。孩子手里还没有东西的时候讲，一旦发了器材就没人听了。</p>
+    <p>第 2 条是重点：<strong>两个鳄鱼夹互相咬会短路，电池会发烫</strong>。巡视时看到立刻断开，顺便预告一句：「这个现象<strong>第 5 课</strong>我们专门说，今天先分开。」</p>
+    <p>第 3 条也要认真说：「腿只准弯一次」。LED 引脚来回弯会<strong>从根部断裂</strong>，这是今天最常见的器材损耗。</p>
+    <p>讲完立刻发件，不要再啰嗦。发完先别说话，让他们摸两分钟。</p>
+  </aside>
+</section>
+
+<!-- ═══════════════ 6 · 你只有这三样 ═══════════════ -->
+<section class="slide" data-title="② 自己试 · 三样器材">
+  <div class="stage-rail"><b>② 自己试</b><i class="done"></i><i class="on"></i><i></i><i></i><i></i></div>
+  <h2 class="h2" data-anim="fade-up">你只有<mark class="cyan">这三样</mark>。</h2>
+  <div class="figure mt-m" data-anim="fade-up">
+    <svg viewBox="0 0 980 300" role="img" aria-label="电池盒、两根鳄鱼夹线、LED 灯珠">
+      <!-- 电池盒 -->
+      <g>
+        <rect class="st fillw" x="30" y="70" width="270" height="120" rx="16"/>
+        <rect class="st2 filly" x="55"  y="95" width="68" height="40" rx="8"/>
+        <rect class="st2 filly" x="131" y="95" width="68" height="40" rx="8"/>
+        <rect class="st2 filly" x="207" y="95" width="68" height="40" rx="8"/>
+        <circle class="st fillk" cx="30"  cy="160" r="13"/>
+        <circle class="st fillp" cx="300" cy="160" r="13"/>
+        <text class="lbl pm" x="4"   y="220" style="fill:var(--text-1)">−</text>
+        <text class="lbl pm" x="284" y="220" style="fill:var(--accent)">＋</text>
+        <text class="lbl" x="95"  y="252">① 电池盒</text>
+        <text class="lbl sm" x="70" y="278">3 节电池 · 开关已经帮你打开</text>
+      </g>
+      <!-- 鳄鱼夹线 ×2 -->
+      <g transform="translate(360,0)">
+        <path class="st" style="stroke:var(--accent-2)" d="M40 105 C 110 60, 180 150, 250 105"/>
+        <path class="st" style="stroke:var(--accent)"   d="M40 165 C 110 120, 180 210, 250 165"/>
+        <g>
+          <path class="st fillw" d="M18 92 l26 6 -26 6 z"/><path class="st fillw" d="M18 118 l26 -6 -26 -6 z"/>
+          <path class="st fillw" d="M272 92 l-26 6 26 6 z"/><path class="st fillw" d="M272 118 l-26 -6 26 -6 z"/>
+        </g>
+        <g>
+          <path class="st fillw" d="M18 152 l26 6 -26 6 z"/><path class="st fillw" d="M18 178 l26 -6 -26 -6 z"/>
+          <path class="st fillw" d="M272 152 l-26 6 26 6 z"/><path class="st fillw" d="M272 178 l-26 -6 26 -6 z"/>
+        </g>
+        <text class="lbl" x="55" y="252">② 鳄鱼夹线　2 根</text>
+        <text class="lbl sm" x="55" y="278">两头的夹子要咬住金属</text>
+      </g>
+      <!-- LED -->
+      <g transform="translate(760,0)">
+        <path class="st filly" d="M100 130 v-38 a40 40 0 0 0 -80 0 v38 z"/>
+        <rect class="st fillw" x="14" y="130" width="92" height="16" rx="5"/>
+        <path class="st" style="stroke:var(--accent)" d="M84 146 v74"/>
+        <path class="st" d="M36 146 v46"/>
+        <text class="lbl" x="96" y="212" style="fill:var(--accent)">长脚</text>
+        <text class="lbl" x="-6" y="214">短脚</text>
+        <text class="lbl" x="18" y="252">③ 灯珠</text>
+        <text class="lbl sm" x="-10" y="278">看清楚：两条腿，一长一短</text>
+      </g>
+    </svg>
+  </div>
+  <p class="lede mt-m" data-anim="fade-up" style="text-align:center;max-width:none;font-weight:800;color:var(--text-1)">
+    没有第四样东西。就用这三样，把灯点亮。
+  </p>
+  <aside class="notes">
+    <p>发件之后停一下，让他们<strong>先认东西</strong>。这一页只干一件事：让每个人亲眼确认「<strong>我的灯珠两条腿一长一短</strong>」。</p>
+    <p>让全班一起做一个动作：「把灯珠举起来，对着光，看看你的两条腿是不是一长一短。」——这是今天唯一一个需要全班同步的动作，因为长短脚是后面所有推理的<strong>视觉线索</strong>。</p>
+    <p>电池盒上的<strong>＋ 和 −</strong> 也指一下，但<strong>不要解释是什么意思</strong>，就说「这一头写着加号，这一头写着减号，记住位置就行」。</p>
+    <p>不要讲电流、不要讲正负极的物理含义。今天只管走不走得通。</p>
+    <p>说完最后一句「没有第四样东西」，就放手。</p>
+  </aside>
+</section>
+
+<!-- ═══════════════ 7 · 任务① 让你的灯亮起来 ═══════════════ -->
+<section class="slide full-center" data-title="② 自己试 · 第 1 关 让它亮">
+  <div class="stage-rail"><b>② 自己试</b><i class="done"></i><i class="on"></i><i></i><i></i><i></i></div>
+  <div style="text-align:center">
+    <span class="chip pink" data-anim="fade-down">第 1 关 · 14 分钟</span>
+    <h1 class="hero mt-m" data-anim="rise-in">让你的灯<br>亮起来。</h1>
+    <div class="vs mt-l" style="max-width:min(880px,80vw);margin-left:auto;margin-right:auto" data-anim="fade-up">
+      <div class="no"><div class="mk">✗</div><div class="h3 mt-s">没有接线图</div></div>
+      <div class="yes"><div class="mk">✋</div><div class="h3 mt-s">亮了就举手<br>我过来看一眼</div></div>
+    </div>
+  </div>
+  <aside class="notes">
+    <p><strong>这 14 分钟你只做一件事：巡视，不示范。</strong>不给接线图，不做演示，让他们乱试。</p>
+    <p>产出的是<strong>问题</strong>，不是答案。你一旦伸手帮他接好，他人生第一次点亮的体验就变成了「执行老师的指令」。</p>
+    <p>孩子喊「老师！我的不亮！」——标准回答只有一句：「<strong>先别给我看。你自己再看一眼——灯珠掉个头试过吗？</strong>」</p>
+    <p>孩子说「我的灯是不是坏了？」——「有可能。不过在换之前，<strong>先跟你同桌借一个他的灯珠，装到你的线上试试</strong>。如果他的灯在你的线上也不亮，那问题就不在灯珠。」这一步本身就是控制变量的启蒙。</p>
+    <p>巡视顺序记住：<strong>先看夹子位置，再看接线逻辑</strong>。九成失败是夹子咬在黑皮上。但<strong>不要直接指出来</strong>，翻到下一页让他自己查。</p>
+    <p>已经亮了的孩子：任命为<strong>小教练</strong>，规则必须明说——<strong>只能问问题，不能动手</strong>。不说这条，小教练会直接替同伴接好线。</p>
+  </aside>
+</section>
+
+<!-- ═══════════════ 8 · 灯不亮？先查这 3 样 ═══════════════ -->
+<section class="slide" data-title="② 自己试 · 排查三问">
+  <div class="stage-rail"><b>② 自己试</b><i class="done"></i><i class="on"></i><i></i><i></i><i></i></div>
+  <p class="chip yellow" data-anim="fade-down">举手之前，先自己查</p>
+  <h2 class="h2 mt-s" data-anim="fade-up">灯不亮？先查这 <mark class="pink">3</mark> 样。</h2>
+  <div class="checks mt-l anim-stagger-list" data-anim="stagger-list">
+    <div class="check">
+      <div class="box"></div><div class="badge">1</div>
+      <div><div class="ct">夹子，咬在<mark>金属腿</mark>上了吗？</div>
+      <div class="cs">不是黑色塑料皮，也不是另一个夹子的塑料外壳</div></div>
+    </div>
+    <div class="check">
+      <div class="box"></div><div class="badge cyan">2</div>
+      <div><div class="ct">灯珠的两条腿，都接上了吗？</div>
+      <div class="cs">数一数：灯珠有几条腿？你的两根线在几条腿上？</div></div>
+    </div>
+    <div class="check">
+      <div class="box"></div><div class="badge pink">3</div>
+      <div><div class="ct">电池盒的开关，是开着的吗？</div>
+      <div class="cs">被蹭到关掉了，外观完全看不出来</div></div>
+    </div>
+  </div>
+  <p class="lede mt-m" data-anim="fade-up" style="font-weight:800;color:var(--text-1)">
+    三样都查过还是不亮 → 举手，<mark>并且告诉我你查过哪三样</mark>。
+  </p>
+  <aside class="notes">
+    <p>这张卡今天第一次亮相，但它会<strong>跟着你们走完 15 节课</strong>。桌角上也贴了一张。</p>
+    <p>最关键的是<strong>最后那句话</strong>：「告诉我你查过哪三样。」这一句把求助从「老师帮我看看」变成「<strong>我已经排除了这三项</strong>」。排错习惯就是从这里开始的。</p>
+    <p>孩子举手时，先问：「三问查了吗？查到第几问？」没查过的<strong>请他回去查完再举手</strong>。这一次坚持住，后面 14 节课都省力。</p>
+    <p>第 1 问是今天真正的杀手——<strong>鳄鱼夹咬在黑色绝缘皮上，外观完好但不通</strong>。但你只念问题，<strong>不要替他检查</strong>。</p>
+    <p>补充一句给自己：第 2 课这张卡会加到<strong>四问</strong>，第 4 课加到<strong>五问</strong>。</p>
+  </aside>
+</section>
+
+<!-- ═══════════════ 9 · 四格挑战（空表） ═══════════════ -->
+<section class="slide" data-title="③ 找规律 · 四格挑战（空表）">
+  <div class="stage-rail"><b>③ 找规律</b><i class="done"></i><i class="done"></i><i class="on"></i><i></i><i></i></div>
+  <div class="row" style="justify-content:space-between;align-items:flex-end">
+    <div>
+      <span class="chip cyan" data-anim="fade-down">第 2 关 · 别乱试了，按表来</span>
+      <h2 class="h2 mt-s" data-anim="fade-up">四种接法，<mark>每一种都要真的试一次</mark>。</h2>
+    </div>
+    <div class="pop yellow" data-anim="fade-left" style="text-align:center;flex:0 0 auto">
+      <div class="h3">亮了画 ○</div><div class="h3">不亮画 ×</div>
+    </div>
+  </div>
+  <div class="quad mt-l" style="height:min(48vh,440px)" data-anim="fade-up">
+    <div class="hd blank"></div>
+    <div class="hd">电池<br>不调头</div>
+    <div class="hd">电池<br>调头</div>
+    <div class="hd">灯珠<br>不调头</div>
+    <div class="cell todo">？</div>
+    <div class="cell todo">？</div>
+    <div class="hd">灯珠<br>调头</div>
+    <div class="cell todo">？</div>
+    <div class="cell todo">？</div>
+  </div>
+  <aside class="notes">
+    <p>这是全课程<strong>第一次控制变量</strong>，动作要慢下来。发《四格对照表》纸质版，让他们在纸上填。</p>
+    <p>节奏：<strong>上半场先完成前两格</strong>（灯珠不调头那一行），下课休息，<strong>下半场完成后两格</strong>。不要一口气做完。</p>
+    <p>你要逐组确认<strong>每一格都真的试过</strong>——很多孩子会「觉得」某一格肯定不亮就直接打 ×。看到就说：「你试了吗？我要看你现在试一次。」</p>
+    <p>「调头」的意思要<strong>演示一遍</strong>：灯珠调头 = 把两条腿接的线对换；电池调头 = 把电池整组翻个面（就像我开场那样）。</p>
+    <p>这一格一格填的过程本身比结果重要。<strong>不要提前说有几格会亮。</strong></p>
+  </aside>
+</section>
+
+<!-- ═══════════════ 10 · 课间休息 ═══════════════ -->
+<section class="slide full-center" data-title="休息 · 课间 10 分钟">
+  <div style="text-align:center">
+    <div class="discovery" data-anim="zoom-pop" style="max-width:min(1000px,86vw)">
+      <p class="chip" style="background:#fff">中场 · 10 分钟</p>
+      <h1 class="hero mt-m">课间休息</h1>
+      <p class="h3 mt-m" style="font-weight:700">
+        器材<mark class="pink">留在桌上，不要拆</mark>　·　电池不进口袋
+      </p>
+    </div>
+    <p class="lede mt-l" data-anim="fade-up" style="margin-left:auto;margin-right:auto;text-align:center">
+      回来我们把剩下两格填完，然后见一个很奇怪的结果。
+    </p>
+  </div>
+  <aside class="notes">
+    <p>休息 10 分钟。走之前<strong>说两句话</strong>：</p>
+    <p>一、「器材<strong>留在桌上，不要拆</strong>，回来直接接着做。」二、「电池一节都不许带走。」</p>
+    <p>这 10 分钟你自己要干的事：<strong>扫一眼全班的四格表</strong>，看看前两格填得对不对，心里有个数。如果发现有几个孩子连第一格都没亮过，回来先帮他们过掉——<strong>没亮过的孩子做不了后面的对照</strong>。</p>
+    <p>另外顺手补一下坏掉的器材和没电的电池，回来要提速。</p>
+  </aside>
+</section>
+
+<!-- ═══════════════ 11 · 四格结果 ═══════════════ -->
+<section class="slide" data-title="③ 找规律 · 几格亮了 → 两格">
+  <div class="stage-rail"><b>③ 找规律</b><i class="done"></i><i class="done"></i><i class="on"></i><i></i><i></i></div>
+  <div class="row" style="justify-content:space-between;align-items:flex-end">
+    <h2 class="h2" data-anim="fade-up">数一数，<mark>几格亮了</mark>？</h2>
+    <div class="pop pink" data-anim="fade-left" style="flex:0 0 auto">
+      <div class="h3">两格！<br>不是一格。</div>
+    </div>
+  </div>
+  <div class="quad mt-l" style="height:min(48vh,440px)" data-anim="fade-up">
+    <div class="hd blank"></div>
+    <div class="hd">电池<br>不调头</div>
+    <div class="hd">电池<br>调头</div>
+    <div class="hd">灯珠<br>不调头</div>
+    <div class="cell on">○<small>亮</small></div>
+    <div class="cell off">×<small>不亮</small></div>
+    <div class="hd">灯珠<br>调头</div>
+    <div class="cell off">×<small>不亮</small></div>
+    <div class="cell on">○<small>亮</small></div>
+  </div>
+  <aside class="notes">
+    <p><strong>这一页是今天的核心，慢一点。</strong></p>
+    <p>「四格都试完了吗？现在数一数——<strong>有几格亮了？</strong>」等他们报数。<strong>一定会有人报「一格」</strong>，让他<strong>当场再试一次第四格</strong>，不要直接告诉他答案。</p>
+    <p>「<strong>两格。不是一格，是两格。奇怪不奇怪？</strong>」</p>
+    <p>这个「两格亮」是<strong>预设的认知冲击点</strong>，不是意外。有孩子会以为自己做错了、会想擦掉重填——按住他：「你没做错，就是两格。」</p>
+    <p>全班口径必须统一：<strong>不能有老师说「只有一格亮」</strong>。</p>
+    <p>先不要解释原因。翻下一页，把问题抛回去。</p>
+  </aside>
+</section>
+
+<!-- ═══════════════ 12 · 这两格哪里一样 ═══════════════ -->
+<section class="slide full-center" data-title="③ 找规律 · 这两格哪里一样">
+  <div class="stage-rail"><b>③ 找规律</b><i class="done"></i><i class="done"></i><i class="on"></i><i></i><i></i></div>
+  <div class="ask">
+    <p class="chip cyan" data-anim="fade-down">亮的这两格，长得完全不一样</p>
+    <p class="q mt-m" data-anim="zoom-pop">这两格，<br>哪里<mark>一样</mark>？</p>
+    <p class="sub mt-l" data-anim="fade-up">一个是都不调头，一个是都调头了。<br>它们到底有什么共同点？</p>
+  </div>
+  <aside class="notes">
+    <p>这个问题要<strong>留足时间，至少一分钟</strong>。教室会安静，安静是对的，<strong>不要替他们回答</strong>。</p>
+    <p>「亮的这两格，长得完全不一样——一个是都不调头，一个是都调头了。<strong>它们到底有什么共同点？</strong>」</p>
+    <p>如果卡住了，只给<strong>一个方向</strong>，不给答案：「你看看这两格里，灯珠<strong>长的那条腿</strong>，接的是电池的哪一头？」</p>
+    <p>然后等。会有孩子先反应过来——<strong>让那个孩子来说</strong>，不要你自己说。让他站起来，指着自己的电路讲。</p>
+    <p>这一分钟是今天含金量最高的一分钟，<strong>不要图快</strong>。</p>
+  </aside>
+</section>
+
+<!-- ═══════════════ 13 · 发现：长脚都接了＋ ═══════════════ -->
+<section class="slide" data-title="③ 找规律 · 长脚都接了 ＋">
+  <div class="stage-rail"><b>③ 找规律</b><i class="done"></i><i class="done"></i><i class="on"></i><i></i><i></i></div>
+  <p class="chip yellow" data-anim="fade-down">你们自己找出来的</p>
+  <h2 class="h2 mt-s" data-anim="rise-in">长脚，都接了 <mark class="pink">＋</mark>。</h2>
+  <div class="figure mt-m" data-anim="fade-up">
+    <svg viewBox="0 0 900 270" role="img" aria-label="两种亮的接法，长脚都连到电池正极">
+      <!-- 左：都不调头 · 长脚在右，＋ 也在右 -->
+      <g transform="translate(20,10)">
+        <circle class="filly glow" cx="200" cy="58" r="40"/>
+        <path class="st filly" d="M240 90 v-36 a40 40 0 0 0 -80 0 v36 z"/>
+        <rect class="st fillw" x="150" y="90" width="100" height="14" rx="5"/>
+        <path class="st" d="M182 104 v22"/>
+        <path class="st" style="stroke:var(--accent)" d="M218 104 v22"/>
+        <text class="lbl sm" x="230" y="122" style="fill:var(--accent)">长脚</text>
+        <text class="lbl sm" x="122" y="122">短脚</text>
+        <path class="st" style="stroke:var(--accent-2)" d="M182 126 v10 q0 14 -14 14 h-58 q-14 0 -14 14 v15"/>
+        <path class="st" style="stroke:var(--accent)"   d="M218 126 v10 q0 14 14 14 h58 q14 0 14 14 v15"/>
+        <rect class="st fillw" x="96" y="179" width="208" height="56" rx="12"/>
+        <circle class="st fillk" cx="96"  cy="207" r="11"/>
+        <circle class="st fillp" cx="304" cy="207" r="11"/>
+        <text class="lbl pm" x="126" y="218" style="fill:var(--text-1)">−</text>
+        <text class="lbl pm" x="252" y="218" style="fill:var(--accent)">＋</text>
+        <text class="lbl" x="120" y="264">都不调头　○ 亮</text>
+      </g>
+      <!-- 右：都调头 · 长脚在左，＋ 也跟着到左 -->
+      <g transform="translate(480,10)">
+        <circle class="filly glow" cx="200" cy="58" r="40"/>
+        <path class="st filly" d="M240 90 v-36 a40 40 0 0 0 -80 0 v36 z"/>
+        <rect class="st fillw" x="150" y="90" width="100" height="14" rx="5"/>
+        <path class="st" style="stroke:var(--accent)" d="M182 104 v22"/>
+        <path class="st" d="M218 104 v22"/>
+        <text class="lbl sm" x="122" y="122" style="fill:var(--accent)">长脚</text>
+        <text class="lbl sm" x="230" y="122">短脚</text>
+        <path class="st" style="stroke:var(--accent)"   d="M182 126 v10 q0 14 -14 14 h-58 q-14 0 -14 14 v15"/>
+        <path class="st" style="stroke:var(--accent-2)" d="M218 126 v10 q0 14 14 14 h58 q14 0 14 14 v15"/>
+        <rect class="st fillw" x="96" y="179" width="208" height="56" rx="12"/>
+        <circle class="st fillp" cx="96"  cy="207" r="11"/>
+        <circle class="st fillk" cx="304" cy="207" r="11"/>
+        <text class="lbl pm" x="126" y="218" style="fill:var(--accent)">＋</text>
+        <text class="lbl pm" x="252" y="218" style="fill:var(--text-1)">−</text>
+        <text class="lbl" x="136" y="264">都调头　○ 亮</text>
+      </g>
+    </svg>
+  </div>
+  <p class="lede mt-s" data-anim="fade-up" style="text-align:center;max-width:none;font-weight:800;color:var(--text-1)">
+    两格长得完全不一样，但<mark class="cyan">长脚那一端，接的都是＋</mark>。
+  </p>
+  <aside class="notes">
+    <p>这一页是<strong>把孩子说的话画出来</strong>，不是你在讲新东西。开口第一句就该是：「刚才 XXX 说的，就是这个意思。」</p>
+    <p>指着左边：「这一格谁都没调头，长脚在右边，电池的＋也在右边——<strong>长脚接＋</strong>。」</p>
+    <p>指着右边：「这一格两个都调头了，长脚跑到左边，电池的＋<strong>也跟着跑到左边</strong>——<strong>还是长脚接＋</strong>。」</p>
+    <p>「两次调头<strong>互相抵消</strong>了，所以这一格照样亮。」</p>
+    <p>说完这句，今天的概念其实已经建立了。名字还没给——下一步才给名字。</p>
+  </aside>
+</section>
+
+<!-- ═══════════════ 14 · 划掉猜想 1 ═══════════════ -->
+<section class="slide" data-title="④ 起名字 · 划掉猜想 ①">
+  <div class="stage-rail"><b>④ 起名字</b><i class="done"></i><i class="done"></i><i class="done"></i><i class="on"></i><i></i></div>
+  <p class="chip pink" data-anim="fade-down">回到黑板 · 一条一条查</p>
+  <h2 class="h2 mt-s" data-anim="fade-up">猜想 ①</h2>
+  <div class="stack-l mt-l">
+    <div class="guess out" data-anim="fade-right">
+      <div class="badge">1</div>
+      <div class="gt">电用完了？</div>
+      <div class="verdict">把灯珠掉个头，还能亮<br>→ <mark>电还在</mark></div>
+    </div>
+    <div class="guess" data-anim="fade-right" style="filter:opacity(.36)">
+      <div class="badge cyan">2</div><div class="gt">灯坏了？</div>
+    </div>
+    <div class="guess" data-anim="fade-right" style="filter:opacity(.36)">
+      <div class="badge pink">3</div><div class="gt">线断了？</div>
+    </div>
+  </div>
+  <aside class="notes">
+    <p><strong>从这一页开始，整节课最重要的方法论示范：用自己测出来的数据，推翻自己的猜想。</strong></p>
+    <p>走到黑板猜想墙前面，手里拿着粉笔，一条一条来。</p>
+    <p>「刚才有同学猜『<strong>电用完了</strong>』。我们来查一下——如果电真的用完了，我们把灯珠掉个头，<strong>还能亮吗？</strong>」</p>
+    <p><strong>当场演示</strong>：调头，亮了。让前排的孩子看清楚。</p>
+    <p>「能亮。说明<strong>电还在</strong>。这条——划掉。」然后<strong>在黑板上真的画一道杠</strong>，动作要大。</p>
+    <p>划掉的这个动作有仪式感，孩子会记住。不要只是嘴上说「这条不对」。</p>
+  </aside>
+</section>
+
+<!-- ═══════════════ 15 · 划掉猜想 2 ═══════════════ -->
+<section class="slide" data-title="④ 起名字 · 划掉猜想 ②">
+  <div class="stage-rail"><b>④ 起名字</b><i class="done"></i><i class="done"></i><i class="done"></i><i class="on"></i><i></i></div>
+  <p class="chip pink" data-anim="fade-down">回到黑板 · 一条一条查</p>
+  <h2 class="h2 mt-s" data-anim="fade-up">猜想 ②</h2>
+  <div class="stack-l mt-l">
+    <div class="guess out" style="filter:opacity(.45)"><div class="badge">1</div><div class="gt">电用完了？</div></div>
+    <div class="guess out" data-anim="fade-right">
+      <div class="badge cyan">2</div>
+      <div class="gt">灯坏了？</div>
+      <div class="verdict">坏的灯，掉个头也不会亮<br>→ <mark>灯是好的</mark></div>
+    </div>
+    <div class="guess" data-anim="fade-right" style="filter:opacity(.36)">
+      <div class="badge pink">3</div><div class="gt">线断了？</div>
+    </div>
+  </div>
+  <aside class="notes">
+    <p>「还有同学猜『<strong>灯坏了</strong>』。我们也查一下：<strong>坏掉的灯，掉个头会亮吗？</strong>」</p>
+    <p>等他们回答「不会」。</p>
+    <p>「不会。<strong>可我们的灯，掉个头就亮了。</strong>所以灯是好的。这条也划掉。」</p>
+    <p>这条对应的是今天真正的教学难点：孩子默认「不亮 = 东西坏了」。<strong>这个归因转向靠的是数据，不是讲道理</strong>——所以一定要拿四格表说话，不要苦口婆心。</p>
+    <p>如果有孩子还在坚持「我的那个就是坏的」，就用课上教过的办法：「拿同桌的灯珠装到<strong>你的线</strong>上试试。」</p>
+  </aside>
+</section>
+
+<!-- ═══════════════ 16 · 划掉猜想 3 ═══════════════ -->
+<section class="slide" data-title="④ 起名字 · 划掉猜想 ③">
+  <div class="stage-rail"><b>④ 起名字</b><i class="done"></i><i class="done"></i><i class="done"></i><i class="on"></i><i></i></div>
+  <p class="chip pink" data-anim="fade-down">回到黑板 · 一条一条查</p>
+  <h2 class="h2 mt-s" data-anim="fade-up">猜想 ③</h2>
+  <div class="stack-l mt-l">
+    <div class="guess out" style="filter:opacity(.45)"><div class="badge">1</div><div class="gt">电用完了？</div></div>
+    <div class="guess out" style="filter:opacity(.45)"><div class="badge cyan">2</div><div class="gt">灯坏了？</div></div>
+    <div class="guess out" data-anim="fade-right">
+      <div class="badge pink">3</div>
+      <div class="gt">线断了？</div>
+      <div class="verdict">我们一根线都没动过<br>→ <mark>线是好的</mark></div>
+    </div>
+  </div>
+  <aside class="notes">
+    <p>「还有『<strong>线断了</strong>』——线我们<strong>一根都没动过</strong>。我从头到尾没碰过线，你们都看着的。划掉。」</p>
+    <p>这条最快，一句话解决。</p>
+    <p>如果黑板上还有别的猜想（比如「你偷偷关开关了」），<strong>一条都不要跳过</strong>，按同样的方式验一遍再划。跳过的那一条，那个孩子会记一整节课。</p>
+    <p>三条都划完之后，停一秒，往后退一步，让全班看一眼<strong>整面被划花的猜想墙</strong>。然后再翻页。</p>
+  </aside>
+</section>
+
+<!-- ═══════════════ 17 · 三条都不对 ═══════════════ -->
+<section class="slide full-center" data-title="④ 起名字 · 问题在接法">
+  <div class="stage-rail"><b>④ 起名字</b><i class="done"></i><i class="done"></i><i class="done"></i><i class="on"></i><i></i></div>
+  <div style="text-align:center">
+    <div class="row mt-s" style="justify-content:center;gap:clamp(12px,1.4vw,26px);flex-wrap:wrap" data-anim="fade-down">
+      <span class="chip">电池没坏</span><span class="chip">灯珠没坏</span><span class="chip">线没坏</span>
+    </div>
+    <p class="hero mt-l" data-anim="zoom-pop">是<mark class="pink">接法</mark>不对。</p>
+  </div>
+  <aside class="notes">
+    <p>这一页就一句话，说慢一点，说重一点。</p>
+    <p>「三条都不对。那问题在哪？<strong>不在电池，不在灯珠，不在线——在接法。</strong>」</p>
+    <p>停两秒。让这句话落地。</p>
+    <p>这是今天要带走的<strong>态度</strong>，比任何知识点都重要：<strong>不亮，不等于坏了。</strong>下课前还会再出现一次。</p>
+    <p>现在，现象已经发生完了，猜想也全部处理完了——<strong>接下来才轮到给名字</strong>。这个顺序不能反。</p>
+  </aside>
+</section>
+
+<!-- ═══════════════ 18 · 它的名字叫 LED ═══════════════ -->
+<section class="slide" data-title="④ 起名字 · 它叫 LED">
+  <div class="stage-rail"><b>④ 起名字</b><i class="done"></i><i class="done"></i><i class="done"></i><i class="on"></i><i></i></div>
+  <p class="chip cyan" data-anim="fade-down">现在，给它一个名字</p>
+  <h2 class="h2 mt-s" data-anim="rise-in">它叫 <mark class="pink">LED</mark>。它<mark>挑方向</mark>。</h2>
+  <div class="row mt-m" style="gap:clamp(20px,2.4vw,50px);align-items:center">
+    <div class="figure" style="flex:1" data-anim="fade-up">
+      <svg viewBox="0 0 420 300" role="img" aria-label="LED 长脚为正极，短脚为负极">
+        <circle class="filly glow" cx="210" cy="78" r="58"/>
+        <path class="st filly" d="M270 130 v-56 a60 60 0 0 0 -120 0 v56 z"/>
+        <rect class="st fillw" x="140" y="130" width="140" height="22" rx="7"/>
+        <path class="st" style="stroke:var(--accent)" d="M244 152 v118"/>
+        <path class="st" d="M176 152 v70"/>
+        <circle class="st fillp" cx="244" cy="270" r="12"/>
+        <text class="lbl" x="264" y="216" style="fill:var(--accent)">长脚 ＝ 正极</text>
+        <text class="lbl" x="266" y="244" style="fill:var(--accent)">要接电池的 ＋</text>
+        <text class="lbl" x="34"  y="216">短脚 ＝ 负极</text>
+        <text class="lbl" x="52"  y="244">接电池的 −</text>
+      </svg>
+    </div>
+    <div class="stack-l" style="flex:1">
+      <div class="pop yellow" data-anim="fade-left">
+        <div class="h3">L E D</div>
+        <p class="cap" style="text-align:left;margin-top:6px">会发光的小灯珠。跟普通小灯泡不一样——<strong>它认方向。</strong></p>
+      </div>
+      <div class="pop cyan" data-anim="fade-left">
+        <div class="h3">长脚 → 电池的 ＋</div>
+        <p class="cap" style="text-align:left;margin-top:6px">接反了就不亮，<strong>但不会坏</strong>。掉个头就又亮了。</p>
+      </div>
+    </div>
+  </div>
+  <aside class="notes">
+    <p>现在，也只有现在，才给名字。<strong>现象已经发生完了，名字是用来装现象的盒子。</strong></p>
+    <p>「这个灯珠有个名字，叫 <strong>LED</strong>。它跟普通的小灯泡不一样——<strong>它挑方向</strong>。<strong>长的那条腿是正极</strong>，长腿这一端必须连到电池的『＋』。」</p>
+    <p>板书接线示意图，一边画一边说。</p>
+    <p>再补一句很重要的话：「接反了<strong>不会烧坏</strong>，只是不亮。掉个头它又亮了——所以你们尽管试。」这句能卸掉很多孩子的心理负担。</p>
+    <p>「LED」三个字母怎么读，教一遍就行，<strong>不要讲它是什么的缩写</strong>，也不要讲发光原理。今天只管走不走得通。</p>
+  </aside>
+</section>
+
+<!-- ═══════════════ 19 · 别记错 ═══════════════ -->
+<section class="slide" data-title="④ 起名字 · 别记错 长脚接＋">
+  <div class="stage-rail"><b>④ 起名字</b><i class="done"></i><i class="done"></i><i class="done"></i><i class="on"></i><i></i></div>
+  <h2 class="h2" data-anim="fade-up">别记错。</h2>
+  <div class="vs mt-l" data-anim="fade-up">
+    <div class="no">
+      <div class="mk">✗</div>
+      <div class="h3 mt-s" style="color:var(--text-3)">「长脚朝左」</div>
+      <p class="cap" style="text-align:left;margin-top:12px">这是死记的口诀。电池一翻面，它就错了。</p>
+    </div>
+    <div class="yes">
+      <div class="mk">✓</div>
+      <div class="h3 mt-s">「长脚接 ＋」</div>
+      <p class="cap" style="text-align:left;margin-top:12px">这是两样东西之间的关系。电池怎么转，它都对。</p>
+    </div>
+  </div>
+  <p class="lede mt-l" data-anim="fade-up" style="text-align:center;max-width:none;font-weight:800;color:var(--text-1)">
+    电池调头，灯珠也跟着调头 —— 所以才有<mark class="pink">两格都亮</mark>。
+  </p>
+  <aside class="notes">
+    <p>这页是给那些<strong>只想背口诀</strong>的孩子准备的，也是今天最容易被讲漏的一页。</p>
+    <p>「注意，我说的<strong>不是</strong>『长腿朝左』。是『<strong>长腿那一端，要连到电池的＋</strong>』。」</p>
+    <p>「这两句话差在哪？『朝左』说的是<strong>一样东西</strong>；『接＋』说的是<strong>两样东西之间的关系</strong>。」</p>
+    <p>「所以电池调头的时候，灯珠也跟着调头，<strong>这个关系就没变</strong>——这就是为什么有两格都亮。」</p>
+    <p>说到这里回头指一下黑板上的四格表，把它和这句话对上。<strong>下一页的加试题就是专门用来抓「只背了口诀」的孩子的</strong>，他们会在那里卡住。</p>
+  </aside>
+</section>
+
+<!-- ═══════════════ 20 · 电要走完整的一圈 ═══════════════ -->
+<section class="slide" data-title="④ 起名字 · 完整的一圈">
+  <div class="stage-rail"><b>④ 起名字</b><i class="done"></i><i class="done"></i><i class="done"></i><i class="on"></i><i></i></div>
+  <h2 class="h2" data-anim="fade-up">电要走完<mark class="cyan">完整的一圈</mark>，灯才会亮。</h2>
+  <div class="figure mt-m" data-anim="fade-up">
+    <svg viewBox="0 0 760 430" role="img" aria-label="电池正极经长脚进入 LED，短脚回到负极，构成闭合回路">
+      <!-- LED -->
+      <circle class="filly glow" cx="360" cy="100" r="54"/>
+      <path class="st filly" d="M416 150 v-52 a56 56 0 0 0 -112 0 v52 z"/>
+      <rect class="st fillw" x="296" y="150" width="128" height="20" rx="7"/>
+      <text class="lbl" x="452" y="84">LED</text>
+      <!-- legs -->
+      <path class="st" style="stroke:var(--accent)" d="M396 170 v36"/>
+      <path class="st" d="M324 170 v36"/>
+      <text class="lbl sm" x="412" y="196" style="fill:var(--accent)">长脚</text>
+      <text class="lbl sm" x="262" y="196">短脚</text>
+      <!-- 右边粉线：长脚 → ＋ -->
+      <path class="st" style="stroke:var(--accent)" d="M396 206 q0 22 22 22 h172 q22 0 22 22 v70 q0 22 -22 22 h-58"/>
+      <!-- 左边青线：短脚 → − -->
+      <path class="st" style="stroke:var(--accent-2)" d="M324 206 q0 22 -22 22 h-172 q-22 0 -22 22 v70 q0 22 22 22 h98"/>
+      <!-- 电池盒 -->
+      <rect class="st fillw" x="228" y="304" width="304" height="76" rx="14"/>
+      <rect class="st2 filly" x="250" y="322" width="80" height="40" rx="7"/>
+      <rect class="st2 filly" x="340" y="322" width="80" height="40" rx="7"/>
+      <rect class="st2 filly" x="430" y="322" width="80" height="40" rx="7"/>
+      <circle class="st fillp" cx="532" cy="342" r="13"/>
+      <circle class="st fillk" cx="228" cy="342" r="13"/>
+      <text class="lbl pm" x="548" y="352" style="fill:var(--accent)">＋</text>
+      <text class="lbl pm" x="184" y="352">−</text>
+      <text class="lbl sm" x="300" y="408">电池盒</text>
+      <!-- 方向箭头：＋ 出发向上进灯，短脚向下回 − -->
+      <path class="st" style="stroke:var(--accent)"   d="M604 288 l8 -12 8 12"/>
+      <path class="st" style="stroke:var(--accent-2)" d="M100 268 l8 12 8 -12"/>
+    </svg>
+  </div>
+  <p class="lede mt-s" data-anim="fade-up" style="text-align:center;max-width:none;font-weight:800;color:var(--text-1)">
+    从 ＋ 出发 → 走过长脚 → 穿过灯珠 → 从短脚出来 → 回到 −。<mark>断一处，就全灭。</mark>
+  </p>
+  <aside class="notes">
+    <p>板书的时候，这个图<strong>必须画成一个闭合的圈</strong>，不要画成两条平行的线段——<strong>第 2 课要用到这个圈</strong>。</p>
+    <p>用手指沿着图走一遍，边走边说：「从<strong>＋</strong>出发，走过<strong>长脚</strong>，穿过灯珠，从<strong>短脚</strong>出来，回到<strong>−</strong>。<strong>绕了一整圈，回到了起点。</strong>」</p>
+    <p>然后用手指在圈上任意一处一掐：「<strong>这里断一下，会怎么样？</strong>」——全灭。「这里呢？」——也全灭。</p>
+    <p>这就是整个第一单元唯一要建立的心智模型：<strong>电要走完整的一路</strong>。今天只是第一块砖，<strong>不要在这里展开讲电流是什么</strong>。</p>
+    <p>如果有孩子追问「电到底是什么」，统一口径：「今天我们只管它<strong>走不走得通</strong>。它到底是什么，后面几节课慢慢说。」</p>
+  </aside>
+</section>
+
+<!-- ═══════════════ 21 · 加试题：等长脚 ═══════════════ -->
+<section class="slide" data-title="⑤ 挑战 · 等长脚加试题">
+  <div class="stage-rail"><b>⑤ 挑战 + 过关</b><i class="done"></i><i class="done"></i><i class="done"></i><i class="done"></i><i class="on"></i></div>
+  <div class="row" style="gap:clamp(20px,2.4vw,50px);align-items:center">
+    <div style="flex:1.1">
+      <span class="chip yellow" data-anim="fade-down">加试题 · 拿到的人举手</span>
+      <h2 class="h2 mt-s" data-anim="fade-up">这个灯珠，两条腿<mark class="pink">一样长</mark>。</h2>
+      <p class="h3 mt-l" data-anim="fade-up" style="font-weight:800">你怎么知道哪条是正极？</p>
+      <div class="pop cyan mt-l" data-anim="fade-up">
+        <p class="h3" style="margin:0">你有电池，有线 ——<br>还需要我告诉你吗？</p>
+      </div>
+    </div>
+    <div class="figure" style="flex:1" data-anim="fade-left">
+      <svg viewBox="0 0 360 300" role="img" aria-label="两条腿等长的 LED">
+        <path class="st fillw" d="M240 130 v-56 a60 60 0 0 0 -120 0 v56 z"/>
+        <rect class="st fillw" x="110" y="130" width="140" height="22" rx="7"/>
+        <path class="st" d="M214 152 v96"/>
+        <path class="st" d="M146 152 v96"/>
+        <path class="st2" style="stroke:var(--text-3);stroke-dasharray:7 7" d="M128 248 h104"/>
+        <text class="lbl pm" x="228" y="292" style="fill:var(--accent)">？</text>
+        <text class="lbl pm" x="112" y="292" style="fill:var(--accent)">？</text>
+      </svg>
+    </div>
+  </div>
+  <aside class="notes">
+    <p>发<strong>等长脚 LED</strong>（长脚已经剪齐），每组一个。这是今天含金量最高的一个瞬间，别错过。</p>
+    <p>「这个灯珠，两条腿一样长。<strong>你怎么知道哪条是正极？</strong>」</p>
+    <p><strong>等</strong>。会有孩子说「看不出来」。</p>
+    <p>「看不出来对不对？<strong>那就别看了。</strong>你有电池，有线——<strong>还需要我告诉你吗？</strong>」</p>
+    <p>绝大多数孩子几秒钟内就会反应过来：<strong>接上试一次，亮了就说明接对了</strong>。那一刻的表情你会看到。</p>
+    <p>这一题检验的是「关系」有没有真的建立——<strong>只背了『长脚朝左』的孩子会在这里卡住</strong>，正好帮你找出来。</p>
+    <p>时间紧张的话，这一页可以砍掉，移到第 2 课开场。但<strong>故障板和最后的逐人过关不能砍</strong>。</p>
+  </aside>
+</section>
+
+<!-- ═══════════════ 22 · 故障板 1 号 ═══════════════ -->
+<section class="slide" data-title="⑤ 挑战 · 故障板 1 号">
+  <div class="stage-rail"><b>⑤ 挑战 + 过关</b><i class="done"></i><i class="done"></i><i class="done"></i><i class="done"></i><i class="on"></i></div>
+  <div class="row" style="justify-content:space-between;align-items:flex-end">
+    <div>
+      <span class="chip pink" data-anim="fade-down">故障板 1 号 · 限时 3 分钟</span>
+      <h2 class="h2 mt-s" data-anim="fade-up">线全接上了。<mark>但它不亮。</mark></h2>
+    </div>
+    <div class="stack-l" data-anim="fade-left"
+         style="flex:0 0 auto;display:flex;flex-direction:column;align-items:flex-end">
+      <span class="chip cyan">✓ 电池是好的</span>
+      <span class="chip cyan">✓ 灯珠是好的</span>
+      <span class="chip cyan">✓ 线也是好的</span>
+    </div>
+  </div>
+  <div class="figure mt-m" data-anim="fade-up">
+    <svg viewBox="0 0 760 340" role="img" aria-label="看起来接好了但不亮的电路">
+      <path class="st fillw" d="M416 110 v-48 a56 56 0 0 0 -112 0 v48 z"/>
+      <rect class="st fillw" x="296" y="110" width="128" height="20" rx="7"/>
+      <path class="st" d="M396 130 v34"/><path class="st" d="M324 130 v34"/>
+      <path class="st" d="M396 164 q0 22 22 22 h172 q22 0 22 22 v48 q0 22 -22 22 h-58"/>
+      <path class="st" d="M324 164 q0 22 -22 22 h-172 q-22 0 -22 22 v48 q0 22 22 22 h98"/>
+      <rect class="st fillw" x="228" y="242" width="304" height="72" rx="14"/>
+      <rect class="st2 filly" x="250" y="260" width="80" height="36" rx="7"/>
+      <rect class="st2 filly" x="340" y="260" width="80" height="36" rx="7"/>
+      <rect class="st2 filly" x="430" y="260" width="80" height="36" rx="7"/>
+      <circle class="st fillw" cx="532" cy="278" r="13"/>
+      <circle class="st fillw" cx="228" cy="278" r="13"/>
+      <text class="lbl pm" x="548" y="288">＋</text><text class="lbl pm" x="184" y="288">−</text>
+      <text class="lbl" x="452" y="46" style="fill:var(--text-3)">✗ 不亮</text>
+    </svg>
+  </div>
+  <p class="lede mt-s" data-anim="fade-up" style="text-align:center;max-width:none;font-weight:800;color:var(--text-1)">
+    3 分钟。找出毛病在哪。<mark>我不给答案。</mark>
+  </p>
+  <aside class="notes">
+    <p>拿出预制好的<strong>1 号故障板</strong>（鳄鱼夹咬在导线的黑色绝缘皮上，外观完好但不通），在组间传。</p>
+    <p>「这个电路，<strong>所有线都接上了，一根都没少</strong>。我向你们保证：电池是好的，灯珠是好的，线也是好的。<strong>但它不亮。为什么？</strong>」</p>
+    <p>给 <strong>3 分钟</strong>。<strong>不提示、不给答案。</strong>手揣兜里，忍住。</p>
+    <p>有孩子找到了，<strong>让他上来讲</strong>，你不要抢着解释。他讲完你只说一句：「他刚才查的是<strong>排查三问的第几问</strong>？」</p>
+    <p>如果三分钟没人找到：「<strong>下节课我们专门解决这个问题。</strong>今天先记住一件事——有时候『<strong>看起来接好了</strong>』，其实并没有接好。」然后就翻页，不要拖。</p>
+    <p>这是故障板环节第一次亮相，<strong>从第 2 课起它会是每节课的固定环节</strong>。</p>
+  </aside>
+</section>
+
+<!-- ═══════════════ 23 · 排查三问 = 固定装备 ═══════════════ -->
+<section class="slide" data-title="⑤ 挑战 · 排查三问固定卡">
+  <div class="stage-rail"><b>⑤ 挑战 + 过关</b><i class="done"></i><i class="done"></i><i class="done"></i><i class="done"></i><i class="on"></i></div>
+  <p class="chip yellow" data-anim="fade-down">这张卡，以后每节课都在你桌角</p>
+  <h2 class="h2 mt-s" data-anim="fade-up">求助之前，先<mark>自己走一遍</mark>。</h2>
+  <div class="checks mt-l anim-stagger-list" data-anim="stagger-list">
+    <div class="check"><div class="box"></div><div class="badge">1</div>
+      <div><div class="ct">夹子咬在金属腿上了吗？</div></div></div>
+    <div class="check"><div class="box"></div><div class="badge cyan">2</div>
+      <div><div class="ct">长脚那一端，接的是「＋」吗？</div></div></div>
+    <div class="check"><div class="box"></div><div class="badge pink">3</div>
+      <div><div class="ct">电池盒的开关，是开着的吗？</div></div></div>
+  </div>
+  <div class="pop ink mt-l" data-anim="fade-up" style="text-align:center">
+    <p class="h3" style="margin:0">举手的时候，请你说：<br>「我查过这三样了，都不是。」</p>
+  </div>
+  <aside class="notes">
+    <p>今天第二次出现这张卡，但这次的重点<strong>不是三个问题本身</strong>，而是它以后会一直跟着他们。</p>
+    <p>「这张卡<strong>以后每节课都在你桌角</strong>。灯不亮、电机不转、什么东西不工作了，<strong>先自己走一遍</strong>，再举手。」</p>
+    <p>重点还是最后那句：「举手的时候请你说——『<strong>我查过这三样了，都不是</strong>』。」</p>
+    <p>可以顺便预告，孩子很吃这一套：「这张卡会<strong>越长越长</strong>。下节课变成<strong>四问</strong>，第 4 课变成<strong>五问</strong>。等你们学完 15 节课，这张卡能修的东西就多了。」</p>
+    <p>讲完就收，别恋战。最后一关还要留 8 分钟逐人验收。</p>
+  </aside>
+</section>
+
+<!-- ═══════════════ 24 · 最后一关 ═══════════════ -->
+<section class="slide full-center" data-title="⑤ 过关 · 拆开自己装（逐人）">
+  <div class="stage-rail"><b>⑤ 挑战 + 过关</b><i class="done"></i><i class="done"></i><i class="done"></i><i class="done"></i><i class="on"></i></div>
+  <div style="text-align:center">
+    <span class="chip pink" data-anim="fade-down">最后一关 · 一个一个过</span>
+    <h1 class="hero mt-m" data-anim="rise-in">全部拆开，<br>自己装一次。</h1>
+    <div class="row mt-l" style="justify-content:center;gap:clamp(16px,1.8vw,34px);flex-wrap:wrap" data-anim="fade-up">
+      <div class="pop yellow"><div class="h3">① 拆</div><p class="cap" style="margin-top:6px">线全部取下来</p></div>
+      <div class="pop cyan"><div class="h3">② 装</div><p class="cap" style="margin-top:6px">自己装，同桌不许碰</p></div>
+      <div class="pop pink"><div class="h3">③ 说</div><p class="cap" style="margin-top:6px">长的那条腿，接在哪里？</p></div>
+    </div>
+  </div>
+  <aside class="notes">
+    <p><strong>这是今天唯一的验收环节，死保 8 分钟，绝对不能砍。</strong></p>
+    <p>「每个人，把电路<strong>全部拆散</strong>——线全取下来。然后自己重新装一次。我会走到每个人桌子前面看。」</p>
+    <p>规则说清楚：「<strong>同桌不许碰</strong>。可以说话，手不许碰。」小教练也一样。</p>
+    <p>你拿着<strong>巡视检查表（附录 C）</strong>逐人走，看他装好，然后问一句：「<strong>长的那条腿，接在哪里？</strong>」答出「接电池的＋」就打勾。</p>
+    <p><strong>不合格的当场再搭一次，不要留到下节课。</strong>这是保底目标的唯一验收方式——砍掉它，你就不知道这节课到底有没有成功。</p>
+    <p>已经过关的孩子让他们帮忙收器材，或者去当小教练（只准说话）。</p>
+  </aside>
+</section>
+
+<!-- ═══════════════ 25 · 今日大发现 ═══════════════ -->
+<section class="slide full-center" data-title="收尾 · 今日大发现">
+  <div class="discovery" data-anim="zoom-pop" style="max-width:min(1100px,88vw);margin:0 auto">
+    <p class="chip pink">今日大发现</p>
+    <p class="hero mt-m">不亮，<br>不等于坏了。</p>
+    <p class="h3 mt-l" style="font-weight:700">
+      问题<mark class="pink">不在电池，不在灯珠，不在线</mark>　——　在接法。
+    </p>
+  </div>
+  <aside class="notes">
+    <p>今天真正要带走的，<strong>不是「长脚接＋」这个知识点</strong>，而是这一句话。</p>
+    <p>让全班<strong>一起读一遍</strong>：「不亮，不等于坏了。」读两遍也行，这种句子念出来才记得住。</p>
+    <p>然后补一句把它推到生活里：「以后你家里什么东西不工作了——遥控器、台灯、玩具——<strong>先别说它坏了</strong>。先看看是不是哪里没接上、没装好。」</p>
+    <p>这就是今天建立的三个感觉：<strong>灯亮不亮我能控制</strong>、<strong>不亮不等于坏了</strong>、<strong>猜错很正常，试一次就知道</strong>。</p>
+  </aside>
+</section>
+
+<!-- ═══════════════ 26 · 回家做 ═══════════════ -->
+<section class="slide" data-title="收尾 · 回家做">
+  <h2 class="h2" data-anim="fade-up">回家做。</h2>
+  <div class="grid g2 mt-l">
+    <div class="pop pink" data-anim="fade-right">
+      <span class="chip" style="background:#fff">必做 · 每个人</span>
+      <div class="h3 mt-m">在家人面前，拆开重装一次。</div>
+      <p class="cap" style="text-align:left;margin-top:12px;color:rgba(255,255,255,.9)">
+        装好以后，把电池<strong>调个头</strong>让它灭掉，请家人<strong>猜猜为什么</strong>。<br>
+        把他们的猜法记下来（至少一个），下节课分享。
+      </p>
+    </div>
+    <div class="pop cyan" data-anim="fade-left">
+      <span class="chip" style="background:#fff">选做 · 想挑战的人</span>
+      <div class="h3 mt-m">在家找三样东西。</div>
+      <p class="cap" style="text-align:left;margin-top:12px">
+        钥匙、橡皮、铅笔、勺子都行。<strong>猜一猜</strong>它们能不能让灯亮。<br>
+        <strong>只猜，先不要真的试</strong>——下节课我们会验证其中一部分。
+      </p>
+    </div>
+  </div>
+  <p class="lede mt-l" data-anim="fade-up" style="text-align:center;max-width:none;font-weight:800;color:var(--text-1)">
+    能让<mark>别人</mark>也点亮它，才算你真的会了。
+  </p>
+  <aside class="notes">
+    <p>必做那条的重点<strong>不是拆装，是「请家人猜」</strong>。让孩子当一回出题的人，他就得先自己想明白。</p>
+    <p>「回去把灯装好给家里人看。然后当着他们的面，<strong>把电池调个头</strong>，灯灭了——问他们『你猜为什么？』把他们的猜法<strong>记下来</strong>，至少一个，下节课我们念。」</p>
+    <p>选做那条要特别强调：「<strong>只猜，先别真的试。</strong>」因为第 2 课和第 7 课要用到这些猜想当素材，提前试掉就没意思了。</p>
+    <p>最后那句「能让别人也点亮它，才算你真的会了」——说完再停一下，这是给他们的一句真话。</p>
+  </aside>
+</section>
+
+<!-- ═══════════════ 27 · 下节课 ═══════════════ -->
+<section class="slide full-center" data-title="收尾 · 下节课钩子">
+  <div style="text-align:center">
+    <p class="chip cyan" data-anim="fade-down">下节课 · 第 2 课</p>
+    <h2 class="h2 mt-m" data-anim="fade-up">今天我们知道了：LED <mark>挑方向</mark>。</h2>
+    <p class="hero mt-l" data-anim="zoom-pop">下节课看看 ——<br>它还<mark class="pink">挑什么</mark>？</p>
+  </div>
+  <aside class="notes">
+    <p>收尾钩子，<strong>一句话，说完就下课</strong>，不要再总结了。</p>
+    <p>「今天我们知道了：<strong>LED 挑方向</strong>。下节课看看——<strong>它还挑什么？</strong>」</p>
+    <p>说完就停。<strong>不要揭晓</strong>（下节课是《两根线都要接》）。留着那个问号让他们带走。</p>
+    <p>下课前自己确认三件事：①<strong>器材全部收齐</strong>，电池一节都不能少；②<strong>巡视检查表上还有没有没打勾的孩子</strong>，有的话课后单独补；③黑板上的<strong>猜想墙和四格表</strong>——如果下节课还在这间教室，就留着别擦。</p>
+  </aside>
+</section>
+
+</div>
+
+<div class="deck-footer">
+  <span>第 1 课 · 让小灯亮起来　|　15 节科创探究课 · 第一单元</span>
+  <span class="slide-number" data-current="1" data-total="27"></span>
+</div>
+
+<script src="../assets/runtime.js"></script>
+</body>
+</html>

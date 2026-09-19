@@ -1,0 +1,628 @@
+<!DOCTYPE html>
+<html lang="zh-CN" data-themes="memphis-pop,neo-brutalism,soft-pastel,minimal-white" data-theme-base="../assets/themes/">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>第 5 课 · 画出电的路线</title>
+<link rel="stylesheet" href="../assets/fonts.css">
+<link rel="stylesheet" href="../assets/base.css">
+<link rel="stylesheet" id="theme-link" href="../assets/themes/memphis-pop.css">
+<link rel="stylesheet" href="../assets/animations/animations.css">
+<link rel="stylesheet" href="../assets/course.css">
+</head>
+<body class="kc">
+<div class="deck">
+
+<!-- ═══════════════ 1 · 封面 ═══════════════ -->
+<section class="slide full-center" data-title="开场 · 封面">
+  <div style="text-align:center">
+    <span class="chip cyan" data-anim="fade-down">15 节科创探究课 · 第二单元「我能搭建和控制」</span>
+    <h1 class="hero mt-m" data-anim="rise-in">第 5 课<br>画出电的路线</h1>
+    <p class="h3 mt-m" data-anim="fade-up" style="font-weight:700;color:var(--text-2)">
+      我画的东西，<mark class="pink">别人能看懂吗</mark>？
+    </p>
+    <div class="row mt-l" style="justify-content:center;gap:14px;flex-wrap:wrap" data-anim="fade-up">
+      <span class="chip">90 分钟 · 两节连堂</span>
+      <span class="chip yellow">只学 5 个符号</span>
+      <span class="chip pink">今天有一次老师演示</span>
+    </div>
+  </div>
+  <aside class="notes">
+    <p>本课的核心<strong>不是「学会画图」，而是「体会为什么需要统一的图」</strong>。设计上先让学生用自创画法互相搭建并<strong>失败</strong>，再由这个失败引出统一符号的必要——<strong>顺序不能反</strong>。先教符号再让画，学生就只是在抄。</p>
+    <p>电路符号<strong>只教五个</strong>：电源、导线、开关、LED、电阻。<strong>不要顺手补充</strong>蜂鸣器、电机、电容——它们在第 12、13 课自然出现时再说。这是本课程的硬约束。</p>
+    <p>保底目标：<strong>照一张从未见过的电路图，独立搭出实物并点亮。</strong></p>
+    <p>今天有<strong>短路演示</strong>：只由老师做，严格 3 秒，演示后<strong>立即收回全部裸导线</strong>。学生私下模仿是本课最大的风险。</p>
+  </aside>
+</section>
+
+<!-- ═══════════════ 2 · 今天走 5 步 ═══════════════ -->
+<section class="slide" data-title="开场 · 今天走 5 步">
+  <p class="chip pink" data-anim="fade-down">今天，我们走 5 步</p>
+  <h2 class="h2 mt-s" data-anim="fade-up">今天会<mark>失败一次</mark> —— 那是安排好的。</h2>
+  <div class="grid mt-l" style="grid-template-columns:repeat(5,1fr)" data-anim="stagger-list">
+    <div class="pop yellow" style="text-align:center">
+      <div class="badge sq" style="margin:0 auto 12px">1</div>
+      <div class="h3">说不清</div>
+      <p class="cap" style="margin-top:8px">我用嘴说，你们搭</p>
+    </div>
+    <div class="pop" style="text-align:center">
+      <div class="badge pink sq" style="margin:0 auto 12px">2</div>
+      <div class="h3">自己画</div>
+      <p class="cap" style="margin-top:8px">用你想到的办法</p>
+    </div>
+    <div class="pop cyan" style="text-align:center">
+      <div class="badge sq" style="margin:0 auto 12px;background:#fff;color:var(--ink)">3</div>
+      <div class="h3">互相看</div>
+      <p class="cap" style="margin-top:8px">照同桌的图搭</p>
+    </div>
+    <div class="pop" style="text-align:center">
+      <div class="badge cyan sq" style="margin:0 auto 12px">4</div>
+      <div class="h3">统一符号</div>
+      <p class="cap" style="margin-top:8px">五个，全世界通用</p>
+    </div>
+    <div class="pop pink" style="text-align:center">
+      <div class="badge sq" style="margin:0 auto 12px;background:#fff;color:var(--ink)">5</div>
+      <div class="h3">照图搭</div>
+      <p class="cap" style="margin-top:8px">一张你没见过的图</p>
+    </div>
+  </div>
+  <p class="lede mt-l" data-anim="fade-up">
+    第 3 步<mark>大部分人会搭不出来</mark> —— 别慌，那一步就是用来失败的。
+  </p>
+  <aside class="notes">
+    <p>一分钟带过，但要<strong>提前给失败打预防针</strong>：「第 3 步，<strong>大部分人会搭不出来</strong>。那一步<strong>就是用来失败的</strong>，不是你们画得差。」</p>
+    <p>这句话很重要——没有它，互译失败的时候孩子会互相抱怨「你画的什么啊」。有了它，失败就变成了<strong>预期内的实验结果</strong>。</p>
+    <p>今天的结构是：<strong>先撞墙，再给工具</strong>。工具（五个符号）出现的时候，孩子才会觉得「太好了」，而不是「又要背东西」。</p>
+  </aside>
+</section>
+
+<!-- ═══════════════ 3 · 悬念 ═══════════════ -->
+<section class="slide full-center" data-title="① 说不清 · 只许听，不许看">
+  <div class="stage-rail"><b>① 说不清</b><i class="on"></i><i></i><i></i><i></i><i></i></div>
+  <div class="ask">
+    <p class="chip yellow" data-anim="fade-down">我说，你们搭 · 不许看我的板子</p>
+    <p class="q mt-m" data-anim="zoom-pop">「从电池正极出来，<br>接到第 8 列，<br>再从那里……」</p>
+    <p class="sub mt-l" data-anim="fade-up">听懂了吗？<mark class="pink">搭给我看看。</mark></p>
+  </div>
+  <aside class="notes">
+    <p>手里拿着一块<strong>搭好的板子</strong>，但<strong>不给学生看</strong>。</p>
+    <p>「我现在要告诉你们一个电路怎么搭。你们<strong>不许看我的板子，只能听</strong>。」</p>
+    <p>然后<strong>故意说得又快又绕</strong>：「从电池正极出来，接到第 8 列，然后从第 8 列再拉一根到……对，再往右数三个……不对，是从上面那排……」</p>
+    <p>教室会越来越乱。<strong>等到明显混乱了再停下。</strong>不要中途去帮他们。</p>
+    <p>停下来问：「<strong>乱了吧？</strong>」——让他们一起喊「乱了」。</p>
+    <p>然后抛出今天的问题：「那<strong>怎么才能把一个电路，准确地告诉另一个人？</strong>」</p>
+  </aside>
+</section>
+
+<!-- ═══════════════ 4 · 大提问 ═══════════════ -->
+<section class="slide full-center" data-title="① 说不清 · 怎么才能说清楚">
+  <div class="stage-rail"><b>① 说不清</b><i class="on"></i><i></i><i></i><i></i><i></i></div>
+  <div class="ask">
+    <p class="chip cyan" data-anim="fade-down">用嘴说 —— 说不清</p>
+    <p class="q mt-m" data-anim="zoom-pop">怎么才能<br>把一个电路<br><mark>准确地告诉别人</mark>？</p>
+  </div>
+  <aside class="notes">
+    <p>这个问题<strong>留 30 秒</strong>，让他们自己说。</p>
+    <p>会有孩子说「<strong>画下来</strong>」——就是它。不要马上确认，追一句：「画下来？<strong>那你打算怎么画？</strong>」</p>
+    <p>让他们意识到「画下来」这三个字里面其实还有一大堆问题没解决——怎么画才能让别人看懂？</p>
+    <p>这就是今天的任务。<strong>现在不给任何规范</strong>，直接放手让他们自己画。</p>
+    <p>注意：这里<strong>绝对不能说出「电路图」三个字</strong>，也不要露出任何符号。</p>
+  </aside>
+</section>
+
+<!-- ═══════════════ 5 · 任务① 自己画 ═══════════════ -->
+<section class="slide full-center" data-title="② 自己画 · 用你自己的办法">
+  <div class="stage-rail"><b>② 自己画</b><i class="done"></i><i class="on"></i><i></i><i></i><i></i></div>
+  <div style="text-align:center">
+    <span class="chip pink" data-anim="fade-down">第 1 关 · 14 分钟</span>
+    <h1 class="hero mt-m" data-anim="rise-in">用你自己的办法<br>把它画出来。</h1>
+    <div class="row mt-l" style="justify-content:center;gap:clamp(16px,1.8vw,34px);flex-wrap:wrap" data-anim="fade-up">
+      <div class="pop yellow"><div class="h3">画什么</div><p class="cap" style="margin-top:6px">第 3 课的<br>串联 和 并联</p></div>
+      <div class="pop cyan"><div class="h3">怎么画</div><p class="cap" style="margin-top:6px">随便你<br><b>我不给规定</b></p></div>
+      <div class="pop pink"><div class="h3">标准</div><p class="cap" style="margin-top:6px">让别人<br><b>能照着搭出来</b></p></div>
+    </div>
+  </div>
+  <aside class="notes">
+    <p>「用你自己的办法，把<strong>第 3 课的串联和并联</strong>画出来，<strong>让别人能照着搭</strong>。」</p>
+    <p><strong>不给任何符号规范。</strong>孩子会画出各种东西：有人画写实图（把 LED 画得像个小灯泡），有人画方块，有人自己发明符号，有人直接把面包板的孔一个个画出来。</p>
+    <p><strong>产出的就是差异。差异越大，后面统一规范的理由越充分。</strong>所以不要去「纠正」任何一种画法。</p>
+    <p>巡视时只说一句话：「<strong>你这张图，别人照着能搭出来吗？</strong>」不评价好坏。</p>
+    <p>发红、黑彩笔各一支，用于区分正负——但也不强制。</p>
+    <p>画完的图<strong>先不要贴黑板</strong>，留到第 7 页收集问题的时候用。</p>
+  </aside>
+</section>
+
+<!-- ═══════════════ 6 · 互译 ═══════════════ -->
+<section class="slide full-center" data-title="③ 互相看 · 交换图纸，照着搭">
+  <div class="stage-rail"><b>③ 互相看</b><i class="done"></i><i class="done"></i><i class="on"></i><i></i><i></i></div>
+  <div style="text-align:center">
+    <span class="chip cyan" data-anim="fade-down">第 2 关 · 交换图纸</span>
+    <h1 class="hero mt-m" data-anim="rise-in">照着同桌的图，<br>搭出来。</h1>
+    <div class="vs mt-l" style="max-width:min(900px,82vw);margin-left:auto;margin-right:auto" data-anim="fade-up">
+      <div class="no"><div class="mk">✗</div><div class="h3 mt-s">不许问对方<br>不许看对方的板子</div></div>
+      <div class="yes"><div class="mk">✎</div><div class="h3 mt-s">只能看那张图</div></div>
+    </div>
+  </div>
+  <aside class="notes">
+    <p>交换图纸，<strong>只能看图，不许问对方，不许看对方的板子。</strong>这两条规矩不守住，这一关就失效了。</p>
+    <p><strong>大量的组会搭不出来</strong>——这是设计出来的，不是意外。</p>
+    <p>你巡视的时候<strong>不要帮忙翻译</strong>，只观察卡在哪里。看到孩子皱眉、来回看图，就是对的。</p>
+    <p>有孩子急了想去问同桌，按住：「<strong>不许问。如果图上没画清楚，那就是图的问题。</strong>」这句话把责任从「读图的人笨」转到了「图不够好」——很重要。</p>
+    <p>如果<strong>所有组都搭出来了</strong>（画法意外地一致，少见但会发生），立刻升级任务：<strong>交换到隔壁组去搭</strong>，跨组差异会更大。</p>
+    <p>大概 8 分钟后喊停，进入收集环节。</p>
+  </aside>
+</section>
+
+<!-- ═══════════════ 7 · 问题清单 ═══════════════ -->
+<section class="slide" data-title="③ 互相看 · 具体哪里看不懂">
+  <div class="stage-rail"><b>③ 互相看</b><i class="done"></i><i class="done"></i><i class="on"></i><i></i><i></i></div>
+  <p class="chip pink" data-anim="fade-down">不要说「画得不好」—— 说具体哪里</p>
+  <h2 class="h2 mt-s" data-anim="fade-up">你<mark>具体</mark>卡在哪？</h2>
+  <div class="grid g2 mt-l" data-anim="stagger-list">
+    <div class="pop"><div class="h3">画得太像实物了</div>
+      <p class="cap" style="text-align:left;margin-top:6px">画了个小灯泡，可我手里是个 LED，对不上</p></div>
+    <div class="pop"><div class="h3">看不出哪根线连哪根</div>
+      <p class="cap" style="text-align:left;margin-top:6px">线都挤在一起，不知道在哪儿交叉、在哪儿只是压过去</p></div>
+    <div class="pop"><div class="h3">没标正负</div>
+      <p class="cap" style="text-align:left;margin-top:6px">不知道哪头是＋，LED 装反了就不亮</p></div>
+    <div class="pop"><div class="h3">把孔的位置也画上了</div>
+      <p class="cap" style="text-align:left;margin-top:6px">我的板子跟他的插法不一样，照着插根本插不下</p></div>
+  </div>
+  <p class="lede mt-l" data-anim="fade-up" style="font-weight:800;color:var(--text-1)">
+    还有别的吗？说出来，<mark>我一条一条写黑板上</mark>。
+  </p>
+  <aside class="notes">
+    <p><strong>这份清单是今天的枢纽，一定要收集具体原因。</strong></p>
+    <p>「照着同桌的图，搭出来了吗？<strong>没搭出来的，告诉我具体是哪里看不懂</strong>——我一条一条写黑板上。」</p>
+    <p><strong>不要接受「画得不好」这种答案。</strong>追问：「<strong>具体是哪里？</strong>是看不出线怎么连，还是不知道哪头是正极？」</p>
+    <p>PPT 上这四条是最常见的，但<strong>一定要留位置给孩子自己说的</strong>。他们说出来的那一条，比你列的这四条有力十倍。</p>
+    <p>把清单写在黑板上<strong>编号</strong>——下半场每给一个符号，就回来划掉一条。这个对应关系是本课的因果链，不能省。</p>
+    <p>收集完就下课休息。让这份「问题清单」在黑板上挂着，孩子带着问题去休息。</p>
+  </aside>
+</section>
+
+<!-- ═══════════════ 8 · 课间休息 ═══════════════ -->
+<section class="slide full-center" data-title="休息 · 课间 10 分钟">
+  <div style="text-align:center">
+    <div class="discovery" data-anim="zoom-pop" style="max-width:min(1000px,86vw)">
+      <p class="chip" style="background:#fff">中场 · 10 分钟</p>
+      <h1 class="hero mt-m">课间休息</h1>
+      <p class="h3 mt-m" style="font-weight:700">
+        黑板上那份<mark class="pink">问题清单</mark>，回来一条一条解决
+      </p>
+    </div>
+    <p class="lede mt-l" data-anim="fade-up" style="margin-left:auto;margin-right:auto;text-align:center">
+      下半场给你们五个东西 —— 全世界的工程师都在用。
+    </p>
+  </div>
+  <aside class="notes">
+    <p>走之前指着黑板上的问题清单说：「回来我给你们<strong>五个东西</strong>，专门解决这几条。」</p>
+    <p>「这五个东西，<strong>全世界的工程师都在用</strong>。」——先把期待值拉起来。</p>
+    <p>这 10 分钟你要做的：<strong>把几张典型的自创图贴到黑板左侧</strong>。挑三张画法差别最大的——写实的、方块的、画了孔位的。下半场对照用。</p>
+    <p>顺手确认<strong>短路演示的材料</strong>准备好了：1 节 AA 电池 + 一段 5cm 细导线。自己先做一次，确认 3 秒能明显温热但不烫伤。</p>
+  </aside>
+</section>
+
+<!-- ═══════════════ 9 · 五个符号登场 ═══════════════ -->
+<section class="slide" data-title="④ 统一符号 · 五个符号登场">
+  <div class="stage-rail"><b>④ 统一符号</b><i class="done"></i><i class="done"></i><i class="done"></i><i class="on"></i><i></i></div>
+  <p class="chip yellow" data-anim="fade-down">黑板上那五条，都是你们自己提的</p>
+  <h2 class="h2 mt-s" data-anim="fade-up">给你们<mark class="pink">五个符号</mark> —— 看它们解决了哪一条。</h2>
+  <div class="grid mt-l" style="grid-template-columns:repeat(5,1fr)" data-anim="stagger-list">
+    <div class="pop yellow" style="text-align:center">
+      <div class="h3">电源</div>
+      <svg viewBox="0 0 160 110" style="max-height:16vh;margin:8px auto">
+        <path class="st" d="M16 60 h44"/>
+        <path class="st" d="M60 28 v64"/>
+        <path class="st" d="M86 46 v28"/>
+        <path class="st" d="M86 60 h58"/>
+        <text class="lbl sm" x="48" y="22" style="fill:var(--accent)">＋</text>
+        <text class="lbl sm" x="80" y="36">−</text>
+      </svg>
+      <p class="cap"><b>长线是正极</b></p>
+    </div>
+    <div class="pop" style="text-align:center">
+      <div class="h3">导线</div>
+      <svg viewBox="0 0 160 110" style="max-height:16vh;margin:8px auto">
+        <path class="st" d="M18 36 h54 v42 h70"/>
+      </svg>
+      <p class="cap">直线 · <b>拐弯走直角</b></p>
+    </div>
+    <div class="pop cyan" style="text-align:center">
+      <div class="h3">开关</div>
+      <svg viewBox="0 0 160 110" style="max-height:16vh;margin:8px auto">
+        <path class="st" d="M16 68 h40"/>
+        <circle class="fillk" cx="56" cy="68" r="6"/>
+        <path class="st" d="M56 68 L104 36"/>
+        <circle class="fillk" cx="110" cy="68" r="6"/>
+        <path class="st" d="M110 68 h34"/>
+      </svg>
+      <p class="cap">一条线<b>断开</b><br>加一段斜线</p>
+    </div>
+    <div class="pop" style="text-align:center">
+      <div class="h3">LED</div>
+      <svg viewBox="0 0 160 110" style="max-height:16vh;margin:8px auto">
+        <circle class="st fillw" cx="80" cy="62" r="26"/>
+        <path class="st fillk" d="M68 48 v28 l24 -14 z"/>
+        <path class="st" d="M92 48 v28"/>
+        <path class="st" d="M16 62 h38"/><path class="st" d="M106 62 h38"/>
+        <path class="st2" style="stroke:var(--accent)" d="M92 30 l16 -14"/>
+        <path class="st2" style="stroke:var(--accent)" d="M104 12 l6 2 -1 7"/>
+        <path class="st2" style="stroke:var(--accent)" d="M104 36 l16 -14"/>
+        <path class="st2" style="stroke:var(--accent)" d="M116 18 l6 2 -1 7"/>
+      </svg>
+      <p class="cap">圆圈＋三角<br><b>两个小箭头 = 发光</b></p>
+    </div>
+    <div class="pop pink" style="text-align:center">
+      <div class="h3" style="color:#fff">电阻</div>
+      <svg viewBox="0 0 160 110" style="max-height:16vh;margin:8px auto">
+        <path class="st" style="stroke:#fff" d="M14 62 h34"/>
+        <rect class="st" x="48" y="42" width="64" height="40" rx="4" style="fill:#fff"/>
+        <path class="st" style="stroke:#fff" d="M112 62 h34"/>
+      </svg>
+      <p class="cap" style="color:rgba(255,255,255,.92)">一个长方形<br><b>不画锯齿</b></p>
+    </div>
+  </div>
+  <aside class="notes">
+    <p>「黑板上这几条，<strong>都是你们自己提出来的问题</strong>。现在我给你们五个符号，你们看看<strong>它们分别解决了哪一条</strong>。」</p>
+    <p><strong>一个符号对应一条问题，当场在黑板上划掉。</strong>这个因果关系是本课的骨架，务必讲清楚：</p>
+    <p>「画得太像实物」→ 符号统一了，不管你手里是什么牌子的灯，都画这个圈。「没标正负」→ 电源的<strong>长线就是正极</strong>，不用再写字。「看不出线怎么连」→ 导线<strong>拐弯走直角</strong>，一眼看得清。</p>
+    <p>然后说这句：「这五个符号，<strong>全世界的工程师都在用</strong>。用了它们，你画的图，<strong>一个不认识你的人也能看懂</strong>。」</p>
+    <p><strong>只教这五个。</strong>不要顺手补蜂鸣器、电机、电容——它们在第 12、13 课自然出现时再讲，提前给只会增加记忆负担。</p>
+  </aside>
+</section>
+
+<!-- ═══════════════ 10 · 重画 + 互换 ═══════════════ -->
+<section class="slide full-center" data-title="④ 统一符号 · 用新符号重画一遍">
+  <div class="stage-rail"><b>④ 统一符号</b><i class="done"></i><i class="done"></i><i class="done"></i><i class="on"></i><i></i></div>
+  <div style="text-align:center">
+    <span class="chip cyan" data-anim="fade-down">第 3 关 · 再来一次</span>
+    <h1 class="hero mt-m" data-anim="rise-in">用新符号<br>重画一遍。</h1>
+    <p class="h3 mt-l" data-anim="fade-up" style="font-weight:800">
+      画完<mark>再换一次</mark> —— 这次还搭不出来吗？
+    </p>
+  </div>
+  <aside class="notes">
+    <p>同样的电路，<strong>用五个符号重画一遍</strong>，然后<strong>再换一次</strong>。</p>
+    <p>这一次<strong>成功率会明显提高</strong>——这个前后对比就是今天全部的说服力。不要跳过重画环节直接讲道理。</p>
+    <p>搭出来的时候，问一句：「<strong>这次为什么行了？</strong>」让孩子自己说出「因为大家画的一样了」。</p>
+    <p>已经会画标准电路图的孩子，<strong>请他当「翻译官」</strong>，帮读不懂同伴图纸的组——<strong>但不许代画</strong>。</p>
+    <p>还有个高频错误现在就会冒出来：<strong>把面包板的行列位置原样画进电路图</strong>。看到了先记下，下一页专门处理。</p>
+  </aside>
+</section>
+
+<!-- ═══════════════ 11 · 命名：电路图 ═══════════════ -->
+<section class="slide" data-title="④ 统一符号 · 它叫电路图">
+  <div class="stage-rail"><b>④ 统一符号</b><i class="done"></i><i class="done"></i><i class="done"></i><i class="on"></i><i></i></div>
+  <p class="chip pink" data-anim="fade-down">这种画法有个名字</p>
+  <h2 class="h2 mt-s" data-anim="rise-in">它叫 <mark>电路图</mark>。</h2>
+  <div class="figure mt-m" data-anim="fade-up">
+    <svg viewBox="0 0 720 300" role="img" aria-label="一个完整的电路图：电源、开关、LED、电阻">
+      <!-- 电源（左侧竖放，长板为正极） -->
+      <path class="st" d="M90 60 v82"/>
+      <path class="st" d="M64 142 h52"/>
+      <path class="st" d="M76 168 h28"/>
+      <path class="st" d="M90 168 v82"/>
+      <text class="lbl" x="46" y="136" style="fill:var(--accent)">＋</text>
+      <text class="lbl" x="52" y="192">−</text>
+      <text class="lbl sm" x="42" y="232">电源</text>
+      <!-- 上边：开关 → LED → 电阻 -->
+      <path class="st" d="M90 60 h110"/>
+      <circle class="fillk" cx="200" cy="60" r="6"/>
+      <path class="st" d="M200 60 L252 32"/>
+      <circle class="fillk" cx="262" cy="60" r="6"/>
+      <path class="st" d="M262 60 h90"/>
+      <text class="lbl sm" x="206" y="98">开关</text>
+      <circle class="st fillw" cx="380" cy="60" r="28"/>
+      <path class="st fillk" d="M367 45 v30 l26 -15 z"/>
+      <path class="st" d="M393 45 v30"/>
+      <path class="st" d="M408 60 h62"/>
+      <path class="st2" style="stroke:var(--accent)" d="M394 36 L414 18"/>
+      <path class="st2" style="stroke:var(--accent)" d="M406 20 l9 -3 -2 9"/>
+      <path class="st2" style="stroke:var(--accent)" d="M408 48 L428 30"/>
+      <path class="st2" style="stroke:var(--accent)" d="M420 32 l9 -3 -2 9"/>
+      <text class="lbl sm" x="358" y="112">LED</text>
+      <rect class="st fillw" x="470" y="40" width="72" height="40" rx="4"/>
+      <text class="lbl sm" x="482" y="112">电阻</text>
+      <!-- 右边 + 下边回到电源 -->
+      <path class="st" d="M542 60 h88 v190 h-540"/>
+    </svg>
+  </div>
+  <p class="lede mt-s" data-anim="fade-up" style="text-align:center;max-width:none;font-weight:800;color:var(--text-1)">
+    五个符号 + 几根直线 —— <mark>整个电路说清楚了。</mark>
+  </p>
+  <aside class="notes">
+    <p>「这种画法有个名字，叫<strong>电路图</strong>。」</p>
+    <p>指着这张图，用手指沿着线走一圈：「从电源的<strong>长线（正极）</strong>出来，经过<strong>开关</strong>，穿过 <strong>LED</strong>，再穿过<strong>电阻</strong>，回到电源的<strong>短线（负极）</strong>。」</p>
+    <p>「<strong>还是那一圈。</strong>」——把它接回第 2 课。第一单元建立的模型在这里换了一种表达方式，但没有变。</p>
+    <p>让全班对着这张图数一数：<strong>一共用了几种符号？</strong>（四种 + 导线）「就这么几个，够用了。」</p>
+    <p>然后翻下一页，讲今天最容易错的那件事。</p>
+  </aside>
+</section>
+
+<!-- ═══════════════ 12 · 关系不是位置 ═══════════════ -->
+<section class="slide" data-title="④ 统一符号 · 图画的是关系，不是位置">
+  <div class="stage-rail"><b>④ 统一符号</b><i class="done"></i><i class="done"></i><i class="done"></i><i class="on"></i><i></i></div>
+  <p class="chip yellow" data-anim="fade-down">今天最容易搞错的一件事</p>
+  <h2 class="h2 mt-s" data-anim="fade-up">图说的是「<mark>谁和谁连着</mark>」，<br>不是「东西<mark class="pink">放在哪</mark>」。</h2>
+  <div class="vs mt-l" data-anim="fade-up">
+    <div class="no">
+      <div class="mk">✗</div>
+      <div class="h3 mt-s" style="color:var(--text-3)">把孔的位置也画上</div>
+      <p class="cap" style="text-align:left;margin-top:10px">「插在第 8 列第 3 排」—— 换一块板子就对不上了</p>
+    </div>
+    <div class="yes">
+      <div class="mk">✓</div>
+      <div class="h3 mt-s">只画谁连谁</div>
+      <p class="cap" style="text-align:left;margin-top:10px">图上离得很远的两个点，实际可能就插在旁边一个孔里 —— 反过来也一样</p>
+    </div>
+  </div>
+  <aside class="notes">
+    <p><strong>这句话今天要重复三遍以上。</strong>它是孩子最容易犯的错，也是本课的教学难点。</p>
+    <p>「注意一件事：电路图画的<strong>不是「东西放在哪里」，是「谁和谁连着」</strong>。」</p>
+    <p>「图上这两个点<strong>离得很远</strong>，实际上可能就插在<strong>旁边一个孔</strong>里。<strong>反过来也一样</strong>——图上挨着的两个符号，实物上可能隔了半块板。」</p>
+    <p>可以当场演示：把同一张电路图，<strong>用两种完全不同的插法</strong>在面包板上搭出来，两个都亮。「<strong>同一张图，两种插法，都对。</strong>」</p>
+    <p>把第 4 课的面包板连接图拿出来对照：「<strong>怎么插</strong>看第 4 课那张图，<strong>连什么</strong>看今天这张图。两张图管的是两件事。」</p>
+    <p>说完再重复一遍那句话。第三遍留到 Evaluate 之前说。</p>
+  </aside>
+</section>
+
+<!-- ═══════════════ 13 · 短路 ═══════════════ -->
+<section class="slide" data-title="④ 统一符号 · 短路：电抄了近路">
+  <div class="stage-rail"><b>④ 统一符号</b><i class="done"></i><i class="done"></i><i class="done"></i><i class="on"></i><i></i></div>
+  <p class="chip pink" data-anim="fade-down">新词 · 第 3 课那个发烫的电池，就是它</p>
+  <h2 class="h2 mt-s" data-anim="fade-up">电<mark class="pink">抄了近路</mark> —— 叫<mark>短路</mark>。</h2>
+  <div class="figure mt-m" data-anim="fade-up">
+    <svg viewBox="0 0 720 300" role="img" aria-label="短路：电流从正极直接回负极，绕过了灯">
+      <path class="st" d="M120 96 v54"/>
+      <path class="st" d="M148 110 v26"/>
+      <text class="lbl sm" x="106" y="86" style="fill:var(--accent)">＋</text>
+      <text class="lbl sm" x="142" y="86">−</text>
+      <text class="lbl sm" x="100" y="180">电源</text>
+      <path class="st" d="M120 96 v-40 h180"/>
+      <path class="st" d="M148 150 v64 h180"/>
+      <!-- 灯（灰的，没电流经过） -->
+      <circle class="st" cx="360" cy="56" r="28" style="fill:var(--surface-2);stroke:var(--text-3)"/>
+      <path d="M348 42 v28 l24 -14 z" style="fill:var(--text-3)"/>
+      <path style="stroke:var(--text-3);stroke-width:4;fill:none" d="M372 42 v28"/>
+      <path class="st" style="stroke:var(--text-3)" d="M388 56 h180 v158 h-240"/>
+      <text class="lbl sm" x="330" y="112" style="fill:var(--text-3)">灯 · 不亮</text>
+      <!-- 抄近路的导线 -->
+      <path class="st" style="stroke:var(--accent);stroke-width:7" d="M300 56 v78 h-152"/>
+      <text class="lbl" x="316" y="140" style="fill:var(--accent)">这根线让电抄了近路</text>
+      <text class="lbl sm" x="316" y="170" style="fill:var(--accent)">＋ 直接回 −，根本不经过灯</text>
+      <text class="lbl" x="316" y="244" style="fill:var(--text-1)">结果：<tspan style="fill:var(--accent)">灯不亮，电池和线都发烫</tspan></text>
+    </svg>
+  </div>
+  <aside class="notes">
+    <p>先接回第 3 课：「还记得上上节课有人的<strong>电池发烫</strong>吗？<strong>那个现象，今天有名字了。</strong>」</p>
+    <p>「电<strong>没有经过灯</strong>，自己从正极<strong>直接跑回了负极</strong>——<strong>抄了近路</strong>。这叫<strong>短路</strong>。」</p>
+    <p>指着图上那根粗粉线：「就是这根。有了它，电<strong>为什么还要绕远路去走灯</strong>呢？」</p>
+    <p>现象要说全：<strong>灯不亮，但电池和导线会明显发烫。</strong>两个现象缺一不可——只不亮不一定是短路，<strong>发烫才是短路的标志</strong>。</p>
+    <p>讲完<strong>马上做演示</strong>。这个概念<strong>不上手感受是学不会的</strong>。</p>
+  </aside>
+</section>
+
+<!-- ═══════════════ 14 · 短路演示 ═══════════════ -->
+<section class="slide full-center" data-title="④ 统一符号 · 短路演示（只有老师能做）">
+  <div class="stage-rail"><b>④ 统一符号</b><i class="done"></i><i class="done"></i><i class="done"></i><i class="on"></i><i></i></div>
+  <div class="discovery" data-anim="zoom-pop" style="max-width:min(1100px,88vw);margin:0 auto;background:var(--accent)">
+    <p class="chip" style="background:#fff">老师演示 · 严格 3 秒</p>
+    <p class="hero mt-m" style="color:#fff">这个动作<br>只有我能做。</p>
+    <p class="h3 mt-l" style="font-weight:700;color:#fff">
+      演示完，<mark>所有裸导线马上收回</mark>　·　你们任何时候都不许自己试
+    </p>
+  </div>
+  <aside class="notes">
+    <p><strong>这一页停住，把规矩说死，再动手。</strong></p>
+    <p>「看好了，<strong>这个动作只有我能做，你们不许自己试。</strong>」</p>
+    <p>操作：用一段 <strong>5cm 细导线</strong>把 <strong>1 节 AA 电池</strong>两极直接短接，<strong>严格 3 秒后断开</strong>。（只用一节 AA，不要用电池盒。）</p>
+    <p>然后：「来，<strong>一个一个过来摸一下这根线</strong>。」让每个孩子都摸到——<strong>这是本课唯一的身体记忆</strong>。</p>
+    <p>边摸边问：「<strong>烫不烫？</strong>电没有经过灯，自己抄近路跑回去了——这就叫<strong>短路</strong>。」</p>
+    <p><strong>演示结束立即收回全部裸导线，并把电池盒开关关掉。</strong>巡视时注意桌上有没有多余的裸线——<strong>学生私下模仿是本课最大的风险</strong>。</p>
+    <p>如果导线不发热，说明太粗。换更细的单股线，或延长到 5 秒但全程盯住温度。</p>
+  </aside>
+</section>
+
+<!-- ═══════════════ 15 · 短路三条规矩 ═══════════════ -->
+<section class="slide" data-title="④ 统一符号 · 短路三条规矩">
+  <div class="stage-rail"><b>④ 统一符号</b><i class="done"></i><i class="done"></i><i class="done"></i><i class="on"></i><i></i></div>
+  <p class="chip yellow" data-anim="fade-down">摸完了，记住这三条</p>
+  <h2 class="h2 mt-s" data-anim="fade-up">关于短路，<mark>三条规矩</mark>。</h2>
+  <div class="checks mt-m" data-anim="stagger-list">
+    <div class="check"><div class="badge pink">1</div>
+      <div><div class="ct">摸到电池或线<b>发烫</b> → 立刻断开，然后举手</div>
+      <div class="cs">不要先研究为什么，先断开</div></div></div>
+    <div class="check"><div class="badge">2</div>
+      <div><div class="ct">永远<b>不要</b>把电池两头直接用线连起来</div>
+      <div class="cs">今天这个演示，只有老师能做</div></div></div>
+    <div class="check"><div class="badge cyan">3</div>
+      <div><div class="ct">家里的插座，<b>一根线都不许碰</b></div>
+      <div class="cs">我们的电池是 4.5V，插座是它的 50 倍 —— 完全不是一回事</div></div></div>
+  </div>
+  <p class="lede mt-l" data-anim="fade-up" style="text-align:center;max-width:none;font-weight:800;color:var(--text-1)">
+    <mark class="pink">发烫 = 有问题</mark>。这一条，后面每节课都算数。
+  </p>
+  <aside class="notes">
+    <p>三条一条一条说，<strong>说慢一点</strong>，这是安全底线。</p>
+    <p>第一条是<strong>动作</strong>，不是知识：「<strong>摸到发烫，立刻断开，然后举手。</strong>不要先研究为什么——<strong>先断开</strong>。」让全班跟着念一遍。</p>
+    <p>第三条<strong>必须说</strong>，而且要说得重：「我们用的是 <strong>4.5V</strong>，家里插座是 <strong>220V</strong>——是它的<strong>五十倍</strong>。<strong>完全不是一回事。</strong>」</p>
+    <p>这三条是<strong>第 9 课电容、第 11 课电磁铁</strong>安全条款的认知基础，今天立住了后面就省事。</p>
+    <p>说完再确认一次：<strong>裸导线都收回来了吗？</strong></p>
+  </aside>
+</section>
+
+<!-- ═══════════════ 16 · 找短路 ═══════════════ -->
+<section class="slide" data-title="⑤ 照图搭 · 三张图里哪一张短路">
+  <div class="stage-rail"><b>⑤ 照图搭</b><i class="done"></i><i class="done"></i><i class="done"></i><i class="done"></i><i class="on"></i></div>
+  <div class="row" style="justify-content:space-between;align-items:flex-end">
+    <div>
+      <span class="chip pink" data-anim="fade-down">第 4 关 · 三张图，只有一张有问题</span>
+      <h2 class="h2 mt-s" data-anim="fade-up">哪一张<mark class="pink">短路</mark>了？</h2>
+    </div>
+    <div class="pop cyan" data-anim="fade-left" style="text-align:center;flex:0 0 auto">
+      <div class="h3">找出来还不够 ——<br>要说出<b>电在哪里抄的近路</b></div>
+    </div>
+  </div>
+  <div class="grid g3 mt-m" data-anim="stagger-list">
+    <div class="pop" style="text-align:center">
+      <div class="h3">A 图</div>
+      <svg viewBox="0 0 240 150" style="max-height:22vh;margin:8px auto">
+        <path class="st" d="M40 56 v36"/><path class="st" d="M62 66 v16"/>
+        <path class="st" d="M40 56 v-24 h70"/><path class="st" d="M62 92 v28 h70"/>
+        <circle class="st fillw" cx="140" cy="32" r="22"/>
+        <path class="st fillk" d="M130 20 v24 l20 -12 z"/><path class="st" d="M150 20 v24"/>
+        <path class="st" d="M162 32 h46 v88 h-76"/>
+      </svg>
+    </div>
+    <div class="pop yellow" style="text-align:center">
+      <div class="h3">B 图</div>
+      <svg viewBox="0 0 240 150" style="max-height:22vh;margin:8px auto">
+        <path class="st" d="M40 56 v36"/><path class="st" d="M62 66 v16"/>
+        <path class="st" d="M40 56 v-24 h70"/><path class="st" d="M62 92 v28 h70"/>
+        <circle class="st fillw" cx="140" cy="32" r="22"/>
+        <path class="st fillk" d="M130 20 v24 l20 -12 z"/><path class="st" d="M150 20 v24"/>
+        <path class="st" d="M162 32 h46 v88 h-76"/>
+        <path class="st" d="M110 32 v44 h-48"/>
+      </svg>
+    </div>
+    <div class="pop" style="text-align:center">
+      <div class="h3">C 图</div>
+      <svg viewBox="0 0 240 150" style="max-height:22vh;margin:8px auto">
+        <path class="st" d="M40 56 v36"/><path class="st" d="M62 66 v16"/>
+        <path class="st" d="M40 56 v-24 h46"/><path class="st" d="M62 92 v28 h70"/>
+        <path class="st" d="M86 32 h20"/>
+        <circle class="fillk" cx="106" cy="32" r="5"/>
+        <path class="st" d="M106 32 L142 12"/>
+        <circle class="fillk" cx="148" cy="32" r="5"/>
+        <path class="st" d="M148 32 h14"/>
+        <circle class="st fillw" cx="184" cy="32" r="20"/>
+        <path class="st fillk" d="M175 21 v22 l18 -11 z"/><path class="st" d="M193 21 v22"/>
+        <path class="st" d="M204 32 h14 v88 h-86"/>
+      </svg>
+    </div>
+  </div>
+  <aside class="notes">
+    <p>发三张纸质图，<strong>三张的复杂度相近</strong>——不能让含短路的那张明显更乱，否则孩子靠「哪张看起来奇怪」就能猜到，判断能力就没被真正检验。</p>
+    <p>要求两条：<strong>①找出是哪一张 ②说出电在哪里抄的近路。</strong>只答出图号不算过。</p>
+    <p>答案：<strong>B 图</strong>。电源正极 → 导线 → 电源负极，<strong>绕过了 LED</strong>。</p>
+    <p>引导方法教给他们：「<strong>用手指从正极出发走一遍</strong>。如果你能<strong>不经过灯</strong>就回到负极，那就是短路。」这个方法比看图形有用。</p>
+    <p>让找出来的孩子上来，<strong>用手指在图上把那条近路走一遍</strong>给全班看。</p>
+  </aside>
+</section>
+
+<!-- ═══════════════ 17 · 挑战：怎么改 ═══════════════ -->
+<section class="slide full-center" data-title="⑤ 照图搭 · 挑战：怎么改">
+  <div class="stage-rail"><b>⑤ 照图搭</b><i class="done"></i><i class="done"></i><i class="done"></i><i class="done"></i><i class="on"></i></div>
+  <div class="ask">
+    <p class="chip yellow" data-anim="fade-down">挑战档 · 不是全员要求</p>
+    <p class="q mt-m" data-anim="zoom-pop">那 B 图<br>怎么改？</p>
+    <p class="sub mt-l" data-anim="fade-up">在图上<mark>直接画出来</mark> —— 改一笔就行。</p>
+  </div>
+  <aside class="notes">
+    <p>这是<strong>挑战档，不作全员要求</strong>。做出来的加分，做不出来不影响本课判定。</p>
+    <p>「那 <strong>B 图怎么改？</strong>在图上直接画出来——<strong>改一笔就行。</strong>」</p>
+    <p>答案不唯一：<strong>把那根抄近路的线去掉</strong>最直接；也可以<strong>让那根线也经过一个灯</strong>（就变成并联了，两个灯都亮）。</p>
+    <p>第二种答案很值得表扬——那是把第 3 课的并联用上了。如果有孩子想到，<strong>让他上来讲</strong>。</p>
+    <p>做完的孩子可以去帮还没找出 B 图的同伴——<strong>只许提问，不许指</strong>。</p>
+    <p>时间紧就跳过这页，<strong>最后一关不能砍</strong>。</p>
+  </aside>
+</section>
+
+<!-- ═══════════════ 18 · 最后一关 ═══════════════ -->
+<section class="slide full-center" data-title="⑤ 照图搭 · 照陌生图搭建（逐人）">
+  <div class="stage-rail"><b>⑤ 照图搭</b><i class="done"></i><i class="done"></i><i class="done"></i><i class="done"></i><i class="on"></i></div>
+  <div style="text-align:center">
+    <span class="chip pink" data-anim="fade-down">最后一关 · 限时 10 分钟 · 一个一个过</span>
+    <h1 class="hero mt-m" data-anim="rise-in">照着这张图，<br>搭出来。</h1>
+    <div class="row mt-l" style="justify-content:center;gap:clamp(16px,1.8vw,34px);flex-wrap:wrap" data-anim="fade-up">
+      <div class="pop yellow"><div class="h3">你<b>没见过</b>这张图</div><p class="cap" style="margin-top:6px">含一个开关<br>和两个 LED</p></div>
+      <div class="pop cyan"><div class="h3">先看懂，<b>再动手</b></div><p class="cap" style="margin-top:6px">图说的是谁和谁连着<br>不是东西放在哪</p></div>
+      <div class="pop pink"><div class="h3">通电<b>点亮</b>才算过</div><p class="cap" style="margin-top:6px">搭不出来就回去看图<br>不要瞎试</p></div>
+    </div>
+  </div>
+  <aside class="notes">
+    <p><strong>今天唯一的判定依据，死保 8–10 分钟。</strong></p>
+    <p>发一张<strong>从未见过的电路图</strong>（含开关和两个 LED 的组合），<strong>限时 10 分钟搭出来并通电验证</strong>。</p>
+    <p>图必须是陌生的——<strong>不能靠记忆倒推</strong>。这是保底目标的唯一验收方式。</p>
+    <p>发图之前，<strong>把那句话说第三遍</strong>：「记住——<strong>图说的是谁和谁连着，不是东西放在哪里。</strong>」</p>
+    <p>巡视时只做一件事：<strong>看孩子是在看图还是在瞎试</strong>。瞎试的，走过去把他的手按住：「<strong>回去看图。图上这个灯，两头分别连着什么？</strong>」</p>
+    <p>逐人打勾。<strong>不合格的当场再来一次</strong>，不要留到下节课——第 6 课的按键直接照图搭。</p>
+  </aside>
+</section>
+
+<!-- ═══════════════ 19 · 今日大发现 ═══════════════ -->
+<section class="slide full-center" data-title="收尾 · 今日大发现">
+  <div class="discovery" data-anim="zoom-pop" style="max-width:min(1100px,88vw);margin:0 auto">
+    <p class="chip pink">今日大发现</p>
+    <p class="hero mt-m">图画的是<mark class="pink">关系</mark>，<br>不是位置。</p>
+    <p class="h3 mt-l" style="font-weight:700">
+      五个符号　·　<mark>让一个不认识你的人，也能看懂你的电路</mark>
+    </p>
+  </div>
+  <aside class="notes">
+    <p>全班<strong>一起读一遍</strong>：「图画的是关系，不是位置。」</p>
+    <p>把今天收一下：「上半场你们自己画的图，<strong>同桌都看不懂</strong>。下半场换成这五个符号，<strong>一下就通了</strong>。中间差的不是你会不会画——是<strong>有没有一套大家都认的写法</strong>。」</p>
+    <p>再推远一点：「乐谱也是这样，地图也是这样。<strong>要让别人看懂，就得用别人也认的写法。</strong>」</p>
+    <p>最后提一句短路：「今天还多学了一个词——<strong>短路</strong>。记住那三条规矩。」</p>
+  </aside>
+</section>
+
+<!-- ═══════════════ 20 · 回家做 ═══════════════ -->
+<section class="slide" data-title="收尾 · 回家做">
+  <h2 class="h2" data-anim="fade-up">回家做。</h2>
+  <div class="grid g2 mt-l">
+    <div class="pop pink" data-anim="fade-right">
+      <span class="chip" style="background:#fff">必做 · 每个人</span>
+      <div class="h3 mt-m">画一张电路图，让家人照着搭。</div>
+      <p class="cap" style="text-align:left;margin-top:12px;color:rgba(255,255,255,.9)">
+        用今天的五个符号画。<strong>不许说话，只能给图。</strong><br>
+        他搭出来了吗？搭不出来，是图哪里没画清楚？
+      </p>
+    </div>
+    <div class="pop cyan" data-anim="fade-left">
+      <span class="chip" style="background:#fff">选做 · 想挑战的人</span>
+      <div class="h3 mt-m">在家找一张「给别人看的图」。</div>
+      <p class="cap" style="text-align:left;margin-top:12px">
+        地铁线路图、说明书、乐谱、菜谱都算。<br>
+        想一想：它<strong>用了哪些符号</strong>？<strong>省掉了什么</strong>？
+      </p>
+    </div>
+  </div>
+  <p class="lede mt-l" data-anim="fade-up" style="text-align:center;max-width:none;font-weight:800;color:var(--text-1)">
+    <mark>能让别人看懂，才算你真的会画。</mark>
+  </p>
+  <aside class="notes">
+    <p>必做那条的重点是「<strong>不许说话，只能给图</strong>」——这正好复制了课上的互译实验。</p>
+    <p>「搭不出来也很好，那说明<strong>你的图还有地方没画清楚</strong>。把那个地方记下来，下节课告诉我。」</p>
+    <p>选做那条是在<strong>把「符号系统」这个概念推出电路之外</strong>：地铁线路图<strong>故意画得不按实际距离</strong>，就是最好的「关系 ≠ 位置」的例子。有孩子发现这一点的话，非常值得当众表扬。</p>
+    <p>下课前自己确认三件事：①<strong>保底目标是否全员达成</strong>——照陌生图搭出并点亮。第 6 课要照图装按键。②<strong>所有裸导线收回了吗</strong>，电池盒开关关了吗。③<strong>五个符号的板书留着别擦</strong>，后面几节课还要用。</p>
+  </aside>
+</section>
+
+<!-- ═══════════════ 21 · 下节课 ═══════════════ -->
+<section class="slide full-center" data-title="收尾 · 下节课钩子">
+  <div style="text-align:center">
+    <p class="chip cyan" data-anim="fade-down">下节课 · 第 6 课</p>
+    <h2 class="h2 mt-m" data-anim="fade-up">今天这五个符号里，有一个<mark>我们还没用过</mark>。</h2>
+    <p class="hero mt-l" data-anim="zoom-pop"><mark class="pink">开关</mark>。<br>下节课，你说了算。</p>
+  </div>
+  <aside class="notes">
+    <p>收尾钩子，<strong>一句话，说完就下课</strong>。</p>
+    <p>指着黑板上的五个符号：「今天这五个符号里，有一个<strong>我们还没真的用过</strong>——<strong>开关</strong>。」</p>
+    <p>「下节课，<strong>这盏灯什么时候亮，你说了算。</strong>」</p>
+    <p><strong>不要展开</strong>（下节课是《我来控制这盏灯》，四脚按键）。</p>
+    <p>可以再埋一句钩子，接回第 4 课：「顺便说一句——下节课那个按键，<strong>要骑在中央凹槽上</strong>。还记得第 4 课那块 6 号故障板吗？<strong>那次是错的，下次是对的。</strong>为什么？下节课见。」</p>
+  </aside>
+</section>
+
+</div>
+
+<div class="deck-footer">
+  <span>第 5 课 · 画出电的路线　|　15 节科创探究课 · 第二单元</span>
+  <span class="slide-number" data-current="1" data-total="21"></span>
+</div>
+
+<script src="../assets/runtime.js"></script>
+</body>
+</html>

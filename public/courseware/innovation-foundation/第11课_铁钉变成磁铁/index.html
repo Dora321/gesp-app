@@ -1,0 +1,443 @@
+<!DOCTYPE html>
+<html lang="zh-CN" data-themes="memphis-pop,neo-brutalism,soft-pastel,minimal-white" data-theme-base="../assets/themes/">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>第 11 课 · 铁钉变成磁铁</title>
+<link rel="stylesheet" href="../assets/fonts.css">
+<link rel="stylesheet" href="../assets/base.css">
+<link rel="stylesheet" id="theme-link" href="../assets/themes/memphis-pop.css">
+<link rel="stylesheet" href="../assets/animations/animations.css">
+<link rel="stylesheet" href="../assets/course.css">
+</head>
+<body class="kc">
+<div class="deck">
+
+<!-- ═══════════════ 1 · 封面 ═══════════════ -->
+<section class="slide full-center" data-title="开场 · 封面">
+  <div style="text-align:center">
+    <span class="chip cyan" data-anim="fade-down">15 节科创探究课 · 第五单元「电、磁和能量的变身」</span>
+    <h1 class="hero mt-m" data-anim="rise-in">第 11 课<br>通电以后，<br>铁钉会变成磁铁吗？</h1>
+    <div class="row mt-l" style="justify-content:center;gap:14px;flex-wrap:wrap" data-anim="fade-up">
+      <span class="chip">90 分钟 · 两节连堂</span>
+      <span class="chip yellow">第三件能带走的作品</span>
+      <span class="chip pink">今天通电只能听口令</span>
+    </div>
+  </div>
+  <aside class="notes">
+    <p>第五单元是全课程最长的一个单元（5 节课），也是<strong>安全风险最集中的一段</strong>。本课是其中<strong>唯一存在真实烫伤风险</strong>的一节：不串限流电阻时，线圈电阻不足 1Ω，AA×3 会输出<strong>数安培电流</strong>，几十秒内电池和漆包线都会明显发烫。</p>
+    <p><strong>安全靠三件事保证，缺一不可：</strong>①串 <strong>5Ω/5W 限流电阻</strong>（固定在底板并贴「烫，勿摸」）；②必须用<strong>点动按键</strong>（松手即断，学生不可能忘记关）；③<strong>教师统一口令通断</strong>（「预备—通电—三、二、一—断开」），<strong>单次不超过 10 秒</strong>。</p>
+    <p>教学上<strong>最隐蔽的失败是绕线中途换方向</strong>——磁性互相抵消，学生怎么查都查不出问题。发件时必须明确「<strong>一个方向绕到底</strong>」并在巡视中抽查。</p>
+    <p>保底目标：<strong>做出一个能吸起回形针的电磁铁，并说出「通电才有磁、圈数越多越强」。</strong></p>
+  </aside>
+</section>
+
+<!-- ═══════════════ 2 · 今天走 5 步 ═══════════════ -->
+<section class="slide" data-title="开场 · 今天走 5 步">
+  <p class="chip pink" data-anim="fade-down">今天，我们走 5 步</p>
+  <h2 class="h2 mt-s" data-anim="fade-up">今天这节课，<mark class="pink">通电只能听我的口令</mark>。</h2>
+  <div class="grid mt-l" style="grid-template-columns:repeat(5,1fr)" data-anim="stagger-list">
+    <div class="pop yellow" style="text-align:center">
+      <div class="badge sq" style="margin:0 auto 12px">1</div>
+      <div class="h3">撞现象</div>
+      <p class="cap" style="margin-top:8px">铁钉一会儿有磁<br>一会儿没有</p>
+    </div>
+    <div class="pop" style="text-align:center">
+      <div class="badge pink sq" style="margin:0 auto 12px">2</div>
+      <div class="h3">自己绕</div>
+      <p class="cap" style="margin-top:8px">一个方向绕到底</p>
+    </div>
+    <div class="pop cyan" style="text-align:center">
+      <div class="badge sq" style="margin:0 auto 12px;background:#fff;color:var(--ink)">3</div>
+      <div class="h3">比圈数</div>
+      <p class="cap" style="margin-top:8px">10 / 30 / 50 圈</p>
+    </div>
+    <div class="pop" style="text-align:center">
+      <div class="badge cyan sq" style="margin:0 auto 12px">4</div>
+      <div class="h3">起名字</div>
+      <p class="cap" style="margin-top:8px">电磁铁</p>
+    </div>
+    <div class="pop pink" style="text-align:center">
+      <div class="badge sq" style="margin:0 auto 12px;background:#fff;color:var(--ink)">5</div>
+      <div class="h3">救援比赛</div>
+      <p class="cap" style="margin-top:8px">30 秒，谁吸得最多</p>
+    </div>
+  </div>
+  <p class="lede mt-l" data-anim="fade-up">
+    今天电路会<mark>发热</mark> —— 所以每次通电，<mark class="pink">都要等我喊口令</mark>。
+  </p>
+  <aside class="notes">
+    <p>一分钟带过。<strong>但最后那条安全条款现在就要说，而且要说得很硬</strong>。</p>
+    <p>「今天这个实验<strong>会发热</strong>。所以从现在开始，<strong>通电只能听我的口令</strong>——<strong>没有口令，一次都不许按。</strong>」</p>
+    <p>不要说得吓人，但要说得确定。孩子对「今天不一样」的信号很敏感。</p>
+    <p>第 5 步那个比赛先提一句，作为今天的动力。</p>
+  </aside>
+</section>
+
+<!-- ═══════════════ 3 · 现象导入 ═══════════════ -->
+<section class="slide" data-title="① 撞现象 · 铁钉我没换过">
+  <div class="stage-rail"><b>① 撞现象</b><i class="on"></i><i></i><i></i><i></i><i></i></div>
+  <p class="chip yellow" data-anim="fade-down">同一根铁钉 · 看三次</p>
+  <h2 class="h2 mt-s" data-anim="fade-up">铁钉我<mark>没换过</mark>。</h2>
+  <div class="grid g3 mt-l" data-anim="stagger-list">
+    <div class="pop" style="text-align:center;background:var(--surface-2)">
+      <div class="h3" style="color:var(--text-2)">普通铁钉</div>
+      <div class="hero mt-s" style="font-size:var(--fs-h2);color:var(--text-3)">吸不起来</div>
+      <p class="cap" style="margin-top:8px">回形针纹丝不动</p>
+    </div>
+    <div class="pop yellow" style="text-align:center">
+      <div class="h3">接上电池</div>
+      <div class="hero mt-s" style="font-size:var(--fs-h2)">一串吸起来</div>
+      <p class="cap" style="margin-top:8px">回形针挂成一串</p>
+    </div>
+    <div class="pop" style="text-align:center;background:var(--surface-2)">
+      <div class="h3" style="color:var(--text-2)">断电</div>
+      <div class="hero mt-s" style="font-size:var(--fs-h2);color:var(--text-3)">全掉下来</div>
+      <p class="cap" style="margin-top:8px">哗啦一声</p>
+    </div>
+  </div>
+  <p class="lede mt-l" data-anim="fade-up" style="text-align:center;max-width:none;font-weight:800;color:var(--text-1)">
+    为什么它<mark class="pink">有时候有磁性，有时候又没有</mark>？
+  </p>
+  <aside class="notes">
+    <p><strong>一个可以反复开关的现象，比单向的现象更有冲击力。</strong>所以这一套动作至少做两遍。</p>
+    <p>先拿<strong>普通铁钉</strong>去碰回形针——吸不起来。「这是一根普通的铁钉。」</p>
+    <p>换成<strong>已绕好线圈的铁钉</strong>，接通电源（口令通断，10 秒内）——回形针一串吸起来。「<strong>现在呢？</strong>」</p>
+    <p>断电——<strong>回形针哗啦全掉下来</strong>。这一下最有戏剧性。</p>
+    <p>再做一遍，让后排也看清楚。</p>
+    <p>然后问：「<strong>铁钉我没有换过。为什么有时候有磁性，有时候又没有？</strong>」</p>
+    <p>收几个猜想写黑板上，不评价。然后发件。</p>
+  </aside>
+</section>
+
+<!-- ═══════════════ 4 · 安全三条 ═══════════════ -->
+<section class="slide" data-title="② 自己绕 · 今天的安全三条">
+  <div class="stage-rail"><b>② 自己绕</b><i class="done"></i><i class="on"></i><i></i><i></i><i></i></div>
+  <p class="chip pink" data-anim="fade-down">发件之前 · 这三条今天最重要</p>
+  <h2 class="h2 mt-s" data-anim="fade-up">今天的<mark class="pink">安全三条</mark>。</h2>
+  <div class="checks mt-m" data-anim="stagger-list">
+    <div class="check" style="background:var(--accent-3)"><div class="badge" style="background:#fff">1</div>
+      <div><div class="ct">通电<mark class="pink">只听我的口令</mark></div>
+      <div class="cs">「预备 — 通电 — 三、二、一 — 断开」　每次不超过 10 秒</div></div></div>
+    <div class="check"><div class="badge pink">2</div>
+      <div><div class="ct">底板上那个<b>白色方块</b>，贴着「烫，勿摸」</div>
+      <div class="cs">它在替你们挡电流，工作时会发热 —— <b>一下都不要碰</b></div></div></div>
+    <div class="check"><div class="badge cyan">3</div>
+      <div><div class="ct">摸到<b>电池或线发烫</b> → 立刻松手，举手</div>
+      <div class="cs">和第 5 课那条一样：<b>发烫 ＝ 有问题</b></div></div></div>
+  </div>
+  <p class="lede mt-l" data-anim="fade-up" style="text-align:center;max-width:none;font-weight:800;color:var(--text-1)">
+    按键是<mark>松手就断</mark>的那种 —— 你只要<mark class="pink">松手，电就停了</mark>。
+  </p>
+  <aside class="notes">
+    <p><strong>这一页停住说完，再发件。</strong></p>
+    <p>第 1 条是制度：「<strong>通电只能听我的口令</strong>。每一次通电都用这个口令：『<strong>预备——通电——三、二、一——断开</strong>』。<strong>单次不超过 10 秒。</strong>」</p>
+    <p>第 2 条指着实物讲：<strong>5Ω/5W 水泥电阻已经固定在底板上，贴了「烫，勿摸」标签</strong>。告诉他们它的作用：「它在<strong>替你们挡电流</strong>——还记得第 8 课那颗保护 LED 的电阻吗？<strong>同一件事。</strong>」</p>
+    <p>第 3 条接第 5 课：「<strong>发烫 = 有问题，先松手再说。</strong>」</p>
+    <p>最后那句是让孩子安心的：<strong>点动按键松手即断，不可能忘记关。</strong>（<strong>严禁使用自锁开关</strong>。）</p>
+    <p>说完就发件，别拖，安全交代太长孩子会走神。</p>
+  </aside>
+</section>
+
+<!-- ═══════════════ 5 · 绕线要求 ═══════════════ -->
+<section class="slide" data-title="② 自己绕 · 一个方向绕到底">
+  <div class="stage-rail"><b>② 自己绕</b><i class="done"></i><i class="on"></i><i></i><i></i><i></i></div>
+  <p class="chip cyan" data-anim="fade-down">绕线只有一个要求</p>
+  <h2 class="h2 mt-s" data-anim="fade-up">一个方向<mark>绕到底</mark>，不许来回绕。</h2>
+  <div class="vs mt-l" data-anim="fade-up">
+    <div class="yes">
+      <div class="h3">✓ 一个方向</div>
+      <svg viewBox="0 0 360 140" style="max-height:22vh;margin:10px auto">
+        <path class="st" d="M20 70 h320"/>
+        <path class="st fillk" d="M330 56 l26 14 -26 14 z"/>
+        <g class="st2" style="stroke:var(--accent);stroke-width:5">
+          <path d="M70 40 a22 30 0 1 0 0 60"/><path d="M100 40 a22 30 0 1 0 0 60"/>
+          <path d="M130 40 a22 30 0 1 0 0 60"/><path d="M160 40 a22 30 0 1 0 0 60"/>
+          <path d="M190 40 a22 30 0 1 0 0 60"/><path d="M220 40 a22 30 0 1 0 0 60"/>
+        </g>
+        <text class="lbl sm" x="80" y="130" style="fill:var(--accent)">每一圈都朝同一边</text>
+      </svg>
+      <p class="cap" style="text-align:left;margin-top:8px">每一圈的劲<b>加在一起</b></p>
+    </div>
+    <div class="no">
+      <div class="h3" style="color:var(--text-2)">✗ 绕一半换方向</div>
+      <svg viewBox="0 0 360 140" style="max-height:22vh;margin:10px auto">
+        <path class="st" d="M20 70 h320"/>
+        <g class="st2" style="stroke:var(--text-3);stroke-width:5">
+          <path d="M70 40 a22 30 0 1 0 0 60"/><path d="M100 40 a22 30 0 1 0 0 60"/>
+          <path d="M130 40 a22 30 0 1 0 0 60"/>
+        </g>
+        <g class="st2" style="stroke:var(--accent);stroke-width:5">
+          <path d="M180 40 a22 30 0 1 1 0 60"/><path d="M210 40 a22 30 0 1 1 0 60"/>
+          <path d="M240 40 a22 30 0 1 1 0 60"/>
+        </g>
+        <path class="st" style="stroke:var(--accent);stroke-width:5" d="M148 34 v72"/>
+        <text class="lbl sm" x="60" y="130" style="fill:var(--accent)">后面几圈把前面的抵消掉</text>
+      </svg>
+      <p class="cap" style="text-align:left;margin-top:8px">怎么查<b>都查不出问题</b></p>
+    </div>
+  </div>
+  <aside class="notes">
+    <p><strong>这是本课最隐蔽的失败原因，必须在发件时说，并在巡视中抽查。</strong></p>
+    <p>「绕线只有一个要求：<strong>一个方向绕到底，不许来回绕。</strong>」</p>
+    <p>「为什么？因为你<strong>往回绕的那几圈，会把前面绕的效果抵消掉</strong>。到时候你<strong>怎么查都查不出问题</strong>——线好好的，电池好好的，就是吸不起来。」</p>
+    <p>示范一次正确的绕法：<strong>手不要动，转铁钉</strong>，这样方向不容易错。</p>
+    <p>器材提醒：<strong>漆包线两端的绝缘漆已经由教师课前用砂纸刮好</strong>（每端 2cm 裸铜）。让学生自己刮会耗掉十几分钟，而且刮不干净就不通。</p>
+    <p>铁钉 φ4–5mm、长 6cm 左右。太细吸力不足，太粗绕线困难。</p>
+  </aside>
+</section>
+
+<!-- ═══════════════ 6 · 圈数对照（上半场） ═══════════════ -->
+<section class="slide" data-title="③ 比圈数 · 每档测三次取最好">
+  <div class="stage-rail"><b>③ 比圈数</b><i class="done"></i><i class="done"></i><i class="on"></i><i></i><i></i></div>
+  <div class="row" style="justify-content:space-between;align-items:flex-end">
+    <div>
+      <span class="chip cyan" data-anim="fade-down">新方法 · 一次不算数</span>
+      <h2 class="h2 mt-s" data-anim="fade-up">每一档<mark>测三次</mark>，取<mark class="pink">最好的那次</mark>。</h2>
+    </div>
+    <div class="pop yellow" data-anim="fade-left" style="text-align:center;flex:0 0 auto">
+      <div class="h3">上半场做<br><b>10 圈 和 30 圈</b></div>
+    </div>
+  </div>
+  <div class="tbl mt-m" style="grid-template-columns:1fr 1fr 1fr 1fr 1.2fr" data-anim="fade-up">
+    <div class="hd">圈数</div><div class="hd">第 1 次</div><div class="hd">第 2 次</div><div class="hd">第 3 次</div><div class="hd">最好成绩</div>
+    <div class="rh">10 圈</div><div class="todo">枚</div><div class="todo">枚</div><div class="todo">枚</div><div class="todo">枚</div>
+    <div class="rh">30 圈</div><div class="todo">枚</div><div class="todo">枚</div><div class="todo">枚</div><div class="todo">枚</div>
+    <div class="rh">50 圈</div><div class="todo" style="background:var(--surface-2)">下半场</div><div class="todo" style="background:var(--surface-2)">下半场</div>
+    <div class="todo" style="background:var(--surface-2)">下半场</div><div class="todo" style="background:var(--surface-2)">下半场</div>
+  </div>
+  <p class="lede mt-l" data-anim="fade-up" style="text-align:center;max-width:none;font-weight:800;color:var(--text-1)">
+    为什么测三次？因为<mark>一次可能是运气</mark>。
+  </p>
+  <aside class="notes">
+    <p><strong>「重复三次取最好」是本课新引入的测量方法</strong>——单次结果偶然性太大（回形针摆放位置、接触角度都会影响）。</p>
+    <p>解释给孩子听：「为什么测三次？因为<strong>一次可能是运气</strong>。三次里最好的那次，才是它真正的本事。」</p>
+    <p>每次通电都要<strong>等口令</strong>：「预备——通电——三、二、一——断开。」全班同步，一组都不能自己来。</p>
+    <p><strong>关键坑：同一组对照数据必须用同一套电池测完。</strong>本课电流大、电池消耗快，中途换电池会污染数据，孩子会得出「<strong>圈数越多反而越弱</strong>」的错误结论。备用电池课后再换。</p>
+    <p>巡视抽查<strong>绕线方向</strong>——吸力明显偏低的，九成是中途换了方向。</p>
+  </aside>
+</section>
+
+<!-- ═══════════════ 7 · 课间休息 ═══════════════ -->
+<section class="slide full-center" data-title="休息 · 课间 10 分钟">
+  <div style="text-align:center">
+    <div class="discovery" data-anim="zoom-pop" style="max-width:min(1000px,86vw)">
+      <p class="chip" style="background:#fff">中场 · 10 分钟</p>
+      <h1 class="hero mt-m">课间休息</h1>
+      <p class="h3 mt-m" style="font-weight:700">
+        <mark class="pink">不许自己通电</mark>　·　白色方块别碰（可能还烫）
+      </p>
+    </div>
+    <p class="lede mt-l" data-anim="fade-up" style="margin-left:auto;margin-right:auto;text-align:center">
+      回来做 50 圈那一档，然后给它起个名字。
+    </p>
+  </div>
+  <aside class="notes">
+    <p>走之前<strong>说死一条</strong>：「<strong>课间不许自己通电。</strong>」这是今天最需要盯的——孩子会想偷偷再试一次。</p>
+    <p>还有一句：「<strong>底板上那个白色方块可能还是烫的，不要碰。</strong>」</p>
+    <p>建议：<strong>课间把电池盒统一收到讲台上</strong>，回来再发。这比叮嘱有效。</p>
+    <p>这 10 分钟你要做的：①<strong>检查各组的绕线方向</strong>，有问题的标记出来，回来帮他重绕；②<strong>清点回形针</strong>（会掉得到处都是）；③<strong>摸一摸各组的电阻和电池温度</strong>，明显偏烫的检查是不是限流电阻脱焊了。</p>
+  </aside>
+</section>
+
+<!-- ═══════════════ 8 · 汇总 ═══════════════ -->
+<section class="slide" data-title="③ 比圈数 · 圈数和吸力有关系吗">
+  <div class="stage-rail"><b>③ 比圈数</b><i class="done"></i><i class="done"></i><i class="on"></i><i></i><i></i></div>
+  <h2 class="h2" data-anim="fade-up">圈数和吸力，<mark>有关系吗</mark>？</h2>
+  <div class="figure mt-m" data-anim="fade-up">
+    <svg viewBox="0 0 880 280" role="img" aria-label="圈数越多吸起的回形针越多">
+      <path class="st" d="M90 40 v190 h740"/>
+      <text class="lbl sm" x="34" y="48">吸起<br/>几枚</text>
+      <g>
+        <rect class="st" x="160" y="182" width="110" height="48" rx="8" style="fill:var(--accent-3)"/>
+        <text class="lbl" x="215" y="266" text-anchor="middle">10 圈</text>
+      </g>
+      <g>
+        <rect class="st" x="360" y="118" width="110" height="112" rx="8" style="fill:var(--accent-3)"/>
+        <text class="lbl" x="415" y="266" text-anchor="middle">30 圈</text>
+      </g>
+      <g>
+        <rect class="st" x="560" y="62" width="110" height="168" rx="8" style="fill:var(--accent-3)"/>
+        <text class="lbl" x="615" y="266" text-anchor="middle">50 圈</text>
+      </g>
+      <path class="st" style="stroke:var(--accent);stroke-width:6;fill:none" d="M215 172 L415 108 L615 52"/>
+      <circle class="st fillp" cx="215" cy="172" r="10"/>
+      <circle class="st fillp" cx="415" cy="108" r="10"/>
+      <circle class="st fillp" cx="615" cy="52" r="10"/>
+      <text class="lbl" x="690" y="60" style="fill:var(--accent)">绕得越多</text>
+      <text class="lbl" x="690" y="92" style="fill:var(--accent)">越有劲</text>
+    </svg>
+  </div>
+  <aside class="notes">
+    <p>全班汇总三档数据，<strong>画成柱状图</strong>（PPT 这张是示意，以孩子的数据为准）。</p>
+    <p>然后问：「<strong>圈数和吸力有关系吗？是什么关系？</strong>」</p>
+    <p><strong>结论由学生归纳，不是教师宣布。</strong>三档数据摆在那里，趋势很明显，等他们说出「<strong>圈数越多越有劲</strong>」。</p>
+    <p>如果某组的 50 圈反而比 30 圈弱——<strong>先问是不是换过电池</strong>，再看绕线方向。这两个是本课唯二的数据污染源。</p>
+    <p>可以追一句想远一点的：「<strong>那绕 500 圈呢？会不会一直变强？</strong>」——不用给答案，让他们带着这个问题去做第 5 步的优化挑战。</p>
+  </aside>
+</section>
+
+<!-- ═══════════════ 9 · 命名：电磁铁 ═══════════════ -->
+<section class="slide" data-title="④ 起名字 · 电磁铁：能被控制的磁">
+  <div class="stage-rail"><b>④ 起名字</b><i class="done"></i><i class="done"></i><i class="done"></i><i class="on"></i><i></i></div>
+  <div class="row" style="gap:clamp(20px,2.4vw,50px);align-items:center">
+    <div style="flex:1">
+      <span class="chip yellow" data-anim="fade-down">这种通电才有磁的东西</span>
+      <h2 class="h2 mt-s" data-anim="rise-in">叫 <mark class="pink">电磁铁</mark>。</h2>
+      <div class="stack-l mt-l">
+        <div class="pop cyan" data-anim="fade-right"><div class="h3">通电<b>才有磁</b></div></div>
+        <div class="pop yellow" data-anim="fade-right"><div class="h3">断电<b>就没有</b></div></div>
+        <div class="pop pink" data-anim="fade-right"><div class="h3" style="color:#fff">它强在<b>能被控制</b>，不是更有劲</div></div>
+      </div>
+    </div>
+    <div class="figure" style="flex:1" data-anim="fade-left">
+      <svg viewBox="0 0 460 320" role="img" aria-label="通电线圈把铁钉变成磁铁">
+        <rect class="st" x="70" y="132" width="290" height="34" rx="8" style="fill:var(--surface-2)"/>
+        <path class="st fillk" d="M352 126 l40 23 -40 23 z"/>
+        <g class="st2" style="stroke:var(--accent);stroke-width:6">
+          <path d="M118 108 a26 42 0 1 0 0 84"/><path d="M152 108 a26 42 0 1 0 0 84"/>
+          <path d="M186 108 a26 42 0 1 0 0 84"/><path d="M220 108 a26 42 0 1 0 0 84"/>
+          <path d="M254 108 a26 42 0 1 0 0 84"/><path d="M288 108 a26 42 0 1 0 0 84"/>
+        </g>
+        <path class="st" style="stroke:var(--accent)" d="M118 150 h-52 v96"/>
+        <path class="st" style="stroke:var(--accent)" d="M288 150 h52 v96"/>
+        <rect class="st filly" x="140" y="246" width="128" height="46" rx="10"/>
+        <text class="lbl sm" x="204" y="276" text-anchor="middle">按住＝通电</text>
+        <path class="st" d="M66 246 h74"/><path class="st" d="M340 246 h-72"/>
+        <g class="fillk">
+          <rect x="376" y="160" width="28" height="9" rx="4"/>
+          <rect x="386" y="178" width="28" height="9" rx="4"/>
+          <rect x="378" y="196" width="28" height="9" rx="4"/>
+        </g>
+        <text class="lbl sm" x="372" y="230" style="fill:var(--accent)">回形针</text>
+        <text class="lbl sm" x="150" y="78">线圈</text>
+        <text class="lbl sm" x="250" y="78">铁钉</text>
+      </svg>
+    </div>
+  </div>
+  <aside class="notes">
+    <p>「这种<strong>通电才有磁</strong>的东西，叫<strong>电磁铁</strong>。」</p>
+    <p>然后是本课<strong>最容易被讲漏的价值点</strong>：</p>
+    <p>「它比普通磁铁强在哪里？<strong>不是更有劲</strong>——是<strong>它能被我们控制</strong>。想要磁性就通电，不想要就断电。」</p>
+    <p>「普通磁铁很厉害，但你<strong>没法让它停下来</strong>。电磁铁可以。」</p>
+    <p><strong>接回第 6 课</strong>：「想想第 6 课那个开关——它能控制灯，<strong>现在它也能控制磁了</strong>。」</p>
+    <p>可以举个真实例子：<strong>废品场吊起汽车的大电磁铁</strong>——吸起来靠通电，放下去靠断电。普通磁铁做不到「放下」。</p>
+    <p>板书通电线圈示意图。</p>
+  </aside>
+</section>
+
+<!-- ═══════════════ 10 · 优化挑战 ═══════════════ -->
+<section class="slide full-center" data-title="⑤ 救援比赛 · 优化挑战">
+  <div class="stage-rail"><b>⑤ 救援比赛</b><i class="done"></i><i class="done"></i><i class="done"></i><i class="done"></i><i class="on"></i></div>
+  <div class="ask">
+    <p class="chip pink" data-anim="fade-down">提高难度</p>
+    <p class="q mt-m" data-anim="zoom-pop">不许加圈数，<br>不许加电池 ——<br>还能怎么<mark>吸得更多</mark>？</p>
+    <p class="sub mt-l" data-anim="fade-up">除了圈数，<mark class="cyan">还有什么是可以变的？</mark></p>
+  </div>
+  <aside class="notes">
+    <p><strong>这一问的价值在于逼学生识别出「还有别的变量」</strong>——从单变量升级到多变量意识。</p>
+    <p>「现在提高难度：<strong>不许增加圈数，也不许多加电池。还能怎么让它吸得更多？</strong>」</p>
+    <p><strong>加电池的方案必须明确拒绝</strong>，而且要说清楚是<strong>安全条款，不是老师不让</strong>：「加电池会让电流更大、更烫，这是今天的安全红线。」</p>
+    <p>可行方向（<strong>让他们自己想，不要给</strong>）：</p>
+    <p>①<strong>换更粗的铁钉</strong>；②<strong>把线圈绕得更紧更集中</strong>（不要松松垮垮铺一长条）；③<strong>去掉铁钉试试</strong>——这一条最有价值，它验证了铁芯的作用。</p>
+    <p>有孩子提出「去掉铁钉」的，一定要<strong>当众表扬并让他试</strong>——空心线圈几乎吸不起来，这是个很漂亮的对照。</p>
+  </aside>
+</section>
+
+<!-- ═══════════════ 11 · 救援器比赛 ═══════════════ -->
+<section class="slide full-center" data-title="⑤ 救援比赛 · 30 秒（逐人）">
+  <div class="stage-rail"><b>⑤ 救援比赛</b><i class="done"></i><i class="done"></i><i class="done"></i><i class="done"></i><i class="on"></i></div>
+  <div style="text-align:center">
+    <span class="chip pink" data-anim="fade-down">最后一关 · 限时 30 秒 · 一个一个来</span>
+    <h1 class="hero mt-m" data-anim="rise-in">回形针救援器<br>大比赛。</h1>
+    <div class="row mt-l" style="justify-content:center;gap:clamp(16px,1.8vw,34px);flex-wrap:wrap" data-anim="fade-up">
+      <div class="pop yellow"><div class="h3">① 30 秒</div><p class="cap" style="margin-top:6px">看你能吸起多少枚</p></div>
+      <div class="pop cyan"><div class="h3">② 说改动</div><p class="cap" style="margin-top:6px">你做了哪些改动？</p></div>
+      <div class="pop pink"><div class="h3">③ 说理由</div><p class="cap" style="margin-top:6px"><b>为什么这么改</b></p></div>
+    </div>
+  </div>
+  <aside class="notes">
+    <p><strong>今天的判定环节，死保 8 分钟。</strong></p>
+    <p>比赛规则：<strong>限时 30 秒，看谁能吸起最多</strong>。通电仍然<strong>听口令</strong>，每次不超过 10 秒——可以按三次。</p>
+    <p>但判定不只看名次。<strong>三步里第②③步才是判定项</strong>：「你做了<strong>哪些改动</strong>？<strong>为什么这么改</strong>？」</p>
+    <p>合格标准：<strong>做出能吸起回形针的电磁铁 + 能说出「通电才有磁、圈数越多越强」。</strong>吸得少但说得清的，<strong>照样算过</strong>。</p>
+    <p>比赛气氛会很热，<strong>注意维持通电口令的纪律</strong>——这是全课最容易失控的时刻。可以规定：<strong>一次只让两三个人上来比</strong>，其他人不许通电。</p>
+    <p>结束后作品可以带走（第三件带得走的作品）。<strong>电池盒和限流电阻底板要收回</strong>。</p>
+  </aside>
+</section>
+
+<!-- ═══════════════ 12 · 今日大发现 ═══════════════ -->
+<section class="slide full-center" data-title="收尾 · 今日大发现">
+  <div class="discovery" data-anim="zoom-pop" style="max-width:min(1100px,88vw);margin:0 auto">
+    <p class="chip pink">今日大发现</p>
+    <p class="hero mt-m">电，能造出磁铁 ——<br>而且<mark class="pink">我说了算</mark>。</p>
+    <p class="h3 mt-l" style="font-weight:700">
+      通电才有磁　·　圈数越多越强　·　<mark>断电就没了</mark>
+    </p>
+  </div>
+  <aside class="notes">
+    <p>全班<strong>一起读一遍</strong>。</p>
+    <p>收一下：「今天我们让电做了一件<strong>从来没做过的事</strong>——它不发光了，<strong>它去吸铁了。</strong>」</p>
+    <p>再强调那个价值点：「电磁铁厉害的地方<strong>不是力气大，是能被关掉</strong>。想有就有，想没就没。」</p>
+    <p>可以提一句安全收尾：「今天为什么这么小心？因为<strong>电流大了就会发热</strong>。这件事你们以后会经常碰到。」</p>
+    <p>最后提醒<strong>限流电阻底板和电池盒要交回</strong>，只有铁钉线圈可以带走。</p>
+  </aside>
+</section>
+
+<!-- ═══════════════ 13 · 回家做 ═══════════════ -->
+<section class="slide" data-title="收尾 · 回家做">
+  <h2 class="h2" data-anim="fade-up">回家做。</h2>
+  <div class="grid g2 mt-l">
+    <div class="pop pink" data-anim="fade-right">
+      <span class="chip" style="background:#fff">必做 · 每个人</span>
+      <div class="h3 mt-m">讲给家人听：铁钉为什么会变成磁铁？</div>
+      <p class="cap" style="text-align:left;margin-top:12px;color:rgba(255,255,255,.9)">
+        讲三句就够：<strong>通电才有磁</strong>、<strong>圈数越多越强</strong>、<strong>断电就没了</strong>。<br>
+        <strong>不要在家里通电</strong> —— 限流电阻和电池我收走了。
+      </p>
+    </div>
+    <div class="pop cyan" data-anim="fade-left">
+      <span class="chip" style="background:#fff">选做 · 想挑战的人</span>
+      <div class="h3 mt-m">找一找：哪些东西里面藏着电磁铁？</div>
+      <p class="cap" style="text-align:left;margin-top:12px">
+        门铃、扬声器、冰箱门、废品场的吊车……<br>
+        想一想：<strong>为什么这些地方非要用「能关掉的磁铁」</strong>？
+      </p>
+    </div>
+  </div>
+  <p class="lede mt-l" data-anim="fade-up" style="text-align:center;max-width:none;font-weight:800;color:var(--text-1)">
+    <mark>可控，比强大更有用。</mark>
+  </p>
+  <aside class="notes">
+    <p>必做那条<strong>必须带一句安全说明</strong>：「<strong>不要在家里通电</strong>——限流电阻和电池我收走了，没有它们直接接电池会很烫。」这一条要说清楚，孩子在家找到电池就会试。</p>
+    <p>选做那条的第二问才是重点：「<strong>为什么非要用能关掉的磁铁？</strong>」——吊车吸起汽车之后要<strong>放下来</strong>，普通磁铁放不下来。门铃要<strong>一下一下地响</strong>，也要能关。</p>
+    <p>下课前自己确认三件事：①<strong>保底目标是否全员达成</strong>——做出能吸起回形针的电磁铁 + 能说出那两句话。②<strong>限流电阻底板、电池盒、点动按键全部收回</strong>；<strong>电池要换新的</strong>（本课耗电量大）。③<strong>回形针清点</strong>，掉在地上的捡干净。</p>
+  </aside>
+</section>
+
+<!-- ═══════════════ 14 · 下节课 ═══════════════ -->
+<section class="slide full-center" data-title="收尾 · 下节课钩子">
+  <div style="text-align:center">
+    <p class="chip cyan" data-anim="fade-down">下节课 · 第 12 课</p>
+    <h2 class="h2 mt-m" data-anim="fade-up">今天我们用<mark>电</mark>造出了<mark class="pink">磁</mark>。</h2>
+    <p class="hero mt-l" data-anim="zoom-pop">那反过来呢？<br><mark class="pink">磁，能不能变成电？</mark></p>
+  </div>
+  <aside class="notes">
+    <p>收尾钩子，<strong>一句话，说完就下课</strong>。</p>
+    <p>「今天我们用<strong>电</strong>造出了<strong>磁</strong>。那我问一个问题——<strong>反过来行不行？磁，能不能变成电？</strong>」</p>
+    <p><strong>让他们猜一下再走</strong>，举个手：「觉得能的举手。」——记住人数，下节课开场用。</p>
+    <p><strong>不要给答案</strong>（下节课是《磁能变电吗》，电磁感应）。</p>
+    <p>这个「反过来」的提问非常有力，因为它是<strong>孩子自己就能想到的对称问题</strong>——科学史上也确实是这么问出来的。可以说一句：「这个问题<strong>两百年前有个人也这么问过</strong>，他花了十年才找到答案。」</p>
+  </aside>
+</section>
+
+</div>
+
+<div class="deck-footer">
+  <span>第 11 课 · 铁钉变成磁铁　|　15 节科创探究课 · 第五单元</span>
+  <span class="slide-number" data-current="1" data-total="14"></span>
+</div>
+
+<script src="../assets/runtime.js"></script>
+</body>
+</html>

@@ -5,6 +5,7 @@ const repoRoot = path.resolve(__dirname, '..');
 const srcRoot = path.join(repoRoot, 'src');
 
 const routeRules = [
+  /^\/innovation-foundation(\/([1-9]|1[0-5]))?$/,
   /^\/innovation\/(1|2|3|4|5|9|10)$/,
   /^\/$/,
   /^\/museum$/,

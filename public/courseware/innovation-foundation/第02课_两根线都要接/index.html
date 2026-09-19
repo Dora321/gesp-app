@@ -1,0 +1,772 @@
+<!DOCTYPE html>
+<html lang="zh-CN" data-themes="memphis-pop,neo-brutalism,soft-pastel,minimal-white" data-theme-base="../assets/themes/">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>第 2 课 · 为什么两根线都要接？</title>
+<link rel="stylesheet" href="../assets/fonts.css">
+<link rel="stylesheet" href="../assets/base.css">
+<link rel="stylesheet" id="theme-link" href="../assets/themes/memphis-pop.css">
+<link rel="stylesheet" href="../assets/animations/animations.css">
+<link rel="stylesheet" href="../assets/course.css">
+</head>
+<body class="kc">
+<div class="deck">
+
+<!-- ═══════════════ 1 · 封面 ═══════════════ -->
+<section class="slide full-center" data-title="开场 · 封面">
+  <div style="text-align:center">
+    <span class="chip cyan" data-anim="fade-down">15 节科创探究课 · 第一单元「电路是怎么工作的？」</span>
+    <h1 class="hero mt-m" data-anim="rise-in">第 2 课<br>为什么两根线<br>都要接？</h1>
+    <div class="row mt-l" style="justify-content:center;gap:14px;flex-wrap:wrap" data-anim="fade-up">
+      <span class="chip">90 分钟 · 两节连堂</span>
+      <span class="chip yellow">今天当医生</span>
+      <span class="chip pink">找出电路在哪儿断了</span>
+    </div>
+  </div>
+  <aside class="notes">
+    <p>今天这节课是<strong>把第 1 课翻过来做</strong>：上节课想尽办法让它亮，今天研究<strong>它为什么不亮</strong>。</p>
+    <p>本课要立住的模型只有一句话：<strong>电要走完整的一圈，任何一处断开都不亮</strong>。第一单元的心智模型今天正式成立。</p>
+    <p>保底目标：能说出「<strong>任何一处断开都不亮</strong>」，并且能在 <strong>2 分钟内排出同伴设置的断路</strong>。</p>
+    <p>提醒自己两件事：一、器材沿用上节课，但<strong>课前必须逐套重测</strong>——上节课孩子反复弯过引脚，今天会集中坏一批，备件至少 5 个。二、<strong>3 号故障板是弹性项</strong>，学生找不到很正常，收尾揭晓就行。</p>
+  </aside>
+</section>
+
+<!-- ═══════════════ 2 · 今天走 5 步 ═══════════════ -->
+<section class="slide" data-title="开场 · 今天走 5 步">
+  <p class="chip pink" data-anim="fade-down">今天，我们走 5 步</p>
+  <h2 class="h2 mt-s" data-anim="fade-up">最后一步：<mark>你给同桌设故障。</mark></h2>
+  <div class="grid mt-l" style="grid-template-columns:repeat(5,1fr)" data-anim="stagger-list">
+    <div class="pop yellow" style="text-align:center">
+      <div class="badge sq" style="margin:0 auto 12px">1</div>
+      <div class="h3">撞现象</div>
+      <p class="cap" style="margin-top:8px">线全接上了，就是不亮</p>
+    </div>
+    <div class="pop" style="text-align:center">
+      <div class="badge pink sq" style="margin:0 auto 12px">2</div>
+      <div class="h3">反着试</div>
+      <p class="cap" style="margin-top:8px">想办法让它灭掉</p>
+    </div>
+    <div class="pop cyan" style="text-align:center">
+      <div class="badge sq" style="margin:0 auto 12px;background:#fff;color:var(--ink)">3</div>
+      <div class="h3">找规律</div>
+      <p class="cap" style="margin-top:8px">五个位置全断一遍</p>
+    </div>
+    <div class="pop" style="text-align:center">
+      <div class="badge cyan sq" style="margin:0 auto 12px">4</div>
+      <div class="h3">起名字</div>
+      <p class="cap" style="margin-top:8px">通路、断路</p>
+    </div>
+    <div class="pop pink" style="text-align:center">
+      <div class="badge sq" style="margin:0 auto 12px;background:#fff;color:var(--ink)">5</div>
+      <div class="h3">当医生</div>
+      <p class="cap" style="margin-top:8px">三块坏电路，你来治</p>
+    </div>
+  </div>
+  <aside class="notes">
+    <p>一分钟带过，别展开。重点只说<strong>最后一步</strong>：「今天下课前，你要<strong>给同桌的电路悄悄设一处故障</strong>，再看他多久能找出来。」</p>
+    <p>这句话一说，整节课的动力就有了——孩子为了会「下套」，必须先搞懂电路会在哪儿坏。</p>
+    <p>第 5 步还有个身份：「今天你们是<strong>医生</strong>，不是修理工。医生要先<strong>诊断</strong>，再动手。」这个说法后面 13 节课都会用。</p>
+  </aside>
+</section>
+
+<!-- ═══════════════ 3 · Engage 悬念 ═══════════════ -->
+<section class="slide" data-title="① 撞现象 · 它为什么不亮">
+  <div class="stage-rail"><b>① 撞现象</b><i class="on"></i><i></i><i></i><i></i><i></i></div>
+  <div class="row" style="justify-content:space-between;align-items:flex-end">
+    <div>
+      <span class="chip yellow" data-anim="fade-down">1 号故障板 · 上节课没解决的那个</span>
+      <h2 class="h2 mt-s" data-anim="fade-up">线全接上了。<mark>它为什么不亮？</mark></h2>
+    </div>
+    <div data-anim="fade-left" style="flex:0 0 auto;display:flex;flex-direction:column;align-items:flex-end;gap:clamp(8px,.9vh,14px)">
+      <span class="chip cyan">✓ 电池是好的</span>
+      <span class="chip cyan">✓ 灯珠是好的</span>
+      <span class="chip cyan">✓ 线也是好的</span>
+    </div>
+  </div>
+  <div class="figure mt-m" data-anim="fade-up">
+    <svg viewBox="0 0 760 330" role="img" aria-label="看起来接好了但不亮的电路">
+      <path class="st fillw" d="M416 110 v-48 a56 56 0 0 0 -112 0 v48 z"/>
+      <rect class="st fillw" x="296" y="110" width="128" height="20" rx="7"/>
+      <path class="st" d="M396 130 v34"/><path class="st" d="M324 130 v34"/>
+      <path class="st" d="M396 164 q0 22 22 22 h172 q22 0 22 22 v48 q0 22 -22 22 h-58"/>
+      <path class="st" d="M324 164 q0 22 -22 22 h-172 q-22 0 -22 22 v48 q0 22 22 22 h98"/>
+      <rect class="st fillw" x="228" y="242" width="304" height="72" rx="14"/>
+      <rect class="st2 filly" x="250" y="260" width="80" height="36" rx="7"/>
+      <rect class="st2 filly" x="340" y="260" width="80" height="36" rx="7"/>
+      <rect class="st2 filly" x="430" y="260" width="80" height="36" rx="7"/>
+      <circle class="st fillw" cx="532" cy="278" r="13"/>
+      <circle class="st fillw" cx="228" cy="278" r="13"/>
+      <text class="lbl pm" x="548" y="288">＋</text><text class="lbl pm" x="184" y="288">−</text>
+      <text class="lbl" x="452" y="46" style="fill:var(--text-3)">✗ 不亮</text>
+    </svg>
+  </div>
+  <aside class="notes">
+    <p>这块板上节课就出现过，<strong>当时没解决</strong>。开场直接把它接通电源给全班看。</p>
+    <p>「这个电路，<strong>所有线都接上了，一根都没少</strong>。我向你们保证：电池是好的，灯珠是好的，线也是好的。<strong>但它不亮。为什么？</strong>」</p>
+    <p>这个悬念<strong>要一直留到第 70 分钟</strong>才揭晓。中间不管孩子怎么追问，统一回答：「等会儿你们自己就能找出来了。」</p>
+    <p>留而不答，是为了让中间那 60 分钟的探究<strong>有目的地</strong>——他们是带着一个悬案在学，不是在完成任务。</p>
+  </aside>
+</section>
+
+<!-- ═══════════════ 4 · 请两个人上来找 ═══════════════ -->
+<section class="slide full-center" data-title="① 撞现象 · 请两个人上来找">
+  <div class="stage-rail"><b>① 撞现象</b><i class="on"></i><i></i><i></i><i></i><i></i></div>
+  <div class="ask">
+    <p class="chip pink" data-anim="fade-down">谁想上来看一眼？</p>
+    <p class="q mt-m" data-anim="zoom-pop">你来找找<br>毛病在哪。</p>
+    <p class="sub mt-l" data-anim="fade-up">找不到也没关系 ——<br><mark>这道题本来就不是现在能做出来的。</mark></p>
+  </div>
+  <aside class="notes">
+    <p>请<strong>两名学生</strong>上台，让他们随便看、随便摸，其他人围着看。</p>
+    <p>他们<strong>大概率找不出来</strong>——这非常好，<strong>不要提示，也不要揭晓</strong>。</p>
+    <p>他们下去的时候说一句给全班听：「找不到很正常。<strong>今天上完这节课，你们每个人都能找出来。</strong>」</p>
+    <p>这句话把「现在做不到」变成了「等会儿就能做到」，孩子的挫败感立刻转成期待。别省这一句。</p>
+    <p>然后<strong>把这块板放在讲台上，一整节课都摆在那儿</strong>，让它一直在视野里。</p>
+  </aside>
+</section>
+
+<!-- ═══════════════ 5 · 上节课让它亮，今天反过来 ═══════════════ -->
+<section class="slide" data-title="① 撞现象 · 今天反过来">
+  <div class="stage-rail"><b>① 撞现象</b><i class="on"></i><i></i><i></i><i></i><i></i></div>
+  <h2 class="h2" data-anim="fade-up">今天，<mark class="pink">反过来</mark>。</h2>
+  <div class="vs mt-l" data-anim="fade-up">
+    <div class="no">
+      <div class="mk">上节课</div>
+      <div class="h3 mt-s" style="color:var(--text-3)">想尽办法<br>让它<b>亮</b></div>
+    </div>
+    <div class="yes">
+      <div class="mk">今天</div>
+      <div class="h3 mt-s">想尽办法<br>让它<b>灭</b></div>
+    </div>
+  </div>
+  <p class="lede mt-l" data-anim="fade-up" style="text-align:center;max-width:none;font-weight:800;color:var(--text-1)">
+    会让它坏的人，才会修它。
+  </p>
+  <aside class="notes">
+    <p>「上节课我们想尽办法<strong>让它亮</strong>。今天<strong>反过来</strong>：想办法<strong>让它灭掉</strong>。」</p>
+    <p>为什么要反着来？因为<strong>制造断路比修复断路简单得多</strong>。先让孩子从自己的动作里体会「断」是怎么发生的，等会儿再让他去别人的电路上找「断」，就有感觉了。</p>
+    <p>最后那句「<strong>会让它坏的人，才会修它</strong>」说慢一点。这是今天的底层逻辑，也是下课前互设故障那一关的铺垫。</p>
+  </aside>
+</section>
+
+<!-- ═══════════════ 6 · 任务① 让它灭 ═══════════════ -->
+<section class="slide full-center" data-title="② 反着试 · 让它灭掉">
+  <div class="stage-rail"><b>② 反着试</b><i class="done"></i><i class="on"></i><i></i><i></i><i></i></div>
+  <div style="text-align:center">
+    <span class="chip pink" data-anim="fade-down">第 1 关 · 14 分钟</span>
+    <h1 class="hero mt-m" data-anim="rise-in">想办法<br>让它灭掉。</h1>
+    <div class="vs mt-l" style="max-width:min(900px,82vw);margin-left:auto;margin-right:auto" data-anim="fade-up">
+      <div class="no"><div class="mk">✗</div><div class="h3 mt-s">一根线都<br>不许完全拔下来</div></div>
+      <div class="yes"><div class="mk">2+</div><div class="h3 mt-s">至少找到<br>两种办法</div></div>
+    </div>
+  </div>
+  <aside class="notes">
+    <p>规矩说清楚：「<strong>一根线都不许完全拔下来。</strong>」拔线谁都会，没意思。</p>
+    <p>孩子会发明出很多办法：<strong>夹住绝缘皮、中间垫一片纸、让夹子只碰一点点、把灯珠掉个头</strong>。每一种都算。</p>
+    <p>要求<strong>每组至少找到 2 种</strong>，写在讲义上。</p>
+    <p>巡视时最重要的一件事：<strong>不要在孩子找到第一种就叫停</strong>。追问「<strong>还有别的办法吗？和你同桌的一样吗？</strong>」——第二种、第三种才是真正在动脑子。</p>
+    <p>看到有人<strong>把两个夹子互相咬住</strong>，立刻断开：电池会发烫。顺便预告：「这个第 5 课专门讲。」</p>
+  </aside>
+</section>
+
+<!-- ═══════════════ 7 · 你想到几种 ═══════════════ -->
+<section class="slide" data-title="② 反着试 · 你想到几种办法">
+  <div class="stage-rail"><b>② 反着试</b><i class="done"></i><i class="on"></i><i></i><i></i><i></i></div>
+  <p class="chip cyan" data-anim="fade-down">说出来，我写黑板上</p>
+  <h2 class="h2 mt-s" data-anim="fade-up">你想到<mark>几种</mark>？</h2>
+  <div class="grid g2 mt-l" data-anim="stagger-list">
+    <div class="pop"><div class="h3">夹住<b>黑皮</b>不夹金属</div>
+      <p class="cap" style="text-align:left;margin-top:6px">看起来夹得好好的，其实一点都不通</p></div>
+    <div class="pop"><div class="h3">中间垫一片<b>纸</b></div>
+      <p class="cap" style="text-align:left;margin-top:6px">薄薄一张纸就能挡住电</p></div>
+    <div class="pop"><div class="h3">夹子<b>只碰一点点</b></div>
+      <p class="cap" style="text-align:left;margin-top:6px">时亮时灭——最难查的那种毛病</p></div>
+    <div class="pop"><div class="h3">把<b>灯珠掉个头</b></div>
+      <p class="cap" style="text-align:left;margin-top:6px">上节课学的：LED 挑方向</p></div>
+  </div>
+  <p class="lede mt-l" data-anim="fade-up" style="font-weight:800;color:var(--text-1)">
+    还有别的吗？你的办法要是黑板上没有，<mark>举手，我加上去。</mark>
+  </p>
+  <aside class="notes">
+    <p>这一页是<strong>收集</strong>，不是讲解。把孩子说出来的办法<strong>一条一条写到黑板上</strong>，写他说的话，不要替他改成「标准说法」。</p>
+    <p>PPT 上这四种是最常见的，但<strong>一定要留出位置</strong>给孩子自己发明的——那句「你的办法要是黑板上没有，举手我加上去」不要跳过。</p>
+    <p>第三种「<strong>只碰一点点</strong>」特别值得停一下：「这种毛病最讨厌——<strong>它有时候亮，有时候不亮</strong>。你们以后修东西会经常碰到。」</p>
+    <p>数一数一共几种，写个总数在黑板上。孩子会很得意，这个得意是下半场的燃料。</p>
+  </aside>
+</section>
+
+<!-- ═══════════════ 8 · 排查四问 ═══════════════ -->
+<section class="slide" data-title="② 反着试 · 排查四问（加码）">
+  <div class="stage-rail"><b>② 反着试</b><i class="done"></i><i class="on"></i><i></i><i></i><i></i></div>
+  <p class="chip yellow" data-anim="fade-down">桌角那张卡，今天<b>加了一问</b></p>
+  <h2 class="h2 mt-s" data-anim="fade-up">排查<mark class="pink">四</mark>问。</h2>
+  <div class="checks mt-m" data-anim="stagger-list">
+    <div class="check"><div class="box"></div><div class="badge">1</div>
+      <div><div class="ct">夹子咬在金属腿上了吗？</div></div></div>
+    <div class="check"><div class="box"></div><div class="badge cyan">2</div>
+      <div><div class="ct">长脚那一端，接的是「＋」吗？</div></div></div>
+    <div class="check"><div class="box"></div><div class="badge pink">3</div>
+      <div><div class="ct">电池盒的开关，是开着的吗？</div></div></div>
+    <div class="check" style="background:var(--accent-3)"><div class="box"></div><div class="badge" style="background:#fff">4</div>
+      <div><div class="ct">两根线的<mark class="pink">两端</mark>，都接上了吗？</div>
+      <div class="cs">一共 4 个接点 —— 一个都不能少</div></div></div>
+  </div>
+  <aside class="notes">
+    <p>「这张卡<strong>长了一条</strong>。」把这件事说出来，孩子会很在意——他们喜欢看到自己的装备在升级。</p>
+    <p>新加的<strong>第四问</strong>是今天的重点：「两根线的<strong>两端</strong>，都接上了吗？<strong>一共四个接点</strong>——电池的两头、灯珠的两条腿。<strong>一个都不能少。</strong>」</p>
+    <p>让全班<strong>用手指点着自己的电路数一遍</strong>：一、二、三、四。这个动作比你说十遍管用。</p>
+    <p>老规矩不变：举手之前先自己走一遍，举手的时候要说「<strong>我查过这四样了</strong>」。</p>
+    <p>再预告一次：「这张卡第 4 课还会加到<strong>五问</strong>。」</p>
+  </aside>
+</section>
+
+<!-- ═══════════════ 9 · 五点断开（空表） ═══════════════ -->
+<section class="slide" data-title="③ 找规律 · 五点断开（空表）">
+  <div class="stage-rail"><b>③ 找规律</b><i class="done"></i><i class="done"></i><i class="on"></i><i></i><i></i></div>
+  <div class="row" style="justify-content:space-between;align-items:flex-end">
+    <div>
+      <span class="chip cyan" data-anim="fade-down">第 2 关 · 按顺序来，一个都不能漏</span>
+      <h2 class="h2 mt-s" data-anim="fade-up">在<mark>五个位置</mark>，各断一次。</h2>
+    </div>
+    <div class="pop yellow" data-anim="fade-left" style="text-align:center;flex:0 0 auto">
+      <div class="h3">断开以后<br>灯是亮还是灭？</div>
+    </div>
+  </div>
+  <div class="rec mt-m" data-anim="fade-up">
+    <div class="hd">断开的位置</div><div class="hd">灯的状态</div>
+    <div><span class="badge">①</span> 电池<b>＋</b>出口</div><div class="res todo">？</div>
+    <div><span class="badge cyan">②</span> 导线中段</div><div class="res todo">？</div>
+    <div><span class="badge pink">③</span> LED <b>长脚</b></div><div class="res todo">？</div>
+    <div><span class="badge">④</span> LED <b>短脚</b></div><div class="res todo">？</div>
+    <div><span class="badge cyan">⑤</span> 电池<b>−</b>入口</div><div class="res todo">？</div>
+  </div>
+  <aside class="notes">
+    <p>这是全课程<strong>第一次正式的控制变量训练</strong>：<strong>只改一个位置，其他什么都不动</strong>。动作要慢。</p>
+    <p>节奏：<strong>上半场只做前三点</strong>（①②③），下课休息，下半场做④⑤。不要一口气做完。</p>
+    <p>带着全班一起做第一点：「第一个位置，<strong>电池的正极这里</strong>，轻轻断开一下——灯怎么样？<strong>记下来。</strong>」</p>
+    <p>你要<strong>逐组确认每一点都真的断过</strong>。很多孩子会「觉得」肯定灭就直接填了。看到就说：「<strong>你试了吗？我要看你现在断一次。</strong>」</p>
+    <p><strong>绝对不要提前说结果会一样。</strong>那个「全都一样」的震撼是下半场的核心。</p>
+  </aside>
+</section>
+
+<!-- ═══════════════ 10 · 课间休息 ═══════════════ -->
+<section class="slide full-center" data-title="休息 · 课间 10 分钟">
+  <div style="text-align:center">
+    <div class="discovery" data-anim="zoom-pop" style="max-width:min(1000px,86vw)">
+      <p class="chip" style="background:#fff">中场 · 10 分钟</p>
+      <h1 class="hero mt-m">课间休息</h1>
+      <p class="h3 mt-m" style="font-weight:700">
+        器材<mark class="pink">留在桌上</mark>　·　讲台上那块坏板，<mark class="pink">还没破案</mark>
+      </p>
+    </div>
+    <p class="lede mt-l" data-anim="fade-up" style="margin-left:auto;margin-right:auto;text-align:center">
+      回来把剩下两个位置断完，然后看一个很奇怪的结果。
+    </p>
+  </div>
+  <aside class="notes">
+    <p>走之前说两句：一、「器材<strong>留在桌上别拆</strong>，回来接着做④⑤。」二、指一下讲台上那块 1 号板：「<strong>那个案子还没破</strong>，回来继续。」</p>
+    <p>这 10 分钟你自己要做的：<strong>扫一眼各组的五点表前三行</strong>。如果有人填了「亮」，那一定是没真的断开（多半是夹子松了但还搭着）。记下来，回来让他<strong>当场重做</strong>。</p>
+    <p>顺手把坏掉的 LED 和没电的电池换掉，下半场要提速。</p>
+  </aside>
+</section>
+
+<!-- ═══════════════ 11 · 五点结果 ═══════════════ -->
+<section class="slide" data-title="③ 找规律 · 五个位置，结果一样吗">
+  <div class="stage-rail"><b>③ 找规律</b><i class="done"></i><i class="done"></i><i class="on"></i><i></i><i></i></div>
+  <div class="row" style="justify-content:space-between;align-items:flex-end">
+    <h2 class="h2" data-anim="fade-up">五个位置，<mark>结果一样吗</mark>？</h2>
+    <div class="pop pink" data-anim="fade-left" style="flex:0 0 auto">
+      <div class="h3">五个<br>全灭。</div>
+    </div>
+  </div>
+  <div class="rec mt-m" data-anim="fade-up">
+    <div class="hd">断开的位置</div><div class="hd">灯的状态</div>
+    <div><span class="badge">①</span> 电池<b>＋</b>出口</div><div class="res off">✕ 灭</div>
+    <div><span class="badge cyan">②</span> 导线中段</div><div class="res off">✕ 灭</div>
+    <div><span class="badge pink">③</span> LED <b>长脚</b></div><div class="res off">✕ 灭</div>
+    <div><span class="badge">④</span> LED <b>短脚</b></div><div class="res off">✕ 灭</div>
+    <div><span class="badge cyan">⑤</span> 电池<b>−</b>入口</div><div class="res off">✕ 灭</div>
+  </div>
+  <aside class="notes">
+    <p>先让他们<strong>自己报</strong>：「五个位置，我们都断过了。<strong>结果一样吗？</strong>」</p>
+    <p>全班会喊「<strong>都灭了</strong>」。</p>
+    <p>这一页的关键不是公布答案，而是让他们<strong>盯着这五行一模一样的「灭」</strong>看几秒。这五个「灭」就是等会儿打掉前概念的全部证据。</p>
+    <p>如果哪一组有一行填的是「亮」，<strong>当场让他重做那一点</strong>，别放过。全班数据必须一致，否则下一步的推理立不住。</p>
+    <p>然后抛出那个真正的问题——翻页。</p>
+  </aside>
+</section>
+
+<!-- ═══════════════ 12 · 哪一根更重要 ═══════════════ -->
+<section class="slide full-center" data-title="③ 找规律 · 哪一根线更重要">
+  <div class="stage-rail"><b>③ 找规律</b><i class="done"></i><i class="done"></i><i class="on"></i><i></i><i></i></div>
+  <div class="ask">
+    <p class="chip cyan" data-anim="fade-down">一根去，一根回</p>
+    <p class="q mt-m" data-anim="zoom-pop">这两根线，<br>哪一根<mark>更重要</mark>？</p>
+    <p class="sub mt-l" data-anim="fade-up">先别看表。凭感觉，你觉得是哪一根？</p>
+  </div>
+  <aside class="notes">
+    <p>这个问题是<strong>故意问的陷阱</strong>，而且<strong>必须让他们先凭感觉回答</strong>，不许先翻表。</p>
+    <p>「这两根线里面，<strong>到底哪一根更重要？</strong>先别看表，凭感觉。」</p>
+    <p>可以举手表决：觉得「去」的那根更重要的举手，觉得一样重要的举手。<strong>把票数写在黑板上。</strong></p>
+    <p>绝大多数孩子会选「<strong>去的那根</strong>」——这正是今天要处理的前概念，让它<strong>暴露出来</strong>，别让它藏着。</p>
+    <p>暴露完，翻页，正面处理。</p>
+  </aside>
+</section>
+
+<!-- ═══════════════ 13 · 前概念：举手 ═══════════════ -->
+<section class="slide" data-title="④ 起名字 · 觉得回来那根多余的举手">
+  <div class="stage-rail"><b>④ 起名字</b><i class="done"></i><i class="done"></i><i class="done"></i><i class="on"></i><i></i></div>
+  <p class="chip pink" data-anim="fade-down">我知道有同学心里在想</p>
+  <h2 class="h2 mt-s" data-anim="fade-up">「电从电池出来，跑到灯里，<mark>用完了</mark>。」</h2>
+  <div class="figure mt-m" data-anim="fade-up">
+    <svg viewBox="0 0 820 230" role="img" aria-label="错误想法：电从电池送到灯就被用掉了">
+      <rect class="st fillw" x="40" y="96" width="210" height="66" rx="13"/>
+      <rect class="st2 filly" x="60" y="112" width="54" height="34" rx="6"/>
+      <rect class="st2 filly" x="122" y="112" width="54" height="34" rx="6"/>
+      <rect class="st2 filly" x="184" y="112" width="54" height="34" rx="6"/>
+      <text class="lbl sm" x="108" y="192">电池</text>
+      <path class="st" style="stroke:var(--accent)" d="M266 116 h250"/>
+      <path class="st" style="stroke:var(--accent)" d="M500 102 l18 14 -18 14"/>
+      <text class="lbl" x="316" y="96" style="fill:var(--accent)">「去」的那根</text>
+      <text class="lbl sm" x="336" y="152" style="fill:var(--accent)">学生认为：重要</text>
+      <path class="st filly" d="M620 128 v-34 a38 38 0 0 0 -76 0 v34 z"/>
+      <rect class="st fillw" x="536" y="128" width="88" height="15" rx="5"/>
+      <path class="st" d="M596 143 v22"/><path class="st" d="M564 143 v22"/>
+      <text class="lbl sm" x="556" y="192">灯</text>
+      <path class="st2" style="stroke:var(--text-3);stroke-dasharray:8 8" d="M648 150 h130"/>
+      <text class="lbl" x="646" y="128" style="fill:var(--text-3)">「回」的那根</text>
+      <text class="lbl sm" x="662" y="192" style="fill:var(--text-3)">学生认为：多余</text>
+    </svg>
+  </div>
+  <p class="lede mt-s" data-anim="fade-up" style="text-align:center;max-width:none;font-weight:800;color:var(--text-1)">
+    所以「去」的那根重要，「回来」的那根是<mark>多余</mark>的。<br>觉得是这样的，<mark class="pink">举手</mark>。
+  </p>
+  <aside class="notes">
+    <p><strong>这是本课最关键的一页，别赶。</strong>这个前概念是这个年龄段最顽固的一个，<strong>讲道理完全无效</strong>，只能用他们自己的数据撞。</p>
+    <p>先<strong>降低表态成本</strong>——这一步很多老师会漏：「我小时候<strong>也是这么想的</strong>。」孩子听到老师也这样想过，才敢举手。</p>
+    <p>「电从电池出来，跑到灯里，灯亮了，电就用完了。所以去的那根重要，回来那根多余。<strong>觉得是这样的举手。</strong>」</p>
+    <p><strong>让举手的孩子保持举着</strong>，别让他们放下。然后翻页，指着五点表的第⑤行。</p>
+    <p>如果没人举手，说明他们藏起来了。那就换个问法：「一个人都没有？那我换个说法——<strong>如果把回来那根剪短一半，灯会不会暗一点？</strong>」手立刻就举起来了。</p>
+  </aside>
+</section>
+
+<!-- ═══════════════ 14 · 第⑤行的数据 ═══════════════ -->
+<section class="slide" data-title="④ 起名字 · 第⑤行：两根一样重要">
+  <div class="stage-rail"><b>④ 起名字</b><i class="done"></i><i class="done"></i><i class="done"></i><i class="on"></i><i></i></div>
+  <p class="chip yellow" data-anim="fade-down">手先别放下，看你们自己测的第 ⑤ 行</p>
+  <h2 class="h2 mt-s" data-anim="fade-up">「回来」那根断了 —— <mark class="pink">灯亮了吗？</mark></h2>
+  <div class="rec mt-m" data-anim="fade-up">
+    <div style="filter:opacity(.4)"><span class="badge">①</span> 电池<b>＋</b>出口</div><div class="res off" style="filter:opacity(.4)">✕ 灭</div>
+    <div style="filter:opacity(.4)"><span class="badge cyan">④</span> LED <b>短脚</b></div><div class="res off" style="filter:opacity(.4)">✕ 灭</div>
+    <div style="border-width:4px;background:var(--accent-3)"><span class="badge pink">⑤</span> 电池<b>−</b>入口　<span class="cap" style="margin:0">← 就是「回来」那根</span></div>
+    <div class="res off" style="border-width:4px;background:#fff">✕ 灭</div>
+  </div>
+  <p class="lede mt-l" data-anim="fade-up" style="text-align:center;max-width:none;font-weight:800;color:var(--text-1)">
+    没有。所以 —— <mark>两根一样重要。</mark>
+  </p>
+  <aside class="notes">
+    <p>举手的孩子<strong>还举着</strong>。你走到黑板前，手指按在五点表的<strong>第 ⑤ 行</strong>上。</p>
+    <p>「我们刚才<strong>把『回来』的那根也断了一次</strong>。」停一秒。「<strong>灯亮了吗？</strong>」</p>
+    <p>全班会说「没有」。</p>
+    <p>「没有。<strong>所以两根一样重要</strong>——电要走完整的一圈，<strong>回到电池</strong>，灯才会亮。」</p>
+    <p>然后对举手的孩子说一句：「手放下吧。<strong>刚才举手的人，是今天最勇敢的。</strong>你们把自己想错的地方拿出来验了一遍——这就是科学家干的事。」</p>
+    <p>这一句一定要说。今天有孩子会记住这句话很多年。</p>
+  </aside>
+</section>
+
+<!-- ═══════════════ 15 · 完整的一圈 ═══════════════ -->
+<section class="slide full-center" data-title="④ 起名字 · 电要走完整的一圈">
+  <div class="stage-rail"><b>④ 起名字</b><i class="done"></i><i class="done"></i><i class="done"></i><i class="on"></i><i></i></div>
+  <div style="text-align:center">
+    <p class="chip cyan" data-anim="fade-down">第一单元最重要的一句话</p>
+    <p class="hero mt-m" data-anim="zoom-pop">电要走完<br><mark>完整的一圈</mark>。</p>
+    <p class="h3 mt-l" data-anim="fade-up" style="font-weight:700;color:var(--text-2)">
+      从 ＋ 出发　→　穿过灯　→　回到 −　　<mark class="pink">少一段都不行</mark>
+    </p>
+  </div>
+  <aside class="notes">
+    <p>这句话上节课出现过一次，但<strong>今天才算真的成立</strong>——因为现在它背后有五行数据撑着。</p>
+    <p>让全班<strong>一起读一遍</strong>：「电要走完整的一圈。」</p>
+    <p>「上节课我说过这句话，但那时候你们只是<strong>听我说</strong>。今天不一样——今天这句话是<strong>你们自己测出来的</strong>。」</p>
+    <p>这是<strong>整个第一单元唯一的心智模型</strong>。第 3 课的串并联、第 4 课的面包板、第 5 课的短路，全都长在这一句话上面。今天没立住，后面会一路欠账。</p>
+  </aside>
+</section>
+
+<!-- ═══════════════ 16 · 命名 ═══════════════ -->
+<section class="slide" data-title="④ 起名字 · 电路 / 通路 / 断路">
+  <div class="stage-rail"><b>④ 起名字</b><i class="done"></i><i class="done"></i><i class="done"></i><i class="on"></i><i></i></div>
+  <p class="chip pink" data-anim="fade-down">现在给它们三个名字</p>
+  <h2 class="h2 mt-s" data-anim="fade-up">电路　通路　断路</h2>
+  <div class="grid g3 mt-l" data-anim="stagger-list">
+    <div class="pop yellow" style="text-align:center">
+      <div class="h3">电路</div>
+      <svg viewBox="0 0 160 110" style="max-height:20vh;margin:10px auto">
+        <circle class="st" cx="80" cy="55" r="42"/>
+      </svg>
+      <p class="cap">电走的那<b>一圈</b></p>
+    </div>
+    <div class="pop cyan" style="text-align:center">
+      <div class="h3">通路</div>
+      <svg viewBox="0 0 160 110" style="max-height:20vh;margin:10px auto">
+        <circle class="st" style="stroke:var(--accent)" cx="80" cy="55" r="42"/>
+        <circle class="filly" cx="80" cy="55" r="16"/>
+        <circle class="st fillw" cx="80" cy="13" r="7"/>
+      </svg>
+      <p class="cap">圈是<b>完整</b>的 → 亮</p>
+    </div>
+    <div class="pop" style="text-align:center">
+      <div class="h3">断路</div>
+      <svg viewBox="0 0 160 110" style="max-height:20vh;margin:10px auto">
+        <path class="st" style="stroke:var(--text-3)" d="M80 13 a42 42 0 1 0 22 6"/>
+        <path class="st" style="stroke:var(--accent);stroke-width:5" d="M98 8 l16 16 M114 8 l-16 16"/>
+      </svg>
+      <p class="cap">圈<b>断了一处</b> → 灭</p>
+    </div>
+  </div>
+  <aside class="notes">
+    <p>名字<strong>放在数据之后</strong>给，这是这套课一贯的顺序。现象先发生完，名字只是用来装现象的盒子。</p>
+    <p>三个词一个一个来，每个都<strong>指着图</strong>说：</p>
+    <p>「<strong>电路</strong>——就是电走的那一圈。」「<strong>通路</strong>——圈是完整的，灯亮。」「<strong>断路</strong>——圈断了一处，灯灭。」</p>
+    <p>然后回头指五点表：「<strong>我们刚才做的五件事，每一件都是在制造断路。</strong>断在①还是断在⑤，对灯来说<strong>没有区别</strong>。」</p>
+    <p>「断路」这个词今天之后会一直用，让他们跟着念一遍。</p>
+  </aside>
+</section>
+
+<!-- ═══════════════ 17 · 自行车链条 ═══════════════ -->
+<section class="slide" data-title="④ 起名字 · 像自行车链条">
+  <div class="stage-rail"><b>④ 起名字</b><i class="done"></i><i class="done"></i><i class="done"></i><i class="on"></i><i></i></div>
+  <div class="row" style="gap:clamp(20px,2.4vw,50px);align-items:center">
+    <div style="flex:1">
+      <span class="chip yellow" data-anim="fade-down">像什么呢？</span>
+      <h2 class="h2 mt-s" data-anim="fade-up">像<mark class="cyan">自行车链条</mark>。</h2>
+      <div class="stack-l mt-l">
+        <div class="pop cyan" data-anim="fade-right">
+          <div class="h3">链条转一圈回来，<b>一节都不会少</b></div>
+        </div>
+        <div class="pop yellow" data-anim="fade-right">
+          <div class="h3">少掉的是<b>你蹬的力气</b> —— 不是链条</div>
+        </div>
+        <div class="pop" data-anim="fade-right" style="background:var(--surface-2)">
+          <div class="h3" style="color:var(--text-2)">链条断一节 → <b>整辆车都不走</b></div>
+        </div>
+      </div>
+    </div>
+    <div class="figure" style="flex:.9" data-anim="fade-left">
+      <svg viewBox="0 0 320 300" role="img" aria-label="自行车链条转一圈，一节都不少">
+        <ellipse class="st" style="stroke:var(--accent-2);stroke-width:6" cx="160" cy="150" rx="120" ry="78"/>
+        <circle class="st filly" cx="60" cy="150" r="40"/>
+        <circle class="st fillw" cx="60" cy="150" r="10"/>
+        <circle class="st filly" cx="260" cy="150" r="22"/>
+        <circle class="st fillw" cx="260" cy="150" r="7"/>
+        <g class="fillk">
+          <circle cx="160" cy="72" r="6"/><circle cx="210" cy="78" r="6"/><circle cx="110" cy="78" r="6"/>
+          <circle cx="160" cy="228" r="6"/><circle cx="210" cy="222" r="6"/><circle cx="110" cy="222" r="6"/>
+        </g>
+        <path class="st" style="stroke:var(--accent)" d="M60 150 l-34 34"/>
+        <circle class="st fillp" cx="20" cy="190" r="11"/>
+        <text class="lbl sm" x="6" y="224">你蹬的力气</text>
+      </svg>
+    </div>
+  </div>
+  <aside class="notes">
+    <p>「像什么呢？<strong>像自行车的链条。</strong>链条转一圈回来，<strong>一节都不会少</strong>。少掉的是<strong>你蹬的力气</strong>，不是链条。」</p>
+    <p>再补一句把它接回电路：「<strong>链条断一节，整辆车都不走</strong>——不管断在前面还是后面。」</p>
+    <p><strong>重要：这套课统一用链条，不要用水管。</strong>水管类比会强化「电被用掉了」这个错觉——正是今天刚刚打掉的那个。后面 13 节课也请保持这个口径。</p>
+    <p>如果有孩子问「那电池里的电会用完吗？」：「会，但用完的是<strong>推动的力气</strong>，不是电本身。这个我们后面几节课再说。」不要现场展开。</p>
+  </aside>
+</section>
+
+<!-- ═══════════════ 18 · 断在哪都一样灭 ═══════════════ -->
+<section class="slide" data-title="④ 起名字 · 断在哪，都一样灭">
+  <div class="stage-rail"><b>④ 起名字</b><i class="done"></i><i class="done"></i><i class="done"></i><i class="on"></i><i></i></div>
+  <h2 class="h2" data-anim="fade-up">断在哪，<mark>都一样灭</mark>。</h2>
+  <div class="figure mt-m" data-anim="fade-up">
+    <svg viewBox="0 0 760 430" role="img" aria-label="回路上五个断点，断在任何一处灯都灭">
+      <circle class="filly glow" cx="360" cy="100" r="54"/>
+      <path class="st filly" d="M416 150 v-52 a56 56 0 0 0 -112 0 v52 z"/>
+      <rect class="st fillw" x="296" y="150" width="128" height="20" rx="7"/>
+      <path class="st" style="stroke:var(--accent)" d="M396 170 v36"/>
+      <path class="st" d="M324 170 v36"/>
+      <path class="st" style="stroke:var(--accent)" d="M396 206 q0 22 22 22 h172 q22 0 22 22 v70 q0 22 -22 22 h-58"/>
+      <path class="st" style="stroke:var(--accent-2)" d="M324 206 q0 22 -22 22 h-172 q-22 0 -22 22 v70 q0 22 22 22 h98"/>
+      <rect class="st fillw" x="228" y="304" width="304" height="76" rx="14"/>
+      <rect class="st2 filly" x="250" y="322" width="80" height="40" rx="7"/>
+      <rect class="st2 filly" x="340" y="322" width="80" height="40" rx="7"/>
+      <rect class="st2 filly" x="430" y="322" width="80" height="40" rx="7"/>
+      <circle class="st fillp" cx="532" cy="342" r="13"/>
+      <circle class="st fillk" cx="228" cy="342" r="13"/>
+      <text class="lbl pm" x="558" y="352" style="fill:var(--accent)">＋</text>
+      <text class="lbl pm" x="184" y="352">−</text>
+      <!-- 五个断点 -->
+      <g>
+        <circle class="st fillw" cx="612" cy="300" r="20"/><text class="lbl" x="605" y="307">①</text>
+        <circle class="st fillw" cx="500" cy="228" r="20"/><text class="lbl" x="493" y="235">②</text>
+        <circle class="st fillw" cx="396" cy="192" r="20"/><text class="lbl" x="389" y="199">③</text>
+        <circle class="st fillw" cx="324" cy="192" r="20"/><text class="lbl" x="317" y="199">④</text>
+        <circle class="st fillw" cx="108" cy="300" r="20"/><text class="lbl" x="101" y="307">⑤</text>
+      </g>
+    </svg>
+  </div>
+  <p class="lede mt-s" data-anim="fade-up" style="text-align:center;max-width:none;font-weight:800;color:var(--text-1)">
+    ①②③④⑤ —— <mark class="cyan">随便挑一处剪断，灯都灭</mark>。这一圈，一个缺口都不能有。
+  </p>
+  <aside class="notes">
+    <p>这张图是<strong>把五点表画回到电路上</strong>。用手指沿着圈走一遍，走到一个编号停一下：「①断，灭。②断，灭。③、④、⑤——<strong>全灭</strong>。」</p>
+    <p>然后问一个把概念推远一点的问题：「如果我在<strong>这五个位置之外</strong>再找一个地方剪断呢？」——答案还是灭。「所以重要的<strong>不是哪一处</strong>，是<strong>这一圈不能有缺口</strong>。」</p>
+    <p>板书时<strong>务必画成闭合的圈</strong>，不要画成两条平行线段。<strong>第 3 课的串并联判断直接建立在这个圈上面。</strong></p>
+    <p>讲完这页，今天的概念部分就结束了。接下来是应用——当医生。</p>
+  </aside>
+</section>
+
+<!-- ═══════════════ 19 · 揭晓 1 号板 ═══════════════ -->
+<section class="slide" data-title="⑤ 当医生 · 揭晓 1 号板">
+  <div class="stage-rail"><b>⑤ 当医生</b><i class="done"></i><i class="done"></i><i class="done"></i><i class="done"></i><i class="on"></i></div>
+  <p class="chip pink" data-anim="fade-down">开场那块板 · 现在揭晓</p>
+  <h2 class="h2 mt-s" data-anim="rise-in">夹子咬在<mark>黑皮</mark>上。</h2>
+  <div class="figure mt-m" data-anim="fade-up">
+    <svg viewBox="0 0 820 250" role="img" aria-label="鳄鱼夹咬在绝缘皮上不通，咬在金属上才通">
+      <!-- 错：咬黑皮 -->
+      <g>
+        <rect class="st fillk" x="40" y="104" width="180" height="26" rx="13"/>
+        <rect class="st filly" x="220" y="110" width="76" height="14" rx="7"/>
+        <path class="st fillw" d="M120 74 l52 26 -52 26 z"/>
+        <path class="st fillw" d="M120 160 l52 -26 -52 -26 z"/>
+        <text class="lbl" x="34" y="196" style="fill:var(--text-3)">✗ 咬在黑色塑料皮上</text>
+        <text class="lbl sm" x="34" y="222" style="fill:var(--text-3)">看起来夹得很紧 —— 一点都不通</text>
+      </g>
+      <!-- 对：咬金属 -->
+      <g transform="translate(440,0)">
+        <rect class="st fillk" x="40" y="104" width="120" height="26" rx="13"/>
+        <rect class="st filly" x="160" y="110" width="136" height="14" rx="7"/>
+        <path class="st fillp" d="M212 74 l52 26 -52 26 z"/>
+        <path class="st fillp" d="M212 160 l52 -26 -52 -26 z"/>
+        <text class="lbl" x="34" y="196" style="fill:var(--accent)">✓ 咬在露出来的金属上</text>
+        <text class="lbl sm" x="34" y="222">这样才算真的接上</text>
+      </g>
+    </svg>
+  </div>
+  <p class="lede mt-s" data-anim="fade-up" style="text-align:center;max-width:none;font-weight:800;color:var(--text-1)">
+    <mark>「看起来接好了」，不等于「真的接好了」。</mark>
+  </p>
+  <aside class="notes">
+    <p>把开场那块板<strong>拿到讲台中间</strong>，当众把夹子挪到金属上——灯亮了。教室会有反应，等一下这个反应。</p>
+    <p>「<strong>夹子咬在黑皮上。</strong>黑皮是塑料，塑料不通电。所以这一圈<strong>在这里断了</strong>——虽然看起来夹得紧紧的。」</p>
+    <p>回头点一下早上那两个上台的孩子：「<strong>他们俩找不出来，一点都不丢人</strong>——这块板本来就是我专门做来骗人的。」</p>
+    <p>最后那句要说重一点：「<strong>『看起来接好了』，不等于『真的接好了』。</strong>」这是今天的第二句大发现，也是排查四问第一问存在的全部理由。</p>
+  </aside>
+</section>
+
+<!-- ═══════════════ 20 · 当医生 ═══════════════ -->
+<section class="slide full-center" data-title="⑤ 当医生 · 三块坏电路">
+  <div class="stage-rail"><b>⑤ 当医生</b><i class="done"></i><i class="done"></i><i class="done"></i><i class="done"></i><i class="on"></i></div>
+  <div style="text-align:center">
+    <span class="chip pink" data-anim="fade-down">第 3 关 · 现在轮到你们</span>
+    <h1 class="hero mt-m" data-anim="rise-in">你们当医生。</h1>
+    <div class="row mt-l" style="justify-content:center;gap:clamp(16px,1.8vw,34px);flex-wrap:wrap" data-anim="fade-up">
+      <div class="pop yellow"><div class="h3">1 号</div><p class="cap" style="margin-top:6px">刚才讲过了<br>拿来练手</p></div>
+      <div class="pop cyan"><div class="h3">2 号</div><p class="cap" style="margin-top:6px">很难<br>找不到很正常</p></div>
+      <div class="pop pink"><div class="h3">3 号</div><p class="cap" style="margin-top:6px">更难<br>下课前我揭晓</p></div>
+    </div>
+    <p class="lede mt-l" data-anim="fade-up" style="margin-left:auto;margin-right:auto;text-align:center;font-weight:800;color:var(--text-1)">
+      三块板，<mark>毛病各不一样</mark>。医生先诊断，再动手。
+    </p>
+  </div>
+  <aside class="notes">
+    <p>「这里有<strong>三块坏掉的电路</strong>，每一块的毛病都<strong>不一样</strong>。」在组间传，每组轮流。</p>
+    <p><strong>先把「医生」这个身份立住</strong>：「医生看病，不会上来就开刀。先<strong>看症状</strong>，再<strong>猜</strong>是什么毛病，再想办法<strong>验一验</strong>，最后才下<strong>结论</strong>。」——这正好就是排查单的四栏。</p>
+    <p>心里有数：<strong>1 号</strong>刚讲过，是让他们有个成功体验；<strong>2 号</strong>（导线内部断芯）<strong>几乎没人找得到</strong>，这是设计好的；<strong>3 号</strong>（电池盒弹片接触不良）是弹性项，找不到不影响本课达成。</p>
+    <p>有孩子三分钟就排完三块？<strong>让他去给同伴的板再设一处新故障，但不许告诉对方。</strong></p>
+    <p>还有：每块板课前<strong>拍过照</strong>，课后照着照片复原。有的孩子会顺手「修好」它。</p>
+  </aside>
+</section>
+
+<!-- ═══════════════ 21 · 排查单四栏 ═══════════════ -->
+<section class="slide" data-title="⑤ 当医生 · 排查单四栏">
+  <div class="stage-rail"><b>⑤ 当医生</b><i class="done"></i><i class="done"></i><i class="done"></i><i class="done"></i><i class="on"></i></div>
+  <p class="chip yellow" data-anim="fade-down">排查单 · 这四栏以后每节课都要填</p>
+  <h2 class="h2 mt-s" data-anim="fade-up"><mark class="pink">不许</mark>直接写结论。</h2>
+  <div class="grid g4 mt-l" data-anim="stagger-list">
+    <div class="pop"><div class="badge sq">1</div><div class="h3 mt-s">症状</div>
+      <p class="cap" style="text-align:left;margin-top:8px">你看到了什么？<br>「完全不亮」还是「时亮时灭」</p></div>
+    <div class="pop cyan"><div class="badge sq" style="background:#fff;color:var(--ink)">2</div><div class="h3 mt-s">我的猜测</div>
+      <p class="cap" style="text-align:left;margin-top:8px">你觉得断在哪一处？<br><b>先写下来，再去看</b></p></div>
+    <div class="pop cyan"><div class="badge sq" style="background:#fff;color:var(--ink)">3</div><div class="h3 mt-s">我怎么验证</div>
+      <p class="cap" style="text-align:left;margin-top:8px">你打算做什么动作<br>来证明你猜得对不对</p></div>
+    <div class="pop pink"><div class="badge sq" style="background:#fff;color:var(--ink)">4</div><div class="h3 mt-s">结论</div>
+      <p class="cap" style="text-align:left;margin-top:8px">问题出在哪<br>验完了才能写</p></div>
+  </div>
+  <p class="lede mt-l" data-anim="fade-up" style="font-weight:800;color:var(--text-1)">
+    中间那<mark class="cyan">两栏</mark>空着，我就退回来让你重填。
+  </p>
+  <aside class="notes">
+    <p>「排查单上有四栏：<strong>症状、猜测、验证、结论</strong>。<strong>不许直接写结论</strong>——我要看你是<strong>怎么猜的、怎么验的</strong>。」</p>
+    <p>巡视时<strong>优先看中间那两栏是不是空的</strong>。空着 = 在蒙答案，不是在排查。</p>
+    <p>看到只写结论的，<strong>当场退回去</strong>：「把你怎么猜的、怎么验的补上，我再看。」</p>
+    <p><strong>第一次一定要严格。</strong>这一次坚持住，后面 13 节课都省事；这一次放过去，排查单就永远只有第一栏和第四栏。</p>
+    <p>可以当众示范一遍 1 号板怎么填：症状「完全不亮」→ 猜测「夹子没咬到金属」→ 验证「把夹子挪到金属上再看」→ 结论「夹在黑皮上」。</p>
+  </aside>
+</section>
+
+<!-- ═══════════════ 22 · 2 号板 ═══════════════ -->
+<section class="slide" data-title="⑤ 当医生 · 2 号板：断在里面">
+  <div class="stage-rail"><b>⑤ 当医生</b><i class="done"></i><i class="done"></i><i class="done"></i><i class="done"></i><i class="on"></i></div>
+  <p class="chip cyan" data-anim="fade-down">2 号板 · 找不到的人举手（会很多）</p>
+  <h2 class="h2 mt-s" data-anim="fade-up">线断在<mark class="pink">里面</mark>，外面看不出来。</h2>
+  <div class="figure mt-m" data-anim="fade-up">
+    <svg viewBox="0 0 820 220" role="img" aria-label="导线外皮完好但内部铜芯断开">
+      <text class="lbl" x="30" y="40">外面看：完好</text>
+      <rect class="st fillk" x="30" y="58" width="330" height="28" rx="14"/>
+      <text class="lbl" x="440" y="40" style="fill:var(--accent)">剪开看：铜芯断了</text>
+      <rect class="st fillk" x="440" y="58" width="330" height="28" rx="14"/>
+      <rect class="st fillw" x="540" y="62" width="130" height="20" rx="4"/>
+      <path class="st2" style="stroke:var(--accent-3)" d="M548 72 h44"/>
+      <path class="st2" style="stroke:var(--accent-3)" d="M620 72 h44"/>
+      <path class="st" style="stroke:var(--accent);stroke-width:5" d="M598 58 l16 28 M614 58 l-16 28"/>
+      <text class="lbl sm" x="566" y="112" style="fill:var(--accent)">这里断了 2 毫米</text>
+      <text class="lbl" x="30" y="162" style="fill:var(--text-3)">摸不出来 · 看不出来 · 夹子也没问题</text>
+      <text class="lbl" x="30" y="196" style="fill:var(--accent)">→ 第 4 课，我们用一个新工具来解决它</text>
+    </svg>
+  </div>
+  <aside class="notes">
+    <p><strong>这块板是故意让他们失败的，别有负担。</strong>三分钟后不要给答案，直接拿出<strong>剪开外皮的那根示范导线</strong>给全班传着看。</p>
+    <p>「<strong>线断在里面，外面看不出来。</strong>你摸也摸不出来，看也看不出来，夹子还夹得好好的。」</p>
+    <p>然后说这句——<strong>这是整块板存在的理由</strong>：「所以我们现在<strong>缺一样东西</strong>。一样能<strong>看进线里面</strong>的工具。<strong>第 4 课，我们就用它。</strong>」</p>
+    <p><strong>不要提前说出万用表这三个字</strong>，留着。</p>
+    <p>孩子这时候的感觉应该是「原来光靠眼睛不够」——这个感觉比任何知识点都值钱，它是后面所有测量工具的入口。</p>
+  </aside>
+</section>
+
+<!-- ═══════════════ 23 · 3 号板 ═══════════════ -->
+<section class="slide" data-title="⑤ 当医生 · 3 号板：弹片接触不良">
+  <div class="stage-rail"><b>⑤ 当医生</b><i class="done"></i><i class="done"></i><i class="done"></i><i class="done"></i><i class="on"></i></div>
+  <p class="chip pink" data-anim="fade-down">3 号板 · 下课前揭晓</p>
+  <h2 class="h2 mt-s" data-anim="fade-up">电池和弹片之间，<mark>垫了一片东西</mark>。</h2>
+  <div class="row mt-m" style="gap:clamp(20px,2.4vw,50px);align-items:center">
+    <div class="figure" style="flex:1" data-anim="fade-up">
+      <svg viewBox="0 0 420 220" role="img" aria-label="电池盒弹片被绝缘物垫住">
+        <rect class="st fillw" x="30" y="60" width="360" height="100" rx="16"/>
+        <rect class="st2 filly" x="120" y="82" width="120" height="56" rx="8"/>
+        <path class="st" d="M96 78 v64 M96 110 h24"/>
+        <path class="st" d="M266 78 v64 M266 110 h-24"/>
+        <rect class="st fillp" x="108" y="96" width="10" height="28" rx="3"/>
+        <text class="lbl sm" x="60" y="184" style="fill:var(--accent)">这里垫了一小片绝缘物</text>
+        <text class="lbl sm" x="272" y="110">弹片</text>
+      </svg>
+    </div>
+    <div class="stack-l" style="flex:1">
+      <div class="pop" data-anim="fade-left">
+        <div class="h3">电池装得好好的</div>
+        <p class="cap" style="text-align:left;margin-top:6px">拿出来看也看不出毛病</p>
+      </div>
+      <div class="pop yellow" data-anim="fade-left">
+        <div class="h3">但这一圈，<b>在电池盒里面断了</b></div>
+        <p class="cap" style="text-align:left;margin-top:6px">断路不一定在线上 —— 哪儿都可能</p>
+      </div>
+    </div>
+  </div>
+  <aside class="notes">
+    <p><strong>这块是弹性项，找不到完全正常</strong>，收尾时你自己揭晓就行，不要因为没人找到而拖堂。</p>
+    <p>揭晓时把那片绝缘物<strong>当众抽出来</strong>，灯立刻亮。</p>
+    <p>这块板的意义只有一个，说清楚就够了：「<strong>断路不一定在线上。</strong>电池盒里面、开关里面、任何一个接点，都可能断。<strong>只要是这一圈上的，都算。</strong>」</p>
+    <p>这句话把「断路」从「线断了」扩展成「<strong>回路上任何一处不通</strong>」，第 6 课讲开关的时候会直接用到。</p>
+    <p>如果真有孩子找出来了——<strong>让他上来给全班讲</strong>，这是今天最高光的时刻，别抢他的。</p>
+  </aside>
+</section>
+
+<!-- ═══════════════ 24 · 最后一关 ═══════════════ -->
+<section class="slide full-center" data-title="⑤ 当医生 · 互设互查（逐人）">
+  <div class="stage-rail"><b>⑤ 当医生</b><i class="done"></i><i class="done"></i><i class="done"></i><i class="done"></i><i class="on"></i></div>
+  <div style="text-align:center">
+    <span class="chip pink" data-anim="fade-down">最后一关 · 两人一组 · 限时 2 分钟</span>
+    <h1 class="hero mt-m" data-anim="rise-in">给同桌<br>设一处故障。</h1>
+    <div class="row mt-l" style="justify-content:center;gap:clamp(16px,1.8vw,34px);flex-wrap:wrap" data-anim="fade-up">
+      <div class="pop yellow"><div class="h3">① 设</div><p class="cap" style="margin-top:6px">只许动接线<br>不许拆元件</p></div>
+      <div class="pop cyan"><div class="h3">② 换</div><p class="cap" style="margin-top:6px">交换电路<br>开始计时</p></div>
+      <div class="pop pink"><div class="h3">③ 查</div><p class="cap" style="margin-top:6px">2 分钟内找出来<br>并说清怎么验的</p></div>
+    </div>
+  </div>
+  <aside class="notes">
+    <p><strong>今天的验收环节，死保 8 分钟。</strong></p>
+    <p>规则说死：「<strong>只许动接线，不许拆元件。</strong>」不许把 LED 拔走，不许把电池拿出来——那不叫设故障，那叫拆machine。</p>
+    <p>设故障的人<strong>背过身</strong>去设，设完交换，你喊开始计时。</p>
+    <p>验收标准有两条，<strong>两条都要</strong>：一、<strong>2 分钟内找出来</strong>；二、能<strong>说清楚他是怎么验的</strong>——「我先看了夹子，都在金属上；然后我按了一下这里，灯闪了一下，所以是这儿接触不良。」</p>
+    <p>你拿着巡视检查表<strong>逐人打勾</strong>。没过的当场再来一轮，不要留到下节课。</p>
+    <p>「<strong>能给别人设故障，说明你已经真的懂了。</strong>」这句话在收尾时说给全班听。</p>
+  </aside>
+</section>
+
+<!-- ═══════════════ 25 · 今日大发现 ═══════════════ -->
+<section class="slide full-center" data-title="收尾 · 今日大发现">
+  <div class="discovery" data-anim="zoom-pop" style="max-width:min(1100px,88vw);margin:0 auto">
+    <p class="chip pink">今日大发现</p>
+    <p class="hero mt-m">断在哪，<br>都一样灭。</p>
+    <p class="h3 mt-l" style="font-weight:700">
+      两根线<mark class="pink">一样重要</mark>　——　电要走完<mark class="pink">整整一圈</mark>。
+    </p>
+  </div>
+  <aside class="notes">
+    <p>全班<strong>一起读一遍</strong>：「断在哪，都一样灭。」</p>
+    <p>然后把今天两句话串起来：「第一句——<strong>断在哪都一样灭</strong>，所以两根线一样重要。第二句——<strong>看起来接好了，不等于真的接好了</strong>。」</p>
+    <p>再推到生活里：「你家 Wi-Fi 断了、台灯不亮了，<strong>别急着说它坏了</strong>。先想一想：<strong>这一圈，是在哪儿断的？</strong>」</p>
+    <p>今天真正带走的是<strong>一套动作</strong>，不是一个知识点：看症状 → 猜 → 验 → 下结论。这套动作后面 13 节课会一直用。</p>
+  </aside>
+</section>
+
+<!-- ═══════════════ 26 · 回家做 ═══════════════ -->
+<section class="slide" data-title="收尾 · 回家做">
+  <h2 class="h2" data-anim="fade-up">回家做。</h2>
+  <div class="grid g2 mt-l">
+    <div class="pop pink" data-anim="fade-right">
+      <span class="chip" style="background:#fff">必做 · 每个人</span>
+      <div class="h3 mt-m">让家人来找你设的故障。</div>
+      <p class="cap" style="text-align:left;margin-top:12px;color:rgba(255,255,255,.9)">
+        把小灯装好，请家人<strong>闭上眼睛</strong>，你在电路上悄悄断开一处。<br>
+        家人睁眼来找 —— 记下他<strong>用了多久</strong>、<strong>找的是哪里</strong>。
+      </p>
+    </div>
+    <div class="pop cyan" data-anim="fade-left">
+      <span class="chip" style="background:#fff">选做 · 想挑战的人</span>
+      <div class="h3 mt-m">找一样「拔了插头就不工作」的东西。</div>
+      <p class="cap" style="text-align:left;margin-top:12px">
+        台灯、电风扇、电视都行。<br>
+        想一想：它的那<strong>一圈</strong>，是从哪里到哪里？
+      </p>
+    </div>
+  </div>
+  <p class="lede mt-l" data-anim="fade-up" style="text-align:center;max-width:none;font-weight:800;color:var(--text-1)">
+    能找出问题在哪，<mark>比会装一次更厉害</mark>。
+  </p>
+  <aside class="notes">
+    <p>必做这条的重点是<strong>角色反过来</strong>——今天孩子在学校当医生，回家当<strong>出题的人</strong>。要能给别人出题，他自己必须先想清楚电路会在哪儿坏。</p>
+    <p>「记下家人<strong>用了多久</strong>、<strong>找的是哪里</strong>」这两个数据下节课要用，提醒他们真的记下来。</p>
+    <p>选做那条是<strong>第 5、6 课的铺垫</strong>——「一圈从哪里到哪里」这个问题，等学完开关和短路才能真正回答。现在只要他们开始留意就行。</p>
+    <p>最后那句「能找出问题在哪，比会装一次更厉害」是教案原话，说完停一下再下课。</p>
+  </aside>
+</section>
+
+<!-- ═══════════════ 27 · 下节课 ═══════════════ -->
+<section class="slide full-center" data-title="收尾 · 下节课钩子">
+  <div style="text-align:center">
+    <p class="chip cyan" data-anim="fade-down">下节课 · 第 3 课</p>
+    <h2 class="h2 mt-m" data-anim="fade-up">今天是<mark>一个灯</mark>，一圈。</h2>
+    <p class="hero mt-l" data-anim="zoom-pop">那<mark class="pink">两个灯</mark> ——<br>还是一圈吗？</p>
+  </div>
+  <aside class="notes">
+    <p>收尾钩子，<strong>一句话，说完就下课</strong>。</p>
+    <p>「今天我们知道了：电要走完整的<strong>一圈</strong>，断在哪都一样灭。下节课我们加一个灯——<strong>两个灯，还是一圈吗？</strong>」</p>
+    <p><strong>不要揭晓</strong>（下节课是《两个灯一起亮》，串联并联）。留着那个问号。</p>
+    <p>下课前自己确认三件事：①<strong>三个 ★ 项是否全员打满</strong>（五点表五格真做过、能说出任何一处断开都不亮、2 分钟内排出同伴的断路）——第 3 课直接建立在这上面，今天欠账下节课会听不懂「拔掉一个灯会怎样」。②<strong>器材按人清点</strong>：LED 组合件、鳄鱼夹线每人 2 根、电池盒。③<strong>故障板按编号回收</strong>，对照课前拍的照片复原。</p>
+  </aside>
+</section>
+
+</div>
+
+<div class="deck-footer">
+  <span>第 2 课 · 为什么两根线都要接？　|　15 节科创探究课 · 第一单元</span>
+  <span class="slide-number" data-current="1" data-total="27"></span>
+</div>
+
+<script src="../assets/runtime.js"></script>
+</body>
+</html>

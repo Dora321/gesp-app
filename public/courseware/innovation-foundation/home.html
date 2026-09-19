@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>初阶科创 · 网页课件</title>
+<link rel="stylesheet" href="assets/fonts.css">
+<style>
+:root{
+  --bg:#fef6e8; --ink:#111; --pink:#ff3d8b; --cyan:#37c2d7; --yellow:#ffcc00;
+  --font:'Space Grotesk','Noto Sans SC','Microsoft YaHei UI','Microsoft YaHei','PingFang SC',sans-serif;
+}
+*{box-sizing:border-box}
+body{
+  margin:0; padding:48px 32px 72px; background:var(--bg); color:var(--ink);
+  font-family:var(--font); font-weight:600;
+  background-image:
+    radial-gradient(circle at 10% 20%,var(--pink) 3px,transparent 4px),
+    radial-gradient(circle at 80% 40%,var(--cyan) 3px,transparent 4px),
+    radial-gradient(circle at 30% 80%,var(--yellow) 3px,transparent 4px);
+  background-size:200px 200px,220px 220px,260px 260px;
+}
+.wrap{max-width:1180px;margin:0 auto}
+.chip{display:inline-block;border:2.5px solid var(--ink);background:var(--cyan);
+  padding:4px 16px;border-radius:99px;font-size:15px;font-weight:800;box-shadow:3px 3px 0 var(--ink)}
+h1{font-size:clamp(34px,5vw,64px);line-height:1.1;font-weight:900;margin:18px 0 6px}
+.sub{font-size:clamp(15px,1.5vw,20px);color:#444;margin:0 0 8px;font-weight:600}
+.note{border:3px solid var(--ink);background:#fff;border-radius:12px;box-shadow:5px 5px 0 var(--ink);
+  padding:16px 22px;margin:26px 0 34px;font-size:15px;line-height:1.7;font-weight:600}
+.note b{background:var(--yellow);padding:1px 6px;border-radius:4px}
+kbd{display:inline-block;border:2px solid var(--ink);border-radius:6px;background:#fff;
+  padding:0 8px;font-family:inherit;font-weight:800;box-shadow:2px 2px 0 var(--ink)}
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:18px}
+a.card{
+  display:block;text-decoration:none;color:var(--ink);
+  border:3px solid var(--ink);border-radius:12px;background:#fff;
+  box-shadow:6px 6px 0 var(--ink);padding:18px 20px;
+  transition:transform .15s ease, box-shadow .15s ease, background .15s ease;
+}
+a.card:hover{transform:translate(-3px,-3px);box-shadow:9px 9px 0 var(--ink);background:var(--yellow)}
+a.card.key{background:#fff3c4}
+a.card.key:hover{background:var(--yellow)}
+.n{font-size:13px;font-weight:800;letter-spacing:.1em;color:var(--pink)}
+.t{font-size:clamp(19px,1.9vw,25px);font-weight:900;margin-top:4px;line-height:1.25}
+.s{font-size:13px;font-weight:600;color:#666;margin-top:8px}
+.flag{display:inline-block;font-size:11px;font-weight:800;background:var(--pink);color:#fff;
+  border-radius:99px;padding:2px 9px;margin-top:8px}
+h2{font-size:20px;font-weight:900;margin:36px 0 14px;display:flex;align-items:center;gap:12px}
+h2 small{font-size:14px;font-weight:700;color:#666}
+h2::after{content:'';flex:1;height:3px;background:var(--ink);border-radius:2px}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <span class="chip">15 节科创探究课 · 全部就绪</span>
+  <h1>电路是怎么工作的？</h1>
+  <p class="sub">网页课件 · 小学 3–5 年级 · 每节 90 分钟连堂 · 每页带逐字稿</p>
+
+  <div class="note">
+    上课按键：<kbd>←</kbd> <kbd>→</kbd> 翻页 · <kbd>F</kbd> 全屏 · <kbd>S</kbd> 打开演讲者窗口（逐字稿＋计时器）·
+    <kbd>N</kbd> 底部提词条 · <kbd>O</kbd> 跳页目录 · <kbd>T</kbd> 换配色<br>
+    双屏上课：按 <kbd>S</kbd> 弹出演讲者窗口 → 把原窗口拖到投影屏按 <kbd>F</kbd> 全屏 → 演讲者窗口留在自己面前。<br>
+    <b>不需要装任何东西，双击 HTML 文件直接用。</b>如果浏览器拦了弹窗，允许一次即可。<br>
+    带 <span class="flag">不能欠账</span> 的三节课是全课程的地基，这三关没过后面会一路带着账走。
+  </div>
+
+  <h2>第一单元 · 电路是怎么工作的 <small>电要走完整的一圈</small></h2>
+  <div class="grid">
+    <a class="card" href="第01课_让小灯亮起来/index.html">
+      <div class="n">第 01 课</div><div class="t">让小灯亮起来</div>
+      <div class="s">LED 有方向 · 长脚接＋ · 四格对照表</div></a>
+    <a class="card" href="第02课_两根线都要接/index.html">
+      <div class="n">第 02 课</div><div class="t">为什么两根线都要接？</div>
+      <div class="s">闭合回路 · 五点断开 · 故障诊断</div></a>
+    <a class="card key" href="第03课_两个灯一起亮/index.html">
+      <div class="n">第 03 课</div><div class="t">两个灯怎么一起亮？</div>
+      <div class="s">串联与并联 · 拔掉一个试试</div>
+      <div class="flag">不能欠账</div></a>
+  </div>
+
+  <h2>第二单元 · 我能搭建和控制 <small>工具、表达与控制</small></h2>
+  <div class="grid">
+    <a class="card key" href="第04课_面包板探险/index.html">
+      <div class="n">第 04 课</div><div class="t">面包板探险</div>
+      <div class="s">万用表入门 · 自己测绘内部连接</div>
+      <div class="flag">不能欠账</div></a>
+    <a class="card" href="第05课_画出电的路线/index.html">
+      <div class="n">第 05 课</div><div class="t">画出电的路线</div>
+      <div class="s">五个电路符号 · 短路演示</div></a>
+    <a class="card" href="第06课_我来控制这盏灯/index.html">
+      <div class="n">第 06 课</div><div class="t">我来控制这盏灯</div>
+      <div class="s">四脚按键 · 小手电（作品 ①）</div></a>
+  </div>
+
+  <h2>第三单元 · 电在材料中怎么走 <small>导体、绝缘体与电阻</small></h2>
+  <div class="grid">
+    <a class="card" href="第07课_什么材料能让灯亮/index.html">
+      <div class="n">第 07 课</div><div class="t">什么材料能让灯亮？</div>
+      <div class="s">电阻挡 · 十种材料排队 · 中间地带</div></a>
+    <a class="card key" href="第08课_铅笔芯让灯变暗/index.html">
+      <div class="n">第 08 课</div><div class="t">为什么铅笔芯让灯变暗？</div>
+      <div class="s">剪开热缩管 · 电阻 · 烧毁演示</div>
+      <div class="flag">不能欠账</div></a>
+  </div>
+
+  <h2>第四单元 · 电还能存起来吗 <small>电容与权衡</small></h2>
+  <div class="grid">
+    <a class="card" href="第09课_断电了灯还亮着/index.html">
+      <div class="n">第 09 课</div><div class="t">断电以后为什么还亮？</div>
+      <div class="s">超级电容 · 容量 · 极性安全</div></a>
+    <a class="card" href="第10课_延时小夜灯/index.html">
+      <div class="n">第 10 课</div><div class="t">延时小夜灯</div>
+      <div class="s">权衡 · 按需选型 · 小夜灯（作品 ②）</div></a>
+  </div>
+
+  <h2>第五单元 · 电、磁和能量的变身 <small>电磁铁、发电与收束项目</small></h2>
+  <div class="grid">
+    <a class="card" href="第11课_铁钉变成磁铁/index.html">
+      <div class="n">第 11 课</div><div class="t">铁钉变成磁铁</div>
+      <div class="s">电磁铁 · 统一通电口令 · 作品 ③</div></a>
+    <a class="card" href="第12课_磁能变电吗/index.html">
+      <div class="n">第 12 课</div><div class="t">磁能变电吗？</div>
+      <div class="s">电磁感应 · 必须动 · 钕磁铁清点制</div></a>
+    <a class="card" href="第13课_造一个小发电机/index.html">
+      <div class="n">第 13 课</div><div class="t">我来造一个小发电机</div>
+      <div class="s">收走电池 · 电有方向 · 反向并联双灯</div></a>
+    <a class="card" href="第14课_小型发电站上/index.html">
+      <div class="n">第 14 课</div><div class="t">小型发电站（上）</div>
+      <div class="s">功能链 · 布局图签字制 · 整流</div></a>
+    <a class="card" href="第15课_小型发电站下/index.html">
+      <div class="n">第 15 课</div><div class="t">小型发电站（下）</div>
+      <div class="s">优化 · 互设故障 · 七关闯关 · 展示</div></a>
+  </div>
+
+</div>
+</body>
+</html>

@@ -12,8 +12,8 @@ const items = [
         icon: Landmark
     },
     {
-        title: 'ESP32 × AI 科创课',
-        desc: '35 课时项目制课程，五个阶段走完从「读懂 AI」到「把 AI 装进作品」，另有 7 讲竞赛延伸。',
+        title: 'ESP32 MicroPython 高阶科创',
+        desc: 'ESP32 与 MicroPython 网页课件，现已上线 7 课，其余课件陆续补充。',
         action: '查看硬件课',
         route: '/hardware',
         icon: Cpu

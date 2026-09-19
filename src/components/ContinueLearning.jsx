@@ -4,7 +4,7 @@ import { ArrowRight, BookOpen, NotebookPen, Target } from 'lucide-react';
 
 import { getCppLesson } from '../data/cppLessonIndex';
 import { pythonFoundationLessons, pythonProjects } from '../data/pythonCourseCatalog';
-import { innovationLessons } from '../data/innovationCourseCatalog';
+import { foundationLessons, innovationLessons } from '../data/innovationCourseCatalog';
 import { paperMeta } from '../data/gesp';
 import { LEARNING_DATA_EVENT } from '../utils/learningData';
 import { readLessonProgress } from '../utils/lessonProgress';
@@ -29,8 +29,10 @@ const describeLessonPath = (path) => {
         const levelName = LEVEL_NAMES[Number(cpp[1]) - 1] || cpp[1];
         return lesson ? `C++ ${levelName}级 · ${lesson.title}` : `C++ ${levelName}级 第 ${cpp[2]} 课`;
     }
-    const innovation = innovationLessons.find((lesson) => lesson.path === path);
-    if (innovation) return `初阶科创 · 第 ${innovation.id} 课 · ${innovation.title}`;
+    const foundation = foundationLessons.find((lesson) => lesson.path === path);
+    if (foundation) return `初阶科创 · 第 ${foundation.id} 课 · ${foundation.title}`;
+    const innovation = innovationLessons.find((lesson) => lesson.path === path || `/innovation/${lesson.id}` === path);
+    if (innovation) return `高阶科创 · 第 ${innovation.id} 课 · ${innovation.title}`;
     const python = PYTHON_TITLES.get(path);
     return python ? `Python · ${python}` : path;
 };

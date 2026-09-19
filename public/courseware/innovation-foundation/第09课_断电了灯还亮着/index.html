@@ -1,0 +1,530 @@
+<!DOCTYPE html>
+<html lang="zh-CN" data-themes="memphis-pop,neo-brutalism,soft-pastel,minimal-white" data-theme-base="../assets/themes/">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>第 9 课 · 断电以后为什么还亮？</title>
+<link rel="stylesheet" href="../assets/fonts.css">
+<link rel="stylesheet" href="../assets/base.css">
+<link rel="stylesheet" id="theme-link" href="../assets/themes/memphis-pop.css">
+<link rel="stylesheet" href="../assets/animations/animations.css">
+<link rel="stylesheet" href="../assets/course.css">
+</head>
+<body class="kc">
+<div class="deck">
+
+<!-- ═══════════════ 1 · 封面 ═══════════════ -->
+<section class="slide full-center" data-title="开场 · 封面">
+  <div style="text-align:center">
+    <span class="chip cyan" data-anim="fade-down">15 节科创探究课 · 第四单元「电还能存起来吗」</span>
+    <h1 class="hero mt-m" data-anim="rise-in">第 9 课<br>断电以后<br>为什么还亮？</h1>
+    <div class="row mt-l" style="justify-content:center;gap:14px;flex-wrap:wrap" data-anim="fade-up">
+      <span class="chip">90 分钟 · 两节连堂</span>
+      <span class="chip yellow">今天有秒表</span>
+      <span class="chip pink">今天有安全红线</span>
+    </div>
+  </div>
+  <aside class="notes">
+    <p>本课的开场是<strong>全课程最强的一次现象</strong>：当众把整个电池盒拔下来举高，灯还亮着，并且在慢慢变暗。这一下能把全班的注意力锁住十分钟。<strong>不要在这之前剧透，也不要在这之后急着解释。</strong></p>
+    <p><strong>本单元两课的成败完全取决于电容选型。</strong>必须用<strong>超级电容 0.47F/5.5V</strong>，普通电解电容做不出现象。实测：0.47F 充到 4.5V 后经 150Ω＋LED 放电，<strong>约 65 秒渐暗</strong>；而 1000µF 时间常数只有 0.15 秒，<strong>肉眼几乎瞬灭</strong>。<strong>这个巨大反差不要回避，把它做成对照实验</strong>——它正是「容量」最好的直观证据。</p>
+    <p><strong>电容极性是本单元的安全红线。</strong>反接会鼓包甚至喷出电解液。<strong>通电前必须由教师逐台检查并贴绿色标签，无标签不许接通电源。这一条不能交给学生自查。</strong></p>
+    <p>保底目标：<strong>独立完成充放电电路、正确判断电容极性，并说出超级电容为什么放得久。</strong></p>
+  </aside>
+</section>
+
+<!-- ═══════════════ 2 · 今天走 5 步 ═══════════════ -->
+<section class="slide" data-title="开场 · 今天走 5 步">
+  <p class="chip pink" data-anim="fade-down">今天，我们走 5 步</p>
+  <h2 class="h2 mt-s" data-anim="fade-up">今天先看一个 ——<mark class="pink">不可能的现象</mark>。</h2>
+  <div class="grid mt-l" style="grid-template-columns:repeat(5,1fr)" data-anim="stagger-list">
+    <div class="pop yellow" style="text-align:center">
+      <div class="badge sq" style="margin:0 auto 12px">1</div>
+      <div class="h3">撞现象</div>
+      <p class="cap" style="margin-top:8px">电池被我拔走了</p>
+    </div>
+    <div class="pop" style="text-align:center">
+      <div class="badge pink sq" style="margin:0 auto 12px">2</div>
+      <div class="h3">自己复现</div>
+      <p class="cap" style="margin-top:8px">照图搭一遍</p>
+    </div>
+    <div class="pop cyan" style="text-align:center">
+      <div class="badge sq" style="margin:0 auto 12px;background:#fff;color:var(--ink)">3</div>
+      <div class="h3">比一比</div>
+      <p class="cap" style="margin-top:8px">两个零件，差多少</p>
+    </div>
+    <div class="pop" style="text-align:center">
+      <div class="badge cyan sq" style="margin:0 auto 12px">4</div>
+      <div class="h3">起名字</div>
+      <p class="cap" style="margin-top:8px">电容 · 容量</p>
+    </div>
+    <div class="pop pink" style="text-align:center">
+      <div class="badge sq" style="margin:0 auto 12px;background:#fff;color:var(--ink)">5</div>
+      <div class="h3">找上限</div>
+      <p class="cap" style="margin-top:8px">充久一点会更久吗</p>
+    </div>
+  </div>
+  <p class="lede mt-l" data-anim="fade-up">
+    今天有一条<mark class="pink">安全红线</mark>：没有我贴的绿标签，<mark>一律不许通电</mark>。
+  </p>
+  <aside class="notes">
+    <p>一分钟带过，但<strong>最后那条安全红线现在就要说一遍</strong>，第 6 页还要再说一遍。</p>
+    <p>「今天有一条规矩，跟以前都不一样：<strong>没有我贴的绿标签，一律不许接电源。</strong>」</p>
+    <p>为什么这么严？「因为今天这个新零件<strong>接反了会坏，严重的还会喷出里面的液体</strong>。」——先把严肃度立起来。</p>
+    <p>不要剧透第 1 步要演示什么。</p>
+  </aside>
+</section>
+
+<!-- ═══════════════ 3 · 拔掉电池 ═══════════════ -->
+<section class="slide full-center" data-title="① 撞现象 · 电池在我手上">
+  <div class="stage-rail"><b>① 撞现象</b><i class="on"></i><i></i><i></i><i></i><i></i></div>
+  <div class="ask">
+    <p class="chip yellow" data-anim="fade-down">看清楚了 —— 电池在我手上</p>
+    <p class="q mt-m" data-anim="zoom-pop">电池<mark>已经拔了</mark>。<br>灯<mark class="pink">还亮着</mark>。</p>
+    <p class="sub mt-l" data-anim="fade-up">电，是从哪来的？</p>
+  </div>
+  <aside class="notes">
+    <p><strong>全课程最强的一次现象，慢慢来，不要着急。</strong></p>
+    <p>面前的电路已经亮着。当着全班的面，<strong>把整个电池盒从电路上拔下来，高高举起。</strong></p>
+    <p>「<strong>看清楚了——电池在我手上。</strong>」</p>
+    <p><strong>停三秒</strong>，让学生看着那盏<strong>还在亮、并且在慢慢变暗</strong>的灯。全场会安静。</p>
+    <p>然后问：「<strong>电是从哪来的？</strong>」</p>
+    <p><strong>不要解释，不要剧透。</strong>让这个现象自己发酵。会有孩子站起来想走近看——让他们看。</p>
+    <p>等灯完全灭了，再问一次：「<strong>现在灭了。刚才那一分钟，电是从哪来的？</strong>」</p>
+  </aside>
+</section>
+
+<!-- ═══════════════ 4 · 猜想上墙 ═══════════════ -->
+<section class="slide" data-title="① 撞现象 · 猜想上墙">
+  <div class="stage-rail"><b>① 撞现象</b><i class="on"></i><i></i><i></i><i></i><i></i></div>
+  <h2 class="h2" data-anim="fade-up">先猜。<mark>我全写黑板上。</mark></h2>
+  <div class="grid g3 mt-l" data-anim="stagger-list">
+    <div class="pop" style="text-align:center">
+      <div class="badge" style="margin:0 auto 14px">?</div>
+      <div class="h3">线里还有剩的电</div>
+    </div>
+    <div class="pop" style="text-align:center">
+      <div class="badge cyan" style="margin:0 auto 14px">?</div>
+      <div class="h3">灯自己会发光</div>
+    </div>
+    <div class="pop" style="text-align:center">
+      <div class="badge pink" style="margin:0 auto 14px">?</div>
+      <div class="h3">那个黑色的<br>小圆柱在搞鬼</div>
+    </div>
+  </div>
+  <p class="lede mt-l" data-anim="fade-up" style="font-weight:800;color:var(--text-1)">
+    还有别的猜法吗？说出来，一起写上去。
+  </p>
+  <aside class="notes">
+    <p>老动作了，孩子已经很熟：<strong>猜想上墙，不评价、不点头、不否定。</strong></p>
+    <p>常见的猜法就是 PPT 上这三类。第三类「<strong>那个黑色的小圆柱在搞鬼</strong>」会有人猜到——<strong>照样只写上去，不确认</strong>。</p>
+    <p>如果有孩子已经知道那是电容，请他<strong>先别说出来</strong>，等命名环节由他来公布——这是第 3 课用过的招。</p>
+    <p>猜想墙<strong>整节课不擦</strong>，第 12 页命名的时候回来核对。</p>
+    <p>写完立刻发件，进入复现。<strong>亲手做出来，比听解释有说服力得多。</strong></p>
+  </aside>
+</section>
+
+<!-- ═══════════════ 5 · 安全红线 ═══════════════ -->
+<section class="slide" data-title="② 自己复现 · 安全红线：绿标制度">
+  <div class="stage-rail"><b>② 自己复现</b><i class="done"></i><i class="on"></i><i></i><i></i><i></i></div>
+  <div class="row" style="gap:clamp(20px,2.4vw,50px);align-items:center">
+    <div style="flex:1.1">
+      <span class="chip pink" data-anim="fade-down">今天唯一一条不能商量的规矩</span>
+      <h2 class="h2 mt-s" data-anim="fade-up">没有<mark>绿标签</mark>，<br>不许通电。</h2>
+      <div class="checks mt-l" data-anim="stagger-list">
+        <div class="check"><div class="badge pink">1</div>
+          <div><div class="ct">这个零件<b>分正负</b></div>
+          <div class="cs">接反了会鼓包，严重的会喷出里面的液体</div></div></div>
+        <div class="check"><div class="badge">2</div>
+          <div><div class="ct">接好了<b>先举手</b>，我来看一眼</div>
+          <div class="cs">我看过了，给你贴一张绿标签</div></div></div>
+        <div class="check" style="background:var(--accent-3)"><div class="badge" style="background:#fff">3</div>
+          <div><div class="ct">没有绿标签的，<mark class="pink">一律不许接电源</mark></div></div></div>
+      </div>
+    </div>
+    <div class="figure" style="flex:.9" data-anim="fade-left">
+      <svg viewBox="0 0 320 300" role="img" aria-label="电容的负极那一侧有色带">
+        <rect class="st fillw" x="90" y="40" width="140" height="170" rx="16"/>
+        <rect x="192" y="44" width="34" height="162" rx="10" style="fill:var(--text-3);stroke:#111;stroke-width:3"/>
+        <text class="lbl sm" x="209" y="130" text-anchor="middle" style="fill:#fff">−</text>
+        <text class="lbl sm" x="209" y="152" text-anchor="middle" style="fill:#fff">−</text>
+        <text class="lbl sm" x="209" y="174" text-anchor="middle" style="fill:#fff">−</text>
+        <path class="st" d="M120 210 v56"/><path class="st" d="M200 210 v40"/>
+        <text class="lbl" x="120" y="292" text-anchor="middle" style="fill:var(--accent)">长脚</text>
+        <text class="lbl sm" x="120" y="24" text-anchor="middle" style="fill:var(--accent)">＋</text>
+        <text class="lbl" x="214" y="276" text-anchor="middle">短脚</text>
+        <text class="lbl sm" x="262" y="130" style="fill:var(--text-2)">有色带</text>
+        <text class="lbl sm" x="262" y="154" style="fill:var(--text-2)">这边是 −</text>
+      </svg>
+    </div>
+  </div>
+  <aside class="notes">
+    <p><strong>这一页停住，把规矩说死，再发件。</strong></p>
+    <p>「这个零件<strong>有正负之分。接反了，它会鼓包，严重的还会喷出里面的液体。</strong>」</p>
+    <p>「所以规矩是：<strong>接好了先举手，我来看一眼。我看过了会给你贴一张绿标签。没有绿标签的，一律不许接电源。</strong>」</p>
+    <p><strong>这一条不能交给学生自查。逐台检查，一个都不能漏。</strong>——这是制度，不是叮嘱。</p>
+    <p>怎么认极性教清楚：<strong>负极那一侧有一条色带</strong>（印着一串减号），<strong>长脚是正极</strong>。和 LED 一样「长脚接＋」，可以直接接上第 1 课的经验。</p>
+    <p>备用超级电容 5 个——<strong>学生反接后即报废</strong>，一定会有。</p>
+  </aside>
+</section>
+
+<!-- ═══════════════ 6 · 接线图 ═══════════════ -->
+<section class="slide" data-title="② 自己复现 · 接线图">
+  <div class="stage-rail"><b>② 自己复现</b><i class="done"></i><i class="on"></i><i></i><i></i><i></i></div>
+  <p class="chip cyan" data-anim="fade-down">今天这条链路比以前长 —— 照图搭</p>
+  <h2 class="h2 mt-s" data-anim="fade-up">照着这张图，一段一段接。</h2>
+  <div class="figure mt-m" data-anim="fade-up">
+    <svg viewBox="0 0 960 200" role="img" aria-label="电池-按键-10欧-超级电容-150欧-LED 的链路">
+      <g>
+        <rect class="st fillw" x="20" y="60" width="120" height="70" rx="12"/>
+        <text class="lbl sm" x="80" y="100" text-anchor="middle">电池</text>
+        <text class="lbl sm" x="80" y="156" text-anchor="middle">4.5V</text>
+      </g>
+      <path class="st" d="M140 95 h50"/>
+      <g>
+        <rect class="st filly" x="190" y="60" width="110" height="70" rx="12"/>
+        <text class="lbl sm" x="245" y="100" text-anchor="middle">按键</text>
+        <text class="lbl sm" x="245" y="156" text-anchor="middle">按住＝充电</text>
+      </g>
+      <path class="st" d="M300 95 h50"/>
+      <g>
+        <rect class="st fillw" x="350" y="60" width="100" height="70" rx="12"/>
+        <text class="lbl sm" x="400" y="100" text-anchor="middle">10 Ω</text>
+        <text class="lbl sm" x="400" y="156" text-anchor="middle">充电限流</text>
+      </g>
+      <path class="st" d="M450 95 h50"/>
+      <g>
+        <rect class="st" x="500" y="52" width="130" height="86" rx="12" style="fill:var(--accent-2)"/>
+        <rect x="604" y="56" width="22" height="78" rx="8" style="fill:var(--text-3)"/>
+        <text class="lbl sm" x="558" y="100" text-anchor="middle">超级电容</text>
+        <text class="lbl sm" x="565" y="166" text-anchor="middle" style="fill:var(--accent)">0.47F · 注意正负</text>
+      </g>
+      <path class="st" d="M630 95 h50"/>
+      <g>
+        <rect class="st fillw" x="680" y="60" width="100" height="70" rx="12"/>
+        <text class="lbl sm" x="730" y="100" text-anchor="middle">150 Ω</text>
+        <text class="lbl sm" x="730" y="156" text-anchor="middle">放电限流</text>
+      </g>
+      <path class="st" d="M780 95 h40"/>
+      <g>
+        <circle class="filly glow" cx="880" cy="88" r="30"/>
+        <path class="st filly" d="M904 112 v-24 a24 24 0 0 0 -48 0 v24 z"/>
+        <rect class="st fillw" x="852" y="112" width="56" height="12" rx="4"/>
+        <text class="lbl sm" x="880" y="156" text-anchor="middle">LED</text>
+      </g>
+    </svg>
+  </div>
+  <p class="lede mt-s" data-anim="fade-up" style="text-align:center;max-width:none;font-weight:800;color:var(--text-1)">
+    <mark class="pink">10Ω 那个不能省</mark> —— 不然电池会瞬间冲出一大股电。
+  </p>
+  <aside class="notes">
+    <p><strong>本课是全课程第一次按图搭较长的链路，口头描述不够用。</strong>把这张图<strong>画在黑板上或印成小卡</strong>发给每个人。</p>
+    <p>一段一段带着接，每接一段喊一次停：<strong>电池 → 按键 → 10Ω → 超级电容 → 150Ω → LED。</strong></p>
+    <p><strong>10Ω 充电限流电阻不能省。</strong>直连会让电池瞬间输出大电流。这一条要说明白：「<strong>不然电池会瞬间冲出一大股电</strong>——还记得上节课烧掉的那个灯吗？」</p>
+    <p>接好了<strong>举手，教师逐台检查极性，通过的贴绿标</strong>。这一步要花时间，但不能省。</p>
+    <p>全部贴完绿标，才允许全班通电。</p>
+  </aside>
+</section>
+
+<!-- ═══════════════ 7 · 复现 ═══════════════ -->
+<section class="slide full-center" data-title="② 自己复现 · 按住数到 10">
+  <div class="stage-rail"><b>② 自己复现</b><i class="done"></i><i class="on"></i><i></i><i></i><i></i></div>
+  <div style="text-align:center">
+    <span class="chip pink" data-anim="fade-down">第 1 关 · 自己做出那个现象</span>
+    <h1 class="hero mt-m" data-anim="rise-in">按住，<br>数到 10 再松手。</h1>
+    <div class="row mt-l" style="justify-content:center;gap:clamp(16px,1.8vw,34px);flex-wrap:wrap" data-anim="fade-up">
+      <div class="pop yellow"><div class="h3">① 按住</div><p class="cap" style="margin-top:6px">同桌帮你<b>数到 10</b></p></div>
+      <div class="pop cyan"><div class="h3">② 松手</div><p class="cap" style="margin-top:6px">手完全离开按键</p></div>
+      <div class="pop pink"><div class="h3">③ 看</div><p class="cap" style="margin-top:6px">灯还亮着<br><b>而且在慢慢变暗</b></p></div>
+    </div>
+  </div>
+  <aside class="notes">
+    <p><strong>任务卡上写死：「按住数到 10 再松手。」并由同伴计数。</strong></p>
+    <p>为什么要写死？因为<strong>学生按不到 5 秒就松手</strong>，现象不明显，然后误以为自己电路做错了——这是本课最高频的挫败点。</p>
+    <p>让同桌<strong>出声数</strong>：「1、2、3……10。」全班一起数更好。</p>
+    <p>松手之后，让他们<strong>盯着灯看</strong>：「还亮着，<strong>而且在慢慢变暗</strong>。」——「慢慢变暗」这个细节要点出来，它是下节课的关键。</p>
+    <p>做出来的时候教室会有欢呼。<strong>等这个欢呼。</strong></p>
+    <p>还可以让他们<strong>直接把电池盒拔掉</strong>——完全复现开场那个动作。孩子会非常得意。</p>
+  </aside>
+</section>
+
+<!-- ═══════════════ 8 · 课间休息 ═══════════════ -->
+<section class="slide full-center" data-title="休息 · 课间 10 分钟">
+  <div style="text-align:center">
+    <div class="discovery" data-anim="zoom-pop" style="max-width:min(1000px,86vw)">
+      <p class="chip" style="background:#fff">中场 · 10 分钟</p>
+      <h1 class="hero mt-m">课间休息</h1>
+      <p class="h3 mt-m" style="font-weight:700">
+        <mark class="pink">电路别拆</mark>　·　绿标签别撕掉
+      </p>
+    </div>
+    <p class="lede mt-l" data-anim="fade-up" style="margin-left:auto;margin-right:auto;text-align:center">
+      回来换一个零件 —— 长得差不多，结果差很多。
+    </p>
+  </div>
+  <aside class="notes">
+    <p>走之前两句：「<strong>电路留在桌上别拆</strong>，下半场只换一个零件。」「<strong>绿标签别撕掉</strong>。」</p>
+    <p>这 10 分钟你要做的：①<strong>准备 1000µF 电解电容</strong>，按人发；②<strong>发秒表</strong>（手机计时也行），两人一只；③<strong>把超级电容的计时数据扫一眼</strong>，各组应该在 60 秒上下。</p>
+    <p>器材提醒：<strong>超级电容出厂后首次使用可能要先充放两三次才达到标称表现</strong>。如果课前没批量预充放过，第一节课现象会打折——现在补做来不及，但可以让各组多充放两次再进对照实验。</p>
+  </aside>
+</section>
+
+<!-- ═══════════════ 9 · 对照实验 ═══════════════ -->
+<section class="slide" data-title="③ 比一比 · 换成另一个电容">
+  <div class="stage-rail"><b>③ 比一比</b><i class="done"></i><i class="done"></i><i class="on"></i><i></i><i></i></div>
+  <div class="row" style="justify-content:space-between;align-items:flex-end">
+    <div>
+      <span class="chip cyan" data-anim="fade-down">只换一个零件，别的都不动</span>
+      <h2 class="h2 mt-s" data-anim="fade-up">看起来<mark>差不多大</mark>，对吧？</h2>
+    </div>
+    <div class="pop yellow" data-anim="fade-left" style="text-align:center;flex:0 0 auto">
+      <div class="h3">同样充 10 秒<br>同样放电<br><b>计时开始</b></div>
+    </div>
+  </div>
+  <div class="tbl mt-m" style="grid-template-columns:1.4fr 1fr 1.4fr" data-anim="fade-up">
+    <div class="hd">用哪个电容</div><div class="hd">亮了多久</div><div class="hd">我看到的</div>
+    <div class="rh">超级电容　<small>0.47F</small></div><div class="todo">___ 秒</div><div class="todo">？</div>
+    <div class="rh">电解电容　<small>1000 µF</small></div><div class="todo">___ 秒</div><div class="todo">？</div>
+  </div>
+  <p class="lede mt-l" data-anim="fade-up" style="text-align:center;max-width:none;font-weight:800;color:var(--text-1)">
+    换电容的时候 —— <mark class="pink">正负还是要看清楚，还是要举手。</mark>
+  </p>
+  <aside class="notes">
+    <p>「现在把刚才那个换成这一个。<strong>看起来差不多大，对吧？</strong>」</p>
+    <p>「同样充电，同样放电。<strong>计时开始。</strong>」</p>
+    <p>1000µF 会<strong>几乎瞬灭</strong>（时间常数只有 0.15 秒）。<strong>一定会有学生以为自己接错了</strong>——提前准备好这句话：</p>
+    <p>「<strong>没接错。它就是这样。</strong>」</p>
+    <p><strong>安全提醒：换电容也要重新检查极性、重新贴绿标。</strong>这个环节最容易漏，因为大家都在赶着做对照。</p>
+    <p>这是本课<strong>第一次用秒表做定量记录</strong>。本课只需记录大致时长，<strong>统一的「熄灭」判据留到第 10 课</strong>再约定——今天不要在这上面纠缠。</p>
+  </aside>
+</section>
+
+<!-- ═══════════════ 10 · 对照结果 ═══════════════ -->
+<section class="slide" data-title="③ 比一比 · 差了四百倍">
+  <div class="stage-rail"><b>③ 比一比</b><i class="done"></i><i class="done"></i><i class="on"></i><i></i><i></i></div>
+  <h2 class="h2" data-anim="fade-up">一个撑了<mark>一分多钟</mark>，一个<mark class="pink">连一秒都不到</mark>。</h2>
+  <div class="figure mt-m" data-anim="fade-up">
+    <svg viewBox="0 0 900 260" role="img" aria-label="超级电容与电解电容的放电时长对比">
+      <text class="lbl" x="30" y="52">超级电容 0.47F</text>
+      <rect class="st" x="30" y="66" width="760" height="44" rx="22" style="fill:var(--accent-3)"/>
+      <text class="lbl" x="812" y="98" style="fill:var(--accent)">≈ 65 秒</text>
+      <text class="lbl" x="30" y="176">电解电容 1000 µF</text>
+      <rect class="st" x="30" y="190" width="10" height="44" rx="5" style="fill:var(--surface-2)"/>
+      <text class="lbl" x="58" y="222" style="fill:var(--text-2)">≈ 0.15 秒　（这一小条就是它）</text>
+    </svg>
+  </div>
+  <p class="lede mt-s" data-anim="fade-up" style="text-align:center;max-width:none;font-weight:800;color:var(--text-1)">
+    两个零件<mark>长得差不多</mark> —— 为什么差<mark class="pink">这么多</mark>？
+  </p>
+  <aside class="notes">
+    <p>全班汇总两种电容的计时数据，<strong>写在黑板上</strong>。</p>
+    <p>PPT 上这两条是参考量级，<strong>以孩子测出来的为准</strong>。但这个视觉反差要做足——<strong>差异越大，概念越好建立。</strong></p>
+    <p>追问：「<strong>两个零件差不多大，为什么一个能撑一分钟，一个连一秒都不到？</strong>」</p>
+    <p>留足时间。孩子会说「里面装的东西不一样多」「一个大一个小」——这些说法<strong>已经非常接近「容量」了</strong>，记下来，下一页命名时用他们自己的话。</p>
+    <p><strong>不要回避这个反差，要放大它。</strong>它是「容量」最好的直观证据。</p>
+  </aside>
+</section>
+
+<!-- ═══════════════ 11 · 命名：电容 ═══════════════ -->
+<section class="slide" data-title="④ 起名字 · 电容 · 容量 · 水桶">
+  <div class="stage-rail"><b>④ 起名字</b><i class="done"></i><i class="done"></i><i class="done"></i><i class="on"></i><i></i></div>
+  <div class="row" style="gap:clamp(20px,2.4vw,50px);align-items:center">
+    <div style="flex:1">
+      <span class="chip yellow" data-anim="fade-down">能把电暂时存起来的零件</span>
+      <h2 class="h2 mt-s" data-anim="rise-in">叫 <mark class="pink">电容</mark>。</h2>
+      <div class="stack-l mt-l">
+        <div class="pop cyan" data-anim="fade-right"><div class="h3">它像一个<b>水桶</b></div></div>
+        <div class="pop yellow" data-anim="fade-right"><div class="h3">能装多少 = <b>容量</b></div></div>
+        <div class="pop pink" data-anim="fade-right"><div class="h3" style="color:#fff">大桶装得多，<b>也放得久</b></div></div>
+      </div>
+    </div>
+    <div class="figure" style="flex:1.05" data-anim="fade-left">
+      <svg viewBox="0 0 520 300" role="img" aria-label="大桶和小桶：容量决定能存多少、能放多久">
+        <g>
+          <path class="st fillw" d="M40 70 h180 l-22 180 h-136 z"/>
+          <path d="M52 140 h156 l-16 104 h-124 z" style="fill:var(--accent-2);opacity:.8"/>
+          <text class="lbl" x="130" y="286" text-anchor="middle">超级电容</text>
+          <text class="lbl sm" x="130" y="52" text-anchor="middle" style="fill:var(--accent-2)">大桶</text>
+        </g>
+        <g transform="translate(300,0)">
+          <path class="st fillw" d="M60 190 h100 l-12 60 h-76 z"/>
+          <path d="M68 214 h84 l-8 30 h-68 z" style="fill:var(--accent-2);opacity:.8"/>
+          <text class="lbl" x="110" y="286" text-anchor="middle">电解电容</text>
+          <text class="lbl sm" x="110" y="172" text-anchor="middle" style="fill:var(--text-2)">小桶</text>
+        </g>
+      </svg>
+    </div>
+  </div>
+  <aside class="notes">
+    <p>「这种<strong>能把电暂时存起来</strong>的零件，叫<strong>电容</strong>。」</p>
+    <p>如果班上有孩子早就知道这个词，<strong>请他来公布</strong>——上半场答应过他的。</p>
+    <p>「你可以把它想成<strong>一个水桶</strong>。<strong>大桶装得多，放起来也久；小桶一下就空了。</strong>刚才那个大的，我们叫它<strong>超级电容</strong>——它就是个特别大的桶。」</p>
+    <p>「能装多少，这个叫<strong>容量</strong>。」</p>
+    <p><strong>口径提醒：水桶类比在本课是恰当的</strong>，因为电容确实是在「<strong>存</strong>」。这和第 2 课「不要用水管类比电流」<strong>不冲突</strong>——那里反对的是「电被用掉了」，这里说的是「电被存起来了」。两处说法各管各的。</p>
+    <p>回到猜想墙核对：「猜『<strong>那个黑色小圆柱在搞鬼</strong>』的同学——<strong>你猜对了。</strong>」</p>
+  </aside>
+</section>
+
+<!-- ═══════════════ 12 · 找上限 ═══════════════ -->
+<section class="slide full-center" data-title="⑤ 找上限 · 充久一点会更久吗">
+  <div class="stage-rail"><b>⑤ 找上限</b><i class="done"></i><i class="done"></i><i class="done"></i><i class="done"></i><i class="on"></i></div>
+  <div class="ask">
+    <p class="chip pink" data-anim="fade-down">有同学提了个好主意</p>
+    <p class="q mt-m" data-anim="zoom-pop">那我<mark>充久一点</mark>，<br>是不是就能<br>亮更久？</p>
+    <p class="sub mt-l" data-anim="fade-up">好 —— <mark class="cyan">我们试。</mark></p>
+  </div>
+  <aside class="notes">
+    <p>这个想法<strong>一定会有学生自己提出来</strong>。等他提，然后接住：「<strong>好，我们试。</strong>」</p>
+    <p>如果没人提，你可以引一句：「<strong>有没有办法让它亮得更久？</strong>」——第一个答案几乎总是「充久一点」。</p>
+    <p><strong>这是本课最好的探究段落：学生自己提出方案、自己验证、自己撞上上限。</strong></p>
+    <p>不要提前告诉他们会撞墙。<strong>让他们兴致勃勃地去充 60 秒</strong>，然后自己发现没用。</p>
+  </aside>
+</section>
+
+<!-- ═══════════════ 13 · 充电时长对照 ═══════════════ -->
+<section class="slide" data-title="⑤ 找上限 · 充 10 / 30 / 60 秒">
+  <div class="stage-rail"><b>⑤ 找上限</b><i class="done"></i><i class="done"></i><i class="done"></i><i class="done"></i><i class="on"></i></div>
+  <div class="row" style="justify-content:space-between;align-items:flex-end">
+    <div>
+      <span class="chip cyan" data-anim="fade-down">挑战档 · 三次，一次比一次久</span>
+      <h2 class="h2 mt-s" data-anim="fade-up">充得越久，就亮得越久吗？</h2>
+    </div>
+    <div class="pop pink" data-anim="fade-left" style="text-align:center;flex:0 0 auto">
+      <div class="h3">先预测<br><b>再测</b></div>
+    </div>
+  </div>
+  <div class="tbl mt-m" style="grid-template-columns:1fr 1.2fr 1.2fr" data-anim="fade-up">
+    <div class="hd">按住充电</div><div class="hd">我预测能亮</div><div class="hd">实际亮了</div>
+    <div class="rh">10 秒</div><div class="todo">___ 秒</div><div class="todo">___ 秒</div>
+    <div class="rh">30 秒</div><div class="todo">___ 秒</div><div class="todo">___ 秒</div>
+    <div class="rh">60 秒</div><div class="todo">___ 秒</div><div class="todo">___ 秒</div>
+  </div>
+  <p class="lede mt-l" data-anim="fade-up" style="text-align:center;max-width:none;font-weight:800;color:var(--text-1)">
+    <mark>30 秒和 60 秒</mark>，结果差多少？
+  </p>
+  <aside class="notes">
+    <p>「充 10 秒，记时间。再充 30 秒，再记。最后充 60 秒。」</p>
+    <p><strong>每次都先预测再测。</strong>预测栏空着的不算完成——这是从第 3 课就开始练的习惯。</p>
+    <p>结果：<strong>10 秒 → 30 秒有明显增加；30 秒 → 60 秒结果会很接近。</strong></p>
+    <p>让他们自己发现这一点。会有孩子说「<strong>咦，怎么没变长？</strong>」——就是这一刻。</p>
+    <p>器材提醒：这个环节按键要一直按住，<strong>手会酸</strong>，可以让同桌轮流按。</p>
+    <p>时间紧张的话，这个挑战档可以砍，<strong>只保留超容与电解电容的对照</strong>。但最后一关不能砍。</p>
+  </aside>
+</section>
+
+<!-- ═══════════════ 14 · 桶满了 ═══════════════ -->
+<section class="slide full-center" data-title="⑤ 找上限 · 桶满了，再倒就溢出来">
+  <div class="stage-rail"><b>⑤ 找上限</b><i class="done"></i><i class="done"></i><i class="done"></i><i class="done"></i><i class="on"></i></div>
+  <div style="text-align:center">
+    <p class="chip yellow" data-anim="fade-down">30 秒和 60 秒，几乎一样久</p>
+    <p class="hero mt-m" data-anim="zoom-pop">因为桶<mark class="pink">已经满了</mark>。</p>
+    <p class="h3 mt-l" data-anim="fade-up" style="font-weight:700;color:var(--text-2)">
+      满了以后再接着倒，<mark>也装不进去了</mark>。<br>
+      这就叫 —— <mark class="pink">容量有上限</mark>。
+    </p>
+  </div>
+  <aside class="notes">
+    <p>「为什么 30 秒和 60 秒差不多？」——<strong>让孩子自己用水桶说出来</strong>。</p>
+    <p>「因为<strong>桶已经满了</strong>。满了以后你再接着倒，<strong>也装不进去了</strong>。」</p>
+    <p>「这就叫——<strong>容量有上限</strong>。」</p>
+    <p>这一页的价值在于：<strong>学生自己提方案、自己验证、自己撞上上限</strong>，整个过程没有一句是老师给的。这是本课最完整的一次探究闭环。</p>
+    <p>可以再往前推一句，给第 10 课埋钩子：「那如果想让它<strong>亮得更久</strong>，还能怎么办？」——换更大的桶，或者<strong>让电漏得更慢</strong>。第二个答案留着，第 10 课要用。</p>
+  </aside>
+</section>
+
+<!-- ═══════════════ 15 · 最后一关 ═══════════════ -->
+<section class="slide full-center" data-title="⑤ 找上限 · 口头解释两问（逐人）">
+  <div class="stage-rail"><b>⑤ 找上限</b><i class="done"></i><i class="done"></i><i class="done"></i><i class="done"></i><i class="on"></i></div>
+  <div style="text-align:center">
+    <span class="chip pink" data-anim="fade-down">最后一关 · 一个一个过 · 口头回答</span>
+    <h1 class="hero mt-m" data-anim="rise-in">两个问题。</h1>
+    <div class="row mt-l" style="justify-content:center;gap:clamp(16px,1.8vw,34px);flex-wrap:wrap" data-anim="fade-up">
+      <div class="pop yellow" style="max-width:380px"><div class="h3">① 为什么超级电容<br>能存住，<br>1000µF 存不住？</div></div>
+      <div class="pop cyan" style="max-width:380px"><div class="h3">② 为什么充到一定时间<br>就<b>不再变久</b>了？</div></div>
+    </div>
+  </div>
+  <aside class="notes">
+    <p><strong>今天唯一的判定依据，死保 8 分钟。口头回答，逐人过。</strong></p>
+    <p><strong>两问都要指向「容量」</strong>：</p>
+    <p>第①问合格答案：「因为超级电容<strong>是个大桶，能装的多</strong>；1000µF 是小桶，一下就空了。」</p>
+    <p>第②问合格答案：「因为<strong>桶满了</strong>，再充也装不进去。」</p>
+    <p>只要意思对，<strong>说法随便</strong>。说不出「容量」这个词但能用水桶讲清楚的，<strong>照样算过</strong>——今天要的是理解，不是术语。</p>
+    <p>答不出来的，让他<strong>指着自己的对照表数据再说一次</strong>：「你测的这两个数，差多少？为什么？」</p>
+    <p>过关之后<strong>按编号回收超级电容和电解电容</strong>，绿标签撕掉。</p>
+  </aside>
+</section>
+
+<!-- ═══════════════ 16 · 今日大发现 ═══════════════ -->
+<section class="slide full-center" data-title="收尾 · 今日大发现">
+  <div class="discovery" data-anim="zoom-pop" style="max-width:min(1100px,88vw);margin:0 auto">
+    <p class="chip pink">今日大发现</p>
+    <p class="hero mt-m">电，可以先存起来，<br>再慢慢用。</p>
+    <p class="h3 mt-l" style="font-weight:700">
+      大桶装得多、放得久　—　<mark class="pink">但桶总会满</mark>
+    </p>
+  </div>
+  <aside class="notes">
+    <p>全班<strong>一起读一遍</strong>。</p>
+    <p>收一下今天：「从第 1 课到上节课，<strong>只要断电，灯就灭</strong>。今天你们自己做出了一个<strong>断电还亮着</strong>的电路——因为中间多了一个<strong>能存电的桶</strong>。」</p>
+    <p>再提一句安全，这是本单元的底线：「今天这个零件<strong>接反了是会坏的</strong>。所以我们才要一台一台检查、一张一张贴绿标。<strong>下节课还是这个规矩。</strong>」</p>
+    <p>最后那句「<strong>但桶总会满</strong>」是给第 10 课留的接口。</p>
+  </aside>
+</section>
+
+<!-- ═══════════════ 17 · 回家做 ═══════════════ -->
+<section class="slide" data-title="收尾 · 回家做">
+  <h2 class="h2" data-anim="fade-up">回家做。</h2>
+  <div class="grid g2 mt-l">
+    <div class="pop pink" data-anim="fade-right">
+      <span class="chip" style="background:#fff">必做 · 每个人</span>
+      <div class="h3 mt-m">讲给家人听：断电了，灯为什么还亮？</div>
+      <p class="cap" style="text-align:left;margin-top:12px;color:rgba(255,255,255,.9)">
+        用<strong>水桶</strong>讲最容易懂。<br>
+        再讲一件事：为什么<strong>接反了会坏</strong>，我们班是怎么防住的。
+      </p>
+    </div>
+    <div class="pop cyan" data-anim="fade-left">
+      <span class="chip" style="background:#fff">选做 · 想挑战的人</span>
+      <div class="h3 mt-m">家里有什么东西，断电以后还会亮一下？</div>
+      <p class="cap" style="text-align:left;margin-top:12px">
+        电视关掉时屏幕上的一个小点、路由器的指示灯、拍照的闪光灯……<br>
+        <strong>只许看，不许拆。</strong>
+      </p>
+    </div>
+  </div>
+  <p class="lede mt-l" data-anim="fade-up" style="text-align:center;max-width:none;font-weight:800;color:var(--text-1)">
+    <mark>同样长相的零件，本事可以差很多。</mark>
+  </p>
+  <aside class="notes">
+    <p>必做那条有两件事，<strong>第二件是安全教育的延伸</strong>：让孩子把「<strong>接反了会坏，所以要检查</strong>」这件事讲给家里人听。说出去的规矩，比听来的规矩记得牢。</p>
+    <p>选做那条会有孩子发现<strong>相机闪光灯</strong>——那正是一个大电容的典型应用，非常好的例子。</p>
+    <p><strong>反复强调：只许看，不许拆。</strong>家电里的大电容<strong>断电后仍可能带电</strong>，这条一定要说清楚。</p>
+    <p>下课前自己确认三件事：①<strong>保底目标是否全员达成</strong>——完成充放电电路 + 正确判断极性 + 说出超容为什么放得久。②<strong>超级电容和电解电容按编号清点</strong>，有没有鼓包的挑出来报废。③<strong>秒表回收</strong>，绿标签撕掉，桌面清理。</p>
+  </aside>
+</section>
+
+<!-- ═══════════════ 18 · 下节课 ═══════════════ -->
+<section class="slide full-center" data-title="收尾 · 下节课钩子">
+  <div style="text-align:center">
+    <p class="chip cyan" data-anim="fade-down">下节课 · 第 10 课</p>
+    <h2 class="h2 mt-m" data-anim="fade-up">今天它亮了<mark>一分钟</mark>。</h2>
+    <p class="hero mt-l" data-anim="zoom-pop">下节课，<br>我们让它亮得<mark class="pink">刚刚好</mark>。</p>
+  </div>
+  <aside class="notes">
+    <p>收尾钩子，<strong>一句话，说完就下课</strong>。</p>
+    <p>「今天它亮了一分钟——<strong>但那是它自己决定的，不是你决定的。</strong>」</p>
+    <p>「下节课，<strong>我们让它亮得刚刚好</strong>：你想让它亮 30 秒，它就亮 30 秒。」</p>
+    <p><strong>不要展开</strong>（下节课是《延时小夜灯》，用 RC 调整延时时间）。</p>
+    <p>还要提醒一句很重要的：「<strong>第 6 课你们做的那个小手电，下节课带来</strong>——我们要改造它。」提前一周提醒过的，今天再说一次，下节课开始前再发一次通知。</p>
+  </aside>
+</section>
+
+</div>
+
+<div class="deck-footer">
+  <span>第 9 课 · 断电以后为什么还亮？　|　15 节科创探究课 · 第四单元</span>
+  <span class="slide-number" data-current="1" data-total="18"></span>
+</div>
+
+<script src="../assets/runtime.js"></script>
+</body>
+</html>

@@ -1,0 +1,356 @@
+<!DOCTYPE html>
+<html lang="zh-CN" data-themes="memphis-pop,neo-brutalism,soft-pastel,minimal-white" data-theme-base="../assets/themes/">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>第 15 课 · 小型发电站（下）</title>
+<link rel="stylesheet" href="../assets/fonts.css">
+<link rel="stylesheet" href="../assets/base.css">
+<link rel="stylesheet" id="theme-link" href="../assets/themes/memphis-pop.css">
+<link rel="stylesheet" href="../assets/animations/animations.css">
+<link rel="stylesheet" href="../assets/course.css">
+</head>
+<body class="kc">
+<div class="deck">
+
+<!-- ═══════════════ 1 · 封面 ═══════════════ -->
+<section class="slide full-center" data-title="开场 · 封面">
+  <div style="text-align:center">
+    <span class="chip cyan" data-anim="fade-down">15 节科创探究课 · 第五单元 · <b>最后一节</b></span>
+    <h1 class="hero mt-m" data-anim="rise-in">第 15 课<br>小型发电站（下）</h1>
+    <p class="h3 mt-m" data-anim="fade-up" style="font-weight:700;color:var(--text-2)">
+      优化 · 排错 · 展示 —— <mark class="pink">全班当电路医生</mark>
+    </p>
+    <div class="row mt-l" style="justify-content:center;gap:14px;flex-wrap:wrap" data-anim="fade-up">
+      <span class="chip">90 分钟 · 两节连堂</span>
+      <span class="chip yellow">七关闯关</span>
+      <span class="chip pink">今天家长可以旁听</span>
+    </div>
+  </div>
+  <aside class="notes">
+    <p>本课是<strong>全课程的收官</strong>。真正的过关标准不是作品做得多好，而是<strong>没有一个学生是空手离开的</strong>。</p>
+    <p><strong>开场第一件事就是给上节课没跑通的组安排结对补完</strong>——不这么做，他们会全程掉队、展示环节无物可展。<strong>这是本课时间分配上最需要保护的一条。</strong></p>
+    <p><strong>互设故障是本课的核心活动。</strong>能给别人出题，说明已经理解了电路的失效模式，这比任何笔试都更能证明学到了东西。<strong>规则必须在开始前写在黑板上并逐条念一遍</strong>：只许改接线、不许移除或藏起元件、不许弄坏东西。</p>
+    <p>建议<strong>提前一周通知家长并允许旁听</strong>——这是整门课唯一一次成果集中呈现的场合。</p>
+    <p>保底目标：<strong>人手一件能工作的作品，通过前五关，并能讲出自己的设计过程。</strong></p>
+  </aside>
+</section>
+
+<!-- ═══════════════ 2 · 排行榜 ═══════════════ -->
+<section class="slide" data-title="① 看数据 · 全班排行榜">
+  <div class="stage-rail"><b>① 看数据</b><i class="on"></i><i></i><i></i><i></i><i></i></div>
+  <p class="chip yellow" data-anim="fade-down">上节课全班的数据 · 摇 30 秒 → 亮多少秒</p>
+  <h2 class="h2 mt-s" data-anim="fade-up">零件<mark>一模一样</mark>。差在哪？</h2>
+  <div class="figure mt-m" data-anim="fade-up">
+    <svg viewBox="0 0 900 220" role="img" aria-label="全班摇30秒后亮多少秒的排行榜">
+      <text class="lbl" x="30" y="48">第 1 名</text>
+      <rect class="st" x="150" y="22" width="600" height="38" rx="19" style="fill:var(--accent-3)"/>
+      <text class="lbl" x="768" y="50" style="fill:var(--accent)">90 秒</text>
+      <text class="lbl" x="30" y="118">中间</text>
+      <rect class="st" x="150" y="92" width="300" height="38" rx="19" style="fill:var(--accent-2)"/>
+      <text class="lbl" x="468" y="120">45 秒</text>
+      <text class="lbl" x="30" y="188">最后一名</text>
+      <rect class="st" x="150" y="162" width="200" height="38" rx="19" style="fill:var(--surface-2)"/>
+      <text class="lbl" x="368" y="190" style="fill:var(--text-2)">30 秒</text>
+    </svg>
+  </div>
+  <p class="lede mt-s" data-anim="fade-up" style="text-align:center;max-width:none;font-weight:800;color:var(--text-1)">
+    第一名和最后一名<mark class="pink">差了三倍</mark> —— 可他们用的零件是一样的。
+  </p>
+  <aside class="notes">
+    <p>课前把上节课全班的数据<strong>做成排行榜写在黑板上或打印贴出</strong>。PPT 这张是示意，<strong>换成真实数据</strong>。</p>
+    <p>「这是上节课全班的数据。第一名摇 30 秒，灯亮了 ___ 秒。最后一名，___ 秒。」</p>
+    <p>「<strong>他们用的零件是一模一样的。差在哪？</strong>」</p>
+    <p><strong>同时做最重要的一件事：给上节课没跑通的学生安排结对补完。</strong>点名，配一个已跑通且愿意教的搭档：</p>
+    <p>「<strong>你和他一组，先把机器修好，再来做后面的。</strong>」</p>
+    <p><strong>这一步必须在开场就做，不能拖。</strong>拖到中途，他们这节课就废了。</p>
+    <p>排行榜<strong>不要用来羞辱最后一名</strong>——它的作用是制造改进动机。可以补一句：「最后一名今天很可能变成第一名，因为<strong>你有最多可以改的地方</strong>。」</p>
+  </aside>
+</section>
+
+<!-- ═══════════════ 3 · 优化实验 ═══════════════ -->
+<section class="slide" data-title="② 优化 · 只许改一个方向">
+  <div class="stage-rail"><b>② 优化</b><i class="done"></i><i class="on"></i><i></i><i></i><i></i></div>
+  <p class="chip pink" data-anim="fade-down">三个方向，选一个 —— 只许改一个</p>
+  <h2 class="h2 mt-s" data-anim="fade-up">让它<mark>亮得更久</mark>。</h2>
+  <div class="grid g3 mt-l" data-anim="stagger-list">
+    <div class="pop yellow" style="text-align:center">
+      <div class="badge sq" style="margin:0 auto 10px">1</div>
+      <div class="h3">换放电电阻</div>
+      <p class="cap" style="margin-top:8px">150 / 470 / 1k<br><b>第 10 课的数据能直接用</b></p>
+    </div>
+    <div class="pop cyan" style="text-align:center">
+      <div class="badge sq" style="margin:0 auto 10px;background:#fff;color:var(--ink)">2</div>
+      <div class="h3">摇久一点</div>
+      <p class="cap" style="margin-top:8px">但别忘了第 9 课 ——<br><b>桶会满</b></p>
+    </div>
+    <div class="pop pink" style="text-align:center">
+      <div class="badge sq" style="margin:0 auto 10px;background:#fff;color:var(--ink)">3</div>
+      <div class="h3">改进接线</div>
+      <p class="cap" style="margin-top:8px">松动的地方<br><b>压紧、插到底</b></p>
+    </div>
+  </div>
+  <div class="tbl mt-l" style="grid-template-columns:1.2fr 1fr 1fr 1.3fr" data-anim="fade-up">
+    <div class="hd">我改的是</div><div class="hd">改之前</div><div class="hd">改之后</div><div class="hd">我的判断</div>
+    <div class="todo">？</div><div class="todo">___ 秒</div><div class="todo">___ 秒</div><div class="todo">？</div>
+  </div>
+  <aside class="notes">
+    <p><strong>只允许改一个方向。</strong>同时改三样的组，说不清是哪一样起了作用——<strong>这是第 8 课控制变量的直接应用</strong>，要当众点出来。</p>
+    <p>「今天你们可以改<strong>三个方向</strong>，但是<strong>只许选一个</strong>。为什么？」——让孩子自己说出「<strong>不然不知道是哪个起作用</strong>」。</p>
+    <p><strong>优化必须有数据支撑，不能只凭感觉说「变好了」。</strong>改之前测一次，改之后测一次，填进对照表。</p>
+    <p>方向 1 最容易出效果，<strong>第 10 课的三档数据可以直接拿来用</strong>——提醒他们把第 10 课的表翻出来。</p>
+    <p>方向 2 要提醒第 9 课的结论：<strong>充到一定时间就不再变久了，桶会满</strong>。摇 60 秒和摇 30 秒差不多。</p>
+    <p>方向 3 看起来朴素，但往往效果最明显——<strong>接触不良是最常见的性能杀手</strong>。</p>
+    <p><strong>三句话展示卡现在就发下去</strong>，让他们边做边填，不要等到展示环节才想。</p>
+  </aside>
+</section>
+
+<!-- ═══════════════ 4 · 互设故障规则 ═══════════════ -->
+<section class="slide" data-title="③ 互相出题 · 三条规则">
+  <div class="stage-rail"><b>③ 互相出题</b><i class="done"></i><i class="done"></i><i class="on"></i><i></i><i></i></div>
+  <p class="chip pink" data-anim="fade-down">开始之前，三条规则我念一遍</p>
+  <h2 class="h2 mt-s" data-anim="fade-up">互相<mark class="pink">出题</mark>。</h2>
+  <div class="checks mt-m" data-anim="stagger-list">
+    <div class="check" style="background:var(--accent-3)"><div class="badge" style="background:#fff">1</div>
+      <div><div class="ct">只许<mark class="pink">改接线</mark></div></div></div>
+    <div class="check"><div class="badge pink">2</div>
+      <div><div class="ct">不许把元件<b>拔走或者藏起来</b></div></div></div>
+    <div class="check"><div class="badge cyan">3</div>
+      <div><div class="ct">不许<b>弄坏</b>任何东西</div></div></div>
+  </div>
+  <p class="lede mt-l" data-anim="fade-up" style="text-align:center;max-width:none;font-weight:800;color:var(--text-1)">
+    违反其中一条 —— <mark>这一轮就算你输</mark>。限时 5 分钟，填排查单。
+  </p>
+  <aside class="notes">
+    <p><strong>这三条必须写在黑板上并逐条念一遍。不念，一定会有学生把元件藏进笔袋里。</strong></p>
+    <p>「接下来你们要<strong>互相出题</strong>。三条规则，我念一遍，你们跟着看黑板。」</p>
+    <p>「<strong>第一，只许改接线。第二，不许把元件拔走藏起来。第三，不许弄坏任何东西。</strong>」</p>
+    <p>「<strong>违反其中一条，这一轮就算你输。</strong>」</p>
+    <p>玩法：两人一组<strong>互设一处故障</strong>，交换排查，<strong>限时 5 分钟</strong>，填《排查单》（症状→猜测→验证→结论，第 2 课那张）。</p>
+    <p><strong>上半场做第一轮，下半场交换角色再来一轮。</strong></p>
+    <p>这是本课<strong>最好的能力证据</strong>：能给别人出题，说明已经理解了失效模式。</p>
+  </aside>
+</section>
+
+<!-- ═══════════════ 5 · 课间休息 ═══════════════ -->
+<section class="slide full-center" data-title="休息 · 课间 10 分钟">
+  <div style="text-align:center">
+    <div class="discovery" data-anim="zoom-pop" style="max-width:min(1000px,86vw)">
+      <p class="chip" style="background:#fff">中场 · 10 分钟</p>
+      <h1 class="hero mt-m">课间休息</h1>
+      <p class="h3 mt-m" style="font-weight:700">
+        <mark class="pink">机器都修回去了吗？</mark>　·　三句话卡填了吗
+      </p>
+    </div>
+    <p class="lede mt-l" data-anim="fade-up" style="margin-left:auto;margin-right:auto;text-align:center">
+      下半场：再出一轮题，然后 —— 闯关。
+    </p>
+  </div>
+  <aside class="notes">
+    <p>走之前确认一件事：「<strong>刚才互相设的故障，都改回去了吗？</strong>」——带着故障进下半场会很麻烦。</p>
+    <p>再提醒：「<strong>三句话卡填了吗？</strong>没填的课间填。」</p>
+    <p>这 10 分钟你要做的：①<strong>确认结对补完的那几个学生的机器跑通了没有</strong>，没跑通的你亲自上；②<strong>布置七关闯关的分站</strong>；③<strong>安排家长旁听座位，不要挡住分站通道</strong>。</p>
+    <p>这是全课程最后一个课间，可以让气氛轻松一点。</p>
+  </aside>
+</section>
+
+<!-- ═══════════════ 6 · 第二轮 ═══════════════ -->
+<section class="slide full-center" data-title="③ 互相出题 · 第二轮：换你出题">
+  <div class="stage-rail"><b>③ 互相出题</b><i class="done"></i><i class="done"></i><i class="on"></i><i></i><i></i></div>
+  <div class="ask">
+    <p class="chip cyan" data-anim="fade-down">交换角色，再来一轮</p>
+    <p class="q mt-m" data-anim="zoom-pop">这一轮，<br>你们<mark class="pink">快了多少？</mark></p>
+    <p class="sub mt-l" data-anim="fade-up">看看秒表 —— 第一轮用了多久，第二轮用了多久。</p>
+  </div>
+  <aside class="notes">
+    <p>交换角色再来一轮，<strong>同样限时 5 分钟</strong>。</p>
+    <p><strong>第二轮通常明显更快</strong>——关键是<strong>让学生自己注意到这一点</strong>。</p>
+    <p>做完问：「第一轮你用了多久？第二轮呢？」让几个孩子报数。</p>
+    <p>然后点出今天很重要的一句：「<strong>排错不是天生会的，是练出来的。</strong>你们两轮之间隔了不到半小时，就快了这么多。」</p>
+    <p>可以再往回拉一下：「<strong>第 2 课的时候，你们找一个断路要找五分钟。现在呢？</strong>」——这是十五节课积累的直接证据。</p>
+    <p>做完这一轮，机器<strong>全部改回正常状态</strong>，准备闯关。</p>
+  </aside>
+</section>
+
+<!-- ═══════════════ 7 · 能量链复盘 ═══════════════ -->
+<section class="slide" data-title="④ 复盘 · 拿掉它会怎样">
+  <div class="stage-rail"><b>④ 复盘</b><i class="done"></i><i class="done"></i><i class="done"></i><i class="on"></i><i></i></div>
+  <p class="chip yellow" data-anim="fade-down">一个一个来 · 每个问题都指向一节课</p>
+  <h2 class="h2 mt-s" data-anim="fade-up">如果把它<mark class="pink">拿掉</mark>，会怎样？</h2>
+  <div class="tbl mt-l" style="grid-template-columns:1fr 1.5fr 1fr" data-anim="stagger-list">
+    <div class="hd">拿掉哪个</div><div class="hd">会怎样</div><div class="hd">哪节课学的</div>
+    <div class="rh">二极管</div><div class="on">反着摇的时候，电容会被反过来充</div><div class="off">第 13 课</div>
+    <div class="rh">电容</div><div class="on">停手就灭</div><div class="off">第 9 课</div>
+    <div class="rh">150 Ω</div><div class="on">LED 会烧掉</div><div class="off">第 8 课</div>
+    <div class="rh">发电机</div><div class="on">根本没有电</div><div class="off">第 13 课</div>
+  </div>
+  <p class="lede mt-l" data-anim="fade-up" style="text-align:center;max-width:none;font-weight:800;color:var(--text-1)">
+    四个零件，<mark>四节课学的</mark> —— 现在它们在<mark class="pink">一台机器上一起干活</mark>。
+  </p>
+  <aside class="notes">
+    <p><strong>这一轮问答是整门课的知识回收，是全课程的概念收束点。慢慢来，一个一个问。</strong></p>
+    <p>「我们一个一个来。如果我<strong>把这颗二极管拿掉</strong>，会怎样？」——「反着摇的时候，电容会被反过来充。」</p>
+    <p>「对。那<strong>把电容拿掉</strong>呢？」——「<strong>停手就灭了。</strong>」</p>
+    <p>「<strong>把那颗 150Ω 拿掉？</strong>」——「<strong>LED 会烧掉！</strong>」（这个答案会喊得特别大声，因为他们<strong>亲眼见过</strong>。）</p>
+    <p>「<strong>把发电机拿掉？</strong>」——「没有电。」</p>
+    <p>然后说那句收束的话：「<strong>四个零件，四节课学的。现在它们在一台机器上一起干活。</strong>」</p>
+    <p><strong>PPT 上的答案先不要放出来，让他们答完再显示</strong>（或者直接遮住右两列）。</p>
+  </aside>
+</section>
+
+<!-- ═══════════════ 8 · 七关闯关 ═══════════════ -->
+<section class="slide" data-title="⑤ 闯关 · 七关记录卡">
+  <div class="stage-rail"><b>⑤ 闯关</b><i class="done"></i><i class="done"></i><i class="done"></i><i class="done"></i><i class="on"></i></div>
+  <p class="chip pink" data-anim="fade-down">分站进行 · 前五关是保底，后两关是加分</p>
+  <h2 class="h2 mt-s" data-anim="fade-up">七关闯关。</h2>
+  <div class="checks mt-m" data-anim="stagger-list">
+    <div class="check"><div class="box"></div><div class="badge">1</div>
+      <div><div class="ct">点亮　<span class="cap" style="margin:0">独立点亮 LED，判断正负极</span></div></div></div>
+    <div class="check"><div class="box"></div><div class="badge cyan">2</div>
+      <div><div class="ct">控制　<span class="cap" style="margin:0">加入开关，稳定亮灭</span></div></div></div>
+    <div class="check"><div class="box"></div><div class="badge pink">3</div>
+      <div><div class="ct">双灯　<span class="cap" style="margin:0">串联并联都搭出来，说出不同</span></div></div></div>
+    <div class="check"><div class="box"></div><div class="badge">4</div>
+      <div><div class="ct">测量　<span class="cap" style="margin:0">用万用表判断一段未知材料</span></div></div></div>
+    <div class="check"><div class="box"></div><div class="badge cyan">5</div>
+      <div><div class="ct">储能　<span class="cap" style="margin:0">让电容延迟熄灭，换电阻让它更久</span></div></div></div>
+    <div class="check" style="background:var(--accent-3)"><div class="box"></div><div class="badge" style="background:#fff">6</div>
+      <div><div class="ct">发电　<span class="cap" style="margin:0">手摇点亮，解释快慢的区别</span>　<b>加分</b></div></div></div>
+    <div class="check" style="background:var(--accent)"><div class="box"></div><div class="badge" style="background:#fff">★</div>
+      <div><div class="ct" style="color:#fff">终极　<span class="cap" style="margin:0;color:rgba(255,255,255,.9)">发电站跑通 + 排除同伴设的故障</span>　<b>加分</b></div></div></div>
+  </div>
+  <aside class="notes">
+    <p><strong>任务型评价，不考名词。</strong>分站进行，学生轮流过关。</p>
+    <p><strong>前五关为保底要求</strong>，第六关与终极挑战为<strong>进阶项</strong>。</p>
+    <p><strong>每站配一名已过关的学生协助评判</strong>——这本身也是一次复述训练，而且让快的孩子有事干。</p>
+    <p>七关分别对应：<strong>第 1 课、第 6 课、第 3 课、第 7 课、第 9+10 课、第 13 课、第 14+15 课</strong>。整门课在这里全部回收。</p>
+    <p>评判标准是「<strong>会做</strong>」和「<strong>会说</strong>」，不是「说得准确」。孩子用自己的话说对了意思就算过。</p>
+    <p>闯关记录卡<strong>可以让他们带回家</strong>——这是十五节课的成绩单，比分数有意义。</p>
+  </aside>
+</section>
+
+<!-- ═══════════════ 9 · 三句话展示 ═══════════════ -->
+<section class="slide full-center" data-title="⑥ 展示 · 三句话">
+  <div class="stage-rail"><b>⑥ 展示</b><i class="done"></i><i class="done"></i><i class="done"></i><i class="done"></i><i class="on"></i></div>
+  <div style="text-align:center">
+    <span class="chip pink" data-anim="fade-down">上来展示的时候 · 说三句话</span>
+    <h1 class="hero mt-m" data-anim="rise-in">三句话。</h1>
+    <div class="row mt-l" style="justify-content:center;gap:clamp(14px,1.6vw,30px);flex-wrap:wrap" data-anim="fade-up">
+      <div class="pop yellow" style="max-width:300px"><div class="h3">① 我怎么做的</div></div>
+      <div class="pop cyan" style="max-width:300px"><div class="h3">② 我改过哪里</div></div>
+      <div class="pop pink" style="max-width:340px"><div class="h3" style="color:#fff">③ 我为什么这样选</div>
+      <p class="cap" style="margin-top:8px;color:rgba(255,255,255,.92)"><b>这句最重要</b></p></div>
+    </div>
+    <p class="lede mt-l" data-anim="fade-up" style="margin-left:auto;margin-right:auto;text-align:center;font-weight:800;color:var(--text-1)">
+      不许说「<mark>随便试的</mark>」—— 给我一个理由，<mark class="pink">哪怕后来发现是错的</mark>。
+    </p>
+  </div>
+  <aside class="notes">
+    <p><strong>当堂判定，也是整门课的收尾。</strong></p>
+    <p>「上来的时候说三句话：<strong>我怎么做的、我改过哪里、我为什么这样选。</strong>」</p>
+    <p>「<strong>第三句最重要。不许说『随便试的』</strong>——你得给我一个理由，<strong>哪怕这个理由后来发现是错的</strong>。」</p>
+    <p>这一条把十五节课的态度训练收在一起：<strong>从第 1 课的「先猜后试」，到今天的「给出理由」。</strong></p>
+    <p><strong>三句话卡在上半场就已经填好了</strong>，现在只是照着说。允许简短——<strong>所有人都要完成，但可以只说三句</strong>。</p>
+    <p>有家长旁听的话，这是全场最重要的环节。<strong>让每个孩子都上台</strong>，哪怕只说三十秒。</p>
+    <p>不肯上台的孩子，可以坐在座位上说，或者<strong>让你替他念他写的三句话</strong>——<strong>但不能跳过</strong>。</p>
+  </aside>
+</section>
+
+<!-- ═══════════════ 10 · 十五节课 ═══════════════ -->
+<section class="slide" data-title="收尾 · 十五节课，你走了这么远">
+  <h2 class="h2" data-anim="fade-up">十五节课，<mark>你走了这么远</mark>。</h2>
+  <div class="grid mt-l" style="grid-template-columns:repeat(5,1fr)" data-anim="stagger-list">
+    <div class="pop yellow" style="text-align:center">
+      <div class="h3" style="font-size:var(--fs-body)">第 1–3 课</div>
+      <p class="cap" style="margin-top:8px">让一盏灯亮<br>让两盏灯亮</p>
+    </div>
+    <div class="pop" style="text-align:center">
+      <div class="h3" style="font-size:var(--fs-body)">第 4–6 课</div>
+      <p class="cap" style="margin-top:8px">会用工具<br>会画图<br>会控制</p>
+    </div>
+    <div class="pop cyan" style="text-align:center">
+      <div class="h3" style="font-size:var(--fs-body)">第 7–8 课</div>
+      <p class="cap" style="margin-top:8px">会测材料<br>懂了电阻</p>
+    </div>
+    <div class="pop" style="text-align:center">
+      <div class="h3" style="font-size:var(--fs-body)">第 9–10 课</div>
+      <p class="cap" style="margin-top:8px">会存电<br>懂了取舍</p>
+    </div>
+    <div class="pop pink" style="text-align:center">
+      <div class="h3" style="font-size:var(--fs-body)">第 11–15 课</div>
+      <p class="cap" style="margin-top:8px">会造磁<br>会发电<br><b>造出一台机器</b></p>
+    </div>
+  </div>
+  <p class="lede mt-l" data-anim="fade-up" style="text-align:center;max-width:none;font-weight:800;color:var(--text-1)">
+    第 1 课你连长脚接哪头都不知道。<mark class="pink">今天你能修别人的电路了。</mark>
+  </p>
+  <aside class="notes">
+    <p>这一页是<strong>给孩子看见自己的成长</strong>，慢慢念，一栏一栏念。</p>
+    <p>「第 1 课，你们<strong>连长脚接哪一头都不知道</strong>。今天，<strong>你能修别人的电路了。</strong>」</p>
+    <p>可以点几个具体的时刻，孩子会立刻想起来：</p>
+    <p>「还记得第 1 课那个四格表吗？<strong>两格亮</strong>，把你们吓一跳。」「还记得第 9 课我把电池拔了，灯还亮着吗？」「还记得第 13 课我把电池全收走了吗？」</p>
+    <p>然后说这十五节课真正教的东西：「你们学会的<strong>不是那些名词</strong>。是——<strong>不亮的时候先查自己，不确定的时候去测，猜错了不丢人，做不到就想办法。</strong>」</p>
+    <p>这一页可以停久一点。<strong>有家长在场时，这是最该被听见的一段。</strong></p>
+  </aside>
+</section>
+
+<!-- ═══════════════ 11 · 最后一句 ═══════════════ -->
+<section class="slide full-center" data-title="收尾 · 最后一句">
+  <div class="discovery" data-anim="zoom-pop" style="max-width:min(1100px,88vw);margin:0 auto">
+    <p class="chip pink">这十五节课</p>
+    <p class="hero mt-m">不亮，<br>不等于坏了。</p>
+    <p class="h3 mt-l" style="font-weight:700">
+      第 1 课说的第一句话 —— <mark class="pink">到今天还是真的。</mark>
+    </p>
+  </div>
+  <aside class="notes">
+    <p><strong>用第 1 课的那句话收尾。</strong>这是整门课首尾相接的地方。</p>
+    <p>「还记得<strong>第 1 课</strong>我们的『今日大发现』是什么吗？」——让他们自己喊出来：「<strong>不亮，不等于坏了！</strong>」</p>
+    <p>「十五节课过去了，<strong>这句话还是真的</strong>。而且现在你们知道得更多了——不亮可能是<strong>断路</strong>、是<strong>接反</strong>、是<strong>插在同一排</strong>、是<strong>电容没充够</strong>、是<strong>二极管装反了</strong>……」</p>
+    <p>「但<strong>第一步永远一样：先别说它坏了，先去查。</strong>」</p>
+    <p>然后是最后一句，说给他们带走：</p>
+    <p>「这句话<strong>不只对电路管用</strong>。你以后遇到什么事卡住了——<strong>先别说它坏了，先去查。</strong>」</p>
+    <p>说完，谢谢大家，下课。</p>
+  </aside>
+</section>
+
+<!-- ═══════════════ 12 · 带走 ═══════════════ -->
+<section class="slide" data-title="收尾 · 带走什么">
+  <h2 class="h2" data-anim="fade-up">带走这些。</h2>
+  <div class="grid g3 mt-l" data-anim="stagger-list">
+    <div class="pop yellow" style="text-align:center">
+      <div class="h3">三件作品</div>
+      <p class="cap" style="margin-top:10px">小手电（第 6 课）<br>小夜灯（第 10 课）<br>小发电站（今天）</p>
+    </div>
+    <div class="pop cyan" style="text-align:center">
+      <div class="h3">闯关记录卡</div>
+      <p class="cap" style="margin-top:10px">七关都在上面<br><b>这是你的成绩单</b></p>
+    </div>
+    <div class="pop pink" style="text-align:center">
+      <div class="h3" style="color:#fff">一个习惯</div>
+      <p class="cap" style="margin-top:10px;color:rgba(255,255,255,.92)">不确定的时候 ——<br><b>不要猜，去查</b></p>
+    </div>
+  </div>
+  <p class="lede mt-l" data-anim="fade-up" style="text-align:center;max-width:none;font-weight:800;color:var(--text-1)">
+    没有一个人是<mark class="pink">空着手</mark>走的。
+  </p>
+  <aside class="notes">
+    <p>最后一页，<strong>确认每个孩子都有东西带走</strong>——这是本课「真正的过关标准」。</p>
+    <p>清点三样：<strong>三件作品、闯关记录卡、一个习惯。</strong></p>
+    <p>「<strong>没有一个人是空着手走的。</strong>」——这句话说出来，对那些没拿到第一名的孩子尤其重要。</p>
+    <p>器材回收清单：<strong>发电机、万用表、面包板、超级电容按编号清点</strong>；作品里带走的元件登记。</p>
+    <p>如果有家长旁听，<strong>可以让孩子把作品直接交到家长手里</strong>——这个动作比任何总结都有效。</p>
+    <p>最后：<strong>把黑板上十五节课攒下来的板书拍张照</strong>。猜想墙、四格表、五点表、面包板连接图、五个符号、电↔磁闭环——那是这个班的整个学期。</p>
+  </aside>
+</section>
+
+</div>
+
+<div class="deck-footer">
+  <span>第 15 课 · 小型发电站（下）　|　15 节科创探究课 · 第五单元 · 最后一节</span>
+  <span class="slide-number" data-current="1" data-total="12"></span>
+</div>
+
+<script src="../assets/runtime.js"></script>
+</body>
+</html>

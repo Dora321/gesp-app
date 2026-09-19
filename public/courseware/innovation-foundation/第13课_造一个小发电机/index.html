@@ -1,0 +1,382 @@
+<!DOCTYPE html>
+<html lang="zh-CN" data-themes="memphis-pop,neo-brutalism,soft-pastel,minimal-white" data-theme-base="../assets/themes/">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>第 13 课 · 我来造一个小发电机</title>
+<link rel="stylesheet" href="../assets/fonts.css">
+<link rel="stylesheet" href="../assets/base.css">
+<link rel="stylesheet" id="theme-link" href="../assets/themes/memphis-pop.css">
+<link rel="stylesheet" href="../assets/animations/animations.css">
+<link rel="stylesheet" href="../assets/course.css">
+</head>
+<body class="kc">
+<div class="deck">
+
+<!-- ═══════════════ 1 · 封面 ═══════════════ -->
+<section class="slide full-center" data-title="开场 · 封面">
+  <div style="text-align:center">
+    <span class="chip cyan" data-anim="fade-down">15 节科创探究课 · 第五单元「电、磁和能量的变身」</span>
+    <h1 class="hero mt-m" data-anim="rise-in">第 13 课<br>我来造一个<br>小发电机</h1>
+    <div class="row mt-l" style="justify-content:center;gap:14px;flex-wrap:wrap" data-anim="fade-up">
+      <span class="chip">90 分钟 · 两节连堂</span>
+      <span class="chip yellow">今天没有电池</span>
+      <span class="chip pink">用你自己的力气点亮它</span>
+    </div>
+  </div>
+  <aside class="notes">
+    <p><strong>不能妥协的器材前提：必须使用带增速齿轮箱的手摇发电机模块。</strong>裸 130 电机手转轴输出仅几百毫伏，点不亮任何 LED——<strong>这是唯一会导致全班一起失败的器材问题</strong>。验收标准：接万用表直流 20V 挡，正常速度摇动读数应在 <strong>3–6V</strong>，低于 3V 的批次退货。</p>
+    <p>本课两条主线。<strong>明线</strong>是「用自己的力气发电」；<strong>暗线</strong>是「<strong>电有方向</strong>」——学生反着摇会发现灯不亮。<strong>这个发现不要事先说破</strong>，它是第 14 课引入整流二极管的唯一入口。说破了，第 14 课就变成教师直接给答案。</p>
+    <p><strong>反向并联双灯是本课最漂亮的一个演示</strong>：两个 LED 一正一反并联接在发电机上，正摇亮一个、反摇亮另一个。它同时证明了「电有方向」和「LED 挑方向」，<strong>把第 1 课的知识完整回收</strong>。</p>
+    <p>保底目标：<strong>用手摇发电机点亮 LED，并说出反着摇不亮是因为电的方向反了。</strong></p>
+  </aside>
+</section>
+
+<!-- ═══════════════ 2 · 收走电池 ═══════════════ -->
+<section class="slide full-center" data-title="① 没电池了 · 今天不给电池">
+  <div class="stage-rail"><b>① 没电池了</b><i class="on"></i><i></i><i></i><i></i><i></i></div>
+  <div class="ask">
+    <p class="chip yellow" data-anim="fade-down">已经上了 12 节课，每一点电都是电池给的</p>
+    <p class="q mt-m" data-anim="zoom-pop">今天，<br><mark class="pink">不给电池了。</mark></p>
+    <p class="sub mt-l" data-anim="fade-up">能不能用你<mark>自己的手</mark>，把灯点亮？</p>
+  </div>
+  <aside class="notes">
+    <p><strong>这是一个有仪式感的动作，不要省，也不要笑着做。</strong></p>
+    <p>「我们已经上了 <strong>12 节课</strong>。这 12 节课里，你们用掉的<strong>每一点电，都是电池给的</strong>。」</p>
+    <p>然后<strong>当众把全班的电池盒收走，动作要干脆</strong>——一排一排收，放进准备好的收纳箱，当着他们的面盖上。</p>
+    <p>「<strong>今天，不给电池了。</strong>」</p>
+    <p>停两秒。教室会有点骚动。</p>
+    <p>「<strong>能不能用你自己的手，把这个灯点亮？</strong>」</p>
+    <p>然后发手摇发电机。<strong>收走电池让「自己发电」这件事有了必要性</strong>——不收走的话，孩子会觉得这只是个玩具。</p>
+  </aside>
+</section>
+
+<!-- ═══════════════ 3 · 握法 ═══════════════ -->
+<section class="slide" data-title="② 自由摇 · 握法（发件时说）">
+  <div class="stage-rail"><b>② 自由摇</b><i class="done"></i><i class="on"></i><i></i><i></i><i></i></div>
+  <p class="chip pink" data-anim="fade-down">发件时先说握法 —— 摇把最容易被掰坏</p>
+  <h2 class="h2 mt-s" data-anim="fade-up">一手<mark>扶住底座</mark>，一手转摇把。</h2>
+  <div class="vs mt-l" data-anim="fade-up">
+    <div class="yes">
+      <div class="mk">✓</div>
+      <div class="h3 mt-s">放在桌上，扶住它摇</div>
+      <p class="cap" style="text-align:left;margin-top:10px">底座不动，只有摇把在转</p>
+    </div>
+    <div class="no">
+      <div class="mk" style="color:var(--accent)">✗</div>
+      <div class="h3 mt-s" style="color:var(--text-2)">拎在空中甩</div>
+      <p class="cap" style="text-align:left;margin-top:10px">里面的<b>齿轮会坏</b> —— 坏了这节课你就没得玩了</p>
+    </div>
+  </div>
+  <p class="lede mt-l" data-anim="fade-up" style="text-align:center;max-width:none;font-weight:800;color:var(--text-1)">
+    LED 上那颗 <mark>150Ω</mark> 还在 —— <mark class="pink">摇太快也不会烧灯</mark>。
+  </p>
+  <aside class="notes">
+    <p><strong>这句话要在发件时说</strong>，不能等到孩子已经拿到手。<strong>摇把被掰坏是本课最常见的器材损耗</strong>。</p>
+    <p>「握法：<strong>一只手扶住底座，另一只手转摇把。不要把整个机器拎在空中摇</strong>——里面的齿轮会坏。」</p>
+    <p>最好<strong>自己示范一次</strong>，让他们看到「放在桌上」这个姿势。</p>
+    <p>最后那句是给第 8 课做回收，也是让孩子放心大胆摇：「LED 上那颗 <strong>150Ω 还在</strong>——摇太快也不会烧灯。<strong>还记得第 8 课那颗电阻吗？就是它。</strong>」</p>
+    <p><strong>这颗限流电阻不能省</strong>：摇得过快可能超过 LED 耐压。</p>
+  </aside>
+</section>
+
+<!-- ═══════════════ 4 · 自由摇 ═══════════════ -->
+<section class="slide full-center" data-title="② 自由摇 · 随便摇，看你能发现什么">
+  <div class="stage-rail"><b>② 自由摇</b><i class="done"></i><i class="on"></i><i></i><i></i><i></i></div>
+  <div style="text-align:center">
+    <span class="chip pink" data-anim="fade-down">第 1 关 · 14 分钟 · 不给任务</span>
+    <h1 class="hero mt-m" data-anim="rise-in">随便摇。<br>看你能发现什么。</h1>
+    <p class="h3 mt-l" data-anim="fade-up" style="font-weight:800">
+      发现一条就举手告诉我 —— <mark class="pink">我写黑板上</mark>
+    </p>
+  </div>
+  <aside class="notes">
+    <p>不给任务框，<strong>就让他们摇</strong>。</p>
+    <p>学生会<strong>立刻发现三件事</strong>：①<strong>摇才亮</strong>；②<strong>停就灭</strong>；③<strong>摇快更亮</strong>。每发现一条就写到黑板上，署上发现者的名字。</p>
+    <p><strong>还会有人反着摇，发现不亮</strong>——<strong>这条要特别记下来，是本课的第二条主线</strong>。</p>
+    <p>关键：<strong>发现「反摇不亮」的时候不要解释，也不要否定</strong>。只说：「这条有意思，我写上，<strong>等会儿专门讲</strong>。」并<strong>记下是谁先发现的</strong>，下半场点名请他说。</p>
+    <p>教室会很吵很兴奋——<strong>这是好的</strong>。孩子第一次感觉到「电是我造出来的」。</p>
+    <p>巡视只管两件事：<strong>握法对不对</strong>、<strong>有没有人在空中甩</strong>。</p>
+  </aside>
+</section>
+
+<!-- ═══════════════ 5 · 速度对照 ═══════════════ -->
+<section class="slide" data-title="③ 量一量 · 摇速 · 电压 · 亮度">
+  <div class="stage-rail"><b>③ 量一量</b><i class="done"></i><i class="done"></i><i class="on"></i><i></i><i></i></div>
+  <div class="row" style="justify-content:space-between;align-items:flex-end">
+    <div>
+      <span class="chip cyan" data-anim="fade-down">万用表第三个功能 · 直流电压挡</span>
+      <h2 class="h2 mt-s" data-anim="fade-up">把「<mark>感觉更亮</mark>」变成<mark class="pink">数字</mark>。</h2>
+    </div>
+    <div class="pop yellow" data-anim="fade-left" style="text-align:center;flex:0 0 auto">
+      <div class="h3">旋钮打到<br><b>直流 20V</b></div>
+    </div>
+  </div>
+  <div class="tbl mt-m" style="grid-template-columns:1.1fr 1.2fr 1.2fr" data-anim="fade-up">
+    <div class="hd">怎么摇</div><div class="hd">电压读数</div><div class="hd">灯的亮度</div>
+    <div class="rh">不摇</div><div class="todo">V</div><div class="todo">？</div>
+    <div class="rh">慢慢摇</div><div class="todo">V</div><div class="todo">？</div>
+    <div class="rh">快快摇</div><div class="todo">V</div><div class="todo">？</div>
+  </div>
+  <p class="lede mt-l" data-anim="fade-up" style="text-align:center;max-width:none;font-weight:800;color:var(--text-1)">
+    停下来的时候，读数是多少？—— <mark>归零了</mark>。所以要<mark class="pink">一直摇才有电</mark>。
+  </p>
+  <aside class="notes">
+    <p><strong>这是万用表的第三个功能</strong>（第 4 课通断、第 7 课电阻、今天电压）。旋钮打到<strong>直流 20V 挡</strong>。</p>
+    <p>带着全班一起做：</p>
+    <p>「<strong>慢慢摇</strong>，看电压表——多少？灯呢？」<br>「现在<strong>快摇</strong>。电压多少？灯有什么变化？」<br>「<strong>停下来</strong>。电压呢？」——「<strong>归零了。</strong>」</p>
+    <p>「所以<strong>要一直摇才有电。停了就没有。</strong>」</p>
+    <p><strong>电压读数把「感觉更亮」变成了可比较的数字</strong>——这是从定性到定量的一步，和第 8 课同时记亮度与读数是同一条训练线。</p>
+    <p>正常速度读数应在 <strong>3–6V</strong>。明显低于 3V 的机器<strong>当场换掉</strong>，不要让那组一直失败。</p>
+  </aside>
+</section>
+
+<!-- ═══════════════ 6 · 课间休息 ═══════════════ -->
+<section class="slide full-center" data-title="休息 · 课间 10 分钟">
+  <div style="text-align:center">
+    <div class="discovery" data-anim="zoom-pop" style="max-width:min(1000px,86vw)">
+      <p class="chip" style="background:#fff">中场 · 10 分钟</p>
+      <h1 class="hero mt-m">课间休息</h1>
+      <p class="h3 mt-m" style="font-weight:700">
+        <mark class="pink">摇把别掰</mark>　·　手酸的甩一甩
+      </p>
+    </div>
+    <p class="lede mt-l" data-anim="fade-up" style="margin-left:auto;margin-right:auto;text-align:center">
+      回来讲黑板上那一条 —— 反着摇为什么不亮。
+    </p>
+  </div>
+  <aside class="notes">
+    <p>走之前一句：「<strong>摇把别掰，放桌上就行。</strong>」</p>
+    <p>吊一句：「回来我们专门讲<strong>黑板上那一条</strong>——<strong>反着摇为什么不亮。</strong>」</p>
+    <p>这 10 分钟你要做的：①<strong>检查有没有摇把松动或齿轮打滑</strong>的机器，换掉；②<strong>把反向并联双灯演示件准备好</strong>；③在黑板上<strong>预留「正摇 / 反摇」的符号对照位置</strong>。</p>
+    <p>手酸是正常的——这也是今天的一部分体验：<strong>电是要花力气的</strong>。</p>
+  </aside>
+</section>
+
+<!-- ═══════════════ 7 · 正摇反摇 ═══════════════ -->
+<section class="slide" data-title="③ 量一量 · 正着摇 vs 反着摇">
+  <div class="stage-rail"><b>③ 量一量</b><i class="done"></i><i class="done"></i><i class="on"></i><i></i><i></i></div>
+  <p class="chip pink" data-anim="fade-down">刚才有同学反着摇过 —— 现在全班一起试</p>
+  <h2 class="h2 mt-s" data-anim="fade-up">反着摇，电压表上<mark>多了个东西</mark>。</h2>
+  <div class="tbl mt-l" style="grid-template-columns:1.1fr 1.3fr 1.2fr" data-anim="fade-up">
+    <div class="hd">怎么摇</div><div class="hd">电压读数</div><div class="hd">灯</div>
+    <div class="rh">正着摇</div><div class="on">4.2 V</div><div class="on">亮</div>
+    <div class="rh">反着摇</div><div class="off"><mark class="pink">−</mark> 4.2 V　<small>前面多了个减号</small></div><div class="off">不亮</div>
+  </div>
+  <p class="lede mt-l" data-anim="fade-up" style="text-align:center;max-width:none;font-weight:800;color:var(--text-1)">
+    电<mark>还在发</mark> —— 只是<mark class="pink">方向反了</mark>。
+  </p>
+  <aside class="notes">
+    <p>先点名请上半场发现「反摇不亮」的那个孩子说：「<strong>刚才你发现了什么？</strong>」——让他有高光时刻。</p>
+    <p>然后全班一起做：「那现在<strong>反着摇</strong>，看<strong>电压表的数字</strong>，有什么不一样？」</p>
+    <p>学生：「<strong>前面多了一个减号！</strong>」</p>
+    <p>「对了。<strong>电还在发，只是方向反了。</strong>而我们的 LED <strong>挑方向</strong>——<strong>第 1 课就知道了。</strong>」</p>
+    <p><strong>这个负号是「方向」这个抽象属性的第一个可见证据。</strong>在黑板上把「＋4.2V / −4.2V」并排写出来。</p>
+    <p><strong>关键纪律：到这里就停。不要讲怎么解决，不要提整流。</strong>第 14 课要用这个缺口做入口。</p>
+    <p>PPT 上的 4.2V 是示例数字，<strong>换成孩子实测的读数</strong>。</p>
+  </aside>
+</section>
+
+<!-- ═══════════════ 8 · 命名：发电机 ═══════════════ -->
+<section class="slide" data-title="④ 起名字 · 发电机 = 电机反过来用">
+  <div class="stage-rail"><b>④ 起名字</b><i class="done"></i><i class="done"></i><i class="done"></i><i class="on"></i><i></i></div>
+  <div class="row" style="gap:clamp(20px,2.4vw,50px);align-items:center">
+    <div style="flex:1">
+      <span class="chip yellow" data-anim="fade-down">你手里这个东西</span>
+      <h2 class="h2 mt-s" data-anim="rise-in">叫 <mark class="pink">发电机</mark>。</h2>
+      <div class="stack-l mt-l">
+        <div class="pop cyan" data-anim="fade-right"><div class="h3">它和第 11 课的电机<br><b>是同一个东西</b></div></div>
+        <div class="pop yellow" data-anim="fade-right"><div class="h3">通电 → 它<b>转</b>　　转它 → <b>出电</b></div></div>
+        <div class="pop pink" data-anim="fade-right"><div class="h3" style="color:#fff">第 12 课你们<b>用手推磁铁</b><br>今天这个<b>又快又不停</b></div></div>
+      </div>
+    </div>
+    <div class="figure" style="flex:1" data-anim="fade-left">
+      <svg viewBox="0 0 460 300" role="img" aria-label="电机与发电机是同一个东西的两个方向">
+        <rect class="st filly" x="150" y="100" width="160" height="100" rx="16"/>
+        <text class="lbl" x="230" y="158" text-anchor="middle">线圈 + 磁铁</text>
+        <path class="st" style="stroke:var(--accent);stroke-width:6;fill:none" d="M120 76 q110 -50 220 0"/>
+        <path class="st fillp" d="M330 60 l22 18 -27 10 z"/>
+        <text class="lbl sm" x="230" y="44" text-anchor="middle" style="fill:var(--accent)">给它电 → 它转（电机）</text>
+        <path class="st" style="stroke:var(--accent-2);stroke-width:6;fill:none" d="M340 226 q-110 50 -220 0"/>
+        <path class="st fillc" d="M130 242 l-22 -18 27 -10 z"/>
+        <text class="lbl sm" x="230" y="278" text-anchor="middle" style="fill:var(--accent-2)">转它 → 出电（发电机）</text>
+      </svg>
+    </div>
+  </div>
+  <aside class="notes">
+    <p>「你手里这个东西，叫<strong>发电机</strong>。」</p>
+    <p>然后揭一个会让孩子惊讶的事实：「它和<strong>第 11 课的电机是同一个东西</strong>。<strong>给它电，它会转；转它，它会出电。</strong>」</p>
+    <p><strong>接上第 12 课</strong>：「第 12 课你们<strong>用手来回抽磁铁</strong>，指针只能动一下，停手就没了。今天这个东西<strong>把那个动作做得又快又连续</strong>——所以电就一直有。」</p>
+    <p>「<strong>原理一模一样，只是快了几百倍。</strong>」</p>
+    <p>把第 11、12、13 课串成一条线，板书那张「电 ↔ 磁」的闭环图可以再画一次，在下面加上「<strong>发电机 = 转得又快又不停</strong>」。</p>
+  </aside>
+</section>
+
+<!-- ═══════════════ 9 · 电有方向 + 二极管 ═══════════════ -->
+<section class="slide" data-title="④ 起名字 · 电有方向 · 需要一个闸门">
+  <div class="stage-rail"><b>④ 起名字</b><i class="done"></i><i class="done"></i><i class="done"></i><i class="on"></i><i></i></div>
+  <p class="chip cyan" data-anim="fade-down">今天真正的新东西</p>
+  <h2 class="h2 mt-s" data-anim="fade-up">电，是<mark class="pink">有方向</mark>的。</h2>
+  <div class="grid g3 mt-l" data-anim="stagger-list">
+    <div class="pop yellow" style="text-align:center">
+      <div class="h3">正摇的电</div>
+      <p class="cap" style="margin-top:10px">LED <b>能用</b></p>
+    </div>
+    <div class="pop" style="text-align:center;background:var(--surface-2)">
+      <div class="h3" style="color:var(--text-2)">反摇的电</div>
+      <p class="cap" style="margin-top:10px">LED <b>用不了</b>，白白浪费</p>
+    </div>
+    <div class="pop pink" style="text-align:center">
+      <div class="h3" style="color:#fff">那就需要一个</div>
+      <p class="cap" style="margin-top:10px;color:rgba(255,255,255,.92)"><b>只让电往一个方向走的闸门</b></p>
+    </div>
+  </div>
+  <p class="lede mt-l" data-anim="fade-up" style="text-align:center;max-width:none;font-weight:800;color:var(--text-1)">
+    这个闸门有个名字，叫 <mark>二极管</mark>。—— <mark class="pink">下节课我们用它。</mark>
+  </p>
+  <aside class="notes">
+    <p>把今天的第二条主线说清楚，<strong>但只到「给个名字」为止</strong>。</p>
+    <p>「<strong>电是有方向的。</strong>正着摇发出来的电，LED 能用；反着摇发出来的电，<strong>LED 用不了，白白浪费掉了</strong>。」</p>
+    <p>「那怎么办？我们需要一个东西——<strong>一个只让电往一个方向走的闸门</strong>。」</p>
+    <p>「这个闸门有个名字，叫<strong>二极管</strong>。<strong>下节课我们用它。</strong>」</p>
+    <p><strong>只给名字和功能，绝对不展开原理。</strong>这是为第 14 课留的接口。</p>
+    <p>学生追问「二极管怎么做到的」——统一回答：「<strong>下节课你会亲手用到它。</strong>今天你只要知道<strong>有这么个东西，是用来解决这个问题的</strong>。」</p>
+  </aside>
+</section>
+
+<!-- ═══════════════ 10 · 反向并联双灯 ═══════════════ -->
+<section class="slide" data-title="⑤ 两个灯 · 正摇亮一个，反摇亮另一个">
+  <div class="stage-rail"><b>⑤ 两个灯</b><i class="done"></i><i class="done"></i><i class="done"></i><i class="done"></i><i class="on"></i></div>
+  <p class="chip pink" data-anim="fade-down">挑战 · 两个 LED，一个正接一个反接</p>
+  <h2 class="h2 mt-s" data-anim="fade-up">正摇亮<mark>这个</mark>，反摇亮<mark class="cyan">那个</mark>。</h2>
+  <div class="figure mt-m" data-anim="fade-up">
+    <svg viewBox="0 0 760 260" role="img" aria-label="两个LED反向并联接在发电机上">
+      <rect class="st filly" x="40" y="86" width="150" height="90" rx="14"/>
+      <text class="lbl sm" x="115" y="138" text-anchor="middle">发电机</text>
+      <path class="st" d="M190 110 h110"/>
+      <path class="st" d="M190 152 h110"/>
+      <path class="st" d="M300 110 v-40 h120"/>
+      <path class="st" d="M300 152 v40 h120"/>
+      <circle class="st filly" cx="460" cy="70" r="30"/>
+      <path class="st fillk" d="M447 55 v30 l26 -15 z"/>
+      <path class="st" d="M473 55 v30"/>
+      <text class="lbl sm" x="460" y="26" text-anchor="middle" style="fill:var(--accent)">正着接</text>
+      <circle class="st" cx="460" cy="192" r="30" style="fill:var(--surface-2)"/>
+      <path class="st fillk" d="M473 177 v30 l-26 -15 z"/>
+      <path class="st" d="M447 177 v30"/>
+      <text class="lbl sm" x="460" y="244" text-anchor="middle" style="fill:var(--accent-2)">反着接</text>
+      <path class="st" d="M490 70 h120 v122 h-120"/>
+      <text class="lbl" x="632" y="112" style="fill:var(--accent)">正摇 → 上面亮</text>
+      <text class="lbl" x="632" y="156" style="fill:var(--accent-2)">反摇 → 下面亮</text>
+    </svg>
+  </div>
+  <p class="lede mt-s" data-anim="fade-up" style="text-align:center;max-width:none;font-weight:800;color:var(--text-1)">
+    电<mark>两个方向都有</mark> —— 只是<mark class="pink">每个灯只认一个方向</mark>。
+  </p>
+  <aside class="notes">
+    <p><strong>本课最漂亮的一个环节。</strong>两个 LED <strong>一正一反并联</strong>接在发电机上。</p>
+    <p>「正着摇——<strong>上面这个亮</strong>。反着摇——<strong>下面这个亮</strong>。」</p>
+    <p>学生会<strong>自发地来回摇着玩</strong>，看两个灯轮流亮。<strong>这正是理解发生的时候，让他们玩，不要打断。</strong></p>
+    <p>这个演示<strong>同时证明了两件事</strong>：①<strong>电确实两个方向都有</strong>（不是反摇就没电）；②<strong>LED 挑方向</strong>——<strong>第 1 课的知识完整回收</strong>。</p>
+    <p>可以点一句把 15 节课串起来：「<strong>第 1 课我们学的『长脚接＋』，到今天第 13 课还在用。</strong>」</p>
+    <p>这是挑战档，时间紧可以只做教师演示件，不要求每组都搭。</p>
+  </aside>
+</section>
+
+<!-- ═══════════════ 11 · 最后一关 ═══════════════ -->
+<section class="slide full-center" data-title="⑤ 两个灯 · 口头三问（逐人）">
+  <div class="stage-rail"><b>⑤ 两个灯</b><i class="done"></i><i class="done"></i><i class="done"></i><i class="done"></i><i class="on"></i></div>
+  <div style="text-align:center">
+    <span class="chip pink" data-anim="fade-down">最后一关 · 三问答出两问就算过</span>
+    <h1 class="hero mt-m" data-anim="rise-in">三个问题。</h1>
+    <div class="row mt-l" style="justify-content:center;gap:clamp(14px,1.6vw,28px);flex-wrap:wrap" data-anim="fade-up">
+      <div class="pop yellow" style="max-width:320px"><div class="h3">① 摇得快慢</div><p class="cap" style="margin-top:8px">和亮度、电压<br>是什么关系？</p></div>
+      <div class="pop cyan" style="max-width:320px"><div class="h3">② 反着摇</div><p class="cap" style="margin-top:8px">灯为什么<br>不亮？</p></div>
+      <div class="pop pink" style="max-width:320px"><div class="h3">③ 想用上反摇的电</div><p class="cap" style="margin-top:8px">需要一个<br><b>什么东西</b>？</p></div>
+    </div>
+  </div>
+  <aside class="notes">
+    <p><strong>今天的判定环节，死保 8 分钟。口头三问，答出两问即为通过。</strong></p>
+    <p><strong>①</strong> 合格答案：「摇得越快，电压越高，灯越亮。不摇就没有电。」</p>
+    <p><strong>②</strong> 合格答案（<strong>这是保底目标，必须答出</strong>）：「因为<strong>电的方向反了</strong>，LED 挑方向，反的方向它用不了。」</p>
+    <p><strong>③</strong> 合格答案：「需要一个<strong>只让电往一个方向走的闸门</strong>」或者直接说「<strong>二极管</strong>」。</p>
+    <p>第②问答不出的，<strong>让他拿着万用表再摇一次看那个负号</strong>，然后重答。这一问是保底目标，不能放过。</p>
+    <p>过关之后<strong>按台清点发电机</strong>，检查摇把有没有松。</p>
+  </aside>
+</section>
+
+<!-- ═══════════════ 12 · 今日大发现 ═══════════════ -->
+<section class="slide full-center" data-title="收尾 · 今日大发现">
+  <div class="discovery" data-anim="zoom-pop" style="max-width:min(1100px,88vw);margin:0 auto">
+    <p class="chip pink">今日大发现</p>
+    <p class="hero mt-m">我自己的力气，<br>变成了电。</p>
+    <p class="h3 mt-l" style="font-weight:700">
+      而且今天还知道了一件事 —— <mark class="pink">电，是有方向的。</mark>
+    </p>
+  </div>
+  <aside class="notes">
+    <p>全班<strong>一起读一遍</strong>。</p>
+    <p>然后把今天的体感说出来：「今天你们<strong>手酸了吧？</strong>那个酸，就是<strong>你的力气变成电的代价</strong>。」</p>
+    <p>「<strong>电不是凭空来的。</strong>你家里的电，也是有人（或者水、风、煤）在某个地方<strong>使着力气</strong>发出来的。」</p>
+    <p>这一句很有分量，能自然引到第 14、15 课的「小型发电站」。</p>
+    <p>最后回收第二条主线：「还有一件事——<strong>电是有方向的</strong>。这件事今天只是<strong>发现了</strong>，<strong>下节课我们来解决它。</strong>」</p>
+  </aside>
+</section>
+
+<!-- ═══════════════ 13 · 回家做 ═══════════════ -->
+<section class="slide" data-title="收尾 · 回家做">
+  <h2 class="h2" data-anim="fade-up">回家做。</h2>
+  <div class="grid g2 mt-l">
+    <div class="pop pink" data-anim="fade-right">
+      <span class="chip" style="background:#fff">必做 · 每个人</span>
+      <div class="h3 mt-m">讲给家人听：我今天用自己的手发了电。</div>
+      <p class="cap" style="text-align:left;margin-top:12px;color:rgba(255,255,255,.9)">
+        讲三件事：<strong>摇才有电</strong>、<strong>摇得越快越亮</strong>、<strong>反着摇灯不亮</strong>。<br>
+        最后问家人一句：<strong>你猜为什么反着摇不亮？</strong>
+      </p>
+    </div>
+    <div class="pop cyan" data-anim="fade-left">
+      <span class="chip" style="background:#fff">选做 · 想挑战的人</span>
+      <div class="h3 mt-m">家里的电，是谁在「摇」？</div>
+      <p class="cap" style="text-align:left;margin-top:12px">
+        查一查或者问一问：发电站里<strong>靠什么让线圈转起来</strong>？<br>
+        水？风？烧煤？找出一种，写下来。
+      </p>
+    </div>
+  </div>
+  <p class="lede mt-l" data-anim="fade-up" style="text-align:center;max-width:none;font-weight:800;color:var(--text-1)">
+    <mark>电不是凭空来的 —— 总有人在某个地方使着力气。</mark>
+  </p>
+  <aside class="notes">
+    <p>必做那条的最后一句是<strong>把今天的悬念带回家</strong>：「你猜为什么反着摇不亮？」——家人多半也答不上来，孩子会很得意。</p>
+    <p>选做那条<strong>直接为第 14、15 课铺路</strong>。第 14 课就要讨论「用什么带动发电机」。带着答案来的孩子，下节课会格外投入。</p>
+    <p>下课前自己确认三件事：①<strong>保底目标是否全员达成</strong>——点亮 LED + 说出反摇不亮是方向反了。②<strong>发电机按台清点</strong>，检查摇把和齿轮，坏的登记。③<strong>电池盒还给各组</strong>（今天收走的），万用表按编号回收。</p>
+  </aside>
+</section>
+
+<!-- ═══════════════ 14 · 下节课 ═══════════════ -->
+<section class="slide full-center" data-title="收尾 · 下节课钩子">
+  <div style="text-align:center">
+    <p class="chip cyan" data-anim="fade-down">下节课 · 第 14 课 · 最后两节</p>
+    <h2 class="h2 mt-m" data-anim="fade-up">今天有<mark>一半的电</mark>，被白白浪费了。</h2>
+    <p class="hero mt-l" data-anim="zoom-pop">下节课 ——<br>我们<mark class="pink">一点都不浪费</mark>。</p>
+  </div>
+  <aside class="notes">
+    <p>收尾钩子，<strong>一句话，说完就下课</strong>。</p>
+    <p>「想一想：今天你们来回摇的时候，<strong>有一半的时间灯是不亮的</strong>——那一半的电<strong>白白浪费了</strong>。」</p>
+    <p>「下节课，我们<strong>一点都不浪费</strong>。」</p>
+    <p><strong>不要说破</strong>（下节课是《小型发电站（上）》，会用到二极管整流和储能）。</p>
+    <p>可以再提一句让他们期待：「而且最后两节课，我们要做一个<strong>真正的小发电站</strong>——<strong>自己发电、自己存起来、自己用</strong>。前面 13 节课学的东西，<strong>都要用上。</strong>」</p>
+  </aside>
+</section>
+
+</div>
+
+<div class="deck-footer">
+  <span>第 13 课 · 我来造一个小发电机　|　15 节科创探究课 · 第五单元</span>
+  <span class="slide-number" data-current="1" data-total="14"></span>
+</div>
+
+<script src="../assets/runtime.js"></script>
+</body>
+</html>

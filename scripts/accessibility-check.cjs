@@ -35,12 +35,11 @@ const ROUTES = [
   '/python/f2',
   '/museum',
   '/hardware',
-  // HardwareLayout 给暗色外壳设了 text-slate-100，白卡片里漏了 text-* 的元素
-  // 会继承成浅灰白字。四个 ESP32 页面都在这个 Layout 下，逐个都要查。
+  // Check both science catalogs and their embedded classroom presentations.
   '/hardware/esp32-curriculum',
-  '/hardware/esp32/18',
-  '/hardware/esp32-map',
-  '/hardware/esp32-contest',
+  '/hardware/esp32/1',
+  '/innovation-foundation',
+  '/innovation-foundation/1',
   '/ekart',
 ];
 

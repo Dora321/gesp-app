@@ -182,47 +182,47 @@
   "_hardware__desktop": {
     "clientWidth": 1365,
     "overflow": 0,
-    "docHeight": 4603,
-    "textLen": 1702,
-    "maxRight": 1365,
-    "counts": {
-      "pre": 0,
-      "table": 0,
-      "button": 46
-    },
-    "sampled": 8550,
-    "nonWhite": 2528,
-    "nonWhiteRatio": 0.29567251461988303
-  },
-  "_hardware_esp32-map__desktop": {
-    "clientWidth": 1365,
-    "overflow": 0,
-    "docHeight": 3966,
-    "textLen": 1667,
-    "maxRight": 1365,
+    "docHeight": 2196,
+    "textLen": 676,
+    "maxRight": 1341,
     "counts": {
       "pre": 0,
       "table": 0,
       "button": 27
     },
     "sampled": 8550,
-    "nonWhite": 5413,
-    "nonWhiteRatio": 0.6330994152046784
+    "nonWhite": 3183,
+    "nonWhiteRatio": 0.372280701754386
   },
-  "_hardware_esp32-contest__desktop": {
+  "_hardware_esp32-curriculum__desktop": {
     "clientWidth": 1365,
     "overflow": 0,
-    "docHeight": 3861,
-    "textLen": 1724,
-    "maxRight": 1365,
+    "docHeight": 2196,
+    "textLen": 676,
+    "maxRight": 1341,
     "counts": {
       "pre": 0,
       "table": 0,
-      "button": 33
+      "button": 27
     },
     "sampled": 8550,
-    "nonWhite": 4683,
-    "nonWhiteRatio": 0.547719298245614
+    "nonWhite": 3183,
+    "nonWhiteRatio": 0.372280701754386
+  },
+  "_innovation-foundation__desktop": {
+    "clientWidth": 1365,
+    "overflow": 0,
+    "docHeight": 2484,
+    "textLen": 864,
+    "maxRight": 1341,
+    "counts": {
+      "pre": 0,
+      "table": 0,
+      "button": 27
+    },
+    "sampled": 8550,
+    "nonWhite": 3243,
+    "nonWhiteRatio": 0.3792982456140351
   },
   "_ekart__desktop": {
     "clientWidth": 1365,
@@ -437,47 +437,47 @@
   "_hardware__mobile": {
     "clientWidth": 390,
     "overflow": 0,
-    "docHeight": 8777,
-    "textLen": 1667,
-    "maxRight": 390,
-    "counts": {
-      "pre": 0,
-      "table": 0,
-      "button": 46
-    },
-    "sampled": 2343,
-    "nonWhite": 1272,
-    "nonWhiteRatio": 0.5428937259923176
-  },
-  "_hardware_esp32-map__mobile": {
-    "clientWidth": 390,
-    "overflow": 0,
-    "docHeight": 6794,
-    "textLen": 1632,
-    "maxRight": 390,
+    "docHeight": 3469,
+    "textLen": 647,
+    "maxRight": 374,
     "counts": {
       "pre": 0,
       "table": 0,
       "button": 27
     },
     "sampled": 2343,
-    "nonWhite": 1704,
-    "nonWhiteRatio": 0.7272727272727273
+    "nonWhite": 1253,
+    "nonWhiteRatio": 0.5347844643619292
   },
-  "_hardware_esp32-contest__mobile": {
+  "_hardware_esp32-curriculum__mobile": {
     "clientWidth": 390,
     "overflow": 0,
-    "docHeight": 5915,
-    "textLen": 1689,
-    "maxRight": 390,
+    "docHeight": 3469,
+    "textLen": 647,
+    "maxRight": 374,
     "counts": {
       "pre": 0,
       "table": 0,
-      "button": 33
+      "button": 27
     },
     "sampled": 2343,
-    "nonWhite": 1224,
-    "nonWhiteRatio": 0.5224071702944942
+    "nonWhite": 1253,
+    "nonWhiteRatio": 0.5347844643619292
+  },
+  "_innovation-foundation__mobile": {
+    "clientWidth": 390,
+    "overflow": 0,
+    "docHeight": 4584,
+    "textLen": 835,
+    "maxRight": 374,
+    "counts": {
+      "pre": 0,
+      "table": 0,
+      "button": 27
+    },
+    "sampled": 2343,
+    "nonWhite": 1160,
+    "nonWhiteRatio": 0.4950917626973965
   },
   "_ekart__mobile": {
     "clientWidth": 390,

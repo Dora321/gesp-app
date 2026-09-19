@@ -1,0 +1,815 @@
+<!DOCTYPE html>
+<html lang="zh-CN" data-themes="memphis-pop,neo-brutalism,soft-pastel,minimal-white" data-theme-base="../assets/themes/">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>第 3 课 · 两个灯怎么一起亮？</title>
+<link rel="stylesheet" href="../assets/fonts.css">
+<link rel="stylesheet" href="../assets/base.css">
+<link rel="stylesheet" id="theme-link" href="../assets/themes/memphis-pop.css">
+<link rel="stylesheet" href="../assets/animations/animations.css">
+<link rel="stylesheet" href="../assets/course.css">
+</head>
+<body class="kc">
+<div class="deck">
+
+<!-- ═══════════════ 1 · 封面 ═══════════════ -->
+<section class="slide full-center" data-title="开场 · 封面">
+  <div style="text-align:center">
+    <span class="chip cyan" data-anim="fade-down">15 节科创探究课 · 第一单元「电路是怎么工作的？」</span>
+    <h1 class="hero mt-m" data-anim="rise-in">第 3 课<br>两个灯<br>怎么一起亮？</h1>
+    <div class="row mt-l" style="justify-content:center;gap:14px;flex-wrap:wrap" data-anim="fade-up">
+      <span class="chip">90 分钟 · 两节连堂</span>
+      <span class="chip yellow">两个灯 · 四根线</span>
+      <span class="chip pink">同样的零件，连法不同</span>
+    </div>
+  </div>
+  <aside class="notes">
+    <p><strong>这是全课程第一个不能欠账的关。</strong>第 4 课的面包板、第 6 课的开关、第 9 课的充放电回路，全都要求学生先判断出电路是<strong>串</strong>还是<strong>并</strong>。今天没过，后面一路带着账走。</p>
+    <p>保底目标：<strong>对着一个实物电路判断它是串是并，并正确预测「拔掉一个灯」的结果。</strong></p>
+    <p>课前一定要自己搭一次串联确认能亮：<strong>本课必须用红色 LED</strong>。蓝色白色压降 3V 以上，串起来必然不亮，整节课的核心对照就做不成了。</p>
+    <p>还有一条写在脑门上：<strong>串联两个灯在 4.5V 下只有约 3mA，明显偏暗，这是正常的。</strong>这句话必须在发器材之前就声明，否则一半的组会把时间耗在反复重接上。</p>
+  </aside>
+</section>
+
+<!-- ═══════════════ 2 · 今天走 5 步 ═══════════════ -->
+<section class="slide" data-title="开场 · 今天走 5 步">
+  <p class="chip pink" data-anim="fade-down">今天，我们走 5 步</p>
+  <h2 class="h2 mt-s" data-anim="fade-up">先<mark>押个注</mark>，最后回来对答案。</h2>
+  <div class="grid mt-l" style="grid-template-columns:repeat(5,1fr)" data-anim="stagger-list">
+    <div class="pop yellow" style="text-align:center">
+      <div class="badge sq" style="margin:0 auto 12px">1</div>
+      <div class="h3">先表态</div>
+      <p class="cap" style="margin-top:8px">投票，写黑板上</p>
+    </div>
+    <div class="pop" style="text-align:center">
+      <div class="badge pink sq" style="margin:0 auto 12px">2</div>
+      <div class="h3">自己试</div>
+      <p class="cap" style="margin-top:8px">让两个灯都亮</p>
+    </div>
+    <div class="pop cyan" style="text-align:center">
+      <div class="badge sq" style="margin:0 auto 12px;background:#fff;color:var(--ink)">3</div>
+      <div class="h3">两种接法</div>
+      <p class="cap" style="margin-top:8px">都要搭一遍</p>
+    </div>
+    <div class="pop" style="text-align:center">
+      <div class="badge cyan sq" style="margin:0 auto 12px">4</div>
+      <div class="h3">起名字</div>
+      <p class="cap" style="margin-top:8px">串联、并联</p>
+    </div>
+    <div class="pop pink" style="text-align:center">
+      <div class="badge sq" style="margin:0 auto 12px;background:#fff;color:var(--ink)">5</div>
+      <div class="h3">用起来</div>
+      <p class="cap" style="margin-top:8px">看一眼就能judge</p>
+    </div>
+  </div>
+  <p class="lede mt-l" data-anim="fade-up">
+    第 1 步你投的那一票，<mark>下课前我们回来对</mark>。
+  </p>
+  <aside class="notes">
+    <p>一分钟带过。重点只强调一件事：<strong>今天开场要投票，下课前回来对答案</strong>。</p>
+    <p>「你现在投的那一票，我会写在黑板上，<strong>一整节课都不擦</strong>。下课之前我们回来看看——谁猜对了。」</p>
+    <p>这个「闭环」是今天的结构骨架。投了票的孩子会<strong>带着立场</strong>做实验，而不是执行指令。</p>
+  </aside>
+</section>
+
+<!-- ═══════════════ 3 · 投票 ═══════════════ -->
+<section class="slide full-center" data-title="① 先表态 · 能不能">
+  <div class="stage-rail"><b>① 先表态</b><i class="on"></i><i></i><i></i><i></i><i></i></div>
+  <div class="ask">
+    <p class="chip yellow" data-anim="fade-down">一个电池 · 两个灯珠</p>
+    <p class="q mt-m" data-anim="zoom-pop">能不能让<br>两个灯<mark class="pink">同时亮</mark>？</p>
+    <p class="sub mt-l" data-anim="fade-up">先别试。<mark>先举手。</mark></p>
+  </div>
+  <aside class="notes">
+    <p>手里举着一个电池盒和两个 LED，走一圈让大家看清楚。</p>
+    <p>「一个电池，两个灯珠。你们觉得——<strong>能不能让两个灯同时亮？</strong>」</p>
+    <p>「觉得<strong>能</strong>的举手。觉得<strong>不能</strong>的举手。<strong>不确定</strong>的举手。」三个数字<strong>都要写到黑板上</strong>。</p>
+    <p>如果冷场没人举手——<strong>你先自己表个态</strong>：「我猜不能。」有人领头，举手率立刻就上来了。这一招很有效，别不好意思用。</p>
+    <p><strong>投完不公布答案，直接发器材。</strong>悬念留到第 18 页才揭。</p>
+  </aside>
+</section>
+
+<!-- ═══════════════ 4 · 票数上黑板 ═══════════════ -->
+<section class="slide" data-title="① 先表态 · 票数上黑板">
+  <div class="stage-rail"><b>① 先表态</b><i class="on"></i><i></i><i></i><i></i><i></i></div>
+  <p class="chip pink" data-anim="fade-down">这三个数字，一整节课都不擦</p>
+  <h2 class="h2 mt-s" data-anim="fade-up">你押哪一边？</h2>
+  <div class="grid g3 mt-l" data-anim="stagger-list">
+    <div class="pop yellow" style="text-align:center">
+      <div class="hero" style="font-size:var(--fs-h1)">能</div>
+      <p class="cap" style="margin-top:10px">____ 票</p>
+    </div>
+    <div class="pop cyan" style="text-align:center">
+      <div class="hero" style="font-size:var(--fs-h1)">不能</div>
+      <p class="cap" style="margin-top:10px">____ 票</p>
+    </div>
+    <div class="pop" style="text-align:center">
+      <div class="hero" style="font-size:var(--fs-h1)">不确定</div>
+      <p class="cap" style="margin-top:10px">____ 票</p>
+    </div>
+  </div>
+  <p class="lede mt-l" data-anim="fade-up" style="text-align:center;max-width:none;font-weight:800;color:var(--text-1)">
+    投错了一点都不丢人 —— <mark>不投票才可惜。</mark>
+  </p>
+  <aside class="notes">
+    <p>把三个票数<strong>当众写到黑板左侧</strong>，写大一点。这块区域<strong>整节课不擦</strong>。</p>
+    <p>「投错了一点都不丢人——<strong>不投票才可惜</strong>。因为投了票的人，等会儿做实验的时候是在<strong>验证自己</strong>；没投票的人，只是在照着做。」</p>
+    <p>这句话值得说。它把「实验」和「个人立场」绑在一起，是这门课一贯的做法（第 1 课的猜想墙、第 2 课的举手表态，都是同一招）。</p>
+    <p>写完立刻发器材，别拖。</p>
+  </aside>
+</section>
+
+<!-- ═══════════════ 5 · 今天的器材 ═══════════════ -->
+<section class="slide" data-title="② 自己试 · 今天的器材翻倍">
+  <div class="stage-rail"><b>② 自己试</b><i class="done"></i><i class="on"></i><i></i><i></i><i></i></div>
+  <h2 class="h2" data-anim="fade-up">今天的东西，<mark>比上节课多一倍</mark>。</h2>
+  <div class="grid g3 mt-l" data-anim="stagger-list">
+    <div class="pop yellow" style="text-align:center">
+      <div class="hero" style="font-size:var(--fs-h1)">2</div>
+      <div class="h3 mt-s">个灯珠</div>
+      <p class="cap" style="margin-top:8px">腿还是只准弯一次</p>
+    </div>
+    <div class="pop cyan" style="text-align:center">
+      <div class="hero" style="font-size:var(--fs-h1)">4</div>
+      <div class="h3 mt-s">根鳄鱼夹线</div>
+      <p class="cap" style="margin-top:8px">下课按根数收回</p>
+    </div>
+    <div class="pop" style="text-align:center">
+      <div class="hero" style="font-size:var(--fs-h1)">1</div>
+      <div class="h3 mt-s">个电池盒</div>
+      <p class="cap" style="margin-top:8px">夹子还是不许互相咬</p>
+    </div>
+  </div>
+  <p class="lede mt-l" data-anim="fade-up" style="text-align:center;max-width:none;font-weight:800;color:var(--text-1)">
+    线多了，<mark class="pink">乱的机会也多了</mark> —— 接一根，理一根。
+  </p>
+  <aside class="notes">
+    <p>今天每人 <strong>2 个 LED、4 根鳄鱼夹线</strong>，是前两课的一倍。<strong>发件前按人清点</strong>，下课按根数收回——线一乱，下节课就不够用。</p>
+    <p>安全那条还是要说一遍，一句话：「<strong>两个夹子不许互相咬</strong>，会发烫。」今天线多，互咬的概率也翻倍。</p>
+    <p>「腿只准弯一次」也再提一次。本课每人用 2 个 LED，<strong>损耗是前两课的两倍</strong>，备件至少 8 个。</p>
+    <p>还有一条你自己要注意：<strong>提前挑亮度接近的 LED 成对发放</strong>。同批次的 LED 亮度也会有差异，不挑的话并联对照时孩子会以为是自己接错了。</p>
+  </aside>
+</section>
+
+<!-- ═══════════════ 6 · 重要声明 ═══════════════ -->
+<section class="slide full-center" data-title="② 自己试 · 重要声明：变暗是正常的">
+  <div class="stage-rail"><b>② 自己试</b><i class="done"></i><i class="on"></i><i></i><i></i><i></i></div>
+  <div class="discovery" data-anim="zoom-pop" style="max-width:min(1100px,88vw);margin:0 auto;background:var(--accent-2)">
+    <p class="chip pink">动手之前，先听这一句</p>
+    <p class="hero mt-m">排成一条路，<br>灯会<mark>变暗</mark>。</p>
+    <p class="h3 mt-l" style="font-weight:700">
+      这是<mark class="pink">正常的</mark>。不是你接错了，<mark class="pink">不用重接</mark>。
+    </p>
+  </div>
+  <aside class="notes">
+    <p><strong>这一页必须在发器材之后、开始动手之前说。不说的话，会有一半的组把 14 分钟耗在反复重接上。</strong></p>
+    <p>「提醒一件事：<strong>如果你把两个灯排成一条路，它们会比较暗。</strong>这是正常的，<strong>不是你接错了</strong>。」</p>
+    <p>说两遍。再补一句：「暗到什么程度？<strong>能看见，但没有一个灯的时候亮。</strong>看见这样的，你就成功了，别重接。」</p>
+    <p>为什么暗——<strong>现在不解释</strong>。留到第 17 页用「分推力」来说。现在解释了，后面的探究就没料了。</p>
+    <p>巡视时如果还有孩子在重接，走过去直接说：「<strong>你已经成功了。</strong>它本来就是这么暗。」</p>
+  </aside>
+</section>
+
+<!-- ═══════════════ 7 · 任务① ═══════════════ -->
+<section class="slide full-center" data-title="② 自己试 · 让两个灯都亮">
+  <div class="stage-rail"><b>② 自己试</b><i class="done"></i><i class="on"></i><i></i><i></i><i></i></div>
+  <div style="text-align:center">
+    <span class="chip pink" data-anim="fade-down">第 1 关 · 14 分钟</span>
+    <h1 class="hero mt-m" data-anim="rise-in">让两个灯<br>都亮起来。</h1>
+    <div class="vs mt-l" style="max-width:min(900px,82vw);margin-left:auto;margin-right:auto" data-anim="fade-up">
+      <div class="no"><div class="mk">✗</div><div class="h3 mt-s">没有接法提示<br>没有图</div></div>
+      <div class="yes"><div class="mk">✋</div><div class="h3 mt-s">两个都亮了<br>就举手</div></div>
+    </div>
+  </div>
+  <aside class="notes">
+    <p>不给任何接法提示，不给图。<strong>唯一目标：让两个灯都亮。</strong></p>
+    <p>孩子会<strong>自然分化出两种接法</strong>——这正是今天要对照的材料。你巡视的时候<strong>默默记下哪一组先做出哪一种</strong>，Explain 环节点名请他们上来讲，这比你自己讲有力得多。</p>
+    <p>老规矩：<strong>只反问，不接手</strong>。「你两个灯都接上了吗？」「你的四根线，都用上了吗？」</p>
+    <p>看到有组已经做出一种就停手了，追问：「<strong>还有别的接法能让两个都亮吗？</strong>」不要直接给第二种。</p>
+    <p>重点盯两个雷：一是<strong>两个 LED 被夹在同一个接点上造成短路</strong>（两个都不亮 + 电池发烫），这就是 4 号故障板的内容——<strong>可以让它先自然发生一次</strong>，等会儿正好用；发现电池烫了立刻断开。二是串联那种的<strong>反复重接</strong>，上一页已经打过预防针了。</p>
+  </aside>
+</section>
+
+<!-- ═══════════════ 8 · 两种接法都要搭 ═══════════════ -->
+<section class="slide" data-title="③ 两种接法 · 两种都要搭">
+  <div class="stage-rail"><b>③ 两种接法</b><i class="done"></i><i class="done"></i><i class="on"></i><i></i><i></i></div>
+  <p class="chip cyan" data-anim="fade-down">第 2 关 · 这是硬要求，不是二选一</p>
+  <h2 class="h2 mt-s" data-anim="fade-up">两种接法，<mark>都要搭一遍</mark>。</h2>
+  <div class="vs mt-l" data-anim="fade-up">
+    <div class="no" style="background:#fff">
+      <div class="h3">排排坐</div>
+      <div class="figure mt-s">
+        <svg viewBox="0 0 420 150" style="max-height:24vh">
+          <circle class="filly glow" cx="150" cy="56" r="26"/>
+          <path class="st filly" d="M174 76 v-22 a24 24 0 0 0 -48 0 v22 z"/>
+          <rect class="st fillw" x="122" y="76" width="56" height="11" rx="4"/>
+          <path class="st" d="M138 87 v18"/><path class="st" d="M162 87 v18"/>
+          <circle class="filly glow" cx="280" cy="56" r="26"/>
+          <path class="st filly" d="M304 76 v-22 a24 24 0 0 0 -48 0 v22 z"/>
+          <rect class="st fillw" x="252" y="76" width="56" height="11" rx="4"/>
+          <path class="st" d="M268 87 v18"/><path class="st" d="M292 87 v18"/>
+          <path class="st" d="M30 105 h108"/>
+          <path class="st" d="M162 105 h106"/>
+          <path class="st" d="M292 105 h98"/>
+          <text class="lbl sm" x="182" y="136">手拉手 · 排成一条路</text>
+        </svg>
+      </div>
+      <p class="cap" style="text-align:left;margin-top:10px">两个灯<b>一前一后</b>，在同一条路上</p>
+    </div>
+    <div class="yes">
+      <div class="h3">各走各路</div>
+      <div class="figure mt-s">
+        <svg viewBox="0 0 420 150" style="max-height:24vh">
+          <circle class="filly glow" cx="150" cy="44" r="24"/>
+          <path class="st filly" d="M172 62 v-20 a22 22 0 0 0 -44 0 v20 z"/>
+          <rect class="st fillw" x="124" y="62" width="52" height="10" rx="4"/>
+          <path class="st" d="M139 72 v12"/><path class="st" d="M161 72 v12"/>
+          <path class="st" d="M40 84 h99"/><path class="st" d="M161 84 h219"/>
+          <circle class="filly glow" cx="150" cy="96" r="24"/>
+          <path class="st filly" d="M172 114 v-20 a22 22 0 0 0 -44 0 v20 z"/>
+          <rect class="st fillw" x="124" y="114" width="52" height="10" rx="4"/>
+          <path class="st" d="M139 124 v12"/><path class="st" d="M161 124 v12"/>
+          <path class="st" d="M40 136 h99"/><path class="st" d="M161 136 h219"/>
+          <path class="st" d="M40 84 v52"/><path class="st" d="M380 84 v52"/>
+          <text class="lbl sm" x="196" y="40">两条路 · 互不打扰</text>
+        </svg>
+      </div>
+      <p class="cap" style="text-align:left;margin-top:10px">两个灯<b>各走各的</b>，谁也不挡谁</p>
+    </div>
+  </div>
+  <aside class="notes">
+    <p>现在把两种接法<strong>都摆到台面上</strong>——请刚才做出来的两组分别上来给全班展示，不要你自己演示。</p>
+    <p>「刚才这两组做出来的<strong>不一样</strong>。一种是<strong>排排坐</strong>，两个灯手拉手排成一条路；一种是<strong>各走各路</strong>，两个灯各走各的。」</p>
+    <p><strong>坚持用「排排坐」和「各走各路」这两个生活说法</strong>，一直用到第 14、15 页才换成学名。提前给学名，探究就变成猜老师想要的答案了。</p>
+    <p>如果班上有孩子已经知道「串联并联」这两个词——<strong>请他先别说出来</strong>，告诉他：「等会儿到了那一步，我请你来公布。」既保住了探究，也照顾了他。</p>
+    <p><strong>两种都搭是硬要求</strong>，不是二选一。只搭出一种的组，会在最后一关的判断题上卡住。逐组确认。</p>
+  </aside>
+</section>
+
+<!-- ═══════════════ 9 · 对照表（空） ═══════════════ -->
+<section class="slide" data-title="③ 两种接法 · 对照表（空）">
+  <div class="stage-rail"><b>③ 两种接法</b><i class="done"></i><i class="done"></i><i class="on"></i><i></i><i></i></div>
+  <div class="row" style="justify-content:space-between;align-items:flex-end">
+    <div>
+      <span class="chip yellow" data-anim="fade-down">上半场先填前两列</span>
+      <h2 class="h2 mt-s" data-anim="fade-up">两种接法，<mark>有什么不一样</mark>？</h2>
+    </div>
+    <div class="pop cyan" data-anim="fade-left" style="text-align:center;flex:0 0 auto">
+      <div class="h3">最后一列<br>下半场再填</div>
+    </div>
+  </div>
+  <div class="tbl mt-l" style="grid-template-columns:1fr 1fr 1fr 1.25fr" data-anim="fade-up">
+    <div class="hd blank"></div>
+    <div class="hd">两个都亮吗</div>
+    <div class="hd">哪个更亮</div>
+    <div class="hd">拔掉一个，<br>另一个会怎样</div>
+    <div class="rh">排排坐</div>
+    <div class="todo">？</div><div class="todo">？</div><div class="todo" style="background:var(--surface-2)">下半场</div>
+    <div class="rh">各走各路</div>
+    <div class="todo">？</div><div class="todo">？</div><div class="todo" style="background:var(--surface-2)">下半场</div>
+  </div>
+  <aside class="notes">
+    <p>发《亮度与拔灯对照表》纸质版。<strong>上半场只填前两列</strong>——两个都亮吗、哪个更亮。最后一列留到下半场。</p>
+    <p>为什么分两次？因为「拔掉一个」是全班<strong>统一动作</strong>，要一起做才有对照的力量。提前做了就散了。</p>
+    <p>巡视要点：<strong>串联那一行的「亮度」应该填「暗」</strong>。如果某组填的是「不亮」，先分别单独点亮两个 LED 确认都是好的，再检查接触。</p>
+    <p>再遇到孩子说「我这个太暗了肯定错了」，就一句话：「<strong>没错。它本来就是这么暗，原因等会儿告诉你。</strong>」</p>
+  </aside>
+</section>
+
+<!-- ═══════════════ 10 · 课间休息 ═══════════════ -->
+<section class="slide full-center" data-title="休息 · 课间 10 分钟">
+  <div style="text-align:center">
+    <div class="discovery" data-anim="zoom-pop" style="max-width:min(1000px,86vw)">
+      <p class="chip" style="background:#fff">中场 · 10 分钟</p>
+      <h1 class="hero mt-m">课间休息</h1>
+      <p class="h3 mt-m" style="font-weight:700">
+        <mark class="pink">两种接法都留着别拆</mark>　·　黑板上的票数还没对
+      </p>
+    </div>
+    <p class="lede mt-l" data-anim="fade-up" style="margin-left:auto;margin-right:auto;text-align:center">
+      回来全班一起做同一个动作 —— 然后你就知道它们的区别了。
+    </p>
+  </div>
+  <aside class="notes">
+    <p>走之前说清楚：<strong>两种接法都留在桌上别拆</strong>。下半场要在这两个电路上做同一个动作，拆了就得重搭，时间来不及。</p>
+    <p>这 10 分钟你要做的：<strong>逐组扫一眼，确认每组是不是真的搭出了两种</strong>。只有一种的，回来第一件事先补上——他们在最后一关会卡住。</p>
+    <p>顺手换掉坏的 LED。今天每人用两个，<strong>损耗是平时的两倍</strong>。</p>
+    <p>再提醒一句：<strong>黑板上那三个票数别擦</strong>，第 18 页要用。</p>
+  </aside>
+</section>
+
+<!-- ═══════════════ 11 · 统一动作 ═══════════════ -->
+<section class="slide full-center" data-title="③ 两种接法 · 统一动作：拔掉一个">
+  <div class="stage-rail"><b>③ 两种接法</b><i class="done"></i><i class="done"></i><i class="on"></i><i></i><i></i></div>
+  <div class="ask">
+    <p class="chip pink" data-anim="fade-down">全班一起，同一个动作</p>
+    <p class="q mt-m" data-anim="zoom-pop">拔掉<br>其中一个灯。</p>
+    <p class="sub mt-l" data-anim="fade-up">两种接法，<mark>各做一次</mark>。<br>另一个灯，怎么样了？</p>
+  </div>
+  <aside class="notes">
+    <p><strong>这是今天最有说服力的一次观察，比亮度差异硬得多。</strong>亮度是程度判断，拔灯是<strong>二值判断</strong>——对这个年龄段可靠得多。</p>
+    <p>「两种接法都搭好了吗？好，<strong>现在全班一起做一个动作</strong>——拔掉其中一个灯珠。」</p>
+    <p>先做<strong>排排坐</strong>那一种：「第一种接法，另一个灯怎么样了？」——「<strong>也灭了。</strong>」</p>
+    <p>再做<strong>各走各路</strong>：「第二种呢？」——「<strong>还亮着！</strong>」</p>
+    <p>这里会有一片惊呼，<strong>等这个反应</strong>，别急着往下说。</p>
+    <p>然后抛出那个问题：「<strong>同样是两个灯、一个电池。为什么结果差这么多？</strong>」问完翻页。</p>
+  </aside>
+</section>
+
+<!-- ═══════════════ 12 · 对照表结果 ═══════════════ -->
+<section class="slide" data-title="③ 两种接法 · 对照表结果">
+  <div class="stage-rail"><b>③ 两种接法</b><i class="done"></i><i class="done"></i><i class="on"></i><i></i><i></i></div>
+  <h2 class="h2" data-anim="fade-up">同样的零件，<mark>结果完全不同</mark>。</h2>
+  <div class="tbl mt-l" style="grid-template-columns:1fr 1fr 1fr 1.25fr" data-anim="fade-up">
+    <div class="hd blank"></div>
+    <div class="hd">两个都亮吗</div>
+    <div class="hd">哪个更亮</div>
+    <div class="hd">拔掉一个，<br>另一个会怎样</div>
+    <div class="rh">排排坐</div>
+    <div class="on">○ 都亮</div>
+    <div class="off">暗<small>两个灯分推力</small></div>
+    <div class="off">也灭了<small>只有一条路</small></div>
+    <div class="rh">各走各路</div>
+    <div class="on">○ 都亮</div>
+    <div class="on">亮<small>和单个灯一样</small></div>
+    <div class="on">还亮着<small>两条路互不打扰</small></div>
+  </div>
+  <p class="lede mt-l" data-anim="fade-up" style="text-align:center;max-width:none;font-weight:800;color:var(--text-1)">
+    两个灯、一个电池，零件一模一样 —— <mark class="pink">差的只是「怎么连」</mark>。
+  </p>
+  <aside class="notes">
+    <p>全班汇总，<strong>让他们自己报</strong>，你只负责在黑板大表上填。</p>
+    <p>填完停一下，让他们<strong>盯着最后一列看</strong>：一个「也灭了」，一个「还亮着」。这一列就是今天全部的判定依据。</p>
+    <p>然后说今天的核心那句：「两个灯、一个电池，<strong>零件一模一样</strong>。差的只是——<strong>怎么连</strong>。」</p>
+    <p>如果有组的数据和大表不一致，<strong>当场让他重做一次</strong>，别放过。特别是串联行填了「不亮」的，多半是有一个 LED 已经坏了。</p>
+    <p>名字还是先不给。下一页先问「为什么」。</p>
+  </aside>
+</section>
+
+<!-- ═══════════════ 13 · 为什么差这么多 ═══════════════ -->
+<section class="slide full-center" data-title="③ 两种接法 · 为什么差这么多">
+  <div class="stage-rail"><b>③ 两种接法</b><i class="done"></i><i class="done"></i><i class="on"></i><i></i><i></i></div>
+  <div class="ask">
+    <p class="chip cyan" data-anim="fade-down">同样两个灯，同样一个电池</p>
+    <p class="q mt-m" data-anim="zoom-pop">为什么<br>差这么多？</p>
+    <p class="sub mt-l" data-anim="fade-up">提示：想一想上节课那个词 —— <mark>「一圈」</mark>。<br>这两种接法，<mark class="pink">各有几圈</mark>？</p>
+  </div>
+  <aside class="notes">
+    <p>留足时间，<strong>至少一分钟</strong>。不要替他们回答。</p>
+    <p>提示只给一个方向，不给答案：「<strong>想一想上节课那个词——『一圈』。</strong>你数一数：排排坐那种，电走的路有<strong>几圈</strong>？各走各路那种呢？」</p>
+    <p>这个提示是<strong>故意接回第 2 课</strong>的。第 2 课立住的「完整的一圈」，今天要变成「<strong>可以有好几圈</strong>」。这是概念的自然生长，不是新知识。</p>
+    <p>会有孩子说出「<strong>一条路 / 两条路</strong>」——就是它。让那个孩子上来，指着自己的电路讲给全班听。</p>
+    <p>他讲完，你再给名字。</p>
+  </aside>
+</section>
+
+<!-- ═══════════════ 14 · 命名：串联 ═══════════════ -->
+<section class="slide" data-title="④ 起名字 · 排排坐 = 串联">
+  <div class="stage-rail"><b>④ 起名字</b><i class="done"></i><i class="done"></i><i class="done"></i><i class="on"></i><i></i></div>
+  <div class="row" style="gap:clamp(20px,2.4vw,50px);align-items:center">
+    <div style="flex:1">
+      <span class="chip yellow" data-anim="fade-down">排排坐，有个名字</span>
+      <h2 class="h2 mt-s" data-anim="rise-in">叫 <mark class="pink">串联</mark>。</h2>
+      <div class="stack-l mt-l">
+        <div class="pop yellow" data-anim="fade-right"><div class="h3">只有<b>一条路</b></div></div>
+        <div class="pop" data-anim="fade-right" style="background:var(--surface-2)">
+          <div class="h3">两个灯<b>分着</b>同一份推力 → <b>暗</b></div></div>
+        <div class="pop pink" data-anim="fade-right"><div class="h3">断一处 → <b>全灭</b></div></div>
+      </div>
+    </div>
+    <div class="figure" style="flex:1.15" data-anim="fade-left">
+      <svg viewBox="0 0 680 400" role="img" aria-label="串联电路：两个灯在同一条路上">
+        <circle class="filly glow" cx="250" cy="112" r="34"/>
+        <path class="st filly" d="M282 140 v-30 a32 32 0 0 0 -64 0 v30 z"/>
+        <rect class="st fillw" x="212" y="140" width="76" height="13" rx="5"/>
+        <path class="st" d="M232 153 v27"/><path class="st" d="M268 153 v27"/>
+        <circle class="filly glow" cx="430" cy="112" r="34"/>
+        <path class="st filly" d="M462 140 v-30 a32 32 0 0 0 -64 0 v30 z"/>
+        <rect class="st fillw" x="392" y="140" width="76" height="13" rx="5"/>
+        <path class="st" d="M412 153 v27"/><path class="st" d="M448 153 v27"/>
+        <path class="st" style="stroke:var(--accent-2)" d="M232 180 h-118 q-16 0 -16 16 v104 q0 16 16 16 h72"/>
+        <path class="st" d="M268 180 h144"/>
+        <path class="st" style="stroke:var(--accent)" d="M448 180 h118 q16 0 16 16 v104 q0 16 -16 16 h-72"/>
+        <rect class="st fillw" x="186" y="288" width="308" height="72" rx="14"/>
+        <rect class="st2 filly" x="208" y="306" width="80" height="36" rx="7"/>
+        <rect class="st2 filly" x="298" y="306" width="80" height="36" rx="7"/>
+        <rect class="st2 filly" x="388" y="306" width="80" height="36" rx="7"/>
+        <circle class="st fillk" cx="186" cy="324" r="12"/>
+        <circle class="st fillp" cx="494" cy="324" r="12"/>
+        <text class="lbl pm" x="130" y="334">−</text>
+        <text class="lbl pm" x="524" y="334" style="fill:var(--accent)">＋</text>
+        <text class="lbl" x="296" y="212" style="fill:var(--text-2)">一条路走到底</text>
+      </svg>
+    </div>
+  </div>
+  <aside class="notes">
+    <p>「排排坐的这一种，有个名字叫<strong>串联</strong>。」</p>
+    <p>如果班上有孩子早就知道这个词，<strong>请他来公布</strong>——上半场答应过他的。</p>
+    <p>指着图，让全班用手指沿着线走一遍：「从＋出发，<strong>穿过第一个灯，再穿过第二个灯</strong>，回到−。<strong>从头到尾只有一条路。</strong>」</p>
+    <p>「<strong>只有一条路</strong>」这五个字是串联的全部内容，比「串联」这个名字重要得多。后面判断电路，靠的都是它。</p>
+    <p>「断一处全灭」这条可以回扣上节课：「这就是上节课的五点表——<strong>一条路上，断在哪都一样灭</strong>。」</p>
+    <p>「为什么暗」先不展开，第 17 页专门讲。</p>
+  </aside>
+</section>
+
+<!-- ═══════════════ 15 · 命名：并联 ═══════════════ -->
+<section class="slide" data-title="④ 起名字 · 各走各路 = 并联">
+  <div class="stage-rail"><b>④ 起名字</b><i class="done"></i><i class="done"></i><i class="done"></i><i class="on"></i><i></i></div>
+  <div class="row" style="gap:clamp(20px,2.4vw,50px);align-items:center">
+    <div class="figure" style="flex:1.15" data-anim="fade-right">
+      <svg viewBox="0 0 700 440" role="img" aria-label="并联电路：两个灯各走一条路">
+        <!-- 第 1 条路 -->
+        <circle class="filly glow" cx="250" cy="62" r="32"/>
+        <path class="st filly" d="M280 90 v-28 a30 30 0 0 0 -60 0 v28 z"/>
+        <rect class="st fillw" x="214" y="90" width="72" height="13" rx="5"/>
+        <path class="st" d="M233 103 v47"/><path class="st" d="M267 103 v47"/>
+        <path class="st" style="stroke:var(--accent-2)" d="M233 150 h-113"/>
+        <path class="st" style="stroke:var(--accent)" d="M267 150 h313"/>
+        <text class="lbl sm" x="392" y="136" style="fill:var(--text-2)">第 1 条路</text>
+        <!-- 第 2 条路 -->
+        <circle class="filly glow" cx="250" cy="222" r="32"/>
+        <path class="st filly" d="M280 250 v-28 a30 30 0 0 0 -60 0 v28 z"/>
+        <rect class="st fillw" x="214" y="250" width="72" height="13" rx="5"/>
+        <path class="st" d="M233 263 v47"/><path class="st" d="M267 263 v47"/>
+        <path class="st" style="stroke:var(--accent-2)" d="M233 310 h-113"/>
+        <path class="st" style="stroke:var(--accent)" d="M267 310 h313"/>
+        <text class="lbl sm" x="392" y="296" style="fill:var(--text-2)">第 2 条路</text>
+        <!-- 两条总线 -->
+        <path class="st" style="stroke:var(--accent-2)" d="M120 150 v220 h66"/>
+        <path class="st" style="stroke:var(--accent)" d="M580 150 v220 h-86"/>
+        <!-- 电池 -->
+        <rect class="st fillw" x="186" y="334" width="308" height="72" rx="14"/>
+        <rect class="st2 filly" x="208" y="352" width="80" height="36" rx="7"/>
+        <rect class="st2 filly" x="298" y="352" width="80" height="36" rx="7"/>
+        <rect class="st2 filly" x="388" y="352" width="80" height="36" rx="7"/>
+        <circle class="st fillk" cx="186" cy="370" r="12"/>
+        <circle class="st fillp" cx="494" cy="370" r="12"/>
+        <text class="lbl pm" x="130" y="382">−</text>
+        <text class="lbl pm" x="524" y="382" style="fill:var(--accent)">＋</text>
+      </svg>
+    </div>
+    <div style="flex:1">
+      <span class="chip cyan" data-anim="fade-down">各走各路，也有个名字</span>
+      <h2 class="h2 mt-s" data-anim="rise-in">叫 <mark class="cyan">并联</mark>。</h2>
+      <div class="stack-l mt-l">
+        <div class="pop cyan" data-anim="fade-left"><div class="h3">有<b>两条路</b></div></div>
+        <div class="pop yellow" data-anim="fade-left">
+          <div class="h3">每个灯<b>各拿一份</b>推力 → <b>一样亮</b></div></div>
+        <div class="pop" data-anim="fade-left"><div class="h3">断一条 → <b>另一条照亮</b></div></div>
+      </div>
+    </div>
+  </div>
+  <aside class="notes">
+    <p>「各走各路的那一种，叫<strong>并联</strong>。」</p>
+    <p>还是用手指走：「从＋出发，走到这儿——<strong>路分岔了</strong>。一条走上面那个灯，一条走下面那个灯，<strong>最后都回到−</strong>。」</p>
+    <p>关键的那句：「并联为什么拔掉一个另一个还亮？因为它们<strong>本来走的就是两条不同的路，互相不挡道</strong>。」</p>
+    <p>把两个名字放一起念一遍：<strong>串联、并联</strong>。然后翻下一页，把两张图并排摆出来——<strong>并排是今天最重要的视觉信息</strong>。</p>
+    <p>注意口径：<strong>不要说「分压」</strong>，说「分推力」；本课程统一用这个说法，后面不要换。</p>
+  </aside>
+</section>
+
+<!-- ═══════════════ 16 · 并排双图 ═══════════════ -->
+<section class="slide" data-title="④ 起名字 · 并排看：串 vs 并">
+  <div class="stage-rail"><b>④ 起名字</b><i class="done"></i><i class="done"></i><i class="done"></i><i class="on"></i><i></i></div>
+  <h2 class="h2" data-anim="fade-up">并排看一遍。</h2>
+  <div class="vs mt-m" data-anim="fade-up">
+    <div style="background:var(--surface-2)">
+      <div class="h3">串联 · 排排坐</div>
+      <svg viewBox="0 0 400 190" style="max-height:26vh;margin-top:8px">
+        <circle class="st fillw" cx="140" cy="46" r="24"/><text class="lbl sm" x="140" y="52" text-anchor="middle">灯①</text>
+        <circle class="st fillw" cx="260" cy="46" r="24"/><text class="lbl sm" x="260" y="52" text-anchor="middle">灯②</text>
+        <path class="st" d="M164 46 h72"/>
+        <path class="st" style="stroke:var(--accent-2)" d="M116 46 h-56 q-14 0 -14 14 v54 q0 14 14 14 h60"/>
+        <path class="st" style="stroke:var(--accent)" d="M284 46 h56 q14 0 14 14 v54 q0 14 -14 14 h-60"/>
+        <rect class="st fillw" x="120" y="108" width="160" height="40" rx="10"/>
+        <text class="lbl" x="152" y="134">电池</text>
+        <text class="lbl sm" x="126" y="182">只有一条路</text>
+      </svg>
+    </div>
+    <div style="background:var(--accent-3)">
+      <div class="h3">并联 · 各走各路</div>
+      <svg viewBox="0 0 400 190" style="max-height:26vh;margin-top:8px">
+        <circle class="st fillw" cx="200" cy="30" r="22"/><text class="lbl sm" x="200" y="36" text-anchor="middle">灯①</text>
+        <circle class="st fillw" cx="200" cy="86" r="22"/><text class="lbl sm" x="200" y="92" text-anchor="middle">灯②</text>
+        <path class="st" style="stroke:var(--accent-2)" d="M178 30 h-58"/>
+        <path class="st" style="stroke:var(--accent)" d="M222 30 h58"/>
+        <path class="st" style="stroke:var(--accent-2)" d="M178 86 h-58"/>
+        <path class="st" style="stroke:var(--accent)" d="M222 86 h58"/>
+        <path class="st" style="stroke:var(--accent-2)" d="M120 30 v84 h20"/>
+        <path class="st" style="stroke:var(--accent)" d="M280 30 v84 h-20"/>
+        <rect class="st fillw" x="140" y="108" width="120" height="36" rx="10"/>
+        <text class="lbl" x="168" y="132">电池</text>
+        <text class="lbl sm" x="146" y="182">两条路，互不打扰</text>
+      </svg>
+    </div>
+  </div>
+  <p class="lede mt-m" data-anim="fade-up" style="text-align:center;max-width:none;font-weight:800;color:var(--text-1)">
+    <mark>数一数有几条路</mark> —— 一条是串联，好几条是并联。
+  </p>
+  <aside class="notes">
+    <p><strong>这两张图必须并排画在黑板上，不能分两次画在不同位置。并排是本课最重要的视觉信息。</strong></p>
+    <p>画完让全班做一个动作：<strong>用手指数一数每张图上有几条路</strong>。左边一条，右边两条。</p>
+    <p>「<strong>数一数有几条路</strong>——一条是串联，好几条是并联。」</p>
+    <p>这个板书<strong>整节课不擦</strong>，后面场景迁移和最后一关都要回来指它。</p>
+    <p>如果黑板空间紧张，宁可擦掉别的也要留这两张图。</p>
+  </aside>
+</section>
+
+<!-- ═══════════════ 17 · 为什么串联暗 ═══════════════ -->
+<section class="slide" data-title="④ 起名字 · 串联为什么暗：分推力">
+  <div class="stage-rail"><b>④ 起名字</b><i class="done"></i><i class="done"></i><i class="done"></i><i class="on"></i><i></i></div>
+  <p class="chip pink" data-anim="fade-down">现在回答上半场那个问题</p>
+  <h2 class="h2 mt-s" data-anim="fade-up">串起来，为什么会<mark>暗</mark>？</h2>
+  <div class="figure mt-m" data-anim="fade-up">
+    <svg viewBox="0 0 860 210" role="img" aria-label="一个人推 vs 两个人分着同一份推力">
+      <g>
+        <text class="lbl" x="20" y="34">一个灯</text>
+        <rect class="st filly" x="20" y="52" width="330" height="40" rx="12"/>
+        <text class="lbl" x="118" y="80">整整一份推力</text>
+        <circle class="filly glow" cx="180" cy="150" r="30"/>
+        <path class="st filly" d="M206 174 v-26 a26 26 0 0 0 -52 0 v26 z"/>
+        <rect class="st fillw" x="150" y="174" width="60" height="12" rx="4"/>
+        <text class="lbl" x="228" y="182" style="fill:var(--accent)">亮</text>
+      </g>
+      <path class="st2" style="stroke:var(--border-strong)" d="M410 30 v160"/>
+      <g transform="translate(460,0)">
+        <text class="lbl" x="20" y="34">两个灯串起来</text>
+        <rect class="st2 filly" x="20" y="52" width="163" height="40" rx="12"/>
+        <rect class="st2 filly" x="191" y="52" width="163" height="40" rx="12"/>
+        <text class="lbl sm" x="48" y="78">半份</text><text class="lbl sm" x="220" y="78">半份</text>
+        <circle class="filly" cx="110" cy="150" r="22" opacity=".3"/>
+        <path class="st filly" d="M132 172 v-22 a22 22 0 0 0 -44 0 v22 z" style="fill:#f5e3a8"/>
+        <rect class="st fillw" x="84" y="172" width="52" height="11" rx="4"/>
+        <circle class="filly" cx="266" cy="150" r="22" opacity=".3"/>
+        <path class="st filly" d="M288 172 v-22 a22 22 0 0 0 -44 0 v22 z" style="fill:#f5e3a8"/>
+        <rect class="st fillw" x="240" y="172" width="52" height="11" rx="4"/>
+        <text class="lbl" x="318" y="180" style="fill:var(--text-3)">都暗</text>
+      </g>
+    </svg>
+  </div>
+  <p class="lede mt-s" data-anim="fade-up" style="text-align:center;max-width:none;font-weight:800;color:var(--text-1)">
+    一条路上两个灯，<mark class="cyan">分着同一份推力</mark> —— 每个分到的就少了。
+  </p>
+  <aside class="notes">
+    <p>现在才回答上半场埋的那个问题，孩子已经等了一节课了。</p>
+    <p>「串联为什么暗？因为<strong>两个灯在一条路上，要分着用同一份推力</strong>。<strong>一个人推变成两个人分，每个分到的就少了。</strong>」</p>
+    <p>可以加一个身体动作：让两个孩子上来一起推同一张桌子，再让一个人推。「力气是同一份，人多了，<strong>每个人出的就少</strong>。」</p>
+    <p><strong>口径统一：说「分推力」，不要说「分压」。</strong>这个说法后面几节课会一直用，不要中途换词。</p>
+    <p>常见误解：有孩子会把「暗」理解成「<strong>电池快没电了</strong>」。破法很简单——<strong>用同一个电池</strong>分别测单灯（亮）和双灯串联（暗）各一次。同一个电池、不同亮度，误解自然消解。</p>
+  </aside>
+</section>
+
+<!-- ═══════════════ 18 · 公布投票 ═══════════════ -->
+<section class="slide full-center" data-title="④ 起名字 · 公布投票结果">
+  <div class="stage-rail"><b>④ 起名字</b><i class="done"></i><i class="done"></i><i class="done"></i><i class="on"></i><i></i></div>
+  <div style="text-align:center">
+    <p class="chip yellow" data-anim="fade-down">回到黑板 · 开场那三个数字</p>
+    <p class="hero mt-m" data-anim="zoom-pop">答案是：<mark>能</mark>。</p>
+    <p class="h3 mt-l" data-anim="fade-up" style="font-weight:700;color:var(--text-2)">
+      而且有<mark class="pink">两种</mark>接法都能做到。<br>猜「能」的同学 —— 你们赢了。
+    </p>
+  </div>
+  <aside class="notes">
+    <p>走回黑板，指着开场写的三个票数。</p>
+    <p>「开场的时候，猜『<strong>能</strong>』的有 ___ 个人，猜『不能』的有 ___ 个，不确定的 ___ 个。」</p>
+    <p>「答案是：<strong>能</strong>。而且<strong>有两种接法都能做到</strong>。」</p>
+    <p>然后<strong>照顾猜错的那批</strong>，这一步别省：「猜『不能』的同学，你们也没白猜——<strong>如果只有一根线、一个电池，你们就是对的。</strong>是你们逼着大家去找第二种、第三种接法。」</p>
+    <p>这个闭环是今天结构上的收尾。投了票、实验了、回来对答案——<strong>一节完整的探究课就是这个形状</strong>。</p>
+  </aside>
+</section>
+
+<!-- ═══════════════ 19 · 判断依据 ═══════════════ -->
+<section class="slide" data-title="⑤ 用起来 · 判断依据：拔掉一个试试">
+  <div class="stage-rail"><b>⑤ 用起来</b><i class="done"></i><i class="done"></i><i class="done"></i><i class="done"></i><i class="on"></i></div>
+  <p class="chip cyan" data-anim="fade-down">新装备 · 贴在桌角</p>
+  <h2 class="h2 mt-s" data-anim="fade-up"><mark class="pink">不要看它长什么样。</mark></h2>
+  <div class="checks mt-m" data-anim="stagger-list">
+    <div class="check" style="background:var(--surface-2)">
+      <div class="badge">✂</div>
+      <div><div class="ct">拔掉一个灯 → 其他<b>也灭</b>　＝　<mark>串联</mark></div>
+      <div class="cs">只有一条路</div></div>
+    </div>
+    <div class="check" style="background:var(--accent-3)">
+      <div class="badge" style="background:#fff">✂</div>
+      <div><div class="ct">拔掉一个灯 → 其他<b>还亮</b>　＝　<mark class="cyan">并联</mark></div>
+      <div class="cs">有好几条路</div></div>
+    </div>
+  </div>
+  <p class="lede mt-l" data-anim="fade-up" style="text-align:center;max-width:none;font-weight:800;color:var(--text-1)">
+    这个办法<mark>在任何电路上都好用</mark> —— 包括你家的灯。
+  </p>
+  <aside class="notes">
+    <p>这张卡今天新增，<strong>贴到桌角</strong>，和排查四问放一起。</p>
+    <p>「怎么判断是串联还是并联？<strong>不要看它长什么样</strong>——线绕来绕去你也看不清。<strong>看这一条就够了：</strong>」</p>
+    <p>「<strong>拔掉一个灯，其他也灭 = 串联。拔掉一个灯，其他还亮 = 并联。</strong>」</p>
+    <p>这是今天最值钱的一句话，因为它<strong>可迁移</strong>：不管电路多复杂、线多乱，这个办法都管用。</p>
+    <p>让全班跟着念一遍。然后翻页，马上用它判断真实场景——学完立刻用，才记得住。</p>
+  </aside>
+</section>
+
+<!-- ═══════════════ 20 · 教室的灯 ═══════════════ -->
+<section class="slide" data-title="⑤ 用起来 · 教室的灯是哪种">
+  <div class="stage-rail"><b>⑤ 用起来</b><i class="done"></i><i class="done"></i><i class="done"></i><i class="done"></i><i class="on"></i></div>
+  <div class="row" style="gap:clamp(20px,2.4vw,50px);align-items:center">
+    <div style="flex:1">
+      <span class="chip pink" data-anim="fade-down">抬头看一眼</span>
+      <h2 class="h2 mt-s" data-anim="fade-up">我们教室的灯，<br>是<mark>串</mark>还是<mark class="cyan">并</mark>？</h2>
+      <p class="h3 mt-l" data-anim="fade-up" style="font-weight:800">你怎么知道的？</p>
+    </div>
+    <div class="figure" style="flex:1.1" data-anim="fade-left">
+      <svg viewBox="0 0 560 240" role="img" aria-label="教室四盏灯，坏了一盏其他还亮">
+        <path class="st" d="M40 40 h480"/>
+        <g>
+          <path class="st" d="M110 40 v26"/><rect class="st filly" x="60" y="66" width="100" height="34" rx="9"/>
+          <path class="st" d="M250 40 v26"/><rect class="st fillw" x="200" y="66" width="100" height="34" rx="9" style="fill:var(--surface-2)"/>
+          <path class="st" style="stroke:var(--accent);stroke-width:5" d="M236 74 l28 22 M264 74 l-28 22"/>
+          <path class="st" d="M390 40 v26"/><rect class="st filly" x="340" y="66" width="100" height="34" rx="9"/>
+          <path class="st" d="M490 40 v26"/><rect class="st filly" x="452" y="66" width="76" height="34" rx="9"/>
+        </g>
+        <text class="lbl sm" x="196" y="128" style="fill:var(--accent)">这盏坏了</text>
+        <text class="lbl" x="60" y="176">其他三盏 —— <tspan style="fill:var(--accent)">照样亮</tspan></text>
+        <text class="lbl" x="60" y="212" style="fill:var(--text-2)">所以它们是各走各路的</text>
+      </svg>
+    </div>
+  </div>
+  <aside class="notes">
+    <p>让全班<strong>抬头看教室的灯</strong>，这个动作比放图片有用。</p>
+    <p>「我们教室的灯，是串联还是并联？<strong>你怎么知道？</strong>」</p>
+    <p><strong>等他们自己说出「有一盏坏了其他还亮」。</strong>说不出来就提示：「上次教室有灯管坏掉的时候，<strong>别的灯灭了吗？</strong>」</p>
+    <p>这一问的价值在于：判断依据从「<strong>看外观</strong>」转成了「<strong>看坏一个会不会影响其他</strong>」。孩子看不见天花板里的线，但照样能判断——这才叫会用。</p>
+    <p>可以再追一句想深一点的：「<strong>要是教室的灯是串联，会怎么样？</strong>」——一根灯管坏了全教室黑。「所以为什么房子里要用并联？」答案自己就出来了。</p>
+  </aside>
+</section>
+
+<!-- ═══════════════ 21 · 圣诞灯串 ═══════════════ -->
+<section class="slide" data-title="⑤ 用起来 · 老式圣诞灯串是哪种">
+  <div class="stage-rail"><b>⑤ 用起来</b><i class="done"></i><i class="done"></i><i class="done"></i><i class="done"></i><i class="on"></i></div>
+  <div class="row" style="gap:clamp(20px,2.4vw,50px);align-items:center">
+    <div class="figure" style="flex:1.1" data-anim="fade-right">
+      <svg viewBox="0 0 560 220" role="img" aria-label="老式圣诞灯串坏一个整串全黑">
+        <path class="st" d="M20 60 q70 50 140 0 q70 -50 140 0 q70 50 140 0 q40 -28 100 -6"/>
+        <g>
+          <circle class="st" cx="90" cy="76" r="17" style="fill:var(--surface-2)"/>
+          <circle class="st" cx="230" cy="76" r="17" style="fill:var(--surface-2)"/>
+          <circle class="st" cx="160" cy="34" r="17" style="fill:var(--surface-2)"/>
+          <circle class="st" cx="300" cy="34" r="17" style="fill:var(--surface-2)"/>
+          <circle class="st" cx="370" cy="76" r="17" style="fill:var(--surface-2)"/>
+          <circle class="st fillw" cx="440" cy="40" r="17"/>
+          <path class="st" style="stroke:var(--accent);stroke-width:5" d="M430 30 l20 20 M450 30 l-20 20"/>
+        </g>
+        <text class="lbl sm" x="400" y="14" style="fill:var(--accent)">只坏了这一个</text>
+        <text class="lbl" x="30" y="152">整串 —— <tspan style="fill:var(--text-3)">全黑</tspan></text>
+        <text class="lbl" x="30" y="190" style="fill:var(--text-2)">所以它们手拉手排在一条路上</text>
+      </svg>
+    </div>
+    <div style="flex:1">
+      <span class="chip yellow" data-anim="fade-down">老式圣诞灯串</span>
+      <h2 class="h2 mt-s" data-anim="fade-up">坏<mark class="pink">一个</mark>，<br>整串<mark>全黑</mark>。</h2>
+      <p class="h3 mt-l" data-anim="fade-up" style="font-weight:800">那它是哪一种？</p>
+      <div class="pop cyan mt-l" data-anim="fade-up">
+        <p class="h3" style="margin:0">你已经不用看线了 ——<br>光凭这一句就能判断。</p>
+      </div>
+    </div>
+  </div>
+  <aside class="notes">
+    <p>「那<strong>老式的圣诞灯串</strong>呢？坏一个就整串全黑，是哪一种？」</p>
+    <p>这题全班基本能秒答「<strong>串联</strong>」。让他们答得爽快一点——这是能力被确认的时刻。</p>
+    <p>关键是点破那层意思：「注意你们刚才干了什么——<strong>你们根本没看见那串灯里面的线</strong>，光凭『坏一个全黑』这一句话就判断出来了。<strong>这就叫会用。</strong>」</p>
+    <p>可以补一句现实：「现在的灯串大多改成并联了，坏一个不影响别的。<strong>为什么要改？</strong>」——因为串联的那种，坏一个你得<strong>一个一个试</strong>才知道是哪个坏了。</p>
+    <p>时间紧张的话，这一页和上一页可以砍掉移到第 4 课开场做复习。<strong>但最后一关不能砍</strong>。</p>
+  </aside>
+</section>
+
+<!-- ═══════════════ 22 · 故障板 4 号 ═══════════════ -->
+<section class="slide" data-title="⑤ 用起来 · 故障板 4 号：都不亮还发烫">
+  <div class="stage-rail"><b>⑤ 用起来</b><i class="done"></i><i class="done"></i><i class="done"></i><i class="done"></i><i class="on"></i></div>
+  <div class="row" style="justify-content:space-between;align-items:flex-end">
+    <div>
+      <span class="chip pink" data-anim="fade-down">故障板 4 号 · 新毛病</span>
+      <h2 class="h2 mt-s" data-anim="fade-up">两个灯<mark>都不亮</mark>，<br>电池还<mark class="pink">发烫</mark>。</h2>
+    </div>
+    <div class="pop yellow" data-anim="fade-left" style="flex:0 0 auto;text-align:center">
+      <div class="h3">摸到烫的<br>立刻断开</div>
+    </div>
+  </div>
+  <div class="figure mt-m" data-anim="fade-up">
+    <svg viewBox="0 0 700 250" role="img" aria-label="两个LED挤在同一个接点上造成短路">
+      <circle class="st fillw" cx="250" cy="60" r="26"/><text class="lbl sm" x="250" y="66" text-anchor="middle">灯①</text>
+      <circle class="st fillw" cx="250" cy="150" r="26"/><text class="lbl sm" x="250" y="156" text-anchor="middle">灯②</text>
+      <circle class="st fillp" cx="420" cy="105" r="22"/>
+      <path class="st" d="M276 60 q80 0 124 38"/>
+      <path class="st" d="M276 150 q80 0 124 -38"/>
+      <path class="st" d="M224 60 q-80 0 -124 38"/>
+      <path class="st" d="M224 150 q-80 0 -124 -38"/>
+      <circle class="st fillp" cx="86" cy="105" r="22"/>
+      <path class="st" style="stroke:var(--accent);stroke-width:6" d="M86 105 h334"/>
+      <text class="lbl" x="196" y="96" style="fill:var(--accent)">两条腿挤在同一个夹子上</text>
+      <text class="lbl" x="150" y="222" style="fill:var(--accent)">→ 电不走灯，直接抄近路回电池</text>
+    </svg>
+  </div>
+  <aside class="notes">
+    <p>这块板的现象很好认：<strong>两个灯都不亮，而且电池发烫。</strong></p>
+    <p>毛病是<strong>两个 LED 的腿被夹在同一个接点上</strong>，电不走灯，<strong>直接抄近路回电池</strong>。</p>
+    <p>上半场自由尝试的时候，<strong>大概率已经有组自然遇到过一次</strong>——把那一组叫起来：「你们刚才是不是有一次两个都不亮、电池还烫？那就是这个。」用真实发生过的事，比讲故障板有力。</p>
+    <p>安全那条要说死：「<strong>摸到电池发烫，立刻断开，然后举手。</strong>」今天线多，这种情况会比前两课多。</p>
+    <p>「抄近路」这个说法<strong>点到为止，不展开</strong>——第 5 课专门讲短路。今天只要他们知道「<strong>烫 = 有问题 = 马上断开</strong>」就够了。</p>
+  </aside>
+</section>
+
+<!-- ═══════════════ 23 · 最后一关 ═══════════════ -->
+<section class="slide full-center" data-title="⑤ 用起来 · 先预测，后验证（逐人）">
+  <div class="stage-rail"><b>⑤ 用起来</b><i class="done"></i><i class="done"></i><i class="done"></i><i class="done"></i><i class="on"></i></div>
+  <div style="text-align:center">
+    <span class="chip pink" data-anim="fade-down">最后一关 · 一个一个过</span>
+    <h1 class="hero mt-m" data-anim="rise-in">先预测，<br>再动手。</h1>
+    <div class="row mt-l" style="justify-content:center;gap:clamp(16px,1.8vw,34px);flex-wrap:wrap" data-anim="fade-up">
+      <div class="pop yellow"><div class="h3">① 判断</div><p class="cap" style="margin-top:6px">这张图是<br>串还是并？</p></div>
+      <div class="pop cyan"><div class="h3">② 预测</div><p class="cap" style="margin-top:6px">拔掉一个灯<br>会怎样？<b>先写下来</b></p></div>
+      <div class="pop pink"><div class="h3">③ 验证</div><p class="cap" style="margin-top:6px">搭出来<br>看你猜对没</p></div>
+    </div>
+  </div>
+  <aside class="notes">
+    <p><strong>今天唯一的判定依据，死保 8 分钟。</strong></p>
+    <p>发一张<strong>他们没见过的电路简图</strong>（串或并，每人一张，两种混着发）。三步走，<strong>顺序不能反</strong>。</p>
+    <p>为什么必须<strong>先预测后验证</strong>？因为让他们先搭出来，就会变成<strong>看着结果倒推答案</strong>——那验不出他到底会不会判断。</p>
+    <p>你逐人走过去，看他<strong>纸上先写好的预测</strong>，再看他搭出来的结果对不对。<strong>预测栏空着的不算过。</strong></p>
+    <p>过关标准：能判断结构 + 预测正确。判断错但能说清理由的，让他再做一张。</p>
+    <p>不合格的当场再来一次，<strong>不要留到下节课</strong>——第 4 课的面包板直接建立在这上面。</p>
+  </aside>
+</section>
+
+<!-- ═══════════════ 24 · 今日大发现 ═══════════════ -->
+<section class="slide full-center" data-title="收尾 · 今日大发现">
+  <div class="discovery" data-anim="zoom-pop" style="max-width:min(1100px,88vw);margin:0 auto">
+    <p class="chip pink">今日大发现</p>
+    <p class="hero mt-m">怎么连，<br>决定了会发生什么。</p>
+    <p class="h3 mt-l" style="font-weight:700">
+      零件一模一样　—　<mark class="pink">连法不同，结果完全不同</mark>
+    </p>
+  </div>
+  <aside class="notes">
+    <p>全班<strong>一起读一遍</strong>：「怎么连，决定了会发生什么。」</p>
+    <p>把今天串起来：「同样两个灯、同样一个电池、同样四根线。<strong>排排坐 = 串联</strong>，一条路，分推力，暗，断一处全灭。<strong>各走各路 = 并联</strong>，好几条路，互不打扰，断一条其他照亮。」</p>
+    <p>再推远一点：「这件事不只是电路。<strong>同样的人，怎么组队，结果也完全不同。</strong>」——这一句看班级气氛，愿意说就说。</p>
+    <p>今天带走的那个动作是：<strong>拔掉一个试试，就知道了。</strong>比记住两个名字重要得多。</p>
+  </aside>
+</section>
+
+<!-- ═══════════════ 25 · 回家做 ═══════════════ -->
+<section class="slide" data-title="收尾 · 回家做">
+  <h2 class="h2" data-anim="fade-up">回家做。</h2>
+  <div class="grid g2 mt-l">
+    <div class="pop pink" data-anim="fade-right">
+      <span class="chip" style="background:#fff">必做 · 每个人</span>
+      <div class="h3 mt-m">找一找：家里哪些灯是「坏一个不影响别的」？</div>
+      <p class="cap" style="text-align:left;margin-top:12px;color:rgba(255,255,255,.9)">
+        客厅吊灯上的小灯泡、浴霸、灯带都可以。<br>
+        把它记下来，还要<strong>说出你判断的依据</strong>。
+      </p>
+    </div>
+    <div class="pop cyan" data-anim="fade-left">
+      <span class="chip" style="background:#fff">选做 · 想挑战的人</span>
+      <div class="h3 mt-m">如果让你设计一串装饰灯，你会用串联还是并联？</div>
+      <p class="cap" style="text-align:left;margin-top:12px">
+        把<strong>理由</strong>写下来，一句话就行。<br>
+        没有标准答案 —— 说得出理由就算对。
+      </p>
+    </div>
+  </div>
+  <p class="lede mt-l" data-anim="fade-up" style="text-align:center;max-width:none;font-weight:800;color:var(--text-1)">
+    看不出来没关系 —— <mark>拔掉一个试试，就知道了。</mark>
+  </p>
+  <aside class="notes">
+    <p>必做那条的重点是<strong>「说出依据」</strong>，不是找到答案。「我猜是并联」不算，「<strong>上次坏了一个，别的还亮，所以是并联</strong>」才算。</p>
+    <p>提醒一句安全：「<strong>只许看，不许拆，不许碰插座。</strong>」家里的电和我们的 4.5V 电池<strong>完全不是一回事</strong>。这句话必须说。</p>
+    <p>选做那条<strong>没有标准答案</strong>，说得出理由就算对。有的孩子会说并联（坏一个不影响），有的会说串联（省线）——两种都是好答案，下节课可以各念一个。</p>
+    <p>最后那句「拔掉一个试试，就知道了」是教案原话，说完停一下再下课。</p>
+  </aside>
+</section>
+
+<!-- ═══════════════ 26 · 下节课 ═══════════════ -->
+<section class="slide full-center" data-title="收尾 · 下节课钩子">
+  <div style="text-align:center">
+    <p class="chip cyan" data-anim="fade-down">下节课 · 第 4 课</p>
+    <h2 class="h2 mt-m" data-anim="fade-up">今天你用了<mark>四根线</mark>，是不是已经有点乱了？</h2>
+    <p class="hero mt-l" data-anim="zoom-pop">下节课换个<br><mark class="pink">不用夹子</mark>的东西。</p>
+  </div>
+  <aside class="notes">
+    <p>收尾钩子，<strong>一句话，说完就下课</strong>。</p>
+    <p>先让他们自己承认今天很乱：「今天你用了四根线——<strong>是不是已经有点乱了？</strong>」全班都会点头，尤其是搭并联的时候。</p>
+    <p>「下节课我们换一个<strong>不用夹子</strong>的东西。」——<strong>不要说出面包板三个字</strong>，留着。</p>
+    <p>下课前自己确认三件事：①<strong>保底目标是否全员达成</strong>——能判断串并、能正确预测拔灯结果。今天欠账，第 4 课的面包板、第 6 课的开关、第 9 课的充放电回路会一路带着账走。②<strong>器材按人清点</strong>：LED 组合件 2 个、鳄鱼夹线 4 根、电池盒。<strong>线最容易少</strong>，按根数收。③<strong>黑板上的串并联双图</strong>，如果下节课还在这间教室，留着别擦。</p>
+  </aside>
+</section>
+
+</div>
+
+<div class="deck-footer">
+  <span>第 3 课 · 两个灯怎么一起亮？　|　15 节科创探究课 · 第一单元</span>
+  <span class="slide-number" data-current="1" data-total="26"></span>
+</div>
+
+<script src="../assets/runtime.js"></script>
+</body>
+</html>

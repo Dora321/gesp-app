@@ -1,0 +1,564 @@
+<!DOCTYPE html>
+<html lang="zh-CN" data-themes="memphis-pop,neo-brutalism,soft-pastel,minimal-white" data-theme-base="../assets/themes/">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>第 7 课 · 什么材料能让灯亮？</title>
+<link rel="stylesheet" href="../assets/fonts.css">
+<link rel="stylesheet" href="../assets/base.css">
+<link rel="stylesheet" id="theme-link" href="../assets/themes/memphis-pop.css">
+<link rel="stylesheet" href="../assets/animations/animations.css">
+<link rel="stylesheet" href="../assets/course.css">
+</head>
+<body class="kc">
+<div class="deck">
+
+<!-- ═══════════════ 1 · 封面 ═══════════════ -->
+<section class="slide full-center" data-title="开场 · 封面">
+  <div style="text-align:center">
+    <span class="chip cyan" data-anim="fade-down">15 节科创探究课 · 第三单元「电在材料中怎么走」</span>
+    <h1 class="hero mt-m" data-anim="rise-in">第 7 课<br>什么材料<br>能让灯亮？</h1>
+    <div class="row mt-l" style="justify-content:center;gap:14px;flex-wrap:wrap" data-anim="fade-up">
+      <span class="chip">90 分钟 · 两节连堂</span>
+      <span class="chip yellow">10 种材料</span>
+      <span class="chip pink">从「通不通」到「多难通」</span>
+    </div>
+  </div>
+  <aside class="notes">
+    <p>第三单元只有两节课，却卡着<strong>全课程第三个不能欠账的关（第 8 课）</strong>。本课是那一关的铺垫：<strong>必须让学生亲眼看到「既不是 0、也不是无穷大」的中间地带</strong>，第 8 课的「电阻」才有落脚点。</p>
+    <p><strong>本课最大的设计红线：必须用万用表电阻挡，绝对不能用 LED 当检测器。</strong>LED 是阈值器件，只会报「通／不通」——铅笔芯、湿木、人体接上 LED 会不亮或极暗，学生会直接判成绝缘体。而<strong>第 8 课紧接着就要用铅笔芯做可变电阻</strong>，前后会直接打架。这一条没有商量余地。</p>
+    <p><strong>排序之后的界线由学生自己划，教师不给标准答案。</strong>中间地带的存在感，就是靠「不好划」这个体验建立起来的。</p>
+    <p>保底目标：<strong>用电阻读数（不是外观、不是猜测）判断一个陌生材料的类别，并承认中间地带的存在。</strong></p>
+  </aside>
+</section>
+
+<!-- ═══════════════ 2 · 今天走 5 步 ═══════════════ -->
+<section class="slide" data-title="开场 · 今天走 5 步">
+  <p class="chip pink" data-anim="fade-down">今天，我们走 5 步</p>
+  <h2 class="h2 mt-s" data-anim="fade-up">今天有一件事，<mark>我不给标准答案</mark>。</h2>
+  <div class="grid mt-l" style="grid-template-columns:repeat(5,1fr)" data-anim="stagger-list">
+    <div class="pop yellow" style="text-align:center">
+      <div class="badge sq" style="margin:0 auto 12px">1</div>
+      <div class="h3">说不清</div>
+      <p class="cap" style="margin-top:8px">铅笔芯算导电吗</p>
+    </div>
+    <div class="pop" style="text-align:center">
+      <div class="badge pink sq" style="margin:0 auto 12px">2</div>
+      <div class="h3">拿工具</div>
+      <p class="cap" style="margin-top:8px">万用表第二个功能</p>
+    </div>
+    <div class="pop cyan" style="text-align:center">
+      <div class="badge sq" style="margin:0 auto 12px;background:#fff;color:var(--ink)">3</div>
+      <div class="h3">挨个测</div>
+      <p class="cap" style="margin-top:8px">10 种材料，只记数字</p>
+    </div>
+    <div class="pop" style="text-align:center">
+      <div class="badge cyan sq" style="margin:0 auto 12px">4</div>
+      <div class="h3">排队划界</div>
+      <p class="cap" style="margin-top:8px"><b>界线你自己划</b></p>
+    </div>
+    <div class="pop pink" style="text-align:center">
+      <div class="badge sq" style="margin:0 auto 12px;background:#fff;color:var(--ink)">5</div>
+      <div class="h3">只改一个</div>
+      <p class="cap" style="margin-top:8px">湿的 vs 干的</p>
+    </div>
+  </div>
+  <p class="lede mt-l" data-anim="fade-up">
+    第 4 步，<mark>各组划的地方一定不一样</mark> —— 那正是今天最有意思的地方。
+  </p>
+  <aside class="notes">
+    <p>一分钟带过。重点说第 4 步：「今天有一件事，<strong>我不给标准答案</strong>——那条界线，<strong>你们自己划</strong>。」</p>
+    <p>再打个预防针：「而且各组划的地方<strong>一定不一样</strong>。那不是谁错了，<strong>那正是今天最有意思的地方。</strong>」</p>
+    <p>孩子很少遇到「老师没有标准答案」的课，这句话会让他们认真起来。</p>
+  </aside>
+</section>
+
+<!-- ═══════════════ 3 · 悬念 ═══════════════ -->
+<section class="slide" data-title="① 说不清 · 测一根铅笔芯">
+  <div class="stage-rail"><b>① 说不清</b><i class="on"></i><i></i><i></i><i></i><i></i></div>
+  <p class="chip yellow" data-anim="fade-down">先测一样东西给你们看</p>
+  <h2 class="h2 mt-s" data-anim="fade-up">一根<mark class="pink">铅笔芯</mark>。</h2>
+  <div class="grid g3 mt-l" data-anim="stagger-list">
+    <div class="pop cyan" style="text-align:center">
+      <div class="h3">铜线</div>
+      <div class="hero mt-s" style="font-size:var(--fs-h1)">0</div>
+      <p class="cap" style="margin-top:6px">几乎没有阻碍</p>
+    </div>
+    <div class="pop yellow" style="text-align:center">
+      <div class="h3">铅笔芯</div>
+      <div class="hero mt-s" style="font-size:var(--fs-h1)">?</div>
+      <p class="cap" style="margin-top:6px">不是 0<br>也不是「测不到」</p>
+    </div>
+    <div class="pop" style="text-align:center;background:var(--surface-2)">
+      <div class="h3">塑料尺</div>
+      <div class="hero mt-s" style="font-size:var(--fs-h1)">∞</div>
+      <p class="cap" style="margin-top:6px">测不到 · 溢出</p>
+    </div>
+  </div>
+  <p class="lede mt-l" data-anim="fade-up" style="text-align:center;max-width:none;font-weight:800;color:var(--text-1)">
+    那它到底算<mark class="cyan">导电</mark>，还是<mark>不导电</mark>？
+  </p>
+  <aside class="notes">
+    <p>当众演示，<strong>三样东西各测一次</strong>，把读数念出来。</p>
+    <p>「我们先测一根<strong>铅笔芯</strong>。看读数——<strong>不是 0</strong>（像铜线那样），<strong>也不是那个表示「测不到」的符号</strong>（像塑料那样）。」</p>
+    <p>读数大概是<strong>几十到几百欧</strong>。把实际数字写到黑板上。</p>
+    <p>然后问：「那它<strong>到底算导电，还是不导电？</strong>」</p>
+    <p><strong>这是一个无法二选一的现象</strong>，分歧本身就是今天要处理的对象。不要急着解释，翻页投票。</p>
+  </aside>
+</section>
+
+<!-- ═══════════════ 4 · 投票 ═══════════════ -->
+<section class="slide full-center" data-title="① 说不清 · 分成两派">
+  <div class="stage-rail"><b>① 说不清</b><i class="on"></i><i></i><i></i><i></i><i></i></div>
+  <div style="text-align:center">
+    <p class="chip pink" data-anim="fade-down">两边的人数，我都写在黑板上</p>
+    <h2 class="h2 mt-m" data-anim="fade-up">你站哪一边？</h2>
+    <div class="vs mt-l" style="max-width:min(900px,82vw);margin-left:auto;margin-right:auto" data-anim="fade-up">
+      <div class="yes"><div class="h3">算导电</div><p class="cap" style="margin-top:10px">因为读数不是「测不到」<br>说明电能过去</p><div class="hero mt-s" style="font-size:var(--fs-h2)">___ 人</div></div>
+      <div class="no"><div class="h3">不算</div><p class="cap" style="margin-top:10px">因为读数也不是 0<br>跟铜线差远了</p><div class="hero mt-s" style="font-size:var(--fs-h2)">___ 人</div></div>
+    </div>
+  </div>
+  <aside class="notes">
+    <p>「觉得<strong>算导电</strong>的举手。觉得<strong>不算</strong>的举手。」<strong>两边的人数都写到黑板上。</strong></p>
+    <p>关键动作：<strong>让两边各说一个理由</strong>，写在各自那一边下面。</p>
+    <p>「算导电」派的理由通常是「电能过去啊」；「不算」派是「它跟铜线差太远了」。<strong>两个理由都成立</strong>——这就是今天的伏笔。</p>
+    <p><strong>不要评判，不要暗示哪边对。</strong>这两个数字和两条理由留在黑板上，<strong>第 14 页回来公布</strong>。</p>
+    <p>然后发工具。</p>
+  </aside>
+</section>
+
+<!-- ═══════════════ 5 · 电阻挡 ═══════════════ -->
+<section class="slide" data-title="② 拿工具 · 万用表第二个功能">
+  <div class="stage-rail"><b>② 拿工具</b><i class="done"></i><i class="on"></i><i></i><i></i><i></i></div>
+  <p class="chip cyan" data-anim="fade-down">第 4 课学了通断，今天学第二个</p>
+  <h2 class="h2 mt-s" data-anim="fade-up">量<mark class="pink">电阻</mark>。</h2>
+  <div class="figure mt-m" data-anim="fade-up">
+    <svg viewBox="0 0 900 200" role="img" aria-label="电阻读数的意义：数字越小电越好走">
+      <defs>
+        <linearGradient id="rg7" x1="0" y1="0" x2="1" y2="0">
+          <stop offset="0" stop-color="#37c2d7"/><stop offset="1" stop-color="#ff3d8b"/>
+        </linearGradient>
+      </defs>
+      <rect x="40" y="56" width="820" height="40" rx="20" fill="url(#rg7)" stroke="#111" stroke-width="4"/>
+      <path class="st" d="M40 120 h820"/>
+      <path class="st" d="M40 112 v16"/><path class="st" d="M860 112 v16"/>
+      <text class="lbl" x="40" y="44" style="fill:var(--accent-2)">0 Ω</text>
+      <text class="lbl" x="860" y="44" text-anchor="end" style="fill:var(--accent)">测不到（溢出）</text>
+      <text class="lbl" x="40" y="160">数字越小</text>
+      <text class="lbl sm" x="40" y="186">电越<tspan style="fill:var(--accent-2)">好走</tspan></text>
+      <text class="lbl" x="860" y="160" text-anchor="end">数字越大</text>
+      <text class="lbl sm" x="860" y="186" text-anchor="end">电越<tspan style="fill:var(--accent)">难走</tspan></text>
+    </svg>
+  </div>
+  <p class="lede mt-s" data-anim="fade-up" style="text-align:center;max-width:none;font-weight:800;color:var(--text-1)">
+    两支笔碰在一起，读数<mark class="cyan">接近 0</mark> —— 因为笔和笔之间几乎没有阻碍。
+  </p>
+  <aside class="notes">
+    <p>「今天用万用表的<strong>第二个功能：量电阻</strong>。」</p>
+    <p>一句话讲清意义，不要多讲：「<strong>数字越小，电越好走；数字越大，电越难走。</strong>」</p>
+    <p>现场做一次确认（和第 4 课的三次确认同样重要）：<strong>两支笔碰在一起，读数接近 0</strong>——「因为笔和笔之间<strong>几乎没有阻碍</strong>。」<strong>分开，显示溢出符号</strong>——「因为中间隔着空气，电过不去。」</p>
+    <p>量程：<strong>建议直接配自动量程表</strong>，可以省掉一整段换挡教学。如果是手动量程表，统一规定：<strong>先用最大量程试，读数太小再降档。</strong></p>
+    <p>不要讲欧姆的定义，不要讲单位换算。今天只要「<strong>数字大小 = 难走程度</strong>」这一个意思。</p>
+  </aside>
+</section>
+
+<!-- ═══════════════ 6 · 三条规矩 ═══════════════ -->
+<section class="slide" data-title="② 拿工具 · 量电阻三条规矩">
+  <div class="stage-rail"><b>② 拿工具</b><i class="done"></i><i class="on"></i><i></i><i></i><i></i></div>
+  <p class="chip yellow" data-anim="fade-down">读数不稳的时候，先查这三条</p>
+  <h2 class="h2 mt-s" data-anim="fade-up">量电阻，<mark>三条规矩</mark>。</h2>
+  <div class="checks mt-m" data-anim="stagger-list">
+    <div class="check"><div class="badge pink">1</div>
+      <div><div class="ct">手<b>不要碰</b>表笔的金属部分</div>
+      <div class="cs">你的身体也会导电，会把读数拉小 —— 等会儿演示给你们看</div></div></div>
+    <div class="check"><div class="badge">2</div>
+      <div><div class="ct">表笔要<b>压紧</b>材料</div>
+      <div class="cs">压不紧读数会乱跳，十次里有九次是这个原因</div></div></div>
+    <div class="check"><div class="badge cyan">3</div>
+      <div><div class="ct">测液体时，两支笔的<b>间距和深度要一样</b></div>
+      <div class="cs">插得深浅不同，读数会差好几倍，就没法比了</div></div></div>
+  </div>
+  <p class="lede mt-l" data-anim="fade-up" style="text-align:center;max-width:none;font-weight:800;color:var(--text-1)">
+    读数不稳 → <mark>先查这三条，再怀疑材料</mark>。
+  </p>
+  <aside class="notes">
+    <p>三条规矩念一遍，<strong>重点是第二条</strong>：「读数乱跳，<strong>十次里有九次是表笔没压紧</strong>。」</p>
+    <p>第一条<strong>先说但不解释</strong>——「等会儿演示给你们看」。留到第 17 页做陷阱演示，比现在讲有效得多。</p>
+    <p>第三条配套工具：<strong>自制固定间距表笔支架</strong>（两个木夹夹住表笔，间距固定 2cm）。液体测量如果插入深度不同，读数会成倍差异，学生会以为是盐水本身不稳定。这个支架能省掉大量争议。</p>
+    <p>最后那句是行为准则：「<strong>读数不稳，先查这三条，再怀疑材料。</strong>」和排查五问是同一套思路。</p>
+  </aside>
+</section>
+
+<!-- ═══════════════ 7 · 自由测 ═══════════════ -->
+<section class="slide full-center" data-title="② 拿工具 · 随便测，只记数字">
+  <div class="stage-rail"><b>② 拿工具</b><i class="done"></i><i class="on"></i><i></i><i></i><i></i></div>
+  <div style="text-align:center">
+    <span class="chip pink" data-anim="fade-down">先玩 5 分钟</span>
+    <h1 class="hero mt-m" data-anim="rise-in">随便测。<br>什么都行。</h1>
+    <p class="h3 mt-l" data-anim="fade-up" style="font-weight:800">
+      只有一个要求：<mark>先不要下结论，只把数字记下来</mark>。
+    </p>
+  </div>
+  <aside class="notes">
+    <p>「现在你们<strong>随便测，测什么都行</strong>——桌子、笔、书、衣服、自己的手，都行。」</p>
+    <p>唯一要求：「<strong>先不要下结论，只把数字记下来。</strong>」</p>
+    <p>这一步是<strong>建立读数的手感</strong>，不给任务框，允许乱测。孩子玩得越野，后面系统测量时越有耐心。</p>
+    <p>会有孩子测自己的手——太好了。<strong>不要评价，只说：「记下来。」</strong>这个数字第 13 页要用。</p>
+    <p>巡视时重点纠正<strong>表笔接触方式</strong>：压紧、手别碰金属。</p>
+    <p>5 分钟，然后发材料包进入系统测量。</p>
+  </aside>
+</section>
+
+<!-- ═══════════════ 8 · 系统测量 ═══════════════ -->
+<section class="slide" data-title="③ 挨个测 · 10 种材料">
+  <div class="stage-rail"><b>③ 挨个测</b><i class="done"></i><i class="done"></i><i class="on"></i><i></i><i></i></div>
+  <div class="row" style="justify-content:space-between;align-items:flex-end">
+    <div>
+      <span class="chip cyan" data-anim="fade-down">第 1 关 · 上半场先测前 6 种</span>
+      <h2 class="h2 mt-s" data-anim="fade-up">10 种材料，<mark>一个一个测</mark>。</h2>
+    </div>
+    <div class="pop yellow" data-anim="fade-left" style="text-align:center;flex:0 0 auto">
+      <div class="h3">只填读数<br><b>先别分类</b></div>
+    </div>
+  </div>
+  <div class="tbl mt-m" style="grid-template-columns:repeat(5,1fr)" data-anim="stagger-list">
+    <div class="rh">铜片</div><div class="rh">铝箔</div><div class="rh">铁钉</div><div class="rh">铅笔芯</div><div class="rh">湿海绵</div>
+    <div class="todo">Ω</div><div class="todo">Ω</div><div class="todo">Ω</div><div class="todo">Ω</div><div class="todo">Ω</div>
+    <div class="rh">干海绵</div><div class="rh">橡皮</div><div class="rh">塑料尺</div><div class="rh">盐水</div><div class="rh">清水</div>
+    <div class="todo" style="background:var(--surface-2)">下半场</div><div class="todo" style="background:var(--surface-2)">下半场</div>
+    <div class="todo" style="background:var(--surface-2)">下半场</div><div class="todo" style="background:var(--surface-2)">下半场</div>
+    <div class="todo" style="background:var(--surface-2)">下半场</div>
+  </div>
+  <aside class="notes">
+    <p>发标准材料包和《材料电阻排序表》。<strong>上半场完成前 6 种（固体类）</strong>，液体留到下半场。</p>
+    <p>这 10 种的跨度是<strong>刻意设计的</strong>：从零点几欧一直到溢出，中间每一段都有东西。</p>
+    <p><strong>反复强调：只填读数，先别分类。</strong>分类是第 11 页才做的事。</p>
+    <p>巡视重点还是<strong>表笔接触方式</strong>。读数乱跳先看压紧了没有。</p>
+    <p>器材提醒：<strong>湿海绵课前现浸</strong>，不要提前一天泡（会干）。准备一小瓶水随时补——干掉的湿海绵读数会跳到绝缘体区间，<strong>对照实验就废了</strong>。</p>
+    <p>再说一遍那条红线：<strong>不许用 LED 当检测器。</strong>今天全程用万用表。</p>
+  </aside>
+</section>
+
+<!-- ═══════════════ 9 · 课间休息 ═══════════════ -->
+<section class="slide full-center" data-title="休息 · 课间 10 分钟">
+  <div style="text-align:center">
+    <div class="discovery" data-anim="zoom-pop" style="max-width:min(1000px,86vw)">
+      <p class="chip" style="background:#fff">中场 · 10 分钟</p>
+      <h1 class="hero mt-m">课间休息</h1>
+      <p class="h3 mt-m" style="font-weight:700">
+        <mark class="pink">液体实验区不许靠近</mark>　·　万用表拨 OFF
+      </p>
+    </div>
+    <p class="lede mt-l" data-anim="fade-up" style="margin-left:auto;margin-right:auto;text-align:center">
+      回来测水，然后把十种材料排个队。
+    </p>
+  </div>
+  <aside class="notes">
+    <p>走之前说清楚：<strong>液体实验区不许靠近</strong>，杯子不许碰。<strong>液体和万用表、电池盒分开摆放</strong>，杯子下面垫托盘。</p>
+    <p>这 10 分钟你要做的：①<strong>给湿海绵补水</strong>；②<strong>检查盐水和清水的读数差异</strong>是否明显（按 1 小勺盐／100ml 配）；③<strong>把固定间距表笔支架发到各组</strong>。</p>
+    <p>顺手扫一眼各组的前 6 行读数，看有没有明显离谱的（多半是表笔没压紧），回来让他们重测。</p>
+  </aside>
+</section>
+
+<!-- ═══════════════ 10 · 排队 ═══════════════ -->
+<section class="slide" data-title="④ 排队划界 · 从小到大排队">
+  <div class="stage-rail"><b>④ 排队划界</b><i class="done"></i><i class="done"></i><i class="done"></i><i class="on"></i><i></i></div>
+  <h2 class="h2" data-anim="fade-up">十种材料，<mark>按数字从小到大排队</mark>。</h2>
+  <div class="figure mt-m" data-anim="fade-up">
+    <svg viewBox="0 0 960 300" role="img" aria-label="十种材料按电阻从小到大排序">
+      <defs>
+        <linearGradient id="rg7b" x1="0" y1="0" x2="1" y2="0">
+          <stop offset="0" stop-color="#37c2d7"/><stop offset=".45" stop-color="#ffcc00"/><stop offset="1" stop-color="#ff3d8b"/>
+        </linearGradient>
+      </defs>
+      <rect x="40" y="120" width="880" height="34" rx="17" fill="url(#rg7b)" stroke="#111" stroke-width="4"/>
+      <g class="st2">
+        <path d="M120 112 v-18"/><path d="M300 112 v-18"/><path d="M430 112 v-18"/>
+        <path d="M570 112 v-18"/><path d="M710 112 v-18"/><path d="M860 112 v-18"/>
+      </g>
+      <text class="lbl sm" x="120" y="84" text-anchor="middle">铜 · 铝 · 铁</text>
+      <text class="lbl sm" x="120" y="62" text-anchor="middle" style="fill:var(--accent-2)">≈ 0 Ω</text>
+      <text class="lbl sm" x="300" y="84" text-anchor="middle">铅笔芯</text>
+      <text class="lbl sm" x="300" y="62" text-anchor="middle">几十～几百</text>
+      <text class="lbl sm" x="430" y="84" text-anchor="middle">盐水</text>
+      <text class="lbl sm" x="430" y="62" text-anchor="middle">几百～几千</text>
+      <text class="lbl sm" x="570" y="84" text-anchor="middle">湿海绵</text>
+      <text class="lbl sm" x="570" y="62" text-anchor="middle">几千～几万</text>
+      <text class="lbl sm" x="710" y="84" text-anchor="middle">清水</text>
+      <text class="lbl sm" x="710" y="62" text-anchor="middle">几十万以上</text>
+      <text class="lbl sm" x="860" y="84" text-anchor="middle">干海绵 · 橡皮 · 塑料</text>
+      <text class="lbl sm" x="860" y="62" text-anchor="middle" style="fill:var(--accent)">测不到</text>
+      <text class="lbl" x="40" y="200">电越好走</text>
+      <text class="lbl" x="920" y="200" text-anchor="end">电越难走</text>
+      <text class="lbl" x="480" y="256" text-anchor="middle" style="fill:var(--text-2)">你的手，大概在哪个位置？</text>
+    </svg>
+  </div>
+  <aside class="notes">
+    <p>「十种材料都测完了。现在把它们<strong>按数字从小到大排队</strong>。」</p>
+    <p>让各组先自己排，<strong>然后在黑板上拼出全班的顺序</strong>。PPT 这张是参考量级——<strong>实际顺序以孩子测出来的为准</strong>，不一致就按他们的。</p>
+    <p>读数会随批次、湿度、接触方式明显波动，<strong>这张图只是量级参考</strong>，不要当标准答案念。</p>
+    <p>排完了，问最后那一句：「<strong>你的手，大概在哪个位置？</strong>」——刚才自由测的时候有孩子测过。让他报数，大家找位置。<strong>人体会落在中间偏右。</strong></p>
+    <p>然后抛出今天真正的问题。翻页。</p>
+  </aside>
+</section>
+
+<!-- ═══════════════ 11 · 界线划在哪 ═══════════════ -->
+<section class="slide full-center" data-title="④ 排队划界 · 界线划在哪">
+  <div class="stage-rail"><b>④ 排队划界</b><i class="done"></i><i class="done"></i><i class="done"></i><i class="on"></i><i></i></div>
+  <div class="ask">
+    <p class="chip pink" data-anim="fade-down">这题我没有标准答案</p>
+    <p class="q mt-m" data-anim="zoom-pop">「能导电」和<br>「不能导电」<br>这条线，<mark>划在哪</mark>？</p>
+    <p class="sub mt-l" data-anim="fade-up">你们组划在哪两个之间？<mark class="pink">报上来，我都写黑板上。</mark></p>
+  </div>
+  <aside class="notes">
+    <p>「排完了看一看——你觉得，『<strong>能导电</strong>』和『<strong>不能导电</strong>』这条界线，应该划在<strong>哪两个之间</strong>？」</p>
+    <p><strong>各组划法必然不同。把不同的划法都写上黑板，不要评判谁对谁错。</strong></p>
+    <p>常见的几种：有的划在铅笔芯前面（只有金属算导体），有的划在盐水后面，有的划在清水前面。<strong>全都写上去。</strong></p>
+    <p>写完了问那个关键问题：「<strong>为什么大家划的地方不一样？</strong>」</p>
+    <p>留足时间。<strong>这个「不好划」的体验，就是「中间地带」这个概念的全部来源。</strong>教师一旦给出标准答案，这个体验就作废了。</p>
+  </aside>
+</section>
+
+<!-- ═══════════════ 12 · 命名 ═══════════════ -->
+<section class="slide" data-title="④ 排队划界 · 导体 · 绝缘体 · 中间地带">
+  <div class="stage-rail"><b>④ 排队划界</b><i class="done"></i><i class="done"></i><i class="done"></i><i class="on"></i><i></i></div>
+  <p class="chip yellow" data-anim="fade-down">因为中间这一段，本来就不好划</p>
+  <h2 class="h2 mt-s" data-anim="fade-up">三块地方，<mark>中间那块是真的</mark>。</h2>
+  <div class="grid g3 mt-l" data-anim="stagger-list">
+    <div class="pop cyan" style="text-align:center">
+      <div class="h3">导体</div>
+      <p class="cap" style="margin-top:10px">铜 · 铁 · 铝</p>
+      <div class="h3 mt-s" style="font-size:var(--fs-body)">电走得<b>非常顺</b></div>
+    </div>
+    <div class="pop yellow" style="text-align:center;border-width:5px">
+      <div class="h3">中间地带</div>
+      <p class="cap" style="margin-top:10px">铅笔芯 · 湿海绵 · 盐水 · <b>你的手</b></p>
+      <div class="h3 mt-s" style="font-size:var(--fs-body)">能过电，<b>但是很费劲</b></div>
+    </div>
+    <div class="pop" style="text-align:center;background:var(--surface-2)">
+      <div class="h3" style="color:var(--text-2)">绝缘体</div>
+      <p class="cap" style="margin-top:10px">橡皮 · 塑料 · 干海绵</p>
+      <div class="h3 mt-s" style="font-size:var(--fs-body);color:var(--text-2)">电<b>几乎过不去</b></div>
+    </div>
+  </div>
+  <p class="lede mt-l" data-anim="fade-up" style="text-align:center;max-width:none;font-weight:800;color:var(--text-1)">
+    那条界线是<mark>为了方便才划的</mark> —— <mark class="pink">中间地带是真的存在的。</mark>
+  </p>
+  <aside class="notes">
+    <p>先回答他们的问题：「<strong>因为中间这一段，本来就不好划。</strong>」</p>
+    <p>然后给名字：「铜、铁、铝，电走得非常顺——我们叫它<strong>导体</strong>。橡皮、塑料，电几乎过不去——我们叫它<strong>绝缘体</strong>。」</p>
+    <p>「可是<strong>铅笔芯、湿海绵、还有你们自己的手</strong>，卡在中间。<strong>它们能过电，但是过得很费劲。</strong>」</p>
+    <p><strong>这一句必须说清楚：那条界线是为了方便才划的，中间地带是真的存在。</strong>不要为了整齐把中间地带抹掉——<strong>它是第 8 课「电阻」的入口</strong>。</p>
+    <p>最后埋钩子：「这个『<strong>很费劲</strong>』，就是我们<strong>下节课</strong>要专门讲的东西。」</p>
+    <p>有孩子问「人算导体还是绝缘体」——正好：「<strong>你自己测一测，读数在哪一段？</strong>」不要直接给答案。</p>
+  </aside>
+</section>
+
+<!-- ═══════════════ 13 · 回到开场 ═══════════════ -->
+<section class="slide full-center" data-title="④ 排队划界 · 两派都有道理">
+  <div class="stage-rail"><b>④ 排队划界</b><i class="done"></i><i class="done"></i><i class="done"></i><i class="on"></i><i></i></div>
+  <div style="text-align:center">
+    <p class="chip cyan" data-anim="fade-down">回到黑板 · 开场那两派</p>
+    <p class="hero mt-m" data-anim="zoom-pop">两边<mark>都有道理</mark>。</p>
+    <p class="h3 mt-l" data-anim="fade-up" style="font-weight:700;color:var(--text-2)">
+      说「算」的：电确实过去了。<br>
+      说「不算」的：它跟铜线确实差远了。<br><br>
+      <mark class="pink">问题不在你们身上 —— 在「只有两个选项」这件事上。</mark>
+    </p>
+  </div>
+  <aside class="notes">
+    <p>走回黑板，指着开场写的两派人数和两条理由。</p>
+    <p>「开场的时候，<strong>___ 个人说算，___ 个人说不算。</strong>现在公布：<strong>两边都有道理。</strong>」</p>
+    <p>「说『算』的同学：<strong>电确实过去了</strong>，你是对的。说『不算』的同学：<strong>它跟铜线确实差远了</strong>，你也是对的。」</p>
+    <p>然后是今天最重要的一句科学态度：「<strong>问题不在你们身上——在『只有两个选项』这件事上。</strong>真实世界很多东西，<strong>就是没法只分成两类。</strong>」</p>
+    <p>这一页值得停几秒。<strong>承认模糊地带，是本课最重要的训练</strong>，比记住「导体绝缘体」这两个词重要得多。</p>
+  </aside>
+</section>
+
+<!-- ═══════════════ 14 · 控制变量 ═══════════════ -->
+<section class="slide" data-title="⑤ 只改一个 · 湿的 vs 干的">
+  <div class="stage-rail"><b>⑤ 只改一个</b><i class="done"></i><i class="done"></i><i class="done"></i><i class="done"></i><i class="on"></i></div>
+  <p class="chip pink" data-anim="fade-down">同一种东西，只改一个条件</p>
+  <h2 class="h2 mt-s" data-anim="fade-up">为什么读数差<mark>这么多</mark>？</h2>
+  <div class="tbl mt-l" style="grid-template-columns:1.1fr .9fr 1fr 1.3fr" data-anim="fade-up">
+    <div class="hd">对照组</div><div class="hd">差别在哪</div><div class="hd">读数</div><div class="hd">我的解释</div>
+    <div class="rh">湿海绵 / 干海绵</div><div class="on">有水 / 没水</div><div class="todo">？</div><div class="todo">？</div>
+    <div class="rh">盐水 / 清水</div><div class="on">有盐 / 没盐</div><div class="todo">？</div><div class="todo">？</div>
+  </div>
+  <p class="lede mt-l" data-anim="fade-up" style="text-align:center;max-width:none;font-weight:800;color:var(--text-1)">
+    同一块海绵、同一杯水 —— <mark class="cyan">只改了一个条件</mark>。
+  </p>
+  <aside class="notes">
+    <p>这是<strong>第一次正式的「只改一个条件」对照实验</strong>，和第 1 课的四格表、第 2 课的五点表是同一条训练线。</p>
+    <p>「<strong>同一块海绵</strong>，湿的和干的，读数差多少？<strong>同一杯水</strong>，加盐和不加盐，差多少？」</p>
+    <p>强调「同一种东西」：「不是拿两块不同的海绵——是<strong>同一块，只改了有没有水</strong>。」</p>
+    <p>目标结论<strong>定性即可</strong>：<strong>水本身不太导电，溶解在水里的东西才导电。</strong>清水读数几十万欧以上，盐水几百到几千。</p>
+    <p><strong>不要引入离子、导电率这些概念。</strong>孩子能说出「加了盐就好走了」就够了。</p>
+    <p>液体测量<strong>必须用固定间距表笔支架</strong>，否则读数乱跳，孩子会以为盐水本身不稳定。</p>
+    <p>时间紧张可以<strong>只做湿海绵／干海绵这一组</strong>，液体那组砍掉。</p>
+  </aside>
+</section>
+
+<!-- ═══════════════ 15 · 表笔陷阱 ═══════════════ -->
+<section class="slide" data-title="⑤ 只改一个 · 表笔陷阱（老师演示）">
+  <div class="stage-rail"><b>⑤ 只改一个</b><i class="done"></i><i class="done"></i><i class="done"></i><i class="done"></i><i class="on"></i></div>
+  <p class="chip yellow" data-anim="fade-down">看我变个戏法</p>
+  <h2 class="h2 mt-s" data-anim="fade-up">我什么都没换，<mark class="pink">只换了个握法</mark>。</h2>
+  <div class="vs mt-l" data-anim="fade-up">
+    <div class="no">
+      <div class="h3">捏在塑料柄上</div>
+      <div class="hero mt-s" style="font-size:var(--fs-h2);color:var(--text-2)">∞</div>
+      <p class="cap" style="text-align:left;margin-top:10px">测一块橡皮 —— 溢出，测不到</p>
+    </div>
+    <div class="yes">
+      <div class="h3">两手捏住<b>金属</b>部分</div>
+      <div class="hero mt-s" style="font-size:var(--fs-h2)">读数掉下来了</div>
+      <p class="cap" style="text-align:left;margin-top:10px">橡皮没换，表没换 —— <b>变的是我的身体接进去了</b></p>
+    </div>
+  </div>
+  <p class="lede mt-l" data-anim="fade-up" style="text-align:center;max-width:none;font-weight:800;color:var(--text-1)">
+    所以第 1 条规矩是真的：<mark>手不要碰表笔的金属部分</mark>。
+  </p>
+  <aside class="notes">
+    <p><strong>这个陷阱建议让它先发生一次再点破，比事先警告有效得多。</strong>很多孩子在自由测的时候已经踩过了。</p>
+    <p>演示：「我现在测一块橡皮。读数是<strong>溢出</strong>，对不对？」——然后<strong>两手分别捏住两支表笔的金属部分</strong>。</p>
+    <p>「我<strong>什么都没换</strong>，只是换了个握法。<strong>读数怎么变了？</strong>」——「变小了！」</p>
+    <p>「因为<strong>我的身体也导电</strong>，它<strong>跟橡皮并排接在了一起</strong>。所以——<strong>测量的时候，手不要碰表笔的金属部分。</strong>」</p>
+    <p>这一课的意义超出了操作规范：<strong>测量本身也会被干扰</strong>。让孩子知道「<strong>数据不一定可靠，要看你是怎么测的</strong>」。</p>
+    <p>可以顺便回收：「所以刚才有谁测自己的手，读数很小？——<strong>那是真的，你确实在中间地带。</strong>」</p>
+  </aside>
+</section>
+
+<!-- ═══════════════ 16 · 故障板 7 号 ═══════════════ -->
+<section class="slide" data-title="⑤ 只改一个 · 故障板 7 号：读数跳变">
+  <div class="stage-rail"><b>⑤ 只改一个</b><i class="done"></i><i class="done"></i><i class="done"></i><i class="done"></i><i class="on"></i></div>
+  <div class="row" style="justify-content:space-between;align-items:flex-end">
+    <div>
+      <span class="chip pink" data-anim="fade-down">7 号板 · 限时 3 分钟</span>
+      <h2 class="h2 mt-s" data-anim="fade-up">读数<mark class="pink">一直在跳</mark>。<br>是材料的问题，还是别的？</h2>
+    </div>
+    <div class="pop cyan" data-anim="fade-left" style="text-align:center;flex:0 0 auto">
+      <div class="h3">先查三条规矩<br><b>再怀疑材料</b></div>
+    </div>
+  </div>
+  <div class="figure mt-m" data-anim="fade-up">
+    <svg viewBox="0 0 760 200" role="img" aria-label="铅笔芯与夹子虚接导致读数跳变">
+      <rect class="st fillk" x="180" y="82" width="240" height="16" rx="8"/>
+      <text class="lbl sm" x="250" y="132">铅笔芯</text>
+      <path class="st fillw" d="M150 60 l38 22 -38 22 z"/>
+      <path class="st fillw" d="M150 128 l38 -22 -38 -22 z"/>
+      <path class="st fillw" d="M450 60 l-38 22 38 22 z"/>
+      <path class="st fillw" d="M450 128 l-38 -22 38 -22 z"/>
+      <circle class="st" cx="420" cy="90" r="16" style="fill:none;stroke:var(--accent);stroke-width:5"/>
+      <text class="lbl sm" x="404" y="158" style="fill:var(--accent)">这里只是搭着</text>
+      <text class="lbl" x="520" y="70" style="fill:var(--text-2)">126 Ω</text>
+      <text class="lbl" x="520" y="104" style="fill:var(--accent)">3.4 kΩ</text>
+      <text class="lbl" x="520" y="138" style="fill:var(--text-2)">溢出</text>
+      <text class="lbl sm" x="620" y="104" style="fill:var(--accent)">← 一直在变</text>
+    </svg>
+  </div>
+  <aside class="notes">
+    <p>这块板专门训练一个判断：<strong>读数不稳，先怀疑接触，还是先怀疑材料？</strong></p>
+    <p>毛病是<strong>铅笔芯与夹子之间虚接</strong>，外观完全正常，读数跳来跳去。</p>
+    <p>限时 3 分钟。<strong>正确的排查顺序是：先过一遍三条规矩</strong>（手没碰金属？压紧了吗？），<strong>再怀疑材料</strong>。</p>
+    <p>找出来的孩子要能说清楚：「<strong>不是铅笔芯的问题，是夹子没夹紧。</strong>」</p>
+    <p>讲完把它推成一条通用经验：「<strong>读数乱跳，九成是接触问题。</strong>这条以后一直用。」</p>
+  </aside>
+</section>
+
+<!-- ═══════════════ 17 · 最后一关 ═══════════════ -->
+<section class="slide full-center" data-title="⑤ 只改一个 · 判断未知样本（逐人）">
+  <div class="stage-rail"><b>⑤ 只改一个</b><i class="done"></i><i class="done"></i><i class="done"></i><i class="done"></i><i class="on"></i></div>
+  <div style="text-align:center">
+    <span class="chip pink" data-anim="fade-down">最后一关 · 一个一个过</span>
+    <h1 class="hero mt-m" data-anim="rise-in">这是什么？<br>你说，我听。</h1>
+    <div class="row mt-l" style="justify-content:center;gap:clamp(16px,1.8vw,34px);flex-wrap:wrap" data-anim="fade-up">
+      <div class="pop yellow"><div class="h3">① 测</div><p class="cap" style="margin-top:6px">一个密封的<br>编号样本</p></div>
+      <div class="pop cyan"><div class="h3">② 判断</div><p class="cap" style="margin-top:6px">导体 / 中间地带<br>/ 绝缘体</p></div>
+      <div class="pop pink"><div class="h3">③ 讲依据</div><p class="cap" style="margin-top:6px">读数是多少<br><b>和哪个已知材料接近</b></p></div>
+    </div>
+  </div>
+  <aside class="notes">
+    <p><strong>今天唯一的判定依据，死保 8 分钟。</strong></p>
+    <p>发一个<strong>编号密封的未知材料样本</strong>（一小段电阻丝、一片碳纸都行）——<strong>看不见是什么东西</strong>，只能靠测。</p>
+    <p>过关标准有两条，<strong>第二条才是关键</strong>：①判断出类别；②<strong>说出依据</strong>——「读数是 ___，和 ___ 接近，所以是 ___」。</p>
+    <p><strong>依据必须基于读数，不能凭外观猜。</strong>说「看起来像金属所以是导体」的，不算过，让他回去测。</p>
+    <p>回答「中间地带」的孩子<strong>要特别肯定</strong>——他们敢用这个答案，说明今天真的学到了。</p>
+    <p>逐人打勾。不合格的当场再来一次——<strong>第 8 课的电阻直接建立在这上面。</strong></p>
+  </aside>
+</section>
+
+<!-- ═══════════════ 18 · 今日大发现 ═══════════════ -->
+<section class="slide full-center" data-title="收尾 · 今日大发现">
+  <div class="discovery" data-anim="zoom-pop" style="max-width:min(1100px,88vw);margin:0 auto">
+    <p class="chip pink">今日大发现</p>
+    <p class="hero mt-m">中间地带，<br>是真的存在的。</p>
+    <p class="h3 mt-l" style="font-weight:700">
+      导电不导电　—　<mark class="pink">不是只有两种答案</mark>
+    </p>
+  </div>
+  <aside class="notes">
+    <p>全班<strong>一起读一遍</strong>。</p>
+    <p>收一下今天：「今天我们量了十种东西，<strong>排了一个队</strong>。然后发现——<strong>那条界线怎么划都不太对</strong>，因为中间那一段是真的。」</p>
+    <p>再说一遍今天的态度：「<strong>不是所有东西都能整整齐齐分成两类。</strong>敢说『它在中间』，比硬要选一边更科学。」</p>
+    <p>最后埋钩子：「中间地带那个『<strong>很费劲</strong>』——下节课我们就专门来对付它。」</p>
+  </aside>
+</section>
+
+<!-- ═══════════════ 19 · 回家做 ═══════════════ -->
+<section class="slide" data-title="收尾 · 回家做">
+  <h2 class="h2" data-anim="fade-up">回家做。</h2>
+  <div class="grid g2 mt-l">
+    <div class="pop pink" data-anim="fade-right">
+      <span class="chip" style="background:#fff">必做 · 每个人</span>
+      <div class="h3 mt-m">在家找三样东西，猜它们在队里排第几。</div>
+      <p class="cap" style="text-align:left;margin-top:12px;color:rgba(255,255,255,.9)">
+        <strong>只猜，不用测</strong>（家里没有万用表）。<br>
+        写下来：我猜它是导体 / 中间地带 / 绝缘体，因为 ______。
+      </p>
+    </div>
+    <div class="pop cyan" data-anim="fade-left">
+      <span class="chip" style="background:#fff">选做 · 想挑战的人</span>
+      <div class="h3 mt-m">为什么电线外面要包一层塑料？</div>
+      <p class="cap" style="text-align:left;margin-top:12px">
+        里面是导体，外面是绝缘体 —— <strong>为什么要这样配</strong>？<br>
+        想一想，一句话写下来。
+      </p>
+    </div>
+  </div>
+  <p class="lede mt-l" data-anim="fade-up" style="text-align:center;max-width:none;font-weight:800;color:var(--text-1)">
+    <mark>敢说「它在中间」，比硬选一边更科学。</mark>
+  </p>
+  <aside class="notes">
+    <p>必做那条的重点是<strong>「因为 ______」</strong>——猜错没关系，<strong>要有理由</strong>。</p>
+    <p>提醒安全：<strong>家里的插座、电线一律只许看，不许碰，不许拆。</strong>这句每次涉及家庭作业都要说。</p>
+    <p>选做那条是<strong>把导体和绝缘体配对使用</strong>这个工程思路引进来——电线是「导体负责通，绝缘体负责不漏」。能说到这一层的孩子非常厉害。</p>
+    <p>下课前自己确认三件事：①<strong>保底目标是否全员达成</strong>——能用读数判断陌生材料并说出依据。②<strong>万用表按编号清点</strong>，旋钮 OFF；<strong>液体全部收走</strong>，桌面擦干。③<strong>材料包按 10 种清点</strong>，湿海绵单独收（会滴水）。</p>
+  </aside>
+</section>
+
+<!-- ═══════════════ 20 · 下节课 ═══════════════ -->
+<section class="slide full-center" data-title="收尾 · 下节课钩子">
+  <div style="text-align:center">
+    <p class="chip cyan" data-anim="fade-down">下节课 · 第 8 课</p>
+    <h2 class="h2 mt-m" data-anim="fade-up">中间地带那个「<mark>很费劲</mark>」——</h2>
+    <p class="hero mt-l" data-anim="zoom-pop">下节课，<br>我们用它<mark class="pink">让灯变暗</mark>。</p>
+  </div>
+  <aside class="notes">
+    <p>收尾钩子，<strong>一句话，说完就下课</strong>。</p>
+    <p>「今天那个卡在中间的<strong>铅笔芯</strong>——下节课我们<strong>用它让灯变暗</strong>。而且是<strong>想让它多暗就多暗</strong>。」</p>
+    <p><strong>不要展开</strong>（下节课是《铅笔芯让灯变暗》，电阻与分压）。</p>
+    <p>还可以埋一个更早的伏笔：「顺便说一句——<strong>你们的 LED 上面，其实一直藏着一个电阻</strong>。第 1 课就在那儿了，我一直没说。<strong>下节课拆开给你们看。</strong>」——这个伏笔从第 1 课埋到现在，收回来的时候孩子会很兴奋。</p>
+  </aside>
+</section>
+
+</div>
+
+<div class="deck-footer">
+  <span>第 7 课 · 什么材料能让灯亮？　|　15 节科创探究课 · 第三单元</span>
+  <span class="slide-number" data-current="1" data-total="20"></span>
+</div>
+
+<script src="../assets/runtime.js"></script>
+</body>
+</html>

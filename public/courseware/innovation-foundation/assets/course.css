@@ -1,0 +1,307 @@
+/* ============================================================
+   初阶科创 · 电路单元 · 课堂课件共享样式
+   基于 html-ppt 的 base.css + memphis-pop 主题
+   15 节课共用这一份，改这里 = 全部课件一起改
+   ============================================================ */
+
+/* ---------- 中文字体兜底：教室电脑可能连不上 Google Fonts ---------- */
+:root{
+  --font-sans: 'Space Grotesk','Noto Sans SC','Microsoft YaHei UI','Microsoft YaHei','PingFang SC','Source Han Sans SC','Hiragino Sans GB',sans-serif;
+  --font-display: 'Archivo Black','Noto Sans SC','Microsoft YaHei UI','Microsoft YaHei','PingFang SC',sans-serif;
+
+  /* 课堂语义色（沿用主题三原色，给它们起个课堂里的名字） */
+  --c-do:    var(--accent);     /* 粉 — 学生动手 */
+  --c-think: var(--accent-2);   /* 青 — 思考/提问 */
+  --c-warn:  var(--accent-3);   /* 黄 — 注意/安全 */
+  --ink: #111111;
+
+  /* 随投影分辨率缩放的字号 */
+  --fs-hero:  clamp(44px, 6.0vw, 108px);
+  --fs-h1:    clamp(36px, 4.6vw,  84px);
+  --fs-h2:    clamp(28px, 3.2vw,  58px);
+  --fs-h3:    clamp(22px, 2.1vw,  38px);
+  --fs-body:  clamp(17px, 1.35vw, 26px);
+  --fs-small: clamp(14px, 1.15vw, 22px);
+}
+
+body.kc{ background-attachment: fixed; }
+/* 让主题自带的波点背景透出来 */
+.kc .deck{ background: transparent; }
+
+/* 幻灯片留白：投影四周不要贴边 */
+.kc .slide{ padding: clamp(40px,4.4vh,72px) clamp(44px,4.6vw,110px); }
+
+/* .slide 是 flex 列容器：行内小组件不要被拉满整行 */
+.kc .slide > .chip,
+.kc .slide > .pill,
+.kc .slide > .badge{ align-self: flex-start; }
+
+/* ---------- 标题层级 ---------- */
+.kc .h1,.kc h1.title{ font-size: var(--fs-h1); line-height:1.08; font-weight:900; }
+.kc .h2,.kc h2.title{ font-size: var(--fs-h2); line-height:1.14; font-weight:800; }
+.kc .h3{ font-size: var(--fs-h3); line-height:1.25; font-weight:700; }
+.kc .lede{ font-size: var(--fs-body); font-weight:500; color:var(--text-2); max-width:34em; }
+.kc .hero{ font-size: var(--fs-hero); line-height:1.02; font-weight:900;
+  font-family:var(--font-display); letter-spacing:-.02em; margin:0; }
+
+/* 文字高亮：粉底黑字的马克笔效果 */
+.kc mark{ background: var(--accent-3); color: var(--ink);
+  padding:.04em .22em; border-radius:4px; box-decoration-break:clone;
+  -webkit-box-decoration-break:clone; }
+.kc mark.pink{ background: var(--accent); color:#fff; }
+.kc mark.cyan{ background: var(--accent-2); color:var(--ink); }
+
+/* ---------- 孟菲斯硬阴影卡 ---------- */
+.kc .pop{
+  background: var(--surface);
+  border: 3px solid var(--ink);
+  border-radius: var(--radius);
+  box-shadow: 6px 6px 0 var(--ink);
+  padding: clamp(16px,1.6vw,28px) clamp(18px,1.8vw,32px);
+}
+.kc .pop.pink { background: var(--accent);   color:#fff; }
+.kc .pop.cyan { background: var(--accent-2); }
+.kc .pop.yellow{ background: var(--accent-3); }
+.kc .pop.ink  { background: var(--ink); color:#fff; }
+.kc .pop.pink .dim,.kc .pop.ink .dim{ color: rgba(255,255,255,.82); }
+
+/* ---------- 阶段轨（顶部 5 步进度） ---------- */
+.kc .stage-rail{
+  position:absolute; top: clamp(18px,2.2vh,30px); left: clamp(44px,4.6vw,110px);
+  right: clamp(44px,4.6vw,110px); display:flex; gap:8px; align-items:center; z-index:10;
+}
+.kc .stage-rail i{
+  flex:1; height:10px; border:2.5px solid var(--ink); border-radius:99px;
+  background: #fff; font-style:normal; position:relative;
+}
+.kc .stage-rail i.on{ background: var(--accent); }
+.kc .stage-rail i.done{ background: var(--ink); }
+.kc .stage-rail b{
+  font-size: var(--fs-small); font-weight:800; white-space:nowrap;
+  border:2.5px solid var(--ink); background:var(--accent-3); color:var(--ink);
+  padding:2px 12px; border-radius:99px; box-shadow:3px 3px 0 var(--ink);
+}
+
+/* ---------- 时间牌 / 标签 ---------- */
+.kc .chip{
+  display:inline-flex; align-items:center; gap:.4em;
+  font-size: var(--fs-small); font-weight:800; letter-spacing:.02em;
+  border:2.5px solid var(--ink); background:#fff; color:var(--ink);
+  padding:4px 14px; border-radius:99px; box-shadow:3px 3px 0 var(--ink);
+}
+.kc .chip.pink{ background:var(--accent); color:#fff; }
+.kc .chip.cyan{ background:var(--accent-2); }
+.kc .chip.yellow{ background:var(--accent-3); }
+
+/* ---------- 大号步骤徽章 ---------- */
+.kc .badge{
+  width: clamp(48px,4.2vw,78px); height: clamp(48px,4.2vw,78px);
+  display:grid; place-items:center; flex:0 0 auto;
+  font-family:var(--font-display); font-size: clamp(24px,2.3vw,42px); line-height:1;
+  border:3px solid var(--ink); border-radius:50%; background:var(--accent-3);
+  box-shadow:4px 4px 0 var(--ink);
+}
+.kc .badge.pink{ background:var(--accent); color:#fff; }
+.kc .badge.cyan{ background:var(--accent-2); }
+.kc .badge.sq{ border-radius:12px; }
+
+/* ---------- 超大提问页 ---------- */
+.kc .ask{ text-align:center; }
+.kc .ask .q{
+  font-family:var(--font-display); font-size: var(--fs-hero); font-weight:900;
+  line-height:1.06; margin:0;
+}
+.kc .ask .sub{ font-size: var(--fs-h3); font-weight:700; color:var(--text-2); margin-top:.5em; }
+
+/* ---------- 猜想卡（Explain 时逐条划掉） ---------- */
+.kc .guess{
+  display:flex; align-items:center; gap:clamp(12px,1.2vw,22px);
+  border:3px solid var(--ink); border-radius:var(--radius);
+  background:#fff; box-shadow:5px 5px 0 var(--ink);
+  padding: clamp(12px,1.3vw,22px) clamp(16px,1.6vw,28px);
+  position:relative;
+}
+.kc .guess .gt{ font-size: var(--fs-h3); font-weight:800; position:relative; }
+.kc .guess.out{ background: var(--surface-2); }
+.kc .guess.out .gt{ color: var(--text-3); }
+/* 粉笔划掉：用一根真正粗的斜杠，不用 text-decoration（投影上看不见） */
+.kc .guess.out .gt::after{
+  content:''; position:absolute; left:-10px; right:-10px; top:52%;
+  height:8px; border-radius:5px; background: var(--accent);
+  transform: translateY(-50%) rotate(-1.4deg);
+}
+.kc .guess .verdict{ margin-left:auto; text-align:right; font-weight:800;
+  font-size: var(--fs-body); color: var(--accent); }
+
+/* ---------- 四格对照表 ---------- */
+.kc .quad{
+  display:grid; grid-template-columns: minmax(120px,1fr) 1.35fr 1.35fr;
+  grid-template-rows: auto 1fr 1fr; gap:10px; width:100%;
+}
+.kc .quad > div{
+  border:3px solid var(--ink); border-radius:12px; background:#fff;
+  display:grid; place-items:center; text-align:center; padding:10px;
+  font-weight:800; font-size: var(--fs-h3); box-shadow:4px 4px 0 var(--ink);
+}
+.kc .quad .hd{ background:var(--ink); color:#fff; box-shadow:none; font-size:var(--fs-body); }
+.kc .quad .hd.blank{ background:transparent; border-color:transparent; box-shadow:none; }
+.kc .quad .cell{ font-family:var(--font-display); font-size: clamp(30px,3.4vw,64px); }
+.kc .quad .cell.on { background: var(--accent-3); }
+.kc .quad .cell.off{ background: var(--surface-2); color: var(--text-3); }
+.kc .quad .cell.todo{ background:#fff; color: var(--text-3); font-size: var(--fs-h3); }
+.kc .quad .cell small{ display:block; font-family:var(--font-sans);
+  font-size: var(--fs-body); font-weight:700; margin-top:.25em; }
+
+/* ---------- 通用对照表：列数用行内 grid-template-columns 指定 ---------- */
+.kc .tbl{ display:grid; gap:10px; width:100%; }
+.kc .tbl > div{
+  border:3px solid var(--ink); border-radius:12px; background:#fff;
+  display:grid; place-items:center; text-align:center;
+  padding: clamp(10px,1vw,18px) clamp(8px,.8vw,14px);
+  font-weight:800; font-size:var(--fs-h3); box-shadow:4px 4px 0 var(--ink);
+}
+.kc .tbl .hd{ background:var(--ink); color:#fff; box-shadow:none; font-size:var(--fs-body); }
+.kc .tbl .hd.blank{ background:transparent; border-color:transparent; box-shadow:none; }
+.kc .tbl .rh{ background:var(--surface-2); font-size:var(--fs-body); }
+.kc .tbl .on { background:var(--accent-3); }
+.kc .tbl .off{ background:var(--surface-2); color:var(--text-3); }
+.kc .tbl .todo{ color:var(--text-3); }
+.kc .tbl small{ display:block; font-family:var(--font-sans);
+  font-size:var(--fs-small); font-weight:700; margin-top:.25em; color:var(--text-2); }
+.kc .tbl .off small{ color:var(--text-3); }
+
+/* ---------- 通用记录表：左边测什么，右边结果（五点断开表等） ---------- */
+.kc .rec{ display:grid; grid-template-columns: 1fr minmax(150px,.42fr);
+  gap:clamp(8px,.8vh,12px); width:100%; }
+.kc .rec > div{
+  border:3px solid var(--ink); border-radius:12px; background:#fff;
+  display:flex; align-items:center; gap:clamp(10px,1vw,18px);
+  padding: clamp(8px,.85vw,15px) clamp(12px,1.2vw,22px);
+  font-weight:800; font-size:var(--fs-h3); box-shadow:4px 4px 0 var(--ink);
+}
+.kc .rec .hd{ background:var(--ink); color:#fff; box-shadow:none;
+  font-size:var(--fs-body); justify-content:center; }
+.kc .rec .res{ justify-content:center; font-family:var(--font-display);
+  font-size:clamp(22px,2.4vw,42px); }
+.kc .rec .res.off{ background:var(--surface-2); color:var(--text-3); }
+.kc .rec .res.on { background:var(--accent-3); }
+.kc .rec .res.todo{ color:var(--text-3); font-size:var(--fs-h3); }
+.kc .rec .pt{ display:flex; align-items:center; gap:clamp(10px,1vw,18px); }
+
+/* ---------- 排查清单 ---------- */
+.kc .checks{ display:flex; flex-direction:column; gap:clamp(10px,1.1vh,18px); }
+.kc .check{
+  display:flex; align-items:center; gap:clamp(12px,1.2vw,22px);
+  border:3px solid var(--ink); border-radius:var(--radius); background:#fff;
+  box-shadow:5px 5px 0 var(--ink); padding:clamp(12px,1.2vw,20px) clamp(16px,1.6vw,26px);
+}
+.kc .check .box{
+  width: clamp(26px,2.1vw,38px); height: clamp(26px,2.1vw,38px); flex:0 0 auto;
+  border:3px solid var(--ink); border-radius:6px; background:#fff;
+}
+.kc .check .ct{ font-size: var(--fs-h3); font-weight:800; line-height:1.2; }
+.kc .check .cs{ font-size: var(--fs-small); font-weight:600; color:var(--text-2); margin-top:.2em; }
+
+/* ---------- 对错并排 ---------- */
+.kc .vs{ display:grid; grid-template-columns:1fr 1fr; gap:clamp(18px,2vw,36px); }
+.kc .vs > div{ border:3px solid var(--ink); border-radius:var(--radius);
+  box-shadow:6px 6px 0 var(--ink); padding:clamp(18px,1.8vw,30px); background:#fff; }
+.kc .vs .no{ background: var(--surface-2); }
+.kc .vs .yes{ background: var(--accent-3); }
+.kc .vs .mk{ font-family:var(--font-display); font-size: clamp(34px,3.6vw,66px); line-height:1; }
+.kc .vs .no .mk{ color:#9a9a9a; }
+
+/* ---------- 今日大发现横幅 ---------- */
+.kc .discovery{
+  border:4px solid var(--ink); border-radius:var(--radius-lg);
+  background: var(--accent-3); box-shadow: 10px 10px 0 var(--ink);
+  padding: clamp(24px,3vw,56px); text-align:center;
+}
+
+/* ---------- 器材 / 电路图容器 ---------- */
+.kc .figure{ display:grid; place-items:center; }
+.kc .figure svg{ width:100%; height:auto; max-height:52vh; overflow:visible; }
+.kc .cap{ font-size: var(--fs-small); font-weight:700; color:var(--text-2); margin-top:.6em; text-align:center; }
+
+/* SVG 通用描边 */
+.kc svg .st{ stroke: var(--ink); stroke-width:4; fill:none;
+  stroke-linecap:round; stroke-linejoin:round; }
+.kc svg .st2{ stroke: var(--ink); stroke-width:3; fill:none;
+  stroke-linecap:round; stroke-linejoin:round; }
+.kc svg .lbl{ font-family:var(--font-sans); font-size:19px; font-weight:800; fill: var(--ink); }
+.kc svg .lbl.sm{ font-size:15px; font-weight:700; fill: var(--text-2); }
+/* ＋ / − / ？ 这类单字符标记，投影上必须大 */
+.kc svg .lbl.pm{ font-size:36px; font-weight:900; }
+.kc svg .fillw{ fill:#fff; }
+.kc svg .fillp{ fill: var(--accent); }
+.kc svg .fillc{ fill: var(--accent-2); }
+.kc svg .filly{ fill: var(--accent-3); }
+.kc svg .fillk{ fill: var(--ink); }
+
+/* 点亮的灯：呼吸光晕（用 scale，尊重每个圆自己的半径） */
+.kc svg .glow{ animation: kcGlow 1.8s ease-in-out infinite;
+  transform-box: fill-box; transform-origin:center; }
+@keyframes kcGlow{ 0%,100%{opacity:.26; transform:scale(.84)} 50%{opacity:.68; transform:scale(1.12)} }
+@media (prefers-reduced-motion: reduce){ .kc svg .glow{ animation:none; opacity:.45 } }
+
+/* ---------- O 键总览：重做成「课堂跳页目录」 ----------
+   base.css 默认是 4 列 16:9 空白卡（内容全是绝对定位 → 卡片高度塌陷、
+   标题被挤出可视区）。这里整个覆盖掉，改成一屏看完的紧凑列表。 */
+.kc .overview{
+  background: rgba(17,17,17,.94); backdrop-filter: blur(10px);
+  padding: clamp(22px,3vh,44px) clamp(22px,3vw,54px);
+  align-content: start;
+}
+.kc .overview.open{
+  grid-template-columns: repeat(auto-fill, minmax(min(100%,300px), 1fr));
+  gap: clamp(10px,1.1vw,16px);
+}
+.kc .overview .thumb{
+  aspect-ratio: auto;                 /* 关键：去掉 16:9，改成内容高度 */
+  display:flex; align-items:center; gap:clamp(10px,.9vw,16px);
+  padding: clamp(10px,1vw,15px) clamp(12px,1.1vw,18px);
+  background:#fff; border:3px solid var(--ink); border-radius:12px;
+  box-shadow:4px 4px 0 var(--accent);
+  font-size:inherit; overflow:visible;
+  transition: transform .15s var(--ease), box-shadow .15s var(--ease), background .15s var(--ease);
+}
+.kc .overview .thumb:hover{
+  transform: translate(-3px,-3px); box-shadow:7px 7px 0 var(--accent);
+  background: var(--accent-3);
+}
+.kc .overview .thumb .n{
+  position: static; flex:0 0 auto;
+  min-width: clamp(34px,2.6vw,46px); height: clamp(34px,2.6vw,46px);
+  display:grid; place-items:center;
+  font-family: var(--font-display); font-size: clamp(15px,1.15vw,20px);
+  font-weight:900; color: var(--ink);
+  background: var(--accent-3); border:2.5px solid var(--ink); border-radius:9px;
+}
+.kc .overview .thumb .t{
+  position: static; flex:1 1 auto; text-align:left;
+  font-size: clamp(14px,1.05vw,18px); font-weight:800; line-height:1.3;
+  color: var(--ink);
+}
+/* 当前页高亮由 runtime 不提供，靠 hover 即可；窄屏单列也不会横向溢出 */
+
+/* ---------- 页脚 / 页码 ---------- */
+.kc .deck-footer{
+  font-size: var(--fs-small); font-weight:700; color: var(--text-2);
+  text-transform:none; letter-spacing:0;
+  left: clamp(44px,4.6vw,110px); right: clamp(44px,4.6vw,110px);
+}
+.kc .progress-bar > span{ background: var(--accent); height:5px; }
+
+/* ---------- 通用间距 ---------- */
+.kc .stack-l > * + *{ margin-top: clamp(12px,1.4vh,24px); }
+.kc .grid{ gap: clamp(16px,1.7vw,30px); }
+.kc .full-center{ align-items:center; justify-content:center; text-align:center; }
+
+/* 小屏 / 窗口化预览时避免溢出 */
+@media (max-aspect-ratio: 5/4){
+  .kc .vs, .kc .grid.g2{ grid-template-columns:1fr; }
+}
+
+/* Dark ink keeps the original pink accents readable at scaled classroom sizes. */
+.kc .chip.pink, .kc .badge.pink, .kc mark.pink,
+.kc .pop.pink, .kc .pop.pink .dim, .kc .pop.pink .cap { color: var(--ink); }

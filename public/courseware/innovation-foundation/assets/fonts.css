@@ -1,0 +1,2 @@
+/* Local font fallbacks keep classroom slides available without a font service. */
+:root { --font-sans: "PingFang SC", "Microsoft YaHei", Arial, sans-serif; --font-mono: "SFMono-Regular", Consolas, monospace; }

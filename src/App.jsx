@@ -62,12 +62,7 @@ const EkartGallery = lazy(() => import('./ekart/pages/Gallery'));
 const EkartParentPortal = lazy(() => import('./ekart/pages/ParentPortal'));
 
 // Hardware Module
-const HardwareLayout = lazy(() => import('./hardware/HardwareLayout'));
 const HardwareLanding = lazy(() => import('./hardware/pages/HardwareLanding'));
-const Esp32Curriculum = lazy(() => import('./hardware/pages/Esp32Curriculum'));
-const Esp32LessonPage = lazy(() => import('./hardware/pages/Esp32LessonPage'));
-const Esp32LearningMap = lazy(() => import('./hardware/pages/Esp32LearningMap'));
-const Esp32Contest = lazy(() => import('./hardware/pages/Esp32Contest'));
 
 // Floating widgets are useful outside focus flows, but should not tax deep links.
 const ClassroomPoints = lazy(() => import('./components/ClassroomPoints'));
@@ -82,7 +77,7 @@ const GlobalWidgets = () => {
   const isQuestionBankFlow = pathname.startsWith('/question-bank');
   const usesHeaderActions = pathname === '/' || pathname === '/museum';
 
-  if (isQuestionBankFlow || pathname.startsWith('/innovation/')) return null;
+  if (isQuestionBankFlow || pathname.startsWith('/innovation/') || pathname.startsWith('/innovation-foundation/') || pathname.startsWith('/hardware/esp32/')) return null;
 
   return (
     <Suspense fallback={null}>
@@ -125,7 +120,9 @@ function App() {
             <Route path="/question-bank/topics/:level" element={<TopicPractice />} />
             <Route path="/question-bank/:level/:paperId" element={<ExamPaper />} />
             <Route path="/" element={<Home />} />
-            <Route path="/innovation/:id" element={<InnovationLesson />} />
+            <Route path="/innovation/:id" element={<InnovationLesson redirectLegacy />} />
+            <Route path="/innovation-foundation" element={<HardwareLanding courseId="foundation" />} />
+            <Route path="/innovation-foundation/:id" element={<InnovationLesson courseId="foundation" />} />
 
             {/* C++ Lessons — parameterized: /lesson/:level(1-6)/:lessonId(1-16) */}
             <Route path="/lesson/:level/:lessonId" element={<RoutedLesson />} />
@@ -139,18 +136,11 @@ function App() {
               <Route path="parent-portal" element={<EkartParentPortal />} />
             </Route>
 
-            {/* Hardware Module Routes */}
-            <Route path="/hardware" element={<HardwareLayout />}>
-              <Route index element={<HardwareLanding />} />
-              <Route path="esp32-curriculum" element={<Esp32Curriculum />} />
-              <Route path="esp32-map" element={<Esp32LearningMap />} />
-              <Route path="esp32-contest" element={<Esp32Contest />} />
-              <Route path="esp32/:num" element={<Esp32LessonPage />} />
-              {/* 旧的两套硬件课（esp32-ai 的 16 课旧版、lesson/:id 的 Arduino 套件课）
-                  已被 35 课新体系取代。URL 保留重定向，老书签和外链不至于 404。 */}
-              <Route path="esp32-ai" element={<Navigate to="/hardware/esp32-curriculum" replace />} />
-              <Route path="lesson/:id" element={<Navigate to="/hardware/esp32-curriculum" replace />} />
-            </Route>
+            {/* The current HTML courses replace the retired ESP32 curriculum. */}
+            <Route path="/hardware" element={<HardwareLanding />} />
+            <Route path="/hardware/esp32-curriculum" element={<HardwareLanding />} />
+            <Route path="/hardware/esp32/:num" element={<InnovationLesson />} />
+            <Route path="/hardware/*" element={<Navigate to="/hardware/esp32-curriculum" replace />} />
 
             {/* Course Levels */}
             <Route path="/level1" element={<CourseLevel1 />} />

@@ -1,0 +1,530 @@
+<!DOCTYPE html>
+<html lang="zh-CN" data-themes="memphis-pop,neo-brutalism,soft-pastel,minimal-white" data-theme-base="../assets/themes/">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>第 8 课 · 为什么铅笔芯让灯变暗？</title>
+<link rel="stylesheet" href="../assets/fonts.css">
+<link rel="stylesheet" href="../assets/base.css">
+<link rel="stylesheet" id="theme-link" href="../assets/themes/memphis-pop.css">
+<link rel="stylesheet" href="../assets/animations/animations.css">
+<link rel="stylesheet" href="../assets/course.css">
+</head>
+<body class="kc">
+<div class="deck">
+
+<!-- ═══════════════ 1 · 封面 ═══════════════ -->
+<section class="slide full-center" data-title="开场 · 封面">
+  <div style="text-align:center">
+    <span class="chip cyan" data-anim="fade-down">15 节科创探究课 · 第三单元「电在材料中怎么走」</span>
+    <h1 class="hero mt-m" data-anim="rise-in">第 8 课<br>为什么铅笔芯<br>让灯变暗？</h1>
+    <div class="row mt-l" style="justify-content:center;gap:14px;flex-wrap:wrap" data-anim="fade-up">
+      <span class="chip">90 分钟 · 两节连堂</span>
+      <span class="chip yellow">今天要剪开一样东西</span>
+      <span class="chip pink">今天要烧掉一个灯</span>
+    </div>
+  </div>
+  <aside class="notes">
+    <p>本课是<strong>全课程第三个、也是最后一个不能欠账的关</strong>。第 9、10 课的电容选型、第 14 课的限流，全部建立在「<strong>电阻是干什么的</strong>」这个理解上。这一关过不了，后面的选型实验就退化成按老师说的换零件。</p>
+    <p><strong>开场剪热缩管是本课的仪式</strong>：那颗 150Ω 从第 1 课就在学生手里，<strong>七节课没人问过它</strong>。当众剪开，是把一个一直被忽略的东西变成主角。<strong>这个动作不要省，也不要提前预告。</strong></p>
+    <p><strong>电压和电流两个词在本课唯一一次出现</strong>，只给一句话的直观说法，<strong>不展开、不提问、不要求复述</strong>。学生追问就统一回答：「这两个词初中会专门学。」——新教师最容易在这里把 B 级当 A 级教，一讲开就滑回初中电学。</p>
+    <p>保底目标：<strong>用自己的话（不含公式）解释 LED 为什么需要那颗限流电阻。</strong></p>
+  </aside>
+</section>
+
+<!-- ═══════════════ 2 · 今天走 5 步 ═══════════════ -->
+<section class="slide" data-title="开场 · 今天走 5 步">
+  <p class="chip pink" data-anim="fade-down">今天，我们走 5 步</p>
+  <h2 class="h2 mt-s" data-anim="fade-up">今天有个东西，<mark>在你手里七节课了</mark>。</h2>
+  <div class="grid mt-l" style="grid-template-columns:repeat(5,1fr)" data-anim="stagger-list">
+    <div class="pop yellow" style="text-align:center">
+      <div class="badge sq" style="margin:0 auto 12px">1</div>
+      <div class="h3">剪开它</div>
+      <p class="cap" style="margin-top:8px">看看里面藏着什么</p>
+    </div>
+    <div class="pop" style="text-align:center">
+      <div class="badge pink sq" style="margin:0 auto 12px">2</div>
+      <div class="h3">先乱试</div>
+      <p class="cap" style="margin-top:8px">铅笔芯接进电路</p>
+    </div>
+    <div class="pop cyan" style="text-align:center">
+      <div class="badge sq" style="margin:0 auto 12px;background:#fff;color:var(--ink)">3</div>
+      <div class="h3">只改一个</div>
+      <p class="cap" style="margin-top:8px">先改长度，再改粗细</p>
+    </div>
+    <div class="pop" style="text-align:center">
+      <div class="badge cyan sq" style="margin:0 auto 12px">4</div>
+      <div class="h3">起名字</div>
+      <p class="cap" style="margin-top:8px">电阻</p>
+    </div>
+    <div class="pop pink" style="text-align:center">
+      <div class="badge sq" style="margin:0 auto 12px;background:#fff;color:var(--ink)">5</div>
+      <div class="h3">烧一个</div>
+      <p class="cap" style="margin-top:8px">看看没有它会怎样</p>
+    </div>
+  </div>
+  <p class="lede mt-l" data-anim="fade-up">
+    第 5 步我会<mark class="pink">当众烧掉一个灯</mark> —— 只有我能做，你们不许试。
+  </p>
+  <aside class="notes">
+    <p>一分钟带过。「烧掉一个灯」这句一说，全班会瞬间安静——这是今天最强的注意力抓手。</p>
+    <p>但<strong>同时把规矩立住</strong>：「<strong>只有我能做，你们不许试。</strong>」这句现在说一遍，第 15 页再说一遍。</p>
+    <p>不要提前透露第 1 步要剪什么。「有个东西在你手里七节课了」——让他们自己去猜、去翻手里的器材。</p>
+  </aside>
+</section>
+
+<!-- ═══════════════ 3 · 剪开热缩管 ═══════════════ -->
+<section class="slide" data-title="① 剪开它 · 七节课没人问过它">
+  <div class="stage-rail"><b>① 剪开它</b><i class="on"></i><i></i><i></i><i></i><i></i></div>
+  <p class="chip yellow" data-anim="fade-down">当众剪开 · 看清楚里面</p>
+  <h2 class="h2 mt-s" data-anim="fade-up">这个小东西，<mark class="pink">七节课了</mark>。</h2>
+  <div class="figure mt-m" data-anim="fade-up">
+    <svg viewBox="0 0 840 230" role="img" aria-label="剪开热缩管，露出串在长脚上的 150 欧电阻">
+      <g>
+        <text class="lbl" x="30" y="30" style="fill:var(--text-2)">之前：包着一层热缩管</text>
+        <path class="st filly" d="M120 96 v-30 a30 30 0 0 0 -60 0 v30 z"/>
+        <rect class="st fillw" x="52" y="96" width="76" height="13" rx="5"/>
+        <path class="st" d="M72 109 v70"/>
+        <rect class="st fillk" x="98" y="109" width="26" height="70" rx="12"/>
+        <text class="lbl sm" x="140" y="150" style="fill:var(--text-2)">← 这里鼓鼓的</text>
+      </g>
+      <path class="st2" style="stroke:var(--text-3)" d="M360 110 h70 M418 100 l14 10 -14 10"/>
+      <text class="lbl sm" x="366" y="92" style="fill:var(--text-3)">剪开</text>
+      <g transform="translate(420,0)">
+        <text class="lbl" x="30" y="30" style="fill:var(--accent)">现在：里面串着一颗电阻</text>
+        <path class="st filly" d="M120 96 v-30 a30 30 0 0 0 -60 0 v30 z"/>
+        <rect class="st fillw" x="52" y="96" width="76" height="13" rx="5"/>
+        <path class="st" d="M72 109 v70"/>
+        <path class="st" style="stroke:var(--accent)" d="M111 109 v16"/>
+        <rect class="st" x="94" y="125" width="34" height="38" rx="5" style="fill:#f0d9a8"/>
+        <path class="st" style="stroke:var(--accent)" d="M111 163 v16"/>
+        <text class="lbl" x="146" y="150" style="fill:var(--accent)">150 Ω</text>
+        <text class="lbl sm" x="146" y="178">一直串在长脚上</text>
+      </g>
+    </svg>
+  </div>
+  <p class="lede mt-s" data-anim="fade-up" style="text-align:center;max-width:none;font-weight:800;color:var(--text-1)">
+    七节课，<mark>没有一个人问过我它是干什么的</mark>。
+  </p>
+  <aside class="notes">
+    <p><strong>这是本课的仪式，动作要慢，要当众做。</strong></p>
+    <p>举起一个 LED 组合件，<strong>用剪刀当众剪开热缩管</strong>，把那颗 150Ω 露出来，举高走一圈。</p>
+    <p>「看到这个小东西了吗？<strong>它从第 1 课就一直在你们手里。七节课了，没有一个人问过我它是干什么的。</strong>」</p>
+    <p>这句话说完停两秒。会有孩子开始翻自己的器材找那个鼓包——<strong>让他们找</strong>。</p>
+    <p>这个动作的意义：<strong>把一个一直被忽略的元件变成主角</strong>。也是在教一件更大的事——<strong>身边一直在那儿的东西，也值得追问。</strong></p>
+    <p>然后抛出问题，翻页。</p>
+  </aside>
+</section>
+
+<!-- ═══════════════ 4 · 猜想上墙 ═══════════════ -->
+<section class="slide full-center" data-title="① 剪开它 · 拿掉它会怎样">
+  <div class="stage-rail"><b>① 剪开它</b><i class="on"></i><i></i><i></i><i></i><i></i></div>
+  <div class="ask">
+    <p class="chip pink" data-anim="fade-down">先猜，不验证 · 我全写黑板上</p>
+    <p class="q mt-m" data-anim="zoom-pop">如果把它<br><mark>拿掉</mark>，<br>会怎么样？</p>
+    <p class="sub mt-l" data-anim="fade-up">猜「更亮」的举手。猜「不亮」的举手。猜「一样」的举手。</p>
+  </div>
+  <aside class="notes">
+    <p>「现在我问你们：<strong>如果把它拿掉，会怎么样？</strong>」</p>
+    <p><strong>先猜，不验证。</strong>把所有猜法写到黑板上——这是第 1 课「猜想墙」的老动作，孩子已经熟悉了。</p>
+    <p><strong>多数学生会猜「更亮」</strong>——因为「少了个挡路的」。这个猜法非常合理，<strong>不要流露任何否定</strong>。</p>
+    <p>这些猜想是第 15 页烧毁演示的<strong>靶子</strong>。没有猜想，那个演示就只是个表演；有了猜想，它才是验证。</p>
+    <p>写完了先不解释，直接发铅笔芯进入自由尝试。</p>
+  </aside>
+</section>
+
+<!-- ═══════════════ 5 · 自由尝试 ═══════════════ -->
+<section class="slide full-center" data-title="② 先乱试 · 铅笔芯接进电路">
+  <div class="stage-rail"><b>② 先乱试</b><i class="done"></i><i class="on"></i><i></i><i></i><i></i></div>
+  <div style="text-align:center">
+    <span class="chip pink" data-anim="fade-down">第 1 关 · 14 分钟 · 先不记录</span>
+    <h1 class="hero mt-m" data-anim="rise-in">把铅笔芯<br>接进电路。</h1>
+    <p class="h3 mt-l" data-anim="fade-up" style="font-weight:800">
+      夹子夹在<mark>不同位置</mark>试试 —— 说一句「<mark class="pink">我发现……</mark>」
+    </p>
+  </div>
+  <aside class="notes">
+    <p>把<strong>铅笔芯当成一段导线</strong>接进电路（代替其中一根线），然后<strong>自由改变夹持位置</strong>，看亮度变化。</p>
+    <p><strong>不给记录表</strong>，只要求说出一句「<strong>我发现……</strong>」。</p>
+    <p>孩子很快会发现：<strong>夹得远就暗，夹得近就亮。</strong>这是粗略的感觉，先有感觉，后面才谈精确。</p>
+    <p>巡视时只问一句：「<strong>你发现了什么？</strong>」不要纠正，不要给术语。</p>
+    <p>器材提醒：<strong>铅笔芯极易折断</strong>，每组多备 5 根。断掉的短芯<strong>不要丢</strong>——正好用于后面 2cm 那一档。</p>
+    <p>「电阻」这两个字<strong>现在一个都不要说</strong>。</p>
+  </aside>
+</section>
+
+<!-- ═══════════════ 6 · 控制变量提醒 ═══════════════ -->
+<section class="slide" data-title="③ 只改一个 · 你这次改了几个东西">
+  <div class="stage-rail"><b>③ 只改一个</b><i class="done"></i><i class="done"></i><i class="on"></i><i></i><i></i></div>
+  <p class="chip yellow" data-anim="fade-down">从现在开始，有规矩了</p>
+  <h2 class="h2 mt-s" data-anim="fade-up">一次<mark class="pink">只许改一件事</mark>。</h2>
+  <div class="vs mt-l" data-anim="fade-up">
+    <div class="yes">
+      <div class="h3">A 组：只改<b>长度</b></div>
+      <p class="cap" style="text-align:left;margin-top:10px">同一根铅笔芯，夹 2cm / 5cm / 10cm<br><b>粗细不许换</b></p>
+    </div>
+    <div class="yes" style="background:var(--accent-2)">
+      <div class="h3">B 组：只改<b>粗细</b></div>
+      <p class="cap" style="text-align:left;margin-top:10px">细芯 vs 粗芯，<b>长度必须一样</b><br>用尺量，差 1cm 结论就不可靠</p>
+    </div>
+  </div>
+  <div class="pop pink mt-l" data-anim="fade-up" style="text-align:center">
+    <p class="h3" style="margin:0">我巡视的时候只问一句：<br><mark>「你这次改了几个东西？」</mark></p>
+  </div>
+  <aside class="notes">
+    <p><strong>两组变量必须分开做，一起改的组会在汇总时发现自己说不清。</strong></p>
+    <p>「这一组<strong>只许改一件事</strong>：铅笔芯的长度。<strong>粗细不许换。</strong>」</p>
+    <p><strong>巡视时优先问「你这次改了几个东西」，而不是看他记录得对不对。</strong>这一句比事后纠正记录有效得多。</p>
+    <p><strong>操作前提（本课能否成立的关键）：必须用两个固定夹持座 + 标尺。</strong>手持夹持会让有效长度不断变化，实验数据就完全废了——这是本课最常见的失败原因。</p>
+    <p>B 组两根芯的<strong>长度用尺量，误差控制在 2mm 以内</strong>。差 1cm 结论就不可靠。</p>
+    <p>节奏：上半场做 A 组，下半场做 B 组。</p>
+  </aside>
+</section>
+
+<!-- ═══════════════ 7 · A 组表 ═══════════════ -->
+<section class="slide" data-title="③ 只改一个 · A 组：改长度">
+  <div class="stage-rail"><b>③ 只改一个</b><i class="done"></i><i class="done"></i><i class="on"></i><i></i><i></i></div>
+  <div class="row" style="justify-content:space-between;align-items:flex-end">
+    <div>
+      <span class="chip cyan" data-anim="fade-down">A 组 · 上半场做完</span>
+      <h2 class="h2 mt-s" data-anim="fade-up">同一根芯，<mark>夹长一点，夹短一点</mark>。</h2>
+    </div>
+    <div class="pop yellow" data-anim="fade-left" style="text-align:center;flex:0 0 auto">
+      <div class="h3">两样都要记<br><b>亮度 + 读数</b></div>
+    </div>
+  </div>
+  <div class="tbl mt-m" style="grid-template-columns:1fr 1.1fr 1.1fr 1.3fr" data-anim="fade-up">
+    <div class="hd">夹持长度</div><div class="hd">万用表读数</div><div class="hd">亮度（1–5）</div><div class="hd">我的发现</div>
+    <div class="rh">2 cm</div><div class="todo">Ω</div><div class="todo">？</div><div class="todo">？</div>
+    <div class="rh">5 cm</div><div class="todo">Ω</div><div class="todo">？</div><div class="todo">？</div>
+    <div class="rh">10 cm</div><div class="todo">Ω</div><div class="todo">？</div><div class="todo">？</div>
+  </div>
+  <p class="lede mt-l" data-anim="fade-up" style="text-align:center;max-width:none;font-weight:800;color:var(--text-1)">
+    亮度是你<mark>感觉</mark>的，读数是表<mark class="cyan">量</mark>的 —— 两个一起才算证据。
+  </p>
+  <aside class="notes">
+    <p><strong>这是第一次同时记录两个变量。</strong>亮度等级由学生<strong>主观打分</strong>（1 最暗，5 最亮），读数是<strong>客观数据</strong>。</p>
+    <p>「亮度是你<strong>感觉</strong>的，读数是表<strong>量</strong>的。<strong>两个一起才算证据。</strong>」——这一句很重要，它教的是「主观感觉可以被客观数据印证」。</p>
+    <p>三档做完，让他们看着自己的三行数据说一句「我的发现」。答案会是：<strong>夹得越长，读数越大，灯越暗。</strong></p>
+    <p>巡视三件事：①<strong>夹持座固定了吗</strong>；②<strong>长度用尺量了吗</strong>；③<strong>粗细换了没有</strong>（不许换）。</p>
+    <p>黑板左侧记 A 组数据，右侧留给下半场的 B 组。</p>
+  </aside>
+</section>
+
+<!-- ═══════════════ 8 · 课间休息 ═══════════════ -->
+<section class="slide full-center" data-title="休息 · 课间 10 分钟">
+  <div style="text-align:center">
+    <div class="discovery" data-anim="zoom-pop" style="max-width:min(1000px,86vw)">
+      <p class="chip" style="background:#fff">中场 · 10 分钟</p>
+      <h1 class="hero mt-m">课间休息</h1>
+      <p class="h3 mt-m" style="font-weight:700">
+        <mark class="pink">铅笔芯轻拿轻放</mark>　·　黑板上的猜想还没验
+      </p>
+    </div>
+    <p class="lede mt-l" data-anim="fade-up" style="margin-left:auto;margin-right:auto;text-align:center">
+      回来换一组变量 —— 然后我烧一个灯给你们看。
+    </p>
+  </div>
+  <aside class="notes">
+    <p>走之前两句：「<strong>铅笔芯轻拿轻放</strong>，断了就只能用短的那档了。」「黑板上你们猜的那几条，<strong>回来验。</strong>」</p>
+    <p>这 10 分钟你要做的：①<strong>准备烧毁演示材料</strong>——裸 LED（不带电阻）、护目镜；②<strong>自己先试一次</strong>，确认在 4.5V 下数秒内可见损坏（有的 LED 会先变暗再慢慢死，必要时延长通电时间或改用红色 LED）；③<strong>把裸 LED 收在自己手边</strong>，绝不能提前流到学生桌上。</p>
+    <p>顺手补充断掉的铅笔芯。</p>
+  </aside>
+</section>
+
+<!-- ═══════════════ 9 · B 组表 ═══════════════ -->
+<section class="slide" data-title="③ 只改一个 · B 组：改粗细">
+  <div class="stage-rail"><b>③ 只改一个</b><i class="done"></i><i class="done"></i><i class="on"></i><i></i><i></i></div>
+  <div class="row" style="justify-content:space-between;align-items:flex-end">
+    <div>
+      <span class="chip pink" data-anim="fade-down">B 组 · 换一组变量</span>
+      <h2 class="h2 mt-s" data-anim="fade-up">这次<mark>长度不许变</mark>，只换粗细。</h2>
+    </div>
+    <div class="pop cyan" data-anim="fade-left" style="text-align:center;flex:0 0 auto">
+      <div class="h3">两根芯<br><b>用尺量齐</b></div>
+    </div>
+  </div>
+  <div class="tbl mt-m" style="grid-template-columns:1.2fr 1.1fr 1.1fr 1.3fr" data-anim="fade-up">
+    <div class="hd">铅笔芯粗细</div><div class="hd">万用表读数</div><div class="hd">亮度（1–5）</div><div class="hd">我的发现</div>
+    <div class="rh">细　<small>0.5mm 自动铅芯</small></div><div class="todo">Ω</div><div class="todo">？</div><div class="todo">？</div>
+    <div class="rh">粗　<small>绘图铅芯 2B</small></div><div class="todo">Ω</div><div class="todo">？</div><div class="todo">？</div>
+  </div>
+  <p class="lede mt-l" data-anim="fade-up" style="text-align:center;max-width:none;font-weight:800;color:var(--text-1)">
+    两根芯的长度差 1cm，<mark class="pink">结论就不可靠了</mark>。
+  </p>
+  <aside class="notes">
+    <p>「换一组变量：这次<strong>长度不许变</strong>，只换粗细。」</p>
+    <p><strong>两根芯必须用尺量齐</strong>，误差 2mm 以内。这一条不守，B 组的数据就没意义。</p>
+    <p>结论：<strong>越细越暗（读数越大），越粗越亮（读数越小）。</strong></p>
+    <p>全班汇总两组结论，写在黑板两侧：</p>
+    <p><strong>A 组：越长 → 读数越大 → 越暗。　B 组：越细 → 读数越大 → 越暗。</strong></p>
+    <p>两组放一起看，孩子会自己总结出「<strong>电越难走，灯就越暗</strong>」——这就是下一页要命名的东西。</p>
+    <p>时间不够的话<strong>可以砍 B 组，保留 A 组</strong>。但<strong>烧毁演示不能砍</strong>。</p>
+  </aside>
+</section>
+
+<!-- ═══════════════ 10 · 命名：电阻 ═══════════════ -->
+<section class="slide" data-title="④ 起名字 · 电阻 = 路上的减速带">
+  <div class="stage-rail"><b>④ 起名字</b><i class="done"></i><i class="done"></i><i class="done"></i><i class="on"></i><i></i></div>
+  <div class="row" style="gap:clamp(20px,2.4vw,50px);align-items:center">
+    <div style="flex:1">
+      <span class="chip yellow" data-anim="fade-down">这个「让电走得费劲」的本事</span>
+      <h2 class="h2 mt-s" data-anim="rise-in">叫 <mark class="pink">电阻</mark>。</h2>
+      <div class="stack-l mt-l">
+        <div class="pop cyan" data-anim="fade-right"><div class="h3">像路上的<b>减速带</b></div></div>
+        <div class="pop yellow" data-anim="fade-right"><div class="h3">减速带越多 → 车走得<b>越慢</b></div></div>
+        <div class="pop pink" data-anim="fade-right"><div class="h3" style="color:#fff">电阻越大 → 灯<b>越暗</b></div></div>
+      </div>
+    </div>
+    <div class="figure" style="flex:1.05" data-anim="fade-left">
+      <svg viewBox="0 0 560 320" role="img" aria-label="减速带越多，车走得越慢">
+        <g>
+          <path class="st" d="M30 78 h500"/>
+          <g class="fillk"><rect x="180" y="62" width="14" height="16" rx="5"/></g>
+          <circle class="filly glow" cx="500" cy="42" r="22"/>
+          <path class="st filly" d="M518 58 v-18 a18 18 0 0 0 -36 0 v18 z"/>
+          <text class="lbl sm" x="30" y="52">1 条减速带</text>
+          <text class="lbl" x="540" y="50" text-anchor="end" style="fill:var(--accent)">亮</text>
+        </g>
+        <g transform="translate(0,90)">
+          <path class="st" d="M30 78 h500"/>
+          <g class="fillk"><rect x="150" y="62" width="14" height="16" rx="5"/><rect x="230" y="62" width="14" height="16" rx="5"/><rect x="310" y="62" width="14" height="16" rx="5"/></g>
+          <circle class="filly" cx="500" cy="42" r="20" opacity=".3"/>
+          <path class="st" d="M518 58 v-18 a18 18 0 0 0 -36 0 v18 z" style="fill:#f5e3a8"/>
+          <text class="lbl sm" x="30" y="52">3 条减速带</text>
+          <text class="lbl" x="540" y="50" text-anchor="end" style="fill:var(--text-2)">暗一点</text>
+        </g>
+        <g transform="translate(0,180)">
+          <path class="st" d="M30 78 h500"/>
+          <g class="fillk"><rect x="130" y="62" width="14" height="16" rx="5"/><rect x="190" y="62" width="14" height="16" rx="5"/><rect x="250" y="62" width="14" height="16" rx="5"/><rect x="310" y="62" width="14" height="16" rx="5"/><rect x="370" y="62" width="14" height="16" rx="5"/></g>
+          <path class="st" d="M518 58 v-18 a18 18 0 0 0 -36 0 v18 z" style="fill:var(--surface-2)"/>
+          <text class="lbl sm" x="30" y="52">5 条减速带</text>
+          <text class="lbl" x="540" y="50" text-anchor="end" style="fill:var(--text-3)">更暗</text>
+        </g>
+      </svg>
+    </div>
+  </div>
+  <aside class="notes">
+    <p>名字放在两组数据之后给。</p>
+    <p>「铅笔芯<strong>越长，读数越大，灯就越暗</strong>。这个『<strong>让电走得费劲</strong>』的本事，有个名字，叫<strong>电阻</strong>。」</p>
+    <p>「你可以把它想成<strong>路上的减速带</strong>——减速带越多，车走得越慢。」</p>
+    <p>常见错误：有孩子会说「<strong>电阻就是不让电通过的东西</strong>」——这是把电阻当绝缘体了。用第 7 课的中间地带纠正：「<strong>它让电通过，只是走得费劲。</strong>」</p>
+    <p>把第 7 课接上：「<strong>上节课那个中间地带，就是电阻不大不小的那一段。</strong>」</p>
+  </aside>
+</section>
+
+<!-- ═══════════════ 11 · 三个词 ═══════════════ -->
+<section class="slide" data-title="④ 起名字 · 三个词（知道就行）">
+  <div class="stage-rail"><b>④ 起名字</b><i class="done"></i><i class="done"></i><i class="done"></i><i class="on"></i><i></i></div>
+  <p class="chip cyan" data-anim="fade-down">顺便给你们三个词 —— 今天只要知道有这么个说法</p>
+  <h2 class="h2 mt-s" data-anim="fade-up">推力 · 走的东西 · 阻碍</h2>
+  <div class="grid g3 mt-l" data-anim="stagger-list">
+    <div class="pop yellow" style="text-align:center">
+      <div class="h3">电压</div>
+      <div class="h3 mt-s" style="font-size:var(--fs-h3)">＝ 推力</div>
+    </div>
+    <div class="pop cyan" style="text-align:center">
+      <div class="h3">电流</div>
+      <div class="h3 mt-s" style="font-size:var(--fs-h3)">＝ 被推着走的东西</div>
+    </div>
+    <div class="pop pink" style="text-align:center">
+      <div class="h3" style="color:#fff">电阻</div>
+      <div class="h3 mt-s" style="font-size:var(--fs-h3);color:#fff">＝ 路上的阻碍</div>
+    </div>
+  </div>
+  <p class="lede mt-l" data-anim="fade-up" style="text-align:center;max-width:none;font-weight:800;color:var(--text-1)">
+    这三个词<mark>今天不考，不用背</mark>。<mark class="pink">初中会专门学。</mark>
+  </p>
+  <aside class="notes">
+    <p><strong>这是全课程唯一一次提电压和电流。说完就过。</strong></p>
+    <p>「顺便给你们两个词，今天<strong>只是知道有这么个说法就行</strong>：<strong>电压是推力，电流是被推着走的东西，电阻是路上的阻碍。</strong>」</p>
+    <p><strong>不展开、不提问、不要求学生复述、不出现在任何测验里。</strong></p>
+    <p>学生追问时统一回答：「<strong>这两个词初中会专门学，今天知道有这么个说法就行。</strong>」</p>
+    <p><strong>这是本课最需要克制的地方。</strong>新教师最容易在这里把它当重点教——一旦开始要求学生解释电压，这门课就滑回初中电学了。</p>
+    <p>说完立刻翻页，回到那颗 150Ω。</p>
+  </aside>
+</section>
+
+<!-- ═══════════════ 12 · 所以它是保护 ═══════════════ -->
+<section class="slide full-center" data-title="④ 起名字 · 它一直在保护你的灯">
+  <div class="stage-rail"><b>④ 起名字</b><i class="done"></i><i class="done"></i><i class="done"></i><i class="on"></i><i></i></div>
+  <div style="text-align:center">
+    <p class="chip pink" data-anim="fade-down">回到开场那颗 150Ω</p>
+    <p class="hero mt-m" data-anim="zoom-pop">它不是多余的。</p>
+    <p class="h3 mt-l" data-anim="fade-up" style="font-weight:700;color:var(--text-2)">
+      它一直在<mark class="pink">替你的灯挡着</mark> ——<br>
+      让电<mark>别冲得太猛</mark>。
+    </p>
+  </div>
+  <aside class="notes">
+    <p>「所以回到开头那颗小东西——<strong>那颗 150Ω，是用来保护 LED 的。</strong>」</p>
+    <p>「它一直在<strong>替你的灯挡着</strong>，让电<strong>别冲得太猛</strong>。」</p>
+    <p>这一页先给结论，<strong>但还不验证</strong>。孩子这时候会半信半疑——尤其是那些猜「更亮」的。</p>
+    <p>然后说：「你们不信？<strong>我们试一次。</strong>」——翻页做烧毁演示。</p>
+    <p>这个顺序很重要：<strong>先给解释，再给证据</strong>。反过来的话，烧毁就变成了惊吓而不是验证。</p>
+  </aside>
+</section>
+
+<!-- ═══════════════ 13 · 烧毁演示 ═══════════════ -->
+<section class="slide full-center" data-title="⑤ 烧一个 · 老师演示（不许模仿）">
+  <div class="stage-rail"><b>⑤ 烧一个</b><i class="done"></i><i class="done"></i><i class="done"></i><i class="done"></i><i class="on"></i></div>
+  <div class="discovery" data-anim="zoom-pop" style="max-width:min(1100px,88vw);margin:0 auto;background:var(--accent)">
+    <p class="chip" style="background:#fff">老师演示 · 戴护目镜 · 离我一米以上</p>
+    <p class="hero mt-m" style="color:#fff">拿掉电阻，<br>直接接 4.5V。</p>
+    <p class="h3 mt-l" style="font-weight:700;color:#fff">
+      这个动作<mark>只有我能做</mark>　·　演示完裸 LED 全部收回
+    </p>
+  </div>
+  <aside class="notes">
+    <p><strong>安全先说，再动手：</strong>戴护目镜，<strong>LED 引脚朝下背向学生</strong>，<strong>距最近的学生 1 米以上</strong>。</p>
+    <p>「现在回到开头那个问题。有同学猜，把那个小零件拿掉，<strong>灯会更亮</strong>。<strong>我们来试一次。</strong>」</p>
+    <p>接通 4.5V，几秒内 LED 会变暗、变色或直接死掉。</p>
+    <p>「<strong>更亮了吗？</strong>」——「<strong>它烧了！</strong>」</p>
+    <p>「所以那颗小东西<strong>不是多余的</strong>——它一直在替你们的灯挡着。<strong>没有它，电冲得太猛，灯撑不住。</strong>」</p>
+    <p><strong>为什么必须做这个演示：</strong>学生前七节课一直有电阻保护，会形成「电阻没用」的错误经验。<strong>必须用一次可控的损坏打掉它。</strong>这个环节不能砍。</p>
+    <p><strong>演示后立即收回全部裸 LED 和无电阻线路。</strong>这是本课唯一的安全风险点。</p>
+  </aside>
+</section>
+
+<!-- ═══════════════ 14 · 核对猜想 ═══════════════ -->
+<section class="slide" data-title="⑤ 烧一个 · 核对开场的猜想">
+  <div class="stage-rail"><b>⑤ 烧一个</b><i class="done"></i><i class="done"></i><i class="done"></i><i class="done"></i><i class="on"></i></div>
+  <p class="chip yellow" data-anim="fade-down">回到黑板 · 一条一条核对</p>
+  <h2 class="h2 mt-s" data-anim="fade-up">猜「更亮」的同学 —— <mark>你错在哪？</mark></h2>
+  <div class="stack-l mt-l">
+    <div class="guess out" data-anim="fade-right">
+      <div class="badge">猜</div>
+      <div class="gt">拿掉会更亮</div>
+      <div class="verdict">少了挡路的，应该更快才对<br>→ <mark>结果它烧了</mark></div>
+    </div>
+    <div class="pop cyan mt-m" data-anim="fade-up">
+      <p class="h3" style="margin:0">错在哪？—— <b>「更快」是对的，但太快了，灯撑不住。</b></p>
+    </div>
+  </div>
+  <p class="lede mt-l" data-anim="fade-up" style="text-align:center;max-width:none;font-weight:800;color:var(--text-1)">
+    这个猜法<mark class="pink">很合理</mark> —— 我小时候也这么想。<mark>猜了才知道对不对。</mark>
+  </p>
+  <aside class="notes">
+    <p><strong>这一页的重点是照顾猜错的孩子，不要跳过。</strong></p>
+    <p>先肯定他们推理的那一半是对的：「猜『更亮』的同学，你们的想法是<strong>『少了挡路的，电应该走得更快』</strong>——<strong>这一半完全正确。</strong>」</p>
+    <p>「错在哪？<strong>快是快了，但太快了，灯撑不住。</strong>」</p>
+    <p>然后一定要说这句：「这个猜法<strong>很合理，我小时候也这么想</strong>。<strong>科学就是这样，猜了才知道对不对。</strong>」</p>
+    <p>猜错的孩子在全班面前被验证错了，<strong>这一句是在保护他们下次还敢猜</strong>。这门课从第 1 课起靠的就是孩子敢猜。</p>
+  </aside>
+</section>
+
+<!-- ═══════════════ 15 · 预测挑战 ═══════════════ -->
+<section class="slide full-center" data-title="⑤ 烧一个 · 挑战：先预测再验证">
+  <div class="stage-rail"><b>⑤ 烧一个</b><i class="done"></i><i class="done"></i><i class="done"></i><i class="done"></i><i class="on"></i></div>
+  <div class="ask">
+    <p class="chip cyan" data-anim="fade-down">挑战档 · 先写下来，再动手</p>
+    <p class="q mt-m" data-anim="zoom-pop">换一根<br><mark>更细</mark>的铅笔芯，<br>会怎么样？</p>
+    <p class="sub mt-l" data-anim="fade-up">读数会<mark class="pink">变大还是变小</mark>？灯会更亮还是更暗？</p>
+  </div>
+  <aside class="notes">
+    <p>挑战档，<strong>不作全员要求</strong>。</p>
+    <p>规则是老规矩：<strong>先预测，写下来，再动手验证。</strong>顺序不能反。</p>
+    <p>答案：<strong>更细 → 读数更大 → 更暗。</strong>和 B 组的结论一致。</p>
+    <p>重点不是答对，是<strong>能说出依据</strong>：「因为 B 组测出来越细读数越大，所以更细的应该更大。」——这是<strong>用自己的数据做预测</strong>，是今天最高阶的动作。</p>
+    <p>做完的孩子可以去帮还没完成 B 组的同伴。</p>
+    <p>时间紧就跳过，<strong>最后一关不能砍</strong>。</p>
+  </aside>
+</section>
+
+<!-- ═══════════════ 16 · 最后一关 ═══════════════ -->
+<section class="slide full-center" data-title="⑤ 烧一个 · 用自己的话写下来（逐人）">
+  <div class="stage-rail"><b>⑤ 烧一个</b><i class="done"></i><i class="done"></i><i class="done"></i><i class="done"></i><i class="on"></i></div>
+  <div style="text-align:center">
+    <span class="chip pink" data-anim="fade-down">最后一关 · 书面 · 一个一个看</span>
+    <h1 class="hero mt-m" data-anim="rise-in">写一句话：<br>为什么灯要带<br>一个电阻？</h1>
+    <div class="row mt-l" style="justify-content:center;gap:clamp(16px,1.8vw,34px);flex-wrap:wrap" data-anim="fade-up">
+      <div class="pop"><div class="h3">✗ 不许用公式</div></div>
+      <div class="pop"><div class="h3">✗ 不许抄黑板原话</div></div>
+      <div class="pop yellow"><div class="h3">✓ <b>用你自己的话</b></div></div>
+    </div>
+  </div>
+  <aside class="notes">
+    <p><strong>今天唯一的判定依据，死保 8 分钟。</strong></p>
+    <p>题目：「<strong>用自己的话解释，为什么第 1 课到第 7 课的 LED 都要带一个电阻。</strong>」</p>
+    <p><strong>不许用公式，不许抄板书原话。</strong>要求用自己的话，是为了<strong>确认理解而不是记忆</strong>。</p>
+    <p>合格的答案大概是这样：「因为电池推得太猛，灯受不了。电阻像减速带，让电慢一点，灯就不会烧了。」——<strong>说法千奇百怪都行，意思对就过。</strong></p>
+    <p>不合格的典型：只写「因为电阻能挡电」（没说为什么要挡）、或者整句照抄黑板。<strong>退回去让他重写。</strong></p>
+    <p>逐人看，当场判。<strong>第 9、10 课的电容选型和第 14 课的限流，全部建立在这一题上。</strong></p>
+  </aside>
+</section>
+
+<!-- ═══════════════ 17 · 今日大发现 ═══════════════ -->
+<section class="slide full-center" data-title="收尾 · 今日大发现">
+  <div class="discovery" data-anim="zoom-pop" style="max-width:min(1100px,88vw);margin:0 auto">
+    <p class="chip pink">今日大发现</p>
+    <p class="hero mt-m">原来它一直在<br>保护我的灯。</p>
+    <p class="h3 mt-l" style="font-weight:700">
+      电阻 ＝ 路上的减速带　—　<mark class="pink">越大，灯越暗</mark>
+    </p>
+  </div>
+  <aside class="notes">
+    <p>全班<strong>一起读一遍</strong>。</p>
+    <p>收一下今天：「一颗小电阻，<strong>在你手里放了七节课</strong>，你从来没注意过它。今天你知道了——<strong>没有它，你的灯早就烧了。</strong>」</p>
+    <p>再把这句话推远一点，这是今天真正想留下的东西：「<strong>一直在身边却没被注意的东西，往往最重要。</strong>」</p>
+    <p>然后是知识点收尾：<strong>铅笔芯越长越暗、越细越暗；电阻越大，电流越小，灯越暗。</strong></p>
+  </aside>
+</section>
+
+<!-- ═══════════════ 18 · 回家做 ═══════════════ -->
+<section class="slide" data-title="收尾 · 回家做">
+  <h2 class="h2" data-anim="fade-up">回家做。</h2>
+  <div class="grid g2 mt-l">
+    <div class="pop pink" data-anim="fade-right">
+      <span class="chip" style="background:#fff">必做 · 每个人</span>
+      <div class="h3 mt-m">把那颗小电阻带回家，讲给家人听。</div>
+      <p class="cap" style="text-align:left;margin-top:12px;color:rgba(255,255,255,.9)">
+        讲三件事：<strong>它长什么样</strong>、<strong>是干什么用的</strong>、<strong>没有它会怎样</strong>。<br>
+        （今天老师烧掉的那个，就是没有它的。）
+      </p>
+    </div>
+    <div class="pop cyan" data-anim="fade-left">
+      <span class="chip" style="background:#fff">选做 · 想挑战的人</span>
+      <div class="h3 mt-m">为什么家里的电线要用<b>很粗</b>的铜线？</div>
+      <p class="cap" style="text-align:left;margin-top:12px">
+        用今天 B 组的结论想一想 ——<br>
+        细的会怎么样？一句话写下来。
+      </p>
+    </div>
+  </div>
+  <p class="lede mt-l" data-anim="fade-up" style="text-align:center;max-width:none;font-weight:800;color:var(--text-1)">
+    <mark>一直在身边却没被注意的东西，往往最重要。</mark>
+  </p>
+  <aside class="notes">
+    <p>必做那条的三件事里，<strong>第三件最重要</strong>——「没有它会怎样」，因为那是他今天<strong>亲眼看见</strong>的。</p>
+    <p>选做那条是把 B 组结论迁移到生活：<strong>越粗电阻越小</strong>，家里电线用粗铜线是为了让电走得顺、不发热。能想到「细了会发热」的孩子非常厉害——那其实已经摸到第 14 课的边了。</p>
+    <p>还是那句安全提醒：<strong>家里的电线只许看，不许拆，不许碰插座。</strong></p>
+    <p>下课前自己确认三件事：①<strong>保底目标是否全员达成</strong>——能用自己的话解释限流电阻。这是第 9、10、14 课的地基。②<strong>裸 LED 和无电阻线路全部收回了吗</strong>。③<strong>万用表按编号清点</strong>，铅笔芯碎渣清理干净。</p>
+  </aside>
+</section>
+
+<!-- ═══════════════ 19 · 下节课 ═══════════════ -->
+<section class="slide full-center" data-title="收尾 · 下节课钩子">
+  <div style="text-align:center">
+    <p class="chip cyan" data-anim="fade-down">下节课 · 第 9 课 · 新单元开始</p>
+    <h2 class="h2 mt-m" data-anim="fade-up">到今天为止，<mark>断电就灭</mark>。</h2>
+    <p class="hero mt-l" data-anim="zoom-pop">下节课 ——<br><mark class="pink">断电了，灯还亮着。</mark></p>
+  </div>
+  <aside class="notes">
+    <p>收尾钩子，<strong>一句话，说完就下课</strong>。</p>
+    <p>先确认现有的模型：「从第 1 课到今天，<strong>只要断电，灯就灭</strong>，对不对？<strong>一秒都不多。</strong>」——全班会点头。</p>
+    <p>「<strong>下节课，我要让你们看一个断电之后还亮着的灯。</strong>」</p>
+    <p>停一秒，然后下课。<strong>不要解释</strong>（下节课是《断电了灯还亮着》，电容）。</p>
+    <p>这个钩子很强，因为它<strong>直接挑战了他们刚刚建立起来的牢固经验</strong>。</p>
+  </aside>
+</section>
+
+</div>
+
+<div class="deck-footer">
+  <span>第 8 课 · 为什么铅笔芯让灯变暗？　|　15 节科创探究课 · 第三单元</span>
+  <span class="slide-number" data-current="1" data-total="19"></span>
+</div>
+
+<script src="../assets/runtime.js"></script>
+</body>
+</html>

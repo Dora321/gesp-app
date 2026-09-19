@@ -11,6 +11,7 @@ import {
     Cpu,
     Database,
     Layers,
+    Lightbulb,
     Route,
     Target,
     Terminal,
@@ -21,7 +22,7 @@ import { getCppLevelCatalogItem } from '../data/cppLevelCatalog';
 import { pythonFoundationLessons, pythonProjects } from '../data/pythonCourseCatalog';
 import { getLessonStatus, LESSON_STATUS_META, readLessonProgress } from '../utils/lessonProgress';
 
-import { innovationLessons } from '../data/innovationCourseCatalog';
+import { foundationLessons, innovationLessons } from '../data/innovationCourseCatalog';
 
 const pythonStart = pythonFoundationLessons[0];
 const pythonProjectStart = pythonProjects[0];
@@ -45,11 +46,20 @@ function toCppLessons(level, titles) {
 
 const lessonSections = [
     {
-        id: 'innovation-basic', subject: 'innovation', title: '初阶科创',
-        subtitle: 'ESP32 × AI · 网页课件', badge: '创客入门', color: 'teal', icon: Cpu,
+        id: 'science-foundation', subject: 'science-foundation', title: '初阶科创',
+        subtitle: '电路 · 电与磁 · 动手探究', badge: '15 课', color: 'amber', icon: Lightbulb,
+        audience: '希望通过动手实验认识电路、电与磁的学生',
+        goal: '从点亮小灯到搭建小型发电站，学会连接、观察、比较与解释。',
+        bridge: '按第 1–15 课逐步完成实验，再进入 ESP32 MicroPython 高阶科创。',
+        checkpoints: ['能连接并画出简单电路', '能观察材料、电阻与电容的作用', '能探索电磁转换并制作小型发电站'],
+        examPath: '/innovation-foundation', lessons: foundationLessons,
+    },
+    {
+        id: 'innovation-advanced', subject: 'innovation', title: '高阶科创',
+        subtitle: 'ESP32 MicroPython · 网页课件', badge: '高阶科创', color: 'teal', icon: Cpu,
         audience: '希望通过动手制作认识编程、硬件与 AI 的学生',
         goal: '从点亮 LED 开始，用 MicroPython 与 AI 完成真实的硬件任务。',
-        bridge: '按原课号学习，完成后可衔接 ESP32 × AI 完整课程。',
+        bridge: '保留原课号，其他网页课件将陆续补充。',
         checkpoints: ['能控制灯光、按钮和屏幕', '能阅读并验证 AI 生成的代码', '能将创意整理成需求文档'],
         examPath: '/hardware/esp32-curriculum',
         lessons: innovationLessons,
@@ -421,10 +431,15 @@ const colorMap = {
 };
 
 const subjectSummaries = {
+    'science-foundation': {
+        label: '初阶科创', title: '从小灯到发电站，动手发现科学',
+        description: '15 节科创探究课：连接电路、比较导电材料、认识电与磁，把观察变成自己的作品。',
+        cta: '从第 1 课开始', ctaPath: '/innovation-foundation/1',
+    },
     innovation: {
-        label: '初阶科创', title: '让代码走出屏幕，做出第一件作品',
+        label: 'ESP32 MicroPython 高阶科创', title: '用 MicroPython 与 AI 完成硬件项目',
         description: 'ESP32 × AI 网页课件，保留课堂演示与交互。现有第 1–5、9、10 课，按原课号排列。',
-        cta: '从第 1 课开始', ctaPath: '/innovation/1',
+        cta: '从第 1 课开始', ctaPath: '/hardware/esp32/1',
     },
     cpp: {
         label: 'C++ GESP 体系',
@@ -448,6 +463,7 @@ const seniorExamLinks = [
 ];
 
 function getSubjectSummaryStats(subject) {
+    if (subject === 'science-foundation') return [`${foundationLessons.length} 节网页课`, '电与磁', '动手探究'];
     if (subject === 'innovation') return [`${innovationLessons.length} 节网页课`, 'ESP32 × AI', '动手做作品'];
     const sections = lessonSections.filter(section => section.subject === subject);
 
@@ -481,7 +497,8 @@ function getSectionSubtitle(section) {
 }
 
 function getSectionAction(section, subject) {
-    if (subject === 'innovation') return { label: '查看完整科创课程', path: '/hardware/esp32-curriculum', Icon: Cpu };
+    if (subject === 'science-foundation') return { label: '查看初阶课程目录', path: '/innovation-foundation', Icon: Lightbulb };
+    if (subject === 'innovation') return { label: '查看高阶课程目录', path: '/hardware/esp32-curriculum', Icon: Cpu };
     if (subject === 'cpp') {
         return {
             label: '查看冲刺课',
@@ -506,7 +523,8 @@ function getSectionAction(section, subject) {
 }
 
 function getPracticeAction(section, subject) {
-    if (subject === 'innovation') return { label: '查看学习地图', path: '/hardware/esp32-map', hint: '已收录第 1–5、9、10 课；第 6–8 课网页待补充，保留原课号。' };
+    if (subject === 'science-foundation') return { label: '查看课程目录', path: '/innovation-foundation', hint: '按第 1–15 课顺序学习，打开网页课件跟着实验一起探索。' };
+    if (subject === 'innovation') return { label: '查看课程目录', path: '/hardware/esp32-curriculum', hint: '已收录第 1–5、9、10 课；第 6–8 课网页待补充，保留原课号。' };
     if (subject === 'cpp') {
         return {
             label: '练真题',
@@ -559,7 +577,7 @@ function getPythonProgressionLinks(section) {
 export default function LessonCatalog() {
     const navigate = useNavigate();
     const [activeSubject, setActiveSubject] = useState(() => new URLSearchParams(window.location.search).get('subject') === 'innovation' ? 'innovation' : 'cpp');
-    const [activeTab, setActiveTab] = useState(() => new URLSearchParams(window.location.search).get('subject') === 'innovation' ? 'innovation-basic' : 'basic');
+    const [activeTab, setActiveTab] = useState(() => new URLSearchParams(window.location.search).get('subject') === 'innovation' ? 'innovation-advanced' : 'basic');
     const [progress, setProgress] = useState(() => readLessonProgress());
 
     useEffect(() => {
@@ -671,11 +689,18 @@ export default function LessonCatalog() {
                         Python 体系
                     </button>
                     <button
+                        onClick={() => setActiveSubject('science-foundation')}
+                        className={`flex flex-1 items-center justify-center gap-2 rounded-lg px-5 py-3 text-sm font-black transition sm:flex-none ${activeSubject === 'science-foundation' ? 'bg-white text-slate-950 shadow-sm' : 'text-slate-500 hover:text-slate-800'}`}
+                    >
+                        <Lightbulb size={18} className={activeSubject === 'science-foundation' ? 'text-amber-600' : ''} />
+                        初阶科创
+                    </button>
+                    <button
                         onClick={() => setActiveSubject('innovation')}
                         className={`flex flex-1 items-center justify-center gap-2 rounded-lg px-5 py-3 text-sm font-black transition sm:flex-none ${activeSubject === 'innovation' ? 'bg-white text-slate-950 shadow-sm' : 'text-slate-500 hover:text-slate-800'}`}
                     >
                         <Cpu size={18} className={activeSubject === 'innovation' ? 'text-teal-600' : ''} />
-                        初阶科创
+                        高阶科创
                     </button>
                 </div>
 

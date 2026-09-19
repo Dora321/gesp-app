@@ -1,0 +1,565 @@
+<!DOCTYPE html>
+<html lang="zh-CN" data-themes="memphis-pop,neo-brutalism,soft-pastel,minimal-white" data-theme-base="../assets/themes/">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>第 6 课 · 我来控制这盏灯</title>
+<link rel="stylesheet" href="../assets/fonts.css">
+<link rel="stylesheet" href="../assets/base.css">
+<link rel="stylesheet" id="theme-link" href="../assets/themes/memphis-pop.css">
+<link rel="stylesheet" href="../assets/animations/animations.css">
+<link rel="stylesheet" href="../assets/course.css">
+</head>
+<body class="kc">
+<div class="deck">
+
+<!-- ═══════════════ 1 · 封面 ═══════════════ -->
+<section class="slide full-center" data-title="开场 · 封面">
+  <div style="text-align:center">
+    <span class="chip cyan" data-anim="fade-down">15 节科创探究课 · 第二单元「我能搭建和控制」</span>
+    <h1 class="hero mt-m" data-anim="rise-in">第 6 课<br>我来控制这盏灯</h1>
+    <div class="row mt-l" style="justify-content:center;gap:14px;flex-wrap:wrap" data-anim="fade-up">
+      <span class="chip">90 分钟 · 两节连堂</span>
+      <span class="chip yellow">第一件能带走的作品</span>
+      <span class="chip pink">小手电</span>
+    </div>
+  </div>
+  <aside class="notes">
+    <p>本课是<strong>第二单元的收口</strong>，也是全课程<strong>第一件可以带走的作品</strong>。作品的意义不只是给家长看——<strong>第 10 课的延时小夜灯要复用这个按键</strong>，学生手上有实物，第 10 课的改造才讲得通。</p>
+    <p>核心设计是<strong>把第 4 课的方法迁移过来</strong>：四脚按键内部的连接同样看不见，同样可以用万用表测出来。学生自己测出「<strong>同侧两脚常通、对侧按下才通</strong>」，比老师讲十遍有用。</p>
+    <p><strong>务必让「一直亮」这个错误先自然发生。</strong>发件时不要告知插法——撞一次，这个知识就长在身上了。</p>
+    <p>保底目标：<strong>正确接入按键实现按下亮、松开灭，并能说出为什么要用对角的两个脚。</strong></p>
+  </aside>
+</section>
+
+<!-- ═══════════════ 2 · 今天走 5 步 ═══════════════ -->
+<section class="slide" data-title="开场 · 今天走 5 步">
+  <p class="chip pink" data-anim="fade-down">今天，我们走 5 步</p>
+  <h2 class="h2 mt-s" data-anim="fade-up">下课时，你手里会多一样东西。</h2>
+  <div class="grid mt-l" style="grid-template-columns:repeat(5,1fr)" data-anim="stagger-list">
+    <div class="pop yellow" style="text-align:center">
+      <div class="badge sq" style="margin:0 auto 12px">1</div>
+      <div class="h3">不方便</div>
+      <p class="cap" style="margin-top:8px">用拔线打 SOS 试试</p>
+    </div>
+    <div class="pop" style="text-align:center">
+      <div class="badge pink sq" style="margin:0 auto 12px">2</div>
+      <div class="h3">自己插</div>
+      <p class="cap" style="margin-top:8px">新元件，自己想办法</p>
+    </div>
+    <div class="pop cyan" style="text-align:center">
+      <div class="badge sq" style="margin:0 auto 12px;background:#fff;color:var(--ink)">3</div>
+      <div class="h3">自己测</div>
+      <p class="cap" style="margin-top:8px">还是万用表</p>
+    </div>
+    <div class="pop" style="text-align:center">
+      <div class="badge cyan sq" style="margin:0 auto 12px">4</div>
+      <div class="h3">起名字</div>
+      <p class="cap" style="margin-top:8px">开关是什么</p>
+    </div>
+    <div class="pop pink" style="text-align:center">
+      <div class="badge sq" style="margin:0 auto 12px;background:#fff;color:var(--ink)">5</div>
+      <div class="h3">做作品</div>
+      <p class="cap" style="margin-top:8px">一个能带回家的小手电</p>
+    </div>
+  </div>
+  <p class="lede mt-l" data-anim="fade-up">
+    这个小手电<mark>第 10 课还要用</mark> —— 所以今天做好了要收好。
+  </p>
+  <aside class="notes">
+    <p>一分钟带过。重点说第 5 步：「下课的时候，<strong>你手里会多一样东西</strong>——一个自己做的小手电，<strong>可以带回家</strong>。」</p>
+    <p>教室会立刻安静下来。这是第二单元最强的动力。</p>
+    <p>再补一句，让作品有下文：「而且<strong>第 10 课我们还要用它</strong>——所以今天做好了<strong>要收好，别弄丢</strong>。」</p>
+    <p>不要提前透露按键怎么插，也不要说「今天学开关」。<strong>需求要从学生嘴里说出来。</strong></p>
+  </aside>
+</section>
+
+<!-- ═══════════════ 3 · SOS 任务 ═══════════════ -->
+<section class="slide" data-title="① 不方便 · 用灯光打出 SOS">
+  <div class="stage-rail"><b>① 不方便</b><i class="on"></i><i></i><i></i><i></i><i></i></div>
+  <p class="chip yellow" data-anim="fade-down">今天第一个任务</p>
+  <h2 class="h2 mt-s" data-anim="fade-up">用灯光打出求救信号 <mark class="pink">SOS</mark>。</h2>
+  <div class="figure mt-m" data-anim="fade-up">
+    <svg viewBox="0 0 780 190" role="img" aria-label="摩斯码 SOS：三短三长三短">
+      <g class="fillk">
+        <circle cx="70" cy="70" r="16"/><circle cx="130" cy="70" r="16"/><circle cx="190" cy="70" r="16"/>
+      </g>
+      <g style="fill:var(--accent)">
+        <rect x="260" y="54" width="86" height="32" rx="16"/>
+        <rect x="366" y="54" width="86" height="32" rx="16"/>
+        <rect x="472" y="54" width="86" height="32" rx="16"/>
+      </g>
+      <g class="fillk">
+        <circle cx="620" cy="70" r="16"/><circle cx="680" cy="70" r="16"/><circle cx="740" cy="70" r="16"/>
+      </g>
+      <text class="lbl" x="130" y="136" text-anchor="middle">S ＝ 三个短</text>
+      <text class="lbl" x="409" y="136" text-anchor="middle" style="fill:var(--accent)">O ＝ 三个长</text>
+      <text class="lbl" x="680" y="136" text-anchor="middle">S ＝ 三个短</text>
+      <text class="lbl sm" x="70" y="174">短 = 闪一下就灭　·　长 = 亮住数三下</text>
+    </svg>
+  </div>
+  <p class="lede mt-s" data-anim="fade-up" style="text-align:center;max-width:none;font-weight:800;color:var(--text-1)">
+    你现在只有<mark>拔线</mark>这一招。试试看。
+  </p>
+  <aside class="notes">
+    <p>「今天第一个任务：用灯光打出<strong>求救信号 SOS</strong>——<strong>三短、三长、三短。</strong>」</p>
+    <p>规则就一条：<strong>现在你只有拔线这一招。</strong>让他们真的试一次。</p>
+    <p>会非常手忙脚乱——拔线要两只手，节奏根本控制不了，夹子还会掉。<strong>让这个狼狈持续一两分钟</strong>，不要提前救场。</p>
+    <p>可以搞成比赛：「哪一组能打出一次完整的 SOS，让同桌看懂？」</p>
+    <p>然后停下来问：「<strong>怎么样？累不累？</strong>」</p>
+  </aside>
+</section>
+
+<!-- ═══════════════ 4 · 有没有更方便的办法 ═══════════════ -->
+<section class="slide full-center" data-title="① 不方便 · 有没有更方便的办法">
+  <div class="stage-rail"><b>① 不方便</b><i class="on"></i><i></i><i></i><i></i><i></i></div>
+  <div class="ask">
+    <p class="chip cyan" data-anim="fade-down">拔线拔到手忙脚乱</p>
+    <p class="q mt-m" data-anim="zoom-pop">有没有<br>更方便的办法？</p>
+    <p class="sub mt-l" data-anim="fade-up">你想要一个什么样的东西？<mark>说出来。</mark></p>
+  </div>
+  <aside class="notes">
+    <p>「有没有<strong>更方便的办法</strong>？」——<strong>让需求从学生嘴里说出来</strong>，不要你宣布「今天学开关」。</p>
+    <p>追问一句把需求说清楚：「<strong>你想要一个什么样的东西？</strong>」</p>
+    <p>孩子会说「一个按钮」「像手电筒那样按一下的」「能快速断开又接上的」。<strong>把他们的话写到黑板上</strong>——等会儿命名的时候要回来用。</p>
+    <p>他们描述的其实就是：<strong>一个能随时打开、随时合上的缺口。</strong>但现在<strong>不要替他们总结</strong>，留到第 13 页。</p>
+    <p>然后发按键。</p>
+  </aside>
+</section>
+
+<!-- ═══════════════ 5 · 发按键 ═══════════════ -->
+<section class="slide full-center" data-title="② 自己插 · 自己想办法接进去">
+  <div class="stage-rail"><b>② 自己插</b><i class="done"></i><i class="on"></i><i></i><i></i><i></i></div>
+  <div style="text-align:center">
+    <span class="chip pink" data-anim="fade-down">第 1 关 · 14 分钟</span>
+    <h1 class="hero mt-m" data-anim="rise-in">这个东西，<br>你自己想办法接进去。</h1>
+    <div class="figure mt-m" data-anim="fade-up">
+      <svg viewBox="0 0 300 200" style="max-height:26vh;margin:0 auto" role="img" aria-label="四脚按键外观">
+        <rect class="st fillw" x="80" y="50" width="140" height="110" rx="10"/>
+        <circle class="st filly" cx="150" cy="105" r="32"/>
+        <path class="st" d="M80 76 h-42"/><path class="st" d="M80 134 h-42"/>
+        <path class="st" d="M220 76 h42"/><path class="st" d="M220 134 h42"/>
+        <text class="lbl sm" x="20" y="70">1</text><text class="lbl sm" x="20" y="152">2</text>
+        <text class="lbl sm" x="272" y="70">3</text><text class="lbl sm" x="272" y="152">4</text>
+        <text class="lbl sm" x="150" y="192" text-anchor="middle">四个脚 · 我不告诉你怎么插</text>
+      </svg>
+    </div>
+    <p class="lede mt-s" data-anim="fade-up" style="margin-left:auto;margin-right:auto;text-align:center;font-weight:800;color:var(--text-1)">
+      目标：<mark>按下亮，松开灭</mark>。
+    </p>
+  </div>
+  <aside class="notes">
+    <p>发四脚按键，<strong>不说明引脚关系</strong>。「这个东西，你自己想办法接进电路。目标：<strong>按下亮，松开灭。</strong>」</p>
+    <p>结果会大量出现两种：<strong>「一直亮」</strong>（同侧两脚本来就通）和<strong>「完全不亮」</strong>。</p>
+    <p><strong>「一直亮」是本课设计出来的错误</strong>，它是下一环节测绘的直接理由。<strong>绝对不要提前告知插法。</strong></p>
+    <p>教师不给答案，只问一句：「<strong>按下去和松开有区别吗？没区别说明什么？</strong>」</p>
+    <p>注意器材：按键<strong>引脚容易弯</strong>，弯的插不到底，表现为时通时断。课前抽查过，现场发现的直接换。备用按键 8 个。</p>
+    <p>还要提醒一句：「<strong>按键要骑在中央凹槽上。</strong>」这是第 4 课那个 6 号故障板的反面——<strong>当时那样是错的，现在这样是对的</strong>。为什么？让他们先插，等会儿自己想。</p>
+  </aside>
+</section>
+
+<!-- ═══════════════ 6 · 一直亮 ═══════════════ -->
+<section class="slide" data-title="② 自己插 · 按下和松开有区别吗">
+  <div class="stage-rail"><b>② 自己插</b><i class="done"></i><i class="on"></i><i></i><i></i><i></i></div>
+  <p class="chip yellow" data-anim="fade-down">举手的人里，一半是这个毛病</p>
+  <h2 class="h2 mt-s" data-anim="fade-up">「我的灯<mark class="pink">一直亮着</mark>，按了也没用。」</h2>
+  <div class="checks mt-l" data-anim="stagger-list">
+    <div class="check"><div class="badge pink">问</div>
+      <div><div class="ct">按下去和松开，<b>有区别吗</b>？</div></div></div>
+    <div class="check" style="background:var(--surface-2)"><div class="badge">答</div>
+      <div><div class="ct" style="color:var(--text-2)">没有。</div></div></div>
+    <div class="check" style="background:var(--accent-3)"><div class="badge" style="background:#fff">问</div>
+      <div><div class="ct">没区别说明什么？<br>这个按键现在<mark class="pink">等于什么</mark>？</div></div></div>
+  </div>
+  <p class="lede mt-l" data-anim="fade-up" style="text-align:center;max-width:none;font-weight:800;color:var(--text-1)">
+    自己想 —— 我不说。
+  </p>
+  <aside class="notes">
+    <p>这一页是<strong>巡视时的标准对话</strong>，不是讲解。把它投出来，是让全班都听见这个追问链条。</p>
+    <p>学生：「老师，我的灯<strong>一直亮着</strong>，按了也没用。」</p>
+    <p>你：「<strong>按下去和松开，有区别吗？</strong>」——「没有。」</p>
+    <p>你：「<strong>没区别说明什么？说明这个按键，现在等于什么？</strong>」</p>
+    <p><strong>不要直接告诉他插法。</strong>让他自己说出「<strong>等于一根线</strong>」这四个字。说出来的那一刻，他就已经懂一半了。</p>
+    <p>说不出来也没关系——<strong>那正好是下一步要测的东西</strong>。翻页。</p>
+  </aside>
+</section>
+
+<!-- ═══════════════ 7 · 迁移提问 ═══════════════ -->
+<section class="slide full-center" data-title="③ 自己测 · 上节课我们怎么办的">
+  <div class="stage-rail"><b>③ 自己测</b><i class="done"></i><i class="done"></i><i class="on"></i><i></i><i></i></div>
+  <div class="ask">
+    <p class="chip cyan" data-anim="fade-down">想一想上节课</p>
+    <p class="q mt-m" data-anim="zoom-pop">面包板里面看不见，<br>我们<mark>怎么办的</mark>？</p>
+    <p class="sub mt-l" data-anim="fade-up">那这个按键里面 ——<br><mark class="pink">你说怎么办？</mark></p>
+  </div>
+  <aside class="notes">
+    <p><strong>这个迁移必须由学生自己说出来，教师不要抢答。</strong>这是本课最有价值的一分钟。</p>
+    <p>「上节课<strong>面包板里面的连接看不见</strong>，我们怎么办的？」——「<strong>用万用表测出来的。</strong>」</p>
+    <p>「那这个<strong>按键里面的连接</strong>，也看不见。<strong>你说怎么办？</strong>」</p>
+    <p>全班会喊「测！」——那一刻，工具就从「面包板专用」变成了<strong>他们自己的方法</strong>。</p>
+    <p>这就是迁移：<strong>同一个方法用在新元件上</strong>。学生会意识到万用表不是为面包板专用的。</p>
+    <p>发万用表（两人共用一台），老规矩：通断挡，红笔 VΩ，黑笔 COM，用完拨 OFF。</p>
+  </aside>
+</section>
+
+<!-- ═══════════════ 8 · 测按键（松开） ═══════════════ -->
+<section class="slide" data-title="③ 自己测 · 松开的时候">
+  <div class="stage-rail"><b>③ 自己测</b><i class="done"></i><i class="done"></i><i class="on"></i><i></i><i></i></div>
+  <div class="row" style="justify-content:space-between;align-items:flex-end">
+    <div>
+      <span class="chip pink" data-anim="fade-down">上半场 · 先测「松开」这一列</span>
+      <h2 class="h2 mt-s" data-anim="fade-up">四个脚，<mark>两两都测一遍</mark>。</h2>
+    </div>
+    <div class="pop yellow" data-anim="fade-left" style="text-align:center;flex:0 0 auto">
+      <div class="h3">响 ＝ 通<br>不响 ＝ 不通</div>
+    </div>
+  </div>
+  <div class="row mt-m" style="gap:clamp(20px,2.4vw,44px);align-items:center">
+    <div class="figure" style="flex:.8" data-anim="fade-right">
+      <svg viewBox="0 0 300 200" role="img" aria-label="四脚按键的脚位编号">
+        <rect class="st fillw" x="80" y="50" width="140" height="110" rx="10"/>
+        <circle class="st filly" cx="150" cy="105" r="32"/>
+        <path class="st" d="M80 76 h-42"/><path class="st" d="M80 134 h-42"/>
+        <path class="st" d="M220 76 h42"/><path class="st" d="M220 134 h42"/>
+        <circle class="st fillp" cx="30" cy="76" r="13"/><text class="lbl sm" x="30" y="82" text-anchor="middle" style="fill:#fff">1</text>
+        <circle class="st fillp" cx="30" cy="134" r="13"/><text class="lbl sm" x="30" y="140" text-anchor="middle" style="fill:#fff">2</text>
+        <circle class="st fillc" cx="270" cy="76" r="13"/><text class="lbl sm" x="270" y="82" text-anchor="middle">3</text>
+        <circle class="st fillc" cx="270" cy="134" r="13"/><text class="lbl sm" x="270" y="140" text-anchor="middle">4</text>
+      </svg>
+    </div>
+    <div class="tbl" style="flex:1.4;grid-template-columns:1.1fr 1fr 1fr" data-anim="fade-left">
+      <div class="hd">脚位组合</div><div class="hd">松开时</div><div class="hd">按下时</div>
+      <div class="rh">1 – 2　<small>同侧</small></div><div class="todo">？</div><div class="todo" style="background:var(--surface-2)">下半场</div>
+      <div class="rh">3 – 4　<small>同侧</small></div><div class="todo">？</div><div class="todo" style="background:var(--surface-2)">下半场</div>
+      <div class="rh">1 – 3　<small>对角</small></div><div class="todo">？</div><div class="todo" style="background:var(--surface-2)">下半场</div>
+      <div class="rh">2 – 4　<small>对角</small></div><div class="todo">？</div><div class="todo" style="background:var(--surface-2)">下半场</div>
+    </div>
+  </div>
+  <aside class="notes">
+    <p>发《按键内部连接表》。<strong>上半场只测「松开」这一列</strong>，按下的留到下半场。</p>
+    <p>先统一脚位编号：<strong>左边两个是 1、2，右边两个是 3、4。</strong>让全班把按键<strong>按同一个方向摆好</strong>，不然汇总时对不上。</p>
+    <p>测法：两支表笔分别碰两个脚，<strong>响就是通</strong>。四组都要测：1–2、3–4、1–3、2–4。</p>
+    <p>巡视要点：按键<strong>不插在面包板上测</strong>，直接捏在手里测两个脚，更准。插着测容易被面包板的连接干扰。</p>
+    <p><strong>不要提前说答案。</strong>下半场汇总时由他们自己报。</p>
+  </aside>
+</section>
+
+<!-- ═══════════════ 9 · 课间休息 ═══════════════ -->
+<section class="slide full-center" data-title="休息 · 课间 10 分钟">
+  <div style="text-align:center">
+    <div class="discovery" data-anim="zoom-pop" style="max-width:min(1000px,86vw)">
+      <p class="chip" style="background:#fff">中场 · 10 分钟</p>
+      <h1 class="hero mt-m">课间休息</h1>
+      <p class="h3 mt-m" style="font-weight:700">
+        按键<mark class="pink">别弄丢</mark>　·　万用表旋钮拨 OFF
+      </p>
+    </div>
+    <p class="lede mt-l" data-anim="fade-up" style="margin-left:auto;margin-right:auto;text-align:center">
+      回来测「按下」那一列 —— 然后你就知道刚才为什么一直亮了。
+    </p>
+  </div>
+  <aside class="notes">
+    <p>走之前两句：「<strong>按键别弄丢</strong>，一人一个，下半场还要用，还要装进作品里。」「万用表拨 OFF。」</p>
+    <p>再吊一句：「回来测『<strong>按下</strong>』那一列——测完，你们就知道<strong>刚才为什么一直亮</strong>了。」</p>
+    <p>这 10 分钟你要做的：①<strong>把纸盒外壳材料按人份摆好</strong>，避免下半场现场分材料浪费时间。②<strong>把自己做的小手电样品准备好</strong>，但先不要拿出来，Elaborate 环节再展示。</p>
+    <p>顺手挑出引脚弯掉的按键换掉。</p>
+  </aside>
+</section>
+
+<!-- ═══════════════ 10 · 连接表结果 ═══════════════ -->
+<section class="slide" data-title="③ 自己测 · 连接表结果">
+  <div class="stage-rail"><b>③ 自己测</b><i class="done"></i><i class="done"></i><i class="on"></i><i></i><i></i></div>
+  <h2 class="h2" data-anim="fade-up">测出来了吗？</h2>
+  <div class="tbl mt-l" style="grid-template-columns:1.1fr 1fr 1fr" data-anim="fade-up">
+    <div class="hd">脚位组合</div><div class="hd">松开时</div><div class="hd">按下时</div>
+    <div class="rh">1 – 2　<small>同侧</small></div><div class="on">通</div><div class="on">通</div>
+    <div class="rh">3 – 4　<small>同侧</small></div><div class="on">通</div><div class="on">通</div>
+    <div class="rh">1 – 3　<small>对角</small></div><div class="off">不通</div><div class="on">通</div>
+    <div class="rh">2 – 4　<small>对角</small></div><div class="off">不通</div><div class="on">通</div>
+  </div>
+  <p class="lede mt-l" data-anim="fade-up" style="text-align:center;max-width:none;font-weight:800;color:var(--text-1)">
+    <mark>同侧两个脚，不管按不按都是通的。</mark><br>
+    <mark class="cyan">对角两个脚，只有按下去才通。</mark>
+  </p>
+  <aside class="notes">
+    <p>全班汇总，<strong>让他们自己报</strong>，你在黑板大表上填。</p>
+    <p>「<strong>松开的时候，哪两个脚是通的？</strong>」——1–2 和 3–4。「<strong>按下去以后呢？</strong>」——全通了。</p>
+    <p>填完停一下，让他们盯着看两秒，然后问那个关键问题：</p>
+    <p>「所以这四个脚里，<strong>有两个脚不管你按不按都是通的</strong>。如果你<strong>刚好接在那两个脚上</strong>，会发生什么？」</p>
+    <p>全班会喊：「<strong>灯一直亮！</strong>」</p>
+    <p>你就说那句话：「对了——<strong>你们刚才犯的错，现在自己解释清楚了。</strong>」</p>
+    <p>这个闭环比老师直接给插法有价值得多。</p>
+  </aside>
+</section>
+
+<!-- ═══════════════ 11 · 一直亮是怎么回事 ═══════════════ -->
+<section class="slide" data-title="④ 起名字 · 一直亮是怎么回事">
+  <div class="stage-rail"><b>④ 起名字</b><i class="done"></i><i class="done"></i><i class="done"></i><i class="on"></i><i></i></div>
+  <p class="chip pink" data-anim="fade-down">你们刚才那个错，现在能解释了</p>
+  <h2 class="h2 mt-s" data-anim="fade-up">接在同侧 —— 按键<mark>等于一根线</mark>。</h2>
+  <div class="vs mt-l" data-anim="fade-up">
+    <div class="no">
+      <div class="h3">✗ 接同侧（1 和 2）</div>
+      <svg viewBox="0 0 300 180" style="max-height:24vh;margin:10px auto">
+        <rect class="st fillw" x="80" y="40" width="140" height="100" rx="10"/>
+        <circle class="st" cx="150" cy="90" r="28" style="fill:var(--surface-2)"/>
+        <path class="st" d="M80 64 h-42"/><path class="st" d="M80 116 h-42"/>
+        <path class="st" d="M220 64 h42"/><path class="st" d="M220 116 h42"/>
+        <path class="st" style="stroke:var(--accent);stroke-width:6" d="M38 64 h30 v52 h-30"/>
+        <path class="st" style="stroke:var(--accent);stroke-width:6" d="M96 64 v52"/>
+        <text class="lbl sm" x="150" y="170" text-anchor="middle" style="fill:var(--accent)">本来就通 → 灯一直亮</text>
+      </svg>
+    </div>
+    <div class="yes">
+      <div class="h3">✓ 接对角（1 和 3）</div>
+      <svg viewBox="0 0 300 180" style="max-height:24vh;margin:10px auto">
+        <rect class="st fillw" x="80" y="40" width="140" height="100" rx="10"/>
+        <circle class="st filly" cx="150" cy="90" r="28"/>
+        <path class="st" d="M80 64 h-42"/><path class="st" d="M80 116 h-42"/>
+        <path class="st" d="M220 64 h42"/><path class="st" d="M220 116 h42"/>
+        <path class="st" style="stroke:var(--accent);stroke-width:6" d="M38 64 h34"/>
+        <path class="st" style="stroke:var(--accent);stroke-width:6" d="M228 64 h34"/>
+        <path class="st2" style="stroke:var(--accent);stroke-dasharray:7 7" d="M96 90 h108"/>
+        <text class="lbl sm" x="150" y="170" text-anchor="middle">按下才接上 → 按下才亮</text>
+      </svg>
+    </div>
+  </div>
+  <aside class="notes">
+    <p>用测出来的数据解释刚才的错误，<strong>不要用道理解释</strong>。</p>
+    <p>指着左图：「接在 <strong>1 和 2</strong> 上——这两个脚<strong>本来就通</strong>。所以这个按键在电路里<strong>等于一根线</strong>，灯当然一直亮。<strong>按不按都一样。</strong>」</p>
+    <p>指着右图：「接在 <strong>1 和 3</strong> 上——这两个脚<strong>平时不通</strong>，<strong>按下去才通</strong>。所以按下才亮。」</p>
+    <p>让刚才「一直亮」的孩子<strong>当场改过来</strong>，全班一起按一次。那一声「亮了」就是今天的高潮。</p>
+    <p>再回扣第 4 课：「<strong>为什么按键要骑在中央凹槽上？</strong>」——因为沟两边不通，左边两个脚和右边两个脚<strong>才不会被面包板连在一起</strong>。「第 4 课那个 6 号故障板<strong>骑沟是错的</strong>，今天<strong>骑沟是对的</strong>——因为元件不一样。」</p>
+  </aside>
+</section>
+
+<!-- ═══════════════ 12 · 命名：开关 ═══════════════ -->
+<section class="slide" data-title="④ 起名字 · 开关 = 可控的缺口">
+  <div class="stage-rail"><b>④ 起名字</b><i class="done"></i><i class="done"></i><i class="done"></i><i class="on"></i><i></i></div>
+  <div class="row" style="gap:clamp(20px,2.4vw,50px);align-items:center">
+    <div style="flex:1">
+      <span class="chip yellow" data-anim="fade-down">给它一个说法</span>
+      <h2 class="h2 mt-s" data-anim="rise-in">开关 ＝<br>一个<mark class="pink">可以控制的缺口</mark>。</h2>
+      <div class="stack-l mt-l">
+        <div class="pop cyan" data-anim="fade-right"><div class="h3">第 2 课：电要走完<b>完整的一圈</b></div></div>
+        <div class="pop yellow" data-anim="fade-right"><div class="h3">今天：这个圈上，<b>留一个口子</b></div></div>
+        <div class="pop pink" data-anim="fade-right"><div class="h3" style="color:#fff">口子<b>什么时候合上，你说了算</b></div></div>
+      </div>
+    </div>
+    <div class="figure" style="flex:.95" data-anim="fade-left">
+      <svg viewBox="0 0 380 380" role="img" aria-label="闭合回路上一个可开合的缺口">
+        <!-- 圆环，右上角留一个缺口 -->
+        <path style="stroke:var(--accent-2);stroke-width:7;fill:none;stroke-linecap:round"
+              d="M293 139 A120 120 0 1 1 244 78"/>
+        <circle class="st fillw" cx="244" cy="78" r="9"/>
+        <circle class="st fillw" cx="293" cy="139" r="9"/>
+        <path class="st" style="stroke:var(--accent);stroke-width:6" d="M244 78 L316 84"/>
+        <text class="lbl sm" x="262" y="46" style="fill:var(--accent)">缺口 · 你说了算</text>
+        <!-- 灯 -->
+        <circle class="filly glow" cx="180" cy="286" r="32"/>
+        <path class="st filly" d="M206 306 v-26 a26 26 0 0 0 -52 0 v26 z"/>
+        <rect class="st fillw" x="150" y="306" width="60" height="12" rx="4"/>
+        <text class="lbl sm" x="180" y="344" text-anchor="middle">灯</text>
+        <!-- 电源 -->
+        <rect class="st fillw" x="40" y="146" width="40" height="68" rx="8"/>
+        <text class="lbl sm" x="40" y="236">电源</text>
+      </svg>
+    </div>
+  </div>
+  <aside class="notes">
+    <p>现在才给说法，而且<strong>要接回第 2 课的那个圈</strong>——这是本课程的主线，概念之间要有连线。</p>
+    <p>「第 2 课我们学过：<strong>电要走完整的一圈，断一处就全灭。</strong>」</p>
+    <p>「今天我们干了什么？我们<strong>在这个圈上，故意留了一个口子</strong>。」</p>
+    <p>「这个口子<strong>什么时候合上，你说了算</strong>——这就叫<strong>开关</strong>。」</p>
+    <p>板书：<strong>一个闭合环 + 一个可开合的缺口</strong>。这张图和第 2 课的闭合环板书要画在一起，让孩子看见它是<strong>长出来的</strong>，不是新的。</p>
+    <p>再回到第 4 页黑板上记的那些话：「你们刚才说想要『一个按钮』『能快速断开又接上的』——<strong>就是这个。</strong>」</p>
+  </aside>
+</section>
+
+<!-- ═══════════════ 13 · 故障板 6 号 ═══════════════ -->
+<section class="slide" data-title="⑤ 做作品 · 故障板 6 号：按键插错方向">
+  <div class="stage-rail"><b>⑤ 做作品</b><i class="done"></i><i class="done"></i><i class="done"></i><i class="done"></i><i class="on"></i></div>
+  <div class="row" style="justify-content:space-between;align-items:flex-end">
+    <div>
+      <span class="chip pink" data-anim="fade-down">6 号板 · 限时 2 分钟</span>
+      <h2 class="h2 mt-s" data-anim="fade-up">这块板，灯<mark>一直亮</mark>，按了<mark class="pink">没反应</mark>。</h2>
+    </div>
+    <div class="pop cyan" data-anim="fade-left" style="text-align:center;flex:0 0 auto">
+      <div class="h3">现在你应该<br>两秒就能说出来</div>
+    </div>
+  </div>
+  <div class="figure mt-m" data-anim="fade-up">
+    <svg viewBox="0 0 700 220" role="img" aria-label="按键插错方向，同侧两脚被跨接">
+      <rect class="st fillw" x="250" y="50" width="160" height="110" rx="10"/>
+      <circle class="st" cx="330" cy="105" r="32" style="fill:var(--surface-2)"/>
+      <path class="st" d="M250 78 h-48"/><path class="st" d="M250 132 h-48"/>
+      <path class="st" d="M410 78 h48"/><path class="st" d="M410 132 h48"/>
+      <path class="st" style="stroke:var(--accent);stroke-width:6" d="M202 78 h-40 v54 h40"/>
+      <text class="lbl" x="82" y="176" style="fill:var(--accent)">线接在了同侧的两个脚上</text>
+      <text class="lbl" x="470" y="100" style="fill:var(--text-2)">→ 按键 = 一根线</text>
+      <text class="lbl" x="470" y="136" style="fill:var(--text-2)">→ 灯一直亮</text>
+    </svg>
+  </div>
+  <p class="lede mt-s" data-anim="fade-up" style="text-align:center;max-width:none;font-weight:800;color:var(--text-1)">
+    改法：把其中一根线挪到<mark>对角</mark>那个脚上。
+  </p>
+  <aside class="notes">
+    <p>这块板现在对他们来说<strong>应该很简单</strong>——这正是目的：让他们感受到「<strong>刚才我还被难住，现在两秒就看出来了</strong>」。</p>
+    <p>限时 2 分钟，<strong>找出来还要说改法</strong>：「把其中一根线<strong>挪到对角那个脚</strong>上。」</p>
+    <p>可以叫一个上半场卡住最久的孩子上来讲——那种「我现在会了」的感觉，比表扬有用。</p>
+    <p>讲完就收，<strong>后面的作品环节要留足时间</strong>。</p>
+  </aside>
+</section>
+
+<!-- ═══════════════ 14 · 作品：小手电 ═══════════════ -->
+<section class="slide" data-title="⑤ 做作品 · 小手电（外壳只做三件事）">
+  <div class="stage-rail"><b>⑤ 做作品</b><i class="done"></i><i class="done"></i><i class="done"></i><i class="done"></i><i class="on"></i></div>
+  <p class="chip yellow" data-anim="fade-down">发材料之前，先听清楚这三条</p>
+  <h2 class="h2 mt-s" data-anim="fade-up">外壳只做<mark class="pink">三件事</mark>。</h2>
+  <div class="grid g3 mt-l" data-anim="stagger-list">
+    <div class="pop yellow" style="text-align:center">
+      <div class="badge sq" style="margin:0 auto 10px">1</div>
+      <div class="h3">能装下</div>
+      <p class="cap" style="margin-top:8px">电池盒、面包板<br>都塞得进去</p>
+    </div>
+    <div class="pop cyan" style="text-align:center">
+      <div class="badge sq" style="margin:0 auto 10px;background:#fff;color:var(--ink)">2</div>
+      <div class="h3">按键露出来</div>
+      <p class="cap" style="margin-top:8px">手指能按到</p>
+    </div>
+    <div class="pop pink" style="text-align:center">
+      <div class="badge sq" style="margin:0 auto 10px;background:#fff;color:var(--ink)">3</div>
+      <div class="h3">灯能照出去</div>
+      <p class="cap" style="margin-top:8px">开个小口<br>别把灯埋进去</p>
+    </div>
+  </div>
+  <p class="lede mt-l" data-anim="fade-up" style="text-align:center;max-width:none;font-weight:800;color:var(--text-1)">
+    想画画、想贴贴纸的 —— <mark>带回家做</mark>。今天不做装饰。
+  </p>
+  <aside class="notes">
+    <p><strong>这句话必须在发材料之前说。不说的话，外壳环节会吃掉全部时间。</strong></p>
+    <p>「外壳只做三件事：<strong>能装下、按键露出来、灯能照出去。</strong>」</p>
+    <p>「想画画、想贴贴纸的，<strong>带回家做</strong>。<strong>今天不做装饰。</strong>」</p>
+    <p>现在才拿出<strong>你自己做的样品</strong>——先看到目标，再动手。样品要做得<strong>朴素一点</strong>，太漂亮孩子会想模仿装饰。</p>
+    <p>材料<strong>按人份提前装好</strong>，现场不要分材料。剪刀注意安全。</p>
+    <p>巡视时只管一件事：<strong>装进壳里之后还亮不亮</strong>。很多孩子塞的时候会把线挤掉——正好用排查五问。</p>
+  </aside>
+</section>
+
+<!-- ═══════════════ 15 · 挑战：打 SOS ═══════════════ -->
+<section class="slide full-center" data-title="⑤ 做作品 · 挑战：用它打出 SOS">
+  <div class="stage-rail"><b>⑤ 做作品</b><i class="done"></i><i class="done"></i><i class="done"></i><i class="done"></i><i class="on"></i></div>
+  <div style="text-align:center">
+    <span class="chip cyan" data-anim="fade-down">挑战 · 回到开场那个任务</span>
+    <h1 class="hero mt-m" data-anim="rise-in">现在再打一次<br>SOS。</h1>
+    <p class="h3 mt-l" data-anim="fade-up" style="font-weight:800">
+      三短　<mark class="pink">三长</mark>　三短　——　让同桌判读对不对
+    </p>
+  </div>
+  <aside class="notes">
+    <p>回到开场那个任务，<strong>这个对比就是今天的全部成就感</strong>。</p>
+    <p>「开场的时候，你们用拔线打 SOS——<strong>累不累？</strong>现在再打一次。」</p>
+    <p>玩法：<strong>一个人打，同桌背过身判读</strong>，判读对了才算过。</p>
+    <p>可以升级：<strong>全班关灯</strong>，让几个孩子在教室不同角落打 SOS。这一分钟孩子会记很久。</p>
+    <p>做完了问一句：「<strong>从拔线到按键，中间差的是什么？</strong>」——差的是<strong>一个可控的缺口</strong>。</p>
+    <p>这是弹性环节，时间紧可以缩短，但<strong>最后一关不能砍</strong>。</p>
+  </aside>
+</section>
+
+<!-- ═══════════════ 16 · 最后一关 ═══════════════ -->
+<section class="slide full-center" data-title="⑤ 做作品 · 演示 + 说清为什么（逐人）">
+  <div class="stage-rail"><b>⑤ 做作品</b><i class="done"></i><i class="done"></i><i class="done"></i><i class="done"></i><i class="on"></i></div>
+  <div style="text-align:center">
+    <span class="chip pink" data-anim="fade-down">最后一关 · 一个一个过 · 不看笔记</span>
+    <h1 class="hero mt-m" data-anim="rise-in">按给我看，<br>再说给我听。</h1>
+    <div class="row mt-l" style="justify-content:center;gap:clamp(16px,1.8vw,34px);flex-wrap:wrap" data-anim="fade-up">
+      <div class="pop yellow"><div class="h3">① 演示</div><p class="cap" style="margin-top:6px">按下亮<br>松开灭</p></div>
+      <div class="pop cyan"><div class="h3">② 说明</div><p class="cap" style="margin-top:6px">按键<b>应该怎么插</b></p></div>
+      <div class="pop pink"><div class="h3">③ 讲理由</div><p class="cap" style="margin-top:6px"><b>为什么</b>要用对角的两个脚</p></div>
+    </div>
+  </div>
+  <aside class="notes">
+    <p><strong>今天的判定环节，死保 8 分钟。</strong></p>
+    <p>三步，<strong>第三步才是关键</strong>：「<strong>为什么</strong>要用对角的两个脚？」</p>
+    <p>合格的回答必须提到数据：「因为<strong>同侧那两个脚本来就通</strong>，接上去按键就等于一根线；<strong>对角的两个脚按下去才通</strong>，才能控制。」</p>
+    <p><strong>不看笔记。</strong>能说清「为什么」，才说明测绘的结论<strong>真的理解了</strong>，而不是背下来的。</p>
+    <p>只会演示、说不出理由的，<strong>让他回去看自己填的那张连接表，再来一次</strong>。</p>
+    <p>过关的孩子把小手电<strong>写上名字收好</strong>——第 10 课要用。</p>
+  </aside>
+</section>
+
+<!-- ═══════════════ 17 · 今日大发现 ═══════════════ -->
+<section class="slide full-center" data-title="收尾 · 今日大发现">
+  <div class="discovery" data-anim="zoom-pop" style="max-width:min(1100px,88vw);margin:0 auto">
+    <p class="chip pink">今日大发现</p>
+    <p class="hero mt-m">开关，就是一个<br><mark class="pink">我说了算</mark>的缺口。</p>
+    <p class="h3 mt-l" style="font-weight:700">
+      看不见的连接　—　<mark>我已经会测了</mark>
+    </p>
+  </div>
+  <aside class="notes">
+    <p>全班<strong>一起读一遍</strong>。</p>
+    <p>然后收一下第二单元：「第 4 课我们学会了<strong>测面包板</strong>，第 5 课学会了<strong>画电路图</strong>，今天——<strong>同一个办法，我们用在了一个新元件上</strong>。」</p>
+    <p>「<strong>你们已经不需要我告诉你们一个新零件怎么用了。</strong>你们会自己测。」这句话说给他们听，分量很重。</p>
+    <p>最后提醒：<strong>小手电写好名字，收好，第 10 课还要用。</strong></p>
+  </aside>
+</section>
+
+<!-- ═══════════════ 18 · 回家做 ═══════════════ -->
+<section class="slide" data-title="收尾 · 回家做">
+  <h2 class="h2" data-anim="fade-up">回家做。</h2>
+  <div class="grid g2 mt-l">
+    <div class="pop pink" data-anim="fade-right">
+      <span class="chip" style="background:#fff">必做 · 每个人</span>
+      <div class="h3 mt-m">把小手电装饰好，再给家人打一次 SOS。</div>
+      <p class="cap" style="text-align:left;margin-top:12px;color:rgba(255,255,255,.9)">
+        装饰随你喜欢。然后<strong>讲给家人听</strong>：<br>
+        这个按键为什么要接对角的两个脚？
+      </p>
+    </div>
+    <div class="pop cyan" data-anim="fade-left">
+      <span class="chip" style="background:#fff">选做 · 想挑战的人</span>
+      <div class="h3 mt-m">在家找三个开关，看看它们长什么样。</div>
+      <p class="cap" style="text-align:left;margin-top:12px">
+        墙上的、台灯上的、手电上的、遥控器上的都算。<br>
+        想一想：它们<strong>断开的是哪一段</strong>？
+      </p>
+    </div>
+  </div>
+  <p class="lede mt-l" data-anim="fade-up" style="text-align:center;max-width:none;font-weight:800;color:var(--text-1)">
+    <mark class="pink">小手电收好 —— 第 10 课还要用它。</mark>
+  </p>
+  <aside class="notes">
+    <p>必做那条真正的作业是<strong>后半句</strong>：「讲给家人听，<strong>为什么要接对角的两个脚</strong>。」讲一遍，这个知识才算落地。</p>
+    <p>选做那条是在把「开关」这个概念<strong>推到生活里</strong>。提醒安全：<strong>墙上的开关只许看，不许拆。</strong></p>
+    <p>最重要的一句一定要说到：<strong>「小手电收好，第 10 课还要用它。」</strong>建议让他们写上名字，老师这边也留几个备用的——总会有人弄丢。</p>
+    <p>下课前自己确认三件事：①<strong>保底目标是否全员达成</strong>——按下亮松开灭 + 能说出为什么用对角。②<strong>万用表按编号清点</strong>，旋钮 OFF。③<strong>剪刀全部收回</strong>，多余的卡纸碎片清理掉。</p>
+  </aside>
+</section>
+
+<!-- ═══════════════ 19 · 下节课 ═══════════════ -->
+<section class="slide full-center" data-title="收尾 · 下节课钩子">
+  <div style="text-align:center">
+    <p class="chip cyan" data-anim="fade-down">下节课 · 第 7 课 · 新单元开始</p>
+    <h2 class="h2 mt-m" data-anim="fade-up">到今天为止，<mark>电只走过金属</mark>。</h2>
+    <p class="hero mt-l" data-anim="zoom-pop">下节课换点<br><mark class="pink">别的东西</mark>试试。</p>
+  </div>
+  <aside class="notes">
+    <p>收尾钩子，<strong>一句话，说完就下课</strong>。</p>
+    <p>「想一想：从第 1 课到今天，我们的电<strong>走过的都是什么东西</strong>？」——导线、灯珠的腿、按键的脚、面包板里的金属条。<strong>全是金属。</strong></p>
+    <p>「下节课我们换点<strong>别的东西</strong>试试——<strong>钥匙、橡皮、铅笔、水</strong>……」</p>
+    <p><strong>不要揭晓</strong>（下节课是《什么材料能让灯亮》，导体与绝缘体）。</p>
+    <p>还可以回收一下第 1 课的作业：「还记得<strong>第 1 课我让你们在家里猜三样东西能不能让灯亮</strong>吗？<strong>下节课我们验证。</strong>」——这个伏笔埋了六节课，收回来的时候孩子会很惊讶。</p>
+  </aside>
+</section>
+
+</div>
+
+<div class="deck-footer">
+  <span>第 6 课 · 我来控制这盏灯　|　15 节科创探究课 · 第二单元</span>
+  <span class="slide-number" data-current="1" data-total="19"></span>
+</div>
+
+<script src="../assets/runtime.js"></script>
+</body>
+</html>

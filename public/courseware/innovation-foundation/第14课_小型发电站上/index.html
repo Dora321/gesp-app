@@ -1,0 +1,368 @@
+<!DOCTYPE html>
+<html lang="zh-CN" data-themes="memphis-pop,neo-brutalism,soft-pastel,minimal-white" data-theme-base="../assets/themes/">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>第 14 课 · 小型发电站（上）</title>
+<link rel="stylesheet" href="../assets/fonts.css">
+<link rel="stylesheet" href="../assets/base.css">
+<link rel="stylesheet" id="theme-link" href="../assets/themes/memphis-pop.css">
+<link rel="stylesheet" href="../assets/animations/animations.css">
+<link rel="stylesheet" href="../assets/course.css">
+</head>
+<body class="kc">
+<div class="deck">
+
+<!-- ═══════════════ 1 · 封面 ═══════════════ -->
+<section class="slide full-center" data-title="开场 · 封面">
+  <div style="text-align:center">
+    <span class="chip cyan" data-anim="fade-down">15 节科创探究课 · 第五单元「电、磁和能量的变身」</span>
+    <h1 class="hero mt-m" data-anim="rise-in">第 14 课<br>小型发电站（上）</h1>
+    <p class="h3 mt-m" data-anim="fade-up" style="font-weight:700;color:var(--text-2)">
+      设计与搭建 —— <mark class="pink">把学过的东西装成一台机器</mark>
+    </p>
+    <div class="row mt-l" style="justify-content:center;gap:14px;flex-wrap:wrap" data-anim="fade-up">
+      <span class="chip">90 分钟 · 两节连堂</span>
+      <span class="chip yellow">四个零件，你全学过</span>
+      <span class="chip pink">先画图，才能拿元件</span>
+    </div>
+  </div>
+  <aside class="notes">
+    <p>本课与第 15 课合为<strong>一个两课时的收束项目</strong>，是整门课的最终成果和家长观感的落点。</p>
+    <p><strong>本课最重要的制度是布局图签字制</strong>：先在方格纸上画出面包板布局图，<strong>教师签字后才允许拿元件</strong>。「先插线后规划」是本课最大的时间黑洞——<strong>没有图就动手的组，30 分钟后一定是一团乱麻且无法排查。</strong></p>
+    <p><strong>功能链的第二格（整流二极管）不要直接给。</strong>用第 13 课的「反摇不亮」引导学生自己推出「需要一个只让电往一个方向走的闸门」，再给出 <strong>1N5819</strong> 这个名字。</p>
+    <p><strong>二极管方向是本课第一大故障源</strong>：统一口诀「<strong>色环那一端朝向电容</strong>」，发件时把方向画在任务卡上。</p>
+    <p>器材提醒：<strong>必须用 1N5819 肖特基</strong>（压降约 0.3V），<strong>不要用 1N4148</strong>（0.7V），低压场景下损失过大。</p>
+    <p>保底目标：<strong>摇 30 秒，停手后 LED 能持续发光。</strong>本课只要求跑通，时长和优化留到第 15 课。</p>
+  </aside>
+</section>
+
+<!-- ═══════════════ 2 · 展示成品 ═══════════════ -->
+<section class="slide full-center" data-title="① 看成品 · 我不摇了，看灯">
+  <div class="stage-rail"><b>① 看成品</b><i class="on"></i><i></i><i></i><i></i><i></i></div>
+  <div class="ask">
+    <p class="chip yellow" data-anim="fade-down">先摇 30 秒 —— 然后停手</p>
+    <p class="q mt-m" data-anim="zoom-pop">我不摇了。<br><mark class="pink">看灯。</mark></p>
+    <p class="sub mt-l" data-anim="fade-up">这台机器里只有<mark>四个零件</mark>，每一个你们都学过。<br><mark class="pink">今天你们自己把它造出来。</mark></p>
+  </div>
+  <aside class="notes">
+    <p><strong>先给目标，再给方法。</strong></p>
+    <p>当众摇 30 秒，然后<strong>停手</strong>。把手举起来给他们看：「<strong>我不摇了。看灯。</strong>」</p>
+    <p><strong>停顿，让学生看着它持续亮着</strong>——一分多钟。教室会安静。</p>
+    <p>然后说：「这台机器里<strong>只有四个零件，每一个你们都学过</strong>。<strong>今天，你们自己把它造出来。</strong>」</p>
+    <p><strong>不要拆开给学生看内部。</strong>只给功能链框图——<strong>让他们靠推理，不是照抄。</strong></p>
+    <p>这个成品放在讲台上，<strong>整节课都摆着</strong>，作为目标参照。</p>
+  </aside>
+</section>
+
+<!-- ═══════════════ 3 · 功能链填空 ═══════════════ -->
+<section class="slide" data-title="① 看成品 · 功能链：中间这格是什么">
+  <div class="stage-rail"><b>① 看成品</b><i class="on"></i><i></i><i></i><i></i><i></i></div>
+  <p class="chip pink" data-anim="fade-down">四个格子 · 三个你们都知道</p>
+  <h2 class="h2 mt-s" data-anim="fade-up">中间这一格，<mark class="pink">是什么？</mark></h2>
+  <div class="figure mt-m" data-anim="fade-up">
+    <svg viewBox="0 0 980 200" role="img" aria-label="功能链：发电→？→储能→发光">
+      <rect class="st filly" x="20" y="50" width="180" height="90" rx="14"/>
+      <text class="lbl" x="110" y="90" text-anchor="middle">发电</text>
+      <text class="lbl sm" x="110" y="120" text-anchor="middle">第 13 课</text>
+      <path class="st" d="M200 95 h44"/><path class="st fillk" d="M236 83 l22 12 -22 12 z"/>
+      <rect class="st" x="264" y="50" width="180" height="90" rx="14" style="fill:#fff;stroke-dasharray:10 8"/>
+      <text class="lbl" x="354" y="102" text-anchor="middle" style="font-size:44px;fill:var(--accent)">？</text>
+      <path class="st" d="M444 95 h44"/><path class="st fillk" d="M480 83 l22 12 -22 12 z"/>
+      <rect class="st" x="508" y="50" width="180" height="90" rx="14" style="fill:var(--accent-2)"/>
+      <text class="lbl" x="598" y="90" text-anchor="middle">储能</text>
+      <text class="lbl sm" x="598" y="120" text-anchor="middle">第 9 课</text>
+      <path class="st" d="M688 95 h44"/><path class="st fillk" d="M724 83 l22 12 -22 12 z"/>
+      <rect class="st" x="752" y="50" width="180" height="90" rx="14" style="fill:var(--accent)"/>
+      <text class="lbl" x="842" y="90" text-anchor="middle" style="fill:#fff">发光</text>
+      <text class="lbl sm" x="842" y="120" text-anchor="middle" style="fill:#fff">第 1 课</text>
+    </svg>
+  </div>
+  <p class="lede mt-s" data-anim="fade-up" style="text-align:center;max-width:none;font-weight:800;color:var(--text-1)">
+    想一想上节课 —— <mark>反着摇的时候，为什么灯不亮？</mark>
+  </p>
+  <aside class="notes">
+    <p><strong>四格中三格是回忆，第四格是推理。推理那一格必须由学生自己完成。</strong></p>
+    <p>「黑板上四个格子：发电、空格、储能、发光。」</p>
+    <p>「<strong>储能</strong>用什么？第 9 课学过的。」——「<strong>电容！</strong>」<br>「<strong>发光</strong>呢？<strong>发电</strong>呢？」——很快就答出来。</p>
+    <p>「好，那<strong>中间这个空格</strong>。想一想上节课的问题——<strong>反着摇的时候，为什么灯不亮？</strong>」</p>
+    <p>学生：「<strong>方向反了。</strong>」</p>
+    <p>「所以<strong>这里需要一个什么样的东西？</strong>」</p>
+    <p><strong>等学生说出「只让电往一个方向走」，再给出二极管这个名字。</strong>不要抢答——这一格是整节课唯一需要推理的地方。</p>
+  </aside>
+</section>
+
+<!-- ═══════════════ 4 · 二极管 ═══════════════ -->
+<section class="slide" data-title="② 认零件 · 二极管：单行道">
+  <div class="stage-rail"><b>② 认零件</b><i class="done"></i><i class="on"></i><i></i><i></i><i></i></div>
+  <div class="row" style="gap:clamp(20px,2.4vw,50px);align-items:center">
+    <div style="flex:1">
+      <span class="chip cyan" data-anim="fade-down">这个闸门，名字叫</span>
+      <h2 class="h2 mt-s" data-anim="rise-in"><mark class="pink">二极管</mark>　1N5819</h2>
+      <div class="stack-l mt-l">
+        <div class="pop cyan" data-anim="fade-right"><div class="h3">它是一条<b>单行道</b></div></div>
+        <div class="pop yellow" data-anim="fade-right"><div class="h3">不管你正摇反摇 ——<br>电<b>只能往一个方向</b>进电容</div></div>
+        <div class="pop pink" data-anim="fade-right"><div class="h3" style="color:#fff">这件事叫 <b>整流</b></div></div>
+      </div>
+    </div>
+    <div class="figure" style="flex:1" data-anim="fade-left">
+      <svg viewBox="0 0 480 300" role="img" aria-label="二极管的色环端朝向电容">
+        <path class="st" d="M40 90 h90"/>
+        <rect class="st fillk" x="130" y="66" width="130" height="48" rx="8"/>
+        <rect x="236" y="70" width="18" height="40" rx="4" style="fill:#fff"/>
+        <path class="st" d="M260 90 h90"/>
+        <text class="lbl sm" x="196" y="52" text-anchor="middle" style="fill:var(--accent)">白色色环在这一端</text>
+        <path class="st" style="stroke:var(--accent);stroke-width:6" d="M300 150 h70"/>
+        <path class="st fillp" d="M362 138 l24 12 -24 12 z"/>
+        <text class="lbl sm" x="290" y="182" style="fill:var(--accent)">电只能往这边走</text>
+        <rect class="st" x="356" y="196" width="94" height="76" rx="12" style="fill:var(--accent-2)"/>
+        <rect x="428" y="200" width="18" height="68" rx="6" style="fill:var(--text-3)"/>
+        <text class="lbl sm" x="402" y="242" text-anchor="middle">电容</text>
+        <text class="lbl" x="30" y="248" style="fill:var(--accent)">口诀：</text>
+        <text class="lbl" x="30" y="284" style="fill:var(--accent)">色环那头，朝着电容</text>
+      </svg>
+    </div>
+  </div>
+  <aside class="notes">
+    <p>名字给出来，<strong>但原理不展开</strong>。</p>
+    <p>「这个闸门有个名字，叫<strong>二极管</strong>。我们用的这一种叫 <strong>1N5819</strong>。」</p>
+    <p>「它是一条<strong>单行道</strong>——不管你正摇反摇，它<strong>只让电往一个方向</strong>进电容。」</p>
+    <p>「这件事有个名字，叫<strong>整流</strong>。」</p>
+    <p><strong>方向口诀必须说死，而且要写在任务卡上</strong>：「<strong>色环那一端，朝着电容。</strong>」（电流从无环端流向有环端。）</p>
+    <p>让全班<strong>把二极管拿起来，找到那圈白环，用手指指一遍</strong>。这个动作比讲十遍管用。</p>
+    <p><strong>这是本课第一大故障源</strong>，等会儿自查清单第一条就是它。</p>
+  </aside>
+</section>
+
+<!-- ═══════════════ 5 · 布局图签字制 ═══════════════ -->
+<section class="slide" data-title="③ 先画图 · 签了字才能拿元件">
+  <div class="stage-rail"><b>③ 先画图</b><i class="done"></i><i class="done"></i><i class="on"></i><i></i><i></i></div>
+  <p class="chip pink" data-anim="fade-down">今天有个规矩</p>
+  <h2 class="h2 mt-s" data-anim="fade-up">先画图。<mark class="pink">我签了字，你才能拿元件。</mark></h2>
+  <div class="checks mt-m" data-anim="stagger-list">
+    <div class="check"><div class="box"></div><div class="badge">1</div>
+      <div><div class="ct">在方格纸上画出<b>四个零件摆在哪</b></div></div></div>
+    <div class="check"><div class="box"></div><div class="badge cyan">2</div>
+      <div><div class="ct">标出<b>二极管的方向</b>（色环朝哪边）</div></div></div>
+    <div class="check"><div class="box"></div><div class="badge pink">3</div>
+      <div><div class="ct">标出<b>电容的正负</b>（色带那一侧是 −）</div></div></div>
+    <div class="check" style="background:var(--accent-3)"><div class="box"></div><div class="badge" style="background:#fff">4</div>
+      <div><div class="ct">拿给我看 → <mark class="pink">签字</mark> → 才能领元件</div></div></div>
+  </div>
+  <aside class="notes">
+    <p><strong>这个制度不能省，而且签字动作要真的做</strong>——拿笔、写名字、写日期。<strong>不能口头批准。</strong></p>
+    <p>「今天有个规矩：<strong>先在方格纸上画出你要怎么摆这四个零件</strong>，画好拿给我<strong>签字</strong>。<strong>我签了字，你才能来拿元件。</strong>」</p>
+    <p>一定会有人问：「老师我直接插不行吗？」<strong>标准回答</strong>：</p>
+    <p>「可以，但是<strong>我打赌你半小时之后会来找我，而且我们两个都看不懂你插的是什么。</strong>」</p>
+    <p>这句话半开玩笑，但孩子听得懂。</p>
+    <p>签字时<strong>只看三样</strong>：四个元件的位置、<strong>二极管方向</strong>、<strong>电容极性</strong>。画得丑没关系，<strong>这三样标清楚就签</strong>。</p>
+    <p>画得明显有问题的，<strong>不要直接改，指着问</strong>：「这个二极管的色环朝哪边？」让他自己发现。</p>
+  </aside>
+</section>
+
+<!-- ═══════════════ 6 · 课间休息 ═══════════════ -->
+<section class="slide full-center" data-title="休息 · 课间 10 分钟">
+  <div style="text-align:center">
+    <div class="discovery" data-anim="zoom-pop" style="max-width:min(1000px,86vw)">
+      <p class="chip" style="background:#fff">中场 · 10 分钟</p>
+      <h1 class="hero mt-m">课间休息</h1>
+      <p class="h3 mt-m" style="font-weight:700">
+        <mark class="pink">图签了的才能拿元件</mark>　·　还没签的抓紧画
+      </p>
+    </div>
+    <p class="lede mt-l" data-anim="fade-up" style="margin-left:auto;margin-right:auto;text-align:center">
+      下半场只干一件事：照着你自己画的图，把它接出来。
+    </p>
+  </div>
+  <aside class="notes">
+    <p>走之前说清楚：「<strong>图签了的，回来直接领元件开工。还没签的，课间抓紧画。</strong>」</p>
+    <p>这 10 分钟<strong>你不要休息</strong>——这是签字的黄金时间，一边签一边指出问题，比下半场救火省事得多。</p>
+    <p>还要做的：①<strong>准备绿标签</strong>（沿用第 9 课的绿标制）；②<strong>检查发电机引出线</strong>——软线容易松脱，建议统一加装杜邦线转接头或接线端子；③<strong>元件按签字顺序分袋备好</strong>。</p>
+  </aside>
+</section>
+
+<!-- ═══════════════ 7 · 接线 + 自查三项 ═══════════════ -->
+<section class="slide" data-title="④ 接出来 · 接完先自查三项">
+  <div class="stage-rail"><b>④ 接出来</b><i class="done"></i><i class="done"></i><i class="done"></i><i class="on"></i><i></i></div>
+  <p class="chip cyan" data-anim="fade-down">照着你自己画的图接 —— 不是照我的</p>
+  <h2 class="h2 mt-s" data-anim="fade-up">接完了，<mark>先自查三项</mark>，再举手。</h2>
+  <div class="grid g3 mt-l" data-anim="stagger-list">
+    <div class="pop yellow" style="text-align:center">
+      <div class="badge sq" style="margin:0 auto 10px">1</div>
+      <div class="h3">二极管方向</div>
+      <p class="cap" style="margin-top:8px"><b>色环那头朝电容</b></p>
+    </div>
+    <div class="pop cyan" style="text-align:center">
+      <div class="badge sq" style="margin:0 auto 10px;background:#fff;color:var(--ink)">2</div>
+      <div class="h3">电容极性</div>
+      <p class="cap" style="margin-top:8px"><b>色带那侧是负极</b></p>
+    </div>
+    <div class="pop pink" style="text-align:center">
+      <div class="badge sq" style="margin:0 auto 10px;background:#fff;color:var(--ink)">3</div>
+      <div class="h3">发电机的线</div>
+      <p class="cap" style="margin-top:8px"><b>松了没有</b></p>
+    </div>
+  </div>
+  <p class="lede mt-l" data-anim="fade-up" style="text-align:center;max-width:none;font-weight:800;color:var(--text-1)">
+    然后举手 —— 我复检电容极性，<mark class="pink">贴绿标才能通电</mark>。
+  </p>
+  <aside class="notes">
+    <p>「<strong>照着你自己画的图接</strong>，不是照我的。」——按自己画的图接线，<strong>比照老师的图接线更能暴露设计问题</strong>，这正是要的。</p>
+    <p>接线完成后<strong>自查三项</strong>，然后举手。</p>
+    <p><strong>教师复检电容极性并贴绿标，无绿标不许通电</strong>——沿用第 9 课的制度，一个都不能漏。</p>
+    <p>巡视时优先看两样：<strong>二极管方向</strong>（第一大故障源）和<strong>发电机接线</strong>（软线易松）。</p>
+    <p>接得跟图不一样的，<strong>让他改图或者改线</strong>，必须对上——图和实物不一致，后面没法排查。</p>
+  </aside>
+</section>
+
+<!-- ═══════════════ 8 · 命名整流 + 能量链 ═══════════════ -->
+<section class="slide" data-title="④ 接出来 · 完整的能量链">
+  <div class="stage-rail"><b>④ 接出来</b><i class="done"></i><i class="done"></i><i class="done"></i><i class="on"></i><i></i></div>
+  <h2 class="h2" data-anim="fade-up">从你的手，到那盏灯。</h2>
+  <div class="figure mt-m" data-anim="fade-up">
+    <svg viewBox="0 0 1000 200" role="img" aria-label="完整能量链：手的力气到LED发光">
+      <rect class="st" x="14" y="52" width="150" height="86" rx="14" style="fill:var(--accent-3)"/>
+      <text class="lbl" x="89" y="88" text-anchor="middle">你的力气</text>
+      <text class="lbl sm" x="89" y="116" text-anchor="middle">手在摇</text>
+      <path class="st" d="M164 95 h36"/><path class="st fillk" d="M192 84 l20 11 -20 11 z"/>
+      <rect class="st fillw" x="216" y="52" width="150" height="86" rx="14"/>
+      <text class="lbl" x="291" y="88" text-anchor="middle">发电机</text>
+      <text class="lbl sm" x="291" y="116" text-anchor="middle">力气 → 电</text>
+      <path class="st" d="M366 95 h36"/><path class="st fillk" d="M394 84 l20 11 -20 11 z"/>
+      <rect class="st" x="418" y="52" width="150" height="86" rx="14" style="fill:var(--accent)"/>
+      <text class="lbl" x="493" y="88" text-anchor="middle" style="fill:#fff">二极管</text>
+      <text class="lbl sm" x="493" y="116" text-anchor="middle" style="fill:#fff">只放一个方向</text>
+      <path class="st" d="M568 95 h36"/><path class="st fillk" d="M596 84 l20 11 -20 11 z"/>
+      <rect class="st" x="620" y="52" width="150" height="86" rx="14" style="fill:var(--accent-2)"/>
+      <text class="lbl" x="695" y="88" text-anchor="middle">电容</text>
+      <text class="lbl sm" x="695" y="116" text-anchor="middle">先存起来</text>
+      <path class="st" d="M770 95 h36"/><path class="st fillk" d="M798 84 l20 11 -20 11 z"/>
+      <rect class="st fillw" x="822" y="52" width="160" height="86" rx="14"/>
+      <text class="lbl" x="902" y="88" text-anchor="middle">LED</text>
+      <text class="lbl sm" x="902" y="116" text-anchor="middle">慢慢放出来 · 发光</text>
+    </svg>
+  </div>
+  <p class="lede mt-s" data-anim="fade-up" style="text-align:center;max-width:none;font-weight:800;color:var(--text-1)">
+    四个零件，<mark>一个都不能少</mark>。
+  </p>
+  <aside class="notes">
+    <p><strong>能量链的完整复述是本课的概念落点，也是第 15 课复盘环节的基础。板书这张图。</strong></p>
+    <p>用手指沿着链子走一遍，<strong>一格一格念</strong>：</p>
+    <p>「<strong>手的力气 → 发电机 → 二极管（只放一个方向）→ 电容存起来 → 慢慢放给 LED。</strong>」</p>
+    <p>然后让<strong>全班一起复述一遍</strong>。</p>
+    <p>可以逐格追问「<strong>少了它会怎样</strong>」，这个追问很有力：</p>
+    <p>没有发电机——没有电。没有二极管——<strong>反摇的电会把电容里的电倒着抽走</strong>。没有电容——<strong>停手就灭</strong>。没有 LED——看不见。</p>
+    <p>「所以这四个零件，<strong>一个都不能少</strong>。」</p>
+  </aside>
+</section>
+
+<!-- ═══════════════ 9 · 自查五条 ═══════════════ -->
+<section class="slide" data-title="⑤ 调试 · 不工作？先自查五条">
+  <div class="stage-rail"><b>⑤ 调试</b><i class="done"></i><i class="done"></i><i class="done"></i><i class="done"></i><i class="on"></i></div>
+  <p class="chip yellow" data-anim="fade-down">第一次通电 · 不工作很正常</p>
+  <h2 class="h2 mt-s" data-anim="fade-up">举手之前，<mark>先自查这五条</mark>。</h2>
+  <div class="checks mt-m" data-anim="stagger-list">
+    <div class="check"><div class="box"></div><div class="badge">1</div>
+      <div><div class="ct">二极管的<b>色环端</b>，朝着电容吗？</div></div></div>
+    <div class="check"><div class="box"></div><div class="badge cyan">2</div>
+      <div><div class="ct">电容<b>色带那一侧</b>，接的是负极吗？</div></div></div>
+    <div class="check"><div class="box"></div><div class="badge pink">3</div>
+      <div><div class="ct">面包板上，有没有<b>两条腿插在同一组</b>？</div>
+      <div class="cs">第 4 课那个坑</div></div></div>
+    <div class="check"><div class="box"></div><div class="badge">4</div>
+      <div><div class="ct">发电机的线，<b>松了吗</b>？</div></div></div>
+    <div class="check" style="background:var(--accent-3)"><div class="box"></div><div class="badge" style="background:#fff">5</div>
+      <div><div class="ct">你<mark class="pink">摇够 30 秒</mark>了吗？</div>
+      <div class="cs">别笑 —— 一半的「不亮」是这一条</div></div></div>
+  </div>
+  <aside class="notes">
+    <p><strong>自查清单把求助从「老师帮我看」变成「我排除了这五项」</strong>——这是排查五问在综合项目上的延伸，从第 1 课练到现在。</p>
+    <p>发纸质《故障自查清单》，<strong>要求先自查再求助</strong>。举手时要说「<strong>我查过这五条了</strong>」。</p>
+    <p><strong>第 5 条真的很重要</strong>，不是玩笑：孩子摇十几秒就松手，电容没充够，当然不亮。让同桌<strong>出声数到 30</strong>。</p>
+    <p>第 1 条是<strong>第一大故障源</strong>，先看这个。第 3 条回收第 4 课的坑。</p>
+    <p>整个调试阶段你的角色是<strong>问问题，不是修电路</strong>：「你查到第几条了？」「你的图上这里是怎么画的？」</p>
+    <p>让他<strong>对照自己签过字的图</strong>排查——这就是为什么要先画图。</p>
+  </aside>
+</section>
+
+<!-- ═══════════════ 10 · 功能验收 ═══════════════ -->
+<section class="slide full-center" data-title="⑤ 调试 · 功能验收（逐人）">
+  <div class="stage-rail"><b>⑤ 调试</b><i class="done"></i><i class="done"></i><i class="done"></i><i class="done"></i><i class="on"></i></div>
+  <div style="text-align:center">
+    <span class="chip pink" data-anim="fade-down">今天的验收 · 一个一个过</span>
+    <h1 class="hero mt-m" data-anim="rise-in">摇 30 秒，<br>停手，<br>灯还亮着。</h1>
+    <p class="h3 mt-l" data-anim="fade-up" style="font-weight:800">
+      亮多久<mark>今天不管</mark> —— <mark class="pink">只要停手之后它还亮，就算过。</mark>
+    </p>
+  </div>
+  <aside class="notes">
+    <p><strong>今天的判定：摇 30 秒，停手后 LED 能持续发光。达成即通过。</strong></p>
+    <p><strong>本课不要求时长。</strong>能亮 5 秒和能亮 2 分钟，今天<strong>一样算过</strong>——<strong>时长和优化留到第 15 课</strong>。</p>
+    <p>这一点要当众说清楚，<strong>否则会有孩子一直在那儿纠结「我的怎么比他短」</strong>，白白耗掉时间。</p>
+    <p>「今天只求<strong>跑通</strong>。下节课我们再让它<strong>亮得更久</strong>。」</p>
+    <p>逐人验收，在检查表上打勾。没跑通的<strong>优先帮</strong>——第 15 课的优化和展示全部建立在有一台能工作的机器上。</p>
+    <p>实在跑不通的，课后单独留 10 分钟，<strong>不要让任何一个孩子带着一台坏机器进第 15 课</strong>。</p>
+  </aside>
+</section>
+
+<!-- ═══════════════ 11 · 今日大发现 ═══════════════ -->
+<section class="slide full-center" data-title="收尾 · 今日大发现">
+  <div class="discovery" data-anim="zoom-pop" style="max-width:min(1100px,88vw);margin:0 auto">
+    <p class="chip pink">今日大发现</p>
+    <p class="hero mt-m">学过的零件，<br>能拼成一台机器。</p>
+    <p class="h3 mt-l" style="font-weight:700">
+      还有一件事 —— <mark class="pink">先画图，比直接插快得多</mark>
+    </p>
+  </div>
+  <aside class="notes">
+    <p>全班<strong>一起读一遍</strong>。</p>
+    <p>然后把 15 节课收一下：「你们看看这台机器——<strong>LED 是第 1 课的，面包板是第 4 课的，电容是第 9 课的，发电机是第 13 课的</strong>。今天只加了<strong>一个新零件</strong>。」</p>
+    <p>「所以你们不是今天才学会造机器的，<strong>你们已经攒了十三节课的零件。</strong>」</p>
+    <p>再说第二句，这是今天的工程方法：「<strong>先画图，比直接插快得多。</strong>」可以问一句：「今天有谁是先画图再插的？<strong>你觉得快还是慢？</strong>」</p>
+    <p>提醒：<strong>机器不要拆，下节课还要用</strong>。布局图也<strong>夹好别丢</strong>。</p>
+  </aside>
+</section>
+
+<!-- ═══════════════ 12 · 回家做 + 下节课 ═══════════════ -->
+<section class="slide" data-title="收尾 · 回家做 + 下节课">
+  <h2 class="h2" data-anim="fade-up">回家想一想。</h2>
+  <div class="grid g2 mt-l">
+    <div class="pop pink" data-anim="fade-right">
+      <span class="chip" style="background:#fff">必做 · 每个人</span>
+      <div class="h3 mt-m">想三个办法：怎么让它亮得更久？</div>
+      <p class="cap" style="text-align:left;margin-top:12px;color:rgba(255,255,255,.9)">
+        <strong>写下来，下节课带来。</strong><br>
+        提示：想想第 10 课那盏小夜灯，你当时是怎么让它变久的？
+      </p>
+    </div>
+    <div class="pop cyan" data-anim="fade-left">
+      <span class="chip" style="background:#fff">下节课 · 第 15 课 · 最后一节</span>
+      <div class="h3 mt-m">优化 · 比赛 · 展示</div>
+      <p class="cap" style="text-align:left;margin-top:12px">
+        下节课我们<strong>让它亮得更久</strong>，然后<strong>展示给大家看</strong>。<br>
+        机器<strong>别拆</strong>，布局图<strong>别丢</strong>。
+      </p>
+    </div>
+  </div>
+  <p class="lede mt-l" data-anim="fade-up" style="text-align:center;max-width:none;font-weight:800;color:var(--text-1)">
+    <mark class="pink">机器别拆，图别丢 —— 下节课还要用。</mark>
+  </p>
+  <aside class="notes">
+    <p>必做那条<strong>直接为第 15 课的优化环节备料</strong>。孩子带着想法来，下节课能立刻开工。</p>
+    <p>提示要给：「想想<strong>第 10 课那盏小夜灯</strong>，你当时是怎么让它变久的？」——<strong>换更大的放电电阻</strong>。这个迁移孩子想得到。</p>
+    <p>其他可行方向：<strong>摇更久</strong>（充更满）、<strong>摇更快</strong>、换更大的电容。都算。</p>
+    <p>反复强调两件事：<strong>机器别拆</strong>、<strong>布局图别丢</strong>。可以让他们把图和机器<strong>装进同一个袋子</strong>，写上名字，<strong>统一交给老师保管</strong>——这样最保险。</p>
+    <p>下课前自己确认三件事：①<strong>全员是否都有一台能工作的机器</strong>（没跑通的课后补）。②<strong>所有机器和布局图收齐编号</strong>。③<strong>发电机、万用表清点</strong>，超级电容登记。</p>
+  </aside>
+</section>
+
+</div>
+
+<div class="deck-footer">
+  <span>第 14 课 · 小型发电站（上）　|　15 节科创探究课 · 第五单元</span>
+  <span class="slide-number" data-current="1" data-total="12"></span>
+</div>
+
+<script src="../assets/runtime.js"></script>
+</body>
+</html>

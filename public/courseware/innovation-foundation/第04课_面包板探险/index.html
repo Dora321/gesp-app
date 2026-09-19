@@ -1,0 +1,824 @@
+<!DOCTYPE html>
+<html lang="zh-CN" data-themes="memphis-pop,neo-brutalism,soft-pastel,minimal-white" data-theme-base="../assets/themes/">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>第 4 课 · 面包板探险</title>
+<link rel="stylesheet" href="../assets/fonts.css">
+<link rel="stylesheet" href="../assets/base.css">
+<link rel="stylesheet" id="theme-link" href="../assets/themes/memphis-pop.css">
+<link rel="stylesheet" href="../assets/animations/animations.css">
+<link rel="stylesheet" href="../assets/course.css">
+<style>
+/* 面包板专用：孔用 pattern 平铺，避免上百个 circle */
+.kc .bb .hole{ fill: var(--ink); }
+.kc .bb .board{ fill:#fff; stroke:var(--ink); stroke-width:4; }
+.kc .bb .gutter{ fill: var(--surface-2); stroke:var(--ink); stroke-width:3; }
+.kc .bb .railline{ stroke-width:4; fill:none; stroke-linecap:round; }
+.kc .bb .hl{ fill: var(--accent-3); opacity:.55; stroke:var(--ink); stroke-width:3; }
+.kc .bb .hl.pink{ fill: var(--accent); opacity:.4; }
+.kc .bb .hl.cyan{ fill: var(--accent-2); opacity:.5; }
+.kc .bb .no{ fill:none; stroke:var(--accent); stroke-width:5; stroke-linecap:round; }
+</style>
+</head>
+<body class="kc">
+<div class="deck">
+
+<!-- ═══════════════ 1 · 封面 ═══════════════ -->
+<section class="slide full-center" data-title="开场 · 封面">
+  <div style="text-align:center">
+    <span class="chip cyan" data-anim="fade-down">15 节科创探究课 · 第二单元「我能搭建和控制」</span>
+    <h1 class="hero mt-m" data-anim="rise-in">第 4 课<br>面包板探险</h1>
+    <p class="h3 mt-m" data-anim="fade-up" style="font-weight:700;color:var(--text-2)">
+      这些孔，到底<mark class="pink">通不通</mark>？
+    </p>
+    <div class="row mt-l" style="justify-content:center;gap:14px;flex-wrap:wrap" data-anim="fade-up">
+      <span class="chip">90 分钟 · 两节连堂</span>
+      <span class="chip yellow">今天发新工具</span>
+      <span class="chip pink">不讲原理，你自己测</span>
+    </div>
+  </div>
+  <aside class="notes">
+    <p><strong>全课程第二个不能欠账的关</strong>，也是第 5–15 课全部 11 节课的地基。学生如果没建立「<strong>面包板内部有看不见的连接</strong>」这个认知，后面每节课都会在「明明接对了却不亮」上耗时间。</p>
+    <p>本课设计核心就一句话：<strong>不讲原理，让学生自己测出来。</strong>测绘活动同时完成三件事——面包板原理、万用表入门、「<strong>看不见的东西可以被测量</strong>」这个跨越。</p>
+    <p><strong>千万不要把面包板原理做成讲义发下去。</strong>讲义会把探究降级成抄写，测绘活动的全部价值就消失了。这是本课最需要避免的做法。</p>
+    <p>保底目标：<strong>不上手测量，仅凭自己画的连接图，判断面包板上任意两点是否相通。</strong></p>
+  </aside>
+</section>
+
+<!-- ═══════════════ 2 · 今天走 5 步 ═══════════════ -->
+<section class="slide" data-title="开场 · 今天走 5 步">
+  <p class="chip pink" data-anim="fade-down">今天，我们走 5 步</p>
+  <h2 class="h2 mt-s" data-anim="fade-up">今天我<mark>不讲</mark>，你们自己测。</h2>
+  <div class="grid mt-l" style="grid-template-columns:repeat(5,1fr)" data-anim="stagger-list">
+    <div class="pop yellow" style="text-align:center">
+      <div class="badge sq" style="margin:0 auto 12px">1</div>
+      <div class="h3">撞现象</div>
+      <p class="cap" style="margin-top:8px">挪一个孔，灯灭了</p>
+    </div>
+    <div class="pop" style="text-align:center">
+      <div class="badge pink sq" style="margin:0 auto 12px">2</div>
+      <div class="h3">拿工具</div>
+      <p class="cap" style="margin-top:8px">万用表，5 分钟学会</p>
+    </div>
+    <div class="pop cyan" style="text-align:center">
+      <div class="badge sq" style="margin:0 auto 12px;background:#fff;color:var(--ink)">3</div>
+      <div class="h3">自己测</div>
+      <p class="cap" style="margin-top:8px">按顺序，画成图</p>
+    </div>
+    <div class="pop" style="text-align:center">
+      <div class="badge cyan sq" style="margin:0 auto 12px">4</div>
+      <div class="h3">起名字</div>
+      <p class="cap" style="margin-top:8px">给你测出来的东西命名</p>
+    </div>
+    <div class="pop pink" style="text-align:center">
+      <div class="badge sq" style="margin:0 auto 12px;background:#fff;color:var(--ink)">5</div>
+      <div class="h3">搬过来</div>
+      <p class="cap" style="margin-top:8px">把第 1 课的灯搬上去</p>
+    </div>
+  </div>
+  <p class="lede mt-l" data-anim="fade-up">
+    今天这张图，是<mark>你们自己画出来的</mark> —— 后面 11 节课都要用它。
+  </p>
+  <aside class="notes">
+    <p>一分钟带过，但<strong>第 3 步要强调</strong>：「今天这块板子怎么用，<strong>我一个字都不讲</strong>。你们自己拿工具去测，测出来自己画成图。」</p>
+    <p>再加一句分量很重的话：「<strong>你今天画的那张图，后面 11 节课都要用。</strong>画得越准，后面越省事。」</p>
+    <p>孩子听到「老师不讲」会很兴奋，这个兴奋是今天的燃料。</p>
+  </aside>
+</section>
+
+<!-- ═══════════════ 3 · 悬念 ═══════════════ -->
+<section class="slide" data-title="① 撞现象 · 挪一个孔就灭了">
+  <div class="stage-rail"><b>① 撞现象</b><i class="on"></i><i></i><i></i><i></i><i></i></div>
+  <p class="chip yellow" data-anim="fade-down">看好了，我只挪一个孔</p>
+  <h2 class="h2 mt-s" data-anim="fade-up">同一条腿，换个孔 —— <mark class="pink">灭了</mark>。</h2>
+  <div class="grid g3 mt-m" data-anim="stagger-list">
+    <div class="pop yellow" style="text-align:center">
+      <div class="h3">插在 A 排</div>
+      <div class="hero mt-s" style="font-size:var(--fs-h1)">💡</div>
+      <p class="cap" style="margin-top:6px">亮</p>
+    </div>
+    <div class="pop yellow" style="text-align:center">
+      <div class="h3">挪到 E 排</div>
+      <div class="hero mt-s" style="font-size:var(--fs-h1)">💡</div>
+      <p class="cap" style="margin-top:6px">还亮</p>
+    </div>
+    <div class="pop" style="text-align:center;background:var(--surface-2)">
+      <div class="h3" style="color:var(--text-2)">再挪到 F 排</div>
+      <div class="hero mt-s" style="font-size:var(--fs-h1);filter:grayscale(1) opacity(.45)">💡</div>
+      <p class="cap" style="margin-top:6px;color:var(--accent)">灭了</p>
+    </div>
+  </div>
+  <p class="lede mt-l" data-anim="fade-up" style="text-align:center;max-width:none;font-weight:800;color:var(--text-1)">
+    这三个孔，<mark>长得一模一样</mark>。为什么结果不一样？
+  </p>
+  <aside class="notes">
+    <p>课前先在面包板上搭好一个<strong>亮着的 LED</strong>。开场当众操作，动作要慢，要让每个人看清楚<strong>你只碰了一条腿</strong>。</p>
+    <p>「看好了，这个灯现在是亮的。我把它的一条腿从这个孔，挪到这个孔——<strong>还亮着</strong>。」</p>
+    <p>「现在我再挪一格——<strong>灭了。</strong>」</p>
+    <p>「这两个孔，<strong>长得一模一样</strong>。为什么结果不一样？」</p>
+    <p>问完<strong>等 5 秒，不要接话</strong>。这是个肉眼无法解释的现象，那种「说不出为什么」的难受劲儿，就是今天的发动机。</p>
+    <p><strong>绝对不要解释</strong>，也不要说「因为里面有连接」。这个答案要等他们自己测出来。</p>
+  </aside>
+</section>
+
+<!-- ═══════════════ 4 · 一模一样的孔 ═══════════════ -->
+<section class="slide full-center" data-title="① 撞现象 · 里面藏着什么">
+  <div class="stage-rail"><b>① 撞现象</b><i class="on"></i><i></i><i></i><i></i><i></i></div>
+  <div class="ask">
+    <p class="chip cyan" data-anim="fade-down">外面看：一片全是小孔，一模一样</p>
+    <p class="q mt-m" data-anim="zoom-pop">这块板子<br><mark>里面</mark>藏着什么？</p>
+    <p class="sub mt-l" data-anim="fade-up">看不见 —— <mark class="pink">那就去测。</mark></p>
+  </div>
+  <aside class="notes">
+    <p>把面包板举起来，翻过来给他们看背面：「<strong>背面也是一片平的，什么都看不见。</strong>」</p>
+    <p>「所以问题来了：这块板子<strong>里面</strong>，到底藏着什么？」</p>
+    <p>等一等，让他们猜两句。会有孩子说「里面有线」——很好，但<strong>不要确认</strong>，只说：「有可能。<strong>怎么才能知道？</strong>」</p>
+    <p>然后给出今天的方法论，这句话是整节课的钥匙：「<strong>看不见——那就去测。</strong>」</p>
+    <p>说完立刻掏出万用表。工具出场的时机就是现在，孩子这时候是<strong>渴望工具</strong>的状态，比直接发下去有效得多。</p>
+  </aside>
+</section>
+
+<!-- ═══════════════ 5 · 新工具 ═══════════════ -->
+<section class="slide" data-title="② 拿工具 · 万用表三条规矩">
+  <div class="stage-rail"><b>② 拿工具</b><i class="done"></i><i class="on"></i><i></i><i></i><i></i></div>
+  <div class="row" style="gap:clamp(20px,2.4vw,50px);align-items:center">
+    <div style="flex:1">
+      <span class="chip pink" data-anim="fade-down">今天发一个新工具</span>
+      <h2 class="h2 mt-s" data-anim="rise-in">万用表。</h2>
+      <p class="lede mt-m" data-anim="fade-up">今天只用<mark>一个功能</mark>：<br>判断两个地方<mark class="pink">通不通</mark>。</p>
+      <div class="checks mt-l" data-anim="stagger-list">
+        <div class="check"><div class="badge">1</div>
+          <div><div class="ct">只用三个挡位</div>
+          <div class="cs">通断（会叫）· 电阻 · 直流电压。其余挡位贴纸封住了，<b>不要撕</b></div></div></div>
+        <div class="check"><div class="badge cyan">2</div>
+          <div><div class="ct">两支笔的插孔不要动</div>
+          <div class="cs">红笔在 VΩ 孔，黑笔在 COM 孔</div></div></div>
+        <div class="check"><div class="badge pink">3</div>
+          <div><div class="ct">用完旋钮拨到 OFF 再交回</div>
+          <div class="cs">按编号发、按编号收，<b>数量对不上不下课</b></div></div></div>
+      </div>
+    </div>
+    <div class="figure" style="flex:.85" data-anim="fade-left">
+      <svg viewBox="0 0 300 420" role="img" aria-label="数字万用表，旋钮打在通断挡">
+        <rect class="st fillw" x="30" y="20" width="240" height="330" rx="20"/>
+        <rect class="st2" x="58" y="46" width="184" height="66" rx="8" style="fill:#dfe9d8"/>
+        <text class="lbl" x="150" y="92" text-anchor="middle" style="font-size:30px">0.L</text>
+        <circle class="st filly" cx="150" cy="212" r="66"/>
+        <circle class="st fillw" cx="150" cy="212" r="20"/>
+        <path class="st" style="stroke:var(--accent);stroke-width:7" d="M150 212 L112 162"/>
+        <text class="lbl sm" x="96" y="150" style="fill:var(--accent)">通断挡</text>
+        <path class="st2" style="stroke:var(--accent)" d="M196 158 a10 10 0 0 1 0 14 M206 150 a20 20 0 0 1 0 30"/>
+        <circle class="st fillk" cx="96" cy="298" r="15"/>
+        <circle class="st fillp" cx="204" cy="298" r="15"/>
+        <text class="lbl sm" x="96" y="332" text-anchor="middle">COM</text>
+        <text class="lbl sm" x="204" y="332" text-anchor="middle" style="fill:var(--accent)">VΩ</text>
+        <path class="st" d="M96 313 v52 q0 14 -14 14 h-58"/>
+        <path class="st" style="stroke:var(--accent)" d="M204 313 v66 q0 14 14 14 h48"/>
+        <text class="lbl sm" x="12" y="400">黑笔</text>
+        <text class="lbl sm" x="248" y="416" style="fill:var(--accent)">红笔</text>
+      </svg>
+    </div>
+  </div>
+  <aside class="notes">
+    <p>「今天给你们一个新工具，叫<strong>万用表</strong>。今天只用<strong>一个功能</strong>：判断两个地方<strong>通不通</strong>。」</p>
+    <p><strong>工具入门只花 5 分钟</strong>，剩下的时间必须留给学生自己用。不要在这里讲万用表能测多少东西。</p>
+    <p>三条规矩念一遍就行，重点是第一条和第三条。<strong>其余挡位已经用贴纸封住</strong>，电流挡孔位用胶带封死了——误插电流挡会造成短路。</p>
+    <p>课前检查每一台：<strong>旋钮打到通断挡，两支表笔互碰应该蜂鸣</strong>。不响的先换电池。</p>
+    <p>表上贴了编号，<strong>按编号发、按编号收</strong>。这句话要当众说，孩子会认真对待。</p>
+  </aside>
+</section>
+
+<!-- ═══════════════ 6 · 三次确认 ═══════════════ -->
+<section class="slide" data-title="② 拿工具 · 跟我做三次">
+  <div class="stage-rail"><b>② 拿工具</b><i class="done"></i><i class="on"></i><i></i><i></i><i></i></div>
+  <p class="chip cyan" data-anim="fade-down">全班一起，一个都不许跳过</p>
+  <h2 class="h2 mt-s" data-anim="fade-up">跟我做<mark>三次</mark>。</h2>
+  <div class="grid g3 mt-l" data-anim="stagger-list">
+    <div class="pop yellow" style="text-align:center">
+      <div class="badge sq" style="margin:0 auto 10px">1</div>
+      <div class="h3">两支笔碰在一起</div>
+      <div class="hero mt-s" style="font-size:var(--fs-h2)">🔊</div>
+      <p class="cap" style="margin-top:6px"><b>响</b> —— 说明通</p>
+    </div>
+    <div class="pop" style="text-align:center;background:var(--surface-2)">
+      <div class="badge cyan sq" style="margin:0 auto 10px">2</div>
+      <div class="h3">两支笔分开</div>
+      <div class="hero mt-s" style="font-size:var(--fs-h2);filter:opacity(.3)">🔇</div>
+      <p class="cap" style="margin-top:6px"><b>不响</b> —— 说明不通</p>
+    </div>
+    <div class="pop cyan" style="text-align:center">
+      <div class="badge sq" style="margin:0 auto 10px;background:#fff;color:var(--ink)">3</div>
+      <div class="h3">碰一根线的两头</div>
+      <div class="hero mt-s" style="font-size:var(--fs-h2)">🔊</div>
+      <p class="cap" style="margin-top:6px"><b>响</b> —— 这根线是好的</p>
+    </div>
+  </div>
+  <p class="lede mt-l" data-anim="fade-up" style="text-align:center;max-width:none;font-weight:800;color:var(--text-1)">
+    三次都对了，你就<mark>会用</mark>了。
+  </p>
+  <aside class="notes">
+    <p><strong>这三次确认是防线</strong>，一个都不许跳过。<strong>后面所有测量都建立在这三下之上</strong>——如果孩子的操作一开始就是错的，测出来的整张图都是错的。</p>
+    <p>「跟我做三次：两支笔<strong>碰在一起</strong>——<strong>响</strong>。<strong>分开</strong>——<strong>不响</strong>。碰<strong>一根线的两头</strong>——<strong>响</strong>。」</p>
+    <p>全班同步做，你喊口令。<strong>逐组确认听到蜂鸣声</strong>，没响的当场处理：先看旋钮挡位，再看表笔插孔，最后才怀疑电池。</p>
+    <p>第三次特别重要——它建立了「<strong>响 = 这两点之间有路</strong>」这个理解，而不只是「笔碰笔会叫」。</p>
+    <p>做完这三次，<strong>立刻发布任务</strong>，不要再讲了。</p>
+  </aside>
+</section>
+
+<!-- ═══════════════ 7 · 任务 ═══════════════ -->
+<section class="slide full-center" data-title="③ 自己测 · 找出哪些孔是通的">
+  <div class="stage-rail"><b>③ 自己测</b><i class="done"></i><i class="done"></i><i class="on"></i><i></i><i></i></div>
+  <div style="text-align:center">
+    <span class="chip pink" data-anim="fade-down">第 1 关 · 两人一组</span>
+    <h1 class="hero mt-m" data-anim="rise-in">哪些孔<br>是通的？</h1>
+    <div class="vs mt-l" style="max-width:min(900px,82vw);margin-left:auto;margin-right:auto" data-anim="fade-up">
+      <div class="no"><div class="mk">✗</div><div class="h3 mt-s">我不讲<br>也没有讲义</div></div>
+      <div class="yes"><div class="mk">✎</div><div class="h3 mt-s">测出一条<br>就画一条</div></div>
+    </div>
+  </div>
+  <aside class="notes">
+    <p>「好，工具会用了。现在<strong>你们自己去找</strong>：这块板子上，<strong>哪些孔是通的？</strong>」</p>
+    <p><strong>不要给方法，不要发讲义。</strong>测绘活动本身的价值，远大于任何讲解。</p>
+    <p>两人一组，一人拿表笔，一人在方格纸上画，<strong>中途换手</strong>。</p>
+    <p>发方格纸的时候说清楚：「<strong>测出一条，就画一条。</strong>不要测完再回忆着画——会忘。」</p>
+    <p>已经知道面包板怎么用的孩子，<strong>请他当「验收员」</strong>：别人画完图，由他用万用表验证对不对，<strong>但不许提前说答案</strong>。既保住探究，也给了他事做。</p>
+    <p>放手两分钟，让他们先乱测一阵——然后翻页，给测绘顺序。</p>
+  </aside>
+</section>
+
+<!-- ═══════════════ 8 · 四步顺序 ═══════════════ -->
+<section class="slide" data-title="③ 自己测 · 不许乱测：四步顺序">
+  <div class="stage-rail"><b>③ 自己测</b><i class="done"></i><i class="done"></i><i class="on"></i><i></i><i></i></div>
+  <p class="chip yellow" data-anim="fade-down">有个要求 —— 不许乱测</p>
+  <h2 class="h2 mt-s" data-anim="fade-up">按<mark>这个顺序</mark>来。</h2>
+  <div class="checks mt-m" data-anim="stagger-list">
+    <div class="check"><div class="box"></div><div class="badge">1</div>
+      <div><div class="ct">同一<b>竖列</b>上下的五个孔</div></div></div>
+    <div class="check"><div class="box"></div><div class="badge cyan">2</div>
+      <div><div class="ct">左右<b>相邻</b>的两列</div></div></div>
+    <div class="check" style="background:var(--accent-3)"><div class="box"></div><div class="badge" style="background:#fff">3</div>
+      <div><div class="ct">中间那条<mark class="pink">沟</mark>的两边</div>
+      <div class="cs">这一步最容易看走眼 —— 单独测一次，测完举手</div></div></div>
+    <div class="check"><div class="box"></div><div class="badge pink">4</div>
+      <div><div class="ct">最上面和最下面那两条<b>长排</b></div></div></div>
+  </div>
+  <p class="lede mt-m" data-anim="fade-up" style="font-weight:800;color:var(--text-1)">
+    每测完一步，<mark>就在方格纸上画出来</mark>。上半场做完前两步。
+  </p>
+  <aside class="notes">
+    <p><strong>测绘顺序由老师规定，这是本课的关键设计，不能让各组自由推进。</strong>随机测的组会<strong>漏掉电源轨</strong>——而那是后面 11 节课最常用的一条。</p>
+    <p>「有个要求：<strong>不许乱测</strong>。按这个顺序来——第一步，测同一竖列上下的五个孔。第二步，测左右相邻的两列。第三步，测中间那条沟的两边。第四步，测最上面和最下面那两条长排。」</p>
+    <p><strong>每一步结束时统一喊停确认</strong>，全班一起推进，不要让快的组跑太远。</p>
+    <p><strong>第三步必须单独做一次并当众确认。</strong>中央凹槽两侧左右对称，孩子极易误判为相通——这是全课最容易出错的一条，不能混在其他测量里带过。可以请一组上台演示。</p>
+    <p>节奏：上半场做完①②，下课，下半场做③④。</p>
+  </aside>
+</section>
+
+<!-- ═══════════════ 9 · 测绘①② ═══════════════ -->
+<section class="slide" data-title="③ 自己测 · 第 ① ② 步">
+  <div class="stage-rail"><b>③ 自己测</b><i class="done"></i><i class="done"></i><i class="on"></i><i></i><i></i></div>
+  <div class="row" style="justify-content:space-between;align-items:flex-end">
+    <div>
+      <span class="chip cyan" data-anim="fade-down">上半场 · 前两步</span>
+      <h2 class="h2 mt-s" data-anim="fade-up">先测<mark>竖着</mark>的，再测<mark>横着</mark>的。</h2>
+    </div>
+    <div class="pop yellow" data-anim="fade-left" style="text-align:center;flex:0 0 auto">
+      <div class="h3">响 ＝ 通<br>不响 ＝ 不通</div>
+    </div>
+  </div>
+  <div class="figure mt-m bb" data-anim="fade-up">
+    <svg viewBox="0 0 800 470" role="img" aria-label="面包板：测同一竖列五孔、再测相邻两列">
+      <defs>
+        <pattern id="bh4a" width="52" height="22" patternUnits="userSpaceOnUse" patternTransform="translate(80,8)">
+          <circle class="hole" cx="26" cy="11" r="4.5"/>
+        </pattern>
+      </defs>
+      <rect class="board" x="56" y="14" width="688" height="430" rx="14"/>
+      <path class="railline" style="stroke:var(--accent)" d="M92 24 h616"/>
+      <path class="railline" style="stroke:var(--accent-2)" d="M92 80 h616"/>
+      <rect x="80" y="30" width="624" height="44" fill="url(#bh4a)"/>
+      <text class="lbl" x="70" y="48" text-anchor="end" style="fill:var(--accent)">＋</text>
+      <text class="lbl" x="70" y="70" text-anchor="end">−</text>
+      <rect x="80" y="118" width="624" height="110" fill="url(#bh4a)"/>
+      <rect class="gutter" x="80" y="228" width="624" height="22" rx="6"/>
+      <rect x="80" y="250" width="624" height="110" fill="url(#bh4a)"/>
+      <text class="lbl sm" x="70" y="135" text-anchor="end">A</text>
+      <text class="lbl sm" x="70" y="223" text-anchor="end">E</text>
+      <text class="lbl sm" x="70" y="267" text-anchor="end">F</text>
+      <text class="lbl sm" x="70" y="355" text-anchor="end">J</text>
+      <path class="railline" style="stroke:var(--accent)" d="M92 376 h616"/>
+      <path class="railline" style="stroke:var(--accent-2)" d="M92 432 h616"/>
+      <rect x="80" y="382" width="624" height="44" fill="url(#bh4a)"/>
+      <!-- ① 竖列 -->
+      <rect class="hl" x="288" y="120" width="36" height="106" rx="16"/>
+      <text class="lbl" x="306" y="106" text-anchor="middle" style="fill:var(--accent)">①</text>
+      <!-- ② 相邻两列 -->
+      <rect class="hl cyan" x="444" y="120" width="88" height="106" rx="16"/>
+      <text class="lbl" x="488" y="106" text-anchor="middle" style="fill:var(--accent-2)">②</text>
+    </svg>
+  </div>
+  <aside class="notes">
+    <p>上半场只做两步，<strong>慢一点没关系</strong>。</p>
+    <p><strong>第 ① 步</strong>：把两支表笔插进<strong>同一竖列</strong>的两个孔，上下都试试。测完喊停，问一句：「<strong>同一竖列的五个孔，通不通？</strong>」</p>
+    <p><strong>第 ② 步</strong>：一支笔留在这一列，另一支挪到<strong>旁边那一列</strong>。再问：「相邻的两列呢？」</p>
+    <p>巡视要点：很多孩子<strong>只测相邻的孔，不测远处的孔</strong>——提醒他们「<strong>最上面那个和最下面那个也要测一次</strong>」，不然「五个孔是一组」这条测不出来。</p>
+    <p>每测完一步<strong>立刻在方格纸上画</strong>。画法不限，能看懂就行——有的孩子画线，有的涂色块，都可以。</p>
+    <p><strong>答案先不说。</strong>下半场汇总的时候由他们自己报。</p>
+  </aside>
+</section>
+
+<!-- ═══════════════ 10 · 课间休息 ═══════════════ -->
+<section class="slide full-center" data-title="休息 · 课间 10 分钟">
+  <div style="text-align:center">
+    <div class="discovery" data-anim="zoom-pop" style="max-width:min(1000px,86vw)">
+      <p class="chip" style="background:#fff">中场 · 10 分钟</p>
+      <h1 class="hero mt-m">课间休息</h1>
+      <p class="h3 mt-m" style="font-weight:700">
+        万用表<mark class="pink">旋钮拨到 OFF</mark>　·　方格纸别弄丢
+      </p>
+    </div>
+    <p class="lede mt-l" data-anim="fade-up" style="margin-left:auto;margin-right:auto;text-align:center">
+      回来还有两步 —— 其中一步，全班一半人会测错。
+    </p>
+  </div>
+  <aside class="notes">
+    <p>走之前两句：一、「<strong>万用表旋钮拨到 OFF</strong>」——省电池，也是规矩的一部分。二、「<strong>方格纸放好别弄丢</strong>，那是你今天的成果。」</p>
+    <p>最后那句「<strong>其中一步，全班一半人会测错</strong>」是故意说的——下半场第 ③ 步（中央凹槽）孩子会格外认真。</p>
+    <p>这 10 分钟你要做的：<strong>扫一眼各组的方格纸</strong>，看有没有组连「同一竖列通」都没测出来。有的话回来先单独帮他们过掉，不然后面全崩。</p>
+    <p>顺手检查万用表，有不响的现在换掉。</p>
+  </aside>
+</section>
+
+<!-- ═══════════════ 11 · 测绘③④ ═══════════════ -->
+<section class="slide" data-title="③ 自己测 · 第 ③ ④ 步">
+  <div class="stage-rail"><b>③ 自己测</b><i class="done"></i><i class="done"></i><i class="on"></i><i></i><i></i></div>
+  <div class="row" style="justify-content:space-between;align-items:flex-end">
+    <div>
+      <span class="chip pink" data-anim="fade-down">下半场 · 最后两步</span>
+      <h2 class="h2 mt-s" data-anim="fade-up">中间那条<mark>沟</mark>，和上下两条<mark class="cyan">长排</mark>。</h2>
+    </div>
+    <div class="pop pink" data-anim="fade-left" style="text-align:center;flex:0 0 auto">
+      <div class="h3">③ 测完<br>举手给我看</div>
+    </div>
+  </div>
+  <div class="figure mt-m bb" data-anim="fade-up">
+    <svg viewBox="0 0 800 470" role="img" aria-label="面包板：测中央凹槽两侧、测上下电源轨">
+      <defs>
+        <pattern id="bh4b" width="52" height="22" patternUnits="userSpaceOnUse" patternTransform="translate(80,8)">
+          <circle class="hole" cx="26" cy="11" r="4.5"/>
+        </pattern>
+      </defs>
+      <rect class="board" x="56" y="14" width="688" height="430" rx="14"/>
+      <path class="railline" style="stroke:var(--accent)" d="M92 24 h616"/>
+      <path class="railline" style="stroke:var(--accent-2)" d="M92 80 h616"/>
+      <rect x="80" y="30" width="624" height="44" fill="url(#bh4b)"/>
+      <rect x="80" y="118" width="624" height="110" fill="url(#bh4b)"/>
+      <rect class="gutter" x="80" y="228" width="624" height="22" rx="6"/>
+      <rect x="80" y="250" width="624" height="110" fill="url(#bh4b)"/>
+      <path class="railline" style="stroke:var(--accent)" d="M92 376 h616"/>
+      <path class="railline" style="stroke:var(--accent-2)" d="M92 432 h616"/>
+      <rect x="80" y="382" width="624" height="44" fill="url(#bh4b)"/>
+      <!-- ③ 跨沟 -->
+      <rect class="hl pink" x="340" y="204" width="36" height="72" rx="14"/>
+      <text class="lbl" x="358" y="196" text-anchor="middle" style="fill:var(--accent)">③</text>
+      <!-- ④ 电源轨 -->
+      <rect class="hl cyan" x="84" y="34" width="616" height="18" rx="9"/>
+      <rect class="hl cyan" x="84" y="386" width="616" height="18" rx="9"/>
+      <text class="lbl" x="726" y="50" style="fill:var(--accent-2)">④</text>
+    </svg>
+  </div>
+  <aside class="notes">
+    <p><strong>第 ③ 步必须单独做，全班同时做，做完举手。</strong>一支笔插在沟上面那一排，另一支插在沟下面<strong>正对着</strong>的那一排。</p>
+    <p>这一步<strong>最容易看走眼</strong>——两边位置左右对称，孩子想当然会觉得是通的。测出来「<strong>不响</strong>」的时候会很意外。</p>
+    <p>请一组<strong>上台演示</strong>给全班看，当众确认：「<strong>沟的两边，不通。</strong>」</p>
+    <p><strong>第 ④ 步</strong>：测最上面那条长排。一支笔放最左边，另一支放<strong>最右边</strong>——中间隔了一整条。问：「响吗？」——响。</p>
+    <p>「所以这一条<strong>横着通到底</strong>。」这条是后面 11 节课最常用的，一定要测出来。</p>
+    <p>测完四步，收表，准备汇总。</p>
+  </aside>
+</section>
+
+<!-- ═══════════════ 12 · 全班汇总 ═══════════════ -->
+<section class="slide full-center" data-title="③ 自己测 · 全班汇总">
+  <div class="stage-rail"><b>③ 自己测</b><i class="done"></i><i class="done"></i><i class="on"></i><i></i><i></i></div>
+  <div class="ask">
+    <p class="chip yellow" data-anim="fade-down">一组一条，我画在黑板上</p>
+    <p class="q mt-m" data-anim="zoom-pop">你们测出<br>什么了？</p>
+    <p class="sub mt-l" data-anim="fade-up">这张图不是我画的 —— <mark>是你们拼出来的。</mark></p>
+  </div>
+  <aside class="notes">
+    <p>黑板上事先画好一张<strong>放大的面包板空白图</strong>。现在<strong>逐组报告，你来画</strong>。</p>
+    <p>「第一组，你们测出来<strong>同一竖列的五个孔</strong>怎么样？」——画上去。「第二组，<strong>相邻两列</strong>呢？」——画上去。</p>
+    <p><strong>不要自己先画完再问。</strong>一定是他们报一条，你画一条。这个过程让个人的零散测量变成<strong>全班共同的知识</strong>。</p>
+    <p>报到中央凹槽那条时，问一句：「<strong>有没有哪一组测出来是通的？</strong>」如果有，当场让他重测——多半是笔没插到底。</p>
+    <p>画完停一下，说：「<strong>这张图不是我画的，是你们拼出来的。</strong>」——然后指着它：「<strong>这块黑板整节课不擦，后面 11 节课随时回来看。</strong>」</p>
+  </aside>
+</section>
+
+<!-- ═══════════════ 13 · 汇总图 ═══════════════ -->
+<section class="slide" data-title="④ 起名字 · 完整连接图">
+  <div class="stage-rail"><b>④ 起名字</b><i class="done"></i><i class="done"></i><i class="done"></i><i class="on"></i><i></i></div>
+  <h2 class="h2" data-anim="fade-up">这块板子里面，长这样。</h2>
+  <div class="figure mt-m bb" data-anim="fade-up">
+    <svg viewBox="0 0 800 470" role="img" aria-label="面包板完整内部连接图">
+      <defs>
+        <pattern id="bh4c" width="52" height="22" patternUnits="userSpaceOnUse" patternTransform="translate(80,8)">
+          <circle class="hole" cx="26" cy="11" r="4.5"/>
+        </pattern>
+      </defs>
+      <rect class="board" x="56" y="14" width="688" height="430" rx="14"/>
+      <!-- 电源轨高亮：＋ 配粉线，− 配青线 -->
+      <rect class="hl pink" x="84" y="34" width="616" height="18" rx="9"/>
+      <rect class="hl cyan" x="84" y="56" width="616" height="18" rx="9"/>
+      <rect class="hl pink" x="84" y="386" width="616" height="18" rx="9"/>
+      <rect class="hl cyan" x="84" y="408" width="616" height="18" rx="9"/>
+      <path class="railline" style="stroke:var(--accent)" d="M92 24 h616"/>
+      <path class="railline" style="stroke:var(--accent-2)" d="M92 80 h616"/>
+      <rect x="80" y="30" width="624" height="44" fill="url(#bh4c)"/>
+      <text class="lbl" x="70" y="48" text-anchor="end" style="fill:var(--accent)">＋</text>
+      <text class="lbl" x="70" y="70" text-anchor="end">−</text>
+      <text class="lbl" x="70" y="400" text-anchor="end" style="fill:var(--accent)">＋</text>
+      <text class="lbl" x="70" y="422" text-anchor="end">−</text>
+      <!-- 竖列高亮 -->
+      <g>
+        <rect class="hl" x="84" y="120" width="36" height="106" rx="16"/>
+        <rect class="hl" x="136" y="120" width="36" height="106" rx="16"/>
+        <rect class="hl" x="188" y="120" width="36" height="106" rx="16"/>
+        <rect class="hl" x="240" y="120" width="36" height="106" rx="16"/>
+        <rect class="hl" x="292" y="120" width="36" height="106" rx="16"/>
+        <rect class="hl" x="344" y="120" width="36" height="106" rx="16"/>
+        <rect class="hl" x="396" y="120" width="36" height="106" rx="16"/>
+        <rect class="hl" x="448" y="120" width="36" height="106" rx="16"/>
+        <rect class="hl" x="500" y="120" width="36" height="106" rx="16"/>
+        <rect class="hl" x="552" y="120" width="36" height="106" rx="16"/>
+        <rect class="hl" x="604" y="120" width="36" height="106" rx="16"/>
+        <rect class="hl" x="656" y="120" width="36" height="106" rx="16"/>
+      </g>
+      <rect x="80" y="118" width="624" height="110" fill="url(#bh4c)"/>
+      <rect class="gutter" x="80" y="228" width="624" height="22" rx="6"/>
+      <g>
+        <rect class="hl" x="84" y="252" width="36" height="106" rx="16"/>
+        <rect class="hl" x="136" y="252" width="36" height="106" rx="16"/>
+        <rect class="hl" x="188" y="252" width="36" height="106" rx="16"/>
+        <rect class="hl" x="240" y="252" width="36" height="106" rx="16"/>
+        <rect class="hl" x="292" y="252" width="36" height="106" rx="16"/>
+        <rect class="hl" x="344" y="252" width="36" height="106" rx="16"/>
+        <rect class="hl" x="396" y="252" width="36" height="106" rx="16"/>
+        <rect class="hl" x="448" y="252" width="36" height="106" rx="16"/>
+        <rect class="hl" x="500" y="252" width="36" height="106" rx="16"/>
+        <rect class="hl" x="552" y="252" width="36" height="106" rx="16"/>
+        <rect class="hl" x="604" y="252" width="36" height="106" rx="16"/>
+        <rect class="hl" x="656" y="252" width="36" height="106" rx="16"/>
+      </g>
+      <rect x="80" y="250" width="624" height="110" fill="url(#bh4c)"/>
+      <path class="railline" style="stroke:var(--accent)" d="M92 376 h616"/>
+      <path class="railline" style="stroke:var(--accent-2)" d="M92 432 h616"/>
+      <rect x="80" y="382" width="624" height="44" fill="url(#bh4c)"/>
+      <!-- 沟两侧不通 -->
+      <path class="no" d="M368 218 v42 M354 232 h28"/>
+      <text class="lbl sm" x="396" y="245" style="fill:var(--accent)">这里不通</text>
+    </svg>
+  </div>
+  <p class="lede mt-s" data-anim="fade-up" style="text-align:center;max-width:none;font-weight:800;color:var(--text-1)">
+    <mark>竖着五个一伙</mark>　·　<mark class="pink">中间那条沟两边不通</mark>　·　<mark class="cyan">上下长排横着通到底</mark>
+  </p>
+  <aside class="notes">
+    <p>这是<strong>全班汇总出来的答案</strong>，对照黑板上刚画好的那张。</p>
+    <p>指着图，一条一条确认：<strong>黄色的竖块</strong>——同一列的五个孔是一伙的，列与列之间不通。<strong>中间那条沟</strong>——两边完全不通，即使位置左右对称。<strong>上下的长排</strong>——横着通到整条。</p>
+    <p>让全班<strong>对照自己的方格纸</strong>：「和你画的一样吗？哪里不一样？」不一样的<strong>当场用万用表再测一次</strong>，不要直接改。</p>
+    <p>这三条<strong>后面每节课都要用</strong>：竖五孔用于所有元件插接；中央凹槽第 6 课按键、第 13 课二极管跨接会用到；电源轨从第 9 课起的充放电回路一直在用。</p>
+    <p>现在，才给名字。</p>
+  </aside>
+</section>
+
+<!-- ═══════════════ 14 · 命名 ═══════════════ -->
+<section class="slide" data-title="④ 起名字 · 三个名字">
+  <div class="stage-rail"><b>④ 起名字</b><i class="done"></i><i class="done"></i><i class="done"></i><i class="on"></i><i></i></div>
+  <p class="chip pink" data-anim="fade-down">给你们自己测出来的东西，起个名字</p>
+  <h2 class="h2 mt-s" data-anim="fade-up">三个名字。</h2>
+  <div class="grid g3 mt-l" data-anim="stagger-list">
+    <div class="pop yellow">
+      <div class="h3">五孔一组</div>
+      <svg viewBox="0 0 200 120" style="max-height:19vh;margin:10px auto" class="bb">
+        <rect class="hl" x="84" y="14" width="32" height="92" rx="14"/>
+        <g class="hole"><circle cx="100" cy="26" r="5"/><circle cx="100" cy="46" r="5"/><circle cx="100" cy="66" r="5"/><circle cx="100" cy="86" r="5"/><circle cx="100" cy="102" r="5"/></g>
+        <g class="hole" opacity=".3"><circle cx="60" cy="26" r="5"/><circle cx="60" cy="46" r="5"/><circle cx="60" cy="66" r="5"/><circle cx="60" cy="86" r="5"/><circle cx="60" cy="102" r="5"/>
+        <circle cx="140" cy="26" r="5"/><circle cx="140" cy="46" r="5"/><circle cx="140" cy="66" r="5"/><circle cx="140" cy="86" r="5"/><circle cx="140" cy="102" r="5"/></g>
+      </svg>
+      <p class="cap">竖着五个孔<b>互相通</b><br>列和列之间<b>不通</b></p>
+    </div>
+    <div class="pop pink">
+      <div class="h3" style="color:#fff">中央凹槽</div>
+      <svg viewBox="0 0 200 120" style="max-height:19vh;margin:10px auto" class="bb">
+        <g class="hole" style="fill:#fff"><circle cx="70" cy="22" r="5"/><circle cx="100" cy="22" r="5"/><circle cx="130" cy="22" r="5"/>
+        <circle cx="70" cy="42" r="5"/><circle cx="100" cy="42" r="5"/><circle cx="130" cy="42" r="5"/></g>
+        <rect x="40" y="52" width="120" height="18" rx="6" style="fill:rgba(255,255,255,.35);stroke:#fff;stroke-width:3"/>
+        <g class="hole" style="fill:#fff"><circle cx="70" cy="80" r="5"/><circle cx="100" cy="80" r="5"/><circle cx="130" cy="80" r="5"/>
+        <circle cx="70" cy="100" r="5"/><circle cx="100" cy="100" r="5"/><circle cx="130" cy="100" r="5"/></g>
+        <path style="stroke:#fff;stroke-width:5;fill:none;stroke-linecap:round" d="M100 46 v30 M88 61 h24"/>
+      </svg>
+      <p class="cap" style="color:rgba(255,255,255,.92)">沟的两边<b>完全不通</b><br>就算位置对得整整齐齐</p>
+    </div>
+    <div class="pop cyan">
+      <div class="h3">电源轨</div>
+      <svg viewBox="0 0 200 120" style="max-height:19vh;margin:10px auto" class="bb">
+        <rect class="hl" x="16" y="26" width="168" height="20" rx="10"/>
+        <rect class="hl" x="16" y="74" width="168" height="20" rx="10"/>
+        <g class="hole"><circle cx="36" cy="36" r="5"/><circle cx="70" cy="36" r="5"/><circle cx="104" cy="36" r="5"/><circle cx="138" cy="36" r="5"/><circle cx="168" cy="36" r="5"/>
+        <circle cx="36" cy="84" r="5"/><circle cx="70" cy="84" r="5"/><circle cx="104" cy="84" r="5"/><circle cx="138" cy="84" r="5"/><circle cx="168" cy="84" r="5"/></g>
+        <path style="stroke:var(--accent);stroke-width:4;fill:none" d="M16 18 h168"/>
+        <path style="stroke:var(--accent-2);stroke-width:4;fill:none" d="M16 102 h168"/>
+      </svg>
+      <p class="cap">上下两条长排<br><b>横着通到底</b></p>
+    </div>
+  </div>
+  <aside class="notes">
+    <p><strong>命名放在测绘之后。</strong>学生此时是在<strong>给自己测出来的结果起名字</strong>，不是在背老师给的定义——这个差别很大。</p>
+    <p>一个一个来，每个都<strong>让他们先在自己的板子上指出来</strong>，再给名字。</p>
+    <p>「竖着五个孔是一伙的，这一组叫<strong>五孔一组</strong>。」「中间这条沟，叫<strong>中央凹槽</strong>——两边完全不通。」「上下这两条长排，叫<strong>电源轨</strong>——横着通到底，用来给整块板统一供电。」</p>
+    <p>然后板书面包板结构简图，<strong>这个板书整节课不擦</strong>。</p>
+    <p>下一页回到开场那个悬念——现在他们有能力自己解释了。</p>
+  </aside>
+</section>
+
+<!-- ═══════════════ 15 · 回到开头 ═══════════════ -->
+<section class="slide" data-title="④ 起名字 · 回答开场那个问题">
+  <div class="stage-rail"><b>④ 起名字</b><i class="done"></i><i class="done"></i><i class="done"></i><i class="on"></i><i></i></div>
+  <p class="chip yellow" data-anim="fade-down">回到开场那个问题</p>
+  <h2 class="h2 mt-s" data-anim="fade-up">为什么挪一个孔就灭了？</h2>
+  <div class="vs mt-l" data-anim="fade-up">
+    <div class="yes">
+      <div class="mk">A → E</div>
+      <div class="h3 mt-s">还亮</div>
+      <p class="cap" style="text-align:left;margin-top:10px">A 排和 E 排在<b>同一组五孔</b>里 —— 本来就是通的，等于没挪</p>
+    </div>
+    <div class="no">
+      <div class="mk" style="color:var(--accent)">E → F</div>
+      <div class="h3 mt-s" style="color:var(--text-2)">灭了</div>
+      <p class="cap" style="text-align:left;margin-top:10px">F 排在<b>沟的另一边</b> —— 跨过去就断了，回路不完整</p>
+    </div>
+  </div>
+  <p class="lede mt-l" data-anim="fade-up" style="text-align:center;max-width:none;font-weight:800;color:var(--text-1)">
+    第 2 课学的那句话还管用 —— <mark>断一处，就全灭。</mark>
+  </p>
+  <aside class="notes">
+    <p>「现在回头看开头那个问题——<strong>为什么挪一个孔就灭了？</strong>」</p>
+    <p><strong>不要自己回答。</strong>请一个孩子上来，对着黑板那张连接图讲。</p>
+    <p>答案：「A 排和 E 排<strong>属于同一组五孔</strong>，本来就通着，所以挪过去<strong>等于没挪</strong>。F 排<strong>跨过了中央凹槽</strong>，那边不通，所以回路断了。」</p>
+    <p>再把它接回第 2 课：「这还是上上节课那句话——<strong>断一处，就全灭</strong>。只不过这次断的地方<strong>在板子里面，你看不见</strong>。」</p>
+    <p>这个回扣很重要：孩子会发现<strong>新知识没有推翻旧知识，而是长在旧知识上面</strong>。</p>
+  </aside>
+</section>
+
+<!-- ═══════════════ 16 · 看不见不等于不存在 ═══════════════ -->
+<section class="slide full-center" data-title="④ 起名字 · 看不见，不等于不存在">
+  <div class="stage-rail"><b>④ 起名字</b><i class="done"></i><i class="done"></i><i class="done"></i><i class="on"></i><i></i></div>
+  <div class="discovery" data-anim="zoom-pop" style="max-width:min(1100px,88vw);margin:0 auto;background:var(--accent-2)">
+    <p class="chip pink">今天真正学会的事</p>
+    <p class="hero mt-m">看不见，<br>不等于不存在。</p>
+    <p class="h3 mt-l" style="font-weight:700">
+      你<mark>把它测出来了</mark> —— 用的是工具，不是眼睛。
+    </p>
+  </div>
+  <aside class="notes">
+    <p>这一页停久一点，这是今天最大的那个跨越。</p>
+    <p>「这块板子里面的连接，<strong>从头到尾你们一眼都没看见过</strong>。但你们现在<strong>知道它长什么样</strong>——因为你们把它<strong>测出来了</strong>。」</p>
+    <p>「<strong>看不见，不等于不存在。</strong>不确定的时候，<strong>不要猜——去测。</strong>」</p>
+    <p>可以往外推一句：「科学家研究看不见的东西，用的就是这个办法。空气看不见，细菌看不见，电流也看不见——<strong>但都能测。</strong>」</p>
+    <p>这句「不确定就去测」是本课程从今往后的习惯，第 7、8、12、13 课都会继续用万用表。</p>
+  </aside>
+</section>
+
+<!-- ═══════════════ 17 · 排查五问 ═══════════════ -->
+<section class="slide" data-title="⑤ 搬过来 · 排查五问（加码）">
+  <div class="stage-rail"><b>⑤ 搬过来</b><i class="done"></i><i class="done"></i><i class="done"></i><i class="done"></i><i class="on"></i></div>
+  <p class="chip yellow" data-anim="fade-down">桌角那张卡，今天又长了一条</p>
+  <h2 class="h2 mt-s" data-anim="fade-up">排查<mark class="pink">五</mark>问。</h2>
+  <div class="checks mt-m" data-anim="stagger-list">
+    <div class="check"><div class="box"></div><div class="badge">1</div>
+      <div><div class="ct">夹子／杜邦线接触好了吗？</div></div></div>
+    <div class="check"><div class="box"></div><div class="badge cyan">2</div>
+      <div><div class="ct">LED 长脚那一端，接的是「＋」吗？</div></div></div>
+    <div class="check"><div class="box"></div><div class="badge pink">3</div>
+      <div><div class="ct">电池盒的开关，是开着的吗？</div></div></div>
+    <div class="check"><div class="box"></div><div class="badge">4</div>
+      <div><div class="ct">每根线的两端，都接上了吗？</div></div></div>
+    <div class="check" style="background:var(--accent-3)"><div class="box"></div><div class="badge" style="background:#fff">5</div>
+      <div><div class="ct">元件的两条腿，是不是<mark class="pink">插在同一排</mark>里？</div>
+      <div class="cs">同一排 = 直接通了 = 电根本不走元件</div></div></div>
+  </div>
+  <aside class="notes">
+    <p>「这张卡<strong>又长了一条</strong>。」孩子已经习惯这个仪式了。</p>
+    <p>新增的<strong>第五问</strong>是面包板特有的坑：「元件的两条腿，<strong>是不是插在面包板的同一排里？</strong>」</p>
+    <p>为什么要问这条：<strong>同一排的五个孔本来就是通的</strong>，两条腿插进去等于<strong>直接用一根线把元件短接了</strong>，电根本不走元件。这正是 5 号故障板。</p>
+    <p>让他们<strong>低头看自己的板子</strong>，用手指点一遍五个问题。</p>
+    <p>老规矩：举手时要说「<strong>我查过这五样了</strong>」。</p>
+  </aside>
+</section>
+
+<!-- ═══════════════ 18 · 迁移 ═══════════════ -->
+<section class="slide full-center" data-title="⑤ 搬过来 · 把第 1 课的灯搬上去">
+  <div class="stage-rail"><b>⑤ 搬过来</b><i class="done"></i><i class="done"></i><i class="done"></i><i class="done"></i><i class="on"></i></div>
+  <div style="text-align:center">
+    <span class="chip pink" data-anim="fade-down">第 2 关 · 不用夹子了</span>
+    <h1 class="hero mt-m" data-anim="rise-in">把第 1 课的灯<br>搬到板子上。</h1>
+    <div class="row mt-l" style="justify-content:center;gap:clamp(16px,1.8vw,34px);flex-wrap:wrap" data-anim="fade-up">
+      <div class="pop yellow"><div class="h3">还是那一圈</div><p class="cap" style="margin-top:6px">＋ → 长脚 → 灯 → 短脚 → −</p></div>
+      <div class="pop cyan"><div class="h3">只是换了路</div><p class="cap" style="margin-top:6px">鳄鱼夹 → 杜邦线 + 面包板</p></div>
+      <div class="pop pink"><div class="h3">两条腿<br><b>不能同排</b></div><p class="cap" style="margin-top:6px">同排就短路，灯不亮</p></div>
+    </div>
+  </div>
+  <aside class="notes">
+    <p>发<strong>杜邦线</strong>（单头针式公头，母头插不进面包板），每人 6 根左右，替换鳄鱼夹线——<strong>面包板用鳄鱼夹很难操作</strong>。</p>
+    <p>任务：「把第 1 课那个电路，<strong>从鳄鱼夹搬到面包板上</strong>。」</p>
+    <p>强调一句：「<strong>还是那一圈，一点没变</strong>：＋ 出发，走长脚，穿过灯，从短脚出来，回到 −。<strong>变的只是走哪条路。</strong>」</p>
+    <p>最大的坑就是<strong>两条腿插在同一排</strong>——刚讲过的第五问。让它<strong>自然发生一次</strong>，然后问那个孩子：「查一下第五问。」</p>
+    <p>还有个常见问题：<strong>新面包板孔位偏紧</strong>，孩子插不进去。课前用镊子把常用区域预先插拔一遍。引脚弯了的<strong>先掰直再插</strong>。</p>
+  </aside>
+</section>
+
+<!-- ═══════════════ 19 · 故障板 5 号 ═══════════════ -->
+<section class="slide" data-title="⑤ 搬过来 · 故障板 5 号">
+  <div class="stage-rail"><b>⑤ 搬过来</b><i class="done"></i><i class="done"></i><i class="done"></i><i class="done"></i><i class="on"></i></div>
+  <div class="row" style="justify-content:space-between;align-items:flex-end">
+    <div>
+      <span class="chip pink" data-anim="fade-down">5 号板 · 不许用手摸，只许看图</span>
+      <h2 class="h2 mt-s" data-anim="fade-up">两条腿，<mark>插在同一排</mark>。</h2>
+    </div>
+    <div class="pop yellow" data-anim="fade-left" style="text-align:center;flex:0 0 auto">
+      <div class="h3">元件都插好了<br>但它不亮</div>
+    </div>
+  </div>
+  <div class="figure mt-m bb" data-anim="fade-up">
+    <svg viewBox="0 0 720 300" role="img" aria-label="LED 两条腿插在同一列五孔内造成短路">
+      <rect class="board" x="30" y="60" width="660" height="220" rx="12"/>
+      <rect class="hl" x="282" y="88" width="36" height="120" rx="16"/>
+      <g class="hole">
+        <circle cx="200" cy="100" r="5"/><circle cx="200" cy="124" r="5"/><circle cx="200" cy="148" r="5"/><circle cx="200" cy="172" r="5"/><circle cx="200" cy="196" r="5"/>
+        <circle cx="250" cy="100" r="5"/><circle cx="250" cy="124" r="5"/><circle cx="250" cy="148" r="5"/><circle cx="250" cy="172" r="5"/><circle cx="250" cy="196" r="5"/>
+        <circle cx="300" cy="124" r="5"/><circle cx="300" cy="172" r="5"/><circle cx="300" cy="196" r="5"/>
+        <circle cx="350" cy="100" r="5"/><circle cx="350" cy="124" r="5"/><circle cx="350" cy="148" r="5"/><circle cx="350" cy="172" r="5"/><circle cx="350" cy="196" r="5"/>
+        <circle cx="400" cy="100" r="5"/><circle cx="400" cy="124" r="5"/><circle cx="400" cy="148" r="5"/><circle cx="400" cy="172" r="5"/><circle cx="400" cy="196" r="5"/>
+      </g>
+      <path class="st fillw" d="M322 48 v-22 a22 22 0 0 0 -44 0 v22 z"/>
+      <rect class="st fillw" x="274" y="48" width="52" height="11" rx="4"/>
+      <path class="st" d="M288 59 v29 q0 12 12 12 v0"/>
+      <path class="st" d="M312 59 v77 q0 12 -12 12 v0"/>
+      <circle class="st fillp" cx="300" cy="100" r="8"/>
+      <circle class="st fillp" cx="300" cy="148" r="8"/>
+      <rect class="gutter" x="60" y="220" width="600" height="20" rx="6"/>
+      <text class="lbl" x="440" y="110" style="fill:var(--accent)">两条腿都插进了同一列</text>
+      <text class="lbl" x="440" y="146" style="fill:var(--accent)">→ 这一列本来就是通的</text>
+      <text class="lbl" x="440" y="182" style="fill:var(--text-2)">→ 电直接过去了，不走灯</text>
+      <text class="lbl sm" x="60" y="268">不许用手摸 —— 只看你自己画的那张图</text>
+    </svg>
+  </div>
+  <aside class="notes">
+    <p>「这块板子上的电路，元件都插进去了，<strong>但是不亮</strong>。你们<strong>不许用手摸</strong>，只许看<strong>自己画的那张图</strong>。告诉我：它错在哪？」</p>
+    <p><strong>「不许用手摸」这条要坚持。</strong>用图解释故障，是检验「图是否真的被理解」的最好办法——摸一摸试一试谁都会，看图说出来才是真会。</p>
+    <p>答案：<strong>元件的两条腿插在同一列五孔内</strong>。那一列本来就是通的，等于<strong>用一根线把 LED 两头短接了</strong>，电直接过去，不走灯。</p>
+    <p>让找出来的孩子<strong>上来指着黑板的连接图讲</strong>，你不要抢。</p>
+    <p>讲完把它和排查第五问对上：「<strong>这就是刚才第五问问的那件事。</strong>」</p>
+  </aside>
+</section>
+
+<!-- ═══════════════ 20 · 故障板 6 号 ═══════════════ -->
+<section class="slide" data-title="⑤ 搬过来 · 故障板 6 号">
+  <div class="stage-rail"><b>⑤ 搬过来</b><i class="done"></i><i class="done"></i><i class="done"></i><i class="done"></i><i class="on"></i></div>
+  <div class="row" style="justify-content:space-between;align-items:flex-end">
+    <div>
+      <span class="chip cyan" data-anim="fade-down">6 号板 · 还是只许看图</span>
+      <h2 class="h2 mt-s" data-anim="fade-up">元件<mark class="pink">骑在沟上</mark>。</h2>
+    </div>
+    <div class="pop cyan" data-anim="fade-left" style="text-align:center;flex:0 0 auto">
+      <div class="h3">看起来<br>插得最整齐的那个</div>
+    </div>
+  </div>
+  <div class="figure mt-m bb" data-anim="fade-up">
+    <svg viewBox="0 0 700 260" role="img" aria-label="元件跨中央凹槽插接，两侧不通">
+      <rect class="board" x="30" y="20" width="640" height="220" rx="12"/>
+      <g class="hole">
+        <circle cx="200" cy="52" r="5"/><circle cx="250" cy="52" r="5"/><circle cx="300" cy="52" r="5"/><circle cx="350" cy="52" r="5"/><circle cx="400" cy="52" r="5"/>
+        <circle cx="200" cy="78" r="5"/><circle cx="250" cy="78" r="5"/><circle cx="350" cy="78" r="5"/><circle cx="400" cy="78" r="5"/>
+        <circle cx="200" cy="182" r="5"/><circle cx="250" cy="182" r="5"/><circle cx="350" cy="182" r="5"/><circle cx="400" cy="182" r="5"/>
+        <circle cx="200" cy="208" r="5"/><circle cx="250" cy="208" r="5"/><circle cx="300" cy="208" r="5"/><circle cx="350" cy="208" r="5"/><circle cx="400" cy="208" r="5"/>
+      </g>
+      <rect class="gutter" x="60" y="110" width="580" height="24" rx="8"/>
+      <path class="st" d="M300 78 v-6"/><path class="st" d="M300 182 v6"/>
+      <g transform="translate(300,132)">
+        <rect class="st fillw" x="-26" y="-32" width="52" height="64" rx="8"/>
+        <text class="lbl sm" x="0" y="4" text-anchor="middle">元件</text>
+      </g>
+      <path class="no" d="M282 116 h36"/>
+      <text class="lbl" x="440" y="88" style="fill:var(--accent)">一条腿在沟这边</text>
+      <text class="lbl" x="440" y="120" style="fill:var(--accent)">一条腿在沟那边</text>
+      <text class="lbl" x="440" y="152" style="fill:var(--text-2)">→ 两边根本不通</text>
+      <text class="lbl sm" x="60" y="236">插得越整齐，越容易犯这个错</text>
+    </svg>
+  </div>
+  <aside class="notes">
+    <p>6 号板的毛病是<strong>元件骑在中央凹槽上</strong>，两条腿分别落在沟的两边。</p>
+    <p>这个错误特别值得讲，因为它<strong>看起来最整齐</strong>——元件端端正正地骑在正中间，孩子会觉得「这么正怎么会错」。</p>
+    <p>还是那句：「<strong>不许摸，看图说。</strong>」</p>
+    <p>答案：<strong>沟的两边完全不通</strong>，所以这个元件的两条腿之间根本没连上，回路是断的。</p>
+    <p>讲完补一句给后面留钩子：「不过——<strong>有些元件就是专门要骑在沟上的</strong>。第 6 课的按键、第 13 课的二极管，你们会遇到。<strong>到时候就知道这条沟是干嘛用的了。</strong>」</p>
+    <p>时间紧张的话，5、6 号板的解释<strong>可以移到第 5 课开场</strong>。但最后一关不能砍。</p>
+  </aside>
+</section>
+
+<!-- ═══════════════ 21 · 最后一关 ═══════════════ -->
+<section class="slide full-center" data-title="⑤ 搬过来 · 只看图判断（逐人）">
+  <div class="stage-rail"><b>⑤ 搬过来</b><i class="done"></i><i class="done"></i><i class="done"></i><i class="done"></i><i class="on"></i></div>
+  <div style="text-align:center">
+    <span class="chip pink" data-anim="fade-down">最后一关 · 一个一个过</span>
+    <h1 class="hero mt-m" data-anim="rise-in">不许上手。<br>只看图。</h1>
+    <div class="row mt-l" style="justify-content:center;gap:clamp(16px,1.8vw,34px);flex-wrap:wrap" data-anim="fade-up">
+      <div class="pop yellow"><div class="h3">① 看</div><p class="cap" style="margin-top:6px">照片上标了 4 个点</p></div>
+      <div class="pop cyan"><div class="h3">② 判断</div><p class="cap" style="margin-top:6px">哪两个点相通？<br><b>先写下来</b></p></div>
+      <div class="pop pink"><div class="h3">③ 验证</div><p class="cap" style="margin-top:6px">写完了<br>再用万用表测一次</p></div>
+    </div>
+  </div>
+  <aside class="notes">
+    <p><strong>今天唯一的判定依据，死保 8 分钟。</strong></p>
+    <p>发一张<strong>面包板照片，上面标了 4 个点</strong>。要求：<strong>仅凭自己画的连接图判断哪两个点相通——不许上手测。</strong></p>
+    <p>判断写完了，<strong>再用万用表验证一次</strong>。顺序不能反——<strong>先判断后验证，确保他用的是图，不是手感。</strong></p>
+    <p>你逐人走过去看，过关标准：<strong>4 个点全部判断正确，而且能说出依据</strong>（「这两个在同一列」「这两个隔着沟」）。</p>
+    <p>判断错的，让他对照自己的图再来一张。<strong>不合格的当场再做，不要留到下节课</strong>——第 5–15 课全部 11 节课都建立在这张图上。</p>
+    <p>过完关的孩子帮忙<strong>按编号回收万用表</strong>，旋钮拨 OFF，<strong>数量对不上不下课</strong>。</p>
+  </aside>
+</section>
+
+<!-- ═══════════════ 22 · 今日大发现 ═══════════════ -->
+<section class="slide full-center" data-title="收尾 · 今日大发现">
+  <div class="discovery" data-anim="zoom-pop" style="max-width:min(1100px,88vw);margin:0 auto">
+    <p class="chip pink">今日大发现</p>
+    <p class="hero mt-m">看不见的东西，<br>可以测出来。</p>
+    <p class="h3 mt-l" style="font-weight:700">
+      不确定的时候 —— <mark class="pink">不要猜，去测。</mark>
+    </p>
+  </div>
+  <aside class="notes">
+    <p>全班<strong>一起读一遍</strong>：「看不见的东西，可以测出来。」</p>
+    <p>把今天收一下：「今天我一个字都没讲这块板子怎么用。<strong>它里面长什么样，是你们自己测出来、自己画出来的。</strong>」</p>
+    <p>再念一遍那三条：<strong>竖着五个孔是一伙的，中间那条沟两边不通，上下长排横着通到底。</strong></p>
+    <p>最后是那句习惯：「<strong>不确定的时候，不要猜——去测。</strong>」这句话后面 11 节课会一直用。</p>
+  </aside>
+</section>
+
+<!-- ═══════════════ 23 · 回家做 ═══════════════ -->
+<section class="slide" data-title="收尾 · 回家做">
+  <h2 class="h2" data-anim="fade-up">回家做。</h2>
+  <div class="grid g2 mt-l">
+    <div class="pop pink" data-anim="fade-right">
+      <span class="chip" style="background:#fff">必做 · 每个人</span>
+      <div class="h3 mt-m">把你画的连接图讲给家人听。</div>
+      <p class="cap" style="text-align:left;margin-top:12px;color:rgba(255,255,255,.9)">
+        讲两件事：<strong>哪些孔是通的</strong>，还有 ——<br>
+        <strong>你是怎么测出来的</strong>。
+      </p>
+    </div>
+    <div class="pop cyan" data-anim="fade-left">
+      <span class="chip" style="background:#fff">选做 · 想挑战的人</span>
+      <div class="h3 mt-m">为什么面包板中间要有一条沟？</div>
+      <p class="cap" style="text-align:left;margin-top:12px">
+        提示：<strong>想想芯片长什么样</strong>。<br>
+        下学期你会用到它。
+      </p>
+    </div>
+  </div>
+  <p class="lede mt-l" data-anim="fade-up" style="text-align:center;max-width:none;font-weight:800;color:var(--text-1)">
+    不确定的时候，不要猜 —— <mark>去测。</mark>
+  </p>
+  <aside class="notes">
+    <p>必做那条的重点是<strong>第二件事</strong>：「你是<strong>怎么测出来的</strong>。」讲结论谁都会，讲方法才说明真懂了。</p>
+    <p>提醒他们<strong>把方格纸带回家，下节课再带回来</strong>——那张图后面还要用。</p>
+    <p>选做那条没有标准答案，能想到「<strong>芯片要骑在沟上，两排腿才不会短路</strong>」的就非常厉害了。想不到也没关系，第 6 课装按键的时候会自己明白。</p>
+    <p>下课前自己确认三件事：①<strong>保底目标是否全员达成</strong>——仅凭图判断任意两点通不通。这是第 5–15 课的地基。②<strong>万用表按编号清点</strong>，旋钮全部 OFF，<strong>数量对不上不下课</strong>。③<strong>黑板上那张连接图留着别擦</strong>，后面 11 节课随时回看。</p>
+  </aside>
+</section>
+
+<!-- ═══════════════ 24 · 下节课 ═══════════════ -->
+<section class="slide full-center" data-title="收尾 · 下节课钩子">
+  <div style="text-align:center">
+    <p class="chip cyan" data-anim="fade-down">下节课 · 第 5 课</p>
+    <h2 class="h2 mt-m" data-anim="fade-up">你现在能看懂这块板子了。</h2>
+    <p class="hero mt-l" data-anim="zoom-pop">下节课 ——<br><mark class="pink">把它画下来</mark>。</p>
+  </div>
+  <aside class="notes">
+    <p>收尾钩子，<strong>一句话，说完就下课</strong>。</p>
+    <p>「你现在<strong>能看懂这块板子</strong>了。下节课我们干一件事——<strong>把电路画下来</strong>，画成别人一看就懂的那种图。」</p>
+    <p><strong>不要展开</strong>（下节课是《画出电的路线》，电路图符号）。</p>
+    <p>可以再埋一句：「今天你们画的图，每组画得都不一样对不对？下节课我们学<strong>一种全世界都看得懂的画法</strong>。」</p>
+  </aside>
+</section>
+
+</div>
+
+<div class="deck-footer">
+  <span>第 4 课 · 面包板探险　|　15 节科创探究课 · 第二单元</span>
+  <span class="slide-number" data-current="1" data-total="24"></span>
+</div>
+
+<script src="../assets/runtime.js"></script>
+</body>
+</html>

@@ -1,0 +1,462 @@
+<!DOCTYPE html>
+<html lang="zh-CN" data-themes="memphis-pop,neo-brutalism,soft-pastel,minimal-white" data-theme-base="../assets/themes/">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>第 10 课 · 延时小夜灯</title>
+<link rel="stylesheet" href="../assets/fonts.css">
+<link rel="stylesheet" href="../assets/base.css">
+<link rel="stylesheet" id="theme-link" href="../assets/themes/memphis-pop.css">
+<link rel="stylesheet" href="../assets/animations/animations.css">
+<link rel="stylesheet" href="../assets/course.css">
+</head>
+<body class="kc">
+<div class="deck">
+
+<!-- ═══════════════ 1 · 封面 ═══════════════ -->
+<section class="slide full-center" data-title="开场 · 封面">
+  <div style="text-align:center">
+    <span class="chip cyan" data-anim="fade-down">15 节科创探究课 · 第四单元「电还能存起来吗」</span>
+    <h1 class="hero mt-m" data-anim="rise-in">第 10 课<br>延时小夜灯</h1>
+    <p class="h3 mt-m" data-anim="fade-up" style="font-weight:700;color:var(--text-2)">
+      让它亮得<mark class="pink">刚刚好</mark>
+    </p>
+    <div class="row mt-l" style="justify-content:center;gap:14px;flex-wrap:wrap" data-anim="fade-up">
+      <span class="chip">90 分钟 · 两节连堂</span>
+      <span class="chip yellow">第二件能带走的作品</span>
+      <span class="chip pink">今天要做一次选择</span>
+    </div>
+  </div>
+  <aside class="notes">
+    <p>本课把第 9 课的现象变成<strong>一件能带走的东西</strong>，同时完成第四单元真正的概念：<strong>权衡</strong>。同样一桶电，<strong>用得快就亮而短，用得慢就暗而久</strong>——总量没变，变的是花钱的速度。<strong>这是全课程第一次出现真实的工程取舍。</strong></p>
+    <p><strong>「熄灭」的判据必须全班统一</strong>，否则各组数据没法比较。约定：<strong>关掉教室灯，以「正对着看不见光」为熄灭时刻，由同伴判定。</strong></p>
+    <p><strong>1kΩ 档要等约 7 分钟</strong>，对三年级太长、容易失控。<strong>建议教师提前测好公布，学生只实测 150Ω 和 470Ω 两档。</strong></p>
+    <p>保底目标：<strong>基于自己的实测数据，为一个具体需求选出合适的放电电阻，并说明理由。</strong></p>
+    <p>如果有学生问「两个电容一起用会怎样」——简短回答：「<strong>电容跟灯泡不一样，这个初中再说。</strong>」不要展开。</p>
+  </aside>
+</section>
+
+<!-- ═══════════════ 2 · 今天走 5 步 ═══════════════ -->
+<section class="slide" data-title="开场 · 今天走 5 步">
+  <p class="chip pink" data-anim="fade-down">今天，我们走 5 步</p>
+  <h2 class="h2 mt-s" data-anim="fade-up">今天这盏灯，<mark>是你自己设计的</mark>。</h2>
+  <div class="grid mt-l" style="grid-template-columns:repeat(5,1fr)" data-anim="stagger-list">
+    <div class="pop yellow" style="text-align:center">
+      <div class="badge sq" style="margin:0 auto 12px">1</div>
+      <div class="h3">二选一</div>
+      <p class="cap" style="margin-top:8px">两盏灯，你要哪盏</p>
+    </div>
+    <div class="pop" style="text-align:center">
+      <div class="badge pink sq" style="margin:0 auto 12px">2</div>
+      <div class="h3">改电路</div>
+      <p class="cap" style="margin-top:8px">把你的小手电接进来</p>
+    </div>
+    <div class="pop cyan" style="text-align:center">
+      <div class="badge sq" style="margin:0 auto 12px;background:#fff;color:var(--ink)">3</div>
+      <div class="h3">测三档</div>
+      <p class="cap" style="margin-top:8px">换电阻，记时间</p>
+    </div>
+    <div class="pop" style="text-align:center">
+      <div class="badge cyan sq" style="margin:0 auto 12px">4</div>
+      <div class="h3">起名字</div>
+      <p class="cap" style="margin-top:8px">权衡</p>
+    </div>
+    <div class="pop pink" style="text-align:center">
+      <div class="badge sq" style="margin:0 auto 12px;background:#fff;color:var(--ink)">5</div>
+      <div class="h3">自己选</div>
+      <p class="cap" style="margin-top:8px">按需要挑零件，做成作品</p>
+    </div>
+  </div>
+  <p class="lede mt-l" data-anim="fade-up">
+    最后一步不是「照老师说的装」—— 是<mark class="pink">你用自己的数据做决定</mark>。
+  </p>
+  <aside class="notes">
+    <p>一分钟带过。重点说第 5 步：「今天最后<strong>不是照老师说的装</strong>——是<strong>你自己挑零件</strong>，而且要<strong>说得出为什么挑它</strong>。」</p>
+    <p>「今天这盏灯，<strong>是你自己设计的</strong>。」——这句话对这个年龄段很有分量。</p>
+    <p>提醒一句：<strong>第 6 课的小手电带来了吗？</strong>没带的现在登记，发备用按键。</p>
+  </aside>
+</section>
+
+<!-- ═══════════════ 3 · 两盏灯选一盏 ═══════════════ -->
+<section class="slide" data-title="① 二选一 · 你要哪一盏">
+  <div class="stage-rail"><b>① 二选一</b><i class="on"></i><i></i><i></i><i></i><i></i></div>
+  <p class="chip yellow" data-anim="fade-down">两盏都是我做的 · 都按一下给你们看</p>
+  <h2 class="h2 mt-s" data-anim="fade-up">你要<mark class="pink">哪一盏</mark>？</h2>
+  <div class="vs mt-l" data-anim="fade-up">
+    <div class="yes">
+      <div class="h3">A 灯</div>
+      <div class="hero mt-s" style="font-size:var(--fs-h2)">很亮</div>
+      <p class="cap" style="text-align:left;margin-top:10px">但只能亮 <b>1 分钟</b></p>
+    </div>
+    <div style="background:var(--surface-2)">
+      <div class="h3" style="color:var(--text-2)">B 灯</div>
+      <div class="hero mt-s" style="font-size:var(--fs-h2);color:var(--text-2)">很暗</div>
+      <p class="cap" style="text-align:left;margin-top:10px">但能亮 <b>7 分钟</b></p>
+    </div>
+  </div>
+  <p class="lede mt-l" data-anim="fade-up" style="text-align:center;max-width:none;font-weight:800;color:var(--text-1)">
+    要 A 的<mark>站左边</mark>，要 B 的<mark class="cyan">站右边</mark>。
+  </p>
+  <aside class="notes">
+    <p><strong>用一个必须做选择的场景开场。</strong>桌上两盏做好的样品夜灯，<strong>当众各按一次</strong>。</p>
+    <p>「A 很亮，但只能亮<strong>一分钟</strong>。B 很暗，能亮<strong>七分钟</strong>。」</p>
+    <p>「<strong>你要哪一盏？</strong>觉得要 A 的<strong>站左边</strong>，要 B 的<strong>站右边</strong>。」</p>
+    <p><strong>让他们真的站起来分两边。</strong>身体投票比举手投票有力得多。</p>
+    <p>两边都会有人——<strong>这就是本课要处理的问题</strong>。各让一两个人说理由，写在黑板上，<strong>不评判</strong>。</p>
+    <p>然后说一句就过：「<strong>两边说的都有道理。等会儿我们再回来。</strong>」</p>
+  </aside>
+</section>
+
+<!-- ═══════════════ 4 · 电路改造 ═══════════════ -->
+<section class="slide" data-title="② 改电路 · 把你的小手电接进来">
+  <div class="stage-rail"><b>② 改电路</b><i class="done"></i><i class="on"></i><i></i><i></i><i></i></div>
+  <p class="chip cyan" data-anim="fade-down">第 6 课那个按键 · 今天派上用场</p>
+  <h2 class="h2 mt-s" data-anim="fade-up">按一下<mark>开始充电</mark>，松手<mark class="pink">慢慢灭</mark>。</h2>
+  <div class="figure mt-m" data-anim="fade-up">
+    <svg viewBox="0 0 960 190" role="img" aria-label="按键接进充电回路的链路">
+      <rect class="st fillw" x="20" y="54" width="118" height="70" rx="12"/>
+      <text class="lbl sm" x="79" y="94" text-anchor="middle">电池</text>
+      <path class="st" d="M138 89 h48"/>
+      <rect class="st filly" x="186" y="54" width="130" height="70" rx="12"/>
+      <text class="lbl sm" x="251" y="86" text-anchor="middle">你的按键</text>
+      <text class="lbl sm" x="251" y="110" text-anchor="middle" style="fill:var(--accent)">第 6 课那个</text>
+      <path class="st" d="M316 89 h48"/>
+      <rect class="st fillw" x="364" y="54" width="96" height="70" rx="12"/>
+      <text class="lbl sm" x="412" y="94" text-anchor="middle">10 Ω</text>
+      <path class="st" d="M460 89 h48"/>
+      <rect class="st" x="508" y="46" width="128" height="86" rx="12" style="fill:var(--accent-2)"/>
+      <rect x="610" y="50" width="22" height="78" rx="8" style="fill:var(--text-3)"/>
+      <text class="lbl sm" x="565" y="94" text-anchor="middle">超级电容</text>
+      <path class="st" d="M636 89 h48"/>
+      <rect class="st" x="684" y="54" width="110" height="70" rx="12" style="fill:var(--accent-3)"/>
+      <text class="lbl sm" x="739" y="86" text-anchor="middle">放电电阻</text>
+      <text class="lbl sm" x="739" y="110" text-anchor="middle" style="fill:var(--accent)">今天要换它</text>
+      <path class="st" d="M794 89 h34"/>
+      <circle class="filly glow" cx="882" cy="82" r="28"/>
+      <path class="st filly" d="M904 104 v-22 a22 22 0 0 0 -44 0 v22 z"/>
+      <rect class="st fillw" x="856" y="104" width="52" height="11" rx="4"/>
+      <text class="lbl sm" x="882" y="150" text-anchor="middle">LED</text>
+    </svg>
+  </div>
+  <p class="lede mt-s" data-anim="fade-up" style="text-align:center;max-width:none;font-weight:800;color:var(--text-1)">
+    整条链路只有<mark class="pink">最后那个电阻</mark>会换 —— 别的都不动。
+  </p>
+  <aside class="notes">
+    <p>「今天不是搭新电路——是<strong>把第 9 课那个，加上第 6 课那个按键</strong>。」</p>
+    <p><strong>这是第 6 课作品的复用，不是新东西。</strong>让孩子看到课程之间的连接，也省下讲解时间。</p>
+    <p>做出来的效果：<strong>按一下开始充电，松手慢慢灭</strong>——这就是一盏「延时小夜灯」。</p>
+    <p>强调今天的变量：「整条链路<strong>只有最后那个放电电阻会换</strong>，别的都不动。」这是控制变量的前提。</p>
+    <p><strong>安全红线照旧：电容极性教师逐台检查，贴绿标，无绿标不许通电。</strong>换电阻不用重检，但重插电容一定要重检。</p>
+  </aside>
+</section>
+
+<!-- ═══════════════ 5 · 统一判据 ═══════════════ -->
+<section class="slide" data-title="③ 测三档 · 先说清楚什么叫「灭了」">
+  <div class="stage-rail"><b>③ 测三档</b><i class="done"></i><i class="done"></i><i class="on"></i><i></i><i></i></div>
+  <p class="chip pink" data-anim="fade-down">计时之前，全班先统一一件事</p>
+  <h2 class="h2 mt-s" data-anim="fade-up">什么叫「<mark>灭了</mark>」？</h2>
+  <div class="checks mt-l" data-anim="stagger-list">
+    <div class="check"><div class="badge">1</div>
+      <div><div class="ct">关掉教室灯</div>
+      <div class="cs">有遮光箱的用遮光箱</div></div></div>
+    <div class="check" style="background:var(--accent-3)"><div class="badge" style="background:#fff">2</div>
+      <div><div class="ct"><mark class="pink">正对着看不见光</mark> ＝ 灭了</div>
+      <div class="cs">不是「变暗了」，是「看不见了」</div></div></div>
+    <div class="check"><div class="badge cyan">3</div>
+      <div><div class="ct">由<b>同桌</b>判定，不是你自己说了算</div></div></div>
+  </div>
+  <p class="lede mt-l" data-anim="fade-up" style="text-align:center;max-width:none;font-weight:800;color:var(--text-1)">
+    判据不统一，<mark>各组的数据就没法比</mark>。
+  </p>
+  <aside class="notes">
+    <p><strong>这一步不能省。判据不统一，各组数据就没法比较，后面的汇总和选型全部作废。</strong></p>
+    <p>「计时之前，我们先说清楚什么叫『<strong>灭了</strong>』。」</p>
+    <p>「<strong>关掉教室灯，正对着看不见光，就算灭了。由你的同桌来判断，不是你自己说了算。</strong>」</p>
+    <p>为什么要同桌判？因为自己盯着自己的灯，<strong>总觉得还亮着一点</strong>。这也是在教「<strong>判断要交给第三方</strong>」。</p>
+    <p>可以先全班演练一次：关灯，一起盯着教师的样品，喊「灭」。统一一下感觉。</p>
+  </aside>
+</section>
+
+<!-- ═══════════════ 6 · 两档实测 ═══════════════ -->
+<section class="slide" data-title="③ 测三档 · 换电阻，记时间">
+  <div class="stage-rail"><b>③ 测三档</b><i class="done"></i><i class="done"></i><i class="on"></i><i></i><i></i></div>
+  <div class="row" style="justify-content:space-between;align-items:flex-end">
+    <div>
+      <span class="chip cyan" data-anim="fade-down">你们测前两档 · 第三档我给数据</span>
+      <h2 class="h2 mt-s" data-anim="fade-up">换一个电阻，<mark>结果差多少</mark>？</h2>
+    </div>
+    <div class="pop yellow" data-anim="fade-left" style="text-align:center;flex:0 0 auto">
+      <div class="h3">每次都是<br><b>充 10 秒</b> 再松手</div>
+    </div>
+  </div>
+  <div class="tbl mt-m" style="grid-template-columns:1fr 1.1fr 1.2fr 1.4fr" data-anim="fade-up">
+    <div class="hd">放电电阻</div><div class="hd">亮度（1–5）</div><div class="hd">亮了多久</div><div class="hd">适合做什么</div>
+    <div class="rh">150 Ω</div><div class="todo">？</div><div class="todo">___ 秒</div><div class="todo">？</div>
+    <div class="rh">470 Ω</div><div class="todo">？</div><div class="todo">___ 秒</div><div class="todo">？</div>
+    <div class="rh">1 kΩ　<small>老师的数据</small></div><div class="off">很暗</div><div class="off">约 7 分钟</div><div class="todo">？</div>
+  </div>
+  <p class="lede mt-l" data-anim="fade-up" style="text-align:center;max-width:none;font-weight:800;color:var(--text-1)">
+    1kΩ 那档要等 <mark class="pink">7 分钟</mark> —— 太久了，<mark>我课前替你们测好了</mark>。
+  </p>
+  <aside class="notes">
+    <p><strong>学生只实测 150Ω 和 470Ω 两档，1kΩ 由你提前测好公布。</strong>7 分钟对这个年龄段太长，等待期间课堂容易失控。</p>
+    <p>把 1kΩ 的数据<strong>课前就写在黑板上</strong>，学生直接抄进表里。</p>
+    <p>控制变量说死：「<strong>每次都是充 10 秒再松手</strong>，只有放电电阻在换。」</p>
+    <p>电阻<strong>按阻值分色装袋</strong>，避免混淆——150 和 470 色环很像，孩子会拿错。</p>
+    <p>巡视两件事：①<strong>换的是不是放电那一个</strong>（有孩子会去换 10Ω 那个）；②<strong>熄灭判据有没有按约定走</strong>。</p>
+    <p>参考数据：<strong>150Ω ≈ 65 秒，470Ω ≈ 3.4 分钟，1kΩ ≈ 7 分钟。</strong></p>
+  </aside>
+</section>
+
+<!-- ═══════════════ 7 · 课间休息 ═══════════════ -->
+<section class="slide full-center" data-title="休息 · 课间 10 分钟">
+  <div style="text-align:center">
+    <div class="discovery" data-anim="zoom-pop" style="max-width:min(1000px,86vw)">
+      <p class="chip" style="background:#fff">中场 · 10 分钟</p>
+      <h1 class="hero mt-m">课间休息</h1>
+      <p class="h3 mt-m" style="font-weight:700">
+        <mark class="pink">三档电阻别弄混</mark>　·　电路别拆
+      </p>
+    </div>
+    <p class="lede mt-l" data-anim="fade-up" style="margin-left:auto;margin-right:auto;text-align:center">
+      回来汇总数据，然后 —— 你要自己挑一个电阻，做成一盏灯带回家。
+    </p>
+  </div>
+  <aside class="notes">
+    <p>走之前两句：「<strong>三档电阻分开放，别弄混</strong>。」「<strong>电路别拆</strong>，下半场还要用。」</p>
+    <p>吊一句：「回来你们要<strong>自己挑一个电阻，做成一盏灯带回家</strong>。」</p>
+    <p>这 10 分钟你要做的：①<strong>把纸盒外壳材料按人份摆好</strong>；②<strong>在黑板上画好汇总表</strong>（三行三列）；③<strong>确认 1kΩ 的数据已经写在黑板上</strong>。</p>
+    <p>顺手检查有没有鼓包的电容，有就换掉。</p>
+  </aside>
+</section>
+
+<!-- ═══════════════ 8 · 汇总：哪一档最好 ═══════════════ -->
+<section class="slide" data-title="④ 起名字 · 哪一档最好">
+  <div class="stage-rail"><b>④ 起名字</b><i class="done"></i><i class="done"></i><i class="done"></i><i class="on"></i><i></i></div>
+  <h2 class="h2" data-anim="fade-up">三档数据都在黑板上了。<mark>哪一档最好？</mark></h2>
+  <div class="figure mt-m" data-anim="fade-up">
+    <svg viewBox="0 0 900 280" role="img" aria-label="三档电阻的亮度与时长对比">
+      <text class="lbl" x="30" y="46">150 Ω</text>
+      <rect class="st" x="140" y="20" width="120" height="36" rx="18" style="fill:var(--accent-3)"/>
+      <text class="lbl sm" x="272" y="44">亮度 5</text>
+      <rect class="st" x="380" y="20" width="90" height="36" rx="18" style="fill:var(--accent-2)"/>
+      <text class="lbl sm" x="482" y="44">约 65 秒</text>
+      <text class="lbl" x="30" y="136">470 Ω</text>
+      <rect class="st" x="140" y="110" width="76" height="36" rx="18" style="fill:var(--accent-3)"/>
+      <text class="lbl sm" x="228" y="134">亮度 3</text>
+      <rect class="st" x="380" y="110" width="250" height="36" rx="18" style="fill:var(--accent-2)"/>
+      <text class="lbl sm" x="642" y="134">约 3.4 分钟</text>
+      <text class="lbl" x="30" y="226">1 kΩ</text>
+      <rect class="st" x="140" y="200" width="40" height="36" rx="18" style="fill:var(--accent-3)"/>
+      <text class="lbl sm" x="192" y="224">亮度 1</text>
+      <rect class="st" x="380" y="200" width="480" height="36" rx="18" style="fill:var(--accent-2)"/>
+      <text class="lbl sm" x="600" y="224" style="fill:#fff">约 7 分钟</text>
+      <text class="lbl sm" x="140" y="268" style="fill:var(--accent)">← 亮度</text>
+      <text class="lbl sm" x="380" y="268" style="fill:var(--accent-2)">← 时长</text>
+    </svg>
+  </div>
+  <aside class="notes">
+    <p>全班汇总三档数据，画在黑板上。<strong>PPT 这张图是参考，以孩子的数据为准。</strong></p>
+    <p>然后问：「<strong>三档数据都在黑板上了。哪一档最好？</strong>」</p>
+    <p>会有学生说 <strong>150Ω 最好</strong>（最亮），也会有学生说 <strong>1kΩ 最好</strong>（最久）。<strong>两边都让他们说。</strong></p>
+    <p>再追一句：「<strong>所以到底哪个最好？</strong>」</p>
+    <p><strong>「没有最好」这个结论必须由学生自己得出，教师不要提前说。</strong>留足时间等那个孩子说出「<strong>要看你干什么用</strong>」。</p>
+    <p>有人说出来了，就翻页命名。</p>
+  </aside>
+</section>
+
+<!-- ═══════════════ 9 · 命名：权衡 ═══════════════ -->
+<section class="slide" data-title="④ 起名字 · 权衡：不能都要">
+  <div class="stage-rail"><b>④ 起名字</b><i class="done"></i><i class="done"></i><i class="done"></i><i class="on"></i><i></i></div>
+  <div class="row" style="gap:clamp(20px,2.4vw,50px);align-items:center">
+    <div style="flex:1">
+      <span class="chip yellow" data-anim="fade-down">这种「不能都要」的情况</span>
+      <h2 class="h2 mt-s" data-anim="rise-in">工程师管它叫<br><mark class="pink">权衡</mark>。</h2>
+      <div class="stack-l mt-l">
+        <div class="pop cyan" data-anim="fade-right"><div class="h3">同样<b>一桶电</b></div></div>
+        <div class="pop yellow" data-anim="fade-right"><div class="h3">用得快 → <b>亮而短</b></div></div>
+        <div class="pop pink" data-anim="fade-right"><div class="h3" style="color:#fff">用得慢 → <b>暗而久</b></div></div>
+      </div>
+      <p class="lede mt-m" data-anim="fade-up" style="font-weight:800;color:var(--text-1)">
+        总量<mark>没变</mark> —— 变的是<mark class="cyan">花钱的速度</mark>。
+      </p>
+    </div>
+    <div class="figure" style="flex:1" data-anim="fade-left">
+      <svg viewBox="0 0 440 340" role="img" aria-label="亮度上去时长就下来的权衡曲线">
+        <path class="st" d="M70 40 v230 h330"/>
+        <text class="lbl sm" x="30" y="46">亮</text>
+        <text class="lbl sm" x="400" y="296">久</text>
+        <path class="st" style="stroke:var(--accent);stroke-width:7;fill:none"
+              d="M96 72 C 170 210, 240 250, 386 262"/>
+        <circle class="st filly" cx="104" cy="88" r="14"/>
+        <text class="lbl sm" x="124" y="80">150 Ω</text>
+        <circle class="st filly" cx="204" cy="222" r="14"/>
+        <text class="lbl sm" x="224" y="216">470 Ω</text>
+        <circle class="st filly" cx="356" cy="258" r="14"/>
+        <text class="lbl sm" x="272" y="290">1 kΩ</text>
+        <text class="lbl sm" x="150" y="130" style="fill:var(--accent)">这边上去了</text>
+        <text class="lbl sm" x="150" y="156" style="fill:var(--accent)">那边就下来</text>
+      </svg>
+    </div>
+  </div>
+  <aside class="notes">
+    <p>「其实哪个都不是最好——<strong>要看你拿它干什么</strong>。这种『<strong>不能都要</strong>』的情况，工程师管它叫<strong>权衡</strong>。」</p>
+    <p>然后把它说透：「<strong>同样一桶电</strong>，用得快就亮而短，用得慢就暗而久。<strong>总量没变，变的是花钱的速度。</strong>」</p>
+    <p><strong>接上第 8 课，两课形成闭环</strong>：「为什么换个电阻就能改速度？——<strong>电阻大 → 电流小 → 用得慢</strong>。这就是上上节课学的那个减速带。」</p>
+    <p>板书那条曲线：<strong>亮度 ↑ 则时长 ↓</strong>。</p>
+    <p>最后回到开场：「所以站左边的和站右边的，<strong>谁也没输</strong>——你们只是<strong>想拿它干的事不一样</strong>。」</p>
+  </aside>
+</section>
+
+<!-- ═══════════════ 10 · 按需选型 ═══════════════ -->
+<section class="slide full-center" data-title="⑤ 自己选 · 真实的任务">
+  <div class="stage-rail"><b>⑤ 自己选</b><i class="done"></i><i class="done"></i><i class="done"></i><i class="done"></i><i class="on"></i></div>
+  <div class="ask">
+    <p class="chip pink" data-anim="fade-down">给你一个真实的任务</p>
+    <p class="q mt-m" data-anim="zoom-pop">晚上从卧室<br>走到厕所，<br><mark>大概 40 秒</mark>。</p>
+    <p class="sub mt-l" data-anim="fade-up">你选<mark class="pink">哪个电阻</mark>？<br>理由要<mark>用你表格里的数据</mark>，不许说「我觉得」。</p>
+  </div>
+  <aside class="notes">
+    <p><strong>这是本课的能力落点：从「测数据」升级到「用数据做决定」。</strong></p>
+    <p>「现在给你一个<strong>真实的任务</strong>：做一盏夜灯，晚上从卧室走到厕所用，<strong>走过去大概 40 秒</strong>。你选哪个电阻？<strong>为什么？</strong>」</p>
+    <p><strong>要求理由必须引用自己表格里的数据，不能只说「我觉得」。</strong></p>
+    <p>没有唯一正确答案。<strong>150Ω（65秒）是最常见的合理选择</strong>——够用且最亮；<strong>选 470Ω 说「万一走慢了还有富余」也完全成立</strong>。</p>
+    <p>不合格的是：选了却说不出数据依据，或者理由和自己的表格对不上。</p>
+    <p>可以多给几个场景让不同的孩子选：「夜里起来喝水（10 秒）」「露营时找东西（越久越好）」——不同任务不同答案，<strong>权衡的体感就出来了</strong>。</p>
+  </aside>
+</section>
+
+<!-- ═══════════════ 11 · 做外壳 ═══════════════ -->
+<section class="slide" data-title="⑤ 自己选 · 装进壳里（只做三件事）">
+  <div class="stage-rail"><b>⑤ 自己选</b><i class="done"></i><i class="done"></i><i class="done"></i><i class="done"></i><i class="on"></i></div>
+  <p class="chip yellow" data-anim="fade-down">和第 6 课一样，发材料前先听清楚</p>
+  <h2 class="h2 mt-s" data-anim="fade-up">外壳还是只做<mark class="pink">三件事</mark>。</h2>
+  <div class="grid g3 mt-l" data-anim="stagger-list">
+    <div class="pop yellow" style="text-align:center">
+      <div class="badge sq" style="margin:0 auto 10px">1</div>
+      <div class="h3">能装下</div>
+      <p class="cap" style="margin-top:8px">电池盒、面包板、电容<br>都塞得进去</p>
+    </div>
+    <div class="pop cyan" style="text-align:center">
+      <div class="badge sq" style="margin:0 auto 10px;background:#fff;color:var(--ink)">2</div>
+      <div class="h3">按键露出来</div>
+      <p class="cap" style="margin-top:8px">摸黑也要能按到</p>
+    </div>
+    <div class="pop pink" style="text-align:center">
+      <div class="badge sq" style="margin:0 auto 10px;background:#fff;color:var(--ink)">3</div>
+      <div class="h3">灯能照出去</div>
+      <p class="cap" style="margin-top:8px">朝着你要照的方向</p>
+    </div>
+  </div>
+  <p class="lede mt-l" data-anim="fade-up" style="text-align:center;max-width:none;font-weight:800;color:var(--text-1)">
+    装饰<mark>带回家做</mark>。今天先让它<mark class="pink">能用</mark>。
+  </p>
+  <aside class="notes">
+    <p>和第 6 课同样的限定，<strong>必须在发材料之前说</strong>，否则外壳会吃掉全部时间。</p>
+    <p>今天第 2 条可以加一句很实用的：「<strong>摸黑也要能按到</strong>——因为这是夜灯，你用它的时候屋里是黑的。」孩子会立刻明白按键为什么要放在好摸的地方。</p>
+    <p>这是<strong>真实的设计约束</strong>，比「按键露出来」更有意思，值得多说一句。</p>
+    <p>巡视只管一件事：<strong>装进壳里之后还亮不亮</strong>。塞的时候最容易把电容的腿挤歪——<strong>挤歪了要重新检查极性</strong>。</p>
+    <p>材料按人份提前装好，剪刀注意安全。</p>
+  </aside>
+</section>
+
+<!-- ═══════════════ 12 · 最后一关 ═══════════════ -->
+<section class="slide full-center" data-title="⑤ 自己选 · 演示 + 说明选型（逐人）">
+  <div class="stage-rail"><b>⑤ 自己选</b><i class="done"></i><i class="done"></i><i class="done"></i><i class="done"></i><i class="on"></i></div>
+  <div style="text-align:center">
+    <span class="chip pink" data-anim="fade-down">最后一关 · 一个一个过</span>
+    <h1 class="hero mt-m" data-anim="rise-in">按给我看，<br>再说你为什么<br>选它。</h1>
+    <div class="row mt-l" style="justify-content:center;gap:clamp(16px,1.8vw,34px);flex-wrap:wrap" data-anim="fade-up">
+      <div class="pop yellow"><div class="h3">① 演示</div><p class="cap" style="margin-top:6px">按一下<br>松手，慢慢灭</p></div>
+      <div class="pop cyan"><div class="h3">② 我选了</div><p class="cap" style="margin-top:6px">___ Ω</p></div>
+      <div class="pop pink"><div class="h3">③ 为什么</div><p class="cap" style="margin-top:6px"><b>不选另外两个</b><br>的理由</p></div>
+    </div>
+  </div>
+  <aside class="notes">
+    <p><strong>今天的判定环节，死保 8 分钟。</strong></p>
+    <p>三步，<strong>第三步是关键</strong>：不只说「我为什么选它」，还要说「<strong>为什么不选另外两个</strong>」。</p>
+    <p>合格的回答必须<strong>引用自己的实测数据</strong>：「我选 150Ω，因为我测出来它能亮 <strong>65 秒</strong>，走过去要 40 秒，<strong>够用而且最亮</strong>。470Ω 虽然更久，但太暗了看不清路；1kΩ 更暗，没必要。」</p>
+    <p><strong>理由必须与自己的实测数据一致。</strong>说得出数字才算过。</p>
+    <p>只会演示、说不出理由的，<strong>让他拿着自己的表格再说一次</strong>。</p>
+    <p>过关的孩子<strong>在作品上写名字</strong>。这是第二件带得走的作品，也是第四单元的成果凭证。</p>
+  </aside>
+</section>
+
+<!-- ═══════════════ 13 · 今日大发现 ═══════════════ -->
+<section class="slide full-center" data-title="收尾 · 今日大发现">
+  <div class="discovery" data-anim="zoom-pop" style="max-width:min(1100px,88vw);margin:0 auto">
+    <p class="chip pink">今日大发现</p>
+    <p class="hero mt-m">想亮就短，想久就暗 ——<br><mark class="pink">不能都要。</mark></p>
+    <p class="h3 mt-l" style="font-weight:700">
+      没有「最好的」　—　<mark>只有「适合的」</mark>
+    </p>
+  </div>
+  <aside class="notes">
+    <p>全班<strong>一起读一遍</strong>。</p>
+    <p>然后把它推出电路之外——<strong>这是今天真正想留下的东西</strong>：</p>
+    <p>「<strong>这件事不只是电路。</strong>书包要装得多就会重，要轻就装不了那么多。跑得快就累得快，跑得慢就能跑更远。<strong>很多时候不是选对错，是选你更想要哪个。</strong>」</p>
+    <p>再确认一次知识点：「为什么换电阻能改速度？——<strong>电阻大，电流小，用得慢。</strong>」这是第 8 课的东西，今天用上了。</p>
+    <p>最后提醒：<strong>小夜灯写好名字带回家。</strong></p>
+  </aside>
+</section>
+
+<!-- ═══════════════ 14 · 回家做 ═══════════════ -->
+<section class="slide" data-title="收尾 · 回家做">
+  <h2 class="h2" data-anim="fade-up">回家做。</h2>
+  <div class="grid g2 mt-l">
+    <div class="pop pink" data-anim="fade-right">
+      <span class="chip" style="background:#fff">必做 · 每个人</span>
+      <div class="h3 mt-m">晚上真的用一次，然后回答我一个问题。</div>
+      <p class="cap" style="text-align:left;margin-top:12px;color:rgba(255,255,255,.9)">
+        <strong>你选的那个电阻，用起来合适吗？</strong><br>
+        太快灭了？还是亮太久浪费了？<br>
+        如果重做一个，你会换吗？换成哪个？
+      </p>
+    </div>
+    <div class="pop cyan" data-anim="fade-left">
+      <span class="chip" style="background:#fff">选做 · 想挑战的人</span>
+      <div class="h3 mt-m">在家找一个「不能都要」的例子。</div>
+      <p class="cap" style="text-align:left;margin-top:12px">
+        手机屏幕亮一点 vs 电池撑久一点、<br>
+        书包装得多 vs 背起来轻……<br>
+        写一个，说说你会怎么选。
+      </p>
+    </div>
+  </div>
+  <p class="lede mt-l" data-anim="fade-up" style="text-align:center;max-width:none;font-weight:800;color:var(--text-1)">
+    <mark>这盏灯是你自己设计的 —— 用坏了也别丢，告诉我哪里不好用。</mark>
+  </p>
+  <aside class="notes">
+    <p>必做那条是<strong>真实的用户测试</strong>：让孩子把自己的设计<strong>拿去实际使用</strong>，然后回来<strong>评价自己的决定</strong>。这比任何练习题都接近真实工程。</p>
+    <p>下节课开场花两分钟收一收：「<strong>谁觉得自己选错了？</strong>」——敢说选错的孩子要重点表扬。</p>
+    <p>选做那条是把「权衡」推到生活里。手机亮度那个例子孩子都有体感，很容易上手。</p>
+    <p>下课前自己确认三件事：①<strong>保底目标是否全员达成</strong>——能基于自己的数据选电阻并说明理由。②<strong>超级电容清点</strong>，作品里带走的要登记（这是消耗件）。③<strong>剪刀、秒表全部回收</strong>，三档电阻分色归位。</p>
+  </aside>
+</section>
+
+<!-- ═══════════════ 15 · 下节课 ═══════════════ -->
+<section class="slide full-center" data-title="收尾 · 下节课钩子">
+  <div style="text-align:center">
+    <p class="chip cyan" data-anim="fade-down">下节课 · 第 11 课 · 最后一个单元</p>
+    <h2 class="h2 mt-m" data-anim="fade-up">到今天为止，电都在<mark>做同一件事</mark> —— 发光。</h2>
+    <p class="hero mt-l" data-anim="zoom-pop">下节课，<br>我们让它<mark class="pink">吸起铁来</mark>。</p>
+  </div>
+  <aside class="notes">
+    <p>收尾钩子，<strong>一句话，说完就下课</strong>。</p>
+    <p>「想一想：从第 1 课到今天，我们的电<strong>一直在做同一件事</strong>——<strong>发光</strong>。」</p>
+    <p>「下节课开始，我们让它做点<strong>别的</strong>——<strong>吸起铁来</strong>。」</p>
+    <p><strong>不要展开</strong>（下节课是《铁钉变成磁铁》，电磁铁）。</p>
+    <p>可以举一枚铁钉在手里晃一晃，什么都不说，直接下课——悬念感最强。</p>
+  </aside>
+</section>
+
+</div>
+
+<div class="deck-footer">
+  <span>第 10 课 · 延时小夜灯　|　15 节科创探究课 · 第四单元</span>
+  <span class="slide-number" data-current="1" data-total="15"></span>
+</div>
+
+<script src="../assets/runtime.js"></script>
+</body>
+</html>

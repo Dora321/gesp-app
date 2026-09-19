@@ -1,0 +1,412 @@
+<!DOCTYPE html>
+<html lang="zh-CN" data-themes="memphis-pop,neo-brutalism,soft-pastel,minimal-white" data-theme-base="../assets/themes/">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>第 12 课 · 磁能变电吗？</title>
+<link rel="stylesheet" href="../assets/fonts.css">
+<link rel="stylesheet" href="../assets/base.css">
+<link rel="stylesheet" id="theme-link" href="../assets/themes/memphis-pop.css">
+<link rel="stylesheet" href="../assets/animations/animations.css">
+<link rel="stylesheet" href="../assets/course.css">
+</head>
+<body class="kc">
+<div class="deck">
+
+<!-- ═══════════════ 1 · 封面 ═══════════════ -->
+<section class="slide full-center" data-title="开场 · 封面">
+  <div style="text-align:center">
+    <span class="chip cyan" data-anim="fade-down">15 节科创探究课 · 第五单元「电、磁和能量的变身」</span>
+    <h1 class="hero mt-m" data-anim="rise-in">第 12 课<br>电能变磁，<br>磁能变电吗？</h1>
+    <div class="row mt-l" style="justify-content:center;gap:14px;flex-wrap:wrap" data-anim="fade-up">
+      <span class="chip">90 分钟 · 两节连堂</span>
+      <span class="chip yellow">今天自己发一次电</span>
+      <span class="chip pink">强磁铁 · 按编号清点</span>
+    </div>
+  </div>
+  <aside class="notes">
+    <p>本课是第 11 课的<strong>镜像</strong>：上节课用电做出了磁，这节课反过来问磁能不能做出电。开场<strong>举手投票</strong>，结尾<strong>公布答案</strong>——这个闭环让整节课有一个明确的悬念。</p>
+    <p><strong>两个器材细节决定本课成败：</strong>①检流计<strong>必须零位居中</strong>（指针可左右偏转），否则看不出插入与拔出时电流方向相反——而那正是本课最有价值的现象。②<strong>必须提前告诉学生：这个实验点不亮 LED。</strong>手动速度下感应电动势只有几十到几百毫伏，远低于 LED 约 1.8V 的导通门槛。不说清楚，学生会把「灯不亮」当成自己失败。</p>
+    <p><strong>钕磁铁的安全条款是本单元第二条硬制度：</strong>只用 <strong>φ15mm 以上的单颗大磁铁</strong>，课后<strong>逐颗清点回收，数量对不上不下课</strong>。多颗小磁铁一旦误吞，会隔着肠壁互相吸引导致肠穿孔——这是有明确临床病例的严重伤害。</p>
+    <p>保底目标：<strong>说出「必须动才发电，动得越快越明显」。</strong></p>
+  </aside>
+</section>
+
+<!-- ═══════════════ 2 · 反向提问 ═══════════════ -->
+<section class="slide full-center" data-title="① 反过来问 · 磁能不能做出电">
+  <div class="stage-rail"><b>① 反过来问</b><i class="on"></i><i></i><i></i><i></i><i></i></div>
+  <div class="ask">
+    <p class="chip yellow" data-anim="fade-down">上节课我们用电，做出了磁</p>
+    <p class="q mt-m" data-anim="zoom-pop">现在<mark>反过来</mark>问 ——<br>磁，能不能<br><mark class="pink">做出电</mark>？</p>
+    <p class="sub mt-l" data-anim="fade-up">觉得能的举手。不能的举手。不确定的举手。</p>
+  </div>
+  <aside class="notes">
+    <p>「上节课我们做了一件事：<strong>用电，做出了磁</strong>。」</p>
+    <p>「今天我<strong>把这句话反过来问</strong>——<strong>磁，能不能做出电？</strong>」</p>
+    <p>停一下，让这个「反过来」的动作被听见。这本身就是今天要教的思维方式。</p>
+    <p>「觉得<strong>能</strong>的举手。觉得<strong>不能</strong>的举手。<strong>不确定</strong>的举手。<strong>三个数字我都写上去。</strong>」</p>
+    <p><strong>投票后不公布答案，直接发器材。</strong>悬念留到最后一页。</p>
+    <p>可以补一句历史感：「这个问题，<strong>两百年前有个人也这么问过</strong>。他叫法拉第，<strong>花了十年才找到答案。</strong>今天我们四十分钟。」</p>
+  </aside>
+</section>
+
+<!-- ═══════════════ 3 · 三个数字 + 发件前说明 ═══════════════ -->
+<section class="slide" data-title="① 反过来问 · 发件前必须说的两件事">
+  <div class="stage-rail"><b>① 反过来问</b><i class="on"></i><i></i><i></i><i></i><i></i></div>
+  <p class="chip pink" data-anim="fade-down">发器材之前，先说清楚两件事</p>
+  <h2 class="h2 mt-s" data-anim="fade-up">两条，<mark>都很重要</mark>。</h2>
+  <div class="checks mt-m" data-anim="stagger-list">
+    <div class="check" style="background:var(--accent-3)"><div class="badge" style="background:#fff">1</div>
+      <div><div class="ct">今天这个实验，<mark class="pink">不会点亮 LED</mark></div>
+      <div class="cs">发出来的电太小了，小到点不亮一个灯珠。所以我们用<b>一个很灵敏的仪表</b>来看 —— 灯不亮，<b>不是你失败</b></div></div></div>
+    <div class="check"><div class="badge pink">2</div>
+      <div><div class="ct">今天这块磁铁<b>很强</b></div>
+      <div class="cs">按编号发、按编号收，<b>数量对不上不下课</b>　·　手机、手表、银行卡放远一点</div></div></div>
+  </div>
+  <p class="lede mt-l" data-anim="fade-up" style="text-align:center;max-width:none;font-weight:800;color:var(--text-1)">
+    今天的任务只有一句话：<mark>让那根指针动起来。</mark>
+  </p>
+  <aside class="notes">
+    <p><strong>第 1 条必须在发件前说，一个字都不能省。</strong>不说清楚，学生会把「灯不亮」当成自己操作失败，<strong>整节课的信心都会受影响</strong>。</p>
+    <p>「先说清楚一件事：<strong>今天这个实验，不会点亮 LED。</strong>为什么？因为<strong>发出来的电太小了</strong>，小到点不亮一个灯珠。所以我们用这个仪表来看——<strong>它很灵敏，一点点电它都能看出来。</strong>」</p>
+    <p>第 2 条是<strong>本单元第二条硬制度</strong>：钕磁铁<strong>按编号发、按编号收，数量对不上不下课</strong>。</p>
+    <p>桌面摆放要<strong>留出隔离区</strong>：钕磁铁吸到检流计或万用表上会<strong>损坏仪表</strong>，也会吸走桌上的铁制元件。</p>
+    <p>提醒<strong>佩戴心脏起搏器的师生远离强磁铁</strong>；提醒学生<strong>手机、手表、银行卡放远</strong>。</p>
+  </aside>
+</section>
+
+<!-- ═══════════════ 4 · 让指针动起来 ═══════════════ -->
+<section class="slide full-center" data-title="② 让它动 · 让那根指针动起来">
+  <div class="stage-rail"><b>② 让它动</b><i class="done"></i><i class="on"></i><i></i><i></i><i></i></div>
+  <div style="text-align:center">
+    <span class="chip pink" data-anim="fade-down">第 1 关 · 14 分钟 · 不给方法</span>
+    <h1 class="hero mt-m" data-anim="rise-in">让那根指针<br>动起来。</h1>
+    <div class="figure mt-m" data-anim="fade-up">
+      <svg viewBox="0 0 520 190" style="max-height:26vh;margin:0 auto" role="img" aria-label="线圈、钕磁铁、零位居中检流计">
+        <ellipse class="st fillw" cx="110" cy="96" rx="34" ry="56"/>
+        <g class="st2" style="stroke:var(--accent);stroke-width:4">
+          <path d="M110 40 h60"/><path d="M110 56 h60"/><path d="M110 72 h60"/>
+          <path d="M110 88 h60"/><path d="M110 104 h60"/><path d="M110 120 h60"/>
+          <path d="M110 136 h60"/><path d="M110 152 h60"/>
+        </g>
+        <ellipse class="st fillw" cx="170" cy="96" rx="34" ry="56"/>
+        <text class="lbl sm" x="104" y="182">线圈（绕了很多圈）</text>
+        <rect class="st" x="250" y="72" width="76" height="48" rx="8" style="fill:var(--text-3)"/>
+        <text class="lbl sm" x="288" y="102" text-anchor="middle" style="fill:#fff">磁铁</text>
+        <rect class="st fillw" x="372" y="46" width="132" height="100" rx="12"/>
+        <path class="st2" d="M438 130 v-8"/>
+        <path class="st" style="stroke:var(--accent)" d="M438 126 L410 76"/>
+        <path class="st2" style="stroke:var(--text-3)" d="M392 118 a52 52 0 0 1 92 0"/>
+        <text class="lbl sm" x="438" y="176" text-anchor="middle">检流计</text>
+        <text class="lbl sm" x="380" y="40" style="fill:var(--text-3)">指针在中间</text>
+      </svg>
+    </div>
+  </div>
+  <aside class="notes">
+    <p>任务只有一句话：「<strong>让那根指针动起来。</strong>」<strong>不给方法。</strong></p>
+    <p><strong>多数学生的第一反应是把磁铁放进线圈里不动</strong>——指针纹丝不动，然后以为设备坏了。</p>
+    <p><strong>教师不纠正。</strong>这个挫败是<strong>设计出来的</strong>，它是下一环节对照实验的起点。</p>
+    <p>标准对话（不要说破）：</p>
+    <p>学生：「老师，我的表坏了，指针一动不动。」<br>你：「<strong>你现在在干什么？</strong>」<br>学生：「我把磁铁放进去了。」<br>你：「<strong>放进去以后呢？</strong>」<br>学生：「就放在那儿。」<br>你：「嗯。<strong>那你试试别放在那儿。</strong>」</p>
+    <p>说完就走开。<strong>让他自己在三档对照里发现。</strong></p>
+  </aside>
+</section>
+
+<!-- ═══════════════ 5 · 三档对照 ═══════════════ -->
+<section class="slide" data-title="③ 比快慢 · 三档对照">
+  <div class="stage-rail"><b>③ 比快慢</b><i class="done"></i><i class="done"></i><i class="on"></i><i></i><i></i></div>
+  <div class="row" style="justify-content:space-between;align-items:flex-end">
+    <div>
+      <span class="chip cyan" data-anim="fade-down">按顺序来 · 一档一档试</span>
+      <h2 class="h2 mt-s" data-anim="fade-up">这三种情况，<mark>指针有什么不一样</mark>？</h2>
+    </div>
+    <div class="pop yellow" data-anim="fade-left" style="text-align:center;flex:0 0 auto">
+      <div class="h3">不用量得准<br><b>能分出大小就行</b></div>
+    </div>
+  </div>
+  <div class="tbl mt-m" style="grid-template-columns:1.3fr 1.2fr 1.4fr" data-anim="fade-up">
+    <div class="hd">怎么做</div><div class="hd">指针偏转</div><div class="hd">我的发现</div>
+    <div class="rh">① 放进去<b>不动</b></div><div class="todo">？</div><div class="todo">？</div>
+    <div class="rh">② <b>慢慢</b>移进去</div><div class="todo">？</div><div class="todo">？</div>
+    <div class="rh">③ <b>快速</b>移进去</div><div class="todo">？</div><div class="todo">？</div>
+  </div>
+  <p class="lede mt-l" data-anim="fade-up" style="text-align:center;max-width:none;font-weight:800;color:var(--text-1)">
+    第 ① 档就是刚才卡住你的那一种 —— <mark class="pink">这次它是实验，不是失败</mark>。
+  </p>
+  <aside class="notes">
+    <p>三档<strong>按顺序做</strong>：①不动 ②慢慢移入 ③快速移入。每种记录指针偏转。</p>
+    <p><strong>偏转格数不要求精确，能区分「不动 / 小 / 大」即可。</strong>这是定性对照。</p>
+    <p>最后那句要说出来，很重要：「第 ① 档<strong>就是刚才卡住你们的那一种</strong>。区别是——<strong>这次它是实验，不是失败。</strong>」</p>
+    <p>这句话把刚才的挫败<strong>重新定义成数据</strong>。孩子会立刻松一口气，而且明白了「没反应」也是一种结果。</p>
+    <p>巡视提醒：磁铁<strong>不要靠近检流计本体</strong>，只在线圈里进出。</p>
+  </aside>
+</section>
+
+<!-- ═══════════════ 6 · 课间休息 ═══════════════ -->
+<section class="slide full-center" data-title="休息 · 课间 10 分钟">
+  <div style="text-align:center">
+    <div class="discovery" data-anim="zoom-pop" style="max-width:min(1000px,86vw)">
+      <p class="chip" style="background:#fff">中场 · 10 分钟</p>
+      <h1 class="hero mt-m">课间休息</h1>
+      <p class="h3 mt-m" style="font-weight:700">
+        <mark class="pink">磁铁交回讲台</mark>　·　按编号放回盒子
+      </p>
+    </div>
+    <p class="lede mt-l" data-anim="fade-up" style="margin-left:auto;margin-right:auto;text-align:center">
+      回来再做一组 —— 这一组会让你看见一个很妙的东西。
+    </p>
+  </div>
+  <aside class="notes">
+    <p><strong>课间把钕磁铁全部交回讲台，按编号放回盒子。</strong>这是制度，不是建议——课间是最容易丢磁铁的十分钟。</p>
+    <p>清点一次，<strong>数量对了才放人</strong>。</p>
+    <p>吊一句：「回来再做一组，<strong>这一组会让你看见一个很妙的东西</strong>。」——指的是插入与拔出方向相反。</p>
+    <p>这 10 分钟你要做的：①<strong>清点磁铁</strong>；②<strong>检查检流计指针是否都回中</strong>，不回中的换掉；③扫一眼各组的三档数据。</p>
+  </aside>
+</section>
+
+<!-- ═══════════════ 7 · 插入 vs 拔出 ═══════════════ -->
+<section class="slide" data-title="③ 比快慢 · 插进去 vs 拔出来">
+  <div class="stage-rail"><b>③ 比快慢</b><i class="done"></i><i class="done"></i><i class="on"></i><i></i><i></i></div>
+  <p class="chip pink" data-anim="fade-down">同样的磁铁，同样的线圈 —— 只是方向反了</p>
+  <h2 class="h2 mt-s" data-anim="fade-up">插进去，指针往<mark>这边</mark>；<br>拔出来，指针往<mark class="cyan">那边</mark>。</h2>
+  <div class="vs mt-l" data-anim="fade-up">
+    <div class="yes">
+      <div class="h3">插进去 →</div>
+      <svg viewBox="0 0 320 140" style="max-height:22vh;margin:10px auto">
+        <rect class="st fillw" x="70" y="20" width="180" height="104" rx="12"/>
+        <path class="st2" style="stroke:var(--text-3)" d="M92 104 a68 68 0 0 1 116 0"/>
+        <path class="st2" d="M160 110 v-8"/>
+        <path class="st" style="stroke:var(--accent);stroke-width:6" d="M160 106 L208 58"/>
+        <circle class="fillk" cx="160" cy="106" r="6"/>
+      </svg>
+      <p class="cap" style="text-align:left;margin-top:8px">指针甩向<b>右边</b></p>
+    </div>
+    <div style="background:var(--accent-2)">
+      <div class="h3">← 拔出来</div>
+      <svg viewBox="0 0 320 140" style="max-height:22vh;margin:10px auto">
+        <rect class="st fillw" x="70" y="20" width="180" height="104" rx="12"/>
+        <path class="st2" style="stroke:var(--text-3)" d="M92 104 a68 68 0 0 1 116 0"/>
+        <path class="st2" d="M160 110 v-8"/>
+        <path class="st" style="stroke:var(--accent);stroke-width:6" d="M160 106 L112 58"/>
+        <circle class="fillk" cx="160" cy="106" r="6"/>
+      </svg>
+      <p class="cap" style="text-align:left;margin-top:8px">指针甩向<b>左边</b></p>
+    </div>
+  </div>
+  <aside class="notes">
+    <p><strong>这是本课最有价值的现象。</strong>用不到零位居中表的班级会完全错过它。</p>
+    <p>「再做一组：<strong>插进去</strong>，看指针往哪边；<strong>拔出来</strong>，再看往哪边。」</p>
+    <p>孩子会惊呼——<strong>方向反过来了</strong>。让他们反复做几次确认不是偶然。</p>
+    <p>怎么解释？<strong>今天只说到这一层就够了</strong>：「<strong>往里动和往外动，发出来的电方向是反的。</strong>」</p>
+    <p><strong>不要展开讲楞次定律</strong>，也不要说「阻碍磁通变化」。这是挑战档，不作全员要求。</p>
+    <p>有孩子追问为什么，可以说：「这个问题很好——<strong>它有答案，但要到中学才讲得清。</strong>你今天已经<strong>亲眼看见</strong>它了，这比背一个解释值钱。」</p>
+  </aside>
+</section>
+
+<!-- ═══════════════ 8 · 命名 ═══════════════ -->
+<section class="slide" data-title="④ 起名字 · 发电 · 电磁感应">
+  <div class="stage-rail"><b>④ 起名字</b><i class="done"></i><i class="done"></i><i class="done"></i><i class="on"></i><i></i></div>
+  <p class="chip yellow" data-anim="fade-down">把三档结果放一起看</p>
+  <h2 class="h2 mt-s" data-anim="fade-up">两条结论。</h2>
+  <div class="grid g2 mt-l" data-anim="stagger-list">
+    <div class="pop pink">
+      <div class="badge sq" style="background:#fff;color:var(--ink)">1</div>
+      <div class="h3 mt-s" style="color:#fff">必须<b>动</b>，才有电</div>
+      <p class="cap" style="text-align:left;margin-top:8px;color:rgba(255,255,255,.9)">放在那里不动 —— 指针一动不动</p>
+    </div>
+    <div class="pop yellow">
+      <div class="badge sq">2</div>
+      <div class="h3 mt-s">动得<b>越快</b>，越明显</div>
+      <p class="cap" style="text-align:left;margin-top:8px">慢慢动，指针动一点；快速动，甩得很厉害</p>
+    </div>
+  </div>
+  <p class="lede mt-l" data-anim="fade-up" style="text-align:center;max-width:none;font-weight:800;color:var(--text-1)">
+    这件事有个名字，叫 <mark class="pink">发电</mark>。<br>
+    这个现象，叫 <mark class="cyan">电磁感应</mark>。
+  </p>
+  <aside class="notes">
+    <p>「把三档结果放一起看：<strong>不动的时候，指针一动不动；慢慢动，指针动一点；快速动，指针甩得很厉害。</strong>」</p>
+    <p>「所以<strong>第一条结论</strong>是什么？」——让孩子说：<strong>必须动才有电。</strong></p>
+    <p>「<strong>第二条</strong>呢？」——<strong>动得越快越明显。</strong></p>
+    <p><strong>这两条必须板书。</strong>它们是保底目标的全部内容。</p>
+    <p>然后给名字：「这件事叫<strong>发电</strong>。这个现象，科学家叫它<strong>电磁感应</strong>。」</p>
+    <p>「电磁感应」这个词<strong>说一遍就行，不要求记</strong>。孩子记住那两条结论就够了。</p>
+    <p>第三条（方向和运动方向有关）<strong>留给挑战档</strong>，不写进保底目标。</p>
+  </aside>
+</section>
+
+<!-- ═══════════════ 9 · 闭环图 ═══════════════ -->
+<section class="slide" data-title="④ 起名字 · 电 ↔ 磁 闭环">
+  <div class="stage-rail"><b>④ 起名字</b><i class="done"></i><i class="done"></i><i class="done"></i><i class="on"></i><i></i></div>
+  <h2 class="h2" data-anim="fade-up">两节课，<mark>绕了一个圈</mark>。</h2>
+  <div class="figure mt-m" data-anim="fade-up">
+    <svg viewBox="0 0 760 300" role="img" aria-label="电生磁、磁生电的闭环">
+      <circle class="st filly" cx="150" cy="150" r="76"/>
+      <text class="lbl" x="150" y="160" text-anchor="middle" style="font-size:34px">电</text>
+      <circle class="st" cx="610" cy="150" r="76" style="fill:var(--accent-2)"/>
+      <text class="lbl" x="610" y="160" text-anchor="middle" style="font-size:34px">磁</text>
+      <path class="st" style="stroke:var(--accent);stroke-width:7;fill:none" d="M212 108 q148 -76 296 0"/>
+      <path class="st fillp" d="M496 88 l26 22 -32 12 z"/>
+      <text class="lbl" x="360" y="56" text-anchor="middle" style="fill:var(--accent)">第 11 课 · 电磁铁</text>
+      <path class="st" style="stroke:var(--accent-2);stroke-width:7;fill:none" d="M548 192 q-148 76 -296 0"/>
+      <path class="st fillc" d="M264 212 l-26 -22 32 -12 z"/>
+      <text class="lbl" x="400" y="268" text-anchor="middle" style="fill:var(--accent-2)">第 12 课 · 发电（要动）</text>
+    </svg>
+  </div>
+  <aside class="notes">
+    <p><strong>这张闭环图把第 11、12 课连成一个整体，务必板书。</strong></p>
+    <p>用手指沿着圈走一遍：「<strong>电</strong>——上节课我们用它<strong>造出了磁</strong>。<strong>磁</strong>——今天我们用它<strong>造出了电</strong>。」</p>
+    <p>「这两件事<strong>是一对的</strong>。」</p>
+    <p>然后点出下面那条箭头上的关键差别：「但是注意——<strong>下面这条箭头上多了两个字：『要动』</strong>。电变磁不用动，<strong>磁变电必须动。</strong>」</p>
+    <p>这个不对称是今天真正的知识点，比「电磁感应」这个名词重要得多。</p>
+    <p>可以留一句：「<strong>为什么不对称？</strong>这个问题中学会讲。今天你只要记住——<strong>要动。</strong>」</p>
+  </aside>
+</section>
+
+<!-- ═══════════════ 10 · 相对运动 ═══════════════ -->
+<section class="slide full-center" data-title="⑤ 再想想 · 磁铁不动，动线圈行不行">
+  <div class="stage-rail"><b>⑤ 再想想</b><i class="done"></i><i class="done"></i><i class="done"></i><i class="done"></i><i class="on"></i></div>
+  <div class="ask">
+    <p class="chip cyan" data-anim="fade-down">挑战一</p>
+    <p class="q mt-m" data-anim="zoom-pop">磁铁<mark>不动</mark>，<br>改成<mark class="pink">动线圈</mark> ——<br>行不行？</p>
+    <p class="sub mt-l" data-anim="fade-up">先猜，再试。</p>
+  </div>
+  <aside class="notes">
+    <p>「磁铁放着不动，<strong>我去动线圈</strong>——行不行？」</p>
+    <p><strong>先猜，再试。</strong>会有孩子坚定地说不行（「磁铁没动啊」），也会有孩子说行。</p>
+    <p>答案：<strong>行。</strong>指针照样偏转。</p>
+    <p>「所以重要的<strong>不是谁在动</strong>，是<strong>它们两个之间有没有动</strong>。这叫<strong>相对运动</strong>。」</p>
+    <p>这一问的价值：<strong>把「运动」这个条件从磁铁身上解放出来</strong>，指向「相对」二字。这是第 13 课做发电机的直接基础——发电机里<strong>转的是线圈或磁铁，都行</strong>。</p>
+    <p>挑战二可以接着问：「<strong>怎样让指针偏转最大？</strong>」——更快、更强的磁铁、更多圈数。三个方向都让他们试一试。</p>
+  </aside>
+</section>
+
+<!-- ═══════════════ 11 · 诚实说明 ═══════════════ -->
+<section class="slide" data-title="⑤ 再想想 · 为什么点不亮灯">
+  <div class="stage-rail"><b>⑤ 再想想</b><i class="done"></i><i class="done"></i><i class="done"></i><i class="done"></i><i class="on"></i></div>
+  <p class="chip yellow" data-anim="fade-down">说句实话</p>
+  <h2 class="h2 mt-s" data-anim="fade-up">你们今天发的电，<mark>真的太小了</mark>。</h2>
+  <div class="grid g2 mt-l" data-anim="stagger-list">
+    <div class="pop cyan">
+      <div class="h3">你们手摇能发出来的</div>
+      <p class="cap" style="text-align:left;margin-top:8px">大概是 <b>零点几伏</b> —— 指针看得见，灯看不见</p>
+    </div>
+    <div class="pop yellow">
+      <div class="h3">点亮一个 LED 需要</div>
+      <p class="cap" style="text-align:left;margin-top:8px">大概 <b>1.8 伏</b> —— 差好几倍</p>
+    </div>
+  </div>
+  <p class="lede mt-l" data-anim="fade-up" style="text-align:center;max-width:none;font-weight:800;color:var(--text-1)">
+    想点亮，得<mark class="pink">绕更多圈</mark>，还得<mark class="pink">转得更快</mark> —— <mark>下节课我们来干这件事。</mark>
+  </p>
+  <aside class="notes">
+    <p><strong>诚实说明，不要含糊过去。</strong>孩子会问「那我们发的电有什么用」。</p>
+    <p>「说句实话：你们今天发的电，<strong>真的太小了</strong>——小到点不亮一个灯珠。」</p>
+    <p>「想点亮，得<strong>绕更多圈</strong>，还得<strong>转得更快</strong>。<strong>下节课我们就来干这件事。</strong>」</p>
+    <p><strong>这个遗憾正好引出第 13 课</strong>——不要把它当成失败来处理，要当成「下一步」。</p>
+    <p>可以再肯定一句：「但你们今天做的事，<strong>和发电站里做的事，是同一件事</strong>。只是它的线圈比你们大几万倍，转得比你们快几百倍。」</p>
+    <p>这句话能把这个小小的指针偏转<strong>接到真实世界上</strong>。</p>
+  </aside>
+</section>
+
+<!-- ═══════════════ 12 · 公布投票 + 过关 ═══════════════ -->
+<section class="slide full-center" data-title="⑤ 再想想 · 公布投票 + 口头过关">
+  <div class="stage-rail"><b>⑤ 再想想</b><i class="done"></i><i class="done"></i><i class="done"></i><i class="done"></i><i class="on"></i></div>
+  <div style="text-align:center">
+    <p class="chip pink" data-anim="fade-down">回到黑板 · 开场那三个数字</p>
+    <p class="hero mt-m" data-anim="zoom-pop">答案是：<mark>能</mark>。</p>
+    <p class="h3 mt-l" data-anim="fade-up" style="font-weight:700;color:var(--text-2)">
+      但是有个条件 —— <mark class="pink">必须动。</mark>
+    </p>
+    <div class="row mt-l" style="justify-content:center;gap:clamp(16px,1.8vw,34px);flex-wrap:wrap" data-anim="fade-up">
+      <div class="pop yellow"><div class="h3">过关要说两句</div>
+      <p class="cap" style="margin-top:8px">① 不动就没有电<br>② 动得越快越明显</p></div>
+    </div>
+  </div>
+  <aside class="notes">
+    <p>走回黑板，指着开场的三个票数。「开场的时候，<strong>___ 个人说能，___ 个说不能，___ 个不确定。</strong>」</p>
+    <p>「答案是：<strong>能。但是有个条件——必须动。</strong>」</p>
+    <p>照顾猜「不能」的：「猜『不能』的同学也没全错——<strong>如果磁铁一直放在那儿不动，你们就是对的。</strong>」</p>
+    <p><strong>然后逐人口头过关，这是今天的判定环节，死保 6–8 分钟。</strong></p>
+    <p>过关标准：<strong>说出「不动就没有电」和「动得越快越明显」两句。</strong>用自己的话说，说法不限。</p>
+    <p>插入拔出方向相反、动线圈也行——<strong>这两条是挑战档，说得出加分，说不出不影响过关</strong>。</p>
+    <p>过关之后<strong>按编号回收钕磁铁，数量对不上不下课</strong>。</p>
+  </aside>
+</section>
+
+<!-- ═══════════════ 13 · 今日大发现 ═══════════════ -->
+<section class="slide full-center" data-title="收尾 · 今日大发现">
+  <div class="discovery" data-anim="zoom-pop" style="max-width:min(1100px,88vw);margin:0 auto">
+    <p class="chip pink">今日大发现</p>
+    <p class="hero mt-m">不动就没有电 ——<br><mark class="pink">动，才是关键。</mark></p>
+    <p class="h3 mt-l" style="font-weight:700">
+      把一句话<mark>反过来问</mark>　—　就发现了新东西
+    </p>
+  </div>
+  <aside class="notes">
+    <p>全班<strong>一起读一遍</strong>。</p>
+    <p>然后强调<strong>今天真正想教的那个思维方式</strong>，它比知识点重要：</p>
+    <p>「今天我们干了一件很简单的事——<strong>把上节课那句话反过来问了一遍</strong>。『电能变磁』反过来就是『磁能变电』。<strong>就这么一反，发现了一个全新的东西。</strong>」</p>
+    <p>「<strong>这招你们以后可以一直用。</strong>遇到一件事，问问自己：<strong>反过来行不行？</strong>」</p>
+    <p>最后收尾：「而且今天你们<strong>真的发出了电</strong>——虽然小，但那是<strong>你自己动手发出来的</strong>。」</p>
+  </aside>
+</section>
+
+<!-- ═══════════════ 14 · 回家做 ═══════════════ -->
+<section class="slide" data-title="收尾 · 回家做">
+  <h2 class="h2" data-anim="fade-up">回家做。</h2>
+  <div class="grid g2 mt-l">
+    <div class="pop pink" data-anim="fade-right">
+      <span class="chip" style="background:#fff">必做 · 每个人</span>
+      <div class="h3 mt-m">讲给家人听：磁怎么变成电？</div>
+      <p class="cap" style="text-align:left;margin-top:12px;color:rgba(255,255,255,.9)">
+        两句话就够：<strong>不动就没有电</strong>、<strong>动得越快越明显</strong>。<br>
+        再告诉他们：<strong>家里的电，就是这么发出来的</strong>。
+      </p>
+    </div>
+    <div class="pop cyan" data-anim="fade-left">
+      <span class="chip" style="background:#fff">选做 · 想挑战的人</span>
+      <div class="h3 mt-m">再找一件事，把它<b>反过来问</b>一遍。</div>
+      <p class="cap" style="text-align:left;margin-top:12px">
+        不一定是电的事。<br>
+        「太阳晒热了地面」反过来是什么？<br>
+        想一个，写下来。
+      </p>
+    </div>
+  </div>
+  <p class="lede mt-l" data-anim="fade-up" style="text-align:center;max-width:none;font-weight:800;color:var(--text-1)">
+    <mark>反过来问一句，常常能发现新东西。</mark>
+  </p>
+  <aside class="notes">
+    <p>必做那条的最后一句很有分量：「<strong>家里的电，就是这么发出来的。</strong>」——发电站里就是一堆巨大的线圈在磁场里转。孩子讲给家人听的时候会很自豪。</p>
+    <p>选做那条是在<strong>把「反向追问」这个思维方式推广出去</strong>，不限于电。没有标准答案，能想出一个就算。</p>
+    <p>下课前自己确认三件事：①<strong>保底目标是否全员达成</strong>——说出那两句话。②<strong>钕磁铁按编号逐颗清点，数量对不上不下课</strong>。③<strong>检流计检查指针是否回中</strong>，线圈收好（下节课还要用类似的）。</p>
+  </aside>
+</section>
+
+<!-- ═══════════════ 15 · 下节课 ═══════════════ -->
+<section class="slide full-center" data-title="收尾 · 下节课钩子">
+  <div style="text-align:center">
+    <p class="chip cyan" data-anim="fade-down">下节课 · 第 13 课</p>
+    <h2 class="h2 mt-m" data-anim="fade-up">今天你们<mark>用手</mark>动了几十下。</h2>
+    <p class="hero mt-l" data-anim="zoom-pop">下节课 ——<br>让它<mark class="pink">自己一直转</mark>。</p>
+  </div>
+  <aside class="notes">
+    <p>收尾钩子，<strong>一句话，说完就下课</strong>。</p>
+    <p>「今天你们<strong>用手</strong>把磁铁推进推出，动了几十下，手都酸了吧？而且<strong>一停下来，电就没了</strong>。」</p>
+    <p>「下节课我们做一个东西——<strong>让它自己一直转</strong>。转起来，电就<strong>一直有</strong>。」</p>
+    <p><strong>不要展开</strong>（下节课是《造一个小发电机》）。</p>
+    <p>可以再埋一句：「而且下节课——<strong>我们要真的把灯点亮。</strong>」这是今天那个遗憾的承诺，一定要给出来。</p>
+  </aside>
+</section>
+
+</div>
+
+<div class="deck-footer">
+  <span>第 12 课 · 磁能变电吗？　|　15 节科创探究课 · 第五单元</span>
+  <span class="slide-number" data-current="1" data-total="15"></span>
+</div>
+
+<script src="../assets/runtime.js"></script>
+</body>
+</html>
