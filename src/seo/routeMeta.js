@@ -1,3 +1,5 @@
+import { innovationLessons } from '../data/innovationCourseCatalog.js';
+
 export const SITE_NAME = '魔丸聚集地';
 export const SITE_ORIGIN = 'https://Dora321.github.io/gesp-app';
 export const DEFAULT_DESCRIPTION = 'GESP C++/Python 历年真题题库、互动课程讲解、ESP32 硬件项目与内置 AI 编程助教。';
@@ -14,6 +16,8 @@ const LEVEL_FOCUS = {
 };
 
 export const routeMeta = (pathname) => {
+  const innovationLesson = innovationLessons.find((lesson) => lesson.path === pathname);
+  if (innovationLesson) return { title: `初阶科创 · 第 ${innovationLesson.id} 课 · ${innovationLesson.title}`, description: 'ESP32 × AI 初阶科创网页课件，用 MicroPython 与 AI 完成真实的硬件任务。' };
   if (pathname === '/') return { title: 'GESP 编程备考与编程课堂', description: DEFAULT_DESCRIPTION };
   if (pathname === '/question-bank') return { title: 'GESP C++ 真题题库', description: '按等级和年份练习 GESP C++ 真题，支持考试模式、逐题解析和错题复盘。' };
   if (pathname === '/museum') return { title: '计算机博物馆', description: '通过互动展品认识计算机发展史、硬件组成和编程世界。' };

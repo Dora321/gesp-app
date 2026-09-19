@@ -8,6 +8,7 @@ import RouteSeo from './components/RouteSeo';
 import PageAnnotations from './components/PageAnnotations';
 
 // Lazy loaded: route-level pages — only fetched when user navigates to them
+const InnovationLesson = lazy(() => import('./pages/InnovationLesson'));
 const Home = lazy(() => import('./Home'));
 const ComputingMuseum = lazy(() => import('./pages/ComputingMuseum'));
 const QuestionBankHome = lazy(() => import('./pages/QuestionBankHome'));
@@ -81,7 +82,7 @@ const GlobalWidgets = () => {
   const isQuestionBankFlow = pathname.startsWith('/question-bank');
   const usesHeaderActions = pathname === '/' || pathname === '/museum';
 
-  if (isQuestionBankFlow) return null;
+  if (isQuestionBankFlow || pathname.startsWith('/innovation/')) return null;
 
   return (
     <Suspense fallback={null}>
@@ -124,6 +125,7 @@ function App() {
             <Route path="/question-bank/topics/:level" element={<TopicPractice />} />
             <Route path="/question-bank/:level/:paperId" element={<ExamPaper />} />
             <Route path="/" element={<Home />} />
+            <Route path="/innovation/:id" element={<InnovationLesson />} />
 
             {/* C++ Lessons — parameterized: /lesson/:level(1-6)/:lessonId(1-16) */}
             <Route path="/lesson/:level/:lessonId" element={<RoutedLesson />} />

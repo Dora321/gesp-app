@@ -1,4 +1,4 @@
-import React, { Suspense, lazy } from 'react';
+import React, { Suspense, lazy, useEffect } from 'react';
 import Navigation from './components/Navigation';
 import Footer from './components/Footer';
 
@@ -20,6 +20,12 @@ const SectionFallback = ({ minHeight = 480 }) => (
 );
 
 export default function Home() {
+    useEffect(() => {
+        if (new URLSearchParams(window.location.search).get('subject') === 'innovation') {
+            document.getElementById('lesson-catalog')?.scrollIntoView();
+        }
+    }, []);
+
     return (
         <div className="font-sans text-brand-slate bg-slate-50 min-h-screen">
             <Navigation

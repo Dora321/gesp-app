@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>第3课 · 谁按了按钮 — ESP32 × AI 科创课程</title>
+<link rel="stylesheet" href="assets/base.css">
+<link rel="stylesheet" id="theme-link" href="assets/theme-course-pop.css">
+<link rel="stylesheet" href="assets/animations.css">
+</head>
+<body>
+<div class="deck" data-theme-base="assets/">
+<section class="slide lay-cover is-active" data-title="封面">
+<div class="deco circle" style="width:170px;height:170px;top:-52px;right:238px"></div>
+<div class="deco tri" style="right:110px;bottom:132px;transform:rotate(14deg)"></div>
+<div class="deco square" style="width:120px;height:120px;left:-46px;bottom:86px;transform:rotate(12deg)"></div>
+<span class="cv-bar">ESP32 × AI ／ 第一阶段「读懂AI」</span>
+<h1 class="cv-title">谁按了<em>按钮</em></h1>
+<p class="cv-sub">给代码装上「触觉」——让它听我们指挥</p>
+<div class="cv-tags"><span class="tag">ESP32</span><span class="tag">MicroPython</span><span class="tag">DeepSeek</span><span class="tag">90 分钟连堂</span></div>
+<div class="cv-no">03</div>
+<div class="notes"><p>前两节课，我们像指挥官一样让 LED 亮起来、闪起来。</p><p>但你们有没有发现一件事：它只是<b>自己在那儿傻闪</b>，不管我们在干嘛。</p><p>你冲它喊，它不理你；你挥手，它也不理你。它是个「瞎子」，也是个「聋子」。</p><p>为什么？因为到今天为止，信号一直是<b>单向</b>的——只有我们发给它，它没法感受我们。</p><p>今天我们要给 ESP32 装上「<b>触觉</b>」，让它能感受到我们的操作。</p><p>主角就是——<b>按钮</b>。</p><p>而且今天这节课会有一个特别有意思的意外：AI 写的代码，会让你按下去灯<b>灭</b>、松开反而<b>亮</b>。别急着说 AI 傻，那里面藏着一个硬件的小秘密。</p></div>
+</section>
+
+<section class="slide lay-cards3" data-title="悬念导入">
+<div class="phead"><span class="no">第3课</span>
+<span class="kick c">悬念导入</span>
+<span class="tslot">0–8 分</span>
+</div>
+<h2 class="ptitle">会闪的灯，还是个「瞎子」</h2>
+<p class="psub">从「只会发」到「也会收」</p>
+<div class="pbody"><div class="g3 grow"><div class="blk g"><h4>输出（OUT）</h4><p>前两课学的：ESP32 <b>往外发</b>信号——让灯亮、让灯闪</p></div><div class="blk a"><h4>输入（IN）</h4><p>今天要学的：ESP32 <b>听外面</b>的信号——谁按了按钮？</p></div><div class="blk c"><h4>今天的主角</h4><p><b>板载 BOOT 按钮</b>（GPIO0）——就在板子上，一根线都不用接</p></div></div><div style="margin-top:22px"><div class="strip a">硬件分两种：<b>听指令的</b>（输出）和<b>发指令的</b>（输入）</div></div></div>
+<div class="notes"><p>我们把前两课和今天放在一起看。</p><p>前两课学的都是<b>输出</b>，英文 OUT。意思是 ESP32 <b>往外发</b>信号：让灯亮、让灯闪。信号从板子里跑出去。</p><p>今天要学的是<b>输入</b>，英文 IN。方向反过来了：外面的信号<b>跑进</b>板子里。板子要问一个问题——「谁按了按钮？」</p><p>今天的主角很省事：不用接线。就是板子上那个写着 <b>BOOT</b> 的小按钮，它接在 GPIO0 上。</p><p>（举起板子指给他们看）</p><p>所以从今天开始，你要记住一件事：所有硬件分两种，<b>听指令的</b>和<b>发指令的</b>。灯是听指令的，按钮是发指令的。</p><p>键盘是哪种？鼠标呢？屏幕呢？待会儿课后任务就考这个。</p></div>
+</section>
+
+<section class="slide lay-aierror" data-title="反常现象">
+<div class="phead"><span class="no">第3课</span>
+<span class="kick c">AI 出错时刻</span>
+<span class="tslot">8–18 分</span>
+</div>
+<h2 class="ptitle">按下去灯灭，松开反而亮？</h2>
+<p class="psub">四要素一条没少，代码也没报错——可现象是反的</p>
+<div class="pbody">
+  <div class="aegrid grow">
+    <div class="code"><span class="lab c">AI 给的代码（第一次）</span><pre style="font-size:27px"><span class="k">while</span> <span class="k">True</span>:
+    <span class="k">if</span> btn.value() == 1:   <span class="c"># AI 以为 1 是按下</span>
+        led.value(1)
+    <span class="k">else</span>:
+        led.value(0)
+
+<span class="c"># 按下去灯灭，松开反而亮——全反了！</span></pre></div>
+    <div class="aecol">
+      <div class="blk c"><h4>AI 是不是傻？不是</h4><p>这是<b>硬件的恶作剧</b>。AI 不知道我们这个按钮的接法——它以为「按下＝1」，可我们这块板子上正好相反。</p></div>
+      <div class="blk g"><h4>先别改代码，先搞懂硬件</h4><p>GPIO0 这个引脚自带一个「<b>弹簧</b>」（上拉电阻）。搞懂这个弹簧，就知道该怎么告诉 AI 了。</p></div>
+    </div>
+  </div>
+  <div style="margin-top:22px"><div class="strip a">验收：① 能跑吗——能　② <b>效果对吗——不对</b>　③ 有没有看不懂的魔法</div></div>
+</div>
+<div class="notes"><p>我用完整的四要素去问 AI：语言、硬件、接线（LED 在 GPIO2、按钮在 GPIO0）、效果——按下灯亮、松开灯灭。</p><p>四要素一条没少。看代码，也没报错。上传运行。</p><p>（按下按钮）</p><p>哎？怎么回事？我按下去，灯<b>灭</b>了；我一松手，灯反而<b>亮</b>了！</p><p>代码明明写着「如果按钮被按下，灯亮」，可真实情况<b>刚好反过来</b>。</p><p><b>AI 是不是傻？</b></p><p>（等他们答）</p><p>其实不是。这是<b>硬件的恶作剧</b>。</p><p>AI 不知道我们这块板子上按钮是怎么接的。它按最常见的情况猜——按下是 1。可我们这块板子，正好相反。</p><p>所以现在先别急着改代码。我们先搞懂：GPIO0 这个引脚上，到底藏着什么秘密。</p></div>
+</section>
+
+<section class="slide lay-chain2" data-title="上拉陷阱">
+<div class="phead"><span class="no">第3课</span>
+<span class="kick c">本课难点</span>
+<span class="tslot">18–30 分</span>
+</div>
+<h2 class="ptitle">上拉陷阱：按下是 0，松开是 1</h2>
+<p class="psub">像一扇装了弹簧的门</p>
+<div class="pbody">
+  <div class="chwrap grow"><div class="chain g"><span class="tag g">松开按钮时（平时的样子）</span><div class="chainrow"><div class="cbx">弹簧把信号拉高</div><span class="carr">→</span><div class="cbx">读到数字 <b>1</b></div></div><div class="cres"><b>松开 ＝ 1</b> —— 这是平时状态</div></div><div class="chain c"><span class="tag c">按下按钮时</span><div class="chainrow"><div class="cbx">手指把信号按到地</div><span class="carr">→</span><div class="cbx">读到数字 <b>0</b></div></div><div class="cres"><b>按下 ＝ 0</b> —— 反直觉，但硬件就是这样 → 判断要用 <b>==0</b></div></div></div>
+  <div style="margin-top:20px"><div class="strip a">所以代码里要写 <code class="ic">if btn.value() == 0:</code> 才是「按下」</div></div>
+</div>
+<div class="notes"><p>我打个比方，你们就懂了：想象一扇装了<b>弹簧</b>的门。</p><p>平时没人碰它，弹簧把门<b>顶着</b>，门是关着的——这就是「高」，读到数字 <b>1</b>。</p><p>现在你用手<b>按</b>下去，把门按到地上——这就是「低」，读到数字 <b>0</b>。</p><p>你一松手，弹簧又把它顶回去，又变回 1。</p><p>GPIO0 这个引脚就自带这么一根弹簧，它有个名字叫「<b>上拉电阻</b>」。</p><p>所以结论是反直觉的，但你必须记住：<b>松开是 1，按下是 0</b>。</p><p>我知道这很别扭。你按下去，感觉应该是「有了」，应该是 1 才对。但硬件不是这么设计的。</p><p>那代码要怎么改？原来写的是 == 1，现在要改成——<b>== 0</b>。</p><p>谁来说一遍：按下等于几？</p></div>
+</section>
+
+<section class="slide lay-reqdoc" data-title="好版提问">
+<div class="phead"><span class="no">第3课</span>
+<span class="kick g">再问一次</span>
+<span class="tslot">18–30 分</span>
+</div>
+<h2 class="ptitle">补上第五样：硬件约束</h2>
+<p class="psub">坏版和好版唯一的区别，就是多了一行</p>
+<div class="pbody">
+  <div class="rdgrid grow">
+    <div class="blk a"><h4>四要素 ＋ 硬件约束</h4><div class="fivelist"><div class="fv"><span class="fk">语言</span><span class="fw">MicroPython</span></div><div class="fv"><span class="fk">硬件</span><span class="fw">ESP32</span></div><div class="fv"><span class="fk">接线</span><span class="fw">LED 接 GPIO2，按钮接 GPIO0</span></div><div class="fv"><span class="fk">效果</span><span class="fw">按下按钮时 LED 亮起，松开时熄灭</span></div><div class="fv"><span class="fk">约束</span><span class="fw"><b>按钮带有上拉电阻，按下时读到 0，松开时读到 1</b>　← 多的就是这一行</span></div></div></div>
+    <div class="blk g"><h4>为什么这一行这么重要</h4><div class="sqlist"><div class="sq"><span class="sn">①</span><span class="st">这是<b>硬件的事实</b>，不是我们的偏好</span></div><div class="sq"><span class="sn">②</span><span class="st">AI 没见过我们的板子，它<b>猜不到</b></span></div><div class="sq"><span class="sn">③</span><span class="st">不说，它只能按最常见的情况猜——猜反了</span></div><div class="sq"><span class="sn">④</span><span class="st">说了，它一次就写对</span></div><div class="sq"><span class="sn">⑤</span><span class="st">上节课加的是<b>时间</b>约束，这节课加的是<b>硬件</b>约束</span></div></div></div>
+  </div>
+  <div style="margin-top:20px"><div class="strip g">坏版 → 好版，唯一的区别就是<b>约束</b>这一行——AI 猜错，多半是我们没说清</div></div>
+</div>
+<div class="notes"><p>现在我们第二次问。左边这张表，你们对比一下上一次：前四条<b>一模一样</b>。</p><p>多的只有最后一行：「按钮带有上拉电阻，按下时读到的值是 0，松开时读到的是 1。」</p><p>就多这一行，AI 立刻就写对了。</p><p>我要你们想清楚右边这五条。</p><p>第一，这一行写的是<b>硬件的事实</b>——不是我喜欢这样，是它本来就这样。</p><p>第二，AI 没见过我们手里这块板子，这个事实它<b>猜不到</b>。</p><p>第三，你不说，它只能按最常见的情况猜，结果猜反了。</p><p>第四，你说了，它一次就对。</p><p>第五，注意——<b>上节课</b>我们加的是<b>时间</b>约束（0.2 秒、0.6 秒），<b>这节课</b>加的是<b>硬件</b>约束。</p><p>它们是同一类东西，都叫「约束」。到第 6 课，我们会把它正式收进提问要素里，变成<b>五要素</b>。</p></div>
+</section>
+
+<section class="slide lay-codefull" data-title="正确代码">
+<div class="phead"><span class="no">第3课</span>
+<span class="kick a">参考代码</span>
+<span class="tslot">18–30 分</span>
+</div>
+<h2 class="ptitle">改对之后的完整代码</h2>
+<div class="pbody"><div class="askline">和坏版比，真正改动的只有一个字符：<b>1 → 0</b></div><div class="code"><span class="lab g">完整可跑 · 按钮控灯</span><pre style="font-size:24px"><span class="k">from</span> machine <span class="k">import</span> Pin
+
+led = Pin(2, Pin.OUT)
+btn = Pin(0, Pin.IN)
+
+<span class="k">while</span> <span class="k">True</span>:
+    <span class="k">if</span> btn.value() == 0:   <span class="c"># 0 代表按下</span>
+        led.value(1)
+    <span class="k">else</span>:
+        led.value(0)</pre></div><div style="margin-top:18px"><div class="strip g">注意<b>双重缩进</b>：if / else 对齐，它们下面的 led.value() 还要再退一格</div></div></div>
+<div class="notes"><p>这就是改对之后的完整代码，能直接跑。</p><p>我先让你们找一找：和刚才那段反的代码比，<b>真正改动的地方有几个字符</b>？</p><p>（等他们找）</p><p><b>一个</b>。== 1 改成了 == 0。</p><p>就一个字符，现象就正过来了。这就是为什么我一直说：不要怕改代码，要<b>看懂</b>代码。</p><p>然后看这段的结构，这是今天最容易出错的地方——<b>双重缩进</b>。</p><p>while True 下面退一格，写 if 和 else，它们两个要<b>左对齐</b>。</p><p>if 和 else 下面<b>再退一格</b>，才是 led.value()。</p><p>一共两层。待会儿你们有一半的报错都会出在这儿，写完先自己数一数缩进。</p></div>
+</section>
+
+<section class="slide lay-translate" data-title="逐行解读">
+<div class="phead"><span class="no">第3课</span>
+<span class="kick g">逐行解读</span>
+<span class="tslot">30–40 分</span>
+</div>
+<h2 class="ptitle">三个新东西：IN、if/else、==</h2>
+<div class="pbody"><div class="blk grow" style="padding:10px 24px"><div class="tr-row"><div class="cd">btn = Pin(0, Pin.IN)</div><div class="eq">=</div><div class="pl"><b>IN ＝ 输入</b>：外面的信号「进」到大脑里（对比 OUT 是往外发）</div></div><div class="tr-row"><div class="cd">if btn.value() == 0:</div><div class="eq">=</div><div class="pl"><b>如果</b>读到 0（＝按下了）……注意别忘了<b>冒号</b></div></div><div class="tr-row"><div class="cd">        led.value(1)</div><div class="eq">=</div><div class="pl">……就让灯亮。这行要<b>再缩进一格</b>，表示它属于 if</div></div><div class="tr-row"><div class="cd">else:</div><div class="eq">=</div><div class="pl"><b>否则</b>（也就是没按）……和 if <b>左对齐</b></div></div><div class="tr-row"><div class="cd">        led.value(0)</div><div class="eq">=</div><div class="pl">……就让灯灭。同样再缩进一格</div></div><div class="tr-row"><div class="cd">== 和 = 的区别</div><div class="eq">=</div><div class="pl"><b>==</b> 是「问一问相不相等」；<b>=</b> 是「把值装进去」——判断一定用两个等号</div></div></div></div>
+<div class="notes"><p>今天三个新东西，一个一个读。</p><p>第一个，<b>Pin.IN</b>。IN 就是输入，外面的信号「进」到大脑里。上节课的 OUT 是往外发，方向正好相反。</p><p>第二个，<b>if 和 else</b>。if 就是「如果」，else 就是「否则」。</p><p>如果条件满足，就执行 if 后面缩进的代码；否则，就执行 else 后面缩进的代码。</p><p>我说一句可能有点大的话：<b>机器的智商，就是从 if 开始的</b>。在这之前我们写的程序只会照单执行；从今天起，它会<b>自己做决定</b>了。</p><p>第三个，也是最容易错的：判断相不相等，一定要用<b>两个等号 ==</b>！</p><p>一个等号 = 是「把值<b>装进去</b>」，两个等号 == 才是「<b>问一问</b>相不相等」。</p><p>写成一个等号会怎么样？直接报错。</p><p>还有两个小东西别忘：if 和 else 后面都有<b>冒号</b>，它们下面都要<b>再缩进一格</b>。</p></div>
+</section>
+
+<section class="slide lay-divider" data-title="课间休息">
+<div class="deco circle" style="width:200px;height:200px;top:-70px;right:180px"></div>
+<div class="deco square" style="width:130px;height:130px;left:-50px;bottom:70px;transform:rotate(12deg)"></div>
+<div class="deco tri" style="right:140px;bottom:90px;transform:rotate(14deg)"></div>
+<div class="dv">
+  <span class="dv-time">40–50 分</span>
+  <h2 class="dv-t">课间休息 10 分钟</h2>
+  <p class="dv-s">回来第一件事：把那段反转的代码修好</p>
+</div>
+<div class="notes"><p>上半场结束，休息十分钟。</p><p>回来第一件事，也是今天的<b>保底任务</b>：把那段反转的代码<b>修好</b>，让按钮真的能控制灯。</p><p>修好了还要能回答我一个问题：按钮是 IN 还是 OUT？灯呢？</p><p>休息一下，回来动手。</p></div>
+</section>
+
+<section class="slide lay-tiers3" data-title="分层任务">
+<div class="phead"><span class="no">第3课</span>
+<span class="kick g">分层任务</span>
+<span class="tslot">50–75 分</span>
+</div>
+<h2 class="ptitle">先保底，再挑战</h2>
+<p class="psub">按钮能控灯 ＋ 说出 IN/OUT 区别 ＝ 成功</p>
+<div class="pbody"><div class="g3 grow"><div class="blk tier t1"><div class="hd">★ 基础（必做）</div>
+        <p class="task">修复 AI 写的「反转代码」，让按下真的亮起来。</p><p class="fill">当 btn.value() == ____ 时代表按下　这时 led.value(____) 灯就亮</p></div><div class="blk tier t2"><div class="hd">★★ 进阶（建议做）</div>
+        <p class="task">反向工作大挑战：改成「不按时灯亮，按下去灯反而灭」。</p><p class="fill">我修改了：________</p></div><div class="blk tier t3"><div class="hd">★★★ 挑战（学有余力）</div>
+        <p class="task">用四要素＋硬件约束问 AI：把按钮和闪烁结合起来（按住就闪）。</p><p class="fill">我想实现的效果是：________　AI 代码里我没见过的新东西：________</p></div></div>
+<div style="margin-top:22px"><div class="strip g">写完先自己数<b>缩进</b>：if / else 一层，它们下面的 led.value() 两层</div></div></div>
+<div class="notes"><p>三档任务。</p><p><b>基础档必做</b>：把那段反转的代码修好。改哪儿？你们已经知道了。改完上传，按下去灯亮了，就举手。</p><p>卡片上还有两个空要填：按下的时候 btn.value() 等于几？这时候 led.value() 要写几？填完才算完成。</p><p>进阶档很好玩，叫<b>反向工作</b>：我要你故意做成「不按时灯亮，按下去反而灭」。</p><p>听起来是不是就是刚才 AI 的 bug？对——但区别在于，刚才是 AI 蒙的，这次是<b>你有意做的</b>。你得说得出你改了哪里。</p><p>挑战档：用四要素<b>加硬件约束</b>去问 AI，把按钮和闪烁结合起来——比如按住的时候灯一直闪。</p><p>提醒一句：写完先自己<b>数缩进</b>，if / else 一层，下面的 led.value() 两层。今天一半的报错都出在这儿。</p><p>开始，我巡视。</p></div>
+</section>
+
+<section class="slide lay-cards3" data-title="报错怎么办">
+<div class="phead"><span class="no">第3课</span>
+<span class="kick a">集体 Debug</span>
+<span class="tslot">75–85 分</span>
+</div>
+<h2 class="ptitle">三个高频错，自己先查</h2>
+<p class="psub">举手之前，先对着这三条看一遍</p>
+<div class="pbody"><div class="g3 grow"><div class="blk g"><h4>缩进乱了</h4><p>if 和 else 必须<b>左对齐</b>，它们下面的代码必须<b>再缩进一格</b>——双重缩进。</p></div><div class="blk a"><h4>忘了双等号</h4><p>判断要用 <b>==</b>，写成 <b>=</b>（赋值）会直接语法报错。</p></div><div class="blk c"><h4>现象还是反的</h4><p>检查判断条件到底是 <b>==0</b>（按下）还是 ==1。上拉电阻下，<b>按下是 0</b>。</p></div></div><div style="margin-top:22px"><div class="strip g">按钮完全没反应？确认你按的是<b>板载 BOOT 按钮</b>，且 btn 定义成了 Pin.IN</div></div></div>
+<div class="notes"><p>举手之前，先对着这三条自己查一遍。</p><p>第一条，<b>缩进乱了</b>。这是今天的头号错误。if 和 else 要左对齐——它们是一对，地位相同。它们<b>下面</b>的 led.value() 要再退一格。两层，数清楚。</p><p>第二条，<b>忘了双等号</b>。判断用 ==，两个。写成一个等号，PyCharm 直接报语法错。</p><p>怎么记？一个等号是「装进去」，两个等号是「问一问」。判断是在<b>问</b>，所以两个。</p><p>第三条，<b>现象还是反的</b>。那就是你的判断条件还是 ==1。改成 ==0。记住弹簧门：按下去贴地，是 0。</p><p>最后还有一种：按钮<b>完全没反应</b>。查两样——你按的是不是板子上那个 BOOT 按钮？还有，btn 定义的时候写的是不是 <b>Pin.IN</b>？写成 OUT 它就不听了。</p></div>
+</section>
+
+<section class="slide lay-rowlist" data-title="今日三大发现">
+<div class="phead"><span class="no">第3课</span>
+<span class="kick g">总结</span>
+<span class="tslot">85–90 分</span>
+</div>
+<h2 class="ptitle">今日三大发现</h2>
+<div class="pbody"><div class="rowlist grow"><div class="rowitem"><div class="num g">1</div><div class="tx">硬件分两种：<b>听指令的</b>（输出 OUT）和<b>发指令的</b>（输入 IN）</div></div><div class="rowitem"><div class="num a">2</div><div class="tx">AI 不懂我们<b>特定的硬件接法</b>——上拉陷阱要我们自己告诉它</div></div><div class="rowitem"><div class="num c">3</div><div class="tx"><b>if 让机器有了最基本的「智商」</b>：它会根据条件自己做决定了</div></div></div><div style="margin-top:20px"><div class="strip a">下节课《小屏幕说话了》——不只控制灯，还要<b>在屏幕上显示</b>按了多少次！</div></div></div>
+<div class="notes"><p>都停下，看屏幕。今天三个发现。</p><p>第一个，硬件分两种：<b>听指令的</b>，和<b>发指令的</b>。灯是听的，按钮是发的。英文一个是 OUT，一个是 IN。</p><p>第二个，AI 不懂我们<b>特定的硬件接法</b>。今天那个上拉陷阱，它猜不到，得我们告诉它。这已经是第二次了——上节课是时间，这节课是硬件。记住这个规律。</p><p>第三个，也是最重要的：<b>if 让机器有了最基本的「智商」</b>。</p><p>你们想想，前两节课我们的程序是什么样？从头跑到尾，一条路走到黑。今天不一样了，它会<b>看情况</b>：按了走这条路，没按走那条路。</p><p>它开始会<b>做决定</b>了。</p><p>下节课的钩子：今天我们只能控制一盏灯。那如果我不只想控制灯，还想<b>在屏幕上显示</b>——你到底按了多少次呢？</p><p>下节课《小屏幕说话了》，我们给它装一块屏幕。下课。</p></div>
+</section>
+
+<section class="slide lay-cards2" data-title="课后任务">
+<div class="phead"><span class="no">第3课</span>
+<span class="kick a">课后任务</span>
+</div>
+<h2 class="ptitle">课后任务</h2>
+<div class="pbody"><div class="g2 grow"><div class="blk g"><h4>基础（全员）</h4><p>向家人解释什么是「输入设备」和「输出设备」，并考考他们：<b>键盘、屏幕、鼠标</b>分别属于哪一种？</p></div><div class="blk a"><h4>拓展（选做）</h4><p>想一想：如果要「按一下亮，再按一下才灭」（像家里的电灯开关），现在的代码做得到吗？缺了什么？（提示：机器得<b>记住</b>现在是亮还是灭。）</p></div></div>
+<div style="margin-top:24px"><div class="strip g">能说清楚「按下为什么是 0」，才是真的懂了</div></div></div>
+<div class="notes"><p>课后两件事。</p><p>第一件全员都做：回家给家人讲清楚什么是<b>输入设备</b>、什么是<b>输出设备</b>。讲完考考他们三样东西：键盘、屏幕、鼠标，各属于哪一种？</p><p>（顺便说一句，答案是：键盘输入、鼠标输入、屏幕输出。）</p><p>第二件选做，是一道<b>思考题</b>，不用写代码：</p><p>我们家里的电灯开关，是按一下亮、<b>再按一下才灭</b>。我们今天的代码做得到吗？</p><p>做不到。我们今天是「按住才亮，松手就灭」。</p><p>那缺了什么？提示给你们：机器得<b>记住</b>现在是亮还是灭。怎么记？这个我们后面会学。</p><p>最后一句：能说清楚「<b>按下为什么是 0</b>」，才是真的懂了。下课。</p></div>
+</section>
+<div class="deck-footer"><span>ESP32 × AI 科创课程 · 第一阶段「读懂AI」 · 第3课 谁按了按钮</span><span class="slide-number" data-current="1" data-total="12"></span></div>
+<div class="progress-bar"><span></span></div>
+</div>
+<script src="assets/fitstage.js"></script>
+<script src="assets/runtime.js"></script>
+</body>
+</html>

@@ -1,0 +1,287 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>第9课 · 彩虹灯带 — ESP32 × AI 科创课程</title>
+<link rel="stylesheet" href="assets/base.css">
+<link rel="stylesheet" id="theme-link" href="assets/theme-course-pop.css">
+<link rel="stylesheet" href="assets/animations.css">
+</head>
+<body>
+<div class="deck" data-theme-base="assets/">
+<section class="slide lay-cover is-active" data-title="封面">
+<div class="deco circle" style="width:170px;height:170px;top:-52px;right:238px"></div>
+<div class="deco tri" style="right:110px;bottom:132px;transform:rotate(14deg)"></div>
+<div class="deco square" style="width:120px;height:120px;left:-46px;bottom:86px;transform:rotate(12deg)"></div>
+<span class="cv-bar">ESP32 × AI ／ 第二阶段「指挥AI」</span>
+<h1 class="cv-title">彩虹<em>灯带</em></h1>
+<p class="cv-sub">用 for 循环，指挥一整排会动的灯</p>
+<div class="cv-tags"><span class="tag">ESP32</span><span class="tag">MicroPython</span><span class="tag">DeepSeek</span><span class="tag">90 分钟连堂</span></div>
+<div class="cv-no">09</div>
+<div class="notes"><p>上节课我们做出了光感小夜灯——天一黑，灯自己就亮了。一盏灯，已经会<b>自作主张</b>了。</p><p>今天要干一件更大的事。大家看我手里这条灯带，上面串了<b>十颗</b>灯珠。过年挂的彩灯、商场墙上的广告屏，都是这么来的，几百颗、几千颗灯一起在变颜色。</p><p>那我问一个问题：一颗灯写一行代码，几百颗就要写几百行——程序员真的会这么干吗？</p><p>肯定不会。今天我们就学那个让计算机<b>自动重复</b>的魔法，它叫 for 循环。写一遍，计算机替你重复一百遍。</p><p>这节课下课之前，我要看到每一组的灯带上都有一道光在跑。</p></div>
+</section>
+
+<section class="slide lay-cards3" data-title="上节课回顾">
+<div class="phead"><span class="no">第9课</span>
+<span class="kick g">回顾</span>
+<span class="tslot">0–10 分</span>
+</div>
+<h2 class="ptitle">上节课回顾</h2>
+<p class="psub">第8课《光感小夜灯》我们学会了……</p>
+<div class="pbody"><div class="g3 grow"><div class="blk g"><h4>光敏电阻（ADC）</h4><p>让灯「看见」亮暗——环境越暗，数字越大</p></div><div class="blk a"><h4>亮度百分比（PWM）</h4><p>灯不只会开关，还能从 0% 到 100% 慢慢变亮变暗</p></div><div class="blk c"><h4>作品：光感小夜灯</h4><p>天一黑，灯自己亮——它开始「自作主张」了</p></div></div><div style="margin-top:22px"><div class="strip ">上节课留下的问题：一盏灯会呼吸了——那一排灯、一百颗灯呢？</div></div></div>
+<div class="notes"><p>先花两分钟把上节课捡回来。谁来说说，光敏电阻是干什么的？对，它让灯<b>看见</b>亮和暗——周围越黑，读到的数字越大。</p><p>第二个，亮度百分比。上节课之前，灯只有两种状态：开、关。学完 PWM 之后呢？灯可以<b>慢慢</b>变亮、慢慢变暗，从 0% 到 100%。</p><p>把这两个拼起来，就是我们的光感小夜灯：天一黑，它自己亮。注意这个词——<b>自己</b>。以前是我们命令它亮，现在它自己决定。</p><p>好，那我把上节课最后留的那个问题再问一遍：一盏灯会呼吸了，那一排灯呢？一百颗灯呢？</p><p>今天就解决这个问题。</p></div>
+</section>
+
+<section class="slide lay-cards3" data-title="几百颗灯谁来指挥">
+<div class="phead"><span class="no">第9课</span>
+<span class="kick c">悬念导入</span>
+<span class="tslot">0–10 分</span>
+</div>
+<h2 class="ptitle">几百颗灯，谁来指挥？</h2>
+<p class="psub">生活里的「一排灯」到处都是</p>
+<div class="pbody"><div class="g3 grow"><div class="blk g"><h4>过年彩灯</h4><p>几百颗小灯一起眨眼、变色</p></div><div class="blk a"><h4>商场广告屏</h4><p>上万颗灯珠拼出会动的画面</p></div><div class="blk c"><h4>舞台灯光秀</h4><p>一排灯追着音乐来回跑</p></div></div><p class="beads-cap" style="margin:18px 0 16px">一颗灯一行代码，几百颗要写几百行？程序员才不这么干！</p><div style="margin-top:22px"><div class="strip a">今天的新魔法：for 循环——写一遍，计算机自动重复一百遍</div></div></div>
+<div class="notes"><p>大家想一想，生活里哪些地方是<b>一排一排</b>的灯？过年挂在树上的彩灯，几百颗一起眨眼睛。商场墙上那块巨大的广告屏，那不是一块屏幕，那是上万颗灯珠拼出来的。还有演唱会的舞台，一排灯追着音乐跑来跑去。</p><p>它们背后是同一件事：很多很多颗灯，被同一段程序指挥。</p><p>那如果按我们前八节课的办法——一颗灯写一行——一万颗灯，你要写一万行代码。写到明年也写不完，而且改一个颜色要改一万个地方。</p><p>程序员绝对不会这么干。真正的程序员都很<b>懒</b>，这是褒义词：懒得重复，才会想办法让计算机替自己重复。</p><p>这个办法就是今天的主角，for 循环。</p></div>
+</section>
+
+<section class="slide lay-hardware" data-title="新硬件 WS2812">
+<div class="phead"><span class="no">第9课</span>
+<span class="kick g">新硬件</span>
+<span class="tslot">10–22 分</span>
+</div>
+<h2 class="ptitle">WS2812 可编程灯带</h2>
+<p class="psub">每一颗灯珠，都听得懂自己的编号</p>
+<div class="pbody">
+  <div class="hwgrid grow">
+    <div class="g3"><div class="blk g"><h4>一条灯带串 10 颗灯珠</h4><p>每颗都有自己的编号：0 到 9</p></div><div class="blk a"><h4>每颗能单独变色</h4><p>(R, G, B) 三个数字各 0~255，课堂约束不超过 80</p></div><div class="blk c"><h4>灯带有方向</h4><p>数据只能从 DIN／箭头端流进去，接反了不亮</p></div></div>
+    <div class="blk a"><h4>接线速查卡</h4><p style="margin:3px 0">VCC（+）　→　5V</p><p style="margin:3px 0">GND（−）　→　GND</p><p style="margin:3px 0">DIN（数据）→　GPIO5</p><p style="margin:3px 0">认方向：从 DIN／箭头端接入</p><p style="margin:3px 0">接线前先拔 USB（不带电插拔）</p></div>
+  </div>
+  <div style="margin-top:22px"><div class="strip g">10 颗灯 3.3V 也能驱动；若发暗再改接 5V——先拔 USB 再改线</div></div>
+</div>
+<div class="notes"><p>认识今天的新硬件，WS2812 灯带。它和我们之前用的 LED 有什么不一样？</p><p>第一，它是<b>一串</b>的，这条上面有十颗，每一颗都有自己的编号，从 0 到 9。第二，每一颗都能<b>单独</b>变色，靠三个数字：红、绿、蓝，各从 0 到 255。我们课堂上有个约束，亮度不要超过 80，太亮刺眼睛。</p><p>第三点最重要，也是最容易出事的：灯带<b>有方向</b>。你看这一端标着 DIN，或者有个箭头，数据只能从这一头流进去。接反了，一颗都不亮，代码写得再对也没用。</p><p>接线之前，先做什么？先拔 USB。实验室三不碰：不湿手碰、不短接、不带电插拔。</p><p>十颗灯接 3.3V 一般够用；万一发暗，再改接 5V——记住，改线之前还是要先拔 USB。</p></div>
+</section>
+
+<section class="slide lay-rowlist" data-title="动手要点">
+<div class="phead"><span class="no">第9课</span>
+<span class="kick a">动手前必读</span>
+<span class="tslot">10–22 分</span>
+</div>
+<h2 class="ptitle">五步上灯</h2>
+<p class="psub">照着做，一步一验收</p>
+<div class="pbody"><div class="rowlist grow"><div class="rowitem"><div class="num g">1</div><div class="tx">先拔 USB 再接线——不湿手碰、不短接、不带电插拔</div></div><div class="rowitem"><div class="num a">2</div><div class="tx">认方向：DIN／箭头端 → GPIO5，VCC → 5V，GND → GND</div></div><div class="rowitem"><div class="num c">3</div><div class="tx">插回 USB：连接 → 上传，只碰三个地方</div></div><div class="rowitem"><div class="num g">4</div><div class="tx">三步走提问：点亮一颗 → 循环一排 → 加延时跑起来</div></div><div class="rowitem"><div class="num a">5</div><div class="tx">每一步验收三查：能跑吗？效果对吗？有没有看不懂的魔法？</div></div></div><div style="margin-top:20px"><div class="strip ">灯不亮先别改代码：一查方向，二查 GPIO5，三查有没有 np.write()</div></div></div>
+<div class="notes"><p>动手之前，这五步念一遍，照着做。</p><p>第一，<b>先拔 USB</b> 再接线。三不碰：不湿手碰、不短接、不带电插拔。</p><p>第二，认方向。DIN 那一头接 GPIO5，红线接 5V，黑线接 GND。方向错了，后面全白搭。</p><p>第三，插回 USB，PyCharm 里只碰三个地方：main.py、连接、上传。</p><p>第四，按三步走提问，不要一口气问完。</p><p>第五，每一步都做验收三查。</p><p>最后这条黑条特别重要：灯不亮的时候，<b>先别急着改代码</b>。按顺序查三样：一查方向接反没有，二查是不是接在 GPIO5，三查代码里有没有 np.write()。这三样能解决九成的「不亮」。</p><p>现在接线，接好了举手，我来看一眼再上电。</p></div>
+</section>
+
+<section class="slide lay-steps3" data-title="分步指挥三步走">
+<div class="phead"><span class="no">第9课</span>
+<span class="kick g">方法</span>
+<span class="tslot">贯穿全课</span>
+</div>
+<h2 class="ptitle">分步指挥 AI：三步走</h2>
+<p class="psub">大任务拆小步，一步一验收——今天这节课就按这三步走</p>
+<div class="pbody"><div class="g3 grow"><div class="blk"><div class="step"><div class="num g">①</div>
+        <div class="body"><p class="t">点亮一颗</p><p class="d">先只管第 1 颗灯，跑通了再往下</p></div></div></div><div class="blk"><div class="step"><div class="num a">②</div>
+        <div class="body"><p class="t">循环点亮一排</p><p class="d">换成 for 循环，10 颗一起亮</p></div></div></div><div class="blk"><div class="step"><div class="num c">③</div>
+        <div class="body"><p class="t">加延时做动画</p><p class="d">循环里加 sleep，光就「跑」起来</p></div></div></div></div><div style="margin-top:16px"><div class="strip ">每一步都带上五要素：语言 · 硬件 · 接线 · 效果 · <b>约束</b></div></div><div style="margin-top:16px"><div class="strip a">约束示例：「只用 neopixel 和 time，亮度不超过 80，代码带中文注释」</div></div></div>
+<div class="notes"><p>有同学已经在想彩虹了，先停一下。今天我们练的是一个方法，比彩虹更值钱：把大任务<b>拆成小步</b>。</p><p>第①步，只做一件事——点亮一颗。第②步，在第①步跑通的基础上，用循环点亮一排。第③步，才是加延时，让光跑起来。</p><p>为什么要拆？因为一次问一大堆，AI 给你一坨代码，错了你都不知道错在哪一步。拆开问，每一步都能当场验收，错了立刻就知道是哪一段。</p><p>每一步提问都要带<b>五要素</b>：语言、硬件、接线、效果，还有第五个——约束。约束是这一阶段新加的，也是最容易忘的。</p><p>比如这样写：「只用 neopixel 和 time 这两个工具，亮度不要超过 80，代码带中文注释。」</p><p>你不写约束，AI 就可能给你一个从没见过的库，那就是超纲魔法，我们不要。</p><p>好，现在走第①步。</p></div>
+</section>
+
+<section class="slide lay-stepcode" data-title="第①步 点亮一颗">
+<div class="phead"><span class="no">第9课</span>
+<span class="kick g">第①步</span>
+<span class="tslot">10–22 分</span>
+</div>
+<h2 class="ptitle">点亮一颗</h2>
+<p class="psub">先只管第 1 颗灯——这段代码能直接跑，别空着手开工</p>
+<div class="pbody">
+  <div class="scstack">
+    <div class="fiverow"><div class="fvc"><span class="fk">语言</span><span class="fw">MicroPython</span></div><div class="fvc"><span class="fk">硬件</span><span class="fw">ESP32 ＋ WS2812 灯带 10 颗</span></div><div class="fvc"><span class="fk">接线</span><span class="fw">数据脚 DIN 接在 GPIO5</span></div><div class="fvc"><span class="fk">效果</span><span class="fw">用 neopixel 把第 1 颗灯点亮成红色</span></div><div class="fvc"><span class="fk">约束</span><span class="fw">只用 neopixel 和 time；亮度不超过 80；代码带中文注释</span></div></div>
+    <div class="askline"><b>五要素提问（照着问）：</b>「我使用的语言是 MicroPython，硬件是 ESP32。接了一条 WS2812 灯带，共 10 颗灯珠，数据脚 DIN 接在 GPIO5。请用 neopixel 把第 1 颗灯点亮成红色。约束：只用 neopixel 和 time 这两个工具，颜色亮度不要超过 80，代码带中文注释。」</div>
+    <div class="code"><span class="lab g">第①步 · 起步全码（完整可跑）</span><pre style="font-size:27px"><span class="k">from</span> machine <span class="k">import</span> Pin              <span class="c"># 引脚工具</span>
+<span class="k">import</span> neopixel                      <span class="c"># 灯带工具箱</span>
+
+np = neopixel.NeoPixel(Pin(5), 10)   <span class="c"># 数据脚 GPIO5，管 10 颗灯</span>
+np[0] = (80, 0, 0)                   <span class="c"># 第 1 颗灯的编号是 0，填上红色</span>
+np.write()                           <span class="c"># 把颜色送给灯带</span></pre></div>
+  </div>
+  <div style="margin-top:16px"><div class="strip g">看清楚：第 1 颗灯的编号是 <b>0</b>，不是 1；最后那行 <b>np.write()</b> 少了就一片漆黑</div></div>
+</div>
+<div class="notes"><p>现在走第①步。左边这张卡就是<b>五要素</b>，一条一条对着念：语言、硬件、接线、效果、约束。下面引号里那一整句，就是把五要素连起来说给 AI 听——照着问就行。</p><p>右边是跑通之后应该长这样的代码。我先带你们读三行。</p><p>第一行，请一位<b>灯带管家</b>：数据线在 5 号脚，手底下管十颗灯。</p><p>第二行，给 0 号灯填上红色。注意——第 1 颗灯的编号是 <b>0</b>，不是 1。这是今天第一个容易错的地方。</p><p>第三行，np.write()，把颜色<b>送出去</b>。</p><p>现在动手，把这段跑起来。我要看到每一组都有<b>一颗红灯</b>亮着，亮了的组举手，我过去看一眼再放你们进第②步。</p><p>没亮的别急着改代码，先查方向、查 GPIO5、查 np.write()。</p></div>
+</section>
+
+<section class="slide lay-vscompare" data-title="新概念 for 循环">
+<div class="phead"><span class="no">第9课</span>
+<span class="kick a">新概念</span>
+<span class="tslot">22–40 分</span>
+</div>
+<h2 class="ptitle">笨办法 vs 聪明办法</h2>
+<p class="psub">第①步只点亮了 1 颗。那 10 颗呢——要写 10 遍吗？</p>
+<div class="pbody">
+  <div class="vs3 grow">
+    <div class="code"><span class="lab c">笨办法：写 10 遍</span><pre style="font-size:27px">np[0] = (0, 80, 0)
+np[1] = (0, 80, 0)
+np[2] = (0, 80, 0)
+np[3] = (0, 80, 0)
+<span class="c"># ……一直写到 np[9]</span>
+<span class="c"># 10 颗写 10 行，100 颗呢？</span></pre></div>
+    <div class="vsmark">VS</div>
+    <div class="code"><span class="lab g">聪明办法：for 循环写 1 遍</span><pre style="font-size:27px"><span class="k">for</span> i <span class="k">in</span> <span class="k">range</span>(10):
+    np[i] = (0, 80, 0)
+
+<span class="c"># 写一遍，自动重复 10 次</span>
+<span class="c"># i 每轮 +1：0,1,2,……,9</span></pre></div>
+  </div>
+  <div style="margin-top:24px"><div class="strip ">for i in range(10)：重复 <b>10 次</b>，i 从 <b>0</b> 数到 <b>9</b>——正好对上灯珠编号</div></div>
+</div>
+<div class="notes"><p>第①步大家都点亮一颗了。现在我加个要求：十颗全亮。怎么办？</p><p>左边这种写法，能不能跑？能跑。有没有错？没错。就是<b>啰嗦</b>。而且十颗还好，一百颗呢？</p><p>右边这两行，做的事情一模一样。我们来读一读右边：for i in range(10)，翻译成人话就是「重复 10 次，每次让 i 变一个数，从 0 数到 9」。</p><p>来玩个游戏。这一排同学，从 0 开始报数——0、1、2、3……好。现在我说「第 i 个站起来」，i 从 0 数到 9，每个人轮流站。</p><p>看清楚了吗，我只说了<b>一句话</b>，十个人都动了。这就是 for 循环：写一遍，计算机替我们重复很多遍，每一遍那个 i 都不一样。</p><p>而且注意一个巧合——不，这不是巧合：i 从 0 数到 9，灯珠编号也正好是 0 到 9。所以 np[i] 每一轮点的，正好是不同的那一颗灯。</p></div>
+</section>
+
+<section class="slide lay-stepcode" data-title="第②步 循环点亮一排">
+<div class="phead"><span class="no">第9课</span>
+<span class="kick g">第②步</span>
+<span class="tslot">22–40 分</span>
+</div>
+<h2 class="ptitle">循环点亮一排</h2>
+<p class="psub">在第①步跑通的基础上改——不是推倒重写</p>
+<div class="pbody">
+  <div class="scstack">
+    <div class="fiverow"><div class="fvc"><span class="fk">语言</span><span class="fw">同第①步</span></div><div class="fvc"><span class="fk">硬件</span><span class="fw">同第①步</span></div><div class="fvc"><span class="fk">接线</span><span class="fw">同第①步</span></div><div class="fvc"><span class="fk">效果</span><span class="fw">用 for 循环让这 10 颗灯全部点亮成绿色</span></div><div class="fvc"><span class="fk">约束</span><span class="fw">不变</span></div></div>
+    <div class="askline"><b>接着上一步问：</b>「在刚才的基础上，请用 for 循环让这 10 颗灯全部点亮成绿色。约束不变。」</div>
+    <div class="code"><span class="lab g">第②步 · 起步全码（完整可跑）</span><pre style="font-size:24px"><span class="k">from</span> machine <span class="k">import</span> Pin
+<span class="k">import</span> neopixel
+
+np = neopixel.NeoPixel(Pin(5), 10)   <span class="c"># 和第①步一样</span>
+<span class="k">for</span> i <span class="k">in</span> <span class="k">range</span>(10):                  <span class="c"># i 从 0 数到 9</span>
+    np[i] = (0, 80, 0)               <span class="c"># 给第 i 颗填上绿色</span>
+np.write()                           <span class="c"># 送一次，整排全亮</span></pre></div>
+  </div>
+  <div style="margin-top:16px"><div class="strip g">和第①步比只多了两行：for 那一行，和缩进的 np[i]；<b>np.write() 挪到了循环外面</b>——十颗填完送一次就够</div></div>
+</div>
+<div class="notes"><p>第②步的提问只有一句话：「在刚才的基础上，请用 for 循环让这 10 颗灯全部点亮成绿色。约束不变。」</p><p>注意那六个字——<b>在刚才的基础上</b>。这是分步指挥的关键：你不用把五要素再背一遍，AI 记得上一轮的上下文。约束也只要说「不变」。</p><p>右边代码和第①步比，就多了两处。第一，for 那一行。第二，下面那行<b>往里缩进了四个空格</b>——缩进表示「这一行是循环里面的」，这个必须看清楚。</p><p>还有一处很重要的不同：np.write() 跑到了循环<b>外面</b>。为什么？因为十颗颜色都填好了，一次性送出去就够了，不用送十次。</p><p>好，动手改。十颗全绿的组举手。</p></div>
+</section>
+
+<section class="slide lay-divider" data-title="课间休息">
+<div class="deco circle" style="width:200px;height:200px;top:-70px;right:180px"></div>
+<div class="deco square" style="width:130px;height:130px;left:-50px;bottom:70px;transform:rotate(12deg)"></div>
+<div class="deco tri" style="right:140px;bottom:90px;transform:rotate(14deg)"></div>
+<div class="dv">
+  <span class="dv-time">40–50 分</span>
+  <h2 class="dv-t">课间休息 10 分钟</h2>
+  <p class="dv-s">灯带别关——各组留着亮，互相去看看别人做的颜色</p>
+</div>
+<div class="notes"><p>上半场到这里。下课十分钟。</p><p>有一个要求：<b>灯带别关</b>，程序留着跑。各组把桌子上的灯带亮着，休息的时候到别的组去看一看——看看人家用的什么颜色，跟你的有什么不一样。</p><p>回来我们做下半场，让这排灯<b>动起来</b>。</p></div>
+</section>
+
+<section class="slide lay-codefull" data-title="第③步 流水灯">
+<div class="phead"><span class="no">第9课</span>
+<span class="kick a">第③步</span>
+<span class="tslot">50–62 分</span>
+</div>
+<h2 class="ptitle">加延时做动画：流水灯</h2>
+<div class="pbody"><div class="askline">接着上一步问：「请让灯一颗一颗按顺序亮起来，像流水一样跑过去，每颗之间停顿 0.1 秒，跑完再从头开始。<b>约束不变</b>。」</div><div class="code"><span class="lab g">第③步 · 完整可运行参考代码（流水灯）</span><pre style="font-size:21px"><span class="k">from</span> machine <span class="k">import</span> Pin              <span class="c"># 引脚工具</span>
+<span class="k">import</span> neopixel                      <span class="c"># 灯带工具箱</span>
+<span class="k">import</span> time                          <span class="c"># 时间工具</span>
+
+NUM = 10                             <span class="c"># 灯珠数量</span>
+np = neopixel.NeoPixel(Pin(5), NUM)  <span class="c"># 数据脚 GPIO5，管 10 颗灯</span>
+
+<span class="k">while</span> <span class="k">True</span>:                          <span class="c"># 一直重复</span>
+    <span class="k">for</span> i <span class="k">in</span> <span class="k">range</span>(NUM):             <span class="c"># i 从 0 数到 9</span>
+        np[i] = (0, 80, 0)           <span class="c"># 给第 i 颗填上绿色(R,G,B)</span>
+        np.write()                   <span class="c"># 把颜色送给灯带</span>
+        time.sleep(0.1)              <span class="c"># 停 0.1 秒</span>
+        np[i] = (0, 0, 0)            <span class="c"># 熄灭第 i 颗</span>
+        np.write()                   <span class="c"># 再送一次，光就跑起来</span></pre></div></div>
+<div class="notes"><p>第③步，也是今天的目标。提问还是一句话，重点在<b>每颗停顿 0.1 秒</b>和<b>跑完再从头开始</b>这两个要求。</p><p>这段比第②步多了三样东西：import time、time.sleep，还有把灯<b>熄灭</b>的那两行。</p><p>我们一起读循环里面这五行。给第 i 颗填绿色，送出去，停 0.1 秒，把第 i 颗熄灭，再送一次。然后 i 加一，进下一轮。</p><p>关键在哪？关键是<b>熄灭</b>。如果不熄灭会怎么样？灯会一颗一颗留在那儿，最后整排全绿——那叫「填满」，也挺好看，但不是流水。</p><p>外面还套了一个 while True，意思是一直重复，跑完最后一颗就从头再来。</p><p>现在把这段跑起来。跑通了先别急着改颜色，先盯着灯带看十秒钟，想清楚这道光为什么会「跑」。</p></div>
+</section>
+
+<section class="slide lay-translate" data-title="核心代码逐行翻译">
+<div class="phead"><span class="no">第9课</span>
+<span class="kick g">逐行翻译</span>
+<span class="tslot">50–62 分</span>
+</div>
+<h2 class="ptitle">核心代码逐行翻译</h2>
+<div class="pbody"><div class="blk grow" style="padding:10px 24px"><div class="tr-row"><div class="cd">np = neopixel.NeoPixel(Pin(5), 10)</div><div class="eq">=</div><div class="pl">请一位灯带管家：数据线在 5 号脚，管 10 颗灯</div></div><div class="tr-row"><div class="cd">for i in range(10):</div><div class="eq">=</div><div class="pl">重复 10 次，i 从 0 数到 9——「现在轮到第几颗」</div></div><div class="tr-row"><div class="cd">np[i] = (0, 80, 0)</div><div class="eq">=</div><div class="pl">给第 i 颗填上绿色（红0 · 绿80 · 蓝0）</div></div><div class="tr-row"><div class="cd">np.write()</div><div class="eq">=</div><div class="pl">把颜色真正送到灯带——<b>必须有</b>，AI 最容易忘</div></div><div class="tr-row"><div class="cd">time.sleep(0.1)</div><div class="eq">=</div><div class="pl">停 0.1 秒——动画的节奏</div></div><div class="tr-row"><div class="cd">np[i] = (0, 0, 0)</div><div class="eq">=</div><div class="pl">把第 i 颗熄灭，光才会「跑」起来</div></div></div></div>
+<div class="notes"><p>我们把每一行都翻译成人话，这样你才算真的读懂，而不是抄下来。</p><p>第一行，请一位<b>灯带管家</b>：数据线在 5 号脚，手底下管十颗灯。</p><p>第二行，重复十次，i 就是「现在轮到第几颗」。</p><p>第三行，给第 i 颗填绿色，三个数字是红、绿、蓝。</p><p>第四行最重要，np.write()，把颜色真正送到灯带。这一行<b>必须有</b>，也是 AI 最容易忘的一行——待会儿你们就会见到它忘一次。</p><p>第五行，停 0.1 秒，这是动画的<b>节奏</b>。</p><p>第六行，把刚才那颗熄灭，光才会跑。</p><p>谁能用自己的话，把这六行连起来讲一遍？讲得出来，才是真懂了。</p></div>
+</section>
+
+<section class="slide lay-beads" data-title="难点：i 是什么">
+<div class="phead"><span class="no">第9课</span>
+<span class="kick c">本课难点</span>
+<span class="tslot">50–62 分</span>
+</div>
+<h2 class="ptitle">i 到底是什么？</h2>
+<p class="psub">循环变量 i——每一轮都在变</p>
+<div class="pbody">
+  <div class="beads"><div class="bead">0</div><div class="bead">1</div><div class="bead">2</div><div class="bead on">3</div><div class="bead">4</div><div class="bead">5</div><div class="bead">6</div><div class="bead">7</div><div class="bead">8</div><div class="bead">9</div></div>
+  <p class="beads-cap">↑ 此刻 i = 3：「现在轮到第 3 颗」，下一轮自动 +1</p>
+  <div class="g2 grow" style="margin-top:24px"><div class="blk g"><h4>i 是循环的计数器</h4><p>for i in range(10) 让 i 从 0 走到 9，每一轮 +1，正好对上灯珠编号——所以 np[i] 每轮点的是不同的灯。</p></div><div class="blk a"><h4>动画公式</h4><p>改一点 ＋ 停一下（sleep）＋ 再改一点 ＝ 会动的光。10 颗灯一瞬间全亮看不出顺序，停一停才看得见「跑」。</p></div></div>
+</div>
+<div class="notes"><p>今天最容易卡住的就是这个 i。很多同学会问：i 是什么？它是个数字吗？</p><p>它是一个<b>会变</b>的数字。上面这排格子就是十颗灯珠，现在绿色的是第 3 颗，说明此刻 i 等于 3。下一轮呢？i 自动加一，绿色就跳到第 4 颗。</p><p>所以 i 的意思只有一个：<b>现在轮到第几颗</b>。</p><p>第二件事，动画是怎么来的。如果十颗灯一瞬间全亮，你看得出顺序吗？看不出，你只会觉得「啪」一下全亮了。</p><p>但如果亮一颗、<b>停一下</b>、再亮下一颗，你的眼睛就看到一道光在跑。</p><p>所以记住这个公式：改一点，停一下，再改一点，就等于会动的光。你们待会儿把 sleep 的 0.1 改成 0.5 试试，光会跑得慢很多；改成 0.01，又会快到看不清。</p></div>
+</section>
+
+<section class="slide lay-aierror" data-title="AI 出错时刻">
+<div class="phead"><span class="no">第9课</span>
+<span class="kick c">AI 出错时刻</span>
+<span class="tslot">62–72 分</span>
+</div>
+<h2 class="ptitle">灯怎么一颗都不亮？</h2>
+<p class="psub">实习程序员交活了——你验收了吗？</p>
+<div class="pbody">
+  <div class="aegrid grow">
+    <div class="code"><span class="lab c">AI 给的代码</span><pre style="font-size:27px"><span class="k">for</span> i <span class="k">in</span> <span class="k">range</span>(10):
+    np[i] = (80, 0, 0)
+
+<span class="c"># 运行了，没报错——</span>
+<span class="c"># 可灯带一片漆黑！</span></pre></div>
+    <div class="aecol">
+      <div class="blk c"><h4>病因</h4><p>颜色只是「填了表」，没有「寄出去」——少了一行 np.write()</p></div>
+      <div class="blk g"><h4>追问话术（别急着重问）</h4><p>「灯全都不亮，是不是少了把颜色送到灯带的那一步？请检查并补上。」</p></div>
+    </div>
+  </div>
+  <div style="margin-top:22px"><div class="strip a">验收三查：① 能跑吗　② 效果对吗　③ 有没有看不懂的魔法</div></div>
+</div>
+<div class="notes"><p>都做得差不多了，停一下，看屏幕。这段代码是 AI 很常见的一个回答。我把它传到板子上——运行了，<b>不报错</b>，一行红字都没有。</p><p>但是灯带呢？一片漆黑。</p><p>这就是本阶段最重要的一件事：AI 是我们的<b>实习程序员</b>，实习生把活儿交上来，不报错不等于做对了。别急着重新提问，先做<b>验收三查</b>：第一，能跑吗？能跑。第二，效果对吗？不对。第三，有没有看不懂的魔法？暂时没有。</p><p>问题出在第二条，那就追问，不要重开一轮。这么说：「灯全都不亮，是不是少了把颜色送到灯带的那一步？请检查并补上。」</p><p>AI 自己就认错了：少了 np.write()。</p><p>记住这句话——给灯填颜色只是<b>填了表</b>，np.write() 才是<b>把表寄出去</b>。AI 也会忘记寄。所以验收，永远是我们自己的活儿。</p></div>
+</section>
+
+<section class="slide lay-tiers3" data-title="分层任务">
+<div class="phead"><span class="no">第9课</span>
+<span class="kick g">分层任务</span>
+<span class="tslot">72–82 分</span>
+</div>
+<h2 class="ptitle">先保底，再挑战</h2>
+<p class="psub">做完基础就算成功——进阶和挑战是给学有余力的同学</p>
+<div class="pbody"><div class="g3 grow"><div class="blk tier t1"><div class="hd">★ 基础（必做）</div>
+        <p class="task">用 for 循环让 10 颗灯全部亮成同一种颜色。</p><p class="fill">填：我让灯带亮成了 ____ 色　□ 我是用 for 循环做的，不是写 10 遍</p></div><div class="blk tier t2"><div class="hd">★★ 进阶（建议做）</div>
+        <p class="task">做一个流水灯：灯一颗一颗按顺序亮过去。</p><p class="fill">□ 我看到一道光在「跑」　我把停顿改成 ____ 秒，光跑得更 ____</p></div><div class="blk tier t3"><div class="hd">★★★ 挑战（学有余力）</div>
+        <p class="task">做彩虹色（每颗不同色），或者来回双向流水。</p><p class="fill">填：我做出的效果是 ________　我问 AI 的新问题是 ________</p></div></div>
+<div style="margin-top:22px"><div class="strip g">困难组保底：整条灯带一起渐亮渐暗的「呼吸」效果，也算达标</div></div></div>
+<div class="notes"><p>任务分三档，看清楚：<b>基础是必做的，做完就算这节课成功了。</b></p><p>基础档：用 for 循环，让十颗灯全亮成同一种颜色。注意那个小方框——我要你勾一下「我是用 for 循环做的，不是写 10 遍」。写十遍也能亮，但那不算完成今天的任务。</p><p>进阶档：流水灯，一道光跑过去。做出来之后玩一下那个停顿时间，改成 0.5 秒、改成 0.01 秒，看看有什么不一样，填在卡片上。</p><p>挑战档：彩虹色，每颗灯不一样；或者来回双向流水，跑到头再跑回来。这一档你得自己去问 AI，问完记得把你问的问题写下来。</p><p>如果哪个组卡住了，别硬扛，举手。实在赶不上流水灯，就做整条灯带一起慢慢亮、慢慢暗的呼吸效果，那也<b>算达标</b>。</p><p>现在开始，十分钟。</p></div>
+</section>
+
+<section class="slide lay-rowlist" data-title="今日三大发现">
+<div class="phead"><span class="no">第9课</span>
+<span class="kick g">总结</span>
+<span class="tslot">82–90 分</span>
+</div>
+<h2 class="ptitle">今日三大发现</h2>
+<div class="pbody"><div class="rowlist grow"><div class="rowitem"><div class="num g">1</div><div class="tx">for 循环：写一遍，计算机替我重复十遍</div></div><div class="rowitem"><div class="num a">2</div><div class="tx">循环变量 i 每一轮都在变，正好对上「第几颗」</div></div><div class="rowitem"><div class="num c">3</div><div class="tx">循环 ＋ 延时 ＝ 会动的效果</div></div></div><div style="margin-top:20px"><div class="strip a">下节课《需求文档大挑战》：三句话分三步才说清楚一个流水灯——怎么让 AI <b>一遍做对</b>？</div></div></div>
+<div class="notes"><p>停一下手上的活，一起看屏幕。今天三个发现，我念上半句，你们接下半句。</p><p>第一个，for 循环：写一遍，计算机替我——重复十遍。这就是刚才那个「懒」的智慧。</p><p>第二个，循环变量 i 每一轮都在变，正好对上——第几颗。</p><p>第三个，也是最好玩的：循环加延时，等于——会动的效果。这个公式以后你做任何动画都用得上。</p><p>然后我要留个问题给你们。今天这个流水灯，我们是分了<b>三步</b>、问了三次，才让 AI 做对的。</p><p>那能不能一次说清楚，让它一遍就做对？</p><p>能。但你得学会把话说全、说准，那个东西叫<b>需求文档</b>。下节课《需求文档大挑战》，我们就干这个。</p><p>各组开始展示，每组三十秒，说一句你做出了什么效果。</p></div>
+</section>
+
+<section class="slide lay-cards2" data-title="课后任务">
+<div class="phead"><span class="no">第9课</span>
+<span class="kick a">课后任务</span>
+</div>
+<h2 class="ptitle">课后任务</h2>
+<div class="pbody"><div class="g2 grow"><div class="blk g"><h4>基础（全员）</h4><p>向家人解释「for 循环」是什么，举一个生活里「重复做同一件事」的例子——比如发 30 份一样的通知、给一排座位贴号码。</p></div><div class="blk a"><h4>拓展（选做）</h4><p>问 AI：能不能让光先从左跑到右，再从右跑回左，来回流动？试着改一改 for 循环的方向。</p></div></div>
+<div style="margin-top:24px"><div class="strip g">能说清楚「为什么用循环比写 10 遍好」，才是真的懂了</div></div></div>
+<div class="notes"><p>课后两件事。</p><p>第一件全员都要做：回家找一个人——爸爸妈妈、爷爷奶奶都行——用你自己的话，给他讲明白什么是 for 循环。然后举一个生活里的例子，不许用灯。比如老师要发三十份一样的通知，比如给一排座位贴号码。</p><p>为什么要讲给别人听？因为你能讲明白，才说明你真的懂了；讲不明白，就是还没懂。</p><p>第二件是选做的：去问 AI，能不能让光先从左跑到右，再从右跑回左，来回流动。提示一下，你要改的是 for 循环<b>数数的方向</b>。做出来了下节课带给我看。</p><p>最后这句话记住：能说清楚「为什么用循环比写十遍好」，才是真的懂了。</p><p>下课。</p></div>
+</section>
+<div class="deck-footer"><span>ESP32 × AI 科创课程 · 第二阶段「指挥AI」 · 第9课 彩虹灯带</span><span class="slide-number" data-current="1" data-total="17"></span></div>
+<div class="progress-bar"><span></span></div>
+</div>
+<script src="assets/fitstage.js"></script>
+<script src="assets/runtime.js"></script>
+</body>
+</html>

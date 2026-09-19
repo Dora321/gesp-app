@@ -1,0 +1,271 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>第10课 · 需求文档大挑战 — ESP32 × AI 科创课程</title>
+<link rel="stylesheet" href="assets/base.css">
+<link rel="stylesheet" id="theme-link" href="assets/theme-course-pop.css">
+<link rel="stylesheet" href="assets/animations.css">
+</head>
+<body>
+<div class="deck" data-theme-base="assets/">
+<section class="slide lay-cover is-active" data-title="封面">
+<div class="deco circle" style="width:170px;height:170px;top:-52px;right:238px"></div>
+<div class="deco tri" style="right:110px;bottom:132px;transform:rotate(14deg)"></div>
+<div class="deco square" style="width:120px;height:120px;left:-46px;bottom:86px;transform:rotate(12deg)"></div>
+<span class="cv-bar">ESP32 × AI ／ 第二阶段「指挥AI」收官</span>
+<h1 class="cv-title">需求文档<em>大挑战</em></h1>
+<p class="cv-sub">把想法写清楚，让 AI 一遍做对</p>
+<div class="cv-tags"><span class="tag">ESP32</span><span class="tag">MicroPython</span><span class="tag">DeepSeek</span><span class="tag">90 分钟连堂</span></div>
+<div class="cv-no">10</div>
+<div class="notes"><p>上节课我们做出了流水灯。但你们还记得我最后留的那个问题吗？</p><p>今天这个流水灯，我们是分了三步、问了三次，才让 AI 做对的。那能不能<b>一次说清楚</b>，让它一遍就做对？</p><p>今天这节课就干这个。而且今天有一条新规矩，先说在前面：<b>不许一上来就敲代码</b>。</p><p>我会给你们一个项目想法，但不给代码。你们要做的第一件事不是打开 DeepSeek，是拿起笔，把这个想法<b>写成一份需求文档</b>。</p><p>这是第二阶段的最后一课。前面你们学会了提问、学会了拆步骤、学会了验收——今天把它们合起来，打一场大挑战。</p></div>
+</section>
+
+<section class="slide lay-cards3" data-title="上节课回顾">
+<div class="phead"><span class="no">第10课</span>
+<span class="kick g">回顾</span>
+<span class="tslot">0–10 分</span>
+</div>
+<h2 class="ptitle">上节课回顾</h2>
+<p class="psub">第9课《彩虹灯带》我们学会了……</p>
+<div class="pbody"><div class="g3 grow"><div class="blk g"><h4>for 循环</h4><p>写一遍，计算机替我重复十遍</p></div><div class="blk a"><h4>循环变量 i</h4><p>每一轮都在变，正好对上「第几颗」</p></div><div class="blk c"><h4>循环 ＋ 延时</h4><p>＝ 会动的效果——动画的秘密</p></div></div><div style="margin-top:22px"><div class="strip ">上节课留下的问题：三句话分三步才说清一个流水灯——更复杂的作品，怎么一次说清？</div></div></div>
+<div class="notes"><p>先把上节课捡回来。三个发现，谁来接？</p><p>第一个，for 循环——写一遍，计算机替我重复十遍。</p><p>第二个，循环变量 i——每一轮都在变，正好对上第几颗。</p><p>第三个，循环加延时，等于——会动的效果。</p><p>好。那我把上节课最后留的问题再问一遍：我们做一个流水灯，是分了<b>三步</b>、问了<b>三次</b>才做对的。</p><p>如果作品更复杂呢？按钮、灯、蜂鸣器三样一起，你要问几次？十次？二十次？每次都得重新解释一遍硬件、一遍接线？</p><p>有没有办法，<b>一次就说清楚</b>？</p><p>有。今天就学这个办法。</p></div>
+</section>
+
+<section class="slide lay-cards3" data-title="大挑战发布">
+<div class="phead"><span class="no">第10课</span>
+<span class="kick c">大挑战</span>
+<span class="tslot">0–10 分</span>
+</div>
+<h2 class="ptitle">今天的挑战：一键抢答器</h2>
+<p class="psub">按下按钮 → 灯亮 ＋ 响一声</p>
+<div class="pbody"><div class="g3 grow"><div class="blk g"><h4>我只给想法</h4><p>做一个「抢答器」：按下按钮，灯亮、蜂鸣器响一下。就这一句话。</p></div><div class="blk a"><h4>今天不给代码</h4><p>前九节课我都给起步代码。今天不给——代码要你们自己指挥 AI 写出来。</p></div><div class="blk c"><h4>也不许先敲代码</h4><p>第一件事不是打开 DeepSeek，是<b>写需求文档</b>。先交文档，再动代码。</p></div></div><div style="margin-top:22px"><div class="strip a">本课规则：<b>先文档，后代码</b>——文档就是今天的评价重点</div></div></div>
+<div class="notes"><p>前面几节课，我们学会了向 AI 提问、拆需求、用循环。今天来一场大挑战。</p><p>我给你们一个想法——做一个<b>抢答器</b>：按下按钮，灯亮、蜂鸣器响一下。</p><p>就这一句话。我不给你们代码。</p><p>而且这次还有一条更狠的规矩：<b>也不许你们一上来就敲代码</b>。</p><p>第一件事是什么？是把这个想法，写成一份<b>需求文档</b>。</p><p>我知道有同学手已经痒了，想打开 DeepSeek 直接问。忍住。今天这节课，文档比代码重要——文档是我打分的重点。</p><p>先文档，后代码。这八个字，今天一直挂在屏幕上。</p></div>
+</section>
+
+<section class="slide lay-cards3" data-title="新概念 需求文档">
+<div class="phead"><span class="no">第10课</span>
+<span class="kick a">新概念</span>
+<span class="tslot">10–22 分</span>
+</div>
+<h2 class="ptitle">什么是需求文档？</h2>
+<p class="psub">把「我到底想要什么」写清楚的说明书</p>
+<div class="pbody"><div class="g3 grow"><div class="blk g"><h4>泡茶类比</h4><p>教一个完全不会泡茶的人：不能只说「泡杯茶」，得说「先烧水、再放茶叶、倒水、等三分钟」。</p></div><div class="blk a"><h4>需求文档 ＝ 五要素</h4><p>语言 · 硬件 · 接线 · 效果 · 约束——和提问五要素是同一套，写下来就是文档。</p></div><div class="blk c"><h4>＋ 功能步骤清单</h4><p>把效果拆成 ①②③④ 的小步，每一步都「问得到、做得到」。</p></div></div><div style="margin-top:22px"><div class="strip g">文档即指挥：一份写清楚的需求文档，就是指挥 AI 的<b>作战地图</b></div></div></div>
+<div class="notes"><p>什么叫需求文档？就是把「我到底想要什么」写清楚的说明书。</p><p>我打个比方。想象你要教一个<b>完全不会泡茶</b>的人泡茶。你不能只说「泡杯茶」——他站在那儿，一动不敢动，因为他不知道从哪下手。</p><p>你得说：先烧水、再放茶叶、把水倒进去、等三分钟。一步都不能少。</p><p>指挥 AI 也一样。你说得越清楚，它做得越对。</p><p>那需求文档里写什么？两部分。第一部分你们已经很熟了——<b>五要素</b>：语言、硬件、接线、效果、约束。以前是嘴上问，今天把它<b>写下来</b>，写下来就是文档。</p><p>第二部分是新的：<b>功能步骤清单</b>。把「效果」那一条拆成①②③④的小步。</p><p>这两样合起来，就是你指挥 AI 的作战地图。</p></div>
+</section>
+
+<section class="slide lay-vstext" data-title="好需求 vs 坏需求">
+<div class="phead"><span class="no">第10课</span>
+<span class="kick c">对比</span>
+<span class="tslot">10–22 分</span>
+</div>
+<h2 class="ptitle">好需求 vs 坏需求</h2>
+<p class="psub">同一个抢答器，两种写法，AI 的反应天差地别</p>
+<div class="pbody">
+  <div class="vs3 grow">
+    <div class="blk c vstx"><span class="tag c">坏需求（太模糊）</span><p class="q">「做个抢答器。」</p><p class="why">AI 不知道：用什么硬件？接哪个脚？按下读到几？灯怎么亮？响多久？只能猜——猜错了怪谁？</p></div>
+    <div class="vsmark">VS</div>
+    <div class="blk g vstx"><span class="tag g">好需求（写清事实 ＋ 拆成步骤）</span><p class="q">「按钮 GPIO14（PULL_UP，按下＝0）被按下时，点亮 GPIO2 的灯，蜂鸣器响 0.2 秒，松开复位。」</p><p class="why">每个事实都有了，AI 不用猜。</p></div>
+  </div>
+  <div style="margin-top:20px"><div class="strip ">「做个抢答器」五个字，AI 没法下手——<b>模糊的需求，换来乱猜的代码</b></div></div>
+</div>
+<div class="notes"><p>看左边这一句：「做个抢答器。」</p><p>五个字，你觉得说清楚了吗？我们站在 AI 的角度想一想，它会有多少个问题：用什么硬件？按钮接哪个脚？按下读到的是 0 还是 1？灯接哪儿？怎么算「亮」？响多久算一声？松开之后呢？</p><p>七八个问题，它一个都不知道。它只能<b>猜</b>。猜错了，代码就是错的——这能怪 AI 吗？</p><p>再看右边。同一个抢答器，换一种写法：按钮 GPIO14，上拉，按下等于 0；按下时点亮 GPIO2 的灯；蜂鸣器响 0.2 秒；松开复位。</p><p>每一个事实都写清楚了，AI 一个都不用猜。</p><p>所以今天这节课最重要的一句话，我先说一遍，待会儿还要再说一遍：<b>AI 猜错，多半是我们没说清。</b></p></div>
+</section>
+
+<section class="slide lay-rowlist" data-title="动手要点">
+<div class="phead"><span class="no">第10课</span>
+<span class="kick a">动手前必读</span>
+<span class="tslot">22–40 分</span>
+</div>
+<h2 class="ptitle">五步通关</h2>
+<p class="psub">照着做，先文档后代码</p>
+<div class="pbody"><div class="rowlist grow"><div class="rowitem"><div class="num g">1</div><div class="tx">先拔 USB 接三样：按钮 → GPIO14、LED → GPIO2、蜂鸣器 → GPIO13</div></div><div class="rowitem"><div class="num a">2</div><div class="tx">填需求文档：五要素写全，「按下＝0」一定要写进接线栏</div></div><div class="rowitem"><div class="num c">3</div><div class="tx">拆步骤清单：① 读按钮 ② 亮灯 ③ 响一声 ④ 松开复位</div></div><div class="rowitem"><div class="num g">4</div><div class="tx">跑起步全码看串口：按下印 0 了吗？再照单一条一条问 AI</div></div><div class="rowitem"><div class="num a">5</div><div class="tx">效果不对先查文档：是不是漏写了哪个事实？</div></div></div><div style="margin-top:20px"><div class="strip ">各模块 VCC → 3.3V、GND → GND；接线前先拔 USB——不湿手碰、不短接、不带电插拔</div></div></div>
+<div class="notes"><p>动手之前，这五步念一遍。</p><p>第一，<b>先拔 USB</b> 再接线，今天要接三样：按钮接 GPIO14，LED 接 GPIO2，蜂鸣器接 GPIO13。每个模块的 VCC 接 3.3V，GND 接 GND。三不碰照旧。</p><p>第二，拿出附录D 那张需求文档模板，五要素填全。我特别提醒一句：接线那一栏，除了写引脚号，<b>一定要写上「按下＝0」</b>。为什么？待会儿你就知道了。</p><p>第三，拆步骤清单，①②③④。</p><p>第四，先跑起步全码，看串口——按下去打印的是 0 吗？确认了再照着清单问 AI。</p><p>第五，也是今天最关键的：<b>效果不对，先回头查文档</b>，别急着骂 AI。</p><p>现在开始接线，接好了填文档。我巡视。</p></div>
+</section>
+
+<section class="slide lay-reqdoc" data-title="需求文档范例">
+<div class="phead"><span class="no">第10课</span>
+<span class="kick g">任务一</span>
+<span class="tslot">22–40 分</span>
+</div>
+<h2 class="ptitle">需求文档范例：一键抢答器</h2>
+<p class="psub">照这个格式，把你们组的文档填满</p>
+<div class="pbody">
+  <div class="rdgrid grow">
+    <div class="blk a"><h4>五要素</h4><div class="fivelist"><div class="fv"><span class="fk">语言</span><span class="fw">MicroPython</span></div><div class="fv"><span class="fk">硬件</span><span class="fw">ESP32；按钮、LED、蜂鸣器各一个</span></div><div class="fv"><span class="fk">接线</span><span class="fw">按钮 → GPIO14（PULL_UP，<b>按下读 0</b>）；LED → GPIO2；蜂鸣器 → GPIO13</span></div><div class="fv"><span class="fk">效果</span><span class="fw">按下按钮的瞬间：LED 亮起、蜂鸣器响一声（约 0.2 秒）</span></div><div class="fv"><span class="fk">约束</span><span class="fw">松开后 LED 熄灭、蜂鸣器不响，回到等待；只用学过的写法，代码带中文注释</span></div></div></div>
+    <div class="blk g"><h4>功能步骤清单</h4><div class="sqlist"><div class="sq"><span class="sn">①</span><span class="st">读按钮，判断有没有被按下</span></div><div class="sq"><span class="sn">②</span><span class="st">按下时点亮 GPIO2 的 LED</span></div><div class="sq"><span class="sn">③</span><span class="st">同时让 GPIO13 的蜂鸣器响约 0.2 秒</span></div><div class="sq"><span class="sn">④</span><span class="st">松开时熄灭 LED、停止蜂鸣，回到等待</span></div><div class="sq"><span class="sn">⑤</span><span class="st">用 while 循环一直重复</span></div></div></div>
+  </div>
+  <div style="margin-top:20px"><div class="strip g">效果要写<b>具体</b>：什么时候、发生什么、持续多久——三样都得有</div></div>
+</div>
+<div class="notes"><p>这是一份填好的范例，你们照着这个格式填自己的。</p><p>左边五要素。前三条很快能填完。我重点讲两条。</p><p><b>接线</b>那一栏，注意括号里那句——「PULL_UP，按下读 0」。这不是引脚号，这是一个<b>事实</b>。这个事实不写进去，AI 就不知道，只能猜。记住它，待会儿要考。</p><p><b>效果</b>那一栏，是最容易写糊的。我巡视的时候看到好几组写「按下按钮灯亮」——太糊了。什么时候？按下的<b>瞬间</b>。发生什么？LED 亮起、蜂鸣器响。持续多久？<b>约 0.2 秒</b>。</p><p>什么时候、发生什么、持续多久——这三样都得有，缺一样 AI 就得猜。</p><p>右边是功能步骤清单，五条。这是下半场的活儿，先看一眼，心里有个数。</p><p>现在填你们自己的，十分钟。</p></div>
+</section>
+
+<section class="slide lay-divider" data-title="课间休息">
+<div class="deco circle" style="width:200px;height:200px;top:-70px;right:180px"></div>
+<div class="deco square" style="width:130px;height:130px;left:-50px;bottom:70px;transform:rotate(12deg)"></div>
+<div class="deco tri" style="right:140px;bottom:90px;transform:rotate(14deg)"></div>
+<div class="dv">
+  <span class="dv-time">40–50 分</span>
+  <h2 class="dv-t">课间休息 10 分钟</h2>
+  <p class="dv-s">各组互换需求文档——读读对方写清楚了没有</p>
+</div>
+<div class="notes"><p>上半场到这儿。下课十分钟。</p><p>休息之前有个活儿：各组把自己的需求文档，跟旁边那组<b>换一换</b>。</p><p>你读对方的，站在 AI 的角度读：如果我是 AI，看完这份文档，我还有没有不知道的事？还需不需要猜？</p><p>有的话，用铅笔在旁边打个问号。回来还给人家。</p><p>这比我一个人挨组看快多了，而且你读别人的，最容易看出自己漏了什么。</p></div>
+</section>
+
+<section class="slide lay-rowlist" data-title="拆步骤">
+<div class="phead"><span class="no">第10课</span>
+<span class="kick g">任务二</span>
+<span class="tslot">50–60 分</span>
+</div>
+<h2 class="ptitle">把大想法拆成小步</h2>
+<p class="psub">「做个抢答器」——太大，AI 没法下手</p>
+<div class="pbody"><div class="rowlist grow"><div class="rowitem"><div class="num g">1</div><div class="tx">读按钮，判断有没有被按下</div></div><div class="rowitem"><div class="num a">2</div><div class="tx">按下时点亮 GPIO2 的 LED</div></div><div class="rowitem"><div class="num c">3</div><div class="tx">同时让 GPIO13 的蜂鸣器响约 0.2 秒</div></div><div class="rowitem"><div class="num g">4</div><div class="tx">松开时熄灭 LED、停止蜂鸣，回到等待</div></div><div class="rowitem"><div class="num a">5</div><div class="tx">用 while 循环一直重复</div></div></div><div style="margin-top:20px"><div class="strip ">检验标准：每一小步都要「<b>问得到、做得到、验得了</b>」——一步跑通，再问下一步</div></div></div>
+<div class="notes"><p>下半场第一件事：拆步骤。这是今天最难的一关，我们一起拆。</p><p>「做个抢答器」这五个字，AI 不知道从哪下手。我们把它拆开——我问，你们答。</p><p>第一步，要让程序知道什么？对，<b>怎么知道按钮被按了</b>。</p><p>第二步，知道被按了以后呢？点亮 GPIO2 的灯。</p><p>第三步，光亮灯够吗？还要响——蜂鸣器响 0.2 秒。</p><p>第四步，一直亮着行不行？不行，<b>松手要复位</b>：灭灯、停响，回到等待。</p><p>第五步，做完一次就结束了吗？不行，要用 while 循环<b>一直重复</b>。</p><p>把一件大事，拆成五件小事。每件事都短得能一句话说清。</p><p>检验标准记住三个词：问得到、做得到、验得了。做不到这三点，说明还得再拆细。</p><p>现在把你们的清单补进文档。</p></div>
+</section>
+
+<section class="slide lay-stepcode" data-title="第①步 读按钮">
+<div class="phead"><span class="no">第10课</span>
+<span class="kick g">第①步</span>
+<span class="tslot">60–74 分</span>
+</div>
+<h2 class="ptitle">读按钮</h2>
+<div class="pbody">
+  <div class="scstack">
+    <div class="fiverow"><div class="fvc"><span class="fk">语言</span><span class="fw">MicroPython</span></div><div class="fvc"><span class="fk">硬件</span><span class="fw">ESP32 ＋ 按钮</span></div><div class="fvc"><span class="fk">接线</span><span class="fw">按钮接 GPIO14，上拉</span></div><div class="fvc"><span class="fk">效果</span><span class="fw">判断按钮有没有被按下，把状态打印出来</span></div><div class="fvc"><span class="fk">约束</span><span class="fw">按下读到的是 0</span></div></div>
+    <div class="askline"><b>照清单问第①条：</b>「我用 MicroPython，硬件是 ESP32。按钮接在 GPIO14，用上拉，按下读到的是 0。请用代码判断按钮有没有被按下，把状态打印出来。」</div>
+    <div class="code"><span class="lab g">第①步 · 起步全码（完整可跑）</span><pre style="font-size:24px"><span class="k">from</span> machine <span class="k">import</span> Pin                <span class="c"># 引脚工具</span>
+<span class="k">import</span> time                            <span class="c"># 时间工具</span>
+
+button = Pin(14, Pin.IN, Pin.PULL_UP)  <span class="c"># 按钮：上拉，按下=0</span>
+<span class="k">while</span> <span class="k">True</span>:
+    print(button.value())              <span class="c"># 按下印 0，松开印 1</span>
+    time.sleep(0.2)</pre></div>
+  </div>
+  <div style="margin-top:16px"><div class="strip g">先看<b>串口</b>：按下去印 0、松开印 1——这一步过了，才有资格问第②条</div></div>
+</div>
+<div class="notes"><p>第①步，只做一件事：读按钮。灯和蜂鸣器先不管。</p><p>看提问那一句，里面藏了一个关键：「<b>按下读到的是 0</b>」。这句话不是废话，这是我们从文档里抄过来的<b>事实</b>。不告诉 AI，它就得猜。</p><p>把这段代码跑起来，然后看<b>串口</b>——不是看灯，今天第一步没有灯。</p><p>按下去，串口应该印 0；松开，印 1。</p><p>如果按下去印的是 1、松开印 0，说明你的按钮模块接反了或者没用上拉，举手叫我。</p><p>这一步过了，才有资格问第②条。我还是老规矩：跑通的组举手，我看一眼再放行。</p></div>
+</section>
+
+<section class="slide lay-stepcode" data-title="第②③步 亮灯+响">
+<div class="phead"><span class="no">第10课</span>
+<span class="kick g">第②③步</span>
+<span class="tslot">60–74 分</span>
+</div>
+<h2 class="ptitle">按下亮灯 ＋ 响一声</h2>
+<div class="pbody"><div class="askline"><b>接着上一步问：</b>「现在 LED 接 GPIO2、蜂鸣器接 GPIO13（有源）。请改成：按下按钮时点亮 LED，并让蜂鸣器响约 0.2 秒。」</div><div class="code"><span class="lab g">第②③步 · 起步全码（完整可跑）</span><pre style="font-size:18px"><span class="k">from</span> machine <span class="k">import</span> Pin
+<span class="k">import</span> time
+
+button = Pin(14, Pin.IN, Pin.PULL_UP)  <span class="c"># 和第①步一样</span>
+led = Pin(2, Pin.OUT)                  <span class="c"># LED</span>
+buzzer = Pin(13, Pin.OUT)              <span class="c"># 蜂鸣器</span>
+
+<span class="k">while</span> <span class="k">True</span>:
+    <span class="k">if</span> button.value() == 0:            <span class="c"># 0 = 按下</span>
+        led.value(1)                   <span class="c"># 灯亮</span>
+        buzzer.value(1)                <span class="c"># 开始响</span>
+        time.sleep(0.2)                <span class="c"># 响 0.2 秒</span>
+        buzzer.value(0)                <span class="c"># 停响</span></pre></div><div style="margin-top:18px"><div class="strip g"><code class="ic">if button.value() == 0:</code> 这个 <b>0</b> 就是文档里那句「按下＝0」——写对了，AI 才不会猜反</div></div></div>
+<div class="notes"><p>第②③步一起做，因为它们都发生在「按下的那一瞬间」。</p><p>提问还是那个套路：<b>在刚才的基础上</b>加新硬件、加新效果，约束不变。注意我把「有源」两个字写进去了——蜂鸣器分有源和无源，有源的用 value(1) 就响，无源的得用 PWM。型号不说清，AI 又得猜。</p><p>看代码里这一行：if button.value() == 0。这个 <b>0</b> 从哪来的？从你们文档的接线栏来的，就是那句「按下＝0」。</p><p>写对了，灯就按下亮；写成 1，一会儿你们就会看到什么叫「全反了」。</p><p>还有一点：if 下面那几行<b>往里缩进四个空格</b>，表示「按下的时候才做这些事」。缩进错了，程序就乱了。</p><p>动手，跑通的组举手。</p></div>
+</section>
+
+<section class="slide lay-codefull" data-title="第④⑤步 完整代码">
+<div class="phead"><span class="no">第10课</span>
+<span class="kick a">第④⑤步</span>
+<span class="tslot">60–74 分</span>
+</div>
+<h2 class="ptitle">松开复位 ＋ 一直循环</h2>
+<div class="pbody"><div class="askline">接着上一步问：「请加上：松开按钮后熄灭 LED、停止蜂鸣，并用 while 循环让它一直工作。」</div><div class="code"><span class="lab g">第④⑤步 · 完整可运行参考代码（抢答器）</span><pre style="font-size:19px"><span class="k">from</span> machine <span class="k">import</span> Pin                <span class="c"># 引脚工具</span>
+<span class="k">import</span> time                            <span class="c"># 时间工具</span>
+
+button = Pin(14, Pin.IN, Pin.PULL_UP)  <span class="c"># 按钮：上拉，按下=0</span>
+led = Pin(2, Pin.OUT)                  <span class="c"># LED</span>
+buzzer = Pin(13, Pin.OUT)              <span class="c"># 蜂鸣器</span>
+
+<span class="k">while</span> <span class="k">True</span>:                            <span class="c"># 一直守着</span>
+    <span class="k">if</span> button.value() == 0:            <span class="c"># 读到 0 = 有人按下</span>
+        led.value(1)                   <span class="c"># 灯亮——抢到了</span>
+        buzzer.value(1)                <span class="c"># 响</span>
+        time.sleep(0.2)                <span class="c"># 响 0.2 秒</span>
+        buzzer.value(0)                <span class="c"># 停响</span>
+    <span class="k">else</span>:
+        led.value(0)                   <span class="c"># 松开就灭灯，回到等待</span></pre></div></div>
+<div class="notes"><p>最后两步，一句话就问完了：松开后熄灭、停响，并且用 while 循环一直工作。</p><p>看代码，新东西只有两行：<b>else</b>，还有它下面的 led.value(0)。</p><p>else 是什么意思？「否则」——如果按钮<b>没有</b>被按下，就把灯灭掉。</p><p>有同学会问：那前面不是已经有 while True 了吗？对，while True 是「一直守着」，但守着的时候要分两种情况：按下了怎么办，没按下怎么办。if 管第一种，else 管第二种。</p><p>注意 else 要和 if <b>对齐</b>，它下面那行再往里缩进四格。缩进错了，灯就不灭。</p><p>这就是完整的抢答器了。跑起来试试——按住，灯亮、响一声；松开，灯灭。</p></div>
+</section>
+
+<section class="slide lay-translate" data-title="核心代码逐行翻译">
+<div class="phead"><span class="no">第10课</span>
+<span class="kick g">逐行翻译</span>
+<span class="tslot">60–74 分</span>
+</div>
+<h2 class="ptitle">核心代码逐行翻译</h2>
+<div class="pbody"><div class="blk grow" style="padding:10px 24px"><div class="tr-row"><div class="cd">button = Pin(14, Pin.IN, Pin.PULL_UP)</div><div class="eq">=</div><div class="pl">请按钮管家：14 号脚，上拉规则——按下＝0</div></div><div class="tr-row"><div class="cd">while True:</div><div class="eq">=</div><div class="pl">一直守着，随时准备抢答</div></div><div class="tr-row"><div class="cd">if button.value() == 0:</div><div class="eq">=</div><div class="pl">读到 0 ＝ 有人按下了</div></div><div class="tr-row"><div class="cd">led.value(1)</div><div class="eq">=</div><div class="pl">灯亮——抢到了！</div></div><div class="tr-row"><div class="cd">time.sleep(0.2)</div><div class="eq">=</div><div class="pl">响 0.2 秒——<b>约束里写的时长</b></div></div><div class="tr-row"><div class="cd">led.value(0)</div><div class="eq">=</div><div class="pl">（else 分支）松开就灭灯——复位等待</div></div></div></div>
+<div class="notes"><p>跑通了不等于读懂了，我们把每一行翻译成人话。</p><p>第一行，请一位<b>按钮管家</b>：他在 14 号脚，用上拉规则，所以按下读到的是 0。</p><p>第二行，while True——一直守着，随时准备抢答。</p><p>第三行，读到 0，就是有人按下了。</p><p>第四行，灯亮——抢到了。</p><p>第五行，停 0.2 秒。这个 0.2 是哪来的？不是我拍脑袋定的，是你们<b>文档约束里写的时长</b>。代码里每一个数字，都应该能在文档里找到出处。</p><p>第六行，在 else 分支里，松开就灭灯，回到等待。</p><p>谁能把这六行连起来，用自己的话讲一遍抢答器是怎么工作的？</p></div>
+</section>
+
+<section class="slide lay-aierror" data-title="AI 出错时刻">
+<div class="phead"><span class="no">第10课</span>
+<span class="kick c">AI 出错时刻</span>
+<span class="tslot">74–82 分</span>
+</div>
+<h2 class="ptitle">灯怎么反着亮？</h2>
+<p class="psub">一上电常亮，一按反而灭——效果全反了</p>
+<div class="pbody">
+  <div class="aegrid grow">
+    <div class="code"><span class="lab c">AI 给的代码</span><pre style="font-size:27px"><span class="k">while</span> <span class="k">True</span>:
+    <span class="k">if</span> button.value() == 1:
+        led.value(1)
+
+<span class="c"># 一上电灯就常亮</span>
+<span class="c"># 一按按钮反而灭——全反了！</span></pre></div>
+    <div class="aecol">
+      <div class="blk c"><h4>病因</h4><p>文档接线栏只写了「按钮接 GPIO14」，没写「<b>按下读到的是 0</b>」——AI 不知道这个事实，只能猜，猜成了 ==1</p></div>
+      <div class="blk g"><h4>补一句约束再问</h4><p>「按钮用 PULL_UP，按下＝0。请按这个事实检查并改正判断条件。」</p></div>
+    </div>
+  </div>
+  <div style="margin-top:22px"><div class="strip a">验收三查：① 能跑吗　② 效果对吗　③ 有没有看不懂的魔法</div></div>
+</div>
+<div class="notes"><p>我看到好几组举手说「老师，灯反了」——一上电灯就常亮，一按按钮反而灭。</p><p>停一下，全班看屏幕。<b>先别骂 AI。</b></p><p>验收三查：能跑吗？能跑，不报错。效果对吗？<b>不对，全反了</b>。有没有看不懂的魔法？没有。</p><p>问题出在第二条。那我们回头看——看哪儿？不是看代码，是<b>看我们自己的文档</b>。</p><p>接线栏里，你写了「按钮接 GPIO14」，对不对？那你写没写「<b>按下读到的是 0</b>」？</p><p>（停一下，让他们翻文档）</p><p>没写。所以 AI 不知道这个事实，它只能猜。它猜按下是 1——在别的板子上这么猜也不算错，但在我们这块上是反的。</p><p>怎么办？不用重开一轮，在文档里补一句约束，再问一次：「按钮用 PULL_UP，按下＝0，请按这个事实检查并改正。」</p><p>看，它自己改对了。</p><p>记住今天这句话——<b>AI 猜错，多半是我们没说清。</b></p></div>
+</section>
+
+<section class="slide lay-tiers3" data-title="分层任务">
+<div class="phead"><span class="no">第10课</span>
+<span class="kick g">分层任务</span>
+<span class="tslot">74–82 分</span>
+</div>
+<h2 class="ptitle">先保底，再挑战</h2>
+<p class="psub">文档合格 ＋ 按下灯亮，这节课就算成功</p>
+<div class="pbody"><div class="g3 grow"><div class="blk tier t1"><div class="hd">★ 基础（必做）</div>
+        <p class="task">写出合格需求文档（五要素全 ＋ 清单 3 步以上），照清单实现第①步：按下按钮，灯亮。</p><p class="fill">我的项目名：________　□ 文档交了　□ 按下灯亮了</p></div><div class="blk tier t2"><div class="hd">★★ 进阶（建议做）</div>
+        <p class="task">加上第②③④步：按下时蜂鸣器响 0.2 秒；松开后灯灭、不响，回到等待。</p><p class="fill">□ 响了　□ 松开复位了</p></div><div class="blk tier t3"><div class="hd">★★★ 挑战（学有余力）</div>
+        <p class="task">给抢答器升级一个新需求（如：抢到后锁定，3 秒后才能再抢）。</p><p class="fill">我新增的需求是：________　□ 文档先改的，代码后改的</p></div></div>
+<div style="margin-top:22px"><div class="strip g">挑战档的规矩：<b>先改文档，再改代码</b>——顺序反了就不算完成</div></div></div>
+<div class="notes"><p>任务三档，看清楚。</p><p>基础档是必做的：<b>文档合格 ＋ 按下灯亮</b>，做到这两样，这节课你就成功了。注意文档是硬指标，清单至少三步。</p><p>进阶档：把②③④补上，响 0.2 秒、松开复位。</p><p>挑战档：给抢答器升级一个新需求，比如抢到之后<b>锁定三秒</b>，三秒内别人按了不算。</p><p>挑战档有一条死规矩，也是今天整节课的规矩：<b>先改文档，再改代码</b>。顺序反了就不算完成——我会问你「你的新需求写在文档哪一行」。</p><p>时间紧的组，死保基础档。</p><p>开始，八分钟。</p></div>
+</section>
+
+<section class="slide lay-rowlist" data-title="今日三大发现">
+<div class="phead"><span class="no">第10课</span>
+<span class="kick g">阶段收官</span>
+<span class="tslot">82–90 分</span>
+</div>
+<h2 class="ptitle">今日三大发现</h2>
+<div class="pbody"><div class="rowlist grow"><div class="rowitem"><div class="num g">1</div><div class="tx">需求文档 ＝ 五要素 ＋ 步骤清单——指挥 AI 的作战地图</div></div><div class="rowitem"><div class="num a">2</div><div class="tx">接线的事实要写进文档——AI 猜错，多半是我们没说清</div></div><div class="rowitem"><div class="num c">3</div><div class="tx">一次只问一步，跑通再问下一步</div></div></div><div style="margin-top:20px"><div class="strip a">下节课进入第三阶段「超越AI」——《我的问题我的方案》：AI 变成<b>工具箱</b>，你来当设计师！</div></div></div>
+<div class="notes"><p>各组演示完了，都坐下，看屏幕。今天三个发现。</p><p>第一个，需求文档等于五要素加步骤清单，它是你指挥 AI 的<b>作战地图</b>。</p><p>第二个，也是今天最重要的：接线的事实要写进文档——<b>AI 猜错，多半是我们没说清</b>。</p><p>第三个，一次只问一步，跑通再问下一步。</p><p>然后我要给第二阶段做个总结。回头看这五节课：从第6课学会<b>怎么问</b>，到今天学会<b>写需求、拆步骤、自己验收</b>。你们对 AI 的态度变了——一开始它像个魔法师，现在它是你手下那个需要你交代清楚的<b>实习程序员</b>。</p><p>下节课，这个关系还要再变一次。</p><p>第三阶段叫「<b>超越AI</b>」：AI 不再是实习生了，它变成你的<b>工具箱</b>。你来当设计师——从你自己的生活里找一个真问题，《我的问题我的方案》。</p><p>不是我给题目了。是你给自己出题。下课。</p></div>
+</section>
+
+<section class="slide lay-cards2" data-title="课后任务">
+<div class="phead"><span class="no">第10课</span>
+<span class="kick a">课后任务</span>
+</div>
+<h2 class="ptitle">课后任务</h2>
+<div class="pbody"><div class="g2 grow"><div class="blk g"><h4>基础（全员）</h4><p>给家里一件想「自动化」的小事写一份需求文档——比如「天黑自动开灯」。五要素写全，效果写具体。</p></div><div class="blk a"><h4>拓展（选做）</h4><p>先改文档再改代码：给抢答器加「抢到后锁定，3 秒后才能再抢」。</p></div></div>
+<div style="margin-top:24px"><div class="strip g">能把想要的效果写清楚到 AI 不用猜，才是真的懂了</div></div></div>
+<div class="notes"><p>课后两件事。</p><p>第一件全员都做：在家里找一件你想让它「自动」起来的小事——天黑自动开灯、水开了自动提醒、有人进门自动响一声，都行。给它写一份需求文档，五要素写全。</p><p>不用写代码，就写文档。而且效果那一栏要写具体：什么时候、发生什么、持续多久。</p><p>第二件选做：给抢答器加一个新功能——抢到之后锁定三秒。记住规矩，<b>先改文档，再改代码</b>。</p><p>最后送你们一句话，也是这一整个阶段的收尾：能把想要的效果写清楚到<b>AI 不用猜</b>，才是真的会指挥 AI 了。</p><p>下节课见，带着你的问题来。</p></div>
+</section>
+<div class="deck-footer"><span>ESP32 × AI 科创课程 · 第二阶段「指挥AI」 · 第10课 需求文档大挑战</span><span class="slide-number" data-current="1" data-total="17"></span></div>
+<div class="progress-bar"><span></span></div>
+</div>
+<script src="assets/fitstage.js"></script>
+<script src="assets/runtime.js"></script>
+</body>
+</html>

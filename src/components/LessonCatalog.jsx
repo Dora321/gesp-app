@@ -21,6 +21,8 @@ import { getCppLevelCatalogItem } from '../data/cppLevelCatalog';
 import { pythonFoundationLessons, pythonProjects } from '../data/pythonCourseCatalog';
 import { getLessonStatus, LESSON_STATUS_META, readLessonProgress } from '../utils/lessonProgress';
 
+import { innovationLessons } from '../data/innovationCourseCatalog';
+
 const pythonStart = pythonFoundationLessons[0];
 const pythonProjectStart = pythonProjects[0];
 const pythonFileProject = pythonProjects.find((project) => project.id === 'file-ops');
@@ -42,6 +44,16 @@ function toCppLessons(level, titles) {
 }
 
 const lessonSections = [
+    {
+        id: 'innovation-basic', subject: 'innovation', title: '初阶科创',
+        subtitle: 'ESP32 × AI · 网页课件', badge: '创客入门', color: 'teal', icon: Cpu,
+        audience: '希望通过动手制作认识编程、硬件与 AI 的学生',
+        goal: '从点亮 LED 开始，用 MicroPython 与 AI 完成真实的硬件任务。',
+        bridge: '按原课号学习，完成后可衔接 ESP32 × AI 完整课程。',
+        checkpoints: ['能控制灯光、按钮和屏幕', '能阅读并验证 AI 生成的代码', '能将创意整理成需求文档'],
+        examPath: '/hardware/esp32-curriculum',
+        lessons: innovationLessons,
+    },
     {
         id: 'basic',
         subject: 'cpp',
@@ -409,6 +421,11 @@ const colorMap = {
 };
 
 const subjectSummaries = {
+    innovation: {
+        label: '初阶科创', title: '让代码走出屏幕，做出第一件作品',
+        description: 'ESP32 × AI 网页课件，保留课堂演示与交互。现有第 1–5、9、10 课，按原课号排列。',
+        cta: '从第 1 课开始', ctaPath: '/innovation/1',
+    },
     cpp: {
         label: 'C++ GESP 体系',
         title: '按等级推进，最后落到真题复盘',
@@ -431,6 +448,7 @@ const seniorExamLinks = [
 ];
 
 function getSubjectSummaryStats(subject) {
+    if (subject === 'innovation') return [`${innovationLessons.length} 节网页课`, 'ESP32 × AI', '动手做作品'];
     const sections = lessonSections.filter(section => section.subject === subject);
 
     if (subject === 'cpp') {
@@ -463,6 +481,7 @@ function getSectionSubtitle(section) {
 }
 
 function getSectionAction(section, subject) {
+    if (subject === 'innovation') return { label: '查看完整科创课程', path: '/hardware/esp32-curriculum', Icon: Cpu };
     if (subject === 'cpp') {
         return {
             label: '查看冲刺课',
@@ -487,6 +506,7 @@ function getSectionAction(section, subject) {
 }
 
 function getPracticeAction(section, subject) {
+    if (subject === 'innovation') return { label: '查看学习地图', path: '/hardware/esp32-map', hint: '已收录第 1–5、9、10 课；第 6–8 课网页待补充，保留原课号。' };
     if (subject === 'cpp') {
         return {
             label: '练真题',
@@ -538,9 +558,15 @@ function getPythonProgressionLinks(section) {
 
 export default function LessonCatalog() {
     const navigate = useNavigate();
-    const [activeSubject, setActiveSubject] = useState('cpp');
-    const [activeTab, setActiveTab] = useState('basic');
+    const [activeSubject, setActiveSubject] = useState(() => new URLSearchParams(window.location.search).get('subject') === 'innovation' ? 'innovation' : 'cpp');
+    const [activeTab, setActiveTab] = useState(() => new URLSearchParams(window.location.search).get('subject') === 'innovation' ? 'innovation-basic' : 'basic');
     const [progress, setProgress] = useState(() => readLessonProgress());
+
+    useEffect(() => {
+        if (new URLSearchParams(window.location.search).get('subject') === 'innovation') {
+            document.getElementById('lesson-catalog')?.scrollIntoView();
+        }
+    }, []);
 
     // Re-read learning status whenever the catalog regains focus, so finishing a
     // lesson in another tab/route reflects here without a full reload.
@@ -643,6 +669,13 @@ export default function LessonCatalog() {
                     >
                         <Terminal size={18} className={activeSubject === 'python' ? 'text-yellow-600' : ''} />
                         Python 体系
+                    </button>
+                    <button
+                        onClick={() => setActiveSubject('innovation')}
+                        className={`flex flex-1 items-center justify-center gap-2 rounded-lg px-5 py-3 text-sm font-black transition sm:flex-none ${activeSubject === 'innovation' ? 'bg-white text-slate-950 shadow-sm' : 'text-slate-500 hover:text-slate-800'}`}
+                    >
+                        <Cpu size={18} className={activeSubject === 'innovation' ? 'text-teal-600' : ''} />
+                        初阶科创
                     </button>
                 </div>
 

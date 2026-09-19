@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>第1课 · LED亮了 — ESP32 × AI 科创课程</title>
+<link rel="stylesheet" href="assets/base.css">
+<link rel="stylesheet" id="theme-link" href="assets/theme-course-pop.css">
+<link rel="stylesheet" href="assets/animations.css">
+</head>
+<body>
+<div class="deck" data-theme-base="assets/">
+<section class="slide lay-cover is-active" data-title="封面">
+<div class="deco circle" style="width:170px;height:170px;top:-52px;right:238px"></div>
+<div class="deco tri" style="right:110px;bottom:132px;transform:rotate(14deg)"></div>
+<div class="deco square" style="width:120px;height:120px;left:-46px;bottom:86px;transform:rotate(12deg)"></div>
+<span class="cv-bar">ESP32 × AI ／ 第一阶段「读懂AI」</span>
+<h1 class="cv-title">LED<em>亮了</em></h1>
+<p class="cv-sub">3 行核心代码，点亮你的第一盏灯</p>
+<div class="cv-tags"><span class="tag">ESP32</span><span class="tag">MicroPython</span><span class="tag">DeepSeek</span><span class="tag">90 分钟连堂</span></div>
+<div class="cv-no">01</div>
+<div class="notes"><p>同学们，欢迎来到这门课的第一节。</p><p>我先问一个问题：你们见过的所有酷东西——机器人、智能小车、会自动浇水的种植舱——它们的<b>第一步</b>是什么？</p><p>不是造壳子，不是装轮子。是让电脑<b>控制一个真实世界的东西</b>。</p><p>今天我们就走出这第一步。看我手里这块板子，比橡皮擦还小，它叫 ESP32。我要让它上面的灯亮起来——<b>不碰任何开关</b>，只用代码。</p><p>（上传运行，LED 亮起）</p><p>好，亮了。现在猜猜看：真正起作用的核心代码有多少行？三十行？十行？</p><p>答案是——<b>3 行</b>。而且，这 3 行不是我写的，是 <b>AI 写的</b>。</p><p>今天这节课我们就干两件事：看看 AI 是怎么写代码的，以及更重要的——<b>怎么看懂它写的代码</b>。</p></div>
+</section>
+
+<section class="slide lay-cards3" data-title="悬念导入">
+<div class="phead"><span class="no">第1课</span>
+<span class="kick c">悬念导入</span>
+<span class="tslot">0–8 分</span>
+</div>
+<h2 class="ptitle">它们的第一步，都是同一件事</h2>
+<p class="psub">让电脑控制一个真实世界的东西</p>
+<div class="pbody"><div class="g3 grow"><div class="blk g"><h4>机器人</h4><p>第一步不是造壳子——是让电脑控制一个电机转起来</p></div><div class="blk a"><h4>智能小车</h4><p>第一步不是装轮子——是让电脑控制一个信号发出去</p></div><div class="blk c"><h4>自动种植舱</h4><p>第一步不是搭棚子——是让电脑控制一个开关合上</p></div></div><p class="beads-cap" style="margin:18px 0 16px">今天我们也走出这第一步：让这块比橡皮擦还小的板子上的灯亮起来。</p><div style="margin-top:22px"><div class="strip a">不碰任何开关，只用<b>代码</b>——猜猜核心代码有多少行？</div></div></div>
+<div class="notes"><p>我们把这三样东西摆在一起看：机器人、智能小车、自动种植舱。</p><p>它们看起来天差地别，但<b>第一步是同一件事</b>。</p><p>机器人的第一步不是造壳子，是让电脑控制一个<b>电机</b>转起来。智能小车的第一步不是装轮子，是让电脑控制一个<b>信号</b>发出去。种植舱的第一步不是搭棚子，是让电脑控制一个<b>开关</b>合上。</p><p>发现了吗？都是——让电脑控制一个<b>真实世界</b>的东西。</p><p>在这之前，你们写的程序只能在屏幕上跑：打印一句话、算一道题。今天不一样，今天你写的代码会让<b>一个真东西动起来</b>。</p><p>这就是这门课和你以前学的编程最大的区别。</p><p>猜猜看，让这盏灯亮起来的核心代码有多少行？举手告诉我。</p></div>
+</section>
+
+<section class="slide lay-stepcode" data-title="AI 登场">
+<div class="phead"><span class="no">第1课</span>
+<span class="kick g">AI 登场</span>
+<span class="tslot">8–18 分</span>
+</div>
+<h2 class="ptitle">AI 是怎么写代码的</h2>
+<div class="pbody">
+  <div class="scstack">
+    <div class="fiverow four"><div class="fvc"><span class="fk">语言</span><span class="fw">MicroPython</span></div><div class="fvc"><span class="fk">硬件</span><span class="fw">ESP32 开发板</span></div><div class="fvc"><span class="fk">接线</span><span class="fw">板载 LED 在 GPIO2</span></div><div class="fvc"><span class="fk">效果</span><span class="fw">让 LED 亮起来，只要亮就行，不需要闪烁</span></div></div>
+    <div class="askline"><b>提问四要素（照着问）：</b>「我在用 MicroPython 编程，硬件是 ESP32 开发板。请给我最简单的代码，让板载 LED（GPIO2）亮起来。只要亮就行，不需要闪烁。」</div>
+    <div class="code"><span class="lab g">AI 给的代码 · 核心就 3 行</span><pre style="font-size:27px"><span class="k">from</span> machine <span class="k">import</span> Pin
+
+led = Pin(2, Pin.OUT)
+led.value(1)</pre></div>
+  </div>
+  <div style="margin-top:16px"><div class="strip g">AI 回复里可能还有空行和注释——那是给<b>人</b>看的说明，不算干活的代码</div></div>
+</div>
+<div class="notes"><p>现在我当着你们的面问 AI。大家看投影。</p><p>先看上面这四个格子，这叫<b>提问四要素</b>：语言、硬件、接线、效果。以后你每次问 AI，都要先把这四样说清楚。</p><p>为什么？因为 AI 不知道你手里是什么板子、灯接在哪儿。你不说，它只能猜。</p><p>（输入问题，等 AI 回答）</p><p>出来了。看，这就是 AI 写的代码。</p><p>有同学说「不止 3 行啊，明明有 5 行」。注意——中间那个<b>空行</b>，还有 # 号后面那些中文，是给<b>人</b>看的说明，不算干活的代码。</p><p>真正干活的就这 3 行：一行 import，一行定义，一行赋值。</p><p>AI 写完了。但是——AI 写了代码，<b>你们得看得懂</b>。这才是今天的任务。</p></div>
+</section>
+
+<section class="slide lay-translate" data-title="逐行解读">
+<div class="phead"><span class="no">第1课</span>
+<span class="kick g">逐行解读</span>
+<span class="tslot">18–30 分</span>
+</div>
+<h2 class="ptitle">3 行核心代码，逐行读</h2>
+<div class="pbody"><div class="blk grow" style="padding:10px 24px"><div class="tr-row"><div class="cd">from machine import Pin</div><div class="eq">=</div><div class="pl">从 ESP32 的「大脑」里，拿出控制<b>针脚</b>的工具</div></div><div class="tr-row"><div class="cd">led = Pin(2, Pin.OUT)</div><div class="eq">=</div><div class="pl"><b>2</b> ＝ 针脚编号（板载 LED 焊在这儿）；<b>OUT</b> ＝ 输出，往外发信号</div></div><div class="tr-row"><div class="cd">led.value(1)</div><div class="eq">=</div><div class="pl"><b>1</b> 就是开，<b>0</b> 就是关</div></div></div></div>
+<div class="notes"><p>这三行我们一行一行读。规矩是：我先问「你觉得这行在做什么」，你们先<b>猜</b>，猜完我再讲。</p><p>第 1 行，from machine import Pin。machine 是 ESP32 的<b>大脑</b>，Pin 就是板子边上那一排排<b>针脚</b>。这一行的意思是：从大脑里拿出控制针脚的工具。</p><p>第 2 行，led = Pin(2, Pin.OUT)。这里有两个关键。<b>2</b> 是针脚的编号——板载 LED 就焊在 2 号针脚上。<b>OUT</b> 是「输出」，意思是 ESP32 往外发信号。</p><p>那如果换成 IN 呢？那就是「输入」——听外面的信号，比如按钮。这个我们下下节课会用到。</p><p>第 3 行，led.value(1)。<b>1 就是开，0 就是关</b>。</p><p>就这三行。记住三个词：Pin 是引脚，OUT 是输出，value 是开关。</p></div>
+</section>
+
+<section class="slide lay-chain2" data-title="软硬件映射">
+<div class="phead"><span class="no">第1课</span>
+<span class="kick c">本课难点</span>
+<span class="tslot">18–30 分</span>
+</div>
+<h2 class="ptitle">为什么改成 Pin(4) 就不亮了？</h2>
+<p class="psub">代码里的引脚号，必须和真实硬件对上</p>
+<div class="pbody">
+  <div class="chwrap grow"><div class="chain g"><span class="tag g">情况一：灯亮了</span><div class="chainrow"><div class="cbx">Pin(2)</div><span class="carr">→</span><div class="cbx">GPIO2</div><span class="carr">→</span><div class="cbx">板载 LED</div></div><div class="cres">结果：<b>灯亮 ○</b> —— 这条线是通的</div></div><div class="chain c"><span class="tag c">情况二：灯不亮</span><div class="chainrow"><div class="cbx">Pin(4)</div><span class="carr">→</span><div class="cbx">GPIO4</div><span class="carr">→</span><div class="cbx">什么都没接</div></div><div class="cres">结果：<b>灯不亮 ×</b> —— 代码没错，是那里根本没有灯</div></div></div>
+  <div style="margin-top:20px"><div class="strip a">以后问 AI 写代码，一定要告诉它<b>元件接在哪个针脚</b>——不然代码再漂亮也没用</div></div>
+</div>
+<div class="notes"><p>待会儿你们动手的时候，有个实验：把 Pin(2) 改成 Pin(4)，再上传。</p><p>灯会不亮。我现在先问一句：<b>代码错了吗？</b></p><p>（等他们答）</p><p>代码<b>没有错</b>。它确实老老实实往 4 号针脚发了「开」的信号。</p><p>看这张图。上面这条线：Pin(2) → GPIO2 → 这里焊着板载 LED → 所以灯亮。</p><p>下面这条线：Pin(4) → GPIO4 → 那里<b>什么都没接</b> → 所以灯不亮。</p><p>问题不在代码，在<b>代码和硬件对不上</b>。</p><p>这是今天最重要的一个道理，它叫<b>软硬件映射</b>：代码里写的引脚号，必须和真实世界里元件接的位置对上。</p><p>所以以后你们问 AI 写代码，一定要告诉它：我的元件接在哪个针脚。不然 AI 写的代码再漂亮，也点不亮你的灯。</p></div>
+</section>
+
+<section class="slide lay-steps3" data-title="PyCharm 三不碰">
+<div class="phead"><span class="no">第1课</span>
+<span class="kick a">认识工具</span>
+<span class="tslot">30–40 分</span>
+</div>
+<h2 class="ptitle">PyCharm 三步走</h2>
+<p class="psub">全世界的专业程序员都在用它——但今天我们只碰三个地方</p>
+<div class="pbody"><div class="g3 grow"><div class="blk"><div class="step"><div class="num g">①</div>
+        <div class="body"><p class="t">连接板子</p><p class="d">USB 插好 → 下方 MicroPython Tools 面板 → 选端口 → 点「连接」，看到<b>已连接</b>才算成功</p></div></div></div><div class="blk"><div class="step"><div class="num a">②</div>
+        <div class="body"><p class="t">写代码</p><p class="d">双击左侧 <b>main.py</b> 打开 → 把代码写进去 → <b>Ctrl+S 保存</b>（没保存不生效！）</p></div></div></div><div class="blk"><div class="step"><div class="num c">③</div>
+        <div class="body"><p class="t">上传运行</p><p class="d">在 main.py 上点右键 → 「上传到设备」→ 按板上 <b>RST</b> 键重启，看灯</p></div></div></div></div><div style="margin-top:16px"><div class="strip ">今天的规矩「<b>三不碰</b>」：只碰 main.py、连接按钮、上传按钮——其他按钮菜单一律不碰</div></div><div style="margin-top:16px"><div class="strip a">出问题了？先自查三件事：□ 线插好了吗　□ 是「已连接」吗　□ 代码保存了吗</div></div></div>
+<div class="notes"><p>这个软件叫 PyCharm，全世界的专业程序员都在用它。</p><p>它的按钮很多，密密麻麻，你们看着会害怕。所以今天我定一个规矩，叫「<b>三不碰</b>」：</p><p>只碰三个地方——main.py 文件、连接按钮、上传按钮。步骤卡上我都画出来了。</p><p>其他任何按钮、任何菜单，今天一律<b>不碰</b>。能做到吗？</p><p>（等他们答「能」）</p><p>好，现在看我演示。第①步，连接：插 USB，找到下面这个面板，选你的端口，点连接。一定要看到「<b>已连接</b>」三个字才算成功。</p><p>第②步，写代码：双击 main.py，把代码写进去，然后——<b>Ctrl+S 保存</b>。这一步最容易忘，没保存的代码传上去是空的。</p><p>第③步，上传：右键，上传到设备，然后按板子上那个小小的 RST 键重启。</p><p>如果灯没反应，先别喊我，自查三件事：线插好了吗？是已连接吗？代码保存了吗？</p></div>
+</section>
+
+<section class="slide lay-divider" data-title="课间休息">
+<div class="deco circle" style="width:200px;height:200px;top:-70px;right:180px"></div>
+<div class="deco square" style="width:130px;height:130px;left:-50px;bottom:70px;transform:rotate(12deg)"></div>
+<div class="deco tri" style="right:140px;bottom:90px;transform:rotate(14deg)"></div>
+<div class="dv">
+  <span class="dv-time">40–50 分</span>
+  <h2 class="dv-t">课间休息 10 分钟</h2>
+  <p class="dv-s">回来就轮到你们自己动手了——先把步骤卡看一遍</p>
+</div>
+<div class="notes"><p>上半场结束。休息十分钟。</p><p>回来我们就动手了，你们自己连板子、自己上传。</p><p>休息的时候做一件事：把桌上那张<b>操作步骤卡</b>看一遍，三个步骤记一记。</p><p>还有，别碰电脑上除了那三个地方以外的任何按钮。三不碰，说到做到。</p></div>
+</section>
+
+<section class="slide lay-tiers3" data-title="分层任务">
+<div class="phead"><span class="no">第1课</span>
+<span class="kick g">分层任务</span>
+<span class="tslot">50–75 分</span>
+</div>
+<h2 class="ptitle">先保底，再挑战</h2>
+<p class="psub">做完基础两个任务，这节课就算成功</p>
+<div class="pbody"><div class="g3 grow"><div class="blk tier t1"><div class="hd">★ 基础（必做）</div>
+        <p class="task">① 照步骤卡连板子，把 3 行核心代码写进 main.py 上传。② 把 led.value(1) 改成 led.value(0) 再传。</p><p class="fill">□ 灯亮了！　我观察到：________</p></div><div class="blk tier t2"><div class="hd">★★ 进阶（建议做）</div>
+        <p class="task">把 Pin(2) 改成 Pin(4)，再上传。看看会发生什么。</p><p class="fill">我观察到：________　对照映射图，我猜原因是：________</p></div><div class="blk tier t3"><div class="hd">★★★ 挑战（学有余力）</div>
+        <p class="task">用提问四要素向 AI 问：怎么让 LED 闪烁？</p><p class="fill">AI 代码里我认出了：________　没见过的新东西：________（下节课就学它）</p></div></div>
+<div style="margin-top:22px"><div class="strip g">卡住别硬扛，举手——我优先帮还没点亮灯的组</div></div></div>
+<div class="notes"><p>现在动手。任务分三档，看清楚。</p><p><b>基础档是必做的，做完这两个任务，你这节课就成功了。</b></p><p>任务一：照步骤卡连板子，把黑板上那 3 行代码写进 main.py，上传。看到灯亮，就在卡片上打个勾。</p><p>任务二：把 led.value(<b>1</b>) 改成 led.value(<b>0</b>)，再传一次。观察到什么，写在横线上。</p><p>进阶档：把 Pin(2) 改成 Pin(4)。会发生什么，你们刚才已经知道答案了——但我要你<b>亲眼看一次</b>，然后把原因写下来。</p><p>挑战档：用四要素问 AI「怎么让 LED 闪烁」。AI 会给你一段带新东西的代码，把你认识的和不认识的分别记下来。</p><p>我巡视，卡住了举手。我优先帮<b>还没点亮灯</b>的组——先保底。开始。</p></div>
+</section>
+
+<section class="slide lay-rowlist" data-title="提问四要素">
+<div class="phead"><span class="no">第1课</span>
+<span class="kick a">弹性环节</span>
+<span class="tslot">75–85 分</span>
+</div>
+<h2 class="ptitle">提问四要素</h2>
+<p class="psub">以后每次问 AI，先把这四行填完整，再发出去</p>
+<div class="pbody"><div class="rowlist grow"><div class="rowitem"><div class="num g">1</div><div class="tx">我使用的<b>语言</b>是：MicroPython</div></div><div class="rowitem"><div class="num a">2</div><div class="tx">我使用的<b>硬件</b>是：ESP32</div></div><div class="rowitem"><div class="num c">3</div><div class="tx">我的元件<b>接在</b>：GPIO2</div></div><div class="rowitem"><div class="num g">4</div><div class="tx">我想实现的<b>效果</b>是：让 LED 亮起来</div></div></div><div style="margin-top:20px"><div class="strip g">拿这四条去对：刚才那个问题，问得清楚吗？哪一条漏了？</div></div></div>
+<div class="notes"><p>完成挑战任务的组，把你们和 AI 的对话投上来，我们一起看。</p><p>这一组问的是「怎么让 LED 闪烁」，AI 给了一段带 while 的代码。</p><p>大家觉得——这个问题<b>问得清楚吗</b>？</p><p>别急着答，对照四要素一条一条看：语言说了吗？硬件说了吗？接在哪说了吗？想要什么效果说了吗？</p><p>（逐条核对）</p><p>看，漏了一两条对不对。漏了会怎么样？AI 就得猜。猜对了算你运气好，猜错了你还以为是 AI 笨。</p><p>所以记住这四要素，以后每次问 AI，先把这四行填完整，再发出去。</p><p>而且我告诉你们——下节课我们就要用「<b>闪烁</b>」做一件很酷的事：让灯发出<b>求救信号</b>。</p></div>
+</section>
+
+<section class="slide lay-rowlist" data-title="今日三大发现">
+<div class="phead"><span class="no">第1课</span>
+<span class="kick g">总结</span>
+<span class="tslot">85–90 分</span>
+</div>
+<h2 class="ptitle">今日三大发现</h2>
+<div class="pbody"><div class="rowlist grow"><div class="rowitem"><div class="num g">1</div><div class="tx">代码能控制<b>真实硬件</b>——不只是屏幕上的字</div></div><div class="rowitem"><div class="num a">2</div><div class="tx">AI 能写代码，但<b>我必须读得懂</b></div></div><div class="rowitem"><div class="num c">3</div><div class="tx">改一个参数，真实世界的结果就会<b>改变</b></div></div></div><div style="margin-top:20px"><div class="strip a">下节课《闪烁密码》——让灯发出<b>求救信号</b></div></div></div>
+<div class="notes"><p>都停下，看屏幕。今天我们发现了什么？我念上半句，你们接。</p><p>第一个，代码能控制——<b>真实硬件</b>。这跟你以前写的程序不一样了，它能让一个真东西动起来。</p><p>第二个，AI 能写代码，但是——<b>我必须读得懂</b>。这句话是这整个阶段的主线，我会一直念。为什么必须读懂？因为待会儿它写错了，你得看得出来。</p><p>第三个，改一个参数，真实世界的结果就会——<b>改变</b>。你们今天改了两次：1 改成 0，2 改成 4。两次结果都不一样。</p><p>最后留个钩子。今天灯只会<b>一直亮</b>着，有点无聊对不对？</p><p>下节课《闪烁密码》，我们让它<b>闪</b>起来——而且不是乱闪，是让它发出<b>求救信号</b>。</p><p>下课。</p></div>
+</section>
+
+<section class="slide lay-cards2" data-title="课后任务">
+<div class="phead"><span class="no">第1课</span>
+<span class="kick a">课后任务</span>
+</div>
+<h2 class="ptitle">课后任务</h2>
+<div class="pbody"><div class="g2 grow"><div class="blk g"><h4>基础（全员）</h4><p>把今天的 3 行核心代码讲给家人听——每一行是做什么的。把家人问你的问题记下来（至少一个），下节课分享。</p></div><div class="blk a"><h4>拓展（选做）</h4><p>用「提问四要素」向 AI 问一个关于 LED 的问题，截图保存问题和回答。</p></div></div>
+<div style="margin-top:24px"><div class="strip g">能把代码讲明白给别人听，才是真的懂了</div></div></div>
+<div class="notes"><p>课后两件事。</p><p>第一件全员都做：回家找一个人——爸爸妈妈、爷爷奶奶都行——把今天这 3 行代码讲给他听，每一行是干什么的。</p><p>然后有个要求：把他<b>问你的问题</b>记下来，至少一个，下节课我们分享。</p><p>为什么要记他的问题？因为他问倒你的地方，就是你还没真懂的地方。</p><p>第二件选做：用提问四要素，自己向 AI 问一个关于 LED 的问题，把问题和回答截图存下来。</p><p>记住最后这句话：能把代码讲明白给<b>别人</b>听，才是真的懂了。</p><p>下课。</p></div>
+</section>
+<div class="deck-footer"><span>ESP32 × AI 科创课程 · 第一阶段「读懂AI」 · 第1课 LED亮了</span><span class="slide-number" data-current="1" data-total="11"></span></div>
+<div class="progress-bar"><span></span></div>
+</div>
+<script src="assets/fitstage.js"></script>
+<script src="assets/runtime.js"></script>
+</body>
+</html>

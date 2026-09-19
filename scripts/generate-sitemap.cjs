@@ -26,7 +26,8 @@ async function main() {
   // 96 节 C++ 互动课此前完全不在 sitemap 里——站点最有原创价值的内容对爬虫
   // 不可见，反而 93 张题面雷同的卷子全部收录。
   const { cppLessonPaths } = await import('../src/data/cppLessonIndex.js');
-  const routes = [...new Set([...coreRoutes, ...cppLessonPaths, ...paperEntries])];
+  const { innovationLessons } = await import('../src/data/innovationCourseCatalog.js');
+  const routes = [...new Set([...coreRoutes, ...cppLessonPaths, ...innovationLessons.map(lesson => lesson.path), ...paperEntries])];
 
   const escapeXml = value => value.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;');
   const body = routes.map(route => [

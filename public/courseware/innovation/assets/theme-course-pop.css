@@ -1,0 +1,393 @@
+/* ============================================================
+   theme: course-pop  ——「ESP32 × AI 科创课程」网页课件 · 活泼撞色
+   粗黑边 + 硬投影 + 课程三色（绿/珊瑚/琥珀），面向小学 5–6 年级投影课堂。
+   与库根 pptx「风格统一版」并行：色板同源，视觉另开一套。
+   本文件是唯一的外观定义 —— 改这里 = 全库网页课件一起变。
+   ============================================================ */
+:root{
+  /* —— 课程色板（与 stylekit.py 同源）—— */
+  --ink:#141414;            /* 主墨色：描边 / 正文 */
+  --cream:#FFF6E2;          /* 页面底 */
+  --cream-2:#FFE9C2;
+  --green:#1D9E75;          /* 主绿 */
+  --coral:#D85A30;          /* 珊瑚橙：错误 / 笨办法 */
+  --amber:#F5A623;          /* 琥珀：强调 / 高亮 */
+  --gray:#8A8A8A;
+
+  --bg:var(--cream);--bg-soft:var(--cream-2);--surface:#FFFFFF;--surface-2:#FFF0D2;
+  --border:var(--ink);--border-strong:var(--ink);
+  --text-1:var(--ink);--text-2:#3E3E3E;--text-3:#7A7A7A;
+  --accent:var(--green);--accent-2:var(--coral);--accent-3:var(--amber);
+  --good:var(--green);--warn:var(--amber);--bad:var(--coral);
+  --grad:linear-gradient(90deg,#1D9E75,#F5A623 50%,#D85A30);
+  --radius:8px;--radius-sm:6px;--radius-lg:12px;
+  --shadow:8px 8px 0 var(--ink);--shadow-lg:12px 12px 0 var(--ink);
+  /* 全部本地字体，不依赖网络 */
+  --font-sans:"Microsoft YaHei","微软雅黑","Segoe UI",sans-serif;
+  --font-display:"Microsoft YaHei","微软雅黑",sans-serif;
+  --font-mono:"Cascadia Mono",Consolas,"Courier New",monospace;
+  --letter-tight:0em;--letter-normal:0em;
+  --bd:4px;                 /* 标准描边宽度 */
+}
+
+/* ================= 页面骨架 ================= */
+.slide{padding:48px 68px 74px;justify-content:flex-start}
+.slide::after{content:"";position:absolute;left:0;right:0;bottom:0;height:10px;background:var(--grad);z-index:3}
+
+/* 页眉：课号 + 环节标签 */
+.phead{display:flex;align-items:center;gap:14px;flex:none}
+.phead .no{background:var(--ink);color:var(--cream);font-weight:800;font-size:16px;padding:7px 13px}
+.phead .kick{background:var(--coral);color:#fff;border:var(--bd) solid var(--ink);padding:4px 15px;font-size:16px;font-weight:800;box-shadow:5px 5px 0 var(--ink)}
+.phead .kick.g{background:var(--green)}
+.phead .kick.a{background:var(--amber);color:var(--ink)}
+.ptitle{font-size:48px;font-weight:900;line-height:1.12;margin:18px 0 0;color:var(--ink);flex:none}
+.psub{font-size:21px;font-weight:700;color:#3E3E3E;margin:9px 0 0;flex:none}
+.pbody{flex:1;display:flex;flex-direction:column;justify-content:center;min-height:0;margin-top:18px}
+
+/* 页脚 */
+.deck-footer{left:68px;right:68px;bottom:24px;font-size:14px;color:var(--ink);font-weight:700;letter-spacing:0;text-transform:none}
+.deck-footer .slide-number{background:var(--ink);color:var(--cream);padding:4px 12px;font-weight:800}
+
+/* ================= 通用构件 ================= */
+.blk{background:#fff;border:var(--bd) solid var(--ink);box-shadow:var(--shadow);padding:18px 22px}
+.blk.g{box-shadow:8px 8px 0 var(--green)}
+.blk.c{box-shadow:8px 8px 0 var(--coral)}
+.blk.a{box-shadow:8px 8px 0 var(--amber)}
+.blk h4{font-size:22px;font-weight:900;margin:0 0 7px;color:var(--ink)}
+.blk p{font-size:19px;line-height:1.5;margin:0;color:#2E2E2E}
+
+.tag{display:inline-block;border:3px solid var(--ink);padding:4px 14px;font-size:16px;font-weight:800;background:#fff;color:var(--ink)}
+.tag.g{background:var(--green);color:#fff}
+.tag.c{background:var(--coral);color:#fff}
+.tag.a{background:var(--amber);color:var(--ink)}
+.tag.k{background:var(--ink);color:var(--cream)}
+
+.strip{background:var(--ink);color:var(--cream);padding:15px 24px;font-size:21px;font-weight:800;line-height:1.45;flex:none}
+.strip b{color:var(--amber)}
+.strip.g{background:var(--green);color:#fff}
+.strip.g b{color:#FFE08A}
+.strip.a{background:var(--amber);color:var(--ink);border:var(--bd) solid var(--ink)}
+.strip.a b{color:var(--coral)}
+
+.num{width:50px;height:50px;flex:none;background:var(--amber);border:var(--bd) solid var(--ink);
+  display:flex;align-items:center;justify-content:center;font-size:25px;font-weight:900;color:var(--ink);
+  box-shadow:4px 4px 0 var(--ink)}
+.num.g{background:var(--green);color:#fff}
+.num.c{background:var(--coral);color:#fff}
+
+/* 代码块 */
+.code{background:#fff;border:var(--bd) solid var(--ink);box-shadow:var(--shadow);overflow:hidden}
+.code .lab{display:block;background:var(--ink);color:var(--cream);font-size:16px;font-weight:800;padding:7px 18px;font-family:var(--font-sans)}
+.code .lab.g{background:var(--green);color:#fff}
+.code .lab.c{background:var(--coral);color:#fff}
+.code pre{margin:0;padding:15px 20px;font-family:var(--font-mono);font-size:20px;line-height:1.58;
+  color:var(--ink);white-space:pre;font-weight:600;overflow:hidden}
+.code pre .c{color:var(--gray);font-weight:400}
+.code pre .k{color:var(--green);font-weight:700}
+
+/* 装饰几何 */
+.deco{position:absolute;z-index:0;pointer-events:none}
+.deco.circle{border-radius:50%;background:var(--amber);border:5px solid var(--ink)}
+.deco.square{background:var(--green);border:5px solid var(--ink)}
+.deco.tri{width:0;height:0;border-left:56px solid transparent;border-right:56px solid transparent;border-bottom:94px solid var(--coral)}
+.slide>*:not(.deco){position:relative;z-index:1}
+
+/* ================= 封面 ================= */
+.cv-bar{align-self:flex-start;background:var(--ink);color:var(--cream);padding:10px 24px;font-size:20px;font-weight:800}
+.cv-title{font-size:112px;line-height:1;font-weight:900;margin:22px 0 0;color:var(--ink);align-self:flex-start}
+.cv-title em{font-style:normal;background:var(--amber);padding:0 16px;border:5px solid var(--ink);
+  display:inline-block;box-shadow:9px 9px 0 var(--ink)}
+.cv-sub{align-self:flex-start;font-size:27px;font-weight:800;color:var(--ink);margin:32px 0 26px;
+  background:#fff;border:var(--bd) solid var(--ink);padding:12px 24px;box-shadow:8px 8px 0 var(--green)}
+.cv-tags{display:flex;gap:16px;align-self:flex-start}
+.cv-no{position:absolute;right:68px;top:96px;font-size:190px;font-weight:900;line-height:.82;
+  color:var(--green);-webkit-text-stroke:5px var(--ink);z-index:1}
+
+/* ================= 版式 ================= */
+.g2{display:grid;grid-template-columns:1fr 1fr;gap:26px}
+.g3{display:grid;grid-template-columns:repeat(3,1fr);gap:22px}
+.vs3{display:grid;grid-template-columns:1fr 96px 1fr;gap:16px;align-items:center}
+.vsmark{font-size:34px;font-weight:900;color:var(--ink);background:var(--amber);border:5px solid var(--ink);
+  width:86px;height:86px;display:flex;align-items:center;justify-content:center;
+  box-shadow:7px 7px 0 var(--ink);margin:0 auto;transform:rotate(-6deg)}
+
+/* 逐行翻译表 */
+.tr-row{display:grid;grid-template-columns:auto 42px 1fr;align-items:center;gap:16px;
+  border-bottom:3px solid var(--ink);padding:8px 0}
+.tr-row:last-child{border-bottom:0}
+.tr-row .cd{font-family:var(--font-mono);font-size:19px;font-weight:700;background:var(--cream-2);
+  border:3px solid var(--ink);padding:5px 13px;white-space:pre}
+.tr-row .eq{font-size:25px;font-weight:900;text-align:center;color:var(--coral)}
+.tr-row .pl{font-size:19px;font-weight:700;color:#2E2E2E}
+.tr-row .pl b{background:var(--amber);padding:0 6px}
+
+/* 灯珠编号条 */
+.beads{display:flex;gap:12px;justify-content:center;margin:4px 0}
+.bead{width:74px;height:74px;border:var(--bd) solid var(--ink);background:#fff;display:flex;
+  align-items:center;justify-content:center;font-size:29px;font-weight:900;box-shadow:5px 5px 0 var(--ink)}
+.bead.on{background:var(--green);color:#fff;transform:translateY(-8px);box-shadow:5px 13px 0 var(--ink)}
+.beads-cap{text-align:center;font-size:20px;font-weight:800;margin:20px 0 0}
+
+/* 步骤 / 清单 */
+.step{display:flex;gap:15px;align-items:flex-start}
+.step .body{flex:1}
+.step .body .t{font-size:21px;font-weight:900;margin:0 0 4px}
+.step .body .d{font-size:18px;line-height:1.5;margin:0;color:#2E2E2E}
+.rowlist{display:flex;flex-direction:column;gap:13px}
+.rowitem{display:flex;gap:16px;align-items:center;background:#fff;border:var(--bd) solid var(--ink);
+  padding:9px 18px;box-shadow:5px 5px 0 var(--ink)}
+.rowitem .tx{font-size:20px;font-weight:700;line-height:1.4}
+
+/* 分层任务 */
+.tier{display:flex;flex-direction:column}
+.tier .hd{border-bottom:var(--bd) solid var(--ink);margin:-18px -22px 13px;padding:9px 22px;
+  font-size:20px;font-weight:900}
+.tier.t1 .hd{background:var(--green);color:#fff}
+.tier.t2 .hd{background:var(--amber);color:var(--ink)}
+.tier.t3 .hd{background:var(--coral);color:#fff}
+.tier .task{font-size:19px;line-height:1.5;font-weight:700;margin:0 0 12px}
+.tier .fill{font-size:16px;color:#3E3E3E;border-top:3px dashed var(--ink);padding-top:9px;margin-top:auto}
+
+/* ================= 竖向占位：主内容区撑满，卡片等高 ================= */
+.grow{flex:1;min-height:0}
+.g2,.g3{align-items:stretch}
+.blk{display:flex;flex-direction:column;justify-content:center}
+.vs3{align-items:stretch}
+.vsmark{align-self:center}
+.rowlist{justify-content:space-between}
+.code{display:flex;flex-direction:column}
+.code pre{flex:1}
+.hwgrid{display:grid;grid-template-columns:1.45fr 1fr;gap:24px;align-items:stretch}
+.hwgrid .g3{grid-template-columns:1fr;gap:14px}
+.aegrid{display:grid;grid-template-columns:1fr 1.15fr;gap:24px;align-items:stretch}
+.aecol{display:flex;flex-direction:column;gap:18px}
+.aecol .blk{flex:1}
+.beadwrap{display:flex;flex-direction:column;justify-content:center;flex:none}
+
+/* ---- 按版式给主内容区设高度上限：卡片等高，又不撑出空洞 ---- */
+.lay-cards3    .grow{max-height:300px}
+.lay-vscompare .grow{max-height:340px}
+.lay-code2     .grow{max-height:340px}
+.lay-hardware  .grow{max-height:450px}
+.lay-aierror   .grow{max-height:370px}
+.lay-steps3    .grow{max-height:250px}
+.lay-tiers3    .grow{max-height:400px}
+.lay-beads     .grow{max-height:230px}
+.lay-rowlist   .grow{max-height:420px}
+.lay-translate .grow{max-height:480px}
+.lay-cards2    .grow{max-height:300px}
+
+/* ---- 投影可读性：教室最后一排也要看清，整体上调字号 ---- */
+.blk{padding:24px 28px}
+.blk h4{font-size:26px;margin:0 0 8px}
+.blk p{font-size:22px;line-height:1.55}
+.strip{font-size:23px;padding:16px 26px}
+.step .body .t{font-size:23px}
+.step .body .d{font-size:20px}
+.rowitem{padding:12px 20px}
+.rowitem .tx{font-size:22px}
+.tier .hd{font-size:22px;margin:-24px -28px 15px;padding:10px 28px}
+.tier .task{font-size:21px}
+.tier .fill{font-size:17px}
+.tr-row .cd{font-size:20px}
+.tr-row .pl{font-size:21px}
+.tr-row{padding:10px 0}
+.code pre{font-size:21px}
+.code .lab{font-size:17px}
+.beads-cap{font-size:22px}
+.psub{font-size:22px}
+
+/* ---- 高度上限重新标定（字号上调后）---- */
+.lay-cards3    .grow{max-height:270px}
+.lay-vscompare .grow{max-height:340px}
+.lay-code2     .grow{max-height:340px}
+.lay-hardware  .grow{max-height:440px}
+.lay-aierror   .grow{max-height:320px}
+.lay-steps3    .grow{max-height:260px}
+.lay-tiers3    .grow{max-height:390px}
+.lay-beads     .grow{max-height:240px}
+.lay-rowlist   .grow{max-height:430px}
+.lay-translate .grow{max-height:490px}
+.lay-cards2    .grow{max-height:290px}
+
+/* ---- 封面修正：.slide>*:not(.deco) 特异性高于 .cv-no，必须显式压回绝对定位 ---- */
+.slide>.cv-no{position:absolute}
+.lay-cover{justify-content:center}
+
+/* ---- 微调：分层卡填空行压到卡底；封面圆形避开课号 ---- */
+.blk.tier>.fill{margin-top:auto}
+.lay-tiers3 .grow{max-height:345px}
+.lay-beads  .grow{max-height:225px}
+.lay-cover .deco.circle{right:330px !important;top:-64px !important}
+
+/* ---- 修正：清单页限高会把第5行挤出去压到黑条；分层卡改用 space-between 钉底 ---- */
+.lay-rowlist .grow{flex:0 0 auto;max-height:none}
+.rowlist{justify-content:flex-start;gap:14px}
+.blk.tier{justify-content:space-between}
+.lay-tiers3 .grow{max-height:275px}
+
+/* ---- 演讲者窗口的「当前页/下一页」预览里不显示页脚（页码不同步会误导）---- */
+:root[data-preview="1"] .deck-footer{display:none}
+
+/* ================= 时间轴标（对应教案「四、教学过程」时段） ================= */
+.tslot{background:#fff;border:3px solid var(--ink);padding:4px 13px;font-size:15px;font-weight:800;color:var(--ink)}
+
+/* ================= 分步指挥：左五要素提问 / 右起步全码 ================= */
+.scgrid{display:grid;grid-template-columns:0.92fr 1.55fr;gap:24px;align-items:stretch}
+.askcard{justify-content:flex-start}
+.fivelist{display:flex;flex-direction:column;gap:7px;margin-top:4px}
+.fv{display:grid;grid-template-columns:76px 1fr;align-items:start;gap:12px}
+.fk{background:var(--ink);color:var(--cream);font-size:16px;font-weight:800;text-align:center;padding:4px 0}
+.fw{font-size:19px;font-weight:700;line-height:1.4;color:#2E2E2E}
+.fq{margin-top:13px;border-top:3px dashed var(--ink);padding-top:11px;font-size:18px;
+  line-height:1.5;font-weight:700;color:var(--ink)}
+
+/* ================= 课间休息分隔页 ================= */
+.dv{flex:1;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center}
+.dv-time{background:var(--ink);color:var(--cream);padding:10px 26px;font-size:22px;font-weight:800}
+.dv-t{font-size:92px;font-weight:900;margin:26px 0 0;color:var(--ink)}
+.dv-s{font-size:27px;font-weight:800;margin:26px 0 0;background:var(--amber);color:var(--ink);
+  border:var(--bd) solid var(--ink);padding:14px 30px;box-shadow:8px 8px 0 var(--ink)}
+
+.lay-stepcode .grow{max-height:360px}
+.lay-stepcode.step3 .grow{max-height:560px}
+.lay-stepcode .grow{max-height:415px}
+.fq{font-size:17px;line-height:1.45}
+
+/* ---- 长代码页：一行紧凑提问条 + 略小代码字号，保证 15 行全进一屏 ---- */
+.askline{background:var(--amber);border:var(--bd) solid var(--ink);padding:12px 22px;
+  font-size:19px;font-weight:800;color:var(--ink);box-shadow:6px 6px 0 var(--ink);
+  margin-bottom:18px;flex:none;line-height:1.45}
+.askline b{color:var(--coral)}
+.lay-codefull .code pre{font-size:19px;line-height:1.55}
+
+/* ============================================================
+   投屏可读性（2026-09-19 按「学生看不清代码」修）
+   1) 定宽舞台：课件按 1600×900 排版，由 fitstage.js 整体等比缩放到投影分辨率，
+      换任何投影仪比例都一致；多余边缘留黑边。
+   2) 在此基础上整体上调字号，代码尤其加大。
+   ============================================================ */
+html,body{width:100%;height:100%;overflow:hidden;background:#0C0C0C}
+.deck{position:absolute;left:50%;top:50%;width:1600px;height:900px;
+  transform:translate(-50%,-50%) scale(var(--fit,1));transform-origin:center center;
+  overflow:hidden;background:var(--bg)}
+
+/* —— 字号整体上调 —— */
+.code pre{font-size:27px;line-height:1.56}
+.code .lab{font-size:19px;padding:8px 20px}
+.blk h4{font-size:29px;margin:0 0 9px}
+.blk p{font-size:25px;line-height:1.5}
+.strip{font-size:26px;padding:17px 26px}
+.rowitem .tx{font-size:26px}
+.rowitem{padding:14px 20px}
+.num{width:56px;height:56px;font-size:28px}
+.step .body .t{font-size:26px}
+.step .body .d{font-size:23px;line-height:1.45}
+.tr-row .cd{font-size:24px;padding:6px 14px}
+.tr-row .pl{font-size:24px}
+.tr-row{padding:11px 0}
+.tier .hd{font-size:24px}
+.tier .task{font-size:24px;line-height:1.45}
+.tier .fill{font-size:19px}
+.fk{font-size:18px;padding:5px 0}
+.fw{font-size:23px}
+.fq{font-size:20px;line-height:1.45}
+.fv{grid-template-columns:84px 1fr}
+.askline{font-size:23px;padding:13px 24px}
+.beads-cap{font-size:25px}
+.bead{width:84px;height:84px;font-size:33px}
+.ptitle{font-size:52px}
+.psub{font-size:25px}
+.phead .no{font-size:18px;padding:8px 15px}
+.phead .kick{font-size:18px;padding:5px 17px}
+.tslot{font-size:17px;padding:5px 14px}
+.deck-footer{font-size:16px}
+.cv-sub{font-size:30px}
+.tag{font-size:18px;padding:5px 16px}
+/* 15 行长代码页：字号能放多大受行数限制，配合更紧凑的页眉 */
+.lay-codefull .code pre{font-size:23px;line-height:1.52}
+.lay-codefull .ptitle{font-size:46px;margin-top:14px}
+
+/* —— 内容区高度上限按新字号重新标定 —— */
+.lay-cards3    .grow{max-height:300px}
+.lay-vscompare .grow{max-height:365px}
+.lay-code2     .grow{max-height:365px}
+.lay-hardware  .grow{max-height:470px}
+.lay-aierror   .grow{max-height:350px}
+.lay-steps3    .grow{max-height:280px}
+.lay-tiers3    .grow{max-height:320px}
+.lay-beads     .grow{max-height:250px}
+.lay-stepcode  .grow{max-height:470px}
+.lay-cards2    .grow{max-height:310px}
+
+/* ---- stepcode 改上下结构：五要素横排 + 代码占满页宽（半幅放不下 27px 代码）---- */
+.lay-stepcode .psub{display:none}          /* 省出一行高度给代码 */
+.scstack{display:flex;flex-direction:column;gap:14px}
+.fiverow{display:grid;grid-template-columns:repeat(5,1fr);gap:10px;align-items:stretch}
+.fvc{background:#fff;border:3px solid var(--ink);display:flex;flex-direction:column;
+  box-shadow:5px 5px 0 var(--ink);overflow:hidden}
+.fvc .fk{display:block;width:auto;background:var(--ink);color:var(--cream);font-size:17px;
+  font-weight:800;text-align:center;padding:5px 0;letter-spacing:.08em}
+.fvc .fw{font-size:20px;font-weight:700;line-height:1.35;padding:9px 12px;flex:1;
+  display:flex;align-items:center}
+.lay-stepcode .askline{margin-bottom:0;font-size:20px;padding:11px 20px;line-height:1.4}
+.lay-stepcode .askline b{color:var(--ink);background:#fff;border:2px solid var(--ink);padding:1px 8px}
+.lay-stepcode .code pre{font-size:27px}
+/* 五要素各格不等宽：语言短、约束长，避免约束挤成三行把整页顶高 */
+.fiverow{grid-template-columns:0.72fr 1.05fr 1fr 1.15fr 1.28fr}
+.lay-stepcode .askline{font-size:19px;padding:10px 20px;line-height:1.38}
+.lay-stepcode .ptitle{font-size:46px}
+.lay-stepcode .strip{padding:15px 26px}
+
+/* ================= vstext：文字版左右对比（好 vs 坏） ================= */
+.vstx{justify-content:flex-start}
+.vstx .tag{align-self:flex-start;margin-bottom:14px}
+.vstx .q{font-size:26px;font-weight:800;line-height:1.45;color:var(--ink);margin:0 0 12px}
+.vstx .why{font-size:21px;line-height:1.5;color:#3E3E3E;margin:0;
+  border-top:3px dashed var(--ink);padding-top:12px}
+
+/* ================= reqdoc：需求文档范例（五要素 + 步骤清单） ================= */
+.rdgrid{display:grid;grid-template-columns:1.15fr 1fr;gap:26px;align-items:stretch}
+.rdgrid .blk{justify-content:flex-start}
+.sqlist{display:flex;flex-direction:column;gap:9px;margin-top:6px}
+.sq{display:grid;grid-template-columns:40px 1fr;align-items:center;gap:12px}
+.sn{background:var(--green);color:#fff;border:3px solid var(--ink);text-align:center;
+  font-size:19px;font-weight:900;padding:3px 0}
+.st{font-size:21px;font-weight:700;line-height:1.35;color:#2E2E2E}
+
+.lay-vstext .grow{max-height:360px}
+.lay-reqdoc .grow{max-height:450px}
+
+/* ---- 五要素格里的 **加粗** 要真的跳出来（「按下读 0」这种关键事实）---- */
+.fw b,.fvc .fw b{background:var(--amber);padding:0 5px}
+/* ---- vstext 卡片贴合内容，别留大空洞 ---- */
+.lay-vstext .grow{max-height:300px}
+/* ---- codefull 的字号由生成器按行数内联，此处不要再全局覆盖 ---- */
+.lay-codefull .code pre{line-height:1.55}
+
+/* ================= chain2：软硬件映射链（第一阶段用） ================= */
+.chwrap{display:flex;flex-direction:column;gap:22px;justify-content:center}
+.chain{background:#fff;border:var(--bd) solid var(--ink);padding:18px 24px;box-shadow:var(--shadow)}
+.chain.g{box-shadow:8px 8px 0 var(--green)}
+.chain.c{box-shadow:8px 8px 0 var(--coral)}
+.chain .tag{margin-bottom:14px}
+.chainrow{display:flex;align-items:center;gap:14px;flex-wrap:nowrap}
+.cbx{background:var(--cream-2);border:3px solid var(--ink);padding:9px 18px;
+  font-size:23px;font-weight:800;white-space:nowrap}
+.carr{font-size:26px;font-weight:900;color:var(--ink)}
+.cres{margin-top:12px;font-size:21px;font-weight:700;color:#3E3E3E}
+.chain.g .cres b,.chain.c .cres b{background:var(--amber);padding:0 6px}
+.lay-chain2 .grow{max-height:430px}
+/* 四要素页（第一阶段只有 语言/硬件/接线/效果 四格） */
+.fiverow.four{grid-template-columns:0.8fr 1.1fr 1fr 1.35fr}
+
+/* ---- 行内代码：正文里出现 == 0 这类片段时用 `反引号` 包起来 ---- */
+code.ic{font-family:var(--font-mono);font-size:.92em;background:var(--cream-2);
+  border:2px solid var(--ink);padding:1px 7px;font-weight:700;white-space:nowrap}
+.strip code.ic,.askline code.ic{background:rgba(255,255,255,.18);border-color:currentColor;color:inherit}
+.strip.a code.ic,.askline code.ic{background:rgba(20,20,20,.1);border-color:var(--ink);color:var(--ink)}
+.lay-aierror .grow{max-height:400px}
+/* aierror 左栏加宽：半幅放不下带中文注释的代码行 */
+.aegrid{grid-template-columns:1.2fr 1fr}
+/* stepcode 紧凑版（代码 >9 行自动走这条路）：提问条在上，代码整幅 */
+.lay-stepcode .askline{margin-bottom:18px}

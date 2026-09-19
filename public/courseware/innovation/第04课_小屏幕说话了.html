@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>第4课 · 小屏幕说话了 — ESP32 × AI 科创课程</title>
+<link rel="stylesheet" href="assets/base.css">
+<link rel="stylesheet" id="theme-link" href="assets/theme-course-pop.css">
+<link rel="stylesheet" href="assets/animations.css">
+</head>
+<body>
+<div class="deck" data-theme-base="assets/">
+<section class="slide lay-cover is-active" data-title="封面">
+<div class="deco circle" style="width:170px;height:170px;top:-52px;right:238px"></div>
+<div class="deco tri" style="right:110px;bottom:132px;transform:rotate(14deg)"></div>
+<div class="deco square" style="width:120px;height:120px;left:-46px;bottom:86px;transform:rotate(12deg)"></div>
+<span class="cv-bar">ESP32 × AI ／ 第一阶段「读懂AI」</span>
+<h1 class="cv-title">小屏幕<em>说话了</em></h1>
+<p class="cv-sub">给 ESP32 装上一张「脸」</p>
+<div class="cv-tags"><span class="tag">ESP32</span><span class="tag">SSD1306 OLED</span><span class="tag">DeepSeek</span><span class="tag">90 分钟连堂</span></div>
+<div class="cv-no">04</div>
+<div class="notes"><p>前面三节课，ESP32 只能靠<b>一亮一灭</b>来发暗号。</p><p>你想想有多费劲：想说 SOS，得闪九下；想说别的，还得先教会对方密码表。</p><p>上节课我们给它装了「触觉」，它能感觉到我们按按钮了。但它想回答你一句话，还是只能——闪。</p><p>今天我们给它装上一张「<b>脸</b>」：一块小屏幕，叫 <b>OLED</b>。</p><p>（举起屏幕）</p><p>就这么小一块，但有了它，ESP32 就能<b>直接跟我们说话</b>了。</p><p>今天还会有一次很精彩的翻车：我问 AI「给 ESP32 接个屏幕显示 Hello」，运行出来——满屏红字。</p><p>为什么？因为「屏幕」这两个字，说得<b>太笼统</b>了。</p></div>
+</section>
+
+<section class="slide lay-cards3" data-title="悬念导入">
+<div class="phead"><span class="no">第4课</span>
+<span class="kick c">悬念导入</span>
+<span class="tslot">0–8 分</span>
+</div>
+<h2 class="ptitle">闪灯发暗号，太费劲了</h2>
+<p class="psub">最直接的表达是什么？说话</p>
+<div class="pbody"><div class="g3 grow"><div class="blk g"><h4>第1、2课：会亮会闪</h4><p>只能一亮一灭发暗号——想说句话得闪半天</p></div><div class="blk a"><h4>第3课：有了触觉</h4><p>它能感觉到我们按按钮了，但<b>回答不了</b></p></div><div class="blk c"><h4>今天：装上一张脸</h4><p><b>OLED 小屏幕</b>——它能把话直接写出来给你看</p></div></div><div style="margin-top:22px"><div class="strip a">它没有嘴巴，那就给它一块<b>屏幕</b></div></div></div>
+<div class="notes"><p>我们回头看看这三节课，ESP32 是怎么一步步「长出本事」的。</p><p>第 1、2 课，它学会了亮和闪。但表达方式只有一种：一亮一灭。想说一句话，得闪半天，而且对方还得懂密码表。</p><p>第 3 课，我们给它装了触觉，它能感觉到你按按钮了。但是——它<b>回答不了你</b>。你按了，它只能眨眨眼。</p><p>今天补上最后一块：<b>表达</b>。</p><p>人是怎么表达的？说话。可它没有嘴巴。</p><p>没关系，我们给它一块<b>屏幕</b>——它能把想说的话，直接<b>写出来</b>给你看。</p><p>这块屏幕叫 OLED，型号是 SSD1306。记住这串数字，今天它很重要。</p></div>
+</section>
+
+<section class="slide lay-aierror" data-title="第一次问AI">
+<div class="phead"><span class="no">第4课</span>
+<span class="kick c">AI 出错时刻</span>
+<span class="tslot">8–18 分</span>
+</div>
+<h2 class="ptitle">满屏红字：ImportError</h2>
+<p class="psub">我问「给 ESP32 接个屏幕，让它显示 Hello」——然后就翻车了</p>
+<div class="pbody">
+  <div class="aegrid grow">
+    <div class="code"><span class="lab c">运行结果</span><pre style="font-size:27px"><span class="k">import</span> oled_display        <span class="c"># AI 猜的库名</span>
+
+<span class="c"># 运行后一片红字：</span>
+<span class="c"># ImportError: no module</span>
+<span class="c">#   named 'oled_display'</span>
+<span class="c"># 屏幕一片黑</span></pre></div>
+    <div class="aecol">
+      <div class="blk c"><h4>AI 为什么胡说八道</h4><p>屏幕有<b>很多种</b>：有大有小、有彩色有黑白、有 I2C 有 SPI。你不告诉它<b>型号</b>，它只能随便猜一个——结果鸡同鸭讲。</p></div>
+      <div class="blk g"><h4>而且它还需要一个「翻译软件」</h4><p>编程里管这个翻译软件叫「<b>库</b>（Library）」。没装对库，板子根本听不懂这块屏幕的话。</p></div>
+    </div>
+  </div>
+  <div style="margin-top:22px"><div class="strip a">红字里的 <b>ImportError</b> ＝「我找不到这个翻译软件」</div></div>
+</div>
+<div class="notes"><p>我现在问 AI，故意问得<b>很笼统</b>：「给 ESP32 接个屏幕，让它显示 Hello。」</p><p>（运行）</p><p>哎呀，<b>一片红字</b>！这是怎么回事？</p><p>我们先读一读这个红字：ImportError: no module named ... 翻译过来就是——「我找不到这个东西」。</p><p>为什么找不到？两个原因。</p><p>第一，<b>屏幕有很多种</b>。有大有小，有彩色的有黑白的，接口也不一样。你不告诉 AI 具体的型号，它就随便猜了一个，结果<b>鸡同鸭讲</b>，根本对不上。</p><p>第二，它还需要一个「<b>翻译软件</b>」。</p><p>什么意思？板子的大脑本来不认识这块屏幕，它们语言不通。得装一个专门的翻译软件，板子才能跟屏幕对话。</p><p>这个翻译软件，我们编程里管它叫「<b>库</b>」，英文 Library。</p><p>所以红字里的 ImportError，说白了就是：<b>我找不到这个翻译软件</b>。</p></div>
+</section>
+
+<section class="slide lay-chain2" data-title="型号约束">
+<div class="phead"><span class="no">第4课</span>
+<span class="kick c">本课难点</span>
+<span class="tslot">18–30 分</span>
+</div>
+<h2 class="ptitle">「屏幕」两个字，AI 没法下手</h2>
+<p class="psub">同一个问题，说不说型号，结果天差地别</p>
+<div class="pbody">
+  <div class="chwrap grow"><div class="chain g"><span class="tag g">说清 SSD1306（好）</span><div class="chainrow"><div class="cbx">说清型号</div><span class="carr">→</span><div class="cbx">知道用哪个库</div><span class="carr">→</span><div class="cbx">import ssd1306</div></div><div class="cres"><b>屏幕显示文字 ○</b> —— 找对了翻译软件</div></div><div class="chain c"><span class="tag c">只说「屏幕」（坏）</span><div class="chainrow"><div class="cbx">不说型号</div><span class="carr">→</span><div class="cbx">AI 随便猜一个库</div><span class="carr">→</span><div class="cbx">import 猜错的名字</div></div><div class="cres"><b>报错 ImportError，屏幕一片黑 ×</b></div></div></div>
+  <div style="margin-top:20px"><div class="strip a">本课的提问升级点：说清<b>元件型号</b>——这是第三次给提问加码了</div></div>
+</div>
+<div class="notes"><p>看这两条线，同一个问题，区别只有一个：<b>说不说型号</b>。</p><p>下面这条是坏的：你只说「屏幕」，AI 不知道是哪一款，只能随便猜一个库名，写进 import 里。板子上根本没有那个库，所以报 ImportError，屏幕一片黑。</p><p>上面这条是好的：你说清 <b>SSD1306</b>，AI 立刻就知道该用哪个库——import ssd1306。找对了翻译软件，屏幕就亮了。</p><p>我要你们数一数，这已经是第几次了。</p><p>第 2 课，我们给提问加了什么？<b>时间</b>（0.2 秒、0.6 秒）。</p><p>第 3 课，加了什么？<b>硬件</b>的事实（按下是 0）。</p><p>今天，加的是——<b>元件型号</b>。</p><p>发现规律了吗？每一次翻车，都是因为我们<b>少说了一个具体的东西</b>。</p><p>所以本课的升级点就四个字：<b>说清型号</b>。</p></div>
+</section>
+
+<section class="slide lay-reqdoc" data-title="好版提问">
+<div class="phead"><span class="no">第4课</span>
+<span class="kick g">再问一次</span>
+<span class="tslot">18–30 分</span>
+</div>
+<h2 class="ptitle">说清型号和接线，再问一次</h2>
+<p class="psub">库 ＝ 翻译软件，import 把它请出来</p>
+<div class="pbody">
+  <div class="rdgrid grow">
+    <div class="blk a"><h4>四要素（型号写进「硬件」）</h4><div class="fivelist"><div class="fv"><span class="fk">语言</span><span class="fw">MicroPython</span></div><div class="fv"><span class="fk">硬件</span><span class="fw">ESP32，外接一块 <b>SSD1306</b> 屏幕（I2C 接口）</span></div><div class="fv"><span class="fk">接线</span><span class="fw"><b>SCL 接 22，SDA 接 21</b></span></div><div class="fv"><span class="fk">效果</span><span class="fw">让屏幕在第一行第一列显示 Hello。请提供完整代码。</span></div></div></div>
+    <div class="blk g"><h4>接线速查（先拔 USB！）</h4><div class="sqlist"><div class="sq"><span class="sn">①</span><span class="st">VCC → 3.3V</span></div><div class="sq"><span class="sn">②</span><span class="st">GND → GND</span></div><div class="sq"><span class="sn">③</span><span class="st"><b>SCL → GPIO22</b>（管节奏）</span></div><div class="sq"><span class="sn">④</span><span class="st"><b>SDA → GPIO21</b>（传数据）</span></div><div class="sq"><span class="sn">⑤</span><span class="st">还要把 <b>ssd1306.py 上传到板子</b>，否则照样 ImportError</span></div></div></div>
+  </div>
+  <div style="margin-top:20px"><div class="strip g">I2C 是两根特别聪明的通信线：一根管<b>节奏</b>（SCL），一根传<b>数据</b>（SDA）</div></div>
+</div>
+<div class="notes"><p>现在第二次问，注意「硬件」那一栏——多了 <b>SSD1306</b> 这个型号，还多了「I2C 接口」四个字。</p><p>接线那一栏也具体了：SCL 接 22，SDA 接 21。</p><p>（提交，运行）</p><p><b>屏幕亮了！</b></p><p>右边是接线速查卡，四根线。我强调两点。</p><p>第一，<b>接线前先拔 USB</b>。这是我们的实验室规矩：不湿手碰、不短接、不带电插拔。今天是第一次外接元件，从今天开始这条规矩要一直守着。</p><p>第二，SCL 和 SDA <b>千万别接反</b>。接反了会报另一个错，叫 ENODEV。</p><p>这两根线叫 <b>I2C</b>，是两根特别聪明的通信线：一根管<b>节奏</b>（SCL，像打拍子的），一根传<b>数据</b>（SDA，真正送内容的）。</p><p>还有最后一条，第 5 条，特别容易忘：光写代码不够，你还得把 <b>ssd1306.py 这个库文件上传到板子里</b>。不传，照样 ImportError。</p></div>
+</section>
+
+<section class="slide lay-codefull" data-title="正确代码">
+<div class="phead"><span class="no">第4课</span>
+<span class="kick a">参考代码</span>
+<span class="tslot">18–30 分</span>
+</div>
+<h2 class="ptitle">完整可运行代码</h2>
+<div class="pbody"><div class="askline">运行前先做一件事：把 <b>ssd1306.py 上传到板子</b>（MicroPython Tools 面板里 Upload）</div><div class="code"><span class="lab g">完整可跑 · 屏幕显示 Hello</span><pre style="font-size:27px"><span class="k">from</span> machine <span class="k">import</span> Pin, SoftI2C
+<span class="k">import</span> ssd1306
+
+i2c = SoftI2C(scl=Pin(22), sda=Pin(21))
+oled = ssd1306.SSD1306_I2C(128, 64, i2c)
+
+oled.fill(0)               <span class="c"># 清空屏幕</span>
+oled.text('Hello', 0, 0)   <span class="c"># 准备文字和坐标</span>
+oled.show()                <span class="c"># 显示出来</span></pre></div><div style="margin-top:18px"><div class="strip g">这段是<b>顺序执行</b>的，没有循环也没有判断——所以不需要缩进</div></div></div>
+<div class="notes"><p>这就是正确的完整代码，九行，能直接跑。</p><p>先注意一件事：这段和前两课不一样——它<b>没有 while，没有 if</b>。从上到下跑一遍就结束了。</p><p>所以它<b>不需要缩进</b>，全部顶格写。前两课让你们数缩进数怕了，今天放松一下。</p><p>运行之前有个前置动作，屏幕上那条橙色的提醒：先把 <b>ssd1306.py 上传到板子</b>。在 MicroPython Tools 面板里 Upload。</p><p>这一步忘了，你代码写得再对也是 ImportError。</p><p>最后一行 <b>oled.show()</b> 我要特别说：这行<b>千万不能漏</b>。</p><p>为什么？下一页讲。</p></div>
+</section>
+
+<section class="slide lay-translate" data-title="逐行解读">
+<div class="phead"><span class="no">第4课</span>
+<span class="kick g">逐行解读</span>
+<span class="tslot">30–40 分</span>
+</div>
+<h2 class="ptitle">四个新东西，逐行读</h2>
+<div class="pbody"><div class="blk grow" style="padding:10px 24px"><div class="tr-row"><div class="cd">import ssd1306</div><div class="eq">=</div><div class="pl">把这块屏幕的「<b>翻译软件</b>」请出来——这就是<b>库</b></div></div><div class="tr-row"><div class="cd">SoftI2C(scl=Pin(22), sda=Pin(21))</div><div class="eq">=</div><div class="pl">两根通信线：<b>SCL 管节奏</b>，<b>SDA 传数据</b></div></div><div class="tr-row"><div class="cd">SSD1306_I2C(128, 64, i2c)</div><div class="eq">=</div><div class="pl">告诉它屏幕多大：<b>128 宽、64 高</b>（单位是小格子）</div></div><div class="tr-row"><div class="cd">oled.fill(0)</div><div class="eq">=</div><div class="pl"><b>先擦干净</b>——0 就是全黑</div></div><div class="tr-row"><div class="cd">oled.text('Hello', 0, 0)</div><div class="eq">=</div><div class="pl">在坐标 <b>(0,0)</b>（左上角）<b>起草</b>「Hello」</div></div><div class="tr-row"><div class="cd">oled.show()</div><div class="eq">=</div><div class="pl"><b>举起来给大家看</b>——不写这句，屏幕上什么都没有！</div></div></div></div>
+<div class="notes"><p>六行，一行一行读。</p><p>第一行，<b>import ssd1306</b>。这句话就是对大脑说：快把针对这块屏幕的<b>翻译软件</b>拿出来。这个翻译软件，就叫<b>库</b>。</p><p>第二行，<b>SoftI2C</b>，两根特别聪明的通信线：SCL 管节奏，SDA 传数据。就像两个人抬东西，一个喊号子，一个真扛。</p><p>第三行，告诉它屏幕多大：128 宽、64 高。单位是什么？是<b>小格子</b>，一个格子就是一个点。</p><p>第四行，<b>fill(0)</b>，先把屏幕擦干净。0 就是全黑。为什么要擦？因为上一次显示的东西可能还留在上面。</p><p>第五行，<b>text('Hello', 0, 0)</b>——在坐标 (0,0) 的位置写 Hello。(0,0) 是哪儿？<b>左上角</b>。</p><p>最后一行最重要：<b>oled.show()</b>。</p><p>我打个比方：前面那行 text 只是<b>起草</b>，就像你在纸上画好了画；show() 才是<b>举起来给大家看</b>。</p><p>不写这句会怎么样？程序<b>不报错</b>，但屏幕<b>一片黑</b>。这是今天最阴险的一个坑。</p></div>
+</section>
+
+<section class="slide lay-rowlist" data-title="屏幕坐标">
+<div class="phead"><span class="no">第4课</span>
+<span class="kick a">坐标系</span>
+<span class="tslot">30–40 分</span>
+</div>
+<h2 class="ptitle">屏幕就是一张网格纸</h2>
+<p class="psub">改数字就能改文字的位置</p>
+<div class="pbody"><div class="rowlist grow"><div class="rowitem"><div class="num g">1</div><div class="tx">左上角是原点 <b>(0, 0)</b>——不是左下角，也不是中间</div></div><div class="rowitem"><div class="num a">2</div><div class="tx"><b>X 越大越靠右</b>（屏幕一共 <b>128</b> 格宽）</div></div><div class="rowitem"><div class="num c">3</div><div class="tx"><b>Y 越大越靠下</b>（屏幕一共 <b>64</b> 格高）</div></div><div class="rowitem"><div class="num g">4</div><div class="tx">oled.text('Hi', <b>40</b>, <b>28</b>) —— 大概就在屏幕<b>中间</b></div></div><div class="rowitem"><div class="num a">5</div><div class="tx">写超出去了不报错，字会被<b>切掉一半</b>或者看不见</div></div></div><div style="margin-top:20px"><div class="strip g">待会儿进阶任务就玩这个：把你的名字拼音挪到屏幕正中间</div></div></div>
+<div class="notes"><p>屏幕上写字，其实就像在一张<b>网格纸</b>上找位置。</p><p>记住三条。</p><p>第一，原点在<b>左上角</b>，坐标 (0, 0)。注意——不是左下角，跟你们数学课上画的坐标系不一样。</p><p>第二，<b>X 越大越靠右</b>，屏幕一共 128 格宽。</p><p>第三，<b>Y 越大越靠下</b>，屏幕一共 64 格高。注意 Y 是<b>越大越往下</b>，这个也和数学课相反。</p><p>那如果我想把字放在<b>正中间</b>，X 和 Y 大概填多少？</p><p>（等他们算）</p><p>128 的一半是 64，64 的一半是 32。但字本身有宽度，所以往左上挪一点，大概填 <b>(40, 28)</b> 就差不多在中间了。</p><p>还有一条提醒：如果你填的数字太大，超出屏幕了，程序<b>不会报错</b>，但字会被切掉一半，或者干脆看不见。别以为是代码坏了。</p><p>待会儿进阶任务就玩这个：把你名字的拼音挪到屏幕正中间。</p></div>
+</section>
+
+<section class="slide lay-divider" data-title="课间休息">
+<div class="deco circle" style="width:200px;height:200px;top:-70px;right:180px"></div>
+<div class="deco square" style="width:130px;height:130px;left:-50px;bottom:70px;transform:rotate(12deg)"></div>
+<div class="deco tri" style="right:140px;bottom:90px;transform:rotate(14deg)"></div>
+<div class="dv">
+  <span class="dv-time">40–50 分</span>
+  <h2 class="dv-t">课间休息 10 分钟</h2>
+  <p class="dv-s">回来先接线——记住：接线前拔 USB，SCL 接 22、SDA 接 21</p>
+</div>
+<div class="notes"><p>上半场结束，休息十分钟。</p><p>回来的第一件事是<b>接线</b>，今天是我们第一次外接元件，四根线。</p><p>接之前必须做一件事：<b>把 USB 拔掉</b>。不湿手碰、不短接、不带电插拔。</p><p>接线口诀记住：VCC 接 3.3V，GND 接 GND，<b>SCL 接 22，SDA 接 21</b>。</p><p>别接反。接反了屏幕不亮，还会报一个新错。</p><p>休息一下，回来动手。</p></div>
+</section>
+
+<section class="slide lay-tiers3" data-title="分层任务">
+<div class="phead"><span class="no">第4课</span>
+<span class="kick g">分层任务</span>
+<span class="tslot">50–75 分</span>
+</div>
+<h2 class="ptitle">先保底，再挑战</h2>
+<p class="psub">屏幕显示出文字 ＋ 说出「库是什么」＝ 成功</p>
+<div class="pbody"><div class="g3 grow"><div class="blk tier t1"><div class="hd">★ 基础（必做）</div>
+        <p class="task">接好屏幕的 4 根线（VCC/GND/SCL/SDA），上传 ssd1306.py，运行代码。</p><p class="fill">□ 屏幕成功亮起并显示文字！</p></div><div class="blk tier t2"><div class="hd">★★ 进阶（建议做）</div>
+        <p class="task">改坐标：oled.text('你的拼音', X, Y)，把名字挪到屏幕中间。</p><p class="fill">当 X＝____，Y＝____ 时，我的名字大概在中间</p></div><div class="blk tier t3"><div class="hd">★★★ 挑战（学有余力）</div>
+        <p class="task">加上第3课的按钮（GPIO0）：按下屏幕显示 ON，松开显示 OFF。</p><p class="fill">我的约束是：按钮带上拉（按下0松开1），请用 ssd1306 库</p></div></div>
+<div style="margin-top:22px"><div class="strip g">中文显示不出来是正常的——这个库只认<b>英文和数字</b>，名字请用<b>拼音</b></div></div></div>
+<div class="notes"><p>三档任务。</p><p><b>基础档必做</b>：接好四根线，上传库文件，运行代码。屏幕上出现 Hello，你这节课就成功了。</p><p>进阶档：改坐标，把你名字的拼音挪到屏幕中间。X 和 Y 填多少，自己试，填在卡片上。</p><p>挑战档最有意思：<b>把第 3 课的按钮加进来</b>——按下屏幕显示 ON，松开显示 OFF。</p><p>这是我们第一次把两节课的东西<b>拼在一起</b>。提问的时候记得，约束要写两条：按钮的上拉（按下 0 松开 1），还有屏幕要用 ssd1306 库。</p><p>最后提醒一件事，免得你们以为坏了：<b>中文显示不出来是正常的</b>。这个库只认英文和数字。想写名字，用<b>拼音</b>。</p><p>开始，我巡视。</p></div>
+</section>
+
+<section class="slide lay-cards3" data-title="报错怎么办">
+<div class="phead"><span class="no">第4课</span>
+<span class="kick a">集体 Debug</span>
+<span class="tslot">75–85 分</span>
+</div>
+<h2 class="ptitle">三个高频错，自己先查</h2>
+<p class="psub">今天的报错有点多，别慌——每个红字都在告诉你哪儿错了</p>
+<div class="pbody"><div class="g3 grow"><div class="blk g"><h4>ImportError</h4><p>板子里<b>没有库文件</b>。把 ssd1306.py 上传到 ESP32 就好。</p></div><div class="blk a"><h4>OSError: ENODEV</h4><p><b>线接反了</b>或接触不良——多半是 SCL 和 SDA 弄反了，或者线没插紧。</p></div><div class="blk c"><h4>不报错但屏幕全黑</h4><p><b>忘了 oled.show()</b>——文字只是起草了，没「举起来」。</p></div></div><div style="margin-top:22px"><div class="strip g">屏幕显示乱码？那是<b>库和型号不匹配</b>（SSD1306 的库驱动不了 SH1106 的屏）</div></div></div>
+<div class="notes"><p>今天的报错比前几课多，这很正常——因为我们第一次接外部元件了。</p><p>三个高频错，举手之前自己先查。</p><p>第一，<b>ImportError</b>。老朋友了，意思是找不到库。板子里没有那个文件。去 MicroPython Tools 面板把 <b>ssd1306.py 上传</b>到板子。</p><p>第二，<b>OSError，后面跟着 ENODEV</b>。这个词的意思是「找不到设备」——线的问题。多半是 SCL 和 SDA <b>接反了</b>，也可能是线没插紧。拔了 USB，重新接一遍。</p><p>第三个最阴，<b>不报错，但屏幕全黑</b>。</p><p>这种最容易让人怀疑人生，因为电脑告诉你「一切正常」。查什么？查最后一行——<b>oled.show() 写了没有</b>。</p><p>还有一种是屏幕上<b>显示乱码</b>，花花绿绿一片。那是库和屏幕型号对不上——比如你手里是 SH1106 的屏，用了 SSD1306 的库。找我换一块。</p></div>
+</section>
+
+<section class="slide lay-rowlist" data-title="今日三大发现">
+<div class="phead"><span class="no">第4课</span>
+<span class="kick g">总结</span>
+<span class="tslot">85–90 分</span>
+</div>
+<h2 class="ptitle">今日三大发现</h2>
+<div class="pbody"><div class="rowlist grow"><div class="rowitem"><div class="num g">1</div><div class="tx">给板子加个「翻译软件」（<b>库</b>），它就能认识新硬件</div></div><div class="rowitem"><div class="num a">2</div><div class="tx">AI 在<b>不知道型号</b>的时候会胡说八道——提问必须精确到<b>元件型号</b></div></div><div class="rowitem"><div class="num c">3</div><div class="tx">屏幕上写字就像在<b>画网格坐标</b>，改数字就能改位置</div></div></div><div style="margin-top:20px"><div class="strip a">AI 也会犯错——下节课《AI错了》，我们专门来当 <b>Bug 猎人</b>！</div></div></div>
+<div class="notes"><p>都停下，看屏幕。今天三个发现。</p><p>第一个，给板子加个<b>翻译软件</b>——也就是<b>库</b>——它就能认识新硬件。以后你想接什么新东西，第一个问题就是：它的库叫什么？</p><p>第二个，AI 在不知道型号的时候会<b>胡说八道</b>。所以提问必须精确到<b>元件型号</b>。这已经是我们第三次给提问加码了：时间、硬件事实、元件型号。</p><p>第三个，屏幕上写字就像在<b>画网格坐标</b>，改数字就能改位置。左上角是 (0,0)，X 往右，Y 往下。</p><p>最后留钩子。</p><p>这四节课下来，你们已经见过 AI 翻车<b>三次</b>了：闪得不对、按反了、报红字。</p><p>每一次我都说「不是 AI 傻，是我们没说清」。</p><p>但是——<b>AI 真的会犯错吗？</b></p><p>下节课《AI错了》，我们不学新硬件，我们专门来当 <b>Bug 猎人</b>。我会给你们几段有毛病的代码，看谁先抓到虫子。</p><p>下课。</p></div>
+</section>
+
+<section class="slide lay-cards2" data-title="课后任务">
+<div class="phead"><span class="no">第4课</span>
+<span class="kick a">课后任务</span>
+</div>
+<h2 class="ptitle">课后任务</h2>
+<div class="pbody"><div class="g2 grow"><div class="blk g"><h4>基础（全员）</h4><p>给家人讲解「<b>库</b>」是什么，为什么电脑需要它——可以用「翻译软件」的比喻。</p></div><div class="blk a"><h4>拓展（选做）</h4><p>想一想：要在屏幕<b>右下角</b>显示文字，X 和 Y 该填多少？（提示：屏幕长 128，宽 64。）</p></div></div>
+<div style="margin-top:24px"><div class="strip g">能把「库」讲明白给家人听，才是真的懂了</div></div></div>
+<div class="notes"><p>课后两件事。</p><p>第一件全员都做：回家给家人讲清楚「<b>库</b>」是什么，为什么电脑需要它。</p><p>可以用今天的比喻：库就是<b>翻译软件</b>。你不装翻译软件，就听不懂外国话；板子不装库，就听不懂新硬件的话。</p><p>第二件选做，是一道<b>思考题</b>：要在屏幕<b>右下角</b>显示文字，X 和 Y 该填多少？</p><p>提示我给了：屏幕长 128，宽 64。你要考虑一件事——字本身有宽度和高度，如果你填 128 和 64，字就跑到屏幕外面去了。</p><p>自己算一算，下节课告诉我。</p><p>最后一句：能把「库」讲明白给家人听，才是真的懂了。下课。</p></div>
+</section>
+<div class="deck-footer"><span>ESP32 × AI 科创课程 · 第一阶段「读懂AI」 · 第4课 小屏幕说话了</span><span class="slide-number" data-current="1" data-total="13"></span></div>
+<div class="progress-bar"><span></span></div>
+</div>
+<script src="assets/fitstage.js"></script>
+<script src="assets/runtime.js"></script>
+</body>
+</html>

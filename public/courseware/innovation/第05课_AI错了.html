@@ -1,0 +1,235 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>第5课 · AI错了 — ESP32 × AI 科创课程</title>
+<link rel="stylesheet" href="assets/base.css">
+<link rel="stylesheet" id="theme-link" href="assets/theme-course-pop.css">
+<link rel="stylesheet" href="assets/animations.css">
+</head>
+<body>
+<div class="deck" data-theme-base="assets/">
+<section class="slide lay-cover is-active" data-title="封面">
+<div class="deco circle" style="width:170px;height:170px;top:-52px;right:238px"></div>
+<div class="deco tri" style="right:110px;bottom:132px;transform:rotate(14deg)"></div>
+<div class="deco square" style="width:120px;height:120px;left:-46px;bottom:86px;transform:rotate(12deg)"></div>
+<span class="cv-bar">ESP32 × AI ／ 第一阶段「读懂AI」收官</span>
+<h1 class="cv-title">AI<em>错了</em></h1>
+<p class="cv-sub">红字不是炸弹，是藏宝图——今天全班当 Bug 猎人</p>
+<div class="cv-tags"><span class="tag">ESP32</span><span class="tag">MicroPython</span><span class="tag">DeepSeek</span><span class="tag">90 分钟连堂</span></div>
+<div class="cv-no">05</div>
+<div class="notes"><p>大家回想一下这几节课：当我们满怀期待点「上传」，结果下面弹出<b>一大片红字</b>的时候，心里是不是「咯噔」一下，觉得全完了？</p><p>（等他们笑）</p><p>今天我要告诉你们一件事：<b>红字不是炸弹，红字是藏宝图。</b></p><p>只有菜鸟才害怕红字。真正的高手看到红字，第一反应是——太好了，它告诉我猎物躲在哪儿了。</p><p>今天不学新硬件，也不学新语法。今天你们全都是 <b>Bug 猎人</b>。</p><p>我准备了四段有毛病的代码，藏着四只不同的虫子。有的一眼能看见，有的藏得很深——最后那只，<b>连红字都不报</b>。</p><p>谁先抓到，谁就是今天的首席猎人。</p></div>
+</section>
+
+<section class="slide lay-cards3" data-title="悬念导入">
+<div class="phead"><span class="no">第5课</span>
+<span class="kick c">悬念导入</span>
+<span class="tslot">0–8 分</span>
+</div>
+<h2 class="ptitle">红字不是惩罚</h2>
+<p class="psub">专业程序员最喜欢红字——因为它会说话</p>
+<div class="pbody"><div class="g3 grow"><div class="blk g"><h4>菜鸟看到红字</h4><p>心里咯噔一下：完了完了，我把电脑搞坏了</p></div><div class="blk a"><h4>高手看到红字</h4><p>太好了——它告诉我<b>错在第几行、是什么错</b></p></div><div class="blk c"><h4>最怕的是什么</h4><p><b>不报红字</b>，但结果就是不对——那才叫真麻烦</p></div></div><div style="margin-top:22px"><div class="strip a">排错（<b>Debug</b>）不是失败，是程序员的<b>日常工作</b></div></div></div>
+<div class="notes"><p>我们先换一个想法。</p><p>菜鸟看到红字，心里咯噔一下：完了完了，我是不是把电脑搞坏了？</p><p>高手看到红字，第一反应是什么？<b>太好了。</b></p><p>为什么太好了？因为红字会<b>说话</b>——它告诉你错在第几行、是什么类型的错。这等于有人直接把答案的位置指给你看了。</p><p>那高手最怕什么？</p><p>最怕<b>不报红字</b>，但结果就是不对。灯也亮了，屏幕也出字了，就是效果反的。电脑觉得一切正常，不吭声。</p><p>那种错才叫真麻烦。今天我们会专门抓一只。</p><p>最后说一句：排错，英文叫 <b>Debug</b>，直译是「捉虫」。这不是失败，这是程序员的<b>日常工作</b>。写代码的时间和捉虫的时间，差不多一半一半。</p></div>
+</section>
+
+<section class="slide lay-cards3" data-title="三种猎物">
+<div class="phead"><span class="no">第5课</span>
+<span class="kick g">三类错误</span>
+<span class="tslot">8–18 分</span>
+</div>
+<h2 class="ptitle">三种猎物，三种抓法</h2>
+<p class="psub">先认清它是哪一种，才知道往哪儿找</p>
+<div class="pbody"><div class="g3 grow"><div class="blk g"><h4>① 语法错 SyntaxError</h4><p><b>拼写格式错了</b>：少写冒号、拼错单词、括号没配对。红字直接指到那一行。</p></div><div class="blk a"><h4>② 运行错 NameError / ImportError</h4><p><b>找不到东西</b>：忘了 import、引脚号不存在、库没上传。跑起来才报。</p></div><div class="blk c"><h4>③ 逻辑错（没有红字！）</h4><p><b>思路反了</b>：代码全合法，电脑照做，但做出来的<b>不是你想要的</b>。它不吭声。</p></div></div><div style="margin-top:22px"><div class="strip ">前两种红字会告诉你；第三种——<b>只能靠你自己看现象倒推</b></div></div></div>
+<div class="notes"><p>今天的猎物分三种，我们一个一个认。</p><p>第一种，<b>语法错</b>，英文 SyntaxError。就是<b>拼写格式</b>写错了：少写一个冒号、单词拼错、括号没配对。</p><p>这种最好抓，因为红字会<b>直接指到那一行</b>，PyCharm 还会画红波浪线。</p><p>第二种，<b>运行错</b>。它有好几个名字：NameError、ImportError、OSError。共同点是——<b>找不到东西</b>。</p><p>忘了 import、引脚号不存在、库没上传，都属于这类。它的特点是：写的时候没事，<b>跑起来才报</b>。</p><p>第三种，最难的：<b>逻辑错</b>。</p><p>它<b>完全不报红字</b>。代码每一行都合法，电脑老老实实照做了，但做出来的<b>不是你想要的</b>。</p><p>比如我们第 3 课那个——按下灯灭、松开灯亮。电脑错了吗？没有，它完全按你写的做了。是<b>你脑子里的逻辑搞反了</b>。</p><p>记住这个区别：前两种，红字会告诉你；第三种，只能靠你自己<b>看现象倒推</b>。</p></div>
+</section>
+
+<section class="slide lay-rowlist" data-title="读报错三要素">
+<div class="phead"><span class="no">第5课</span>
+<span class="kick a">读报错</span>
+<span class="tslot">18–30 分</span>
+</div>
+<h2 class="ptitle">红字只看最后两行</h2>
+<p class="psub">一大堆英文别慌——有用的就那两行</p>
+<div class="pbody"><div class="rowlist grow"><div class="rowitem"><div class="num g">1</div><div class="tx"><b>倒数第二行</b>：写着 <code class="ic">line 10</code> —— 告诉你错在<b>第几行</b>附近</div></div><div class="rowitem"><div class="num a">2</div><div class="tx"><b>倒数第一行</b>：写着 <code class="ic">SyntaxError</code> —— 告诉你是<b>什么类型</b>的错</div></div><div class="rowitem"><div class="num c">3</div><div class="tx">中间那一大堆？那是电脑自己的「行军路线」，<b>不用看</b></div></div><div class="rowitem"><div class="num g">4</div><div class="tx">先跳到那一行，用眼睛扫：冒号？括号？拼写？缩进？</div></div><div class="rowitem"><div class="num a">5</div><div class="tx">实在看不出来——<b>别瞎改</b>，把红字<b>全部复制</b>扔给 AI</div></div></div><div style="margin-top:20px"><div class="strip g">读报错三要素：<b>哪一行</b> · <b>什么错</b> · <b>怎么办</b></div></div></div>
+<div class="notes"><p>看到一大堆英文别慌。我教你们一个诀窍：<b>只看最后两行</b>。</p><p><b>倒数第二行</b>，里面有个词 line 加一个数字，比如 line 10。这告诉你——错在<b>第 10 行附近</b>。</p><p>注意我说的是「附近」，不是「就在第 10 行」。有时候真正的错在上一行，电脑是跑到第 10 行才发现不对的。</p><p><b>倒数第一行</b>，写着 XxxError。这告诉你是<b>什么类型</b>的错。</p><p>中间那一大堆呢？那是电脑自己的「行军路线」，记录它是怎么一步步跑到出错的地方的。<b>不用看</b>。</p><p>所以流程是：先跳到那一行，用眼睛扫一遍——冒号写了吗？括号配对吗？单词拼对了吗？缩进齐吗？</p><p>实在看不出来怎么办？<b>别瞎改</b>。瞎改会越改越乱，本来一个错能改出三个。</p><p>正确做法：把红字<b>全部复制</b>，扔给 AI。下一页就是模板。</p></div>
+</section>
+
+<section class="slide lay-reqdoc" data-title="调试 Prompt">
+<div class="phead"><span class="no">第5课</span>
+<span class="kick g">工具</span>
+<span class="tslot">18–30 分</span>
+</div>
+<h2 class="ptitle">调试 Prompt 模板</h2>
+<p class="psub">搞不定就找 AI——但要按这个格式问</p>
+<div class="pbody">
+  <div class="rdgrid grow">
+    <div class="blk a"><h4>照着填三行</h4><div class="fivelist"><div class="fv"><span class="fk">第1行</span><span class="fw">我运行代码时报错了。这是我的代码：（粘贴代码）</span></div><div class="fv"><span class="fk">第2行</span><span class="fw">这是下方的红色报错信息：（粘贴<b>全部</b>红色报错文本）</span></div><div class="fv"><span class="fk">第3行</span><span class="fw">请告诉我错误在<b>哪一行</b>、<b>原因</b>是什么，以及<b>修改后的正确代码</b>。</span></div></div></div>
+    <div class="blk g"><h4>三条注意事项</h4><div class="sqlist"><div class="sq"><span class="sn">①</span><span class="st">红字必须<b>从第一行到最后一行全部复制</b>——贴一半 AI 也猜不出</span></div><div class="sq"><span class="sn">②</span><span class="st">代码也要一起贴，只贴报错 AI 看不到上下文</span></div><div class="sq"><span class="sn">③</span><span class="st">三个问题一起问：哪一行、为什么、怎么改</span></div><div class="sq"><span class="sn">④</span><span class="st">AI 改完<b>先看懂再上传</b>——别当复读机</span></div><div class="sq"><span class="sn">⑤</span><span class="st">逻辑错没有红字，这个模板用不上——得<b>描述症状</b></span></div></div></div>
+  </div>
+  <div style="margin-top:20px"><div class="strip g">AI 瞬间就能变成你的 <b>Debug 助手</b>——前提是你把线索给全</div></div>
+</div>
+<div class="notes"><p>这是今天最实用的一个工具，照着填三行。</p><p>第一行：我运行代码时报错了，这是我的代码——把代码粘上去。</p><p>第二行：这是下方的红色报错信息——把<b>全部</b>红字粘上去。</p><p>第三行：请告诉我错误在哪一行、原因是什么，以及修改后的正确代码。</p><p>右边五条注意事项，我挑三条重点说。</p><p>第一条最重要：红字必须<b>从第一行到最后一行全部复制</b>。我知道你们会偷懒只复制最后一行——<b>贴一半，AI 也猜不出</b>。</p><p>第四条：AI 改完之后，<b>先看懂再上传</b>。不要当复读机。为什么？因为它有时候会顺手把别的地方也改了，你不看就不知道。</p><p>第五条特别注意：<b>逻辑错没有红字</b>，这个模板用不上。那种情况你得<b>描述症状</b>——「我想要按下亮，但实际是松开才亮」。</p><p>把线索给全，AI 瞬间就能变成你的 Debug 助手。</p></div>
+</section>
+
+<section class="slide lay-aierror" data-title="Bug 1 实战">
+<div class="phead"><span class="no">第5课</span>
+<span class="kick c">模拟实战</span>
+<span class="tslot">30–40 分</span>
+</div>
+<h2 class="ptitle">Bug 1：少了一个冒号</h2>
+<p class="psub">我们一起抓第一只——这是最好抓的一种</p>
+<div class="pbody">
+  <div class="aegrid grow">
+    <div class="code"><span class="lab c">bug1.py</span><pre style="font-size:26px"><span class="k">from</span> machine <span class="k">import</span> Pin
+<span class="k">import</span> time
+led = Pin(2, Pin.OUT)
+<span class="k">while</span> <span class="k">True</span>       <span class="c"># 这里漏了冒号 :</span>
+    led.value(1)
+    time.sleep(0.5)
+    led.value(0)
+    time.sleep(0.5)</pre></div>
+    <div class="aecol">
+      <div class="blk c"><h4>① 语法错 SyntaxError</h4><p><code class="ic">while True</code> 后面<b>漏了冒号</b>。红字会指到这一行，PyCharm 里它下面还有一条<b>红波浪线</b>。</p></div>
+      <div class="blk g"><h4>改法</h4><p>在 <code class="ic">while True</code> 后面补一个<b>英文冒号</b> <code class="ic">:</code>，然后 <b>Ctrl+S 保存</b>再上传。</p></div>
+    </div>
+  </div>
+  <div style="margin-top:22px"><div class="strip a">注意是<b>英文</b>冒号——中文的 <code class="ic">：</code> 电脑不认，改了也照样报错</div></div>
+</div>
+<div class="notes"><p>我们一起抓第一只，这是最好抓的一种。</p><p>看代码，第 4 行：while True，后面什么都没有。</p><p>再看下面的红字：倒数第二行 line 4，倒数第一行 SyntaxError。</p><p>line 4 —— 跳到第 4 行。SyntaxError —— 语法错，说明是拼写格式的问题。</p><p>现在用眼睛扫第 4 行：while 拼对了吗？对。True 大写了吗？对。那还差什么？</p><p>（等他们喊「冒号」）</p><p>对！<b>冒号</b>。前面几课我们写 while True 的时候，后面都跟着一个冒号，今天它不见了。</p><p>另外看 PyCharm，它已经在那一行下面画了一条<b>红波浪线</b>——软件其实早就提醒你了，只是你没注意。</p><p>改法很简单：补一个冒号，Ctrl+S 保存，上传。</p><p>最后提醒一个坑：一定要是<b>英文冒号</b>。你要是用中文输入法打了一个全角的「：」，电脑不认，改了照样报错——而且这个错超级难发现，因为两个看起来几乎一样。</p></div>
+</section>
+
+<section class="slide lay-divider" data-title="课间休息">
+<div class="deco circle" style="width:200px;height:200px;top:-70px;right:180px"></div>
+<div class="deco square" style="width:130px;height:130px;left:-50px;bottom:70px;transform:rotate(12deg)"></div>
+<div class="deco tri" style="right:140px;bottom:90px;transform:rotate(14deg)"></div>
+<div class="dv">
+  <span class="dv-time">40–50 分</span>
+  <h2 class="dv-t">课间休息 10 分钟</h2>
+  <p class="dv-s">回来发「错误类型卡」——按①②③④的顺序抓虫，别碰运气</p>
+</div>
+<div class="notes"><p>上半场结束，休息十分钟。</p><p>回来我给每组发一张「<b>错误类型卡</b>」。上面写了四类找错的<b>顺序</b>：先查什么、再查什么。</p><p>为什么要有顺序？因为碰运气式地乱找，运气好三分钟，运气不好四十分钟。有顺序，就变成了<b>一道一道排除</b>。</p><p>今天的保底线我先说清楚：<b>修好两段</b>，并且能说出<b>哪种错最难发现</b>。做到这两样，你这节课就成功了。</p><p>Bug 3 和 Bug 4 是给学有余力的。</p><p>休息一下，回来开猎。</p></div>
+</section>
+
+<section class="slide lay-rowlist" data-title="错误类型卡">
+<div class="phead"><span class="no">第5课</span>
+<span class="kick a">找错顺序</span>
+<span class="tslot">50–75 分</span>
+</div>
+<h2 class="ptitle">错误类型卡：按顺序抓</h2>
+<p class="psub">不是碰运气，是一类一类排除</p>
+<div class="pbody"><div class="rowlist grow"><div class="rowitem"><div class="num g">1</div><div class="tx"><b>① 漏东西</b> —— 漏 import、漏冒号、漏括号（对应 Bug 1、Bug 2）</div></div><div class="rowitem"><div class="num a">2</div><div class="tx"><b>② 参数错</b> —— 时间、坐标、量程这些<b>数值</b>不对（对应 Bug 4 的坐标超界）</div></div><div class="rowitem"><div class="num c">3</div><div class="tx"><b>③ 引脚错</b> —— 代码里的引脚号和<b>实际接线对不上</b>（对应 Bug 4 的 99 号引脚）</div></div><div class="rowitem"><div class="num g">4</div><div class="tx"><b>④ 逻辑反</b> —— 大小写反、0/1 写反，<b>不报红字但行为相反</b>（对应 Bug 3）</div></div></div><div style="margin-top:20px"><div class="strip g">抓到之后要能说出：<b>我是在第几类抓住它的</b></div></div></div>
+<div class="notes"><p>这张卡人手一份，抓虫就按这个顺序来。</p><p><b>第①类：漏东西。</b> 最常见，先查它。漏了 import、漏了冒号、漏了括号。今天的 Bug 1 和 Bug 2 都是这一类。</p><p><b>第②类：参数错。</b> 数值不对——时间填错了、坐标填错了、范围超了。Bug 4 里的坐标超界就是这类。</p><p><b>第③类：引脚错。</b> 代码里写的引脚号，和你<b>实际接的线</b>对不上。Bug 4 里那个 99 号引脚就是。</p><p><b>第④类：逻辑反。</b> 大小写反、0 和 1 写反。特点是<b>不报红字，但行为相反</b>。Bug 3 就是这一类。</p><p>为什么要按顺序？因为①②③红字都会帮你，④红字帮不了你。<b>先把红字能解决的解决掉</b>，剩下的才轮到你动脑子。</p><p>还有一个要求：抓到之后，你要能说出——<b>我是在第几类抓住它的</b>。待会儿分享的时候我会问。</p></div>
+</section>
+
+<section class="slide lay-aierror" data-title="Bug 2">
+<div class="phead"><span class="no">第5课</span>
+<span class="kick c">运行错</span>
+<span class="tslot">50–75 分</span>
+</div>
+<h2 class="ptitle">Bug 2：它说它不认识 time</h2>
+<p class="psub">写的时候没事，跑起来才报——这是运行错</p>
+<div class="pbody">
+  <div class="aegrid grow">
+    <div class="code"><span class="lab c">bug2.py</span><pre style="font-size:26px"><span class="k">from</span> machine <span class="k">import</span> Pin
+<span class="c"># 这里漏了一行 import time</span>
+led = Pin(2, Pin.OUT)
+<span class="k">while</span> <span class="k">True</span>:
+    led.value(1)
+    time.sleep(0.5)
+    led.value(0)
+    time.sleep(0.5)</pre></div>
+    <div class="aecol">
+      <div class="blk c"><h4>② 运行错 NameError</h4><p>红字写着 <code class="ic">NameError: name 'time' isn't defined</code>——翻译过来就是：<b>我不认识 time 这个东西</b>。</p></div>
+      <div class="blk g"><h4>改法</h4><p>开头补一行 <code class="ic">import time</code>。你用了一个工具，就得先<b>把它请出来</b>。</p></div>
+    </div>
+  </div>
+  <div style="margin-top:22px"><div class="strip a">属于<b>第①类：漏东西</b>——漏了 import</div></div>
+</div>
+<div class="notes"><p>第二只虫，Bug 2。</p><p>先看红字：NameError: name 'time' isn't defined。翻译过来——<b>我不认识 time 这个东西</b>。</p><p>可是代码里明明用了 time.sleep 啊？</p><p>（等他们找）</p><p>对，问题就在这儿：<b>你用了它，但你没有把它请出来</b>。</p><p>第 2 行本来应该有一行 import time，现在只剩一句注释。</p><p>这就像你跟人说「把扳手递给我」，可工具箱里根本没装扳手——人家当然一脸茫然。</p><p>改法：开头补一行 import time。</p><p>按错误类型卡，这属于<b>第①类：漏东西</b>。</p><p>再对比一下 Bug 1 和 Bug 2 的区别：Bug 1 是<b>语法错</b>，你还没跑它就知道错了（红波浪线）；Bug 2 是<b>运行错</b>，写的时候看着没问题，<b>跑到那一行才发现</b>不认识。</p></div>
+</section>
+
+<section class="slide lay-aierror" data-title="Bug 3">
+<div class="phead"><span class="no">第5课</span>
+<span class="kick c">最难的一只</span>
+<span class="tslot">50–75 分</span>
+</div>
+<h2 class="ptitle">Bug 3：一个红字都没有</h2>
+<p class="psub">灯也亮了，程序也没报错——可它就是反的</p>
+<div class="pbody">
+  <div class="aegrid grow">
+    <div class="code"><span class="lab c">bug3.py</span><pre style="font-size:23px"><span class="k">from</span> machine <span class="k">import</span> Pin
+led = Pin(2, Pin.OUT)
+btn = Pin(0, Pin.IN, Pin.PULL_UP)
+<span class="k">while</span> <span class="k">True</span>:
+    <span class="k">if</span> btn.value() == 1:   <span class="c"># 上拉电阻下，按下其实是 0</span>
+        led.value(1)
+    <span class="k">else</span>:
+        led.value(0)</pre></div>
+    <div class="aecol">
+      <div class="blk c"><h4>③ 逻辑错（AI 也看不出来）</h4><p><b>完全不报红字</b>。电脑觉得代码全对——因为它确实全合法。是<b>我们脑子里的逻辑搞反了</b>：上拉电阻下，按下是 <b>0</b> 不是 1。</p></div>
+      <div class="blk g"><h4>怎么抓</h4><p>只能靠<b>现象倒推</b>：我要的是「按下亮」，实际是「松开亮」→ 说明判断条件反了 → 把 <code class="ic">==1</code> 改成 <code class="ic">==0</code>。</p></div>
+    </div>
+  </div>
+  <div style="margin-top:22px"><div class="strip a">属于<b>第④类：逻辑反</b>——红字帮不了你，<b>AI 也帮不了你</b>，只能靠人</div></div>
+</div>
+<div class="notes"><p>这是今天最难的一只，也是我最想让你们记住的一只。</p><p>运行 bug3.py——<b>一个红字都没有</b>。灯也亮了，按钮也有反应。</p><p>但是：我要的是「按下亮」，实际却是「松开才亮」。<b>反的。</b></p><p>为什么它不报红字？</p><p>因为<b>电脑觉得代码全对啊</b>！你看每一行：拼写对的、冒号有的、缩进齐的。它确实全合法。</p><p>是<b>我们自己</b>把逻辑搞反了——第 3 课学过的，上拉电阻下，按下是 <b>0</b>，不是 1。</p><p>这种错叫<b>逻辑错</b>。我要强调一句：<b>这种错误 AI 也看不出来</b>。</p><p>你把这段代码贴给 AI，问「有什么错」，它多半会说「看起来没问题」。因为从语法上讲确实没问题。</p><p>那怎么抓？只能靠<b>现象倒推</b>：</p><p>我想要的是什么？按下亮。实际发生了什么？松开亮。两者正好相反 → 说明判断条件反了 → 把 ==1 改成 ==0。</p><p>这就是为什么我说，逻辑错<b>必须靠人类自己分析现象</b>。AI 是你的助手，但<b>判断对不对</b>这件事，永远是你的活儿。</p></div>
+</section>
+
+<section class="slide lay-codefull" data-title="Bug 4">
+<div class="phead"><span class="no">第5课</span>
+<span class="kick a">终极挑战</span>
+<span class="tslot">50–75 分</span>
+</div>
+<h2 class="ptitle">Bug 4：小心，它不止一只</h2>
+<div class="pbody"><div class="askline">提示：修好第一个错之后<b>别急着庆祝</b>——再运行一次，看看屏幕上真的出字了吗？</div><div class="code"><span class="lab g">bug4.py · 连环错</span><pre style="font-size:27px"><span class="k">from</span> machine <span class="k">import</span> Pin, SoftI2C
+<span class="k">import</span> ssd1306
+i2c = SoftI2C(scl=Pin(22), sda=Pin(99))   <span class="c"># SDA 引脚号写错了</span>
+oled = ssd1306.SSD1306_I2C(128, 64, i2c)
+oled.fill(0)
+oled.text('Hi', 200, 100)   <span class="c"># 坐标超出 128x64 屏幕范围</span>
+oled.show()</pre></div><div style="margin-top:18px"><div class="strip g">先报引脚错（<b>第③类</b>）；修好引脚后文字还是不显示——那是坐标超界（<b>第②类</b>）</div></div></div>
+<div class="notes"><p>终极挑战，Bug 4。我先给你们一个警告：<b>它不止一只虫</b>。</p><p>运行一下，会先报一个错。按错误类型卡查——第③类，<b>引脚错</b>。第 3 行的 sda 写成了 Pin(<b>99</b>)。</p><p>ESP32 根本没有 99 号引脚，所以它报错。改回 <b>21</b>。</p><p>改完，很多同学就开始庆祝了：搞定！结果一运行——<b>屏幕还是什么都没有</b>。</p><p>而且这次<b>不报错了</b>。</p><p>（停顿，让他们想）</p><p>第二只虫在哪儿？倒数第二行：oled.text('Hi', <b>200, 100</b>)。</p><p>我们第 4 课学过什么？屏幕多大？<b>128 宽、64 高</b>。那 200 和 100 在哪儿？</p><p>在<b>屏幕外面</b>。字确实写了，只是写到看不见的地方去了。</p><p>这属于第②类，<b>参数错</b>。改成屏幕里的坐标，比如 (0, 0)。</p><p>所以今天最后一个教训：<b>一段代码可能不止一个 bug</b>。修好一个之后，一定要<b>再跑一次</b>验证，别急着庆祝。</p></div>
+</section>
+
+<section class="slide lay-tiers3" data-title="分层任务">
+<div class="phead"><span class="no">第5课</span>
+<span class="kick g">分层任务</span>
+<span class="tslot">50–75 分</span>
+</div>
+<h2 class="ptitle">Bug 猎人实战</h2>
+<p class="psub">修好两段 ＋ 说出哪种错最难 ＝ 成功</p>
+<div class="pbody"><div class="g3 grow"><div class="blk tier t1"><div class="hd">★ 基础（必做）</div>
+        <p class="task">修好 Bug 1（语法错）和 Bug 2（运行错）。</p><p class="fill">我看懂了它是第 ____ 行出的错，错误类型是 ________Error</p></div><div class="blk tier t2"><div class="hd">★★ 进阶（建议做）</div>
+        <p class="task">修好 Bug 3。它没有红字，但行为反了！（提示：按下是几？）</p><p class="fill">这是 ________ 错误。我把它修好了！</p></div><div class="blk tier t3"><div class="hd">★★★ 挑战（学有余力）</div>
+        <p class="task">修好终极连环错 Bug 4——小心，它可能不止一个错。</p><p class="fill">AI 告诉我是 ________ 写错了；修好引脚后我又发现 ________ 也错了</p></div></div>
+<div style="margin-top:22px"><div class="strip g">每次修改后都要 <b>Ctrl+S 保存</b>再上传——不然跑的还是旧代码</div></div></div>
+<div class="notes"><p>开猎。三档任务。</p><p><b>基础档必做</b>：修好 Bug 1 和 Bug 2。卡片上有两个空要填：第几行出的错、什么类型的错。这两个空就是逼你<b>真的去读红字</b>，而不是瞎改。</p><p>进阶档：Bug 3，没有红字那个。提示我已经给了——按下是几？</p><p>挑战档：Bug 4，连环错。记住我刚才说的，修好一个<b>再跑一次</b>。</p><p>最后一条提醒，每年都有人栽在这儿：<b>每次修改后都要 Ctrl+S 保存再上传</b>。</p><p>不保存会怎么样？你传上去的还是<b>旧代码</b>，错误一模一样。然后你就会怀疑人生：我明明改了啊？</p><p>改了没保存，等于没改。</p><p>开始，我巡视。修好的组举手，我来打勾。</p></div>
+</section>
+
+<section class="slide lay-rowlist" data-title="今日三大发现">
+<div class="phead"><span class="no">第5课</span>
+<span class="kick g">阶段收官</span>
+<span class="tslot">85–90 分</span>
+</div>
+<h2 class="ptitle">今日三大发现</h2>
+<div class="pbody"><div class="rowlist grow"><div class="rowitem"><div class="num g">1</div><div class="tx">AI 写的代码<b>出错是正常的</b>——排错（Debug）是程序员的日常</div></div><div class="rowitem"><div class="num a">2</div><div class="tx">报错信息不是惩罚，是帮我们定位问题的「<b>藏宝图</b>」</div></div><div class="rowitem"><div class="num c">3</div><div class="tx">找不到错的时候，把红字<b>完整贴给 AI</b>，它能帮我们分析</div></div></div><div style="margin-top:20px"><div class="strip a">第一阶段毕业了！下节课进入第二阶段「<b>指挥AI</b>」——AI 从「代码打印机」升级成你的「<b>实习程序员</b>」</div></div></div>
+<div class="notes"><p>都停下，看屏幕。今天三个发现。</p><p>第一个，AI 写的代码<b>出错是正常的</b>。排错是程序员的日常工作，不是你笨，也不是 AI 笨。</p><p>第二个，报错信息不是惩罚，是帮我们定位问题的「<b>藏宝图</b>」。红字越详细，你找得越快。</p><p>第三个，找不到错的时候，把红字<b>完整贴给 AI</b>，它能帮你分析。</p><p>然后我要问一个问题，也是今天保底目标里的：<b>哪种错最难发现？</b></p><p>（等他们答「逻辑错」）</p><p>对，<b>逻辑错</b>。因为它不报红字，AI 也看不出来，只能靠<b>你自己看现象倒推</b>。</p><p>好，现在做一件大事——<b>第一阶段毕业了</b>。</p><p>我们回头看这五节课：第 1 课你让灯亮了；第 2 课让它闪出 SOS；第 3 课让它听你的按钮；第 4 课让它开口说话；今天你学会了给它<b>捉虫</b>。</p><p>五节课下来，AI 在你眼里还是那个神秘的魔法师吗？</p><p>不是了。它就是一台<b>代码打印机</b>——能印，但会印错，得你来读、你来验。</p><p>下节课起，这个关系要<b>升级</b>。AI 从「代码打印机」变成你的「<b>实习程序员</b>」，你来当它的小老板，给它下任务。</p><p>第二阶段第一课就叫《<b>好问题 vs 坏问题</b>》。下课！</p></div>
+</section>
+
+<section class="slide lay-cards2" data-title="课后任务">
+<div class="phead"><span class="no">第5课</span>
+<span class="kick a">课后任务</span>
+</div>
+<h2 class="ptitle">课后任务</h2>
+<div class="pbody"><div class="g2 grow"><div class="blk g"><h4>基础（全员）</h4><p>给家人讲讲：为什么程序员<b>不怕</b>「语法错误」，却最怕「<b>逻辑错误</b>」？</p></div><div class="blk a"><h4>拓展（选做）</h4><p><b>给 AI 挖坑</b>：故意写一段少个括号、或者拼错字母的代码，扔给 AI，看它能不能帮你找出来。下节课汇报战况。</p></div></div>
+<div style="margin-top:24px"><div class="strip g">能说清楚「为什么逻辑错最难找」，才是真的懂了</div></div></div>
+<div class="notes"><p>课后两件事。</p><p>第一件全员都做：回家给家人讲清楚——为什么程序员<b>不怕</b>语法错误，却最怕<b>逻辑错误</b>？</p><p>提示你们怎么讲：语法错，电脑会告诉你错在哪；逻辑错，电脑<b>什么都不说</b>，因为它觉得自己没错。</p><p>第二件选做，今天特别好玩，叫「<b>给 AI 挖坑</b>」：</p><p>你故意写一段有毛病的代码——少个括号、拼错一个字母——然后扔给 AI，看它能不能帮你找出来。</p><p>你还可以挖一个<b>逻辑坑</b>试试，看它是不是真像我说的那样看不出来。</p><p>下节课带来汇报战况：AI 抓到了几只？漏了哪只？</p><p>最后一句：能说清楚「<b>为什么逻辑错最难找</b>」，才是真的懂了。下课，第一阶段毕业快乐！</p></div>
+</section>
+<div class="deck-footer"><span>ESP32 × AI 科创课程 · 第一阶段「读懂AI」 · 第5课 AI错了</span><span class="slide-number" data-current="1" data-total="14"></span></div>
+<div class="progress-bar"><span></span></div>
+</div>
+<script src="assets/fitstage.js"></script>
+<script src="assets/runtime.js"></script>
+</body>
+</html>

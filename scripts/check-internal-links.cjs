@@ -5,6 +5,7 @@ const repoRoot = path.resolve(__dirname, '..');
 const srcRoot = path.join(repoRoot, 'src');
 
 const routeRules = [
+  /^\/innovation\/(1|2|3|4|5|9|10)$/,
   /^\/$/,
   /^\/museum$/,
   /^\/question-bank$/,
@@ -67,7 +68,7 @@ for (const file of walk(srcRoot)) {
     quotedPathPattern.lastIndex = 0;
     let match;
     while ((match = quotedPathPattern.exec(line)) !== null) {
-      const route = match[2];
+      const route = match[2].split(/[?#]/)[0];
       if (shouldSkip(route)) continue;
       if (!isKnownRoute(route)) {
         failures.push({

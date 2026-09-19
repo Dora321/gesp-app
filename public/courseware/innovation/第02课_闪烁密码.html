@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>第2课 · 闪烁密码 — ESP32 × AI 科创课程</title>
+<link rel="stylesheet" href="assets/base.css">
+<link rel="stylesheet" id="theme-link" href="assets/theme-course-pop.css">
+<link rel="stylesheet" href="assets/animations.css">
+</head>
+<body>
+<div class="deck" data-theme-base="assets/">
+<section class="slide lay-cover is-active" data-title="封面">
+<div class="deco circle" style="width:170px;height:170px;top:-52px;right:238px"></div>
+<div class="deco tri" style="right:110px;bottom:132px;transform:rotate(14deg)"></div>
+<div class="deco square" style="width:120px;height:120px;left:-46px;bottom:86px;transform:rotate(12deg)"></div>
+<span class="cv-bar">ESP32 × AI ／ 第一阶段「读懂AI」</span>
+<h1 class="cv-title">闪烁<em>密码</em></h1>
+<p class="cv-sub">让 LED 说话——闪出 SOS 求救信号</p>
+<div class="cv-tags"><span class="tag">ESP32</span><span class="tag">MicroPython</span><span class="tag">DeepSeek</span><span class="tag">90 分钟连堂</span></div>
+<div class="cv-no">02</div>
+<div class="notes"><p>同学们，上节课我们的灯亮了，很棒。</p><p>但是——如果它就那么一直亮着，别人看见了会觉得这是什么？一盏<b>路灯</b>。路灯不会说话。</p><p>现在想象一个场景：你在荒野里迷路了，天黑了，手里只有这么一个会亮的小灯。你怎么让远处的人知道<b>你需要帮助</b>？</p><p>一直亮着没用。你得让它闪出<b>特定的节奏</b>——比如 SOS。</p><p>三短、三长、三短。这是全世界都认的求救信号。</p><p>今天我们就要让这个灯<b>说话</b>。而且不是我们用手去按，是让它<b>自己</b>闪出来。</p></div>
+</section>
+
+<section class="slide lay-cards3" data-title="悬念导入">
+<div class="phead"><span class="no">第2课</span>
+<span class="kick c">悬念导入</span>
+<span class="tslot">0–8 分</span>
+</div>
+<h2 class="ptitle">一直亮着的灯，只是一盏路灯</h2>
+<p class="psub">要让别人听懂，得有节奏</p>
+<div class="pbody"><div class="g3 grow"><div class="blk g"><h4>上节课：灯亮了</h4><p>led.value(1) —— 它亮着，但它不会说话</p></div><div class="blk a"><h4>SOS 是什么</h4><p>三短、三长、三短——全世界通用的求救信号</p></div><div class="blk c"><h4>今天：让灯说话</h4><p>让它<b>自己</b>按节奏闪，不用人去按开关</p></div></div><div style="margin-top:22px"><div class="strip a">求救时发出的 SOS 信号，怎么让灯<b>自动</b>闪出来？</div></div></div>
+<div class="notes"><p>上节课我们做到哪一步了？led.value(1)，灯亮。就这样。</p><p>它亮着，但它<b>不会说话</b>。谁路过都只当它是一盏路灯。</p><p>那要怎么让它说话？靠<b>节奏</b>。</p><p>SOS 知道吗？三短、三长、三短。滴滴滴——哒哒哒——滴滴滴。这是全世界都认的求救信号，轮船、飞机、探险队都用它。</p><p>（可以带全班拍一遍手）</p><p>现在问题来了：怎么让这盏灯<b>自己</b>闪出这个节奏？注意是「自己」——不是你拿手去按开关按九下。</p><p>这就是今天要解决的事。</p></div>
+</section>
+
+<section class="slide lay-aierror" data-title="第一次问AI">
+<div class="phead"><span class="no">第2课</span>
+<span class="kick c">AI 出错时刻</span>
+<span class="tslot">8–18 分</span>
+</div>
+<h2 class="ptitle">这像 SOS 吗？</h2>
+<p class="psub">我们用四要素问了，AI 也给了代码——可是……</p>
+<div class="pbody">
+  <div class="aegrid grow">
+    <div class="code"><span class="lab c">AI 给的代码（第一次）</span><pre style="font-size:27px"><span class="k">while</span> <span class="k">True</span>:
+    led.value(1)
+    time.sleep(1)
+    led.value(0)
+    time.sleep(1)
+
+<span class="c"># 灯是闪了——可这是 SOS 吗？</span></pre></div>
+    <div class="aecol">
+      <div class="blk c"><h4>AI 错了吗？没有</h4><p>是<b>我们没告诉它</b> SOS 的节奏长什么样——短闪是零点几秒？长闪是零点几秒？AI 不知道，只能用默认的 1 秒。</p></div>
+      <div class="blk g"><h4>怎么办：把节奏变成<b>数字</b></h4><p>先拍手打出 SOS 的节拍，再把每一拍翻译成<b>具体的秒数</b>，写进提问里重问一次。</p></div>
+    </div>
+  </div>
+  <div style="margin-top:22px"><div class="strip a">提问要升级了：四要素 ＋ 第五样——<b>约束条件</b>（具体的时间参数）</div></div>
+</div>
+<div class="notes"><p>我现在按上节课学的<b>四要素</b>去问 AI：语言、硬件、接线、效果——我想要 LED 闪出 SOS 摩斯密码。</p><p>四要素一条没少。看 AI 给的代码，上传运行。</p><p>（运行）</p><p>大家看，灯<b>是</b>闪了。但是——这是 SOS 吗？</p><p>滴——答——滴——答，慢吞吞的，一秒一下。这哪是求救，这是在打瞌睡。</p><p>那我问一句：<b>AI 错了吗？</b></p><p>（等他们答，多半会说「错了」）</p><p>其实 AI 没做错。是<b>我们没有告诉它</b> SOS 的节奏是什么样子的。</p><p>你想想：短闪是零点几秒？长闪是零点几秒？中间停多久？这些 AI 一个都不知道，它只能用一个默认值——1 秒。</p><p>所以今天提问要升级了。四要素不够了，要加第五样：<b>约束条件</b>——把节奏变成<b>具体的数字</b>。</p></div>
+</section>
+
+<section class="slide lay-rowlist" data-title="SOS 节奏量化">
+<div class="phead"><span class="no">第2课</span>
+<span class="kick a">节奏量化</span>
+<span class="tslot">18–30 分</span>
+</div>
+<h2 class="ptitle">把节拍翻译成秒数</h2>
+<p class="psub">先拍手打一遍 SOS，再给每一拍配上数字</p>
+<div class="pbody"><div class="rowlist grow"><div class="rowitem"><div class="num g">1</div><div class="tx"><b>S ＝ 三短</b>：每次亮 <b>0.2</b> 秒</div></div><div class="rowitem"><div class="num a">2</div><div class="tx"><b>O ＝ 三长</b>：每次亮 <b>0.6</b> 秒</div></div><div class="rowitem"><div class="num c">3</div><div class="tx">每一次闪完，灭 <b>0.2</b> 秒</div></div><div class="rowitem"><div class="num g">4</div><div class="tx">字母和字母之间，停 <b>0.6</b> 秒</div></div><div class="rowitem"><div class="num a">5</div><div class="tx">SOS 播完一整遍，停 <b>2</b> 秒，再循环</div></div></div><div style="margin-top:20px"><div class="strip g">「快一点」「慢一点」AI 听不懂——<b>0.2 秒</b>它才听得懂</div></div></div>
+<div class="notes"><p>光说「短闪」「长闪」没用，我们得把它变成<b>数字</b>。</p><p>先一起拍手。跟我来：短短短——长长长——短短短。再来一遍。</p><p>好，现在把刚才拍的每一下配上数字。</p><p>S 是三短，每一次亮多久？我们定 <b>0.2 秒</b>。</p><p>O 是三长，每一次亮 <b>0.6 秒</b>——比短闪长三倍，一看就能分出来。</p><p>每闪完一下，灭 <b>0.2 秒</b>，不然三下连成一片了。</p><p>字母和字母之间要停久一点，<b>0.6 秒</b>，让人听得出这是三个字母。</p><p>整个 SOS 播完，停 <b>2 秒</b>，再从头来一遍。</p><p>这五行数字，就是 SOS 的「说明书」。</p><p>记住一件事：你跟 AI 说「快一点」「慢一点」，它听不懂——你说 <b>0.2 秒</b>，它才听得懂。</p></div>
+</section>
+
+<section class="slide lay-reqdoc" data-title="好版提问">
+<div class="phead"><span class="no">第2课</span>
+<span class="kick g">再问一次</span>
+<span class="tslot">18–30 分</span>
+</div>
+<h2 class="ptitle">加上约束条件，再问一次</h2>
+<p class="psub">同一个 AI，同一个问题，加了数字就对了</p>
+<div class="pbody">
+  <div class="rdgrid grow">
+    <div class="blk a"><h4>四要素 ＋ 约束条件</h4><div class="fivelist"><div class="fv"><span class="fk">语言</span><span class="fw">MicroPython</span></div><div class="fv"><span class="fk">硬件</span><span class="fw">ESP32</span></div><div class="fv"><span class="fk">接线</span><span class="fw">LED 在 GPIO2</span></div><div class="fv"><span class="fk">效果</span><span class="fw">让 LED 闪出 SOS 摩斯密码</span></div><div class="fv"><span class="fk">约束</span><span class="fw"><b>时序约束</b>：见右边这张表，每一拍都给到秒数</span></div></div></div>
+    <div class="blk g"><h4>时序约束（写进提问里）</h4><div class="sqlist"><div class="sq"><span class="sn">S</span><span class="st">闪 3 次：每次亮 0.2 秒、灭 0.2 秒</span></div><div class="sq"><span class="sn">O</span><span class="st">闪 3 次：每次亮 0.6 秒、灭 0.2 秒</span></div><div class="sq"><span class="sn">S</span><span class="st">闪 3 次：每次亮 0.2 秒、灭 0.2 秒</span></div><div class="sq"><span class="sn">间</span><span class="st">每个字母之间停顿 0.6 秒</span></div><div class="sq"><span class="sn">尾</span><span class="st">SOS 播完后停顿 2 秒，循环播放</span></div></div></div>
+  </div>
+  <div style="margin-top:20px"><div class="strip g">同一个 AI、同一个问题——<b>加了约束条件，它就做对了</b></div></div>
+</div>
+<div class="notes"><p>现在我们第二次问，注意看左边多了什么。</p><p>前四条没变：语言、硬件、接线、效果。第五条是新的——<b>约束条件</b>。</p><p>我把刚才量化出来的秒数，一条一条写进去：S 闪三次每次亮 0.2 秒；O 闪三次每次亮 0.6 秒；字母之间停 0.6 秒；播完停 2 秒循环。</p><p>（提交，等回答，上传运行）</p><p>看——<b>这次对了</b>。滴滴滴、哒哒哒、滴滴滴。这才是 SOS。</p><p>我要你们注意一件事：<b>同一个 AI、同一个问题</b>。第一次它给的是慢吞吞的闪，第二次就对了。中间变的是什么？</p><p>只是我们<b>多说了几个数字</b>。</p><p>所以以后再遇到 AI 给的东西不合心意，第一个念头别是「AI 真笨」，而是——<b>我哪里没说清楚</b>。</p></div>
+</section>
+
+<section class="slide lay-codefull" data-title="SOS 全码">
+<div class="phead"><span class="no">第2课</span>
+<span class="kick a">参考代码</span>
+<span class="tslot">18–30 分</span>
+</div>
+<h2 class="ptitle">SOS 完整可运行代码</h2>
+<div class="pbody"><div class="code"><span class="lab g">完整可跑 · SOS 循环播放</span><pre style="font-size:18px"><span class="k">from</span> machine <span class="k">import</span> Pin
+<span class="k">import</span> time
+
+led = Pin(2, Pin.OUT)
+
+<span class="k">def</span> blink(on_time, times):      <span class="c"># 闪 times 次，每次亮 on_time 秒</span>
+    <span class="k">for</span> _ <span class="k">in</span> <span class="k">range</span>(times):
+        led.value(1)
+        time.sleep(on_time)
+        led.value(0)
+        time.sleep(0.2)
+
+<span class="k">while</span> <span class="k">True</span>:
+    blink(0.2, 3)               <span class="c"># S：三短</span>
+    time.sleep(0.6)
+    blink(0.6, 3)               <span class="c"># O：三长</span>
+    time.sleep(0.6)
+    blink(0.2, 3)               <span class="c"># S：三短</span>
+    time.sleep(2)               <span class="c"># 播完停 2 秒，循环</span></pre></div></div>
+<div class="notes"><p>这就是 AI 第二次给的完整代码，能直接跑。</p><p>我先说清楚：这段里有两个你们<b>还没学过</b>的东西——def 和 for。今天<b>不要求</b>你们看懂它们，进阶组照着用就行。</p><p>你们今天要看懂的是下面 while True 这一段：blink 0.2 三次，停 0.6；blink 0.6 三次，停 0.6；blink 0.2 三次，停 2 秒。</p><p>念出来是不是就是——三短、三长、三短、停？</p><p>代码和你刚才拍的手，是一一对应的。</p><p>上面那个 def blink，你可以把它理解成「我给『闪几下』这个动作起了个名字」，以后写 blink(0.2, 3) 就等于「亮 0.2 秒闪三下」。</p><p>现在看得懂大概意思就够了。基础组待会儿不用写这段，有更简单的起步代码。</p></div>
+</section>
+
+<section class="slide lay-translate" data-title="逐行解读">
+<div class="phead"><span class="no">第2课</span>
+<span class="kick g">逐行解读</span>
+<span class="tslot">30–40 分</span>
+</div>
+<h2 class="ptitle">两个新东西：while True 和 time.sleep</h2>
+<div class="pbody"><div class="blk grow" style="padding:10px 24px"><div class="tr-row"><div class="cd">while True:</div><div class="eq">=</div><div class="pl"><b>不会累的跑步机</b>——只要在它上面，就一直跑下去</div></div><div class="tr-row"><div class="cd">（后面的缩进）</div><div class="eq">=</div><div class="pl">凡是<b>缩进</b>的代码，都在跑步机上；顶格写的就不在</div></div><div class="tr-row"><div class="cd">led.value(1)</div><div class="eq">=</div><div class="pl">灯开（上节课学过的）</div></div><div class="tr-row"><div class="cd">time.sleep(1)</div><div class="eq">=</div><div class="pl">让板子<b>睡</b> 1 秒——睡着的时候灯的状态<b>保持不变</b></div></div><div class="tr-row"><div class="cd">led.value(0)</div><div class="eq">=</div><div class="pl">灯关</div></div><div class="tr-row"><div class="cd">time.sleep(1)</div><div class="eq">=</div><div class="pl">再睡 1 秒——<b>这两个数字就是控制快慢的</b></div></div></div></div>
+<div class="notes"><p>今天只有两个新东西，我们一个一个读。</p><p>第一个，<b>while True:</b>。我给它起个外号，叫「<b>不会累的跑步机</b>」。只要你站在它上面，就会一直跑下去，永远不停。</p><p>注意看它后面跟着的小尾巴——<b>缩进</b>！下面那几行都往右退了一格。</p><p>凡是<b>缩进</b>的代码，都在跑步机上，会被一直重复。顶格写的就不在跑步机上，只跑一次。</p><p>这个缩进特别重要，待会儿有一半的报错都是因为它。</p><p>第二个新东西，<b>time.sleep(1)</b>——让板子「睡」1 秒。睡着的时候干什么？什么都不干，所以<b>灯保持原样</b>。</p><p>灯亮着的时候睡 1 秒，就是亮 1 秒；灯灭着的时候睡 1 秒，就是灭 1 秒。</p><p>所以——<b>控制闪得快还是慢的，就是这两个数字</b>。把 1 改成 0.1，会怎么样？待会儿你们自己试。</p></div>
+</section>
+
+<section class="slide lay-chain2" data-title="缩进对照">
+<div class="phead"><span class="no">第2课</span>
+<span class="kick c">本课难点</span>
+<span class="tslot">30–40 分</span>
+</div>
+<h2 class="ptitle">缩进决定了代码在不在循环里</h2>
+<p class="psub">退一格，天差地别</p>
+<div class="pbody">
+  <div class="chwrap grow"><div class="chain g"><span class="tag g">缩进了 → 在跑步机上</span><div class="chainrow"><div class="cbx">while True:</div><span class="carr">→</span><div class="cbx">换行后向右退一格</div><span class="carr">→</span><div class="cbx">这行被一直重复</div></div><div class="cres">结果：<b>灯不停闪烁 ○</b></div></div><div class="chain c"><span class="tag c">没缩进 → 不在跑步机上</span><div class="chainrow"><div class="cbx">while True:</div><span class="carr">→</span><div class="cbx">换行后顶格写</div><span class="carr">→</span><div class="cbx">不在循环里</div></div><div class="cres">结果：<b>报错 IndentationError ×</b> —— 程序根本跑不起来</div></div></div>
+  <div style="margin-top:20px"><div class="strip a">报错里看到 <b>Indentation</b> 这个词，就是在说：你的缩进不对</div></div>
+</div>
+<div class="notes"><p>这一页是今天最容易踩的坑，看仔细。</p><p>上面这条：while True: 写完，换行<b>向右退一格</b>，再写 led.value(1)。这样这行就在跑步机上，会被一直重复——灯就不停地闪。</p><p>下面这条：while True: 写完，换行<b>顶格</b>写。这样它就不在跑步机上了。</p><p>结果不是「只闪一次」，而是——<b>直接报错</b>。红字：IndentationError。</p><p>Indentation 这个英文词就是「缩进」的意思。所以你们以后在报错里看到这个词，不用全看懂，就知道一件事：<b>我的缩进不对</b>。</p><p>怎么退这一格？按 Tab 键，或者敲四个空格。PyCharm 一般会帮你自动退，但你要<b>看一眼</b>它退了没有。</p><p>待会儿谁报这个错，先别喊我，自己对着这张图看一遍。</p></div>
+</section>
+
+<section class="slide lay-divider" data-title="课间休息">
+<div class="deco circle" style="width:200px;height:200px;top:-70px;right:180px"></div>
+<div class="deco square" style="width:130px;height:130px;left:-50px;bottom:70px;transform:rotate(12deg)"></div>
+<div class="deco tri" style="right:140px;bottom:90px;transform:rotate(14deg)"></div>
+<div class="dv">
+  <span class="dv-time">40–50 分</span>
+  <h2 class="dv-t">课间休息 10 分钟</h2>
+  <p class="dv-s">回来先跑基础闪烁——灯闪起来，这节课就算成功</p>
+</div>
+<div class="notes"><p>上半场结束，休息十分钟。</p><p>回来我们动手。先说清楚今天的<b>保底线</b>：让你的灯<b>闪起来</b>，并且能指出代码里哪个数字控制快慢。做到这两样，你这节课就成功了。</p><p>SOS 是进阶的，自己设计节奏是挑战的，做不完不要紧。</p><p>休息的时候可以想一想：你想让你的灯闪出什么节奏？</p></div>
+</section>
+
+<section class="slide lay-codefull" data-title="基础闪烁起步全码">
+<div class="phead"><span class="no">第2课</span>
+<span class="kick g">动手起点</span>
+<span class="tslot">50–75 分</span>
+</div>
+<h2 class="ptitle">基础闪烁：起步全码</h2>
+<div class="pbody"><div class="askline">先把这段跑通，再去改数字——<b>别空着手开工</b></div><div class="code"><span class="lab g">完整可跑 · 一秒一闪</span><pre style="font-size:24px"><span class="k">from</span> machine <span class="k">import</span> Pin
+<span class="k">import</span> time
+
+led = Pin(2, Pin.OUT)
+
+<span class="k">while</span> <span class="k">True</span>:            <span class="c"># 无限循环：一直重复下面缩进的几行</span>
+    led.value(1)       <span class="c"># 灯开</span>
+    time.sleep(1)      <span class="c"># 保持 1 秒</span>
+    led.value(0)       <span class="c"># 灯关</span>
+    time.sleep(1)      <span class="c"># 再保持 1 秒</span></pre></div><div style="margin-top:18px"><div class="strip g">跑通了就改那两个 <b>1</b>：改成 0.1 会怎样？改成 3 呢？</div></div></div>
+<div class="notes"><p>这是今天的起步代码，比 SOS 简单多了，<b>每个人都要先跑通这一段</b>。</p><p>和上节课比，多了什么？多了三样：第二行 import time，然后 while True，还有 time.sleep。</p><p>注意 while True 下面那四行，全都<b>往右退了一格</b>——它们都在跑步机上。</p><p>现在动手：照着敲进 main.py，Ctrl+S 保存，上传，按 RST。</p><p>灯闪起来了就举手，我过来打勾。</p><p>跑通之后<b>别停</b>，马上做第二件事：把那两个 1 改一改。改成 <b>0.1</b> 会怎么样？改成 <b>3</b> 呢？自己试，试完把观察写在任务卡上。</p></div>
+</section>
+
+<section class="slide lay-tiers3" data-title="分层任务">
+<div class="phead"><span class="no">第2课</span>
+<span class="kick g">分层任务</span>
+<span class="tslot">50–75 分</span>
+</div>
+<h2 class="ptitle">先保底，再挑战</h2>
+<p class="psub">灯闪起来 ＋ 说出哪个数字管快慢 ＝ 成功</p>
+<div class="pbody"><div class="g3 grow"><div class="blk tier t1"><div class="hd">★ 基础（必做）</div>
+        <p class="task">写普通闪烁代码并改快慢：把 sleep 里的数字改大改小，看灯的变化。</p><p class="fill">我改成了 ____ 秒　我观察到：________</p></div><div class="blk tier t2"><div class="hd">★★ 进阶（建议做）</div>
+        <p class="task">实现完整的 SOS 密码闪烁（照着参考代码敲，或自己问 AI 要）。</p><p class="fill">□ 我的灯闪出 SOS 了　□ 我能指出哪几行是 O</p></div><div class="blk tier t3"><div class="hd">★★★ 挑战（学有余力）</div>
+        <p class="task">创造你自己的专属节奏，比如心跳（两短一长）。先在纸上写时间表，再写代码。</p><p class="fill">我的节奏是：________　时间表：________</p></div></div>
+<div style="margin-top:22px"><div class="strip g">卡住别硬扛，举手——我优先帮<b>灯还没闪起来</b>的组</div></div></div>
+<div class="notes"><p>三档任务，看清楚。</p><p><b>基础档必做</b>：让灯闪起来，然后改那两个数字。改完要能回答我一个问题——哪个数字管快慢？</p><p>进阶档：做完整的 SOS。你可以照着屏幕上那段参考代码敲，也可以自己用今天学的<b>五样东西</b>（四要素＋约束）去问 AI 要一份。</p><p>挑战档最好玩：<b>设计你自己的密码</b>。比如心跳，两短一长；比如你名字的缩写。</p><p>挑战档有个规矩：<b>先在纸上写时间表</b>，把每一拍多少秒写下来，再去写代码。为什么？因为今天我们刚学到——没有数字，AI 和你自己都会乱。</p><p>我巡视，优先帮<b>灯还没闪起来</b>的组。开始。</p></div>
+</section>
+
+<section class="slide lay-cards3" data-title="报错怎么办">
+<div class="phead"><span class="no">第2课</span>
+<span class="kick a">集体 Debug</span>
+<span class="tslot">75–85 分</span>
+</div>
+<h2 class="ptitle">报错了怎么办？三个高频错</h2>
+<p class="psub">红字不可怕，它在告诉你哪儿写错了</p>
+<div class="pbody"><div class="g3 grow"><div class="blk g"><h4>IndentationError</h4><p>缩进错了——while True: 下面那几行<b>忘了往右退一格</b>，或者退得不齐。</p></div><div class="blk a"><h4>SyntaxError</h4><p>语法错了——多半是 while True <b>后面的冒号忘了</b>，或者 while 写成了大写 While。</p></div><div class="blk c"><h4>NameError: time</h4><p><b>忘了 import time</b>——第二行补上 import time 就好。</p></div></div><div style="margin-top:22px"><div class="strip g">灯一直亮 / 一直灭不闪？检查 value(1) 和 value(0) 之间<b>是不是都有 sleep</b></div></div></div>
+<div class="notes"><p>我看到好几组屏幕上有红字，都停一下，一起看这三个。</p><p>第一个，<b>IndentationError</b>。刚才讲过，缩进的意思。while True 下面忘了退一格，或者几行退得不一样齐。对照缩进图自己改。</p><p>第二个，<b>SyntaxError</b>。语法错。今天最常见的就两种：while True 后面那个<b>冒号忘了</b>；或者把 while 写成了大写的 While——Python 认小写。</p><p>第三个，<b>NameError</b>，后面跟着 time。这是说「我不认识 time 这个东西」——因为你<b>忘了第二行 import time</b>。补上就好。</p><p>还有一种不报错但不对的：灯一直亮着，或者一直灭着，就是不闪。查什么？查 value(1) 和 value(0) <b>中间是不是都有 sleep</b>。少一个，灯切换得太快，你的眼睛看不出来，就像一直亮着。</p><p>红字不可怕。它不是在骂你，它是在<b>告诉你哪儿写错了</b>。</p></div>
+</section>
+
+<section class="slide lay-rowlist" data-title="今日三大发现">
+<div class="phead"><span class="no">第2课</span>
+<span class="kick g">总结</span>
+<span class="tslot">85–90 分</span>
+</div>
+<h2 class="ptitle">今日三大发现</h2>
+<div class="pbody"><div class="rowlist grow"><div class="rowitem"><div class="num g">1</div><div class="tx"><b>循环</b>能让动作一直重复，不用重复写代码</div></div><div class="rowitem"><div class="num a">2</div><div class="tx">AI 不是万能的——<b>说不清楚，它就做不对</b></div></div><div class="rowitem"><div class="num c">3</div><div class="tx">改一改时间参数，真实世界里灯闪的<b>节奏就变了</b></div></div></div><div style="margin-top:20px"><div class="strip a">灯会闪了，但它还不会<b>听我们的话</b>——下节课《谁按了按钮》，给它装上按钮！</div></div></div>
+<div class="notes"><p>都停下，看屏幕。今天三个发现。</p><p>第一个，<b>循环</b>能让动作一直重复。你想想，如果没有 while True，要让灯闪一百下，你得写多少行？四百行。有了循环，四行。</p><p>第二个，也是今天最重要的：AI 不是万能的——<b>说不清楚，它就做不对</b>。今天我们亲眼看见了一次：同一个问题，第一次它给的是打瞌睡的闪，加了数字之后立刻就对了。</p><p>第三个，改一改时间参数，真实世界里灯闪的节奏就变了。你改的是屏幕上一个数字，变的是<b>真实世界</b>里的东西。</p><p>最后留个钩子。今天灯会闪了，会说话了。但是——它<b>听我们的话</b>吗？</p><p>不听。它自顾自地闪，你喊破喉咙它也不理你。</p><p>下节课《谁按了按钮》，我们给它装上一个<b>按钮</b>，让它听我们指挥。下课。</p></div>
+</section>
+
+<section class="slide lay-cards2" data-title="课后任务">
+<div class="phead"><span class="no">第2课</span>
+<span class="kick a">课后任务</span>
+</div>
+<h2 class="ptitle">课后任务</h2>
+<div class="pbody"><div class="g2 grow"><div class="blk g"><h4>基础（全员）</h4><p>给家人演示你做的 SOS 或普通闪烁灯，并<b>指给他们看</b>：代码里哪个数字控制了快慢。</p></div><div class="blk a"><h4>拓展（选做）</h4><p>设计一套你自己的专属闪烁密码时间表，写在纸上，下节课带过来。</p></div></div>
+<div style="margin-top:24px"><div class="strip g">能把「哪个数字控制快慢」讲清楚，才是真的懂了</div></div></div>
+<div class="notes"><p>课后两件事。</p><p>第一件全员都做：回家给家人演示你的闪烁灯。演示完有一个动作<b>必须做</b>——用手指着屏幕，告诉他：<b>这个数字</b>管快慢，我把它从 1 改成 0.1，灯就闪得飞快。</p><p>指出来，讲明白。讲不明白说明你还没真懂。</p><p>第二件选做：设计一套你自己的专属密码，把时间表写在纸上带来。可以是你名字的缩写，可以是心跳，可以是你自己编的暗号。</p><p>下节课我们让灯听话——记得带上你的时间表。下课。</p></div>
+</section>
+<div class="deck-footer"><span>ESP32 × AI 科创课程 · 第一阶段「读懂AI」 · 第2课 闪烁密码</span><span class="slide-number" data-current="1" data-total="14"></span></div>
+<div class="progress-bar"><span></span></div>
+</div>
+<script src="assets/fitstage.js"></script>
+<script src="assets/runtime.js"></script>
+</body>
+</html>
