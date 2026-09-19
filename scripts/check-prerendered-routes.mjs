@@ -5,14 +5,29 @@ import { fileURLToPath } from 'url';
 const root = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
 const cases = [
   {
+    file: 'dist/innovation-foundation/index.html',
+    title: '初阶科创 · 15 节探究课',
+    canonical: 'https://Dora321.github.io/gesp-app/innovation-foundation',
+  },
+  {
+    file: 'dist/innovation-foundation/15/index.html',
+    title: '初阶科创 · 第 15 课 · 小型发电站下',
+    canonical: 'https://Dora321.github.io/gesp-app/innovation-foundation/15',
+  },
+  {
+    file: 'dist/hardware/esp32/10/index.html',
+    title: '高阶科创 · 第 10 课 · 需求文档大挑战',
+    canonical: 'https://Dora321.github.io/gesp-app/hardware/esp32/10',
+  },
+  {
     file: 'dist/question-bank/2/2026-03-l2/index.html',
     title: '2026年3月 GESP C++ 2级真题',
     canonical: 'https://Dora321.github.io/gesp-app/question-bank/2/2026-03-l2',
   },
   {
-    file: 'dist/hardware/esp32-map/index.html',
-    title: 'ESP32 × AI 科创课程学习地图',
-    canonical: 'https://Dora321.github.io/gesp-app/hardware/esp32-map',
+    file: 'dist/hardware/esp32-curriculum/index.html',
+    title: 'ESP32 MicroPython 高阶科创',
+    canonical: 'https://Dora321.github.io/gesp-app/hardware/esp32-curriculum',
   },
 ];
 
