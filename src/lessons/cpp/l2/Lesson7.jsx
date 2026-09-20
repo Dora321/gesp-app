@@ -22,11 +22,11 @@ function FlowNode({ children, kind = 'process', active = false }) {
         );
     }
 
-    const shapeClass = kind === 'terminal' ? 'rounded-full' : 'rounded-xl';
+    const shapeClass = kind === 'terminal' ? 'rounded-full' : kind === 'io' ? '-skew-x-12 rounded-sm' : 'rounded-sm';
 
     return (
         <div className={`mx-auto flex h-20 w-40 items-center justify-center border-2 bg-white text-center text-sm font-black shadow-sm ${shapeClass} ${active ? 'border-indigo-600 text-indigo-700' : 'border-slate-300 text-slate-700'}`}>
-            <span className="px-4">{children}</span>
+            <span className={`px-4 ${kind === 'io' ? 'skew-x-12' : ''}`}>{children}</span>
         </div>
     );
 }
@@ -35,9 +35,9 @@ function FlowTraceLab() {
     const [score, setScore] = useState(72);
 
     const result = useMemo(() => {
-        if (score >= 90) return { label: '优秀', path: ['开始', '输入分数', 'score >= 90?', '输出优秀', '结束'] };
-        if (score >= 60) return { label: '通过', path: ['开始', '输入分数', 'score >= 90?', 'score >= 60?', '输出通过', '结束'] };
-        return { label: '继续练习', path: ['开始', '输入分数', 'score >= 90?', 'score >= 60?', '输出继续练习', '结束'] };
+        if (score >= 90) return { label: '优秀', path: ['开始', '输入分数', 'score >= 90? 是', '输出优秀', '结束'] };
+        if (score >= 60) return { label: '通过', path: ['开始', '输入分数', 'score >= 90? 否', 'score >= 60? 是', '输出通过', '结束'] };
+        return { label: '继续练习', path: ['开始', '输入分数', 'score >= 90? 否', 'score >= 60? 否', '输出继续练习', '结束'] };
     }, [score]);
 
     return (
@@ -48,8 +48,9 @@ function FlowTraceLab() {
             </div>
             <div className="grid gap-5 lg:grid-cols-[0.9fr_1.1fr]">
                 <div className="rounded-xl bg-white p-5 ring-1 ring-indigo-100">
-                    <label className="block text-sm font-black text-slate-700">输入分数：{score}</label>
+                    <label htmlFor="l2-flow-score" className="block text-sm font-black text-slate-700">输入分数：{score}</label>
                     <input
+                        id="l2-flow-score"
                         type="range"
                         min="0"
                         max="100"
@@ -163,8 +164,8 @@ function FlowPredictionChecks() {
 
 const flowMasteryItems = [
     {
-        label: '能把三种符号对应到代码结构。',
-        evidence: '圆角框 = 开始/结束，矩形 = 语句，菱形 = 条件。',
+        label: '能把四种常见符号对应到代码结构。',
+        evidence: '圆角框 = 开始/结束，矩形 = 处理，平行四边形 = 输入/输出，菱形 = 条件。',
         retryHint: '回到“流程图符号”小节的对照表。',
     },
     {
@@ -212,14 +213,18 @@ export default function CppL2Lesson7() {
                                 流程图的重点不是画得漂亮，而是每个形状背后的程序含义。先把符号和代码结构对应起来。
                             </p>
                         </div>
-                        <div className="grid gap-5 md:grid-cols-3">
+                        <div className="grid gap-5 md:grid-cols-2 xl:grid-cols-4">
                             <div className="rounded-2xl border border-slate-200 bg-white p-5">
                                 <FlowNode kind="terminal">开始 / 结束</FlowNode>
                                 <p className="mt-4 text-center text-sm font-semibold text-slate-600">程序入口或出口</p>
                             </div>
                             <div className="rounded-2xl border border-slate-200 bg-white p-5">
-                                <FlowNode>输入 / 处理</FlowNode>
-                                <p className="mt-4 text-center text-sm font-semibold text-slate-600">赋值、计算、输出</p>
+                                <FlowNode>处理步骤</FlowNode>
+                                <p className="mt-4 text-center text-sm font-semibold text-slate-600">赋值、计算</p>
+                            </div>
+                            <div className="rounded-2xl border border-slate-200 bg-white p-5">
+                                <FlowNode kind="io">输入 / 输出</FlowNode>
+                                <p className="mt-4 text-center text-sm font-semibold text-slate-600">读取数据、显示结果</p>
                             </div>
                             <div className="rounded-2xl border border-slate-200 bg-white p-5">
                                 <FlowNode kind="decision">条件?</FlowNode>
@@ -230,7 +235,8 @@ export default function CppL2Lesson7() {
                             headers={['流程图符号', '代码含义', '读图提醒']}
                             rows={[
                                 ['圆角框', '开始或结束', '通常只有一个入口或出口'],
-                                ['矩形框', '执行语句', '可能是赋值、计算、输出'],
+                                ['矩形框', '处理步骤', '通常是赋值或计算'],
+                                ['平行四边形', '输入或输出', '读取数据或显示结果'],
                                 ['菱形框', '判断条件', '必须看 True 和 False 分别去哪里'],
                             ]}
                         />

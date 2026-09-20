@@ -30,8 +30,9 @@ function FactorLab() {
             </div>
             <div className="grid gap-5 lg:grid-cols-[0.8fr_1.2fr]">
                 <div className="rounded-xl bg-white p-5 ring-1 ring-blue-100">
-                    <label className="block text-sm font-black text-slate-700">目标数字：{n}</label>
+                    <label htmlFor="l2-factor-number" className="block text-sm font-black text-slate-700">目标数字：{n}</label>
                     <input
+                        id="l2-factor-number"
                         type="range"
                         min="1"
                         max="80"
@@ -60,14 +61,14 @@ function FactorLab() {
 
 const quiz = [
     {
-        question: 'a 是 b 的因数，代码怎么判断？',
+        question: '正整数 a 是正整数 b 的因数，代码怎么判断？',
         answer: 'b % a == 0',
-        reason: 'b 能被 a 整除，说明 a 是 b 的因数。',
+        reason: '在 a、b 都是正整数的前提下，b 能被 a 整除，说明 a 是 b 的因数。',
     },
     {
         question: '0 可以当除数判断取余吗？',
         answer: '不可以',
-        reason: '对 0 取余没有意义，程序会出错。',
+        reason: 'C++ 中除数为 0 的取余行为未定义，必须先排除。',
     },
     {
         question: '枚举 n 的因数时常从几开始？',
@@ -127,14 +128,14 @@ function FactorPredictionChecks() {
                 misconception="把被除数和除数写反，方向搞错。"
             />
             <PredictCheck
-                prompt={'枚举 n 的因数，循环写成 for(i=1;i<n;i++) 会漏掉谁？'}
+                prompt={'枚举正整数 n 的因数，循环写成 for(int i=1;i<n;i++) 会漏掉谁？'}
                 options={['不会漏', '漏掉 n 自己（n 也是 n 的因数）']}
                 correctIndex={1}
                 explanation="n 能被自身整除，n 是自己的因数。条件要写 i<=n。用 i<n 会少输出一个 n，因数个数也少 1。"
                 misconception="忘了 n 本身也算因数，区间右端少取了一个。"
             />
             <PredictCheck
-                prompt={'统计 1..n 中 k 的倍数，写 if (k % i == 0) 对吗？'}
+                prompt={'k 为正整数，统计 1..n 中 k 的倍数，写 if (k % i == 0) 对吗？'}
                 options={['对', '反了，应是 i % k == 0']}
                 correctIndex={1}
                 explanation="i 是 k 的倍数 = i 能被 k 整除 = i % k == 0。写成 k % i 变成了判断 k 是不是 i 的倍数，含义完全不同。"
@@ -147,12 +148,12 @@ function FactorPredictionChecks() {
 const factorMasteryItems = [
     {
         label: '能用取余判断整除方向。',
-        evidence: 'a 是 b 的因数 ⇔ b % a == 0（被除数在前）。',
+        evidence: '正整数 a 是正整数 b 的因数 ⇔ b % a == 0（被除数在前）。',
         retryHint: '回到定义翻译，别把 a、b 写反。',
     },
     {
         label: '能完整枚举一个数的因数。',
-        evidence: 'for(i=1;i<=n;i++)，包含 1 和 n 自己。',
+        evidence: '正整数 n 从 i=1 枚举到 i=n，包含 1 和 n 自己。',
         retryHint: '回到枚举因数，注意 i<=n。',
     },
     {
@@ -181,7 +182,7 @@ export default function CppL2Lesson11() {
             bottomSupport={<CppL2LessonSupport lessonId={11} placement="bottom" />}
             hero={{
                 title: '因数倍数题，本质是反复问“能不能整除”',
-                description: '从质数判断到数位拆解，我们一直在用取余。今天把取余正式变成解题工具，用来找因数、判倍数、统计公因数。',
+                description: '本课先讨论正整数：用取余找因数、判倍数、枚举公因数，并在取余前检查除数不为 0。',
             }}
             goals={['能用取余判断整除关系', '能枚举一个数的所有因数', '能处理倍数、公因数等常见题型']}
             prerequisites={['理解取余运算 %（求余数）', '会写从 1 到 n 的 for 循环', '理解整除就是余数为 0']}
@@ -192,7 +193,7 @@ export default function CppL2Lesson11() {
                         <div>
                             <h3 className="text-3xl font-black text-slate-950">定义翻译：整除就是余数为 0</h3>
                             <p className="mt-3 text-base font-semibold leading-7 text-slate-600">
-                                如果 <code>b % a == 0</code>，说明 b 能被 a 整除，也就是说 a 是 b 的因数，b 是 a 的倍数。
+                                在 a、b 都是正整数时，如果 <code>b % a == 0</code>，说明 b 能被 a 整除，也就是说 a 是 b 的因数，b 是 a 的倍数。
                             </p>
                         </div>
                         <CodeBlock>{`int a, b;
@@ -236,11 +237,18 @@ if (a != 0 && b % a == 0) {
                                 ['1..n 中 k 的倍数', 'i % k == 0', '倍数个数或总和'],
                             ]}
                         />
-                        <CodeBlock>{`int cnt = 0;
-for (int x = 1; x <= min(a, b); x++) {
-  if (a % x == 0 && b % x == 0) {
-    cnt++;
+                        <CodeBlock>{`#include <algorithm>
+#include <iostream>
+using namespace std;
+
+int main() {
+  int a, b;
+  cin >> a >> b;
+  if (a <= 0 || b <= 0) return 0;
+  for (int x = 1; x <= min(a, b); x++) {
+    if (a % x == 0 && b % x == 0) cout << x << " ";
   }
+  return 0;
 }`}</CodeBlock>
                         <FactorPredictionChecks />
                     </>
@@ -259,7 +267,7 @@ for (int x = 1; x <= min(a, b); x++) {
                             hint="枚举 i 从 1 到 18，n%i==0 就是因数；别漏了 18 自己。"
                             answer="1, 2, 3, 6, 9, 18。"
                             steps={[
-                                'for(i=1;i<=18;i++)，注意 i<=18 含 18 本身。',
+                                'for(int i=1;i<=18;i++)，注意 i<=18 含 18 本身。',
                                 '18 % i == 0 的 i：1, 2, 3, 6, 9, 18。',
                                 '共 6 个因数。',
                             ]}
@@ -271,9 +279,9 @@ for (int x = 1; x <= min(a, b); x++) {
                         />
                         <Callout icon={ClipboardCheck} title="课后任务" tone="slate">
                             <ul className="space-y-2">
-                                <li>输入 n，输出 n 的所有因数。</li>
-                                <li>输入 n 和 k，统计 1 到 n 中有多少个 k 的倍数。</li>
-                                <li>输入 a 和 b，输出它们所有公因数。</li>
+                                <li>输入正整数 n，输出 n 的所有正因数。</li>
+                                <li>输入正整数 n 和 k，统计 1 到 n 中有多少个 k 的倍数。</li>
+                                <li>输入正整数 a 和 b，输出它们所有正公因数。</li>
                             </ul>
                         </Callout>
                         <Callout icon={Sigma} title="下一课衔接" tone="blue">
