@@ -452,19 +452,19 @@ const SimPitfalls = () => {
             title: "陷阱1：变量忘记初始化",
             badCode: "int sum;\nfor(int i=0; i<n; i++) {\n  sum += i; // sum 是多少？\n}",
             goodCode: "int sum = 0; // 必须清零！\nfor(int i=0; i<n; i++) {\n  sum += i;\n}",
-            desc: "在C++中，如果直接声明 `int sum;`，它的值可能是任意的“垃圾值”。模拟题中通常需要累加器，千万别忘了初始值！"
+            desc: "局部变量 int sum; 没有初始化就参与加法，会读取未确定的值；在求和前先把 sum 设为 0。"
         },
         {
-            title: "陷阱2：边界溢出",
-            badCode: "int map[10][10];\n// 访问 map[10][5]",
-            goodCode: "// 数组下标从0开始\n// map[10] 最大下标是 9\nif (x >= 0 && x < 10) ...",
-            desc: "模拟机器人移动时，一定要先判断下一步是否在地图内，再进行移动。否则程序会直接崩溃 (Runtime Error)。"
+            title: "陷阱2：位置越过边界",
+            badCode: "int pos = 9; // 合法位置为 0 到 9\npos++; // 得到无效位置 10",
+            goodCode: "int pos = 9;\nif (pos + 1 < 10) pos++;",
+            desc: "模拟机器人在 0 到 9 的通道里移动时，先判断下一步是否仍在范围内，再更新位置。越界后继续计算会得到不符合题意的状态。"
         },
         {
-            title: "陷阱3：多测清空",
-            badCode: "// 多组数据测试\nwhile (cin >> n) {\n  solve(); // 上一次留下的痕迹还在吗？\n}",
-            goodCode: "while (cin >> n) {\n  memset(a, 0, sizeof(a));\n  solve();\n}",
-            desc: "如果是多组数据输入，记得在每一轮开始前把地图、计数器等“清空”，否则上一次的结果会干扰这一次的模拟。"
+            title: "陷阱3：多轮任务忘记重置",
+            badCode: "int sum = 0;\nfor (int round = 1; round <= 2; round++) {\n  for (int i = 1; i <= 3; i++) sum += i;\n  cout << sum << \" \"; // 输出 6 12\n}",
+            goodCode: "for (int round = 1; round <= 2; round++) {\n  int sum = 0;\n  for (int i = 1; i <= 3; i++) sum += i;\n  cout << sum << \" \"; // 输出 6 6\n}",
+            desc: "每一轮都要单独求 1+2+3 时，把 sum 放在循环内并从 0 开始；否则上一轮的和会累积进下一轮。"
         }
     ];
 
@@ -658,7 +658,7 @@ export default function App() {
                                     </li>
                                     <li className="flex items-start gap-2">
                                         <span className="bg-blue-100 text-blue-600 rounded-full w-5 h-5 flex items-center justify-center text-xs mt-1">3</span>
-                                        <span><strong>周期问题：</strong> 凡是“转圈圈”的，一定离不开取模 <code>%</code>。</span>
+                                        <span><strong>周期问题：</strong> “转圈圈”可以逐步模拟；若只求最终位置，也常可用取模 <code>%</code> 简化。</span>
                                     </li>
                                 </ul>
                             </div>
@@ -693,7 +693,7 @@ export default function App() {
                     <div className="slide-enter py-6">
                         <TransferCheck
                             prompt="换个例子：小球从第 1 格开始，每步前进 3 格，走 3 步后在第几格？一步步模拟。"
-                            hint="模拟就是按规则逐步更新位置，不要直接乘。"
+                            hint="先按规则逐步更新位置，确认过程无误后再思考是否能写成公式。"
                             answer="第 10 格。"
                             steps={[
                                 '起点第 1 格。',
@@ -715,7 +715,7 @@ export default function App() {
 
     return (
         <LegacyCppLessonShell
-            prerequisites={['会用嵌套循环遍历二维范围', '会用 if 在循环里做判断', '能按题意一步步模拟过程']}
+            prerequisites={['会用变量记录并更新数值', '会用循环重复执行步骤', '会用 if 在循环里做判断']}
             lessonNumber={14}
             lessonTitle="模拟与逻辑"
             accent="greenTeal"

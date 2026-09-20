@@ -325,6 +325,11 @@ const OddEvenSorter = () => {
                 </div>
             </div>
 
+            <p className="mt-4 text-sm text-indigo-800">原题输出格式：在同一行先输出奇数个数，再输出一个空格和偶数个数。</p>
+            {numbers.length > 0 && !isRunning && (
+                <div className="mt-2 rounded bg-white p-3 font-mono text-indigo-900" aria-label="原题格式输出示例">{oddCount} {evenCount}</div>
+            )}
+
             <button
                 onClick={startSort}
                 disabled={isRunning}
@@ -338,21 +343,17 @@ const OddEvenSorter = () => {
 
 // --- 互动组件 4：倍数跳过演示 ---
 const NumberSkipper = () => {
-    const [m, setM] = useState(3);
-    const [n, setN] = useState(10);
-    const [output, setOutput] = useState([]);
-
-    useEffect(() => {
-        const res = [];
-        for (let i = 1; i <= n; i++) {
-            if (i % m === 0) {
-                res.push({ val: i, action: 'skip' });
-            } else {
-                res.push({ val: i, action: 'print' });
-            }
-        }
-        setOutput(res);
-    }, [m, n]);
+    const [mInput, setMInput] = useState('3');
+    const [nInput, setNInput] = useState('10');
+    const m = Number(mInput);
+    const n = Number(nInput);
+    const validInput = nInput !== '' && mInput !== '' && Number.isInteger(n) && Number.isInteger(m) && n >= 1 && n <= 20 && m >= 2 && m <= 100;
+    const output = validInput
+        ? Array.from({ length: n }, (_, index) => {
+            const value = index + 1;
+            return { val: value, action: value % m === 0 ? 'skip' : 'print' };
+        })
+        : [];
 
     return (
         <div className="bg-red-50 p-6 rounded-xl border-2 border-red-200 my-4">
@@ -365,18 +366,22 @@ const NumberSkipper = () => {
                 <div className="flex flex-col">
                     <label className="text-xs font-bold text-gray-600 mb-1">总数 N:</label>
                     <input
-                        type="number" value={n} onChange={(e) => setN(Math.min(20, Math.max(5, parseInt(e.target.value))))}
+                        type="number" min="1" max="20" value={nInput} onChange={(e) => setNInput(e.target.value)}
+                        aria-label="演示总数 N，1 到 20"
                         className="border-2 border-red-200 rounded px-2 py-1 w-16 text-center font-bold"
                     />
                 </div>
                 <div className="flex flex-col">
                     <label className="text-xs font-bold text-gray-600 mb-1">倍数 M:</label>
                     <input
-                        type="number" value={m} onChange={(e) => setM(Math.max(2, parseInt(e.target.value)))}
+                        type="number" min="2" max="100" value={mInput} onChange={(e) => setMInput(e.target.value)}
+                        aria-label="跳过的倍数 M，2 到 100"
                         className="border-2 border-red-200 rounded px-2 py-1 w-16 text-center font-bold text-red-600"
                     />
                 </div>
             </div>
+            <p className="text-sm text-red-700 mb-4">演示范围：1 ≤ N ≤ 20，2 ≤ M ≤ 100。原题允许 N 到 1000；页面缩小范围便于逐个观察。</p>
+            {!validInput && <p role="status" className="text-sm text-red-700 mb-4">请输入范围内的整数，再观察报数结果。</p>}
 
             <div className="flex flex-wrap gap-2">
                 {output.map((item, idx) => (
@@ -399,10 +404,10 @@ const NumberSkipper = () => {
                 ))}
             </div>
 
-            <div className="mt-4 bg-gray-800 text-gray-300 p-3 rounded font-mono text-sm">
+            {validInput && <div className="mt-4 bg-gray-800 text-gray-300 p-3 rounded font-mono text-sm">
                 <span className="text-purple-400">if</span> (i % {m} == 0) <span className="text-yellow-400">continue</span>; <span className="text-gray-500">// 跳过倍数</span><br />
-                cout &lt;&lt; i &lt;&lt; " ";
-            </div>
+                cout &lt;&lt; i &lt;&lt; "\n"; <span className="text-gray-500">// 原题要求每个数字单独一行</span>
+            </div>}
         </div>
     );
 };
@@ -523,9 +528,9 @@ const PitfallGuide = () => {
         },
         {
             title: "2. 判断符号写错",
-            bad: "if (i % 2 = 1) { // 这是赋值！\n  ...\n}",
-            good: "if (i % 2 == 1) { // 这是判断\n  ...\n}",
-            desc: "最经典的错误：把 '==' (相等判断) 写成 '=' (赋值)。在 C++ 里，if(x=1) 永远是真的！"
+            bad: "if (i % 2 = 1) { // 左边不是可赋值变量，编译失败\n  ...\n}",
+            good: "if (i % 2 != 0) { // 判断奇数，负奇数也适用\n  ...\n}",
+            desc: "这里把 == 写成 = 会编译失败，因为 i % 2 的结果不能被赋值。若写成 if (x = 1)，则是在给变量 x 赋值，条件为真；应按题意使用 == 或 !=。"
         },
         {
             title: "3. 范围与除0",
@@ -705,7 +710,7 @@ export default function App() {
                             <p className="text-sm text-gray-600 mb-2">
                                 1. 准备两个篮子：<code>int a = 0;</code> (奇数) 和 <code>int b = 0;</code> (偶数)。<br />
                                 2. 怎么分奇偶？看余数：<code>x % 2</code>。<br />
-                                3. 如果余数是 1 (或不等于0) &rarr; 奇数篮子 +1。<br />
+                                3. 如果余数不等于 0 &rarr; 奇数篮子 +1；这样写也能处理负奇数。<br />
                                 4. 否则 (else) &rarr; 偶数篮子 +1。
                             </p>
                         </div>
@@ -725,7 +730,7 @@ export default function App() {
                                     <div className="text-green-800 font-bold text-sm mb-2">写法 A：只放行好人</div>
                                     <code className="text-xs text-green-700">
                                         if (i % m != 0) &#123;<br />
-                                        &nbsp;&nbsp;cout &lt;&lt; i &lt;&lt; " ";<br />
+                                        &nbsp;&nbsp;cout &lt;&lt; i &lt;&lt; "\n";<br />
                                         &#125;
                                     </code>
                                 </div>
@@ -735,7 +740,7 @@ export default function App() {
                                         if (i % m == 0) &#123;<br />
                                         &nbsp;&nbsp;continue; <span className="opacity-50">// 闭嘴</span><br />
                                         &#125;<br />
-                                        cout &lt;&lt; i &lt;&lt; " ";
+                                        cout &lt;&lt; i &lt;&lt; "\n";
                                     </code>
                                 </div>
                             </div>
