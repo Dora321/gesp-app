@@ -28,7 +28,7 @@ try {
     await page.goto(`${base}/level${level}`);
     const roadmap = page.getByRole('region', { name: '上机与备考路线', exact: true });
     await roadmap.waitFor();
-    assert.equal(await roadmap.getByRole('link').count(), level === 1 ? 16 : 4);
+    assert.equal(await roadmap.getByRole('link').count(), level <= 3 ? 16 : 4);
     await roadmap.getByRole('link').first().click();
     await page.getByRole('region', { name: '本课上机练习', exact: true }).waitFor();
   }
@@ -43,7 +43,7 @@ try {
   assert.equal(download.suggestedFilename(), 'cpp-1-4-task.md');
   const task = readFileSync(await download.path(), 'utf8');
   assert.ok(task.includes('125') && task.includes('2 5') && !task.includes('#include'));
-  await card.getByText('完成尝试后对照：参考实现（C++17）', { exact: true }).click();
+  await card.getByText('完成尝试后对照：参考实现（C++11）', { exact: true }).click();
   assert.ok(await card.locator('details[open] pre').isVisible());
   mkdirSync('scratch/cpp-practice-qa', { recursive: true });
   await card.evaluate(el => el.scrollIntoView({ block: 'start' }));
@@ -67,7 +67,7 @@ try {
     }
   }
   assert.deepEqual(errors, []);
-  console.log('44 个上机入口、8 级路线、手机布局、折叠提示、题单下载、自查持久化及隔离全部通过。');
+  console.log(`${cppProgrammingExercises.length} 个上机入口、8 级路线、手机布局、折叠提示、题单下载、自查持久化及隔离全部通过。`);
 } finally {
   await browser.close();
 }

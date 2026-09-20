@@ -104,7 +104,7 @@ const masteryItems = [
         retryHint: '回到「类型错误」的两段代码对比。',
     },
     {
-        label: '能说出最大值为什么用 a[0] 初始化。',
+        label: '选学数组：能说出最大值为什么用 a[0] 初始化。',
         evidence: 'mx = 0 在全负数数据下会输出不存在的结果。',
         retryHint: '回到易错诊疗台的「最大值初始错误」。',
     },
@@ -130,7 +130,7 @@ export default function CppL2Lesson15() {
             bottomSupport={<CppL2LessonSupport lessonId={15} placement="bottom" />}
             hero={{
                 title: '二级真正拉开差距的，不是会不会写，而是错不错边界',
-                description: '这一课集中处理循环、数组、类型、初始化和调试流程。目标是让学生形成提交前自查习惯。',
+                description: '这一课集中处理二级的循环、类型、初始化和调试问题，另用数组边界作三级前瞻练习。目标是形成提交前自查习惯。',
             }}
             goals={['能识别循环边界错误', '能避开整数除法和初始化坑', '能用样例和状态表定位 bug']}
             childrenBySection={{
@@ -140,15 +140,15 @@ export default function CppL2Lesson15() {
                         <div>
                             <h3 className="text-3xl font-black text-slate-950">边界错误：多一次、少一次、越界一次</h3>
                             <p className="mt-3 text-base font-semibold leading-7 text-slate-600">
-                                二级错题里，边界问题出现频率极高。循环起点、终点、数组下标必须逐个检查。
+                                二级题先检查循环起点和终点；数组下标作为三级前瞻案例，一起练习边界检查。
                             </p>
                         </div>
                         <CompareTable
                             headers={['场景', '推荐写法', '常见错误']}
                             rows={[
-                                ['遍历 n 个数组元素', 'i = 0; i < n', 'i <= n 导致越界'],
+                                ['遍历 n 个数组元素（三级前瞻）', 'i = 0; i < n', 'i <= n 导致越界'],
                                 ['枚举 1 到 n', 'i = 1; i <= n', '写成 i < n 漏掉 n'],
-                                ['试除到平方根', 'i * i <= n', '少判断完全平方数'],
+                                ['试除到平方根（n > 0、i 从 2 开始）', 'i <= n / i', '少判断完全平方数；i*i 还可能溢出'],
                             ]}
                         />
                         <Callout icon={AlertTriangle} title="边界自问" tone="amber">

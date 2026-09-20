@@ -14,7 +14,7 @@ const sections = [
 function analyzePrime(n) {
     if (n < 2) return { prime: false, checks: [], reason: '小于 2 的整数不是质数' };
     const checks = [];
-    for (let i = 2; i * i <= n; i += 1) {
+    for (let i = 2; i <= Math.floor(n / i); i += 1) {
         checks.push({ divisor: i, ok: n % i !== 0 });
         if (n % i === 0) return { prime: false, checks, reason: `${n} 能被 ${i} 整除` };
     }
@@ -91,7 +91,7 @@ function PrimeTracer() {
         const result = [{ active: [0, 1], vars: { n, i: '–', isPrime: 'true' } }];
         let isPrime = true;
         let i = 2;
-        for (; i * i <= n; i += 1) {
+        for (; i <= Math.floor(n / i); i += 1) {
             if (n % i === 0) {
                 isPrime = false;
                 result.push({
@@ -134,7 +134,7 @@ function PrimeTracer() {
             code={`bool isPrime = true;
 if (n < 2) isPrime = false;
 
-for (int i = 2; i * i <= n; i++) {
+for (int i = 2; i <= n / i; i++) {
   if (n % i == 0) {
     isPrime = false;
     break;
@@ -159,10 +159,10 @@ function PrimePredictionChecks() {
                 misconception="试除范围包含了 n 自己，导致全部判成非质数。"
             />
             <PredictCheck
-                prompt={'判断 n=2，for (int i=2; i*i<=n; i++) 的循环体执行几次？'}
+                prompt={'判断 n=2，for (int i=2; i<=n/i; i++) 的循环体执行几次？'}
                 options={['1 次', '0 次（4 > 2，循环不进）']}
                 correctIndex={1}
-                explanation="n=2 时 i=2，i*i=4 > 2，条件一开始就为假，循环 0 次，isPrime 保持 true，正确判定 2 是质数。"
+                explanation="n=2 时 i=2，n/i=1，条件一开始就为假，循环 0 次，isPrime 保持 true，正确判定 2 是质数。"
                 misconception="以为至少要试除一次才能下结论。"
             />
             <PredictCheck
@@ -184,12 +184,12 @@ const primeMasteryItems = [
     },
     {
         label: '能写试除法且范围不含 n。',
-        evidence: 'i 从 2 到 n-1 或 i*i<=n，找到因数就 break。',
+        evidence: 'i 从 2 到 n-1，或在 i>0 时用 i<=n/i 试到平方根；找到因数就 break。',
         retryHint: '别把 n 自己也试除进去。',
     },
     {
         label: '能解释平方根优化为什么成立。',
-        evidence: '因数成对出现，小因数找不到大因数也不会单独出现，i*i<=n 即可。',
+        evidence: '因数成对出现；i*i<=n 在不会溢出时成立，i<=n/i 可用于较大整数。',
         retryHint: '回到平方根优化。',
     },
     {
@@ -250,8 +250,8 @@ for (int i = 2; i <= n - 1; i++) {
                             </p>
                         </div>
                         <PrimeTracer />
-                        <Callout icon={ShieldCheck} title="为什么用 i * i <= n" tone="emerald">
-                            用 <code>i * i &lt;= n</code> 可以避免浮点平方根带来的精度细节，也更适合整数题。
+                        <Callout icon={ShieldCheck} title="试到平方根，同时检查整数范围" tone="emerald">
+                            只需检查不大于平方根的因数。<code>i * i &lt;= n</code> 不需要浮点平方根，但乘积可能超出整数范围；当 <code>n ≥ 2</code>、<code>i ≥ 2</code> 时，可用 <code>i &lt;= n / i</code> 表达同一边界并避开这次乘法溢出。
                         </Callout>
                         <PrimePredictionChecks />
                     </>
@@ -275,7 +275,7 @@ for (int i = 2; i <= n - 1; i++) {
                         <CodeBlock>{`int cnt = 0;
 for (int x = 2; x <= n; x++) {
   bool ok = true;
-  for (int i = 2; i * i <= x; i++) {
+  for (int i = 2; i <= x / i; i++) {
     if (x % i == 0) {
       ok = false;
       break;

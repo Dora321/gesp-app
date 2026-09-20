@@ -3,6 +3,7 @@ import { useLocation } from 'react-router-dom';
 import { CheckCircle2, Flag, HelpCircle, PlayCircle, Repeat2, RotateCcw, SkipForward } from 'lucide-react';
 import { recordLessonMastered } from '../../utils/lessonProgress';
 import {
+    getLessonEvidenceStage,
     hasObjectiveLessonEvidence,
     LESSON_EVIDENCE_EVENT,
     recordLessonEvidence,
@@ -462,11 +463,17 @@ export function TransferCheck({
     const location = useLocation();
     const [revealed, setRevealed] = useState(false);
     const [attempt, setAttempt] = useState('');
+    const [selfChecked, setSelfChecked] = useState(false);
 
     const revealAnswer = () => {
         if (!attempt.trim()) return;
         setRevealed(true);
         recordLessonEvidence(location.pathname, 'transferAttempt');
+    };
+
+    const confirmReview = () => {
+        setSelfChecked(true);
+        recordLessonEvidence(location.pathname, 'transferSelfChecked');
     };
 
     return (
@@ -506,7 +513,7 @@ export function TransferCheck({
             ) : (
                 <button
                     type="button"
-                    onClick={() => setRevealed(false)}
+                    onClick={() => { setRevealed(false); setSelfChecked(false); }}
                     className="mt-4 inline-flex items-center gap-1 rounded-md bg-white px-2.5 py-1 text-xs font-black text-slate-500 ring-1 ring-emerald-200 transition hover:bg-emerald-100"
                 >
                     <RotateCcw size={13} />
@@ -527,6 +534,20 @@ export function TransferCheck({
                             ))}
                         </ol>
                     )}
+                    {/^\/lesson\/[1-3]\//.test(location.pathname) && (
+                        <div className="rounded-lg border border-stone-200 bg-stone-50 p-3 text-sm font-semibold text-stone-700">
+                            {selfChecked ? (
+                                <span>已记录：你对照参考答案完成了自查。此记录不是自动判题结果。</span>
+                            ) : (
+                                <>
+                                    <p className="mb-2">对照答案检查自己的结果和关键步骤。有差异时，收起答案再修改。</p>
+                                    <button type="button" onClick={confirmReview} className="min-h-11 rounded-lg bg-stone-800 px-4 py-2 font-black text-white hover:bg-stone-700">
+                                        已核对，结果或思路一致
+                                    </button>
+                                </>
+                            )}
+                        </div>
+                    )}
                 </div>
             )}
         </div>
@@ -542,17 +563,25 @@ export function MasteryCheck({
     const location = useLocation();
     const [checked, setChecked] = useState(() => new Set());
     const [artifact, setArtifact] = useState('');
+    const isPriorityLevel = /^\/lesson\/[1-3]\//.test(location.pathname);
+    const [evidenceStage, setEvidenceStage] = useState(() => getLessonEvidenceStage(location.pathname));
     const [evidenceReady, setEvidenceReady] = useState(() => hasObjectiveLessonEvidence(location.pathname));
     const total = items.length;
     const done = checked.size;
     const reflectionReady = total > 0 && done === total;
-    const ready = reflectionReady && evidenceReady;
+    const checkedEvidenceReady = ['correct', 'selfChecked', 'submitted'].includes(evidenceStage);
+    const effectiveEvidenceReady = isPriorityLevel ? checkedEvidenceReady : evidenceReady;
+    const ready = reflectionReady && effectiveEvidenceReady;
     const needsFallback = requiresFallbackEvidence(location.pathname);
 
     useEffect(() => {
+        setEvidenceStage(getLessonEvidenceStage(location.pathname));
         setEvidenceReady(hasObjectiveLessonEvidence(location.pathname));
         const handleEvidence = (event) => {
-            if (event.detail?.path === location.pathname) setEvidenceReady(true);
+            if (event.detail?.path === location.pathname) {
+                setEvidenceStage(getLessonEvidenceStage(location.pathname));
+                setEvidenceReady(hasObjectiveLessonEvidence(location.pathname));
+            }
         };
         window.addEventListener(LESSON_EVIDENCE_EVENT, handleEvidence);
         return () => window.removeEventListener(LESSON_EVIDENCE_EVENT, handleEvidence);
@@ -581,6 +610,7 @@ export function MasteryCheck({
     const submitArtifact = () => {
         if (artifact.trim().length < 12) return;
         recordLessonEvidence(location.pathname, 'exitArtifact');
+        setEvidenceStage('submitted');
         setEvidenceReady(true);
     };
 
@@ -590,7 +620,7 @@ export function MasteryCheck({
                 <div>
                     <div className="inline-flex items-center gap-2 rounded-full bg-emerald-50 px-3 py-1 text-xs font-black text-emerald-700 ring-1 ring-emerald-100">
                         <CheckCircle2 size={14} />
-                        掌握检查
+                        {isPriorityLevel ? '离课自查' : '掌握检查'}
                     </div>
                     <h3 className="mt-2 text-xl font-black text-slate-950">{title}</h3>
                     <p className="mt-1 text-sm font-semibold leading-6 text-slate-500">{description}</p>
@@ -612,16 +642,20 @@ export function MasteryCheck({
                 </div>
             </div>
 
-            <div className={`mb-4 rounded-lg border p-4 ${evidenceReady ? 'border-emerald-200 bg-emerald-50' : 'border-amber-200 bg-amber-50'}`}>
-                <div className={`text-sm font-black ${evidenceReady ? 'text-emerald-800' : 'text-amber-900'}`}>
-                    {evidenceReady ? '学习证据已完成' : '先完成一项可验证的学习证据'}
+            <div className={`mb-4 rounded-lg border p-4 ${effectiveEvidenceReady ? 'border-emerald-200 bg-emerald-50' : 'border-amber-200 bg-amber-50'}`}>
+                <div className={`text-sm font-black ${effectiveEvidenceReady ? 'text-emerald-800' : 'text-amber-900'}`}>
+                    {isPriorityLevel
+                        ? ({ correct: '预测题已答对（系统核对）', selfChecked: '迁移练习已对照自查', submitted: '课末产出已提交（未核验）', attempted: '已尝试，尚未完成核对', none: '尚无学习证据' })[evidenceStage]
+                        : evidenceReady ? '学习证据已完成' : '先完成一项可验证的学习证据'}
                 </div>
-                {!evidenceReady && !needsFallback && (
+                {!effectiveEvidenceReady && !needsFallback && (
                     <p className="mt-1 text-sm font-semibold leading-6 text-amber-800">
-                        请返回本课的预测题或迁移练习：预测题需答对，迁移练习需先写答案再对照。
+                        {isPriorityLevel
+                            ? '请返回本课的预测题或迁移练习：预测题需答对；迁移练习需先写答案、对照解析并确认结果或思路一致。'
+                            : '请返回本课的预测题或迁移练习：预测题需答对，迁移练习需先写答案再对照。'}
                     </p>
                 )}
-                {!evidenceReady && needsFallback && (
+                {!effectiveEvidenceReady && needsFallback && (
                     <div className="mt-3 space-y-2">
                         <label className="block text-xs font-black text-amber-900">提交本课代码、计算过程或错题订正</label>
                         <textarea
@@ -638,7 +672,7 @@ export function MasteryCheck({
                             disabled={artifact.trim().length < 12}
                             className="min-h-11 rounded-lg bg-amber-700 px-4 py-2 text-sm font-black text-white disabled:cursor-not-allowed disabled:bg-slate-300"
                         >
-                            提交学习证据
+                            {isPriorityLevel ? '提交课末产出（未核验）' : '提交学习证据'}
                         </button>
                     </div>
                 )}
@@ -675,11 +709,17 @@ export function MasteryCheck({
             </div>
 
             <div className={`mt-4 rounded-lg px-4 py-3 text-sm font-bold leading-6 ${ready ? 'bg-emerald-50 text-emerald-800' : 'bg-amber-50 text-amber-800'}`}>
-                {ready
-                    ? '可以进入下一课：你已经能用自己的动作证明这节课不是只看懂。'
-                    : evidenceReady
-                        ? '学习证据已完成，再补齐反思项即可过关。'
-                        : '自我勾选只是反思，完成一项预测、迁移或作品证据后才能过关。'}
+                {isPriorityLevel
+                    ? ready
+                        ? '本课自查已完成，可以进入下一课。自查或产出不代表自动判题通过。'
+                        : effectiveEvidenceReady
+                            ? '已有学习证据，再补齐反思项即可完成本课自查。'
+                            : '自我勾选只是反思；请答对预测题、完成迁移题对照自查，或提交课末产出。'
+                    : ready
+                        ? '可以进入下一课：你已经能用自己的动作证明这节课不是只看懂。'
+                        : evidenceReady
+                            ? '学习证据已完成，再补齐反思项即可过关。'
+                            : '自我勾选只是反思，完成一项预测、迁移或作品证据后才能过关。'}
             </div>
         </div>
     );

@@ -12,8 +12,8 @@ const sections = [
 ];
 
 function ExamChecklist() {
-    const items = ['输入输出与类型转换', 'switch 与分支流程', '嵌套循环与图形', '质数、数位、因数倍数', '数组统计与模拟'];
-    const [checked, setChecked] = useState([true, true, false, false, false]);
+    const items = ['输入输出与类型转换', 'switch 与分支流程', '嵌套循环与图形', '数学函数、数位与因数倍数', '模拟题的状态更新'];
+    const [checked, setChecked] = useState([false, false, false, false, false]);
 
     const done = checked.filter(Boolean).length;
 
@@ -26,7 +26,7 @@ function ExamChecklist() {
             <div className="grid gap-5 lg:grid-cols-[0.9fr_1.1fr]">
                 <div className="rounded-xl bg-white p-5 ring-1 ring-amber-100">
                     <div className="text-3xl font-black text-amber-700">{done}/{items.length}</div>
-                    <p className="mt-2 text-sm font-semibold text-slate-600">已确认掌握模块</p>
+                    <p className="mt-2 text-sm font-semibold text-slate-600">已自查模块</p>
                     <div className="mt-5 h-3 overflow-hidden rounded-full bg-slate-200">
                         <div className="h-full bg-amber-500 transition-all" style={{ width: `${(done / items.length) * 100}%` }} />
                     </div>
@@ -38,7 +38,7 @@ function ExamChecklist() {
                             onClick={() => setChecked((current) => current.map((value, i) => (i === index ? !value : value)))}
                             className={`rounded-lg px-4 py-3 text-left text-sm font-black transition ${checked[index] ? 'bg-amber-500 text-slate-950' : 'bg-white text-slate-700 ring-1 ring-amber-100'}`}
                         >
-                            {checked[index] ? '已掌握：' : '待复习：'}{item}
+                            {checked[index] ? '已自查：' : '待自查：'}{item}
                         </button>
                     ))}
                 </div>
@@ -67,8 +67,8 @@ const quiz = [
 
 const masteryItems = [
     {
-        label: '能按模块说出二级的四大考点。',
-        evidence: '分支 switch、嵌套循环、数学取余、数组与模拟。',
+        label: '能区分二级核心复习与三级选学内容。',
+        evidence: '重点复习分支、循环、数学函数、数位与模拟；数组是三级前瞻。',
         retryHint: '回到「考点地图」的模块表。',
     },
     {
@@ -103,7 +103,7 @@ export default function CppL2Lesson16() {
             bottomSupport={<CppL2LessonSupport lessonId={16} placement="bottom" />}
             hero={{
                 title: '最后一课不是结束，是把知识变成稳定得分',
-                description: '二级课程已经覆盖分支、循环、数学、数位、数组和模拟。现在要用一套考试流程，把会的东西稳定交出来。',
+                description: '二级核心复习包括分支、循环、数学函数、数位与模拟。本课程另设数组前瞻，备考时不要把选学内容误当二级必考。',
             }}
             goals={['能按模块复盘二级知识', '能建立模拟考答题节奏', '能用错题分类规划下一轮训练']}
             childrenBySection={{
@@ -113,7 +113,7 @@ export default function CppL2Lesson16() {
                         <div>
                             <h3 className="text-3xl font-black text-slate-950">考点地图：二级是一条连续能力链</h3>
                             <p className="mt-3 text-base font-semibold leading-7 text-slate-600">
-                                不要把 16 节课当成散点。二级题经常把循环、取余、数组和模拟混在一起考。
+                                不要把 16 节课当成散点。二级先练稳分支、循环、取余、数学函数和模拟；数组练习作为通往三级的选学桥梁。
                             </p>
                         </div>
                         <CompareTable
@@ -122,7 +122,8 @@ export default function CppL2Lesson16() {
                                 ['分支与 switch', '按条件选择路径', '菜单、等级、流程图'],
                                 ['嵌套循环', '二维过程枚举', '图形、乘法表、数对'],
                                 ['数学与取余', '判断整除和数位', '质数、数位和、因数'],
-                                ['数组与模拟', '保存并更新一组状态', '统计、最高值、过程模拟'],
+                                ['模拟与状态更新', '按输入顺序维护状态', '分数变化、位置移动'],
+                                ['三级前瞻：数组', '保存一组数据或历史', '选学的遍历与统计'],
                             ]}
                         />
                     </>
@@ -156,7 +157,7 @@ export default function CppL2Lesson16() {
                             </p>
                         </div>
                         <CodeBlock>{`错题复盘模板：
-1. 题型：数组统计 / 数位 / 模拟 / ...
+1. 题型：分支 / 循环 / 数位 / 模拟 / ...
 2. 错因：边界 / 类型 / 读题 / 漏条件
 3. 修法：具体改哪一行
 4. 下次检查：提交前必须看什么`}</CodeBlock>
@@ -182,7 +183,7 @@ export default function CppL2Lesson16() {
                         <Callout icon={ClipboardCheck} title="二级结课清单" tone="slate">
                             <ul className="space-y-2">
                                 <li>完成一套二级模拟卷，并按模块记录错题。</li>
-                                <li>整理 10 个高频检查点：边界、类型、数组、取余、模拟顺序。</li>
+                                <li>整理 10 个二级高频检查点：边界、类型、函数头文件、取余和模拟顺序。</li>
                                 <li>从错题里选 3 道重写，要求不看答案独立通过样例。</li>
                             </ul>
                         </Callout>

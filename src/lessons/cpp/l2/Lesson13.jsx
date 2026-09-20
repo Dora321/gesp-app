@@ -250,7 +250,7 @@ for (int i = 0; i < n; i++) {
                             </ul>
                         </Callout>
                         <Callout icon={ListChecks} title="下一课衔接" tone="blue">
-                            下一课继续模拟，但会加入更多条件分支和数组记录，训练更接近二级综合题。
+                            下一课继续模拟，加入更多条件分支和状态变量；数组记录作为三级前瞻选学。
                         </Callout>
                     </>
                 ),

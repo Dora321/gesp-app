@@ -617,6 +617,7 @@ export default function LessonCatalog() {
     const readyLessons = activeSection.lessons.filter(lesson => isLessonReady(activeSection.id, lesson.id));
     const readyCount = readyLessons.length;
     const masteredCount = readyLessons.filter(lesson => ['mastered', 'review'].includes(getLessonStatus(lesson.path, progress))).length;
+    const isPriorityCppSection = readyLessons.some(lesson => /^\/lesson\/[1-3]\//.test(lesson.path));
     const hasReadyLessons = readyCount > 0;
     const lessonStatusText = readyCount === activeSection.lessons.length
         ? '全部上线'
@@ -830,11 +831,11 @@ export default function LessonCatalog() {
                                         {Object.entries(LESSON_STATUS_META).map(([key, meta]) => (
                                             <span key={key} className="inline-flex items-center gap-1.5 text-slate-500">
                                                 <span className={`h-2 w-2 rounded-full ${meta.dot}`} />
-                                                {meta.label}
+                                                {isPriorityCppSection && key === 'mastered' ? '已完成自查' : meta.label}
                                             </span>
                                         ))}
                                         <span className="ml-auto inline-flex items-center gap-1 rounded-full bg-emerald-50 px-2.5 py-1 text-emerald-700 ring-1 ring-emerald-200">
-                                            本课段已过关 {masteredCount}/{readyCount}
+                                            {isPriorityCppSection ? '本课段已完成自查' : '本课段已过关'} {masteredCount}/{readyCount}
                                         </span>
                                     </div>
                                 )}
@@ -869,7 +870,7 @@ export default function LessonCatalog() {
                                                     {lessonReady ? (
                                                         <>
                                                             {status !== 'unseen' && <span className={`h-1.5 w-1.5 rounded-full ${statusMeta.dot}`} />}
-                                                            {status === 'unseen' ? '开始学习' : statusMeta.label}
+                                                            {status === 'unseen' ? '开始学习' : isPriorityCppSection && status === 'mastered' ? '已完成自查' : statusMeta.label}
                                                             <ChevronRight size={12} className="transition group-hover:translate-x-0.5" />
                                                         </>
                                                     ) : '建设中'}

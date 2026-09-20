@@ -271,7 +271,7 @@ const TrapTracer = () => {
 };
 
 const ForLoopPredictionChecks = () => (
-  <div className="my-6 grid gap-4 lg:grid-cols-3">
+  <div className="my-6 grid gap-4 md:grid-cols-2">
     <PredictCheck
       prompt="for (int i = 1; i <= 3; i++) 会执行几次循环体？"
       options={['2 次', '3 次', '4 次']}
@@ -292,6 +292,13 @@ const ForLoopPredictionChecks = () => (
       correctIndex={0}
       explanation="条件是 i < 5，所以 i = 0、1、2、3、4 都能进入；i = 5 时不能进入。"
       misconception="把循环结束时的 i = 5，当成最后一次执行时的 i。"
+    />
+    <PredictCheck
+      prompt="int cnt = 0; for (int i = 1; i <= 0; i++) cnt++; 最后 cnt 是多少？"
+      options={['0，条件一开始就为假', '1，循环体至少执行一次', '会无限循环']}
+      correctIndex={0}
+      explanation="初始化后先判断 1 <= 0，结果为假，循环体一次都不执行。for 循环可以执行 0 次。"
+      misconception="把 for 当成至少执行一次的循环，漏掉第一次条件判断。"
     />
   </div>
 );
@@ -563,7 +570,7 @@ cout << (N + i);`}
                   <p className="text-red-700 text-sm font-mono mt-1 bg-white inline-block px-2 py-1 rounded border border-red-200">
                     for(int i=1, i&lt;=10, i++) ❌
                   </p>
-                  <p className="text-sm text-gray-600 mt-1">必须用分号 <code>;</code> 分隔，不能用逗号！</p>
+                  <p className="text-sm text-gray-600 mt-1">括号内有初始化、条件、更新三段，用两个分号 <code>;</code> 分隔，不能用逗号。</p>
                 </div>
               </div>
 

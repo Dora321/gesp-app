@@ -19,7 +19,7 @@ import {
 } from 'lucide-react';
 import CppL1LessonSupport from '../../../components/CppL1LessonSupport';
 import LegacyCppLessonShell from '../LegacyCppLessonShell';
-import { CodeTracer, MasteryCheck, TransferCheck } from '../CppLessonShell';
+import { CodeTracer, MasteryCheck, PredictCheck, TransferCheck } from '../CppLessonShell';
 import CodeSnippet from '../CodeSnippet';
 
 const Button = ({ children, onClick, variant = 'primary', className = '', disabled = false }) => {
@@ -89,6 +89,11 @@ const lesson10MasteryItems = [
     label: '能判断什么时候用 while 而不是 for。',
     evidence: '知道次数不固定、要等条件自然变假时，while 更合适。',
     retryHint: '回到“For vs While”，比较“跑 10 圈”和“饼干吃完为止”。',
+  },
+  {
+    label: '能解释 do-while 先执行一次再判断。',
+    evidence: '当初始条件为假时，while 循环体执行 0 次，do-while 循环体仍执行 1 次。',
+    retryHint: '回到「For vs While」后面的 do-while 对照题。',
   },
 ];
 
@@ -856,6 +861,24 @@ cout << cnt;`}
                 </p>
               </div>
             </div>
+            <section className="mt-6 rounded-2xl border border-stone-200 bg-[#f7f4ed] p-5 text-stone-900">
+              <h3 className="text-xl font-bold">do-while：先做一次，再检查</h3>
+              <p className="mt-2 text-sm leading-6"><code>while</code> 先检查，条件起初为假就执行 0 次；<code>do-while</code> 先做再检查，所以至少执行 1 次。尾部的分号不能漏。</p>
+              <pre className="mt-4 overflow-x-auto rounded-lg bg-stone-900 p-4 text-sm text-stone-50"><code>{`int n = 0, count = 0;
+do {
+  count++;
+} while (n > 0);
+cout << count;  // 输出 1`}</code></pre>
+              <div className="mt-4">
+                <PredictCheck
+                  prompt="如果把上面的 do-while 改成 while (n > 0) { count++; }，最后 count 是多少？"
+                  options={['0', '1']}
+                  correctIndex={0}
+                  explanation="n 一开始就是 0，while 先检查，条件为假，所以循环体一次都不执行。"
+                  misconception="把 while 和 do-while 都当成至少执行一次。"
+                />
+              </div>
+            </section>
           </div>
         );
       case 10:

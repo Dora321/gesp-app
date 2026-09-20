@@ -182,7 +182,7 @@ export default function CppL3Lesson13() {
             bottomSupport={<CppL3LessonSupport lessonId={13} placement="bottom" />}
             hero={{
                 title: '图形打印题考的不是画画，而是行列规律',
-                description: '本课用嵌套循环拆解矩形、三角形、金字塔和对齐问题，训练把图案转成每一行的输出规则。',
+                description: '本课复习二级的嵌套循环和图形打印，再把每行的数量规律迁移到数字图形与对齐问题。',
             }}
             goals={['能用外层循环控制行', '能用内层循环控制每行字符数', '能处理空格对齐和换行']}
             childrenBySection={{
@@ -212,7 +212,7 @@ export default function CppL3Lesson13() {
                         <div>
                             <h4 className="text-xl font-black text-slate-900">输出的不一定是星号：数字图形</h4>
                             <p className="mt-2 text-sm font-semibold leading-6 text-slate-600">
-                                三级真题喜欢把星号换成数字。规律不变，只是把 <code>cout &lt;&lt; "*"</code> 换成和 <code>j</code>（或 <code>i</code>）有关的内容。
+                                作为复习拓展，可以把星号换成数字。行列规律不变，只是把 <code>cout &lt;&lt; "*"</code> 换成和 <code>j</code>（或 <code>i</code>）有关的内容。
                             </p>
                         </div>
                         <div className="grid gap-5 lg:grid-cols-2">

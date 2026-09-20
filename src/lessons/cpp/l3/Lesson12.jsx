@@ -77,7 +77,7 @@ const quiz = [
 
 function CaesarPredictionChecks() {
     return (
-        <div className="grid gap-4 lg:grid-cols-3">
+        <div className="grid gap-4 md:grid-cols-2">
             <PredictCheck
                 prompt={"把 'z' 用 k=1 加密，直接写 c + 1 会得到什么？"}
                 options={["'a'（自动绕回字母表开头）", "'{'（z 的下一个 ASCII 字符）"]}
@@ -98,6 +98,13 @@ function CaesarPredictionChecks() {
                 correctIndex={1}
                 explanation="'C' - 'a' = 67 - 97 = -30，编号一开始就是错的。大写字母的编号和还原都要用 'A'：'A' + ('C' - 'A' + 2) % 26 = 'E'。"
                 misconception="大小写混用同一个基准字符。"
+            />
+            <PredictCheck
+                prompt={"调用 encrypt('z', 1) 时，函数中的 c、k 分别是什么？返回什么？"}
+                options={["c='z'、k=1，返回 'a'", "c='a'、k=1，返回 'z'"]}
+                correctIndex={0}
+                explanation="实参 'z' 和 1 分别传给形参 c、k；函数计算后用 return 把字符 'a' 交还给调用处。"
+                misconception="把传入函数的实参和函数计算后的返回值混在一起。"
             />
         </div>
     );
@@ -121,7 +128,7 @@ const caesarMasteryItems = [
     },
     {
         label: '能把加密解密封装成函数并互相验证。',
-        evidence: '能解释 decrypt(encrypt(c, k), k) == c 恒成立并实测。',
+        evidence: '当 c 为小写字母、k 已规范到 0～25 时，能解释并测试 decrypt(encrypt(c, k), k) == c。',
         retryHint: '把课后任务第 1、2 题连起来对拍。',
     },
 ];
@@ -145,7 +152,7 @@ export default function CppL3Lesson12() {
                 title: '加密题是字符串、ASCII 和取模的组合训练',
                 description: '本课以 Caesar 加密为核心，学习字符偏移、绕回处理、解密反推和非字母保留。',
             }}
-            goals={['能写出 Caesar 加密公式', '能用取模处理字母绕回', '能区分字母与非字母字符']}
+            goals={['能写出 Caesar 加密公式并封装为函数', '能用取模处理字母绕回', '能区分字母与非字母字符']}
             childrenBySection={{
                 1: <CaesarLab />,
                 2: (
@@ -153,13 +160,24 @@ export default function CppL3Lesson12() {
                         <div>
                             <h3 className="text-3xl font-black text-slate-950">Caesar 加密：字母向后移动 k 位</h3>
                             <p className="mt-3 text-base font-semibold leading-7 text-slate-600">
-                                先把字母转成 0 到 25 的编号，加上偏移量，再转回字符。
+                                先把字母转成 0 到 25 的编号，加上偏移量，再转回字符。本课先约定输入是小写字母，偏移量 <code>0 ≤ k ≤ 25</code>。
                             </p>
                         </div>
-                        <CodeBlock>{`char encrypt(char c, int k) {
+                        <Callout icon={KeyRound} title="第一次把步骤封装成函数" tone="blue">
+                            <code>char encrypt(char c, int k)</code> 中，<code>char</code> 是返回类型，<code>encrypt</code> 是函数名，<code>c</code>、<code>k</code> 是形参。调用 <code>encrypt('z', 1)</code> 时，<code>'z'</code>、<code>1</code> 是实参；<code>return</code> 把结果 <code>'a'</code> 交还给调用处。函数里声明的 <code>id</code> 和 <code>next</code> 只在函数内使用。
+                        </Callout>
+                        <CodeBlock>{`#include <iostream>
+using namespace std;
+
+char encrypt(char c, int k) {
   int id = c - 'a';
   int next = (id + k) % 26;
   return 'a' + next;
+}
+
+int main() {
+  cout << encrypt('z', 1);  // 输出 a
+  return 0;
 }`}</CodeBlock>
                         <Callout icon={KeyRound} title="编号思想" tone="rose">
                             <code>'a'</code> 到 <code>'z'</code> 先变成 0 到 25，做完数学运算后再变回字符。
@@ -191,7 +209,7 @@ export default function CppL3Lesson12() {
                         <div>
                             <h3 className="text-3xl font-black text-slate-950">解密与取模：反方向移动也要防负数</h3>
                             <p className="mt-3 text-base font-semibold leading-7 text-slate-600">
-                                解密时从密文字母向前移动 k 位。如果直接减可能变成负数，所以常写成 <code>(id - k + 26) % 26</code>。
+                                解密时从密文字母向前移动 k 位。本课先约定 <code>0 ≤ k ≤ 25</code>；如果直接减可能变成负数，所以常写成 <code>(id - k + 26) % 26</code>。题目允许更大或负的 k 时，先把 k 规范到 0～25。
                             </p>
                         </div>
                         <div className="grid gap-5 lg:grid-cols-[1fr_0.9fr]">

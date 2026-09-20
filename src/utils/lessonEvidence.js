@@ -4,7 +4,7 @@ export const LESSON_EVIDENCE_EVENT = 'gesp:lesson-evidence';
 
 // These review lessons do not currently include a shared PredictCheck or
 // TransferCheck. Their MasteryCheck collects a short written/code artifact
-// instead so reflection alone can never mark the lesson as mastered.
+// instead so reflection alone cannot complete the lesson's self-check.
 const FALLBACK_EVIDENCE_ROUTES = new Set([
     '/lesson/2/1',
     '/lesson/2/2',
@@ -54,6 +54,20 @@ export function readLessonEvidence(path) {
 export function hasObjectiveLessonEvidence(path) {
     const { kinds } = readLessonEvidence(path);
     return Boolean(kinds.predictCorrect || kinds.predictAttempt || kinds.transferAttempt || kinds.exitArtifact);
+}
+
+// Keep attempts separate from a checked answer or a submitted artifact.
+// Self-review and artifacts are learner-reported; only predictCorrect is graded.
+export function classifyLessonEvidence(kinds = {}) {
+    if (kinds.predictCorrect) return 'correct';
+    if (kinds.transferSelfChecked) return 'selfChecked';
+    if (kinds.exitArtifact) return 'submitted';
+    if (kinds.predictAttempt || kinds.transferAttempt) return 'attempted';
+    return 'none';
+}
+
+export function getLessonEvidenceStage(path) {
+    return classifyLessonEvidence(readLessonEvidence(path).kinds);
 }
 
 export function recordLessonEvidence(path, kind) {

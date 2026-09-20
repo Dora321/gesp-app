@@ -91,11 +91,11 @@ function MathToolPredictionChecks() {
     return (
         <div className="grid gap-4 lg:grid-cols-3">
             <PredictCheck
-                prompt={'int x = sqrt(25); 一定能稳妥得到 5 吗？'}
-                options={['一定，sqrt(25) 就是 5', '不一定，浮点可能算出 4.9999… 截断成 4']}
+                prompt={'int x = sqrt(15); x 的值是多少？'}
+                options={['4，赋给 int 时会四舍五入', '3，sqrt(15) 约为 3.87，赋给 int 时舍去小数部分']}
                 correctIndex={1}
-                explanation="sqrt 返回 double，结果可能是 4.9999999。直接赋给 int 是向零截断，可能变成 4。要精确整数平方根时，常用 round 或整数验证。"
-                misconception="以为浮点函数对完全平方数一定给出精确整数。"
+                explanation="sqrt(15) 约为 3.87；赋给 int 时向零截断，所以 x 是 3。完全平方数 sqrt(25) 得 5，不能拿它当作截断错误的示例。"
+                misconception="以为赋给 int 会自动四舍五入。"
             />
             <PredictCheck
                 prompt={'求 7÷3 向上取整，写 ceil(7 / 3) 对吗？'}
@@ -123,7 +123,7 @@ const mathToolMasteryItems = [
     },
     {
         label: '知道这些函数多返回 double。',
-        evidence: 'sqrt(25) 可能是 4.9999…，赋给 int 会截断。',
+        evidence: 'sqrt(15) 约为 3.87，赋给 int 后是 3；转换不会自动四舍五入。',
         retryHint: '回到类型与精度一节。',
     },
     {
@@ -152,9 +152,9 @@ export default function CppL2Lesson8() {
             bottomSupport={<CppL2LessonSupport lessonId={8} placement="bottom" />}
             hero={{
                 title: '会用数学工具，代码会短一截，也稳一截',
-                description: '平方根、幂、绝对值、上下取整是二级常见工具。关键不是背函数名，而是知道什么时候能用，什么时候要小心类型和精度。',
+                description: '先掌握二级标准中的绝对值、平方根、最大值、最小值和随机数，再用幂与取整函数做拓展练习。使用前要核对头文件、类型和取值范围。',
             }}
-            goals={['会引入 cmath 并调用常用函数', '能区分 ceil 和 floor', '知道 pow/sqrt 的浮点精度风险']}
+            goals={['能使用 abs、sqrt、max、min 解决基础题', '理解 rand/srand 产生伪随机序列且不依赖具体输出值', '能识别 pow、ceil、floor 拓展练习中的类型风险']}
             prerequisites={['理解 int 与 double 的区别', '知道整数除法会截断小数', '会写 #include 引入头文件']}
             childrenBySection={{
                 1: <MathToolLab />,
@@ -163,29 +163,39 @@ export default function CppL2Lesson8() {
                         <div>
                             <h3 className="text-3xl font-black text-slate-950">常用函数：先会读，再会用</h3>
                             <p className="mt-3 text-base font-semibold leading-7 text-slate-600">
-                                <code>cmath</code> 里的函数能帮我们处理常见数学计算。考试里更常见的是阅读程序输出，所以要知道每个函数的含义。
+                                二级标准涉及 <code>abs</code>、<code>sqrt</code>、<code>max</code>、<code>min</code> 和随机数。<code>pow</code>、<code>ceil</code>、<code>floor</code> 放在本课拓展区使用。
                             </p>
                         </div>
                         <CompareTable
                             headers={['函数', '含义', '例子']}
                             rows={[
                                 ['sqrt(x)', '平方根', 'sqrt(16) 得到 4'],
-                                ['pow(a, b)', 'a 的 b 次方', 'pow(2, 3) 得到 8'],
                                 ['abs(x)', '绝对值', 'abs(-7) 得到 7'],
-                                ['ceil(x)', '向上取整', 'ceil(3.2) 得到 4'],
-                                ['floor(x)', '向下取整', 'floor(3.8) 得到 3'],
+                                ['max(a, b)', '较大值', 'max(3, 5) 得到 5'],
+                                ['min(a, b)', '较小值', 'min(3, 5) 得到 3'],
+                                ['rand() / srand(seed)', '伪随机数与设置种子', '相同种子会重现同一序列'],
+                                ['pow(a, b)（拓展）', 'a 的 b 次方', 'pow(2, 3) 得到 8'],
+                                ['ceil(x)（拓展）', '向上取整', 'ceil(3.2) 得到 4'],
+                                ['floor(x)（拓展）', '向下取整', 'floor(3.8) 得到 3'],
                             ]}
                         />
                         <CodeBlock>{`#include <iostream>
 #include <cmath>
+#include <algorithm>
+#include <cstdlib>
 using namespace std;
 
 int main() {
+  cout << abs(-7) << endl;
   cout << sqrt(25) << endl;
-  cout << pow(2, 5) << endl;
-  cout << ceil(7.0 / 3) << endl;
+  cout << max(3, 5) << " " << min(3, 5) << endl;
+  srand(1);
+  cout << rand() << endl;  // 值由实现决定，不背具体数字
   return 0;
 }`}</CodeBlock>
+                        <Callout icon={FunctionSquare} title="随机数不要背固定结果" tone="amber">
+                            <code>srand(seed)</code> 设置伪随机序列的种子；同一实现中，同一种子可重现序列。<code>rand()</code> 的具体数值可能随环境变化，题目若未限定环境，不应靠记某个数字作答。
+                        </Callout>
                     </>
                 ),
                 3: (

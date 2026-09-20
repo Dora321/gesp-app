@@ -125,7 +125,9 @@ export default function ContinueLearning() {
                 eyebrow: lesson.status === 'mastered' ? '最近学完' : '上次学到',
                 title: describeLessonPath(lesson.path),
                 detail: lesson.status === 'mastered'
-                    ? '这节课已过关，可以复习一遍或直接进入下一节。'
+                    ? /^\/lesson\/[1-3]\//.test(lesson.path)
+                        ? '这节课已完成课内自查，可以复习一遍或进入下一节。'
+                        : '这节课已过关，可以复习一遍或直接进入下一节。'
                     : '这节课还没完成离开前检查，继续把它收尾。',
                 cta: lesson.status === 'mastered' ? '再看一遍' : '继续学习',
             });

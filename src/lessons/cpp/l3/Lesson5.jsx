@@ -113,7 +113,7 @@ for (int i = 0; i < n; i++) {
 
 function ArrayPredictionChecks() {
     return (
-        <div className="grid gap-4 lg:grid-cols-3">
+        <div className="grid gap-4 md:grid-cols-2">
             <PredictCheck
                 prompt={'int a[5]; 访问 a[5] 会怎样？'}
                 options={['正常，取第 5 个元素', '越界，最后一个是 a[4]']}
@@ -123,9 +123,9 @@ function ArrayPredictionChecks() {
             />
             <PredictCheck
                 prompt={'容量 MAXN=1005，实际读入 n=3。遍历写 i < MAXN 会怎样？'}
-                options={['只处理这 3 个', '会扫到上千个没读入的垃圾值']}
+                options={['只处理这 3 个', '会处理未读入的元素，局部未初始化值不可直接使用']}
                 correctIndex={1}
-                explanation="只读入了 3 个，i < MAXN 会一路访问到没赋值的格子，结果出错。要写 i < n。"
+                explanation="只读入了 3 个，i < MAXN 会继续处理未读入的元素。局部数组中这些元素未初始化，不能拿来计算；要按实际长度写 i < n。"
                 misconception="把数组容量当成本题实际长度来遍历。"
             />
             <PredictCheck
@@ -134,6 +134,13 @@ function ArrayPredictionChecks() {
                 correctIndex={1}
                 explanation="i <= n 会让 i 取到 n，访问 a[n] 越界。遍历 n 个元素要写 i < n。"
                 misconception="把循环次数和下标边界混在一起。"
+            />
+            <PredictCheck
+                prompt={'输入 n 后直接写 int a[n];，能当作本课的 C++11 标准数组模板吗？'}
+                options={['可以，n 是运行时读入的', '不可以，本课用编译期确定容量的数组']}
+                correctIndex={1}
+                explanation="标准 C++11 的内置数组容量必须在编译期确定。本级不考变长数组；可先按题目上界设置固定容量，并确认 n 不超过容量。"
+                misconception="把部分编译器支持的变长数组扩展当成标准 C++11 写法。"
             />
         </div>
     );
@@ -152,7 +159,7 @@ const arrayMasteryItems = [
     },
     {
         label: '能区分数组容量 MAXN 和实际长度 n。',
-        evidence: '知道遍历写 i < n，不写 i < MAXN，避免扫到垃圾值。',
+        evidence: '知道遍历写 i < n，不写 i < MAXN，避免处理未读入的元素。',
         retryHint: '回到“容量与长度的区别”，分清最多放多少和这次给多少。',
     },
     {
@@ -201,7 +208,7 @@ export default function CppL3Lesson5() {
                             ]}
                         />
                         <Callout icon={AlertTriangle} title="数组越界是高频坑" tone="amber">
-                            如果数组长度是 n，最后一个元素是 <code>a[n - 1]</code>。访问 <code>a[n]</code> 不会自动报错，但结果不可预测。
+                            如果数组长度是 n，最后一个元素是 <code>a[n - 1]</code>。访问 <code>a[n]</code> 已越界，属于未定义行为，不能依赖程序是否立即报错来判断对错。
                         </Callout>
                     </>
                 ),
@@ -231,6 +238,8 @@ int a[MAXN];
 int n;
 cin >> n;
 
+// 题目保证 0 <= n && n <= MAXN
+
 for (int i = 0; i < n; i++) {
   cin >> a[i];
 }`}</CodeBlock>
@@ -239,6 +248,8 @@ for (int i = 0; i < n; i++) {
                                 <li><code>MAXN</code>：最多能放多少个。</li>
                                 <li><code>n</code>：这道题实际给了多少个。</li>
                                 <li>遍历时一般写 <code>i &lt; n</code>，不要写 <code>i &lt; MAXN</code>。</li>
+                                <li>读入前核对题目范围，保证 <code>0 &lt;= n &amp;&amp; n &lt;= MAXN</code>。</li>
+                                <li>本级按 C++11 学习，数组容量要是编译期常量；<code>int a[n];</code> 属于变长数组，不在三级认证范围内。</li>
                             </ul>
                         </Callout>
                     </>

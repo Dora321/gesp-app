@@ -194,6 +194,11 @@ const arrayMasteryItems = [
         evidence: '能说明变化的是循环体：sum += a[i]、cnt++ 或更新 mx。',
         retryHint: '先改一行循环体，不要同时改循环边界。',
     },
+    {
+        label: '能先核对容量与非空条件。',
+        evidence: 'a[100] 最多读 100 个元素；要用 a[0] 找最大值，n 至少为 1。',
+        retryHint: '回到“先核对数据范围”，分别检查 n = 0 和 n = 101。',
+    },
 ];
 
 export default function CppL2Lesson12() {
@@ -201,7 +206,7 @@ export default function CppL2Lesson12() {
         <CppLessonShell
             lessonNumber={12}
             lessonTitle="一维数组初探"
-            lessonSubtitle="从单个变量，升级到一排变量"
+            lessonSubtitle="三级数组前瞻：从单个变量到一排变量"
             accent="indigo"
             sections={sections}
             previousPath="/lesson/2/11"
@@ -210,7 +215,7 @@ export default function CppL2Lesson12() {
             bottomSupport={<CppL2LessonSupport lessonId={12} placement="bottom" />}
             hero={{
                 title: '当数据不止一个，变量就该排队了',
-                description: '数组让我们保存一组同类型数据。二级常见任务包括读入 n 个数、求和、找最大值、统计满足条件的元素。',
+                description: '数组是三级正式学习的内容。本课作为二级之后的前瞻练习，用读入、求和、最值和计数巩固循环；二级备考先确保分支、循环与基础函数熟练。',
             }}
             goals={['会定义和访问一维数组', '能解释下标从 0 开始', '能用循环遍历数组完成统计']}
             prerequisites={['用变量保存一个值', '写 for 循环重复执行', '用 cin 读入数据']}
@@ -283,6 +288,9 @@ for (int i = 0; i < n; i++) {
   sum += a[i];
 }`}</CodeBlock>
                         </div>
+                        <Callout icon={AlertTriangle} title="先核对数据范围" tone="amber">
+                            这段示例假设 <code>1 &lt;= n &lt;= 100</code>。<code>a[100]</code> 的合法下标只有 0 到 99；若要用 <code>mx = a[0]</code> 找最大值，必须先保证至少读入 1 个数。
+                        </Callout>
                         <ArrayTraversalTracer />
                         <Callout icon={Search} title="找最大值模板" tone="emerald">
                             通常先令 <code>mx = a[0]</code>，再从下标 1 开始比较。不要随便把最大值初始成 0，因为数据可能全是负数。

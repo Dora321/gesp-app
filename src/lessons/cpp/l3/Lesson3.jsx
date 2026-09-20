@@ -162,6 +162,9 @@ export default function CppL3Lesson3() {
                                 ['~', '0 变 1，1 变 0', '按位取反'],
                             ]}
                         />
+                        <Callout icon={Lightbulb} title="按位非先说清位宽" tone="teal">
+                            手算 <code>~</code> 时要先约定只看几位；例如只看 4 位，0101 逐位取反是 1010。C++ 的 <code>~x</code> 会按整数类型提升后的位宽运算，不能只画 4 位就断言整个表达式的十进制结果。
+                        </Callout>
                         <CodeBlock>{`a = 1100
 b = 1010
 
@@ -207,10 +210,10 @@ a | b = 1110`}</CodeBlock>
 int mask = 4;    // 0100
 
 if (x & mask) {
-  cout << "第 3 位是 1";
+  cout << "第 2 位是 1"; // 从右往左、从 0 编号
 }`}</CodeBlock>
                         <Callout icon={Layers3} title="读掩码题" tone="blue">
-                            看到 <code>1 &lt;&lt; k</code> 这类表达式，先把它理解成“只有第 k 位为 1 的掩码”。
+                            从右往左、从 0 编号时，<code>mask = 4</code>（0100）检查的是第 2 位。看到 <code>1 &lt;&lt; k</code>，先把它理解成“只有第 k 位为 1 的掩码”。
                         </Callout>
                     </>
                 ),

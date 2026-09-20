@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import CppL1LessonSupport from '../../../components/CppL1LessonSupport';
 import LegacyCppLessonShell from '../LegacyCppLessonShell';
-import { MasteryCheck, TransferCheck } from '../CppLessonShell';
+import { MasteryCheck, PredictCheck, TransferCheck } from '../CppLessonShell';
 import {
   ChefHat,
   Utensils,
@@ -61,6 +61,11 @@ const lesson8MasteryItems = [
     evidence: '能把成绩、天气或菜单分类写成不重叠的 if/else if/else。',
     retryHint: '回到“总结与作业”，先列出所有可能情况，再排顺序。',
   },
+  {
+    label: '能用 switch 处理离散常量，并解释 break 和 default。',
+    evidence: 'case 匹配后从该处执行；break 退出 switch；default 处理未匹配的值。',
+    retryHint: '回到「switch 基础」，试着把菜单选项 1、2、其他写完整。',
+  },
 ];
 
 // --- 章节数据 ---
@@ -72,7 +77,7 @@ const sections = [
   { id: 5, title: "互动游戏：人体编译器", icon: "smile", category: "核心逻辑" },
   { id: 6, title: "真题实战：到底谁是偶数", icon: "terminal", category: "实战演练" },
   { id: 7, title: "真题实战：被忽略的 7", icon: "alert", category: "实战演练" },
-  { id: 8, title: "语法秘籍：小贴士", icon: "book", category: "实战演练" },
+  { id: 8, title: "switch 基础与语法小贴士", icon: "book", category: "实战演练" },
   { id: 9, title: "总结与作业", icon: "check", category: "实战演练" },
   { id: 10, title: "离开前检查", icon: "check", category: "实战演练" }
 ];
@@ -648,6 +653,26 @@ export default function App() {
         return (
           <div className="slide-enter">
             <h2 className="text-3xl font-bold text-gray-800 mb-6">📘 语法小贴士</h2>
+            <section className="mb-6 rounded-2xl border border-stone-200 bg-[#f7f4ed] p-5 text-stone-900">
+              <h3 className="text-xl font-bold">switch 基础：按离散选项选择</h3>
+              <p className="mt-2 text-sm leading-6">一级先会读写最基本的 <code>switch</code>。它适合菜单编号这样的固定值；成绩范围仍用 <code>if / else if</code> 更清楚。二级继续学习嵌套用法。</p>
+              <pre className="mt-4 overflow-x-auto rounded-lg bg-stone-900 p-4 text-sm text-stone-50"><code>{`int choice = 2;
+switch (choice) {
+  case 1: cout << "茶"; break;
+  case 2: cout << "水"; break;
+  default: cout << "无此选项";
+}`}</code></pre>
+              <p className="mt-3 text-sm leading-6">运行结果是“水”。<code>break</code> 退出整个 <code>switch</code>；漏写后会继续执行后面的 <code>case</code>。没有匹配项时走 <code>default</code>。</p>
+              <div className="mt-4">
+                <PredictCheck
+                  prompt="上面的程序删掉 case 2 后面的 break，choice=2 时会输出什么？"
+                  options={['水', '水无此选项']}
+                  correctIndex={1}
+                  explanation="命中 case 2 后输出“水”，因为没有 break，会继续执行 default，再输出“无此选项”。"
+                  misconception="把 case 标签误认为会自动阻止继续执行。"
+                />
+              </div>
+            </section>
             <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
               <div className="bg-white p-6 rounded-xl shadow-md border-t-4 border-blue-500 hover:-translate-y-1 transition-transform">
                 <div className="text-4xl mb-4 text-center">♾️</div>
@@ -704,10 +729,10 @@ export default function App() {
                   <BookOpen size={24} /> 课后思考
                 </h3>
                 <p className="text-indigo-100 mb-4">
-                  除了 if...else if...else，C++ 还有一个专门处理“多选一”的魔法开关，叫做 <code>switch</code>。
+                  本课已经用 <code>switch</code> 处理了固定菜单选项。试着把 choice 改成 1、2、3，预测每次输出。
                 </p>
                 <p className="text-sm bg-white/10 p-3 rounded-lg border border-white/20">
-                  它能像按电梯按钮一样直接到达指定楼层吗？我们下节课揭晓！
+                  比较 <code>switch</code> 和 <code>if / else if</code>：什么时候需要判断范围？
                 </p>
               </div>
             </div>
@@ -764,4 +789,3 @@ export default function App() {
     </LegacyCppLessonShell>
   );
 }
-

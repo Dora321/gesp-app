@@ -15,6 +15,11 @@ const routeCases = [
     family: 'C++ L1',
     checkScrollReset: index === 11,
   })),
+  ...['/lesson/2/12', '/lesson/2/14', '/lesson/2/15', '/lesson/2/16', '/lesson/3/2', '/lesson/3/3', '/lesson/3/4', '/lesson/3/13'].map((route) => ({
+    route,
+    family: `C++ L${route.split('/')[2]}`,
+    checkScrollReset: false,
+  })),
   ...[2, 3, 4, 5, 6].map((level) => ({
     route: `/lesson/${level}/8`,
     family: `C++ L${level}`,
@@ -234,11 +239,11 @@ async function verifyRealObjectiveOutcome(browserInstance) {
 
   const sidebar = page.locator('aside');
   await sidebar.getByRole('button', { name: /类型与精度/ }).click();
-  const prompt = page.getByText('int x = sqrt(25); 一定能稳妥得到 5 吗？', { exact: true });
+  const prompt = page.getByText('int x = sqrt(15); x 的值是多少？', { exact: true });
   await prompt.waitFor({ state: 'visible', timeout: 10000 });
   const predictionCard = prompt.locator('..');
 
-  await predictionCard.getByRole('button', { name: /一定，sqrt\(25\) 就是 5/ }).click();
+  await predictionCard.getByRole('button', { name: /4，赋给 int 时会四舍五入/ }).click();
   const evidenceAfterWrongAnswer = await page.evaluate(() => {
     const evidence = JSON.parse(sessionStorage.getItem('gesp_lesson_evidence_v1') || '{}');
     return evidence['/lesson/2/8']?.kinds?.predictCorrect || false;
@@ -246,7 +251,7 @@ async function verifyRealObjectiveOutcome(browserInstance) {
   if (evidenceAfterWrongAnswer) throw new Error('Incorrect prediction must not create objective mastery evidence.');
 
   await predictionCard.getByRole('button', { name: '再试一次', exact: true }).click();
-  await predictionCard.getByRole('button', { name: /不一定，浮点可能/ }).click();
+  await predictionCard.getByRole('button', { name: /3，sqrt\(15\) 约为 3.87/ }).click();
   const evidenceAfterCorrectAnswer = await page.evaluate(() => {
     const evidence = JSON.parse(sessionStorage.getItem('gesp_lesson_evidence_v1') || '{}');
     return evidence['/lesson/2/8']?.kinds?.predictCorrect || false;
@@ -263,6 +268,28 @@ async function verifyRealObjectiveOutcome(browserInstance) {
   await waitForProgressStatus(page, route, 'mastered');
 
   await page.reload({ waitUntil: 'networkidle' });
+  await waitForProgressStatus(page, route, 'mastered');
+  await context.close();
+}
+
+async function verifyTransferReviewOutcome(browserInstance) {
+  const context = await browserInstance.newContext({ viewport: { width: 1365, height: 900 } });
+  const page = await context.newPage();
+  const route = '/lesson/1/1';
+  await page.goto(`${baseUrl}${route}`, { waitUntil: 'networkidle' });
+  const check = await openMasteryCheck(page, { route }, 'desktop');
+  const reflectionButtons = check.locator('button[aria-pressed]');
+  for (let index = 0; index < await reflectionButtons.count(); index += 1) {
+    await reflectionButtons.nth(index).click();
+  }
+
+  await page.getByRole('textbox', { name: '迁移练习答案或思路' }).fill('cout << "Hi " << 8;');
+  await page.getByRole('button', { name: '我推完了，看解答' }).click();
+  await check.getByText('已尝试，尚未完成核对').waitFor({ state: 'visible' });
+  await waitForProgressStatus(page, route, 'learning');
+
+  await page.getByRole('button', { name: '已核对，结果或思路一致' }).click();
+  await check.getByText('迁移练习已对照自查').waitFor({ state: 'visible' });
   await waitForProgressStatus(page, route, 'mastered');
   await context.close();
 }
@@ -289,7 +316,7 @@ async function run() {
   // Run viewports sequentially: two contexts navigating heavy lesson pages in
   // parallel against one browser/preview server starve each other and make
   // `waitForProgressStatus` flake out non-deterministically (different route each
-  // run). Sequential completes all 48 cases in ~70s, well under the CI timeout.
+  // run). Keep the expanded course route set sequential to avoid browser starvation.
   for (const viewport of viewports) {
     const context = await browser.newContext({
       viewport: { width: viewport.width, height: viewport.height },
@@ -305,8 +332,9 @@ async function run() {
   }
 
   await verifyRealObjectiveOutcome(browser);
+  await verifyTransferReviewOutcome(browser);
 
-  console.log(`Cross-course mastery UI checks passed for ${routeCases.length * viewports.length} route/viewport cases plus one real objective outcome flow.`);
+  console.log(`Cross-course mastery UI checks passed for ${routeCases.length * viewports.length} route/viewport cases, objective grading, and transfer self-review.`);
 }
 
 function stopServer() {

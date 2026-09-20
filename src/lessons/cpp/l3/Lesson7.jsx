@@ -81,7 +81,7 @@ const quiz = [
     {
         question: '最后一个字符应该写成？',
         answer: 's[s.size() - 1]',
-        reason: '下标从 0 开始，最后一个下标是长度减 1。',
+        reason: '非空字符串的最后一个字符下标是长度减 1；空字符串没有最后一个字符。',
     },
     {
         question: 'cin >> s 会读入空格后面的内容吗？',
@@ -135,8 +135,15 @@ function StringPredictionChecks() {
                 prompt={'string s = "cat"; 最后一个字符写成 s[3] 取得到吗？'}
                 options={['取得到，是 t', '取不到，最后是 s[2]']}
                 correctIndex={1}
-                explanation="长度是 3，合法下标只有 0、1、2。最后一个是 s[2]，s[3] 已经越界。"
+                explanation="长度是 3，实际字符的下标只有 0、1、2；最后一个是 s[2]。s[3] 不是字符 t，不能当作最后一个字符使用。"
                 misconception="把字符串长度直接当成最后一个下标。"
+            />
+            <PredictCheck
+                prompt={'string s = ""; 可以用 s[s.size() - 1] 读取最后一个字符吗？'}
+                options={['可以，空串也有最后一个字符', '不可以，空串没有最后一个字符，减 1 会出错']}
+                correctIndex={1}
+                explanation="s.size() 为 0 时没有合法的字符下标；先判断 !s.empty()，再访问 s[s.size() - 1]。"
+                misconception="记住了“长度减 1”，却忘了先确认字符串非空。"
             />
             <PredictCheck
                 prompt={'输入 hello world，用 cin >> s 读，s 里装的是？'}
@@ -164,7 +171,7 @@ const stringMasteryItems = [
     },
     {
         label: '能写出字符串最后一个字符的下标。',
-        evidence: '能说明长度 n 的字符串，最后一个是 s[n - 1]，s[n] 越界。',
+        evidence: '能说明非空字符串的最后一个字符是 s[n - 1]，空串要先判断，s[n] 不是最后一个字符。',
         retryHint: '回到下标实验台，把 size() 和最大合法下标分开写。',
     },
     {
@@ -218,6 +225,7 @@ cout << s.size() << endl;`}</CodeBlock>
                             <ul className="space-y-2">
                                 <li><code>cin &gt;&gt; s</code>：读一个单词，遇到空格停止。</li>
                                 <li><code>getline(cin, s)</code>：读入一整行，可以包含空格。</li>
+                                <li>若先用 <code>cin &gt;&gt; n</code> 读数字，再用 <code>getline</code> 读下一行，先处理输入中留下的换行符，否则可能读到空行。</li>
                             </ul>
                         </Callout>
                     </>

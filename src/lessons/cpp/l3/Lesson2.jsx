@@ -19,7 +19,7 @@ function ComplementLab() {
         return normalized.toString(2).padStart(8, '0');
     }, [value]);
 
-    const sign = bits[0] === '1' ? '负数或高位为 1' : '非负数';
+    const sign = bits[0] === '1' ? '在 8 位补码模型中表示负数' : '在 8 位补码模型中表示非负数';
 
     return (
         <div className="rounded-2xl border border-purple-100 bg-purple-50 p-6">
@@ -95,11 +95,11 @@ function ComplementPredictionChecks() {
                 misconception="以为正负范围对称，是 -127 到 127。"
             />
             <PredictCheck
-                prompt={'8 位补码 127 再加 1，结果是 128 吗？'}
-                options={['是 128', '不是，位模式变 10000000，补码下是 -128']}
+                prompt={'只按 8 位补码手算，01111111 加 1 后只保留低 8 位，该位模式表示几？'}
+                options={['128', '-128，位模式变成 10000000']}
                 correctIndex={1}
-                explanation="8 位装不下 128。01111111 + 1 = 10000000，最高位变 1，补码解释为 -128。这就是溢出。"
-                misconception="以为固定宽度整数会像数学一样无限增长。"
+                explanation="在指定的 8 位补码手算模型里，01111111 + 1 = 10000000，解释为 -128。这是位模式回绕的示意；不能据此断言 C++ 有符号整数溢出一定得到 -128。"
+                misconception="把数学结果 128、8 位补码手算和 C++ 整数表达式混为一谈。"
             />
         </div>
     );
@@ -119,12 +119,12 @@ const complementMasteryItems = [
     {
         label: '能说出 8 位有符号范围且知道不对称。',
         evidence: '-128 到 127，负数比正数多一个。',
-        retryHint: '256 个状态，负数占一半多一个。',
+        retryHint: '256 个状态中负数和非负数各占一半；负数比正数多一个。',
     },
     {
         label: '能解释固定宽度下的溢出。',
-        evidence: '127 + 1 的位模式变成 -128。',
-        retryHint: '回到溢出，固定宽度装不下更多。',
+        evidence: '8 位补码手算只保留低 8 位时，10000000 表示 -128；C++ 有符号溢出不能按回绕推断。',
+        retryHint: '区分固定位模式示意与实际 C++ 表达式。',
     },
 ];
 
@@ -147,7 +147,7 @@ export default function CppL3Lesson2() {
                 description: '补码让加法器同时处理正数和负数。三级题里，补码常和二进制、位运算、溢出一起出现。',
             }}
             goals={['知道补码必须在固定位数下讨论', '能求简单负数的 8 位补码', '能解释有符号整数范围和溢出风险']}
-            prerequisites={['会十进制转二进制', '理解按位取反 ~', '理解固定位数二进制表示']}
+            prerequisites={['会十进制转二进制', '会做简单的二进制加 1', '知道位数决定二进制表示范围']}
             childrenBySection={{
                 1: <ComplementLab />,
                 2: (
@@ -202,15 +202,15 @@ export default function CppL3Lesson2() {
                         <div>
                             <h3 className="text-3xl font-black text-slate-950">溢出：固定宽度装不下更多状态</h3>
                             <p className="mt-3 text-base font-semibold leading-7 text-slate-600">
-                                8 位有符号整数最大是 127。如果再加 1，位模式会变成 10000000，按补码解释是 -128。
+                                在“只保留低 8 位”的补码手算模型中，01111111 加 1 得到 10000000，按该模型解释为 -128。这个模型用于理解位模式，不等于 C++ 有符号整数运算规则。
                             </p>
                         </div>
                         <CodeBlock>{`01111111  // 127
 +00000001 // +1
 ---------
 10000000  // 8 位下解释为 -128`}</CodeBlock>
-                        <Callout icon={AlertTriangle} title="考试提醒" tone="amber">
-                            题目问“8 位有符号整数”时，不能按普通数学无限增长理解。要回到固定宽度的位模式。
+                        <Callout icon={AlertTriangle} title="区分手算模型与 C++ 程序" tone="amber">
+                            题目明确要求按 8 位补码手算并舍弃进位时，结果位模式是 <code>10000000</code>。实际 C++ 中，小整数类型参与加法通常先提升为 <code>int</code>；有符号整数若真的超出其类型范围，行为未定义，不能写程序依赖“必然回绕到 -128”。
                         </Callout>
                         <ComplementPredictionChecks />
                     </>

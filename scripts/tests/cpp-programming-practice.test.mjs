@@ -20,12 +20,14 @@ test('上机题有可访问的课次、明确的题面和样例，覆盖八级�
     }
     assert.equal(getCppProgrammingExercise(String(exercise.level), String(exercise.lesson)), exercise);
   }
-  assert.equal(cppProgrammingExercises.filter(item => item.level === 1).length, 16);
-  for (let level = 2; level <= 8; level++) {
+  for (let level = 1; level <= 3; level++) {
+    assert.equal(cppProgrammingExercises.filter(item => item.level === level).length, 16);
+  }
+  for (let level = 4; level <= 8; level++) {
     assert.equal(cppProgrammingExercises.filter(item => item.level === level).length, 4);
   }
   assert.equal(getCppProgrammingExercise(9, 1), null);
-  assert.equal(getCppProgrammingExercise(2, 1), null);
+  assert.equal(getCppProgrammingExercise(4, 1), null);
 });
 
 test('真题入口与项目原题、试卷映射一致', async () => {

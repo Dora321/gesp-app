@@ -74,8 +74,8 @@ function ShiftPredictionChecks() {
                 prompt={'cout << x << 1; 想输出 x 左移 1 位的结果，对吗？'}
                 options={['对', '不对，没加括号，<< 被当成输出运算符']}
                 correctIndex={1}
-                explanation="cout << x << 1 会被理解成「先输出 x，再输出 1」，不是移位。移位优先级低于流插入 <<，必须写 cout << (x << 1)。"
-                misconception="忘了给移位表达式加括号，和 cout 的 << 混在一起。"
+                explanation="两处 << 是同一运算符记号，按从左到右结合，cout << x << 1 会先输出 x，再输出 1。cout << (x << 1) 才会先计算整数移位；区别来自结合顺序和左操作数类型，不是两种 << 有不同优先级。"
+                misconception="把输出与移位都写成 << 后，误以为编译器会自动先算 x << 1。"
             />
             <PredictCheck
                 prompt={'13 >> 1 等于几？（13 = 1101）'}
@@ -103,7 +103,7 @@ const shiftMasteryItems = [
     },
     {
         label: '能记得给移位表达式加括号。',
-        evidence: '写 cout << (x << 1)，因为移位优先级低于流插入 <<。',
+        evidence: '写 cout << (x << 1)；不加括号时按从左到右结合，会连续输出 x 和 1。',
         retryHint: '回到「别忘了括号」。',
     },
     {
@@ -152,7 +152,7 @@ export default function CppL3Lesson4() {
 cout << (x << 1); // 00001100 = 12
 cout << (x << 2); // 00011000 = 24`}</CodeBlock>
                         <Callout icon={MoveRight} title="别忘了括号" tone="indigo">
-                            输出移位表达式时建议写 <code>cout &lt;&lt; (x &lt;&lt; 1)</code>，避免和输出运算符混在一起读不清。
+                            输出移位表达式时写 <code>cout &lt;&lt; (x &lt;&lt; 1)</code>。没有括号时，<code>cout &lt;&lt; x &lt;&lt; 1</code> 按从左到右结合，会连续输出两个值。
                         </Callout>
                     </>
                 ),
@@ -197,6 +197,9 @@ cout << (x >> 2); // 00000011 = 3`}</CodeBlock>
                                 ['翻转第 k 位', 'x ^ (1 << k)', '0 变 1，1 变 0'],
                             ]}
                         />
+                        <Callout icon={AlertTriangle} title="掩码与移位的适用范围" tone="amber">
+                            本课例子只用较小的非负整数。位数 <code>k</code> 不能为负，也不能达到或超过左操作数的位宽；用有符号 <code>int</code> 左移时，不要让结果超出可表示范围。题目范围较大时先核对类型和位宽。
+                        </Callout>
                         <CodeBlock>{`int mask = 1 << k;
 
 if (x & mask) {

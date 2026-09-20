@@ -148,8 +148,8 @@ function StringAdvPredictionChecks() {
                 prompt={'s.find("ab") 没找到时返回什么？'}
                 options={['返回 -1', '返回 string::npos']}
                 correctIndex={1}
-                explanation="find 找不到会返回 string::npos（一个很大的数）。判断要写 pos != string::npos，不能写 pos != -1。"
-                misconception="把 find 的失败返回值当成 -1。"
+                explanation="find 找不到会返回 string::npos，这是 string::size_type 的特殊值。用 string::size_type 保存位置，并与 string::npos 比较；不要依赖 -1 与无符号数比较时的隐式转换。"
+                misconception="用 int 保存查找结果，或把失败值直接当作普通的 -1。"
             />
             <PredictCheck
                 prompt={'s.substr(2, 3) 截出来的是哪一段？'}
@@ -176,7 +176,7 @@ const advStringMasteryItems = [
     {
         label: '能正确判断 find 是否找到。',
         evidence: '知道找不到返回 string::npos，要用 != string::npos 判断。',
-        retryHint: '别写成 != -1，回到查找与子串表格。',
+        retryHint: '用 string::size_type 保存位置，再与 string::npos 比较。',
     },
     {
         label: '能把统计、转换、子串组合到一道综合题。',
@@ -254,7 +254,7 @@ export default function CppL3Lesson8() {
                         />
                         <CodeBlock>{`string s = "hello world";
 
-int pos = s.find("world");
+string::size_type pos = s.find("world");
 if (pos != string::npos) {
   cout << "found at " << pos << endl;
 }

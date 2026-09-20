@@ -110,7 +110,7 @@ const multiStateMasteryItems = [
         retryHint: '回到“多状态更新”小节，对照更新顺序检查框。',
     },
     {
-        label: '能判断什么时候需要数组保存历史。',
+        label: '选学：能判断什么时候需要数组保存历史。',
         evidence: '能说出“只问最终值不用存，要回查过程就必须存”。',
         retryHint: '回到“数组记录过程”小节的对照表。',
     },
@@ -141,9 +141,9 @@ export default function CppL2Lesson14() {
             bottomSupport={<CppL2LessonSupport lessonId={14} placement="bottom" />}
             hero={{
                 title: '综合模拟题的难点，是同时照看几个会变的量',
-                description: '这一课把条件、循环、数组放在同一题里训练。重点是更新顺序、历史记录和样例调试。',
+                description: '这一课先用条件、循环和状态变量训练更新顺序，再选学用数组保存历史记录；数组属于三级前瞻。',
             }}
-            goals={['能处理多个状态变量', '能用数组记录过程数据', '能用样例反查模拟步骤']}
+            goals={['能处理多个状态变量', '能用样例反查模拟步骤', '选学用数组记录过程数据']}
             childrenBySection={{
                 1: <ScoreSimulator />,
                 2: (
@@ -174,13 +174,17 @@ for (int i = 0; i < n; i++) {
                         <div>
                             <h3 className="text-3xl font-black text-slate-950">数组记录过程：未来要查，就先存下来</h3>
                             <p className="mt-3 text-base font-semibold leading-7 text-slate-600">
-                                有些模拟题不只问最终结果，还问第几步、最大状态、某个位置的历史值。这时数组就要登场。
+                                本节是三级数组前瞻。有些模拟题不只问最终结果，还问第几步、最大状态或历史值，这时可以用数组保存每一步。
                             </p>
                         </div>
                         <div className="grid gap-5 lg:grid-cols-2">
-                            <CodeBlock>{`int history[100];
+                            <CodeBlock>{`int n;
+cin >> n;  // 假设 1 <= n <= 100
+int history[100];
 int total = 0;
 for (int i = 0; i < n; i++) {
+  int change;
+  cin >> change;
   total += change;
   history[i] = total;
 }`}</CodeBlock>
@@ -191,6 +195,9 @@ for (int i = 1; i < n; i++) {
   }
 }`}</CodeBlock>
                         </div>
+                        <Callout icon={ShieldCheck} title="容量和空输入" tone="amber">
+                            这里假设 <code>1 &lt;= n &lt;= 100</code>。若 <code>n = 0</code>，就没有 <code>history[0]</code> 可用，找最大值前必须先处理空输入。
+                        </Callout>
                         <CompareTable
                             headers={['只问最终值', '问过程值', '推荐做法']}
                             rows={[
@@ -255,7 +262,7 @@ for (int i = 1; i < n; i++) {
                             </ul>
                         </Callout>
                         <Callout icon={ListChecks} title="下一课衔接" tone="blue">
-                            下一课做易错题诊疗，把二级课程里最容易丢分的边界、循环和数组错误集中处理。
+                            下一课做易错题诊疗，重点处理二级的循环边界与类型问题；数组边界作为三级前瞻复习。
                         </Callout>
                     </>
                 ),
