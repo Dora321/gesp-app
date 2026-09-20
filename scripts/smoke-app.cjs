@@ -448,11 +448,15 @@ async function run() {
       if (!box || box.height < 44) throw new Error(`${route}: course card is not touch-friendly.`);
     }
   }
-  for (const legacy of ['/hardware/esp32-ai', '/hardware/lesson/1', '/hardware/esp32-map', '/hardware/esp32-contest', '/hardware/esp32/18']) {
+  for (const legacy of ['/hardware/esp32-ai', '/hardware/lesson/1', '/hardware/esp32-map', '/hardware/esp32-contest']) {
     await mobilePage.goto(`${baseUrl}${legacy}`, { waitUntil: 'domcontentloaded' });
     await mobilePage.waitForURL('**/hardware/esp32-curriculum');
     await mobilePage.getByRole('heading', { name: 'ESP32 MicroPython 高阶科创', exact: true }).waitFor();
   }
+
+  await mobilePage.goto(`${baseUrl}/hardware/esp32/18`, { waitUntil: 'domcontentloaded' });
+  await mobilePage.getByRole('heading', { name: '高阶科创 · 第 18 课 · 给云端发消息', exact: true }).waitFor();
+  await mobilePage.frameLocator('iframe').locator('.slide.is-active').waitFor();
 
   // Let deferred imports settle before evaluating console output. Closing the
   // browser first aborts in-flight requests and creates false
