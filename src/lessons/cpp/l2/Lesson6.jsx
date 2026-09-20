@@ -33,8 +33,9 @@ function PatternLab() {
             </div>
             <div className="grid gap-5 lg:grid-cols-[0.9fr_1.1fr]">
                 <div className="rounded-xl bg-white p-5 ring-1 ring-emerald-100">
-                    <label className="block text-sm font-black text-slate-700">图形尺寸 {size}</label>
+                    <label htmlFor="l2-pattern-size" className="block text-sm font-black text-slate-700">图形尺寸 {size}</label>
                     <input
+                        id="l2-pattern-size"
                         type="range"
                         min="2"
                         max="8"
@@ -44,7 +45,7 @@ function PatternLab() {
                     />
                     <div className="mt-5 grid gap-2">
                         {[
-                            ['square', '矩形'],
+                            ['square', '正方形（矩形特例）'],
                             ['right', '左三角'],
                             ['align', '右对齐三角'],
                         ].map(([value, label]) => (
@@ -78,13 +79,13 @@ const quiz = [
         reason: '先打印 n - i 个空格，再打印 i 个星号。',
     },
     {
-        question: '每行结束必须做什么？',
+        question: '打印多行图形时，每行结束通常要输出什么？',
         answer: '输出换行',
         reason: '没有 endl 或换行符，所有字符会连成一行。',
     },
 ];
 
-function PyramidTracer() {
+function RightAlignedTriangleTracer() {
     const n = 5;
     const steps = useMemo(() => {
         const result = [{ active: [0], vars: { i: '–', 空格: '–', 星号: '–' } }];
@@ -95,7 +96,7 @@ function PyramidTracer() {
                 active: [1, 2, 5, 8],
                 vars: { i, 空格: spaces, 星号: stars },
                 action: i === 1 ? '画第 1 行' : '下一行',
-                row: [`第 ${i} 行`, spaces, stars, `${'·'.repeat(spaces)}${'★'.repeat(stars)}`],
+                row: [`第 ${i} 行`, spaces, stars, `${'·'.repeat(spaces)}${'*'.repeat(stars)}`],
             });
         }
         return result;
@@ -103,7 +104,7 @@ function PyramidTracer() {
 
     return (
         <CodeTracer
-            title="金字塔追踪器"
+            title="右对齐三角追踪器"
             code={`int n = 5;
 for (int i = 1; i <= n; i++) {
   for (int s = 1; s <= n - i; s++) {
@@ -126,7 +127,7 @@ function PatternPredictionChecks() {
     return (
         <div className="grid gap-4 lg:grid-cols-3">
             <PredictCheck
-                prompt={'n = 5 的金字塔（第 i 行：n - i 个空格 + i 个星号），第 3 行空格和星号各几个？'}
+                prompt={'n = 5 的右对齐三角（第 i 行：n - i 个空格 + i 个星号），第 3 行空格和星号各几个？'}
                 options={['空格 2、星号 3（代入 n - i 和 i）', '空格 3、星号 3（行号就是空格数）']}
                 correctIndex={0}
                 explanation="按表格公式代入：空格 = n - i = 5 - 3 = 2，星号 = i = 3。图形题先列表再写代码，不靠脑补。"
@@ -153,7 +154,7 @@ function PatternPredictionChecks() {
 const patternMasteryItems = [
     {
         label: '能把图形拆成“几行、几个空格、几个符号”三问。',
-        evidence: '拿金字塔能独立填出空格 n - i、星号 i 的表格。',
+        evidence: '拿右对齐三角能独立填出空格 n - i、星号 i 的表格。',
         retryHint: '回到“反推循环”的行规则表格。',
     },
     {
@@ -226,7 +227,7 @@ export default function CppL2Lesson6() {
                                 右对齐、金字塔、菱形都靠空格撑位置。考试里很多同学错在只数星号，不数空格。
                             </p>
                         </div>
-                        <PyramidTracer />
+                        <RightAlignedTriangleTracer />
                         <Callout icon={AlertTriangle} title="调试技巧" tone="amber">
                             看不清空格时，可以临时把空格输出成点号 <code>.</code>，确认对齐后再改回空格。
                         </Callout>
@@ -275,12 +276,12 @@ export default function CppL2Lesson6() {
                             steps={[
                                 '列表：第 1 行 4 个，第 2 行 3 个，第 3 行 2 个，第 4 行 1 个。',
                                 '找公式：星号数 = n - i + 1。',
-                                '翻译成循环：内层 for (j = 1; j <= n - i + 1; j++)。',
+                                '翻译成循环：内层 for (int j = 1; j <= n - i + 1; j++)。',
                             ]}
                         />
                         <MasteryCheck
                             title="C++ L2-6 图形打印离开前检查"
-                            description="图形题最怕“看图会，公式一列就错”。勾选前先默写 n = 5 金字塔的行规则表。"
+                            description="图形题最怕“看图会，公式一列就错”。勾选前先默写 n = 5 右对齐三角的行规则表。"
                             items={patternMasteryItems}
                         />
                         <Callout icon={ClipboardCheck} title="课后任务" tone="slate">

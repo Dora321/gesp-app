@@ -33,8 +33,9 @@ function LoopTraceLab() {
             </div>
             <div className="grid gap-5 lg:grid-cols-[0.9fr_1.1fr]">
                 <div className="rounded-xl bg-white p-5 ring-1 ring-indigo-100">
-                    <label className="block text-sm font-black text-slate-700">外层循环 i：行数 {rows}</label>
+                    <label htmlFor="l2-loop-rows" className="block text-sm font-black text-slate-700">外层循环 i：行数 {rows}</label>
                     <input
+                        id="l2-loop-rows"
                         type="range"
                         min="1"
                         max="5"
@@ -42,8 +43,9 @@ function LoopTraceLab() {
                         onChange={(event) => setRows(Number(event.target.value))}
                         className="mt-3 w-full"
                     />
-                    <label className="mt-5 block text-sm font-black text-slate-700">内层循环 j：每行次数 {cols}</label>
+                    <label htmlFor="l2-loop-cols" className="mt-5 block text-sm font-black text-slate-700">内层循环 j：每行次数 {cols}</label>
                     <input
+                        id="l2-loop-cols"
                         type="range"
                         min="1"
                         max="6"
@@ -74,7 +76,7 @@ function LoopTraceLab() {
 
 const quiz = [
     {
-        question: '外层循环跑 3 次，内层跑 5 次，总共输出几次？',
+        question: '外层循环跑 3 次，内层每次都跑 5 次，总共输出几次？',
         answer: '15 次',
         reason: '内层每轮都会完整执行，次数相乘：3 * 5。',
     },
@@ -84,7 +86,7 @@ const quiz = [
         reason: '每进入一次外层循环，就准备打印新的一行。',
     },
     {
-        question: '内层循环结束后，下一步通常做什么？',
+        question: '打印矩形时，内层循环结束后，下一步通常做什么？',
         answer: '换行',
         reason: '否则所有字符会挤在同一行，图形结构就乱了。',
     },
@@ -130,10 +132,10 @@ function NestedLoopPredictionChecks() {
     return (
         <div className="grid gap-4 lg:grid-cols-3">
             <PredictCheck
-                prompt={'外层跑 3 次、内层跑 5 次，cout 总共执行几次？'}
+                prompt={'外层跑 3 次、内层每轮固定跑 5 次，cout 总共执行几次？'}
                 options={['8 次（3 + 5）', '15 次（3 × 5）']}
                 correctIndex={1}
-                explanation="内层每次都完整跑 5 次，外层 3 轮，所以是 3 × 5 = 15。嵌套循环的总次数是相乘，不是相加。"
+                explanation="内层每轮固定跑 5 次，外层 3 轮，所以是 3 × 5 = 15。若内层次数随外层变化，应逐轮相加。"
                 misconception="把内外层次数相加，而不是相乘。"
             />
             <PredictCheck
@@ -157,7 +159,7 @@ function NestedLoopPredictionChecks() {
 const nestedLoopMasteryItems = [
     {
         label: '能算双层循环的总执行次数。',
-        evidence: '总次数 = 外层次数 × 内层次数。',
+        evidence: '内层每轮次数相同时用外层次数 × 内层次数；内层次数随 i 变化时，把每轮次数相加。',
         retryHint: '回到执行实验，相乘不是相加。',
     },
     {
@@ -172,7 +174,7 @@ const nestedLoopMasteryItems = [
     },
     {
         label: '能识别需要嵌套循环的题型。',
-        evidence: '矩形、乘法表、数对枚举都需要双层循环。',
+        evidence: '矩形打印、乘法表和数对枚举通常可用双层循环直接表达。',
         retryHint: '回到「考试读题抓手」。',
     },
 ];
@@ -207,7 +209,7 @@ export default function CppL2Lesson5() {
                         </div>
                         <NestedLoopTracer />
                         <Callout icon={AlertTriangle} title="高频误区" tone="amber">
-                            内层变量每次进入内层循环都会重新初始化。看到 <code>for (int j = 1; ...)</code>，就要意识到 j 不是接着上一行继续数。
+                            像示例中的 <code>for (int j = 1; ...)</code>，每次进入内层循环都会把 j 重新初始化为 1；若初始化位置不同，要按实际代码追踪。
                         </Callout>
                     </>
                 ),
@@ -231,6 +233,9 @@ export default function CppL2Lesson5() {
                             先问“我要重复几行”，写外层；再问“每一行要做几次”，写内层；最后再决定每个位置输出什么。
                         </Callout>
                         <NestedLoopPredictionChecks />
+                        <Callout icon={AlertTriangle} title="什么时候不能直接相乘" tone="amber">
+                            若内层边界随 i 改变，例如 <code>for (int j = 1; j &lt;= i; j++)</code> 且 i 从 1 到 3，各轮分别执行 1、2、3 次，总数是 1 + 2 + 3 = 6。先逐轮数，再决定能否相乘。
+                        </Callout>
                     </>
                 ),
                 4: (
@@ -272,8 +277,8 @@ for (int a = 1; a <= 5; a++) {
                         </div>
                         <MiniQuiz items={quiz} />
                         <TransferCheck
-                            prompt={'换个例子：for(i=1;i<=3;i++) for(j=1;j<=2;j++) cout<<i<<j<<" ";。一共输出几组？写出全部输出。'}
-                            hint="外层每跑一次，内层完整跑一遍；总次数 = 外层 × 内层。"
+                            prompt={'换个例子：for (int i=1; i<=3; i++) for (int j=1; j<=2; j++) cout<<i<<j<<" "; 一共输出几组？写出全部输出。'}
+                            hint="内层每轮固定跑 2 次，可用外层次数 × 内层次数。"
                             answer="6 组：11 12 21 22 31 32。"
                             steps={[
                                 '外层 i=1,2,3（3 次），内层 j=1,2（2 次）。',
