@@ -36,9 +36,9 @@ const lesson2MasteryItems = [
     retryHint: '回到侦探挑战，用 super_man 和 super-man 对比。',
   },
   {
-    label: '能写出两个变量并输出它们的和。',
-    evidence: '例如 int apple = 10; int pen = 20; cout << apple + pen;',
-    retryHint: '回到“上机实操 & 总结”，先模仿 final homework example。',
+    label: '能读入两个整数并输出计算结果。',
+    evidence: '能用 int a, b; cin >> a >> b; 读入两个数，再用 cout << a + b; 输出它们的和。',
+    retryHint: '回到“上机实操与输入入门”，对照输入、变量和输出三步。',
   },
 ];
 
@@ -52,7 +52,7 @@ const sections = [
   { id: 6, title: '侦探眼力大挑战', icon: 'search', component: () => <GameSlide />, category: "实战演练" },
   { id: 7, title: '真题实战 (2023.12)', icon: 'trophy', component: () => <QuizSlide data={{ question: '以下 C++ 不可以作为变量的名称的是（ ）。', options: ['CCF GESP', 'ccfGESP', 'CCFgesp', 'CCF_GESP'], correct: 0, analysis: 'A选项中间有空格，变量名必须连在一起！D选项下划线是合法的。' }} />, category: "实战演练" },
   { id: 8, title: '真题实战 (2024.06)', icon: 'trophy', component: () => <QuizSlide data={{ question: '在 C++ 中，下列不可做变量的是（ ）。', options: ['five-Star', 'five_star', 'fiveStar', '_fiveStar'], correct: 0, analysis: 'A选项包含减号(-)，计算机认为是减法运算。B选项下划线是合法的。' }} />, category: "实战演练" },
-  { id: 9, title: '上机实操 & 总结', icon: 'code', component: () => <SummarySlide />, category: "实战演练" },
+  { id: 9, title: '上机实操与输入入门', icon: 'code', component: () => <SummarySlide />, category: "实战演练" },
   {
     id: 10,
     title: '离开前检查',
@@ -72,7 +72,7 @@ const sections = [
         />
         <MasteryCheck
           title="C++ L1-2 变量与数据离开前检查"
-          description="如果能解释变量、判断变量名、区分大小写和下划线、写出两个变量求和，就可以进入数据类型课。"
+          description="如果能解释变量、判断变量名、区分大小写，并用 cin 读入整数完成计算，就可以进入数据类型课。"
           items={lesson2MasteryItems}
         />
       </div>
@@ -392,14 +392,16 @@ const QuizSlide = ({ data }) => {
             }
 
             return (
-              <div
+              <button
                 key={idx}
+                type="button"
                 onClick={() => handleSelect(idx)}
-                className={`p-4 border-2 rounded-lg cursor-pointer transition-all flex justify-between items-center ${itemStyle}`}
+                disabled={showAnalysis}
+                className={`w-full p-4 border-2 rounded-lg cursor-pointer transition-all flex justify-between items-center text-left ${itemStyle}`}
               >
                 <span className="font-mono text-lg">{opt}</span>
                 {icon}
-              </div>
+              </button>
             );
           })}
         </div>
@@ -430,10 +432,11 @@ const SummarySlide = () => {
         </div>
 
         <div className="bg-green-50 p-4 rounded-lg border border-green-200">
-          <h3 className="font-bold text-green-800 mb-2 flex items-center gap-2"><Code size={18} /> 课后挑战</h3>
+          <h3 className="font-bold text-green-800 mb-2 flex items-center gap-2"><Code size={18} /> 输入入门：cin &gt;&gt; 变量</h3>
+          <p className="text-sm text-green-900 mb-2">先定义变量，再用 <code>cin &gt;&gt; a &gt;&gt; b;</code> 读取空格分隔的两个整数；<code>&gt;&gt;</code> 把输入送进右边的变量。</p>
           <ul className="list-disc list-inside text-sm text-green-900 space-y-1">
-            <li>纠错员：检查家里人的微信名或手机联系人，哪些不符合 C++ 变量规则？</li>
-            <li>编码：在 IDE 中定义两个变量 a 和 b，分别赋值 10 和 20，输出它们的和。</li>
+            <li>纠错员：判断 <code>my score</code>、<code>2pens</code>、<code>pen_count</code>、<code>class</code> 哪些能作变量名。</li>
+            <li>编码：输入两个整数（例如 <code>10 20</code>），输出它们的和（<code>30</code>）。</li>
           </ul>
         </div>
       </div>
@@ -451,14 +454,14 @@ const SummarySlide = () => {
           <p>&nbsp;</p>
           <p><span className="text-blue-400">int</span> main() {'{'}</p>
           <p className="pl-4"><span className="text-gray-400">// Step 1: Define</span></p>
-          <p className="pl-4"><span className="text-blue-400">int</span> apple = <span className="text-yellow-300">10</span>;</p>
-          <p className="pl-4"><span className="text-blue-400">int</span> pen = <span className="text-yellow-300">20</span>;</p>
+          <p className="pl-4"><span className="text-blue-400">int</span> apple, pen;</p>
           <p>&nbsp;</p>
-          <p className="pl-4"><span className="text-gray-400">// Step 2: Add</span></p>
+          <p className="pl-4"><span className="text-gray-400">// Step 2: Input, e.g. 10 20</span></p>
+          <p className="pl-4">cin &gt;&gt; apple &gt;&gt; pen;</p>
+          <p>&nbsp;</p>
+          <p className="pl-4"><span className="text-gray-400">// Step 3: Add and output</span></p>
           <p className="pl-4"><span className="text-blue-400">int</span> total = apple + pen;</p>
-          <p>&nbsp;</p>
-          <p className="pl-4"><span className="text-gray-400">// Step 3: Output</span></p>
-          <p className="pl-4">cout &lt;&lt; <span className="text-green-300">"Total: "</span> &lt;&lt; total;</p>
+          <p className="pl-4">cout &lt;&lt; total;</p>
           <p className="pl-4"><span className="text-purple-400">return</span> <span className="text-yellow-300">0</span>;</p>
           <p>{'}'}</p>
         </div>

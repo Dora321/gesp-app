@@ -251,7 +251,7 @@ export default function App() {
                         <div className="bg-white p-4 rounded-lg shadow-sm border border-gray-200 mt-4">
                             <h4 className="font-bold text-gray-800 mb-2 flex items-center gap-2"><CheckCircle2 size={18} className="text-green-600" /> 解题思路：人脑模拟机器人</h4>
                             <p className="text-gray-600 text-sm leading-relaxed">
-                                1. 识别陷阱：<code>while(1)</code> 是死循环，除非遇到 <code>break</code>。<br />
+                                1. 识别陷阱：<code>while(1)</code> 条件一直为真，需要可达的 <code>break</code>、<code>return</code> 等退出路径。<br />
                                 2. 寻找规律：N 从 10 开始，每次减 2 (10, 8, 6, 4, 2, 0)。cnt 负责数数。<br />
                                 3. 关键时刻：当 N 变成 0 时，<code>if(N==0) break</code> 生效，循环终止。<br />
                                 4. 清点：一共减了 5 次，所以 cnt 是 5。

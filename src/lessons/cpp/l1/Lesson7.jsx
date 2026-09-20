@@ -450,7 +450,7 @@ export default function App() {
               prompt="int x = 3; 如果写成 if (x = 5)（只有一个等号），会进入 if 吗？"
               options={['不会，因为 3 不等于 5', '会，而且永远都会进']}
               correctIndex={1}
-              explanation="一个等号是赋值：x = 5 先把 5 存进 x，整个式子的值就是 5（非 0 即“真”）。所以这个条件永远成立，和 x 原来是几无关。判断相等必须用两个等号 ==。"
+              explanation="一个等号是赋值：x = 5 先把 5 存进 x，整个式子的值就是 5（非 0 即“真”）。所以这条条件不管 x 原来是几都会成立。判断是否相等要用两个等号 ==。"
               misconception="把 = 当成 ==。= 是赋值并返回被赋的值，不是在比较大小。"
             />
           </div>
@@ -471,7 +471,7 @@ export default function App() {
               correctIndex={0}
               explanation={`
                 A. 正确。余数为0，说明能被2整除，是偶数。
-                B. 错误。一个等号 = 是赋值，不能用来判断！
+                B. 错误。= 是赋值，但 N % 2 是计算结果，不能作为赋值左侧，这里无法通过编译。
                 C. 错误。如果 N 是奇数(如3)，3%2=1(真)，会输出"偶数"，反了！
               `}
             />
@@ -502,7 +502,7 @@ export default function App() {
               correctIndex={3}
               explanation={`
                 A. 用了 || (或者)，满足一个就行，太宽容了。
-                B. 第二个条件用了 = (赋值)，语法错误。
+                B. 第二个条件用了 = (赋值)，但 N % 3 的计算结果不能作为赋值左侧，因此无法通过编译。
                 C. 除以6余1，肯定不是偶数。
                 D. 正确。同时满足偶数(余数0)和被3整除(余数0)。
               `}
@@ -557,11 +557,11 @@ export default function App() {
             <TransferCheck
                 prompt={'换个例子：if (x = 3) 和 if (x == 3) 有什么不同？哪个才是「判断 x 是不是 3」？'}
                 hint="= 是赋值，== 是比较；条件里要用 ==。"
-                answer="if (x == 3) 才是判断；if (x = 3) 是赋值（恒为真）。"
+                answer="if (x == 3) 判断是否相等；if (x = 3) 先赋值，再把非零的 3 当作真。"
                 steps={[
                     '== 比较两边是否相等，结果是真/假。',
                     '= 把 3 放进 x，表达式值是 3（非 0 即真）。',
-                    '所以条件判断必须用 ==，写成 = 是经典 bug。',
+                    '要判断是否相等就用 ==；误写成 = 会改变 x。',
                 ]}
             />
             <MasteryCheck
@@ -593,4 +593,3 @@ export default function App() {
     </LegacyCppLessonShell>
   );
 }
-

@@ -448,8 +448,8 @@ export default function App() {
                             <div>
                                 <h3 className="text-xl font-bold text-red-400">红色警报</h3>
                                 <p className="text-gray-300">
-                                    <code>while(1)</code> 必须配 <code>break</code>！<br />
-                                    否则变成“不知疲倦的仓鼠”，程序卡死。
+                                    <code>while(1)</code> 没有条件自动停下；要明确何时用 <code>break</code> 或 <code>return</code> 退出。<br />
+                                    如果任务需要结束，却没有可达的退出路径，循环就会一直运行。
                                 </p>
                             </div>
                         </div>

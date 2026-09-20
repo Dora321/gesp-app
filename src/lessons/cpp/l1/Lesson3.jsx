@@ -73,7 +73,7 @@ const sections = [
         />
         <MasteryCheck
           title="C++ L1-3 数字的魔法离开前检查"
-          description="如果能区分 int/double、解释整数除法、保留小数、手算表达式，就可以进入输入输出课。"
+          description="如果能区分 int/double、解释整数除法、保留小数、手算表达式，就可以进入整除与取余课。"
           items={lesson3MasteryItems}
         />
       </div>
@@ -106,7 +106,7 @@ export default function Lesson3() {
 
   return (
     <LegacyCppLessonShell
-        prerequisites={['会用 int 定义变量并赋值', '会用 cin 读入、cout 输出', '知道整数和小数在计算机里不一样']}
+        prerequisites={['会用 int 定义变量并赋值', '会用 cin 读入、cout 输出整数', '能用两个变量写出加法表达式']}
       lessonNumber={3}
       lessonTitle="数字的魔法"
       sections={sections}
@@ -473,7 +473,7 @@ const CodeChallengeSlide = () => {
           <div className="bg-blue-50 p-6 rounded-xl border border-blue-200">
             <h3 className="font-bold text-lg text-blue-800 mb-2">任务要求：</h3>
             <ul className="list-disc list-inside space-y-2 text-gray-700">
-              <li>输入：语文(90)，数学(95)</li>
+              <li>已知分数：语文 90，数学 95</li>
               <li>计算：平均分</li>
               <li>要求：<span className="font-bold text-red-500">必须保留小数</span> (92.5)</li>
             </ul>
@@ -486,6 +486,11 @@ const CodeChallengeSlide = () => {
             </div>
             {!fixed && <p className="text-red-500 text-sm mt-2">❌ 哎呀！0.5 分弄丢了！</p>}
             {fixed && <p className="text-green-600 text-sm mt-2">✅ 完美！</p>}
+          </div>
+          <div className="bg-stone-50 p-4 rounded-xl border border-stone-200 text-sm text-stone-800">
+            <p className="font-bold mb-2">独立题补充：固定显示一位小数</p>
+            <p>如果平均分恰好是整数，也要显示成 <code>100.0</code>，请在程序开头加入 <code>#include &lt;iomanip&gt;</code>，输出时使用：</p>
+            <code className="block mt-2 p-2 bg-white rounded border border-stone-200 overflow-x-auto">cout &lt;&lt; fixed &lt;&lt; setprecision(1) &lt;&lt; (a + b) / 2.0;</code>
           </div>
         </div>
 
@@ -559,7 +564,7 @@ const HomeworkSlide = () => (
           </div>
           <div className="bg-white p-4 rounded-lg shadow-sm">
             <span className="bg-green-100 text-green-600 text-xs font-bold px-2 py-1 rounded mb-2 inline-block">编程</span>
-            <p className="text-gray-600 text-xs leading-relaxed">输入一个三位数 (如 352)，计算并输出各位数字之和。</p>
+            <p className="text-gray-600 text-xs leading-relaxed">输入三个整数分数，计算平均分并固定显示一位小数；例如 90、95、100 的平均分是 95.0。使用上一页的格式输出方法。</p>
           </div>
         </div>
       </div>

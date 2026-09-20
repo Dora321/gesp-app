@@ -49,7 +49,7 @@ const lesson4MasteryItems = [
   },
   {
     label: '能用 % 写出奇偶判断。',
-    evidence: '能解释 n % 2 == 0 表示偶数，n % 2 == 1 表示奇数。',
+    evidence: '能解释 n % 2 == 0 表示偶数，n % 2 != 0 表示奇数；负奇数的余数可能是 -1。',
     retryHint: '回到“侦探找茬：奇偶判断”，把条件读成中文。',
   },
 ];
@@ -161,10 +161,10 @@ const TimeCalculator = () => {
 
 // --- 互动演示组件：数位拆解 ---
 const DigitSplitter = () => {
-  const [num, setNum] = useState(352);
+  const [num, setNum] = useState('352');
+  const isThreeDigitPositive = /^[1-9][0-9]{2}$/.test(num);
 
-  // Safe handling for empty input
-  const n = num || 0;
+  const n = Number(num);
   const digit1 = n % 10;
   const step1 = Math.floor(n / 10);
   const digit2 = step1 % 10;
@@ -176,9 +176,10 @@ const DigitSplitter = () => {
       <h3 className="font-bold text-lg text-green-700 mb-4">🏭 数字拆解流水线</h3>
       <div className="flex items-center gap-4 mb-6">
         <span className="font-bold">输入三位数：</span>
-        <input type="number" value={num} onChange={(e) => setNum(parseInt(e.target.value))} className="border-2 border-green-300 rounded px-3 py-1 font-mono text-xl w-32" />
+        <input type="text" inputMode="numeric" aria-label="三位正整数" value={num} onChange={(e) => setNum(e.target.value)} className="border-2 border-green-300 rounded px-3 py-1 font-mono text-xl w-32" />
       </div>
 
+      {isThreeDigitPositive ? <>
       <div className="space-y-4">
         <div className="flex items-center gap-2 animate-pulse">
           <div className="bg-gray-800 text-white p-2 rounded w-16 text-center font-mono">{n}</div>
@@ -230,6 +231,7 @@ const DigitSplitter = () => {
         <span className="text-gray-500">倒序输出：</span>
         <span className="text-2xl font-bold font-mono tracking-widest">{digit1} {digit2} {digit3}</span>
       </div>
+      </> : <p role="status" className="rounded border border-amber-300 bg-amber-50 p-3 text-amber-900">请输入 100～999 的三位正整数，再观察数位拆解。</p>}
     </div>
   );
 };
@@ -307,10 +309,10 @@ export default function App() {
                 <p className="mb-4">计算机里的整数除法非常“狠心”，直接切掉小数点后的所有尾巴。</p>
                 <div className="bg-gray-800 text-white p-4 rounded font-mono">
                   <p>int a = 10 / 3;</p>
-                  <p className="text-green-400">// 输出 3 (不是 3.333)</p>
+                  <p className="text-green-400">// a 的值是 3 (不是 3.333)</p>
                   <br />
                   <p>int b = 5 / 2;</p>
-                  <p className="text-green-400">// 输出 2 (不是 2.5)</p>
+                  <p className="text-green-400">// b 的值是 2 (不是 2.5)</p>
                 </div>
               </div>
               <div className="flex items-center justify-center">
@@ -345,6 +347,7 @@ export default function App() {
                 <li>判断倍数</li>
                 <li>周期性问题 (如时间、星期几)</li>
               </ul>
+              <p className="mt-3 text-sm text-blue-900">本课的分组、数位和时间题都用非负整数；做 <code>a / b</code> 或 <code>a % b</code> 时，<code>b</code> 不能为 0。</p>
             </div>
           </div>
         );
@@ -368,7 +371,7 @@ export default function App() {
               <p className="text-lg mb-2">每人分 1 个够不够？ <strong className="text-red-500">不够！</strong></p>
               <p className="text-lg mb-4">所以分出去 0 个，手里还剩 <strong className="text-green-600">2 个</strong>。</p>
               <div className="bg-red-50 p-4 rounded-lg border border-red-200 w-full max-w-md">
-                <p className="font-bold text-red-700">结论：如果 被除数 &lt; 除数，取模结果就是被除数本身。</p>
+                <p className="font-bold text-red-700">结论：当被除数非负、除数为正，且被除数小于除数时，取余结果就是被除数本身。</p>
               </div>
             </div>
           </div>
@@ -466,7 +469,7 @@ export default function App() {
               <div className={`p-4 rounded-lg border-2 ${activeSection === 9 ? 'bg-blue-100 border-blue-500' : 'bg-gray-50'}`}>
                 <h4 className="font-bold mb-2">Part 1: 取个位</h4>
                 <code className="text-xl bg-white px-2 rounded">n % 10</code>
-                <p className="text-sm mt-2 text-gray-600">任何数除以 10，余数就是最后一位。</p>
+                <p className="text-sm mt-2 text-gray-600">对非负整数，除以 10 的余数就是个位数字。</p>
               </div>
               <div className={`p-4 rounded-lg border-2 ${activeSection === 10 ? 'bg-blue-100 border-blue-500' : 'bg-gray-50'}`}>
                 <h4 className="font-bold mb-2">Part 2: 扔个位</h4>
@@ -516,8 +519,8 @@ export default function App() {
                   </div>
                   <div className="bg-orange-50 p-4 rounded border-l-4 border-orange-500">
                     <h4 className="font-bold text-orange-700">奇数 (Odd)</h4>
-                    <p>除以 2 余数为 1</p>
-                    <code className="block mt-2 font-bold">n % 2 == 1</code>
+                    <p>除以 2 的余数不为 0；负奇数的余数是 -1</p>
+                    <code className="block mt-2 font-bold">n % 2 != 0</code>
                   </div>
                 </div>
               </div>
@@ -556,7 +559,7 @@ export default function App() {
                 <ol className="list-decimal list-inside space-y-3">
                   <li>
                     <span className="font-bold">计算器：</span>
-                    <p className="text-sm opacity-90 pl-5">编写程序，输入两个整数 a 和 b，输出它们相除的商和余数。</p>
+                    <p className="text-sm opacity-90 pl-5">编写程序，输入两个整数 a 和 b（b 不为 0），输出它们相除的商和余数。</p>
                   </li>
                   <li>
                     <span className="font-bold">时间旅行者：</span>
@@ -578,9 +581,9 @@ export default function App() {
             <TransferCheck
                 prompt="换个例子：用 % 判断 2023 是奇数还是偶数。写出判断和结论。"
                 hint="n % 2 == 0 是偶数，否则是奇数。"
-                answer="2023 % 2 == 1 → 是奇数。"
+                answer="2023 % 2 != 0 → 是奇数（余数为 1）。"
                 steps={[
-                    '偶数能被 2 整除：n % 2 == 0。',
+                    '偶数能被 2 整除：n % 2 == 0；奇数可用 n % 2 != 0 判断。',
                     '2023 % 2 = 1（不为 0）。',
                     '所以 2023 是奇数。',
                 ]}
@@ -614,4 +617,3 @@ export default function App() {
     </LegacyCppLessonShell>
   );
 }
-
