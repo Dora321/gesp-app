@@ -41,9 +41,9 @@ const sections = [
     { id: 4, title: "知识讲解：计算机的社交网络", icon: "globe", category: "网络基础" },
     { id: 5, title: "知识讲解：域名系统 DNS", icon: "server", category: "网络基础" },
     { id: 6, title: "知识讲解：门牌号 IP", icon: "map", category: "网络基础" },
-    { id: 7, title: "真题挑战 1：内存扩容", icon: "help", category: "实战演练" },
-    { id: 8, title: "真题挑战 2：磁心存储", icon: "help", category: "实战演练" },
-    { id: 9, title: "真题挑战 3：易错判断", icon: "help", category: "实战演练" },
+    { id: 7, title: "课堂练习 1：内存扩容", icon: "help", category: "实战演练" },
+    { id: 8, title: "课堂练习 2：磁心存储", icon: "help", category: "实战演练" },
+    { id: 9, title: "课堂练习 3：易错判断", icon: "help", category: "实战演练" },
     { id: 10, title: "总结回顾：口诀记忆", icon: "book", category: "总结" },
     { id: 11, title: "课后作业：小小观察员", icon: "disk", category: "总结" },
 ];
@@ -51,7 +51,7 @@ const sections = [
 const masteryItems = [
     {
         label: '能说出存储器三兄弟的分工。',
-        evidence: '高速缓存最快最小，内存 RAM 负责临时中转，硬盘外存负责长期保存。',
+        evidence: '高速缓存靠近 CPU、容量通常较小；RAM 存放运行中的程序和数据；硬盘或固态硬盘属于外存，负责长期保存。ROM 与外存不是同一种设备。',
         retryHint: '回到「存储器三兄弟」。',
     },
     {
@@ -127,7 +127,7 @@ export default function AdvLesson1() {
                             <ul className="space-y-2">
                                 <li className="flex items-center gap-2 text-gray-600">
                                     <CheckCircle2 size={16} className="text-green-500" />
-                                    理解 RAM、ROM 和 Cache 的区别（谁是健忘鬼？）
+                                    区分 RAM、ROM、Cache 与硬盘/固态硬盘的作用。
                                 </li>
                                 <li className="flex items-center gap-2 text-gray-600">
                                     <CheckCircle2 size={16} className="text-green-500" />
@@ -159,7 +159,7 @@ export default function AdvLesson1() {
                                 </li>
                                 <li className="bg-blue-50 p-4 rounded-lg border border-blue-200">
                                     <strong className="text-blue-700 block mb-1">课本 (ROM)</strong>
-                                    印刷好的，无论你怎么折腾，甚至把书合上（断电），里面的字都不会跑。
+                                    像一本合上后内容仍在的书：断电后信息保留。现实中的 ROM 有不同形式，部分可以通过特定方式更新。
                                 </li>
                             </ul>
                         </div>
@@ -205,8 +205,8 @@ export default function AdvLesson1() {
                                 <p className="text-sm text-gray-600">Local Area Network</p>
                                 <ul className="list-disc pl-5 mt-2 text-gray-600 space-y-1">
                                     <li>范围小：家里、学校机房、公司办公区。</li>
-                                    <li>速度快：通常比宽带还快。</li>
-                                    <li>自己管理：不用给电信局交钱（除了买路由器）。</li>
+                                    <li>家中设备可通过路由器在本地互联；实际速度取决于设备和连接方式。</li>
+                                    <li>通常由学校、家庭或单位管理。</li>
                                 </ul>
                             </div>
                             <div className="bg-white p-5 rounded-lg border border-gray-200 shadow-sm">
@@ -237,7 +237,7 @@ export default function AdvLesson1() {
                         <div className="bg-indigo-50 p-4 rounded-lg border-l-4 border-indigo-400 mt-6">
                             <h4 className="font-bold text-indigo-800 mb-1">💡 知识点：</h4>
                             <p className="text-indigo-700 text-sm">
-                                <strong>域名</strong>（www.baidu.com）是给人类看的，<strong>IP 地址</strong>（110.242.68.66）是给电脑看的。DNS 的作用就是将域名解析为 IP 地址。
+                                <strong>域名</strong>便于人记忆；<strong>IP 地址</strong>用于 IP 网络中的寻址。DNS 可以查询域名对应的 IP 地址；一个域名的查询结果可能变化。
                             </p>
                         </div>
                     </div>
@@ -255,12 +255,12 @@ export default function AdvLesson1() {
                                 <div className="p-4 bg-slate-50 rounded-lg border border-slate-100">
                                     <span className="bg-red-100 text-red-700 px-2 py-1 rounded text-xs font-bold mr-2 uppercase">IPv4</span>
                                     <p className="mt-2 font-mono font-bold text-lg text-gray-800">192.168.1.1</p>
-                                    <p className="mt-1 text-xs text-gray-400">目前最常用，4 个数字组成。</p>
+                                    <p className="mt-1 text-xs text-gray-400">IPv4 地址示例：4 组 0～255 的十进制数，以点分隔。</p>
                                 </div>
                                 <div className="p-4 bg-slate-50 rounded-lg border border-slate-100">
                                     <span className="bg-blue-100 text-blue-700 px-2 py-1 rounded text-xs font-bold mr-2 uppercase">IPv6</span>
                                     <p className="mt-2 font-mono font-bold text-lg text-gray-800 truncate">2001:0db8:85a3...</p>
-                                    <p className="mt-1 text-xs text-gray-400">下一代 IP，号称可以给地球上每颗沙子分配一个地址。</p>
+                                    <p className="mt-1 text-xs text-gray-400">IPv6 地址示例：使用十六进制数和冒号表示。</p>
                                 </div>
                             </div>
                         </div>
@@ -271,9 +271,9 @@ export default function AdvLesson1() {
             case 7:
                 return (
                     <div className="animate-in fade-in slide-in-from-bottom-4 duration-500">
-                        <h2 className="text-2xl font-bold text-gray-800 mb-6">GESP 真题挑战 1</h2>
+                        <h2 className="text-2xl font-bold text-gray-800 mb-6">课堂练习 1：内存扩容</h2>
                         <Quiz
-                            question="(2025年6月 GESP 二级) 小明购置的计算机使用一年后觉得内存不够用了，想购置一个容量更大的内存条，这时 he 需要的内存条是（ ）。"
+                            question="小明觉得计算机内存不够用，想购置容量更大的内存条。他需要的是（ ）。"
                             options={["RAM", "ROM", "CACHE", "EPROM"]}
                             correctIndex={0}
                             explanation={
@@ -293,9 +293,9 @@ export default function AdvLesson1() {
             case 8:
                 return (
                     <div className="animate-in fade-in slide-in-from-bottom-4 duration-500">
-                        <h2 className="text-2xl font-bold text-gray-800 mb-6">GESP 真题挑战 2</h2>
+                        <h2 className="text-2xl font-bold text-gray-800 mb-6">课堂练习 2：磁心存储</h2>
                         <Quiz
-                            question="(2024年9月 GESP 一级/二级) DJL-1 计算机的磁心存储元件相当于现代计算机的（ ）。"
+                            question="早期计算机用于主存储的磁心存储器，在用途上接近现代计算机的（ ）。"
                             options={["内存", "磁盘", "CPU", "显示器"]}
                             correctIndex={0}
                             explanation={
@@ -311,16 +311,16 @@ export default function AdvLesson1() {
             case 9:
                 return (
                     <div className="animate-in fade-in slide-in-from-bottom-4 duration-500">
-                        <h2 className="text-2xl font-bold text-gray-800 mb-6">GESP 真题挑战 3 (易错题)</h2>
+                        <h2 className="text-2xl font-bold text-gray-800 mb-6">课堂练习 3：易错判断</h2>
                         <Quiz
-                            question="【判断题】局域网（LAN）中的计算机不需要 IP 地址，只有广域网（WAN）才需要。"
+                            question="【判断题】在基于 IP 的网络通信中，局域网里的设备不需要 IP 地址，只有广域网里的设备才需要。"
                             options={["正确 (True)", "错误 (False)"]}
                             correctIndex={1}
                             explanation={
                                 <>
                                     <p className="font-bold text-red-600">这是个大坑！❌</p>
-                                    <p>任何连入网络（无论是局域网还是广域网）的设备，都需要一个唯一的标识符才能通信，这个标识符就是 IP 地址。</p>
-                                    <p>比如你在家里（局域网）用手机投屏到电视，手机和电视都必须有 IP 地址才能找到对方。</p>
+                                    <p>局域网也可以使用 IP 协议。设备收发普通 IP 数据包时，同样要有相应的 IP 地址。</p>
+                                    <p>这里只讨论基于 IP 的通信；并非所有网络通信都使用 IP。</p>
                                 </>
                             }
                         />
@@ -362,7 +362,7 @@ export default function AdvLesson1() {
                                 <div className="flex flex-col items-center justify-center h-full pb-8">
                                     <p className="text-2xl font-bold text-blue-900 text-center leading-loose">
                                         <span className="text-3xl">LAN</span> 小 <span className="text-3xl">WAN</span> 大<br />
-                                        <span className="text-4xl text-red-500 mx-2">IP</span> 走天下
+                                        <span className="text-4xl text-red-500 mx-2">IP</span> 管寻址
                                     </p>
                                 </div>
                             </div>
@@ -383,7 +383,7 @@ export default function AdvLesson1() {
                                 <p className="text-gray-600 mb-4">回家查看自家电脑或爸爸妈妈电脑的配置：</p>
                                 <div className="bg-gray-100 p-4 rounded-lg font-mono text-sm">
                                     <p>👉 内存 (RAM) 是多少 GB？ (例如 16GB)</p>
-                                    <p className="mt-2">👉 硬盘 (ROM/外存) 是多少 GB？ (例如 512GB)</p>
+                                    <p className="mt-2">👉 硬盘/固态硬盘（外存）是多少 GB？（例如 512GB）</p>
                                 </div>
                             </div>
 

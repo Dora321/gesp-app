@@ -6,9 +6,9 @@ export { cppL2Lessons } from './cppLessonTitles.js';
 const qualityByLesson = {
   1: {
     accent: 'indigo',
-    goals: ['理解 RAM、ROM、外存的区别', '认识 B、KB、MB、GB、TB 的容量关系', '能说清 IP、DNS 和网络访问的基本流程'],
+    goals: ['区分 RAM、ROM、Cache 与硬盘/固态硬盘', '认识 B、KiB、MiB、GiB、TiB 的二进制容量关系，并区分十进制 GB', '能说清 IP、DNS 和网络访问的基本流程'],
     deliverables: ['完成一张存储器对比表', '记录一次设备容量观察', '画出域名访问网页的简化路线'],
-    checks: ['能解释断电后哪些数据会丢失', '能完成 1024 进位换算', '能区分域名、IP 和服务器的作用'],
+    checks: ['能解释断电后哪些数据会丢失，并区分 ROM 与外存', '能完成 KiB、MiB 等二进制单位的 1024 进位换算', '能区分域名、IP 和服务器的作用'],
   },
   2: {
     accent: 'emerald',
@@ -159,7 +159,7 @@ const practiceByLesson = {
 };
 
 const reviewTasksByLesson = {
-  1: ['用一句话区分 RAM、ROM 和外存。', '把 1GB 换算成 MB，再解释为什么是 1024。'],
+  1: ['用一句话区分 RAM、ROM 和硬盘/固态硬盘。', '把 1 GiB 换算成 MiB，再说明商品标注的 1 GB 与 1 GiB 为什么不同。'],
   2: ['默写 0、A、a 的 ASCII 编码。', '写一个把小写字母转成大写字母的最小程序。'],
   3: ['手算 7/2、7/2.0、(double)7/2 的输出。', '找出一道表达式题里最先发生的类型转换。'],
   4: ['写一个带 default 的菜单程序。', '故意删掉一个 break，记录输出如何变化。'],

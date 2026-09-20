@@ -51,11 +51,11 @@ export const Icon = ({ name, size = 24, className = "" }) => {
 // --- 组件：容量直观阶梯 (New & Improved) ---
 export const DataScaleVisualizer = () => {
     const scales = [
-        { unit: 'B', name: '字节 (Byte)', metaphor: '1个字母', desc: '就像你在键盘上敲下的一个“A”', icon: <Monitor size={20} />, color: 'bg-slate-400' },
-        { unit: 'KB', name: '千字节', metaphor: '1页文字', desc: '大约是一篇简短的作文或日记', icon: <FileText size={20} />, color: 'bg-blue-400' },
-        { unit: 'MB', name: '兆字节', metaphor: '1本厚书', desc: '大约是一部长篇小说（如《西游记》）', icon: <BookOpen size={20} />, color: 'bg-indigo-400' },
-        { unit: 'GB', name: '吉字节', metaphor: '1个书架', desc: '大约能装下 1000 多本厚厚的书', icon: <Library size={20} />, color: 'bg-purple-500' },
-        { unit: 'TB', name: '太字节', metaphor: '整个图书馆', desc: '大约是由于一整座城市图书馆的藏书量', icon: <Building2 size={20} />, color: 'bg-fuchsia-600' },
+        { unit: 'B', name: '字节 (Byte)', metaphor: '起点', desc: '一个英文字母 A 在 ASCII 编码中占 1 字节。', icon: <Monitor size={20} />, color: 'bg-slate-400' },
+        { unit: 'KiB', name: '二进制千字节', metaphor: '1024 B', desc: '1 KiB = 1024 B；文字占多少字节还与编码有关。', icon: <FileText size={20} />, color: 'bg-blue-400' },
+        { unit: 'MiB', name: '二进制兆字节', metaphor: '1024 KiB', desc: '1 MiB = 1024 KiB。', icon: <BookOpen size={20} />, color: 'bg-indigo-400' },
+        { unit: 'GiB', name: '二进制吉字节', metaphor: '1024 MiB', desc: '1 GiB = 1024 MiB。', icon: <Library size={20} />, color: 'bg-purple-500' },
+        { unit: 'TiB', name: '二进制太字节', metaphor: '1024 GiB', desc: '1 TiB = 1024 GiB。', icon: <Building2 size={20} />, color: 'bg-fuchsia-600' },
     ];
 
     return (
@@ -103,8 +103,8 @@ export const DataScaleVisualizer = () => {
                 <div>
                     <h4 className="font-bold text-yellow-800 text-sm">进位提醒</h4>
                     <p className="text-xs text-yellow-700 mt-1 leading-relaxed">
-                        在计算进位时，每一级都是前一级的 <b>1024 倍</b>（$2^{10}$）。<br />
-                        所以：1TB = 1024GB = 1,048,576MB ... 数字大得惊人吧！
+                        本阶梯使用二进制单位，每一级是前一级的 <b>1024 倍</b>（2¹⁰）。<br />
+                        1 TiB = 1024 GiB = 1,048,576 MiB。商品硬盘常按十进制标注：1 GB = 1000 MB。若题目明确约定 KB = 1024 B，应按题目约定换算。
                     </p>
                 </div>
             </div>
@@ -175,9 +175,9 @@ export const MemorySpeedRace = () => {
     const [status, setStatus] = useState('idle'); // idle, racing, finished
 
     const raceTracks = [
-        { id: 'cache', name: 'Cache', label: '手边 (L1)', cycles: '1-3', speed: 0.1, color: 'bg-amber-500', metaphor: '闪电侠⚡' },
-        { id: 'ram', name: 'RAM', label: '隔壁房 (内存)', cycles: '100-300', speed: 1.5, color: 'bg-emerald-500', metaphor: '汽车🚗' },
-        { id: 'disk', name: '硬盘', label: '大城市外 (外存)', cycles: '1,000,000+', speed: 8, color: 'bg-blue-600', metaphor: '蜗牛🐌' }
+        { id: 'cache', name: 'Cache', label: '靠近 CPU', speed: 0.1, color: 'bg-amber-500', metaphor: '闪电侠⚡' },
+        { id: 'ram', name: 'RAM', label: '运行时内存', speed: 1.5, color: 'bg-emerald-500', metaphor: '汽车🚗' },
+        { id: 'disk', name: '硬盘', label: '长期存储', speed: 8, color: 'bg-blue-600', metaphor: '蜗牛🐌' }
     ];
 
     const startRace = () => {
@@ -193,7 +193,7 @@ export const MemorySpeedRace = () => {
                     <h3 className="text-white font-bold text-lg flex items-center gap-2">
                         <FastForward className="text-yellow-400" /> 存储速度“马拉松”
                     </h3>
-                    <p className="text-slate-400 text-xs mt-1">模拟 CPU 从不同存储器取数据的真实时间差</p>
+                    <p className="text-slate-400 text-xs mt-1">动画仅示意常见存储层级的相对快慢，不代表真实读取时间</p>
                 </div>
                 <button
                     onClick={startRace}
@@ -218,7 +218,7 @@ export const MemorySpeedRace = () => {
                         <div className="absolute inset-0 flex items-center justify-between px-4 z-10 pointer-events-none">
                             <div className="flex flex-col">
                                 <span className="text-xs font-bold text-slate-300">{track.name}</span>
-                                <span className="text-[10px] text-slate-500">耗时: {track.cycles} 周期</span>
+                                <span className="text-[10px] text-slate-500">相对速度：{track.id === 'cache' ? '快' : track.id === 'ram' ? '中' : '慢'}</span>
                             </div>
                             <span className="text-[10px] text-slate-600 font-bold uppercase tracking-widest">{track.label}</span>
                         </div>
@@ -264,9 +264,9 @@ export const StorageTriad = () => {
         {
             id: 'rom',
             name: "ROM (只读存储器)",
-            role: "大哥 (非挥发性) - 蜗牛🐌",
+            role: "断电后保留内容",
             analogy: "刻在石头上的家规 / 印刷好的书",
-            features: ["出厂印好", "平时只读不改", "速度最慢但量大", "断电内容不丢失 (Non-volatile)"],
+            features: ["常用于保存固件等内容", "一般运行时不直接修改", "与硬盘/固态硬盘不是同一种设备", "断电内容不丢失 (Non-volatile)"],
             color: "bg-blue-600",
             icon: "book"
         },
@@ -405,9 +405,9 @@ export const DNSVisual = () => {
     const [step, setStep] = useState(0); // 0: idle, 1: asking, 2: resolved
 
     const steps = [
-        { t: "输入网址：www.baidu.com", desc: "人类容易记住名字，但电脑只认数字（IP）。" },
+        { t: "输入示例域名：example.com", desc: "域名便于人记忆；访问网站时通常需要解析目标 IP 地址。" },
         { t: "查询 DNS 服务器", desc: "DNS 就像网上的“电话本”，存着网址和 IP 的对应关系。" },
-        { t: "返回 IP：110.242.68.66", desc: "有了 IP，快递员（数据包）就可以出发了！" }
+        { t: "返回目标网站的 IP 地址", desc: "实际查询结果可能随时间和网络位置变化。" }
     ];
 
     return (
@@ -511,6 +511,7 @@ export const IPDeliverySim = () => {
                     <input
                         type="checkbox"
                         checked={hasIP}
+                        disabled={status === "sending"}
                         onChange={(e) => { setHasIP(e.target.checked); setStatus("idle"); }}
                         className="w-5 h-5 accent-green-600"
                     />
@@ -529,14 +530,14 @@ export const IPDeliverySim = () => {
             {status === "success" && (
                 <div className="mt-4 p-3 bg-green-100 text-green-800 rounded-lg flex items-center gap-2 animate-in slide-in-from-bottom-2">
                     <CheckCircle2 size={20} />
-                    <span>成功！既然有 IP 地址（门牌号），快递员就能准确找到你。</span>
+                    <span>在这个简化的 IP 通信模型中，接收方有可用地址，数据包可以送达。</span>
                 </div>
             )}
 
             {status === "fail" && (
                 <div className="mt-4 p-3 bg-red-100 text-red-800 rounded-lg flex items-center gap-2 animate-in slide-in-from-bottom-2">
                     <XCircle size={20} />
-                    <span>失败！没有 IP 地址（没门牌号），数据包迷路了，被丢弃。</span>
+                    <span>在这个简化的 IP 通信模型中，接收方没有配置 IP 地址，无法按目标 IP 投递。</span>
                 </div>
             )}
         </div>
