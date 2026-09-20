@@ -1,0 +1,251 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>第21课 · 会报警的系统 — ESP32 × AI 科创课程</title>
+<link rel="stylesheet" href="assets/base.css">
+<link rel="stylesheet" id="theme-link" href="assets/theme-course-pop.css">
+<link rel="stylesheet" href="assets/animations.css">
+</head>
+<body>
+<div class="deck" data-theme-base="assets/">
+<section class="slide lay-cover is-active" data-title="封面">
+<div class="deco circle" style="width:170px;height:170px;top:-52px;right:238px"></div>
+<div class="deco tri" style="right:110px;bottom:132px;transform:rotate(14deg)"></div>
+<div class="deco square" style="width:120px;height:120px;left:-46px;bottom:86px;transform:rotate(12deg)"></div>
+<span class="cv-bar">ESP32 × AI ／ 第四阶段「驾驭AI · 物联网」</span>
+<h1 class="cv-title">会报警<em>的系统</em></h1>
+<p class="cv-sub">你不用问它——超标了，它主动来找你</p>
+<div class="cv-tags"><span class="tag">你自己定的阈值</span><span class="tag">HTTP 推微信</span><span class="tag">去抖：报一次</span><span class="tag">90 分钟连堂</span></div>
+<div class="cv-no">21</div>
+<div class="notes"><p>上节课结束我问了一个问题，还记得吗？</p><p><b>现在这套东西，谁在做决定？</b></p><p>是你。你点一下 on，它才亮；你不点，它一动不动。</p><p>今天要变了。</p><p>（停顿）</p><p><b>鱼缸夏天怕热。</b> 水温超过一个数，鱼就危险。</p><p>可是你不可能<b>盯一整夜</b>——你要睡觉。</p><p>那谁来值夜班？</p><p>（等他们答，多半有人说「机器」）</p><p>对，但说得再准一点：</p><p><b>值夜班的，是你在第19课自己定的那个数字。</b></p><p>今天，让它<b>上岗</b>。</p><p>今天做完，你的系统第一次<b>自己会做决定</b>——不用你问，超标了它主动找你。</p></div>
+</section>
+
+<section class="slide lay-vstext" data-title="谁来值夜班">
+<div class="phead"><span class="no">第21课</span>
+<span class="kick g">导入</span>
+<span class="tslot">0–8 分</span>
+</div>
+<h2 class="ptitle">谁来值夜班</h2>
+<p class="psub">从「我去看一眼」到「它来告诉我」</p>
+<div class="pbody">
+  <div class="vs3 grow">
+    <div class="blk c vstx"><span class="tag c">以前：人盯着</span><p class="q">「我去看一眼温度多少。」</p><p class="why">得你<b>主动问</b>。你睡着了、上学了、出门了——<b>那段时间没人管</b>。<br>数据在云上躺着，<b>没人看就等于没有</b>。</p></div>
+    <div class="vsmark">VS</div>
+    <div class="blk g vstx"><span class="tag g">今天：数字站岗</span><p class="q">「超过 28 度，它自己发微信给我。」</p><p class="why"><b>它主动找你</b>。不超标就安安静静，超标了才敲门。<br><b>24 小时不睡觉</b>，而且它守的那条线，是<b>你自己定的</b>。</p></div>
+  </div>
+  <div style="margin-top:20px"><div class="strip a">今天的阈值<b>不是老师给的</b>——是你们自己从 L19 那条 24 小时曲线里定出来的。<b>数据定的岗哨，站得最有底气</b></div></div>
+</div>
+<div class="notes"><p>左边是以前。<b>我去看一眼温度多少。</b></p><p>注意这句话的主语：<b>我</b>。得你主动问。</p><p>你睡着了呢？上学了呢？出门了呢？——<b>那段时间没人管。</b></p><p>L19 我们说过一句话，今天再说一次：<b>数据在云上躺着，没人看就等于没有。</b></p><p>右边是今天。<b>超过 28 度，它自己发微信给我。</b></p><p>主语变了——<b>它</b>。</p><p>它主动找你。不超标就安安静静，一声不吭；超标了才敲门。</p><p>而且它<b>24 小时不睡觉</b>。</p><p>（指黑条）</p><p>最后这句话我要你们记住：</p><p>今天的 28 度，<b>不是老师给的</b>。</p><p>是你们自己在第19课，看着那条 24 小时的曲线，一点一点定出来的。</p><p>你们当时写在报告里的那个数字，今天<b>上岗了</b>。</p><p><b>数据定的岗哨，站得最有底气。</b></p></div>
+</section>
+
+<section class="slide lay-steps3" data-title="报警三段">
+<div class="phead"><span class="no">第21课</span>
+<span class="kick g">核心</span>
+<span class="tslot">8–22 分</span>
+</div>
+<h2 class="ptitle">报警逻辑，只有三段</h2>
+<p class="psub">读一个数 → 比一条线 → 该喊就喊</p>
+<div class="pbody"><div class="g3 grow"><div class="blk"><div class="step"><div class="num g">①</div>
+        <div class="body"><p class="t">读温度</p><p class="d"><code class="ic">sensor.measure()</code> 拿到当前温度 <code class="ic">t</code>。<br>这一步 <b>L19 就会了</b>，老朋友。</p></div></div></div><div class="blk"><div class="step"><div class="num a">②</div>
+        <div class="body"><p class="t">比阈值</p><p class="d"><code class="ic">if t &gt; LIMIT:</code> ——<b>超了没有？</b><br><code class="ic">LIMIT</code> 就是你 L19 报告里的那个数。</p></div></div></div><div class="blk"><div class="step"><div class="num c">③</div>
+        <div class="body"><p class="t">推送 + 本地响</p><p class="d"><b>两条腿走路</b>：调 HTTP 接口<b>推微信</b>（远处的人知道）<br>＋ <b>蜂鸣器响</b>（近处的人知道）。</p></div></div></div></div><div style="margin-top:16px"><div class="strip g"><b>为什么要两条腿？</b> 推送在<b>远处</b>——你在学校也收得到；蜂鸣器在<b>近处</b>——旁边的人立刻听见。缺一条，就有人不知道</div></div><div style="margin-top:16px"><div class="strip a">这三段 ＝ 一个<b>完整的决定</b>：<b>感知</b> → <b>判断</b> → <b>行动</b>。你的系统第一次自己做完这三步</div></div></div>
+<div class="notes"><p>报警听起来很高级，拆开只有<b>三段</b>。</p><p><b>第①段：读温度。</b> <code class="ic">sensor.measure()</code>，拿到 t。这个 L19 就会了，老朋友。</p><p><b>第②段：比阈值。</b> <code class="ic">if t &gt; LIMIT</code> ——超了没有？</p><p>LIMIT 就是你报告里那个数。每组<b>不一样</b>，因为每组的房间不一样。</p><p><b>第③段：该喊就喊。</b> 注意，是<b>两条腿走路</b>。</p><p>一条腿是<b>推微信</b>：远处的人知道。你在学校，鱼缸在家里，这条腿把消息送到你手上。</p><p>另一条腿是<b>蜂鸣器响</b>：近处的人知道。妈妈在客厅，她听见了，可以马上去看。</p><p>（指第一条黑条）</p><p><b>为什么非要两条腿？</b></p><p>因为少一条就有人不知道。只推微信——你手机静音了呢？只响蜂鸣器——家里没人呢？</p><p>真产品都是两条腿，你家的烟感报警器就是这样。</p><p>（指第二条黑条）</p><p>这三段合起来，其实是一个很了不起的东西：</p><p><b>感知 → 判断 → 行动。</b></p><p>这是一个<b>完整的决定</b>。你的系统，今天第一次自己把这三步走完。</p></div>
+</section>
+
+<section class="slide lay-vscompare" data-title="狼来了">
+<div class="phead"><span class="no">第21课</span>
+<span class="kick c">去抖</span>
+<span class="tslot">8–22 分</span>
+</div>
+<h2 class="ptitle">「狼来了」：报 100 遍等于没报</h2>
+<p class="psub">会克制的报警器，才是好报警器</p>
+<div class="pbody">
+  <div class="vs3 grow">
+    <div class="code"><span class="lab c">× 不会克制：5 秒报一条</span><pre style="font-size:27px;line-height:1.55"><span class="k">while</span> <span class="k">True</span>:
+    t = sensor.temperature()
+    <span class="k">if</span> t &gt; LIMIT:
+        send_wechat("temp_high")
+    time.sleep(5)</pre></div>
+    <div class="vsmark">VS</div>
+    <div class="code"><span class="lab g">○ 会克制：报过就挂旗</span><pre style="font-size:27px;line-height:1.55"><span class="k">while</span> <span class="k">True</span>:
+    t = sensor.temperature()
+    <span class="k">if</span> t &gt; LIMIT <span class="k">and</span> <span class="k">not</span> alarmed:
+        send_wechat("temp_high")
+        alarmed = <span class="k">True</span>          <span class="c"># 挂旗</span>
+    <span class="k">if</span> t &lt; LIMIT - 1 <span class="k">and</span> alarmed:
+        alarmed = <span class="k">False</span>         <span class="c"># 收旗</span></pre></div>
+  </div>
+  <div style="margin-top:24px"><div class="strip "><b>挂旗 / 收旗</b>：报过一次就挂旗，<b>温度降回去才收旗</b>。收旗线比阈值<b>低 1 度</b>，省得在线上反复横跳</div></div>
+</div>
+<div class="notes"><p>现在讲今天<b>最重要</b>的一件事，叫「<b>去抖</b>」。</p><p>先看左边。这段代码<b>逻辑完全正确</b>：超过阈值就推送。</p><p>可是它会出什么事？</p><p>（等他们想）</p><p>温度超标了，<b>而且会持续一段时间</b>。每 5 秒测一次，每次都超，每次都推送——</p><p>5 秒一条，一分钟 12 条，<b>一晚上 700 多条</b>。</p><p>你会怎么做？（等他们答）</p><p><b>把它静音。</b> 或者干脆把推送关了。</p><p>那这个报警器，<b>等于没有</b>。</p><p>这就是「<b>狼来了</b>」：喊 100 遍，第 101 遍是真的，也没人信了。</p><p>看右边，只多了一样东西：一面<b>旗子</b>，叫 <code class="ic">alarmed</code>。</p><p><b>报过一次，就挂旗。</b> 挂着旗的时候，就算还超标，也<b>不再报</b>。</p><p><b>温度降回去了，才收旗。</b> 收了旗，下次再超标才会重新报。</p><p>（指黑条）</p><p>注意收旗那一行：<code class="ic">t &lt; LIMIT - 1</code> —— 比阈值<b>低 1 度</b>才收。</p><p>为什么不是正好等于阈值？</p><p>因为温度会在线上<b>抖</b>：27.9、28.1、27.9、28.1……那样就会<b>报、停、报、停</b>。</p><p>低 1 度是给它一条<b>缓冲带</b>。</p><p><b>会克制的报警器，才是好报警器。</b></p></div>
+</section>
+
+<section class="slide lay-codefull" data-title="第①-1 步 备料">
+<div class="phead"><span class="no">第21课</span>
+<span class="kick g">第①-1 步</span>
+<span class="tslot">22–40 分</span>
+</div>
+<h2 class="ptitle">起步全码 ①-1：先把料备齐</h2>
+<p class="psub">导入 ＋ 四个参数 ＋ 两个器件——<b>照抄，只改引号里的字</b></p>
+<div class="pbody"><div class="code"><span class="lab g">起步全码 · 第①-1 步：备料</span><pre style="font-size:27px;line-height:1.55"><span class="k">import</span> network, time, dht, urequests
+<span class="k">from</span> machine <span class="k">import</span> Pin
+
+WIFI_SSID = "你的WiFi名"
+WIFI_PASS = "你的WiFi密码"
+BEMFA_KEY = "你的巴法云私钥"       <span class="c"># 当微信接口的 uid</span>
+LIMIT = 28                        <span class="c"># 阈值：来自你 L19 报告</span>
+sensor = dht.DHT11(Pin(14)); buzzer = Pin(13, Pin.OUT)</pre></div><div style="margin-top:18px"><div class="strip a"><code class="ic">LIMIT = 28</code> 这一行<b>每组都不一样</b>——把你 L19 报告里那个数填进去，<b>别抄别组的</b></div></div></div>
+<div class="notes"><p>起步全码第①步，我分两页给你们，先看<b>备料</b>这一半。</p><p>第一行 import 比以前多了两样：<code class="ic">dht</code>（读温湿度，L19 用过）和 <b><code class="ic">urequests</code></b>（今天的新朋友，<b>发网络请求</b>用的）。</p><p>中间四行是<b>参数</b>：WiFi 名、WiFi 密码、巴法云私钥、<b>阈值</b>。</p><p>这四行就是全部要你改的地方，<b>下面的代码一个字都不用动</b>。</p><p>（重点，指 BEMFA_KEY 那行）</p><p>注意这行注释：「<b>当微信接口的 uid</b>」。</p><p>同一个私钥，L18 上传的时候当「<b>账号</b>」用，今天推微信的时候当「<b>uid</b>」用——<b>是同一串字符，别写两个</b>。</p><p>（指 LIMIT）</p><p>再看 <code class="ic">LIMIT = 28</code>。</p><p>这一行，<b>每组都不一样</b>。</p><p>我写 28 是个例子，你要填<b>你自己 L19 报告里那个数</b>。</p><p>（停顿）</p><p>为什么不能抄别组的？因为<b>别组测的不是你的房间</b>。</p><p>他们的窗户朝南，你的朝北；他们靠着暖气，你靠着窗。</p><p><b>你的岗哨，站你自己的岗。</b></p><p>最后一行把 DHT11 挂在 <b>14 号脚</b>、蜂鸣器挂在 <b>13 号脚</b>——跟前面几课一样，没变。</p></div>
+</section>
+
+<section class="slide lay-codefull" data-title="第①-2 步 发微信函数">
+<div class="phead"><span class="no">第21课</span>
+<span class="kick g">第①-2 步</span>
+<span class="tslot">22–40 分</span>
+</div>
+<h2 class="ptitle">起步全码 ①-2：备好「发微信」这个本事</h2>
+<p class="psub">接在上一页后面。先把<b>发消息的本事</b>准备好，下一页才写「什么时候发」</p>
+<div class="pbody"><div class="code"><span class="lab g">起步全码 · 第①-2 步：发微信函数 ＋ 连上网</span><pre style="font-size:27px;line-height:1.55"><span class="k">def</span> send_wechat(message):         <span class="c"># 微信推送 = HTTP GET</span>
+    url = ("http://apis.bemfa.com/vb/wechat/v1/wechatAlert"
+           "?uid=" + BEMFA_KEY + "&amp;device=ESP32"
+           "&amp;message=" + message + "&amp;group=default")
+    try: urequests.get(url).close()
+    except Exception as e: print(e)
+
+wlan = network.WLAN(network.STA_IF); wlan.active(<span class="k">True</span>)
+wlan.connect(WIFI_SSID, WIFI_PASS)
+<span class="k">while</span> <span class="k">not</span> wlan.isconnected(): time.sleep(0.5)</pre></div><div style="margin-top:18px"><div class="strip a"><code class="ic">send_wechat()</code> 是<b>你自己的一个新本事</b>——写好放在那儿，谁要用就叫它一声，跟 L13 学的函数一模一样</div></div></div>
+<div class="notes"><p>第①步的后半页。这里只有一个新东西：<code class="ic">def send_wechat(message)</code>。</p><p>它的<b>形状</b>你们见过——<b>这是一个函数</b>。</p><p>第13课学过：<b>把一件事包起来，起个名字，以后叫名字就行。</b></p><p>它包的是什么事？<b>发一条微信。</b></p><p>往下看那三行 url：这是一个<b>网址</b>。</p><p><code class="ic">apis.bemfa.com/vb/wechat/v1/wechatAlert</code> —— 这个网址的意思就是「<b>请帮我推一条微信</b>」。</p><p>后面跟着四样东西：</p><p><code class="ic">uid</code> ＝ 你的<b>私钥</b>（证明是你）、<code class="ic">device</code> ＝ 设备名、<code class="ic">message</code> ＝ <b>消息内容</b>、<code class="ic">group=default</code> ＝ 分组。</p><p>然后 <code class="ic">urequests.get(url)</code> —— <b>访问这个网址</b>。</p><p>就这么简单，跟你在浏览器里打开一个网页是<b>同一件事</b>。</p><p>（重点）</p><p><b>注意：message 要用英文。</b></p><p>写中文会怎样？——接口会返回「<b>参数错误</b>」，推送不出去。</p><p>所以我们用 <code class="ic">temp_high</code>，不用「温度高了」。</p><p>最后 <code class="ic">.close()</code> 别忘——<b>用完关掉</b>，不然连几次就没内存了。</p><p>下面三行是<b>老朋友</b>：连 WiFi，等它连上。L17 写过，L18 写过，今天第三遍了。</p><p>这两页跑完，你的板子只是<b>有了发微信的本事</b>，还不会自己发。</p><p>什么时候发？下一页。</p></div>
+</section>
+
+<section class="slide lay-stepcode" data-title="第②步 读数比阈值">
+<div class="phead"><span class="no">第21课</span>
+<span class="kick a">第②步</span>
+<span class="tslot">22–40 分</span>
+</div>
+<h2 class="ptitle">读数 → 比阈值 → 超标才推送</h2>
+<div class="pbody">
+  <div class="scstack">
+    <div class="fiverow"><div class="fvc"><span class="fk">语言</span><span class="fw">MicroPython</span></div><div class="fvc"><span class="fk">硬件</span><span class="fw">DHT11 ＋ 蜂鸣器</span></div><div class="fvc"><span class="fk">接线</span><span class="fw">DHT11 <b>14</b> · 蜂鸣器 <b>13</b></span></div><div class="fvc"><span class="fk">效果</span><span class="fw">超标就<b>推微信</b> ＋ <b>响一秒</b></span></div><div class="fvc"><span class="fk">约束</span><span class="fw"><b>超标期间只报一次</b>（挂旗去抖）</span></div></div>
+    <div class="askline"><b>五要素 · 只要报警这一段：</b>「请接着我已有的代码写：每 5 秒读一次 DHT11 温度，超过 LIMIT 就调用我已经写好的 send_wechat("temp_high") 并让 GPIO13 蜂鸣器响一秒。约束：超标期间只报一次，温度降到 LIMIT-1 以下才允许下次报警，只用学过的写法。」</div>
+    <div class="code"><span class="lab g">起步全码 · 第②步：接在第①步后面</span><pre style="font-size:19px;line-height:1.55">alarmed = <span class="k">False</span>                 <span class="c"># 报警旗：防连环刷屏</span>
+<span class="k">while</span> <span class="k">True</span>:
+    sensor.measure(); t = sensor.temperature()
+    <span class="k">if</span> t &gt; LIMIT <span class="k">and</span> <span class="k">not</span> alarmed:
+        send_wechat("temp_high")   <span class="c"># 英文消息</span>
+        buzzer.value(1); time.sleep(1); buzzer.value(0)
+        alarmed = <span class="k">True</span>             <span class="c"># 挂旗</span>
+    <span class="k">if</span> t &lt; LIMIT - 1 <span class="k">and</span> alarmed:  <span class="c"># 降回才收旗</span>
+        alarmed = <span class="k">False</span>
+    time.sleep(5)</pre></div>
+  </div>
+  
+</div>
+<div class="notes"><p>第②步。这一段是<b>你去问 AI 的</b>——五要素卡就在左边。</p><p>注意「<b>约束</b>」那一栏，今天的约束是<b>最关键的一栏</b>：</p><p><b>超标期间只报一次。</b> 你不写这句，AI 给你的代码<b>一定会刷屏</b>——它不知道你怕「狼来了」。</p><p>还有一句约束也重要：「<b>用我已经写好的 send_wechat()</b>」。</p><p>不然 AI 会自作主张，再给你写一套发送代码，跟第①步<b>打架</b>。</p><p>（讲代码）</p><p>第一行 <code class="ic">alarmed = False</code> ——旗子<b>降着</b>，表示现在没在报警。</p><p><code class="ic">if t &gt; LIMIT and not alarmed:</code> ——两个条件<b>都要满足</b>才报：超标了，<b>而且</b>还没报过。</p><p><code class="ic">and not</code> 这两个词是今天的新组合，读出来就是「<b>超标了，而且没挂旗</b>」。</p><p>里面三件事：推微信、蜂鸣器响一秒、<b>挂旗</b>。</p><p>下面那个 if 是<b>收旗</b>：<code class="ic">t &lt; LIMIT - 1</code> ——降到比阈值还低 1 度，才把旗收了。</p><p>最后 <code class="ic">time.sleep(5)</code> ——每 5 秒看一次。别写 0.1，DHT11 <b>读太快会出错</b>。</p><p>验收三查照旧：<b>能跑吗？看得懂吗？有没有超纲的魔法？</b></p><p>看不懂的行，<b>追问 AI</b>：「这一行为什么要这样写？」</p></div>
+</section>
+
+<section class="slide lay-table" data-title="两条出口对照">
+<div class="phead"><span class="no">第21课</span>
+<span class="kick g">贴墙</span>
+<span class="tslot">22–40 分</span>
+</div>
+<h2 class="ptitle">两条出口，别走错门</h2>
+<p class="psub">MQTT 管<b>控制和数据</b>，HTTP 管<b>通知</b></p>
+<div class="pbody">
+  <div class="tbl grow" style="grid-template-columns:1fr 1.5fr 1.3fr"><div class="th">通道</div><div class="th">怎么走</div><div class="th">用途</div><div class="td k">数据上传</div><div class="td">MQTT publish 到 <code class="ic">gNtemp01/up</code></div><div class="td"><b>只存云，不打扰人</b></div><div class="td k">远程控制</div><div class="td">MQTT subscribe 主题（<b>不带 /up</b>）</div><div class="td">人点一下，设备动</div><div class="td k">报警推送</div><div class="td">HTTP 调 <code class="ic">wechatAlert</code> 接口</div><div class="td"><b>该敲门时才敲门</b>（推微信）</div></div>
+  <div style="margin-top:20px"><div class="strip a">一句话记住：<b>MQTT 是柜子，HTTP 是敲门</b>。数据往柜子里放，要惊动人的时候才去敲门</div></div>
+</div>
+<div class="notes"><p>这张表<b>贴墙上</b>，第四阶段剩下的课都要用。</p><p>你现在手上有<b>三条通路</b>了，别走错门。</p><p><b>第一行，数据上传。</b> 走 MQTT，publish，主题<b>带 /up</b>。用途是「<b>只存云，不打扰人</b>」——曲线躺在那儿，你想看才去看。</p><p><b>第二行，远程控制。</b> 也走 MQTT，subscribe，主题<b>不带 /up</b>。人点一下，设备动。</p><p><b>第三行，今天新学的，报警推送。</b> 走的是 <b>HTTP</b>——<b>不是 MQTT</b>。</p><p>这里要特别说清楚，因为很容易搞混：</p><p><b>推微信不是往主题里 publish 一句话，是去访问一个网址。</b></p><p>两套东西，两个出口。</p><p>（指黑条）</p><p>一句话记住：<b>MQTT 是柜子，HTTP 是敲门。</b></p><p>平常的数据，往<b>柜子</b>里放，安安静静。</p><p>真的要惊动人了，才去<b>敲门</b>。</p><p>为什么要分开？想想看——要是每条温度数据都推你一条微信，你一天收 17280 条。</p><p><b>柜子是给数据的，敲门是给大事的。</b></p></div>
+</section>
+
+<section class="slide lay-divider" data-title="课间休息">
+<div class="deco circle" style="width:200px;height:200px;top:-70px;right:180px"></div>
+<div class="deco square" style="width:130px;height:130px;left:-50px;bottom:70px;transform:rotate(12deg)"></div>
+<div class="deco tri" style="right:140px;bottom:90px;transform:rotate(14deg)"></div>
+<div class="dv">
+  <span class="dv-time">40–50 分</span>
+  <h2 class="dv-t">课间休息 10 分钟</h2>
+  <p class="dv-s">想一句你<b>最想在手机上看到</b>的报警话术</p>
+</div>
+<div class="notes"><p>上半场结束，休息十分钟。</p><p>休息的时候想一件事，下半场要用：</p><p><b>你最想在手机上看到的那条报警，长什么样？</b></p><p>是「temp_high」？还是「fish tank hot」？还是带上温度值「t=31」？</p><p>（停顿）</p><p>提醒一句：<b>得是英文</b>，中文发不出去。</p><p>还有，想的时候<b>站在收消息的人那边想</b>——</p><p>你妈妈半夜被这条消息叫醒，她需要知道什么？</p><p>「哪里」？「多热」？「要不要马上起来」？</p><p>好的报警，<b>看一眼就知道该不该动</b>。</p><p>十分钟后回来，我们让它真的响。</p></div>
+</section>
+
+<section class="slide lay-rowlist" data-title="触发验证">
+<div class="phead"><span class="no">第21课</span>
+<span class="kick c">真实验证</span>
+<span class="tslot">50–68 分</span>
+</div>
+<h2 class="ptitle">让它真的响一次</h2>
+<p class="psub">手焐 / 哈气，把温度<b>顶过阈值</b></p>
+<div class="pbody"><div class="rowlist grow"><div class="rowitem"><div class="num g">1</div><div class="tx"><b>手焐住 DHT11</b> 或者<b>对着它哈气</b>——温度会往上走，串口能看见数字在涨</div></div><div class="rowitem"><div class="num a">2</div><div class="tx">涨过你的阈值那一刻：<b>蜂鸣器响</b> ＋ 教师手机<b>收到微信</b>（投屏给全班看）</div></div><div class="rowitem"><div class="num c">3</div><div class="tx"><b>每组只准 3 条真推送</b>——免费额度有限，用完就没了。其余用<b>控制台记录</b>验证</div></div><div class="rowitem"><div class="num g">4</div><div class="tx">松开手，等温度<b>降回阈值低 1 度以下</b>：旗子收了，再焐一次应该<b>还能报</b></div></div><div class="rowitem"><div class="num a">5</div><div class="tx">推送不通？看<b>串口打印的接口返回</b>：<code class="ic">success</code> 才算通；本地蜂鸣器照响，<b>报警能力不丢</b></div></div></div><div style="margin-top:20px"><div class="strip g"><b>一次成功的触发</b>：响了、收到了、松手后还能再报一次。三样都对，这节课就成了</div></div></div>
+<div class="notes"><p>现在让它<b>真的响一次</b>。这是今天最激动人心的环节。</p><p>怎么把温度顶上去？<b>手焐住 DHT11</b>，或者<b>对着它哈气</b>。</p><p>一边焐，一边看串口——数字在<b>往上爬</b>。26、27、28……</p><p>（停顿，等某组先响）</p><p>听！</p><p>（投屏教师手机）</p><p>看我的手机——<b>收到了</b>。</p><p>（重点强调）</p><p><b>每组只准 3 条真推送。</b></p><p>为什么？因为免费额度有限，全班每组刷十条，<b>后面的组就一条都推不出去了</b>。</p><p>剩下的验证怎么做？看<b>控制台记录</b>，或者看串口打印。</p><p>第三件事，<b>松开手</b>。</p><p>等温度降下来，降到比阈值<b>低 1 度以下</b>——旗子收了。</p><p>这时候<b>再焐一次</b>：应该<b>还能报</b>。</p><p>如果松手后再焐报不出来了，说明你的<b>收旗条件写错了</b>。</p><p>最后，推送不通的组别慌：</p><p>看串口打印的<b>接口返回</b>。写着 <code class="ic">success</code> 才算通。</p><p>就算推送一直不通，<b>你的蜂鸣器照响</b>——</p><p><b>报警能力一点没丢</b>，只是少了一条腿。串口截图就是你的证据。</p></div>
+</section>
+
+<section class="slide lay-aierror" data-title="推送收不到">
+<div class="phead"><span class="no">第21课</span>
+<span class="kick c">排错</span>
+<span class="tslot">50–68 分</span>
+</div>
+<h2 class="ptitle">微信收不到？先看接口返回</h2>
+<p class="psub">串口那行字，会直接告诉你错在哪</p>
+<div class="pbody">
+  <div class="aegrid grow">
+    <div class="code"><span class="lab c">三个最常见的写法错误</span><pre style="font-size:19px;line-height:1.55">send_wechat("温度太高了")     <span class="c"># ← 错1：中文消息，返回「参数错误」</span>
+
+client.publish("gNwechat", "hot")  <span class="c"># ← 错2：推送不走 MQTT！</span>
+
+<span class="k">if</span> t &gt; LIMIT:                 <span class="c"># ← 错3：漏了 and not alarmed</span>
+    send_wechat("temp_high")  <span class="c">#        → 5 秒一条，刷屏</span></pre></div>
+    <div class="aecol">
+      <div class="blk c"><h4>对照<b>接口返回</b>逐条查</h4><p>返回「<b>参数错误 / -1</b>」→ <b>message 用了中文</b>，或 <b>uid（私钥）写错</b>。<br><b>先用英文消息</b>，返回 <b>success</b> 才算通。</p></div>
+      <div class="blk g"><h4>还有两个「逻辑」错，不报红字</h4><p><b>永远不报警</b> → 阈值太高，或 <code class="ic">&gt;</code> 写成了 <code class="ic">&lt;</code>。<br><b>反复报 / 停</b> → <b>缓冲带没加</b>（收旗线低 1 度）。</p></div>
+    </div>
+  </div>
+  <div style="margin-top:22px"><div class="strip a">排错顺序：① 串口返回是 success 吗　② message 是英文吗　③ 私钥（uid）对吗　④ 去抖旗挂了吗</div></div>
+</div>
+<div class="notes"><p>微信收不到，别瞎猜——<b>串口那行字会直接告诉你错在哪</b>。</p><p><b>错 1：消息写成了中文。</b></p><p>返回「参数错误」或者 <code class="ic">-1</code>，八成就是这个。改成 <code class="ic">temp_high</code> 这样的英文。</p><p><b>错 2：把推送写成了 publish。</b></p><p>（重点）</p><p>这个错我要特别讲。有人会想：「不是有 MQTT 吗，我往一个主题里 publish 一句话不就推送了？」</p><p><b>不行。</b> 推送<b>不走 MQTT</b>，走的是 <b>HTTP 接口</b>。</p><p>回想上半场那张表：<b>MQTT 是柜子，HTTP 是敲门。</b> 往柜子里放东西，<b>不会有人来通知你</b>。</p><p><b>错 3：漏了 <code class="ic">and not alarmed</code>。</b></p><p>这个不报错，但你手机会被刷屏——「狼来了」又回来了。</p><p>（指第二块）</p><p>还有两个<b>纯逻辑</b>的错，一个红字都不报：</p><p><b>永远不报警</b> → 阈值写太高，或者大于号写成了小于号。拿你 L19 报告的数字<b>逐字核对</b>。</p><p><b>在阈值附近反复报、反复停</b> → 缓冲带没加，收旗线要<b>低 1 度</b>。</p><p>排错顺序记住：<b>先看串口返回</b>，再看消息是不是英文，再看私钥，最后看旗。</p><p>一次只查一样。</p></div>
+</section>
+
+<section class="slide lay-tiers3" data-title="分层实战">
+<div class="phead"><span class="no">第21课</span>
+<span class="kick g">分层任务</span>
+<span class="tslot">68–80 分</span>
+</div>
+<h2 class="ptitle">先保底，再打磨产品感</h2>
+<p class="psub">超标能报 ＋ 只报一次 ＝ 成功</p>
+<div class="pbody"><div class="g3 grow"><div class="blk tier t1"><div class="hd">★ 保底（必做）</div>
+        <p class="task">超过<b>本组阈值</b> → 云端收到报警（推送或控制台记录）＋ <b>蜂鸣器响</b>；<b>去抖生效</b>（超标期间只报一次）。</p><p class="fill">我的阈值：______ 度　□ 报了　□ 只报了一次</p></div><div class="blk tier t2"><div class="hd">★★ 挑战（学有余力）</div>
+        <p class="task">加「<b>解除警报</b>」：温度降回去之后，推一条 <code class="ic">temp_ok</code> 告诉人「<b>已恢复</b>」。</p><p class="fill">□ 恢复消息收到了</p></div><div class="blk tier t3"><div class="hd">★★★ 再挑战</div>
+        <p class="task">让消息<b>带上温度值</b>（如 <code class="ic">t31</code>），并说说：<b>多一个数字，收消息的人多知道了什么？</b></p><p class="fill">我的报警消息：____________</p></div></div>
+<div style="margin-top:22px"><div class="strip g"><b>产品感在哪？</b> 会报警只是及格——<b>报完还告诉你「没事了」</b>，人才敢放心睡觉</div></div></div>
+<div class="notes"><p>三档任务。</p><p><b>保底必做</b>：超过你自己的阈值能报，蜂鸣器响，而且<b>只报一次</b>。</p><p>卡片上先把阈值填上——<b>填你 L19 报告里那个数</b>，不是抄别组的。</p><p><b>挑战档：加「解除警报」。</b></p><p>温度降回去之后，推一条 <code class="ic">temp_ok</code>。</p><p>（重点）</p><p>这一档我要多说两句，因为它是今天<b>最有产品感</b>的一档。</p><p>想一想：半夜你手机响了，「temp_high」。你爬起来看了一眼，开了空调，又睡了。</p><p>过了半小时，温度降下来了——<b>你怎么知道？</b></p><p>（等他们想）</p><p><b>你不知道。</b> 你得再爬起来看一次。</p><p>所以好的报警系统，<b>报完还要告诉你「没事了」</b>。</p><p>你家的燃气报警器就是这样——响完，通风好了，它会停，而且指示灯变绿。</p><p><b>报警让人紧张，解除让人安心。</b> 两样都有，人才敢放心睡觉。</p><p><b>再挑战：消息带上温度值</b>，比如 <code class="ic">t31</code>。</p><p>然后回答那个问题：<b>多一个数字，收消息的人多知道了什么？</b></p><p>（提示）他知道了<b>有多严重</b>。31 度和 35 度，要不要马上冲回家，是两回事。</p></div>
+</section>
+
+<section class="slide lay-rowlist" data-title="今日三大发现">
+<div class="phead"><span class="no">第21课</span>
+<span class="kick g">总结</span>
+<span class="tslot">80–90 分</span>
+</div>
+<h2 class="ptitle">今日三大发现</h2>
+<div class="pbody"><div class="rowlist grow"><div class="rowitem"><div class="num g">1</div><div class="tx"><b>报警 ＝ 感知 → 判断 → 行动</b>：读一个数、比一条线、该喊就喊——系统第一次<b>自己做决定</b></div></div><div class="rowitem"><div class="num a">2</div><div class="tx"><b>会克制才是好报警</b>：报过就挂旗，降回去才收旗；收旗线<b>低 1 度</b>当缓冲带</div></div><div class="rowitem"><div class="num c">3</div><div class="tx"><b>MQTT 是柜子，HTTP 是敲门</b>：数据往柜子里放，惊动人的事才去敲门（<code class="ic">wechatAlert</code>）</div></div></div><div style="margin-top:20px"><div class="strip a"><b>用数据说话</b>走完全程：上传（L18）→ 报告（L19）→ 报警（今天）。下节课——<b>一块板会报警了，两块板能不能互相报？</b></div></div></div>
+<div class="notes"><p>今天三个发现。</p><p><b>第一个，报警就是「感知 → 判断 → 行动」。</b></p><p>读一个数、比一条线、该喊就喊。听起来平淡，但这是你的系统<b>第一次自己做决定</b>。</p><p>前面所有课，动作都是<b>你</b>发起的。今天开始，<b>它自己来</b>。</p><p><b>第二个，会克制才是好报警。</b></p><p>报过就挂旗，降回去才收旗，收旗线低 1 度。</p><p>这句话其实不只说代码——<b>说了 100 遍的话，第 101 遍没人听</b>。</p><p><b>第三个，MQTT 是柜子，HTTP 是敲门。</b></p><p>（停顿，回顾）</p><p>现在我们把「<b>用数据说话</b>」这条线走完了：</p><p><b>L18 上传</b> —— 让数据存下来。</p><p><b>L19 报告</b> —— 从数据里读出一个<b>数字</b>。</p><p><b>今天报警</b> —— 让那个数字<b>上岗干活</b>。</p><p>你们自己定的那条线，今天真的在守夜了。</p><p>最后留一个问题：</p><p><b>一块板会报警了——那两块板，能不能互相报？</b></p><p>比如厨房那块闻到烟，让客厅那块响起来？</p><p>（停顿）</p><p>下节课《两块板对话》。下课。</p></div>
+</section>
+
+<section class="slide lay-cards2" data-title="课后任务">
+<div class="phead"><span class="no">第21课</span>
+<span class="kick a">课后任务</span>
+</div>
+<h2 class="ptitle">课后任务</h2>
+<div class="pbody"><div class="g2 grow"><div class="blk g"><h4>基础（全员）</h4><p>给家人讲你的报警系统：<b>阈值是多少</b>、<b>为什么是这个数</b>、<b>报警时谁收到消息</b>。</p></div><div class="blk a"><h4>拓展（选做）</h4><p>观察家里的报警器（烟感 / 燃气 / 手表提醒）：它们<b>克制吗</b>？有没有「<b>已解除</b>」的提示？</p></div></div>
+<div style="margin-top:24px"><div class="strip g">从<b>看数据</b>到<b>会报警</b>——你的系统现在<b>自己会做决定</b>了</div></div></div>
+<div class="notes"><p>课后两件事。</p><p>第一件全员都做：<b>给家人讲你的报警系统。</b></p><p>讲三句话就够了：<b>阈值是多少</b>、<b>为什么是这个数</b>、<b>报警的时候谁收到消息</b>。</p><p>第二句最重要。家里人肯定会问：「28 度这个数怎么来的？」</p><p>你要能答：「我测了 24 小时，画了曲线，发现平时最高到 26，所以我定 28。」</p><p>（停顿）</p><p><b>这句话说出来，跟『我随便填了个数』完全是两个层次。</b></p><p>第二件选做，是一道<b>观察题</b>：</p><p>找找家里的报警器——烟感、燃气报警器、手表上的提醒。</p><p>看两件事：</p><p><b>它们克制吗？</b> 响起来是一直响，还是响几声就停？</p><p><b>有没有「已解除」的提示？</b> 危险过去了，它怎么告诉你？</p><p>下节课我们会发现，你家里那些「聪明的东西」，用的招数<b>跟你今天写的一模一样</b>。</p><p>最后一句：</p><p><b>从看数据到会报警——你的系统，现在自己会做决定了。</b></p><p>下课。</p></div>
+</section>
+<div class="deck-footer"><span>ESP32 × AI 科创课程 · 第四阶段「驾驭AI · 物联网」 · 第21课 会报警的系统</span><span class="slide-number" data-current="1" data-total="14"></span></div>
+<div class="progress-bar"><span></span></div>
+</div>
+<script src="assets/fitstage.js"></script>
+<script src="assets/runtime.js"></script>
+</body>
+</html>

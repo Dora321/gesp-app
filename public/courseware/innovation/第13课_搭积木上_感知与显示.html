@@ -1,0 +1,202 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>第13课 · 搭积木（上）感知与显示 — ESP32 × AI 科创课程</title>
+<link rel="stylesheet" href="assets/base.css">
+<link rel="stylesheet" id="theme-link" href="assets/theme-course-pop.css">
+<link rel="stylesheet" href="assets/animations.css">
+</head>
+<body>
+<div class="deck" data-theme-base="assets/">
+<section class="slide lay-cover is-active" data-title="封面">
+<div class="deco circle" style="width:170px;height:170px;top:-52px;right:238px"></div>
+<div class="deco tri" style="right:110px;bottom:132px;transform:rotate(14deg)"></div>
+<div class="deco square" style="width:120px;height:120px;left:-46px;bottom:86px;transform:rotate(12deg)"></div>
+<span class="cv-bar">ESP32 × AI ／ 第三阶段「超越AI」项目工作坊（上）</span>
+<h1 class="cv-title">搭积木<em>（上）</em></h1>
+<p class="cv-sub">让它感知与显示——按图施工，一次只搭一块</p>
+<div class="cv-tags"><span class="tag">设计图在手</span><span class="tag">AI 按需调用</span><span class="tag">先看到再相信</span><span class="tag">90 分钟连堂</span></div>
+<div class="cv-no">13</div>
+<div class="notes"><p>两节纸面课憋坏了吧？今天<b>终于动手</b>。</p><p>但是注意，今天动手和以前<b>不一样</b>。</p><p>以前是我给你题目、我给你步骤。今天你手里拿着<b>自己画的设计图</b>——那是你们自己的施工图纸。</p><p>今天还有一个新规矩，我先说在前面，它决定了这两节课顺不顺：</p><p><b>一次只搭一块积木。</b></p><p>今天只搭第一块：让装置能<b>感知</b>，并把感知到的<b>显示</b>出来。</p><p>决策和组装，留到下次课。</p><p>代码回来了，但用法也变了：AI 从今天起是<b>工具箱</b>——你需要哪一段，才去问它要哪一段。</p><p>不是把整个项目丢给它。</p></div>
+</section>
+
+<section class="slide lay-cards3" data-title="定里程碑">
+<div class="phead"><span class="no">第13课</span>
+<span class="kick c">定里程碑</span>
+<span class="tslot">0–10 分</span>
+</div>
+<h2 class="ptitle">今天只搭第一块积木</h2>
+<p class="psub">盖房子要一块砖一块砖砌</p>
+<div class="pbody"><div class="g3 grow"><div class="blk g"><h4>一次全要</h4><p>AI 给你 <b>50 行</b>看不懂的代码。一出错，你连从哪儿查都不知道。</p></div><div class="blk a"><h4>一次一块</h4><p>AI 给你 <b>10 行</b>读得懂的代码。出错了，就在这十行里找。</p></div><div class="blk c"><h4>今天的里程碑</h4><p><b>感知 ＋ 显示</b>——让它读到周围，并把读到的<b>显示出来</b>。</p></div></div><div style="margin-top:22px"><div class="strip a">决策和组装留到下次课——<b>一次只搭一块，才看得懂、才好排错</b></div></div></div>
+<div class="notes"><p>开始之前，先定今天的<b>里程碑</b>——就一个。</p><p>我知道很多组已经想好了：一节课把整个项目做完，多爽。</p><p>我劝你们别。看左边这两张卡的对比。</p><p><b>一次全要</b>：你跟 AI 说「帮我做个自动小夜灯」，它给你 50 行代码。看得懂吗？看不懂。那出错了怎么办？你连从哪儿查都不知道。</p><p><b>一次一块</b>：你说「帮我读出光敏的值并打印」，它给你 10 行。这 10 行你能一行一行读懂。出错了，就在这十行里找。</p><p>盖房子要一块砖一块砖砌，没有人一次浇一整栋楼。</p><p>所以今天的里程碑只有一个：<b>感知 ＋ 显示</b>。</p><p>让它能读到周围的信息，并且把读到的东西<b>显示出来</b>给我们看。</p><p>决策和组装，下次课。</p><p>两节课里我会一直念这句：<b>一次只搭一块。</b></p></div>
+</section>
+
+<section class="slide lay-rowlist" data-title="接线 感知段">
+<div class="phead"><span class="no">第13课</span>
+<span class="kick a">动手</span>
+<span class="tslot">10–22 分</span>
+</div>
+<h2 class="ptitle">按图接线：感知段</h2>
+<p class="psub">照着你自己画的设计图接——不是照我的</p>
+<div class="pbody"><div class="rowlist grow"><div class="rowitem"><div class="num g">1</div><div class="tx"><b>先拔 USB 再接线</b>——不湿手碰、不短接、不带电插拔</div></div><div class="rowitem"><div class="num a">2</div><div class="tx">照设计图接<b>感知元件</b>：光敏 → <b>GPIO34</b>，或 DHT11 → <b>GPIO14</b></div></div><div class="rowitem"><div class="num c">3</div><div class="tx">顺手把 <b>LED → GPIO2</b> 也接上——待会儿用它确认接线通没通</div></div><div class="rowitem"><div class="num g">4</div><div class="tx">温度组还要接 OLED：<b>SCL → 22，SDA → 21</b>（ssd1306.py 先传到板上）</div></div><div class="rowitem"><div class="num a">5</div><div class="tx">接完对照项目手册上的操作要点，<b>逐项打勾</b>再插 USB</div></div></div><div style="margin-top:20px"><div class="strip g">接线口诀：<b>元件对引脚，引脚对设计图</b>——图上写 GPIO34，就插 34，别凭印象</div></div></div>
+<div class="notes"><p>现在接线。注意——<b>照着你自己画的设计图接，不是照我的</b>。</p><p>每组的项目不一样，接的东西也不一样。你图上写的是光敏，就接光敏；写的是 DHT11，就接 DHT11。</p><p>第一条，老规矩：<b>先拔 USB 再接线</b>。三不碰。</p><p>第二条，接感知元件。光敏接 GPIO34，DHT11 接 GPIO14。</p><p>第三条，顺手把 <b>LED 接到 GPIO2</b>。为什么今天就接 LED？它是执行段的东西啊。</p><p>因为它是最简单的「<b>通电指示灯</b>」——待会儿代码一跑，LED 亮了，说明板子活着、代码传上去了。它帮你排除一半的问题。</p><p>温度组多一步：接 OLED，SCL 接 22、SDA 接 21，而且 <b>ssd1306.py 要先传到板上</b>，第 4 课学过。</p><p>接完了，对照项目手册上的操作要点<b>逐项打勾</b>，再插 USB。</p><p>口诀：<b>元件对引脚，引脚对设计图</b>。图上写 34 就插 34，别凭印象。</p></div>
+</section>
+
+<section class="slide lay-stepcode" data-title="向AI要代码">
+<div class="phead"><span class="no">第13课</span>
+<span class="kick g">AI 按需调用</span>
+<span class="tslot">22–40 分</span>
+</div>
+<h2 class="ptitle">只要一块积木的代码</h2>
+<div class="pbody">
+  <div class="scstack">
+    <div class="fiverow"><div class="fvc"><span class="fk">语言</span><span class="fw">MicroPython</span></div><div class="fvc"><span class="fk">硬件</span><span class="fw">ESP32 ＋ 光敏模块</span></div><div class="fvc"><span class="fk">接线</span><span class="fw">光敏接在 GPIO34</span></div><div class="fvc"><span class="fk">效果</span><span class="fw">读出光敏的值，并打印到串口</span></div><div class="fvc"><span class="fk">约束</span><span class="fw"><b>只要这一个模块的代码</b>，带中文注释，用我学过的写法</span></div></div>
+    <div class="askline"><b>五要素 · 只要一块：</b>「我用 MicroPython，硬件是 ESP32。光敏模块接在 GPIO34。请帮我写一段代码：读出光敏的值，并打印到串口。约束：只要这一个模块的代码，带中文注释，用我学过的写法。」</div>
+    <div class="code"><span class="lab g">起步全码 · 主线：智能小夜灯（感知＋显示）</span><pre style="font-size:18px;line-height:1.38"><span class="k">from</span> machine <span class="k">import</span> Pin, ADC       <span class="c"># 引脚与模拟读取工具</span>
+<span class="k">import</span> time                        <span class="c"># 时间工具</span>
+
+light = ADC(Pin(34))               <span class="c"># 光敏模块接 GPIO34</span>
+light.atten(ADC.ATTN_11DB)         <span class="c"># 量程调到 0~3.3V（别忘！）</span>
+led = Pin(2, Pin.OUT)              <span class="c"># LED 接 GPIO2</span>
+
+<span class="k">while</span> <span class="k">True</span>:
+    value = light.read()           <span class="c"># 感知：读亮度（0~4095）</span>
+    print("亮度：", value)         <span class="c"># 显示：打印到串口</span>
+    led.value(1)                   <span class="c"># 点亮 LED 确认接线</span>
+    time.sleep(1)                  <span class="c"># 每秒读一次</span></pre></div>
+  </div>
+  
+</div>
+<div class="notes"><p>现在向 AI 要代码。看第⑤条约束，今天这条最关键：</p><p>「<b>只要这一个模块的代码</b>」。</p><p>这七个字是今天的护身符。不写它，AI 很容易热心过头，把整个小夜灯都给你写了。</p><p>下面是你们应该拿到的代码，大概长这样。我带你们读一遍——<b>要到的代码，先自己读一遍，每行干嘛的能说清楚，再上板跑</b>。</p><p>第 1、2 行请工具。</p><p>第 4 行请光敏管家，站在 34 号脚。</p><p>第 5 行——<b>设量程</b>。后面括号里我写了「别忘！」。为什么要提醒？待会儿的 AI 出错时刻就是它。</p><p>第 6 行请 LED。</p><p>下面循环里三件事：<b>读</b>、<b>打印</b>、<b>点亮 LED</b>，然后停 1 秒。</p><p>这就是「感知 ＋ 显示」：读是感知，打印是显示，LED 是确认接线。</p><p>温度组的代码在下一页，结构一样。</p><p>拿到代码，跑不起来的组<b>先跑我这段起步全码兜底</b>，跑通了再回头看自己的问题在哪。</p></div>
+</section>
+
+<section class="slide lay-codefull" data-title="温度组范例">
+<div class="phead"><span class="no">第13课</span>
+<span class="kick a">附录范例</span>
+<span class="tslot">22–40 分</span>
+</div>
+<h2 class="ptitle">温度组：感知 ＋ 显示</h2>
+<p class="psub">做温度警报器的组看这一页——提问把第一句换成「DHT11 接 GPIO14，OLED 接 SCL=22/SDA=21」</p>
+<div class="pbody"><div class="code"><span class="lab g">起步全码 · 桌面温度警报器（感知＋显示）</span><pre style="font-size:19px;line-height:1.55"><span class="k">from</span> machine <span class="k">import</span> Pin, SoftI2C   <span class="c"># 引脚与 I2C 工具</span>
+<span class="k">import</span> dht, time                   <span class="c"># DHT11 与时间工具</span>
+<span class="k">from</span> ssd1306 <span class="k">import</span> SSD1306_I2C    <span class="c"># OLED 驱动（板上要先传 ssd1306.py）</span>
+
+sensor = dht.DHT11(Pin(14))        <span class="c"># DHT11 接 GPIO14</span>
+i2c = SoftI2C(scl=Pin(22), sda=Pin(21))
+oled = SSD1306_I2C(128, 64, i2c)   <span class="c"># OLED 屏</span>
+
+<span class="k">while</span> <span class="k">True</span>:
+    sensor.measure()               <span class="c"># 先测一次（别忘！）</span>
+    t = sensor.temperature()       <span class="c"># 取出温度</span>
+    oled.fill(0)                   <span class="c"># 清屏</span>
+    oled.text("Temp: " + str(t) + "C", 0, 0)
+    oled.show()                    <span class="c"># 显示到屏上</span>
+    time.sleep(2)                  <span class="c"># DHT11 至少隔 1~2 秒再读</span></pre></div><div style="margin-top:18px"><div class="strip g"><b>DHT11 读之前必须先 <code class="ic">measure()</code></b>，而且两次读取至少隔 1~2 秒——少一样就报错</div></div></div>
+<div class="notes"><p>做温度警报器的组看这一页。结构和主线完全一样，只是元件换了。</p><p>提问的时候，把第一句换成：「DHT11 接在 GPIO14，OLED 接 SCL=22、SDA=21」，效果换成「读出温度并显示到 OLED」。</p><p>代码里有两个坑，我都用括号标出来了。</p><p>第一个，第 3 行 <code class="ic">from ssd1306 import SSD1306_I2C</code>——<b>板上要先传 ssd1306.py</b>。第 4 课踩过，今天别再踩。</p><p>第二个，循环里第一行 <code class="ic">sensor.measure()</code>，「<b>先测一次</b>」。</p><p>DHT11 有个脾气：你不能直接问它「现在几度」，得先让它<b>去测</b>，再取结果。少了 measure() 这一行，<b>直接报错</b>。</p><p>还有黑条上那句：两次读取至少隔 1~2 秒。所以最后 sleep 写的是 2 不是 1。</p><p>这两个坑，一个报错、一个不报错——不报错的那个更可怕，下一页就讲。</p></div>
+</section>
+
+<section class="slide lay-divider" data-title="课间休息">
+<div class="deco circle" style="width:200px;height:200px;top:-70px;right:180px"></div>
+<div class="deco square" style="width:130px;height:130px;left:-50px;bottom:70px;transform:rotate(12deg)"></div>
+<div class="deco tri" style="right:140px;bottom:90px;transform:rotate(14deg)"></div>
+<div class="dv">
+  <span class="dv-time">40–50 分</span>
+  <h2 class="dv-t">课间休息 10 分钟</h2>
+  <p class="dv-s">已经读到数据的组，去帮还没成功的组看看接线</p>
+</div>
+<div class="notes"><p>上半场结束，休息十分钟。</p><p>有个任务给<b>已经读到数据的组</b>：去帮还没成功的组<b>看看接线</b>。</p><p>为什么让你们去帮？因为九成的问题是接线，而<b>旁观者一眼就能看出来</b>——自己盯着自己的线看十分钟，反而看不见错的那根。</p><p>被帮的组也别不好意思。这就是工作坊：谁先跑通，谁就是助教。</p><p>回来我们做下半场：把数据<b>显示出来</b>，并且<b>验证</b>它真的在感知。</p></div>
+</section>
+
+<section class="slide lay-rowlist" data-title="先看到再相信">
+<div class="phead"><span class="no">第13课</span>
+<span class="kick g">验证</span>
+<span class="tslot">50–68 分</span>
+</div>
+<h2 class="ptitle">先看到，再相信</h2>
+<p class="psub">屏幕上有数字了，就完了吗？<b>没有</b></p>
+<div class="pbody"><div class="rowlist grow"><div class="rowitem"><div class="num g">1</div><div class="tx">把读到的数据<b>显示出来</b>：串口打印，或者（温度组）OLED 显示</div></div><div class="rowitem"><div class="num a">2</div><div class="tx"><b>LED 亮了吗？</b> 亮了说明板子活着、代码传上去了——这是最便宜的排错手段</div></div><div class="rowitem"><div class="num c">3</div><div class="tx">光敏组：<b>用手遮住光敏</b>——数值变小了吗？</div></div><div class="rowitem"><div class="num g">4</div><div class="tx">温度组：<b>对着 DHT11 哈口气</b>——温度动了吗？</div></div><div class="rowitem"><div class="num a">5</div><div class="tx">数值<b>会跟着环境变</b>，才说明它真的在感知——<b>先看到，再相信</b></div></div></div><div style="margin-top:20px"><div class="strip a">数值一动不动？那多半<b>不是在读真实世界</b>，是在读一个假数——下一页告诉你为什么</div></div></div>
+<div class="notes"><p>屏幕上跳出数字了，是不是就成功了？</p><p><b>没有。</b></p><p>我给你们讲一个真事：每年都有组，串口里数字刷得飞快，一看 4095、4095、4095……他们很开心，说读到了。</p><p>我走过去，用手把光敏捂住——<b>还是 4095</b>。</p><p>那它读的是什么？<b>不是光。</b></p><p>所以今天最重要的一句话是：<b>先看到，再相信</b>。</p><p>「看到」是第一步：把数据显示出来。串口打印，或者 OLED 显示。</p><p>顺便看一眼 <b>LED 亮没亮</b>。亮了说明板子活着、代码传上去了——这是最便宜的排错手段，两秒钟排除一半问题。</p><p>「相信」要靠<b>验证</b>：</p><p>光敏组，<b>用手遮住它</b>——数值应该变小。</p><p>温度组，<b>对着传感器哈口气</b>——温度应该往上动。</p><p>数值<b>会跟着环境变</b>，才说明它真的在感知。</p><p>一动不动的，下一页告诉你为什么。</p></div>
+</section>
+
+<section class="slide lay-aierror" data-title="AI 出错时刻">
+<div class="phead"><span class="no">第13课</span>
+<span class="kick c">AI 出错时刻</span>
+<span class="tslot">68–80 分</span>
+</div>
+<h2 class="ptitle">能跑，不等于正确</h2>
+<p class="psub">这段 AI 给的代码不报错——但它读的是<b>假数</b></p>
+<div class="pbody">
+  <div class="aegrid grow">
+    <div class="code"><span class="lab c">AI 给的代码（少了一行）</span><pre style="font-size:23px;line-height:1.55">light = ADC(Pin(34))
+<span class="c"># 这里少了一行 light.atten(...)</span>
+
+<span class="k">while</span> <span class="k">True</span>:
+    print(light.read())
+    time.sleep(1)
+
+<span class="c"># 串口输出：4095 4095 4095 4095 ...</span>
+<span class="c"># 不报错，但遮住它也不变</span></pre></div>
+    <div class="aecol">
+      <div class="blk c"><h4>病因：忘了设量程</h4><p>少了 <code class="ic">light.atten(ADC.ATTN_11DB)</code>。程序<b>跑得好好的、一个红字都没有</b>，可读数永远卡在 <b>4095</b>——遮住它也不变。</p></div>
+      <div class="blk g"><h4>同类还有一个：DHT11 忘了 <code class="ic">measure()</code></h4><p>那个会<b>直接报错</b>，反而好发现。<b>不报错的错，才是最难抓的。</b></p></div>
+    </div>
+  </div>
+  <div style="margin-top:22px"><div class="strip a">所以 AI 写的代码<b>必须你自己验证</b>：遮一下、哈口气，数值该变就变，才算真的读到了</div></div>
+</div>
+<div class="notes"><p>看这段 AI 给的代码。它少了一行——少了<b>设量程</b>那一行。</p><p>运行它：<b>不报错</b>。串口哗哗地出数字。你会觉得一切正常。</p><p>但是数字是多少？<b>4095、4095、4095……永远是 4095</b>。</p><p>用手遮住光敏——<b>还是 4095</b>。</p><p>这就是今天的 AI 出错时刻：它读的是<b>假数</b>。</p><p>这种错为什么可怕？因为<b>红字不会帮你</b>。第 5 课我们学过三类错误，还记得最难的是哪一类吗？</p><p>——<b>逻辑错</b>。不报红字，但结果不对。今天这个就是。</p><p>右边还有一个同类的：DHT11 忘了 measure()。那个<b>会直接报错</b>，反而好发现。</p><p>所以我要告诉你们一句有点反常识的话：</p><p><b>不报错的错，才是最难抓的。</b></p><p>那怎么办？只有一个办法，就是你刚才做的那件事——</p><p><b>遮一下、哈口气。数值该变就变，才算真的读到了。</b></p><p>AI 写的代码，必须你自己验证。<b>能跑，不等于正确。</b></p></div>
+</section>
+
+<section class="slide lay-tiers3" data-title="分层任务">
+<div class="phead"><span class="no">第13课</span>
+<span class="kick g">分层任务</span>
+<span class="tslot">68–80 分</span>
+</div>
+<h2 class="ptitle">先保底，再挑战</h2>
+<p class="psub">能读到 ＋ 能看到 ＝ 这节课成功</p>
+<div class="pbody"><div class="g3 grow"><div class="blk tier t1"><div class="hd">★ 基础（必做）</div>
+        <p class="task">让传感器读到数据，并显示出来（串口打印或 OLED），点亮 LED 确认接线。</p><p class="fill">我读到的第一个数值是：____　□ 显示出来了　□ LED 亮了</p></div><div class="blk tier t2"><div class="hd">★★ 进阶（建议做）</div>
+        <p class="task">验证感知：遮一遮光敏 / 哈口气到 DHT11，看数值变化。</p><p class="fill">遮住/哈气后数值变成了：____　□ 会变，感知真的在工作</p></div><div class="blk tier t3"><div class="hd">★★★ 挑战（学有余力）</div>
+        <p class="task">把显示做得更好看：串口加文字说明，或 OLED 多显示一行。</p><p class="fill">我的显示效果：________</p></div></div>
+<div style="margin-top:22px"><div class="strip g">卡壳超过 <b>10 分钟</b>别硬扛——直接换我的起步全码跑通，再回头对比自己的问题出在哪</div></div></div>
+<div class="notes"><p>三档任务。</p><p><b>基础档必做</b>：读到数据、显示出来、LED 亮。这三样做到，这节课就成功了。</p><p>卡片上要填「我读到的第一个数值」——填了这个数，才说明你真的看到了。</p><p>进阶档：<b>验证</b>。遮一遮、哈口气，把变化后的数值也填上。</p><p>挑战档：把显示做好看点。串口加文字说明，或者 OLED 多显示一行，比如「天黑了吗：还没」。</p><p>最后一条最重要，黑条上那句：</p><p><b>卡壳超过 10 分钟，别硬扛。</b></p><p>举手叫我，我直接给你我的起步全码，先跑通。</p><p>跑通之后再回头对比：我的代码和你的，差在哪儿？</p><p>这不是作弊。工程师遇到卡住的问题，第一件事就是找一个<b>已知能跑</b>的版本做参照。</p><p>今天时间有限，卡在接线上耗掉半节课，什么都学不到。</p></div>
+</section>
+
+<section class="slide lay-rowlist" data-title="进度检查单">
+<div class="phead"><span class="no">第13课</span>
+<span class="kick a">硬检查点</span>
+<span class="tslot">80–90 分</span>
+</div>
+<h2 class="ptitle">进度检查单：地基打好了吗</h2>
+<p class="psub">对照手册逐项打勾——③④是今天的<b>硬检查点</b></p>
+<div class="pbody"><div class="rowlist grow"><div class="rowitem"><div class="num g">1</div><div class="tx">□ ① 感知元件按设计图接好（接线前拔了 USB）</div></div><div class="rowitem"><div class="num a">2</div><div class="tx">□ ② 向 AI 要到读取代码，并<b>读懂每一行</b></div></div><div class="rowitem"><div class="num c">3</div><div class="tx">□ ③ 上板运行，<b>能读到数据</b> ★保底</div></div><div class="rowitem"><div class="num g">4</div><div class="tx">□ ④ 把数据<b>显示出来</b>（串口 / OLED）★保底</div></div><div class="rowitem"><div class="num a">5</div><div class="tx">□ ⑤ 遮光 / 哈气验证感知真在工作</div></div></div><div style="margin-top:20px"><div class="strip g"><b>保底配置</b>（全班统一的最小可跑组合）：1 感知 ＋ 1 显示 ＋ 1 执行——<b>退回它不是失败</b>，是保住完整作品的底线</div></div></div>
+<div class="notes"><p>还有十分钟，各组对照项目手册上的<b>进度检查单</b>，逐项打勾。</p><p>①②③④⑤，五项。其中<b>③能读到数据、④能显示出来</b>，是今天的保底目标。</p><p>这两项过了，你的<b>地基就打好了</b>。</p><p>（教师逐组核对，不作声张）</p><p>我说一下黑条上那个「<b>保底配置</b>」，它印在你们手册的首页：</p><p><b>1 个感知 ＋ 1 个显示 ＋ 1 个执行。</b></p><p>这是全班统一的<b>最小可跑组合</b>。任何自选方案，都必须能退回到这个组合。</p><p>我要特别说一句：<b>退回它不是失败。</b></p><p>它是保住「完整作品」的底线。一个能跑通的小东西，比一个做了一半、说不清是什么的大东西，价值高得多。</p><p>下次课，有的组会用「<b>标准积木</b>」来搭——积木不一样，但盖出来的都是<b>完整的房子</b>。</p><p>下次课我们给它装上「<b>决策</b>」，再把所有积木<b>组装联调</b>。下课。</p></div>
+</section>
+
+<section class="slide lay-rowlist" data-title="今日三大发现">
+<div class="phead"><span class="no">第13课</span>
+<span class="kick g">总结</span>
+<span class="tslot">80–90 分</span>
+</div>
+<h2 class="ptitle">今日三大发现</h2>
+<div class="pbody"><div class="rowlist grow"><div class="rowitem"><div class="num g">1</div><div class="tx"><b>按图施工</b>——照着自己画的设计图，一块一块搭，不慌不乱</div></div><div class="rowitem"><div class="num a">2</div><div class="tx"><b>AI 按需调用</b>——需要哪段代码，才去问 AI 要哪段，自己<b>读懂再用</b></div></div><div class="rowitem"><div class="num c">3</div><div class="tx"><b>先看到再相信</b>——先把读到的数据显示出来，确认感知<b>真的</b>工作了</div></div></div><div style="margin-top:20px"><div class="strip a">下次课《搭积木（下）》——给它装上<b>决策</b>，再把所有积木<b>组装联调</b>！</div></div></div>
+<div class="notes"><p>今天三个发现。</p><p>第一个，<b>按图施工</b>。照着自己画的设计图，一块一块搭，不慌不乱。</p><p>你们今天应该体会到了：手里有图和没图，差别有多大。有图的组接线不用问人，照着插就行。</p><p>第二个，<b>AI 按需调用</b>。需要哪段代码，才去问它要哪段，自己读懂再用。</p><p>这就是「工具箱」的用法——你不会把整个工具箱倒在地上，你只拿你要用的那把。</p><p>第三个，<b>先看到再相信</b>。这一条今天值一百分。</p><p>你们已经不是那种「跑起来就欢呼」的新手了——你会伸手去遮一下，看数值变不变。</p><p>这个动作，就是<b>工程师和爱好者的区别</b>。</p><p>下次课：给它装上<b>决策</b>——就是你设计图中间那段琥珀色的格子；然后把所有积木<b>组装联调</b>，成一个完整作品。</p><p>下课。</p></div>
+</section>
+
+<section class="slide lay-cards2" data-title="课后任务">
+<div class="phead"><span class="no">第13课</span>
+<span class="kick a">课后任务</span>
+</div>
+<h2 class="ptitle">课后任务</h2>
+<div class="pbody"><div class="g2 grow"><div class="blk g"><h4>基础（全员）</h4><p>把本课的感知＋显示代码<b>保存好</b>，能说清每一行在干什么——下节课<b>直接接着用</b>。</p></div><div class="blk a"><h4>拓展（选做）</h4><p>想一想你的「决策」段要用什么条件（如光敏读数<b>低于多少</b>算天黑）——对着串口读数<b>先估一个阈值</b>，下节课要用。</p></div></div>
+<div style="margin-top:24px"><div class="strip g">能让一个装置「读到」周围、把它「显示」出来，你已经搭好了项目的<b>第一块积木</b></div></div></div>
+<div class="notes"><p>课后两件事。</p><p>第一件全员都做：<b>把代码保存好</b>。下节课<b>直接接着用</b>，不重写。</p><p>而且要能说清每一行在干什么——下节课我会抽人问。</p><p>第二件选做，但我强烈建议做，因为它直接关系到下节课顺不顺：</p><p><b>先估一个阈值。</b></p><p>你的决策段是「如果很暗就亮灯」，对吧？那「<b>很暗</b>」是多少？</p><p>今天你串口里看到的数字是多少？开灯时多少？用手遮住多少？</p><p>拿这两个数中间取一个，那就是你的阈值。</p><p>比如开灯时读到 3000，遮住读到 500，那你可以定 1500。</p><p>今天不估，下节课就得当场现估，而那时候你还要同时对付组装和联调。</p><p>最后一句：<b>能让一个装置「读到」周围、把它「显示」出来，你已经搭好了项目的第一块积木。</b></p><p>下课。</p></div>
+</section>
+<div class="deck-footer"><span>ESP32 × AI 科创课程 · 第三阶段「超越AI」 · 第13课 搭积木（上）</span><span class="slide-number" data-current="1" data-total="12"></span></div>
+<div class="progress-bar"><span></span></div>
+</div>
+<script src="assets/fitstage.js"></script>
+<script src="assets/runtime.js"></script>
+</body>
+</html>

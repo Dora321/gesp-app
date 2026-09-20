@@ -42,7 +42,7 @@
 <p class="psub">四要素一条没少，代码也没报错——可现象是反的</p>
 <div class="pbody">
   <div class="aegrid grow">
-    <div class="code"><span class="lab c">AI 给的代码（第一次）</span><pre style="font-size:27px"><span class="k">while</span> <span class="k">True</span>:
+    <div class="code"><span class="lab c">AI 给的代码（第一次）</span><pre style="font-size:27px;line-height:1.55"><span class="k">while</span> <span class="k">True</span>:
     <span class="k">if</span> btn.value() == 1:   <span class="c"># AI 以为 1 是按下</span>
         led.value(1)
     <span class="k">else</span>:
@@ -96,7 +96,7 @@
 <span class="tslot">18–30 分</span>
 </div>
 <h2 class="ptitle">改对之后的完整代码</h2>
-<div class="pbody"><div class="askline">和坏版比，真正改动的只有一个字符：<b>1 → 0</b></div><div class="code"><span class="lab g">完整可跑 · 按钮控灯</span><pre style="font-size:24px"><span class="k">from</span> machine <span class="k">import</span> Pin
+<div class="pbody"><div class="askline">和坏版比，真正改动的只有一个字符：<b>1 → 0</b></div><div class="code"><span class="lab g">完整可跑 · 按钮控灯</span><pre style="font-size:24px;line-height:1.55"><span class="k">from</span> machine <span class="k">import</span> Pin
 
 led = Pin(2, Pin.OUT)
 btn = Pin(0, Pin.IN)

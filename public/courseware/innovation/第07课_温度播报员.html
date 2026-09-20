@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>第7课 · 温度播报员 — ESP32 × AI 科创课程</title>
+<link rel="stylesheet" href="assets/base.css">
+<link rel="stylesheet" id="theme-link" href="assets/theme-course-pop.css">
+<link rel="stylesheet" href="assets/animations.css">
+</head>
+<body>
+<div class="deck" data-theme-base="assets/">
+<section class="slide lay-cover is-active" data-title="封面">
+<div class="deco circle" style="width:170px;height:170px;top:-52px;right:238px"></div>
+<div class="deco tri" style="right:110px;bottom:132px;transform:rotate(14deg)"></div>
+<div class="deco square" style="width:120px;height:120px;left:-46px;bottom:86px;transform:rotate(12deg)"></div>
+<span class="cv-bar">ESP32 × AI ／ 第二阶段「指挥AI」</span>
+<h1 class="cv-title">温度<em>播报员</em></h1>
+<p class="cv-sub">需求一句话说不完的时候，怎么分步指挥 AI</p>
+<div class="cv-tags"><span class="tag">ESP32</span><span class="tag">DHT11</span><span class="tag">OLED</span><span class="tag">90 分钟连堂</span></div>
+<div class="cv-no">07</div>
+<div class="notes"><p>上节课我们学会了用<b>五要素</b>把一个需求问清楚。</p><p>但上节课问的都是<b>一句话能说完</b>的事：让灯闪、亮 1 秒灭 1 秒。</p><p>今天这个任务，一句话说不完。</p><p>我们要做一个「<b>温度播报员</b>」：它能感觉到现在多少度，把温度显示在屏幕上，温度太高了还要<b>报警</b>。</p><p>你数一数，这里面有几件事？至少三件。</p><p>现在我把这三件事<b>一口气</b>问给 AI，会发生什么？它会给你一段又长又绕的代码。跑起来报错了，你连是哪个零件出问题都不知道——是传感器没接好？是屏幕没亮？还是判断写错了？</p><p>所以今天要学的，是项目经理最核心的一项本事：<b>把大任务拆成小步骤</b>。</p></div>
+</section>
+
+<section class="slide lay-cards3" data-title="情境导入">
+<div class="phead"><span class="no">第7课</span>
+<span class="kick c">情境导入</span>
+<span class="tslot">0–10 分</span>
+</div>
+<h2 class="ptitle">这个系统需要几步？</h2>
+<p class="psub">温室大棚、机房过热——它们都需要同一样东西</p>
+<div class="pbody"><div class="g3 grow"><div class="blk g"><h4>① 感知温度</h4><p>得先<b>知道</b>现在多少度——这是传感器的活儿</p></div><div class="blk a"><h4>② 显示出来</h4><p>光知道不够，得让人<b>看得见</b>——这是屏幕的活儿</p></div><div class="blk c"><h4>③ 判断报警</h4><p>太高了要<b>叫一声</b>——这是 if 判断的活儿</p></div></div><p class="beads-cap" style="margin:18px 0 16px">三件事，缺一件这个系统就不成立。</p><div style="margin-top:22px"><div class="strip a">今天的任务：温度播报 ＋ 过热报警——<b>一句话说不完，就拆开说</b></div></div></div>
+<div class="notes"><p>先看两条新闻。（展示温室大棚 / 机房过热的新闻）</p><p>温室大棚里的菜，温度高了会烧苗；机房里的服务器，温度高了会烧机器。</p><p>它们都需要同一样东西：一个<b>盯着温度</b>的小助手。</p><p>今天我们就做一个。</p><p>但在动手之前，先一起分析：这个系统需要<b>几步</b>？</p><p>（等他们说）</p><p>第一步，得<b>感知温度</b>——你得先知道现在多少度。这是传感器的活儿。</p><p>第二步，得<b>显示出来</b>——光你自己知道没用，得让人看得见。这是屏幕的活儿。</p><p>第三步，得<b>判断报警</b>——太高了要叫一声。这是 if 判断的活儿。</p><p>三件事，缺一件系统就不成立。</p><p>记住这句话：<b>一句话说不完，就拆开说。</b></p></div>
+</section>
+
+<section class="slide lay-vstext" data-title="一次全问 vs 三步走">
+<div class="phead"><span class="no">第7课</span>
+<span class="kick c">本课重点</span>
+<span class="tslot">0–10 分</span>
+</div>
+<h2 class="ptitle">一次全问 vs 三步走</h2>
+<p class="psub">AI 聪明吗？聪明。但你一次问三件事，它给的代码又长又绕</p>
+<div class="pbody">
+  <div class="vs3 grow">
+    <div class="blk c vstx"><span class="tag c">一次全问（会卡住）</span><p class="q">「给我写个能测温、能显示、还能报警的代码」</p><p class="why">AI 会给你一大段代码。一报错，你<b>根本不知道是哪个零件出了问题</b>——传感器？屏幕？还是判断？</p></div>
+    <div class="vsmark">VS</div>
+    <div class="blk g vstx"><span class="tag g">三步走（像搭积木）</span><p class="q">先问「怎么读温度」→ 跑通 → 再问「怎么显示」→ 跑通 → 最后才加报警</p><p class="why">每跑通一步，就<b>证明了一个零件没问题</b>。错了也只可能错在最新加的那一步。</p></div>
+  </div>
+  <div style="margin-top:20px"><div class="strip g">分步提问、逐步验证——<b>这才是驾驭 AI 的高手</b></div></div>
+</div>
+<div class="notes"><p>我知道你们很多人的第一反应，是打开 DeepSeek 直接打这一句：「给我写个能测温、能显示、还能报警的代码。」</p><p>AI 聪明吗？<b>聪明！</b> 它真的会给你一大段代码。</p><p>但是问题来了：你一次性把三件事混在一起问，它给的代码又长又绕。跑起来一报错——</p><p>你根本不知道是<b>哪个零件</b>出了问题。是传感器没接好？是屏幕没亮？还是判断写错了？</p><p>你只能一行一行瞎猜，二十分钟过去了还在原地。</p><p>正确的做法是<b>像搭积木</b>：</p><p>先问 AI「怎么读取温度」。跑通了，<b>证明传感器没问题</b>。</p><p>再问「怎么显示到 OLED」。跑通了，<b>证明屏幕也没问题</b>。</p><p>最后才加报警。</p><p>这样做的好处是什么？每一步出错，你都知道<b>只可能错在最新加的那一步</b>——因为前面的都已经验证过了。</p><p>分步提问、逐步验证，这才是驾驭 AI 的高手。</p></div>
+</section>
+
+<section class="slide lay-steps3" data-title="三步提问法">
+<div class="phead"><span class="no">第7课</span>
+<span class="kick g">方法</span>
+<span class="tslot">0–10 分</span>
+</div>
+<h2 class="ptitle">分步提问三步法</h2>
+<p class="psub">每跑通一步，再问下一步——别一次性全问</p>
+<div class="pbody"><div class="g3 grow"><div class="blk"><div class="step"><div class="num g">①</div>
+        <div class="body"><p class="t">读取</p><p class="d">怎么读 DHT11 的温度并<b>打印</b>？　跑通 → 传感器没问题</p></div></div></div><div class="blk"><div class="step"><div class="num a">②</div>
+        <div class="body"><p class="t">显示</p><p class="d">怎么把温度<b>显示到 OLED</b>？　跑通 → 屏幕也没问题</p></div></div></div><div class="blk"><div class="step"><div class="num c">③</div>
+        <div class="body"><p class="t">判断</p><p class="d">怎么<b>超过阈值就亮 LED</b>？　跑通 → 大功告成</p></div></div></div></div><div style="margin-top:16px"><div class="strip ">规矩：<b>上一步没跑通，不许问下一步</b></div></div><div style="margin-top:16px"><div class="strip a">每一步照旧用<b>五要素</b>问，照旧过<b>验收三查</b>（查引脚 · 查超纲 · 查效果）</div></div></div>
+<div class="notes"><p>这就是今天的方法，三步法，贴在黑板上一直看着。</p><p><b>第①步，读取。</b> 问 AI：怎么读 DHT11 的温度并<b>打印</b>出来？</p><p>注意是「打印」，不是显示到屏幕。为什么？因为这一步我们只想验证<b>传感器</b>这一个零件。打印到串口最简单，屏幕先不掺和进来。</p><p><b>第②步，显示。</b> 温度读到了，现在问：怎么把它显示到 OLED？</p><p><b>第③步，判断。</b> 最后才问：怎么超过阈值就亮 LED？</p><p>规矩只有一条，而且我今天会严格执行：<b>上一步没跑通，不许问下一步。</b></p><p>有同学要问：那我不是要问三次吗？多麻烦。</p><p>是要问三次。但你算一算：三次每次都一遍过，比一次问完然后调两节课，哪个快？</p><p>最后提醒：每一步照旧用<b>五要素</b>问，照旧过<b>验收三查</b>。上节课的工具，这节课要接着用。</p></div>
+</section>
+
+<section class="slide lay-hardware" data-title="新硬件 DHT11">
+<div class="phead"><span class="no">第7课</span>
+<span class="kick g">新硬件</span>
+<span class="tslot">10–25 分</span>
+</div>
+<h2 class="ptitle">DHT11 温湿度传感器</h2>
+<p class="psub">今天要接三样东西：传感器、屏幕、报警灯</p>
+<div class="pbody">
+  <div class="hwgrid grow">
+    <div class="g3"><div class="blk g"><h4>DHT11 能测两样</h4><p><b>温度</b>和<b>湿度</b>，一次测量两个数都有</p></div><div class="blk a"><h4>它反应很慢</h4><p>两次读取之间<b>必须停 2 秒</b>——这行 sleep 不能删，删了就报错</p></div><div class="blk c"><h4>捂热要有耐心</h4><p>用手心紧捂蓝色外壳，<b>持续 10 秒以上</b>才看得出温度上升</p></div></div>
+    <div class="blk a"><h4>接线速查卡（先拔 USB）</h4><p style="margin:3px 0">DHT11 数据脚 →　GPIO14</p><p style="margin:3px 0">OLED SCL 　　→　GPIO22</p><p style="margin:3px 0">OLED SDA 　　→　GPIO21</p><p style="margin:3px 0">LED 　　　　 →　GPIO2</p><p style="margin:3px 0">各模块 VCC → 3.3V、GND → GND</p></div>
+  </div>
+  <div style="margin-top:22px"><div class="strip g">三样元件一起接，<b>接线前先拔 USB</b>——不湿手碰、不短接、不带电插拔</div></div>
+</div>
+<div class="notes"><p>今天的新硬件叫 <b>DHT11</b>，蓝色的一小块。</p><p>它有三个特点，都会影响你们待会儿动手。</p><p>第一，它能测<b>两样</b>：温度和湿度。一次测量，两个数都拿到。</p><p>第二，它<b>反应很慢</b>。所以代码里两次读取之间<b>必须停 2 秒</b>。那行 <code class="ic">time.sleep(2)</code> 不能删——删了它来不及反应，直接报错。</p><p>第三，<b>捂热要有耐心</b>。待会儿测试报警，你要用手心紧紧捂住那个蓝色外壳，<b>持续 10 秒以上</b>才看得出温度上升。捂两秒就松手，什么都看不到，然后你就会以为代码坏了。</p><p>接线看右边这张卡，今天要接<b>三样</b>：</p><p>传感器数据脚接 GPIO14，屏幕 SCL 接 22、SDA 接 21，报警灯接 GPIO2。</p><p>三样一起接，<b>接线前先拔 USB</b>。老规矩：不湿手碰、不短接、不带电插拔。</p><p>接好了举手，我来看一眼再上电。</p></div>
+</section>
+
+<section class="slide lay-reqdoc" data-title="分步提问示范">
+<div class="phead"><span class="no">第7课</span>
+<span class="kick g">照着问</span>
+<span class="tslot">10–25 分</span>
+</div>
+<h2 class="ptitle">三步提问原句</h2>
+<p class="psub">一步一句，跑通一步再问下一句</p>
+<div class="pbody">
+  <div class="rdgrid grow">
+    <div class="blk a"><h4>分步提问示范</h4><div class="fivelist"><div class="fv"><span class="fk">第①步</span><span class="fw">「我使用的语言是 MicroPython，硬件是 ESP32。请用 <b>GPIO14</b> 读取 DHT11 的温度和湿度，每隔 <b>2 秒</b>在控制台打印一次。」</span></div><div class="fv"><span class="fk">第②步</span><span class="fw">「测温成功了。现在我接了一块 I2C 的 OLED，<b>SCL 接 GPIO22，SDA 接 GPIO21</b>。请把刚才的温度数据显示到这块 OLED 上。」</span></div><div class="fv"><span class="fk">第③步</span><span class="fw">「运行正常。现在我在 <b>GPIO2</b> 接了一个 LED。请修改代码：温度<b>大于等于 30 度</b>时 LED 点亮，小于 30 度时熄灭。」</span></div></div></div>
+    <div class="blk g"><h4>每一步的验收标准</h4><div class="sqlist"><div class="sq"><span class="sn">①</span><span class="st"><b>串口</b>里每 2 秒打印出一组温湿度数字</span></div><div class="sq"><span class="sn">②</span><span class="st"><b>屏幕</b>上看得见温度，数字会变</span></div><div class="sq"><span class="sn">③</span><span class="st">捂热传感器，<b>LED 亮</b>；松手一会儿，灯灭</span></div><div class="sq"><span class="sn">★</span><span class="st">每一步都要过<b>验收三查</b>：查引脚 · 查超纲 · 查效果</span></div><div class="sq"><span class="sn">✗</span><span class="st">上一步没跑通，<b>不许</b>问下一句</span></div></div></div>
+  </div>
+  <div style="margin-top:20px"><div class="strip g">注意第②③步的开头：「测温成功了」「运行正常」——这是在告诉 AI「<b>接着上一步改</b>」</div></div>
+</div>
+<div class="notes"><p>这是三句提问的原句，照着问就行。</p><p>我要你们特别注意第②步和第③步的<b>开头</b>。</p><p>第②步开头是什么？「<b>测温成功了</b>。」第③步开头呢？「<b>运行正常</b>。」</p><p>这两句不是废话，也不是客气话。它在告诉 AI：<b>接着上一步改，别推倒重来</b>。</p><p>这就是上节课学的追问话术③的用法——在原代码基础上改。</p><p>右边是每一步的<b>验收标准</b>，这很重要，我一条一条说。</p><p>第①步验收看哪儿？看<b>串口</b>，每 2 秒打印出一组数字。不是看屏幕，这一步屏幕还没上场。</p><p>第②步看<b>屏幕</b>，温度显示出来了，而且数字会变。</p><p>第③步，<b>捂热传感器，灯要亮</b>；松手等一会儿，灯要灭。</p><p>每一步都要过验收三查。</p><p>最后那条红叉：<b>上一步没跑通，不许问下一句。</b> 我会挨组检查。</p></div>
+</section>
+
+<section class="slide lay-divider" data-title="课间休息">
+<div class="deco circle" style="width:200px;height:200px;top:-70px;right:180px"></div>
+<div class="deco square" style="width:130px;height:130px;left:-50px;bottom:70px;transform:rotate(12deg)"></div>
+<div class="deco tri" style="right:140px;bottom:90px;transform:rotate(14deg)"></div>
+<div class="dv">
+  <span class="dv-time">40–50 分</span>
+  <h2 class="dv-t">课间休息 10 分钟</h2>
+  <p class="dv-s">串口画面留着——看看全班各组的温度，谁的桌子最热？</p>
+</div>
+<div class="notes"><p>上半场结束，休息十分钟。</p><p>有个小要求：<b>串口画面留着别关</b>，程序继续跑。</p><p>休息的时候到处走走，看看别的组的温度是多少。</p><p>你会发现一件有意思的事：同一间教室，<b>各组的数字不一样</b>。靠窗的可能高一两度，靠空调的低一点。</p><p>谁的桌子最热？为什么？</p><p>这就是真实数据的意思——它不是课本上印死的数字，它是<b>此时此刻、你这张桌子上</b>的温度。</p></div>
+</section>
+
+<section class="slide lay-codefull" data-title="完整代码 准备段">
+<div class="phead"><span class="no">第7课</span>
+<span class="kick a">参考代码 1/2</span>
+<span class="tslot">50–70 分</span>
+</div>
+<h2 class="ptitle">完整代码 · 准备段</h2>
+<p class="psub">请工具 → 认元件 → 定阈值。这一段只跑一次，顶格写，不需要缩进</p>
+<div class="pbody"><div class="code"><span class="lab g">第 1 段 · 准备（对应三步里的「有哪些零件」）</span><pre style="font-size:26px;line-height:1.55"><span class="k">from</span> machine <span class="k">import</span> Pin, SoftI2C
+<span class="k">import</span> dht
+<span class="k">import</span> ssd1306
+<span class="k">import</span> time
+
+sensor = dht.DHT11(Pin(14))
+i2c = SoftI2C(scl=Pin(22), sda=Pin(21))
+oled = ssd1306.SSD1306_I2C(128, 64, i2c)
+led = Pin(2, Pin.OUT)
+
+THRESHOLD = 30   <span class="c"># 报警阈值</span></pre></div><div style="margin-top:18px"><div class="strip g"><code class="ic">THRESHOLD = 30</code> 就是<b>报警阈值</b>——<b>改这个数字，就改了报警温度</b></div></div></div>
+<div class="notes"><p>完整代码有点长，我拆成两段讲。这是第 1 段，<b>准备段</b>。</p><p>前四行，<b>请工具</b>：Pin 和 SoftI2C 是老朋友；dht 是今天新来的传感器工具；ssd1306 是第 4 课的屏幕翻译官；time 管时间。</p><p>中间四行，<b>认元件</b>：传感器在 14 号脚，屏幕用 22 和 21 两根线，灯在 2 号脚。</p><p>一行对应一个元件，一个都不能少——这就是为什么【接线】那一栏要写全。</p><p>最后一行最重要，我要你们记住它：<b>THRESHOLD = 30</b>。</p><p>THRESHOLD 这个词的意思是「<b>阈值</b>」，也叫「门槛」。30 就是那个门槛——超过 30 度就算高温。</p><p>这一行是今天的<b>保底考点</b>：我会挨组问，<b>哪个数字是报警温度</b>？</p><p>你把它改成 28，报警就提前；改成 35，报警就推后。<b>改一个数字，就改了整个系统的行为</b>。</p><p>还有，注意这一段全部<b>顶格写</b>，没有缩进。因为它只跑一次，不在任何循环里。</p></div>
+</section>
+
+<section class="slide lay-codefull" data-title="完整代码 主循环">
+<div class="phead"><span class="no">第7课</span>
+<span class="kick a">参考代码 2/2</span>
+<span class="tslot">50–70 分</span>
+</div>
+<h2 class="ptitle">完整代码 · 主循环</h2>
+<div class="pbody"><div class="code"><span class="lab g">第 2 段 · 主循环（测 → 显示 → 判断 → 等 2 秒）</span><pre style="font-size:17px;line-height:1.38"><span class="k">while</span> <span class="k">True</span>:
+    try:
+        sensor.measure()
+        temp = sensor.temperature()
+        hum = sensor.humidity()
+
+        oled.fill(0)
+        oled.text("Temp: {} C".format(temp), 0, 10)
+        oled.text("Hum: {} %".format(hum), 0, 30)
+
+        <span class="k">if</span> temp &gt;= THRESHOLD:
+            oled.text("! ALARM !", 0, 50)
+            led.value(1)
+        <span class="k">else</span>:
+            oled.text("Normal", 0, 50)
+            led.value(0)
+
+        oled.show()
+    except OSError:
+        print("读取传感器失败")
+
+    time.sleep(2)</pre></div></div>
+<div class="notes"><p>这是第 2 段，<b>主循环</b>——一直重复的部分。</p><p>我们顺着读一遍，你会发现它就是<b>三步走</b>的样子。</p><p>先是 <code class="ic">sensor.measure()</code>，让传感器测一次，然后把温度和湿度取出来。这是<b>第①步</b>。</p><p>接着 <code class="ic">oled.fill(0)</code> 擦干净，两行 text 把温度和湿度写上去。这是<b>第②步</b>。</p><p>然后是 if / else：温度大于等于 THRESHOLD，就显示 ALARM 并<b>点亮 LED</b>；否则显示 Normal，<b>灯灭</b>。这是<b>第③步</b>。</p><p>最后 <code class="ic">oled.show()</code> 把画面举起来——第 4 课那个最阴的坑，别忘。</p><p>中间那个 <code class="ic">try</code> 和 <code class="ic">except</code> 是新东西，我只说一句：DHT11 偶尔会读失败，<code class="ic">try</code> 的意思是「<b>试一下，万一失败了别让整个程序死掉</b>」，就打印一句「读取传感器失败」接着跑。今天不要求你会写，知道它是<b>保险丝</b>就行。</p><p>最后一行 <code class="ic">time.sleep(2)</code>，等 2 秒。这行<b>千万别删</b>——DHT11 反应慢，删了它就报错。</p><p>看缩进：while 一层，try 两层，里面三层。<b>逐级对齐</b>，这是今天最容易写错的地方。</p></div>
+</section>
+
+<section class="slide lay-translate" data-title="逐行翻译">
+<div class="phead"><span class="no">第7课</span>
+<span class="kick g">逐行翻译</span>
+<span class="tslot">50–70 分</span>
+</div>
+<h2 class="ptitle">核心代码逐行翻译</h2>
+<div class="pbody"><div class="blk grow" style="padding:10px 24px"><div class="tr-row"><div class="cd">sensor = dht.DHT11(Pin(14))</div><div class="eq">=</div><div class="pl">请一位<b>温度管家</b>：他站在 14 号脚上</div></div><div class="tr-row"><div class="cd">THRESHOLD = 30</div><div class="eq">=</div><div class="pl"><b>定门槛</b>：超过 30 度就算高温——<b>改这个数字就改了报警条件</b></div></div><div class="tr-row"><div class="cd">sensor.measure()</div><div class="eq">=</div><div class="pl">叫管家<b>去量一次</b>（这一步不返回数字，只是去量）</div></div><div class="tr-row"><div class="cd">temp = sensor.temperature()</div><div class="eq">=</div><div class="pl"><b>取回</b>刚才量到的温度，装进 temp 这个盒子里</div></div><div class="tr-row"><div class="cd">if temp &gt;= THRESHOLD:</div><div class="eq">=</div><div class="pl"><b>如果</b>温度够到门槛了……（&gt;= 是「大于或等于」）</div></div><div class="tr-row"><div class="cd">time.sleep(2)</div><div class="eq">=</div><div class="pl">等 2 秒——<b>不能删</b>，DHT11 反应慢，删了它就报错</div></div></div></div>
+<div class="notes"><p>六行关键代码，翻译成人话。</p><p>第一行，请一位<b>温度管家</b>，他站在 14 号脚上。</p><p>第二行，<b>定门槛</b>。超过 30 度就算高温。这个数字改了，整个系统的脾气就变了。</p><p>第三行有点特别：<code class="ic">sensor.measure()</code>。它的意思是「<b>去量一次</b>」——注意，这一步<b>不返回数字</b>，它只是让管家去量。</p><p>第四行才是<b>取回</b>：把刚才量到的温度取回来，装进 temp 这个盒子。</p><p>为什么要分两步？因为量温度需要时间，先让它去量，量完了再取。</p><p>第五行，if 判断。这里的 <b>&gt;=</b> 读作「大于或等于」。为什么不用 &gt; ？因为正好 30 度的时候我们也想报警。</p><p>最后一行，等 2 秒，<b>不能删</b>。</p><p>谁能把这六行连起来，讲一遍温度播报员是怎么工作的？</p></div>
+</section>
+
+<section class="slide lay-rowlist" data-title="测试与调试">
+<div class="phead"><span class="no">第7课</span>
+<span class="kick a">动手要点</span>
+<span class="tslot">70–80 分</span>
+</div>
+<h2 class="ptitle">测试：把它捂热</h2>
+<p class="psub">做出来不算完，要<b>亲手验证</b>它真的会报警</p>
+<div class="pbody"><div class="rowlist grow"><div class="rowitem"><div class="num g">1</div><div class="tx">先看屏幕：温度数字出来了吗？会<b>变</b>吗？</div></div><div class="rowitem"><div class="num a">2</div><div class="tx">用<b>手心紧捂</b>蓝色外壳，<b>持续 10 秒以上</b>——DHT11 升温很慢，别捂两下就松手</div></div><div class="rowitem"><div class="num c">3</div><div class="tx">盯住屏幕：数字在往上爬吗？爬到 <b>30</b> 了吗？</div></div><div class="rowitem"><div class="num g">4</div><div class="tx">到了 30，<b>LED 应该亮</b>，屏幕显示 ALARM</div></div><div class="rowitem"><div class="num a">5</div><div class="tx">松手等一会儿，温度降下来，<b>灯要自己灭</b>——这才算完整跑通</div></div></div><div style="margin-top:20px"><div class="strip g">跑通了就改阈值：把 30 改成 <b>28</b> 试试——这次是不是更容易触发了？</div></div></div>
+<div class="notes"><p>代码跑起来只是一半，<b>亲手验证</b>才算完。</p><p>第一，先看屏幕。温度数字出来了吗？会不会变？如果一直是同一个数，可能是程序卡住了。</p><p>第二，<b>用手心紧捂</b>那个蓝色外壳，<b>捂够 10 秒以上</b>。</p><p>我强调这一点，因为每年都有同学捂两下就松手，然后说「老师我的不报警」。DHT11 升温很慢，要有耐心。</p><p>第三，一边捂一边<b>盯住屏幕</b>：数字在往上爬吗？爬到 30 了吗？</p><p>第四，到 30 的那一刻，<b>LED 应该亮</b>，屏幕上出现 ALARM。</p><p>第五，松手等一会儿，温度降回去，<b>灯要自己灭</b>。灯灭了才算完整跑通——因为这证明 else 那一支也是对的。</p><p>全跑通的组，做最后一件事：把 THRESHOLD 从 30 改成 <b>28</b>，再传一次。</p><p>这次是不是更容易触发了？</p><p>你改的是屏幕上一个数字，变的是这个系统<b>什么时候报警</b>。这就是今天的掌控感。</p></div>
+</section>
+
+<section class="slide lay-tiers3" data-title="分层任务">
+<div class="phead"><span class="no">第7课</span>
+<span class="kick g">分层任务</span>
+<span class="tslot">50–80 分</span>
+</div>
+<h2 class="ptitle">先保底，再挑战</h2>
+<p class="psub">屏幕显示出温度 ＋ 能指出阈值数字 ＝ 成功</p>
+<div class="pbody"><div class="g3 grow"><div class="blk tier t1"><div class="hd">★ 基础（必做）</div>
+        <p class="task">按三步走做出温度播报员：屏幕显示温度，并能指出哪个数字是报警阈值。</p><p class="fill">我的阈值是 ____ 度　□ 屏幕显示出温度了</p></div><div class="blk tier t2"><div class="hd">★★ 进阶（建议做）</div>
+        <p class="task">加上高温报警：温度 ≥ 阈值时 GPIO2 的 LED 亮，否则灭。捂热验证一次。</p><p class="fill">□ 捂热后灯亮了　□ 松手后灯自己灭了</p></div><div class="blk tier t3"><div class="hd">★★★ 挑战（学有余力）</div>
+        <p class="task">改阈值并解释：把 30 改成 28，说说为什么更容易报警。再想想湿度能不能也报警。</p><p class="fill">我把阈值改成 ____，观察到：________</p></div></div>
+<div style="margin-top:22px"><div class="strip g">困难组保底：老师带你找到 <code class="ic">print(temp)</code> 那一行，手动改成 if 判断——<b>亲手体验代码结构</b></div></div></div>
+<div class="notes"><p>任务分三档。</p><p><b>基础档必做</b>：按三步走把温度播报员做出来，屏幕上显示温度。然后能回答我一个问题：<b>哪个数字是报警阈值</b>？</p><p>这两样做到，你这节课就成功了。</p><p>进阶档：加上高温报警，而且要<b>捂热验证一次</b>，看到灯亮、松手灯灭。</p><p>挑战档：改阈值并且<b>解释</b>为什么。光会改不够，要说得出道理。</p><p>有余力还可以想一想：湿度能不能也拿来报警？湿度太低会怎么样？</p><p>最后给进度慢的组一条路：如果你们三步走卡在第②步，别硬撑，举手。</p><p>我会带你们找到 <code class="ic">print(temp)</code> 那一行，<b>手动</b>把它改成 if 判断。</p><p>虽然是我带着改，但你亲手改一次，就能摸到代码的结构——这比抄一段跑通的代码有用得多。</p></div>
+</section>
+
+<section class="slide lay-rowlist" data-title="今日三大发现">
+<div class="phead"><span class="no">第7课</span>
+<span class="kick g">总结</span>
+<span class="tslot">80–90 分</span>
+</div>
+<h2 class="ptitle">今日三大发现</h2>
+<div class="pbody"><div class="rowlist grow"><div class="rowitem"><div class="num g">1</div><div class="tx"><b>成就感</b>：真实世界的温度，在你自己的屏幕上跳动</div></div><div class="rowitem"><div class="num a">2</div><div class="tx"><b>掌控感</b>：改一个阈值数字，就能自己决定什么时候报警</div></div><div class="rowitem"><div class="num c">3</div><div class="tx"><b>合作感</b>：把复杂任务<b>拆成几步</b>，分步交给 AI 搭档完成</div></div></div><div style="margin-top:20px"><div class="strip a">温度是<b>精确数字</b>。可「渐渐变亮」这种<b>模糊的渐变</b>，AI 怎么实现？下节课《光感小夜灯》揭晓</div></div></div>
+<div class="notes"><p>都停下，看屏幕。今天三个发现。</p><p>第一个，<b>成就感</b>。你看那个屏幕上跳动的数字——它不是课本上印死的，是<b>此时此刻</b>你这张桌子上的真实温度。你写的代码，<b>感觉到了真实世界</b>。</p><p>第二个，<b>掌控感</b>。你改了一个数字，整个系统什么时候报警就变了。这就是程序员的感觉。</p><p>第三个，<b>合作感</b>。今天最值钱的其实不是温度计，是那个方法：<b>把复杂任务拆成几步，一步一步交给 AI</b>。</p><p>这个方法以后你做任何项目都用得上——不只是编程，写作文、做手工，都一样。</p><p>最后留个钩子，你们想一想。</p><p>今天我们处理的是<b>精确的数字</b>：30 度、28 度，一是一二是二。</p><p>可是有些东西不是这样的。比如「<b>渐渐变亮</b>」——从暗到亮，中间是连续的，没有明确的界线。</p><p>这种<b>模糊的渐变</b>，怎么用代码表示？AI 怎么实现？</p><p>下节课《光感小夜灯》，揭晓。下课。</p></div>
+</section>
+
+<section class="slide lay-cards2" data-title="课后任务">
+<div class="phead"><span class="no">第7课</span>
+<span class="kick a">课后任务</span>
+</div>
+<h2 class="ptitle">课后任务</h2>
+<div class="pbody"><div class="g2 grow"><div class="blk g"><h4>基础（全员）</h4><p>成功运行「温度播报员」，拍一段<b>用手捂热传感器触发 LED 报警</b>的视频，提交班级群。</p></div><div class="blk a"><h4>拓展（选做）</h4><p>问 AI：如果要加「湿度过低（低于 30%）」报警，代码该怎么改？试着再加一个 LED 当湿度报警灯。</p></div></div>
+<div style="margin-top:24px"><div class="strip g">能说清楚「<b>为什么要分步问 AI</b>」，才是真的懂了</div></div></div>
+<div class="notes"><p>课后两件事。</p><p>第一件全员都做：拍一段视频，要拍到<b>用手捂热传感器、LED 报警亮起来</b>的完整过程，发到班级群。</p><p>为什么要拍视频？因为这证明你的系统<b>真的在工作</b>，不是截图糊弄。而且捂热那十秒，你会拍得很有成就感。</p><p>第二件选做：问 AI——如果要加「湿度过低报警」，比如低于 30%，代码该怎么改？</p><p>提示一下：湿度那个数我们已经读到了，就在 hum 这个盒子里。你要做的是再加一个 if。</p><p>有兴趣的可以再接一个 LED 当湿度报警灯，两个灯各管各的。</p><p>最后一句：能说清楚「<b>为什么要分步问 AI</b>」，才是真的懂了。下课。</p></div>
+</section>
+<div class="deck-footer"><span>ESP32 × AI 科创课程 · 第二阶段「指挥AI」 · 第7课 温度播报员</span><span class="slide-number" data-current="1" data-total="14"></span></div>
+<div class="progress-bar"><span></span></div>
+</div>
+<script src="assets/fitstage.js"></script>
+<script src="assets/runtime.js"></script>
+</body>
+</html>

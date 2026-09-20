@@ -43,7 +43,7 @@
   <div class="scstack">
     <div class="fiverow four"><div class="fvc"><span class="fk">语言</span><span class="fw">MicroPython</span></div><div class="fvc"><span class="fk">硬件</span><span class="fw">ESP32 开发板</span></div><div class="fvc"><span class="fk">接线</span><span class="fw">板载 LED 在 GPIO2</span></div><div class="fvc"><span class="fk">效果</span><span class="fw">让 LED 亮起来，只要亮就行，不需要闪烁</span></div></div>
     <div class="askline"><b>提问四要素（照着问）：</b>「我在用 MicroPython 编程，硬件是 ESP32 开发板。请给我最简单的代码，让板载 LED（GPIO2）亮起来。只要亮就行，不需要闪烁。」</div>
-    <div class="code"><span class="lab g">AI 给的代码 · 核心就 3 行</span><pre style="font-size:27px"><span class="k">from</span> machine <span class="k">import</span> Pin
+    <div class="code"><span class="lab g">AI 给的代码 · 核心就 3 行</span><pre style="font-size:27px;line-height:1.55"><span class="k">from</span> machine <span class="k">import</span> Pin
 
 led = Pin(2, Pin.OUT)
 led.value(1)</pre></div>

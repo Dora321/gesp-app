@@ -180,9 +180,9 @@ async function checkMuseumLayout(page, viewport, failures) {
 
 async function checkHardwareLanding(page, viewport, failures) {
   const cards = page.locator('[data-course-lessons] a');
-  if (await cards.count() !== 7) failures.push(`/hardware [${viewport}]: expected the seven uploaded HTML lessons.`);
+  if (await cards.count() !== 24) failures.push(`/hardware [${viewport}]: expected 24 uploaded HTML lessons.`);
   for (const href of await cards.evaluateAll(nodes => nodes.map(node => node.getAttribute('href')))) {
-    if (!/\/hardware\/esp32\/(1|2|3|4|5|9|10)$/.test(href)) failures.push(`/hardware: unexpected lesson ${href}.`);
+    if (!/\/hardware\/esp32\/(?:[1-9]|1\d|2[0-3]|16\.5)$/.test(href)) failures.push(`/hardware: unexpected lesson ${href}.`);
   }
 }
 

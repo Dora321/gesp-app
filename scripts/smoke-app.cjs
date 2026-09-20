@@ -438,7 +438,7 @@ async function run() {
   }
 
   // Only uploaded HTML lessons remain in the replacement course catalogs.
-  for (const [route, expected] of [['/hardware/esp32-curriculum', 7], ['/innovation-foundation', 15]]) {
+  for (const [route, expected] of [['/hardware/esp32-curriculum', 24], ['/innovation-foundation', 15]]) {
     await mobilePage.goto(`${baseUrl}${route}`, { waitUntil: 'domcontentloaded' });
     const cards = mobilePage.locator('[data-course-lessons] a');
     await cards.first().waitFor();

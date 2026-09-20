@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>第11课 · 我的问题我的方案 — ESP32 × AI 科创课程</title>
+<link rel="stylesheet" href="assets/base.css">
+<link rel="stylesheet" id="theme-link" href="assets/theme-course-pop.css">
+<link rel="stylesheet" href="assets/animations.css">
+</head>
+<body>
+<div class="deck" data-theme-base="assets/">
+<section class="slide lay-cover is-active" data-title="封面">
+<div class="deco circle" style="width:170px;height:170px;top:-52px;right:238px"></div>
+<div class="deco tri" style="right:110px;bottom:132px;transform:rotate(14deg)"></div>
+<div class="deco square" style="width:120px;height:120px;left:-46px;bottom:86px;transform:rotate(12deg)"></div>
+<span class="cv-bar">ESP32 × AI ／ 第三阶段「超越AI」开篇</span>
+<h1 class="cv-title">我的问题<em>我的方案</em></h1>
+<p class="cv-sub">这一次，主角是你——AI 退到工具箱里</p>
+<div class="cv-tags"><span class="tag">不写代码</span><span class="tag">不接线</span><span class="tag">只做规划</span><span class="tag">90 分钟连堂</span></div>
+<div class="cv-no">11</div>
+<div class="notes"><p>前两个阶段，我们学会了<b>读懂 AI</b>、<b>指挥 AI</b>。</p><p>但是你们有没有发现一件事——<b>点子一直是我给的</b>。</p><p>第 1 课做什么灯，我定的。第 7 课做温度播报员，我定的。第 10 课做抢答器，还是我定的。</p><p>你们很会做，但做什么，不是你们说了算。</p><p>从今天起，<b>换人了</b>：主角是<b>你</b>。</p><p>你自己去身边找一个真实的小麻烦，自己想怎么解决。</p><p>AI 呢？它退到<b>工具箱</b>里去——需要的时候再打开。</p><p>今天这节课有个特别的地方：<b>不写代码、不接线</b>。一行代码都不写。</p><p>今天只做一件事——把一个模糊的念头，打磨成一份清清楚楚的<b>问题定义和方案</b>。</p></div>
+</section>
+
+<section class="slide lay-cards3" data-title="阶段揭幕">
+<div class="phead"><span class="no">第11课</span>
+<span class="kick c">阶段揭幕</span>
+<span class="tslot">0–6 分</span>
+</div>
+<h2 class="ptitle">第三阶段：超越 AI</h2>
+<p class="psub">回头看看我们走过的路</p>
+<div class="pbody"><div class="g3 grow"><div class="blk g"><h4>第一阶段：读懂 AI</h4><p>AI ＝ <b>代码打印机</b>。它印，我们读——我们是学徒。</p></div><div class="blk a"><h4>第二阶段：指挥 AI</h4><p>AI ＝ <b>实习程序员</b>。我们下任务，它干活——我们是小老板。</p></div><div class="blk c"><h4>第三阶段：超越 AI</h4><p>AI ＝ <b>工具箱</b>。问题我定、方案我选——<b>我是设计师</b>。</p></div></div><div style="margin-top:22px"><div class="strip a">工具箱是什么意思？需要的时候才打开——<b>不需要就放在那儿</b></div></div></div>
+<div class="notes"><p>我们回头看看走过的路，三个阶段，AI 在你眼里变了三次。</p><p>第一阶段，AI 是<b>代码打印机</b>。它印，我们读。我们的活儿是读懂、验证、改参数。我们是<b>学徒</b>。</p><p>第二阶段，AI 是<b>实习程序员</b>。我们下任务，它干活，干完我们验收。我们是<b>小老板</b>。</p><p>今天开始第三阶段，AI 变成<b>工具箱</b>。</p><p>什么叫工具箱？工具箱平时是<b>关着</b>的。你要用锤子的时候才打开拿锤子，不用就放那儿。</p><p>它不再是你的伙伴，也不是你的员工——它是你的<b>工具</b>。</p><p>那谁是主角？<b>你</b>。问题你定，方案你选。<b>你是设计师。</b></p><p>这个转变比前两次都大。前两次变的是 AI 的角色，这一次——变的是<b>你</b>的角色。</p></div>
+</section>
+
+<section class="slide lay-rowlist" data-title="热手 唤醒旧作品">
+<div class="phead"><span class="no">第11课</span>
+<span class="kick a">热手</span>
+<span class="tslot">6–16 分</span>
+</div>
+<h2 class="ptitle">先把上节课的作品叫醒</h2>
+<p class="psub">今天不写代码，但先摸一摸我们已经会做什么</p>
+<div class="pbody"><div class="rowlist grow"><div class="rowitem"><div class="num g">1</div><div class="tx">把 <b>L10 抢答器</b>的板子插上 USB——代码还在板上，<b>上电就跑</b></div></div><div class="rowitem"><div class="num a">2</div><div class="tx">按下按钮：<b>灯亮 ＋ 响 0.2 秒</b>；松开：<b>复位</b></div></div><div class="rowitem"><div class="num c">3</div><div class="tx">看清楚它的结构：按钮是它的「<b>眼睛</b>」，灯和蜂鸣器是它的「<b>手</b>」</div></div><div class="rowitem"><div class="num g">4</div><div class="tx">这是我们<b>自己一步步做出来的</b>——不是抄的，是指挥 AI 一步步问出来的</div></div><div class="rowitem"><div class="num a">5</div><div class="tx">记住这个能力边界：今天选题，就选这些<b>眼睛和手做得到</b>的事</div></div></div><div style="margin-top:20px"><div class="strip g">跑不通的组<b>不用修</b>——换同桌组的板看一眼就行。今天的目的是唤醒手感，不是排错</div></div></div>
+<div class="notes"><p>今天是纸面课，一整节课都在写字。开始之前，先动动手，把上节课的作品<b>叫醒</b>。</p><p>把 L10 抢答器的板子插上 USB。代码还在板子里，<b>上电就跑</b>。</p><p>按一下按钮——灯亮，响一声，松开，复位。</p><p>（等各组都跑起来）</p><p>好，现在看清楚它的结构。</p><p>按钮是它的什么？——<b>眼睛</b>。它靠按钮来「感觉」有没有人按。</p><p>灯和蜂鸣器是它的什么？——<b>手</b>。它靠这两样来「做动作」。</p><p>眼睛、手。所有我们做过的东西，拆开都是这两样。</p><p>而且我要强调：这是我们<b>自己一步步做出来的</b>。不是抄的，是你们用五要素、用三步走，一步一步从 AI 那儿问出来的。</p><p>所以今天选题，记住一条：<b>选这些眼睛和手做得到的事</b>，我们就一定做得出来。</p><p>最后，有组跑不通的——<b>不用修</b>。换同桌组的板看一眼就行。今天的目的是唤醒手感，排错留到 L13。</p></div>
+</section>
+
+<section class="slide lay-vstext" data-title="好问题 vs 坏问题">
+<div class="phead"><span class="no">第11课</span>
+<span class="kick c">核心</span>
+<span class="tslot">16–24 分</span>
+</div>
+<h2 class="ptitle">什么才算一个「好问题」</h2>
+<p class="psub">先找病，再开方——没说清哪里不舒服，药就开不对</p>
+<div class="pbody">
+  <div class="vs3 grow">
+    <div class="blk c vstx"><span class="tag c">坏问题（太空）</span><p class="q">「我想做个有用的东西。」</p><p class="why">没说<b>给谁用</b>、解决<b>什么麻烦</b>——方案无从下手。<br>同样空的还有：「我想做个灯」「让生活更方便」。</p></div>
+    <div class="vsmark">VS</div>
+    <div class="blk g vstx"><span class="tag g">好问题（写具体）</span><p class="q">「楼道太黑，奶奶晚上下楼看不清台阶——能不能天黑有人来就自动亮灯？」</p><p class="why"><b>谁</b>、<b>什么时候</b>、<b>什么麻烦</b>、<b>希望怎样</b>，全都有了。</p></div>
+  </div>
+  <div style="margin-top:20px"><div class="strip a">好问题不是「我想做个灯」，而是「我家楼道晚上太黑，<b>奶奶下楼看不清台阶</b>」</div></div>
+</div>
+<div class="notes"><p>现在讲今天最重要的一件事：<b>什么才算一个好问题</b>。</p><p>我打个比方：<b>先找病，再开方</b>。</p><p>你去看医生，只说「我不舒服」，医生能开药吗？开不了。他得问：哪里不舒服？什么时候开始的？怎么个不舒服法？</p><p>问清楚了，药才开得对。</p><p>定义问题也一样。</p><p>看左边这句：「我想做个有用的东西。」</p><p>这句话有什么毛病？它只说了<b>想做什么</b>，没说<b>给谁用</b>、<b>解决什么麻烦</b>。</p><p>同样空的还有「我想做个灯」「让生活更方便」——听起来很美，但没法下手。</p><p>再看右边：「楼道太黑，奶奶晚上下楼看不清台阶——能不能天黑有人来就自动亮灯？」</p><p>一句话里有几样东西？给<b>谁</b>（奶奶）、<b>什么时候</b>（晚上下楼）、<b>什么麻烦</b>（看不清台阶）、<b>希望怎样</b>（自动亮灯）。</p><p>四样全有。所以这个方案立刻就有方向了。</p><p>记住：好问题不是「我想做个灯」，而是「<b>我家楼道晚上太黑，奶奶下楼看不清台阶</b>」。</p></div>
+</section>
+
+<section class="slide lay-reqdoc" data-title="问题定义四要素">
+<div class="phead"><span class="no">第11课</span>
+<span class="kick g">四要素</span>
+<span class="tslot">16–24 分</span>
+</div>
+<h2 class="ptitle">问题定义四要素</h2>
+<p class="psub">四项写全、写具体——这是今天的保底任务</p>
+<div class="pbody">
+  <div class="rdgrid grow">
+    <div class="blk a"><h4>把你的麻烦写成这四句</h4><div class="fivelist"><div class="fv"><span class="fk">谁</span><span class="fw">谁遇到了这个麻烦？（我 / 奶奶 / 同桌 / 全班）</span></div><div class="fv"><span class="fk">什么时候</span><span class="fw">在什么场景下发生？（晚上下楼 / 上课时 / 写作业时）</span></div><div class="fv"><span class="fk">遇到什么麻烦</span><span class="fw">具体是<b>哪件小事</b>不顺？越具体越好</span></div><div class="fv"><span class="fk">希望变成怎样</span><span class="fw">你希望它变成什么样子？</span></div></div></div>
+    <div class="blk g"><h4>去哪儿找问题？三类抽屉</h4><div class="sqlist"><div class="sq"><span class="sn">校园</span><span class="st">教室太吵？值日忘了？课间没人提醒喝水？</span></div><div class="sq"><span class="sn">家庭</span><span class="st">楼道黑？浇花忘了？冰箱门没关？</span></div><div class="sq"><span class="sn">个人</span><span class="st">写作业坐太久忘了起来？睡觉忘关灯？</span></div><div class="sq"><span class="sn">★</span><span class="st"><b>不必原创</b>——题库二十题里挑一个也完全可以</span></div><div class="sq"><span class="sn">✗</span><span class="st"><b>别写「让生活更方便」</b>这种话，逼自己到一个<b>具体场景</b>为止</span></div></div></div>
+  </div>
+  <div style="margin-top:20px"><div class="strip g">巡视口令：<b>给谁？什么时候？哪件具体的小事？</b>——逼到一个场景为止</div></div>
+</div>
+<div class="notes"><p>这就是<b>问题定义四要素</b>，今天的保底任务。</p><p><b>谁</b>——谁遇到了这个麻烦？可以是你自己，可以是奶奶、同桌、全班。</p><p><b>什么时候</b>——在什么场景下发生？晚上下楼、上课时、写作业时。</p><p><b>遇到什么麻烦</b>——具体是哪件小事不顺？这一条最关键，越具体越好。</p><p><b>希望变成怎样</b>——你希望它变成什么样子？</p><p>右边告诉你去哪儿找。我给你们三个<b>抽屉</b>，一个一个拉开看。</p><p><b>校园抽屉</b>：教室太吵？值日忘了？课间没人提醒喝水？</p><p><b>家庭抽屉</b>：楼道黑？浇花忘了？冰箱门没关？</p><p><b>个人抽屉</b>：写作业坐太久忘了起来？睡觉忘关灯？</p><p>两条提醒。</p><p>第一，<b>不必原创</b>。题库二十题里挑一个完全可以——我比的不是谁的题稀奇，是谁<b>想得清楚</b>。</p><p>第二，<b>别写「让生活更方便」</b>这种话。我巡视的时候会一直问三句：给谁？什么时候？哪件具体的小事？</p><p>问到你说出一个<b>场景</b>为止。</p></div>
+</section>
+
+<section class="slide lay-divider" data-title="课间休息">
+<div class="deco circle" style="width:200px;height:200px;top:-70px;right:180px"></div>
+<div class="deco square" style="width:130px;height:130px;left:-50px;bottom:70px;transform:rotate(12deg)"></div>
+<div class="deco tri" style="right:140px;bottom:90px;transform:rotate(14deg)"></div>
+<div class="dv">
+  <span class="dv-time">40–50 分</span>
+  <h2 class="dv-t">课间休息 10 分钟</h2>
+  <p class="dv-s">各组互换问题定义——读读对方写具体了没有</p>
+</div>
+<div class="notes"><p>上半场结束，休息十分钟。</p><p>休息之前有个活儿：把你们组的<b>问题定义</b>和旁边那组<b>换一换</b>。</p><p>读对方的时候，就问那三句：给谁？什么时候？哪件具体的小事？</p><p>有一句答不上来，就在旁边画个问号，还给他们。</p><p>为什么要互换？因为<b>自己写的东西自己看不出毛病</b>。你觉得写清楚了，别人一读就懵——那就是没写清楚。</p></div>
+</section>
+
+<section class="slide lay-aierror" data-title="AI 出错时刻">
+<div class="phead"><span class="no">第11课</span>
+<span class="kick c">AI 出错时刻</span>
+<span class="tslot">50–62 分</span>
+</div>
+<h2 class="ptitle">问题没说清，AI 也帮不上忙</h2>
+<p class="psub">我把「帮我做个有用的东西」丢给 DeepSeek——看它怎么答</p>
+<div class="pbody">
+  <div class="aegrid grow">
+    <div class="code"><span class="lab c">我问 AI 的话</span><pre style="font-size:26px;line-height:1.55">帮我做个有用的东西。
+
+<span class="c"># AI 的回答：</span>
+<span class="c">#   要么乱猜一个方向</span>
+<span class="c">#   要么给一个超复杂的方案</span>
+<span class="c">#   （需要摄像头、App、云服务器……）</span>
+
+<span class="c"># 全都做不了</span></pre></div>
+    <div class="aecol">
+      <div class="blk c"><h4>AI 不是变笨了</h4><p>是<b>问题本身没说清</b>。它不知道给谁用、解决什么麻烦，只能瞎猜——猜出来的东西我们一样也做不了。</p></div>
+      <div class="blk g"><h4>换一句再问</h4><p>「楼道太黑，奶奶晚上下楼看不清台阶，我想做个天黑自动亮的灯。」——<b>方向立刻就清楚了</b>。</p></div>
+    </div>
+  </div>
+  <div style="margin-top:22px"><div class="strip a">所以顺序是：<b>先把问题想清楚，AI 才是好帮手</b>——不是反过来</div></div>
+</div>
+<div class="notes"><p>我们做个实验。我现在把「<b>帮我做个有用的东西</b>」丢给 DeepSeek，看它怎么答。</p><p>（提交）</p><p>看——它要么<b>乱猜</b>一个方向，要么给我一个<b>超级复杂</b>的方案：需要摄像头、需要 App、需要云服务器。</p><p>我们做得了吗？一样也做不了。</p><p>那我问一句：<b>AI 变笨了吗？</b></p><p>（等他们答——他们现在应该会摇头了）</p><p>不是。是<b>问题本身没说清</b>。它不知道给谁用、解决什么麻烦，只能瞎猜。</p><p>这个道理我们第 6 课就学过了，今天只是换了个场合再证明一次。</p><p>现在我换一句：「楼道太黑，奶奶晚上下楼看不清台阶，我想做个天黑自动亮的灯。」</p><p>（再提交）</p><p>看，<b>方向立刻就清楚了</b>。它给的建议全在我们能做的范围里。</p><p>所以今天的顺序是：<b>先把问题想清楚，AI 才是好帮手</b>——不是反过来。</p><p>不是先问 AI 该做什么，是你先想清楚，再让 AI 帮你。</p></div>
+</section>
+
+<section class="slide lay-table" data-title="推荐项目清单">
+<div class="phead"><span class="no">第11课</span>
+<span class="kick g">第一漏斗</span>
+<span class="tslot">62–78 分</span>
+</div>
+<h2 class="ptitle">推荐项目清单：六选一</h2>
+<p class="psub">全部零新硬件，只用已学元件——当然也可以从题库二十题里自选</p>
+<div class="pbody">
+  <div class="tbl grow" style="grid-template-columns:1fr 1.25fr 1.4fr"><div class="th">项目</div><div class="th">用到的元件</div><div class="th">核心功能</div><div class="td k">智能小夜灯</div><div class="td">光敏 ＋ LED／灯带</div><div class="td">天暗自动亮、可调色</div><div class="td k">桌面温度警报器</div><div class="td">DHT11 ＋ OLED ＋ 蜂鸣器</div><div class="td">测温显示、超阈值报警</div><div class="td k">抢答器／计分器</div><div class="td">按钮 ＋ 灯带 ＋ 蜂鸣器</div><div class="td">抢答锁定、灯条计分</div><div class="td k">番茄钟／倒计时器</div><div class="td">OLED ＋ 蜂鸣器 ＋ 按钮</div><div class="td">计时、到点提醒</div><div class="td k">心情灯／天气灯</div><div class="td">灯带 ＋ 按钮（或温度）</div><div class="td">按状态切换颜色</div><div class="td k">防溜号提醒器</div><div class="td">光敏／按钮 ＋ 蜂鸣器</div><div class="td">检测离开就提醒</div></div>
+  <div style="margin-top:20px"><div class="strip g"><b>不必原创</b>——比的不是项目稀不稀奇，是<b>问题想得清不清楚</b></div></div>
+</div>
+<div class="notes"><p>这是<b>第一漏斗</b>：推荐项目清单，六选一。</p><p>我先说明一件事：这六个项目，<b>全部零新硬件</b>，用的都是我们这十节课已经学过的元件。</p><p>也就是说——选上面任何一个，你都<b>一定做得出来</b>。</p><p>（逐行念一遍，边念边点元件）</p><p>智能小夜灯：光敏加灯，这是第 8 课的作品升级。</p><p>桌面温度警报器：DHT11 加屏幕加蜂鸣器，第 7 课的升级。</p><p>抢答器计分器：第 10 课的升级，加上灯带计分。</p><p>番茄钟：屏幕加蜂鸣器加按钮——这个我们没做过，但三个零件都会用。</p><p>心情灯、防溜号提醒器，同理。</p><p>除了这六个，你们手里还有<b>题库二十题</b>，也可以从里面挑。还想自选题？也行。</p><p>但我要说一句：<b>不必原创</b>。</p><p>今天我比的<b>不是</b>谁的项目稀奇，是谁<b>问题想得清楚</b>。</p><p>两个组都选小夜灯，完全可以——只要你们的问题场景不一样。</p></div>
+</section>
+
+<section class="slide lay-cards3" data-title="已学元件工具箱">
+<div class="phead"><span class="no">第11课</span>
+<span class="kick a">工具箱</span>
+<span class="tslot">62–78 分</span>
+</div>
+<h2 class="ptitle">我们的工具箱</h2>
+<p class="psub">构想方案时<b>只能用这些</b>——十节课挣来的家当</p>
+<div class="pbody"><div class="g3 grow"><div class="blk g"><h4>感知（眼睛）</h4><p>按钮 → GPIO14　　光敏模块 → GPIO34　　DHT11 温湿度 → GPIO14<br>（按钮和 DHT11 都占 14，同一作品两者同用时<b>按钮改 GPIO27</b>）</p></div><div class="blk a"><h4>执行（手）</h4><p>LED → GPIO2　　WS2812 灯带 → GPIO5　　蜂鸣器 → GPIO13</p></div><div class="blk c"><h4>显示（嘴巴）</h4><p>OLED 屏（I2C）→ <b>SCL ＝ 22，SDA ＝ 21</b></p></div></div><div style="margin-top:22px"><div class="strip a">想用摄像头？电机？手机 App？——<b>可行性三问过不去</b>，放进「毕业后再做」清单</div></div></div>
+<div class="notes"><p>这是我们的<b>工具箱</b>——十节课挣来的全部家当。构想方案的时候，<b>只能用这些</b>。</p><p>我按功能分成三类，你们记这三个词就行。</p><p><b>感知，是眼睛。</b> 按钮、光敏模块、DHT11 温湿度。它们负责「知道外面发生了什么」。</p><p>这里有个坑我提醒一下：按钮和 DHT11 <b>默认都占 GPIO14</b>。如果你的作品两个都要用，<b>按钮要改到 GPIO27</b>。记在本子上，L13 搭建的时候会用到。</p><p><b>执行，是手。</b> LED、WS2812 灯带、蜂鸣器。它们负责「做出动作」。</p><p><b>显示，是嘴巴。</b> OLED 屏，SCL 接 22、SDA 接 21。它负责「把话说出来」。</p><p>眼睛、手、嘴巴——就这三样。</p><p>那有同学会想：我能不能用摄像头？能不能加个电机？能不能做个手机 App？</p><p>答案是<b>今天不行</b>。这些东西<b>可行性三问过不去</b>。</p><p>但不是永远不行——记到「<b>毕业后再做</b>」清单里。有些东西第四、第五阶段会碰到。</p></div>
+</section>
+
+<section class="slide lay-rowlist" data-title="可行性三问">
+<div class="phead"><span class="no">第11课</span>
+<span class="kick c">第二漏斗</span>
+<span class="tslot">62–78 分</span>
+</div>
+<h2 class="ptitle">可行性三问</h2>
+<p class="psub">第二漏斗——<b>三问不全过，不进方案构想表</b></p>
+<div class="pbody"><div class="rowlist grow"><div class="rowitem"><div class="num g">1</div><div class="tx"><b>① 有传感器能感知它吗？</b>（按钮 / 光敏 / DHT11——只有这三样）</div></div><div class="rowitem"><div class="num a">2</div><div class="tx"><b>② 有执行件能做这个动作吗？</b>（LED / 灯带 / 蜂鸣器 / OLED——只有这四样）</div></div><div class="rowitem"><div class="num c">3</div><div class="tx"><b>③ 一句话说得清吗？</b>（说不清就是还没想清楚）</div></div><div class="rowitem"><div class="num g">4</div><div class="tx">任一问答「否」→ <b>回题库换题</b>，或者把题目<b>收窄</b>一点</div></div><div class="rowitem"><div class="num a">5</div><div class="tx">过不去的想法<b>不是坏想法</b>——写进「毕业后再做」清单，别丢掉</div></div></div><div style="margin-top:20px"><div class="strip g">换题话术：「这个想法很好！我们来过三关……有一关过不去？先放进『毕业后再做』清单」</div></div></div>
+<div class="notes"><p>这是<b>第二漏斗</b>，叫<b>可行性三问</b>。规矩很硬：<b>三问不全过，不进方案构想表</b>。</p><p><b>第①问：有传感器能感知它吗？</b> 我们只有三样眼睛：按钮、光敏、DHT11。</p><p>举个例子，有同学想做「有人走过就亮灯」——有传感器能感知「有人走过」吗？我们没有人体感应器。过不去。</p><p>但可以<b>收窄</b>：改成「天黑就亮灯」——光敏能感知，过了。</p><p><b>第②问：有执行件能做这个动作吗？</b> 我们只有四样手：LED、灯带、蜂鸣器、OLED。</p><p>想做「自动浇花」——有东西能出水吗？没有。过不去。</p><p><b>第③问：一句话说得清吗？</b> 说不清，就说明你还没想清楚。</p><p>任何一问答「否」怎么办？回题库换题，或者把题目收窄。</p><p>但我要特别说一句：<b>过不去的想法不是坏想法</b>。</p><p>它只是<b>今天的工具箱做不到</b>。把它写进「毕业后再做」清单里，别丢掉——那可能是你以后最好的项目。</p></div>
+</section>
+
+<section class="slide lay-reqdoc" data-title="完整范例">
+<div class="phead"><span class="no">第11课</span>
+<span class="kick g">起步样例</span>
+<span class="tslot">62–78 分</span>
+</div>
+<h2 class="ptitle">完整范例：楼道夜灯</h2>
+<p class="psub">先看它，再填你自己的</p>
+<div class="pbody">
+  <div class="rdgrid grow">
+    <div class="blk a"><h4>一、问题定义（四要素）</h4><div class="fivelist"><div class="fv"><span class="fk">谁</span><span class="fw">我家奶奶</span></div><div class="fv"><span class="fk">什么时候</span><span class="fw">晚上下楼时</span></div><div class="fv"><span class="fk">遇到什么麻烦</span><span class="fw">楼道没灯、太黑，看不清台阶，<b>怕摔跤</b></span></div><div class="fv"><span class="fk">希望变成怎样</span><span class="fw">天一黑、有人来，灯就自动亮；人走了过一会儿自动灭</span></div></div></div>
+    <div class="blk g"><h4>二、三问 ＋ 三、方案构想</h4><div class="sqlist"><div class="sq"><span class="sn">①</span><span class="st">感知 ＝ <b>光敏</b>　→　过</span></div><div class="sq"><span class="sn">②</span><span class="st">执行 ＝ <b>LED／灯带</b>　→　过</span></div><div class="sq"><span class="sn">③</span><span class="st">一句话说得清　→　过</span></div><div class="sq"><span class="sn">选</span><span class="st"><b>智能小夜灯</b>（清单第 1 项）</span></div><div class="sq"><span class="sn">做</span><span class="st">用光敏判断天黑没黑；天黑就让灯亮。元件：光敏(34) ＋ LED(2) 或灯带(5)</span></div></div></div>
+  </div>
+  <div style="margin-top:20px"><div class="strip g">注意「怕摔跤」三个字——<b>那才是真正的痛点</b>，不是「楼道没灯」</div></div>
+</div>
+<div class="notes"><p>这是一份填好的范例，你们照着这个格式填自己的。</p><p>左边是<b>问题定义四要素</b>。我念一遍：</p><p>谁——我家奶奶。什么时候——晚上下楼时。遇到什么麻烦——楼道没灯、太黑，看不清台阶，<b>怕摔跤</b>。希望变成怎样——天一黑有人来就自动亮，人走了自动灭。</p><p>我要你们注意黑条上那句话：「<b>怕摔跤</b>」这三个字，<b>才是真正的痛点</b>。</p><p>「楼道没灯」只是个现象。<b>奶奶可能摔跤</b>，这才是你要解决的事。</p><p>找痛点的时候多问一句「那又怎么样？」——楼道没灯，那又怎么样？看不清台阶。那又怎么样？<b>可能摔跤</b>。问到这一步，你就找到真痛点了。</p><p>右边是三问和方案。三问一条条过：感知用光敏，过；执行用灯，过；一句话说得清，过。</p><p>三问全过，才填下面的方案：选清单第 1 项智能小夜灯，用光敏判断天黑，天黑就让灯亮。元件写清楚引脚号。</p><p>现在动手填你们自己的，十五分钟。填完我来收。</p></div>
+</section>
+
+<section class="slide lay-tiers3" data-title="分层任务">
+<div class="phead"><span class="no">第11课</span>
+<span class="kick g">分层任务</span>
+<span class="tslot">62–78 分</span>
+</div>
+<h2 class="ptitle">先保底，再挑战</h2>
+<p class="psub">问题具体 ＋ 三问全过 ＋ 元件在清单上 ＝ 成功</p>
+<div class="pbody"><div class="g3 grow"><div class="blk tier t1"><div class="hd">★ 基础（必做）</div>
+        <p class="task">写出具体的问题定义：谁、什么时候、遇到什么麻烦、希望变成怎样，四项写全写具体。</p><p class="fill">我的问题一句话：________　□ 四要素都有了</p></div><div class="blk tier t2"><div class="hd">★★ 进阶（建议做）</div>
+        <p class="task">选定一个方向（题库／清单／自选都行），过可行性三问，列出要用的已学元件。</p><p class="fill">选定项目：____　□ 三问全过　要用的元件：____</p></div><div class="blk tier t3"><div class="hd">★★★ 挑战（学有余力）</div>
+        <p class="task">说清你的方案要「感知」什么、要「做」什么动作——给下节课的系统设计图打草稿。</p><p class="fill">感知：________　执行动作：________</p></div></div>
+<div style="margin-top:22px"><div class="strip g">本课规则：<b>只定义问题、构想方案——不写代码、不接线</b>。搭建是 L13–14 的事</div></div></div>
+<div class="notes"><p>任务三档。</p><p><b>基础档必做</b>：写出<b>具体</b>的问题定义，四要素写全。这就是今天的保底线。</p><p>注意「具体」两个字。我收表的时候会拿那三句问你：给谁？什么时候？哪件具体的小事？</p><p>进阶档：选定方向，过三问，列元件。元件要写引脚号。</p><p>挑战档：提前想一想——你的方案要<b>感知</b>什么？要<b>做</b>什么动作？</p><p>这一档其实是在给下节课打草稿。下节课《系统设计》，我们就要把它画成图。</p><p>最后重申今天的规则，我知道有同学手痒了：</p><p><b>只定义问题、构想方案——不写代码、不接线。</b></p><p>搭建是 L13 和 L14 两节连堂工作坊的事。今天你把问题想清楚了，那两节课才不会瞎忙。</p><p>急着动手的，最后往往做出一个自己都说不清是干什么的东西。</p></div>
+</section>
+
+<section class="slide lay-rowlist" data-title="今日三大发现">
+<div class="phead"><span class="no">第11课</span>
+<span class="kick g">总结</span>
+<span class="tslot">78–90 分</span>
+</div>
+<h2 class="ptitle">今日三大发现</h2>
+<div class="pbody"><div class="rowlist grow"><div class="rowitem"><div class="num g">1</div><div class="tx"><b>问题来自生活</b>——好项目不是凭空想的，是从身边<b>真实的小麻烦</b>里找出来的</div></div><div class="rowitem"><div class="num a">2</div><div class="tx"><b>先定义再动手</b>——把问题说清楚，比急着想点子更重要</div></div><div class="rowitem"><div class="num c">3</div><div class="tx"><b>我说了算</b>——这一次是我自己定问题、自己选方案，AI 只是<b>备用工具</b></div></div></div><div style="margin-top:20px"><div class="strip a">下节课《系统设计》——把方案画成<b>系统设计图</b>：感知 · 决策 · 执行<b>三段式</b>！</div></div></div>
+<div class="notes"><p>各组用<b>一句话</b>讲清「我的问题＋我的方案」，一组三十秒，开始。</p><p>（各组轮流讲完）</p><p>好，今天三个发现。</p><p>第一个，<b>问题来自生活</b>。好项目不是凭空想的，是从身边真实的小麻烦里<b>找</b>出来的。</p><p>你们今天找的这些——楼道黑、忘喝水、坐太久——都很小，但都是<b>真的</b>。真的比大的重要。</p><p>第二个，<b>先定义再动手</b>。把问题说清楚，比急着想点子更重要。这也是工程师做事的顺序。</p><p>第三个，<b>我说了算</b>。这一次是你自己定问题、自己选方案，AI 只是备用工具。</p><p>今天你们没写一行代码，但我认为这是到目前为止<b>最难的一节课</b>——因为它没有标准答案。</p><p>下节课钩子：今天我们有了<b>方案</b>，但方案还只是一句话。</p><p>下节课《系统设计》，我们把它画成一张<b>系统设计图</b>——<b>感知、决策、执行</b>三段式。</p><p>下课。</p></div>
+</section>
+
+<section class="slide lay-cards2" data-title="课后任务">
+<div class="phead"><span class="no">第11课</span>
+<span class="kick a">课后任务</span>
+</div>
+<h2 class="ptitle">课后任务</h2>
+<div class="pbody"><div class="g2 grow"><div class="blk g"><h4>基础（全员）</h4><p>回家观察，<b>再找出一个</b>身边的真实小麻烦，按四要素写成第二份问题定义（这一份不必选方案）。</p></div><div class="blk a"><h4>拓展（选做）</h4><p>给本组选定的方案提前想一想：它要「<b>感知</b>」什么、要「<b>做</b>」什么动作？为下节课的系统设计图打个草稿。</p></div></div>
+<div style="margin-top:24px"><div class="strip g">能自己发现一个值得解决的问题，比会一百种技术更难得——这才是「超越 AI」的第一步</div></div></div>
+<div class="notes"><p>课后两件事。</p><p>第一件全员都做：回家<b>再找一个</b>身边的小麻烦，按四要素写成第二份问题定义。</p><p>为什么要写第二份？因为找问题这件事是<b>练出来的</b>。你今天找了一个，觉得挺难；找到第五个的时候，你会发现身边到处都是问题——只是以前你没注意。</p><p>这一份<b>不用选方案</b>，只写问题定义就行。</p><p>第二件选做：给你们组的方案提前想：要<b>感知</b>什么？要<b>做</b>什么动作？打个草稿，下节课直接用。</p><p>最后送你们一句话，也是这一整个阶段的底色：</p><p><b>能自己发现一个值得解决的问题，比会一百种技术更难得。</b></p><p>这才是「超越 AI」的第一步。下课。</p></div>
+</section>
+<div class="deck-footer"><span>ESP32 × AI 科创课程 · 第三阶段「超越AI」 · 第11课 我的问题我的方案</span><span class="slide-number" data-current="1" data-total="14"></span></div>
+<div class="progress-bar"><span></span></div>
+</div>
+<script src="assets/fitstage.js"></script>
+<script src="assets/runtime.js"></script>
+</body>
+</html>

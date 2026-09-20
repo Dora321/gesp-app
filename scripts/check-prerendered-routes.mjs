@@ -5,6 +5,16 @@ import { fileURLToPath } from 'url';
 const root = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
 const cases = [
   {
+    file: 'dist/hardware/esp32/16.5/index.html',
+    title: '高阶科创 · 第 16.5 课 · 联网预备包',
+    canonical: 'https://Dora321.github.io/gesp-app/hardware/esp32/16.5',
+  },
+  {
+    file: 'dist/hardware/esp32/23/index.html',
+    title: '高阶科创 · 第 23 课 · 智能家居模块上',
+    canonical: 'https://Dora321.github.io/gesp-app/hardware/esp32/23',
+  },
+  {
     file: 'dist/innovation-foundation/index.html',
     title: '初阶科创 · 15 节探究课',
     canonical: 'https://Dora321.github.io/gesp-app/innovation-foundation',

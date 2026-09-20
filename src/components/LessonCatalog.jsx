@@ -438,7 +438,7 @@ const subjectSummaries = {
     },
     innovation: {
         label: 'ESP32 MicroPython 高阶科创', title: '用 MicroPython 与 AI 完成硬件项目',
-        description: 'ESP32 × AI 网页课件，保留课堂演示与交互。现有第 1–5、9、10 课，按原课号排列。',
+        description: 'ESP32 × AI 网页课件，保留课堂演示与交互。现有第 1–23 课与第 16.5 课，按原课号排列。',
         cta: '从第 1 课开始', ctaPath: '/hardware/esp32/1',
     },
     cpp: {
@@ -524,7 +524,7 @@ function getSectionAction(section, subject) {
 
 function getPracticeAction(section, subject) {
     if (subject === 'science-foundation') return { label: '查看课程目录', path: '/innovation-foundation', hint: '按第 1–15 课顺序学习，打开网页课件跟着实验一起探索。' };
-    if (subject === 'innovation') return { label: '查看课程目录', path: '/hardware/esp32-curriculum', hint: '已收录第 1–5、9、10 课；第 6–8 课网页待补充，保留原课号。' };
+    if (subject === 'innovation') return { label: '查看课程目录', path: '/hardware/esp32-curriculum', hint: '已收录第 1–23 课与第 16.5 课；后续网页课件将继续补充。' };
     if (subject === 'cpp') {
         return {
             label: '练真题',

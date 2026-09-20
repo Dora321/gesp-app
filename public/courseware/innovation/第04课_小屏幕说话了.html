@@ -42,7 +42,7 @@
 <p class="psub">我问「给 ESP32 接个屏幕，让它显示 Hello」——然后就翻车了</p>
 <div class="pbody">
   <div class="aegrid grow">
-    <div class="code"><span class="lab c">运行结果</span><pre style="font-size:27px"><span class="k">import</span> oled_display        <span class="c"># AI 猜的库名</span>
+    <div class="code"><span class="lab c">运行结果</span><pre style="font-size:27px;line-height:1.55"><span class="k">import</span> oled_display        <span class="c"># AI 猜的库名</span>
 
 <span class="c"># 运行后一片红字：</span>
 <span class="c"># ImportError: no module</span>
@@ -95,7 +95,7 @@
 <span class="tslot">18–30 分</span>
 </div>
 <h2 class="ptitle">完整可运行代码</h2>
-<div class="pbody"><div class="askline">运行前先做一件事：把 <b>ssd1306.py 上传到板子</b>（MicroPython Tools 面板里 Upload）</div><div class="code"><span class="lab g">完整可跑 · 屏幕显示 Hello</span><pre style="font-size:27px"><span class="k">from</span> machine <span class="k">import</span> Pin, SoftI2C
+<div class="pbody"><div class="askline">运行前先做一件事：把 <b>ssd1306.py 上传到板子</b>（MicroPython Tools 面板里 Upload）</div><div class="code"><span class="lab g">完整可跑 · 屏幕显示 Hello</span><pre style="font-size:27px;line-height:1.55"><span class="k">from</span> machine <span class="k">import</span> Pin, SoftI2C
 <span class="k">import</span> ssd1306
 
 i2c = SoftI2C(scl=Pin(22), sda=Pin(21))

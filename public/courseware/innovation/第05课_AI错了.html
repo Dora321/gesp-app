@@ -81,7 +81,7 @@
 <p class="psub">我们一起抓第一只——这是最好抓的一种</p>
 <div class="pbody">
   <div class="aegrid grow">
-    <div class="code"><span class="lab c">bug1.py</span><pre style="font-size:26px"><span class="k">from</span> machine <span class="k">import</span> Pin
+    <div class="code"><span class="lab c">bug1.py</span><pre style="font-size:26px;line-height:1.55"><span class="k">from</span> machine <span class="k">import</span> Pin
 <span class="k">import</span> time
 led = Pin(2, Pin.OUT)
 <span class="k">while</span> <span class="k">True</span>       <span class="c"># 这里漏了冒号 :</span>
@@ -131,7 +131,7 @@ led = Pin(2, Pin.OUT)
 <p class="psub">写的时候没事，跑起来才报——这是运行错</p>
 <div class="pbody">
   <div class="aegrid grow">
-    <div class="code"><span class="lab c">bug2.py</span><pre style="font-size:26px"><span class="k">from</span> machine <span class="k">import</span> Pin
+    <div class="code"><span class="lab c">bug2.py</span><pre style="font-size:26px;line-height:1.55"><span class="k">from</span> machine <span class="k">import</span> Pin
 <span class="c"># 这里漏了一行 import time</span>
 led = Pin(2, Pin.OUT)
 <span class="k">while</span> <span class="k">True</span>:
@@ -158,7 +158,7 @@ led = Pin(2, Pin.OUT)
 <p class="psub">灯也亮了，程序也没报错——可它就是反的</p>
 <div class="pbody">
   <div class="aegrid grow">
-    <div class="code"><span class="lab c">bug3.py</span><pre style="font-size:23px"><span class="k">from</span> machine <span class="k">import</span> Pin
+    <div class="code"><span class="lab c">bug3.py</span><pre style="font-size:23px;line-height:1.55"><span class="k">from</span> machine <span class="k">import</span> Pin
 led = Pin(2, Pin.OUT)
 btn = Pin(0, Pin.IN, Pin.PULL_UP)
 <span class="k">while</span> <span class="k">True</span>:
@@ -182,7 +182,7 @@ btn = Pin(0, Pin.IN, Pin.PULL_UP)
 <span class="tslot">50–75 分</span>
 </div>
 <h2 class="ptitle">Bug 4：小心，它不止一只</h2>
-<div class="pbody"><div class="askline">提示：修好第一个错之后<b>别急着庆祝</b>——再运行一次，看看屏幕上真的出字了吗？</div><div class="code"><span class="lab g">bug4.py · 连环错</span><pre style="font-size:27px"><span class="k">from</span> machine <span class="k">import</span> Pin, SoftI2C
+<div class="pbody"><div class="askline">提示：修好第一个错之后<b>别急着庆祝</b>——再运行一次，看看屏幕上真的出字了吗？</div><div class="code"><span class="lab g">bug4.py · 连环错</span><pre style="font-size:27px;line-height:1.55"><span class="k">from</span> machine <span class="k">import</span> Pin, SoftI2C
 <span class="k">import</span> ssd1306
 i2c = SoftI2C(scl=Pin(22), sda=Pin(99))   <span class="c"># SDA 引脚号写错了</span>
 oled = ssd1306.SSD1306_I2C(128, 64, i2c)

@@ -1,0 +1,209 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>第14课 · 搭积木（下）决策与组装 — ESP32 × AI 科创课程</title>
+<link rel="stylesheet" href="assets/base.css">
+<link rel="stylesheet" id="theme-link" href="assets/theme-course-pop.css">
+<link rel="stylesheet" href="assets/animations.css">
+</head>
+<body>
+<div class="deck" data-theme-base="assets/">
+<section class="slide lay-cover is-active" data-title="封面">
+<div class="deco circle" style="width:170px;height:170px;top:-52px;right:238px"></div>
+<div class="deco tri" style="right:110px;bottom:132px;transform:rotate(14deg)"></div>
+<div class="deco square" style="width:120px;height:120px;left:-46px;bottom:86px;transform:rotate(12deg)"></div>
+<span class="cv-bar">ESP32 × AI ／ 第三阶段「超越AI」项目工作坊（下）</span>
+<h1 class="cv-title">搭积木<em>（下）</em></h1>
+<p class="cv-sub">装上决策，组装联调——今天要做出一个完整作品</p>
+<div class="cv-tags"><span class="tag">决策是灵魂</span><span class="tag">组装联调</span><span class="tag">完整跑通</span><span class="tag">90 分钟连堂</span></div>
+<div class="cv-no">14</div>
+<div class="notes"><p>上节课你们的装置学会了两件事：<b>读到</b>周围，把读到的<b>显示</b>出来。</p><p>但它还只是个「仪表」——只会报数，不会做事。</p><p>今天我们补上最关键的那一块积木：<b>决策</b>。</p><p>就是你设计图中间那格<b>琥珀色</b>的：「<b>如果……就……否则……</b>」。</p><p>装上它，你的装置就从「<b>会读</b>」变成「<b>会自己做事</b>」。</p><p>然后我们把三块积木<b>组装</b>起来，联调，做出一个<b>完整能用的作品</b>。</p><p>今天下课的时候，我要看到每一组桌上都有一个<b>会自己工作的东西</b>——</p><p>不用你按，不用你管，它自己看着环境，自己决定动不动。</p><p>两节课前你们画的那张图，今天变成真的。</p></div>
+</section>
+
+<section class="slide lay-cards3" data-title="两条路径">
+<div class="phead"><span class="no">第14课</span>
+<span class="kick c">开场</span>
+<span class="tslot">0–8 分</span>
+</div>
+<h2 class="ptitle">两条路径，同一个里程碑</h2>
+<p class="psub">今天开始发<b>标准件包</b>——拿到的组照着搭，进度一样不落</p>
+<div class="pbody"><div class="g3 grow"><div class="blk g"><h4>路径 A：按自己的设计图</h4><p>上节课感知＋显示已跑通的组，<b>接着自己的代码往下搭</b>。</p></div><div class="blk a"><h4>路径 B：教师标准件包</h4><p>领一套<b>夜灯保底配置</b>（光敏 GPIO34 ＋ 串口/LED 显示 ＋ LED 执行），在它上面加决策与组装。</p></div><div class="blk c"><h4>里程碑完全相同</h4><p>两条路都要求：<b>完整跑通</b>。积木不同，盖出来的<b>都是完整的房子</b>。</p></div></div><div style="margin-top:22px"><div class="strip a">标准件先跑通后，有余力可以把感知或执行<b>换回自选元件</b>——但<b>一次只换一件</b></div></div></div>
+<div class="notes"><p>（发标准件包，逐组放到桌上，不作说明、不点名）</p><p>今天有两条路径，都通向同一个地方。</p><p><b>路径 A</b>：上节课感知和显示已经跑通的组，接着你自己的代码往下搭。</p><p><b>路径 B</b>：桌上有标准件包的组，用这套<b>夜灯保底配置</b>——光敏读亮度，串口和 LED 显示，LED 执行。在它上面加决策和组装。</p><p>两条路的<b>里程碑完全相同</b>：<b>完整跑通</b>。</p><p>我要说一句话，请认真听：</p><p><b>积木不同，盖出来的都是完整的房子。</b></p><p>用标准件不丢人。真实世界里的工程师，哪个不是站在现成的东西上往前做？没有人从挖矿开始造手机。</p><p>而且黑条上那句是给路径 B 的组的<b>福利</b>：</p><p>标准件先完整跑通之后，如果你有余力，<b>可以把感知或者执行换回你自己的元件</b>。</p><p>但规矩是——<b>一次只换一件</b>。</p><p>手里有一个跑通的作品，你怎么升级都不慌；手里什么都没有，换一件就全盘皆输。</p></div>
+</section>
+
+<section class="slide lay-stepcode" data-title="决策段提问">
+<div class="phead"><span class="no">第14课</span>
+<span class="kick g">决策段</span>
+<span class="tslot">8–24 分</span>
+</div>
+<h2 class="ptitle">对照设计图，逐字问</h2>
+<div class="pbody"><div class="askline"><b>决策段 · 在原代码上加：</b>「在我上节课的代码基础上（读光敏值 value），请加上决策：如果 value 低于 1000 就点亮 GPIO2 的 LED，否则熄灭它。约束：沿用我原来的变量名，带中文注释，只改必要的部分。」</div><div class="code"><span class="lab g">完整全码 · 主线：智能小夜灯（感知＋决策＋执行）</span><pre style="font-size:19px;line-height:1.38"><span class="k">from</span> machine <span class="k">import</span> Pin, ADC       <span class="c"># 引脚与模拟读取工具</span>
+<span class="k">import</span> time                        <span class="c"># 时间工具</span>
+
+light = ADC(Pin(34))               <span class="c"># 感知：光敏接 GPIO34</span>
+light.atten(ADC.ATTN_11DB)         <span class="c"># 量程 0~3.3V</span>
+led = Pin(2, Pin.OUT)              <span class="c"># 执行：LED 接 GPIO2</span>
+
+THRESHOLD = 1000                   <span class="c"># 决策阈值：低于它算天黑</span>
+
+<span class="k">while</span> <span class="k">True</span>:
+    value = light.read()           <span class="c"># 感知：读亮度</span>
+    <span class="k">if</span> value &lt; THRESHOLD:          <span class="c"># 决策：如果很暗</span>
+        led.value(1)               <span class="c"># 执行：亮灯</span>
+    <span class="k">else</span>:                          <span class="c"># 否则（够亮）</span>
+        led.value(0)               <span class="c"># 执行：灭灯</span>
+    print("亮度：", value)         <span class="c"># 顺便显示，方便调阈值</span>
+    time.sleep(0.5)</pre></div></div>
+<div class="notes"><p>今天的提问和上节课不一样：<b>不是重新要一段，是在原来的基础上加</b>。</p><p>看开头那句：「在我上节课的代码基础上（读光敏值 <b>value</b>）」。</p><p>括号里为什么要写变量名？因为 AI 不知道你上节课的变量叫什么。你不说，它自己起一个新名字，两段代码就拼不到一起了——这是今天最常见的翻车。</p><p>三条约束也很关键。</p><p>「<b>沿用我原来的变量名</b>」——防止它改名。</p><p>「<b>只改必要的部分</b>」——这就是第 6 课学的追问话术③，防止它把整段重写。</p><p>看代码。和上节课比，多了什么？</p><p>多了一行 <b>THRESHOLD = 1000</b>，还有循环里那个 <b>if / else</b>。</p><p>就这两处。其他一行没动——这就是「只改必要的部分」的效果。</p><p>特别注意 <b>else 分支里的 <code class="ic">led.value(0)</code></b>。</p><p>少了它会怎么样？灯<b>亮了就再也不灭</b>。因为没人告诉它什么时候关。</p><p>这是今天第二常见的翻车。</p></div>
+</section>
+
+<section class="slide lay-codefull" data-title="温度组范例">
+<div class="phead"><span class="no">第14课</span>
+<span class="kick a">附录范例</span>
+<span class="tslot">8–24 分</span>
+</div>
+<h2 class="ptitle">温度组：完整作品</h2>
+<p class="psub">感知（DHT11）→ 决策（超过 30 度）→ 执行（屏显 ＋ 蜂鸣报警）</p>
+<div class="pbody"><div class="code"><span class="lab g">完整全码 · 桌面温度警报器</span><pre style="font-size:16px;line-height:1.38"><span class="k">from</span> machine <span class="k">import</span> Pin, SoftI2C
+<span class="k">import</span> dht, time
+<span class="k">from</span> ssd1306 <span class="k">import</span> SSD1306_I2C
+
+sensor = dht.DHT11(Pin(14))        <span class="c"># 感知：DHT11</span>
+i2c = SoftI2C(scl=Pin(22), sda=Pin(21))
+oled = SSD1306_I2C(128, 64, i2c)   <span class="c"># 显示：OLED</span>
+buzzer = Pin(13, Pin.OUT)          <span class="c"># 执行：蜂鸣器</span>
+
+LIMIT = 30                         <span class="c"># 决策阈值：超过 30 度报警</span>
+
+<span class="k">while</span> <span class="k">True</span>:
+    sensor.measure()               <span class="c"># 先测一次</span>
+    t = sensor.temperature()       <span class="c"># 取出温度</span>
+    oled.fill(0)
+    oled.text("Temp: " + str(t) + "C", 0, 0)
+    <span class="k">if</span> t &gt; LIMIT:                  <span class="c"># 决策：温度过高</span>
+        oled.text("ALARM!", 0, 20)
+        buzzer.value(1)            <span class="c"># 执行：报警</span>
+    <span class="k">else</span>:
+        buzzer.value(0)            <span class="c"># 否则安静</span>
+    oled.show()
+    time.sleep(2)</pre></div></div>
+<div class="notes"><p>做温度警报器的组看这一页，完整版。</p><p>结构和主线一样，三段清清楚楚：</p><p><b>感知</b>——DHT11 读温度。</p><p><b>决策</b>——<code class="ic">if t &gt; LIMIT</code>，超过 30 度就报警。</p><p><b>执行</b>——屏幕显示 ALARM，蜂鸣器响。</p><p>注意这里比夜灯多一样：<b>执行段有两件事</b>（屏显和蜂鸣），所以 if 里面有两行、else 里面也要照顾到。</p><p>看 else 那支：<code class="ic">buzzer.value(0)</code>——<b>把蜂鸣器关掉</b>。</p><p>这一行要是少了，蜂鸣器<b>一响就停不下来</b>，整个教室都会恨你。</p><p>还有一个细节：<code class="ic">oled.show()</code> 放在 if/else <b>外面</b>。为什么？</p><p>因为不管报不报警，屏幕都要刷新。把它放在外面，两种情况都能显示。</p><p>这就是组装的功夫——<b>哪一行放在哪一层缩进里，是有讲究的</b>。</p></div>
+</section>
+
+<section class="slide lay-divider" data-title="课间休息">
+<div class="deco circle" style="width:200px;height:200px;top:-70px;right:180px"></div>
+<div class="deco square" style="width:130px;height:130px;left:-50px;bottom:70px;transform:rotate(12deg)"></div>
+<div class="deco tri" style="right:140px;bottom:90px;transform:rotate(14deg)"></div>
+<div class="dv">
+  <span class="dv-time">40–50 分</span>
+  <h2 class="dv-t">课间休息 10 分钟</h2>
+  <p class="dv-s">跑通的组，把你的作品放桌上亮着——回来我们联调、起名字</p>
+</div>
+<div class="notes"><p>上半场结束，休息十分钟。</p><p>已经跑通的组，把你的作品<b>放在桌上亮着</b>，别关。休息的时候大家互相看看。</p><p>还没跑通的组别急——下半场我们专门讲<b>联调排错</b>，有一套三步法，管用。</p><p>休息的时候可以想一件事：<b>你的作品叫什么名字？</b></p><p>下半场最后要起名字，准备展示。</p></div>
+</section>
+
+<section class="slide lay-aierror" data-title="AI 出错时刻">
+<div class="phead"><span class="no">第14课</span>
+<span class="kick c">AI 出错时刻</span>
+<span class="tslot">50–62 分</span>
+</div>
+<h2 class="ptitle">判断方向反了</h2>
+<p class="psub">天亮反而亮灯，天黑反而灭灯——代码不报错</p>
+<div class="pbody">
+  <div class="aegrid grow">
+    <div class="code"><span class="lab c">AI 写的决策段</span><pre style="font-size:21px;line-height:1.55">THRESHOLD = 1000
+
+<span class="k">while</span> <span class="k">True</span>:
+    value = light.read()
+    <span class="k">if</span> value &gt; THRESHOLD:      <span class="c"># 方向反了！</span>
+        led.value(1)
+    <span class="k">else</span>:
+        led.value(0)
+
+<span class="c"># 结果：天亮反而亮灯，天黑反而灭灯</span></pre></div>
+    <div class="aecol">
+      <div class="blk c"><h4>病因：大于写成了小于的反面</h4><p>我的设计图写的是「<b>暗了才亮</b>」，也就是<b>读数小于阈值</b>。AI 写成了 <code class="ic">value &gt; THRESHOLD</code>——<b>方向整个反了</b>。</p></div>
+      <div class="blk g"><h4>怎么抓：对照设计图<b>逐字核对</b></h4><p>你图上写的是「如果很暗就亮灯」→ 「很暗」＝ 读数<b>小</b>→ 所以必须是 <code class="ic">&lt;</code>。<br><b>AI 也会搞反，你得当那个把关的人。</b></p></div>
+    </div>
+  </div>
+  <div style="margin-top:22px"><div class="strip a">这又是一个<b>不报错的错</b>——只能靠<b>遮一下</b>来发现：遮住反而灭了，就是方向反了</div></div>
+</div>
+<div class="notes"><p>看这段 AI 写的决策。它写的是 <code class="ic">if value &gt; THRESHOLD</code>。</p><p>运行——不报错。灯也会亮会灭，看起来挺正常。</p><p>但是你一遮光敏，<b>灯反而灭了</b>；一开灯，<b>它反而亮了</b>。</p><p>整个<b>反的</b>。</p><p>病因在哪儿？我的设计图上写的是「<b>暗了才亮</b>」。</p><p>「暗」意味着读数<b>小</b>。所以代码应该是<b>小于</b>阈值。AI 写成了大于——方向反了。</p><p>这种错怎么抓？<b>对照设计图逐字核对</b>。</p><p>你图上写的是「如果很暗就亮灯」。那就一个词一个词地对：</p><p>「很暗」是什么？读数<b>小</b>。那代码里应该是大于号还是小于号？<b>小于</b>。</p><p>这是今天我要你们记住的一句话：</p><p><b>AI 也会搞反，你得当那个把关的人。</b></p><p>第 5 课我们学的三类错误，还记得最难的一类吗？<b>逻辑错</b>——不报红字，但结果不对。</p><p>今天这个又是。发现它的办法还是那个：<b>伸手遮一下</b>。</p></div>
+</section>
+
+<section class="slide lay-flow3" data-title="联调三步法">
+<div class="phead"><span class="no">第14课</span>
+<span class="kick g">排错</span>
+<span class="tslot">62–76 分</span>
+</div>
+<h2 class="ptitle">联调排错三步法</h2>
+<p class="psub">拼起来完全不动？<b>别乱改代码</b>——一段一段查</p>
+<div class="pbody"><div class="flow grow"><div class="fl g"><span class="fl-k">第一步：测感知</span><p class="fl-t">传感器还读得到吗？</p><p class="fl-b">单独<b>打印传感器读数</b>，确认还能读到、<br>数值<b>随环境变化</b></p></div><div class="fl-arr">→</div><div class="fl a"><span class="fl-k">第二步：测决策</span><p class="fl-t">条件真的成立吗？</p><p class="fl-b"><b>打印判断结果</b>，确认「该亮的时候」<br>条件真的成立</p></div><div class="fl-arr">→</div><div class="fl c"><span class="fl-k">第三步：测执行</span><p class="fl-t">灯/蜂鸣器本身是好的吗？</p><p class="fl-b">单独让执行元件<b>动一下</b>，<br>确认它本身没坏、线没松</p></div></div><div style="margin-top:20px"><div class="strip a"><b>联调不工作很正常</b>——三段各自都对，拼起来不动，那问题就在「拼」的地方（多半是变量名对不上）</div></div></div>
+<div class="notes"><p>现在讲今天最实用的东西：<b>联调排错三步法</b>。</p><p>先给你们打个预防针：<b>联调不工作，很正常。</b></p><p>三块积木各自都跑得好好的，一拼起来就不动了——这是每个工程师的日常。别慌，别乱改代码。</p><p>按这三步查。</p><p><b>第一步，测感知。</b> 把决策和执行先不管，单独打印传感器读数。还读得到吗？数值随环境变吗？</p><p>不变，问题在感知段，回 L13 那页查。</p><p><b>第二步，测决策。</b> 打印判断结果——比如在 if 里面加一句 <code class="ic">print("该亮了")</code>。</p><p>遮住光敏，这句话打出来了吗？没打出来，说明条件根本没成立，是阈值不对或者方向反了。</p><p><b>第三步，测执行。</b> 单独让灯亮一下、蜂鸣器响一下，确认它本身没坏、线没松。</p><p>三段都查过了还是不动？那问题就在「<b>拼</b>」的地方。</p><p>最常见的是什么？——<b>变量名对不上</b>。上节课叫 value，这节课 AI 给你写成了 light_value。</p><p>所以我刚才才反复强调那句约束：「沿用我原来的变量名」。</p></div>
+</section>
+
+<section class="slide lay-rowlist" data-title="调阈值">
+<div class="phead"><span class="no">第14课</span>
+<span class="kick a">联调</span>
+<span class="tslot">62–76 分</span>
+</div>
+<h2 class="ptitle">阈值怎么定？先打印，再定</h2>
+<p class="psub">不要凭感觉填一个数——<b>用真实读数定</b></p>
+<div class="pbody"><div class="rowlist grow"><div class="rowitem"><div class="num g">1</div><div class="tx">先让程序<b>打印读数</b>，记下两个数：<b>开灯时</b>多少、<b>手遮住</b>多少</div></div><div class="rowitem"><div class="num a">2</div><div class="tx">举例：开灯 <b>3000</b>，遮住 <b>500</b> → 阈值取中间，定 <b>1500</b> 左右</div></div><div class="rowitem"><div class="num c">3</div><div class="tx">改完上传，<b>遮一下试试</b>：该亮的时候亮了吗？该灭的时候灭了吗？</div></div><div class="rowitem"><div class="num g">4</div><div class="tx"><b>一直亮 / 一直不亮</b> ＝ 阈值离谱了，回头看打印的数再调</div></div><div class="rowitem"><div class="num a">5</div><div class="tx">代码里留着那行 <code class="ic">print(...)</code>——<b>调阈值时它是你的眼睛</b></div></div></div><div style="margin-top:20px"><div class="strip g">教室里各组的读数<b>不一样</b>（靠窗的亮、墙角的暗），所以<b>阈值也不该一样</b>——这就是为什么要自己测</div></div></div>
+<div class="notes"><p>阈值这件事，我看到好几组直接填了 1000——因为我 PPT 上写的是 1000。</p><p><b>别抄。</b> 1000 是我的教室、我那个位置的数。</p><p>正确的做法是：<b>先打印，再定</b>。</p><p>第一步，让程序打印读数，记两个数：<b>开灯的时候</b>读到多少？<b>用手遮住</b>读到多少？</p><p>比如你记下来：开灯 3000，遮住 500。</p><p>第二步，取中间。3000 和 500 中间是 1750，那你定 1500 或者 1800 都行。</p><p>第三步，改完上传，<b>遮一下试试</b>。该亮的时候亮了吗？该灭的时候灭了吗？</p><p>如果<b>一直亮</b>或者<b>一直不亮</b>，说明阈值离谱了，回头看打印的数重调。</p><p>还有一条实用的：代码里那行 <code class="ic">print</code> <b>先留着</b>，别删。</p><p>调阈值的时候，它就是<b>你的眼睛</b>——你能看见此刻读数是多少，一眼就知道阈值该往哪边挪。</p><p>最后说一句有意思的：靠窗的组和墙角的组，读数天差地别。</p><p><b>所以你们的阈值本来就不该一样。</b> 这就是为什么必须自己测。</p></div>
+</section>
+
+<section class="slide lay-tiers3" data-title="分层任务">
+<div class="phead"><span class="no">第14课</span>
+<span class="kick g">分层任务</span>
+<span class="tslot">62–80 分</span>
+</div>
+<h2 class="ptitle">先保底，再挑战</h2>
+<p class="psub">装置能<b>自动动作</b> ＋ 按设计意图工作 ＝ 完整作品</p>
+<div class="pbody"><div class="g3 grow"><div class="blk tier t1"><div class="hd">★ 基础（必做）</div>
+        <p class="task">加上决策段，组装三段，让作品能<b>自动工作</b>（天黑亮灯 / 超温报警）。</p><p class="fill">我的判断：如果____就____　□ 自动动作成功了</p></div><div class="blk tier t2"><div class="hd">★★ 进阶（建议做）</div>
+        <p class="task">把阈值调到合理值，完整联调一次：遮光/哈气，确认按设计意图工作。</p><p class="fill">我最终的阈值：____（□ 先打印读数再定的）</p></div><div class="blk tier t3"><div class="hd">★★★ 挑战（学有余力）</div>
+        <p class="task">加一个<b>亮点</b>：第二个判断条件，或第二个执行动作（不用新硬件），或做个外观。</p><p class="fill">我的亮点：________</p></div></div>
+<div style="margin-top:22px"><div class="strip g">别忘了最后一件事：<b>给作品起个名字</b>——下节课要用它去讲故事</div></div></div>
+<div class="notes"><p>三档任务。</p><p><b>基础档必做</b>：加决策、组装、让它<b>自动工作</b>。做到这一步，你就有一个完整作品了。</p><p>卡片上要填「我的判断：如果____就____」——填得出来，才说明你真懂自己的决策段。</p><p>进阶档：把阈值<b>调到合理值</b>，完整联调一次。注意那个勾选框「先打印读数再定的」——我会检查。</p><p>挑战档：加一个<b>亮点</b>。三选一：</p><p>第二个判断条件——比如「很暗<b>而且</b>按了按钮才亮」；</p><p>第二个执行动作——比如亮灯的同时蜂鸣器响一声；</p><p>或者给你的作品做个<b>外观</b>，拿纸盒子包一下也行。</p><p>注意挑战档的限制：<b>不用新硬件</b>。用手里现有的。</p><p>最后黑条那句，所有组都要做：<b>给作品起个名字</b>。</p><p>不要叫「小夜灯」——太普通了。叫「奶奶的守夜灯」、叫「不许熬夜提醒器」都行。</p><p>下节课《讲好你的故事》，你要拿着这个名字去讲。</p></div>
+</section>
+
+<section class="slide lay-rowlist" data-title="联调检查单">
+<div class="phead"><span class="no">第14课</span>
+<span class="kick a">里程碑</span>
+<span class="tslot">80–90 分</span>
+</div>
+<h2 class="ptitle">联调检查单：作品完成了吗</h2>
+<p class="psub">对照手册逐项打勾——③④是保底目标</p>
+<div class="pbody"><div class="rowlist grow"><div class="rowitem"><div class="num g">1</div><div class="tx">□ ① 写出决策段，判断方向<b>对照设计图核对过</b></div></div><div class="rowitem"><div class="num a">2</div><div class="tx">□ ② 三段代码<b>组装成一个完整程序</b>（变量名一致）</div></div><div class="rowitem"><div class="num c">3</div><div class="tx">□ ③ 上板运行，装置<b>能自动动作</b> ★保底</div></div><div class="rowitem"><div class="num g">4</div><div class="tx">□ ④ 遮光 / 哈气联调，<b>按设计意图工作</b> ★保底</div></div><div class="rowitem"><div class="num a">5</div><div class="tx">□ ⑤ 作品<b>起好名字</b>，准备展示</div></div></div><div style="margin-top:20px"><div class="strip g">从一个念头，到一个<b>会自己工作的作品</b>——你已经完整走通了「超越 AI」的创造之路</div></div></div>
+<div class="notes"><p>还有十分钟，对照<b>联调检查单</b>逐项打勾。五项。</p><p>③「能自动动作」和④「按设计意图工作」是保底。</p><p>（巡视逐组核对，看到跑通的就说一句「不错」）</p><p>现在我要你们停下手，看一眼自己桌上那个东西。</p><p>四节课以前，它还只是你脑子里的一个念头：「楼道太黑，奶奶下楼看不清」。</p><p>然后你把它写成了<b>问题定义</b>（L11）。</p><p>然后你把它画成了<b>设计图</b>（L12）。</p><p>然后你搭好了<b>感知和显示</b>（L13）。</p><p>今天，你给它装上了<b>决策</b>，让它<b>自己会做事</b>了。</p><p>从一个念头，到一个会自己工作的作品——<b>你已经完整走通了「超越 AI」的创造之路</b>。</p><p>这四节课，AI 一直在你手边，但每一个决定都是<b>你做的</b>。</p><p>下节课不做东西了，我们做另一件事：<b>怎么把它讲给别人听</b>。</p><p>东西做得好，讲不出来，别人还是不知道你有多厉害。下课。</p></div>
+</section>
+
+<section class="slide lay-rowlist" data-title="今日三大发现">
+<div class="phead"><span class="no">第14课</span>
+<span class="kick g">总结</span>
+<span class="tslot">80–90 分</span>
+</div>
+<h2 class="ptitle">今日三大发现</h2>
+<div class="pbody"><div class="rowlist grow"><div class="rowitem"><div class="num g">1</div><div class="tx"><b>决策是灵魂</b>——装上「如果…就…」，装置从「会读」变成「<b>会自己做事</b>」</div></div><div class="rowitem"><div class="num a">2</div><div class="tx"><b>判断方向别写反</b>——对照设计图<b>逐字核对</b>；AI 也会搞反，你得当把关的人</div></div><div class="rowitem"><div class="num c">3</div><div class="tx"><b>联调不工作很正常</b>——测感知 → 测决策 → 测执行，<b>一段段查</b>，别乱改</div></div></div><div style="margin-top:20px"><div class="strip a">下节课《讲好你的故事》——东西做出来了，<b>怎么让别人一听就懂</b>？</div></div></div>
+<div class="notes"><p>今天三个发现。</p><p>第一个，<b>决策是灵魂</b>。装上那句「如果…就…」，你的装置就从「会读」变成了「会自己做事」。</p><p>这一条其实是整个课程的分水岭。前十三节课，我们做的东西都是<b>你让它动它才动</b>。今天这个，<b>你不管它，它自己动</b>。</p><p>第二个，<b>判断方向别写反</b>。对照设计图逐字核对。AI 也会搞反——<b>你得当那个把关的人</b>。</p><p>第三个，<b>联调不工作很正常</b>。测感知、测决策、测执行，一段段查，别乱改代码。</p><p>这三步法你们以后修任何东西都能用——不只是修代码。</p><p>下节课我们换一件事做。</p><p>东西做出来了，但是——<b>怎么让别人一听就懂</b>？</p><p>你花了四节课做的东西，别人只有<b>三十秒</b>来认识它。三十秒讲不明白，他就走了。</p><p>下节课《讲好你的故事》。下课。</p></div>
+</section>
+
+<section class="slide lay-cards2" data-title="课后任务">
+<div class="phead"><span class="no">第14课</span>
+<span class="kick a">课后任务</span>
+</div>
+<h2 class="ptitle">课后任务</h2>
+<div class="pbody"><div class="g2 grow"><div class="blk g"><h4>基础（全员）</h4><p>把<b>完整作品代码保存好</b>，能完整讲一遍「感知 → 决策 → 执行」是怎么连起来工作的。</p></div><div class="blk a"><h4>拓展（选做）</h4><p>想一想怎么把你的作品<b>讲给别人听</b>？先列三句话——它<b>解决什么问题</b>、<b>怎么做的</b>、<b>最得意的地方</b>。下节课要用。</p></div></div>
+<div style="margin-top:24px"><div class="strip g">从一个念头，到一个会自己工作的作品——你已经完整走通了「超越 AI」的创造之路</div></div></div>
+<div class="notes"><p>课后两件事。</p><p>第一件全员都做：把完整作品代码<b>保存好</b>，而且要能<b>完整讲一遍</b>：感知是哪几行？决策是哪几行？执行是哪几行？它们怎么连起来工作的？</p><p>下节课我会抽人讲。讲不出来，说明这个作品还不完全是你的。</p><p>第二件选做，但我强烈建议做——它就是下节课的<b>预习</b>：</p><p>想一想怎么把你的作品讲给别人听。先列<b>三句话</b>：</p><p>第一句，它<b>解决什么问题</b>？</p><p>第二句，<b>怎么做的</b>？</p><p>第三句，<b>最得意的地方</b>是什么？</p><p>就三句，写在本子上。下节课直接用。</p><p>最后一句：<b>从一个念头，到一个会自己工作的作品——你已经完整走通了「超越 AI」的创造之路。</b></p><p>带着你的作品和这三句话，下节课见。</p></div>
+</section>
+<div class="deck-footer"><span>ESP32 × AI 科创课程 · 第三阶段「超越AI」 · 第14课 搭积木（下）</span><span class="slide-number" data-current="1" data-total="12"></span></div>
+<div class="progress-bar"><span></span></div>
+</div>
+<script src="assets/fitstage.js"></script>
+<script src="assets/runtime.js"></script>
+</body>
+</html>

@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>第20课 · 远程开关 — ESP32 × AI 科创课程</title>
+<link rel="stylesheet" href="assets/base.css">
+<link rel="stylesheet" id="theme-link" href="assets/theme-course-pop.css">
+<link rel="stylesheet" href="assets/animations.css">
+</head>
+<body>
+<div class="deck" data-theme-base="assets/">
+<section class="slide lay-cover is-active" data-title="封面">
+<div class="deco circle" style="width:170px;height:170px;top:-52px;right:238px"></div>
+<div class="deco tri" style="right:110px;bottom:132px;transform:rotate(14deg)"></div>
+<div class="deco square" style="width:120px;height:120px;left:-46px;bottom:86px;transform:rotate(12deg)"></div>
+<span class="cv-bar">ESP32 × AI ／ 第四阶段「驾驭AI · 物联网」</span>
+<h1 class="cv-title">远程<em>开关</em></h1>
+<p class="cv-sub">你在这头点一下，它在那头亮——第三个方向打通了</p>
+<div class="cv-tags"><span class="tag">subscribe</span><span class="tag">巴法云控制台 / App</span><span class="tag">双向链路</span><span class="tag">90 分钟连堂</span></div>
+<div class="cv-no">20</div>
+<div class="notes"><p>（演示：在手机或控制台上点一下，讲台上的灯亮了）</p><p>看到了吗？我<b>没有碰</b>那块板子。</p><p>我在<b>这头</b>点一下，它在<b>那头</b>亮。</p><p>（再点一下，灯灭）</p><p><b>今天每组都要做到这件事。</b></p><p>回顾一下联网三问：</p><p>第①问「设备怎么上网」——L17 解决了。</p><p>第②问「数据怎么上传」——L18 解决了。</p><p>今天是<b>第③问：人怎么远程控制设备？</b></p><p>这是最后一个方向，打通它，<b>整条双向通路就完整了</b>。</p><p>今天还有一句话要先说在前面，它会决定你的代码对不对：</p><p>写联网代码之前，先问自己一句——<b>这段是「放包裹」还是「取留言」？</b></p></div>
+</section>
+
+<section class="slide lay-flow3" data-title="双向链路">
+<div class="phead"><span class="no">第20课</span>
+<span class="kick g">核心</span>
+<span class="tslot">8–22 分</span>
+</div>
+<h2 class="ptitle">两个方向，两个词</h2>
+<p class="psub">方向搞反，<b>代码全对也不动</b></p>
+<div class="pbody"><div class="flow grow"><div class="fl g"><span class="fl-k">上传（L18 学的）</span><p class="fl-t"><b>放包裹</b></p><p class="fl-b">设备 →（<b>publish</b>，主题带 <b>/up</b>）→ 云 → 人看<br><br><b>我往柜子里塞东西</b></p></div><div class="fl-arr">→</div><div class="fl a"><span class="fl-k">云</span><p class="fl-t">还是那个快递柜</p><p class="fl-b">两边都只跟柜子打交道，<br><b>设备和人从不直接见面</b></p></div><div class="fl-arr">→</div><div class="fl c"><span class="fl-k">控制（今天学的）</span><p class="fl-t"><b>取留言</b></p><p class="fl-b">人 →（控制台 / App 按钮）→ 云 →（<b>subscribe</b>，主题<b>不带 /up</b>）→ 设备动<br><br><b>我守着柜子等留言</b></p></div></div><div style="margin-top:20px"><div class="strip a">写代码前先问：这段是<b>放包裹</b>（publish）还是<b>取留言</b>（subscribe）？——<b>方向搞反，代码全对也不动</b></div></div></div>
+<div class="notes"><p>这一页是今天的<b>核心</b>，我要讲慢一点。</p><p>联网只有<b>两个方向</b>，对应<b>两个词</b>。</p><p><b>左边是上传</b>，L18 学过的。设备往云里 <b>publish</b>——「<b>放包裹</b>」。主题<b>带 /up</b>。</p><p><b>右边是控制</b>，今天学的。设备 <b>subscribe</b> 一个主题，然后守着——「<b>取留言</b>」。主题<b>不带 /up</b>。</p><p>为什么控制主题不带 /up？</p><p>还记得 /up 是什么意思吗？——「<b>只存柜、别敲门</b>」。</p><p>可控制<b>就是要敲门啊</b>！你点了 on，云必须<b>主动推给设备</b>，它才知道要亮灯。</p><p>所以控制主题<b>绝对不能带 /up</b>。这是今天第一个坑。</p><p>中间还是那个快递柜。注意这句话：<b>设备和人从不直接见面</b>，两边都只跟柜子打交道。</p><p>最后黑条上那句，我要你们背下来：</p><p><b>写联网代码前先问：这段是放包裹，还是取留言？</b></p><p><b>方向搞反，代码全对也不动。</b> 一个红字都不报，就是不动。</p></div>
+</section>
+
+<section class="slide lay-stepcode" data-title="第①步 回调">
+<div class="phead"><span class="no">第20课</span>
+<span class="kick g">第①步</span>
+<span class="tslot">22–40 分</span>
+</div>
+<h2 class="ptitle">写好「收到就干活」的回调</h2>
+<div class="pbody"><div class="askline"><b>五要素 · 只要回调这一块：</b>「请写代码：订阅巴法云主题 g1led01，收到字符串 on 就点亮 GPIO2 的 LED，收到 off 就熄灭。约束：回调函数带 topic 和 msg 两个参数，msg 先 decode() 成字符串再比较，只用学过的写法。」</div><div class="code"><span class="lab g">起步全码 · 第①步：收到就干活</span><pre style="font-size:21px;line-height:1.55"><span class="k">import</span> network, time
+<span class="k">from</span> machine <span class="k">import</span> Pin
+<span class="k">from</span> umqtt.simple <span class="k">import</span> MQTTClient
+
+WIFI_SSID = "你的WiFi名"
+WIFI_PASS = "你的WiFi密码"
+BEMFA_KEY = "你的巴法云私钥"
+TOPIC = "g1led01"          <span class="c"># 控制主题：不带 /up</span>
+led = Pin(2, Pin.OUT)
+
+<span class="k">def</span> message_callback(topic, msg):   <span class="c"># topic 参数必须留</span>
+    msg = msg.decode()              <span class="c"># 字节→字符串</span>
+    <span class="k">if</span> msg == "on":  led.value(1)
+    <span class="k">elif</span> msg == "off": led.value(0)</pre></div></div>
+<div class="notes"><p>今天的新东西叫「<b>回调</b>」。名字有点吓人，其实很简单。</p><p><b>回调 ＝ 「收到留言之后，该干什么」。</b></p><p>你先把这件事<b>写好放在那儿</b>，等云真的送留言来了，它自动被叫起来执行。</p><p>看代码最后那个 <code class="ic">def message_callback(topic, msg)</code>。</p><p>这里有<b>两个坑</b>，都在这一行和下一行，我一个一个说。</p><p><b>坑一：<code class="ic">topic</code> 参数必须留着。</b></p><p>就算你用不上它，也不能删。因为库<b>固定传两个东西</b>过来：主题和消息。你只写一个参数，一调用就报错。</p><p><b>坑二：<code class="ic">msg = msg.decode()</code>。</b></p><p>云送过来的 msg 是<b>字节</b>，不是字符串。你直接拿它跟 "on" 比，<b>永远不相等</b>——不报错，就是不动。</p><p><code class="ic">decode()</code> 的意思就是「<b>把字节翻译成字符串</b>」。</p><p>这两个坑，AI 很容易写漏。所以我把它们写进了<b>约束</b>里。</p><p>剩下的 if/elif 你们早就会了：收到 on 就 value(1)，收到 off 就 value(0)。</p></div>
+</section>
+
+<section class="slide lay-codefull" data-title="第②步 订阅等指令">
+<div class="phead"><span class="no">第20课</span>
+<span class="kick a">第②步</span>
+<span class="tslot">22–40 分</span>
+</div>
+<h2 class="ptitle">连云 ＋ 订阅 ＋ 等指令</h2>
+<p class="psub">接在第①步后面，合起来就是完整程序</p>
+<div class="pbody"><div class="code"><span class="lab g">起步全码 · 第②步：守着柜子等留言</span><pre style="font-size:27px;line-height:1.55">wlan = network.WLAN(network.STA_IF); wlan.active(<span class="k">True</span>)
+wlan.connect(WIFI_SSID, WIFI_PASS)
+<span class="k">while</span> <span class="k">not</span> wlan.isconnected(): time.sleep(0.5)
+client = MQTTClient(BEMFA_KEY, "mqtt.bemfa.com", 9501)
+client.set_callback(message_callback)
+client.connect(); client.subscribe(TOPIC)   <span class="c"># 订阅</span>
+<span class="k">while</span> <span class="k">True</span>:
+    client.check_msg()      <span class="c"># 有没有新指令？</span>
+    time.sleep(0.1)</pre></div><div style="margin-top:18px"><div class="strip g"><code class="ic">check_msg()</code> <b>必须在循环里</b>——它是「<b>去柜子看一眼有没有新留言</b>」，只看一次就不看了，等于没订阅</div></div></div>
+<div class="notes"><p>第②步。前四行是<b>老朋友</b>：连 WiFi、连云。你们已经写过两遍了。</p><p>新的是这三行：</p><p><code class="ic">client.set_callback(message_callback)</code> —— <b>告诉云：留言来了，叫这个函数</b>。</p><p>把第①步写好的回调<b>挂上去</b>。</p><p><code class="ic">client.subscribe(TOPIC)</code> —— <b>订阅</b>。就是跟云说：「<b>这个柜子有留言，记得通知我。</b>」</p><p>然后是循环里那一行，<b>今天最容易漏的一行</b>：</p><p><code class="ic">client.check_msg()</code> —— 「<b>去柜子看一眼，有没有新留言？</b>」</p><p>黑条上写了：<b>它必须在循环里</b>。</p><p>为什么？因为 check_msg 只是<b>看一眼</b>。看完这一眼，它就回来了。</p><p>你要是把它写在循环<b>外面</b>，就等于只看了一次——之后再有留言，它也不知道。</p><p><b>只看一次就不看了，等于没订阅。</b></p><p>最后 <code class="ic">time.sleep(0.1)</code> —— 每 0.1 秒看一眼。够快了，你按下按钮到灯亮，人感觉是<b>瞬间</b>的。</p></div>
+</section>
+
+<section class="slide lay-divider" data-title="课间休息">
+<div class="deco circle" style="width:200px;height:200px;top:-70px;right:180px"></div>
+<div class="deco square" style="width:130px;height:130px;left:-50px;bottom:70px;transform:rotate(12deg)"></div>
+<div class="deco tri" style="right:140px;bottom:90px;transform:rotate(14deg)"></div>
+<div class="dv">
+  <span class="dv-time">40–50 分</span>
+  <h2 class="dv-t">课间休息 10 分钟</h2>
+  <p class="dv-s">互相远程点亮别组的灯——<b>但要先经对方同意</b></p>
+</div>
+<div class="notes"><p>上半场结束，休息十分钟。</p><p>休息的时候可以玩一件很有意思的事：<b>互相远程点亮别组的灯</b>。</p><p>但是有一条规矩，<b>必须守</b>：</p><p><b>控制别组之前，要先经对方口头同意。</b></p><p>为什么要立这条规矩？</p><p>因为你现在已经有能力做一件事了——<b>只要知道别人的主题名，你就能控制他的设备</b>。</p><p>这是本事，也是责任。</p><p>（停顿）</p><p>这件事我们 L26 会专门讲一整节课。今天先把规矩立下：</p><p><b>要控制别人的东西，先问一声。</b></p></div>
+</section>
+
+<section class="slide lay-rowlist" data-title="远程控制入口">
+<div class="phead"><span class="no">第20课</span>
+<span class="kick g">升级体验</span>
+<span class="tslot">50–65 分</span>
+</div>
+<h2 class="ptitle">离开电脑，也能控</h2>
+<p class="psub">控制入口有两个——<b>哪个卡了就换另一个</b></p>
+<div class="pbody"><div class="rowlist grow"><div class="rowitem"><div class="num g">1</div><div class="tx"><b>入口一：巴法云控制台</b>（网页）——L19 你们已经会用了，找到主题，点 <b>on / off</b></div></div><div class="rowitem"><div class="num a">2</div><div class="tx"><b>入口二：巴法云手机 App</b>——同一个账号，同一个主题，<b>手机上点一下</b></div></div><div class="rowitem"><div class="num c">3</div><div class="tx">两个入口<b>发的是同一条留言</b>，板子分不出来是从哪点的</div></div><div class="rowitem"><div class="num g">4</div><div class="tx"><b>哪个入口临时不通，就换另一个</b>——「远程控制」的本事<b>一点没少</b></div></div><div class="rowitem"><div class="num a">5</div><div class="tx">站到教室后面、走到走廊上再点一次——<b>距离不影响</b>，因为中间隔的是云</div></div></div><div style="margin-top:20px"><div class="strip a">今天的遥控器就是<b>控制台或手机 App</b>——点一下 on/off，板子应声动</div></div></div>
+<div class="notes"><p>现在升级体验：<b>离开电脑，也能控</b>。</p><p>控制入口有<b>两个</b>。</p><p><b>入口一：巴法云控制台</b>，网页版。L19 拉曲线的时候你们已经用过了。找到主题，点 on 或 off。</p><p><b>入口二：巴法云手机 App</b>。同一个账号、同一个主题，在手机上点。</p><p>（教师演示手机 App 点一下，灯亮）</p><p>关键的一点：这两个入口<b>发的是同一条留言</b>。板子<b>分不出来</b>你是从哪点的——它只知道「柜子里有一条 on」。</p><p>所以黑条上那句：</p><p><b>哪个入口临时不通，就换另一个。</b> 「远程控制」的本事<b>一点没少</b>。</p><p>遥控器换了个壳而已。</p><p>最后做一个实验，这个实验最能说明问题：</p><p><b>站到教室后面</b>，点一次。<b>走到走廊上</b>，再点一次。</p><p>（等他们试）</p><p>灯还是亮。为什么？</p><p>因为你和板子之间<b>从来就没有直接连着</b>——中间隔的是<b>云</b>。</p><p>所以距离<b>不影响</b>。你在家里点，学校的灯一样亮。</p></div>
+</section>
+
+<section class="slide lay-aierror" data-title="点了没反应">
+<div class="phead"><span class="no">第20课</span>
+<span class="kick c">排错</span>
+<span class="tslot">50–65 分</span>
+</div>
+<h2 class="ptitle">点了没反应？三处逐一查</h2>
+<p class="psub">不报错、就是不动——今天最常见的状况</p>
+<div class="pbody">
+  <div class="aegrid grow">
+    <div class="code"><span class="lab c">三个最容易错的地方</span><pre style="font-size:21px;line-height:1.55">TOPIC = "g1led01/up"   <span class="c"># ← 错1：控制主题不能带 /up</span>
+
+<span class="k">def</span> message_callback(msg):   <span class="c"># ← 错2：漏了 topic 参数</span>
+    <span class="k">if</span> msg == "on":          <span class="c"># ← 错3：msg 是字节，没 decode</span>
+        led.value(1)
+
+client.check_msg()   <span class="c"># ← 错4：写在了 while 外面</span></pre></div>
+    <div class="aecol">
+      <div class="blk c"><h4>四个坑，全都<b>不报红字</b></h4><p>主题带了 /up → 云<b>只存不推</b>，设备收不到。<br>回调漏 topic → 一调用就报错（这个反而好发现）。<br>msg 没 decode → <b>字节 ≠ 字符串</b>，永远不相等。<br>check_msg 在循环外 → <b>只看了一眼</b>就不看了。</p></div>
+      <div class="blk g"><h4>还有一个「老朋友」：灯反着来</h4><p>点 on 反而灭 → 外接<b>继电器是低电平触发</b>，把 0/1 反过来。<br>这就是第 5 课学过的「<b>逻辑反</b>」。</p></div>
+    </div>
+  </div>
+  <div style="margin-top:22px"><div class="strip a">排错顺序：① 主题名对吗（<b>不带 /up</b>）　② check_msg 在循环里吗　③ 指令是 on/off 吗</div></div>
+</div>
+<div class="notes"><p>点了没反应，是今天最常见的状况。而且——<b>它不报红字</b>。</p><p>我把四个坑都列在这一页了。</p><p><b>错 1：控制主题带了 /up。</b> 云<b>只存不推</b>，设备永远收不到。</p><p><b>错 2：回调漏了 topic 参数。</b> 这个<b>会报错</b>，反而好发现。</p><p><b>错 3：msg 没 decode。</b> 字节和字符串<b>永远不相等</b>，if 永远不成立。程序跑得好好的，就是不动。</p><p><b>错 4：check_msg 写在了 while 外面。</b> 只看了一眼。</p><p>按什么顺序查？黑条上写了：</p><p><b>① 主题名对吗（不带 /up）② check_msg 在循环里吗 ③ 指令是 on/off 还是别的词</b></p><p>一次只查一样，老规矩。</p><p>最后还有一个「<b>老朋友</b>」，用继电器的组会遇到：</p><p><b>点 on 反而灭。</b></p><p>为什么？因为有些继电器是<b>低电平触发</b>——给它 0 才动作，给 1 反而停。</p><p>这是什么错？——（等他们答）对，第 5 课学过的「<b>逻辑反</b>」。</p><p>把 0 和 1 反过来就好。</p></div>
+</section>
+
+<section class="slide lay-tiers3" data-title="分层任务">
+<div class="phead"><span class="no">第20课</span>
+<span class="kick g">分层任务</span>
+<span class="tslot">65–80 分</span>
+</div>
+<h2 class="ptitle">先保底，再挑战</h2>
+<p class="psub">控制台点一下，板上的灯应声亮/灭 ＝ 成功</p>
+<div class="pbody"><div class="g3 grow"><div class="blk tier t1"><div class="hd">★ 保底（必做）</div>
+        <p class="task">在巴法云控制台（或手机 App）点一下，<b>板上的灯应声亮 / 灭</b>，稳定可控。</p><p class="fill">我的控制主题：________　□ on 亮了　□ off 灭了</p></div><div class="blk tier t2"><div class="hd">★★ 挑战（学有余力）</div>
+        <p class="task">再订阅一个主题控<b>蜂鸣器</b>（GPIO13），做一个「<b>远程门铃</b>」。</p><p class="fill">我的第二个主题：________</p></div><div class="blk tier t3"><div class="hd">★★★ 再挑战</div>
+        <p class="task"><b>一条指令控两个东西</b>：收到 on 时灯亮 ＋ 蜂鸣器响一下。</p><p class="fill">□ 一条指令，两个动作</p></div></div>
+<div style="margin-top:22px"><div class="strip g"><b>别乱控别组的灯</b>——控制前必须对方<b>口头同意</b>。想想：要是别人知道了你的主题名呢？</div></div></div>
+<div class="notes"><p>三档任务。</p><p><b>保底档必做</b>：控制台点一下，灯应声亮或灭，而且<b>稳定可控</b>——连点十次，十次都灵。</p><p>卡片上要填「我的控制主题」，别写错。</p><p>挑战档：再订阅<b>一个主题</b>控蜂鸣器，做「<b>远程门铃</b>」。</p><p>想象一下：你在楼下按手机，楼上的门铃就响——这就是真的门铃干的事。</p><p>再挑战：<b>一条指令控两个东西</b>。收到 on，灯亮<b>而且</b>蜂鸣器响一下。</p><p>这一档要动点脑筋：蜂鸣器响一下就停，灯要一直亮，这两个动作时间不一样长。</p><p>最后重申课间那条规矩：<b>别乱控别组的灯</b>，控制前要对方<b>口头同意</b>。</p><p>然后我留一个问题给你们，今天先想，不用答：</p><p><b>要是别人知道了你的主题名呢？</b></p><p>他能不能控制你家的灯？</p><p>（停顿）</p><p>这个问题，L26 专门讲一整节课。今天先<b>留个心眼</b>。</p></div>
+</section>
+
+<section class="slide lay-rowlist" data-title="今日三大发现">
+<div class="phead"><span class="no">第20课</span>
+<span class="kick g">总结</span>
+<span class="tslot">80–90 分</span>
+</div>
+<h2 class="ptitle">今日三大发现</h2>
+<div class="pbody"><div class="rowlist grow"><div class="rowitem"><div class="num g">1</div><div class="tx"><b>两个方向、两个词</b>：放包裹 ＝ publish（带 /up）；取留言 ＝ subscribe（<b>不带 /up</b>）</div></div><div class="rowitem"><div class="num a">2</div><div class="tx"><b>回调 ＝ 「收到留言之后该干什么」</b>——先写好放在那儿，等云来叫它</div></div><div class="rowitem"><div class="num c">3</div><div class="tx"><b><code class="ic">check_msg()</code> 必须在循环里</b>——只看一眼就不看了，等于没订阅</div></div></div><div style="margin-top:20px"><div class="strip a"><b>双向通路完整了</b>：上传 ＋ 控制。下节课《会报警的系统》——让它<b>自己</b>决定什么时候找你</div></div></div>
+<div class="notes"><p>今天三个发现。</p><p>第一个，<b>两个方向、两个词</b>。放包裹是 publish，主题带 /up；取留言是 subscribe，主题<b>不带</b> /up。</p><p>这两个词你们记牢，后面所有联网的东西都逃不出它们。</p><p>第二个，<b>回调就是「收到留言之后该干什么」</b>。先写好放在那儿，等云来叫它。</p><p>这个想法其实很像现实生活：你在快递柜登记了手机号，<b>不是你一直守着</b>，是有包裹了它<b>通知你</b>。</p><p>第三个，<b>check_msg() 必须在循环里</b>。</p><p>现在回到联网三问——<b>三问全部解决了</b>：</p><p>①设备上网（L17）②数据上传（L18）③远程控制（今天）。</p><p><b>双向通路完整了。</b></p><p>但是我要问一个问题：现在这套东西，谁在做决定？</p><p>（等他们想）</p><p><b>是你。</b> 你点一下，它才动。</p><p>那……能不能让<b>它自己</b>决定？温度太高了，<b>不用你问，它主动找你</b>？</p><p>下节课《会报警的系统》——让它<b>自己</b>决定什么时候找你。</p><p>而且你们 L19 定的那个阈值，<b>下节课就要用上了</b>。下课。</p></div>
+</section>
+
+<section class="slide lay-cards2" data-title="课后任务">
+<div class="phead"><span class="no">第20课</span>
+<span class="kick a">课后任务</span>
+</div>
+<h2 class="ptitle">课后任务</h2>
+<div class="pbody"><div class="g2 grow"><div class="blk g"><h4>基础（全员）</h4><p>给家人演示<b>远程控灯</b>（用巴法云控制台或手机 App 点一下），讲讲「<b>订阅</b>」是怎么回事。</p></div><div class="blk a"><h4>拓展（选做）</h4><p>想一想：家里<b>哪样东西最值得装远程开关</b>？它<b>需要防误碰吗</b>？</p></div></div>
+<div style="margin-top:24px"><div class="strip g"><b>能被远程控制的设备才叫「真产品」</b>——你的作品今天升级了</div></div></div>
+<div class="notes"><p>课后两件事。</p><p>第一件全员都做：给家人演示远程控灯。</p><p>演示的时候有个小技巧：<b>先走远一点</b>。走到另一个房间，或者走到楼下，再点。</p><p>他们会问：「你是用蓝牙吗？」——<b>不是</b>。</p><p>然后你就可以讲「订阅」是怎么回事了：<b>我的板子一直守着云上的一个柜子，我在手机上往柜子里留一句话，它取到了，就照办。</b></p><p>第二件选做，是一道<b>很有意思的思考题</b>：家里<b>哪样东西最值得装远程开关</b>？</p><p>空调？热水器？电饭煲？</p><p>但是请注意后半句：<b>它需要防误碰吗？</b></p><p>想象一下：你口袋里的手机被误触，家里的热水器开了一整天。或者更糟——你不在家，电饭煲空烧。</p><p>所以真实产品里，有些远程开关是要<b>加确认</b>的。</p><p>这个问题，其实是在给 L26 的安全课热身。</p><p>最后一句：<b>能被远程控制的设备才叫「真产品」——你的作品今天升级了。</b></p><p>下课。</p></div>
+</section>
+<div class="deck-footer"><span>ESP32 × AI 科创课程 · 第四阶段「驾驭AI · 物联网」 · 第20课 远程开关</span><span class="slide-number" data-current="1" data-total="10"></span></div>
+<div class="progress-bar"><span></span></div>
+</div>
+<script src="assets/fitstage.js"></script>
+<script src="assets/runtime.js"></script>
+</body>
+</html>

@@ -182,8 +182,8 @@
   "_hardware__desktop": {
     "clientWidth": 1365,
     "overflow": 0,
-    "docHeight": 2196,
-    "textLen": 676,
+    "docHeight": 2916,
+    "textLen": 1127,
     "maxRight": 1341,
     "counts": {
       "pre": 0,
@@ -191,14 +191,14 @@
       "button": 27
     },
     "sampled": 8550,
-    "nonWhite": 3183,
-    "nonWhiteRatio": 0.372280701754386
+    "nonWhite": 3188,
+    "nonWhiteRatio": 0.3728654970760234
   },
   "_hardware_esp32-curriculum__desktop": {
     "clientWidth": 1365,
     "overflow": 0,
-    "docHeight": 2196,
-    "textLen": 676,
+    "docHeight": 2916,
+    "textLen": 1127,
     "maxRight": 1341,
     "counts": {
       "pre": 0,
@@ -206,8 +206,8 @@
       "button": 27
     },
     "sampled": 8550,
-    "nonWhite": 3183,
-    "nonWhiteRatio": 0.372280701754386
+    "nonWhite": 3188,
+    "nonWhiteRatio": 0.3728654970760234
   },
   "_innovation-foundation__desktop": {
     "clientWidth": 1365,
@@ -437,8 +437,8 @@
   "_hardware__mobile": {
     "clientWidth": 390,
     "overflow": 0,
-    "docHeight": 3469,
-    "textLen": 647,
+    "docHeight": 5917,
+    "textLen": 1098,
     "maxRight": 374,
     "counts": {
       "pre": 0,
@@ -446,14 +446,14 @@
       "button": 27
     },
     "sampled": 2343,
-    "nonWhite": 1253,
-    "nonWhiteRatio": 0.5347844643619292
+    "nonWhite": 1255,
+    "nonWhiteRatio": 0.5356380708493385
   },
   "_hardware_esp32-curriculum__mobile": {
     "clientWidth": 390,
     "overflow": 0,
-    "docHeight": 3469,
-    "textLen": 647,
+    "docHeight": 5917,
+    "textLen": 1098,
     "maxRight": 374,
     "counts": {
       "pre": 0,
@@ -461,8 +461,8 @@
       "button": 27
     },
     "sampled": 2343,
-    "nonWhite": 1253,
-    "nonWhiteRatio": 0.5347844643619292
+    "nonWhite": 1255,
+    "nonWhiteRatio": 0.5356380708493385
   },
   "_innovation-foundation__mobile": {
     "clientWidth": 390,

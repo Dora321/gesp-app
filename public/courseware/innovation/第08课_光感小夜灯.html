@@ -1,0 +1,200 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>第8课 · 光感小夜灯 — ESP32 × AI 科创课程</title>
+<link rel="stylesheet" href="assets/base.css">
+<link rel="stylesheet" id="theme-link" href="assets/theme-course-pop.css">
+<link rel="stylesheet" href="assets/animations.css">
+</head>
+<body>
+<div class="deck" data-theme-base="assets/">
+<section class="slide lay-cover is-active" data-title="封面">
+<div class="deco circle" style="width:170px;height:170px;top:-52px;right:238px"></div>
+<div class="deco tri" style="right:110px;bottom:132px;transform:rotate(14deg)"></div>
+<div class="deco square" style="width:120px;height:120px;left:-46px;bottom:86px;transform:rotate(12deg)"></div>
+<span class="cv-bar">ESP32 × AI ／ 第二阶段「指挥AI」</span>
+<h1 class="cv-title">光感<em>小夜灯</em></h1>
+<p class="cv-sub">读光 → 算亮度 → 调灯，让灯自己决定亮多少</p>
+<div class="cv-tags"><span class="tag">ESP32</span><span class="tag">光敏模块</span><span class="tag">DeepSeek</span><span class="tag">90 分钟连堂</span></div>
+<div class="cv-no">08</div>
+<div class="notes"><p>上节课我们让 ESP32 长了「温度触觉」。今天再问一个问题。</p><p>家里的小夜灯，为什么<b>天一黑它自己就亮了</b>？</p><p>它又没长眼睛。</p><p>（等他们猜）</p><p>它有一个能「<b>感觉到光</b>」的小零件。今天我们就给 ESP32 装上这个零件。</p><p>还有第二个问题。你看手机屏幕的亮度——能从最暗<b>慢慢</b>调到最亮，中间是连续的，一点一点变。</p><p>我们的灯也能这样「<b>呼吸</b>」吗？</p><p>到今天为止，我们的灯只有两种状态：亮、灭。非黑即白。</p><p>今天要打破它。今天你们会发现：这个世界上的信号，不只有「开和关」，还有<b>渐渐变化</b>的。</p></div>
+</section>
+
+<section class="slide lay-cards3" data-title="悬念导入">
+<div class="phead"><span class="no">第8课</span>
+<span class="kick c">悬念导入</span>
+<span class="tslot">0–10 分</span>
+</div>
+<h2 class="ptitle">它怎么知道天黑了？</h2>
+<p class="psub">上节课温度是精确数字，今天要遇到「说不清是几」的东西</p>
+<div class="pbody"><div class="g3 grow"><div class="blk g"><h4>上节课：温度</h4><p>30 度、28 度——<b>精确的数字</b>，一是一二是二</p></div><div class="blk a"><h4>今天：光线</h4><p>从全黑到全亮，中间有<b>无数个亮度</b>，你说现在是「几」？</p></div><div class="blk c"><h4>还有：手机亮度</h4><p>能从最暗<b>慢慢</b>调到最亮——我们的灯也能这样<b>呼吸</b>吗？</p></div></div><div style="margin-top:22px"><div class="strip a">今天要发现的新东西：<b>连续变化的量</b></div></div></div>
+<div class="notes"><p>我们把上节课和今天放一起看。</p><p>上节课处理的是<b>温度</b>：30 度、28 度。精确的数字，一是一二是二。超过 30 就报警，清清楚楚。</p><p>今天要处理的是<b>光线</b>。</p><p>我问你们一个问题：现在这间教室，光线是「几」？</p><p>（等他们卡住）</p><p>说不上来对不对？因为从全黑到全亮，中间有<b>无数个</b>亮度。你没法说它是 1 还是 0。</p><p>还有第三张卡：手机屏幕的亮度，你拖那个滑块，它是<b>慢慢</b>变的，不是「咔」一下。</p><p>这三件事指向同一个新东西——<b>连续变化的量</b>。</p><p>这就是今天要发现的。而且发现之后，我们不但要<b>读</b>它，还要<b>做</b>出来：让灯也能连续变化，像呼吸一样。</p></div>
+</section>
+
+<section class="slide lay-vstext" data-title="数字 vs 模拟">
+<div class="phead"><span class="no">第8课</span>
+<span class="kick g">核心概念</span>
+<span class="tslot">10–22 分</span>
+</div>
+<h2 class="ptitle">数字信号 vs 模拟信号</h2>
+<p class="psub">电灯开关 vs 调光旋钮</p>
+<div class="pbody">
+  <div class="vs3 grow">
+    <div class="blk c vstx"><span class="tag c">数字信号（之前学的）</span><p class="q">只有两种：<b>0</b> 或 <b>1</b></p><p class="why">现象：开 / 关、亮 / 灭，非此即彼。<br>比喻：<b>电灯开关</b>——按下去就是开，弹起来就是关，没有中间。</p></div>
+    <div class="vsmark">VS</div>
+    <div class="blk g vstx"><span class="tag g">模拟信号（今天的新东西）</span><p class="q">连续变化：<b>0 ~ 4095</b></p><p class="why">现象：渐亮渐暗、半明半暗，中间有无数个值。<br>比喻：<b>调光旋钮</b>——转到哪儿就是哪儿。</p></div>
+  </div>
+  <div style="margin-top:20px"><div class="strip a">按钮、LED 都是<b>数字</b>的；光线、温度、声音这些真实世界的东西，大多是<b>模拟</b>的</div></div>
+</div>
+<div class="notes"><p>这一页是今天的核心，慢慢讲。</p><p>左边，<b>数字信号</b>，我们前七节课玩的都是它。按钮：按下或松开。LED：亮或灭。只有两种状态，<b>0 和 1</b>。</p><p>比喻就是<b>电灯开关</b>——按下去是开，弹起来是关，中间没有第三种可能。</p><p>右边，<b>模拟信号</b>，今天的新东西。它的取值是<b>连续</b>的，从 0 一直到 4095，中间每一个数都可能出现。</p><p>比喻是<b>调光旋钮</b>——你转到哪儿就是哪儿，可以是一半亮、三分之一亮、百分之七十亮。</p><p>为什么是 4095 这个奇怪的数字？先不管，你只要知道：<b>数字越大表示光越强</b>，0 是最暗，4095 是最亮。</p><p>最后这条黑条很重要：按钮和 LED 是我们<b>做出来</b>的，所以是数字的；</p><p>而光线、温度、声音这些<b>真实世界</b>的东西，大多是<b>模拟</b>的——它们本来就是连续的。</p><p>所以从今天起，你们开始真正接触<b>真实世界</b>了。</p></div>
+</section>
+
+<section class="slide lay-hardware" data-title="新硬件 光敏模块">
+<div class="phead"><span class="no">第8课</span>
+<span class="kick g">新硬件</span>
+<span class="tslot">22–40 分</span>
+</div>
+<h2 class="ptitle">光敏模块</h2>
+<p class="psub">它有两个输出脚——今天要用的是那个「模拟」的</p>
+<div class="pbody">
+  <div class="hwgrid grow">
+    <div class="g3"><div class="blk g"><h4>AO ＝ 模拟输出</h4><p><b>今天接这个</b>。输出 0~4095 的连续值，能读出「有多亮」</p></div><div class="blk a"><h4>DO ＝ 数字输出</h4><p><b>别接这个</b>。它只输出 0 或 1，只能告诉你「黑还是不黑」</p></div><div class="blk c"><h4>要接在 ADC 脚上</h4><p>ESP32 只有部分引脚能读模拟值，<b>GPIO34 是其中一个</b></p></div></div>
+    <div class="blk a"><h4>接线速查卡（先拔 USB）</h4><p style="margin:3px 0">光敏 VCC 　→　3.3V</p><p style="margin:3px 0">光敏 GND 　→　GND</p><p style="margin:3px 0">光敏 <b>AO</b> →　<b>GPIO34</b></p><p style="margin:3px 0">LED 　　　 →　GPIO2</p><p style="margin:3px 0">接错 DO 脚 → 数值只会跳 0/1</p></div>
+  </div>
+  <div style="margin-top:22px"><div class="strip g">数值一直是 0 或 4095？先查两样：<b>AO 接的是不是 GPIO34</b>、代码里有没有设<b>量程</b></div></div>
+</div>
+<div class="notes"><p>今天的新硬件是<b>光敏模块</b>。拿起来看，它上面有个小圆片，那就是感光的地方。</p><p>这块板子有个坑，我先说：它有<b>两个输出脚</b>。</p><p>一个叫 <b>AO</b>，A 是 Analog，模拟的意思。它输出 0 到 4095 的连续值——<b>今天要接这个</b>。</p><p>另一个叫 <b>DO</b>，D 是 Digital，数字的意思。它只输出 0 或 1，只能告诉你「黑还是不黑」。</p><p><b>别接 DO</b>。接错了会怎么样？你的数字只会在 0 和 1 之间跳，看不到连续变化，然后你会以为模块坏了。</p><p>第三点：模拟值不是随便哪个脚都能读的。ESP32 只有部分引脚有这个本事，我们用 <b>GPIO34</b>。</p><p>接线看右边，四根线。老规矩：<b>接线前先拔 USB</b>。</p><p>最后那条提醒：如果你的数值一直是 0 或者一直是 4095，查两样——AO 是不是接在 GPIO34，还有代码里有没有那行<b>设量程</b>的。</p></div>
+</section>
+
+<section class="slide lay-reqdoc" data-title="三步提问示范">
+<div class="phead"><span class="no">第8课</span>
+<span class="kick g">照着问</span>
+<span class="tslot">22–40 分</span>
+</div>
+<h2 class="ptitle">三步提问原句</h2>
+<p class="psub">还是那个规矩：跑通一步，再问下一步</p>
+<div class="pbody">
+  <div class="rdgrid grow">
+    <div class="blk a"><h4>分步提问示范</h4><div class="fivelist"><div class="fv"><span class="fk">第①步 读光</span><span class="fw">「我使用的语言是 MicroPython，硬件是 ESP32。光敏模块的模拟输出脚 <b>AO 接在 GPIO34</b>。请用 ADC 读取这个引脚的值，每隔 0.5 秒在控制台打印一次。」</span></div><div class="fv"><span class="fk">第②步 调灯</span><span class="fw">「现在 <b>GPIO2</b> 接了一个 LED。请让它渐渐变亮、再渐渐变暗，像呼吸一样循环（<b>把亮度从 0% 慢慢调到 100% 再调回来</b>）。」</span></div><div class="fv"><span class="fk">第③步 联动</span><span class="fw">「请把上面两段结合：读取光敏模块的值，<b>光线越暗（数值越小），LED 就越亮</b>，做成一个自动小夜灯。」</span></div></div></div>
+    <div class="blk g"><h4>每一步的验收标准</h4><div class="sqlist"><div class="sq"><span class="sn">①</span><span class="st">用手<b>慢慢</b>遮住模块，控制台数字<b>连续</b>变大变小</span></div><div class="sq"><span class="sn">②</span><span class="st">灯渐亮渐暗，<b>不是</b>一亮一灭</span></div><div class="sq"><span class="sn">③</span><span class="st">手罩住模块 → <b>灯变亮</b>；松开 → 灯变暗</span></div><div class="sq"><span class="sn">★</span><span class="st">每一步照旧过<b>验收三查</b>：查引脚 · 查超纲 · 查效果</span></div><div class="sq"><span class="sn">✗</span><span class="st">上一步没跑通，<b>不许</b>问下一句</span></div></div></div>
+  </div>
+  <div style="margin-top:20px"><div class="strip g">第②步那句括号是<b>关键</b>：说「亮度从 0% 到 100%」，别说「让它闪」——说法不同，AI 给的东西完全不同</div></div>
+</div>
+<div class="notes"><p>三句提问，照着问。规矩和上节课一样：跑通一步再问下一步。</p><p><b>第①步，读光。</b> 注意要写清楚 AO 接在 GPIO34。</p><p>验收怎么看？用手<b>慢慢</b>遮住模块，盯着控制台——数字应该是<b>连续</b>变大变小的，不是「咔」一下跳。</p><p>待会儿你们亲手试，这个瞬间挺神奇的。</p><p><b>第②步，调灯。</b> 这一句我要你们特别注意括号里那半句：「<b>把亮度从 0% 慢慢调到 100% 再调回来</b>」。</p><p>为什么要这么说？因为如果你只说「让它闪」，AI 给你的还是亮灭亮灭。你要说「<b>亮度百分比</b>」，它才知道你要的是<b>渐变</b>。</p><p>说法不同，AI 给的东西完全不同——这就是第 6 课学的，问法决定答案。</p><p><b>第③步，联动。</b> 把两段结合：光线越暗，灯越亮。</p><p>每一步照旧过验收三查。上一步没跑通，不许问下一句。</p></div>
+</section>
+
+<section class="slide lay-divider" data-title="课间休息">
+<div class="deco circle" style="width:200px;height:200px;top:-70px;right:180px"></div>
+<div class="deco square" style="width:130px;height:130px;left:-50px;bottom:70px;transform:rotate(12deg)"></div>
+<div class="deco tri" style="right:140px;bottom:90px;transform:rotate(14deg)"></div>
+<div class="dv">
+  <span class="dv-time">40–50 分</span>
+  <h2 class="dv-t">课间休息 10 分钟</h2>
+  <p class="dv-s">串口留着——看看全班的光线数据，谁的位置最暗？</p>
+</div>
+<div class="notes"><p>上半场结束，休息十分钟。</p><p>串口画面<b>留着别关</b>。</p><p>休息的时候走一圈，看看各组的光线数字。靠窗的组多少？靠墙角的组多少？</p><p>你还可以做个实验：把手在模块上方<b>慢慢</b>移近、移远，盯着数字看。</p><p>你会看到它像水一样连续地流动——这就是「模拟」两个字的意思。</p><p>回来我们做下半场：让灯也这样<b>连续</b>地变。</p></div>
+</section>
+
+<section class="slide lay-rowlist" data-title="呼吸灯">
+<div class="phead"><span class="no">第8课</span>
+<span class="kick a">任务二</span>
+<span class="tslot">50–68 分</span>
+</div>
+<h2 class="ptitle">让灯「呼吸」</h2>
+<p class="psub">上半场发现光线是连续变化的；现在反过来——让灯的亮度也连续变化</p>
+<div class="pbody"><div class="rowlist grow"><div class="rowitem"><div class="num g">1</div><div class="tx">问 AI 的时候说：「把<b>亮度从 0% 慢慢调到 100%</b>，再调回来，像呼吸一样循环」</div></div><div class="rowitem"><div class="num a">2</div><div class="tx">别说「让它闪」——那样 AI 给你的还是<b>亮灭亮灭</b>，不是渐变</div></div><div class="rowitem"><div class="num c">3</div><div class="tx">跑通后<b>盯着灯看</b>：它是不是有一个「慢慢亮起来、慢慢暗下去」的过程？</div></div><div class="rowitem"><div class="num g">4</div><div class="tx">代码里会出现一些<b>没见过的词</b>（PWM、duty）——今天<b>不拆开</b>它</div></div><div class="rowitem"><div class="num a">5</div><div class="tx">就像你会用调光旋钮，<b>不用先懂旋钮里面的电路</b></div></div></div><div style="margin-top:20px"><div class="strip g">有人追问原理？「这是<b>板子内部的手法</b>，进阶阶段我们会拆开它；今天你只要会指挥『亮度百分比』」</div></div></div>
+<div class="notes"><p>上半场我们发现了：<b>光线</b>是连续变化的。</p><p>现在<b>反过来</b>——我们要让<b>灯的亮度</b>也连续变化。</p><p>问 AI 的时候怎么说？我再强调一遍：说「<b>把亮度从 0% 慢慢调到 100%，再调回来</b>」。</p><p>千万别说「让它闪」。说「闪」，AI 给你的还是亮灭亮灭，那是我们第 2 课就会的东西。</p><p>跑通之后，<b>盯着灯看</b>。它应该有一个「慢慢亮起来、慢慢暗下去」的过程，像在呼吸。</p><p>现在说重要的一件事。你们看 AI 给的代码，里面会出现一些<b>没见过的词</b>。</p><p>今天我们<b>不拆开</b>它。</p><p>为什么？因为那是板子内部的手法，展开讲要讲一整节课，而且今天真正重要的不是那个。</p><p>打个比方：你会用家里的<b>调光旋钮</b>吗？会。你需要先懂旋钮里面的电路吗？不需要。</p><p>今天你要学会的是——<b>指挥「亮度百分比」</b>。</p><p>有同学要追问原理，我的回答是：好问题！这是板子内部的手法，<b>进阶阶段我们会拆开它</b>；今天你只要会指挥亮度百分比。</p></div>
+</section>
+
+<section class="slide lay-codefull" data-title="完整代码">
+<div class="phead"><span class="no">第8课</span>
+<span class="kick a">参考代码</span>
+<span class="tslot">68–80 分</span>
+</div>
+<h2 class="ptitle">完整代码 · 自动小夜灯</h2>
+<div class="pbody"><div class="code"><span class="lab g">完整可跑 · 读光 → 算亮度 → 调灯</span><pre style="font-size:20px;line-height:1.38"><span class="k">from</span> machine <span class="k">import</span> Pin, ADC, PWM
+<span class="k">import</span> time
+
+light = ADC(Pin(34))         <span class="c"># 光敏模块接 GPIO34</span>
+light.atten(ADC.ATTN_11DB)   <span class="c"># 量程设到 0~3.3V</span>
+led = PWM(Pin(2))            <span class="c"># LED 用「亮度百分比」控制</span>
+led.freq(1000)
+
+<span class="k">while</span> <span class="k">True</span>:
+    value = light.read()     <span class="c"># 读到 0~4095 的光线值</span>
+    print("light:", value)
+
+    <span class="c"># 光线越暗(value越小)，灯越亮：反过来映射成亮度(0~1023)</span>
+    brightness = (4095 - value) // 4
+    led.duty(brightness)     <span class="c"># 把亮度设为 brightness/1023 的百分比</span>
+    time.sleep(0.1)</pre></div><div style="margin-top:18px"><div class="strip g">看这一行：<code class="ic">brightness = (4095 - value) // 4</code> —— <b>越暗越亮</b>的秘密全在这里</div></div></div>
+<div class="notes"><p>这就是最终的自动小夜灯，完整能跑。</p><p>前面几行是<b>准备</b>：请工具、认元件。第 3 行请光敏模块，第 4 行<b>设量程</b>（这行不能少，少了数值会不对），第 5 行请 LED——注意这次用的是 PWM，因为要调亮度，不是开关。</p><p>下面 while 循环里是<b>三件事</b>，正好对应三步走：</p><p>第一件，<code class="ic">value = light.read()</code>，<b>读光</b>。读到 0 到 4095 的值。</p><p>第二件，也是今天最巧妙的一行——看黑条上那句：</p><p><code class="ic">brightness = (4095 - value) // 4</code></p><p><b>越暗越亮的秘密全在这里。</b> 我拆开说。</p><p>光线读数 value：越暗，这个数<b>越小</b>。</p><p>那 4095 减去它呢？越暗，这个差<b>越大</b>。方向就<b>反过来</b>了。</p><p>再除以 4 是干什么？因为亮度档位的范围是 0 到 1023，而 4095 除以 4 正好约等于 1023。这是在<b>换算单位</b>。</p><p>第三件，把算出来的亮度交给灯。</p><p>最后停 0.1 秒，再来一轮。</p></div>
+</section>
+
+<section class="slide lay-translate" data-title="逐行翻译">
+<div class="phead"><span class="no">第8课</span>
+<span class="kick g">逐行翻译</span>
+<span class="tslot">68–80 分</span>
+</div>
+<h2 class="ptitle">核心代码逐行翻译</h2>
+<div class="pbody"><div class="blk grow" style="padding:10px 24px"><div class="tr-row"><div class="cd">light = ADC(Pin(34))</div><div class="eq">=</div><div class="pl">请一位<b>光线管家</b>：他站在 34 号脚，会读<b>连续变化</b>的值</div></div><div class="tr-row"><div class="cd">light.atten(ADC.ATTN_11DB)</div><div class="eq">=</div><div class="pl">给管家<b>定量程</b>——这行不写，读数会不对</div></div><div class="tr-row"><div class="cd">led = PWM(Pin(2))</div><div class="eq">=</div><div class="pl">这盏灯用「<b>亮度百分比</b>」来控制（不是只能开关的那种）</div></div><div class="tr-row"><div class="cd">value = light.read()</div><div class="eq">=</div><div class="pl">读一次光：<b>0~4095</b>，越暗数字越小</div></div><div class="tr-row"><div class="cd">brightness = (4095 - value) // 4</div><div class="eq">=</div><div class="pl"><b>反过来算</b>：越暗 → 数越大；再 ÷4 换成 0~1023 的亮度档位</div></div><div class="tr-row"><div class="cd">led.duty(brightness)</div><div class="eq">=</div><div class="pl">把亮度<b>设为 brightness/1023 的百分比</b></div></div></div></div>
+<div class="notes"><p>六行关键代码，翻译成人话。</p><p>第一行，请一位<b>光线管家</b>，他站在 34 号脚上。和上节课的温度管家不一样的是：他读的是<b>连续变化</b>的值。</p><p>第二行，给管家<b>定量程</b>。这行不写，读数会不准。今天不解释为什么，记住要写就行。</p><p>第三行，这盏灯用「<b>亮度百分比</b>」来控制——不是第 1 课那种只能开关的灯了。</p><p>第四行，读一次光，0 到 4095，越暗数字越小。</p><p>第五行是今天的核心，我们一起算一遍。假设现在很亮，value 是 4000。4095 减 4000 等于 95，再除以 4，大概是 23——<b>很暗</b>。</p><p>现在我捂住它，value 变成 100。4095 减 100 等于 3995，除以 4 大概是 998——<b>很亮</b>。</p><p>看，<b>越暗越亮</b>就是这么算出来的。</p><p>第六行，把亮度<b>设为 brightness 除以 1023 的百分比</b>。</p><p>最后黑条那行 <code class="ic">led.freq(1000)</code>，是<b>板子内部的设置</b>，今天不拆开。会用就行。</p></div>
+</section>
+
+<section class="slide lay-steps3" data-title="输入处理输出">
+<div class="phead"><span class="no">第8课</span>
+<span class="kick g">闭环</span>
+<span class="tslot">68–80 分</span>
+</div>
+<h2 class="ptitle">输入 → 处理 → 输出</h2>
+<p class="psub">今天你做的不只是一盏灯——是一个会自己反应的<b>系统</b></p>
+<div class="pbody"><div class="g3 grow"><div class="blk"><div class="step"><div class="num g">①</div>
+        <div class="body"><p class="t">输入</p><p class="d"><b>读光</b>：光敏模块告诉板子「现在有多亮」（ADC）</p></div></div></div><div class="blk"><div class="step"><div class="num a">②</div>
+        <div class="body"><p class="t">处理</p><p class="d"><b>算亮度</b>：<code class="ic">(4095 - value) // 4</code> ——把「多亮」换算成「灯该多亮」</p></div></div></div><div class="blk"><div class="step"><div class="num c">③</div>
+        <div class="body"><p class="t">输出</p><p class="d"><b>调灯</b>：把算出来的亮度交给灯（亮度百分比）</p></div></div></div></div><div style="margin-top:16px"><div class="strip ">这三步连起来，机器就能<b>自己根据环境做反应</b>——不用人管</div></div><div style="margin-top:16px"><div class="strip a">你家的路灯、手机自动亮度、扫地机器人，背后都是这同一个闭环</div></div></div>
+<div class="notes"><p>停一下，我要你们看清楚今天真正做出来的是什么。</p><p>不是一盏灯。是一个<b>会自己反应的系统</b>。</p><p>它有三步。</p><p><b>第①步，输入。</b> 光敏模块告诉板子：现在有多亮。这是机器的<b>感觉</b>。</p><p><b>第②步，处理。</b> 那一行减法和除法，把「环境有多亮」换算成「灯应该多亮」。这是机器的<b>思考</b>。</p><p><b>第③步，输出。</b> 把算出来的亮度交给灯。这是机器的<b>动作</b>。</p><p>感觉 → 思考 → 动作。这三步连起来，机器就能<b>自己根据环境做反应</b>，不用人管。</p><p>我告诉你们，这个闭环有多普遍：</p><p>你家小区的<b>路灯</b>，天黑自己亮——同一个闭环。</p><p>你的<b>手机自动亮度</b>，走到太阳底下屏幕变亮——同一个闭环。</p><p><b>扫地机器人</b>撞到墙自己拐弯——还是这个闭环。</p><p>你今天用十几行代码，做出了和它们一样的东西。</p></div>
+</section>
+
+<section class="slide lay-tiers3" data-title="分层任务">
+<div class="phead"><span class="no">第8课</span>
+<span class="kick g">分层任务</span>
+<span class="tslot">50–80 分</span>
+</div>
+<h2 class="ptitle">先保底，再挑战</h2>
+<p class="psub">读到会变的光线值 ＋ 做出呼吸灯 ＝ 成功</p>
+<div class="pbody"><div class="g3 grow"><div class="blk tier t1"><div class="hd">★ 基础（必做）</div>
+        <p class="task">① 读光：控制台数值随手遮挡<b>连续变化</b>。② 呼吸灯：LED 渐亮渐暗。</p><p class="fill">□ 数字会连续变　□ 灯在「呼吸」</p></div><div class="blk tier t2"><div class="hd">★★ 进阶（建议做）</div>
+        <p class="task">光控联动：光线越暗，灯越亮——做成自动小夜灯。</p><p class="fill">□ 手罩住 → 灯变亮　□ 松开 → 灯变暗</p></div><div class="blk tier t3"><div class="hd">★★★ 挑战（学有余力）</div>
+        <p class="task">问 AI：能不能让它<b>慢慢</b>亮起来、<b>慢慢</b>熄灭，而不是一下子变？</p><p class="fill">我加的新要求是：________</p></div></div>
+<div style="margin-top:22px"><div class="strip g">困难组保底：只做「光线低于某个值就<b>全亮</b>、否则<b>全灭</b>」的简单联动——也算达标</div></div></div>
+<div class="notes"><p>任务三档。</p><p><b>基础档必做，两件事</b>：</p><p>一是读光——控制台的数字要随着你遮挡<b>连续变化</b>。</p><p>二是呼吸灯——LED 渐亮渐暗。</p><p>这两样做到，你这节课就成功了。注意基础档<b>不要求联动</b>。</p><p>进阶档：把两个连起来，做成自动小夜灯。验收很好玩——<b>手罩住模块，灯变亮</b>；松开，灯变暗。</p><p>挑战档：问 AI 能不能让它<b>慢慢</b>亮起来、慢慢熄灭，而不是一下子跟着变。</p><p>这个要求很微妙，你得想清楚怎么跟 AI 说。</p><p>最后给进度慢的组一条路：如果联动做不出来，就做<b>简单版</b>——光线低于某个值就全亮，否则全灭。</p><p>虽然不渐变，但那也是一个完整的「感觉→思考→动作」闭环，<b>也算达标</b>。</p></div>
+</section>
+
+<section class="slide lay-rowlist" data-title="今日三大发现">
+<div class="phead"><span class="no">第8课</span>
+<span class="kick g">总结</span>
+<span class="tslot">80–90 分</span>
+</div>
+<h2 class="ptitle">今日三大发现</h2>
+<div class="pbody"><div class="rowlist grow"><div class="rowitem"><div class="num g">1</div><div class="tx"><b>发现世界</b>：信号不只有「开和关」，还有<b>渐渐变化</b>的连续值</div></div><div class="rowitem"><div class="num a">2</div><div class="tx"><b>掌控渐变</b>：我能让灯像呼吸一样，不再是死板的亮灭</div></div><div class="rowitem"><div class="num c">3</div><div class="tx"><b>串起闭环</b>：把「读光」和「调灯」连起来，机器就能<b>自己根据环境做反应</b></div></div></div><div style="margin-top:20px"><div class="strip a">一盏灯太单调——下节课《彩虹灯带》，让<b>一整条灯带</b>变出彩虹！</div></div></div>
+<div class="notes"><p>都停下，看屏幕。今天三个发现。</p><p>第一个，<b>发现世界</b>。原来信号不只有「开和关」，还有<b>渐渐变化</b>的连续值。</p><p>这一条是认知上的大跨步：在今天之前，你眼里的世界是 0 和 1；从今天起，你知道中间还有无数个数。</p><p>第二个，<b>掌控渐变</b>。我能让灯像呼吸一样，不再是死板的亮灭。</p><p>第三个，<b>串起闭环</b>。把读光和调灯连起来，机器就能自己根据环境做反应——这是「自动化」三个字的真正含义。</p><p>好，最后留钩子。</p><p>今天我们折腾了半天，玩的是<b>一盏灯</b>。</p><p>一盏灯，是不是有点单调？</p><p>下节课，我们不玩一盏了——我们玩<b>一整条灯带</b>，上面十颗灯珠，让它变出<b>彩虹</b>。</p><p>下节课《彩虹灯带》。下课。</p></div>
+</section>
+
+<section class="slide lay-cards2" data-title="课后任务">
+<div class="phead"><span class="no">第8课</span>
+<span class="kick a">课后任务</span>
+</div>
+<h2 class="ptitle">课后任务</h2>
+<div class="pbody"><div class="g2 grow"><div class="blk g"><h4>基础（全员）</h4><p>向家人解释「<b>数字信号</b>」和「<b>模拟信号</b>」的区别，举一个生活中的例子——比如电灯开关 vs 调光台灯。</p></div><div class="blk a"><h4>拓展（选做）</h4><p>问 AI：能不能让小夜灯不要一下子变化，而是「天黑了<b>慢慢</b>亮起来、天亮了<b>慢慢</b>熄灭」？试着加入渐变效果。</p></div></div>
+<div style="margin-top:24px"><div class="strip g">能说清楚「模拟信号和数字信号有什么不同」，才是真的懂了</div></div></div>
+<div class="notes"><p>课后两件事。</p><p>第一件全员都做：回家给家人讲清楚<b>数字信号</b>和<b>模拟信号</b>的区别。</p><p>讲的时候一定要举<b>生活中的例子</b>——最好用的就是今天那个比喻：<b>电灯开关</b> vs <b>调光台灯</b>。</p><p>你还可以让他们自己找例子：家里还有什么是「只有开关」的？什么是「可以慢慢调」的？水龙头算哪种？</p><p>第二件选做：问 AI——能不能让小夜灯不要一下子变化，而是天黑了<b>慢慢</b>亮起来、天亮了慢慢熄灭？</p><p>这个问题比你想的难。因为现在的代码是「光一变，灯立刻跟着变」。你要的是「<b>慢慢</b>跟上」。</p><p>怎么跟 AI 说清楚这件事？这就是第 6 课学的功夫了。</p><p>最后一句：能说清楚「模拟信号和数字信号有什么不同」，才是真的懂了。下课。</p></div>
+</section>
+<div class="deck-footer"><span>ESP32 × AI 科创课程 · 第二阶段「指挥AI」 · 第8课 光感小夜灯</span><span class="slide-number" data-current="1" data-total="13"></span></div>
+<div class="progress-bar"><span></span></div>
+</div>
+<script src="assets/fitstage.js"></script>
+<script src="assets/runtime.js"></script>
+</body>
+</html>

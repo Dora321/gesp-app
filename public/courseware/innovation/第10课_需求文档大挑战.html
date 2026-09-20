@@ -134,7 +134,7 @@
   <div class="scstack">
     <div class="fiverow"><div class="fvc"><span class="fk">语言</span><span class="fw">MicroPython</span></div><div class="fvc"><span class="fk">硬件</span><span class="fw">ESP32 ＋ 按钮</span></div><div class="fvc"><span class="fk">接线</span><span class="fw">按钮接 GPIO14，上拉</span></div><div class="fvc"><span class="fk">效果</span><span class="fw">判断按钮有没有被按下，把状态打印出来</span></div><div class="fvc"><span class="fk">约束</span><span class="fw">按下读到的是 0</span></div></div>
     <div class="askline"><b>照清单问第①条：</b>「我用 MicroPython，硬件是 ESP32。按钮接在 GPIO14，用上拉，按下读到的是 0。请用代码判断按钮有没有被按下，把状态打印出来。」</div>
-    <div class="code"><span class="lab g">第①步 · 起步全码（完整可跑）</span><pre style="font-size:24px"><span class="k">from</span> machine <span class="k">import</span> Pin                <span class="c"># 引脚工具</span>
+    <div class="code"><span class="lab g">第①步 · 起步全码（完整可跑）</span><pre style="font-size:22px;line-height:1.55"><span class="k">from</span> machine <span class="k">import</span> Pin                <span class="c"># 引脚工具</span>
 <span class="k">import</span> time                            <span class="c"># 时间工具</span>
 
 button = Pin(14, Pin.IN, Pin.PULL_UP)  <span class="c"># 按钮：上拉，按下=0</span>
@@ -153,7 +153,7 @@ button = Pin(14, Pin.IN, Pin.PULL_UP)  <span class="c"># 按钮：上拉，按�
 <span class="tslot">60–74 分</span>
 </div>
 <h2 class="ptitle">按下亮灯 ＋ 响一声</h2>
-<div class="pbody"><div class="askline"><b>接着上一步问：</b>「现在 LED 接 GPIO2、蜂鸣器接 GPIO13（有源）。请改成：按下按钮时点亮 LED，并让蜂鸣器响约 0.2 秒。」</div><div class="code"><span class="lab g">第②③步 · 起步全码（完整可跑）</span><pre style="font-size:18px"><span class="k">from</span> machine <span class="k">import</span> Pin
+<div class="pbody"><div class="askline"><b>接着上一步问：</b>「现在 LED 接 GPIO2、蜂鸣器接 GPIO13（有源）。请改成：按下按钮时点亮 LED，并让蜂鸣器响约 0.2 秒。」</div><div class="code"><span class="lab g">第②③步 · 起步全码（完整可跑）</span><pre style="font-size:21px;line-height:1.38"><span class="k">from</span> machine <span class="k">import</span> Pin
 <span class="k">import</span> time
 
 button = Pin(14, Pin.IN, Pin.PULL_UP)  <span class="c"># 和第①步一样</span>
@@ -175,7 +175,7 @@ buzzer = Pin(13, Pin.OUT)              <span class="c"># 蜂鸣器</span>
 <span class="tslot">60–74 分</span>
 </div>
 <h2 class="ptitle">松开复位 ＋ 一直循环</h2>
-<div class="pbody"><div class="askline">接着上一步问：「请加上：松开按钮后熄灭 LED、停止蜂鸣，并用 while 循环让它一直工作。」</div><div class="code"><span class="lab g">第④⑤步 · 完整可运行参考代码（抢答器）</span><pre style="font-size:19px"><span class="k">from</span> machine <span class="k">import</span> Pin                <span class="c"># 引脚工具</span>
+<div class="pbody"><div class="askline">接着上一步问：「请加上：松开按钮后熄灭 LED、停止蜂鸣，并用 while 循环让它一直工作。」</div><div class="code"><span class="lab g">第④⑤步 · 完整可运行参考代码（抢答器）</span><pre style="font-size:19px;line-height:1.55"><span class="k">from</span> machine <span class="k">import</span> Pin                <span class="c"># 引脚工具</span>
 <span class="k">import</span> time                            <span class="c"># 时间工具</span>
 
 button = Pin(14, Pin.IN, Pin.PULL_UP)  <span class="c"># 按钮：上拉，按下=0</span>
@@ -212,7 +212,7 @@ buzzer = Pin(13, Pin.OUT)              <span class="c"># 蜂鸣器</span>
 <p class="psub">一上电常亮，一按反而灭——效果全反了</p>
 <div class="pbody">
   <div class="aegrid grow">
-    <div class="code"><span class="lab c">AI 给的代码</span><pre style="font-size:27px"><span class="k">while</span> <span class="k">True</span>:
+    <div class="code"><span class="lab c">AI 给的代码</span><pre style="font-size:27px;line-height:1.55"><span class="k">while</span> <span class="k">True</span>:
     <span class="k">if</span> button.value() == 1:
         led.value(1)
 

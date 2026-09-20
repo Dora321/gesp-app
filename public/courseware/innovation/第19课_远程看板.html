@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>第19课 · 远程看板 — ESP32 × AI 科创课程</title>
+<link rel="stylesheet" href="assets/base.css">
+<link rel="stylesheet" id="theme-link" href="assets/theme-course-pop.css">
+<link rel="stylesheet" href="assets/animations.css">
+</head>
+<body>
+<div class="deck" data-theme-base="assets/">
+<section class="slide lay-cover is-active" data-title="封面">
+<div class="deco circle" style="width:170px;height:170px;top:-52px;right:238px"></div>
+<div class="deco tri" style="right:110px;bottom:132px;transform:rotate(14deg)"></div>
+<div class="deco square" style="width:120px;height:120px;left:-46px;bottom:86px;transform:rotate(12deg)"></div>
+<span class="cv-bar">ESP32 × AI ／ 第四阶段「驾驭AI · 物联网」</span>
+<h1 class="cv-title">远程<em>看板</em></h1>
+<p class="cv-sub">开奖时刻——24 小时的曲线来了，谁猜得准？</p>
+<div class="cv-tags"><span class="tag">不写代码</span><span class="tag">微实验② 收口</span><span class="tag">作品卡①</span><span class="tag">90 分钟连堂</span></div>
+<div class="cv-no">19</div>
+<div class="notes"><p>（把预测卡发回各组）</p><p><b>昨天，每组都下了注。</b></p><p>你们在这张卡上画了一条线，猜教室的温度一天里怎么变。</p><p>然后你们的板子跑了<b>一整夜</b>——你们回家了，教室黑了，它还在每 30 秒传一次。</p><p>现在，那些数据全在云上等着。</p><p><b>今天开奖。</b></p><p>我们把真实的 24 小时曲线拉出来，跟你画的那条线<b>放在一起</b>。</p><p>今天不写代码，一行都不写。今天干的是另一件事——<b>看懂数据，然后下结论</b>。</p><p>而且今天产出的那个结论，<b>过两节课会变成真东西</b>：你定的阈值，会变成你家自动报警器的判断条件。</p><p>所以今天不是「看看热闹」，是<b>做决定</b>。</p></div>
+</section>
+
+<section class="slide lay-cards3" data-title="开奖时刻">
+<div class="phead"><span class="no">第19课</span>
+<span class="kick c">导入</span>
+<span class="tslot">0–8 分</span>
+</div>
+<h2 class="ptitle">开奖时刻</h2>
+<p class="psub">预测卡拿出来，放在手边</p>
+<div class="pbody"><div class="g3 grow"><div class="blk g"><h4>昨天你做了什么</h4><p>画了一条线，猜温度一天怎么变——<b>几点最高、几点最低</b>。</p></div><div class="blk a"><h4>昨晚发生了什么</h4><p>你回家了，板子<b>没走</b>。每 30 秒传一次，传了<b>一整夜</b>。</p></div><div class="blk c"><h4>现在要做什么</h4><p>拉出真实曲线，和你的预测<b>贴在一起</b>看。</p></div></div><div style="margin-top:22px"><div class="strip a"><b>猜错的地方，才是今天最值钱的地方</b>——那里藏着一个你不知道的原因</div></div></div>
+<div class="notes"><p>预测卡发回去了，拿出来放在手边。</p><p>我们回顾一下这两天发生了什么。</p><p>昨天，你画了一条线，猜教室温度一天怎么变。</p><p>昨天晚上，你回家了。但是——<b>你的板子没走</b>。</p><p>它在黑漆漆的教室里，每 30 秒传一次数据，传了一整夜。你睡觉的时候它在工作。</p><p>（停顿一下，这个画面挺打动人的）</p><p>现在那些数据全在云上等着。</p><p>我先说一句最重要的话，免得有同学怕自己猜错：</p><p><b>猜错的地方，才是今天最值钱的地方。</b></p><p>猜对了说明你已经知道了——没学到新东西。</p><p><b>猜错了</b>，说明那里藏着一个你<b>不知道的原因</b>。今天我们就是去找那些原因。</p><p>所以现在，不要指望自己全对。指望自己<b>发现点什么</b>。</p></div>
+</section>
+
+<section class="slide lay-rowlist" data-title="拉曲线">
+<div class="phead"><span class="no">第19课</span>
+<span class="kick g">操作</span>
+<span class="tslot">8–25 分</span>
+</div>
+<h2 class="ptitle">把 24 小时的曲线拉出来</h2>
+<p class="psub">控制台路径：登录 → 找主题 → 历史数据 → 最近 24 小时</p>
+<div class="pbody"><div class="rowlist grow"><div class="rowitem"><div class="num g">1</div><div class="tx">登录<b>巴法云控制台</b>（微信小程序同理）</div></div><div class="rowitem"><div class="num a">2</div><div class="tx">找到<b>自己的主题</b>：g__temp01<b>/up</b></div></div><div class="rowitem"><div class="num c">3</div><div class="tx">点开「<b>历史数据 / 曲线</b>」</div></div><div class="rowitem"><div class="num g">4</div><div class="tx">时间范围选「<b>最近 24 小时</b>」</div></div><div class="rowitem"><div class="num a">5</div><div class="tx"><b>先自由观察 3 分钟</b>——什么都别写，就说说你看到了什么</div></div></div><div style="margin-top:20px"><div class="strip g">曲线断了一段？<b>设备夜里离线了，很正常</b>——讲清原因就好，用<b>教师参考数据集</b>补位，四步法照走</div></div></div>
+<div class="notes"><p>现在拉曲线。路径我投屏走一遍，你们跟着做。</p><p>登录控制台 → 找到自己的主题 → 点「历史数据」或「曲线」→ 时间范围选最近 24 小时。</p><p>（投屏演示一遍）</p><p>拉出来之后，<b>先别急着分析，也别急着写报告</b>。</p><p><b>先自由观察三分钟。</b> 就看着它，然后跟同组的人说说：<b>你看到了什么？</b></p><p>（三分钟自由观察）</p><p>先说两种常见情况，免得有组慌。</p><p><b>第一种：曲线断了一段。</b></p><p>那是设备夜里<b>离线</b>了——可能热点关了，可能板子重启了。<b>这很正常</b>，真实设备都会这样。</p><p>讲清原因就好，然后用我的<b>参考数据集</b>补位，四步法照走，一分不扣。</p><p><b>第二种：曲线是平的。</b></p><p>那说明温度真的没怎么变（比如一直在恒温的室内）。</p><p>这也是个<b>发现</b>——正好可以讨论：<b>什么环境下数据才有起伏？</b></p></div>
+</section>
+
+<section class="slide lay-flow3" data-title="读曲线三件事">
+<div class="phead"><span class="no">第19课</span>
+<span class="kick g">方法</span>
+<span class="tslot">25–40 分</span>
+</div>
+<h2 class="ptitle">读曲线，只问三件事</h2>
+<p class="psub">看曲线不是看热闹——<b>每个答案后面都藏着一个「为什么」</b></p>
+<div class="pbody"><div class="flow grow"><div class="fl g"><span class="fl-k">最高在哪？</span><p class="fl-t">几点最热？</p><p class="fl-b">然后追问<b>为什么</b>——<br>中午高，多半是<b>太阳</b></p></div><div class="fl-arr">→</div><div class="fl a"><span class="fl-k">最低在哪？</span><p class="fl-t">几点最凉？</p><p class="fl-b">然后追问<b>为什么</b>——<br>凌晨低，多半是<b>没人</b></p></div><div class="fl-arr">→</div><div class="fl c"><span class="fl-k">哪段变得快？</span><p class="fl-t">哪一段线<b>最陡</b>？</p><p class="fl-b">然后追问<b>为什么</b>——<br>变得快，多半是<b>开了空调或开了窗</b></p></div></div><div style="margin-top:20px"><div class="strip a">把<b>预测卡贴在曲线旁边</b>——哪一段差得最多？那里就是你今天要解释的地方</div></div></div>
+<div class="notes"><p>现在教你们<b>读曲线的方法</b>。</p><p>看曲线不是看热闹。就问<b>三件事</b>：</p><p><b>第一件：最高在哪？</b> 几点最热？</p><p><b>第二件：最低在哪？</b> 几点最凉？</p><p><b>第三件：哪段变得快？</b> 哪一段线最陡？</p><p>（让各组答自己的曲线）</p><p>但是——光说出这三个答案还不够。</p><p><b>每个答案后面，都藏着一个「为什么」。</b></p><p>中午最高，为什么？——<b>太阳</b>。</p><p>凌晨最低，为什么？——<b>没人</b>了，也没有电器，还开着窗。</p><p>某一段突然变得很快，为什么？——多半是<b>开了空调</b>，或者<b>开了窗</b>。</p><p>（让他们猜自己曲线上那些陡坡是什么原因）</p><p>最后，把<b>预测卡贴在曲线旁边</b>。</p><p>哪一段差得最多？</p><p>那里就是你今天要解释的地方。</p></div>
+</section>
+
+<section class="slide lay-divider" data-title="课间休息">
+<div class="deco circle" style="width:200px;height:200px;top:-70px;right:180px"></div>
+<div class="deco square" style="width:130px;height:130px;left:-50px;bottom:70px;transform:rotate(12deg)"></div>
+<div class="deco tri" style="right:140px;bottom:90px;transform:rotate(14deg)"></div>
+<div class="dv">
+  <span class="dv-time">40–50 分</span>
+  <h2 class="dv-t">课间休息 10 分钟</h2>
+  <p class="dv-s">去看看别组的曲线长什么样</p>
+</div>
+<div class="notes"><p>上半场结束，休息十分钟。</p><p>去看看<b>别组的曲线</b>长什么样。</p><p>你会发现一件有意思的事：同一间教室，各组的曲线<b>不完全一样</b>。</p><p>靠窗的组中午会有一个更高的尖；靠空调的组会有很陡的上下。</p><p>这不是谁的设备坏了——<b>是它们真的测到了不同的位置</b>。</p><p>这就是真实数据的样子：<b>不整齐，但真实</b>。</p><p>回来我们写报告。</p></div>
+</section>
+
+<section class="slide lay-reqdoc" data-title="数据小报告">
+<div class="phead"><span class="no">第19课</span>
+<span class="kick g">任务</span>
+<span class="tslot">50–70 分</span>
+</div>
+<h2 class="ptitle">数据小报告（作品卡①）</h2>
+<p class="psub">填空式句子，5 分钟能写完——但<b>最后一句必须有数字</b></p>
+<div class="pbody">
+  <div class="rdgrid grow">
+    <div class="blk a"><h4>固定句式（照着填）</h4><div class="fivelist"><div class="fv"><span class="fk">我预测</span><span class="fw">最高 ___℃（___点）</span></div><div class="fv"><span class="fk">实际</span><span class="fw">最高 ___℃（___点）</span></div><div class="fv"><span class="fk">差别最大的地方</span><span class="fw">___________，我认为原因是 ___________</span></div><div class="fv"><span class="fk">最有意思的发现</span><span class="fw">___________________</span></div><div class="fv"><span class="fk">结论</span><span class="fw">数据告诉我 ______，<b>所以我把报警阈值定为 ___℃</b></span></div></div></div>
+    <div class="blk g"><h4>写报告的三条规矩</h4><div class="sqlist"><div class="sq"><span class="sn">①</span><span class="st"><b>最后一句必须有数字</b>——没有数字的结论是<b>感想</b>，不是结论</span></div><div class="sq"><span class="sn">②</span><span class="st">阈值要<b>从曲线里读出来</b>，不是拍脑袋想的</span></div><div class="sq"><span class="sn">③</span><span class="st">「差别最大的地方」要给<b>原因</b>，不能只写「差了 3 度」</span></div><div class="sq"><span class="sn">★</span><span class="st">这张卡是<b>作品卡①</b>——入档案袋，<b>可以贴冰箱</b></span></div><div class="sq"><span class="sn">→</span><span class="st">你定的这个阈值，<b>L21 报警课直接用</b></span></div></div></div>
+  </div>
+  <div style="margin-top:20px"><div class="strip g">示范：「<b>数据告诉我下午两点最热 31 度，所以我把报警线定在 29 度。</b>」</div></div>
+</div>
+<div class="notes"><p>现在写<b>数据小报告</b>。左边是固定句式，照着填，五分钟能写完。</p><p>但是我要盯一条，这是今天最重要的规矩：</p><p><b>报告最后一句，必须有数字。</b></p><p>（念示范）「<b>数据告诉我下午两点最热 31 度，所以我把报警线定在 29 度。</b>」</p><p>听清楚这句话的结构没有？前半句是<b>观察</b>，后半句是<b>决定</b>，而且<b>两个都带数字</b>。</p><p>反过来看一个不合格的：「数据告诉我中午比较热，所以我把报警线定得低一点。」</p><p>——这是<b>感想</b>，不是结论。「比较热」是多热？「低一点」是多低？没法用。</p><p><b>没有数字的结论是感想，不是结论。</b> 这句话我要你们记一辈子。</p><p>第二条规矩：阈值要<b>从曲线里读出来</b>。</p><p>怎么读？看你的最高点是多少，往下退两三度，就是一个合理的报警线——太高了不报警，太低了天天报警。</p><p>第三条：「差别最大的地方」要给<b>原因</b>。只写「差了 3 度」不算，要说<b>为什么差</b>。</p><p>最后，这张卡是<b>作品卡①</b>，入档案袋，<b>可以贴冰箱</b>。</p><p>而且——你定的这个阈值，<b>L21 报警课直接就用它</b>。</p></div>
+</section>
+
+<section class="slide lay-rowlist" data-title="报告发布">
+<div class="phead"><span class="no">第19课</span>
+<span class="kick a">发布</span>
+<span class="tslot">70–85 分</span>
+</div>
+<h2 class="ptitle">报告发布 ＋ 最意外发现奖</h2>
+<p class="psub">每组 1 分钟，讲你的结论</p>
+<div class="pbody"><div class="rowlist grow"><div class="rowitem"><div class="num g">1</div><div class="tx">每组 <b>1 分钟</b>发布：我预测什么，实际什么，<b>差在哪、为什么</b></div></div><div class="rowitem"><div class="num a">2</div><div class="tx">最后<b>必须念出那句带数字的结论</b></div></div><div class="rowitem"><div class="num c">3</div><div class="tx">全班投票「<b>最意外发现奖</b>」——和预测<b>差得最有道理</b>的组</div></div><div class="rowitem"><div class="num g">4</div><div class="tx">注意评的是「<b>最有道理</b>」，不是「差得最多」——<b>要能说清原因</b></div></div><div class="rowitem"><div class="num a">5</div><div class="tx">坚持说「我全对」的组？<b>请指着曲线证明</b>——用数据说话，对就是对</div></div></div><div style="margin-top:20px"><div class="strip g">从今天起，你的每个判断后面都可以跟一句：「<b>我有数据。</b>」</div></div></div>
+<div class="notes"><p>现在每组 1 分钟发布。讲三样：我预测什么、实际什么、<b>差在哪、为什么</b>。</p><p>最后<b>必须念出那句带数字的结论</b>。</p><p>（各组轮流发布）</p><p>发布完，全班投票一个奖，叫「<b>最意外发现奖</b>」。</p><p>颁给谁？——和预测<b>差得最有道理</b>的组。</p><p>注意我的用词：是「<b>最有道理</b>」，不是「差得最多」。</p><p>差得多但说不出原因，那只是猜错了。</p><p>差得多<b>而且能说清为什么</b>，那是<b>真发现</b>。</p><p>还有一种组我要单独说：有人会坚持「老师，我全对」。</p><p>那好——<b>请指着曲线证明</b>。</p><p>（笑）用数据说话，对就是对。这也是我们今天学的：<b>一切以数据为准，包括你自己的自信。</b></p><p>最后送你们一句话，也是今天真正的收获：</p><p><b>从今天起，你的每个判断后面都可以跟一句：「我有数据。」</b></p><p>这句话，比会写多少行代码都有分量。</p></div>
+</section>
+
+<section class="slide lay-tiers3" data-title="分层任务">
+<div class="phead"><span class="no">第19课</span>
+<span class="kick g">分层任务</span>
+<span class="tslot">50–85 分</span>
+</div>
+<h2 class="ptitle">先保底，再挑战</h2>
+<p class="psub">曲线拉出来 ＋ 报告有一个阈值数字 ＝ 成功</p>
+<div class="pbody"><div class="g3 grow"><div class="blk tier t1"><div class="hd">★ 保底（必做）</div>
+        <p class="task">拉出 24 小时曲线，完成「预测 vs 实际」对比，写完数据小报告（<b>含一个阈值数字</b>）。</p><p class="fill">□ 完成　我定的阈值：____℃</p></div><div class="blk tier t2"><div class="hd">★★ 挑战（学有余力）</div>
+        <p class="task">把<b>湿度</b>（或光照）曲线也拉出来，看它和温度的<b>关系</b>：温度高时湿度怎么变？</p><p class="fill">我的发现：________</p></div><div class="blk tier t3"><div class="hd">★★★ 再挑战</div>
+        <p class="task">给<b>下周的同一天</b>再做一次预测——这次你<b>有数据撑腰</b>了。</p><p class="fill">新预测：最高 ____℃（____点）　依据：________</p></div></div>
+<div style="margin-top:22px"><div class="strip g">数据断档的组用<b>教师参考数据集</b>——四步法照走，<b>保底目标一样达成</b></div></div></div>
+<div class="notes"><p>三档任务。</p><p><b>保底档必做</b>：曲线拉出来、对比做完、报告写完，而且<b>报告里要有一个阈值数字</b>。</p><p>挑战档：把<b>湿度曲线</b>也拉出来，看它和温度的<b>关系</b>。</p><p>这一档很有意思，我提示一个方向：温度高的时候，湿度一般往哪边走？</p><p>（很多人会猜错，正好是个发现）</p><p>再挑战：给<b>下周的同一天</b>再做一次预测。</p><p>这一次和昨天那次有什么不一样？——<b>这次你有数据撑腰了</b>。</p><p>昨天你是瞎猜的，今天你是<b>有根据地猜</b>。这两者的差别，就是「经验」两个字。</p><p>最后，数据断档的组用我的<b>参考数据集</b>。</p><p>我强调一句：用参考数据集<b>不影响保底目标</b>。</p><p>今天考的是「<b>会不会读曲线、会不会下结论</b>」，不是「你的板子昨晚有没有掉线」。</p></div>
+</section>
+
+<section class="slide lay-rowlist" data-title="今日三大发现">
+<div class="phead"><span class="no">第19课</span>
+<span class="kick g">总结</span>
+<span class="tslot">85–90 分</span>
+</div>
+<h2 class="ptitle">今日三大发现</h2>
+<div class="pbody"><div class="rowlist grow"><div class="rowitem"><div class="num g">1</div><div class="tx"><b>读曲线只问三件事</b>：最高在哪 · 最低在哪 · 哪段变得快——<b>每个答案后面都有一个「为什么」</b></div></div><div class="rowitem"><div class="num a">2</div><div class="tx"><b>没有数字的结论是感想，不是结论</b></div></div><div class="rowitem"><div class="num c">3</div><div class="tx"><b>预测 → 测量 → 对比 → 结论</b>——这是科学家做事的完整四步</div></div></div><div style="margin-top:20px"><div class="strip a">每组报告里都定了一个阈值——<b>这个数字先收好，过两节课，它会变成你家的自动报警器</b></div></div></div>
+<div class="notes"><p>今天三个发现。</p><p>第一个，<b>读曲线只问三件事</b>：最高在哪、最低在哪、哪段变得快。</p><p>而且每个答案后面，都要追一句<b>为什么</b>。会追这一句，你就从「看热闹」变成「看门道」了。</p><p>第二个，也是今天最硬的一条：<b>没有数字的结论是感想，不是结论。</b></p><p>第三个，<b>预测 → 测量 → 对比 → 结论</b>——这四步走完，就是一次完整的科学探究。</p><p>你们这两天做的，不是「玩传感器」，是<b>做了一次真正的实验</b>。</p><p>最后埋一条线。</p><p>每组报告里，都定了一个<b>阈值</b>。</p><p><b>这个数字先收好。</b></p><p>过两节课，L21《会报警的系统》——它会变成<b>你家的自动报警器</b>：温度一超过这个数，你手机上就会收到一条消息。</p><p>到那时候你会发现：你今天在纸上写的这个数，<b>真的会让一个东西动起来</b>。</p><p>下课。</p></div>
+</section>
+
+<section class="slide lay-cards2" data-title="课后任务">
+<div class="phead"><span class="no">第19课</span>
+<span class="kick a">课后任务</span>
+</div>
+<h2 class="ptitle">课后任务</h2>
+<div class="pbody"><div class="g2 grow"><div class="blk g"><h4>基础（全员）</h4><p>把数据小报告带回家<b>贴冰箱</b>，给家人讲讲你的发现和你定的阈值。</p></div><div class="blk a"><h4>拓展（选做）</h4><p>问家人：<b>空调 / 暖气一般开到多少度？</b> 和你定的阈值比一比，<b>谁更有道理</b>？</p></div></div>
+<div style="margin-top:24px"><div class="strip g">从今天起，你的每个判断后面都可以跟一句：「我有数据。」</div></div></div>
+<div class="notes"><p>课后两件事。</p><p>第一件全员都做：把数据小报告带回家<b>贴冰箱</b>。</p><p>为什么贴冰箱？因为那是家里人<b>每天都会看到</b>的地方。</p><p>你讲给他们听：这是我的板子昨晚测了一整夜的数据，我发现下午两点最热，所以我把报警线定在 29 度。</p><p>第二件选做，很有意思：问家人——<b>空调或者暖气，一般开到多少度？</b></p><p>然后和你定的阈值<b>比一比</b>，谁更有道理？</p><p>提示：家人的那个数字是<b>几十年生活经验</b>攒出来的；你的那个数字是<b>一晚上真实测量</b>出来的。</p><p>两个都有道理，但道理<b>不一样</b>。想想它们各自的道理在哪。</p><p>最后一句：<b>从今天起，你的每个判断后面都可以跟一句：「我有数据。」</b></p><p>下课。</p></div>
+</section>
+<div class="deck-footer"><span>ESP32 × AI 科创课程 · 第四阶段「驾驭AI · 物联网」 · 第19课 远程看板</span><span class="slide-number" data-current="1" data-total="10"></span></div>
+<div class="progress-bar"><span></span></div>
+</div>
+<script src="assets/fitstage.js"></script>
+<script src="assets/runtime.js"></script>
+</body>
+</html>

@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>第12课 · 系统设计 — ESP32 × AI 科创课程</title>
+<link rel="stylesheet" href="assets/base.css">
+<link rel="stylesheet" id="theme-link" href="assets/theme-course-pop.css">
+<link rel="stylesheet" href="assets/animations.css">
+</head>
+<body>
+<div class="deck" data-theme-base="assets/">
+<section class="slide lay-cover is-active" data-title="封面">
+<div class="deco circle" style="width:170px;height:170px;top:-52px;right:238px"></div>
+<div class="deco tri" style="right:110px;bottom:132px;transform:rotate(14deg)"></div>
+<div class="deco square" style="width:120px;height:120px;left:-46px;bottom:86px;transform:rotate(12deg)"></div>
+<span class="cv-bar">ESP32 × AI ／ 第三阶段「超越AI」第 2 课</span>
+<h1 class="cv-title">系统<em>设计</em></h1>
+<p class="cv-sub">把方案画成「感知 → 决策 → 执行」的施工图纸</p>
+<div class="cv-tags"><span class="tag">不写代码</span><span class="tag">不接线</span><span class="tag">只画图</span><span class="tag">90 分钟连堂</span></div>
+<div class="cv-no">12</div>
+<div class="notes"><p>上节课每组都交出了一份「问题定义 ＋ 方案构想表」。</p><p>问题想清楚了，方案也选好了。</p><p>那我问一句：<b>方案怎么变成真东西？</b></p><p>（等他们答，多半会说「开始做」）</p><p>不是马上开始做。盖房子之前，工人要先拿到什么？——<b>图纸</b>。</p><p>今天我们就画这张图纸，它叫<b>系统设计图</b>。</p><p>今天还是<b>不写代码、不接线</b>。我知道你们已经憋了两节课了，再忍一节。</p><p>下节课就是连堂工作坊，到时候你会庆幸今天画清楚了这张图——</p><p>因为<b>图画得越清楚，到时候问 AI 越顺</b>。图糊涂的组，搭一半会发现自己都不知道在搭什么。</p></div>
+</section>
+
+<section class="slide lay-rowlist" data-title="热手 指认三段">
+<div class="phead"><span class="no">第12课</span>
+<span class="kick a">热手</span>
+<span class="tslot">3–13 分</span>
+</div>
+<h2 class="ptitle">对着抢答器，指认三段</h2>
+<p class="psub">先别急着听概念——看着一个<b>跑得动的真东西</b>，你自己说出来</p>
+<div class="pbody"><div class="rowlist grow"><div class="rowitem"><div class="num g">1</div><div class="tx">把 L10 抢答器<b>上电跑通</b>（还是上节课那块板，插上就跑）</div></div><div class="rowitem"><div class="num a">2</div><div class="tx"><b>它靠什么知道有人按了？</b> → 按钮。这叫「<b>感知</b>」</div></div><div class="rowitem"><div class="num c">3</div><div class="tx"><b>它怎么决定要不要亮灯？</b> → 判断「读到 0 就动」。这叫「<b>决策</b>」</div></div><div class="rowitem"><div class="num g">4</div><div class="tx"><b>它做了什么动作？</b> → 灯亮、蜂鸣器响。这叫「<b>执行</b>」</div></div><div class="rowitem"><div class="num a">5</div><div class="tx">记住这句话：<b>任何一个自动装置，都逃不出这三段</b></div></div></div><div style="margin-top:20px"><div class="strip g">跑不通的组<b>不用修</b>——看同桌组的板指认一遍就行。排错留到 L13</div></div></div>
+<div class="notes"><p>今天的概念，我不想直接讲给你们听。我想让你们<b>自己说出来</b>。</p><p>先把 L10 抢答器上电跑通，还是上节课那块板。</p><p>（等各组跑起来）</p><p>现在看着它，回答我三个问题。</p><p><b>第一问：它靠什么知道有人按了？</b></p><p>（等答：按钮）</p><p>对，按钮。这叫「<b>感知</b>」。</p><p><b>第二问：它怎么决定要不要亮灯？</b></p><p>（等答）</p><p>它心里有一句判断：「读到 0 就动」。这叫「<b>决策</b>」。</p><p><b>第三问：它做了什么动作？</b></p><p>灯亮、蜂鸣器响。这叫「<b>执行</b>」。</p><p>感知、决策、执行。</p><p>现在我告诉你们一件事：<b>任何一个自动装置，都逃不出这三段。</b></p><p>你家的空调、电梯、自动门、扫地机器人——拆开看，全是这三段。</p><p>今天我们就用这三段，把自己的方案画成图。</p></div>
+</section>
+
+<section class="slide lay-flow3" data-title="三段式框架">
+<div class="phead"><span class="no">第12课</span>
+<span class="kick g">新概念</span>
+<span class="tslot">13–24 分</span>
+</div>
+<h2 class="ptitle">系统三段式</h2>
+<p class="psub">你自己怎么过马路？眼睛看灯 → 脑子判断 → 腿迈步</p>
+<div class="pbody"><div class="flow grow"><div class="fl g"><span class="fl-k">感知（输入）</span><p class="fl-t">它怎么知道周围发生了什么？</p><p class="fl-b">按钮 / 光敏 / DHT11<br><br>过马路：<b>眼睛看红绿灯</b></p></div><div class="fl-arr">→</div><div class="fl a"><span class="fl-k">决策（判断）</span><p class="fl-t">根据感知到的，决定要不要动、怎么动？</p><p class="fl-b"><b>如果…就…否则…</b><br><br>过马路：<b>脑子判断红还是绿</b></p></div><div class="fl-arr">→</div><div class="fl c"><span class="fl-k">执行（输出）</span><p class="fl-t">它做出什么动作？</p><p class="fl-b">灯 / 蜂鸣器 / OLED 屏<br><br>过马路：<b>腿迈步或者站住</b></p></div></div><div style="margin-top:20px"><div class="strip a">中间那段是<b>琥珀色</b>，因为它<b>最容易被漏掉</b>——「如果…就…」没写出来，就不算有决策</div></div></div>
+<div class="notes"><p>这就是今天的核心框架，三段式。</p><p>我用一个每天都在做的事来讲：<b>你自己怎么过马路？</b></p><p>第一步，<b>眼睛先看红绿灯</b>。这是<b>感知</b>——获取外界的信息。</p><p>第二步，<b>脑子判断</b>现在是红是绿、能不能走。这是<b>决策</b>。</p><p>第三步，<b>腿迈步或者站住</b>。这是<b>执行</b>。</p><p>一个装置也是这三段。</p><p><b>感知</b>问的是：它<b>怎么知道</b>周围发生了什么？我们的工具箱里有三样眼睛：按钮、光敏、DHT11。</p><p><b>执行</b>问的是：它<b>做出什么动作</b>？我们有灯、蜂鸣器、屏幕。</p><p>中间这段最关键，也是我今天要盯得最紧的。看，它是<b>琥珀色</b>的——为什么单独标一个颜色？</p><p>因为它<b>最容易被漏掉</b>。</p><p>很多同学画着画着就变成「感知 → 执行」，中间没了。那就成了「看到红绿灯，腿就动」——不管红灯绿灯都往前冲。</p><p>决策段怎么才算写出来了？必须是「<b>如果……就……否则……</b>」这个句式。</p><p>写不出这句话，就说明你还没想清楚它到底按什么条件动作。</p></div>
+</section>
+
+<section class="slide lay-flow3" data-title="范例一 小夜灯">
+<div class="phead"><span class="no">第12课</span>
+<span class="kick g">范例一</span>
+<span class="tslot">13–24 分</span>
+</div>
+<h2 class="ptitle">范例一：智能小夜灯</h2>
+<p class="psub">我们一起拆一遍，然后你们拆自己的</p>
+<div class="pbody"><div class="flow grow"><div class="fl g"><span class="fl-k">感知</span><p class="fl-t">光敏模块（GPIO34）</p><p class="fl-b">读出<b>当前亮度</b>——0~4095 的连续值</p></div><div class="fl-arr">→</div><div class="fl a"><span class="fl-k">决策</span><p class="fl-t">如果「很暗」，就亮灯</p><p class="fl-b"><b>如果</b>读数低于阈值，<b>就</b>亮灯；<br><b>否则</b>灭灯</p></div><div class="fl-arr">→</div><div class="fl c"><span class="fl-k">执行</span><p class="fl-t">LED（GPIO2）或灯带（GPIO5）</p><p class="fl-b">亮 / 灭</p></div></div><div style="margin-top:20px"><div class="strip g">功能模块：① <b>读光敏</b>　② <b>比较阈值</b>　③ <b>控制灯</b> —— 三个小模块，各管一段</div></div></div>
+<div class="notes"><p>我们一起拆一个，你们看我怎么拆，然后照着拆自己的。</p><p>拿智能小夜灯举例。</p><p><b>感知段</b>：靠什么知道天黑没黑？<b>光敏模块</b>，接在 GPIO34，读出 0 到 4095 的连续值。</p><p>注意我在这一段写了<b>元件</b>和<b>引脚号</b>——这是今天的硬要求，感知段和执行段都要标元件。</p><p><b>决策段</b>：读到值之后干什么？要判断。</p><p>「<b>如果</b>读数低于阈值，<b>就</b>亮灯；<b>否则</b>灭灯。」</p><p>看，这就是「如果…就…否则…」的样子。有条件、有两个分支。</p><p><b>执行段</b>：LED 接 GPIO2，或者灯带接 GPIO5。动作就是亮和灭。</p><p>三段一画，整个系统<b>清清楚楚</b>。</p><p>最后看黑条那一行：三段还能再往下拆成<b>功能模块</b>——读光敏、比较阈值、控制灯。</p><p>三个小模块，各管一段。这就叫<b>模块化</b>：一个大功能，拆成几个小的，各管各的。</p><p>到 L13 让 AI 写代码的时候，你就是按这几个模块一个一个问的。</p></div>
+</section>
+
+<section class="slide lay-vstext" data-title="好设计 vs 坏设计">
+<div class="phead"><span class="no">第12课</span>
+<span class="kick c">对比</span>
+<span class="tslot">13–24 分</span>
+</div>
+<h2 class="ptitle">好设计 vs 坏设计</h2>
+<p class="psub">最常见的毛病只有一个：<b>中间那段没了</b></p>
+<div class="pbody">
+  <div class="vs3 grow">
+    <div class="blk c vstx"><span class="tag c">坏设计（缺决策段）</span><p class="q">感知 → 执行</p><p class="why">「光敏读到值 → 灯亮」。<br><b>读到什么值才亮？</b> 说不出来。这等于「看到红绿灯，腿就往前冲」——不管红灯绿灯。</p></div>
+    <div class="vsmark">VS</div>
+    <div class="blk g vstx"><span class="tag g">好设计（三段齐全）</span><p class="q">感知 → <b>决策</b> → 执行</p><p class="why">「光敏读到值 → <b>如果低于阈值就亮、否则灭</b> → 灯亮/灭」。<br>条件写出来了，L13 让 AI 写代码时，这句话<b>直接就是 if 的内容</b>。</p></div>
+  </div>
+  <div style="margin-top:20px"><div class="strip a">自查口令：我的图里有没有一句「<b>如果…就…否则…</b>」？没有 → 回去补</div></div>
+</div>
+<div class="notes"><p>画图的时候，最常见的毛病只有一个，我提前说，免得你们踩。</p><p>看左边这张<b>坏设计</b>：感知直接连到执行。「光敏读到值 → 灯亮」。</p><p>我问一句：<b>读到什么值才亮？</b></p><p>说不出来对不对？</p><p>这就等于「看到红绿灯，腿就往前冲」——不管红灯绿灯都冲。那还看什么灯？</p><p>右边是<b>好设计</b>，中间补上了决策：「如果低于阈值就亮，否则灭。」</p><p>我要告诉你们一件很实际的事：右边这句「如果…就…否则…」，到了 L13 让 AI 写代码的时候，<b>直接就是 if 语句的内容</b>。</p><p>你现在把它写清楚，下节课提问就是照着念。</p><p>你现在偷懒不写，下节课就得当场现想——而且多半想不出来，因为那时候你还要同时对付接线和报错。</p><p>所以自查口令记住：<b>我的图里有没有一句「如果…就…否则…」？</b></p><p>没有，回去补。</p></div>
+</section>
+
+<section class="slide lay-divider" data-title="课间休息">
+<div class="deco circle" style="width:200px;height:200px;top:-70px;right:180px"></div>
+<div class="deco square" style="width:130px;height:130px;left:-50px;bottom:70px;transform:rotate(12deg)"></div>
+<div class="deco tri" style="right:140px;bottom:90px;transform:rotate(14deg)"></div>
+<div class="dv">
+  <span class="dv-time">40–50 分</span>
+  <h2 class="dv-t">课间休息 10 分钟</h2>
+  <p class="dv-s">各组互看设计图——<b>找找对方漏了哪一段</b></p>
+</div>
+<div class="notes"><p>上半场结束，休息十分钟。</p><p>休息之前把设计图和旁边那组<b>换一换</b>，任务很明确：<b>找找对方漏了哪一段</b>。</p><p>怎么找？看中间那格。</p><p>有没有「如果…就…否则…」？没有，画个圈。</p><p>感知段和执行段有没有标元件和引脚号？没有，也画个圈。</p><p>还有一种错要留意：<b>感知和执行搞反了</b>。有的组把「灯」写进感知段——灯是它做的动作，不是它知道的东西。</p><p>回来我们把元件和功能模块补全。</p></div>
+</section>
+
+<section class="slide lay-flow3" data-title="范例二 温度警报器">
+<div class="phead"><span class="no">第12课</span>
+<span class="kick a">范例二</span>
+<span class="tslot">50–62 分</span>
+</div>
+<h2 class="ptitle">范例二：桌面温度警报器</h2>
+<p class="psub">这个复杂一点——执行段有<b>两个</b>元件</p>
+<div class="pbody"><div class="flow grow"><div class="fl g"><span class="fl-k">感知</span><p class="fl-t">DHT11 温湿度传感器（GPIO14）</p><p class="fl-b">读出<b>当前温度</b></p></div><div class="fl-arr">→</div><div class="fl a"><span class="fl-k">决策</span><p class="fl-t">如果温度超过阈值（如 30 度），就报警</p><p class="fl-b"><b>如果</b>温度 ≥ 阈值，<b>就</b>报警；<br><b>否则</b>安静显示</p></div><div class="fl-arr">→</div><div class="fl c"><span class="fl-k">执行</span><p class="fl-t">OLED（SCL22 / SDA21）＋ 蜂鸣器（GPIO13）</p><p class="fl-b">屏幕显示温度 ＋ 蜂鸣器报警</p></div></div><div style="margin-top:20px"><div class="strip g">功能模块：① 读温度　② 比较阈值　③ 屏显　④ 蜂鸣报警 —— <b>四个</b>，因为执行段有两件事</div></div></div>
+<div class="notes"><p>第二个范例，桌面温度警报器。这个比小夜灯复杂一点，复杂在哪儿？</p><p><b>执行段有两个元件</b>：屏幕和蜂鸣器。</p><p>感知段：DHT11 接 GPIO14，读出当前温度。</p><p>决策段：「如果温度大于等于阈值，比如 30 度，就报警；否则安静显示。」</p><p>注意它的两个分支都有内容——<b>不是「否则什么都不做」</b>，而是「否则安静显示」。屏幕一直在显示，只是不响而已。</p><p>执行段：OLED 显示温度，蜂鸣器负责响。</p><p>所以功能模块有<b>四个</b>：读温度、比较阈值、屏显、蜂鸣报警。</p><p>比小夜灯多一个，因为执行段要干两件事。</p><p>我要你们注意这个规律：<b>执行段有几件事，功能模块就多几个</b>。</p><p>现在对照这两个范例，把你们自己的图补全：感知段和执行段<b>标上元件和引脚号</b>，然后把每段拆成功能模块。</p></div>
+</section>
+
+<section class="slide lay-cards3" data-title="已学元件工具箱">
+<div class="phead"><span class="no">第12课</span>
+<span class="kick g">工具箱</span>
+<span class="tslot">50–62 分</span>
+</div>
+<h2 class="ptitle">标元件：只能用这些</h2>
+<p class="psub">设计图上的每个元件，都要在这张清单里找得到</p>
+<div class="pbody"><div class="g3 grow"><div class="blk g"><h4>感知（眼睛）</h4><p>按钮 → GPIO14　　光敏模块 → GPIO34　　DHT11 → GPIO14<br>（按钮和 DHT11 都占 14，<b>两者同用时按钮改 GPIO27</b>）</p></div><div class="blk a"><h4>执行（手）</h4><p>LED → GPIO2　　WS2812 灯带 → GPIO5　　蜂鸣器 → GPIO13</p></div><div class="blk c"><h4>显示（嘴巴）</h4><p>OLED 屏（I2C）→ <b>SCL ＝ 22，SDA ＝ 21</b></p></div></div><div style="margin-top:22px"><div class="strip a">想用摄像头 / 电机 / App？本阶段<b>零新硬件</b>——回工具箱选替代方案（同 L11 三问口径）</div></div></div>
+<div class="notes"><p>标元件的规矩：<b>设计图上的每个元件，都要在这张清单里找得到</b>。</p><p>感知三样、执行三样、显示一样。就这七件。</p><p>我再提醒一次那个坑，因为 L13 搭建的时候真的会撞上：</p><p><b>按钮和 DHT11 默认都占 GPIO14。</b></p><p>如果你的作品两个都要用——比如「按一下按钮，显示当前温度」——<b>按钮要改到 GPIO27</b>。</p><p>现在就在设计图上标好，别等到接线的时候才发现两根线要插同一个孔。</p><p>还有同学问能不能用摄像头、电机、手机 App？</p><p>本阶段的规矩是<b>零新硬件</b>。回工具箱选替代方案，口径和上节课的可行性三问一样。</p><p>这不是为难你们。是因为只有把工具用到极致，才知道自己真正缺什么——</p><p>等你能清楚说出「我这个方案卡在没有电机」的时候，你就真的懂工程了。</p></div>
+</section>
+
+<section class="slide lay-aierror" data-title="AI 出错时刻">
+<div class="phead"><span class="no">第12课</span>
+<span class="kick c">AI 出错时刻</span>
+<span class="tslot">62–76 分</span>
+</div>
+<h2 class="ptitle">让 AI 当「找茬助手」</h2>
+<p class="psub">我故意把一张<b>漏了决策段</b>的设计图描述给它，让它挑错</p>
+<div class="pbody">
+  <div class="aegrid grow">
+    <div class="code"><span class="lab c">我给 AI 看的设计图</span><pre style="font-size:27px;line-height:1.55">【感知】光敏模块读亮度
+【执行】LED 亮
+
+<span class="c"># （决策段：空的）</span>
+
+<span class="c"># 我问 AI：这张设计图有问题吗？</span></pre></div>
+    <div class="aecol">
+      <div class="blk c"><h4>AI 的表现：不稳定</h4><p>有时候它<b>也跟着漏掉</b>，说「看起来没问题」；有时候给一堆<b>用不上的复杂建议</b>（加网络、加数据库……）。</p></div>
+      <div class="blk g"><h4>所以「工具箱」该怎么用</h4><p>设计图得<b>你自己先想清楚</b>，AI 顶多帮你<b>挑挑错</b>，不能替你做设计。<br><b>你主导，它打下手。</b></p></div>
+    </div>
+  </div>
+  <div style="margin-top:22px"><div class="strip a">这就是第三阶段和第二阶段的区别：上个阶段你<b>指挥</b>它干活，这个阶段你<b>用</b>它当工具</div></div>
+</div>
+<div class="notes"><p>我们再做个实验。</p><p>我故意画一张<b>漏了决策段</b>的设计图——只有感知和执行，中间空着——然后描述给 DeepSeek，问它：这张图有问题吗？</p><p>（提交，等回答）</p><p>看它的表现。</p><p>有时候它<b>也跟着漏掉</b>，回我一句「看起来没问题」。</p><p>有时候它给一堆<b>用不上的复杂建议</b>：建议你加网络、加数据库、加用户管理——我们一样也做不了。</p><p>所以今天这一页的结论是：</p><p><b>设计图得你自己先想清楚，AI 顶多帮你挑挑错，不能替你做设计。</b></p><p>这就是「<b>工具箱</b>」三个字的用法：<b>你主导，它打下手</b>。</p><p>我要你们体会一下这和上个阶段的区别。</p><p>第二阶段，你是小老板，你<b>指挥</b>它干活——活儿是它干的。</p><p>第三阶段，你是设计师，你<b>用</b>它当工具——活儿是你的，它只是帮你省点力。</p><p>锤子不会替你决定钉子钉在哪儿。</p></div>
+</section>
+
+<section class="slide lay-rowlist" data-title="功能模块清单">
+<div class="phead"><span class="no">第12课</span>
+<span class="kick a">任务二</span>
+<span class="tslot">50–62 分</span>
+</div>
+<h2 class="ptitle">把三段拆成功能模块</h2>
+<p class="psub">一个大功能，拆成几个小模块，各管一段</p>
+<div class="pbody"><div class="rowlist grow"><div class="rowitem"><div class="num g">1</div><div class="tx"><b>感知段</b> → 通常拆出一个模块：「读 XX」（读光敏 / 读温度 / 读按钮）</div></div><div class="rowitem"><div class="num a">2</div><div class="tx"><b>决策段</b> → 通常拆出一个模块：「比较阈值」或「判断状态」</div></div><div class="rowitem"><div class="num c">3</div><div class="tx"><b>执行段</b> → 有几件事就拆几个模块（控灯 / 屏显 / 蜂鸣）</div></div><div class="rowitem"><div class="num g">4</div><div class="tx">小夜灯：① 读光敏　② 比较阈值　③ 控制灯　——<b>三个</b></div></div><div class="rowitem"><div class="num a">5</div><div class="tx">温度警报器：① 读温度　② 比较阈值　③ 屏显　④ 蜂鸣报警　——<b>四个</b></div></div></div><div style="margin-top:20px"><div class="strip g">为什么要拆模块？因为 L13 让 AI 写代码时，你就是<b>一个模块问一次</b>——和第 7 课的三步走一模一样</div></div></div>
+<div class="notes"><p>三段画完了，再往下拆一层，拆成<b>功能模块</b>。</p><p>规律很简单。</p><p><b>感知段</b>通常拆出一个模块：「读 XX」——读光敏、读温度、读按钮。</p><p><b>决策段</b>通常也是一个：「比较阈值」或者「判断状态」。</p><p><b>执行段</b>有几件事就拆几个：控灯、屏显、蜂鸣。</p><p>所以小夜灯是<b>三个</b>模块，温度警报器是<b>四个</b>。</p><p>那有同学要问：为什么要拆这一层？三段不就够了吗？</p><p>我告诉你们原因，很实际：</p><p><b>L13 让 AI 写代码的时候，你就是一个模块问一次。</b></p><p>先问「怎么读光敏」，跑通；再问「怎么比较阈值」，跑通；最后问「怎么控灯」。</p><p>这是不是很眼熟？——<b>和第 7 课的三步走一模一样</b>。</p><p>所以今天拆的模块，就是下节课的<b>提问清单</b>。</p><p>拆得越清楚，下节课越顺。</p></div>
+</section>
+
+<section class="slide lay-tiers3" data-title="分层任务">
+<div class="phead"><span class="no">第12课</span>
+<span class="kick g">分层任务</span>
+<span class="tslot">50–76 分</span>
+</div>
+<h2 class="ptitle">先保底，再挑战</h2>
+<p class="psub">三段画全 ＋ 感知/执行段标出元件 ＝ 成功</p>
+<div class="pbody"><div class="g3 grow"><div class="blk tier t1"><div class="hd">★ 基础（必做）</div>
+        <p class="task">把方案画成三段式设计图：感知、决策、执行<b>三段都填上内容</b>。</p><p class="fill">□ 三段都有　□ 决策段写成了「如果…就…否则…」</p></div><div class="blk tier t2"><div class="hd">★★ 进阶（建议做）</div>
+        <p class="task">在感知段和执行段<b>标出已学元件和引脚号</b>。</p><p class="fill">感知：____（GPIO__）　执行：____（GPIO__）</p></div><div class="blk tier t3"><div class="hd">★★★ 挑战（学有余力）</div>
+        <p class="task">把每段拆成功能模块，写成清单——这就是 L13 的提问清单。</p><p class="fill">我的功能模块：① ____ ② ____ ③ ____</p></div></div>
+<div style="margin-top:22px"><div class="strip g">本课规则：<b>只画图、列模块——不写代码、不接线</b>。这张图就是 L13–14 的<b>施工图纸</b></div></div></div>
+<div class="notes"><p>任务三档。</p><p><b>基础档必做</b>：三段都填上内容。而且我会检查中间那段——必须写成「如果…就…否则…」。</p><p>进阶档：感知段和执行段标出元件<b>和引脚号</b>。引脚号不能少，下节课直接照着接线。</p><p>挑战档：拆功能模块，写成清单。</p><p>最后重申今天的规则：<b>只画图、列模块——不写代码、不接线</b>。</p><p>我知道有组已经把板子摸出来了，放回去。</p><p>这张图就是 L13 和 L14 两节连堂的<b>施工图纸</b>。</p><p>我打个比方：盖房子的时候，图纸画错一条线，工地上要拆一堵墙。</p><p>今天你在纸上改一个字，只要两秒钟；下节课在板子上改，可能要二十分钟。</p><p>所以现在多花十分钟，值。</p></div>
+</section>
+
+<section class="slide lay-rowlist" data-title="今日三大发现">
+<div class="phead"><span class="no">第12课</span>
+<span class="kick g">总结</span>
+<span class="tslot">76–90 分</span>
+</div>
+<h2 class="ptitle">今日三大发现</h2>
+<div class="pbody"><div class="rowlist grow"><div class="rowitem"><div class="num g">1</div><div class="tx"><b>系统有结构</b>——再聪明的小装置，都逃不出<b>感知、决策、执行</b>这三段</div></div><div class="rowitem"><div class="num a">2</div><div class="tx"><b>先画图再动手</b>——把系统画清楚，搭建时就不会乱</div></div><div class="rowitem"><div class="num c">3</div><div class="tx"><b>模块化思维</b>——一个大功能，拆成几个小模块，各管一段</div></div></div><div style="margin-top:20px"><div class="strip a">下两节<b>连堂</b>《搭积木》——就按这张图：先搭<b>感知和显示</b>（上），再装上<b>决策、组装成型</b>（下）！</div></div></div>
+<div class="notes"><p>各组用一句话讲清自己的设计图：「我的系统：感知……决策……执行……」一组三十秒。</p><p>（各组轮流讲完）</p><p>好，今天三个发现。</p><p>第一个，<b>系统有结构</b>。再聪明的小装置，都逃不出感知、决策、执行这三段。</p><p>这个框架你们以后会一直用——看到任何自动的东西，都可以拿它去拆。自动门怎么拆？电梯怎么拆？试试看。</p><p>第二个，<b>先画图再动手</b>。把系统画清楚，搭建时就不会乱。</p><p>第三个，<b>模块化思维</b>。一个大功能，拆成几个小模块，各管一段。</p><p>现在你们手上有两样东西了：上节课的<b>问题定义表</b>，这节课的<b>系统设计图</b>。</p><p>从一个模糊的念头，到一张能施工的图纸——这两节纸面课，你们其实做了工程师最重要的那一半工作。</p><p>下面是好消息：<b>下两节课是连堂工作坊《搭积木》</b>，终于可以动手了！</p><p>上半节先把<b>感知和显示</b>搭出来，下半节装上<b>决策</b>、组装成型。</p><p>就按你手里这张图施工。把它誊清画好，下节课带来。下课！</p></div>
+</section>
+
+<section class="slide lay-cards2" data-title="课后任务">
+<div class="phead"><span class="no">第12课</span>
+<span class="kick a">课后任务</span>
+</div>
+<h2 class="ptitle">课后任务</h2>
+<div class="pbody"><div class="g2 grow"><div class="blk g"><h4>基础（全员）</h4><p>把本组的系统设计图<b>誊清画好</b>——三段齐全、元件标全，下节课带来当<b>施工图纸</b>。</p></div><div class="blk a"><h4>拓展（选做）</h4><p>把决策段的每个「如果…就…」条件都写下来（<b>可能不止一条</b>），为 L13–14 让 AI 写代码做准备。</p></div></div>
+<div style="margin-top:24px"><div class="strip g">能把一个方案拆成清清楚楚的三段，你就已经<b>像工程师一样在思考</b>了</div></div></div>
+<div class="notes"><p>课后两件事。</p><p>第一件全员都做，而且是<b>下节课的入场券</b>：把设计图<b>誊清画好</b>。</p><p>草稿上涂涂改改没关系，但要重新誊一遍——三段齐全、元件标全、引脚号写上。</p><p>下节课带来，那就是你们的<b>施工图纸</b>。忘带的组，下节课会很被动。</p><p>第二件选做：把决策段的每个「如果…就…」都写下来。</p><p>注意我说的是「<b>每个</b>」——<b>可能不止一条</b>。</p><p>比如温度警报器，除了「温度高就报警」，会不会还需要「温度回到正常就停止报警」？那就是第二条。</p><p>条件写得越全，下节课 AI 写出来的代码越贴你的意思。</p><p>最后一句：<b>能把一个方案拆成清清楚楚的三段，你就已经像工程师一样在思考了。</b></p><p>下课，下节课带图纸来。</p></div>
+</section>
+<div class="deck-footer"><span>ESP32 × AI 科创课程 · 第三阶段「超越AI」 · 第12课 系统设计</span><span class="slide-number" data-current="1" data-total="13"></span></div>
+<div class="progress-bar"><span></span></div>
+</div>
+<script src="assets/fitstage.js"></script>
+<script src="assets/runtime.js"></script>
+</body>
+</html>

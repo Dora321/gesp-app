@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>第17课 · 它能上网了 — ESP32 × AI 科创课程</title>
+<link rel="stylesheet" href="assets/base.css">
+<link rel="stylesheet" id="theme-link" href="assets/theme-course-pop.css">
+<link rel="stylesheet" href="assets/animations.css">
+</head>
+<body>
+<div class="deck" data-theme-base="assets/">
+<section class="slide lay-cover is-active" data-title="封面">
+<div class="deco circle" style="width:170px;height:170px;top:-52px;right:238px"></div>
+<div class="deco tri" style="right:110px;bottom:132px;transform:rotate(14deg)"></div>
+<div class="deco square" style="width:120px;height:120px;left:-46px;bottom:86px;transform:rotate(12deg)"></div>
+<span class="cv-bar">ESP32 × AI ／ 第四阶段「驾驭AI · 物联网」</span>
+<h1 class="cv-title">它能<em>上网了</em></h1>
+<p class="cv-sub">第一次真实联网——还有一个「无中生有的时钟」</p>
+<div class="cv-tags"><span class="tag">ESP32</span><span class="tag">WiFi</span><span class="tag">NTP 校时</span><span class="tag">90 分钟连堂</span></div>
+<div class="cv-no">17</div>
+<div class="notes"><p>（举起 ESP32）</p><p>大家看清楚这块板子。上面有主控、有引脚、有几个电阻电容。</p><p>我现在告诉你们一件事：<b>这块板子上，没有任何时钟零件。</b></p><p>没有石英晶振做的时钟芯片，没有纽扣电池。它断电之后，什么都不记得。</p><p>但是——<b>下课之前，它会自己报出现在几点几分几秒</b>。</p><p>（停顿，让悬念挂着）</p><p>怎么做到的？先不说。我们先干活。</p><p>今天是第四阶段第一次真正动手。上节课我们想清楚了「为什么要上网」，今天回答<b>联网三问的第①问</b>：</p><p><b>设备怎么上网？</b></p><p>今天还有一条新规矩：<b>网络会闹脾气</b>。</p><p>所以我准备了两条路：A 路径是你们自己连；B 路径是我的保底模板，改两个字（热点名和密码）照样上网。</p><p>走 B 路径<b>一点都不丢人</b>——工程师都留后手，这叫<b>预案</b>。</p></div>
+</section>
+
+<section class="slide lay-cards3" data-title="无中生有的时钟">
+<div class="phead"><span class="no">第17课</span>
+<span class="kick c">导入</span>
+<span class="tslot">0–8 分</span>
+</div>
+<h2 class="ptitle">无中生有的时钟</h2>
+<p class="psub">板上没有时钟零件，它怎么知道几点？</p>
+<div class="pbody"><div class="g3 grow"><div class="blk g"><h4>事实一</h4><p>这块板子<b>没有时钟芯片</b>，也没有电池。断电就什么都不记得。</p></div><div class="blk a"><h4>事实二</h4><p>下课之前，它会报出<b>准确到秒</b>的当前时间。</p></div><div class="blk c"><h4>那么</h4><p>它是<b>问谁</b>要的？<br>（先挂着，下半场揭晓）</p></div></div><div style="margin-top:22px"><div class="strip a">今天回答<b>联网三问的第①问</b>：<b>设备怎么上网？</b></div></div></div>
+<div class="notes"><p>悬念先挂着，我们看今天的任务。</p><p>上节课的<b>联网三问</b>还记得吗？①设备怎么上网？②数据怎么上传？③人怎么远程控制？</p><p>今天回答<b>第①问</b>。</p><p>听起来好像很简单——不就是连个 WiFi 吗，手机天天连。</p><p>但我要提醒一件事：你的手机连 WiFi，是<b>别人替你写好了</b>那段程序。今天没人替你写，要你自己指挥 AI 写出来。</p><p>而且今天会遇到一个很现实的问题：<b>网络会闹脾气</b>。</p><p>教室里二十台设备同时连一个热点，总有连不上的。</p><p>所以今天有两条路：</p><p><b>A 路径</b>：你们自己连。</p><p><b>B 路径</b>：我的保底模板，你只要改两个字——热点名和密码。</p><p>走 B 路径的组，<b>能力目标一模一样</b>。工程师都留后手，这叫<b>预案</b>。</p></div>
+</section>
+
+<section class="slide lay-stepcode" data-title="第①步 连WiFi">
+<div class="phead"><span class="no">第17课</span>
+<span class="kick g">第①步</span>
+<span class="tslot">8–20 分</span>
+</div>
+<h2 class="ptitle">连上 WiFi</h2>
+<div class="pbody">
+  <div class="scstack">
+    <div class="fiverow"><div class="fvc"><span class="fk">语言</span><span class="fw">MicroPython</span></div><div class="fvc"><span class="fk">硬件</span><span class="fw">ESP32</span></div><div class="fvc"><span class="fk">接线</span><span class="fw">无需接线（用板载 WiFi）</span></div><div class="fvc"><span class="fk">效果</span><span class="fw">连接 WiFi（名字 XXX，密码 XXX），成功后<b>打印 IP</b></span></div><div class="fvc"><span class="fk">约束</span><span class="fw"><b>只用 network、ntptime、time</b>，加中文注释</span></div></div>
+    <div class="askline"><b>五要素问 AI：</b>「我用 MicroPython，硬件是 ESP32。请写代码：连接 WiFi（名字 XXX，密码 XXX），连接成功后打印 IP；再用 ntptime 校时，按北京时间（+8小时）每秒打印当前时间。约束：只用 network、ntptime、time，加中文注释。」</div>
+    <div class="code"><span class="lab g">起步全码 · 第①步：连上 WiFi</span><pre style="font-size:18px;line-height:1.38"><span class="k">import</span> network, ntptime, time
+
+WIFI_SSID = "你的WiFi名"
+WIFI_PASS = "你的WiFi密码"
+
+<span class="c"># 第①步：连 WiFi</span>
+wlan = network.WLAN(network.STA_IF)
+wlan.active(<span class="k">True</span>)
+wlan.connect(WIFI_SSID, WIFI_PASS)
+<span class="k">while</span> <span class="k">not</span> wlan.isconnected():
+    time.sleep(0.5)
+print("已联网，IP =", wlan.ifconfig()[0])</pre></div>
+  </div>
+  
+</div>
+<div class="notes"><p>联网代码看着长，但<b>核心只有两行</b>，我先讲这两行。</p><p><b><code class="ic">wlan = network.WLAN(network.STA_IF)</code></b> —— 这行是「<b>装上网卡</b>」。</p><p>就像给板子插了一块网卡。STA_IF 的意思是「我当客户端，去连别人的热点」，而不是自己当热点。</p><p><b><code class="ic">wlan.connect(名字, 密码)</code></b> —— 这行是「<b>输 WiFi 密码</b>」。</p><p>和你在手机上点一下热点、输密码，是<b>完全一样</b>的事。</p><p>剩下的呢？</p><p><code class="ic">wlan.active(True)</code> 是「把网卡打开」。</p><p>那个 <code class="ic">while not wlan.isconnected()</code> 循环是「<b>等它连上</b>」——连不上就每半秒查一次。为什么要等？因为连 WiFi 要几秒钟，不等就往下跑，后面全错。</p><p>最后 <code class="ic">print("已联网，IP =", ...)</code> —— 这是<b>成功的标志</b>。</p><p><b>看到 IP 地址打印出来，就算连上了。</b> 这是今天的第一个里程碑。</p><p>现在照五要素向 AI 要代码，<b>验收三查之后</b>再上板。</p></div>
+</section>
+
+<section class="slide lay-rowlist" data-title="连网三查">
+<div class="phead"><span class="no">第17课</span>
+<span class="kick a">排错卡</span>
+<span class="tslot">20–40 分</span>
+</div>
+<h2 class="ptitle">连不上 WiFi？按顺序查三样</h2>
+<p class="psub"><b>一次只查一样</b>——一起改三样，查不出是哪样的问题</p>
+<div class="pbody"><div class="rowlist grow"><div class="rowitem"><div class="num g">1</div><div class="tx"><b>① 查名字</b>：热点名（SSID）<b>一个字母、大小写都不能错</b>　□</div></div><div class="rowitem"><div class="num a">2</div><div class="tx"><b>② 查密码</b>：重新输一遍，<b>别用输入法联想</b>　□</div></div><div class="rowitem"><div class="num c">3</div><div class="tx"><b>③ 查网络</b>：教师热点开了吗？是 <b>2.4GHz</b> 吗？（<b>ESP32 不认 5G</b>）　□</div></div><div class="rowitem"><div class="num g">4</div><div class="tx">三查都过还不行 → <b>举手换 B 路径模板</b>，先上网，课后再查</div></div><div class="rowitem"><div class="num a">5</div><div class="tx">串口一直卡着不打印 IP，就是<b>还在 while 里等</b>——说明没连上</div></div></div><div style="margin-top:20px"><div class="strip g"><b>ESP32 不认 5G 热点</b>——手机开热点时要选 2.4GHz。这是每年最常见的一条</div></div></div>
+<div class="notes"><p>连不上是<b>常态</b>，不是意外。所以我给你们一张<b>连网三查卡</b>。</p><p>规矩只有一条：<b>一次只查一样</b>。一起改三样，你永远不知道是哪样的问题。</p><p><b>①查名字。</b> 热点名一个字母、大小写都不能错。WiFi 名里的空格、下划线、中英文，都要一模一样。</p><p><b>②查密码。</b> 重新手动输一遍，<b>别用输入法联想</b>——联想出来的可能带了个空格。</p><p><b>③查网络。</b> 教师热点开了吗？还有最关键的——<b>是 2.4GHz 吗？</b></p><p><b>ESP32 不认 5G 热点。</b> 这是每年最常见的一条。手机开热点的时候，设置里要选 2.4GHz 或者「兼容模式」。</p><p>三查都过还连不上？<b>举手换 B 路径模板。</b> 先把网上了，课后再查原因。</p><p>还有一个现象要会认：串口一直<b>卡着不打印 IP</b>。</p><p>那不是死机，是<b>还在 while 里等</b>——说明没连上。看到这个现象，直接进三查。</p></div>
+</section>
+
+<section class="slide lay-divider" data-title="课间休息">
+<div class="deco circle" style="width:200px;height:200px;top:-70px;right:180px"></div>
+<div class="deco square" style="width:130px;height:130px;left:-50px;bottom:70px;transform:rotate(12deg)"></div>
+<div class="deco tri" style="right:140px;bottom:90px;transform:rotate(14deg)"></div>
+<div class="dv">
+  <span class="dv-time">40–50 分</span>
+  <h2 class="dv-t">课间休息 10 分钟</h2>
+  <p class="dv-s">连上的组去当「连网医生」——帮没连上的查三样</p>
+</div>
+<div class="notes"><p>上半场结束，休息十分钟。</p><p>已经打印出 IP 的组，恭喜你们——你们的板子<b>第一次上网了</b>。</p><p>现在给你们一个新身份：<b>连网医生</b>。</p><p>去帮还没连上的组，按三查卡查：名字、密码、网络。<b>一次只查一样。</b></p><p>被帮的组把三查卡拿出来，让医生一项一项打勾。</p><p>回来我们揭晓那个悬念：<b>板子怎么知道现在几点。</b></p></div>
+</section>
+
+<section class="slide lay-codefull" data-title="第②步 NTP校时">
+<div class="phead"><span class="no">第17课</span>
+<span class="kick a">第②步</span>
+<span class="tslot">50–65 分</span>
+</div>
+<h2 class="ptitle">向云问时间</h2>
+<p class="psub">接在第①步后面，合起来就是完整程序</p>
+<div class="pbody"><div class="code"><span class="lab g">起步全码 · 第②步：NTP 校时</span><pre style="font-size:27px;line-height:1.55"><span class="c"># 第②步：NTP 校时（接在上面后面）</span>
+ntptime.settime()          <span class="c"># 云给的是世界时</span>
+<span class="k">while</span> <span class="k">True</span>:
+    t = time.localtime(time.time() + 8*3600)
+    print("现在 %02d:%02d:%02d" % (t[3], t[4], t[5]))
+    time.sleep(1)</pre></div><div style="margin-top:18px"><div class="strip g">云给的是<b>世界时</b>，中国要 <b>+8 小时</b> ＝ <code class="ic">+ 8*3600</code> 秒——忘了这个，时间就差 8 小时</div></div></div>
+<div class="notes"><p>揭晓答案。板子怎么知道几点？</p><p><b>它去问云。</b></p><p>就一行：<b><code class="ic">ntptime.settime()</code></b>。</p><p>NTP 是「网络时间协议」的缩写。这一行的意思是：<b>向网上的时间服务器问一句「现在几点」，然后把自己的表对准</b>。</p><p>你想想这有多神奇：一块从来不知道时间的板子，联网<b>一秒钟</b>，就知道现在几点几分几秒了——<b>准到秒</b>。</p><p>它不需要时钟芯片，因为<b>网上有人替它记着</b>。</p><p>这就是上节课说的「云」：设备问，云答。</p><p>下面有个坑，黑条上写了，这是今天<b>最经典的参数错</b>：</p><p><b>云给的是世界时（UTC）。</b> 中国在东八区，要<b>加 8 小时</b>。</p><p>8 小时是多少秒？8 × 3600。所以代码里写 <code class="ic">time.time() + 8*3600</code>。</p><p>忘了加？你的板子会报<b>伦敦时间</b>——比我们晚 8 小时。</p><p>待会儿谁的时间对不上，先查这一处。</p></div>
+</section>
+
+<section class="slide lay-cards3" data-title="哇时刻">
+<div class="phead"><span class="no">第17课</span>
+<span class="kick c">哇时刻</span>
+<span class="tslot">65–80 分</span>
+</div>
+<h2 class="ptitle">全班同时报时</h2>
+<p class="psub">每一块板子，报出<b>同一个时刻</b></p>
+<div class="pbody"><div class="g3 grow"><div class="blk g"><h4>现在做什么</h4><p>全班<b>同时</b>把程序跑起来，一起看串口。</p></div><div class="blk a"><h4>你会看到什么</h4><p>每一组的板子，报出的时间<b>分秒不差</b>——因为它们问的是<b>同一个云</b>。</p></div><div class="blk c"><h4>这意味着什么</h4><p>你的板子已经<b>接上了外面的世界</b>。<br>它不再只知道自己那点事了。</p></div></div><div style="margin-top:22px"><div class="strip a">它没有时钟芯片，也没有电池——<b>这个时间完全是「问」来的</b></div></div></div>
+<div class="notes"><p>现在全班<b>同时</b>把程序跑起来，一起看串口。</p><p>（等各组都跑起来）</p><p>看——每一组的板子，报出的时间<b>分秒不差</b>。</p><p>为什么？因为你们问的是<b>同一个云</b>。</p><p>（停顿，让这个画面沉淀一下）</p><p>我要你们回想一下上课开始时我说的那句话：</p><p><b>这块板子没有时钟芯片，也没有电池。</b></p><p>那这个时间是哪来的？——<b>完全是「问」来的</b>。</p><p>这就是联网的意义。在今天之前，你的板子只知道<b>自己那点事</b>：光敏读到多少、按钮按没按。</p><p>从今天起，它<b>接上了外面的世界</b>。</p><p>时间只是第一样。以后它还能知道天气、知道你在手机上点了什么、知道另一块板子在说什么。</p><p>现在做完成的组：把时间<b>显示到 OLED</b> 上，做一个「<b>联网小钟表</b>」。</p><p>更快的组，去当<b>连网医生</b>帮别组。</p></div>
+</section>
+
+<section class="slide lay-tiers3" data-title="分层任务">
+<div class="phead"><span class="no">第17课</span>
+<span class="kick g">分层任务</span>
+<span class="tslot">20–80 分</span>
+</div>
+<h2 class="ptitle">先保底，再挑战</h2>
+<p class="psub">连上 WiFi ＋ 时间正确 ＝ 成功</p>
+<div class="pbody"><div class="g3 grow"><div class="blk tier t1"><div class="hd">★ 保底（必做）</div>
+        <p class="task">板子连上 WiFi（<b>打印出 IP</b>），NTP 校时<b>打印北京时间</b>。</p><p class="fill">我的 IP 是：________　□ 时间对了（＋8 换算正确）</p></div><div class="blk tier t2"><div class="hd">★★ 挑战（学有余力）</div>
+        <p class="task">把时间显示到 <b>OLED</b>，做一个「联网小钟表」（时:分:秒，每秒刷新）。</p><p class="fill">□ 钟表做出来了</p></div><div class="blk tier t3"><div class="hd">★★★ 再挑战</div>
+        <p class="task"><b>整点让 LED 闪三下报时</b>——用 t[4]（分）和 t[5]（秒）判断。</p><p class="fill">我的判断条件是：________</p></div></div>
+<div style="margin-top:22px"><div class="strip g">走 B 路径的组：改两个字（热点名、密码）就跑起来——<b>保底目标一模一样，一分不扣</b></div></div></div>
+<div class="notes"><p>三档任务。</p><p><b>保底档必做</b>：连上 WiFi 打印 IP，NTP 校时打印北京时间。</p><p>卡片上要填「我的 IP 是」——填了这个数，才说明你真的看到了。</p><p>挑战档：把时间显示到 <b>OLED</b>，做个联网小钟表。</p><p>第 4 课学的 OLED，今天派上用场了。注意用 <code class="ic">str()</code> 把数字转成文字再显示。</p><p>再挑战：<b>整点报时</b>——整点的时候让 LED 闪三下。</p><p>怎么判断整点？看 t[4] 和 t[5]，也就是<b>分</b>和<b>秒</b>。分等于 0、秒等于 0，就是整点。</p><p>这个条件怎么写？——那就是你们第 3 课学的 if 判断，加个 and。</p><p>最后对走 <b>B 路径</b>的组说一句：</p><p>你们改两个字就跑起来了，<b>保底目标一模一样，一分不扣</b>。</p><p>而且我告诉你们一个真相：真实工作里，工程师<b>大部分时间</b>都是在别人写好的模板上改参数。</p><p>能把模板改对、跑通、讲清楚，就是本事。</p></div>
+</section>
+
+<section class="slide lay-rowlist" data-title="今日三大发现">
+<div class="phead"><span class="no">第17课</span>
+<span class="kick g">总结</span>
+<span class="tslot">80–90 分</span>
+</div>
+<h2 class="ptitle">今日三大发现</h2>
+<div class="pbody"><div class="rowlist grow"><div class="rowitem"><div class="num g">1</div><div class="tx"><b>联网只有两行核心</b>：装上网卡（<code class="ic">WLAN</code>）＋ 输密码（<code class="ic">connect</code>）</div></div><div class="rowitem"><div class="num a">2</div><div class="tx"><b>设备能向云「问」东西</b>——没有时钟芯片，照样知道现在几点</div></div><div class="rowitem"><div class="num c">3</div><div class="tx"><b>连不上是常态</b>：按三查排（名字 / 密码 / 网络），一次只查一样</div></div></div><div style="margin-top:20px"><div class="strip a"><b>联网三问第①问解决了</b>：设备上网了。下节课《给云端发消息》——让它把家里的温度<b>发到云上</b>，你在手机上就能看到</div></div></div>
+<div class="notes"><p>今天三个发现。</p><p>第一个，<b>联网只有两行核心</b>：装上网卡、输密码。</p><p>剩下那些 while 等待、打印 IP，都是围着这两行转的。以后你看到任何联网代码，先找这两行，别被长度吓住。</p><p>第二个，也是今天最神奇的：<b>设备能向云「问」东西</b>。</p><p>没有时钟芯片，照样知道现在几点。这句话我想让你们琢磨一下——</p><p>它意味着：设备<b>缺什么，可以去云上要</b>。这是物联网最根本的一件事。</p><p>第三个，<b>连不上是常态</b>。按三查排，一次只查一样。这不是丢人的事，是<b>每个工程师每天都在做的事</b>。</p><p>现在回到联网三问：<b>第①问解决了——设备上网了。</b></p><p>下节课回答第②问：<b>数据怎么上传？</b></p><p>《给云端发消息》——让它把家里的温度<b>发到云上</b>，你在手机上就能看到。</p><p>今天是板子<b>问</b>云要东西；下节课，轮到板子<b>给</b>云送东西了。下课。</p></div>
+</section>
+
+<section class="slide lay-cards2" data-title="课后任务">
+<div class="phead"><span class="no">第17课</span>
+<span class="kick a">课后任务</span>
+</div>
+<h2 class="ptitle">课后任务</h2>
+<div class="pbody"><div class="g2 grow"><div class="blk g"><h4>基础（全员）</h4><p>给家人演示：<b>板子没有时钟，联网一秒就知道几点</b>。讲讲它是<b>问谁</b>要的。</p></div><div class="blk a"><h4>拓展（选做）</h4><p>想一想：如果让作品<b>每天晚上 8 点自动亮灯</b>，需要用到今天学的什么？</p></div></div>
+<div style="margin-top:24px"><div class="strip g">设备上网，是联网三问的第一问——<b>你已经迈进物联网的大门</b></div></div></div>
+<div class="notes"><p>课后两件事。</p><p>第一件全员都做：给家人演示。</p><p>演示的时候有个小技巧，效果会特别好：<b>先断电</b>。</p><p>断电之后板子什么都不记得了。然后你插上电，等几秒——时间又出来了，而且<b>是对的</b>。</p><p>然后问家人：它是<b>问谁</b>要的？</p><p>第二件选做，是一道<b>思考题</b>：如果要让你的作品<b>每天晚上 8 点自动亮灯</b>，需要用到今天学的什么？</p><p>提示一下：你现在知道几点了。那「晚上 8 点」是 t 里面的哪一个数？</p><p>这道题其实是在给你们后面的课埋线——<b>知道时间，就能按时间做事</b>。</p><p>最后一句：<b>设备上网，是联网三问的第一问——你已经迈进物联网的大门。</b></p><p>下课。</p></div>
+</section>
+<div class="deck-footer"><span>ESP32 × AI 科创课程 · 第四阶段「驾驭AI · 物联网」 · 第17课 它能上网了</span><span class="slide-number" data-current="1" data-total="10"></span></div>
+<div class="progress-bar"><span></span></div>
+</div>
+<script src="assets/fitstage.js"></script>
+<script src="assets/runtime.js"></script>
+</body>
+</html>

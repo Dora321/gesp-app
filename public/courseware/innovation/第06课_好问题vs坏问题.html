@@ -1,0 +1,260 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>第6课 · 好问题 vs 坏问题 — ESP32 × AI 科创课程</title>
+<link rel="stylesheet" href="assets/base.css">
+<link rel="stylesheet" id="theme-link" href="assets/theme-course-pop.css">
+<link rel="stylesheet" href="assets/animations.css">
+</head>
+<body>
+<div class="deck" data-theme-base="assets/">
+<section class="slide lay-cover is-active" data-title="封面">
+<div class="deco circle" style="width:170px;height:170px;top:-52px;right:238px"></div>
+<div class="deco tri" style="right:110px;bottom:132px;transform:rotate(14deg)"></div>
+<div class="deco square" style="width:120px;height:120px;left:-46px;bottom:86px;transform:rotate(12deg)"></div>
+<span class="cv-bar">ESP32 × AI ／ 第二阶段「指挥AI」开篇</span>
+<h1 class="cv-title">好问题 vs <em>坏问题</em></h1>
+<p class="cv-sub">翻身做项目经理——指挥 AI 替我们干活</p>
+<div class="cv-tags"><span class="tag">ESP32</span><span class="tag">MicroPython</span><span class="tag">DeepSeek</span><span class="tag">90 分钟连堂</span></div>
+<div class="cv-no">06</div>
+<div class="notes"><p>前面五节课，我们学会了读懂 AI 写的代码，还会捉它的虫。</p><p>但是你们发现没有——这五节课，一直是 <b>AI 在写，我们在读</b>。</p><p>我们像什么？像个学徒，蹲在旁边看师傅干活。</p><p>从今天起，我们要<b>翻身做项目经理</b>，学会指挥 AI 替我们干活。</p><p>而指挥的秘诀，全藏在三个字里：<b>怎么问</b>。</p><p>今天你们会看到一件很神奇的事：同一个 AI，同一盏灯，问法不一样，给出来的代码天差地别——有的你一眼能看懂，有的全是你没见过的魔法。</p><p>这就是第二阶段的开场。从今天起，AI 不再是「代码打印机」了，它是你的<b>实习程序员</b>，你是它的小老板。</p></div>
+</section>
+
+<section class="slide lay-cards3" data-title="阶段升级">
+<div class="phead"><span class="no">第6课</span>
+<span class="kick c">阶段升级</span>
+<span class="tslot">0–10 分</span>
+</div>
+<h2 class="ptitle">从「读懂它写的」到「指挥它来写」</h2>
+<p class="psub">第二阶段开始了，你和 AI 的关系变了</p>
+<div class="pbody"><div class="g3 grow"><div class="blk g"><h4>第一阶段：AI ＝ 代码打印机</h4><p>它印，我们读。读懂每一行、验证、改参数——我们是<b>学徒</b>。</p></div><div class="blk a"><h4>第二阶段：AI ＝ 实习程序员</h4><p>我们下任务，它干活；干完我们<b>验收</b>——我们是<b>小老板</b>。</p></div><div class="blk c"><h4>变的是什么</h4><p>不是 AI 变强了，是<b>我们会提要求了</b>。人类清晰的表达，才是驾驭 AI 的核心。</p></div></div><div style="margin-top:22px"><div class="strip a">核心口诀：<b>问得越精准，AI 越聪明</b></div></div></div>
+<div class="notes"><p>我们先把这两个阶段摆在一起看。</p><p>第一阶段，AI 是<b>代码打印机</b>。它印，我们读。我们的活儿是：读懂每一行、验证效果、改改参数。我们是<b>学徒</b>。</p><p>第二阶段，AI 是<b>实习程序员</b>。我们下任务，它干活，干完了我们<b>验收</b>。我们是<b>小老板</b>。</p><p>注意第三张卡，这句话很重要：变的<b>不是 AI</b>。今天用的还是同一个 DeepSeek，它昨天什么样今天还什么样。</p><p>变的是<b>我们会提要求了</b>。</p><p>所以这一整个阶段，练的都不是编程，练的是<b>表达</b>——把你脑子里想要的东西，说得足够清楚、足够准，让另一个人（或者另一个 AI）能照着做出来。</p><p>核心口诀记住：<b>问得越精准，AI 越聪明</b>。</p></div>
+</section>
+
+<section class="slide lay-cards2" data-title="两张规矩牌">
+<div class="phead"><span class="no">第6课</span>
+<span class="kick c">课堂规矩</span>
+<span class="tslot">0–10 分</span>
+</div>
+<h2 class="ptitle">墙上两张规矩牌</h2>
+<p class="psub">一张管手，一张管脑</p>
+<div class="pbody"><div class="g2 grow"><div class="blk g"><h4>实验室三不碰（管手）</h4><p>① 不湿手碰　② 不短接　③ 不带电插拔　—— 这是从第4课接线起就守的规矩。</p></div><div class="blk a"><h4>AI 使用三规矩（管脑）</h4><p>① <b>不发隐私</b>：姓名、学校、住址、电话、照片，一个都不发给 AI。<br>② <b>不用没读懂的代码</b>：读懂每一行再上传，读不懂就问「这行在干什么」。<br>③ <b>不放过超纲魔法</b>：AI 用了没学过的写法，就加约束让它改用学过的。</p></div></div>
+<div style="margin-top:24px"><div class="strip a">谁违反了，<b>全班都可以指着墙提醒他</b></div></div></div>
+<div class="notes"><p>开始之前，先说规矩。墙上有两张牌，请大家看一眼。</p><p>左边这张叫「<b>实验室三不碰</b>」，管的是<b>手</b>：不湿手碰、不短接、不带电插拔。这个我们从第 4 课接线就一直在守。</p><p>右边这张是新的，叫「<b>AI 使用三规矩</b>」，管的是<b>脑</b>。</p><p>第一条，<b>不发隐私</b>。真实姓名、学校、家庭住址、电话、照片——一个都不能发给 AI。你问代码就问代码，不要顺手把自己交代了。</p><p>第二条，<b>不用没读懂的代码</b>。AI 给的代码，读懂每一行再上传。读不懂怎么办？直接问它：「这行在干什么？」</p><p>第三条，<b>不放过超纲魔法</b>。AI 要是用了我们没学过的写法，不要算了，要在提问里加约束，让它改用学过的。</p><p>这第三条，正好就是今天要学的<b>第五要素</b>。</p><p>最后一句：谁违反了，<b>全班都可以指着墙提醒他</b>——包括提醒我。</p></div>
+</section>
+
+<section class="slide lay-aierror" data-title="坏问题的下场">
+<div class="phead"><span class="no">第6课</span>
+<span class="kick c">AI 出错时刻</span>
+<span class="tslot">0–10 分</span>
+</div>
+<h2 class="ptitle">「帮我写个让灯亮起来的代码」</h2>
+<p class="psub">就这一句话——看 AI 给了什么</p>
+<div class="pbody">
+  <div class="aegrid grow">
+    <div class="code"><span class="lab c">AI 给的代码</span><pre style="font-size:26px;line-height:1.55"><span class="k">from</span> machine <span class="k">import</span> Pin, Timer
+
+led = Pin(2, Pin.OUT)
+tim = Timer(0)
+tim.init(period=1000, callback=...)
+
+<span class="c"># 这些词我们一个都没学过——</span>
+<span class="c"># 万一出错，连哪里错都不知道</span></pre></div>
+    <div class="aecol">
+      <div class="blk c"><h4>AI 变笨了吗？没有</h4><p>它<b>兴奋过头</b>了。我们只给了「效果」，没给别的。它不知道我们学过什么，就用了自己最拿手的写法——<code class="ic">Timer</code> 库。</p></div>
+      <div class="blk g"><h4>这个魔法能跑，但你看得懂吗</h4><p>也许真能让灯闪。可万一出错，我们<b>连哪里错了都不知道</b>。这就是 AI 三规矩第③条说的「超纲魔法」。</p></div>
+    </div>
+  </div>
+  <div style="margin-top:22px"><div class="strip a">所以要给 AI 带上「<b>紧箍咒</b>」——这就是五要素里的最后一个：<b>约束</b></div></div>
+</div>
+<div class="notes"><p>我现在当着大家的面问 AI，就问一句话：「帮我写个让灯亮起来的代码。」</p><p>（提交，等回答）</p><p>哎呀！大家快看大屏幕！</p><p>看这一句：<code class="ic">from machine import Timer</code>。还有这个 <code class="ic">tim.init()</code>……</p><p>这些词我们学过吗？<b>一个都没学过。</b></p><p>那我问一句：<b>AI 变笨了吗？</b></p><p>（等他们答）</p><p>没有。它是<b>兴奋过头</b>了。</p><p>我们只告诉它「让灯亮」，没告诉它别的。它不知道我们是小学生、不知道我们学过什么，就用了自己最拿手、最专业的写法。</p><p>这个魔法也许真能让灯闪。但是——<b>你们看得懂吗？</b></p><p>看不懂。万一它出错了，我们连哪里错了都找不到。</p><p>所以今天要学的东西来了：我们不仅要告诉 AI「想要什么效果」，还要给它带上一个<b>紧箍咒</b>。</p><p>这个紧箍咒，就是五要素里的最后一个——<b>约束</b>。</p></div>
+</section>
+
+<section class="slide lay-reqdoc" data-title="提问五要素">
+<div class="phead"><span class="no">第6课</span>
+<span class="kick g">新概念</span>
+<span class="tslot">10–25 分</span>
+</div>
+<h2 class="ptitle">提问五要素</h2>
+<p class="psub">第一阶段的四要素，今天正式加上第五个</p>
+<div class="pbody">
+  <div class="rdgrid grow">
+    <div class="blk a"><h4>五要素（发送前逐条打勾）</h4><div class="fivelist"><div class="fv"><span class="fk">① 语言</span><span class="fw">代码用什么写？（必填：MicroPython）</span></div><div class="fv"><span class="fk">② 硬件</span><span class="fw">主控板是什么？（必填：ESP32）</span></div><div class="fv"><span class="fk">③ 接线</span><span class="fw">元件连在哪？（例：GPIO2）</span></div><div class="fv"><span class="fk">④ 效果</span><span class="fw">想要什么动作？时间间隔多少？（例：亮1秒灭1秒）</span></div><div class="fv"><span class="fk">⑤ 约束</span><span class="fw"><b>不希望 AI 干什么？</b>（例：只能用 while 和 time.sleep）</span></div></div></div>
+    <div class="blk g"><h4>第五要素不是凭空来的</h4><div class="sqlist"><div class="sq"><span class="sn">2</span><span class="st">第2课加的是<b>时间</b>约束：0.2 秒、0.6 秒</span></div><div class="sq"><span class="sn">3</span><span class="st">第3课加的是<b>硬件事实</b>：按钮按下＝0</span></div><div class="sq"><span class="sn">4</span><span class="st">第4课加的是<b>元件型号</b>：SSD1306</span></div><div class="sq"><span class="sn">6</span><span class="st">今天把它们<b>收编成一个要素</b>：约束</span></div><div class="sq"><span class="sn">★</span><span class="st">四要素 → <b>五要素</b>，从今天起每次提问都要写满</span></div></div></div>
+  </div>
+  <div style="margin-top:20px"><div class="strip g">约束 ＝ 给 AI 套上<b>缰绳</b>，把它天马行空的能力收进我们能掌控的范围</div></div>
+</div>
+<div class="notes"><p>这就是今天的主角：<b>提问五要素</b>。</p><p>前四条你们已经很熟了：语言、硬件、接线、效果。从第 1 课起我们就在用。</p><p>第五条是新的：<b>约束</b>——「我<b>不希望</b> AI 干什么」。</p><p>但我要强调一件事，看右边这一列：<b>第五要素不是今天凭空冒出来的</b>。</p><p>第 2 课，我们给 AI 加了什么？<b>时间</b>——0.2 秒、0.6 秒。</p><p>第 3 课加了什么？<b>硬件的事实</b>——按钮按下等于 0。</p><p>第 4 课呢？<b>元件型号</b>——SSD1306。</p><p>这三样，其实都是同一类东西：<b>我们给 AI 划的规矩</b>。</p><p>今天我们把它们收编成一个名字，叫「<b>约束</b>」。</p><p>从今天起，每次提问都要写满五条。发送之前，拿着速查表逐条打勾。</p><p>最后记住这个比喻：约束就是给 AI 套上<b>缰绳</b>——不是不让它跑，是让它往我们要的方向跑。</p></div>
+</section>
+
+<section class="slide lay-vstext" data-title="约束两种说法">
+<div class="phead"><span class="no">第6课</span>
+<span class="kick a">约束怎么写</span>
+<span class="tslot">10–25 分</span>
+</div>
+<h2 class="ptitle">约束的两种说法</h2>
+<p class="psub">正着说、反着说，都管用</p>
+<div class="pbody">
+  <div class="vs3 grow">
+    <div class="blk c vstx"><span class="tag c">负向约束（不许用…）</span><p class="q">「不许用我没学过的库」「注释必须用中文」</p><p class="why"><b>封掉 AI 的岔路</b>——它想跑偏的路，你提前堵死。</p></div>
+    <div class="vsmark">VS</div>
+    <div class="blk g vstx"><span class="tag g">正向约束（只能用…）</span><p class="q">「只能用 while 循环和 time.sleep」</p><p class="why"><b>圈定 AI 的工具箱</b>——你把工具摆好，它只能在里面挑。</p></div>
+  </div>
+  <div style="margin-top:20px"><div class="strip g">拿不准写哪种？<b>两种都写上</b>——AI 不嫌你啰嗦</div></div>
+</div>
+<div class="notes"><p>约束有两种说法，都管用，看你顺手。</p><p>右边这种叫<b>正向约束</b>：「只能用 while 循环和 time.sleep。」</p><p>它的作用是<b>圈定 AI 的工具箱</b>——你把允许的工具摆在桌上，它只能在里面挑。</p><p>左边这种叫<b>负向约束</b>：「不许用我没学过的库。」「注释必须用中文。」</p><p>它的作用是<b>封掉 AI 的岔路</b>——它可能想跑偏的那几条路，你提前堵死。</p><p>哪种好？各有各的用。</p><p>正向的好处是<b>精确</b>，AI 没有含糊的余地。缺点是你得知道该用什么。</p><p>负向的好处是<b>省事</b>，你不用把所有工具列一遍。缺点是漏掉的路它还是可能跑。</p><p>那拿不准怎么办？<b>两种都写上。</b></p><p>AI 不嫌你啰嗦——这一点它比人好说话多了。</p></div>
+</section>
+
+<section class="slide lay-stepcode" data-title="好问题">
+<div class="phead"><span class="no">第6课</span>
+<span class="kick g">好问题</span>
+<span class="tslot">25–40 分</span>
+</div>
+<h2 class="ptitle">同一盏灯，换个问法</h2>
+<div class="pbody">
+  <div class="scstack">
+    <div class="fiverow"><div class="fvc"><span class="fk">语言</span><span class="fw">MicroPython</span></div><div class="fvc"><span class="fk">硬件</span><span class="fw">ESP32</span></div><div class="fvc"><span class="fk">接线</span><span class="fw">LED 接在 GPIO2</span></div><div class="fvc"><span class="fk">效果</span><span class="fw">让 LED 闪烁，亮 1 秒灭 1 秒，一直循环</span></div><div class="fvc"><span class="fk">约束</span><span class="fw"><b>只能用 while ＋ time.sleep，不要用 Timer</b></span></div></div>
+    <div class="askline"><b>五要素问一次：</b>「我使用的语言是 MicroPython，硬件是 ESP32，元件接在 GPIO2。效果：让 LED 闪烁，亮 1 秒灭 1 秒，一直循环。约束：只能使用 while 循环和 time.sleep，不要用 Timer 等高级库。」</div>
+    <div class="code"><span class="lab g">AI 这次给的代码 · 完整可跑</span><pre style="font-size:19px;line-height:1.55"><span class="k">from</span> machine <span class="k">import</span> Pin
+<span class="k">import</span> time
+
+led = Pin(2, Pin.OUT)
+
+<span class="k">while</span> <span class="k">True</span>:
+    led.value(1)    <span class="c"># 开灯</span>
+    time.sleep(1)   <span class="c"># 等待 1 秒</span>
+    led.value(0)    <span class="c"># 关灯</span>
+    time.sleep(1)   <span class="c"># 等待 1 秒</span></pre></div>
+  </div>
+  
+</div>
+<div class="notes"><p>现在我们把刚才那个坏问题，按五要素重写一遍。</p><p>前四条照填。重点看第五条，我加了一句狠话：「<b>只能使用 while 循环和 time.sleep，不要用 Timer 等高级库。</b>」</p><p>（提交，等回答）</p><p>看——出来的代码是什么？</p><p><code class="ic">while True</code>、<code class="ic">led.value</code>、<code class="ic">time.sleep</code>。</p><p>全是我们<b>学过的</b>。第 2 课的老朋友，一个新东西都没有。</p><p>我要你们对比一下刚才那一页：<b>同一个 AI、同一盏灯、同样是让灯闪</b>。</p><p>第一次给的是 Timer 魔法，这次给的是我们能读懂的代码。</p><p>中间变的是什么？<b>就多了一句约束。</b></p><p>现在轮到你们了。打开 DeepSeek，照着五要素把刚才那个坏问题改写一遍，把代码复制进 PyCharm 跑起来。</p><p>提醒一句：复制代码用回答框上的「Copy Code」按钮，直接选中拖拽容易把缩进弄乱。</p></div>
+</section>
+
+<section class="slide lay-divider" data-title="课间休息">
+<div class="deco circle" style="width:200px;height:200px;top:-70px;right:180px"></div>
+<div class="deco square" style="width:130px;height:130px;left:-50px;bottom:70px;transform:rotate(12deg)"></div>
+<div class="deco tri" style="right:140px;bottom:90px;transform:rotate(14deg)"></div>
+<div class="dv">
+  <span class="dv-time">40–50 分</span>
+  <h2 class="dv-t">课间休息 10 分钟</h2>
+  <p class="dv-s">回来做实战：设计一个属于你自己的暗号灯</p>
+</div>
+<div class="notes"><p>上半场结束，休息十分钟。</p><p>回来我们做实战，题目叫「<b>我的暗号灯</b>」。</p><p>休息的时候先想一件事：你想让你的灯，闪出一个什么<b>暗号</b>？</p><p>比如：长-长-短，代表「回家啦」。长就是亮 1 秒，短就是亮 0.3 秒。</p><p>你可以设计任何暗号，代表任何意思——只有你和你的同伴知道。</p><p>想好了，回来我们用五要素指挥 AI 把它做出来。</p></div>
+</section>
+
+<section class="slide lay-rowlist" data-title="实战 我的暗号灯">
+<div class="phead"><span class="no">第6课</span>
+<span class="kick g">实战</span>
+<span class="tslot">50–75 分</span>
+</div>
+<h2 class="ptitle">我的暗号灯</h2>
+<p class="psub">第2课是读懂别人的节奏；今天是<b>自己设计</b>、指挥 AI 做出来</p>
+<div class="pbody"><div class="rowlist grow"><div class="rowitem"><div class="num g">1</div><div class="tx"><b>设计暗号</b>：写在任务卡上（例：长-长-短 ＝「回家啦」，长＝亮1秒，短＝亮0.3秒）</div></div><div class="rowitem"><div class="num a">2</div><div class="tx"><b>写进【效果】</b>：把节奏一拍一拍说清楚——几次长、几次短、每次多少秒、停多久</div></div><div class="rowitem"><div class="num c">3</div><div class="tx"><b>五要素提问</b>：五条写满再点发送，别漏第⑤条约束</div></div><div class="rowitem"><div class="num g">4</div><div class="tx">拿到代码<b>不许直接传</b>——先过下一页的「验收三查」</div></div><div class="rowitem"><div class="num a">5</div><div class="tx">三查全过，才上板；灯闪对了，找同伴猜猜你的暗号是什么意思</div></div></div><div style="margin-top:20px"><div class="strip a">和第2课的区别：那时你<b>读懂并改参数</b>，今天你<b>自己设计、指挥、验收</b></div></div></div>
+<div class="notes"><p>实战开始，题目是「<b>我的暗号灯</b>」。</p><p>先说清楚它和第 2 课的区别，免得有同学说「这不是做过了吗」。</p><p>第 2 课我们做 SOS，是老师给你一个现成的节奏，你<b>读懂它、改改参数</b>。</p><p>今天不一样：<b>暗号是你自己设计的</b>，没人给你标准答案。你要把它说清楚，还要指挥 AI 做出来，最后自己验收。</p><p>五个步骤。</p><p>第一，设计暗号，写在卡片上。比如长-长-短代表「回家啦」。</p><p>第二，把节奏写进【效果】——这是最关键的一步。几次长、几次短、每次多少秒、中间停多久，一拍一拍说清楚。想想第 2 课的教训：你说「快一点」AI 听不懂，你说「0.3 秒」它才听得懂。</p><p>第三，五要素写满再发送。第⑤条约束不要漏。</p><p>第四，<b>拿到代码不许直接传</b>。为什么？下一页讲。</p><p>第五，灯闪对了，找同伴猜猜你的暗号是什么意思。</p></div>
+</section>
+
+<section class="slide lay-rowlist" data-title="验收三查">
+<div class="phead"><span class="no">第6课</span>
+<span class="kick a">上板前</span>
+<span class="tslot">50–75 分</span>
+</div>
+<h2 class="ptitle">验收三查：上传前 30 秒</h2>
+<p class="psub">代码到手别急着传——查过再传，翻车少一半</p>
+<div class="pbody"><div class="rowlist grow"><div class="rowitem"><div class="num g">1</div><div class="tx"><b>① 查引脚</b> —— 代码里的引脚号 ＝ 我实际插的口吗？　不对：用追问话术③让它只改引脚号</div></div><div class="rowitem"><div class="num a">2</div><div class="tx"><b>② 查超纲</b> —— 有没有约束里禁止的写法、没学过的库？　有：用追问话术①要求重写</div></div><div class="rowitem"><div class="num c">3</div><div class="tx"><b>③ 查效果</b> —— 逐行走一遍：节奏和我设计的暗号一致吗？　不对：指出差在哪，让它只改那一处</div></div></div><div style="margin-top:20px"><div class="strip g">三查全过才点上传——这是<b>验收</b>，是小老板的活儿，不能交给 AI</div></div></div>
+<div class="notes"><p>代码到手，别急着传！三十秒，做三件事。</p><p><b>一查引脚。</b> 它写的口，和你实际插的口一样吗？AI 有时候会自作主张换个引脚。不一样怎么办？待会儿讲的追问话术③，让它<b>只改引脚号</b>。</p><p><b>二查超纲。</b> 有没有溜进来你看不懂的魔法？有没有你在约束里明明禁止了、它还是用了的写法？有的话，用话术①要求重写。</p><p><b>三查效果。</b> 这个最花时间，但最重要：<b>逐行走一遍</b>，拿你设计的暗号对一遍——三次长还是两次长？停了多久？和你要的一样吗？</p><p>三查全过，才点上传。</p><p>我要强调一句话：<b>验收是小老板的活儿，不能交给 AI。</b></p><p>你让 AI 自己检查自己，就像让学生自己批自己的卷子。它会说「没问题」——因为它真觉得没问题。</p><p>查过再传，翻车少一半。这三十秒，省的是你二十分钟的排错时间。</p></div>
+</section>
+
+<section class="slide lay-tiers3" data-title="分层任务">
+<div class="phead"><span class="no">第6课</span>
+<span class="kick g">能力阶梯</span>
+<span class="tslot">75–85 分</span>
+</div>
+<h2 class="ptitle">四级能力阶梯</h2>
+<p class="psub">单发提问 → 多元件组合 → 对话式迭代</p>
+<div class="pbody"><div class="g3 grow"><div class="blk tier t1"><div class="hd">★ 基础（必做）：我的暗号灯</div>
+        <p class="task">设计暗号 → 五要素提问 → 验收三查 → 上板。</p><p class="fill">□ 引脚对　□ 没超纲　□ 节奏对　→ □ 我的暗号灯闪起来了！</p></div><div class="blk tier t2"><div class="hd">★★ 进阶（建议做）：灯屏联动</div>
+        <p class="task">不看模板，独立写五要素：LED 闪 ＋ OLED 同步显示 ON/OFF。</p><p class="fill">注意【接线】要写<b>两个元件</b>：LED→GPIO2；OLED→SCL22/SDA21</p></div><div class="blk tier t3"><div class="hd">★★★ 挑战（学有余力）：追问三连改</div>
+        <p class="task"><b>不重开对话</b>，用追问让 AI 连改三次（见后页剧本）。</p><p class="fill">每一步都要过验收三查；☆彩蛋：加一条奇葩约束</p></div></div>
+<div style="margin-top:22px"><div class="strip g">☆ 彩蛋（最快的组）：加一条<b>奇葩约束</b>——拼音变量名 / 每行加一句猫咪注释</div></div></div>
+<div class="notes"><p>任务分四级，是一个<b>能力阶梯</b>，一级比一级难在哪，我说清楚。</p><p><b>基础档，暗号灯。</b> 这是「<b>单发提问</b>」——问一次，拿到代码，验收，完。必做，做完就成功。</p><p><b>进阶档，灯屏联动。</b> 难在哪？难在<b>两个元件</b>。LED 和 OLED 都要写进【接线】，少写一个 AI 就抓瞎。而且这一档我要求<b>不看模板</b>，自己写五要素。</p><p><b>挑战档，追问三连改。</b> 这是今天最有价值的一档，难在它是「<b>对话式</b>」的——<b>不许重开对话</b>，要在原来那段对话里接着问，让 AI 一次次改。</p><p>为什么不许重开？因为重开等于把前面说过的全部重说一遍，太蠢了。真正会指挥的人，是<b>在原基础上改</b>。</p><p>最后还有个<b>彩蛋</b>，给最快的组：加一条<b>奇葩约束</b>，比如要求变量名全用拼音，或者每一行都加一句猫咪口吻的注释。</p><p>听着搞笑，但它验证的是一件正经事：<b>约束到底能管多宽</b>。</p></div>
+</section>
+
+<section class="slide lay-cards3" data-title="三句追问话术">
+<div class="phead"><span class="no">第6课</span>
+<span class="kick c">对话式指挥</span>
+<span class="tslot">75–85 分</span>
+</div>
+<h2 class="ptitle">三句追问话术</h2>
+<p class="psub">能把 AI 的回答<b>改对</b>，才算真会指挥</p>
+<div class="pbody"><div class="g3 grow"><div class="blk g"><h4>① AI 违反了约束</h4><p>你就说：「你没有遵守约束：只能用 while 和 time.sleep。请重写。」<br><b>验收</b>：新代码里超纲词消失了。</p></div><div class="blk a"><h4>② 有一行看不懂</h4><p>你就说：「第 N 行在干什么？用小学生能听懂的话解释。」<br><b>验收</b>：你能把这行讲给同伴听。</p></div><div class="blk c"><h4>③ 想改一点点</h4><p>你就说：「在原代码基础上，只把 ____ 改成 ____，其他一行都不要动。」<br><b>验收</b>：对比新旧代码，只变了该变的。</p></div></div><div style="margin-top:22px"><div class="strip ">最值钱的是第③句——<b>一次改一点、每次都验收</b>；贪多的指挥官带不动 AI，也带不动人</div></div></div>
+<div class="notes"><p>光会「一次问对」还不够。真正的高手，是能把 AI 的回答<b>改对</b>。</p><p>三句话，记熟它。</p><p><b>第①句，AI 违反了约束的时候。</b> 别生气，也别重开，就说：「你没有遵守约束：只能用 while 和 time.sleep。请重写。」</p><p>你要有这个<b>纠错的底气</b>。AI 会走神，人得把它拉回来。验收标准是：新代码里那些超纲词消失了。</p><p><b>第②句，有一行看不懂的时候。</b> 说：「第 N 行在干什么？用小学生能听懂的话解释。」</p><p>这句话直接对应 AI 三规矩第②条——不用没读懂的代码。验收标准是：你能把这行讲给同伴听。</p><p><b>第③句最值钱</b>，我念慢一点：「<b>在原代码基础上，只把 ____ 改成 ____，其他一行都不要动。</b>」</p><p>为什么值钱？因为你不这么说，AI 经常会顺手把整段重写一遍，你就得重新验收一次，前面白干。</p><p>验收标准是：对比新旧代码，<b>只变了该变的</b>。</p><p>记住一句话：<b>一次改一点、每次都验收</b>。贪多的指挥官，带不动 AI，也带不动人。</p></div>
+</section>
+
+<section class="slide lay-codefull" data-title="进阶 灯屏联动">
+<div class="phead"><span class="no">第6课</span>
+<span class="kick a">进阶卡</span>
+<span class="tslot">75–85 分</span>
+</div>
+<h2 class="ptitle">进阶：灯屏联动</h2>
+<p class="psub">【接线】要写两个元件：LED→GPIO2；OLED→SCL22 / SDA21（ssd1306 库第4课已上传）</p>
+<div class="pbody"><div class="code"><span class="lab g">参考代码 · LED 闪 ＋ OLED 同步显示</span><pre style="font-size:19px;line-height:1.55"><span class="k">from</span> machine <span class="k">import</span> Pin, SoftI2C
+<span class="k">import</span> ssd1306, time
+
+led = Pin(2, Pin.OUT)
+i2c = SoftI2C(scl=Pin(22), sda=Pin(21))
+oled = ssd1306.SSD1306_I2C(128, 64, i2c)
+
+<span class="k">while</span> <span class="k">True</span>:
+    led.value(1)
+    oled.fill(0)
+    oled.text('ON', 56, 28)
+    oled.show()
+    time.sleep(1)
+    led.value(0)
+    oled.fill(0)
+    oled.text('OFF', 52, 28)
+    oled.show()
+    time.sleep(1)</pre></div></div>
+<div class="notes"><p>进阶档「灯屏联动」的参考代码，做完基础档的组看这一页。</p><p>先说提问怎么写，我念一遍完整的：</p><p>「我使用的语言是 MicroPython，硬件是 ESP32。<b>LED 接在 GPIO2；OLED 屏用 I2C，SCL 接 GPIO22、SDA 接 GPIO21</b>，ssd1306 库已上传。效果：LED 亮时屏幕显示 ON，灭时显示 OFF，一直循环。约束：只能用 while 和 time.sleep，OLED 用第 4 课学过的 ssd1306 写法，代码不超过 20 行。」</p><p>注意三个地方。</p><p>第一，<b>【接线】写了两个元件</b>。少写一个，AI 就得猜，多半猜错。</p><p>第二，约束里我加了一句「<b>用第 4 课学过的 ssd1306 写法</b>」——这是在告诉它：别给我整新库。</p><p>第三，还有一句「<b>代码不超过 20 行</b>」。这也是约束——约束不只是限语法，也可以限<b>长度</b>。</p><p>看代码，其实就是把第 2 课的闪烁和第 4 课的屏幕<b>拼</b>起来：亮的时候写 ON，灭的时候写 OFF。</p><p>别忘了每次 text 之后都要 <b>show()</b>，这是第 4 课那个最阴的坑。</p></div>
+</section>
+
+<section class="slide lay-rowlist" data-title="挑战 追问三连改">
+<div class="phead"><span class="no">第6课</span>
+<span class="kick c">挑战卡</span>
+<span class="tslot">75–85 分</span>
+</div>
+<h2 class="ptitle">追问三连改（不重开对话）</h2>
+<p class="psub">在原来那段对话里接着问——每一步都要过验收三查</p>
+<div class="pbody"><div class="rowlist grow"><div class="rowitem"><div class="num g">1</div><div class="tx"><b>第0问</b>：五要素生成「我的暗号灯」　→ 验收：暗号节奏正确</div></div><div class="rowitem"><div class="num a">2</div><div class="tx"><b>追问①</b>：「把整体速度加倍，其他都不要动。」　→ 验收：节奏型不变，只是变快</div></div><div class="rowitem"><div class="num c">3</div><div class="tx"><b>追问②</b>：「加一个按钮接 GPIO14：按住才闪、松开全灭。只能用 if 和学过的写法。」　→ 验收：按住闪、松开灭</div></div><div class="rowitem"><div class="num g">4</div><div class="tx"><b>追问③</b>：「在 OLED 上显示已经闪了多少次。」　→ 验收：屏幕计数随闪烁增加</div></div></div><div style="margin-top:20px"><div class="strip a">AI 一次改多了？用话术③拉回来：「在原代码基础上只改……」——<b>每步只变该变的</b></div></div></div>
+<div class="notes"><p>挑战档的剧本，四步。规矩只有一条：<b>不许重开对话</b>，全在原来那段里接着问。</p><p><b>第 0 问</b>：先用五要素生成你的暗号灯。这是起点，得先验收过。</p><p><b>追问①</b>：「把整体速度加倍，其他都不要动。」</p><p>注意验收点：<b>节奏型不能变</b>，只是整体变快。如果它把长短比例也改了，那就不对。</p><p><b>追问②</b>：「加一个按钮接 GPIO14，按住才闪、松开全灭。只能用 if 和学过的写法。」</p><p>这一问难度跳了一级——加了新硬件。所以【接线】要补，约束也要补。</p><p><b>追问③</b>：「在 OLED 上显示已经闪了多少次。」</p><p>这一问要 AI 自己想出「计数」的办法，它可能会用一个你没见过的写法——那就用话术②问它：这行在干什么。</p><p>最常见的翻车：<b>AI 一次改多了</b>，把整段重写。怎么办？用话术③拉回来：「在原代码基础上只改……」</p><p><b>每步只变该变的。</b> 这就是对话式指挥的功夫。</p></div>
+</section>
+
+<section class="slide lay-rowlist" data-title="今日三大发现">
+<div class="phead"><span class="no">第6课</span>
+<span class="kick g">总结</span>
+<span class="tslot">85–90 分</span>
+</div>
+<h2 class="ptitle">今日三大发现</h2>
+<div class="pbody"><div class="rowlist grow"><div class="rowitem"><div class="num g">1</div><div class="tx">我们和 AI 的关系升级了：从「读懂它写的」到「<b>指挥它来写</b>」</div></div><div class="rowitem"><div class="num a">2</div><div class="tx">问得越精准，AI 给的代码越好用——<b>人类的表达能力</b>才是驾驭 AI 的核心</div></div><div class="rowitem"><div class="num c">3</div><div class="tx">「<b>约束</b>」就像给 AI 套上缰绳，把它天马行空的能力收进我们能掌控的范围</div></div></div><div style="margin-top:20px"><div class="strip a">下节课《温度播报员》——需求<b>一句话说不完</b>的时候，怎么分步指挥 AI？</div></div></div>
+<div class="notes"><p>都停下，看屏幕。今天三个发现。</p><p>第一个，我们和 AI 的关系<b>升级</b>了：从「读懂它写的」到「<b>指挥它来写</b>」。你们现在是小老板了。</p><p>第二个，问得越精准，AI 给的代码越好用。所以真正的本事不在敲键盘，在<b>表达</b>——把想要的东西说清楚，这是人类的活儿。</p><p>第三个，<b>约束</b>就像给 AI 套上缰绳，把它天马行空的能力，收进我们能掌控的范围。</p><p>今天你们的工具箱里多了三样，我一起收进去：</p><p><b>五要素</b>——问对。<b>三句追问</b>——改对。<b>验收三查</b>——传前查对。</p><p>这三样以后每节课都用，一直用到毕业。</p><p>最后留个钩子。今天我们问的都是<b>一句话能说完</b>的事：让灯闪、亮 1 秒灭 1 秒。</p><p>那如果需求<b>一句话说不完</b>呢？</p><p>下节课《温度播报员》——我们要给 ESP32 装上「感觉温度」的本事，而且这次的需求，一句话真的说不完。怎么办？<b>分步指挥</b>。</p><p>下课。</p></div>
+</section>
+
+<section class="slide lay-cards2" data-title="课后任务">
+<div class="phead"><span class="no">第6课</span>
+<span class="kick a">课后任务</span>
+</div>
+<h2 class="ptitle">课后任务</h2>
+<div class="pbody"><div class="g2 grow"><div class="blk g"><h4>基础（全员）</h4><p>下节课我们做「温度播报员」（用传感器测温并报警）。这是个<b>一句话说不完</b>的复杂任务——请试着把它拆成 2–3 个小步骤，写在作业本上。</p></div><div class="blk a"><h4>拓展（选做）</h4><p>在生活里找一个「<b>坏问题</b>」（比如家长问「今天在学校怎么样？」），分析它缺了哪几个要素，试着帮忙改成「好问题」。</p></div></div>
+<div style="margin-top:24px"><div class="strip g">能给家人讲清楚五要素、并改造一个坏问题，才是真的懂了</div></div></div>
+<div class="notes"><p>课后两件事。</p><p>第一件全员都做，而且这是<b>下节课的入场券</b>：</p><p>下节课我们做「温度播报员」——用传感器测温度，温度高了就报警。</p><p>这是一个<b>一句话说不完</b>的任务。我要你们回去试着把它<b>拆成 2 到 3 个小步骤</b>，写在作业本上。</p><p>怎么拆？想想：要先干什么，再干什么？先测到温度，还是先报警？</p><p>拆不对没关系，下节课我们一起拆。但<b>必须先自己试一次</b>。</p><p>第二件选做，很好玩：在生活里找一个「<b>坏问题</b>」。</p><p>比如爸爸妈妈问你：「今天在学校怎么样？」——这就是个典型的坏问题，缺要素。缺哪几个？你想想。</p><p>然后帮他改成好问题。改完可以给他看，说这是我们课上学的。</p><p>最后一句：能给家人讲清楚五要素、并且<b>改造一个坏问题</b>，才是真的懂了。下课。</p></div>
+</section>
+<div class="deck-footer"><span>ESP32 × AI 科创课程 · 第二阶段「指挥AI」 · 第6课 好问题 vs 坏问题</span><span class="slide-number" data-current="1" data-total="16"></span></div>
+<div class="progress-bar"><span></span></div>
+</div>
+<script src="assets/fitstage.js"></script>
+<script src="assets/runtime.js"></script>
+</body>
+</html>

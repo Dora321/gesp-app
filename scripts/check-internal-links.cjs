@@ -6,7 +6,7 @@ const srcRoot = path.join(repoRoot, 'src');
 
 const routeRules = [
   /^\/innovation-foundation(\/([1-9]|1[0-5]))?$/,
-  /^\/innovation\/(1|2|3|4|5|9|10)$/,
+  /^\/innovation\/([1-9]|1\d|2[0-3]|16\.5)$/,
   /^\/$/,
   /^\/museum$/,
   /^\/question-bank$/,
@@ -15,7 +15,7 @@ const routeRules = [
   // 一到八级各 16 课全部建成。
   /^\/lesson\/[1-8]\/([1-9]|1[0-6])$/,
   /^\/ekart(\/(roadmap|toolbox|gallery|parent-portal))?$/,
-  /^\/hardware(\/esp32-ai|\/esp32-curriculum|\/esp32-map|\/esp32-contest|\/esp32\/([1-9]|[12]\d|3[0-5])|\/lesson\/([1-9]|1[0-6]))?$/,
+  /^\/hardware(\/esp32-ai|\/esp32-curriculum|\/esp32-map|\/esp32-contest|\/esp32\/([1-9]|[12]\d|3[0-5]|16\.5)|\/lesson\/([1-9]|1[0-6]))?$/,
   /^\/level[1-8]$/,
   /^\/python\/(f[1-7]|bridge|a[1-2]|file-ops|ai|crawler|binary-search|encryption|sorting|morse)$/,
   /^\/gesp\/2025-12-l2$/,

@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>第18课 · 给云端发消息 — ESP32 × AI 科创课程</title>
+<link rel="stylesheet" href="assets/base.css">
+<link rel="stylesheet" id="theme-link" href="assets/theme-course-pop.css">
+<link rel="stylesheet" href="assets/animations.css">
+</head>
+<body>
+<div class="deck" data-theme-base="assets/">
+<section class="slide lay-cover is-active" data-title="封面">
+<div class="deco circle" style="width:170px;height:170px;top:-52px;right:238px"></div>
+<div class="deco tri" style="right:110px;bottom:132px;transform:rotate(14deg)"></div>
+<div class="deco square" style="width:120px;height:120px;left:-46px;bottom:86px;transform:rotate(12deg)"></div>
+<span class="cv-bar">ESP32 × AI ／ 第四阶段「驾驭AI · 物联网」</span>
+<h1 class="cv-title">给云端<em>发消息</em></h1>
+<p class="cv-sub">让你的数据离开这块板子，被更远的人看见</p>
+<div class="cv-tags"><span class="tag">MQTT</span><span class="tag">巴法云</span><span class="tag">微实验② 启动</span><span class="tag">90 分钟连堂</span></div>
+<div class="cv-no">18</div>
+<div class="notes"><p>上节课我们做到了一件事：板子<b>问</b>云要东西——问它现在几点。</p><p>今天反过来：<b>板子给云送东西</b>。</p><p>我们要把教室里的温度，<b>送到云上去</b>，然后在<b>手机上</b>看到它。</p><p>这是联网三问的<b>第②问：数据怎么上传？</b></p><p>今天还要启动一个东西，它会横跨四节课，叫「<b>微实验②</b>」，流程是：</p><p><b>预测 → 测量 → 对比 → 结论。</b></p><p>这是科学家做事的顺序。今天我们先做第一步——<b>预测</b>。</p><p>然后数据在云上攒<b>一整晚</b>，明天（L19）我们把曲线拉出来，看谁猜得准。</p><p>所以今天的数据不是白传的——<b>它是明天的考题</b>。</p></div>
+</section>
+
+<section class="slide lay-cards3" data-title="先预测">
+<div class="phead"><span class="no">第18课</span>
+<span class="kick c">微实验② 第一步</span>
+<span class="tslot">0–8 分</span>
+</div>
+<h2 class="ptitle">先预测，再测量</h2>
+<p class="psub">测量之前先猜——<b>猜错一点都不丢人，科学家天天猜</b></p>
+<div class="pbody"><div class="g3 grow"><div class="blk g"><h4>猜什么</h4><p>你猜<b>咱们教室的温度</b>，一天里会怎么变？<br>几点最高？几点最低？</p></div><div class="blk a"><h4>怎么记</h4><p>在<b>预测卡</b>上画一条简单的线：横轴是时间，纵轴是温度。</p></div><div class="blk c"><h4>为什么先猜</h4><p>明天曲线出来，<b>猜得离谱的地方</b>才是最有意思的地方——<br>为什么和想的不一样？</p></div></div><div style="margin-top:22px"><div class="strip a">预测卡<b>收起来别弄丢</b>——明天（L19）要拿它<b>对答案</b></div></div></div>
+<div class="notes"><p>开始写代码之前，先做一件事：<b>猜一猜</b>。</p><p>我问你们：<b>咱们教室的温度，一天里会怎么变？</b></p><p>几点最高？几点最低？中午和晚上差几度？</p><p>（让他们讨论一会儿）</p><p>现在在<b>预测卡</b>上画一条线：横轴是时间，从早到晚；纵轴是温度。画一条你觉得它会走的曲线。</p><p>有同学说：老师我不知道啊，我瞎猜的。</p><p><b>猜错一点都不丢人——科学家天天猜。</b></p><p>科学里有个词叫「假设」，说白了就是有根据的猜。你猜完了，才知道该去量什么。</p><p>而且我告诉你们一件事，这是今天最重要的一句话：</p><p><b>明天曲线出来，猜得最离谱的地方，才是最有意思的地方。</b></p><p>为什么和想的不一样？那里面一定藏着一个你不知道的原因。</p><p>画完，卡片收好，<b>别弄丢</b>——明天对答案。</p></div>
+</section>
+
+<section class="slide lay-flow3" data-title="MQTT 三件套">
+<div class="phead"><span class="no">第18课</span>
+<span class="kick g">新概念</span>
+<span class="tslot">8–22 分</span>
+</div>
+<h2 class="ptitle">上云要报三样</h2>
+<p class="psub">还是快递柜的比方——去哪家、你是谁、放哪个柜子</p>
+<div class="pbody"><div class="flow grow"><div class="fl g"><span class="fl-k">服务器</span><p class="fl-t">去哪家快递柜？</p><p class="fl-b"><b>mqtt.bemfa.com</b>，端口 <b>9501</b><br><br>（注意：<b>不是</b> bemfa.com）</p></div><div class="fl-arr">→</div><div class="fl a"><span class="fl-k">私钥</span><p class="fl-t">你是谁？</p><p class="fl-b">巴法云给你的一串字符。<br><b>这是你家钥匙，谁也不给。</b><br>代码里当 <b>client_id</b> 用</p></div><div class="fl-arr">→</div><div class="fl c"><span class="fl-k">主题名</span><p class="fl-t">放哪个柜子？</p><p class="fl-b">按学号编号，<b>结尾加 /up</b><br>例：<b>g3temp01/up</b></p></div></div><div style="margin-top:20px"><div class="strip a"><code class="ic">/up</code> 的意思是「<b>只存柜、别敲门</b>」——不加它，全班的手机要被<b>敲爆</b></div></div></div>
+<div class="notes"><p>上云要报三样东西。还是用<b>快递柜</b>打比方。</p><p><b>第一样：服务器。</b> 去<b>哪家</b>快递柜？</p><p>我们用的是巴法云，地址是 <b>mqtt.bemfa.com</b>，端口 <b>9501</b>。</p><p>这里有个坑，我用红笔圈出来：<b>不是 bemfa.com，是 mqtt.bemfa.com</b>。差三个字母，连不上。</p><p><b>第二样：私钥。</b> <b>你是谁</b>？</p><p>巴法云会给你一串字符，那就是你的身份证。代码里它当 <b>client_id</b> 用。</p><p>我强调一句：<b>这是你家钥匙，谁也不给。</b> 泄露了，别人就能往你的柜子里塞东西、拿东西。真泄露了怎么办？去后台<b>重新生成</b>一个。</p><p><b>第三样：主题名。</b> 放<b>哪个柜子</b>？</p><p>按学号编号，比如第 3 组的温度就是 g3temp01。</p><p>而且结尾一定要加 <b>/up</b>。</p><p><code class="ic">/up</code> 是什么意思？——「<b>只存柜、别敲门</b>」。</p><p>不加会怎么样？每传一次数据，平台就往手机推一条消息。全班二十组、每 30 秒一次……</p><p><b>全班的手机会被敲爆。</b></p></div>
+</section>
+
+<section class="slide lay-table" data-title="主题命名规范">
+<div class="phead"><span class="no">第18课</span>
+<span class="kick a">班级规范</span>
+<span class="tslot">8–22 分</span>
+</div>
+<h2 class="ptitle">班级主题命名规范</h2>
+<p class="psub">贴墙常驻——全班按这个编，谁也不占谁的柜子</p>
+<div class="pbody">
+  <div class="tbl grow" style="grid-template-columns:0.9fr 1.3fr 1.1fr"><div class="th">规则</div><div class="th">写法</div><div class="th">例子</div><div class="td k">第 N 组</div><div class="td"><b>gN</b> ＋ 用途 ＋ 序号 ＋ <b>/up</b></div><div class="td"><b>g3temp01/up</b></div><div class="td k">温度</div><div class="td">gN<b>temp</b>01/up</div><div class="td">g3temp01/up</div><div class="td k">湿度</div><div class="td">gN<b>hum</b>01/up</div><div class="td">g3hum01/up</div><div class="td k">光照</div><div class="td">gN<b>light</b>01/up</div><div class="td">g3light01/up</div></div>
+  <div style="margin-top:20px"><div class="strip g">主题名<b>差一个字母，就是别人家柜子</b>——控制台看不到数据，先查这里</div></div>
+</div>
+<div class="notes"><p>这是全班的<b>主题命名规范</b>，贴墙上。</p><p>规则很简单：<b>第 N 组 → gN ＋ 用途 ＋ 序号 ＋ /up</b>。</p><p>第 3 组的温度就是 <b>g3temp01/up</b>。湿度是 g3hum01/up，光照是 g3light01/up。</p><p>为什么要定这个规范？</p><p>因为巴法云上，<b>所有人的柜子在一起</b>。你随便起个名字叫 temp，可能全国有一百个人也叫 temp——那你们的数据就混在一起了。</p><p>加上组号前缀，就是「<b>这是第 3 组的柜子</b>」，谁也不占谁的。</p><p>最后黑条上那句，是今天最常见的故障：</p><p><b>主题名差一个字母，就是别人家柜子。</b></p><p>控制台看不到自己的数据？先查主题名，一个字母一个字母对。</p><p>还有一个常见的：<b>结尾漏了 /up</b>。数据是进去了，但是进错柜子，还把全班的手机敲了。</p></div>
+</section>
+
+<section class="slide lay-stepcode" data-title="第①步 连云">
+<div class="phead"><span class="no">第18课</span>
+<span class="kick g">第①步</span>
+<span class="tslot">22–40 分</span>
+</div>
+<h2 class="ptitle">先连上云，再谈上传</h2>
+<div class="pbody"><div class="askline"><b>五要素 · 只要连云这一块：</b>「请写代码：连上 WiFi，再用 umqtt 连接巴法云（服务器 mqtt.bemfa.com，端口 9501，私钥当 client_id），连上后打印『已连上云』。约束：只要连接这一块，带中文注释。」</div><div class="code"><span class="lab g">起步全码 · 第①步：连 WiFi ＋ 连云</span><pre style="font-size:20px;line-height:1.38"><span class="k">import</span> network, time                 <span class="c"># 联网、计时工具</span>
+<span class="k">from</span> umqtt.simple <span class="k">import</span> MQTTClient  <span class="c"># MQTT 上云工具</span>
+
+WIFI_SSID = "你的WiFi名"
+WIFI_PASS = "你的WiFi密码"
+BEMFA_KEY = "你的巴法云私钥"        <span class="c"># 私钥当 client_id</span>
+
+wlan = network.WLAN(network.STA_IF); wlan.active(<span class="k">True</span>)
+wlan.connect(WIFI_SSID, WIFI_PASS)
+<span class="k">while</span> <span class="k">not</span> wlan.isconnected():        <span class="c"># 等连上</span>
+    time.sleep(0.5)
+print("已联网", wlan.ifconfig()[0])
+<span class="c"># 服务器是 mqtt.bemfa.com，端口 9501（不是 bemfa.com！）</span>
+client = MQTTClient(BEMFA_KEY, "mqtt.bemfa.com", 9501)
+client.connect()
+print("已连上云")</pre></div></div>
+<div class="notes"><p>还是老规矩：<b>一次只搭一块</b>。这一步<b>先不接传感器</b>，只做一件事——<b>连上云</b>。</p><p>为什么要分开？因为如果一次全写，出了问题你不知道是网的问题、云的问题、还是传感器的问题。</p><p>先把云连上，打印出「<b>已连上云</b>」这五个字，这一步就过了。</p><p>看代码。前半段是<b>上节课的老朋友</b>：连 WiFi、等连上、打印 IP。一模一样，你们已经会了。</p><p>新的只有最后三行：</p><p><code class="ic">client = MQTTClient(BEMFA_KEY, "mqtt.bemfa.com", 9501)</code> —— <b>三件套齐了</b>：私钥当 client_id，服务器地址，端口。</p><p><code class="ic">client.connect()</code> —— <b>连上去</b>。</p><p><code class="ic">print("已连上云")</code> —— 成功的标志。</p><p>最容易出的错，我提前说：连接被拒，报 <b>MQTTException: 5</b>。</p><p>99% 是<b>私钥抄错</b>。逐字核对，别把主题名误填成私钥了——这两个都是一串字符，很容易搞混。</p></div>
+</section>
+
+<section class="slide lay-codefull" data-title="第②步 上传温度">
+<div class="phead"><span class="no">第18课</span>
+<span class="kick a">第②步</span>
+<span class="tslot">22–40 分</span>
+</div>
+<h2 class="ptitle">每 30 秒，上传一次温度</h2>
+<div class="pbody"><div class="code"><span class="lab g">完整可运行参考代码 · 数据上云</span><pre style="font-size:16px;line-height:1.38"><span class="k">import</span> network, time, dht            <span class="c"># 多请一位帮手：dht</span>
+<span class="k">from</span> machine <span class="k">import</span> Pin
+<span class="k">from</span> umqtt.simple <span class="k">import</span> MQTTClient
+
+WIFI_SSID = "你的WiFi名"
+WIFI_PASS = "你的WiFi密码"
+BEMFA_KEY = "你的巴法云私钥"        <span class="c"># 私钥当 client_id</span>
+TOPIC = "g1temp01/up"              <span class="c"># 学号前缀 g1 换成你的；/up = 只存云不推送</span>
+
+wlan = network.WLAN(network.STA_IF); wlan.active(<span class="k">True</span>)
+wlan.connect(WIFI_SSID, WIFI_PASS)
+<span class="k">while</span> <span class="k">not</span> wlan.isconnected():
+    time.sleep(0.5)
+print("已联网", wlan.ifconfig()[0])
+client = MQTTClient(BEMFA_KEY, "mqtt.bemfa.com", 9501)
+client.connect()
+print("已连上云")
+
+sensor = dht.DHT11(Pin(14))          <span class="c"># DHT11 接 GPIO14</span>
+<span class="k">while</span> <span class="k">True</span>:
+    sensor.measure()                 <span class="c"># 先测一次（忘了会报错）</span>
+    t = sensor.temperature()
+    client.publish(TOPIC, str(t))    <span class="c"># 传字符串即可</span>
+    print("已上传", t, "℃")
+    time.sleep(30)                   <span class="c"># 每 30 秒传一次，别刷屏</span></pre></div></div>
+<div class="notes"><p>这是完整版。在第①步的基础上，加了传感器和上传。</p><p>新增的部分只有最后几行，我们看循环里面：</p><p><code class="ic">sensor.measure()</code> —— <b>先测一次</b>。第 7 课和 L13 都强调过：<b>忘了它，一运行就报错</b>。</p><p><code class="ic">t = sensor.temperature()</code> —— 取出温度。</p><p><code class="ic">client.publish(TOPIC, str(t))</code> —— <b>这就是「放进柜子」</b>。</p><p>注意 <code class="ic">str(t)</code>：<b>传字符串即可</b>。温度是个数字，要先转成文字再传。</p><p><code class="ic">time.sleep(30)</code> —— <b>每 30 秒传一次</b>。</p><p>为什么是 30 秒不是 1 秒？两个原因：一是没必要，温度一秒变不了多少；二是<b>别刷屏</b>，平台也有额度。</p><p>还有最上面那行 <code class="ic">TOPIC = "g1temp01/up"</code>——<b>把 g1 换成你自己的组号</b>。</p><p>这是今天唯一一个每组都不一样的地方，改错了数据就进了别人柜子。</p><p>现在动手。跑起来之后，串口应该每 30 秒打印一次「已上传 XX ℃」。</p></div>
+</section>
+
+<section class="slide lay-divider" data-title="课间休息">
+<div class="deco circle" style="width:200px;height:200px;top:-70px;right:180px"></div>
+<div class="deco square" style="width:130px;height:130px;left:-50px;bottom:70px;transform:rotate(12deg)"></div>
+<div class="deco tri" style="right:140px;bottom:90px;transform:rotate(14deg)"></div>
+<div class="dv">
+  <span class="dv-time">40–50 分</span>
+  <h2 class="dv-t">课间休息 10 分钟</h2>
+  <p class="dv-s">到教师投屏的控制台上，<b>找到你们组的主题</b></p>
+</div>
+<div class="notes"><p>上半场结束，休息十分钟。</p><p>休息的时候做一件事：到<b>教师投屏的控制台</b>上，<b>找到你们组的主题</b>。</p><p>（投屏打开巴法云控制台）</p><p>一排主题名，找到你的那个——g几temp01。</p><p>看到数字在跳了吗？</p><p>那个数字，是<b>你们这张桌子上的温度</b>，它现在已经在云上了。</p><p>找不到自己主题的组，回去查两样：<b>主题名</b>对不对、<b>/up</b> 加了没有。</p></div>
+</section>
+
+<section class="slide lay-rowlist" data-title="控制台验证">
+<div class="phead"><span class="no">第18课</span>
+<span class="kick g">闭环验证</span>
+<span class="tslot">50–65 分</span>
+</div>
+<h2 class="ptitle">在控制台看到自己的数</h2>
+<p class="psub">数据离开了板子——<b>这一步才算真的上云</b></p>
+<div class="pbody"><div class="rowlist grow"><div class="rowitem"><div class="num g">1</div><div class="tx">登录巴法云控制台（或看教师投屏），找到<b>你们组的主题</b></div></div><div class="rowitem"><div class="num a">2</div><div class="tx">确认那个数字<b>在更新</b>——每 30 秒跳一次</div></div><div class="rowitem"><div class="num c">3</div><div class="tx"><b>哈口气</b>到 DHT11 上，等半分钟——控制台的数<b>跟着变了吗</b>？</div></div><div class="rowitem"><div class="num g">4</div><div class="tx">变了 → 整条链路是<b>活的</b>：板子 → WiFi → 云 → 屏幕</div></div><div class="rowitem"><div class="num a">5</div><div class="tx">看不到数据 → 查<b>主题名</b>（差一个字母就是别人家柜子）、查 <b>/up</b></div></div></div><div style="margin-top:20px"><div class="strip a">「<b>手机上看到自己屋里的数</b>」——这件事从今天起，你自己做到了</div></div></div>
+<div class="notes"><p>现在做<b>闭环验证</b>。光看串口不算数——串口是板子自己说的，<b>云上看到才算真的上去了</b>。</p><p>登录控制台，或者看教师投屏，找到你们组的主题。</p><p>确认那个数字<b>在更新</b>，每 30 秒跳一次。</p><p>然后做一件事——这一步最有说服力：<b>哈口气到 DHT11 上</b>。</p><p>等半分钟，看控制台。</p><p>（等各组试）</p><p><b>数变了吗？</b></p><p>变了，说明整条链路是<b>活的</b>：你的气 → 传感器 → 板子 → WiFi → 云 → 这块屏幕。</p><p>这一串东西中间隔了多远？可能几百公里。你哈一口气，几百公里外的一台电脑记下了这件事。</p><p>（停顿）</p><p>黑条上那句话，我想让你们停下来想三秒钟：</p><p><b>「手机上看到自己屋里的数」——这件事从今天起，你自己做到了。</b></p><p>看不到数据的组，查两样：主题名、/up。</p></div>
+</section>
+
+<section class="slide lay-aierror" data-title="AI 出错时刻">
+<div class="phead"><span class="no">第18课</span>
+<span class="kick c">AI 出错时刻</span>
+<span class="tslot">65–80 分</span>
+</div>
+<h2 class="ptitle">联网代码越长，越要一行行验收</h2>
+<p class="psub">AI 给的上传代码，最常见两个坑</p>
+<div class="pbody">
+  <div class="aegrid grow">
+    <div class="code"><span class="lab c">AI 给的代码（两处坑）</span><pre style="font-size:23px;line-height:1.55">TOPIC = "g1temp01"        <span class="c"># 漏了 /up ！</span>
+
+<span class="k">while</span> <span class="k">True</span>:
+    t = sensor.temperature()   <span class="c"># 漏了 measure() ！</span>
+    client.publish(TOPIC, str(t))
+    time.sleep(30)
+
+<span class="c"># 结果一：一运行就报错（没 measure）</span>
+<span class="c"># 结果二：全班手机被推送刷屏（没 /up）</span></pre></div>
+    <div class="aecol">
+      <div class="blk c"><h4>坑一：忘了 <code class="ic">measure()</code> / 坑二：漏了 <code class="ic">/up</code></h4><p>忘 measure → <b>一运行就报错</b>（好发现）。<br>漏 /up → <b>数据进了别人柜子，还触发推送</b>，全班手机刷屏（<b>不报错</b>，最阴）。</p></div>
+      <div class="blk g"><h4>别急着重问，用<b>追问</b>让它自己补</h4><p>「上传后控制台没更新，是不是读传感器前少了 measure()？主题名末尾是不是漏了 /up？<b>请检查并改好</b>。」</p></div>
+    </div>
+  </div>
+  <div style="margin-top:22px"><div class="strip a">验收三查：① 能跑吗　② <b>数据在控制台更新了吗</b>　③ 有没有看不懂的魔法</div></div>
+</div>
+<div class="notes"><p>AI 给的上传代码，最常见<b>两个坑</b>，我都放在这一页了。</p><p><b>坑一：忘了 <code class="ic">sensor.measure()</code>。</b></p><p>后果是<b>一运行就报错</b>。这个反而好——红字会告诉你。</p><p><b>坑二：主题名末尾漏了 <code class="ic">/up</code>。</b></p><p>后果是什么？数据<b>进了别人柜子</b>，而且<b>触发推送</b>——全班手机开始刷屏。</p><p>而且这个坑<b>不报错</b>。程序跑得好好的，串口也打印「已上传」，就是全班在骂你。</p><p>（学生会笑）</p><p>这又是我们说过好多次的那类错：<b>不报错的错，最阴</b>。</p><p>怎么办？别急着重开一轮问，用<b>追问</b>：</p><p>「上传后控制台没更新，是不是读传感器前少了 measure()？主题名末尾是不是漏了 /up？<b>请检查并改好</b>。」</p><p>这就是第 6 课学的追问话术①和③的组合用法。</p><p>最后我要说今天这一阶段的核心心法：</p><p><b>联网代码越长，越要一行行验收。</b></p><p>AI 是<b>协作伙伴</b>——但<b>把关永远是我们的活儿</b>。</p></div>
+</section>
+
+<section class="slide lay-tiers3" data-title="分层任务">
+<div class="phead"><span class="no">第18课</span>
+<span class="kick g">分层任务</span>
+<span class="tslot">65–80 分</span>
+</div>
+<h2 class="ptitle">先保底，再挑战</h2>
+<p class="psub">控制台看到数据在更新 ＋ 写下预测 ＝ 成功</p>
+<div class="pbody"><div class="g3 grow"><div class="blk tier t1"><div class="hd">★ 保底（必做）</div>
+        <p class="task">温湿度成功上传巴法云，<b>控制台能看到自己组的数据在更新</b>；写下 24 小时变化预测。</p><p class="fill">我的主题名：________　□ 控制台在更新　□ 预测卡写了</p></div><div class="blk tier t2"><div class="hd">★★ 进阶（建议做）</div>
+        <p class="task"><b>稳定上传 10 分钟不断</b>——中间不能掉线、不能报错。</p><p class="fill">□ 10 分钟连续上传成功</p></div><div class="blk tier t3"><div class="hd">★★★ 挑战（学有余力）</div>
+        <p class="task">把<b>光照值</b>（光敏 GPIO34）也传上去——<b>一板双数据</b>（记得另开一个主题）。</p><p class="fill">我的第二个主题名：________</p></div></div>
+<div style="margin-top:22px"><div class="strip g">卡在网络/平台/账号？<b>立即切 B 路径</b>（教师保底模板）——能力目标「数据离开板子被看见」不变</div></div></div>
+<div class="notes"><p>三档任务。</p><p><b>保底档必做</b>：控制台能看到自己组的数据在更新，加上预测卡写好。这两样做到就成功了。</p><p>进阶档：<b>稳定上传 10 分钟不断</b>。</p><p>为什么要考这个？因为跑通一次容易，<b>跑住</b>难。中间掉一次线，数据就断了。这是真实设备的基本要求。</p><p>挑战档：<b>一板双数据</b>——把光照值也传上去。</p><p>注意要<b>另开一个主题</b>，比如 g3light01/up。同一个板子可以往多个柜子里放东西。</p><p>最后对可能卡住的组说：</p><p>如果卡在<b>网络、平台、账号</b>上，<b>立即切 B 路径</b>，用我的保底模板。</p><p>能力目标一点不变——今天的目标是「<b>数据离开板子被看见</b>」，用谁的模板不重要。</p><p>而且走 B 路径的组，控制台上的数还是<b>你们桌上的温度</b>，一样真实。</p></div>
+</section>
+
+<section class="slide lay-rowlist" data-title="今日三大发现">
+<div class="phead"><span class="no">第18课</span>
+<span class="kick g">总结</span>
+<span class="tslot">80–90 分</span>
+</div>
+<h2 class="ptitle">今日三大发现</h2>
+<div class="pbody"><div class="rowlist grow"><div class="rowitem"><div class="num g">1</div><div class="tx"><b>上云三件套</b>：服务器（去哪家）· 私钥（你是谁）· 主题名（哪个柜子）</div></div><div class="rowitem"><div class="num a">2</div><div class="tx"><b><code class="ic">/up</code> 是「只存柜、别敲门」</b>——不加它，全班手机被刷屏</div></div><div class="rowitem"><div class="num c">3</div><div class="tx"><b>私钥是钥匙，绝不外泄</b>；联网代码越长，越要<b>一行行验收</b></div></div></div><div style="margin-top:20px"><div class="strip a">数据已经在云上攒着了——<b>明天这个时候，我们把 24 小时的曲线拉出来，看谁预测得准！</b></div></div></div>
+<div class="notes"><p>今天三个发现。</p><p>第一个，<b>上云三件套</b>：服务器、私钥、主题名。去哪家、你是谁、哪个柜子。</p><p>以后你连任何一个云平台，都逃不出这三样——名字可能不一样，但一定是这三件事。</p><p>第二个，<b><code class="ic">/up</code> 是「只存柜、别敲门」</b>。这是我们班的规矩，也是真实工程里的规矩：<b>别给用户发不必要的消息</b>。</p><p>第三个，<b>私钥是钥匙，绝不外泄</b>。还有那句心法：联网代码越长，越要一行行验收。</p><p>最后说今天最特别的一件事。</p><p>你们的程序<b>现在还在跑</b>，对不对？</p><p>今天晚上，你们回家了，教室黑了，<b>板子还在传</b>。每 30 秒一次，一整夜。</p><p><b>你的数据今晚会一直攒在云上。</b></p><p>明天这个时候，我们把 <b>24 小时的曲线</b>拉出来——</p><p>跟你今天画的那条预测线<b>放在一起</b>。</p><p>看谁猜得准。<b>明天开奖。</b> 下课。</p></div>
+</section>
+
+<section class="slide lay-cards2" data-title="课后任务">
+<div class="phead"><span class="no">第18课</span>
+<span class="kick a">课后任务</span>
+</div>
+<h2 class="ptitle">课后任务</h2>
+<div class="pbody"><div class="g2 grow"><div class="blk g"><h4>基础（全员）</h4><p>回家问家人——<b>咱们家一天里什么时候最热？</b> 把家人的猜测也记到<b>预测卡</b>上。</p></div><div class="blk a"><h4>拓展（选做）</h4><p>想一想：如果温度是「<b>秘密</b>」，上传时该注意什么？（<b>私钥、主题名</b>要不要告诉别人？）</p></div></div>
+<div style="margin-top:24px"><div class="strip g">你的数据今晚会一直攒在云上——<b>明天开奖</b></div></div></div>
+<div class="notes"><p>课后两件事。</p><p>第一件全员都做：回家问家人——<b>咱们家一天里什么时候最热？</b></p><p>把家人的猜测也记到预测卡上。</p><p>为什么要问家人？因为<b>他们在家里待的时间比你长</b>，他们的直觉可能比你准。明天对照曲线，看是你准还是他们准，这件事挺有意思的。</p><p>第二件选做，是一道<b>很重要的思考题</b>：</p><p>如果温度是「<b>秘密</b>」呢？上传的时候该注意什么？</p><p>你的<b>私钥</b>要不要告诉别人？<b>主题名</b>呢？</p><p>提示一下：私钥肯定不能给。那主题名呢？——知道了主题名，别人就能<b>看到你的数据</b>。</p><p>这个问题我们 <b>L26《安全与隐私》</b>会专门讲一整节课。今天你先想一想。</p><p>最后一句：<b>你的数据今晚会一直攒在云上——明天开奖。</b></p><p>下课。</p></div>
+</section>
+<div class="deck-footer"><span>ESP32 × AI 科创课程 · 第四阶段「驾驭AI · 物联网」 · 第18课 给云端发消息</span><span class="slide-number" data-current="1" data-total="12"></span></div>
+<div class="progress-bar"><span></span></div>
+</div>
+<script src="assets/fitstage.js"></script>
+<script src="assets/runtime.js"></script>
+</body>
+</html>

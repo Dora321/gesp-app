@@ -13,7 +13,7 @@ const items = [
     },
     {
         title: 'ESP32 MicroPython 高阶科创',
-        desc: 'ESP32 与 MicroPython 网页课件，现已上线 7 课，其余课件陆续补充。',
+        desc: 'ESP32 与 MicroPython 网页课件，现已上线 24 课，其余课件陆续补充。',
         action: '查看硬件课',
         route: '/hardware',
         icon: Cpu

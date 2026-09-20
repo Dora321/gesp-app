@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>第16.5课 · 联网预备包 — ESP32 × AI 科创课程</title>
+<link rel="stylesheet" href="assets/base.css">
+<link rel="stylesheet" id="theme-link" href="assets/theme-course-pop.css">
+<link rel="stylesheet" href="assets/animations.css">
+</head>
+<body>
+<div class="deck" data-theme-base="assets/">
+<section class="slide lay-cover is-active" data-title="封面">
+<div class="deco circle" style="width:170px;height:170px;top:-52px;right:238px"></div>
+<div class="deco tri" style="right:110px;bottom:132px;transform:rotate(14deg)"></div>
+<div class="deco square" style="width:120px;height:120px;left:-46px;bottom:86px;transform:rotate(12deg)"></div>
+<span class="cv-bar">ESP32 × AI ／ 第四阶段「驾驭AI · 物联网」桥接课</span>
+<h1 class="cv-title">联网<em>预备包</em></h1>
+<p class="cv-sub">先想清楚：我的作品为什么要上网？</p>
+<div class="cv-tags"><span class="tag">不写代码</span><span class="tag">不接线</span><span class="tag">不用 AI</span><span class="tag">90 分钟连堂</span></div>
+<div class="cv-no">16.5</div>
+<div class="notes"><p>欢迎回来。上一程我们结业了，这一程刚开始。</p><p>第四阶段叫「<b>驾驭 AI · 物联网</b>」。</p><p>先说一件事：AI 的角色<b>又升级了</b>。</p><p>第一阶段它是代码打印机，第二阶段是实习程序员，第三阶段是工具箱——</p><p>这一阶段，它是你的「<b>协作伙伴</b>」。</p><p>为什么？因为联网的代码<b>更长、更陌生</b>，里面会有很多你没见过的词。AI 负责生成，你负责<b>读懂、验证、拼装</b>。</p><p>但今天这节课，我们<b>一行代码都不写</b>，<b>也不用 AI</b>。</p><p>今天只干一件事：把「<b>我的作品为什么要上网</b>」想清楚。</p><p>想清楚了，下节课一上手就顺；想不清楚，后面十节课你都不知道自己在干嘛。</p></div>
+</section>
+
+<section class="slide lay-cards3" data-title="快递柜的魔法">
+<div class="phead"><span class="no">第16.5课</span>
+<span class="kick c">导入</span>
+<span class="tslot">0–10 分</span>
+</div>
+<h2 class="ptitle">快递柜的魔法</h2>
+<p class="psub">手机又没连着柜子，它怎么知道要开门？</p>
+<div class="pbody"><div class="g3 grow"><div class="blk g"><h4>你做了什么</h4><p>站在快递柜前，掏出手机，<b>点了一下</b>取件。</p></div><div class="blk a"><h4>发生了什么</h4><p>「咔哒」——<b>柜门开了</b>。</p></div><div class="blk c"><h4>那么问题来了</h4><p>你的手机<b>并没有连着</b>那个柜子。<br>它是<b>怎么知道</b>要开门的？</p></div></div><div style="margin-top:22px"><div class="strip a">中间一定还有<b>第三个东西</b>——今天我们就把它找出来</div></div></div>
+<div class="notes"><p>我们从一个你们每周都见的东西开始：<b>快递柜</b>。</p><p>（演示或描述取件过程）</p><p>你站在柜子前面，掏出手机，点一下「取件」。</p><p>「咔哒」——<b>柜门开了</b>。</p><p>（停顿，让他们回味这个日常场景）</p><p>现在我问一个问题，你们从来没想过的问题：</p><p><b>你的手机，并没有连着那个柜子。</b></p><p>没有线，也没有蓝牙配对。你甚至可能是在楼上点的，下楼柜门已经开了。</p><p>那它<b>怎么知道</b>要开门？</p><p>（让他们猜，会有人说「通过网络」）</p><p>对，通过网络。但「网络」三个字太笼统了。</p><p>中间一定还有<b>第三个东西</b>——一个既认识你的手机、又认识那个柜子的东西。</p><p>今天我们就把它找出来。找出来之后你会发现：<b>它一点都不神秘。</b></p></div>
+</section>
+
+<section class="slide lay-table" data-title="拆案例">
+<div class="phead"><span class="no">第16.5课</span>
+<span class="kick g">拆案例</span>
+<span class="tslot">10–25 分</span>
+</div>
+<h2 class="ptitle">身边的联网设备，全是一个套路</h2>
+<p class="psub">四个案例，拆出同样的三个角色</p>
+<div class="pbody">
+  <div class="tbl grow" style="grid-template-columns:0.9fr 1fr 1.3fr 1.2fr"><div class="th">案例</div><div class="th">设备</div><div class="th">云</div><div class="th">人</div><div class="td k">快递柜</div><div class="td">柜子（锁）</div><div class="td">快递公司服务器</div><div class="td">手机扫码的你</div><div class="td k">共享单车</div><div class="td">车锁</div><div class="td">单车平台</div><div class="td">扫码开锁的你</div><div class="td k">智能门锁</div><div class="td">门锁</div><div class="td">门锁厂家的云</div><div class="td">远程开门的家长</div><div class="td k">天气站</div><div class="td">温湿度传感器</div><div class="td">气象数据平台</div><div class="td">查天气的所有人</div></div>
+  <div style="margin-top:20px"><div class="strip a"><b>设备 · 云 · 人</b>——快递柜、共享单车早就把我们第四阶段要学的东西跑通了</div></div>
+</div>
+<div class="notes"><p>现在发案例卡，每组拆一个。要回答三个问题：<b>谁是设备？谁是云？谁是人？</b></p><p>再在卡上<b>画箭头</b>：数据往哪流？</p><p>（各组拆 10 分钟，然后汇报）</p><p>（汇报后揭晓这张表）</p><p>看——四个案例，长得完全不一样，<b>拆出来是同一个套路</b>。</p><p><b>快递柜</b>：柜子是设备，快递公司的服务器是云，手机扫码的你是人。</p><p><b>共享单车</b>：车锁是设备，单车平台是云，扫码的你是人。</p><p><b>智能门锁</b>：锁是设备，厂家的云是云，远程开门的家长是人。</p><p><b>天气站</b>：传感器是设备，气象平台是云，查天气的<b>所有人</b>是人。</p><p>注意最后这个案例有意思——「人」可以是<b>成千上万个人</b>。这就是联网的威力：一个设备，全世界都能看。</p><p>所以黑条上那句我要你们记住：</p><p><b>快递柜、共享单车，早就把我们第四阶段要学的东西跑通了。</b></p><p>我们要做的不是发明新东西，是<b>学会他们用的那个套路</b>。</p></div>
+</section>
+
+<section class="slide lay-flow3" data-title="设备 云 人">
+<div class="phead"><span class="no">第16.5课</span>
+<span class="kick g">新概念</span>
+<span class="tslot">25–40 分</span>
+</div>
+<h2 class="ptitle">云不神秘，它就是个「快递柜」</h2>
+<p class="psub">设备往里放，人来取，还能反过来留言</p>
+<div class="pbody"><div class="flow grow"><div class="fl g"><span class="fl-k">设备</span><p class="fl-t">我的作品（ESP32）</p><p class="fl-b"><b>往柜子里放东西</b>：<br>把温度、亮度上传上去</p></div><div class="fl-arr">→</div><div class="fl a"><span class="fl-k">云</span><p class="fl-t">放数据的「快递柜」</p><p class="fl-b"><b>替两边保管</b>：<br>设备放进来的数据存着，<br>人留的言也存着</p></div><div class="fl-arr">→</div><div class="fl c"><span class="fl-k">人</span><p class="fl-t">手机 / 电脑上的你</p><p class="fl-b"><b>来柜子取东西</b>：查看数据；<br>也能<b>留言</b>：「开灯！」</p></div></div><div style="margin-top:20px"><div class="strip a">云到底在哪？诚实回答：<b>是很远的机房里的一台电脑</b>——下节课我们就把数据真的发给它</div></div></div>
+<div class="notes"><p>现在讲今天最难的一个概念：<b>云</b>。</p><p>难在哪？难在它<b>看不见摸不着</b>。你没法把它端到教室里给大家看。</p><p>所以我用快递柜来讲。</p><p><b>云不神秘——它就是一个放数据的「快递柜」。</b></p><p>你的作品把温度放进去（这叫<b>上传</b>）。</p><p>你在手机上把它取出来看（这叫<b>查看</b>）。</p><p>你还能<b>往柜子里留言</b>：「开灯！」——你的作品过一会儿来取留言，看到了，就照办（这叫<b>控制</b>）。</p><p>整个第四阶段，我们就是在学怎么用好这个柜子。</p><p>注意一个关键点：<b>设备和人从来不直接见面</b>。</p><p>就像你从来没见过给你送快递的那个人——你们都只跟柜子打交道。</p><p>最后，肯定有同学要问：<b>云到底在哪？</b></p><p>我诚实回答：<b>它是很远的地方、某个机房里的一台电脑。</b> 不在天上，也不是什么魔法。</p><p>下节课，我们就把数据<b>真的发给它</b>。</p></div>
+</section>
+
+<section class="slide lay-rowlist" data-title="联网三问">
+<div class="phead"><span class="no">第16.5课</span>
+<span class="kick a">框架</span>
+<span class="tslot">25–40 分</span>
+</div>
+<h2 class="ptitle">联网三问</h2>
+<p class="psub">贴在墙上——整个第四阶段都用它</p>
+<div class="pbody"><div class="rowlist grow"><div class="rowitem"><div class="num g">1</div><div class="tx"><b>① 设备怎么上网？</b> —— 连 WiFi（下节课 L17 就学这个）</div></div><div class="rowitem"><div class="num a">2</div><div class="tx"><b>② 数据怎么上传？</b> —— 发给云，存起来（L18）</div></div><div class="rowitem"><div class="num c">3</div><div class="tx"><b>③ 人怎么远程控制设备？</b> —— 通过云<b>捎话</b>给设备（L20）</div></div><div class="rowitem"><div class="num g">4</div><div class="tx">拆任何一个联网设备，都用这三问——电话手表、摄像头、扫地机器人</div></div><div class="rowitem"><div class="num a">5</div><div class="tx">写任何一条联网愿望，也都要<b>过这三问</b></div></div></div><div style="margin-top:20px"><div class="strip g">三问贴墙常驻。后面十节课，每一课都在回答其中<b>一问</b></div></div></div>
+<div class="notes"><p>把刚才拆出来的直觉，整理成三个问题。这三问贴墙上，整个第四阶段都用。</p><p><b>第①问：设备怎么上网？</b></p><p>答案是连 WiFi。下节课 L17 就学这个。</p><p><b>第②问：数据怎么上传？</b></p><p>发给云，存起来。L18 学。</p><p><b>第③问：人怎么远程控制设备？</b></p><p>通过云<b>捎话</b>给设备。注意这个词——<b>捎话</b>。人不直接命令设备，是把话留在云里，设备自己来取。L20 学。</p><p>这三问有两个用处。</p><p>第一个用处：<b>拆任何一个联网设备</b>。电话手表、摄像头、扫地机器人——都能用三问拆开。</p><p>第二个用处，也是今天下半场要用的：<b>写任何一条联网愿望，都要过这三问</b>。</p><p>我先打个预防针：后面十节课，每一课都在回答这三问里的<b>某一问</b>。</p><p>所以你今天把三问记牢，后面就不会迷路——你永远知道自己现在在学哪一块。</p></div>
+</section>
+
+<section class="slide lay-divider" data-title="课间休息">
+<div class="deco circle" style="width:200px;height:200px;top:-70px;right:180px"></div>
+<div class="deco square" style="width:130px;height:130px;left:-50px;bottom:70px;transform:rotate(12deg)"></div>
+<div class="deco tri" style="right:140px;bottom:90px;transform:rotate(14deg)"></div>
+<div class="dv">
+  <span class="dv-time">40–50 分</span>
+  <h2 class="dv-t">课间休息 10 分钟</h2>
+  <p class="dv-s">看看别组拆的案例——同一个套路，四种样子</p>
+</div>
+<div class="notes"><p>上半场结束，休息十分钟。</p><p>去看看别组拆的案例。</p><p>你会发现一件有意思的事：<b>四个案例长得完全不一样，但拆出来是同一个套路</b>。</p><p>这就是学会一个框架的好处——以后见到任何新的联网东西，你都能一眼看穿它。</p><p>回来我们做下半场：给<b>你自己的作品</b>写联网愿望单。</p><p>把你 S3 的作品拿出来上电，对着真东西写。</p></div>
+</section>
+
+<section class="slide lay-reqdoc" data-title="联网愿望单">
+<div class="phead"><span class="no">第16.5课</span>
+<span class="kick g">任务</span>
+<span class="tslot">50–70 分</span>
+</div>
+<h2 class="ptitle">给我的作品写联网愿望单</h2>
+<p class="psub">它上网以后，能<b>多做</b>什么？</p>
+<div class="pbody">
+  <div class="rdgrid grow">
+    <div class="blk a"><h4>怎么想</h4><div class="fivelist"><div class="fv"><span class="fk">现在</span><span class="fw">我的作品只有<b>这张桌子</b>看得见——我一走开，它亮没亮我都不知道</span></div><div class="fv"><span class="fk">上网以后·看</span><span class="fw">我在<b>外面</b>也能看到家里的温度 / 灯亮没亮</span></div><div class="fv"><span class="fk">上网以后·说</span><span class="fw">它能<b>主动发消息</b>告诉我：「天黑了，我亮了」</span></div><div class="fv"><span class="fk">上网以后·控</span><span class="fw">我在<b>手机上点一下</b>，它就开灯 / 关灯</span></div><div class="fv"><span class="fk">上网以后·连</span><span class="fw">它能和<b>另一块板子</b>说话（L22 就做这个）</span></div></div></div>
+    <div class="blk g"><h4>写愿望单（至少两条）</h4><div class="sqlist"><div class="sq"><span class="sn">①</span><span class="st">对着你 <b>S3 的作品</b>写——不是凭空想一个新作品</span></div><div class="sq"><span class="sn">②</span><span class="st">每条愿望都要<b>过三问</b>：设备是谁？云在哪？人干什么？</span></div><div class="sq"><span class="sn">③</span><span class="st">过不了三问的，放进「<b>毕业后再做</b>」清单</span></div><div class="sq"><span class="sn">④</span><span class="st">挑战：标出<b>数据方向</b>——上传（设备→云→人）还是控制（人→云→设备）</span></div><div class="sq"><span class="sn">✗</span><span class="st"><b>愿望单不是许愿池</b>——「要个机器人手臂」过不了三问</span></div></div></div>
+  </div>
+  <div style="margin-top:20px"><div class="strip g">我们的设备就是 <b>ESP32 ＋ 已学元件</b>——愿望要落在它做得到的范围里</div></div>
+</div>
+<div class="notes"><p>现在给<b>你自己的作品</b>写联网愿望单。至少两条。</p><p>先想一想：<b>现在</b>你的作品是什么状态？</p><p>它只有<b>这张桌子</b>看得见。你一走开，它亮没亮，你都不知道。</p><p>上网以后能多做什么？我给你们四个方向。</p><p><b>看</b>：我在外面也能看到家里的温度、灯亮没亮。</p><p><b>说</b>：它能主动发消息告诉我——「天黑了，我亮了」。</p><p><b>控</b>：我在手机上点一下，它就开灯关灯。</p><p><b>连</b>：它能和另一块板子说话——这个 L22 真的会做。</p><p>写的时候三条规矩。</p><p>第一，<b>对着你 S3 的作品写</b>，不是凭空想一个新作品。</p><p>第二，每条愿望都要<b>过三问</b>。</p><p>第三——这句话我要说重一点——<b>愿望单不是许愿池</b>。</p><p>「我要一个机器人手臂帮我写作业」，这个过不了三问：设备是谁？我们没有机器人手臂。</p><p>过不了的，放进「毕业后再做」清单，别丢掉。</p><p>我们的设备就是 <b>ESP32 加已学元件</b>。愿望要落在它做得到的范围里。</p></div>
+</section>
+
+<section class="slide lay-rowlist" data-title="愿望单互评">
+<div class="phead"><span class="no">第16.5课</span>
+<span class="kick a">互评</span>
+<span class="tslot">70–85 分</span>
+</div>
+<h2 class="ptitle">互评：用三问检查对方</h2>
+<p class="psub">组间交换愿望单，一条一条过</p>
+<div class="pbody"><div class="rowlist grow"><div class="rowitem"><div class="num g">1</div><div class="tx">拿到对方的愿望单，<b>一条一条</b>问：<b>设备是谁？</b></div></div><div class="rowitem"><div class="num a">2</div><div class="tx"><b>云在哪？</b> —— 数据存到哪儿去了？</div></div><div class="rowitem"><div class="num c">3</div><div class="tx"><b>人干什么？</b> —— 谁来看？谁来控制？在哪儿操作？</div></div><div class="rowitem"><div class="num g">4</div><div class="tx">三问都答得上 → 在这条愿望后面打勾</div></div><div class="rowitem"><div class="num a">5</div><div class="tx">有一问答不上 → 画个问号，还给对方，让他们<b>收窄</b>这条愿望</div></div></div><div style="margin-top:20px"><div class="strip g">收窄的例子：「让它提醒全家人」→ 三问卡在「人是谁」→ 收窄成「<b>让它给我手机发一条消息</b>」</div></div></div>
+<div class="notes"><p>现在组间交换愿望单，用三问互相检查。</p><p>拿到对方的单子，<b>一条一条</b>过，问三句：</p><p><b>设备是谁？</b> —— 一般都答得上，就是他们的作品。</p><p><b>云在哪？</b> —— 数据存到哪儿去了？这一问会难住一些人。</p><p><b>人干什么？</b> —— 谁来看？谁来控制？在哪儿操作？</p><p>三问都答得上，在这条愿望后面<b>打勾</b>。</p><p>有一问答不上，<b>画个问号</b>还给对方，让他们<b>收窄</b>。</p><p>我举个收窄的例子，黑条上那个：</p><p>有人写「让它提醒<b>全家人</b>」。三问一过，卡在「人是谁」——全家人怎么提醒？每人一个 App？谁装？</p><p>收窄成什么？「<b>让它给我手机发一条消息</b>」。</p><p>一个人、一条消息、一个明确的动作。这就可行了。</p><p>收窄不是打折，是<b>让愿望真的能实现</b>。</p><p>一条能做出来的小愿望，比十条做不出来的大愿望值钱。</p></div>
+</section>
+
+<section class="slide lay-tiers3" data-title="分层任务">
+<div class="phead"><span class="no">第16.5课</span>
+<span class="kick g">分层任务</span>
+<span class="tslot">50–85 分</span>
+</div>
+<h2 class="ptitle">先保底，再挑战</h2>
+<p class="psub">答得出三问 ＋ 拆对一个案例 ＝ 成功</p>
+<div class="pbody"><div class="g3 grow"><div class="blk tier t1"><div class="hd">★ 基础（必做）</div>
+        <p class="task">拆一个生活案例：标出<b>设备、云、人</b>，画出数据箭头。</p><p class="fill">□ 完成　设备：____　云：____　人：____</p></div><div class="blk tier t2"><div class="hd">★★ 进阶（建议做）</div>
+        <p class="task">给自己的作品写联网愿望单（<b>至少两条</b>，条条过三问）。</p><p class="fill">□ 完成　愿望1：____　愿望2：____</p></div><div class="blk tier t3"><div class="hd">★★★ 挑战（学有余力）</div>
+        <p class="task">标出每条愿望的<b>数据方向</b>：上传（设备→云→人）还是控制（人→云→设备）？</p><p class="fill">愿望1 方向：____　愿望2 方向：____</p></div></div>
+<div style="margin-top:22px"><div class="strip g">提前问「怎么写代码」的同学：好问题，先按住——<b>今天想清楚，下节课就动手，一节都不耽误</b></div></div></div>
+<div class="notes"><p>三档任务。</p><p><b>基础档必做</b>：拆一个案例，标出三个角色，画出箭头。答得出三问、拆对一个案例，这节课就成功了。</p><p>进阶档：写愿望单，至少两条，条条过三问。</p><p>挑战档：标<b>数据方向</b>。这一条其实很重要，我说一下。</p><p>数据有两个方向：</p><p><b>上传</b>是「设备 → 云 → 人」——温度从板子出发，到云，到你手机。</p><p><b>控制</b>是「人 → 云 → 设备」——命令从你手机出发，到云，到板子。</p><p>方向不一样，代码写法就不一样。你今天标清楚了，L18 和 L20 就知道自己在学哪个方向。</p><p>最后回答一个我知道有人憋着的问题：「老师，什么时候写代码？」</p><p>好问题——但先按住。</p><p><b>今天想清楚，下节课就动手，一节都不耽误。</b></p></div>
+</section>
+
+<section class="slide lay-rowlist" data-title="今日三大发现">
+<div class="phead"><span class="no">第16.5课</span>
+<span class="kick g">总结</span>
+<span class="tslot">85–90 分</span>
+</div>
+<h2 class="ptitle">今日三大发现</h2>
+<div class="pbody"><div class="rowlist grow"><div class="rowitem"><div class="num g">1</div><div class="tx"><b>身边到处是联网设备</b>——快递柜、共享单车早就把今天要学的跑通了</div></div><div class="rowitem"><div class="num a">2</div><div class="tx"><b>联网 ＝ 设备、云、人</b>三个角色搭一条通路</div></div><div class="rowitem"><div class="num c">3</div><div class="tx"><b>我的作品也值得上网</b>——它上网以后能帮到<b>更远的人</b></div></div></div><div style="margin-top:20px"><div class="strip a">下节课《它能上网了》——作品真的要上网了。第一件事：<b>让它自己知道现在几点</b>（不装时钟芯片！）</div></div></div>
+<div class="notes"><p>今天三个发现。</p><p>第一个，<b>身边到处是联网设备</b>。快递柜、共享单车、电话手表——它们早就把我们要学的东西跑通了。</p><p>所以我们不是在学什么高深莫测的新技术，是在学一个<b>已经被用烂了</b>的套路。</p><p>第二个，<b>联网 ＝ 设备、云、人三个角色搭一条通路</b>。</p><p>记住这三个词，后面十节课都不会迷路。</p><p>第三个，也是我最想让你们记住的：<b>我的作品也值得上网</b>。</p><p>现在它只有这张桌子看得见。上网以后，它能帮到<b>更远的人</b>——你在学校，家里的灯替你照顾着奶奶。</p><p>下节课钩子。</p><p>下节课《它能上网了》，作品<b>真的要上网</b>了。</p><p>第一件事是什么？——<b>让它自己知道现在几点</b>。</p><p>听起来很普通对不对？但我告诉你们一件事：<b>我们不给它装任何时钟芯片</b>。</p><p>一块从来不知道时间的板子，连上网之后，突然就知道现在几点几分几秒了。</p><p>怎么做到的？下节课揭晓。下课。</p></div>
+</section>
+
+<section class="slide lay-cards2" data-title="课后任务">
+<div class="phead"><span class="no">第16.5课</span>
+<span class="kick a">课后任务</span>
+</div>
+<h2 class="ptitle">课后任务</h2>
+<div class="pbody"><div class="g2 grow"><div class="blk g"><h4>基础（全员）</h4><p>回家找一个家里的<b>联网设备</b>（路由器、音箱、摄像头……），用<b>三问</b>给家人讲清它是怎么工作的。</p></div><div class="blk a"><h4>拓展（选做）</h4><p>给愿望单<b>再添一条</b>，并标出：这条愿望里<b>数据往哪个方向流</b>？</p></div></div>
+<div style="margin-top:24px"><div class="strip g">能把「设备 → 云 → 人」讲给家人听懂，第四阶段的门就推开了</div></div></div>
+<div class="notes"><p>课后两件事。</p><p>第一件全员都做：回家找一个<b>联网设备</b>。路由器、智能音箱、摄像头、电视盒子，都行。</p><p>然后用<b>三问</b>给家人讲清它是怎么工作的：设备是谁？云在哪？人干什么？</p><p>讲的时候用快递柜打比方，他们一听就懂。</p><p>顺便说一句：你会发现家里的联网设备<b>比你想的多得多</b>。找找看，能找出几个？</p><p>第二件选做：给愿望单<b>再添一条</b>，并标出数据方向。</p><p>最后一句：<b>能把「设备 → 云 → 人」讲给家人听懂，第四阶段的门就推开了。</b></p><p>下节课，作品真的上网。下课。</p></div>
+</section>
+<div class="deck-footer"><span>ESP32 × AI 科创课程 · 第四阶段「驾驭AI · 物联网」 · 第16.5课 联网预备包</span><span class="slide-number" data-current="1" data-total="11"></span></div>
+<div class="progress-bar"><span></span></div>
+</div>
+<script src="assets/fitstage.js"></script>
+<script src="assets/runtime.js"></script>
+</body>
+</html>

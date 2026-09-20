@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>第22课 · 两块板对话 — ESP32 × AI 科创课程</title>
+<link rel="stylesheet" href="assets/base.css">
+<link rel="stylesheet" id="theme-link" href="assets/theme-course-pop.css">
+<link rel="stylesheet" href="assets/animations.css">
+</head>
+<body>
+<div class="deck" data-theme-base="assets/">
+<section class="slide lay-cover is-active" data-title="封面">
+<div class="deco circle" style="width:170px;height:170px;top:-52px;right:238px"></div>
+<div class="deco tri" style="right:110px;bottom:132px;transform:rotate(14deg)"></div>
+<div class="deco square" style="width:120px;height:120px;left:-46px;bottom:86px;transform:rotate(12deg)"></div>
+<span class="cv-bar">ESP32 × AI ／ 第四阶段「驾驭AI · 物联网」</span>
+<h1 class="cv-title">两块板<em>对话</em></h1>
+<p class="cv-sub">它们之间没有一根线——消息绕了云一圈</p>
+<div class="cv-tags"><span class="tag">一发一收</span><span class="tag">结对约定卡</span><span class="tag">主题不能撞名</span><span class="tag">90 分钟连堂</span></div>
+<div class="cv-no">22</div>
+<div class="notes"><p>（教师两块演示板，一块在讲台，一块拿到教室最后面）</p><p>我按这块——</p><p>（按下按钮，后面那块板的灯亮了）</p><p>（停顿，让他们叫出来）</p><p>再看清楚一点：这两块板之间，<b>有线吗？</b></p><p>（举起两块板，让全班看清）</p><p><b>一根线都没有。</b></p><p>那消息是怎么过去的？</p><p>（等他们猜，有人会说蓝牙、WiFi）</p><p>它<b>绕了云一圈</b>。</p><p>从这块板出发，跑到云上，再从云上跑回到那块板——<b>一个来回，眨一下眼就完了</b>。</p><p>今天你们<b>两组结对</b>，做同款。</p><p>而且今天会有一件事，<b>几乎每年都会发生</b>：</p><p>按下一个按钮，<b>全班的灯一起亮</b>。</p><p>（停顿）</p><p>到时候别慌——那是今天<b>最好的一堂课</b>。</p></div>
+</section>
+
+<section class="slide lay-flow3" data-title="一发一收">
+<div class="phead"><span class="no">第22课</span>
+<span class="kick g">核心</span>
+<span class="tslot">8–20 分</span>
+</div>
+<h2 class="ptitle">一发一收：中间隔着一朵云</h2>
+<p class="psub">A 板发 → 主题 → B 板收，<b>两端从不直接见面</b></p>
+<div class="pbody"><div class="flow grow"><div class="fl g"><span class="fl-k">A 板（发送）</span><p class="fl-t"><b>publish</b></p><p class="fl-b">按钮按下 → 往主题里 <b>publish</b> 一句 <code class="ic">ding</code><br><br><b>「我把话放进柜子」</b></p></div><div class="fl-arr">→</div><div class="fl a"><span class="fl-k">云 · 主题</span><p class="fl-t"><code class="ic">g1g2door01</code></p><p class="fl-b">两端<b>唯一的交汇点</b>。<br>云不认识人，<b>只认主题名</b></p></div><div class="fl-arr">→</div><div class="fl c"><span class="fl-k">B 板（接收）</span><p class="fl-t"><b>subscribe</b></p><p class="fl-b"><b>subscribe</b> 同一个主题 → 收到 <code class="ic">ding</code> → 亮灯 3 秒<br><br><b>「我守着柜子等话」</b></p></div></div><div style="margin-top:20px"><div class="strip a">两个词都是老朋友：<b>publish</b>（L18 学的）＋ <b>subscribe</b>（L20 学的）。今天只是——<b>发的人和收的人变成了两块板</b></div></div></div>
+<div class="notes"><p>今天的模型，其实<b>没有一个新词</b>。</p><p>左边 A 板：按钮按下，往主题里 <b>publish</b> 一句 <code class="ic">ding</code>。</p><p>publish 是哪节课学的？——（等答）<b>L18</b>，上传数据的时候。</p><p>右边 B 板：<b>subscribe</b> 同一个主题，收到 <code class="ic">ding</code> 就亮灯 3 秒。</p><p>subscribe 是哪节课学的？——<b>L20</b>，远程开关。</p><p>（停顿）</p><p>所以今天<b>一个新词都没有</b>。</p><p>变的只有一件事：<b>以前是「人对板」，今天是「板对板」。</b></p><p>中间这个格子最关键：<b>云 · 主题</b>。</p><p>它是两端<b>唯一的交汇点</b>。A 板和 B 板<b>从不直接见面</b>，它们都只跟这个主题打交道。</p><p>（重点，敲黑板）</p><p>下面这句话，今天要用一整节课来体会：</p><p><b>云不认识人，它只认主题名。</b></p><p>它不知道哪块板是一组的、哪块是三组的。</p><p><b>谁订了这个主题，谁就收得到。</b></p><p>——这既是今天的本事，也是今天的事故来源。</p></div>
+</section>
+
+<section class="slide lay-table" data-title="主题对照表">
+<div class="phead"><span class="no">第22课</span>
+<span class="kick a">规范</span>
+<span class="tslot">8–20 分</span>
+</div>
+<h2 class="ptitle">班级主题对照表（贴黑板）</h2>
+<p class="psub">全班共用一片云——<b>名字撞了，就一起响</b></p>
+<div class="pbody">
+  <div class="tbl grow" style="grid-template-columns:1fr 1.4fr 1fr"><div class="th">结对</div><div class="th">联动主题</div><div class="th">指令词</div><div class="td k">1组 ←→ 2组</div><div class="td"><code class="ic">g1g2door01</code></div><div class="td">ding / dong</div><div class="td k">3组 ←→ 4组</div><div class="td"><code class="ic">g3g4door01</code></div><div class="td">ding / dong</div><div class="td k">5组 ←→ 教师</div><div class="td"><code class="ic">g5tdoor01</code></div><div class="td">ding / dong</div></div>
+  <div style="margin-top:20px"><div class="strip g">命名规范：<b>学号前缀 ＋ 用途 ＋ 编号</b>（<code class="ic">g1g2door01</code>）。开工前<b>先到黑板上登记</b>，老师审一遍<b>没重名</b>才动手</div></div>
+</div>
+<div class="notes"><p>这张表<b>贴在黑板上</b>，今天一整节课都要看它。</p><p>看第一列：<b>谁跟谁结对</b>。看第二列：<b>你们那一对用哪个主题</b>。</p><p>主题名怎么来的？看这个规律：</p><p><code class="ic">g1g2door01</code> —— <b>g1g2</b> 是哪两组，<b>door</b> 是干什么用的，<b>01</b> 是第几个。</p><p><b>学号前缀 ＋ 用途 ＋ 编号。</b></p><p>（停顿）</p><p>为什么非要加前缀？</p><p>因为<b>全班共用一片云</b>。</p><p>（敲黑板）</p><p>如果一组和三组都取了一个好听的名字，比如 <code class="ic">door</code>——</p><p>一组按按钮，<b>三组的灯也会亮</b>。</p><p>云不知道你们是不同的两对，它只看见「有人订了 door，有人往 door 里发了话」。</p><p>所以规矩是：</p><p><b>开工前先到黑板上登记，老师审一遍没重名，才能动手写代码。</b></p><p>这不是老师啰嗦——这叫<b>规范</b>。</p><p>真实世界里，全世界的设备都挤在同一片云上，<b>靠的就是名字不撞</b>。</p></div>
+</section>
+
+<section class="slide lay-rowlist" data-title="结对约定卡">
+<div class="phead"><span class="no">第22课</span>
+<span class="kick g">先约定</span>
+<span class="tslot">20–40 分</span>
+</div>
+<h2 class="ptitle">先签约定卡，再写代码</h2>
+<p class="psub">两个组合作，<b>最重要的一步不是写代码</b></p>
+<div class="pbody"><div class="rowlist grow"><div class="rowitem"><div class="num g">1</div><div class="tx"><b>联动主题</b>（按规范，全班唯一）：________________ ——两端<b>一字不差</b></div></div><div class="rowitem"><div class="num a">2</div><div class="tx"><b>指令词</b>：A 发「____」表示 ________；B 回「____」表示 ________</div></div><div class="rowitem"><div class="num c">3</div><div class="tx"><b>分工</b>：A 端（发）由 ____ 组写；B 端（收）由 ____ 组写</div></div><div class="rowitem"><div class="num g">4</div><div class="tx"><b>完成时间点</b>：约好几分几秒前各自跑通——<b>先好的那端去对测教师演示板</b></div></div><div class="rowitem"><div class="num a">5</div><div class="tx"><b>双方签名</b>：________　________ ——<b>约定要改，必须两组都同意</b></div></div></div><div style="margin-top:20px"><div class="strip a">工程师管这张纸叫「<b>协议</b>」。<b>代码可以重写，约定改一次两边都得动</b>——所以先把它定死</div></div></div>
+<div class="notes"><p>现在<b>先别碰电脑</b>。</p><p>两个组合作，最重要的第一步<b>不是写代码</b>，是把「<b>暗号</b>」约好。</p><p>约定卡上五件事，一件一件填：</p><p><b>第一，主题叫什么。</b> 照黑板上的表抄，<b>一字不差</b>。</p><p>（重点）</p><p>「一字不差」是什么意思？大写小写算不算？——<b>算</b>。</p><p><code class="ic">Door01</code> 和 <code class="ic">door01</code>，在云眼里是<b>两个完全不同的柜子</b>。</p><p><b>第二，指令词。</b> A 发什么词表示什么意思。今天统一用 <code class="ic">ding</code>。</p><p><b>第三，分工。</b> 谁写发的那端，谁写收的那端。</p><p><b>第四，完成时间点。</b> 这条很实际——约好「25 分的时候两边都要跑通」。</p><p>为什么？因为两个组写代码<b>快慢不一样</b>。先写完的那组别干等着，去跟老师的演示板<b>对测</b>。</p><p><b>第五，签名。</b> 两个人都签。</p><p>签完这张纸，就有了一条规矩：<b>约定要改，必须两组都同意。</b></p><p>（停顿）</p><p>工程师管这张纸叫「<b>协议</b>」。</p><p>为什么这么正式？因为<b>代码可以重写，约定改一次两边都得动</b>。</p><p>所以——<b>先把它定死。</b></p></div>
+</section>
+
+<section class="slide lay-stepcode" data-title="A 端 发送板">
+<div class="phead"><span class="no">第22课</span>
+<span class="kick g">A 端</span>
+<span class="tslot">20–40 分</span>
+</div>
+<h2 class="ptitle">A 端：按钮按下就发消息</h2>
+<div class="pbody"><div class="askline"><b>五要素 · 只要 A 端：</b>「请写代码：ESP32 连 WiFi 后连接 mqtt.bemfa.com 的 9501 端口，私钥当 client_id；GPIO14 接上拉按钮，按下（读到 0）就往主题 g1g2door01 publish 字符串 ding。约束：publish 传字符串不是字节，按完等 0.5 秒防连发，只用学过的写法。」</div><div class="code"><span class="lab g">起步全码 · A 端（发送板）</span><pre style="font-size:19px;line-height:1.38"><span class="k">import</span> network, time
+<span class="k">from</span> machine <span class="k">import</span> Pin
+<span class="k">from</span> umqtt.simple <span class="k">import</span> MQTTClient
+WIFI_SSID="你的WiFi名"; WIFI_PASS="你的WiFi密码"; KEY_A="A板私钥"
+TOPIC = "g1g2door01"        <span class="c"># 两块板约好的主题</span>
+button = Pin(14, Pin.IN, Pin.PULL_UP)
+wlan = network.WLAN(network.STA_IF); wlan.active(<span class="k">True</span>)
+wlan.connect(WIFI_SSID, WIFI_PASS)
+<span class="k">while</span> <span class="k">not</span> wlan.isconnected(): time.sleep(0.5)
+client = MQTTClient(KEY_A, "mqtt.bemfa.com", 9501); client.connect()
+<span class="k">while</span> <span class="k">True</span>:
+    <span class="k">if</span> button.value() == 0:       <span class="c"># 按下=0（上拉）</span>
+        client.publish(TOPIC, "ding"); time.sleep(0.5)
+    time.sleep(0.05)</pre></div><div style="margin-top:18px"><div class="strip a"><code class="ic">time.sleep(0.5)</code> 是<b>防连发</b>——手指按一下其实抖好几次，不加它云上会收到一串 <code class="ic">ding</code></div></div></div>
+<div class="notes"><p>A 端的代码，<b>前九行你们全见过</b>：导入、参数、按钮、连 WiFi、连云。</p><p>只有最后四行是今天的。</p><p><code class="ic">if button.value() == 0:</code> —— 按钮按下<b>读到 0</b>。</p><p>为什么是 0 不是 1？——（等答）<b>上拉</b>。第4课就讲过的老朋友，<code class="ic">PULL_UP</code>。</p><p>按下了，就 <code class="ic">client.publish(TOPIC, "ding")</code>。</p><p>（重点）</p><p>注意 publish 的两个东西：<b>往哪个柜子放</b>、<b>放什么话</b>。</p><p>主题是 <code class="ic">g1g2door01</code>，话是 <code class="ic">"ding"</code>——<b>一个字符串</b>，不是字节。</p><p>这是巴法云的脾气，L18 校准过：<b>传字符串</b>。</p><p>最后那个 <code class="ic">time.sleep(0.5)</code>，黑条上写了，叫「<b>防连发</b>」。</p><p>为什么要防？</p><p>（停顿）</p><p>因为你的手指按一下，其实<b>抖了好几次</b>。</p><p>这段循环 0.05 秒转一圈，你按住半秒，它能发出<b>十条</b> <code class="ic">ding</code>。</p><p>对面那块板就会疯掉。</p><p>加了这 0.5 秒，按一下就是一条。</p><p>验收三查照旧：<b>能跑吗？看得懂吗？有没有超纲的魔法？</b></p></div>
+</section>
+
+<section class="slide lay-codefull" data-title="B 端 接收板">
+<div class="phead"><span class="no">第22课</span>
+<span class="kick a">B 端</span>
+<span class="tslot">20–40 分</span>
+</div>
+<h2 class="ptitle">B 端：收到 ding 就亮灯 3 秒</h2>
+<p class="psub">前三行的导入跟 A 端一样，这里只写<b>不一样的部分</b></p>
+<div class="pbody"><div class="code"><span class="lab g">起步全码 · B 端（接收板）</span><pre style="font-size:27px;line-height:1.55">WIFI_SSID="你的WiFi名"; WIFI_PASS="你的WiFi密码"; KEY_B="B板私钥"
+TOPIC = "g1g2door01"        <span class="c"># 和 A 端一模一样</span>
+led = Pin(2, Pin.OUT)
+<span class="k">def</span> message_callback(topic, msg):
+    <span class="k">if</span> msg.decode() == "ding":
+        led.value(1); time.sleep(3); led.value(0)
+client = MQTTClient(KEY_B, "mqtt.bemfa.com", 9501)
+client.set_callback(message_callback)
+client.connect(); client.subscribe(TOPIC)
+<span class="k">while</span> <span class="k">True</span>: client.check_msg(); time.sleep(0.5)</pre></div><div style="margin-top:18px"><div class="strip g"><b>两端的 TOPIC 必须一字不差</b>——大小写、数字、有没有多打一个空格，<b>差一个字就是两个柜子</b></div></div></div>
+<div class="notes"><p>B 端。第一行第二行跟 A 端<b>几乎一样</b>，只有两处不同：</p><p>私钥换成了 <b>B 板自己的</b>（两块板是两个设备，各用各的私钥）；</p><p>主题——（指第二行注释）<b>和 A 端一模一样</b>。</p><p>中间这个 <code class="ic">def message_callback(topic, msg)</code> 是 L20 的老朋友。</p><p>两个坑还记得吗？（等答）</p><p><b>第一，topic 参数必须留着</b>，哪怕用不上。</p><p><b>第二，<code class="ic">msg.decode()</code></b>——云送来的是<b>字节</b>，不解码永远比不相等。</p><p>里面做的事很简单：收到 <code class="ic">ding</code>，<b>灯亮 3 秒再灭</b>。</p><p>下面三行也是老朋友：挂回调、连云、<b>subscribe</b>。</p><p>最后一行 <code class="ic">while True: client.check_msg()</code> —— 去柜子看一眼有没有新话。</p><p>L20 强调过：<b>check_msg 必须在循环里</b>。</p><p>（指黑条，加重）</p><p>今天全课<b>最容易翻车的一条</b>在这里：</p><p><b>两端的 TOPIC 必须一字不差。</b></p><p>大小写、数字、有没有多打一个空格——<b>差一个字，就是两个柜子</b>。</p><p>A 往这个柜子放话，B 守着另一个柜子，<b>两边都没报错，就是不动</b>。</p><p>所以课间第一件事：<b>两个组把主题名并排放在一起，一个字一个字对</b>。</p></div>
+</section>
+
+<section class="slide lay-divider" data-title="课间休息">
+<div class="deco circle" style="width:200px;height:200px;top:-70px;right:180px"></div>
+<div class="deco square" style="width:130px;height:130px;left:-50px;bottom:70px;transform:rotate(12deg)"></div>
+<div class="deco tri" style="right:140px;bottom:90px;transform:rotate(14deg)"></div>
+<div class="dv">
+  <span class="dv-time">40–50 分</span>
+  <h2 class="dv-t">课间休息 10 分钟</h2>
+  <p class="dv-s">回来前做一件事：<b>两端的主题名并排对一遍</b></p>
+</div>
+<div class="notes"><p>休息十分钟。</p><p>回来之前，两个组一起做<b>一件事</b>，就一件：</p><p><b>把两端的主题名并排放在一起，一个字一个字地对。</b></p><p>怎么对最靠谱？——<b>一个人念，一个人听</b>。</p><p>「g、一、g、二、d-o-o-r、零、一。」</p><p>念到哪个字母不一样，当场就抓出来了。</p><p>（停顿）</p><p>别小看这件事。</p><p>下半场联调，十次不通有七次是<b>主题名打错一个字</b>。</p><p>现在花两分钟对一遍，等会儿少花二十分钟找错。</p><p>去休息吧。</p></div>
+</section>
+
+<section class="slide lay-rowlist" data-title="错峰联调">
+<div class="phead"><span class="no">第22课</span>
+<span class="kick c">联调</span>
+<span class="tslot">50–70 分</span>
+</div>
+<h2 class="ptitle">错峰上场：一次只测两对</h2>
+<p class="psub">全班一起按，<b>出了事谁也找不出是谁</b></p>
+<div class="pbody"><div class="rowlist grow"><div class="rowitem"><div class="num g">1</div><div class="tx">按黑板顺序，<b>一次两对</b>上场——其余组<b>手离按钮</b></div></div><div class="rowitem"><div class="num a">2</div><div class="tx">A 组按按钮 → <b>数三秒</b> → 看 B 组的灯亮没亮</div></div><div class="rowitem"><div class="num c">3</div><div class="tx">亮了：<b>稳定按 3 次</b>，三次都灵才算过，教师在黑板上<b>打勾</b></div></div><div class="rowitem"><div class="num g">4</div><div class="tx">没亮：先别改代码，<b>三查</b>（下一页）——查完再动手</div></div><div class="rowitem"><div class="num a">5</div><div class="tx"><b>别的组的灯亮了</b> → 全班停，一起找：<b>谁的主题撞了？</b></div></div></div><div style="margin-top:20px"><div class="strip a">为什么要错峰？因为<b>同时按，就分不清是谁的消息</b>。工程师排查故障的第一招就是——<b>一次只变一样</b></div></div></div>
+<div class="notes"><p>下半场联调。有一条纪律，必须守：<b>错峰</b>。</p><p>一次<b>只有两对</b>上场，其他组<b>手离按钮</b>。</p><p>为什么？</p><p>（停顿）</p><p>如果全班一起按，B 组的灯亮了——<b>你怎么知道是 A 组发的，还是别人发的？</b></p><p><b>分不清。</b></p><p>（敲黑板）</p><p>这一招工程师天天用，叫「<b>一次只变一样</b>」。</p><p>第5课调 bug 的时候我们就说过同一句话，还记得吗？</p><p>好，流程四步：</p><p><b>A 按按钮，数三秒，看 B 的灯。</b></p><p>为什么要数三秒？因为消息要<b>绕云一圈</b>——它不是瞬间的，有一点延迟，这是<b>正常的</b>。</p><p><b>亮了，按三次。</b> 三次都灵才算过，我在黑板上给你们打勾。</p><p><b>没亮，先别改代码。</b> 下一页有三查，查完再动手。</p><p>最后一条，今天最重要的一条：</p><p><b>如果别的组的灯亮了——全班停。</b></p><p>那不是故障，那是<b>今天最好的一堂课</b>。我们一起找：<b>谁的主题撞了？</b></p></div>
+</section>
+
+<section class="slide lay-cards3" data-title="撞名事故">
+<div class="phead"><span class="no">第22课</span>
+<span class="kick c">反面教材</span>
+<span class="tslot">50–70 分</span>
+</div>
+<h2 class="ptitle">一发全班响：撞名事故现场</h2>
+<p class="psub">别慌——这是今天<b>最值钱的一次翻车</b></p>
+<div class="pbody"><div class="g3 grow"><div class="blk g"><h4>现场</h4><p>一组按了一下按钮，<b>三组、五组的灯也亮了</b>。三对组同时看着自己的板子发呆。</p></div><div class="blk a"><h4>原因</h4><p>两对组用了<b>同一个主题名</b>。<br><b>云不认识人，只认主题</b>——谁订了它，谁就收得到。</p></div><div class="blk c"><h4>怎么改</h4><p>查黑板对照表 → <b>改成带学号前缀的名字</b> → <b>两端一起改</b>（改一端更糟）→ 重新上传，再测。</p></div></div><p class="beads-cap" style="margin:18px 0 16px">想深一层：<b>要是别人知道了你的主题名，他能不能控制你的板子？</b></p><div style="margin-top:22px"><div class="strip g">这就是为什么命名规范要写<b>学号前缀</b>——它不是为了好看，是为了<b>全班互不打扰</b></div></div></div>
+<div class="notes"><p>（这一页在事故真的发生时讲，效果最好）</p><p>看现场：一组按了<b>一下</b>，三组和五组的灯<b>也亮了</b>。</p><p>三对组同时盯着自己的板子发呆。</p><p>为什么？</p><p>（让学生先答）</p><p><b>两对组用了同一个主题名。</b></p><p>（敲黑板，慢）</p><p>再说一遍今天那句话：<b>云不认识人，它只认主题。</b></p><p>它不知道谁是一组谁是三组。<b>谁订了这个名字，谁就收得到。</b></p><p>怎么改？三步：</p><p>查黑板对照表，<b>改成带学号前缀的名字</b>，然后——<b>两端一起改</b>。</p><p>（重点）</p><p>注意「两端一起改」。</p><p>只改一端会怎么样？——<b>更糟</b>。原来至少还能联动，现在<b>两边谁也收不到谁的</b>。</p><p>（停顿，看中间那行字）</p><p>最后，想深一层：</p><p><b>要是别人知道了你的主题名，他能不能控制你的板子？</b></p><p>（等他们反应过来）</p><p>能。</p><p>（停顿）</p><p>这件事今天先<b>留个心眼</b>，L26《安全与隐私》我们专门讲一整节课。</p><p>今天你们只要记住一句：<b>名字就是钥匙。</b></p></div>
+</section>
+
+<section class="slide lay-aierror" data-title="A 发 B 没反应">
+<div class="phead"><span class="no">第22课</span>
+<span class="kick c">排错</span>
+<span class="tslot">50–70 分</span>
+</div>
+<h2 class="ptitle">A 发了，B 没反应？三查</h2>
+<p class="psub">不报红字的故障，<b>只能靠顺序查</b></p>
+<div class="pbody">
+  <div class="aegrid grow">
+    <div class="code"><span class="lab c">三个最容易错的地方</span><pre style="font-size:23px;line-height:1.55">TOPIC = "g1g2Door01"   <span class="c"># ← 查1：跟 A 端差了一个大写 D</span>
+
+client.check_msg()     <span class="c"># ← 查2：写在了 while 外面</span>
+
+client.publish(TOPIC, "ding")
+<span class="c"># ← 查3：A 端真的发出去了吗？控制台看主题有没有新消息</span></pre></div>
+    <div class="aecol">
+      <div class="blk c"><h4>按这个顺序查，<b>一次只查一样</b></h4><p><b>查 1：两端主题一字不差吗？</b>（一个人念，一个人听）<br><b>查 2：B 的 <code class="ic">check_msg()</code> 在循环里吗？</b><br><b>查 3：A 真的发出去了吗？</b>（控制台看有没有新消息）</p></div>
+      <div class="blk g"><h4>还有一个「不是故障」的现象</h4><p><b>按下去，过一两秒灯才亮</b> → 这是<b>正常</b>的。<br>消息要<b>绕云一圈</b>：延迟不是 bug，是<b>路程</b>。</p></div>
+    </div>
+  </div>
+  <div style="margin-top:22px"><div class="strip a">查 3 是<b>最值钱的一招</b>：它把问题<b>劈成两半</b>——消息到了云上，就是 B 的错；没到，就是 A 的错</div></div>
+</div>
+<div class="notes"><p>A 按了，B 不亮。而且——<b>一个红字都没有</b>。</p><p>这种故障只能<b>按顺序查</b>。</p><p><b>查 1：两端主题一字不差吗？</b></p><p>看代码里这个 <code class="ic">g1g2Door01</code>——跟 A 端差了一个<b>大写 D</b>。</p><p>云看见的就是<b>两个不同的柜子</b>。这是今天第一名的错。</p><p><b>查 2：B 的 check_msg 在循环里吗？</b></p><p>写在 while 外面，就只看了一眼。L20 讲过。</p><p><b>查 3，这一招最值钱：A 真的发出去了吗？</b></p><p>怎么查？<b>去巴法云控制台，看那个主题有没有新消息。</b></p><p>（敲黑板，讲透）</p><p>为什么说它最值钱？</p><p>因为它把问题<b>劈成了两半</b>：</p><p>消息<b>到了云上</b> → 那就是 <b>B 端</b>的问题，A 不用查了。</p><p>消息<b>没到云上</b> → 那就是 <b>A 端</b>的问题，B 不用查了。</p><p>（停顿）</p><p>一招下去，要查的范围<b>少了一半</b>。</p><p>这个本事叫「<b>二分</b>」，工程师一辈子都在用。</p><p>最后一个「不是故障」的现象：</p><p>按下去，<b>过一两秒灯才亮</b>。</p><p>这不是 bug，这是<b>路程</b>——消息真的绕了云一圈回来。</p></div>
+</section>
+
+<section class="slide lay-tiers3" data-title="分层实战">
+<div class="phead"><span class="no">第22课</span>
+<span class="kick g">分层任务</span>
+<span class="tslot">70–82 分</span>
+</div>
+<h2 class="ptitle">先保底，再互相呼叫</h2>
+<p class="psub">A 按 → 云 → B 亮 3 秒，<b>稳定 3 次</b></p>
+<div class="pbody"><div class="g3 grow"><div class="blk tier t1"><div class="hd">★ 保底（必做）</div>
+        <p class="task">与结对组完成<b>单向联动</b>：A 按钮 → 云 → B 灯亮 3 秒，<b>稳定 3 次</b>，且<b>不干扰别的组</b>。</p><p class="fill">我们的主题：____________　□ 3 次都灵</p></div><div class="blk tier t2"><div class="hd">★★ 挑战（学有余力）</div>
+        <p class="task">改<b>双向</b>：B 端也加按钮回发 <code class="ic">dong</code>，A 端收到亮灯——<b>互相呼叫</b>。</p><p class="fill">□ A→B 通　□ B→A 通</p></div><div class="blk tier t3"><div class="hd">★★★ 再挑战</div>
+        <p class="task"><b>一收多动</b>：B 端收到 <code class="ic">ding</code> 时，灯亮的同时<b>蜂鸣器也响</b>——做成真门铃。</p><p class="fill">□ 灯 ＋ 蜂鸣器 一起动</p></div></div>
+<div style="margin-top:22px"><div class="strip g">双向那一档要想清楚一件事：<b>一块板既要发、又要收</b>，它的 <code class="ic">while</code> 里得<b>两件事都干</b></div></div></div>
+<div class="notes"><p>三档任务。</p><p><b>保底必做</b>：单向联动，<b>稳定 3 次</b>，而且<b>不干扰别的组</b>。</p><p>后半句是今天独有的要求——你做成了但把别人搞乱了，<b>不算完成</b>。</p><p><b>挑战档：改双向。</b></p><p>B 端也加个按钮，回发一个 <code class="ic">dong</code>；A 端收到就亮灯。<b>互相呼叫</b>。</p><p>（指黑条，这是关键提示）</p><p>这一档要想清楚一件事：</p><p><b>一块板现在既要发、又要收。</b></p><p>它的 <code class="ic">while</code> 循环里得<b>两件事都干</b>：看看按钮按了没（发），再 <code class="ic">check_msg</code> 一下（收）。</p><p>两件事在<b>同一个循环</b>里轮流做——这个想法，L13 做夜灯的时候就用过。</p><p><b>再挑战：一收多动。</b></p><p>收到 <code class="ic">ding</code>，灯亮<b>而且</b>蜂鸣器响——这就是一个<b>真门铃</b>了。</p><p>按顺序做，先把保底那一档<b>三次都灵</b>，再往上走。</p></div>
+</section>
+
+<section class="slide lay-rowlist" data-title="今日三大发现">
+<div class="phead"><span class="no">第22课</span>
+<span class="kick g">总结</span>
+<span class="tslot">82–90 分</span>
+</div>
+<h2 class="ptitle">今日三大发现</h2>
+<div class="pbody"><div class="rowlist grow"><div class="rowitem"><div class="num g">1</div><div class="tx"><b>一发一收，中间隔着云</b>：A <code class="ic">publish</code> → 主题 → B <code class="ic">subscribe</code>，两端<b>从不直接见面</b></div></div><div class="rowitem"><div class="num a">2</div><div class="tx"><b>协作从约定开始</b>：主题名、指令词、分工——<b>先签纸，再写代码</b>（工程师叫它「协议」）</div></div><div class="rowitem"><div class="num c">3</div><div class="tx"><b>云不认识人，只认主题</b>：名字撞了就一起响，所以命名规范要带<b>学号前缀</b></div></div></div><div style="margin-top:20px"><div class="strip a">你的板子会<b>上传</b>、会<b>被控</b>、会<b>报警</b>、现在还会<b>互相说话</b>——下两节课，把它们拼成<b>一个真产品</b></div></div></div>
+<div class="notes"><p>今天三个发现。</p><p><b>第一，一发一收，中间隔着云。</b></p><p>A publish，B subscribe，两端<b>从不直接见面</b>。</p><p><b>第二，协作从约定开始。</b></p><p>今天你们花了十几分钟填一张纸才动手。现在回头看，那张纸<b>省了多少时间</b>？</p><p>（等他们答）</p><p>记住这句：<b>先签纸，再写代码。</b> 工程师管它叫「<b>协议</b>」。</p><p><b>第三，云不认识人，只认主题。</b></p><p>名字撞了就一起响——所以要带<b>学号前缀</b>。</p><p>（停顿，回顾整个阶段）</p><p>现在数一数，你的板子已经会几件事了：</p><p>会<b>上传</b>（L18）、会<b>被远程控制</b>（L20）、会<b>自己报警</b>（L21）、现在还会<b>跟别的板说话</b>（今天）。</p><p>四样本事。</p><p>（停顿）</p><p>但它们现在还是<b>四段分开的代码</b>。</p><p>下两节课干一件事：<b>把它们拼成一个真产品。</b></p><p>L23 搭起来，L24 联调上线。</p><p>从单打独斗到多设备协作——<b>你已经在搭「物联网」，而不是「联网物」了</b>。下课。</p></div>
+</section>
+
+<section class="slide lay-cards2" data-title="课后任务">
+<div class="phead"><span class="no">第22课</span>
+<span class="kick a">课后任务</span>
+</div>
+<h2 class="ptitle">课后任务</h2>
+<div class="pbody"><div class="g2 grow"><div class="blk g"><h4>基础（全员）</h4><p>给家人讲：<b>两块板怎么隔空说话</b>？那条消息走了<b>一条什么路线</b>？（板 → 云 → 板）</p></div><div class="blk a"><h4>拓展（选做）</h4><p>想一想：家里<b>哪两样东西联动起来最有用</b>？（门口有人 → 屋里响铃？）</p></div></div>
+<div style="margin-top:24px"><div class="strip g">从<b>单打独斗</b>到<b>多设备协作</b>——你已经在搭「<b>物联网</b>」，而不是「联网物」</div></div></div>
+<div class="notes"><p>课后两件事。</p><p>第一件全员做：给家人讲<b>两块板怎么隔空说话</b>。</p><p>讲的时候，<b>把那条路线画出来</b>：</p><p>板 → <b>云</b> → 板。</p><p>家里人多半会问：「它们是不是靠得近才行？」</p><p>你就告诉他：<b>不是。</b> 我那块板拿到楼下，一样能亮——因为中间隔的是云，<b>不是距离</b>。</p><p>第二件选做，是一道<b>很有想象力的题</b>：</p><p><b>家里哪两样东西联动起来最有用？</b></p><p>门口有人 → 屋里响铃？</p><p>水管漏了 → 手机响？</p><p>奶奶按一下床头的按钮 → 客厅的灯闪？</p><p>（停顿）</p><p>最后那个例子，其实是一个<b>真产品</b>，叫「一键呼叫」。</p><p>你们今天写的东西，<b>跟它是一模一样的原理</b>。</p><p>最后一句：</p><p><b>从单打独斗到多设备协作——你已经在搭「物联网」，而不是「联网物」了。</b></p><p>下课。</p></div>
+</section>
+<div class="deck-footer"><span>ESP32 × AI 科创课程 · 第四阶段「驾驭AI · 物联网」 · 第22课 两块板对话</span><span class="slide-number" data-current="1" data-total="13"></span></div>
+<div class="progress-bar"><span></span></div>
+</div>
+<script src="assets/fitstage.js"></script>
+<script src="assets/runtime.js"></script>
+</body>
+</html>

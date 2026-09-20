@@ -3,7 +3,7 @@
 现行课程以 `src/data/innovationCourseCatalog.js` 为唯一课时清单：
 
 - 初阶科创：`/innovation-foundation`，15 课，资源在 `public/courseware/innovation-foundation`。
-- ESP32 MicroPython 高阶科创：`/hardware/esp32-curriculum`，当前第 1–5、9、10 课，资源在 `public/courseware/innovation`。
+- ESP32 MicroPython 高阶科创：`/hardware/esp32-curriculum`，当前第 1–23 课及第 16.5 课，资源在 `public/courseware/innovation`。
 
 高阶原 35 课、学习地图和竞赛延伸页面已整体撤下。旧入口转到现行目录；已上线课号沿用 `/hardware/esp32/:num`。先前误分类产生的 `/innovation/:id` 也重定向到高阶课时。
 
