@@ -14,6 +14,7 @@ const routeCases = [
     route: `/lesson/1/${index + 1}`,
     family: 'C++ L1',
     checkScrollReset: index === 11,
+    minimumMasteryItems: index === 4 ? 3 : 4,
   })),
   ...['/lesson/2/12', '/lesson/2/14', '/lesson/2/15', '/lesson/2/16', '/lesson/3/2', '/lesson/3/3', '/lesson/3/4', '/lesson/3/13'].map((route) => ({
     route,
@@ -208,8 +209,9 @@ async function verifyRoute(page, routeCase, viewportName) {
   const itemButtons = check.locator('button[aria-pressed]');
   const count = await itemButtons.count();
 
-  if (count < 4) {
-    throw new Error(`${route} ${family} ${viewportName}: expected at least 4 mastery items, found ${count}.`);
+  const minimumMasteryItems = routeCase.minimumMasteryItems ?? 4;
+  if (count < minimumMasteryItems) {
+    throw new Error(`${route} ${family} ${viewportName}: expected at least ${minimumMasteryItems} mastery items, found ${count}.`);
   }
 
   for (let index = 0; index < count; index += 1) {

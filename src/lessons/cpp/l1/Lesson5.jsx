@@ -12,14 +12,9 @@ const lesson5MasteryItems = [
     retryHint: '回到“第一条军规：单引号法则”，把字符和字符串各写一个例子。',
   },
   {
-    label: '能解释字符背后的 ASCII 编码。',
-    evidence: '能说出 \'A\'、\'a\'、\'0\' 都有数字编号，并能用编号比较大小。',
-    retryHint: '回到“情报局密码本”，查表解释为什么字符能比较。',
-  },
-  {
-    label: '能用字符加减做大小写转换。',
-    evidence: '知道 \'a\' - \'A\' 是 32，能把小写转大写或反过来。',
-    retryHint: '回到“大小写转换密室”，先写出原字符编号再加减。',
+    label: '能读入并输出一个英文字母。',
+    evidence: '能用 char c; cin >> c; 读入一个字母，再用 cout 输出原来的大小写。',
+    retryHint: '回到“字符名片”上机题，先读入，再原样输出。',
   },
   {
     label: '能说明 bool、true、false 和 0/1 的关系。',
@@ -31,14 +26,14 @@ const lesson5MasteryItems = [
 const sections = [
   { id: 1, title: '任务简报', icon: 'shield', component: (props) => <WelcomeStage {...props} />, category: "概念引入" },
   { id: 2, title: '第一条军规：单引号法则', icon: 'quote', component: () => <QuoteRuleStage />, category: "字符奥秘" },
-  { id: 3, title: '字符解码器', icon: 'key', component: () => <CharDecoderStage />, category: "字符奥秘" },
-  { id: 4, title: '情报局密码本', icon: 'book', component: () => <AsciiTableStage />, category: "字符奥秘" },
-  { id: 5, title: '字符运算实验室', icon: 'cpu', component: () => <CharMathStage />, category: "字符奥秘" },
-  { id: 6, title: '大小写转换密室', icon: 'refresh', component: () => <CaseSwitcherStage />, category: "字符奥秘" },
+  { id: 3, title: '拓展预览：字符解码器', icon: 'key', component: () => <CharDecoderStage />, category: "二级前瞻（选学）" },
+  { id: 4, title: '拓展预览：ASCII 速查', icon: 'book', component: () => <AsciiTableStage />, category: "二级前瞻（选学）" },
+  { id: 5, title: '拓展预览：字符运算', icon: 'cpu', component: () => <CharMathStage />, category: "二级前瞻（选学）" },
+  { id: 6, title: '拓展预览：大小写转换', icon: 'refresh', component: () => <CaseSwitcherStage />, category: "二级前瞻（选学）" },
   { id: 7, title: '传奇特工档案', icon: 'user', component: () => <BooleScientistStage />, category: "布尔逻辑" },
   { id: 8, title: '布尔测谎仪', icon: 'lock', component: () => <BoolDetectorStage />, category: "布尔逻辑" },
-  { id: 9, title: '真题挑战 1', icon: 'check', component: () => <QuizStage1 />, category: "实战演练" },
-  { id: 10, title: '真题挑战 2', icon: 'check', component: () => <QuizStage2 />, category: "实战演练" },
+  { id: 9, title: '拓展练习：字符算术', icon: 'check', component: () => <QuizStage1 />, category: "二级前瞻（选学）" },
+  { id: 10, title: '拓展练习：混合类型', icon: 'check', component: () => <QuizStage2 />, category: "二级前瞻（选学）" },
   { id: 11, title: '任务总结', icon: 'flag', component: () => <SummaryStage />, category: "实战演练" },
   {
     id: 12,
@@ -47,18 +42,18 @@ const sections = [
     component: () => (
       <>
       <TransferCheck
-          prompt="换个例子：字母 A 的 ASCII 是 65，那么字母 C 的 ASCII 是多少？执行 char c = 65 + 2; 再以字符输出 c，会显示什么？"
-          hint="字母在 ASCII 表里是连续的；65 对应 A，往后逐个加 1。"
-          answer="C 的 ASCII 是 67；以字符输出 67 显示 C。"
+          prompt={'换个例子：输入一个英文字母 Z，执行 char c; cin >> c; cout << "Letter: " << c; 会输出什么？这里的 "Letter: " 和 c 分别是什么？'}
+          hint="双引号里的文字原样输出；变量 c 保存输入的单个字符。"
+          answer="输出 Letter: Z。前半部分是字符串字面量，c 是 char 变量。"
           steps={[
-              'A = 65，字母连续，C 比 A 大 2 → 65 + 2 = 67。',
-              'char c = 65 + 2; 让 c = 67，按字符显示就是 C。',
-              '输出 C。',
+              'cin >> c 把输入的 Z 存入 char 变量 c。',
+              'cout 先输出双引号里的 Letter: 和一个空格，再输出 c。',
+              '屏幕上得到 Letter: Z。',
           ]}
       />
       <MasteryCheck
-        title="C++ L1-5 字符与 ASCII 离开前检查"
-        description="如果能分清字符和字符串、解释 ASCII、做字符运算、说明 bool 的 0/1，就可以进入逻辑运算。"
+        title="C++ L1-5 字符与真假值离开前检查"
+        description="如果能分清字符和字符串、读入并输出英文字母、说明 bool 的 0/1，就可以进入逻辑运算。ASCII 速查和字符运算是二级前瞻选学。"
         items={lesson5MasteryItems}
       />
       </>
@@ -101,9 +96,9 @@ export default function Lesson5() {
 
   return (
     <LegacyCppLessonShell
-        prerequisites={['会定义并使用 int 变量', '知道 char 存的是单个字符', '会用 cout 输出变量的值']}
+        prerequisites={['会定义并使用 int 变量', '会用 cin 读入一个数据', '会用 cout 输出变量的值']}
       lessonNumber={5}
-      lessonTitle="字符与ASCII码"
+      lessonTitle="字符与真假值（ASCII 预览）"
       sections={sections}
       activeSection={activeSection}
       setActiveSection={setActiveSection}
@@ -138,7 +133,7 @@ function WelcomeStage() {
         </h3>
         <ul className="space-y-2 text-sm text-slate-300">
           <li>1. <strong className="text-white">识别伪装：</strong> 区分字符(char)与字符串(string)。</li>
-          <li>2. <strong className="text-white">解码行动：</strong> 破解 ASCII 身份证号码。</li>
+          <li>2. <strong className="text-white">选学预览：</strong> 看看英文字母在 ASCII 表中的编码；系统学习放在二级。</li>
           <li>3. <strong className="text-white">逻辑判断：</strong> 掌握计算机世界的真(1)与假(0)。</li>
         </ul>
       </div>
@@ -153,6 +148,7 @@ function QuoteRuleStage() {
   const handleCheck = (type) => {
     if (type === 'char') setFeedback('correct');
     else if (type === 'string') setFeedback('wrong-string');
+    else if (type === 'multi-char') setFeedback('wrong-multi-char');
     else setFeedback('wrong-syntax');
   };
 
@@ -170,7 +166,7 @@ function QuoteRuleStage() {
       </div>
 
       <div className="bg-slate-800 p-6 rounded-2xl border border-slate-700">
-        <h3 className="text-center mb-4 font-bold text-lg">👇 哪个才是合法的 char 定义？</h3>
+        <h3 className="text-center mb-4 font-bold text-lg">👇 哪个是单个字符字面量，可赋给 char？</h3>
         <div className="grid grid-cols-2 gap-4">
           <button onClick={() => handleCheck('string')} className="p-4 bg-slate-700 rounded-xl hover:bg-slate-600 transition border-2 border-transparent focus:border-blue-500">
             <code className="text-xl">"A"</code>
@@ -181,7 +177,7 @@ function QuoteRuleStage() {
           <button onClick={() => handleCheck('wrong-syntax')} className="p-4 bg-slate-700 rounded-xl hover:bg-slate-600 transition border-2 border-transparent focus:border-red-500">
             <code className="text-xl">A</code>
           </button>
-          <button onClick={() => handleCheck('wrong-syntax')} className="p-4 bg-slate-700 rounded-xl hover:bg-slate-600 transition border-2 border-transparent focus:border-red-500">
+          <button onClick={() => handleCheck('multi-char')} className="p-4 bg-slate-700 rounded-xl hover:bg-slate-600 transition border-2 border-transparent focus:border-red-500">
             <code className="text-xl">'AB'</code>
           </button>
         </div>
@@ -211,8 +207,17 @@ function QuoteRuleStage() {
             <div className="flex items-start gap-3">
               <XCircle className="text-red-400 shrink-0 mt-1" />
               <div>
-                <p className="font-bold text-red-300">语法错误！</p>
-                <p className="text-sm text-red-100">不加引号计算机会以为是变量名，单引号里也不能装两个字。</p>
+                <p className="font-bold text-red-300">这不是字符字面量！</p>
+                <p className="text-sm text-red-100">没有引号的 A 是标识符；若未定义变量 A，就会报错。单字符字面量要写成 'A'。</p>
+              </div>
+            </div>
+          )}
+          {feedback === 'wrong-multi-char' && (
+            <div className="flex items-start gap-3">
+              <XCircle className="text-red-400 shrink-0 mt-1" />
+              <div>
+                <p className="font-bold text-red-300">这不是单个字符！</p>
+                <p className="text-sm text-red-100">'AB' 是多字符字面量，在 C++11 中类型为 int，值由编译器实现决定；不要把它当作 char 字符使用。</p>
               </div>
             </div>
           )}
@@ -225,7 +230,8 @@ function QuoteRuleStage() {
 // 2. 字符解码器
 function CharDecoderStage() {
   const [inputChar, setInputChar] = useState('A');
-  const ascii = inputChar ? inputChar.charCodeAt(0) : '?';
+  const isPrintableAscii = /^[\x20-\x7E]$/.test(inputChar);
+  const ascii = isPrintableAscii ? inputChar.charCodeAt(0) : '—';
 
   return (
     <div className="space-y-6">
@@ -234,8 +240,8 @@ function CharDecoderStage() {
           <Key className="text-yellow-400" /> 字符解码器
         </h2>
         <p className="text-slate-400">
-          计算机不认识字母，它只认识数字。
-          <br />每一个字符 (char) 都有一个秘密的 ASCII 身份证号。
+          计算机保存字符时使用编码。
+          <br />这个二级前瞻实验只演示 ASCII 中的英文字母、数字和常见符号。
         </p>
       </div>
 
@@ -250,25 +256,28 @@ function CharDecoderStage() {
                 maxLength={1}
                 value={inputChar}
                 onChange={(e) => setInputChar(e.target.value)}
-                className="w-20 h-20 bg-black text-center text-4xl font-bold rounded-xl border-2 border-slate-600 focus:border-green-500 focus:outline-none text-white transition-all uppercase"
+                aria-label="输入一个 ASCII 可打印字符"
+                className="w-20 h-20 bg-black text-center text-4xl font-bold rounded-xl border-2 border-slate-600 focus:border-green-500 focus:outline-none text-white transition-all"
               />
               <span className="absolute -right-4 top-2 text-3xl text-yellow-500 font-serif font-bold">'</span>
             </div>
-            <span className="text-xs text-yellow-500 mt-1">必须用单引号!</span>
+            <span className="text-xs text-yellow-500 mt-1">只演示一个可打印 ASCII 字符</span>
           </div>
 
           <ArrowRight className="text-slate-500 animate-pulse" size={32} />
 
           <div className="flex flex-col items-center gap-2">
-            <span className="text-sm text-slate-400">内存记录 (int)</span>
+            <span className="text-sm text-slate-400">本例 ASCII 编码值</span>
             <div className="w-24 h-24 rounded-full bg-green-900/30 border-4 border-green-500 flex items-center justify-center text-3xl font-mono font-bold text-green-400 shadow-[0_0_20px_rgba(34,197,94,0.3)]">
               {ascii}
             </div>
           </div>
         </div>
 
+        {!isPrintableAscii && <p role="status" className="text-sm text-amber-300">请输入一个可打印 ASCII 字符；中文等字符不属于本演示范围。</p>}
+
         <div className="bg-slate-900/50 p-4 rounded-lg w-full">
-          <h4 className="text-sm font-bold text-slate-400 mb-2">🕵️‍♂️ 特工必背代码表：</h4>
+          <h4 className="text-sm font-bold text-slate-400 mb-2">🕵️‍♂️ 选学速查：</h4>
           <div className="grid grid-cols-3 gap-2 text-sm font-mono text-center">
             <div className="bg-slate-800 p-2 rounded border border-slate-700">'0' {'->'} 48</div>
             <div className="bg-slate-800 p-2 rounded border border-slate-700">'A' {'->'} 65</div>
@@ -312,7 +321,7 @@ function AsciiTableStage() {
           <BookOpen className="text-blue-400" /> 情报局密码本 (ASCII)
         </h2>
         <p className="text-slate-400 text-sm">
-          这是特工专用的速查表。不需要全部背下来，<br />但要记住每个区域的 <span className="text-yellow-400">“领头羊”</span>。
+          这里观察数字和英文字母的编码顺序，不要求背表。<br />ASCII 编码与字符转换将在二级系统学习。
         </p>
       </div>
 
@@ -342,7 +351,7 @@ function AsciiTableStage() {
           <div>
             {renderGrid(48, 57, "数字区域 (从 48 开始)")}
             <div className="mt-4 p-3 bg-blue-900/20 text-blue-200 text-sm rounded border border-blue-500/20">
-              💡 <strong>注意：</strong> 数字 0 的 ASCII 码是 0，但字符 '0' 的 ASCII 码是 48！不要混淆。
+              💡 <strong>注意：</strong> 整数 0 是数值；字符 '0' 在 ASCII 中的编码值是 48。整数本身没有“ASCII 码”。
             </div>
           </div>
         )}
@@ -407,7 +416,7 @@ function CharMathStage() {
           <div className="mt-1 shrink-0"><Cpu size={16} /></div>
           <div>
             <strong>特工提示：</strong> C++ 的 <code className="bg-black/50 px-1 rounded">cout</code> 会直接输出计算结果 <strong>{resultAscii}</strong> (数字)。
-            想要变回字母，必须使用强制转换：<code className="bg-black/50 px-1 rounded">(char)(c + {addNum})</code>。
+            要按字母显示，可以先把结果保存到 <code>char</code> 变量，或明确写 <code className="bg-black/50 px-1 rounded">char(c + {addNum})</code>。本实验只在 'A'～'Z' 范围内演示。
           </div>
         </div>
       </div>
@@ -458,6 +467,7 @@ function CaseSwitcherStage() {
           char small = big + <span className="text-green-400">32</span>; <br />
           cout &lt;&lt; small; <span className="text-slate-500">// 输出 'a'</span>
         </div>
+        <p className="text-xs text-slate-400 mt-3">此 +32 规律只用于本实验的 ASCII 英文字母，不用于所有字符编码。</p>
       </div>
     </div>
   );
@@ -487,7 +497,7 @@ function BooleScientistStage() {
 
         <div className="bg-black/30 p-4 rounded-xl text-left space-y-3 text-slate-300 text-sm leading-relaxed">
           <p>
-            🧩 <strong>主要成就：</strong> 在计算机发明的一百年前，他就发明了只用 <strong className="text-green-400">0</strong> 和 <strong className="text-green-400">1</strong> 来进行逻辑运算的数学体系。
+            🧩 <strong>主要成就：</strong> 他研究了真假命题之间的运算，建立了布尔代数；今天的程序条件判断也使用这套逻辑。
           </p>
           <p>
             💻 <strong>深远影响：</strong> 他的理论奠定了现代计算机科学的基础。为了纪念他，我们在 C++ 中把这种“非真即假”的变量类型命名为 <code>bool</code>。
@@ -603,7 +613,7 @@ function QuizStage1() {
   return (
     <div className="space-y-4">
       <div className="bg-gradient-to-r from-purple-900 to-indigo-900 p-4 rounded-t-2xl border-b border-indigo-500 shadow-lg">
-        <span className="bg-indigo-500 text-xs px-2 py-1 rounded text-white font-bold shadow">2024年6月 GESP一级真题</span>
+        <span className="bg-indigo-500 text-xs px-2 py-1 rounded text-white font-bold shadow">二级前瞻选学 · 原题出处待核</span>
         <h3 className="font-mono mt-3 text-lg leading-relaxed">
           已知 'C' 的 ASCII 码为 67。<br />
           <span className="text-purple-300">char</span> a = <span className="text-yellow-300">'C'</span>;<br />
@@ -641,7 +651,7 @@ function QuizStage1() {
           <p className="text-sm text-slate-300">
             变量 <code className="bg-black px-1 rounded">a</code> 是字符 'C' (67)。<br />
             计算 <code className="bg-black px-1 rounded">a + 2</code> 时，'C' 变身成数字 67，结果是 69。<br />
-            因为没有强制转回 char，cout 默认输出数字 <strong>69</strong>。
+            <code>a + 2</code> 运算时得到的是整数表达式，所以 cout 输出数字 <strong>69</strong>；若先保存到 char 变量则会按字符输出。
           </p>
         </div>
       )}
@@ -670,7 +680,7 @@ function QuizStage2() {
   return (
     <div className="space-y-4">
       <div className="bg-gradient-to-r from-purple-900 to-indigo-900 p-4 rounded-t-2xl border-b border-indigo-500 shadow-lg">
-        <span className="bg-indigo-500 text-xs px-2 py-1 rounded text-white font-bold shadow">2023年3月 GESP一级真题</span>
+        <span className="bg-indigo-500 text-xs px-2 py-1 rounded text-white font-bold shadow">二级前瞻选学 · 原题出处待核</span>
         <h3 className="font-mono mt-3 text-lg leading-relaxed">
           表达式 <code className="bg-black/30 px-1 rounded text-sm">((3 == 0) + 'A' + 1 + 3.0)</code> 的结果类型为？
         </h3>
@@ -729,11 +739,11 @@ function SummaryStage() {
 
       <div className="grid grid-cols-2 gap-4 text-left">
         <div className="bg-slate-800 p-4 rounded-lg border border-slate-700">
-          <h3 className="font-bold text-yellow-400 mb-2 border-b border-slate-600 pb-2">Char (字符)</h3>
+          <h3 className="font-bold text-yellow-400 mb-2 border-b border-slate-600 pb-2">Char (本课核心)</h3>
           <ul className="text-sm text-slate-300 space-y-2">
             <li>• 用单引号 <code className="bg-black px-1 rounded">' '</code></li>
-            <li>• 背后的数字：ASCII</li>
-            <li>• '0'{'->'}48, 'A'{'->'}65, 'a'{'->'}97</li>
+            <li>• 可以用 cin 读入、cout 原样输出</li>
+            <li>• ASCII 编码表是二级前瞻选学</li>
           </ul>
         </div>
         <div className="bg-slate-800 p-4 rounded-lg border border-slate-700">
@@ -742,7 +752,7 @@ function SummaryStage() {
             <li>• 只有真(true) 和 假(false)</li>
             <li>• true 是 1</li>
             <li>• false 是 0</li>
-            <li>• 乔治·布尔是 0 和 1 的鼻祖</li>
+            <li>• 布尔代数研究真假条件的运算</li>
           </ul>
         </div>
       </div>

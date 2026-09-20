@@ -8,7 +8,7 @@ export const cppL1Lessons = [
   { id: 2, title: '第 2 课：变量与数据' },
   { id: 3, title: '第 3 课：数字的魔法' },
   { id: 4, title: '第 4 课：余数的妙用' },
-  { id: 5, title: '第 5 课：字符与ASCII码' },
+  { id: 5, title: '第 5 课：字符与真假值（ASCII 预览）' },
   { id: 6, title: '第 6 课：逻辑运算' },
   { id: 7, title: '第 7 课：条件判断' },
   { id: 8, title: '第 8 课：多重选择结构' },

@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import CppL1LessonSupport from '../../../components/CppL1LessonSupport';
 import LegacyCppLessonShell from '../LegacyCppLessonShell';
-import { MasteryCheck, TransferCheck } from '../CppLessonShell';
+import { MasteryCheck, PredictCheck, TransferCheck } from '../CppLessonShell';
 import {
   Shield,
   Zap,
@@ -59,8 +59,13 @@ const lesson6MasteryItems = [
   },
   {
     label: '能按优先级手推含逻辑运算的表达式。',
-    evidence: '能先算算术和比较，再算 !、&&、||，并写出最终 0/1。',
-    retryHint: '回到“真题实战：优先级之争”，每一步写出中间真假。',
+    evidence: '能用括号明确判断范围，并按本题的乘法、减法、&& 顺序写出最终 0/1；知道 ! 不总排在算术之后。',
+    retryHint: '回到“真题实战：优先级之争”，给每个子表达式加括号再手算。',
+  },
+  {
+    label: '能解释 && 与 || 的短路求值。',
+    evidence: '知道 && 左边为假会跳过右边，|| 左边为真会跳过右边。',
+    retryHint: '回到“核心机密”，按从左到右的顺序标出哪些部分没有执行。',
   },
 ];
 
@@ -408,6 +413,12 @@ export default function App() {
             <h2 className="text-3xl font-bold text-gray-800 mb-4">🔑 核心机密：电脑怎么分真假？</h2>
             <p className="text-lg text-gray-600 mb-4">电脑里只有数字。在 C++ 中，真和假是这样规定的：</p>
             <TruthDetector />
+            <div className="mt-6 rounded-xl border border-stone-300 bg-stone-50 p-4 text-sm text-stone-800">
+              <h3 className="font-bold mb-2">短路求值：先看左边，再决定要不要看右边</h3>
+              <p><code>&amp;&amp;</code> 的左边若是假，整体已确定为假；<code>||</code> 的左边若是真，整体已确定为真。此时右边不会执行。</p>
+              <code className="block mt-2 overflow-x-auto rounded bg-white p-2">int x = 0; cout &lt;&lt; (x != 0 &amp;&amp; 10 / x &gt; 2);</code>
+              <p className="mt-2">左边 <code>x != 0</code> 为假，右边的除法不会执行，输出 <code>0</code>。如果需要判断左边与右边都为真，右边才会被求值。</p>
+            </div>
             <div className="grid grid-cols-2 gap-4 mt-6">
               <div className="bg-white p-4 rounded border-2 border-red-200 text-center">
                 <div className="text-4xl mb-2 text-red-500 font-bold">0</div>
@@ -470,9 +481,9 @@ export default function App() {
               来源：2024年12月 GESP 一级真题
             </div>
             <div className="bg-blue-50 p-4 rounded-lg mb-6 border-l-4 border-blue-500">
-              <h4 className="font-bold text-blue-700 mb-2">优先级口诀：</h4>
-              <p>1. 算术优先 (先乘除，后加减)</p>
-              <p>2. 逻辑垫后 (&&, ||)</p>
+              <h4 className="font-bold text-blue-700 mb-2">本题的求值顺序：</h4>
+              <p>先算 <code>3 * 2</code>，再算 <code>12 - 6</code>，最后计算 <code>6 &amp;&amp; 2</code>。</p>
+              <p className="mt-1">复杂表达式主动加括号；一元 <code>!</code> 的优先级高于乘除，不能套用“所有逻辑运算最后算”的口诀。</p>
             </div>
             <Quiz
               question="计算表达式 12 - 3 * 2 && 2 的值。"
@@ -544,6 +555,14 @@ export default function App() {
       case 10:
         return (
           <div className="slide-enter py-6">
+            <PredictCheck
+                title="先预测：右边会执行吗？"
+                prompt="int x = 0; cout << (x != 0 && 10 / x > 2); 会执行 10 / x 吗？输出什么？"
+                options={['会执行，发生除以 0', '不会执行右边，输出 0', '不会执行右边，输出 1']}
+                correctIndex={1}
+                explanation="&& 从左向右求值。x != 0 为假，整个式子已经是假，右边的 10 / x 不会执行；cout 输出 0。"
+                misconception="只凭运算符优先级把右边算掉，忽略了 && 的短路规则。"
+            />
             <TransferCheck
                 prompt={'换个例子：int x = 5; 判断 (x > 0 && x < 10) 和 (x > 10 || x == 5) 各是真还是假？'}
                 hint="&& 要两边都真才真；|| 有一边真就真。"
@@ -583,4 +602,3 @@ export default function App() {
     </LegacyCppLessonShell>
   );
 }
-

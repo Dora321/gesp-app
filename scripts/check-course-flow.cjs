@@ -803,17 +803,17 @@ function assertCppLevel1IntroLessonsKeepMasteryChecks() {
     },
     {
       path: 'src/lessons/cpp/l1/Lesson5.jsx',
-      title: 'C++ L1-5 字符与 ASCII 离开前检查',
-      concepts: ['单引号字符和双引号字符串', 'ASCII 编码', '小写转大写', 'bool、true、false 和 0/1'],
+      title: 'C++ L1-5 字符与真假值离开前检查',
+      concepts: ['能区分单引号字符和双引号字符串', '能读入并输出一个英文字母', '能说明 bool、true、false 和 0/1 的关系', 'ASCII 速查和字符运算是二级前瞻选学'],
       nextPath: '/lesson/1/6',
-      message: 'C++ L1 lesson 5 should keep a mastery check for char/string differences, ASCII, char arithmetic, and bool output.',
+      message: 'C++ L1 lesson 5 should assess char/string differences, char input/output, and bool output while keeping ASCII optional.',
     },
     {
       path: 'src/lessons/cpp/l1/Lesson6.jsx',
       title: 'C++ L1-6 逻辑运算离开前检查',
-      concepts: ['&&、||、!', '只有 0 是 false', 'x > 1 && x < 10', '含逻辑运算的表达式'],
+      concepts: ['&&、||、!', '只有 0 是 false', 'x > 1 && x < 10', '含逻辑运算的表达式', '能解释 && 与 || 的短路求值'],
       nextPath: '/lesson/1/7',
-      message: 'C++ L1 lesson 6 should keep a mastery check for logical operators, truthiness, chained-comparison traps, and expression tracing.',
+      message: 'C++ L1 lesson 6 should assess logical operators, truthiness, chained-comparison traps, expression tracing, and short-circuit evaluation.',
     },
     {
       path: 'src/lessons/cpp/l1/Lesson7.jsx',
