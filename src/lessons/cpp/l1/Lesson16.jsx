@@ -85,10 +85,12 @@ const sections = [
 const VariableChecker = () => {
     const [inputType, setInputType] = useState('int');
     const [inputValue, setInputValue] = useState('3.9');
+    const numericValue = Number(inputValue);
+    const validInput = inputValue !== '' && Number.isFinite(numericValue) && Math.abs(numericValue) <= 1000;
 
     const getResult = () => {
-        if (inputType === 'int') return Math.floor(parseFloat(inputValue));
-        if (inputType === 'bool') return parseFloat(inputValue) !== 0 ? 'true (1)' : 'false (0)';
+        if (inputType === 'int') return Math.trunc(numericValue);
+        if (inputType === 'bool') return numericValue !== 0 ? 'true (1)' : 'false (0)';
         return inputValue;
     };
 
@@ -105,6 +107,7 @@ const VariableChecker = () => {
                         type="number"
                         value={inputValue}
                         onChange={(e) => setInputValue(e.target.value)}
+                        aria-label="用于类型转换的数值，范围 -1000 到 1000"
                         className="bg-slate-700 border border-slate-500 rounded px-2 py-1 text-white w-24"
                     />
                 </div>
@@ -125,19 +128,20 @@ const VariableChecker = () => {
                 </div>
             </div>
 
-            <div className="bg-black/50 p-4 rounded-lg font-mono text-center border border-cyan-500/30">
+            {!validInput && <p role="status" className="mb-3 text-amber-300">请输入 -1000 到 1000 之间的有效数字，再观察转换结果。</p>}
+            {validInput && <div className="bg-black/50 p-4 rounded-lg font-mono text-center border border-cyan-500/30">
                 <div className="text-gray-500 text-xs mb-2">内存中的样子</div>
                 <div className="text-2xl font-bold text-yellow-400">
                     {inputType} a = {inputValue}; <span className="text-gray-400">{'//'} 结果: </span>
                     <span className="text-green-400 ml-2">{getResult()}</span>
                 </div>
-                {inputType === 'int' && inputValue.includes('.') && (
-                    <div className="text-red-400 text-xs mt-2 animate-pulse">⚠️ 警告：小数部分被切掉了！（汤漏光了）</div>
+                {inputType === 'int' && !Number.isInteger(numericValue) && (
+                    <div className="text-red-400 text-xs mt-2 animate-pulse">⚠️ 小数部分向 0 方向截去：-3.9 会得到 -3，并非 -4。</div>
                 )}
-                {inputType === 'bool' && parseFloat(inputValue) !== 0 && parseFloat(inputValue) !== 1 && (
+                {inputType === 'bool' && numericValue !== 0 && numericValue !== 1 && (
                     <div className="text-green-400 text-xs mt-2">💡 提示：非零即真！</div>
                 )}
-            </div>
+            </div>}
         </div>
     );
 };
@@ -154,35 +158,36 @@ const OperatorLadder = () => {
                 <div className="bg-red-500/20 border border-red-500 p-3 rounded-lg flex items-center gap-4 relative overflow-hidden">
                     <div className="bg-red-500 text-white w-8 h-8 rounded-full flex items-center justify-center font-bold z-10">1</div>
                     <div className="z-10">
-                        <span className="font-bold text-red-300">大哥：非 (!)</span>
-                        <div className="text-xs text-gray-400">最高级，!0 变 1</div>
+                        <span className="font-bold text-red-300">先定范围：括号、一元 ! 与正负号</span>
+                        <div className="text-xs text-gray-400">括号里的表达式先处理；! 的优先级高于二元算术</div>
                     </div>
                 </div>
 
                 <div className="bg-orange-500/20 border border-orange-500 p-3 rounded-lg flex items-center gap-4">
                     <div className="bg-orange-500 text-white w-8 h-8 rounded-full flex items-center justify-center font-bold">2</div>
                     <div>
-                        <span className="font-bold text-orange-300">二哥：算术 (* / % + -)</span>
-                        <div className="text-xs text-gray-400">先乘除(模)，后加减</div>
+                        <span className="font-bold text-orange-300">再计算：* / %，然后 + -</span>
+                        <div className="text-xs text-gray-400">同一层还要看结合顺序和括号</div>
                     </div>
                 </div>
 
                 <div className="bg-yellow-500/20 border border-yellow-500 p-3 rounded-lg flex items-center gap-4">
                     <div className="bg-yellow-500 text-white w-8 h-8 rounded-full flex items-center justify-center font-bold">3</div>
                     <div>
-                        <span className="font-bold text-yellow-300">三哥：关系 (&gt; &lt; ==)</span>
-                        <div className="text-xs text-gray-400">算完数再比大小</div>
+                        <span className="font-bold text-yellow-300">再比较：大小关系，然后 == 与 !=</span>
+                        <div className="text-xs text-gray-400">&lt;、&lt;=、&gt;、&gt;= 先于相等比较</div>
                     </div>
                 </div>
 
                 <div className="bg-blue-500/20 border border-blue-500 p-3 rounded-lg flex items-center gap-4">
                     <div className="bg-blue-500 text-white w-8 h-8 rounded-full flex items-center justify-center font-bold">4</div>
                     <div>
-                        <span className="font-bold text-blue-300">老弟：逻辑 (&& ||)</span>
-                        <div className="text-xs text-gray-400">最后才看真假</div>
+                        <span className="font-bold text-blue-300">最后组合：先 &&，后 ||</span>
+                        <div className="text-xs text-gray-400">还要记住从左到右短路求值</div>
                     </div>
                 </div>
             </div>
+            <p className="mt-4 text-sm text-slate-300">例如 <code>!2 + 3</code> 等于 <code>(!2) + 3</code>，结果为 3。想让加法先做，应写 <code>!(2 + 3)</code>。</p>
         </div>
     );
 };
@@ -243,14 +248,19 @@ const LogicStepper = () => {
 
 // --- 互动组件 4：吃书老鼠模拟器 ---
 const RatSimulator = () => {
-    const [n, setN] = useState(10); // Books
-    const [a, setA] = useState(2);  // Hours per book
-    const [b, setB] = useState(5);  // Time passed
-
-    const eatenFull = Math.floor(b / a);
-    const isEating = b % a !== 0;
+    const [nInput, setNInput] = useState('10'); // Books
+    const [aInput, setAInput] = useState('2');  // Hours per book
+    const [bInput, setBInput] = useState('5');  // Time passed
+    const n = Number(nInput);
+    const a = Number(aInput);
+    const b = Number(bInput);
+    const inRange = [nInput, aInput, bInput].every((value) => value !== '') &&
+        [n, a, b].every((value) => Number.isInteger(value) && value >= 1 && value <= 1000);
+    const validInput = inRange && n - Math.ceil(b / a) >= 1;
+    const eatenFull = validInput ? Math.floor(b / a) : 0;
+    const isEating = validInput && b % a !== 0;
     const totalLost = eatenFull + (isEating ? 1 : 0);
-    const remaining = Math.max(0, n - totalLost);
+    const remaining = validInput ? n - totalLost : null;
 
     return (
         <div className="bg-slate-800 p-6 rounded-xl border-2 border-slate-600 my-4 text-white">
@@ -262,18 +272,21 @@ const RatSimulator = () => {
             <div className="flex flex-wrap gap-4 mb-6 bg-slate-700 p-4 rounded-lg">
                 <div className="flex flex-col">
                     <label className="text-xs text-gray-400">书总数 N</label>
-                    <input type="number" value={n} onChange={e => setN(parseInt(e.target.value) || 0)} className="w-16 bg-slate-900 border border-slate-500 rounded px-2 text-white text-center" />
+                    <input type="number" min="1" max="1000" value={nInput} onChange={e => setNInput(e.target.value)} aria-label="书总数 N" className="w-16 bg-slate-900 border border-slate-500 rounded px-2 text-white text-center" />
                 </div>
                 <div className="flex flex-col">
                     <label className="text-xs text-gray-400">吃一本耗时 A</label>
-                    <input type="number" value={a} onChange={e => setA(parseInt(e.target.value) || 1)} className="w-16 bg-slate-900 border border-slate-500 rounded px-2 text-white text-center" />
+                    <input type="number" min="1" max="1000" value={aInput} onChange={e => setAInput(e.target.value)} aria-label="吃一本耗时 A" className="w-16 bg-slate-900 border border-slate-500 rounded px-2 text-white text-center" />
                 </div>
                 <div className="flex flex-col">
                     <label className="text-xs text-gray-400">经过时间 B</label>
-                    <input type="number" value={b} onChange={e => setB(parseInt(e.target.value) || 0)} className="w-16 bg-slate-900 border border-slate-500 rounded px-2 text-white text-center" />
+                    <input type="number" min="1" max="1000" value={bInput} onChange={e => setBInput(e.target.value)} aria-label="经过时间 B" className="w-16 bg-slate-900 border border-slate-500 rounded px-2 text-white text-center" />
                 </div>
             </div>
 
+            <p className="mb-3 text-sm text-slate-300">原题保证 N、A、B 均为 1 到 1000 的整数，经过 B 小时后至少还有一本完整的书。</p>
+            {!validInput && <p role="status" className="mb-3 text-sm text-amber-300">请输入符合原题范围的数据；至少要剩下一本完整的书。</p>}
+            {validInput && <>
             <div className="flex flex-wrap gap-1 mb-4 min-h-[40px]">
                 {Array.from({ length: Math.min(n, 30) }).map((_, i) => {
                     let status = 'safe'; // green
@@ -310,6 +323,7 @@ const RatSimulator = () => {
                 <span className="text-gray-300">完整剩下的书 (left):</span>
                 <span className="text-3xl font-bold text-green-400">{remaining}</span>
             </div>
+            </>}
         </div>
     );
 };
@@ -382,7 +396,7 @@ export default function App() {
                             <BookOpen className="text-cyan-400" size={32} /> 安检第一关：变量“饭盒”
                         </h2>
 
-                        <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mb-6 text-white">
+                        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 mb-6 text-white">
                             <div className="bg-blue-600/20 p-4 rounded-lg border border-blue-500">
                                 <h4 className="font-bold text-blue-300 text-lg">int (整数)</h4>
                                 <p className="text-sm text-gray-300">只能装“馒头”，小数会被切掉。</p>
@@ -394,6 +408,10 @@ export default function App() {
                             <div className="bg-green-600/20 p-4 rounded-lg border border-green-500">
                                 <h4 className="font-bold text-green-300 text-lg">bool (开关)</h4>
                                 <p className="text-sm text-gray-300">非 0 即真。100 也是 true。</p>
+                            </div>
+                            <div className="bg-amber-600/20 p-4 rounded-lg border border-amber-500">
+                                <h4 className="font-bold text-amber-300 text-lg">char (单个字符)</h4>
+                                <p className="text-sm text-gray-300">用单引号写字符；可读入并原样输出英文字母。</p>
                             </div>
                         </div>
 
@@ -408,7 +426,7 @@ export default function App() {
                         </h2>
                         <div className="bg-slate-800 p-4 rounded-xl border border-slate-600 text-gray-300 mb-6">
                             <p className="text-lg text-center">
-                                <span className="font-bold text-white">优先级口诀：</span> 非 &gt; 算术 &gt; 关系 &gt; 逻辑
+                                <span className="font-bold text-white">常见顺序：</span> 括号 → 一元运算 → 乘除模 → 加减 → 关系 → 相等 → && → ||
                             </p>
                         </div>
                         <OperatorLadder />
