@@ -49,9 +49,9 @@ const sections = [
     { id: 3, title: "知识讲解 1：记住你的“座号”", icon: "key", category: "核心机密" },
     { id: 4, title: "知识讲解 2：特工变身术", icon: "unlock", category: "核心机密" },
     { id: 5, title: "知识讲解 3：字符排队操", icon: "calc", category: "核心机密" },
-    { id: 6, title: "真题实战 1：运算陷阱", icon: "alert", category: "实战演练" },
+    { id: 6, title: "课堂练习 1：运算陷阱", icon: "alert", category: "实战演练" },
     { id: 7, title: "实战 1 解析：整数赢了", icon: "search", category: "实战演练" },
-    { id: 8, title: "真题实战 2：混合运算", icon: "cpu", category: "实战演练" },
+    { id: 8, title: "课堂练习 2：混合运算", icon: "cpu", category: "实战演练" },
     { id: 9, title: "总结：特工手册", icon: "code", category: "归档" },
     { id: 10, title: "课后挑战：小小加密专家", icon: "binary", category: "归档" },
 ];
@@ -75,7 +75,7 @@ const masteryItems = [
     {
         label: '能判断混合运算的输出类型。',
         evidence: 'char 和 int 相加结果是 int；想显示字母要转回 char。',
-        retryHint: '回到真题实战的「运算陷阱」。',
+        retryHint: '回到课堂练习的「运算陷阱」。',
     },
 ];
 
@@ -314,8 +314,8 @@ const CharacterRuler = () => {
 
                 <div className="mt-6 p-4 bg-blue-50 text-blue-800 rounded-lg text-sm text-center">
                     <p className="font-bold mb-1">推算公式：</p>
-                    <p className="font-mono text-lg">目标字符 = 起点字符 + 偏移量</p>
-                    <p className="text-xs text-blue-600 mt-2">例如：'C' 在 'A' 后面第 2 位，所以 'C' = 'A' + 2 (65 + 2 = 67)</p>
+                    <p className="font-mono text-lg">目标编码 = 起点编码 + 偏移量</p>
+                    <p className="text-xs text-blue-600 mt-2">例如：'C' 的 ASCII 编码是 65 + 2 = 67；在 C++ 中 cout &lt;&lt; ('A' + 2) 会输出整数 67。</p>
                 </div>
             </div>
         </div>
@@ -336,7 +336,7 @@ const Quiz = ({ question, options, correctIndex, explanation }) => {
     return (
         <div className="bg-white p-6 rounded-xl shadow-lg border-l-4 border-indigo-500 my-6">
             <div className="flex items-center gap-2 mb-4">
-                <span className="bg-indigo-100 text-indigo-700 px-2 py-1 rounded text-xs font-bold uppercase tracking-wider">真题实战</span>
+                <span className="bg-indigo-100 text-indigo-700 px-2 py-1 rounded text-xs font-bold uppercase tracking-wider">课堂练习</span>
             </div>
             <div className="font-bold text-lg mb-4 text-gray-800 leading-relaxed font-mono whitespace-pre-wrap bg-gray-50 p-4 rounded-lg border border-gray-100">
                 {question}
@@ -534,13 +534,13 @@ export default function App() {
                             知识讲解 1：记住你的“座号”
                         </h2>
                         <p className="text-gray-600 mb-4">
-                            ASCII 码表里有 128 个字符，我们不需要全部背下来，只要记住几个<strong>关键路标</strong>，其他的都可以推算出来！
+                            ASCII 编码有 0～127 共 128 个码位，其中也有控制字符；这里先记住几个<strong>关键路标</strong>，不用背完整表。
                         </p>
 
                         <AsciiKeyMap />
 
                         <div className="mt-8 bg-gray-100 p-4 rounded-lg text-sm text-gray-500 text-center">
-                            注：'0' 是字符零，不是数字 0。数字 0 在 ASCII 表里其实是“空字符”(Null)，那是另一个故事了。
+                            注：整数 0 是数值，本身没有 ASCII 码；字符 '0' 的 ASCII 码是 48。码位 0 另有名称 NUL，不是整数 0 的“字符形态”。
                         </div>
                     </div>
                 );
@@ -552,7 +552,7 @@ export default function App() {
                             知识讲解 2：特工变身术
                         </h2>
                         <p className="text-gray-600 mb-6">
-                            在 C++ 中，字符(char)和整数(int)可以互相伪装。这就是<strong>强制类型转换</strong>。
+                            在 C++ 中，char 与 int 可以相互转换。写出 <code>(int)c</code> 或 <code>(char)66</code> 是显式转换；参与算术运算时也可能自动转换。
                         </p>
 
                         <TransformationLab />
@@ -606,9 +606,9 @@ export default function App() {
             case 6:
                 return (
                     <div className="animate-in fade-in slide-in-from-bottom-4 duration-500">
-                        <h2 className="text-2xl font-bold text-gray-800 mb-6">真题实战 1：运算陷阱</h2>
+                        <h2 className="text-2xl font-bold text-gray-800 mb-6">课堂练习 1：运算陷阱</h2>
                         <Quiz
-                            question={`(2024年6月 GESP 二级)\n执行下面 C++ 代码，输出结果是（ ）。\n\nchar a = 'C';\ncout << (a + 2);`}
+                            question={`本题按 ASCII 编码计算。执行下面 C++ 代码，输出结果是（ ）。\n\nchar a = 'C';\ncout << (a + 2);`}
                             options={["E", "C2", "69", "67"]}
                             correctIndex={2}
                             explanation="见下一页解析..."
@@ -660,7 +660,7 @@ export default function App() {
                             </ol>
 
                             <div className="mt-6 text-sm text-gray-500 italic border-t pt-4">
-                                如果想输出 'E'，必须强制转换：<code>cout &lt;&lt; (char)(a + 2);</code>
+                                如果想输出 'E'，可以先把结果存入 char 变量，或显式转换：<code>cout &lt;&lt; (char)(a + 2);</code>
                             </div>
                         </div>
                     </div>
@@ -668,9 +668,9 @@ export default function App() {
             case 8:
                 return (
                     <div className="animate-in fade-in slide-in-from-bottom-4 duration-500">
-                        <h2 className="text-2xl font-bold text-gray-800 mb-6">真题实战 2：混合运算</h2>
+                        <h2 className="text-2xl font-bold text-gray-800 mb-6">课堂练习 2：混合运算</h2>
                         <Quiz
-                            question={`(2023年3月 GESP 一级/二级)\n表达式 ('A' + 1) 的结果类型和值分别是（ ）。`}
+                            question={`本题按 ASCII 编码计算。表达式 ('A' + 1) 的结果类型和值分别是（ ）。`}
                             options={["char, 'B'", "int, 66", "char, 66", "string, A1"]}
                             correctIndex={1}
                             explanation={
@@ -774,7 +774,7 @@ export default function App() {
 
     return (
         <LegacyCppLessonShell
-            prerequisites={['知道 char 类型存的是单个字符', '会用 int 和 char 互相赋值', '会用循环遍历一串字符']}
+            prerequisites={['知道 char 保存单个字符，能读入并输出英文字母', '会用 int 做加减法', '能区分单引号字符与双引号字符串']}
             lessonNumber={2}
             lessonTitle="字符的密码 (ASCII)"
             levelLabel="二级趣味课堂"

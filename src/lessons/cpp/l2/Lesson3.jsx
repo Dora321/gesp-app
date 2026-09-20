@@ -63,7 +63,7 @@ const quiz = [
 const typeMasteryItems = [
     {
         label: '能判断一个表达式的结果类型。',
-        evidence: '只要有 double 就提升成 double，全是 int 结果就是 int。',
+        evidence: '在本课的 int、double、char 算术中，含 double 的结果为 double；char 会先提升为 int。',
         retryHint: '回到类型提升实验室试不同组合。',
     },
     {
@@ -93,7 +93,7 @@ function RuleCard({ rule }) {
             <div className="mb-3 flex items-center justify-between gap-3">
                 <h4 className="font-black text-slate-900">{rule.title}</h4>
                 <span className="rounded-full bg-blue-50 px-3 py-1 text-xs font-black text-blue-700">
-                    输出 {rule.result}
+                    ans 的值：{rule.result}
                 </span>
             </div>
             <CodeBlock>{rule.code}</CodeBlock>
@@ -107,26 +107,23 @@ function ConversionLab() {
     const [right, setRight] = useState('double');
 
     const result = useMemo(() => {
-        if (left === 'double' || right === 'double') {
-            return {
-                type: 'double',
-                value: '2.5',
-                note: '只要表达式里有一个 double，另一个 int 会被提升。',
-            };
-        }
-
-        if (left === 'char' || right === 'char') {
-            return {
-                type: 'int',
-                value: '67',
-                note: 'char 参与算术时会按 ASCII 编码参与计算。',
-            };
-        }
-
+        const operands = {
+            int: { code: '2', value: 2 },
+            double: { code: '2.5', value: 2.5 },
+            char: { code: "'A'", value: 65 },
+        };
+        const leftOperand = operands[left];
+        const rightOperand = operands[right];
+        const containsDouble = left === 'double' || right === 'double';
         return {
-            type: 'int',
-            value: '2',
-            note: '两个 int 相除仍是 int，小数部分不会保留。',
+            expression: `${leftOperand.code} + ${rightOperand.code}`,
+            type: containsDouble ? 'double' : 'int',
+            value: leftOperand.value + rightOperand.value,
+            note: containsDouble
+                ? '本例做加法：含 double 时结果为 double；char 若参与，先提升为整数。'
+                : left === 'char' || right === 'char'
+                    ? "本例按 ASCII 的 'A'=65 计算。char 参与算术会先提升为 int，两个 char 相加也得到 int。"
+                    : '两个 int 相加，结果仍是 int。',
         };
     }, [left, right]);
 
@@ -140,8 +137,9 @@ function ConversionLab() {
             </div>
             <div className="grid gap-4 md:grid-cols-[1fr_auto_1fr] md:items-center">
                 <div>
-                    <label className="mb-2 block text-xs font-black uppercase tracking-wider text-slate-500">左操作数</label>
+                    <label htmlFor="cpp-l2-conversion-left" className="mb-2 block text-xs font-black uppercase tracking-wider text-slate-500">左操作数类型</label>
                     <select
+                        id="cpp-l2-conversion-left"
                         value={left}
                         onChange={(event) => setLeft(event.target.value)}
                         className="w-full rounded-lg border border-blue-200 bg-white px-4 py-3 font-bold text-slate-800 outline-none focus:border-blue-500"
@@ -153,8 +151,9 @@ function ConversionLab() {
                 </div>
                 <ArrowLeftRight className="hidden text-blue-500 md:block" />
                 <div>
-                    <label className="mb-2 block text-xs font-black uppercase tracking-wider text-slate-500">右操作数</label>
+                    <label htmlFor="cpp-l2-conversion-right" className="mb-2 block text-xs font-black uppercase tracking-wider text-slate-500">右操作数类型</label>
                     <select
+                        id="cpp-l2-conversion-right"
                         value={right}
                         onChange={(event) => setRight(event.target.value)}
                         className="w-full rounded-lg border border-blue-200 bg-white px-4 py-3 font-bold text-slate-800 outline-none focus:border-blue-500"
@@ -166,6 +165,7 @@ function ConversionLab() {
                 </div>
             </div>
             <div className="mt-5 rounded-xl bg-white p-5 ring-1 ring-blue-100">
+                <div className="mb-2 font-mono text-slate-800">示例表达式：{result.expression}</div>
                 <div className="text-sm font-black text-slate-500">表达式结果类型</div>
                 <div className="mt-2 flex flex-wrap items-end gap-4">
                     <span className="text-4xl font-black text-blue-700">{result.type}</span>
@@ -193,7 +193,7 @@ export default function CppL2Lesson3() {
                 title: '同一个数字，为什么算出来不一样？',
                 description: 'C++ 会根据数据类型决定计算方式。今天把 int、double、char 的转换规则讲清楚，尤其是 GESP 二级常考的整数除法和 ASCII 转换。',
             }}
-            goals={['能判断表达式结果类型', '能解释整数除法截断', '能用强制转换修正计算']}
+            goals={['能判断 int、double、char 算术结果类型', '能解释整数除法与负小数转整数的截断', '能用显式转换保留除法的小数']}
             prerequisites={['认识 int、double、char 三种基本类型', '会用 cout 输出表达式', '理解变量赋值与运算符']}
             childrenBySection={{
                 1: (
@@ -377,13 +377,13 @@ cout << (char)x; // B`}</CodeBlock>
                         </div>
 
                         <TransferCheck
-                            prompt="换个例子：double x = 3.9; int y = x; 执行后 y 是多少？为什么不是 4？"
-                            hint="double 转 int 是「截断」（直接去掉小数），不是四舍五入。"
-                            answer="y = 3。"
+                            prompt="换个例子：double x = -3.9; int y = x; 执行后 y 是多少？为什么不是 -4？"
+                            hint="double 转 int 向 0 截断，不是向下取整或四舍五入。"
+                            answer="y = -3。"
                             steps={[
-                                'x = 3.9，赋给 int y 时发生类型转换。',
-                                'int 转换是截断：直接丢掉小数 .9，不进位。',
-                                '所以 y = 3（不是 4）。要四舍五入得用 round。',
+                                'x = -3.9，赋给 int y 时发生类型转换。',
+                                '向 0 截断小数部分，得到 -3；向下取整才会得到 -4。',
+                                '所以 y = -3。要四舍五入不能只靠赋给 int。',
                             ]}
                         />
                         <MasteryCheck
