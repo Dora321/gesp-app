@@ -15,12 +15,12 @@ import CppLessonShell, { MasteryCheck, PredictCheck, TransferCheck } from '../Cp
 const switchMasteryItems = [
     {
         label: '能读懂 switch-case 的执行顺序。',
-        evidence: '从匹配的 case 往下执行，遇到 break 才停。',
+        evidence: '从匹配的 case 往下执行，遇到 break 会离开 switch；没有 break 时可能继续执行后续标签，直至语句结束。',
         retryHint: '回到 break 穿透实验，逐句跟一遍。',
     },
     {
         label: '能用 break 防止穿透。',
-        evidence: '每个 case 末尾写 break，避免落进下一个 case。',
+        evidence: '不需要穿透时，在该分支末尾写 break，避免落进下一个标签。',
         retryHint: '回到「考试提醒」。',
     },
     {
@@ -29,8 +29,8 @@ const switchMasteryItems = [
         retryHint: '回到「选择口诀」。',
     },
     {
-        label: '能用 default 兜底，并知道 case 后要常量。',
-        evidence: 'default 处理没命中；case 后是常量，不能写范围或变量。',
+        label: '能用 default 兜底，并知道 case 后要整数常量表达式。',
+        evidence: 'default 通常处理没命中；case 后可写 1 + 1 这样的整数常量表达式，不能写普通变量或范围条件。',
         retryHint: '回到 default 兜底一节。',
     },
 ];
@@ -54,13 +54,13 @@ const menuItems = {
 const quiz = [
     {
         question: 'switch 后面的表达式可以是 double 吗？',
-        answer: '不建议，也不能作为标准 case 匹配类型',
-        reason: 'switch 常用于整数、字符、枚举等离散值；小数比较不稳定，应使用 if。',
+        answer: '不能，switch 表达式不能是 double',
+        reason: 'C++ 的 switch 表达式需要是整数或枚举类型；double 不符合语法要求。比较小数时可用 if。',
     },
     {
         question: 'case 1 后面忘记 break 会怎样？',
         answer: '继续执行后面的 case',
-        reason: 'switch 命中入口后会顺着往下跑，直到遇到 break 或整个 switch 结束。',
+        reason: 'switch 命中入口后会顺着往下跑；遇到 break 会离开 switch，否则可能执行后续标签中的语句。',
     },
     {
         question: 'default 必须写吗？',
@@ -86,10 +86,11 @@ function MenuSimulator() {
             </div>
             <div className="grid gap-5 lg:grid-cols-[1fr_1.2fr]">
                 <div className="rounded-xl bg-white p-5 ring-1 ring-indigo-100">
-                    <label className="mb-2 block text-xs font-black uppercase tracking-wider text-slate-500">
+                    <label htmlFor="l2-switch-menu-choice" className="mb-2 block text-xs font-black uppercase tracking-wider text-slate-500">
                         输入菜单编号
                     </label>
                     <select
+                        id="l2-switch-menu-choice"
                         value={choice}
                         onChange={(event) => setChoice(event.target.value)}
                         className="w-full rounded-lg border border-indigo-200 bg-white px-4 py-3 font-black text-slate-800 outline-none focus:border-indigo-500"
@@ -118,7 +119,7 @@ function MenuSimulator() {
     cout << "退出程序";
     break;
   default:
-    cout << "无效选项";
+    cout << "无效选项，请重新输入";
 }`}</CodeBlock>
             </div>
         </div>
@@ -130,7 +131,17 @@ function FallthroughDemo() {
 
     const trace = hasBreak
         ? ['命中 case 2', '输出：读取存档', '遇到 break，离开 switch']
-        : ['命中 case 2', '输出：读取存档', '继续进入 case 3', '输出：设置音量', '继续进入 default', '输出：无效选项'];
+        : ['命中 case 2', '输出：读取存档', '没有 break，继续执行 case 3', '输出：设置音量', '遇到 case 3 的 break，离开 switch'];
+    const code = `int choice = 2;
+switch (choice) {
+  case 2:
+    cout << "读取存档";
+${hasBreak ? '    break;\n' : ''}  case 3:
+    cout << "设置音量";
+    break;
+  default:
+    cout << "无效选项";
+}`;
 
     return (
         <div className="rounded-2xl border border-amber-200 bg-amber-50 p-6">
@@ -147,17 +158,7 @@ function FallthroughDemo() {
                 </button>
             </div>
             <div className="grid gap-5 lg:grid-cols-2">
-                <CodeBlock>{hasBreak ? `case 2:
-  cout << "读取存档";
-  break;
-case 3:
-  cout << "设置音量";
-  break;` : `case 2:
-  cout << "读取存档";
-case 3:
-  cout << "设置音量";
-default:
-  cout << "无效选项";`}</CodeBlock>
+                <CodeBlock>{code}</CodeBlock>
                 <ol className="space-y-3">
                     {trace.map((step, index) => (
                         <li key={`${step}-${index}`} className="flex gap-3 rounded-xl bg-white p-3 text-sm font-bold text-slate-700 ring-1 ring-amber-100">
@@ -175,7 +176,7 @@ default:
 
 function ChoiceGuide() {
     const rows = [
-        ['switch', '一个变量等于若干固定值', '菜单编号、星期、等级、字符选项'],
+        ['switch', '一个整数或字符表达式等于若干固定值', '菜单编号、星期、等级、字符选项'],
         ['if / else if', '条件是范围或复杂逻辑', '分数区间、多个变量组合、大小比较'],
     ];
 
@@ -246,7 +247,7 @@ switch (choice) {
                                     执行路线
                                 </h4>
                                 <ol className="space-y-3 text-sm font-semibold text-slate-700">
-                                    {['计算 choice 的值', '寻找匹配的 case', '从匹配处开始执行', '遇到 break 后跳出 switch'].map((step, index) => (
+                                    {['计算 choice 的值', '寻找匹配的 case', '从匹配处开始执行', '遇到 break 后跳出 switch；若没遇到则可能执行到结尾'].map((step, index) => (
                                         <li key={step} className="flex gap-3">
                                             <span className="flex h-7 w-7 shrink-0 items-center justify-center rounded-lg bg-indigo-600 text-white">{index + 1}</span>
                                             <span className="leading-7">{step}</span>
@@ -283,22 +284,22 @@ switch (choice) {
                                 prompt={'x=1，case 1: cout<<"A"; case 2: cout<<"B"; break; （case 1 没 break）输出什么？'}
                                 options={['A', 'AB（穿透到 case 2）']}
                                 correctIndex={1}
-                                explanation="case 1 没写 break，匹配后会继续往下执行 case 2 的语句，直到遇到 break。所以输出 AB。每个 case 后通常都要写 break。"
+                                explanation="case 1 没写 break，匹配后会继续执行 case 2 的语句，直到遇到 break。所以输出 AB。不需要穿透时，在分支末尾写 break。"
                                 misconception="以为匹配 case 1 执行完就自动停下。"
                             />
                             <PredictCheck
-                                prompt={'switch 能直接对 score >= 90 这种范围做判断吗？'}
-                                options={['能', '不能，switch 只能匹配等于某个固定值']}
+                                prompt={'能用 case score >= 90: 表示“分数至少 90”这个范围吗？'}
+                                options={['能', '不能，case 标签不能依赖运行时的 score']}
                                 correctIndex={1}
-                                explanation="case 后面必须是一个具体的常量值（如 case 1、case 'A'），不能写范围或条件。范围判断要用 if / else if。"
+                                explanation="case 标签必须是整数常量表达式，例如 case 1 + 1: 可以；score >= 90 依赖运行时分数，不能放在 case 后面。范围判断用 if / else if。"
                                 misconception="以为 switch 也能做范围或大小比较。"
                             />
                             <PredictCheck
-                                prompt={'case 后面能写一个变量，比如 case x: 吗？'}
-                                options={['能', '不能，case 后必须是常量']}
+                                prompt={'普通变量 int x = 2; 可以直接写 case x: 吗？'}
+                                options={['能', '不能；这里的 x 不是常量表达式']}
                                 correctIndex={1}
-                                explanation="case 标签必须是编译期常量（整数或字符常量），不能是变量或表达式。"
-                                misconception="以为 case 后面可以放任意变量或表达式。"
+                                explanation="case 标签可写整数常量表达式，如 case 1 + 1: 或用 constexpr int x = 2; case x:；普通 int x 的值在运行时才确定，不能作标签。"
+                                misconception="以为任意变量都能作 case 标签，或以为表达式一概不能用。"
                             />
                         </div>
                     </div>
@@ -308,7 +309,7 @@ switch (choice) {
                         <div>
                             <h3 className="text-3xl font-black text-slate-950">default：所有没匹配上的兜底方案</h3>
                             <p className="mt-3 text-base font-semibold leading-7 text-slate-600">
-                                default 会处理没有任何 case 命中的情况。它可以放在最后，也可以放在中间，但放在最后最清楚。
+                                没有 case 命中时，程序会从 default 开始执行。它可以放在最后，也可以放在中间；若前面的分支没写 break，也可能穿透到 default。
                             </p>
                         </div>
 
@@ -391,7 +392,7 @@ switch (choice) {
                             steps={[
                                 'op=2 命中 case 2，输出 B。',
                                 '没有 break，穿透到 case 3 输出 C，再到 default 输出 X。',
-                                '结果 BCX。要只输出 B，每个 case 末尾都要加 break。',
+                                '结果 BCX。要只输出 B，在 case 2 的输出后加 break。',
                             ]}
                         />
                         <MasteryCheck

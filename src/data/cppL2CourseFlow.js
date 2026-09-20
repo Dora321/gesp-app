@@ -26,7 +26,7 @@ const qualityByLesson = {
     accent: 'indigo',
     goals: ['读懂 switch-case 的入口匹配流程', '知道 break 如何防止穿透', '会用 default 处理异常输入'],
     deliverables: ['完成一个菜单选择程序', '写出 break 穿透对比样例', '整理 switch 与 if 的选型表'],
-    checks: ['能判断 case 命中后会执行到哪里', '能发现漏写 break 的输出陷阱', '能说明范围判断为什么更适合 if / else if'],
+    checks: ['能判断 case 命中后会执行到哪里', '能比较仅删去一个 break 前后的输出', '能说明 case 接受整数常量表达式而不接受普通变量或范围条件'],
   },
   5: {
     accent: 'indigo',
