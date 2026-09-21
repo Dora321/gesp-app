@@ -16,7 +16,7 @@ function FrequencyLab() {
 
     const counts = useMemo(() => {
         const next = Array(26).fill(0);
-        for (const char of text.toLowerCase()) {
+        for (const char of text) {
             if (char >= 'a' && char <= 'z') {
                 next[char.charCodeAt(0) - 'a'.charCodeAt(0)]++;
             }
@@ -36,8 +36,9 @@ function FrequencyLab() {
             </div>
             <div className="grid gap-5 lg:grid-cols-[0.85fr_1.15fr]">
                 <div className="rounded-xl bg-white p-5 ring-1 ring-rose-100">
-                    <label className="block text-sm font-black text-slate-700">输入小写字符串</label>
+                    <label htmlFor="frequency-text" className="block text-sm font-black text-slate-700">输入字符串</label>
                     <input
+                        id="frequency-text"
                         value={text}
                         onChange={(event) => setText(event.target.value)}
                         className="mt-3 w-full rounded-xl border border-slate-200 p-3 font-mono text-sm font-bold outline-none focus:border-rose-400"
@@ -90,14 +91,14 @@ function DedupeTracer() {
                 seen.add(c);
             }
             result.push({
-                active: first ? [2, 3, 4, 5, 6] : [2, 3, 4],
+                active: first ? [2, 3, 4, 5, 6, 7] : [2, 3, 4, 5],
                 vars: { i, 输出: out },
                 action: i === 0 ? '开始去重' : '下一个字符',
                 row: [`i = ${i}`, c, first ? 'false（没见过）' : 'true（见过）', first ? `输出 ${c}` : '跳过'],
             });
         }
         result.push({
-            active: [8],
+            active: [9],
             vars: { i: s.length, 输出: out },
             action: '退出',
             output: `cout 输出 ${out}`,
@@ -110,7 +111,8 @@ function DedupeTracer() {
             title="首次出现去重追踪器"
             code={`bool seen[26] = {false};
 
-for (int i = 0; i < s.size(); i++) {
+for (string::size_type i = 0; i < s.size(); i++) {
+  if (s[i] < 'a' || s[i] > 'z') continue;
   int id = s[i] - 'a';
   if (!seen[id]) {
     cout << s[i];
@@ -192,7 +194,7 @@ export default function CppL3Lesson9() {
             bottomSupport={<CppL3LessonSupport lessonId={9} placement="bottom" />}
             hero={{
                 title: '字符串负责提供字符，数组负责保存统计结果',
-                description: '本课把数组和字符串放在一起：字符频率、是否出现、去重输出。这是三级综合题非常常见的组合。',
+                description: '本课把数组和字符串放在一起：字符频率、是否出现、去重输出，并把字符范围检查放在数组访问之前。',
             }}
             goals={['能把字符映射成数组下标', '能用计数数组统计频率', '能用标记数组做去重和出现判断']}
             prerequisites={['定义并遍历一维数组', '用下标遍历字符串', "理解字符相减 c - 'a'"]}
@@ -210,7 +212,7 @@ export default function CppL3Lesson9() {
 string s;
 cin >> s;
 
-for (int i = 0; i < s.size(); i++) {
+for (string::size_type i = 0; i < s.size(); i++) {
   char c = s[i];
   if (c >= 'a' && c <= 'z') {
     cnt[c - 'a']++;
@@ -226,7 +228,7 @@ for (int i = 0; i < s.size(); i++) {
                         <div>
                             <h3 className="text-3xl font-black text-slate-950">去重与标记：只让第一次出现通过</h3>
                             <p className="mt-3 text-base font-semibold leading-7 text-slate-600">
-                                如果题目要求“按首次出现顺序输出不同字符”，可以用布尔数组记录某个字符是否已经出现。
+                                如果题目要求“按首次出现顺序输出不同的小写字母”，可以用布尔数组记录某个字母是否已经出现；访问数组前仍要检查字符范围。
                             </p>
                         </div>
                         <DedupeTracer />
@@ -244,7 +246,7 @@ for (int i = 0; i < s.size(); i++) {
                             headers={['任务', '数组含义', '核心动作']}
                             rows={[
                                 ['统计每个字母', 'cnt[i] 表示第 i 个字母出现次数', "cnt[c - 'a']++"],
-                                ['判断是否出现', 'seen[i] 表示第 i 个字母是否出现', 'seen[c - a] = true'],
+                                ['判断是否出现', 'seen[i] 表示第 i 个字母是否出现', "seen[c - 'a'] = true"],
                                 ['找最高频字母', 'cnt[i] 保存频率', '遍历 cnt 找最大值'],
                             ]}
                         />
@@ -261,7 +263,7 @@ for (int i = 0; i < s.size(); i++) {
                         </div>
                         <MiniQuiz items={quiz} />
                         <TransferCheck
-                            prompt={'换个例子：string s = "banana";。统计字符 a 出现几次？写出循环思路。'}
+                            prompt={'换个例子：string s = "banana"; 统计字符 a 出现几次？写出循环思路。'}
                             hint="遍历每个字符，等于目标字符就计数 +1。"
                             answer="出现 3 次。"
                             steps={[

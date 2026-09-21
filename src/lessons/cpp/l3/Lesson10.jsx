@@ -16,8 +16,8 @@ function EnumerateLab() {
 
     const pairs = useMemo(() => {
         const result = [];
-        for (let a = 1; a <= target; a++) {
-            for (let b = a; b <= target; b++) {
+        for (let a = 1; a <= Math.floor(target / 2); a++) {
+            for (let b = a; b <= target - a; b++) {
                 if (a + b === target) result.push([a, b]);
             }
         }
@@ -32,8 +32,8 @@ function EnumerateLab() {
             </div>
             <div className="grid gap-5 lg:grid-cols-[0.85fr_1.15fr]">
                 <div className="rounded-xl bg-white p-5 ring-1 ring-rose-100">
-                    <label className="block text-sm font-black text-slate-700">目标和：{target}</label>
-                    <input type="range" min="4" max="30" value={target} onChange={(event) => setTarget(Number(event.target.value))} className="mt-3 w-full" />
+                    <label htmlFor="enumerate-target" className="block text-sm font-black text-slate-700">目标和：{target}</label>
+                    <input id="enumerate-target" type="range" min="4" max="30" value={target} onChange={(event) => setTarget(Number(event.target.value))} className="mt-3 w-full" />
                     <p className="mt-3 text-xs font-bold text-slate-500">枚举 1 到目标值之间的正整数配对。</p>
                 </div>
                 <div className="rounded-xl bg-white p-5 ring-1 ring-rose-100">
@@ -132,10 +132,10 @@ function EnumeratePredictionChecks() {
                 misconception="不看题目要求，一律找到就 break。"
             />
             <PredictCheck
-                prompt={'n=10000 的两层枚举（O(n²)），大约要试多少次？'}
+                prompt={'两层都从 1 枚举到 n；n=10000 时大约要试多少对？'}
                 options={['1 万次，很快', '约 1 亿次，可能超时']}
                 correctIndex={1}
-                explanation="两层各 n 次是 n² = 10⁸ ≈ 1 亿次，对时限是危险的。n 大时两层枚举要谨慎，考虑剪枝或换算法。"
+                explanation="两层都跑 n 次时是 n² = 10⁸，即 1 亿对。实际能否通过取决于时限和每次操作成本；先估算，再决定剪枝或换算法。"
                 misconception="以为两层循环也只是几万次。"
             />
         </div>
@@ -169,7 +169,7 @@ export default function CppL3Lesson10() {
     return (
         <CppLessonShell
             lessonNumber={10}
-            lessonTitle="暴力破解 (枚举法)"
+            lessonTitle="系统枚举 (枚举法)"
             lessonSubtitle="系统地试完所有可能"
             accent="rose"
             levelTitle="C++ 高阶"
@@ -181,7 +181,7 @@ export default function CppL3Lesson10() {
             bottomSupport={<CppL3LessonSupport lessonId={10} placement="bottom" />}
             hero={{
                 title: '枚举不是乱试，而是有边界、有顺序地全部尝试',
-                description: '本课训练单层枚举、双层枚举和范围剪枝。三级很多逻辑题都可以先用枚举找到稳定解法。',
+                description: '本课训练单层枚举、双层枚举和范围缩减，先保证不漏解、不重复，再根据数据范围估算是否可行。',
             }}
             goals={['能确定枚举变量和范围', '能写出单层与双层枚举模板', '能用条件判断筛选合法答案']}
             prerequisites={['会写单层和嵌套 for 循环', '会用 if 判断条件', '理解循环边界（起点和终点）']}
@@ -229,7 +229,7 @@ for (int x = 1; x <= n; x++) {
                             headers={['优化点', '例子', '效果']}
                             rows={[
                                 ['减少重复', 'b 从 a 开始', '避免 (2,5) 和 (5,2) 重复'],
-                                ['提前停止', '找到唯一答案后 break', '少跑后面的无用情况'],
+                                ['提前停止', '题目只需任意一个答案时 break', '找到答案后不再继续'],
                                 ['缩小范围', 'a + b = n 时 b <= n - a', '减少明显超出的组合'],
                             ]}
                         />
@@ -249,9 +249,9 @@ for (int x = 1; x <= n; x++) {
                         </div>
                         <MiniQuiz items={quiz} />
                         <TransferCheck
-                            prompt="换个例子：用枚举法求两个骰子（各 1~6）点数之和等于 7 的组合有几种？写出枚举思路。"
+                            prompt="换个例子：两个骰子可区分，分别掷出 1～6。点数之和等于 7 的有序结果有几种？写出枚举思路。"
                             hint="双重循环 i=1..6、j=1..6，统计 i + j == 7 的次数。"
-                            answer="6 种：(1,6)(2,5)(3,4)(4,3)(5,2)(6,1)。"
+                            answer="6 种：(1,6)、(2,5)、(3,4)、(4,3)、(5,2)、(6,1)。"
                             steps={[
                                 '外层 i 从 1 到 6，内层 j 从 1 到 6，枚举所有点数组合。',
                                 '每对 (i, j) 判断 i + j 是否等于 7。',

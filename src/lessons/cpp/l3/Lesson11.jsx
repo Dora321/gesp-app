@@ -14,8 +14,15 @@ const sections = [
 function SimulationLab() {
     const [steps, setSteps] = useState('R R U L D');
 
-    const path = useMemo(() => {
-        const moves = steps.trim().split(/\s+/).filter(Boolean);
+    const simulation = useMemo(() => {
+        const compact = steps.replace(/\s+/g, '');
+        const invalidMove = [...compact].find((move) => !'RLUD'.includes(move));
+        const error = invalidMove
+            ? `“${invalidMove}”不是 R、L、U、D 中的指令`
+            : compact.length > 40
+                ? '演示最多处理 40 步'
+                : '';
+        const moves = error ? [] : [...compact];
         let x = 0;
         let y = 0;
         const points = [{ move: 'start', x, y }];
@@ -26,9 +33,10 @@ function SimulationLab() {
             if (move === 'D') y--;
             points.push({ move, x, y });
         }
-        return points;
+        return { error, points };
     }, [steps]);
 
+    const path = simulation.points;
     const last = path[path.length - 1];
 
     return (
@@ -39,13 +47,17 @@ function SimulationLab() {
             </div>
             <div className="grid gap-5 lg:grid-cols-[0.85fr_1.15fr]">
                 <div className="rounded-xl bg-white p-5 ring-1 ring-rose-100">
-                    <label className="block text-sm font-black text-slate-700">移动序列：R L U D，用空格分隔</label>
+                    <label htmlFor="simulation-steps" className="block text-sm font-black text-slate-700">移动序列：R、L、U、D，可连续输入或用空格分隔</label>
                     <input
+                        id="simulation-steps"
+                        aria-describedby="simulation-feedback"
                         value={steps}
                         onChange={(event) => setSteps(event.target.value.toUpperCase())}
                         className="mt-3 w-full rounded-xl border border-slate-200 p-3 font-mono text-sm font-bold outline-none focus:border-rose-400"
                     />
-                    <p className="mt-3 text-sm font-black text-rose-700">终点：({last.x}, {last.y})</p>
+                    <p id="simulation-feedback" className={`mt-3 text-sm font-black ${simulation.error ? 'text-red-700' : 'text-rose-700'}`}>
+                        {simulation.error || `终点：(${last.x}, ${last.y})`}
+                    </p>
                 </div>
                 <div className="rounded-xl bg-white p-5 ring-1 ring-rose-100">
                     <p className="text-sm font-black text-slate-500">状态变化</p>
@@ -116,7 +128,7 @@ function MoveTracer() {
             code={`string s = "RRUL";
 int x = 0, y = 0;
 
-for (int i = 0; i < s.size(); i++) {
+for (string::size_type i = 0; i < s.size(); i++) {
   if (s[i] == 'R') x++;
   if (s[i] == 'L') x--;
   if (s[i] == 'U') y++;
@@ -136,11 +148,11 @@ function SimulationPredictionChecks() {
     return (
         <div className="grid gap-4 lg:grid-cols-3">
             <PredictCheck
-                prompt={'模拟里「判断是否到终点」和「更新位置」，应该先做哪个？'}
-                options={['先判断再更新', '看规则——通常先更新状态，再判断终止']}
+                prompt={'模拟里「判断」和「更新状态」的顺序应该怎么定？'}
+                options={['所有题都先更新再判断', '按题目规则：越界可先判下一步，到达目标常在更新后判断']}
                 correctIndex={1}
-                explanation="多数题是「走一步后看到没到」，所以先更新位置再判断。顺序反了会少走或多走一步。具体要按题目规则确定。"
-                misconception="不区分「更新」和「判断」的先后，导致差一步。"
+                explanation="顺序来自规则：若越界不能移动，先计算并检查下一位置；若问走几步到达目标，则更新后判断是否到达。先把一轮操作写成明确步骤。"
+                misconception="背固定顺序，不根据规则区分边界检查和终止检查。"
             />
             <PredictCheck
                 prompt={'答题计分，答错扣 5 但分数不能低于 0，写 score -= 5; 够吗？'}
@@ -246,10 +258,14 @@ export default function CppL3Lesson11() {
                             </p>
                         </div>
                         <CodeBlock>{`for (int i = 0; i < n; i++) {
-  // 先根据规则更新状态
-  position += step;
+  // 示例规则：越界则停止，否则移动一步
+  int nextPosition = position + step;
+  if (nextPosition < left || nextPosition > right) {
+    break;
+  }
+  position = nextPosition;
 
-  // 再判断是否到达终止条件
+  // 移动后判断是否到达目标
   if (position == target) {
     cout << i + 1;
     break;
