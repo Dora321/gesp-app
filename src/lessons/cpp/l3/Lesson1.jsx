@@ -33,10 +33,11 @@ function BaseLab() {
             </div>
             <div className="grid gap-5 lg:grid-cols-[0.85fr_1.15fr]">
                 <div className="rounded-xl bg-white p-5 ring-1 ring-rose-100">
-                    <label className="block text-sm font-black text-slate-700">十进制数：{value}</label>
+                    <label htmlFor="l3-base-value" className="block text-sm font-black text-slate-700">十进制数：{value}</label>
                     <input
+                        id="l3-base-value"
                         type="range"
-                        min="1"
+                        min="0"
                         max="255"
                         value={value}
                         onChange={(event) => setValue(Number(event.target.value))}
@@ -107,19 +108,26 @@ function BasePredictionChecks() {
                 explanation="十六进制 A=10、B=11、C=12、D=13、E=14、F=15。"
                 misconception="把 A 当 10 后数错位，以为 C 是 11。"
             />
+            <PredictCheck
+                prompt={'十进制 0 用短除法转换成二进制时，应写成什么？'}
+                options={['0（直接作为特例）', '空白（没有余数就不输出）']}
+                correctIndex={0}
+                explanation="正整数可不断除 2 取余；0 不进入这个循环，应单独表示为二进制 0。八进制和十六进制的 0 也写作 0。"
+                misconception="把没有进入短除循环误当成没有表示结果。"
+            />
         </div>
     );
 }
 
 const baseMasteryItems = [
     {
-        label: '能用按权展开读懂任意进制数。',
+        label: '能用按权展开读懂二、八、十六进制的非负整数。',
         evidence: '每一位 × 进制的幂再求和。',
         retryHint: '回到按权展开。',
     },
     {
         label: '能把十进制转二进制并倒读余数。',
-        evidence: '除 2 取余，从最后一个余数倒着读。',
+        evidence: '正整数除 2 取余并倒读；0 单独写作 0。',
         retryHint: '回到短除法，记住余数要倒读。',
     },
     {
@@ -152,7 +160,7 @@ export default function CppL3Lesson1() {
                 title: '进制不是新数字，是同一个数量换了一套记号',
                 description: '三级开始会频繁出现二进制、八进制、十六进制。今天先把按权展开和短除法打稳，后面的补码和位运算才不会悬空。',
             }}
-            goals={['能用按权展开读懂任意进制数', '能把十进制整数转成二进制', '能在二、八、十六进制之间建立联系']}
+            goals={['能用按权展开读懂二、八、十六进制的非负整数', '能把十进制非负整数转成二进制', '能在二、八、十六进制之间建立联系']}
             prerequisites={['理解十进制每一位的含义', '会做整数除法和取余', '会数位拆解 n%10、n/10']}
             childrenBySection={{
                 1: <BaseLab />,
@@ -164,9 +172,14 @@ export default function CppL3Lesson1() {
                                 十进制的 372 表示 3 个百、7 个十、2 个一。二进制、八进制、十六进制也是一样，只是每一位的权重变成对应进制的幂。
                             </p>
                         </div>
-                        <CodeBlock>{`(1011)_2 = 1 * 2^3 + 0 * 2^2 + 1 * 2^1 + 1 * 2^0
-         = 8 + 0 + 2 + 1
-         = 11`}</CodeBlock>
+                        <div className="rounded-xl bg-slate-900 p-5 font-mono text-sm leading-7 text-white">
+                            <p>数学展开（不是 C++ 代码）：</p>
+                            <p>(1011)₂ = 1 × 2³ + 0 × 2² + 1 × 2¹ + 1 × 2⁰</p>
+                            <p className="pl-4">= 8 + 0 + 2 + 1 = 11</p>
+                        </div>
+                        <Callout icon={Hash} title="别把数学幂误写成 C++ 的 ^" tone="rose">
+                            上面的 2³ 表示 2 的三次方；C++ 表达式中的 <code>^</code> 是按位异或，不能用它计算乘方。此处先理解位权，编程时可逐位乘以进制累加。
+                        </Callout>
                         <CompareTable
                             headers={['进制', '每位可用数字', '权重变化']}
                             rows={[
@@ -182,7 +195,7 @@ export default function CppL3Lesson1() {
                         <div>
                             <h3 className="text-3xl font-black text-slate-950">十进制转二进制：除 2 取余，倒序读</h3>
                             <p className="mt-3 text-base font-semibold leading-7 text-slate-600">
-                                短除法每次取到的是当前最低位，所以最后要从下往上读余数。
+                                对正整数，短除法每次取到当前最低位，最后要从下往上读余数。0 不进入短除循环，二进制结果直接写 0。
                             </p>
                         </div>
                         <div className="grid gap-5 lg:grid-cols-[1fr_0.9fr]">
@@ -211,7 +224,7 @@ export default function CppL3Lesson1() {
                         <div>
                             <h3 className="text-3xl font-black text-slate-950">二、八、十六进制：按 3 位或 4 位分组</h3>
                             <p className="mt-3 text-base font-semibold leading-7 text-slate-600">
-                                因为 8 = 2^3，16 = 2^4，所以二进制和八/十六进制互转时可以直接分组。
+                                因为 8 = 2³，16 = 2⁴，所以二进制和八/十六进制互转时可以直接分组。
                             </p>
                         </div>
                         <CompareTable

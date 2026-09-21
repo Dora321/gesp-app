@@ -19,6 +19,9 @@ function MathToolLab() {
         sqrt: Math.sqrt(x).toFixed(3),
         pow: Math.pow(x, 2).toFixed(0),
         abs: Math.abs(x - y),
+        max: Math.max(x, y),
+        min: Math.min(x, y),
+        integerCeil: Math.trunc(x / y),
         ceil: Math.ceil(x / y),
         floor: Math.floor(x / y),
     }), [x, y]);
@@ -31,8 +34,9 @@ function MathToolLab() {
             </div>
             <div className="grid gap-5 lg:grid-cols-[0.85fr_1.15fr]">
                 <div className="rounded-xl bg-white p-5 ring-1 ring-amber-100">
-                    <label className="block text-sm font-black text-slate-700">x = {x}</label>
+                    <label htmlFor="l2-math-x" className="block text-sm font-black text-slate-700">x = {x}</label>
                     <input
+                        id="l2-math-x"
                         type="range"
                         min="1"
                         max="50"
@@ -40,8 +44,9 @@ function MathToolLab() {
                         onChange={(event) => setX(Number(event.target.value))}
                         className="mt-3 w-full"
                     />
-                    <label className="mt-5 block text-sm font-black text-slate-700">y = {y}</label>
+                    <label htmlFor="l2-math-y" className="mt-5 block text-sm font-black text-slate-700">y = {y}</label>
                     <input
+                        id="l2-math-y"
                         type="range"
                         min="1"
                         max="10"
@@ -52,11 +57,14 @@ function MathToolLab() {
                 </div>
                 <div className="grid gap-3 sm:grid-cols-2">
                     {[
-                        [`sqrt(x)`, result.sqrt],
-                        [`pow(x, 2)`, result.pow],
+                        [`sqrt(x)（保留 3 位小数）`, result.sqrt],
                         [`abs(x - y)`, result.abs],
-                        [`ceil(x / y)`, result.ceil],
-                        [`floor(x / y)`, result.floor],
+                        [`max(x, y)`, result.max],
+                        [`min(x, y)`, result.min],
+                        [`pow(x, 2)（拓展）`, result.pow],
+                        [`ceil(x / y)（整数先除）`, result.integerCeil],
+                        [`ceil(1.0 * x / y)（拓展）`, result.ceil],
+                        [`floor(1.0 * x / y)（拓展）`, result.floor],
                     ].map(([name, value]) => (
                         <div key={name} className="rounded-xl bg-white p-4 ring-1 ring-amber-100">
                             <div className="font-mono text-sm font-black text-amber-700">{name}</div>
@@ -65,6 +73,7 @@ function MathToolLab() {
                     ))}
                 </div>
             </div>
+            <p className="mt-4 text-sm font-semibold text-amber-900">x 和 y 在本实验中都是 int；直接写 x / y 会先做整数除法。显示的小数位数只是页面格式，不改变 C++ 函数的返回类型。</p>
         </div>
     );
 }

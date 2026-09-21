@@ -50,13 +50,13 @@ const qualityByLesson = {
     accent: 'amber',
     goals: ['能使用 abs、sqrt、max、min 解决基础题', '理解 rand/srand 的种子与伪随机序列', '能识别 pow、ceil、floor 拓展练习中的类型风险'],
     deliverables: ['完成一张基础数学函数与头文件用途卡', '写出使用 abs、max、min 的小程序', '记录一个 pow 或 sqrt 的类型转换风险案例'],
-    checks: ['能说明 abs、sqrt、max、min 的含义与所需头文件', '知道 rand 的具体输出值不能脱离实现硬背', '能解释质数判断为什么只需要枚举到平方根附近'],
+    checks: ['能说明 abs、sqrt、max、min 的含义与所需头文件', '知道 rand 的具体输出值不能脱离实现硬背', '能比较 ceil(x / y) 与 ceil(1.0 * x / y) 在整数 x、y 下的结果'],
   },
   9: {
     accent: 'blue',
     goals: ['能准确处理 n 小于 2 的边界', '能写出试除判断质数', '能解释平方根优化为什么成立'],
     deliverables: ['完成一张质数判断边界表', '写出单个数质数判断程序', '扩展成统计 1..n 质数个数的程序'],
-    checks: ['能明确 1 不是质数、2 是质数', '能说明找到任意非自身因数就可判定合数', '能说明 i * i <= n 只适用于乘积不会溢出的范围，并能用 i <= n / i 规避溢出'],
+    checks: ['能明确 0、1 不是质数而 2 是质数', '能用 49=7×7 解释平方根边界要包含等号', '能说明 i * i <= n 只适用于乘积不会溢出的范围，并能用 i <= n / i 规避溢出'],
   },
   10: {
     accent: 'emerald',

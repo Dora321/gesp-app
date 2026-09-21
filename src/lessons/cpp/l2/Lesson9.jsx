@@ -34,10 +34,11 @@ function PrimeLab() {
             </div>
             <div className="grid gap-5 lg:grid-cols-[0.85fr_1.15fr]">
                 <div className="rounded-xl bg-white p-5 ring-1 ring-blue-100">
-                    <label className="block text-sm font-black text-slate-700">待判断数字：{n}</label>
+                    <label htmlFor="l2-prime-number" className="block text-sm font-black text-slate-700">待判断数字：{n}</label>
                     <input
+                        id="l2-prime-number"
                         type="range"
-                        min="1"
+                        min="0"
                         max="80"
                         value={n}
                         onChange={(event) => setN(Number(event.target.value))}
@@ -152,7 +153,7 @@ function PrimePredictionChecks() {
     return (
         <div className="grid gap-4 lg:grid-cols-3">
             <PredictCheck
-                prompt={'判断质数把循环写成 for (int i=2; i<=n; i++)（包含 n 自己），会怎样？'}
+                prompt={'对 n ≥ 2 判断质数，把循环写成 for (int i=2; i<=n; i++)（包含 n 自己），会怎样？'}
                 options={['正常', '所有数都被判成「非质数」']}
                 correctIndex={1}
                 explanation="i 一直试到 n，n % n == 0 总成立，于是每个数都被当成有因数 → 非质数。试除范围只能到 n-1 或 i*i<=n，不含 n 本身。"
@@ -171,6 +172,13 @@ function PrimePredictionChecks() {
                 correctIndex={1}
                 explanation="n=1 时 i*i<=1 一开始就不成立，循环 0 次，isPrime 仍是 true，会错判 1 为质数。必须先 if (n<2) isPrime = false。"
                 misconception="以为不写边界，1 也能自动判成非质数。"
+            />
+            <PredictCheck
+                prompt={'n=49 时用 i <= n / i 试除，必须检查 i=7 吗？'}
+                options={['必须，49=7×7', '不用，试到 6 即可']}
+                correctIndex={0}
+                explanation="49 的两个配对因数都是 7；边界必须包含平方根。i=7 时 n/i=7，条件仍成立，能找到因数。"
+                misconception="把平方根边界写成严格小于，漏掉完全平方数。"
             />
         </div>
     );
@@ -213,7 +221,7 @@ export default function CppL2Lesson9() {
             bottomSupport={<CppL2LessonSupport lessonId={9} placement="bottom" />}
             hero={{
                 title: '质数题的核心，是找到“有没有第三个因数”',
-                description: '质数判断是二级高频题。今天从定义出发，先写稳定的试除法，再用平方根优化减少循环次数。',
+                description: '从定义出发，先写完整的试除法，再用平方根优化减少循环次数，并检查 0、1 和完全平方数的边界。',
             }}
             goals={['能准确处理 n 小于 2 的边界', '能写出试除判断质数', '能解释平方根优化为什么成立']}
             prerequisites={['理解取余 n % i 判断整除', '会写 for 循环和 break', '理解因数的概念']}
