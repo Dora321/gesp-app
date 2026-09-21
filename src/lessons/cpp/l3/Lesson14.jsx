@@ -25,10 +25,10 @@ function BaseConvertLab() {
             </div>
             <div className="grid gap-5 lg:grid-cols-[0.85fr_1.15fr]">
                 <div className="rounded-xl bg-white p-5 ring-1 ring-rose-100">
-                    <label className="block text-sm font-black text-slate-700">十进制数：{value}</label>
-                    <input type="range" min="0" max="255" value={value} onChange={(event) => setValue(Number(event.target.value))} className="mt-3 w-full" />
-                    <label className="mt-5 block text-sm font-black text-slate-700">目标进制：{base}</label>
-                    <input type="range" min="2" max="16" value={base} onChange={(event) => setBase(Number(event.target.value))} className="mt-3 w-full" />
+                    <label htmlFor="base-source-value" className="block text-sm font-black text-slate-700">十进制数：{value}</label>
+                    <input id="base-source-value" type="range" min="0" max="255" value={value} onChange={(event) => setValue(Number(event.target.value))} className="mt-3 w-full" />
+                    <label htmlFor="base-target" className="mt-5 block text-sm font-black text-slate-700">目标进制：{base}</label>
+                    <input id="base-target" type="range" min="2" max="16" value={base} onChange={(event) => setBase(Number(event.target.value))} className="mt-3 w-full" />
                 </div>
                 <div className="rounded-xl bg-white p-5 ring-1 ring-rose-100">
                     <p className="text-sm font-black text-slate-500">转换结果</p>
@@ -159,6 +159,11 @@ const baseMasteryItems = [
         evidence: "数字转字符用 digits[x]，字符转数字分数字/字母两个分支。",
         retryHint: '回到“代码模板”小节的两个工具函数。',
     },
+    {
+        label: '能在转换前验证进制、字符和结果范围。',
+        evidence: '检查 2 ≤ k ≤ 16、字符串非空、每一位小于 k，并在乘加前判断是否溢出。',
+        retryHint: '回到“其他进制转十进制”的安全模板逐项核对。',
+    },
 ];
 
 export default function CppL3Lesson14() {
@@ -178,9 +183,9 @@ export default function CppL3Lesson14() {
             bottomSupport={<CppL3LessonSupport lessonId={14} placement="bottom" />}
             hero={{
                 title: '进制转换靠两个方向：短除法和按权展开',
-                description: '本课把第 1 课的进制知识落实成代码模板，覆盖十进制转 k 进制、k 进制转十进制和十六进制字符处理。',
+                description: '本课把第 1 课的进制知识落实成代码模板，范围限定为非负整数和 2～16 进制，并补齐输入校验与溢出检查。',
             }}
-            goals={['能写十进制转 k 进制模板', '能写 k 进制转十进制模板', '能处理 A-F 这样的十六进制数字']}
+            goals={['能把非负十进制整数转为 2～16 进制', '能校验并转换合法的 2～16 进制字符串', '能处理 A-F 这样的十六进制数字']}
             childrenBySection={{
                 1: <BaseConvertLab />,
                 2: (
@@ -194,7 +199,7 @@ export default function CppL3Lesson14() {
                         <BaseConvertTracer />
                         <Callout icon={ClipboardCheck} title="别忘了 n = 0" tone="amber">
                             <code>while (n &gt; 0)</code> 对 n = 0 一轮都不执行，输出会是空串。
-                            完整模板要先特判：<code>if (n == 0) ans = "0";</code>——真题评测里 0 几乎必在测试点里。
+                            完整模板要先特判：<code>if (n == 0) ans = "0";</code>。0 是必须主动检查的边界。
                         </Callout>
                     </>
                 ),
@@ -206,20 +211,30 @@ export default function CppL3Lesson14() {
                                 可以按权展开，也可以用滚动公式：每读一位，旧答案乘以 k，再加当前位。
                             </p>
                         </div>
-                        <CodeBlock>{`int valueOf(char c) {
+                        <CodeBlock>{`#include <climits>
+#include <string>
+using namespace std;
+
+int valueOf(char c) {
   if (c >= '0' && c <= '9') return c - '0';
-  return c - 'A' + 10;
+  if (c >= 'A' && c <= 'F') return c - 'A' + 10;
+  return -1;
 }
 
-int fromBase(string s, int k) {
-  int ans = 0;
-  for (int i = 0; i < s.size(); i++) {
-    ans = ans * k + valueOf(s[i]);
+bool fromBase(const string& s, int k, long long& ans) {
+  if (k < 2 || k > 16 || s.empty()) return false;
+
+  ans = 0;
+  for (char c : s) {
+    int digit = valueOf(c);
+    if (digit < 0 || digit >= k) return false;
+    if (ans > (LLONG_MAX - digit) / k) return false;
+    ans = ans * k + digit;
   }
-  return ans;
+  return true;
 }`}</CodeBlock>
                         <Callout icon={Database} title="滚动计算更适合写代码" tone="rose">
-                            例如二进制 1011：从左到右依次得到 1、2、5、11。
+                            例如二进制 1011：从左到右依次得到 1、2、5、11。字符位值必须小于进制，所以 <code>102</code> 不是合法二进制数。
                         </Callout>
                         <div>
                             <h4 className="text-xl font-black text-slate-900">手推一遍：十六进制 2F 转十进制</h4>
@@ -254,8 +269,25 @@ int fromBase(string s, int k) {
                             ]}
                         />
                         <Callout icon={Repeat} title="模板不是死背" tone="blue">
-                            真题会改变输入形式和目标进制，但核心动作总是“取余反转”或“滚动乘加”。
+                            题目可能改变输入形式和目标进制，但核心动作仍是“取余反转”或“滚动乘加”；先按题目范围确定类型和校验条件。
                         </Callout>
+                        <CodeBlock>{`#include <algorithm>
+#include <string>
+using namespace std;
+
+string toBase(unsigned long long n, int k) {
+  const string digits = "0123456789ABCDEF";
+  if (k < 2 || k > 16) return "";
+  if (n == 0) return "0";
+
+  string ans;
+  while (n > 0) {
+    ans += digits[n % k];
+    n /= k;
+  }
+  reverse(ans.begin(), ans.end());
+  return ans;
+}`}</CodeBlock>
                         <BasePredictionChecks />
                     </>
                 ),

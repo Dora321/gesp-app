@@ -15,16 +15,19 @@ function ArrayStatsLab() {
     const [values, setValues] = useState('8 3 12 7 12 5');
 
     const stats = useMemo(() => {
-        const nums = values
-            .trim()
-            .split(/\s+/)
-            .map(Number)
-            .filter((item) => Number.isFinite(item));
+        const tokens = values.trim() ? values.trim().split(/\s+/) : [];
+        const invalidToken = tokens.find((token) => !/^[+-]?\d+$/.test(token) || Math.abs(Number(token)) > 1_000_000_000);
+        const error = invalidToken
+            ? `“${invalidToken}”不是范围内的整数`
+            : tokens.length > 50
+                ? '演示最多输入 50 个整数'
+                : '';
+        const nums = error ? [] : tokens.map(Number);
         const sum = nums.reduce((total, item) => total + item, 0);
-        const max = nums.length ? Math.max(...nums) : 0;
-        const min = nums.length ? Math.min(...nums) : 0;
+        const max = nums.length ? Math.max(...nums) : '—';
+        const min = nums.length ? Math.min(...nums) : '—';
         const evenCount = nums.filter((item) => item % 2 === 0).length;
-        return { nums, sum, max, min, evenCount, average: nums.length ? (sum / nums.length).toFixed(2) : '0.00' };
+        return { nums, sum, max, min, evenCount, error, average: nums.length ? (sum / nums.length).toFixed(2) : '—' };
     }, [values]);
 
     return (
@@ -35,13 +38,17 @@ function ArrayStatsLab() {
             </div>
             <div className="grid gap-5 lg:grid-cols-[0.9fr_1.1fr]">
                 <div className="rounded-xl bg-white p-5 ring-1 ring-rose-100">
-                    <label className="block text-sm font-black text-slate-700">输入一组整数，用空格分隔</label>
+                    <label htmlFor="array-stats-values" className="block text-sm font-black text-slate-700">输入一组整数，用空格分隔</label>
                     <textarea
+                        id="array-stats-values"
+                        aria-describedby="array-stats-feedback"
                         value={values}
                         onChange={(event) => setValues(event.target.value)}
                         className="mt-3 h-28 w-full rounded-xl border border-slate-200 p-3 font-mono text-sm font-bold outline-none focus:border-rose-400"
                     />
-                    <p className="mt-3 text-xs font-bold text-slate-500">已识别 {stats.nums.length} 个数</p>
+                    <p id="array-stats-feedback" className={`mt-3 text-xs font-bold ${stats.error ? 'text-red-700' : 'text-slate-500'}`}>
+                        {stats.error || `已识别 ${stats.nums.length} 个数；单个数范围为 -10⁹～10⁹`}
+                    </p>
                 </div>
                 <div className="grid gap-3 sm:grid-cols-2">
                     {[
@@ -111,7 +118,8 @@ function SumTracer() {
     return (
         <CodeTracer
             title="数组求和追踪器"
-            code={`int sum = 0;
+            code={`// 前提：n > 0
+long long sum = 0;
 for (int i = 0; i < n; i++) {
   sum += a[i];
 }
@@ -155,12 +163,12 @@ function ArrayOpsPredictionChecks() {
 const arrayOpsMasteryItems = [
     {
         label: '能用累计变量求和，并避开整数除法。',
-        evidence: '知道平均数要写 1.0 * sum / n，否则会被截成整数。',
+        evidence: '根据范围选择 sum 类型；确认 n > 0 后用 1.0 * sum / n。',
         retryHint: '回到“平均数的类型坑”，想想 12 / 5 等于几。',
     },
     {
         label: '能正确初始化最大值和最小值。',
-        evidence: '用 a[0] 当初值、从 i = 1 开始比较，全负数也不会出错。',
+        evidence: '先确认数组非空，再用 a[0] 当初值、从 i = 1 开始比较。',
         retryHint: '回到“为什么从 i = 1 开始”，别再把 mx 设成 0。',
     },
     {
@@ -191,9 +199,9 @@ export default function CppL3Lesson6() {
             bottomSupport={<CppL3LessonSupport lessonId={6} placement="bottom" />}
             hero={{
                 title: '数组题的第一层能力，是把一组数据稳定扫完',
-                description: '本课把数组遍历变成四个高频模板：求和、最大最小、条件计数、前缀和。三级题里，这些模板经常组合出现。',
+                description: '本课把数组遍历变成求和、最大最小、条件计数三个基础模板，并进阶学习前缀和。',
             }}
-            goals={['能用累计变量求和和平均数', '能正确初始化最大值和最小值', '能理解前缀和的区间查询思路']}
+            goals={['能用累计变量安全求和和平均数', '能在非空数组中正确初始化最大值和最小值', '能进阶理解前缀和的区间查询思路']}
             prerequisites={['定义并遍历一维数组', '写 for 循环累加', '分清整数除法和小数除法']}
             childrenBySection={{
                 1: <ArrayStatsLab />,
@@ -208,6 +216,7 @@ export default function CppL3Lesson6() {
                         <SumTracer />
                         <Callout icon={Sigma} title="平均数的类型坑" tone="rose">
                             如果写 <code>sum / n</code>，两个都是整数时会做整数除法。需要写 <code>1.0 * sum / n</code>。
+                            计算前还要保证 <code>n &gt; 0</code>；数据范围较大时用 <code>long long</code> 保存总和。
                         </Callout>
                     </>
                 ),
@@ -227,14 +236,14 @@ for (int i = 1; i < n; i++) {
   if (a[i] < mn) mn = a[i];
 }`}</CodeBlock>
                         <Callout icon={Gauge} title="为什么从 i = 1 开始？" tone="blue">
-                            因为 <code>a[0]</code> 已经被用作初始答案了，后面只需要检查剩下的元素。
+                            因为 <code>a[0]</code> 已经被用作初始答案了，后面只需要检查剩下的元素。使用这个模板前必须确认 <code>n &gt; 0</code>。
                         </Callout>
                     </>
                 ),
                 4: (
                     <>
                         <div>
-                            <h3 className="text-3xl font-black text-slate-950">计数与前缀和：把条件和区间变简单</h3>
+                            <h3 className="text-3xl font-black text-slate-950">计数与前缀和：从基础统计到进阶区间查询</h3>
                             <p className="mt-3 text-base font-semibold leading-7 text-slate-600">
                                 条件计数适合回答“有几个满足条件”。前缀和适合快速回答“某一段的和是多少”。
                             </p>
@@ -247,14 +256,23 @@ for (int i = 1; i < n; i++) {
                                 ['区间和', 's[i]', 's[r] - s[l - 1]'],
                             ]}
                         />
-                        <CodeBlock>{`// 1-based 前缀和模板
-s[0] = 0;
+                        <CodeBlock>{`// 1-based 前缀和模板：固定容量，先检查实际长度
+const int MAX_N = 1000;
+int n;
+cin >> n;
+if (n < 1 || n > MAX_N) return 0;
+
+long long prefix[MAX_N + 1] = {};
 for (int i = 1; i <= n; i++) {
-  cin >> a[i];
-  s[i] = s[i - 1] + a[i];
+  long long value;
+  cin >> value;
+  prefix[i] = prefix[i - 1] + value;
 }
 
-cout << s[r] - s[l - 1];`}</CodeBlock>
+int l, r;
+cin >> l >> r;
+if (l < 1 || l > r || r > n) return 0;
+cout << prefix[r] - prefix[l - 1];`}</CodeBlock>
                         <ArrayOpsPredictionChecks />
                     </>
                 ),
@@ -268,7 +286,7 @@ cout << s[r] - s[l - 1];`}</CodeBlock>
                         </div>
                         <MiniQuiz items={quiz} />
                         <TransferCheck
-                            prompt="换个例子：int a[5] = {4, 9, 2, 9, 1};。写出「找最大值」的循环思路，并说出最大值是几、第一次出现在哪个下标。"
+                            prompt="换个例子：int a[5] = {4, 9, 2, 9, 1}; 写出「找最大值」的循环思路，并说出最大值是几、第一次出现在哪个下标。"
                             hint="先假设第 0 个最大，遍历时遇到更大的（严格 >）才更新下标。"
                             answer="最大值 9，第一次出现在下标 1。"
                             steps={[
