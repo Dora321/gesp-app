@@ -33,17 +33,19 @@ function PatternLab() {
             </div>
             <div className="grid gap-5 lg:grid-cols-[0.85fr_1.15fr]">
                 <div className="rounded-xl bg-white p-5 ring-1 ring-rose-100">
-                    <label className="block text-sm font-black text-slate-700">尺寸：{size}</label>
-                    <input type="range" min="2" max="9" value={size} onChange={(event) => setSize(Number(event.target.value))} className="mt-3 w-full" />
+                    <label htmlFor="l3-pattern-size" className="block text-sm font-black text-slate-700">尺寸：{size}</label>
+                    <input id="l3-pattern-size" type="range" min="2" max="9" value={size} onChange={(event) => setSize(Number(event.target.value))} className="mt-3 w-full" />
                     <div className="mt-5 grid grid-cols-3 gap-2">
                         {[
-                            ['square', '矩形'],
-                            ['triangle', '三角'],
-                            ['pyramid', '金字塔'],
+                            ['square', '正方形'],
+                            ['triangle', '左下三角'],
+                            ['pyramid', '居中金字塔'],
                         ].map(([id, label]) => (
                             <button
                                 key={id}
+                                type="button"
                                 onClick={() => setMode(id)}
+                                aria-pressed={mode === id}
                                 className={`rounded-lg px-3 py-2 text-sm font-black ${mode === id ? 'bg-rose-600 text-white' : 'bg-slate-100 text-slate-700'}`}
                             >
                                 {label}
@@ -88,7 +90,7 @@ function TriangleTracer() {
                 active: [0, 1, 4, 7],
                 vars: { i, 空格: spaces, 星号: stars },
                 action: i === 1 ? '画第 1 行' : '下一行',
-                row: [`第 ${i} 行`, spaces, stars, `${'·'.repeat(spaces)}${'★'.repeat(stars)}`],
+                row: [`第 ${i} 行`, spaces, stars, `${'·'.repeat(spaces)}${'*'.repeat(stars)}`],
             });
         }
         return result;
@@ -150,7 +152,7 @@ const patternMasteryItems = [
     },
     {
         label: '能写出常见图形的行规律表。',
-        evidence: '矩形 n、左三角 i、倒三角 n-i+1、金字塔空格 n-i 星号 2i-1。',
+        evidence: 'n×n 正方形每行 n 个、左三角 i 个、倒三角 n-i+1 个；金字塔空格 n-i 个、星号 2i-1 个。',
         retryHint: '回到“矩形与三角形”的对照表默写一遍。',
     },
     {
@@ -181,10 +183,10 @@ export default function CppL3Lesson13() {
             topSupport={<CppL3LessonSupport lessonId={13} />}
             bottomSupport={<CppL3LessonSupport lessonId={13} placement="bottom" />}
             hero={{
-                title: '图形打印题考的不是画画，而是行列规律',
-                description: '本课复习二级的嵌套循环和图形打印，再把每行的数量规律迁移到数字图形与对齐问题。',
+                title: '从二级图形复习，走向行列条件',
+                description: '先复习二级的嵌套循环与按行计数，再用空格公式和坐标条件画居中、镂空图形。数字图形作为选做迁移。',
             }}
-            goals={['能用外层循环控制行', '能用内层循环控制每行字符数', '能处理空格对齐和换行']}
+            goals={['能复习嵌套循环的行列规律', '能推导金字塔的空格与星号数', '能用行列条件画镂空边框']}
             childrenBySection={{
                 1: <PatternLab />,
                 2: (
@@ -198,7 +200,7 @@ export default function CppL3Lesson13() {
                         <CompareTable
                             headers={['图形', '第 i 行星号数', '内层循环']}
                             rows={[
-                                ['n x n 矩形', 'n', 'j <= n'],
+                                ['n × n 正方形', 'n', 'j <= n'],
                                 ['左下三角', 'i', 'j <= i'],
                                 ['倒三角', 'n - i + 1', 'j <= n - i + 1'],
                             ]}
@@ -223,11 +225,10 @@ for (int i = 1; i <= n; i++) {
   }
   cout << endl;
 }`}</CodeBlock>
-                            <CodeBlock>{`n = 4 的输出：
-1
-12
-123
-1234`}</CodeBlock>
+                            <div>
+                                <p className="mb-2 text-sm font-bold text-slate-700">n = 4 的输出</p>
+                                <pre className="overflow-x-auto rounded-xl bg-slate-950 p-4 font-mono text-sm leading-7 text-white">{'1\n12\n123\n1234'}</pre>
+                            </div>
                         </div>
                     </>
                 ),
@@ -281,12 +282,10 @@ for (int i = 1; i <= n; i++) {
   }
   cout << endl;
 }`}</CodeBlock>
-                            <CodeBlock>{`n = 5 的输出：
-*****
-*   *
-*   *
-*   *
-*****`}</CodeBlock>
+                            <div>
+                                <p className="mb-2 text-sm font-bold text-slate-700">n = 5 的输出</p>
+                                <pre className="overflow-x-auto rounded-xl bg-slate-950 p-4 font-mono text-sm leading-7 text-white">{'*****\n*   *\n*   *\n*   *\n*****'}</pre>
+                            </div>
                         </div>
                         <CompareTable
                             headers={['拆法', '适用图形', '思考方式']}
