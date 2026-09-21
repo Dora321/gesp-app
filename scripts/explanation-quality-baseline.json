@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-09-06",
+  "generatedAt": "2026-09-21",
   "policy": "棘轮：既不允许出现新的问题条目，也不允许修好之后不收紧基线。数量下降时 --check 会失败并提示重新记录，使 limits 只降不升，债务趋势留在 git 历史里。",
   "limits": {
     "template": 374,
@@ -7,7 +7,7 @@
     "short": 73,
     "truncated": 39,
     "contradictory": 6,
-    "overlong": 18
+    "overlong": 17
   },
   "issues": {
     "template": [
@@ -528,8 +528,7 @@
       "2026-03-l2:Q5",
       "2026-03-l2:Q7",
       "2026-03-l2:Q8",
-      "2026-03-l2:Q9",
-      "2026-03-l3:Q15"
+      "2026-03-l2:Q9"
     ]
   }
 }
