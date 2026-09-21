@@ -21,6 +21,9 @@ function CaesarLab() {
             if (char >= 'a' && char <= 'z') {
                 const id = char.charCodeAt(0) - 'a'.charCodeAt(0);
                 result += String.fromCharCode('a'.charCodeAt(0) + ((id + shift) % 26));
+            } else if (char >= 'A' && char <= 'Z') {
+                const id = char.charCodeAt(0) - 'A'.charCodeAt(0);
+                result += String.fromCharCode('A'.charCodeAt(0) + ((id + shift) % 26));
             } else {
                 result += char;
             }
@@ -36,20 +39,21 @@ function CaesarLab() {
             </div>
             <div className="grid gap-5 lg:grid-cols-[0.85fr_1.15fr]">
                 <div className="rounded-xl bg-white p-5 ring-1 ring-rose-100">
-                    <label className="block text-sm font-black text-slate-700">明文</label>
+                    <label htmlFor="caesar-plain" className="block text-sm font-black text-slate-700">明文</label>
                     <input
+                        id="caesar-plain"
                         value={text}
-                        onChange={(event) => setText(event.target.value.toLowerCase())}
+                        onChange={(event) => setText(event.target.value)}
                         className="mt-3 w-full rounded-xl border border-slate-200 p-3 font-mono text-sm font-bold outline-none focus:border-rose-400"
                     />
-                    <label className="mt-5 block text-sm font-black text-slate-700">偏移量：{shift}</label>
-                    <input type="range" min="0" max="25" value={shift} onChange={(event) => setShift(Number(event.target.value))} className="mt-3 w-full" />
+                    <label htmlFor="caesar-shift" className="mt-5 block text-sm font-black text-slate-700">偏移量：{shift}</label>
+                    <input id="caesar-shift" type="range" min="0" max="25" value={shift} onChange={(event) => setShift(Number(event.target.value))} className="mt-3 w-full" />
                 </div>
                 <div className="rounded-xl bg-white p-5 ring-1 ring-rose-100">
                     <p className="text-sm font-black text-slate-500">密文</p>
                     <p className="mt-2 break-all font-mono text-3xl font-black text-rose-700">{encrypted || '空'}</p>
                     <p className="mt-4 text-sm font-semibold leading-7 text-slate-600">
-                        每个小写字母向后移动 {shift} 位，超过 z 后从 a 继续。
+                        大小写字母分别在自己的字母表中向后移动 {shift} 位；数字、空格和标点原样保留。
                     </p>
                 </div>
             </div>
@@ -200,7 +204,7 @@ int main() {
                             ]}
                         />
                         <p className="text-sm font-semibold leading-6 text-slate-600">
-                            所以 <code>attack</code> 加密后是 <code>dwwdfn</code>——这正是凯撒大帝当年用来传军令的写法。
+                            所以 <code>attack</code> 加密后是 <code>dwwdfn</code>。这是用来练习循环位移的课堂例子。
                         </p>
                     </>
                 ),
@@ -237,7 +241,7 @@ int main() {
                         />
                         <Callout icon={RotateCw} title="C++ 的负数取模和数学课不一样" tone="amber">
                             数学里模运算结果非负，但 C++ 的 <code>%</code> 结果符号跟随被除数：<code>-2 % 26</code> 等于 <code>-2</code>。
-                            这就是解密公式里 <code>+ 26</code> 一步都不能省的原因，也是三级选择题的常客。
+                            在本课约定 <code>0 ≤ k ≤ 25</code> 时，<code>+ 26</code> 可避免负余数；若 k 超出此范围，先规范偏移量。
                         </Callout>
                     </>
                 ),
@@ -246,7 +250,7 @@ int main() {
                         <div>
                             <h3 className="text-3xl font-black text-slate-950">综合模板：只处理题目要求的字符</h3>
                             <p className="mt-3 text-base font-semibold leading-7 text-slate-600">
-                                真题里常出现大小写、数字、空格、标点混合。最稳的写法是先分类，再分别处理。
+                                题目可能给出大小写、数字、空格、标点混合的字符串。先按题意分类，再分别处理。
                             </p>
                         </div>
                         <CompareTable
@@ -257,7 +261,8 @@ int main() {
                                 ['其他字符', 'else', '通常原样保留'],
                             ]}
                         />
-                        <CodeBlock>{`for (int i = 0; i < s.size(); i++) {
+                        <CodeBlock>{`// 前提：0 <= k && k <= 25
+for (string::size_type i = 0; i < s.size(); i++) {
   char c = s[i];
   if (c >= 'a' && c <= 'z') {
     s[i] = 'a' + (c - 'a' + k) % 26;
@@ -283,7 +288,7 @@ int main() {
                         <TransferCheck
                             prompt={'换个例子：把 "hello" 用 k = 5 加密（全小写）。逐字符写出编号和结果。'}
                             hint="h→7、e→4、l→11、o→14；每个编号 +5 再对 26 取模，最后转回字符。"
-                            answer='密文是 "mjqqt"。这正是三级真题《凯撒密码》的样例。'
+                            answer='密文是 "mjqqt"。'
                             steps={[
                                 'h：(7 + 5) % 26 = 12 → m。',
                                 'e：(4 + 5) % 26 = 9 → j。',
@@ -298,8 +303,7 @@ int main() {
                             items={caesarMasteryItems}
                         />
                         <Callout icon={LockKeyhole} title="真题连接" tone="rose">
-                            凯撒密码是三级编程题的常客：2025 年 6 月和 2026 年 3 月的三级卷都考了它（样例正是 hello → mjqqt）。
-                            底部的真题链接可以直接开卷练习。
+                            真题可能要求从已知明文和密文推导偏移量，再解密新的字符串。先读清大小写、输入行数和偏移量来源，再迁移本课的字符循环位移方法。
                         </Callout>
                         <Callout icon={ClipboardCheck} title="课后任务" tone="slate">
                             <ul className="space-y-2">

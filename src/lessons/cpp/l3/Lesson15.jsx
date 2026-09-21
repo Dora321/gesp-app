@@ -30,15 +30,16 @@ function StrategyLab() {
             </div>
             <div className="grid gap-5 lg:grid-cols-[0.9fr_1.1fr]">
                 <div className="rounded-xl bg-white p-5 ring-1 ring-rose-100">
-                    <label className="block text-sm font-black text-slate-700">题目特征</label>
+                    <label htmlFor="strategy-feature" className="block text-sm font-black text-slate-700">题目特征</label>
                     <textarea
+                        id="strategy-feature"
                         value={feature}
                         onChange={(event) => setFeature(event.target.value)}
                         className="mt-3 h-28 w-full rounded-xl border border-slate-200 p-3 text-sm font-bold outline-none focus:border-rose-400"
                     />
                 </div>
                 <div className="rounded-xl bg-white p-5 ring-1 ring-rose-100">
-                    <p className="text-sm font-black text-slate-500">建议策略</p>
+                    <p className="text-sm font-black text-slate-500">关键词提示（还需核对输入、范围和输出）</p>
                     <p className="mt-3 text-2xl font-black leading-9 text-rose-700">{suggestion}</p>
                 </div>
             </div>
@@ -77,7 +78,7 @@ const masteryItems = [
     },
     {
         label: '能写出统计最高频字母的三段代码。',
-        evidence: "先遍历计数 cnt[s[i] - 'a']++，再枚举最大值，最后输出字母和次数。",
+        evidence: "先确认字符在 'a'～'z' 再计数；若没有小写字母则单独处理，最后按并列规则输出。",
         retryHint: '回到「综合样题」逐行读代码。',
     },
     {
@@ -112,9 +113,9 @@ export default function CppL3Lesson15() {
                 2: (
                     <>
                         <div>
-                            <h3 className="text-3xl font-black text-slate-950">题型识别：题面关键词会暴露工具</h3>
+                            <h3 className="text-3xl font-black text-slate-950">题型识别：用关键词提出候选方法</h3>
                             <p className="mt-3 text-base font-semibold leading-7 text-slate-600">
-                                看到题不要直接写代码。先判断它更像统计、枚举、模拟、字符串处理，还是进制转换。
+                                看到题先列出可能用到的工具，再核对输入范围、输出要求和多个工具的组合。关键词只能提示方向，不能代替读题。
                             </p>
                         </div>
                         <CompareTable
@@ -137,20 +138,12 @@ export default function CppL3Lesson15() {
                             </p>
                         </div>
                         <div className="grid gap-5 lg:grid-cols-[1fr_0.9fr]">
-                            <CodeBlock>{`// 综合题草稿模板
-// 1. 读入数据
-// 2. 初始化状态或数组
-// 3. 按规则循环处理
-// 4. 输出答案
-
-int n;
-cin >> n;
-
-for (int i = 0; i < n; i++) {
-  // process
-}
-
-cout << ans;`}</CodeBlock>
+                            <CodeBlock>{`伪代码（先描述步骤，再转成 C++）
+读入题目要求的数据
+检查数据范围与特殊输入
+初始化计数或状态
+按题目顺序遍历、判断并更新
+按照并列规则与输出格式给出答案`}</CodeBlock>
                             <StepList steps={[
                                 '把输入变量列出来',
                                 '把中间状态命名',
@@ -158,32 +151,47 @@ cout << ans;`}</CodeBlock>
                                 '检查边界样例',
                             ]} />
                         </div>
+                        <CompareTable
+                            headers={['描述方式', '本课例子', '用途']}
+                            rows={[
+                                ['自然语言', '逐个检查字符，统计小写字母', '先说清规则和边界'],
+                                ['流程图', '读入 → 判字符范围 → 计数 → 找最大 → 输出', '看清判断与循环的先后'],
+                                ['伪代码', "若字符在 'a'～'z'，则对应次数加一", '落笔编码前检查步骤是否齐全'],
+                            ]}
+                        />
                     </>
                 ),
                 4: (
                     <>
                         <div>
-                            <h3 className="text-3xl font-black text-slate-950">综合样题：统计字符串中最高频字母</h3>
+                            <h3 className="text-3xl font-black text-slate-950">综合样题：统计字符串中最高频小写字母</h3>
                             <p className="mt-3 text-base font-semibold leading-7 text-slate-600">
-                                这道题同时用到字符串遍历、字符映射、计数数组和枚举最大值。
+                                读入一整行，可含空格和非小写字符；只统计 <code>a</code>～<code>z</code>。并列时输出字典序最小者；没有小写字母时输出“无小写字母”。
                             </p>
                         </div>
-                        <CodeBlock>{`string s;
-cin >> s;
+                        <CodeBlock>{`#include <iostream>
+#include <string>
+using namespace std;
 
-int cnt[26] = {0};
-for (int i = 0; i < s.size(); i++) {
-  cnt[s[i] - 'a']++;
-}
+int main() {
+  string s;
+  getline(cin, s);
+  int cnt[26] = {};
+  for (char c : s) {
+    if (c >= 'a' && c <= 'z') cnt[c - 'a']++;
+  }
 
-int best = 0;
-for (int i = 1; i < 26; i++) {
-  if (cnt[i] > cnt[best]) best = i;
-}
-
-cout << char('a' + best) << " " << cnt[best];`}</CodeBlock>
+  int best = -1;
+  for (int i = 0; i < 26; i++) {
+    if (cnt[i] > 0 && (best == -1 || cnt[i] > cnt[best])) {
+      best = i;
+    }
+  }
+  if (best == -1) cout << "无小写字母\\n";
+  else cout << char('a' + best) << " " << cnt[best] << '\\n';
+}`}</CodeBlock>
                         <Callout icon={GitBranch} title="并列规则要看题目" tone="amber">
-                            如果多个字母次数相同，题目可能要求字典序最小、最早出现、全部输出。并列规则必须单独处理。
+                            本例按 <code>a</code> 到 <code>z</code> 扫描，只有次数严格更大才更新，所以并列时保留字典序最小者。若题目改为最早出现或全部输出，需要调整逻辑。
                         </Callout>
                     </>
                 ),

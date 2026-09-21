@@ -13,9 +13,9 @@ const sections = [
 
 function ExamChecklistLab() {
     const [checked, setChecked] = useState({
-        base: true,
-        bit: true,
-        array: true,
+        base: false,
+        bit: false,
+        array: false,
         string: false,
         enum: false,
         simulate: false,
@@ -43,6 +43,8 @@ function ExamChecklistLab() {
                     {items.map(([id, label]) => (
                         <button
                             key={id}
+                            type="button"
+                            aria-pressed={checked[id]}
                             onClick={() => setChecked((current) => ({ ...current, [id]: !current[id] }))}
                             className={`rounded-xl border p-4 text-left font-black transition ${checked[id] ? 'border-emerald-200 bg-emerald-50 text-emerald-800' : 'border-slate-200 bg-white text-slate-600'}`}
                         >
@@ -52,10 +54,10 @@ function ExamChecklistLab() {
                     ))}
                 </div>
                 <div className="rounded-xl bg-white p-5 ring-1 ring-rose-100">
-                    <p className="text-sm font-black text-slate-500">完成度</p>
+                    <p className="text-sm font-black text-slate-500">自查勾选</p>
                     <p className="mt-2 text-4xl font-black text-rose-700">{done}/6</p>
                     <p className="mt-4 text-sm font-semibold leading-7 text-slate-600">
-                        未勾选的项目就是下一轮复习优先级。不要用“感觉会了”代替做题验证。
+                        每做完对应小题再自行勾选；这里只在当前页面临时记录自查，不会自动判断对错。未勾选的项目可作为下一轮复习入口。
                     </p>
                 </div>
             </div>
@@ -65,9 +67,9 @@ function ExamChecklistLab() {
 
 const quiz = [
     {
-        question: '数组长度为 n，最后一个下标是？',
+        question: '数组长度为 n 且 n > 0，最后一个有效下标是？',
         answer: 'n - 1',
-        reason: '越界是三级数组题最高频错误之一。',
+        reason: '有效下标从 0 到 n - 1；若 n = 0，就没有最后一个有效下标。',
     },
     {
         question: '字符串 find 没找到会返回什么？',
@@ -121,9 +123,9 @@ export default function CppL3Lesson16() {
             bottomSupport={<CppL3LessonSupport lessonId={16} placement="bottom" />}
             hero={{
                 title: '最后一课不是再学新知识，而是把失分点关掉',
-                description: '本课用考前清单、易错题诊疗、整卷策略和模拟卷任务，把 C++ 三级课程收束成可复习、可应考的闭环。',
+                description: '本课用考前清单、错因诊疗、整卷策略和模拟卷任务，整理三级课程的复习证据。',
             }}
-            goals={['能列出三级核心能力清单', '能识别数组、字符串、进制和模拟高频坑', '能制定模拟卷复盘流程']}
+            goals={['能列出三级核心能力清单', '能识别数组、字符串、进制和模拟的边界问题', '能制定模拟卷复盘流程']}
             childrenBySection={{
                 1: <ExamChecklistLab />,
                 2: (
@@ -131,7 +133,7 @@ export default function CppL3Lesson16() {
                         <div>
                             <h3 className="text-3xl font-black text-slate-950">考前清单：每个能力都要能做题验证</h3>
                             <p className="mt-3 text-base font-semibold leading-7 text-slate-600">
-                                三级覆盖面不算窄。复习时不要只看讲义，要用小题验证每一块能力是否真的稳定。
+                                复习时给每一块能力配一道小题。上方按钮是自主记录，只有核对答案或运行结果后再勾选才有意义。
                             </p>
                         </div>
                         <CompareTable
