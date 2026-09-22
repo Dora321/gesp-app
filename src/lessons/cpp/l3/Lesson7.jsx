@@ -15,7 +15,8 @@ function StringLab() {
     const [text, setText] = useState('gesp2026');
     const [activeIndex, setActiveIndex] = useState(0);
 
-    const chars = useMemo(() => text.split(''), [text]);
+    const isAscii = useMemo(() => /^[\x20-\x7E]*$/.test(text), [text]);
+    const chars = useMemo(() => (isAscii ? text.split('') : []), [isAscii, text]);
     const safeIndex = chars.length ? Math.min(activeIndex, chars.length - 1) : 0;
     const current = chars[safeIndex] ?? '';
 
@@ -33,33 +34,39 @@ function StringLab() {
             </div>
             <div className="grid gap-5 lg:grid-cols-[0.9fr_1.1fr]">
                 <div className="rounded-xl bg-white p-5 ring-1 ring-rose-100">
-                    <label className="block text-sm font-black text-slate-700">字符串 s</label>
+                    <label htmlFor="l3-string-index-input" className="block text-sm font-black text-slate-700">字符串 s（ASCII 演示）</label>
                     <input
+                        id="l3-string-index-input"
                         value={text}
                         onChange={handleTextChange}
                         className="mt-3 w-full rounded-xl border border-slate-200 p-3 font-mono text-sm font-bold outline-none focus:border-rose-400"
                     />
-                    <label className="mt-5 block text-sm font-black text-slate-700">下标：{safeIndex}</label>
+                    {!isAscii && <p className="mt-3 text-sm font-bold text-rose-700">本实验只演示 ASCII 单字节字符；C++ string 对 UTF-8 中文通常按多个字节计数。</p>}
+                    <label htmlFor="l3-string-index-range" className="mt-5 block text-sm font-black text-slate-700">下标：{isAscii && chars.length ? safeIndex : '不可用'}</label>
                     <input
+                        id="l3-string-index-range"
                         type="range"
                         min="0"
                         max={Math.max(0, chars.length - 1)}
                         value={safeIndex}
                         onChange={(event) => setActiveIndex(Number(event.target.value))}
                         className="mt-3 w-full"
-                        disabled={!chars.length}
+                        disabled={!isAscii || !chars.length}
                     />
                 </div>
                 <div className="rounded-xl bg-white p-5 ring-1 ring-rose-100">
-                    <p className="text-sm font-black text-slate-500">s.size() = {chars.length}</p>
+                    <p className="text-sm font-black text-slate-500">s.size() = {isAscii ? chars.length : '暂停计算'}</p>
                     <p className="mt-2 font-mono text-3xl font-black text-rose-700">
-                        {chars.length ? `s[${safeIndex}] = '${current}'` : '空字符串'}
+                        {!isAscii ? '请输入 ASCII 字符' : chars.length ? `s[${safeIndex}] = '${current}'` : '空字符串'}
                     </p>
                     <div className="mt-5 flex flex-wrap gap-2">
                         {chars.map((char, index) => (
                             <button
                                 key={`${char}-${index}`}
+                                type="button"
                                 onClick={() => setActiveIndex(index)}
+                                aria-label={`查看下标 ${index}，字符 ${char}`}
+                                aria-pressed={safeIndex === index}
                                 className={`rounded-lg px-3 py-2 font-mono text-sm font-black ${safeIndex === index ? 'bg-rose-600 text-white' : 'bg-slate-100 text-slate-700'}`}
                             >
                                 {index}:{char}
@@ -86,7 +93,12 @@ const quiz = [
     {
         question: 'cin >> s 会读入空格后面的内容吗？',
         answer: '不会',
-        reason: 'cin 遇到空白会停止，整行文本要用 getline。',
+        reason: '流提取遇到空格、制表符或换行等空白会停止，整行文本要用 getline。',
+    },
+    {
+        question: '能直接写 string s = "ab" + "cd"; 吗？',
+        answer: '不能，至少一侧先要是 string',
+        reason: '两侧都是字符串字面量时没有 std::string 的 + 运算；可写 string("ab") + "cd"。',
     },
 ];
 
@@ -117,7 +129,7 @@ function StringTraverseTracer() {
             title="字符串遍历追踪器"
             code={`string s = "hello";
 
-for (int i = 0; i < s.size(); i++) {
+for (string::size_type i = 0; i < s.size(); i++) {
   cout << i << ": " << s[i] << endl;
 }`}
             varOrder={['i', 's[i]']}
@@ -130,7 +142,7 @@ for (int i = 0; i < s.size(); i++) {
 
 function StringPredictionChecks() {
     return (
-        <div className="grid gap-4 lg:grid-cols-3">
+        <div className="grid gap-4 lg:grid-cols-2">
             <PredictCheck
                 prompt={'string s = "cat"; 最后一个字符写成 s[3] 取得到吗？'}
                 options={['取得到，是 t', '取不到，最后是 s[2]']}
@@ -159,6 +171,13 @@ function StringPredictionChecks() {
                 explanation={"s[i] 是 char，要和单引号的字符 'a' 比。\"a\" 是字符串，类型对不上。"}
                 misconception="分不清单引号字符和双引号字符串。"
             />
+            <PredictCheck
+                prompt={'下面哪个能在 C++11 中拼出 "abcd"？'}
+                options={['"ab" + "cd"', 'string("ab") + "cd"']}
+                correctIndex={1}
+                explanation="两个字符串字面量不能直接相加。把至少一侧变成 std::string 后，才会调用 string 的拼接运算符。"
+                misconception="看到两个文本就认为 + 一定表示字符串拼接。"
+            />
         </div>
     );
 }
@@ -176,7 +195,7 @@ const stringMasteryItems = [
     },
     {
         label: '能手推一次字符串遍历，并知道 s[i] 是一个 char。',
-        evidence: '能解释 i 从 0 走到 size()-1，每个 s[i] 是单字符，要用单引号比较。',
+        evidence: '能用 string::size_type 遍历 0 到 size()-1；每个 s[i] 是单字符，要用单引号比较。',
         retryHint: '回到字符串遍历追踪器，盯住 i = size() 时为什么停。',
     },
     {
@@ -213,21 +232,42 @@ export default function CppL3Lesson7() {
                         <div>
                             <h3 className="text-3xl font-black text-slate-950">读入与长度：string 会自动管理容量</h3>
                             <p className="mt-3 text-base font-semibold leading-7 text-slate-600">
-                                使用 string 需要包含 <code>&lt;string&gt;</code>，竞赛里常用 <code>#include &lt;bits/stdc++.h&gt;</code> 一次性包含。
+                                使用 <code>string</code> 要包含标准头文件 <code>&lt;string&gt;</code>。本课示例同时使用输入输出，因此也包含 <code>&lt;iostream&gt;</code>；<code>&lt;bits/stdc++.h&gt;</code> 不是 C++ 标准头文件，不作为可移植模板。
                             </p>
                         </div>
-                        <CodeBlock>{`string s;
+                        <CodeBlock>{`#include <iostream>
+#include <string>
+using namespace std;
+
+int main() {
+  string s;
 cin >> s;
 
 cout << s << endl;
-cout << s.size() << endl;`}</CodeBlock>
+  cout << s.size() << endl;
+  return 0;
+}`}</CodeBlock>
                         <Callout icon={FileText} title="cin 和 getline 的区别" tone="rose">
                             <ul className="space-y-2">
-                                <li><code>cin &gt;&gt; s</code>：读一个单词，遇到空格停止。</li>
+                                <li><code>cin &gt;&gt; s</code>：跳过开头空白，读到下一处空白停止。</li>
                                 <li><code>getline(cin, s)</code>：读入一整行，可以包含空格。</li>
-                                <li>若先用 <code>cin &gt;&gt; n</code> 读数字，再用 <code>getline</code> 读下一行，先处理输入中留下的换行符，否则可能读到空行。</li>
+                                <li>若先用 <code>cin &gt;&gt; n</code> 读数字，再用 <code>getline</code> 读下一行，可用 <code>cin.ignore(numeric_limits&lt;streamsize&gt;::max(), '\n')</code> 丢弃本行剩余内容；需要包含 <code>&lt;limits&gt;</code>。</li>
                             </ul>
                         </Callout>
+                        <CodeBlock>{`#include <iostream>
+#include <limits>
+#include <string>
+using namespace std;
+
+int main() {
+  int n;
+  string line;
+  cin >> n;
+  cin.ignore(numeric_limits<streamsize>::max(), '\\n');
+  getline(cin, line);
+  cout << n << " | " << line << '\\n';
+  return 0;
+}`}</CodeBlock>
                     </>
                 ),
                 3: (
@@ -253,7 +293,7 @@ cout << s.size() << endl;`}</CodeBlock>
                         <CompareTable
                             headers={['操作', '示例', '结果']}
                             rows={[
-                                ['拼接', '"ab" + "cd"', '"abcd"'],
+                                ['拼接', 'string("ab") + "cd"', '"abcd"'],
                                 ['相等判断', 's == "yes"', '完全一样为 true'],
                                 ['字典序比较', '"apple" < "banana"', 'true'],
                             ]}
@@ -299,7 +339,7 @@ if (both == "hello world") {
                             </ul>
                         </Callout>
                         <Callout icon={Search} title="下一课衔接" tone="blue">
-                            下一课进入字符串进阶操作：统计字符、大小写转换、查找和子串。它们都依赖本课的遍历模型。
+                            下一课进入字符串进阶操作：统计、转换、查找、截取、替换和分割。它们都依赖本课的读入与遍历模型。
                         </Callout>
                     </>
                 ),
