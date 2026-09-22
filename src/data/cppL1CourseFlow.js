@@ -6,9 +6,9 @@ export { cppL1Lessons } from './cppLessonTitles.js';
 const qualityByLesson = {
   1: {
     accent: 'blue',
-    goals: ['认识计算机的输入、输出、存储和操作系统', '理解 C++ 程序从代码到运行的基本流程', '能写出并运行 Hello World'],
-    deliverables: ['画出一张计算机部件关系图', '完成一份 C++ 程序结构标注', '提交一个可运行的 Hello World 程序'],
-    checks: ['能区分硬件、软件和操作系统', '能说出 main、cout、分号的作用', '能根据报错定位漏分号或拼写错误'],
+    goals: ['认识计算机的输入、输出、存储和操作系统', '理解保存、编译、运行和核对输出的基本流程', '能写出并运行 Hello World'],
+    deliverables: ['画出一张计算机部件关系图', '完成一份 C++ 程序结构标注', '提交源文件、编译结果和实际输出'],
+    checks: ['能区分硬件、软件和操作系统', '能说出 main、cout、分号的作用', '能按保存—编译—运行—核对输出的顺序操作并处理编译错误'],
   },
   2: {
     accent: 'blue',
@@ -159,7 +159,7 @@ const practiceByLesson = {
 };
 
 const reviewTasksByLesson = {
-  1: ['在本机重新敲一遍 Hello World，并修改输出文本。', '用一句话解释 #include、main 和 cout 各自负责什么。'],
+  1: ['在本机保存 hello.cpp，编译并运行；修改输出文本后重新编译，核对新结果。', '用一句话解释 #include、main 和 cout 各自负责什么。'],
   2: ['列出 5 个合法变量名和 3 个非法变量名。', '把生活中的数据分成 int、double、char、string 四类。'],
   3: ['手算 5/2、5%2、5.0/2 的结果并解释差异。', '找出一个表达式中发生类型转换的位置。'],
   4: ['给复杂表达式加括号，标出计算顺序。', '准备 2 道整除和取模混合题做手算验证。'],

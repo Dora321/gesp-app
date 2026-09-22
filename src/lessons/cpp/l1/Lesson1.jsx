@@ -28,8 +28,13 @@ const lesson1MasteryItems = [
   },
   {
     label: '能修正 Hello World 常见错误。',
-    evidence: '能发现箭头方向、双引号、分号这三类问题。',
+    evidence: '能发现输出运算符、字符串双引号、分号这三类问题。',
     retryHint: '回到“侦探找茬”，先只检查 cout 这一行。',
+  },
+  {
+    label: '能完成保存、编译和运行。',
+    evidence: '能把源文件保存为 .cpp，先编译处理语法错误，再运行并核对实际输出。',
+    retryHint: '回到“第一次运行”，按保存、编译、运行、核对输出的顺序再走一遍。',
   },
 ];
 
@@ -73,7 +78,7 @@ const CodePart = ({ text, color, tooltip }) => (
   </div>
 );
 
-const QuizCard = ({ year, question, options, hint }) => {
+const QuizCard = ({ year, question, options, hint, badge = 'GESP 真题挑战' }) => {
   const [selected, setSelected] = useState(null);
   const [showHint, setShowHint] = useState(false);
 
@@ -86,7 +91,7 @@ const QuizCard = ({ year, question, options, hint }) => {
     <div className="bg-white rounded-xl shadow-md border border-slate-200 overflow-hidden hover:shadow-lg transition-shadow">
       <div className="bg-slate-50 px-6 py-3 border-b border-slate-200 flex justify-between items-center">
         <span className="text-xs font-bold text-slate-500 uppercase tracking-wider flex items-center gap-1">
-          <TrophyIcon size={14} className="text-yellow-500" /> GESP 真题挑战
+          <TrophyIcon size={14} className="text-yellow-500" /> {badge}
         </span>
         <span className="text-xs bg-blue-100 text-blue-700 px-2 py-1 rounded-full">{year}</span>
       </div>
@@ -264,7 +269,7 @@ const QuizSpySlide = () => (
     </div>
 
     <QuizCard
-      year="2024年6月 GESP 一级"
+      year="2023年6月 GESP 一级第 1 题"
       question="以下不属于计算机输出设备的有（ ）。"
       options={[
         { id: 'A', text: '麦克风 (Microphone)', isCorrect: true },
@@ -276,7 +281,8 @@ const QuizSpySlide = () => (
     />
 
     <QuizCard
-      year="2023年3月 GESP 一级"
+      year="本课分类练习"
+      badge="课堂练习"
       question="以下不属于计算机输入设备的有（ ）。"
       options={[
         { id: 'A', text: '键盘 (Keyboard)' },
@@ -507,18 +513,101 @@ const HelloWorldSlide = () => (
         </div>
 
         <div className="bg-red-50 p-5 rounded-xl border border-red-100 hover:bg-red-100 transition-colors">
-          <div className="font-bold text-red-700 mb-3 flex items-center gap-2"><XCircle size={16} /> 错误 3</div>
+          <div className="font-bold text-amber-800 mb-3 flex items-center gap-2"><AlertTriangle size={16} /> 不应这样写</div>
           <code className="font-mono bg-white px-2 py-1 rounded border border-red-200 block mb-2 text-center text-lg">
             cout &lt;&lt; <span className="bg-red-200 text-red-800 font-bold px-1 rounded">'Hi'</span>;
           </code>
-          <div className="text-xs text-red-600 font-medium">单引号只能包一个字。</div>
+          <div className="text-xs text-amber-800 font-medium">文字串应写成 "Hi"；'Hi' 是不可移植的多字符字面量，通常会得到警告或数字，而不是字符串 Hi。</div>
         </div>
       </div>
     </div>
   </div>
 );
 
-// 9. 侦探找茬
+// 9. 第一次运行：把源代码变成结果
+const RunProgramSlide = () => {
+  const [completedSteps, setCompletedSteps] = useState(0);
+  const steps = [
+    {
+      title: '1. 保存源文件',
+      detail: '保存为 hello.cpp；.cpp 表明这是 C++ 源文件。先确认保存位置和文件名。',
+      icon: <Save size={22} />,
+    },
+    {
+      title: '2. 编译',
+      detail: '让编译器检查语法并生成可执行程序。编译成功只说明程序可以运行，还没有核对结果。',
+      icon: <FileText size={22} />,
+    },
+    {
+      title: '3. 运行',
+      detail: '启动刚生成的程序，观察控制台中的实际输出。修改代码后，要重新编译再运行。',
+      icon: <Terminal size={22} />,
+    },
+    {
+      title: '4. 核对输出',
+      detail: '逐字比较题目要求和输出，检查大小写、空格、标点与换行。',
+      icon: <CheckCircle size={22} />,
+    },
+  ];
+
+  return (
+    <div className="mx-auto flex h-full w-full max-w-4xl flex-col justify-center gap-6">
+      <div>
+        <h3 className="text-3xl font-bold text-slate-800">第一次运行：四步不能跳</h3>
+        <p className="mt-2 text-slate-600">依次点击下面四步，完成一次真实的程序运行流程。</p>
+      </div>
+
+      <div className="grid gap-3 md:grid-cols-2">
+        {steps.map((step, index) => {
+          const isDone = index < completedSteps;
+          const isNext = index === completedSteps;
+          return (
+            <button
+              key={step.title}
+              type="button"
+              aria-pressed={isDone}
+              disabled={!isNext}
+              onClick={() => setCompletedSteps(index + 1)}
+              className={`rounded-2xl border p-5 text-left transition ${isDone
+                ? 'border-green-300 bg-green-50 text-green-900'
+                : isNext
+                  ? 'border-amber-400 bg-amber-50 text-slate-900 shadow-sm hover:border-amber-500'
+                  : 'border-slate-200 bg-slate-50 text-slate-400'
+              }`}
+            >
+              <span className="mb-2 flex items-center gap-2 font-bold">{step.icon}{step.title}</span>
+              <span className="text-sm leading-relaxed">{step.detail}</span>
+            </button>
+          );
+        })}
+      </div>
+
+      <div className="grid gap-4 md:grid-cols-2">
+        <div className="rounded-xl border border-red-200 bg-red-50 p-4 text-sm text-red-900">
+          <strong className="mb-1 block">编译失败</strong>
+          先读第一条错误信息，检查对应行附近的分号、引号和括号；修正后重新编译。
+        </div>
+        <div className="rounded-xl border border-blue-200 bg-blue-50 p-4 text-sm text-blue-900">
+          <strong className="mb-1 block">能够运行但结果不对</strong>
+          回到代码和题目逐项比较，修正后再次经历“编译 → 运行 → 核对”。
+        </div>
+      </div>
+
+      <div className="flex items-center justify-between rounded-xl bg-slate-900 p-4 text-white">
+        <span>{completedSteps === steps.length ? '已走完一次完整流程，可以修改输出文字再练一次。' : `当前完成 ${completedSteps}/4 步`}</span>
+        <button
+          type="button"
+          onClick={() => setCompletedSteps(0)}
+          className="flex items-center gap-2 rounded-lg bg-white/10 px-3 py-2 text-sm hover:bg-white/20"
+        >
+          <RefreshCw size={16} /> 重新开始
+        </button>
+      </div>
+    </div>
+  );
+};
+
+// 10. 侦探找茬
 const DebugSlide = () => (
   <div className="flex flex-col items-center gap-8 max-w-3xl mx-auto w-full">
     <div className="text-center">
@@ -529,7 +618,8 @@ const DebugSlide = () => (
     </div>
 
     <QuizCard
-      year="2024年12月 GESP 一级"
+      year="字符串与输出复习"
+      badge="课堂练习"
       question={`有关下列 C++ 代码的说法，正确的是：printf("Hello,GESP!");`}
       options={[
         { id: 'A', text: '配对双引号内，不可以有汉字' },
@@ -537,7 +627,7 @@ const DebugSlide = () => (
         { id: 'C', text: 'C++ 中 printf 也是合法的输出方式', isCorrect: true },
         { id: 'D', text: '配对双引号可以相应改变为三个连续英文双引号' }
       ]}
-      hint="解析：1. 双引号里想写什么都行，汉字也可以！A错。2. C++里单引号是给单个字符用的，'Hello'是错的！B错。3. Python才用三个引号。D错。"
+      hint="解析：字符串用成对双引号；单引号主要写单个字符。printf 在 C++ 中可用，但应包含 <cstdio>，并让格式说明符与参数类型对应。"
     />
 
     <div className="w-full bg-orange-50 border border-orange-200 rounded-xl p-5 flex items-start gap-4">
@@ -547,7 +637,7 @@ const DebugSlide = () => (
       <div>
         <h4 className="font-bold text-orange-900 mb-1">冷知识：printf</h4>
         <p className="text-sm text-orange-800 leading-relaxed">
-          虽然我们主要学 <code>cout</code>，但 <code>printf</code> 是 C 语言留下的老前辈，在 C++ 里完全通用！有时候它比 cout 更快哦。
+          <code>printf</code> 来自 C 标准输入输出库，在 C++ 中可通过 <code>&lt;cstdio&gt;</code> 使用。它依赖格式说明符匹配参数类型；本课程先统一使用更适合入门的 <code>cout</code>。
         </p>
       </div>
     </div>
@@ -579,9 +669,9 @@ const MathSlide = () => (
 
       <div className="bg-blue-50 p-6 rounded-xl border border-blue-100">
         <h4 className="font-bold text-blue-800 mb-4 flex items-center gap-2">
-          <Calculator size={18} /> 🔥 烧脑真题 (24-12-1-单-4)
+          <Calculator size={18} /> 课堂挑战：先乘除，再加减
         </h4>
-        <p className="mb-4 text-base font-medium text-slate-800">表达式 <code>12 - 3 * 2 && 2</code> 的值是？</p>
+        <p className="mb-4 text-base font-medium text-slate-800">表达式 <code>12 - 3 * 2</code> 的值是？如果想先算减法，应怎样加括号？</p>
         <ol className="list-none space-y-3 text-sm text-slate-700">
           <li className="flex gap-3 bg-white p-3 rounded-lg border border-blue-100">
             <span className="bg-blue-600 text-white w-6 h-6 flex items-center justify-center rounded-full text-xs font-bold shrink-0">1</span>
@@ -589,11 +679,11 @@ const MathSlide = () => (
           </li>
           <li className="flex gap-3 bg-white p-3 rounded-lg border border-blue-100">
             <span className="bg-blue-600 text-white w-6 h-6 flex items-center justify-center rounded-full text-xs font-bold shrink-0">2</span>
-            <span><strong>简化：</strong>表达式变成了 <code>6 && 2</code>。</span>
+            <span><strong>结果：</strong><code>12 - 6</code> 得到 <strong>6</strong>。</span>
           </li>
           <li className="flex gap-3 bg-white p-3 rounded-lg border border-blue-100">
             <span className="bg-blue-600 text-white w-6 h-6 flex items-center justify-center rounded-full text-xs font-bold shrink-0">3</span>
-            <span><strong>判定：</strong>C++里，非0即为真。6是真，2也是真。真且真 = <strong>1 (True)</strong>。</span>
+            <span><strong>改变顺序：</strong>写成 <code>(12 - 3) * 2</code>，结果是 <strong>18</strong>。</span>
           </li>
         </ol>
       </div>
@@ -643,7 +733,7 @@ const SummarySlide = () => (
             <input type="checkbox" className="w-6 h-6 accent-yellow-600 mt-1 shrink-0" />
             <div>
               <strong className="text-yellow-900 block mb-1">小小打字员</strong>
-              <p className="text-sm text-yellow-800 opacity-80">在 Dev-C++ 里敲出 Hello World，并把 "Hello, world!" 改成 "Hello, [你的名字]!"。</p>
+              <p className="text-sm text-yellow-800 opacity-80">在本机 C++ 开发环境中敲出并保存 Hello World，编译运行后，把 "Hello, world!" 改成 "Hello, [你的名字]!"，再重新编译核对输出。</p>
             </div>
           </label>
           <label className="flex items-start gap-4 p-4 bg-white/60 rounded-xl border border-yellow-100 cursor-pointer hover:bg-white transition-colors">
@@ -669,11 +759,12 @@ const sections = [
   { id: 6, title: "课间休息", icon: "coffee", component: BreakSlide, category: "休息时刻" },
   { id: 7, title: "魔法工坊：咒语结构", icon: "terminal", component: StructureSlide, category: "C++ 初体验" },
   { id: 8, title: "实战：Hello World", icon: "sparkles", component: HelloWorldSlide, category: "C++ 初体验" },
-  { id: 9, title: "侦探找茬：代码纠错", icon: "alert-triangle", component: DebugSlide, category: "C++ 初体验" },
-  { id: 10, title: "进阶挑战：数学计算", icon: "calculator", component: MathSlide, category: "C++ 初体验" },
-  { id: 11, title: "总结与作业", icon: "save", component: SummarySlide, category: "C++ 初体验" },
+  { id: 9, title: "第一次运行", icon: "terminal", component: RunProgramSlide, category: "C++ 初体验" },
+  { id: 10, title: "侦探找茬：代码纠错", icon: "alert-triangle", component: DebugSlide, category: "C++ 初体验" },
+  { id: 11, title: "进阶挑战：数学计算", icon: "calculator", component: MathSlide, category: "C++ 初体验" },
+  { id: 12, title: "总结与作业", icon: "save", component: SummarySlide, category: "C++ 初体验" },
   {
-    id: 12,
+    id: 13,
     title: "离开前检查",
     icon: "check-circle",
     category: "C++ 初体验",
@@ -691,7 +782,7 @@ const sections = [
         />
         <MasteryCheck
           title="C++ L1-1 你好计算机离开前检查"
-          description="如果能分清输入输出、说出计算机基础考点、解释最小程序、修掉 Hello World 错误，就可以进入变量课。"
+          description="如果能分清输入输出、解释最小程序、完成保存—编译—运行并修掉 Hello World 错误，就可以进入变量课。"
           items={lesson1MasteryItems}
         />
       </div>
