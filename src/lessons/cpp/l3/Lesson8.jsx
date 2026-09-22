@@ -7,7 +7,7 @@ const sections = [
     { id: 1, title: '课程导入', category: '字符串处理' },
     { id: 2, title: '字符统计', category: '计数模板' },
     { id: 3, title: '大小写转换', category: 'ASCII 应用' },
-    { id: 4, title: '查找、截取与替换', category: '常用函数' },
+    { id: 4, title: '查找、截取、替换与分割', category: '常用函数' },
     { id: 5, title: '练习与作业', category: '复盘输出' },
 ];
 
@@ -88,6 +88,11 @@ const quiz = [
         question: 'replace(pos, len, text) 会怎样改变原字符串？',
         answer: '从 pos 开始移除最多 len 个字符，再插入 text',
         reason: 'replace 会直接修改原字符串；先用 find 找位置时，要检查是否为 string::npos。',
+    },
+    {
+        question: 'C++11 中按空白把一整行分成单词，用什么组合？',
+        answer: 'getline 读整行，再用 istringstream >> word 逐个读取',
+        reason: 'C++11 的 string 没有 split 成员；流提取会跳过连续空白，读不到单词时循环结束。',
     },
 ];
 
@@ -175,6 +180,27 @@ function StringAdvPredictionChecks() {
     );
 }
 
+function SplitPredictionChecks() {
+    return (
+        <div className="grid gap-4 lg:grid-cols-2">
+            <PredictCheck
+                prompt={'整行是 "  red   blue  "，用 istringstream >> word 反复读取，会得到几个单词？'}
+                options={['2 个：red、blue', '5 个：连续空格也算单词']}
+                correctIndex={0}
+                explanation="流提取跳过行首、行尾和连续的空白，只读到 red、blue 两个非空单词；全空白行得到 0 个。"
+                misconception="把空格数量当成分割后的单词数量。"
+            />
+            <PredictCheck
+                prompt={"用 getline(input, part, ',') 分割 \"a,,b\"，中间连续两个逗号会怎样？"}
+                options={['得到 a、空字符串、b', '只得到 a、b，空字段会自动跳过']}
+                correctIndex={0}
+                explanation="指定逗号为分隔符时，两枚逗号之间没有字符，因此中间会得到一个空字符串；这与按空白使用 >> 时跳过连续空白不同。"
+                misconception="把按空白提取和按指定分隔符 getline 的空字段规则混为一谈。"
+            />
+        </div>
+    );
+}
+
 const advStringMasteryItems = [
     {
         label: '能写出“先判断范围，再转换”的大小写模板。',
@@ -196,6 +222,11 @@ const advStringMasteryItems = [
         evidence: '用 string::npos 判断是否找到；找到后才能按题意调用 replace 或 substr，并说清只处理首次匹配。',
         retryHint: '别想一次写完，先拆成独立的小步骤。',
     },
+    {
+        label: '能按题目的分隔规则选择分词方法。',
+        evidence: '按空白用 istringstream >> word，连续空白会跳过；按逗号用 getline(input, part, \',\')，能保留中间空字段。',
+        retryHint: '回到分割对照，分别手推全空白行和 a,,b。',
+    },
 ];
 
 export default function CppL3Lesson8() {
@@ -203,7 +234,7 @@ export default function CppL3Lesson8() {
         <CppLessonShell
             lessonNumber={8}
             lessonTitle="字符串进阶操作"
-            lessonSubtitle="统计、转换、查找、截取与替换"
+            lessonSubtitle="统计、转换、查找、截取、替换与分割"
             accent="rose"
             levelTitle="C++ 高阶"
             levelCode="L3"
@@ -214,9 +245,9 @@ export default function CppL3Lesson8() {
             bottomSupport={<CppL3LessonSupport lessonId={8} placement="bottom" />}
             hero={{
                 title: '字符串题本质是字符遍历加规则判断',
-                description: '本课把字符串处理拆成统计、大小写转换、查找、截取与替换几个动作，再练习按题意组合使用。',
+                description: '本课把字符串处理拆成统计、大小写转换、查找、截取、替换与分割几个动作，再练习按题意组合使用。',
             }}
-            goals={['能统计数字、字母、空格等字符类型', '能按字符范围转换大小写', '能用 find、substr 和 replace 处理子串']}
+            goals={['能统计数字、字母、空格等字符类型', '能按字符范围转换大小写', '能查找、截取、替换并按规则分割字符串']}
             prerequisites={['用下标遍历字符串', '知道字符就是 ASCII 数值', '写 for + if 做条件计数']}
             childrenBySection={{
                 1: <StringTransformLab />,
@@ -291,6 +322,40 @@ int main() {
   return 0;
 }`}</CodeBlock>
                         <StringAdvPredictionChecks />
+                        <div>
+                            <h4 className="text-2xl font-black text-slate-950">字符串分割：先确定分隔符</h4>
+                            <p className="mt-3 text-base font-semibold leading-7 text-slate-600">
+                                C++11 的 <code>string</code> 没有 <code>split</code> 成员。按空格、制表符等空白分词，可先用 <code>getline</code> 读整行，再用 <code>istringstream</code> 提取；若题目指定逗号，则用带分隔符的 <code>getline</code>。
+                            </p>
+                        </div>
+                        <CodeBlock>{`#include <iostream>
+#include <sstream>
+#include <string>
+using namespace std;
+
+int main() {
+  string line;
+  getline(cin, line); // 保留行内空格
+  istringstream input(line);
+  string word;
+  int count = 0;
+  while (input >> word) {
+    cout << '[' << word << ']';
+    count++;
+  }
+  cout << " count=" << count << '\\n';
+  return 0;
+}`}</CodeBlock>
+                        <Callout icon={TextSearch} title="空白与逗号的规则不同" tone="rose">
+                            <p><code>"  red   blue  "</code> 经上面的程序得到 <code>[red][blue] count=2</code>；全空白行得到 <code>count=0</code>。逗号分隔时可写 <code>while (getline(input, part, ','))</code>，中间连续逗号会产生空字段；行末逗号后的空字段若需要保留，还须按题意单独处理。</p>
+                        </Callout>
+                        <CodeBlock>{`istringstream input("a,,b");
+string part;
+while (getline(input, part, ',')) {
+  cout << '[' << part << ']';
+}
+// 输出 [a][][b]`}</CodeBlock>
+                        <SplitPredictionChecks />
                     </>
                 ),
                 5: (
@@ -313,7 +378,7 @@ int main() {
                         />
                         <MasteryCheck
                             title="C++ L3-8 字符串进阶离开前检查"
-                            description="进阶字符串题要先判字符范围与查找结果。勾选前手推一次含数字的转换，再验证一次未找到时不调用 replace。"
+                            description="进阶字符串题要先判字符范围、查找结果和分隔规则。勾选前手推含数字的转换、未找到时的替换，以及连续分隔符的结果。"
                             items={advStringMasteryItems}
                         />
                         <Callout icon={ClipboardCheck} title="课后任务" tone="slate">
@@ -322,6 +387,7 @@ int main() {
                                 <li>读入一个字符串，把所有小写字母转成大写。</li>
                                 <li>读入一个字符串和一个关键词，判断关键词是否出现，并输出第一次出现的位置。</li>
                                 <li>找到关键词后只替换第一次出现的位置；未找到时原样输出。</li>
+                                <li>读入一整行，分别按空白和按逗号分割；记录空行、连续分隔符和行末逗号的结果。</li>
                             </ul>
                         </Callout>
                         <Callout icon={TextSearch} title="下一课衔接" tone="blue">
