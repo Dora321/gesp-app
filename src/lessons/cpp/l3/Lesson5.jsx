@@ -34,7 +34,10 @@ function ArrayIndexLab() {
                         {values.map((value, index) => (
                             <button
                                 key={`${value}-${index}`}
+                                type="button"
                                 onClick={() => setActiveIndex(index)}
+                                aria-label={`查看下标 ${index}，值 ${value}`}
+                                aria-pressed={activeIndex === index}
                                 className={`rounded-xl border p-3 text-center transition ${activeIndex === index ? 'border-rose-500 bg-rose-600 text-white shadow-lg shadow-rose-200' : 'border-slate-200 bg-white text-slate-700 hover:border-rose-200'}`}
                             >
                                 <span className="block text-xs font-black opacity-75">a[{index}]</span>
@@ -55,9 +58,9 @@ function ArrayIndexLab() {
 
 const quiz = [
     {
-        question: '长度为 n 的数组，最后一个合法下标是？',
+        question: '数组实际长度 n > 0 时，最后一个已读入元素的下标是？',
         answer: 'n - 1',
-        reason: 'C++ 数组从 0 开始编号，所以下标范围是 0 到 n - 1。',
+        reason: '下标从 0 开始，n 个已读入元素占用 0 到 n - 1；n=0 时没有已读入元素，不能访问 a[n-1]。',
     },
     {
         question: 'for (int i = 0; i < n; i++) 能访问哪些元素？',
@@ -148,8 +151,8 @@ function ArrayPredictionChecks() {
 
 const arrayMasteryItems = [
     {
-        label: '能说清长度 n 的数组合法下标是 0 到 n - 1。',
-        evidence: '随口举例：a[5] 对应 a[0] 到 a[4]，a[5] 越界。',
+        label: '能说清 n 个已读入元素的下标范围，并单独处理 n=0。',
+        evidence: 'n>0 时已读入元素是 a[0] 到 a[n-1]；n=0 时没有首尾元素，不能访问 a[0] 或 a[n-1]。',
         retryHint: '回到数组下标实验台，点最后一个格子看它的下标。',
     },
     {
@@ -163,8 +166,8 @@ const arrayMasteryItems = [
         retryHint: '回到“容量与长度的区别”，分清最多放多少和这次给多少。',
     },
     {
-        label: '能把遍历模板迁移到倒序或取首尾。',
-        evidence: '倒序就让 i 从 n-1 走到 0；取首尾就用 a[0] 和 a[n-1]。',
+        label: '能把遍历模板迁移到倒序或在非空时取首尾。',
+        evidence: '先确认 n>0；倒序让 i 从 n-1 走到 0，取首尾用 a[0] 和 a[n-1]。',
         retryHint: '先固定遍历框架，只改 i 的起点和终点。',
     },
 ];
@@ -249,6 +252,7 @@ for (int i = 0; i < n; i++) {
                                 <li><code>n</code>：这道题实际给了多少个。</li>
                                 <li>遍历时一般写 <code>i &lt; n</code>，不要写 <code>i &lt; MAXN</code>。</li>
                                 <li>读入前核对题目范围，保证 <code>0 &lt;= n &amp;&amp; n &lt;= MAXN</code>。</li>
+                                <li>当 <code>n == 0</code> 时遍历循环执行 0 次，也没有首元素或尾元素；访问前必须先判断非空。</li>
                                 <li>本级按 C++11 学习，数组容量要是编译期常量；<code>int a[n];</code> 属于变长数组，不在三级认证范围内。</li>
                             </ul>
                         </Callout>
@@ -281,8 +285,8 @@ for (int i = 0; i < n; i++) {
                         <Callout icon={ClipboardCheck} title="课后任务" tone="slate">
                             <ul className="space-y-2">
                                 <li>读入 n 个整数，原样输出。</li>
-                                <li>读入 n 个整数，倒序输出。</li>
-                                <li>读入 n 个整数，输出第一个数和最后一个数。</li>
+                                <li>读入 n 个整数并倒序输出；n=0 时不输出数组元素。</li>
+                                <li>读入 n&gt;0 个整数，输出第一个数和最后一个数；若题目允许 n=0，先按题意处理空数组。</li>
                             </ul>
                         </Callout>
                         <Callout icon={Search} title="下一课衔接" tone="blue">
