@@ -7,7 +7,7 @@ const sections = [
     { id: 1, title: '课程导入', category: '字符串处理' },
     { id: 2, title: '字符统计', category: '计数模板' },
     { id: 3, title: '大小写转换', category: 'ASCII 应用' },
-    { id: 4, title: '查找与子串', category: '常用函数' },
+    { id: 4, title: '查找、截取与替换', category: '常用函数' },
     { id: 5, title: '练习与作业', category: '复盘输出' },
 ];
 
@@ -40,8 +40,9 @@ function StringTransformLab() {
             </div>
             <div className="grid gap-5 lg:grid-cols-[0.9fr_1.1fr]">
                 <div className="rounded-xl bg-white p-5 ring-1 ring-rose-100">
-                    <label className="block text-sm font-black text-slate-700">输入字符串</label>
+                    <label htmlFor="l3-string-transform-input" className="block text-sm font-black text-slate-700">输入字符串</label>
                     <input
+                        id="l3-string-transform-input"
                         value={text}
                         onChange={(event) => setText(event.target.value)}
                         className="mt-3 w-full rounded-xl border border-slate-200 p-3 font-mono text-sm font-bold outline-none focus:border-rose-400"
@@ -55,11 +56,11 @@ function StringTransformLab() {
                     </div>
                     <div className="rounded-xl bg-white p-4 ring-1 ring-rose-100">
                         <p className="text-xs font-black uppercase text-slate-400">转大写</p>
-                        <p className="mt-1 break-all font-mono text-lg font-black text-rose-700">{result.upper || '空'}</p>
+                        <p className="mt-1 break-all font-mono text-lg font-black text-rose-700">{result.upper || '（空字符串）'}</p>
                     </div>
                     <div className="rounded-xl bg-white p-4 ring-1 ring-rose-100">
                         <p className="text-xs font-black uppercase text-slate-400">转小写</p>
-                        <p className="mt-1 break-all font-mono text-lg font-black text-blue-700">{result.lower || '空'}</p>
+                        <p className="mt-1 break-all font-mono text-lg font-black text-blue-700">{result.lower || '（空字符串）'}</p>
                     </div>
                 </div>
             </div>
@@ -83,6 +84,11 @@ const quiz = [
         answer: '截取长度',
         reason: 'pos 是开始位置，len 是要截取几个字符。',
     },
+    {
+        question: 'replace(pos, len, text) 会怎样改变原字符串？',
+        answer: '从 pos 开始移除最多 len 个字符，再插入 text',
+        reason: 'replace 会直接修改原字符串；先用 find 找位置时，要检查是否为 string::npos。',
+    },
 ];
 
 function CharCountTracer() {
@@ -105,7 +111,7 @@ function CharCountTracer() {
             });
         }
         result.push({
-            active: [9],
+            active: [3],
             vars: { i: s.length, digit, letter },
             action: '退出',
             output: `digit = ${digit}，letter = ${letter}`,
@@ -136,7 +142,7 @@ for (int i = 0; i < s.size(); i++) {
 
 function StringAdvPredictionChecks() {
     return (
-        <div className="grid gap-4 lg:grid-cols-3">
+        <div className="grid gap-4 lg:grid-cols-2">
             <PredictCheck
                 prompt={'写 s[i] -= 32 转大写，如果不先判断范围，遇到数字 5 会怎样？'}
                 options={['没事，数字不受影响', '会被改成别的字符，结果出错']}
@@ -157,6 +163,13 @@ function StringAdvPredictionChecks() {
                 correctIndex={1}
                 explanation="substr(pos, len) 第二个参数是长度，不是结束下标。所以是从下标 2 起数 3 个。"
                 misconception="把 substr 第二个参数当成结束位置。"
+            />
+            <PredictCheck
+                prompt={'string s = "banana"; 找到首次出现的 "ana" 后，执行 s.replace(pos, 3, "o")，s 变成什么？'}
+                options={['"bona"（只替换首次匹配）', '"boo"（替换所有匹配）']}
+                correctIndex={0}
+                explanation="find 首次找到 ana 的起点是 1；replace 从下标 1 移除 3 个字符并插入 o，所以 banana → bona。它不会自动继续搜索并替换其他匹配。"
+                misconception="把一次 replace 当作全局替换。"
             />
         </div>
     );
@@ -179,8 +192,8 @@ const advStringMasteryItems = [
         retryHint: '用 string::size_type 保存位置，再与 string::npos 比较。',
     },
     {
-        label: '能把统计、转换、子串组合到一道综合题。',
-        evidence: '例如先统计再转换，最后用 substr 输出一段，拆成几个小循环完成。',
+        label: '能先查找再安全替换或截取。',
+        evidence: '用 string::npos 判断是否找到；找到后才能按题意调用 replace 或 substr，并说清只处理首次匹配。',
         retryHint: '别想一次写完，先拆成独立的小步骤。',
     },
 ];
@@ -190,7 +203,7 @@ export default function CppL3Lesson8() {
         <CppLessonShell
             lessonNumber={8}
             lessonTitle="字符串进阶操作"
-            lessonSubtitle="统计、转换、查找和子串"
+            lessonSubtitle="统计、转换、查找、截取与替换"
             accent="rose"
             levelTitle="C++ 高阶"
             levelCode="L3"
@@ -201,9 +214,9 @@ export default function CppL3Lesson8() {
             bottomSupport={<CppL3LessonSupport lessonId={8} placement="bottom" />}
             hero={{
                 title: '字符串题本质是字符遍历加规则判断',
-                description: '本课把字符串处理拆成四类高频动作：统计字符、大小写转换、查找位置、截取子串。三级综合题经常把它们组合起来。',
+                description: '本课把字符串处理拆成统计、大小写转换、查找、截取与替换几个动作，再练习按题意组合使用。',
             }}
-            goals={['能统计数字、字母、空格等字符类型', '能用 ASCII 规则进行大小写转换', '能使用 find 和 substr 处理子串']}
+            goals={['能统计数字、字母、空格等字符类型', '能按字符范围转换大小写', '能用 find、substr 和 replace 处理子串']}
             prerequisites={['用下标遍历字符串', '知道字符就是 ASCII 数值', '写 for + if 做条件计数']}
             childrenBySection={{
                 1: <StringTransformLab />,
@@ -239,9 +252,9 @@ export default function CppL3Lesson8() {
                 4: (
                     <>
                         <div>
-                            <h3 className="text-3xl font-black text-slate-950">查找与子串：用函数减少手写循环</h3>
+                            <h3 className="text-3xl font-black text-slate-950">查找、截取与替换：先确认位置</h3>
                             <p className="mt-3 text-base font-semibold leading-7 text-slate-600">
-                                <code>find</code> 可以查找字符或字符串第一次出现的位置，<code>substr</code> 可以截取一段字符串。
+                                <code>find</code> 找首次出现的位置，<code>substr</code> 截取子串，<code>replace</code> 修改原字符串。先判断是否找到，再使用位置。
                             </p>
                         </div>
                         <CompareTable
@@ -250,6 +263,7 @@ export default function CppL3Lesson8() {
                                 ['find', 's.find("abc")', '查找 abc 第一次出现的位置'],
                                 ['npos', 'pos == string::npos', '表示没有找到'],
                                 ['substr', 's.substr(2, 3)', '从下标 2 开始截 3 个字符'],
+                                ['replace', 's.replace(pos, 3, "o")', '从 pos 开始移除最多 3 个字符，并插入 o；会修改 s'],
                             ]}
                         />
                         <CodeBlock>{`string s = "hello world";
@@ -260,6 +274,22 @@ if (pos != string::npos) {
 }
 
 cout << s.substr(0, 5); // hello`}</CodeBlock>
+                        <Callout icon={Search} title="只替换第一次找到的片段" tone="rose">
+                            <p>下面的完整程序输出 <code>bona</code>。如果 <code>find</code> 返回 <code>string::npos</code>，保持原串不变；一次 <code>replace</code> 不会自动替换所有匹配。</p>
+                        </Callout>
+                        <CodeBlock>{`#include <iostream>
+#include <string>
+using namespace std;
+
+int main() {
+  string s = "banana";
+  string::size_type pos = s.find("ana");
+  if (pos != string::npos) {
+    s.replace(pos, 3, "o");
+  }
+  cout << s << '\\n'; // bona
+  return 0;
+}`}</CodeBlock>
                         <StringAdvPredictionChecks />
                     </>
                 ),
@@ -283,7 +313,7 @@ cout << s.substr(0, 5); // hello`}</CodeBlock>
                         />
                         <MasteryCheck
                             title="C++ L3-8 字符串进阶离开前检查"
-                            description="进阶字符串题最怕“转换没判范围、find 没判 npos”。勾选前先用一个含数字的小例子手推一次。"
+                            description="进阶字符串题要先判字符范围与查找结果。勾选前手推一次含数字的转换，再验证一次未找到时不调用 replace。"
                             items={advStringMasteryItems}
                         />
                         <Callout icon={ClipboardCheck} title="课后任务" tone="slate">
@@ -291,6 +321,7 @@ cout << s.substr(0, 5); // hello`}</CodeBlock>
                                 <li>读入一个字符串，统计其中数字字符的个数。</li>
                                 <li>读入一个字符串，把所有小写字母转成大写。</li>
                                 <li>读入一个字符串和一个关键词，判断关键词是否出现，并输出第一次出现的位置。</li>
+                                <li>找到关键词后只替换第一次出现的位置；未找到时原样输出。</li>
                             </ul>
                         </Callout>
                         <Callout icon={TextSearch} title="下一课衔接" tone="blue">
