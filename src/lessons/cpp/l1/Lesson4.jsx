@@ -89,7 +89,7 @@ const QueueSimulator = () => {
 
   return (
     <div className="bg-white p-6 rounded-xl shadow-md border-2 border-blue-100 my-4">
-      <h3 className="font-bold text-lg text-blue-600 mb-4">🖐️ 互动实验：排队分租</h3>
+      <h3 className="font-bold text-lg text-blue-600 mb-4">🖐️ 互动实验：排队分组</h3>
       <div className="flex gap-4 mb-6">
         <label className="flex flex-col">
           <span className="text-sm font-semibold">同学总数 (a): {students}</span>
@@ -131,29 +131,36 @@ const QueueSimulator = () => {
 
 // --- 互动演示组件：时间魔法 ---
 const TimeCalculator = () => {
-  const [now, setNow] = useState(10);
-  const [pass, setPass] = useState(20);
+  const [now, setNow] = useState('10');
+  const [pass, setPass] = useState('20');
+  const validWholeNumber = value => /^(0|[1-9]\d*)$/.test(value);
+  const validNow = validWholeNumber(now) && Number(now) <= 23;
+  const validPass = validWholeNumber(pass) && Number(pass) <= 1000000;
+  const canCalculate = validNow && validPass;
+  const hour = canCalculate ? (Number(now) + Number(pass)) % 24 : null;
 
   return (
     <div className="bg-indigo-50 p-6 rounded-xl border-2 border-indigo-100 my-4">
       <h3 className="font-bold text-lg text-indigo-700 mb-4">🕰️ 时间旅行计算器</h3>
       <div className="flex gap-4 items-center mb-4">
         <div className="flex flex-col items-center">
-          <label className="text-sm font-bold">现在时间</label>
-          <input type="number" value={now} onChange={(e) => setNow(parseInt(e.target.value) || 0)} className="w-20 p-2 border rounded text-center text-xl font-bold" />
+          <label htmlFor="l1-4-current-hour" className="text-sm font-bold">现在时间（0～23 点）</label>
+          <input id="l1-4-current-hour" type="text" inputMode="numeric" value={now} onChange={(e) => setNow(e.target.value)} className="w-24 p-2 border rounded text-center text-xl font-bold" />
         </div>
         <span className="text-2xl font-bold text-gray-400">+</span>
         <div className="flex flex-col items-center">
-          <label className="text-sm font-bold">经过小时</label>
-          <input type="number" value={pass} onChange={(e) => setPass(parseInt(e.target.value) || 0)} className="w-20 p-2 border rounded text-center text-xl font-bold" />
+          <label htmlFor="l1-4-passed-hours" className="text-sm font-bold">经过小时（非负整数）</label>
+          <input id="l1-4-passed-hours" type="text" inputMode="numeric" value={pass} onChange={(e) => setPass(e.target.value)} className="w-24 p-2 border rounded text-center text-xl font-bold" />
         </div>
       </div>
 
       <div className="p-4 bg-white rounded-lg shadow-inner text-center">
-        <div className="text-gray-500 text-sm mb-2">计算公式：( {now} + {pass} ) % 24</div>
-        <div className="text-4xl font-bold text-indigo-600 font-mono">
-          {(now + pass) % 24} <span className="text-lg text-gray-600">点</span>
-        </div>
+        {canCalculate ? <>
+          <div className="text-gray-500 text-sm mb-2">计算公式：( {now} + {pass} ) % 24</div>
+          <div role="status" className="text-4xl font-bold text-indigo-600 font-mono">
+            {hour} <span className="text-lg text-gray-600">点</span>
+          </div>
+        </> : <p role="status" className="text-sm font-bold text-red-700">现在时间请输入 0～23 的整数；经过小时请输入 0～1000000 的整数。</p>}
       </div>
     </div>
   );
@@ -257,6 +264,9 @@ const Quiz = ({ question, options, correctIndex, explanation }) => {
         {options.map((opt, idx) => (
           <button
             key={idx}
+            type="button"
+            aria-pressed={selected === idx}
+            disabled={selected !== null}
             onClick={() => handleSelect(idx)}
             className={`p-3 text-left rounded-lg border-2 transition-all
                             ${selected === null ? 'border-gray-200 hover:border-purple-300 hover:bg-purple-50' : ''}
@@ -408,10 +418,10 @@ export default function App() {
       case 6:
         return (
           <div className="slide-enter">
-            <h2 className="text-3xl font-bold text-gray-800 mb-4">🕵️ 真题实战 (2023.12)</h2>
+            <h2 className="text-3xl font-bold text-gray-800 mb-4">🕵️ GESP C++ 一级 2023 年 12 月第 2 题</h2>
             <Quiz
               question="C++表达式 10 - 3 * (2 + 1) % 10 的值是（ ）。"
-              options={["0", "1", "2", "3"]}
+              options={["0", "1", "7", "10"]}
               correctIndex={1}
               explanation={`
                                 1. 先算括号：2 + 1 = 3。
@@ -429,7 +439,7 @@ export default function App() {
       case 7:
         return (
           <div className="slide-enter">
-            <h2 className="text-3xl font-bold text-gray-800 mb-4">🕵️ 真题实战 (2024.06)</h2>
+            <h2 className="text-3xl font-bold text-gray-800 mb-4">🕵️ GESP C++ 一级 2024 年 6 月第 2 题</h2>
             <div className="bg-red-100 p-3 mb-4 rounded text-red-800 font-bold text-sm">⚠️ 注意：这里有除法陷阱！</div>
             <Quiz
               question="C++表达式 3 - 3 * 3 / 5 的值是（ ）。"
@@ -453,6 +463,10 @@ export default function App() {
             <h2 className="text-3xl font-bold text-gray-800 mb-4">🕰️ 场景应用：时间的魔法</h2>
             <p className="mb-4 text-gray-600">只要涉及“转圈圈”（周期性）的问题，就召唤 <b>取模 %</b>。</p>
             <TimeCalculator />
+            <div className="mt-4 rounded-lg border border-amber-200 bg-amber-50 p-4 text-amber-950">
+              <p className="font-bold">同样的商和余数，也能换算分钟。</p>
+              <p>例如 125 分钟：<code>125 / 60 = 2</code> 小时，<code>125 % 60 = 5</code> 分钟；独立上机题请读入总分钟数并输出 <code>2 5</code>。</p>
+            </div>
             <div className="bg-gray-800 text-white p-4 rounded font-mono mt-4">
               <p>int now = 10;</p>
               <p>int pass = 20;</p>
