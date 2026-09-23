@@ -60,7 +60,7 @@ const lesson6MasteryItems = [
   {
     label: '能按优先级手推含逻辑运算的表达式。',
     evidence: '能用括号明确判断范围，并按本题的乘法、减法、&& 顺序写出最终 0/1；知道 ! 不总排在算术之后。',
-    retryHint: '回到“真题实战：优先级之争”，给每个子表达式加括号再手算。',
+    retryHint: '回到“课堂练习：优先级之争”，给每个子表达式加括号再手算。',
   },
   {
     label: '能解释 && 与 || 的短路求值。',
@@ -77,8 +77,8 @@ const sections = [
   { id: 4, title: "规则三：调皮模式 (!)", icon: "zap", category: "逻辑之门" },
   { id: 5, title: "核心机密：非零即真", icon: "key", category: "避坑指南" },
   { id: 6, title: "避坑指南：连写陷阱", icon: "alert", category: "避坑指南" },
-  { id: 7, title: "真题实战：冒牌警察", icon: "brain", category: "实战演练" },
-  { id: 8, title: "真题实战：优先级之争", icon: "calculator", category: "实战演练" },
+  { id: 7, title: "课堂练习：连写判断", icon: "brain", category: "实战演练" },
+  { id: 8, title: "课堂练习：优先级之争", icon: "calculator", category: "实战演练" },
   { id: 9, title: "总结与作业", icon: "check", category: "实战演练" },
   { id: 10, title: "离开前检查", icon: "check", category: "实战演练" }
 ];
@@ -130,6 +130,9 @@ const LogicGateSimulator = ({ type }) => {
         <div className="flex flex-col gap-4">
           <div className="flex items-center gap-3">
             <button
+              type="button"
+              aria-label="切换输入 A 的真假值"
+              aria-pressed={inputA}
               onClick={() => setInputA(!inputA)}
               className={`w-16 h-8 rounded-full transition-colors relative ${inputA ? 'bg-green-500' : 'bg-gray-300'}`}
             >
@@ -141,6 +144,9 @@ const LogicGateSimulator = ({ type }) => {
           {type !== 'NOT' && (
             <div className="flex items-center gap-3">
               <button
+                type="button"
+                aria-label="切换输入 B 的真假值"
+                aria-pressed={inputB}
                 onClick={() => setInputB(!inputB)}
                 className={`w-16 h-8 rounded-full transition-colors relative ${inputB ? 'bg-green-500' : 'bg-gray-300'}`}
               >
@@ -178,33 +184,39 @@ const LogicGateSimulator = ({ type }) => {
 
 // --- 互动组件：真假探测器 ---
 const TruthDetector = () => {
-  const [value, setValue] = useState(0);
+  const [value, setValue] = useState('0');
+  const validInput = /^-?\d+$/.test(value) && Number.isSafeInteger(Number(value)) && Math.abs(Number(value)) <= 1000000;
+  const isTrue = validInput && Number(value) !== 0;
 
   return (
     <div className="bg-indigo-50 p-6 rounded-xl border-2 border-indigo-100 my-4">
       <h3 className="font-bold text-lg text-indigo-700 mb-4">🔍 核心机密：真假探测器</h3>
       <div className="flex flex-col items-center gap-4">
-        <p className="text-sm text-gray-600">输入任意整数，看看电脑认为是真还是假？</p>
+        <p className="text-sm text-gray-600">输入绝对值不超过 1000000 的整数，观察它转换为 bool 后的真假。</p>
         <input
-          type="number"
+          type="text"
+          inputMode="numeric"
+          aria-label="待判断的整数"
           value={value}
-          onChange={(e) => setValue(parseInt(e.target.value) || 0)}
+          onChange={(e) => setValue(e.target.value)}
           className="text-3xl font-bold text-center w-40 p-2 rounded border-2 border-indigo-300 focus:outline-none focus:border-indigo-500"
         />
 
-        <div className="text-2xl font-bold mt-2 flex items-center gap-3">
+        <div role="status" className="text-2xl font-bold mt-2 flex flex-wrap items-center justify-center gap-3">
           <span>判定结果：</span>
-          {value === 0 ? (
-            <span className="bg-red-100 text-red-600 px-4 py-1 rounded-full flex items-center gap-2">
-              <X size={24} /> False (假)
-            </span>
-          ) : (
+          {!validInput ? (
+            <span className="rounded-full bg-amber-100 px-4 py-1 text-base text-amber-800">请输入绝对值不超过 1000000 的整数</span>
+          ) : isTrue ? (
             <span className="bg-green-100 text-green-600 px-4 py-1 rounded-full flex items-center gap-2">
               <Check size={24} /> True (真)
             </span>
+          ) : (
+            <span className="bg-red-100 text-red-600 px-4 py-1 rounded-full flex items-center gap-2">
+              <X size={24} /> False (假)
+            </span>
           )}
         </div>
-        <p className="text-xs text-gray-500 mt-2">记住黄金法则：<span className="font-bold">只有 0 是假，非 0 都是真！</span></p>
+        <p className="text-xs text-gray-500 mt-2">整数转换为 bool 时，<span className="font-bold">0 为假，非 0 为真</span>；空白和非法输入不参与判断。</p>
       </div>
     </div>
   );
@@ -224,6 +236,7 @@ const PitfallVisualizer = () => {
         <span className="font-bold">设 x = </span>
         <input
           type="range" min="0" max="10"
+          aria-label="连写陷阱中的 x 值"
           value={x}
           onChange={(e) => setX(parseInt(e.target.value))}
           className="accent-red-500 w-48"
@@ -290,7 +303,7 @@ const Quiz = ({ question, options, correctIndex, explanation, type = "normal" })
     <div className={`bg-white p-6 rounded-xl shadow-lg border-l-4 ${type === 'trap' ? 'border-red-500' : 'border-purple-500'} my-6`}>
       <div className="flex items-center gap-2 mb-4">
         <span className={`px-2 py-1 rounded text-xs font-bold uppercase ${type === 'trap' ? 'bg-red-100 text-red-700' : 'bg-purple-100 text-purple-700'}`}>
-          {type === 'trap' ? '⚠️ 陷阱题' : '🏆 真题实战'}
+          {type === 'trap' ? '⚠️ 课堂陷阱题' : '课堂练习'}
         </span>
       </div>
       <p className="font-bold text-lg mb-4 font-mono">{question}</p>
@@ -298,6 +311,9 @@ const Quiz = ({ question, options, correctIndex, explanation, type = "normal" })
         {options.map((opt, idx) => (
           <button
             key={idx}
+            type="button"
+            aria-pressed={selected === idx}
+            disabled={selected !== null}
             onClick={() => handleSelect(idx)}
             className={`p-3 text-left rounded-lg border-2 transition-all
               ${selected === null ? 'border-gray-200 hover:border-purple-300 hover:bg-purple-50' : ''}
@@ -313,7 +329,7 @@ const Quiz = ({ question, options, correctIndex, explanation, type = "normal" })
         ))}
       </div>
       {showExplanation && (
-        <div className="mt-4 p-4 bg-gray-50 rounded-lg text-sm border border-gray-200 slide-enter">
+        <div role="status" className="mt-4 p-4 bg-gray-50 rounded-lg text-sm border border-gray-200 slide-enter">
           <h4 className="font-bold text-gray-700 mb-2 flex items-center gap-2"><Icon name="lightbulb" size={16} /> 侦探解析：</h4>
           <div className="whitespace-pre-line text-gray-600 leading-relaxed">{explanation}</div>
         </div>
@@ -411,7 +427,7 @@ export default function App() {
         return (
           <div className="slide-enter">
             <h2 className="text-3xl font-bold text-gray-800 mb-4">🔑 核心机密：电脑怎么分真假？</h2>
-            <p className="text-lg text-gray-600 mb-4">电脑里只有数字。在 C++ 中，真和假是这样规定的：</p>
+            <p className="text-lg text-gray-600 mb-4">C++ 有 bool 类型；整数也可以转换为 bool，转换规则如下：</p>
             <TruthDetector />
             <div className="mt-6 rounded-xl border border-stone-300 bg-stone-50 p-4 text-sm text-stone-800">
               <h3 className="font-bold mb-2">短路求值：先看左边，再决定要不要看右边</h3>
@@ -448,9 +464,9 @@ export default function App() {
       case 7:
         return (
           <div className="slide-enter">
-            <h2 className="text-3xl font-bold text-gray-800 mb-4">🕵️ 真题实战：谁是冒牌警察？</h2>
+            <h2 className="text-3xl font-bold text-gray-800 mb-4">🕵️ 课堂练习：谁是冒牌警察？</h2>
             <div className="bg-gray-100 p-3 rounded mb-4 text-sm text-gray-600">
-              来源：2023年3月 GESP 一级真题
+              自编练习：识别把两个比较连写造成的误判。
             </div>
             <Quiz
               question="题目：我们要判断 a 和 b 都是 0，哪个写法是【错误】的？"
@@ -476,9 +492,9 @@ export default function App() {
       case 8:
         return (
           <div className="slide-enter">
-            <h2 className="text-3xl font-bold text-gray-800 mb-4">🧮 真题实战：谁先动手？</h2>
+            <h2 className="text-3xl font-bold text-gray-800 mb-4">🧮 课堂练习：谁先动手？</h2>
             <div className="bg-gray-100 p-3 rounded mb-4 text-sm text-gray-600">
-              来源：2024年12月 GESP 一级真题
+              自编练习：按括号、算术和逻辑运算的顺序手推。
             </div>
             <div className="bg-blue-50 p-4 rounded-lg mb-6 border-l-4 border-blue-500">
               <h4 className="font-bold text-blue-700 mb-2">本题的求值顺序：</h4>
