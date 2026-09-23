@@ -783,9 +783,9 @@ function assertCppLevel1IntroLessonsKeepMasteryChecks() {
     {
       path: 'src/lessons/cpp/l1/Lesson2.jsx',
       title: 'C++ L1-2 变量与数据离开前检查',
-      concepts: ['带名字的数据盒子', '类型、变量名、赋值号、初始值和分号', '空格/减号', 'apple + pen'],
+      concepts: ['带名字的数据盒子', '类型、变量名、赋值号、初始值和分号', '空格/减号', 'const int PASS_SCORE', 'PENCIL_PRICE * pencilCount'],
       nextPath: '/lesson/1/3',
-      message: 'C++ L1 lesson 2 should keep a mastery check for variable definition, naming rules, identifier traps, and simple output transfer.',
+      message: 'C++ L1 lesson 2 should keep a mastery check for variable definition, const values, naming rules, identifier traps, and input/output transfer.',
     },
     {
       path: 'src/lessons/cpp/l1/Lesson3.jsx',
