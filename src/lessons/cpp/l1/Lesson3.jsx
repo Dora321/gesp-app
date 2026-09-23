@@ -28,8 +28,8 @@ const lesson3MasteryItems = [
   },
   {
     label: '能解释整数除法为什么会去掉小数部分。',
-    evidence: '能说明 5 / 2 得到 2，不是 2.5，也不是四舍五入。',
-    retryHint: '回到“无情的去尾刀”，把 3.1、3.9、0.9 的结果再看一遍。',
+    evidence: '能说明 5 / 2 得到 2、-7 / 2 得到 -3；除数为 0 时不能得到有效结果。',
+    retryHint: '回到“无情的去尾刀”，分别试正数、负数和除数为 0。',
   },
   {
     label: '能让除法结果保留小数。',
@@ -195,7 +195,7 @@ const WarmupSlide = () => {
       {showCpp && (
         <div className="mt-8 p-4 bg-yellow-100 text-yellow-800 rounded-lg border border-yellow-200 max-w-2xl text-center">
           <p className="font-bold text-lg">为什么？🤔</p>
-          <p>因为 5 和 2 都是整数，C++ 认为结果也必须是整数！</p>
+          <p>因为 5 和 2 都是整数，表达式 5 / 2 会执行整数除法，得到 2。</p>
         </div>
       )}
     </div>
@@ -204,7 +204,9 @@ const WarmupSlide = () => {
 
 const IntBoxSlide = () => {
   const [inputValue, setInputValue] = useState('');
-  const intValue = inputValue === '' ? '?' : Math.floor(Number(inputValue) || 0);
+  const parsedValue = Number(inputValue);
+  const validInput = inputValue.trim() !== '' && Number.isFinite(parsedValue) && Math.abs(parsedValue) <= 1000000;
+  const intValue = validInput ? Math.trunc(parsedValue) : '?';
 
   return (
     <div className="h-full flex flex-col items-center">
@@ -214,12 +216,13 @@ const IntBoxSlide = () => {
 
       <div className="flex flex-col md:flex-row gap-10 items-center justify-center w-full mt-4">
         <div className="flex flex-col gap-4">
-          <label className="font-bold text-lg text-gray-700">给它一个数字：</label>
+          <label htmlFor="l1-3-int-input" className="font-bold text-lg text-gray-700">给它一个数字：</label>
           <input
+            id="l1-3-int-input"
             type="number"
             value={inputValue}
             onChange={(e) => setInputValue(e.target.value)}
-            placeholder="例如: 2.9"
+            placeholder="例如：-2.9"
             className="border-4 border-gray-300 rounded-xl p-4 text-3xl w-48 text-center focus:border-blue-500 outline-none transition-colors"
           />
         </div>
@@ -230,21 +233,25 @@ const IntBoxSlide = () => {
           <div className="w-64 h-64 bg-blue-500 rounded-3xl shadow-2xl flex flex-col items-center justify-center text-white relative overflow-hidden transition-transform transform group-hover:scale-105">
             <span className="absolute top-4 left-4 text-blue-200 font-mono font-bold">int a;</span>
             <div className="text-6xl font-bold z-10">{intValue}</div>
-            {inputValue.toString().includes('.') && (
+            {validInput && !Number.isInteger(parsedValue) && (
               <div className="absolute bottom-4 right-4 text-blue-200 flex items-center gap-1 bg-blue-600 px-3 py-1 rounded-full text-sm">
                 <Scissors size={14} /> 尾巴被剪掉了
               </div>
             )}
           </div>
           <div className="text-center mt-4 text-gray-600 font-medium">
-            "我有洁癖，只喜欢完整的数字！"
+            小数赋给 int 会向 0 截断；例如 -2.9 变成 -2。
           </div>
         </div>
       </div>
 
+      {!validInput && inputValue !== '' && (
+        <p role="status" className="mt-4 text-sm text-red-700">请输入 -1000000 到 1000000 之间的有限数字。</p>
+      )}
+
       <div className="mt-12 grid grid-cols-2 gap-4 max-w-2xl w-full">
-        <CodeBlock code="int a = 5;" comment="// 开心，完美匹配" valid={true} />
-        <CodeBlock code="int b = 2.9;" comment="// 不开心，变成 2" valid={false} />
+        <CodeBlock code="int a = 5;" comment="// 整数初始值，a 为 5" valid={true} />
+        <CodeBlock code="int b = 2.9;" comment="// 可以编译，转换后 b 为 2" valid={true} />
       </div>
     </div>
   );
@@ -263,8 +270,8 @@ const DoubleBoxSlide = () => {
             <li className="flex items-start gap-4">
               <div className="bg-green-100 p-2 rounded-full"><CheckCircle className="text-green-600" /></div>
               <div>
-                <h4 className="font-bold text-lg">性格非常精确</h4>
-                <p className="text-gray-600">连头发丝都数得清。</p>
+                <h4 className="font-bold text-lg">能表示带小数的数</h4>
+                <p className="text-gray-600">double 是浮点类型；很多十进制小数只能近似表示，不能保证每次计算都完全精确。</p>
               </div>
             </li>
             <li className="flex items-start gap-4">
@@ -283,29 +290,51 @@ const DoubleBoxSlide = () => {
       </div>
 
       <div className="mt-10 bg-yellow-50 border-2 border-yellow-200 p-6 rounded-xl w-full max-w-3xl">
-        <h3 className="text-xl font-bold text-yellow-800 mb-4 flex items-center gap-2">
-          🏆 真题考点 (23-3-1-单-3)
-        </h3>
+        <h3 className="text-xl font-bold text-yellow-800 mb-4 flex items-center gap-2">课堂判断：字面量的类型</h3>
         <p className="text-lg mb-4">问：常量 <code className="bg-white px-2 py-1 rounded border">7.0</code> 的类型是？</p>
-        <div className="grid grid-cols-2 gap-4">
-          <button className="p-3 bg-white border rounded-lg hover:bg-gray-50 text-left">A. int</button>
-          <button className="p-3 bg-green-600 text-white border border-green-700 rounded-lg shadow-md text-left font-bold relative">
-            B. double
-            <span className="absolute right-4 top-3 text-xs opacity-80">✅ 选我！因为它有"点"</span>
-          </button>
-          <button className="p-3 bg-white border rounded-lg hover:bg-gray-50 text-left">C. bool</button>
-          <button className="p-3 bg-white border rounded-lg hover:bg-gray-50 text-left">D. char</button>
-        </div>
+        <DoubleLiteralQuiz />
       </div>
     </div>
   );
 };
 
+const DoubleLiteralQuiz = () => {
+  const [selected, setSelected] = useState(null);
+  const options = ['int', 'double', 'bool', 'char'];
+
+  return (
+    <div>
+      <div className="grid grid-cols-2 gap-4">
+        {options.map((option, index) => (
+          <button
+            key={option}
+            type="button"
+            aria-pressed={selected === index}
+            onClick={() => setSelected(index)}
+            className={`rounded-lg border p-3 text-left focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-amber-700 ${selected === index ? 'border-amber-700 bg-amber-100 font-bold' : 'bg-white hover:bg-gray-50'}`}
+          >
+            {String.fromCharCode(65 + index)}. {option}
+          </button>
+        ))}
+      </div>
+      {selected !== null && (
+        <p role="status" className={`mt-4 rounded-lg p-3 text-sm ${selected === 1 ? 'bg-emerald-50 text-emerald-800' : 'bg-rose-50 text-rose-800'}`}>
+          {selected === 1 ? '正确：7.0 是 double 类型的浮点字面量。' : '再看小数点：7.0 是 double 类型；整数写作 7。'}
+        </p>
+      )}
+    </div>
+  );
+};
+
 const DivisionSlide = () => {
-  const [num1, setNum1] = useState(5);
-  const [num2, setNum2] = useState(2);
-  const result = Math.floor(num1 / num2);
-  const actual = (num1 / num2).toFixed(1);
+  const [num1, setNum1] = useState('5');
+  const [num2, setNum2] = useState('2');
+  const validOperand = value => /^-?\d+$/.test(value.trim()) && Number.isSafeInteger(Number(value)) && Math.abs(Number(value)) <= 1000000;
+  const operandsValid = validOperand(num1) && validOperand(num2);
+  const divisionByZero = operandsValid && Number(num2) === 0;
+  const canCalculate = operandsValid && !divisionByZero;
+  const quotient = canCalculate ? Number(num1) / Number(num2) : null;
+  const result = canCalculate ? Math.trunc(quotient) : null;
 
   return (
     <div className="h-full flex flex-col items-center">
@@ -316,29 +345,37 @@ const DivisionSlide = () => {
       <div className="bg-gray-100 p-8 rounded-3xl w-full max-w-3xl flex flex-col items-center shadow-inner">
         <div className="flex items-center gap-4 text-4xl font-mono font-bold mb-8">
           <input
-            type="number"
+            type="text"
+            inputMode="numeric"
+            aria-label="被除数，整数"
             value={num1}
-            onChange={e => setNum1(Number(e.target.value))}
+            onChange={e => setNum1(e.target.value)}
             className="w-24 p-2 text-center rounded-lg border-2 border-blue-300 focus:border-blue-500 outline-none"
           />
           <span className="text-red-500">/</span>
           <input
-            type="number"
+            type="text"
+            inputMode="numeric"
+            aria-label="除数，非零整数"
             value={num2}
-            onChange={e => setNum2(Number(e.target.value))}
+            onChange={e => setNum2(e.target.value)}
             className="w-24 p-2 text-center rounded-lg border-2 border-blue-300 focus:border-blue-500 outline-none"
           />
         </div>
 
-        <div className="relative w-full h-32 flex items-center justify-center">
+        <div className="relative w-full min-h-32 flex items-center justify-center">
           <div className="flex flex-col items-center">
-            <div className="text-gray-400 text-lg line-through decoration-red-500 decoration-4">
-              {actual}
-            </div>
-            <ArrowRight className="rotate-90 text-gray-300 my-2" />
-            <div className="text-6xl font-extrabold text-blue-700 bg-white px-8 py-4 rounded-xl shadow-xl border-b-4 border-blue-800">
-              {result === Infinity ? '💥' : result}
-            </div>
+            {canCalculate ? (
+              <>
+                <div className="text-gray-500 text-sm">数学中的商：{quotient}</div>
+                <ArrowRight className="rotate-90 text-gray-300 my-2" />
+                <div role="status" className="text-6xl font-extrabold text-blue-700 bg-white px-8 py-4 rounded-xl shadow-xl border-b-4 border-blue-800">{result}</div>
+              </>
+            ) : (
+              <p role="status" className="rounded-lg bg-white p-4 text-center text-base font-bold text-red-700">
+                {divisionByZero ? '除数不能为 0；C++ 整数除以 0 没有有效结果。' : '请输入绝对值不超过 1000000 的两个整数。'}
+              </p>
+            )}
           </div>
 
           <div className="absolute right-10 top-0 hidden md:flex flex-col items-center animate-bounce">
@@ -349,15 +386,16 @@ const DivisionSlide = () => {
 
         <div className="mt-8 text-center">
           <p className="text-lg text-gray-700">
-            C++ 规则：<span className="font-bold text-blue-600">整数</span> 除以 <span className="font-bold text-blue-600">整数</span> = <span className="font-bold text-blue-600">整数</span>
+            C++ 规则：非零整数作除数时，<span className="font-bold text-blue-600">整数</span> 除以 <span className="font-bold text-blue-600">整数</span> 的结果向 0 截断。
           </p>
-          <p className="text-sm text-gray-500 mt-2">它不是四舍五入，而是直接切断！</p>
+          <p className="text-sm text-gray-500 mt-2">例如 7 / 2 = 3，-7 / 2 = -3；不是四舍五入，也不是向负无穷取整。</p>
         </div>
       </div>
 
-      <div className="mt-8 flex gap-4">
+      <p className="mt-8 text-sm font-medium text-stone-700">相关规则：浮点数赋给 int 也会向 0 截断。</p>
+      <div className="mt-3 flex gap-4">
         <MiniCase num="3.1" res="3" />
-        <MiniCase num="3.9" res="3 (不是4!)" highlight />
+        <MiniCase num="-3.9" res="-3 (不是 -4)" highlight />
         <MiniCase num="0.9" res="0" />
       </div>
     </div>
@@ -606,7 +644,7 @@ const NumberBadge = ({ num, desc }) => (
 
 const MiniCase = ({ num, res, highlight }) => (
   <div className={`flex flex-col items-center p-3 rounded-lg border ${highlight ? 'bg-red-50 border-red-300 scale-105 shadow-md z-10' : 'bg-white border-gray-200'}`}>
-    <span className="text-gray-500 text-[10px] uppercase">输入</span>
+    <span className="text-gray-500 text-[10px] uppercase">赋给 int</span>
     <span className="font-bold text-base">{num}</span>
     <ArrowRight className="text-gray-300 rotate-90 my-1" size={14} />
     <span className={`font-bold text-base ${highlight ? 'text-red-600' : 'text-blue-600'}`}>{res}</span>
