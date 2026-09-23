@@ -25,13 +25,13 @@ const lesson5MasteryItems = [
 
 const sections = [
   { id: 1, title: '任务简报', icon: 'shield', component: (props) => <WelcomeStage {...props} />, category: "概念引入" },
-  { id: 2, title: '第一条军规：单引号法则', icon: 'quote', component: () => <QuoteRuleStage />, category: "字符奥秘" },
-  { id: 3, title: '拓展预览：字符解码器', icon: 'key', component: () => <CharDecoderStage />, category: "二级前瞻（选学）" },
-  { id: 4, title: '拓展预览：ASCII 速查', icon: 'book', component: () => <AsciiTableStage />, category: "二级前瞻（选学）" },
-  { id: 5, title: '拓展预览：字符运算', icon: 'cpu', component: () => <CharMathStage />, category: "二级前瞻（选学）" },
-  { id: 6, title: '拓展预览：大小写转换', icon: 'refresh', component: () => <CaseSwitcherStage />, category: "二级前瞻（选学）" },
-  { id: 7, title: '传奇特工档案', icon: 'user', component: () => <BooleScientistStage />, category: "布尔逻辑" },
-  { id: 8, title: '布尔测谎仪', icon: 'lock', component: () => <BoolDetectorStage />, category: "布尔逻辑" },
+  { id: 2, title: '字符与字符串：字符名片', icon: 'quote', component: () => <QuoteRuleStage />, category: "核心任务" },
+  { id: 3, title: '布尔测谎仪', icon: 'lock', component: () => <BoolDetectorStage />, category: "核心任务" },
+  { id: 4, title: '拓展预览：字符解码器', icon: 'key', component: () => <CharDecoderStage />, category: "二级前瞻（选学）" },
+  { id: 5, title: '拓展预览：ASCII 速查', icon: 'book', component: () => <AsciiTableStage />, category: "二级前瞻（选学）" },
+  { id: 6, title: '拓展预览：字符运算', icon: 'cpu', component: () => <CharMathStage />, category: "二级前瞻（选学）" },
+  { id: 7, title: '拓展预览：大小写转换', icon: 'refresh', component: () => <CaseSwitcherStage />, category: "二级前瞻（选学）" },
+  { id: 8, title: '拓展阅读：布尔与布尔代数', icon: 'user', component: () => <BooleScientistStage />, category: "选学阅读" },
   { id: 9, title: '拓展练习：字符算术', icon: 'check', component: () => <QuizStage1 />, category: "二级前瞻（选学）" },
   { id: 10, title: '拓展练习：混合类型', icon: 'check', component: () => <QuizStage2 />, category: "二级前瞻（选学）" },
   { id: 11, title: '任务总结', icon: 'flag', component: () => <SummaryStage />, category: "实战演练" },
@@ -132,9 +132,10 @@ function WelcomeStage() {
           <Terminal size={16} /> 任务目标：
         </h3>
         <ul className="space-y-2 text-sm text-slate-300">
-          <li>1. <strong className="text-white">识别伪装：</strong> 区分字符(char)与字符串(string)。</li>
-          <li>2. <strong className="text-white">选学预览：</strong> 看看英文字母在 ASCII 表中的编码；系统学习放在二级。</li>
-          <li>3. <strong className="text-white">逻辑判断：</strong> 掌握计算机世界的真(1)与假(0)。</li>
+          <li>1. <strong className="text-white">识别伪装：</strong> 区分字符字面量与字符串字面量。</li>
+          <li>2. <strong className="text-white">字符名片：</strong> 读入一个英文字母并按原大小写输出。</li>
+          <li>3. <strong className="text-white">真假判断：</strong> 认识 bool 的 true、false 与默认输出 1、0。</li>
+          <li>4. <strong className="text-white">选学预览：</strong> ASCII 编码与字符运算在二级系统学习。</li>
         </ul>
       </div>
     </div>
@@ -142,8 +143,20 @@ function WelcomeStage() {
 }
 
 // 1. 单引号法则
+const charNameCode = `#include <iostream>
+using namespace std;
+
+int main() {
+    char c;
+    cin >> c;
+    cout << "Letter: " << c << '\\n';
+    return 0;
+}`;
+
 function QuoteRuleStage() {
   const [feedback, setFeedback] = useState(null);
+  const [letter, setLetter] = useState('A');
+  const validLetter = /^[A-Za-z]$/.test(letter);
 
   const handleCheck = (type) => {
     if (type === 'char') setFeedback('correct');
@@ -159,32 +172,31 @@ function QuoteRuleStage() {
           <Quote className="text-purple-400" /> 第一条军规：单引号法则
         </h2>
         <p className="text-slate-400 text-sm">
-          计算机很挑剔。<br />
-          <span className="text-yellow-400">单引号 ' '</span> 只能装一个字符 (char)。<br />
-          <span className="text-blue-400">双引号 " "</span> 是给字符串 (string) 用的。
+          本课先学普通的单字符字面量，例如 <code>'A'</code>；它的类型是 <code>char</code>。<br />
+          <span className="text-blue-400">双引号 " "</span> 包围的是字符串字面量，例如 <code>"A"</code>，不能直接赋给 <code>char</code>。
         </p>
       </div>
 
       <div className="bg-slate-800 p-6 rounded-2xl border border-slate-700">
         <h3 className="text-center mb-4 font-bold text-lg">👇 哪个是单个字符字面量，可赋给 char？</h3>
         <div className="grid grid-cols-2 gap-4">
-          <button onClick={() => handleCheck('string')} className="p-4 bg-slate-700 rounded-xl hover:bg-slate-600 transition border-2 border-transparent focus:border-blue-500">
+          <button type="button" aria-pressed={feedback === 'wrong-string'} onClick={() => handleCheck('string')} className="p-4 bg-slate-700 rounded-xl hover:bg-slate-600 transition border-2 border-transparent focus:border-blue-500">
             <code className="text-xl">"A"</code>
           </button>
-          <button onClick={() => handleCheck('char')} className="p-4 bg-slate-700 rounded-xl hover:bg-slate-600 transition border-2 border-transparent focus:border-green-500">
+          <button type="button" aria-pressed={feedback === 'correct'} onClick={() => handleCheck('char')} className="p-4 bg-slate-700 rounded-xl hover:bg-slate-600 transition border-2 border-transparent focus:border-green-500">
             <code className="text-xl">'A'</code>
           </button>
-          <button onClick={() => handleCheck('wrong-syntax')} className="p-4 bg-slate-700 rounded-xl hover:bg-slate-600 transition border-2 border-transparent focus:border-red-500">
+          <button type="button" aria-pressed={feedback === 'wrong-syntax'} onClick={() => handleCheck('wrong-syntax')} className="p-4 bg-slate-700 rounded-xl hover:bg-slate-600 transition border-2 border-transparent focus:border-red-500">
             <code className="text-xl">A</code>
           </button>
-          <button onClick={() => handleCheck('multi-char')} className="p-4 bg-slate-700 rounded-xl hover:bg-slate-600 transition border-2 border-transparent focus:border-red-500">
+          <button type="button" aria-pressed={feedback === 'wrong-multi-char'} onClick={() => handleCheck('multi-char')} className="p-4 bg-slate-700 rounded-xl hover:bg-slate-600 transition border-2 border-transparent focus:border-red-500">
             <code className="text-xl">'AB'</code>
           </button>
         </div>
       </div>
 
       {feedback && (
-        <div className={`p-4 rounded-xl animate-fadeIn ${feedback === 'correct' ? 'bg-green-900/50 border border-green-500' : 'bg-red-900/50 border border-red-500'}`}>
+        <div role="status" className={`p-4 rounded-xl animate-fadeIn ${feedback === 'correct' ? 'bg-green-900/50 border border-green-500' : 'bg-red-900/50 border border-red-500'}`}>
           {feedback === 'correct' && (
             <div className="flex items-start gap-3">
               <CheckCircle className="text-green-400 shrink-0 mt-1" />
@@ -199,7 +211,7 @@ function QuoteRuleStage() {
               <AlertTriangle className="text-red-400 shrink-0 mt-1" />
               <div>
                 <p className="font-bold text-red-300">那是字符串！</p>
-                <p className="text-sm text-red-100">双引号是火车的车头车尾，那是 string 类型的装备。</p>
+                <p className="text-sm text-red-100"><code>"A"</code> 是字符串字面量；需要一个字符时使用 <code>'A'</code>。</p>
               </div>
             </div>
           )}
@@ -223,6 +235,18 @@ function QuoteRuleStage() {
           )}
         </div>
       )}
+
+      <div className="rounded-2xl border border-emerald-700 bg-slate-800 p-5">
+        <h3 className="mb-2 text-lg font-bold text-emerald-300">核心上机：字符名片</h3>
+        <p className="mb-3 text-sm text-slate-300">用 <code>char</code> 保存输入的一个英文字母，按原大小写输出。先预测输入 <code>A</code> 与 <code>z</code> 的结果，再复制代码到本机编译运行。</p>
+        <pre className="overflow-x-auto rounded-lg bg-black p-4 text-sm text-slate-100"><code>{charNameCode}</code></pre>
+        <div className="mt-4 flex flex-wrap items-center gap-3">
+          <label htmlFor="l1-5-letter" className="text-sm font-bold text-slate-200">试一个英文字母</label>
+          <input id="l1-5-letter" type="text" maxLength={1} value={letter} onChange={event => setLetter(event.target.value)} className="w-16 rounded border border-slate-500 bg-slate-900 p-2 text-center text-lg text-white" />
+          <output aria-live="polite" className="rounded bg-slate-900 px-3 py-2 font-mono text-emerald-300">{validLetter ? `Letter: ${letter}` : '请输入 A～Z 或 a～z'}</output>
+        </div>
+        <p className="mt-2 text-xs text-slate-400">网页只预览约定范围内的输出；独立上机题要求实际提交 C++ 程序。</p>
+      </div>
     </div>
   );
 }
@@ -502,9 +526,7 @@ function BooleScientistStage() {
           <p>
             💻 <strong>深远影响：</strong> 他的理论奠定了现代计算机科学的基础。为了纪念他，我们在 C++ 中把这种“非真即假”的变量类型命名为 <code>bool</code>。
           </p>
-          <p className="italic text-slate-400 border-t border-slate-700 pt-2 mt-2">
-            "逻辑的世界里没有'可能'，只有'是'与'否'。"
-          </p>
+          <p className="italic text-slate-400 border-t border-slate-700 pt-2 mt-2">课堂归纳：本课的 bool 变量只有 true 和 false 两种取值。</p>
         </div>
       </div>
     </div>
@@ -516,16 +538,21 @@ function BoolDetectorStage() {
   const [isOn, setIsOn] = useState(true);
 
   // Logic Analyzer State
-  const [num1, setNum1] = useState(5);
-  const [num2, setNum2] = useState(3);
+  const [num1, setNum1] = useState('5');
+  const [num2, setNum2] = useState('3');
   const [op, setOp] = useState('>');
+  const validOperand = value => /^-?\d+$/.test(value) && Number.isSafeInteger(Number(value)) && Math.abs(Number(value)) <= 1000000;
+  const canCompare = validOperand(num1) && validOperand(num2);
 
   const checkLogic = () => {
+    if (!canCompare) return null;
+    const left = Number(num1);
+    const right = Number(num2);
     switch (op) {
-      case '>': return num1 > num2;
-      case '<': return num1 < num2;
-      case '==': return num1 == num2;
-      default: return false;
+      case '>': return left > right;
+      case '<': return left < right;
+      case '==': return left === right;
+      default: return null;
     }
   };
   const logicResult = checkLogic();
@@ -538,13 +565,16 @@ function BoolDetectorStage() {
           布尔测谎仪 (bool)
         </h2>
         <p className="text-slate-400 text-sm">
-          bool 变量性格最直爽，只有两种状态：真(1) 或 假(0)。
+          bool 变量只有 true 或 false 两种取值；默认用 cout 输出时分别显示 1 或 0。
         </p>
       </div>
 
       {/* Toggle Switch Section */}
       <div className="flex justify-center mb-8">
         <button
+          type="button"
+          aria-label="切换 bool 变量的真假值"
+          aria-pressed={isOn}
           onClick={() => setIsOn(!isOn)}
           className={`relative w-48 h-20 rounded-full transition-all duration-300 shadow-inner flex items-center px-2 ${isOn ? 'bg-green-600 shadow-[inset_0_2px_10px_rgba(0,0,0,0.3)]' : 'bg-slate-700 shadow-[inset_0_2px_10px_rgba(0,0,0,0.5)]'}`}
         >
@@ -571,28 +601,28 @@ function BoolDetectorStage() {
         <h3 className="text-sm font-bold text-slate-400 mb-3 flex items-center gap-2">
           <Terminal size={14} /> 逻辑分析仪 (Logic Analyzer)
         </h3>
-        <div className="flex items-center justify-center gap-2 bg-black/40 p-3 rounded-lg">
-          <input type="number" value={num1} onChange={e => setNum1(Number(e.target.value))} className="w-12 bg-transparent text-center border-b border-slate-500 text-white font-mono outline-none focus:border-green-500" />
-          <select value={op} onChange={e => setOp(e.target.value)} className="bg-slate-700 rounded px-2 py-1 text-sm outline-none">
+        <div className="flex flex-wrap items-center justify-center gap-2 bg-black/40 p-3 rounded-lg">
+          <input type="text" inputMode="numeric" aria-label="左侧整数" value={num1} onChange={e => setNum1(e.target.value)} className="w-16 bg-transparent text-center border-b border-slate-500 text-white font-mono outline-none focus:border-green-500" />
+          <select aria-label="比较运算符" value={op} onChange={e => setOp(e.target.value)} className="bg-slate-700 rounded px-2 py-1 text-sm outline-none">
             <option value=">">&gt;</option>
             <option value="<">&lt;</option>
             <option value="==">==</option>
           </select>
-          <input type="number" value={num2} onChange={e => setNum2(Number(e.target.value))} className="w-12 bg-transparent text-center border-b border-slate-500 text-white font-mono outline-none focus:border-green-500" />
+          <input type="text" inputMode="numeric" aria-label="右侧整数" value={num2} onChange={e => setNum2(e.target.value)} className="w-16 bg-transparent text-center border-b border-slate-500 text-white font-mono outline-none focus:border-green-500" />
 
           <span className="mx-2 text-slate-500">→</span>
 
-          <div className={`px-3 py-1 rounded font-mono font-bold transition-all ${logicResult ? 'text-green-400 bg-green-900/30' : 'text-red-400 bg-red-900/30'}`}>
-            {logicResult ? 'true (1)' : 'false (0)'}
+          <div role="status" className={`px-3 py-1 rounded font-mono font-bold transition-all ${logicResult === null ? 'text-amber-300 bg-amber-900/30' : logicResult ? 'text-green-400 bg-green-900/30' : 'text-red-400 bg-red-900/30'}`}>
+            {logicResult === null ? '请输入两个整数' : logicResult ? 'true (1)' : 'false (0)'}
           </div>
         </div>
-        <p className="text-xs text-center mt-2 text-slate-500">改变数字，看看结果是 1 还是 0</p>
+        <p className="text-xs text-center mt-2 text-slate-400">输入绝对值不超过 1000000 的整数，观察比较结果；空白和非法输入不会被当作 0。</p>
       </div>
     </div>
   );
 }
 
-// 8. 真题挑战 1
+// 8. 选学拓展 1
 function QuizStage1() {
   const [selected, setSelected] = useState(null);
   const [showResult, setShowResult] = useState(false);
@@ -613,7 +643,7 @@ function QuizStage1() {
   return (
     <div className="space-y-4">
       <div className="bg-gradient-to-r from-purple-900 to-indigo-900 p-4 rounded-t-2xl border-b border-indigo-500 shadow-lg">
-        <span className="bg-indigo-500 text-xs px-2 py-1 rounded text-white font-bold shadow">二级前瞻选学 · 原题出处待核</span>
+        <span className="bg-indigo-500 text-xs px-2 py-1 rounded text-white font-bold shadow">二级前瞻选学 · 课堂拓展题</span>
         <h3 className="font-mono mt-3 text-lg leading-relaxed">
           已知 'C' 的 ASCII 码为 67。<br />
           <span className="text-purple-300">char</span> a = <span className="text-yellow-300">'C'</span>;<br />
@@ -626,6 +656,9 @@ function QuizStage1() {
         {options.map((opt) => (
           <button
             key={opt.id}
+            type="button"
+            aria-pressed={selected === opt.id}
+            disabled={showResult}
             onClick={() => handleSelect(opt.id)}
             className={`p-4 rounded-xl border-2 text-left flex justify-between items-center transition-all
               ${!showResult
@@ -646,7 +679,7 @@ function QuizStage1() {
       </div>
 
       {showResult && (
-        <div className="bg-slate-800 p-4 rounded-xl border-t-4 border-yellow-500 animate-fadeIn">
+        <div role="status" className="bg-slate-800 p-4 rounded-xl border-t-4 border-yellow-500 animate-fadeIn">
           <h4 className="font-bold text-yellow-400 mb-1">🕵️‍♂️ 特工分析：</h4>
           <p className="text-sm text-slate-300">
             变量 <code className="bg-black px-1 rounded">a</code> 是字符 'C' (67)。<br />
@@ -659,13 +692,13 @@ function QuizStage1() {
   );
 }
 
-// 9. 真题挑战 2
+// 9. 选学拓展 2
 function QuizStage2() {
   const [selected, setSelected] = useState(null);
   const [showResult, setShowResult] = useState(false);
 
   const options = [
-    { id: 'A', text: "double (小数)", correct: true },
+    { id: 'A', text: "double (浮点类型)", correct: true },
     { id: 'B', text: "int (整数)", correct: false },
     { id: 'C', text: "char (字符)", correct: false },
     { id: 'D', text: "bool (布尔)", correct: false },
@@ -680,7 +713,7 @@ function QuizStage2() {
   return (
     <div className="space-y-4">
       <div className="bg-gradient-to-r from-purple-900 to-indigo-900 p-4 rounded-t-2xl border-b border-indigo-500 shadow-lg">
-        <span className="bg-indigo-500 text-xs px-2 py-1 rounded text-white font-bold shadow">二级前瞻选学 · 原题出处待核</span>
+        <span className="bg-indigo-500 text-xs px-2 py-1 rounded text-white font-bold shadow">二级前瞻选学 · 课堂拓展题</span>
         <h3 className="font-mono mt-3 text-lg leading-relaxed">
           表达式 <code className="bg-black/30 px-1 rounded text-sm">((3 == 0) + 'A' + 1 + 3.0)</code> 的结果类型为？
         </h3>
@@ -690,6 +723,9 @@ function QuizStage2() {
         {options.map((opt) => (
           <button
             key={opt.id}
+            type="button"
+            aria-pressed={selected === opt.id}
+            disabled={showResult}
             onClick={() => handleSelect(opt.id)}
             className={`p-4 rounded-xl border-2 text-left flex justify-between items-center transition-all
               ${!showResult
@@ -710,13 +746,13 @@ function QuizStage2() {
       </div>
 
       {showResult && (
-        <div className="bg-slate-800 p-4 rounded-xl border-t-4 border-yellow-500 animate-fadeIn">
+        <div role="status" className="bg-slate-800 p-4 rounded-xl border-t-4 border-yellow-500 animate-fadeIn">
           <h4 className="font-bold text-yellow-400 mb-1">🕵️‍♂️ 拆解分析：</h4>
           <ul className="text-sm text-slate-300 space-y-1">
-            <li>1. <code className="bg-black px-1 rounded">3==0</code> 是假，变成 <strong>0</strong>。</li>
-            <li>2. <code className="bg-black px-1 rounded">'A'</code> 变成数字 <strong>65</strong>。</li>
-            <li>3. 关键点：出现了 <code className="text-yellow-400 font-bold">3.0</code> (double)！</li>
-            <li><strong>结论：</strong> C++有“传染病原则”，只要算式里有小数，结果统统变成小数 (double)。</li>
+            <li>1. <code className="bg-black px-1 rounded">3 == 0</code> 是 false；参加加法时转换为整数 <strong>0</strong>。</li>
+            <li>2. 在本题 ASCII 英文字母范围内，<code className="bg-black px-1 rounded">'A'</code> 参加加法时转换为整数 <strong>65</strong>。</li>
+            <li>3. 前面的加法先按整数计算；最后与 <code className="text-yellow-400 font-bold">3.0</code> 相加时，整数转换为 double。</li>
+            <li><strong>结论：</strong> 这个表达式的类型是 double，值为 69.0；<code>cout</code> 默认格式可能显示为 <code>69</code>。类型和显示格式要分开判断。</li>
           </ul>
         </div>
       )}
@@ -750,8 +786,8 @@ function SummaryStage() {
           <h3 className="font-bold text-blue-400 mb-2 border-b border-slate-600 pb-2">Bool (布尔)</h3>
           <ul className="text-sm text-slate-300 space-y-2">
             <li>• 只有真(true) 和 假(false)</li>
-            <li>• true 是 1</li>
-            <li>• false 是 0</li>
+            <li>• 默认用 cout 输出 true 时显示 1</li>
+            <li>• 默认用 cout 输出 false 时显示 0</li>
             <li>• 布尔代数研究真假条件的运算</li>
           </ul>
         </div>

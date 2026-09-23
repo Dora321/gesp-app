@@ -31,8 +31,8 @@ const qualityByLesson = {
   5: {
     accent: 'blue',
     goals: ['理解 char 保存单个字符、bool 保存真假结果', '能区分字符字面量和字符串字面量', '能读入并输出单个英文字母；ASCII 编码留作二级前瞻'],
-    deliverables: ['写出读入并回显英文字母的小程序', '完成 char 与字符串分类题', '观察 bool 的 true/false 输出；选学 ASCII 解码器'],
-    checks: ['能区分单引号字符和双引号字符串', '能用 cin 和 cout 处理单个英文字母', '能解释 true、false 与 0、1 的关系'],
+    deliverables: ['写出读入英文字母并输出 Letter: c 的字符名片程序', '完成 char 与字符串字面量分类题', '观察 bool 的默认 1/0 输出；选学 ASCII 解码器'],
+    checks: ['能区分单引号字符与双引号字符串字面量', '能用 cin 和 cout 原样输出单个英文字母', '能说明 bool 的 true/false 取值与 cout 默认 1/0 显示'],
   },
   6: {
     accent: 'blue',
@@ -144,7 +144,7 @@ const practiceByLesson = {
   2: [{ label: 'GESP 一级真题：变量命名与标识符', path: '/question-bank/1/2024-06-l1' }],
   3: [{ label: 'GESP 一级真题：整数、小数和类型转换', path: '/question-bank/1/2024-03-l1' }],
   4: [{ label: 'GESP 一级真题：表达式与运算优先级', path: '/question-bank/1/2024-09-l1' }],
-  5: [{ label: 'GESP 一级真题：字符、bool 与 ASCII', path: '/question-bank/1/2025-03-l1' }],
+  5: [{ label: '站内 GESP 一级题库：bool 判断与 ASCII 选学', path: '/question-bank/1/2024-12-l1' }],
   6: [{ label: 'GESP 一级真题：逻辑运算与真假判断', path: '/question-bank/1/2025-06-l1' }],
   7: [{ label: 'GESP 一级真题：if / else 条件判断', path: '/question-bank/1/2023-12-l1' }],
   8: [{ label: 'GESP 一级真题：多分支与条件顺序', path: '/question-bank/1/2025-09-l1' }],
@@ -163,7 +163,7 @@ const reviewTasksByLesson = {
   2: ['列出 5 个合法变量名和 3 个非法变量名，并逐个说明理由。', '在本机完成“文具总价”：用 const 保存两个单价，读入两个购买数量，分别用 3 2 与 0 0 编译运行并核对输出。'],
   3: ['手算 5/2、-7/2、5.0/2 的结果并解释差异；说明为什么除数不能为 0。', '找出一个表达式中发生类型转换的位置，并用 -2.9 赋给 int 验证向 0 截断。'],
   4: ['给复杂表达式加括号，标出计算顺序。', '准备 2 道整除和取模混合题做手算验证。'],
-  5: ['查出 A、a、0 三个字符的 ASCII 值。', '解释 bool 输出为什么通常是 0 或 1。'],
+  5: ['编译运行“字符名片”程序，分别输入 A 和 z，核对大小写与冒号后的空格。', '解释 bool 的 true/false 取值与 cout 默认 1/0 显示；ASCII 数值作为二级前瞻选学。'],
   6: ['把生活中的“且、或、非”各写成一个 C++ 条件。', '手算 3 个含 &&、||、! 的表达式。'],
   7: ['写一个根据分数输出是否及格的 if / else 程序。', '检查条件边界：等于时应该走哪一支。'],
   8: ['把一个多条件题按优先顺序画成判断树。', '准备一组输入逐个验证 else-if 是否覆盖完整。'],
