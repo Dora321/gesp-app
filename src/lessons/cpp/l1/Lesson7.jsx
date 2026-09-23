@@ -135,6 +135,7 @@ const HeightChecker = () => {
         <span className="font-bold text-gray-700">你的身高(cm):</span>
         <input
           type="range" min="130" max="180"
+          aria-label="身高，单位厘米"
           value={height}
           onChange={(e) => setHeight(parseInt(e.target.value))}
           className="accent-blue-500 w-48"
@@ -181,6 +182,8 @@ const CafeteriaSim = () => {
 
       <div className="flex justify-center mb-6">
         <button
+          type="button"
+          aria-pressed={hasTicket}
           onClick={() => setHasTicket(!hasTicket)}
           className={`px-6 py-3 rounded-full font-bold shadow-md transition-all ${hasTicket ? 'bg-green-500 text-white ring-4 ring-green-200' : 'bg-gray-300 text-gray-600'}`}
         >
@@ -240,7 +243,7 @@ const SemicolonTrap = () => {
           <div className="text-gray-400">int a = 1;</div>
           <div>
             <span className="text-purple-400">if</span> ( a &gt; 3 )
-            <span className={`bg-red-600 text-white px-1 ml-1 rounded transition-opacity ${hasSemicolon ? 'opacity-100' : 'opacity-0'}`}>;</span>
+            {hasSemicolon && <span className="bg-red-600 text-white px-1 ml-1 rounded">;</span>}
             {hasSemicolon && <span className="text-red-400 text-xs ml-2 font-sans">← 炸弹在这里！判断结束了</span>}
           </div>
           <div>&#123;</div>
@@ -287,7 +290,7 @@ const Quiz = ({ question, options, correctIndex, explanation, type = "normal" })
     <div className={`bg-white p-6 rounded-xl shadow-lg border-l-4 ${type === 'exam' ? 'border-purple-500' : 'border-blue-500'} my-6`}>
       <div className="flex items-center gap-2 mb-4">
         <span className={`px-2 py-1 rounded text-xs font-bold uppercase ${type === 'exam' ? 'bg-purple-100 text-purple-700' : 'bg-blue-100 text-blue-700'}`}>
-          {type === 'exam' ? '🏆 真题实战' : '📝 练习题'}
+          {type === 'exam' ? '站内题库原题' : '课堂练习题'}
         </span>
       </div>
       <div className="font-bold text-lg mb-4 font-mono whitespace-pre-line">{question}</div>
@@ -295,6 +298,9 @@ const Quiz = ({ question, options, correctIndex, explanation, type = "normal" })
         {options.map((opt, idx) => (
           <button
             key={idx}
+            type="button"
+            aria-pressed={selected === idx}
+            disabled={selected !== null}
             onClick={() => handleSelect(idx)}
             className={`p-3 text-left rounded-lg border-2 transition-all
               ${selected === null ? 'border-gray-200 hover:border-blue-300 hover:bg-blue-50' : ''}
@@ -310,7 +316,7 @@ const Quiz = ({ question, options, correctIndex, explanation, type = "normal" })
         ))}
       </div>
       {showExplanation && (
-        <div className="mt-4 p-4 bg-gray-50 rounded-lg text-sm border border-gray-200 slide-enter">
+        <div role="status" className="mt-4 p-4 bg-gray-50 rounded-lg text-sm border border-gray-200 slide-enter">
           <h4 className="font-bold text-gray-700 mb-2 flex items-center gap-2"><Icon name="help" size={16} /> 解析：</h4>
           <div className="whitespace-pre-line text-gray-600 leading-relaxed">{explanation}</div>
         </div>
@@ -458,21 +464,24 @@ export default function App() {
       case 7:
         return (
           <div className="slide-enter">
-            <h2 className="text-3xl font-bold text-gray-800 mb-4">🛡️ 实战演练 1：奇偶数审判</h2>
-            <div className="bg-gray-100 p-2 rounded text-xs text-gray-500 mb-4">2023年12月 GESP 一级真题 第4题</div>
+            <h2 className="text-3xl font-bold text-gray-800 mb-4">🛡️ 实战演练 1：奇偶数判断</h2>
+            <div className="bg-gray-100 p-2 rounded text-xs text-gray-600 mb-4">站内题库：2023 年 12 月 GESP C++ 一级第 4 题</div>
             <Quiz
               type="exam"
-              question={`题目：判断 N 是否为偶数，横线处填什么？\n\nif ( ________ ) \n    cout << "偶数";\nelse\n    cout << "奇数";`}
+              question="判断正整数 N 是否为偶数的正确表达式是( )。"
               options={[
                 "N % 2 == 0",
+                "N / 2 == 0",
                 "N % 2 = 0",
-                "N % 2"
+                "N % 2 != 0"
               ]}
               correctIndex={0}
               explanation={`
                 A. 正确。余数为0，说明能被2整除，是偶数。
-                B. 错误。= 是赋值，但 N % 2 是计算结果，不能作为赋值左侧，这里无法通过编译。
-                C. 错误。如果 N 是奇数(如3)，3%2=1(真)，会输出"偶数"，反了！
+                B. N / 2 == 0 只比较整数商是否为 0，不能判断偶数。
+                C. = 是赋值，但 N % 2 是计算结果，不能作为赋值左侧，无法通过编译。
+                D. N % 2 != 0 判断的是奇数。
+                迁移到本课的 if/else：把 N % 2 == 0 放进 if ( ... )，条件为真输出“偶数”，否则输出“奇数”。
               `}
             />
           </div>
@@ -481,7 +490,7 @@ export default function App() {
         return (
           <div className="slide-enter">
             <h2 className="text-3xl font-bold text-gray-800 mb-4">👮 实战演练 2：严厉的安检</h2>
-            <div className="bg-gray-100 p-2 rounded text-xs text-gray-500 mb-4">2024年12月 GESP 一级真题 第11题</div>
+            <div className="bg-gray-100 p-2 rounded text-xs text-gray-600 mb-4">课堂自编题：用 if 和逻辑与组合两个条件。</div>
             <div className="bg-blue-50 p-4 rounded-lg mb-4 text-sm text-blue-800">
               <p><strong>任务：</strong>判断 N 是否为“能被3整除的偶数”。</p>
               <ul className="list-disc list-inside mt-2">
@@ -491,7 +500,6 @@ export default function App() {
               </ul>
             </div>
             <Quiz
-              type="exam"
               question="代码拼图：if ( ________ )"
               options={[
                 "(N % 2 == 0) || (N % 3 == 0)",

@@ -146,7 +146,7 @@ const practiceByLesson = {
   4: [{ label: 'GESP 一级真题：表达式与运算优先级', path: '/question-bank/1/2024-09-l1' }],
   5: [{ label: '站内 GESP 一级题库：bool 判断与 ASCII 选学', path: '/question-bank/1/2024-12-l1' }],
   6: [{ label: '站内 GESP 一级题库：逻辑与及真假判断', path: '/question-bank/1/2025-06-l1' }],
-  7: [{ label: 'GESP 一级真题：if / else 条件判断', path: '/question-bank/1/2023-12-l1' }],
+  7: [{ label: '站内 GESP 一级题库：偶数条件与 if 迁移', path: '/question-bank/1/2023-12-l1' }],
   8: [{ label: 'GESP 一级真题：多分支与条件顺序', path: '/question-bank/1/2025-09-l1' }],
   9: [{ label: 'GESP 一级真题：循环次数与变量跟踪', path: '/question-bank/1/2024-12-l1' }],
   10: [{ label: 'GESP 一级真题：while 与 break', path: '/question-bank/1/2023-12-l1' }],
