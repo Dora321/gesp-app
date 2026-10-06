@@ -21,7 +21,7 @@ import {
     X
 } from 'lucide-react';
 import CppL1LessonSupport from '../../../components/CppL1LessonSupport';
-import { CodeTracer, MasteryCheck, TransferCheck } from '../CppLessonShell';
+import { CodeTracer, MasteryCheck, PredictCheck, TransferCheck } from '../CppLessonShell';
 
 // --- 图标映射组件 ---
 const Icon = ({ name, size = 24, color = "currentColor", className = "" }) => {
@@ -59,12 +59,12 @@ const lesson12MasteryItems = [
     },
     {
         label: '能计算双层循环总执行次数。',
-        evidence: '能算出 3 行 4 列会输出 12 次，并能迁移到 m 行 n 列。',
-        retryHint: '回到“累死人的计数”，先算外层次数再乘内层次数。',
+        evidence: '内层固定执行 4 次、外层 3 次时是 12 次；内层次数随 i 变化时，要逐行相加。',
+        retryHint: '先数每行内层次数：固定次数可相乘，变化次数要逐行相加。',
     },
     {
         label: '能把图形题拆成行数、列数和换行。',
-        evidence: '能说明金字塔或乘法表中外层控制行，内层控制每行打印多少个。',
+        evidence: '能说明星号阶梯或乘法表中外层控制行，内层控制每行打印多少个。',
         retryHint: '回到“图形题攻略”，先画每行数量表再写循环。',
     },
 ];
@@ -76,7 +76,7 @@ const sections = [
     { id: 3, title: "语法：包心肉丸结构", icon: "layers", category: "嵌套奥义" },
     { id: 4, title: "流程：慢动作回放", icon: "play", category: "嵌套奥义" },
     { id: 5, title: "实战：累死人的计数", icon: "hash", category: "图形实战" },
-    { id: 6, title: "实战：打印金字塔", icon: "star", category: "图形实战" },
+    { id: 6, title: "实战：打印星号阶梯", icon: "star", category: "图形实战" },
     { id: 7, title: "技巧：图形题攻略", icon: "grid", category: "图形实战" },
     { id: 8, title: "避坑指南", icon: "alert", category: "避坑与总结" },
     { id: 9, title: "总结与作业", icon: "check", category: "避坑与总结" },
@@ -85,32 +85,23 @@ const sections = [
 
 // --- 互动组件 1：排队报数模拟器 ---
 const QueueDrill = () => {
-    const [activeRow, setActiveRow] = useState(0);
-    const [activeCol, setActiveCol] = useState(0);
+    const [step, setStep] = useState(0);
     const [isRunning, setIsRunning] = useState(false);
+    const activeRow = step === 0 ? 0 : Math.ceil(step / 4);
+    const activeCol = step === 0 ? 0 : (step - 1) % 4 + 1;
 
     useEffect(() => {
-        let interval;
-        if (isRunning) {
-            interval = setInterval(() => {
-                setActiveCol(prevCol => {
-                    if (prevCol < 4) return prevCol + 1;
-                    // Col finished, move to next row
-                    setActiveRow(prevRow => {
-                        if (prevRow < 3) return prevRow + 1;
-                        setIsRunning(false); // End
-                        return 1;
-                    });
-                    return 1; // Reset col
-                });
-            }, 800);
-        }
+        if (!isRunning) return undefined;
+        const interval = setInterval(() => setStep((current) => Math.min(12, current + 1)), 800);
         return () => clearInterval(interval);
     }, [isRunning]);
 
+    useEffect(() => {
+        if (step === 12 && isRunning) setIsRunning(false);
+    }, [step, isRunning]);
+
     const start = () => {
-        setActiveRow(1);
-        setActiveCol(0); // Start before 1st col
+        setStep(0);
         setIsRunning(true);
     };
 
@@ -154,13 +145,13 @@ const QueueDrill = () => {
                 </div>
                 <div className="text-right">
                     <div className="text-sm text-gray-500">当前状态</div>
-                    <div className="font-bold text-xl text-blue-800">i = {activeRow}, j = {activeCol === 0 ? '-' : activeCol}</div>
+                    <div role="status" className="font-bold text-xl text-blue-800">{step === 12 && !isRunning ? '完成：3 排共 12 人' : `i = ${activeRow || '-'}, j = ${activeCol || '-'}`}</div>
                 </div>
             </div>
 
-            <button onClick={start} disabled={isRunning} className="mt-4 w-full py-2 bg-blue-600 text-white rounded-lg font-bold hover:bg-blue-700 disabled:opacity-50 transition flex justify-center items-center gap-2">
+            <button type="button" onClick={start} disabled={isRunning} className="mt-4 w-full py-2 bg-blue-600 text-white rounded-lg font-bold hover:bg-blue-700 disabled:opacity-50 transition flex justify-center items-center gap-2">
                 {isRunning ? <Pause size={16} /> : <Play size={16} />}
-                {isRunning ? "演练中..." : "开始报数"}
+                {isRunning ? "演练中..." : step === 12 ? '重新演练' : "开始报数"}
             </button>
         </div>
     );
@@ -262,13 +253,15 @@ const CounterLogic = () => {
             <h3 className="font-bold text-lg text-orange-700 mb-4 flex items-center gap-2">
                 <Hash className="text-orange-600" /> 实战演练：累死人的计数
             </h3>
-            <div className="bg-gray-100 text-xs text-gray-500 mb-4 px-2 py-1 rounded inline-block font-mono">2024年9月 GESP 一级真题</div>
+            <div className="bg-[#f7f4ed] text-xs text-stone-700 mb-4 px-2 py-1 rounded inline-block">课堂自编的二级前瞻追踪题；站内 2024 年 9 月一级卷没有这段双层循环。</div>
 
-            <div className="bg-white p-4 rounded-lg shadow-sm font-mono text-sm mb-4 border border-orange-100">
-                <div><span className="text-purple-600">for</span> (int i = 1; i &lt; 5; i++)</div>
-                <div className="pl-4"><span className="text-purple-600">for</span> (int j = 0; j &lt; i; j++)</div>
-                <div className="pl-8 text-orange-600 font-bold">loopCount += 1;</div>
-            </div>
+            <pre className="overflow-x-auto rounded-lg bg-stone-900 p-4 font-mono text-sm text-stone-50 mb-4"><code>{`int loopCount = 0;
+for (int i = 1; i < 5; i++) {
+    for (int j = 0; j < i; j++) {
+        loopCount += 1;
+    }
+}
+cout << loopCount;`}</code></pre>
 
             <div className="space-y-2">
                 {[1, 2, 3, 4].map(i => (
@@ -288,7 +281,7 @@ const CounterLogic = () => {
                 ))}
             </div>
 
-            <div className="mt-4 pt-4 border-t border-orange-200 flex justify-between items-center">
+            <div className="mt-4 pt-4 border-t border-orange-200 flex flex-wrap justify-between items-center gap-2">
                 <span className="font-bold text-gray-600">总次数 loopCount =</span>
                 <span className="text-3xl font-bold text-orange-600">1 + 2 + 3 + 4 = 10</span>
             </div>
@@ -303,12 +296,13 @@ const PyramidGenerator = () => {
     return (
         <div className="bg-yellow-50 p-6 rounded-xl border-2 border-yellow-200 my-4">
             <h3 className="font-bold text-lg text-yellow-800 mb-4 flex items-center gap-2">
-                <Star className="text-yellow-600" /> 实战演练：打印金字塔
+                <Star className="text-yellow-600" /> 实战演练：打印星号阶梯
             </h3>
 
-            <div className="flex items-center gap-4 mb-6">
-                <label className="font-bold text-gray-700">层数 (0-9):</label>
+            <div className="flex flex-wrap items-center gap-4 mb-6">
+                <label htmlFor="l1-12-pyramid-rows" className="font-bold text-gray-700">层数（3～9）：</label>
                 <input
+                    id="l1-12-pyramid-rows"
                     type="range" min="3" max="9"
                     value={rows}
                     onChange={(e) => setRows(parseInt(e.target.value))}
@@ -319,7 +313,7 @@ const PyramidGenerator = () => {
 
             <div className="bg-slate-900 text-yellow-400 p-6 rounded-xl font-mono text-center overflow-x-auto min-h-[200px] flex flex-col justify-center shadow-inner relative">
                 <div className="absolute top-2 left-2 text-gray-500 text-xs text-left">
-                    公式验证: j &lt; 2*i + 1<br />
+                    公式验证: k &lt; 2*i + 1<br />
                     (i从0开始)
                 </div>
                 {Array.from({ length: rows }).map((_, i) => {
@@ -335,6 +329,7 @@ const PyramidGenerator = () => {
 
             <div className="mt-4 bg-white p-3 rounded-lg border border-yellow-100 text-sm text-yellow-800">
                 <p className="font-bold mb-1">🔍 找规律：</p>
+                <p className="mb-2">预览中的 i 和星数是观察标记，程序只输出星号和换行。</p>
                 <ul className="list-disc list-inside">
                     <li>第 0 层: 1 个星 = 2 * 0 + 1</li>
                     <li>第 1 层: 3 个星 = 2 * 1 + 1</li>
@@ -360,12 +355,25 @@ function App() {
                                 <Clock size={80} className="text-yellow-300 drop-shadow-lg animate-[spin_10s_linear_infinite]" />
                                 <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 text-indigo-900 font-bold text-xs">12:00</div>
                             </div>
-                            <h2 className="text-3xl font-extrabold mb-2 text-indigo-100 tracking-wider">GESP C++ 一级 第12课</h2>
+                            <h2 className="text-3xl font-extrabold mb-2 text-indigo-100 tracking-wider">GESP C++ 一级课程 第12课</h2>
                             <h1 className="text-5xl font-bold mb-6 text-white drop-shadow-md">多重循环</h1>
                             <div className="bg-white/10 backdrop-blur-sm px-6 py-2 rounded-full border border-white/20">
                                 <span className="font-bold tracking-wide text-yellow-100">🕰️ 副标题：忙碌的时钟与排队操</span>
                             </div>
                         </div>
+
+                        <div className="rounded-2xl border border-stone-200 bg-[#f7f4ed] p-5 text-left text-stone-900 mb-6">
+                            <p className="font-bold">本课定位：二级前瞻</p>
+                            <p className="mt-2 text-sm leading-6"><a className="underline underline-offset-2" href="https://gesp.ccf.org.cn/101/attach/1725701770182688.pdf" target="_blank" rel="noreferrer">CCF 认证标准</a>将多层循环列在二级。一级先掌握单层循环的次数与停止条件；本课的双层循环、图形和乘法表用于提前体验，不作为一级核心通关条件。</p>
+                        </div>
+
+                        <PredictCheck
+                            prompt="一级复习：for (int i = 1; i <= 3; i++) cout << i; 输出什么？"
+                            options={['123', '012', '1234']}
+                            correctIndex={0}
+                            explanation="i 依次为 1、2、3，cout 没有输出空格，所以结果是 123。"
+                            misconception="把结束条件 i <= 3 看成 i < 3，或以为从 0 开始。"
+                        />
 
                         <div className="bg-white p-8 rounded-xl shadow-sm border border-gray-100 text-left">
                             <h3 className="text-xl font-bold text-gray-800 mb-4 flex items-center gap-2 border-b pb-2">
@@ -479,7 +487,7 @@ function App() {
                         </h2>
                         <NestedLoopStepper />
                         <div className="text-center text-gray-500 text-sm mt-2">
-                            总次数 = 外层次数 × 内层次数 = 3 × 4 = 12 次
+                            本例内层固定执行 4 次，因此总次数 = 3 × 4 = 12；若内层边界随 i 变化，要逐行相加。
                         </div>
                     </div>
                 );
@@ -502,18 +510,16 @@ function App() {
             case 6:
                 return (
                     <div className="slide-enter">
-                        <h2 className="text-3xl font-bold text-gray-800 mb-6">⛰️ 实战演练 2：打印金字塔</h2>
-                        <div className="bg-gray-100 text-xs text-gray-500 mb-4 px-2 py-1 rounded inline-block font-mono">2024年6月 GESP 一级真题 第14题</div>
-                        <div className="bg-white p-4 rounded-lg border border-gray-200 mb-4 font-mono text-sm">
-                            <div className="text-gray-500">// 打印 5 行星星</div>
-                            <div>for (int i = 0; i &lt; 5; i++) &#123;</div>
-                            <div className="pl-4 text-gray-400">// 打印空格 ... (省略)</div>
-                            <div className="pl-4 text-gray-400">// 打印星星</div>
-                            <div className="pl-4">for (int k = 0; k &lt; <span className="bg-yellow-200 border-b-2 border-black font-bold px-2">________</span>; k++)</div>
-                            <div className="pl-8">cout &lt;&lt; "*";</div>
-                            <div className="pl-4">cout &lt;&lt; endl;</div>
-                            <div>&#125;</div>
-                        </div>
+                        <h2 className="text-3xl font-bold text-gray-800 mb-6">⛰️ 实战演练 2：打印星号阶梯</h2>
+                        <div className="bg-[#f7f4ed] text-xs text-stone-700 mb-4 px-2 py-1 rounded inline-block">二级前瞻课堂示例；站内 2024 年 6 月一级第 14 题实际考查认证语言数量。</div>
+                        <p className="mb-3 text-sm text-stone-700">下面输出 5 行左对齐星号，数量依次为 1、3、5、7、9；与下方滑块演示使用同一规则。</p>
+                        <pre className="overflow-x-auto rounded-lg bg-stone-900 p-4 font-mono text-sm text-stone-50 mb-4"><code>{`int rows = 5;
+for (int i = 0; i < rows; i++) {
+    for (int k = 0; k < 2 * i + 1; k++) {
+        cout << "*";
+    }
+    cout << '\\n';
+}`}</code></pre>
                         <PyramidGenerator />
                     </div>
                 );
@@ -560,8 +566,8 @@ function App() {
                             <div className="bg-red-50 p-4 rounded-xl border-l-4 border-red-500 flex gap-4">
                                 <div className="bg-red-100 w-10 h-10 rounded-full flex items-center justify-center text-red-600 font-bold shrink-0">1</div>
                                 <div>
-                                    <h4 className="font-bold text-red-800">变量名冲突</h4>
-                                    <p className="text-sm text-red-700 mt-1">外层用了 <code>i</code>，内层就不能再定义 <code>i</code>。通常搭配是 <code>i, j, k</code>。</p>
+                                    <h4 className="font-bold text-red-800">变量遮蔽</h4>
+                                    <p className="text-sm text-red-700 mt-1">内层可以再次声明同名的 <code>i</code>，但会暂时遮蔽外层 <code>i</code>，容易算错边界；建议分别使用 <code>i</code>、<code>j</code>。</p>
                                 </div>
                             </div>
                             <div className="bg-orange-50 p-4 rounded-xl border-l-4 border-orange-500 flex gap-4">
@@ -609,14 +615,14 @@ function App() {
                                     </li>
                                     <li className="flex items-center gap-2">
                                         <span className="w-2 h-2 bg-indigo-500 rounded-full"></span>
-                                        变量命名要异议。
+                                        变量命名要留意。
                                     </li>
                                 </ul>
                             </div>
 
                             <div className="bg-gradient-to-br from-indigo-500 to-purple-600 text-white p-6 rounded-xl shadow-lg flex flex-col justify-center">
                                 <h3 className="font-bold text-xl mb-4 flex items-center gap-2">
-                                    <Terminal size={24} /> 课后作业：九九乘法表
+                                    <Terminal size={24} /> 选学挑战：九九乘法表
                                 </h3>
                                 <div className="space-y-4">
                                     <div className="bg-white/10 p-3 rounded-lg border border-white/20">
@@ -648,7 +654,7 @@ function App() {
                 return (
                     <div className="slide-enter py-6">
                         <TransferCheck
-                            prompt={'换个例子：for(i=1;i<=2;i++) for(j=1;j<=3;j++) cout<<i<<j<<" "; 一共输出几组？写出全部。'}
+                            prompt={'二级前瞻：for(int i=1;i<=2;i++) for(int j=1;j<=3;j++) cout<<i<<j<<" "; 一共输出几组？写出全部。'}
                             hint="外层每次，内层完整跑一遍；总数 = 外 × 内。"
                             answer="6 组：11 12 13 21 22 23。"
                             steps={[
@@ -658,8 +664,8 @@ function App() {
                             ]}
                         />
                         <MasteryCheck
-                            title="C++ L1-12 嵌套循环离开前检查"
-                            description="如果能分清内外层、手推 j 重置、计算执行次数、拆图形题，就可以进入数组前的循环综合。"
+                            title="C++ L1-12 嵌套循环离开前检查（二级前瞻选学）"
+                            description="双层循环是二级前瞻选学，不计入一级核心通关；一级先能手推单层循环的次数与边界。"
                             items={lesson12MasteryItems}
                         />
                     </div>
