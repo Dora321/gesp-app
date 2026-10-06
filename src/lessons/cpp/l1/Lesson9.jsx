@@ -47,8 +47,8 @@ const sections = [
   { id: 2, title: "情景：体育课噩梦", icon: "foot", category: "循环奥秘" },
   { id: 3, title: "语法：代码咒语", icon: "book", category: "循环奥秘" },
   { id: 4, title: "流程：手指舞模拟", icon: "rotate", category: "循环奥秘" },
-  { id: 5, title: "实战：简单的计数器", icon: "hash", category: "实战与难点" },
-  { id: 6, title: "实战：谁是大陷阱？", icon: "alert", category: "实战与难点" },
+  { id: 5, title: "站内题库：累加器", icon: "hash", category: "实战与难点" },
+  { id: 6, title: "课堂练习：结束边界", icon: "alert", category: "实战与难点" },
   { id: 7, title: "难点：循环结束那一刻", icon: "calc", category: "实战与难点" },
   { id: 8, title: "避坑指南", icon: "x", category: "避坑与总结" },
   { id: 9, title: "总结与作业", icon: "book", category: "避坑与总结" },
@@ -123,7 +123,7 @@ const RunawayRobot = () => {
 
       {isRunning && (
         <div className="mt-4 p-2 bg-red-500/20 border border-red-500 rounded text-red-300 text-sm text-center animate-pulse">
-          ⚠️ 警告：没有停止指令！死循环中！撞墙预警！
+          ⚠️ 代码里没有循环停止条件；模拟器会在电量耗尽时从外部停止。
         </div>
       )}
 
@@ -280,7 +280,7 @@ const ForLoopPredictionChecks = () => (
       misconception="只看到了更新后的 4，忘了循环体只在条件为真时执行。"
     />
     <PredictCheck
-      prompt="for (i = 1; i < 10; i++) 结束后，i 停在几？"
+      prompt="int i; for (i = 1; i < 10; i++) 结束后，i 停在几？"
       options={['9', '10', '不确定']}
       correctIndex={1}
       explanation="最后一次执行时 i = 9，执行完 i++ 变成 10；再次判断 10 < 10 为假，所以停在 10。"
@@ -310,8 +310,8 @@ const forLoopMasteryItems = [
     retryHint: '回到“代码咒语”小节，把三段分别遮住再解释。',
   },
   {
-    label: '能手推循环结束后 i 的值。',
-    evidence: '能解释 i = 9 执行完会先 i++ 到 10，再因为 10 < 10 为假停下。',
+    label: '能手推循环结束后 i 的值，并说明什么时候能在循环外读取。',
+    evidence: '本课先在循环外声明 i：最后一次以 i = 9 执行，更新到 10 后条件为假，循环外仍能读取 10。',
     retryHint: '回到陷阱追踪器，不要跳过最后一次判断。',
   },
   {
@@ -327,7 +327,7 @@ const forLoopMasteryItems = [
 ];
 
 // --- 题目组件 ---
-const Quiz = ({ question, options, correctIndex, explanation }) => {
+const Quiz = ({ question, options, correctIndex, explanation, sourceLabel }) => {
   const [selected, setSelected] = useState(null);
   const [showExplanation, setShowExplanation] = useState(false);
 
@@ -340,13 +340,16 @@ const Quiz = ({ question, options, correctIndex, explanation }) => {
   return (
     <div className="bg-white p-6 rounded-xl shadow-lg border-l-4 border-purple-500 my-6">
       <div className="flex items-center gap-2 mb-4">
-        <span className="bg-purple-100 text-purple-700 px-2 py-1 rounded text-xs font-bold uppercase tracking-wider">真题实战</span>
+        <span className="bg-purple-100 text-purple-700 px-2 py-1 rounded text-xs font-bold tracking-wider">{sourceLabel}</span>
       </div>
       <div className="font-bold text-lg mb-4 font-mono text-gray-800 whitespace-pre-wrap">{question}</div>
       <div className="grid grid-cols-1 gap-3">
         {options.map((opt, idx) => (
           <button
             key={idx}
+            type="button"
+            aria-pressed={selected === idx}
+            disabled={selected !== null}
             onClick={() => handleSelect(idx)}
             className={`p-4 text-left rounded-lg border-2 transition-all flex justify-between items-center group
               ${selected === null ? 'border-gray-100 hover:border-purple-300 hover:bg-purple-50' : ''}
@@ -367,7 +370,7 @@ const Quiz = ({ question, options, correctIndex, explanation }) => {
         ))}
       </div>
       {showExplanation && (
-        <div className="mt-4 p-4 bg-gray-50 rounded-lg text-sm border border-gray-200 slide-enter">
+        <div role="status" className="mt-4 p-4 bg-gray-50 rounded-lg text-sm border border-gray-200 slide-enter">
           <h4 className="font-bold text-gray-700 mb-2 flex items-center gap-2">
             <BookOpen size={16} className="text-purple-500" /> 侦探解析：
           </h4>
@@ -406,7 +409,7 @@ function App() {
                 <ul className="list-disc list-inside text-gray-600 space-y-1 text-sm">
                   <li>学会指挥电脑“重复做某事”。</li>
                   <li>掌握 <code>for</code> 循环的三大要素。</li>
-                  <li>破解循环结束后的“变量尸体”之谜。</li>
+                  <li>区分循环结束时的变量值与变量作用域。</li>
                 </ul>
               </div>
             </div>
@@ -493,17 +496,16 @@ function App() {
       case 5:
         return (
           <div className="slide-enter">
-            <h2 className="text-3xl font-bold text-gray-800 mb-6">🛡️ 实战演练 1：简单的计数器</h2>
-            <div className="bg-gray-100 text-xs text-gray-500 mb-2 px-2 py-1 rounded inline-block font-mono">2023年9月 GESP 一级真题 第10题</div>
+            <h2 className="text-3xl font-bold text-gray-800 mb-6">🛡️ 实战演练 1：累加器</h2>
             <Quiz
-              question={`int cnt = 0;\nfor (int i = 1; i <= 5; i++) {\n    cnt = cnt + 1;\n}\ncout << cnt;`}
-              options={["4", "5", "6", "0"]}
-              correctIndex={1}
+              sourceLabel="站内题库：2023 年 9 月一级第 10 题"
+              question={`下面 C++ 代码段执行后的输出是（ ）。\n\nint s = 0;\nfor (int i = 1; i <= 5; i++) s += i;\ncout << s;`}
+              options={["1", "5", "15", "10"]}
+              correctIndex={2}
               explanation={`
-                1. 变量 cnt 专门用来数数。
-                2. 循环从 i=1 到 i=5，包含 1, 2, 3, 4, 5。
-                3. 一共执行了 5 次。
-                4. 每次 cnt 加 1，所以最后是 5。
+                1. s 初始为 0，i 依次取 1、2、3、4、5。
+                2. 每轮执行 s += i，把当前 i 加到 s：1、3、6、10、15。
+                3. i 更新到 6 后条件为假，最终输出 s 的值 15。
               `}
             />
           </div>
@@ -512,7 +514,7 @@ function App() {
         return (
           <div className="slide-enter">
             <h2 className="text-3xl font-bold text-gray-800 mb-6">💣 实战演练 2：谁是大陷阱？</h2>
-            <div className="bg-gray-100 text-xs text-gray-500 mb-2 px-2 py-1 rounded inline-block font-mono">2024年12月 GESP 一级真题 第8题</div>
+            <div className="bg-gray-100 text-xs text-gray-600 mb-2 px-2 py-1 rounded inline-block">课堂自编题：追踪循环结束后的变量；站内 2024 年 12 月一级第 8 题考查的是数组下标。</div>
 
             <div className="bg-orange-50 border-l-4 border-orange-500 p-4 mb-6">
               <h4 className="font-bold text-orange-800 mb-2">题目代码：</h4>
@@ -528,6 +530,7 @@ cout << (N + i);`}
             </div>
 
             <Quiz
+              sourceLabel="课堂练习题"
               question="程序运行后，输出的结果是多少？"
               options={["18", "19", "20", "10"]}
               correctIndex={1}
@@ -547,14 +550,13 @@ cout << (N + i);`}
           <div className="slide-enter">
             <h2 className="text-3xl font-bold text-gray-800 mb-6">🧠 核心难点：循环结束那一刻</h2>
             <p className="text-gray-600 mb-4">
-              很多同学以为循环写着 <code>i &lt; 10</code>，i 最大就是 9。
-              <strong className="text-red-600">错！</strong> 为了打破循环，<code>i</code> 必须变成不满足条件的那个数。
+              在本例没有 <code>break</code>、每轮执行 <code>i++</code>：最后一次进入循环体时 <code>i = 9</code>，更新后变成 10，再判断 <code>10 &lt; 10</code> 为假才结束。
             </p>
             <TrapTracer />
             <ForLoopPredictionChecks />
             <div className="mt-6 bg-slate-800 text-white p-4 rounded-lg text-center shadow-lg">
               <span className="font-bold text-yellow-400 text-xl block mb-1">结论</span>
-              循环结束时，i 的值通常比最后一次执行的值 <span className="bg-white text-slate-900 px-1 rounded font-bold">大 1</span> (对于 i++ 来说)。
+              本例在循环外先声明 <code>i</code>，所以结束后还能读取它的值 10；若写成 <code>for (int i = 1; ...)</code>，循环外就不能再读取这个 <code>i</code>。
             </div>
           </div>
         );
@@ -596,7 +598,7 @@ cout << (N + i);`}
                 <div>
                   <h4 className="font-bold text-slate-800 text-lg">坑 3：死循环</h4>
                   <p className="text-sm text-gray-600 mt-1">
-                    如果忘记写 <code>i++</code>，或者写成了 <code>i--</code>，机器人会跑到没电为止！
+                    如果忘记写 <code>i++</code>，或更新方向与停止条件不匹配，循环可能无法按预期结束。要逐轮检查条件是否会变假。
                   </p>
                 </div>
               </div>
@@ -631,7 +633,7 @@ cout << (N + i);`}
                 <div className="space-y-4">
                   <div className="bg-white/10 p-3 rounded-lg border border-white/20">
                     <p className="font-bold text-sm mb-1">1. 上机验证</p>
-                    <p className="text-xs opacity-80">输入真题2的代码，亲眼看看 i 最后是不是 10。</p>
+                    <p className="text-xs opacity-80">输入本课第二道课堂练习的代码，观察 i 最后是否为 10。</p>
                   </div>
                   <div className="bg-white/10 p-3 rounded-lg border border-white/20">
                     <p className="font-bold text-sm mb-1">2. 思考题</p>
@@ -650,7 +652,7 @@ cout << (N + i);`}
           <div className="slide-enter">
             <h2 className="text-3xl font-bold text-gray-800 mb-6">🏁 离开前检查</h2>
             <TransferCheck
-                prompt={'换个例子：for(int i=1;i<=4;i++) cout<<i; 输出什么？循环结束后 i 是多少？'}
+                prompt={'换个例子：int i; for(i=1;i<=4;i++) cout<<i; 输出什么？循环结束后 i 是多少？'}
                 hint="i 从 1 到 4，每次输出后 i++；条件 i<=4 不成立时退出。"
                 answer="输出 1234；结束后 i = 5。"
                 steps={[
