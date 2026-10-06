@@ -75,8 +75,8 @@ const sections = [
   { id: 3, title: "代码变身：多重选择结构", icon: "code", category: "核心逻辑" },
   { id: 4, title: "核心逻辑：楼梯法则", icon: "layers", category: "核心逻辑" },
   { id: 5, title: "互动游戏：人体编译器", icon: "smile", category: "核心逻辑" },
-  { id: 6, title: "真题实战：到底谁是偶数", icon: "terminal", category: "实战演练" },
-  { id: 7, title: "真题实战：被忽略的 7", icon: "alert", category: "实战演练" },
+  { id: 6, title: "站内题库：到底谁是偶数", icon: "terminal", category: "实战演练" },
+  { id: 7, title: "题目迁移：被忽略的 7", icon: "alert", category: "实战演练" },
   { id: 8, title: "switch 基础与语法小贴士", icon: "book", category: "实战演练" },
   { id: 9, title: "总结与作业", icon: "check", category: "实战演练" },
   { id: 10, title: "离开前检查", icon: "check", category: "实战演练" }
@@ -119,13 +119,13 @@ const RestaurantSimulator = () => {
       </h3>
 
       <div className="flex flex-wrap gap-4 mb-6 justify-center">
-        <button onClick={() => setHasWatermelon(!hasWatermelon)} className={`px-4 py-2 rounded-lg border-2 font-bold transition-all ${hasWatermelon ? 'bg-green-500 text-white border-green-600 shadow-sm' : 'bg-white text-gray-400 border-gray-200 border-dashed'}`}>
+        <button type="button" aria-pressed={hasWatermelon} onClick={() => setHasWatermelon(!hasWatermelon)} className={`px-4 py-2 rounded-lg border-2 font-bold transition-all ${hasWatermelon ? 'bg-green-500 text-white border-green-600 shadow-sm' : 'bg-white text-gray-400 border-gray-200 border-dashed'}`}>
           {hasWatermelon ? "✅ 有西瓜" : "❌ 没西瓜"}
         </button>
-        <button onClick={() => setHasStrawberry(!hasStrawberry)} className={`px-4 py-2 rounded-lg border-2 font-bold transition-all ${hasStrawberry ? 'bg-red-500 text-white border-red-600 shadow-sm' : 'bg-white text-gray-400 border-gray-200 border-dashed'}`}>
+        <button type="button" aria-pressed={hasStrawberry} onClick={() => setHasStrawberry(!hasStrawberry)} className={`px-4 py-2 rounded-lg border-2 font-bold transition-all ${hasStrawberry ? 'bg-red-500 text-white border-red-600 shadow-sm' : 'bg-white text-gray-400 border-gray-200 border-dashed'}`}>
           {hasStrawberry ? "✅ 有草莓" : "❌ 没草莓"}
         </button>
-        <button onClick={() => setHasApple(!hasApple)} className={`px-4 py-2 rounded-lg border-2 font-bold transition-all ${hasApple ? 'bg-yellow-500 text-white border-yellow-600 shadow-sm' : 'bg-white text-gray-400 border-gray-200 border-dashed'}`}>
+        <button type="button" aria-pressed={hasApple} onClick={() => setHasApple(!hasApple)} className={`px-4 py-2 rounded-lg border-2 font-bold transition-all ${hasApple ? 'bg-yellow-500 text-white border-yellow-600 shadow-sm' : 'bg-white text-gray-400 border-gray-200 border-dashed'}`}>
           {hasApple ? "✅ 有苹果" : "❌ 没苹果"}
         </button>
       </div>
@@ -184,6 +184,7 @@ const HumanCompiler = () => {
         <span className="font-bold text-gray-700">变量 N 的值:</span>
         <input
           type="range" min="0" max="25"
+          aria-label="变量 N 的值"
           value={nValue}
           onChange={(e) => setNValue(parseInt(e.target.value))}
           className="flex-1 accent-indigo-600 cursor-pointer"
@@ -217,7 +218,7 @@ const HumanCompiler = () => {
           )}
           {nValue > 10 && (
             <p className="text-xs text-red-600 mt-2 font-bold bg-red-100 px-2 py-1 rounded border border-red-200">
-              陷阱：20 &gt; 5 成立，但被第一层拦截了！
+              {nValue} &gt; 5 也成立，但第一个条件已命中，第二个条件不会再检查。
             </p>
           )}
         </div>
@@ -228,20 +229,22 @@ const HumanCompiler = () => {
 
 // --- 互动演示组件：被忽略的7 ---
 const TrapVisualizer = () => {
-  const [nInput, setNInput] = useState(21);
+  const [nInput, setNInput] = useState('21');
+  const parsedInput = Number(nInput);
+  const hasValidInput = /^\d+$/.test(nInput) && Number.isSafeInteger(parsedInput) && parsedInput <= 1000000;
 
-  let output;
+  let output = '请输入 0～1000000 的整数';
   let step1 = false;
   let step2 = false;
 
-  if (nInput % 3 === 0) {
+  if (hasValidInput && parsedInput % 3 === 0) {
     output = "能被3整除";
     step1 = true;
-  } else if (nInput % 7 === 0) {
+  } else if (hasValidInput && parsedInput % 7 === 0) {
     output = "能被7整除";
     step2 = true;
-  } else {
-    output = "(无输出)";
+  } else if (hasValidInput) {
+    output = "不能被3和7整除";
   }
 
   return (
@@ -250,47 +253,54 @@ const TrapVisualizer = () => {
         <AlertTriangle className="text-orange-600" size={24} /> 陷阱演示：被忽略的 7
       </h3>
 
-      <div className="mb-6 flex items-center gap-4">
-        <label className="font-bold text-gray-700">输入 N:</label>
+      <div className="mb-6 flex flex-wrap items-center gap-4">
+        <label htmlFor="l1-8-trap-n" className="font-bold text-gray-700">输入 N:</label>
         <input
-          type="number"
+          id="l1-8-trap-n"
+          type="text"
+          inputMode="numeric"
+          aria-invalid={!hasValidInput}
           value={nInput}
-          onChange={(e) => setNInput(parseInt(e.target.value) || 0)}
+          onChange={(e) => setNInput(e.target.value)}
           className="border-2 border-orange-300 rounded px-3 py-2 w-24 text-center font-mono font-bold text-xl focus:outline-none focus:border-orange-500"
         />
-        <div className="flex gap-2">
+        <div className="flex flex-wrap gap-2">
           {[21, 14, 7, 3].map(val => (
-            <button key={val} onClick={() => setNInput(val)} className="text-xs bg-white px-2 py-1 rounded border hover:bg-orange-100 transition">
+            <button key={val} type="button" onClick={() => setNInput(String(val))} className="text-xs bg-white px-2 py-1 rounded border hover:bg-orange-100 transition">
               试 {val}
             </button>
           ))}
         </div>
       </div>
+      {!hasValidInput && <p role="alert" className="mb-4 text-sm font-semibold text-red-700">请输入 0～1000000 的整数，再观察分支。</p>}
 
       <div className="bg-white p-5 rounded-lg shadow-sm font-mono text-sm relative border border-orange-100">
         <div className={`p-3 rounded mb-2 transition-all flex justify-between items-center ${step1 ? 'bg-green-100 border-l-4 border-green-500' : 'bg-gray-50'}`}>
           <span className="text-gray-800"><span className="text-purple-600 font-bold">if</span> (N % 3 == 0)</span>
           <span className={step1 ? "text-green-700 font-bold" : "text-red-400"}>
-            {nInput % 3 === 0 ? "True (成立)" : "False"}
+            {hasValidInput ? (parsedInput % 3 === 0 ? "True (成立)" : "False") : "待输入"}
           </span>
         </div>
         {step1 && <div className="ml-8 text-gray-500 mb-2 italic">↳ 执行 cout &lt;&lt; "能被3整除";</div>}
 
         <div className={`p-3 rounded mb-2 transition-all flex justify-between items-center ${step1 ? 'opacity-30 grayscale' : (step2 ? 'bg-green-100 border-l-4 border-green-500' : 'bg-gray-50')}`}>
           <span className="text-gray-800"><span className="text-purple-600 font-bold">else if</span> (N % 7 == 0)</span>
-          <span className={step1 ? "text-gray-400 font-bold" : (nInput % 7 === 0 ? "text-green-700 font-bold" : "text-red-400")}>
-            {step1 ? "🚫 被跳过 (SKIP)" : (nInput % 7 === 0 ? "True" : "False")}
+          <span className={step1 ? "text-gray-400 font-bold" : (hasValidInput && parsedInput % 7 === 0 ? "text-green-700 font-bold" : "text-red-400")}>
+            {step1 ? "🚫 被跳过 (SKIP)" : (hasValidInput ? (parsedInput % 7 === 0 ? "True" : "False") : "待输入")}
           </span>
         </div>
+        <div className={`p-3 rounded mb-2 transition-all ${hasValidInput && !step1 && !step2 ? 'bg-green-100 border-l-4 border-green-500' : 'opacity-40'}`}>
+          <span className="text-gray-800"><span className="text-purple-600 font-bold">else</span> 输出“不能被3和7整除”</span>
+        </div>
 
-        {nInput === 21 && (
+        {hasValidInput && parsedInput === 21 && (
           <div className="mt-4 p-3 bg-red-100 text-red-700 rounded-lg border border-red-200 text-sm font-bold flex items-center gap-2">
             <AlertTriangle size={16} /> 警报：21 也能被 7 整除，但代码永远走不到第二行！
           </div>
         )}
       </div>
 
-      <div className="mt-4 p-3 bg-gray-800 text-green-400 font-mono rounded-lg shadow-inner">
+      <div role="status" className="mt-4 p-3 bg-gray-800 text-green-400 font-mono rounded-lg shadow-inner">
         <span className="text-gray-500 select-none">$ </span>
         输出：{output}
       </div>
@@ -332,6 +342,7 @@ const WeatherReporter = () => {
           <span className="font-bold text-gray-700">温度:</span>
           <input
             type="range" min="-5" max="45"
+            aria-label="温度，单位摄氏度"
             value={temp}
             onChange={(e) => setTemp(parseInt(e.target.value))}
             className="accent-blue-600 w-32 cursor-pointer"
@@ -376,7 +387,7 @@ const WeatherReporter = () => {
           ))}
           {brokenMode && output.length > 1 && (
             <div className="text-red-400 text-xs mt-4 border-t border-red-900/50 pt-2 animate-pulse font-bold">
-              ❌ BUG: 40度 既 Hot 又 Good？<br />
+              ❌ BUG: {temp} 度既 Hot 又 Good？<br />
               因为第二个 if 独立了，Good 变成了只要 &gt;=10 就输出！
             </div>
           )}
@@ -400,13 +411,16 @@ const Quiz = ({ question, options, correctIndex, explanation }) => {
   return (
     <div className="bg-white p-6 rounded-xl shadow-lg border-l-4 border-purple-500 my-6">
       <div className="flex items-center gap-2 mb-4">
-        <span className="bg-purple-100 text-purple-700 px-2 py-1 rounded text-xs font-bold uppercase tracking-wider">真题实战</span>
+        <span className="bg-purple-100 text-purple-700 px-2 py-1 rounded text-xs font-bold tracking-wider">站内题库：2023 年 9 月一级第 7 题</span>
       </div>
       <p className="font-bold text-lg mb-4 font-mono text-gray-800 whitespace-pre-wrap">{question}</p>
       <div className="grid grid-cols-1 gap-3">
         {options.map((opt, idx) => (
           <button
             key={idx}
+            type="button"
+            aria-pressed={selected === idx}
+            disabled={selected !== null}
             onClick={() => handleSelect(idx)}
             className={`p-4 text-left rounded-lg border-2 transition-all flex justify-between items-center group
               ${selected === null ? 'border-gray-100 hover:border-purple-300 hover:bg-purple-50' : ''}
@@ -427,7 +441,7 @@ const Quiz = ({ question, options, correctIndex, explanation }) => {
         ))}
       </div>
       {showExplanation && (
-        <div className="mt-4 p-4 bg-gray-50 rounded-lg text-sm border border-gray-200 slide-enter">
+        <div role="status" className="mt-4 p-4 bg-gray-50 rounded-lg text-sm border border-gray-200 slide-enter">
           <h4 className="font-bold text-gray-700 mb-2 flex items-center gap-2">
             <HelpCircle size={16} className="text-purple-500" /> 侦探解析：
           </h4>
@@ -623,13 +637,13 @@ export default function App() {
           <div className="slide-enter">
             <h2 className="text-3xl font-bold text-gray-800 mb-6">⚔️ 实战演练 1：到底谁是偶数？</h2>
             <Quiz
-              question={`int m = 14, n = 12;\nif (m % 2 == 0 && n % 2 == 0)\n    cout << "都是偶数";\nelse if (m % 2 == 1 && n % 2 == 1)\n    cout << "都是奇数";\nelse\n    cout << "一奇一偶";\n\n程序会输出什么？`}
-              options={["都是偶数", "都是奇数", "一奇一偶", "无输出"]}
+              question={`下面 C++ 代码执行后的输出是（ ）。\n\nint m = 14;\nint n = 12;\nif (m % 2 == 0 && n % 2 == 0)\n    cout << "都是偶数";\nelse if (m % 2 == 1 && n % 2 == 1)\n    cout << "都是奇数";\nelse\n    cout << "不都是偶数或奇数";`}
+              options={["都是偶数", "都是奇数", "不都是偶数或奇数", "以上说法都不正确"]}
               correctIndex={0}
               explanation={`m=14, n=12 都是偶数。
                 1. 检查第一个 if：m%2==0 (真) 且 n%2==0 (真) -> 条件成立！
                 2. 执行 cout << "都是偶数"。
-                3. 触发“跳楼”机制：后面的 else if 和 else 直接跳过，不予理会。
+                3. 第一个分支命中后，后面的 else if 和 else 不再检查。
                 
                 所以答案是 A。`}
             />
@@ -639,7 +653,7 @@ export default function App() {
         return (
           <div className="slide-enter">
             <h2 className="text-3xl font-bold text-gray-800 mb-6">🪤 实战演练 2：被忽略的“7”</h2>
-            <div className="bg-gray-100 text-xs text-gray-500 mb-2 px-2 py-1 rounded inline-block font-mono">2024年3月 GESP 一级真题</div>
+            <div className="bg-gray-100 text-xs text-gray-600 mb-2 px-2 py-1 rounded inline-block">根据站内 2024 年 3 月一级第 6 题改编的输入实验；原题为选择描述题。</div>
             <TrapVisualizer />
             <div className="bg-yellow-50 border-l-4 border-yellow-500 p-4 mt-4 rounded-r-lg">
               <p className="font-bold text-yellow-800 flex items-center gap-2"><AlertTriangle size={18} /> 避坑指南：</p>
