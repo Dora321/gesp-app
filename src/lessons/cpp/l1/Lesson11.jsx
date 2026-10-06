@@ -47,7 +47,7 @@ const lesson11MasteryItems = [
     {
         label: '能手推含 break/continue 的输出。',
         evidence: '能逐轮记录 i 的变化、是否跳过、是否停止，并写出最终输出。',
-        retryHint: '回到两道真题，把每轮写成“i、动作、输出”三列。',
+        retryHint: '回到两道代码追踪实验，把每轮写成“i、动作、输出”三列。',
     },
 ];
 
@@ -59,9 +59,9 @@ const sections = [
     { id: 4, title: "演示：跳过坏豆子 (continue)", icon: "skip", category: "控制奥秘" },
     { id: 5, title: "对比PK台：同一场景不同结果", icon: "trophy", category: "深度辨析" },
     { id: 6, title: "避坑指南：常见误区", icon: "alert", category: "深度辨析" },
-    { id: 7, title: "真题实战 1：无限循环急刹车", icon: "stop", category: "实战与进阶" },
-    { id: 8, title: "真题实战 2：混合双打", icon: "zap", category: "实战与进阶" },
-    { id: 9, title: "高级知识：嵌套循环中的break", icon: "layers", category: "实战与进阶" },
+    { id: 7, title: "题库改编：无限循环急刹车", icon: "stop", category: "实战与进阶" },
+    { id: 8, title: "课堂练习：混合双打", icon: "zap", category: "实战与进阶" },
+    { id: 9, title: "二级前瞻：嵌套循环中的 break", icon: "layers", category: "实战与进阶" },
     { id: 10, title: "总结与作业", icon: "check", category: "实战与进阶" },
     { id: 11, title: "离开前检查", icon: "check", category: "实战与进阶" }
 ];
@@ -102,7 +102,7 @@ export default function App() {
                                 </li>
                                 <li className="flex items-center gap-3">
                                     <span className="bg-yellow-100 text-yellow-600 p-1 rounded"><AlertTriangle size={18} /></span>
-                                    结合之前的 <code>if</code> 判断，解决 GESP 真题中的逻辑陷阱。
+                                    结合之前的 <code>if</code> 判断，解决代码追踪中的逻辑陷阱。
                                 </li>
                             </ul>
                         </div>
@@ -245,8 +245,8 @@ export default function App() {
             case 7:
                 return (
                     <div className="slide-enter">
-                        <h2 className="text-3xl font-bold text-gray-800 mb-6">🛑 真题实战 1：无限循环急刹车</h2>
-                        <div className="bg-gray-100 text-xs text-gray-500 mb-4 px-3 py-1 rounded inline-block font-mono">2023年12月 GESP 一级真题 第7题</div>
+                        <h2 className="text-3xl font-bold text-gray-800 mb-6">🛑 题库改编：无限循环急刹车</h2>
+                        <div className="bg-[#f7f4ed] text-xs text-stone-700 mb-4 px-3 py-1 rounded inline-block">按站内 2023 年 12 月一级第 8 题改编为逐步追踪；原题为选择输出题。</div>
                         <InfiniteBreakTracer />
                         <div className="bg-white p-4 rounded-lg shadow-sm border border-gray-200 mt-4">
                             <h4 className="font-bold text-gray-800 mb-2 flex items-center gap-2"><CheckCircle2 size={18} className="text-green-600" /> 解题思路：人脑模拟机器人</h4>
@@ -262,8 +262,8 @@ export default function App() {
             case 8:
                 return (
                     <div className="slide-enter">
-                        <h2 className="text-3xl font-bold text-gray-800 mb-6">⚠️ 真题实战 2：混合双打</h2>
-                        <div className="bg-gray-100 text-xs text-gray-500 mb-4 px-3 py-1 rounded inline-block font-mono">2024年12月 GESP 一级真题 第10题</div>
+                        <h2 className="text-3xl font-bold text-gray-800 mb-6">⚠️ 课堂练习：混合双打</h2>
+                        <div className="bg-[#f7f4ed] text-xs text-stone-700 mb-4 px-3 py-1 rounded inline-block">课堂自编代码追踪；站内 2024 年 12 月一级第 10 题考查的是字符 'a' 的 ASCII 码值。</div>
                         <LogicTable />
                         <div className="bg-blue-50 p-4 rounded-lg border-l-4 border-blue-500 mt-4 text-sm text-blue-900">
                             <strong>💡 发现规律：</strong><br />
@@ -277,11 +277,11 @@ export default function App() {
                 return (
                     <div className="slide-enter">
                         <h2 className="text-3xl font-bold text-gray-800 mb-6 flex items-center gap-3">
-                            <Layers className="text-indigo-500" size={32} /> 高级知识：嵌套循环中的 break
+                            <Layers className="text-indigo-500" size={32} /> 二级前瞻：嵌套循环中的 break
                         </h2>
                         <NestedLoopVisualizer />
                         <div className="bg-indigo-50 p-4 rounded-lg border-l-4 border-indigo-500 mt-4 text-sm text-indigo-900">
-                            <strong>🗝️ 关键点：</strong> break 只能跳出<strong>它所在的那一层</strong>大括号。如果你在内层循环写 break，外层循环还会继续跑！想要一次跳出所有循环，需要使用标志变量（flag）。
+                            <strong>🗝️ 关键点：</strong> break 结束<strong>最近一层循环或 switch</strong>，并非跳出任意大括号。写在内层循环里的 break 不会自动结束外层循环；跨层退出可在后续课程学习标志变量等方法。
                         </div>
                     </div>
                 );
@@ -324,7 +324,7 @@ export default function App() {
                                     <div className="bg-white/10 p-3 rounded-lg border border-white/20">
                                         <p className="font-bold text-sm mb-1">1. 修改代码</p>
                                         <p className="text-xs opacity-90">
-                                            把今天第二题的代码输入电脑。如果把 <code>i += 5</code> 改成 <code>i++</code>，tnt 会变成多少？
+                                            把课堂练习的代码输入电脑。如果把 <code>i += 5</code> 改成 <code>i++</code>，先预测再运行核对 tnt 会变成多少。
                                         </p>
                                     </div>
                                     <div className="bg-white/10 p-3 rounded-lg border border-white/20">

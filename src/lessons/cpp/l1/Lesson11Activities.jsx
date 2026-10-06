@@ -516,7 +516,7 @@ export const NestedLoopVisualizer = () => {
     return (
         <div className="bg-indigo-50 p-6 rounded-xl border-2 border-indigo-200 my-6">
             <h3 className="font-bold text-lg text-indigo-800 mb-4 flex items-center gap-2">
-                <Layers className="text-indigo-600" /> 高级：嵌套循环中的 Break
+                <Layers className="text-indigo-600" /> 二级前瞻：嵌套循环中的 break
             </h3>
 
             <div className="flex gap-4 mb-6">
@@ -579,15 +579,17 @@ export const InfiniteBreakTracer = () => {
     return (
         <div className="bg-indigo-50 p-6 rounded-xl border-2 border-indigo-200 my-4">
             <h3 className="font-bold text-lg text-indigo-700 mb-4 flex items-center gap-2">
-                <StopCircle className="text-indigo-600" /> 真题追踪：无限循环中的急刹车
+                <StopCircle className="text-indigo-600" /> 题库改编追踪：无限循环中的急刹车
             </h3>
             <div className="bg-white p-4 rounded-lg shadow-sm mb-4 font-mono text-sm">
                 <div className="text-gray-500 mb-2">Code:</div>
+                <div>int N = 10, cnt = 0;</div>
                 <div>while (1) &#123;</div>
                 <div className={`pl-4 ${current.desc.includes("break") ? 'bg-red-100 font-bold text-red-600' : ''}`}>if (N == 0) break;</div>
                 <div className="pl-4">cnt += 1;</div>
                 <div className="pl-4">N -= 2;</div>
                 <div>&#125;</div>
+                <div>cout &lt;&lt; cnt;</div>
             </div>
 
             <div className="flex gap-4 mb-4">
@@ -601,12 +603,13 @@ export const InfiniteBreakTracer = () => {
                 </div>
             </div>
 
-            <div className="bg-black text-yellow-400 p-3 rounded mb-4 font-mono text-sm h-12 flex items-center">
+            <div role="status" className="bg-black text-yellow-400 p-3 rounded mb-4 font-mono text-sm min-h-12 flex items-center">
                 &gt; {current.desc}
             </div>
 
             <div className="flex gap-2">
                 <button
+                    type="button"
                     onClick={() => setStep(Math.max(0, step - 1))}
                     disabled={step === 0}
                     className="px-4 py-2 bg-gray-200 rounded hover:bg-gray-300 disabled:opacity-50"
@@ -614,6 +617,7 @@ export const InfiniteBreakTracer = () => {
                     上一步
                 </button>
                 <button
+                    type="button"
                     onClick={() => setStep(Math.min(steps.length - 1, step + 1))}
                     disabled={step === steps.length - 1}
                     className="flex-1 py-2 bg-indigo-600 text-white rounded hover:bg-indigo-700 disabled:opacity-50"
@@ -636,17 +640,25 @@ export const LogicTable = () => {
         { i: "...", even: "", action: "...", tnt: "...", break: false },
         { i: 45, even: false, action: "tnt+1", tnt: 5, break: false },
         { i: 50, even: true, action: "continue", tnt: 5, break: false },
-        { i: 55, even: false, action: "tnt+1", tnt: 6, break: ">=50! Break!" },
+        { i: 55, even: false, action: "tnt+1, break", tnt: 6, break: ">=50! Break!" },
     ];
 
     return (
         <div className="bg-yellow-50 p-6 rounded-xl border-2 border-yellow-200 my-4 overflow-hidden">
             <h3 className="font-bold text-lg text-yellow-800 mb-4 flex items-center gap-2">
-                <AlertTriangle className="text-yellow-600" /> 真题追踪：continue 和 break 混合双打
+                <AlertTriangle className="text-yellow-600" /> 课堂追踪：continue 和 break 混合双打
             </h3>
             <p className="text-sm text-gray-600 mb-4">
-                代码规则：从5开始，每次+5。偶数 continue (跳过)，tnt计数。当 i&gt;=50 时 break。
+                先跳过偶数，再给奇数计数；若该奇数达到 50，计数后立即退出。
             </p>
+
+            <pre className="overflow-x-auto rounded-lg bg-stone-900 p-4 text-sm text-stone-50 mb-4"><code>{`int tnt = 0;
+for (int i = 5; i <= 60; i += 5) {
+    if (i % 2 == 0) continue;
+    tnt += 1;
+    if (i >= 50) break;
+}
+cout << tnt;`}</code></pre>
 
             <div className="overflow-x-auto">
                 <table className="w-full text-sm bg-white border border-gray-200 rounded-lg">
