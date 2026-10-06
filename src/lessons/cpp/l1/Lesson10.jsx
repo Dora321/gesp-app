@@ -333,18 +333,26 @@ const InfiniteLoopDemo = () => {
 // --- 互动组件 4：实战 1 找茬 ---
 const BugFixer = () => {
   const [fixed, setFixed] = useState(false);
-  const [nVal, setNVal] = useState(123);
+  const [nVal, setNVal] = useState('123');
   const [output, setOutput] = useState("");
+  const [inputError, setInputError] = useState('');
 
   const runCode = () => {
-    let N = nVal;
-    let N0 = nVal;
+    const parsedValue = Number(nVal);
+    if (!/^[1-9]\d*$/.test(nVal) || !Number.isSafeInteger(parsedValue) || parsedValue > 1000000000) {
+      setInputError('请输入 1～1000000000 的正整数，再运行代码。');
+      setOutput('');
+      return;
+    }
+    setInputError('');
+    let N = parsedValue;
+    const N0 = parsedValue;
     let rc = 0;
 
     // Simulate loop
     while (N > 0) {
       rc++;
-      N = Math.floor(N / 10);
+      N = Math.trunc(N / 10);
     }
 
     // Output based on fixed state
@@ -360,7 +368,7 @@ const BugFixer = () => {
       <h3 className="font-bold text-lg text-yellow-800 mb-4 flex items-center gap-2">
         <Ghost className="text-yellow-600" /> 实战演练 1：贪吃蛇数数
       </h3>
-      <div className="bg-gray-100 text-xs text-gray-500 mb-2 px-2 py-1 rounded inline-block font-mono">2024年9月 GESP 一级真题 第13题</div>
+      <div className="bg-gray-100 text-xs text-gray-600 mb-2 px-2 py-1 rounded inline-block">根据站内 2024 年 9 月一级第 13 题改编的正整数修复实验；原题为选择描述题。</div>
 
       <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
         <CodeSnippet
@@ -382,16 +390,21 @@ while (N) {
         <div className="flex flex-col justify-center gap-4">
           <div className="bg-white p-4 rounded-lg shadow-sm">
             <div className="mb-2 font-bold text-gray-700">控制台模拟：</div>
-            <div className="flex gap-2 mb-4">
+            <div className="flex flex-wrap items-center gap-2 mb-4">
+              <label htmlFor="l1-10-bug-n" className="text-sm font-semibold text-gray-700">正整数 N</label>
               <input
-                type="number"
+                id="l1-10-bug-n"
+                type="text"
+                inputMode="numeric"
+                aria-invalid={Boolean(inputError)}
                 value={nVal}
-                onChange={(e) => setNVal(parseInt(e.target.value) || 0)}
+                onChange={(e) => { setNVal(e.target.value); setInputError(''); setOutput(''); }}
                 className="border rounded px-2 py-1 w-24"
               />
-              <button onClick={runCode} className="bg-blue-600 text-white px-3 py-1 rounded hover:bg-blue-700">运行</button>
+              <button type="button" onClick={runCode} className="bg-blue-600 text-white px-3 py-1 rounded hover:bg-blue-700">运行</button>
             </div>
-            <div className="bg-black text-gray-100 p-2 rounded min-h-[40px] font-mono">
+            {inputError && <p role="alert" className="mb-3 text-sm font-semibold text-red-700">{inputError}</p>}
+            <div role="status" className="bg-black text-gray-100 p-2 rounded min-h-[40px] font-mono">
               {output && <span>&gt; {output}</span>}
             </div>
             {!fixed && output && output.startsWith("0") && (
@@ -403,6 +416,8 @@ while (N) {
           </div>
 
           <button
+            type="button"
+            aria-pressed={fixed}
             onClick={() => { setFixed(!fixed); setOutput(""); }}
             className={`py-2 rounded-lg font-bold border-2 transition-all ${fixed ? 'border-gray-300 text-gray-500 bg-gray-100' : 'border-green-500 text-green-600 bg-green-50 hover:bg-green-100'}`}
           >
@@ -422,13 +437,16 @@ const Quiz = ({ question, options, correctIndex, explanation }) => {
   return (
     <div className="bg-white p-6 rounded-xl shadow-lg border-l-4 border-purple-500 my-6">
       <div className="flex items-center gap-2 mb-4">
-        <span className="bg-purple-100 text-purple-700 px-2 py-1 rounded text-xs font-bold uppercase tracking-wider">真题实战</span>
+        <span className="bg-purple-100 text-purple-700 px-2 py-1 rounded text-xs font-bold tracking-wider">课堂练习题</span>
       </div>
       <div className="font-bold text-lg mb-4 font-mono text-gray-800 whitespace-pre-wrap">{question}</div>
       <div className="grid grid-cols-1 gap-3">
         {options.map((opt, idx) => (
           <button
             key={idx}
+            type="button"
+            aria-pressed={selected === idx}
+            disabled={selected !== null}
             onClick={() => { setSelected(idx); setShowExplanation(true); }}
             className={`p-4 text-left rounded-lg border-2 transition-all flex justify-between items-center group
               ${selected === null ? 'border-gray-100 hover:border-purple-300 hover:bg-purple-50' : ''}
@@ -444,7 +462,7 @@ const Quiz = ({ question, options, correctIndex, explanation }) => {
         ))}
       </div>
       {showExplanation && (
-        <div className="mt-4 p-4 bg-gray-50 rounded-lg text-sm border border-gray-200 slide-enter">
+        <div role="status" className="mt-4 p-4 bg-gray-50 rounded-lg text-sm border border-gray-200 slide-enter">
           <h4 className="font-bold text-gray-700 mb-2 flex items-center gap-2">
             <BookOpen size={16} className="text-purple-500" /> 侦探解析：
           </h4>
@@ -796,12 +814,12 @@ function App() {
         return (
           <div className="slide-enter">
             <h2 className="text-3xl font-bold text-gray-800 mb-6">⚡ 实战演练 2：带刹车的循环</h2>
-            <div className="bg-gray-100 text-xs text-gray-500 mb-2 px-2 py-1 rounded inline-block font-mono">2023年12月 GESP 一级真题 第7题</div>
+            <div className="bg-gray-100 text-xs text-gray-600 mb-2 px-2 py-1 rounded inline-block">课堂自编题：用 while、break 追踪循环次数；站内 2023 年 12 月一级第 7 题考查的是 continue 与条件顺序。</div>
 
             <div className="bg-white p-6 rounded-xl border border-gray-200 mb-6">
               <CodeSnippet
                 className="mb-4"
-                code={`N = 10; cnt = 0;
+                code={`int N = 10, cnt = 0;
 while (1) {
     if (N == 0) break; // 刹车！
     cnt += 1;
@@ -914,7 +932,7 @@ cout << count;  // 输出 1`}</code></pre>
                   </div>
                   <div className="bg-white/10 p-3 rounded-lg border border-white/20">
                     <p className="font-bold text-sm mb-1">2. 思考题</p>
-                    <p className="text-xs opacity-90">尝试用 for 循环改写今天的真题2（N 从 10 减到 0）。</p>
+                    <p className="text-xs opacity-90">尝试用 for 循环改写本课第二道课堂练习（N 从 10 减到 0）。</p>
                   </div>
                 </div>
               </div>
