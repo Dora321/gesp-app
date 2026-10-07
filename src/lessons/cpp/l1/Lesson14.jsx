@@ -77,6 +77,31 @@ const lesson14MasteryItems = [
     },
 ];
 
+const stationeryCode = `#include <iostream>
+using namespace std;
+
+int main() {
+    int x, y, z, q;
+    cin >> x >> y >> z >> q;
+    int cost = 2 * x + 5 * y + 3 * z;
+    if (q >= cost) {
+        cout << "Yes\\n" << q - cost << '\\n';
+    } else {
+        cout << "No\\n" << cost - q << '\\n';
+    }
+    return 0;
+}`;
+
+const examDayCode = `#include <iostream>
+using namespace std;
+
+int main() {
+    int x, n;
+    cin >> x >> n;
+    cout << (x - 1 + n) % 7 + 1 << '\\n';
+    return 0;
+}`;
+
 // --- 章节数据 ---
 const sections = [
     { id: 1, title: "课程导入：逻辑便利店", icon: "store", category: "模拟奥义" },
@@ -93,13 +118,15 @@ const sections = [
 const ConvenienceStore = () => {
     const [lollipops, setLollipops] = useState(5);
     const [spicyStrips, setSpicyStrips] = useState(3);
-    const [money, setMoney] = useState(50);
+    const [moneyInput, setMoneyInput] = useState('50');
+    const money = Number(moneyInput);
+    const validMoney = /^\d+$/.test(moneyInput) && Number.isSafeInteger(money) && money >= 0 && money <= 1000000;
 
     const priceLollipop = 2;
     const priceSpicyStrip = 5;
 
     const totalCost = lollipops * priceLollipop + spicyStrips * priceSpicyStrip;
-    const isEnough = money >= totalCost;
+    const isEnough = validMoney && money >= totalCost;
     const change = money - totalCost;
     const shortage = totalCost - money;
 
@@ -114,29 +141,29 @@ const ConvenienceStore = () => {
                     <div className="bg-white p-4 rounded-lg shadow-sm">
                         <h4 className="font-bold text-gray-700 mb-2 border-b pb-1">🛒 顾客清单 (输入)</h4>
                         <div className="flex items-center justify-between mb-2">
-                            <label className="text-sm">🍭 棒棒糖 ($2):</label>
+                            <label htmlFor="lesson14-lollipops" className="text-sm">🍭 棒棒糖 ($2):</label>
                             <div className="flex items-center gap-2">
                                 <input
-                                    type="range" min="0" max="20" value={lollipops} onChange={(e) => setLollipops(parseInt(e.target.value))}
+                                    id="lesson14-lollipops" type="range" min="0" max="20" value={lollipops} onChange={(e) => setLollipops(parseInt(e.target.value))}
                                     className="accent-orange-500 w-24"
                                 />
                                 <span className="font-mono font-bold w-8 text-center">{lollipops}</span>
                             </div>
                         </div>
                         <div className="flex items-center justify-between mb-2">
-                            <label className="text-sm">🌶️ 辣条 ($5):</label>
+                            <label htmlFor="lesson14-spicy-strips" className="text-sm">🌶️ 辣条 ($5):</label>
                             <div className="flex items-center gap-2">
                                 <input
-                                    type="range" min="0" max="20" value={spicyStrips} onChange={(e) => setSpicyStrips(parseInt(e.target.value))}
+                                    id="lesson14-spicy-strips" type="range" min="0" max="20" value={spicyStrips} onChange={(e) => setSpicyStrips(parseInt(e.target.value))}
                                     className="accent-red-500 w-24"
                                 />
                                 <span className="font-mono font-bold w-8 text-center">{spicyStrips}</span>
                             </div>
                         </div>
                         <div className="flex items-center justify-between pt-2 border-t mt-2">
-                            <label className="text-sm font-bold text-green-700">💵 顾客付款:</label>
+                            <label htmlFor="lesson14-money" className="text-sm font-bold text-green-700">💵 顾客付款:</label>
                             <input
-                                type="number" value={money} onChange={(e) => setMoney(parseInt(e.target.value) || 0)}
+                                id="lesson14-money" type="number" min="0" max="1000000" value={moneyInput} onChange={(e) => setMoneyInput(e.target.value)}
                                 className="border rounded px-2 py-1 w-20 text-center font-bold text-green-700"
                             />
                         </div>
@@ -156,24 +183,32 @@ const ConvenienceStore = () => {
                 </div>
             </div>
 
-            <div className={`mt-4 p-4 rounded-xl text-center font-bold text-xl transition-all ${isEnough ? 'bg-green-100 text-green-800 border border-green-300' : 'bg-red-100 text-red-800 border border-red-300'}`}>
+            {!validMoney && <p className="mt-4 text-sm text-red-700" role="alert">请输入 0～1000000 的整数付款金额。</p>}
+            {validMoney && <div className={`mt-4 p-4 rounded-xl text-center font-bold text-xl transition-all ${isEnough ? 'bg-green-100 text-green-800 border border-green-300' : 'bg-red-100 text-red-800 border border-red-300'}`}>
                 {isEnough
                     ? `✅ 交易成功！找零 ${change} 元`
                     : `🚫 交易失败！还差 ${shortage} 元`}
-            </div>
+            </div>}
         </div>
     );
 };
 
 // --- 互动组件 2：文具店计算器 ---
 const StationeryShop = () => {
-    const [x, setX] = useState(1); // 签字笔
-    const [y, setY] = useState(1); // 记事本
-    const [z, setZ] = useState(1); // 直尺
-    const [q, setQ] = useState(20); // 钱
+    const [xInput, setXInput] = useState('1'); // 签字笔
+    const [yInput, setYInput] = useState('1'); // 记事本
+    const [zInput, setZInput] = useState('1'); // 直尺
+    const [qInput, setQInput] = useState('20'); // 钱
+    const x = Number(xInput);
+    const y = Number(yInput);
+    const z = Number(zInput);
+    const q = Number(qInput);
+    const validQuantity = (value) => /^\d+$/.test(value) && Number(value) >= 1 && Number(value) <= 10;
+    const valid = [xInput, yInput, zInput].every(validQuantity)
+        && /^\d+$/.test(qInput) && Number.isSafeInteger(q) && q >= 1 && q <= 1000000;
 
-    const total = x * 2 + y * 5 + z * 3;
-    const isEnough = q >= total;
+    const total = valid ? x * 2 + y * 5 + z * 3 : null;
+    const isEnough = valid && q >= total;
 
     return (
         <div className="bg-blue-50 p-6 rounded-xl border-2 border-blue-200 my-4">
@@ -185,23 +220,25 @@ const StationeryShop = () => {
             <div className="flex flex-wrap gap-4 mb-6">
                 <div className="bg-white p-3 rounded shadow-sm flex-1 min-w-[120px] border border-blue-100">
                     <div className="text-xs text-gray-500 mb-1 flex items-center gap-1"><Pencil size={12} /> 签字笔 ($2)</div>
-                    <input type="number" value={x} onChange={e => setX(Math.max(0, parseInt(e.target.value) || 0))} className="w-full font-bold text-center border-b focus:outline-none" />
+                    <input type="number" min="1" max="10" aria-label="签字笔数量 X" value={xInput} onChange={e => setXInput(e.target.value)} className="w-full font-bold text-center border-b focus:outline-none" />
                 </div>
                 <div className="bg-white p-3 rounded shadow-sm flex-1 min-w-[120px] border border-blue-100">
                     <div className="text-xs text-gray-500 mb-1 flex items-center gap-1"><Notebook size={12} /> 记事本 ($5)</div>
-                    <input type="number" value={y} onChange={e => setY(Math.max(0, parseInt(e.target.value) || 0))} className="w-full font-bold text-center border-b focus:outline-none" />
+                    <input type="number" min="1" max="10" aria-label="记事本数量 Y" value={yInput} onChange={e => setYInput(e.target.value)} className="w-full font-bold text-center border-b focus:outline-none" />
                 </div>
                 <div className="bg-white p-3 rounded shadow-sm flex-1 min-w-[120px] border border-blue-100">
                     <div className="text-xs text-gray-500 mb-1 flex items-center gap-1"><Ruler size={12} /> 直尺 ($3)</div>
-                    <input type="number" value={z} onChange={e => setZ(Math.max(0, parseInt(e.target.value) || 0))} className="w-full font-bold text-center border-b focus:outline-none" />
+                    <input type="number" min="1" max="10" aria-label="直尺数量 Z" value={zInput} onChange={e => setZInput(e.target.value)} className="w-full font-bold text-center border-b focus:outline-none" />
                 </div>
                 <div className="bg-green-50 p-3 rounded shadow-sm flex-1 min-w-[120px] border border-green-200">
                     <div className="text-xs text-green-700 mb-1 flex items-center gap-1"><Coins size={12} /> 钱包 ($)</div>
-                    <input type="number" value={q} onChange={e => setQ(Math.max(0, parseInt(e.target.value) || 0))} className="w-full font-bold text-center border-b border-green-300 bg-transparent text-green-800 focus:outline-none" />
+                    <input type="number" min="1" max="1000000" aria-label="钱包金额 Q" value={qInput} onChange={e => setQInput(e.target.value)} className="w-full font-bold text-center border-b border-green-300 bg-transparent text-green-800 focus:outline-none" />
                 </div>
             </div>
 
-            <div className="flex flex-col md:flex-row gap-4 items-center">
+            {!valid && <p className="mb-4 text-sm text-red-700" role="alert">原题 X、Y、Z 均为 1～10 的整数；钱包金额请输入 1～1000000 的整数。</p>}
+
+            {valid && <div className="flex flex-col md:flex-row gap-4 items-center">
                 <div className="bg-slate-900 text-gray-300 p-4 rounded-lg font-mono text-sm flex-1 w-full">
                     <div><span className="text-purple-400">int</span> total = x*2 + y*5 + z*3; <span className="text-gray-500">// {total}</span></div>
                     <div><span className="text-purple-400">if</span> (q &gt;= total) &#123;</div>
@@ -233,7 +270,7 @@ const StationeryShop = () => {
                         )}
                     </div>
                 </div>
-            </div>
+            </div>}
         </div>
     );
 };
@@ -241,11 +278,13 @@ const StationeryShop = () => {
 // --- 互动组件 3：星期推算器 ---
 const WeekCalculator = () => {
     const [startDay, setStartDay] = useState(1); // 1-7
-    const [daysPassed, setDaysPassed] = useState(6);
+    const [daysInput, setDaysInput] = useState('6');
+    const daysPassed = Number(daysInput);
+    const valid = /^\d+$/.test(daysInput) && Number.isSafeInteger(daysPassed) && daysPassed >= 1 && daysPassed <= 364;
 
     // (x - 1 + n) % 7 + 1 formula
     // startDay is 1-based, we convert to 0-based for modulo, then back
-    const resultDay = (startDay - 1 + daysPassed) % 7 + 1;
+    const resultDay = valid ? (startDay - 1 + daysPassed) % 7 + 1 : null;
 
     // Map result 1-7 to array index (1->1... 7->0) for display purposes if we used standard JS date, 
     // but problem says 7 is Sunday.
@@ -266,11 +305,12 @@ const WeekCalculator = () => {
 
             <div className="flex flex-wrap gap-6 mb-8 justify-center">
                 <div className="flex flex-col items-center">
-                    <label className="text-sm font-bold text-gray-600 mb-1">今天是星期 (x)</label>
+                    <span className="text-sm font-bold text-gray-600 mb-1">今天是星期 (x)</span>
                     <div className="flex gap-1">
                         {[1, 2, 3, 4, 5, 6, 7].map(d => (
                             <button
                                 key={d}
+                                type="button" aria-label={`今天星期${d === 7 ? '日' : numToChinese(d)}`} aria-pressed={startDay === d}
                                 onClick={() => setStartDay(d)}
                                 className={`w-8 h-8 rounded-full font-bold transition-all ${startDay === d ? 'bg-purple-600 text-white scale-110 shadow-lg' : 'bg-white text-gray-400 border hover:bg-purple-50'}`}
                             >
@@ -281,10 +321,10 @@ const WeekCalculator = () => {
                 </div>
 
                 <div className="flex flex-col items-center">
-                    <label className="text-sm font-bold text-gray-600 mb-1">过了多少天 (n)</label>
+                    <label htmlFor="lesson14-days" className="text-sm font-bold text-gray-600 mb-1">过了多少天 (n)</label>
                     <div className="flex items-center gap-2">
                         <input
-                            type="number" value={daysPassed} onChange={(e) => setDaysPassed(Math.max(0, parseInt(e.target.value) || 0))}
+                            id="lesson14-days" type="number" min="1" max="364" value={daysInput} onChange={(e) => setDaysInput(e.target.value)}
                             className="w-20 text-center font-bold text-xl border-b-2 border-purple-300 bg-transparent focus:outline-none"
                         />
                         <span className="text-purple-400 font-bold">天</span>
@@ -292,7 +332,9 @@ const WeekCalculator = () => {
                 </div>
             </div>
 
-            <div className="relative h-24 bg-white rounded-xl border border-purple-100 overflow-hidden flex items-center justify-center mb-6 shadow-inner">
+            {!valid && <p className="mb-4 text-center text-sm text-red-700" role="alert">原题经过天数 N 为 1～364 的整数；修正前暂停推算。</p>}
+
+            {valid && <div className="relative h-24 bg-white rounded-xl border border-purple-100 overflow-hidden flex items-center justify-center mb-6 shadow-inner">
                 {/* Visualizing the cycle */}
                 <div className="flex gap-4 items-center">
                     <div className="text-center opacity-50">
@@ -306,9 +348,9 @@ const WeekCalculator = () => {
                         <div className="text-xs text-gray-400 font-mono">({resultDay})</div>
                     </div>
                 </div>
-            </div>
+            </div>}
 
-            <div className="bg-slate-800 text-white p-4 rounded-lg font-mono text-sm">
+            {valid && <div className="bg-slate-800 text-white p-4 rounded-lg font-mono text-sm">
                 <div className="text-gray-400 mb-2">// 核心公式推导</div>
                 <div>
                     <span className="text-yellow-400">1. 平移：</span> (x - 1) <span className="text-gray-500">// 把1-7变成0-6，方便取模</span>
@@ -325,7 +367,7 @@ const WeekCalculator = () => {
                 <div className="mt-2 border-t border-gray-700 pt-2 text-blue-300">
                     Calculation: ({startDay} - 1 + {daysPassed}) % 7 + 1 = {resultDay}
                 </div>
-            </div>
+            </div>}
         </div>
     );
 };
@@ -343,25 +385,31 @@ const RobotSimulator = () => {
     const runSimulation = () => {
         let x = 0;
         let y = 0;
-        let path = [{ x: 0, y: 0 }];
+        const path = [{ x: 0, y: 0 }];
         let error = null;
 
-        for (let char of commands.toUpperCase()) {
-            if (char === 'U') y++;
-            else if (char === 'D') y--;
-            else if (char === 'R') x++;
-            else if (char === 'L') x--;
-            else continue; // 忽略非法字符
+        if (!/^[UDLR]{1,30}$/i.test(commands)) {
+            setRobotPos({ x: 0, y: 0 });
+            setHistory(path);
+            setErrorMsg('请输入 1～30 个 U、D、L、R 指令，不要输入空格或其他字符。');
+            return;
+        }
 
-            // 边界检查
-            if (x < 0 || x >= gridSize || y < 0 || y >= gridSize) {
-                error = `撞墙了！在 (${x},${y}) 处走出了地图。`;
+        for (const char of commands.toUpperCase()) {
+            const nextX = x + (char === 'R' ? 1 : char === 'L' ? -1 : 0);
+            const nextY = y + (char === 'U' ? 1 : char === 'D' ? -1 : 0);
+
+            // 先检查候选位置，再更新合法状态。
+            if (nextX < 0 || nextX >= gridSize || nextY < 0 || nextY >= gridSize) {
+                error = `撞墙了！下一步 (${nextX},${nextY}) 在地图外，机器人停在 (${x},${y})。`;
                 break;
             }
+            x = nextX;
+            y = nextY;
             path.push({ x, y });
         }
 
-        setRobotPos({ x: error ? path[path.length - 2].x : x, y: error ? path[path.length - 2].y : y });
+        setRobotPos({ x, y });
         setHistory(path);
         setErrorMsg(error);
     };
@@ -413,17 +461,17 @@ const RobotSimulator = () => {
                 {/* 控制区域 */}
                 <div className="flex-1 space-y-4">
                     <div>
-                        <label className="block text-sm font-bold text-gray-700 mb-2">输入指令 (U上 D下 L左 R右)</label>
+                        <label htmlFor="lesson14-robot-commands" className="block text-sm font-bold text-gray-700 mb-2">输入指令 (U上 D下 L左 R右)</label>
                         <div className="flex gap-2">
                             <input
-                                type="text"
+                                id="lesson14-robot-commands" type="text" maxLength={30}
                                 value={commands}
                                 onChange={(e) => setCommands(e.target.value.toUpperCase())}
                                 placeholder="例如: UURD"
                                 className="flex-1 p-2 border-2 border-gray-300 rounded font-mono uppercase tracking-widest focus:border-blue-500 focus:outline-none"
                             />
                             <button onClick={runSimulation} className="bg-blue-600 text-white px-4 py-2 rounded font-bold hover:bg-blue-700">执行</button>
-                            <button onClick={reset} className="bg-gray-200 text-gray-600 px-4 py-2 rounded font-bold hover:bg-gray-300"><RotateCcw size={18} /></button>
+                            <button onClick={reset} aria-label="重置机器人与指令" className="bg-gray-200 text-gray-600 px-4 py-2 rounded font-bold hover:bg-gray-300"><RotateCcw size={18} /></button>
                         </div>
                     </div>
 
@@ -431,7 +479,7 @@ const RobotSimulator = () => {
                         <div>&gt; 机器人数值状态:</div>
                         <div>x = {robotPos.x};</div>
                         <div>y = {robotPos.y};</div>
-                        {errorMsg && <div className="text-red-400 mt-2">&gt; ERROR: {errorMsg}</div>}
+                        {errorMsg && <div className="text-red-400 mt-2" role="alert">&gt; ERROR: {errorMsg}</div>}
                     </div>
 
                     <div className="text-sm text-gray-500">
@@ -617,6 +665,8 @@ export default function App() {
                             <strong>💡 重点提醒：</strong>
                             <p>一定要看清题目是让你输出“剩余的钱”还是“缺少的钱”！<br />如果是缺少，得用 <code>total - money</code>，不然算出负数就错了。</p>
                         </div>
+                        <p className="mt-5 mb-2 text-sm text-gray-600">完整 C++11 程序。按顺序输入 X、Y、Z、Q；样例 <code>1 1 1 20</code> 输出 <code>Yes</code> 和 <code>10</code>。</p>
+                        <CodeSnippet code={stationeryCode} />
                     </div>
                 );
             case 6:
@@ -635,6 +685,8 @@ export default function App() {
                                 所以我们用 <strong>“平移大法”</strong>：先把 1~7 减成 0~6，算完模之后，再加回来。
                             </p>
                         </div>
+                        <p className="mt-5 mb-2 text-sm text-gray-600">完整 C++11 程序。原题 X 为 1～7，N 为 1～364；<code>1 6</code> 输出 7，<code>5 3</code> 输出 1。</p>
+                        <CodeSnippet code={examDayCode} />
                     </div>
                 );
             case 7:
