@@ -78,6 +78,34 @@ const lesson15MasteryItems = [
     },
 ];
 
+const oddEvenCode = `#include <iostream>
+using namespace std;
+
+int main() {
+    int n, odd = 0, even = 0;
+    cin >> n;
+    for (int i = 0; i < n; ++i) {
+        int x;
+        cin >> x;
+        if (x % 2 != 0) ++odd;
+        else ++even;
+    }
+    cout << odd << ' ' << even << '\\n';
+    return 0;
+}`;
+
+const countOffCode = `#include <iostream>
+using namespace std;
+
+int main() {
+    int n, m;
+    cin >> n >> m;
+    for (int i = 1; i <= n; ++i) {
+        if (i % m != 0) cout << i << '\\n';
+    }
+    return 0;
+}`;
+
 // --- 章节数据 ---
 const sections = [
     { id: 1, title: "课程导入：体育老师的点名册", icon: "list", category: "计数与筛选" },
@@ -170,26 +198,28 @@ const ClassroomSimulator = () => {
 
 // --- 互动组件 2：计数器初始化演示 ---
 const CounterDemo = () => {
-    const [count, setCount] = useState(null); // null represents "garbage value"
+    const [count, setCount] = useState(null);
     const [isInitialized, setIsInitialized] = useState(false);
+    const [attemptedWithoutInit, setAttemptedWithoutInit] = useState(false);
 
     const initialize = () => {
         setCount(0);
         setIsInitialized(true);
+        setAttemptedWithoutInit(false);
     };
 
     const increment = () => {
         if (isInitialized) {
             setCount(prev => prev + 1);
         } else {
-            // Simulate garbage value behavior visually
-            setCount(Math.floor(Math.random() * 9000) + 1000);
+            setAttemptedWithoutInit(true);
         }
     };
 
     const reset = () => {
         setCount(null);
         setIsInitialized(false);
+        setAttemptedWithoutInit(false);
     };
 
     return (
@@ -218,7 +248,9 @@ const CounterDemo = () => {
                 <div className="bg-white p-3 rounded text-sm text-gray-600 w-full text-center">
                     {isInitialized
                         ? "✅ 已清空篮子 (int cnt = 0;)，可以开始计数了！"
-                        : "⚠️ 篮子未清空 (int cnt;)，里面可能有垃圾值！"}
+                        : attemptedWithoutInit
+                            ? "⚠️ 未初始化的局部变量被读取是未定义行为，不能预测或假定某个数值；先执行 int cnt = 0;。"
+                            : "⚠️ int cnt; 尚未初始化，先设为 0 再计数。"}
                 </div>
 
                 <div className="flex gap-3 w-full">
@@ -236,6 +268,7 @@ const CounterDemo = () => {
                     </button>
                     <button
                         onClick={reset}
+                        aria-label="重置计数器演示"
                         className="px-3 py-2 bg-gray-200 text-gray-600 rounded font-bold hover:bg-gray-300"
                     >
                         <RotateCcw size={18} />
@@ -347,7 +380,8 @@ const NumberSkipper = () => {
     const [nInput, setNInput] = useState('10');
     const m = Number(mInput);
     const n = Number(nInput);
-    const validInput = nInput !== '' && mInput !== '' && Number.isInteger(n) && Number.isInteger(m) && n >= 1 && n <= 20 && m >= 2 && m <= 100;
+    const validInput = /^\d+$/.test(nInput) && /^\d+$/.test(mInput)
+        && Number.isSafeInteger(n) && Number.isSafeInteger(m) && n >= 1 && n <= 20 && m >= 2 && m <= 100;
     const output = validInput
         ? Array.from({ length: n }, (_, index) => {
             const value = index + 1;
@@ -414,7 +448,9 @@ const NumberSkipper = () => {
 
 // --- 互动组件 5：因数扫描仪 (FactorFinder) ---
 const FactorFinder = () => {
-    const [n, setN] = useState(6);
+    const [nInput, setNInput] = useState('6');
+    const n = Number(nInput);
+    const validN = /^\d+$/.test(nInput) && Number.isSafeInteger(n) && n >= 1 && n <= 20;
     const [currentI, setCurrentI] = useState(0);
     const [factors, setFactors] = useState([]);
     const [scanning, setScanning] = useState(false);
@@ -438,6 +474,7 @@ const FactorFinder = () => {
     }, [scanning, currentI, n]);
 
     const startScan = () => {
+        if (!validN) return;
         setFactors([]);
         setCurrentI(1);
         setScanning(true);
@@ -451,27 +488,29 @@ const FactorFinder = () => {
 
             <div className="flex flex-col items-center gap-6">
                 <div className="flex items-center gap-4">
-                    <label className="font-bold text-teal-700">输入数字 N:</label>
+                    <label htmlFor="lesson15-factor-n" className="font-bold text-teal-700">输入数字 N:</label>
                     <input
-                        type="number"
-                        value={n}
-                        onChange={(e) => setN(Math.max(1, Math.min(20, parseInt(e.target.value) || 1)))}
+                        id="lesson15-factor-n" type="number" min="1" max="20"
+                        value={nInput}
+                        onChange={(e) => { setNInput(e.target.value); setFactors([]); setCurrentI(0); }}
                         disabled={scanning}
                         className="w-20 text-center font-bold text-xl border-2 border-teal-300 rounded p-1 focus:outline-none focus:border-teal-500"
                     />
                     <button
                         onClick={startScan}
-                        disabled={scanning}
+                        disabled={scanning || !validN}
                         className="bg-teal-600 text-white px-4 py-2 rounded-lg font-bold hover:bg-teal-700 disabled:opacity-50 transition flex items-center gap-2"
                     >
                         {scanning ? "正在扫描..." : <><Search size={18} /> 开始扫描</>}
                     </button>
                 </div>
 
+                {!validN && <p className="text-sm text-red-700" role="alert">请输入 1～20 的整数，再开始扫描；不能把 0 当除数。</p>}
+
                 {/* 扫描可视化区域 */}
                 <div className="bg-white p-4 rounded-xl border border-teal-100 w-full">
                     <div className="flex flex-wrap gap-2 justify-center">
-                        {Array.from({ length: n }, (_, i) => i + 1).map(num => {
+                        {Array.from({ length: validN ? n : 0 }, (_, i) => i + 1).map(num => {
                             const isCurrent = num === currentI && scanning;
                             const isFactor = factors.includes(num);
 
@@ -492,7 +531,7 @@ const FactorFinder = () => {
                 </div>
 
                 {/* 代码解释区域 */}
-                <div className="bg-slate-800 text-white p-4 rounded-lg font-mono text-sm w-full max-w-md">
+                {validN && <div className="bg-slate-800 text-white p-4 rounded-lg font-mono text-sm w-full max-w-md">
                     <div className="text-gray-400 mb-2">// 扫描过程</div>
                     <div><span className="text-purple-400">for</span> (int i=1; i&lt;={n}; i++) &#123;</div>
                     <div className="pl-4">
@@ -509,7 +548,7 @@ const FactorFinder = () => {
                     <div className="mt-2 text-yellow-400 font-bold border-t border-gray-600 pt-2">
                         找到因数个数 (cnt): {factors.length}
                     </div>
-                </div>
+                </div>}
             </div>
         </div>
     );
@@ -705,6 +744,8 @@ export default function App() {
                             <Binary className="text-indigo-600" size={32} /> 真题实战 1：奇偶大比拼
                         </h2>
                         <OddEvenSorter />
+                        <p className="mt-5 mb-2 text-sm text-gray-600">完整 C++11 程序。输入 <code>5</code> 和 <code>1 2 3 4 5</code>，应在同一行输出 <code>3 2</code>。</p>
+                        <CodeSnippet code={oddEvenCode} />
                         <div className="bg-white p-4 rounded-lg shadow-sm border-l-4 border-indigo-500 mt-6">
                             <h4 className="font-bold text-indigo-800 mb-2">💡 解题思路</h4>
                             <p className="text-sm text-gray-600 mb-2">
@@ -723,6 +764,8 @@ export default function App() {
                             <Terminal className="text-red-600" size={32} /> 真题实战 2：小杨报数
                         </h2>
                         <NumberSkipper />
+                        <p className="mt-5 mb-2 text-sm text-gray-600">完整 C++11 程序。输入 <code>5 2</code>，应依次按行输出 1、3、5；原题 N 可到 1000。</p>
+                        <CodeSnippet code={countOffCode} />
                         <div className="bg-white p-6 rounded-xl shadow-sm border border-gray-200 mt-6">
                             <h4 className="font-bold text-gray-700 mb-3 border-b pb-2">写法对比：正向筛选 vs 反向剔除</h4>
                             <div className="grid grid-cols-1 md:grid-cols-2 gap-6">

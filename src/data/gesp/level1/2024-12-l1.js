@@ -919,7 +919,7 @@ int main() {
       score: 25,
       explanation: `
       **解析：**
-      循环读取，条件判断奇偶并计数，最后相减取 abs。
+      初始化奇数计数器 odd = 0 和偶数计数器 even = 0。逐个读入正整数；x % 2 != 0 时给 odd 加一，否则给 even 加一。最后在同一行依次输出 odd、一个空格和 even，不需要相减或取绝对值。
       `,
       tags: [LEVEL1_TAGS.basics, LEVEL1_TAGS.condition, LEVEL1_TAGS.loop],
     }
