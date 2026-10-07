@@ -255,13 +255,19 @@ const CounterLogic = () => {
             </h3>
             <div className="bg-[#f7f4ed] text-xs text-stone-700 mb-4 px-2 py-1 rounded inline-block">课堂自编的二级前瞻追踪题；站内 2024 年 9 月一级卷没有这段双层循环。</div>
 
-            <pre className="overflow-x-auto rounded-lg bg-stone-900 p-4 font-mono text-sm text-stone-50 mb-4"><code>{`int loopCount = 0;
-for (int i = 1; i < 5; i++) {
-    for (int j = 0; j < i; j++) {
-        loopCount += 1;
+            <pre className="overflow-x-auto rounded-lg bg-stone-900 p-4 font-mono text-sm text-stone-50 mb-4"><code>{`#include <iostream>
+using namespace std;
+int main() {
+    int loopCount = 0;
+    for (int i = 1; i < 5; i++) {
+        for (int j = 0; j < i; j++) {
+            loopCount += 1;
+        }
     }
+    cout << loopCount << '\\n';
+    return 0;
 }
-cout << loopCount;`}</code></pre>
+`}</code></pre>
 
             <div className="space-y-2">
                 {[1, 2, 3, 4].map(i => (
@@ -513,12 +519,17 @@ function App() {
                         <h2 className="text-3xl font-bold text-gray-800 mb-6">⛰️ 实战演练 2：打印星号阶梯</h2>
                         <div className="bg-[#f7f4ed] text-xs text-stone-700 mb-4 px-2 py-1 rounded inline-block">二级前瞻课堂示例；站内 2024 年 6 月一级第 14 题实际考查认证语言数量。</div>
                         <p className="mb-3 text-sm text-stone-700">下面输出 5 行左对齐星号，数量依次为 1、3、5、7、9；与下方滑块演示使用同一规则。</p>
-                        <pre className="overflow-x-auto rounded-lg bg-stone-900 p-4 font-mono text-sm text-stone-50 mb-4"><code>{`int rows = 5;
-for (int i = 0; i < rows; i++) {
-    for (int k = 0; k < 2 * i + 1; k++) {
-        cout << "*";
+                        <pre className="overflow-x-auto rounded-lg bg-stone-900 p-4 font-mono text-sm text-stone-50 mb-4"><code>{`#include <iostream>
+using namespace std;
+int main() {
+    int rows = 5;
+    for (int i = 0; i < rows; i++) {
+        for (int k = 0; k < 2 * i + 1; k++) {
+            cout << "*";
+        }
+        cout << '\\n';
     }
-    cout << '\\n';
+    return 0;
 }`}</code></pre>
                         <PyramidGenerator />
                     </div>
