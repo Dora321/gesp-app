@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import {
     Calculator,
     Calendar,
@@ -73,9 +73,43 @@ const lesson13MasteryItems = [
     {
         label: '能把数学规则改写成程序判断。',
         evidence: '看到“美丽数字”“逢七过”这类题，能先列规则，再写 if 条件。',
-        retryHint: '回到两道真题，先圈出题干里的关键词。',
+        retryHint: '回到“每月天数”和“美丽数字”，先圈出题干里的关键词，再核对改编实验与原题条件。',
     },
 ];
+
+const daysInMonthCode = `#include <iostream>
+using namespace std;
+
+int main() {
+    int year, month;
+    cin >> year >> month;
+    bool leap = (year % 4 == 0 && year % 100 != 0) || year % 400 == 0;
+    if (month == 2) {
+        cout << (leap ? 29 : 28) << '\\n';
+    } else if (month == 4 || month == 6 || month == 9 || month == 11) {
+        cout << 30 << '\\n';
+    } else {
+        cout << 31 << '\\n';
+    }
+    return 0;
+}`;
+
+const beautifulNumbersCode = `#include <iostream>
+using namespace std;
+
+int main() {
+    int n, count = 0;
+    cin >> n;
+    for (int i = 0; i < n; ++i) {
+        int x;
+        cin >> x;
+        if (x % 9 == 0 && x % 8 != 0) {
+            ++count;
+        }
+    }
+    cout << count << '\\n';
+    return 0;
+}`;
 
 // --- 章节数据 ---
 const sections = [
@@ -93,11 +127,16 @@ const sections = [
 
 // --- 互动组件 1：排队分组模拟器 ---
 const GroupDivider = () => {
-    const [total, setTotal] = useState(30);
-    const [groupSize, setGroupSize] = useState(7);
+    const [totalInput, setTotalInput] = useState('30');
+    const [groupSizeInput, setGroupSizeInput] = useState('7');
+    const total = Number(totalInput);
+    const groupSize = Number(groupSizeInput);
+    const valid = /^\d+$/.test(totalInput) && /^\d+$/.test(groupSizeInput)
+        && Number.isSafeInteger(total) && total >= 0 && total <= 100
+        && Number.isSafeInteger(groupSize) && groupSize >= 1 && groupSize <= 100;
 
-    const groups = Math.floor(total / groupSize);
-    const remainder = total % groupSize;
+    const groups = valid ? Math.floor(total / groupSize) : null;
+    const remainder = valid ? total % groupSize : null;
 
     return (
         <div className="bg-blue-50 p-6 rounded-xl border-2 border-blue-200 my-4 shadow-sm">
@@ -105,26 +144,28 @@ const GroupDivider = () => {
                 <Divide className="text-blue-500" /> 体育课：报数分队
             </h3>
 
-            <div className="flex gap-6 mb-6 items-center">
+            <div className="flex flex-wrap gap-6 mb-6 items-center">
                 <div className="flex flex-col">
-                    <label className="text-sm font-bold text-gray-600">全班人数:</label>
+                    <label htmlFor="lesson13-total" className="text-sm font-bold text-gray-600">全班人数:</label>
                     <input
-                        type="number" value={total} onChange={(e) => setTotal(parseInt(e.target.value) || 0)}
+                        id="lesson13-total" type="number" min="0" max="100" value={totalInput} onChange={(e) => setTotalInput(e.target.value)}
                         className="border-2 border-blue-300 rounded px-2 py-1 w-20 text-center font-bold"
                     />
                 </div>
                 <div className="text-2xl text-gray-400">÷</div>
                 <div className="flex flex-col">
-                    <label className="text-sm font-bold text-gray-600">每组人数:</label>
+                    <label htmlFor="lesson13-group-size" className="text-sm font-bold text-gray-600">每组人数:</label>
                     <input
-                        type="number" value={groupSize} onChange={(e) => setGroupSize(parseInt(e.target.value) || 1)}
+                        id="lesson13-group-size" type="number" min="1" max="100" value={groupSizeInput} onChange={(e) => setGroupSizeInput(e.target.value)}
                         className="border-2 border-blue-300 rounded px-2 py-1 w-20 text-center font-bold"
                     />
                 </div>
             </div>
 
+            {!valid && <p className="mb-4 text-sm text-red-700" role="alert">请输入 0～100 的总人数，以及 1～100 的每组人数；每组人数不能为 0。</p>}
+
             <div className="flex flex-wrap gap-2 mb-6 min-h-[60px]">
-                {Array.from({ length: total }).map((_, i) => {
+                {Array.from({ length: valid ? total : 0 }).map((_, i) => {
                     const groupIndex = Math.floor(i / groupSize);
                     const isRemainder = i >= groups * groupSize;
                     const colors = ["bg-red-400", "bg-green-400", "bg-yellow-400", "bg-purple-400", "bg-pink-400", "bg-indigo-400"];
@@ -145,13 +186,13 @@ const GroupDivider = () => {
             <div className="grid grid-cols-2 gap-4">
                 <div className="bg-white p-3 rounded-lg border-l-4 border-blue-500 shadow-sm">
                     <div className="text-xs text-gray-500 uppercase">除法 / (能分几组)</div>
-                    <div className="text-2xl font-bold text-blue-600">{groups} 组</div>
-                    <code className="text-xs bg-gray-100 p-1 rounded mt-1 block">int n = {total} / {groupSize};</code>
+                    <div className="text-2xl font-bold text-blue-600">{valid ? `${groups} 组` : '等待有效输入'}</div>
+                    {valid && <code className="text-xs bg-gray-100 p-1 rounded mt-1 block">int n = {total} / {groupSize};</code>}
                 </div>
                 <div className="bg-white p-3 rounded-lg border-l-4 border-gray-500 shadow-sm">
                     <div className="text-xs text-gray-500 uppercase">取模 % (剩下几人)</div>
-                    <div className="text-2xl font-bold text-gray-600">{remainder} 人</div>
-                    <code className="text-xs bg-gray-100 p-1 rounded mt-1 block">int r = {total} % {groupSize};</code>
+                    <div className="text-2xl font-bold text-gray-600">{valid ? `${remainder} 人` : '等待有效输入'}</div>
+                    {valid && <code className="text-xs bg-gray-100 p-1 rounded mt-1 block">int r = {total} % {groupSize};</code>}
                 </div>
             </div>
         </div>
@@ -215,7 +256,9 @@ const KingsCandy = () => {
 
 // --- 互动组件 3：闰年判定机 ---
 const LeapYearChecker = () => {
-    const [year, setYear] = useState(2024);
+    const [yearInput, setYearInput] = useState('2024');
+    const year = Number(yearInput);
+    const valid = /^\d+$/.test(yearInput) && Number.isSafeInteger(year) && year >= 2000 && year <= 3000;
 
     const isDiv4 = year % 4 === 0;
     const isDiv100 = year % 100 === 0;
@@ -231,16 +274,17 @@ const LeapYearChecker = () => {
 
             <div className="flex justify-center mb-6">
                 <div className="flex items-center gap-2 bg-white p-2 rounded-lg shadow-sm border border-indigo-100">
-                    <button onClick={() => setYear(y => y - 1)} className="p-2 hover:bg-gray-100 rounded">-</button>
+                    <button type="button" disabled={!valid || year <= 2000} onClick={() => setYearInput(String(year - 1))} className="p-2 hover:bg-gray-100 rounded disabled:opacity-40" aria-label="年份减一">−</button>
                     <input
-                        type="number" value={year} onChange={(e) => setYear(parseInt(e.target.value) || 0)}
+                        type="number" min="2000" max="3000" aria-label="年份（2000 到 3000）" value={yearInput} onChange={(e) => setYearInput(e.target.value)}
                         className="w-24 text-center font-bold text-xl outline-none"
                     />
-                    <button onClick={() => setYear(y => y + 1)} className="p-2 hover:bg-gray-100 rounded">+</button>
+                    <button type="button" disabled={!valid || year >= 3000} onClick={() => setYearInput(String(year + 1))} className="p-2 hover:bg-gray-100 rounded disabled:opacity-40" aria-label="年份加一">+</button>
                 </div>
             </div>
 
-            <div className="space-y-3">
+            {!valid && <p className="mb-4 text-center text-sm text-red-700" role="alert">请输入 2000～3000 的整数年份，与原题范围一致。</p>}
+            {valid && <div className="space-y-3">
                 <div className={`flex items-center justify-between p-3 rounded-lg border ${isDiv4 ? 'bg-green-50 border-green-200' : 'bg-white border-gray-200'}`}>
                     <span className="flex items-center gap-2">
                         <span className="bg-indigo-100 text-indigo-700 px-2 rounded text-xs font-bold">1</span>
@@ -267,57 +311,64 @@ const LeapYearChecker = () => {
                     <span className="font-mono text-sm">{year} % 400 = {year % 400}</span>
                     {isDiv400 ? <CheckCircle2 className="text-green-500" size={20} /> : <XCircle className="text-gray-300" size={20} />}
                 </div>
-            </div>
+            </div>}
 
-            <div className={`mt-6 text-center p-4 rounded-xl font-bold text-xl transition-all ${isLeap ? 'bg-indigo-600 text-white shadow-lg' : 'bg-gray-200 text-gray-500'}`}>
+            {valid && <div className={`mt-6 text-center p-4 rounded-xl font-bold text-xl transition-all ${isLeap ? 'bg-indigo-600 text-white shadow-lg' : 'bg-gray-200 text-gray-500'}`}>
                 {isLeap ? `🎉 ${year} 是闰年 (366天)` : `📅 ${year} 是平年 (365天)`}
-            </div>
+            </div>}
         </div>
     );
 };
 
 // --- 互动组件 4：美丽数字筛选器 ---
 const BeautifulNumbers = () => {
-    const [k, setK] = useState(3);
-    const [l, setL] = useState(2);
-    const [numbers, setNumbers] = useState([6, 9, 10, 15, 12]);
+    const [kInput, setKInput] = useState('9');
+    const [lInput, setLInput] = useState('8');
+    const [numbers, setNumbers] = useState(['1', '9', '72']);
+    const k = Number(kInput);
+    const l = Number(lInput);
+    const isPositiveInteger = (value) => /^\d+$/.test(value) && Number.isSafeInteger(Number(value)) && Number(value) >= 1 && Number(value) <= 1000000;
+    const valid = isPositiveInteger(kInput) && isPositiveInteger(lInput) && numbers.every(isPositiveInteger);
 
     const handleNumChange = (idx, val) => {
         const newNums = [...numbers];
-        newNums[idx] = parseInt(val) || 0;
+        newNums[idx] = val;
         setNumbers(newNums);
     };
 
     const checkBeautiful = (num) => {
-        return (num % k === 0) && (num % l !== 0);
+        return (Number(num) % k === 0) && (Number(num) % l !== 0);
     };
 
-    const beautifulCount = numbers.filter(checkBeautiful).length;
+    const beautifulCount = valid ? numbers.filter(checkBeautiful).length : null;
 
     return (
         <div className="bg-purple-50 p-6 rounded-xl border-2 border-purple-200 my-4">
             <h3 className="font-bold text-lg text-purple-700 mb-4 flex items-center gap-2">
-                <Crown className="text-purple-600" /> 真题实战：寻找美丽数字
+                <Crown className="text-purple-600" /> 美丽数字：原题与参数改编
             </h3>
+            <p className="mb-4 text-sm text-purple-900">原题固定为“9 的倍数且不是 8 的倍数”；下面的 k、l 可调实验是课堂改编。默认输入 1、9、72，对应原题样例，答案为 1。</p>
 
             <div className="flex flex-wrap gap-4 mb-6 bg-white p-4 rounded-lg shadow-sm">
                 <div className="flex items-center gap-2">
                     <span className="text-sm font-bold">倍数 k:</span>
-                    <input type="number" value={k} onChange={e => setK(parseInt(e.target.value))} className="w-12 border rounded text-center" />
+                    <input type="number" min="1" max="1000000" aria-label="倍数 k，正整数" value={kInput} onChange={e => setKInput(e.target.value)} className="w-20 border rounded text-center" />
                 </div>
                 <div className="flex items-center gap-2">
                     <span className="text-sm font-bold">非倍数 l:</span>
-                    <input type="number" value={l} onChange={e => setL(parseInt(e.target.value))} className="w-12 border rounded text-center" />
+                    <input type="number" min="1" max="1000000" aria-label="非倍数 l，正整数" value={lInput} onChange={e => setLInput(e.target.value)} className="w-20 border rounded text-center" />
                 </div>
                 <div className="text-sm text-purple-600 italic ml-auto self-center">
                     条件：是 {k} 的倍数 <span className="font-bold">且</span> 不是 {l} 的倍数
                 </div>
             </div>
 
+            {!valid && <p className="mb-4 text-sm text-red-700" role="alert">k、l 和待筛选数字都须为 1～1000000 的整数；修正前暂停判断。</p>}
+
             <div className="space-y-2">
                 {numbers.map((num, idx) => {
-                    const isK = num % k === 0;
-                    const isNotL = num % l !== 0;
+                    const isK = valid && Number(num) % k === 0;
+                    const isNotL = valid && Number(num) % l !== 0;
                     const isBeautiful = isK && isNotL;
 
                     return (
@@ -326,21 +377,21 @@ const BeautifulNumbers = () => {
                                 {idx + 1}
                             </div>
                             <input
-                                type="number"
+                                type="number" min="1" max="1000000" aria-label={`第 ${idx + 1} 个待筛选数字`}
                                 value={num}
                                 onChange={(e) => handleNumChange(idx, e.target.value)}
                                 className="w-20 border-b-2 border-purple-300 text-center font-mono text-lg focus:outline-none"
                             />
-                            <div className="flex-1 flex gap-2 text-xs">
+                            {valid && <div className="flex-1 flex flex-wrap gap-2 text-xs">
                                 <span className={`px-2 py-1 rounded ${isK ? 'bg-green-100 text-green-700' : 'bg-red-100 text-red-700'}`}>
                                     {isK ? `是${k}倍数` : `非${k}倍数`}
                                 </span>
                                 <span className={`px-2 py-1 rounded ${isNotL ? 'bg-green-100 text-green-700' : 'bg-red-100 text-red-700'}`}>
                                     {isNotL ? `不是${l}倍数` : `是${l}倍数`}
                                 </span>
-                            </div>
+                            </div>}
                             <div className="w-24 text-right">
-                                {isBeautiful
+                                {!valid ? <span className="text-gray-500">待校验</span> : isBeautiful
                                     ? <span className="text-green-600 font-bold flex items-center gap-1 justify-end"><CheckCircle2 size={16} /> 美丽</span>
                                     : <span className="text-gray-400 flex items-center gap-1 justify-end"><XCircle size={16} /> 普通</span>}
                             </div>
@@ -349,9 +400,9 @@ const BeautifulNumbers = () => {
                 })}
             </div>
 
-            <div className="mt-6 text-center bg-purple-600 text-white p-3 rounded-xl font-bold">
+            {valid && <div className="mt-6 text-center bg-purple-600 text-white p-3 rounded-xl font-bold">
                 统计结果：共有 {beautifulCount} 个美丽数字
-            </div>
+            </div>}
         </div>
     );
 };
@@ -509,25 +560,32 @@ const KnockSevenGame = () => {
     const [currentNum, setCurrentNum] = useState(0);
     const [timeLeft, setTimeLeft] = useState(30);
     const [feedback, setFeedback] = useState(null); // correct, wrong, miss
+    const nextTimer = useRef(null);
+    const actionLocked = useRef(false);
+
+    useEffect(() => () => clearTimeout(nextTimer.current), []);
+
+    useEffect(() => {
+        if (gameState === 'playing' && timeLeft === 0) {
+            clearTimeout(nextTimer.current);
+            setGameState('end');
+        }
+    }, [gameState, timeLeft]);
 
     // 游戏循环
     useEffect(() => {
         let timer;
         if (gameState === 'playing') {
             timer = setInterval(() => {
-                setTimeLeft(prev => {
-                    if (prev <= 1) {
-                        setGameState('end');
-                        return 0;
-                    }
-                    return prev - 1;
-                });
+                setTimeLeft(prev => Math.max(0, prev - 1));
             }, 1000);
         }
         return () => clearInterval(timer);
     }, [gameState]);
 
     const startGame = () => {
+        clearTimeout(nextTimer.current);
+        actionLocked.current = false;
         setScore(0);
         setTimeLeft(30);
         setGameState('playing');
@@ -549,9 +607,12 @@ const KnockSevenGame = () => {
         }
         setCurrentNum(num);
         setFeedback(null);
+        actionLocked.current = false;
     };
 
     const handleAction = (action) => {
+        if (actionLocked.current || gameState !== 'playing') return;
+        actionLocked.current = true;
         // action: 'knock' (敲桌子), 'pass' (过)
         const isSeven = currentNum % 7 === 0 || currentNum.toString().includes('7');
         let isCorrect = false;
@@ -562,12 +623,12 @@ const KnockSevenGame = () => {
         if (isCorrect) {
             setScore(s => s + 10);
             setFeedback('correct');
-            setTimeout(nextNumber, 500);
+            nextTimer.current = setTimeout(nextNumber, 500);
         } else {
             setScore(s => Math.max(0, s - 5));
             setFeedback('wrong');
             // 错误停留一下让用户看清
-            setTimeout(nextNumber, 800);
+            nextTimer.current = setTimeout(nextNumber, 800);
         }
     };
 
@@ -750,7 +811,7 @@ export default function App() {
                         <h2 className="text-3xl font-bold text-gray-800 mb-6 flex items-center gap-3">
                             <Terminal className="text-green-600" size={32} /> 真题实战 1：日历机器人
                         </h2>
-                        <div className="bg-gray-100 text-xs text-gray-500 mb-4 px-2 py-1 rounded inline-block font-mono">2023年3月 GESP 一级 编程题第1题</div>
+                        <div className="bg-gray-100 text-xs text-gray-500 mb-4 px-2 py-1 rounded inline-block font-mono">站内题库：2023 年 3 月 GESP 一级编程第 2 题《每月天数》</div>
 
                         <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                             <div className="bg-white p-6 rounded-xl shadow-sm border border-gray-100">
@@ -787,6 +848,8 @@ export default function App() {
                                 <div>&#125;</div>
                             </div>
                         </div>
+                        <p className="mt-5 mb-2 text-sm text-gray-600">完整 C++11 程序。试用输入 <code>2020 2</code>、<code>2022 1</code>，分别应输出 29、31；原题保证年份 2000～3000、月份 1～12。</p>
+                        <CodeSnippet code={daysInMonthCode} />
                     </div>
                 );
             case 7:
@@ -795,19 +858,21 @@ export default function App() {
                         <h2 className="text-3xl font-bold text-gray-800 mb-6 flex items-center gap-3">
                             <Crown className="text-purple-600" size={32} /> 真题实战 2：寻找美丽数字
                         </h2>
-                        <div className="bg-gray-100 text-xs text-gray-500 mb-4 px-2 py-1 rounded inline-block font-mono">2024年9月 GESP 一级 编程题第2题</div>
+                        <div className="bg-gray-100 text-xs text-gray-500 mb-4 px-2 py-1 rounded inline-block font-mono">站内题库：2024 年 9 月 GESP 一级编程第 2 题《美丽数字》；下方可调参数为课堂改编</div>
 
                         <BeautifulNumbers />
 
                         <div className="bg-white p-4 rounded-lg border-l-4 border-purple-500 shadow-sm mt-4">
                             <h4 className="font-bold text-purple-800 mb-2">解题思路：</h4>
                             <ul className="text-sm text-gray-600 space-y-1">
-                                <li>1. <strong>审题：</strong> 必须同时满足 “是k的倍数” 且 “不是l的倍数”。</li>
-                                <li>2. <strong>翻译：</strong> <code>x % k == 0 && x % l != 0</code>。</li>
+                                <li>1. <strong>审题：</strong> 原题必须同时满足“是 9 的倍数”且“不是 8 的倍数”；改编实验才用可调的 k、l。</li>
+                                <li>2. <strong>翻译：</strong> 原题为 <code>x % 9 == 0 && x % 8 != 0</code>，改编为 <code>x % k == 0 && x % l != 0</code>。</li>
                                 <li>3. <strong>循环：</strong> 用 <code>for</code> 循环遍历输入的 n 个数字，逐一检查。</li>
                                 <li>4. <strong>计数：</strong> 满足条件时 <code>count++</code>。</li>
                             </ul>
                         </div>
+                        <p className="mt-5 mb-2 text-sm text-gray-600">原题固定判断 9 和 8。完整 C++11 程序读入 <code>n</code> 与后续 <code>n</code> 个正整数；样例 <code>3 / 1 9 72</code> 输出 1。</p>
+                        <CodeSnippet code={beautifulNumbersCode} />
                     </div>
                 );
             case 8:
@@ -850,12 +915,13 @@ export default function App() {
                                     <BookOpen size={24} /> 课后思考
                                 </h3>
                                 <p className="text-indigo-100 mb-4">
-                                    如果我想找出 1 到 100 之间，所有 <strong>个位是 7</strong> 或者 <strong>能被 7 整除</strong> 的数字（敲七游戏），代码该怎么写？
+                                    如果我想找出 1 到 100 之间，所有 <strong>含有数字 7</strong> 或者 <strong>能被 7 整除</strong> 的数字（敲七游戏），代码该怎么写？
                                 </p>
                                 <div className="bg-white/10 p-3 rounded-lg text-sm border border-white/20">
                                     <p>提示：</p>
                                     <ul className="list-disc list-inside mt-1 opacity-90">
                                         <li>个位是 7 &rarr; <code>n % 10 == 7</code></li>
+                                        <li>十位是 7 &rarr; <code>n / 10 == 7</code>（仅限本题 1～100）</li>
                                         <li>被 7 整除 &rarr; <code>n % 7 == 0</code></li>
                                         <li>中间用什么符号连接？</li>
                                     </ul>
