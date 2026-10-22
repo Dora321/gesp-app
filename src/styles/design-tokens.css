@@ -1,0 +1,354 @@
+/*
+ * 魔丸聚集地 ·「学习线路图」设计语言：设计 token 与基础元件
+ *
+ * 规范全文见 docs/site-design-language.md。
+ * 本文件只定义 :root 变量和以 mw- 开头的可选类，不写任何元素选择器，
+ * 所以被任何页面引入都不会改变现有课件、考试页面的样式。
+ */
+
+:root {
+    /* ---- 基础色：取自站标的藏青、朱橙、芥黄 ---- */
+    --mw-ink: #23283d;
+    --mw-ink-2: #4a4f63;
+    --mw-ink-3: #676b7b;
+    --mw-canvas: #f7f5f0;
+    --mw-surface: #ffffff;
+    --mw-surface-sunk: #efebe2;
+    --mw-rule: #e2ddd2;
+    --mw-rule-strong: #c9c2b3;
+
+    --mw-brand-coral: #dd5a2e;
+    --mw-brand-mustard: #f2c14e;
+    --mw-brand-navy: #23283d;
+
+    /*
+     * ---- 线路色：每个学习体系一条线 ----
+     * line：轨道、站点圆点、色条（对白底 ≥ 3:1）
+     * text：同色系可读文字与白字底色（对白底 ≥ 4.5:1）
+     * tint：浅色底，只做大面积背景
+     */
+    --mw-line-cpp: #dd5a2e;
+    --mw-line-cpp-text: #b8441e;
+    --mw-line-cpp-tint: #fbebe3;
+
+    --mw-line-python: #1f8a6d;
+    --mw-line-python-text: #14735c;
+    --mw-line-python-tint: #e4f2ec;
+
+    --mw-line-maker: #b97f0a;
+    --mw-line-maker-text: #875b00;
+    --mw-line-maker-tint: #fbf1d8;
+
+    /* 真题题库是换乘站，用墨色而不是第四种彩色 */
+    --mw-line-bank: #23283d;
+    --mw-line-bank-text: #23283d;
+    --mw-line-bank-tint: #ebe8f0;
+
+    /* ---- 语义色：只表达对错和状态，必须同时配图标或文字 ---- */
+    --mw-ok: #1d7342;
+    --mw-ok-tint: #e5f2ea;
+    --mw-err: #b3261e;
+    --mw-err-tint: #fbe8e6;
+    --mw-warn: #875b00;
+    --mw-warn-tint: #fdf2d8;
+    --mw-info: #2d4c8c;
+    --mw-info-tint: #e8edf7;
+
+    /* ---- 深色面：信息屏、代码块、页脚 ---- */
+    --mw-night: #23283d;
+    --mw-night-2: #2d3350;
+    --mw-night-rule: #474e6c;
+    --mw-on-night: #f1eee7;
+    --mw-on-night-2: #b9bcc8;
+    --mw-on-night-accent: #f2c14e;
+    --mw-on-night-ok: #7fc79c;
+    --mw-on-night-muted: #8a8fa3;
+
+    /* ---- 字体：全部用系统字体，不依赖外部字体 ---- */
+    --mw-font-sans: "PingFang SC", "HarmonyOS Sans SC", "MiSans", "Microsoft YaHei UI",
+        "Microsoft YaHei", "Noto Sans SC", "Source Han Sans SC", system-ui, sans-serif;
+    /* 数字与站号：Windows 的 Bahnschrift、苹果的 DIN Alternate 都是导视字体 */
+    --mw-font-figure: "Bahnschrift", "DIN Alternate", "DIN 2014", "Roboto Condensed",
+        "Arial Narrow", var(--mw-font-sans);
+    --mw-font-code: "Cascadia Code", "JetBrains Mono", Consolas, "SFMono-Regular", Menlo,
+        monospace;
+
+    /* ---- 字号层级（中文正文不小于 12px） ---- */
+    --mw-text-display: clamp(2rem, 1.3rem + 2.4vw, 3.375rem);
+    --mw-text-h2: clamp(1.625rem, 1.3rem + 1.1vw, 2.25rem);
+    --mw-text-h3: 1.25rem;
+    --mw-text-lead: 1.0625rem;
+    --mw-text-body: 0.9375rem;
+    --mw-text-small: 0.8125rem;
+    --mw-text-caption: 0.75rem;
+
+    --mw-leading-display: 1.22;
+    --mw-leading-heading: 1.35;
+    --mw-leading-body: 1.8;
+
+    /* ---- 间距：4px 基准 ---- */
+    --mw-space-1: 4px;
+    --mw-space-2: 8px;
+    --mw-space-3: 12px;
+    --mw-space-4: 16px;
+    --mw-space-5: 24px;
+    --mw-space-6: 32px;
+    --mw-space-7: 48px;
+    --mw-space-8: 64px;
+    --mw-space-9: 96px;
+    --mw-section-y: clamp(56px, 3rem + 3vw, 104px);
+    --mw-container: 1200px;
+    --mw-gutter: clamp(20px, 4vw, 40px);
+    --mw-nav-height: 64px;
+
+    /* ---- 形：小圆角、细线、不用投影 ---- */
+    --mw-radius-s: 3px;
+    --mw-radius-m: 6px;
+    --mw-radius-pill: 999px;
+    --mw-rail: 4px;
+    --mw-shadow-overlay: 0 16px 40px rgb(35 40 61 / 0.18);
+
+    /* ---- 动效：只表达状态变化 ---- */
+    --mw-duration: 160ms;
+    --mw-ease: cubic-bezier(0.2, 0.7, 0.2, 1);
+}
+
+/* ---------------------------------------------------------------
+ * 线路归属：给容器加 mw-line-*，内部元件统一读 --mw-line 系列变量
+ * --------------------------------------------------------------- */
+.mw-line-cpp {
+    --mw-line: var(--mw-line-cpp);
+    --mw-line-ink: var(--mw-line-cpp-text);
+    --mw-line-wash: var(--mw-line-cpp-tint);
+}
+
+.mw-line-python {
+    --mw-line: var(--mw-line-python);
+    --mw-line-ink: var(--mw-line-python-text);
+    --mw-line-wash: var(--mw-line-python-tint);
+}
+
+.mw-line-maker {
+    --mw-line: var(--mw-line-maker);
+    --mw-line-ink: var(--mw-line-maker-text);
+    --mw-line-wash: var(--mw-line-maker-tint);
+}
+
+.mw-line-bank {
+    --mw-line: var(--mw-line-bank);
+    --mw-line-ink: var(--mw-line-bank-text);
+    --mw-line-wash: var(--mw-line-bank-tint);
+}
+
+/* 线路标：站牌上的彩色小方块 */
+.mw-line-badge {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    min-width: 2.5em;
+    height: 1.9em;
+    padding: 0 0.6em;
+    border-radius: var(--mw-radius-s);
+    background: var(--mw-line-ink, var(--mw-ink));
+    color: #fff;
+    font-family: var(--mw-font-figure);
+    font-size: var(--mw-text-small);
+    font-weight: 700;
+    line-height: 1;
+    letter-spacing: 0.02em;
+    white-space: nowrap;
+}
+
+/* 科创线用站标的芥黄做底、墨色做字，对比度 8.7:1 */
+.mw-line-maker .mw-line-badge {
+    background: var(--mw-brand-mustard);
+    color: var(--mw-ink);
+}
+
+/* 站点：空心 = 未到，带芯 = 学习中，实心 = 已过关 */
+.mw-station {
+    display: inline-block;
+    flex-shrink: 0;
+    box-sizing: border-box;
+    width: 16px;
+    height: 16px;
+    border: 3px solid var(--mw-line, var(--mw-ink));
+    border-radius: var(--mw-radius-pill);
+    background: var(--mw-surface);
+}
+
+.mw-station[data-state="learning"] {
+    background: radial-gradient(circle, var(--mw-line, var(--mw-ink)) 0 2.5px, var(--mw-surface) 3px);
+}
+
+.mw-station[data-state="mastered"] {
+    background: var(--mw-line, var(--mw-ink));
+}
+
+.mw-station[data-state="review"] {
+    border-color: var(--mw-warn);
+    background: var(--mw-brand-mustard);
+}
+
+/* 换乘站 / 终点站：胶囊形、墨色描边 */
+.mw-station--interchange {
+    width: 28px;
+    border-color: var(--mw-ink);
+}
+
+/* 小标题：短色条 + 中文说明，不写装饰性英文 */
+.mw-kicker {
+    display: inline-flex;
+    align-items: center;
+    gap: var(--mw-space-2);
+    margin: 0;
+    color: var(--mw-ink-2);
+    font-size: var(--mw-text-small);
+    font-weight: 700;
+    letter-spacing: 0.08em;
+}
+
+.mw-kicker::before {
+    content: "";
+    width: 20px;
+    height: var(--mw-rail);
+    border-radius: 2px;
+    background: var(--mw-line, var(--mw-brand-coral));
+}
+
+/* ---------------------------------------------------------------
+ * 按钮：主按钮墨色实底，次按钮白底描边，文字按钮带下划线
+ * --------------------------------------------------------------- */
+.mw-button {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: var(--mw-space-2);
+    min-height: 48px;
+    padding: 0 var(--mw-space-5);
+    border: 1.5px solid var(--mw-ink);
+    border-radius: var(--mw-radius-m);
+    font-family: var(--mw-font-sans);
+    font-size: var(--mw-text-body);
+    font-weight: 700;
+    line-height: 1.2;
+    text-decoration: none;
+    white-space: nowrap;
+    cursor: pointer;
+    transition:
+        background-color var(--mw-duration) var(--mw-ease),
+        color var(--mw-duration) var(--mw-ease),
+        border-color var(--mw-duration) var(--mw-ease);
+}
+
+.mw-button--primary {
+    background: var(--mw-ink);
+    color: var(--mw-on-night);
+}
+
+.mw-button--primary:hover {
+    background: #343a56;
+    border-color: #343a56;
+}
+
+.mw-button--secondary {
+    background: var(--mw-surface);
+    color: var(--mw-ink);
+}
+
+.mw-button--secondary:hover {
+    background: var(--mw-surface-sunk);
+}
+
+.mw-button--small {
+    min-height: 40px;
+    padding: 0 var(--mw-space-4);
+    font-size: var(--mw-text-small);
+}
+
+.mw-button:focus-visible,
+.mw-text-link:focus-visible {
+    outline: 2px solid var(--mw-ink);
+    outline-offset: 3px;
+}
+
+.mw-button:disabled {
+    border-color: var(--mw-rule-strong);
+    background: var(--mw-surface-sunk);
+    color: var(--mw-ink-3);
+    cursor: not-allowed;
+}
+
+.mw-text-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    min-height: 44px;
+    color: var(--mw-ink);
+    font-size: var(--mw-text-body);
+    font-weight: 700;
+    text-decoration: underline;
+    text-decoration-color: var(--mw-line, var(--mw-brand-coral));
+    text-decoration-thickness: 2px;
+    text-underline-offset: 6px;
+}
+
+.mw-text-link:hover {
+    text-decoration-thickness: 3px;
+}
+
+/* ---------------------------------------------------------------
+ * 代码块：深色信息屏，等宽字体，行号不参与复制
+ * --------------------------------------------------------------- */
+.mw-code {
+    margin: 0;
+    padding: var(--mw-space-4) 0;
+    overflow-x: auto;
+    border-radius: var(--mw-radius-m);
+    background: var(--mw-night);
+    color: var(--mw-on-night);
+    font-family: var(--mw-font-code);
+    font-size: 0.875rem;
+    line-height: 1.9;
+}
+
+.mw-code-line {
+    display: flex;
+    padding: 0 var(--mw-space-4) 0 0;
+    white-space: pre;
+}
+
+.mw-code-line::before {
+    content: attr(data-line);
+    flex: 0 0 3em;
+    padding-right: 1em;
+    color: var(--mw-on-night-muted);
+    text-align: right;
+    user-select: none;
+}
+
+.mw-code-line[data-active="true"] {
+    background: rgb(242 193 78 / 0.16);
+    box-shadow: inset 3px 0 0 var(--mw-brand-mustard);
+}
+
+/* 仅供读屏 */
+.mw-sr-only {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
+    border: 0;
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .mw-button,
+    .mw-text-link {
+        transition: none;
+    }
+}

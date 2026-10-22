@@ -4,7 +4,7 @@ import { ArrowRight, BookOpen, NotebookPen, Target } from 'lucide-react';
 
 import { getCppLesson } from '../data/cppLessonIndex';
 import { pythonFoundationLessons, pythonProjects } from '../data/pythonCourseCatalog';
-import { arduinoLessons, foundationLessons, innovationLessons } from '../data/innovationCourseCatalog';
+import { arduinoLessons, contestLessons, foundationLessons, innovationLessons } from '../data/innovationCourseCatalog';
 import { paperMeta } from '../data/gesp';
 import { LEARNING_DATA_EVENT } from '../utils/learningData';
 import { readLessonProgress } from '../utils/lessonProgress';
@@ -35,6 +35,8 @@ const describeLessonPath = (path) => {
     if (arduino) return `Arduino UNO · 第 ${arduino.id} 课 · ${arduino.title}`;
     const innovation = innovationLessons.find((lesson) => lesson.path === path || `/innovation/${lesson.id}` === path);
     if (innovation) return `高阶科创 · 第 ${innovation.id} 课 · ${innovation.title}`;
+    const contest = contestLessons.find((lesson) => lesson.path === path);
+    if (contest) return `竞赛延伸 · ${contest.label} · ${contest.title}`;
     const python = PYTHON_TITLES.get(path);
     return python ? `Python · ${python}` : path;
 };
@@ -76,30 +78,34 @@ const readSnapshot = () => {
 
 const EMPTY = { lesson: null, attempt: null, wrongTotal: 0 };
 
+// 整张卡由标题链接覆盖（::after 拉伸），读屏只念标题，不重复念按钮文字。
 const Card = ({ to, icon: Icon, tone, eyebrow, title, detail, cta }) => (
-    <Link
-        to={to}
-        className={`group flex flex-col justify-between rounded-2xl border bg-white p-6 shadow-sm transition hover:shadow-md ${tone.border}`}
-    >
-        <div>
-            <div className={`mb-3 inline-flex h-10 w-10 items-center justify-center rounded-xl ${tone.chip}`}>
-                <Icon size={20} aria-hidden="true" />
-            </div>
-            <div className="text-xs font-semibold text-slate-500">{eyebrow}</div>
-            <div className="mt-1 text-lg font-bold text-slate-800">{title}</div>
-            <p className="mt-1 text-sm leading-6 text-slate-600">{detail}</p>
-        </div>
-        <div className={`mt-4 inline-flex items-center gap-1.5 text-sm font-bold ${tone.text}`}>
+    <li className={`home-trip ${tone}`}>
+        <p className="home-trip-eyebrow">
+            <Icon size={16} aria-hidden="true" />
+            {eyebrow}
+        </p>
+        <h3>
+            <Link to={to} className="home-trip-link">{title}</Link>
+        </h3>
+        <p className="home-trip-detail">{detail}</p>
+        <span className="home-trip-cta" aria-hidden="true">
             {cta}
-            <ArrowRight size={15} className="transition-transform group-hover:translate-x-0.5" aria-hidden="true" />
-        </div>
-    </Link>
+            <ArrowRight size={15} />
+        </span>
+    </li>
 );
 
+// 课程卡跟随所属线路取色；成绩归题库（墨色）；错题用提醒色。
+const lineToneForPath = (path) => {
+    if (path.startsWith('/lesson/')) return 'mw-line-cpp';
+    if (path.startsWith('/python/')) return 'mw-line-python';
+    return 'mw-line-maker';
+};
+
 const TONES = {
-    blue: { border: 'border-blue-200', chip: 'bg-blue-50 text-blue-700', text: 'text-blue-700' },
-    indigo: { border: 'border-indigo-200', chip: 'bg-indigo-50 text-indigo-700', text: 'text-indigo-700' },
-    orange: { border: 'border-orange-200', chip: 'bg-orange-50 text-orange-800', text: 'text-orange-800' },
+    attempt: 'mw-line-bank',
+    wrong: 'home-trip--warn',
 };
 
 export default function ContinueLearning() {
@@ -123,7 +129,7 @@ export default function ContinueLearning() {
                 key: 'lesson',
                 to: lesson.path,
                 icon: BookOpen,
-                tone: TONES.blue,
+                tone: lineToneForPath(lesson.path),
                 eyebrow: lesson.status === 'mastered' ? '最近学完' : '上次学到',
                 title: describeLessonPath(lesson.path),
                 detail: lesson.status === 'mastered'
@@ -142,7 +148,7 @@ export default function ContinueLearning() {
                 key: 'attempt',
                 to: '/question-bank/review',
                 icon: Target,
-                tone: TONES.indigo,
+                tone: TONES.attempt,
                 eyebrow: `上次交卷 · ${formatDate(attempt.attempt.at)}`,
                 title: meta ? meta.title : attempt.paperId,
                 detail: `客观题得分 ${score}/${total}，答对 ${correct} 题、答错 ${wrong} 题。`,
@@ -155,7 +161,7 @@ export default function ContinueLearning() {
                 key: 'wrong',
                 to: '/question-bank/review',
                 icon: NotebookPen,
-                tone: TONES.orange,
+                tone: TONES.wrong,
                 eyebrow: '错题本',
                 title: `还有 ${wrongTotal} 道题没订正`,
                 detail: '按考点看看错在哪一类，订正做对后会自动移出错题本。',
@@ -169,20 +175,16 @@ export default function ContinueLearning() {
     if (cards.length === 0) return null;
 
     return (
-        <section id="continue-learning" className="bg-white py-14" aria-labelledby="continue-learning-heading">
-            <div className="mx-auto max-w-6xl px-4 md:px-8">
-                <div className="mb-6">
-                    <div className="text-xs font-bold tracking-widest text-slate-500">继续学习</div>
-                    <h2 id="continue-learning-heading" className="mt-1 text-2xl font-bold text-slate-800 md:text-3xl">
-                        接着上次的地方往下走
-                    </h2>
-                    <p className="mt-2 text-sm text-slate-600">
-                        以下记录只保存在这台设备的浏览器里，换设备或清理数据后会消失。
-                    </p>
+        <section id="continue-learning" className="home-continue" aria-labelledby="continue-learning-heading">
+            <div className="home-container">
+                <div className="home-continue-head">
+                    <p className="mw-kicker">继续学习</p>
+                    <h2 id="continue-learning-heading">接着上次的地方往下走</h2>
+                    <p>以下记录只保存在这台设备的浏览器里，换设备或清理数据后会消失。</p>
                 </div>
-                <div className="grid gap-4 md:grid-cols-3">
+                <ul className="home-trips">
                     {cards.map(({ key, ...card }) => <Card key={key} {...card} />)}
-                </div>
+                </ul>
             </div>
         </section>
     );

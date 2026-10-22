@@ -1,9 +1,11 @@
 import React from 'react';
-import { useLocation, useNavigate } from 'react-router-dom';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { Terminal, Github, Code2, MessageCircle } from 'lucide-react';
 import { getCppLevelCatalogItem } from '../data/cppLevelCatalog';
 import { pythonFoundationLessons, pythonProjects } from '../data/pythonCourseCatalog';
 import { usePrefersReducedMotion } from '../hooks/useShouldRunDecorativeMotion';
+import '../styles/design-tokens.css';
+import '../styles/site-chrome.css';
 
 const pythonStart = pythonFoundationLessons[0];
 const aiProject = pythonProjects.find((project) => project.id === 'ai');
@@ -17,7 +19,8 @@ const courseLinks = [
     { name: '算法竞赛之路', path: algorithmStart.path },
 ];
 
-export default function Footer() {
+// variant="home" 使用「学习线路图」设计语言；其他页面保持原样，等逐页迁移。
+export default function Footer({ variant = 'default' }) {
     const navigate = useNavigate();
     const location = useLocation();
     const prefersReducedMotion = usePrefersReducedMotion();
@@ -49,6 +52,67 @@ export default function Footer() {
             navigate(item.path);
         }
     };
+
+    if (variant === 'home') {
+        const renderLink = (link) => (
+            <li key={link.name}>
+                {link.path ? (
+                    <Link to={link.path} className="mw-footer-link">{link.name}</Link>
+                ) : (
+                    <button type="button" onClick={() => handleLinkClick(link)} className="mw-footer-link">
+                        {link.name}
+                    </button>
+                )}
+            </li>
+        );
+
+        return (
+            <footer className="mw-footer">
+                <div className="mw-footer-band" aria-hidden="true">
+                    <span />
+                    <span />
+                    <span />
+                    <span />
+                </div>
+                <div className="mw-footer-inner">
+                    <div className="mw-footer-grid">
+                        <div>
+                            <Link to="/" className="mw-footer-brand">
+                                <img src={`${import.meta.env.BASE_URL}logo.jpg`} alt="" />
+                                魔丸聚集地
+                            </Link>
+                            {/* 中文句子只在英文词前后换行，避免 JSX 把换行变成多余的空格 */}
+                            <p className="mw-footer-about">
+                                面向青少年、老师和家长的编程与科创学习站：GESP
+                                C++ 一至八级、Python 入门与项目、电与磁和 ESP32 科创实验，以及 GESP
+                                官方真题练习。学习进度和错题只保存在你自己的浏览器里。
+                            </p>
+                        </div>
+                        <nav aria-labelledby="footer-courses-heading">
+                            <h2 id="footer-courses-heading" className="mw-footer-heading">课程线路</h2>
+                            <ul className="mw-footer-list">{courseLinks.map(renderLink)}</ul>
+                        </nav>
+                        <nav aria-labelledby="footer-resources-heading">
+                            <h2 id="footer-resources-heading" className="mw-footer-heading">练习与资源</h2>
+                            <ul className="mw-footer-list">{resourceLinks.map(renderLink)}</ul>
+                        </nav>
+                    </div>
+                    <div className="mw-footer-bottom">
+                        <p>&copy; {new Date().getFullYear()} Mowill Studio</p>
+                        <a
+                            href="https://github.com/Dora321/gesp-app"
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="mw-footer-link"
+                        >
+                            <Github size={16} aria-hidden="true" />
+                            GitHub 代码仓
+                        </a>
+                    </div>
+                </div>
+            </footer>
+        );
+    }
 
     return (
         <footer className="relative bg-slate-900 text-slate-300 pt-24 pb-12 overflow-hidden">

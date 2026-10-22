@@ -1,9 +1,10 @@
 import React, { useEffect, useMemo, useState } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import {
     Binary,
     BookOpen,
     Brain,
+    Check,
     CheckCircle2,
     ChevronRight,
     ClipboardList,
@@ -12,7 +13,6 @@ import {
     Database,
     Layers,
     Lightbulb,
-    Route,
     Target,
     Terminal,
     Trophy,
@@ -22,7 +22,7 @@ import { getCppLevelCatalogItem } from '../data/cppLevelCatalog';
 import { pythonFoundationLessons, pythonProjects } from '../data/pythonCourseCatalog';
 import { getLessonStatus, LESSON_STATUS_META, readLessonProgress } from '../utils/lessonProgress';
 
-import { arduinoLessons, foundationLessons, innovationLessons } from '../data/innovationCourseCatalog';
+import { arduinoLessons, contestLessons, foundationLessons, innovationLessons } from '../data/innovationCourseCatalog';
 
 const pythonStart = pythonFoundationLessons[0];
 const pythonProjectStart = pythonProjects[0];
@@ -65,13 +65,22 @@ const lessonSections = [
     },
     {
         id: 'innovation-advanced', subject: 'innovation', title: '高阶科创',
-        subtitle: 'ESP32 MicroPython · 网页课件', badge: '高阶科创', color: 'teal', icon: Cpu,
+        subtitle: 'ESP32 MicroPython · 网页课件', badge: '36 课', color: 'teal', icon: Cpu,
         audience: '希望通过动手制作认识编程、硬件与 AI 的学生',
         goal: '从点亮 LED 开始，用 MicroPython 与 AI 完成真实的硬件任务。',
-        bridge: '保留原课号，其他网页课件将陆续补充。',
+        bridge: '按五个阶段完成第 1–35 课与第 16.5 课，再用竞赛延伸包整理参赛材料。',
         checkpoints: ['能控制灯光、按钮和屏幕', '能阅读并验证 AI 生成的代码', '能将创意整理成需求文档'],
         examPath: '/hardware/esp32-curriculum',
         lessons: innovationLessons,
+    },
+    {
+        id: 'innovation-contest', subject: 'innovation', title: '竞赛延伸包',
+        subtitle: '选修 · 与主线并行', badge: '7 课', color: 'amber', icon: Trophy,
+        audience: '已经有可演示作品，准备开展研究与参赛展示的学生',
+        goal: '围绕一个真实问题，完成实验、数据图表、展板、演示和答辩材料。',
+        bridge: '先完成主线中的作品，再按 C1–C7 整理完整的参赛包。',
+        checkpoints: ['能提出清楚的研究问题', '能用实验数据支持结论', '能向评委讲清作品和证据'],
+        examPath: '/hardware/esp32-contest', lessons: contestLessons,
     },
     {
         id: 'basic',
@@ -349,7 +358,7 @@ const lessonSections = [
         subject: 'python',
         title: 'Python 进阶',
         subtitle: '实战演练',
-        badge: 'Project',
+        badge: 'A1-A9',
         color: 'blue',
         icon: Terminal,
         audience: '已经掌握基础语法，想通过作品理解算法和应用的学生',
@@ -361,82 +370,30 @@ const lessonSections = [
     }
 ];
 
-// 七、八级的大纲已按题库的真实考点分布排定，课时正在分批建设。
-// 未建成的课时在目录里标为未开放，而不是给出一个点开就 404 的入口。
+// 未建成的课时在目录里标为「建设中」，而不是给出一个点开就 404 的入口。
+// 一至八级 16 课已全部建成（src/lessons/cpp/l1–l8，LessonRouter 支持 1–8 级），
+// 这张表暂时为空；以后新增课段分批上线时，在这里登记未建成的课时编号。
 const unavailableLessonIdsBySection = {
-    sprint: [2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16],
-    summit: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15, 16],
 };
 
 function isLessonReady(sectionId, lessonId) {
     return !unavailableLessonIdsBySection[sectionId]?.includes(lessonId);
 }
 
-const colorMap = {
-    emerald: {
-        bg: 'bg-emerald-600',
-        text: 'text-emerald-700',
-        light: 'bg-emerald-50',
-        border: 'border-emerald-200',
-        active: 'bg-emerald-600 text-white shadow-md shadow-emerald-200',
-        hoverBorder: 'hover:border-emerald-200'
-    },
-    purple: {
-        bg: 'bg-purple-600',
-        text: 'text-purple-700',
-        light: 'bg-purple-50',
-        border: 'border-purple-200',
-        active: 'bg-purple-600 text-white shadow-md shadow-purple-200',
-        hoverBorder: 'hover:border-purple-200'
-    },
-    yellow: {
-        bg: 'bg-yellow-500',
-        text: 'text-yellow-700',
-        light: 'bg-yellow-50',
-        border: 'border-yellow-200',
-        active: 'bg-yellow-500 text-slate-950 shadow-md shadow-yellow-200',
-        hoverBorder: 'hover:border-yellow-200'
-    },
-    blue: {
-        bg: 'bg-blue-600',
-        text: 'text-blue-700',
-        light: 'bg-blue-50',
-        border: 'border-blue-200',
-        active: 'bg-blue-600 text-white shadow-md shadow-blue-200',
-        hoverBorder: 'hover:border-blue-200'
-    },
-    rose: {
-        bg: 'bg-rose-600',
-        text: 'text-rose-700',
-        light: 'bg-rose-50',
-        border: 'border-rose-200',
-        active: 'bg-rose-600 text-white shadow-md shadow-rose-200',
-        hoverBorder: 'hover:border-rose-200'
-    },
-    indigo: {
-        bg: 'bg-indigo-600',
-        text: 'text-indigo-700',
-        light: 'bg-indigo-50',
-        border: 'border-indigo-200',
-        active: 'bg-indigo-600 text-white shadow-md shadow-indigo-200',
-        hoverBorder: 'hover:border-indigo-200'
-    },
-    amber: {
-        bg: 'bg-amber-500',
-        text: 'text-amber-700',
-        light: 'bg-amber-50',
-        border: 'border-amber-200',
-        active: 'bg-amber-500 text-slate-950 shadow-md shadow-amber-200',
-        hoverBorder: 'hover:border-amber-200'
-    },
-    teal: {
-        bg: 'bg-teal-600',
-        text: 'text-teal-700',
-        light: 'bg-teal-50',
-        border: 'border-teal-200',
-        active: 'bg-teal-600 text-white shadow-md shadow-teal-200',
-        hoverBorder: 'hover:border-teal-200'
-    },
+// 配色按「体系 → 线路」统一取（见 docs/site-design-language.md）：
+// 同一体系的所有课段共用一条线路色，课段之间靠标题和编号区分，
+// 课段数据里的 color 字段不再参与首页配色。
+const subjectTabs = [
+    { id: 'cpp', label: 'C++ 体系', line: 'cpp', Icon: Code },
+    { id: 'python', label: 'Python 体系', line: 'python', Icon: Terminal },
+    { id: 'science-foundation', label: '初阶科创', line: 'maker', Icon: Lightbulb },
+    { id: 'arduino', label: 'Arduino 体系', line: 'maker', Icon: Cpu },
+    { id: 'innovation', label: '高阶科创', line: 'maker', Icon: Cpu },
+];
+
+const lineClassForSubject = (subject) => {
+    const tab = subjectTabs.find((item) => item.id === subject);
+    return `mw-line-${tab ? tab.line : 'cpp'}`;
 };
 
 const subjectSummaries = {
@@ -446,13 +403,13 @@ const subjectSummaries = {
         cta: '从第 1 课开始', ctaPath: '/innovation-foundation/1',
     },
     arduino: {
-        label: 'Arduino UNO 零基础课程', title: '从 Blink 到智能垃圾桶，学会硬件编程',
-        description: '16 节 Arduino UNO 网页课：灯光、按键、串口、传感器与舵机，最终完成综合项目。',
+        label: 'Arduino UNO 硬件编程', title: '从 Blink 到智能垃圾桶',
+        description: '16 节零基础 Arduino 网页课件：读懂 setup / loop，控制灯光、按键、串口、传感器与舵机，最后组装一个完整项目。',
         cta: '从第 1 课开始', ctaPath: '/hardware/arduino/1',
     },
     innovation: {
         label: 'ESP32 MicroPython 高阶科创', title: '用 MicroPython 与 AI 完成硬件项目',
-        description: 'ESP32 × AI 网页课件，保留课堂演示与交互。现有第 1–23 课与第 16.5 课，按原课号排列。',
+        description: 'ESP32 × AI 网页课件：第 1–35 课、联网预备包第 16.5 课，以及 7 节竞赛延伸课。',
         cta: '从第 1 课开始', ctaPath: '/hardware/esp32/1',
     },
     cpp: {
@@ -478,8 +435,8 @@ const seniorExamLinks = [
 
 function getSubjectSummaryStats(subject) {
     if (subject === 'science-foundation') return [`${foundationLessons.length} 节网页课`, '电与磁', '动手探究'];
-    if (subject === 'innovation') return [`${innovationLessons.length} 节网页课`, 'ESP32 × AI', '动手做作品'];
     if (subject === 'arduino') return [`${arduinoLessons.length} 节网页课`, 'Arduino UNO', '综合项目'];
+    if (subject === 'innovation') return [`${innovationLessons.length + contestLessons.length} 节网页课`, 'ESP32 × AI', '动手做作品'];
     const sections = lessonSections.filter(section => section.subject === subject);
 
     if (subject === 'cpp') {
@@ -513,8 +470,8 @@ function getSectionSubtitle(section) {
 
 function getSectionAction(section, subject) {
     if (subject === 'science-foundation') return { label: '查看初阶课程目录', path: '/innovation-foundation', Icon: Lightbulb };
-    if (subject === 'innovation') return { label: '查看高阶课程目录', path: '/hardware/esp32-curriculum', Icon: Cpu };
     if (subject === 'arduino') return { label: '查看 Arduino 课程目录', path: '/hardware/arduino', Icon: Cpu };
+    if (subject === 'innovation') return { label: section.id === 'innovation-contest' ? '查看竞赛课程目录' : '查看高阶课程目录', path: section.examPath, Icon: section.icon };
     if (subject === 'cpp') {
         return {
             label: '查看冲刺课',
@@ -540,8 +497,8 @@ function getSectionAction(section, subject) {
 
 function getPracticeAction(section, subject) {
     if (subject === 'science-foundation') return { label: '查看课程目录', path: '/innovation-foundation', hint: '按第 1–15 课顺序学习，打开网页课件跟着实验一起探索。' };
-    if (subject === 'innovation') return { label: '查看课程目录', path: '/hardware/esp32-curriculum', hint: '已收录第 1–23 课与第 16.5 课；后续网页课件将继续补充。' };
     if (subject === 'arduino') return { label: '查看课程目录', path: '/hardware/arduino', hint: '16 节网页课已经全部上线，建议按顺序完成到智能垃圾桶项目。' };
+    if (subject === 'innovation') return { label: '查看课程目录', path: section.examPath, hint: section.id === 'innovation-contest' ? '竞赛 C1–C7 已上线，按顺序整理参赛材料。' : '第 1–35 课与第 16.5 课已上线，按五个阶段学习。' };
     if (subject === 'cpp') {
         return {
             label: '练真题',
@@ -591,16 +548,23 @@ function getPythonProgressionLinks(section) {
     ];
 }
 
+// 首页导航用 ?subject=arduino 之类的参数直接落到对应体系，这里做一次白名单校验。
+const VALID_SUBJECTS = new Set(subjectTabs.map((tab) => tab.id));
+const getRequestedSubject = () => {
+    const requested = new URLSearchParams(window.location.search).get('subject');
+    return VALID_SUBJECTS.has(requested) ? requested : 'cpp';
+};
+
 export default function LessonCatalog() {
-    const navigate = useNavigate();
-    const requestedSubject = new URLSearchParams(window.location.search).get('subject');
-    const initialSubject = ['innovation', 'arduino', 'science-foundation', 'python', 'cpp'].includes(requestedSubject) ? requestedSubject : 'cpp';
-    const [activeSubject, setActiveSubject] = useState(initialSubject);
-    const [activeTab, setActiveTab] = useState(() => lessonSections.find(section => section.subject === initialSubject)?.id || 'basic');
+    const [activeSubject, setActiveSubject] = useState(getRequestedSubject);
+    const [activeTab, setActiveTab] = useState(() => {
+        const first = lessonSections.find(section => section.subject === getRequestedSubject());
+        return first ? first.id : 'basic';
+    });
     const [progress, setProgress] = useState(() => readLessonProgress());
 
     useEffect(() => {
-        if (['innovation', 'arduino', 'science-foundation', 'python'].includes(new URLSearchParams(window.location.search).get('subject'))) {
+        if (new URLSearchParams(window.location.search).get('subject')) {
             document.getElementById('lesson-catalog')?.scrollIntoView();
         }
     }, []);
@@ -629,8 +593,9 @@ export default function LessonCatalog() {
         }
     }, [activeSubject]);
 
-    const activeSection = lessonSections.find(section => section.id === activeTab) || filteredSections[0];
-    const activeColors = colorMap[activeSection.color];
+    // 切换体系的那一帧 activeTab 还是旧体系的课段，这里只认当前体系里的课段。
+    const activeSection = filteredSections.find(section => section.id === activeTab) || filteredSections[0];
+    const lineClass = lineClassForSubject(activeSubject);
     const summary = subjectSummaries[activeSubject];
     const summaryStats = getSubjectSummaryStats(activeSubject);
     const readyLessons = activeSection.lessons.filter(lesson => isLessonReady(activeSection.id, lesson.id));
@@ -648,94 +613,57 @@ export default function LessonCatalog() {
     const pythonProgressionLinks = activeSubject === 'python'
         ? getPythonProgressionLinks(activeSection)
         : [];
+    const statusLabel = (status, meta) => (
+        isPriorityCppSection && status === 'mastered' ? '已完成自查' : meta.label
+    );
 
     return (
-        <section className="bg-white py-24">
-            <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-                <div className="mb-10 grid gap-8 lg:grid-cols-[minmax(0,1fr)_24rem] lg:items-end">
-                    <div>
-                        <div className="mb-3 inline-flex items-center gap-2 rounded-lg bg-slate-100 px-3 py-1 text-xs font-black uppercase tracking-wider text-slate-500">
-                            <Route size={14} />
-                            课程目录
+        <section className="home-catalog" aria-labelledby="home-catalog-title">
+            <div className="home-container">
+                <div className="home-catalog-head">
+                    <div className="home-section-head">
+                        <div>
+                            <p className="mw-kicker">课程目录</p>
+                            <h2 id="home-catalog-title">全部课程，按体系排好</h2>
+                            <p>
+                                根据当前基础选择课段：看清适合对象、学习目标和下一步练习，再进入具体课时。课时编号外的圆圈记录你在这台设备上的学习进度。
+                            </p>
                         </div>
-                        <h2 className="text-3xl font-black tracking-tight text-slate-950 sm:text-4xl">
-                            先判断阶段，再进入具体课时
-                        </h2>
-                        <p className="mt-4 max-w-3xl text-lg leading-8 text-slate-600">
-                            根据当前基础选择课段：看清适合对象、学习目标和下一步练习，再进入具体课时。
-                        </p>
                     </div>
 
-                    <div className="rounded-lg border border-slate-200 bg-slate-50 p-5">
-                        <div className="mb-2 text-xs font-black uppercase tracking-wider text-slate-500">{summary.label}</div>
-                        <h3 className="text-xl font-black text-slate-950">{summary.title}</h3>
-                        <p className="mt-2 text-sm leading-6 text-slate-600">{summary.description}</p>
-                        <div className="mt-4 grid grid-cols-3 gap-2 text-center text-xs font-bold text-slate-600">
+                    <aside className={`home-catalog-summary ${lineClass}`} aria-label={`${summary.label}简介`}>
+                        <p className="home-catalog-summary-label">{summary.label}</p>
+                        <h3>{summary.title}</h3>
+                        <p>{summary.description}</p>
+                        <ul className="home-catalog-stats">
                             {summaryStats.map((stat) => (
-                                <div key={stat} className="rounded-lg bg-white px-2 py-3 ring-1 ring-slate-200">
-                                    {stat}
-                                </div>
+                                <li key={stat}>{stat}</li>
                             ))}
-                        </div>
-                        <button
-                            onClick={() => navigate(summary.ctaPath)}
-                            className="mt-4 inline-flex w-full items-center justify-center gap-2 rounded-lg bg-slate-950 px-4 py-3 text-sm font-black text-white transition hover:bg-blue-700"
-                        >
+                        </ul>
+                        <Link to={summary.ctaPath} className="mw-button mw-button--primary">
                             {summary.cta}
-                            <ChevronRight size={16} />
+                            <ChevronRight size={16} aria-hidden="true" />
+                        </Link>
+                    </aside>
+                </div>
+
+                <div className="home-subjects" role="group" aria-label="选择课程体系">
+                    {subjectTabs.map(({ id, label, line, Icon }) => (
+                        <button
+                            key={id}
+                            type="button"
+                            onClick={() => setActiveSubject(id)}
+                            aria-pressed={activeSubject === id}
+                            className={`home-subject mw-line-${line}`}
+                        >
+                            <Icon size={18} aria-hidden="true" />
+                            {label}
                         </button>
-                    </div>
+                    ))}
                 </div>
 
-                <div className="mb-8 flex flex-wrap gap-2 rounded-lg bg-slate-100 p-1.5">
-                    <button
-                        onClick={() => setActiveSubject('cpp')}
-                        className={`flex flex-1 items-center justify-center gap-2 rounded-lg px-5 py-3 text-sm font-black transition sm:flex-none ${activeSubject === 'cpp'
-                            ? 'bg-white text-slate-950 shadow-sm'
-                            : 'text-slate-500 hover:text-slate-800'
-                            }`}
-                    >
-                        <Code size={18} className={activeSubject === 'cpp' ? 'text-blue-600' : ''} />
-                        C++ 体系
-                    </button>
-                    <button
-                        onClick={() => setActiveSubject('python')}
-                        className={`flex flex-1 items-center justify-center gap-2 rounded-lg px-5 py-3 text-sm font-black transition sm:flex-none ${activeSubject === 'python'
-                            ? 'bg-white text-slate-950 shadow-sm'
-                            : 'text-slate-500 hover:text-slate-800'
-                            }`}
-                    >
-                        <Terminal size={18} className={activeSubject === 'python' ? 'text-yellow-600' : ''} />
-                        Python 体系
-                    </button>
-                    <button
-                        onClick={() => setActiveSubject('science-foundation')}
-                        className={`flex flex-1 items-center justify-center gap-2 rounded-lg px-5 py-3 text-sm font-black transition sm:flex-none ${activeSubject === 'science-foundation' ? 'bg-white text-slate-950 shadow-sm' : 'text-slate-500 hover:text-slate-800'}`}
-                    >
-                        <Lightbulb size={18} className={activeSubject === 'science-foundation' ? 'text-amber-600' : ''} />
-                        初阶科创
-                    </button>
-                    <button
-                        onClick={() => setActiveSubject('arduino')}
-                        className={`flex flex-1 items-center justify-center gap-2 rounded-lg px-5 py-3 text-sm font-black transition sm:flex-none ${activeSubject === 'arduino' ? 'bg-white text-slate-950 shadow-sm' : 'text-slate-500 hover:text-slate-800'}`}
-                    >
-                        <Cpu size={18} className={activeSubject === 'arduino' ? 'text-blue-600' : ''} />
-                        Arduino
-                    </button>
-                    <button
-                        onClick={() => setActiveSubject('innovation')}
-                        className={`flex flex-1 items-center justify-center gap-2 rounded-lg px-5 py-3 text-sm font-black transition sm:flex-none ${activeSubject === 'innovation' ? 'bg-white text-slate-950 shadow-sm' : 'text-slate-500 hover:text-slate-800'}`}
-                    >
-                        <Cpu size={18} className={activeSubject === 'innovation' ? 'text-teal-600' : ''} />
-                        高阶科创
-                    </button>
-                </div>
-
-                <div className="mb-8 flex gap-2 overflow-x-auto pb-3">
+                <div className={`home-section-tabs ${lineClass}`} role="group" aria-label="选择课段">
                     {filteredSections.map((section) => {
-                        const colors = colorMap[section.color];
-                        const isActive = activeTab === section.id;
-                        const Icon = section.icon;
                         const sectionReadyCount = section.lessons.filter(lesson => isLessonReady(section.id, lesson.id)).length;
                         const sectionStatusText = sectionReadyCount === section.lessons.length
                             ? '全部上线'
@@ -744,218 +672,185 @@ export default function LessonCatalog() {
                         return (
                             <button
                                 key={section.id}
+                                type="button"
                                 onClick={() => setActiveTab(section.id)}
-                                className={`flex min-w-fit items-center gap-3 rounded-lg px-4 py-3 text-left text-sm font-black transition ${isActive
-                                    ? colors.active
-                                    : 'bg-slate-50 text-slate-500 ring-1 ring-slate-200 hover:bg-white hover:text-slate-900'
-                                    }`}
+                                aria-pressed={activeSection.id === section.id}
+                                className="home-section-tab"
                             >
-                                <span className={`flex h-8 w-8 items-center justify-center rounded-lg ${isActive ? 'bg-white/20' : 'bg-white'}`}>
-                                    <Icon size={18} />
-                                </span>
+                                <span className="home-section-tab-badge">{section.badge}</span>
                                 <span>
-                                    <span className="block">{section.title}</span>
-                                    <span className={`block text-xs ${isActive ? 'opacity-80' : 'text-slate-400'}`}>
-                                        {section.badge} · {sectionStatusText}
-                                    </span>
+                                    <span className="home-section-tab-title">{section.title}</span>
+                                    <span className="home-section-tab-status">{sectionStatusText}</span>
                                 </span>
                             </button>
                         );
                     })}
                 </div>
 
-                <div
-                    key={activeTab}
-                    className={`rounded-lg border ${activeColors.border} bg-white shadow-sm`}
-                >
-                        <div className="grid gap-0 lg:grid-cols-[22rem_minmax(0,1fr)]">
-                            <aside className={`${activeColors.light} border-b ${activeColors.border} p-6 lg:border-b-0 lg:border-r`}>
-                                <div className={`mb-5 flex h-12 w-12 items-center justify-center rounded-lg ${activeColors.bg} text-white`}>
-                                    {React.createElement(activeSection.icon, { size: 26 })}
-                                </div>
-                                <div className="mb-3 inline-flex rounded-lg bg-white px-2.5 py-1 text-xs font-black text-slate-500 ring-1 ring-slate-200">
-                                    {getSectionSubtitle(activeSection)}
-                                </div>
-                                <h3 className="text-2xl font-black text-slate-950">{activeSection.title}</h3>
-                                <p className="mt-3 text-sm leading-6 text-slate-600">{activeSection.goal}</p>
-                                <div className="mt-4 inline-flex rounded-lg bg-white px-3 py-1.5 text-xs font-black text-slate-600 ring-1 ring-slate-200">
-                                    课时状态：{lessonStatusText}
-                                </div>
+                <div key={activeSection.id} className={`home-board ${lineClass}`}>
+                    <aside className="home-board-aside">
+                        <span className="home-board-icon" aria-hidden="true">
+                            {React.createElement(activeSection.icon, { size: 22 })}
+                        </span>
+                        <p className="home-board-subtitle">{getSectionSubtitle(activeSection)}</p>
+                        <h3>{activeSection.title}</h3>
+                        <p className="home-board-goal">{activeSection.goal}</p>
+                        <p className="home-board-status">课时状态：{lessonStatusText}</p>
 
-                                <div className="mt-6 space-y-4">
-                                    <div>
-                                        <div className="mb-2 flex items-center gap-2 text-xs font-black uppercase tracking-wider text-slate-500">
-                                            <Users size={14} />
-                                            适合对象
-                                        </div>
-                                        <p className="text-sm font-semibold leading-6 text-slate-700">{activeSection.audience}</p>
-                                    </div>
-                                    <div>
-                                        <div className="mb-2 flex items-center gap-2 text-xs font-black uppercase tracking-wider text-slate-500">
-                                            <Target size={14} />
-                                            学完能做
-                                        </div>
-                                        <ul className="space-y-2">
-                                            {activeSection.checkpoints.map((checkpoint) => (
-                                                <li key={checkpoint} className="flex gap-2 text-sm font-semibold leading-6 text-slate-700">
-                                                    <CheckCircle2 className={activeColors.text} size={16} />
-                                                    <span>{checkpoint}</span>
-                                                </li>
-                                            ))}
-                                        </ul>
-                                    </div>
-                                </div>
-
-                                <div className="mt-6 rounded-lg bg-white p-4 ring-1 ring-slate-200">
-                                    <div className="mb-2 flex items-center gap-2 text-xs font-black uppercase tracking-wider text-slate-500">
-                                        <ClipboardList size={14} />
-                                        衔接建议
-                                    </div>
-                                    <p className="text-sm leading-6 text-slate-600">{activeSection.bridge}</p>
-                                </div>
-
-                                <div className="mt-5 grid gap-2 sm:grid-cols-2 lg:grid-cols-1">
-                                    <button
-                                        onClick={() => hasReadyLessons && navigate(readyLessons[0].path)}
-                                        disabled={!hasReadyLessons}
-                                        className={`inline-flex items-center justify-center gap-2 rounded-lg px-4 py-3 text-sm font-black text-white transition ${hasReadyLessons ? `${activeColors.bg} hover:brightness-95` : 'cursor-not-allowed bg-slate-300 text-slate-500'}`}
-                                    >
-                                        {hasReadyLessons ? '从已上线课开始' : '课时建设中'}
-                                        {hasReadyLessons && <ChevronRight size={16} />}
-                                    </button>
-                                    <button
-                                        onClick={() => navigate(sectionAction.path)}
-                                        className="inline-flex items-center justify-center gap-2 rounded-lg border border-slate-200 bg-white px-4 py-3 text-sm font-black text-slate-800 transition hover:border-blue-200 hover:bg-blue-50"
-                                    >
-                                        <SectionActionIcon size={16} />
-                                        {sectionAction.label}
-                                    </button>
-                                </div>
-                            </aside>
-
-                            <div className="p-5 sm:p-6">
-                                <div className="mb-5 flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
-                                    <div>
-                                        <h4 className="text-lg font-black text-slate-950">课时列表</h4>
-                                        <p className="text-sm text-slate-500">
-                                            {hasReadyLessons
-                                                ? practiceAction.hint
-                                                : unavailableLessonHint}
-                                        </p>
-                                    </div>
-                                    <button
-                                        onClick={() => navigate(practiceAction.path)}
-                                        className="inline-flex items-center justify-center gap-2 rounded-lg bg-slate-100 px-4 py-2.5 text-sm font-black text-slate-700 transition hover:bg-slate-200"
-                                    >
-                                        {practiceAction.label}
-                                        <ChevronRight size={16} />
-                                    </button>
-                                </div>
-
-                                {hasReadyLessons && (
-                                    <div className="mb-4 flex flex-wrap items-center gap-x-4 gap-y-2 text-xs font-bold">
-                                        {Object.entries(LESSON_STATUS_META).map(([key, meta]) => (
-                                            <span key={key} className="inline-flex items-center gap-1.5 text-slate-500">
-                                                <span className={`h-2 w-2 rounded-full ${meta.dot}`} />
-                                                {isPriorityCppSection && key === 'mastered' ? '已完成自查' : meta.label}
-                                            </span>
-                                        ))}
-                                        <span className="ml-auto inline-flex items-center gap-1 rounded-full bg-emerald-50 px-2.5 py-1 text-emerald-700 ring-1 ring-emerald-200">
-                                            {isPriorityCppSection ? '本课段已完成自查' : '本课段已过关'} {masteredCount}/{readyCount}
-                                        </span>
-                                    </div>
-                                )}
-
-                                <div className="grid gap-3 sm:grid-cols-2 xl:grid-cols-4">
-                                    {activeSection.lessons.map((lesson) => {
-                                        const lessonReady = isLessonReady(activeSection.id, lesson.id);
-                                        const status = lessonReady ? getLessonStatus(lesson.path, progress) : null;
-                                        const statusMeta = status ? LESSON_STATUS_META[status] : null;
-                                        const passed = status === 'mastered' || status === 'review';
-                                        return (
-                                        <button
-                                            key={lesson.id}
-                                            onClick={() => lessonReady && navigate(lesson.path)}
-                                            disabled={!lessonReady}
-                                            className={`group flex min-h-[5.25rem] items-start gap-3 rounded-lg border p-3 text-left transition ${lessonReady
-                                                ? `border-slate-200 bg-slate-50/60 hover:-translate-y-0.5 hover:bg-white hover:shadow-md ${activeColors.hoverBorder}`
-                                                : 'cursor-not-allowed border-slate-200 bg-slate-100/70 opacity-75'
-                                                }`}
-                                        >
-                                            <span className={`relative flex h-8 w-8 shrink-0 items-center justify-center rounded-lg text-sm font-black ${passed ? 'bg-emerald-50 text-emerald-700' : lessonReady ? `${activeColors.light} ${activeColors.text}` : 'bg-white text-slate-400'}`}>
-                                                {passed ? <CheckCircle2 size={18} /> : lesson.id}
-                                                {statusMeta && status !== 'unseen' && (
-                                                    <span className={`absolute -right-1 -top-1 h-2.5 w-2.5 rounded-full ring-2 ring-white ${statusMeta.dot}`} />
-                                                )}
-                                            </span>
-                                            <span className="min-w-0 flex-1">
-                                                <span className={`line-clamp-2 text-sm font-black leading-5 transition ${lessonReady ? 'text-slate-800 group-hover:text-blue-700' : 'text-slate-500'}`}>
-                                                    {lesson.title}
-                                                </span>
-                                                <span className={`mt-2 inline-flex items-center gap-1 text-xs font-bold ${statusMeta ? statusMeta.text : 'text-slate-400'}`}>
-                                                    {lessonReady ? (
-                                                        <>
-                                                            {status !== 'unseen' && <span className={`h-1.5 w-1.5 rounded-full ${statusMeta.dot}`} />}
-                                                            {status === 'unseen' ? '开始学习' : isPriorityCppSection && status === 'mastered' ? '已完成自查' : statusMeta.label}
-                                                            <ChevronRight size={12} className="transition group-hover:translate-x-0.5" />
-                                                        </>
-                                                    ) : '建设中'}
-                                                </span>
-                                            </span>
-                                        </button>
-                                        );
-                                    })}
-                                </div>
-
-                                {activeSubject === 'cpp' && (
-                                    <div className="mt-6 rounded-lg border border-slate-200 bg-slate-50 p-4">
-                                        <div className="mb-3 flex items-center gap-2 text-sm font-black text-slate-800">
-                                            <Trophy size={16} className="text-amber-600" />
-                                            高等级冲刺入口
-                                        </div>
-                                        <div className="grid gap-3 sm:grid-cols-2">
-                                            {seniorExamLinks.map((link) => (
-                                                <button
-                                                    key={link.path}
-                                                    onClick={() => navigate(link.path)}
-                                                    className="flex items-center justify-between gap-3 rounded-lg bg-white p-4 text-left ring-1 ring-slate-200 transition hover:ring-blue-200"
-                                                >
-                                                    <span>
-                                                        <span className="block text-sm font-black text-slate-900">{link.title}</span>
-                                                        <span className="mt-1 block text-xs font-semibold text-slate-500">{link.desc}</span>
-                                                    </span>
-                                                    <ChevronRight size={16} className="text-slate-400" />
-                                                </button>
-                                            ))}
-                                        </div>
-                                    </div>
-                                )}
-
-                                {activeSubject === 'python' && (
-                                    <div className="mt-6 rounded-lg border border-slate-200 bg-slate-50 p-4">
-                                        <div className="mb-3 flex items-center gap-2 text-sm font-black text-slate-800">
-                                            <BookOpen size={16} className="text-yellow-600" />
-                                            Python 学习衔接
-                                        </div>
-                                        <div className="grid gap-3 sm:grid-cols-2">
-                                            {pythonProgressionLinks.map((link) => (
-                                                <button
-                                                    key={link.path}
-                                                    onClick={() => navigate(link.path)}
-                                                    className="flex items-center justify-between gap-3 rounded-lg bg-white p-4 text-left ring-1 ring-slate-200 transition hover:ring-yellow-200"
-                                                >
-                                                    <span>
-                                                        <span className="block text-sm font-black text-slate-900">{link.title}</span>
-                                                        <span className="mt-1 block text-xs font-semibold text-slate-500">{link.desc}</span>
-                                                    </span>
-                                                    <ChevronRight size={16} className="text-slate-400" />
-                                                </button>
-                                            ))}
-                                        </div>
-                                    </div>
-                                )}
-                            </div>
+                        <div className="home-board-block">
+                            <h4>
+                                <Users size={15} aria-hidden="true" />
+                                适合对象
+                            </h4>
+                            <p>{activeSection.audience}</p>
                         </div>
+                        <div className="home-board-block">
+                            <h4>
+                                <Target size={15} aria-hidden="true" />
+                                学完能做
+                            </h4>
+                            <ul className="home-board-checks">
+                                {activeSection.checkpoints.map((checkpoint) => (
+                                    <li key={checkpoint}>
+                                        <CheckCircle2 size={16} aria-hidden="true" />
+                                        <span>{checkpoint}</span>
+                                    </li>
+                                ))}
+                            </ul>
+                        </div>
+                        <div className="home-board-block home-board-bridge">
+                            <h4>
+                                <ClipboardList size={15} aria-hidden="true" />
+                                衔接建议
+                            </h4>
+                            <p>{activeSection.bridge}</p>
+                        </div>
+
+                        <div className="home-board-actions">
+                            {hasReadyLessons ? (
+                                <Link to={readyLessons[0].path} className="mw-button mw-button--primary">
+                                    从已上线课开始
+                                    <ChevronRight size={16} aria-hidden="true" />
+                                </Link>
+                            ) : (
+                                <button type="button" disabled className="mw-button">课时建设中</button>
+                            )}
+                            <Link to={sectionAction.path} className="mw-button mw-button--secondary">
+                                <SectionActionIcon size={16} aria-hidden="true" />
+                                {sectionAction.label}
+                            </Link>
+                        </div>
+                    </aside>
+
+                    <div className="home-board-main">
+                        <div className="home-board-main-head">
+                            <div>
+                                <h4>课时列表</h4>
+                                <p>{hasReadyLessons ? practiceAction.hint : unavailableLessonHint}</p>
+                            </div>
+                            <Link to={practiceAction.path} className="mw-button mw-button--secondary mw-button--small">
+                                {practiceAction.label}
+                                <ChevronRight size={16} aria-hidden="true" />
+                            </Link>
+                        </div>
+
+                        {hasReadyLessons && (
+                            <div className="home-board-legend">
+                                {Object.entries(LESSON_STATUS_META).map(([key, meta]) => (
+                                    <span key={key}>
+                                        <span className="mw-station" data-state={key} aria-hidden="true" />
+                                        {statusLabel(key, meta)}
+                                    </span>
+                                ))}
+                                <span className="home-board-passed">
+                                    {isPriorityCppSection ? '本课段已完成自查' : '本课段已过关'} {masteredCount}/{readyCount}
+                                </span>
+                            </div>
+                        )}
+
+                        <ol className="home-lessons">
+                            {activeSection.lessons.map((lesson) => {
+                                const lessonReady = isLessonReady(activeSection.id, lesson.id);
+                                const status = lessonReady ? getLessonStatus(lesson.path, progress) : null;
+                                const statusMeta = status ? LESSON_STATUS_META[status] : null;
+                                const passed = status === 'mastered' || status === 'review';
+                                const content = (
+                                    <>
+                                        <span className="mw-sr-only">第 {lesson.id} 课：</span>
+                                        <span className="home-lesson-no" aria-hidden="true">
+                                            {passed ? <Check size={16} strokeWidth={3} /> : lesson.id}
+                                        </span>
+                                        <span className="home-lesson-text">
+                                            <span className="home-lesson-title">{lesson.title}</span>
+                                            <span className="home-lesson-status">
+                                                {!lessonReady && '建设中'}
+                                                {lessonReady && status === 'unseen' && '开始学习'}
+                                                {lessonReady && status !== 'unseen' && statusLabel(status, statusMeta)}
+                                            </span>
+                                        </span>
+                                    </>
+                                );
+
+                                return (
+                                    <li key={lesson.id}>
+                                        {lessonReady ? (
+                                            <Link to={lesson.path} className="home-lesson" data-status={status}>
+                                                {content}
+                                            </Link>
+                                        ) : (
+                                            <div className="home-lesson" data-status="unavailable">
+                                                {content}
+                                            </div>
+                                        )}
+                                    </li>
+                                );
+                            })}
+                        </ol>
+
+                        {activeSubject === 'cpp' && (
+                            <div className="home-board-links">
+                                <h4>
+                                    <Trophy size={16} aria-hidden="true" />
+                                    高等级冲刺入口
+                                </h4>
+                                <ul>
+                                    {seniorExamLinks.map((link) => (
+                                        <li key={link.path}>
+                                            <Link to={link.path} className="home-board-link">
+                                                <span>
+                                                    <strong>{link.title}</strong>
+                                                    <span>{link.desc}</span>
+                                                </span>
+                                                <ChevronRight size={16} aria-hidden="true" />
+                                            </Link>
+                                        </li>
+                                    ))}
+                                </ul>
+                            </div>
+                        )}
+
+                        {activeSubject === 'python' && (
+                            <div className="home-board-links">
+                                <h4>
+                                    <BookOpen size={16} aria-hidden="true" />
+                                    Python 学习衔接
+                                </h4>
+                                <ul>
+                                    {pythonProgressionLinks.map((link) => (
+                                        <li key={link.path}>
+                                            <Link to={link.path} className="home-board-link">
+                                                <span>
+                                                    <strong>{link.title}</strong>
+                                                    <span>{link.desc}</span>
+                                                </span>
+                                                <ChevronRight size={16} aria-hidden="true" />
+                                            </Link>
+                                        </li>
+                                    ))}
+                                </ul>
+                            </div>
+                        )}
+                    </div>
                 </div>
             </div>
         </section>

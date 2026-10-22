@@ -3,6 +3,7 @@ import { useNavigate, useLocation } from 'react-router-dom';
 import {
     Menu,
     X,
+    ArrowRight,
     ChevronRight,
     BookOpen,
     FileQuestion,
@@ -12,8 +13,13 @@ import {
     Wrench
 } from 'lucide-react';
 import { usePrefersReducedMotion } from '../hooks/useShouldRunDecorativeMotion';
+import '../styles/design-tokens.css';
+import '../styles/site-chrome.css';
 
-export default function Navigation({ darkMode = false, afterLogo = null, mobileActions = null, className = '' }) {
+// variant="home" 使用「学习线路图」设计语言（见 docs/site-design-language.md）；
+// 其他页面不传 variant，保持原来的样式，等逐页迁移。
+export default function Navigation({ darkMode = false, afterLogo = null, mobileActions = null, className = '', variant = 'default' }) {
+    const isHome = variant === 'home';
     const navigate = useNavigate();
     const location = useLocation();
     const prefersReducedMotion = usePrefersReducedMotion();
@@ -71,6 +77,105 @@ export default function Navigation({ darkMode = false, afterLogo = null, mobileA
         if (item.path === '/') return location.pathname === '/';
         return location.pathname.startsWith(item.path);
     };
+
+    if (isHome) {
+        return (
+            <>
+                <header className={`mw-nav ${className}`} data-scrolled={isScrolled}>
+                    <div className="mw-nav-inner">
+                        <button
+                            type="button"
+                            onClick={() => navigate('/')}
+                            className="mw-nav-brand"
+                            aria-label="返回网站首页"
+                        >
+                            <span className="mw-nav-logo">
+                                <img src={`${import.meta.env.BASE_URL}logo.jpg`} alt="" />
+                            </span>
+                            <span className="mw-nav-name">魔丸聚集地</span>
+                        </button>
+                        {afterLogo && <div className="shrink-0">{afterLogo}</div>}
+
+                        <nav className="mw-nav-links" aria-label="主导航">
+                            {navItems.map((item) => (
+                                <button
+                                    key={`${item.path}-${item.scrollTo || item.name}`}
+                                    type="button"
+                                    onClick={() => handleNavClick(item)}
+                                    aria-current={isActive(item) ? 'page' : undefined}
+                                    className="mw-nav-link"
+                                >
+                                    {item.name}
+                                </button>
+                            ))}
+                        </nav>
+
+                        <div className="mw-nav-actions">
+                            <button
+                                type="button"
+                                onClick={() => navigate('/question-bank')}
+                                className="mw-button mw-button--primary mw-button--small"
+                            >
+                                开始练习
+                                <ArrowRight size={16} aria-hidden="true" />
+                            </button>
+                        </div>
+
+                        {mobileActions && <div className="mw-nav-mobile-actions">{mobileActions}</div>}
+
+                        <button
+                            type="button"
+                            className="mw-nav-toggle"
+                            onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
+                            aria-label={isMobileMenuOpen ? '关闭导航菜单' : '打开导航菜单'}
+                            aria-expanded={isMobileMenuOpen}
+                        >
+                            {isMobileMenuOpen ? <X size={22} /> : <Menu size={22} />}
+                        </button>
+                    </div>
+                </header>
+
+                <div
+                    className={`mw-nav-sheet ${prefersReducedMotion ? 'transition-none' : 'transition-all duration-300'}`}
+                    data-open={isMobileMenuOpen}
+                >
+                    <div className="mw-nav-sheet-list">
+                        {navItems.map((item, idx) => (
+                            <button
+                                key={`${item.path}-${item.scrollTo || item.name}`}
+                                type="button"
+                                onClick={() => {
+                                    handleNavClick(item);
+                                    setIsMobileMenuOpen(false);
+                                }}
+                                aria-current={isActive(item) ? 'page' : undefined}
+                                className={`mw-nav-sheet-item ${prefersReducedMotion ? 'transition-none' : 'transition-all duration-300'}`}
+                                style={{
+                                    transitionDelay: prefersReducedMotion ? '0ms' : `${idx * 40}ms`,
+                                    transform: prefersReducedMotion || isMobileMenuOpen ? 'translateY(0)' : 'translateY(12px)'
+                                }}
+                            >
+                                {React.cloneElement(item.icon, { size: 20, 'aria-hidden': true })}
+                                {item.name}
+                                <ChevronRight size={18} aria-hidden="true" />
+                            </button>
+                        ))}
+                    </div>
+                    <button
+                        type="button"
+                        onClick={() => {
+                            navigate('/question-bank');
+                            setIsMobileMenuOpen(false);
+                        }}
+                        className="mw-button mw-button--primary mw-nav-sheet-cta"
+                    >
+                        开始练习
+                        <ArrowRight size={18} aria-hidden="true" />
+                    </button>
+                </div>
+            </>
+        );
+    }
 
     return (
         <>

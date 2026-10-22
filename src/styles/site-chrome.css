@@ -1,0 +1,382 @@
+/*
+ * 站点外框（导航、页脚）的「线路图」变体。
+ * 只有传入 variant="home" 时才会用到这些 mw-nav / mw-footer 类，
+ * 其他页面的导航和页脚保持原样，等逐页迁移。
+ */
+
+/* ================= 导航 ================= */
+.mw-nav {
+    position: fixed;
+    inset: 0 0 auto;
+    z-index: 50;
+    height: var(--mw-nav-height);
+    border-bottom: 1px solid transparent;
+    background: var(--mw-canvas);
+    color: var(--mw-ink);
+    font-family: var(--mw-font-sans);
+    transition:
+        background-color var(--mw-duration) var(--mw-ease),
+        border-color var(--mw-duration) var(--mw-ease);
+}
+
+.mw-nav[data-scrolled="true"] {
+    border-bottom-color: var(--mw-rule);
+    background: var(--mw-surface);
+}
+
+.mw-nav-inner {
+    display: flex;
+    align-items: center;
+    gap: var(--mw-space-4);
+    max-width: calc(var(--mw-container) + 2 * var(--mw-gutter));
+    height: 100%;
+    margin: 0 auto;
+    padding: 0 var(--mw-gutter);
+}
+
+.mw-nav-brand {
+    display: flex;
+    align-items: center;
+    gap: var(--mw-space-3);
+    min-width: 0;
+    min-height: 44px;
+    border-radius: var(--mw-radius-m);
+    color: var(--mw-ink);
+    text-align: left;
+}
+
+.mw-nav-logo {
+    display: block;
+    flex-shrink: 0;
+    width: 36px;
+    height: 36px;
+    overflow: hidden;
+    border: 1px solid var(--mw-rule);
+    border-radius: var(--mw-radius-m);
+    background: var(--mw-surface);
+}
+
+.mw-nav-logo img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+.mw-nav-name {
+    overflow: hidden;
+    font-size: 1.125rem;
+    font-weight: 800;
+    letter-spacing: 0.04em;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+}
+
+.mw-nav-links {
+    display: none;
+}
+
+.mw-nav-link {
+    position: relative;
+    display: inline-flex;
+    align-items: center;
+    min-height: 44px;
+    padding: 0 var(--mw-space-3);
+    color: var(--mw-ink-2);
+    font-size: var(--mw-text-body);
+    font-weight: 600;
+    white-space: nowrap;
+}
+
+.mw-nav-link::after {
+    content: "";
+    position: absolute;
+    right: var(--mw-space-3);
+    bottom: 6px;
+    left: var(--mw-space-3);
+    height: 2px;
+    background: var(--mw-brand-coral);
+    transform: scaleX(0);
+    transform-origin: left;
+    transition: transform var(--mw-duration) var(--mw-ease);
+}
+
+.mw-nav-link:hover,
+.mw-nav-link[aria-current="page"] {
+    color: var(--mw-ink);
+}
+
+.mw-nav-link:hover::after,
+.mw-nav-link[aria-current="page"]::after {
+    transform: scaleX(1);
+}
+
+.mw-nav-actions {
+    display: none;
+}
+
+.mw-nav-mobile-actions {
+    display: flex;
+    align-items: center;
+    gap: var(--mw-space-1);
+    margin-left: auto;
+}
+
+.mw-nav-toggle {
+    position: relative;
+    z-index: 50;
+    display: flex;
+    margin-left: auto;
+    flex-shrink: 0;
+    align-items: center;
+    justify-content: center;
+    width: 44px;
+    height: 44px;
+    border: 1px solid var(--mw-rule-strong);
+    border-radius: var(--mw-radius-m);
+    background: var(--mw-surface);
+    color: var(--mw-ink);
+}
+
+.mw-nav-mobile-actions + .mw-nav-toggle {
+    margin-left: 0;
+}
+
+.mw-nav-brand:focus-visible,
+.mw-nav-link:focus-visible,
+.mw-nav-toggle:focus-visible,
+.mw-nav-sheet-item:focus-visible {
+    outline: 2px solid var(--mw-ink);
+    outline-offset: 2px;
+}
+
+/* 移动端展开菜单：整页站牌列表 */
+.mw-nav-sheet {
+    position: fixed;
+    inset: 0;
+    z-index: 40;
+    display: flex;
+    flex-direction: column;
+    padding: calc(var(--mw-nav-height) + var(--mw-space-5)) var(--mw-gutter) var(--mw-space-6);
+    overflow-y: auto;
+    background: var(--mw-canvas);
+    font-family: var(--mw-font-sans);
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
+}
+
+.mw-nav-sheet[data-open="true"] {
+    opacity: 1;
+    visibility: visible;
+    pointer-events: auto;
+}
+
+.mw-nav-sheet-list {
+    border-top: 1px solid var(--mw-rule-strong);
+}
+
+.mw-nav-sheet-item {
+    display: flex;
+    align-items: center;
+    gap: var(--mw-space-4);
+    width: 100%;
+    min-height: 60px;
+    padding: 0 var(--mw-space-1);
+    border-bottom: 1px solid var(--mw-rule);
+    color: var(--mw-ink);
+    font-size: 1.0625rem;
+    font-weight: 700;
+    text-align: left;
+}
+
+.mw-nav-sheet-item > svg:first-child {
+    color: var(--mw-ink-3);
+}
+
+.mw-nav-sheet-item > svg:last-child {
+    margin-left: auto;
+    color: var(--mw-ink-3);
+}
+
+.mw-nav-sheet-cta {
+    width: 100%;
+    margin-top: var(--mw-space-6);
+}
+
+@media (min-width: 768px) {
+    .mw-nav-links {
+        display: flex;
+        align-items: center;
+        gap: var(--mw-space-1);
+        margin-left: auto;
+    }
+
+    .mw-nav-actions {
+        display: flex;
+        align-items: center;
+        margin-left: var(--mw-space-3);
+    }
+
+    .mw-nav-mobile-actions,
+    .mw-nav-toggle,
+    .mw-nav-sheet {
+        display: none;
+    }
+}
+
+@media (max-width: 399px) {
+    .mw-nav-inner,
+    .mw-nav-brand {
+        gap: var(--mw-space-2);
+    }
+
+    .mw-nav-name {
+        font-size: 1rem;
+        letter-spacing: 0.02em;
+    }
+}
+
+@media (min-width: 768px) and (max-width: 960px) {
+    .mw-nav-link {
+        padding: 0 var(--mw-space-2);
+        font-size: var(--mw-text-small);
+    }
+
+    .mw-nav-link::after {
+        right: var(--mw-space-2);
+        left: var(--mw-space-2);
+    }
+}
+
+/* ================= 页脚 ================= */
+.mw-footer {
+    position: relative;
+    background: var(--mw-night);
+    color: var(--mw-on-night-2);
+    font-family: var(--mw-font-sans);
+}
+
+/* 顶部线路色带：四条线路依次排开，是全站唯一的多色装饰 */
+.mw-footer-band {
+    display: grid;
+    grid-template-columns: 3fr 2fr 2fr 1fr;
+    height: 6px;
+}
+
+.mw-footer-band > span:nth-child(1) { background: var(--mw-line-cpp); }
+.mw-footer-band > span:nth-child(2) { background: var(--mw-line-python); }
+.mw-footer-band > span:nth-child(3) { background: var(--mw-brand-mustard); }
+.mw-footer-band > span:nth-child(4) { background: var(--mw-on-night-muted); }
+
+.mw-footer-inner {
+    max-width: calc(var(--mw-container) + 2 * var(--mw-gutter));
+    margin: 0 auto;
+    padding: var(--mw-space-8) var(--mw-gutter) var(--mw-space-6);
+}
+
+.mw-footer-grid {
+    display: grid;
+    gap: var(--mw-space-6);
+}
+
+.mw-footer-brand {
+    display: inline-flex;
+    align-items: center;
+    gap: var(--mw-space-3);
+    color: var(--mw-on-night);
+    font-size: 1.125rem;
+    font-weight: 800;
+    letter-spacing: 0.04em;
+}
+
+.mw-footer-brand:focus-visible {
+    outline: 2px solid var(--mw-brand-mustard);
+    outline-offset: 4px;
+}
+
+.mw-footer-brand img {
+    width: 36px;
+    height: 36px;
+    border-radius: var(--mw-radius-m);
+    object-fit: cover;
+}
+
+.mw-footer-about {
+    max-width: 30em;
+    margin: var(--mw-space-4) 0 0;
+    font-size: var(--mw-text-small);
+    line-height: var(--mw-leading-body);
+}
+
+.mw-footer-heading {
+    margin: 0 0 var(--mw-space-3);
+    color: var(--mw-on-night);
+    font-size: var(--mw-text-body);
+    font-weight: 700;
+}
+
+.mw-footer-list {
+    display: grid;
+    gap: 2px;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+}
+
+.mw-footer-link {
+    display: inline-flex;
+    align-items: center;
+    min-height: 40px;
+    color: var(--mw-on-night-2);
+    font-size: var(--mw-text-small);
+    text-align: left;
+    text-decoration: none;
+}
+
+.mw-footer-link:hover {
+    color: var(--mw-on-night);
+    text-decoration: underline;
+    text-decoration-color: var(--mw-brand-mustard);
+    text-decoration-thickness: 2px;
+    text-underline-offset: 5px;
+}
+
+.mw-footer-link:focus-visible {
+    outline: 2px solid var(--mw-brand-mustard);
+    outline-offset: 2px;
+}
+
+.mw-footer-bottom {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-between;
+    gap: var(--mw-space-3);
+    margin-top: var(--mw-space-7);
+    padding-top: var(--mw-space-5);
+    border-top: 1px solid var(--mw-night-rule);
+    font-size: var(--mw-text-caption);
+}
+
+.mw-footer-bottom p {
+    margin: 0;
+}
+
+.mw-footer-bottom .mw-footer-link {
+    gap: 6px;
+    font-size: var(--mw-text-caption);
+}
+
+@media (min-width: 768px) {
+    .mw-footer-grid {
+        grid-template-columns: minmax(0, 2fr) minmax(0, 1fr) minmax(0, 1fr);
+        gap: var(--mw-space-7);
+    }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .mw-nav,
+    .mw-nav-link::after {
+        transition: none;
+    }
+}

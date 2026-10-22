@@ -1,144 +1,54 @@
-import React, { useEffect, useState } from 'react';
-import { useNavigate } from 'react-router-dom';
-import { ArrowRight, BookOpen, CheckCircle2, Code2, FileQuestion, Route } from 'lucide-react';
+import React from 'react';
+import { Link } from 'react-router-dom';
+import { ArrowDown, ArrowRight } from 'lucide-react';
 import { paperStats } from '../data/gesp/_stats';
 import { cppLessonIndex } from '../data/cppLessonIndex';
-import { usePrefersReducedMotion, useShouldRunDecorativeMotion } from '../hooks/useShouldRunDecorativeMotion';
+import { usePrefersReducedMotion } from '../hooks/useShouldRunDecorativeMotion';
+import HomeRouteMap from './HomeRouteMap';
 
-const CPP_LESSON_COUNT = cppLessonIndex.length;
-
-const CodePulse = () => {
-    const [activeLine, setActiveLine] = useState(0);
-    const shouldAnimate = useShouldRunDecorativeMotion();
-    const lines = [
-        'int score = solve(problem);',
-        'if (score >= target) pass();',
-        'for (auto step : path) practice(step);',
-        'cout << "GESP ready";'
-    ];
-
-    useEffect(() => {
-        if (!shouldAnimate) {
-            setActiveLine(0);
-            return undefined;
-        }
-
-        const timer = setInterval(() => {
-            setActiveLine((line) => (line + 1) % lines.length);
-        }, 900);
-        return () => clearInterval(timer);
-    }, [lines.length, shouldAnimate]);
-
-    return (
-        <div className="absolute inset-0 overflow-hidden opacity-80" aria-hidden="true">
-            <div className="absolute inset-0 bg-[linear-gradient(90deg,rgba(15,23,42,0.06)_1px,transparent_1px),linear-gradient(rgba(15,23,42,0.06)_1px,transparent_1px)] bg-[size:48px_48px]" />
-            <div className="absolute right-[-6rem] top-24 hidden w-[42rem] rotate-[-8deg] rounded-xl border border-slate-200 bg-white/65 p-5 shadow-2xl shadow-blue-950/10 backdrop-blur-sm lg:block">
-                <div className="mb-4 flex items-center gap-2 border-b border-slate-200 pb-3">
-                    <span className="h-3 w-3 rounded-full bg-red-400" />
-                    <span className="h-3 w-3 rounded-full bg-yellow-400" />
-                    <span className="h-3 w-3 rounded-full bg-emerald-400" />
-                    <span className="ml-3 font-mono text-xs font-bold text-slate-400">learning_path.cpp</span>
-                </div>
-                <div className="space-y-3 font-mono text-sm">
-                    {lines.map((line, index) => (
-                        <div
-                            key={line}
-                            className={`rounded-lg px-4 py-3 transition-all duration-300 ${activeLine === index
-                                ? 'bg-blue-600 text-white shadow-lg shadow-blue-600/25'
-                                : 'bg-slate-100/80 text-slate-500'
-                                }`}
-                        >
-                            <span className="mr-4 opacity-50">{String(index + 1).padStart(2, '0')}</span>
-                            {line}
-                        </div>
-                    ))}
-                </div>
-                <div className="mt-6 grid grid-cols-12 items-end gap-1.5">
-                    {[42, 76, 55, 88, 63, 92, 48, 70, 84, 58, 96, 68].map((height, index) => (
-                        <div
-                            key={`${height}-${index}`}
-                            className={`rounded-t-md transition-all duration-500 ${index === activeLine * 3 ? 'bg-orange-500' : 'bg-blue-500/70'}`}
-                            style={{ height: `${height}px` }}
-                        />
-                    ))}
-                </div>
-            </div>
-        </div>
-    );
-};
+// 首屏只做两件事：说清这里有什么，给出全站线路图让人直接上车。
+// 不放假的代码运行器和浮动小标签——站内没有在线执行代码的能力，就不演示。
 
 export default function HeroSection() {
-    const navigate = useNavigate();
     const prefersReducedMotion = usePrefersReducedMotion();
-
-    const scrollToLearningPaths = () => {
-        document.getElementById('learning-paths')?.scrollIntoView({
-            behavior: prefersReducedMotion ? 'auto' : 'smooth'
-        });
-    };
+    const scrollToLearningPaths = () => document.getElementById('learning-paths')?.scrollIntoView({
+        behavior: prefersReducedMotion ? 'auto' : 'smooth',
+    });
 
     return (
-        <section className="relative overflow-hidden bg-slate-50 pt-20 sm:pt-24 md:min-h-[86vh]">
-            <CodePulse />
-            <div className="relative z-10 mx-auto flex max-w-7xl items-center px-4 py-8 sm:px-6 sm:py-12 md:min-h-[calc(86vh-6rem)] lg:px-8 lg:py-16">
-                <div className="max-w-3xl">
-                    <div className="mb-4 inline-flex items-center gap-2 rounded-full border border-blue-100 bg-white/80 px-3 py-2 text-xs font-bold text-blue-700 shadow-sm backdrop-blur sm:mb-6 sm:px-4 sm:text-sm">
-                        <Route size={16} />
-                        <span className="sm:hidden">课程 · 真题 · 项目</span>
-                        <span className="hidden sm:inline">GESP 真题训练 · 互动课程 · 项目实践</span>
-                    </div>
-
-                    {/*
-                      原标题「从第一行代码到一套清晰训练路径」偏抒情，没说清面向哪个
-                      考试、给谁看。家长落到首屏要能一眼判断「这跟我孩子有没有关系」。
-                    */}
-                    <h1 className="text-4xl font-black leading-tight tracking-tight text-slate-950 sm:text-6xl lg:text-7xl">
-                        GESP 考级备考
-                        <span className="block text-blue-600">与少儿编程入门</span>
+        <section className="home-hero" aria-labelledby="home-title">
+            <div className="home-container home-hero-grid">
+                <div className="home-hero-copy">
+                    <p className="mw-kicker">青少年编程与科创学习站</p>
+                    <h1 id="home-title">
+                        编程与科创，
+                        <br />
+                        一站一站学明白
                     </h1>
-
-                    <p className="mt-4 max-w-2xl text-base leading-7 text-slate-600 sm:mt-6 sm:text-xl sm:leading-8">
-                        {paperStats.paperCount} 套 CCF GESP 官方真题逐卷核验，{CPP_LESSON_COUNT} 节 C++ 互动课把语法讲成能动手推演的东西。
-                        C++ 一到八级、Python 入门与项目课，都在这里。
+                    {/* JSX 会把行尾换行变成空格，中文句子只在本来就有空格的地方（英文词前后）换行 */}
+                    <p className="home-hero-lead">
+                        这里有 GESP C++ 一到八级的 {cppLessonIndex.length} 节互动课、Python
+                        入门与项目课、电与磁和 ESP32 科创实验课，还收录了 {paperStats.paperCount} 套 GESP
+                        官方真题。
+                        <span className="home-hero-lead-more">先找到适合自己的线路，再一站一站往前走。</span>
                     </p>
-
-                    <div className="mt-6 grid grid-cols-2 gap-3 sm:mt-9 sm:flex sm:flex-row">
+                    <div className="home-hero-actions">
                         <button
-                            onClick={() => navigate('/question-bank')}
-                            className="inline-flex min-h-12 items-center justify-center gap-2 rounded-lg bg-blue-600 px-3 py-3 text-sm font-bold text-white shadow-lg shadow-blue-600/25 transition hover:-translate-y-0.5 hover:bg-blue-700 sm:rounded-xl sm:px-6 sm:py-4 sm:text-base"
-                        >
-                            <FileQuestion size={19} />
-                            <span className="sm:hidden">练真题</span>
-                            <span className="hidden sm:inline">进入 GESP 题库</span>
-                            <ArrowRight size={18} className="hidden sm:block" />
-                        </button>
-                        <button
+                            type="button"
                             onClick={scrollToLearningPaths}
-                            className="inline-flex min-h-12 items-center justify-center gap-2 rounded-lg border border-slate-200 bg-white px-3 py-3 text-sm font-bold text-slate-800 shadow-sm transition hover:border-blue-200 hover:bg-blue-50 sm:rounded-xl sm:px-6 sm:py-4 sm:text-base"
+                            className="mw-button mw-button--primary"
                         >
-                            <BookOpen size={19} />
-                            <span className="sm:hidden">选路径</span>
-                            <span className="hidden sm:inline">选择学习路径</span>
+                            帮我选起点
+                            <ArrowDown size={18} aria-hidden="true" />
                         </button>
+                        <Link to="/question-bank" className="mw-button mw-button--secondary">
+                            进入真题题库
+                            <ArrowRight size={18} aria-hidden="true" />
+                        </Link>
                     </div>
-
-                    <div className="mt-10 hidden max-w-2xl gap-3 text-sm font-semibold text-slate-600 sm:grid sm:grid-cols-3">
-                        {['逐卷标注核验状态', '按考点刷题 · 自动记错题', '每节课都有离开前自查'].map((item) => (
-                            <div key={item} className="flex items-center gap-2 rounded-lg bg-white/70 px-3 py-2 shadow-sm ring-1 ring-slate-200 backdrop-blur">
-                                <CheckCircle2 size={16} className="text-emerald-500" />
-                                {item}
-                            </div>
-                        ))}
-                    </div>
+                    <p className="home-hero-note">无需注册，打开就能学；学习进度保存在这台设备的浏览器里。</p>
                 </div>
-            </div>
-
-            <div className="relative z-10 border-t border-slate-200 bg-white/75 backdrop-blur">
-                <div className="mx-auto grid max-w-7xl grid-cols-3 gap-2 px-4 py-3 text-xs font-bold text-slate-500 sm:gap-4 sm:px-6 sm:py-5 sm:text-sm lg:px-8">
-                    <div className="flex items-center justify-center gap-1.5 sm:justify-start sm:gap-2"><FileQuestion size={16} className="text-orange-500" /> <span className="sm:hidden">{paperStats.questionCount} 道真题</span><span className="hidden sm:inline">{paperStats.questionCount} 道真题 · {paperStats.paperCount} 套试卷</span></div>
-                    <div className="flex items-center justify-center gap-1.5 sm:justify-start sm:gap-2"><Code2 size={16} className="text-blue-500" /> <span className="sm:hidden">{CPP_LESSON_COUNT} 节 C++ 课</span><span className="hidden sm:inline">{CPP_LESSON_COUNT} 节 C++ 互动课 · 一到八级</span></div>
-                    <div className="flex items-center justify-center gap-1.5 sm:justify-start sm:gap-2"><BookOpen size={16} className="text-emerald-500" /> <span className="sm:hidden">Python 课程</span><span className="hidden sm:inline">Python 基础与项目课</span></div>
-                </div>
+                <HomeRouteMap />
             </div>
         </section>
     );

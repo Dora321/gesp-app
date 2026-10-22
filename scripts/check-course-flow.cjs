@@ -137,17 +137,16 @@ function assertFeaturedProjectsUseSharedData() {
     'FeaturedProjects should derive featured project routes and copy from shared course data.'
   );
   assert(
-    featuredProjects.includes("getPythonProjectCard('a2'") &&
-      featuredProjects.includes("getPythonProjectCard('morse'") &&
-      featuredProjects.includes("const pythonProjectStart = getPythonProjectSupport('a1');") &&
-      featuredProjects.includes('support.current.title') &&
-      featuredProjects.includes('support.brief.duration') &&
-      featuredProjects.includes('support.current.path'),
+    featuredProjects.includes("getPythonProjectSupport('a2')") &&
+      featuredProjects.includes("getPythonProjectSupport('morse')") &&
+      featuredProjects.includes("const projectStart = getPythonProjectSupport('a1');") &&
+      ['game', 'morse'].every(project => ['current.title', 'brief.duration', 'current.path']
+        .every(field => featuredProjects.includes(`${project}.${field}`))),
     'FeaturedProjects Python cards should derive title, duration and path from Python project support data.'
   );
   assert(
-    featuredProjects.includes('navigate(pythonProjectStart.current.path)') &&
-      featuredProjects.includes('pythonProjectStart.current.title'),
+    featuredProjects.includes('to={projectStart.current.path}') &&
+      featuredProjects.includes('projectStart.current.title'),
     'FeaturedProjects Python project line CTA should derive its route and label from the first project.'
   );
   assert(
@@ -199,9 +198,9 @@ function assertLearningPathsUseSharedData() {
     'LearningPaths should derive route steps from lightweight course catalog data.'
   );
   assert(
-    learningPaths.includes('cppStart.title') &&
-      learningPaths.includes('cppEnd.title') &&
-      learningPaths.includes('CPP_LESSON_COUNT'),
+    learningPaths.includes('cppStart.path') &&
+      learningPaths.includes('getCppLevelCatalogItem(1)') &&
+      learningPaths.includes('cppLessonIndex.length'),
     'LearningPaths GESP path should stay aligned with the C++ level catalog and lesson count.'
   );
 
@@ -217,10 +216,10 @@ function assertLearningPathsUseSharedData() {
     'QuestionBankHighlight should read every advertised number from generated paper stats.'
   );
   assert(
-    learningPaths.includes('firstPythonLesson.path') &&
-      learningPaths.includes('firstPythonProject.path') &&
-      learningPaths.includes('lastPythonLesson.title') &&
-      learningPaths.includes('lastPythonProject.title'),
+    learningPaths.includes('pythonFoundationLessons[0].path') &&
+      learningPaths.includes('pythonProjects[0].path') &&
+      learningPaths.includes('pythonFoundationLessons.length') &&
+      learningPaths.includes('pythonProjects.length'),
     'LearningPaths Python paths should stay aligned with shared Python flow data.'
   );
   for (const staleStep of [
@@ -435,17 +434,25 @@ function assertHeroUsesPaperStats() {
   );
   assert(
     hero.includes("from '../hooks/useShouldRunDecorativeMotion';") &&
-      hero.includes('useShouldRunDecorativeMotion') &&
-      hero.includes('const shouldAnimate = useShouldRunDecorativeMotion();') &&
+      hero.includes('usePrefersReducedMotion') &&
       motionHook.includes('minWidth = 1024') &&
       motionHook.includes('`(min-width: ${minWidth}px)`') &&
       motionHook.includes('(prefers-reduced-motion: reduce)') &&
       motionHook.includes('matchMedia'),
-    'HeroSection code animation should use the shared decorative motion hook.'
+    'HeroSection should use the shared motion preference hook.'
   );
   assert(
-    hero.includes('if (!shouldAnimate)') && hero.includes('setInterval'),
-    'HeroSection code animation interval should be gated by shouldAnimate.'
+    !hero.includes('setInterval') && hero.includes('<HomeRouteMap />'),
+    'HeroSection should expose the course route map without an autoplay timer.'
+  );
+  const routeMap = read('src/components/HomeRouteMap.jsx');
+  assert(
+    routeMap.includes('cppLevelCatalog.map') &&
+      routeMap.includes('pythonUnits.map') &&
+      routeMap.includes('scienceCourses.foundation.path') &&
+      routeMap.includes('to={stop.to}') &&
+      routeMap.includes('onFocus='),
+    'The home route map should link shared course data and expose station details to keyboard users.'
   );
 }
 
@@ -459,10 +466,12 @@ function assertTheLabUsesMotionPreference() {
   );
   assert(
     lab.includes('if (!shouldAnimate)') &&
-      lab.includes('setActiveLine(1)') &&
+      lab.includes('if (pausedRef.current) return;') &&
+      lab.includes('setIsPaused(true)') &&
+      lab.includes('setStep(0)') &&
       lab.includes('setInterval') &&
       lab.includes('[shouldAnimate]'),
-    'TheLab debug animation interval should only run when decorative motion is allowed.'
+    'TheLab trace should respect motion preferences and allow students to pause, step, and restart.'
   );
 }
 

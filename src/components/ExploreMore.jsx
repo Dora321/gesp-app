@@ -1,80 +1,85 @@
 import React from 'react';
-import { useNavigate } from 'react-router-dom';
-import { ArrowRight, Bot, Cpu, Landmark } from 'lucide-react';
+import { Link } from 'react-router-dom';
+import { ArrowRight, ArrowUp, Bot, Cpu, Landmark } from 'lucide-react';
 import { usePrefersReducedMotion } from '../hooks/useShouldRunDecorativeMotion';
+import { arduinoLessons, innovationLessons, scienceCourses } from '../data/innovationCourseCatalog';
 
 const items = [
     {
         title: '计算博物馆',
-        desc: '适合作为计算机文化与课堂彩蛋，负责拓展兴趣。',
+        desc: '从古代算法到人工智能，按年代浏览 100 件计算史展品。适合课前五分钟，也适合课后自己逛。',
         action: '进入博物馆',
         route: '/museum',
-        icon: Landmark
+        icon: Landmark,
+    },
+    {
+        title: scienceCourses.advanced.title,
+        desc: `ESP32 与 MicroPython 网页课件，${innovationLessons.length} 节课分五个阶段：从点亮 LED 到联网和 AI 作品。`,
+        action: '查看硬件课',
+        route: '/hardware',
+        icon: Cpu,
     },
     {
         title: 'Arduino 与 ESP32 硬件课',
-        desc: 'Arduino UNO 零基础课程已上线 16 课，并可继续进入 ESP32 MicroPython 高阶科创。',
+        desc: `Arduino UNO 零基础课程已上线 ${arduinoLessons.length} 课，并可继续进入 ESP32 MicroPython 高阶科创。`,
         action: '查看 Arduino 课程',
         route: '/hardware/arduino',
-        icon: Cpu
+        icon: Cpu,
     },
     {
         title: 'E-Kart Lab',
-        desc: '围绕小车项目组织任务、素材和成果展示，适合做阶段作品。',
+        desc: '智能小车项目站：路线图、工具箱、作品展，还有写给家长的说明页。',
         action: '进入项目站',
         route: '/ekart',
-        icon: Bot
-    }
+        icon: Bot,
+    },
 ];
 
 export default function ExploreMore() {
-    const navigate = useNavigate();
     const prefersReducedMotion = usePrefersReducedMotion();
 
-    const handleClick = (item) => {
-        if (item.route) {
-            navigate(item.route);
-            return;
-        }
-        document.getElementById(item.target)?.scrollIntoView({
+    // 页面很长，读到最后可以一键回到首屏重新选线路（桌面端首屏右侧就是线路图）。
+    const scrollToTarget = (target) => {
+        document.getElementById(target)?.scrollIntoView({
             behavior: prefersReducedMotion ? 'auto' : 'smooth'
         });
     };
 
     return (
-        <section className="bg-slate-950 pb-20 text-white">
-            <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-                {/* 紧接在 TheLab（工具演示）之后，同属一条暗色带，所以只用小标题续写，
-                    不再重复一个整屏级的区块标题。 */}
-                <div className="mb-8 border-t border-white/10 pt-10">
-                    <h2 className="text-2xl font-black tracking-tight sm:text-3xl">课后继续探索</h2>
-                    <p className="mt-2 max-w-2xl text-sm leading-6 text-slate-400">
-                        计算机文化、硬件实践和项目展示，适合课堂之外自己逛。
-                    </p>
+        <section className="home-section home-explore" aria-labelledby="home-explore-title">
+            <div className="home-container">
+                <div className="home-section-head">
+                    <div>
+                        <p className="mw-kicker">探索内容</p>
+                        <h2 id="home-explore-title">课后继续探索</h2>
+                        <p>计算机文化、硬件实践和项目展示，适合课堂之外自己逛。</p>
+                    </div>
                 </div>
 
-                <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
-                    {items.map((item) => {
-                        const Icon = item.icon;
-                        return (
-                            <button
-                                key={item.title}
-                                onClick={() => handleClick(item)}
-                                className="group flex min-h-[13rem] flex-col rounded-xl border border-white/10 bg-white/[0.03] p-5 text-left transition hover:-translate-y-1 hover:border-blue-400/40 hover:bg-white/[0.06]"
-                            >
-                                <div className="mb-5 flex h-11 w-11 items-center justify-center rounded-lg bg-white/10 text-blue-200">
-                                    <Icon size={22} />
-                                </div>
-                                <h3 className="text-xl font-black">{item.title}</h3>
-                                <p className="mt-3 flex-1 text-sm leading-6 text-slate-400">{item.desc}</p>
-                                <span className="mt-5 inline-flex items-center gap-2 text-sm font-black text-blue-300">
-                                    {item.action}
-                                    <ArrowRight size={16} className="transition group-hover:translate-x-1" />
-                                </span>
-                            </button>
-                        );
-                    })}
-                </div>
+                <ul className="home-explore-list">
+                    {items.map(({ title, desc, action, route, icon: Icon }) => (
+                        <li key={route} className="home-explore-item">
+                            <Icon size={24} aria-hidden="true" />
+                            <h3>
+                                <Link to={route} className="home-explore-link">{title}</Link>
+                            </h3>
+                            <p>{desc}</p>
+                            <span className="home-explore-cta" aria-hidden="true">
+                                {action}
+                                <ArrowRight size={15} />
+                            </span>
+                        </li>
+                    ))}
+                </ul>
+
+                <button
+                    type="button"
+                    onClick={() => scrollToTarget('home-title')}
+                    className="mw-text-link home-explore-back"
+                >
+                    <ArrowUp size={16} aria-hidden="true" />
+                    回到页首重新选线路
+                </button>
             </div>
         </section>
     );

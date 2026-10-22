@@ -1,135 +1,202 @@
 import React from 'react';
-import { useNavigate } from 'react-router-dom';
-import { Gamepad2, Shield, GitBranch, Star, Clock, ChevronRight, Play } from 'lucide-react';
+import { Link } from 'react-router-dom';
+import { ArrowRight, Clock } from 'lucide-react';
 import { getCppLevelCatalogItem } from '../data/cppLevelCatalog';
 import { getPythonProjectSupport } from '../data/pythonProjectFlow';
 
-function getPythonProjectCard(projectId, overrides) {
-    const support = getPythonProjectSupport(projectId);
-
-    return {
-        ...overrides,
-        title: support.current.title,
-        desc: `${support.brief.outcome}，产出：${support.brief.artifact}。`,
-        time: support.brief.duration,
-        path: support.current.path
-    };
-}
-
+const game = getPythonProjectSupport('a2');
+const morse = getPythonProjectSupport('morse');
 const cppLevel7 = getCppLevelCatalogItem(7);
-const pythonProjectStart = getPythonProjectSupport('a1');
+const projectStart = getPythonProjectSupport('a1');
 
 const projects = [
-    getPythonProjectCard('a2', {
-        id: 'game2048',
-        category: 'GAME DEV',
-        difficulty: 2,
-        icon: <Gamepad2 size={24} className="text-white" />,
-        color: 'from-orange-400 to-red-500',
-        bg: 'bg-orange-500/10',
-    }),
-    getPythonProjectCard('morse', {
-        id: 'morse',
-        category: 'SIGNAL CODE',
-        difficulty: 1,
-        icon: <Shield size={24} className="text-white" />,
-        color: 'from-blue-400 to-indigo-500',
-        bg: 'bg-blue-500/10',
-    }),
     {
-        id: 'bfs-maze',
-        category: 'ALGORITHM',
+        id: 'game',
+        line: 'python',
+        lineCode: 'Python',
+        kind: '游戏项目',
+        title: game.current.title,
+        description: `${game.brief.outcome}，产出：${game.brief.artifact}。`,
+        path: game.current.path,
+        duration: game.brief.duration,
+    },
+    {
+        id: 'morse',
+        line: 'python',
+        lineCode: 'Python',
+        kind: '编码项目',
+        title: morse.current.title,
+        description: `${morse.brief.outcome}，产出：${morse.brief.artifact}。`,
+        path: morse.current.path,
+        duration: morse.brief.duration,
+    },
+    {
+        id: 'maze',
+        line: 'cpp',
+        lineCode: 'C++',
+        kind: '七级算法专题',
         title: '图搜索与迷宫寻路',
-        desc: `${cppLevel7.title}专题，用 BFS 理解无权最短路和迷宫分层扩散。`,
-        difficulty: 4,
-        time: '4-5课时',
-        icon: <GitBranch size={24} className="text-white" />,
-        color: 'from-emerald-400 to-teal-500',
-        bg: 'bg-emerald-500/10',
-        path: cppLevel7.path
-    }
+        description: `${cppLevel7.title}专题，用 BFS 理解无权最短路，观察迷宫里的层层探索，找到通向终点的路径。`,
+        path: cppLevel7.path,
+        duration: '4–5 课时',
+    },
 ];
 
-export default function FeaturedProjects() {
-    const navigate = useNavigate();
+// ---- 插图：画的都是课里真正要讲的东西 ----
 
+// 2048 的合并规则：一次左移里，同一个方块只合并一次。
+function MergeArt() {
+    const rows = [
+        { label: '左移前', cells: [2, 2, 4, 0] },
+        { label: '左移后', cells: [4, 4, 0, 0] },
+    ];
     return (
-        <section className="py-24 bg-white relative overflow-hidden">
-            {/* Background Decoration */}
-            <div className="absolute top-0 right-0 w-1/2 h-full bg-slate-50/50 skew-x-12 pointer-events-none"></div>
-
-            <div className="max-w-7xl mx-auto px-4 relative z-10">
-                <div className="flex flex-col md:flex-row items-end justify-between mb-16 gap-6">
+        <div className="home-art-merge">
+            {rows.map((row) => (
+                <div key={row.label} className="home-art-merge-row">
+                    <span>{row.label}</span>
                     <div>
-                        <h2 className="text-4xl font-extrabold text-brand-slate mb-4">
-                            项目与算法专题
-                        </h2>
-                        <p className="text-xl text-slate-500 max-w-xl">
-                            Python 项目负责把语法做成作品，C++ 算法专题负责把解题模型练扎实。
-                        </p>
+                        {row.cells.map((value, index) => (
+                            <i key={index} data-value={value || undefined}>{value || ''}</i>
+                        ))}
                     </div>
-                    <button
-                        type="button"
-                        onClick={() => navigate(pythonProjectStart.current.path)}
-                        aria-label={`从${pythonProjectStart.current.title}进入 Python 项目线`}
-                        className="flex items-center gap-2 font-bold text-brand-blue hover:text-blue-600 transition-colors group"
+                </div>
+            ))}
+            <p>刚合并出的 4 这一步不再合并，所以不是 8</p>
+        </div>
+    );
+}
+
+// 摩斯电码：点和划都用 SVG 画，不依赖字体。
+function MorseArt() {
+    const letters = [
+        { char: 'S', marks: '...' },
+        { char: 'O', marks: '---' },
+        { char: 'S', marks: '...' },
+    ];
+    return (
+        <div className="home-art-morse">
+            {letters.map((letter, letterIndex) => (
+                <div key={letterIndex}>
+                    <svg viewBox="0 0 66 16" aria-hidden="true">
+                        {[...letter.marks].map((mark, index) => (
+                            mark === '.'
+                                ? <circle key={index} cx={8 + index * 22} cy="8" r="5" />
+                                : <rect key={index} x={index * 22} y="4" width="18" height="8" rx="4" />
+                        ))}
+                    </svg>
+                    <span>{letter.char}</span>
+                </div>
+            ))}
+        </div>
+    );
+}
+
+// BFS 迷宫：格子里的数字是真的用 BFS 算出来的步数，高亮的是最短路。
+const MAZE = [
+    'S..#...',
+    '##.#.#.',
+    '.....#.',
+    '.###.#.',
+    '...#..E',
+];
+
+function solveMaze(rows) {
+    const height = rows.length;
+    const width = rows[0].length;
+    const distance = rows.map((row) => [...row].map(() => null));
+    const parent = new Map();
+    const queue = [[0, 0]];
+    distance[0][0] = 0;
+
+    for (let head = 0; head < queue.length; head += 1) {
+        const [r, c] = queue[head];
+        for (const [dr, dc] of [[1, 0], [-1, 0], [0, 1], [0, -1]]) {
+            const nr = r + dr;
+            const nc = c + dc;
+            if (nr < 0 || nc < 0 || nr >= height || nc >= width) continue;
+            if (rows[nr][nc] === '#' || distance[nr][nc] !== null) continue;
+            distance[nr][nc] = distance[r][c] + 1;
+            parent.set(`${nr},${nc}`, `${r},${c}`);
+            queue.push([nr, nc]);
+        }
+    }
+
+    const path = new Set();
+    for (let key = `${height - 1},${width - 1}`; key; key = parent.get(key)) path.add(key);
+    return { distance, path };
+}
+
+const mazeSolution = solveMaze(MAZE);
+
+function MazeArt() {
+    return (
+        <div className="home-art-maze" style={{ '--maze-cols': MAZE[0].length }}>
+            {MAZE.flatMap((row, r) => [...row].map((cell, c) => {
+                const key = `${r},${c}`;
+                if (cell === '#') return <i key={key} data-kind="wall" />;
+                const onPath = mazeSolution.path.has(key);
+                const label = cell === 'S' ? '起' : cell === 'E' ? '终' : mazeSolution.distance[r][c];
+                return <i key={key} data-kind={onPath ? 'path' : 'open'}>{label}</i>;
+            }))}
+        </div>
+    );
+}
+
+const ART = { game: MergeArt, morse: MorseArt, maze: MazeArt };
+
+export default function FeaturedProjects() {
+    return (
+        <section className="home-section home-projects" aria-labelledby="home-projects-title">
+            <div className="home-container">
+                <div className="home-section-head">
+                    <div>
+                        <p className="mw-kicker">项目课</p>
+                        <h2 id="home-projects-title">学完语法，做点真东西</h2>
+                        <p>每个项目都有明确的产出，做完能拿给别人看，也讲得清背后的算法。</p>
+                    </div>
+                    <Link
+                        to={projectStart.current.path}
+                        aria-label={`从${projectStart.current.title}进入 Python 项目线`}
+                        className="mw-text-link mw-line-python"
                     >
-                        进入 Python 项目线 <ChevronRight className="group-hover:translate-x-1 transition-transform" />
-                    </button>
+                        进入 Python 项目线
+                        <ArrowRight size={17} aria-hidden="true" />
+                    </Link>
                 </div>
 
-                <div className="grid md:grid-cols-3 gap-8">
-                    {projects.map((project) => (
-                        <div
-                            key={project.id}
-                            onClick={() => navigate(project.path)}
-                            className="group relative bg-white rounded-2xl border border-slate-200 hover:border-brand-blue/30 shadow-sm hover:shadow-xl hover:shadow-brand-blue/10 transition-all duration-300 cursor-pointer overflow-hidden flex flex-col h-full"
-                        >
-                            {/* Color Bar Top */}
-                            <div className={`h-2 w-full bg-gradient-to-r ${project.color}`}></div>
-
-                            <div className="p-8 flex-1 flex flex-col">
-                                <div className="flex justify-between items-start mb-6">
-                                    <div className={`w-12 h-12 rounded-xl flex items-center justify-center bg-gradient-to-br ${project.color} shadow-lg group-hover:scale-110 transition-transform`}>
-                                        {project.icon}
-                                    </div>
-                                    <span className="text-xs font-bold tracking-wider text-slate-400 bg-slate-100 px-2 py-1 rounded">
-                                        {project.category}
+                <div className="home-project-grid">
+                    {projects.map((project) => {
+                        const Art = ART[project.id];
+                        return (
+                            <article
+                                key={project.id}
+                                className={`home-project home-project--${project.id} mw-line-${project.line}`}
+                            >
+                                <div className="home-project-art" aria-hidden="true">
+                                    <Art />
+                                </div>
+                                <div className="home-project-body">
+                                    <p className="home-project-meta">
+                                        <span className="mw-line-badge">{project.lineCode}</span>
+                                        <span>{project.kind}</span>
+                                        <span className="home-project-time">
+                                            <Clock size={14} aria-hidden="true" />
+                                            {project.duration}
+                                        </span>
+                                    </p>
+                                    <h3>
+                                        <Link to={project.path} className="home-project-link">{project.title}</Link>
+                                    </h3>
+                                    <p>{project.description}</p>
+                                    <span className="home-project-cta" aria-hidden="true">
+                                        看这个项目
+                                        <ArrowRight size={15} />
                                     </span>
                                 </div>
-
-                                <h3 className="text-2xl font-bold text-brand-slate mb-3 group-hover:text-brand-blue transition-colors">
-                                    {project.title}
-                                </h3>
-                                <p className="text-slate-500 mb-8 leading-relaxed flex-1">
-                                    {project.desc}
-                                </p>
-
-                                <div className="flex items-center justify-between border-t border-slate-100 pt-6 mt-auto">
-                                    <div className="flex items-center gap-4 text-sm text-slate-400 font-medium">
-                                        <div className="flex items-center gap-1">
-                                            {[...Array(5)].map((_, i) => (
-                                                <Star
-                                                    key={i}
-                                                    size={14}
-                                                    fill={i < project.difficulty ? "currentColor" : "none"}
-                                                    className={i < project.difficulty ? "text-yellow-400" : "text-slate-200"}
-                                                />
-                                            ))}
-                                        </div>
-                                        <div className="flex items-center gap-1">
-                                            <Clock size={14} />
-                                            {project.time}
-                                        </div>
-                                    </div>
-
-                                    <div className="w-8 h-8 rounded-full bg-slate-50 flex items-center justify-center group-hover:bg-brand-blue group-hover:text-white transition-all">
-                                        <Play size={14} className="ml-0.5" />
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                    ))}
+                            </article>
+                        );
+                    })}
                 </div>
             </div>
         </section>

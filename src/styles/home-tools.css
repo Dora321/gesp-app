@@ -1,0 +1,104 @@
+/* Shared tools live outside Home in App. Match the homepage only while it is
+   mounted; navigating to a lesson or exam automatically restores its styling. */
+body:has(.learning-home) :is(
+    button[aria-label="打开 AI 问答助手"],
+    button[aria-label="打开课堂积分榜"],
+    button[aria-label="Back to Top"],
+    .annotation-tools .annotation-launcher
+) {
+    border: 1px solid var(--mw-rule-strong);
+    border-radius: var(--mw-radius-m);
+    background: var(--mw-surface);
+    color: var(--mw-ink);
+    box-shadow: none;
+    font-family: var(--mw-font-sans);
+    transform: none;
+}
+
+body:has(.learning-home) :is(
+    button[aria-label="打开 AI 问答助手"],
+    button[aria-label="打开课堂积分榜"],
+    button[aria-label="Back to Top"],
+    .annotation-tools .annotation-launcher
+):hover {
+    border-color: var(--mw-ink);
+    background: var(--mw-canvas);
+}
+
+body:has(.learning-home) :is(
+    button[aria-label="打开 AI 问答助手"],
+    button[aria-label="打开课堂积分榜"],
+    button[aria-label="Back to Top"]
+) {
+    width: 44px;
+    height: 44px;
+}
+
+body:has(.learning-home) :is(
+    button[aria-label="打开 AI 问答助手"],
+    button[aria-label="打开课堂积分榜"],
+    button[aria-label="Back to Top"]
+) svg {
+    width: 20px;
+    height: 20px;
+    animation: none;
+    transform: none;
+}
+
+body:has(.learning-home) :is(
+    button[aria-label="打开 AI 问答助手"],
+    button[aria-label="打开课堂积分榜"],
+    button[aria-label="Back to Top"],
+    .annotation-tools button,
+    .annotation-tools select
+):focus-visible {
+    outline: 2px solid var(--mw-ink);
+    outline-offset: 3px;
+}
+
+body:has(.learning-home) .annotation-tools .annotation-launcher {
+    min-height: 44px;
+    padding: 8px 12px;
+    font-size: var(--mw-text-small);
+}
+
+body:has(.learning-home) .annotation-panel {
+    border-color: var(--mw-rule-strong);
+    border-radius: var(--mw-radius-m);
+    background: var(--mw-surface);
+    color: var(--mw-ink);
+    box-shadow: 0 8px 24px rgb(35 40 61 / 12%);
+    font-family: var(--mw-font-sans);
+}
+
+body:has(.learning-home) .annotation-panel :is(button, select) {
+    border-color: var(--mw-rule-strong);
+    border-radius: var(--mw-radius-s);
+    background: var(--mw-surface);
+    color: var(--mw-ink);
+}
+
+body:has(.learning-home) .annotation-panel button[aria-pressed="true"] {
+    border-color: var(--mw-ink);
+    background: var(--mw-canvas);
+    box-shadow: inset 0 0 0 1px var(--mw-ink);
+}
+
+body:has(.learning-home) .annotation-panel p {
+    color: var(--mw-ink-2);
+}
+
+body:has(.learning-home) .annotation-panel .annotation-color span {
+    border-color: var(--mw-rule-strong);
+}
+
+@media (prefers-reduced-motion: reduce) {
+    body:has(.learning-home) :is(
+        button[aria-label="打开 AI 问答助手"],
+        button[aria-label="打开课堂积分榜"],
+        button[aria-label="Back to Top"],
+        .annotation-tools button
+    ) {
+        transition: none;
+    }
+}
