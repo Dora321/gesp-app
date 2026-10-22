@@ -111,6 +111,11 @@
     <priority>0.7</priority>
   </url>
   <url>
+    <loc>https://Dora321.github.io/gesp-app/hardware/esp32-contest</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
     <loc>https://Dora321.github.io/gesp-app/innovation-foundation</loc>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
@@ -1197,6 +1202,41 @@
   </url>
   <url>
     <loc>https://Dora321.github.io/gesp-app/hardware/esp32/35</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://Dora321.github.io/gesp-app/hardware/esp32-contest/C1</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://Dora321.github.io/gesp-app/hardware/esp32-contest/C2</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://Dora321.github.io/gesp-app/hardware/esp32-contest/C3</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://Dora321.github.io/gesp-app/hardware/esp32-contest/C4</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://Dora321.github.io/gesp-app/hardware/esp32-contest/C5</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://Dora321.github.io/gesp-app/hardware/esp32-contest/C6</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://Dora321.github.io/gesp-app/hardware/esp32-contest/C7</loc>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
   </url>
