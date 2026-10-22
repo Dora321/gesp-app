@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>第32课 · 它认错了！ — ESP32 × AI 科创课程</title>
+<link rel="stylesheet" href="assets/base.css">
+<link rel="stylesheet" id="theme-link" href="assets/theme-course-pop.css">
+<link rel="stylesheet" href="assets/animations.css">
+</head>
+<body>
+<div class="deck" data-theme-base="assets/">
+<section class="slide lay-cover is-active" data-title="封面">
+<div class="deco circle" style="width:170px;height:170px;top:-52px;right:238px"></div>
+<div class="deco tri" style="right:110px;bottom:132px;transform:rotate(14deg)"></div>
+<div class="deco square" style="width:120px;height:120px;left:-46px;bottom:86px;transform:rotate(12deg)"></div>
+<span class="cv-bar">ESP32 × AI ／ 第五阶段「融合AI」</span>
+<h1 class="cv-title">它认<em>错了！</em></h1>
+<p class="cv-sub">今天的任务不是让它认对——是**想办法让它认错**</p>
+<div class="cv-tags"><span class="tag">刁难三招</span><span class="tag">把握分</span><span class="tag">红黄绿三档</span><span class="tag">90 分钟连堂</span></div>
+<div class="cv-no">32</div>
+<div class="notes"><p>（投屏 L30 那张记录卡：毛绒猫玩具 → AI 说「猫」）</p><p>还记得这一张吗？</p><p>（停顿）</p><p>那天我们说：<b>它不是猫，它是玩具。</b></p><p>（停顿）</p><p>今天这节课，我要给你们一个<b>从来没有过的任务</b>。</p><p>（放慢，一字一句）</p><p><b>今天的任务，不是让它认对——是想办法让它认错。</b></p><p>（停顿，等他们反应过来）</p><p>（笑）</p><p><b>谁刁难成功，谁厉害。</b></p><p>（停顿）</p><p>我们要开一场比赛，叫「<b>刁难大赛</b>」。</p><p>（停顿，然后严肃一点）</p><p>但是我先把话说在前面，免得你们以为今天只是玩：</p><p>（放慢）</p><p>第一阶段，我们学会了<b>抓 AI 代码里的错</b>。</p><p>今天——</p><p>（加重）</p><p><b>我们要抓 AI 眼睛里的错。</b></p><p>（停顿）</p><p>而且抓完之后，还要做一件更重要的事：</p><p><b>给你的系统，装上一份教养。</b></p></div>
+</section>
+
+<section class="slide lay-steps3" data-title="刁难三招">
+<div class="phead"><span class="no">第32课</span>
+<span class="kick c">方法</span>
+<span class="tslot">8–20 分</span>
+</div>
+<h2 class="ptitle">刁难三招（贴墙）</h2>
+<p class="psub">有方法的刁难，才叫<b>测试</b>；瞎试叫<b>捣乱</b></p>
+<div class="pbody"><div class="g3 grow"><div class="blk"><div class="step"><div class="num g">①</div>
+        <div class="body"><p class="t">逆光</p><p class="d"><b>光源放在物体背后</b>拍。<br>（手电、窗户都行）</p></div></div></div><div class="blk"><div class="step"><div class="num a">②</div>
+        <div class="body"><p class="t">遮挡</p><p class="d"><b>挡住一半</b>再拍。<br>用手、用卡纸都行。</p></div></div></div><div class="blk"><div class="step"><div class="num c">③</div>
+        <div class="body"><p class="t">相似轮廓</p><p class="d"><b>毛绒玩具、图画</b>冒充真物。<br>画的苹果算苹果吗？</p></div></div></div></div><div style="margin-top:16px"><div class="strip a"><b>每次刁难都要记</b>：它说了什么、<b>把握分多少</b>——没记录的刁难，等于没做</div></div><div style="margin-top:16px"><div class="strip g">L29 那天存的「<b>刁难照</b>」，<b>今天派上用场了</b>——我说过会有大用</div></div></div>
+<div class="notes"><p>刁难也要讲方法。<b>有方法的刁难叫测试，瞎试叫捣乱。</b></p><p>三招，贴墙上：</p><p><b>第①招：逆光。</b> 把光源放到物体<b>背后</b>去拍。手电、窗户都行。</p><p>（停顿）</p><p>为什么逆光管用？</p><p>（引导）</p><p>你自己逆着光看人，是不是也只看得见一个<b>黑影</b>？</p><p><b>它跟你一样。</b></p><p><b>第②招：遮挡。</b> 挡住一半再拍。</p><p><b>第③招：相似轮廓。</b> 毛绒玩具、图画冒充真物。</p><p>（停顿）</p><p><b>画出来的苹果，算苹果吗？</b></p><p>（让他们争两句，不给答案）</p><p>（指第一条黑条，这是纪律）</p><p>不管哪一招，<b>每次刁难都要记</b>：</p><p><b>它说了什么？把握分多少？</b></p><p>（加重）</p><p><b>没有记录的刁难，等于没做。</b></p><p>（指第二条黑条，收个彩蛋）</p><p>还有——L29 那天，我让你们存了一张「<b>刁难照</b>」，还记得吗？</p><p>（停顿，笑）</p><p><b>今天派上用场了。</b></p><p>我说过会有大用的。</p></div>
+</section>
+
+<section class="slide lay-rowlist" data-title="刁难大赛">
+<div class="phead"><span class="no">第32课</span>
+<span class="kick c">任务一</span>
+<span class="tslot">20–40 分</span>
+</div>
+<h2 class="ptitle">刁难大赛：亲手制造一次 AI 的错误</h2>
+<p class="psub">记录卡上要留下<b>证据</b></p>
+<div class="pbody"><div class="rowlist grow"><div class="rowitem"><div class="num g">1</div><div class="tx"><b>轮流上场</b>：真调 ＋ L29 存的刁难照 ＋ 预录包<b>混着用</b>（额度纪律同 L30）</div></div><div class="rowitem"><div class="num a">2</div><div class="tx"><b>每一发都记</b>：我拍的是什么 → <b>它说是什么</b> → <b>把握分多少</b> → 用的哪一招</div></div><div class="rowitem"><div class="num c">3</div><div class="tx"><b>认对的也要记</b>！——<b>认对时的把握分</b>，等会儿有大用（要跟认错时比）</div></div><div class="rowitem"><div class="num g">4</div><div class="tx"><b>刁难不成功</b>（它老是认对）→ 换更狠的：<b>遮更多、光更逆、找轮廓更像的</b></div></div><div class="rowitem"><div class="num a">5</div><div class="tx"><b>最有价值的一发</b>：它<b>说错了，可把握分还很高</b>——这种要专门圈出来</div></div></div><div style="margin-top:20px"><div class="strip g">别只顾着让它出丑：<b>认对的分数</b>和<b>认错的分数</b>放在一起，<b>规律才出得来</b></div></div></div>
+<div class="notes"><p>开始刁难。轮流上场，真调、刁难照、预录包混着用。</p><p><b>每一发都记四样</b>：</p><p>我拍的是什么、它说是什么、<b>把握分多少</b>、用的哪一招。</p><p>（停顿，强调第三条，这条最容易被跳过）</p><p>特别注意这一条：</p><p>（加重）</p><p><b>认对的，也要记！</b></p><p>（停顿）</p><p>为什么？</p><p>（等他们想）</p><p>因为——<b>你要拿「认对时的分数」和「认错时的分数」比。</b></p><p>（放慢）</p><p>只记认错的，你<b>看不出规律</b>。</p><p>（指第四条）</p><p>有的组会发现：<b>怎么刁难它都认对。</b></p><p>（笑）那说明你还不够狠：<b>遮更多、光更逆、找轮廓更像的</b>。</p><p>（指最后一条，这是今天最重要的素材）</p><p>还有一种情况，<b>最有价值</b>，你们碰到了一定要圈出来：</p><p>（放慢，一字一句）</p><p><b>它说错了，可把握分还很高。</b></p><p>（停顿）</p><p>这种情况<b>最危险</b>，也<b>最值得研究</b>。</p><p>下半场我们专门讲它。</p></div>
+</section>
+
+<section class="slide lay-divider" data-title="课间休息">
+<div class="deco circle" style="width:200px;height:200px;top:-70px;right:180px"></div>
+<div class="deco square" style="width:130px;height:130px;left:-50px;bottom:70px;transform:rotate(12deg)"></div>
+<div class="deco tri" style="right:140px;bottom:90px;transform:rotate(14deg)"></div>
+<div class="dv">
+  <span class="dv-time">40–50 分</span>
+  <h2 class="dv-t">课间休息 10 分钟</h2>
+  <p class="dv-s">评「<b>最佳刁难奖</b>」——谁让 AI 错得最离谱？</p>
+</div>
+<div class="notes"><p>休息十分钟。</p><p>休息的时候，全班评一个奖：</p><p><b>「最佳刁难奖」——谁让 AI 错得最离谱？</b></p><p>（停顿）</p><p>拿着记录卡互相看，读出来给大家听。</p><p>（停顿，笑）</p><p>往年的经典：</p><p>把剪刀说成眼镜、把拖把说成猫、把老师说成一棵树……</p><p>（停顿）</p><p>玩归玩，回来以后我们要做一件<b>正经事</b>。</p><p>（放慢）</p><p>今天上半场，你们<b>亲手制造了 AI 的错误</b>。</p><p>下半场，我要问一个问题：</p><p>（停顿）</p><p><b>那你的系统，扛得住它犯错吗？</b></p></div>
+</section>
+
+<section class="slide lay-vstext" data-title="把握分">
+<div class="phead"><span class="no">第32课</span>
+<span class="kick a">核心</span>
+<span class="tslot">50–62 分</span>
+</div>
+<h2 class="ptitle">AI 每次都偷偷给自己打了一个「<b>把握分</b>」</h2>
+<p class="psub">它不好意思说「我不确定」——<b>把握分替它说了</b></p>
+<div class="pbody">
+  <div class="vs3 grow">
+    <div class="blk c vstx"><span class="tag c">你考试的时候</span><p class="q">有的题<b>一看就会</b>，有的题<b>蒙一个，心里打鼓</b>。</p><p class="why">写在卷子上，<b>两种字长得一模一样</b>。<br>可你自己心里<b>清楚得很</b>：<br>这道我有把握，那道我是猜的。</p></div>
+    <div class="vsmark">VS</div>
+    <div class="blk g vstx"><span class="tag g">AI 也一样</span><p class="q">每个答案后面，都藏着一个<b>把握分</b>。</p><p class="why"><b>90 分</b>：我很有把握。<br><b>40 分</b>：我其实是蒙的。<br><b>它嘴上不说，分数替它说了。</b></p></div>
+  </div>
+  <div style="margin-top:20px"><div class="strip g">翻回你们的记录卡对一对：<b>认对的时候分数高，认错的时候——多半低</b>。这就是今天要用的规律</div></div>
+</div>
+<div class="notes"><p>现在揭晓一件事，你们一直不知道的：</p><p>（放慢）</p><p><b>AI 每次给答案的时候，都偷偷给自己打了一个分。</b></p><p>我们叫它「<b>把握分</b>」。</p><p>（指左边，用考试打比方）</p><p>你考试的时候是不是这样：</p><p>有的题<b>一看就会</b>，刷刷刷写上去；</p><p>有的题<b>蒙一个</b>，写上去了，但<b>心里打鼓</b>。</p><p>（停顿）</p><p>写在卷子上，<b>两种字长得一模一样</b>。</p><p>可是——<b>你自己心里清楚得很</b>。</p><p>（指右边）</p><p>AI 一样。</p><p>（放慢）</p><p><b>90 分</b>：我很有把握。</p><p><b>40 分</b>：我其实是蒙的。</p><p>（加重）</p><p><b>它嘴上不说，分数替它说了。</b></p><p>（停顿，指黑条，回到数据）</p><p>现在翻回你们的记录卡，对一对：</p><p><b>认对的时候，分数是不是高？认错的时候，是不是多半低？</b></p><p>（等他们核对，念几组出来）</p><p>（停顿）</p><p>看见规律了吗？</p><p>（加重）</p><p><b>这个规律，就是我们下半场要用的东西。</b></p></div>
+</section>
+
+<section class="slide lay-table" data-title="红黄绿三档">
+<div class="phead"><span class="no">第32课</span>
+<span class="kick g">规则</span>
+<span class="tslot">50–62 分</span>
+</div>
+<h2 class="ptitle">红黄绿三档（班级默认，可自调）</h2>
+<p class="psub">把握分高低怎么办——<b>用红绿灯想</b></p>
+<div class="pbody">
+  <div class="tbl grow" style="grid-template-columns:0.7fr 1.1fr 2fr"><div class="th">档</div><div class="th">把握分</div><div class="th">系统行为</div><div class="td k"><b>绿</b></div><div class="td"><b>高</b>（80 分以上）</div><div class="td"><b>照词表执行动作</b>（放行）</div><div class="td k"><b>黄</b></div><div class="td"><b>中</b>（50–80）</div><div class="td">OLED 显示「<b>?</b>」＋ 黄灯，<b>不动作</b></div><div class="td k"><b>红</b></div><div class="td"><b>低</b>（50 以下）</div><div class="td"><b>当没看见</b>，什么都不做</div></div>
+  <div style="margin-top:20px"><div class="strip a">一句话记住：<b>不确定就不动手</b>——这是<b>系统的教养</b>，也是<b>你给它立的规矩</b></div></div>
+</div>
+<div class="notes"><p>把握分高高低低的，系统该怎么办？</p><p>（停顿）</p><p><b>用红绿灯想。</b></p><p><b>绿灯：分数高，放行，照做。</b></p><p><b>黄灯：分数中等，等等——屏幕上打个问号，手脚先别动。</b></p><p><b>红灯：分数低，当没看见。</b></p><p>（停顿）</p><p>80 和 50 这两条线，是<b>班级默认值</b>。</p><p>（加重）</p><p>各组<b>可以按自己的测试数据微调</b>——你们记录卡上那些分数，<b>就是依据</b>。</p><p>（停顿）</p><p>又是那句话：<b>用数据说话。</b></p><p>（停顿，指黑条，这是今天的课眼）</p><p>现在我要讲今天<b>最重要的一句话</b>。</p><p>（放慢，一字一句）</p><p><b>不确定，就不动手。</b></p><p>（长停顿）</p><p>这句话听起来很简单，但它其实很了不起。</p><p>（停顿）</p><p>想想看：黄灯那一档，<b>AI 明明给了答案</b>，你的系统<b>却故意不执行</b>。</p><p>（停顿）</p><p>为什么？</p><p>（放慢）</p><p>因为——<b>宁可什么都不做，也不要做错事。</b></p><p>（停顿）</p><p>这叫<b>教养</b>。</p><p>（加重）</p><p>而这份教养，<b>不是 AI 自己长出来的，是你给它立的规矩。</b></p></div>
+</section>
+
+<section class="slide lay-codefull" data-title="判断段升级 ①">
+<div class="phead"><span class="no">第32课</span>
+<span class="kick g">第①步</span>
+<span class="tslot">62–80 分</span>
+</div>
+<h2 class="ptitle">判断段升级 ①：三档线 ＋ 绿档动作</h2>
+<p class="psub">接在 <b>L31 整段之上</b>——导入、OLED、灯带、订阅循环<b>一行都不用改</b></p>
+<div class="pbody"><div class="code"><span class="lab g">三档兜底 · 判断段升级①</span><pre style="font-size:20px;line-height:1.55">GREEN_LINE = 80                  <span class="c"># 绿档线（可按你组测试数据微调）</span>
+YELLOW_LINE = 50                 <span class="c"># 黄档线</span>
+
+<span class="k">def</span> act(word):                   <span class="c"># 绿档才真动作（沿用 L31 的响应）</span>
+    oled.fill(0); oled.text("I SEE:", 0, 10); oled.text(word, 0, 30); oled.show()
+    <span class="k">if</span> word == "plant":
+        light(0, 40, 0)
+    <span class="k">elif</span> word == "person":
+        light(40, 30, 0)
+    <span class="k">elif</span> word == "cup":
+        light(0, 0, 40)
+    <span class="k">else</span>:
+        light(30, 30, 30)</pre></div><div style="margin-top:18px"><div class="strip a">把 L31 的动作<b>整个包进 <code class="ic">act()</code></b>——这样「<b>要不要动手</b>」和「<b>动什么手</b>」就分开了</div></div></div>
+<div class="notes"><p>今天<b>不用重写整份代码</b>。</p><p>（加重）</p><p>导入、OLED、灯带、连云、订阅循环——<b>跟 L31 一模一样，一行都不用改</b>。</p><p><b>只换判断段。</b></p><p>（指前两行）</p><p>最上面两行是<b>三档线</b>：</p><p><code class="ic">GREEN_LINE = 80</code>、<code class="ic">YELLOW_LINE = 50</code>。</p><p>（提醒）</p><p>注释里写了「<b>可按你组测试数据微调</b>」——<b>这是留给你们的</b>。</p><p>（指 act 函数）</p><p>下面这个 <code class="ic">act(word)</code>，眼熟吗？</p><p>（停顿）</p><p><b>就是 L31 的 <code class="ic">show()</code></b>，改了个名字，内容一模一样：OLED 显示、按词变色、else 兜底。</p><p>（停顿，指黑条，讲这次重构的意义）</p><p>那为什么要改名、要重新包一次？</p><p>（放慢）</p><p>因为现在它的<b>身份变了</b>。</p><p>（加重）</p><p>以前它叫 <code class="ic">show</code>——「<b>收到词就显示</b>」。</p><p>现在它叫 <code class="ic">act</code>——「<b>动手</b>」。</p><p>（停顿）</p><p>而「<b>要不要动手</b>」这个决定，<b>被拿到外面去了</b>。</p><p>（停顿）</p><p>这一拆，就把两件事分开了：</p><p><b>「要不要动手」 和 「动什么手」。</b></p><p>（停顿）</p><p>下一页，就是那个做决定的地方。</p></div>
+</section>
+
+<section class="slide lay-codefull" data-title="判断段升级 ②">
+<div class="phead"><span class="no">第32课</span>
+<span class="kick c">第②步</span>
+<span class="tslot">62–80 分</span>
+</div>
+<h2 class="ptitle">判断段升级 ②：先看把握分，再查词表</h2>
+<p class="psub">树莓派改发「<b>词,把握分</b>」（如 <code class="ic">plant,85</code>）</p>
+<div class="pbody"><div class="code"><span class="lab g">三档兜底 · 判断段升级②</span><pre style="font-size:24px;line-height:1.55"><span class="k">def</span> on_vision(topic, msg):       <span class="c"># 收到「词,把握分」，先看分再查词表</span>
+    word, score = msg.decode().split(",")
+    score = int(score)
+    print(word, "把握分", score)
+    <span class="k">if</span> score &gt;= GREEN_LINE:          <span class="c"># 绿：放行，照做</span>
+        act(word)
+    <span class="k">elif</span> score &gt;= YELLOW_LINE:       <span class="c"># 黄：等等——不确定就不动手</span>
+        oled.fill(0); oled.text("?", 0, 20); oled.text(str(score), 0, 40); oled.show()
+        light(40, 30, 0)             <span class="c"># 黄灯亮，但手脚不动</span>
+    <span class="k">else</span>:                            <span class="c"># 红：不信，当没看见</span>
+        pass</pre></div><div style="margin-top:18px"><div class="strip a">看清顺序：<b>先问「有多大把握」，再问「是什么」</b>——顺序反了，兜底就白装了</div></div></div>
+<div class="notes"><p>这一页是今天的<b>主角</b>。</p><p>（指第二行）</p><p>第一件新事：树莓派现在发过来的<b>不是一个词</b>了，是「<b>词,把握分</b>」，比如 <code class="ic">plant,85</code>。</p><p>所以要<b>拆开</b>：<code class="ic">msg.decode().split(",")</code> —— 按逗号切成两半。</p><p>（停顿）</p><p><code class="ic">score = int(score)</code> —— 把分数从<b>字</b>变成<b>数</b>。</p><p>（加重）</p><p>不转会怎样？——字符串没法比大小，<b>判断永远不对</b>。</p><p>（指 print 那行）</p><p><code class="ic">print(word, "把握分", score)</code> —— 打出来。</p><p><b>排错的时候，这一行救命。</b></p><p>（指三档）</p><p>然后是今天的核心，三档：</p><p><code class="ic">if score &gt;= GREEN_LINE:</code> —— <b>绿：放行，照做</b>，调 <code class="ic">act(word)</code>。</p><p><code class="ic">elif score &gt;= YELLOW_LINE:</code> —— <b>黄：等等。</b> 屏上打个「?」，把分数也显示出来，黄灯亮——</p><p>（加重）</p><p><b>但是手脚不动。</b></p><p><code class="ic">else:</code> —— <b>红：<code class="ic">pass</code>。</b></p><p>（停顿）</p><p><code class="ic">pass</code> 是什么意思？</p><p>（放慢）</p><p><b>「什么都不做。」</b></p><p>（停顿）</p><p>这是你们第一次写 <code class="ic">pass</code>。很有意思吧——</p><p><b>有时候，「什么都不做」才是对的做法。</b></p><p>（指黑条）</p><p>最后看<b>顺序</b>：</p><p><b>先问「有多大把握」，再问「是什么」。</b></p><p>（加重）</p><p>顺序反了——先查词表、再看分数——<b>兜底就白装了</b>，因为动作已经做完了。</p></div>
+</section>
+
+<section class="slide lay-rowlist" data-title="三档验收">
+<div class="phead"><span class="no">第32课</span>
+<span class="kick c">验收</span>
+<span class="tslot">62–80 分</span>
+</div>
+<h2 class="ptitle">三档验收：老师发三条模拟消息</h2>
+<p class="psub"><b>还是先模拟后真实</b>（L31 的老规矩）</p>
+<div class="pbody"><div class="rowlist grow"><div class="rowitem"><div class="num g">1</div><div class="tx">发 <code class="ic">plant,92</code> → <b>绿档</b>：灯变绿、OLED 显示 PLANT ——<b>照做</b>　□</div></div><div class="rowitem"><div class="num a">2</div><div class="tx">发 <code class="ic">plant,65</code> → <b>黄档</b>：OLED 显示「<b>?</b>」和分数、<b>黄灯亮</b>，但<b>灯不变绿、手脚不动</b>　□</div></div><div class="rowitem"><div class="num c">3</div><div class="tx">发 <code class="ic">plant,30</code> → <b>红档</b>：<b>什么都不发生</b>（屏不变、灯不动）——<b>这就是对的</b>　□</div></div><div class="rowitem"><div class="num g">4</div><div class="tx">三条<b>都对</b>才算过——特别是红档：<b>很多人会把「什么都不做」写漏</b></div></div><div class="rowitem"><div class="num a">5</div><div class="tx">过了之后再打真球：拿你的<b>刁难照</b>试试，看它落在哪一档</div></div></div><div style="margin-top:20px"><div class="strip a">红档那一条最反直觉：<b>屏幕没反应 ＝ 系统正常</b>。你得<b>忍住不去改它</b></div></div></div>
+<div class="notes"><p>验收三档。我发三条模拟消息，你们看行为对不对。</p><p>（一条条来）</p><p><b><code class="ic">plant,92</code></b> → 绿档：灯变绿、屏上显示 PLANT。<b>照做。</b></p><p><b><code class="ic">plant,65</code></b> → 黄档：屏上是「<b>?</b>」和分数，<b>黄灯亮</b>，但是——</p><p>（加重）</p><p><b>灯不变绿，手脚不动。</b></p><p><b><code class="ic">plant,30</code></b> → 红档：</p><p>（停顿）</p><p><b>什么都不发生。</b></p><p>（停顿）</p><p>（指第四条，这是今天最容易翻车的地方）</p><p>注意——<b>红档最容易写漏</b>。</p><p>（放慢）</p><p>因为「什么都不做」看起来<b>像是没写完</b>。</p><p>很多人写到 <code class="ic">else:</code> 就卡住了：「这里该写什么呢？」</p><p>（加重）</p><p><b>就写 <code class="ic">pass</code>。</b> 真的，<b>什么都不做就是答案</b>。</p><p>（指黑条，这句话我很想让他们记住）</p><p>红档还有一件反直觉的事：</p><p>（放慢）</p><p><b>屏幕没反应，就是系统正常。</b></p><p>（停顿）</p><p>你得<b>忍住不去改它</b>。</p><p>（停顿）</p><p>这挺难的——因为我们习惯了「有反应才叫成功」。</p><p>（加重）</p><p>但今天不一样：<b>它忍住没动，才叫成功。</b></p></div>
+</section>
+
+<section class="slide lay-tiers3" data-title="分层实战">
+<div class="phead"><span class="no">第32课</span>
+<span class="kick g">分层任务</span>
+<span class="tslot">62–80 分</span>
+</div>
+<h2 class="ptitle">先装上教养，再讲究细节</h2>
+<p class="psub">刁难成功一次 ＋ 三档兜底通过验收 ＝ 成功</p>
+<div class="pbody"><div class="g3 grow"><div class="blk tier t1"><div class="hd">★ 保底（必做）</div>
+        <p class="task"><b>刁难成功一次</b>（记下<b>错成了什么</b>、<b>把握分多少</b>）＋ <b>三档兜底</b>装进系统并通过验收。</p><p class="fill">它把 ______ 说成了 ______，把握分 ____</p></div><div class="blk tier t2"><div class="hd">★★ 挑战（学有余力）</div>
+        <p class="task"><b>按你组的数据微调阈值</b>：看看你们记录卡上认对/认错的分数，<b>把两条线挪到更合适的位置</b>。</p><p class="fill">我组的线：绿 ____ ／ 黄 ____ ，依据：________</p></div><div class="blk tier t3"><div class="hd">★★★ 再挑战</div>
+        <p class="task"><b>黄灯 ＝ 请主人看一眼</b>：黄档时除了显示「?」，<b>再推一条消息问人</b>。</p><p class="fill">□ 黄档会找人了</p></div></div>
+<div style="margin-top:22px"><div class="strip g">再挑战那一档是<b>很高级的设计</b>：机器拿不准的时候，<b>把决定权交回给人</b>——真实的 AI 产品都这么干</div></div></div>
+<div class="notes"><p>三档任务。</p><p><b>保底必做</b>：刁难成功一次<b>有记录</b>，三档兜底<b>通过验收</b>。</p><p><b>挑战档：按你组的数据微调阈值。</b></p><p>（停顿）</p><p>看你们记录卡：认对的大多在多少分？认错的大多在多少分？</p><p>（加重）</p><p><b>两堆分数中间那条缝，就是你该画线的地方。</b></p><p>（停顿）</p><p>这又是一次「用数据说话」——L19 定阈值，我们也是这么干的。</p><p><b>再挑战：黄灯＝请主人看一眼。</b></p><p>（放慢，讲这一档的分量）</p><p>黄档的时候，除了屏上打问号，<b>再推一条消息问人</b>：</p><p>「我看见个东西，<b>拿不准</b>，你来看一眼？」</p><p>（停顿）</p><p>这一档是<b>很高级的设计</b>。</p><p>（加重）</p><p><b>机器拿不准的时候，把决定权交回给人。</b></p><p>（停顿）</p><p>真实的 AI 产品<b>都这么干</b>：</p><p>手机人脸解锁失败几次，会让你<b>输密码</b>；</p><p>银行的系统拿不准，会<b>转人工</b>。</p><p>（停顿）</p><p>它们都懂那句话：<b>不确定，就别自己硬来。</b></p></div>
+</section>
+
+<section class="slide lay-rowlist" data-title="今日三大发现">
+<div class="phead"><span class="no">第32课</span>
+<span class="kick g">点题</span>
+<span class="tslot">80–90 分</span>
+</div>
+<h2 class="ptitle">今日三大发现</h2>
+<div class="pbody"><div class="rowlist grow"><div class="rowitem"><div class="num g">1</div><div class="tx"><b>我亲手让 AI 认错了</b>——逆光、遮挡、相似轮廓，<b>它的眼睛也会花</b></div></div><div class="rowitem"><div class="num a">2</div><div class="tx"><b>AI 每次都偷偷打了「把握分」</b>——低分的话<b>不能全信</b>；它嘴上不说，分数替它说了</div></div><div class="rowitem"><div class="num c">3</div><div class="tx"><b>不确定就不动手</b>：绿放行 / 黄等等 / 红当没看见——这是<b>系统的教养</b>，是<b>你给它立的规矩</b></div></div></div><div style="margin-top:20px"><div class="strip c"><b>以前我们查 AI 的代码，今天开始查 AI 的眼睛。</b> 工具在变，那句话没变：<b>AI 能跑 ≠ 正确——把关的人，永远是你</b></div></div></div>
+<div class="notes"><p>今天三个发现。</p><p><b>第一，我亲手让 AI 认错了。</b> 它的眼睛，<b>也会花</b>。</p><p><b>第二，AI 每次都偷偷打了把握分。</b> 低分的话，<b>不能全信</b>。</p><p><b>第三，不确定就不动手。</b></p><p>（停顿，收束全课程的一条暗线——慢慢讲）</p><p>现在我要说今天最后、也是<b>最重要</b>的一段话。</p><p>（放慢）</p><p>第一阶段，第 5 课，我们干了一件事：<b>AI 写的代码跑不起来，我们去抓它的错。</b></p><p>那时候我说过一句话，你们还记得吗？</p><p>（等他们答）</p><p>（一字一句）</p><p><b>「AI 能跑 ≠ 正确。」</b></p><p>（停顿）</p><p>那时候我们查的是——<b>AI 的代码</b>。</p><p>（长停顿）</p><p>今天，我们查的是——</p><p>（放慢，加重）</p><p><b>AI 的眼睛。</b></p><p>（停顿）</p><p>从代码，到眼睛。</p><p>工具在变，本事在长，</p><p>（一字一句）</p><p><b>但那句话一个字都没变：把关的人，永远是你。</b></p><p>（长停顿）</p><p>（转轻松，抛钩子）</p><p>好——它会看、会认、还知道自己有几分把握了。</p><p>（停顿）</p><p><b>可它还会「说」呢。</b></p><p>明天：<b>让它看图说话。</b></p><p>下课。</p></div>
+</section>
+
+<section class="slide lay-cards2" data-title="课后任务">
+<div class="phead"><span class="no">第32课</span>
+<span class="kick a">课后任务</span>
+</div>
+<h2 class="ptitle">课后任务</h2>
+<div class="pbody"><div class="g2 grow"><div class="blk g"><h4>基础（全员）</h4><p>给家人表演「<b>刁难 AI</b>」：<b>一招让它认错</b>，再讲讲你的<b>红黄绿规则</b>。</p></div><div class="blk a"><h4>拓展（选做）</h4><p>想一想：<b>无人驾驶汽车</b>的「眼睛」<b>把握分低</b>的时候，<b>该怎么办</b>？</p></div></div>
+<div style="margin-top:24px"><div class="strip g"><b>从查代码到查眼睛——把关的人，永远是你</b></div></div></div>
+<div class="notes"><p>课后两件事。</p><p>第一件全员做：<b>给家人表演「刁难 AI」。</b></p><p>（停顿）</p><p>一招就够——逆光、遮挡，挑你最拿手的那招。</p><p>（加重）</p><p>表演完<b>别忘了讲后半段</b>：你的<b>红黄绿规则</b>。</p><p>（放慢）</p><p>因为前半段只是好玩，<b>后半段才是你今天真正学到的东西</b>。</p><p>（停顿）</p><p>第二件选做，这道题<b>很重</b>，我希望你们认真想：</p><p>（放慢，一字一句）</p><p><b>无人驾驶汽车的「眼睛」，把握分低的时候，该怎么办？</b></p><p>（长停顿）</p><p>它看见前面有个东西，可是<b>拿不准那是塑料袋还是小孩</b>。</p><p>（停顿）</p><p>按我们今天的规则——<b>黄灯，不动手</b>。</p><p>可是车正在开啊。「不动手」是什么意思？</p><p>（停顿）</p><p>是继续开？是刹车？是<b>交还给司机</b>？</p><p>（长停顿）</p><p>（放轻）</p><p>这道题<b>没有标准答案</b>，真的工程师现在还在吵。</p><p>（停顿）</p><p>但是你们今天已经站在他们的问题上了。</p><p>（停顿）</p><p>最后一句：</p><p><b>从查代码到查眼睛——把关的人，永远是你。</b></p><p>下课。</p></div>
+</section>
+<div class="deck-footer"><span>ESP32 × AI 科创课程 · 第五阶段「融合AI」 · 第32课 它认错了！</span><span class="slide-number" data-current="1" data-total="12"></span></div>
+<div class="progress-bar"><span></span></div>
+</div>
+<script src="assets/fitstage.js"></script>
+<script src="assets/runtime.js"></script>
+</body>
+</html>

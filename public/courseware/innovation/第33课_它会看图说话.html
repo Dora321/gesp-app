@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>第33课 · 它会看图说话 — ESP32 × AI 科创课程</title>
+<link rel="stylesheet" href="assets/base.css">
+<link rel="stylesheet" id="theme-link" href="assets/theme-course-pop.css">
+<link rel="stylesheet" href="assets/animations.css">
+</head>
+<body>
+<div class="deck" data-theme-base="assets/">
+<section class="slide lay-cover is-active" data-title="封面">
+<div class="deco circle" style="width:170px;height:170px;top:-52px;right:238px"></div>
+<div class="deco tri" style="right:110px;bottom:132px;transform:rotate(14deg)"></div>
+<div class="deco square" style="width:120px;height:120px;left:-46px;bottom:86px;transform:rotate(12deg)"></div>
+<span class="cv-bar">ESP32 × AI ／ 第五阶段「融合AI」</span>
+<h1 class="cv-title">它会<em>看图说话</em></h1>
+<p class="cv-sub">它不光认识——**它还会聊**</p>
+<div class="cv-tags"><span class="tag">标签 vs 话</span><span class="tag">裁判两问</span><span class="tag">给 AI 提要求</span><span class="tag">90 分钟连堂</span></div>
+<div class="cv-no">33</div>
+<div class="notes"><p>（拍讲台上那盆绿萝，提交，投屏）</p><p>（等待……）</p><p>（评论跳出来：「这盆绿萝状态不错，靠窗光线合适，注意别积水。」）</p><p>（停顿，等全班惊呼）</p><p>（放慢，带他们逐句看）</p><p>看清楚它说了什么：</p><p>「<b>状态不错</b>」——它在<b>评价</b>。</p><p>「<b>靠窗光线合适</b>」——它<b>看见了背景</b>。</p><p>「<b>注意别积水</b>」——它在<b>给建议</b>。</p><p>（长停顿）</p><p>前天它说什么来着？</p><p>（等答）</p><p>——<b><code class="ic">plant</code>。一个词。</b></p><p>（停顿）</p><p>今天它说了<b>一段话</b>。</p><p>（停顿，压一压兴奋）</p><p>我知道这一下很震撼。</p><p>（放慢）</p><p>但是今天这节课，最重要的<b>不是它有多会说</b>。</p><p>（一字一句）</p><p><b>是你会不会听。</b></p><p>（停顿）</p><p>因为——<b>话说得越顺，越容易让人忘了核对。</b></p></div>
+</section>
+
+<section class="slide lay-table" data-title="标签 vs 话">
+<div class="phead"><span class="no">第33课</span>
+<span class="kick g">核心</span>
+<span class="tslot">8–20 分</span>
+</div>
+<h2 class="ptitle">标签是「词」，大模型给的是「话」</h2>
+<p class="psub">词只回答<b>是什么</b>；话还回答<b>怎么样、该怎么办</b></p>
+<div class="pbody">
+  <div class="tbl grow" style="grid-template-columns:1fr 1.2fr 1.6fr"><div class="th">比什么</div><div class="th">识别（L30）</div><div class="th">大模型（今天）</div><div class="td k">给什么</div><div class="td"><b>词</b>（<code class="ic">plant</code>）</div><div class="td"><b>话</b>（观察 ＋ 判断 ＋ 建议）</div><div class="td k">回答什么</div><div class="td"><b>是什么</b></div><div class="td"><b>怎么样 / 该怎么办</b></div><div class="td k">要过什么关</div><div class="td"><b>对吗</b></div><div class="td"><b>现象真吗 ＋ 建议在理吗</b></div></div>
+  <div style="margin-top:20px"><div class="strip c">话<b>更有用</b>，但也<b>更要把关</b>：<b>说得顺 ≠ 说得对</b></div></div>
+</div>
+<div class="notes"><p>这张表，把前天和今天<b>并排放</b>。</p><p><b>给什么？</b></p><p>前天给一个<b>词</b>：<code class="ic">plant</code>。</p><p>今天给一<b>段话</b>：有观察、有判断、有建议。</p><p><b>回答什么？</b></p><p>词只回答「<b>是什么</b>」。</p><p>话还回答「<b>怎么样</b>」和「<b>该怎么办</b>」。</p><p>（停顿）</p><p>这一步跨得很大。</p><p>（放慢）</p><p>「是什么」只是<b>认出来</b>；</p><p>「该怎么办」——<b>那已经是在出主意了</b>。</p><p>（指第三行，今天的重点）</p><p><b>要过什么关？</b></p><p>前天我们问一句：<b>它说的对吗？</b></p><p>今天要问<b>两句</b>。</p><p>（加重）</p><p>因为一段话里，可能<b>现象是真的，建议却是错的</b>；</p><p>也可能<b>建议听起来很有道理，但它根本看错了东西</b>。</p><p>（停顿，指黑条）</p><p>所以今天这句话，请记牢：</p><p><b>话更有用，但也更要把关。</b></p><p>（一字一句）</p><p><b>说得顺，不等于说得对。</b></p></div>
+</section>
+
+<section class="slide lay-cards2" data-title="裁判两问">
+<div class="phead"><span class="no">第33课</span>
+<span class="kick c">裁判</span>
+<span class="tslot">8–20 分</span>
+</div>
+<h2 class="ptitle">裁判两问：AI 每说一段话，就问两句</h2>
+<div class="pbody"><div class="g2 grow"><div class="blk g"><h4>① 它说的<b>现象</b>是真的吗？</h4><p><b>看图核对。</b><br>它说「叶子有点蔫」——<b>你去看那张照片</b>：叶子真的蔫了吗？<br><b>它可能在描述一个根本不存在的东西。</b></p></div><div class="blk a"><h4>② 它给的<b>建议</b>在理吗？</h4><p><b>用常识核对。</b><br>它说「多晒太阳」——这盆本来就在窗边晒着呢。<br><b>现象对，建议也可能不对。</b></p></div></div>
+<div style="margin-top:24px"><div class="strip a"><b>两问都过，才值得采纳。</b> 过一问、挂一问的，写进记录卡<b>当反面教材</b></div></div></div>
+<div class="notes"><p>今天的裁判，要问<b>两句</b>。</p><p><b>第①问：它说的现象是真的吗？——看图核对。</b></p><p>（放慢）</p><p>它说「叶子有点蔫」。</p><p>你<b>别急着点头</b>，<b>去看那张照片</b>：叶子真的蔫了吗？</p><p>（加重）</p><p>有时候——<b>它在描述一个根本不存在的东西。</b></p><p>（停顿）</p><p>这种情况有个特点：<b>说得特别顺</b>。因为它是在「<b>接最像的话</b>」——</p><p>一盆植物的照片，后面接「叶子有点蔫」<b>很顺口</b>，所以它就说了。</p><p><b>第②问：它给的建议在理吗？——用常识核对。</b></p><p>（举例）</p><p>它说「<b>多晒太阳</b>」。可这盆就在<b>窗边</b>，本来就晒着。</p><p>（停顿）</p><p>看出来了吗：</p><p>（加重）</p><p><b>现象对，建议也可能不对。</b></p><p>（停顿，指黑条）</p><p>规矩是：<b>两问都过，才值得采纳。</b></p><p>（停顿）</p><p>过一问、挂一问的，<b>别扔</b>——</p><p>写进记录卡，<b>当反面教材</b>。</p><p>（放轻松）</p><p>而且说实话，<b>那些才是今天最好玩的</b>。</p></div>
+</section>
+
+<section class="slide lay-rowlist" data-title="看图说话">
+<div class="phead"><span class="no">第33课</span>
+<span class="kick g">任务一</span>
+<span class="tslot">20–40 分</span>
+</div>
+<h2 class="ptitle">看图说话：拍 → 评论 → 两问 → 复述</h2>
+<p class="psub">最后一步<b>最练人</b>：把 AI 的话，<b>用你自己的话</b>说一遍</p>
+<div class="pbody"><div class="rowlist grow"><div class="rowitem"><div class="num g">1</div><div class="tx"><b>拍</b>：教室的植物、你的桌面、<b>你们组的作品</b>（拍作品让 AI 点评最有意思）</div></div><div class="rowitem"><div class="num a">2</div><div class="tx"><b>提交</b> → 等评论（接口慢就切<b>预录响应包</b>，流程照走）</div></div><div class="rowitem"><div class="num c">3</div><div class="tx"><b>裁判两问</b>：现象真吗（看图核对）？建议在理吗（常识核对）？——<b>记进卡里</b></div></div><div class="rowitem"><div class="num g">4</div><div class="tx"><b>采纳 / 不采纳</b>：写下来，<b>而且写上为什么</b></div></div><div class="rowitem"><div class="num a">5</div><div class="tx"><b>复述给邻组</b>：用<b>你自己的话</b>把 AI 说的讲一遍——<b>讲不出来，就是没真懂</b></div></div></div><div style="margin-top:20px"><div class="strip a">最后那一步别跳：<b>能用自己的话复述，你才是真的在「用」它</b>，而不是在<b>转发</b>它</div></div></div>
+<div class="notes"><p>四步：<b>拍、提交、两问、复述</b>。</p><p><b>拍什么？</b> 教室的植物、你的桌面——</p><p>（停顿，推荐）</p><p><b>最有意思的是拍你们组的作品，让 AI 点评。</b></p><p>（笑）有心理准备：它可能会说你线太乱。</p><p><b>提交</b>，等评论。接口慢就切预录响应包，流程照走。</p><p><b>裁判两问</b>，记进卡里。</p><p><b>采纳还是不采纳？</b> 写下来，<b>而且写上为什么</b>。</p><p>（停顿，讲第五步——今天最练人的一步）</p><p>最后一步：<b>复述给邻组。</b></p><p>（加重）</p><p>用<b>你自己的话</b>，把 AI 说的那段讲一遍。</p><p>（停顿）</p><p>为什么非要复述？</p><p>（放慢）</p><p>因为——<b>念一遍很容易，讲明白很难</b>。</p><p>（停顿）</p><p>你会发现：有些话你念得顺，可一旦要用自己的话讲，<b>你讲不出来</b>。</p><p>（加重）</p><p><b>讲不出来，就是没真懂。</b></p><p>（停顿，指黑条）</p><p>这一步其实在练一件大事：</p><p><b>能用自己的话复述，你才是真的在「用」它——而不是在「转发」它。</b></p></div>
+</section>
+
+<section class="slide lay-divider" data-title="课间休息">
+<div class="deco circle" style="width:200px;height:200px;top:-70px;right:180px"></div>
+<div class="deco square" style="width:130px;height:130px;left:-50px;bottom:70px;transform:rotate(12deg)"></div>
+<div class="deco tri" style="right:140px;bottom:90px;transform:rotate(14deg)"></div>
+<div class="dv">
+  <span class="dv-time">40–50 分</span>
+  <h2 class="dv-t">课间休息 10 分钟</h2>
+  <p class="dv-s">评「<b>AI 金句奖</b>」和「<b>AI 胡话奖</b>」</p>
+</div>
+<div class="notes"><p>休息十分钟。</p><p>休息的时候评两个奖：</p><p><b>「AI 金句奖」</b>——谁收到的评论最中肯、最让人服气？</p><p><b>「AI 胡话奖」</b>——谁收到的评论最离谱？</p><p>（停顿，笑）</p><p>往年的胡话奖：</p><p>「您的书桌整理得井井有条」——照片上乱得像打过仗。</p><p>（停顿）</p><p>（放慢，点一句）</p><p>这两个奖<b>一样重要</b>。</p><p>（加重）</p><p>金句让你知道<b>它能帮上什么忙</b>；</p><p>胡话让你知道<b>什么时候不能信它</b>。</p><p>（停顿）</p><p><b>两样你都得知道，才敢用它。</b></p><p>去吧。</p></div>
+</section>
+
+<section class="slide lay-cards3" data-title="花样评论">
+<div class="phead"><span class="no">第33课</span>
+<span class="kick a">提要求</span>
+<span class="tslot">50–68 分</span>
+</div>
+<h2 class="ptitle">给 AI 提要求：要求变，输出就变</h2>
+<p class="psub"><b>五要素思维</b>在看图场景<b>复活了</b></p>
+<div class="pbody"><div class="g3 grow"><div class="blk g"><h4>「用一句话说重点」</h4><p>长篇大论 → <b>一句话</b>。<br><br>汇报、上屏幕的时候<b>特别有用</b>——<br>OLED 只有两行。</p></div><div class="blk a"><h4>「像老爷爷一样说」</h4><p>同一张图，<b>换个口气</b>。<br><br>试试「像新闻主播」「像你最好的朋友」——<br><b>内容没变，味道全变了</b>。</p></div><div class="blk c"><h4>「只说问题，不用夸」</h4><p>它很爱夸人。<br><br><b>你可以让它别夸</b>——<br>要改进意见的时候，这一句最管用。</p></div></div><p class="beads-cap" style="margin:18px 0 16px">发现没有：<b>指挥权在你手里</b>——L6 学的「提要求」，换到看图场景<b>一样好使</b></p><div style="margin-top:22px"><div class="strip g">同一张照片，<b>三种要求 ＝ 三种回答</b>。这说明什么？——<b>它给什么，取决于你怎么要</b></div></div></div>
+<div class="notes"><p>现在玩点花样：<b>给 AI 提要求</b>。</p><p><b>第一种：「用一句话说重点。」</b></p><p>（停顿）</p><p>长篇大论 → 一句话。</p><p>（加重）</p><p>这个在什么时候特别有用？</p><p>（等答，引导）</p><p><b>上屏幕的时候！</b> 你的 OLED 只有<b>两行字</b>，它给你一整段，<b>放不下</b>。</p><p><b>第二种：「像老爷爷一样说。」</b></p><p>同一张图，换个口气。还可以试「像新闻主播」「像你最好的朋友」。</p><p>（停顿）</p><p><b>内容没变，味道全变了。</b></p><p><b>第三种：「只说问题，不用夸我。」</b></p><p>（笑）</p><p>你们会发现，它<b>很爱夸人</b>。</p><p>（加重）</p><p>但你可以<b>让它别夸</b>。想听真话、想要改进意见的时候，这句最管用。</p><p>（指中间那行字，点题）</p><p>发现了吗——</p><p>（放慢）</p><p><b>这不就是 L6 学的「提要求」吗？</b></p><p>（停顿）</p><p>那时候我们给 AI 提要求，是为了让它<b>写对代码</b>。</p><p>今天我们给它提要求，是为了让它<b>说对话</b>。</p><p>（加重）</p><p><b>换了场景，本事没变。</b></p><p>（指黑条）</p><p>一张照片，三种要求，三种回答。</p><p>这说明一件事：</p><p><b>它给什么，取决于你怎么要。</b></p></div>
+</section>
+
+<section class="slide lay-vstext" data-title="它有感情吗">
+<div class="phead"><span class="no">第33课</span>
+<span class="kick c">答疑</span>
+<span class="tslot">50–68 分</span>
+</div>
+<h2 class="ptitle">「它是不是有感情啊？」</h2>
+<p class="psub">每年都有人问这个问题——<b>问得很好</b></p>
+<div class="pbody">
+  <div class="vs3 grow">
+    <div class="blk c vstx"><span class="tag c">它看起来像有</span><p class="q">它会<b>关心</b>：「注意别积水。」<br>它会<b>夸你</b>：「整理得很整齐。」</p><p class="why">说得又贴心又自然。<br>所以很多人会觉得——<br><b>它好像懂我。</b></p></div>
+    <div class="vsmark">VS</div>
+    <div class="blk g vstx"><span class="tag g">它其实在做的事</span><p class="q"><b>它在接最像的话。</b></p><p class="why">看过亿万段文字之后，<br>它知道「一盆植物的照片」后面<b>通常会接什么话</b>。<br><b>像得惊人，但它没有心。</b></p></div>
+  </div>
+  <div style="margin-top:20px"><div class="strip a">所以它<b>说得越像人</b>，你<b>越要记得做裁判</b>——贴心的话，也可能是<b>错的话</b></div></div>
+</div>
+<div class="notes"><p>有个问题，每年都有人问。今天我主动讲。</p><p>（停顿）</p><p><b>「老师，它是不是有感情啊？」</b></p><p>（停顿）</p><p><b>问得很好。</b> 真的，这是个很好的问题。</p><p>（指左边）</p><p>它确实<b>看起来像有</b>：</p><p>它会关心你——「注意别积水」；</p><p>它会夸你——「整理得很整齐」。</p><p>（停顿）</p><p>说得又贴心又自然，所以很多人会觉得：<b>它好像懂我。</b></p><p>（指右边，放慢）</p><p>它其实在做一件事：</p><p>（一字一句）</p><p><b>它在接最像的话。</b></p><p>（停顿）</p><p>它看过<b>亿万段文字</b>。所以它知道——</p><p>一张植物的照片后面，<b>人们通常会接什么话</b>。</p><p>（停顿）</p><p>于是它就接上了。接得<b>特别像</b>。</p><p>（长停顿）</p><p>（放轻，但认真）</p><p><b>像得惊人，但它没有心。</b></p><p>（停顿）</p><p>说这句不是要扫兴。</p><p>（指黑条）</p><p>是因为它<b>关系到今天的正事</b>：</p><p>（放慢）</p><p><b>它说得越像人，你越要记得做裁判。</b></p><p>（加重）</p><p><b>贴心的话，也可能是错的话。</b></p></div>
+</section>
+
+<section class="slide lay-tiers3" data-title="分层实战">
+<div class="phead"><span class="no">第33课</span>
+<span class="kick g">分层任务</span>
+<span class="tslot">68–80 分</span>
+</div>
+<h2 class="ptitle">先走完一趟，再让它点评你的作品</h2>
+<p class="psub">一次完整看图说话 ＋ 裁判两问 ＝ 成功</p>
+<div class="pbody"><div class="g3 grow"><div class="blk tier t1"><div class="hd">★ 保底（必做）</div>
+        <p class="task">一次<b>完整看图说话</b>：拍 → 评论 → <b>裁判两问</b> → <b>复述给邻组</b>。</p><p class="fill">它说：「____________」　采纳 □ 不采纳 □</p></div><div class="blk tier t2"><div class="hd">★★ 挑战（学有余力）</div>
+        <p class="task">让 AI <b>点评本组 S4 作品</b>的照片，把<b>过了两问</b>的建议记进<b>改进清单</b>。</p><p class="fill">过了两问的建议：____________</p></div><div class="blk tier t3"><div class="hd">★★★ 再挑战</div>
+        <p class="task">用「<b>提要求</b>」让<b>同一张图</b>产出<b>三种风格</b>的评论。</p><p class="fill">□ 一句话 □ 换口气 □ 只说问题</p></div></div>
+<div style="margin-top:22px"><div class="strip g">挑战档很实在：AI 的建议<b>过了两问</b>，就<b>进改进清单</b>——它第一次<b>参与了你的工作</b></div></div></div>
+<div class="notes"><p>三档。</p><p><b>保底必做</b>：完整走一趟，<b>两问要做，复述要讲</b>。</p><p><b>挑战档：让 AI 点评你们组的 S4 作品。</b></p><p>（停顿）</p><p>把作品拍下来，交给它，听听它怎么说。</p><p>（加重）</p><p>但是注意后半句：<b>把过了两问的建议，记进改进清单。</b></p><p>（放慢，讲这一档的分量）</p><p>体会一下这件事的分量：</p><p>（停顿）</p><p>到今天为止，AI 说的话都是<b>用来学习的</b>。</p><p>（一字一句）</p><p>从这一档开始，AI 说的话<b>会进你的工作清单</b>。</p><p>（停顿）</p><p><b>它第一次参与了你的工作。</b></p><p>（停顿）</p><p>但是记住那道关口：<b>过了两问，才准进清单。</b></p><p>（加重）</p><p><b>不是它说什么你就记什么。</b></p><p><b>再挑战：同一张图，三种风格。</b></p><p>（停顿）</p><p>做完你会有个很直观的感受：</p><p><b>换个说法，它就换个样子——你手里握着方向盘。</b></p></div>
+</section>
+
+<section class="slide lay-rowlist" data-title="L34 立项起步">
+<div class="phead"><span class="no">第33课</span>
+<span class="kick c">立项</span>
+<span class="tslot">80–90 分</span>
+</div>
+<h2 class="ptitle">明天开工：《植物观察员》材料包</h2>
+<p class="psub">把<b>看、认、说、动</b>装进一个作品</p>
+<div class="pbody"><div class="rowlist grow"><div class="rowitem"><div class="num g">1</div><div class="tx"><b>领材料包</b>：元件清单 ＋ 双层分工图模板 ＋ <b>保底链路说明</b>（明天卡住了照它走）</div></div><div class="rowitem"><div class="num a">2</div><div class="tx"><b>画分工图草稿</b>：<b>智能层</b>（树莓派）管 ______；<b>执行层</b>（ESP32）管 ______；<b>云</b>管：捎话</div></div><div class="rowitem"><div class="num c">3</div><div class="tx"><b>组内分工落位</b>：智能层 ______　执行层 ______　<b>联调</b> ______（联调的人最关键）</div></div><div class="rowitem"><div class="num g">4</div><div class="tx"><b>明天的目标一句话</b>：它<b>看见</b>植物 → <b>认出来</b> → <b>说一句话</b> → <b>灯 / 屏动起来</b></div></div><div class="rowitem"><div class="num a">5</div><div class="tx"><b>今晚可以想一想</b>：你们的观察员，<b>最该帮主人盯什么</b>？（缺水？没光？有人碰它？）</div></div></div><div style="margin-top:20px"><div class="strip a"><b>立项提前到今天</b>，是为了明天一上课就能<b>动手</b>——图纸在手的人，<b>开工最快</b></div></div></div>
+<div class="notes"><p>最后十分钟，我们做一件<b>明天的事</b>。</p><p>（发材料包）</p><p>每组一个《<b>植物观察员</b>》材料包：元件清单、双层分工图模板、<b>保底链路说明</b>。</p><p>（停顿）</p><p>（指第二条）</p><p>现在<b>画分工图草稿</b>，就画三格：</p><p><b>智能层（树莓派）管什么？执行层（ESP32）管什么？云管什么？</b></p><p>（提醒）</p><p>云那一格我先替你们填了：<b>捎话</b>。这个没悬念。</p><p>（指第三条，强调）</p><p>然后是<b>人</b>：</p><p>智能层谁管、执行层谁管、<b>联调谁管</b>。</p><p>（加重）</p><p><b>「联调」那个人最关键。</b></p><p>（放慢）</p><p>为什么？因为两层各自都好好的、合起来不灵——这种事<b>天天发生</b>。</p><p>联调的人，就是<b>两边都懂一点、专门负责让它们握上手</b>的人。</p><p>（指第四条）</p><p>明天的目标，一句话：</p><p><b>它看见植物 → 认出来 → 说一句话 → 灯和屏动起来。</b></p><p>（停顿）</p><p><b>看、认、说、动——四样，一个作品。</b></p><p>（指最后一条，留个晚上的作业）</p><p>今晚可以想一想：</p><p><b>你们的观察员，最该帮主人盯什么？</b></p><p>缺水？没光？还是有人碰它？</p><p>（停顿，指黑条）</p><p>为什么立项要提前到今天？</p><p>（放慢）</p><p><b>因为明天一上课就要动手。</b></p><p><b>图纸在手的人，开工最快。</b></p></div>
+</section>
+
+<section class="slide lay-rowlist" data-title="今日三大发现">
+<div class="phead"><span class="no">第33课</span>
+<span class="kick g">总结</span>
+<span class="tslot">80–90 分</span>
+</div>
+<h2 class="ptitle">今日三大发现</h2>
+<div class="pbody"><div class="rowlist grow"><div class="rowitem"><div class="num g">1</div><div class="tx"><b>标签是词，大模型给的是话</b>：词答「是什么」，话答「<b>怎么样、该怎么办</b>」</div></div><div class="rowitem"><div class="num a">2</div><div class="tx"><b>裁判两问</b>：现象真吗（看图核对）＋ 建议在理吗（常识核对）——<b>两问都过才采纳</b></div></div><div class="rowitem"><div class="num c">3</div><div class="tx"><b>要求变，输出就变</b>：L6 学的「提要求」，换到看图场景<b>一样好使</b>——<b>指挥权在你手里</b></div></div></div><div style="margin-top:20px"><div class="strip a"><b>AI 会说话了，你会把关了</b>——<b>组装一切的日子，就是明天</b></div></div></div>
+<div class="notes"><p>今天三个发现。</p><p><b>第一，标签是词，大模型给的是话。</b></p><p><b>第二，裁判两问。</b> 现象真吗、建议在理吗——<b>两问都过才采纳</b>。</p><p><b>第三，要求变，输出就变。</b></p><p>（停顿，收一收整个第五阶段）</p><p>（放慢）</p><p>我们数一数，这几节课你都给你的系统装了什么：</p><p><b>L28，耳朵</b>（它听得懂话）。</p><p><b>L29，眼睛</b>（它睁开眼）。</p><p><b>L30，它认出来了。</b></p><p><b>L31，眼睛和手脚牵上了手。</b></p><p><b>L32，它知道自己有几分把握了。</b></p><p><b>今天——它会说话了。</b></p><p>（长停顿）</p><p><b>看、认、说、动，四样本事，都齐了。</b></p><p>（停顿）</p><p>但是它们现在还是<b>四段分开的本事</b>。</p><p>（停顿，抛钩子）</p><p>明天干一件事：</p><p>（一字一句）</p><p><b>把它们装进同一个作品里。</b></p><p>（停顿）</p><p><b>AI 会说话了，你会把关了——组装一切的日子，就是明天。</b></p><p>下课。</p></div>
+</section>
+
+<section class="slide lay-cards2" data-title="课后任务">
+<div class="phead"><span class="no">第33课</span>
+<span class="kick a">课后任务</span>
+</div>
+<h2 class="ptitle">课后任务</h2>
+<div class="pbody"><div class="g2 grow"><div class="blk g"><h4>基础（全员）</h4><p>把 AI 对你们作品的点评讲给家人，并说说：<b>你采纳了哪条、否了哪条、为什么</b>。</p></div><div class="blk a"><h4>拓展（选做）</h4><p><b>预习明天</b>：《植物观察员》要把<b>看、认、说、动</b>装进一个作品——<b>想想你们组谁管哪层</b>。</p></div></div>
+<div style="margin-top:24px"><div class="strip g"><b>AI 会说话了，你会把关了</b></div></div></div>
+<div class="notes"><p>课后两件事。</p><p>第一件全员做，而且<b>重点在后半句</b>：</p><p>把 AI 的点评讲给家人，然后说三件事：</p><p><b>我采纳了哪条、否了哪条、为什么。</b></p><p>（停顿，放慢）</p><p>第三个「为什么」最重要。</p><p>（加重）</p><p>因为「<b>否了哪条，为什么</b>」——<b>这才是你的判断</b>，不是 AI 的。</p><p>（停顿）</p><p>家里人听完，多半会愣一下。</p><p>他们习惯的是「AI 说什么就是什么」，</p><p>（停顿）</p><p>而你会告诉他们：<b>我否了它一条，因为它看错了。</b></p><p>（停顿）</p><p>第二件选做：<b>预习明天。</b></p><p>想一想你们组<b>谁管哪层</b>。</p><p>（停顿）</p><p>明天见——</p><p><b>带上你的分工图。</b></p><p>下课。</p></div>
+</section>
+<div class="deck-footer"><span>ESP32 × AI 科创课程 · 第五阶段「融合AI」 · 第33课 它会看图说话</span><span class="slide-number" data-current="1" data-total="11"></span></div>
+<div class="progress-bar"><span></span></div>
+</div>
+<script src="assets/fitstage.js"></script>
+<script src="assets/runtime.js"></script>
+</body>
+</html>

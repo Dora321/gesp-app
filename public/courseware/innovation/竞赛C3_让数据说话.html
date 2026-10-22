@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>竞赛延伸包 C3 · 让数据说话 — ESP32 × AI 科创课程</title>
+<link rel="stylesheet" href="assets/base.css">
+<link rel="stylesheet" id="theme-link" href="assets/theme-course-pop.css">
+<link rel="stylesheet" href="assets/animations.css">
+</head>
+<body>
+<div class="deck" data-theme-base="assets/">
+<section class="slide lay-cover is-active" data-title="封面">
+<div class="deco circle" style="width:170px;height:170px;top:-52px;right:238px"></div>
+<div class="deco tri" style="right:110px;bottom:132px;transform:rotate(14deg)"></div>
+<div class="deco square" style="width:120px;height:120px;left:-46px;bottom:86px;transform:rotate(12deg)"></div>
+<span class="cv-bar">ESP32 × AI ／ 竞赛延伸包（选修 · 与主线并行）</span>
+<h1 class="cv-title">让数据<em>说话</em></h1>
+<p class="cv-sub">一张图顶一百句话——**开奖时刻到了**</p>
+<div class="cv-tags"><span class="tag">折线 vs 柱状</span><span class="tag">图表三问</span><span class="tag">带数字的结论</span><span class="tag">和预测对账</span></div>
+<div class="cv-no">C3</div>
+<div class="notes"><p>（黑板上已经画好四个房间的名字，数据大图<b>背面朝外遮着</b>）</p><p>上课之前，先<b>押注</b>。</p><p>（停顿）</p><p><b>客厅、卧室、北屋、书房——你猜哪间夜里最冷？</b></p><p>（停顿）</p><p>各组把票押上，写在纸上举起来。</p><p>（等他们押完，环视一圈）</p><p>押好了？</p><p>（停顿，放慢）</p><p><b>好——翻图！</b></p><p>（翻开数据大图，柱状图一目了然）</p><p>（停顿，让他们叫）</p><p>（放慢）</p><p><b>一眼就看出来了，对吧？</b></p><p>（停顿）</p><p>谁押对了、谁押错了，<b>不用吵，看图</b>。</p><p>（长停顿）</p><p><b>记住这个感觉。</b></p><p>（一字一句）</p><p><b>不吵架，看图——这就是数据的力量。</b></p><p>（停顿）</p><p>上次你们的日志里记了一堆数字。</p><p>（停顿）</p><p>可是评委<b>没空一个个看</b>。</p><p>（停顿）</p><p>今天，我们把它们<b>画成一张图</b>。</p></div>
+</section>
+
+<section class="slide lay-vstext" data-title="第三跃">
+<div class="phead"><span class="no">竞赛 C3</span>
+<span class="kick g">第三跃</span>
+<span class="tslot">0–8 分</span>
+</div>
+<h2 class="ptitle">一堆数字 → <b>一张图</b></h2>
+<p class="psub">C2 记了数据，今天<b>让它开口</b></p>
+<div class="pbody">
+  <div class="vs3 grow">
+    <div class="blk c vstx"><span class="tag c">日志里的样子</span><p class="q">「7/11：客厅 22，卧室 21，北屋 19，书房 20；<br>7/12：客厅 22，卧室 21……」</p><p class="why"><b>一堆数字。</b><br>评委要盯着看半天，<br>还不一定看得出你想说什么。</p></div>
+    <div class="vsmark">VS</div>
+    <div class="blk g vstx"><span class="tag g">画成图之后</span><p class="q"><b>四根柱子，一眼高下。</b></p><p class="why"><b>最矮的那根就是答案。</b><br>不用解释，<br><b>图自己会说话。</b></p></div>
+  </div>
+  <div style="margin-top:20px"><div class="strip a">这是第三跃：<b>把数据画成图，用它正面回答 C1 提的那个问题</b></div></div>
+</div>
+<div class="notes"><p>（指左边）</p><p>这是你们日志里现在的样子：</p><p><b>「7 月 11 日：客厅 22，卧室 21，北屋 19，书房 20……」</b></p><p>（停顿）</p><p><b>一堆数字。</b></p><p>（放慢）</p><p>评委要盯着看半天，<b>还不一定看得出你想说什么</b>。</p><p>（指右边）</p><p>画成图之后呢？</p><p>（停顿）</p><p><b>四根柱子，一眼高下。</b></p><p>（加重）</p><p><b>最矮的那根，就是答案。</b></p><p>（停顿）</p><p>不用你解释——</p><p>（一字一句）</p><p><b>图自己会说话。</b></p><p>（停顿，指黑条）</p><p>所以今天迈第三跃：</p><p>（放慢）</p><p><b>把数据画成图，用它正面回答 C1 提的那个问题。</b></p><p>（停顿）</p><p>（补一句常识感）</p><p>其实你们早就见过这种图：</p><p>（放慢）</p><p><b>天气预报的气温曲线、你的成绩折线图</b>——</p><p><b>都是同一件事：让人一眼看懂一堆数。</b></p></div>
+</section>
+
+<section class="slide lay-table" data-title="选对图表">
+<div class="phead"><span class="no">竞赛 C3</span>
+<span class="kick c">核心</span>
+<span class="tslot">8–20 分</span>
+</div>
+<h2 class="ptitle">选图只有一问：<b>看趋势，还是比大小？</b></h2>
+<p class="psub">选对了图，<b>数据自己就会说话</b></p>
+<div class="pbody">
+  <div class="tbl grow" style="grid-template-columns:1.1fr 1fr 1.7fr"><div class="th">我想看什么</div><div class="th">用哪种图</div><div class="th">范例</div><div class="td k"><b>看变化、看趋势</b></div><div class="td"><b>折线图</b></div><div class="td">温度<b>一晚上怎么一点点降下去</b></div><div class="td k"><b>比大小、比高低</b></div><div class="td"><b>柱状图</b></div><div class="td"><b>几个房间谁最冷</b></div><div class="td k"><b>横轴 / 纵轴 / 单位</b></div><div class="td"><b>三样都要标</b></div><div class="td">横轴＝房间，纵轴＝温度（<b>℃</b>）</div></div>
+  <div style="margin-top:20px"><div class="strip a"><b>没标单位的图，评委看不懂。</b> 横轴、纵轴、单位是一张图的「<b>身份证</b>」——<b>一样都不能少</b></div></div>
+</div>
+<div class="notes"><p>选图听起来难，其实<b>只有一问</b>：</p><p>（放慢，一字一句）</p><p><b>你是要看趋势，还是要比大小？</b></p><p>（停顿）</p><p><b>看变化、看趋势 → 折线图。</b></p><p>比如：温度<b>一晚上怎么一点点降下去</b>。</p><p>（加重）</p><p>折线图的重点是那条线<b>往哪边走</b>。</p><p><b>比大小、比高低 → 柱状图。</b></p><p>比如：<b>几个房间谁最冷</b>。</p><p>（加重）</p><p>柱状图的重点是<b>谁高谁矮</b>。</p><p>（停顿）</p><p>我们的范例要<b>比四个房间</b>，所以用——</p><p>（等他们答）</p><p><b>柱状图。</b> 对。</p><p>（指第三行，指黑条，这条最容易丢分）</p><p>最后说<b>标注</b>，这条每年都有人丢分：</p><p>（放慢）</p><p><b>横轴、纵轴、单位，三样都要标。</b></p><p>（停顿）</p><p>为什么这么重要？</p><p>（加重）</p><p><b>没标单位的图，评委看不懂。</b></p><p>（放慢）</p><p>一根柱子高度是 19——</p><p><b>19 什么？度？次？个？</b></p><p>（停顿）</p><p>（一字一句）</p><p><b>横轴、纵轴、单位，是一张图的身份证。</b></p></div>
+</section>
+
+<section class="slide lay-steps3" data-title="微实验四步">
+<div class="phead"><span class="no">竞赛 C3</span>
+<span class="kick g">方法闭环</span>
+<span class="tslot">8–20 分</span>
+</div>
+<h2 class="ptitle">微实验四步：今天走完最后两步</h2>
+<p class="psub">L19 学过的老方法——<b>今天终于对上账</b></p>
+<div class="pbody"><div class="g3 grow"><div class="blk"><div class="step"><div class="num g">①②</div>
+        <div class="body"><p class="t"><b>预测 → 测量</b></p><p class="d"><b>C2 做完了</b>：<br>你猜过、也测过了。</p></div></div></div><div class="blk"><div class="step"><div class="num a">③</div>
+        <div class="body"><p class="t"><b>对比</b></p><p class="d"><b>今天</b>：把预测和实测<br><b>放在一起看</b>。</p></div></div></div><div class="blk"><div class="step"><div class="num c">④</div>
+        <div class="body"><p class="t"><b>结论</b></p><p class="d"><b>今天</b>：写一句<br><b>带数字、正面答题</b>的话。</p></div></div></div></div><div style="margin-top:16px"><div class="strip a">回头看 C2 的预测：<b>对上了，恭喜；没对上，别急着改数据——想想为什么</b></div></div><div style="margin-top:16px"><div class="strip c">那个「<b>没想到</b>」的地方，<b>常常就藏着你项目最亮的发现</b></div></div></div>
+<div class="notes"><p>今天还要完成一件事：<b>把微实验四步走完</b>。</p><p>（停顿）</p><p>四步还记得吗？L19 学过——</p><p><b>预测 → 测量 → 对比 → 结论。</b></p><p><b>前两步 C2 做完了</b>：你猜过，也测过了。</p><p><b>今天做后两步：对比、结论。</b></p><p>（停顿，指第一条黑条）</p><p><b>对比</b>就是：回头看 C2 的预测，<b>对上了吗？</b></p><p>（放慢）</p><p><b>对上了，恭喜。</b></p><p>（加重）</p><p><b>没对上——别急着改数据。</b></p><p>（停顿，重一点）</p><p>我要专门说这一句。</p><p>（放慢）</p><p>每年都有组，发现实测跟预测不一样，</p><p>第一反应是：「<b>是不是我测错了？要不要再测一次？</b>」</p><p>（停顿）</p><p>（加重）</p><p><b>不是。</b></p><p>（指第二条黑条，放慢）</p><p><b>那个「没想到」的地方，常常就藏着你项目最亮的发现。</b></p><p>（停顿，举例）</p><p>比如你猜北屋最冷，结果测出来<b>书房更冷</b>。</p><p>（停顿）</p><p>为什么？</p><p>（停顿）</p><p>也许书房的窗户<b>关不严</b>。</p><p>（一字一句）</p><p><b>——你发现了一件你家里人都不知道的事。</b></p><p>（停顿）</p><p><b>这才是研究。</b></p></div>
+</section>
+
+<section class="slide lay-rowlist" data-title="整理数据画图">
+<div class="phead"><span class="no">竞赛 C3</span>
+<span class="kick g">任务一</span>
+<span class="tslot">20–40 分</span>
+</div>
+<h2 class="ptitle">任务一：整理数据，画出图表</h2>
+<p class="psub"><b>Excel 也行，方格纸也行</b>——重要的是<b>读得懂</b></p>
+<div class="pbody"><div class="rowlist grow"><div class="rowitem"><div class="num g">1</div><div class="tx"><b>先整理成一张小表</b>：把日志里的数从散的变成整的（<b>标清单位</b>）</div></div><div class="rowitem"><div class="num a">2</div><div class="tx"><b>选图</b>：看趋势 → 折线；比大小 → 柱状——<b>先想清楚再下笔</b></div></div><div class="rowitem"><div class="num c">3</div><div class="tx"><b>画</b>：横轴、纵轴、单位<b>全标上</b>；数值写在柱子上 / 点旁边</div></div><div class="rowitem"><div class="num g">4</div><div class="tx"><b>数据太少？</b> 用<b>贯穿范例的数据</b>或 <b>12 号手工表</b>补几组——先走通「画图 → 读图 → 结论」</div></div><div class="rowitem"><div class="num a">5</div><div class="tx"><b>手绘慢？</b> 方格纸先画<b>草图</b>，精修留课后——今天保底是<b>一张能读出结论的图</b></div></div></div><div style="margin-top:20px"><div class="strip a"><b>没联网、没服务器，一样能画。</b> 方格纸、彩笔，照样画出<b>让人服气的图表</b>——<b>科学不挑设备</b></div></div></div>
+<div class="notes"><p>开始画图。</p><p><b>第一步，先整理成一张小表。</b></p><p>（放慢）</p><p>把日志里<b>散落的数</b>，变成<b>整齐的一张表</b>。</p><p>（加重）</p><p><b>标清单位。</b></p><p><b>第二步，选图。</b> 看趋势还是比大小？<b>先想清楚再下笔</b>。</p><p><b>第三步，画。</b></p><p>横轴、纵轴、单位全标上；数值写在柱子上或者点旁边。</p><p>（停顿，处理两种常见状况）</p><p><b>数据太少画不成图的组</b>——用贯穿范例的数据，或者 12 号手工表<b>现补几组</b>。</p><p>（加重）</p><p>今天重要的是<b>走通流程</b>：画图 → 读图 → 结论。</p><p><b>手绘太慢的组</b>——方格纸先画<b>草图</b>，精修留课后。</p><p>（加重）</p><p><b>今天保底是「一张能读出结论的图」，不是「一张漂亮的图」。</b></p><p>（指黑条，给离线组底气）</p><p>最后再说一次：</p><p><b>没联网、没服务器，一样能画。</b></p><p>（放慢）</p><p>方格纸、彩笔，<b>照样画出让人服气的图表</b>。</p><p>（一字一句）</p><p><b>科学不挑设备。</b></p></div>
+</section>
+
+<section class="slide lay-divider" data-title="课间休息">
+<div class="deco circle" style="width:200px;height:200px;top:-70px;right:180px"></div>
+<div class="deco square" style="width:130px;height:130px;left:-50px;bottom:70px;transform:rotate(12deg)"></div>
+<div class="deco tri" style="right:140px;bottom:90px;transform:rotate(14deg)"></div>
+<div class="dv">
+  <span class="dv-time">40–50 分</span>
+  <h2 class="dv-t">课间休息 10 分钟</h2>
+  <p class="dv-s">把图<b>贴出来</b>——互相<b>只看图</b>，猜对方的结论</p>
+</div>
+<div class="notes"><p>休息十分钟。</p><p>休息之前，<b>把你的图贴到墙上</b>。</p><p>（停顿）</p><p>然后玩一个游戏：</p><p>（放慢）</p><p><b>只看图，不听人说——猜猜他的结论是什么。</b></p><p>（停顿）</p><p>（加重）</p><p>这个游戏是<b>今天最好的检验</b>。</p><p>（放慢）</p><p>别人只看你的图，<b>就猜出了你的结论</b>——</p><p>（一字一句）</p><p><b>说明你的图会说话。</b></p><p>（停顿）</p><p>别人看了半天说「你这图想说啥」——</p><p>（停顿）</p><p><b>那就得改。</b></p><p>（停顿）</p><p>多半是三个原因：没标单位、选错图型、或者<b>数据太挤看不清</b>。</p><p>（停顿）</p><p>去吧，互相猜。</p></div>
+</section>
+
+<section class="slide lay-table" data-title="图表三问">
+<div class="phead"><span class="no">竞赛 C3</span>
+<span class="kick a">读图</span>
+<span class="tslot">50–62 分</span>
+</div>
+<h2 class="ptitle">图表三问 → 一句话结论</h2>
+<p class="psub">结论<b>不是嘴上说的，是从图里读出来的</b></p>
+<div class="pbody">
+  <div class="tbl grow" style="grid-template-columns:1.1fr 1.1fr 1.7fr"><div class="th">读图三问</div><div class="th">看什么</div><div class="th">范例答案</div><div class="td k">① 最高 / 最低在哪</div><div class="td"><b>最高那根、最矮那根</b></div><div class="td"><b>最低 ＝ 北屋</b></div><div class="td k">② 差别最大在哪</div><div class="td"><b>差了多少</b></div><div class="td">北屋比客厅<b>低 3℃</b></div><div class="td k">③ 这说明了什么</div><div class="td"><b>回到你的课题</b></div><div class="td">家里夜里<b>最冷的是北屋</b></div><div class="td k"><b>结论模板</b></div><div class="td"><b>数据显示 ___，所以 ___</b></div><div class="td">「数据显示<b>北屋平均比客厅低 3℃</b>，<b>所以家里夜里最冷的是北屋</b>」</div></div>
+  <div style="margin-top:20px"><div class="strip c">结论<b>必须带数字</b>、<b>必须正面回答 C1 的课题</b>——<b>这是项目和作品最大的区别</b></div></div>
+</div>
+<div class="notes"><p>图画好了，怎么读？<b>三问。</b></p><p><b>第①问：最高、最低在哪？</b></p><p>看最高那根、最矮那根。——最低是<b>北屋</b>。</p><p><b>第②问：差别最大在哪，差了多少？</b></p><p>——北屋比客厅<b>低 3 度</b>。</p><p>（加重）</p><p>注意，<b>要说出「3 度」这个数</b>。</p><p><b>第③问：这说明了什么？</b></p><p>（放慢）</p><p><b>回到你的课题。</b></p><p>（停顿）</p><p>然后套模板写结论：</p><p>（一字一句念）</p><p><b>「数据显示北屋平均比客厅低 3℃，所以家里夜里最冷的是北屋。」</b></p><p>（停顿）</p><p>看这句话有两个特点：</p><p><b>第一，带数字</b>——「低 3℃」。</p><p><b>第二，正面回答了问题</b>——C1 问「哪间最冷」，它答「是北屋」。</p><p>（停顿，指黑条，讲清分界）</p><p>（放慢，加重）</p><p><b>结论必须带数字，必须正面回答课题。</b></p><p>（停顿）</p><p>为什么这么严？</p><p>（一字一句）</p><p><b>因为这就是项目和作品最大的区别。</b></p><p>（停顿）</p><p>作品说：「我做了个温度报警器。」</p><p>项目说：「<b>数据显示北屋比客厅低 3 度，所以最冷的是北屋。</b>」</p><p>（停顿）</p><p><b>后面这句，是研究结论。</b></p></div>
+</section>
+
+<section class="slide lay-vstext" data-title="结论对不对">
+<div class="phead"><span class="no">竞赛 C3</span>
+<span class="kick c">自查</span>
+<span class="tslot">62–80 分</span>
+</div>
+<h2 class="ptitle">两种结论，评委一眼分得出</h2>
+<p class="psub">写完<b>对着 C1 的课题核一遍</b></p>
+<div class="pbody">
+  <div class="vs3 grow">
+    <div class="blk c vstx"><span class="tag c">× 站不住的结论</span><p class="q">「<b>北屋比较冷。</b>」<br>「<b>这个系统很实用。</b>」</p><p class="why"><b>没数字</b>——冷多少？<br><b>没答题</b>——C1 问的是「哪间最冷」。<br>评委会问：<b>你凭什么？</b></p></div>
+    <div class="vsmark">VS</div>
+    <div class="blk g vstx"><span class="tag g">○ 站得住的结论</span><p class="q">「**数据显示北屋平均比客厅低 3℃，<br>所以家里夜里最冷的是北屋。**」</p><p class="why"><b>有数字、正面答题。</b><br>后面还跟着<b>图</b>和<b>日志</b>。<br><b>每句话背后都有数。</b></p></div>
+  </div>
+  <div style="margin-top:20px"><div class="strip a">自查两句：<b>我的结论里有数字吗？</b> <b>它正面回答 C1 那个问题了吗？</b> ——两个都是「是」，才算过</div></div>
+</div>
+<div class="notes"><p>写完之后，对照这一页<b>自查</b>。</p><p>（指左边）</p><p>左边这两句，是<b>每年最常见的写法</b>：</p><p><b>「北屋比较冷。」</b></p><p><b>「这个系统很实用。」</b></p><p>（停顿）</p><p>问题在哪？</p><p>（等他们答，然后点）</p><p><b>第一，没数字。</b> 冷多少？——不知道。</p><p><b>第二，没答题。</b> C1 问的是「<b>哪间最冷</b>」，「比较冷」<b>没正面回答</b>。</p><p>（加重）</p><p>评委只要问一句：<b>「你凭什么这么说？」</b> ——就卡住了。</p><p>（指右边）</p><p>右边：</p><p><b>「数据显示北屋平均比客厅低 3℃，所以家里夜里最冷的是北屋。」</b></p><p>（停顿）</p><p><b>有数字、正面答题。</b></p><p>（放慢）</p><p>而且这句话后面还跟着<b>一张图</b>、<b>一本日志</b>。</p><p>（一字一句）</p><p><b>你说的每句话背后都有数。</b></p><p>（停顿，指黑条）</p><p>所以写完对自己问两句：</p><p><b>我的结论里有数字吗？</b></p><p><b>它正面回答 C1 那个问题了吗？</b></p><p>（加重）</p><p><b>两个都是「是」，才算过。</b></p></div>
+</section>
+
+<section class="slide lay-tiers3" data-title="分层任务">
+<div class="phead"><span class="no">竞赛 C3</span>
+<span class="kick g">分层任务</span>
+<span class="tslot">62–80 分</span>
+</div>
+<h2 class="ptitle">先一图一结论，再让证据立体</h2>
+<p class="psub">图表标注全 ＋ 结论带数字 ＝ 成功</p>
+<div class="pbody"><div class="g3 grow"><div class="blk tier t1"><div class="hd">★ 基础（必做）</div>
+        <p class="task">画一张<b>数据图表</b>（折线 / 柱状，<b>标清坐标单位</b>），写一句<b>带数字、回答课题</b>的结论。</p><p class="fill">数据显示 ______，所以 ______</p></div><div class="blk tier t2"><div class="hd">★★ 进阶（建议做）</div>
+        <p class="task">在图上<b>标出最高 / 最低点</b>，让人一眼看懂；把<b>结论和 C2 的预测对一对</b>。</p><p class="fill">预测 ______　实际 ______</p></div><div class="blk tier t3"><div class="hd">★★★ 挑战（学有余力）</div>
+        <p class="task"><b>再画第二张图</b>（另一个变量），让证据<b>更立体</b>。</p><p class="fill">第二张图画的是：__________</p></div></div>
+<div style="margin-top:22px"><div class="strip g">进阶那一档里「<b>标出最高 / 最低点</b>」很值：评委扫一眼图就看见你的结论——<b>不用找</b></div></div></div>
+<div class="notes"><p>三档。</p><p><b>基础必做</b>：一张图 + 一句结论。两个硬标准：<b>标注全、结论带数字</b>。</p><p><b>进阶建议做</b>：在图上<b>标出最高、最低点</b>。</p><p>（停顿，指黑条）</p><p>这一招很值。</p><p>（放慢）</p><p>评委看你的展板，<b>只有几秒钟</b>。</p><p>（加重）</p><p>你在最矮那根柱子上标一个「<b>最低 19℃</b>」——</p><p>（一字一句）</p><p><b>他扫一眼就看见你的结论了，不用找。</b></p><p>（停顿）</p><p>进阶还有一件事：<b>和 C2 的预测对一对</b>。</p><p>（加重）</p><p><b>对上没对上都写下来。</b></p><p><b>挑战档：再画第二张图。</b></p><p>（停顿）</p><p>比如：除了比房间，再画一张<b>一晚上的温度折线</b>。</p><p>（放慢）</p><p>两张图放一起，你的证据就<b>立体</b>了：</p><p><b>既知道「哪间最冷」，又知道「几点最冷」。</b></p></div>
+</section>
+
+<section class="slide lay-rowlist" data-title="小结">
+<div class="phead"><span class="no">竞赛 C3</span>
+<span class="kick a">小结</span>
+<span class="tslot">80–90 分</span>
+</div>
+<h2 class="ptitle">今天攒到第三样材料</h2>
+<p class="psub"><b>数据图表 ＋ 一句话结论</b></p>
+<div class="pbody"><div class="rowlist grow"><div class="rowitem"><div class="num g">1</div><div class="tx"><b>C1 查新报告</b> ✓ ／ <b>C2 研究日志</b> ✓ ／ <b>C3 数据图表 ＋ 结论</b> ✓（今天）</div></div><div class="rowitem"><div class="num a">2</div><div class="tx"><b>微实验四步走完了</b>：预测 → 测量 → 对比 → <b>结论</b>——你的问题<b>有答案了</b></div></div><div class="rowitem"><div class="num c">3</div><div class="tx"><b>C4 说明书 ＋ 展板</b> ── 把课题、方法、数据装进<b>一张让人三分钟看懂的板</b></div></div><div class="rowitem"><div class="num g">4</div><div class="tx"><b>C5 演示视频</b> ／ <b>C6 答辩逐字稿</b> ／ <b>C7 参赛包</b></div></div><div class="rowitem"><div class="num a">5</div><div class="tx"><b>现在你手里已经有了</b>：一个问题、一次实验、一本日志、一张图、一句结论</div></div></div><div style="margin-top:20px"><div class="strip g">下次 <b>C4</b>：把课题、方法、数据<b>装进一张展板</b>——让走过的人<b>三分钟看懂你做了什么</b></div></div></div>
+<div class="notes"><p>各组<b>亮图 ＋ 念结论</b>。</p><p>（各组轮流，一句话）</p><p>（听完，小结）</p><p>（放慢）</p><p>听见了吗——刚才每一组说的话里，<b>都有数字</b>。</p><p>（停顿）</p><p><b>这是今天最大的变化。</b></p><p>（停顿，看进度表）</p><p>第三样材料到手：<b>数据图表 ＋ 一句话结论</b>。</p><p>（放慢，数一数他们手里的东西）</p><p>现在你手里已经有了：</p><p><b>一个问题</b>（C1）、</p><p><b>一次实验</b>（C2）、</p><p><b>一本日志</b>（C2）、</p><p><b>一张图</b>（今天）、</p><p><b>一句结论</b>（今天）。</p><p>（停顿）</p><p>（加重）</p><p><b>你的问题，有答案了。</b></p><p>（停顿，抛钩子）</p><p>下次 <b>C4</b>：</p><p>（放慢）</p><p><b>把课题、方法、数据，装进一张展板。</b></p><p>（停顿）</p><p>比赛现场，评委走过你的桌子——</p><p>（一字一句）</p><p><b>你只有三分钟，甚至只有三十秒。</b></p><p>（停顿）</p><p>下次我们练：<b>怎么让人一眼看懂你做了什么。</b></p><p>（停顿）</p><p>下课。</p></div>
+</section>
+
+<section class="slide lay-cards2" data-title="课后任务">
+<div class="phead"><span class="no">竞赛 C3</span>
+<span class="kick a">课后任务</span>
+</div>
+<h2 class="ptitle">课后任务</h2>
+<div class="pbody"><div class="g2 grow"><div class="blk g"><h4>基础（全员）</h4><p>把你的<b>数据图表</b>给家人看，请他们<b>只看图、不听你说</b>——<b>猜猜你的结论</b>。</p></div><div class="blk a"><h4>拓展（选做）</h4><p>如果结论和 <b>C2 的预测不一样</b>，写下你觉得<b>为什么</b>——<b>那里往往藏着新发现</b>。</p></div></div>
+<div style="margin-top:24px"><div class="strip g"><b>让数据说话的人，答辩时最有底气</b>——因为你说的每句话背后<b>都有数</b></div></div></div>
+<div class="notes"><p>课后两件事。</p><p>第一件全员做，<b>这是个很聪明的测试</b>：</p><p>（放慢）</p><p>把图给家人看，但是——</p><p>（加重）</p><p><b>只给看图，你一句话都不许说。</b></p><p>（停顿）</p><p>然后问他们：<b>「你猜我的结论是什么？」</b></p><p>（停顿）</p><p>猜对了——<b>你的图合格了</b>。</p><p>（放慢）</p><p>猜不出来——<b>那就得改</b>，多半是标注不全或者选错了图型。</p><p>（停顿）</p><p>第二件选做，我很希望做过实验的组都做：</p><p><b>如果结论和预测不一样，写下你觉得为什么。</b></p><p>（放慢）</p><p>（一字一句）</p><p><b>那里往往藏着新发现。</b></p><p>（停顿）</p><p>最后一句：</p><p><b>让数据说话的人，答辩时最有底气——因为你说的每句话背后都有数。</b></p><p>（停顿）</p><p>下课。</p></div>
+</section>
+<div class="deck-footer"><span>ESP32 × AI 科创课程 · 竞赛延伸包（选修 · 与主线并行） · C3 让数据说话</span><span class="slide-number" data-current="1" data-total="11"></span></div>
+<div class="progress-bar"><span></span></div>
+</div>
+<script src="assets/fitstage.js"></script>
+<script src="assets/runtime.js"></script>
+</body>
+</html>

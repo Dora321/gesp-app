@@ -1,0 +1,213 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>第34课 · 把AI装进去 — ESP32 × AI 科创课程</title>
+<link rel="stylesheet" href="assets/base.css">
+<link rel="stylesheet" id="theme-link" href="assets/theme-course-pop.css">
+<link rel="stylesheet" href="assets/animations.css">
+</head>
+<body>
+<div class="deck" data-theme-base="assets/">
+<section class="slide lay-cover is-active" data-title="封面">
+<div class="deco circle" style="width:170px;height:170px;top:-52px;right:238px"></div>
+<div class="deco tri" style="right:110px;bottom:132px;transform:rotate(14deg)"></div>
+<div class="deco square" style="width:120px;height:120px;left:-46px;bottom:86px;transform:rotate(12deg)"></div>
+<span class="cv-bar">ESP32 × AI ／ 第五阶段「融合AI」 · 智能作品项目</span>
+<h1 class="cv-title">把 AI<em>装进去</em></h1>
+<p class="cv-sub">看、认、说、动——四种本事，今天装进**同一个作品**</p>
+<div class="cv-tags"><span class="tag">植物观察员</span><span class="tag">先保底后花样</span><span class="tag">硬检查点：两层握手</span><span class="tag">90 分钟连堂</span></div>
+<div class="cv-no">34</div>
+<div class="notes"><p>（拿起昨天发的分工图草稿）</p><p>昨天下课前，你们每组画了一张图。</p><p>（停顿）</p><p>今天<b>直接开工</b>。</p><p>（停顿，宣布身份）</p><p>今天你们的身份，我要正式说一遍：</p><p>（放慢，一字一句）</p><p><b>总设计师。</b></p><p>（停顿）</p><p>看看你的图纸：</p><p><b>摄像头是眼睛部件；</b></p><p><b>识别是认知部件；</b></p><p><b>大模型是嘴部件；</b></p><p><b>ESP32 是手脚部件。</b></p><p>（停顿，加重）</p><p><b>AI 再聪明，它也是你图纸上的一个件。</b></p><p>（停顿）</p><p><b>谁在图纸上签字？</b></p><p>（等他们答）</p><p><b>你。</b></p><p>（停顿，转到铁律）</p><p>开工之前，一条铁律，今天一整节课都按它走：</p><p>（一字一句）</p><p><b>先保底链路，再加花样。</b></p><p>（停顿）</p><p>L23 那天我们说过同一句话，还记得吗？</p><p><b>地基没打好就装吊灯，塌的时候一起塌。</b></p><p>（停顿）</p><p>今天是<b>双层版</b>的同一条规矩。</p></div>
+</section>
+
+<section class="slide lay-flow3" data-title="保底链路">
+<div class="phead"><span class="no">第34课</span>
+<span class="kick g">今天要跑通的</span>
+<span class="tslot">0–8 分</span>
+</div>
+<h2 class="ptitle">《植物观察员》保底链路（贴墙）</h2>
+<p class="psub">就这一条链——<b>跑通它，今天就成了</b></p>
+<div class="pbody"><div class="flow grow"><div class="fl g"><span class="fl-k">① 拍 ＋ 认</span><p class="fl-t"><b>树莓派</b></p><p class="fl-b">拍植物 → 识别<br><br><code class="ic">healthy</code> / <code class="ic">dry</code> / <code class="ic">unknown</code><br><b>＋ 把握分</b></p></div><div class="fl-arr">→</div><div class="fl a"><span class="fl-k">② 三档</span><p class="fl-t"><b>云 → ESP32</b></p><p class="fl-b"><b>红</b>：当没看见<br><b>黄</b>：黄灯，<b>不动作</b><br><b>绿</b>：才照词表干活</p></div><div class="fl-arr">→</div><div class="fl c"><span class="fl-k">③ 动</span><p class="fl-t"><b>ESP32</b></p><p class="fl-b">健康 → <b>绿灯</b><br>缺水 → <b>红灯＋蜂鸣＋「WATER!」</b><br>认不出 → <b>黄灯不动</b></p></div></div><div style="margin-top:20px"><div class="strip a"><b>L32 的教养全在这条链里</b>：不确定就不动手——<b>兜底不是花样，是保底的一部分</b></div></div></div>
+<div class="notes"><p>这就是今天要跑通的<b>唯一一条链</b>。贴墙上。</p><p><b>第①段，树莓派</b>：拍植物、识别，给出一个词和一个把握分。</p><p>词只有三个：<code class="ic">healthy</code>（健康）、<code class="ic">dry</code>（缺水）、<code class="ic">unknown</code>（认不出）。</p><p><b>第②段，三档</b>：红当没看见、黄不动作、绿才干活。</p><p><b>第③段，ESP32 动手</b>：</p><p>健康 → 绿灯；</p><p>缺水 → <b>红灯 ＋ 蜂鸣 ＋ 屏上「WATER!」</b>；</p><p>认不出 → 黄灯，<b>不动</b>。</p><p>（停顿，指黑条，强调一件很容易被误会的事）</p><p>有同学可能会想：三档兜底算不算「花样」？能不能先不做？</p><p>（加重）</p><p><b>不能。</b></p><p>（放慢）</p><p><b>兜底不是花样，它是保底的一部分。</b></p><p>（停顿）</p><p>为什么？</p><p>（停顿）</p><p>想想看：一个植物观察员，<b>看错了就乱叫</b>——</p><p>主人半夜被吵醒，跑过去一看，植物好好的。</p><p>（停顿）</p><p><b>第二次它再叫，主人就不理它了。</b></p><p>（停顿）</p><p>L21 学过这个，叫什么来着？——<b>狼来了。</b></p></div>
+</section>
+
+<section class="slide lay-steps3" data-title="硬检查点">
+<div class="phead"><span class="no">第34课</span>
+<span class="kick c">今天的验收线</span>
+<span class="tslot">0–8 分</span>
+</div>
+<h2 class="ptitle">硬检查点：两层握手（三步连续成功 1 次）</h2>
+<p class="psub">下课前<b>当面演示</b>——过了，明天带作品进发布会</p>
+<div class="pbody"><div class="g3 grow"><div class="blk"><div class="step"><div class="num g">①</div>
+        <div class="body"><p class="t">真实拍照触发</p><p class="d"><b>真的拍一张</b>（不是模拟词）。<br>镜头对准你的植物。</p></div></div></div><div class="blk"><div class="step"><div class="num a">②</div>
+        <div class="body"><p class="t">识别结果过三档</p><p class="d">把握分够，<b>走绿档</b>；<br>不够就走黄/红——<b>也算链路正常</b>。</p></div></div></div><div class="blk"><div class="step"><div class="num c">③</div>
+        <div class="body"><p class="t">ESP32 正确响应</p><p class="d">灯、屏、蜂鸣器<br><b>照词表做对</b>。</p></div></div></div></div><div style="margin-top:16px"><div class="strip c"><b>三步连续成功一次</b>就算过——不要求百发百中，<b>要求这三步真的连起来过</b></div></div><div style="margin-top:16px"><div class="strip g">没过线的组：<b>登记，不批评</b>。明天上半场<b>优先给你们兜底</b>——<b>进发布会的门不会关</b></div></div></div>
+<div class="notes"><p>今天的验收线，三步，<b>贴墙上</b>。</p><p><b>第①步：真实拍照触发。</b></p><p>（加重）</p><p><b>真的拍一张</b>，不是我发模拟词。模拟词是练习用的，验收得来真的。</p><p><b>第②步：识别结果过三档。</b></p><p>注意这句话的意思——</p><p>（放慢）</p><p><b>不是「必须走绿档」。</b></p><p>走黄档、走红档，只要行为<b>符合三档规则</b>，就说明你的链路<b>是正常的</b>。</p><p>（停顿）</p><p>把握分低的时候黄灯亮、手脚不动——<b>这也是正确响应</b>。</p><p><b>第③步：ESP32 正确响应。</b> 灯、屏、蜂鸣器，照词表做对。</p><p>（指第一条黑条）</p><p><b>三步连续成功一次</b>就算过。</p><p>（加重）</p><p>不要求百发百中，<b>要求这三步真的连起来过一次</b>。</p><p>（指第二条黑条，语气放软）</p><p>最后一句给可能紧张的组：</p><p><b>没过线的，登记，不批评。</b></p><p>（放慢）</p><p>明天上半场<b>优先给你们兜底</b>——教师标准段 + 一对一。</p><p>（加重）</p><p><b>进发布会的门，不会关。</b></p></div>
+</section>
+
+<section class="slide lay-rowlist" data-title="分层开工">
+<div class="phead"><span class="no">第34课</span>
+<span class="kick g">并行开工</span>
+<span class="tslot">8–40 分</span>
+</div>
+<h2 class="ptitle">两层并行开工：各自过关，再合体</h2>
+<p class="psub">按昨天的分工图——<b>两边同时动</b></p>
+<div class="pbody"><div class="rowlist grow"><div class="rowitem"><div class="num g">1</div><div class="tx"><b>智能层组员</b>：调「<b>拍照 → 识别 → 发词</b>」——面板上把结果真的发到你们的主题</div></div><div class="rowitem"><div class="num a">2</div><div class="tx"><b>执行层组员</b>：用<b>模拟词</b>调「<b>收词 → 三档 → 显示＋动作</b>」（<b>先模拟后真实</b>，L31 老规矩）</div></div><div class="rowitem"><div class="num c">3</div><div class="tx"><b>联调的人</b>：两边都看着，<b>盯住一件事——主题名两边一字不差吗？</b></div></div><div class="rowitem"><div class="num g">4</div><div class="tx"><b>各自过关再合体</b>：两边都能单独演示成功，才约时间合体</div></div><div class="rowitem"><div class="num a">5</div><div class="tx"><b>卡住 10 分钟</b>：举手换<b>教师标准段</b>（识别发消息段 / 接收段 / 三档判断段）——<b>先过线，再考古</b></div></div></div><div style="margin-top:20px"><div class="strip a">并行开工的好处：<b>两个人同时在干活</b>，不是一个人写、两个人看着——<b>下课前的时间不够你们排队</b></div></div></div>
+<div class="notes"><p>现在按分工图<b>并行开工</b>，两边同时动。</p><p><b>智能层的同学</b>：调「拍照 → 识别 → 发词」，把结果真的发到你们的主题上。</p><p><b>执行层的同学</b>：<b>用模拟词</b>调「收词 → 三档 → 显示 + 动作」。</p><p>（加重）</p><p><b>先模拟后真实</b>——L31 的老规矩，今天照样。</p><p><b>联调的同学</b>：两边都看着，而且死死盯住一件事——</p><p>（放慢）</p><p><b>主题名，两边一字不差吗？</b></p><p>（停顿）</p><p>这一条今年、去年、前年都有人栽。</p><p>（指第四条）</p><p><b>各自过关，再合体。</b></p><p>（加重）</p><p>两边都能<b>单独演示成功</b>，才约时间合体。</p><p>（停顿）</p><p>为什么？因为两边都不确定的时候合体，<b>你查不出是谁的问题</b>——这话我说过三遍了。</p><p>（指最后一条）</p><p><b>卡住 10 分钟，举手。</b></p><p>我这里有三份<b>教师标准段</b>：识别发消息段、接收段、三档判断段。</p><p>（加重）</p><p><b>先过线，再考古</b>——L24 的老规矩。</p><p>（指黑条）</p><p>最后说一句关于节奏的：</p><p><b>并行的好处是两个人同时在干活</b>，不是一个人写、两个人看着。</p><p>（停顿）</p><p><b>下课前的时间，不够你们排队。</b></p></div>
+</section>
+
+<section class="slide lay-codefull" data-title="保底链路 ①-1">
+<div class="phead"><span class="no">第34课</span>
+<span class="kick g">①-1 家当</span>
+<span class="tslot">8–40 分</span>
+</div>
+<h2 class="ptitle">保底链路 ①-1：家当 ＋ 三档线</h2>
+<p class="psub">四个器件、一个主题、两条线——<b>全是老朋友</b></p>
+<div class="pbody"><div class="code"><span class="lab g">《植物观察员》保底链路 · ①-1</span><pre style="font-size:20px;line-height:1.55"><span class="k">from</span> machine <span class="k">import</span> Pin, SoftI2C
+<span class="k">import</span> network, time, neopixel, ssd1306
+<span class="k">from</span> umqtt.simple <span class="k">import</span> MQTTClient
+
+WIFI_SSID = "你的WiFi名"; WIFI_PASS = "你的WiFi密码"
+BEMFA_KEY = "你的巴法云私钥"
+TOPIC = "g1plant01"              <span class="c"># 植物观察员的识别主题</span>
+GREEN_LINE = 80; YELLOW_LINE = 50    <span class="c"># 三档线（L32 的把握分规矩）</span>
+
+i2c = SoftI2C(scl=Pin(22), sda=Pin(21))
+oled = ssd1306.SSD1306_I2C(128, 64, i2c)
+np = neopixel.NeoPixel(Pin(5), 8)
+buzzer = Pin(13, Pin.OUT)</pre></div><div style="margin-top:18px"><div class="strip a"><code class="ic">GREEN_LINE</code> / <code class="ic">YELLOW_LINE</code> 就放在<b>最显眼的地方</b>——等会儿要<b>按你组的数据调它</b></div></div></div>
+<div class="notes"><p>保底链路第①段，<b>家当</b>。</p><p>（快速过）</p><p>导入四行，参数三行——老样子。</p><p><code class="ic">TOPIC = "g1plant01"</code> —— 植物观察员的识别主题。</p><p>（指三档线那行）</p><p><code class="ic">GREEN_LINE = 80; YELLOW_LINE = 50</code> —— <b>L32 的三档线，搬过来了</b>。</p><p>（指黑条）</p><p>注意它放的位置：<b>最显眼的地方，第一屏就能看见</b>。</p><p>（放慢）</p><p>为什么要放这儿？</p><p>（加重）</p><p><b>因为等会儿你要调它。</b></p><p>（停顿）</p><p>L32 学过：两条线可以<b>按你组的测试数据微调</b>。放在最上面，改起来<b>一眼就找到</b>。</p><p>（停顿）</p><p>这是个好习惯：<b>会变的数字，放在最前面。</b></p><p>（指器件四行）</p><p>四个器件：屏、灯带、蜂鸣器——</p><p>（停顿）</p><p><b>全是老朋友，一个新东西都没有。</b></p><p>（加重）</p><p>今天这节课的难点，<b>从来不是零件</b>，是<b>把它们接成一条链</b>。</p></div>
+</section>
+
+<section class="slide lay-codefull" data-title="保底链路 ①-2">
+<div class="phead"><span class="no">第34课</span>
+<span class="kick a">①-2 小工具</span>
+<span class="tslot">8–40 分</span>
+</div>
+<h2 class="ptitle">保底链路 ①-2：两个小工具</h2>
+<p class="psub"><code class="ic">light()</code> 点灯、<code class="ic">oled_show()</code> 写屏——<b>后面全靠这两句</b></p>
+<div class="pbody"><div class="code"><span class="lab g">《植物观察员》保底链路 · ①-2</span><pre style="font-size:26px;line-height:1.55"><span class="k">def</span> light(r, g, b):
+    <span class="k">for</span> i <span class="k">in</span> <span class="k">range</span>(8):
+        np[i] = (r, g, b)
+    np.write()
+
+<span class="k">def</span> oled_show(a, b=""):
+    oled.fill(0); oled.text(a, 0, 20)
+    <span class="k">if</span> b:
+        oled.text(b, 0, 40)
+    oled.show()</pre></div><div style="margin-top:18px"><div class="strip g"><code class="ic">oled_show(a, b="")</code> 里的 <code class="ic">b=""</code> 是「<b>可以不给第二行</b>」——给了就显示两行，不给就一行</div></div></div>
+<div class="notes"><p>两个<b>小工具函数</b>。</p><p><code class="ic">light(r, g, b)</code> —— L31 那个，原样搬。</p><p><code class="ic">oled_show(a, b="")</code> —— 写屏，今天新封的。</p><p>（指黑条，讲那个 <code class="ic">b=""</code>）</p><p>这里有个<b>小新东西</b>：<code class="ic">b=""</code>。</p><p>（放慢）</p><p>它的意思是「<b>第二行可以不给</b>」。</p><p><code class="ic">oled_show("HEALTHY")</code> —— 只显示一行。</p><p><code class="ic">oled_show("PLANT", "WATCHER")</code> —— 显示两行。</p><p>（停顿）</p><p>这种写法叫「<b>默认值</b>」：你不说，它就用空的。</p><p>（停顿，讲为什么要封这两个函数——这是工程思维）</p><p>现在体会一下：<b>为什么要把这两件事封成函数？</b></p><p>（等他们想）</p><p>（放慢）</p><p>因为下面的链路里，<b>要写好多遍「亮灯」和「写屏」</b>。</p><p>（加重）</p><p>封成一句，下面就<b>干净了</b>——</p><p><code class="ic">light(0, 40, 0); oled_show("HEALTHY")</code>，<b>一行说清一件事</b>。</p><p>（停顿）</p><p><b>好代码不是聪明，是干净。</b></p></div>
+</section>
+
+<section class="slide lay-codefull" data-title="保底链路 ②-1">
+<div class="phead"><span class="no">第34课</span>
+<span class="kick c">②-1 大脑</span>
+<span class="tslot">8–40 分</span>
+</div>
+<h2 class="ptitle">保底链路 ②-1：三档 ＋ 词表 → 动作</h2>
+<p class="psub"><b>先问把握分，再问是什么</b>——L32 的顺序，一点没变</p>
+<div class="pbody"><div class="code"><span class="lab g">《植物观察员》保底链路 · ②-1</span><pre style="font-size:21px;line-height:1.55"><span class="k">def</span> on_vision(topic, msg):       <span class="c"># 收到「词,把握分」：healthy / dry / unknown</span>
+    word, score = msg.decode().split(",")
+    score = int(score)
+    print(word, score)
+    <span class="k">if</span> score &lt; YELLOW_LINE:              <span class="c"># 红：不信，当没看见</span>
+        <span class="k">return</span>
+    <span class="k">if</span> score &lt; GREEN_LINE:               <span class="c"># 黄：不确定，不动作</span>
+        light(40, 30, 0); oled_show("?", str(score)); <span class="k">return</span>
+    <span class="k">if</span> word == "healthy":                <span class="c"># 绿档 + 健康 → 绿灯</span>
+        light(0, 40, 0); oled_show("HEALTHY")
+    <span class="k">elif</span> word == "dry":                  <span class="c"># 绿档 + 缺水 → 红灯 + 蜂鸣 + 提醒</span>
+        light(40, 0, 0); oled_show("WATER!")
+        buzzer.value(1); time.sleep(1); buzzer.value(0)
+    <span class="k">else</span>:                                <span class="c"># 认不出 → 黄灯不动作</span>
+        light(40, 30, 0); oled_show("?")</pre></div></div>
+<div class="notes"><p>这是整个作品的<b>大脑</b>，今天最该读懂的一页。</p><p>（带他们看结构，从上往下）</p><p>前四行：<b>拆消息</b>——「词,把握分」切开，分数转成数，打印出来。</p><p>然后是<b>两道关口</b>，注意顺序：</p><p><code class="ic">if score &lt; YELLOW_LINE: return</code> —— <b>红档：当没看见。</b></p><p>（加重）</p><p><code class="ic">return</code> 的意思是「<b>到此为止，后面一律不执行</b>」。</p><p>（停顿）</p><p>这是今天第一次用 <code class="ic">return</code> 做这件事。它比 L32 的 <code class="ic">pass</code> 更利落：<b>直接走人。</b></p><p><code class="ic">if score &lt; GREEN_LINE:</code> —— <b>黄档</b>：黄灯 + 屏上问号和分数，然后<b>也 return</b>。</p><p>（加重）</p><p><b>黄档不往下走。</b> 所以后面的词表判断，<b>只有绿档才够得着</b>。</p><p>（停顿）</p><p><b>闯过这两关，才轮到问「是什么」。</b></p><p>然后才是词表：</p><p><code class="ic">healthy</code> → 绿灯 + 「HEALTHY」。</p><p><code class="ic">dry</code> → <b>红灯 ＋ 蜂鸣响一秒 ＋ 屏上「WATER!」</b>。</p><p><code class="ic">else</code> → <b>认不出，黄灯，不动作</b>。</p><p>（停顿，收束）</p><p>（放慢）</p><p>读一遍这段代码的<b>骨架</b>，你会发现它在说一句话：</p><p><b>「我有把握，而且我认识它，我才动手。」</b></p><p>（停顿）</p><p><b>这就是你给它立的教养。</b></p></div>
+</section>
+
+<section class="slide lay-codefull" data-title="保底链路 ②-2">
+<div class="phead"><span class="no">第34课</span>
+<span class="kick g">②-2 接上线</span>
+<span class="tslot">8–40 分</span>
+</div>
+<h2 class="ptitle">保底链路 ②-2：连网 ＋ 订阅 ＋ 等消息</h2>
+<p class="psub">接在 ②-1 后面——<b>这一段你写过四遍了</b></p>
+<div class="pbody"><div class="code"><span class="lab g">《植物观察员》保底链路 · ②-2</span><pre style="font-size:26px;line-height:1.55">wlan = network.WLAN(network.STA_IF); wlan.active(<span class="k">True</span>)
+wlan.connect(WIFI_SSID, WIFI_PASS)
+<span class="k">while</span> <span class="k">not</span> wlan.isconnected():
+    time.sleep(0.5)
+client = MQTTClient(BEMFA_KEY, "mqtt.bemfa.com", 9501)
+client.set_callback(on_vision)
+client.connect(); client.subscribe(TOPIC)
+oled_show("PLANT", "WATCHER")
+<span class="k">while</span> <span class="k">True</span>:
+    client.check_msg(); time.sleep(0.1)</pre></div><div style="margin-top:18px"><div class="strip a">开机先 <code class="ic">oled_show("PLANT", "WATCHER")</code> ——<b>屏上有字 ＝ 它醒着</b>，这是你排错时的第一个信号</div></div></div>
+<div class="notes"><p>最后一段，<b>你已经写过四遍了</b>：L18、L20、L28、L31。</p><p>连 WiFi、连云、挂回调、订阅、循环 <code class="ic">check_msg</code>。</p><p>（停顿，笑）</p><p>说实话，这一段现在对你们来说，<b>应该已经没什么感觉了</b>。</p><p>（放慢）</p><p>这本身就是件值得高兴的事：</p><p>（加重）</p><p><b>几节课之前，这段代码还让你们头疼呢。</b></p><p>（指倒数第三行，讲那个开机提示）</p><p><code class="ic">oled_show("PLANT", "WATCHER")</code> —— 开机先在屏上写自己的名字。</p><p>（指黑条）</p><p>为什么这一行值得写？</p><p>（放慢）</p><p><b>屏上有字，就说明它醒着。</b></p><p>（停顿）</p><p>等会儿联调的时候，这是你的<b>第一个信号</b>：</p><p>屏是黑的 → 程序根本没跑起来，别去查云了；</p><p>屏上有「PLANT WATCHER」 → 它活着，在等球。</p><p>（停顿）</p><p>好，两段拼起来，<b>上板</b>。</p><p>（停顿）</p><p>上板之后<b>先别拍照</b>——</p><p><b>举手，我给你们发模拟词。</b></p></div>
+</section>
+
+<section class="slide lay-divider" data-title="课间休息">
+<div class="deco circle" style="width:200px;height:200px;top:-70px;right:180px"></div>
+<div class="deco square" style="width:130px;height:130px;left:-50px;bottom:70px;transform:rotate(12deg)"></div>
+<div class="deco tri" style="right:140px;bottom:90px;transform:rotate(14deg)"></div>
+<div class="dv">
+  <span class="dv-time">40–50 分</span>
+  <h2 class="dv-t">课间休息 10 分钟</h2>
+  <p class="dv-s">两层<b>各自报进度</b>，约好<b>合体时间</b></p>
+</div>
+<div class="notes"><p>休息十分钟。</p><p>走之前，组内开个<b>十秒钟的会</b>，说两句话：</p><p><b>智能层：「我这边能发词了 / 还差什么。」</b></p><p><b>执行层：「我这边模拟词全接住了 / 还差什么。」</b></p><p>（停顿）</p><p>然后<b>约一个合体时间</b>：「55 分我们合。」</p><p>（停顿，讲这件事为什么重要）</p><p>为什么要专门约时间？</p><p>（放慢）</p><p>因为不约的话，会发生一件事：</p><p>（停顿）</p><p>一边早就好了，坐着等；另一边埋头调，<b>不知道有人在等他</b>。</p><p>（加重）</p><p><b>十分钟就这么没了。</b></p><p>（停顿）</p><p>真实的项目里，这叫「<b>对齐进度</b>」。</p><p>（停顿）</p><p>一句话的事，<b>能省半节课</b>。</p></div>
+</section>
+
+<section class="slide lay-rowlist" data-title="两层合体">
+<div class="phead"><span class="no">第34课</span>
+<span class="kick c">合体联调</span>
+<span class="tslot">50–70 分</span>
+</div>
+<h2 class="ptitle">合体：拍真植物 → 看它动</h2>
+<p class="psub">第一次<b>两层真的握手</b></p>
+<div class="pbody"><div class="rowlist grow"><div class="rowitem"><div class="num g">1</div><div class="tx"><b>镜头对准你们的植物</b>，面板点识别——然后<b>盯住 ESP32</b></div></div><div class="rowitem"><div class="num a">2</div><div class="tx"><b>第一次多半不完美</b>：可能走了黄档、可能认成别的——<b>先别慌，那也是数据</b></div></div><div class="rowitem"><div class="num c">3</div><div class="tx"><b>卡住了用分层调试法</b>：老师发一条<b>模拟词</b>——亮了，锅在识别侧；不亮，先修接球手</div></div><div class="rowitem"><div class="num g">4</div><div class="tx"><b>它把健康认成缺水？</b> 正常！调<b>三档线</b>或者换个角度重拍——<b>这正是 L32 学的裁判本事</b></div></div><div class="rowitem"><div class="num a">5</div><div class="tx"><b>10 分钟不动就换教师标准段</b>——先过线，课后再回头研究</div></div></div><div style="margin-top:20px"><div class="strip a"><b>额度留给验收</b>：练习轮全用<b>模拟词</b>，真调留给<b>验收前的最后彩排</b></div></div></div>
+<div class="notes"><p>合体。镜头对准植物，点识别，然后——<b>盯住你的 ESP32</b>。</p><p>（等第一组成功，停一下）</p><p>（放慢）</p><p>看见了吗：</p><p><b>它看了一眼你的植物，然后你的灯亮了。</b></p><p>（停顿）</p><p>中间经过了：摄像头、识别、云、三档判断、词表、灯带。</p><p>（加重）</p><p><b>六个环节，全是你自己接的。</b></p><p>（转回实务）</p><p>几件事：</p><p><b>第一次多半不完美。</b> 可能走了黄档、可能认成别的东西。</p><p>（加重）</p><p><b>先别慌——那也是数据。</b></p><p><b>卡住了用分层调试法</b>：我发一条模拟词，一秒分清锅在哪层。</p><p>（指第四条）</p><p><b>它把健康认成缺水？</b></p><p>（停顿）</p><p><b>太正常了！</b></p><p>怎么办？调三档线，或者换个角度重拍。</p><p>（加重）</p><p><b>这正是 L32 学的裁判本事——现在你真的用上了。</b></p><p>（指黑条，纪律）</p><p>最后，<b>额度留给验收</b>：</p><p>练习轮<b>全用模拟词</b>，真调留给<b>验收前的最后彩排</b>。</p></div>
+</section>
+
+<section class="slide lay-tiers3" data-title="花样时间">
+<div class="phead"><span class="no">第34课</span>
+<span class="kick g">分层任务</span>
+<span class="tslot">70–82 分</span>
+</div>
+<h2 class="ptitle">过线的组，可以加花样了</h2>
+<p class="psub"><b>保底过线 ＝ 拿到加花样的资格</b></p>
+<div class="pbody"><div class="g3 grow"><div class="blk tier t1"><div class="hd">★ 保底（必做）</div>
+        <p class="task"><b>保底链路跑通</b> ＋ <b>硬检查点三步连续成功 1 次</b>（教师当面验收）。</p><p class="fill">□ 过线　验收人：________</p></div><div class="blk tier t2"><div class="hd">★★ 挑战（学有余力）</div>
+        <p class="task">加一个花样：<b>语音播报状态</b>（L28）／ <b>OLED 画表情</b> ／ 给植物拍「<b>成长日记</b>」照片。</p><p class="fill">我加的花样：____________</p></div><div class="blk tier t3"><div class="hd">★★★ 再挑战</div>
+        <p class="task">把<b>大模型的「浇水建议」</b>显示到 OLED（把 <b>L33</b> 接进来）。</p><p class="fill">□ 屏上出现了 AI 的建议</p></div></div>
+<div style="margin-top:22px"><div class="strip g">再挑战那一档，才是真正的「<b>四样齐活</b>」：<b>看、认、说、动</b>，一个作品里全有了</div></div></div>
+<div class="notes"><p>三档。</p><p><b>保底必做</b>：链路跑通，<b>硬检查点当面过</b>。</p><p>（加重）</p><p><b>保底过线，才有资格加花样。</b> 没过线的组，<b>别碰下面两档</b>。</p><p><b>挑战档</b>：语音播报（L28 的耳朵反过来用）、OLED 画表情、拍成长日记。</p><p><b>再挑战：把 L33 的大模型建议显示到 OLED。</b></p><p>（停顿，讲这一档的分量）</p><p>这一档要是做成了，你的作品就是<b>四样齐活</b>：</p><p>（一字一句）</p><p><b>看</b>（摄像头）、<b>认</b>（识别）、<b>说</b>（大模型）、<b>动</b>（ESP32）。</p><p>（停顿）</p><p>整个第五阶段学的东西，<b>全在一个作品里了</b>。</p><p>（停顿，提醒一个实际的坑）</p><p>做这一档的组注意一件事：</p><p>（放慢）</p><p>大模型说的是<b>一大段话</b>，你的 OLED 只有<b>两行</b>。</p><p>（停顿）</p><p>怎么办？</p><p>（等他们想起来）</p><p><b>——「用一句话说重点」！</b></p><p>（加重）</p><p>昨天学的「提要求」，今天派上用场了。</p></div>
+</section>
+
+<section class="slide lay-rowlist" data-title="硬检查点验收">
+<div class="phead"><span class="no">第34课</span>
+<span class="kick c">验收</span>
+<span class="tslot">82–90 分</span>
+</div>
+<h2 class="ptitle">验收：当面演示，三步连起来</h2>
+<p class="psub">过了，<b>明天带作品进发布会</b></p>
+<div class="pbody"><div class="rowlist grow"><div class="rowitem"><div class="num g">1</div><div class="tx"><b>① 真实拍照触发</b>——当着老师的面拍一张</div></div><div class="rowitem"><div class="num a">2</div><div class="tx"><b>② 识别结果过三档</b>——走绿档就照词表动；走黄/红档<b>行为对也算</b></div></div><div class="rowitem"><div class="num c">3</div><div class="tx"><b>③ ESP32 正确响应</b>——灯、屏、蜂鸣器<b>做对</b></div></div><div class="rowitem"><div class="num g">4</div><div class="tx"><b>三步连续成功 1 次</b> → 过线，<b>明天带作品进发布会</b></div></div><div class="rowitem"><div class="num a">5</div><div class="tx"><b>没过的组</b>：登记，<b>明天上半场优先兜底</b>（教师标准段 ＋ 一对一）——<b>门不会关</b></div></div></div><div style="margin-top:20px"><div class="strip g">验收前留两分钟：<b>自己先连跑一遍</b>——自检过的组，当面演示几乎不翻车</div></div></div>
+<div class="notes"><p>验收。我一组一组过来，你们<b>当面演示</b>。</p><p>三步连起来，成功一次就过。</p><p>（停顿，给个实用建议）</p><p>（指黑条）</p><p>叫我之前，<b>自己先连跑一遍</b>。</p><p>（加重）</p><p><b>自检过的组，当面演示几乎不翻车。</b></p><p>（停顿）</p><p>为什么？因为大多数翻车，是<b>一些很小的事</b>：</p><p>手机没解锁、页面没打开、镜头盖着、植物挪了位置。</p><p>（停顿）</p><p>自己跑一遍，这些全暴露了。</p><p>（开始验收，边走边说）</p><p>（对过线的组）</p><p><b>过了。明天带作品进发布会。</b></p><p>（对没过的组，语气放软）</p><p>（放慢）</p><p><b>登记，不批评。</b></p><p>明天上半场<b>优先给你们兜底</b>——我带着标准段，一对一。</p><p>（加重）</p><p><b>进发布会的门，不会关。</b></p><p>（停顿，收束全课）</p><p>（放慢）</p><p>最后一句，今天该说的：</p><p>（一字一句）</p><p><b>把 AI 装进作品的人，今天是你。</b></p><p>（停顿）</p><p>明天——<b>智能发布会</b>。</p><p>下课。</p></div>
+</section>
+
+<section class="slide lay-cards2" data-title="课后任务">
+<div class="phead"><span class="no">第34课</span>
+<span class="kick a">课后任务</span>
+</div>
+<h2 class="ptitle">课后任务</h2>
+<div class="pbody"><div class="g2 grow"><div class="blk g"><h4>基础（全员）</h4><p>给家人<b>预告</b>：明天我的「<b>智能作品</b>」正式发布——<b>它会看、会认、会提醒</b>。</p></div><div class="blk a"><h4>拓展（选做）</h4><p>把明天的<b>路演想一遍</b>：<b>L15 的四要素</b>还记得吗？再加上「<b>AI 帮了什么、我怎么验证</b>」。</p></div></div>
+<div style="margin-top:24px"><div class="strip g"><b>把 AI 装进作品的人，今天是你</b></div></div></div>
+<div class="notes"><p>课后两件事。</p><p>第一件全员做：<b>给家人预告。</b></p><p>（停顿）</p><p>就一句话：「明天我的智能作品正式发布——<b>它会看、会认、会提醒</b>。」</p><p>（放慢）</p><p>说这句话的时候，你自己听听：</p><p>（加重）</p><p><b>「会看、会认、会提醒」</b>——</p><p>（停顿）</p><p>四个月之前，你连 LED 都点不亮。</p><p>（停顿）</p><p>第二件选做，<b>明天直接用</b>：</p><p><b>把路演想一遍。</b></p><p><b>L15 的四要素</b>还记得吗？</p><p>（等他们答，提示）</p><p><b>问题 → 方案 → 演示 → 亮点。</b></p><p>（停顿）</p><p>然后加上一句，这是第五阶段特有的：</p><p>（一字一句）</p><p><b>「AI 帮了什么、我怎么验证它？」</b></p><p>（停顿）</p><p>（放慢）</p><p>这一问，你们今年答得会<b>和去年完全不一样</b>。</p><p>（停顿）</p><p>因为你可以说——</p><p>「识别是 AI 做的。<b>我给它定了三档规矩：拿不准就不许动手。</b>」</p><p>（长停顿）</p><p>明天见。</p><p><b>把你的植物也带来。</b></p></div>
+</section>
+<div class="deck-footer"><span>ESP32 × AI 科创课程 · 第五阶段「融合AI」 · 第34课 把AI装进去</span><span class="slide-number" data-current="1" data-total="13"></span></div>
+<div class="progress-bar"><span></span></div>
+</div>
+<script src="assets/fitstage.js"></script>
+<script src="assets/runtime.js"></script>
+</body>
+</html>

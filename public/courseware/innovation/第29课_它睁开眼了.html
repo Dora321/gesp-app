@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>第29课 · 它睁开眼了 — ESP32 × AI 科创课程</title>
+<link rel="stylesheet" href="assets/base.css">
+<link rel="stylesheet" id="theme-link" href="assets/theme-course-pop.css">
+<link rel="stylesheet" href="assets/animations.css">
+</head>
+<body>
+<div class="deck" data-theme-base="assets/">
+<section class="slide lay-cover is-active" data-title="封面">
+<div class="deco circle" style="width:170px;height:170px;top:-52px;right:238px"></div>
+<div class="deco tri" style="right:110px;bottom:132px;transform:rotate(14deg)"></div>
+<div class="deco square" style="width:120px;height:120px;left:-46px;bottom:86px;transform:rotate(12deg)"></div>
+<span class="cv-bar">ESP32 × AI ／ 第五阶段「融合AI」</span>
+<h1 class="cv-title">它睁开<em>眼了</em></h1>
+<p class="cv-sub">第二颗大脑进了你的系统——今天拍下第一张照片</p>
+<div class="cv-tags"><span class="tag">树莓派 ＝ 第二颗大脑</span><span class="tag">双层架构</span><span class="tag">零命令行</span><span class="tag">90 分钟连堂</span></div>
+<div class="cv-no">29</div>
+<div class="notes"><p>（举起一块树莓派，让全班看清）</p><p>昨天我说，今天会来一位<b>新伙伴</b>。</p><p>（停顿，举高）</p><p><b>就是它。</b></p><p>它叫<b>树莓派</b>。</p><p>（停顿）</p><p>先说清楚它是什么：</p><p>（放慢，加重）</p><p><b>它是一台完整的小电脑。</b></p><p>不是单片机——是<b>电脑</b>。有系统、能装软件、能看图片。</p><p>（停顿）</p><p>它会做很多 ESP32 做不了的事。比如——</p><p>（举起摄像头）</p><p><b>看。</b></p><p>（停顿）</p><p>今天它加入你们的系统。</p><p>而且今天有一件事，你们可能会觉得不适应：</p><p>（停顿）</p><p><b>今天一行代码都不写。</b></p><p>（停顿）</p><p>今天我们只做三件事：<b>上电、按按钮、看照片。</b></p><p>（放慢）</p><p>因为今天它对你来说，就是<b>一台拍照的家电</b>。</p></div>
+</section>
+
+<section class="slide lay-vstext" data-title="两颗大脑">
+<div class="phead"><span class="no">第29课</span>
+<span class="kick g">核心</span>
+<span class="tslot">10–22 分</span>
+</div>
+<h2 class="ptitle">为什么要<b>两颗</b>大脑？</h2>
+<p class="psub">各干各的强项——<b>好系统都是这么分的</b></p>
+<div class="pbody">
+  <div class="vs3 grow">
+    <div class="blk c vstx"><span class="tag c">ESP32 ＝ 手脚</span><p class="q"><b>反应快、不知疲倦、很省电。</b></p><p class="why">让它守着按钮、控灯、测温度——<b>一天一夜不累</b>。<br>但是<b>算不动大账</b>：看图这种重活，它内存不够、力气不够。</p></div>
+    <div class="vsmark">VS</div>
+    <div class="blk g vstx"><span class="tag g">树莓派 ＝ 眼睛和脑</span><p class="q"><b>能看、能想、算力大。</b></p><p class="why">让它看照片、认东西、动脑筋——<b>它在行</b>。<br>但让它去拧每一个开关，<b>大材小用</b>，还费电。</p></div>
+  </div>
+  <div style="margin-top:20px"><div class="strip a"><b>手脚归手脚，脑袋归脑袋。</b> 这不是凑合，这是<b>好系统的样子</b>——专业的事，交给专业的层</div></div>
+</div>
+<div class="notes"><p>有同学会问：<b>我都有 ESP32 了，为什么还要一个？</b></p><p>好问题。因为<b>它们擅长的事不一样</b>。</p><p>（指左边）</p><p><b>ESP32 像手脚。</b></p><p>反应快、不知疲倦、很省电。</p><p>让它守着一个按钮、控一盏灯、每 30 秒测一次温度——<b>一天一夜都不累</b>。</p><p>（转折）</p><p>但是它<b>算不动大账</b>。</p><p>一张照片有几十万个点，它的内存装不下，力气也不够。</p><p>（指右边）</p><p><b>树莓派像眼睛和脑。</b></p><p>能看、能想、算力大。看照片、认东西——<b>它在行</b>。</p><p>（转折）</p><p>可是让它去拧每一个开关呢？</p><p>——<b>大材小用</b>，而且<b>费电</b>。</p><p>（停顿，敲黑板）</p><p>所以：</p><p><b>手脚归手脚，脑袋归脑袋。</b></p><p>（加重）</p><p>这不是凑合，这是<b>好系统的样子</b>。</p><p>（停顿）</p><p>你想想你自己：</p><p><b>手碰到烫的东西，是先缩回来、还是先想一想？</b></p><p>（等答）</p><p><b>先缩回来。</b> 那是「手脚」干的，<b>快</b>。</p><p>想「刚才那是什么东西这么烫」——那是「脑子」干的，<b>慢一点，但想得深</b>。</p><p>（停顿）</p><p><b>你身上，本来就是双层架构。</b></p></div>
+</section>
+
+<section class="slide lay-flow3" data-title="双层架构">
+<div class="phead"><span class="no">第29课</span>
+<span class="kick g">图纸</span>
+<span class="tslot">10–22 分</span>
+</div>
+<h2 class="ptitle">双层架构（S5 全程都用这张图）</h2>
+<p class="psub">两层<b>用云牵手</b>——它们之间还是不直接见面</p>
+<div class="pbody"><div class="flow grow"><div class="fl g"><span class="fl-k">智能层</span><p class="fl-t"><b>树莓派 ＋ 摄像头</b></p><p class="fl-b">本职工作：<b>看、认、想</b><br><br>拍照片、认东西、做判断</p></div><div class="fl-arr">→</div><div class="fl a"><span class="fl-k">云</span><p class="fl-t"><b>两层牵手的地方</b></p><p class="fl-b">一层把<b>结果</b>放进来，<br>另一层<b>取走照办</b><br><br>（还是 L18 那个快递柜）</p></div><div class="fl-arr">→</div><div class="fl c"><span class="fl-k">执行层</span><p class="fl-t"><b>ESP32 ＋ 元件</b></p><p class="fl-b">本职工作：<b>动手</b><br><br>灯、蜂鸣器、屏——该动就动</p></div></div><div style="margin-top:20px"><div class="strip c">这张图<b>贴在卡上别丢</b>——L30 到 L35，每一课都在往这张图上<b>加东西</b></div></div></div>
+<div class="notes"><p>这就是<b>双层架构</b>。这张图，第五阶段<b>每节课都要用</b>。</p><p><b>上面一层：智能层。</b> 树莓派 + 摄像头。</p><p>它的<b>本职工作</b>是：<b>看、认、想</b>。</p><p><b>下面一层：执行层。</b> ESP32 + 你的元件。</p><p>本职工作是：<b>动手</b>。</p><p>（停顿，指中间）</p><p>中间这一格，是今天最妙的地方：</p><p><b>两层用云牵手。</b></p><p>（加重）</p><p>注意——它们之间<b>没有一根线</b>。</p><p>（停顿）</p><p>是不是很熟悉？</p><p>（等他们想起来）</p><p><b>L22！两块板对话！</b></p><p>一层把结果放进云里，另一层取走照办。</p><p><b>还是那个快递柜。</b></p><p>（停顿）</p><p>所以你看，第五阶段<b>没有推翻任何东西</b>——</p><p>它是<b>在你已经会的东西上面，又加了一层</b>。</p><p>（指黑条）</p><p>这张图画在卡上，<b>别丢</b>。</p><p>L30 到 L35，每节课都在<b>往这张图上加东西</b>。</p></div>
+</section>
+
+<section class="slide lay-steps3" data-title="操作三步">
+<div class="phead"><span class="no">第29课</span>
+<span class="kick a">上手</span>
+<span class="tslot">22–40 分</span>
+</div>
+<h2 class="ptitle">树莓派操作三步（你只做这三步）</h2>
+<p class="psub">今天它是一台「<b>拍照家电</b>」</p>
+<div class="pbody"><div class="g3 grow"><div class="blk"><div class="step"><div class="num g">①</div>
+        <div class="body"><p class="t">上电</p><p class="d">插上电源，<b>等约 1 分钟</b>自己启动。<br>（别催它，电脑开机都要时间）</p></div></div></div><div class="blk"><div class="step"><div class="num a">②</div>
+        <div class="body"><p class="t">打开本组网页面板</p><p class="d"><b>编号 ＝ 地址</b>。<br>机身上贴的号，就是你要打开的那个。</p></div></div></div><div class="blk"><div class="step"><div class="num c">③</div>
+        <div class="body"><p class="t">按拍照按钮</p><p class="d">网页上点一下，<br><b>照片出现在面板上</b>。</p></div></div></div></div><div style="margin-top:16px"><div class="strip g"><b>不用装系统、不用敲命令、不用烧录。</b> 上电、开网页、按按钮——<b>就这三步</b></div></div><div style="margin-top:16px"><div class="strip a">有同学想拆开看看里面——<b>好奇心满分！</b> 但今天先当家电用；<b>它肚子里的东西，进阶课一层层拆</b></div></div></div>
+<div class="notes"><p>现在各组领自己编号的树莓派。操作<b>只有三步</b>。</p><p><b>第①步：上电。</b> 插上电源，然后——<b>等约 1 分钟</b>。</p><p>（加重）</p><p><b>别催它。</b> 你家电脑开机也要等，对吧？它在启动。</p><p><b>第②步：打开本组网页面板。</b></p><p><b>编号就是地址</b>。机身上贴的那个号，就是你要打开的那一个。</p><p><b>第③步：按拍照按钮。</b> 照片出现在面板上。</p><p>（停顿）</p><p>就这些。</p><p>（放慢，认真说）</p><p><b>不用装系统、不用敲命令、不用烧录。</b></p><p>（停顿）</p><p>（指第二条黑条）</p><p>我知道，现在一定有同学在想：</p><p><b>「里面到底是怎么回事？我能拆开看看吗？」</b></p><p>（停顿，笑）</p><p><b>好奇心满分！</b> 我很喜欢这个问题。</p><p>但今天，我们先把它当<b>家电</b>用。</p><p>（停顿）</p><p>还记得第 8 课吗？PWM 我们也是这么干的——</p><p>先当「<b>亮度百分比</b>」用，<b>原理留到后面</b>。</p><p>（加重）</p><p><b>它肚子里的东西，进阶课我们一层一层拆。</b></p><p>今天先让它<b>睁眼</b>。</p></div>
+</section>
+
+<section class="slide lay-rowlist" data-title="设备预案">
+<div class="phead"><span class="no">第29课</span>
+<span class="kick c">预案</span>
+<span class="tslot">22–40 分</span>
+</div>
+<h2 class="ptitle">不顺的时候，照这个来</h2>
+<p class="psub"><b>不修，先换</b>——今天的目标是拍到照片，不是修机器</p>
+<div class="pbody"><div class="rowlist grow"><div class="rowitem"><div class="num g">1</div><div class="tx"><b>网页打不开</b> → <b>等满 1 分钟</b>再刷新；确认你连的是<b>教学热点</b>；还不行——<b>举手</b></div></div><div class="rowitem"><div class="num a">2</div><div class="tx"><b>照片全黑 / 糊了</b> → 镜头<b>贴膜没揭</b>？光线太暗？——<b>挪到亮处再拍</b></div></div><div class="rowitem"><div class="num c">3</div><div class="tx"><b>摄像头没画面</b> → <b>排线松了</b>，举手找老师；<b>学生不拔插排线</b>（很脆，一掰就断）</div></div><div class="rowitem"><div class="num g">4</div><div class="tx"><b>机器不对劲</b> → 老师直接<b>换一台热备整机</b>——<b>不修，先换</b></div></div><div class="rowitem"><div class="num a">5</div><div class="tx"><b>别自己重启一遍又一遍</b>：第一次等满一分钟，比重启三次都管用</div></div></div><div style="margin-top:20px"><div class="strip a"><b>「不修，先换」</b>是真实工程里的做法：课堂 90 分钟，<b>先保住你要做的事</b>，机器的病课后再治</div></div></div>
+<div class="notes"><p>设备不顺的时候，照这一页来，别慌。</p><p><b>网页打不开？</b></p><p>第一件事：<b>等满 1 分钟</b>再刷新。</p><p>（加重）</p><p>很多组是<b>没等够</b>。它还在开机呢。</p><p>第二件事：确认你连的是<b>教学热点</b>——连错网，当然找不到它。</p><p>还不行，<b>举手</b>。</p><p><b>照片全黑或者糊了？</b></p><p>先看<b>镜头上的贴膜揭了没</b>。</p><p>（停顿）</p><p>真的，每年都有——拍了十张全黑的，最后发现<b>膜还在</b>。</p><p>再看<b>光线</b>：太暗就挪到亮处。</p><p><b>摄像头没画面？</b> 多半是<b>排线松了</b>。</p><p>（加重，严肃一点）</p><p>这个<b>举手找老师</b>。<b>学生不要自己拔插排线</b>——它很脆，<b>一掰就断</b>。</p><p>（指黑条）</p><p>最后一条规矩，我要专门说：</p><p><b>机器不对劲，老师直接换一台热备整机。不修，先换。</b></p><p>（停顿）</p><p>为什么？</p><p>因为今天这节课只有 90 分钟，</p><p>（放慢）</p><p><b>你的目标是拍到照片，不是修机器。</b></p><p>（停顿）</p><p>真实工程里也是这么干的：<b>先恢复，再复盘</b>——L24 学过的那句话。</p></div>
+</section>
+
+<section class="slide lay-divider" data-title="课间休息">
+<div class="deco circle" style="width:200px;height:200px;top:-70px;right:180px"></div>
+<div class="deco square" style="width:130px;height:130px;left:-50px;bottom:70px;transform:rotate(12deg)"></div>
+<div class="deco tri" style="right:140px;bottom:90px;transform:rotate(14deg)"></div>
+<div class="dv">
+  <span class="dv-time">40–50 分</span>
+  <h2 class="dv-t">课间休息 10 分钟</h2>
+  <p class="dv-s">给你的树莓派<b>起个外号</b></p>
+</div>
+<div class="notes"><p>休息十分钟。</p><p>休息的时候做一件很轻松的事：</p><p><b>给你的树莓派起个外号。</b></p><p>（停顿）</p><p>为什么要起外号？</p><p>（放慢）</p><p>L23 那天我们说过一句话，还记得吗？</p><p><b>有名字的东西，你会心疼它、打磨它。</b></p><p>（停顿）</p><p>这台机器要跟着你们走完整个第五阶段——</p><p>它会替你看东西、认东西、帮你出主意。</p><p>（停顿）</p><p>总叫它「三号机」，太见外了。</p><p>（停顿）</p><p>外号写在卡片上，跟编号写在一起。</p><p>去休息吧。</p></div>
+</section>
+
+<section class="slide lay-rowlist" data-title="拍摄三连">
+<div class="phead"><span class="no">第29课</span>
+<span class="kick g">拍摄任务</span>
+<span class="tslot">50–68 分</span>
+</div>
+<h2 class="ptitle">拍摄三连：把它玩熟</h2>
+<p class="psub">拍的时候<b>留意一件事</b>（过几天有大用）</p>
+<div class="pbody"><div class="rowlist grow"><div class="rowitem"><div class="num g">1</div><div class="tx"><b>第一张：元件特写</b>——把一个 LED 或者传感器拍<b>清楚</b>，看得清引脚那种清楚</div></div><div class="rowitem"><div class="num a">2</div><div class="tx"><b>第二张：同学比的手势</b>——比个「V」、比个拳头，拍下来</div></div><div class="rowitem"><div class="num c">3</div><div class="tx"><b>第三张：窗外</b>——离得远的东西，它拍出来什么样？</div></div><div class="rowitem"><div class="num g">4</div><div class="tx"><b>留意</b>：光线暗的时候、<b>逆光</b>的时候、被<b>挡住一半</b>的时候，照片变成什么样？</div></div><div class="rowitem"><div class="num a">5</div><div class="tx"><b>挑战：故意拍一张「刁难照」</b>（逆光 / 遮挡 / 太暗）——<b>存好，过几天有大用</b></div></div></div><div style="margin-top:20px"><div class="strip c">为什么要拍「刁难照」？<b>先卖个关子</b>——但我保证，<b>L32 那天你会很想有这张照片</b></div></div></div>
+<div class="notes"><p>现在把它玩熟。三张照片：</p><p><b>第一张：元件特写。</b> 拍一个 LED 或者传感器，要<b>清楚到看得见引脚</b>。</p><p><b>第二张：同学比的手势。</b> 比个 V，比个拳头。</p><p><b>第三张：窗外。</b> 远处的东西拍出来什么样？</p><p>（停顿，重点在这里）</p><p>拍的时候，我要你们<b>留意一件事</b>：</p><p>（放慢）</p><p><b>光线暗的时候、逆光的时候、被挡住一半的时候——照片变成什么样？</b></p><p>（停顿）</p><p>自己试试看。</p><p>把手挡在镜头前一半，拍一张。</p><p>背对着窗户拍一张。</p><p>把灯关了拍一张。</p><p>（停顿）</p><p>然后——<b>挑战任务</b>：</p><p><b>故意拍一张最「刁难」的照片，存好。</b></p><p>（停顿，制造悬念）</p><p>为什么要存？</p><p>（停顿）</p><p><b>先卖个关子。</b></p><p>（放慢）</p><p>但我跟你们保证：</p><p><b>L32 那天，你会很想有这张照片。</b></p></div>
+</section>
+
+<section class="slide lay-cards3" data-title="常见疑问">
+<div class="phead"><span class="no">第29课</span>
+<span class="kick a">答疑</span>
+<span class="tslot">50–68 分</span>
+</div>
+<h2 class="ptitle">三个一定有人问的问题</h2>
+<p class="psub">今天先给答案，<b>进阶课再拆</b></p>
+<div class="pbody"><div class="g3 grow"><div class="blk g"><h4>「为什么不用 ESP32 拍照？」</h4><p><b>算力小、内存小</b>，看图这种「<b>重活</b>」它干不动。<br><br>——正好是<b>双层分工</b>的理由。</p></div><div class="blk a"><h4>「里面是什么系统？」</h4><p>是一台<b>真电脑</b>，有系统有软件。<br><br>今天<b>当家电用</b>；<br>里面的东西，<b>进阶课一层层拆</b>。</p></div><div class="blk c"><h4>「能带回家吗？」</h4><p>不行——它是<b>教室公共器材</b>。<br><br>真想在家玩，<br><b>找老师要一份家长说明</b>。</p></div></div><p class="beads-cap" style="margin:18px 0 16px">黑箱不是「不许你知道」，是「<b>先会用，再拆开</b>」——这是 L8 的 PWM 教过的老办法</p><div style="margin-top:22px"><div class="strip g">好奇心<b>记下来</b>：把你想问的写在卡片背面，<b>进阶课第一节就从这些问题开始讲</b></div></div></div>
+<div class="notes"><p>有三个问题，每年都有人问。我今天一次答完。</p><p><b>第一问：为什么不用 ESP32 拍照？</b></p><p>（停顿）</p><p><b>它算力小、内存小。</b> 看图是「重活」，它干不动。</p><p>（加重）</p><p>——这不正是我们<b>要两层</b>的理由吗？</p><p><b>第二问：里面到底是什么系统？</b></p><p>它是一台<b>真电脑</b>，有系统、有软件。</p><p>今天当家电用，<b>进阶课我们一层层拆</b>。</p><p><b>第三问：能带回家吗？</b></p><p>（笑）不行，它是<b>教室的公共器材</b>。</p><p>真想在家玩，<b>找我要一份家长说明</b>，上面有选购建议。</p><p>（指中间那行字，这句话很重要）</p><p>最后我要解释一下「<b>黑箱</b>」这个做法：</p><p>（放慢）</p><p><b>黑箱不是「不许你知道」，是「先会用，再拆开」。</b></p><p>（停顿）</p><p>第 8 课学 PWM 的时候，我们也是这样：</p><p>先当「<b>亮度百分比</b>」用，等你用熟了、有感觉了，<b>再讲里面的道理</b>。</p><p>（停顿，指黑条）</p><p>所以——<b>好奇心别浪费</b>：</p><p><b>把你想问的写在卡片背面。</b></p><p>进阶课第一节，<b>我们就从你们写的这些问题开始讲</b>。</p></div>
+</section>
+
+<section class="slide lay-rowlist" data-title="画双层图">
+<div class="phead"><span class="no">第29课</span>
+<span class="kick g">画图纸</span>
+<span class="tslot">68–80 分</span>
+</div>
+<h2 class="ptitle">把直觉画成图纸</h2>
+<p class="psub">在附录 B 的卡上画——<b>这张卡要用到 L35</b></p>
+<div class="pbody"><div class="rowlist grow"><div class="rowitem"><div class="num g">1</div><div class="tx"><b>最上面</b>：树莓派外号 ______，编号 ____</div></div><div class="rowitem"><div class="num a">2</div><div class="tx"><b>智能层</b>（树莓派＋摄像头）负责：____________（用<b>你自己的话</b>写）</div></div><div class="rowitem"><div class="num c">3</div><div class="tx"><b>云</b>（牵手层）负责：____________</div></div><div class="rowitem"><div class="num g">4</div><div class="tx"><b>执行层</b>（ESP32＋______）负责：____________</div></div><div class="rowitem"><div class="num a">5</div><div class="tx"><b>今天它睁眼看到的第一张照片是</b>：____________</div></div></div><div style="margin-top:20px"><div class="strip a"><b>标出每层的「本职工作」</b>——这四个字是重点：一层只干自己该干的，<b>系统才不乱</b></div></div></div>
+<div class="notes"><p>现在把刚才的直觉，<b>画成图纸</b>。</p><p>在附录 B 那张卡上画。<b>这张卡，要一直用到 L35。</b></p><p>（逐项讲）</p><p>最上面写<b>外号和编号</b>。</p><p>然后是三层，每层写一句「<b>它负责什么</b>」。</p><p>（加重）</p><p><b>用你自己的话写</b>，别抄我黑板上的。</p><p>（停顿）</p><p>为什么？</p><p>因为抄下来的话，<b>你过两天就忘了</b>。</p><p>自己写出来的话，<b>你会记得</b>。</p><p>（指黑条，点题）</p><p>这里有四个字是重点：<b>本职工作</b>。</p><p>（放慢）</p><p>每一层，<b>只干自己该干的事</b>。</p><p>树莓派别去控灯，ESP32 别去看图。</p><p>（停顿）</p><p><b>一层只干自己该干的，系统才不乱。</b></p><p>（停顿）</p><p>最后一栏很好玩，别跳过：</p><p><b>「今天它睁眼看到的第一张照片是：______」</b></p><p>（停顿）</p><p>多少年以后你再翻到这张卡，</p><p><b>你会想起今天。</b></p></div>
+</section>
+
+<section class="slide lay-tiers3" data-title="分层任务">
+<div class="phead"><span class="no">第29课</span>
+<span class="kick g">分层任务</span>
+<span class="tslot">68–80 分</span>
+</div>
+<h2 class="ptitle">先睁眼，再玩花样</h2>
+<p class="psub">上电 ＋ 拍照 ＋ 说清分工 ＝ 成功</p>
+<div class="pbody"><div class="g3 grow"><div class="blk tier t1"><div class="hd">★ 保底（必做）</div>
+        <p class="task">树莓派<b>上电</b>、网页按钮<b>拍照</b>、在面板<b>看到照片</b>；能用自己的话说出<b>双层分工</b>。</p><p class="fill">□ 拍到了　□ 说清了分工</p></div><div class="blk tier t2"><div class="hd">★★ 挑战（学有余力）</div>
+        <p class="task">完成<b>拍摄三连</b>：元件特写 / 手势 / 窗外——<b>比比谁拍得最清楚</b>。</p><p class="fill">□ 三张都拍了</p></div><div class="blk tier t3"><div class="hd">★★★ 再挑战</div>
+        <p class="task">故意拍一张<b>逆光 / 遮挡的「刁难照」</b>，<b>存好</b>——<b>过几天有大用</b>（L32）。</p><p class="fill">我的刁难照拍的是：__________</p></div></div>
+<div style="margin-top:22px"><div class="strip g">保底那一条里，<b>「说清分工」和「拍到照片」一样重要</b>——会用是手上的本事，<b>说得清是脑子里的本事</b></div></div></div>
+<div class="notes"><p>三档。</p><p><b>保底必做</b>：拍到照片，<b>而且能说清双层分工</b>。</p><p>（指黑条，强调）</p><p>注意——<b>「说清分工」和「拍到照片」一样重要</b>。</p><p>（放慢）</p><p>会按按钮，那是<b>手上的本事</b>。</p><p>说得清「为什么要两颗大脑」，那是<b>脑子里的本事</b>。</p><p>（停顿）</p><p>今天这节课，<b>脑子里那部分更值钱</b>。</p><p><b>挑战档：拍摄三连</b>，比比谁拍得最清楚。</p><p><b>再挑战：刁难照。</b></p><p>（停顿）</p><p>逆光的、被挡住一半的、太暗的——<b>拍一张，存好</b>。</p><p>（加重）</p><p><b>过几天有大用。</b></p></div>
+</section>
+
+<section class="slide lay-rowlist" data-title="今日三大发现">
+<div class="phead"><span class="no">第29课</span>
+<span class="kick g">总结</span>
+<span class="tslot">80–90 分</span>
+</div>
+<h2 class="ptitle">今日三大发现</h2>
+<div class="pbody"><div class="rowlist grow"><div class="rowitem"><div class="num g">1</div><div class="tx"><b>两颗大脑，各干强项</b>：ESP32 ＝ 手脚（快、稳、省电）；树莓派 ＝ 眼睛和脑（算力大）</div></div><div class="rowitem"><div class="num a">2</div><div class="tx"><b>双层用云牵手</b>：智能层 → 云 → 执行层，两层<b>从不直接见面</b>（还是 L22 那个快递柜）</div></div><div class="rowitem"><div class="num c">3</div><div class="tx"><b>黑箱不是不许你知道</b>：今天当「拍照家电」用，<b>先会用，再拆开</b>（L8 的 PWM 老办法）</div></div></div><div style="margin-top:20px"><div class="strip a">照片<b>拍下来了</b>——<b>可它知道拍的是什么吗？</b> 明天，把照片交给云端 AI，问它一句：<b>这是什么？</b></div></div></div>
+<div class="notes"><p>今天三个发现。</p><p><b>第一，两颗大脑，各干强项。</b></p><p><b>第二，双层用云牵手</b>——还是 L22 那个快递柜。</p><p><b>第三，黑箱不是不许你知道</b>，是<b>先会用，再拆开</b>。</p><p>（停顿，收一收今天的情绪）</p><p>（放慢）</p><p>今天你们的系统，<b>睁开眼了</b>。</p><p>（停顿）</p><p>它拍下了第一张照片。</p><p>（停顿，抛钩子，这是今天最好的一个悬念）</p><p>但是我要问一个问题——</p><p>（放慢，一字一句）</p><p><b>照片是拍下来了。可它知道</b>——</p><p><b>自己拍的是什么吗？</b></p><p>（长停顿，让他们意识到「不知道」）</p><p>（停顿）</p><p>不知道。</p><p>对它来说，那只是<b>一堆点</b>。</p><p>（停顿）</p><p>明天，我们做一件事：</p><p><b>把照片交给云端的 AI，问它一句——</b></p><p><b>「这是什么？」</b></p><p>（停顿）</p><p>下课。</p></div>
+</section>
+
+<section class="slide lay-cards2" data-title="课后任务">
+<div class="phead"><span class="no">第29课</span>
+<span class="kick a">课后任务</span>
+</div>
+<h2 class="ptitle">课后任务</h2>
+<div class="pbody"><div class="g2 grow"><div class="blk g"><h4>基础（全员）</h4><p>给家人讲<b>双层架构</b>：<b>为什么我的系统要两颗大脑</b>？<b>各管什么</b>？</p></div><div class="blk a"><h4>拓展（选做）</h4><p>观察生活：<b>还有什么系统是「分层」的</b>？（人的<b>反射</b>和<b>思考</b>？公司的<b>员工</b>和<b>经理</b>？）</p></div></div>
+<div style="margin-top:24px"><div class="strip g"><b>你的系统睁开眼了</b>——明天教它「<b>认东西</b>」</div></div></div>
+<div class="notes"><p>课后两件事。</p><p>第一件全员做：<b>给家人讲双层架构。</b></p><p>讲两句：<b>为什么要两颗大脑？各管什么？</b></p><p>（停顿）</p><p>用「手脚和脑袋」的比方讲，他们一听就懂。</p><p>第二件选做，这道题<b>我特别喜欢</b>：</p><p><b>生活里还有什么系统是「分层」的？</b></p><p>（停顿，给例子）</p><p><b>人的反射和思考</b>——手碰到烫的先缩回来，再去想。</p><p><b>公司的员工和经理</b>——员工干活，经理拿主意。</p><p>（停顿）</p><p>还有呢？</p><p>学校里有没有？球队里有没有？你家里有没有？</p><p>（停顿）</p><p>（放慢）</p><p>你会发现一件很有意思的事：</p><p><b>几乎所有复杂的东西，都是分层的。</b></p><p>因为——<b>一个人什么都干，一定干不好。</b></p><p>（停顿）</p><p>最后一句：</p><p><b>你的系统睁开眼了——明天教它「认东西」。</b></p><p>下课。</p></div>
+</section>
+<div class="deck-footer"><span>ESP32 × AI 科创课程 · 第五阶段「融合AI」 · 第29课 它睁开眼了</span><span class="slide-number" data-current="1" data-total="12"></span></div>
+<div class="progress-bar"><span></span></div>
+</div>
+<script src="assets/fitstage.js"></script>
+<script src="assets/runtime.js"></script>
+</body>
+</html>

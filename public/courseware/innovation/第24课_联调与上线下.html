@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>第24课 · 联调与上线·下 — ESP32 × AI 科创课程</title>
+<link rel="stylesheet" href="assets/base.css">
+<link rel="stylesheet" id="theme-link" href="assets/theme-course-pop.css">
+<link rel="stylesheet" href="assets/animations.css">
+</head>
+<body>
+<div class="deck" data-theme-base="assets/">
+<section class="slide lay-cover is-active" data-title="封面">
+<div class="deco circle" style="width:170px;height:170px;top:-52px;right:238px"></div>
+<div class="deco tri" style="right:110px;bottom:132px;transform:rotate(14deg)"></div>
+<div class="deco square" style="width:120px;height:120px;left:-46px;bottom:86px;transform:rotate(12deg)"></div>
+<span class="cv-bar">ESP32 × AI ／ 第四阶段「驾驭AI · 物联网」 · 综合项目（下）</span>
+<h1 class="cv-title">联调<em>与上线</em></h1>
+<p class="cv-sub">下课前，每组的产品都要活着过线</p>
+<div class="cv-tags"><span class="tag">三段隔离</span><span class="tag">稳定运行 15 分钟</span><span class="tag">硬检查点验收</span><span class="tag">作品卡②</span></div>
+<div class="cv-no">24</div>
+<div class="notes"><p>（把墙上那三条指给全班看）</p><p><b>今天是上线日。</b></p><p>（停顿）</p><p>墙上这三条，昨天贴上去的时候我说过——<b>它们是明天的考题</b>。</p><p>今天，<b>明天到了</b>。</p><p><b>能连、能传、能控。</b></p><p>下课前，我会<b>一组一组</b>走过来，让你们当场演示这三条。</p><p>（停顿，放慢）</p><p>说一句听起来有点严肃、但很重要的话：</p><p><b>验收标准面前，人人平等。</b></p><p>不管你的想法多酷、名字起得多好听——</p><p>三条不过，就是没上线。</p><p>（停顿，然后转暖）</p><p>但是别紧张，我还有第二句话：</p><p><b>今天没有人会被卡死在这儿。</b></p><p>哪一段卡住超过十分钟，<b>换老师的保底模板</b>，先过线。</p><p>工程师救火也是这个顺序：<b>先恢复，再复盘。</b></p></div>
+</section>
+
+<section class="slide lay-table" data-title="联调三步法">
+<div class="phead"><span class="no">第24课</span>
+<span class="kick g">联调地图</span>
+<span class="tslot">8–20 分</span>
+</div>
+<h2 class="ptitle">联调三步法（联网版）：三段各有各的窗口</h2>
+<p class="psub"><b>别从头猜</b>——哪段断了，它自己会跳出来</p>
+<div class="pbody">
+  <div class="tbl grow" style="grid-template-columns:1fr 1.2fr 1.6fr"><div class="th">段</div><div class="th">看哪个窗口</div><div class="th">活着的标志</div><div class="td k">① 本地感知</div><div class="td"><b>串口打印</b></div><div class="td">读数<b>在变</b>（哈气 / 遮光有反应）</div><div class="td k">② 云上数据</div><div class="td"><b>控制台主题页</b></div><div class="td">数据条目<b>在增加</b></div><div class="td k">③ 远程执行</div><div class="td"><b>控制台按钮直发</b></div><div class="td">元件<b>应声动作</b></div></div>
+  <div style="margin-top:20px"><div class="strip a"><b>一次只动一处。</b> 三个窗口看一遍，坏的那段自己跳出来——比从头到尾读代码快十倍</div></div>
+</div>
+<div class="notes"><p>联网产品出毛病，最忌讳什么？</p><p>（等答）</p><p><b>从头猜。</b></p><p>一行一行读代码，读到眼花——多半还是找不到。</p><p>今天给你们一张<b>地图</b>：三段，每段有<b>自己的窗口</b>。</p><p><b>第①段，本地感知，看串口。</b></p><p>读数在变吗？哈一口气，数字有没有跳？</p><p>——没跳，那问题就在<b>板子上</b>，根本还没轮到云。</p><p><b>第②段，云上数据，看控制台主题页。</b></p><p>条目在增加吗？</p><p>——串口有数、云上没有，那问题卡在<b>上传</b>这一段。</p><p><b>第③段，远程执行，用控制台按钮直发指令。</b></p><p>元件动吗？</p><p>——不动，那是<b>执行段</b>的事，跟传感器一点关系都没有。</p><p>（敲黑板）</p><p>你们发现没有：</p><p><b>三个窗口一看，坏的那段自己跳出来了。</b></p><p>比从头到尾读代码，快十倍。</p><p>最后一条纪律，老规矩：</p><p><b>一次只动一处。</b> 改一样，测一次。改三样，你就不知道是哪样起的作用。</p></div>
+</section>
+
+<section class="slide lay-aierror" data-title="三种典型翻车">
+<div class="phead"><span class="no">第24课</span>
+<span class="kick c">排错</span>
+<span class="tslot">20–40 分</span>
+</div>
+<h2 class="ptitle">三种典型翻车，都不报红字</h2>
+<p class="psub">今天最常见的三个状况，先认一遍</p>
+<div class="pbody">
+  <div class="aegrid grow">
+    <div class="code"><span class="lab c">三个写法上的坑</span><pre style="font-size:20px;line-height:1.55">time.sleep(30)          <span class="c"># ← 坑1：一睡 30 秒，指令全收不到</span>
+
+<span class="k">while</span> <span class="k">True</span>:
+    client.check_msg()  <span class="c"># ← 坑2：循环里睡太久 → 响应慢半拍</span>
+    time.sleep(5)
+
+send_wechat("温度高")    <span class="c"># ← 坑3：中文消息，接口返回参数错误</span></pre></div>
+    <div class="aecol">
+      <div class="blk c"><h4>对症下药</h4><p><b>数据传着传着停了</b> → 主循环被<b>卡住</b>（长 sleep / 死等）。<br><b>远程指令偶尔失灵</b> → <code class="ic">check_msg</code> <b>转得太慢</b>，缩短循环间隔。</p></div>
+      <div class="blk g"><h4>一接微信就卡？<b>降级</b></h4><p>先核<b>英文消息</b> ＋ <b>uid（私钥）</b>；额度用完 → 改用<b>控制台记录</b>。<br><b>报警能力不丢</b>——蜂鸣器照响，截图就是证据。</p></div>
+    </div>
+  </div>
+  <div style="margin-top:22px"><div class="strip a"><b>卡住超过 10 分钟，别死磕</b>——举手换教师保底模板，先过线，课后再回头研究原来那段错在哪</div></div>
+</div>
+<div class="notes"><p>今天最常见的三个状况，先认一遍，省得现场干着急。</p><p><b>坑 1：<code class="ic">time.sleep(30)</code>。</b></p><p>昨天讲过：一睡 30 秒，这 30 秒里<b>指令全收不到</b>。</p><p>表现是什么？——<b>数据传着传着好像停了</b>，指令点了半天没反应。</p><p><b>坑 2：循环里睡太久。</b></p><p><code class="ic">time.sleep(5)</code> 看起来没问题，但你点一下指令，<b>最多要等 5 秒</b>才生效。</p><p>台下看着就是「<b>半拍</b>」。缩短它。</p><p><b>坑 3：中文消息。</b></p><p><code class="ic">send_wechat("温度高")</code> —— 接口返回<b>参数错误</b>。L21 讲过，<b>用英文</b>。</p><p>（指右下那块）</p><p>一接微信就卡怎么办？<b>降级</b>。</p><p>先核两样：消息是英文吗？uid（私钥）对吗？</p><p>还不行——<b>额度可能用完了</b>，改用<b>控制台记录</b>。</p><p>记住这句：<b>报警能力一点没丢</b>，蜂鸣器照响，截图就是证据。</p><p>（指黑条，加重）</p><p>最后这条今天最重要：</p><p><b>卡住超过 10 分钟，别死磕。</b></p><p>举手，换老师的保底模板，<b>先过线</b>。</p><p>课后再回头研究你原来那段错在哪——那时候你不慌了，看得更清楚。</p></div>
+</section>
+
+<section class="slide lay-rowlist" data-title="先过线再考古">
+<div class="phead"><span class="no">第24课</span>
+<span class="kick a">止损</span>
+<span class="tslot">20–40 分</span>
+</div>
+<h2 class="ptitle">「先过线，再考古」</h2>
+<p class="psub">工程师救火的顺序：<b>先恢复，再复盘</b></p>
+<div class="pbody"><div class="rowlist grow"><div class="rowitem"><div class="num g">1</div><div class="tx"><b>限时 10 分钟</b>：一段卡住超过 10 分钟，<b>举手</b>，别继续硬扛</div></div><div class="rowitem"><div class="num a">2</div><div class="tx">老师给<b>保底模板段</b>：连网段 / 上传段 / 控制段，<b>哪段卡换哪段</b>（改成你的参数就能跑）</div></div><div class="rowitem"><div class="num c">3</div><div class="tx"><b>换模板不丢人</b>——真实项目里这叫「<b>回滚到能用的版本</b>」</div></div><div class="rowitem"><div class="num g">4</div><div class="tx">过线之后，把你<b>原来那段</b>留着，写一句：我卡在 ____，怀疑是 ____</div></div><div class="rowitem"><div class="num a">5</div><div class="tx"><b>课后再考古</b>：对照模板找出差在哪一行——那时候不慌了，看得更清楚</div></div></div><div style="margin-top:20px"><div class="strip c">今天的目标不是「<b>全靠自己写</b>」，是「<b>产品活着上线</b>」——<b>进 L27 发布会的每组都必须有能演示的产品</b></div></div></div>
+<div class="notes"><p>这一页立一条规矩，今天一整节课都按它来。</p><p><b>一段卡住超过 10 分钟，举手。</b></p><p>老师这里有<b>三段保底模板</b>：连网段、上传段、控制段。</p><p>哪段卡，换哪段。改成你自己的参数，就能跑。</p><p>（停顿，认真讲这一段）</p><p>我知道有人会想：「换老师的，是不是等于我没做出来？」</p><p><b>不是。</b></p><p>真实的工程项目里，这件事天天发生，它有个正式的名字，叫「<b>回滚到能用的版本</b>」。</p><p>线上出故障的时候，工程师的第一件事<b>不是找原因</b>，是<b>先让它恢复</b>。</p><p>原因？——<b>事后复盘</b>。</p><p>（停顿）</p><p>但是有个条件：换了模板，<b>你原来那段要留着</b>。</p><p>在纸上写一句：<b>我卡在哪儿，我怀疑是什么。</b></p><p>课后对照模板找差在哪一行。</p><p>（停顿）</p><p>为什么这样才算完整？</p><p>因为<b>过线</b>保的是今天的交付，<b>考古</b>保的是你真的学会了。</p><p>两件事都要，但<b>有先后</b>。</p><p>今天的目标不是「全靠自己写」，是——<b>产品活着上线</b>。</p></div>
+</section>
+
+<section class="slide lay-divider" data-title="课间休息">
+<div class="deco circle" style="width:200px;height:200px;top:-70px;right:180px"></div>
+<div class="deco square" style="width:130px;height:130px;left:-50px;bottom:70px;transform:rotate(12deg)"></div>
+<div class="deco tri" style="right:140px;bottom:90px;transform:rotate(14deg)"></div>
+<div class="dv">
+  <span class="dv-time">40–50 分</span>
+  <h2 class="dv-t">课间休息 10 分钟</h2>
+  <p class="dv-s">给产品做最后的「<b>外观</b>」整理——理线、贴名字</p>
+</div>
+<div class="notes"><p>休息十分钟。</p><p>这十分钟别闲着，做一件下半场有用的事：</p><p><b>给你的产品做外观整理。</b></p><p>三件小事：</p><p><b>第一，理线。</b> 把那几根乱七八糟的杜邦线<b>捋顺</b>，别互相压着。</p><p>（停顿）</p><p>为什么？不只是好看——<b>线一扯就松，演示的时候最怕这个</b>。</p><p><b>第二，贴名字。</b> 找张纸条，把产品名字写上去，贴在板子旁边。</p><p><b>第三，摆一摆。</b> 想想等会儿验收的时候，怎么摆最容易让人看懂。</p><p>传感器朝外，灯朝着人，屏幕正对着。</p><p>（停顿）</p><p>这些事看起来跟代码没关系。</p><p>但是下半场你就会发现——</p><p><b>摆得清楚的产品，讲起来特别顺。</b></p></div>
+</section>
+
+<section class="slide lay-codefull" data-title="上线版 ①-1">
+<div class="phead"><span class="no">第24课</span>
+<span class="kick g">上线版 ①-1</span>
+<span class="tslot">50–62 分</span>
+</div>
+<h2 class="ptitle">上线版 ①-1：参数 ＋ 器件 ＋ 发微信函数</h2>
+<p class="psub">昨天的最小可跑 <b>＋ L21 的推送</b>，这就是三段合一的第一半</p>
+<div class="pbody"><div class="code"><span class="lab g">上线版 · 第①-1 段</span><pre style="font-size:22px;line-height:1.55"><span class="k">import</span> network, time, dht, urequests
+<span class="k">from</span> machine <span class="k">import</span> Pin
+<span class="k">from</span> umqtt.simple <span class="k">import</span> MQTTClient
+WIFI_SSID="你的WiFi名"; WIFI_PASS="你的WiFi密码"
+BEMFA_KEY="你的巴法云私钥"
+T_UP="g1temp01/up"; T_LED="g1led01"; LIMIT=28
+sensor=dht.DHT11(Pin(14)); led=Pin(2,Pin.OUT); buzzer=Pin(13,Pin.OUT)
+<span class="k">def</span> send_wechat(m):                 <span class="c"># 报警走 HTTP 微信接口</span>
+    url=("http://apis.bemfa.com/vb/wechat/v1/wechatAlert?uid="
+         +BEMFA_KEY+"&amp;device=ESP32&amp;message="+m+"&amp;group=default")
+    try: urequests.get(url).close()
+    except Exception as e: print(e)</pre></div><div style="margin-top:18px"><div class="strip a"><b>推送走 HTTP，控制走 MQTT</b>——同一个私钥，在 MQTT 里当<b>账号</b>，在推送接口里当 <b>uid</b></div></div></div>
+<div class="notes"><p>现在补上最后一环：<b>接微信</b>。</p><p>产品会测、会传、会被控——但它<b>还不会找人</b>。</p><p>今天把 L21 的 <code class="ic">send_wechat()</code> 接进来。</p><p>看这一段，跟昨天的最小可跑比，多了什么？</p><p>（等他们找）</p><p>第一行多了 <b><code class="ic">urequests</code></b>；</p><p>参数行多了 <b><code class="ic">LIMIT</code></b>（你的阈值）；</p><p>器件行多了 <b><code class="ic">buzzer</code></b>；</p><p>下面多了整个 <b><code class="ic">send_wechat()</code> 函数</b>。</p><p>就这四处。<b>其余一模一样。</b></p><p>（指黑条，这是今天口径上的重点）</p><p>再强调一遍那条分工：</p><p><b>推送走 HTTP，控制和数据走 MQTT。</b></p><p>两条不同的路。</p><p>有意思的是——<b>它们用的是同一个私钥</b>。</p><p>在 MQTT 那边，私钥当「<b>账号</b>」；在推送接口这边，私钥当「<b>uid</b>」。</p><p>（停顿）</p><p>同一串字符，两个地方用，<b>别写成两个</b>。</p></div>
+</section>
+
+<section class="slide lay-codefull" data-title="上线版 ①-2">
+<div class="phead"><span class="no">第24课</span>
+<span class="kick a">上线版 ①-2</span>
+<span class="tslot">50–62 分</span>
+</div>
+<h2 class="ptitle">上线版 ①-2：回调 ＋ 连网 ＋ 订阅</h2>
+<p class="psub">接在上一段后面，<b>整段跟昨天一字不差</b></p>
+<div class="pbody"><div class="code"><span class="lab g">上线版 · 第①-2 段</span><pre style="font-size:26px;line-height:1.55"><span class="k">def</span> message_callback(topic, msg):   <span class="c"># 收指令控灯</span>
+    msg=msg.decode()
+    <span class="k">if</span> msg=="on": led.value(1)
+    <span class="k">elif</span> msg=="off": led.value(0)
+wlan=network.WLAN(network.STA_IF); wlan.active(<span class="k">True</span>)
+wlan.connect(WIFI_SSID, WIFI_PASS)
+<span class="k">while</span> <span class="k">not</span> wlan.isconnected(): time.sleep(0.5)
+client=MQTTClient(BEMFA_KEY,"mqtt.bemfa.com",9501)
+client.set_callback(message_callback)
+client.connect(); client.subscribe(T_LED)</pre></div><div style="margin-top:18px"><div class="strip g">拼的时候<b>别重复连网</b>——整份程序里 <code class="ic">wlan.connect</code> 只能有<b>一次</b>，<code class="ic">client.connect()</code> 也只有一次</div></div></div>
+<div class="notes"><p>第①-2 段，<b>跟昨天一字不差</b>，我不重复讲了。</p><p>回调、连 WiFi、连云、订阅控制主题。</p><p>（停顿）</p><p>但是有一个<b>拼装特有的坑</b>，我要专门说，因为今年一定有人踩：</p><p><b>别重复连网。</b></p><p>（敲黑板）</p><p>你从 L21 那份代码里复制「发微信」那段的时候，</p><p>L21 的代码<b>末尾也有三行连 WiFi</b>。</p><p>一不小心，你的程序里就有了<b>两段连网</b>。</p><p>会怎么样？</p><p>（停顿）</p><p>不一定报错，但它会<b>连两次、慢一倍</b>，有时候还会把已经连好的连接<b>弄断</b>。</p><p>所以黑条上写了：</p><p><b>整份程序里，<code class="ic">wlan.connect</code> 只能有一次，<code class="ic">client.connect()</code> 也只有一次。</b></p><p>拼完之后，用 PyCharm 的搜索功能找一下这两个词，<b>数一数几个</b>。</p><p>这是今天最值得花三十秒做的检查。</p></div>
+</section>
+
+<section class="slide lay-codefull" data-title="上线版 ② 主循环">
+<div class="phead"><span class="no">第24课</span>
+<span class="kick c">上线版 ②</span>
+<span class="tslot">50–62 分</span>
+</div>
+<h2 class="ptitle">上线版 ②：一个主循环，三件事各就各位</h2>
+<p class="psub"><b>能控</b> → <b>能传</b> → <b>报警</b>，谁也不耽误谁</p>
+<div class="pbody"><div class="code"><span class="lab g">上线版 · 第②段：主循环</span><pre style="font-size:22px;line-height:1.55">alarmed=<span class="k">False</span>; last=0
+<span class="k">while</span> <span class="k">True</span>:
+    client.check_msg()                 <span class="c"># 能控</span>
+    <span class="k">if</span> time.time()-last &gt; 30:
+        sensor.measure(); t=sensor.temperature()
+        client.publish(T_UP, str(t))   <span class="c"># 能传</span>
+        <span class="k">if</span> t&gt;LIMIT <span class="k">and</span> <span class="k">not</span> alarmed:
+            send_wechat("temp_high"); buzzer.value(1)
+            time.sleep(1); buzzer.value(0); alarmed=<span class="k">True</span>
+        <span class="k">if</span> t&lt;LIMIT-1 <span class="k">and</span> alarmed: alarmed=<span class="k">False</span>
+        last=time.time()
+    time.sleep(1)</pre></div><div style="margin-top:18px"><div class="strip a">看结构：<code class="ic">check_msg</code> <b>每秒都跑</b>（随叫随到）；测量+上传+报警<b>都在计时器里面</b>（30 秒一次）——<b>该勤的勤，该慢的慢</b></div></div></div>
+<div class="notes"><p>这是今天的<b>主角</b>，一个循环，三件事。</p><p>（带着他们看缩进层次）</p><p><b>最外层，每秒转一圈。</b></p><p>第一件事 <code class="ic">client.check_msg()</code> —— <b>能控</b>。每秒都看一眼，所以你点指令<b>随叫随到</b>。</p><p><b>往里一层，是计时器：到 30 秒了吗？</b></p><p>到了，才做剩下的事：</p><p>测量、<code class="ic">publish</code> —— <b>能传</b>。</p><p>然后 <code class="ic">if t&gt;LIMIT and not alarmed:</code> —— <b>报警</b>。L21 的去抖旗，一模一样。</p><p>（指黑条，讲结构）</p><p>看这个结构，我要你们看出一件事来：</p><p><b>该勤的勤，该慢的慢。</b></p><p><code class="ic">check_msg</code> 在<b>外层</b>，每秒都跑——因为人点指令，<b>等不了</b>。</p><p>测量上传在<b>里层</b>，30 秒一次——因为温度<b>变得慢</b>，测那么勤没意义，还费额度。</p><p>（停顿）</p><p>这就是「<b>主循环</b>」的精髓：</p><p>不同的事，<b>有不同的节奏</b>；你把它们安排在不同的层里，<b>谁也不耽误谁</b>。</p><p>（停顿）</p><p>你们现在写的这个东西，跟真实产品里的主循环，<b>结构是一样的</b>。</p></div>
+</section>
+
+<section class="slide lay-rowlist" data-title="稳定 15 分钟">
+<div class="phead"><span class="no">第24课</span>
+<span class="kick c">稳定性</span>
+<span class="tslot">62–78 分</span>
+</div>
+<h2 class="ptitle">全班一起跑 15 分钟</h2>
+<p class="psub"><b>能跑一次不算数，跑得住才算产品</b></p>
+<div class="pbody"><div class="rowlist grow"><div class="rowitem"><div class="num g">1</div><div class="tx"><b>第 5 分钟</b>：数据还在传吗？（控制台主题页有新点）　□</div></div><div class="rowitem"><div class="num a">2</div><div class="tx"><b>第 10 分钟</b>：远程指令还响应吗？（点一次 on/off 试试）　□</div></div><div class="rowitem"><div class="num c">3</div><div class="tx"><b>第 15 分钟</b>：没掉线、没重启吗？（串口没有重启提示）　□</div></div><div class="rowitem"><div class="num g">4</div><div class="tx">三个时间点<b>都在自检表上打勾</b>——这张表就是你的<b>上线证据</b></div></div><div class="rowitem"><div class="num a">5</div><div class="tx">中途挂了？<b>别急着改</b>，先想：挂在第几分钟、当时它正在干什么</div></div></div><div style="margin-top:20px"><div class="strip g"><b>产品和作业的区别就在这 15 分钟。</b> 作业跑通一次就交了；产品要<b>一直活着</b></div></div></div>
+<div class="notes"><p>现在全班产品<b>同时跑 15 分钟</b>。这段时间里，你们只做一件事：<b>看着它</b>。</p><p>三个时间点要打勾：</p><p><b>第 5 分钟，数据还在传吗？</b></p><p><b>第 10 分钟，远程指令还响应吗？</b> 点一次 on、一次 off。</p><p><b>第 15 分钟，没掉线、没重启吗？</b> 看串口有没有冒出重启的提示。</p><p>（停顿，讲透这件事的意义）</p><p>为什么要专门花 15 分钟干这个？</p><p>（等他们想）</p><p>因为——<b>能跑一次不算数，跑得住才算产品。</b></p><p>（敲黑板）</p><p><b>作业和产品的区别，就在这 15 分钟。</b></p><p>作业是：老师来看的时候它亮了，交了，收起来。</p><p>产品是：你上学去了，它<b>还在替你盯着</b>。</p><p>（停顿）</p><p>中途挂了的组，<b>先别急着改代码</b>。</p><p>先想两件事：<b>挂在第几分钟？当时它正在干什么？</b></p><p>第 3 分钟挂的和第 14 分钟挂的，<b>是两种病</b>。</p><p>把这两个答案写下来——它比你瞎改十遍都有用。</p></div>
+</section>
+
+<section class="slide lay-steps3" data-title="硬检查点验收">
+<div class="phead"><span class="no">第24课</span>
+<span class="kick c">验收</span>
+<span class="tslot">78–88 分</span>
+</div>
+<h2 class="ptitle">验收：当场演示三遍</h2>
+<p class="psub">顺序背熟：<b>连 → 传 → 控</b></p>
+<div class="pbody"><div class="g3 grow"><div class="blk"><div class="step"><div class="num g">①</div>
+        <div class="body"><p class="t">能连</p><p class="d"><b>当场重启一次</b>，它自己连上 WiFi。<br>15 分钟不掉线。</p></div></div></div><div class="blk"><div class="step"><div class="num a">②</div>
+        <div class="body"><p class="t">能传</p><p class="d">打开控制台主题页，<br><b>当着老师的面</b>多出一个新数据点。</p></div></div></div><div class="blk"><div class="step"><div class="num c">③</div>
+        <div class="body"><p class="t">能控</p><p class="d">控制台发指令，<b>连发 3 次全部生效</b>。<br>（3 次都灵才算过）</p></div></div></div></div><div style="margin-top:16px"><div class="strip g">三条全过 → <b>发作品卡②（项目卡，入档案袋）</b> → 老师当场宣布：<b>你的产品上线了</b></div></div><div style="margin-top:16px"><div class="strip a"><b>先自检表打满勾，再叫老师。</b> 演示顺序背熟：<b>连 → 传 → 控</b>——照着说，不会慌</div></div></div>
+<div class="notes"><p>验收开始。我一组一组走，你们<b>当场演示三遍</b>。</p><p><b>第①条，能连。</b> 我会让你<b>当场重启一次</b>。</p><p>为什么要重启？因为<b>真产品是要断电重来的</b>。停电了、拔插头了，它得自己爬起来。</p><p><b>第②条，能传。</b> 打开控制台主题页，<b>当着我的面</b>多出一个新点。</p><p><b>第③条，能控。</b> 我发指令，<b>连发三次，三次全灵</b>。</p><p>一次灵两次不灵——那叫<b>偶尔能用</b>，不算过。</p><p>（停顿，给紧张的孩子一个办法）</p><p>有人会手抖。给你们两个办法：</p><p><b>第一，先把自检表打满勾，再叫老师。</b></p><p><b>第二，演示顺序背熟：连、传、控。</b> 照着这三个字说，就不会乱。</p><p>（停顿，郑重）</p><p>三条全过的组——</p><p>我会当场发给你们<b>作品卡②</b>，<b>项目卡，进档案袋</b>。</p><p>然后我会说一句话：</p><p><b>「你的产品上线了。」</b></p><p>（停顿）</p><p>没全过的组也别难受。用保底模板先过线，或者标一个「<b>条件性上线</b>」，L25 课前补验。</p><p>但有一条是死的：<b>进发布会的每组，都必须有能演示的上线产品。</b></p></div>
+</section>
+
+<section class="slide lay-tiers3" data-title="分层任务">
+<div class="phead"><span class="no">第24课</span>
+<span class="kick g">分层任务</span>
+<span class="tslot">78–88 分</span>
+</div>
+<h2 class="ptitle">先过线，再加分</h2>
+<p class="psub">三条硬检查点 ＋ 稳定 15 分钟 ＝ 上线</p>
+<div class="pbody"><div class="g3 grow"><div class="blk tier t1"><div class="hd">★ 保底（必做）</div>
+        <p class="task">通过<b>硬检查点三条</b>（能连 / 能传 / 能控）＋ <b>稳定运行 15 分钟</b>。</p><p class="fill">□ 上线成功　作品卡②：□ 已领</p></div><div class="blk tier t2"><div class="hd">★★ 挑战（学有余力）</div>
+        <p class="task">实现<b>加分项清单第 1 条</b>——昨天排队的那个好点子，今天轮到它了。</p><p class="fill">我实现的加分项：____________</p></div><div class="blk tier t3"><div class="hd">★★★ 再挑战</div>
+        <p class="task">给产品写 <b>3 行使用说明</b>：别人<b>拿到手机就会用</b>。</p><p class="fill">① ________ ② ________ ③ ________</p></div></div>
+<div style="margin-top:22px"><div class="strip g">再挑战那一档，是<b>发布会的预演</b>——说明书写得清楚，L27 那天你只要照着念</div></div></div>
+<div class="notes"><p>三档。</p><p><b>保底必做</b>：三条过线，稳定 15 分钟，领作品卡②。</p><p><b>挑战档</b>：昨天写进清单排队的那个好点子，<b>今天轮到它了</b>。</p><p>（停顿）</p><p>昨天忍住没做的人，现在应该挺开心的——</p><p><b>地基打好了，加东西就快。</b></p><p><b>再挑战：给产品写 3 行使用说明。</b></p><p>要求只有一个：<b>别人拿到手机就会用。</b></p><p>（停顿）</p><p>这一档比看起来难。不信你试试写第一行。</p><p>你会发现你想写「打开巴法云控制台，找到主题 g1led01……」</p><p>——<b>别人看不懂。</b></p><p>好的说明书长什么样？像这样：</p><p>「<b>① 打开手机上的巴法云 App。② 找到『三号温度管家』。③ 点亮灯按钮，家里的灯就亮了。</b>」</p><p>（敲黑板）</p><p>说人话，说对方<b>做什么动作</b>、<b>会看见什么</b>。</p><p>黑条上那句：<b>这一档是发布会的预演。</b></p><p>说明书写清楚了，L27 那天你只要<b>照着念</b>。</p></div>
+</section>
+
+<section class="slide lay-rowlist" data-title="今日小结">
+<div class="phead"><span class="no">第24课</span>
+<span class="kick g">小结</span>
+<span class="tslot">88–90 分</span>
+</div>
+<h2 class="ptitle">今日三件事</h2>
+<div class="pbody"><div class="rowlist grow"><div class="rowitem"><div class="num g">1</div><div class="tx"><b>三段隔离</b>：串口看感知、控制台看数据、按钮试执行——<b>哪段断查哪段，一次只动一处</b></div></div><div class="rowitem"><div class="num a">2</div><div class="tx"><b>先过线，再考古</b>：卡住 10 分钟换保底模板；先恢复，后复盘——<b>工程师救火的顺序</b></div></div><div class="rowitem"><div class="num c">3</div><div class="tx"><b>跑得住才算产品</b>：稳定 15 分钟、三条硬检查点全过——<b>从作品到产品，差的就是这三条</b></div></div></div><div style="margin-top:20px"><div class="strip a">产品上线了。可要是哪天<b>断网</b>了呢？下节课——《<b>断网了怎么办</b>》</div></div></div>
+<div class="notes"><p>今天三件事。</p><p><b>第一，三段隔离。</b></p><p>串口看感知、控制台看数据、按钮试执行。</p><p>这张地图你们以后一辈子用得上——<b>任何一条链路出问题，都是这么查</b>。</p><p><b>第二，先过线，再考古。</b></p><p>先恢复，后复盘。今天换了模板的组，记得<b>回去考古</b>。</p><p><b>第三，跑得住才算产品。</b></p><p>（停顿，环视教室）</p><p>看看你们的板子。</p><p>它现在<b>正在跑</b>——在你听我说话的这会儿，它还在测、还在传。</p><p>（停顿）</p><p><b>从作品到产品，差的就是这三条硬标准——今天你跨过去了。</b></p><p>（停顿，抛钩子）</p><p>最后我问一个问题，你们今晚回去可以试试：</p><p><b>要是哪天断网了呢？</b></p><p>（停顿）</p><p>WiFi 断了、路由器重启了、家里停电又来电了——</p><p>你的产品会怎么样？</p><p>（停顿）</p><p>下节课：<b>《断网了怎么办》</b>。</p><p>下课。</p></div>
+</section>
+
+<section class="slide lay-cards2" data-title="课后任务">
+<div class="phead"><span class="no">第24课</span>
+<span class="kick a">课后任务</span>
+</div>
+<h2 class="ptitle">课后任务</h2>
+<div class="pbody"><div class="g2 grow"><div class="blk g"><h4>基础（全员）</h4><p>向家人<b>发布</b>：「我的产品上线了！」——演示<b>手机看数据</b> ＋ <b>远程控制</b>各一次。</p></div><div class="blk a"><h4>拓展（选做）</h4><p><b>记录产品今晚的表现</b>：有没有掉线？数据断没断？（明天的健壮性课正好用上）</p></div></div>
+<div style="margin-top:24px"><div class="strip g">从<b>作品</b>到<b>产品</b>，差的就是这三条硬标准——<b>今天你跨过去了</b></div></div></div>
+<div class="notes"><p>课后两件事。</p><p>第一件全员做，而且<b>今天这件事很值得做</b>：</p><p><b>向家人发布：「我的产品上线了！」</b></p><p>演示两样：<b>手机上看数据</b>，<b>手机上远程控制</b>。</p><p>（停顿）</p><p>演示的时候记得先走远一点，我教你们的老办法。</p><p>第二件选做，其实是<b>明天的作业提前做</b>：</p><p><b>记录你的产品今晚的表现。</b></p><p>有没有掉线？数据断没断？断在几点？</p><p>（停顿）</p><p>为什么让你们记？</p><p>因为明天那节课叫《<b>断网了怎么办</b>》——</p><p><b>你今晚记下来的东西，就是明天的教材。</b></p><p>（停顿）</p><p>说不定你会发现，它一整晚都好好的。</p><p>也说不定你会发现，凌晨两点它断了一次，然后<b>再也没爬起来</b>。</p><p>（停顿）</p><p>哪种情况都好，<b>记下来就行</b>。</p><p>恭喜各位——<b>你们的产品上线了。</b> 下课。</p></div>
+</section>
+<div class="deck-footer"><span>ESP32 × AI 科创课程 · 第四阶段「驾驭AI · 物联网」 · 第24课 联调与上线·下</span><span class="slide-number" data-current="1" data-total="13"></span></div>
+<div class="progress-bar"><span></span></div>
+</div>
+<script src="assets/fitstage.js"></script>
+<script src="assets/runtime.js"></script>
+</body>
+</html>

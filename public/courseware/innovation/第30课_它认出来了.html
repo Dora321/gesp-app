@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>第30课 · 它认出来了 — ESP32 × AI 科创课程</title>
+<link rel="stylesheet" href="assets/base.css">
+<link rel="stylesheet" id="theme-link" href="assets/theme-course-pop.css">
+<link rel="stylesheet" href="assets/animations.css">
+</head>
+<body>
+<div class="deck" data-theme-base="assets/">
+<section class="slide lay-cover is-active" data-title="封面">
+<div class="deco circle" style="width:170px;height:170px;top:-52px;right:238px"></div>
+<div class="deco tri" style="right:110px;bottom:132px;transform:rotate(14deg)"></div>
+<div class="deco square" style="width:120px;height:120px;left:-46px;bottom:86px;transform:rotate(12deg)"></div>
+<span class="cv-bar">ESP32 × AI ／ 第五阶段「融合AI」</span>
+<h1 class="cv-title">它认<em>出来了</em></h1>
+<p class="cv-sub">照片进去，答案出来——**而且答案是「猜」出来的**</p>
+<div class="cv-tags"><span class="tag">输入输出模型</span><span class="tag">你是裁判</span><span class="tag">额度纪律</span><span class="tag">90 分钟连堂</span></div>
+<div class="cv-no">30</div>
+<div class="notes"><p>（投屏树莓派面板，讲台上摆一盆植物）</p><p>昨天我们的系统<b>睁开眼</b>了。</p><p>但是我问了一个问题，还记得吗？</p><p>（停顿）</p><p><b>它知道自己拍的是什么吗？</b></p><p>——<b>不知道。</b> 对它来说，那只是一堆点。</p><p>（停顿）</p><p>今天，我们做一件事。</p><p>（现场拍那盆植物，点「提交识别」）</p><p>（投屏，等待……）</p><p>（答案跳出来：「植物 / 绿萝」）</p><p>（停顿，让他们反应）</p><p><b>它说：这是一盆植物。</b></p><p>（停顿）</p><p>今天，你们的系统<b>都能做到这件事</b>。</p><p>（停顿，然后放慢，压住兴奋）</p><p>但是今天这节课，<b>最重要的不是它有多神</b>。</p><p>（加重）</p><p>是——<b>它给的答案，到底靠不靠谱。</b></p><p>（停顿）</p><p>今天你们每个人，都有一个新身份：</p><p><b>裁判。</b></p></div>
+</section>
+
+<section class="slide lay-flow3" data-title="输入输出模型">
+<div class="phead"><span class="no">第30课</span>
+<span class="kick g">核心</span>
+<span class="tslot">8–20 分</span>
+</div>
+<h2 class="ptitle">识别不是魔法，还是<b>输入输出</b></h2>
+<p class="psub">照片寄出去，纸条寄回来</p>
+<div class="pbody"><div class="flow grow"><div class="fl g"><span class="fl-k">输入</span><p class="fl-t"><b>一张照片</b></p><p class="fl-b">你拍的那张图<br><br><b>寄出去</b></p></div><div class="fl-arr">→</div><div class="fl a"><span class="fl-k">云端模型</span><p class="fl-t"><b>「认图师傅」</b></p><p class="fl-b">它<b>见过的图比你走过的路还多</b><br><br>所以它<b>认得多</b></p></div><div class="fl-arr">→</div><div class="fl c"><span class="fl-k">输出</span><p class="fl-t"><b>标签 ＋ 描述</b></p><p class="fl-b">「植物 / 绿萝」<br><br><b>一张纸条寄回来</b></p></div></div><div style="margin-top:20px"><div class="strip c">重要：输出是「<b>我猜这最像……</b>」——<b>猜得再准也是猜</b>。谁当裁判？<b>你</b></div></div></div>
+<div class="notes"><p>「识别」听起来很玄，拆开看，<b>还是老朋友</b>：</p><p><b>输入 → 处理 → 输出。</b></p><p>（指左边）</p><p><b>输入：一张照片。</b> 你拍的那张图，<b>寄出去</b>。</p><p>（指中间）</p><p><b>中间：云端的「认图师傅」。</b></p><p>它为什么厉害？</p><p>（放慢，这个比方要讲好）</p><p>因为——<b>它见过的图，比你走过的路还多。</b></p><p>（停顿）</p><p>几千万张、几亿张。猫、狗、杯子、剪刀、绿萝……它都见过。</p><p>所以它<b>认得多</b>。</p><p>（指右边）</p><p><b>输出：一张纸条。</b> 上面写着标签和描述：「植物 / 绿萝」。</p><p>（停顿，指黑条，这是今天的课眼）</p><p>现在说今天<b>最重要的一句话</b>：</p><p>（一字一句）</p><p><b>它给的每一个答案，都是「我猜这最像……」。</b></p><p>（停顿）</p><p><b>猜得再准，也是猜。</b></p><p>（停顿）</p><p>那谁来判断它猜得对不对？</p><p>（等他们答）</p><p><b>你。</b></p><p>（加重）</p><p><b>你是裁判。</b></p></div>
+</section>
+
+<section class="slide lay-vstext" data-title="祛魅">
+<div class="phead"><span class="no">第30课</span>
+<span class="kick a">祛魅</span>
+<span class="tslot">8–20 分</span>
+</div>
+<h2 class="ptitle">「认得多」≠「什么都知道」</h2>
+<p class="psub">把它请下神坛，<b>才用得好它</b></p>
+<div class="pbody">
+  <div class="vs3 grow">
+    <div class="blk c vstx"><span class="tag c">很容易产生的错觉</span><p class="q">「AI 说是绿萝，<b>那就是绿萝</b>。」</p><p class="why">把 AI 当成<b>全知</b>的。<br>它说什么就是什么，<b>不再核对</b>。<br>——这是今天最该防的一种想法。</p></div>
+    <div class="vsmark">VS</div>
+    <div class="blk g vstx"><span class="tag g">真实的样子</span><p class="q">「AI 说<b>最像</b>绿萝。」</p><p class="why">它是<b>见得多</b>，不是<b>什么都知道</b>。<br>它会被<b>光线、角度、遮挡</b>骗到。<br><b>它也会自信地说错。</b></p></div>
+  </div>
+  <div style="margin-top:20px"><div class="strip g"><b>会用 AI 的眼睛，还会当它的裁判</b>——这才是高手。用得好的人，<b>从来不把它当神</b></div></div>
+</div>
+<div class="notes"><p>这一页，我想请大家<b>把 AI 请下神坛</b>。</p><p>（指左边）</p><p>有一种想法特别容易冒出来：</p><p><b>「AI 说是绿萝，那就是绿萝。」</b></p><p>（停顿）</p><p>说实话，这种想法<b>很舒服</b>——有人替你拿主意了嘛。</p><p>（加重）</p><p>但这是今天<b>最该防</b>的一种想法。</p><p>（指右边）</p><p>真实的样子是：</p><p><b>它说的是「最像」绿萝。</b></p><p>（放慢）</p><p>它是<b>见得多</b>，不是<b>什么都知道</b>。</p><p>（停顿）</p><p>它会被什么骗到？</p><p>（等他们答，引导）</p><p><b>光线、角度、遮挡。</b></p><p>（停顿）</p><p>还有一件事最要命——</p><p>（一字一句）</p><p><b>它会非常自信地说错。</b></p><p>（停顿）</p><p>它不会说「我不太确定」，它就直接告诉你一个答案。</p><p><b>错的答案，看起来和对的答案一模一样。</b></p><p>（停顿，指黑条）</p><p>所以今天这句话，请记住：</p><p><b>会用 AI 的眼睛，还会当它的裁判——这才是高手。</b></p><p>（停顿）</p><p>真正用得好 AI 的人，<b>从来不把它当神</b>。</p></div>
+</section>
+
+<section class="slide lay-rowlist" data-title="识别三连">
+<div class="phead"><span class="no">第30课</span>
+<span class="kick g">任务一</span>
+<span class="tslot">20–40 分</span>
+</div>
+<h2 class="ptitle">识别三连：拍 → 交 → 读 → 记</h2>
+<p class="psub">每组的调用次数<b>有限</b>——<b>每一发都要打准</b></p>
+<div class="pbody"><div class="rowlist grow"><div class="rowitem"><div class="num g">1</div><div class="tx"><b>拍</b>：选好对象，拍清楚（镜头擦干净、找亮处）——<b>拍之前先想：这张值不值得寄出去？</b></div></div><div class="rowitem"><div class="num a">2</div><div class="tx"><b>交</b>：面板上点「<b>提交识别</b>」，然后<b>等</b>（几秒到十几秒都正常）</div></div><div class="rowitem"><div class="num c">3</div><div class="tx"><b>读</b>：它说是什么？<b>标签</b>是什么、<b>描述</b>里还说了什么？</div></div><div class="rowitem"><div class="num g">4</div><div class="tx"><b>记</b>：填识别记录卡——特别是那一栏「<b>它说的对吗</b>」（对 / 偏 / 错）</div></div><div class="rowitem"><div class="num a">5</div><div class="tx"><b>等超过 30 秒没结果</b> → 切<b>预录响应包</b>，流程照走；<b>真调机会留给下一张</b></div></div></div><div style="margin-top:20px"><div class="strip c">识别一次<b>要花钱、花时间</b>，每组只有几发「子弹」。<b>拍之前想清楚</b>——工程师管这叫<b>成本意识</b></div></div></div>
+<div class="notes"><p>现在动手。四个动作：<b>拍、交、读、记</b>。</p><p><b>拍</b>：选好对象，拍清楚。镜头擦干净，找亮的地方。</p><p>（加重）</p><p>拍之前<b>先想一句</b>：<b>这张照片，值不值得寄出去？</b></p><p><b>交</b>：点「提交识别」，然后<b>等</b>。几秒到十几秒，都正常。</p><p><b>读</b>：它说是什么？标签是什么？描述里还说了什么？</p><p>（提醒）</p><p><b>描述那一段别跳过。</b> 有时候标签对了，但描述里藏着更有意思的东西。</p><p><b>记</b>：填记录卡。</p><p>（放慢，强调那一栏）</p><p>特别是这一栏——「<b>它说的对吗？</b>」</p><p><b>对、偏、还是错？</b></p><p>（停顿）</p><p><b>每一次识别，你都要当一次裁判。</b></p><p>（指黑条，讲额度）</p><p>最后说一件很现实的事：</p><p><b>识别一次，要花钱、花时间。</b> 每组只有几发「子弹」。</p><p>（停顿）</p><p>所以拍之前要想清楚。</p><p>（加重）</p><p>这个习惯有个名字，叫「<b>成本意识</b>」。</p><p>（停顿）</p><p>真实世界里，工程师天天算这笔账：</p><p>这个功能要调多少次？一次多少钱？<b>值不值？</b></p><p>（停顿）</p><p>等超过 30 秒没结果——<b>切预录响应包，流程照走</b>，真调机会留给下一张。</p></div>
+</section>
+
+<section class="slide lay-table" data-title="识别记录卡">
+<div class="phead"><span class="no">第30课</span>
+<span class="kick a">证据库</span>
+<span class="tslot">20–40 分</span>
+</div>
+<h2 class="ptitle">识别记录卡：四栏，一栏都别空</h2>
+<p class="psub">这张卡是 <b>L32「刁难大赛」的证据库</b></p>
+<div class="pbody">
+  <div class="tbl grow" style="grid-template-columns:1.1fr 1.3fr 1.6fr"><div class="th">栏目</div><div class="th">填什么</div><div class="th">为什么要填</div><div class="td k">拍的是什么</div><div class="td"><b>我知道的真相</b></div><div class="td">只有你知道真相，<b>才能当裁判</b></div><div class="td k">AI 说是什么</div><div class="td">标签 ＋ 描述<b>原话</b></div><div class="td"><b>原话抄下来</b>，别自己改写</div><div class="td k">它说的对吗</div><div class="td"><b>对 / 偏 / 错</b></div><div class="td"><b>今天最重要的一栏</b></div><div class="td k">我的备注</div><div class="td">光线 / 角度 / 距离</div><div class="td"><b>为什么</b>它会这么说——线索在这里</div></div>
+  <div style="margin-top:20px"><div class="strip g"><b>「偏」是最有意思的一档</b>：毛绒猫玩具 → 它说「猫」。<b>不算全错，也不算对</b>——这种答案最值得琢磨</div></div>
+</div>
+<div class="notes"><p>记录卡四栏，<b>一栏都别空</b>。</p><p><b>第一栏：拍的是什么（我知道的真相）。</b></p><p>（停顿）</p><p>为什么这一栏排第一？</p><p>（放慢）</p><p>因为——<b>只有你知道真相，你才能当裁判。</b></p><p>你要是自己都不确定那是什么，你怎么判断它对不对？</p><p><b>第二栏：AI 说是什么。</b></p><p>（加重）</p><p><b>把它的原话抄下来</b>，别自己改写。</p><p>它说「一盆绿色植物，可能是绿萝」——你就这么记，<b>别简写成「绿萝」</b>。</p><p>（停顿）</p><p>为什么？因为「<b>可能是</b>」这三个字，<b>很重要</b>。</p><p><b>第三栏：它说的对吗。对、偏、错。</b></p><p><b>今天最重要的一栏。</b></p><p><b>第四栏：我的备注。</b> 光线怎么样、什么角度、离多远。</p><p>（停顿）</p><p>这一栏是<b>线索</b>：将来你要问「它为什么会说错」，答案往往就在这一栏里。</p><p>（指黑条，讲「偏」）</p><p>三档里，<b>「偏」是最有意思的一档</b>。</p><p>（举例）</p><p>一个<b>毛绒猫玩具</b>，它说「猫」。</p><p>（停顿）</p><p><b>算对吗？</b></p><p>（让他们争一下）</p><p>它不是猫，它是玩具。可它确实<b>长得像猫</b>。</p><p>（停顿）</p><p><b>不算全错，也不算对。</b></p><p>（加重）</p><p>这种答案，<b>最值得琢磨</b>——而且，它是 L32 那节课的<b>主菜</b>。</p></div>
+</section>
+
+<section class="slide lay-divider" data-title="课间休息">
+<div class="deco circle" style="width:200px;height:200px;top:-70px;right:180px"></div>
+<div class="deco square" style="width:130px;height:130px;left:-50px;bottom:70px;transform:rotate(12deg)"></div>
+<div class="deco tri" style="right:140px;bottom:90px;transform:rotate(14deg)"></div>
+<div class="dv">
+  <span class="dv-time">40–50 分</span>
+  <h2 class="dv-t">课间休息 10 分钟</h2>
+  <p class="dv-s">交换看各组的识别记录——<b>谁的答案最离谱？</b></p>
+</div>
+<div class="notes"><p>休息十分钟。</p><p>休息的时候，拿着你们的记录卡<b>到处串门</b>：</p><p><b>看看别组识别了什么，AI 是怎么说的。</b></p><p>（停顿）</p><p>找一件事：</p><p><b>谁的答案最离谱？</b></p><p>（停顿）</p><p>找到了就记下来，等会儿我们要<b>全班分享</b>。</p><p>（停顿）</p><p>提醒一句：看别组卡的时候，别只看「<b>AI 说了什么</b>」，</p><p>也看看<b>备注栏</b>——</p><p>（放慢）</p><p><b>很多离谱的答案，旁边都写着一句「当时光线很暗」。</b></p><p>（停顿）</p><p>去吧。</p></div>
+</section>
+
+<section class="slide lay-rowlist" data-title="边界小测">
+<div class="phead"><span class="no">第30课</span>
+<span class="kick c">摸边界</span>
+<span class="tslot">50–68 分</span>
+</div>
+<h2 class="ptitle">边界小测：拿半刁难物试探它</h2>
+<p class="psub"><b>不是为了让它出丑</b>——是为了知道<b>它什么时候靠得住</b></p>
+<div class="pbody"><div class="rowlist grow"><div class="rowitem"><div class="num g">1</div><div class="tx"><b>毛绒猫玩具</b> → 它说是什么？「猫」还是「玩具」？<b>这一发最经典</b></div></div><div class="rowitem"><div class="num a">2</div><div class="tx"><b>画出来的苹果</b>（纸上画的）→ 它说「苹果」吗？<b>画的和真的，它分得清吗？</b></div></div><div class="rowitem"><div class="num c">3</div><div class="tx"><b>只露一半的东西</b> → 用手挡住一半再拍，答案变了吗？</div></div><div class="rowitem"><div class="num g">4</div><div class="tx"><b>很暗 / 逆光</b> → 昨天你们拍过「刁难照」，今天<b>正好交给它试试</b></div></div><div class="rowitem"><div class="num a">5</div><div class="tx">每一发都记进卡里：<b>对 / 偏 / 错 ＋ 备注</b>（光线、角度、遮挡）</div></div></div><div style="margin-top:20px"><div class="strip a">摸边界不是<b>找茬</b>，是<b>摸清它的脾气</b>。知道它<b>什么时候靠得住</b>，你才敢把活交给它</div></div></div>
+<div class="notes"><p>下半场，我们干一件很好玩的事：<b>摸它的边界</b>。</p><p>（停顿，先把态度说清楚）</p><p>先说清楚：<b>这不是为了让它出丑。</b></p><p>（放慢）</p><p>是为了知道——<b>它什么时候靠得住，什么时候靠不住。</b></p><p>（停顿）</p><p>四发试探：</p><p><b>第一发：毛绒猫玩具。</b> 它说「猫」，还是说「玩具」？</p><p>（停顿）这一发最经典，每年都精彩。</p><p><b>第二发：画出来的苹果。</b></p><p>纸上画的，它说「苹果」吗？</p><p>（停顿）</p><p><b>画的和真的，它分得清吗？</b> 这个问题比你想的深。</p><p><b>第三发：只露一半。</b> 用手挡住一半再拍。</p><p><b>第四发：很暗、逆光。</b></p><p>（停顿）</p><p>昨天我让你们拍的那张「<b>刁难照</b>」，还记得吗？</p><p>（停顿）</p><p><b>今天正好，交给它试试。</b></p><p>（停顿，指黑条）</p><p>最后说一句正经的：</p><p>摸边界<b>不是找茬</b>，是<b>摸清它的脾气</b>。</p><p>（加重）</p><p><b>知道它什么时候靠得住，你才敢把活交给它。</b></p><p>（停顿）</p><p>这句话，等你们 L34 真的把 AI 装进作品的时候，<b>会特别有感觉</b>。</p></div>
+</section>
+
+<section class="slide lay-cards3" data-title="三种结果">
+<div class="phead"><span class="no">第30课</span>
+<span class="kick g">当裁判</span>
+<span class="tslot">50–68 分</span>
+</div>
+<h2 class="ptitle">裁判打分：对 / 偏 / 错</h2>
+<p class="psub"><b>三种结果的意思完全不一样</b></p>
+<div class="pbody"><div class="g3 grow"><div class="blk g"><h4>○ 对</h4><p>它说的就是<b>那个东西</b>。<br><br>杯子→「杯子」。<br><b>放心用。</b></p></div><div class="blk a"><h4>△ 偏</h4><p><b>沾点边，但不准</b>。<br><br>毛绒猫→「猫」。<br><b>最值得琢磨的一档。</b></p></div><div class="blk c"><h4>× 错</h4><p><b>完全不是</b>。<br><br>剪刀→「眼镜」。<br><b>记下当时的光线和角度。</b></p></div></div><p class="beads-cap" style="margin:18px 0 16px">记住：<b>三种结果，它的语气一模一样</b>——它<b>不会告诉你</b>这次是哪一种</p><div style="margin-top:22px"><div class="strip c">所以那句话又回来了：<b>答案要核对</b>。AI 给的是「<b>它的看法</b>」，不是「<b>真相</b>」</div></div></div>
+<div class="notes"><p>当裁判，三种打分。</p><p><b>「对」</b>：它说的就是那个东西。杯子就是杯子。<b>放心用。</b></p><p><b>「偏」</b>：沾点边，但不准。毛绒猫说成「猫」。</p><p><b>「错」</b>：完全不是。剪刀说成「眼镜」。</p><p>（停顿，讲中间那行字——今天的重点）</p><p>现在我要说一件<b>有点吓人的事</b>：</p><p>（一字一句，放慢）</p><p><b>这三种结果，它的语气一模一样。</b></p><p>（停顿）</p><p>它说「这是杯子」和说「这是眼镜」——</p><p><b>用的是同一种口气，同样的自信。</b></p><p>（停顿）</p><p><b>它不会告诉你这次是哪一种。</b></p><p>（长停顿，让它沉下去）</p><p>所以那句话又回来了：</p><p><b>答案要核对。</b></p><p>（指黑条）</p><p>（放慢）</p><p><b>AI 给你的是「它的看法」，不是「真相」。</b></p><p>（停顿）</p><p>这句话，你们现在听着可能觉得是废话。</p><p>（停顿）</p><p>但是——<b>L32 那天，你们会重新想起它。</b></p></div>
+</section>
+
+<section class="slide lay-tiers3" data-title="分层实战">
+<div class="phead"><span class="no">第30课</span>
+<span class="kick g">分层任务</span>
+<span class="tslot">68–80 分</span>
+</div>
+<h2 class="ptitle">先记全，再试深</h2>
+<p class="psub">3 次完整识别 ＋ 记录卡填全 ＝ 成功</p>
+<div class="pbody"><div class="g3 grow"><div class="blk tier t1"><div class="hd">★ 保底（必做）</div>
+        <p class="task">完成 <b>3 次完整识别</b>（拍→提交→读答案→记录），记录卡<b>填全</b>（含「对吗」栏）。</p><p class="fill">□ ①　□ ②　□ ③</p></div><div class="blk tier t2"><div class="hd">★★ 挑战（学有余力）</div>
+        <p class="task"><b>同一个物体</b>换<b>角度 / 光线</b>拍 3 张——<b>答案稳定吗</b>？把发现写进记录卡。</p><p class="fill">换 ______ 后，答案 ______</p></div><div class="blk tier t3"><div class="hd">★★★ 再挑战</div>
+        <p class="task">找一个让 AI「<b>猜偏</b>」的物体，<b>记下它偏成了什么</b>。</p><p class="fill">我让它把 ______ 说成了 ______</p></div></div>
+<div style="margin-top:22px"><div class="strip g">挑战档在练一个真本事：<b>控制变量</b>——只换一样（角度），别的都不动，<b>才知道是谁的功劳</b></div></div></div>
+<div class="notes"><p>三档。</p><p><b>保底必做</b>：3 次完整识别，记录卡填全，<b>「对吗」栏不能空</b>。</p><p><b>挑战档：同一个物体，换角度、换光线，拍 3 张。</b></p><p>（停顿）</p><p><b>答案稳定吗？</b></p><p>（放慢）</p><p>这一档在练一个<b>真本事</b>，叫「<b>控制变量</b>」。</p><p>（加重）</p><p><b>只换一样</b>——只换角度，东西不动、光线不动。</p><p>（停顿）</p><p>为什么非要这样？</p><p>（等他们想）</p><p>因为你要是<b>同时换了三样</b>，答案变了，</p><p><b>你不知道是哪一样让它变的。</b></p><p>（停顿）</p><p>L22 联调的时候我们说过同一句话：<b>一次只动一处。</b></p><p>（停顿）</p><p><b>再挑战：找一个让它「猜偏」的东西。</b></p><p>（停顿，笑）</p><p>这一档其实是在<b>给后天攒素材</b>——</p><p>（放慢）</p><p><b>L32，我们要开一场「刁难大赛」。</b></p><p>今天找到的好对象，<b>明天可以报名</b>。</p></div>
+</section>
+
+<section class="slide lay-rowlist" data-title="全班统计">
+<div class="phead"><span class="no">第30课</span>
+<span class="kick g">小结</span>
+<span class="tslot">80–90 分</span>
+</div>
+<h2 class="ptitle">全班统计：它猜对了多少？</h2>
+<p class="psub">把大家的记录卡<b>汇到一起</b>看</p>
+<div class="pbody"><div class="rowlist grow"><div class="rowitem"><div class="num g">1</div><div class="tx"><b>猜对</b>多少次？——常见物、拍得清楚的，它<b>基本不出错</b></div></div><div class="rowitem"><div class="num a">2</div><div class="tx"><b>猜偏 / 猜错</b>多少次？——多半集中在<b>光线暗、逆光、遮挡、画的</b>这几种</div></div><div class="rowitem"><div class="num c">3</div><div class="tx"><b>结论一</b>：它<b>认得多</b>，这是真的；<b>结论二</b>：它<b>在猜</b>，这也是真的</div></div><div class="rowitem"><div class="num g">4</div><div class="tx"><b>结论三（最重要）</b>：<b>它猜错的时候，语气跟猜对时一模一样</b></div></div><div class="rowitem"><div class="num a">5</div><div class="tx">所以我们的规矩是：<b>AI 的答案，永远要有人核对</b></div></div></div><div style="margin-top:20px"><div class="strip a">它<b>认出来了</b>——那能不能<b>认出来就「动手」</b>？明天：<b>看见就行动！</b>（两层要真的握上手了）</div></div></div>
+<div class="notes"><p>现在全班统计。把记录卡的结果汇到一起。</p><p>（在黑板上数）</p><p><b>猜对多少次？猜偏、猜错多少次？</b></p><p>（统计完，带他们看规律）</p><p>看出规律了吗？</p><p><b>常见的东西、拍得清楚的，它基本不出错。</b></p><p><b>猜错的，多半集中在几种情况：光线暗、逆光、被挡住、画出来的。</b></p><p>（停顿）</p><p>所以今天三个结论：</p><p><b>一，它认得多——这是真的。</b></p><p><b>二，它在猜——这也是真的。</b></p><p>（停顿，加重第三条）</p><p><b>三，也是最重要的一条：</b></p><p><b>它猜错的时候，语气跟猜对的时候一模一样。</b></p><p>（停顿）</p><p>所以我们的规矩是：</p><p><b>AI 的答案，永远要有人核对。</b></p><p>（停顿，抛钩子）</p><p>好，最后一个问题。</p><p>（放慢）</p><p>今天它<b>认出来了</b>——</p><p>（停顿）</p><p>那能不能<b>认出来，就动手</b>？</p><p>（停顿）</p><p>它看见有人来了，就让灯亮；</p><p>它看见杯子空了，就提醒你倒水……</p><p>（停顿）</p><p><b>明天：《看见就行动》。</b></p><p>（放慢）</p><p>明天，<b>两层要真的握上手了</b>。</p><p>下课。</p></div>
+</section>
+
+<section class="slide lay-cards2" data-title="课后任务">
+<div class="phead"><span class="no">第30课</span>
+<span class="kick a">课后任务</span>
+</div>
+<h2 class="ptitle">课后任务</h2>
+<div class="pbody"><div class="g2 grow"><div class="blk g"><h4>基础（全员）</h4><p>给家人演示（或讲述）一次识别：<b>照片进、答案出</b>。<br>强调那句话：<b>答案是「猜」的</b>。</p></div><div class="blk a"><h4>拓展（选做）</h4><p>在家找一个<b>你觉得 AI 会认错</b>的东西，明天<b>口头报名</b>——后天（L32）<b>刁难大赛</b>用。</p></div></div>
+<div style="margin-top:24px"><div class="strip g"><b>会用 AI 的眼睛，还会当它的裁判</b>——这才是高手</div></div></div>
+<div class="notes"><p>课后两件事。</p><p>第一件全员做：给家人演示或者讲述一次识别。</p><p>（停顿）</p><p>讲的时候，<b>别忘了那句话</b>：</p><p><b>答案是「猜」的。</b></p><p>（放慢）</p><p>为什么要特别强调这句？</p><p>（停顿）</p><p>因为大人<b>更容易把 AI 当神</b>。</p><p>他们会说「哎呀现在的 AI 真厉害，什么都知道」。</p><p>（停顿）</p><p>你就告诉他们：<b>它是见得多，不是什么都知道。它也会很自信地说错。</b></p><p>（停顿）</p><p>第二件选做，<b>明天要用</b>：</p><p><b>在家找一个你觉得 AI 会认错的东西。</b></p><p>（停顿，激发）</p><p>什么东西容易骗到它？</p><p>长得像别的东西的？半透明的？躲在影子里的？</p><p>（停顿）</p><p>找到了，<b>明天口头报名</b>。</p><p>后天 L32，我们开<b>刁难大赛</b>。</p><p>（停顿）</p><p>最后一句：</p><p><b>会用 AI 的眼睛，还会当它的裁判——这才是高手。</b></p><p>下课。</p></div>
+</section>
+<div class="deck-footer"><span>ESP32 × AI 科创课程 · 第五阶段「融合AI」 · 第30课 它认出来了</span><span class="slide-number" data-current="1" data-total="11"></span></div>
+<div class="progress-bar"><span></span></div>
+</div>
+<script src="assets/fitstage.js"></script>
+<script src="assets/runtime.js"></script>
+</body>
+</html>

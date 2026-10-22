@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>第25课 · 断网了怎么办 — ESP32 × AI 科创课程</title>
+<link rel="stylesheet" href="assets/base.css">
+<link rel="stylesheet" id="theme-link" href="assets/theme-course-pop.css">
+<link rel="stylesheet" href="assets/animations.css">
+</head>
+<body>
+<div class="deck" data-theme-base="assets/">
+<section class="slide lay-cover is-active" data-title="封面">
+<div class="deco circle" style="width:170px;height:170px;top:-52px;right:238px"></div>
+<div class="deco tri" style="right:110px;bottom:132px;transform:rotate(14deg)"></div>
+<div class="deco square" style="width:120px;height:120px;left:-46px;bottom:86px;transform:rotate(12deg)"></div>
+<span class="cv-bar">ESP32 × AI ／ 第四阶段「驾驭AI · 物联网」</span>
+<h1 class="cv-title">断网了<em>怎么办</em></h1>
+<p class="cv-sub">先让它当众崩一次，再教它自己爬起来</p>
+<div class="cv-tags"><span class="tag">断网演习两次</span><span class="tag">安全网 try/except</span><span class="tag">自动重连</span><span class="tag">90 分钟连堂</span></div>
+<div class="cv-no">25</div>
+<div class="notes"><p>昨天你们的产品<b>上线</b>了。</p><p>今天先问一个扫兴的问题：</p><p>（停顿）</p><p><b>昨天晚上，你家 WiFi 要是抽了一下风呢？</b></p><p>路由器自动重启、有人拔了插头、网卡了十秒——</p><p><b>你的产品会怎么样？</b></p><p>（让几个记录了的同学说说）</p><p>（停顿）</p><p>今天这节课，跟前面所有课都不一样。</p><p>前面的课都在教你<b>让它工作</b>。</p><p>今天要干的事是——</p><p>（放慢，加重）</p><p><b>先让它当众崩一次。</b></p><p>我等会儿会喊一句口令：「<b>断网演习开始！</b>」</p><p>然后我把教室的热点<b>关掉 30 秒</b>。</p><p>你们就盯着自己的产品看，看它<b>怎么死的</b>。</p><p>（停顿）</p><p>看清楚了，再教它<b>自己爬起来</b>。</p></div>
+</section>
+
+<section class="slide lay-rowlist" data-title="演习① 裸奔">
+<div class="phead"><span class="no">第25课</span>
+<span class="kick c">演习 ①</span>
+<span class="tslot">8–18 分</span>
+</div>
+<h2 class="ptitle">断网演习①：裸奔 30 秒</h2>
+<p class="psub">口令一下，热点关 30 秒——<b>盯着你的产品</b></p>
+<div class="pbody"><div class="rowlist grow"><div class="rowitem"><div class="num g">1</div><div class="tx">口令：「<b>断网演习开始！</b>」——教师热点<b>关闭 30 秒</b>，全班同时断</div></div><div class="rowitem"><div class="num a">2</div><div class="tx"><b>盯着串口</b>：有没有冒红字？红字上写的是什么？</div></div><div class="rowitem"><div class="num c">3</div><div class="tx"><b>盯着产品</b>：灯还动吗？该报警的时候还响吗？还是<b>整个停住了</b>？</div></div><div class="rowitem"><div class="num g">4</div><div class="tx">把看到的<b>写在演习卡上</b>：「断网瞬间发生了什么：____________」</div></div><div class="rowitem"><div class="num a">5</div><div class="tx">30 秒后热点打开——<b>它自己好了吗？</b> 还是要按复位键才活？</div></div></div><div style="margin-top:20px"><div class="strip a">先<b>亲眼看见脆弱</b>，改造才有意思。等会儿加固完再断一次，<b>两次对比打分</b></div></div></div>
+<div class="notes"><p>演习①，<b>裸奔</b>。规则很简单：</p><p>我喊口令，热点关 30 秒。你们<b>什么都不用做，只要看</b>。</p><p>看三样东西：</p><p><b>第一，串口有没有冒红字？</b> 红字上写的是什么？（那叫「报错」，L5 学过读它）</p><p><b>第二，产品还动吗？</b> 灯还亮吗？该报警的时候还响吗？</p><p><b>第三，30 秒后我把热点打开——它自己好了吗？</b></p><p>（停顿）</p><p>准备好。</p><p><b>断网演习开始！</b></p><p>（关热点，计时 30 秒，巡视）</p><p>（多数组的串口会停住或报错）</p><p>……</p><p>（30 秒后打开热点）</p><p>好，说说你们看到了什么。</p><p>（收集：卡住了 / 报了红字 / 灯不动了 / 要按复位才行）</p><p>（停顿，点题）</p><p>注意最后一条，最惨的那一条：</p><p><b>热点回来了，它却没回来。</b></p><p>它还在那儿死着，<b>要人去按一下复位键</b>。</p><p>（停顿）</p><p>可是——<b>你在学校，谁去按？</b></p><p>把这些都写到演习卡上。等会儿加固完，我们<b>再断一次</b>，两次对比打分。</p></div>
+</section>
+
+<section class="slide lay-vstext" data-title="两层本事">
+<div class="phead"><span class="no">第25课</span>
+<span class="kick g">核心</span>
+<span class="tslot">18–40 分</span>
+</div>
+<h2 class="ptitle">你的产品有<b>两层</b>本事</h2>
+<p class="psub">断网只该丢<b>第二层</b>——第一层塌了，那是设计问题</p>
+<div class="pbody">
+  <div class="vs3 grow">
+    <div class="blk c vstx"><span class="tag c">第一层：没网也能干的</span><p class="q">读传感器、本地报警、亮灯、蜂鸣器响。</p><p class="why">这一层<b>根本不需要网</b>。<br>断网的时候，它<b>凭什么要停</b>？<br><b>第一层塌了，是你的设计问题，不是网的问题。</b></p></div>
+    <div class="vsmark">VS</div>
+    <div class="blk g vstx"><span class="tag g">第二层：有网才能干的</span><p class="q">上云存数据、推微信、被远程控制。</p><p class="why">这一层<b>确实只能等网回来</b>。<br>断网就是丢它——<b>丢得起</b>。<br>网一回来，<b>它自己接上</b>。</p></div>
+  </div>
+  <div style="margin-top:20px"><div class="strip a">一句话记住：<b>断网只丢一层本事，另一层永远要活着</b>——这就是今天的设计目标</div></div>
+</div>
+<div class="notes"><p>在动手改之前，先想清楚一件事，这是今天最关键的一个想法：</p><p><b>你的产品有两层本事。</b></p><p>（指左边）</p><p><b>第一层：没网也能干的。</b></p><p>读传感器、本地报警、亮灯、响蜂鸣器。</p><p>（停顿，提问）</p><p>这一层需要网吗？</p><p>——<b>根本不需要</b>。传感器就插在板子上，蜂鸣器就接在板子上，<b>关网什么事？</b></p><p>（加重）</p><p>所以刚才演习①里，你的灯不动了、蜂鸣器不响了——</p><p><b>那不是网的问题，是你的设计问题。</b></p><p>（停顿）</p><p>（指右边）</p><p><b>第二层：有网才能干的。</b></p><p>上云存数据、推微信、被远程控制。</p><p>这一层，断网就是干不了，<b>只能等</b>。</p><p>但是——<b>丢得起</b>。网一回来，它自己接上就行。</p><p>（敲黑板）</p><p>今天的设计目标，就一句话：</p><p><b>断网只丢一层本事，另一层永远要活着。</b></p><p>（停顿）</p><p>你想想家里的空调。</p><p>遥控器没电了（相当于断网），空调是不是就<b>炸了</b>？</p><p>不会。它照样制冷，只是你暂时<b>调不了</b>它。</p><p><b>这就是两层本事。</b></p></div>
+</section>
+
+<section class="slide lay-vscompare" data-title="安全网">
+<div class="phead"><span class="no">第25课</span>
+<span class="kick c">新语法</span>
+<span class="tslot">18–40 分</span>
+</div>
+<h2 class="ptitle">安全网：<code class="ic">try</code> / <code class="ic">except</code></h2>
+<p class="psub">杂技演员敢翻跟头，不是因为不会掉——是<b>底下有网</b></p>
+<div class="pbody">
+  <div class="vs3 grow">
+    <div class="code"><span class="lab c">× 裸奔：一掉就摔死</span><pre style="font-size:27px;line-height:1.55"><span class="k">while</span> <span class="k">True</span>:
+    t = sensor.temperature()
+    client.publish(T_UP, str(t))
+    time.sleep(2)</pre></div>
+    <div class="vsmark">VS</div>
+    <div class="code"><span class="lab g">○ 有网：掉了有人接</span><pre style="font-size:27px;line-height:1.55"><span class="k">while</span> <span class="k">True</span>:
+    t = sensor.temperature()
+    <span class="k">if</span> online:
+        try: client.publish(T_UP, str(t))
+        except: online = <span class="k">False</span>   <span class="c"># 接住</span>
+    time.sleep(2)</pre></div>
+  </div>
+  <div style="margin-top:24px"><div class="strip "><code class="ic">try</code> 里放「<b>可能会掉的动作</b>」（连网、上传）；<code class="ic">except</code> 里放「<b>掉了怎么接</b>」（转本地、待会再试）</div></div>
+</div>
+<div class="notes"><p>今天有一个<b>新语法</b>，叫 <code class="ic">try</code> / <code class="ic">except</code>。</p><p>名字有点怪，但它的意思特别好懂：</p><p>（停顿）</p><p><b>杂技演员敢翻跟头，不是因为他不会掉。</b></p><p><b>是因为底下有网。</b></p><p>（指左边）</p><p>左边是你刚才<b>裸奔</b>跑的代码。</p><p><code class="ic">client.publish(...)</code> —— 网一断，这一行<b>直接报错</b>，整个程序<b>停在这儿</b>。</p><p>后面的代码<b>一行都不再跑</b>了。</p><p>所以灯不动、蜂鸣器不响——<b>它不是不想动，是它已经死了</b>。</p><p>（指右边）</p><p>右边多了两个词：</p><p><code class="ic">try:</code> —— 「<b>试试看</b>」。把可能会摔的动作放进去。</p><p><code class="ic">except:</code> —— 「<b>要是摔了，就干这个</b>」。</p><p>（放慢）</p><p>摔了干什么？看这里：<code class="ic">online = False</code>。</p><p>就是在纸上记一笔：「<b>现在没网了。</b>」</p><p>然后呢？（停顿）<b>然后程序继续往下跑！</b></p><p>它没死。它只是<b>知道自己掉线了</b>。</p><p>（敲黑板，黑条）</p><p>所以这两个词的分工是：</p><p><b><code class="ic">try</code> 里放「可能会掉的动作」——连网、上传。</b></p><p><b><code class="ic">except</code> 里放「掉了怎么接」——转本地、待会再试。</b></p><p><b>有网，才敢演。</b></p></div>
+</section>
+
+<section class="slide lay-steps3" data-title="重连三件套">
+<div class="phead"><span class="no">第25课</span>
+<span class="kick g">改造清单</span>
+<span class="tslot">18–40 分</span>
+</div>
+<h2 class="ptitle">重连三件套</h2>
+<p class="psub">「自愈」比「不坏」更了不起</p>
+<div class="pbody"><div class="g3 grow"><div class="blk"><div class="step"><div class="num g">①</div>
+        <div class="body"><p class="t">不死等</p><p class="d">连不上就<b>别一直等</b>。<br>等在那儿，本地的活也停了。</p></div></div></div><div class="blk"><div class="step"><div class="num a">②</div>
+        <div class="body"><p class="t">断了转本地</p><p class="d">掉线就<b>记一笔</b> <code class="ic">online=False</code>，<br><b>本地功能照跑</b>。</p></div></div></div><div class="blk"><div class="step"><div class="num c">③</div>
+        <div class="body"><p class="t">隔几秒重连</p><p class="d">每 <b>5 秒</b>试一次。<br><b>摔了喘口气再爬，别原地打滚。</b></p></div></div></div></div><div style="margin-top:16px"><div class="strip c">为什么要<b>隔几秒</b>？一秒试一百次叫「<b>重连风暴</b>」——板子忙着重连，<b>本地的活全耽误了</b></div></div><div style="margin-top:16px"><div class="strip a"><b>恢复的时候两层都要接</b>：WiFi 是一层，MQTT 是另一层——WiFi 回来了不等于云回来了</div></div></div>
+<div class="notes"><p>改造清单，三件事，我叫它「<b>重连三件套</b>」。</p><p><b>第①件：不死等。</b></p><p>连不上就别一直在那儿等。你等着，<b>本地的活也停了</b>。</p><p><b>第②件：断了转本地。</b></p><p>掉线就记一笔 <code class="ic">online=False</code>，然后<b>本地功能照跑</b>。</p><p>灯该亮亮，该报警报警——<b>它们本来就不需要网</b>。</p><p><b>第③件：隔几秒重连。</b></p><p>每 5 秒试一次。</p><p>（指第一条黑条）</p><p>为什么非要隔几秒？一秒试一百次不是更快恢复吗？</p><p>（等他们想）</p><p>那叫「<b>重连风暴</b>」。</p><p>板子忙着不停重连，<b>本地的活全耽误了</b>——测温度也慢了，报警也迟了。</p><p>（放慢，这句话值得记）</p><p><b>摔了喘口气再爬，别原地打滚。</b></p><p>（指第二条黑条）</p><p>最后一个容易踩的坑：</p><p><b>恢复的时候，两层都要接。</b></p><p><b>WiFi 是一层，MQTT 是另一层。</b></p><p>有的组会发现：热点回来了，WiFi 也连上了，<b>可数据还是不传</b>。</p><p>为什么？——<b>WiFi 回来了，但云的连接还没重新建立</b>。</p><p>所以我们把「连云」<b>单独包成一个函数</b>，要重连的时候，<b>再叫一次它</b>就行。</p></div>
+</section>
+
+<section class="slide lay-codefull" data-title="起步全码 ①">
+<div class="phead"><span class="no">第25课</span>
+<span class="kick g">第①步</span>
+<span class="tslot">18–40 分</span>
+</div>
+<h2 class="ptitle">起步全码 ①：把「连云」包成函数</h2>
+<p class="psub">包成函数，<b>等会儿重连的时候再叫它一次</b></p>
+<div class="pbody"><div class="code"><span class="lab g">起步全码 · 第①步：连云函数 ＋ 本地功能打底</span><pre style="font-size:20px;line-height:1.55"><span class="k">import</span> network, time, dht
+<span class="k">from</span> machine <span class="k">import</span> Pin
+<span class="k">from</span> umqtt.simple <span class="k">import</span> MQTTClient
+WIFI_SSID="你的WiFi名"; WIFI_PASS="你的WiFi密码"
+BEMFA_KEY="你的巴法云私钥"; T_UP="g1temp01/up"; LIMIT=28
+sensor=dht.DHT11(Pin(14)); buzzer=Pin(13,Pin.OUT)
+<span class="k">def</span> connect_cloud():                <span class="c"># 连云单独成函数</span>
+    c=MQTTClient(BEMFA_KEY,"mqtt.bemfa.com",9501)
+    c.connect(); <span class="k">return</span> c
+wlan=network.WLAN(network.STA_IF); wlan.active(<span class="k">True</span>)
+wlan.connect(WIFI_SSID, WIFI_PASS)
+<span class="k">while</span> <span class="k">not</span> wlan.isconnected(): time.sleep(0.5)
+client=connect_cloud(); online=<span class="k">True</span>; last_try=0</pre></div><div style="margin-top:18px"><div class="strip a">最后一行三个新变量：<code class="ic">online</code>（现在有网吗）、<code class="ic">last_try</code>（上次重连是几点）——<b>它们是产品的「自我感觉」</b></div></div></div>
+<div class="notes"><p>起步全码第①步。跟昨天比，<b>结构上只多了一样东西</b>：</p><p>中间这个 <code class="ic">def connect_cloud()</code>。</p><p>它把「连云」那三行<b>包成了一个函数</b>。</p><p>（停顿，提问）</p><p>为什么要包起来？我们昨天不是直接写的吗？</p><p>（等答）</p><p>因为——<b>等会儿断网了，我们还要再连一次。</b></p><p>包成函数，重连的时候<b>叫一声名字</b>就行，不用把三行代码再抄一遍。</p><p>（敲黑板）</p><p>这就是函数的价值：<b>同一件事要干很多遍，就给它起个名字。</b> L13 学过。</p><p>再看最后一行，三个东西并排：</p><p><code class="ic">client=connect_cloud()</code> —— 第一次连上。</p><p><code class="ic">online=True</code> —— 「<b>我现在有网</b>」。</p><p><code class="ic">last_try=0</code> —— 「<b>我上次试重连是几点</b>」。</p><p>（指黑条）</p><p>后面这两个变量很特别，我要你们体会一下：</p><p><code class="ic">online</code> 和 <code class="ic">last_try</code> <b>不控制任何硬件</b>——它们既不点灯也不响蜂鸣器。</p><p>它们是产品的「<b>自我感觉</b>」：<b>我现在是什么状态，我刚才干过什么。</b></p><p>（停顿）</p><p>一个东西开始<b>知道自己的状态</b>，它就离「聪明」近了一步。</p></div>
+</section>
+
+<section class="slide lay-codefull" data-title="起步全码 ② 主循环">
+<div class="phead"><span class="no">第25课</span>
+<span class="kick c">第②步</span>
+<span class="tslot">18–40 分</span>
+</div>
+<h2 class="ptitle">起步全码 ②：本地永远跑 ＋ 掉线接住 ＋ 定时重连</h2>
+<p class="psub">看缩进：<b>本地那两行在最外面</b>——它不受任何网络条件管</p>
+<div class="pbody"><div class="code"><span class="lab g">起步全码 · 第②步：主循环</span><pre style="font-size:22px;line-height:1.55"><span class="k">while</span> <span class="k">True</span>:
+    sensor.measure(); t=sensor.temperature()
+    buzzer.value(1 <span class="k">if</span> t&gt;LIMIT <span class="k">else</span> 0)   <span class="c"># 本地报警：不靠网</span>
+    <span class="k">if</span> online:
+        try: client.publish(T_UP, str(t))
+        except: online=<span class="k">False</span>; print('断网，转本地')
+    <span class="k">else</span>:
+        <span class="k">if</span> time.time()-last_try &gt; 5:    <span class="c"># 每 5 秒重连</span>
+            last_try=time.time()
+            try: client=connect_cloud(); online=<span class="k">True</span>
+            except: print('还连不上，继续本地干活')
+    time.sleep(2)</pre></div><div style="margin-top:18px"><div class="strip g"><code class="ic">if online:</code> 之外的代码 ＝ <b>第一层本事</b>（永远跑）；<code class="ic">if online:</code> 之内 ＝ <b>第二层本事</b>（有网才干）</div></div></div>
+<div class="notes"><p>主循环。这一页请<b>看缩进</b>，缩进就是今天的答案。</p><p><b>最外面两行</b>：测温度、本地报警。</p><p>（加重）</p><p>它们在<b>所有 if 的外面</b>——意思是：<b>不管有网没网，它们都跑</b>。</p><p>这就是<b>第一层本事</b>。</p><p>往下，<code class="ic">if online:</code> —— <b>有网的时候</b>才干的事：<code class="ic">publish</code> 上传。</p><p>而且这个 publish <b>包在 try 里</b>：摔了就 <code class="ic">online=False</code>，<b>记一笔，继续活着</b>。</p><p>再往下 <code class="ic">else:</code> —— <b>没网的时候</b>干什么？</p><p><code class="ic">if time.time()-last_try &gt; 5:</code> ——「<b>离上次试重连超过 5 秒了吗？</b>」</p><p>到了才试一次。<b>这就是喘口气再爬。</b></p><p>试的方式：<code class="ic">client=connect_cloud()</code> ——<b>再叫一次那个函数</b>。</p><p>成功了，<code class="ic">online=True</code>，回到正轨。</p><p>还不行？<code class="ic">except</code> 接住，打印一句「还连不上，继续本地干活」，<b>下一圈再说</b>。</p><p>（指黑条，收束）</p><p>黑条上这句话，把整页总结完了：</p><p><b><code class="ic">if online:</code> 外面 ＝ 第一层本事，永远跑。</b></p><p><b><code class="ic">if online:</code> 里面 ＝ 第二层本事，有网才干。</b></p><p>（停顿）</p><p>看懂这一句，你就看懂今天全部的代码了。</p></div>
+</section>
+
+<section class="slide lay-divider" data-title="课间休息">
+<div class="deco circle" style="width:200px;height:200px;top:-70px;right:180px"></div>
+<div class="deco square" style="width:130px;height:130px;left:-50px;bottom:70px;transform:rotate(12deg)"></div>
+<div class="deco tri" style="right:140px;bottom:90px;transform:rotate(14deg)"></div>
+<div class="dv">
+  <span class="dv-time">40–50 分</span>
+  <h2 class="dv-t">课间休息 10 分钟</h2>
+  <p class="dv-s">互相检查：你的<b>安全网</b>接在哪几处？</p>
+</div>
+<div class="notes"><p>休息十分钟。</p><p>回来前跟同桌互相查一件事：</p><p><b>你的安全网，接在哪几处？</b></p><p>（停顿）</p><p>为什么要查？因为有一个<b>特别常见</b>的错：</p><p><b>try 只包了上传，没包连接。</b></p><p>上传摔了有网接着，可是<b>重连那一下摔了，还是会死</b>。</p><p>（加重）</p><p>规矩是：<b>所有跟网有关的动作，都要在安全网里面。</b></p><p>连网、连云、上传、推送——<b>一个都不能漏在外面</b>。</p><p>互相指着代码数一遍，数出几张网，写在演习卡上。</p><p>十分钟后回来，<b>我们再断一次</b>。</p></div>
+</section>
+
+<section class="slide lay-table" data-title="演习② 对比">
+<div class="phead"><span class="no">第25课</span>
+<span class="kick g">演习 ②</span>
+<span class="tslot">50–68 分</span>
+</div>
+<h2 class="ptitle">断网演习②：加固之后，再断 30 秒</h2>
+<p class="psub">同一个产品，同一段断网——<b>两次对比打分</b></p>
+<div class="pbody">
+  <div class="tbl grow" style="grid-template-columns:1.2fr 1fr 1fr"><div class="th">观察项</div><div class="th">演习①（裸奔）</div><div class="th">演习②（加固后）</div><div class="td k">断网瞬间崩了吗</div><div class="td">多半<b>崩了 / 卡住</b></div><div class="td">□ <b>没崩</b></div><div class="td k">本地功能还跑吗</div><div class="td">多半<b>停了</b></div><div class="td">□ 灯照亮 □ 报警照响</div><div class="td k">恢复后自动重连吗</div><div class="td">多半<b>要按复位</b></div><div class="td">□ <b>自己连上</b> □ 数据续传</div></div>
+  <div style="margin-top:20px"><div class="strip a"><b>「自愈」比「不坏」更了不起。</b> 没有东西永远不坏——<b>会自己爬起来的，才敢让它 7×24 替你干活</b></div></div>
+</div>
+<div class="notes"><p>加固完了，<b>再断一次</b>。同一个产品，同样断 30 秒。</p><p>这次你们看三件事，对着卡上打勾：</p><p><b>一、断网瞬间崩了吗？</b></p><p><b>二、本地功能还跑吗？</b> 灯还亮吗？报警还响吗？</p><p><b>三、恢复之后，它自己连上了吗？</b> 要不要人去按复位？</p><p>准备好——</p><p><b>断网演习开始！</b></p><p>（关热点 30 秒）</p><p>（巡视，引导他们看：灯还在动、串口在打印「还连不上，继续本地干活」）</p><p>看串口！它<b>在说话</b>：「还连不上，继续本地干活。」</p><p>（停顿）</p><p>听听这句话的口气——<b>它知道自己掉线了，而且它不慌</b>。</p><p>（30 秒后打开热点，等 5 秒）</p><p>（串口恢复上传）</p><p>……回来了。</p><p><b>没有人按复位键。它自己爬起来的。</b></p><p>（停顿，让这一刻停一会儿）</p><p>黑条上那句话，是今天整节课的中心：</p><p><b>「自愈」比「不坏」更了不起。</b></p><p>没有东西永远不坏。网会断、电会闪、机器会卡。</p><p>（加重）</p><p><b>会自己爬起来的，才敢让它 7×24 替你干活。</b></p></div>
+</section>
+
+<section class="slide lay-aierror" data-title="改造常见坑">
+<div class="phead"><span class="no">第25课</span>
+<span class="kick c">排错</span>
+<span class="tslot">50–68 分</span>
+</div>
+<h2 class="ptitle">加了 try 还是死？三个常见坑</h2>
+<p class="psub">安全网要接<b>全</b>，重连要有<b>节奏</b></p>
+<div class="pbody">
+  <div class="aegrid grow">
+    <div class="code"><span class="lab c">三个最容易错的地方</span><pre style="font-size:21px;line-height:1.55">try: client.publish(T_UP, str(t))   <span class="c"># ← 坑1：只包了上传</span>
+client = connect_cloud()            <span class="c">#        连接段裸着</span>
+
+<span class="k">while</span> <span class="k">not</span> online:                   <span class="c"># ← 坑2：一秒试一百次</span>
+    try: client = connect_cloud()   <span class="c">#        重连风暴</span>
+
+wlan.connect(...)                   <span class="c"># ← 坑3：只重连 WiFi</span>
+<span class="c"># 忘了 client = connect_cloud()     #        云还没接上</span></pre></div>
+    <div class="aecol">
+      <div class="blk c"><h4>对症</h4><p><b>坑 1</b>：所有网络动作<b>都要在安全网里</b>（连接段也是）。<br><b>坑 2</b>：重连要有<b>间隔</b>（5 秒一次），别原地打滚。</p></div>
+      <div class="blk g"><h4>坑 3 最隐蔽：<b>两层</b></h4><p><b>WiFi 连上 ≠ 云连上</b>。热点回来了，<code class="ic">client</code> 还是断的。<br>所以重连要<b>再叫一次</b> <code class="ic">connect_cloud()</code>。</p></div>
+    </div>
+  </div>
+  <div style="margin-top:22px"><div class="strip a">自查一句话：<b>我的代码里，所有带「网」字的动作，是不是都在 <code class="ic">try</code> 里面？</b></div></div>
+</div>
+<div class="notes"><p>加了 try 还是死？三个坑，我一个个说。</p><p><b>坑 1：try 只包了上传，连接段裸着。</b></p><p>你想想：断网之后，重连那一下<b>也会失败啊</b>。</p><p>它在安全网外面，一摔——<b>照样死</b>。</p><p>所以：<b>所有网络动作都要在安全网里。</b></p><p><b>坑 2：重连风暴。</b></p><p><code class="ic">while not online:</code> 一直试，<b>一秒试一百次</b>。</p><p>板子忙疯了，本地的活全耽误了。加间隔——<b>5 秒一次</b>。</p><p><b>坑 3，最隐蔽的一个：只重连了 WiFi。</b></p><p>（放慢）</p><p>有组会遇到这个：热点回来了，串口显示 WiFi 已连接——<b>可数据就是不传</b>。</p><p>为什么？</p><p>（等他们想）</p><p>因为 <b>WiFi 连上，不等于云连上</b>。</p><p>它们是<b>两层</b>：WiFi 是路，云是柜子。路通了，<b>你还得重新走到柜子那儿去</b>。</p><p>所以重连的时候，要<b>再叫一次 <code class="ic">connect_cloud()</code></b>。</p><p>（指黑条）</p><p>最后给你们一句自查的话，今天下课前对着代码问一遍：</p><p><b>我的代码里，所有带「网」字的动作，是不是都在 try 里面？</b></p></div>
+</section>
+
+<section class="slide lay-tiers3" data-title="分层实战">
+<div class="phead"><span class="no">第25课</span>
+<span class="kick g">分层任务</span>
+<span class="tslot">68–80 分</span>
+</div>
+<h2 class="ptitle">先保底，再把状态说给人听</h2>
+<p class="psub">断网不崩 ＋ 恢复自动重连 ＝ 成功</p>
+<div class="pbody"><div class="g3 grow"><div class="blk tier t1"><div class="hd">★ 保底（必做）</div>
+        <p class="task"><b>断网演习②通过</b>：断网<b>不崩</b>、本地<b>照跑</b>、恢复后<b>自动重连</b>。</p><p class="fill">□ 没崩 □ 本地照跑 □ 自动重连 □ 数据续传</p></div><div class="blk tier t2"><div class="hd">★★ 挑战（学有余力）</div>
+        <p class="task"><b>OLED 状态提示</b>：离线显示「<b>离线模式</b>」，恢复显示「<b>已重连</b>」。</p><p class="fill">□ 两种状态都显示对了</p></div><div class="blk tier t3"><div class="hd">★★★ 再挑战</div>
+        <p class="task"><b>离线补传</b>：断网期间把数据先<b>存在板上</b>（用列表攒着），重连后<b>补传</b>。</p><p class="fill">□ 补传成功，曲线没缺口</p></div></div>
+<div style="margin-top:22px"><div class="strip g">挑战档在干一件很「产品」的事：<b>把状态说给用户听</b>。人最怕的不是坏，是<b>不知道它怎么了</b></div></div></div>
+<div class="notes"><p>三档。</p><p><b>保底必做</b>：演习②四个勾打满。</p><p><b>挑战档：OLED 显示状态。</b></p><p>离线的时候写「离线模式」，恢复了写「已重连」。</p><p>（停顿，讲这一档的意义）</p><p>这一档看起来只是显示两行字，其实在干一件<b>很「产品」的事</b>：</p><p><b>把状态说给用户听。</b></p><p>（加重）</p><p>人最怕的不是坏——<b>是不知道它怎么了</b>。</p><p>你家 WiFi 断了，路由器上会亮一个<b>红灯</b>；</p><p>打印机没纸了，屏幕上会写「<b>缺纸</b>」。</p><p>（停顿）</p><p>它们都在做同一件事：<b>告诉你它现在怎么了。</b></p><p><b>再挑战：离线补传。</b></p><p>断网期间，数据不丢，<b>先存在板子上</b>（用一个列表攒着）；</p><p>重连之后，<b>一口气补上去</b>。</p><p>这样云上的曲线<b>没有缺口</b>。</p><p>（停顿）</p><p>这一档难，但如果你做成了——</p><p>你的产品就和家里那些真设备<b>一个水平</b>了。</p></div>
+</section>
+
+<section class="slide lay-rowlist" data-title="今日三大发现">
+<div class="phead"><span class="no">第25课</span>
+<span class="kick g">总结</span>
+<span class="tslot">80–90 分</span>
+</div>
+<h2 class="ptitle">今日三大发现</h2>
+<div class="pbody"><div class="rowlist grow"><div class="rowitem"><div class="num g">1</div><div class="tx"><b>两层本事</b>：没网也能干的（本地）＋ 有网才能干的（云端）——<b>断网只该丢第二层</b></div></div><div class="rowitem"><div class="num a">2</div><div class="tx"><b>安全网 <code class="ic">try</code> / <code class="ic">except</code></b>：<code class="ic">try</code> 放可能摔的动作，<code class="ic">except</code> 放摔了怎么接——<b>有网，才敢演</b></div></div><div class="rowitem"><div class="num c">3</div><div class="tx"><b>自愈 &gt; 不坏</b>：摔了喘口气再爬（5 秒一次），WiFi 和云<b>两层都要重连</b></div></div></div><div style="margin-top:20px"><div class="strip a">产品结实了。可是——要是<b>坏人知道了你的私钥</b>呢？下节课：《<b>安全与隐私</b>》</div></div></div>
+<div class="notes"><p>今天三个发现。</p><p><b>第一，两层本事。</b></p><p>断网只该丢第二层。第一层塌了，<b>是设计问题</b>。</p><p><b>第二，安全网。</b></p><p><code class="ic">try</code> 放可能摔的动作，<code class="ic">except</code> 放摔了怎么接。</p><p><b>有网，才敢演。</b></p><p><b>第三，自愈比不坏更了不起。</b></p><p>（停顿，收一收）</p><p>今天这节课，跟前面所有课都不一样。</p><p>前面我们一直在学<b>怎么让它工作</b>。</p><p>今天学的是——<b>怎么让它出了事还能活着</b>。</p><p>（放慢）</p><p>工程师有一句话，送给你们：</p><p><b>先假设它会坏，再设计它不崩。</b></p><p>（停顿）</p><p>现在你的产品：会测、会传、会控、会报警、会说话、<b>还会自己爬起来</b>。</p><p>它已经很结实了。</p><p>（停顿，抛钩子）</p><p>但是我还有一个问题：</p><p><b>要是坏人知道了你的私钥呢？</b></p><p>（停顿）</p><p>L22 那天我们说过一句话，还记得吗？——<b>名字就是钥匙</b>。</p><p>下节课：《<b>安全与隐私</b>》。下课。</p></div>
+</section>
+
+<section class="slide lay-cards2" data-title="课后任务">
+<div class="phead"><span class="no">第25课</span>
+<span class="kick a">课后任务</span>
+</div>
+<h2 class="ptitle">课后任务</h2>
+<div class="pbody"><div class="g2 grow"><div class="blk g"><h4>基础（全员）</h4><p>给家人讲「<b>安全网</b>」：为什么断网了我的产品<b>不崩</b>、还会<b>自己爬起来</b>。</p></div><div class="blk a"><h4>拓展（选做）</h4><p>观察家里的设备<b>断网后的表现</b>：路由器重启时，音箱 / 摄像头是<b>怎么恢复</b>的？</p></div></div>
+<div style="margin-top:24px"><div class="strip g"><b>能自愈的产品，才敢让它 7×24 替你干活</b></div></div></div>
+<div class="notes"><p>课后两件事。</p><p>第一件全员做：<b>给家人讲「安全网」。</b></p><p>用杂技演员那个比方讲，最好懂：</p><p><b>不是不会掉，是掉了有网接住。</b></p><p>然后告诉他们：我的产品断网<b>不会崩</b>，网回来了<b>自己就连上了</b>。</p><p>第二件选做，是一道<b>观察题</b>，而且特别好玩：</p><p><b>家里的设备断网之后，是怎么恢复的？</b></p><p>下次路由器重启的时候，你留意看：</p><p>智能音箱会说什么？摄像头的灯变成什么颜色？多久之后自己好的？</p><p>（停顿）</p><p>你会发现一件很有意思的事：</p><p><b>好的产品，都在偷偷做今天你做的这件事。</b></p><p>它们也有 <code class="ic">online</code> 这个变量，也在每隔几秒试一次，也在屏幕上告诉你「<b>正在重连</b>」。</p><p>（停顿）</p><p>最后一句：</p><p><b>能自愈的产品，才敢让它 7×24 替你干活。</b></p><p>下课。</p></div>
+</section>
+<div class="deck-footer"><span>ESP32 × AI 科创课程 · 第四阶段「驾驭AI · 物联网」 · 第25课 断网了怎么办</span><span class="slide-number" data-current="1" data-total="13"></span></div>
+<div class="progress-bar"><span></span></div>
+</div>
+<script src="assets/fitstage.js"></script>
+<script src="assets/runtime.js"></script>
+</body>
+</html>

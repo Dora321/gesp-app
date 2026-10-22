@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>竞赛延伸包 C2 · 像科学家做实验 — ESP32 × AI 科创课程</title>
+<link rel="stylesheet" href="assets/base.css">
+<link rel="stylesheet" id="theme-link" href="assets/theme-course-pop.css">
+<link rel="stylesheet" href="assets/animations.css">
+</head>
+<body>
+<div class="deck" data-theme-base="assets/">
+<section class="slide lay-cover is-active" data-title="封面">
+<div class="deco circle" style="width:170px;height:170px;top:-52px;right:238px"></div>
+<div class="deco tri" style="right:110px;bottom:132px;transform:rotate(14deg)"></div>
+<div class="deco square" style="width:120px;height:120px;left:-46px;bottom:86px;transform:rotate(12deg)"></div>
+<span class="cv-bar">ESP32 × AI ／ 竞赛延伸包（选修 · 与主线并行）</span>
+<h1 class="cv-title">像科学家<em>做实验</em></h1>
+<p class="cv-sub">从「随手改改看」到「**有计划地验证**」</p>
+<div class="cv-tags"><span class="tag">一次只改一个</span><span class="tag">对照实验</span><span class="tag">研究日志</span><span class="tag">失败也要记</span></div>
+<div class="cv-no">C2</div>
+<div class="notes"><p>上课之前，先抢答一个谜。</p><p>（停顿，放慢）</p><p><b>我感冒了，同时吃了 A、B 两种药。第二天，好了。</b></p><p>（停顿）</p><p>请问——<b>是哪种药治好的？</b></p><p>（等他们抢答，多半有人说 A，有人说 B，然后开始互相反驳）</p><p>（停顿，笑）</p><p>……<b>答不上来吧？</b></p><p>（放慢）</p><p>不是你们笨。</p><p>（加重）</p><p><b>是谁也说不清。</b></p><p>（停顿）</p><p>为什么说不清？</p><p>（等他们答，引导）</p><p><b>因为一次改了两个。</b></p><p>（长停顿）</p><p>科学家的秘诀，就这一句话：</p><p>（一字一句）</p><p><b>一次只改一个。</b></p><p>（停顿）</p><p>上次我们提出了问题——<b>家里哪个房间最冷</b>。</p><p>（停顿）</p><p>今天<b>不靠猜</b>。</p><p>我们像科学家一样，设计一次实验，<b>真刀真枪把答案测出来</b>。</p></div>
+</section>
+
+<section class="slide lay-vstext" data-title="第二跃">
+<div class="phead"><span class="no">竞赛 C2</span>
+<span class="kick g">第二跃</span>
+<span class="tslot">0–8 分</span>
+</div>
+<h2 class="ptitle">科学证明靠<b>对照</b>，不靠「我觉得」</h2>
+<p class="psub">C1 提出了问题，今天<b>去把它验证掉</b></p>
+<div class="pbody">
+  <div class="vs3 grow">
+    <div class="blk c vstx"><span class="tag c">随手改改看</span><p class="q">「我觉得北屋更冷。」<br>「我改了阈值，好像灵敏多了。」</p><p class="why"><b>「我觉得」「好像」</b>——<br>评委一追问就站不住：<br><b>你凭什么这么说？</b></p></div>
+    <div class="vsmark">VS</div>
+    <div class="blk g vstx"><span class="tag g">有计划地验证</span><p class="q">「我<b>做了对照</b>：同一晚、同一时段，<br>客厅 22℃、北屋 19℃。」</p><p class="why">有<b>数</b>、有<b>对照</b>、有<b>记录</b>。<br><b>别人没法反驳，因为这是测出来的。</b></p></div>
+  </div>
+  <div style="margin-top:20px"><div class="strip a">这是第二跃：<b>从「随手改改看」，到「有计划地验证」</b>——科学家证明一件事，从来不说「我觉得」</div></div>
+</div>
+<div class="notes"><p>（指左边）</p><p>左边这两句话，你们平时经常说：</p><p><b>「我觉得北屋更冷。」</b></p><p><b>「我改了阈值，好像灵敏多了。」</b></p><p>（停顿）</p><p>「我觉得」「好像」——</p><p>（加重）</p><p><b>评委一追问，就站不住了。</b></p><p>（放慢）</p><p>他只要问一句：<b>「你凭什么这么说？」</b></p><p>（停顿）</p><p>你就答不上来。</p><p>（指右边）</p><p>右边换个说法：</p><p><b>「我做了对照：同一晚、同一时段，客厅 22 度，北屋 19 度。」</b></p><p>（停顿）</p><p>有<b>数</b>、有<b>对照</b>、有<b>记录</b>。</p><p>（加重）</p><p><b>别人没法反驳你，因为这是测出来的。</b></p><p>（停顿，指黑条）</p><p>（放慢）</p><p>C1 我们迈了第一跃：<b>从作品到项目</b>。</p><p>今天迈第二跃：</p><p>（一字一句）</p><p><b>从「随手改改看」，到「有计划地验证」。</b></p></div>
+</section>
+
+<section class="slide lay-steps3" data-title="三个词">
+<div class="phead"><span class="no">竞赛 C2</span>
+<span class="kick c">核心</span>
+<span class="tslot">8–20 分</span>
+</div>
+<h2 class="ptitle">三个词：变量 · 控制变量 · 对照</h2>
+<p class="psub">听起来像大词，其实<b>一句话就懂</b></p>
+<div class="pbody"><div class="g3 grow"><div class="blk"><div class="step"><div class="num g">变量</div>
+        <div class="body"><p class="t"><b>会变的那个东西</b></p><p class="d">房间、时段、阈值、光线……<br><b>任何「改了可能有差别」的东西。</b></p></div></div></div><div class="blk"><div class="step"><div class="num a">控制变量</div>
+        <div class="body"><p class="t"><b>一次只改一个</b></p><p class="d">其余<b>全摁住</b>。<br>（那两种药，就是没摁住）</p></div></div></div><div class="blk"><div class="step"><div class="num c">对照</div>
+        <div class="body"><p class="t"><b>改的一组 vs 不改的一组</b></p><p class="d">光测北屋不算——<br><b>得有个客厅跟它比。</b></p></div></div></div></div><div style="margin-top:16px"><div class="strip c">口令就一句：<b>一次只改一个，其余全摁住</b>——今天一整节课都围着它转</div></div><div style="margin-top:16px"><div class="strip a"><b>「摁住」要写下来</b>：温度计不换、时段不变、测多久不变——<b>写下来的才算摁住了</b></div></div></div>
+<div class="notes"><p>三个词，听起来像大词，其实<b>一句话就懂</b>。</p><p><b>第一个：变量——会变的那个东西。</b></p><p>房间、时段、阈值、光线……</p><p>（加重）</p><p><b>任何「改了可能有差别」的东西，都是变量。</b></p><p><b>第二个：控制变量——一次只改一个，其余全摁住。</b></p><p>（停顿）</p><p>刚才那两种药，问题出在哪？</p><p>（等答）</p><p><b>没摁住。</b> 两个一起改了。</p><p><b>第三个：对照——改的一组，跟不改的一组比。</b></p><p>（加重）</p><p>光测北屋<b>不算实验</b>。</p><p>（放慢）</p><p>北屋 19 度——<b>这个数字本身说明不了任何事</b>。</p><p>（停顿）</p><p>冷不冷，得<b>有个东西跟它比</b>。</p><p><b>客厅 22 度</b>，一比——</p><p>（停顿）</p><p><b>北屋低 3 度。</b> 这才是结论。</p><p>（指第二条黑条，这条很实际）</p><p>最后强调一件事：</p><p>（放慢）</p><p><b>「摁住」要写下来。</b></p><p>温度计不换、时段不变、测多久不变——</p><p>（加重）</p><p><b>写下来的，才算摁住了。</b></p><p>（停顿）</p><p>只在脑子里想「我会注意的」——<b>你一定会忘</b>。</p></div>
+</section>
+
+<section class="slide lay-table" data-title="范例方案">
+<div class="phead"><span class="no">竞赛 C2</span>
+<span class="kick g">照着套</span>
+<span class="tslot">8–20 分</span>
+</div>
+<h2 class="ptitle">贯穿范例：只改「房间」这一个</h2>
+<p class="psub"><b>找家里最冷的房间</b>——方案长这样</p>
+<div class="pbody">
+  <div class="tbl grow" style="grid-template-columns:1fr 1.2fr 1.8fr"><div class="th">项目</div><div class="th">写什么</div><div class="th">范例</div><div class="td k"><b>变量</b></div><div class="td">我要改的<b>那一个</b></div><div class="td"><b>房间</b>（客厅 vs 北屋）</div><div class="td k"><b>对照</b></div><div class="td">改的一组 vs 不改的一组</div><div class="td"><b>同一晚、同一时段</b>各测一次</div><div class="td k"><b>摁住</b></div><div class="td">其余<b>全部列出来</b></div><div class="td">温度计、时段（晚 9 点）、测量时长<b>都不变</b></div><div class="td k"><b>预测</b></div><div class="td"><b>先猜</b>（C3 对答案）</div><div class="td">我猜北屋低 2–3℃，因为<b>朝北、窗户多</b></div></div>
+  <div style="margin-top:20px"><div class="strip a">「<b>预测</b>」那一栏别跳过：<b>先猜，再测</b>——猜对了有成就感，<b>猜错了更有价值</b>（那说明你发现了新东西）</div></div>
+</div>
+<div class="notes"><p>照着这张表套。四栏。</p><p><b>变量</b>：我要改的<b>那一个</b>——房间。客厅 vs 北屋。</p><p><b>对照</b>：<b>同一晚、同一时段</b>，各测一次。</p><p>（加重，讲一个常见错误）</p><p>注意「<b>同一晚、同一时段</b>」。</p><p>（放慢）</p><p>有的组会这么做：今天测客厅，明天测北屋。</p><p>（停顿）</p><p>这样干净吗？</p><p>（等他们想）</p><p>（加重）</p><p><b>不干净。</b></p><p>因为今天和明天的天气<b>可能不一样</b>——</p><p><b>你把「时间」变成了第二个变量。</b></p><p>（停顿）</p><p>所以对照要<b>尽量同条件、同时比</b>。</p><p><b>摁住</b>：温度计、时段、测量时长，<b>全部列出来</b>。</p><p>（指最后一栏，这一栏最有意思）</p><p><b>预测：先猜。</b></p><p>「我猜北屋低 2 到 3 度，因为它朝北、窗户多。」</p><p>（停顿，指黑条）</p><p>为什么要先猜？</p><p>（放慢）</p><p>猜对了，<b>有成就感</b>。</p><p>（加重）</p><p><b>猜错了，更有价值。</b></p><p>（停顿）</p><p>为什么？</p><p>（一字一句）</p><p><b>因为那说明你发现了一件你原本不知道的事。</b></p><p>（停顿）</p><p><b>科学最有意思的时刻，就是「咦，怎么跟我想的不一样」。</b></p></div>
+</section>
+
+<section class="slide lay-rowlist" data-title="设计我的实验">
+<div class="phead"><span class="no">竞赛 C2</span>
+<span class="kick g">任务一</span>
+<span class="tslot">20–40 分</span>
+</div>
+<h2 class="ptitle">任务一：给我的课题设计一次对照实验</h2>
+<p class="psub">标准只有一条：<b>干净</b></p>
+<div class="pbody"><div class="rowlist grow"><div class="rowitem"><div class="num g">1</div><div class="tx"><b>选一个变量</b>：位置？时段？阈值？光线？——挑一个「<b>改了可能有差别</b>」的</div></div><div class="rowitem"><div class="num a">2</div><div class="tx"><b>设对照</b>：改的一组 ______ vs 不改的一组 ______（<b>尽量同时、同条件比</b>）</div></div><div class="rowitem"><div class="num c">3</div><div class="tx"><b>列摁住清单</b>：其余条件<b>一条一条写下来</b>——写不出三条，说明还没想清楚</div></div><div class="rowitem"><div class="num g">4</div><div class="tx"><b>写预测</b>：我猜结果会是 ______，<b>因为</b> ______（「因为」那半句才是关键）</div></div><div class="rowitem"><div class="num a">5</div><div class="tx"><b>自查一句</b>：<b>我这次到底只改了一个吗？</b> ——改了两个就退回去，拆成两次做</div></div></div><div style="margin-top:20px"><div class="strip c">找不到可改的变量？从范例给方向：<b>位置 / 时段 / 阈值 / 光线</b>——任选一个「改了会不会有差别」的</div></div></div>
+<div class="notes"><p>现在设计你自己的。五步。</p><p><b>第一步，选一个变量。</b></p><p>位置？时段？阈值？光线？</p><p>（指黑条）</p><p>想不出来的组，就从这四个里挑——<b>任选一个「改了会不会有差别」的</b>。</p><p><b>第二步，设对照。</b> 改的一组 vs 不改的一组，<b>尽量同时、同条件</b>。</p><p><b>第三步，列摁住清单。</b></p><p>（加重）</p><p><b>一条一条写下来。</b></p><p>（放慢）</p><p>如果你写不出三条——</p><p>（停顿）</p><p><b>说明你还没想清楚。</b></p><p><b>第四步，写预测。</b></p><p>「我猜 ______，<b>因为</b> ______。」</p><p>（加重）</p><p><b>「因为」那半句才是关键。</b></p><p>（放慢）</p><p>「我猜北屋更冷」——这是直觉。</p><p>「我猜北屋更冷，<b>因为它朝北、窗户多</b>」——<b>这是有理由的判断</b>。</p><p>（停顿）</p><p>评委爱听的是<b>第二种</b>。</p><p><b>第五步，自查一句</b>，也是今天唯一的标准：</p><p>（一字一句）</p><p><b>我这次，到底只改了一个吗？</b></p><p>（停顿）</p><p>改了两个的，<b>退回去，拆成两次做</b>。</p></div>
+</section>
+
+<section class="slide lay-divider" data-title="课间休息">
+<div class="deco circle" style="width:200px;height:200px;top:-70px;right:180px"></div>
+<div class="deco square" style="width:130px;height:130px;left:-50px;bottom:70px;transform:rotate(12deg)"></div>
+<div class="deco tri" style="right:140px;bottom:90px;transform:rotate(14deg)"></div>
+<div class="dv">
+  <span class="dv-time">40–50 分</span>
+  <h2 class="dv-t">课间休息 10 分钟</h2>
+  <p class="dv-s">互看方案——找找对方<b>是不是一次只改了一个</b></p>
+</div>
+<div class="notes"><p>休息十分钟。</p><p>跟别组<b>换方案看</b>，就找一件事：</p><p>（一字一句）</p><p><b>他是不是一次只改了一个？</b></p><p>（停顿）</p><p>怎么找？看他的「<b>摁住清单</b>」。</p><p>（放慢）</p><p>清单里<b>没写到的东西</b>，就是他<b>没摁住的</b>。</p><p>（停顿）</p><p>举个例子：他要比两个房间，摁住清单里写了温度计、时长——</p><p>（加重）</p><p><b>没写时段。</b></p><p>（停顿）</p><p>那你就问他：「你两次测量，<b>是同一个时间吗</b>？」</p><p>（停顿）</p><p>（笑）</p><p><b>互相挑毛病，今天是正事。</b></p></div>
+</section>
+
+<section class="slide lay-table" data-title="研究日志四栏">
+<div class="phead"><span class="no">竞赛 C2</span>
+<span class="kick a">留证据</span>
+<span class="tslot">50–62 分</span>
+</div>
+<h2 class="ptitle">研究日志：每次动手，都留个脚印</h2>
+<p class="psub">四栏——<b>日期 / 改了啥 / 结果 / 想法</b></p>
+<div class="pbody">
+  <div class="tbl grow" style="grid-template-columns:0.9fr 1.1fr 2fr"><div class="th">栏目</div><div class="th">写什么</div><div class="th">范例（照着写）</div><div class="td k">日期</div><div class="td">几号、几点</div><div class="td"><b>7/11 晚 9 点</b></div><div class="td k">改了啥</div><div class="td">这次<b>动了什么</b></div><div class="td">把报警阈值<b>从 28 改到 26</b></div><div class="td k">结果</div><div class="td"><b>发生了什么</b></div><div class="td">报警<b>更灵敏</b>了，<b>但会误报</b></div><div class="td k">想法 / 下一步</div><div class="td"><b>我怎么想、下次怎么办</b></div><div class="td"><b>下次试 27</b></div></div>
+  <div style="margin-top:20px"><div class="strip c"><b>第四栏是灵魂。</b> 只记前三栏，那叫流水账；写上「<b>下次试 27</b>」，它才叫<b>研究</b></div></div>
+</div>
+<div class="notes"><p><b>研究日志</b>：每次动手，都在本子上<b>留个脚印</b>。</p><p>四栏，很简单：</p><p><b>几号、改了啥、结果咋样、我怎么想。</b></p><p>（念范例）</p><p>「<b>7 月 11 日晚 9 点，把报警阈值从 28 改到 26，结果报警更灵敏了，但是会误报，下次试 27。</b>」</p><p>（停顿）</p><p>看，一行字，把一次实验全记下来了。</p><p>（停顿，指黑条，讲第四栏）</p><p>（放慢）</p><p><b>第四栏是灵魂。</b></p><p>（停顿）</p><p>只记前三栏——几号、改了啥、结果——</p><p>（加重）</p><p><b>那叫流水账。</b></p><p>（停顿）</p><p>写上「<b>下次试 27</b>」，它才叫<b>研究</b>。</p><p>（放慢）</p><p>为什么？</p><p>（一字一句）</p><p><b>因为那一栏里有「下一步」。</b></p><p>（停顿）</p><p>研究不是记录发生了什么，</p><p><b>是从发生的事里，想出下一步该干什么。</b></p></div>
+</section>
+
+<section class="slide lay-vstext" data-title="失败也要记">
+<div class="phead"><span class="no">竞赛 C2</span>
+<span class="kick c">最重要的一条</span>
+<span class="tslot">50–62 分</span>
+</div>
+<h2 class="ptitle">实验失败了——<b>别擦掉！</b></h2>
+<p class="psub">日志上那条「这次错了」，<b>比任何漂亮话都有说服力</b></p>
+<div class="pbody">
+  <div class="vs3 grow">
+    <div class="blk c vstx"><span class="tag c">很多人会做的事</span><p class="q">实验失败了，<b>把那页撕掉</b>，<br>只留成功的。</p><p class="why">于是日志本上<b>全是顺利</b>：<br>一次就对、次次都对。<br>（评委看了会想：<b>真的假的？</b>）</p></div>
+    <div class="vsmark">VS</div>
+    <div class="blk g vstx"><span class="tag g">该做的事</span><p class="q"><b>原样记下来</b>，再写一条：<br>「这次错了，我又改成这样。」</p><p class="why"><b>答辩时评委最爱听这个。</b><br>因为它证明一件事：<br><b>这活真的是你干的。</b></p></div>
+  </div>
+  <div style="margin-top:20px"><div class="strip a">一条真实的失败记录，<b>胜过十句「我认真做了」</b>——<b>它是你 C6 答辩时最真的证据</b></div></div>
+</div>
+<div class="notes"><p>现在说今天<b>最重要</b>的一条。</p><p>（放慢）</p><p><b>实验失败了，别擦掉。</b></p><p>（指左边）</p><p>很多人会怎么做？</p><p>（停顿）</p><p>把那一页<b>撕掉</b>，只留成功的。</p><p>（停顿）</p><p>于是日志本上<b>全是顺利</b>——一次就对，次次都对。</p><p>（停顿，放慢）</p><p>你猜评委看了会想什么？</p><p>（一字一句）</p><p><b>「真的假的？」</b></p><p>（停顿）</p><p>（指右边）</p><p>该做的是：<b>原样记下来</b>，然后再写一条：</p><p><b>「这次错了，我又改成了这样。」</b></p><p>（长停顿）</p><p>（放慢，认真）</p><p>为什么评委最爱听这个？</p><p>（一字一句）</p><p><b>因为它证明——这活真的是你干的。</b></p><p>（停顿）</p><p>没有人做实验是一次就成的。</p><p>（加重）</p><p><b>一路顺利的日志，反而不像真的。</b></p><p>（停顿，指黑条）</p><p>记住这句：</p><p><b>一条真实的失败记录，胜过十句「我认真做了」。</b></p><p>（停顿）</p><p><b>它是你 C6 答辩那天，最真的证据。</b></p></div>
+</section>
+
+<section class="slide lay-rowlist" data-title="开日志记第一条">
+<div class="phead"><span class="no">竞赛 C2</span>
+<span class="kick g">任务二</span>
+<span class="tslot">62–80 分</span>
+</div>
+<h2 class="ptitle">任务二：开本子，记第一条</h2>
+<p class="psub"><b>今天的实验方案 ＋ 预测</b>，就是第一条</p>
+<div class="pbody"><div class="rowlist grow"><div class="rowitem"><div class="num g">1</div><div class="tx"><b>开一本研究日志</b>（附录 B 那张就行）——<b>写上组名和课题</b></div></div><div class="rowitem"><div class="num a">2</div><div class="tx"><b>第一条</b>：把今天设计的对照实验<b>记进去</b>，把<b>预测</b>也写上</div></div><div class="rowitem"><div class="num c">3</div><div class="tx"><b>有条件的组现场采一组数据</b>：作品能跑就跑一次，把结果补进「结果」栏</div></div><div class="rowitem"><div class="num g">4</div><div class="tx"><b>作品离线 / 没服务器？</b> 用 <b>12 号《手工数据表》</b>，人工读数、亲手记——<b>数据一样真</b></div></div><div class="rowitem"><div class="num a">5</div><div class="tx"><b>以后每次动手都记一行</b>——一个月以后，这本子就是你<b>最硬的材料</b></div></div></div><div style="margin-top:20px"><div class="strip a"><b>科学不挑设备，挑的是方法。</b> 手抄的数据一样能画图、一样能得结论</div></div></div>
+<div class="notes"><p>现在开本子，记第一条。</p><p><b>写上组名和课题</b>，然后把今天设计的实验记进去，<b>预测也写上</b>。</p><p>（停顿）</p><p><b>有条件的组，现场采一组数据。</b> 作品能跑就跑一次，把结果补进去。</p><p>（指第四条，这一条要讲清楚，别让离线的组觉得低人一等）</p><p><b>作品离线、没有服务器的组</b>——</p><p>（放慢）</p><p>用 <b>12 号《手工数据表》</b>，人工读数，亲手记下来。</p><p>（停顿，指黑条，加重）</p><p><b>科学不挑设备，挑的是方法。</b></p><p>（停顿）</p><p>（放慢）</p><p>你手抄的那一列数字，</p><p><b>跟云端拉下来的曲线，一样真、一样能画图、一样能得结论。</b></p><p>（停顿）</p><p>真的。科学家几百年来都是<b>手抄</b>过来的。</p><p>（停顿）</p><p>（指最后一条）</p><p>最后一句叮嘱：</p><p>（放慢）</p><p><b>以后每次动手，都记一行。</b></p><p>（停顿）</p><p>一个月以后你翻回来看——</p><p>（一字一句）</p><p><b>这个本子，就是你最硬的材料。</b></p></div>
+</section>
+
+<section class="slide lay-tiers3" data-title="分层任务">
+<div class="phead"><span class="no">竞赛 C2</span>
+<span class="kick g">分层任务</span>
+<span class="tslot">62–80 分</span>
+</div>
+<h2 class="ptitle">先设计干净，再真去测</h2>
+<p class="psub">一次只改一个 ＋ 日志开了头 ＝ 成功</p>
+<div class="pbody"><div class="g3 grow"><div class="blk tier t1"><div class="hd">★ 基础（必做）</div>
+        <p class="task">设计一次对照实验：<b>定一个变量</b>、设对照、<b>列出要摁住的其余条件</b>；<b>开研究日志记第一条</b>。</p><p class="fill">变量：__________　□ 一次只改一个</p></div><div class="blk tier t2"><div class="hd">★★ 进阶（建议做）</div>
+        <p class="task"><b>真做一次实验</b>，把结果记进日志，<b>和课前的预测对一对</b>。</p><p class="fill">预测：________　实际：________</p></div><div class="blk tier t3"><div class="hd">★★★ 挑战（学有余力）</div>
+        <p class="task">再设计<b>第二个变量</b>的对照，让证据更全（比如<b>既比房间、又比时段</b>）。</p><p class="fill">第二个变量：__________</p></div></div>
+<div style="margin-top:22px"><div class="strip g">挑战档注意：<b>两个变量要分两次做</b>——同时改两个，就又回到「两种药」那个谜里去了</div></div></div>
+<div class="notes"><p>三档。</p><p><b>基础必做</b>：方案 + 日志第一条。标准就一条：<b>一次只改一个</b>。</p><p><b>进阶建议做</b>：<b>真去测一次</b>，把结果和预测对一对。</p><p>（停顿）</p><p>对上了，恭喜；<b>没对上，更值得写</b>——在「想法」那栏写清楚：<b>我原以为……结果……</b></p><p><b>挑战档：再设计第二个变量的对照。</b></p><p>（停顿，指黑条，这是关键提醒）</p><p>但是注意——</p><p>（一字一句）</p><p><b>两个变量，要分两次做。</b></p><p>（停顿）</p><p>你要是想「干脆一起改了省时间」——</p><p>（放慢）</p><p><b>那就又回到「两种药」那个谜里去了。</b></p><p>（停顿）</p><p><b>一次只改一个。今天这句话，我说了一节课。</b></p></div>
+</section>
+
+<section class="slide lay-rowlist" data-title="小结">
+<div class="phead"><span class="no">竞赛 C2</span>
+<span class="kick a">小结</span>
+<span class="tslot">80–90 分</span>
+</div>
+<h2 class="ptitle">今天攒到第二样材料</h2>
+<p class="psub"><b>对照实验方案 ＋ 研究日志本</b></p>
+<div class="pbody"><div class="rowlist grow"><div class="rowitem"><div class="num g">1</div><div class="tx"><b>C1 查新报告</b> ✓ ── 别人在哪，我的新在哪</div></div><div class="rowitem"><div class="num a">2</div><div class="tx"><b>C2 研究日志</b> ✓（今天）── 对照实验方案 ＋ 日志本<b>开了头</b></div></div><div class="rowitem"><div class="num c">3</div><div class="tx"><b>C3 数据图表</b> ── 把日志里的数据<b>画成图</b>，用数据回答课题</div></div><div class="rowitem"><div class="num g">4</div><div class="tx"><b>C4 说明书 ＋ 展板</b> ／ <b>C5 演示视频</b> ── 让别人一分钟看懂</div></div><div class="rowitem"><div class="num a">5</div><div class="tx"><b>C6 答辩逐字稿</b> ／ <b>C7 参赛包</b> ── 评委来了，把材料装进去</div></div></div><div style="margin-top:20px"><div class="strip g">下次 <b>C3</b>：<b>把日志里的数据画成图表</b>，用数据回答你 C1 提的那个问题——<b>开奖时刻</b></div></div></div>
+<div class="notes"><p>各组讲一句：<b>我要验证什么、怎么设的对照。</b></p><p>（各组轮流讲）</p><p>（讲完，小结）</p><p>（放慢）</p><p>今天你们做成了一件很像科学家的事。</p><p>（一字一句）</p><p><b>会设计一次干净的对照实验，你就已经是个小研究者了。</b></p><p>（停顿）</p><p>看进度表——<b>第二样材料到手</b>：</p><p><b>对照实验方案 ＋ 研究日志本。</b></p><p>（停顿，抛钩子）</p><p>下次 <b>C3</b>，是<b>开奖时刻</b>：</p><p>（放慢）</p><p><b>把日志里的数据画成图表，用数据回答你 C1 提的那个问题。</b></p><p>（停顿）</p><p>到时候你会看见——</p><p>（一字一句）</p><p><b>你猜的，和真实的，差多少。</b></p><p>（停顿）</p><p>回去记得<b>真的去测一次</b>。</p><p>（停顿）</p><p>没有数据，C3 那天就<b>画不出图</b>。</p><p>下课。</p></div>
+</section>
+
+<section class="slide lay-cards2" data-title="课后任务">
+<div class="phead"><span class="no">竞赛 C2</span>
+<span class="kick a">课后任务</span>
+</div>
+<h2 class="ptitle">课后任务</h2>
+<div class="pbody"><div class="g2 grow"><div class="blk g"><h4>基础（全员）</h4><p>给家人讲你的对照实验：<b>改什么</b>、<b>跟什么比</b>、<b>为什么其余的不能动</b>。</p></div><div class="blk a"><h4>拓展（选做）</h4><p><b>真的做一次实验</b>，把结果和预测一起补进研究日志——<b>对上没对上都要记</b>。</p></div></div>
+<div style="margin-top:24px"><div class="strip g"><b>会设计一次干净的对照实验、还老实记下失败</b>——你已经是个<b>小科学家</b>了</div></div></div>
+<div class="notes"><p>课后两件事。</p><p>第一件全员做：<b>给家人讲你的对照实验。</b></p><p>（加重）</p><p>讲三句：<b>改什么、跟什么比、为什么其余的不能动。</b></p><p>（停顿）</p><p>第三句最难讲，也最值得讲。</p><p>（放慢）</p><p>你可以用「两种药」那个故事讲给他们听——</p><p>（停顿）</p><p><b>他们一听就懂，而且会觉得你很厉害。</b></p><p>（停顿）</p><p>第二件选做，<b>其实我很希望你们都做</b>：</p><p><b>真的去做一次实验。</b></p><p>（放慢）</p><p>把结果和预测<b>一起</b>补进日志。</p><p>（加重）</p><p><b>对上没对上，都要记。</b></p><p>（停顿）</p><p>最后一句：</p><p>（放慢）</p><p><b>会设计一次干净的对照实验、还老实记下失败的孩子，已经是个小科学家了。</b></p><p>（停顿）</p><p>下课。</p></div>
+</section>
+<div class="deck-footer"><span>ESP32 × AI 科创课程 · 竞赛延伸包（选修 · 与主线并行） · C2 像科学家做实验</span><span class="slide-number" data-current="1" data-total="12"></span></div>
+<div class="progress-bar"><span></span></div>
+</div>
+<script src="assets/fitstage.js"></script>
+<script src="assets/runtime.js"></script>
+</body>
+</html>

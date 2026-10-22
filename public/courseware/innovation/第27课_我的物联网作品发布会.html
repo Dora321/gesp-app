@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>第27课 · 我的物联网作品·发布会 — ESP32 × AI 科创课程</title>
+<link rel="stylesheet" href="assets/base.css">
+<link rel="stylesheet" id="theme-link" href="assets/theme-course-pop.css">
+<link rel="stylesheet" href="assets/animations.css">
+</head>
+<body>
+<div class="deck" data-theme-base="assets/">
+<section class="slide lay-cover is-active" data-title="封面">
+<div class="deco circle" style="width:170px;height:170px;top:-52px;right:238px"></div>
+<div class="deco tri" style="right:110px;bottom:132px;transform:rotate(14deg)"></div>
+<div class="deco square" style="width:120px;height:120px;left:-46px;bottom:86px;transform:rotate(12deg)"></div>
+<span class="cv-bar">ESP32 × AI ／ 第四阶段「驾驭AI · 物联网」 · 结业</span>
+<h1 class="cv-title">我的物联网<em>作品发布会</em></h1>
+<p class="cv-sub">四个月的进阶，今天当众交付</p>
+<div class="cv-tags"><span class="tag">含远程演示的路演</span><span class="tag">答辩三问</span><span class="tag">作品卡③</span><span class="tag">第四阶段结业</span></div>
+<div class="cv-no">27</div>
+<div class="notes"><p>（教室已经布置成发布会：展位、路演区、评委席）</p><p>欢迎来到<b>第四阶段结业发布会</b>。</p><p>（停顿，环视）</p><p>今天这间教室里，有 __ 个<b>真正的物联网产品</b>。</p><p>它们此刻<b>正在工作</b>——在我说话的这会儿，还在测、还在传。</p><p>（停顿）</p><p>回头看看这条路：</p><p><b>L17</b> 它第一次连上网。</p><p><b>L18</b> 数据第一次飞到云上。</p><p><b>L20</b> 你第一次隔空点亮它。</p><p><b>L21</b> 它第一次自己找你。</p><p><b>L24</b> 它正式<b>上线</b>。</p><p><b>L25</b> 它学会了<b>自己爬起来</b>。</p><p><b>L26</b> 你学会了<b>守住钥匙</b>。</p><p>（停顿）</p><p>今天，把它<b>讲给所有人听</b>。</p><p>（停顿）</p><p>还有一件事先说在前面：</p><p>今天<b>不写一行代码，也不用 AI</b>。</p><p>（放慢）</p><p>今天只有一件事：<b>你，和你做出来的东西。</b></p></div>
+</section>
+
+<section class="slide lay-rowlist" data-title="布展 + 热机">
+<div class="phead"><span class="no">第27课</span>
+<span class="kick c">开演前</span>
+<span class="tslot">0–10 分</span>
+</div>
+<h2 class="ptitle">布展 ＋ 热机自检</h2>
+<p class="psub"><b>把翻车消灭在开演之前</b></p>
+<div class="pbody"><div class="rowlist grow"><div class="rowitem"><div class="num g">1</div><div class="tx"><b>布展</b>：产品摆正（传感器朝外、灯朝人、屏对观众），线<b>理顺</b>，名字牌<b>立起来</b></div></div><div class="rowitem"><div class="num a">2</div><div class="tx"><b>热机三查</b>：能连 □ 能传 □ 能控 □ ——<b>各试一遍</b>，跟 L24 验收一模一样</div></div><div class="rowitem"><div class="num c">3</div><div class="tx"><b>手机提前打开</b>：巴法云页面<b>停在你的主题上</b>，别到台上才开始找</div></div><div class="rowitem"><div class="num g">4</div><div class="tx"><b>手卡放在手边</b>：路演四要素 ＋ <b>备用方案</b>（等会儿讲）</div></div><div class="rowitem"><div class="num a">5</div><div class="tx"><b>录屏备着</b>：彩排时录一段<b>成功演示</b>——这是你的最后一张保险</div></div></div><div style="margin-top:20px"><div class="strip a">开演前十分钟做的这五件事，<b>比台上讲得漂亮更值钱</b>——<b>最好的临场发挥，是不需要临场发挥</b></div></div></div>
+<div class="notes"><p>开演前十分钟，五件事。</p><p><b>第一，布展。</b></p><p>产品摆正：传感器朝外、灯朝着人、屏幕对着观众。线<b>理顺</b>，名字牌<b>立起来</b>。</p><p><b>第二，热机三查。</b> 能连、能传、能控，<b>各试一遍</b>。</p><p>跟 L24 验收一模一样——<b>现在试出问题还来得及，台上试出问题就晚了</b>。</p><p><b>第三，手机提前打开</b>，页面停在你的主题上。</p><p>（加重）</p><p>别到台上才开始翻「我的主题在哪儿呢」——台下等你三十秒，<b>气就散了</b>。</p><p><b>第四，手卡放手边。</b></p><p><b>第五，录屏备着。</b> 彩排的时候录一段成功演示。</p><p>（停顿）</p><p>这是你的<b>最后一张保险</b>。用不上最好，但有它你心里踏实。</p><p>（指黑条）</p><p>这五件事，比你在台上讲得多漂亮<b>更值钱</b>。</p><p>记住这句话：</p><p><b>最好的临场发挥，是不需要临场发挥。</b></p></div>
+</section>
+
+<section class="slide lay-table" data-title="路演四要素">
+<div class="phead"><span class="no">第27课</span>
+<span class="kick g">规则</span>
+<span class="tslot">10–20 分</span>
+</div>
+<h2 class="ptitle">路演结构：四要素 ＋ 一次远程演示</h2>
+<p class="psub">L15 练过的四要素，今天<b>第③步升级</b></p>
+<div class="pbody">
+  <div class="tbl grow" style="grid-template-columns:0.8fr 1.2fr 1.6fr"><div class="th">要素</div><div class="th">回答什么</div><div class="th">一句提示</div><div class="td k">① 问题</div><div class="td">给谁、解决什么麻烦</div><div class="td">「我奶奶晚上下楼看不清台阶……」</div><div class="td k">② 方案</div><div class="td">感知 → 云 → 决策 → 执行 怎么工作</div><div class="td">「它自己盯着温度，超线就发我微信」</div><div class="td k">③ 演示</div><div class="td"><b>现场让它动一次，而且必须含「远程」</b></div><div class="td">手机看数据 <b>或</b> 远程控制，<b>至少一样</b></div><div class="td k">④ 亮点</div><div class="td">最得意的一处（一个数 / 一个坑）</div><div class="td">「28 度是我测了 24 小时定出来的」</div></div>
+  <div style="margin-top:20px"><div class="strip a">顺序不能换：<b>先讲问题，再讲方案</b>——上来就讲技术，听众第一句就掉队了</div></div>
+</div>
+<div class="notes"><p>路演 <b>2–3 分钟</b>，结构还是 L15 练过的<b>四要素</b>。</p><p><b>①问题</b>：给谁、解决什么麻烦。<b>开场第一句</b>。</p><p><b>②方案</b>：感知 → 云 → 决策 → 执行，用人话说一遍。</p><p>比 L16 那次多了一段「<b>云</b>」——这是这四个月长出来的东西。</p><p><b>③演示</b>，今天<b>升级了</b>：</p><p>（加重）</p><p><b>必须含「远程」。</b></p><p>手机看数据，或者远程控制，<b>至少做一样</b>。</p><p>（停顿）</p><p>为什么非要远程？</p><p>因为这是第四阶段<b>最硬的证据</b>。</p><p>灯亮了，观众会想「线连着呢」；</p><p>可你<b>站在教室后面</b>把它点亮——那一下，全场都懂了。</p><p><b>④亮点</b>：最得意的一处。一个数字，或者一个你踩过的坑。</p><p>（指黑条）</p><p>老规矩，顺序不能换：</p><p><b>先讲问题，再讲方案。</b></p><p>上来就说「我用了 MQTT 协议」，听众<b>第一句就掉队了</b>。</p></div>
+</section>
+
+<section class="slide lay-table" data-title="评分四维">
+<div class="phead"><span class="no">第27课</span>
+<span class="kick a">规则</span>
+<span class="tslot">10–20 分</span>
+</div>
+<h2 class="ptitle">评分四维（开场就公示）</h2>
+<p class="psub">每维 5 分——<b>标准先说清楚，谁也不吃亏</b></p>
+<div class="pbody">
+  <div class="tbl grow" style="grid-template-columns:1fr 2.4fr"><div class="th">维度</div><div class="th">看什么</div><div class="td k">完成度</div><div class="td"><b>三条硬标准</b>（能连 / 能传 / 能控）现场<b>仍然全过</b>、稳定</div><div class="td k">创意与实用</div><div class="td">解决<b>真问题</b>、有<b>自己的想法</b></div><div class="td k">远程演示</div><div class="td">手机看数 / 远程控制<b>现场成功</b></div><div class="td k">答辩表现</div><div class="td"><b>接住两问</b>、有证据有细节</div></div>
+  <div style="margin-top:20px"><div class="strip g">分数是<b>给作品的</b>，不是给人的。四维<b>开场就公示</b>，评委按表打分，<b>合议为准</b>；人气奖归<b>观众</b>说了算</div></div>
+</div>
+<div class="notes"><p>评分四维，<b>现在就公示</b>，不藏着。</p><p><b>完成度</b>：三条硬标准<b>现在还得全过</b>。</p><p>（加重）</p><p>注意「<b>现在</b>」两个字——L24 过了不算数，<b>今天当场还得过</b>。</p><p><b>创意与实用</b>：解决的是<b>真问题</b>吗？有没有<b>你自己的想法</b>？</p><p><b>远程演示</b>：现场成功了吗？</p><p><b>答辩表现</b>：接住两问，而且<b>有证据有细节</b>。</p><p>（停顿）</p><p>为什么要开场就公示？</p><p>因为这样<b>谁也不吃亏</b>。你知道往哪儿使劲。</p><p>（停顿，处理可能的争议）</p><p>还有两句话先说好：</p><p><b>分数是给作品的，不是给人的。</b></p><p>有争议的时候，<b>评委合议为准</b>。</p><p>但是——<b>人气奖归观众说了算</b>，评委一票都没有。</p></div>
+</section>
+
+<section class="slide lay-cards3" data-title="答辩三问">
+<div class="phead"><span class="no">第27课</span>
+<span class="kick c">答辩</span>
+<span class="tslot">10–20 分</span>
+</div>
+<h2 class="ptitle">答辩三问（每组至少接两问）</h2>
+<p class="psub">就是 <b>L15 练过、L16 问过</b>的那三问——<b>一字没变</b></p>
+<div class="pbody"><div class="g3 grow"><div class="blk g"><h4>① 它为什么有用？</h4><p>回到<b>问题</b>：给谁、解决什么麻烦、用了以后哪里变好。</p></div><div class="blk a"><h4>② 哪部分是你自己做的？</h4><p>设计图、阈值、接线、联调排错——<b>拿出证据</b>（图纸卡 / 验收表 / 演习卡）。</p></div><div class="blk c"><h4>③ AI 帮了什么、你怎么验证它？</h4><p><b>讲真事</b>：联网代码是 AI 写的，我<b>逐行读懂</b>、<b>验收三查</b>、<br>断网演习<b>抓过它一个不重连的 bug</b>。</p></div></div><p class="beads-cap" style="margin:18px 0 16px">评委会<b>从三问里抽两问</b>——每组至少接住两问</p><div style="margin-top:22px"><div class="strip a"><b>第③问最能拉开差距</b>：说得出一个<b>自己抓过的 bug</b>，评委一定点头</div></div></div>
+<div class="notes"><p>答辩三问。我现在正式念一遍——</p><p>（放慢，一字一句）</p><p><b>①它为什么有用？</b></p><p><b>②哪部分是你自己做的？</b></p><p><b>③AI 帮了什么、你怎么验证它？</b></p><p>（停顿）</p><p><b>就是 L15 练过、L16 问过的那三问，一字没变。</b></p><p>今天评委会<b>从三问里抽两问</b>，每组至少接住两问。</p><p>（逐条讲）</p><p><b>第①问</b>，回到问题：给谁、解决什么麻烦、用了以后哪里变好。</p><p><b>第②问</b>，拿出<b>证据</b>：你的图纸卡、验收表、断网演习卡——<b>这些纸就是你的证据</b>。</p><p><b>第③问</b>，今天我要多说两句，因为它<b>最能拉开差距</b>。</p><p>（停顿）</p><p>「AI 帮了什么、你怎么验证它？」</p><p>（加重）</p><p><b>讲真事。</b></p><p>比如：「联网那段代码是 AI 写的。我<b>逐行读懂</b>了，做了<b>验收三查</b>。</p><p>后来<b>断网演习</b>的时候，我发现它<b>只重连了 WiFi、没重连云</b>——<b>这个 bug 是我抓出来的</b>。」</p><p>（停顿）</p><p>听见了吗？<b>有细节的回答，评委一定点头。</b></p><p>因为这种细节<b>编不出来</b>——只有真干过的人才说得出。</p></div>
+</section>
+
+<section class="slide lay-steps3" data-title="备用梯子">
+<div class="phead"><span class="no">第27课</span>
+<span class="kick c">稳字诀</span>
+<span class="tslot">20–40 分</span>
+</div>
+<h2 class="ptitle">远程演示的三级梯子</h2>
+<p class="psub"><b>最帅的环节，也最容易翻车</b>——梯子背熟就不怕</p>
+<div class="pbody"><div class="g3 grow"><div class="blk"><div class="step"><div class="num g">①</div>
+        <div class="body"><p class="t">正常：推送 / 远程控制</p><p class="d">手机收到推送，或者当场点一下<br><b>灯应声动</b>。</p></div></div></div><div class="blk"><div class="step"><div class="num a">②</div>
+        <div class="body"><p class="t">卡了：切<b>控制台</b></p><p class="d">打开巴法云控制台，<br><b>指着新增的数据点</b>讲。</p></div></div></div><div class="blk"><div class="step"><div class="num c">③</div>
+        <div class="body"><p class="t">还卡：放<b>录屏</b></p><p class="d">彩排时录的那段成功演示<br>——<b>放出来，照样算数</b>。</p></div></div></div></div><div style="margin-top:16px"><div class="strip c"><b>演示翻车不扣分，慌了才扣分。</b> 当场按梯子往下切、顺手排查一段——<b>评委最爱看这个</b></div></div><div style="margin-top:16px"><div class="strip a">翻车时<b>主动说明网络状况</b>：「现在热点有点挤，我切控制台给大家看」——<b>诚实也是专业</b></div></div></div>
+<div class="notes"><p>远程演示是今天<b>最帅的环节</b>，也<b>最容易翻车</b>。</p><p>所以我给你们一把<b>三级梯子</b>，彩排的时候背熟。</p><p><b>第①级，正常</b>：手机收到推送，或者当场点一下，灯应声动。</p><p><b>第②级，卡了，切控制台。</b></p><p>打开巴法云控制台，<b>指着新增的数据点</b>讲：「看，这是刚刚上去的。」</p><p><b>第③级，还卡，放录屏。</b></p><p>彩排时录的那段成功演示，<b>放出来，照样算数</b>。</p><p>（停顿，讲最重要的心态）</p><p>现在听我说一句今天最重要的话：</p><p>（放慢，加重）</p><p><b>演示翻车不扣分，慌了才扣分。</b></p><p>（停顿）</p><p>为什么？</p><p>因为<b>评委都是做过东西的人</b>，他们太知道现场会出什么事了。</p><p>他们真正想看的是——<b>出事的时候你怎么办</b>。</p><p>（停顿）</p><p>所以翻车了，你可以<b>当场排查一段</b>：</p><p>「我先看串口……串口有数，那说明板子是好的，问题在网。我切控制台。」</p><p>（加重）</p><p><b>评委最爱看这个。</b> 这比你顺顺利利演完还加分。</p><p>还有一句：翻车时<b>主动说明</b>：「现在热点有点挤，我切控制台给大家看。」</p><p><b>诚实也是专业。</b></p></div>
+</section>
+
+<section class="slide lay-rowlist" data-title="彩排一轮">
+<div class="phead"><span class="no">第27课</span>
+<span class="kick g">彩排</span>
+<span class="tslot">20–40 分</span>
+</div>
+<h2 class="ptitle">组内彩排：完整走一遍</h2>
+<p class="psub"><b>先互讲，再上台</b>——L15 的老规矩</p>
+<div class="pbody"><div class="rowlist grow"><div class="rowitem"><div class="num g">1</div><div class="tx"><b>完整讲一遍</b>：四要素 → 远程演示 → 互相问三问（别跳步，<b>跳了就等于没练</b>）</div></div><div class="rowitem"><div class="num a">2</div><div class="tx"><b>掐表</b>：2–3 分钟。超时的砍<b>方案</b>那一段，<b>别砍演示</b></div></div><div class="rowitem"><div class="num c">3</div><div class="tx"><b>互问三问</b>：同组人当评委，<b>专挑第③问</b>——那是今天最值钱的一问</div></div><div class="rowitem"><div class="num g">4</div><div class="tx"><b>演示走一遍动线</b>：从座位走到台前、打开手机、点按钮——<b>手上的动作也要练</b></div></div><div class="rowitem"><div class="num a">5</div><div class="tx"><b>录屏就在这时候录</b>：彩排里最顺的那一遍，录下来当保险</div></div></div><div style="margin-top:20px"><div class="strip a"><b>上台前紧张是正常的。</b> 彩排过两遍的人，上台<b>只是再讲一次</b>——这就是彩排的全部意义</div></div></div>
+<div class="notes"><p>现在组内彩排，<b>完整走一遍</b>。</p><p><b>完整</b>的意思是：四要素讲完、远程演示做一次、互相问三问。</p><p>（加重）</p><p><b>别跳步。</b> 「这段我会了，跳过」——跳了就<b>等于没练</b>。</p><p><b>掐表 2–3 分钟。</b></p><p>超时了砍哪一段？</p><p>（等答）</p><p>砍<b>方案</b>那一段，讲短一点。</p><p>（加重）<b>别砍演示。</b> 演示是你最硬的东西。</p><p><b>互问三问</b>的时候，专挑<b>第③问</b>问——那是今天最值钱的一问。</p><p><b>动线也要走一遍</b>：从座位走到台前，打开手机，点按钮。</p><p>（停顿）</p><p>听起来很傻，但真有用。很多人台上卡壳，不是因为不会讲，</p><p>是因为<b>手忙脚乱</b>——手机没解锁、页面要找半天。</p><p><b>录屏就在这时候录。</b> 彩排里最顺的那一遍，录下来。</p><p>（停顿，安抚）</p><p>最后一句给紧张的同学：</p><p><b>上台前紧张是正常的。</b></p><p>但是彩排过两遍的人，上台的时候<b>只是再讲一次</b>而已。</p><p>这就是彩排的全部意义。</p></div>
+</section>
+
+<section class="slide lay-divider" data-title="课间休息">
+<div class="deco circle" style="width:200px;height:200px;top:-70px;right:180px"></div>
+<div class="deco square" style="width:130px;height:130px;left:-50px;bottom:70px;transform:rotate(12deg)"></div>
+<div class="deco tri" style="right:140px;bottom:90px;transform:rotate(14deg)"></div>
+<div class="dv">
+  <span class="dv-time">40–50 分</span>
+  <h2 class="dv-t">课间休息 10 分钟</h2>
+  <p class="dv-s">评委入席，观众就位——<b>产品保持通电运行</b></p>
+</div>
+<div class="notes"><p>休息十分钟。评委入席，观众就位。</p><p>（停顿）</p><p>休息的时候，有一条<b>请务必守住</b>：</p><p><b>产品保持通电运行，别关。</b></p><p>（加重）</p><p>为什么？</p><p>因为一关一开，<b>WiFi 要重连、云要重连</b>——万一它没爬起来呢？</p><p>（停顿）</p><p>让它<b>一直跑着</b>。下半场直接演示。</p><p>（停顿，转向情绪）</p><p>还有十分钟。</p><p>去喝口水，去看看别组的展位，</p><p>去跟你的组员对一遍：<b>谁先讲、谁演示、谁答辩。</b></p><p>（停顿）</p><p>然后——</p><p><b>准备好，享受它。</b></p><p>这是你们四个月挣来的。</p></div>
+</section>
+
+<section class="slide lay-rowlist" data-title="正式路演">
+<div class="phead"><span class="no">第27课</span>
+<span class="kick c">发布会</span>
+<span class="tslot">50–75 分</span>
+</div>
+<h2 class="ptitle">正式路演 ＋ 答辩</h2>
+<p class="psub">逐组上台——<b>全课程最高光的时刻</b></p>
+<div class="pbody"><div class="rowlist grow"><div class="rowitem"><div class="num g">1</div><div class="tx"><b>上台先报名字</b>：「我的产品叫 ______，它能 ______。」（L23 就准备好的那句）</div></div><div class="rowitem"><div class="num a">2</div><div class="tx"><b>四要素 2–3 分钟</b>：问题 → 方案 → <b>远程演示</b> → 亮点</div></div><div class="rowitem"><div class="num c">3</div><div class="tx"><b>评委按四维打分</b>；主持人用 <b>30 秒倒计时牌</b>控场</div></div><div class="rowitem"><div class="num g">4</div><div class="tx"><b>答辩：三问抽两问</b>，接住即可；第③问讲真事、讲细节</div></div><div class="rowitem"><div class="num a">5</div><div class="tx"><b>台下的人认真听</b>——你听别人怎么讲，就是在学怎么讲</div></div></div><div style="margin-top:20px"><div class="strip a">翻车了就<b>按梯子往下切</b>，<b>当场排查一段</b>。记住：<b>演示翻车不扣分，慌了才扣分</b></div></div></div>
+<div class="notes"><p>正式开始。逐组上台。</p><p><b>上台第一句：报名字。</b></p><p>「我的产品叫 ______，它能 ______。」</p><p>（停顿）</p><p>这句话你们 <b>L23 那天就准备好了</b>。今天终于用上。</p><p>然后四要素，2–3 分钟。中间那一步——<b>远程演示</b>，别忘了。</p><p>评委按四维打分，我用 30 秒倒计时牌控场。</p><p>讲完<b>答辩</b>：三问抽两问。</p><p>（停顿，对台下说）</p><p>台下的同学，我有一个要求：</p><p><b>认真听。</b></p><p>（放慢）</p><p>不是为了礼貌——虽然礼貌也很重要。</p><p>是因为：<b>你听别人怎么讲，就是在学怎么讲。</b></p><p>你会听见有人一句话就把问题说清楚了，</p><p>也会听见有人讲了两分钟你还不知道他做的是什么。</p><p>（停顿）</p><p><b>记住那个差别。</b> 那比我讲十遍都有用。</p><p>（指黑条，最后一次强调）</p><p>翻车了就按梯子切，当场排查一段。</p><p><b>演示翻车不扣分，慌了才扣分。</b></p><p>好——<b>第一组，请。</b></p></div>
+</section>
+
+<section class="slide lay-rowlist" data-title="体验 + 投票">
+<div class="phead"><span class="no">第27课</span>
+<span class="kick g">互相体验</span>
+<span class="tslot">75–83 分</span>
+</div>
+<h2 class="ptitle">互相体验 ＋ 人气投票</h2>
+<p class="psub">让产品<b>被真实地使用一次</b></p>
+<div class="pbody"><div class="rowlist grow"><div class="rowitem"><div class="num g">1</div><div class="tx"><b>逐展位体验</b>：用<b>自己的手机</b>看别组的数据、按别组的门铃</div></div><div class="rowitem"><div class="num a">2</div><div class="tx"><b>必须先问一句</b>：「我能试一下吗？」——<b>经允许再动</b>（L26 的铁律，今天照样管用）</div></div><div class="rowitem"><div class="num c">3</div><div class="tx"><b>体验完说一句具体的好话</b>：不说「好厉害」，说「<b>你那个 OLED 显示离线模式，很贴心</b>」</div></div><div class="rowitem"><div class="num g">4</div><div class="tx"><b>投人气票</b>：一人一张券，投给<b>你最想带回家</b>的那一个</div></div><div class="rowitem"><div class="num a">5</div><div class="tx"><b>人气奖归观众说了算</b>——评委一票都没有</div></div></div><div style="margin-top:20px"><div class="strip a">被别人<b>真的用过一次</b>的东西，才叫<b>产品</b>。今天它们不是作业，是<b>有人用的东西</b></div></div></div>
+<div class="notes"><p>现在全场走动，<b>逐展位体验</b>。</p><p>用<b>你自己的手机</b>，看别组的数据、按别组的门铃。</p><p>（停顿，加重）</p><p>但是有一条<b>铁律</b>，L26 立的，今天照样管用：</p><p><b>必须先问一句：「我能试一下吗？」</b></p><p>（停顿）</p><p><b>经允许再动。</b></p><p>今天这么多产品摆在这里，钥匙、主题名到处都是——</p><p><b>越是这种时候，越见教养。</b></p><p>第二件事：<b>体验完，说一句具体的好话。</b></p><p>（加重）</p><p>不要说「哇好厉害」。</p><p>说：「<b>你那个 OLED 会显示『离线模式』，很贴心。</b>」</p><p>（停顿）</p><p>具体的夸奖，对方<b>能记一年</b>。</p><p>最后，<b>投人气票</b>。一人一张券，投给<b>你最想带回家</b>的那一个。</p><p>（停顿）</p><p>最后说一句我很想说的话：</p><p>（放慢）</p><p><b>被别人真的用过一次的东西，才叫产品。</b></p><p>今天它们不是作业了——<b>是有人用的东西</b>。</p></div>
+</section>
+
+<section class="slide lay-cards3" data-title="颁奖 + 分流">
+<div class="phead"><span class="no">第27课</span>
+<span class="kick a">结业</span>
+<span class="tslot">83–90 分</span>
+</div>
+<h2 class="ptitle">颁奖 · 作品卡③ · 下一站</h2>
+<p class="psub">第四阶段，<b>结业</b></p>
+<div class="pbody"><div class="g3 grow"><div class="blk g"><h4>四个奖</h4><p><b>最佳产品奖</b> ／ <b>最佳远程演示奖</b><br><b>最佳答辩奖</b> ／ <b>最佳人气奖</b>（观众投出来的）</p></div><div class="blk a"><h4>作品卡③ ＋ 署名</h4><p><b>结业作品卡，入档案袋</b>。<br>项目说明书上<b>签下你的名字</b>——<br>从今天起它是<b>署名作品</b>。</p></div><div class="blk c"><h4>下一站：竞赛</h4><p>想把作品带上<b>更大的舞台</b>？<br>填「<b>竞赛包报名意向表</b>」交给老师，<br>下一站——<b>竞赛延伸包 C1</b>。</p></div></div><p class="beads-cap" style="margin:18px 0 16px">从「它能上网了」到今天——<b>你交付了一个真正的物联网产品</b></p><div style="margin-top:22px"><div class="strip g"><b>结业不是结束</b>：竞赛的门、下一阶段的门，<b>都开着</b></div></div></div>
+<div class="notes"><p>颁奖。四个奖：</p><p><b>最佳产品奖、最佳远程演示奖、最佳答辩奖、最佳人气奖。</b></p><p>（逐一颁发，给每个奖一句具体的理由）</p><p>（颁完，转入署名仪式）</p><p>现在发<b>作品卡③</b>——<b>结业作品卡，进档案袋</b>。</p><p>（停顿）</p><p>还有一件事，我请大家郑重一点：</p><p><b>在项目说明书上，签下你的名字。</b></p><p>（放慢）</p><p>从今天起，它是<b>署名作品</b>。</p><p>（停顿）</p><p>署名是什么意思？</p><p>意思是：<b>这是我做的，我认它。</b></p><p>好的地方是我的，不够好的地方——<b>也是我的</b>。</p><p>（停顿）</p><p>（指中间那行字）</p><p>从 L17 那天「它能上网了」，到今天——</p><p><b>你交付了一个真正的物联网产品。</b></p><p>它会测、会传、会控、会报警、会说话、<b>会自己爬起来</b>，</p><p>而且<b>钥匙守得住</b>。</p><p>（停顿）</p><p><b>第四阶段，结业。</b></p><p>（停顿，转向分流）</p><p>最后一句：<b>结业不是结束。</b></p><p>想把作品带上<b>更大的舞台</b>的同学，</p><p>把「<b>竞赛包报名意向表</b>」填了交给我。</p><p>（停顿）</p><p><b>下一站，竞赛延伸包。</b></p><p><b>你的产品，值得一个更大的舞台。</b></p></div>
+</section>
+
+<section class="slide lay-tiers3" data-title="分层任务">
+<div class="phead"><span class="no">第27课</span>
+<span class="kick g">分层任务</span>
+<span class="tslot">83–90 分</span>
+</div>
+<h2 class="ptitle">今天的三档</h2>
+<p class="psub">含远程演示的路演 ＋ 接住两问 ＝ 成功</p>
+<div class="pbody"><div class="g3 grow"><div class="blk tier t1"><div class="hd">★ 保底（必做）</div>
+        <p class="task">完成一次<b>含远程演示</b>的路演（2–3 分钟）＋ <b>接住答辩三问中的两问</b>；领<b>作品卡③</b>。</p><p class="fill">□ 路演完成 □ 接住两问 □ 卡已领</p></div><div class="blk tier t2"><div class="hd">★★ 挑战（学有余力）</div>
+        <p class="task"><b>三问全接</b>，并且第③问讲出<b>一个自己抓过的真实 bug</b>。</p><p class="fill">我抓过的 bug：____________</p></div><div class="blk tier t3"><div class="hd">★★★ 彩蛋</div>
+        <p class="task">给产品拍一条 <b>30 秒「广告片」</b>（手机拍就行）。</p><p class="fill">□ 拍了　片名：____________</p></div></div>
+<div style="margin-top:22px"><div class="strip g"><b>远程演示卡了不算没完成</b>——按梯子切到控制台或录屏，<b>一样算数</b></div></div></div>
+<div class="notes"><p>三档，简单说。</p><p><b>保底必做</b>：含远程演示的路演，接住两问，领作品卡③。</p><p>（指黑条，重要）</p><p><b>远程演示卡了，不算没完成。</b></p><p>按梯子切到控制台、切到录屏，<b>一样算数</b>。</p><p><b>挑战档：三问全接</b>，而且第③问讲出<b>一个你自己抓过的真实 bug</b>。</p><p>（停顿）</p><p>想一想，这四个月你抓过什么 bug？</p><p>主题名多了个 /up？回调漏了 topic 参数？重连只连了 WiFi 没连云？</p><p>（加重）</p><p><b>这些都是你抓的。</b> 说出来。</p><p><b>彩蛋：拍一条 30 秒广告片。</b></p><p>手机拍就行。</p><p>（停顿）</p><p>给个建议：广告片别拍代码，<b>拍它在干活的样子</b>。</p><p>拍你奶奶走到楼梯口，灯亮了。</p><p>拍你手机上「叮」的一声，收到「temp_high」。</p><p>（停顿）</p><p><b>广告不卖零件，卖的是那一刻。</b></p></div>
+</section>
+
+<section class="slide lay-cards2" data-title="课后任务">
+<div class="phead"><span class="no">第27课</span>
+<span class="kick a">课后任务</span>
+</div>
+<h2 class="ptitle">课后任务</h2>
+<div class="pbody"><div class="g2 grow"><div class="blk g"><h4>基础（全员）</h4><p>把发布会的<b>照片 / 视频</b>给家人看，<b>重讲一遍</b>你的路演。</p></div><div class="blk a"><h4>拓展（选做）</h4><p>想参赛的同学：把「<b>竞赛包报名意向表</b>」填了交给老师——<b>你的产品值得一个更大的舞台</b>。</p></div></div>
+<div style="margin-top:24px"><div class="strip g">从「它能上网了」到今天——<b>你交付了一个真正的物联网产品</b>。第四阶段，<b>结业</b>！</div></div></div>
+<div class="notes"><p>课后两件事。</p><p>第一件全员做：<b>把照片、视频给家人看，重讲一遍你的路演。</b></p><p>（停顿）</p><p>为什么要<b>重讲一遍</b>？</p><p>因为今天在台上，你有点紧张，<b>有些话没讲好</b>。</p><p>回家再讲一遍，你会发现<b>讲得比今天顺</b>。</p><p>（停顿）</p><p>而且这一遍，你面对的是<b>最愿意听你讲的人</b>。</p><p>第二件选做，给想参赛的同学：</p><p><b>把竞赛包报名意向表填了交给我。</b></p><p>（停顿）</p><p>说句心里话。</p><p>（放慢）</p><p>这四个月，我看着你们从「LED 为什么不亮」，</p><p>一路走到「它断网了会自己爬起来」。</p><p>（停顿）</p><p><b>你交付了一个真正的物联网产品。</b></p><p><b>第四阶段，结业！</b></p><p>（停顿）</p><p>下课——</p><p><b>恭喜各位。</b></p></div>
+</section>
+<div class="deck-footer"><span>ESP32 × AI 科创课程 · 第四阶段「驾驭AI · 物联网」 · 第27课 我的物联网作品·发布会</span><span class="slide-number" data-current="1" data-total="13"></span></div>
+<div class="progress-bar"><span></span></div>
+</div>
+<script src="assets/fitstage.js"></script>
+<script src="assets/runtime.js"></script>
+</body>
+</html>

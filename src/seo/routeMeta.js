@@ -1,4 +1,4 @@
-import { arduinoLessons, foundationLessons, innovationLessons } from '../data/innovationCourseCatalog.js';
+import { arduinoLessons, contestLessons, foundationLessons, innovationLessons } from '../data/innovationCourseCatalog.js';
 
 export const SITE_NAME = '魔丸聚集地';
 export const SITE_ORIGIN = 'https://Dora321.github.io/gesp-app';
@@ -24,6 +24,9 @@ export const routeMeta = (pathname) => {
   if (pathname === '/hardware/arduino') return { title: 'Arduino UNO 零基础课程 · 16 节网页课', description: '16 节 Arduino UNO 零基础网页课，从读懂 Blink 到完成智能垃圾桶综合项目。' };
   const innovationLesson = innovationLessons.find((lesson) => lesson.path === pathname);
   if (innovationLesson) return { title: `高阶科创 · 第 ${innovationLesson.id} 课 · ${innovationLesson.title}`, description: 'ESP32 × AI 高阶科创网页课件，用 MicroPython 与 AI 完成真实的硬件任务。' };
+  const contestLesson = contestLessons.find((lesson) => lesson.path === pathname);
+  if (contestLesson) return { title: `竞赛延伸 · ${contestLesson.label} · ${contestLesson.title}`, description: 'ESP32 × AI 竞赛延伸网页课件，从真实问题到参赛材料与现场答辩。' };
+  if (pathname === '/hardware/esp32-contest') return { title: 'ESP32 × AI 竞赛延伸包 · 7 节选修课', description: 'ESP32 × AI 竞赛延伸课程，共 7 节网页课，涵盖选题、实验、数据、展板、演示、答辩与赛前准备。' };
   if (pathname === '/') return { title: 'GESP 编程备考与编程课堂', description: DEFAULT_DESCRIPTION };
   if (pathname === '/question-bank') return { title: 'GESP C++ 真题题库', description: '按等级和年份练习 GESP C++ 真题，支持考试模式、逐题解析和错题复盘。' };
   if (pathname === '/museum') return { title: '计算机博物馆', description: '通过互动展品认识计算机发展史、硬件组成和编程世界。' };
@@ -52,7 +55,7 @@ export const routeMeta = (pathname) => {
   if (match) return { title: `GESP C++ ${match[1]}级知识体系`, description: `系统学习 GESP C++ ${match[1]}级知识点、代码模板和实战方法。` };
 
   if (pathname.startsWith('/python/')) return { title: 'Python 互动编程课程', description: '面向青少年的 Python 基础、进阶与项目式互动课程。' };
-  if (pathname.startsWith('/hardware')) return { title: 'ESP32 MicroPython 高阶科创', description: `ESP32 MicroPython 高阶科创网页课件，已上线 ${innovationLessons.length} 课，其他课件将陆续补充。` };
+  if (pathname.startsWith('/hardware')) return { title: 'ESP32 MicroPython 高阶科创', description: `硬件与科创网页课件：${innovationLessons.length} 节 ESP32 主线课、${arduinoLessons.length} 节 Arduino UNO 课与 ${contestLessons.length} 节竞赛延伸课。` };
   if (pathname.startsWith('/ekart')) return { title: 'E-Kart 智能车实验室', description: '智能车学习路线、工具箱、作品展示与家长学习报告。' };
 
   return { title: 'GESP 编程备考与编程课堂', description: DEFAULT_DESCRIPTION };

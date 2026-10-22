@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>第28课 · 它听得懂话了 — ESP32 × AI 科创课程</title>
+<link rel="stylesheet" href="assets/base.css">
+<link rel="stylesheet" id="theme-link" href="assets/theme-course-pop.css">
+<link rel="stylesheet" href="assets/animations.css">
+</head>
+<body>
+<div class="deck" data-theme-base="assets/">
+<section class="slide lay-cover is-active" data-title="封面">
+<div class="deco circle" style="width:170px;height:170px;top:-52px;right:238px"></div>
+<div class="deco tri" style="right:110px;bottom:132px;transform:rotate(14deg)"></div>
+<div class="deco square" style="width:120px;height:120px;left:-46px;bottom:86px;transform:rotate(12deg)"></div>
+<span class="cv-bar">ESP32 × AI ／ 第五阶段「融合AI」</span>
+<h1 class="cv-title">它听得懂<em>话了</em></h1>
+<p class="cv-sub">喊一声就能开灯——而且**一个零件都没加**</p>
+<div class="cv-tags"><span class="tag">语音链四站</span><span class="tag">只写第四站</span><span class="tag">复用 L20</span><span class="tag">90 分钟连堂</span></div>
+<div class="cv-no">28</div>
+<div class="notes"><p>（讲台上放一台已经配好的音箱，旁边是教师的作品）</p><p>（对着音箱说）——<b>「开灯。」</b></p><p>（停顿一秒，讲台的灯亮了）</p><p>（再说）——<b>「关灯。」</b></p><p>（灯灭）</p><p>（停顿，让他们叫）</p><p>我刚才<b>没有碰手机，也没有碰电脑</b>。</p><p>我只是<b>说了一句话</b>。</p><p>（停顿）</p><p>今天，你们的作品也要<b>听得懂话</b>。</p><p>（停顿，抛一个让他们松口气的消息）</p><p>而且我先说一件事：</p><p><b>今天一个新零件都不用加。</b></p><p>（加重）</p><p>你的板子还是那块板子，线还是那些线。</p><p>（停顿）</p><p><b>它只是多长了一只耳朵。</b></p><p>（停顿）</p><p>从今天起我们进入<b>第五阶段：融合 AI</b>。</p><p>这个阶段 AI 的身份又变了——</p><p>前面它是「代码打印机」「实习程序员」「工具箱」「协作伙伴」。</p><p>（放慢）</p><p>从今天起，<b>AI 是你作品里的一个零件</b>。</p><p>耳朵、眼睛、嘴——<b>你是总设计师</b>。</p></div>
+</section>
+
+<section class="slide lay-table" data-title="语音链四站">
+<div class="phead"><span class="no">第28课</span>
+<span class="kick g">核心</span>
+<span class="tslot">8–20 分</span>
+</div>
+<h2 class="ptitle">语音指令链：四站</h2>
+<p class="psub">看清楚<b>哪一站是你的活</b></p>
+<div class="pbody">
+  <div class="tbl grow" style="grid-template-columns:1.1fr 1.5fr 1.4fr"><div class="th">站</div><div class="th">谁在干</div><div class="th">要你写吗</div><div class="td k">① 人</div><div class="td">你<b>说</b>「开灯」</div><div class="td">——</div><div class="td k">② 音箱</div><div class="td"><b>听</b> ＋ <b>认</b>出是哪句话</div><div class="td"><b>不用</b>（现成服务）</div><div class="td k">③ 云</div><div class="td">把指令<b>捎到主题</b>里</div><div class="td"><b>不用</b>（现成服务）</div><div class="td k">④ ESP32</div><div class="td"><b>订阅主题、收到就干活</b></div><div class="td"><b>只有这一站是你的</b></div></div>
+  <div style="margin-top:20px"><div class="strip a">第④站你<b>早就写过了</b>——<b>L20 的订阅段</b>，原样搬过来，<b>只改两处</b>：主题名、指令词</div></div>
+</div>
+<div class="notes"><p>今天的东西，拆开看是<b>一条链，四站</b>。</p><p><b>第①站：人。</b> 你说「开灯」。</p><p><b>第②站：音箱。</b> 它<b>听</b>，而且<b>认</b>出你说的是哪句话。</p><p><b>第③站：云。</b> 把认出来的指令<b>捎到一个主题</b>里。</p><p><b>第④站：ESP32。</b> 订阅那个主题，收到就干活。</p><p>（停顿，敲黑板）</p><p>现在最重要的一句话：</p><p><b>前三站，都不用你写。</b></p><p>（加重）</p><p>第②站是音箱和它背后的服务干的；第③站是云干的。</p><p><b>人家是专业的。</b></p><p><b>你的活，只有第④站。</b></p><p>（停顿，指黑条）</p><p>而且——第④站你<b>早就写过了</b>。</p><p>（等他们反应）</p><p><b>L20！远程开关那节课。</b></p><p><code class="ic">subscribe</code> 一个主题，<code class="ic">check_msg</code> 守着，收到 on 就亮灯。</p><p>一模一样。</p><p>（停顿）</p><p>所以今天要做的事，只有这么多：</p><p><b>把 L20 的订阅段搬过来，改两处：主题名、指令词。</b></p></div>
+</section>
+
+<section class="slide lay-vstext" data-title="分工">
+<div class="phead"><span class="no">第28课</span>
+<span class="kick a">压力归零</span>
+<span class="tslot">8–20 分</span>
+</div>
+<h2 class="ptitle">「语音识别我不会写啊！」</h2>
+<p class="psub">别慌——<b>那不是你的活</b></p>
+<div class="pbody">
+  <div class="vs3 grow">
+    <div class="blk c vstx"><span class="tag c">很多人第一反应</span><p class="q">「语音识别？那得多难啊，我肯定写不出来。」</p><p class="why">于是还没开始就<b>先慌了</b>。<br>以为今天要教「怎么让电脑听懂人话」。</p></div>
+    <div class="vsmark">VS</div>
+    <div class="blk g vstx"><span class="tag g">真实的分工</span><p class="q"><b>听和认，是音箱 ＋ 云的活</b>；<br><b>你的活只有一段：守着主题等指令。</b></p><p class="why">这是<b>总设计师</b>的思路：<br><b>现成的好零件，直接用</b>；<br>把力气花在<b>别人没有的那部分</b>——你的作品。</p></div>
+  </div>
+  <div style="margin-top:20px"><div class="strip g">第五阶段的核心心法：<b>AI 是零件，你是总设计师</b>。会挑零件、会接线，比什么都重要</div></div>
+</div>
+<div class="notes"><p>刚才一定有人心里咯噔一下：</p><p><b>「语音识别？我肯定写不出来。」</b></p><p>（停顿）</p><p>说实话，这个反应很正常。<b>让电脑听懂人话</b>，那是很多博士研究了几十年的事。</p><p>（转折，放慢）</p><p>但是——<b>那不是你的活。</b></p><p>（指右边）</p><p><b>听和认，是音箱和云的活。</b> 人家做了十几年了，做得比谁都好。</p><p><b>你的活只有一段：守着主题等指令。</b></p><p>（停顿，讲透这个心法）</p><p>我要你们记住这种思路，因为<b>整个第五阶段都靠它</b>：</p><p>（加重）</p><p><b>现成的好零件，直接用；把力气花在别人没有的那部分——你的作品。</b></p><p>（停顿）</p><p>造汽车的人，自己炼钢吗？——<b>不炼。</b> 他去买最好的钢。</p><p>他的本事在<b>把这些零件组装成一辆别人没有的车</b>。</p><p>（停顿，指黑条）</p><p><b>AI 是零件，你是总设计师。</b></p><p>（停顿）</p><p>从今天起，你要学的不是「怎么造零件」，</p><p>是——<b>怎么挑零件、怎么把它们接起来</b>。</p></div>
+</section>
+
+<section class="slide lay-codefull" data-title="起步全码 ①-1">
+<div class="phead"><span class="no">第28课</span>
+<span class="kick g">第①-1 步</span>
+<span class="tslot">20–40 分</span>
+</div>
+<h2 class="ptitle">起步全码 ①-1：备料（只改两处中的第一处）</h2>
+<p class="psub">整段跟 L20 <b>一模一样</b>，只有 <code class="ic">TOPIC</code> 那行是新的</p>
+<div class="pbody"><div class="code"><span class="lab g">起步全码 · 第①-1 步：参数 ＋ 语音主题 ＋ 两个器件</span><pre style="font-size:26px;line-height:1.55"><span class="k">import</span> network, time
+<span class="k">from</span> machine <span class="k">import</span> Pin
+<span class="k">from</span> umqtt.simple <span class="k">import</span> MQTTClient
+
+WIFI_SSID = "你的WiFi名"
+WIFI_PASS = "你的WiFi密码"
+BEMFA_KEY = "你的巴法云私钥"
+TOPIC = "g1voice01"              <span class="c"># 语音入口主题：老师统一分配（不带 /up）</span>
+led = Pin(2, Pin.OUT)
+buzzer = Pin(13, Pin.OUT)</pre></div><div style="margin-top:18px"><div class="strip c"><code class="ic">TOPIC = "g1voice01"</code> 是<b>老师统一分配</b>的语音入口主题——<b>不带 /up</b>（要推给设备，带了就收不到）</div></div></div>
+<div class="notes"><p>起步全码第①步，前半页。</p><p>（指着代码从上往下）</p><p>导入……参数……跟 L20 <b>一模一样</b>。</p><p>（停顿）</p><p>真的，你们可以把 L20 那份代码翻出来<b>并排看</b>——<b>一个字都没变</b>。</p><p>只有这一行是新的：</p><p><code class="ic">TOPIC = "g1voice01"</code></p><p>这就是「<b>只改两处</b>」里的<b>第一处</b>：<b>语音入口主题</b>。</p><p>（加重）</p><p>这个主题名<b>老师统一分配</b>，你们不能自己起。</p><p>为什么？</p><p>（停顿）</p><p>因为它要和<b>音箱那边的配置对上</b>。音箱把指令往哪个主题送，你就得守在哪个主题上。</p><p>（指黑条）</p><p>还有一条老规矩，今天再查一遍：</p><p><b>它不带 /up。</b></p><p>为什么？——（等答）</p><p>对。<b>/up 是「只存柜、别敲门」</b>，控制类的消息必须<b>推给设备</b>。</p><p>带了 /up，你喊一百声它也不动。</p><p>最后两行：灯在 <b>2 号脚</b>，蜂鸣器在 <b>13 号脚</b>。</p><p>按你自己的作品来。</p></div>
+</section>
+
+<section class="slide lay-codefull" data-title="起步全码 ①-2">
+<div class="phead"><span class="no">第28课</span>
+<span class="kick a">第①-2 步</span>
+<span class="tslot">20–40 分</span>
+</div>
+<h2 class="ptitle">起步全码 ①-2：收到指令就干活</h2>
+<p class="psub">「只改两处」的<b>第二处</b>：<b>指令词</b></p>
+<div class="pbody"><div class="code"><span class="lab g">起步全码 · 第①-2 步：回调（L20 老本事）</span><pre style="font-size:27px;line-height:1.55"><span class="k">def</span> on_message(topic, msg):      <span class="c"># topic 参数必须留（库固定传两个）</span>
+    cmd = msg.decode()           <span class="c"># 音箱认出的指令词</span>
+    <span class="k">if</span> cmd == "on":
+        led.value(1)
+    <span class="k">elif</span> cmd == "off":
+        led.value(0)
+    <span class="k">elif</span> cmd == "alarm":         <span class="c"># 警报模式：灯 + 蜂鸣一起动</span>
+        led.value(1)
+        buzzer.value(1); time.sleep(1); buzzer.value(0)</pre></div><div style="margin-top:18px"><div class="strip g">两个老坑今天照样在：<b><code class="ic">topic</code> 参数必须留</b>、<b><code class="ic">msg.decode()</code> 先解码</b>——L20 踩过一次，今天别再踩</div></div></div>
+<div class="notes"><p>第①步后半页：<b>回调</b>。</p><p>这就是 L20 那个「<b>收到就干活</b>」，形状一点没变。</p><p>里面是「只改两处」的<b>第二处</b>：<b>指令词</b>。</p><p><code class="ic">cmd == "on"</code> 亮灯、<code class="ic">cmd == "off"</code> 灭灯、<code class="ic">cmd == "alarm"</code> 警报模式——灯和蜂鸣器一起动。</p><p>（重点）</p><p>这里有一件<b>今天特有</b>的事，我要说清楚：</p><p><b>指令词是音箱认出来的那个词，不是你想写什么就写什么。</b></p><p>（加重）</p><p>你在心里说的是「开灯」，但云送到你这儿的是 <code class="ic">on</code>。</p><p>（停顿）</p><p>所以对接的时候，一定要<b>对着老师给的对照表</b>写——</p><p>「开灯」对应哪个词、「关灯」对应哪个词。</p><p>写错一个字母，<b>喊破喉咙它也不动</b>。</p><p>（指黑条）</p><p>最后，两个老坑今天照样在：</p><p><b><code class="ic">topic</code> 参数必须留着</b>——库固定传两个，少一个就报错。</p><p><b><code class="ic">msg.decode()</code> 先解码</b>——云送来的是字节，不解码永远比不相等。</p><p>（停顿）</p><p>L20 我们踩过一次了。<b>今天别再踩第二次。</b></p></div>
+</section>
+
+<section class="slide lay-codefull" data-title="起步全码 ②">
+<div class="phead"><span class="no">第28课</span>
+<span class="kick c">第②步</span>
+<span class="tslot">20–40 分</span>
+</div>
+<h2 class="ptitle">起步全码 ②：连网 ＋ 订阅 ＋ 等指令</h2>
+<p class="psub">接在第①步后面——<b>这一整段，原样搬 L20</b></p>
+<div class="pbody"><div class="code"><span class="lab g">起步全码 · 第②步：守着语音主题等指令</span><pre style="font-size:22px;line-height:1.55">wlan = network.WLAN(network.STA_IF); wlan.active(<span class="k">True</span>)
+wlan.connect(WIFI_SSID, WIFI_PASS)
+<span class="k">while</span> <span class="k">not</span> wlan.isconnected():
+    time.sleep(0.5)
+print("已联网", wlan.ifconfig()[0])
+
+client = MQTTClient(BEMFA_KEY, "mqtt.bemfa.com", 9501)
+client.set_callback(on_message)
+client.connect(); client.subscribe(TOPIC)   <span class="c"># 守着语音主题等指令</span>
+<span class="k">while</span> <span class="k">True</span>:
+    client.check_msg()           <span class="c"># 喊了没？收到就照办（L20 老本事）</span>
+    time.sleep(0.1)</pre></div><div style="margin-top:18px"><div class="strip a"><code class="ic">check_msg()</code> 还是<b>必须在循环里</b>——「<b>喊了没？</b>」要一直问，只问一次等于没订阅</div></div></div>
+<div class="notes"><p>第②步。这一整段，<b>原样搬 L20</b>。</p><p>连 WiFi、连云、挂回调、订阅、循环里 <code class="ic">check_msg</code>。</p><p>（停顿）</p><p>多了一行 <code class="ic">print("已联网", wlan.ifconfig()[0])</code> ——把 IP 打出来。</p><p>这是个好习惯：<b>让程序告诉你它到哪一步了</b>。等会儿排错用得上。</p><p>（指黑条）</p><p>最后那个 <code class="ic">check_msg()</code>，老规矩再说一遍：</p><p><b>必须在循环里。</b></p><p>它的意思是「<b>喊了没？</b>」——这一句要<b>一直问、一直问</b>。</p><p>只问一次就不问了，等于没订阅。</p><p>（停顿，收束整节上半场）</p><p>好，现在回头看一眼你写的东西：</p><p>（放慢）</p><p>一个「听得懂话」的作品，</p><p><b>你总共只写了两处：一个主题名，几个指令词。</b></p><p>（停顿）</p><p>是不是觉得有点<b>不真实</b>？</p><p>（停顿）</p><p>这就是<b>当总设计师的感觉</b>——</p><p>你没有造耳朵，但<b>耳朵长在了你的作品上</b>。</p></div>
+</section>
+
+<section class="slide lay-divider" data-title="课间休息">
+<div class="deco circle" style="width:200px;height:200px;top:-70px;right:180px"></div>
+<div class="deco square" style="width:130px;height:130px;left:-50px;bottom:70px;transform:rotate(12deg)"></div>
+<div class="deco tri" style="right:140px;bottom:90px;transform:rotate(14deg)"></div>
+<div class="dv">
+  <span class="dv-time">40–50 分</span>
+  <h2 class="dv-t">课间休息 10 分钟</h2>
+  <p class="dv-s">想一句<b>你最想对你的作品说的话</b></p>
+</div>
+<div class="notes"><p>休息十分钟。</p><p>休息的时候想一件事，下半场上台要用：</p><p><b>你最想对你的作品说的，是哪一句？</b></p><p>（停顿）</p><p>「开灯」当然可以。但是——</p><p>（放慢）</p><p>如果可以随便说，你想说什么？</p><p>「回家模式」？「我要睡觉了」？「奶奶起床了」？</p><p>（停顿）</p><p>想好了，等会儿上台<b>喊你自己的那一句</b>。</p><p>（停顿）</p><p>提醒一句：<b>指令词得跟对照表对上</b>，</p><p>所以你心里的那句话，最后落到代码里可能还是 <code class="ic">on</code>。</p><p>但是没关系——</p><p><b>你心里知道它的意思，这就够了。</b></p></div>
+</section>
+
+<section class="slide lay-rowlist" data-title="全班轮验">
+<div class="phead"><span class="no">第28课</span>
+<span class="kick g">轮验</span>
+<span class="tslot">50–70 分</span>
+</div>
+<h2 class="ptitle">轮流上台，喊你自己的作品</h2>
+<p class="psub">台下的人也有活：<b>记录</b></p>
+<div class="pbody"><div class="rowlist grow"><div class="rowitem"><div class="num g">1</div><div class="tx"><b>一组一组上来</b>：对着音箱喊 —— 开灯 / 关灯 / 警报模式</div></div><div class="rowitem"><div class="num a">2</div><div class="tx"><b>台下记录两件事</b>：① <b>听懂了吗</b>（一次就对，还是喊了两遍）② <b>延迟多少</b>（心里数秒）</div></div><div class="rowitem"><div class="num c">3</div><div class="tx"><b>音箱不配合？</b> 换<b>手机 App 语音输入</b> —— 耳朵挪个位置，<b>后面三站一步没变</b></div></div><div class="rowitem"><div class="num g">4</div><div class="tx"><b>延迟一两秒是正常的</b>：消息走了<b>四站</b>，不是 bug，是<b>路程</b></div></div><div class="rowitem"><div class="num a">5</div><div class="tx"><b>成功的组把主题名和指令词写在黑板上</b>，给后面的组当参照</div></div></div><div style="margin-top:20px"><div class="strip a">链路思维的好处就在这儿：<b>坏哪站换哪站</b>。耳朵坏了换耳朵，<b>脑子和手脚一点不用动</b></div></div></div>
+<div class="notes"><p>现在全班轮流上台，喊自己的作品。</p><p>台下的同学<b>不是看热闹</b>，你们有活：<b>记录两件事</b>。</p><p><b>第一，听懂了吗？</b> 一次就对，还是喊了两遍？</p><p><b>第二，延迟多少？</b> 心里数：一、二……灯亮了。</p><p>（停顿）</p><p>为什么要记这两个数？</p><p>（放慢）</p><p>因为<b>这就是「验证」</b>。</p><p>第五阶段有一条暗线，我今天先透露给你们：</p><p>前面四个阶段，我们验证的是「<b>AI 有没有写错代码</b>」。</p><p>（加重）</p><p>从这个阶段开始，我们要验证的是——<b>AI 有没有看错、听错这个世界</b>。</p><p>（停顿）</p><p>（指第三条）</p><p>如果音箱今天不配合，我们换<b>手机语音输入</b>。</p><p><b>耳朵从音箱挪到手机，后面三站一步没变。</b></p><p>（指黑条）</p><p>这就是<b>链路思维</b>的好处：</p><p><b>坏哪站，换哪站。</b></p><p>耳朵坏了换耳朵，<b>脑子和手脚一点都不用动</b>。</p><p>（停顿）</p><p>延迟一两秒<b>很正常</b>——它走了四站。<b>那不是 bug，是路程。</b></p></div>
+</section>
+
+<section class="slide lay-aierror" data-title="喊了不动">
+<div class="phead"><span class="no">第28课</span>
+<span class="kick c">排错</span>
+<span class="tslot">50–70 分</span>
+</div>
+<h2 class="ptitle">喊了，它不动？按站查</h2>
+<p class="psub">四站的链路，<b>一站一站往下切</b></p>
+<div class="pbody">
+  <div class="aegrid grow">
+    <div class="code"><span class="lab c">三个最容易错的地方</span><pre style="font-size:21px;line-height:1.55">TOPIC = "g1voice01/up"   <span class="c"># ← 错1：语音主题不能带 /up</span>
+
+<span class="k">if</span> cmd == "ON":          <span class="c"># ← 错2：指令词大小写/拼写不一致</span>
+    led.value(1)         <span class="c">#        音箱发的是 on</span>
+
+client.check_msg()       <span class="c"># ← 错3：写在了 while 外面</span></pre></div>
+    <div class="aecol">
+      <div class="blk c"><h4>按<b>站</b>切，不是按代码猜</h4><p><b>① 音箱听到了吗？</b>（它的灯亮没亮）<br><b>② 云收到了吗？</b>（教师端看主题有没有新消息）</p></div>
+      <div class="blk g"><h4>③ 板子在听吗？</h4><p>串口有没有打印「已联网」？<code class="ic">check_msg</code> <b>在循环里</b>吗？<br><b>一喊全班动</b> → 主题没分组，回 <b>L22 的教训</b>：学号前缀。</p></div>
+    </div>
+  </div>
+  <div style="margin-top:22px"><div class="strip a"><b>二分法</b>又来了：<b>云上有消息</b> → 是你板子的事；<b>云上没消息</b> → 是音箱那半截的事</div></div>
+</div>
+<div class="notes"><p>喊了它不动。<b>别急着改代码</b>——先<b>按站查</b>。</p><p>（指右边）</p><p><b>第①站：音箱听到了吗？</b> 看它的灯亮没亮。</p><p><b>第②站：云收到了吗？</b> 我在教师端看主题有没有新消息。</p><p><b>第③站：板子在听吗？</b> 串口打印「已联网」了吗？<code class="ic">check_msg</code> 在循环里吗？</p><p>（指黑条，加重）</p><p>看出来了吗？——<b>二分法又来了</b>。</p><p>（放慢）</p><p><b>云上有消息</b> → 前半截是好的，<b>问题在你板子上</b>。</p><p><b>云上没消息</b> → 你板子不用查了，<b>问题在音箱那半截</b>。</p><p>（停顿）</p><p>一招下去，要查的范围<b>少一半</b>。这招 L22 用过，今天又用。</p><p>（指左边代码）</p><p>三个最常见的写法错：</p><p><b>错 1：语音主题带了 /up。</b> 云只存不推，你永远收不到。</p><p><b>错 2：指令词不一致。</b> 你写 <code class="ic">"ON"</code>，音箱发的是 <code class="ic">"on"</code>——<b>大小写也算不一样</b>。</p><p><b>错 3：check_msg 在循环外。</b></p><p>最后一个特别的状况：</p><p><b>一喊，全班的灯都亮了。</b></p><p>（停顿）</p><p>这是什么？——（等答）</p><p><b>主题撞名了。</b> L22 那节课的教训：<b>学号前缀。</b></p></div>
+</section>
+
+<section class="slide lay-tiers3" data-title="分层实战">
+<div class="phead"><span class="no">第28课</span>
+<span class="kick g">分层任务</span>
+<span class="tslot">70–82 分</span>
+</div>
+<h2 class="ptitle">先保底，再多一句话</h2>
+<p class="psub">喊一声，作品应声动 ＝ 成功</p>
+<div class="pbody"><div class="g3 grow"><div class="blk tier t1"><div class="hd">★ 保底（必做）</div>
+        <p class="task">语音喊「<b>开灯 / 关灯</b>」，作品<b>应声动作</b>（音箱或手机语音<b>都算</b>）。</p><p class="fill">我的主题：________　我的指令词：________</p></div><div class="blk tier t2"><div class="hd">★★ 挑战（学有余力）</div>
+        <p class="task">加第二条指令「<b>警报模式</b>」：<b>灯 ＋ 蜂鸣器一起动</b>。</p><p class="fill">□ 两条指令都灵</p></div><div class="blk tier t3"><div class="hd">★★★ 再挑战</div>
+        <p class="task">语音开灯后，<b>OLED 显示</b>「<b>主人叫我开的灯</b>」——让它<b>说出自己为什么动</b>。</p><p class="fill">□ 屏上有字</p></div></div>
+<div style="margin-top:22px"><div class="strip g">再挑战那一档很有意思：同样是灯亮，<b>它说得出「是谁让我亮的」</b>——这叫<b>可解释</b></div></div></div>
+<div class="notes"><p>三档。</p><p><b>保底必做</b>：喊一声，作品动。音箱、手机语音<b>都算</b>。</p><p><b>挑战档：加第二条指令「警报模式」。</b></p><p>灯和蜂鸣器一起动。代码里就是多一个 <code class="ic">elif</code>。</p><p><b>再挑战：OLED 上显示「主人叫我开的灯」。</b></p><p>（停顿，讲这一档为什么值钱）</p><p>这一档看起来只是多显示一行字，其实在做一件很高级的事。</p><p>（放慢）</p><p>同样是灯亮着——</p><p>它<b>说得出「是谁让我亮的」</b>。</p><p>是语音叫的？是手机点的？还是温度超标它自己开的？</p><p>（停顿）</p><p>这个本事有个名字，叫「<b>可解释</b>」。</p><p>（加重）</p><p>一个东西<b>能说出自己为什么这么做</b>，你才敢信它。</p><p>（停顿）</p><p>这件事今天先埋个种子。</p><p><b>第32课《它认错了》，我们会专门讲一整节课。</b></p></div>
+</section>
+
+<section class="slide lay-rowlist" data-title="今日三大发现">
+<div class="phead"><span class="no">第28课</span>
+<span class="kick g">总结</span>
+<span class="tslot">82–90 分</span>
+</div>
+<h2 class="ptitle">今日三大发现</h2>
+<div class="pbody"><div class="rowlist grow"><div class="rowitem"><div class="num g">1</div><div class="tx"><b>语音链四站</b>：人 → 音箱（听+认）→ 云（捎话）→ ESP32（订阅执行）——<b>只有第四站是你的活</b></div></div><div class="rowitem"><div class="num a">2</div><div class="tx"><b>复用而不重写</b>：L20 的订阅段原样搬过来，<b>只改两处</b>（主题名、指令词）</div></div><div class="rowitem"><div class="num c">3</div><div class="tx"><b>AI 是零件，你是总设计师</b>：现成的好零件直接用，力气花在<b>别人没有的那部分</b></div></div></div><div style="margin-top:20px"><div class="strip a">它<b>听得懂话</b>了——<b>可它看得见吗？</b> 明天来一位<b>新伙伴</b>，给你的作品装<b>眼睛</b></div></div></div>
+<div class="notes"><p>今天三个发现。</p><p><b>第一，语音链四站。</b> 只有第四站是你的活。</p><p><b>第二，复用而不重写。</b></p><p>（停顿）</p><p>今天你们干成了一件挺大的事，却只改了<b>两处</b>。</p><p>这种感觉，值得记住：</p><p><b>好的系统，加新本事的时候，不用把旧的推倒重来。</b></p><p><b>第三，AI 是零件，你是总设计师。</b></p><p>（停顿，环视）</p><p>今天你的作品<b>一个零件都没加</b>，却多了<b>一只耳朵</b>。</p><p>（停顿，抛钩子）</p><p>那我问一个问题：</p><p><b>它听得懂话了——可它看得见吗？</b></p><p>（等他们反应）</p><p>（停顿）</p><p>明天，我们请一位<b>新伙伴</b>来上课。</p><p>它比 ESP32 大一点、聪明一点，</p><p>（放慢）</p><p><b>它会带着一只眼睛来。</b></p><p>（停顿）</p><p>下课。</p></div>
+</section>
+
+<section class="slide lay-cards2" data-title="课后任务">
+<div class="phead"><span class="no">第28课</span>
+<span class="kick a">课后任务</span>
+</div>
+<h2 class="ptitle">课后任务</h2>
+<div class="pbody"><div class="g2 grow"><div class="blk g"><h4>基础（全员）</h4><p>给家人演示<b>语音控制</b>，讲清<b>四站链路</b>：<b>谁在听、谁在认、谁在传、谁在动</b>。</p></div><div class="blk a"><h4>拓展（选做）</h4><p>观察家里的音箱：它<b>听错过什么</b>？想一想——「<b>听错</b>」和「<b>传错</b>」有什么不同？</p></div></div>
+<div style="margin-top:24px"><div class="strip g"><b>话音成了输入</b>——你的作品开始「<b>长感官</b>」了</div></div></div>
+<div class="notes"><p>课后两件事。</p><p>第一件全员做：<b>给家人演示语音控制</b>，讲清四站。</p><p><b>谁在听、谁在认、谁在传、谁在动。</b></p><p>（停顿）</p><p>家里人多半会以为是「板子听懂了」。</p><p>你要告诉他们：<b>不是，板子只是守着一个信箱。</b></p><p>第二件选做，是一道<b>很有意思的思考题</b>：</p><p><b>家里的音箱，听错过什么？</b></p><p>（停顿）</p><p>然后想第二问，这一问更难：</p><p><b>「听错」和「传错」有什么不同？</b></p><p>（放慢）</p><p>你说「开灯」，它听成了「开电视」——这是<b>听错</b>，第②站的问题。</p><p>你说「开灯」，它也听对了，可消息半天没到——这是<b>传错/传慢</b>，第③站的问题。</p><p>（停顿）</p><p>分得清这两种，你就真的懂「链路」了。</p><p>（停顿）</p><p>最后一句：</p><p><b>话音成了输入——你的作品开始「长感官」了。</b></p><p>下课。</p></div>
+</section>
+<div class="deck-footer"><span>ESP32 × AI 科创课程 · 第五阶段「融合AI」 · 第28课 它听得懂话了</span><span class="slide-number" data-current="1" data-total="12"></span></div>
+<div class="progress-bar"><span></span></div>
+</div>
+<script src="assets/fitstage.js"></script>
+<script src="assets/runtime.js"></script>
+</body>
+</html>

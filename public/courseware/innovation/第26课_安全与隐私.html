@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>第26课 · 安全与隐私 — ESP32 × AI 科创课程</title>
+<link rel="stylesheet" href="assets/base.css">
+<link rel="stylesheet" id="theme-link" href="assets/theme-course-pop.css">
+<link rel="stylesheet" href="assets/animations.css">
+</head>
+<body>
+<div class="deck" data-theme-base="assets/">
+<section class="slide lay-cover is-active" data-title="封面">
+<div class="deco circle" style="width:170px;height:170px;top:-52px;right:238px"></div>
+<div class="deco tri" style="right:110px;bottom:132px;transform:rotate(14deg)"></div>
+<div class="deco square" style="width:120px;height:120px;left:-46px;bottom:86px;transform:rotate(12deg)"></div>
+<span class="cv-bar">ESP32 × AI ／ 第四阶段「驾驭AI · 物联网」</span>
+<h1 class="cv-title">安全<em>与隐私</em></h1>
+<p class="cv-sub">别把家暴露在公网上</p>
+<div class="cv-tags"><span class="tag">私钥＝家门钥匙</span><span class="tag">安全体检四项</span><span class="tag">脱敏三秒</span><span class="tag">90 分钟连堂</span></div>
+<div class="cv-no">26</div>
+<div class="notes"><p>（讲台上摆教师自己的演示板，灯亮着）</p><p>上课之前，我先做一个演示。</p><p>（停顿）</p><p>这是<b>我的</b>演示板，用的是<b>我自己的</b>私钥——我等会儿要做的事，<b>不会碰你们任何一个人的产品</b>。</p><p>（把写着私钥的纸条给扮演「陌生人」的助教，或者自己换一部手机）</p><p>现在，我把这张纸条<b>给他</b>。</p><p>纸条上只有一串字母数字，没有别的。</p><p>（停顿）</p><p>请大家看讲台上这块板。</p><p>（陌生人在手机上点一下——灯灭了）</p><p>（再点——蜂鸣器狂响）</p><p>……</p><p>（等三秒，让教室安静下来）</p><p>我什么都没做。</p><p><b>我拦不住他。</b></p><p>（停顿，慢慢说）</p><p>因为在云看来——<b>拿钥匙的那个人，就是主人。</b></p><p>（停顿）</p><p>今天这节课，讲的就是这串字符。</p></div>
+</section>
+
+<section class="slide lay-table" data-title="三样东西">
+<div class="phead"><span class="no">第26课</span>
+<span class="kick c">核心</span>
+<span class="tslot">10–25 分</span>
+</div>
+<h2 class="ptitle">你手上有三样东西，风险不一样</h2>
+<p class="psub">先分清楚，才知道<b>哪样最要命</b></p>
+<div class="pbody">
+  <div class="tbl grow" style="grid-template-columns:1fr 1fr 2fr"><div class="th">东西</div><div class="th">像什么</div><div class="th">泄露了会怎样</div><div class="td k"><b>私钥 / UID</b></div><div class="td"><b>家门钥匙</b></div><div class="td"><b>你的设备全归别人管</b>（最要命）</div><div class="td k">账号密码</div><div class="td"><b>锁芯</b></div><div class="td">账号被占，<b>改天换锁都难</b></div><div class="td k">主题名</div><div class="td"><b>门牌号</b></div><div class="td">别人能<b>敲你家门</b>（发消息干扰）</div></div>
+  <div style="margin-top:20px"><div class="strip a"><b>钥匙不给任何人，包括最好的朋友。</b> 不是不信任——是<b>钥匙一旦出门，你就再也收不回来了</b></div></div>
+</div>
+<div class="notes"><p>你手上其实有<b>三样</b>东西，它们的风险<b>完全不一样</b>。分清楚很重要。</p><p><b>第一样，私钥，也叫 UID。</b></p><p>它像什么？——<b>家门钥匙</b>。</p><p>刚才你们看见了：拿到钥匙的人，<b>开灯、按门铃、随便进</b>。</p><p>（加重）</p><p>这是三样里<b>最要命</b>的。</p><p><b>第二样，账号密码。</b></p><p>它像<b>锁芯</b>。密码被人知道了，账号可能被占——到时候<b>连换锁都难</b>，因为改密码要先登录。</p><p>所以密码别用 <code class="ic">123456</code>，别用生日。</p><p><b>第三样，主题名。</b></p><p>它像<b>门牌号</b>。</p><p>知道你家门牌，<b>进不来</b>，但<b>能敲门</b>——往你的主题里乱发消息，干扰你。</p><p>（L22 那天我们说过：<b>名字就是钥匙</b>。现在你知道了，更准确的说法是：<b>名字是门牌，私钥才是钥匙</b>。）</p><p>（指黑条，郑重）</p><p>最后这条规矩，我要你们记一辈子：</p><p><b>钥匙不给任何人，包括最好的朋友。</b></p><p>（停顿）</p><p>不是因为不信任他。</p><p>是因为——<b>钥匙一旦出了门，你就再也收不回来了。</b></p><p>他可能不小心发到群里，可能手机借给别人，可能截图发了朋友圈。</p><p><b>不是他坏，是你管不住了。</b></p></div>
+</section>
+
+<section class="slide lay-vstext" data-title="不是你重要">
+<div class="phead"><span class="no">第26课</span>
+<span class="kick c">破防</span>
+<span class="tslot">10–25 分</span>
+</div>
+<h2 class="ptitle">「谁会盯上我的板子啊？」</h2>
+<p class="psub">这句话，是今天最危险的一句话</p>
+<div class="pbody">
+  <div class="vs3 grow">
+    <div class="blk c vstx"><span class="tag c">很多人这么想</span><p class="q">「我又不是名人，我家又没有金子——<b>谁会盯上小学生的板子？</b>」</p><p class="why">听起来挺有道理。<br>所以密码随便设，私钥随手截图发群里。</p></div>
+    <div class="vsmark">VS</div>
+    <div class="blk g vstx"><span class="tag g">真相是</span><p class="q"><b>坏人不挑人。</b> 是<b>程序自动</b>满世界试钥匙、扫门牌。</p><p class="why">它不知道你是谁，也<b>不关心</b>你是谁。<br>它只是一秒试几千个——<b>试到谁算谁</b>。</p></div>
+  </div>
+  <div style="margin-top:20px"><div class="strip g"><b>门锁好，不是因为你家有金子，是因为锁门本来就该做</b></div></div>
+</div>
+<div class="notes"><p>现在一定有人心里在想一句话。我替你们说出来：</p><p><b>「谁会盯上我的板子啊？」</b></p><p>（停顿）</p><p>说实话，这句话听起来挺有道理的。</p><p>你不是名人，家里没有金子，一块几十块钱的板子——谁稀罕？</p><p>（停顿，转折）</p><p>但是这句话，<b>是今天最危险的一句话</b>。</p><p>为什么？</p><p>（放慢）</p><p>因为<b>坏人根本不挑人</b>。</p><p>（加重）</p><p>是<b>程序</b>在自动满世界地试钥匙、扫门牌。</p><p>一秒试几千个，从早到晚不停。</p><p>它<b>不知道你是谁</b>，也<b>不关心</b>你是谁。</p><p>（停顿）</p><p>它只是——<b>试到谁算谁</b>。</p><p>（停顿，让它沉下去）</p><p>所以「我不重要」这个理由，<b>保护不了你</b>。</p><p>（指黑条，收束）</p><p>记住这句话：</p><p><b>门锁好，不是因为你家有金子，是因为锁门本来就该做。</b></p><p>（停顿）</p><p>你晚上睡觉会锁门吧？</p><p>不是因为你家有金条。<b>是因为门本来就该锁。</b></p></div>
+</section>
+
+<section class="slide lay-rowlist" data-title="安全体检四项">
+<div class="phead"><span class="no">第26课</span>
+<span class="kick g">体检</span>
+<span class="tslot">25–40 分</span>
+</div>
+<h2 class="ptitle">安全体检四项：把恐慌变成清单</h2>
+<p class="psub">一项一项查，<b>查完你就安全了</b></p>
+<div class="pbody"><div class="rowlist grow"><div class="rowitem"><div class="num g">1</div><div class="tx"><b>① 私钥收在哪？</b> 写在卡上收进<b>组内信封</b>；<b>没发过群、没截过图</b>　□</div></div><div class="rowitem"><div class="num a">2</div><div class="tx"><b>② 密码合格吗？</b> 不是 <code class="ic">123456</code>、不是生日；<b>云端和代码两头一致</b>　□</div></div><div class="rowitem"><div class="num c">3</div><div class="tx"><b>③ 主题名给过谁？</b> 只有<b>本组和结对组</b>知道；不写在公开的东西上　□</div></div><div class="rowitem"><div class="num g">4</div><div class="tx"><b>④ 分享脱敏了吗？</b> 对外的代码 / 截图，私钥和密码<b>已经抹掉</b>　□</div></div><div class="rowitem"><div class="num a">5</div><div class="tx">查出问题<b>不丢人</b>——<b>现在查出来，比被人开了灯才知道强一百倍</b></div></div></div><div style="margin-top:20px"><div class="strip a"><b>安全不是怕，是懂了之后的讲究。</b> 四项打满勾，你的产品就体检合格了</div></div></div>
+<div class="notes"><p>刚才那个演示，可能吓到一些人了。</p><p>现在我们干一件让人踏实的事：<b>把恐慌变成清单</b>。</p><p>（停顿）</p><p>四项，一项一项查。</p><p><b>第①项：私钥收在哪？</b></p><p>写在卡上，收进<b>组内信封</b>。有人问：「我记性好，背下来行不行？」</p><p>——可以，但<b>小组要有备份</b>。万一你请假了呢？</p><p>安全和好用，<b>要平衡</b>。</p><p><b>第②项：密码合格吗？</b></p><p>不是 123456，不是生日。</p><p>还有半句很容易忘：<b>云端和代码两头要一致</b>。</p><p>（提醒）改了云端忘了改代码，等会儿就会「设备连不上」——<b>别慌，那不是被黑了，是你自己改了一半</b>。</p><p><b>第③项：主题名给过谁？</b></p><p>只有本组和结对组知道。</p><p>有同学会说：「我的主题名那么长，谁猜得到？」</p><p>（加重）<b>不靠猜，靠泄露。</b> 你发的每一张截图，都可能带着它。</p><p><b>第④项：分享脱敏了吗？</b> 下半场专门讲。</p><p>（指黑条）</p><p>最后一句，请放轻松：</p><p><b>查出问题不丢人。</b></p><p><b>现在查出来，比被人开了灯才知道，强一百倍。</b></p></div>
+</section>
+
+<section class="slide lay-divider" data-title="课间休息">
+<div class="deco circle" style="width:200px;height:200px;top:-70px;right:180px"></div>
+<div class="deco square" style="width:130px;height:130px;left:-50px;bottom:70px;transform:rotate(12deg)"></div>
+<div class="deco tri" style="right:140px;bottom:90px;transform:rotate(14deg)"></div>
+<div class="dv">
+  <span class="dv-time">40–50 分</span>
+  <h2 class="dv-t">课间休息 10 分钟</h2>
+  <p class="dv-s">把<b>私钥卡</b>统一收进小组信封</p>
+</div>
+<div class="notes"><p>休息十分钟。</p><p>走之前，全组做一件事：</p><p><b>把写着私钥的卡片，统一收进小组信封。</b></p><p>封面写上组名，交给组长保管。</p><p>（停顿）</p><p>这个做法有个名字，叫「<b>信封制</b>」。</p><p>听起来很土，但它解决了一个真问题：</p><p><b>东西要收好，可又不能只有一个人知道。</b></p><p>只有你一个人知道——你请假了，全组都动不了。</p><p>人人都拿着一张——那就等于没收。</p><p>（停顿）</p><p><b>收在一个地方，组长负责。</b> 要用的时候拿出来，用完放回去。</p><p>（停顿）</p><p>真实公司里保管密码，用的也是差不多的办法，只不过信封变成了软件。</p><p>去休息吧。</p></div>
+</section>
+
+<section class="slide lay-vscompare" data-title="脱敏三秒">
+<div class="phead"><span class="no">第26课</span>
+<span class="kick c">修补</span>
+<span class="tslot">50–65 分</span>
+</div>
+<h2 class="ptitle">发群 / 截图之前：脱敏三秒</h2>
+<p class="psub">三行，三秒钟——<b>发出去就收不回来了</b></p>
+<div class="pbody">
+  <div class="vs3 grow">
+    <div class="code"><span class="lab c">× 直接发：钥匙一起发出去了</span><pre style="font-size:25px;line-height:1.55">BEMFA_KEY = "a7f3c9e21b8d4f60"   <span class="c"># 真私钥</span>
+WIFI_PASS = "wang123456"          <span class="c"># 真密码</span>
+T_UP = "g3temp01/up"              <span class="c"># 真主题名</span></pre></div>
+    <div class="vsmark">VS</div>
+    <div class="code"><span class="lab g">○ 脱敏后再发</span><pre style="font-size:25px;line-height:1.55">BEMFA_KEY = "XXXXXXXX"           <span class="c"># 钥匙抹掉</span>
+WIFI_PASS = "******"              <span class="c"># 锁芯抹掉</span>
+T_UP = "gXtemp01/up"              <span class="c"># 门牌也抹</span></pre></div>
+  </div>
+  <div style="margin-top:24px"><div class="strip ">顺序很重要：<b>先改成 XXXX，再截图</b>——别先截了图再想起来抹，那张图<b>已经在别人手机里了</b></div></div>
+</div>
+<div class="notes"><p>现在讲第④项：<b>脱敏</b>。</p><p>这个词听起来专业，做起来<b>三秒钟</b>。</p><p>（指左边）</p><p>左边是很多人会直接发出去的代码。</p><p>你看这三行：真私钥、真密码、真主题名。</p><p>（加重）</p><p>你只是想问同学一句「我这里错哪了」——</p><p><b>可你把家门钥匙一起发出去了。</b></p><p>（指右边）</p><p>右边是脱敏后的。三行都改了：</p><p>私钥 → <code class="ic">XXXXXXXX</code></p><p>密码 → <code class="ic"><b>*</b>*</code></p><p>主题名 → <code class="ic">gXtemp01/up</code></p><p>（停顿）</p><p>有人会问：改成这样，别人还看得懂吗？</p><p><b>看得懂。</b> 别人要帮你看的是<b>代码写法</b>，不是你的钥匙。</p><p>（指黑条，这是最容易踩的坑）</p><p>最后强调<b>顺序</b>，这一条比什么都重要：</p><p><b>先改成 XXXX，再截图。</b></p><p>（放慢）</p><p>别先截了图，发出去之后才想起来「哎呀我忘了抹」——</p><p>那张图<b>已经在别人的手机里了</b>。</p><p>（停顿）</p><p>网上有句话说得很准：</p><p><b>发出去的东西，就像出了口的话，收不回来。</b></p></div>
+</section>
+
+<section class="slide lay-rowlist" data-title="修补清单">
+<div class="phead"><span class="no">第26课</span>
+<span class="kick g">整改</span>
+<span class="tslot">50–65 分</span>
+</div>
+<h2 class="ptitle">该改的现在就改</h2>
+<p class="psub">体检查出来的问题，<b>当堂修完</b></p>
+<div class="pbody"><div class="rowlist grow"><div class="rowitem"><div class="num g">1</div><div class="tx"><b>弱密码 → 换掉</b>：换完记得<b>云端和代码两头都改</b>，再跑一次确认能连</div></div><div class="rowitem"><div class="num a">2</div><div class="tx"><b>私钥截过图 / 发过群</b> → 找老师<b>换一把新钥匙</b>（旧的作废），然后代码里同步改</div></div><div class="rowitem"><div class="num c">3</div><div class="tx"><b>主题名外传过</b> → 改个新名字，<b>两端一起改</b>（L22 学过，改一端更糟）</div></div><div class="rowitem"><div class="num g">4</div><div class="tx"><b>对外代码</b> → 另存一份「<b>分享版</b>」，私钥密码抹成 XXXX，老师检查过才发</div></div><div class="rowitem"><div class="num a">5</div><div class="tx">改完<b>再跑一次产品</b>：能连、能传、能控——<b>别修安全把功能修坏了</b></div></div></div><div style="margin-top:20px"><div class="strip a">「<b>换一把钥匙</b>」在真实世界里叫<b>密钥轮换</b>——大公司定期都要做一次，不是出了事才做</div></div></div>
+<div class="notes"><p>体检查出来的问题，<b>现在就改</b>。四件事：</p><p><b>弱密码，换掉。</b></p><p>改完记得<b>两头都改</b>：云端改了，代码里也要改。改完<b>跑一次</b>确认能连。</p><p><b>私钥截过图、发过群的组</b>——举手，我给你们<b>换一把新钥匙</b>。</p><p>（停顿）</p><p>换钥匙不是惩罚。旧的作废，新的记在卡上，代码里同步改。</p><p>（加重）</p><p>这件事在真实世界里有个名字，叫「<b>密钥轮换</b>」。</p><p>大公司<b>定期都要做一次</b>——不是出了事才做，是<b>没出事也要做</b>。</p><p>就像你家换锁芯，不一定是丢了钥匙。</p><p><b>主题名外传过的</b>，改个新名字。</p><p>记住 L22 那条：<b>两端一起改</b>，改一端更糟。</p><p><b>对外的代码</b>，另存一份「分享版」，抹掉钥匙，<b>我检查过才准发</b>。</p><p>（指黑条底下那条，很实际）</p><p>最后一件事，千万别忘：</p><p><b>改完再跑一次产品。</b></p><p>能连、能传、能控，三条都试一遍。</p><p>（停顿）</p><p>为什么？因为改密码、改主题名<b>很容易改出错</b>。</p><p><b>别修安全，把功能修坏了。</b></p></div>
+</section>
+
+<section class="slide lay-cards3" data-title="情景题">
+<div class="phead"><span class="no">第26课</span>
+<span class="kick a">边界感</span>
+<span class="tslot">65–78 分</span>
+</div>
+<h2 class="ptitle">情景抢答：这三件事，你怎么办？</h2>
+<p class="psub"><b>知道</b>和<b>做得到</b>，是两件事</p>
+<div class="pbody"><div class="g3 grow"><div class="blk g"><h4>① 同学要你的私钥</h4><p>「<b>就看看</b>，我不乱动。」<br><br>给不给？</p></div><div class="blk a"><h4>② 代码要发班级群</h4><p>问同学一句「我这里错哪了」。<br><br><b>发之前要做什么？</b></p></div><div class="blk c"><h4>③ 捡到别组的主题名</h4><p>你无意中看见了别组的主题名。<br><br><b>能不能试一下？</b></p></div></div><p class="beads-cap" style="margin:18px 0 16px">三题的答案，其实是<b>同一句话</b>：<b>我的钥匙我保管，别人的门我不碰</b></p><div style="margin-top:22px"><div class="strip c">真在别人主题上试过的——<b>主动说出来</b>，当堂复盘，不批评。<b>说出来的人，才是真懂了的人</b></div></div></div>
+<div class="notes"><p>现在抢答，三道情景题。</p><p><b>第①题：同学跟你要私钥，说「就看看，我不乱动」。给不给？</b></p><p>（等答）</p><p><b>不给。</b></p><p>（停顿）</p><p>而且注意——<b>这跟信不信任他没关系</b>。</p><p>你可以这样回他：「<b>不是不信你，是这把钥匙我答应过要自己保管。</b>」</p><p>（停顿）</p><p>说这句话需要一点勇气。但说出来之后，<b>对方通常会尊重你</b>。</p><p><b>第②题：代码要发班级群，发之前做什么？</b></p><p>（等答）</p><p><b>脱敏三秒。</b> 先抹，再截图，顺序别反。</p><p><b>第③题：你无意中看见了别组的主题名，能不能试一下？</b></p><p>（等答，一定有人犹豫）</p><p><b>不能。</b></p><p>（放慢，讲透）</p><p>这道题最难，因为<b>你试了多半也不会被发现</b>，而且<b>很好玩</b>。</p><p>但是——</p><p>（指中间那行字）</p><p>三道题的答案其实是<b>同一句话</b>：</p><p><b>我的钥匙我保管，别人的门我不碰。</b></p><p>（停顿）</p><p>这叫<b>边界感</b>。它不是技术，是<b>教养</b>。</p><p>（指黑条，语气放软）</p><p>最后我问一句：有没有人<b>真的试过</b>别组的主题？</p><p>（停顿）</p><p>现在说出来，我不批评，我们一起复盘。</p><p><b>说出来的人，才是真懂了的人。</b></p></div>
+</section>
+
+<section class="slide lay-rowlist" data-title="班级安全规则">
+<div class="phead"><span class="no">第26课</span>
+<span class="kick c">立规矩</span>
+<span class="tslot">78–90 分</span>
+</div>
+<h2 class="ptitle">班级安全规则（从今天起执行）</h2>
+<p class="psub">规矩立下来，<b>大家都省心</b></p>
+<div class="pbody"><div class="rowlist grow"><div class="rowitem"><div class="num g">1</div><div class="tx"><b>密钥每班独立</b>——不跨班共用；卡片收在<b>组内信封</b>，组长保管</div></div><div class="rowitem"><div class="num a">2</div><div class="tx"><b>结课轮换</b>：这门课结束时，<b>全班密钥换一轮</b>（旧的作废）</div></div><div class="rowitem"><div class="num c">3</div><div class="tx"><b>谁也不碰别人的主题</b>——看见了也不试，这是<b>铁律</b></div></div><div class="rowitem"><div class="num g">4</div><div class="tx"><b>发之前先脱敏</b>：任何对外的代码、截图，私钥密码一律 XXXX</div></div><div class="rowitem"><div class="num a">5</div><div class="tx"><b>发现别组有漏洞，先私下提醒他</b>——不是抓把柄，是<b>同伴互助</b></div></div></div><div style="margin-top:20px"><div class="strip g">最后一条最见人品：<b>主动提醒过别组安全漏洞的同学</b>，这节课评价里是「<b>优秀</b>」</div></div></div>
+<div class="notes"><p>最后立几条班级规矩，从今天起执行。</p><p><b>第一，密钥每班独立</b>，不跨班共用；卡片收信封，组长保管。</p><p><b>第二，结课轮换。</b></p><p>这门课结束的时候，<b>全班密钥换一轮</b>，旧的全部作废。</p><p>（停顿）</p><p>为什么要换？我们这一个学期，钥匙在教室里传来传去，<b>你也不知道它被谁看见过</b>。</p><p>所以<b>换一轮，重新开始</b>——这就叫轮换。</p><p><b>第三，谁也不碰别人的主题。</b> 看见了也不试。<b>这是铁律。</b></p><p><b>第四，发之前先脱敏。</b></p><p><b>第五</b>，这一条我特别想讲：</p><p><b>发现别组有漏洞，先私下提醒他。</b></p><p>（停顿）</p><p>不是去告状，也不是抓把柄。</p><p>走过去，小声说一句：「你那个私钥好像还写在屏幕上呢。」</p><p>（停顿）</p><p>黑条上写了：</p><p><b>主动提醒过别组安全漏洞的同学，这节课评价是「优秀」。</b></p><p>（停顿）</p><p>为什么这一条能拿优秀？</p><p>因为安全这件事，<b>一个人做好没用，全班都好了才是真的好</b>。</p></div>
+</section>
+
+<section class="slide lay-tiers3" data-title="分层任务">
+<div class="phead"><span class="no">第26课</span>
+<span class="kick g">分层任务</span>
+<span class="tslot">78–90 分</span>
+</div>
+<h2 class="ptitle">先体检，再守护</h2>
+<p class="psub">四项打满勾 ＋ 私钥入信封 ＝ 成功</p>
+<div class="pbody"><div class="g3 grow"><div class="blk tier t1"><div class="hd">★ 保底（必做）</div>
+        <p class="task">完成<b>安全体检四项</b>并<b>整改</b>；<b>私钥卡入组内信封</b>；能用「家门钥匙」类比讲清为什么。</p><p class="fill">□ 四项打满 □ 卡已入封</p></div><div class="blk tier t2"><div class="hd">★★ 挑战（学有余力）</div>
+        <p class="task">做一份「<b>分享版</b>」代码：脱敏后发到班级群（<b>老师检查过关才发</b>）。</p><p class="fill">□ 老师已检查</p></div><div class="blk tier t3"><div class="hd">★★★ 再挑战</div>
+        <p class="task">给家里<b>一件联网设备</b>写<b>三条安全建议</b>（摄像头 / 音箱 / 路由器都行）。</p><p class="fill">① ______ ② ______ ③ ______</p></div></div>
+<div style="margin-top:22px"><div class="strip g">再挑战那一档，是把今天的本事<b>带回家</b>——你可能是家里<b>唯一懂这件事的人</b></div></div></div>
+<div class="notes"><p>三档。</p><p><b>保底必做</b>：四项打满勾，私钥入信封，而且——</p><p><b>能用钥匙的比方讲清楚为什么</b>。</p><p>（停顿）讲不出「为什么」，勾打满了也只是走过场。</p><p><b>挑战档：做一份分享版代码</b>，脱敏后发群，<b>我检查过才准发</b>。</p><p><b>再挑战：给家里一件联网设备写三条安全建议。</b></p><p>摄像头、音箱、路由器，挑一件。</p><p>（停顿，认真讲）</p><p>这一档我最希望你们做。</p><p>为什么？</p><p>（放慢）</p><p>因为在你家里，<b>你很可能是唯一懂这件事的人</b>。</p><p>你爸妈会换灯泡、会修水管，</p><p>但是「<b>摄像头的默认密码要改</b>」这件事，可能<b>没人告诉过他们</b>。</p><p>（停顿）</p><p>今天你学会了。</p><p><b>回去告诉他们。</b></p></div>
+</section>
+
+<section class="slide lay-rowlist" data-title="今日三大发现">
+<div class="phead"><span class="no">第26课</span>
+<span class="kick g">总结</span>
+<span class="tslot">78–90 分</span>
+</div>
+<h2 class="ptitle">今日三大发现</h2>
+<div class="pbody"><div class="rowlist grow"><div class="rowitem"><div class="num g">1</div><div class="tx"><b>三样东西，风险分层</b>：私钥＝<b>家门钥匙</b>（最要命）／密码＝<b>锁芯</b>／主题名＝<b>门牌号</b></div></div><div class="rowitem"><div class="num a">2</div><div class="tx"><b>不是你重要，是扫描是自动的</b>——门锁好，不是因为家里有金子，是因为<b>锁门本来就该做</b></div></div><div class="rowitem"><div class="num c">3</div><div class="tx"><b>我的钥匙我保管，别人的门我不碰</b>——这是联网世界的<b>教养</b></div></div></div><div style="margin-top:20px"><div class="strip a">产品<b>安全上线</b>了。下节课——<b>你们的物联网发布会</b>！把这个会自愈、守得住的产品，讲给所有人听</div></div></div>
+<div class="notes"><p>今天三个发现。</p><p><b>第一，三样东西，风险分层。</b></p><p>私钥是钥匙，密码是锁芯，主题名是门牌。</p><p><b>最要命的是钥匙。</b></p><p><b>第二，不是你重要，是扫描是自动的。</b></p><p>门锁好，不是因为家里有金子。</p><p><b>第三</b>，也是我今天最想让你们带走的一句：</p><p><b>我的钥匙我保管，别人的门我不碰。</b></p><p>（停顿）</p><p>今天这节课，跟前面每一节都不一样。</p><p>前面我们学的都是<b>怎么把事做成</b>。</p><p>今天学的是——<b>什么事不做</b>。</p><p>（放慢）</p><p>一个人的本事越大，「<b>不做什么</b>」就越重要。</p><p>你们现在已经能隔空开灯、能推消息到别人手机上了。</p><p>（停顿）</p><p><b>这是本事，也是责任。</b></p><p>（停顿，转向下节课）</p><p>好，产品<b>安全上线</b>了。</p><p>下节课——<b>你们的物联网发布会</b>！</p><p>把这个会测、会传、会控、会报警、<b>会自愈、守得住</b>的产品，</p><p><b>讲给所有人听。</b></p><p>下课。</p></div>
+</section>
+
+<section class="slide lay-cards2" data-title="课后任务">
+<div class="phead"><span class="no">第26课</span>
+<span class="kick a">课后任务</span>
+</div>
+<h2 class="ptitle">课后任务</h2>
+<div class="pbody"><div class="g2 grow"><div class="blk g"><h4>基础（全员）</h4><p>给家人做一次「<b>家庭 WiFi 安全体检</b>」：路由器密码<b>还是默认的吗</b>？摄像头账号密码<b>合格吗</b>？</p></div><div class="blk a"><h4>拓展（选做）</h4><p>把「<b>钥匙 / 锁芯 / 门牌</b>」的比方讲给家人听，让他们<b>检查一件联网设备</b>。</p></div></div>
+<div style="margin-top:24px"><div class="strip g"><b>会保护钥匙的人，才配得上更大的房子</b>——数字世界同理</div></div></div>
+<div class="notes"><p>课后两件事，今天这两件特别实在。</p><p>第一件全员做：<b>给家里做一次 WiFi 安全体检。</b></p><p>查两样：</p><p><b>路由器密码还是默认的吗？</b>（很多人家从买回来就没改过）</p><p><b>摄像头的账号密码合格吗？</b></p><p>（停顿）</p><p>第二件选做：<b>把钥匙、锁芯、门牌这个比方讲给家人听。</b></p><p>（停顿）</p><p>为什么要用这个比方？</p><p>因为「私钥」「UID」这些词，<b>大人也听不懂</b>。</p><p>但是「<b>家门钥匙</b>」，<b>谁都懂</b>。</p><p>你就说：「妈，这个摄像头的密码，就像咱家的门钥匙，用默认的等于<b>门没锁</b>。」</p><p>（停顿）</p><p>你会发现他们<b>立刻就听懂了</b>，而且会马上去改。</p><p>（停顿）</p><p>最后一句，送给今天：</p><p><b>会保护钥匙的人，才配得上更大的房子——数字世界同理。</b></p><p>下课。</p></div>
+</section>
+<div class="deck-footer"><span>ESP32 × AI 科创课程 · 第四阶段「驾驭AI · 物联网」 · 第26课 安全与隐私</span><span class="slide-number" data-current="1" data-total="12"></span></div>
+<div class="progress-bar"><span></span></div>
+</div>
+<script src="assets/fitstage.js"></script>
+<script src="assets/runtime.js"></script>
+</body>
+</html>

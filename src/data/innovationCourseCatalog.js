@@ -23,6 +23,18 @@ export const innovationLessons = [
     [21, '第21课_会报警的系统.html'],
     [22, '第22课_两块板对话.html'],
     [23, '第23课_智能家居模块上.html'],
+    [24, '第24课_联调与上线下.html'],
+    [25, '第25课_断网了怎么办.html'],
+    [26, '第26课_安全与隐私.html'],
+    [27, '第27课_我的物联网作品发布会.html'],
+    [28, '第28课_它听得懂话了.html'],
+    [29, '第29课_它睁开眼了.html'],
+    [30, '第30课_它认出来了.html'],
+    [31, '第31课_看见就行动.html'],
+    [32, '第32课_它认错了.html'],
+    [33, '第33课_它会看图说话.html'],
+    [34, '第34课_把AI装进去.html'],
+    [35, '第35课_智能发布会.html'],
 ].map(([id, file]) => ({
     id,
     title: file.replace(/^第[\d.]+课_/, '').replace(/\.html$/, '').replaceAll('_', ' · '),
@@ -51,6 +63,22 @@ export const arduinoLessons = [
     id,
     title: file.replace(/^第[\d.]+课_/, '').replace(/\.html$/, '').replaceAll('_', ' · '),
     path: `/hardware/arduino/${id}`,
+    file,
+}));
+
+export const contestLessons = [
+    [1, '竞赛C1_选个好问题.html'],
+    [2, '竞赛C2_像科学家做实验.html'],
+    [3, '竞赛C3_让数据说话.html'],
+    [4, '竞赛C4_说明书与展板.html'],
+    [5, '竞赛C5_一分钟讲清楚.html'],
+    [6, '竞赛C6_评委来了.html'],
+    [7, '竞赛C7_赛前冲刺.html'],
+].map(([number, file]) => ({
+    id: `C${number}`,
+    label: `竞赛 C${number}`,
+    title: file.replace(/^竞赛C\d+_/, '').replace(/\.html$/, ''),
+    path: `/hardware/esp32-contest/C${number}`,
     file,
 }));
 
@@ -152,7 +180,7 @@ export const scienceCourses = {
         title: 'ESP32 MicroPython 高阶科创', shortTitle: '高阶科创',
         path: '/hardware/esp32-curriculum', assetDirectory: 'innovation',
         description: '用 MicroPython 与 AI 完成 ESP32 硬件项目，在实践中读懂代码、验证想法、表达需求。',
-        updateNote: '已上线第 1–23 课，另有第 16.5 课联网预备包。后续课件将继续补充。',
+        updateNote: '主线第 1–35 课、联网预备包第 16.5 课均已上线；另有 7 节竞赛延伸课。',
         lessons: innovationLessons,
     },
     arduino: {
@@ -161,6 +189,13 @@ export const scienceCourses = {
         description: '面向零基础学生，从读懂 Blink 开始，逐步掌握灯光、按键、串口、传感器与舵机，最终完成智能垃圾桶项目。',
         updateNote: '16 节 Arduino UNO 网页课，按第 1–16 课顺序学习。',
         lessons: arduinoLessons,
+    },
+    contest: {
+        title: 'ESP32 × AI 竞赛延伸包', shortTitle: '竞赛延伸',
+        path: '/hardware/esp32-contest', assetDirectory: 'innovation',
+        description: '与主线并行的 7 节选修课，从选题、实验和数据分析，到展板、演示与答辩，逐步整理参赛材料。',
+        updateNote: '竞赛 C1–C7 已全部上线。建议先完成一个可演示的 ESP32 作品，再进入这条学习线。',
+        lessons: contestLessons,
     },
     foundation: {
         title: '初阶科创', shortTitle: '初阶科创',
