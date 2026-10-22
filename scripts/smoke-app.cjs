@@ -438,7 +438,15 @@ async function run() {
   }
 
   // Only uploaded HTML lessons remain in the replacement course catalogs.
-  for (const [route, expected] of [['/hardware/esp32-curriculum', 24], ['/hardware/arduino', 16], ['/innovation-foundation', 15]]) {
+  // 课数直接从课程目录取，课程一上线这里不用跟着改数字。
+  const { arduinoLessons, contestLessons, foundationLessons, innovationLessons } = await import('../src/data/innovationCourseCatalog.js');
+  const expectedCourseCards = [
+    ['/hardware/esp32-curriculum', innovationLessons.length],
+    ['/hardware/arduino', arduinoLessons.length],
+    ['/hardware/esp32-contest', contestLessons.length],
+    ['/innovation-foundation', foundationLessons.length],
+  ];
+  for (const [route, expected] of expectedCourseCards) {
     await mobilePage.goto(`${baseUrl}${route}`, { waitUntil: 'domcontentloaded' });
     const cards = mobilePage.locator('[data-course-lessons] a');
     await cards.first().waitFor();
@@ -448,7 +456,7 @@ async function run() {
       if (!box || box.height < 44) throw new Error(`${route}: course card is not touch-friendly.`);
     }
   }
-  for (const legacy of ['/hardware/esp32-ai', '/hardware/lesson/1', '/hardware/esp32-map', '/hardware/esp32-contest']) {
+  for (const legacy of ['/hardware/esp32-ai', '/hardware/lesson/1', '/hardware/esp32-map']) {
     await mobilePage.goto(`${baseUrl}${legacy}`, { waitUntil: 'domcontentloaded' });
     await mobilePage.waitForURL('**/hardware/esp32-curriculum');
     await mobilePage.getByRole('heading', { name: 'ESP32 MicroPython 高阶科创', exact: true }).waitFor();

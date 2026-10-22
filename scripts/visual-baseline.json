@@ -2,188 +2,188 @@
   "___desktop": {
     "clientWidth": 1365,
     "overflow": 0,
-    "docHeight": 5957,
-    "textLen": 1462,
-    "maxRight": 1487,
+    "docHeight": 6243,
+    "textLen": 2176,
+    "maxRight": 1365,
     "counts": {
       "pre": 0,
       "table": 0,
-      "button": 33
+      "button": 21
     },
     "sampled": 8550,
-    "nonWhite": 4378,
-    "nonWhiteRatio": 0.512046783625731
+    "nonWhite": 4774,
+    "nonWhiteRatio": 0.5583625730994152
   },
   "_museum__desktop": {
     "clientWidth": 1365,
     "overflow": 0,
     "docHeight": 9186,
-    "textLen": 3850,
+    "textLen": 3854,
     "maxRight": 1365,
     "counts": {
       "pre": 0,
       "table": 0,
-      "button": 136
+      "button": 137
     },
     "sampled": 8550,
-    "nonWhite": 773,
-    "nonWhiteRatio": 0.0904093567251462
+    "nonWhite": 825,
+    "nonWhiteRatio": 0.09649122807017543
   },
   "_lesson_1_9__desktop": {
     "clientWidth": 1365,
     "overflow": 0,
     "docHeight": 900,
-    "textLen": 386,
+    "textLen": 389,
     "maxRight": 1365,
     "counts": {
       "pre": 0,
       "table": 0,
-      "button": 16
+      "button": 17
     },
     "sampled": 8550,
-    "nonWhite": 5067,
-    "nonWhiteRatio": 0.5926315789473684
+    "nonWhite": 5118,
+    "nonWhiteRatio": 0.5985964912280701
   },
   "_lesson_2_12__desktop": {
     "clientWidth": 1365,
     "overflow": 0,
     "docHeight": 900,
-    "textLen": 420,
+    "textLen": 446,
     "maxRight": 1341,
     "counts": {
       "pre": 0,
       "table": 0,
-      "button": 17
+      "button": 18
     },
     "sampled": 8550,
-    "nonWhite": 4061,
-    "nonWhiteRatio": 0.47497076023391815
+    "nonWhite": 4096,
+    "nonWhiteRatio": 0.47906432748538014
   },
   "_lesson_3_7__desktop": {
     "clientWidth": 1365,
     "overflow": 0,
     "docHeight": 900,
-    "textLen": 474,
+    "textLen": 487,
     "maxRight": 1341,
     "counts": {
       "pre": 0,
       "table": 0,
-      "button": 19
+      "button": 20
     },
     "sampled": 8550,
-    "nonWhite": 4064,
-    "nonWhiteRatio": 0.4753216374269006
+    "nonWhite": 4099,
+    "nonWhiteRatio": 0.47941520467836257
   },
   "_lesson_4_9__desktop": {
     "clientWidth": 1365,
     "overflow": 0,
     "docHeight": 900,
-    "textLen": 410,
+    "textLen": 413,
     "maxRight": 1341,
     "counts": {
       "pre": 0,
       "table": 0,
-      "button": 11
+      "button": 12
     },
     "sampled": 8550,
-    "nonWhite": 4045,
-    "nonWhiteRatio": 0.47309941520467835
+    "nonWhite": 4075,
+    "nonWhiteRatio": 0.4766081871345029
   },
   "_lesson_5_10__desktop": {
     "clientWidth": 1365,
     "overflow": 0,
     "docHeight": 900,
-    "textLen": 443,
+    "textLen": 446,
     "maxRight": 1341,
     "counts": {
       "pre": 0,
       "table": 0,
-      "button": 11
+      "button": 12
     },
     "sampled": 8550,
-    "nonWhite": 4189,
-    "nonWhiteRatio": 0.48994152046783623
+    "nonWhite": 4233,
+    "nonWhiteRatio": 0.49508771929824563
   },
   "_lesson_6_2__desktop": {
     "clientWidth": 1365,
     "overflow": 0,
     "docHeight": 900,
-    "textLen": 470,
+    "textLen": 473,
     "maxRight": 1341,
     "counts": {
       "pre": 0,
       "table": 0,
-      "button": 11
+      "button": 12
     },
     "sampled": 8550,
-    "nonWhite": 3998,
-    "nonWhiteRatio": 0.4676023391812866
+    "nonWhite": 4013,
+    "nonWhiteRatio": 0.4693567251461988
   },
   "_python_f2__desktop": {
     "clientWidth": 1365,
     "overflow": 0,
     "docHeight": 900,
-    "textLen": 538,
+    "textLen": 541,
     "maxRight": 1341,
     "counts": {
       "pre": 0,
       "table": 0,
-      "button": 17
+      "button": 18
     },
     "sampled": 8550,
-    "nonWhite": 4786,
-    "nonWhiteRatio": 0.559766081871345
+    "nonWhite": 4821,
+    "nonWhiteRatio": 0.5638596491228071
   },
   "_python_f3__desktop": {
     "clientWidth": 1365,
     "overflow": 0,
     "docHeight": 900,
-    "textLen": 1178,
+    "textLen": 1181,
     "maxRight": 1341,
     "counts": {
       "pre": 1,
       "table": 1,
-      "button": 27
+      "button": 28
     },
     "sampled": 8550,
-    "nonWhite": 4744,
-    "nonWhiteRatio": 0.5548538011695906
+    "nonWhite": 4774,
+    "nonWhiteRatio": 0.5583625730994152
   },
   "_question-bank__desktop": {
     "clientWidth": 1365,
     "overflow": 0,
     "docHeight": 2714,
-    "textLen": 2070,
+    "textLen": 2073,
     "maxRight": 1259,
     "counts": {
       "pre": 0,
       "table": 0,
-      "button": 23
+      "button": 24
     },
     "sampled": 8550,
-    "nonWhite": 2641,
-    "nonWhiteRatio": 0.3088888888888889
+    "nonWhite": 2657,
+    "nonWhiteRatio": 0.3107602339181287
   },
   "_question-bank_2_2026-03-l2__desktop": {
     "clientWidth": 1365,
     "overflow": 0,
     "docHeight": 900,
-    "textLen": 120,
+    "textLen": 123,
     "maxRight": 1019,
     "counts": {
       "pre": 0,
       "table": 0,
-      "button": 3
+      "button": 4
     },
     "sampled": 8550,
-    "nonWhite": 8522,
-    "nonWhiteRatio": 0.9967251461988305
+    "nonWhite": 8512,
+    "nonWhiteRatio": 0.9955555555555555
   },
   "_hardware__desktop": {
     "clientWidth": 1365,
     "overflow": 0,
-    "docHeight": 2916,
-    "textLen": 1127,
+    "docHeight": 4183,
+    "textLen": 1663,
     "maxRight": 1341,
     "counts": {
       "pre": 0,
@@ -191,14 +191,14 @@
       "button": 27
     },
     "sampled": 8550,
-    "nonWhite": 3188,
-    "nonWhiteRatio": 0.3728654970760234
+    "nonWhite": 7389,
+    "nonWhiteRatio": 0.8642105263157894
   },
   "_hardware_esp32-curriculum__desktop": {
     "clientWidth": 1365,
     "overflow": 0,
-    "docHeight": 2916,
-    "textLen": 1127,
+    "docHeight": 4183,
+    "textLen": 1663,
     "maxRight": 1341,
     "counts": {
       "pre": 0,
@@ -206,14 +206,14 @@
       "button": 27
     },
     "sampled": 8550,
-    "nonWhite": 3188,
-    "nonWhiteRatio": 0.3728654970760234
+    "nonWhite": 7389,
+    "nonWhiteRatio": 0.8642105263157894
   },
   "_innovation-foundation__desktop": {
     "clientWidth": 1365,
     "overflow": 0,
-    "docHeight": 2484,
-    "textLen": 864,
+    "docHeight": 2540,
+    "textLen": 926,
     "maxRight": 1341,
     "counts": {
       "pre": 0,
@@ -221,224 +221,224 @@
       "button": 27
     },
     "sampled": 8550,
-    "nonWhite": 3243,
-    "nonWhiteRatio": 0.3792982456140351
+    "nonWhite": 6808,
+    "nonWhiteRatio": 0.7962573099415204
   },
   "_ekart__desktop": {
     "clientWidth": 1365,
     "overflow": 0,
     "docHeight": 2971,
-    "textLen": 874,
+    "textLen": 878,
     "maxRight": 1508,
     "counts": {
       "pre": 0,
       "table": 0,
-      "button": 28
+      "button": 29
     },
     "sampled": 8550,
-    "nonWhite": 8362,
-    "nonWhiteRatio": 0.9780116959064328
+    "nonWhite": 8352,
+    "nonWhiteRatio": 0.9768421052631578
   },
   "_level7__desktop": {
     "clientWidth": 1365,
     "overflow": 0,
     "docHeight": 900,
-    "textLen": 1282,
+    "textLen": 1561,
     "maxRight": 1341,
     "counts": {
       "pre": 0,
       "table": 0,
-      "button": 13
+      "button": 14
     },
     "sampled": 8550,
-    "nonWhite": 3543,
-    "nonWhiteRatio": 0.4143859649122807
+    "nonWhite": 2023,
+    "nonWhiteRatio": 0.23660818713450293
   },
   "___mobile": {
     "clientWidth": 390,
     "overflow": 0,
-    "docHeight": 7617,
-    "textLen": 1212,
+    "docHeight": 7722,
+    "textLen": 1405,
     "maxRight": 390,
     "counts": {
       "pre": 0,
       "table": 0,
-      "button": 33
+      "button": 21
     },
     "sampled": 2343,
-    "nonWhite": 860,
-    "nonWhiteRatio": 0.36705078958600085
+    "nonWhite": 1157,
+    "nonWhiteRatio": 0.49381135296628254
   },
   "_museum__mobile": {
     "clientWidth": 390,
     "overflow": 0,
     "docHeight": 28294,
-    "textLen": 3821,
+    "textLen": 3825,
     "maxRight": 612,
     "counts": {
       "pre": 0,
       "table": 0,
-      "button": 136
+      "button": 137
     },
     "sampled": 2343,
-    "nonWhite": 429,
-    "nonWhiteRatio": 0.18309859154929578
+    "nonWhite": 448,
+    "nonWhiteRatio": 0.19120785317968417
   },
   "_lesson_1_9__mobile": {
     "clientWidth": 390,
     "overflow": 0,
     "docHeight": 844,
-    "textLen": 264,
+    "textLen": 268,
     "maxRight": 390,
     "counts": {
       "pre": 0,
       "table": 0,
-      "button": 16
+      "button": 17
     },
     "sampled": 2343,
-    "nonWhite": 1835,
-    "nonWhiteRatio": 0.7831839521980367
+    "nonWhite": 1861,
+    "nonWhiteRatio": 0.7942808365343577
   },
   "_lesson_2_12__mobile": {
     "clientWidth": 390,
     "overflow": 0,
     "docHeight": 844,
-    "textLen": 366,
+    "textLen": 392,
     "maxRight": 390,
     "counts": {
       "pre": 0,
       "table": 0,
-      "button": 17
+      "button": 18
     },
     "sampled": 2343,
-    "nonWhite": 1589,
-    "nonWhiteRatio": 0.6781903542466923
+    "nonWhite": 1622,
+    "nonWhiteRatio": 0.6922748612889458
   },
   "_lesson_3_7__mobile": {
     "clientWidth": 390,
     "overflow": 0,
     "docHeight": 844,
-    "textLen": 413,
+    "textLen": 426,
     "maxRight": 390,
     "counts": {
       "pre": 0,
       "table": 0,
-      "button": 19
+      "button": 20
     },
     "sampled": 2343,
-    "nonWhite": 1523,
-    "nonWhiteRatio": 0.6500213401621853
+    "nonWhite": 1567,
+    "nonWhiteRatio": 0.6688006828851899
   },
   "_lesson_4_9__mobile": {
     "clientWidth": 390,
     "overflow": 0,
     "docHeight": 844,
-    "textLen": 355,
+    "textLen": 358,
     "maxRight": 390,
     "counts": {
       "pre": 0,
       "table": 0,
-      "button": 11
+      "button": 12
     },
     "sampled": 2343,
-    "nonWhite": 1563,
-    "nonWhiteRatio": 0.6670934699103713
+    "nonWhite": 1600,
+    "nonWhiteRatio": 0.6828851899274434
   },
   "_lesson_5_10__mobile": {
     "clientWidth": 390,
     "overflow": 0,
     "docHeight": 844,
-    "textLen": 389,
+    "textLen": 392,
     "maxRight": 390,
     "counts": {
       "pre": 0,
       "table": 0,
-      "button": 11
+      "button": 12
     },
     "sampled": 2343,
-    "nonWhite": 1573,
-    "nonWhiteRatio": 0.6713615023474179
+    "nonWhite": 1630,
+    "nonWhiteRatio": 0.695689287238583
   },
   "_lesson_6_2__mobile": {
     "clientWidth": 390,
     "overflow": 0,
     "docHeight": 844,
-    "textLen": 415,
+    "textLen": 418,
     "maxRight": 390,
     "counts": {
       "pre": 0,
       "table": 0,
-      "button": 11
-    },
-    "sampled": 2343,
-    "nonWhite": 1563,
-    "nonWhiteRatio": 0.6670934699103713
-  },
-  "_python_f2__mobile": {
-    "clientWidth": 390,
-    "overflow": 0,
-    "docHeight": 844,
-    "textLen": 403,
-    "maxRight": 390,
-    "counts": {
-      "pre": 0,
-      "table": 0,
-      "button": 17
+      "button": 12
     },
     "sampled": 2343,
     "nonWhite": 1599,
     "nonWhiteRatio": 0.6824583866837388
   },
+  "_python_f2__mobile": {
+    "clientWidth": 390,
+    "overflow": 0,
+    "docHeight": 844,
+    "textLen": 406,
+    "maxRight": 390,
+    "counts": {
+      "pre": 0,
+      "table": 0,
+      "button": 18
+    },
+    "sampled": 2343,
+    "nonWhite": 1633,
+    "nonWhiteRatio": 0.696969696969697
+  },
   "_python_f3__mobile": {
     "clientWidth": 390,
     "overflow": 0,
     "docHeight": 844,
-    "textLen": 1101,
+    "textLen": 1104,
     "maxRight": 390,
     "counts": {
       "pre": 1,
       "table": 1,
-      "button": 27
+      "button": 28
     },
     "sampled": 2343,
-    "nonWhite": 1590,
-    "nonWhiteRatio": 0.678617157490397
+    "nonWhite": 1624,
+    "nonWhiteRatio": 0.6931284677763551
   },
   "_question-bank__mobile": {
     "clientWidth": 390,
     "overflow": 0,
     "docHeight": 5239,
-    "textLen": 2070,
+    "textLen": 2073,
     "maxRight": 1361,
     "counts": {
       "pre": 0,
       "table": 0,
-      "button": 23
+      "button": 24
     },
     "sampled": 2343,
-    "nonWhite": 1292,
-    "nonWhiteRatio": 0.5514297908664105
+    "nonWhite": 1332,
+    "nonWhiteRatio": 0.5685019206145967
   },
   "_question-bank_2_2026-03-l2__mobile": {
     "clientWidth": 390,
     "overflow": 0,
     "docHeight": 844,
-    "textLen": 120,
+    "textLen": 123,
     "maxRight": 374,
     "counts": {
       "pre": 0,
       "table": 0,
-      "button": 3
+      "button": 4
     },
     "sampled": 2343,
-    "nonWhite": 2306,
-    "nonWhiteRatio": 0.9842082799829279
+    "nonWhite": 2298,
+    "nonWhiteRatio": 0.9807938540332907
   },
   "_hardware__mobile": {
     "clientWidth": 390,
     "overflow": 0,
-    "docHeight": 5917,
-    "textLen": 1098,
+    "docHeight": 8352,
+    "textLen": 1634,
     "maxRight": 374,
     "counts": {
       "pre": 0,
@@ -446,14 +446,14 @@
       "button": 27
     },
     "sampled": 2343,
-    "nonWhite": 1255,
-    "nonWhiteRatio": 0.5356380708493385
+    "nonWhite": 2254,
+    "nonWhiteRatio": 0.9620145113102859
   },
   "_hardware_esp32-curriculum__mobile": {
     "clientWidth": 390,
     "overflow": 0,
-    "docHeight": 5917,
-    "textLen": 1098,
+    "docHeight": 8352,
+    "textLen": 1634,
     "maxRight": 374,
     "counts": {
       "pre": 0,
@@ -461,14 +461,14 @@
       "button": 27
     },
     "sampled": 2343,
-    "nonWhite": 1255,
-    "nonWhiteRatio": 0.5356380708493385
+    "nonWhite": 2254,
+    "nonWhiteRatio": 0.9620145113102859
   },
   "_innovation-foundation__mobile": {
     "clientWidth": 390,
     "overflow": 0,
-    "docHeight": 4584,
-    "textLen": 835,
+    "docHeight": 4680,
+    "textLen": 897,
     "maxRight": 374,
     "counts": {
       "pre": 0,
@@ -476,37 +476,37 @@
       "button": 27
     },
     "sampled": 2343,
-    "nonWhite": 1160,
-    "nonWhiteRatio": 0.4950917626973965
+    "nonWhite": 1982,
+    "nonWhiteRatio": 0.8459240290226205
   },
   "_ekart__mobile": {
     "clientWidth": 390,
     "overflow": 0,
     "docHeight": 4199,
-    "textLen": 768,
+    "textLen": 772,
     "maxRight": 543,
     "counts": {
       "pre": 0,
       "table": 0,
-      "button": 28
+      "button": 29
     },
     "sampled": 2343,
-    "nonWhite": 2279,
-    "nonWhiteRatio": 0.9726845924029023
+    "nonWhite": 2292,
+    "nonWhiteRatio": 0.9782330345710627
   },
   "_level7__mobile": {
     "clientWidth": 390,
     "overflow": 0,
     "docHeight": 844,
-    "textLen": 1294,
+    "textLen": 1573,
     "maxRight": 374,
     "counts": {
       "pre": 0,
       "table": 0,
-      "button": 13
+      "button": 14
     },
     "sampled": 2343,
-    "nonWhite": 750,
-    "nonWhiteRatio": 0.3201024327784891
+    "nonWhite": 761,
+    "nonWhiteRatio": 0.3247972684592403
   }
 }

@@ -179,10 +179,14 @@ async function checkMuseumLayout(page, viewport, failures) {
 }
 
 async function checkHardwareLanding(page, viewport, failures) {
+  // 课件清单以课程目录为准：新增一课不用回来改这个断言。
+  const { innovationLessons } = await import('../src/data/innovationCourseCatalog.js');
+  const expectedPaths = new Set(innovationLessons.map((lesson) => lesson.path));
   const cards = page.locator('[data-course-lessons] a');
-  if (await cards.count() !== 24) failures.push(`/hardware [${viewport}]: expected 24 uploaded HTML lessons.`);
+  if (await cards.count() !== expectedPaths.size) failures.push(`/hardware [${viewport}]: expected ${expectedPaths.size} uploaded HTML lessons.`);
   for (const href of await cards.evaluateAll(nodes => nodes.map(node => node.getAttribute('href')))) {
-    if (!/\/hardware\/esp32\/(?:[1-9]|1\d|2[0-3]|16\.5)$/.test(href)) failures.push(`/hardware: unexpected lesson ${href}.`);
+    const lessonPath = String(href).replace(/^.*?(?=\/hardware\/)/, '');
+    if (!expectedPaths.has(lessonPath)) failures.push(`/hardware: unexpected lesson ${href}.`);
   }
 }
 
