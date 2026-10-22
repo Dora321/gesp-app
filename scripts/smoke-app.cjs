@@ -438,7 +438,7 @@ async function run() {
   }
 
   // Only uploaded HTML lessons remain in the replacement course catalogs.
-  for (const [route, expected] of [['/hardware/esp32-curriculum', 24], ['/innovation-foundation', 15]]) {
+  for (const [route, expected] of [['/hardware/esp32-curriculum', 24], ['/hardware/arduino', 16], ['/innovation-foundation', 15]]) {
     await mobilePage.goto(`${baseUrl}${route}`, { waitUntil: 'domcontentloaded' });
     const cards = mobilePage.locator('[data-course-lessons] a');
     await cards.first().waitFor();
@@ -453,6 +453,10 @@ async function run() {
     await mobilePage.waitForURL('**/hardware/esp32-curriculum');
     await mobilePage.getByRole('heading', { name: 'ESP32 MicroPython 高阶科创', exact: true }).waitFor();
   }
+
+  await mobilePage.goto(`${baseUrl}/hardware/arduino/16`, { waitUntil: 'domcontentloaded' });
+  await mobilePage.getByRole('heading', { name: 'Arduino UNO · 第 16 课 · 智能垃圾桶 · 下', exact: true }).waitFor();
+  await mobilePage.frameLocator('iframe').locator('.slide.is-active').waitFor();
 
   await mobilePage.goto(`${baseUrl}/hardware/esp32/18`, { waitUntil: 'domcontentloaded' });
   await mobilePage.getByRole('heading', { name: '高阶科创 · 第 18 课 · 给云端发消息', exact: true }).waitFor();

@@ -30,6 +30,30 @@ export const innovationLessons = [
     file,
 }));
 
+export const arduinoLessons = [
+    [1, '第01课_看懂Blink.html'],
+    [2, '第02课_SOS灯语.html'],
+    [3, '第03课_交通灯.html'],
+    [4, '第04课_串口计数器.html'],
+    [5, '第05课_按键开灯.html'],
+    [6, '第06课_按键计数.html'],
+    [7, '第07课_流水灯.html'],
+    [8, '第08课_交通灯重写.html'],
+    [9, '第09课_音乐盒.html'],
+    [10, '第10课_旋钮调亮度.html'],
+    [11, '第11课_自动小夜灯.html'],
+    [12, '第12课_舵机门.html'],
+    [13, '第13课_测距报警.html'],
+    [14, '第14课_找茬课.html'],
+    [15, '第15课_智能垃圾桶_上.html'],
+    [16, '第16课_智能垃圾桶_下.html'],
+].map(([id, file]) => ({
+    id,
+    title: file.replace(/^第[\d.]+课_/, '').replace(/\.html$/, '').replaceAll('_', ' · '),
+    path: `/hardware/arduino/${id}`,
+    file,
+}));
+
 export const foundationLessons = [
     {
         "id": 1,
@@ -130,6 +154,13 @@ export const scienceCourses = {
         description: '用 MicroPython 与 AI 完成 ESP32 硬件项目，在实践中读懂代码、验证想法、表达需求。',
         updateNote: '已上线第 1–23 课，另有第 16.5 课联网预备包。后续课件将继续补充。',
         lessons: innovationLessons,
+    },
+    arduino: {
+        title: 'Arduino UNO 零基础课程', shortTitle: 'Arduino UNO',
+        path: '/hardware/arduino', assetDirectory: 'arduino',
+        description: '面向零基础学生，从读懂 Blink 开始，逐步掌握灯光、按键、串口、传感器与舵机，最终完成智能垃圾桶项目。',
+        updateNote: '16 节 Arduino UNO 网页课，按第 1–16 课顺序学习。',
+        lessons: arduinoLessons,
     },
     foundation: {
         title: '初阶科创', shortTitle: '初阶科创',

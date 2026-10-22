@@ -22,7 +22,7 @@ import { getCppLevelCatalogItem } from '../data/cppLevelCatalog';
 import { pythonFoundationLessons, pythonProjects } from '../data/pythonCourseCatalog';
 import { getLessonStatus, LESSON_STATUS_META, readLessonProgress } from '../utils/lessonProgress';
 
-import { foundationLessons, innovationLessons } from '../data/innovationCourseCatalog';
+import { arduinoLessons, foundationLessons, innovationLessons } from '../data/innovationCourseCatalog';
 
 const pythonStart = pythonFoundationLessons[0];
 const pythonProjectStart = pythonProjects[0];
@@ -53,6 +53,15 @@ const lessonSections = [
         bridge: '按第 1–15 课逐步完成实验，再进入 ESP32 MicroPython 高阶科创。',
         checkpoints: ['能连接并画出简单电路', '能观察材料、电阻与电容的作用', '能探索电磁转换并制作小型发电站'],
         examPath: '/innovation-foundation', lessons: foundationLessons,
+    },
+    {
+        id: 'arduino-foundation', subject: 'arduino', title: 'Arduino UNO',
+        subtitle: '零基础硬件编程 · 网页课件', badge: '16 课', color: 'blue', icon: Cpu,
+        audience: '初次接触 Arduino、希望从灯光与按键开始学习硬件编程的学生',
+        goal: '从读懂 Blink 到使用传感器和舵机，完成智能垃圾桶综合项目。',
+        bridge: '按第 1–16 课顺序学习，逐步建立 Arduino 程序结构与硬件调试能力。',
+        checkpoints: ['能读懂 setup 与 loop', '能控制灯光、按键、串口与传感器', '能组合模块完成智能垃圾桶'],
+        examPath: '/hardware/arduino', lessons: arduinoLessons,
     },
     {
         id: 'innovation-advanced', subject: 'innovation', title: '高阶科创',
@@ -436,6 +445,11 @@ const subjectSummaries = {
         description: '15 节科创探究课：连接电路、比较导电材料、认识电与磁，把观察变成自己的作品。',
         cta: '从第 1 课开始', ctaPath: '/innovation-foundation/1',
     },
+    arduino: {
+        label: 'Arduino UNO 零基础课程', title: '从 Blink 到智能垃圾桶，学会硬件编程',
+        description: '16 节 Arduino UNO 网页课：灯光、按键、串口、传感器与舵机，最终完成综合项目。',
+        cta: '从第 1 课开始', ctaPath: '/hardware/arduino/1',
+    },
     innovation: {
         label: 'ESP32 MicroPython 高阶科创', title: '用 MicroPython 与 AI 完成硬件项目',
         description: 'ESP32 × AI 网页课件，保留课堂演示与交互。现有第 1–23 课与第 16.5 课，按原课号排列。',
@@ -465,6 +479,7 @@ const seniorExamLinks = [
 function getSubjectSummaryStats(subject) {
     if (subject === 'science-foundation') return [`${foundationLessons.length} 节网页课`, '电与磁', '动手探究'];
     if (subject === 'innovation') return [`${innovationLessons.length} 节网页课`, 'ESP32 × AI', '动手做作品'];
+    if (subject === 'arduino') return [`${arduinoLessons.length} 节网页课`, 'Arduino UNO', '综合项目'];
     const sections = lessonSections.filter(section => section.subject === subject);
 
     if (subject === 'cpp') {
@@ -499,6 +514,7 @@ function getSectionSubtitle(section) {
 function getSectionAction(section, subject) {
     if (subject === 'science-foundation') return { label: '查看初阶课程目录', path: '/innovation-foundation', Icon: Lightbulb };
     if (subject === 'innovation') return { label: '查看高阶课程目录', path: '/hardware/esp32-curriculum', Icon: Cpu };
+    if (subject === 'arduino') return { label: '查看 Arduino 课程目录', path: '/hardware/arduino', Icon: Cpu };
     if (subject === 'cpp') {
         return {
             label: '查看冲刺课',
@@ -525,6 +541,7 @@ function getSectionAction(section, subject) {
 function getPracticeAction(section, subject) {
     if (subject === 'science-foundation') return { label: '查看课程目录', path: '/innovation-foundation', hint: '按第 1–15 课顺序学习，打开网页课件跟着实验一起探索。' };
     if (subject === 'innovation') return { label: '查看课程目录', path: '/hardware/esp32-curriculum', hint: '已收录第 1–23 课与第 16.5 课；后续网页课件将继续补充。' };
+    if (subject === 'arduino') return { label: '查看课程目录', path: '/hardware/arduino', hint: '16 节网页课已经全部上线，建议按顺序完成到智能垃圾桶项目。' };
     if (subject === 'cpp') {
         return {
             label: '练真题',
@@ -576,12 +593,14 @@ function getPythonProgressionLinks(section) {
 
 export default function LessonCatalog() {
     const navigate = useNavigate();
-    const [activeSubject, setActiveSubject] = useState(() => new URLSearchParams(window.location.search).get('subject') === 'innovation' ? 'innovation' : 'cpp');
-    const [activeTab, setActiveTab] = useState(() => new URLSearchParams(window.location.search).get('subject') === 'innovation' ? 'innovation-advanced' : 'basic');
+    const requestedSubject = new URLSearchParams(window.location.search).get('subject');
+    const initialSubject = ['innovation', 'arduino', 'science-foundation', 'python', 'cpp'].includes(requestedSubject) ? requestedSubject : 'cpp';
+    const [activeSubject, setActiveSubject] = useState(initialSubject);
+    const [activeTab, setActiveTab] = useState(() => lessonSections.find(section => section.subject === initialSubject)?.id || 'basic');
     const [progress, setProgress] = useState(() => readLessonProgress());
 
     useEffect(() => {
-        if (new URLSearchParams(window.location.search).get('subject') === 'innovation') {
+        if (['innovation', 'arduino', 'science-foundation', 'python'].includes(new URLSearchParams(window.location.search).get('subject'))) {
             document.getElementById('lesson-catalog')?.scrollIntoView();
         }
     }, []);
@@ -695,6 +714,13 @@ export default function LessonCatalog() {
                     >
                         <Lightbulb size={18} className={activeSubject === 'science-foundation' ? 'text-amber-600' : ''} />
                         初阶科创
+                    </button>
+                    <button
+                        onClick={() => setActiveSubject('arduino')}
+                        className={`flex flex-1 items-center justify-center gap-2 rounded-lg px-5 py-3 text-sm font-black transition sm:flex-none ${activeSubject === 'arduino' ? 'bg-white text-slate-950 shadow-sm' : 'text-slate-500 hover:text-slate-800'}`}
+                    >
+                        <Cpu size={18} className={activeSubject === 'arduino' ? 'text-blue-600' : ''} />
+                        Arduino
                     </button>
                     <button
                         onClick={() => setActiveSubject('innovation')}

@@ -1,4 +1,4 @@
-import { foundationLessons, innovationLessons } from '../data/innovationCourseCatalog.js';
+import { arduinoLessons, foundationLessons, innovationLessons } from '../data/innovationCourseCatalog.js';
 
 export const SITE_NAME = '魔丸聚集地';
 export const SITE_ORIGIN = 'https://Dora321.github.io/gesp-app';
@@ -19,6 +19,9 @@ export const routeMeta = (pathname) => {
   const foundationLesson = foundationLessons.find((lesson) => lesson.path === pathname);
   if (foundationLesson) return { title: `初阶科创 · 第 ${foundationLesson.id} 课 · ${foundationLesson.title}`, description: '初阶科创网页课件，从电路实验到电磁探究与小型发电站。' };
   if (pathname === '/innovation-foundation') return { title: '初阶科创 · 15 节探究课', description: '从点亮小灯开始，探索电路、导电材料、电与磁，制作小型发电站。' };
+  const arduinoLesson = arduinoLessons.find((lesson) => lesson.path === pathname);
+  if (arduinoLesson) return { title: `Arduino UNO · 第 ${arduinoLesson.id} 课 · ${arduinoLesson.title}`, description: 'Arduino UNO 零基础网页课件，从 Blink、灯光与按键逐步学习到传感器、舵机和综合项目。' };
+  if (pathname === '/hardware/arduino') return { title: 'Arduino UNO 零基础课程 · 16 节网页课', description: '16 节 Arduino UNO 零基础网页课，从读懂 Blink 到完成智能垃圾桶综合项目。' };
   const innovationLesson = innovationLessons.find((lesson) => lesson.path === pathname);
   if (innovationLesson) return { title: `高阶科创 · 第 ${innovationLesson.id} 课 · ${innovationLesson.title}`, description: 'ESP32 × AI 高阶科创网页课件，用 MicroPython 与 AI 完成真实的硬件任务。' };
   if (pathname === '/') return { title: 'GESP 编程备考与编程课堂', description: DEFAULT_DESCRIPTION };

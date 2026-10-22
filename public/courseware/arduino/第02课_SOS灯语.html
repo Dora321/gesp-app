@@ -1,0 +1,431 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>第02课 SOS 灯语 + 读报错 · Arduino UNO 入门</title>
+<link rel="stylesheet" href="assets/base.css">
+<link rel="stylesheet" id="theme-link" href="assets/theme-arduino.css">
+<link rel="stylesheet" href="assets/animations.css">
+</head>
+<body>
+<div class="deck" data-theme-base="assets/">
+<section class="slide lay-cover is-active" data-title="封面 · 课前检查">
+<span class="cv-bar">Arduino UNO 入门 / 单元一「从代码到电路」</span>
+<h1 class="cv-title">SOS 灯语<em>读报错</em></h1>
+<p class="cv-sub">每个命令都是一个格式：<code class="ic">名字(参数);</code></p>
+<div class="cv-tags"><span class="tag">Arduino UNO</span><span class="tag">函数调用格式</span><span class="tag">复制整行再改数字</span><span class="tag">90 分钟</span></div>
+<div class="cv-no">02</div>
+<div class="cv-icon"><svg viewBox="0 0 560 360" xmlns="http://www.w3.org/2000/svg" font-family="Microsoft YaHei" text-rendering="geometricPrecision"><defs><radialGradient id="g_cv2"><stop offset="0" stop-color="#FFE7A3" stop-opacity="1"/><stop offset=".35" stop-color="#F5A623" stop-opacity=".75"/><stop offset="1" stop-color="#F5A623" stop-opacity="0"/></radialGradient></defs><rect x="30" y="120" width="330" height="220" rx="20" fill="#1C7C88" stroke="#141414" stroke-width="6"/><rect x="150" y="196" width="38" height="22" rx="3" fill="#D9D9D9" stroke="#141414" stroke-width="3"/><g class="led-sos"><circle cx="169" cy="207" r="90" fill="url(#g_cv2)"/><rect x="150" y="196" width="38" height="22" rx="3" fill="#F5A623" stroke="#141414" stroke-width="3"/></g><text x="204" y="216" font-size="30" font-weight="900" fill="#fff">L</text><text x="62" y="310" font-size="48" font-weight="900" font-style="italic" fill="#fff" font-family="Arial Black,Arial">UNO</text><path d="M226 26 H548 V150 H330 L290 190 L300 150 H226 Z" fill="#fff" stroke="#141414" stroke-width="6" stroke-linejoin="round"/><circle cx="250" cy="86" r="8" fill="#141414"/><circle cx="275" cy="86" r="8" fill="#141414"/><circle cx="300" cy="86" r="8" fill="#141414"/><rect x="330" y="79" width="32" height="14" fill="#141414"/><rect x="371" y="79" width="32" height="14" fill="#141414"/><rect x="412" y="79" width="32" height="14" fill="#141414"/><circle cx="474" cy="86" r="8" fill="#141414"/><circle cx="499" cy="86" r="8" fill="#141414"/><circle cx="524" cy="86" r="8" fill="#141414"/><text x="275" y="132" text-anchor="middle" font-size="26" font-weight="900" fill="#D85A30">S</text><text x="387" y="132" text-anchor="middle" font-size="26" font-weight="900" fill="#D85A30">O</text><text x="499" y="132" text-anchor="middle" font-size="26" font-weight="900" fill="#D85A30">S</text></svg></div>
+<div class="notes"><p><b>课前 5 分钟</b>：每组一块 UNO、一根数据线；电脑打开 Arduino IDE。老师的板子提前上传好 SOS（教案资源 1），先别插电。</p><p>今天的<b>保底目标</b>：每组让 L 灯说出 SOS；每人能说出 <code class="ic">名字(参数);</code> 的四个部分，能从一条红字里读出行号和第一句英文。</p><p>节奏：兴趣 5 → 现象 10 → 概念 15 → 技能 35 → 小发明 20 → 收尾 5。今天<b>仍然不接线</b>，只用板子上的 L 灯。</p><p><b>先猜再揭晓</b>照旧：斜纹「？」是盖着的答案，按 → 揭晓，揭晓完再按 → 翻页，← 收回。</p><p>提醒自己：第 1 课没过基础档的组，开头先花 5 分钟帮他们把 Blink 传上去，再一起往下走。</p></div>
+</section>
+
+<section class="slide lay-figure" data-title="兴趣 · 灯也会说话">
+<div class="phead"><span class="no">第 02 课</span>
+<div class="rail"><span class="on" style="--w:8">兴趣</span><span class="" style="--w:10">现象</span><span class="" style="--w:15">概念</span><span class="" style="--w:35">技能</span><span class="" style="--w:20">小发明</span><span class="" style="--w:8">收尾</span></div>
+<span class="tslot">0–5 分</span>
+</div>
+<h2 class="ptitle">灯也会<em>说话</em>：SOS</h2>
+<div class="pbody">
+  <div class="figgrid grow" style="--figw:1.05fr"><div class="figbox"><svg viewBox="0 0 680 520" xmlns="http://www.w3.org/2000/svg" font-family="Microsoft YaHei" text-rendering="geometricPrecision"><rect x="24" y="62" width="92" height="92" fill="#1F4E79" stroke="#141414" stroke-width="5"/><text x="70" y="132" text-anchor="middle" font-size="66" font-weight="900" fill="#fff" font-family="Arial Black,Arial">S</text><rect x="150" y="82" width="34" height="52" fill="#F5A623" stroke="#141414" stroke-width="4"/><rect x="218" y="82" width="34" height="52" fill="#F5A623" stroke="#141414" stroke-width="4"/><rect x="286" y="82" width="34" height="52" fill="#F5A623" stroke="#141414" stroke-width="4"/><path d="M328 108 H418" stroke="#141414" stroke-width="4" stroke-dasharray="8 7"/><text x="330" y="96" font-size="21" font-weight="800" fill="#555">停一停</text><rect x="24" y="212" width="92" height="92" fill="#1F4E79" stroke="#141414" stroke-width="5"/><text x="70" y="282" text-anchor="middle" font-size="66" font-weight="900" fill="#fff" font-family="Arial Black,Arial">O</text><rect x="150" y="232" width="102" height="52" fill="#F5A623" stroke="#141414" stroke-width="4"/><rect x="286" y="232" width="102" height="52" fill="#F5A623" stroke="#141414" stroke-width="4"/><rect x="422" y="232" width="102" height="52" fill="#F5A623" stroke="#141414" stroke-width="4"/><path d="M532 258 H622" stroke="#141414" stroke-width="4" stroke-dasharray="8 7"/><text x="534" y="246" font-size="21" font-weight="800" fill="#555">停一停</text><rect x="24" y="362" width="92" height="92" fill="#1F4E79" stroke="#141414" stroke-width="5"/><text x="70" y="432" text-anchor="middle" font-size="66" font-weight="900" fill="#fff" font-family="Arial Black,Arial">S</text><rect x="150" y="382" width="34" height="52" fill="#F5A623" stroke="#141414" stroke-width="4"/><rect x="218" y="382" width="34" height="52" fill="#F5A623" stroke="#141414" stroke-width="4"/><rect x="286" y="382" width="34" height="52" fill="#F5A623" stroke="#141414" stroke-width="4"/><path d="M328 408 H452" stroke="#141414" stroke-width="4" stroke-dasharray="8 7"/><text x="330" y="396" font-size="21" font-weight="800" fill="#555">停 2 秒，从头再说</text><path d="M150 136 v14 h34 v-14" fill="none" stroke="#D85A30" stroke-width="3.5"/><text x="167" y="178" text-anchor="middle" font-size="22" font-weight="900" fill="#D85A30">短</text><path d="M150 286 v14 h102 v-14" fill="none" stroke="#D85A30" stroke-width="3.5"/><text x="201" y="328" text-anchor="middle" font-size="22" font-weight="900" fill="#D85A30">长 = 3 个短</text><path d="M150 482 H640" stroke="#141414" stroke-width="4"/><path d="M640 482 l-16 -9 v18 Z" fill="#141414"/><text x="150" y="512" font-size="20" font-weight="800" fill="#555">时间 →　一遍 SOS 共 7.4 秒</text></svg></div><div class="figcards"><div class="blk n"><span class="lbl">求救信号</span><h4>三短、三长、三短</h4><p>灯光、汽笛、敲墙都能发，全世界都看得懂。</p></div><div class="blk a"><span class="lbl">上节课留的题</span><h4>「短」亮多久？「长」呢？</h4><p>先说说你回家想的数。</p><div class="rv rv-ans" data-step="1"><div class="rv-a"><p class="ans">规矩只有一条：<b>长 = 3 个短</b>。今天用 短 200 毫秒、长 600 毫秒。</p></div><div class="rv-q">？ 先说你想的数</div></div></div></div></div>
+  <div class="tail"><div class="strip ">今天的作品：让 L 灯一直说 SOS——不敲新代码，<b>复制整行，再改数字</b>。</div></div>
+</div>
+<div class="notes"><p>「上节课最后留了一个问题：SOS 是三短、三长、三短，那『短』亮多少毫秒合适？『长』呢？」（请三四位同学报数，写在黑板上，不评对错。）</p><p>「左边这张图就是 SOS 的节奏：方块里是字母，橙色的条是灯亮的时间。看出来没有，长的条有多长？」</p><p><b>→ 揭晓</b>「摩尔斯电码只有一条规矩：<b>长 = 3 个短</b>。短的亮多久，大家可以自己定，今天我们用 200 毫秒，那长的就是 600 毫秒。」</p><p>「每下之间灭一小会儿；一个字母说完，多停一会儿；一整遍说完，停 2 秒，别人才知道从哪儿开始。」</p><p>「今天的作品就是让 L 灯一直说 SOS——而且<b>不用敲新代码</b>，只靠复制整行、改数字。今天还要干一件坏事：故意把代码写错，看电脑怎么『骂』你。」</p></div>
+</section>
+
+<section class="slide lay-code" data-title="兴趣 · 上节课的 4 行">
+<div class="phead"><span class="no">第 02 课</span>
+<div class="rail"><span class="on" style="--w:8">兴趣</span><span class="" style="--w:10">现象</span><span class="" style="--w:15">概念</span><span class="" style="--w:35">技能</span><span class="" style="--w:20">小发明</span><span class="" style="--w:8">收尾</span></div>
+<span class="tslot">0–5 分</span>
+</div>
+<h2 class="ptitle">热身：上节课的 Blink，<em>还记得吗</em>？</h2>
+<div class="pbody"><div class="lcol grow" style="grid-template-columns:1.272727272727273fr 1fr"><div class="code"><div class="lab "><span>Blink.ino</span><span class="rt">9 行</span></div><pre style="font-size:27px;line-height:1.55"><span class="t">void</span> <span class="f">setup</span>() {
+  <span class="f">pinMode</span>(<span class="k">LED_BUILTIN</span>, <span class="k">OUTPUT</span>);
+}
+
+<span class="t">void</span> <span class="f">loop</span>() {
+<span class="ln hlg rvl" data-step="1">  <span class="f">digitalWrite</span>(<span class="k">LED_BUILTIN</span>, <span class="k">HIGH</span>);</span>
+<span class="ln hl rvl" data-step="2">  <span class="f">delay</span>(<span class="k">1000</span>);</span>
+<span class="ln hl rvl" data-step="3">  <span class="f">digitalWrite</span>(<span class="k">LED_BUILTIN</span>, <span class="k">LOW</span>);</span>
+<span class="ln hl rvl" data-step="3">  <span class="f">delay</span>(<span class="k">1000</span>);</span>
+}</pre></div><div class="rowlist qlist"><div class="rowitem"><div class="num n">1</div><div class="tx">哪一行让灯<b>亮</b>？<div class="rv " data-step="1"><div class="rv-a"><div class="qa"><code class="ic">digitalWrite(LED_BUILTIN, HIGH);</code></div></div><div class="rv-q">？ 你来答</div></div></div></div><div class="rowitem"><div class="num n">2</div><div class="tx">想让灯「<b>短短地</b>」亮一下，改哪个数？<div class="rv " data-step="2"><div class="rv-a"><div class="qa">HIGH 后面的 delay：<code class="ic">1000</code> 改成 <code class="ic">200</code></div></div><div class="rv-q">？ 你来答</div></div></div></div><div class="rowitem"><div class="num n">3</div><div class="tx">loop 里这 4 行做完，灯一共闪了几下？<div class="rv " data-step="3"><div class="rv-a"><div class="qa"><b>1 下</b>——一亮一灭。想闪 3 下，就要 3 份这样的 4 行</div></div><div class="rv-q">？ 你来答</div></div></div></div></div></div></div>
+<div class="notes"><p>「先热热身。上节课我们读懂了 Blink，这 9 行还记得吗？」（三道题先盖着，点名回答。）</p><p>「哪一行让灯亮？」<b>→ 揭晓①</b> digitalWrite HIGH。</p><p>「想让灯短短地亮一下，改哪个数？」<b>→ 揭晓②</b>「HIGH 后面那个 delay，1000 改成 200。」</p><p>「最后一题：loop 里这 4 行做完一遍，灯闪了几下？」<b>→ 揭晓③</b>「<b>一下</b>。那 SOS 一共要闪 9 下，怎么办？——把这 4 行复制成好几份。这就是今天的办法。」</p><p>（第 1 课没过关的同学，这一页正好再过一遍；答不上来不要紧，技能环节还会再读。）</p></div>
+</section>
+
+<section class="slide lay-figure" data-title="现象 · 老师的板子在说什么">
+<div class="phead"><span class="no">第 02 课</span>
+<div class="rail"><span class="done" style="--w:8">兴趣</span><span class="on" style="--w:10">现象</span><span class="" style="--w:15">概念</span><span class="" style="--w:35">技能</span><span class="" style="--w:20">小发明</span><span class="" style="--w:8">收尾</span></div>
+<span class="tslot">5–15 分</span>
+</div>
+<h2 class="ptitle">老师的板子在<em>说什么</em>？</h2>
+<div class="pbody">
+  <div class="figgrid grow" style="--figw:1.15fr"><div class="figbox"><svg viewBox="0 0 720 520" xmlns="http://www.w3.org/2000/svg" font-family="Microsoft YaHei" text-rendering="geometricPrecision"><defs><radialGradient id="g_uno"><stop offset="0" stop-color="#FFE7A3" stop-opacity="1"/><stop offset=".35" stop-color="#F5A623" stop-opacity=".75"/><stop offset="1" stop-color="#F5A623" stop-opacity="0"/></radialGradient></defs><rect x="62" y="30" width="620" height="462" rx="22" fill="#1C7C88" stroke="#141414" stroke-width="5"/><circle cx="640" cy="66" r="11" fill="#FBF7EE" stroke="#141414" stroke-width="3"/><circle cx="640" cy="456" r="11" fill="#FBF7EE" stroke="#141414" stroke-width="3"/><circle cx="196" cy="466" r="11" fill="#FBF7EE" stroke="#141414" stroke-width="3"/><rect x="22" y="78" width="134" height="106" rx="6" fill="#C9CED3" stroke="#141414" stroke-width="5"/><rect x="44" y="102" width="82" height="58" rx="4" fill="#8E969C" stroke="#141414" stroke-width="3"/><rect x="26" y="362" width="106" height="92" rx="6" fill="#2B2B2B" stroke="#141414" stroke-width="5"/><circle cx="80" cy="408" r="24" fill="#555" stroke="#141414" stroke-width="3"/><rect x="182" y="46" width="46" height="46" rx="6" fill="#E6E6E6" stroke="#141414" stroke-width="4"/><circle cx="205" cy="69" r="13" fill="#D85A30" stroke="#141414" stroke-width="3"/><rect x="186" y="196" width="54" height="54" rx="4" fill="#1E1E1E" stroke="#141414" stroke-width="3"/><ellipse cx="262" cy="318" rx="28" ry="13" fill="#D7DBDE" stroke="#141414" stroke-width="3"/><rect x="252" y="40" width="222" height="28" fill="#1A1A1A" stroke="#141414" stroke-width="3"/><rect x="259" y="49" width="10" height="10" fill="#BDBDBD"/><rect x="281" y="49" width="10" height="10" fill="#BDBDBD"/><rect x="303" y="49" width="10" height="10" fill="#BDBDBD"/><rect x="325" y="49" width="10" height="10" fill="#BDBDBD"/><rect x="347" y="49" width="10" height="10" fill="#BDBDBD"/><rect x="369" y="49" width="10" height="10" fill="#BDBDBD"/><rect x="391" y="49" width="10" height="10" fill="#BDBDBD"/><rect x="413" y="49" width="10" height="10" fill="#BDBDBD"/><rect x="435" y="49" width="10" height="10" fill="#BDBDBD"/><rect x="457" y="49" width="10" height="10" fill="#BDBDBD"/><rect x="494" y="40" width="178" height="28" fill="#1A1A1A" stroke="#141414" stroke-width="3"/><rect x="501" y="49" width="10" height="10" fill="#BDBDBD"/><rect x="523" y="49" width="10" height="10" fill="#BDBDBD"/><rect x="545" y="49" width="10" height="10" fill="#BDBDBD"/><rect x="567" y="49" width="10" height="10" fill="#BDBDBD"/><rect x="589" y="49" width="10" height="10" fill="#BDBDBD"/><rect x="611" y="49" width="10" height="10" fill="#BDBDBD"/><rect x="633" y="49" width="10" height="10" fill="#BDBDBD"/><rect x="655" y="49" width="10" height="10" fill="#BDBDBD"/><text x="351" y="88" text-anchor="middle" font-size="17" font-weight="900" fill="#fff">13</text><text x="653" y="88" text-anchor="middle" font-size="15" font-weight="700" fill="#D8F0F2">0</text><text x="631" y="88" text-anchor="middle" font-size="15" font-weight="700" fill="#D8F0F2">1</text><text x="560" y="104" text-anchor="middle" font-size="15" font-weight="700" fill="#D8F0F2" letter-spacing="2">DIGITAL</text><path d="M351 68 V108" stroke="#7FD3DA" stroke-width="4" stroke-dasharray="6 5"/><rect x="338" y="110" width="26" height="15" rx="2" fill="#D9D9D9" stroke="#141414" stroke-width="2.5"/><g class="led-sos"><circle cx="351" cy="118" r="50" fill="url(#g_uno)"/><rect x="338" y="110" width="26" height="15" rx="2" fill="#F5A623" stroke="#141414" stroke-width="2.5"/></g><text x="376" y="124" font-size="19" font-weight="900" fill="#fff">L</text><rect x="338" y="146" width="26" height="13" rx="2" fill="#D9D9D9" stroke="#141414" stroke-width="2.5"/><text x="376" y="158" font-size="15" font-weight="800" fill="#fff">TX</text><rect x="338" y="172" width="26" height="13" rx="2" fill="#D9D9D9" stroke="#141414" stroke-width="2.5"/><text x="376" y="184" font-size="15" font-weight="800" fill="#fff">RX</text><rect x="584" y="146" width="26" height="13" rx="2" fill="#4BE07F" stroke="#141414" stroke-width="2.5"/><text x="618" y="158" font-size="15" font-weight="800" fill="#fff">ON</text><rect x="336" y="334" width="298" height="76" rx="6" fill="#1E1E1E" stroke="#141414" stroke-width="4"/><path d="M336 360 a12 12 0 0 1 0 24" fill="#3A3A3A" stroke="#141414" stroke-width="2"/><rect x="346.0" y="325" width="9" height="9" fill="#C9C9C9"/><rect x="346.0" y="410" width="9" height="9" fill="#C9C9C9"/><rect x="366.5" y="325" width="9" height="9" fill="#C9C9C9"/><rect x="366.5" y="410" width="9" height="9" fill="#C9C9C9"/><rect x="387.0" y="325" width="9" height="9" fill="#C9C9C9"/><rect x="387.0" y="410" width="9" height="9" fill="#C9C9C9"/><rect x="407.5" y="325" width="9" height="9" fill="#C9C9C9"/><rect x="407.5" y="410" width="9" height="9" fill="#C9C9C9"/><rect x="428.0" y="325" width="9" height="9" fill="#C9C9C9"/><rect x="428.0" y="410" width="9" height="9" fill="#C9C9C9"/><rect x="448.5" y="325" width="9" height="9" fill="#C9C9C9"/><rect x="448.5" y="410" width="9" height="9" fill="#C9C9C9"/><rect x="469.0" y="325" width="9" height="9" fill="#C9C9C9"/><rect x="469.0" y="410" width="9" height="9" fill="#C9C9C9"/><rect x="489.5" y="325" width="9" height="9" fill="#C9C9C9"/><rect x="489.5" y="410" width="9" height="9" fill="#C9C9C9"/><rect x="510.0" y="325" width="9" height="9" fill="#C9C9C9"/><rect x="510.0" y="410" width="9" height="9" fill="#C9C9C9"/><rect x="530.5" y="325" width="9" height="9" fill="#C9C9C9"/><rect x="530.5" y="410" width="9" height="9" fill="#C9C9C9"/><rect x="551.0" y="325" width="9" height="9" fill="#C9C9C9"/><rect x="551.0" y="410" width="9" height="9" fill="#C9C9C9"/><rect x="571.5" y="325" width="9" height="9" fill="#C9C9C9"/><rect x="571.5" y="410" width="9" height="9" fill="#C9C9C9"/><rect x="592.0" y="325" width="9" height="9" fill="#C9C9C9"/><rect x="592.0" y="410" width="9" height="9" fill="#C9C9C9"/><rect x="612.5" y="325" width="9" height="9" fill="#C9C9C9"/><rect x="612.5" y="410" width="9" height="9" fill="#C9C9C9"/><text x="485" y="380" text-anchor="middle" font-size="19" font-weight="700" fill="#A7ADB2" font-family="Consolas">ATMEGA328P</text><rect x="232" y="458" width="178" height="28" fill="#1A1A1A" stroke="#141414" stroke-width="3"/><rect x="239" y="467" width="10" height="10" fill="#BDBDBD"/><rect x="261" y="467" width="10" height="10" fill="#BDBDBD"/><rect x="283" y="467" width="10" height="10" fill="#BDBDBD"/><rect x="305" y="467" width="10" height="10" fill="#BDBDBD"/><rect x="327" y="467" width="10" height="10" fill="#BDBDBD"/><rect x="349" y="467" width="10" height="10" fill="#BDBDBD"/><rect x="371" y="467" width="10" height="10" fill="#BDBDBD"/><rect x="393" y="467" width="10" height="10" fill="#BDBDBD"/><rect x="446" y="458" width="134" height="28" fill="#1A1A1A" stroke="#141414" stroke-width="3"/><rect x="453" y="467" width="10" height="10" fill="#BDBDBD"/><rect x="475" y="467" width="10" height="10" fill="#BDBDBD"/><rect x="497" y="467" width="10" height="10" fill="#BDBDBD"/><rect x="519" y="467" width="10" height="10" fill="#BDBDBD"/><rect x="541" y="467" width="10" height="10" fill="#BDBDBD"/><rect x="563" y="467" width="10" height="10" fill="#BDBDBD"/><text x="320" y="450" text-anchor="middle" font-size="14" font-weight="700" fill="#D8F0F2" letter-spacing="2">POWER</text><text x="512" y="450" text-anchor="middle" font-size="14" font-weight="700" fill="#D8F0F2" letter-spacing="2">ANALOG IN</text><text x="96" y="296" font-size="62" font-weight="900" font-style="italic" fill="#fff" font-family="Arial Black,Arial">UNO</text><path d="M398 126 L452 212" stroke="#141414" stroke-width="4"/><rect x="440" y="206" width="184" height="46" fill="#F5A623" stroke="#141414" stroke-width="4"/><text x="532" y="238" text-anchor="middle" font-size="25" font-weight="900" fill="#141414">它在说什么？</text></svg></div><div class="figcards"><div class="blk c"><span class="lbl">现象</span><h4>还是那颗 L 灯</h4><p>可节奏和 Blink 不一样了：有短有长，停一停又重来。</p></div><div class="blk n"><span class="lbl">任务</span><h4>检查员记节奏</h4><p>短的画一个点 ·，长的画一条横 —，停顿就空一格。</p></div><div class="blk g"><span class="lbl">答案</span><div class="rv " data-step="1"><div class="rv-a"><h4>S　O　S</h4><p>· · ·　— — —　· · ·</p><p>一遍 7.4 秒，说完停 2 秒再重来。</p></div><div class="rv-q">？ 先把节奏记下来</div></div></div></div></div>
+  <div class="tail"><div class="strip ">线索：长的那几下，差不多是短的 <b>3 倍</b>长。</div></div>
+</div>
+<div class="notes"><p>（老师插上提前传好 SOS 的板子，实物展台对准 L 灯。左边图里的灯也在按同样的节奏闪。）</p><p>「还是上节课那颗 L 灯，大家看——这次它在<b>说话</b>。检查员拿一张草稿纸，短的画一个点，长的画一条横，停顿空一格。看两遍。」</p><p>（等一分钟，请两个组读出他们记的点和横。）</p><p><b>→ 揭晓</b>「三短、三长、三短——<b>S、O、S</b>。灯一遍说完要 7.4 秒，最后停 2 秒，好让别人知道从哪儿开始。」</p><p>「这段程序是我怎么写出来的？下一页给你们看。」</p></div>
+</section>
+
+<section class="slide lay-codes" data-title="现象 · 一屏放不下的程序">
+<div class="phead"><span class="no">第 02 课</span>
+<div class="rail"><span class="done" style="--w:8">兴趣</span><span class="on" style="--w:10">现象</span><span class="" style="--w:15">概念</span><span class="" style="--w:35">技能</span><span class="" style="--w:20">小发明</span><span class="" style="--w:8">收尾</span></div>
+<span class="tslot">5–15 分</span>
+</div>
+<h2 class="ptitle">SOS 的程序：一屏都<em>放不下</em></h2>
+<div class="pbody"><div class="codes grow" style="grid-template-columns:1fr 1fr 1fr"><div class="code"><div class="lab "><span>第 6–18 行</span><span class="rt">S</span></div><pre class="nums" style="font-size:18px;line-height:1.55;counter-reset:L 5"><span class="L">  <span class="c">// S：三短</span></span>
+<span class="L">  <span class="f">digitalWrite</span>(<span class="k">LED_BUILTIN</span>, <span class="k">HIGH</span>);</span>
+<span class="L">  <span class="f">delay</span>(<span class="k">200</span>);</span>
+<span class="L">  <span class="f">digitalWrite</span>(<span class="k">LED_BUILTIN</span>, <span class="k">LOW</span>);</span>
+<span class="L">  <span class="f">delay</span>(<span class="k">200</span>);</span>
+<span class="L">  <span class="f">digitalWrite</span>(<span class="k">LED_BUILTIN</span>, <span class="k">HIGH</span>);</span>
+<span class="L">  <span class="f">delay</span>(<span class="k">200</span>);</span>
+<span class="L">  <span class="f">digitalWrite</span>(<span class="k">LED_BUILTIN</span>, <span class="k">LOW</span>);</span>
+<span class="L">  <span class="f">delay</span>(<span class="k">200</span>);</span>
+<span class="L">  <span class="f">digitalWrite</span>(<span class="k">LED_BUILTIN</span>, <span class="k">HIGH</span>);</span>
+<span class="L">  <span class="f">delay</span>(<span class="k">200</span>);</span>
+<span class="L">  <span class="f">digitalWrite</span>(<span class="k">LED_BUILTIN</span>, <span class="k">LOW</span>);</span>
+<span class="L">  <span class="f">delay</span>(<span class="k">600</span>);</span></pre></div><div class="code"><div class="lab "><span>第 19–31 行</span><span class="rt">O</span></div><pre class="nums" style="font-size:18px;line-height:1.55;counter-reset:L 18"><span class="L">  <span class="c">// O：三长</span></span>
+<span class="L">  <span class="f">digitalWrite</span>(<span class="k">LED_BUILTIN</span>, <span class="k">HIGH</span>);</span>
+<span class="L">  <span class="f">delay</span>(<span class="k">600</span>);</span>
+<span class="L">  <span class="f">digitalWrite</span>(<span class="k">LED_BUILTIN</span>, <span class="k">LOW</span>);</span>
+<span class="L">  <span class="f">delay</span>(<span class="k">200</span>);</span>
+<span class="L">  <span class="f">digitalWrite</span>(<span class="k">LED_BUILTIN</span>, <span class="k">HIGH</span>);</span>
+<span class="L">  <span class="f">delay</span>(<span class="k">600</span>);</span>
+<span class="L">  <span class="f">digitalWrite</span>(<span class="k">LED_BUILTIN</span>, <span class="k">LOW</span>);</span>
+<span class="L">  <span class="f">delay</span>(<span class="k">200</span>);</span>
+<span class="L">  <span class="f">digitalWrite</span>(<span class="k">LED_BUILTIN</span>, <span class="k">HIGH</span>);</span>
+<span class="L">  <span class="f">delay</span>(<span class="k">600</span>);</span>
+<span class="L">  <span class="f">digitalWrite</span>(<span class="k">LED_BUILTIN</span>, <span class="k">LOW</span>);</span>
+<span class="L">  <span class="f">delay</span>(<span class="k">600</span>);</span></pre></div><div class="code"><div class="lab "><span>第 32–44 行</span><span class="rt">S</span></div><pre class="nums" style="font-size:18px;line-height:1.55;counter-reset:L 31"><span class="L">  <span class="c">// S：三短</span></span>
+<span class="L">  <span class="f">digitalWrite</span>(<span class="k">LED_BUILTIN</span>, <span class="k">HIGH</span>);</span>
+<span class="L">  <span class="f">delay</span>(<span class="k">200</span>);</span>
+<span class="L">  <span class="f">digitalWrite</span>(<span class="k">LED_BUILTIN</span>, <span class="k">LOW</span>);</span>
+<span class="L">  <span class="f">delay</span>(<span class="k">200</span>);</span>
+<span class="L">  <span class="f">digitalWrite</span>(<span class="k">LED_BUILTIN</span>, <span class="k">HIGH</span>);</span>
+<span class="L">  <span class="f">delay</span>(<span class="k">200</span>);</span>
+<span class="L">  <span class="f">digitalWrite</span>(<span class="k">LED_BUILTIN</span>, <span class="k">LOW</span>);</span>
+<span class="L">  <span class="f">delay</span>(<span class="k">200</span>);</span>
+<span class="L">  <span class="f">digitalWrite</span>(<span class="k">LED_BUILTIN</span>, <span class="k">HIGH</span>);</span>
+<span class="L">  <span class="f">delay</span>(<span class="k">200</span>);</span>
+<span class="L">  <span class="f">digitalWrite</span>(<span class="k">LED_BUILTIN</span>, <span class="k">LOW</span>);</span>
+<span class="L">  <span class="f">delay</span>(<span class="k">2000</span>);</span></pre></div></div><div class="tail"><div class="strip ">猜：这 36 行动作，一共有几种不同的写法？ <span class="rvi" data-step="1">只有 2 种：<code class="ic">digitalWrite(…);</code> 和 <code class="ic">delay(…);</code>——全是 Blink 那 4 行复制出来、改了数字</span></div></div></div>
+<div class="notes"><p>「这就是 SOS 的程序，45 行，一屏放不下，我拆成三段给你们看：第一段说 S，第二段说 O，第三段又说 S。」</p><p>「别被它吓到。<b>先猜</b>：这 36 行动作里，一共有几种不同的写法？」（请两三个同学猜，有人会说 36 种、9 种、4 种。）</p><p><b>→ 揭晓</b>「只有 <b>2 种</b>：digitalWrite 和 delay。全是上节课 Blink 那 4 行，复制了 9 份，再改改括号里的数。」</p><p>「我一行新代码都没敲。今天你们也一样：<b>复制整行，再改数字</b>。」</p><p>（左边每段前面那句灰色的 <code class="ic">// S：三短</code> 是注释，写给人看的，上节课学过。）</p></div>
+</section>
+
+<section class="slide lay-codes" data-title="现象 · 删掉一个分号">
+<div class="phead"><span class="no">第 02 课</span>
+<div class="rail"><span class="done" style="--w:8">兴趣</span><span class="on" style="--w:10">现象</span><span class="" style="--w:15">概念</span><span class="" style="--w:35">技能</span><span class="" style="--w:20">小发明</span><span class="" style="--w:8">收尾</span></div>
+<span class="tslot">5–15 分</span>
+</div>
+<h2 class="ptitle">删掉一个分号，<em>还能上传吗</em>？</h2>
+<div class="pbody"><div class="codes grow" style="grid-template-columns:1fr 1.2fr"><div class="code"><div class="lab "><span>sos.ino 前 10 行</span><span class="rt">第 7 行末尾的 ; 删掉了</span></div><pre class="nums" style="font-size:23px;line-height:1.55;counter-reset:L 0"><span class="L"><span class="t">void</span> <span class="f">setup</span>() {</span>
+<span class="L">  <span class="f">pinMode</span>(<span class="k">LED_BUILTIN</span>, <span class="k">OUTPUT</span>);</span>
+<span class="L">}</span>
+<span class="L"> </span>
+<span class="L"><span class="t">void</span> <span class="f">loop</span>() {</span>
+<span class="L">  <span class="c">// S：三短</span></span>
+<span class="L"><span class="ln hlc">  <span class="f">digitalWrite</span>(<span class="k">LED_BUILTIN</span>, <span class="k">HIGH</span>)</span></span>
+<span class="L">  <span class="f">delay</span>(<span class="k">200</span>);</span>
+<span class="L">  <span class="f">digitalWrite</span>(<span class="k">LED_BUILTIN</span>, <span class="k">LOW</span>);</span>
+<span class="L">  <span class="f">delay</span>(<span class="k">200</span>);</span></pre></div><div class="code outbox "><div class="lab c"><span>输出</span><span class="rt">点上传以后</span></div><div class="rv rv-out" data-step="1"><div class="rv-a"><pre class="out" style="font-size:21px;line-height:1.55"><span class="ol ">C:\…\sos\sos.ino: In function 'void loop()':</span>
+<span class="ol err">C:\…\sos\sos.ino:8:3: error: expected ';' before 'delay'</span>
+<span class="ol ">   delay(200);</span>
+<span class="ol ">   ^~~~~</span>
+<span class="ol "> </span>
+<span class="ol ">exit status 1</span>
+<span class="ol "> </span>
+<span class="ol err">编译错误：expected ';' before 'delay'</span></pre></div><div class="rv-q">？ 先投票，再上传</div></div></div></div><div class="opts" style="margin-top:22px"><div class="opt"><span class="ol">A</span>能传，照样说 SOS</div><div class="opt"><span class="ol">B</span>能传，灯不亮了</div><div class="opt rvo" data-step="1"><span class="ol">C</span>传不进去</div><div class="opt"><span class="ol">D</span>电脑死机</div></div><div class="tail"><div class="rv rv-strip" data-step="2"><div class="rv-a"><div class="strip ">电脑<b>先检查、再上传</b>：发现错就不传——板子上还是原来那段 SOS。</div></div><div class="rv-q">？ 为什么灯还在说 SOS</div></div></div></div>
+<div class="notes"><p>「我现在干一件坏事：把第 7 行末尾的分号删掉，别的都不动。上传之前<b>全班投票</b>：A 能传、照样说 SOS；B 能传、灯不亮；C 传不进去；D 电脑死机。」（举手数票，写在黑板上。）</p><p>（老师点上传。）<b>→ 揭晓</b>「下面一大段红字——<b>传不进去</b>。」</p><p>「那板子呢？大家看，灯还在说 SOS。为什么？」<b>→ 揭晓</b>「因为电脑是<b>先检查、再上传</b>。检查出错，就根本不往板子里送，板子上还是原来那段程序。」</p><p>「所以红字不是坏事：电脑在上传之前，帮你把错拦下来了。今天的第二个任务，就是学会读这段红字。」</p></div>
+</section>
+
+<section class="slide lay-anat" data-title="概念 · 名字(参数);">
+<div class="phead"><span class="no">第 02 课</span>
+<div class="rail"><span class="done" style="--w:8">兴趣</span><span class="done" style="--w:10">现象</span><span class="on" style="--w:15">概念</span><span class="" style="--w:35">技能</span><span class="" style="--w:20">小发明</span><span class="" style="--w:8">收尾</span></div>
+<span class="tslot">15–30 分</span>
+</div>
+<h2 class="ptitle">今天唯一的新句型：<em>名字(参数);</em></h2>
+<div class="pbody"><div class="anat"><div class="arow"><span class="acap">命令</span><div class="segs" style="font-size:56px;padding-bottom:58px"><span class="seg n"><span class="st">digitalWrite</span><span class="lw" style="--lv:0"><span class="rvi" data-step="1"><span class="sl">① 名字</span></span></span></span><span class="seg p"><span class="st">(</span></span><span class="seg g"><span class="st">LED_BUILTIN</span><span class="lw" style="--lv:0"><span class="rvi" data-step="2"><span class="sl">② 参数</span></span></span></span><span class="seg a"><span class="st">,</span><span class="lw" style="--lv:0"><span class="rvi" data-step="3"><span class="sl">③ 逗号隔开</span></span></span></span><span class="seg p"><span class="st">&nbsp;</span></span><span class="seg g"><span class="st">HIGH</span><span class="lw" style="--lv:0"><span class="rvi" data-step="2"><span class="sl">② 参数</span></span></span></span><span class="seg p"><span class="st">)</span></span><span class="seg c"><span class="st">;</span><span class="lw" style="--lv:0"><span class="rvi" data-step="4"><span class="sl">④ 分号</span></span></span></span></div></div><div class="arow"><span class="acap">点奶茶</span><div class="segs" style="font-size:56px;padding-bottom:0px"><span class="seg n"><span class="st">奶茶</span></span><span class="seg p"><span class="st">(</span></span><span class="seg g"><span class="st">大杯</span></span><span class="seg a"><span class="st">,</span></span><span class="seg p"><span class="st">&nbsp;</span></span><span class="seg g"><span class="st">少冰</span></span><span class="seg p"><span class="st">)</span></span><span class="seg c"><span class="st">;</span></span></div></div></div><div class="cols3 acards"><div class="blk n"><span class="lbl">名字</span><h4>大小写一个都不能错</h4><p><code class="ic">digitalWrite</code> 的 W 大写，<code class="ic">delay</code> 全小写。</p></div><div class="blk g"><span class="lbl">参数</span><h4>几个、什么顺序，都定好了</h4><p><code class="ic">delay(200)</code> 1 个；<code class="ic">digitalWrite</code> 2 个：先脚号，后高低。</p></div><div class="blk c"><span class="lbl">符号</span><h4>全用英文</h4><p><code class="ic">(</code> <code class="ic">,</code> <code class="ic">)</code> <code class="ic">;</code> 都是英文的；中文的「（，）；」电脑不认识。</p></div></div></div>
+<div class="notes"><p>「Blink 里的每一行动作，其实都是同一个格式。来，猜猜这四个部分各叫什么。」（四个标签先盖着，一个一个问。）</p><p><b>→ 揭晓①</b>「最前面是<b>名字</b>：叫哪个命令来干活。」<b>→ 揭晓②</b>「括号里是<b>参数</b>：告诉它干活的细节——哪只脚、亮还是灭。」<b>→ 揭晓③</b>「参数不止一个，就用<b>逗号</b>隔开。」<b>→ 揭晓④</b>「最后<b>分号</b>：这句话说完了。」</p><p>「就像点奶茶：名字是奶茶，括号里是大杯、少冰。你说『少冰、大杯』店员也听得懂，可电脑不行——<b>参数的顺序是定死的</b>。」</p><p>「这种格式有个正式的名字，叫<b>函数调用</b>：叫一个函数的名字，把参数交给它。记住下面三条规矩：名字大小写不能错，参数个数和顺序是定好的，符号全用英文。」</p></div>
+</section>
+
+<section class="slide lay-table" data-title="概念 · 哪几行写对了">
+<div class="phead"><span class="no">第 02 课</span>
+<div class="rail"><span class="done" style="--w:8">兴趣</span><span class="done" style="--w:10">现象</span><span class="on" style="--w:15">概念</span><span class="" style="--w:35">技能</span><span class="" style="--w:20">小发明</span><span class="" style="--w:8">收尾</span></div>
+<span class="tslot">15–30 分</span>
+</div>
+<h2 class="ptitle">电脑很较真：哪几行<em>写对了</em>？</h2>
+<div class="pbody"><div class="tbl grow" style="grid-template-columns:1.45fr 0.85fr 1.6fr"><div class="th">写法</div><div class="th">电脑怎么说</div><div class="th">为什么</div><div class="td mono"><span>delay(200);</span></div><div class="td"><div class="rv " data-step="1"><div class="rv-a"><b>通过</b></div><div class="rv-q">？</div></div></div><div class="td last"><div class="rv " data-step="1"><div class="rv-a">名字、括号、参数、分号都对</div><div class="rv-q">？</div></div></div><div class="td mono"><span>Delay(200);</span></div><div class="td"><div class="rv " data-step="2"><div class="rv-a">报错</div><div class="rv-q">？</div></div></div><div class="td last"><div class="rv " data-step="2"><div class="rv-a">名字<b>大小写</b>错：<code class="ic">delay</code> 全是小写</div><div class="rv-q">？</div></div></div><div class="td mono"><span>delay(200)；</span></div><div class="td"><div class="rv " data-step="3"><div class="rv-a">报错</div><div class="rv-q">？</div></div></div><div class="td last"><div class="rv " data-step="3"><div class="rv-a">分号是<b>中文</b>的「；」</div><div class="rv-q">？</div></div></div><div class="td mono"><span>digitalWrite(LED_BUILTIN, HIGH)</span></div><div class="td"><div class="rv " data-step="4"><div class="rv-a">报错</div><div class="rv-q">？</div></div></div><div class="td last"><div class="rv " data-step="4"><div class="rv-a">漏了<b>分号</b></div><div class="rv-q">？</div></div></div><div class="td mono"><span>digitalWrite (LED_BUILTIN,HIGH);</span></div><div class="td"><div class="rv " data-step="5"><div class="rv-a"><b>通过</b></div><div class="rv-q">？</div></div></div><div class="td last"><div class="rv " data-step="5"><div class="rv-a">多一个、少一个<b>空格</b>都没关系</div><div class="rv-q">？</div></div></div><div class="td mono"><span>digitalWrite(HIGH, LED_BUILTIN);</span></div><div class="td"><div class="rv " data-step="6"><div class="rv-a">通过，但灯<b>不亮</b></div><div class="rv-q">？</div></div></div><div class="td last"><div class="rv " data-step="6"><div class="rv-a">参数顺序反了：电脑只查格式，<b>不查意思</b></div><div class="rv-q">？</div></div></div></div></div>
+<div class="notes"><p>「电脑非常较真。这 6 行，哪几行它会让你通过？」（右边两列先盖着。每一行先让全班举手：觉得通过的举手，觉得报错的举手，再 <b>→ 揭晓</b>这一行。）</p><p>第 2 行：「Delay 的 D 大写了——电脑就不认识这个名字。」第 3 行：「这个分号是中文的，长得像，电脑不认。」第 4 行：「漏了分号，这个刚才演示过。」</p><p>第 5 行常有人猜错：「多几个空格、少几个空格，电脑<b>不在乎</b>。它在乎的是名字、括号、逗号、分号。」</p><p>最后一行最狠：「能通过！可是灯不亮。HIGH 和脚号换了位置，电脑以为你要把第 1 号脚……总之不是 L 灯。<b>电脑只查格式，不查意思</b>——意思对不对，要靠你自己读。」</p><p>（这 6 行老师都实测过：编译结果和表里一致。）</p></div>
+</section>
+
+<section class="slide lay-figure" data-title="概念 · 出错时 IDE 的三个地方">
+<div class="phead"><span class="no">第 02 课</span>
+<div class="rail"><span class="done" style="--w:8">兴趣</span><span class="done" style="--w:10">现象</span><span class="on" style="--w:15">概念</span><span class="" style="--w:35">技能</span><span class="" style="--w:20">小发明</span><span class="" style="--w:8">收尾</span></div>
+<span class="tslot">15–30 分</span>
+</div>
+<h2 class="ptitle">出错了，IDE 在<em>三个地方</em>告诉你</h2>
+<div class="pbody">
+  <div class="figgrid grow" style="--figw:1.45fr"><div class="figbox"><svg viewBox="0 0 760 540" xmlns="http://www.w3.org/2000/svg" font-family="Microsoft YaHei" text-rendering="geometricPrecision"><rect x="6" y="6" width="748" height="528" rx="6" fill="#fff" stroke="#141414" stroke-width="5"/><rect x="8" y="8" width="744" height="30" fill="#ECEFF1"/><text x="380" y="29" text-anchor="middle" font-size="15" fill="#555">sos | Arduino IDE 2.3.10</text><rect x="8" y="38" width="744" height="48" fill="#17A1A5"/><circle cx="36" cy="62" r="16" fill="#fff"/><path transform="translate(36 62)" d="M-9 1 l6 6 l12 -12" fill="none" stroke="#17A1A5" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/><circle cx="80" cy="62" r="16" fill="#fff"/><path transform="translate(80 62)" d="M-9 0 H9 M2 -7 L9 0 L2 7" fill="none" stroke="#17A1A5" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"/><rect x="128" y="48" width="200" height="28" rx="3" fill="#fff"/><text x="140" y="68" font-size="15" font-weight="700" fill="#333">Arduino Uno</text><rect x="8" y="86" width="744" height="30" fill="#F4F6F7"/><rect x="8" y="86" width="96" height="30" fill="#fff"/><text x="24" y="106" font-size="15" fill="#333" font-family="Consolas">sos.ino</text><rect x="56" y="278" width="696" height="22" fill="#FDE2E1"/><path d="M56 300 H752" stroke="#E57373" stroke-width="2"/><text x="44" y="140" text-anchor="end" font-size="14" fill="#9AA5A8" font-family="Consolas">1</text><text x="64" y="140" font-size="16" fill="#2E3A3F" font-family="Consolas,Microsoft YaHei" xml:space="preserve">void setup() {</text><text x="44" y="162" text-anchor="end" font-size="14" fill="#9AA5A8" font-family="Consolas">2</text><text x="64" y="162" font-size="16" fill="#2E3A3F" font-family="Consolas,Microsoft YaHei" xml:space="preserve">  pinMode(LED_BUILTIN, OUTPUT);</text><text x="44" y="184" text-anchor="end" font-size="14" fill="#9AA5A8" font-family="Consolas">3</text><text x="64" y="184" font-size="16" fill="#2E3A3F" font-family="Consolas,Microsoft YaHei" xml:space="preserve">}</text><text x="44" y="206" text-anchor="end" font-size="14" fill="#9AA5A8" font-family="Consolas">4</text><text x="64" y="206" font-size="16" fill="#2E3A3F" font-family="Consolas,Microsoft YaHei" xml:space="preserve"></text><text x="44" y="228" text-anchor="end" font-size="14" fill="#9AA5A8" font-family="Consolas">5</text><text x="64" y="228" font-size="16" fill="#2E3A3F" font-family="Consolas,Microsoft YaHei" xml:space="preserve">void loop() {</text><text x="44" y="250" text-anchor="end" font-size="14" fill="#9AA5A8" font-family="Consolas">6</text><text x="64" y="250" font-size="16" fill="#7F8C8D" font-family="Consolas,Microsoft YaHei" xml:space="preserve">  // S：三短</text><text x="44" y="272" text-anchor="end" font-size="14" fill="#9AA5A8" font-family="Consolas">7</text><text x="64" y="272" font-size="16" fill="#2E3A3F" font-family="Consolas,Microsoft YaHei" xml:space="preserve">  digitalWrite(LED_BUILTIN, HIGH)</text><text x="44" y="294" text-anchor="end" font-size="14" fill="#9AA5A8" font-family="Consolas">8</text><text x="64" y="294" font-size="16" fill="#2E3A3F" font-family="Consolas,Microsoft YaHei" xml:space="preserve">  delay(200);</text><text x="44" y="316" text-anchor="end" font-size="14" fill="#9AA5A8" font-family="Consolas">9</text><text x="64" y="316" font-size="16" fill="#2E3A3F" font-family="Consolas,Microsoft YaHei" xml:space="preserve">  digitalWrite(LED_BUILTIN, LOW);</text><text x="44" y="338" text-anchor="end" font-size="14" fill="#9AA5A8" font-family="Consolas">10</text><text x="64" y="338" font-size="16" fill="#2E3A3F" font-family="Consolas,Microsoft YaHei" xml:space="preserve">  delay(200);</text><rect x="8" y="362" width="744" height="170" fill="#FAFAFA"/><path d="M8 362 H752" stroke="#B0BEC5" stroke-width="2"/><text x="22" y="384" font-size="15" font-weight="700" fill="#333">输出</text><text x="22" y="408" font-size="14.5" fill="#444" font-family="Consolas,Microsoft YaHei" xml:space="preserve">C:\…\sos\sos.ino: In function &#39;void loop()&#39;:</text><text x="22" y="428" font-size="14.5" fill="#C8341B" font-family="Consolas,Microsoft YaHei" xml:space="preserve">C:\…\sos\sos.ino:8:3: error: expected &#39;;&#39; before &#39;delay&#39;</text><text x="22" y="448" font-size="14.5" fill="#444" font-family="Consolas,Microsoft YaHei" xml:space="preserve">   delay(200);</text><text x="22" y="468" font-size="14.5" fill="#444" font-family="Consolas,Microsoft YaHei" xml:space="preserve">   ^~~~~</text><text x="22" y="488" font-size="14.5" fill="#C8341B" font-family="Consolas,Microsoft YaHei" xml:space="preserve">exit status 1</text><text x="22" y="508" font-size="14.5" fill="#C8341B" font-family="Consolas,Microsoft YaHei" xml:space="preserve">编译错误：expected &#39;;&#39; before &#39;delay&#39;</text><rect x="392" y="398" width="350" height="94" rx="4" fill="#fff" stroke="#90A4AE" stroke-width="2"/><circle cx="414" cy="424" r="11" fill="#E53935"/><path d="M409 419 l10 10 M419 419 l-10 10" stroke="#fff" stroke-width="3"/><text x="434" y="430" font-size="15" fill="#222">编译错误：expected &#39;;&#39; before &#39;delay&#39;</text><rect x="606" y="454" width="124" height="28" rx="3" fill="#17A1A5"/><text x="668" y="473" text-anchor="middle" font-size="14" font-weight="700" fill="#fff">复制错误信息</text><g><circle cx="724" cy="374" r="19" fill="#1F4E79" stroke="#141414" stroke-width="3.5"/><text x="724" y="382" text-anchor="middle" font-size="23" font-weight="900" fill="#fff" font-family="Microsoft YaHei">①</text></g><g><circle cx="620" cy="394" r="19" fill="#1F4E79" stroke="#141414" stroke-width="3.5"/><text x="620" y="402" text-anchor="middle" font-size="23" font-weight="900" fill="#fff" font-family="Microsoft YaHei">②</text></g><g><circle cx="724" cy="288" r="19" fill="#1F4E79" stroke="#141414" stroke-width="3.5"/><text x="724" y="296" text-anchor="middle" font-size="23" font-weight="900" fill="#fff" font-family="Microsoft YaHei">③</text></g></svg></div><div class="figcards"><div class="blk c"><span class="lbl">① 输出栏</span><div class="rv " data-step="1"><div class="rv-a"><h4>底部一大段红字</h4><p>最有用的是带 <code class="ic">error:</code> 的那一行。</p></div><div class="rv-q">？ 先猜一猜</div></div></div><div class="blk a"><span class="lbl">② 弹窗</span><div class="rv " data-step="2"><div class="rv-a"><h4>右下角「编译错误：…」</h4><p>就是第一条报错的英文。</p></div><div class="rv-q">？ 先猜一猜</div></div></div><div class="blk n"><span class="lbl">③ 标红</span><div class="rv " data-step="3"><div class="rv-a"><h4>出错的那一行变红</h4><p>漏分号时，真正的错在<b>上一行</b>。</p></div><div class="rv-q">？ 先猜一猜</div></div></div></div></div>
+  
+</div>
+<div class="notes"><p>「刚才那段红字，在 IDE 里是这个样子。出错的时候，IDE 会在三个地方告诉你。大家先找找，有哪三个地方？」（三张卡先盖着。）</p><p><b>→ 揭晓①</b>「底部的<b>输出栏</b>：一大段红字。别全读，只找带 <code class="ic">error:</code> 的那一行。」</p><p><b>→ 揭晓②</b>「右下角<b>弹窗</b>：编译错误，冒号后面就是第一条报错。点『复制错误信息』能复制下来。」</p><p><b>→ 揭晓③</b>「还有，代码里<b>出错的那一行会变红</b>。注意看，标红的是第 8 行 delay，可分号明明漏在第 7 行——电脑读到第 8 行，才发现第 7 行没说完。」</p><p>（弹窗过几秒会自己消失；输出栏的红字一直都在，以输出栏为准。）</p></div>
+</section>
+
+<section class="slide lay-anat" data-title="概念 · 红字怎么读">
+<div class="phead"><span class="no">第 02 课</span>
+<div class="rail"><span class="done" style="--w:8">兴趣</span><span class="done" style="--w:10">现象</span><span class="on" style="--w:15">概念</span><span class="" style="--w:35">技能</span><span class="" style="--w:20">小发明</span><span class="" style="--w:8">收尾</span></div>
+<span class="tslot">15–30 分</span>
+</div>
+<h2 class="ptitle">红字怎么读：<em>先找行号</em>，再读第一句英文</h2>
+<div class="pbody"><div class="anat"><div class="arow"><div class="segs" style="font-size:36px;padding-bottom:104px"><span class="seg p"><span class="st">C:\…\sos\</span><span class="lw" style="--lv:0"><span class="sl">文件在哪（不用管）</span></span></span><span class="seg n"><span class="st">sos.ino</span><span class="lw" style="--lv:0"><span class="rvi" data-step="1"><span class="sl">文件名</span></span></span></span><span class="seg p"><span class="st">:</span></span><span class="seg c"><span class="st">8</span><span class="lw" style="--lv:0"><span class="rvi" data-step="2"><span class="sl">第几行</span></span></span></span><span class="seg p"><span class="st">:</span></span><span class="seg a"><span class="st">3</span><span class="lw" style="--lv:1"><span class="rvi" data-step="3"><span class="sl">第几个字</span></span></span></span><span class="seg p"><span class="st">:&nbsp;error:&nbsp;</span></span><span class="seg g"><span class="st">expected&nbsp;';'&nbsp;before&nbsp;'delay'</span><span class="lw" style="--lv:0"><span class="rvi" data-step="4"><span class="sl">第一句英文</span></span></span></span></div></div></div><div class="cols3 acards"><div class="blk c"><span class="lbl">① 找行号</span><h4>冒号后第一个数</h4><p><code class="ic">8</code> → 去看第 8 行。IDE 左边有行号。</p></div><div class="blk g"><span class="lbl">② 读第一句英文</span><h4>error: 后面那一句</h4><p>expected 应该有；before 在……前面。</p></div><div class="blk n"><span class="lbl">③ 看这一行和上一行</span><h4>错常常在上一行</h4><p>第 7 行没写完，电脑读到第 8 行的 delay 才发现。</p></div></div></div>
+<div class="notes"><p>「我们把带 error 的这一行拆开读。最前面一长串 C 盘什么的，是文件放在哪，<b>不用管</b>。」</p><p><b>→ 揭晓</b>「sos.ino，<b>文件名</b>。」<b>→ 揭晓</b>「冒号后面第一个数：<b>第几行</b>——8。」<b>→ 揭晓</b>「再后面那个 3，是这一行的第几个字，一般不用看。」<b>→ 揭晓</b>「error 后面这一句，就是<b>第一句英文</b>：expected 是『应该有』，before 是『在……前面』——在 delay 前面，应该有一个分号。」</p><p>「读报错就三步：<b>找行号，读第一句英文，看这一行和上一行</b>。这三步写在贴桌卡上了。」</p><p>（全班齐读一遍三步。以后学生举手说『老师报错了』，先问：『第几行？第一句英文是什么？』）</p></div>
+</section>
+
+<section class="slide lay-table" data-title="概念 · 三句最常见的红字">
+<div class="phead"><span class="no">第 02 课</span>
+<div class="rail"><span class="done" style="--w:8">兴趣</span><span class="done" style="--w:10">现象</span><span class="on" style="--w:15">概念</span><span class="" style="--w:35">技能</span><span class="" style="--w:20">小发明</span><span class="" style="--w:8">收尾</span></div>
+<span class="tslot">15–30 分</span>
+</div>
+<h2 class="ptitle">三句最常见的红字，<em>猜猜</em>什么意思</h2>
+<div class="pbody"><div class="tbl grow" style="grid-template-columns:1.55fr 1.05fr 1.1fr"><div class="th">红字里的第一句英文</div><div class="th">意思</div><div class="th">多半是因为</div><div class="td mono"><span>expected ';' before 'delay'</span></div><div class="td"><div class="rv " data-step="1"><div class="rv-a">在 delay 前面，应该有个 ;</div><div class="rv-q">？ 先猜一猜</div></div></div><div class="td last"><div class="rv " data-step="1"><div class="rv-a"><b>上一行</b>末尾漏了分号</div><div class="rv-q">？ 先猜一猜</div></div></div><div class="td mono"><span>'digitalwrite' was not declared in this scope</span></div><div class="td"><div class="rv " data-step="2"><div class="rv-a">不认识 digitalwrite 这个词</div><div class="rv-q">？ 先猜一猜</div></div></div><div class="td last"><div class="rv " data-step="2"><div class="rv-a">拼写或<b>大小写</b>错了</div><div class="rv-q">？ 先猜一猜</div></div></div><div class="td mono"><span>stray '\357' in program</span></div><div class="td"><div class="rv " data-step="3"><div class="rv-a">程序里混进了「怪字符」</div><div class="rv-q">？ 先猜一猜</div></div></div><div class="td last"><div class="rv " data-step="3"><div class="rv-a">混进了<b>中文标点</b>：；（），</div><div class="rv-q">？ 先猜一猜</div></div></div></div><div class="tail"><div class="strip ">大小写错时，红字下面还有一句 <code class="ic">suggested alternative: 'digitalWrite'</code>——电脑在告诉你<b>正确写法</b>。</div></div></div>
+<div class="notes"><p>「90% 的红字，都是这三句。英文好的同学来猜意思。」（后两列先盖着，一行一行猜，猜得差不多 <b>→ 揭晓</b>。）</p><p>第 1 句刚学过：「在 delay 前面应该有分号——去<b>上一行</b>末尾补。」</p><p>第 2 句：「declared 是『声明过』，not declared 就是<b>电脑不认识这个词</b>。digitalwrite 的 w 小写了，在电脑眼里这是个从没见过的新词。」</p><p>第 3 句最怪：「stray 是『走丢的』，\357 是一个怪字符的编号。看到它，<b>九成是混进了中文标点</b>——切英文输入法，把那一行的符号重打一遍。」</p><p>「还有个福利：大小写错的时候，红字下面会多一句 suggested alternative，电脑直接告诉你正确写法。」</p></div>
+</section>
+
+<section class="slide lay-flow" data-title="技能 · PRIMM 五步路线">
+<div class="phead"><span class="no">第 02 课</span>
+<div class="rail"><span class="done" style="--w:8">兴趣</span><span class="done" style="--w:10">现象</span><span class="done" style="--w:15">概念</span><span class="on" style="--w:35">技能</span><span class="" style="--w:20">小发明</span><span class="" style="--w:8">收尾</span></div>
+<span class="tslot">30–32 分</span>
+</div>
+<h2 class="ptitle">技能五步：从 Blink 拼出 <em>SOS</em></h2>
+<div class="pbody"><div class="flow grow"><div class="fl"><span class="fn">①</span><div class="ico"><svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" text-rendering="geometricPrecision"><path d="M20 58 a22 22 0 0 1 10 -36 a24 24 0 0 1 42 4 a18 18 0 0 1 8 32 Z" fill="#fff" stroke="#141414" stroke-width="5" stroke-linejoin="round"/><circle cx="26" cy="74" r="6" fill="#fff" stroke="#141414" stroke-width="4"/><circle cx="16" cy="88" r="4" fill="#141414"/><text x="51" y="54" text-anchor="middle" font-size="34" font-weight="900" fill="#D85A30" font-family="Arial Black,Arial">?</text></svg></div><div class="fk">预测</div><div class="fd">Blink 的 1000 改 200<br>猜：灯会怎样闪？</div></div><div class="farr">→</div><div class="fl"><span class="fn">②</span><div class="ico"><svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" text-rendering="geometricPrecision"><circle cx="50" cy="50" r="40" fill="#00979D" stroke="#141414" stroke-width="5"/><path d="M28 50 H70 M54 33 L71 50 L54 67" fill="none" stroke="#fff" stroke-width="10" stroke-linecap="round" stroke-linejoin="round"/></svg></div><div class="fk">运行</div><div class="fd">上传<br>对照你的猜想</div></div><div class="farr">→</div><div class="fl"><span class="fn">③</span><div class="ico"><svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" text-rendering="geometricPrecision"><path d="M8 50 Q50 10 92 50 Q50 90 8 50 Z" fill="#fff" stroke="#141414" stroke-width="5" stroke-linejoin="round"/><circle cx="50" cy="50" r="17" fill="#2F6FB0" stroke="#141414" stroke-width="4"/><circle cx="50" cy="50" r="7" fill="#141414"/></svg></div><div class="fk">读</div><div class="fd">哪 4 行是<br>一个「短」？</div></div><div class="farr">→</div><div class="fl"><span class="fn">④</span><div class="ico"><svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" text-rendering="geometricPrecision"><rect x="30" y="8" width="56" height="66" rx="4" fill="#fff" stroke="#141414" stroke-width="5"/><path d="M40 26 H74 M40 40 H74 M40 54 H64" stroke="#1F4E79" stroke-width="5" stroke-linecap="round"/><rect x="12" y="28" width="56" height="66" rx="4" fill="#FFF3DC" stroke="#141414" stroke-width="5"/><path d="M22 46 H56 M22 60 H56 M22 74 H46" stroke="#F5A623" stroke-width="5" stroke-linecap="round"/></svg></div><div class="fk">改</div><div class="fd">复制 4 行 × 2<br>拼出一个 S</div></div><div class="farr">→</div><div class="fl"><span class="fn">⑤</span><div class="ico"><svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" text-rendering="geometricPrecision"><rect x="16" y="10" width="58" height="76" rx="4" fill="#fff" stroke="#141414" stroke-width="5"/><path d="M27 30 H62 M27 44 H58 M27 58 H50" stroke="#1F4E79" stroke-width="5" stroke-linecap="round"/><g transform="rotate(40 70 70)"><rect x="62" y="34" width="16" height="50" fill="#F5A623" stroke="#141414" stroke-width="4"/><path d="M62 84 L70 98 L78 84 Z" fill="#F2C29B" stroke="#141414" stroke-width="4" stroke-linejoin="round"/></g></svg></div><div class="fk">写</div><div class="fd">复制、改数字<br>拼出 S O S</div></div></div><div class="tail"><div class="strip ">两人一组：<b>操作手</b>敲键盘，<b>检查员</b>念步骤、写预测——每做完一步，两人换位。</div></div></div>
+<div class="notes"><p>「接下来 35 分钟，每组从 Blink 出发，拼出 SOS。还是五步：先猜，再跑，读懂，改一改，最后拼出来。」</p><p>「① 把 Blink 的两个 1000 改成 200，先猜灯会怎样；② 上传对照；③ 读：哪 4 行是一个『短』；④ 改：把这 4 行复制两次，拼出一个 S；⑤ 写：再复制、改数字，拼出 S、O、S。」</p><p>「分工照旧：操作手碰键盘，检查员拿任务卡念步骤、写预测。每做完一步换位。」</p><p>（发任务卡。打开方式：文件 → 示例 → 01.Basics → Blink，或者打开上节课自己存的 Blink。55 分钟前后开始逐组验收。）</p></div>
+</section>
+
+<section class="slide lay-rowlist" data-title="技能 · 复制整行三个键">
+<div class="phead"><span class="no">第 02 课</span>
+<div class="rail"><span class="done" style="--w:8">兴趣</span><span class="done" style="--w:10">现象</span><span class="done" style="--w:15">概念</span><span class="on" style="--w:35">技能</span><span class="" style="--w:20">小发明</span><span class="" style="--w:8">收尾</span></div>
+<span class="tslot">32–36 分</span>
+</div>
+<h2 class="ptitle">复制整行：<em>行号 + 三个键</em>就够了</h2>
+<div class="pbody"><div class="rowlist grow"><div class="rowitem"><div class="num n">1</div><div class="tx">在左边的<b>行号</b>上按住鼠标往下拖，选中 4 行<small>选中的几行会变成浅蓝底</small></div></div><div class="rowitem"><div class="num n">2</div><div class="tx"><b>Ctrl+C</b> 复制</div></div><div class="rowitem"><div class="num g">3</div><div class="tx">光标点在最后那个 <code class="ic">}</code> 的<b>最前面</b>，<b>Ctrl+V</b> 粘贴<small>4 行就插在 <code class="ic">}</code> 上面了</small></div></div><div class="rowitem"><div class="num c">悔</div><div class="tx">粘错了？<b>Ctrl+Z</b> 撤销，想撤几步按几次</div></div></div><div class="tail"><div class="strip ">粘完缩进歪了？按 <b>Ctrl+T</b>（工具 → 自动格式化），IDE 帮你排整齐。</div></div></div>
+<div class="notes"><p>（老师在投影上完整做一遍，学生只看。）</p><p>「复制代码不要一个字一个字地拖。看我：在左边的<b>行号</b>上按住，往下拖 4 行，这 4 行整行选中了。」</p><p>「Ctrl+C 复制。光标点在最后那个大括号的<b>最前面</b>，Ctrl+V——4 行就插在大括号上面了。」</p><p>「粘错了别慌，<b>Ctrl+Z</b> 撤销，按几次退几步。」</p><p>「最后送一个键：<b>Ctrl+T</b>，工具菜单里叫『自动格式化』。复制来复制去缩进歪了，按一下，IDE 帮你排整齐。」</p><p>（巡视时最常见的错：粘到 <code class="ic">}</code> 外面去了。这会报 expected 什么什么——正好让学生读一次红字。）</p></div>
+</section>
+
+<section class="slide lay-cards" data-title="技能 · ①预测 ②运行">
+<div class="phead"><span class="no">第 02 课</span>
+<div class="rail"><span class="done" style="--w:8">兴趣</span><span class="done" style="--w:10">现象</span><span class="done" style="--w:15">概念</span><span class="on" style="--w:35">技能</span><span class="" style="--w:20">小发明</span><span class="" style="--w:8">收尾</span></div>
+<span class="tslot">36–40 分</span>
+</div>
+<h2 class="ptitle">① 预测 → ② 运行：<em>先猜，再上传</em></h2>
+<div class="pbody"><div class="cols2 grow lay-cards2-in"><div class="blk a"><span class="lbl">① 预测 · 检查员写在任务卡上</span><h4>Blink 的两个 1000 都改成 200</h4><p>上传之前先猜：灯会怎样闪？</p><p>写完了，操作手才能点上传。</p></div><div class="blk g"><span class="lbl">② 运行 · 操作手点上传</span><h4>上传，对照你的猜想</h4><p>看到「上传完成」再看灯。</p><div class="rv rv-ans" data-step="1"><div class="rv-a"><p class="ans">一直「短短短短」地闪：这是<b>一个短</b>在不停重复。还不是 S——S 只闪 3 下，然后要停一停。</p></div><div class="rv-q">？ 上传完再揭晓</div></div></div></div><div class="tail"><div class="strip ">猜错不扣分，<b>不猜就上传</b>才扣分。</div></div></div>
+<div class="notes"><p>「检查员，任务卡第①栏：Blink 的两个 1000 都改成 200，你猜灯会怎样？写好了，操作手才能点上传。」</p><p>「上传完成了吗？看灯。」（问几个组。）</p><p><b>→ 揭晓</b>「一直短短短短地闪——这就是一个『短』，loop 让它不停重复。」</p><p>「可这还不是 S。S 是闪 3 下，然后<b>停一停</b>。怎么办？下一页先读懂这 4 行。」</p><p>（巡视：没写预测就上传的，拦下来先补写。上节课立的规矩，这节课要继续严。）</p></div>
+</section>
+
+<section class="slide lay-code" data-title="技能 · ③读 一个短是哪 4 行">
+<div class="phead"><span class="no">第 02 课</span>
+<div class="rail"><span class="done" style="--w:8">兴趣</span><span class="done" style="--w:10">现象</span><span class="done" style="--w:15">概念</span><span class="on" style="--w:35">技能</span><span class="" style="--w:20">小发明</span><span class="" style="--w:8">收尾</span></div>
+<span class="tslot">40–45 分</span>
+</div>
+<h2 class="ptitle">③ 读：一个「短」是<em>哪 4 行</em>？</h2>
+<div class="pbody"><div class="lcol grow" style="grid-template-columns:1.173913043478261fr 1fr"><div class="code"><div class="lab "><span>Blink.ino · 改成 200 以后</span><span class="rt">9 行</span></div><pre class="nums" style="font-size:27px;line-height:1.55;counter-reset:L 0"><span class="L"><span class="t">void</span> <span class="f">setup</span>() {</span>
+<span class="L">  <span class="f">pinMode</span>(<span class="k">LED_BUILTIN</span>, <span class="k">OUTPUT</span>);</span>
+<span class="L">}</span>
+<span class="L"> </span>
+<span class="L"><span class="t">void</span> <span class="f">loop</span>() {</span>
+<span class="L"><span class="ln hlg rvl" data-step="1">  <span class="f">digitalWrite</span>(<span class="k">LED_BUILTIN</span>, <span class="k">HIGH</span>);</span></span>
+<span class="L"><span class="ln hlg rvl" data-step="1">  <span class="f">delay</span>(<span class="k">200</span>);</span></span>
+<span class="L"><span class="ln hlg rvl" data-step="1">  <span class="f">digitalWrite</span>(<span class="k">LED_BUILTIN</span>, <span class="k">LOW</span>);</span></span>
+<span class="L"><span class="ln hlg rvl" data-step="1">  <span class="f">delay</span>(<span class="k">200</span>);</span></span>
+<span class="L">}</span></pre></div><div class="rowlist qlist"><div class="rowitem"><div class="num n">1</div><div class="tx">一个「短」是哪 4 行？<div class="rv " data-step="1"><div class="rv-a"><div class="qa">第 6–9 行：亮、等、灭、等</div></div><div class="rv-q">？ 你来答</div></div></div></div><div class="rowitem"><div class="num n">2</div><div class="tx">想闪 3 下，这 4 行要有几份？<div class="rv " data-step="2"><div class="rv-a"><div class="qa">3 份——复制 <b>2 次</b></div></div><div class="rv-q">？ 你来答</div></div></div></div><div class="rowitem"><div class="num n">3</div><div class="tx">「短」变「长」，改哪个数？<div class="rv " data-step="3"><div class="rv-a"><div class="qa">HIGH 后面的 delay：<code class="ic">200</code> → <code class="ic">600</code></div></div><div class="rv-q">？ 你来答</div></div></div></div><div class="rowitem"><div class="num n">4</div><div class="tx">字母说完要停一停，改哪个数？<div class="rv " data-step="4"><div class="rv-a"><div class="qa"><b>最后一个</b> delay（LOW 后面）：<code class="ic">200</code> → <code class="ic">600</code></div></div><div class="rv-q">？ 你来答</div></div></div></div></div></div></div>
+<div class="notes"><p>（四个答案先盖着。点名回答，答对了 <b>→ 揭晓</b>。）</p><p>「一个『短』是哪 4 行？」<b>→ 揭晓①</b>「第 6 到第 9 行：亮、等、灭、等。代码里这 4 行亮起来了。」</p><p>「想闪 3 下，要几份？」<b>→ 揭晓②</b>「3 份，所以复制 2 次。」</p><p>「『短』变『长』，改哪个数？」<b>→ 揭晓③</b>「管亮的那个：HIGH 后面的 delay，200 改 600。」</p><p>「字母说完要停一停，改哪个？」<b>→ 揭晓④</b>「最后一个 delay，LOW 后面那个，改成 600。」</p><p>（第④题最容易答成「再加一行 delay」。加一行也能停，但今天的办法是<b>只改数字</b>，不加新行。）</p></div>
+</section>
+
+<section class="slide lay-codes" data-title="技能 · ④改 拼出一个 S">
+<div class="phead"><span class="no">第 02 课</span>
+<div class="rail"><span class="done" style="--w:8">兴趣</span><span class="done" style="--w:10">现象</span><span class="done" style="--w:15">概念</span><span class="on" style="--w:35">技能</span><span class="" style="--w:20">小发明</span><span class="" style="--w:8">收尾</span></div>
+<span class="tslot">45–50 分</span>
+</div>
+<h2 class="ptitle">④ 改：复制 2 次，拼出<em>一个 S</em></h2>
+<div class="pbody"><div class="codes grow" style="grid-template-columns:0.8fr 32px 1fr"><div class="code"><div class="lab "><span>一个「短」：4 行</span></div><pre style="font-size:27px;line-height:1.55">  <span class="f">digitalWrite</span>(<span class="k">LED_BUILTIN</span>, <span class="k">HIGH</span>);
+  <span class="f">delay</span>(<span class="k">200</span>);
+  <span class="f">digitalWrite</span>(<span class="k">LED_BUILTIN</span>, <span class="k">LOW</span>);
+  <span class="f">delay</span>(<span class="k">200</span>);</pre></div><div class="carr">→</div><div class="code"><div class="lab "><span>一个 S：12 行</span><span class="rt">复制了 2 次</span></div><pre style="font-size:24px;line-height:1.55">  <span class="f">digitalWrite</span>(<span class="k">LED_BUILTIN</span>, <span class="k">HIGH</span>);
+  <span class="f">delay</span>(<span class="k">200</span>);
+  <span class="f">digitalWrite</span>(<span class="k">LED_BUILTIN</span>, <span class="k">LOW</span>);
+  <span class="f">delay</span>(<span class="k">200</span>);
+  <span class="f">digitalWrite</span>(<span class="k">LED_BUILTIN</span>, <span class="k">HIGH</span>);
+  <span class="f">delay</span>(<span class="k">200</span>);
+  <span class="f">digitalWrite</span>(<span class="k">LED_BUILTIN</span>, <span class="k">LOW</span>);
+  <span class="f">delay</span>(<span class="k">200</span>);
+  <span class="f">digitalWrite</span>(<span class="k">LED_BUILTIN</span>, <span class="k">HIGH</span>);
+  <span class="f">delay</span>(<span class="k">200</span>);
+  <span class="f">digitalWrite</span>(<span class="k">LED_BUILTIN</span>, <span class="k">LOW</span>);
+<span class="ln hlc" data-note="  ← 改成 600：停一停">  <span class="f">delay</span>(<span class="k">600</span>);</span></pre></div></div><div class="tail"><div class="strip ">先预测：上传后，灯会怎样闪？ <span class="rvi" data-step="1">三短，停一下，再三短……灯在一遍遍说 S</span></div></div></div>
+<div class="notes"><p>「第④步，改。选中这 4 行，复制，在大括号前面粘两次——变成 12 行。最后一个 delay 改成 600，让灯说完一个字母停一停。」</p><p>「改完先别上传。检查员：任务卡第①栏第二行，写下你猜灯会怎么闪。」</p><p>（等大部分组上传完。）<b>→ 揭晓</b>「三短、停一下、再三短——灯在一遍一遍地说 S。」</p><p>「数一数你的代码：loop 里是不是正好 12 行？多一行少一行，节奏就乱了。」</p><p>（常见错：最后一个 delay 没改，三短之后不停，看起来是一直闪；粘贴时多粘了半行，报红字——让学生读行号。）</p></div>
+</section>
+
+<section class="slide lay-vs" data-title="技能 · 漏一个 delay 会怎样">
+<div class="phead"><span class="no">第 02 课</span>
+<div class="rail"><span class="done" style="--w:8">兴趣</span><span class="done" style="--w:10">现象</span><span class="done" style="--w:15">概念</span><span class="on" style="--w:35">技能</span><span class="" style="--w:20">小发明</span><span class="" style="--w:8">收尾</span></div>
+<span class="tslot">50–52 分</span>
+</div>
+<h2 class="ptitle">如果漏了一个 delay，<em>会怎样</em>？</h2>
+<div class="pbody"><div class="vs2 grow"><div class="code"><div class="lab n"><span>一个 S</span><span class="rt">三短 · 停</span></div><pre style="font-size:21px;line-height:1.4"><span class="t">void</span> <span class="f">loop</span>() {
+  <span class="f">digitalWrite</span>(<span class="k">LED_BUILTIN</span>, <span class="k">HIGH</span>);
+  <span class="f">delay</span>(<span class="k">200</span>);
+  <span class="f">digitalWrite</span>(<span class="k">LED_BUILTIN</span>, <span class="k">LOW</span>);
+  <span class="f">delay</span>(<span class="k">200</span>);
+  <span class="f">digitalWrite</span>(<span class="k">LED_BUILTIN</span>, <span class="k">HIGH</span>);
+  <span class="f">delay</span>(<span class="k">200</span>);
+  <span class="f">digitalWrite</span>(<span class="k">LED_BUILTIN</span>, <span class="k">LOW</span>);
+  <span class="f">delay</span>(<span class="k">200</span>);
+  <span class="f">digitalWrite</span>(<span class="k">LED_BUILTIN</span>, <span class="k">HIGH</span>);
+  <span class="f">delay</span>(<span class="k">200</span>);
+  <span class="f">digitalWrite</span>(<span class="k">LED_BUILTIN</span>, <span class="k">LOW</span>);
+  <span class="f">delay</span>(<span class="k">600</span>);
+}</pre></div><div class="vsmark">VS</div><div class="code"><div class="lab c"><span>漏了一个 delay(200);</span><span class="rt">先投票，再上传</span></div><pre style="font-size:21px;line-height:1.4"><span class="t">void</span> <span class="f">loop</span>() {
+  <span class="f">digitalWrite</span>(<span class="k">LED_BUILTIN</span>, <span class="k">HIGH</span>);
+  <span class="f">delay</span>(<span class="k">200</span>);
+  <span class="f">digitalWrite</span>(<span class="k">LED_BUILTIN</span>, <span class="k">LOW</span>);
+<span class="ln hlc" data-note="  ← 这一行删掉了"> </span>
+  <span class="f">digitalWrite</span>(<span class="k">LED_BUILTIN</span>, <span class="k">HIGH</span>);
+  <span class="f">delay</span>(<span class="k">200</span>);
+  <span class="f">digitalWrite</span>(<span class="k">LED_BUILTIN</span>, <span class="k">LOW</span>);
+  <span class="f">delay</span>(<span class="k">200</span>);
+  <span class="f">digitalWrite</span>(<span class="k">LED_BUILTIN</span>, <span class="k">HIGH</span>);
+  <span class="f">delay</span>(<span class="k">200</span>);
+  <span class="f">digitalWrite</span>(<span class="k">LED_BUILTIN</span>, <span class="k">LOW</span>);
+  <span class="f">delay</span>(<span class="k">600</span>);
+}</pre></div></div><div class="opts" style="margin-top:22px"><div class="opt"><span class="ol">A</span>还是闪 3 下</div><div class="opt rvo" data-step="1"><span class="ol">B</span>只剩 2 下，第一下变长</div><div class="opt"><span class="ol">C</span>一直亮</div><div class="opt"><span class="ol">D</span>报错，传不进去</div></div></div>
+<div class="notes"><p>「复制的时候最容易漏一行。我故意删掉第 5 行这个 delay(200)，别的不动。全班投票：A 还是闪 3 下；B 只剩 2 下、第一下变长；C 一直亮；D 报错。」（举手数票。）</p><p>（老师上传，全班看板子。）<b>→ 揭晓</b>「<b>B</b>：只剩 2 下，第一下明显长。」</p><p>「为什么？第 4 行把灯灭了，后面没有等，马上又亮——灭的时间短得眼睛看不见，前两下就<b>粘成了一下长的</b>。」</p><p>「上节课的那句话还记得吗？<b>你没让它等，它就不等。</b>还有，这次没有红字——格式全对，只是意思错了。电脑只查格式，不查意思。」</p><p>（演示完把 delay 加回去。）</p></div>
+</section>
+
+<section class="slide lay-codes" data-title="技能 · ⑤写 拼出 SOS">
+<div class="phead"><span class="no">第 02 课</span>
+<div class="rail"><span class="done" style="--w:8">兴趣</span><span class="done" style="--w:10">现象</span><span class="done" style="--w:15">概念</span><span class="on" style="--w:35">技能</span><span class="" style="--w:20">小发明</span><span class="" style="--w:8">收尾</span></div>
+<span class="tslot">52–60 分</span>
+</div>
+<h2 class="ptitle">⑤ 写：复制、改数字，拼出<em>S O S</em></h2>
+<div class="pbody"><div class="codes grow" style="grid-template-columns:1fr 32px 1fr 32px 1fr"><div class="code"><div class="lab "><span>S：三短</span></div><pre class="nums" style="font-size:18px;line-height:1.55;counter-reset:L 5"><span class="L">  <span class="c">// S：三短</span></span>
+<span class="L">  <span class="f">digitalWrite</span>(<span class="k">LED_BUILTIN</span>, <span class="k">HIGH</span>);</span>
+<span class="L">  <span class="f">delay</span>(<span class="k">200</span>);</span>
+<span class="L">  <span class="f">digitalWrite</span>(<span class="k">LED_BUILTIN</span>, <span class="k">LOW</span>);</span>
+<span class="L">  <span class="f">delay</span>(<span class="k">200</span>);</span>
+<span class="L">  <span class="f">digitalWrite</span>(<span class="k">LED_BUILTIN</span>, <span class="k">HIGH</span>);</span>
+<span class="L">  <span class="f">delay</span>(<span class="k">200</span>);</span>
+<span class="L">  <span class="f">digitalWrite</span>(<span class="k">LED_BUILTIN</span>, <span class="k">LOW</span>);</span>
+<span class="L">  <span class="f">delay</span>(<span class="k">200</span>);</span>
+<span class="L">  <span class="f">digitalWrite</span>(<span class="k">LED_BUILTIN</span>, <span class="k">HIGH</span>);</span>
+<span class="L">  <span class="f">delay</span>(<span class="k">200</span>);</span>
+<span class="L">  <span class="f">digitalWrite</span>(<span class="k">LED_BUILTIN</span>, <span class="k">LOW</span>);</span>
+<span class="L"><span class="ln hl">  <span class="f">delay</span>(<span class="k">600</span>);</span></span></pre></div><div class="carr">→</div><div class="code"><div class="lab "><span>O：亮改成 600</span></div><pre class="nums" style="font-size:18px;line-height:1.55;counter-reset:L 18"><span class="L">  <span class="c">// O：三长</span></span>
+<span class="L">  <span class="f">digitalWrite</span>(<span class="k">LED_BUILTIN</span>, <span class="k">HIGH</span>);</span>
+<span class="L"><span class="ln hl">  <span class="f">delay</span>(<span class="k">600</span>);</span></span>
+<span class="L">  <span class="f">digitalWrite</span>(<span class="k">LED_BUILTIN</span>, <span class="k">LOW</span>);</span>
+<span class="L">  <span class="f">delay</span>(<span class="k">200</span>);</span>
+<span class="L">  <span class="f">digitalWrite</span>(<span class="k">LED_BUILTIN</span>, <span class="k">HIGH</span>);</span>
+<span class="L"><span class="ln hl">  <span class="f">delay</span>(<span class="k">600</span>);</span></span>
+<span class="L">  <span class="f">digitalWrite</span>(<span class="k">LED_BUILTIN</span>, <span class="k">LOW</span>);</span>
+<span class="L">  <span class="f">delay</span>(<span class="k">200</span>);</span>
+<span class="L">  <span class="f">digitalWrite</span>(<span class="k">LED_BUILTIN</span>, <span class="k">HIGH</span>);</span>
+<span class="L"><span class="ln hl">  <span class="f">delay</span>(<span class="k">600</span>);</span></span>
+<span class="L">  <span class="f">digitalWrite</span>(<span class="k">LED_BUILTIN</span>, <span class="k">LOW</span>);</span>
+<span class="L"><span class="ln hl">  <span class="f">delay</span>(<span class="k">600</span>);</span></span></pre></div><div class="carr">→</div><div class="code"><div class="lab "><span>S：最后停 2000</span></div><pre class="nums" style="font-size:18px;line-height:1.55;counter-reset:L 31"><span class="L">  <span class="c">// S：三短</span></span>
+<span class="L">  <span class="f">digitalWrite</span>(<span class="k">LED_BUILTIN</span>, <span class="k">HIGH</span>);</span>
+<span class="L">  <span class="f">delay</span>(<span class="k">200</span>);</span>
+<span class="L">  <span class="f">digitalWrite</span>(<span class="k">LED_BUILTIN</span>, <span class="k">LOW</span>);</span>
+<span class="L">  <span class="f">delay</span>(<span class="k">200</span>);</span>
+<span class="L">  <span class="f">digitalWrite</span>(<span class="k">LED_BUILTIN</span>, <span class="k">HIGH</span>);</span>
+<span class="L">  <span class="f">delay</span>(<span class="k">200</span>);</span>
+<span class="L">  <span class="f">digitalWrite</span>(<span class="k">LED_BUILTIN</span>, <span class="k">LOW</span>);</span>
+<span class="L">  <span class="f">delay</span>(<span class="k">200</span>);</span>
+<span class="L">  <span class="f">digitalWrite</span>(<span class="k">LED_BUILTIN</span>, <span class="k">HIGH</span>);</span>
+<span class="L">  <span class="f">delay</span>(<span class="k">200</span>);</span>
+<span class="L">  <span class="f">digitalWrite</span>(<span class="k">LED_BUILTIN</span>, <span class="k">LOW</span>);</span>
+<span class="L"><span class="ln hlc">  <span class="f">delay</span>(<span class="k">2000</span>);</span></span></pre></div></div><div class="tail"><div class="strip ">改完数一数：一共闪 <b>9 下</b>；最后那个 delay 是 <b>2000</b>——停 2 秒，别人才知道从哪开始。</div></div></div>
+<div class="notes"><p>「最后一步，拼出 SOS。把你的 S 整段复制两次：中间那段改成 O——三个管亮的 delay 都改成 600；最后那段还是 S，但最后一个 delay 改成 <b>2000</b>。」</p><p>「每段前面可以加一行注释，写上 S、O、S，自己找起来方便。」</p><p>「改完先预测，再上传：灯应该三短、三长、三短，然后停 2 秒，再从头说。」</p><p>（巡视重点：O 只改了亮的 delay，没把灭的也改成 600——灭的不用改；最后一段忘改 2000，SOS 连成一串分不出头尾。）</p><p>「做完的组举手，我来验收。」</p></div>
+</section>
+
+<section class="slide lay-rowlist" data-title="技能 · ★基础档验收">
+<div class="phead"><span class="no">第 02 课</span>
+<div class="rail"><span class="done" style="--w:8">兴趣</span><span class="done" style="--w:10">现象</span><span class="done" style="--w:15">概念</span><span class="on" style="--w:35">技能</span><span class="" style="--w:20">小发明</span><span class="" style="--w:8">收尾</span></div>
+<span class="tslot">55–65 分</span>
+</div>
+<h2 class="ptitle">★ 基础档验收：<em>老师逐组来查</em></h2>
+<div class="pbody"><div class="rowlist grow"><div class="rowitem"><span class="box"></span><div class="tx">灯闪出 <b>三短、三长、三短</b>，长的明显比短的长</div></div><div class="rowitem"><span class="box"></span><div class="tx">字母之间有停顿；一遍说完<b>停 2 秒</b>再重来</div></div><div class="rowitem"><span class="box"></span><div class="tx">两人都能指着代码说出：<b>哪几行是 O</b>、哪个数管「长」</div></div></div><div class="tail"><div class="strip ">三项都过 → 老师在任务卡上签字 → 进入小发明。没过的组别急，接下来 20 分钟老师专门陪你。</div></div></div>
+<div class="notes"><p>「做完的组举手，我一组一组来验收。三项：灯闪出三短三长三短，长的明显比短的长；字母之间有停顿，一遍说完停 2 秒；第三项<b>两个人都要过</b>——我随便指一个人：哪几行是 O？哪个数管长？」</p><p>（验收从 55 分钟左右滚动进行，谁先举手先验谁。第三项随机点组里任意一人。）</p><p>「过了的组，翻到下一页，自己选进阶还是挑战。没过的组，下一段时间我坐到你们旁边。」</p><p>（记下没过的组号。最常见的卡点：粘贴位置错、O 段改错数字。一个班超过三分之一没过，第 3 课开头先补。）</p></div>
+</section>
+
+<section class="slide lay-tiers3" data-title="小发明 · 三档任务自己选">
+<div class="phead"><span class="no">第 02 课</span>
+<div class="rail"><span class="done" style="--w:8">兴趣</span><span class="done" style="--w:10">现象</span><span class="done" style="--w:15">概念</span><span class="done" style="--w:35">技能</span><span class="on" style="--w:20">小发明</span><span class="" style="--w:8">收尾</span></div>
+<span class="tslot">65–85 分</span>
+</div>
+<h2 class="ptitle">三档任务，<em>自己选</em></h2>
+<div class="pbody"><div class="cols3 grow"><div class="blk tier t1"><div class="hd">★ 基础 · 人人必会</div><p class="task">复制、粘贴<b>整行</b>再改数字，做出 <b>SOS</b>（三短三长三短）</p><p class="who">没过验收的组继续做这一档，老师来陪你</p><div class="tfill">□ 三短三长三短　□ 停 2 秒　□ 签字</div></div><div class="blk tier t2"><div class="hd">★★ 进阶 · 新组合</div><p class="task">故意制造 <b>3 种错误</b>（漏分号、大小写、中文标点），记下每种报错的<b>第一句英文</b></p><p class="who">一次只干一件坏事；记完就 Ctrl+Z 改回去</p><div class="tfill">三句英文抄在任务卡第③栏</div></div><div class="blk tier t3"><div class="hd">★★★ 挑战 · 综合</div><p class="task">修好老师给的「<b>三错 Blink</b>」，再按 <b>Ctrl+T</b> 整理格式</p><p class="who">共享文件夹里的 sancuo 项目，复制到桌面再打开</p><div class="tfill">找到的 3 个错：第 __ 行、第 __ 行、第 __ 行</div></div></div><div class="tail"><div class="strip ">过了基础档的组自选 ★★ 或 ★★★。做完 ★★ 还有时间？接着挑战 ★★★。</div></div></div>
+<div class="notes"><p>「过了基础档的组，现在自己选。」</p><p>「<b>两颗星</b>：故意干三件坏事——删一个分号、把一个大写改小写、把一个分号换成中文的。每干一件，点验证，把红字的<b>第一句英文</b>和行号抄在任务卡第③栏，抄完 Ctrl+Z 改回去。」</p><p>「<b>三颗星</b>：共享文件夹里有个 sancuo 项目，就是『三错 Blink』，里面藏了 3 个错，缩进也乱成一团。复制到桌面打开，一个一个修好，再按 Ctrl+T 排整齐，最后上传。」</p><p>（这 20 分钟老师的主要工作是<b>陪没过基础档的组</b>。挑战组卡住了，先让他们看第 23 页速查表。）</p></div>
+</section>
+
+<section class="slide lay-rowlist" data-title="小发明 · ★★ 一次一件坏事">
+<div class="phead"><span class="no">第 02 课</span>
+<div class="rail"><span class="done" style="--w:8">兴趣</span><span class="done" style="--w:10">现象</span><span class="done" style="--w:15">概念</span><span class="done" style="--w:35">技能</span><span class="on" style="--w:20">小发明</span><span class="" style="--w:8">收尾</span></div>
+<span class="tslot">65–85 分</span>
+</div>
+<h2 class="ptitle">★★ 故意写错：一次只干<em>一件坏事</em></h2>
+<div class="pbody"><div class="rowlist grow"><div class="rowitem"><div class="num c">1</div><div class="tx">坏事 ①：删掉一个<b>分号</b> → 点<b>验证</b>（对勾）<small>把红字的行号和第一句英文抄在任务卡第③栏</small></div></div><div class="rowitem"><div class="num g">2</div><div class="tx"><b>Ctrl+Z</b> 改回去，再验证一次<small>看到「编译完成」，才能干下一件</small></div></div><div class="rowitem"><div class="num c">3</div><div class="tx">坏事 ②：把一个<b>大写字母</b>改成小写<small>坏事 ③：把一个 <code class="ic">;</code> 换成中文的「；」</small></div></div><div class="rowitem"><div class="num n">4</div><div class="tx">对照：红字说的<b>第几行</b>，和你改的是同一行吗？</div></div></div><div class="tail"><div class="strip ">想一想：漏分号时，红字说的行号为什么常常是<b>下一行</b>？</div></div></div>
+<div class="notes"><p>（★★ 的组做的时候，这一页可以一直开着。）</p><p>「为什么一次只干一件坏事？因为几件一起干，红字搅在一起，你就分不清哪句是哪件坏事造成的。」</p><p>「每干完一件就 Ctrl+Z 改回去，验证一次，看到『编译完成』再干下一件。不然最后改不回来了。」</p><p>「抄的时候注意对照行号：你改的是第几行？红字说的是第几行？漏分号那件，你会发现一个规律。」</p><p>（收尾前请做完的组报一下三句英文，老师写在黑板上，和第 11 页对一对。）</p></div>
+</section>
+
+<section class="slide lay-code" data-title="小发明 · ★★★ 三错 Blink">
+<div class="phead"><span class="no">第 02 课</span>
+<div class="rail"><span class="done" style="--w:8">兴趣</span><span class="done" style="--w:10">现象</span><span class="done" style="--w:15">概念</span><span class="done" style="--w:35">技能</span><span class="on" style="--w:20">小发明</span><span class="" style="--w:8">收尾</span></div>
+<span class="tslot">65–85 分</span>
+</div>
+<h2 class="ptitle">★★★ 修好<em>三错 Blink</em>，再按 Ctrl+T</h2>
+<div class="pbody"><div class="lcol grow" style="grid-template-columns:1.272727272727273fr 1fr"><div class="code"><div class="lab "><span>sancuo.ino · 共享文件夹里有</span><span class="rt">藏了 3 个错</span></div><pre class="nums" style="font-size:27px;line-height:1.55;counter-reset:L 0"><span class="L"><span class="t">void</span> <span class="f">setup</span>() {</span>
+<span class="L"><span class="f">pinMode</span>(<span class="k">LED_BUILTIN</span>, <span class="k">OUTPUT</span>);</span>
+<span class="L">    }</span>
+<span class="L"> </span>
+<span class="L"><span class="t">void</span> <span class="f">loop</span>() {</span>
+<span class="L">      <span class="f">digitalWrite</span>(<span class="k">LED_BUILTIN</span>, <span class="k">HIGH</span>)</span>
+<span class="L">  <span class="f">delay</span>(<span class="k">1000</span>);</span>
+<span class="L"><span class="f">digitalwrite</span>(<span class="k">LED_BUILTIN</span>, <span class="k">LOW</span>);</span>
+<span class="L">        <span class="f">delay</span>(<span class="k">1000</span>);</span></pre></div><div class="figcards"><div class="blk c"><span class="lbl">怎么修</span><h4>一次只看第一条红字</h4><p>找行号 → 读第一句英文 → 看这一行和上一行。改完点验证，再看下一条。</p></div><div class="blk n"><span class="lbl">Ctrl+T</span><h4>让 IDE 帮你排整齐</h4><p>缩进乱成一团？按 Ctrl+T。排完哪里歪了，往往就是哪里少了 <code class="ic">}</code>。</p></div></div></div><div class="tail"><div class="strip ">记下来：一共验证了几次，才看到「编译完成」？</div></div></div>
+<div class="notes"><p>「三颗星的任务：这段 Blink 藏了 3 个错，而且缩进乱七八糟，像被人揉过。」</p><p>「办法还是读报错三步：先找行号，再读第一句英文，再看这一行和上一行。<b>一次只看第一条红字</b>，修好了验证一次，再看下一条。」</p><p>「有一个错，红字会说 expected 什么 at end of input——在『结尾』少了东西。这时候按 Ctrl+T，看看排好以后哪里不对劲。」</p><p>（答案：第 6 行末尾补分号；第 8 行 digitalwrite 的 w 改大写；最后补一个 <code class="ic">}</code>。三条红字一次都会报出来，但要提醒学生从第一条修起。修好后上传，灯 1 秒一闪。）</p></div>
+</section>
+
+<section class="slide lay-table" data-title="小发明 · 卡住了先查这张">
+<div class="phead"><span class="no">第 02 课</span>
+<div class="rail"><span class="done" style="--w:8">兴趣</span><span class="done" style="--w:10">现象</span><span class="done" style="--w:15">概念</span><span class="done" style="--w:35">技能</span><span class="on" style="--w:20">小发明</span><span class="" style="--w:8">收尾</span></div>
+<span class="tslot">65–85 分</span>
+</div>
+<h2 class="ptitle">卡住了？<em>先查这张</em>，再举手</h2>
+<div class="pbody"><div class="tbl grow" style="grid-template-columns:1.35fr 1.05fr 1.4fr"><div class="th">看到什么</div><div class="th">多半是因为</div><div class="th">怎么办</div><div class="td k"><span>红字 expected ';' before …</span></div><div class="td"><span>上一行漏了分号</span></div><div class="td last"><span>去报错行的<b>上一行</b>末尾补 ;</span></div><div class="td k"><span>红字 '…' was not declared in this scope</span></div><div class="td"><span>名字拼错或大小写错</span></div><div class="td last"><span>看下面 suggested alternative 给的写法</span></div><div class="td k"><span>红字 stray '\357' in program</span></div><div class="td"><span>混进了中文标点</span></div><div class="td last"><span>切英文输入法，重打这一行的符号</span></div><div class="td k"><span>红字 expected '}' at end of input</span></div><div class="td"><span>少了一个 }</span></div><div class="td last"><span>Ctrl+T 排整齐，看哪里缩进歪了</span></div><div class="td k"><span>灯只闪 2 下，或节奏乱了</span></div><div class="td"><span>漏了一行 delay，或数字改错了</span></div><div class="td last"><span>对照「一个 S」的 12 行：亮、等、灭、等</span></div><div class="td k"><span>上传完成，灯的样子却没变</span></div><div class="td"><span>改的是另一个窗口里的程序</span></div><div class="td last"><span>关掉多余的窗口，在改过的窗口里上传</span></div></div></div>
+<div class="notes"><p>（小发明环节投影停在这一页。）</p><p>「卡住了先别举手，<b>先查这张表</b>：你看到的是哪一行？照右边做一遍，还不行再举手。」</p><p>「前四行都是红字。还记得三步吗？找行号，读第一句英文，看这一行和上一行。」</p><p>「后两行没有红字，但灯不对：节奏乱了，多半是复制的时候漏了一行或者多了一行。」</p><p>（老师的现场判断：学生说『报错了』，先问『第几行？第一句英文是什么？』，让学生自己读出来再帮忙。最后一行很常见：同时开了好几个 IDE 窗口，改的和传的不是同一个。）</p></div>
+</section>
+
+<section class="slide lay-rowlist" data-title="收尾 · 今天的三个发现">
+<div class="phead"><span class="no">第 02 课</span>
+<div class="rail"><span class="done" style="--w:8">兴趣</span><span class="done" style="--w:10">现象</span><span class="done" style="--w:15">概念</span><span class="done" style="--w:35">技能</span><span class="done" style="--w:20">小发明</span><span class="on" style="--w:8">收尾</span></div>
+<span class="tslot">85–90 分</span>
+</div>
+<h2 class="ptitle">今天的<em>三个发现</em></h2>
+<div class="pbody"><div class="rowlist grow"><div class="rowitem"><div class="num g">1</div><div class="tx"><div class="rv " data-step="1"><div class="rv-a">每个命令都是一个格式：<b>名字(参数);</b>——名字大小写不能错，参数顺序不能换</div><div class="rv-q">？ 先请同学说说看</div></div></div></div><div class="rowitem"><div class="num a">2</div><div class="tx"><div class="rv " data-step="2"><div class="rv-a">红字不可怕：<b>先找行号，再读第一句英文</b>，再看这一行和上一行</div><div class="rv-q">？ 先请同学说说看</div></div></div></div><div class="rowitem"><div class="num n">3</div><div class="tx"><div class="rv " data-step="3"><div class="rv-a">同样的句子不用重敲：<b>复制整行，再改数字</b></div><div class="rv-q">？ 先请同学说说看</div></div></div></div></div><div class="tail"><div class="strip ">交作业：代码截图（组号_姓名_第2课）+ 任务卡。每人说一句「今天哪里卡住了」。</div></div></div>
+<div class="notes"><p>（三条先盖着。）「今天发现了哪三件事？」每一条先请一位同学说，说得差不多了 <b>→ 揭晓</b>，再请下一位。</p><p>「交作业：把能说 SOS 的代码截个图，文件名写组号、姓名、第2课，交到班级文件夹。任务卡交上来，第③栏抄了红字的组，我会看你们抄得对不对。」</p><p>「每人说一句：今天哪里卡住了？」</p><p>（快速收一圈，不评价。收上来的任务卡看两样：预测写没写；第③栏的英文抄得准不准。）</p></div>
+</section>
+
+<section class="slide lay-cards" data-title="收尾 · 下节课交通灯">
+<div class="phead"><span class="no">第 02 课</span>
+<div class="rail"><span class="done" style="--w:8">兴趣</span><span class="done" style="--w:10">现象</span><span class="done" style="--w:15">概念</span><span class="done" style="--w:35">技能</span><span class="done" style="--w:20">小发明</span><span class="on" style="--w:8">收尾</span></div>
+<span class="tslot">85–90 分</span>
+</div>
+<h2 class="ptitle">下节课：<em>交通灯</em>——第一次接线</h2>
+<div class="pbody"><div class="cols2 grow lay-cards2-in"><div class="blk n"><span class="lbl">第 3 课 · 作品</span><h4>红 → 绿 → 黄，一直循环</h4><p>扩展板 + 交通灯模块，插 4 根线。</p><p>新句型：<b>setup 和 loop 的分工</b>、<code class="ic">pinMode</code></p></div><div class="blk c"><span class="lbl">先想一个问题</span><h4>两个 G 是一回事吗？</h4><p>扩展板上有一排针印着 G，交通灯模块上也有一个 G。</p><p>A 是　B 不是——下节课试给你看。</p></div></div><div class="tail"><div class="strip ">回家观察：路口的红绿灯，红、绿、黄各亮几秒？黄灯之后是什么灯？</div></div></div>
+<div class="notes"><p>「下节课我们第一次<b>接线</b>：UNO 上插一块扩展板，再接一个交通灯模块，做一个会自己变的红绿灯。新句型是 setup 和 loop 的分工，还有 pinMode。」</p><p>「先想一个问题：扩展板上有一排针印着 G，交通灯模块上也有一个针印着 G。它们是一回事吗？下节课第一件事就试给你们看。」</p><p>「回家作业：路过红绿灯的时候数一数，红、绿、黄各亮几秒？黄灯之后是什么灯？记在任务卡背面。」</p><p>（课后：把没过基础档的组号记进反馈；准备第 3 课的扩展板、交通灯模块、母对母杜邦线，每组先清点一遍。）</p></div>
+</section>
+<div class="deck-footer"><span>Arduino UNO 入门 · 单元一 从代码到电路 · 第 2 课 SOS 灯语 + 读报错</span><span class="fright"><span class="rv-left" style="display:none"></span><span class="slide-number" data-current="1" data-total="25"></span></span></div>
+<div class="progress-bar"><span></span></div>
+</div>
+<script src="assets/fitstage.js"></script>
+<script src="assets/runtime.js"></script>
+</body>
+</html>

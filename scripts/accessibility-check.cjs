@@ -37,6 +37,8 @@ const ROUTES = [
   '/hardware',
   // Check both science catalogs and their embedded classroom presentations.
   '/hardware/esp32-curriculum',
+  '/hardware/arduino',
+  '/hardware/arduino/1',
   '/hardware/esp32/1',
   '/innovation-foundation',
   '/innovation-foundation/1',

@@ -11,5 +11,7 @@ test('question paper routes receive unique paper metadata', () => {
 test('course and hardware routes receive route-specific metadata', () => {
   assert.match(getRouteSeo('/level7').fullTitle, /7级知识体系/);
   assert.match(getRouteSeo('/hardware/esp32-curriculum').fullTitle, /ESP32 MicroPython 高阶科创/);
+  assert.match(getRouteSeo('/hardware/arduino').fullTitle, /Arduino UNO 零基础课程/);
+  assert.match(getRouteSeo('/hardware/arduino/16').fullTitle, /智能垃圾桶/);
   assert.match(getRouteSeo('/innovation-foundation').fullTitle, /初阶科创/);
 });

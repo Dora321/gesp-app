@@ -1,0 +1,367 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>第04课 串口计数器 · Arduino UNO 入门</title>
+<link rel="stylesheet" href="assets/base.css">
+<link rel="stylesheet" id="theme-link" href="assets/theme-arduino.css">
+<link rel="stylesheet" href="assets/animations.css">
+</head>
+<body>
+<div class="deck" data-theme-base="assets/">
+<section class="slide lay-cover is-active" data-title="封面 · 课前检查">
+<span class="cv-bar">Arduino UNO 入门 / 单元二「变量与判断」</span>
+<h1 class="cv-title">串口<em>计数器</em></h1>
+<p class="cv-sub"><code class="ic">int count = 0;</code>——一个有名字的盒子</p>
+<div class="cv-tags"><span class="tag">变量</span><span class="tag">= 和 ++</span><span class="tag">手写 5 行</span><span class="tag">90 分钟</span></div>
+<div class="cv-no">04</div>
+<div class="cv-icon"><svg viewBox="0 0 560 360" xmlns="http://www.w3.org/2000/svg" font-family="Microsoft YaHei" text-rendering="geometricPrecision"><rect x="250" y="30" width="290" height="300" rx="10" fill="#37474F" stroke="#141414" stroke-width="6"/><rect x="264" y="44" width="262" height="272" fill="#fff"/><rect x="264" y="44" width="262" height="36" fill="#ECEFF1"/><text x="278" y="70" font-size="18" font-weight="800" fill="#333">串口监视器</text><text x="284" y="116" font-size="30" font-weight="800" fill="#111" font-family="Consolas,Arial">1</text><text x="284" y="158" font-size="30" font-weight="800" fill="#111" font-family="Consolas,Arial">2</text><text x="284" y="200" font-size="30" font-weight="800" fill="#111" font-family="Consolas,Arial">3</text><text x="284" y="242" font-size="30" font-weight="800" fill="#111" font-family="Consolas,Arial">4</text><text x="284" y="284" font-size="30" font-weight="800" fill="#111" font-family="Consolas,Arial">5</text><path d="M55 130 l18 -18 h150 l-18 18 Z" fill="#F7E3B5" stroke="#141414" stroke-width="4" stroke-linejoin="round"/><path d="M205 130 l18 -18 v120 l-18 18 Z" fill="#E9C77E" stroke="#141414" stroke-width="4" stroke-linejoin="round"/><rect x="55" y="130" width="150" height="120" fill="#F5A623" stroke="#141414" stroke-width="4"/><text x="130" y="210" text-anchor="middle" font-size="56" font-weight="900" fill="#141414" font-family="Consolas,Arial">5</text><rect x="84" y="260" width="92" height="30" rx="4" fill="#fff" stroke="#141414" stroke-width="3"/><text x="130" y="282" text-anchor="middle" font-size="20" font-weight="900" fill="#1F4E79" font-family="Consolas,Arial">count</text></svg></div>
+<div class="notes"><p><b>课前 5 分钟</b>：本课<b>不接任何模块</b>，每组只要 UNO（带扩展板也行）+ 数据线；共享文件夹里有程序 counter。</p><p>今天是第二单元的第一课：从今天起，学生要<b>自己写代码</b>了——基础档手写 5 行。</p><p>今天的<b>保底目标</b>：每组在空模板里写出 5 行，串口每秒打印 1、2、3……；每人能说出变量为什么要写在 loop 外面。</p><p>今天唯一的新语法：<b>int 变量、=、++</b>。Serial 的两句是工具，照抄。</p><p>先猜再揭晓照旧：按 → 揭晓，揭晓完再按 → 翻页。</p></div>
+</section>
+
+<section class="slide lay-figure" data-title="兴趣 · 它怎么记住数到几">
+<div class="phead"><span class="no">第 04 课</span>
+<div class="rail"><span class="on" style="--w:8">兴趣</span><span class="" style="--w:10">现象</span><span class="" style="--w:15">概念</span><span class="" style="--w:35">技能</span><span class="" style="--w:20">小发明</span><span class="" style="--w:8">收尾</span></div>
+<span class="tslot">0–5 分</span>
+</div>
+<h2 class="ptitle">检票员的计数器，怎么<em>记住</em>数到几？</h2>
+<div class="pbody">
+  <div class="figgrid grow" style="--figw:0.95fr"><div class="figbox"><svg viewBox="0 0 600 520" xmlns="http://www.w3.org/2000/svg" font-family="Microsoft YaHei" text-rendering="geometricPrecision"><rect x="262" y="40" width="76" height="70" rx="10" fill="#9AA5AB" stroke="#141414" stroke-width="5"/><rect x="276" y="20" width="48" height="30" rx="6" fill="#D85A30" stroke="#141414" stroke-width="4"/><circle cx="300" cy="280" r="170" fill="#CFD8DC" stroke="#141414" stroke-width="6"/><circle cx="300" cy="280" r="140" fill="#ECEFF1" stroke="#141414" stroke-width="4"/><rect x="170" y="230" width="260" height="96" rx="8" fill="#263238" stroke="#141414" stroke-width="5"/><rect x="182" y="242" width="54" height="72" fill="#fff" stroke="#141414" stroke-width="2"/><text x="209" y="300" text-anchor="middle" font-size="56" font-weight="900" fill="#141414" font-family="Consolas,Arial">0</text><rect x="243" y="242" width="54" height="72" fill="#fff" stroke="#141414" stroke-width="2"/><text x="270" y="300" text-anchor="middle" font-size="56" font-weight="900" fill="#141414" font-family="Consolas,Arial">0</text><rect x="304" y="242" width="54" height="72" fill="#fff" stroke="#141414" stroke-width="2"/><text x="331" y="300" text-anchor="middle" font-size="56" font-weight="900" fill="#141414" font-family="Consolas,Arial">4</text><rect x="365" y="242" width="54" height="72" fill="#fff" stroke="#141414" stroke-width="2"/><text x="392" y="300" text-anchor="middle" font-size="56" font-weight="900" fill="#141414" font-family="Consolas,Arial">2</text><path d="M450 420 C520 460 560 420 560 370" fill="none" stroke="#141414" stroke-width="6" stroke-linecap="round"/><text x="356" y="44" font-size="26" font-weight="900" fill="#1F4E79">← 按一下，加 1</text><text x="300" y="500" text-anchor="middle" font-size="22" font-weight="800" fill="#555">它怎么「记住」已经数到 42 了？</text></svg></div><div class="figcards"><div class="blk n"><span class="lbl">回家作业</span><h4>你每天会「数」什么？</h4><p>跳绳、步数、作业页数……说一个。</p></div><div class="blk a"><span class="lbl">想一想</span><h4>板子怎么记住数到几？</h4><p>灯只有亮和灭，可数字要一直往上加。</p><div class="rv rv-ans" data-step="1"><div class="rv-a"><p class="ans">用一个<b>盒子</b>装住它：盒子有名字，里面放一个数，随时能改。这个盒子叫<b>变量</b>。</p></div><div class="rv-q">？ 先猜一猜</div></div></div></div></div>
+  <div class="tail"><div class="strip ">今天的作品：让板子在电脑屏幕上<b>数数</b>——1、2、3……每秒加 1。</div></div>
+</div>
+<div class="notes"><p>「上节课的作业：你每天会数哪些东西？」（请三四位同学说：跳绳、步数、作业页数……）</p><p>「这是检票员手里的计数器，进来一个人，按一下，加 1。它现在显示 42。问题来了：它怎么『记住』已经数到 42 了？下次按，它怎么知道该变成 43？」</p><p>「我们的板子也要数数。可是上节课我们只会让灯亮、灭——数字要一直往上加，板子用什么记住它？」（等两三个猜测。）</p><p><b>→ 揭晓</b>「用一个<b>盒子</b>：盒子有名字，里面放一个数，随时能改。这个盒子，在程序里叫<b>变量</b>。今天就做第一个变量。」</p></div>
+</section>
+
+<section class="slide lay-figure" data-title="兴趣 · 板子怎么把数告诉我们">
+<div class="phead"><span class="no">第 04 课</span>
+<div class="rail"><span class="on" style="--w:8">兴趣</span><span class="" style="--w:10">现象</span><span class="" style="--w:15">概念</span><span class="" style="--w:35">技能</span><span class="" style="--w:20">小发明</span><span class="" style="--w:8">收尾</span></div>
+<span class="tslot">0–5 分</span>
+</div>
+<h2 class="ptitle">板子数到几，怎么<em>告诉</em>我们？</h2>
+<div class="pbody">
+  <div class="figgrid grow" style="--figw:1.15fr"><div class="figbox"><svg viewBox="0 0 760 520" xmlns="http://www.w3.org/2000/svg" font-family="Microsoft YaHei" text-rendering="geometricPrecision"><defs><marker id="ar4" viewBox="0 0 10 10" refX="7" refY="5" markerWidth="5" markerHeight="5" orient="auto"><path d="M0 0 L10 5 L0 10 Z" fill="#141414"/></marker></defs><rect x="420" y="30" width="320" height="250" rx="10" fill="#37474F" stroke="#141414" stroke-width="5"/><rect x="436" y="46" width="288" height="218" fill="#fff"/><rect x="436" y="46" width="288" height="34" fill="#ECEFF1"/><text x="450" y="70" font-size="18" font-weight="800" fill="#333">串口监视器</text><rect x="608" y="52" width="108" height="22" rx="3" fill="#fff" stroke="#90A4AE" stroke-width="2"/><text x="662" y="69" text-anchor="middle" font-size="14" fill="#333">波特率 9600</text><text x="452" y="112" font-size="26" font-weight="800" fill="#111" font-family="Consolas,Arial">1</text><text x="452" y="150" font-size="26" font-weight="800" fill="#111" font-family="Consolas,Arial">2</text><text x="452" y="188" font-size="26" font-weight="800" fill="#111" font-family="Consolas,Arial">3</text><text x="452" y="226" font-size="26" font-weight="800" fill="#111" font-family="Consolas,Arial">4</text><path d="M400 280 H760 L730 312 H430 Z" fill="#90A4AE" stroke="#141414" stroke-width="5" stroke-linejoin="round"/><rect x="50" y="300" width="230" height="160" rx="14" fill="#1C7C88" stroke="#141414" stroke-width="5"/><rect x="30" y="336" width="70" height="56" rx="5" fill="#C9CED3" stroke="#141414" stroke-width="4"/><text x="132" y="440" font-size="40" font-weight="900" font-style="italic" fill="#fff" font-family="Arial Black,Arial">UNO</text><path d="M30 364 C-10 364 0 510 200 510 C520 510 720 470 730 312" fill="none" stroke="#333" stroke-width="10" stroke-linecap="round"/><path d="M410 120 C300 120 220 170 190 290" fill="none" stroke="#1F4E79" stroke-width="5" marker-end="url(#ar4)"/><text x="40" y="150" font-size="24" font-weight="900" fill="#1F4E79">上传：程序 → 板子</text><path d="M285 384 C380 384 520 384 580 322" fill="none" stroke="#D85A30" stroke-width="5" stroke-dasharray="10 7" marker-end="url(#ar4)"/><text x="310" y="362" font-size="24" font-weight="900" fill="#D85A30">Serial：板子 → 电脑</text></svg></div><div class="figcards"><div class="blk n"><span class="lbl">以前</span><h4>USB 线：电脑 → 板子</h4><p>上传程序。</p></div><div class="blk c"><span class="lbl">今天</span><h4>USB 线：板子 → 电脑</h4><p>板子用 <b>Serial（串口）</b>把文字发给电脑。</p></div><div class="blk g"><span class="lbl">在哪看</span><h4>串口监视器</h4><p>工具 → 串口监视器，或右上角的放大镜按钮。</p></div></div></div>
+  
+</div>
+<div class="notes"><p>「板子数到几，我们怎么知道？总不能每数一下闪一下灯，那数到 100 就得数瞎了。」</p><p>「以前这根 USB 线只干一件事：把程序从电脑传进板子。今天它还要干<b>反过来</b>的事：板子把文字发给电脑。这条路叫<b>串口</b>，英文 Serial。」</p><p>「电脑这边，用 IDE 里的<b>串口监视器</b>来看：工具菜单 → 串口监视器，或者点右上角那个放大镜按钮。」</p><p>「上节课我们说程序像打游戏，今天板子学会了『说话』。」</p></div>
+</section>
+
+<section class="slide lay-codes" data-title="现象 · 老师的计数器">
+<div class="phead"><span class="no">第 04 课</span>
+<div class="rail"><span class="done" style="--w:8">兴趣</span><span class="on" style="--w:10">现象</span><span class="" style="--w:15">概念</span><span class="" style="--w:35">技能</span><span class="" style="--w:20">小发明</span><span class="" style="--w:8">收尾</span></div>
+<span class="tslot">5–15 分</span>
+</div>
+<h2 class="ptitle">老师的计数器：串口里<em>会出现什么</em>？</h2>
+<div class="pbody"><div class="codes grow" style="grid-template-columns:1.75fr 0.6fr"><div class="code"><div class="lab "><span>counter.ino</span><span class="rt">共 13 行</span></div><pre class="nums" style="font-size:23px;line-height:1.4;counter-reset:L 0"><span class="L"><span class="c">// ===== ① 引脚（今天不用） =====</span></span>
+<span class="L"> </span>
+<span class="L"><span class="c">// ===== ② 变量 =====</span></span>
+<span class="L"><span class="t">int</span> count = <span class="k">0</span>;            <span class="c">// 做一个盒子，名字叫 count，先放 0</span></span>
+<span class="L"> </span>
+<span class="L"><span class="t">void</span> <span class="f">setup</span>() {    <span class="c">// ③ 只做一次：准备</span></span>
+<span class="L">  <span class="t">Serial</span>.<span class="f">begin</span>(<span class="k">9600</span>);     <span class="c">// 打开串口，速度 9600</span></span>
+<span class="L">}</span>
+<span class="L"> </span>
+<span class="L"><span class="t">void</span> <span class="f">loop</span>() {     <span class="c">// ④ 一直重复：干活</span></span>
+<span class="L">  count++;                <span class="c">// 盒子里的数加 1</span></span>
+<span class="L">  <span class="t">Serial</span>.<span class="f">println</span>(count);  <span class="c">// 打印到串口，换行</span></span>
+<span class="L">  <span class="f">delay</span>(<span class="k">1000</span>);            <span class="c">// 等 1 秒</span></span>
+<span class="L">}</span></pre></div><div class="code outbox serial"><div class="lab n"><span>串口监视器</span><span class="rt">波特率 9600</span></div><div class="rv rv-out" data-step="1"><div class="rv-a"><pre class="out" style="font-size:26px;line-height:1.55"><span class="ol ">1</span>
+<span class="ol ">2</span>
+<span class="ol ">3</span>
+<span class="ol ">4</span>
+<span class="ol ">5</span>
+<span class="ol ">6</span></pre></div><div class="rv-q">？ 先猜再打开</div></div></div></div><div class="tail"><div class="strip ">每秒多一行：1、2、3……它怎么<b>记住</b>上一次数到几？</div></div></div>
+<div class="notes"><p>（老师上传 counter，先别打开串口监视器。）</p><p>「这是我的计数器程序，13 行，大部分你们都认识：setup、loop、delay。新东西有三个：第 4 行的 <code class="ic">int count = 0;</code>，第 11 行的 <code class="ic">count++;</code>，还有两句 Serial。」</p><p>「上传好了。打开串口监视器之前，先猜：右边会出现什么？」（请两三个同学说。）</p><p>（老师打开串口监视器，右边下拉框选波特率 9600。）<b>→ 揭晓</b>「每秒多一行：1、2、3、4……」</p><p>「它是怎么记住上一次数到几的？秘密在第 4 行，等会儿讲。先看一个怪事。」</p></div>
+</section>
+
+<section class="slide lay-codes" data-title="现象 · 只挪了一行">
+<div class="phead"><span class="no">第 04 课</span>
+<div class="rail"><span class="done" style="--w:8">兴趣</span><span class="on" style="--w:10">现象</span><span class="" style="--w:15">概念</span><span class="" style="--w:35">技能</span><span class="" style="--w:20">小发明</span><span class="" style="--w:8">收尾</span></div>
+<span class="tslot">5–15 分</span>
+</div>
+<h2 class="ptitle">只挪了一行，为什么<em>永远是 1</em>？</h2>
+<div class="pbody"><div class="codes grow" style="grid-template-columns:1.75fr 0.6fr"><div class="code"><div class="lab "><span>inside.ino</span><span class="rt">第 4 行挪进了 loop</span></div><pre class="nums" style="font-size:20px;line-height:1.4;counter-reset:L 0"><span class="L"><span class="c">// ===== ② 变量 =====</span></span>
+<span class="L"><span class="c">// （这里空了）</span></span>
+<span class="L"> </span>
+<span class="L"><span class="t">void</span> <span class="f">setup</span>() {    <span class="c">// ③ 只做一次：准备</span></span>
+<span class="L">  <span class="t">Serial</span>.<span class="f">begin</span>(<span class="k">9600</span>);</span>
+<span class="L">}</span>
+<span class="L"> </span>
+<span class="L"><span class="t">void</span> <span class="f">loop</span>() {     <span class="c">// ④ 一直重复：干活</span></span>
+<span class="L"><span class="ln hlc">  <span class="t">int</span> count = <span class="k">0</span>;          <span class="c">// 盒子做在了 loop 里面</span></span></span>
+<span class="L">  count++;</span>
+<span class="L">  <span class="t">Serial</span>.<span class="f">println</span>(count);</span>
+<span class="L">  <span class="f">delay</span>(<span class="k">1000</span>);</span>
+<span class="L">}</span></pre></div><div class="code outbox serial"><div class="lab c"><span>串口监视器</span><span class="rt">波特率 9600</span></div><div class="rv rv-out" data-step="1"><div class="rv-a"><pre class="out" style="font-size:26px;line-height:1.55"><span class="ol ">1</span>
+<span class="ol ">1</span>
+<span class="ol ">1</span>
+<span class="ol ">1</span>
+<span class="ol ">1</span>
+<span class="ol ">1</span></pre></div><div class="rv-q">？ 先投票</div></div></div></div><div class="opts" style="margin-top:22px"><div class="opt"><span class="ol">A</span>1、2、3……照常</div><div class="opt rvo" data-step="1"><span class="ol">B</span>一直是 1</div><div class="opt"><span class="ol">C</span>一直是 0</div><div class="opt"><span class="ol">D</span>报错</div></div><div class="tail"><div class="strip ">能上传，没有红字，可就是<b>数不上去</b>。为什么？——概念环节揭晓。</div></div></div>
+<div class="notes"><p>「我干一件很小的事：把 <code class="ic">int count = 0;</code> 这一行，从 loop 外面<b>挪进</b> loop 里面，别的一个字都不动。」</p><p>「全班投票：A 照常 1、2、3；B 一直是 1；C 一直是 0；D 报错。」（数票，写在黑板上。）</p><p>（老师上传，打开串口监视器。）<b>→ 揭晓</b>「1、1、1、1……一直是 1。」</p><p>「没有红字，能上传，可就是数不上去。只挪了一行，为什么？」（让学生先猜，不揭晓。）「这就是今天要解决的问题。答案在概念环节。」</p><p>（这是本课的核心现象，大纲叫它「计数器永远是 1」。演示完先别改回去，第 9 页还要对照。）</p></div>
+</section>
+
+<section class="slide lay-figure" data-title="概念 · 变量是有名字的盒子">
+<div class="phead"><span class="no">第 04 课</span>
+<div class="rail"><span class="done" style="--w:8">兴趣</span><span class="done" style="--w:10">现象</span><span class="on" style="--w:15">概念</span><span class="" style="--w:35">技能</span><span class="" style="--w:20">小发明</span><span class="" style="--w:8">收尾</span></div>
+<span class="tslot">15–30 分</span>
+</div>
+<h2 class="ptitle">变量 = 一个<em>有名字的盒子</em></h2>
+<div class="pbody">
+  <div class="figgrid grow" style="--figw:1.25fr"><div class="figbox"><svg viewBox="0 0 720 460" xmlns="http://www.w3.org/2000/svg" font-family="Microsoft YaHei" text-rendering="geometricPrecision"><defs><marker id="ar5" viewBox="0 0 10 10" refX="7" refY="5" markerWidth="5" markerHeight="5" orient="auto"><path d="M0 0 L10 5 L0 10 Z" fill="#141414"/></marker></defs><path d="M50 152 l18 -18 h120 l-18 18 Z" fill="#F7E3B5" stroke="#141414" stroke-width="4" stroke-linejoin="round"/><path d="M170 152 l18 -18 v96 l-18 18 Z" fill="#E9C77E" stroke="#141414" stroke-width="4" stroke-linejoin="round"/><rect x="50" y="152" width="120" height="96" fill="#F5A623" stroke="#141414" stroke-width="4"/><text x="110" y="220" text-anchor="middle" font-size="56" font-weight="900" fill="#141414" font-family="Consolas,Arial">0</text><rect x="64" y="258" width="92" height="30" rx="4" fill="#fff" stroke="#141414" stroke-width="3"/><text x="110" y="280" text-anchor="middle" font-size="20" font-weight="900" fill="#1F4E79" font-family="Consolas,Arial">count</text><path d="M300 152 l18 -18 h120 l-18 18 Z" fill="#F7E3B5" stroke="#141414" stroke-width="4" stroke-linejoin="round"/><path d="M420 152 l18 -18 v96 l-18 18 Z" fill="#E9C77E" stroke="#141414" stroke-width="4" stroke-linejoin="round"/><rect x="300" y="152" width="120" height="96" fill="#F5A623" stroke="#141414" stroke-width="4"/><text x="360" y="220" text-anchor="middle" font-size="56" font-weight="900" fill="#141414" font-family="Consolas,Arial">1</text><rect x="314" y="258" width="92" height="30" rx="4" fill="#fff" stroke="#141414" stroke-width="3"/><text x="360" y="280" text-anchor="middle" font-size="20" font-weight="900" fill="#1F4E79" font-family="Consolas,Arial">count</text><path d="M550 152 l18 -18 h120 l-18 18 Z" fill="#F7E3B5" stroke="#141414" stroke-width="4" stroke-linejoin="round"/><path d="M670 152 l18 -18 v96 l-18 18 Z" fill="#E9C77E" stroke="#141414" stroke-width="4" stroke-linejoin="round"/><rect x="550" y="152" width="120" height="96" fill="#F5A623" stroke="#141414" stroke-width="4"/><text x="610" y="220" text-anchor="middle" font-size="56" font-weight="900" fill="#141414" font-family="Consolas,Arial">2</text><rect x="564" y="258" width="92" height="30" rx="4" fill="#fff" stroke="#141414" stroke-width="3"/><text x="610" y="280" text-anchor="middle" font-size="20" font-weight="900" fill="#1F4E79" font-family="Consolas,Arial">count</text><path d="M196 200 H282" stroke="#141414" stroke-width="5" marker-end="url(#ar5)"/><text x="243" y="160" text-anchor="middle" font-size="22" font-weight="900" fill="#D85A30" font-family="Consolas,Arial">count++;</text><path d="M446 200 H532" stroke="#141414" stroke-width="5" marker-end="url(#ar5)"/><text x="493" y="160" text-anchor="middle" font-size="22" font-weight="900" fill="#D85A30" font-family="Consolas,Arial">count++;</text><text x="110" y="64" text-anchor="middle" font-size="22" font-weight="900" fill="#1F4E79" font-family="Consolas,Arial">int count = 0;</text><text x="110" y="92" text-anchor="middle" font-size="18" font-weight="800" fill="#555">做盒子，先放 0</text><text x="360" y="360" text-anchor="middle" font-size="24" font-weight="900" fill="#141414">盒子还是那一个，里面的数在变</text><text x="360" y="400" text-anchor="middle" font-size="20" font-weight="800" fill="#555">变量 = 有名字的盒子 · int = 只装整数</text></svg></div><div class="figcards"><div class="blk n"><span class="lbl">做盒子</span><h4>int count = 0;</h4><p>做一个只装整数的盒子，名字叫 count，先放 0。</p></div><div class="blk c"><span class="lbl">改里面的数</span><h4>count++;</h4><p>把盒子里的数加 1。盒子还是那个，数变了。</p></div><div class="blk g"><span class="lbl">拿出来用</span><h4>Serial.println(count);</h4><p>写名字，就是用盒子里现在的数。</p></div></div></div>
+  
+</div>
+<div class="notes"><p>「变量就是一个<b>有名字的盒子</b>。」</p><p>「<code class="ic">int count = 0;</code>：int 是盒子的种类——只装整数，不装小数、不装文字；count 是我们起的名字；= 0，先往里放一个 0。」</p><p>「<code class="ic">count++;</code>：两个加号，意思是盒子里的数<b>加 1</b>。0 变 1，1 变 2。注意，盒子还是那一个，变的是里面的数。」</p><p>「要用这个数的时候，直接写名字：<code class="ic">Serial.println(count);</code>，就是把盒子里<b>现在</b>的数打印出来。」</p><p>「上节课的 <code class="ic">const int RED = 10;</code> 也是一个盒子——前面加了 const，意思是『封死了，不许改』。今天的 count 没有 const，所以能一直改。」</p></div>
+</section>
+
+<section class="slide lay-anat" data-title="概念 · int count = 0;">
+<div class="phead"><span class="no">第 04 课</span>
+<div class="rail"><span class="done" style="--w:8">兴趣</span><span class="done" style="--w:10">现象</span><span class="on" style="--w:15">概念</span><span class="" style="--w:35">技能</span><span class="" style="--w:20">小发明</span><span class="" style="--w:8">收尾</span></div>
+<span class="tslot">15–30 分</span>
+</div>
+<h2 class="ptitle">今天唯一的新句型：<em>int</em>、<em>=</em>、<em>++</em></h2>
+<div class="pbody"><div class="anat"><div class="arow"><span class="acap">做盒子</span><div class="segs" style="font-size:56px;padding-bottom:104px"><span class="seg n"><span class="st">int</span><span class="lw" style="--lv:0"><span class="rvi" data-step="1"><span class="sl">① 盒子种类：整数</span></span></span></span><span class="seg p"><span class="st">&nbsp;</span></span><span class="seg g"><span class="st">count</span><span class="lw" style="--lv:0"><span class="rvi" data-step="2"><span class="sl">② 名字</span></span></span></span><span class="seg p"><span class="st">&nbsp;</span></span><span class="seg c"><span class="st">=</span><span class="lw" style="--lv:0"><span class="rvi" data-step="3"><span class="sl">③ 放进去</span></span></span></span><span class="seg p"><span class="st">&nbsp;</span></span><span class="seg a"><span class="st">0</span><span class="lw" style="--lv:1"><span class="rvi" data-step="4"><span class="sl">④ 先放的数</span></span></span></span><span class="seg p"><span class="st">;</span></span></div></div><div class="arow"><span class="acap">加 1</span><div class="segs" style="font-size:56px;padding-bottom:58px"><span class="seg g"><span class="st">count</span><span class="lw" style="--lv:0"><span class="rvi" data-step="5"><span class="sl">哪个盒子</span></span></span></span><span class="seg c"><span class="st">++</span><span class="lw" style="--lv:0"><span class="rvi" data-step="5"><span class="sl">⑤ 加 1</span></span></span></span><span class="seg p"><span class="st">;</span></span></div></div></div><div class="cols3 acards"><div class="blk g"><span class="lbl">名字</span><h4>自己起，用英文</h4><p>count、score、steps 都行；不能有空格，大小写要一致。</p></div><div class="blk c"><span class="lbl">= 不是「等于」</span><h4>是「放进去」</h4><p>把右边的数，放进左边的盒子。</p></div><div class="blk n"><span class="lbl">写在哪</span><h4>模板的 ② 变量区</h4><p>loop 外面——为什么？第 9 页揭晓。</p></div></div></div>
+<div class="notes"><p>「今天唯一的新句型就这两行。猜猜每部分什么意思。」（标签先盖着。）</p><p><b>→ 揭晓①</b>「int，盒子的种类：整数，integer 的前三个字母。」<b>→ 揭晓②</b>「count，名字，自己起。」</p><p><b>→ 揭晓③</b>「这个等号最重要：在程序里它<b>不是『等于』</b>，是『<b>放进去</b>』——把右边的数放进左边的盒子。」<b>→ 揭晓④</b>「0，一开始放的数。」</p><p><b>→ 揭晓⑤</b>「第二行，count 加加：盒子里的数加 1。」</p><p>「名字自己起，用英文：count、score、steps 都行，不能有空格。起好了，后面每次用都要一模一样。」</p></div>
+</section>
+
+<section class="slide lay-table" data-title="概念 · 盒子里是几">
+<div class="phead"><span class="no">第 04 课</span>
+<div class="rail"><span class="done" style="--w:8">兴趣</span><span class="done" style="--w:10">现象</span><span class="on" style="--w:15">概念</span><span class="" style="--w:35">技能</span><span class="" style="--w:20">小发明</span><span class="" style="--w:8">收尾</span></div>
+<span class="tslot">15–30 分</span>
+</div>
+<h2 class="ptitle">一行一行做：盒子里<em>现在是几</em>？</h2>
+<div class="pbody"><div class="tbl grow" style="grid-template-columns:1.25fr 0.95fr 1.6fr"><div class="th">这一行</div><div class="th">做完以后 count 是几</div><div class="th">为什么</div><div class="td mono"><span>int count = 0;</span></div><div class="td"><div class="rv " data-step="1"><div class="rv-a"><b>0</b></div><div class="rv-q">？</div></div></div><div class="td last"><div class="rv " data-step="1"><div class="rv-a">做盒子，先放 0</div><div class="rv-q">？ 先猜一猜</div></div></div><div class="td mono"><span>count++;</span></div><div class="td"><div class="rv " data-step="2"><div class="rv-a"><b>1</b></div><div class="rv-q">？</div></div></div><div class="td last"><div class="rv " data-step="2"><div class="rv-a">加 1</div><div class="rv-q">？ 先猜一猜</div></div></div><div class="td mono"><span>count++;</span></div><div class="td"><div class="rv " data-step="3"><div class="rv-a"><b>2</b></div><div class="rv-q">？</div></div></div><div class="td last"><div class="rv " data-step="3"><div class="rv-a">再加 1</div><div class="rv-q">？ 先猜一猜</div></div></div><div class="td mono"><span>count = count + 2;</span></div><div class="td"><div class="rv " data-step="4"><div class="rv-a"><b>4</b></div><div class="rv-q">？</div></div></div><div class="td last"><div class="rv " data-step="4"><div class="rv-a">先算右边：2 + 2 = 4，再<b>放进</b>盒子</div><div class="rv-q">？ 先猜一猜</div></div></div><div class="td mono"><span>count = 10;</span></div><div class="td"><div class="rv " data-step="5"><div class="rv-a"><b>10</b></div><div class="rv-q">？</div></div></div><div class="td last"><div class="rv " data-step="5"><div class="rv-a">把 10 放进去，原来的 4 被换掉</div><div class="rv-q">？ 先猜一猜</div></div></div><div class="td mono"><span>count--;</span></div><div class="td"><div class="rv " data-step="6"><div class="rv-a"><b>9</b></div><div class="rv-q">？</div></div></div><div class="td last"><div class="rv " data-step="6"><div class="rv-a">两个减号：减 1（★★★ 会用到）</div><div class="rv-q">？ 先猜一猜</div></div></div></div></div>
+<div class="notes"><p>「我们当一回板子，一行一行往下做。每做一行，盒子里是几？」（后两列先盖着。每一行先请全班一起喊答案，再 <b>→ 揭晓</b>。）</p><p>第 4 行是关键：「<code class="ic">count = count + 2;</code> 数学课上这个式子根本不成立！可在程序里，= 是『放进去』：<b>先算右边</b>，盒子里现在是 2，2 加 2 等于 4，<b>再放进</b>左边的盒子。」</p><p>第 5 行：「直接放 10 进去，原来的 4 就被换掉了——盒子一次只装一个数。」</p><p>第 6 行：「两个减号，减 1。三颗星的倒数会用到。」</p><p>（任务卡第②栏是同样的题，可以让学生边看边写。）</p></div>
+</section>
+
+<section class="slide lay-figure" data-title="概念 · 盒子要做在 loop 外面">
+<div class="phead"><span class="no">第 04 课</span>
+<div class="rail"><span class="done" style="--w:8">兴趣</span><span class="done" style="--w:10">现象</span><span class="on" style="--w:15">概念</span><span class="" style="--w:35">技能</span><span class="" style="--w:20">小发明</span><span class="" style="--w:8">收尾</span></div>
+<span class="tslot">15–30 分</span>
+</div>
+<h2 class="ptitle">揭晓：盒子做在<em>哪里</em>，差别很大</h2>
+<div class="pbody">
+  <div class="figgrid grow" style="--figw:1.35fr"><div class="figbox"><svg viewBox="0 0 760 520" xmlns="http://www.w3.org/2000/svg" font-family="Microsoft YaHei" text-rendering="geometricPrecision"><rect x="20" y="20" width="350" height="480" rx="10" fill="#fff" stroke="#141414" stroke-width="5"/><rect x="20" y="20" width="350" height="52" fill="#1D9E75" stroke="#141414" stroke-width="5"/><text x="195" y="56" text-anchor="middle" font-size="26" font-weight="900" fill="#fff">写在 loop 外面</text><rect x="390" y="20" width="350" height="480" rx="10" fill="#fff" stroke="#141414" stroke-width="5"/><rect x="390" y="20" width="350" height="52" fill="#D85A30" stroke="#141414" stroke-width="5"/><text x="565" y="56" text-anchor="middle" font-size="26" font-weight="900" fill="#fff">写在 loop 里面</text><text x="195" y="108" text-anchor="middle" font-size="19" font-weight="800" fill="#555">开机做 1 次盒子，先放 0</text><text x="60" y="183" font-size="20" font-weight="900" fill="#141414">第 1 圈</text><path d="M165 145 l12 -12 h70 l-12 12 Z" fill="#F7E3B5" stroke="#141414" stroke-width="4" stroke-linejoin="round"/><path d="M235 145 l12 -12 v60 l-12 12 Z" fill="#E9C77E" stroke="#141414" stroke-width="4" stroke-linejoin="round"/><rect x="165" y="145" width="70" height="60" fill="#F5A623" stroke="#141414" stroke-width="4"/><text x="200" y="188" text-anchor="middle" font-size="36" font-weight="900" fill="#141414" font-family="Consolas,Arial">1</text><text x="262" y="183" font-size="20" font-weight="800" fill="#1D9E75">打印 1</text><text x="60" y="293" font-size="20" font-weight="900" fill="#141414">第 2 圈</text><path d="M165 255 l12 -12 h70 l-12 12 Z" fill="#F7E3B5" stroke="#141414" stroke-width="4" stroke-linejoin="round"/><path d="M235 255 l12 -12 v60 l-12 12 Z" fill="#E9C77E" stroke="#141414" stroke-width="4" stroke-linejoin="round"/><rect x="165" y="255" width="70" height="60" fill="#F5A623" stroke="#141414" stroke-width="4"/><text x="200" y="298" text-anchor="middle" font-size="36" font-weight="900" fill="#141414" font-family="Consolas,Arial">2</text><text x="262" y="293" font-size="20" font-weight="800" fill="#1D9E75">打印 2</text><text x="60" y="403" font-size="20" font-weight="900" fill="#141414">第 3 圈</text><path d="M165 365 l12 -12 h70 l-12 12 Z" fill="#F7E3B5" stroke="#141414" stroke-width="4" stroke-linejoin="round"/><path d="M235 365 l12 -12 v60 l-12 12 Z" fill="#E9C77E" stroke="#141414" stroke-width="4" stroke-linejoin="round"/><rect x="165" y="365" width="70" height="60" fill="#F5A623" stroke="#141414" stroke-width="4"/><text x="200" y="408" text-anchor="middle" font-size="36" font-weight="900" fill="#141414" font-family="Consolas,Arial">3</text><text x="262" y="403" font-size="20" font-weight="800" fill="#1D9E75">打印 3</text><path d="M200 214 V250 M200 324 V360" stroke="#1D9E75" stroke-width="4" stroke-dasharray="6 5"/><text x="565" y="108" text-anchor="middle" font-size="19" font-weight="800" fill="#555">每圈都新做一个盒子，放 0</text><text x="410" y="183" font-size="20" font-weight="900" fill="#141414">第 1 圈</text><path d="M487 150 l12 -12 h56 l-12 12 Z" fill="#F7E3B5" stroke="#141414" stroke-width="4" stroke-linejoin="round"/><path d="M543 150 l12 -12 v50 l-12 12 Z" fill="#E9C77E" stroke="#141414" stroke-width="4" stroke-linejoin="round"/><rect x="487" y="150" width="56" height="50" fill="#F1EADB" stroke="#141414" stroke-width="4"/><text x="515" y="188" text-anchor="middle" font-size="36" font-weight="900" fill="#141414" font-family="Consolas,Arial">0</text><path d="M552 175 H570" stroke="#141414" stroke-width="4"/><path d="M577 150 l12 -12 h56 l-12 12 Z" fill="#F7E3B5" stroke="#141414" stroke-width="4" stroke-linejoin="round"/><path d="M633 150 l12 -12 v50 l-12 12 Z" fill="#E9C77E" stroke="#141414" stroke-width="4" stroke-linejoin="round"/><rect x="577" y="150" width="56" height="50" fill="#F5A623" stroke="#141414" stroke-width="4"/><text x="605" y="188" text-anchor="middle" font-size="36" font-weight="900" fill="#141414" font-family="Consolas,Arial">1</text><text x="650" y="183" font-size="20" font-weight="800" fill="#D85A30">打印 1</text><text x="410" y="293" font-size="20" font-weight="900" fill="#141414">第 2 圈</text><path d="M487 260 l12 -12 h56 l-12 12 Z" fill="#F7E3B5" stroke="#141414" stroke-width="4" stroke-linejoin="round"/><path d="M543 260 l12 -12 v50 l-12 12 Z" fill="#E9C77E" stroke="#141414" stroke-width="4" stroke-linejoin="round"/><rect x="487" y="260" width="56" height="50" fill="#F1EADB" stroke="#141414" stroke-width="4"/><text x="515" y="298" text-anchor="middle" font-size="36" font-weight="900" fill="#141414" font-family="Consolas,Arial">0</text><path d="M552 285 H570" stroke="#141414" stroke-width="4"/><path d="M577 260 l12 -12 h56 l-12 12 Z" fill="#F7E3B5" stroke="#141414" stroke-width="4" stroke-linejoin="round"/><path d="M633 260 l12 -12 v50 l-12 12 Z" fill="#E9C77E" stroke="#141414" stroke-width="4" stroke-linejoin="round"/><rect x="577" y="260" width="56" height="50" fill="#F5A623" stroke="#141414" stroke-width="4"/><text x="605" y="298" text-anchor="middle" font-size="36" font-weight="900" fill="#141414" font-family="Consolas,Arial">1</text><text x="650" y="293" font-size="20" font-weight="800" fill="#D85A30">打印 1</text><text x="410" y="403" font-size="20" font-weight="900" fill="#141414">第 3 圈</text><path d="M487 370 l12 -12 h56 l-12 12 Z" fill="#F7E3B5" stroke="#141414" stroke-width="4" stroke-linejoin="round"/><path d="M543 370 l12 -12 v50 l-12 12 Z" fill="#E9C77E" stroke="#141414" stroke-width="4" stroke-linejoin="round"/><rect x="487" y="370" width="56" height="50" fill="#F1EADB" stroke="#141414" stroke-width="4"/><text x="515" y="408" text-anchor="middle" font-size="36" font-weight="900" fill="#141414" font-family="Consolas,Arial">0</text><path d="M552 395 H570" stroke="#141414" stroke-width="4"/><path d="M577 370 l12 -12 h56 l-12 12 Z" fill="#F7E3B5" stroke="#141414" stroke-width="4" stroke-linejoin="round"/><path d="M633 370 l12 -12 v50 l-12 12 Z" fill="#E9C77E" stroke="#141414" stroke-width="4" stroke-linejoin="round"/><rect x="577" y="370" width="56" height="50" fill="#F5A623" stroke="#141414" stroke-width="4"/><text x="605" y="408" text-anchor="middle" font-size="36" font-weight="900" fill="#141414" font-family="Consolas,Arial">1</text><text x="650" y="403" font-size="20" font-weight="800" fill="#D85A30">打印 1</text></svg></div><div class="figcards"><div class="blk g"><span class="lbl">loop 外面</span><h4>开机做 1 次，数一直留着</h4><p>1、2、3……</p></div><div class="blk c"><span class="lbl">loop 里面</span><div class="rv " data-step="1"><div class="rv-a"><h4>每一圈都新做一个，放 0</h4><p>0 → 1，打印 1；下一圈又是新盒子……</p></div><div class="rv-q">？ 先想想为什么</div></div></div><div class="blk n"><span class="lbl">规则</span><h4>要一直记住的数</h4><p>盒子做在 <b>loop 外面</b>（模板的 ② 变量区）。</p></div></div></div>
+  
+</div>
+<div class="notes"><p>「回到刚才的怪事：只挪了一行，为什么永远是 1？上节课学的 loop 有什么特点？」（请同学说：一圈一圈重复。）</p><p>「左边：盒子做在 loop 外面，开机只做一次，放 0。每一圈加 1，数一直留在盒子里：1、2、3。」</p><p><b>→ 揭晓</b>「右边：盒子做在 loop <b>里面</b>。loop 每转一圈，都从第一行做起——又做一个新盒子，又放 0，加 1，打印 1。下一圈，又是新盒子、又是 0……所以永远是 1。」</p><p>「规则：<b>要一直记住的数，盒子做在 loop 外面</b>——就是模板里的 ② 变量区。这就是基础档要你说出的那句话。」</p><p>（老师把第 5 页的演示改回去：int count = 0; 挪回 loop 外面，上传，又能 1、2、3 了。）</p></div>
+</section>
+
+<section class="slide lay-code" data-title="概念 · 串口两句照抄">
+<div class="phead"><span class="no">第 04 课</span>
+<div class="rail"><span class="done" style="--w:8">兴趣</span><span class="done" style="--w:10">现象</span><span class="on" style="--w:15">概念</span><span class="" style="--w:35">技能</span><span class="" style="--w:20">小发明</span><span class="" style="--w:8">收尾</span></div>
+<span class="tslot">15–30 分</span>
+</div>
+<h2 class="ptitle">让板子说话：串口两句<em>照抄</em></h2>
+<div class="pbody"><div class="lcol grow" style="grid-template-columns:1.3809523809523807fr 1fr"><div class="code"><div class="lab "><span>counter.ino 里的串口</span><span class="rt">照抄格式</span></div><pre style="font-size:27px;line-height:1.55"><span class="t">void</span> <span class="f">setup</span>() {
+  <span class="t">Serial</span>.<span class="f">begin</span>(<span class="k">9600</span>);     <span class="c">// 打开串口，速度 9600</span>
+}
+
+<span class="t">void</span> <span class="f">loop</span>() {
+  <span class="t">Serial</span>.<span class="f">println</span>(count);  <span class="c">// 打印到串口，换行</span>
+}</pre></div><div class="figcards"><div class="blk n"><span class="lbl">Serial.begin(9600);</span><h4>写在 setup：开一次就够</h4><p>9600 是速度，串口监视器里也要选「波特率 9600」，不然一片乱码。</p></div><div class="blk c"><span class="lbl">Serial.println(…);</span><h4>打印，再换行</h4><p>println 最后两个字母是 <b>L N</b>（line，行），不是 IN。S 大写。</p></div></div></div></div>
+<div class="notes"><p>「Serial 这两句是工具，不是今天的新语法——照抄格式就行。」</p><p>「第一句 <code class="ic">Serial.begin(9600);</code>，打开串口。9600 是说话的速度。它写在哪？setup——<b>开一次就够了</b>，上节课的规矩。」</p><p>「电脑那边也要用同样的速度听：串口监视器右边的下拉框，选『波特率 9600』。速度对不上，就是一片乱码。」</p><p>「第二句 <code class="ic">Serial.println(count);</code>，把 count 打印出来，再换一行。println 是 print line 的缩写，最后两个字母是 L、N，小写的 l 不是 I。Serial 的 S 要大写。」</p><p>（中间那个点，是『Serial 的 println』，第 12 课舵机会细讲，今天照抄。）</p></div>
+</section>
+
+<section class="slide lay-flow" data-title="技能 · PRIMM 五步路线">
+<div class="phead"><span class="no">第 04 课</span>
+<div class="rail"><span class="done" style="--w:8">兴趣</span><span class="done" style="--w:10">现象</span><span class="done" style="--w:15">概念</span><span class="on" style="--w:35">技能</span><span class="" style="--w:20">小发明</span><span class="" style="--w:8">收尾</span></div>
+<span class="tslot">30–32 分</span>
+</div>
+<h2 class="ptitle">技能五步：最后一步，<em>自己写 5 行</em></h2>
+<div class="pbody"><div class="flow grow"><div class="fl"><span class="fn">①</span><div class="ico"><svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" text-rendering="geometricPrecision"><path d="M20 58 a22 22 0 0 1 10 -36 a24 24 0 0 1 42 4 a18 18 0 0 1 8 32 Z" fill="#fff" stroke="#141414" stroke-width="5" stroke-linejoin="round"/><circle cx="26" cy="74" r="6" fill="#fff" stroke="#141414" stroke-width="4"/><circle cx="16" cy="88" r="4" fill="#141414"/><text x="51" y="54" text-anchor="middle" font-size="34" font-weight="900" fill="#D85A30" font-family="Arial Black,Arial">?</text></svg></div><div class="fk">预测</div><div class="fd">上传 counter<br>猜：串口出现什么？</div></div><div class="farr">→</div><div class="fl"><span class="fn">②</span><div class="ico"><svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" text-rendering="geometricPrecision"><rect x="8" y="14" width="84" height="66" rx="5" fill="#fff" stroke="#141414" stroke-width="5"/><rect x="8" y="14" width="84" height="16" fill="#ECEFF1" stroke="#141414" stroke-width="5"/><text x="20" y="54" font-size="20" font-weight="900" fill="#141414" font-family="Consolas,Arial">1</text><text x="20" y="74" font-size="20" font-weight="900" fill="#141414" font-family="Consolas,Arial">2</text><path d="M40 88 H60" stroke="#141414" stroke-width="6"/></svg></div><div class="fk">运行</div><div class="fd">打开串口监视器<br>选波特率 9600</div></div><div class="farr">→</div><div class="fl"><span class="fn">③</span><div class="ico"><svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" text-rendering="geometricPrecision"><path d="M8 50 Q50 10 92 50 Q50 90 8 50 Z" fill="#fff" stroke="#141414" stroke-width="5" stroke-linejoin="round"/><circle cx="50" cy="50" r="17" fill="#2F6FB0" stroke="#141414" stroke-width="4"/><circle cx="50" cy="50" r="7" fill="#141414"/></svg></div><div class="fk">读</div><div class="fd">哪一行做盒子？<br>哪一行加 1？</div></div><div class="farr">→</div><div class="fl"><span class="fn">④</span><div class="ico"><svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" text-rendering="geometricPrecision"><rect x="8" y="26" width="84" height="48" rx="4" fill="#fff" stroke="#141414" stroke-width="5"/><text x="50" y="60" text-anchor="middle" font-size="25" font-weight="900" fill="#005C5F" font-family="Consolas">1000</text><path d="M14 48 H86" stroke="#D85A30" stroke-width="5"/><rect x="50" y="4" width="44" height="28" fill="#F5A623" stroke="#141414" stroke-width="4"/><text x="72" y="25" text-anchor="middle" font-size="19" font-weight="900" fill="#141414" font-family="Consolas">100</text></svg></div><div class="fk">改</div><div class="fd">1000 改 500<br>盒子挪进 loop</div></div><div class="farr">→</div><div class="fl"><span class="fn">⑤</span><div class="ico"><svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" text-rendering="geometricPrecision"><rect x="16" y="10" width="58" height="76" rx="4" fill="#fff" stroke="#141414" stroke-width="5"/><path d="M27 30 H62 M27 44 H58 M27 58 H50" stroke="#1F4E79" stroke-width="5" stroke-linecap="round"/><g transform="rotate(40 70 70)"><rect x="62" y="34" width="16" height="50" fill="#F5A623" stroke="#141414" stroke-width="4"/><path d="M62 84 L70 98 L78 84 Z" fill="#F2C29B" stroke="#141414" stroke-width="4" stroke-linejoin="round"/></g></svg></div><div class="fk">写</div><div class="fd">空模板<br>自己写 5 行</div></div></div><div class="tail"><div class="strip ">两人一组：<b>操作手</b>敲键盘，<b>检查员</b>念步骤、写预测——每做完一步，两人换位。</div></div></div>
+<div class="notes"><p>「接下来 35 分钟，还是五步。前四步用老师的 counter：先猜，再跑，读懂，改一改。」</p><p>「第⑤步不一样了：<b>关掉老师的程序</b>，打开空模板 counter_todo，自己写出 5 行——这是我们第一次自己写代码。」</p><p>「分工照旧：操作手敲键盘，检查员念步骤、写预测，每做完一步换位。」</p><p>（发任务卡。共享文件夹里有 counter 和 counter_todo 两个项目。55 分钟前后开始逐组验收。）</p></div>
+</section>
+
+<section class="slide lay-rowlist" data-title="技能 · 打开串口监视器">
+<div class="phead"><span class="no">第 04 课</span>
+<div class="rail"><span class="done" style="--w:8">兴趣</span><span class="done" style="--w:10">现象</span><span class="done" style="--w:15">概念</span><span class="on" style="--w:35">技能</span><span class="" style="--w:20">小发明</span><span class="" style="--w:8">收尾</span></div>
+<span class="tslot">32–36 分</span>
+</div>
+<h2 class="ptitle">打开串口监视器：<em>三步</em></h2>
+<div class="pbody"><div class="rowlist grow"><div class="rowitem"><div class="num n">1</div><div class="tx">上传，看到「<b>上传完成</b>」</div></div><div class="rowitem"><div class="num n">2</div><div class="tx"><b>工具 → 串口监视器</b>（Ctrl+Shift+M），或点右上角的<b>放大镜</b>按钮<small>IDE 底部多出一个「串口监视器」标签</small></div></div><div class="rowitem"><div class="num g">3</div><div class="tx">右边下拉框选「<b>波特率 9600</b>」，和 <code class="ic">Serial.begin(9600);</code> 一样</div></div><div class="rowitem"><div class="num c">!</div><div class="tx">一片乱码？速度没对上。什么都没有？先查 setup 里有没有 <code class="ic">Serial.begin</code></div></div></div><div class="tail"><div class="strip ">打开串口监视器时，板子会<b>自动复位</b>，从头数起——这是正常的。</div></div></div>
+<div class="notes"><p>（老师在投影上完整做一遍。）</p><p>「上传完成以后：工具菜单 → 串口监视器，或者点右上角那个放大镜。IDE 底部会多出一个『串口监视器』的标签。」</p><p>「右边有个下拉框，选『波特率 9600』——要和代码里 Serial.begin 的 9600 一样。」</p><p>「看到一片乱码，九成是速度没对上；什么都没有，先查 setup 里有没有 Serial.begin。」</p><p>「还有一个现象先告诉你们：每次打开串口监视器，UNO 会<b>自动复位</b>，从头开始数。这是设计如此，不是坏了。」</p></div>
+</section>
+
+<section class="slide lay-cards" data-title="技能 · ①预测 ②运行">
+<div class="phead"><span class="no">第 04 课</span>
+<div class="rail"><span class="done" style="--w:8">兴趣</span><span class="done" style="--w:10">现象</span><span class="done" style="--w:15">概念</span><span class="on" style="--w:35">技能</span><span class="" style="--w:20">小发明</span><span class="" style="--w:8">收尾</span></div>
+<span class="tslot">36–40 分</span>
+</div>
+<h2 class="ptitle">① 预测 → ② 运行：<em>先猜，再打开</em></h2>
+<div class="pbody"><div class="cols2 grow lay-cards2-in"><div class="blk a"><span class="lbl">① 预测 · 检查员写在任务卡上</span><h4>上传 counter，打开串口监视器</h4><p>猜：会看到什么？多久出一行？</p><p>写完了，操作手才能点上传。</p></div><div class="blk g"><span class="lbl">② 运行 · 操作手打开串口监视器</span><h4>选波特率 9600，对照你的猜想</h4><p>数一数：10 秒出了几行？</p><div class="rv rv-ans" data-step="1"><div class="rv-a"><p class="ans">每秒一行：1、2、3……10 秒出 10 行。盒子里的数一直留着，所以能接着往上加。</p></div><div class="rv-q">？ 打开再揭晓</div></div></div></div><div class="tail"><div class="strip ">猜错不扣分，<b>不猜就上传</b>才扣分。</div></div></div>
+<div class="notes"><p>「检查员，任务卡第①栏：上传 counter、打开串口监视器，你猜会看到什么？多久出一行？」</p><p>「打开了吗？选了 9600 吗？数一数，10 秒出了几行。」</p><p><b>→ 揭晓</b>「每秒一行，1、2、3……10 秒 10 行。因为 delay(1000)，每圈等 1 秒；盒子做在 loop 外面，数一直留着。」</p><p>（乱码的组：右边下拉框改 9600。什么都没有的组：看端口选没选对、程序传没传上去。）</p></div>
+</section>
+
+<section class="slide lay-codes" data-title="技能 · 按复位键会怎样">
+<div class="phead"><span class="no">第 04 课</span>
+<div class="rail"><span class="done" style="--w:8">兴趣</span><span class="done" style="--w:10">现象</span><span class="done" style="--w:15">概念</span><span class="on" style="--w:35">技能</span><span class="" style="--w:20">小发明</span><span class="" style="--w:8">收尾</span></div>
+<span class="tslot">40–42 分</span>
+</div>
+<h2 class="ptitle">数到 20 的时候按一下<em>复位键</em>，会怎样？</h2>
+<div class="pbody"><div class="codes grow" style="grid-template-columns:1.2fr 0.8fr"><div class="code"><div class="lab "><span>回忆：上节课</span></div><pre style="font-size:27px;line-height:1.55"><span class="t">void</span> <span class="f">setup</span>() {    <span class="c">// ③ 只做一次：准备</span>
+  <span class="t">Serial</span>.<span class="f">begin</span>(<span class="k">9600</span>);
+}</pre></div><div class="code outbox serial"><div class="lab n"><span>串口监视器</span><span class="rt">按下复位键以后</span></div><div class="rv rv-out" data-step="1"><div class="rv-a"><pre class="out" style="font-size:26px;line-height:1.55"><span class="ol ">19</span>
+<span class="ol ">20</span>
+<span class="ol ">1</span>
+<span class="ol ">2</span>
+<span class="ol ">3</span></pre></div><div class="rv-q">？ 先投票</div></div></div></div><div class="opts" style="margin-top:22px"><div class="opt"><span class="ol">A</span>21、22……接着数</div><div class="opt rvo" data-step="1"><span class="ol">B</span>从 1 重新数</div><div class="opt"><span class="ol">C</span>停在 20</div><div class="opt"><span class="ol">D</span>乱码</div></div><div class="tail"><div class="strip ">复位 = 重新开局：盒子重新做、重新放 0。拔掉 USB 再插上，也一样。</div></div></div>
+<div class="notes"><p>「上节课说过：按复位键 = 重新开局。那么数到 20 的时候按一下复位键，数字会怎样？A 接着数，B 从 1 重新数，C 停在 20，D 乱码。」（数票。）</p><p>（老师按复位键。）<b>→ 揭晓</b>「从 1 重新数。」</p><p>「重新开局的时候，盒子也重新做、重新放 0。所以板子一断电、一复位，数就丢了——它的盒子不是存在硬盘里的。」</p><p>「刚才说的『打开串口监视器会自动复位』，也是这个道理。」</p></div>
+</section>
+
+<section class="slide lay-code" data-title="技能 · ③读 指一行说一行">
+<div class="phead"><span class="no">第 04 课</span>
+<div class="rail"><span class="done" style="--w:8">兴趣</span><span class="done" style="--w:10">现象</span><span class="done" style="--w:15">概念</span><span class="on" style="--w:35">技能</span><span class="" style="--w:20">小发明</span><span class="" style="--w:8">收尾</span></div>
+<span class="tslot">42–47 分</span>
+</div>
+<h2 class="ptitle">③ 读：老师指一行，<em>你说它干什么</em></h2>
+<div class="pbody"><div class="lcol grow" style="grid-template-columns:1.4999999999999998fr 1fr"><div class="code"><div class="lab "><span>counter.ino</span><span class="rt">13 行</span></div><pre class="nums" style="font-size:22px;line-height:1.55;counter-reset:L 0"><span class="L"><span class="c">// ===== ① 引脚（今天不用） =====</span></span>
+<span class="L"> </span>
+<span class="L"><span class="c">// ===== ② 变量 =====</span></span>
+<span class="L"><span class="ln hlg rvl" data-step="1"><span class="t">int</span> count = <span class="k">0</span>;            <span class="c">// 做一个盒子，名字叫 count，先放 0</span></span></span>
+<span class="L"> </span>
+<span class="L"><span class="t">void</span> <span class="f">setup</span>() {    <span class="c">// ③ 只做一次：准备</span></span>
+<span class="L"><span class="ln hl rvl" data-step="3">  <span class="t">Serial</span>.<span class="f">begin</span>(<span class="k">9600</span>);     <span class="c">// 打开串口，速度 9600</span></span></span>
+<span class="L">}</span>
+<span class="L"> </span>
+<span class="L"><span class="t">void</span> <span class="f">loop</span>() {     <span class="c">// ④ 一直重复：干活</span></span>
+<span class="L"><span class="ln hlg rvl" data-step="2">  count++;                <span class="c">// 盒子里的数加 1</span></span></span>
+<span class="L">  <span class="t">Serial</span>.<span class="f">println</span>(count);  <span class="c">// 打印到串口，换行</span></span>
+<span class="L"><span class="ln hl rvl" data-step="4">  <span class="f">delay</span>(<span class="k">1000</span>);            <span class="c">// 等 1 秒</span></span></span>
+<span class="L">}</span></pre></div><div class="rowlist qlist"><div class="rowitem"><div class="num n">1</div><div class="tx">哪一行做了盒子？<div class="rv " data-step="1"><div class="rv-a"><div class="qa">第 4 行 <code class="ic">int count = 0;</code></div></div><div class="rv-q">？ 你来答</div></div></div></div><div class="rowitem"><div class="num n">2</div><div class="tx">哪一行让数加 1？<div class="rv " data-step="2"><div class="rv-a"><div class="qa">第 11 行 <code class="ic">count++;</code></div></div><div class="rv-q">？ 你来答</div></div></div></div><div class="rowitem"><div class="num n">3</div><div class="tx">Serial.begin 为什么写在 setup？<div class="rv " data-step="3"><div class="rv-a"><div class="qa">开一次串口就够——只做一次的放 setup</div></div><div class="rv-q">？ 你来答</div></div></div></div><div class="rowitem"><div class="num n">4</div><div class="tx">delay(1000) 改成 500，会怎样？<div class="rv " data-step="4"><div class="rv-a"><div class="qa">每 <b>0.5 秒</b>一行，数得快一倍</div></div><div class="rv-q">？ 你来答</div></div></div></div></div></div></div>
+<div class="notes"><p>（四个答案先盖着，点名回答，答对了 <b>→ 揭晓</b>。）</p><p>「哪一行做了盒子？」<b>→ 揭晓①</b> 第 4 行。「哪一行让数加 1？」<b>→ 揭晓②</b> 第 11 行。</p><p>「Serial.begin 为什么写在 setup？」<b>→ 揭晓③</b>「开一次就够，上节课的规矩：只做一次的放 setup。」</p><p>「delay(1000) 改成 500 会怎样？」<b>→ 揭晓④</b>「每半秒一行。这是下一步『改』的第一个任务——先写预测，再改。」</p></div>
+</section>
+
+<section class="slide lay-cards" data-title="技能 · ④改 两处">
+<div class="phead"><span class="no">第 04 课</span>
+<div class="rail"><span class="done" style="--w:8">兴趣</span><span class="done" style="--w:10">现象</span><span class="done" style="--w:15">概念</span><span class="on" style="--w:35">技能</span><span class="" style="--w:20">小发明</span><span class="" style="--w:8">收尾</span></div>
+<span class="tslot">47–52 分</span>
+</div>
+<h2 class="ptitle">④ 改：两处，<em>先预测</em>再上传</h2>
+<div class="pbody"><div class="cols2 grow lay-cards2-in"><div class="blk a"><span class="lbl">改 ① · 检查员先写预测</span><h4>delay(1000) 改成 delay(500)</h4><p>猜：10 秒能数到几？</p><div class="rv rv-ans" data-step="1"><div class="rv-a"><p class="ans">数到 <b>20</b>——每 0.5 秒一行。</p></div><div class="rv-q">？ 上传后揭晓</div></div></div><div class="blk c"><span class="lbl">改 ② · 自己验证老师的演示</span><h4>int count = 0; 挪进 loop 第一行</h4><p>看到永远是 1 以后，<b>挪回去</b>。</p><div class="rv rv-ans" data-step="2"><div class="rv-a"><p class="ans">永远是 1：每圈新做盒子、放 0。挪回 loop 外面，又能往上数。</p></div><div class="rv-q">？ 上传后揭晓</div></div></div></div><div class="tail"><div class="strip ">改完都要挪回、改回原样，再进入第⑤步。</div></div></div>
+<div class="notes"><p>「第④步，改两处。第一处：delay 改成 500，先猜 10 秒能数到几。」（等大部分组做完。）<b>→ 揭晓</b>「20。」</p><p>「第二处：自己把 int count = 0; 挪进 loop 第一行，亲眼看一次『永远是 1』，然后<b>挪回去</b>。」</p><p><b>→ 揭晓</b>「每一圈都新做一个盒子、放 0，所以永远是 1。挪回外面，又能往上数了。」</p><p>「两处都改回原样以后，进入最后一步：自己写。」</p></div>
+</section>
+
+<section class="slide lay-code" data-title="技能 · ⑤写 自己写 5 行">
+<div class="phead"><span class="no">第 04 课</span>
+<div class="rail"><span class="done" style="--w:8">兴趣</span><span class="done" style="--w:10">现象</span><span class="done" style="--w:15">概念</span><span class="on" style="--w:35">技能</span><span class="" style="--w:20">小发明</span><span class="" style="--w:8">收尾</span></div>
+<span class="tslot">52–62 分</span>
+</div>
+<h2 class="ptitle">⑤ 写：关掉老师的程序，<em>自己写 5 行</em></h2>
+<div class="pbody"><div class="lcol grow" style="grid-template-columns:1.631578947368421fr 1fr"><div class="code"><div class="lab "><span>counter_todo.ino · 空模板</span><span class="rt">5 处空白</span></div><pre class="nums" style="font-size:23px;line-height:1.4;counter-reset:L 0"><span class="L"><span class="c">// ===== ① 引脚（今天不用） =====</span></span>
+<span class="L"> </span>
+<span class="L"><span class="c">// ===== ② 变量 =====</span></span>
+<span class="L">______________________    <span class="c">// ① 做盒子 count，先放 0</span></span>
+<span class="L"> </span>
+<span class="L"><span class="t">void</span> <span class="f">setup</span>() {    <span class="c">// ③ 只做一次：准备</span></span>
+<span class="L">  ______________________  <span class="c">// ② 打开串口，速度 9600</span></span>
+<span class="L">}</span>
+<span class="L"> </span>
+<span class="L"><span class="t">void</span> <span class="f">loop</span>() {     <span class="c">// ④ 一直重复：干活</span></span>
+<span class="L">  ______________________  <span class="c">// ③ count 加 1</span></span>
+<span class="L">  ______________________  <span class="c">// ④ 打印 count，换行</span></span>
+<span class="L">  ______________________  <span class="c">// ⑤ 等 1 秒</span></span>
+<span class="L">}</span></pre></div><div class="figcards"><div class="blk g"><span class="lbl">不许偷看</span><h4>关掉 counter</h4><p>检查员念注释，操作手敲。卡住了，回第 7、10 页找句型。</p></div><div class="blk c"><span class="lbl">小心</span><h4>大小写和分号</h4><p><code class="ic">Serial</code> 的 S 大写；<code class="ic">println</code> 是 L N；每行分号结尾。</p></div></div></div><div class="tail"><div class="strip ">写完先点<b>验证</b>：「编译完成」再上传。有红字？先找行号，再读第一句英文。</div></div></div>
+<div class="notes"><p>「最后一步：关掉老师的 counter，打开空模板 counter_todo。5 处横线，每处后面的注释告诉你要写什么。」</p><p>「检查员念注释，操作手敲。卡住了别直接问老师，回去翻第 7 页和第 10 页，句型都在那里。」</p><p>「写完先点验证。有红字？第 2 课学的三步：找行号，读第一句英文，看这一行和上一行。」</p><p>（巡视重点：int count = 0; 写进了 setup 里——会报 'count' was not declared in this scope，因为 setup 里做的盒子 loop 用不到；Serial 小写；println 写成 printIn。这是本课第一次真正手写，多夸写对的组。）</p></div>
+</section>
+
+<section class="slide lay-rowlist" data-title="技能 · ★基础档验收">
+<div class="phead"><span class="no">第 04 课</span>
+<div class="rail"><span class="done" style="--w:8">兴趣</span><span class="done" style="--w:10">现象</span><span class="done" style="--w:15">概念</span><span class="on" style="--w:35">技能</span><span class="" style="--w:20">小发明</span><span class="" style="--w:8">收尾</span></div>
+<span class="tslot">55–65 分</span>
+</div>
+<h2 class="ptitle">★ 基础档验收：<em>老师逐组来查</em></h2>
+<div class="pbody"><div class="rowlist grow"><div class="rowitem"><span class="box"></span><div class="tx">串口监视器<b>每秒一行</b>：1、2、3……</div></div><div class="rowitem"><span class="box"></span><div class="tx">5 行是<b>自己写的</b>：老师的 counter 已关掉</div></div><div class="rowitem"><span class="box"></span><div class="tx">两人都能说出：盒子为什么要做在 <b>loop 外面</b></div></div></div><div class="tail"><div class="strip ">三项都过 → 老师签字 → 进入小发明。没过的组别急，接下来 20 分钟老师专门陪你。</div></div></div>
+<div class="notes"><p>「做完的组举手，我来验收。三项：每秒一行往上数；5 行是你们自己写的；第三项<b>两个人都要过</b>——盒子为什么要做在 loop 外面？」</p><p>（标准答案：「做在 loop 里，每一圈都重新做盒子、放 0，所以永远是 1」。说出「每圈重新放 0」就算过。）</p><p>（第二项看一眼：老师的 counter 窗口是不是关了；代码里有没有学生自己的痕迹，比如名字起的不是 count。）</p><p>「过了的组，翻到下一页选进阶还是挑战。」（记下没过的组号。）</p></div>
+</section>
+
+<section class="slide lay-tiers3" data-title="小发明 · 三档任务自己选">
+<div class="phead"><span class="no">第 04 课</span>
+<div class="rail"><span class="done" style="--w:8">兴趣</span><span class="done" style="--w:10">现象</span><span class="done" style="--w:15">概念</span><span class="done" style="--w:35">技能</span><span class="on" style="--w:20">小发明</span><span class="" style="--w:8">收尾</span></div>
+<span class="tslot">65–85 分</span>
+</div>
+<h2 class="ptitle">三档任务，<em>自己选</em></h2>
+<div class="pbody"><div class="cols3 grow"><div class="blk tier t1"><div class="hd">★ 基础 · 人人必会</div><p class="task">每秒在串口打印一个<b>加 1</b> 的数字；说出变量为什么要写在 <b>loop 外面</b></p><p class="who">没过验收的组继续做这一档，老师来陪你</p><div class="tfill">□ 1、2、3……每秒一行　□ 签字</div></div><div class="blk tier t2"><div class="hd">★★ 进阶 · 新组合</div><p class="task">每次<b>加 2</b>，并打印成「<b>第 x 秒</b>」这样带文字的一行</p><p class="who">提示：print 不换行，println 换行</p><div class="tfill">加 2 的话，delay 应该改成 ______</div></div><div class="blk tier t3"><div class="hd">★★★ 挑战 · 综合</div><p class="task">从 <b>10 倒数到 0</b>，数到 0 时<b>亮灯</b>（提前用下节课的 if）</p><p class="who">count-- 是减 1；if 的写法看第 21 页</p><div class="tfill">□ 10、9……0　□ 到 0 时 L 灯亮</div></div></div><div class="tail"><div class="strip ">过了基础档的组自选 ★★ 或 ★★★。做完 ★★ 还有时间？接着挑战 ★★★。</div></div></div>
+<div class="notes"><p>「过了基础档的组，现在自己选。」</p><p>「<b>两颗星</b>：每次加 2，打印成『第 2 秒』『第 4 秒』这样带字的一行。提示：print 不换行，println 换行。再想一想：每次加 2 的话，delay 应该改成多少，『第几秒』才说真话？」</p><p>「<b>三颗星</b>：从 10 倒数到 0，数到 0 时让板子上的 L 灯亮。要用到下节课的 if——第 21 页有写法，先照着用。」</p><p>（这 20 分钟老师的主要工作是陪没过基础档的组。）</p></div>
+</section>
+
+<section class="slide lay-codes" data-title="小发明 · ★★ 第 x 秒">
+<div class="phead"><span class="no">第 04 课</span>
+<div class="rail"><span class="done" style="--w:8">兴趣</span><span class="done" style="--w:10">现象</span><span class="done" style="--w:15">概念</span><span class="done" style="--w:35">技能</span><span class="on" style="--w:20">小发明</span><span class="" style="--w:8">收尾</span></div>
+<span class="tslot">65–85 分</span>
+</div>
+<h2 class="ptitle">★★ 打印「第 x 秒」：print 和 <em>println</em></h2>
+<div class="pbody"><div class="codes grow" style="grid-template-columns:1.6fr 0.75fr"><div class="code"><div class="lab "><span>loop 改成这样</span></div><pre style="font-size:27px;line-height:1.55"><span class="t">void</span> <span class="f">loop</span>() {
+  count = count + <span class="k">2</span>;      <span class="c">// 每次加 2</span>
+  <span class="t">Serial</span>.<span class="f">print</span>(<span class="s">"第 "</span>);    <span class="c">// print：不换行</span>
+  <span class="t">Serial</span>.<span class="f">print</span>(count);
+  <span class="t">Serial</span>.<span class="f">println</span>(<span class="s">" 秒"</span>);  <span class="c">// println：打完换行</span>
+  <span class="f">delay</span>(<span class="k">2000</span>);            <span class="c">// 加 2，就等 2 秒</span>
+}</pre></div><div class="code outbox serial"><div class="lab n"><span>串口监视器</span><span class="rt">9600</span></div><pre class="out" style="font-size:26px;line-height:1.55"><span class="ol ">第 2 秒</span>
+<span class="ol ">第 4 秒</span>
+<span class="ol ">第 6 秒</span>
+<span class="ol ">第 8 秒</span></pre></div></div><div class="tail"><div class="strip ">猜：三句 print 为什么只出<b>一行</b>？ <span class="rvi" data-step="1">print 打完不换行，下一句接着写；只有 println 打完才换行</span></div></div></div>
+<div class="notes"><p>（★★ 的组做的时候开着这一页。）</p><p>「count = count + 2，每次加 2——还记得吗？先算右边，再放进去。」</p><p>「打印一行带字的：先 print『第 』，再 print 数字，最后 println『 秒』。」</p><p>「先猜：三句话，为什么串口里只出一行？」<b>→ 揭晓</b>「print 打完<b>不换行</b>，下一句接着写在同一行；println 打完才换行。」</p><p>「最后：每次加 2，就要等 2 秒，delay 改成 2000，『第几秒』才说真话。」</p><p>（引号要用英文的 "；引号里面可以写中文，串口监视器能显示。）</p></div>
+</section>
+
+<section class="slide lay-code" data-title="小发明 · ★★★ 倒数">
+<div class="phead"><span class="no">第 04 课</span>
+<div class="rail"><span class="done" style="--w:8">兴趣</span><span class="done" style="--w:10">现象</span><span class="done" style="--w:15">概念</span><span class="done" style="--w:35">技能</span><span class="on" style="--w:20">小发明</span><span class="" style="--w:8">收尾</span></div>
+<span class="tslot">65–85 分</span>
+</div>
+<h2 class="ptitle">★★★ 倒数到 0 亮灯：先借用<em>下节课的 if</em></h2>
+<div class="pbody"><div class="lcol grow" style="grid-template-columns:1.777777777777778fr 1fr"><div class="code"><div class="lab "><span>countdown.ino · 参考写法</span><span class="rt">照着用</span></div><pre class="nums" style="font-size:20px;line-height:1.4;counter-reset:L 0"><span class="L"><span class="t">int</span> count = <span class="k">10</span>;           <span class="c">// 从 10 开始</span></span>
+<span class="L"> </span>
+<span class="L"><span class="t">void</span> <span class="f">setup</span>() {</span>
+<span class="L">  <span class="t">Serial</span>.<span class="f">begin</span>(<span class="k">9600</span>);</span>
+<span class="L">  <span class="f">pinMode</span>(<span class="k">LED_BUILTIN</span>, <span class="k">OUTPUT</span>);</span>
+<span class="L">}</span>
+<span class="L"> </span>
+<span class="L"><span class="t">void</span> <span class="f">loop</span>() {</span>
+<span class="L">  <span class="t">Serial</span>.<span class="f">println</span>(count);</span>
+<span class="L">  <span class="x">if</span> (count == <span class="k">0</span>) {                  <span class="c">// 数到 0 了吗？</span></span>
+<span class="L">    <span class="f">digitalWrite</span>(<span class="k">LED_BUILTIN</span>, <span class="k">HIGH</span>); <span class="c">// 到 0：亮灯，停在 0</span></span>
+<span class="L">  } <span class="x">else</span> {</span>
+<span class="L">    count--;                         <span class="c">// 没到 0：减 1，接着数</span></span>
+<span class="L">  }</span>
+<span class="L">  <span class="f">delay</span>(<span class="k">1000</span>);</span>
+<span class="L">}</span></pre></div><div class="figcards"><div class="blk c"><span class="lbl">if … else</span><h4>到 0 了吗？</h4><p>到了做上面的大括号，没到做 else 下面的。下节课细讲。</p></div><div class="blk n"><span class="lbl">== 和 =</span><h4>两个等号是「比较」</h4><p><code class="ic">count == 0</code> 问「是不是 0」；一个 = 是放进去。</p></div></div></div><div class="tail"><div class="strip ">改一改：从 5 倒数？到 0 时三个灯都亮（上节课的交通灯模块）？</div></div></div>
+<div class="notes"><p>（★★★ 的组做的时候开着这一页。）</p><p>「倒数要用到下节课的 if：『如果 count 等于 0，就亮灯；否则，减 1 接着数』。今天先照着用，下节课细讲。」</p><p>「注意 if 里面是<b>两个等号</b>：count == 0 是在<b>问</b>『count 是不是 0』；一个等号是『放进去』。写成一个等号，意思就全变了。」</p><p>「到 0 以后为什么停住了？因为到 0 就不再减 1 了，每秒都打印 0。」</p><p>（能自己改出「从 5 倒数」或「到 0 时交通灯三个灯全亮」的组，记下来，下节课请他们演示。）</p></div>
+</section>
+
+<section class="slide lay-table" data-title="小发明 · 卡住了先查这张">
+<div class="phead"><span class="no">第 04 课</span>
+<div class="rail"><span class="done" style="--w:8">兴趣</span><span class="done" style="--w:10">现象</span><span class="done" style="--w:15">概念</span><span class="done" style="--w:35">技能</span><span class="on" style="--w:20">小发明</span><span class="" style="--w:8">收尾</span></div>
+<span class="tslot">65–85 分</span>
+</div>
+<h2 class="ptitle">卡住了？<em>先查这张</em>，再举手</h2>
+<div class="pbody"><div class="tbl grow" style="grid-template-columns:1.2fr 1.3fr 1.4fr"><div class="th">看到什么</div><div class="th">多半是因为</div><div class="th">怎么办</div><div class="td k"><span>串口监视器一片乱码</span></div><div class="td"><span>波特率不是 9600</span></div><div class="td last"><span>右边下拉框选「波特率 9600」</span></div><div class="td k"><span>串口监视器什么都没有</span></div><div class="td"><span>没写 Serial.begin，或没上传成功</span></div><div class="td last"><span>setup 里写 <code class="ic">Serial.begin(9600);</code></span></div><div class="td k"><span>数字永远是 1</span></div><div class="td"><span>int count = 0; 写在了 loop 里</span></div><div class="td last"><span>挪到 loop 外面（② 变量区）</span></div><div class="td k"><span>数字刷得飞快</span></div><div class="td"><span>漏了 delay(1000);</span></div><div class="td last"><span>loop 最后加 <code class="ic">delay(1000);</code></span></div><div class="td k"><span>红字 'count' was not declared</span></div><div class="td"><span>没做盒子，或盒子做在了 setup 里</span></div><div class="td last"><span>② 变量区写 <code class="ic">int count = 0;</code></span></div><div class="td k"><span>红字 'serial' was not declared</span></div><div class="td"><span>Serial 写成了小写</span></div><div class="td last"><span>S 大写：<code class="ic">Serial</code></span></div></div></div>
+<div class="notes"><p>（小发明环节投影停在这一页。）</p><p>「卡住了先别举手，<b>先查这张表</b>。前两行是串口监视器的问题，后四行是代码的问题。」</p><p>「最常见的是第 3 行：永远是 1——盒子做进 loop 里了。第 5 行也常见：把 int count = 0; 写进了 setup，setup 里做的盒子，loop 用不到。」</p><p>（老师现场判断：先问『串口监视器右边选的多少？』『盒子做在哪？』，让学生自己找。）</p></div>
+</section>
+
+<section class="slide lay-rowlist" data-title="收尾 · 今天的三个发现">
+<div class="phead"><span class="no">第 04 课</span>
+<div class="rail"><span class="done" style="--w:8">兴趣</span><span class="done" style="--w:10">现象</span><span class="done" style="--w:15">概念</span><span class="done" style="--w:35">技能</span><span class="done" style="--w:20">小发明</span><span class="on" style="--w:8">收尾</span></div>
+<span class="tslot">85–90 分</span>
+</div>
+<h2 class="ptitle">今天的<em>三个发现</em></h2>
+<div class="pbody"><div class="rowlist grow"><div class="rowitem"><div class="num g">1</div><div class="tx"><div class="rv " data-step="1"><div class="rv-a">变量是<b>有名字的盒子</b>：<code class="ic">int count = 0;</code> 做盒子，<code class="ic">count++;</code> 加 1</div><div class="rv-q">？ 先请同学说说看</div></div></div></div><div class="rowitem"><div class="num a">2</div><div class="tx"><div class="rv " data-step="2"><div class="rv-a"><code class="ic">=</code> 是<b>放进去</b>，不是「等于」：先算右边，再放进左边</div><div class="rv-q">？ 先请同学说说看</div></div></div></div><div class="rowitem"><div class="num n">3</div><div class="tx"><div class="rv " data-step="3"><div class="rv-a">要一直记住的数，盒子做在 <b>loop 外面</b>；做在里面，每圈都重新变成 0</div><div class="rv-q">？ 先请同学说说看</div></div></div></div></div><div class="tail"><div class="strip ">交作业：代码 + 串口监视器截图（组号_姓名_第4课）+ 任务卡。每人说一句「今天哪里卡住了」。</div></div></div>
+<div class="notes"><p>（三条先盖着。）「今天发现了哪三件事？」每一条先请一位同学说，说得差不多了 <b>→ 揭晓</b>，再请下一位。</p><p>「交作业：截图要把代码和串口监视器一起截进去，文件名组号、姓名、第4课。任务卡交上来。」</p><p>「每人说一句：今天哪里卡住了？今天是第一次自己写代码，卡住很正常。」</p><p>（快速收一圈，不评价。看任务卡：第②栏『盒子里是几』做对了几道；第③栏自己写的 5 行有没有大小写错。）</p></div>
+</section>
+
+<section class="slide lay-cards" data-title="收尾 · 下节课按键开灯">
+<div class="phead"><span class="no">第 04 课</span>
+<div class="rail"><span class="done" style="--w:8">兴趣</span><span class="done" style="--w:10">现象</span><span class="done" style="--w:15">概念</span><span class="done" style="--w:35">技能</span><span class="done" style="--w:20">小发明</span><span class="on" style="--w:8">收尾</span></div>
+<span class="tslot">85–90 分</span>
+</div>
+<h2 class="ptitle">下节课：<em>按键开灯</em>——板子学会做判断</h2>
+<div class="pbody"><div class="cols2 grow lay-cards2-in"><div class="blk n"><span class="lbl">第 5 课 · 作品</span><h4>按住按键灯亮，松开灯灭</h4><p>按键模块插在扩展板上。</p><p>新句型：<b>if / else</b>、<code class="ic">==</code></p></div><div class="blk c"><span class="lbl">先想一个问题</span><h4>按下按键时，板子读到 1 还是 0？</h4><p>A 按下是 1　B 按下是 0</p><p>下节课用串口一看就知道。</p></div></div><div class="tail"><div class="strip ">回家想一想：生活里有哪些「如果……就……否则……」？比如：如果下雨，就带伞，否则……</div></div></div>
+<div class="notes"><p>「下节课，板子学会<b>做判断</b>：按住按键灯亮，松开灯灭。新句型是 if / else，还有两个等号 ==——三颗星的同学今天已经见过了。」</p><p>「先想一个问题：按下按键的时候，板子读到的是 1 还是 0？下节课我们用今天学的串口，一看就知道。」</p><p>「回家想一想：生活里有哪些『如果……就……否则……』？比如：如果下雨，就带伞，否则就不带。写一个在任务卡背面。」</p><p>（课后：没过基础档的组号记进反馈；准备第 5 课的按键模块和 3P 线，每组一套。）</p></div>
+</section>
+<div class="deck-footer"><span>Arduino UNO 入门 · 单元二 变量与判断 · 第 4 课 串口计数器</span><span class="fright"><span class="rv-left" style="display:none"></span><span class="slide-number" data-current="1" data-total="24"></span></span></div>
+<div class="progress-bar"><span></span></div>
+</div>
+<script src="assets/fitstage.js"></script>
+<script src="assets/runtime.js"></script>
+</body>
+</html>

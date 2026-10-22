@@ -1,0 +1,360 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>第06课 按键计数 · Arduino UNO 入门</title>
+<link rel="stylesheet" href="assets/base.css">
+<link rel="stylesheet" id="theme-link" href="assets/theme-arduino.css">
+<link rel="stylesheet" href="assets/animations.css">
+</head>
+<body>
+<div class="deck" data-theme-base="assets/">
+<section class="slide lay-cover is-active" data-title="封面 · 课前检查">
+<span class="cv-bar">Arduino UNO 入门 / 单元二「变量与判断」</span>
+<h1 class="cv-title">按键<em>计数</em></h1>
+<p class="cv-sub"><code class="ic">while (还按着) { }</code>——等你松手，再数下一次</p>
+<div class="cv-tags"><span class="tag">while</span><span class="tag">等松手</span><span class="tag">手写 5–8 行</span><span class="tag">90 分钟</span></div>
+<div class="cv-no">06</div>
+<div class="cv-icon"><svg viewBox="0 0 560 360" xmlns="http://www.w3.org/2000/svg" font-family="Microsoft YaHei" text-rendering="geometricPrecision"><g transform="translate(10 60) scale(1.7)"><rect x="15" y="30" width="130" height="128" rx="8" fill="#1E4E8C" stroke="#141414" stroke-width="4"/><rect x="46" y="16" width="8" height="16" fill="#D4AF37"/><text x="50" y="54" text-anchor="middle" font-size="18" font-weight="900" fill="#fff">G</text><rect x="76" y="16" width="8" height="16" fill="#D4AF37"/><text x="80" y="54" text-anchor="middle" font-size="18" font-weight="900" fill="#fff">V</text><rect x="106" y="16" width="8" height="16" fill="#D4AF37"/><text x="110" y="54" text-anchor="middle" font-size="18" font-weight="900" fill="#fff">S</text><rect x="52" y="68" width="56" height="56" rx="4" fill="#2B2B2B" stroke="#141414" stroke-width="3"/><g class="bt-press"><circle cx="80" cy="96" r="19" fill="#D85A30" stroke="#141414" stroke-width="3"/><circle cx="75" cy="91" r="11" fill="#fff" opacity=".25"/></g></g><path d="M262 190 H300" stroke="#141414" stroke-width="8" stroke-linecap="round"/><path d="M300 172 L326 190 L300 208 Z" fill="#141414"/><rect x="334" y="30" width="206" height="300" rx="10" fill="#37474F" stroke="#141414" stroke-width="5"/><rect x="346" y="42" width="182" height="276" fill="#fff"/><rect x="346" y="42" width="182" height="34" fill="#ECEFF1"/><text x="358" y="66" font-size="18" font-weight="800" fill="#333">串口</text><text x="364" y="122" font-size="36" font-weight="800" fill="#111" font-family="Consolas,Arial">1</text><text x="364" y="168" font-size="36" font-weight="800" fill="#111" font-family="Consolas,Arial">2</text><text x="364" y="214" font-size="36" font-weight="800" fill="#111" font-family="Consolas,Arial">3</text><rect x="348" y="224" width="178" height="46" fill="#FFE7A3"/><text x="364" y="260" font-size="36" font-weight="800" fill="#111" font-family="Consolas,Arial">4</text><rect x="452" y="238" width="62" height="40" fill="#D85A30" stroke="#141414" stroke-width="3"/><text x="483" y="267" text-anchor="middle" font-size="24" font-weight="900" fill="#fff">+1</text></svg></div>
+<div class="notes"><p><b>课前 5 分钟</b>：每组扩展板上的接线照上节课不动——按键模块 3P 线插 2 号，交通灯模块 R 10、Y 9、G 8、GND 任意 G；共享文件夹里有 naive、count、count_todo。</p><p>今天的<b>保底目标</b>：每组按一下按键、串口数字只加 1；if 和 while 那几行自己写；每人能说出 if 和 while 的区别。</p><p>今天唯一的新语法：<b>while</b>（等松手）。它和上节课的 if 长得几乎一样，只差一个词，意思却完全不同。</p><p>先猜再揭晓照旧：按 → 揭晓，揭晓完再按 → 翻页。</p></div>
+</section>
+
+<section class="slide lay-figure" data-title="兴趣 · 按一下 loop 转几圈">
+<div class="phead"><span class="no">第 06 课</span>
+<div class="rail"><span class="on" style="--w:8">兴趣</span><span class="" style="--w:10">现象</span><span class="" style="--w:15">概念</span><span class="" style="--w:35">技能</span><span class="" style="--w:20">小发明</span><span class="" style="--w:8">收尾</span></div>
+<span class="tslot">0–5 分</span>
+</div>
+<h2 class="ptitle">上节课的问题：按一下，loop 转了<em>几圈</em>？</h2>
+<div class="pbody">
+  <div class="figgrid grow" style="--figw:1fr"><div class="figbox"><svg viewBox="0 0 600 520" xmlns="http://www.w3.org/2000/svg" font-family="Microsoft YaHei" text-rendering="geometricPrecision"><rect x="262" y="40" width="76" height="70" rx="10" fill="#9AA5AB" stroke="#141414" stroke-width="5"/><rect x="276" y="20" width="48" height="30" rx="6" fill="#D85A30" stroke="#141414" stroke-width="4"/><circle cx="300" cy="280" r="170" fill="#CFD8DC" stroke="#141414" stroke-width="6"/><circle cx="300" cy="280" r="140" fill="#ECEFF1" stroke="#141414" stroke-width="4"/><rect x="170" y="230" width="260" height="96" rx="8" fill="#263238" stroke="#141414" stroke-width="5"/><rect x="182" y="242" width="54" height="72" fill="#fff" stroke="#141414" stroke-width="2"/><text x="209" y="300" text-anchor="middle" font-size="56" font-weight="900" fill="#141414" font-family="Consolas,Arial">0</text><rect x="243" y="242" width="54" height="72" fill="#fff" stroke="#141414" stroke-width="2"/><text x="270" y="300" text-anchor="middle" font-size="56" font-weight="900" fill="#141414" font-family="Consolas,Arial">0</text><rect x="304" y="242" width="54" height="72" fill="#fff" stroke="#141414" stroke-width="2"/><text x="331" y="300" text-anchor="middle" font-size="56" font-weight="900" fill="#141414" font-family="Consolas,Arial">4</text><rect x="365" y="242" width="54" height="72" fill="#fff" stroke="#141414" stroke-width="2"/><text x="392" y="300" text-anchor="middle" font-size="56" font-weight="900" fill="#141414" font-family="Consolas,Arial">2</text><path d="M450 420 C520 460 560 420 560 370" fill="none" stroke="#141414" stroke-width="6" stroke-linecap="round"/><text x="356" y="44" font-size="26" font-weight="900" fill="#1F4E79">← 按一下，加 1</text><text x="300" y="500" text-anchor="middle" font-size="22" font-weight="800" fill="#555">按一下，只能加 1——不能多加</text></svg></div><div class="figcards"><div class="blk n"><span class="lbl">回家作业</span><h4>按一下按键要多久？</h4><p>你估计的是多少毫秒？</p></div><div class="blk a"><span class="lbl">loop 有多快</span><h4>一秒钟转几万圈</h4><p>A 1 圈　B 几十圈　C 几千圈</p><div class="rv rv-ans" data-step="1"><div class="rv-a"><p class="ans">按一下大约 0.1～0.2 秒，loop 已经转了<b>几千圈</b>。每一圈都问「按下了吗？」——每圈的回答都是「是」。</p></div><div class="rv-q">？ 先猜一猜</div></div></div></div></div>
+  <div class="tail"><div class="strip ">今天的作品：像检票员的计数器一样，按一下，串口数字<b>只加 1</b>。</div></div>
+</div>
+<div class="notes"><p>「上节课留的问题：你按一下按键，大概要多少毫秒？」（请几位同学说，一般会说 100 到 300 毫秒。）</p><p>「loop 一秒钟转几万圈。那你按一下的时间里，loop 转了几圈？A 1 圈，B 几十圈，C 几千圈。」（举手投票。）</p><p><b>→ 揭晓</b>「几千圈。你觉得自己按得很快，可在板子看来，你的手指在按键上停了很久很久。每一圈它都问一次：按下了吗？每一圈的回答都是：是。」</p><p>「今天要做的就是左边这个检票员的计数器：按一下，只加 1。听起来简单，我们先看看直接写会怎样。」</p></div>
+</section>
+
+<section class="slide lay-codes" data-title="现象 · 按一下加几">
+<div class="phead"><span class="no">第 06 课</span>
+<div class="rail"><span class="done" style="--w:8">兴趣</span><span class="on" style="--w:10">现象</span><span class="" style="--w:15">概念</span><span class="" style="--w:35">技能</span><span class="" style="--w:20">小发明</span><span class="" style="--w:8">收尾</span></div>
+<span class="tslot">5–15 分</span>
+</div>
+<h2 class="ptitle">把上两课合起来：按一下，<em>加几</em>？</h2>
+<div class="pbody"><div class="codes grow" style="grid-template-columns:1.8fr 0.6fr"><div class="code"><div class="lab "><span>naive.ino</span><span class="rt">第 4 课 + 第 5 课</span></div><pre class="nums" style="font-size:19px;line-height:1.4;counter-reset:L 0"><span class="L"><span class="c">// ===== ① 引脚 =====</span></span>
+<span class="L"><span class="t">const</span> <span class="t">int</span> BTN = <span class="k">2</span>;        <span class="c">// 按键模块：2 号</span></span>
+<span class="L"> </span>
+<span class="L"><span class="c">// ===== ② 变量 =====</span></span>
+<span class="L"><span class="t">int</span> count = <span class="k">0</span>;            <span class="c">// 按了几次</span></span>
+<span class="L"> </span>
+<span class="L"><span class="t">void</span> <span class="f">setup</span>() {    <span class="c">// ③ 只做一次：准备</span></span>
+<span class="L">  <span class="f">pinMode</span>(BTN, <span class="k">INPUT_PULLUP</span>);</span>
+<span class="L">  <span class="t">Serial</span>.<span class="f">begin</span>(<span class="k">9600</span>);</span>
+<span class="L">}</span>
+<span class="L"> </span>
+<span class="L"><span class="t">void</span> <span class="f">loop</span>() {     <span class="c">// ④ 一直重复：干活</span></span>
+<span class="L">  <span class="x">if</span> (<span class="f">digitalRead</span>(BTN) == <span class="k">LOW</span>) {   <span class="c">// 按下了？</span></span>
+<span class="L">    count++;                       <span class="c">// 加 1</span></span>
+<span class="L">    <span class="t">Serial</span>.<span class="f">println</span>(count);</span>
+<span class="L">  }</span>
+<span class="L">}</span></pre></div><div class="code outbox serial"><div class="lab n"><span>串口监视器</span><span class="rt">只按了一下</span></div><div class="rv rv-out" data-step="1"><div class="rv-a"><pre class="out" style="font-size:26px;line-height:1.55"><span class="ol ">1</span>
+<span class="ol ">2</span>
+<span class="ol ">3</span>
+<span class="ol ">4</span>
+<span class="ol ">5</span>
+<span class="ol ">…</span>
+<span class="ol ">46</span>
+<span class="ol ">47</span>
+<span class="ol ">48</span></pre></div><div class="rv-q">？ 先投票</div></div></div></div><div class="opts" style="margin-top:22px"><div class="opt"><span class="ol">A</span>加 1</div><div class="opt rvo" data-step="1"><span class="ol">B</span>加了几十</div><div class="opt"><span class="ol">C</span>加了几万</div><div class="opt"><span class="ol">D</span>一个都不加</div></div></div>
+<div class="notes"><p>「把第 4 课的计数器和第 5 课的 if 合起来：如果按下了，count 加 1，打印出来。看起来没毛病。」</p><p>「投票：我只按一下，串口会加几？A 加 1，B 加几十，C 加几万，D 一个都不加。」（数票。）</p><p>（老师上传 naive，打开串口监视器，快速按一下。）<b>→ 揭晓</b>「一下子刷出来几十行！我再按一下——又是几十。」</p><p>「每次按的时间不一样，加的数也不一样。按得越久，加得越多。为什么？下一页看看这一下里发生了什么。」</p><p>（请一位同学上来按着不放 2 秒，串口会一直往上涨。）</p></div>
+</section>
+
+<section class="slide lay-figure" data-title="现象 · 按着的每一圈都加 1">
+<div class="phead"><span class="no">第 06 课</span>
+<div class="rail"><span class="done" style="--w:8">兴趣</span><span class="on" style="--w:10">现象</span><span class="" style="--w:15">概念</span><span class="" style="--w:35">技能</span><span class="" style="--w:20">小发明</span><span class="" style="--w:8">收尾</span></div>
+<span class="tslot">5–15 分</span>
+</div>
+<h2 class="ptitle">为什么多加了：按着的<em>每一圈</em>都加 1</h2>
+<div class="pbody">
+  <div class="figgrid grow" style="--figw:1.25fr"><div class="figbox"><svg viewBox="0 0 720 520" xmlns="http://www.w3.org/2000/svg" font-family="Microsoft YaHei" text-rendering="geometricPrecision"><text x="40" y="52" font-size="23" font-weight="900" fill="#141414">loop 转一圈 = 一根竖线</text><text x="40" y="82" font-size="18" font-weight="800" fill="#555">（真正的比这密得多：一秒几万圈）</text><path d="M40 132 V176" stroke="#9AA5A8" stroke-width="3"/><path d="M49 132 V176" stroke="#9AA5A8" stroke-width="3"/><path d="M58 132 V176" stroke="#9AA5A8" stroke-width="3"/><path d="M67 132 V176" stroke="#9AA5A8" stroke-width="3"/><path d="M76 132 V176" stroke="#9AA5A8" stroke-width="3"/><path d="M85 132 V176" stroke="#9AA5A8" stroke-width="3"/><path d="M94 132 V176" stroke="#9AA5A8" stroke-width="3"/><path d="M103 132 V176" stroke="#9AA5A8" stroke-width="3"/><path d="M112 132 V176" stroke="#9AA5A8" stroke-width="3"/><path d="M121 132 V176" stroke="#9AA5A8" stroke-width="3"/><path d="M130 132 V176" stroke="#9AA5A8" stroke-width="3"/><path d="M139 132 V176" stroke="#9AA5A8" stroke-width="3"/><path d="M148 132 V176" stroke="#9AA5A8" stroke-width="3"/><path d="M157 132 V176" stroke="#9AA5A8" stroke-width="3"/><path d="M166 132 V176" stroke="#9AA5A8" stroke-width="3"/><path d="M175 132 V176" stroke="#9AA5A8" stroke-width="3"/><path d="M184 132 V176" stroke="#9AA5A8" stroke-width="3"/><path d="M193 132 V176" stroke="#9AA5A8" stroke-width="3"/><path d="M202 132 V176" stroke="#9AA5A8" stroke-width="3"/><path d="M211 132 V176" stroke="#9AA5A8" stroke-width="3"/><path d="M220 132 V176" stroke="#9AA5A8" stroke-width="3"/><path d="M229 132 V176" stroke="#9AA5A8" stroke-width="3"/><path d="M238 120 V176" stroke="#D85A30" stroke-width="5"/><path d="M247 120 V176" stroke="#D85A30" stroke-width="5"/><path d="M256 120 V176" stroke="#D85A30" stroke-width="5"/><path d="M265 120 V176" stroke="#D85A30" stroke-width="5"/><path d="M274 120 V176" stroke="#D85A30" stroke-width="5"/><path d="M283 120 V176" stroke="#D85A30" stroke-width="5"/><path d="M292 120 V176" stroke="#D85A30" stroke-width="5"/><path d="M301 120 V176" stroke="#D85A30" stroke-width="5"/><path d="M310 120 V176" stroke="#D85A30" stroke-width="5"/><path d="M319 120 V176" stroke="#D85A30" stroke-width="5"/><path d="M328 120 V176" stroke="#D85A30" stroke-width="5"/><path d="M337 120 V176" stroke="#D85A30" stroke-width="5"/><path d="M346 120 V176" stroke="#D85A30" stroke-width="5"/><path d="M355 120 V176" stroke="#D85A30" stroke-width="5"/><path d="M364 120 V176" stroke="#D85A30" stroke-width="5"/><path d="M373 120 V176" stroke="#D85A30" stroke-width="5"/><path d="M382 120 V176" stroke="#D85A30" stroke-width="5"/><path d="M391 120 V176" stroke="#D85A30" stroke-width="5"/><path d="M400 120 V176" stroke="#D85A30" stroke-width="5"/><path d="M409 120 V176" stroke="#D85A30" stroke-width="5"/><path d="M418 120 V176" stroke="#D85A30" stroke-width="5"/><path d="M427 120 V176" stroke="#D85A30" stroke-width="5"/><path d="M436 120 V176" stroke="#D85A30" stroke-width="5"/><path d="M445 120 V176" stroke="#D85A30" stroke-width="5"/><path d="M454 132 V176" stroke="#9AA5A8" stroke-width="3"/><path d="M463 132 V176" stroke="#9AA5A8" stroke-width="3"/><path d="M472 132 V176" stroke="#9AA5A8" stroke-width="3"/><path d="M481 132 V176" stroke="#9AA5A8" stroke-width="3"/><path d="M490 132 V176" stroke="#9AA5A8" stroke-width="3"/><path d="M499 132 V176" stroke="#9AA5A8" stroke-width="3"/><path d="M508 132 V176" stroke="#9AA5A8" stroke-width="3"/><path d="M517 132 V176" stroke="#9AA5A8" stroke-width="3"/><path d="M526 132 V176" stroke="#9AA5A8" stroke-width="3"/><path d="M535 132 V176" stroke="#9AA5A8" stroke-width="3"/><path d="M544 132 V176" stroke="#9AA5A8" stroke-width="3"/><path d="M553 132 V176" stroke="#9AA5A8" stroke-width="3"/><path d="M562 132 V176" stroke="#9AA5A8" stroke-width="3"/><path d="M571 132 V176" stroke="#9AA5A8" stroke-width="3"/><path d="M580 132 V176" stroke="#9AA5A8" stroke-width="3"/><path d="M589 132 V176" stroke="#9AA5A8" stroke-width="3"/><path d="M598 132 V176" stroke="#9AA5A8" stroke-width="3"/><path d="M607 132 V176" stroke="#9AA5A8" stroke-width="3"/><path d="M616 132 V176" stroke="#9AA5A8" stroke-width="3"/><path d="M625 132 V176" stroke="#9AA5A8" stroke-width="3"/><path d="M634 132 V176" stroke="#9AA5A8" stroke-width="3"/><path d="M643 132 V176" stroke="#9AA5A8" stroke-width="3"/><path d="M652 132 V176" stroke="#9AA5A8" stroke-width="3"/><path d="M661 132 V176" stroke="#9AA5A8" stroke-width="3"/><path d="M670 132 V176" stroke="#9AA5A8" stroke-width="3"/><path d="M679 132 V176" stroke="#9AA5A8" stroke-width="3"/><path d="M688 132 V176" stroke="#9AA5A8" stroke-width="3"/><path d="M230 194 v12 h220 v-12" fill="none" stroke="#D85A30" stroke-width="4"/><text x="340" y="238" text-anchor="middle" font-size="22" font-weight="900" fill="#D85A30">按着的每一圈：count++</text><path d="M40 300 H230 V380 H450 V300 H690" fill="none" stroke="#1F4E79" stroke-width="6" stroke-linejoin="round"/><rect x="230" y="380" width="220" height="10" fill="#1F4E79" opacity=".18"/><text x="40" y="290" font-size="20" font-weight="800" fill="#1F4E79">松开</text><text x="340" y="364" text-anchor="middle" font-size="22" font-weight="900" fill="#1F4E79">按下（约 0.15 秒）</text><text x="690" y="290" text-anchor="end" font-size="20" font-weight="800" fill="#1F4E79">松开</text><path d="M40 430 H690" stroke="#141414" stroke-width="4"/><path d="M690 430 l-16 -9 v18 Z" fill="#141414"/><text x="40" y="466" font-size="20" font-weight="800" fill="#555">时间 →</text><text x="365" y="500" text-anchor="middle" font-size="22" font-weight="900" fill="#141414">每一圈都问「按下了吗？」——按着时，每圈都答「是」</text></svg></div><div class="figcards"><div class="blk n"><span class="lbl">按一下</span><h4>手指停了约 0.15 秒</h4><p>对板子来说，这是很长一段时间。</p></div><div class="blk c"><span class="lbl">loop</span><h4>按着的每一圈都答「是」</h4><p>每答一次「是」，就加 1。</p></div><div class="blk a"><span class="lbl">为什么只有几十</span><h4>不是几千？</h4><div class="rv rv-ans" data-step="1"><div class="rv-a"><p class="ans">打印一行要花几毫秒，把 loop <b>拖慢了</b>。不打印的话，一按能加几千。</p></div><div class="rv-q">？ 想一想</div></div></div></div></div>
+  <div class="tail"><div class="strip ">我们要的是：按一下，加 1，然后<b>等你松手</b>，再数下一次。</div></div>
+</div>
+<div class="notes"><p>「看这张图。上面每一根竖线，是 loop 转了一圈。下面蓝线是按键：松开在上，按下在下。」</p><p>「你按下的这 0.15 秒里，有很多根竖线——每一圈都问『按下了吗』，每一圈都答『是』，每一圈都加 1。」</p><p>「那为什么只加了几十，不是几千？」<b>→ 揭晓</b>「因为每打印一行，要花几毫秒，把 loop 拖慢了。要是不打印，一按能加好几千。」</p><p>「所以问题不在 if 写错了，而在<b>它不会等</b>。我们要的是：按下，加 1，然后等你松手，再数下一次。今天的新句型就是干这个的。」</p></div>
+</section>
+
+<section class="slide lay-figure" data-title="概念 · while 只要就一直">
+<div class="phead"><span class="no">第 06 课</span>
+<div class="rail"><span class="done" style="--w:8">兴趣</span><span class="done" style="--w:10">现象</span><span class="on" style="--w:15">概念</span><span class="" style="--w:35">技能</span><span class="" style="--w:20">小发明</span><span class="" style="--w:8">收尾</span></div>
+<span class="tslot">15–30 分</span>
+</div>
+<h2 class="ptitle">今天唯一的新句型：<em>while</em>（只要……就一直……）</h2>
+<div class="pbody">
+  <div class="figgrid grow" style="--figw:1.15fr"><div class="figbox"><svg viewBox="0 0 720 520" xmlns="http://www.w3.org/2000/svg" font-family="Microsoft YaHei" text-rendering="geometricPrecision"><defs><marker id="ar7" viewBox="0 0 10 10" refX="7" refY="5" markerWidth="5" markerHeight="5" orient="auto"><path d="M0 0 L10 5 L0 10 Z" fill="#141414"/></marker></defs><rect x="200" y="20" width="320" height="64" fill="#fff" stroke="#141414" stroke-width="5"/><text x="360" y="62" text-anchor="middle" font-size="25" font-weight="900" fill="#141414">按下了：加 1、打印</text><path d="M360 84 V126" stroke="#141414" stroke-width="5" marker-end="url(#ar7)"/><path d="M360 132 L540 236 L360 340 L180 236 Z" fill="#F5A623" stroke="#141414" stroke-width="5" stroke-linejoin="round"/><text x="360" y="200" text-anchor="middle" font-size="24" font-weight="900" fill="#1F4E79">while</text><text x="360" y="250" text-anchor="middle" font-size="32" font-weight="900" fill="#141414">还按着吗？</text><path d="M540 236 H650 V108 H420 V156" fill="none" stroke="#D85A30" stroke-width="6" stroke-dasharray="14 8" marker-end="url(#ar7)"/><text x="602" y="226" text-anchor="middle" font-size="24" font-weight="900" fill="#D85A30">是</text><text x="566" y="150" text-anchor="middle" font-size="21" font-weight="900" fill="#D85A30">再问一遍</text><text x="566" y="176" text-anchor="middle" font-size="19" font-weight="800" fill="#D85A30">（原地等）</text><path d="M360 340 V398" stroke="#141414" stroke-width="5" marker-end="url(#ar7)"/><text x="384" y="378" font-size="24" font-weight="900" fill="#1D9E75">否 · 松手了</text><rect x="200" y="404" width="320" height="64" fill="#1D9E75" stroke="#141414" stroke-width="5"/><text x="360" y="446" text-anchor="middle" font-size="25" font-weight="900" fill="#fff">出来，接着往下</text><text x="360" y="506" text-anchor="middle" font-size="19" font-weight="800" fill="#555">大括号里是空的：什么都不做，就是等</text></svg></div><div class="figcards"><div class="blk c"><span class="lbl">while（只要）</span><h4>括号里还是一个问题</h4><p>答「是」，就做大括号里的事，然后<b>再问一遍</b>。</p></div><div class="blk g"><span class="lbl">什么时候出来</span><h4>答案变成「不是」</h4><p>才从 while 出来，接着往下走。</p></div><div class="blk a"><span class="lbl">生活里</span><h4>等红灯</h4><p><b>只要</b>还是红灯，<b>就一直</b>站着等。</p></div></div></div>
+  
+</div>
+<div class="notes"><p>「今天的新句型叫 while，读作『外欧』，意思是：<b>只要</b>……<b>就一直</b>……」</p><p>「看图：菱形里还是一个问题——还按着吗？答『是』，走右边这条虚线，<b>绕回来再问一遍</b>；再答『是』，再绕回来……就这样原地转圈。」</p><p>「什么时候出来？答案变成『不是』——你松手了——才走下面这条路，出来，接着往下。」</p><p>「生活里的例子：等红灯。只要还是红灯，就一直站着等；一变绿，就走。while 就是让板子『站着等』。」</p></div>
+</section>
+
+<section class="slide lay-anat" data-title="概念 · 拆开 while 这一行">
+<div class="phead"><span class="no">第 06 课</span>
+<div class="rail"><span class="done" style="--w:8">兴趣</span><span class="done" style="--w:10">现象</span><span class="on" style="--w:15">概念</span><span class="" style="--w:35">技能</span><span class="" style="--w:20">小发明</span><span class="" style="--w:8">收尾</span></div>
+<span class="tslot">15–30 分</span>
+</div>
+<h2 class="ptitle">拆开这一行：<em>等松手</em></h2>
+<div class="pbody"><div class="anat"><div class="arow"><div class="segs" style="font-size:50px;padding-bottom:58px"><span class="seg c"><span class="st">while</span><span class="lw" style="--lv:0"><span class="rvi" data-step="1"><span class="sl">① 只要</span></span></span></span><span class="seg p"><span class="st">&nbsp;(</span></span><span class="seg g"><span class="st">digitalRead(BTN)&nbsp;==&nbsp;LOW</span><span class="lw" style="--lv:0"><span class="rvi" data-step="2"><span class="sl">② 还按着</span></span></span></span><span class="seg p"><span class="st">)</span></span><span class="seg p"><span class="st">&nbsp;</span></span><span class="seg a"><span class="st">{&nbsp;}</span><span class="lw" style="--lv:0"><span class="rvi" data-step="3"><span class="sl">③ 什么都不做 → 就是等</span></span></span></span></div></div></div><div class="cols3 acards"><div class="blk n"><span class="lbl">和 if 比</span><h4>只换了一个词</h4><p><code class="ic">if</code> 换成 <code class="ic">while</code>，括号里的问题一模一样。</p></div><div class="blk a"><span class="lbl">大括号空着</span><h4>空着就是「原地等」</h4><p>一秒问几万次，你一松手，马上出来。</p></div><div class="blk c"><span class="lbl">别忘了</span><h4>还是两个等号 ==</h4><p>写成一个 =，又是上节课那句红字。</p></div></div></div>
+<div class="notes"><p>「把今天这一行拆开。」（标签先盖着。）</p><p><b>→ 揭晓①</b>「while，只要。」<b>→ 揭晓②</b>「括号里的问题和上节课一模一样：digitalRead(BTN) == LOW——还按着吗？」</p><p><b>→ 揭晓③</b>「后面一对大括号，里面是<b>空的</b>。空的意思就是：什么都不做，就是等。」</p><p>「所以整句话读出来：<b>只要还按着，就什么都不做，一直等。</b>你一松手，问题的答案变成『不是』，程序就从这里出来，接着往下。」</p><p>「注意：括号里还是两个等号。写成一个，又是上节课那句 lvalue required。」</p></div>
+</section>
+
+<section class="slide lay-table" data-title="概念 · if 和 while 对对碰">
+<div class="phead"><span class="no">第 06 课</span>
+<div class="rail"><span class="done" style="--w:8">兴趣</span><span class="done" style="--w:10">现象</span><span class="on" style="--w:15">概念</span><span class="" style="--w:35">技能</span><span class="" style="--w:20">小发明</span><span class="" style="--w:8">收尾</span></div>
+<span class="tslot">15–30 分</span>
+</div>
+<h2 class="ptitle">if 和 while：<em>只差一个词</em></h2>
+<div class="pbody"><div class="tbl grow" style="grid-template-columns:0.9fr 1.3fr 1.3fr"><div class="th"></div><div class="th">if（如果）</div><div class="th">while（只要）</div><div class="td k"><span>问几次</span></div><div class="td"><span>问<b>一次</b></span></div><div class="td last"><div class="rv " data-step="1"><div class="rv-a">问了<b>又问</b></div><div class="rv-q">？</div></div></div><div class="td k"><span>答「是」</span></div><div class="td"><span>做一次大括号里的事</span></div><div class="td last"><div class="rv " data-step="2"><div class="rv-a">做完了<b>再问</b>，一直做</div><div class="rv-q">？</div></div></div><div class="td k"><span>答「不是」</span></div><div class="td"><span>跳过（有 else 就做 else）</span></div><div class="td last"><div class="rv " data-step="3"><div class="rv-a"><b>出来</b>，接着往下</div><div class="rv-q">？</div></div></div><div class="td k"><span>今天用来</span></div><div class="td"><span>判断：按下了没有</span></div><div class="td last"><div class="rv " data-step="4"><div class="rv-a">等待：<b>等你松手</b></div><div class="rv-q">？</div></div></div></div></div>
+<div class="notes"><p>「if 和 while 长得几乎一样，只差一个词。来对比一下。」（右边一列先盖着，逐行让同学猜，再 <b>→ 揭晓</b>。）</p><p>第 1 行：「if 只问一次。while 呢？——问了又问。」第 2 行：「答『是』，if 做一次就走了；while 做完了还要回去再问，一直做。」</p><p>第 3 行：「答『不是』，if 跳过；while 就出来，接着往下。」第 4 行：「所以今天两个都要用：if 判断按下了没有，while 等你松手。」</p><p>「记一句话：<b>if 问一次就走，while 一直问、一直等。</b>」</p></div>
+</section>
+
+<section class="slide lay-code" data-title="概念 · 拼起来 if + while">
+<div class="phead"><span class="no">第 06 课</span>
+<div class="rail"><span class="done" style="--w:8">兴趣</span><span class="done" style="--w:10">现象</span><span class="on" style="--w:15">概念</span><span class="" style="--w:35">技能</span><span class="" style="--w:20">小发明</span><span class="" style="--w:8">收尾</span></div>
+<span class="tslot">15–30 分</span>
+</div>
+<h2 class="ptitle">拼起来：按下 → 加 1 → 打印 → <em>等松手</em></h2>
+<div class="pbody"><div class="lcol grow" style="grid-template-columns:1.777777777777778fr 1fr"><div class="code"><div class="lab "><span>count.ino</span><span class="rt">20 行</span></div><pre class="nums" style="font-size:18px;line-height:1.4;counter-reset:L 0"><span class="L"><span class="c">// ===== ① 引脚 =====</span></span>
+<span class="L"><span class="t">const</span> <span class="t">int</span> BTN = <span class="k">2</span>;        <span class="c">// 按键模块：2 号</span></span>
+<span class="L"> </span>
+<span class="L"><span class="c">// ===== ② 变量 =====</span></span>
+<span class="L"><span class="t">int</span> count = <span class="k">0</span>;            <span class="c">// 按了几次</span></span>
+<span class="L"> </span>
+<span class="L"><span class="t">void</span> <span class="f">setup</span>() {    <span class="c">// ③ 只做一次：准备</span></span>
+<span class="L">  <span class="f">pinMode</span>(BTN, <span class="k">INPUT_PULLUP</span>);</span>
+<span class="L">  <span class="t">Serial</span>.<span class="f">begin</span>(<span class="k">9600</span>);</span>
+<span class="L">}</span>
+<span class="L"> </span>
+<span class="L"><span class="t">void</span> <span class="f">loop</span>() {     <span class="c">// ④ 一直重复：干活</span></span>
+<span class="L"><span class="ln hlg rvl" data-step="1">  <span class="x">if</span> (<span class="f">digitalRead</span>(BTN) == <span class="k">LOW</span>) {   <span class="c">// 按下了？</span></span></span>
+<span class="L"><span class="ln hlg rvl" data-step="2">    count++;                       <span class="c">// 加 1</span></span></span>
+<span class="L"><span class="ln hlg rvl" data-step="2">    <span class="t">Serial</span>.<span class="f">println</span>(count);</span></span>
+<span class="L">    <span class="f">delay</span>(<span class="k">20</span>);                     <span class="c">// 躲开按键抖动</span></span>
+<span class="L"><span class="ln hlc rvl" data-step="3">    <span class="x">while</span> (<span class="f">digitalRead</span>(BTN) == <span class="k">LOW</span>) { }   <span class="c">// 等松手</span></span></span>
+<span class="L">    <span class="f">delay</span>(<span class="k">20</span>);                     <span class="c">// 躲开按键抖动</span></span>
+<span class="L"><span class="ln hl rvl" data-step="4">  }</span></span>
+<span class="L">}</span></pre></div><div class="figcards"><div class="blk g"><span class="lbl">顺着走一遍</span><h4>按下的那一刻</h4><p>第 13 行：按下了 → 第 14、15 行：加 1、打印。</p></div><div class="blk c"><span class="lbl">然后</span><h4>停在第 17 行</h4><div class="rv rv-ans" data-step="3"><div class="rv-a"><p class="ans">只要还按着，就停在 while 这里等。松手了，才走到第 19 行收尾，loop 下一圈重新问。</p></div><div class="rv-q">？ 停在哪</div></div></div></div></div><div class="tail"><div class="strip ">第 16、18 行的 delay(20) 先照抄——第④步再看它是干什么的。</div></div></div>
+<div class="notes"><p>「把 if 和 while 拼起来，就是老师的按键计数器。顺着走一遍。」</p><p><b>→ 揭晓</b>「第 13 行：按下了吗？是——」<b>→ 揭晓</b>「第 14、15 行：加 1，打印。」</p><p>「然后程序走到哪？」<b>→ 揭晓</b>「第 17 行 while：只要还按着，就停在这里，原地等。不管你按多久，它都不会再加。」</p><p><b>→ 揭晓</b>「你一松手，while 出来，走到最后的大括号，loop 结束这一圈，下一圈重新问：按下了吗？」</p><p>「第 16、18 行两个 delay(20)，先照抄，第④步我们删掉它试试，就知道它在干什么了。」</p></div>
+</section>
+
+<section class="slide lay-flow" data-title="技能 · PRIMM 五步路线">
+<div class="phead"><span class="no">第 06 课</span>
+<div class="rail"><span class="done" style="--w:8">兴趣</span><span class="done" style="--w:10">现象</span><span class="done" style="--w:15">概念</span><span class="on" style="--w:35">技能</span><span class="" style="--w:20">小发明</span><span class="" style="--w:8">收尾</span></div>
+<span class="tslot">30–32 分</span>
+</div>
+<h2 class="ptitle">技能五步：最后<em>自己写 while</em></h2>
+<div class="pbody"><div class="flow grow"><div class="fl"><span class="fn">①</span><div class="ico"><svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" text-rendering="geometricPrecision"><rect x="6" y="52" width="88" height="40" rx="5" fill="#F4F1EA" stroke="#141414" stroke-width="5"/><path d="M18 66 H82 M18 80 H82" stroke="#55524B" stroke-width="5" stroke-dasharray="5 7"/><path d="M40 40 V64 M54 40 V64" stroke="#8D8D8D" stroke-width="4"/><circle cx="47" cy="28" r="15" fill="#E53935" stroke="#141414" stroke-width="4"/><path d="M76 74 C76 40 92 30 96 12" fill="none" stroke="#141414" stroke-width="9" stroke-linecap="round"/><path d="M76 74 C76 40 92 30 96 12" fill="none" stroke="#F2B705" stroke-width="5" stroke-linecap="round"/></svg></div><div class="fk">接线</div><div class="fd">照上节课<br>按键 2 号</div></div><div class="farr">→</div><div class="fl"><span class="fn">②</span><div class="ico"><svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" text-rendering="geometricPrecision"><path d="M20 58 a22 22 0 0 1 10 -36 a24 24 0 0 1 42 4 a18 18 0 0 1 8 32 Z" fill="#fff" stroke="#141414" stroke-width="5" stroke-linejoin="round"/><circle cx="26" cy="74" r="6" fill="#fff" stroke="#141414" stroke-width="4"/><circle cx="16" cy="88" r="4" fill="#141414"/><text x="51" y="54" text-anchor="middle" font-size="34" font-weight="900" fill="#D85A30" font-family="Arial Black,Arial">?</text></svg></div><div class="fk">预测</div><div class="fd">上传 count<br>按一下？按住呢？</div></div><div class="farr">→</div><div class="fl"><span class="fn">③</span><div class="ico"><svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" text-rendering="geometricPrecision"><path d="M8 50 Q50 10 92 50 Q50 90 8 50 Z" fill="#fff" stroke="#141414" stroke-width="5" stroke-linejoin="round"/><circle cx="50" cy="50" r="17" fill="#2F6FB0" stroke="#141414" stroke-width="4"/><circle cx="50" cy="50" r="7" fill="#141414"/></svg></div><div class="fk">读</div><div class="fd">按住时停在<br>哪一行？</div></div><div class="farr">→</div><div class="fl"><span class="fn">④</span><div class="ico"><svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" text-rendering="geometricPrecision"><rect x="8" y="26" width="84" height="48" rx="4" fill="#fff" stroke="#141414" stroke-width="5"/><text x="50" y="60" text-anchor="middle" font-size="25" font-weight="900" fill="#005C5F" font-family="Consolas">1000</text><path d="M14 48 H86" stroke="#D85A30" stroke-width="5"/><rect x="50" y="4" width="44" height="28" fill="#F5A623" stroke="#141414" stroke-width="4"/><text x="72" y="25" text-anchor="middle" font-size="19" font-weight="900" fill="#141414" font-family="Consolas">100</text></svg></div><div class="fk">改</div><div class="fd">while 改成 if<br>删掉 delay(20)</div></div><div class="farr">→</div><div class="fl"><span class="fn">⑤</span><div class="ico"><svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" text-rendering="geometricPrecision"><rect x="16" y="10" width="58" height="76" rx="4" fill="#fff" stroke="#141414" stroke-width="5"/><path d="M27 30 H62 M27 44 H58 M27 58 H50" stroke="#1F4E79" stroke-width="5" stroke-linecap="round"/><g transform="rotate(40 70 70)"><rect x="62" y="34" width="16" height="50" fill="#F5A623" stroke="#141414" stroke-width="4"/><path d="M62 84 L70 98 L78 84 Z" fill="#F2C29B" stroke="#141414" stroke-width="4" stroke-linejoin="round"/></g></svg></div><div class="fk">写</div><div class="fd">空模板<br>自己写 5 行</div></div></div><div class="tail"><div class="strip "><b>操作手</b>接线、敲键盘，<b>检查员</b>对照图检查、写预测——每做完一步，两人换位。</div></div></div>
+<div class="notes"><p>「接下来 35 分钟走五步。前四步用老师的 count，最后一步打开空模板 count_todo，<b>自己写 if 和 while 那 5 行</b>。」</p><p>「第④步『改』有两个实验：一个是把 while 改回 if，看看会怎样；一个是删掉那两行 delay(20)，快速连按，看数字对不对。」</p><p>「分工照旧：操作手接线、敲键盘，检查员对照图检查、写预测，每做完一步换位。」</p><p>（发任务卡。接线和上节课一样，大部分组不用动。55 分钟前后开始逐组验收。）</p></div>
+</section>
+
+<section class="slide lay-figure" data-title="技能 · ①接线 照上节课">
+<div class="phead"><span class="no">第 06 课</span>
+<div class="rail"><span class="done" style="--w:8">兴趣</span><span class="done" style="--w:10">现象</span><span class="done" style="--w:15">概念</span><span class="on" style="--w:35">技能</span><span class="" style="--w:20">小发明</span><span class="" style="--w:8">收尾</span></div>
+<span class="tslot">32–34 分</span>
+</div>
+<h2 class="ptitle">① 接线：照上节课，<em>不用动</em></h2>
+<div class="pbody">
+  <div class="figgrid grow" style="--figw:1.3fr"><div class="figbox"><svg viewBox="0 0 760 560" xmlns="http://www.w3.org/2000/svg" font-family="Microsoft YaHei" text-rendering="geometricPrecision"><rect x="30" y="30" width="700" height="246" rx="14" fill="#2D5D8F" stroke="#141414" stroke-width="5"/><text x="56" y="70" font-size="22" font-weight="900" fill="#fff">传感器扩展板（插在 UNO 上面）</text><rect x="100" y="148" width="524" height="24" fill="#1A1A1A"/><text x="74" y="168" text-anchor="middle" font-size="22" font-weight="900" fill="#CFD8DC">G</text><rect x="100" y="176" width="524" height="24" fill="#1A1A1A"/><text x="74" y="196" text-anchor="middle" font-size="22" font-weight="900" fill="#FF8A80">V</text><rect x="100" y="204" width="524" height="24" fill="#1A1A1A"/><text x="74" y="224" text-anchor="middle" font-size="22" font-weight="900" fill="#FFE082">S</text><text x="120" y="128" text-anchor="middle" font-size="18" font-weight="900" fill="#A9C4E0">13</text><rect x="114" y="154" width="12" height="12" fill="#D4AF37"/><rect x="114" y="182" width="12" height="12" fill="#D4AF37"/><rect x="114" y="210" width="12" height="12" fill="#D4AF37"/><text x="164" y="128" text-anchor="middle" font-size="18" font-weight="900" fill="#A9C4E0">12</text><rect x="158" y="154" width="12" height="12" fill="#D4AF37"/><rect x="158" y="182" width="12" height="12" fill="#D4AF37"/><rect x="158" y="210" width="12" height="12" fill="#D4AF37"/><text x="208" y="128" text-anchor="middle" font-size="18" font-weight="900" fill="#A9C4E0">11</text><rect x="202" y="154" width="12" height="12" fill="#D4AF37"/><rect x="202" y="182" width="12" height="12" fill="#D4AF37"/><rect x="202" y="210" width="12" height="12" fill="#D4AF37"/><text x="252" y="128" text-anchor="middle" font-size="22" font-weight="900" fill="#fff">10</text><rect x="246" y="154" width="12" height="12" fill="#D4AF37"/><rect x="246" y="182" width="12" height="12" fill="#D4AF37"/><rect x="246" y="210" width="12" height="12" fill="#D4AF37"/><text x="296" y="128" text-anchor="middle" font-size="22" font-weight="900" fill="#fff">9</text><rect x="290" y="154" width="12" height="12" fill="#D4AF37"/><rect x="290" y="182" width="12" height="12" fill="#D4AF37"/><rect x="290" y="210" width="12" height="12" fill="#D4AF37"/><text x="340" y="128" text-anchor="middle" font-size="22" font-weight="900" fill="#fff">8</text><rect x="334" y="154" width="12" height="12" fill="#D4AF37"/><rect x="334" y="182" width="12" height="12" fill="#D4AF37"/><rect x="334" y="210" width="12" height="12" fill="#D4AF37"/><text x="384" y="128" text-anchor="middle" font-size="18" font-weight="900" fill="#A9C4E0">7</text><rect x="378" y="154" width="12" height="12" fill="#D4AF37"/><rect x="378" y="182" width="12" height="12" fill="#D4AF37"/><rect x="378" y="210" width="12" height="12" fill="#D4AF37"/><text x="428" y="128" text-anchor="middle" font-size="18" font-weight="900" fill="#A9C4E0">6</text><rect x="422" y="154" width="12" height="12" fill="#D4AF37"/><rect x="422" y="182" width="12" height="12" fill="#D4AF37"/><rect x="422" y="210" width="12" height="12" fill="#D4AF37"/><text x="472" y="128" text-anchor="middle" font-size="18" font-weight="900" fill="#A9C4E0">5</text><rect x="466" y="154" width="12" height="12" fill="#D4AF37"/><rect x="466" y="182" width="12" height="12" fill="#D4AF37"/><rect x="466" y="210" width="12" height="12" fill="#D4AF37"/><text x="516" y="128" text-anchor="middle" font-size="18" font-weight="900" fill="#A9C4E0">4</text><rect x="510" y="154" width="12" height="12" fill="#D4AF37"/><rect x="510" y="182" width="12" height="12" fill="#D4AF37"/><rect x="510" y="210" width="12" height="12" fill="#D4AF37"/><text x="560" y="128" text-anchor="middle" font-size="18" font-weight="900" fill="#A9C4E0">3</text><rect x="554" y="154" width="12" height="12" fill="#D4AF37"/><rect x="554" y="182" width="12" height="12" fill="#D4AF37"/><rect x="554" y="210" width="12" height="12" fill="#D4AF37"/><text x="604" y="128" text-anchor="middle" font-size="22" font-weight="900" fill="#fff">2</text><rect x="598" y="154" width="12" height="12" fill="#D4AF37"/><rect x="598" y="182" width="12" height="12" fill="#D4AF37"/><rect x="598" y="210" width="12" height="12" fill="#D4AF37"/><text x="680" y="166" text-anchor="middle" font-size="16" font-weight="800" fill="#CFD8DC">地</text><text x="680" y="194" text-anchor="middle" font-size="16" font-weight="800" fill="#FF8A80">5V</text><text x="680" y="222" text-anchor="middle" font-size="16" font-weight="800" fill="#FFE082">信号</text><path d="M208 378 L208 172" fill="none" stroke="#141414" stroke-width="9" stroke-linejoin="round" stroke-linecap="round"/><path d="M208 378 L208 172" fill="none" stroke="#333333" stroke-width="5.5" stroke-linejoin="round" stroke-linecap="round"/><rect x="199" y="147" width="18" height="26" rx="2" fill="#1C1C1C" stroke="#141414" stroke-width="2.5"/><rect x="199" y="371" width="18" height="26" rx="2" fill="#1C1C1C" stroke="#141414" stroke-width="2.5"/><path d="M252 378 L252 228" fill="none" stroke="#141414" stroke-width="9" stroke-linejoin="round" stroke-linecap="round"/><path d="M252 378 L252 228" fill="none" stroke="#D32F2F" stroke-width="5.5" stroke-linejoin="round" stroke-linecap="round"/><rect x="243" y="203" width="18" height="26" rx="2" fill="#1C1C1C" stroke="#141414" stroke-width="2.5"/><rect x="243" y="371" width="18" height="26" rx="2" fill="#1C1C1C" stroke="#141414" stroke-width="2.5"/><path d="M296 378 L296 228" fill="none" stroke="#141414" stroke-width="9" stroke-linejoin="round" stroke-linecap="round"/><path d="M296 378 L296 228" fill="none" stroke="#F2B705" stroke-width="5.5" stroke-linejoin="round" stroke-linecap="round"/><rect x="287" y="203" width="18" height="26" rx="2" fill="#1C1C1C" stroke="#141414" stroke-width="2.5"/><rect x="287" y="371" width="18" height="26" rx="2" fill="#1C1C1C" stroke="#141414" stroke-width="2.5"/><path d="M340 378 L340 228" fill="none" stroke="#141414" stroke-width="9" stroke-linejoin="round" stroke-linecap="round"/><path d="M340 378 L340 228" fill="none" stroke="#2E9E5B" stroke-width="5.5" stroke-linejoin="round" stroke-linecap="round"/><rect x="331" y="203" width="18" height="26" rx="2" fill="#1C1C1C" stroke="#141414" stroke-width="2.5"/><rect x="331" y="371" width="18" height="26" rx="2" fill="#1C1C1C" stroke="#141414" stroke-width="2.5"/><rect x="188" y="400" width="172" height="128" rx="8" fill="#232323" stroke="#141414" stroke-width="4"/><rect x="204" y="386" width="8" height="16" fill="#D4AF37"/><text x="208" y="426" text-anchor="middle" font-size="14" font-weight="900" fill="#fff">GND</text><rect x="248" y="386" width="8" height="16" fill="#D4AF37"/><text x="252" y="426" text-anchor="middle" font-size="19" font-weight="900" fill="#fff">R</text><rect x="292" y="386" width="8" height="16" fill="#D4AF37"/><text x="296" y="426" text-anchor="middle" font-size="19" font-weight="900" fill="#fff">Y</text><rect x="336" y="386" width="8" height="16" fill="#D4AF37"/><text x="340" y="426" text-anchor="middle" font-size="19" font-weight="900" fill="#fff">G</text><circle cx="252" cy="474" r="17" fill="#F8C9C7" stroke="#141414" stroke-width="3"/><g class="bt-led"><circle cx="252" cy="474" r="30" fill="#E53935" opacity=".35"/><circle cx="252" cy="474" r="17" fill="#E53935" stroke="#141414" stroke-width="3"/></g><path d="M244 474 a5 5 0 0 1 5 -5" fill="none" stroke="#fff" stroke-width="3" stroke-linecap="round" opacity=".8"/><circle cx="296" cy="474" r="17" fill="#FBEBB5" stroke="#141414" stroke-width="3"/><path d="M288 474 a5 5 0 0 1 5 -5" fill="none" stroke="#fff" stroke-width="3" stroke-linecap="round" opacity=".8"/><circle cx="340" cy="474" r="17" fill="#C7E8D3" stroke="#141414" stroke-width="3"/><path d="M332 474 a5 5 0 0 1 5 -5" fill="none" stroke="#fff" stroke-width="3" stroke-linecap="round" opacity=".8"/><text x="274" y="518" text-anchor="middle" font-size="16" font-weight="800" fill="#BDBDBD">交通灯模块</text><path d="M590 380 L590 330 L597 300 L597 238" fill="none" stroke="#141414" stroke-width="9" stroke-linejoin="round" stroke-linecap="round"/><path d="M590 380 L590 330 L597 300 L597 238" fill="none" stroke="#333333" stroke-width="5.5" stroke-linejoin="round" stroke-linecap="round"/><path d="M620 380 L620 330 L604 300 L604 238" fill="none" stroke="#141414" stroke-width="9" stroke-linejoin="round" stroke-linecap="round"/><path d="M620 380 L620 330 L604 300 L604 238" fill="none" stroke="#D32F2F" stroke-width="5.5" stroke-linejoin="round" stroke-linecap="round"/><path d="M650 380 L650 330 L611 300 L611 238" fill="none" stroke="#141414" stroke-width="9" stroke-linejoin="round" stroke-linecap="round"/><path d="M650 380 L650 330 L611 300 L611 238" fill="none" stroke="#F2B705" stroke-width="5.5" stroke-linejoin="round" stroke-linecap="round"/><rect x="589" y="140" width="30" height="96" rx="3" fill="#1C1C1C" stroke="#141414" stroke-width="3"/><rect x="576" y="370" width="88" height="22" rx="3" fill="#1C1C1C" stroke="#141414" stroke-width="3"/><rect x="555" y="400" width="130" height="128" rx="8" fill="#1E4E8C" stroke="#141414" stroke-width="4"/><rect x="586" y="386" width="8" height="16" fill="#D4AF37"/><text x="590" y="424" text-anchor="middle" font-size="18" font-weight="900" fill="#fff">G</text><rect x="616" y="386" width="8" height="16" fill="#D4AF37"/><text x="620" y="424" text-anchor="middle" font-size="18" font-weight="900" fill="#fff">V</text><rect x="646" y="386" width="8" height="16" fill="#D4AF37"/><text x="650" y="424" text-anchor="middle" font-size="18" font-weight="900" fill="#fff">S</text><rect x="592" y="438" width="56" height="56" rx="4" fill="#2B2B2B" stroke="#141414" stroke-width="3"/><g class="bt-press"><circle cx="620" cy="466" r="19" fill="#D85A30" stroke="#141414" stroke-width="3"/><circle cx="615" cy="461" r="11" fill="#fff" opacity=".25"/></g><text x="620" y="520" text-anchor="middle" font-size="15" font-weight="800" fill="#BBDEFB">按键模块 · 2 号</text></svg></div><div class="figcards"><div class="rowlist" style="justify-content:center;gap:12px"><div class="rowitem" style="padding:9px 16px;gap:14px"><div class="num n" style="width:44px;height:44px;font-size:22px">1</div><div class="tx" style="font-size:22px">按键模块：3P 线插 <b>2 号</b>那一列</div></div><div class="rowitem" style="padding:9px 16px;gap:14px"><div class="num n" style="width:44px;height:44px;font-size:22px">2</div><div class="tx" style="font-size:22px"><b>G 对 G、V 对 V、S 对 S</b></div></div><div class="rowitem" style="padding:9px 16px;gap:14px"><div class="num n" style="width:44px;height:44px;font-size:22px">3</div><div class="tx" style="font-size:22px">交通灯模块：R 10 · Y 9 · G 8 · GND 任意 G</div></div><div class="rowitem" style="padding:9px 16px;gap:14px"><div class="num n" style="width:44px;height:44px;font-size:22px">4</div><div class="tx" style="font-size:22px">★ 只用按键和串口；★★ ★★★ 才用红灯</div></div><div class="rowitem" style="padding:9px 16px;gap:14px"><div class="num n" style="width:44px;height:44px;font-size:22px">查</div><div class="tx" style="font-size:22px">检查员查完说「可以」，再插 USB</div></div></div></div></div>
+  
+</div>
+<div class="notes"><p>「接线和上节课一模一样：按键模块插 2 号那一列，交通灯模块照第 3 课接。上节课拆了的组，先拔 USB 再接回去。」</p><p>「检查员查两样：3P 线是不是 G 对 G、V 对 V、S 对 S；交通灯的 R 是不是在 10 号的 S。查完说『可以』，操作手再插 USB。」</p><p>「今天基础档只用按键和串口，红灯是给两颗星、三颗星用的。」</p><p>（拿不准按键好不好的组：先跑上节课的 read 看一眼，松开 1、按下 0 就对了。）</p></div>
+</section>
+
+<section class="slide lay-cards" data-title="技能 · ②预测 ③运行">
+<div class="phead"><span class="no">第 06 课</span>
+<div class="rail"><span class="done" style="--w:8">兴趣</span><span class="done" style="--w:10">现象</span><span class="done" style="--w:15">概念</span><span class="on" style="--w:35">技能</span><span class="" style="--w:20">小发明</span><span class="" style="--w:8">收尾</span></div>
+<span class="tslot">34–38 分</span>
+</div>
+<h2 class="ptitle">② 预测 → 运行：<em>先猜，再按</em></h2>
+<div class="pbody"><div class="cols2 grow lay-cards2-in"><div class="blk a"><span class="lbl">② 预测 · 检查员写在任务卡上</span><h4>上传 count，打开串口监视器</h4><p>猜：按一下，加几？<br>按住不放 3 秒，串口会怎样？</p><p>写完了，操作手才能点上传。</p></div><div class="blk g"><span class="lbl">运行 · 操作手上传、按按键</span><h4>对照你的猜想</h4><p>按一下、按住不放、快速连按，都试试。</p><div class="rv rv-ans" data-step="1"><div class="rv-a"><p class="ans">按一下只加 1；按住不放，只打印<b>一次</b>，然后就不动了——程序停在 while 里等你松手；松手再按，才加下一个。</p></div><div class="rv-q">？ 试完再揭晓</div></div></div></div><div class="tail"><div class="strip ">猜错不扣分，<b>不猜就上传</b>才扣分。</div></div></div>
+<div class="notes"><p>「检查员，任务卡第②栏：上传 count，按一下，加几？按住不放 3 秒，串口会怎样？写好了再上传。」</p><p>「上传好了，打开串口监视器，波特率 9600。试三种：按一下、按住不放、快速连按。」</p><p><b>→ 揭晓</b>「按一下只加 1。按住不放呢？只打印了一次，然后就不动了——程序停在 while 那一行，等你松手。松手再按，才加下一个。」</p><p>（数字不动的组：先看波特率是不是 9600；按一下加好几个的组：看 while 那一行有没有抄对。）</p></div>
+</section>
+
+<section class="slide lay-code" data-title="技能 · ③读 按住时停在哪">
+<div class="phead"><span class="no">第 06 课</span>
+<div class="rail"><span class="done" style="--w:8">兴趣</span><span class="done" style="--w:10">现象</span><span class="done" style="--w:15">概念</span><span class="on" style="--w:35">技能</span><span class="" style="--w:20">小发明</span><span class="" style="--w:8">收尾</span></div>
+<span class="tslot">38–43 分</span>
+</div>
+<h2 class="ptitle">③ 读：按住不放的时候，程序<em>停在哪</em>？</h2>
+<div class="pbody"><div class="lcol grow" style="grid-template-columns:1.631578947368421fr 1fr"><div class="code"><div class="lab "><span>count.ino</span><span class="rt">20 行</span></div><pre class="nums" style="font-size:19px;line-height:1.4;counter-reset:L 0"><span class="L"><span class="c">// ===== ① 引脚 =====</span></span>
+<span class="L"><span class="t">const</span> <span class="t">int</span> BTN = <span class="k">2</span>;        <span class="c">// 按键模块：2 号</span></span>
+<span class="L"> </span>
+<span class="L"><span class="c">// ===== ② 变量 =====</span></span>
+<span class="L"><span class="t">int</span> count = <span class="k">0</span>;            <span class="c">// 按了几次</span></span>
+<span class="L"> </span>
+<span class="L"><span class="t">void</span> <span class="f">setup</span>() {    <span class="c">// ③ 只做一次：准备</span></span>
+<span class="L">  <span class="f">pinMode</span>(BTN, <span class="k">INPUT_PULLUP</span>);</span>
+<span class="L">  <span class="t">Serial</span>.<span class="f">begin</span>(<span class="k">9600</span>);</span>
+<span class="L">}</span>
+<span class="L"> </span>
+<span class="L"><span class="t">void</span> <span class="f">loop</span>() {     <span class="c">// ④ 一直重复：干活</span></span>
+<span class="L">  <span class="x">if</span> (<span class="f">digitalRead</span>(BTN) == <span class="k">LOW</span>) {   <span class="c">// 按下了？</span></span>
+<span class="L">    count++;                       <span class="c">// 加 1</span></span>
+<span class="L"><span class="ln hlg rvl" data-step="1">    <span class="t">Serial</span>.<span class="f">println</span>(count);</span></span>
+<span class="L"><span class="ln hl rvl" data-step="4">    <span class="f">delay</span>(<span class="k">20</span>);                     <span class="c">// 躲开按键抖动</span></span></span>
+<span class="L"><span class="ln hlc rvl" data-step="2">    <span class="x">while</span> (<span class="f">digitalRead</span>(BTN) == <span class="k">LOW</span>) { }   <span class="c">// 等松手</span></span></span>
+<span class="L"><span class="ln hl rvl" data-step="4">    <span class="f">delay</span>(<span class="k">20</span>);                     <span class="c">// 躲开按键抖动</span></span></span>
+<span class="L">  }</span>
+<span class="L">}</span></pre></div><div class="rowlist qlist"><div class="rowitem"><div class="num n">1</div><div class="tx">按一下，第 15 行打印几次？<div class="rv " data-step="1"><div class="rv-a"><div class="qa"><b>1 次</b>——打印完就进了 while 等松手</div></div><div class="rv-q">？ 你来答</div></div></div></div><div class="rowitem"><div class="num n">2</div><div class="tx">按住不放时，程序停在哪一行？<div class="rv " data-step="2"><div class="rv-a"><div class="qa">第 17 行：一直问「还按着吗」</div></div><div class="rv-q">？ 你来答</div></div></div></div><div class="rowitem"><div class="num n">3</div><div class="tx">while 的大括号里为什么是空的？<div class="rv " data-step="3"><div class="rv-a"><div class="qa">不用做事，就是<b>等</b></div></div><div class="rv-q">？ 你来答</div></div></div></div><div class="rowitem"><div class="num n">4</div><div class="tx">两个 delay(20) 是干什么的？<div class="rv " data-step="4"><div class="rv-a"><div class="qa">躲开按键「抖」——第④步删掉试试</div></div><div class="rv-q">？ 你来答</div></div></div></div></div></div></div>
+<div class="notes"><p>（四个答案先盖着。点名回答，答对了 <b>→ 揭晓</b>。）</p><p>「按一下，第 15 行的打印做几次？」<b>→ 揭晓①</b>「1 次。打印完往下走，就进了 while。」</p><p>「按住不放的时候，程序停在哪一行？」<b>→ 揭晓②</b>「第 17 行。它在那儿一秒钟问几万次：还按着吗？还按着吗？」</p><p>「while 的大括号里为什么空着？」<b>→ 揭晓③</b>「因为不用做事，就是等。」</p><p>「两个 delay(20) 是干什么的？」<b>→ 揭晓④</b>「先别说答案——第④步删掉它们，自己看。」</p></div>
+</section>
+
+<section class="slide lay-codes" data-title="技能 · ④改 while 改成 if">
+<div class="phead"><span class="no">第 06 课</span>
+<div class="rail"><span class="done" style="--w:8">兴趣</span><span class="done" style="--w:10">现象</span><span class="done" style="--w:15">概念</span><span class="on" style="--w:35">技能</span><span class="" style="--w:20">小发明</span><span class="" style="--w:8">收尾</span></div>
+<span class="tslot">43–47 分</span>
+</div>
+<h2 class="ptitle">④ 改：把 while 改成 if，<em>会怎样</em>？</h2>
+<div class="pbody"><div class="codes grow" style="grid-template-columns:1fr"><div class="code"><div class="lab "><span>loop 里只改了一个词</span></div><pre style="font-size:26px;line-height:1.55"><span class="t">void</span> <span class="f">loop</span>() {
+  <span class="x">if</span> (<span class="f">digitalRead</span>(BTN) == <span class="k">LOW</span>) {
+    count++;
+    <span class="t">Serial</span>.<span class="f">println</span>(count);
+    <span class="f">delay</span>(<span class="k">20</span>);
+<span class="ln hlc">    <span class="x">if</span> (<span class="f">digitalRead</span>(BTN) == <span class="k">LOW</span>) { }   <span class="c">// while 改成了 if</span></span>
+    <span class="f">delay</span>(<span class="k">20</span>);
+  }
+}</pre></div></div><div class="opts" style="margin-top:22px"><div class="opt"><span class="ol">A</span>照样只加 1</div><div class="opt rvo" data-step="1"><span class="ol">B</span>又变回加几十</div><div class="opt"><span class="ol">C</span>报错</div><div class="opt"><span class="ol">D</span>一个都不加</div></div><div class="tail"><div class="strip ">if 只问<b>一次</b>就走，不会等；while 问了又问，<b>等到你松手</b>。</div></div></div>
+<div class="notes"><p>「第④步，改。把第 6 行的 while 改成 if，别的都不动。先预测：A 照样只加 1，B 又变回加几十，C 报错，D 一个都不加。」（各组先写在任务卡上，再上传。）</p><p><b>→ 揭晓</b>「又变回加几十了——不报错，但不听话。」</p><p>「为什么？if 只问一次：还按着吗？是——大括号里什么都没有，做完了，走。它不会回去再问，所以根本没等。」</p><p>「while 就不一样：问了又问，一直等到你松手。<b>if 问一次就走，while 一直问、一直等</b>。」（各组改回 while。）</p></div>
+</section>
+
+<section class="slide lay-figure" data-title="技能 · ④改 删掉 delay 试试">
+<div class="phead"><span class="no">第 06 课</span>
+<div class="rail"><span class="done" style="--w:8">兴趣</span><span class="done" style="--w:10">现象</span><span class="done" style="--w:15">概念</span><span class="on" style="--w:35">技能</span><span class="" style="--w:20">小发明</span><span class="" style="--w:8">收尾</span></div>
+<span class="tslot">47–52 分</span>
+</div>
+<h2 class="ptitle">④ 改：删掉两行 delay(20)，<em>快速连按 20 下</em></h2>
+<div class="pbody">
+  <div class="figgrid grow" style="--figw:1.2fr"><div class="figbox"><svg viewBox="0 0 720 520" xmlns="http://www.w3.org/2000/svg" font-family="Microsoft YaHei" text-rendering="geometricPrecision"><text x="40" y="48" font-size="23" font-weight="900" fill="#141414">把按下、松开的那一瞬间放大看</text><rect x="200" y="112" width="70" height="214" fill="#F5A623" opacity=".25"/><rect x="470" y="112" width="70" height="214" fill="#F5A623" opacity=".25"/><path d="M40 150 H200 V290 H208 V150 H216 V290 H226 V150 H232 V290 H470 V150 H477 V290 H485 V150 H492 V290 H499 V150 H690" fill="none" stroke="#1F4E79" stroke-width="6" stroke-linejoin="round"/><text x="40" y="136" font-size="20" font-weight="800" fill="#1F4E79">HIGH 松开</text><text x="300" y="322" font-size="20" font-weight="800" fill="#1F4E79">LOW 按着</text><path d="M216 96 v-10 h56 v10" fill="none" stroke="#D85A30" stroke-width="4" transform="translate(-28 0)"/><text x="216" y="74" text-anchor="middle" font-size="21" font-weight="900" fill="#D85A30">按下时抖几下</text><path d="M485 96 v-10 h56 v10" fill="none" stroke="#D85A30" stroke-width="4" transform="translate(-28 0)"/><text x="485" y="74" text-anchor="middle" font-size="21" font-weight="900" fill="#D85A30">松手时也抖</text><text x="235" y="356" text-anchor="middle" font-size="19" font-weight="900" fill="#8A6400">delay(20)</text><text x="505" y="356" text-anchor="middle" font-size="19" font-weight="900" fill="#8A6400">delay(20)</text><path d="M40 400 H690" stroke="#141414" stroke-width="4"/><path d="M690 400 l-16 -9 v18 Z" fill="#141414"/><text x="40" y="434" font-size="19" font-weight="800" fill="#555">时间 →（抖动只有几毫秒，眼睛看不见）</text><text x="360" y="486" text-anchor="middle" font-size="22" font-weight="900" fill="#141414">不等它抖完：每抖一下，都像又按了一次</text></svg></div><div class="figcards"><div class="blk n"><span class="lbl">实验</span><h4>删掉两行 delay(20)，上传</h4><p>检查员数着，操作手快速按 20 下：串口最后是几？</p></div><div class="blk c"><span class="lbl">结果</span><h4>是 20 吗？</h4><div class="rv rv-ans" data-step="1"><div class="rv-a"><p class="ans">有的组正好 20，有的组<b>多了几个</b>：按键里的金属片按下、松开时会<b>抖</b>几下，每抖一下都像又按了一次。</p></div><div class="rv-q">？ 按完再揭晓</div></div></div><div class="blk a"><span class="lbl">delay(20)</span><h4>等它抖完再看</h4><p>20 毫秒，人感觉不到；抖动早就停了。</p></div></div></div>
+  <div class="tail"><div class="strip ">做完<b>改回去</b>：两行 delay(20) 留着。</div></div>
+</div>
+<div class="notes"><p>「第二个实验：把两行 delay(20) 删掉，上传。检查员数着，操作手快速按 20 下，看串口最后是几。」（等各组做完，问几个组的结果。）</p><p><b>→ 揭晓</b>「有的组正好 20，有的组多了一两个、三四个。为什么会多？」</p><p>「看左边这张放大图：按键里面是一小片金属，按下去、松开的那一瞬间，会来回<b>抖</b>几下，只有几毫秒，眼睛看不见。可板子看得见——每抖一下，都像你又按了一次。」</p><p>「delay(20) 就是：按下以后先等 20 毫秒，等它抖完再往下走；松手以后也等 20 毫秒。人根本感觉不到这 20 毫秒。」</p><p>「做完了改回去，两行 delay(20) 留着。」</p></div>
+</section>
+
+<section class="slide lay-code" data-title="技能 · ⑤写 自己写 5 行">
+<div class="phead"><span class="no">第 06 课</span>
+<div class="rail"><span class="done" style="--w:8">兴趣</span><span class="done" style="--w:10">现象</span><span class="done" style="--w:15">概念</span><span class="on" style="--w:35">技能</span><span class="" style="--w:20">小发明</span><span class="" style="--w:8">收尾</span></div>
+<span class="tslot">52–60 分</span>
+</div>
+<h2 class="ptitle">⑤ 写：关掉 count，<em>自己写 5 行</em></h2>
+<div class="pbody"><div class="lcol grow" style="grid-template-columns:1.9411764705882355fr 1fr"><div class="code"><div class="lab "><span>count_todo.ino · 空模板</span><span class="rt">5 处空白</span></div><pre class="nums" style="font-size:18px;line-height:1.4;counter-reset:L 0"><span class="L"><span class="c">// ===== ① 引脚 =====</span></span>
+<span class="L"><span class="t">const</span> <span class="t">int</span> BTN = <span class="k">2</span>;</span>
+<span class="L"> </span>
+<span class="L"><span class="c">// ===== ② 变量 =====</span></span>
+<span class="L"><span class="t">int</span> count = <span class="k">0</span>;</span>
+<span class="L"> </span>
+<span class="L"><span class="t">void</span> <span class="f">setup</span>() {    <span class="c">// ③ 只做一次：准备</span></span>
+<span class="L">  <span class="f">pinMode</span>(BTN, <span class="k">INPUT_PULLUP</span>);</span>
+<span class="L">  <span class="t">Serial</span>.<span class="f">begin</span>(<span class="k">9600</span>);</span>
+<span class="L">}</span>
+<span class="L"> </span>
+<span class="L"><span class="t">void</span> <span class="f">loop</span>() {     <span class="c">// ④ 一直重复：干活</span></span>
+<span class="L">  ______________________________   <span class="c">// ① 如果按下了 {</span></span>
+<span class="L">  ______________________________   <span class="c">// ②   count 加 1</span></span>
+<span class="L">  ______________________________   <span class="c">// ③   打印 count</span></span>
+<span class="L">    <span class="f">delay</span>(<span class="k">20</span>);                     <span class="c">// 照抄：躲开抖动</span></span>
+<span class="L">  ______________________________   <span class="c">// ④   while 等松手 { }</span></span>
+<span class="L">    <span class="f">delay</span>(<span class="k">20</span>);                     <span class="c">// 照抄：躲开抖动</span></span>
+<span class="L">  ______________________________   <span class="c">// ⑤ }</span></span>
+<span class="L">}</span></pre></div><div class="figcards"><div class="blk g"><span class="lbl">不许偷看</span><h4>关掉 count</h4><p>检查员念注释，操作手敲。卡住了回第 6 页。</p></div><div class="blk c"><span class="lbl">小心</span><h4>if 有一对 { }，while 也有</h4><p>写完按 Ctrl+T：if 里面的几行应该都往里缩了一格。</p></div></div></div><div class="tail"><div class="strip ">写完先点<b>验证</b>：「编译完成」再上传，然后按一下、按住、快速连按都试试。</div></div></div>
+<div class="notes"><p>「最后一步：关掉老师的 count，打开空模板 count_todo。loop 里 5 处横线，两行 delay(20) 已经替你写好了，照抄的位置别动。」</p><p>「第①行：如果按下了，左大括号。第②③行：加 1，打印。第④行：while 等松手，后面一对空的大括号。第⑤行：右大括号，收尾。」</p><p>「检查员念注释，操作手敲。写完按 Ctrl+T，看缩进歪没歪。」</p><p>（巡视重点：while 后面的大括号漏写；把 while 写在了 count++ 前面——变成松手后才加；第⑤行的右大括号忘了。让学生读红字的第一句英文。）</p></div>
+</section>
+
+<section class="slide lay-rowlist" data-title="技能 · ★基础档验收">
+<div class="phead"><span class="no">第 06 课</span>
+<div class="rail"><span class="done" style="--w:8">兴趣</span><span class="done" style="--w:10">现象</span><span class="done" style="--w:15">概念</span><span class="on" style="--w:35">技能</span><span class="" style="--w:20">小发明</span><span class="" style="--w:8">收尾</span></div>
+<span class="tslot">55–65 分</span>
+</div>
+<h2 class="ptitle">★ 基础档验收：<em>老师逐组来查</em></h2>
+<div class="pbody"><div class="rowlist grow"><div class="rowitem"><span class="box"></span><div class="tx"><b>按一下只加 1</b>；按住不放，串口不再往上加</div></div><div class="rowitem"><span class="box"></span><div class="tx">if 和 while 那 5 行是<b>自己写的</b>：count 已关掉</div></div><div class="rowitem"><span class="box"></span><div class="tx">两人都能说出：<b>if 和 while 差在哪</b></div></div></div><div class="tail"><div class="strip ">三项都过 → 老师签字 → 进入小发明。没过的组别急，接下来 20 分钟老师专门陪你。</div></div></div>
+<div class="notes"><p>「做完的组举手，我来验收。三项：按一下只加 1，按住不放不再往上涨；5 行是自己写的；第三项<b>两个人都要过</b>——if 和 while 差在哪？」</p><p>（标准答案：if 问一次就走；while 一直问、一直等，答案变成「不是」才出来。）</p><p>「验收时我会按住按键 3 秒——数字只能加 1。」</p><p>「过了的组，翻到下一页选进阶还是挑战。」（记下没过的组号。）</p></div>
+</section>
+
+<section class="slide lay-tiers3" data-title="小发明 · 三档任务自己选">
+<div class="phead"><span class="no">第 06 课</span>
+<div class="rail"><span class="done" style="--w:8">兴趣</span><span class="done" style="--w:10">现象</span><span class="done" style="--w:15">概念</span><span class="done" style="--w:35">技能</span><span class="on" style="--w:20">小发明</span><span class="" style="--w:8">收尾</span></div>
+<span class="tslot">65–85 分</span>
+</div>
+<h2 class="ptitle">三档任务，<em>自己选</em></h2>
+<div class="pbody"><div class="cols3 grow"><div class="blk tier t1"><div class="hd">★ 基础 · 人人必会</div><p class="task">每按一次，串口数字<b>只加 1</b>，不多加</p><p class="who">没过验收的组继续做这一档，老师来陪你</p><div class="tfill">□ 按一下只加 1　□ 签字</div></div><div class="blk tier t2"><div class="hd">★★ 进阶 · 新组合</div><p class="task">按一下<b>灯亮</b>，再按一下<b>灯灭</b></p><p class="who">提示：用一个变量记住「灯现在是亮还是灭」</p><div class="tfill">我用的变量叫 ______</div></div><div class="blk tier t3"><div class="hd">★★★ 挑战 · 综合</div><p class="task">按满 <b>5 次</b>，LED <b>闪 3 下</b>，计数<b>清零</b></p><p class="who">闪 3 下先复制粘贴；下节课的 for 能把它缩短</p><div class="tfill">□ 第 5 下闪 3 下　□ 又从 1 数起</div></div></div><div class="tail"><div class="strip ">过了基础档的组自选 ★★ 或 ★★★。两档都要用到交通灯模块上的<b>红灯</b>（10 号）。</div></div></div>
+<div class="notes"><p>「过了基础档的组，现在自己选。」</p><p>「<b>两颗星</b>：按一下灯亮，再按一下灯灭——像台灯的开关。难点是：板子怎么知道灯现在是亮的还是灭的？要用一个变量把它记住。第 18 页有提示。」</p><p>「<b>三颗星</b>：按满 5 次，红灯闪 3 下，然后从头数。闪 3 下就是把『亮、等、灭、等』复制 3 遍。第 19 页有写法。」</p><p>（这 20 分钟老师的主要工作是陪没过基础档的组。）</p></div>
+</section>
+
+<section class="slide lay-code" data-title="小发明 · ★★ 按一下开、再按关">
+<div class="phead"><span class="no">第 06 课</span>
+<div class="rail"><span class="done" style="--w:8">兴趣</span><span class="done" style="--w:10">现象</span><span class="done" style="--w:15">概念</span><span class="done" style="--w:35">技能</span><span class="on" style="--w:20">小发明</span><span class="" style="--w:8">收尾</span></div>
+<span class="tslot">65–85 分</span>
+</div>
+<h2 class="ptitle">★★ 按一下开、再按一下关：用变量<em>记住</em>灯的状态</h2>
+<div class="pbody"><div class="lcol grow" style="grid-template-columns:1.4999999999999998fr 1fr"><div class="code"><div class="lab "><span>loop 里的 if（填空）</span><span class="rt">填空</span></div><pre style="font-size:24px;line-height:1.55">  <span class="x">if</span> (<span class="f">digitalRead</span>(BTN) == <span class="k">LOW</span>) {   <span class="c">// 按了一下</span>
+    <span class="x">if</span> (on == <span class="k">0</span>) {                 <span class="c">// 现在是灭的</span>
+      <span class="f">digitalWrite</span>(RED, ______);
+      on = ______;
+    } <span class="x">else</span> {                       <span class="c">// 现在是亮的</span>
+      ______________________________
+      ______________________________
+    }
+    <span class="f">delay</span>(<span class="k">20</span>);
+    <span class="x">while</span> (<span class="f">digitalRead</span>(BTN) == <span class="k">LOW</span>) { }   <span class="c">// 等松手</span>
+    <span class="f">delay</span>(<span class="k">20</span>);
+  }</pre></div><div class="figbox" style="padding:6px"><svg viewBox="0 0 720 520" xmlns="http://www.w3.org/2000/svg" font-family="Microsoft YaHei" text-rendering="geometricPrecision"><defs><marker id="ar6" viewBox="0 0 10 10" refX="7" refY="5" markerWidth="5" markerHeight="5" orient="auto"><path d="M0 0 L10 5 L0 10 Z" fill="#141414"/></marker></defs><path d="M360 40 L560 160 L360 280 L160 160 Z" fill="#F5A623" stroke="#141414" stroke-width="5" stroke-linejoin="round"/><text x="360" y="168" text-anchor="middle" font-size="24" font-weight="900" fill="#141414" font-family="Consolas,Microsoft YaHei">on == 0</text><text x="360" y="112" text-anchor="middle" font-size="24" font-weight="900" fill="#1F4E79">if</text><path d="M160 160 H90 V330" fill="none" stroke="#141414" stroke-width="5" marker-end="url(#ar6)"/><path d="M560 160 H630 V330" fill="none" stroke="#141414" stroke-width="5" marker-end="url(#ar6)"/><text x="112" y="146" text-anchor="middle" font-size="24" font-weight="900" fill="#1D9E75">是</text><text x="608" y="146" text-anchor="middle" font-size="24" font-weight="900" fill="#D85A30">否 · else</text><rect x="20" y="336" width="200" height="80" fill="#1D9E75" stroke="#141414" stroke-width="5"/><text x="120" y="388" text-anchor="middle" font-size="28" font-weight="900" fill="#fff">开灯 on = 1</text><rect x="500" y="336" width="200" height="80" fill="#D85A30" stroke="#141414" stroke-width="5"/><text x="600" y="388" text-anchor="middle" font-size="28" font-weight="900" fill="#fff">关灯 on = 0</text><path d="M120 416 V470 H600 V416" fill="none" stroke="#141414" stroke-width="4" stroke-dasharray="9 7"/><path d="M360 470 V500" stroke="#141414" stroke-width="4" marker-end="url(#ar6)"/><text x="380" y="506" font-size="18" font-weight="800" fill="#555">两条路只走一条，再接着往下</text></svg></div></div><div class="tail"><div class="strip ">先在 ② 变量区加一行 <code class="ic">int on = 0;</code>——0 是灭，1 是亮。 <span class="rvi" data-step="1">填空：HIGH、1；else 里：<code class="ic">digitalWrite(RED, LOW);</code> 和 <code class="ic">on = 0;</code></span></div></div></div>
+<div class="notes"><p>（★★ 的组做的时候开着这一页。）</p><p>「台灯的开关：按一下亮，再按一下灭。板子怎么知道现在该开还是该关？——它得<b>记住</b>灯现在的样子。上一单元学的盒子就是干这个的：做一个盒子叫 on，0 是灭，1 是亮。」</p><p>「按了一下以后，问一句：on 是 0 吗？是——现在是灭的，那就开灯，再把 on 改成 1；不是——现在是亮的，那就关灯，把 on 改成 0。」</p><p><b>→ 揭晓</b>「填空答案：HIGH、1；else 里两行，灭灯、on 改成 0。」</p><p>（常见错：忘了改 on——灯亮了就再也关不掉；等松手的 while 漏了——按一下灯来回闪好几次。）</p></div>
+</section>
+
+<section class="slide lay-code" data-title="小发明 · ★★★ 按满 5 次">
+<div class="phead"><span class="no">第 06 课</span>
+<div class="rail"><span class="done" style="--w:8">兴趣</span><span class="done" style="--w:10">现象</span><span class="done" style="--w:15">概念</span><span class="done" style="--w:35">技能</span><span class="on" style="--w:20">小发明</span><span class="" style="--w:8">收尾</span></div>
+<span class="tslot">65–85 分</span>
+</div>
+<h2 class="ptitle">★★★ 按满 5 次：闪 3 下，<em>清零</em></h2>
+<div class="pbody"><div class="lcol grow" style="grid-template-columns:1.631578947368421fr 1fr"><div class="code"><div class="lab "><span>加在 loop 里、按键那段 if 的后面</span><span class="rt">片段</span></div><pre style="font-size:27px;line-height:1.55">  <span class="x">if</span> (count == <span class="k">5</span>) {               <span class="c">// 按满 5 次了？</span>
+    <span class="f">digitalWrite</span>(RED, <span class="k">HIGH</span>);      <span class="c">// 闪 1 下</span>
+    <span class="f">delay</span>(<span class="k">200</span>);
+    <span class="f">digitalWrite</span>(RED, <span class="k">LOW</span>);
+    <span class="f">delay</span>(<span class="k">200</span>);
+    <span class="c">// ……这 4 行再复制 2 遍，一共闪 3 下……</span>
+    count = <span class="k">0</span>;                    <span class="c">// 清零，重新数</span>
+  }</pre></div><div class="figcards"><div class="blk n"><span class="lbl">放在哪</span><h4>按键那段 if 的<b>后面</b></h4><p>还在 loop 里面：每一圈都看一眼数到 5 没有。</p></div><div class="blk c"><span class="lbl">清零</span><h4>count = 0;</h4><p>一个等号：把 0 <b>放进</b>盒子。下一次按又从 1 开始。</p></div><div class="blk a"><span class="lbl">嫌太长？</span><h4>下节课的 for</h4><p>闪 3 下要复制 3 遍；闪 100 下呢？</p></div></div></div><div class="tail"><div class="strip ">if 里两个等号是<b>问</b>「是不是 5」；count = 0 一个等号是<b>放进去</b>。</div></div></div>
+<div class="notes"><p>（★★★ 的组做的时候开着这一页。）</p><p>「在 loop 里、按键那段 if 的<b>后面</b>，再加一个 if：count 是不是 5？是——红灯闪 3 下，然后把 count 清零。」</p><p>「闪一下是 4 行：亮、等、灭、等。闪 3 下就复制 3 遍，一共 12 行。」</p><p>「清零那一行是一个等号：count = 0，把 0 放进盒子。if 里那个是两个等号：问是不是 5。这两个别弄混。」</p><p>「嫌复制 3 遍太长？下节课的 for，能把这 12 行缩成 4 行。」（参考答案在教案资源 6。）</p></div>
+</section>
+
+<section class="slide lay-table" data-title="小发明 · 卡住了先查这张">
+<div class="phead"><span class="no">第 06 课</span>
+<div class="rail"><span class="done" style="--w:8">兴趣</span><span class="done" style="--w:10">现象</span><span class="done" style="--w:15">概念</span><span class="done" style="--w:35">技能</span><span class="on" style="--w:20">小发明</span><span class="" style="--w:8">收尾</span></div>
+<span class="tslot">65–85 分</span>
+</div>
+<h2 class="ptitle">卡住了？<em>先查这张</em>，再举手</h2>
+<div class="pbody"><div class="tbl grow" style="grid-template-columns:1.35fr 1.25fr 1.35fr"><div class="th">看到什么</div><div class="th">多半是因为</div><div class="th">怎么办</div><div class="td k"><span>按一下还是加好几个</span></div><div class="td"><span>while 那一行没写，或写成了 if</span></div><div class="td last"><span>加上 while (…) { } 等松手</span></div><div class="td k"><span>偶尔一下加 2</span></div><div class="td"><span>按键抖动</span></div><div class="td last"><span>while 前后各留一行 delay(20)</span></div><div class="td k"><span>松手以后才加 1</span></div><div class="td"><span>while 写在了 count++ 前面</span></div><div class="td last"><span>顺序：先加 1、打印，再等松手</span></div><div class="td k"><span>红字 expected ')' before '{' token</span></div><div class="td"><span>while 的括号少了一个 )</span></div><div class="td last"><span>数一数：( 和 ) 要一样多</span></div><div class="td k"><span>红字 lvalue required as left operand of assignment</span></div><div class="td"><span>while 里写成了一个 =</span></div><div class="td last"><span>条件里永远两个等号</span></div><div class="td k"><span>★★ 灯亮了就关不掉</span></div><div class="td"><span>开灯以后忘了 on = 1</span></div><div class="td last"><span>开灯改 on，关灯也改 on</span></div></div></div>
+<div class="notes"><p>（小发明环节投影停在这一页。）</p><p>「卡住了先别举手，<b>先查这张表</b>。前三行都是『不报错但不听话』：按一下加好几个——while 没写；偶尔加 2——抖动，delay(20) 被删了；松手才加——顺序反了。」</p><p>「中间两行是红字：括号少一个、等号写成一个。还是三步：找行号，读第一句英文，看这一行和上一行。」</p><p>「最后一行是两颗星最常见的：开灯以后忘了把 on 改成 1，下次按它还以为灯是灭的。」</p></div>
+</section>
+
+<section class="slide lay-rowlist" data-title="收尾 · 今天的三个发现">
+<div class="phead"><span class="no">第 06 课</span>
+<div class="rail"><span class="done" style="--w:8">兴趣</span><span class="done" style="--w:10">现象</span><span class="done" style="--w:15">概念</span><span class="done" style="--w:35">技能</span><span class="done" style="--w:20">小发明</span><span class="on" style="--w:8">收尾</span></div>
+<span class="tslot">85–90 分</span>
+</div>
+<h2 class="ptitle">今天的<em>三个发现</em></h2>
+<div class="pbody"><div class="rowlist grow"><div class="rowitem"><div class="num g">1</div><div class="tx"><div class="rv " data-step="1"><div class="rv-a">loop 转得飞快：按一下的时间里，loop 已经转了<b>几千圈</b></div><div class="rv-q">？ 先请同学说说看</div></div></div></div><div class="rowitem"><div class="num a">2</div><div class="tx"><div class="rv " data-step="2"><div class="rv-a"><b>while (问题) { }</b>：只要答「是」，就一直问、一直等；<b>if 问一次就走</b></div><div class="rv-q">？ 先请同学说说看</div></div></div></div><div class="rowitem"><div class="num n">3</div><div class="tx"><div class="rv " data-step="3"><div class="rv-a">按键会<b>抖</b>：delay(20) 等它抖完再看</div><div class="rv-q">？ 先请同学说说看</div></div></div></div></div><div class="tail"><div class="strip ">交作业：接线照 + 代码截图（组号_姓名_第6课）+ 任务卡。拆线前先拔 USB。</div></div></div>
+<div class="notes"><p>（三条先盖着。）「今天发现了哪三件事？」每一条先请一位同学说，说得差不多了 <b>→ 揭晓</b>，再请下一位。</p><p>「交作业：接线照、代码截图，文件名组号、姓名、第6课。任务卡交上来。」</p><p>「收器材：先拔 USB 再拔线。下节课要用两块交通灯模块，按键模块可以先收进盒子。」</p><p>「每人说一句：今天哪里卡住了？」</p></div>
+</section>
+
+<section class="slide lay-cards" data-title="收尾 · 下节课流水灯">
+<div class="phead"><span class="no">第 06 课</span>
+<div class="rail"><span class="done" style="--w:8">兴趣</span><span class="done" style="--w:10">现象</span><span class="done" style="--w:15">概念</span><span class="done" style="--w:35">技能</span><span class="done" style="--w:20">小发明</span><span class="on" style="--w:8">收尾</span></div>
+<span class="tslot">85–90 分</span>
+</div>
+<h2 class="ptitle">下节课：<em>流水灯</em>——6 个灯一个接一个亮</h2>
+<div class="pbody"><div class="cols2 grow lay-cards2-in"><div class="blk n"><span class="lbl">第 7 课 · 作品</span><h4>6 个灯从头亮到尾</h4><p>两块交通灯模块，一共 6 个灯。</p><p>新句型：<b>for</b>（重复几次）</p></div><div class="blk c"><span class="lbl">先想一个问题</span><h4>复制粘贴要写多少行？</h4><p>让 6 个灯依次亮一下，每个灯 4 行……</p><p>要是 60 个灯呢？</p></div></div><div class="tail"><div class="strip ">回家想一想：三颗星的「闪 3 下」复制了 3 遍。要闪 100 下，你会怎么办？</div></div></div>
+<div class="notes"><p>「下节课做流水灯：两块交通灯模块，一共 6 个灯，一个接一个亮，像商场门口的跑马灯。」</p><p>「先想一个问题：让一个灯亮一下要 4 行——亮、等、灭、等。6 个灯就是 24 行。要是 60 个灯呢？240 行，复制到手软。」</p><p>「下节课的新句型 for，就是『重复几次』，能把这 24 行缩成 5 行。」</p><p>「回家想一想：三颗星的『闪 3 下』复制了 3 遍，要闪 100 下，你会怎么办？」</p><p>（课后：没过基础档的组号记进反馈；下节课每组要两块交通灯模块，提前清点。）</p></div>
+</section>
+<div class="deck-footer"><span>Arduino UNO 入门 · 单元二 变量与判断 · 第 6 课 按键计数</span><span class="fright"><span class="rv-left" style="display:none"></span><span class="slide-number" data-current="1" data-total="22"></span></span></div>
+<div class="progress-bar"><span></span></div>
+</div>
+<script src="assets/fitstage.js"></script>
+<script src="assets/runtime.js"></script>
+</body>
+</html>

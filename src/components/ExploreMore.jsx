@@ -12,10 +12,10 @@ const items = [
         icon: Landmark
     },
     {
-        title: 'ESP32 MicroPython 高阶科创',
-        desc: 'ESP32 与 MicroPython 网页课件，现已上线 24 课，其余课件陆续补充。',
-        action: '查看硬件课',
-        route: '/hardware',
+        title: 'Arduino 与 ESP32 硬件课',
+        desc: 'Arduino UNO 零基础课程已上线 16 课，并可继续进入 ESP32 MicroPython 高阶科创。',
+        action: '查看 Arduino 课程',
+        route: '/hardware/arduino',
         icon: Cpu
     },
     {

@@ -21,7 +21,7 @@ const SectionFallback = ({ minHeight = 480 }) => (
 
 export default function Home() {
     useEffect(() => {
-        if (new URLSearchParams(window.location.search).get('subject') === 'innovation') {
+        if (['innovation', 'arduino', 'science-foundation', 'python'].includes(new URLSearchParams(window.location.search).get('subject'))) {
             document.getElementById('lesson-catalog')?.scrollIntoView();
         }
     }, []);

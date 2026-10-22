@@ -4,7 +4,7 @@ import { ArrowRight, BookOpen, NotebookPen, Target } from 'lucide-react';
 
 import { getCppLesson } from '../data/cppLessonIndex';
 import { pythonFoundationLessons, pythonProjects } from '../data/pythonCourseCatalog';
-import { foundationLessons, innovationLessons } from '../data/innovationCourseCatalog';
+import { arduinoLessons, foundationLessons, innovationLessons } from '../data/innovationCourseCatalog';
 import { paperMeta } from '../data/gesp';
 import { LEARNING_DATA_EVENT } from '../utils/learningData';
 import { readLessonProgress } from '../utils/lessonProgress';
@@ -31,6 +31,8 @@ const describeLessonPath = (path) => {
     }
     const foundation = foundationLessons.find((lesson) => lesson.path === path);
     if (foundation) return `初阶科创 · 第 ${foundation.id} 课 · ${foundation.title}`;
+    const arduino = arduinoLessons.find((lesson) => lesson.path === path);
+    if (arduino) return `Arduino UNO · 第 ${arduino.id} 课 · ${arduino.title}`;
     const innovation = innovationLessons.find((lesson) => lesson.path === path || `/innovation/${lesson.id}` === path);
     if (innovation) return `高阶科创 · 第 ${innovation.id} 课 · ${innovation.title}`;
     const python = PYTHON_TITLES.get(path);

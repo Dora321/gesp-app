@@ -77,7 +77,7 @@ const GlobalWidgets = () => {
   const isQuestionBankFlow = pathname.startsWith('/question-bank');
   const usesHeaderActions = pathname === '/' || pathname === '/museum';
 
-  if (isQuestionBankFlow || pathname.startsWith('/innovation/') || pathname.startsWith('/innovation-foundation/') || pathname.startsWith('/hardware/esp32/')) return null;
+  if (isQuestionBankFlow || pathname.startsWith('/innovation/') || pathname.startsWith('/innovation-foundation/') || (pathname.startsWith('/hardware/esp32/') || pathname.startsWith('/hardware/arduino/'))) return null;
 
   return (
     <Suspense fallback={null}>
@@ -140,6 +140,8 @@ function App() {
             <Route path="/hardware" element={<HardwareLanding />} />
             <Route path="/hardware/esp32-curriculum" element={<HardwareLanding />} />
             <Route path="/hardware/esp32/:num" element={<InnovationLesson />} />
+            <Route path="/hardware/arduino" element={<HardwareLanding courseId="arduino" />} />
+            <Route path="/hardware/arduino/:num" element={<InnovationLesson courseId="arduino" />} />
             <Route path="/hardware/*" element={<Navigate to="/hardware/esp32-curriculum" replace />} />
 
             {/* Course Levels */}

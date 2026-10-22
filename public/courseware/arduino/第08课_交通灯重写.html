@@ -1,0 +1,380 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>第08课 交通灯重写 · Arduino UNO 入门</title>
+<link rel="stylesheet" href="assets/base.css">
+<link rel="stylesheet" id="theme-link" href="assets/theme-arduino.css">
+<link rel="stylesheet" href="assets/animations.css">
+</head>
+<body>
+<div class="deck" data-theme-base="assets/">
+<section class="slide lay-cover is-active" data-title="封面 · 课前检查">
+<span class="cv-bar">Arduino UNO 入门 / 单元三「循环与函数」</span>
+<h1 class="cv-title">交通灯<em>重写</em></h1>
+<p class="cv-sub"><code class="ic">void red() { … }</code>——自己做积木，loop 读起来像一句话</p>
+<div class="cv-tags"><span class="tag">自定义函数</span><span class="tag">void</span><span class="tag">手写约 10 行</span><span class="tag">90 分钟</span></div>
+<div class="cv-no">08</div>
+<div class="cv-icon"><svg viewBox="0 0 560 360" xmlns="http://www.w3.org/2000/svg" font-family="Microsoft YaHei" text-rendering="geometricPrecision"><path d="M90 30 h400 v56 h-366 v210 h366 v34 h-400 Z" fill="#1F4E79" stroke="#141414" stroke-width="4" stroke-linejoin="round"/><text x="108" y="68" font-size="25" font-weight="900" fill="#fff" font-family="Consolas,Microsoft YaHei">loop()</text><path d="M130 98 h18 l6 8 h20 l6 -8 h268 a6 6 0 0 1 6 6 v46 a6 6 0 0 1 -6 6 h-318 a6 6 0 0 1 -6 -6 v-46 a6 6 0 0 1 6 -6 Z" fill="#E53935" stroke="#141414" stroke-width="4" stroke-linejoin="round"/><text x="142" y="139" font-size="30" font-weight="900" fill="#fff" font-family="Consolas,Microsoft YaHei">red();</text><path d="M130 164 h18 l6 8 h20 l6 -8 h268 a6 6 0 0 1 6 6 v46 a6 6 0 0 1 -6 6 h-318 a6 6 0 0 1 -6 -6 v-46 a6 6 0 0 1 6 -6 Z" fill="#2E9E5B" stroke="#141414" stroke-width="4" stroke-linejoin="round"/><text x="142" y="205" font-size="30" font-weight="900" fill="#fff" font-family="Consolas,Microsoft YaHei">green();</text><path d="M130 230 h18 l6 8 h20 l6 -8 h268 a6 6 0 0 1 6 6 v46 a6 6 0 0 1 -6 6 h-318 a6 6 0 0 1 -6 -6 v-46 a6 6 0 0 1 6 -6 Z" fill="#FBC02D" stroke="#141414" stroke-width="4" stroke-linejoin="round"/><text x="142" y="271" font-size="30" font-weight="900" fill="#141414" font-family="Consolas,Microsoft YaHei">yellow();</text></svg></div>
+<div class="notes"><p><b>课前 5 分钟</b>：每组只接 A 模块（R 10、Y 9、G 8、GND 任意 G，第 3 课的接法）；上节课的 B 模块收走。按键模块放在器材盒里（★★★ 用）。共享文件夹里有 func、func_todo。</p><p>今天的<b>保底目标</b>：每组交通灯照样转，但 loop 里只有 red(); green(); yellow(); 三行；green 和 yellow 两块积木自己写；每人能说出「定义」和「调用」的区别。</p><p>今天唯一的新语法：<b>自定义函数</b>（无参数）。图形化编程里叫「自制积木」。</p><p>先猜再揭晓照旧：按 → 揭晓，揭晓完再按 → 翻页。</p></div>
+</section>
+
+<section class="slide lay-figure" data-title="兴趣 · 自己做积木">
+<div class="phead"><span class="no">第 08 课</span>
+<div class="rail"><span class="on" style="--w:8">兴趣</span><span class="" style="--w:10">现象</span><span class="" style="--w:15">概念</span><span class="" style="--w:35">技能</span><span class="" style="--w:20">小发明</span><span class="" style="--w:8">收尾</span></div>
+<span class="tslot">0–5 分</span>
+</div>
+<h2 class="ptitle">图形化编程里的<em>自制积木</em>，C++ 里也有</h2>
+<div class="pbody">
+  <div class="figgrid grow" style="--figw:1.2fr"><div class="figbox"><svg viewBox="0 0 740 540" xmlns="http://www.w3.org/2000/svg" font-family="Microsoft YaHei" text-rendering="geometricPrecision"><defs><marker id="ar9" viewBox="0 0 10 10" refX="7" refY="5" markerWidth="5" markerHeight="5" orient="auto"><path d="M0 0 L10 5 L0 10 Z" fill="#141414"/></marker></defs><text x="30" y="40" font-size="26" font-weight="900" fill="#D85A30">① 做积木（定义）</text><path d="M30 64 h330 v56 h-296 v204 h296 v34 h-330 Z" fill="#D85A30" stroke="#141414" stroke-width="4" stroke-linejoin="round"/><text x="48" y="102" font-size="25" font-weight="900" fill="#fff" font-family="Consolas,Microsoft YaHei">void red()</text><path d="M70 132 h18 l6 8 h20 l6 -8 h208 a6 6 0 0 1 6 6 v42 a6 6 0 0 1 -6 6 h-258 a6 6 0 0 1 -6 -6 v-42 a6 6 0 0 1 6 -6 Z" fill="#1F4E79" stroke="#141414" stroke-width="4" stroke-linejoin="round"/><text x="82" y="169" font-size="24" font-weight="900" fill="#fff">红灯亮</text><path d="M70 196 h18 l6 8 h20 l6 -8 h208 a6 6 0 0 1 6 6 v42 a6 6 0 0 1 -6 6 h-258 a6 6 0 0 1 -6 -6 v-42 a6 6 0 0 1 6 -6 Z" fill="#1F4E79" stroke="#141414" stroke-width="4" stroke-linejoin="round"/><text x="82" y="233" font-size="24" font-weight="900" fill="#fff">等 3 秒</text><path d="M70 260 h18 l6 8 h20 l6 -8 h208 a6 6 0 0 1 6 6 v42 a6 6 0 0 1 -6 6 h-258 a6 6 0 0 1 -6 -6 v-42 a6 6 0 0 1 6 -6 Z" fill="#1F4E79" stroke="#141414" stroke-width="4" stroke-linejoin="round"/><text x="82" y="297" font-size="24" font-weight="900" fill="#fff">红灯灭</text><text x="410" y="40" font-size="26" font-weight="900" fill="#1D9E75">② 用积木（调用）</text><path d="M410 64 h300 v56 h-266 v204 h266 v34 h-300 Z" fill="#1D9E75" stroke="#141414" stroke-width="4" stroke-linejoin="round"/><text x="428" y="102" font-size="25" font-weight="900" fill="#fff" font-family="Consolas,Microsoft YaHei">loop()</text><path d="M450 132 h18 l6 8 h20 l6 -8 h178 a6 6 0 0 1 6 6 v42 a6 6 0 0 1 -6 6 h-228 a6 6 0 0 1 -6 -6 v-42 a6 6 0 0 1 6 -6 Z" fill="#D85A30" stroke="#141414" stroke-width="4" stroke-linejoin="round"/><text x="462" y="169" font-size="24" font-weight="900" fill="#fff" font-family="Consolas,Microsoft YaHei">red();</text><path d="M450 196 h18 l6 8 h20 l6 -8 h178 a6 6 0 0 1 6 6 v42 a6 6 0 0 1 -6 6 h-228 a6 6 0 0 1 -6 -6 v-42 a6 6 0 0 1 6 -6 Z" fill="#2E9E5B" stroke="#141414" stroke-width="4" stroke-linejoin="round"/><text x="462" y="233" font-size="24" font-weight="900" fill="#fff" font-family="Consolas,Microsoft YaHei">green();</text><path d="M450 260 h18 l6 8 h20 l6 -8 h178 a6 6 0 0 1 6 6 v42 a6 6 0 0 1 -6 6 h-228 a6 6 0 0 1 -6 -6 v-42 a6 6 0 0 1 6 -6 Z" fill="#F5A623" stroke="#141414" stroke-width="4" stroke-linejoin="round"/><text x="462" y="297" font-size="24" font-weight="900" fill="#141414" font-family="Consolas,Microsoft YaHei">yellow();</text><path d="M360 190 C390 190 400 160 436 160" fill="none" stroke="#141414" stroke-width="5" stroke-dasharray="10 7" marker-end="url(#ar9)"/><text x="370" y="420" text-anchor="middle" font-size="25" font-weight="900" fill="#141414">3 块拼成 1 块，起个名字</text><text x="370" y="462" text-anchor="middle" font-size="25" font-weight="900" fill="#141414">以后只写名字：loop 读起来像一句话</text><text x="370" y="510" text-anchor="middle" font-size="20" font-weight="800" fill="#555">就像图形化编程里的「自制积木」</text></svg></div><div class="figcards"><div class="blk n"><span class="lbl">回家作业</span><h4>你做过自制积木吗？</h4><p>做的是什么？为什么要做？</p></div><div class="blk c"><span class="lbl">今天</span><h4>把红灯 3 行拼成 1 块</h4><p>起个名字叫 red，以后只写名字。</p></div><div class="blk a"><span class="lbl">好处</span><h4>为什么要这么麻烦？</h4><div class="rv rv-ans" data-step="1"><div class="rv-a"><p class="ans">loop 里只剩三行，<b>一眼就看懂</b>在干什么；想改红灯，只改 red 那一块。</p></div><div class="rv-q">？ 先想一想</div></div></div></div></div>
+  <div class="tail"><div class="strip ">今天唯一的新句型：<b>自定义函数</b>——自己做积木。</div></div>
+</div>
+<div class="notes"><p>「上节课的作业：图形化编程里，你有没有用过『自制积木』？」（请两三位同学说：做过『画正方形』『跳一跳』之类。）</p><p>「看左边：把『红灯亮、等 3 秒、红灯灭』三块拼成一块，起个名字叫 red。以后要红灯，只拿 red 这一块就行。右边 loop 里，只有 red、green、yellow 三块。」</p><p>「为什么要这么麻烦？」<b>→ 揭晓</b>「loop 只剩三行，一眼就看懂在干什么；想改红灯，只改 red 那一块，别的不用动。」</p><p>「今天唯一的新句型：自定义函数，就是在 C++ 里自己做积木。」</p></div>
+</section>
+
+<section class="slide lay-codes" data-title="现象 · 哪个一眼看懂">
+<div class="phead"><span class="no">第 08 课</span>
+<div class="rail"><span class="done" style="--w:8">兴趣</span><span class="on" style="--w:10">现象</span><span class="" style="--w:15">概念</span><span class="" style="--w:35">技能</span><span class="" style="--w:20">小发明</span><span class="" style="--w:8">收尾</span></div>
+<span class="tslot">5–15 分</span>
+</div>
+<h2 class="ptitle">同一个交通灯，哪个<em>一眼看懂</em>？</h2>
+<div class="pbody"><div class="codes grow" style="grid-template-columns:1.15fr 1.25fr"><div class="code"><div class="lab "><span>第 3 课的 loop（没写注释）</span><span class="rt">13 行</span></div><pre style="font-size:22px;line-height:1.55"><span class="t">void</span> <span class="f">loop</span>() {
+  <span class="f">digitalWrite</span>(RED, <span class="k">HIGH</span>);
+  <span class="f">delay</span>(<span class="k">3000</span>);
+  <span class="f">digitalWrite</span>(RED, <span class="k">LOW</span>);
+
+  <span class="f">digitalWrite</span>(GREEN, <span class="k">HIGH</span>);
+  <span class="f">delay</span>(<span class="k">3000</span>);
+  <span class="f">digitalWrite</span>(GREEN, <span class="k">LOW</span>);
+
+  <span class="f">digitalWrite</span>(YELLOW, <span class="k">HIGH</span>);
+  <span class="f">delay</span>(<span class="k">1000</span>);
+  <span class="f">digitalWrite</span>(YELLOW, <span class="k">LOW</span>);
+}</pre></div><div class="code"><div class="lab g"><span>今天的 loop</span><span class="rt">5 行</span></div><pre style="font-size:27px;line-height:1.55"><span class="t">void</span> <span class="f">loop</span>() {     <span class="c">// ④ 一直重复：干活</span>
+  <span class="f">red</span>();          <span class="c">// 红灯</span>
+  <span class="f">green</span>();        <span class="c">// 绿灯</span>
+  <span class="f">yellow</span>();       <span class="c">// 黄灯</span>
+}</pre></div></div><div class="tail"><div class="strip ">问：左边第 7 行是哪个灯在干什么？要数一数；右边<b>读出来就是一句话</b>：红、绿、黄。</div></div></div>
+<div class="notes"><p>「左边是第 3 课的 loop，我把注释去掉了。考考你：第 7 行，是哪个灯在干什么？」（学生要从上往下数：红灯 3 行，空一行，绿灯……）</p><p>「右边是今天要做的 loop：red、green、yellow——读出来就是一句话：红灯、绿灯、黄灯。」</p><p>「两个程序让灯做的事<b>一模一样</b>。区别只在：人读起来，哪个更轻松。」</p><p>「程序不光是写给板子看的，也是写给人看的——给同桌看，给一个月以后的自己看。」</p></div>
+</section>
+
+<section class="slide lay-figure" data-title="现象 · 效果一样吗">
+<div class="phead"><span class="no">第 08 课</span>
+<div class="rail"><span class="done" style="--w:8">兴趣</span><span class="on" style="--w:10">现象</span><span class="" style="--w:15">概念</span><span class="" style="--w:35">技能</span><span class="" style="--w:20">小发明</span><span class="" style="--w:8">收尾</span></div>
+<span class="tslot">5–15 分</span>
+</div>
+<h2 class="ptitle">老师上传新程序：灯<em>一样吗</em>？</h2>
+<div class="pbody">
+  <div class="figgrid grow" style="--figw:1.2fr"><div class="figbox"><svg viewBox="0 0 760 560" xmlns="http://www.w3.org/2000/svg" font-family="Microsoft YaHei" text-rendering="geometricPrecision"><rect x="30" y="30" width="700" height="246" rx="14" fill="#2D5D8F" stroke="#141414" stroke-width="5"/><text x="56" y="70" font-size="22" font-weight="900" fill="#fff">传感器扩展板（插在 UNO 上面）</text><rect x="100" y="148" width="524" height="24" fill="#1A1A1A"/><text x="74" y="168" text-anchor="middle" font-size="22" font-weight="900" fill="#CFD8DC">G</text><rect x="100" y="176" width="524" height="24" fill="#1A1A1A"/><text x="74" y="196" text-anchor="middle" font-size="22" font-weight="900" fill="#FF8A80">V</text><rect x="100" y="204" width="524" height="24" fill="#1A1A1A"/><text x="74" y="224" text-anchor="middle" font-size="22" font-weight="900" fill="#FFE082">S</text><text x="120" y="128" text-anchor="middle" font-size="18" font-weight="900" fill="#A9C4E0">13</text><rect x="114" y="154" width="12" height="12" fill="#D4AF37"/><rect x="114" y="182" width="12" height="12" fill="#D4AF37"/><rect x="114" y="210" width="12" height="12" fill="#D4AF37"/><text x="164" y="128" text-anchor="middle" font-size="18" font-weight="900" fill="#A9C4E0">12</text><rect x="158" y="154" width="12" height="12" fill="#D4AF37"/><rect x="158" y="182" width="12" height="12" fill="#D4AF37"/><rect x="158" y="210" width="12" height="12" fill="#D4AF37"/><text x="208" y="128" text-anchor="middle" font-size="18" font-weight="900" fill="#A9C4E0">11</text><rect x="202" y="154" width="12" height="12" fill="#D4AF37"/><rect x="202" y="182" width="12" height="12" fill="#D4AF37"/><rect x="202" y="210" width="12" height="12" fill="#D4AF37"/><text x="252" y="128" text-anchor="middle" font-size="22" font-weight="900" fill="#fff">10</text><rect x="246" y="154" width="12" height="12" fill="#D4AF37"/><rect x="246" y="182" width="12" height="12" fill="#D4AF37"/><rect x="246" y="210" width="12" height="12" fill="#D4AF37"/><text x="296" y="128" text-anchor="middle" font-size="22" font-weight="900" fill="#fff">9</text><rect x="290" y="154" width="12" height="12" fill="#D4AF37"/><rect x="290" y="182" width="12" height="12" fill="#D4AF37"/><rect x="290" y="210" width="12" height="12" fill="#D4AF37"/><text x="340" y="128" text-anchor="middle" font-size="22" font-weight="900" fill="#fff">8</text><rect x="334" y="154" width="12" height="12" fill="#D4AF37"/><rect x="334" y="182" width="12" height="12" fill="#D4AF37"/><rect x="334" y="210" width="12" height="12" fill="#D4AF37"/><text x="384" y="128" text-anchor="middle" font-size="18" font-weight="900" fill="#A9C4E0">7</text><rect x="378" y="154" width="12" height="12" fill="#D4AF37"/><rect x="378" y="182" width="12" height="12" fill="#D4AF37"/><rect x="378" y="210" width="12" height="12" fill="#D4AF37"/><text x="428" y="128" text-anchor="middle" font-size="18" font-weight="900" fill="#A9C4E0">6</text><rect x="422" y="154" width="12" height="12" fill="#D4AF37"/><rect x="422" y="182" width="12" height="12" fill="#D4AF37"/><rect x="422" y="210" width="12" height="12" fill="#D4AF37"/><text x="472" y="128" text-anchor="middle" font-size="18" font-weight="900" fill="#A9C4E0">5</text><rect x="466" y="154" width="12" height="12" fill="#D4AF37"/><rect x="466" y="182" width="12" height="12" fill="#D4AF37"/><rect x="466" y="210" width="12" height="12" fill="#D4AF37"/><text x="516" y="128" text-anchor="middle" font-size="18" font-weight="900" fill="#A9C4E0">4</text><rect x="510" y="154" width="12" height="12" fill="#D4AF37"/><rect x="510" y="182" width="12" height="12" fill="#D4AF37"/><rect x="510" y="210" width="12" height="12" fill="#D4AF37"/><text x="560" y="128" text-anchor="middle" font-size="18" font-weight="900" fill="#A9C4E0">3</text><rect x="554" y="154" width="12" height="12" fill="#D4AF37"/><rect x="554" y="182" width="12" height="12" fill="#D4AF37"/><rect x="554" y="210" width="12" height="12" fill="#D4AF37"/><text x="604" y="128" text-anchor="middle" font-size="18" font-weight="900" fill="#A9C4E0">2</text><rect x="598" y="154" width="12" height="12" fill="#D4AF37"/><rect x="598" y="182" width="12" height="12" fill="#D4AF37"/><rect x="598" y="210" width="12" height="12" fill="#D4AF37"/><text x="680" y="166" text-anchor="middle" font-size="16" font-weight="800" fill="#CFD8DC">地</text><text x="680" y="194" text-anchor="middle" font-size="16" font-weight="800" fill="#FF8A80">5V</text><text x="680" y="222" text-anchor="middle" font-size="16" font-weight="800" fill="#FFE082">信号</text><path d="M208 378 L208 172" fill="none" stroke="#141414" stroke-width="9" stroke-linejoin="round" stroke-linecap="round"/><path d="M208 378 L208 172" fill="none" stroke="#333333" stroke-width="5.5" stroke-linejoin="round" stroke-linecap="round"/><rect x="199" y="147" width="18" height="26" rx="2" fill="#1C1C1C" stroke="#141414" stroke-width="2.5"/><rect x="199" y="371" width="18" height="26" rx="2" fill="#1C1C1C" stroke="#141414" stroke-width="2.5"/><path d="M252 378 L252 228" fill="none" stroke="#141414" stroke-width="9" stroke-linejoin="round" stroke-linecap="round"/><path d="M252 378 L252 228" fill="none" stroke="#D32F2F" stroke-width="5.5" stroke-linejoin="round" stroke-linecap="round"/><rect x="243" y="203" width="18" height="26" rx="2" fill="#1C1C1C" stroke="#141414" stroke-width="2.5"/><rect x="243" y="371" width="18" height="26" rx="2" fill="#1C1C1C" stroke="#141414" stroke-width="2.5"/><path d="M296 378 L296 228" fill="none" stroke="#141414" stroke-width="9" stroke-linejoin="round" stroke-linecap="round"/><path d="M296 378 L296 228" fill="none" stroke="#F2B705" stroke-width="5.5" stroke-linejoin="round" stroke-linecap="round"/><rect x="287" y="203" width="18" height="26" rx="2" fill="#1C1C1C" stroke="#141414" stroke-width="2.5"/><rect x="287" y="371" width="18" height="26" rx="2" fill="#1C1C1C" stroke="#141414" stroke-width="2.5"/><path d="M340 378 L340 228" fill="none" stroke="#141414" stroke-width="9" stroke-linejoin="round" stroke-linecap="round"/><path d="M340 378 L340 228" fill="none" stroke="#2E9E5B" stroke-width="5.5" stroke-linejoin="round" stroke-linecap="round"/><rect x="331" y="203" width="18" height="26" rx="2" fill="#1C1C1C" stroke="#141414" stroke-width="2.5"/><rect x="331" y="371" width="18" height="26" rx="2" fill="#1C1C1C" stroke="#141414" stroke-width="2.5"/><rect x="188" y="400" width="172" height="128" rx="8" fill="#232323" stroke="#141414" stroke-width="4"/><rect x="204" y="386" width="8" height="16" fill="#D4AF37"/><text x="208" y="426" text-anchor="middle" font-size="14" font-weight="900" fill="#fff">GND</text><rect x="248" y="386" width="8" height="16" fill="#D4AF37"/><text x="252" y="426" text-anchor="middle" font-size="19" font-weight="900" fill="#fff">R</text><rect x="292" y="386" width="8" height="16" fill="#D4AF37"/><text x="296" y="426" text-anchor="middle" font-size="19" font-weight="900" fill="#fff">Y</text><rect x="336" y="386" width="8" height="16" fill="#D4AF37"/><text x="340" y="426" text-anchor="middle" font-size="19" font-weight="900" fill="#fff">G</text><circle cx="252" cy="474" r="17" fill="#F8C9C7" stroke="#141414" stroke-width="3"/><g class="tl-r"><circle cx="252" cy="474" r="30" fill="#E53935" opacity=".35"/><circle cx="252" cy="474" r="17" fill="#E53935" stroke="#141414" stroke-width="3"/></g><path d="M244 474 a5 5 0 0 1 5 -5" fill="none" stroke="#fff" stroke-width="3" stroke-linecap="round" opacity=".8"/><circle cx="296" cy="474" r="17" fill="#FBEBB5" stroke="#141414" stroke-width="3"/><g class="tl-y"><circle cx="296" cy="474" r="30" fill="#FBC02D" opacity=".35"/><circle cx="296" cy="474" r="17" fill="#FBC02D" stroke="#141414" stroke-width="3"/></g><path d="M288 474 a5 5 0 0 1 5 -5" fill="none" stroke="#fff" stroke-width="3" stroke-linecap="round" opacity=".8"/><circle cx="340" cy="474" r="17" fill="#C7E8D3" stroke="#141414" stroke-width="3"/><g class="tl-g"><circle cx="340" cy="474" r="30" fill="#2E9E5B" opacity=".35"/><circle cx="340" cy="474" r="17" fill="#2E9E5B" stroke="#141414" stroke-width="3"/></g><path d="M332 474 a5 5 0 0 1 5 -5" fill="none" stroke="#fff" stroke-width="3" stroke-linecap="round" opacity=".8"/><text x="274" y="518" text-anchor="middle" font-size="16" font-weight="800" fill="#BDBDBD">交通灯模块</text></svg></div><div class="figcards"><div class="blk n"><span class="lbl">演示</span><h4>上传 func</h4><p>loop 里只有 red(); green(); yellow();</p></div><div class="blk c"><span class="lbl">投票</span><h4>和第 3 课比，灯有什么不一样？</h4><p>A 一模一样　B 变快了　C 变慢了</p><div class="rv rv-ans" data-step="1"><div class="rv-a"><p class="ans"><b>A 一模一样</b>：红 3 秒 → 绿 3 秒 → 黄 1 秒。积木只是把代码<b>打包、起名字</b>，不改变灯做的事。</p></div><div class="rv-q">？ 先投票</div></div></div></div></div>
+  <div class="tail"><div class="strip ">函数不会让程序更快，只会让程序<b>更好读、更好改</b>。</div></div>
+</div>
+<div class="notes"><p>（老师上传 func，实物展台对准演示板。）</p><p>「投票：和第 3 课的交通灯比，灯有什么不一样？A 一模一样，B 变快了，C 变慢了。」（数票。有同学会觉得『跳来跳去会慢』。）</p><p><b>→ 揭晓</b>「一模一样：红 3 秒，绿 3 秒，黄 1 秒。积木只是把代码打包、起了名字，灯做的事一点没变。」</p><p>「跳过去、跳回来要花时间吗？要，但只有几百万分之一秒，眼睛完全看不出来。」</p><p>「所以记住：函数不会让程序变快，它让程序更好读、更好改。」</p></div>
+</section>
+
+<section class="slide lay-figure" data-title="概念 · 定义和调用">
+<div class="phead"><span class="no">第 08 课</span>
+<div class="rail"><span class="done" style="--w:8">兴趣</span><span class="done" style="--w:10">现象</span><span class="on" style="--w:15">概念</span><span class="" style="--w:35">技能</span><span class="" style="--w:20">小发明</span><span class="" style="--w:8">收尾</span></div>
+<span class="tslot">15–30 分</span>
+</div>
+<h2 class="ptitle">今天唯一的新句型：<em>自定义函数</em></h2>
+<div class="pbody">
+  <div class="figgrid grow" style="--figw:1.2fr"><div class="figbox"><svg viewBox="0 0 740 540" xmlns="http://www.w3.org/2000/svg" font-family="Microsoft YaHei" text-rendering="geometricPrecision"><defs><marker id="ar9" viewBox="0 0 10 10" refX="7" refY="5" markerWidth="5" markerHeight="5" orient="auto"><path d="M0 0 L10 5 L0 10 Z" fill="#141414"/></marker></defs><text x="30" y="40" font-size="26" font-weight="900" fill="#D85A30">① 做积木（定义）</text><path d="M30 64 h330 v56 h-296 v204 h296 v34 h-330 Z" fill="#D85A30" stroke="#141414" stroke-width="4" stroke-linejoin="round"/><text x="48" y="102" font-size="25" font-weight="900" fill="#fff" font-family="Consolas,Microsoft YaHei">void red()</text><path d="M70 132 h18 l6 8 h20 l6 -8 h208 a6 6 0 0 1 6 6 v42 a6 6 0 0 1 -6 6 h-258 a6 6 0 0 1 -6 -6 v-42 a6 6 0 0 1 6 -6 Z" fill="#1F4E79" stroke="#141414" stroke-width="4" stroke-linejoin="round"/><text x="82" y="169" font-size="24" font-weight="900" fill="#fff">红灯亮</text><path d="M70 196 h18 l6 8 h20 l6 -8 h208 a6 6 0 0 1 6 6 v42 a6 6 0 0 1 -6 6 h-258 a6 6 0 0 1 -6 -6 v-42 a6 6 0 0 1 6 -6 Z" fill="#1F4E79" stroke="#141414" stroke-width="4" stroke-linejoin="round"/><text x="82" y="233" font-size="24" font-weight="900" fill="#fff">等 3 秒</text><path d="M70 260 h18 l6 8 h20 l6 -8 h208 a6 6 0 0 1 6 6 v42 a6 6 0 0 1 -6 6 h-258 a6 6 0 0 1 -6 -6 v-42 a6 6 0 0 1 6 -6 Z" fill="#1F4E79" stroke="#141414" stroke-width="4" stroke-linejoin="round"/><text x="82" y="297" font-size="24" font-weight="900" fill="#fff">红灯灭</text><text x="410" y="40" font-size="26" font-weight="900" fill="#1D9E75">② 用积木（调用）</text><path d="M410 64 h300 v56 h-266 v204 h266 v34 h-300 Z" fill="#1D9E75" stroke="#141414" stroke-width="4" stroke-linejoin="round"/><text x="428" y="102" font-size="25" font-weight="900" fill="#fff" font-family="Consolas,Microsoft YaHei">loop()</text><path d="M450 132 h18 l6 8 h20 l6 -8 h178 a6 6 0 0 1 6 6 v42 a6 6 0 0 1 -6 6 h-228 a6 6 0 0 1 -6 -6 v-42 a6 6 0 0 1 6 -6 Z" fill="#D85A30" stroke="#141414" stroke-width="4" stroke-linejoin="round"/><text x="462" y="169" font-size="24" font-weight="900" fill="#fff" font-family="Consolas,Microsoft YaHei">red();</text><path d="M450 196 h18 l6 8 h20 l6 -8 h178 a6 6 0 0 1 6 6 v42 a6 6 0 0 1 -6 6 h-228 a6 6 0 0 1 -6 -6 v-42 a6 6 0 0 1 6 -6 Z" fill="#2E9E5B" stroke="#141414" stroke-width="4" stroke-linejoin="round"/><text x="462" y="233" font-size="24" font-weight="900" fill="#fff" font-family="Consolas,Microsoft YaHei">green();</text><path d="M450 260 h18 l6 8 h20 l6 -8 h178 a6 6 0 0 1 6 6 v42 a6 6 0 0 1 -6 6 h-228 a6 6 0 0 1 -6 -6 v-42 a6 6 0 0 1 6 -6 Z" fill="#F5A623" stroke="#141414" stroke-width="4" stroke-linejoin="round"/><text x="462" y="297" font-size="24" font-weight="900" fill="#141414" font-family="Consolas,Microsoft YaHei">yellow();</text><path d="M360 190 C390 190 400 160 436 160" fill="none" stroke="#141414" stroke-width="5" stroke-dasharray="10 7" marker-end="url(#ar9)"/><text x="370" y="420" text-anchor="middle" font-size="25" font-weight="900" fill="#141414">3 块拼成 1 块，起个名字</text><text x="370" y="462" text-anchor="middle" font-size="25" font-weight="900" fill="#141414">以后只写名字：loop 读起来像一句话</text><text x="370" y="510" text-anchor="middle" font-size="20" font-weight="800" fill="#555">就像图形化编程里的「自制积木」</text></svg></div><div class="figcards"><div class="blk c"><span class="lbl">① 定义 · 做积木</span><h4>void red() { … }</h4><p>写在 loop <b>外面</b>：起名字，把动作装进大括号。</p></div><div class="blk g"><span class="lbl">② 调用 · 用积木</span><h4>red();</h4><p>写在 loop <b>里面</b>：写一次名字，做一遍。</p></div><div class="blk a"><span class="lbl">顺序</span><h4>先有积木，才能用</h4><p>积木写在 loop 下面也行：程序靠名字找到它。</p></div></div></div>
+  
+</div>
+<div class="notes"><p>「自定义函数分两步，两个词一定要分清。」</p><p>「第一步叫<b>定义</b>，就是做积木：void red()，后面一对大括号，把红灯的 3 行装进去。它写在 loop 的<b>外面</b>——在我们的模板里，写在 loop 下面的第⑤区。」</p><p>「第二步叫<b>调用</b>，就是用积木：red()，加一个分号。写在 loop <b>里面</b>。写一次，就做一遍。」</p><p>「积木做好了放在下面，loop 在上面就能用——程序靠名字找到它。」</p></div>
+</section>
+
+<section class="slide lay-anat" data-title="概念 · 拆开定义和调用">
+<div class="phead"><span class="no">第 08 课</span>
+<div class="rail"><span class="done" style="--w:8">兴趣</span><span class="done" style="--w:10">现象</span><span class="on" style="--w:15">概念</span><span class="" style="--w:35">技能</span><span class="" style="--w:20">小发明</span><span class="" style="--w:8">收尾</span></div>
+<span class="tslot">15–30 分</span>
+</div>
+<h2 class="ptitle">拆开看：做积木的那一行，和<em>用积木</em>的那一行</h2>
+<div class="pbody"><div class="anat"><div class="arow"><span class="acap">定义</span><div class="segs" style="font-size:42px;padding-bottom:104px"><span class="seg n"><span class="st">void</span><span class="lw" style="--lv:0"><span class="rvi" data-step="1"><span class="sl">① 先照抄</span></span></span></span><span class="seg p"><span class="st">&nbsp;</span></span><span class="seg c"><span class="st">red</span><span class="lw" style="--lv:1"><span class="rvi" data-step="2"><span class="sl">② 积木的名字</span></span></span></span><span class="seg a"><span class="st">()</span><span class="lw" style="--lv:0"><span class="rvi" data-step="3"><span class="sl">③ 括号（今天空着）</span></span></span></span><span class="seg p"><span class="st">&nbsp;</span></span><span class="seg g"><span class="st">{</span><span class="lw" style="--lv:1"><span class="rvi" data-step="4"><span class="sl">④ 装动作</span></span></span></span><span class="seg p"><span class="st">&nbsp;&nbsp;…&nbsp;&nbsp;</span></span><span class="seg p"><span class="st">}</span></span></div></div><div class="arow"><span class="acap">调用</span><div class="segs" style="font-size:42px;padding-bottom:104px"><span class="seg c"><span class="st">red</span><span class="lw" style="--lv:0"><span class="rvi" data-step="5"><span class="sl">⑤ 名字</span></span></span></span><span class="seg a"><span class="st">()</span><span class="lw" style="--lv:1"><span class="rvi" data-step="5"><span class="sl">⑥ 括号不能省</span></span></span></span><span class="seg n"><span class="st">;</span><span class="lw" style="--lv:0"><span class="rvi" data-step="6"><span class="sl">⑦ 分号</span></span></span></span></div></div></div><div class="cols3 acards"><div class="blk n"><span class="lbl">void</span><h4>「不交回东西」</h4><p>只干活、不交回结果。先照抄。</p></div><div class="blk c"><span class="lbl">名字</span><h4>自己起，大小写要一致</h4><p>做时叫 red，用时不能写 Red。</p></div><div class="blk a"><span class="lbl">分号</span><h4>定义没有，调用有</h4><p>定义以 } 结尾；调用以 ; 结尾。</p></div></div></div>
+<div class="notes"><p>「拆开看。上面是做积木那一行，下面是用积木那一行。」（标签先盖着。）</p><p><b>→ 揭晓①</b>「void，意思是这块积木只干活、不交回东西——先照抄。」<b>→ 揭晓②</b>「red，积木的名字，自己起。」<b>→ 揭晓③</b>「一对圆括号，今天空着，下节课会往里面填东西。」<b>→ 揭晓④</b>「左大括号：积木里装的动作从这里开始。」</p><p><b>→ 揭晓⑤</b>「用积木：写名字，加括号——括号不能省。」<b>→ 揭晓⑥</b>「最后是分号：调用是一个动作，一个动作一个分号。」</p><p>「名字大小写要一致：做的时候叫 red，用的时候写 Red，电脑就不认识了。」</p></div>
+</section>
+
+<section class="slide lay-figure" data-title="概念 · 跳过去再跳回来">
+<div class="phead"><span class="no">第 08 课</span>
+<div class="rail"><span class="done" style="--w:8">兴趣</span><span class="done" style="--w:10">现象</span><span class="on" style="--w:15">概念</span><span class="" style="--w:35">技能</span><span class="" style="--w:20">小发明</span><span class="" style="--w:8">收尾</span></div>
+<span class="tslot">15–30 分</span>
+</div>
+<h2 class="ptitle">调用的时候：<em>跳过去</em>，做完再<em>跳回来</em></h2>
+<div class="pbody">
+  <div class="figgrid grow" style="--figw:1.25fr"><div class="figbox"><svg viewBox="0 0 740 540" xmlns="http://www.w3.org/2000/svg" font-family="Microsoft YaHei" text-rendering="geometricPrecision"><defs><marker id="ar10" viewBox="0 0 10 10" refX="7" refY="5" markerWidth="5" markerHeight="5" orient="auto"><path d="M0 0 L10 5 L0 10 Z" fill="#141414"/></marker></defs><rect x="20" y="80" width="240" height="250" rx="8" fill="#fff" stroke="#141414" stroke-width="5"/><rect x="20" y="80" width="240" height="52" fill="#1D9E75" stroke="#141414" stroke-width="5"/><text x="38" y="116" font-size="25" font-weight="900" fill="#fff" font-family="Consolas,Microsoft YaHei">void loop() {</text><rect x="32" y="149" width="216" height="44" fill="#FDE2E1"/><text x="50" y="180" font-size="28" font-weight="900" fill="#141414" font-family="Consolas,Microsoft YaHei">red();</text><text x="50" y="236" font-size="28" font-weight="900" fill="#141414" font-family="Consolas,Microsoft YaHei">green();</text><text x="50" y="292" font-size="28" font-weight="900" fill="#141414" font-family="Consolas,Microsoft YaHei">yellow();</text><rect x="470" y="80" width="250" height="250" rx="8" fill="#fff" stroke="#141414" stroke-width="5"/><rect x="470" y="80" width="250" height="52" fill="#D85A30" stroke="#141414" stroke-width="5"/><text x="488" y="116" font-size="25" font-weight="900" fill="#fff" font-family="Consolas,Microsoft YaHei">void red() {</text><text x="496" y="180" font-size="26" font-weight="900" fill="#1F4E79">红灯亮</text><text x="496" y="236" font-size="26" font-weight="900" fill="#1F4E79">等 3 秒</text><text x="496" y="292" font-size="26" font-weight="900" fill="#1F4E79">红灯灭</text><path d="M690 156 V300" stroke="#1F4E79" stroke-width="5" marker-end="url(#ar10)"/><path d="M250 168 C340 168 380 106 462 106" fill="none" stroke="#D85A30" stroke-width="5" marker-end="url(#ar10)"/><text x="272" y="62" font-size="24" font-weight="900" fill="#D85A30">① 跳过去</text><text x="595" y="372" text-anchor="middle" font-size="23" font-weight="900" fill="#1F4E79">② 从上到下做完</text><path d="M470 314 C400 314 330 222 268 222" fill="none" stroke="#1D9E75" stroke-width="5" stroke-dasharray="10 7" marker-end="url(#ar10)"/><text x="272" y="372" font-size="24" font-weight="900" fill="#1D9E75">③ 跳回来</text><text x="272" y="400" font-size="19" font-weight="800" fill="#1D9E75">接着做 green();</text><text x="370" y="460" text-anchor="middle" font-size="24" font-weight="900" fill="#141414">green(); yellow(); 也一样：跳过去、做完、跳回来</text><text x="370" y="506" text-anchor="middle" font-size="21" font-weight="800" fill="#555">积木写在 loop 下面也没关系：程序靠名字找到它</text></svg></div><div class="figcards"><div class="blk c"><span class="lbl">①</span><div class="rv " data-step="1"><div class="rv-a"><h4>跳过去</h4><p>走到 red(); 这一行，程序跳进 red 积木。</p></div><div class="rv-q">？ 第 1 步</div></div></div><div class="blk n"><span class="lbl">②</span><div class="rv " data-step="2"><div class="rv-a"><h4>从上到下做完</h4><p>红灯亮、等 3 秒、红灯灭。</p></div><div class="rv-q">？ 第 2 步</div></div></div><div class="blk g"><span class="lbl">③</span><div class="rv " data-step="3"><div class="rv-a"><h4>跳回来</h4><p>回到 loop，接着做下一行 green();</p></div><div class="rv-q">？ 第 3 步</div></div></div></div></div>
+  
+</div>
+<div class="notes"><p>「程序走到 red(); 这一行时，到底发生了什么？分三步。」（右边三张卡先盖着，请同学先猜。）</p><p><b>→ 揭晓①</b>「跳过去：程序跳进 red 那块积木。」<b>→ 揭晓②</b>「从上到下做完：红灯亮、等 3 秒、红灯灭。」<b>→ 揭晓③</b>「跳回来：回到 loop，接着做下一行 green();」</p><p>「green 和 yellow 也一样：跳过去、做完、跳回来。三块都做完，loop 这一圈结束，下一圈又从 red 开始。」</p><p>「就像你上课时被叫去办公室拿作业本：去、拿、回来，接着上课。」</p></div>
+</section>
+
+<section class="slide lay-table" data-title="概念 · 定义和调用对对碰">
+<div class="phead"><span class="no">第 08 课</span>
+<div class="rail"><span class="done" style="--w:8">兴趣</span><span class="done" style="--w:10">现象</span><span class="on" style="--w:15">概念</span><span class="" style="--w:35">技能</span><span class="" style="--w:20">小发明</span><span class="" style="--w:8">收尾</span></div>
+<span class="tslot">15–30 分</span>
+</div>
+<h2 class="ptitle">定义和调用：<em>别搞混</em></h2>
+<div class="pbody"><div class="tbl grow" style="grid-template-columns:0.9fr 1.35fr 1.35fr"><div class="th"></div><div class="th">定义（做积木）</div><div class="th">调用（用积木）</div><div class="td k"><span>写法</span></div><div class="td"><span><code class="ic">void red() { … }</code></span></div><div class="td last"><div class="rv " data-step="1"><div class="rv-a"><code class="ic">red();</code></div><div class="rv-q">？</div></div></div><div class="td k"><span>写在哪</span></div><div class="td"><span>loop <b>外面</b>（⑤ 积木区）</span></div><div class="td last"><div class="rv " data-step="2"><div class="rv-a">loop <b>里面</b></div><div class="rv-q">？</div></div></div><div class="td k"><span>结尾</span></div><div class="td"><span>大括号 }，<b>没有分号</b></span></div><div class="td last"><div class="rv " data-step="3"><div class="rv-a"><b>有分号</b></div><div class="rv-q">？</div></div></div><div class="td k"><span>做了几次</span></div><div class="td"><span>一次都不做，只是<b>写好菜谱</b></span></div><div class="td last"><div class="rv " data-step="4"><div class="rv-a">写一次，<b>做一遍</b></div><div class="rv-q">？</div></div></div></div></div>
+<div class="notes"><p>「定义和调用，最容易搞混。对比一下。」（右边一列先盖着，逐行让同学说，再 <b>→ 揭晓</b>。）</p><p>第 1 行：「定义是 void red() 加大括号；调用呢？——red 加括号加分号。」第 2 行：「定义写在 loop 外面；调用写在 loop 里面。」</p><p>第 3 行：「定义以大括号结尾，没有分号；调用以分号结尾。」</p><p>第 4 行最重要：「定义的时候，灯亮了吗？——没有！定义只是写好菜谱，一次都不做。只有调用，才真的做一遍。等会儿第④步我们就来验证。」</p></div>
+</section>
+
+<section class="slide lay-flow" data-title="技能 · PRIMM 五步路线">
+<div class="phead"><span class="no">第 08 课</span>
+<div class="rail"><span class="done" style="--w:8">兴趣</span><span class="done" style="--w:10">现象</span><span class="done" style="--w:15">概念</span><span class="on" style="--w:35">技能</span><span class="" style="--w:20">小发明</span><span class="" style="--w:8">收尾</span></div>
+<span class="tslot">30–32 分</span>
+</div>
+<h2 class="ptitle">技能五步：最后<em>自己做两块积木</em></h2>
+<div class="pbody"><div class="flow grow"><div class="fl"><span class="fn">①</span><div class="ico"><svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" text-rendering="geometricPrecision"><rect x="6" y="52" width="88" height="40" rx="5" fill="#F4F1EA" stroke="#141414" stroke-width="5"/><path d="M18 66 H82 M18 80 H82" stroke="#55524B" stroke-width="5" stroke-dasharray="5 7"/><path d="M40 40 V64 M54 40 V64" stroke="#8D8D8D" stroke-width="4"/><circle cx="47" cy="28" r="15" fill="#E53935" stroke="#141414" stroke-width="4"/><path d="M76 74 C76 40 92 30 96 12" fill="none" stroke="#141414" stroke-width="9" stroke-linecap="round"/><path d="M76 74 C76 40 92 30 96 12" fill="none" stroke="#F2B705" stroke-width="5" stroke-linecap="round"/></svg></div><div class="fk">接线</div><div class="fd">只留 A 模块<br>10 9 8</div></div><div class="farr">→</div><div class="fl"><span class="fn">②</span><div class="ico"><svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" text-rendering="geometricPrecision"><path d="M20 58 a22 22 0 0 1 10 -36 a24 24 0 0 1 42 4 a18 18 0 0 1 8 32 Z" fill="#fff" stroke="#141414" stroke-width="5" stroke-linejoin="round"/><circle cx="26" cy="74" r="6" fill="#fff" stroke="#141414" stroke-width="4"/><circle cx="16" cy="88" r="4" fill="#141414"/><text x="51" y="54" text-anchor="middle" font-size="34" font-weight="900" fill="#D85A30" font-family="Arial Black,Arial">?</text></svg></div><div class="fk">预测</div><div class="fd">上传 func<br>和第 3 课一样吗？</div></div><div class="farr">→</div><div class="fl"><span class="fn">③</span><div class="ico"><svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" text-rendering="geometricPrecision"><path d="M8 50 Q50 10 92 50 Q50 90 8 50 Z" fill="#fff" stroke="#141414" stroke-width="5" stroke-linejoin="round"/><circle cx="50" cy="50" r="17" fill="#2F6FB0" stroke="#141414" stroke-width="4"/><circle cx="50" cy="50" r="7" fill="#141414"/></svg></div><div class="fk">读</div><div class="fd">red(); 跳到<br>哪一行？</div></div><div class="farr">→</div><div class="fl"><span class="fn">④</span><div class="ico"><svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" text-rendering="geometricPrecision"><rect x="8" y="26" width="84" height="48" rx="4" fill="#fff" stroke="#141414" stroke-width="5"/><text x="50" y="60" text-anchor="middle" font-size="25" font-weight="900" fill="#005C5F" font-family="Consolas">1000</text><path d="M14 48 H86" stroke="#D85A30" stroke-width="5"/><rect x="50" y="4" width="44" height="28" fill="#F5A623" stroke="#141414" stroke-width="4"/><text x="72" y="25" text-anchor="middle" font-size="19" font-weight="900" fill="#141414" font-family="Consolas">100</text></svg></div><div class="fk">改</div><div class="fd">green 用两次<br>删掉 yellow();</div></div><div class="farr">→</div><div class="fl"><span class="fn">⑤</span><div class="ico"><svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" text-rendering="geometricPrecision"><rect x="16" y="10" width="58" height="76" rx="4" fill="#fff" stroke="#141414" stroke-width="5"/><path d="M27 30 H62 M27 44 H58 M27 58 H50" stroke="#1F4E79" stroke-width="5" stroke-linecap="round"/><g transform="rotate(40 70 70)"><rect x="62" y="34" width="16" height="50" fill="#F5A623" stroke="#141414" stroke-width="4"/><path d="M62 84 L70 98 L78 84 Z" fill="#F2C29B" stroke="#141414" stroke-width="4" stroke-linejoin="round"/></g></svg></div><div class="fk">写</div><div class="fd">空模板：loop 3 行<br>+ 两块积木</div></div></div><div class="tail"><div class="strip "><b>操作手</b>接线、敲键盘，<b>检查员</b>对照图检查、写预测——每做完一步，两人换位。</div></div></div>
+<div class="notes"><p>「接下来 35 分钟走五步。前四步用老师的 func，最后一步打开空模板 func_todo：loop 里写 3 行调用，再照着 red 的样子，<b>自己做 green 和 yellow 两块积木</b>。」</p><p>「第④步『改』有三个实验：green 用两次；删掉 yellow 的调用；还有故意写错两次。都先猜再上传。」</p><p>「分工照旧，每做完一步换位。」</p><p>（发任务卡。55 分钟前后开始逐组验收。）</p></div>
+</section>
+
+<section class="slide lay-figure" data-title="技能 · ①接线 回到第 3 课">
+<div class="phead"><span class="no">第 08 课</span>
+<div class="rail"><span class="done" style="--w:8">兴趣</span><span class="done" style="--w:10">现象</span><span class="done" style="--w:15">概念</span><span class="on" style="--w:35">技能</span><span class="" style="--w:20">小发明</span><span class="" style="--w:8">收尾</span></div>
+<span class="tslot">32–34 分</span>
+</div>
+<h2 class="ptitle">① 接线：只留 <em>A 模块</em></h2>
+<div class="pbody">
+  <div class="figgrid grow" style="--figw:1.3fr"><div class="figbox"><svg viewBox="0 0 760 560" xmlns="http://www.w3.org/2000/svg" font-family="Microsoft YaHei" text-rendering="geometricPrecision"><rect x="30" y="30" width="700" height="246" rx="14" fill="#2D5D8F" stroke="#141414" stroke-width="5"/><text x="56" y="70" font-size="22" font-weight="900" fill="#fff">传感器扩展板（插在 UNO 上面）</text><rect x="100" y="148" width="524" height="24" fill="#1A1A1A"/><text x="74" y="168" text-anchor="middle" font-size="22" font-weight="900" fill="#CFD8DC">G</text><rect x="100" y="176" width="524" height="24" fill="#1A1A1A"/><text x="74" y="196" text-anchor="middle" font-size="22" font-weight="900" fill="#FF8A80">V</text><rect x="100" y="204" width="524" height="24" fill="#1A1A1A"/><text x="74" y="224" text-anchor="middle" font-size="22" font-weight="900" fill="#FFE082">S</text><text x="120" y="128" text-anchor="middle" font-size="18" font-weight="900" fill="#A9C4E0">13</text><rect x="114" y="154" width="12" height="12" fill="#D4AF37"/><rect x="114" y="182" width="12" height="12" fill="#D4AF37"/><rect x="114" y="210" width="12" height="12" fill="#D4AF37"/><text x="164" y="128" text-anchor="middle" font-size="18" font-weight="900" fill="#A9C4E0">12</text><rect x="158" y="154" width="12" height="12" fill="#D4AF37"/><rect x="158" y="182" width="12" height="12" fill="#D4AF37"/><rect x="158" y="210" width="12" height="12" fill="#D4AF37"/><text x="208" y="128" text-anchor="middle" font-size="18" font-weight="900" fill="#A9C4E0">11</text><rect x="202" y="154" width="12" height="12" fill="#D4AF37"/><rect x="202" y="182" width="12" height="12" fill="#D4AF37"/><rect x="202" y="210" width="12" height="12" fill="#D4AF37"/><text x="252" y="128" text-anchor="middle" font-size="22" font-weight="900" fill="#fff">10</text><rect x="246" y="154" width="12" height="12" fill="#D4AF37"/><rect x="246" y="182" width="12" height="12" fill="#D4AF37"/><rect x="246" y="210" width="12" height="12" fill="#D4AF37"/><text x="296" y="128" text-anchor="middle" font-size="22" font-weight="900" fill="#fff">9</text><rect x="290" y="154" width="12" height="12" fill="#D4AF37"/><rect x="290" y="182" width="12" height="12" fill="#D4AF37"/><rect x="290" y="210" width="12" height="12" fill="#D4AF37"/><text x="340" y="128" text-anchor="middle" font-size="22" font-weight="900" fill="#fff">8</text><rect x="334" y="154" width="12" height="12" fill="#D4AF37"/><rect x="334" y="182" width="12" height="12" fill="#D4AF37"/><rect x="334" y="210" width="12" height="12" fill="#D4AF37"/><text x="384" y="128" text-anchor="middle" font-size="18" font-weight="900" fill="#A9C4E0">7</text><rect x="378" y="154" width="12" height="12" fill="#D4AF37"/><rect x="378" y="182" width="12" height="12" fill="#D4AF37"/><rect x="378" y="210" width="12" height="12" fill="#D4AF37"/><text x="428" y="128" text-anchor="middle" font-size="18" font-weight="900" fill="#A9C4E0">6</text><rect x="422" y="154" width="12" height="12" fill="#D4AF37"/><rect x="422" y="182" width="12" height="12" fill="#D4AF37"/><rect x="422" y="210" width="12" height="12" fill="#D4AF37"/><text x="472" y="128" text-anchor="middle" font-size="18" font-weight="900" fill="#A9C4E0">5</text><rect x="466" y="154" width="12" height="12" fill="#D4AF37"/><rect x="466" y="182" width="12" height="12" fill="#D4AF37"/><rect x="466" y="210" width="12" height="12" fill="#D4AF37"/><text x="516" y="128" text-anchor="middle" font-size="18" font-weight="900" fill="#A9C4E0">4</text><rect x="510" y="154" width="12" height="12" fill="#D4AF37"/><rect x="510" y="182" width="12" height="12" fill="#D4AF37"/><rect x="510" y="210" width="12" height="12" fill="#D4AF37"/><text x="560" y="128" text-anchor="middle" font-size="18" font-weight="900" fill="#A9C4E0">3</text><rect x="554" y="154" width="12" height="12" fill="#D4AF37"/><rect x="554" y="182" width="12" height="12" fill="#D4AF37"/><rect x="554" y="210" width="12" height="12" fill="#D4AF37"/><text x="604" y="128" text-anchor="middle" font-size="18" font-weight="900" fill="#A9C4E0">2</text><rect x="598" y="154" width="12" height="12" fill="#D4AF37"/><rect x="598" y="182" width="12" height="12" fill="#D4AF37"/><rect x="598" y="210" width="12" height="12" fill="#D4AF37"/><text x="680" y="166" text-anchor="middle" font-size="16" font-weight="800" fill="#CFD8DC">地</text><text x="680" y="194" text-anchor="middle" font-size="16" font-weight="800" fill="#FF8A80">5V</text><text x="680" y="222" text-anchor="middle" font-size="16" font-weight="800" fill="#FFE082">信号</text><path d="M208 378 L208 172" fill="none" stroke="#141414" stroke-width="9" stroke-linejoin="round" stroke-linecap="round"/><path d="M208 378 L208 172" fill="none" stroke="#333333" stroke-width="5.5" stroke-linejoin="round" stroke-linecap="round"/><rect x="199" y="147" width="18" height="26" rx="2" fill="#1C1C1C" stroke="#141414" stroke-width="2.5"/><rect x="199" y="371" width="18" height="26" rx="2" fill="#1C1C1C" stroke="#141414" stroke-width="2.5"/><path d="M252 378 L252 228" fill="none" stroke="#141414" stroke-width="9" stroke-linejoin="round" stroke-linecap="round"/><path d="M252 378 L252 228" fill="none" stroke="#D32F2F" stroke-width="5.5" stroke-linejoin="round" stroke-linecap="round"/><rect x="243" y="203" width="18" height="26" rx="2" fill="#1C1C1C" stroke="#141414" stroke-width="2.5"/><rect x="243" y="371" width="18" height="26" rx="2" fill="#1C1C1C" stroke="#141414" stroke-width="2.5"/><path d="M296 378 L296 228" fill="none" stroke="#141414" stroke-width="9" stroke-linejoin="round" stroke-linecap="round"/><path d="M296 378 L296 228" fill="none" stroke="#F2B705" stroke-width="5.5" stroke-linejoin="round" stroke-linecap="round"/><rect x="287" y="203" width="18" height="26" rx="2" fill="#1C1C1C" stroke="#141414" stroke-width="2.5"/><rect x="287" y="371" width="18" height="26" rx="2" fill="#1C1C1C" stroke="#141414" stroke-width="2.5"/><path d="M340 378 L340 228" fill="none" stroke="#141414" stroke-width="9" stroke-linejoin="round" stroke-linecap="round"/><path d="M340 378 L340 228" fill="none" stroke="#2E9E5B" stroke-width="5.5" stroke-linejoin="round" stroke-linecap="round"/><rect x="331" y="203" width="18" height="26" rx="2" fill="#1C1C1C" stroke="#141414" stroke-width="2.5"/><rect x="331" y="371" width="18" height="26" rx="2" fill="#1C1C1C" stroke="#141414" stroke-width="2.5"/><rect x="188" y="400" width="172" height="128" rx="8" fill="#232323" stroke="#141414" stroke-width="4"/><rect x="204" y="386" width="8" height="16" fill="#D4AF37"/><text x="208" y="426" text-anchor="middle" font-size="14" font-weight="900" fill="#fff">GND</text><rect x="248" y="386" width="8" height="16" fill="#D4AF37"/><text x="252" y="426" text-anchor="middle" font-size="19" font-weight="900" fill="#fff">R</text><rect x="292" y="386" width="8" height="16" fill="#D4AF37"/><text x="296" y="426" text-anchor="middle" font-size="19" font-weight="900" fill="#fff">Y</text><rect x="336" y="386" width="8" height="16" fill="#D4AF37"/><text x="340" y="426" text-anchor="middle" font-size="19" font-weight="900" fill="#fff">G</text><circle cx="252" cy="474" r="17" fill="#F8C9C7" stroke="#141414" stroke-width="3"/><g class="tl-r"><circle cx="252" cy="474" r="30" fill="#E53935" opacity=".35"/><circle cx="252" cy="474" r="17" fill="#E53935" stroke="#141414" stroke-width="3"/></g><path d="M244 474 a5 5 0 0 1 5 -5" fill="none" stroke="#fff" stroke-width="3" stroke-linecap="round" opacity=".8"/><circle cx="296" cy="474" r="17" fill="#FBEBB5" stroke="#141414" stroke-width="3"/><g class="tl-y"><circle cx="296" cy="474" r="30" fill="#FBC02D" opacity=".35"/><circle cx="296" cy="474" r="17" fill="#FBC02D" stroke="#141414" stroke-width="3"/></g><path d="M288 474 a5 5 0 0 1 5 -5" fill="none" stroke="#fff" stroke-width="3" stroke-linecap="round" opacity=".8"/><circle cx="340" cy="474" r="17" fill="#C7E8D3" stroke="#141414" stroke-width="3"/><g class="tl-g"><circle cx="340" cy="474" r="30" fill="#2E9E5B" opacity=".35"/><circle cx="340" cy="474" r="17" fill="#2E9E5B" stroke="#141414" stroke-width="3"/></g><path d="M332 474 a5 5 0 0 1 5 -5" fill="none" stroke="#fff" stroke-width="3" stroke-linecap="round" opacity=".8"/><text x="274" y="518" text-anchor="middle" font-size="16" font-weight="800" fill="#BDBDBD">交通灯模块</text></svg></div><div class="figcards"><div class="rowlist" style="justify-content:center;gap:12px"><div class="rowitem" style="padding:9px 16px;gap:14px"><div class="num n" style="width:44px;height:44px;font-size:22px">1</div><div class="tx" style="font-size:22px"><b>拔掉 USB</b>；B 模块拆下来交回</div></div><div class="rowitem" style="padding:9px 16px;gap:14px"><div class="num n" style="width:44px;height:44px;font-size:22px">2</div><div class="tx" style="font-size:22px">A 模块：R 10 · Y 9 · G 8 的 <b>S</b></div></div><div class="rowitem" style="padding:9px 16px;gap:14px"><div class="num n" style="width:44px;height:44px;font-size:22px">3</div><div class="tx" style="font-size:22px">GND → 任意一个 <b>G</b></div></div><div class="rowitem" style="padding:9px 16px;gap:14px"><div class="num n" style="width:44px;height:44px;font-size:22px">4</div><div class="tx" style="font-size:22px">★★★ 再加按键模块：3P 线插 <b>2 号</b></div></div><div class="rowitem" style="padding:9px 16px;gap:14px"><div class="num n" style="width:44px;height:44px;font-size:22px">查</div><div class="tx" style="font-size:22px">检查员查完说「可以」，再插 USB</div></div></div></div></div>
+  
+</div>
+<div class="notes"><p>「接线回到第 3 课：只留 A 模块，R 10、Y 9、G 8，GND 随便一个 G。上节课的 B 模块拆下来交回。」</p><p>「三颗星的组等会儿还要接一个按键模块，插 2 号那一列——和第 5 课一样，G 对 G、V 对 V、S 对 S。现在先不用接。」</p><p>「检查员查完说『可以』，操作手再插 USB。」</p><p>（大部分组上节课没拆 A 模块，这一步很快。）</p></div>
+</section>
+
+<section class="slide lay-cards" data-title="技能 · ②预测 ③运行">
+<div class="phead"><span class="no">第 08 课</span>
+<div class="rail"><span class="done" style="--w:8">兴趣</span><span class="done" style="--w:10">现象</span><span class="done" style="--w:15">概念</span><span class="on" style="--w:35">技能</span><span class="" style="--w:20">小发明</span><span class="" style="--w:8">收尾</span></div>
+<span class="tslot">34–38 分</span>
+</div>
+<h2 class="ptitle">② 预测 → 运行：<em>先猜，再看</em></h2>
+<div class="pbody"><div class="cols2 grow lay-cards2-in"><div class="blk a"><span class="lbl">② 预测 · 检查员写在任务卡上</span><h4>上传 func</h4><p>猜：灯会怎么亮？和第 3 课一样吗？<br>哪个灯先亮？</p><p>写完了，操作手才能点上传。</p></div><div class="blk g"><span class="lbl">运行 · 操作手上传</span><h4>对照你的猜想</h4><p>数一数：红、绿、黄各亮几秒？</p><div class="rv rv-ans" data-step="1"><div class="rv-a"><p class="ans">红 3 秒 → 绿 3 秒 → 黄 1 秒，和第 3 课<b>一模一样</b>。loop 里先写的 red()，所以红灯先亮。</p></div><div class="rv-q">？ 看完再揭晓</div></div></div></div><div class="tail"><div class="strip ">猜错不扣分，<b>不猜就上传</b>才扣分。</div></div></div>
+<div class="notes"><p>「检查员，任务卡第②栏：上传 func，灯会怎么亮？和第 3 课一样吗？哪个灯先亮？写好了再上传。」</p><p>「上传好了，数一数：红、绿、黄各亮几秒？」</p><p><b>→ 揭晓</b>「红 3 秒，绿 3 秒，黄 1 秒，和第 3 课一模一样。loop 里第一个写的是 red()，所以红灯先亮。」</p><p>「注意：积木在程序里的<b>位置</b>不决定顺序——red、green、yellow 三块积木在下面怎么排都行，顺序看的是 loop 里<b>调用</b>的顺序。」</p></div>
+</section>
+
+<section class="slide lay-code" data-title="技能 · ③读 跳到哪一行">
+<div class="phead"><span class="no">第 08 课</span>
+<div class="rail"><span class="done" style="--w:8">兴趣</span><span class="done" style="--w:10">现象</span><span class="done" style="--w:15">概念</span><span class="on" style="--w:35">技能</span><span class="" style="--w:20">小发明</span><span class="" style="--w:8">收尾</span></div>
+<span class="tslot">38–43 分</span>
+</div>
+<h2 class="ptitle">③ 读：red(); 一执行，程序<em>跳到哪</em>？</h2>
+<div class="pbody"><div class="lcol grow" style="grid-template-columns:1.4999999999999998fr 1fr"><div class="code"><div class="lab "><span>func.ino · 第 12–29 行</span><span class="rt">共 35 行</span></div><pre class="nums" style="font-size:21px;line-height:1.4;counter-reset:L 11"><span class="L"><span class="t">void</span> <span class="f">loop</span>() {     <span class="c">// ④ 一直重复：干活</span></span>
+<span class="L"><span class="ln hlc rvl" data-step="1">  <span class="f">red</span>();          <span class="c">// 红灯</span></span></span>
+<span class="L"><span class="ln hlg rvl" data-step="2">  <span class="f">green</span>();        <span class="c">// 绿灯</span></span></span>
+<span class="L">  <span class="f">yellow</span>();       <span class="c">// 黄灯</span></span>
+<span class="L">}</span>
+<span class="L"> </span>
+<span class="L"><span class="c">// ===== ⑤ 自己做的积木（函数） =====</span></span>
+<span class="L"><span class="ln hlc rvl" data-step="1"><span class="t">void</span> <span class="f">red</span>() {                  <span class="c">// 红灯亮 3 秒</span></span></span>
+<span class="L">  <span class="f">digitalWrite</span>(RED, <span class="k">HIGH</span>);</span>
+<span class="L">  <span class="f">delay</span>(<span class="k">3000</span>);</span>
+<span class="L">  <span class="f">digitalWrite</span>(RED, <span class="k">LOW</span>);</span>
+<span class="L">}</span>
+<span class="L"> </span>
+<span class="L"><span class="t">void</span> <span class="f">green</span>() {                <span class="c">// 绿灯亮 3 秒</span></span>
+<span class="L">  <span class="f">digitalWrite</span>(GREEN, <span class="k">HIGH</span>);</span>
+<span class="L"><span class="ln hl rvl" data-step="4">  <span class="f">delay</span>(<span class="k">3000</span>);</span></span>
+<span class="L">  <span class="f">digitalWrite</span>(GREEN, <span class="k">LOW</span>);</span>
+<span class="L">}</span></pre></div><div class="rowlist qlist"><div class="rowitem"><div class="num n">1</div><div class="tx">第 13 行 red(); 一执行，程序跳到哪？<div class="rv " data-step="1"><div class="rv-a"><div class="qa">第 19 行：进 red 积木，做第 20–22 行</div></div><div class="rv-q">？ 你来答</div></div></div></div><div class="rowitem"><div class="num n">2</div><div class="tx">red 做完了，回到哪一行？<div class="rv " data-step="2"><div class="rv-a"><div class="qa">回到第 14 行，接着 green();</div></div><div class="rv-q">？ 你来答</div></div></div></div><div class="rowitem"><div class="num n">3</div><div class="tx">第 13 行和第 19 行，哪个是定义、哪个是调用？<div class="rv " data-step="3"><div class="rv-a"><div class="qa">第 19 行是<b>定义</b>；第 13 行是<b>调用</b></div></div><div class="rv-q">？ 你来答</div></div></div></div><div class="rowitem"><div class="num n">4</div><div class="tx">想让绿灯亮 5 秒，改哪一行？<div class="rv " data-step="4"><div class="rv-a"><div class="qa">第 27 行：green 积木里的 delay</div></div><div class="rv-q">？ 你来答</div></div></div></div></div></div></div>
+<div class="notes"><p>（四个答案先盖着。点名回答，答对了 <b>→ 揭晓</b>。）</p><p>「第 13 行 red(); 一执行，程序跳到哪？」<b>→ 揭晓①</b>「第 19 行，进 red 积木，做第 20 到 22 行。」</p><p>「red 做完了，回到哪？」<b>→ 揭晓②</b>「第 14 行，接着 green();」</p><p>「第 13 行和第 19 行，哪个是定义、哪个是调用？」<b>→ 揭晓③</b>「第 19 行，void red 加大括号，是定义；第 13 行，名字加分号，是调用。」</p><p>「想让绿灯亮 5 秒，改哪一行？」<b>→ 揭晓④</b>「第 27 行，green 积木里的 delay。loop 一行都不用动——这就是积木的好处。」</p></div>
+</section>
+
+<section class="slide lay-codes" data-title="技能 · ④改 green 用两次">
+<div class="phead"><span class="no">第 08 课</span>
+<div class="rail"><span class="done" style="--w:8">兴趣</span><span class="done" style="--w:10">现象</span><span class="done" style="--w:15">概念</span><span class="on" style="--w:35">技能</span><span class="" style="--w:20">小发明</span><span class="" style="--w:8">收尾</span></div>
+<span class="tslot">43–46 分</span>
+</div>
+<h2 class="ptitle">④ 改：green(); 写两遍，绿灯亮<em>几秒</em>？</h2>
+<div class="pbody"><div class="codes grow" style="grid-template-columns:1fr"><div class="code"><div class="lab "><span>loop 里多了一行</span></div><pre style="font-size:27px;line-height:1.55"><span class="t">void</span> <span class="f">loop</span>() {
+  <span class="f">red</span>();
+  <span class="f">green</span>();
+<span class="ln hlc">  <span class="f">green</span>();        <span class="c">// 多用了一次</span></span>
+  <span class="f">yellow</span>();
+}</pre></div></div><div class="opts" style="margin-top:22px"><div class="opt"><span class="ol">A</span>3 秒</div><div class="opt rvo" data-step="1"><span class="ol">B</span>6 秒</div><div class="opt"><span class="ol">C</span>3 秒、闪一下、再 3 秒</div><div class="opt"><span class="ol">D</span>报错</div></div><div class="tail"><div class="strip ">积木做一次，<b>想用几次用几次</b>。中间灭了一下，只有几百万分之一秒，看不出来。</div></div></div>
+<div class="notes"><p>「第④步，改。在 loop 里把 green(); 多写一遍。预测：绿灯亮几秒？A 3 秒，B 6 秒，C 3 秒、闪一下、再 3 秒，D 报错。」（各组先写预测，再上传。）</p><p><b>→ 揭晓</b>「6 秒。」「有同学选 C：第一次 green 最后把灯灭了，第二次 green 马上又点亮——中间确实灭了，可只有几百万分之一秒，眼睛根本看不出来。」</p><p>「这说明：积木做一次，想用几次用几次。」（各组改回去。）</p></div>
+</section>
+
+<section class="slide lay-codes" data-title="技能 · ④改 删掉 yellow();">
+<div class="phead"><span class="no">第 08 课</span>
+<div class="rail"><span class="done" style="--w:8">兴趣</span><span class="done" style="--w:10">现象</span><span class="done" style="--w:15">概念</span><span class="on" style="--w:35">技能</span><span class="" style="--w:20">小发明</span><span class="" style="--w:8">收尾</span></div>
+<span class="tslot">46–49 分</span>
+</div>
+<h2 class="ptitle">④ 改：删掉 yellow(); 积木还在下面，<em>黄灯</em>亮吗？</h2>
+<div class="pbody"><div class="codes grow" style="grid-template-columns:1fr"><div class="code"><div class="lab "><span>loop 里少了一行</span></div><pre style="font-size:27px;line-height:1.55"><span class="t">void</span> <span class="f">loop</span>() {
+  <span class="f">red</span>();
+  <span class="f">green</span>();
+<span class="ln hlc">  <span class="c">// yellow();  这一行删掉了（积木还在下面）</span></span>
+}</pre></div></div><div class="opts" style="margin-top:22px"><div class="opt"><span class="ol">A</span>照样亮</div><div class="opt rvo" data-step="1"><span class="ol">B</span>不亮了</div><div class="opt"><span class="ol">C</span>报错</div><div class="opt"><span class="ol">D</span>红灯也不亮了</div></div><div class="tail"><div class="strip ">积木做好了没人用，就像菜谱写好了没人做：<b>定义不等于做</b>，调用了才做。</div></div></div>
+<div class="notes"><p>「再改：把 loop 里的 yellow(); 删掉——我这里用两个斜杠把它变成注释，效果一样。下面的 yellow 积木还在。预测：黄灯还亮吗？」（各组先写预测，再上传。）</p><p><b>→ 揭晓</b>「不亮了。只剩红、绿两个灯在轮流。」</p><p>「积木明明还在下面，为什么不亮？因为<b>没人用它</b>。菜谱写好了放在那儿，没人照着做，就不会有菜。定义不等于做，调用了才做。」</p><p>（各组改回去。也不会报错——电脑不管你做了积木用不用。）</p></div>
+</section>
+
+<section class="slide lay-codes" data-title="技能 · ④改 故意写错两次">
+<div class="phead"><span class="no">第 08 课</span>
+<div class="rail"><span class="done" style="--w:8">兴趣</span><span class="done" style="--w:10">现象</span><span class="done" style="--w:15">概念</span><span class="on" style="--w:35">技能</span><span class="" style="--w:20">小发明</span><span class="" style="--w:8">收尾</span></div>
+<span class="tslot">49–52 分</span>
+</div>
+<h2 class="ptitle">故意写错：漏了<em>括号</em>，丢了<em>大括号</em></h2>
+<div class="pbody"><div class="codes grow" style="grid-template-columns:0.95fr 1.3fr"><div class="code"><div class="lab "><span>两种写错的样子</span></div><pre style="font-size:23px;line-height:1.4"><span class="c">// 写法一：用积木时漏了括号</span>
+<span class="t">void</span> <span class="f">loop</span>() {
+  red;
+  <span class="f">green</span>();
+  <span class="f">yellow</span>();
+}
+
+<span class="c">// 写法二：loop 的 } 忘了写</span>
+<span class="t">void</span> <span class="f">loop</span>() {
+  <span class="f">red</span>();
+  <span class="f">green</span>();
+  <span class="f">yellow</span>();
+
+<span class="t">void</span> <span class="f">red</span>() {</pre></div><div class="code outbox "><div class="lab c"><span>点验证以后</span><span class="rt">编译器警告：全部</span></div><div class="rv rv-out" data-step="1"><div class="rv-a"><pre class="out" style="font-size:26px;line-height:1.55"><span class="ol ">写法一（能上传，红灯不亮）：</span>
+<span class="ol warn">warning: statement is a reference,</span>
+<span class="ol ">         not call, to function 'red'</span>
+<span class="ol "> </span>
+<span class="ol ">写法二（红字，传不进去）：</span>
+<span class="ol err">error: 'red' was not declared in this scope</span>
+<span class="ol err">error: a function-definition is not</span>
+<span class="ol ">       allowed here before '{' token</span></pre></div><div class="rv-q">？ 先改，再点验证</div></div></div></div><div class="tail"><div class="strip ">写法二的第一句红字说「red 没声明」——真正的毛病在<b>上面</b>：loop 少了一个 }。</div></div></div>
+<div class="notes"><p>「两种常见的写错。每组先试写法一：把 loop 里 red(); 的括号删掉，变成 red; 点验证。」（等大家做。）</p><p><b>→ 揭晓</b>「写法一：没有红字，只有一句 warning——statement is a reference, not call——『这只是提到了 red，不是调用 red』。能上传，可红灯再也不亮了。括号就是『去做』的意思，不能省。」</p><p>「写法二老师演示：loop 最后的右大括号忘了写。第一句红字说 red was not declared——red 没声明？明明写了啊！」</p><p>「真正的毛病在<b>上面</b>：loop 没收尾，下面的积木全被当成写在 loop 里面了，所以后面还有一句 a function-definition is not allowed here。<b>第一句红字看不懂，就去查大括号</b>：按 Ctrl+T 看缩进。」</p></div>
+</section>
+
+<section class="slide lay-codes" data-title="技能 · ⑤写 自己做两块积木">
+<div class="phead"><span class="no">第 08 课</span>
+<div class="rail"><span class="done" style="--w:8">兴趣</span><span class="done" style="--w:10">现象</span><span class="done" style="--w:15">概念</span><span class="on" style="--w:35">技能</span><span class="" style="--w:20">小发明</span><span class="" style="--w:8">收尾</span></div>
+<span class="tslot">52–60 分</span>
+</div>
+<h2 class="ptitle">⑤ 写：关掉 func，loop 3 行 + <em>两块积木</em></h2>
+<div class="pbody"><div class="codes grow" style="grid-template-columns:1fr 1.05fr"><div class="code"><div class="lab "><span>func_todo.ino（上半）</span></div><pre class="nums" style="font-size:20px;line-height:1.4;counter-reset:L 0"><span class="L"><span class="c">// ===== ① 引脚 =====</span></span>
+<span class="L"><span class="t">const</span> <span class="t">int</span> RED = <span class="k">10</span>;</span>
+<span class="L"><span class="t">const</span> <span class="t">int</span> YELLOW = <span class="k">9</span>;</span>
+<span class="L"><span class="t">const</span> <span class="t">int</span> GREEN = <span class="k">8</span>;</span>
+<span class="L"> </span>
+<span class="L"><span class="t">void</span> <span class="f">setup</span>() {    <span class="c">// ③ 只做一次：准备</span></span>
+<span class="L">  <span class="f">pinMode</span>(RED, <span class="k">OUTPUT</span>);</span>
+<span class="L">  <span class="f">pinMode</span>(YELLOW, <span class="k">OUTPUT</span>);</span>
+<span class="L">  <span class="f">pinMode</span>(GREEN, <span class="k">OUTPUT</span>);</span>
+<span class="L">}</span>
+<span class="L"> </span>
+<span class="L"><span class="t">void</span> <span class="f">loop</span>() {     <span class="c">// ④ 一直重复：干活</span></span>
+<span class="L">  ______________     <span class="c">// ① 用 red 积木</span></span>
+<span class="L">  ______________     <span class="c">// ② 用 green 积木</span></span>
+<span class="L">  ______________     <span class="c">// ③ 用 yellow 积木</span></span>
+<span class="L">}</span></pre></div><div class="code"><div class="lab "><span>func_todo.ino（下半）</span><span class="rt">照 red 的样子</span></div><pre class="nums" style="font-size:18px;line-height:1.4;counter-reset:L 17"><span class="L"><span class="c">// ===== ⑤ 自己做的积木（函数） =====</span></span>
+<span class="L"><span class="t">void</span> <span class="f">red</span>() {                  <span class="c">// 照这个样子做</span></span>
+<span class="L">  <span class="f">digitalWrite</span>(RED, <span class="k">HIGH</span>);</span>
+<span class="L">  <span class="f">delay</span>(<span class="k">3000</span>);</span>
+<span class="L">  <span class="f">digitalWrite</span>(RED, <span class="k">LOW</span>);</span>
+<span class="L">}</span>
+<span class="L"> </span>
+<span class="L">______________________   <span class="c">// ④ 做 green 积木 {</span></span>
+<span class="L">______________________   <span class="c">//   绿灯亮</span></span>
+<span class="L">______________________   <span class="c">//   等 3 秒</span></span>
+<span class="L">______________________   <span class="c">//   绿灯灭</span></span>
+<span class="L">______________________   <span class="c">// }</span></span>
+<span class="L"> </span>
+<span class="L">______________________   <span class="c">// ⑤ 做 yellow 积木 {</span></span>
+<span class="L">______________________   <span class="c">//   黄灯亮</span></span>
+<span class="L">______________________   <span class="c">//   等 1 秒</span></span>
+<span class="L">______________________   <span class="c">//   黄灯灭</span></span>
+<span class="L">______________________   <span class="c">// }</span></span></pre></div></div><div class="tail"><div class="strip ">做积木：<code class="ic">void green() {</code> 开头、<code class="ic">}</code> 收尾、<b>没有分号</b>；用积木：<code class="ic">green();</code> <b>有分号</b>。</div></div></div>
+<div class="notes"><p>「最后一步：关掉老师的 func，打开空模板 func_todo。」</p><p>「上半：loop 里 3 处横线，用积木——名字、括号、分号。」</p><p>「下半：red 积木已经做好了，是样子。照着它，做 green 和 yellow 两块：void 名字、括号、左大括号；里面三行亮、等、灭；右大括号收尾。里面的三行可以从第 3 课的程序里复制。」</p><p>「写完按 Ctrl+T，再点验证。」</p><p>（巡视重点：定义那一行末尾多了分号——expected unqualified-id before '{' token；名字大小写不一致；积木写进了 loop 的大括号里。）</p></div>
+</section>
+
+<section class="slide lay-rowlist" data-title="技能 · ★基础档验收">
+<div class="phead"><span class="no">第 08 课</span>
+<div class="rail"><span class="done" style="--w:8">兴趣</span><span class="done" style="--w:10">现象</span><span class="done" style="--w:15">概念</span><span class="on" style="--w:35">技能</span><span class="" style="--w:20">小发明</span><span class="" style="--w:8">收尾</span></div>
+<span class="tslot">55–65 分</span>
+</div>
+<h2 class="ptitle">★ 基础档验收：<em>老师逐组来查</em></h2>
+<div class="pbody"><div class="rowlist grow"><div class="rowitem"><span class="box"></span><div class="tx">交通灯照样 <b>红 3 → 绿 3 → 黄 1</b>；loop 里<b>只有三行</b></div></div><div class="rowitem"><span class="box"></span><div class="tx">green 和 yellow 两块积木是<b>自己做的</b>：func 已关掉</div></div><div class="rowitem"><span class="box"></span><div class="tx">两人都能说出：<b>定义和调用</b>差在哪</div></div></div><div class="tail"><div class="strip ">三项都过 → 老师签字 → 进入小发明。没过的组别急，接下来 20 分钟老师专门陪你。</div></div></div>
+<div class="notes"><p>「做完的组举手，我来验收。三项：灯照样转、loop 里只有三行；两块积木自己做的；第三项<b>两个人都要过</b>——定义和调用差在哪？」</p><p>（标准答案：定义是做积木，void 名字() { }，写在 loop 外面、没有分号、自己不做；调用是用积木，名字();，写在 loop 里面、有分号、写一次做一遍。）</p><p>「验收时我会问：想让黄灯亮 2 秒，改哪里？」（yellow 积木里的 delay。）</p><p>「过了的组，翻到下一页选进阶还是挑战。」</p></div>
+</section>
+
+<section class="slide lay-tiers3" data-title="小发明 · 三档任务自己选">
+<div class="phead"><span class="no">第 08 课</span>
+<div class="rail"><span class="done" style="--w:8">兴趣</span><span class="done" style="--w:10">现象</span><span class="done" style="--w:15">概念</span><span class="done" style="--w:35">技能</span><span class="on" style="--w:20">小发明</span><span class="" style="--w:8">收尾</span></div>
+<span class="tslot">65–85 分</span>
+</div>
+<h2 class="ptitle">三档任务，<em>自己选</em></h2>
+<div class="pbody"><div class="cols3 grow"><div class="blk tier t1"><div class="hd">★ 基础 · 人人必会</div><p class="task">把红、绿、黄写成 <b>red()、green()、yellow()</b> 三个函数，loop 里<b>只剩三行</b></p><p class="who">没过验收的组继续做这一档，老师来陪你</p><div class="tfill">□ 红 → 绿 → 黄照样转　□ 签字</div></div><div class="blk tier t2"><div class="hd">★★ 进阶 · 新组合</div><p class="task">加一个 <b>flashGreen()</b> 函数，里面用 <b>for</b> 闪 3 下</p><p class="who">提示：做一块新积木，loop 里在 green 和 yellow 之间用它</p><div class="tfill">loop 里现在有 ____ 行</div></div><div class="blk tier t3"><div class="hd">★★★ 挑战 · 综合</div><p class="task">加<b>行人按钮</b>：按下后，下一轮直接进<b>红灯</b></p><p class="who">按键模块插 2 号；改写 green()：每 0.1 秒看一眼按钮</p><div class="tfill">□ 绿灯时一按就变黄、变红</div></div></div><div class="tail"><div class="strip ">过了基础档的组自选 ★★ 或 ★★★。★★★ 要接按键模块（2 号）。</div></div></div>
+<div class="notes"><p>「过了基础档的组，现在自己选。」</p><p>「<b>两颗星</b>：做一块新积木 flashGreen，让绿灯闪 3 下——第 3 课两颗星做过这件事，当时复制了 3 遍；今天用上节课的 for，再打包成一块积木。」</p><p>「<b>三颗星</b>：加一个行人按钮。这是给车看的红绿灯：绿灯的时候，行人一按按钮，车的绿灯提前结束，黄灯过后变红灯，行人就能过马路。要改写 green 这块积木。第 20 页有写法。」</p><p>（这 20 分钟老师的主要工作是陪没过基础档的组。）</p></div>
+</section>
+
+<section class="slide lay-code" data-title="小发明 · ★★ flashGreen">
+<div class="phead"><span class="no">第 08 课</span>
+<div class="rail"><span class="done" style="--w:8">兴趣</span><span class="done" style="--w:10">现象</span><span class="done" style="--w:15">概念</span><span class="done" style="--w:35">技能</span><span class="on" style="--w:20">小发明</span><span class="" style="--w:8">收尾</span></div>
+<span class="tslot">65–85 分</span>
+</div>
+<h2 class="ptitle">★★ 新积木 flashGreen()：积木里<em>用 for</em></h2>
+<div class="pbody"><div class="lcol grow" style="grid-template-columns:1.631578947368421fr 1fr"><div class="code"><div class="lab "><span>loop + 新积木</span><span class="rt">16 行</span></div><pre style="font-size:20px;line-height:1.4"><span class="t">void</span> <span class="f">loop</span>() {
+  <span class="f">red</span>();
+  <span class="f">green</span>();
+<span class="ln hlc rvl" data-step="1">  <span class="f">flashGreen</span>();   <span class="c">// 新积木：绿灯闪 3 下</span></span>
+  <span class="f">yellow</span>();
+}
+
+<span class="ln hlc rvl" data-step="1"><span class="t">void</span> <span class="f">flashGreen</span>() {               <span class="c">// 绿灯闪 3 下</span></span>
+  <span class="x">for</span> (<span class="t">int</span> i = <span class="k">1</span>; i &lt;= <span class="k">3</span>; i++) {
+    <span class="f">digitalWrite</span>(GREEN, <span class="k">LOW</span>);
+    <span class="f">delay</span>(<span class="k">300</span>);
+    <span class="f">digitalWrite</span>(GREEN, <span class="k">HIGH</span>);
+    <span class="f">delay</span>(<span class="k">300</span>);
+  }
+  <span class="f">digitalWrite</span>(GREEN, <span class="k">LOW</span>);
+}</pre></div><div class="figcards"><div class="blk n"><span class="lbl">两步</span><h4>先做积木，再用积木</h4><p>下面做 flashGreen；loop 里在 green 和 yellow 之间用它。</p></div><div class="blk a"><span class="lbl">想一想</span><h4>积木里能写 for 吗？</h4><div class="rv rv-ans" data-step="1"><div class="rv-a"><p class="ans">能。积木里<b>什么都能写</b>：for、if、while，甚至用别的积木。</p></div><div class="rv-q">？ 先想一想</div></div></div></div></div><div class="tail"><div class="strip ">闪完别忘了最后那一行：<b>绿灯灭</b>，再交给 yellow。</div></div></div>
+<div class="notes"><p>（★★ 的组做的时候开着这一页。）</p><p>「两步：先在下面做一块新积木 flashGreen；再在 loop 里，green 和 yellow 之间用它。loop 变成 4 行。」</p><p>「积木里能写 for 吗？」<b>→ 揭晓</b>「能。积木里什么都能写：for、if、while，甚至还能用别的积木。」</p><p>「for 里面是闪一下：灭、等、亮、等，重复 3 次。最后一行把绿灯灭掉，再交给黄灯。」</p><p>（常见错：loop 里忘了写 flashGreen();——积木做了没人用，绿灯不闪。）</p></div>
+</section>
+
+<section class="slide lay-code" data-title="小发明 · ★★★ 行人按钮">
+<div class="phead"><span class="no">第 08 课</span>
+<div class="rail"><span class="done" style="--w:8">兴趣</span><span class="done" style="--w:10">现象</span><span class="done" style="--w:15">概念</span><span class="done" style="--w:35">技能</span><span class="on" style="--w:20">小发明</span><span class="" style="--w:8">收尾</span></div>
+<span class="tslot">65–85 分</span>
+</div>
+<h2 class="ptitle">★★★ 行人按钮：绿灯<em>每 0.1 秒</em>看一眼</h2>
+<div class="pbody"><div class="lcol grow" style="grid-template-columns:1.4999999999999998fr 1fr"><div class="code"><div class="lab "><span>改写 green 积木</span><span class="rt">按键插 2 号</span></div><pre style="font-size:21px;line-height:1.55"><span class="t">void</span> <span class="f">green</span>() {                  <span class="c">// 绿灯：最多 3 秒</span>
+  <span class="f">digitalWrite</span>(GREEN, <span class="k">HIGH</span>);
+  <span class="t">int</span> t = <span class="k">0</span>;                      <span class="c">// 已经等了几个 0.1 秒</span>
+<span class="ln hlc rvl" data-step="1">  <span class="x">while</span> (t &lt; <span class="k">30</span> &amp;&amp; <span class="f">digitalRead</span>(BTN) == <span class="k">HIGH</span>) {</span>
+    <span class="f">delay</span>(<span class="k">100</span>);                   <span class="c">// 不到 3 秒、也没人按：再等 0.1 秒</span>
+    t++;
+  }
+  <span class="f">digitalWrite</span>(GREEN, <span class="k">LOW</span>);       <span class="c">// 时间到了，或者有人按了</span>
+}</pre></div><div class="figcards"><div class="blk n"><span class="lbl">先加</span><h4>按键的名字和 pinMode</h4><p><code class="ic">const int BTN = 2;</code><br><code class="ic">pinMode(BTN, INPUT_PULLUP);</code></p></div><div class="blk c"><span class="lbl">为什么不 delay(3000)</span><h4>等 3 秒时板子在发呆</h4><div class="rv rv-ans" data-step="1"><div class="rv-a"><p class="ans">delay(3000) 的 3 秒里板子<b>谁也不理</b>；拆成 30 个 0.1 秒，每次都看一眼按钮。</p></div><div class="rv-q">？ 想一想</div></div></div></div></div><div class="tail"><div class="strip ">while 里两个条件用 <b>&amp;&amp;</b>：不到 3 秒，<b>并且</b>没人按——才接着等。</div></div></div>
+<div class="notes"><p>（★★★ 的组做的时候开着这一页。）</p><p>「先接按键模块，插 2 号；上面加 BTN 的名字，setup 里加 INPUT_PULLUP。」</p><p>「为什么不能直接用 delay(3000)？」<b>→ 揭晓</b>「delay 的 3 秒里，板子在发呆，谁也不理——你按按钮它根本不知道。所以把 3 秒拆成 30 个 0.1 秒，每过 0.1 秒看一眼按钮。」</p><p>「while 里两个条件用 &amp;&amp; 连起来：t 小于 30，并且按钮没按（HIGH）——两个都成立才接着等。到了 3 秒，或者有人按了，就出来，绿灯灭。接下来 yellow、red 照常。」</p><p>（参考答案在教案资源 6。）</p></div>
+</section>
+
+<section class="slide lay-table" data-title="小发明 · 卡住了先查这张">
+<div class="phead"><span class="no">第 08 课</span>
+<div class="rail"><span class="done" style="--w:8">兴趣</span><span class="done" style="--w:10">现象</span><span class="done" style="--w:15">概念</span><span class="done" style="--w:35">技能</span><span class="on" style="--w:20">小发明</span><span class="" style="--w:8">收尾</span></div>
+<span class="tslot">65–85 分</span>
+</div>
+<h2 class="ptitle">卡住了？<em>先查这张</em>，再举手</h2>
+<div class="pbody"><div class="tbl grow" style="grid-template-columns:1.45fr 1.2fr 1.3fr"><div class="th">看到什么</div><div class="th">多半是因为</div><div class="th">怎么办</div><div class="td k"><span>红字 'Red' was not declared in this scope</span></div><div class="td"><span>做积木叫 red，用的时候写成了 Red</span></div><div class="td last"><span>名字大小写一致</span></div><div class="td k"><span>红字 'red' was not declared + function-definition is not allowed here</span></div><div class="td"><span>loop 的 } 忘了写</span></div><div class="td last"><span>Ctrl+T，补上 loop 的 }</span></div><div class="td k"><span>红字 expected unqualified-id before '{' token</span></div><div class="td"><span>void green(); { 定义末尾多了分号</span></div><div class="td last"><span>定义那一行不加分号</span></div><div class="td k"><span>warning: statement is a reference, not call</span></div><div class="td"><span>用积木时漏了括号：red;</span></div><div class="td last"><span>写成 red();</span></div><div class="td k"><span>某个灯不亮，也不报错</span></div><div class="td"><span>积木做了，loop 里没调用</span></div><div class="td last"><span>loop 里加上调用</span></div><div class="td k"><span>★★★ 按了按钮没反应</span></div><div class="td"><span>green 里还是 delay(3000)，或 BTN 没 INPUT_PULLUP</span></div><div class="td last"><span>拆成 30 个 0.1 秒；加 pinMode</span></div></div></div>
+<div class="notes"><p>（小发明环节投影停在这一页。）</p><p>「卡住了先别举手，<b>先查这张表</b>。前三行是红字：名字大小写不一致；loop 的大括号忘了——第一句红字说 red 没声明，其实是大括号；定义那一行多了分号。」</p><p>「第四行只是 warning，但很要命：漏了括号，积木根本没被调用。」</p><p>「第五行不报错：做了积木没用。最后一行是三颗星的：绿灯里还在 delay(3000) 发呆。」</p></div>
+</section>
+
+<section class="slide lay-rowlist" data-title="收尾 · 今天的三个发现">
+<div class="phead"><span class="no">第 08 课</span>
+<div class="rail"><span class="done" style="--w:8">兴趣</span><span class="done" style="--w:10">现象</span><span class="done" style="--w:15">概念</span><span class="done" style="--w:35">技能</span><span class="done" style="--w:20">小发明</span><span class="on" style="--w:8">收尾</span></div>
+<span class="tslot">85–90 分</span>
+</div>
+<h2 class="ptitle">今天的<em>三个发现</em></h2>
+<div class="pbody"><div class="rowlist grow"><div class="rowitem"><div class="num g">1</div><div class="tx"><div class="rv " data-step="1"><div class="rv-a"><b>定义</b> void red() { … } 是做积木；<b>调用</b> red(); 是用积木</div><div class="rv-q">？ 先请同学说说看</div></div></div></div><div class="rowitem"><div class="num a">2</div><div class="tx"><div class="rv " data-step="2"><div class="rv-a">调用时程序<b>跳过去、做完、跳回来</b>；定义了不调用，就不会做</div><div class="rv-q">？ 先请同学说说看</div></div></div></div><div class="rowitem"><div class="num n">3</div><div class="tx"><div class="rv " data-step="3"><div class="rv-a">函数让程序<b>更好读、更好改</b>，不会让它更快</div><div class="rv-q">？ 先请同学说说看</div></div></div></div></div><div class="tail"><div class="strip ">交作业：接线照 + 代码截图（组号_姓名_第8课）+ 任务卡。拆线前先拔 USB。</div></div></div>
+<div class="notes"><p>（三条先盖着。）「今天发现了哪三件事？」每一条先请一位同学说，说得差不多了 <b>→ 揭晓</b>，再请下一位。</p><p>「交作业：接线照、代码截图，文件名组号、姓名、第8课。任务卡交上来。」</p><p>「收器材：先拔 USB 再拔线。交通灯模块可以先不拆；下节课会发一个新模块——蜂鸣器。」</p><p>「每人说一句：今天哪里卡住了？」</p></div>
+</section>
+
+<section class="slide lay-cards" data-title="收尾 · 下节课音乐盒">
+<div class="phead"><span class="no">第 08 课</span>
+<div class="rail"><span class="done" style="--w:8">兴趣</span><span class="done" style="--w:10">现象</span><span class="done" style="--w:15">概念</span><span class="done" style="--w:35">技能</span><span class="done" style="--w:20">小发明</span><span class="on" style="--w:8">收尾</span></div>
+<span class="tslot">85–90 分</span>
+</div>
+<h2 class="ptitle">下节课：<em>音乐盒</em>——会「填空」的积木</h2>
+<div class="pbody"><div class="cols2 grow lay-cards2-in"><div class="blk n"><span class="lbl">第 9 课 · 作品</span><h4>用蜂鸣器弹《小星星》</h4><p>一块积木 note()，弹出不同的音。</p><p>新句型：<b>带参数的函数</b> note(262, 300)</p></div><div class="blk c"><span class="lbl">先想一个问题</span><h4>do re mi 要做几块积木？</h4><p>do 一块、re 一块、mi 一块……7 个音就 7 块？</p><p>能不能只做一块，用的时候「填空」？</p></div></div><div class="tail"><div class="strip ">回家想一想：今天积木名字后面那对空括号，能往里面填什么？</div></div></div>
+<div class="notes"><p>「下节课做音乐盒：用一个新模块——蜂鸣器，弹《小星星》。」</p><p>「先想一个问题：按今天的办法，do 一块积木、re 一块、mi 一块……7 个音做 7 块积木？长音短音还要再做？太多了。」</p><p>「能不能只做一块积木 note，用的时候在括号里『填空』：填 262 就是 do，填 294 就是 re？这就是下节课的新句型：带参数的函数。」</p><p>「回家想一想：今天积木名字后面那对空括号，能往里面填什么？」</p><p>（课后：没过基础档的组号记进反馈；清点无源蜂鸣器模块，和有源的分开装。）</p></div>
+</section>
+<div class="deck-footer"><span>Arduino UNO 入门 · 单元三 循环与函数 · 第 8 课 交通灯重写</span><span class="fright"><span class="rv-left" style="display:none"></span><span class="slide-number" data-current="1" data-total="23"></span></span></div>
+<div class="progress-bar"><span></span></div>
+</div>
+<script src="assets/fitstage.js"></script>
+<script src="assets/runtime.js"></script>
+</body>
+</html>

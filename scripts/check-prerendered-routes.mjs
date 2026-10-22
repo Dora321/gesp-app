@@ -5,6 +5,16 @@ import { fileURLToPath } from 'url';
 const root = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
 const cases = [
   {
+    file: 'dist/hardware/arduino/index.html',
+    title: 'Arduino UNO 零基础课程 · 16 节网页课',
+    canonical: 'https://Dora321.github.io/gesp-app/hardware/arduino',
+  },
+  {
+    file: 'dist/hardware/arduino/16/index.html',
+    title: 'Arduino UNO · 第 16 课 · 智能垃圾桶 · 下',
+    canonical: 'https://Dora321.github.io/gesp-app/hardware/arduino/16',
+  },
+  {
     file: 'dist/hardware/esp32/16.5/index.html',
     title: '高阶科创 · 第 16.5 课 · 联网预备包',
     canonical: 'https://Dora321.github.io/gesp-app/hardware/esp32/16.5',

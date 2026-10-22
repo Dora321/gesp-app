@@ -1,0 +1,330 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>第14课 找茬课 · Arduino UNO 入门</title>
+<link rel="stylesheet" href="assets/base.css">
+<link rel="stylesheet" id="theme-link" href="assets/theme-arduino.css">
+<link rel="stylesheet" href="assets/animations.css">
+</head>
+<body>
+<div class="deck" data-theme-base="assets/">
+<section class="slide lay-cover is-active" data-title="封面 · 课前检查">
+<span class="cv-bar">Arduino UNO 入门 / 单元五「综合项目」</span>
+<h1 class="cv-title">找茬<em>课</em></h1>
+<p class="cv-sub">当一回<b>程序医生</b>：红字读出来，不听话看出来</p>
+<div class="cv-tags"><span class="tag">无新语法</span><span class="tag">读报错</span><span class="tag">串口当眼睛</span><span class="tag">90 分钟</span></div>
+<div class="cv-no">14</div>
+<div class="cv-icon"><svg viewBox="0 0 560 360" xmlns="http://www.w3.org/2000/svg" font-family="Microsoft YaHei" text-rendering="geometricPrecision"><rect x="40" y="40" width="300" height="280" rx="10" fill="#fff" stroke="#141414" stroke-width="5"/><path d="M70 86 H290" stroke="#B0BEC5" stroke-width="12" stroke-linecap="round"/><path d="M70 128 H250" stroke="#B0BEC5" stroke-width="12" stroke-linecap="round"/><path d="M70 170 H310" stroke="#B0BEC5" stroke-width="12" stroke-linecap="round"/><path d="M70 212 H220" stroke="#D85A30" stroke-width="12" stroke-linecap="round"/><path d="M70 254 H270" stroke="#B0BEC5" stroke-width="12" stroke-linecap="round"/><path d="M70 296 H190" stroke="#B0BEC5" stroke-width="12" stroke-linecap="round"/><circle cx="330" cy="190" r="110" fill="#E3F2FD" fill-opacity=".55" stroke="#141414" stroke-width="14"/><path d="M410 270 L500 350" stroke="#141414" stroke-width="28" stroke-linecap="round"/><g transform="translate(330 190) scale(0.90)"><path d="M0 -6 C-30 -60 -78 -40 -6 2 Z" fill="#B59A7A" stroke="#141414" stroke-width="3"/><path d="M0 6 C-20 50 -58 40 -6 4 Z" fill="#A1866A" stroke="#141414" stroke-width="3"/><path d="M0 -26 Q-8 -52 -22 -60" fill="none" stroke="#141414" stroke-width="3"/><path d="M0 -6 C30 -60 78 -40 6 2 Z" fill="#B59A7A" stroke="#141414" stroke-width="3"/><path d="M0 6 C20 50 58 40 6 4 Z" fill="#A1866A" stroke="#141414" stroke-width="3"/><path d="M0 -26 Q8 -52 22 -60" fill="none" stroke="#141414" stroke-width="3"/><ellipse cx="0" cy="0" rx="8" ry="30" fill="#6D4C41" stroke="#141414" stroke-width="3"/></g></svg></div>
+<div class="notes"><p><b>课前 5 分钟</b>：每组扩展板上照第 3 课接好交通灯模块；按键模块插 2 号、旋钮插 A0（找茬 3 和 ★★ 要用）。共享文件夹里有 zhaocha1、zhaocha2、zhaocha3、butinghua——<b>都是坏的</b>，就是要你修。</p><p>今天的<b>保底目标</b>：三段找茬全部修到「编译完成」并运行正常；每段在任务卡上记下红字的行号、第一句英文和真正错在哪一行。</p><p>今天没有新语法。请学生拿出上节课布置的「我的报错清单」。</p><p>先猜再揭晓照旧：按 → 揭晓，揭晓完再按 → 翻页。</p></div>
+</section>
+
+<section class="slide lay-figure" data-title="兴趣 · 第一个 bug">
+<div class="phead"><span class="no">第 14 课</span>
+<div class="rail"><span class="on" style="--w:8">兴趣</span><span class="" style="--w:10">现象</span><span class="" style="--w:15">概念</span><span class="" style="--w:35">技能</span><span class="" style="--w:20">小发明</span><span class="" style="--w:8">收尾</span></div>
+<span class="tslot">0–5 分</span>
+</div>
+<h2 class="ptitle">世界上第一个 bug，是一只<em>真飞蛾</em></h2>
+<div class="pbody">
+  <div class="figgrid grow" style="--figw:1.2fr"><div class="figbox"><svg viewBox="0 0 740 520" xmlns="http://www.w3.org/2000/svg" font-family="Microsoft YaHei" text-rendering="geometricPrecision"><rect x="70" y="30" width="600" height="400" fill="#FFFDF5" stroke="#141414" stroke-width="5" transform="rotate(-2 370 230)"/><path d="M100 90 H640" stroke="#C5D7EA" stroke-width="2" transform="rotate(-2 370 230)"/><path d="M100 128 H640" stroke="#C5D7EA" stroke-width="2" transform="rotate(-2 370 230)"/><path d="M100 166 H640" stroke="#C5D7EA" stroke-width="2" transform="rotate(-2 370 230)"/><path d="M100 204 H640" stroke="#C5D7EA" stroke-width="2" transform="rotate(-2 370 230)"/><path d="M100 242 H640" stroke="#C5D7EA" stroke-width="2" transform="rotate(-2 370 230)"/><path d="M100 280 H640" stroke="#C5D7EA" stroke-width="2" transform="rotate(-2 370 230)"/><path d="M100 318 H640" stroke="#C5D7EA" stroke-width="2" transform="rotate(-2 370 230)"/><path d="M100 356 H640" stroke="#C5D7EA" stroke-width="2" transform="rotate(-2 370 230)"/><path d="M100 394 H640" stroke="#C5D7EA" stroke-width="2" transform="rotate(-2 370 230)"/><text x="110" y="82" font-size="22" font-weight="800" fill="#555" font-family="Consolas,Arial" transform="rotate(-2 370 230)">9/9  1545  Relay #70 Panel F</text><rect x="250" y="150" width="240" height="44" fill="#F3E3B0" opacity=".85" transform="rotate(-8 370 172)"/><rect x="250" y="268" width="240" height="44" fill="#F3E3B0" opacity=".85" transform="rotate(6 370 290)"/><g transform="translate(370 232) scale(1.25)"><path d="M0 -6 C-30 -60 -78 -40 -6 2 Z" fill="#B59A7A" stroke="#141414" stroke-width="3"/><path d="M0 6 C-20 50 -58 40 -6 4 Z" fill="#A1866A" stroke="#141414" stroke-width="3"/><path d="M0 -26 Q-8 -52 -22 -60" fill="none" stroke="#141414" stroke-width="3"/><path d="M0 -6 C30 -60 78 -40 6 2 Z" fill="#B59A7A" stroke="#141414" stroke-width="3"/><path d="M0 6 C20 50 58 40 6 4 Z" fill="#A1866A" stroke="#141414" stroke-width="3"/><path d="M0 -26 Q8 -52 22 -60" fill="none" stroke="#141414" stroke-width="3"/><ellipse cx="0" cy="0" rx="8" ry="30" fill="#6D4C41" stroke="#141414" stroke-width="3"/></g><text x="380" y="392" text-anchor="middle" font-size="22" font-style="italic" fill="#333" font-family="Georgia,serif" transform="rotate(-2 370 230)">First actual case of bug being found.</text><text x="370" y="478" text-anchor="middle" font-size="24" font-weight="900" fill="#141414">1947 年：计算机出毛病，原来是里面卡了一只真飞蛾</text><text x="370" y="512" text-anchor="middle" font-size="20" font-weight="800" fill="#555">从此程序里的毛病就叫 bug，找毛病叫 debug</text></svg></div><div class="figcards"><div class="blk n"><span class="lbl">回家作业</span><h4>我的报错清单</h4><p>你记下了几句红字？</p></div><div class="blk a"><span class="lbl">1947 年</span><h4>计算机出了毛病</h4><p>工程师打开机器，找到一只卡在里面的飞蛾。</p></div><div class="blk c"><span class="lbl">今天</span><h4>你们是程序医生</h4><div class="rv rv-ans" data-step="1"><div class="rv-a"><p class="ans">修好别人程序里的 bug——这叫 <b>debug</b>（找虫子、捉虫子）。</p></div><div class="rv-q">？ 猜一猜叫什么</div></div></div></div></div>
+  <div class="tail"><div class="strip ">今天没有新语法：用上这学期认识的<b>所有红字</b>。</div></div>
+</div>
+<div class="notes"><p>「上节课的作业：我的报错清单。你记下了几句？」（请几位同学念：expected 分号、was not declared、stray……数一数全班一共找到多少种。）</p><p>「讲个真事：1947 年，一台计算机出了毛病，工程师打开机器一看，里面卡着一只真飞蛾。他们把飞蛾用胶带贴在工作日志上，写了一句：第一次真的找到了 bug——bug 就是小虫子。」</p><p>「从那以后，程序里的毛病就叫 bug。今天你们当程序医生，修好别人程序里的 bug。」<b>→ 揭晓</b>「这件事有个名字：debug——捉虫子。」</p></div>
+</section>
+
+<section class="slide lay-figure" data-title="兴趣 · 两种毛病">
+<div class="phead"><span class="no">第 14 课</span>
+<div class="rail"><span class="on" style="--w:8">兴趣</span><span class="" style="--w:10">现象</span><span class="" style="--w:15">概念</span><span class="" style="--w:35">技能</span><span class="" style="--w:20">小发明</span><span class="" style="--w:8">收尾</span></div>
+<span class="tslot">0–5 分</span>
+</div>
+<h2 class="ptitle">程序的毛病分<em>两种</em></h2>
+<div class="pbody">
+  <div class="figgrid grow" style="--figw:1.2fr"><div class="figbox"><svg viewBox="0 0 740 520" xmlns="http://www.w3.org/2000/svg" font-family="Microsoft YaHei" text-rendering="geometricPrecision"><rect x="20" y="20" width="330" height="420" rx="10" fill="#fff" stroke="#141414" stroke-width="5"/><rect x="20" y="20" width="330" height="56" fill="#D85A30" stroke="#141414" stroke-width="5"/><text x="185" y="58" text-anchor="middle" font-size="28" font-weight="900" fill="#fff">① 红字</text><rect x="390" y="20" width="330" height="420" rx="10" fill="#fff" stroke="#141414" stroke-width="5"/><rect x="390" y="20" width="330" height="56" fill="#1F4E79" stroke="#141414" stroke-width="5"/><text x="555" y="58" text-anchor="middle" font-size="28" font-weight="900" fill="#fff">② 不听话</text><rect x="46" y="100" width="278" height="170" fill="#FAFAFA" stroke="#B0BEC5" stroke-width="3"/><text x="60" y="140" font-size="19" font-weight="800" fill="#C8341B" font-family="Consolas,Microsoft YaHei">error: expected ';'</text><text x="60" y="174" font-size="19" font-weight="800" fill="#444" font-family="Consolas,Microsoft YaHei">   before 'delay'</text><text x="60" y="208" font-size="19" font-weight="800" fill="#C8341B" font-family="Consolas,Microsoft YaHei">exit status 1</text><text x="60" y="242" font-size="19" font-weight="800" fill="#C8341B" font-family="Consolas,Microsoft YaHei">编译错误：…</text><text x="185" y="320" text-anchor="middle" font-size="24" font-weight="900" fill="#141414">传不进板子</text><text x="185" y="364" text-anchor="middle" font-size="21" font-weight="800" fill="#555">电脑查格式：标点、大小写、</text><text x="185" y="396" text-anchor="middle" font-size="21" font-weight="800" fill="#555">括号、名字</text><rect x="416" y="100" width="278" height="44" fill="#E8F5E9" stroke="#81C784" stroke-width="3"/><text x="430" y="130" font-size="21" font-weight="900" fill="#2E7D32">上传完成</text><circle cx="510" cy="214" r="34" fill="#F8C9C7" stroke="#141414" stroke-width="3"/><path d="M493 214 a11 11 0 0 1 11 -11" fill="none" stroke="#fff" stroke-width="3" stroke-linecap="round" opacity=".8"/><text x="600" y="232" text-anchor="middle" font-size="64" font-weight="900" fill="#D85A30" font-family="Arial Black,Arial">?</text><text x="555" y="320" text-anchor="middle" font-size="24" font-weight="900" fill="#141414">能上传，结果不对</text><text x="555" y="364" text-anchor="middle" font-size="21" font-weight="800" fill="#555">电脑不查意思：= 和 ==、</text><text x="555" y="396" text-anchor="middle" font-size="21" font-weight="800" fill="#555">盒子放错地方、数写错</text><text x="370" y="486" text-anchor="middle" font-size="24" font-weight="900" fill="#141414">红字：读报错　｜　不听话：用串口看盒子里的数</text></svg></div><div class="figcards"><div class="blk c"><span class="lbl">① 红字</span><h4>传不进板子</h4><p>电脑查<b>格式</b>：标点、大小写、括号、名字。</p></div><div class="blk n"><span class="lbl">② 不听话</span><h4>能上传，结果不对</h4><p>电脑<b>不查意思</b>：= 和 ==、盒子放错地方。</p></div><div class="blk a"><span class="lbl">哪种难修</span><h4>你觉得呢？</h4><div class="rv rv-ans" data-step="1"><div class="rv-a"><p class="ans"><b>不听话</b>更难：电脑一句话都不说。要靠你自己说清楚「应该怎样」，再用串口看。</p></div><div class="rv-q">？ 想一想</div></div></div></div></div>
+  
+</div>
+<div class="notes"><p>「程序的毛病分两种。第一种是红字：电脑检查格式——标点、大小写、括号、名字，有一点不对，就不让你上传。」</p><p>「第二种是不听话：电脑检查完格式，没问题，上传了，可灯就是不按你想的亮。因为电脑不查意思：你写一个等号还是两个等号，它不知道你心里想的是哪个。」</p><p>「你觉得哪种难修？」<b>→ 揭晓</b>「不听话更难——电脑一句话都不说。要靠你自己说清楚应该怎样，再用串口看看盒子里到底是几。」</p><p>「今天两种都练。基础档修红字，两颗星修不听话。」</p></div>
+</section>
+
+<section class="slide lay-codes" data-title="现象 · 红字说的那一行">
+<div class="phead"><span class="no">第 14 课</span>
+<div class="rail"><span class="done" style="--w:8">兴趣</span><span class="on" style="--w:10">现象</span><span class="" style="--w:15">概念</span><span class="" style="--w:35">技能</span><span class="" style="--w:20">小发明</span><span class="" style="--w:8">收尾</span></div>
+<span class="tslot">5–15 分</span>
+</div>
+<h2 class="ptitle">红字说第 15 行错了——<em>真的</em>是第 15 行吗？</h2>
+<div class="pbody"><div class="codes grow" style="grid-template-columns:1.25fr 1.15fr"><div class="code"><div class="lab "><span>zhaocha0.ino（老师示范）</span></div><pre class="nums" style="font-size:21px;line-height:1.4;counter-reset:L 0"><span class="L"><span class="t">const</span> <span class="t">int</span> BTN = <span class="k">2</span>;</span>
+<span class="L"><span class="t">const</span> <span class="t">int</span> RED = <span class="k">10</span>;</span>
+<span class="L"> </span>
+<span class="L"><span class="t">void</span> <span class="f">setup</span>() {</span>
+<span class="L">  <span class="f">pinMode</span>(BTN, <span class="k">INPUT_PULLUP</span>);</span>
+<span class="L">  <span class="f">pinMode</span>(RED, <span class="k">OUTPUT</span>);</span>
+<span class="L">}</span>
+<span class="L"> </span>
+<span class="L"><span class="t">void</span> <span class="f">loop</span>() {</span>
+<span class="L">  <span class="x">if</span> (<span class="f">digitalRead</span>(BTN) == <span class="k">LOW</span>) {</span>
+<span class="L">    <span class="f">digitalWrite</span>(RED, <span class="k">HIGH</span>);</span>
+<span class="L">  } <span class="x">else</span> {</span>
+<span class="L">    <span class="f">digitalWrite</span>(RED, <span class="k">LOW</span>);</span>
+<span class="L"><span class="ln hlc rvl" data-step="2"> </span></span>
+<span class="L">}</span></pre></div><div class="code outbox "><div class="lab c"><span>点验证以后</span></div><pre class="out" style="font-size:26px;line-height:1.55"><span class="ol ">zhaocha0.ino: In function 'void loop()':</span>
+<span class="ol err">zhaocha0.ino:15:1: error: expected '}'</span>
+<span class="ol ">                   at end of input</span></pre></div></div><div class="opts" style="margin-top:22px"><div class="opt"><span class="ol">A</span>是，第 15 行错了</div><div class="opt rvo" data-step="1"><span class="ol">B</span>不是，错在上面</div><div class="opt"><span class="ol">C</span>第 1 行就错了</div><div class="opt"><span class="ol">D</span>电脑也不知道</div></div></div>
+<div class="notes"><p>「这是第 5 课的按键灯，我改坏了一个地方。点验证，红字说：第 15 行，expected '}' at end of input——到了文件末尾，还缺一个右大括号。」</p><p>「投票：真的是第 15 行错了吗？A 是，B 不是、错在上面，C 第 1 行就错了，D 电脑也不知道。」（数票。）</p><p><b>→ 揭晓</b>「B。电脑是读到第 15 行、读到文件末尾，才发现大括号对不上。真正少的那个 }，在第 14 行——else 的大括号没收尾。」</p><p><b>→ 揭晓</b>「红字给的行号，是电脑<b>发现</b>问题的地方，不一定是<b>犯错</b>的地方。按 Ctrl+T 看缩进，最后一个 } 缩不进去，就知道少了。」</p></div>
+</section>
+
+<section class="slide lay-codes" data-title="现象 · 不说话的毛病">
+<div class="phead"><span class="no">第 14 课</span>
+<div class="rail"><span class="done" style="--w:8">兴趣</span><span class="on" style="--w:10">现象</span><span class="" style="--w:15">概念</span><span class="" style="--w:35">技能</span><span class="" style="--w:20">小发明</span><span class="" style="--w:8">收尾</span></div>
+<span class="tslot">5–15 分</span>
+</div>
+<h2 class="ptitle">这一段：编译完成、上传完成，可红灯<em>永远不亮</em></h2>
+<div class="pbody"><div class="codes grow" style="grid-template-columns:1.5fr 0.6fr"><div class="code"><div class="lab "><span>butinghua.ino · 第 10–23 行</span></div><pre class="nums" style="font-size:23px;line-height:1.4;counter-reset:L 9"><span class="L"><span class="t">void</span> <span class="f">loop</span>() {</span>
+<span class="L">  <span class="t">int</span> count = <span class="k">0</span>;                   <span class="c">// 按了几次</span></span>
+<span class="L">  <span class="t">int</span> state = <span class="f">digitalRead</span>(BTN);</span>
+<span class="L">  <span class="x">if</span> (state = <span class="k">LOW</span>) {               <span class="c">// 按下了？</span></span>
+<span class="L">    count++;</span>
+<span class="L">    <span class="t">Serial</span>.<span class="f">println</span>(count);</span>
+<span class="L">    <span class="f">delay</span>(<span class="k">20</span>);</span>
+<span class="L">    <span class="x">while</span> (<span class="f">digitalRead</span>(BTN) == <span class="k">LOW</span>) { }</span>
+<span class="L">    <span class="f">delay</span>(<span class="k">20</span>);</span>
+<span class="L">  }</span>
+<span class="L">  <span class="x">if</span> (count == <span class="k">5</span>) {                <span class="c">// 按满 5 次：红灯亮</span></span>
+<span class="L">    <span class="f">digitalWrite</span>(RED, <span class="k">HIGH</span>);</span>
+<span class="L">  }</span>
+<span class="L">}</span></pre></div><div class="code outbox serial"><div class="lab n"><span>串口监视器</span><span class="rt">按了 6 下</span></div><pre class="out" style="font-size:26px;line-height:1.55"><span class="ol ">（什么都没有）</span></pre></div></div><div class="tail"><div class="strip ">应该：<b>按满 5 次红灯亮</b>；实际：串口里一个数都没有。 <span class="rvi" data-step="1">电脑只是<b>照你写的做</b>。</span></div></div></div>
+<div class="notes"><p>「再看一段。本来应该：每按一下按键，串口数字加 1；按满 5 次，红灯亮——第 6 课三颗星做过。」</p><p>（老师上传 butinghua，按 6 下给学生看。）「编译完成，上传完成，没有红字。可是按了 6 下，串口里一个数都没有，红灯也不亮。」</p><p><b>→ 揭晓</b>「电脑不报错，它只是照你写的做。毛病藏在意思里。」</p><p>「这一段先别急着修，留给两颗星。我们先把红字练熟。」</p></div>
+</section>
+
+<section class="slide lay-rowlist" data-title="概念 · 红字三步">
+<div class="phead"><span class="no">第 14 课</span>
+<div class="rail"><span class="done" style="--w:8">兴趣</span><span class="done" style="--w:10">现象</span><span class="on" style="--w:15">概念</span><span class="" style="--w:35">技能</span><span class="" style="--w:20">小发明</span><span class="" style="--w:8">收尾</span></div>
+<span class="tslot">15–30 分</span>
+</div>
+<h2 class="ptitle">修红字：<em>三步</em>，第 2 课就学过</h2>
+<div class="pbody"><div class="rowlist grow"><div class="rowitem"><div class="num c">1</div><div class="tx"><b>找行号</b>：红字里 文件名:<b>行</b>:列<small>第一个冒号后面那个数</small></div></div><div class="rowitem"><div class="num a">2</div><div class="tx"><b>读第一句英文</b>：只修第一句<small>后面的红字常常是被它连累的</small></div></div><div class="rowitem"><div class="num n">3</div><div class="tx"><b>看这一行和上一行</b><small>还看不出来：Ctrl+T 看大括号；中文输入法关掉重打标点</small></div></div></div><div class="tail"><div class="strip ">改一处，点一次验证。<b>一次只改一个地方</b>。</div></div></div>
+<div class="notes"><p>「修红字，三步，第 2 课就学过。」</p><p>「第一步，找行号：红字开头是文件名、冒号、行、冒号、列。第一个冒号后面那个数就是行号。」</p><p>「第二步，读第一句英文——只修第一句。后面的红字，常常是被第一句连累出来的；第一句修好，后面的可能全没了。」</p><p>「第三步，看这一行和上一行。比如漏分号，电脑在下一行才发现。还看不出来：按 Ctrl+T 看大括号；或者把输入法切到英文，把这一行的标点重打一遍。」</p><p>「最后一条规矩：改一处，点一次验证。别一口气改五个地方。」</p></div>
+</section>
+
+<section class="slide lay-table" data-title="概念 · 这学期的红字">
+<div class="phead"><span class="no">第 14 课</span>
+<div class="rail"><span class="done" style="--w:8">兴趣</span><span class="done" style="--w:10">现象</span><span class="on" style="--w:15">概念</span><span class="" style="--w:35">技能</span><span class="" style="--w:20">小发明</span><span class="" style="--w:8">收尾</span></div>
+<span class="tslot">15–30 分</span>
+</div>
+<h2 class="ptitle">这学期认识的红字：<em>你还记得吗</em>？</h2>
+<div class="pbody"><div class="tbl grow" style="grid-template-columns:1.55fr 1.5fr 0.7fr"><div class="th">红字（开头几个词）</div><div class="th">多半是因为</div><div class="th">哪课学的</div><div class="td mono"><span>expected ';' before …</span></div><div class="td"><div class="rv " data-step="1"><div class="rv-a"><b>上一行</b>漏了分号</div><div class="rv-q">？ 先猜一猜</div></div></div><div class="td last"><span>第 2 课</span></div><div class="td mono"><span>'xxx' was not declared in this scope</span></div><div class="td"><div class="rv " data-step="2"><div class="rv-a">名字拼错 / 大小写 / 盒子没做 / 没 #include</div><div class="rv-q">？ 先猜一猜</div></div></div><div class="td last"><span>第 2、10、12 课</span></div><div class="td mono"><span>stray '\357' in program</span></div><div class="td"><div class="rv " data-step="3"><div class="rv-a">混进了<b>中文标点</b></div><div class="rv-q">？ 先猜一猜</div></div></div><div class="td last"><span>第 2 课</span></div><div class="td mono"><span>expected '}' at end of input</span></div><div class="td"><div class="rv " data-step="4"><div class="rv-a">大括号<b>少了一个</b></div><div class="rv-q">？ 先猜一猜</div></div></div><div class="td last"><span>第 2 课</span></div><div class="td mono"><span>lvalue required as left operand …</span></div><div class="td"><div class="rv " data-step="5"><div class="rv-a">if 里一个 = 写成了<b>放进去</b></div><div class="rv-q">？ 先猜一猜</div></div></div><div class="td last"><span>第 5 课</span></div><div class="td mono"><span>too few / too many arguments</span></div><div class="td"><div class="rv " data-step="6"><div class="rv-a">括号里的数<b>填少了 / 多了</b></div><div class="rv-q">？ 先猜一猜</div></div></div><div class="td last"><span>第 9 课</span></div></div></div>
+<div class="notes"><p>「对一对你的报错清单。」（中间一列先盖着，逐行请同学说，再 <b>→ 揭晓</b>。）</p><p>「expected 分号：上一行漏了分号。was not declared：名字拼错、大小写不对、盒子没做、或者库没 #include。stray 反斜杠 357：混进了中文标点。」</p><p>「expected 右大括号 at end of input：大括号少一个。lvalue required：if 里一个等号。too few、too many arguments：括号里的数填少了、填多了。」</p><p>「这 6 句，覆盖了你们 9 成的红字。清单上没有的，补上。」</p></div>
+</section>
+
+<section class="slide lay-rowlist" data-title="概念 · 不听话四步">
+<div class="phead"><span class="no">第 14 课</span>
+<div class="rail"><span class="done" style="--w:8">兴趣</span><span class="done" style="--w:10">现象</span><span class="on" style="--w:15">概念</span><span class="" style="--w:35">技能</span><span class="" style="--w:20">小发明</span><span class="" style="--w:8">收尾</span></div>
+<span class="tslot">15–30 分</span>
+</div>
+<h2 class="ptitle">修「不听话」：<em>四步</em></h2>
+<div class="pbody"><div class="rowlist grow"><div class="rowitem"><div class="num g">1</div><div class="tx"><b>说清楚「应该怎样」</b>：按 5 下，红灯亮</div></div><div class="rowitem"><div class="num a">2</div><div class="tx"><b>看清楚「实际怎样」</b>：按了 6 下，什么都没有</div></div><div class="rowitem"><div class="num n">3</div><div class="tx"><b>用串口看盒子里的数</b>：Serial.println 就是你的眼睛</div></div><div class="rowitem"><div class="num c">4</div><div class="tx"><b>一次只改一处</b>，改完再试——像剥洋葱，一层一层</div></div></div><div class="tail"><div class="strip ">编译器警告设成「全部」：有些不听话的毛病，电脑会<b>小声</b>提醒你（warning）。</div></div></div>
+<div class="notes"><p>「修不听话，四步。」</p><p>「第一步，说清楚应该怎样——说不清楚，就不知道哪里错。第二步，看清楚实际怎样——不是『不对』，而是『按了 6 下，串口什么都没有』。」</p><p>「第三步，用串口看盒子里的数：在可疑的地方加一句 Serial.println，看看盒子里到底是几。串口就是你的眼睛。」</p><p>「第四步，一次只改一处，改完再试。有时候修好一个，还有第二个藏在后面——像剥洋葱。」</p><p>「还有一个帮手：编译器警告设成『全部』，有的不听话毛病，电脑会用 warning 小声提醒你。」</p></div>
+</section>
+
+<section class="slide lay-flow" data-title="技能 · 找茬五步">
+<div class="phead"><span class="no">第 14 课</span>
+<div class="rail"><span class="done" style="--w:8">兴趣</span><span class="done" style="--w:10">现象</span><span class="done" style="--w:15">概念</span><span class="on" style="--w:35">技能</span><span class="" style="--w:20">小发明</span><span class="" style="--w:8">收尾</span></div>
+<span class="tslot">30–32 分</span>
+</div>
+<h2 class="ptitle">技能：每段找茬都走<em>五步</em></h2>
+<div class="pbody"><div class="flow grow"><div class="fl"><span class="fn">①</span><div class="ico"><svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" text-rendering="geometricPrecision"><circle cx="50" cy="50" r="40" fill="#00979D" stroke="#141414" stroke-width="5"/><path d="M30 52 L44 66 L71 36" fill="none" stroke="#fff" stroke-width="10" stroke-linecap="round" stroke-linejoin="round"/></svg></div><div class="fk">验证</div><div class="fd">打开 zhaocha<br>先点验证</div></div><div class="farr">→</div><div class="fl"><span class="fn">②</span><div class="ico"><svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" text-rendering="geometricPrecision"><path d="M8 50 Q50 10 92 50 Q50 90 8 50 Z" fill="#fff" stroke="#141414" stroke-width="5" stroke-linejoin="round"/><circle cx="50" cy="50" r="17" fill="#2F6FB0" stroke="#141414" stroke-width="4"/><circle cx="50" cy="50" r="7" fill="#141414"/></svg></div><div class="fk">读</div><div class="fd">行号 + 第一句<br>抄在任务卡上</div></div><div class="farr">→</div><div class="fl"><span class="fn">③</span><div class="ico"><svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" text-rendering="geometricPrecision"><path d="M20 58 a22 22 0 0 1 10 -36 a24 24 0 0 1 42 4 a18 18 0 0 1 8 32 Z" fill="#fff" stroke="#141414" stroke-width="5" stroke-linejoin="round"/><circle cx="26" cy="74" r="6" fill="#fff" stroke="#141414" stroke-width="4"/><circle cx="16" cy="88" r="4" fill="#141414"/><text x="51" y="54" text-anchor="middle" font-size="34" font-weight="900" fill="#D85A30" font-family="Arial Black,Arial">?</text></svg></div><div class="fk">猜</div><div class="fd">真正错在<br>哪一行？</div></div><div class="farr">→</div><div class="fl"><span class="fn">④</span><div class="ico"><svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" text-rendering="geometricPrecision"><rect x="8" y="26" width="84" height="48" rx="4" fill="#fff" stroke="#141414" stroke-width="5"/><text x="50" y="60" text-anchor="middle" font-size="25" font-weight="900" fill="#005C5F" font-family="Consolas">1000</text><path d="M14 48 H86" stroke="#D85A30" stroke-width="5"/><rect x="50" y="4" width="44" height="28" fill="#F5A623" stroke="#141414" stroke-width="4"/><text x="72" y="25" text-anchor="middle" font-size="19" font-weight="900" fill="#141414" font-family="Consolas">100</text></svg></div><div class="fk">改</div><div class="fd">只改一处<br>再点验证</div></div><div class="farr">→</div><div class="fl"><span class="fn">⑤</span><div class="ico"><svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" text-rendering="geometricPrecision"><circle cx="50" cy="50" r="40" fill="#00979D" stroke="#141414" stroke-width="5"/><path d="M28 50 H70 M54 33 L71 50 L54 67" fill="none" stroke="#fff" stroke-width="10" stroke-linecap="round" stroke-linejoin="round"/></svg></div><div class="fk">上传</div><div class="fd">看灯、看串口<br>真的好了吗？</div></div></div><div class="tail"><div class="strip "><b>操作手</b>敲键盘，<b>检查员</b>读红字、记任务卡——每修好一段，两人换位。</div></div></div>
+<div class="notes"><p>「接下来 35 分钟，修三段找茬：zhaocha1、2、3。每一段只藏了一个错，都走五步。」</p><p>「第①步打开、先点验证；第②步读红字的行号和第一句英文，抄在任务卡上；第③步猜：真正错在哪一行；第④步只改一处，再点验证；第⑤步上传，看灯、看串口，确认真的好了。」</p><p>「每修好一段换位。三段都修好，老师来验收。」</p><p>（三段的接线：找茬 1 用交通灯模块，找茬 2 只用串口，找茬 3 用旋钮 A0 和红灯。）</p></div>
+</section>
+
+<section class="slide lay-table" data-title="技能 · 三段找茬">
+<div class="phead"><span class="no">第 14 课</span>
+<div class="rail"><span class="done" style="--w:8">兴趣</span><span class="done" style="--w:10">现象</span><span class="done" style="--w:15">概念</span><span class="on" style="--w:35">技能</span><span class="" style="--w:20">小发明</span><span class="" style="--w:8">收尾</span></div>
+<span class="tslot">32–55 分</span>
+</div>
+<h2 class="ptitle">三段找茬，<em>每段一个错</em></h2>
+<div class="pbody"><div class="tbl grow" style="grid-template-columns:0.9fr 1.2fr 1.6fr 1.1fr"><div class="th">文件</div><div class="th">原来是哪个作品</div><div class="th">它应该……</div><div class="th">藏的错是哪一类？</div><div class="td mono"><span>zhaocha1</span></div><div class="td"><span>第 3 课 交通灯</span></div><div class="td"><span>红 3 秒 → 绿 3 秒 → 黄 1 秒</span></div><div class="td last"><div class="rv " data-step="1"><div class="rv-a"><b>漏分号</b></div><div class="rv-q">？ 修完再看</div></div></div><div class="td mono"><span>zhaocha2</span></div><div class="td"><span>第 4 课 串口计数器</span></div><div class="td"><span>每秒打印 1、2、3……</span></div><div class="td last"><div class="rv " data-step="2"><div class="rv-a"><b>大小写</b></div><div class="rv-q">？ 修完再看</div></div></div><div class="td mono"><span>zhaocha3</span></div><div class="td"><span>第 10 课 旋钮调亮度</span></div><div class="td"><span>拧旋钮，红灯变亮</span></div><div class="td last"><div class="rv " data-step="3"><div class="rv-a"><b>中文标点</b></div><div class="rv-q">？ 修完再看</div></div></div></div><div class="tail"><div class="strip ">做完一段，在任务卡上记：红字的<b>行号</b>、<b>第一句英文</b>、<b>真正错在第几行</b>。</div></div></div>
+<div class="notes"><p>「三段找茬都是你们做过的作品：交通灯、串口计数器、旋钮调亮度。每段只藏了一个错。」</p><p>「右边一列先盖着——是哪一类错，你们修完再看。」（学生开始做。投影停在这一页，老师巡视。约 20 分钟后统一讲评，<b>→ 揭晓</b>。）</p><p>「讲评时一段一段对：红字说的是第几行？真正错在第几行？第一句英文是什么？」</p><p>（巡视重点：一口气改好几处；没读红字就乱删；中文标点那段只修了后面的红字。）</p></div>
+</section>
+
+<section class="slide lay-codes" data-title="技能 · 讲评 找茬 1">
+<div class="phead"><span class="no">第 14 课</span>
+<div class="rail"><span class="done" style="--w:8">兴趣</span><span class="done" style="--w:10">现象</span><span class="done" style="--w:15">概念</span><span class="on" style="--w:35">技能</span><span class="" style="--w:20">小发明</span><span class="" style="--w:8">收尾</span></div>
+<span class="tslot">50–53 分</span>
+</div>
+<h2 class="ptitle">讲评 找茬 1：红字说第 14 行，错在<em>第 13 行</em></h2>
+<div class="pbody"><div class="codes grow" style="grid-template-columns:1.15fr 1.05fr"><div class="code"><div class="lab "><span>zhaocha1.ino · 第 11–21 行</span></div><pre class="nums" style="font-size:26px;line-height:1.55;counter-reset:L 10"><span class="L"><span class="t">void</span> <span class="f">loop</span>() {</span>
+<span class="L">  <span class="f">digitalWrite</span>(RED, <span class="k">HIGH</span>);</span>
+<span class="L"><span class="ln hlc rvl" data-step="2">  <span class="f">delay</span>(<span class="k">3000</span>)</span></span>
+<span class="L"><span class="ln hl rvl" data-step="1">  <span class="f">digitalWrite</span>(RED, <span class="k">LOW</span>);</span></span>
+<span class="L">  <span class="f">digitalWrite</span>(GREEN, <span class="k">HIGH</span>);</span>
+<span class="L">  <span class="f">delay</span>(<span class="k">3000</span>);</span>
+<span class="L">  <span class="f">digitalWrite</span>(GREEN, <span class="k">LOW</span>);</span>
+<span class="L">  <span class="f">digitalWrite</span>(YELLOW, <span class="k">HIGH</span>);</span>
+<span class="L">  <span class="f">delay</span>(<span class="k">1000</span>);</span>
+<span class="L">  <span class="f">digitalWrite</span>(YELLOW, <span class="k">LOW</span>);</span>
+<span class="L">}</span></pre></div><div class="code outbox "><div class="lab c"><span>点验证以后</span></div><pre class="out" style="font-size:26px;line-height:1.55"><span class="ol err">zhaocha1.ino:14:3: error: expected ';'</span>
+<span class="ol ">                  before 'digitalWrite'</span></pre></div></div><div class="tail"><div class="strip ">漏分号，电脑在<b>下一行</b>才发现：读到 digitalWrite，才知道上一句没结束。 <span class="rvi" data-step="2">第 13 行 <code class="ic">delay(3000)</code> 后面补一个分号。</span></div></div></div>
+<div class="notes"><p>「找茬 1：红字说第 14 行，expected ';' before 'digitalWrite'——在 digitalWrite 前面，缺一个分号。」</p><p><b>→ 揭晓</b>「第 14 行本身没错。」<b>→ 揭晓</b>「错在第 13 行：delay(3000) 后面没有分号。电脑读到第 14 行的 digitalWrite，才发现上一句还没结束。」</p><p>「这就是第三步『看这一行和上一行』的原因：漏分号，永远在上一行。」</p></div>
+</section>
+
+<section class="slide lay-codes" data-title="技能 · 讲评 找茬 2">
+<div class="phead"><span class="no">第 14 课</span>
+<div class="rail"><span class="done" style="--w:8">兴趣</span><span class="done" style="--w:10">现象</span><span class="done" style="--w:15">概念</span><span class="on" style="--w:35">技能</span><span class="" style="--w:20">小发明</span><span class="" style="--w:8">收尾</span></div>
+<span class="tslot">53–55 分</span>
+</div>
+<h2 class="ptitle">讲评 找茬 2：电脑<em>直接告诉你</em>答案</h2>
+<div class="pbody"><div class="codes grow" style="grid-template-columns:1fr 1.2fr"><div class="code"><div class="lab "><span>zhaocha2.ino</span></div><pre class="nums" style="font-size:26px;line-height:1.55;counter-reset:L 0"><span class="L"><span class="t">int</span> count = <span class="k">0</span>;</span>
+<span class="L"> </span>
+<span class="L"><span class="t">void</span> <span class="f">setup</span>() {</span>
+<span class="L">  <span class="t">Serial</span>.<span class="f">begin</span>(<span class="k">9600</span>);</span>
+<span class="L">}</span>
+<span class="L"> </span>
+<span class="L"><span class="t">void</span> <span class="f">loop</span>() {</span>
+<span class="L">  count++;</span>
+<span class="L"><span class="ln hlc rvl" data-step="1">  serial.<span class="f">println</span>(count);</span></span>
+<span class="L">  <span class="f">delay</span>(<span class="k">1000</span>);</span>
+<span class="L">}</span></pre></div><div class="code outbox "><div class="lab c"><span>点验证以后</span></div><pre class="out" style="font-size:26px;line-height:1.55"><span class="ol err">zhaocha2.ino:9:3: error: 'serial' was not</span>
+<span class="ol ">                 declared in this scope</span>
+<span class="ol ">note: suggested alternative: 'Serial'</span></pre></div></div><div class="tail"><div class="strip "><b>suggested alternative</b>：「你是不是想写 Serial？」——大写 S。 <span class="rvi" data-step="1">第 9 行 serial 改成 <b>Serial</b>。</span></div></div></div>
+<div class="notes"><p>「找茬 2：红字说第 9 行，'serial' was not declared in this scope——电脑不认识 serial 这个名字。」</p><p>「下面还有一句 note：suggested alternative: 'Serial'——『你是不是想写 Serial？』电脑直接把答案告诉你了。」</p><p><b>→ 揭晓</b>「第 9 行 serial 改成大写 S 的 Serial。」</p><p>「上节课的 readdistance、第 12 课的 Write，都是这样。红字后面的 suggested alternative 和 did you mean，一定要读。」</p></div>
+</section>
+
+<section class="slide lay-codes" data-title="技能 · 讲评 找茬 3">
+<div class="phead"><span class="no">第 14 课</span>
+<div class="rail"><span class="done" style="--w:8">兴趣</span><span class="done" style="--w:10">现象</span><span class="done" style="--w:15">概念</span><span class="on" style="--w:35">技能</span><span class="" style="--w:20">小发明</span><span class="" style="--w:8">收尾</span></div>
+<span class="tslot">55–57 分</span>
+</div>
+<h2 class="ptitle">讲评 找茬 3：一个字，<em>五句</em>红字</h2>
+<div class="pbody"><div class="codes grow" style="grid-template-columns:0.95fr 1.35fr"><div class="code"><div class="lab "><span>zhaocha3.ino</span></div><pre class="nums" style="font-size:20px;line-height:1.55;counter-reset:L 0"><span class="L"><span class="t">const</span> <span class="t">int</span> KNOB = <span class="k">A0</span>;</span>
+<span class="L"><span class="t">const</span> <span class="t">int</span> RED = <span class="k">10</span>;</span>
+<span class="L"> </span>
+<span class="L"><span class="t">void</span> <span class="f">setup</span>() {</span>
+<span class="L">  <span class="f">pinMode</span>(RED, <span class="k">OUTPUT</span>);</span>
+<span class="L">}</span>
+<span class="L"> </span>
+<span class="L"><span class="t">void</span> <span class="f">loop</span>() {</span>
+<span class="L"><span class="ln hlc rvl" data-step="1">  <span class="t">int</span> raw = <span class="f">analogRead</span>(KNOB)；</span></span>
+<span class="L">  <span class="t">int</span> level = <span class="f">map</span>(raw, <span class="k">0</span>, <span class="k">1023</span>, <span class="k">0</span>, <span class="k">255</span>);</span>
+<span class="L">  <span class="f">analogWrite</span>(RED, level);</span>
+<span class="L">  <span class="f">delay</span>(<span class="k">20</span>);</span>
+<span class="L">}</span></pre></div><div class="code outbox "><div class="lab c"><span>点验证以后</span></div><pre class="out" style="font-size:26px;line-height:1.55"><span class="ol err">zhaocha3.ino:9:29: error: stray '\357' in program</span>
+<span class="ol err">zhaocha3.ino:9:30: error: stray '\274' in program</span>
+<span class="ol err">zhaocha3.ino:9:31: error: stray '\233' in program</span>
+<span class="ol err rvl2" data-step="2">zhaocha3.ino:10:3: error: expected ',' or ';'</span>
+<span class="ol  rvl2" data-step="2">                   before 'int'</span>
+<span class="ol err rvl2" data-step="2">zhaocha3.ino:11:20: error: 'level' was not</span>
+<span class="ol  rvl2" data-step="2">                    declared in this scope</span></pre></div></div><div class="tail"><div class="strip ">前三句是<b>同一个中文分号</b>；后两句是被它<b>连累</b>的。只修第一句，再点验证——全没了。</div></div></div>
+<div class="notes"><p>「找茬 3：一点验证，红字一大片。别慌，看第一句：第 9 行，stray '\357'——第 9 行有一个『迷路的字』。」</p><p><b>→ 揭晓</b>「第 9 行末尾那个分号，是中文的！中文分号在电脑里占 3 个字节，所以连着报了 3 句 stray：357、274、233。」</p><p><b>→ 揭晓</b>「后面两句——第 10 行缺分号、第 11 行 level 没声明——都是被它连累的：第 9 行没结束，第 10 行的 level 就没做出来。」</p><p>「只修第一句：切到英文输入法，重打这个分号，点验证——五句红字全没了。」</p></div>
+</section>
+
+<section class="slide lay-rowlist" data-title="技能 · ★基础档验收">
+<div class="phead"><span class="no">第 14 课</span>
+<div class="rail"><span class="done" style="--w:8">兴趣</span><span class="done" style="--w:10">现象</span><span class="done" style="--w:15">概念</span><span class="on" style="--w:35">技能</span><span class="" style="--w:20">小发明</span><span class="" style="--w:8">收尾</span></div>
+<span class="tslot">57–65 分</span>
+</div>
+<h2 class="ptitle">★ 基础档验收：<em>老师逐组来查</em></h2>
+<div class="pbody"><div class="rowlist grow"><div class="rowitem"><span class="box"></span><div class="tx">三段找茬都改到「<b>编译完成</b>」，上传后<b>运行正常</b></div></div><div class="rowitem"><span class="box"></span><div class="tx">任务卡上每段都有：红字<b>行号</b>、<b>第一句英文</b>、<b>真正错在第几行</b></div></div><div class="rowitem"><span class="box"></span><div class="tx">两人都能说出：<b>红字三步</b></div></div></div><div class="tail"><div class="strip ">三项都过 → 老师签字 → 进入小发明。没过的组别急，接下来 20 分钟老师专门陪你。</div></div></div>
+<div class="notes"><p>「做完的组举手，我来验收。三项：三段都改好、运行正常；任务卡记录完整；第三项<b>两个人都要过</b>——红字三步是什么？」</p><p>（标准答案：找行号、读第一句英文、看这一行和上一行。）</p><p>「验收时我还会问：找茬 1 的红字说第 14 行，为什么改第 13 行？」</p><p>「过了的组，翻到下一页选进阶还是挑战。」</p></div>
+</section>
+
+<section class="slide lay-tiers3" data-title="小发明 · 三档任务自己选">
+<div class="phead"><span class="no">第 14 课</span>
+<div class="rail"><span class="done" style="--w:8">兴趣</span><span class="done" style="--w:10">现象</span><span class="done" style="--w:15">概念</span><span class="done" style="--w:35">技能</span><span class="on" style="--w:20">小发明</span><span class="" style="--w:8">收尾</span></div>
+<span class="tslot">65–85 分</span>
+</div>
+<h2 class="ptitle">三档任务，<em>自己选</em></h2>
+<div class="pbody"><div class="cols3 grow"><div class="blk tier t1"><div class="hd">★ 基础 · 人人必会</div><p class="task">修好 <b>3 段</b>各藏一个错的代码（漏分号、大小写、中文标点）</p><p class="who">没过验收的组继续做这一档，老师来陪你</p><div class="tfill">□ 找茬 1　□ 找茬 2　□ 找茬 3　□ 签字</div></div><div class="blk tier t2"><div class="hd">★★ 进阶 · 新组合</div><p class="task">修好 1 段能上传但「<b>不听话</b>」的代码（变量写在 loop 里、if 里写成了 =）</p><p class="who">提示：先说清楚「应该怎样」，再用串口看盒子里的数</p><div class="tfill">□ 第 1 处　□ 第 2 处　□ 按满 5 次红灯亮</div></div><div class="blk tier t3"><div class="hd">★★★ 挑战 · 综合</div><p class="task">给同桌出一道<b>藏 2 个错</b>的找茬题</p><p class="who">一个「红字」、一个「不听话」；写清楚程序本来应该怎样</p><div class="tfill">□ 出了题　□ 同桌修好了　□ 我修好了同桌的</div></div></div><div class="tail"><div class="strip ">过了基础档的组自选 ★★ 或 ★★★。★★ 要用按键模块（2 号）和红灯。</div></div></div>
+<div class="notes"><p>「过了基础档的组，现在自己选。」</p><p>「<b>两颗星</b>：修那段不说话的 butinghua。它藏了两处毛病，像洋葱，修好一层还有一层。用『不听话四步』。第 16、17 页。」</p><p>「<b>三颗星</b>：给同桌出一道找茬题——拿你做过的作品，改坏两处：一个会报红字，一个不报红字但不听话。写清楚本来应该怎样，然后交换着修。第 18 页。」</p><p>（这 20 分钟老师的主要工作是陪没过基础档的组。）</p></div>
+</section>
+
+<section class="slide lay-codes" data-title="小发明 · ★★ 第一层">
+<div class="phead"><span class="no">第 14 课</span>
+<div class="rail"><span class="done" style="--w:8">兴趣</span><span class="done" style="--w:10">现象</span><span class="done" style="--w:15">概念</span><span class="done" style="--w:35">技能</span><span class="on" style="--w:20">小发明</span><span class="" style="--w:8">收尾</span></div>
+<span class="tslot">65–85 分</span>
+</div>
+<h2 class="ptitle">★★ 第一层：串口里<em>什么都没有</em></h2>
+<div class="pbody"><div class="codes grow" style="grid-template-columns:1.35fr 1.1fr"><div class="code"><div class="lab "><span>butinghua.ino · 第 10–23 行</span></div><pre class="nums" style="font-size:21px;line-height:1.4;counter-reset:L 9"><span class="L"><span class="t">void</span> <span class="f">loop</span>() {</span>
+<span class="L">  <span class="t">int</span> count = <span class="k">0</span>;                   <span class="c">// 按了几次</span></span>
+<span class="L">  <span class="t">int</span> state = <span class="f">digitalRead</span>(BTN);</span>
+<span class="L"><span class="ln hlc rvl" data-step="1">  <span class="x">if</span> (state = <span class="k">LOW</span>) {               <span class="c">// 按下了？</span></span></span>
+<span class="L">    count++;</span>
+<span class="L">    <span class="t">Serial</span>.<span class="f">println</span>(count);</span>
+<span class="L">    <span class="f">delay</span>(<span class="k">20</span>);</span>
+<span class="L">    <span class="x">while</span> (<span class="f">digitalRead</span>(BTN) == <span class="k">LOW</span>) { }</span>
+<span class="L">    <span class="f">delay</span>(<span class="k">20</span>);</span>
+<span class="L">  }</span>
+<span class="L">  <span class="x">if</span> (count == <span class="k">5</span>) {                <span class="c">// 按满 5 次：红灯亮</span></span>
+<span class="L">    <span class="f">digitalWrite</span>(RED, <span class="k">HIGH</span>);</span>
+<span class="L">  }</span>
+<span class="L">}</span></pre></div><div class="code outbox "><div class="lab a"><span>编译器警告：全部</span></div><pre class="out" style="font-size:25px;line-height:1.55"><span class="ol ">（上传完成；按了好几下，串口里什么都没有）</span>
+<span class="ol "> </span>
+<span class="ol warn">warning: suggest parentheses around</span>
+<span class="ol ">         assignment used as truth value</span></pre></div></div><div class="tail"><div class="strip ">第 13 行有一句 warning：<b>if 里是一个 =</b>——把 LOW 放进了 state，条件永远不成立。 <span class="rvi" data-step="1">改成 <code class="ic">if (state == LOW)</code>。再上传、按几下——还不对？看下一页。</span></div></div></div>
+<div class="notes"><p>（★★ 的组做的时候开着这一页。）</p><p>「第一步，说清楚应该怎样：按一下串口加 1，按满 5 次红灯亮。第二步，看清楚实际怎样：串口什么都没有——说明第 14、15 行根本没执行，if 一直答『不是』。」</p><p>「编译器警告设成『全部』再验证一次：第 13 行有一句 warning——suggest parentheses around assignment，第 5 课见过。」</p><p><b>→ 揭晓</b>「if 里写成了一个等号：把 LOW 放进了 state，LOW 就是 0，条件永远不成立。改成两个等号。」</p><p>「改完上传，按几下——还不对。看下一页。」</p></div>
+</section>
+
+<section class="slide lay-codes" data-title="小发明 · ★★ 第二层">
+<div class="phead"><span class="no">第 14 课</span>
+<div class="rail"><span class="done" style="--w:8">兴趣</span><span class="done" style="--w:10">现象</span><span class="done" style="--w:15">概念</span><span class="done" style="--w:35">技能</span><span class="on" style="--w:20">小发明</span><span class="" style="--w:8">收尾</span></div>
+<span class="tslot">65–85 分</span>
+</div>
+<h2 class="ptitle">★★ 第二层：串口里<em>永远是 1</em></h2>
+<div class="pbody"><div class="codes grow" style="grid-template-columns:1.35fr 0.6fr"><div class="code"><div class="lab "><span>改好第一层以后 · 第 10–15 行</span></div><pre class="nums" style="font-size:27px;line-height:1.55;counter-reset:L 9"><span class="L"><span class="t">void</span> <span class="f">loop</span>() {</span>
+<span class="L"><span class="ln hlc rvl" data-step="1">  <span class="t">int</span> count = <span class="k">0</span>;                   <span class="c">// 按了几次</span></span></span>
+<span class="L">  <span class="t">int</span> state = <span class="f">digitalRead</span>(BTN);</span>
+<span class="L">  <span class="x">if</span> (state == <span class="k">LOW</span>) {               <span class="c">// 按下了？</span></span>
+<span class="L">    count++;</span>
+<span class="L">    <span class="t">Serial</span>.<span class="f">println</span>(count);</span></pre></div><div class="code outbox serial"><div class="lab n"><span>串口监视器</span><span class="rt">按了 6 下</span></div><pre class="out" style="font-size:26px;line-height:1.55"><span class="ol ">1</span>
+<span class="ol ">1</span>
+<span class="ol ">1</span>
+<span class="ol ">1</span>
+<span class="ol ">1</span>
+<span class="ol ">1</span></pre></div></div><div class="tail"><div class="strip ">永远是 1：count 写在 loop 里，<b>每圈都重新做盒子、放 0</b>——第 4 课的老朋友。 <span class="rvi" data-step="1">把 <code class="ic">int count = 0;</code> 挪到 loop <b>外面</b>。</span></div></div></div>
+<div class="notes"><p>（★★ 的组做的时候开着这一页。）</p><p>「第一层修好了：按一下，串口有数了——可每次都是 1，永远到不了 5。」</p><p>「第三步，用串口看盒子：count 每次都是 1。为什么？想想第 4 课。」</p><p><b>→ 揭晓</b>「int count = 0 写在 loop 里面：每一圈都重新做一个盒子、放 0，加 1 变成 1，打印 1，下一圈又从 0 开始。挪到 loop 外面，盒子只做一次，数才留得住。」</p><p>「改完上传，按满 5 次——红灯亮了。两层毛病，一层一层剥开。」（参考答案在教案资源 5。）</p></div>
+</section>
+
+<section class="slide lay-cards" data-title="小发明 · ★★★ 出题">
+<div class="phead"><span class="no">第 14 课</span>
+<div class="rail"><span class="done" style="--w:8">兴趣</span><span class="done" style="--w:10">现象</span><span class="done" style="--w:15">概念</span><span class="done" style="--w:35">技能</span><span class="on" style="--w:20">小发明</span><span class="" style="--w:8">收尾</span></div>
+<span class="tslot">65–85 分</span>
+</div>
+<h2 class="ptitle">★★★ 给同桌出题：<em>藏 2 个错</em></h2>
+<div class="pbody"><div class="cols3 grow lay-cards3-in"><div class="blk n"><span class="lbl">① 选作品</span><h4>拿你做过的一个</h4><p>交通灯、流水灯、音乐盒、小夜灯、舵机门……<br>先确认它<b>能正常运行</b>。</p></div><div class="blk c"><span class="lbl">② 藏错</span><h4>一个红字 + 一个不听话</h4><p>红字：漏分号、大小写、中文标点……<br>不听话：= 和 ==、盒子放错、数写错……</p></div><div class="blk a"><span class="lbl">③ 写清楚</span><h4>程序本来应该怎样</h4><p>写在程序最上面的注释里。<br>交换修，修完互相讲：你是怎么找到的？</p></div></div><div class="tail"><div class="strip ">好题的标准：同桌<b>能修好</b>，但要<b>动脑子</b>——别藏 20 个错，也别把程序删光。</div></div></div>
+<div class="notes"><p>（★★★ 的组做的时候开着这一页。）</p><p>「第一步，选一个你做过的作品，先确认它能正常运行——改坏之前得是好的。」</p><p>「第二步，藏两个错：一个会报红字的，一个不报红字但不听话的。另存一个新名字，比如 timu_你的名字。」</p><p>「第三步，在最上面的注释里写清楚：这段程序本来应该怎样。不写，同桌就没法判断『不听话』。」</p><p>「然后交换着修。修完互相讲：你是怎么找到的？好题的标准：能修好，但要动脑子。」</p></div>
+</section>
+
+<section class="slide lay-table" data-title="小发明 · 现象速查">
+<div class="phead"><span class="no">第 14 课</span>
+<div class="rail"><span class="done" style="--w:8">兴趣</span><span class="done" style="--w:10">现象</span><span class="done" style="--w:15">概念</span><span class="done" style="--w:35">技能</span><span class="on" style="--w:20">小发明</span><span class="" style="--w:8">收尾</span></div>
+<span class="tslot">65–85 分</span>
+</div>
+<h2 class="ptitle">不报红字的毛病：<em>看现象</em>猜原因</h2>
+<div class="pbody"><div class="tbl grow" style="grid-template-columns:1.3fr 1.45fr 1.2fr"><div class="th">看到什么</div><div class="th">多半是因为</div><div class="th">怎么查</div><div class="td k"><span>计数器永远是 1</span></div><div class="td"><span>int 写在了 loop 里面</span></div><div class="td last"><span>看盒子做在哪</span></div><div class="td k"><span>if 永远成立 / 永远不成立</span></div><div class="td"><span>if 里写成了一个 =</span></div><div class="td last"><span>编译器警告「全部」</span></div><div class="td k"><span>按一下加好几个</span></div><div class="td"><span>没等松手</span></div><div class="td last"><span>加 while 等松手</span></div><div class="td k"><span>串口一堆乱码</span></div><div class="td"><span>波特率和 Serial.begin 不一致</span></div><div class="td last"><span>右下角改 9600</span></div><div class="td k"><span>灯只会全亮全灭</span></div><div class="td"><span>analogWrite 用在没有 ~ 的脚</span></div><div class="td last"><span>换带 ~ 的脚</span></div><div class="td k"><span>串口一个怪数、一直不变</span></div><div class="td"><span>调用函数漏了括号</span></div><div class="td last"><span>看有没有 warning</span></div></div></div>
+<div class="notes"><p>（小发明环节投影停在这一页。）</p><p>「这张表是『不听话』的速查：看到什么现象，多半是因为什么。」</p><p>「计数器永远是 1——盒子做在了 loop 里；if 永远成立或永远不成立——一个等号；按一下加好几个——没等松手；串口乱码——波特率不对；灯只会全亮全灭——没有 ~ 的脚；一个怪数不变——函数漏了括号。」</p><p>「出题的同学也可以从这张表里挑『不听话』的错。」</p></div>
+</section>
+
+<section class="slide lay-rowlist" data-title="收尾 · 今天的三个发现">
+<div class="phead"><span class="no">第 14 课</span>
+<div class="rail"><span class="done" style="--w:8">兴趣</span><span class="done" style="--w:10">现象</span><span class="done" style="--w:15">概念</span><span class="done" style="--w:35">技能</span><span class="done" style="--w:20">小发明</span><span class="on" style="--w:8">收尾</span></div>
+<span class="tslot">85–90 分</span>
+</div>
+<h2 class="ptitle">今天的<em>三个发现</em></h2>
+<div class="pbody"><div class="rowlist grow"><div class="rowitem"><div class="num g">1</div><div class="tx"><div class="rv " data-step="1"><div class="rv-a">红字的行号是电脑<b>发现</b>问题的地方，不一定是<b>犯错</b>的地方：看这一行和上一行</div><div class="rv-q">？ 先请同学说说看</div></div></div></div><div class="rowitem"><div class="num a">2</div><div class="tx"><div class="rv " data-step="2"><div class="rv-a"><b>只修第一句</b>红字：后面的常常是被它连累的</div><div class="rv-q">？ 先请同学说说看</div></div></div></div><div class="rowitem"><div class="num n">3</div><div class="tx"><div class="rv " data-step="3"><div class="rv-a">不听话：说清应该、看清实际、<b>串口看盒子</b>、一次改一处</div><div class="rv-q">？ 先请同学说说看</div></div></div></div></div><div class="tail"><div class="strip ">交作业：任务卡（三段找茬的记录）+ 出题的同学交题目文件。拆线前先拔 USB。</div></div></div>
+<div class="notes"><p>（三条先盖着。）「今天发现了哪三件事？」每一条先请一位同学说，说得差不多了 <b>→ 揭晓</b>，再请下一位。</p><p>「交作业：任务卡上三段找茬的记录；三颗星的同学把题目文件交上来，老师挑几道下节课开头给全班修。」</p><p>「收器材：先拔 USB 再拔线。下两节课做智能垃圾桶：超声波、舵机、交通灯、蜂鸣器都要用，器材盒里别缺东西。」</p><p>「每人说一句：今天哪里卡住了？」</p></div>
+</section>
+
+<section class="slide lay-cards" data-title="收尾 · 下节课智能垃圾桶">
+<div class="phead"><span class="no">第 14 课</span>
+<div class="rail"><span class="done" style="--w:8">兴趣</span><span class="done" style="--w:10">现象</span><span class="done" style="--w:15">概念</span><span class="done" style="--w:35">技能</span><span class="done" style="--w:20">小发明</span><span class="on" style="--w:8">收尾</span></div>
+<span class="tslot">85–90 分</span>
+</div>
+<h2 class="ptitle">下两节课：<em>智能垃圾桶</em>——全学期拼在一起</h2>
+<div class="pbody"><div class="cols2 grow lay-cards2-in"><div class="blk n"><span class="lbl">第 15–16 课 · 作品</span><h4>人一靠近，盖子自己打开</h4><p>超声波看见人 → 舵机开盖 → 3 秒后关盖。</p><p>没有新语法：用上这学期学的所有东西。</p></div><div class="blk c"><span class="lbl">先想一个问题</span><h4>要用到哪几样？</h4><p>传感器是……？<br>执行器是……？<br>判断写在哪？</p></div></div><div class="tail"><div class="strip ">回家准备：找一个<b>小纸盒或塑料盒</b>（能放进书包），带来当垃圾桶。</div></div></div>
+<div class="notes"><p>「下两节课是这学期的大作品：智能垃圾桶。人一靠近，盖子自己打开；3 秒后自己关上。」</p><p>「先想一想：要用到哪几样？传感器是超声波，第 13 课；执行器是舵机，第 12 课；判断用 if，第 5 课。还可以加灯、加蜂鸣器。」</p><p>「没有新语法，就是把这学期学的东西拼在一起——今天学的找茬本领，到时候一定用得上。」</p><p>「回家准备：找一个小纸盒或者塑料盒，能放进书包的，带来当垃圾桶。」</p><p>（课后：没过基础档的组号记进反馈；准备纸盒备用、双面胶、扎带；舵机臂和小螺丝清点。）</p></div>
+</section>
+<div class="deck-footer"><span>Arduino UNO 入门 · 单元五 综合项目 · 第 14 课 找茬课</span><span class="fright"><span class="rv-left" style="display:none"></span><span class="slide-number" data-current="1" data-total="21"></span></span></div>
+<div class="progress-bar"><span></span></div>
+</div>
+<script src="assets/fitstage.js"></script>
+<script src="assets/runtime.js"></script>
+</body>
+</html>

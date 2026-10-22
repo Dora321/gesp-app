@@ -106,6 +106,11 @@
     <priority>0.7</priority>
   </url>
   <url>
+    <loc>https://Dora321.github.io/gesp-app/hardware/arduino</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
     <loc>https://Dora321.github.io/gesp-app/innovation-foundation</loc>
     <changefreq>weekly</changefreq>
     <priority>0.7</priority>
@@ -859,6 +864,86 @@
     <loc>https://Dora321.github.io/gesp-app/lesson/8/16</loc>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
+  </url>
+  <url>
+    <loc>https://Dora321.github.io/gesp-app/hardware/arduino/1</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://Dora321.github.io/gesp-app/hardware/arduino/2</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://Dora321.github.io/gesp-app/hardware/arduino/3</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://Dora321.github.io/gesp-app/hardware/arduino/4</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://Dora321.github.io/gesp-app/hardware/arduino/5</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://Dora321.github.io/gesp-app/hardware/arduino/6</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://Dora321.github.io/gesp-app/hardware/arduino/7</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://Dora321.github.io/gesp-app/hardware/arduino/8</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://Dora321.github.io/gesp-app/hardware/arduino/9</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://Dora321.github.io/gesp-app/hardware/arduino/10</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://Dora321.github.io/gesp-app/hardware/arduino/11</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://Dora321.github.io/gesp-app/hardware/arduino/12</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://Dora321.github.io/gesp-app/hardware/arduino/13</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://Dora321.github.io/gesp-app/hardware/arduino/14</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://Dora321.github.io/gesp-app/hardware/arduino/15</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
+  </url>
+  <url>
+    <loc>https://Dora321.github.io/gesp-app/hardware/arduino/16</loc>
+    <changefreq>weekly</changefreq>
+    <priority>0.7</priority>
   </url>
   <url>
     <loc>https://Dora321.github.io/gesp-app/innovation-foundation/1</loc>

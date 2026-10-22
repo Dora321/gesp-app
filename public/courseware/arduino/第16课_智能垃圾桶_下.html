@@ -1,0 +1,287 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>第16课 智能垃圾桶（下）+ 展示 · Arduino UNO 入门</title>
+<link rel="stylesheet" href="assets/base.css">
+<link rel="stylesheet" id="theme-link" href="assets/theme-arduino.css">
+<link rel="stylesheet" href="assets/animations.css">
+</head>
+<body>
+<div class="deck" data-theme-base="assets/">
+<section class="slide lay-cover is-active" data-title="封面 · 课前检查">
+<span class="cv-bar">Arduino UNO 入门 / 单元五「综合项目」</span>
+<h1 class="cv-title">智能<em>垃圾桶（下）</em></h1>
+<p class="cv-sub">升级、展示、回顾——这学期的<b>最后一课</b></p>
+<div class="cv-tags"><span class="tag">完善 40 分钟</span><span class="tag">展示 25 分钟</span><span class="tag">学期回顾</span><span class="tag">90 分钟</span></div>
+<div class="cv-no">16</div>
+<div class="cv-icon"><svg viewBox="0 0 560 360" xmlns="http://www.w3.org/2000/svg" font-family="Microsoft YaHei" text-rendering="geometricPrecision"><path d="M120 340 H460" stroke="#141414" stroke-width="6"/><path d="M150 150 H370 L350 338 H170 Z" fill="#1D9E75" stroke="#141414" stroke-width="6" stroke-linejoin="round"/><g class="sv-swing" style="transform-origin:150px 146px"><rect x="140" y="128" width="244" height="24" rx="6" fill="#1F4E79" stroke="#141414" stroke-width="5"/></g><rect x="200" y="180" width="120" height="50" rx="6" fill="#1E6FB8" stroke="#141414" stroke-width="4"/><circle cx="230" cy="205" r="18" fill="#CFD8DC" stroke="#141414" stroke-width="4"/><circle cx="290" cy="205" r="18" fill="#CFD8DC" stroke="#141414" stroke-width="4"/><path d="M349 184 a30 30 0 0 1 0 42" fill="none" stroke="#D85A30" stroke-width="5" stroke-linecap="round"/><path d="M356 166 a55 55 0 0 1 0 77" fill="none" stroke="#D85A30" stroke-width="5" stroke-linecap="round"/><path d="M364 149 a80 80 0 0 1 0 112" fill="none" stroke="#D85A30" stroke-width="5" stroke-linecap="round"/></svg></div>
+<div class="notes"><p><b>课前 5 分钟</b>：各组领回上节课的垃圾桶（贴着组号），检查线有没有松；共享文件夹里有 trash（基础档答案）和第 15 课的模板；投影准备好展示顺序（抽签或按组号）。</p><p>今天的安排：前 40 分钟<b>完善和升级</b>（上节课没过基础档的先过）；中间 25 分钟<b>每组 2 分钟展示</b>；最后 5 分钟<b>学期回顾</b>。</p><p>今天的<b>保底目标</b>：每组垃圾桶通过测试清单 5 关；每组完成展示。</p><p>这是最后一课：结束前留 2 分钟收器材、拆线。</p></div>
+</section>
+
+<section class="slide lay-codes" data-title="兴趣 · 热身找茬">
+<div class="phead"><span class="no">第 16 课</span>
+<div class="rail"><span class="on" style="--w:8">兴趣</span><span class="" style="--w:10">现象</span><span class="" style="--w:15">概念</span><span class="" style="--w:35">完善</span><span class="" style="--w:20">展示</span><span class="" style="--w:8">收尾</span></div>
+<span class="tslot">0–5 分</span>
+</div>
+<h2 class="ptitle">热身找茬：能上传，可盖子<em>一直开开关关</em></h2>
+<div class="pbody"><div class="codes grow" style="grid-template-columns:1.2fr 1.1fr"><div class="code"><div class="lab "><span>某组的 loop</span></div><pre class="nums" style="font-size:27px;line-height:1.55;counter-reset:L 0"><span class="L"><span class="t">void</span> <span class="f">loop</span>() {</span>
+<span class="L">  <span class="t">int</span> cm = <span class="f">readDistance</span>();</span>
+<span class="L"><span class="ln hlc rvl" data-step="2">  <span class="x">if</span> (cm &lt; <span class="k">20</span>); {</span></span>
+<span class="L">    lid.<span class="f">write</span>(<span class="k">90</span>);</span>
+<span class="L">    <span class="f">delay</span>(<span class="k">3000</span>);</span>
+<span class="L">    lid.<span class="f">write</span>(<span class="k">0</span>);</span>
+<span class="L">    <span class="f">delay</span>(<span class="k">1000</span>);</span>
+<span class="L">  }</span>
+<span class="L">  <span class="f">delay</span>(<span class="k">100</span>);</span>
+<span class="L">}</span></pre></div><div class="code outbox "><div class="lab a"><span>编译器警告：全部</span></div><div class="rv rv-out" data-step="1"><div class="rv-a"><pre class="out" style="font-size:26px;line-height:1.55"><span class="ol warn">warning: suggest braces around empty</span>
+<span class="ol ">         body in an 'if' statement</span></pre></div><div class="rv-q">？ 先找一找</div></div></div></div><div class="opts" style="margin-top:22px"><div class="opt"><span class="ol">A</span>第 2 行</div><div class="opt rvo" data-step="2"><span class="ol">B</span>第 3 行</div><div class="opt"><span class="ol">C</span>第 6 行</div><div class="opt"><span class="ol">D</span>没有错</div></div></div>
+<div class="notes"><p>「热身：这是某组上节课的 loop。能上传，可是没人的时候，盖子也一直开开关关。错在哪一行？A 第 2 行，B 第 3 行，C 第 6 行，D 没有错。」（给 30 秒，举手投票。）</p><p><b>→ 揭晓</b>「编译器警告是『全部』的话，会有一句：suggest braces around empty body in an 'if' statement——if 的身体是空的。」</p><p><b>→ 揭晓</b>「B，第 3 行：if 的括号后面多了一个分号！分号把 if 结束了，下面大括号里的开盖、关盖，每一圈都会做，不管有没有人。」</p><p>「第 5 课、第 14 课都见过这个坑。修好它，热身结束。」</p></div>
+</section>
+
+<section class="slide lay-cards" data-title="兴趣 · 今天的安排">
+<div class="phead"><span class="no">第 16 课</span>
+<div class="rail"><span class="on" style="--w:8">兴趣</span><span class="" style="--w:10">现象</span><span class="" style="--w:15">概念</span><span class="" style="--w:35">完善</span><span class="" style="--w:20">展示</span><span class="" style="--w:8">收尾</span></div>
+<span class="tslot">0–5 分</span>
+</div>
+<h2 class="ptitle">最后一课：<em>完善 · 展示 · 回顾</em></h2>
+<div class="pbody"><div class="cols3 grow lay-cards3-in"><div class="blk n"><span class="lbl">前 40 分钟</span><h4>完善和升级</h4><p>先过测试清单 5 关；<br>再做 ★★ 亮灯嘀声、★★★ millis。</p></div><div class="blk c"><span class="lbl">中间 25 分钟</span><h4>每组 2 分钟展示</h4><p>演示一次 + 三句话；<br>其他组打分、提一个问题。</p></div><div class="blk g"><span class="lbl">最后 5 分钟</span><h4>学期回顾</h4><p>这学期的 7 个句型，你全会了吗？</p></div></div><div class="tail"><div class="strip ">展示要用的「三句话」上节课布置过：<b>最难的一个 bug</b> 想好了吗？</div></div></div>
+<div class="notes"><p>「今天是这学期的最后一课，分三段。」</p><p>「前 40 分钟，完善和升级：先拿测试清单把垃圾桶测一遍，5 关都要过；过了再做两颗星、三颗星。」</p><p>「中间 25 分钟，每组上来 2 分钟：演示一次，再说三句话。其他组在任务卡上打分，还要提一个问题。」</p><p>「最后 5 分钟，回顾这学期：7 个句型，你全会了吗？」</p><p>「上节课布置的：你们组修过的最难的一个 bug，想好怎么讲了吗？」</p></div>
+</section>
+
+<section class="slide lay-rowlist" data-title="现象 · 测试清单 5 关">
+<div class="phead"><span class="no">第 16 课</span>
+<div class="rail"><span class="done" style="--w:8">兴趣</span><span class="on" style="--w:10">现象</span><span class="" style="--w:15">概念</span><span class="" style="--w:35">完善</span><span class="" style="--w:20">展示</span><span class="" style="--w:8">收尾</span></div>
+<span class="tslot">5–15 分</span>
+</div>
+<h2 class="ptitle">先测一遍：你们的垃圾桶<em>过得了这 5 关</em>吗？</h2>
+<div class="pbody"><div class="rowlist grow"><div class="rowitem"><span class="box"></span><div class="tx">手伸到 <b>20 厘米内</b>：盖子开</div></div><div class="rowitem"><span class="box"></span><div class="tx"><b>3 秒后</b>：盖子自己关</div></div><div class="rowitem"><span class="box"></span><div class="tx">关上后马上再伸手：<b>等 1 秒</b>才开（冷却）</div></div><div class="rowitem"><span class="box"></span><div class="tx">在 <b>30 厘米外</b>走过：<b>不开</b></div></div><div class="rowitem"><span class="box"></span><div class="tx">连着试 <b>10 次</b>：次次都正常</div></div></div><div class="tail"><div class="strip ">检查员拿任务卡，一关一关测、一关一关勾；没过的关，先修它。</div></div></div>
+<div class="notes"><p>「先别急着升级。检查员拿出任务卡，一关一关测。」</p><p>「第一关：手伸到 20 厘米内，盖子开。第二关：3 秒后自己关。第三关：关上后马上再伸手，要等 1 秒才开——冷却。」</p><p>「第四关：在 30 厘米外走过，不能开——这一关最容易挂：超声波是不是对着桌面了？」</p><p>「第五关：连着试 10 次，次次都正常——偶尔失灵的，多半是线松了、舵机电不够。」</p><p>（给 8 分钟测和修。老师巡视，优先帮上节课没过基础档的组。）</p></div>
+</section>
+
+<section class="slide lay-cards" data-title="概念 · 看表而不是干等">
+<div class="phead"><span class="no">第 16 课</span>
+<div class="rail"><span class="done" style="--w:8">兴趣</span><span class="done" style="--w:10">现象</span><span class="on" style="--w:15">概念</span><span class="" style="--w:35">完善</span><span class="" style="--w:20">展示</span><span class="" style="--w:8">收尾</span></div>
+<span class="tslot">15–20 分</span>
+</div>
+<h2 class="ptitle">★★★ 新思路：<em>看表</em>，而不是干等</h2>
+<div class="pbody"><div class="cols3 grow lay-cards3-in"><div class="blk c"><span class="lbl">delay(3000)</span><h4>站在锅前干等 3 分钟</h4><p>等的时候什么都干不了：<br>测不了距离、闪不了灯。</p></div><div class="blk g"><span class="lbl">millis()</span><h4>看一眼钟</h4><p>交回开机到现在过了多少毫秒。<br>看一眼，去干别的，过一会儿再看。</p></div><div class="blk a"><span class="lbl">到点了吗？</span><h4>millis() - since &gt;= 3000</h4><div class="rv rv-ans" data-step="1"><div class="rv-a"><p class="ans">现在的时间 − 开始的时间 = 过去了多久。永远用<b>减法</b>写。</p></div><div class="rv-q">？ 怎么判断</div></div></div></div><div class="tail"><div class="strip ">这是竞赛队的内容，三颗星的同学先尝一口；其他同学知道「还有这种写法」就行。</div></div></div>
+<div class="notes"><p>「上节课说过 delay 的毛病：等 3 秒的时候，板子什么都干不了。」</p><p>「打个比方：煮面要 3 分钟。delay 是站在锅前干等 3 分钟；millis 是看一眼钟——『现在 12 点整』——然后去切菜，过一会儿回来再看一眼：『12 点 3 分了吗？』」</p><p>「millis() 交回板子开机到现在过了多少毫秒，就是那个钟。」</p><p>「怎么判断到点了？」<b>→ 揭晓</b>「现在的时间减去开始的时间，等于过去了多久；大于等于 3000，就到了。永远用减法写。」</p><p>「这是竞赛队的内容。三颗星的同学可以试；其他同学知道有这种写法就行。」</p></div>
+</section>
+
+<section class="slide lay-cards" data-title="概念 · 展示三句话">
+<div class="phead"><span class="no">第 16 课</span>
+<div class="rail"><span class="done" style="--w:8">兴趣</span><span class="done" style="--w:10">现象</span><span class="on" style="--w:15">概念</span><span class="" style="--w:35">完善</span><span class="" style="--w:20">展示</span><span class="" style="--w:8">收尾</span></div>
+<span class="tslot">20–25 分</span>
+</div>
+<h2 class="ptitle">展示 2 分钟：演示一次 + <em>三句话</em></h2>
+<div class="pbody"><div class="cols3 grow lay-cards3-in"><div class="blk n"><span class="lbl">第 1 句</span><h4>它能做什么</h4><p>「人一靠近，盖子自己打开，3 秒后关上；我们还加了……」</p></div><div class="blk g"><span class="lbl">第 2 句</span><h4>用了哪几课的本领</h4><p>「超声波是第 13 课，舵机是第 12 课，if 是第 5 课……」</p></div><div class="blk c"><span class="lbl">第 3 句</span><h4>修过最难的一个 bug</h4><p>「一开始盖子一直开开关关，后来发现是……」</p></div></div><div class="tail"><div class="strip ">第 3 句最重要：<b>会修 bug</b>，比一次就写对更厉害。</div></div></div>
+<div class="notes"><p>「展示每组 2 分钟：先演示一次，再说三句话。」</p><p>「第一句，它能做什么——包括你们加的升级。第二句，用了哪几课的本领——这学期学的东西，你们自己点名。」</p><p>「第三句最重要：修过最难的一个 bug。现象是什么？怎么发现的？怎么修好的？」</p><p>「为什么最重要？工程师一辈子都在修 bug。会修 bug，比一次就写对更厉害。」</p><p>（准备时间里，让每组两个人分好：谁演示、谁说哪句。）</p></div>
+</section>
+
+<section class="slide lay-table" data-title="概念 · 互评怎么打分">
+<div class="phead"><span class="no">第 16 课</span>
+<div class="rail"><span class="done" style="--w:8">兴趣</span><span class="done" style="--w:10">现象</span><span class="on" style="--w:15">概念</span><span class="" style="--w:35">完善</span><span class="" style="--w:20">展示</span><span class="" style="--w:8">收尾</span></div>
+<span class="tslot">25–30 分</span>
+</div>
+<h2 class="ptitle">互评：每样<em>1～3 颗星</em></h2>
+<div class="pbody"><div class="tbl grow" style="grid-template-columns:0.8fr 1.6fr 1.4fr"><div class="th">看什么</div><div class="th">3 颗星的样子</div><div class="th">1 颗星的样子</div><div class="td k"><span>能用</span></div><div class="td"><span>演示一次就成功，远处走过不误开</span></div><div class="td last"><span>要试好几次才开</span></div><div class="td k"><span>好看</span></div><div class="td"><span>线整齐、盖子开合顺、像个真垃圾桶</span></div><div class="td last"><span>线乱、盖子歪</span></div><div class="td k"><span>讲清楚</span></div><div class="td"><span>三句话都说了，bug 讲得清楚</span></div><div class="td last"><span>只演示，没讲</span></div><div class="td k"><span>有创意</span></div><div class="td"><span>加了自己的点子（灯、声音、表情……）</span></div><div class="td last"><span>和模板一模一样</span></div></div><div class="tail"><div class="strip ">每组还要向展示的组<b>提一个问题</b>：「你们是怎么……的？」</div></div></div>
+<div class="notes"><p>「看别的组展示时，你们在任务卡上打分：能用、好看、讲清楚、有创意，每样 1 到 3 颗星。」</p><p>「能用：一次就成功，远处走过不误开，3 颗星。好看：线整齐、盖子开合顺。讲清楚：三句话都说了。有创意：加了自己的点子。」</p><p>「打分要公平：不是比谁的作品贵，是比谁做得用心。」</p><p>「每组还要向展示的组提一个问题，用『你们是怎么……的』开头。」</p></div>
+</section>
+
+<section class="slide lay-flow" data-title="完善 · 完善五步">
+<div class="phead"><span class="no">第 16 课</span>
+<div class="rail"><span class="done" style="--w:8">兴趣</span><span class="done" style="--w:10">现象</span><span class="done" style="--w:15">概念</span><span class="on" style="--w:35">完善</span><span class="" style="--w:20">展示</span><span class="" style="--w:8">收尾</span></div>
+<span class="tslot">30–32 分</span>
+</div>
+<h2 class="ptitle">完善 35 分钟：<em>测、修、升、收、练</em></h2>
+<div class="pbody"><div class="flow grow"><div class="fl"><span class="fn">①</span><div class="ico"><svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" text-rendering="geometricPrecision"><circle cx="50" cy="50" r="40" fill="#00979D" stroke="#141414" stroke-width="5"/><path d="M30 52 L44 66 L71 36" fill="none" stroke="#fff" stroke-width="10" stroke-linecap="round" stroke-linejoin="round"/></svg></div><div class="fk">测</div><div class="fd">测试清单<br>5 关</div></div><div class="farr">→</div><div class="fl"><span class="fn">②</span><div class="ico"><svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" text-rendering="geometricPrecision"><rect x="8" y="26" width="84" height="48" rx="4" fill="#fff" stroke="#141414" stroke-width="5"/><text x="50" y="60" text-anchor="middle" font-size="25" font-weight="900" fill="#005C5F" font-family="Consolas">1000</text><path d="M14 48 H86" stroke="#D85A30" stroke-width="5"/><rect x="50" y="4" width="44" height="28" fill="#F5A623" stroke="#141414" stroke-width="4"/><text x="72" y="25" text-anchor="middle" font-size="19" font-weight="900" fill="#141414" font-family="Consolas">100</text></svg></div><div class="fk">修</div><div class="fd">没过的关<br>先修好</div></div><div class="farr">→</div><div class="fl"><span class="fn">③</span><div class="ico"><svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" text-rendering="geometricPrecision"><rect x="16" y="10" width="58" height="76" rx="4" fill="#fff" stroke="#141414" stroke-width="5"/><path d="M27 30 H62 M27 44 H58 M27 58 H50" stroke="#1F4E79" stroke-width="5" stroke-linecap="round"/><g transform="rotate(40 70 70)"><rect x="62" y="34" width="16" height="50" fill="#F5A623" stroke="#141414" stroke-width="4"/><path d="M62 84 L70 98 L78 84 Z" fill="#F2C29B" stroke="#141414" stroke-width="4" stroke-linejoin="round"/></g></svg></div><div class="fk">升</div><div class="fd">★★ 灯和声音<br>★★★ millis</div></div><div class="farr">→</div><div class="fl"><span class="fn">④</span><div class="ico"><svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" text-rendering="geometricPrecision"><rect x="6" y="52" width="88" height="40" rx="5" fill="#F4F1EA" stroke="#141414" stroke-width="5"/><path d="M18 66 H82 M18 80 H82" stroke="#55524B" stroke-width="5" stroke-dasharray="5 7"/><path d="M40 40 V64 M54 40 V64" stroke="#8D8D8D" stroke-width="4"/><circle cx="47" cy="28" r="15" fill="#E53935" stroke="#141414" stroke-width="4"/><path d="M76 74 C76 40 92 30 96 12" fill="none" stroke="#141414" stroke-width="9" stroke-linecap="round"/><path d="M76 74 C76 40 92 30 96 12" fill="none" stroke="#F2B705" stroke-width="5" stroke-linecap="round"/></svg></div><div class="fk">收</div><div class="fd">线扎整齐<br>盖子调顺</div></div><div class="farr">→</div><div class="fl"><span class="fn">⑤</span><div class="ico"><svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" text-rendering="geometricPrecision"><path d="M20 58 a22 22 0 0 1 10 -36 a24 24 0 0 1 42 4 a18 18 0 0 1 8 32 Z" fill="#fff" stroke="#141414" stroke-width="5" stroke-linejoin="round"/><circle cx="26" cy="74" r="6" fill="#fff" stroke="#141414" stroke-width="4"/><circle cx="16" cy="88" r="4" fill="#141414"/><text x="51" y="54" text-anchor="middle" font-size="34" font-weight="900" fill="#D85A30" font-family="Arial Black,Arial">?</text></svg></div><div class="fk">练</div><div class="fd">三句话<br>讲一遍</div></div></div><div class="tail"><div class="strip "><b>65 分钟</b>准时开始展示：到点没升级完的，就展示基础档——能用最重要。</div></div></div>
+<div class="notes"><p>「接下来到 65 分钟，是最后的完善时间，按五步走：测、修、升、收、练。」</p><p>「测和修：5 关没过的，先修好。升：两颗星、三颗星。收：用扎带把线束整齐，盖子调顺——展示时好看也算分。练：两个人把三句话讲一遍，计时 2 分钟。」</p><p>「65 分钟准时开始展示。到点没升级完的，就展示基础档——能用最重要。」</p><p>（老师优先帮还没过基础档的组。）</p></div>
+</section>
+
+<section class="slide lay-tiers3" data-title="完善 · 三档继续">
+<div class="phead"><span class="no">第 16 课</span>
+<div class="rail"><span class="done" style="--w:8">兴趣</span><span class="done" style="--w:10">现象</span><span class="done" style="--w:15">概念</span><span class="on" style="--w:35">完善</span><span class="" style="--w:20">展示</span><span class="" style="--w:8">收尾</span></div>
+<span class="tslot">32–60 分</span>
+</div>
+<h2 class="ptitle">三档任务：<em>接着上节课</em>做</h2>
+<div class="pbody"><div class="cols3 grow"><div class="blk tier t1"><div class="hd">★ 基础 · 人人必会</div><p class="task"><b>20cm 内</b>有人就开盖，<b>3 秒</b>后关盖，关盖后等 <b>1 秒</b>再检测</p><p class="who">上节课没过的组：前 20 分钟先过这一档</p><div class="tfill">□ 5 关测试全过　□ 最终签字</div></div><div class="blk tier t2"><div class="hd">★★ 进阶 · 新组合</div><p class="task">开盖时<b>亮灯</b>并<b>嘀一声</b>；用<b>旋钮</b>调开盖时长</p><p class="who">代码在第 10 页（同上节课）</p><div class="tfill">□ 亮灯　□ 嘀一声　□ 旋钮调时长</div></div><div class="blk tier t3"><div class="hd">★★★ 挑战 · 综合</div><p class="task">人<b>一直站在前面</b>就不关盖（<b>while</b> 反复测距）；再进一步用 <b>millis()</b> 改写，开盖时 LED <b>同时闪烁</b></p><p class="who">while 版第 11 页，millis 版第 12、13 页</p><div class="tfill">□ while 版　□ millis 版　□ 开盖时灯在闪</div></div></div><div class="tail"><div class="strip ">★ 没过的组先过；★★ 看第 10 页；★★★ 看第 11–13 页。</div></div></div>
+<div class="notes"><p>「三档任务和上节课一样，接着做。」</p><p>「<b>基础档</b>：上节课没过的组，前 20 分钟先过，老师来陪你。」</p><p>「<b>两颗星</b>：开盖亮灯、嘀一声、旋钮调时长——代码和上节课一样，第 10 页还放着。」</p><p>「<b>三颗星</b>：while 版在第 11 页；做完了的，试试 millis 版：盖子开着的时候，绿灯一闪一闪，同时还在测距——第 12、13 页。」</p></div>
+</section>
+
+<section class="slide lay-codes" data-title="完善 · ★★ 两块积木">
+<div class="phead"><span class="no">第 16 课</span>
+<div class="rail"><span class="done" style="--w:8">兴趣</span><span class="done" style="--w:10">现象</span><span class="done" style="--w:15">概念</span><span class="on" style="--w:35">完善</span><span class="" style="--w:20">展示</span><span class="" style="--w:8">收尾</span></div>
+<span class="tslot">32–60 分</span>
+</div>
+<h2 class="ptitle">★★ 亮灯、嘀一声、旋钮调时长（<em>同上节课</em>）</h2>
+<div class="pbody"><div class="codes grow" style="grid-template-columns:1.1fr 1fr"><div class="code"><div class="lab "><span>loop：旋钮调时长</span></div><pre style="font-size:19px;line-height:1.55"><span class="t">void</span> <span class="f">loop</span>() {
+  <span class="t">int</span> cm = <span class="f">readDistance</span>();
+  <span class="x">if</span> (cm &lt; <span class="k">20</span>) {
+    <span class="t">int</span> raw = <span class="f">analogRead</span>(KNOB);
+<span class="ln hlc">    <span class="t">int</span> openTime = <span class="f">map</span>(raw, <span class="k">0</span>, <span class="k">1023</span>, <span class="k">1000</span>, <span class="k">5000</span>);   <span class="c">// 1～5 秒</span></span>
+    <span class="f">openLid</span>();
+    <span class="f">delay</span>(openTime);
+    <span class="f">closeLid</span>();
+    <span class="f">delay</span>(<span class="k">1000</span>);
+  }
+  <span class="f">delay</span>(<span class="k">100</span>);
+}</pre></div><div class="code"><div class="lab g"><span>两块积木（写在 loop 下面）</span></div><pre style="font-size:19px;line-height:1.55"><span class="t">void</span> <span class="f">openLid</span>() {          <span class="c">// 开盖：转 90°、亮绿灯、嘀一声</span>
+  lid.<span class="f">write</span>(<span class="k">90</span>);
+  <span class="f">digitalWrite</span>(GREEN, <span class="k">HIGH</span>);
+  <span class="f">tone</span>(BUZZ, <span class="k">1000</span>, <span class="k">100</span>);
+}
+
+<span class="t">void</span> <span class="f">closeLid</span>() {         <span class="c">// 关盖：转回 0°、灭灯</span>
+  lid.<span class="f">write</span>(<span class="k">0</span>);
+  <span class="f">digitalWrite</span>(GREEN, <span class="k">LOW</span>);
+}</pre></div></div><div class="tail"><div class="strip ">上面加：GREEN = 8、BUZZ = 4、KNOB = A0 和两个 pinMode。</div></div></div>
+<div class="notes"><p>（★★ 的组做的时候开着这一页。）</p><p>「和上节课第 17 页一样：右边两块积木 openLid、closeLid；左边 loop 里先读旋钮、map 成 1000 到 5000 毫秒，再开、等、关、冷却。」</p><p>「上面别忘了 GREEN、BUZZ、KNOB 三个名字和 pinMode。」</p><p>「想更有创意？开盖时唱一小段第 9 课的旋律；关盖时换黄灯——这些都可以在展示时讲。」</p><p>（参考答案在第 15 课教案资源 5。）</p></div>
+</section>
+
+<section class="slide lay-code" data-title="完善 · ★★★ while 版">
+<div class="phead"><span class="no">第 16 课</span>
+<div class="rail"><span class="done" style="--w:8">兴趣</span><span class="done" style="--w:10">现象</span><span class="done" style="--w:15">概念</span><span class="on" style="--w:35">完善</span><span class="" style="--w:20">展示</span><span class="" style="--w:8">收尾</span></div>
+<span class="tslot">32–60 分</span>
+</div>
+<h2 class="ptitle">★★★ 第一步：while 版（<em>同上节课</em>）</h2>
+<div class="pbody"><div class="lcol grow" style="grid-template-columns:1.631578947368421fr 1fr"><div class="code"><div class="lab "><span>loop 里的 if 换成这样</span><span class="rt">while 版</span></div><pre style="font-size:27px;line-height:1.55">  <span class="x">if</span> (cm &lt; <span class="k">20</span>) {
+    lid.<span class="f">write</span>(<span class="k">90</span>);
+    <span class="f">delay</span>(<span class="k">3000</span>);
+<span class="ln hlc rvl" data-step="1">    <span class="x">while</span> (<span class="f">readDistance</span>() &lt; <span class="k">20</span>) {   <span class="c">// 人还在：一直等</span></span>
+      <span class="f">delay</span>(<span class="k">100</span>);
+    }
+    lid.<span class="f">write</span>(<span class="k">0</span>);
+    <span class="f">delay</span>(<span class="k">1000</span>);
+  }</pre></div><div class="figcards"><div class="blk n"><span class="lbl">效果</span><h4>人在，盖子就不关</h4><p>人走了，才往下关盖。</p></div><div class="blk c"><span class="lbl">缺点</span><h4>等人走的时候</h4><div class="rv rv-ans" data-step="1"><div class="rv-a"><p class="ans">板子只会测距：想让灯同时闪，做不到——下一页用 millis 改写。</p></div><div class="rv-q">？ 想一想</div></div></div></div></div><div class="tail"><div class="strip ">while 版做通了，再看下一页。</div></div></div>
+<div class="notes"><p>（★★★ 的组做的时候开着这一页。）</p><p>「第一步和上节课一样：开盖、等 3 秒，然后 while：只要还测到 20 厘米内有人，就一直等。」</p><p>「它的缺点是什么？」<b>→ 揭晓</b>「等人走的时候，板子只会测距。想让灯同时闪，做不到——因为它被 while 和 delay 拴住了。」</p><p>「下一页用 millis 改写：不干等，而是每一圈都看一眼钟。」</p></div>
+</section>
+
+<section class="slide lay-code" data-title="完善 · ★★★ millis 的盒子">
+<div class="phead"><span class="no">第 16 课</span>
+<div class="rail"><span class="done" style="--w:8">兴趣</span><span class="done" style="--w:10">现象</span><span class="done" style="--w:15">概念</span><span class="on" style="--w:35">完善</span><span class="" style="--w:20">展示</span><span class="" style="--w:8">收尾</span></div>
+<span class="tslot">32–60 分</span>
+</div>
+<h2 class="ptitle">★★★ 第二步：几个<em>记时间</em>的盒子</h2>
+<div class="pbody"><div class="lcol grow" style="grid-template-columns:1.631578947368421fr 1fr"><div class="code"><div class="lab "><span>加在 Servo lid; 下面</span><span class="rt">4 个盒子</span></div><pre style="font-size:27px;line-height:1.55"><span class="t">int</span> lidOpen = <span class="k">0</span>;               <span class="c">// 盖子开着吗：0 关，1 开</span>
+<span class="t">unsigned</span> <span class="t">long</span> since = <span class="k">0</span>;       <span class="c">// 最后一次看见人的时刻</span>
+<span class="t">unsigned</span> <span class="t">long</span> lastBlink = <span class="k">0</span>;   <span class="c">// 上一次换灯的时刻</span>
+<span class="t">int</span> led = <span class="k">0</span>;                   <span class="c">// 绿灯现在亮不亮</span></pre></div><div class="figcards"><div class="blk c"><span class="lbl">unsigned long</span><h4>装很大的数</h4><p>millis() 一会儿就几十万，int 装不下。和时间有关的都用它。</p></div><div class="blk n"><span class="lbl">lidOpen、led</span><h4>记住「现在的样子」</h4><p>第 6 课的 on、第 11 课回差的 on，同一个办法。</p></div></div></div><div class="tail"><div class="strip ">大纲的规则：凡是和时间、millis() 打交道的盒子，一律用 <b>unsigned long</b>。</div></div></div>
+<div class="notes"><p>（★★★ 的组做的时候开着这一页。）</p><p>「millis 版要先做 4 个盒子。since 记最后一次看见人的时刻；lastBlink 记上一次换灯的时刻——这两个和时间有关，用 unsigned long，能装很大的数。」</p><p>「为什么不用 int？millis 一分钟就是 60000，int 最大只到 32767，一会儿就装不下了，会变成负数。」</p><p>「lidOpen 记盖子现在开没开，led 记绿灯现在亮不亮——第 6 课两颗星的 on，同一个办法：用盒子记住现在的样子。」</p></div>
+</section>
+
+<section class="slide lay-code" data-title="完善 · ★★★ millis 的 loop">
+<div class="phead"><span class="no">第 16 课</span>
+<div class="rail"><span class="done" style="--w:8">兴趣</span><span class="done" style="--w:10">现象</span><span class="done" style="--w:15">概念</span><span class="on" style="--w:35">完善</span><span class="" style="--w:20">展示</span><span class="" style="--w:8">收尾</span></div>
+<span class="tslot">32–60 分</span>
+</div>
+<h2 class="ptitle">★★★ 第三步：每一圈都<em>看一眼钟</em></h2>
+<div class="pbody"><div class="lcol grow" style="grid-template-columns:2.333333333333333fr 1fr"><div class="code"><div class="lab "><span>loop：三件事，谁也不等谁</span><span class="rt">millis 版</span></div><pre style="font-size:20px;line-height:1.4"><span class="t">void</span> <span class="f">loop</span>() {
+<span class="ln hlg rvl" data-step="1">  <span class="x">if</span> (<span class="f">readDistance</span>() &lt; <span class="k">20</span>) {              <span class="c">// 有人：开盖，重新计时</span></span>
+    lid.<span class="f">write</span>(<span class="k">90</span>);
+    lidOpen = <span class="k">1</span>;
+    since = <span class="f">millis</span>();
+  }
+<span class="ln hlc rvl" data-step="2">  <span class="x">if</span> (lidOpen == <span class="k">1</span> &amp;&amp; <span class="f">millis</span>() - since &gt;= <span class="k">3000</span>) {   <span class="c">// 3 秒没人：关</span></span>
+    lid.<span class="f">write</span>(<span class="k">0</span>);
+    lidOpen = <span class="k">0</span>;
+    <span class="f">digitalWrite</span>(GREEN, <span class="k">LOW</span>);
+    <span class="f">delay</span>(<span class="k">1000</span>);                          <span class="c">// 冷却</span>
+  }
+<span class="ln hl rvl" data-step="3">  <span class="x">if</span> (lidOpen == <span class="k">1</span> &amp;&amp; <span class="f">millis</span>() - lastBlink &gt;= <span class="k">250</span>) { <span class="c">// 开着：灯每 0.25 秒换一次</span></span>
+    lastBlink = <span class="f">millis</span>();
+    led = <span class="k">1</span> - led;
+    <span class="f">digitalWrite</span>(GREEN, led);
+  }
+  <span class="f">delay</span>(<span class="k">50</span>);
+}</pre></div><div class="figcards"><div class="blk g"><span class="lbl">①</span><h4>有人：开盖，重新计时</h4><p>since = millis(); 记下这一刻。</p></div><div class="blk c"><span class="lbl">②</span><h4>3 秒没人：关</h4><p>现在 − since ≥ 3000。</p></div><div class="blk a"><span class="lbl">③</span><h4>开着：灯每 0.25 秒换一次</h4><p>现在 − lastBlink ≥ 250。</p></div></div></div></div>
+<div class="notes"><p>（★★★ 的组做的时候开着这一页。）</p><p>「loop 里三件事，每一圈都做，谁也不等谁。」<b>→ 揭晓①</b>「有人：开盖，并且把 since 改成现在——人一直在，since 就一直更新，3 秒永远到不了。」</p><p><b>→ 揭晓②</b>「盖子开着，并且现在减 since 大于等于 3000——3 秒没看见人了：关盖、灭灯、冷却。」</p><p><b>→ 揭晓③</b>「盖子开着，并且离上次换灯过了 250 毫秒：换一次灯——led 等于 1 减 led，1 变 0，0 变 1。」</p><p>「三件事轮流看一眼钟，所以灯在闪的同时，距离也一直在测。这就是竞赛队状态机的第一步。」</p></div>
+</section>
+
+<section class="slide lay-table" data-title="完善 · 卡住了先查这张">
+<div class="phead"><span class="no">第 16 课</span>
+<div class="rail"><span class="done" style="--w:8">兴趣</span><span class="done" style="--w:10">现象</span><span class="done" style="--w:15">概念</span><span class="on" style="--w:35">完善</span><span class="" style="--w:20">展示</span><span class="" style="--w:8">收尾</span></div>
+<span class="tslot">32–60 分</span>
+</div>
+<h2 class="ptitle">卡住了？<em>先查这张</em>，再举手</h2>
+<div class="pbody"><div class="tbl grow" style="grid-template-columns:1.3fr 1.45fr 1.3fr"><div class="th">看到什么</div><div class="th">多半是因为</div><div class="th">怎么办</div><div class="td k"><span>没人也一直开合</span></div><div class="td"><span>if (…) 后面多了分号</span></div><div class="td last"><span>删掉 ) 和 { 之间的分号</span></div><div class="td k"><span>30 厘米外走过也开</span></div><div class="td"><span>超声波对着桌面 / 墙</span></div><div class="td last"><span>眼睛朝外、略朝上</span></div><div class="td k"><span>偶尔失灵</span></div><div class="td"><span>线松了；舵机电不够</span></div><div class="td last"><span>插紧；拔掉不用的模块</span></div><div class="td k"><span>盖子关不严 / 顶飞</span></div><div class="td"><span>舵机臂角度不对</span></div><div class="td last"><span>servotest 停 0° 再装臂</span></div><div class="td k"><span>★★ 不嘀 / 灯不亮</span></div><div class="td"><span>BUZZ、GREEN 没 pinMode 或号码错</span></div><div class="td last"><span>对照接线总表</span></div><div class="td k"><span>★★★ 过一会儿就乱</span></div><div class="td"><span>since 用了 int，装不下</span></div><div class="td last"><span>改成 unsigned long</span></div></div></div>
+<div class="notes"><p>（完善时间投影停在这一页。）</p><p>「卡住了先查这张表。第一行就是热身那道题：if 后面多了分号。第二行：远处也开，超声波对着桌面了。」</p><p>「偶尔失灵：线松了，或者舵机电不够。盖子关不严：舵机臂角度不对，上节课的 servotest 再来一次。」</p><p>「两颗星：不嘀、灯不亮，对照接线总表。三颗星：跑一会儿就乱，多半是 since 用了 int，装不下。」</p></div>
+</section>
+
+<section class="slide lay-rowlist" data-title="完善 · 最终验收">
+<div class="phead"><span class="no">第 16 课</span>
+<div class="rail"><span class="done" style="--w:8">兴趣</span><span class="done" style="--w:10">现象</span><span class="done" style="--w:15">概念</span><span class="on" style="--w:35">完善</span><span class="" style="--w:20">展示</span><span class="" style="--w:8">收尾</span></div>
+<span class="tslot">55–65 分</span>
+</div>
+<h2 class="ptitle">★ 最终验收：<em>5 关全过</em></h2>
+<div class="pbody"><div class="rowlist grow"><div class="rowitem"><span class="box"></span><div class="tx">测试清单 <b>5 关全过</b>（老师当场再测一次）</div></div><div class="rowitem"><span class="box"></span><div class="tx">两人都能指着代码讲：<b>哪一行是传感器、哪一行是判断、哪一行是执行器</b></div></div><div class="rowitem"><span class="box"></span><div class="tx">展示的<b>三句话</b>准备好了，<b>分好工</b></div></div></div><div class="tail"><div class="strip ">三项都过 → 老师签字。65 分钟准时开始展示。</div></div></div>
+<div class="notes"><p>「最后验收。老师当场再测一次 5 关。第二项两个人都要过：指着代码讲，哪一行是传感器、哪一行是判断、哪一行是执行器。」</p><p>（标准答案：readDistance() 是传感器；if (cm &lt; 20) 是判断；lid.write 是执行器。）</p><p>「第三项：三句话准备好、分好工——谁演示、谁说哪句。」</p><p>「65 分钟准时开始展示。」</p></div>
+</section>
+
+<section class="slide lay-cards" data-title="展示 · 展示开始">
+<div class="phead"><span class="no">第 16 课</span>
+<div class="rail"><span class="done" style="--w:8">兴趣</span><span class="done" style="--w:10">现象</span><span class="done" style="--w:15">概念</span><span class="done" style="--w:35">完善</span><span class="on" style="--w:20">展示</span><span class="" style="--w:8">收尾</span></div>
+<span class="tslot">65–85 分</span>
+</div>
+<h2 class="ptitle">展示开始：每组 <em>2 分钟</em></h2>
+<div class="pbody"><div class="cols3 grow lay-cards3-in"><div class="blk n"><span class="lbl">展示的组</span><h4>演示一次 + 三句话</h4><p>① 它能做什么<br>② 用了哪几课的本领<br>③ 修过最难的一个 bug</p></div><div class="blk g"><span class="lbl">看的组</span><h4>打分 + 提一个问题</h4><p>能用、好看、讲清楚、有创意，<br>各 1～3 颗星。</p></div><div class="blk a"><span class="lbl">老师</span><h4>计时 2 分钟</h4><p>到 1 分 45 秒举手提醒。</p></div></div><div class="tail"><div class="strip ">展示的组带着垃圾桶上前，接老师的电脑或自己的电脑都可以。</div></div></div>
+<div class="notes"><p>「展示开始。每组 2 分钟：带着垃圾桶上来，先演示一次，再说三句话。」</p><p>「看的组：在任务卡上打分，能用、好看、讲清楚、有创意，各 1 到 3 颗星；还要准备一个问题。」</p><p>「老师计时，到 1 分 45 秒举手提醒。」</p><p>（按抽签顺序进行。每组结束后请一个组提问，展示的组回答。这一页一直停到全部展示完。）</p></div>
+</section>
+
+<section class="slide lay-rowlist" data-title="展示 · 展示时停这一页">
+<div class="phead"><span class="no">第 16 课</span>
+<div class="rail"><span class="done" style="--w:8">兴趣</span><span class="done" style="--w:10">现象</span><span class="done" style="--w:15">概念</span><span class="done" style="--w:35">完善</span><span class="on" style="--w:20">展示</span><span class="" style="--w:8">收尾</span></div>
+<span class="tslot">65–85 分</span>
+</div>
+<h2 class="ptitle">正在展示：请说出<em>这三句</em></h2>
+<div class="pbody"><div class="rowlist grow"><div class="rowitem"><div class="num n">1</div><div class="tx"><b>它能做什么？</b><small>人一靠近，盖子……；我们还加了……</small></div></div><div class="rowitem"><div class="num g">2</div><div class="tx"><b>用了哪几课的本领？</b><small>超声波第 13 课、舵机第 12 课、if 第 5 课……</small></div></div><div class="rowitem"><div class="num c">3</div><div class="tx"><b>修过最难的一个 bug？</b><small>一开始……，后来发现是……，改成……就好了</small></div></div></div><div class="tail"><div class="strip ">看的组：打分，再问一个「你们是怎么……的？」</div></div></div>
+<div class="notes"><p>（每组展示时投影停在这一页，当提词卡用。）</p><p>「展示的同学看着这三句说：它能做什么；用了哪几课的本领；修过最难的一个 bug。」</p><p>「看的组：一边看一边打分，最后问一个问题。」</p><p>（老师点评只说亮点：比如『你们的冷却写得好，远处走过一次都没误开』『这个 bug 你们是用串口找到的，方法很对』。展示结束后统计得分最高的几组，口头表扬。）</p></div>
+</section>
+
+<section class="slide lay-table" data-title="收尾 · 7 个句型">
+<div class="phead"><span class="no">第 16 课</span>
+<div class="rail"><span class="done" style="--w:8">兴趣</span><span class="done" style="--w:10">现象</span><span class="done" style="--w:15">概念</span><span class="done" style="--w:35">完善</span><span class="done" style="--w:20">展示</span><span class="on" style="--w:8">收尾</span></div>
+<span class="tslot">85–90 分</span>
+</div>
+<h2 class="ptitle">这学期的 <em>7 个句型</em>，你全会了</h2>
+<div class="pbody"><div class="tbl grow" style="grid-template-columns:0.7fr 2.1fr 0.8fr"><div class="th">句型</div><div class="th">写法</div><div class="th">第几课学</div><div class="td k"><span>动作</span></div><div class="td mono"><span>digitalWrite(脚号, HIGH);</span></div><div class="td last"><span>第 1–3 课</span></div><div class="td k"><span>等待</span></div><div class="td mono"><span>delay(毫秒);</span></div><div class="td last"><span>第 1–3 课</span></div><div class="td k"><span>变量</span></div><div class="td mono"><span>int 名字 = 数字;</span></div><div class="td last"><span>第 4 课</span></div><div class="td k"><span>判断</span></div><div class="td mono"><span>if (条件) { … } else { … }</span></div><div class="td last"><span>第 5 课</span></div><div class="td k"><span>等到</span></div><div class="td mono"><span>while (条件) { }</span></div><div class="td last"><span>第 6 课</span></div><div class="td k"><span>重复</span></div><div class="td mono"><span>for (int i = 1; i &lt;= 次数; i++) { … }</span></div><div class="td last"><span>第 7 课</span></div><div class="td k"><span>函数</span></div><div class="td mono"><span>void 名字() { … }</span></div><div class="td last"><span>第 8–9 课</span></div></div><div class="tail"><div class="strip ">再加上：串口、analogRead、map、舵机库、黑盒函数……16 课，一课一个。</div></div></div>
+<div class="notes"><p>「最后 5 分钟，回顾这学期。语法卡上的 7 个句型：动作 digitalWrite、等待 delay、变量 int、判断 if、等到 while、重复 for、函数 void。」</p><p>「拿出你们桌上的语法卡，一个一个打勾——是不是全都打上了？」</p><p>「再加上串口、analogRead、map、舵机库、黑盒函数——16 课，一课学一个，一个都没落下。」</p><p>「第 1 课的时候，你们连一行代码都没写过；今天，你们能从空白写出一个 20 多行的智能垃圾桶。」</p></div>
+</section>
+
+<section class="slide lay-roadmap" data-title="收尾 · 16 课走完了">
+<div class="phead"><span class="no">第 16 课</span>
+<div class="rail"><span class="done" style="--w:8">兴趣</span><span class="done" style="--w:10">现象</span><span class="done" style="--w:15">概念</span><span class="done" style="--w:35">完善</span><span class="done" style="--w:20">展示</span><span class="on" style="--w:8">收尾</span></div>
+<span class="tslot">85–90 分</span>
+</div>
+<h2 class="ptitle">16 课，<em>走完了</em></h2>
+<div class="pbody"><div class="stairs"><div class="unit u1" style="margin-bottom:0px"><div class="uh">单元一 从代码到电路<small>第 1–3 课</small></div><div class="ub">看懂 Blink<br>SOS 灯语<br>交通灯<span class="w">手写：只改数字</span></div></div><div class="unit u2" style="margin-bottom:40px"><div class="uh">单元二 变量与判断<small>第 4–6 课</small></div><div class="ub">串口计数器<br>按键开灯<br>按键计数<span class="w">手写：约 5 行</span></div></div><div class="unit u3" style="margin-bottom:80px"><div class="uh">单元三 循环与函数<small>第 7–9 课</small></div><div class="ub">流水灯<br>交通灯重写<br>音乐盒<span class="w">手写：约 10 行</span></div></div><div class="unit u4" style="margin-bottom:120px"><div class="uh">单元四 模拟世界<small>第 10–12 课</small></div><div class="ub">旋钮调亮度<br>自动小夜灯<br>舵机门<span class="w">手写：10–15 行</span></div></div><div class="unit u5 now" style="margin-bottom:160px"><span class="here">今天在这里</span><div class="uh">单元五 综合项目<small>第 13–16 课</small></div><div class="ub">测距报警<br>找茬课<br><b>智能垃圾桶</b><span class="w">手写：20–30 行</span></div></div></div><div class="tail"><div class="strip ">从「只改数字」到「从空白写 20 行」——每一级台阶都是你们自己走上来的。</div></div></div>
+<div class="notes"><p>「这是第 1 课给你们看的路线图。当时我们站在最左边：只读代码、只改数字、写中文注释。」</p><p>「然后一级一级往上走：变量、判断、循环、函数、模拟世界……今天，我们站在了最右边的台阶上：智能垃圾桶。」</p><p>「从只改数字，到从空白写 20 行。每一级台阶，都是你们自己走上来的。」</p></div>
+</section>
+
+<section class="slide lay-rowlist" data-title="收尾 · 带走的三件事">
+<div class="phead"><span class="no">第 16 课</span>
+<div class="rail"><span class="done" style="--w:8">兴趣</span><span class="done" style="--w:10">现象</span><span class="done" style="--w:15">概念</span><span class="done" style="--w:35">完善</span><span class="done" style="--w:20">展示</span><span class="on" style="--w:8">收尾</span></div>
+<span class="tslot">85–90 分</span>
+</div>
+<h2 class="ptitle">这学期最值得<em>带走的三件事</em></h2>
+<div class="pbody"><div class="rowlist grow"><div class="rowitem"><div class="num g">1</div><div class="tx"><div class="rv " data-step="1"><div class="rv-a"><b>先猜，再上传</b>：猜错不丢人，不猜才可惜</div><div class="rv-q">？ 先请同学说说看</div></div></div></div><div class="rowitem"><div class="num a">2</div><div class="tx"><div class="rv " data-step="2"><div class="rv-a"><b>红字不可怕</b>：找行号、读第一句、看这一行和上一行</div><div class="rv-q">？ 先请同学说说看</div></div></div></div><div class="rowitem"><div class="num n">3</div><div class="tx"><div class="rv " data-step="3"><div class="rv-a"><b>大问题拆成小块</b>：先画流程、先分开测，再合起来</div><div class="rv-q">？ 先请同学说说看</div></div></div></div></div><div class="tail"><div class="strip ">交作业：作品视频 + 最终代码 + 任务卡（互评表）。拆线前先拔 USB，器材按清单收回。</div></div></div>
+<div class="notes"><p>（三条先盖着。）「这学期最值得带走的三件事，你觉得是什么？」每一条先请一位同学说，说得差不多了 <b>→ 揭晓</b>，再请下一位。</p><p>「第一，先猜再上传：猜错不丢人，不猜才可惜。第二，红字不可怕：三步就能读懂。第三，大问题拆成小块：先画流程、先分开测，再合起来——这不光是编程，做什么事都管用。」</p><p>「交作业：作品视频、最终代码、任务卡。」</p><p>「收器材：先拔 USB，再拆线，按器材清单一样一样放回盒子。垃圾桶可以带回家。」</p></div>
+</section>
+
+<section class="slide lay-cards" data-title="收尾 · 下一步">
+<div class="phead"><span class="no">第 16 课</span>
+<div class="rail"><span class="done" style="--w:8">兴趣</span><span class="done" style="--w:10">现象</span><span class="done" style="--w:15">概念</span><span class="done" style="--w:35">完善</span><span class="done" style="--w:20">展示</span><span class="on" style="--w:8">收尾</span></div>
+<span class="tslot">85–90 分</span>
+</div>
+<h2 class="ptitle">下一步：<em>还能做什么</em></h2>
+<div class="pbody"><div class="cols3 grow lay-cards3-in"><div class="blk n"><span class="lbl">竞赛队拓展</span><h4>更多本领</h4><p>数组、边沿检测、millis、状态机、<br>LCD 屏幕、温湿度、小车……</p></div><div class="blk c"><span class="lbl">GESP C++</span><h4>标准 C++</h4><p>没有 setup 和 loop，有 main()；<br>第 2–8 课已经覆盖 1 级的变量、分支、循环。</p></div><div class="blk g"><span class="lbl">自己动手</span><h4>改造你的垃圾桶</h4><p>加一块屏幕显示「谢谢」？<br>满了就亮红灯？——你来定。</p></div></div><div class="tail"><div class="strip ">谢谢大家这一学期的认真和耐心。<b>下学期见！</b></div></div></div>
+<div class="notes"><p>「最后，下一步还能做什么？」</p><p>「想继续深入的同学，可以报名竞赛队：数组、millis、状态机，还有屏幕、温湿度传感器、小车。」</p><p>「想考 GESP 的同学：标准 C++ 没有 setup 和 loop，有一个 main()；但你们第 2 到 8 课学的变量、分支、循环，已经覆盖了 1 级的大部分。」</p><p>「还有最简单的：回家改造你的垃圾桶。加一块屏幕显示谢谢？满了就亮红灯？你来定。」</p><p>「谢谢大家这一学期的认真和耐心。下学期见！」</p></div>
+</section>
+<div class="deck-footer"><span>Arduino UNO 入门 · 单元五 综合项目 · 第 16 课 智能垃圾桶（下）+ 展示</span><span class="fright"><span class="rv-left" style="display:none"></span><span class="slide-number" data-current="1" data-total="21"></span></span></div>
+<div class="progress-bar"><span></span></div>
+</div>
+<script src="assets/fitstage.js"></script>
+<script src="assets/runtime.js"></script>
+</body>
+</html>

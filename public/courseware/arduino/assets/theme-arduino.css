@@ -1,0 +1,501 @@
+/* ============================================================
+   theme: arduino ——「Arduino UNO 入门课程（初一零基础）」网页课件
+   版式语言沿用「粗黑边 + 硬投影」，配色取自课程大纲文档：
+     藏青  #1F4E79  课程主色（页眉、课号、单元）
+     绿    #1D9E75  ★ 基础档 / 正确 / 动作
+     琥珀  #F5A623  ★★ 进阶档 / 强调
+     珊瑚  #D85A30  ★★★ 挑战档 / 出错 / 注意
+     灰蓝  #455A64  竞赛队拓展
+   代码块用 Arduino IDE 2 默认主题的配色——学生屏幕上和投影上一个颜色。
+   所有尺寸按 1600×900 设计稿写，fitstage.js 负责等比缩放。
+   本文件是唯一的外观定义：改这里 = 全部网页课件一起变。
+   ============================================================ */
+:root{
+  --ink:#141414;
+  --paper:#FBF7EE;
+  --paper-2:#F1EADB;
+  --navy:#1F4E79;
+  --navy-2:#2F6FB0;
+  --sky:#D3E4F5;
+  --sky-2:#EAF2FB;
+  --green:#1D9E75;  --green-l:#E1F5EE;
+  --amber:#F5A623;  --amber-l:#FFF3DC;
+  --coral:#D85A30;  --coral-l:#FFEBE3;
+  --slate:#455A64;
+  --gray:#6B6B6B;
+
+  /* Arduino IDE 2「Arduino default」主题的 token 颜色（注释色略加深，投影更清楚） */
+  --ide-text:#2E3A3F;
+  --ide-cmt:#7F8C8D;
+  --ide-type:#00979D;   /* void int const …… */
+  --ide-fn:#D35400;     /* setup loop pinMode digitalWrite delay …… */
+  --ide-const:#005C5F;  /* HIGH LOW OUTPUT LED_BUILTIN 数字 */
+  --ide-ctrl:#728E00;   /* if else for while #include …… */
+
+  --bg:var(--paper);--bg-soft:var(--paper-2);--surface:#fff;--surface-2:var(--paper-2);
+  --border:var(--ink);--border-strong:var(--ink);
+  --text-1:var(--ink);--text-2:#3A3A3A;--text-3:#777;
+  --accent:var(--navy);--accent-2:var(--green);--accent-3:var(--amber);
+  --good:var(--green);--warn:var(--amber);--bad:var(--coral);
+  --grad:linear-gradient(90deg,var(--navy),var(--navy-2) 40%,var(--green) 62%,var(--amber) 82%,var(--coral));
+  --radius:8px;--radius-sm:6px;--radius-lg:12px;
+  --shadow:8px 8px 0 var(--ink);--shadow-lg:12px 12px 0 var(--ink);
+  --font-sans:"Microsoft YaHei","微软雅黑","Segoe UI",sans-serif;
+  --font-display:"Microsoft YaHei","微软雅黑",sans-serif;
+  --font-mono:"Cascadia Mono",Consolas,"Courier New",monospace;
+  --letter-tight:0em;--letter-normal:0em;
+  --bd:4px;
+}
+
+/* ================= 定宽舞台（1600×900，等比缩放到任何投影） ================= */
+html,body{width:100%;height:100%;overflow:hidden;background:#0C0C0C}
+.deck{position:absolute;left:50%;top:50%;width:1600px;height:900px;
+  transform:translate(-50%,-50%) scale(var(--fit,1));transform-origin:center center;
+  overflow:hidden;background:var(--paper)}
+.slide{padding:40px 64px 74px;justify-content:flex-start;background:var(--paper)}
+.slide::after{content:"";position:absolute;left:0;right:0;bottom:0;height:10px;background:var(--grad);z-index:3}
+.deck-footer{left:64px;right:64px;bottom:24px;font-size:16px;color:var(--ink);font-weight:700;
+  letter-spacing:0;text-transform:none}
+.deck-footer .slide-number{background:var(--navy);color:#fff;padding:4px 12px;font-weight:800}
+:root[data-preview="1"] .deck-footer{display:none}
+.progress-bar>span{background:var(--ink)}
+
+/* ================= 页眉：课号 + 六环节进度条 + 时段 ================= */
+.phead{display:flex;align-items:center;gap:16px;flex:none;height:44px}
+.phead .no{background:var(--navy);color:#fff;font-weight:900;font-size:19px;padding:8px 15px;
+  border:3px solid var(--ink);box-shadow:4px 4px 0 var(--ink);white-space:nowrap}
+.rail{display:flex;gap:6px;flex:0 1 820px;min-width:0}
+.rail span{flex:var(--w,1) 1 0;min-width:76px;border:3px solid var(--ink);background:#fff;color:#8A8A8A;
+  font-size:16px;font-weight:800;text-align:center;padding:5px 0;white-space:nowrap;line-height:1.2}
+.rail span.done{background:var(--paper-2);color:var(--ink)}
+.rail span.on{background:var(--ink);color:#fff;box-shadow:4px 4px 0 var(--amber)}
+.phead .tslot{margin-left:auto;background:#fff;border:3px solid var(--ink);padding:6px 14px;
+  font-size:17px;font-weight:800;color:var(--ink);white-space:nowrap}
+
+.kick{display:inline-block;align-self:flex-start;margin-top:20px;background:var(--amber);color:var(--ink);
+  border:3px solid var(--ink);padding:4px 14px;font-size:19px;font-weight:900;box-shadow:4px 4px 0 var(--ink)}
+.kick.g{background:var(--green);color:#fff}
+.kick.c{background:var(--coral);color:#fff}
+.kick.n{background:var(--navy);color:#fff}
+.ptitle{font-size:52px;font-weight:900;line-height:1.14;margin:16px 0 0;color:var(--ink);flex:none}
+.kick+.ptitle{margin-top:12px}
+.ptitle em{font-style:normal;background:var(--amber);padding:0 10px;border:4px solid var(--ink);
+  box-shadow:6px 6px 0 var(--ink);display:inline-block;line-height:1.08}
+.psub{font-size:25px;font-weight:700;color:#3A3A3A;margin:10px 0 0;flex:none;line-height:1.4}
+.pbody{flex:1;display:flex;flex-direction:column;justify-content:center;min-height:0;margin-top:20px}
+.pbody.top{justify-content:flex-start}
+
+/* ================= 通用构件 ================= */
+.blk{background:#fff;border:var(--bd) solid var(--ink);box-shadow:var(--shadow);padding:22px 26px;
+  display:flex;flex-direction:column;justify-content:center;min-width:0}
+.blk.g{box-shadow:8px 8px 0 var(--green)}
+.blk.a{box-shadow:8px 8px 0 var(--amber)}
+.blk.c{box-shadow:8px 8px 0 var(--coral)}
+.blk.n{box-shadow:8px 8px 0 var(--navy)}
+.blk h4{font-size:29px;font-weight:900;margin:0 0 9px;color:var(--ink);line-height:1.25}
+.blk p{font-size:24px;line-height:1.5;margin:0;color:#2A2A2A}
+.blk p+p{margin-top:8px}
+.blk .lbl{align-self:flex-start;font-size:17px;font-weight:900;padding:3px 12px;margin-bottom:10px;
+  border:3px solid var(--ink);background:var(--paper-2)}
+.blk.g .lbl{background:var(--green);color:#fff}
+.blk.a .lbl{background:var(--amber)}
+.blk.c .lbl{background:var(--coral);color:#fff}
+.blk.n .lbl{background:var(--navy);color:#fff}
+b{font-weight:900}
+.blk b,.rowitem b,.tbl b,.fl b,.unit b{background:var(--amber-l);box-shadow:inset 0 -0.42em 0 var(--amber);padding:0 3px}
+
+.strip{background:var(--ink);color:#FBF7EE;padding:16px 26px;font-size:26px;font-weight:800;line-height:1.45;flex:none}
+.strip b{color:var(--amber)}
+.strip.g{background:var(--green);color:#fff}
+.strip.g b{color:#FFE08A}
+.strip.n{background:var(--navy);color:#fff}
+.strip.n b{color:#FFD27A}
+.strip.a{background:var(--amber);color:var(--ink);border:var(--bd) solid var(--ink)}
+.strip.a b{color:var(--coral)}
+.strip.c{background:var(--coral);color:#fff}
+.strip.c b{color:#FFE08A}
+.tail{margin-top:22px;flex:none}
+
+code.ic{font-family:var(--font-mono);font-size:.9em;background:var(--paper-2);border:2px solid var(--ink);
+  padding:0 7px;font-weight:700;white-space:nowrap;color:var(--ink)}
+.strip code.ic{background:rgba(255,255,255,.16);border-color:currentColor;color:inherit}
+.strip.a code.ic{background:rgba(20,20,20,.08)}
+
+.num{width:54px;height:54px;flex:none;background:var(--amber);border:var(--bd) solid var(--ink);
+  display:flex;align-items:center;justify-content:center;font-size:27px;font-weight:900;color:var(--ink);
+  box-shadow:4px 4px 0 var(--ink)}
+.num.g{background:var(--green);color:#fff}
+.num.c{background:var(--coral);color:#fff}
+.num.n{background:var(--navy);color:#fff}
+
+.tag{display:inline-block;border:3px solid var(--ink);padding:5px 16px;font-size:19px;font-weight:800;background:#fff;color:var(--ink)}
+
+/* ================= 代码块（IDE 2 配色） ================= */
+.code{background:#fff;border:var(--bd) solid var(--ink);box-shadow:var(--shadow);overflow:hidden;
+  display:flex;flex-direction:column;min-width:0}
+.code .lab{display:flex;justify-content:space-between;align-items:center;background:var(--navy);color:#fff;
+  font-size:18px;font-weight:800;padding:7px 18px;font-family:var(--font-sans)}
+.code .lab.c{background:var(--coral)}
+.code .lab.g{background:var(--green)}
+.code .lab .rt{font-weight:700;opacity:.85}
+.code pre{margin:0;padding:14px 22px;font-family:var(--font-mono);font-size:27px;line-height:1.55;
+  color:var(--ide-text);white-space:pre;font-weight:600;overflow:hidden;flex:1}
+.code pre .t{color:var(--ide-type)}
+.code pre .f{color:var(--ide-fn)}
+.code pre .k{color:var(--ide-const)}
+.code pre .x{color:var(--ide-ctrl)}
+.code pre .s{color:var(--ide-const)}
+.code pre .c{color:var(--ide-cmt);font-weight:500}
+.code pre .ln{display:inline-block;margin:0 -10px;padding:0 10px}
+.code pre .ln.hl{background:#FFF0C7;box-shadow:inset 6px 0 0 var(--amber)}
+.code pre .ln.hlc{background:#FFE3D8;box-shadow:inset 6px 0 0 var(--coral)}
+.code pre .ln.hlg{background:#DDF3EA;box-shadow:inset 6px 0 0 var(--green)}
+.code pre mark{background:transparent;color:inherit;outline:3px solid var(--coral);outline-offset:1px;border-radius:2px}
+.code pre .blank{color:#B9B9B9;font-weight:500}
+
+/* ================= 封面 ================= */
+.lay-cover{justify-content:center;padding-top:40px}
+.cv-bar{align-self:flex-start;background:var(--navy);color:#fff;padding:10px 24px;font-size:22px;font-weight:800;
+  border:3px solid var(--ink)}
+.cv-title{font-size:118px;line-height:1;font-weight:900;margin:26px 0 0;color:var(--ink);align-self:flex-start}
+.cv-title em{font-style:normal;background:var(--amber);padding:0 18px;border:5px solid var(--ink);
+  display:inline-block;box-shadow:10px 10px 0 var(--ink);margin-left:10px}
+.cv-sub{align-self:flex-start;font-size:32px;font-weight:800;color:var(--ink);margin:38px 0 28px;
+  background:#fff;border:var(--bd) solid var(--ink);padding:12px 26px;box-shadow:8px 8px 0 var(--green)}
+.cv-tags{display:flex;gap:16px;align-self:flex-start;flex-wrap:wrap}
+.slide>.cv-no{position:absolute;right:72px;top:58px;font-size:150px;font-weight:900;line-height:1;
+  color:var(--navy);-webkit-text-stroke:5px var(--ink);z-index:1}
+.slide>.cv-icon{position:absolute;right:64px;bottom:96px;width:560px;z-index:0}
+
+/* ================= 图 + 卡（硬件图 / 作品图） ================= */
+.figgrid{display:grid;grid-template-columns:var(--figw,1.15fr) 1fr;gap:34px;align-items:stretch;min-height:0}
+.figbox{background:#fff;border:var(--bd) solid var(--ink);box-shadow:var(--shadow);display:flex;
+  align-items:center;justify-content:center;padding:12px;min-height:0}
+.figbox svg{width:100%;height:100%;max-height:560px}
+.figcards{display:flex;flex-direction:column;gap:20px;justify-content:center;min-height:0}
+.figcards .blk{padding:18px 24px}
+.figcards .blk h4{font-size:27px}
+.figcards .blk p{font-size:22px}
+
+/* ================= 网格卡片 ================= */
+.cols2{display:grid;grid-template-columns:1fr 1fr;gap:28px;align-items:stretch}
+.cols3{display:grid;grid-template-columns:repeat(3,1fr);gap:26px;align-items:stretch}
+
+/* ================= 单元阶梯（16 课路线） ================= */
+.stairs{display:grid;grid-template-columns:repeat(5,1fr);gap:16px;align-items:end;flex:none}
+.unit{background:#fff;border:var(--bd) solid var(--ink);box-shadow:6px 6px 0 var(--ink);display:flex;
+  flex-direction:column;min-width:0}
+.unit .uh{padding:9px 14px;border-bottom:var(--bd) solid var(--ink);font-size:20px;font-weight:900;line-height:1.25}
+.unit .uh small{display:block;font-size:16px;font-weight:700;opacity:.9}
+.unit .ub{padding:10px 14px 12px;font-size:19px;line-height:1.45;font-weight:700;color:#2A2A2A}
+.unit .ub .w{display:block;margin-top:8px;padding-top:7px;border-top:3px dashed var(--ink);font-size:18px;color:var(--ink)}
+.unit.u1 .uh{background:var(--sky)}
+.unit.u2 .uh{background:#B7D1EE}
+.unit.u3 .uh{background:#8FB7E3}
+.unit.u4 .uh{background:var(--navy-2);color:#fff}
+.unit.u5 .uh{background:var(--navy);color:#fff}
+.unit.now{box-shadow:8px 8px 0 var(--amber);outline:4px solid var(--amber);outline-offset:4px}
+.unit .here{align-self:flex-start;margin:-20px 0 0 12px;background:var(--amber);border:3px solid var(--ink);
+  font-size:16px;font-weight:900;padding:2px 10px;position:relative;z-index:2}
+
+/* ================= 横向流程（写→验证→上传→运行 / PRIMM） ================= */
+.flow{display:flex;align-items:stretch;gap:0;min-height:0}
+.fl{flex:1;background:#fff;border:var(--bd) solid var(--ink);box-shadow:var(--shadow);display:flex;
+  flex-direction:column;align-items:center;text-align:center;padding:18px 16px 20px;min-width:0}
+.fl .ico{width:104px;height:104px;margin:2px 0 10px}
+.fl .ico svg{width:100%;height:100%}
+.fl .fk{font-size:30px;font-weight:900;line-height:1.2}
+.fl .fn{display:inline-block;font-size:17px;font-weight:900;background:var(--ink);color:#fff;padding:2px 10px;margin-bottom:8px}
+.fl .fd{font-size:21px;line-height:1.45;font-weight:700;color:#2A2A2A;margin-top:8px}
+.fl.on{box-shadow:8px 8px 0 var(--amber);background:var(--amber-l)}
+.farr{flex:0 0 48px;display:flex;align-items:center;justify-content:center;font-size:40px;font-weight:900;color:var(--ink)}
+
+/* ================= 代码行 + 标签（数分号） ================= */
+.lines{background:#fff;border:var(--bd) solid var(--ink);box-shadow:var(--shadow);padding:10px 0;min-height:0}
+.lrow{display:grid;grid-template-columns:1fr 250px;align-items:center;gap:0;padding:0 22px;min-height:0}
+.lrow pre{margin:0;font-family:var(--font-mono);font-size:27px;line-height:1.5;font-weight:600;color:var(--ide-text);white-space:pre}
+.lrow pre .t{color:var(--ide-type)} .lrow pre .f{color:var(--ide-fn)} .lrow pre .k{color:var(--ide-const)}
+.lrow pre .x{color:var(--ide-ctrl)} .lrow pre .c{color:var(--ide-cmt)}
+.lrow pre .semi{background:var(--green);color:#fff;border-radius:3px;padding:0 3px;margin-left:1px}
+.lrow .lt{justify-self:start;font-size:19px;font-weight:900;padding:2px 12px;border:3px solid var(--ink)}
+.lrow .lt.act{background:var(--green);color:#fff}
+.lrow .lt.frm{background:var(--paper-2);color:var(--ink)}
+.lrow .lt.no{border-color:transparent}
+.lrow.act{background:#F1FAF6}
+.lcol{display:grid;grid-template-columns:1.55fr 1fr;gap:28px;align-items:stretch;min-height:0}
+
+/* ================= 表格 ================= */
+.tbl{display:grid;border:var(--bd) solid var(--ink);box-shadow:var(--shadow);background:#fff;align-content:start;overflow:hidden}
+.tbl .th{background:var(--navy);color:#fff;font-size:22px;font-weight:800;padding:11px 18px;border-right:3px solid rgba(255,255,255,.25)}
+.tbl .th:last-child{border-right:0}
+.tbl .td{font-size:22px;line-height:1.42;padding:11px 18px;color:#2A2A2A;border-top:3px solid var(--ink);
+  border-right:3px solid var(--ink);display:flex;flex-direction:column;justify-content:center}
+.tbl .td.last{border-right:0}
+.tbl .td.k{font-weight:800;color:var(--ink);background:var(--paper-2)}
+.tbl .td.mono{font-family:var(--font-mono);font-weight:700;font-size:22px;color:var(--ide-fn);background:#FFFDF8}
+
+/* ================= 编号清单 ================= */
+.rowlist{display:flex;flex-direction:column;gap:14px}
+.rowitem{display:flex;gap:18px;align-items:center;background:#fff;border:var(--bd) solid var(--ink);
+  padding:12px 20px;box-shadow:5px 5px 0 var(--ink)}
+.rowitem .tx{font-size:25px;font-weight:700;line-height:1.42;color:#222}
+.rowitem .tx small{display:block;font-size:20px;font-weight:700;color:#555;margin-top:2px}
+.rowitem .box{width:40px;height:40px;flex:none;border:4px solid var(--ink);background:#fff}
+
+/* ================= 分层任务 ================= */
+.tier{justify-content:flex-start;padding:0;overflow:hidden}
+.tier .hd{border-bottom:var(--bd) solid var(--ink);padding:11px 24px;font-size:26px;font-weight:900}
+.tier.t1 .hd{background:var(--green);color:#fff}
+.tier.t2 .hd{background:var(--amber);color:var(--ink)}
+.tier.t3 .hd{background:var(--coral);color:#fff}
+.tier .task{font-size:24px;line-height:1.48;font-weight:700;margin:16px 24px 0;color:#222}
+.tier .who{font-size:19px;line-height:1.4;font-weight:700;color:#555;margin:10px 24px 0}
+.tier .tfill{font-size:20px;color:#333;border-top:3px dashed var(--ink);padding:12px 24px 16px;margin-top:auto;font-weight:700}
+
+/* ================= 两段代码对照 ================= */
+.vs2{display:grid;grid-template-columns:1fr 92px 1fr;gap:10px;align-items:stretch;min-height:0}
+.vsmark{align-self:center;font-size:30px;font-weight:900;color:var(--ink);background:var(--amber);border:5px solid var(--ink);
+  width:80px;height:80px;display:flex;align-items:center;justify-content:center;box-shadow:6px 6px 0 var(--ink);
+  margin:0 auto;transform:rotate(-6deg)}
+.stack2{display:flex;flex-direction:column;gap:18px;min-height:0}
+
+/* ================= 投票 / 选项 ================= */
+.opts{display:grid;grid-template-columns:repeat(4,1fr);gap:18px;flex:none}
+.opt{background:#fff;border:var(--bd) solid var(--ink);box-shadow:5px 5px 0 var(--ink);padding:12px 16px;
+  font-size:24px;font-weight:800;display:flex;gap:12px;align-items:center}
+.opt .ol{width:42px;height:42px;flex:none;background:var(--ink);color:#fff;display:flex;align-items:center;
+  justify-content:center;font-weight:900;font-size:24px}
+
+/* ================= 闪烁动画（板载 L 灯） ================= */
+@keyframes kf-blink{0%,49.9%{opacity:1}50%,100%{opacity:0}}
+.led-blink{animation:kf-blink 2s steps(1,end) infinite}
+.led-fast{animation:kf-blink .2s steps(1,end) infinite}
+:root[data-preview="1"] .led-blink,:root[data-preview="1"] .led-fast{animation:none}
+
+/* ================= 分隔页 ================= */
+.dv{flex:1;display:flex;flex-direction:column;align-items:center;justify-content:center;text-align:center}
+.dv-time{background:var(--ink);color:#fff;padding:10px 26px;font-size:24px;font-weight:800}
+.dv-t{font-size:88px;font-weight:900;margin:26px 0 0;color:var(--ink)}
+.dv-s{font-size:30px;font-weight:800;margin:26px 0 0;background:var(--amber);color:var(--ink);
+  border:var(--bd) solid var(--ink);padding:14px 30px;box-shadow:8px 8px 0 var(--ink)}
+
+/* ================= 内容区高度：按版式限高，卡片等高又不撑出空洞 ================= */
+.grow{flex:1;min-height:0}
+.lay-cards3 .grow{max-height:360px}
+.lay-cards2 .grow{max-height:380px}
+.lay-figure .grow{max-height:600px}
+.lay-flow .grow{max-height:400px}
+.lay-tiers3 .grow{max-height:470px}
+.lay-rowlist .grow{flex:0 0 auto;max-height:none}
+.lay-table .grow{flex:0 0 auto;max-height:none}
+
+/* 代码页右侧问题清单（读代码环节） */
+.qlist{justify-content:center;gap:14px}
+.qlist .rowitem{padding:11px 16px;gap:14px}
+.qlist .rowitem .tx{font-size:23px;line-height:1.35}
+.qlist .num{width:46px;height:46px;font-size:23px}
+
+/* 插图定尺寸：百分比宽高放在 flex 盒里，Chrome 偶尔把图形和文字按两套尺寸画（文字错位）。
+   改成绝对定位铺满，尺寸确定，viewBox 等比缩放。 */
+.figbox{position:relative;min-height:0}
+.figbox svg{position:absolute;left:12px;top:12px;width:calc(100% - 24px);height:calc(100% - 24px);max-height:none}
+
+/* ================= 2026-10-11 目检修正 ================= */
+/* 代码里的中文注释：等宽字体没有汉字，回落到微软雅黑（否则回落成宋体，投影上发虚） */
+:root{--font-mono:"Cascadia Mono",Consolas,"Microsoft YaHei","微软雅黑",monospace}
+/* 表格单元格：内容包一层 span，flex 只负责垂直居中，粗体不再被拆成独立的块 */
+.tbl .td>span{display:block}
+.tbl .td{font-size:23px}
+/* 卡片页：卡片按内容定高，不撑满整页留大空洞 */
+.lay-cards .grow{flex:0 0 auto;min-height:300px}
+.lay-cards .blk{justify-content:center}
+.bigline{font-size:40px;font-weight:900;letter-spacing:.12em;margin:4px 0 10px;color:var(--ink);line-height:1.2}
+/* 横向流程：内容垂直居中，卡片别太高 */
+.lay-flow .grow{max-height:360px}
+.fl{justify-content:center}
+/* 代码页 / 对照页：代码框按内容定高，整体垂直居中 */
+.lay-code .lcol{align-items:center}
+.lay-code .figcards,.lay-code .qlist{align-self:center}
+.lay-code .lcol>.figbox{align-self:stretch;min-height:420px}
+.lay-vs .vs2{align-items:center}
+.lay-vs .vs2,.lay-vs .stack2{flex:0 0 auto}
+.lay-vs .pbody,.lay-code .pbody{justify-content:center}
+/* 整行高亮铺满整行；空行高亮时显示说明（伪元素，不进代码文本） */
+.code pre .ln.hl,.code pre .ln.hlc,.code pre .ln.hlg{min-width:calc(100% + 20px)}
+.code pre .ln[data-note]::after{content:attr(data-note);color:var(--coral);font-family:var(--font-sans);font-weight:800;font-size:.8em}
+/* 分层任务卡别太高 */
+.lay-tiers3 .grow{max-height:400px}
+/* 清单页（验收 / 发现）字号再大一点 */
+.lay-rowlist .rowitem{padding:16px 22px}
+.lay-rowlist .rowitem .tx{font-size:27px}
+/* 路线图：台阶更高、字更大，填满版面 */
+.unit .uh{font-size:23px;padding:11px 16px}
+.unit .uh small{font-size:18px}
+.unit .ub{font-size:23px;line-height:1.55;padding:14px 16px 16px}
+.unit .ub .w{font-size:20px}
+
+/* ================= 先猜再揭晓（带 data-step 的元素，runtime.js 按 → 加 .on） ================= */
+/* 块级：答案先占好位置但看不见，上面盖一块斜纹「？」占位；揭晓时弹出 */
+.rv{position:relative;min-width:0}
+.rv>.rv-q{display:none}
+.rv:not(.on)>.rv-a{visibility:hidden}
+.rv:not(.on)>.rv-q{display:flex;position:absolute;inset:0;align-items:center;justify-content:center;
+  border:3px dashed var(--ink);background:repeating-linear-gradient(-45deg,#FFF6DE 0 14px,#FFEDC4 14px 28px);
+  color:var(--ink);font-family:var(--font-sans);font-weight:900;font-size:22px;line-height:1.25;
+  text-align:center;padding:2px 10px;cursor:pointer;min-height:34px}
+.rv.on>.rv-a{animation:kf-rv .5s cubic-bezier(.2,1.5,.4,1) both}
+@keyframes kf-rv{0%{opacity:0;transform:scale(.9)}100%{opacity:1;transform:none}}
+.rv-strip:not(.on)>.rv-q{font-size:24px;border-width:4px}
+.rv-ans{margin-top:10px}
+.blk .ans{font-weight:800;color:var(--ink)}
+.tbl .td>.rv{display:block}
+.tbl .td>.rv:not(.on)>.rv-q{font-size:20px;border-width:2px}
+/* 行内：答案位置先显示一个「？」小框 */
+.rvi{position:relative;display:inline-block}
+.rvi:not(.on){color:transparent!important;background:#FFF6DE!important;border:2px dashed var(--ink)!important;
+  box-shadow:none!important;cursor:pointer}
+.rvi:not(.on)>*{visibility:hidden}
+.rvi:not(.on)::after{content:"？";position:absolute;inset:0;display:flex;align-items:center;justify-content:center;
+  color:var(--ink);font-weight:900;font-family:var(--font-sans)}
+.rvi.on{animation:kf-rv .5s cubic-bezier(.2,1.5,.4,1) both}
+.strip .rvi{padding:0 10px;margin-left:4px}
+.strip .rvi:not(.on){min-width:150px}
+/* 代码整行高亮到那一步才亮；数分号页的分号高亮同理 */
+.code pre .ln.rvl:not(.on){background:transparent;box-shadow:none}
+.code pre .ln.rvl:not(.on)[data-note]::after{content:none}
+.lrow pre .semi.rvs:not(.on){background:transparent;color:inherit}
+/* 投票页：正确选项到那一步变绿 */
+.opt.rvo.on{background:var(--green);color:#fff;animation:kf-rv .5s cubic-bezier(.2,1.5,.4,1) both}
+.opt.rvo.on .ol{background:#fff;color:var(--green)}
+.opt.rvo.on::after{content:"答案";margin-left:auto;font-size:18px;background:#fff;color:var(--green);
+  border:2px solid var(--ink);padding:0 8px}
+/* 读代码页：问题下面的答案 */
+.qlist .rowitem{align-items:flex-start}
+.qlist .rv{margin-top:6px}
+.qlist .rv:not(.on)>.rv-q{font-size:18px;border-width:2px}
+.qlist .qa{font-size:21px;font-weight:800;color:var(--green);line-height:1.35}
+.qlist .qa code.ic{font-size:.96em;color:var(--ide-fn)}
+/* 页脚：本页还剩几个答案没揭晓（老师看的提示） */
+.deck-footer .fright{display:flex;gap:12px;align-items:center}
+.rv-left{background:var(--amber);color:var(--ink);border:2px solid var(--ink);padding:2px 10px;font-weight:900;font-size:15px}
+:root[data-preview="1"] .rv-left{display:none!important}
+
+/* ================= 第 2–5 课新增版式（2026-10-13） ================= */
+/* 拆句子：一行代码 / 一行报错拆成几段，每段下面贴标签 */
+.anat{background:#fff;border:var(--bd) solid var(--ink);box-shadow:var(--shadow);padding:30px 34px 26px;
+  display:flex;flex-direction:column;gap:34px;flex:none}
+.arow{display:flex;align-items:flex-start;gap:24px}
+.acap{flex:none;width:150px;margin-top:.7em;font-size:21px;font-weight:900;background:var(--paper-2);border:3px solid var(--ink);
+  padding:4px 10px;text-align:center}
+.segs{display:flex;flex-wrap:wrap;align-items:flex-start;row-gap:18px;font-family:var(--font-mono);font-weight:700;line-height:1.15}
+.seg{display:inline-flex;flex-direction:column;align-items:center;min-width:0;position:relative}
+.seg .st{padding:2px 3px 6px;border-bottom:7px solid transparent;color:var(--ink);white-space:pre}
+.seg.n .st{border-color:var(--navy);color:var(--navy)}
+.seg.g .st{border-color:var(--green);color:#137A5A}
+.seg.a .st{border-color:var(--amber);color:#9A6200}
+.seg.c .st{border-color:var(--coral);color:var(--coral)}
+.seg.p .st{color:#444}
+.seg .lw{position:absolute;left:50%;top:100%;transform:translateX(-50%);margin-top:calc(12px + var(--lv,0) * 46px);
+  font-size:20px;line-height:1.25;white-space:nowrap;z-index:1}
+.seg .sl{display:inline-block;font-family:var(--font-sans);font-size:20px;font-weight:900;line-height:1.25;padding:3px 10px;
+  border:3px solid var(--ink);background:#fff;color:var(--ink);white-space:nowrap}
+.seg.n .sl{background:var(--navy);color:#fff}
+.seg.g .sl{background:var(--green);color:#fff}
+.seg.a .sl{background:var(--amber)}
+.seg.c .sl{background:var(--coral);color:#fff}
+.seg .rvi:not(.on){min-width:64px;min-height:36px}
+.acards{margin-top:28px;flex:none}
+.lay-anat .acards .blk{padding:18px 24px}
+.lay-anat .acards .blk h4{font-size:26px}
+.lay-anat .acards .blk p{font-size:22px}
+
+/* 并排代码 / 输出框 */
+.codes{display:grid;gap:28px;align-items:center;min-height:0}
+.lay-codes .codes{flex:0 0 auto}
+.carr{font-size:40px;font-weight:900;text-align:center;align-self:center;margin:0 -14px}
+.outbox .lab{background:#3A3A3A}
+.outbox .lab.c{background:var(--coral)}
+.outbox .lab.g{background:var(--green)}
+.outbox .lab.n{background:var(--navy)}
+pre.out{margin:0;padding:14px 22px;font-family:var(--font-mono);color:#2E3A3F;white-space:pre;font-weight:600;
+  overflow:hidden;flex:1;background:#FCFCFC}
+pre.out .ol{display:inline-block;min-width:100%}
+pre.out .ol.err{color:#C8341B;font-weight:800}
+pre.out .ol.warn{color:#9A6200;font-weight:800}
+.outbox.serial pre.out{background:#fff;color:#111;font-weight:700}
+pre.out .rvl2:not(.on){visibility:hidden}
+.outbox>.rv{flex:1;display:flex;flex-direction:column}
+.outbox>.rv>.rv-a{flex:1;display:flex;flex-direction:column}
+
+/* SOS 灯语：三短 三长 三短（200 / 600 毫秒，字母间停 600，一遍后停 2000，共 7.4 秒） */
+@keyframes kf-sos{
+  0%{opacity:1} 2.70%{opacity:0} 5.41%{opacity:1} 8.11%{opacity:0} 10.81%{opacity:1} 13.51%{opacity:0}
+  21.62%{opacity:1} 29.73%{opacity:0} 32.43%{opacity:1} 40.54%{opacity:0} 43.24%{opacity:1} 51.35%{opacity:0}
+  59.46%{opacity:1} 62.16%{opacity:0} 64.86%{opacity:1} 67.57%{opacity:0} 70.27%{opacity:1} 72.97%{opacity:0} 100%{opacity:0}}
+.led-sos{animation:kf-sos 7.4s steps(1,end) infinite}
+:root[data-preview="1"] .led-sos{animation:none}
+
+/* 代码行号（读报错要对得上「第几行」）：CSS 计数器画，不进代码文本 */
+.code pre.nums .L::before{counter-increment:L;content:counter(L);display:inline-block;width:1.7em;margin-right:.75em;
+  text-align:right;color:#A3AEB1;font-weight:500;border-right:2px solid #E3E6E7;padding-right:.35em}
+.code pre.nums .ln.hl,.code pre.nums .ln.hlc,.code pre.nums .ln.hlg{min-width:calc(100% + 20px - 2.45em)}
+
+/* 第 3 课红绿灯：红 3 秒 → 绿 3 秒 → 黄 1 秒（一轮 7 秒） */
+@keyframes kf-tl-r{0%{opacity:1}42.857%{opacity:0}100%{opacity:0}}
+@keyframes kf-tl-g{0%{opacity:0}42.857%{opacity:1}85.714%{opacity:0}100%{opacity:0}}
+@keyframes kf-tl-y{0%{opacity:0}85.714%{opacity:1}100%{opacity:1}}
+.tl-r{animation:kf-tl-r 7s steps(1,end) infinite}
+.tl-g{animation:kf-tl-g 7s steps(1,end) infinite}
+.tl-y{animation:kf-tl-y 7s steps(1,end) infinite}
+/* 两个方向（★★★）：A 红 4 秒（B 绿 3 + 黄 1）→ A 绿 3 + 黄 1（B 红 4 秒），一轮 8 秒 */
+@keyframes kf-x2-ar{0%{opacity:1}50%{opacity:0}100%{opacity:0}}
+@keyframes kf-x2-ag{0%{opacity:0}50%{opacity:1}87.5%{opacity:0}100%{opacity:0}}
+@keyframes kf-x2-ay{0%{opacity:0}87.5%{opacity:1}100%{opacity:1}}
+@keyframes kf-x2-bg{0%{opacity:1}37.5%{opacity:0}100%{opacity:0}}
+@keyframes kf-x2-by{0%{opacity:0}37.5%{opacity:1}50%{opacity:0}100%{opacity:0}}
+@keyframes kf-x2-br{0%{opacity:0}50%{opacity:1}100%{opacity:1}}
+.x2-ar{animation:kf-x2-ar 8s steps(1,end) infinite}
+.x2-ag{animation:kf-x2-ag 8s steps(1,end) infinite}
+.x2-ay{animation:kf-x2-ay 8s steps(1,end) infinite}
+.x2-bg{animation:kf-x2-bg 8s steps(1,end) infinite}
+.x2-by{animation:kf-x2-by 8s steps(1,end) infinite}
+.x2-br{animation:kf-x2-br 8s steps(1,end) infinite}
+:root[data-preview="1"] [class^="tl-"],:root[data-preview="1"] [class^="x2-"]{animation:none}
+
+/* 第 5 课按键：按下（30%–70%）时按键帽往下、红灯亮；★★★ 两个按键都按住（40%–65%）红灯才亮 */
+@keyframes kf-bt-press{0%{transform:none;filter:none}30%{transform:translateY(5px);filter:brightness(.7)}70%{transform:none;filter:none}100%{transform:none;filter:none}}
+@keyframes kf-bt-led{0%{opacity:0}30%{opacity:1}70%{opacity:0}100%{opacity:0}}
+@keyframes kf-bt2-a{0%{transform:none;filter:none}15%{transform:translateY(5px);filter:brightness(.7)}65%{transform:none;filter:none}100%{transform:none;filter:none}}
+@keyframes kf-bt2-b{0%{transform:none;filter:none}40%{transform:translateY(5px);filter:brightness(.7)}90%{transform:none;filter:none}100%{transform:none;filter:none}}
+@keyframes kf-bt2-led{0%{opacity:0}40%{opacity:1}65%{opacity:0}100%{opacity:0}}
+.bt-press{animation:kf-bt-press 4s steps(1,end) infinite}
+.bt-led{animation:kf-bt-led 4s steps(1,end) infinite}
+.bt2-a{animation:kf-bt2-a 6s steps(1,end) infinite}
+.bt2-b{animation:kf-bt2-b 6s steps(1,end) infinite}
+.bt2-led{animation:kf-bt2-led 6s steps(1,end) infinite}
+:root[data-preview="1"] [class^="bt"]{animation:none}
+
+/* 第 7 课流水灯：6 个灯依次亮，每个 0.2 秒，一轮 1.2 秒（fl-1 = 5 号 … fl-6 = 10 号） */
+@keyframes kf-chase{0%{opacity:1}16.666%{opacity:0}100%{opacity:0}}
+.fl-1,.fl-2,.fl-3,.fl-4,.fl-5,.fl-6{animation:kf-chase 1.2s steps(1,end) infinite}
+.fl-2{animation-delay:-1s}.fl-3{animation-delay:-.8s}.fl-4{animation-delay:-.6s}.fl-5{animation-delay:-.4s}.fl-6{animation-delay:-.2s}
+:root[data-preview="1"] [class^="fl-"]{animation:none}
+
+/* 第 10 课旋钮：拧过去再拧回来（4 秒），红灯跟着由暗到亮再变暗 */
+@keyframes kf-knob{0%,100%{transform:rotate(-130deg)}50%{transform:rotate(130deg)}}
+.kn-rot{transform-box:fill-box;transform-origin:center;animation:kf-knob 4s ease-in-out infinite}
+@keyframes kf-dim{0%,100%{opacity:.06}50%{opacity:1}}
+.kn-dim{animation:kf-dim 4s ease-in-out infinite}
+:root[data-preview="1"] .kn-rot,:root[data-preview="1"] .kn-dim{animation:none}
+
+/* 第 11 课小夜灯：手盖住光敏（40%–85%）时黄灯亮，4 秒一轮 */
+@keyframes kf-nl-hand{0%,35%{opacity:0;transform:translateY(-60px)}40%,85%{opacity:1;transform:none}90%,100%{opacity:0;transform:translateY(-60px)}}
+@keyframes kf-nl-lamp{0%,39.9%{opacity:0}40%,85%{opacity:1}85.1%,100%{opacity:0}}
+.nl-hand{animation:kf-nl-hand 4s linear infinite}
+.nl-lamp{animation:kf-nl-lamp 4s linear infinite}
+:root[data-preview="1"] .nl-hand,:root[data-preview="1"] .nl-lamp{animation:none}
+
+/* 第 12 课舵机：舵机臂 0°（朝右）↔ 90°（朝上），4 秒一轮；旋转中心在 SVG 里用内联 transform-origin 指定 */
+@keyframes kf-sv{0%,40%{transform:rotate(0deg)}50%,90%{transform:rotate(-90deg)}100%{transform:rotate(0deg)}}
+.sv-swing{transform-box:view-box;animation:kf-sv 4s ease-in-out infinite}
+:root[data-preview="1"] .sv-swing{animation:none}

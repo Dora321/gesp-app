@@ -1,21 +1,20 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { ArrowRight, BookOpen, Cpu, Lightbulb } from 'lucide-react';
+import { ArrowRight, BookOpen, Cpu, Lightbulb, CircuitBoard } from 'lucide-react';
 import Navigation from '../../components/Navigation';
 import Footer from '../../components/Footer';
 import { scienceCourses } from '../../data/innovationCourseCatalog';
 
 export default function HardwareLanding({ courseId = 'advanced' }) {
     const course = scienceCourses[courseId];
-    const advanced = courseId === 'advanced';
-    const Icon = advanced ? Cpu : Lightbulb;
-    const other = scienceCourses[advanced ? 'foundation' : 'advanced'];
+    const Icon = courseId === 'foundation' ? Lightbulb : courseId === 'arduino' ? CircuitBoard : Cpu;
+    const otherCourses = Object.entries(scienceCourses).filter(([id]) => id !== courseId).map(([, item]) => item);
     return (
         <div className="min-h-screen bg-slate-50 text-slate-900">
             <Navigation />
             <main className="mx-auto max-w-6xl px-4 pb-20 pt-28 sm:px-6 lg:px-8">
                 <header className="rounded-3xl bg-slate-950 p-6 text-white sm:p-10">
-                    <span className="inline-flex items-center gap-2 text-sm font-bold text-teal-200"><Icon size={20} />动手实践 · 科创课程</span>
+                    <span className="inline-flex items-center gap-2 text-sm font-bold text-teal-200"><Icon size={20} />动手实践 · 硬件与科创课程</span>
                     <h1 className="mt-5 text-3xl font-black leading-tight sm:text-5xl">{course.title}</h1>
                     <p className="mt-5 max-w-2xl text-base leading-8 text-slate-200">{course.description}</p>
                     <div className="mt-6 flex flex-wrap gap-3 text-sm">
@@ -39,9 +38,16 @@ export default function HardwareLanding({ courseId = 'advanced' }) {
                         ))}
                     </div>
                 </section>
-                <aside className="mt-10 flex flex-wrap items-center justify-between gap-4 rounded-2xl border border-slate-200 bg-white p-6">
-                    <div><h2 className="font-bold">另一条科创学习线</h2><p className="mt-2 text-sm text-slate-600">{other.title} · 已上线 {other.lessons.length} 课</p></div>
-                    <Link to={other.path} className="inline-flex min-h-11 items-center gap-2 font-bold text-teal-800">查看课程<ArrowRight size={18} /></Link>
+                <aside className="mt-10 rounded-2xl border border-slate-200 bg-white p-6">
+                    <h2 className="font-bold">其他硬件与科创学习线</h2>
+                    <div className="mt-4 grid gap-3 sm:grid-cols-2">
+                        {otherCourses.map((other) => (
+                            <Link key={other.path} to={other.path} className="flex min-h-16 items-center justify-between gap-3 rounded-xl bg-slate-50 px-4 py-3 font-bold text-teal-800 hover:bg-teal-50">
+                                <span><span className="block text-slate-900">{other.title}</span><span className="mt-1 block text-xs font-semibold text-slate-500">已上线 {other.lessons.length} 课</span></span>
+                                <ArrowRight size={18} />
+                            </Link>
+                        ))}
+                    </div>
                 </aside>
             </main>
             <Footer />
