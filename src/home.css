@@ -892,8 +892,8 @@
 
 /* 体系切换：一排「线路选择」按钮，用 1px 间隙当分隔线 */
 .home-subjects {
-    display: grid;
-    grid-template-columns: repeat(2, minmax(0, 1fr));
+    display: flex;
+    flex-wrap: wrap;
     gap: 1px;
     overflow: hidden;
     border: 1px solid var(--mw-rule-strong);
@@ -904,6 +904,7 @@
 .home-subject {
     position: relative;
     display: flex;
+    flex: 1 1 120px;
     align-items: center;
     justify-content: center;
     gap: var(--mw-space-2);
@@ -1857,8 +1858,8 @@ a.home-lesson:hover .home-lesson-title {
 }
 
 @media (min-width: 640px) {
-    .home-subjects {
-        grid-template-columns: repeat(4, minmax(0, 1fr));
+    .home-subject {
+        flex-basis: 140px;
     }
 
     .home-bank-entry {

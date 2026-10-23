@@ -227,12 +227,13 @@
 | --- | --- |
 | 设计 token 与基础元件 | `src/styles/design-tokens.css` |
 | 导航 / 页脚的 `variant="home"` | `src/styles/site-chrome.css`、`Navigation.jsx`、`Footer.jsx` |
+| 首页浮动工具入口与标注面板 | `src/styles/home-tools.css`；仅在首页存在时应用，离开首页自动恢复原样 |
 | 首页全部区块 | `src/Home.jsx`、`src/home.css`、`HeroSection`、`HomeRouteMap`（新增）、`ContinueLearning`、`LearningPaths`、`QuestionBankHighlight`、`LessonCatalog`、`FeaturedProjects`、`TheLab`、`ExploreMore` |
 
 ### 尚未迁移
 
 - 其他页面的导航和页脚（不传 `variant`，仍是旧样式）：计算博物馆、科创课程页、E-Kart。
-- 全局浮动组件：AI 问答助手与课堂积分榜的桌面浮动按钮（蓝/橙圆形）、页面标注按钮（紫色）。它们挂在 `App.jsx`，跨所有页面，需要单独统一。
+- 其他页面的全局浮动组件，以及 AI 问答和课堂积分的面板内容。首页工具入口与标注面板已统一；全站其他场景仍需逐步迁移。
 - 题库、考试、错题本页面；各级课程页与课件外壳（`CppLessonShell`、`LegacyCppLessonShell`、`PythonLessonShell`）；`LessonQualityBar`、`PyCodeTracer` 等教学组件；`LoadingScreen`。
 - Tailwind 主题仍是旧的 `brand.blue/orange`，没有接入 `--mw-*`。
 

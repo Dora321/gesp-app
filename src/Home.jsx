@@ -11,6 +11,7 @@ import ClassroomPoints from './components/ClassroomPoints';
 import AIChat from './components/AIChat';
 import './styles/design-tokens.css';
 import './home.css';
+import './styles/home-tools.css';
 
 const LessonCatalog = lazy(() => import('./components/LessonCatalog'));
 const FeaturedProjects = lazy(() => import('./components/FeaturedProjects'));
