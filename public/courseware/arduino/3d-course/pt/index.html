@@ -1,0 +1,288 @@
+<!doctype html>
+<html lang="pt" class="is-loading">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+    <title>Aprenda Arduino — lições interativas em 3D para iniciantes</title>
+    <meta name="description" content="Aprenda Arduino em uma placa 3D interativa: ligue LEDs, botões, sensores, motores e servos, execute o código e veja funcionar. 16 lições gratuitas para iniciantes." />
+    <meta name="author" content="Dilum Sanjaya" />
+    <meta name="robots" content="index, follow, max-image-preview:large" />
+    <meta name="theme-color" content="#f6eddd" />
+    <meta name="color-scheme" content="light" />
+    <meta name="application-name" content="Learn Arduino" />
+    <meta name="apple-mobile-web-app-title" content="Learn Arduino" />
+    <link rel="icon" href="../favicon.ico" sizes="48x48" />
+    <link rel="icon" type="image/svg+xml" href="../favicon.svg" />
+    <link rel="apple-touch-icon" href="../apple-touch-icon.png" />
+    <link rel="manifest" href="../site.webmanifest" />
+
+    <!-- link previews (Open Graph, X) -->
+    <meta property="og:type" content="website" />
+    <meta property="og:site_name" content="Learn Arduino" />
+    <meta property="og:locale" content="pt_BR" />
+    <meta property="og:title" content="Aprenda Arduino — lições interativas em 3D" />
+    <meta property="og:description" content="Ligue LEDs, botões, sensores, motores e servos em um Arduino Uno 3D, execute o código e veja funcionar. 16 lições gratuitas para iniciantes." />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:creator" content="@DilumSanjaya" />
+    <link rel="canonical" href="./pt/" />
+    <link rel="alternate" hreflang="en" href="./" />
+    <link rel="alternate" hreflang="es" href="./es/" />
+    <link rel="alternate" hreflang="pt" href="./pt/" />
+    <link rel="alternate" hreflang="fr" href="./fr/" />
+    <link rel="alternate" hreflang="de" href="./de/" />
+    <link rel="alternate" hreflang="it" href="./it/" />
+    <link rel="alternate" hreflang="tr" href="./tr/" />
+    <link rel="alternate" hreflang="id" href="./id/" />
+    <link rel="alternate" hreflang="zh-Hans" href="./zh/" />
+    <link rel="alternate" hreflang="ja" href="./ja/" />
+    <link rel="alternate" hreflang="ko" href="./ko/" />
+    <link rel="alternate" hreflang="hi" href="./hi/" />
+    <link rel="alternate" hreflang="x-default" href="./" />
+    <meta property="og:url" content="./pt/" />
+    <meta property="og:locale:alternate" content="en_US" />
+    <meta property="og:locale:alternate" content="es_ES" />
+    <meta property="og:locale:alternate" content="fr_FR" />
+    <meta property="og:locale:alternate" content="de_DE" />
+    <meta property="og:locale:alternate" content="it_IT" />
+    <meta property="og:locale:alternate" content="tr_TR" />
+    <meta property="og:locale:alternate" content="id_ID" />
+    <meta property="og:locale:alternate" content="zh_CN" />
+    <meta property="og:locale:alternate" content="ja_JP" />
+    <meta property="og:locale:alternate" content="ko_KR" />
+    <meta property="og:locale:alternate" content="hi_IN" />
+    <meta property="og:image" content="./og-image-pt.png" />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:image:alt" content="Um Arduino Uno 3D ilustrado, ligado em uma protoboard a um sensor de distância e a um semáforo, com um carrinho de brinquedo na frente" />
+    <meta name="twitter:image" content="./og-image-pt.png" />
+    <meta name="twitter:image:alt" content="Um Arduino Uno 3D ilustrado, ligado em uma protoboard a um sensor de distância e a um semáforo, com um carrinho de brinquedo na frente" />
+    <script type="application/ld+json">{"@context":"https://schema.org","@type":["WebApplication","LearningResource"],"name":"Aprenda Arduino","url":"./pt/","description":"Aprenda Arduino em uma placa 3D interativa: ligue LEDs, botões, sensores, motores e servos, execute o código e veja funcionar. 16 lições gratuitas para iniciantes.","image":"./og-image-pt.png","applicationCategory":"EducationalApplication","operatingSystem":"Any (runs in a web browser with WebGL)","browserRequirements":"Requires JavaScript and WebGL.","inLanguage":"pt","isAccessibleForFree":true,"offers":{"@type":"Offer","price":"0","priceCurrency":"USD"},"educationalLevel":"Beginner","learningResourceType":"Interactive lesson","teaches":["Conheça a placa","Pisque um LED","Aperte um botão","Gire um potenciômetro","Misture cores","Sinta a luz","Leia um sensor","Faça um som","Mini piano","Controle um motor","Sinta o calor","Mova um servo","Gire a roleta","Planta inteligente","Sinta a força","Monte um projeto"],"about":["Arduino","Electronics","Microcontrollers","Programming"],"author":{"@type":"Person","name":"Dilum Sanjaya","url":"https://x.com/DilumSanjaya"}}</script>
+    <!-- linked here rather than imported from main.js, so the first paint
+         (the loading screen) is already styled, on the dev server too -->
+    <link rel="preload" href="../assets/barlow-semi-condensed-latin-600-normal-BkLiAYu4.woff2" as="font" type="font/woff2" crossorigin />
+    <link rel="preload" href="../assets/barlow-semi-condensed-latin-500-normal-G0uxJNrM.woff2" as="font" type="font/woff2" crossorigin />
+    <script type="module" crossorigin src="../assets/index-BodLthS6.js"></script>
+    <link rel="stylesheet" crossorigin href="../assets/index-CeIbtN2h.css">
+  </head>
+  <body>
+    <!-- Covers the page until the board is built and every lesson card has
+         its picture (src/ui/loader.js) -->
+    <div class="loader" id="loader" role="status" aria-live="polite">
+      <div class="loader-inner">
+        <svg class="loader-logo" viewBox="0 0 92 50" aria-hidden="true">
+          <path class="loop" d="M24 6.5a18.5 18.5 0 1 0 0 37c8.7 0 13.4-6.6 22-18.5S59.3 6.5 68 6.5a18.5 18.5 0 1 1 0 37c-8.7 0-13.4-6.6-22-18.5S32.7 6.5 24 6.5z" />
+          <path class="sign" d="M15.5 25h12M62 25h12M68 19v12" />
+        </svg>
+        <p class="loader-title">Aprenda Arduino</p>
+        <div class="loader-track" aria-hidden="true"><span class="loader-fill"></span><span class="loader-shine"></span></div>
+        <p class="loader-step">Carregando</p>
+        <noscript>
+          <style>.loader{overflow:auto}.loader-track,.loader-step{display:none}</style>
+          <div class="noscript">
+            <p>Um curso interativo em 3D no seu navegador. Ative o JavaScript para começar.</p>
+            <ol class="noscript-lessons"><li><b>1. Conheça a placa</b> — O Arduino Uno é uma placa com microcontrolador muito popular, baseada no ATmega328P.</li><li><b>2. Pisque um LED</b> — Seu primeiro circuito: um LED e um resistor em uma protoboard, controlados pelo pino 13.</li><li><b>3. Aperte um botão</b> — As entradas deixam a placa perceber o mundo.</li><li><b>4. Gire um potenciômetro</b> — Um potenciômetro é um resistor com um cursor.</li><li><b>5. Misture cores</b> — Um LED RGB são três LEDs — vermelho, verde e azul — sob uma mesma lente leitosa.</li><li><b>6. Sinta a luz</b> — Um resistor dependente de luz (LDR) conduz melhor quanto mais luz recebe.</li><li><b>7. Leia um sensor</b> — O HC-SR04 emite uma rajada de ultrassom e escuta o eco.</li><li><b>8. Faça um som</b> — Um buzzer piezo faz um clique cada vez que o pino muda.</li><li><b>9. Mini piano</b> — Oito teclas e um buzzer formam um piano que você pode tocar.</li><li><b>10. Controle um motor</b> — Um pino não consegue alimentar um motor sozinho, então um transistor faz o trabalho pesado.</li><li><b>11. Sinta o calor</b> — O TMP36 transforma temperatura em tensão: 0,5 V a 0 °C e 10 mV a mais por grau.</li><li><b>12. Mova um servo</b> — Um servo é um motor que sabe onde está.</li><li><b>13. Gire a roleta</b> — Um motor de passo gira em passos exatos — 2048 dão uma volta completa neste aqui.</li><li><b>14. Planta inteligente</b> — Um sensor capacitivo na terra diz o quanto ela está úmida, e uma pequena tela OLED transforma isso em uma porcentagem e um humor.</li><li><b>15. Sinta a força</b> — Um sensor de força (FSR) é uma almofada fina cuja resistência cai de milhões de ohms para algumas centenas quando você aperta.</li><li><b>16. Monte um projeto</b> — Junte tudo: o sensor de distância vigia o obstáculo e um semáforo avisa o motorista quando parar.</li></ol>
+          </div>
+        </noscript>
+      </div>
+    </div>
+
+    <!-- inert (not hidden) while the loading screen covers it -->
+    <div id="app" class="artboard" inert>
+      <svg class="traces" id="traces" aria-hidden="true"></svg>
+
+      <!-- Sidebar -->
+      <nav class="sidebar" aria-label="Principal">
+        <button class="side-toggle" aria-label="Expandir barra lateral" aria-expanded="false">
+          <svg viewBox="0 0 24 24"><path d="M9 5.5 15.5 12 9 18.5" /></svg>
+        </button>
+        <ul class="side-nav">
+          <li class="is-active">
+            <a href="#" data-nav="home" aria-label="Início" title="Início">
+              <svg viewBox="0 0 32 32" class="fill"><path d="M16 4.2 3.6 15.1c-.7.6-.3 1.7.6 1.7H6v9.4c0 1 .8 1.8 1.8 1.8h5.4v-7.3h5.6V28h5.4c1 0 1.8-.8 1.8-1.8v-9.4h1.8c.9 0 1.3-1.1.6-1.7z" /></svg>
+              <span class="side-label">Início</span>
+            </a>
+          </li>
+          <li>
+            <a href="#" data-nav="lessons" aria-label="Lições" title="Lições">
+              <svg viewBox="0 0 32 32"><path d="M16 9.2C13.4 7.3 9.6 6.6 5 6.8v17.6c4.6-.2 8.4.5 11 2.4 2.6-1.9 6.4-2.6 11-2.4V6.8c-4.6-.2-8.4.5-11 2.4zM16 9.2v17.6" /><path d="M3 9.4v17.4c5-.4 9.6.2 13 2.2 3.4-2 8-2.6 13-2.2V9.4" /></svg>
+              <span class="side-label">Lições</span>
+            </a>
+          </li>
+          <li>
+            <a href="#" data-nav="parts" aria-label="Componentes" title="Componentes">
+              <svg viewBox="0 0 32 32"><rect x="8.5" y="8.5" width="15" height="15" rx="1.6" /><rect x="12" y="12" width="8" height="8" rx=".6" class="fill" /><path d="M12.5 4v4.5M16 4v4.5M19.5 4v4.5M12.5 23.5V28M16 23.5V28M19.5 23.5V28M4 12.5h4.5M4 16h4.5M4 19.5h4.5M23.5 12.5H28M23.5 16H28M23.5 19.5H28" /></svg>
+              <span class="side-label">Componentes</span>
+            </a>
+          </li>
+          <li>
+            <a href="#" data-nav="run" aria-label="Executar simulação" title="Executar simulação">
+              <svg viewBox="0 0 32 32"><rect x="4.5" y="6.5" width="23" height="19" rx="1.5" /><path d="m13.5 11.6 7 4.4-7 4.4z" class="fill" /></svg>
+              <span class="side-label">Simulador</span>
+            </a>
+          </li>
+          <li class="is-muted">
+            <a href="#" data-nav="settings" aria-label="Configurações" title="Configurações">
+              <svg viewBox="0 0 32 32" class="fill"><path d="M18.3 3.5h-4.6l-.7 3.4a9.7 9.7 0 0 0-2.6 1.5L7.1 7.3 4.8 11.2l2.6 2.3a9.9 9.9 0 0 0 0 3l-2.6 2.3 2.3 3.9 3.3-1.1c.8.6 1.7 1.1 2.6 1.5l.7 3.4h4.6l.7-3.4c.9-.4 1.8-.9 2.6-1.5l3.3 1.1 2.3-3.9-2.6-2.3a9.9 9.9 0 0 0 0-3l2.6-2.3-2.3-3.9-3.3 1.1c-.8-.6-1.7-1.1-2.6-1.5zM16 11.2a4.8 4.8 0 1 1 0 9.6 4.8 4.8 0 0 1 0-9.6z" /></svg>
+              <span class="side-label">Configurações</span>
+            </a>
+          </li>
+          <!-- the page's language, one click away where there's room for it
+               (it's in Settings too); src/ui/sidebar.js fills in its name -->
+          <li class="is-muted side-lang">
+            <a href="#" data-nav="language" aria-label="Idioma" title="Idioma">
+              <svg viewBox="0 0 32 32"><circle cx="16" cy="16" r="11.5" /><ellipse cx="16" cy="16" rx="5.2" ry="11.5" /><path d="M4.5 16h23M6.2 10.2h19.6M6.2 21.8h19.6" /></svg>
+              <span class="side-code" aria-hidden="true"></span>
+              <span class="side-label"></span>
+            </a>
+          </li>
+        </ul>
+        <a class="credit credit-side" href="https://x.com/DilumSanjaya" target="_blank" rel="noopener noreferrer" title="Criado por x.com/DilumSanjaya">
+          <span class="credit-text"><small>Criado por</small><b>x.com/DilumSanjaya</b></span>
+          <span class="credit-rule" aria-hidden="true"></span>
+          <svg class="credit-x" viewBox="0 0 24 24" aria-hidden="true"><path d="M18.9 1.15h3.68l-8.04 9.19L24 22.85h-7.4l-5.8-7.59-6.64 7.59H.47l8.6-9.83L0 1.15h7.6l5.24 6.93zm-1.29 19.5h2.04L6.49 3.24H4.3z" /></svg>
+        </a>
+      </nav>
+      <aside class="flyout" id="flyout" aria-live="polite"></aside>
+
+      <!-- Brand -->
+      <header class="brand">
+        <svg class="brand-logo" viewBox="0 0 92 50" aria-hidden="true">
+          <path class="loop" d="M24 6.5a18.5 18.5 0 1 0 0 37c8.7 0 13.4-6.6 22-18.5S59.3 6.5 68 6.5a18.5 18.5 0 1 1 0 37c-8.7 0-13.4-6.6-22-18.5S32.7 6.5 24 6.5z" />
+          <path class="sign" d="M15.5 25h12M62 25h12M68 19v12" />
+        </svg>
+        <span class="brand-rule" aria-hidden="true"></span>
+        <div class="brand-text">
+          <h1>Aprenda Arduino</h1>
+          <p>Explore <i>·</i> Entenda <i>·</i> Construa</p>
+        </div>
+      </header>
+
+      <!-- Stage: three.js board + callouts -->
+      <main class="stage" id="stage">
+        <canvas id="board-canvas" aria-label="Vista 3D interativa. Arraste ou use WASD para mover, Q e E para girar e role para dar zoom."></canvas>
+        <svg class="leaders" id="leaders" aria-hidden="true"></svg>
+        <div class="rig" id="rig"></div>
+        <div class="tags" id="tags"></div>
+        <div class="signals" id="signals" aria-hidden="true"></div>
+        <svg class="insp-lines" id="insp-lines" aria-hidden="true"></svg>
+        <div class="inspector" id="inspector" role="dialog" aria-label="Inspetor de peças"></div>
+        <section class="schematic" id="schematic" aria-label="Esquema do circuito"></section>
+        <div class="tip" id="tip" role="tooltip"><b></b><span></span></div>
+
+        <div class="minimap" id="minimap" aria-label="Minimapa: clique ou arraste para mover a vista">
+          <canvas></canvas>
+        </div>
+
+        <div class="viewbar" id="viewbar" role="toolbar" aria-label="Vista 3D">
+          <p class="view-hint">Arraste ou use WASD para mover · Q / E para girar · Role para dar zoom</p>
+          <button data-view="left" title="Girar para a esquerda (Q)" aria-label="Girar para a esquerda">
+            <svg viewBox="0 0 24 24"><path d="M4.5 10.5A8 8 0 1 1 6 17" /><path d="M4 5v5.8h5.8" /></svg>
+          </button>
+          <button data-view="right" title="Girar para a direita (E)" aria-label="Girar para a direita">
+            <svg viewBox="0 0 24 24"><path d="M19.5 10.5A8 8 0 1 0 18 17" /><path d="M20 5v5.8h-5.8" /></svg>
+          </button>
+          <span class="viewbar-sep"></span>
+          <button data-view="out" title="Diminuir zoom (−)" aria-label="Diminuir zoom">
+            <svg viewBox="0 0 24 24"><path d="M5 12h14" /></svg>
+          </button>
+          <button data-view="in" title="Aumentar zoom (+)" aria-label="Aumentar zoom">
+            <svg viewBox="0 0 24 24"><path d="M12 5v14M5 12h14" /></svg>
+          </button>
+          <span class="viewbar-sep"></span>
+          <button data-view="reset" class="compass" title="Redefinir vista (R)" aria-label="Redefinir vista">
+            <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="8.5" /><g class="compass-needle"><path d="M12 5.2 14.2 12h-4.4z" class="fill" /><path d="M12 18.8 9.8 12h4.4z" /></g></svg>
+          </button>
+          <span class="viewbar-sep"></span>
+          <button data-view="flow" class="toggle" title="Fluxo de corrente (F)" aria-label="Mostrar fluxo de corrente" aria-pressed="false">
+            <svg viewBox="0 0 24 24"><path d="M2.5 15.5c4.2 0 5.3-7 9.5-7s5.3 7 9.5 7" /><circle cx="6.6" cy="13" r="1.7" class="fill" /><circle cx="12" cy="8.5" r="1.7" class="fill" /><circle cx="17.4" cy="13" r="1.7" class="fill" /></svg>
+          </button>
+          <button data-view="schematic" class="toggle" title="Esquema (C)" aria-label="Mostrar esquema" aria-pressed="false">
+            <svg viewBox="0 0 24 24"><path d="M1.5 12h4.2l1.6-4 2.6 8 2.6-8 2.6 8 1.6-4h5.8" /></svg>
+          </button>
+        </div>
+      </main>
+
+      <!-- Top-right status -->
+      <section class="status" aria-label="Progresso">
+        <div class="progress-card">
+          <svg viewBox="0 0 40 40" class="progress-icon" aria-hidden="true"><path d="M20 10.6c-3.3-2.4-8.2-3.2-14-3v21.2c5.8-.2 10.7.6 14 3 3.3-2.4 8.2-3.2 14-3V7.6c-5.8-.2-10.7.6-14 3zM20 10.6v21.2" /><path d="M3 11v21c6.3-.5 12.6.2 17 2.6 4.4-2.4 10.7-3.1 17-2.6V11" /></svg>
+          <div class="progress-body">
+            <span class="progress-label">Básico</span>
+            <div class="progress-row">
+              <span class="progress-track" role="progressbar" aria-valuemin="0" aria-valuemax="16" aria-valuenow="0"><span class="progress-fill" id="progress-fill"></span></span>
+              <span class="progress-count" id="progress-count">0/16</span>
+            </div>
+          </div>
+        </div>
+        <time class="clock" id="clock">
+          <span id="clock-date"></span>
+          <span id="clock-time"></span>
+        </time>
+      </section>
+
+      <!-- Right info panel -->
+      <section class="info-card" aria-label="Informações da lição">
+        <div class="tabs" role="tablist">
+          <button role="tab" aria-selected="true" class="is-active">Resumo</button>
+          <button role="tab" aria-selected="false">Pinagem</button>
+          <button role="tab" aria-selected="false">Exemplo</button>
+          <button role="tab" aria-selected="false">Especificações</button>
+        </div>
+        <div class="info-body" role="tabpanel">
+          <button class="expand" aria-label="Expandir painel">
+            <svg viewBox="0 0 24 24"><path d="M3 8V3h5M16 3h5v5M21 16v5h-5M8 21H3v-5" /><circle cx="12" cy="12" r="1.3" class="fill" /></svg>
+          </button>
+          <div class="info-content"></div>
+        </div>
+      </section>
+
+      <!-- Code card -->
+      <section class="code-card" aria-label="Experimente" data-state="idle">
+        <header>
+          <h2>Experimente</h2>
+          <div class="code-actions">
+            <button class="btn-ghost btn-expand" aria-label="Expandir código" title="Expandir código" aria-expanded="false">
+              <svg viewBox="0 0 24 24"><path d="M3 8V3h5M16 3h5v5M21 16v5h-5M8 21H3v-5" /><circle cx="12" cy="12" r="1.3" class="fill" /></svg>
+            </button>
+            <button class="btn-ghost btn-copy" aria-label="Copiar código" title="Copiar código">
+              <svg viewBox="0 0 24 24"><rect x="8" y="8" width="11.5" height="12.5" rx="1.6" /><path d="M15.5 5.2V4.8c0-.9-.7-1.6-1.6-1.6H6.1c-.9 0-1.6.7-1.6 1.6v9.6c0 .9.7 1.6 1.6 1.6h.4" /></svg>
+            </button>
+            <button class="btn-run" aria-label="Executar sketch" title="Executar sketch (Espaço)">
+              <svg viewBox="0 0 24 24"><path d="M7.5 4.8v14.4L19 12z" class="fill" /></svg>
+            </button>
+          </div>
+        </header>
+        <div class="code-wrap">
+          <pre class="code"><code></code></pre>
+          <div class="console">
+            <div class="console-grip" role="separator" aria-orientation="horizontal" aria-label="Redimensionar monitor serial" tabindex="-1"></div>
+            <div class="console-head">
+              <span class="console-dot"></span>
+              <span class="console-title">Monitor serial</span>
+              <span class="console-status">Parado</span>
+              <button class="console-close" aria-label="Parar sketch">
+                <svg viewBox="0 0 24 24"><path d="m7 7 10 10M17 7 7 17" /></svg>
+              </button>
+            </div>
+            <div class="console-lines" aria-live="polite"></div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Lessons -->
+      <section class="lessons" aria-label="Lições">
+        <h2>Lições</h2>
+        <ol class="lesson-list" id="lesson-list"></ol>
+      </section>
+
+      <!-- Footer (compact layout; the wide layout keeps these in the side nav) -->
+      <footer class="app-foot">
+        <a class="credit credit-row" href="https://x.com/DilumSanjaya" target="_blank" rel="noopener noreferrer" title="Criado por x.com/DilumSanjaya">
+          <svg class="credit-x" viewBox="0 0 24 24" aria-hidden="true"><path d="M18.9 1.15h3.68l-8.04 9.19L24 22.85h-7.4l-5.8-7.59-6.64 7.59H.47l8.6-9.83L0 1.15h7.6l5.24 6.93zm-1.29 19.5h2.04L6.49 3.24H4.3z" /></svg>
+          <span class="credit-rule" aria-hidden="true"></span>
+          <span class="credit-text"><small>Criado por</small><b>x.com/DilumSanjaya</b></span>
+        </a>
+      </footer>
+    </div>
+  </body>
+</html>

@@ -1,0 +1,288 @@
+<!doctype html>
+<html lang="zh-Hans" class="is-loading">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+    <title>Arduino 入门：面向初学者的交互式 3D 课程</title>
+    <meta name="description" content="在交互式 3D 开发板上学习 Arduino：连接 LED、按钮、传感器、电机和舵机，然后运行代码，看它工作。16 节免费的入门课程。" />
+    <meta name="author" content="Dilum Sanjaya" />
+    <meta name="robots" content="index, follow, max-image-preview:large" />
+    <meta name="theme-color" content="#f6eddd" />
+    <meta name="color-scheme" content="light" />
+    <meta name="application-name" content="Learn Arduino" />
+    <meta name="apple-mobile-web-app-title" content="Learn Arduino" />
+    <link rel="icon" href="../favicon.ico" sizes="48x48" />
+    <link rel="icon" type="image/svg+xml" href="../favicon.svg" />
+    <link rel="apple-touch-icon" href="../apple-touch-icon.png" />
+    <link rel="manifest" href="../site.webmanifest" />
+
+    <!-- link previews (Open Graph, X) -->
+    <meta property="og:type" content="website" />
+    <meta property="og:site_name" content="Learn Arduino" />
+    <meta property="og:locale" content="zh_CN" />
+    <meta property="og:title" content="Arduino 入门：交互式 3D 课程" />
+    <meta property="og:description" content="在 3D Arduino Uno 上连接 LED、按钮、传感器、电机和舵机，然后运行代码，看它工作。16 节免费的入门课程。" />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:creator" content="@DilumSanjaya" />
+    <link rel="canonical" href="./zh/" />
+    <link rel="alternate" hreflang="en" href="./" />
+    <link rel="alternate" hreflang="es" href="./es/" />
+    <link rel="alternate" hreflang="pt" href="./pt/" />
+    <link rel="alternate" hreflang="fr" href="./fr/" />
+    <link rel="alternate" hreflang="de" href="./de/" />
+    <link rel="alternate" hreflang="it" href="./it/" />
+    <link rel="alternate" hreflang="tr" href="./tr/" />
+    <link rel="alternate" hreflang="id" href="./id/" />
+    <link rel="alternate" hreflang="zh-Hans" href="./zh/" />
+    <link rel="alternate" hreflang="ja" href="./ja/" />
+    <link rel="alternate" hreflang="ko" href="./ko/" />
+    <link rel="alternate" hreflang="hi" href="./hi/" />
+    <link rel="alternate" hreflang="x-default" href="./" />
+    <meta property="og:url" content="./zh/" />
+    <meta property="og:locale:alternate" content="en_US" />
+    <meta property="og:locale:alternate" content="es_ES" />
+    <meta property="og:locale:alternate" content="pt_BR" />
+    <meta property="og:locale:alternate" content="fr_FR" />
+    <meta property="og:locale:alternate" content="de_DE" />
+    <meta property="og:locale:alternate" content="it_IT" />
+    <meta property="og:locale:alternate" content="tr_TR" />
+    <meta property="og:locale:alternate" content="id_ID" />
+    <meta property="og:locale:alternate" content="ja_JP" />
+    <meta property="og:locale:alternate" content="ko_KR" />
+    <meta property="og:locale:alternate" content="hi_IN" />
+    <meta property="og:image" content="./og-image-zh.png" />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:image:alt" content="一块插图风格的 3D Arduino Uno，通过面包板连接着一个距离传感器和一个红绿灯，前面停着一辆玩具车" />
+    <meta name="twitter:image" content="./og-image-zh.png" />
+    <meta name="twitter:image:alt" content="一块插图风格的 3D Arduino Uno，通过面包板连接着一个距离传感器和一个红绿灯，前面停着一辆玩具车" />
+    <script type="application/ld+json">{"@context":"https://schema.org","@type":["WebApplication","LearningResource"],"name":"Arduino 入门","url":"./zh/","description":"在交互式 3D 开发板上学习 Arduino：连接 LED、按钮、传感器、电机和舵机，然后运行代码，看它工作。16 节免费的入门课程。","image":"./og-image-zh.png","applicationCategory":"EducationalApplication","operatingSystem":"Any (runs in a web browser with WebGL)","browserRequirements":"Requires JavaScript and WebGL.","inLanguage":"zh-Hans","isAccessibleForFree":true,"offers":{"@type":"Offer","price":"0","priceCurrency":"USD"},"educationalLevel":"Beginner","learningResourceType":"Interactive lesson","teaches":["认识开发板","让 LED 闪烁","按下按钮","转动旋钮","混合颜色","感知光线","读取传感器","发出声音","迷你钢琴","控制电机","感知温度","让舵机摆动","转动转盘","智能植物","感受压力","动手做项目"],"about":["Arduino","Electronics","Microcontrollers","Programming"],"author":{"@type":"Person","name":"Dilum Sanjaya","url":"https://x.com/DilumSanjaya"}}</script>
+    <!-- linked here rather than imported from main.js, so the first paint
+         (the loading screen) is already styled, on the dev server too -->
+    <link rel="preload" href="../assets/barlow-semi-condensed-latin-600-normal-BkLiAYu4.woff2" as="font" type="font/woff2" crossorigin />
+    <link rel="preload" href="../assets/barlow-semi-condensed-latin-500-normal-G0uxJNrM.woff2" as="font" type="font/woff2" crossorigin />
+    <script type="module" crossorigin src="../assets/index-BodLthS6.js"></script>
+    <link rel="stylesheet" crossorigin href="../assets/index-CeIbtN2h.css">
+  </head>
+  <body>
+    <!-- Covers the page until the board is built and every lesson card has
+         its picture (src/ui/loader.js) -->
+    <div class="loader" id="loader" role="status" aria-live="polite">
+      <div class="loader-inner">
+        <svg class="loader-logo" viewBox="0 0 92 50" aria-hidden="true">
+          <path class="loop" d="M24 6.5a18.5 18.5 0 1 0 0 37c8.7 0 13.4-6.6 22-18.5S59.3 6.5 68 6.5a18.5 18.5 0 1 1 0 37c-8.7 0-13.4-6.6-22-18.5S32.7 6.5 24 6.5z" />
+          <path class="sign" d="M15.5 25h12M62 25h12M68 19v12" />
+        </svg>
+        <p class="loader-title">Arduino 入门</p>
+        <div class="loader-track" aria-hidden="true"><span class="loader-fill"></span><span class="loader-shine"></span></div>
+        <p class="loader-step">加载中</p>
+        <noscript>
+          <style>.loader{overflow:auto}.loader-track,.loader-step{display:none}</style>
+          <div class="noscript">
+            <p>在浏览器中学习的交互式 3D 课程。请开启 JavaScript 后开始。</p>
+            <ol class="noscript-lessons"><li><b>1. 认识开发板</b> — Arduino Uno 是一款很受欢迎的微控制器开发板，基于 ATmega328P。</li><li><b>2. 让 LED 闪烁</b> — 你的第一个电路：面包板上的一个 LED 和一个电阻，由引脚 13 驱动。</li><li><b>3. 按下按钮</b> — 输入让开发板能感知外界。</li><li><b>4. 转动旋钮</b> — 电位器是带滑片的电阻。</li><li><b>5. 混合颜色</b> — RGB LED 是装在同一个乳白色灯罩里的三个 LED：红、绿、蓝。</li><li><b>6. 感知光线</b> — 光敏电阻（LDR）受到的光越多，导电越好。</li><li><b>7. 读取传感器</b> — HC-SR04 发出一串超声波，然后听回声。</li><li><b>8. 发出声音</b> — 压电蜂鸣器在引脚每切换一次时就“咔”一声。</li><li><b>9. 迷你钢琴</b> — 八个按键加一个蜂鸣器，就是一架能弹的钢琴。</li><li><b>10. 控制电机</b> — 引脚本身带不动电机，所以由晶体管来干重活。</li><li><b>11. 感知温度</b> — TMP36 把温度变成电压：0 °C 时 0.5 V，每升高一度多 10 mV。</li><li><b>12. 让舵机摆动</b> — 舵机是知道自己位置的电机。</li><li><b>13. 转动转盘</b> — 步进电机按精确的步数转动，这一款转一整圈是 2048 步。</li><li><b>14. 智能植物</b> — 插在土里的电容式传感器告诉你土壤有多湿，一块小小的 OLED 屏幕把它变成百分比和表情。</li><li><b>15. 感受压力</b> — 压力传感器（FSR）是一片薄薄的垫子，按下去时它的电阻会从几百万欧姆降到几百欧姆。</li><li><b>16. 动手做项目</b> — 把学过的都用上：距离传感器盯着障碍物，红绿灯告诉司机什么时候该停。</li></ol>
+          </div>
+        </noscript>
+      </div>
+    </div>
+
+    <!-- inert (not hidden) while the loading screen covers it -->
+    <div id="app" class="artboard" inert>
+      <svg class="traces" id="traces" aria-hidden="true"></svg>
+
+      <!-- Sidebar -->
+      <nav class="sidebar" aria-label="主菜单">
+        <button class="side-toggle" aria-label="展开侧边栏" aria-expanded="false">
+          <svg viewBox="0 0 24 24"><path d="M9 5.5 15.5 12 9 18.5" /></svg>
+        </button>
+        <ul class="side-nav">
+          <li class="is-active">
+            <a href="#" data-nav="home" aria-label="首页" title="首页">
+              <svg viewBox="0 0 32 32" class="fill"><path d="M16 4.2 3.6 15.1c-.7.6-.3 1.7.6 1.7H6v9.4c0 1 .8 1.8 1.8 1.8h5.4v-7.3h5.6V28h5.4c1 0 1.8-.8 1.8-1.8v-9.4h1.8c.9 0 1.3-1.1.6-1.7z" /></svg>
+              <span class="side-label">首页</span>
+            </a>
+          </li>
+          <li>
+            <a href="#" data-nav="lessons" aria-label="课程" title="课程">
+              <svg viewBox="0 0 32 32"><path d="M16 9.2C13.4 7.3 9.6 6.6 5 6.8v17.6c4.6-.2 8.4.5 11 2.4 2.6-1.9 6.4-2.6 11-2.4V6.8c-4.6-.2-8.4.5-11 2.4zM16 9.2v17.6" /><path d="M3 9.4v17.4c5-.4 9.6.2 13 2.2 3.4-2 8-2.6 13-2.2V9.4" /></svg>
+              <span class="side-label">课程</span>
+            </a>
+          </li>
+          <li>
+            <a href="#" data-nav="parts" aria-label="元件" title="元件">
+              <svg viewBox="0 0 32 32"><rect x="8.5" y="8.5" width="15" height="15" rx="1.6" /><rect x="12" y="12" width="8" height="8" rx=".6" class="fill" /><path d="M12.5 4v4.5M16 4v4.5M19.5 4v4.5M12.5 23.5V28M16 23.5V28M19.5 23.5V28M4 12.5h4.5M4 16h4.5M4 19.5h4.5M23.5 12.5H28M23.5 16H28M23.5 19.5H28" /></svg>
+              <span class="side-label">元件</span>
+            </a>
+          </li>
+          <li>
+            <a href="#" data-nav="run" aria-label="运行模拟" title="运行模拟">
+              <svg viewBox="0 0 32 32"><rect x="4.5" y="6.5" width="23" height="19" rx="1.5" /><path d="m13.5 11.6 7 4.4-7 4.4z" class="fill" /></svg>
+              <span class="side-label">模拟器</span>
+            </a>
+          </li>
+          <li class="is-muted">
+            <a href="#" data-nav="settings" aria-label="设置" title="设置">
+              <svg viewBox="0 0 32 32" class="fill"><path d="M18.3 3.5h-4.6l-.7 3.4a9.7 9.7 0 0 0-2.6 1.5L7.1 7.3 4.8 11.2l2.6 2.3a9.9 9.9 0 0 0 0 3l-2.6 2.3 2.3 3.9 3.3-1.1c.8.6 1.7 1.1 2.6 1.5l.7 3.4h4.6l.7-3.4c.9-.4 1.8-.9 2.6-1.5l3.3 1.1 2.3-3.9-2.6-2.3a9.9 9.9 0 0 0 0-3l2.6-2.3-2.3-3.9-3.3 1.1c-.8-.6-1.7-1.1-2.6-1.5zM16 11.2a4.8 4.8 0 1 1 0 9.6 4.8 4.8 0 0 1 0-9.6z" /></svg>
+              <span class="side-label">设置</span>
+            </a>
+          </li>
+          <!-- the page's language, one click away where there's room for it
+               (it's in Settings too); src/ui/sidebar.js fills in its name -->
+          <li class="is-muted side-lang">
+            <a href="#" data-nav="language" aria-label="语言" title="语言">
+              <svg viewBox="0 0 32 32"><circle cx="16" cy="16" r="11.5" /><ellipse cx="16" cy="16" rx="5.2" ry="11.5" /><path d="M4.5 16h23M6.2 10.2h19.6M6.2 21.8h19.6" /></svg>
+              <span class="side-code" aria-hidden="true"></span>
+              <span class="side-label"></span>
+            </a>
+          </li>
+        </ul>
+        <a class="credit credit-side" href="https://x.com/DilumSanjaya" target="_blank" rel="noopener noreferrer" title="设计：x.com/DilumSanjaya">
+          <span class="credit-text"><small>设计</small><b>x.com/DilumSanjaya</b></span>
+          <span class="credit-rule" aria-hidden="true"></span>
+          <svg class="credit-x" viewBox="0 0 24 24" aria-hidden="true"><path d="M18.9 1.15h3.68l-8.04 9.19L24 22.85h-7.4l-5.8-7.59-6.64 7.59H.47l8.6-9.83L0 1.15h7.6l5.24 6.93zm-1.29 19.5h2.04L6.49 3.24H4.3z" /></svg>
+        </a>
+      </nav>
+      <aside class="flyout" id="flyout" aria-live="polite"></aside>
+
+      <!-- Brand -->
+      <header class="brand">
+        <svg class="brand-logo" viewBox="0 0 92 50" aria-hidden="true">
+          <path class="loop" d="M24 6.5a18.5 18.5 0 1 0 0 37c8.7 0 13.4-6.6 22-18.5S59.3 6.5 68 6.5a18.5 18.5 0 1 1 0 37c-8.7 0-13.4-6.6-22-18.5S32.7 6.5 24 6.5z" />
+          <path class="sign" d="M15.5 25h12M62 25h12M68 19v12" />
+        </svg>
+        <span class="brand-rule" aria-hidden="true"></span>
+        <div class="brand-text">
+          <h1>Arduino 入门</h1>
+          <p>探索 <i>·</i> 理解 <i>·</i> 动手</p>
+        </div>
+      </header>
+
+      <!-- Stage: three.js board + callouts -->
+      <main class="stage" id="stage">
+        <canvas id="board-canvas" aria-label="交互式 3D 视图。拖动或用 WASD 平移，Q 和 E 旋转，滚轮缩放。"></canvas>
+        <svg class="leaders" id="leaders" aria-hidden="true"></svg>
+        <div class="rig" id="rig"></div>
+        <div class="tags" id="tags"></div>
+        <div class="signals" id="signals" aria-hidden="true"></div>
+        <svg class="insp-lines" id="insp-lines" aria-hidden="true"></svg>
+        <div class="inspector" id="inspector" role="dialog" aria-label="元件检查器"></div>
+        <section class="schematic" id="schematic" aria-label="电路原理图"></section>
+        <div class="tip" id="tip" role="tooltip"><b></b><span></span></div>
+
+        <div class="minimap" id="minimap" aria-label="小地图：点击或拖动来移动视图">
+          <canvas></canvas>
+        </div>
+
+        <div class="viewbar" id="viewbar" role="toolbar" aria-label="3D 视图">
+          <p class="view-hint">拖动或 WASD 平移 · Q / E 旋转 · 滚轮缩放</p>
+          <button data-view="left" title="向左转（Q）" aria-label="向左转">
+            <svg viewBox="0 0 24 24"><path d="M4.5 10.5A8 8 0 1 1 6 17" /><path d="M4 5v5.8h5.8" /></svg>
+          </button>
+          <button data-view="right" title="向右转（E）" aria-label="向右转">
+            <svg viewBox="0 0 24 24"><path d="M19.5 10.5A8 8 0 1 0 18 17" /><path d="M20 5v5.8h-5.8" /></svg>
+          </button>
+          <span class="viewbar-sep"></span>
+          <button data-view="out" title="缩小（−）" aria-label="缩小">
+            <svg viewBox="0 0 24 24"><path d="M5 12h14" /></svg>
+          </button>
+          <button data-view="in" title="放大（+）" aria-label="放大">
+            <svg viewBox="0 0 24 24"><path d="M12 5v14M5 12h14" /></svg>
+          </button>
+          <span class="viewbar-sep"></span>
+          <button data-view="reset" class="compass" title="重置视图（R）" aria-label="重置视图">
+            <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="8.5" /><g class="compass-needle"><path d="M12 5.2 14.2 12h-4.4z" class="fill" /><path d="M12 18.8 9.8 12h4.4z" /></g></svg>
+          </button>
+          <span class="viewbar-sep"></span>
+          <button data-view="flow" class="toggle" title="电流流动（F）" aria-label="显示电流流动" aria-pressed="false">
+            <svg viewBox="0 0 24 24"><path d="M2.5 15.5c4.2 0 5.3-7 9.5-7s5.3 7 9.5 7" /><circle cx="6.6" cy="13" r="1.7" class="fill" /><circle cx="12" cy="8.5" r="1.7" class="fill" /><circle cx="17.4" cy="13" r="1.7" class="fill" /></svg>
+          </button>
+          <button data-view="schematic" class="toggle" title="原理图（C）" aria-label="显示原理图" aria-pressed="false">
+            <svg viewBox="0 0 24 24"><path d="M1.5 12h4.2l1.6-4 2.6 8 2.6-8 2.6 8 1.6-4h5.8" /></svg>
+          </button>
+        </div>
+      </main>
+
+      <!-- Top-right status -->
+      <section class="status" aria-label="进度">
+        <div class="progress-card">
+          <svg viewBox="0 0 40 40" class="progress-icon" aria-hidden="true"><path d="M20 10.6c-3.3-2.4-8.2-3.2-14-3v21.2c5.8-.2 10.7.6 14 3 3.3-2.4 8.2-3.2 14-3V7.6c-5.8-.2-10.7.6-14 3zM20 10.6v21.2" /><path d="M3 11v21c6.3-.5 12.6.2 17 2.6 4.4-2.4 10.7-3.1 17-2.6V11" /></svg>
+          <div class="progress-body">
+            <span class="progress-label">基础</span>
+            <div class="progress-row">
+              <span class="progress-track" role="progressbar" aria-valuemin="0" aria-valuemax="16" aria-valuenow="0"><span class="progress-fill" id="progress-fill"></span></span>
+              <span class="progress-count" id="progress-count">0/16</span>
+            </div>
+          </div>
+        </div>
+        <time class="clock" id="clock">
+          <span id="clock-date"></span>
+          <span id="clock-time"></span>
+        </time>
+      </section>
+
+      <!-- Right info panel -->
+      <section class="info-card" aria-label="课程信息">
+        <div class="tabs" role="tablist">
+          <button role="tab" aria-selected="true" class="is-active">概览</button>
+          <button role="tab" aria-selected="false">引脚图</button>
+          <button role="tab" aria-selected="false">示例</button>
+          <button role="tab" aria-selected="false">规格</button>
+        </div>
+        <div class="info-body" role="tabpanel">
+          <button class="expand" aria-label="展开面板">
+            <svg viewBox="0 0 24 24"><path d="M3 8V3h5M16 3h5v5M21 16v5h-5M8 21H3v-5" /><circle cx="12" cy="12" r="1.3" class="fill" /></svg>
+          </button>
+          <div class="info-content"></div>
+        </div>
+      </section>
+
+      <!-- Code card -->
+      <section class="code-card" aria-label="动手试试" data-state="idle">
+        <header>
+          <h2>动手试试</h2>
+          <div class="code-actions">
+            <button class="btn-ghost btn-expand" aria-label="展开代码" title="展开代码" aria-expanded="false">
+              <svg viewBox="0 0 24 24"><path d="M3 8V3h5M16 3h5v5M21 16v5h-5M8 21H3v-5" /><circle cx="12" cy="12" r="1.3" class="fill" /></svg>
+            </button>
+            <button class="btn-ghost btn-copy" aria-label="复制代码" title="复制代码">
+              <svg viewBox="0 0 24 24"><rect x="8" y="8" width="11.5" height="12.5" rx="1.6" /><path d="M15.5 5.2V4.8c0-.9-.7-1.6-1.6-1.6H6.1c-.9 0-1.6.7-1.6 1.6v9.6c0 .9.7 1.6 1.6 1.6h.4" /></svg>
+            </button>
+            <button class="btn-run" aria-label="运行程序" title="运行程序（空格）">
+              <svg viewBox="0 0 24 24"><path d="M7.5 4.8v14.4L19 12z" class="fill" /></svg>
+            </button>
+          </div>
+        </header>
+        <div class="code-wrap">
+          <pre class="code"><code></code></pre>
+          <div class="console">
+            <div class="console-grip" role="separator" aria-orientation="horizontal" aria-label="调整串口监视器大小" tabindex="-1"></div>
+            <div class="console-head">
+              <span class="console-dot"></span>
+              <span class="console-title">串口监视器</span>
+              <span class="console-status">已停止</span>
+              <button class="console-close" aria-label="停止程序">
+                <svg viewBox="0 0 24 24"><path d="m7 7 10 10M17 7 7 17" /></svg>
+              </button>
+            </div>
+            <div class="console-lines" aria-live="polite"></div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Lessons -->
+      <section class="lessons" aria-label="课程">
+        <h2>课程</h2>
+        <ol class="lesson-list" id="lesson-list"></ol>
+      </section>
+
+      <!-- Footer (compact layout; the wide layout keeps these in the side nav) -->
+      <footer class="app-foot">
+        <a class="credit credit-row" href="https://x.com/DilumSanjaya" target="_blank" rel="noopener noreferrer" title="设计：x.com/DilumSanjaya">
+          <svg class="credit-x" viewBox="0 0 24 24" aria-hidden="true"><path d="M18.9 1.15h3.68l-8.04 9.19L24 22.85h-7.4l-5.8-7.59-6.64 7.59H.47l8.6-9.83L0 1.15h7.6l5.24 6.93zm-1.29 19.5h2.04L6.49 3.24H4.3z" /></svg>
+          <span class="credit-rule" aria-hidden="true"></span>
+          <span class="credit-text"><small>设计</small><b>x.com/DilumSanjaya</b></span>
+        </a>
+      </footer>
+    </div>
+  </body>
+</html>
