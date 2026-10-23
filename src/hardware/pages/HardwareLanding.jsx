@@ -1,6 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { ArrowRight, BookOpen, CircuitBoard, Cpu, Lightbulb, Trophy } from 'lucide-react';
+import { ArrowRight, BookOpen, Box, CircuitBoard, Cpu, Lightbulb, Trophy } from 'lucide-react';
 import Navigation from '../../components/Navigation';
 import Footer from '../../components/Footer';
 import { scienceCourses } from '../../data/innovationCourseCatalog';
@@ -46,6 +46,13 @@ export default function HardwareLanding({ courseId = 'advanced' }) {
                         从第 1 课开始<ArrowRight size={18} />
                     </Link>
                 </header>
+                {courseId === 'arduino' && (
+                    <aside className="mt-6 rounded-2xl border border-amber-300 bg-amber-50 p-6" aria-labelledby="arduino-3d-title">
+                        <h2 id="arduino-3d-title" className="flex items-center gap-2 text-xl font-bold"><Box size={24} aria-hidden="true" />Arduino 3D 互动课程</h2>
+                        <p className="mt-3 text-sm leading-7 text-stone-600">在 3D 电路板上连接 LED、按键、传感器和电机，运行代码观察效果。16 节入门课程，适合配合下面的网页课件动手练习。</p>
+                        <a href="https://dora321.github.io/gesp-app/courseware/arduino/3d-course/" className="mt-4 inline-flex min-h-11 items-center gap-2 rounded-xl bg-stone-950 px-5 py-3 font-bold text-amber-100 hover:bg-stone-800">进入 3D 互动课程<ArrowRight size={18} aria-hidden="true" /></a>
+                    </aside>
+                )}
                 <section className="mt-10" aria-labelledby="science-lessons-title" data-course-lessons>
                     <h2 id="science-lessons-title" className="flex items-center gap-2 text-2xl font-black"><BookOpen size={24} />课程目录</h2>
                     <p className="mb-6 mt-3 text-sm leading-7 text-stone-600">{course.updateNote}</p>

@@ -1,6 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { ArrowRight, ArrowUp, Bot, Cpu, Landmark } from 'lucide-react';
+import { ArrowRight, ArrowUp, Bot, Box, Cpu, Landmark } from 'lucide-react';
 import { usePrefersReducedMotion } from '../hooks/useShouldRunDecorativeMotion';
 import { arduinoLessons, innovationLessons, scienceCourses } from '../data/innovationCourseCatalog';
 
@@ -25,6 +25,13 @@ const items = [
         action: '查看 Arduino 课程',
         route: '/hardware/arduino',
         icon: Cpu,
+    },
+    {
+        title: 'Arduino 3D 互动课程',
+        desc: '在 3D Arduino 电路板上连接 LED、按键、传感器和电机，运行代码观察效果，跟着 16 节入门课程动手练习。',
+        action: '进入 3D 互动课程',
+        href: 'https://dora321.github.io/gesp-app/courseware/arduino/3d-course/',
+        icon: Box,
     },
     {
         title: 'E-Kart Lab',
@@ -57,11 +64,13 @@ export default function ExploreMore() {
                 </div>
 
                 <ul className="home-explore-list">
-                    {items.map(({ title, desc, action, route, icon: Icon }) => (
-                        <li key={route} className="home-explore-item">
+                    {items.map(({ title, desc, action, route, href, icon: Icon }) => (
+                        <li key={route || href} className="home-explore-item">
                             <Icon size={24} aria-hidden="true" />
                             <h3>
-                                <Link to={route} className="home-explore-link">{title}</Link>
+                                {href
+                                    ? <a href={href} className="home-explore-link">{title}</a>
+                                    : <Link to={route} className="home-explore-link">{title}</Link>}
                             </h3>
                             <p>{desc}</p>
                             <span className="home-explore-cta" aria-hidden="true">
