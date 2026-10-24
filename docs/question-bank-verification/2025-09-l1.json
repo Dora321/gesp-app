@@ -1,0 +1,31 @@
+{
+  "paperId": "2025-09-l1",
+  "reviewedAt": "2026-10-24",
+  "reviewedBy": { "type": "AI", "executor": "WorkBuddy 子代理", "session": "codex/question-bank-verification" },
+  "source": {
+    "mirrorUrl": "https://raw.githubusercontent.com/Dora321/gesp-official-pdfs/main/pdfs/2025%E5%B9%B49%E6%9C%88-C%2B%2B1%E7%BA%A7.pdf",
+    "mirrorSha": "41a17a499b75ee176ccf1b1e8666e8dde9cd7b21",
+    "shaVerified": true,
+    "fetchedAt": "2026-10-24",
+    "pages": { "total": 8, "note": "官方卷式：单选答案表在 p1 顶部（已裁剪放大核对），判断答案表在 p5 判断题节首，编程题解析 pp.6-8" }
+  },
+  "answerTable": {
+    "location": "单选：p1 顶部答案表；判断：p5 判断题节首答案表",
+    "content": {
+      "single": ["D", "C", "C", "C", "D", "A", "D", "C", "C", "A", "C", "D", "D", "A", "D"],
+      "judge": ["×", "√", "×", "×", "√", "×", "×", "×", "×", "√"]
+    }
+  },
+  "questions": [
+    {
+      "note": "题库 Q1-Q8、Q11 与官方原卷题面一致（Q6 有轻度改写：官方为『输入 1 个制表符』且 printf(\"{%d}\",N+M) 输出 {30}，题库为『输入 1 个空格』且 printf(\"%d\",N+M) 输出 30，正确项同为 A，未修改），答案逐题比对全部一致。Q9、Q10、Q12、Q13、Q14、Q15 与判断题 16-25 为改写题（官方原卷分别为：Q9 循环 i=100;i<100 输出 0→C；Q10 printf/break 输出 1#2#→A；Q12 交换变量不能实现→D(a,b=b,a)；Q13 取第 M 位数字填空→D(N/div%10)；Q14 while+continue 输出 1#2#4#5#6#→A；Q15 最大最小值说法错误→D；判断题为调试修改、10%0.5 报错、break 后输出 9、倒序累加 55、i=0 改 i=1、i<10 改 i<=10、45、12+12.12 报错、continue 无限循环、斐波那契实现）。题库改写题各自与自身题面自洽（Q14 经 g++ 编译运行验证输出 10=D，tmp/q14.cpp），官方答案串对应的官方题面未录入题库，故不能按官方串改写题库 answer。",
+      "action": "未修改任何 answer 字段，按占位/改写卷规则如实记录。",
+      "programmingCheck": "编程题与官方一致：Q26 商店折扣（样例与原卷 p6 一致）；Q27 金字塔，无需修改。",
+      "resolved": false
+    }
+  ],
+  "unresolved": [
+    "题库该卷 Q9/Q10/Q12-Q15 与判断题 16-25 为与官方原卷不对应的改写题（答案自洽），需另行整卷按原卷重录；官方答案串已录于本文件 answerTable，官方题面见 tmp/pages/2025-09-l1/ 渲染图。"
+  ],
+  "executedAt": "2026-10-24"
+}
