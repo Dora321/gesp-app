@@ -210,9 +210,23 @@ export const paperData = {
         {
             id: 9,
             type: "single",
-            sourceIntegrity: "missing-code",
-            integrityNote: "原卷此题引用的程序代码在录入时未收录，仅凭当前题面无法推导答案。本题已排除出计分与考点练习，待补齐原卷代码后恢复。",
-            question: `下面程序的输出为（ ）。`,
+            question: `下面程序的输出为（ ）。
+
+\`\`\`cpp
+#include <iostream>
+using namespace std;
+
+int main() {
+    int N = 15, cnt = 0;
+    for (int x = 1; x + x + x <= N; x++)
+        for (int y = x; x + y + y <= N; y++)
+            for (int z = y; x + y + z <= N; z++)
+                cnt++;
+    cout << cnt << endl;
+    return 0;
+}
+\`\`\`
+`,
             options: [
                 "45",
                 "102",
@@ -224,14 +238,14 @@ export const paperData = {
             explanation: `**答案：B**
 
 **解析：**
-本题考查程序阅读与变量、循环运算，依题面与标准结论，程序正确输出为 102。
+程序统计满足 1 ≤ x ≤ y ≤ z 且 x+y+z ≤ 15 的三元组个数（x 从 1 起，3x ≤ N 限定 x ≤ 5；y 需 x+2y ≤ N；z 需 x+y+z ≤ N）。逐层枚举累加得 cnt = 102。（对比 2024 年 12 月卷同型程序：该卷 x 从 0 起得 174，本题 x 从 1 起得 102。）
 
-- **A 45**：错误。非程序运行所得结果。
-- **B 102**：正确。依题面逻辑与标准答案，输出为 102。
-- **C 174**：错误。非程序运行所得结果。
-- **D 3375**：错误。该值偏大，不符合程序实际运算结果。
+- **A 45**：错误。约为 x=1、y=z 无上界放松后的部分计数。
+- **B 102**：正确。编译运行转写代码输出 102。
+- **C 174**：错误。这是 x 从 0 开始的同型程序结果，本题 x 从 1 开始。
+- **D 3375**：错误。这是 15³，与循环计数无关。
 
-（注：原题所引程序代码未完整收录，以下解析依据题面描述与标准结论。）`,
+**考点**：多重循环枚举、非降三元组计数（起始值对结果的影响）。`,
             tags: [
                 "C++综合",
             ],
@@ -239,26 +253,44 @@ export const paperData = {
         {
             id: 10,
             type: "single",
-            sourceIntegrity: "missing-code",
-            integrityNote: "原卷此题引用的程序代码在录入时未收录，仅凭当前题面无法推导答案。本题已排除出计分与考点练习，待补齐原卷代码后恢复。",
-            question: `下面程序的时间复杂度为（ ）。`,
+            question: `下面程序的时间复杂度为（ ）。
+
+\`\`\`cpp
+int primes[MAXP], num = 0;
+bool isPrime[MAXN] = {false};
+
+void sieve() {
+    for (int n = 2; n <= MAXN; n++) {
+        if (!isPrime[n])
+            primes[num++] = n;
+        for (int i = 0; i < num && n * primes[i] <= MAXN; i++) {
+            isPrime[n * primes[i]] = true;
+            if (n % primes[i] == 0)
+                break;
+        }
+    }
+}
+\`\`\`
+`,
             options: [
-                "O(N)",
-                "O(N²)",
-                "O(N³)",
-                "O(N log N)",
+                "O(n log n)",
+                "O(n log log n)",
+                "O(n)",
+                "O(log n)",
 ],
             answer: 2,
             score: 2,
             explanation: `**答案：C**
 
 **解析：**
-程序含三层嵌套循环：最外层 x 满足 3x≤N，最多约 N/3 次；中间层 y 满足 x+2y≤N，最多约 N/2 次；最内层 z 满足 x+y+z≤N，最多约 N 次。三层循环规模均与 N 同阶，整体最坏时间复杂度为 O(N³)。
+这是线性筛（欧拉筛）：每个合数 n*primes[i] 只在其最小质因子处被标记一次（n % primes[i] == 0 时立即 break），因此内层对每个 n 的均摊工作量是 O(1)，总时间复杂度 O(n)。
 
-- **A O(N)**：错误。单层循环才可能达到，本题为三层嵌套。
-- **B O(N²)**：错误。两层嵌套的量级，实际循环深度为三层。
-- **C O(N³)**：正确。三层循环各层上界均为 O(N)，累计为 O(N³)。
-- **D O(N log N)**：错误。程序无分治或二分结构，不出现对数因子。`,
+- **A O(n log n)**：错误。高估了内层循环的均摊工作量。
+- **B O(n log log n)**：错误。这是埃拉托斯特尼筛的复杂度，本题的 break 保证线性。
+- **C O(n)**：正确。每个合数只被最小质因子筛一次。
+- **D O(log n)**：错误。外层遍历所有 [2, MAXN] 的数，不是对数级。
+
+**考点**：线性筛（欧拉筛）的均摊复杂度分析。`,
             tags: [
                 "复杂度分析",
             ],
@@ -370,9 +402,43 @@ Prim 算法在将顶点 u 加入生成树后，需对所有“尚未访问”的
         {
             id: 15,
             type: "single",
-            sourceIntegrity: "missing-code",
-            integrityNote: "原卷此题引用的程序代码在录入时未收录，仅凭当前题面无法推导答案。本题已排除出计分与考点练习，待补齐原卷代码后恢复。",
-            question: `下面的程序使用出边邻接表表达的带权无向图，则从顶点0到顶点3的最短距离为（ ）。`,
+            question: `下面的程序使用出边邻接表表达的带权无向图，则从顶点0到顶点3的最短距离为（ ）。
+
+\`\`\`cpp
+#include <vector>
+using namespace std;
+
+class Edge {
+public:
+    int dest;
+    int weight;
+    Edge(int d, int w) : dest(d), weight(w) {}
+};
+
+class Graph {
+private:
+    int num_vertex;
+    vector<vector<Edge>> vve;
+
+public:
+    Graph(int v) : num_vertex(v), vve(v) {}
+    void addEdge(int s, int d, int w) {
+        vve[s].emplace_back(d, w);
+        vve[d].emplace_back(s, w)
+    }
+};
+
+int main() {
+    Graph g(4);
+    g.addEdge(0, 1, 8);
+    g.addEdge(0, 2, 5);
+    g.addEdge(1, 2, 1);
+    g.addEdge(1, 3, 3);
+    g.addEdge(2, 3, 7);
+    return 0;
+}
+\`\`\`
+`,
             options: [
                 "12",
                 "11",
@@ -384,14 +450,23 @@ Prim 算法在将顶点 u 加入生成树后，需对所有“尚未访问”的
             explanation: `**答案：D**
 
 **解析：**
-本题为带权图最短路计算，依题面与标准结论，所求起点到某顶点的最短距离为 9。
+addEdge 双向建边，图含 4 个顶点、5 条无向边：0-1(8)、0-2(5)、1-2(1)、1-3(3)、2-3(7)。枚举顶点 0 到顶点 3 的各条路径：
 
-- **A 12**：错误。非最短距离值。
-- **B 11**：错误。非最短距离值。
-- **C 10**：错误。非最短距离值。
-- **D 9**：正确。依题面与标准答案，最短距离为 9。
+- 0-1-3：8 + 3 = 11；
+- 0-2-3：5 + 7 = 12；
+- 0-2-1-3：5 + 1 + 3 = 9；
+- 0-1-2-3：8 + 1 + 7 = 16。
 
-（注：原题所引程序代码未完整收录，以下解析依据题面描述与标准结论。）`,
+最短距离为 9。
+
+- **A 12**：错误。这是 0-2-3，次优路径。
+- **B 11**：错误。这是 0-1-3，并非最优。
+- **C 10**：错误。不存在权和为 10 的 0→3 路径。
+- **D 9**：正确。0-2-1-3 = 5+1+3 = 9 为最短。
+
+（注：原卷代码第 18 行 \`vve[d].emplace_back(s, w)\` 末尾缺少分号，系原卷排版笔误，转写时保持原样。）
+
+**考点**：链式邻接表（vector 建图）与带权无向图最短路径枚举。`,
             tags: [
                 "C++综合",
             ],
