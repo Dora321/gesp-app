@@ -315,15 +315,62 @@ if (s[i] != '0') {
         {
             id: 9,
             type: "single",
-            sourceIntegrity: "missing-code",
-            integrityNote: "原卷此题引用的程序代码在录入时未收录，仅凭当前题面无法推导答案。本题已排除出计分与考点练习，待补齐原卷代码后恢复。",
-            question: `给定一个无向图，图的节点编号从 0 到 $n-1$，图的边以邻接表的形式给出。下面程序使用深度优先搜索（DFS）遍历该图，并输出遍历的节点顺序。横线处应该填入的是（ ）。`,
+            question: `给定一个无向图，图的节点编号从 0 到 $n-1$，图的边以邻接表的形式给出。下面程序使用深度优先搜索（DFS）遍历该图，并输出遍历的节点顺序。横线处应该填入的是（ ）。
+
+\`\`\`cpp
+#include <iostream>
+#include <vector>
+#include <stack>
+using namespace std;
+
+void DFS(int start, vector<vector<int>>& graph, vector<bool>& visited) {
+    stack<int> s;
+    s.push(start);
+    visited[start] = true;
+
+    while (!s.empty()) {
+        int node = s.top();
+        s.pop();
+        cout << node << " "; // 输出当前节点
+
+        // 遍历邻接节点
+        for (int neighbor : graph[node]) {
+            if (!visited[neighbor]) {
+
+                ________________
+
+            }
+        }
+    }
+}
+
+int main() {
+    int n, m;
+    cin >> n >> m;
+
+    vector<vector<int>> graph(n);
+    for (int i = 0; i < m; i++) {
+        int u, v;
+        cin >> u >> v;
+        graph[u].push_back(v);
+        graph[v].push_back(u);
+    }
+
+
+    vector<bool> visited(n, false);
+
+    // 从节点 0 开始DFS遍历
+    DFS(0, graph, visited);
+
+    return 0;
+}
+\`\`\``,
             options: [
-                "nl + nr == n",
-                "nl + nr == n2",
-                "(nl + nr) * (nl + nr) == n",
-                "(nl + nr) ^ 2 == n2",
-],
+                "visited[neighbor] = true; s.push(neighbor - 1);",
+                "visited[neighbor] = true; s.push(neighbor + 1);",
+                "visited[neighbor] = false; s.push(neighbor);",
+                "visited[neighbor] = true; s.push(neighbor);",
+            ],
             answer: 3,
             score: 2,
             explanation: `**答案：D（visited[neighbor] = true; s.push(neighbor);）**
@@ -350,9 +397,29 @@ for (int neighbor : graph[node]) {
         {
             id: 10,
             type: "single",
-            sourceIntegrity: "missing-code",
-            integrityNote: "原卷此题引用的程序代码在录入时未收录，仅凭当前题面无法推导答案。本题已排除出计分与考点练习，待补齐原卷代码后恢复。",
-            question: `给定一个整数数组 nums，找到其中最长的严格上升子序列的长度。子序列是指从原数组中删除一些元素（或不删除）后，剩余元素保持原有顺序的序列。下面的程序横线处应该填入的是（ ）。`,
+            question: `给定一个整数数组 nums，找到其中最长的严格上升子序列的长度。子序列是指从原数组中删除一些元素（或不删除）后，剩余元素保持原有顺序的序列。下面的程序横线处应该填入的是（ ）。
+
+\`\`\`cpp
+#include <iostream>
+#include <vector>
+#include <algorithm>
+using namespace std;
+
+int lengthOfLIS(vector<int>& nums) {
+    int n = nums.size();
+    if (n == 0) return 0;
+    vector<int> dp(n, 1);
+
+    for (int i = 1; i < n; i++) {
+        for (int j = 0; j < i; j++) {
+            if (nums[i] > nums[j]) {
+                ____
+            }
+        }
+    }
+    return *max_element(dp.begin(), dp.end());
+}
+\`\`\``,
             options: [
                 "$dp[i]$ = max($dp[i]$, $dp[j]$);",
                 "$dp[i]$ = max(dp[i+1], $dp[j]$+1);",
@@ -402,9 +469,68 @@ for (int neighbor : graph[node]) {
         {
             id: 12,
             type: "single",
-            sourceIntegrity: "missing-code",
-            integrityNote: "原卷此题引用的程序代码在录入时未收录，仅凭当前题面无法推导答案。本题已排除出计分与考点练习，待补齐原卷代码后恢复。",
-            question: `给定两个无向图 G1 和 G2，判断它们是否同构。图的同构是指两个图的节点可以通过某种重新编号的方式完全匹配，且边的连接关系一致。为了简化问题，假设图的节点编号从 0 到 $n-1$，并且图的边以邻接表形式给出。下面程序中横线处应该填入的是（ ）。`,
+            question: `给定两个无向图 G1 和 G2，判断它们是否同构。图的同构是指两个图的节点可以通过某种重新编号的方式完全匹配，且边的连接关系一致。为了简化问题，假设图的节点编号从 0 到 $n-1$，并且图的边以邻接表形式给出。下面程序中横线处应该填入的是（ ）。
+
+\`\`\`cpp
+#include <iostream>
+#include <vector>
+#include <map>
+#include <algorithm>
+using namespace std;
+
+string graphHash(vector<vector<int>>& graph) {
+    vector<string> nodeHashes(graph.size(), "");
+    for (int i = 0; i < graph.size(); i++) {
+        vector<int> neighbors = graph[i];
+        sort(neighbors.begin(), neighbors.end());
+        string hash;
+        for (int neighbor : neighbors) {
+            ____
+        }
+        nodeHashes[i] = hash;
+    }
+    sort(nodeHashes.begin(), nodeHashes.end());
+    string finalHash;
+    for (string h : nodeHashes) {
+        finalHash += h + ";";
+    }
+    return finalHash;
+}
+
+int main() {
+    int n;
+    cin >> n;
+
+    vector<vector<int>> G1(n);
+    for (int i = 0; i < n; i++) {
+        int k;
+        while (cin >> k) {
+            G1[i].push_back(k);
+            if (cin.get() == '\\n') break;
+        }
+    }
+
+    vector<vector<int>> G2(n);
+    for (int i = 0; i < n; i++) {
+        int k;
+        while (cin >> k) {
+            G2[i].push_back(k);
+            if (cin.get() == '\\n') break;
+        }
+    }
+
+    string hash1 = graphHash(G1);
+    string hash2 = graphHash(G2);
+
+    if (hash1 == hash2) {
+        cout << "YES" << endl;
+    } else {
+        cout << "NO" << endl;
+    }
+
+    return 0;
+}
+\`\`\``,
             options: [
                 "hash += to_string(neighbor);",
                 "hash += to_string(neighbors);",

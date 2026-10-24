@@ -445,8 +445,9 @@ async function validateFile(filePath, cfg) {
     if (requiresCodeContent(q, text) && !hasCodeContent(q, text)) {
       const message = `Q${qId}: question refers to code, but no fenced, inline, or independent code content was found`;
       if (q.requiresCode === true) errors.push(`[ERROR] ${message}`);
-      else if (q.sourceIntegrity === 'missing-figure' || q.sourceIntegrity === 'missing-code') {
-        // Already recorded in the data as a known missing code image/snippet, and
+      else if (['missing-figure', 'missing-code', 'contaminated-stem'].includes(q.sourceIntegrity)) {
+        // Already recorded in the data as a known missing code image/snippet (or a
+        // stem contaminated by another paper's question, pending rebuild), and
         // the UI warns the learner about it. Re-reporting it here would just be
         // noise — the structured flag is a stronger record than the baseline
         // file, because it also removes the question from scoring and from topic

@@ -1,0 +1,49 @@
+{
+  "paperId": "2025-12-l3",
+  "reviewedAt": "2026-10-24",
+  "executedAt": "2026-10-24",
+  "reviewedBy": { "type": "AI", "executor": "WorkBuddy 子代理", "session": "codex/question-bank-verification" },
+  "source": {
+    "mirrorUrl": "https://raw.githubusercontent.com/Dora321/gesp-official-pdfs/main/pdfs/2025%E5%B9%B412%E6%9C%88-C%2B%2B3%E7%BA%A7.pdf",
+    "mirrorSha": "0e53148a247d948c01155e55b49c20fe737ed6ed",
+    "shaVerified": true,
+    "fetchedAt": "2026-10-24",
+    "pages": 10
+  },
+  "answerTable": {
+    "location": "单选答案表 p.1「1 单选题」节首；判断答案表 p.5「2 判断题」节首",
+    "content": {
+      "single": "BCDBBDDAAACBBAD",
+      "judge": "√××××√√×√×"
+    }
+  },
+  "questions": [
+    { "id": 1,  "type": "single", "official": "B", "bank": "B", "changed": false },
+    { "id": 2,  "type": "single", "official": "C", "bank": "C", "changed": false },
+    { "id": 3,  "type": "single", "official": "D", "bank": "D", "changed": false },
+    { "id": 4,  "type": "single", "official": "B", "bank": "B", "changed": false },
+    { "id": 5,  "type": "single", "official": "B", "bank": "B", "changed": false },
+    { "id": 6,  "type": "single", "official": "D", "bank": "D", "changed": false },
+    { "id": 7,  "type": "single", "official": "D", "bank": "D", "changed": false },
+    { "id": 8,  "type": "single", "official": "A", "bank": "A", "changed": false },
+    { "id": 9,  "type": "single", "official": "A", "bank": "A", "changed": false },
+    { "id": 10, "type": "single", "official": "A", "bank": "A", "changed": false },
+    { "id": 11, "type": "single", "official": "C", "bank": "C", "changed": false },
+    { "id": 12, "type": "single", "official": "B", "bank": "B", "changed": false },
+    { "id": 13, "type": "single", "official": "B", "bank": "B", "changed": false },
+    { "id": 14, "type": "single", "official": "A", "bank": "A", "changed": false },
+    { "id": 15, "type": "single", "official": "D", "bank": "D", "changed": false },
+    { "id": 16, "type": "judge", "official": "√", "bank": "√", "changed": false },
+    { "id": 17, "type": "judge", "official": "×", "bank": "×", "changed": false },
+    { "id": 18, "type": "judge", "official": "×", "bank": "×", "changed": false },
+    { "id": 19, "type": "judge", "official": "×", "bank": "×", "changed": false },
+    { "id": 20, "type": "judge", "official": "×", "bank": "×", "changed": false },
+    { "id": 21, "type": "judge", "official": "√", "bank": "√", "changed": false },
+    { "id": 22, "type": "judge", "official": "√", "bank": "√", "changed": false },
+    { "id": 23, "type": "judge", "official": "×", "bank": "×", "changed": false },
+    { "id": 24, "type": "judge", "official": "√", "bank": "√", "changed": false },
+    { "id": 25, "type": "judge", "official": "×", "bank": "×", "changed": false }
+  ],
+  "notes": "题库 judge 约定 answer 0=√、1=×，比对时已换算（题库 0,1,1,1,1,0,0,1,0,1 = √××××√√×√×）。两张答案表均放大裁剪复核，√/× 无误读。单选 15 题、判断 10 题与官方答案全部一致，未做任何修改。编程题不在本次答案核对范围。",
+  "unresolved": []
+}

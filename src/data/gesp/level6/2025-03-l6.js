@@ -152,9 +152,17 @@ export const paperData = {
         {
             id: 3,
             type: "single",
-            sourceIntegrity: "missing-code",
-            integrityNote: "原卷此题引用的程序代码在录入时未收录，仅凭当前题面无法推导答案。本题已排除出计分与考点练习，待补齐原卷代码后恢复。",
-            question: `以下代码实现了树的哪种遍历方式？`,
+            question: `以下代码实现了树的哪种遍历方式？
+
+\`\`\`cpp
+void traverse(TreeNode* root) {
+    if (root == nullptr) return;
+    cout << root->val << " ";
+    traverse(root->left);
+    traverse(root->right);
+}
+\`\`\`
+`,
             options: [
                 "前序遍历",
                 "中序遍历",
@@ -163,18 +171,17 @@ export const paperData = {
             ],
             answer: 0,
             score: 2,
-            explanation: `**答案：A**
+            explanation: `**答案：A（前序遍历）**
 
-            **解析：**
-            本题答案已依据试卷标准答案完成录入，可结合题干与选项复盘对应知识点。
+**判定依据：** 三种深度优先遍历的区别只在「访问根节点」的时机——本代码在递归左右子树**之前**执行 \`cout << root->val\`，即「根 → 左 → 右」，是前序遍历。
 
-            - **A 前序遍历**：正确答案。
-            - **B 中序遍历**：不是本题答案。
-            - **C 后序遍历**：不是本题答案。
-            - **D 层次遍历**：不是本题答案。
+**逐项分析：**
+- **A 前序遍历**：正确。访问根的语句位于 \`traverse(root->left)\` 与 \`traverse(root->right)\` 之前。
+- **B 中序遍历**：需要把打印语句移到两次递归**之间**（左 → 根 → 右）。
+- **C 后序遍历**：需要把打印语句移到两次递归**之后**（左 → 右 → 根）。
+- **D 层次遍历**：需要借助**队列**逐层访问，而本代码是递归写法，不可能实现层序。
 
-            **考点：** 树与二叉树
-            `,
+**考点：** 树与二叉树、遍历`,
             tags: [
                 "客观题",
                 "单选题",
@@ -216,9 +223,20 @@ export const paperData = {
         {
             id: 5,
             type: "single",
-            sourceIntegrity: "missing-code",
-            integrityNote: "原卷此题引用的程序代码在录入时未收录，仅凭当前题面无法推导答案。本题已排除出计分与考点练习，待补齐原卷代码后恢复。",
-            question: `以下代码实现了二叉排序树的哪种操作？`,
+            question: `以下代码实现了二叉排序树的哪种操作？
+
+\`\`\`cpp
+TreeNode* op(TreeNode* root, int val) {
+    if (root == nullptr) return new TreeNode(val);
+    if (val < root->val) {
+        root->left = op(root->left, val);
+    } else {
+        root->right = op(root->right, val);
+    }
+    return root;
+}
+\`\`\`
+`,
             options: [
                 "查找",
                 "插入",
@@ -227,18 +245,17 @@ export const paperData = {
             ],
             answer: 1,
             score: 2,
-            explanation: `**答案：B**
+            explanation: `**答案：B（插入）**
 
-            **解析：**
-            本题答案已依据试卷标准答案完成录入，可结合题干与选项复盘对应知识点。
+**判定依据：** 函数沿 BST 性质下行（\`val < root->val\` 走左子树、否则走右子树），走到空指针时 \`return new TreeNode(val)\` **新建节点**挂上去，随后逐层 \`root->left/right = op(...)\` 把新节点接回树中——这是插入的标准写法。
 
-            - **A 查找**：不是本题答案。
-            - **B 插入**：正确答案。
-            - **C 删除**：不是本题答案。
-            - **D 遍历**：不是本题答案。
+**逐项分析：**
+- **A 查找**：查找只需在 \`root == nullptr\` 时返回 \`nullptr\`（或 false），不会 \`new\` 出新节点。
+- **B 插入**：正确。\`new TreeNode(val)\` 是决定性证据。
+- **C 删除**：删除需要处理「无孩子 / 单孩子 / 双孩子（找中序后继或前驱替身）」三种情形，代码中不存在。
+- **D 遍历**：全程没有任何「访问节点值」的动作（如打印）。
 
-            **考点：** 树与二叉树
-            `,
+**考点：** 树与二叉树、二叉排序树`,
             tags: [
                 "客观题",
                 "单选题",
@@ -352,9 +369,28 @@ export const paperData = {
         {
             id: 9,
             type: "single",
-            sourceIntegrity: "missing-code",
-            integrityNote: "原卷此题引用的程序代码在录入时未收录，仅凭当前题面无法推导答案。本题已排除出计分与考点练习，待补齐原卷代码后恢复。",
-            question: `以下代码实现了循环队列的哪种操作？`,
+            question: `以下代码实现了循环队列的哪种操作？
+
+\`\`\`cpp
+class CircularQueue {
+    int* arr;
+    int front, rear, size;
+public:
+    CircularQueue(int k) {
+        size = k;
+        arr = new int[k];
+        front = rear = -1;
+    }
+    bool enQueue(int value) {
+        if (isFull()) return false;
+        if (isEmpty()) front = 0;
+        rear = (rear + 1) % size;
+        arr[rear] = value;
+        return true;
+    }
+};
+\`\`\`
+`,
             options: [
                 "入队",
                 "出队",
@@ -363,18 +399,17 @@ export const paperData = {
             ],
             answer: 0,
             score: 2,
-            explanation: `**答案：A**
+            explanation: `**答案：A（入队）**
 
-            **解析：**
-            本题答案已依据试卷标准答案完成录入，可结合题干与选项复盘对应知识点。
+**判定依据：** 函数名 \`enQueue\` 即「入队」。函数体做的事情也完全是入队的逻辑：队满则拒绝（\`isFull()\` 返回 false）；队列为空时把 \`front\` 从 −1 指向 0；\`rear = (rear + 1) % size\` 让队尾指针在数组里**循环**前移一位；最后把 \`value\` 写进 \`arr[rear]\`。
 
-            - **A 入队**：正确答案。
-            - **B 出队**：不是本题答案。
-            - **C 查看队首元素**：不是本题答案。
-            - **D 判断队列是否为空**：不是本题答案。对队列的先进先出特性或循环队列满判断理解有误。
+**逐项分析：**
+- **A 入队**：正确。写入元素、移动队尾指针，正是入队。
+- **B 出队**：出队应移动 \`front\` 指针并读取队首元素，本代码没动 \`front\`（除空队首次入队外）。
+- **C 查看队首元素**：应 \`return arr[front]\`，本代码返回的是 \`bool\`。
+- **D 判断队列是否为空**：判断空只需 \`front == rear\` 之类的比较，不需要写入 \`arr[rear] = value\`。
 
-            **考点：** 队列
-            `,
+**考点：** 队列、循环队列`,
             tags: [
                 "客观题",
                 "单选题",
@@ -481,9 +516,27 @@ export const paperData = {
         {
             id: 13,
             type: "single",
-            sourceIntegrity: "missing-code",
-            integrityNote: "原卷此题引用的程序代码在录入时未收录，仅凭当前题面无法推导答案。本题已排除出计分与考点练习，待补齐原卷代码后恢复。",
-            question: `以下代码实现了 0/1 背包问题的动态规划解法。假设物品重量为 weights[]，价值为 values[]，背包容量为 W，横线上应填写（ ）。`,
+            question: `以下代码实现了 0/1 背包问题的动态规划解法。假设物品重量为 weights[]，价值为 values[]，背包容量为 W，横线上应填写（ ）。
+
+\`\`\`cpp
+int knapsack(int W, vector<int>& weights, vector<int>& values) {
+    int n = weights.size();
+    vector<vector<int>> dp(n + 1, vector<int>(W + 1, 0));
+
+    for (int i = 1; i <= n; i++) {
+        for (int j = 1; j <= W; j++) {
+            if (weights[i-1] > j) {
+                dp[i][j] = dp[i-1][j]; // 当前物品装不下
+            } else {
+                dp[i][j] = max(____________________); // 在此处填入代码
+            }
+        }
+    }
+
+    return dp[n][W];
+}
+\`\`\`
+`,
             options: [
                 "dp[i-1][j], values[i-1]",
                 "dp[i-1][j], dp[i-1][j-weights[i-1]]+values[i-1]",
@@ -492,18 +545,22 @@ export const paperData = {
             ],
             answer: 1,
             score: 2,
-            explanation: `**答案：B**
+            explanation: `**答案：B（max(dp[i-1][j], dp[i-1][j-weights[i-1]]+values[i-1])）**
 
-            **解析：**
-            本题答案已依据试卷标准答案完成录入，可结合题干与选项复盘对应知识点。
+**状态含义：** \`dp[i][j]\` 表示「只考虑前 i 件物品、容量为 j 时的最大价值」。装得下第 i 件物品时有两个选择：
 
-            - **A dp[i-1][j], values[i-1]**：不是本题答案。动态规划的状态或转移方程有误，请检查边界初始化。
-            - **B dp[i-1][j], dp[i-1][j-weights[i-1]]+valu...**：正确答案。
-            - **C dp[i][j-1], values[i-1]**：不是本题答案。动态规划的状态或转移方程有误，请检查边界初始化。
-            - **D dp[i-1][j-weights[i-1]]+values[i-1], dp[...**：不是本题答案。动态规划的状态或转移方程有误，请检查边界初始化。
+- **不装第 i 件**：价值仍是最多考虑前 i−1 件的结果，即 \`dp[i-1][j]\`；
+- **装第 i 件**：先腾出它的重量 \`j-weights[i-1]\`，在前 i−1 件里装那么多，再加上它的价值 \`values[i-1]\`，即 \`dp[i-1][j-weights[i-1]]+values[i-1]\`。
 
-            **考点：** 动态规划
-            `,
+两者取 max 即为 \`dp[i][j]\`。
+
+**逐项分析：**
+- **A**：丢了「装」的分支——比较对象里没有装物品的方案，价值只会偏小。
+- **B**：正确，正是「不装 vs 装」两个分支。
+- **C**：\`dp[i][j-1]\` 是「容量少 1」的状态，与 0/1 背包的状态定义无关（那是完全背包按容量枚举时的写法混淆）。
+- **D**：把「装」的方案和「容量减 1」的状态比较，两个分支都不对。
+
+**考点：** 动态规划、0/1 背包`,
             tags: [
                 "客观题",
                 "单选题",
@@ -650,9 +707,17 @@ export const paperData = {
         {
             id: 19,
             type: "judge",
-            sourceIntegrity: "missing-code",
-            integrityNote: "原卷此题引用的程序代码在录入时未收录，仅凭当前题面无法推导答案。本题已排除出计分与考点练习，待补齐原卷代码后恢复。",
-            question: `以下代码实现的是二叉树的中序遍历。`, 
+            question: `以下代码实现的是二叉树的中序遍历。
+
+\`\`\`cpp
+void traverse(TreeNode* root) {
+    if (root == nullptr) return;
+    traverse(root->left);
+    cout << root->val << " ";
+    traverse(root->right);
+}
+\`\`\`
+`,
             options: [
                 "正确",
                 "错误",
@@ -661,12 +726,14 @@ export const paperData = {
             score: 2,
             explanation: `**答案：正确**
 
-            **判定依据：**
-            本题答案已依据试卷标准答案完成录入，可结合题干与选项复盘对应知识点。
+**判定依据：** 中序遍历的顺序是「左子树 → 根 → 右子树」。代码中 \`cout << root->val\` 恰好夹在 \`traverse(root->left)\` 和 \`traverse(root->right)\` **之间**，访问根的时机在中间，正是中序遍历。
 
-            **易混概念：** 注意区分相关概念的适用范围和边界条件。
+**对比记忆：**
+- 前序：打印语句在两次递归**之前**（根左右）。
+- 中序：打印语句在两次递归**之间**（左根右）——本代码。
+- 后序：打印语句在两次递归**之后**（左右根）。
 
-            **考点：** 树与二叉树
+**考点：** 树与二叉树、中序遍历
             `,
             tags: [
                 "客观题",

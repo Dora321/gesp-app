@@ -1,0 +1,24 @@
+{
+  "paperId": "2024-12-l8",
+  "reviewedAt": "2026-10-24",
+  "reviewedBy": { "type": "AI", "executor": "WorkBuddy 子代理", "session": "codex/question-bank-verification" },
+  "source": {
+    "mirrorUrl": "https://raw.githubusercontent.com/Dora321/gesp-official-pdfs/main/pdfs/2024%E5%B9%B412%E6%9C%88-C%2B%2B8%E7%BA%A7.pdf",
+    "mirrorSha": "8c3dba1614884661d4c1f4008962c4fb1c8891f6",
+    "shaVerified": true,
+    "fetchedAt": "2026-10-24",
+    "pages": { "Q10": "p.3" }
+  },
+  "questions": [
+    {
+      "id": 10,
+      "dimensions": ["statement", "answer", "explanation"],
+      "method": ["原卷对照（页面渲染人工查看）", "程序执行"],
+      "findings": "题面缺失非降三元组计数三重循环代码。",
+      "fix": "按原卷 p.3 转写代码回填；移除标记；解析重写为枚举结构说明（x ≤ y ≤ z 且 x+y+z ≤ 15）。",
+      "evidence": "g++ 编译运行转写代码，输出 174，与答案 A（174）一致。tmp/verify/2024-12-l8/q10.cpp",
+      "resolved": true
+    }
+  ],
+  "unresolved": []
+}

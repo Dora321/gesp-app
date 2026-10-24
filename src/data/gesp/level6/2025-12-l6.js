@@ -269,9 +269,29 @@ export const paperData = {
         {
             id: 6,
             type: "single",
-            sourceIntegrity: "missing-code",
-            integrityNote: "原卷此题引用的程序代码在录入时未收录，仅凭当前题面无法推导答案。本题已排除出计分与考点练习，待补齐原卷代码后恢复。",
-            question: `以下函数 check() 用于判断一棵二叉树是否为（ ）。`,
+            question: `以下函数 check() 用于判断一棵二叉树是否为（ ）。
+
+\`\`\`cpp
+bool check(TreeNode* root) {
+    if (!root) return true;
+
+    queue<TreeNode*> q;
+    q.push(root);
+    bool hasNull = false;
+    while (!q.empty()) {
+        TreeNode* cur = q.front(); q.pop();
+        if (!cur) {
+            hasNull = true;
+        } else {
+            if (hasNull) return false;
+            q.push(cur->left);
+            q.push(cur->right);
+        }
+    }
+    return true;
+}
+\`\`\`
+`,
             options: [
                 "满二叉树",
                 "完全二叉树",
@@ -280,18 +300,19 @@ export const paperData = {
             ],
             answer: 1,
             score: 2,
-            explanation: `**答案：B**
+            explanation: `**答案：B（完全二叉树）**
 
-            **解析：**
-            本题答案已依据试卷标准答案完成录入，可结合题干与选项复盘对应知识点。
+**这段代码在做什么：** 按**层序**（BFS）遍历，把每个节点的左右孩子（包括空指针）都压入队列，并用 \`hasNull\` 记录「是否已经见过空指针」。一旦在见过空之后又遇到**非空**节点，立即返回 false。
 
-            - **A 满二叉树**：不是本题答案。
-            - **B 完全二叉树**：正确答案。
-            - **C 二叉搜索树**：不是本题答案。
-            - **D 平衡二叉树**：不是本题答案。
+**为什么这判的是完全二叉树：** 完全二叉树的层序序列里，非空节点必须**连续地**排在前面——一旦出现空缺，后面不允许再有任何节点。\`hasNull\` 正是在检查这一点。
 
-            **考点：** 树与二叉树
-            `,
+**逐项分析：**
+- **A 满二叉树**：满二叉树还要求每个节点有 0 或 2 个孩子，代码没有检查这一点（例如只有一个左孩子的节点照样通过）。
+- **B 完全二叉树**：正确，见上。
+- **C 二叉搜索树**：需要比较节点值的大小关系，代码从未比较 \`cur->val\`。
+- **D 平衡二叉树**：需要比较左右子树高度，代码没有高度信息。
+
+**考点：** 树与二叉树、完全二叉树、队列`,
             tags: [
                 "客观题",
                 "单选题",
@@ -301,9 +322,17 @@ export const paperData = {
         {
             id: 7,
             type: "single",
-            sourceIntegrity: "missing-code",
-            integrityNote: "原卷此题引用的程序代码在录入时未收录，仅凭当前题面无法推导答案。本题已排除出计分与考点练习，待补齐原卷代码后恢复。",
-            question: `以下代码实现了二叉树的（ ）。`,
+            question: `以下代码实现了二叉树的（ ）。
+
+\`\`\`cpp
+void traverse(TreeNode* root) {
+    if (!root) return;
+    traverse(root->left);
+    traverse(root->right);
+    cout << root->val << " ";
+}
+\`\`\`
+`,
             options: [
                 "前序遍历",
                 "中序遍历",
@@ -312,17 +341,17 @@ export const paperData = {
             ],
             answer: 2,
             score: 2,
-            explanation: `**答案：C**
+            explanation: `**答案：C（后序遍历）**
 
-            **解析：**
-            本题答案已依据试卷标准答案完成录入，可结合题干与选项复盘对应知识点。
+**判定依据：** 三种深度优先遍历的区别只在「访问根节点」的时机——本代码把 \`cout << root->val\` 放在两次递归**之后**，即「左 → 右 → 根」，是后序遍历。
 
-            - **A 前序遍历**：不是本题答案。
-            - **B 中序遍历**：不是本题答案。
-            - **C 后序遍历**：正确答案。
-            - **D 层序遍历**：不是本题答案。
+**逐项分析：**
+- **A 前序遍历**：打印语句应在两次递归**之前**（根左右）。
+- **B 中序遍历**：打印语句应在两次递归**之间**（左根右）。
+- **C 后序遍历**：正确，根最后被访问。
+- **D 层序遍历**：需要借助队列逐层访问，递归写法实现不了。
 
-            **考点：** 树与二叉树
+**考点：** 树与二叉树、后序遍历
             `,
             tags: [
                 "客观题",
@@ -390,9 +419,19 @@ export const paperData = {
         {
             id: 10,
             type: "single",
-            sourceIntegrity: "missing-code",
-            integrityNote: "原卷此题引用的程序代码在录入时未收录，仅凭当前题面无法推导答案。本题已排除出计分与考点练习，待补齐原卷代码后恢复。",
-            question: `以下函数实现了二叉排序树（BST）的（ ）操作。`,
+            question: `以下函数实现了二叉排序树（BST）的（ ）操作。
+
+\`\`\`cpp
+TreeNode* op(TreeNode* root, int x) {
+    if (!root) return new TreeNode(x);
+    if (x < root->val)
+        root->left = op(root->left, x);
+    else
+        root->right = op(root->right, x);
+    return root;
+}
+\`\`\`
+`,
             options: [
                 "查找",
                 "插入",
@@ -401,17 +440,17 @@ export const paperData = {
             ],
             answer: 1,
             score: 2,
-            explanation: `**答案：B**
+            explanation: `**答案：B（插入）**
 
-            **解析：**
-            本题答案已依据试卷标准答案完成录入，可结合题干与选项复盘对应知识点。
+**判定依据：** 函数沿 BST 性质下行（\`x < root->val\` 走左、否则走右），到空指针处 \`return new TreeNode(x)\` **新建节点**，再逐层 \`root->left/right = op(...)\` 把新节点接回树中——这是递归插入的标准写法。
 
-            - **A 查找**：不是本题答案。
-            - **B 插入**：正确答案。
-            - **C 删除**：不是本题答案。
-            - **D 遍历**：不是本题答案。
+**逐项分析：**
+- **A 查找**：查找在 \`!root\` 时应返回空（表示没找到），不会 \`new\` 新节点。
+- **B 插入**：正确。\`new TreeNode(x)\` 是决定性证据。
+- **C 删除**：删除要分「无孩子 / 单孩子 / 双孩子」三种情况处理，代码中不存在。
+- **D 遍历**：没有任何访问节点值的动作（如打印）。
 
-            **考点：** 树与二叉树
+**考点：** 树与二叉树、二叉排序树、插入
             `,
             tags: [
                 "客观题",
@@ -571,23 +610,36 @@ export const paperData = {
         {
             id: 16,
             type: "judge",
-            sourceIntegrity: "missing-code",
-            integrityNote: "原卷此题引用的程序代码在录入时未收录，仅凭当前题面无法推导答案。本题已排除出计分与考点练习，待补齐原卷代码后恢复。",
-            question: `以下代码中，构造函数被调用的次数是 1 次。`,
+            question: `以下代码中，构造函数被调用的次数是 1 次。
+
+\`\`\`cpp
+class Test {
+public:
+    Test() { cout << "T "; }
+};
+
+int main() {
+    Test a;
+    Test b = a;
+}
+\`\`\`
+`,
             options: [
                 "正确",
                 "错误",
             ],
-            answer: 0,
+            answer: 1,
             score: 2,
-            explanation: `**答案：正确**
+            explanation: `**答案：错误**
 
-            **判定依据：**
-            本题答案已依据试卷标准答案完成录入，可结合题干与选项复盘对应知识点。
+**推导：** \`Test a;\` 调用一次默认构造函数 \`Test()\`，输出 T。而 \`Test b = a;\` 是**拷贝初始化**——调用的是编译器隐式生成的**拷贝构造函数** \`Test(const Test&)\`，把 a 的成员复制给 b。拷贝构造也是构造函数，所以构造函数总共被调用了 **2 次**，命题「1 次」不成立，判「错误」。
 
-            **易混概念：** 注意区分相关概念的适用范围和边界条件。
+**易混点：** 这里的 \`=\` 不触发赋值运算符——对**新定义**的对象用 \`=\` 是初始化（拷贝构造）；只有对**已存在**的对象赋值（如 \`b = a;\` 且 b 已构造）才调用 \`operator=\`。
 
-            **考点：** 面向对象
+**验证：** 若给 Test 补上拷贝构造 \`Test(const Test&) { cout << "C "; }\`，程序会输出 \`T C\`，可见第二个对象确实走了拷贝构造。
+
+**考点：** 面向对象、构造函数、拷贝构造
+**勘误：** 原录入答案误为「正确」。官方原卷答案表（2025-12 六级）本题答案为 ×，且与独立推导（默认构造 + 拷贝构造共 2 次）一致，已于 2026-10-24 更正。
         `,
             tags: [
                 "客观题",
@@ -626,9 +678,16 @@ export const paperData = {
         {
             id: 18,
             type: "judge",
-            sourceIntegrity: "missing-code",
-            integrityNote: "原卷此题引用的程序代码在录入时未收录，仅凭当前题面无法推导答案。本题已排除出计分与考点练习，待补齐原卷代码后恢复。",
-            question: `以下代码能够正确统计二叉树中叶子结点的数量。`,
+            question: `以下代码能够正确统计二叉树中叶子结点的数量。
+
+\`\`\`cpp
+int countLeaf(TreeNode* root) {
+    if (!root) return 0;
+    if (!root->left && !root->right) return 1;
+    return countLeaf(root->left) + countLeaf(root->right);
+}
+\`\`\`
+`,
             options: [
                 "正确",
                 "错误",
@@ -637,12 +696,16 @@ export const paperData = {
             score: 2,
             explanation: `**答案：正确**
 
-            **判定依据：**
-            本题答案已依据试卷标准答案完成录入，可结合题干与选项复盘对应知识点。
+**逐行核对：**
+- \`if (!root) return 0;\` —— 空树没有叶子，返回 0，边界正确。
+- \`if (!root->left && !root->right) return 1;\` —— 左右孩子**都为空**的节点是叶子，计 1。这个判定只认「无任何孩子」，不会把只有单孩子的节点误判为叶子。
+- \`return countLeaf(root->left) + countLeaf(root->right);\` —— 叶子要么在左子树、要么在右子树，两者计数相加，递归覆盖全树且无重复。
 
-            **易混概念：** 注意区分相关概念的适用范围和边界条件。
+三个分支恰好覆盖「空 / 叶 / 内部节点」所有情形，且子问题是原问题的缩小版，递归必然终止（每次向空指针靠近一层）。
 
-            **考点：** 树与二叉树
+**验证示例：** 树 1(2(4,5),3)：4、5、3 是叶子，函数返回 3，与人工数出的一致。
+
+**考点：** 树与二叉树、递归
             `,
             tags: [
                 "客观题",
@@ -732,9 +795,18 @@ export const paperData = {
         {
             id: 22,
             type: "judge",
-            sourceIntegrity: "missing-code",
-            integrityNote: "原卷此题引用的程序代码在录入时未收录，仅凭当前题面无法推导答案。本题已排除出计分与考点练习，待补齐原卷代码后恢复。",
-            question: `下面的函数能正确判断一棵树是不是二叉排序树（左边的数字要比当前数字小，右边的数字要比当前数字大）。`,
+            question: `下面的函数能正确判断一棵树是不是二叉排序树（左边的数字要比当前数字小，右边的数字要比当前数字大）。
+
+\`\`\`cpp
+bool isBST(TreeNode* root, int minVal, int maxVal) {
+    if (!root) return true;
+    if (root->val <= minVal || root->val >= maxVal)
+        return false;
+    return isBST(root->left, minVal, root->val) &&
+           isBST(root->right, root->val, maxVal);
+}
+\`\`\`
+`,
             options: [
                 "正确",
                 "错误",
@@ -743,12 +815,18 @@ export const paperData = {
             score: 2,
             explanation: `**答案：正确**
 
-            **判定依据：**
-            本题答案已依据试卷标准答案完成录入，可结合题干与选项复盘对应知识点。
+**为什么这么写是对的：** 判断 BST 不能只比较「节点与它的直接孩子」——反例：\`5(3(2, 8), 10)\`，8 > 3 看似合法，但 8 在 5 的**左子树**里，违反了「左子树全部小于 5」。正确做法是给每个节点传一个**合法取值区间 (minVal, maxVal)**：
 
-            **易混概念：** 注意区分相关概念的适用范围和边界条件。
+- 递归左子树时，上界收紧为 \`root->val\`（左子树所有值必须小于它）；
+- 递归右子树时，下界收紧为 \`root->val\`；
+- \`root->val\` 落在开区间外（\`<= minVal\` 或 \`>= maxVal\`）即判 false；
+- 空树递归到底返回 true。
 
-            **考点：** 树与二叉树
+这样树上每个节点都被约束在「从根到它路径」所允许的范围内，恰好等价于 BST 的全局有序性质。
+
+**易错对比：** 常见的错误写法只检查 \`root->left->val < root->val && root->right->val > root->val\`，漏掉了对整棵子树的约束。本题代码没有这个漏洞，能正确判断。
+
+**考点：** 二叉排序树、递归、区间约束
             `,
             tags: [
                 "客观题",

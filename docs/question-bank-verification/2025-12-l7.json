@@ -1,0 +1,42 @@
+{
+  "paperId": "2025-12-l7",
+  "reviewedAt": "2026-10-24",
+  "reviewedBy": { "type": "AI", "executor": "WorkBuddy 子代理", "session": "codex/question-bank-verification" },
+  "source": {
+    "mirrorUrl": "https://raw.githubusercontent.com/Dora321/gesp-official-pdfs/main/pdfs/2025%E5%B9%B412%E6%9C%88-C%2B%2B7%E7%BA%A7.pdf",
+    "mirrorSha": "55f7f60a89088e624f7a82c56f5ee354cf84d212",
+    "shaVerified": true,
+    "fetchedAt": "2026-10-24",
+    "pages": { "Q7": "p.2", "Q8": "pp.2-3", "Q10": "p.3" }
+  },
+  "questions": [
+    {
+      "id": 7,
+      "dimensions": ["statement", "answer", "explanation"],
+      "method": ["原卷对照（页面渲染人工查看）", "程序执行"],
+      "findings": "题面缺失 lower_bound 二分查找程序（原卷为图片，p.2）。原 explanation 为套话（「无法从文本恢复具体代码，依据官方答案给出结论」）。",
+      "fix": "按原卷 p.2 转写 22 行代码（代码中 \"\\n\" 在 JS 模板字符串写作 \\n 转义）回填题面；移除 sourceIntegrity/integrityNote；explanation 重写为 lower_bound 推导。",
+      "evidence": "g++ 编译运行转写代码，实际输出 3（首个 ≥3 的下标），与答案 B（3）一致。tmp/verify/2025-12-l7/q7.cpp",
+      "resolved": true
+    },
+    {
+      "id": 8,
+      "dimensions": ["statement", "answer", "explanation"],
+      "method": ["原卷对照（页面渲染人工查看）", "独立推导"],
+      "findings": "题面缺失与 Q7 相同的 query 程序（原卷 p.3 完整重复展示该代码）。",
+      "fix": "按原卷 p.3 转写同一份 22 行代码回填题面；移除 sourceIntegrity/integrityNote。解析与代码一致（二分区间每次减半 O(log n)），保留。",
+      "evidence": "独立推导：while (l < r) 每轮区间 [l, r) 减半，循环次数 O(log n)，与答案 B（O(log n)）一致；转写代码可编译（同 q7.cpp）。",
+      "resolved": true
+    },
+    {
+      "id": 10,
+      "dimensions": ["statement", "answer", "explanation"],
+      "method": ["原卷对照（页面渲染人工查看）", "程序执行"],
+      "findings": "题面缺失 f(n) 递归程序（原卷为图片，p.3）。",
+      "fix": "按原卷 p.3 转写 10 行代码回填题面；移除 sourceIntegrity/integrityNote。解析递推与代码一致，保留。",
+      "evidence": "g++ 编译运行转写代码，实际输出 16（f(5)=16，递推 f(1)=2,f(2)=4,f(3)=6,f(4)=10,f(5)=16），与答案 B（16）一致。tmp/verify/2025-12-l7/q10.cpp",
+      "resolved": true
+    }
+  ],
+  "unresolved": []
+}

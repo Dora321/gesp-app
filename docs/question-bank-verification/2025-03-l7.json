@@ -1,0 +1,42 @@
+{
+  "paperId": "2025-03-l7",
+  "reviewedAt": "2026-10-24",
+  "reviewedBy": { "type": "AI", "executor": "WorkBuddy 子代理", "session": "codex/question-bank-verification" },
+  "source": {
+    "mirrorUrl": "https://raw.githubusercontent.com/Dora321/gesp-official-pdfs/main/pdfs/2025%E5%B9%B43%E6%9C%88-C%2B%2B7%E7%BA%A7.pdf",
+    "mirrorSha": "a972ce1dbfcf5fd76cb114d677103aec71d2a3c1",
+    "shaVerified": true,
+    "fetchedAt": "2026-10-24",
+    "pages": { "Q9": "pp.3-4", "Q10": "pp.4-5", "Q12": "pp.6-7" }
+  },
+  "questions": [
+    {
+      "id": 9,
+      "dimensions": ["statement", "options", "answer", "explanation"],
+      "method": ["原卷对照（页面渲染人工查看）", "程序执行"],
+      "findings": "题面缺失非递归 DFS 程序（原卷为图片，pp.3-4 跨页，第 24 行为 while 闭合括号，按代码结构拼合）。另发现原录入的 options 为 Q8 的选项文本（nl+nr==n 等）错放，与原卷 Q9 的代码式选项（visited/push 组合）完全不符；answer=3(D) 与 explanation 描述一致，仅 options 文本错位。",
+      "fix": "按原卷 pp.3-4 转写 46 行代码（含横线占位）回填题面；options 按原卷修复为 4 个 visited[neighbor]/s.push 组合；移除 sourceIntegrity/integrityNote。解析与原卷一致，保留。",
+      "evidence": "填入正确选项 D（visited[neighbor] = true; s.push(neighbor);）后 g++ 编译运行，输入示例图（n=4, 边 0-1/1-2/2-3），DFS 输出 0 1 2 3，遍历正常无死循环；A/B 索引错位、C 不标记会重复入栈，均排除。tmp/verify/2025-03-l7/q9.cpp",
+      "resolved": true
+    },
+    {
+      "id": 10,
+      "dimensions": ["statement", "answer", "explanation"],
+      "method": ["原卷对照（页面渲染人工查看）", "程序执行"],
+      "findings": "题面缺失 LIS 朴素 DP 程序（原卷为图片，pp.4-5 跨页）。",
+      "fix": "按原卷 pp.4-5 转写 19 行代码（lengthOfLIS + 横线占位）回填题面；移除 sourceIntegrity/integrityNote。解析逐选项理由与原卷选项一致，保留。",
+      "evidence": "填入正确选项 D（dp[i] = max(dp[i], dp[j] + 1);）后 g++ 编译运行，输入 {10,9,2,5,3,7,101,18} 输出 LIS=4，与经典结果一致；A 缺 +1、B 引用未计算的 dp[i+1]、C 做减法，均排除。tmp/verify/2025-03-l7/q10.cpp",
+      "resolved": true
+    },
+    {
+      "id": 12,
+      "dimensions": ["statement", "answer", "explanation"],
+      "method": ["原卷对照（页面渲染人工查看）", "程序执行"],
+      "findings": "题面缺失 graphHash 图同构程序（原卷为图片，pp.6-7 跨页，两页各 24+34 行）。",
+      "fix": "按原卷 pp.6-7 转写 58 行代码（含横线占位；代码中的 '\\n' 在 JS 模板字符串中写作 \\n 转义）回填题面；移除 sourceIntegrity/integrityNote。解析与原卷一致，保留。",
+      "evidence": "填入正确选项 C（hash += to_string(neighbor) + \",\";）后 g++ 编译运行：两图边集编号一致时输出 YES，边结构不同（路径 vs 星形）时输出 NO，分隔符逻辑正确；A 无分隔符存在 {1,2} 与 {12} 粘连歧义、B/D 变量名 neighbors 为 vector 不能 to_string 单值，均排除。注意原卷该算法基于节点编号哈希，只能判定编号意义下的相同（题目已声明此简化）。tmp/verify/2025-03-l7/q12b.cpp",
+      "resolved": true
+    }
+  ],
+  "unresolved": []
+}

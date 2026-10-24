@@ -1,0 +1,24 @@
+{
+  "paperId": "2024-12-l3",
+  "reviewedAt": "2026-10-24",
+  "reviewedBy": { "type": "AI", "executor": "WorkBuddy 子代理", "session": "codex/question-bank-verification" },
+  "source": {
+    "mirrorUrl": "https://raw.githubusercontent.com/Dora321/gesp-official-pdfs/main/pdfs/2024%E5%B9%B412%E6%9C%88-C%2B%2B3%E7%BA%A7.pdf",
+    "mirrorSha": "1111967effffbf7b1db46dd43dfcb2e03a8b8ac2",
+    "shaVerified": true,
+    "fetchedAt": "2026-10-24",
+    "pages": { "Q12": "pp.3-4" }
+  },
+  "questions": [
+    {
+      "id": 12,
+      "dimensions": ["options", "answer", "explanation"],
+      "method": ["原卷对照（页面渲染人工查看）", "程序执行", "独立推导"],
+      "findings": "题干完整，缺失的是四个选项的原卷完整程序（原卷为图片，跨 pp.3-4）：A 为 res 未初始化且 for 从 n+1 起漏统计 n；B 判断条件误写 if(temp % 10 = d)；C 为正确实现；D 缺 int temp = i; 导致 temp 未定义。题库此前以四句概括文字替代了选项代码。",
+      "fix": "按原卷 pp.3-4 逐字转写 A/B/C/D 四段完整程序，替换四个选项（fenced cpp 块 + \\n 转义写法，与全库题面代码写法一致）；删除 sourceIntegrity/integrityNote。题干、answer(2/C)、解析未改动——解析中的概括描述与恢复后的代码逐项对应且一致。",
+      "evidence": "独立计数：1~100 中数字 1 出现 21 次（python 复核同为 21）。g++ 编译运行选项 C，输入 1 100 1 输出 21，正确；选项 A 编译通过但 res 未初始化，同输入输出垃圾值 32779；选项 B 编译报错「lvalue required as left operand of assignment」；选项 D 编译报错「'temp' was not declared in this scope」。四项验证与 answer 2（C）一致。tmp/verify/2024-12-l3/q12a-d.cpp",
+      "resolved": true
+    }
+  ],
+  "unresolved": []
+}

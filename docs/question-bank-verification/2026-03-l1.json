@@ -1,0 +1,29 @@
+{
+  "paperId": "2026-03-l1",
+  "reviewedAt": "2026-10-24",
+  "reviewedBy": { "type": "AI", "executor": "WorkBuddy 子代理", "session": "codex/question-bank-verification" },
+  "source": {
+    "mirrorUrl": "https://raw.githubusercontent.com/Dora321/gesp-official-pdfs/main/pdfs/2026%E5%B9%B43%E6%9C%88-C%2B%2B1%E7%BA%A7.pdf",
+    "mirrorSha": "2687c10f481ebe55cd14bc61dec494cc3cd189c7",
+    "shaVerified": true,
+    "fetchedAt": "2026-10-24",
+    "pages": { "total": 10, "note": "官方卷式：单选答案表在 p1 顶部（裁剪放大核对），判断答案表在 p6 判断题节首，编程题解析 pp.7-10" }
+  },
+  "answerTable": {
+    "location": "单选：p1 顶部答案表；判断：p6 判断题节首答案表",
+    "content": {
+      "single": ["B", "A", "D", "D", "A", "A", "B", "D", "D", "B", "B", "B", "D", "B", "A"],
+      "judge": ["√", "√", "×", "×", "√", "√", "√", "×", "√", "×"]
+    }
+  },
+  "questions": [
+    {
+      "note": "题库题面与官方原卷逐题对应，25 道客观题答案全部一致，零修改。独立抽查推导：Q4 3*3%2=9%2=1=D；Q8 tnt 乘以 i=0 归零且循环后 i=5，printf 输出 0 5=D；Q11 数位和填空 tnt+=N%10; N/=10=B；Q14 高 3 位减低 3 位对 314 取余==0=B；Q24 cnt+=i++ 累加奇数 1+3+...+99=2500=√；Q25 printf(\"%-5d\",314) 左对齐补空格而非 -5314=×；判断 J3 break 时 i=3 输出 3 非 0=×；J4 for 后多分号使 total+=i 仅执行一次=×。全部与官方答案表吻合。",
+      "action": "无需修改。",
+      "programmingCheck": "编程题两道与官方一致：Q26 交朋友（样例 150/165/135/133→135，与原卷 p8 一致）；Q27 数字替换（8459045→8859085），无需修改。",
+      "resolved": true
+    }
+  ],
+  "unresolved": [],
+  "executedAt": "2026-10-24"
+}

@@ -1,0 +1,33 @@
+{
+  "paperId": "2024-06-l5",
+  "reviewedAt": "2026-10-24",
+  "reviewedBy": { "type": "AI", "executor": "WorkBuddy 子代理", "session": "codex/question-bank-verification" },
+  "source": {
+    "mirrorUrl": "https://raw.githubusercontent.com/Dora321/gesp-official-pdfs/main/pdfs/2024%E5%B9%B46%E6%9C%88-C%2B%2B5%E7%BA%A7.pdf",
+    "mirrorSha": "2ce329230d6ef55c45bec9fb4664c2664a7b15fa",
+    "shaVerified": true,
+    "fetchedAt": "2026-10-24",
+    "pages": { "Q1": "p.1", "Q2": "pp.1-2" }
+  },
+  "questions": [
+    {
+      "id": 1,
+      "dimensions": ["statement", "answer", "explanation"],
+      "method": ["原卷对照（页面渲染人工查看）", "程序执行"],
+      "findings": "题面缺失 fibo 迭代代码（原卷 p.1 为图片）。",
+      "fix": "按原卷 p.1 转写 fibo 代码（n<=0 返回 0；n==1||n==2 返回 1；for 循环 i=3..n 迭代）回填题面；移除 sourceIntegrity/integrityNote。",
+      "evidence": "g++ 编译运行转写代码，fibo(1..20) 输出标准斐波那契值（1 1 2 5 55 6765），函数用循环由前两项递推当前项，属迭代算法，与答案 C 一致（原卷答案表第 1 题为 C）。tmp/verify/2024-06-l5/q1q2.cpp",
+      "resolved": true
+    },
+    {
+      "id": 2,
+      "dimensions": ["statement", "answer", "explanation"],
+      "method": ["原卷对照（页面渲染人工查看）", "程序执行"],
+      "findings": "题面缺失 find_coins 换零钱代码（原卷 pp.1-2 跨页图片，需拼接）。",
+      "fix": "按原卷拼接 p.1（#include 至 find_coins 函数体）与 p.2（main 函数）转写完整代码回填题面；移除 sourceIntegrity/integrityNote。",
+      "evidence": "g++ 编译运行转写代码，find_coins(186) 输出 1 1 1 1 1 0 1，即从最大面额 100 开始依次整除取余，属贪心算法，与答案 B 一致（原卷答案表第 2 题为 B）。tmp/verify/2024-06-l5/q1q2.cpp",
+      "resolved": true
+    }
+  ],
+  "unresolved": []
+}

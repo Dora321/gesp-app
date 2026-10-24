@@ -1,0 +1,33 @@
+{
+  "paperId": "2024-09-l7",
+  "reviewedAt": "2026-10-24",
+  "reviewedBy": { "type": "AI", "executor": "WorkBuddy 子代理", "session": "codex/question-bank-verification" },
+  "source": {
+    "mirrorUrl": "https://raw.githubusercontent.com/Dora321/gesp-official-pdfs/main/pdfs/2024%E5%B9%B49%E6%9C%88-C%2B%2B7%E7%BA%A7.pdf",
+    "mirrorSha": "fb9aaf5c1549f08c3b42ce0379571f587dcd1a0a",
+    "shaVerified": true,
+    "fetchedAt": "2026-10-24",
+    "pages": { "Q11": "p.3", "Q12": "p.3" }
+  },
+  "questions": [
+    {
+      "id": 11,
+      "dimensions": ["statement", "answer", "explanation"],
+      "method": ["原卷对照（页面渲染人工查看）", "程序执行"],
+      "findings": "题面缺失程序代码（原卷为图片，p.3）。原卷代码为 (int)log(8) 自然对数截断题。",
+      "fix": "按原卷 p.3 转写 7 行代码回填题面；移除 sourceIntegrity/integrityNote。解析中示意代码与原卷一致，保留。",
+      "evidence": "g++ 编译运行转写代码，实际输出 2，与答案 A（2）一致。tmp/verify/2024-09-l7/q11.cpp",
+      "resolved": true
+    },
+    {
+      "id": 12,
+      "dimensions": ["statement", "answer", "explanation"],
+      "method": ["原卷对照（页面渲染人工查看）", "程序执行"],
+      "findings": "题面缺失 path 二维数组递推程序（原卷为图片，p.3）。原卷代码与解析描述的递推式一致（边界 path[i][0]=i、path[0][j]=j，求 path[8][4]）。",
+      "fix": "按原卷 p.3 转写 15 行代码回填题面；移除 sourceIntegrity/integrityNote。解析递推表与代码一致，保留。",
+      "evidence": "g++ 编译运行转写代码，实际输出 1012，与答案 C（1012）一致。tmp/verify/2024-09-l7/q12.cpp",
+      "resolved": true
+    }
+  ],
+  "unresolved": []
+}

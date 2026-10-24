@@ -1,0 +1,35 @@
+{
+  "paperId": "2025-09-l7",
+  "reviewedAt": "2026-10-24",
+  "reviewedBy": { "type": "AI", "executor": "WorkBuddy 子代理", "session": "codex/question-bank-verification" },
+  "source": {
+    "mirrorUrl": "https://raw.githubusercontent.com/Dora321/gesp-official-pdfs/main/pdfs/2025%E5%B9%B49%E6%9C%88-C%2B%2B7%E7%BA%A7.pdf",
+    "mirrorSha": "3b54ec0ed94378d186c603b352363d7ee3d5c423",
+    "shaVerified": true,
+    "fetchedAt": "2026-10-24",
+    "pages": { "Q11": "pp.2-3", "Q12": "p.3" }
+  },
+  "questions": [
+    {
+      "id": 11,
+      "dimensions": ["statement", "answer", "explanation"],
+      "method": ["原卷对照（页面渲染人工查看）", "程序执行"],
+      "findings": "题面缺失程序代码（原卷为图片，pp.2-3 跨页，题干在 p.2 末行、代码在 p.3）。原卷代码 fib 仅含 n==0 终止分支，fib(6) 将对负数无限递归。",
+      "fix": "按原卷转写 11 行代码回填题面；移除 sourceIntegrity/integrityNote。解析（无法正常结束）与原卷一致，保留。",
+      "evidence": "g++ 编译运行转写代码，timeout 5 秒内未终止（无限递归），验证答案 D（无法正常结束）一致。tmp/verify/2025-09-l7/q11.cpp",
+      "resolved": true
+    },
+    {
+      "id": 12,
+      "dimensions": ["statement", "options", "answer", "explanation"],
+      "method": ["原卷对照（页面渲染人工查看）", "程序执行", "独立推导"],
+      "findings": "题面缺失 rec_fib 代码（原卷为图片，p.3）。原录入 options（O(n²)/O(n)/O(n log n)/O(2ⁿ)）与原卷选项（A. O(φⁿ) φ=(√5+1)/2、B. O(2ⁿ)、C. O(n²)、D. O(n)）完全不符。关键陷阱：原卷代码第 7 行 return fib(n-1)+fib(n-2) 没有把结果写入 rec_fib[n]，记忆化失效，复杂度为 O(φⁿ) 而非 O(n)；原 explanation 结论「O(n)，每个 n 只算一次并存入 rec_fib」与代码矛盾（代码从未存入）。",
+      "fix": "按原卷 p.3 转写 8 行代码回填题面；options 按原卷修复；移除 sourceIntegrity/integrityNote；explanation 重写为 O(φⁿ) 推导 + 调用次数实测 + 逐选项理由。answer 字段未改动。",
+      "evidence": "g++ -O0 统计调用次数：n=20→21891、n=25→242785、n=30→2692537，每 5 层约 ×11.09 = φ⁵，与 φⁿ 同阶，确认正确答案为原卷选项 A（O(φⁿ)）。修复 options 后 answer=0（即 A）与原卷官方答案一致，无需改动 answer。tmp/verify/2025-09-l7/q12_calls.cpp",
+      "resolved": true
+    }
+  ],
+  "unresolved": [
+    "Q12 原录入 explanation（O(n)）与恢复后的原卷代码矛盾，已重写解析并按原卷修复 options；answer 字段按规则未改动，修复后恰好与原卷答案 A 对应（answer=0 → options[0]）。"
+  ]
+}

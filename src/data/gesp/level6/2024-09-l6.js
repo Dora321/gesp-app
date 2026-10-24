@@ -122,28 +122,52 @@ export const paperData = {
         {
             id: 2,
             type: "single",
-            sourceIntegrity: "missing-code",
-            integrityNote: "原卷此题引用的程序代码在录入时未收录，仅凭当前题面无法推导答案。本题已排除出计分与考点练习，待补齐原卷代码后恢复。",
-            question: `关于以下 C++ 代码，（ ）行代码会引起编译错误。`,
+            question: `关于以下 C++ 代码，（ ）行代码会引起编译错误。
+
+\`\`\`cpp
+#include <iostream>
+using namespace std;
+
+class Base {
+private:
+    int a;
+protected:
+    int b;
+public:
+    int c;
+    Base() : a(1), b(2), c(3) {}
+};
+
+class Derived : public Base {
+public:
+    void show() {
+        cout << a << endl;   // Line 1
+        cout << b << endl;   // Line 2
+        cout << c << endl;   // Line 3
+    }
+};
+\`\`\``,
             options: [
                 "Line 1",
                 "Line 2",
-                "Line 3 #include <iostream> using namespace std; class Base { private: int a; protected: int b; public: int c; Base() : a(1), b(2), c(3) {} }; class Derived : public Base { public: void show() { cout << a << endl; // Line 1 cout << b << endl; // Line 2 cout << c << endl; // Line 3 } }; 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21",
+                "Line 3",
                 "没有编译错误",
             ],
             answer: 0,
             score: 2,
             explanation: `**答案：A**
 
-            **解析：**
-            本题答案已依据试卷标准答案完成录入，可结合题干与选项复盘对应知识点。
+**解析：**
+Base 类中 \`a\` 是 private、\`b\` 是 protected、\`c\` 是 public。派生类 Derived 的成员函数可以访问基类的 protected 和 public 成员，但 private 成员对派生类完全不可见。
 
-            - **A Line 1**：正确答案。
-            - **B Line 2**：不是本题答案。
-            - **C Line 3 #include <iostream> using namespa...**：不是本题答案。该代码逻辑与题目要求不符，请逐步推演。
-            - **D 没有编译错误**：不是本题答案。
+- **A Line 1**：正确答案。\`a\` 是 Base 的 private 成员，Derived::show() 中访问它，编译器报 \`'int Base::a' is private within this context\`。
+- **B Line 2**：\`b\` 是 protected 成员，派生类内部可以访问，不报错。
+- **C Line 3**：\`c\` 是 public 成员，任何位置都可以访问，不报错。
+- **D 没有编译错误**：错误，Line 1 已无法通过编译。
 
-            **考点：** 面向对象
+g++ 编译验证：仅 Line 1 报 private 访问错误，Line 2、Line 3 无错误。
+
+**考点：** 面向对象、访问控制
             `,
             tags: [
                 "客观题",

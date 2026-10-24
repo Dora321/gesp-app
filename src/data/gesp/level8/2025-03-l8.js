@@ -222,9 +222,31 @@ export const paperData = {
         {
             id: 9,
             type: "single",
-            sourceIntegrity: "missing-code",
-            integrityNote: "原卷此题引用的程序代码在录入时未收录，仅凭当前题面无法推导答案。本题已排除出计分与考点练习，待补齐原卷代码后恢复。",
-            question: `下面程序横线处应填入的是（ ）。`,
+            question: `下面程序横线处应填入的是（ ）。
+
+\`\`\`cpp
+#include <string>
+
+int count_miracle(int N) {
+    int cnt = 0;
+    for (int n = 1; n * n < N; n++) {
+        int n2 = n * n;
+        std::string s = std::to_string(n2);
+        for (int i = 1; i < s.length(); i++) {
+            if (s[i] != '0') {
+                std::string sl = s.substr(0, i);
+                std::string sr = s.substr(i);
+                int nl = std::stoi(sl);
+                int nr = std::stoi(sr);
+                if (_______) // 在此处填入选项
+                    cnt++;
+            }
+        }
+    }
+    return cnt;
+}
+\`\`\`
+`,
             options: [
                 "nl + nr == n",
                 "nl + nr == n2",
@@ -249,26 +271,48 @@ export const paperData = {
         {
             id: 10,
             type: "single",
-            sourceIntegrity: "missing-code",
-            integrityNote: "原卷此题引用的程序代码在录入时未收录，仅凭当前题面无法推导答案。本题已排除出计分与考点练习，待补齐原卷代码后恢复。",
-            question: `下面程序的时间复杂度为（ ）。`,
+            question: `下面程序的时间复杂度为（ ）。
+
+\`\`\`cpp
+#include <string>
+
+int count_miracle(int N) {
+    int cnt = 0;
+    for (int n = 1; n * n < N; n++) {
+        int n2 = n * n;
+        std::string s = std::to_string(n2);
+        for (int i = 1; i < s.length(); i++) {
+            if (s[i] != '0') {
+                std::string sl = s.substr(0, i);
+                std::string sr = s.substr(i);
+                int nl = std::stoi(sl);
+                int nr = std::stoi(sr);
+                if (_______) // 在此处填入选项
+                    cnt++;
+            }
+        }
+    }
+    return cnt;
+}
+\`\`\`
+`,
             options: [
-                "O(N)",
                 "O(N log N)",
-                "O(log N)",
-                "O(√N log N)",
+                "O(N^(1/2))",
+                "O(N^(1/2) log N)",
+                "O(N^(1/2)(log N)^2)",
 ],
             answer: 3,
             score: 2,
             explanation: `**答案：D**
 
 **解析：**
-函数 \`count_miracle\` 中外层循环 \`for (int n = 1; n * n < N; n++)\` 执行约 √N 次；对每个 n，内层遍历其平方串 s 的拆分位置（长度 O(log N)），并对每个拆分做字符串截取与整数转换（O(log N)）。整体时间复杂度为 O(√N · log²N)，在给定选项中归为 D 所表示的 O(√N log N) 量级，故选择 D。
+外层循环 \`for (int n = 1; n * n < N; n++)\` 执行约 √N 次；对每个 n，内层遍历其平方串 s（长度 O(log N)）的拆分位置，并对每个拆分做 substr 截取与 stoi 转换（各 O(log N)）。总代价约 √N × log N × log N = O(√N · log²N)，即 O(N^(1/2)(log N)^2)。
 
-- **A O(N)**：错误。外层只循环到 √N，并非 O(N)。
-- **B O(N log N)**：错误。远大于实际规模。
-- **C O(log N)**：错误。忽略了外层 √N 次循环与内层拆分枚举。
-- **D O(√N log N)**：正确。外层 √N 次，内层含对数级字符串处理，整体为该量级。`,
+- **A O(N log N)**：错误。外层只循环到 √N，并非 N 次。
+- **B O(N^(1/2))**：错误。忽略了内层对字符串拆分位置的枚举。
+- **C O(N^(1/2) log N)**：错误。只算了一层对数（枚举拆分位置），漏掉每次截取/转换的对数代价。
+- **D O(N^(1/2)(log N)^2)**：正确。√N 次外层 × O(log N) 个拆分位置 × 每次 O(log N) 的字符串操作。`,
             tags: [
                 "复杂度分析",
             ],
@@ -376,14 +420,36 @@ Floyd–Warshall 算法对每对“中间点 k、起点 i、终点 j”进行三
         {
             id: 15,
             type: "single",
-            sourceIntegrity: "missing-code",
-            integrityNote: "原卷此题引用的程序代码在录入时未收录，仅凭当前题面无法推导答案。本题已排除出计分与考点练习，待补齐原卷代码后恢复。",
-            question: `下列程序实现了输出杨辉三角形，其时间复杂度为（ ）。`,
+            question: `下列程序实现了输出杨辉三角形，其时间复杂度为（ ）。
+
+\`\`\`cpp
+#include <iostream>
+using namespace std;
+#define N 35
+
+int a[N];
+
+int main() {
+    int n;
+    cin >> n;
+
+    for (int i = 0; i < n; i++) {
+        a[i] = 1;
+        for (int j = i - 1; j > 0; j--)
+            ________; // 在此处填入选项
+        for (int j = 0; j <= i; j++)
+            cout << a[j] << " ";
+        cout << endl;
+    }
+    return 0;
+}
+\`\`\`
+`,
             options: [
                 "O(n)",
                 "O(n log n)",
                 "O(n²)",
-                "O(2ⁿ)",
+                "O(n³)",
 ],
             answer: 2,
             score: 2,
@@ -395,7 +461,7 @@ Floyd–Warshall 算法对每对“中间点 k、起点 i、终点 j”进行三
 - **A O(n)**：错误。总共输出约 n²/2 个数，规模是平方级而非线性 O(n)。
 - **B O(n log n)**：错误。递推与输出均无对数因子，不是 O(n log n)。
 - **C O(n²)**：正确。输出 n²/2 量级的元素，整体为 O(n²)。
-- **D O(2ⁿ)**：错误。杨辉三角与指数 2ⁿ 无关。`,
+- **D O(n³)**：错误。三层循环才有立方级，本程序只有两层。`,
             tags: [
                 "复杂度分析",
             ],

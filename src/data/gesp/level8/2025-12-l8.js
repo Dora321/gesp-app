@@ -43,15 +43,24 @@ export const paperData = {
         {
             id: 2,
             type: "single",
-            sourceIntegrity: "missing-code",
-            integrityNote: "原卷此题引用的程序代码在录入时未收录，仅凭当前题面无法推导答案。本题已排除出计分与考点练习，待补齐原卷代码后恢复。",
-            question: `下列代码实现了归并排序（ Merge Sort ）的分治部分。为了正确地将数组 a 的 [left, right] 区间进行 排序，横线处应该填入的是（ ）。`,
+            question: `下列代码实现了归并排序（ Merge Sort ）的分治部分。为了正确地将数组 a 的 [left, right] 区间进行 排序，横线处应该填入的是（ ）。
+
+\`\`\`cpp
+void merge_sort(int a[], int left, int right) {
+    if (left >= right) return;
+    int mid = (left + right) / 2;
+    merge_sort(a, left, mid);
+    ________; // 在此处填入选项
+    merge(a, left, mid, right); // 合并操作
+}
+\`\`\`
+`,
             options: [
                 "merge_sort(a, mid, right)",
                 "merge_sort(a, mid+1, right)",
                 "merge_sort(a, left, mid+1)",
                 "merge_sort(a, mid-1, right)",
-            ],
+],
             answer: 1,
             score: 2,
             explanation: `**答案：B（merge_sort(a, mid+1, right)）**
@@ -153,15 +162,33 @@ export const paperData = {
         {
             id: 6,
             type: "single",
-            sourceIntegrity: "missing-code",
-            integrityNote: "原卷此题引用的程序代码在录入时未收录，仅凭当前题面无法推导答案。本题已排除出计分与考点练习，待补齐原卷代码后恢复。",
-            question: `下面程序使用动态规划求两个字符串的最长公共子序列（ LCS ）长度，横线处应填入的是（ ）。`,
+            question: `下面程序使用动态规划求两个字符串的最长公共子序列（ LCS ）长度，横线处应填入的是（ ）。
+
+\`\`\`cpp
+#include <algorithm>
+#include <string>
+#include <vector>
+using namespace std;
+
+int lcs_len(const string &a, const string &b) {
+    int n = (int)a.size(), m = (int)b.size();
+    vector<vector<int>> dp(n + 1, vector<int>(m + 1, 0));
+    for (int i = 1; i <= n; i++)
+        for (int j = 1; j <= m; j++)
+            if (a[i - 1] == b[j - 1])
+                dp[i][j] = dp[i - 1][j - 1] + 1;
+            else
+                __________; // 在此处填入选项
+    return dp[n][m];
+}
+\`\`\`
+`,
             options: [
-                "$dp[i]$[j] = dp[i-1][j]+$dp[i]$[j-1];",
-                "$dp[i]$[j] = min(dp[i-1][j], $dp[i]$[j-1]);",
-                "$dp[i]$[j] = max(dp[i-1][j], $dp[i]$[j-1]);",
-                "$dp[i]$[j] = max(dp[i-1][j], $dp[i]$[j-1])+1;",
-            ],
+                "dp[i][j] = dp[i-1][j] + dp[i][j-1];",
+                "dp[i][j] = min(dp[i-1][j], dp[i][j-1]);",
+                "dp[i][j] = max(dp[i-1][j], dp[i][j-1]);",
+                "dp[i][j] = max(dp[i-1][j], dp[i][j-1]) + 1;",
+],
             answer: 2,
             score: 2,
             explanation: `**答案：C（dp[i][j] = max(dp[i-1][j], dp[i][j-1])）**
@@ -228,28 +255,36 @@ export const paperData = {
         {
             id: 9,
             type: "single",
-            sourceIntegrity: "missing-code",
-            integrityNote: "原卷此题引用的程序代码在录入时未收录，仅凭当前题面无法推导答案。本题已排除出计分与考点练习，待补齐原卷代码后恢复。",
-            question: `下列代码的时间复杂度（以 为自变量，忽略常数与低阶项）是（ ）。`,
+            question: `下列代码的时间复杂度（以 n 为自变量，忽略常数与低阶项）是（ ）。
+
+\`\`\`cpp
+long long s = 0;
+for (int i = 1; i <= n; i++) {
+    for (int j = 1; j * j <= i; j++) {
+        s += j;
+    }
+}
+\`\`\`
+`,
             options: [
-                "O(1)",
                 "O(n)",
-                "O(n^2)",
                 "O(n log n)",
+                "O(n√n)",
+                "O(n²)",
 ],
             answer: 2,
             score: 2,
             explanation: `**答案：C**
 
 **解析：**
-对于典型的双重嵌套循环（外层遍历 n 次、内层也遍历至多 n 次），基本操作总次数约为 n² 量级，忽略常数与低阶项后时间复杂度为 O(n²)，故应选 C。
+内层循环条件为 j*j ≤ i，即 j 最多取到 ⌊√i⌋，内层执行 ⌊√i⌋ 次。总操作次数为 Σᵢ₌₁ⁿ ⌊√i⌋ ≈ ∫₀ⁿ √x dx = (2/3)n^(3/2)，即 O(n√n)。
 
-- **A O(1)**：错误。O(1) 表示与输入规模无关，双重循环显然随 n 增长。
-- **B O(n)**：错误。O(n) 仅对应单层线性扫描，无法涵盖嵌套的二层循环。
-- **C O(n²)**：正确。嵌套循环累计执行约 n² 次操作，复杂度为 O(n²)。
-- **D O(n log n)**：错误。O(n log n) 通常出现在分治（如归并/快排）或特殊循环中，与题述双重循环不符。
+- **A O(n)**：错误。只算了外层，忽略了内层随 i 增长的 √i 次迭代。
+- **B O(n log n)**：错误。内层次数按 √i 增长，不是 log i。
+- **C O(n√n)**：正确。Σ√i = Θ(n^1.5)。
+- **D O(n²)**：错误。内层并非执行 i 次，而是 √i 次。
 
-（注：原题所引程序代码未完整收录，以下解析依据题面描述与标准结论。）`,
+**考点**：非均匀嵌套循环的复杂度求和（Σ√i = Θ(n√n)）。`,
             tags: [
                 "复杂度分析",
             ],
@@ -257,15 +292,25 @@ export const paperData = {
         {
             id: 10,
             type: "single",
-            sourceIntegrity: "missing-code",
-            integrityNote: "原卷此题引用的程序代码在录入时未收录，仅凭当前题面无法推导答案。本题已排除出计分与考点练习，待补齐原卷代码后恢复。",
-            question: `下列程序实现了线性筛法（欧拉筛），用于在 时间内求出 之间的所有质数。为了保证每个合数 只被其最小质因子筛掉，横线处应填入的语句是（ ）。`,
+            question: `下列程序实现了线性筛法（欧拉筛），用于在 O(n) 时间内求出 1～n 之间的所有质数。为了保证每个合数 只被其最小质因子筛掉，横线处应填入的语句是（ ）。
+
+\`\`\`cpp
+for (int i = 2; i <= n; i++) {
+    if (!not_prime[i])
+        primes[++cnt] = i;
+    for (int j = 1; j <= cnt && i * primes[j] <= n; j++) {
+        not_prime[i * primes[j]] = true;
+        if (_________) break; // 在此处填入选项
+    }
+}
+\`\`\`
+`,
             options: [
-                "i+primes[j] == n",
+                "i + primes[j] == n",
                 "primes[j] > i",
                 "i % primes[j] == 0",
                 "i % primes[j] != 0",
-            ],
+],
             answer: 2,
             score: 2,
             explanation: `**答案：C（i % primes[j] == 0）**
@@ -308,9 +353,25 @@ export const paperData = {
         {
             id: 12,
             type: "single",
-            sourceIntegrity: "missing-code",
-            integrityNote: "原卷此题引用的程序代码在录入时未收录，仅凭当前题面无法推导答案。本题已排除出计分与考点练习，待补齐原卷代码后恢复。",
-            question: `当输入 6 时，下列程序的输出结果为（ ）。`,
+            question: `当输入 6 时，下列程序的输出结果为（ ）。
+
+\`\`\`cpp
+#include <iostream>
+using namespace std;
+
+int f(int n) {
+    if (n <= 3) return n;
+    return f(n - 1) + f(n - 2) + 2 * f(n - 3);
+}
+
+int main() {
+    int n;
+    cin >> n;
+    cout << f(n) << endl;
+    return 0;
+}
+\`\`\`
+`,
             options: [
                 "14",
                 "27",
@@ -322,14 +383,20 @@ export const paperData = {
             explanation: `**答案：B**
 
 **解析：**
-按题面程序在给定输入下的执行逻辑，正确输出为 27，对应选项 B。此类程序阅读题常因循环的起止边界（差一错误）或累加/计数时机不同而产生 14、15、27、28 等相近结果，需结合代码精确模拟。
+按定义逐项递推：f(1)=1, f(2)=2, f(3)=3；
 
-- **A 14**：错误。14 是边界处理偏小时常见的错误结果，不符合正确逻辑。
-- **B 27**：正确。按题面程序正确模拟，输出为 27。
-- **C 28**：错误。28 与 27 仅差 1，通常是循环边界多算/少算一次导致的差一错误。
-- **D 15**：错误。15 也是边界处理不同产生的干扰值，并非正确输出。
+- f(4) = f(3) + f(2) + 2·f(1) = 3 + 2 + 2 = 7；
+- f(5) = f(4) + f(3) + 2·f(2) = 7 + 3 + 4 = 14；
+- f(6) = f(5) + f(4) + 2·f(3) = 14 + 7 + 6 = 27。
 
-（注：原题所引程序代码未完整收录，以下解析依据题面描述与标准结论。）`,
+故输入 6 时输出 27。
+
+- **A 14**：错误。这是 f(5) 的值，少递推一层。
+- **B 27**：正确。如上递推。
+- **C 28**：错误。常见于把 2·f(n-3) 误算成 2·f(n-2) 或累加多 1。
+- **D 15**：错误。系数或边界处理错误的干扰值。
+
+**考点**：递归函数手工求值（类三阶递推）。`,
             tags: [
                 "C++综合",
             ],
@@ -363,9 +430,24 @@ export const paperData = {
         {
             id: 14,
             type: "single",
-            sourceIntegrity: "missing-code",
-            integrityNote: "原卷此题引用的程序代码在录入时未收录，仅凭当前题面无法推导答案。本题已排除出计分与考点练习，待补齐原卷代码后恢复。",
-            question: `当输入 2023 时，下列程序的输出结果为（ ）。`,
+            question: `当输入 2023 时，下列程序的输出结果为（ ）。
+
+\`\`\`cpp
+#include <iostream>
+using namespace std;
+
+int main() {
+    int x, ans = 0;
+    cin >> x;
+    while (x != 0) {
+        x -= x & -x;
+        ans++;
+    }
+    cout << ans << endl;
+    return 0;
+}
+\`\`\`
+`,
             options: [
                 "7",
                 "8",
@@ -377,14 +459,14 @@ export const paperData = {
             explanation: `**答案：C**
 
 **解析：**
-按题面程序对输入 2023 的执行逻辑，正确输出为 9，对应选项 C。该题选项数值相近（7、8、9、11），通常源于对循环边界或计数条件的不同处理，需按代码精确模拟。
+x & -x 取出 x 二进制最低位的 1（lowbit），x -= x & -x 每次消去一个二进制位为 1 的位，循环次数即 x 的二进制表示中 1 的个数（popcount）。2023 = 11111100111₂（2023 = 1024+512+256+128+64+32+4+2+1），共 9 个 1，故输出 9。
 
-- **A 7**：错误。7 是边界/条件处理偏小时可能出现的错误值。
-- **B 8**：错误。8 与正确答案 9 仅差 1，属于典型的差一错误结果。
-- **C 9**：正确。按题面程序正确模拟，输入 2023 时输出为 9。
-- **D 11**：错误。11 是另一种边界处理错误产生的干扰值。
+- **A 7**：错误。少统计了若干个二进制位。
+- **B 8**：错误。差一错误，2023 的二进制含 9 个 1。
+- **C 9**：正确。popcount(2023) = 9。
+- **D 11**：错误。11 是 2023 二进制的总位数（含 0），误把位数当 1 的个数。
 
-（注：原题所引程序代码未完整收录，以下解析依据题面描述与标准结论。）`,
+**考点**：lowbit 运算（树状数组核心操作）与二进制 popcount。`,
             tags: [
                 "C++综合",
             ],

@@ -226,9 +226,18 @@ export const paperData = {
         {
             id: 6,
             type: "single",
-            sourceIntegrity: "missing-code",
-            integrityNote: "原卷此题引用的程序代码在录入时未收录，仅凭当前题面无法推导答案。本题已排除出计分与考点练习，待补齐原卷代码后恢复。",
-            question: `下面的代码片段用于计算斐波那契数列。该代码的时间复杂度是（ ）。`,
+            question: `下面的代码片段用于计算斐波那契数列。该代码的时间复杂度是（ ）。
+
+\`\`\`cpp
+int fibonacci(int n) {
+    if (n <= 1) {
+        return n;
+    } else {
+        return fibonacci(n - 1) + fibonacci(n - 2);
+    }
+}
+\`\`\`
+`,
             options: ["$O(1)$", "$O(log n)$", "O($2^N$)", "$O(N)$"],
             answer: 2,
             score: 2,
@@ -296,9 +305,22 @@ export const paperData = {
         {
             id: 9,
             type: "single",
-            sourceIntegrity: "missing-code",
-            integrityNote: "原卷此题引用的程序代码在录入时未收录，仅凭当前题面无法推导答案。本题已排除出计分与考点练习，待补齐原卷代码后恢复。",
-            question: `下面的代码片段用于判断一个正整数是否为素数。请对以下代码进行修改，使其能正确实现相应功能。（ ）。`,
+            question: `下面的代码片段用于判断一个正整数是否为素数。请对以下代码进行修改，使其能正确实现相应功能。（ ）。
+
+\`\`\`cpp
+bool isPrime(int num) {
+    if (num < 2) {
+        return false;
+    }
+    for (int i = 2; i * i < num; ++i) {
+        if (num % i == 0) {
+            return false;
+        }
+    }
+    return true;
+}
+\`\`\`
+`,
             options: [
                 "num < 2 应该改为 num <= 2",
                 "循环条件 i * i < num 应该改为 i * i <= num",
@@ -310,14 +332,14 @@ export const paperData = {
             explanation: `**答案：B**
 
             **解析：**
-            判断素数时应枚举到 i*i<=num；若写成 i*i<num，会漏掉完全平方数的因子检查，因此选 B。
+            试除法判断素数需要枚举到 $\\sqrt{num}$，即循环条件应为 \`i * i <= num\`。若写成 \`i * i < num\`，当 num 是完全平方数时会漏掉因子 $\\sqrt{num}$ 的检查，例如 \`isPrime(9)\`：i=2 时 4<9 成立，9%2≠0；i=3 时 9<9 不成立，循环结束返回 true，把 9 误判为素数。
 
-            - **A 2**：错误。该数值与正确计算结果不符，请重新验算。
-            - **B 5**：正确答案。
-            - **C 3**：错误。该数值与正确计算结果不符，请重新验算。
-            - **D 4**：错误。该数值与正确计算结果不符，请重新验算。
+            - **A num < 2 应该改为 num <= 2**：错误。num=2 本身是素数，若改成 num <= 2 会把 2 也判为非素数；且 num<2 的边界本身正确。
+            - **B 循环条件 i * i < num 应该改为 i * i <= num**：正确。补上等号才能检查到 $\\sqrt{num}$ 这个因子。
+            - **C 循环条件应该是 i <= num**：错误。条件过松，虽然结果仍正确，但复杂度退化为 O(num)，不是「正确实现功能」所需的修改。
+            - **D 循环体中应该是 if (num % i != 0)**：错误。发现余数不为 0 不能说明是素数，必须找到余数为 0 的因子才能判为合数。
 
-            **考点：** 筛法
+            **考点：** 素数试除、边界条件
             `,
             tags: ["客观题", "单选题", "GESP5级"]
         },

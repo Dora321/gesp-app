@@ -1,0 +1,63 @@
+{
+  "paperId": "2026-03-l7",
+  "reviewedAt": "2026-10-24",
+  "reviewedBy": { "type": "AI", "executor": "WorkBuddy 子代理", "session": "codex/question-bank-verification" },
+  "source": {
+    "mirrorUrl": "https://raw.githubusercontent.com/Dora321/gesp-official-pdfs/main/pdfs/2026%E5%B9%B43%E6%9C%88-C%2B%2B7%E7%BA%A7.pdf",
+    "mirrorSha": "66260d17f4abfaae63c5c86e27f2a429b760168f",
+    "shaVerified": true,
+    "fetchedAt": "2026-10-24",
+    "pages": { "Q7": "pp.2-3", "Q8": "p.3", "Q10": "p.4" }
+  },
+  "questions": [
+    {
+      "id": 7,
+      "dimensions": ["statement", "answer", "explanation"],
+      "method": ["原卷对照（页面渲染人工查看）", "程序执行"],
+      "findings": "题面缺失二分答案程序（原卷为图片，pp.2-3 跨页，44 行 check/solve/main）。题库题干与选项（2/3/4/5，答案 B=3）与原卷一致。",
+      "fix": "按原卷 pp.2-3 逐行转写 44 行代码回填题面；移除 sourceIntegrity/integrityNote。解析中 check(3) 与二分过程推导与代码一致，保留。",
+      "evidence": "g++ 编译运行转写代码，实际输出 3（排序后 {1,2,4,8,9} 选 3 个点的最大最小间距），与答案 B（3）一致。tmp/verify/2026-03-l7/q7.cpp",
+      "resolved": true
+    },
+    {
+      "id": 8,
+      "dimensions": ["statement", "options", "answer", "explanation"],
+      "method": ["原卷对照（页面渲染人工查看）", "独立推导"],
+      "findings": "题面缺失与 Q7 相同的程序（原卷 p.3 完整重复展示）。原录入题干误写为「函数 query 的时间复杂度」（原卷为「下面程序的时间复杂度…假设数组 a 的值域范围是 D」），原 options（O(n log n)/O(n)/O(log n)/O(n^2)）亦与原卷（A. O(n log n + n log D)、B. O(n log n log D)、C. O(n log n)、D. O(n log D)）不符。原 explanation 为「选项缺失待补」套话。",
+      "fix": "按原卷 p.3 转写代码并按原卷修复题干与 options；移除 sourceIntegrity/integrityNote；explanation 重写为 O(n log n + n log D) 推导与逐选项理由。answer 字段未改动（answer=0 修复后对应 A，与推导一致）。",
+      "evidence": "独立推导：std::sort 为 O(n log n)；二分值域 [0, a[n-1]−a[0]] 共 O(log D) 轮，每轮 check 线性扫描 O(n)，合计 O(n log n + n log D)，与原卷选项 A 一致（answer=0 → A）。",
+      "resolved": true
+    },
+    {
+      "id": 9,
+      "dimensions": ["statement", "explanation"],
+      "method": ["原卷对照（页面渲染人工查看）", "独立推导"],
+      "findings": "题库 question 模板字符串末尾混入一大段 solve/check 程序代码（应属 Q7 的代码，录入时粘贴错位），且中序序列处有断行（「H \\nD I B E…」）。选项与原卷 p.4 一致，answer=0（A）与原卷 p.1 答案表一致。",
+      "fix": "2026-10-24 按原卷 p.3 逐字重录题干（删除混入的 Q7 代码、消除断行）；explanation 由「依据答案表」套话重写为先序+中序重建二叉树的完整推导。选项与答案未改动（与原卷核对一致）。",
+      "evidence": "独立推导：树形 A(B(D(H,I),E), C(F(J,—),G))，后序 H I D E B J F G C A = 选项 A，与 p.1 答案表（第 9 题=A）一致。",
+      "resolved": true,
+      "fixedAt": "2026-10-24",
+      "fixMethod": "官方 PDF 渲染转写 + 独立推导"
+    },
+    {
+      "id": 10,
+      "dimensions": ["statement", "options", "explanation"],
+      "method": ["原卷对照（页面渲染人工查看）", "独立推导"],
+      "findings": "题库此题并非「缺代码」：原卷第 10 题（p.4）为图形选择题「下面哪一个可能是下图的深度优先遍历序列」（选项 A. 1,5,4,8,7,9,6,3,2 / B. 1,5,8,4,7,9,6,3,2 / C. 2,5,8,7,9,6,3,4,1 / D. 8,9,6,3,2,5,1,4,7），不引用任何程序代码。题库原题面「下面程序的运行结果」及选项 {10,16,26,30} 系录入时错放的另一份试卷的程序题。",
+      "fix": "2026-10-24 按原卷 p.4 重建：转写题面与四个选项；从渲染页（scale 2.2）裁剪图形存至 public/question-assets/2026-03-l7/q10-dfs.png，题干以 Markdown 图片引用；answer 保持 1（B，与 p.1 答案表「第 10 题=B」一致）；explanation 重写为邻接表 + 逐选项 DFS 合法性判定；移除 sourceIntegrity/integrityNote（contaminated-stem 已消除），恢复计分。",
+      "evidence": "独立推导边集 1→{4,5,7}、2→{1,5,9}、3→{1,2}、4→{7}、5→{4,8}、6→{3}、8→{4,7,9}、9→{6}：A 在访问 4 后未走 4→7 即跳 8，排除；C 中 3 无出边到 4，排除；D 访问 5 时未走 5→4 即跳 1，排除；B 每步为合法深入/回溯，唯一合法，与答案表 B 一致。配图 public/question-assets/2026-03-l7/q10-dfs.png（源 tmp/pages/2026-03-l7/p04.png 裁剪 (505,340,815,660)）。",
+      "resolved": true,
+      "fixedAt": "2026-10-24",
+      "fixMethod": "官方 PDF 渲染转写 + 裁图（public/question-assets/2026-03-l7/q10-dfs.png）"
+    }
+  ],
+  "unresolved": [],
+  "fixLog": [
+    {
+      "date": "2026-10-24",
+      "scope": "Q9、Q10",
+      "method": "官方 PDF 渲染转写（tmp/pages/2026-03-l7/）+ 裁图（public/question-assets/2026-03-l7/q10-dfs.png）",
+      "detail": "Q9 重录题干（删除混入的 Q7 代码）并重写解析；Q10 按原卷重建图形 DFS 题面与配图，移除 contaminated-stem 标记，恢复计分。两者答案均与原卷 p.1 答案表核对一致（Q9=A、Q10=B），unresolved 清空。"
+    }
+  ]
+}

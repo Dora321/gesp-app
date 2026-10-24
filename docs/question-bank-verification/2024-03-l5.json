@@ -1,0 +1,35 @@
+{
+  "paperId": "2024-03-l5",
+  "reviewedAt": "2026-10-24",
+  "reviewedBy": { "type": "AI", "executor": "WorkBuddy 子代理", "session": "codex/question-bank-verification" },
+  "source": {
+    "mirrorUrl": "https://raw.githubusercontent.com/Dora321/gesp-official-pdfs/main/pdfs/2024%E5%B9%B43%E6%9C%88-C%2B%2B5%E7%BA%A7.pdf",
+    "mirrorSha": "5d22494b019d813c0b57b88a6a85c52d997ca413",
+    "shaVerified": true,
+    "fetchedAt": "2026-10-24",
+    "pages": { "Q6": "p.2", "Q9": "pp.3-4" }
+  },
+  "questions": [
+    {
+      "id": 6,
+      "dimensions": ["statement"],
+      "method": ["原卷对照（页面渲染人工查看）", "独立推导"],
+      "findings": "题面缺失 fibonacci 递归代码（原卷 p.2 为图片）。",
+      "fix": "按原卷 p.2 转写 fibonacci(n<=1 返回 n，否则递归 n-1 与 n-2 相加) 代码回填题面；移除 sourceIntegrity/integrityNote。",
+      "evidence": "独立推导：朴素双递归 T(n)=T(n-1)+T(n-2)+O(1)，调用数为指数级，时间复杂度 O(2^N)，与答案 C 一致（原卷答案表第 6 题为 C）。注意原卷选项顺序为 O(1)/O(n)/O(2^n)/O(log n)，录入顺序不同但答案字母对应同一复杂度。",
+      "resolved": true
+    },
+    {
+      "id": 9,
+      "dimensions": ["statement", "options", "answer", "explanation"],
+      "method": ["原卷对照（页面渲染人工查看）", "程序执行"],
+      "findings": "题面缺失 isPrime 试除代码（原卷 pp.3-4 为图片）；解析为模板套话（「该数值与正确计算结果不符，请重新验算」×3，且选项标签错挂为 A 2/B 5/C 3/D 4）。",
+      "fix": "按原卷转写 isPrime 代码回填题面；移除 sourceIntegrity/integrityNote；解析重写为 isPrime(9) 反例推导 + 逐选项理由。",
+      "evidence": "g++ 编译运行转写代码：isPrime(9)=1、isPrime(4)=1（把 9、4 误判为素数），isPrime(2)=1、isPrime(7)=1、isPrime(15)=0。证实 i*i<num 漏判完全平方数因子，改为 i*i<=num 可修复，与答案 B 一致。tmp/verify/2024-03-l5/q9.cpp",
+      "resolved": true
+    }
+  ],
+  "unresolved": [
+    "Q8 解析亦含同款套话（「请重新验算」×3），但 Q8 不在本次任务名单内，未改动。"
+  ]
+}

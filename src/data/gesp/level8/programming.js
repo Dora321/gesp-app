@@ -52,48 +52,58 @@ export const l8ProgrammingByPaper = {
 ,
   '2026-03-l8': [
     {
+      // 2026-10-24 按官方原卷 PDF 第 5-7 页逐页转写重建（题面/样例/参考程序），参考程序已用 g++ 验证两组官方样例通过。
       type: 'programming',
       score: 25,
       id: 26,
       title: '消息查找',
-      problemNumber: 'P15804',
-      description: '有 n 条消息，编号 1..n。每条消息 i 可能引用一条编号小于 i 的消息 r_i。从消息 i 可一步移动到 i-1 或 r_i。给定多组询问，求从 x 到 y 的最少操作次数。',
-      inputDescription: '第一行两个正整数 n、q。第二行给出 r_1..r_n（若无引用可为 0）。接下来 q 行每行两个整数 x、y。',
-      outputDescription: '每个询问输出一个整数，表示最少操作次数。',
+      problemNumber: '2026-03-l8-Q26',
+      timeLimit: 1.0,
+      memoryLimit: 512,
+      description: '小A的消息记录中有 n 条消息，依次以 1..n 编号，编号小的消息发送时间早于编号大的消息。一条消息可以引用一条编号小于它的消息，也可以不引用：用 r_i 标记，r_i > 0 表示消息 i 引用了消息 r_i，r_i = 0 表示消息 i 没有引用消息。消息查找工具任意时刻只能定位恰好一条消息。若当前定位于消息 i（1 < i ≤ n），接下来可以选择以下两种操作之一：定位到消息 i-1；或当消息 i 引用了消息 r_i 时，定位到消息 r_i。以上操作可以执行任意次（包括零次）。小A有 q 次询问，第 k 次询问给出消息编号 x_k、y_k（y_k < x_k），问如果当前工具位于 x_k，至少需要多少次操作才能定位到消息 y_k。',
+      inputDescription: '第一行，两个正整数 n、q，分别表示消息条数与询问次数。第二行，n 个非负整数 r_1, r_2, ..., r_n，表示消息的引用关系。接下来 q 行中的第 k 行包含两个正整数 x_k、y_k，表示一次询问。保证至多只有 1000 条引用消息。',
+      outputDescription: '输出 q 行，每行一个整数，表示将界面从消息 x_k 切换到消息 y_k 所需的最少操作次数。',
       samples: [
         {
-          input: '5 3\n0 0 1 2 2\n5 1\n4 1\n3 2',
-          output: '2\n2\n1'
+          input: '6 3\n0 0 1 2 2 5\n4 1\n6 2\n6 3',
+          output: '2\n2\n3'
+        },
+        {
+          input: '5 5\n0 0 0 1 3\n4 1\n4 2\n5 1\n5 2\n5 3',
+          output: '1\n2\n2\n2\n1'
         }
       ],
-      explanation: '可建反向跳边并结合倍增/LCA 或最短路思想处理多询问。',
-      tags: ['编程题', '图论', '最短路/倍增'],
+      explanation: '引用消息至多 1000 条，把它们称为关键点。对每个关键点 p[i] 作为起点预处理到其余各关键点的最少操作数 d[i][j]（在关键点序列上从右往左递推：相邻关键点间按编号差步行，或经引用边一次跳转，O(C²)）；查询 (x,y) 时，x 向下走到第一个关键点 pre[x]，y 上方最近的关键点为 suf[y]，若区间 [y,x] 内没有关键点则直接步行 x-y，否则答案为 x-pre[x] + d[pos[pre[x]]][pos[suf[y]]] + suf[y]-y。',
+      tags: ['编程题', '图论', '动态规划', '预处理'],
       template: '#include <bits/stdc++.h>\nusing namespace std;int main(){ios::sync_with_stdio(false);cin.tie(nullptr);int n,q;cin>>n>>q;return 0;}',
-      referenceCode: "#include <bits/stdc++.h>\nusing namespace std;\n\nint main() {\n    ios::sync_with_stdio(false);\n    cin.tie(nullptr);\n\n    int n, q;\n    cin >> n >> q;\n    vector<int> r(n + 1, 0);\n    for (int i = 1; i <= n; ++i) cin >> r[i];\n    // 从 i 可走到 i-1 或 r_i，均向编号更小处移动；对每个询问做 BFS\n    while (q--) {\n        int x, y;\n        cin >> x >> y;\n        if (x == y) { cout << 0 << '\\n'; continue; }\n        vector<int> dist(n + 1, -1);\n        queue<int> que;\n        dist[x] = 0;\n        que.push(x);\n        while (!que.empty()) {\n            int u = que.front(); que.pop();\n            if (u == y) break;\n            for (int v : { u - 1, r[u] }) {\n                if (v >= 1 && v <= n && dist[v] == -1) {\n                    dist[v] = dist[u] + 1;\n                    que.push(v);\n                }\n            }\n        }\n        cout << dist[y] << '\\n';\n    }\n    return 0;\n}"
+      referenceCode: '#include <cstdio>\n#include <algorithm>\n\nusing namespace std;\n\nconst int N = 1e5 + 5;\nconst int C = 2e3 + 5;\nconst int oo = 1e9;\n\nint n, q;\nint r[N], mark[N], pos[N];\nint p[C], cnt;\nint d[C][C];\nint pre[N], suf[N];\n\nint main() {\n    scanf("%d%d", &n, &q);\n    for (int i = 1; i <= n; i++) {\n        scanf("%d", &r[i]);\n        if (r[i])\n            mark[i] = mark[r[i]] = 1;\n    }\n    for (int i = 1; i <= n; i++)\n        if (mark[i]) {\n            p[++cnt] = i;\n            pos[i] = cnt;\n        }\n    for (int i = 1; i <= cnt; i++) {\n        for (int j = 1; j <= i; j++)\n            d[i][j] = oo;\n        d[i][i] = 0;\n        for (int j = i; j > 1; j--) {\n            d[i][j - 1] = min(d[i][j - 1], d[i][j] + p[j] - p[j - 1]);\n            if (r[p[j]]) {\n                int k = pos[r[p[j]]];\n                d[i][k] = min(d[i][k], d[i][j] + 1);\n            }\n        }\n    }\n    for (int i = 1; i <= n; i++) {\n        pre[i] = pre[i - 1];\n        if (mark[i])\n            pre[i] = i;\n    }\n    suf[n + 1] = n + 1;\n    for (int i = n; i >= 1; i--) {\n        suf[i] = suf[i + 1];\n        if (mark[i])\n            suf[i] = i;\n    }\n    while (q--) {\n        int x, y;\n        scanf("%d%d", &x, &y);\n        if (pre[x] < suf[y])\n            printf("%d\\n", x - y);\n        else\n            printf("%d\\n", x - pre[x] + d[pos[pre[x]]][pos[suf[y]]] + suf[y] - y);\n    }\n    return 0;\n}'
     },
     {
+      // 2026-10-24 按官方原卷 PDF 第 8-9 页逐页转写重建（题面/样例/参考程序），参考程序已用 g++ 验证两组官方样例通过。
       type: 'programming',
       score: 25,
       id: 27,
       title: '子图最短路',
-      problemNumber: 'P15805',
-      description: '给定 n 点 m 边无向带权图。对所有区间 [l,r] 构造只含编号在区间内节点的子图，累加每个子图中所有点对最短路长度（不连通记 0），结果对 1e9 取模。',
-      inputDescription: '第一行两个正整数 n、m。接下来 m 行每行 u、v、w。',
-      outputDescription: '输出总和对 1e9 取模的结果。',
+      problemNumber: '2026-03-l8-Q27',
+      timeLimit: 1.0,
+      memoryLimit: 512,
+      description: '给定包含 n 个结点 m 条边的带权无向图 G，结点依次以 1..n 编号，第 i 条边连接结点 u_i 与 v_i，权值为 w_i。对于指定的 1 ≤ 𝑙 ≤ r ≤ n，按以下方式构造图 G 的子图 G(𝑙,r)：保留编号在区间 [𝑙,r] 中的结点，删去其它编号不在 [𝑙,r] 中的结点以及与之相连的边，剩余的结点和边构成子图 G(𝑙,r)。对于 G(𝑙,r) 中的任意结点 u,v（𝑙 ≤ u,v ≤ r），记 u,v 在子图 G(𝑙,r) 上的最短距离为 d(𝑙,r,u,v)；特殊地，若 u,v 在子图 G(𝑙,r) 上不连通，则记 d(𝑙,r,u,v) = 0。你需要求出 Σ(𝑙=1..n) Σ(r=𝑙..n) Σ(u=𝑙..r) Σ(v=u+1..r) d(𝑙,r,u,v) 对 10^9 取模的结果。（题目中的英文小写字母 𝑙 使用了特殊写法，以避免与数字 1 混淆。）',
+      inputDescription: '第一行，两个正整数 n、m，表示结点数与边数。接下来 m 行，第 i 行包含三个正整数 u_i、v_i、w_i，表示一条连接结点 u_i、v_i 的权值为 w_i 的边。',
+      outputDescription: '输出一行，一个整数，表示所求总和（u < v 的所有点对在最短距离之和）对 10^9 取模的结果。',
       samples: [
-        {
-          input: '2 1\n1 2 5',
-          output: '5'
-        },
         {
           input: '3 2\n1 2 1\n2 3 2',
           output: '9'
+        },
+        {
+          input: '4 6\n1 2 100\n2 3 100\n3 4 100\n1 3 10\n2 4 10\n1 4 1',
+          output: '784'
         }
       ],
-      explanation: '可考虑按区间增量维护最短路（如 Floyd 增点思想）并累计贡献。',
-      tags: ['编程题', '最短路', '图论'],
+      explanation: '固定左端点 𝑙，按 r 从小到大增量地把结点 r 加入当前距离矩阵，每加入一个结点以其为中转做一遍 Floyd 式松弛（g[i][j] = min(g[i][j], g[i][r]+g[r][j])），随后把矩阵中 [𝑙,r]×[𝑙,r] 内 u ≤ v 的项累加进答案。总复杂度 O(n³)。不连通的距离保持初值（模数 1e9），累加时对 1e9 取模恰好等价于加 0，与题意「不连通记 0」一致。',
+      tags: ['编程题', '最短路', 'Floyd', '枚举'],
       template: '#include <bits/stdc++.h>\nusing namespace std;int main(){ios::sync_with_stdio(false);cin.tie(nullptr);int n,m;cin>>n>>m;return 0;}',
-      referenceCode: "#include <bits/stdc++.h>\nusing namespace std;\n\nconst long long MOD = 1000000000;\n\nint main() {\n    ios::sync_with_stdio(false);\n    cin.tie(nullptr);\n\n    int n, m;\n    cin >> n >> m;\n    const long long INF = (1LL << 50);\n    vector<vector<long long>> w(n + 1, vector<long long>(n + 1, INF));\n    for (int i = 0; i < m; ++i) {\n        int u, v;\n        long long c;\n        cin >> u >> v >> c;\n        w[u][v] = min(w[u][v], c);\n        w[v][u] = min(w[v][u], c);\n    }\n    long long answer = 0;\n    // 枚举区间 [l, r]，在该点集的导出子图上跑 Floyd\n    for (int l = 1; l <= n; ++l) {\n        vector<vector<long long>> d(n + 1, vector<long long>(n + 1, INF));\n        for (int r = l; r <= n; ++r) {\n            // 加入节点 r，扩展最短路\n            d[r][r] = 0;\n            for (int i = l; i < r; ++i) {\n                d[i][r] = min(d[i][r], w[i][r]);\n                d[r][i] = min(d[r][i], w[r][i]);\n            }\n            for (int i = l; i <= r; ++i) {\n                for (int j = l; j <= r; ++j) {\n                    if (d[i][r] < INF && d[r][j] < INF) d[i][j] = min(d[i][j], d[i][r] + d[r][j]);\n                }\n            }\n            for (int k = l; k <= r; ++k) {\n                for (int i = l; i <= r; ++i) {\n                    if (d[i][k] >= INF) continue;\n                    for (int j = l; j <= r; ++j) {\n                        if (d[k][j] < INF) d[i][j] = min(d[i][j], d[i][k] + d[k][j]);\n                    }\n                }\n            }\n            for (int i = l; i <= r; ++i) {\n                for (int j = i + 1; j <= r; ++j) {\n                    if (d[i][j] < INF) answer = (answer + d[i][j]) % MOD;\n                }\n            }\n        }\n    }\n    cout << answer % MOD << '\\n';\n    return 0;\n}"
+      referenceCode: '#include <cstdio>\n#include <algorithm>\n\nusing namespace std;\n\nconst int N = 105;\nconst int mod = 1e9;\n\nint n, m;\nint f[N][N];\nint g[N][N];\nint ans;\n\nint main() {\n    scanf("%d%d", &n, &m);\n    for (int i = 1; i <= n; i++) {\n        for (int j = 1; j <= n; j++)\n            f[i][j] = mod;\n        f[i][i] = 0;\n    }\n    for (int i = 1; i <= m; i++) {\n        int u, v, w;\n        scanf("%d%d%d", &u, &v, &w);\n        f[u][v] = min(f[u][v], w);\n        f[v][u] = min(f[v][u], w);\n    }\n    for (int l = 1; l <= n; l++) {\n        for (int i = 1; i <= n; i++)\n            for (int j = 1; j <= n; j++)\n                g[i][j] = f[i][j];\n        for (int r = l; r <= n; r++) {\n            for (int i = 1; i <= n; i++)\n                for (int j = 1; j <= n; j++)\n                    g[i][j] = min(g[i][j], g[i][r] + g[r][j]);\n            for (int i = l; i <= r; i++)\n                for (int j = i; j <= r; j++)\n                    ans = (ans + g[i][j]) % mod;\n        }\n    }\n    printf("%d\\n", ans);\n    return 0;\n}'
     }
   ]
 };

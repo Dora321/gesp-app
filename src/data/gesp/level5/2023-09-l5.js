@@ -350,9 +350,27 @@ int main() {
         {
             id: 8,
             type: "single",
-            sourceIntegrity: "missing-code",
-            integrityNote: "原卷此题引用的程序代码在录入时未收录，仅凭当前题面无法推导答案。本题已排除出计分与考点练习，待补齐原卷代码后恢复。",
-            question: `有关下面代码正确的是（ ）。`,
+            question: `有关下面代码正确的是（ ）。
+
+\`\`\`cpp
+// 在C++语言中，可以通过函数指针的形式，将一个函数作为另一个函数的参数。
+// 具体来说，bool checkNum(bool (*Fx)(int), int N); 声明了一个函数，
+// 其第一个参数为函数指针类型，指向一个接收一个int参数且返回值为bool的函数。
+#include <iostream>
+using namespace std;
+
+bool isEven(int N) {
+    return N % 2 == 0;
+}
+bool checkNum(bool (*Fx)(int), int N) {
+    return Fx(N);
+}
+int main() {
+    cout << checkNum(isEven, 10) << endl;
+    return 0;
+}
+\`\`\`
+`,
             options: [
                 "checkNum()函数定义错误。",
                 "将isEven作为checkNum()参数将导致错误。",
@@ -364,14 +382,15 @@ int main() {
             explanation: `**答案：C**
 
             **解析：**
-            函数指针作为参数。执行 checkNum(isEven, 8) 会调用 isEven(8)，返回 true (1)，最终输出 1。
+            函数指针作为参数。执行 checkNum(isEven, 10) 会调用 isEven(10)，10 % 2 == 0 成立，返回 true，cout 默认格式下 bool 打印为 1，最终输出 1。
 
-            - **A checkNum()函数定义错误。**：错误。
-            - **B 将isEven作为checkNum()参数将导致错误。**：错误。
-            - **C 执行后将输出1 。**：正确答案。
-            - **D 运行时触发异常。**：错误。
+            - **A checkNum()函数定义错误。**：错误。checkNum 的第一个参数是函数指针 bool (*)(int)，isEven 的签名 bool isEven(int) 与之匹配，定义合法。
+            - **B 将isEven作为checkNum()参数将导致错误。**：错误。函数名 isEven 在此自动退化为函数指针，类型完全匹配，编译运行均正常。
+            - **C 执行后将输出1 。**：正确。isEven(10) 返回 true，输出 1。
+            - **D 运行时触发异常。**：错误。Fx 指向有效函数，调用过程无空指针或越界。
 
-            **考点：** 指针与内存
+            **考点：** 指针与内存（函数指针）
+            **验证：** 题面代码为官方 PDF 原卷转写，经 g++ 编译运行实测输出 1。
             `,
             tags: [
                 "客观题",
@@ -498,28 +517,57 @@ int main() {
         {
             id: 11,
             type: "single",
-            sourceIntegrity: "missing-code",
-            integrityNote: "原卷此题引用的程序代码在录入时未收录，仅凭当前题面无法推导答案。本题已排除出计分与考点练习，待补齐原卷代码后恢复。",
-            question: `下面代码中的isPrimeA()和isPrimeB()都用于判断参数N是否素数，有关其时间复杂度的正确说法是 （ ）。`,
+            question: `下面代码中的isPrimeA()和isPrimeB()都用于判断参数N是否素数，有关其时间复杂度的正确说法是 （ ）。
+
+\`\`\`cpp
+#include <iostream>
+#include <cmath>
+using namespace std;
+
+bool isPrimeA(int N) {
+    if (N < 2)
+        return false;
+    for (int i = 2; i < N; i++)
+        if (N % i == 0)
+            return false;
+    return true;
+}
+bool isPrimeB(int N) {
+    if (N < 2)
+        return false;
+    int endNum = int(sqrt(N));
+    for (int i = 2; i <= endNum; i++)
+        if (N % i == 0)
+            return false;
+    return true;
+}
+int main() {
+    cout << boolalpha;
+    cout << isPrimeA(13) << " " << isPrimeB(13) << endl;
+    return 0;
+}
+\`\`\`
+`,
             options: [
-                "isPrimeA()的最坏时间复杂度是 $O(N)$，isPrimeB()的最坏时间复杂度是 O(logN)。",
-                "isPrimeA()的最坏时间复杂度是 $O(N)$，isPrimeB()的最坏时间复杂度是 O(sqrt(N))。",
-                "isPrimeA()的最坏时间复杂度是 O(sqrt(N))，isPrimeB()的最坏时间复杂度是 $O(N)$。",
-                "isPrimeA()的最坏时间复杂度是 O(logN)，isPrimeB()的最坏时间复杂度是 $O(N)$。",
+                "isPrimeA()的最坏时间复杂度是 $O(N)$，isPrimeB()的最坏时间复杂度是 O(logN)，isPrimeB() 优于 isPrimeA()。",
+                "isPrimeA()的最坏时间复杂度是 $O(N)$，isPrimeB()的最坏时间复杂度是 O(sqrt(N))，isPrimeB() 优于 isPrimeA()。",
+                "isPrimeA()的最坏时间复杂度是 O(sqrt(N))，isPrimeB()的最坏时间复杂度是 $O(N)$，isPrimeA() 优于 isPrimeB()。",
+                "isPrimeA()的最坏时间复杂度是 O(logN)，isPrimeB()的最坏时间复杂度是 $O(N)$，isPrimeA() 优于 isPrimeB()。",
             ],
             answer: 1,
             score: 2,
             explanation: `**答案：B**
 
             **解析：**
-            isPrimeA 遍历到 N/2，复杂度 $O(N)$；isPrimeB 遍历到 sqrt(N)，复杂度 O(sqrt(N))。
+            isPrimeA 的循环从 2 一路试到 N-1，最坏情况（N 为素数）要做 N-2 次取模，复杂度 $O(N)$；isPrimeB 先取 int(sqrt(N))，只试除到 √N，最坏约 √N-1 次取模，复杂度 O(√N)。试除范围越小越快，所以 isPrimeB() 优于 isPrimeA()。
 
-            - **A isPrimeA()的最坏时间复杂度是 $O(N)$，isPrimeB()的最坏...**：不是本题答案。复杂度分析有误，
-            - **B isPrimeA()的最坏时间复杂度是 $O(N)$，isPrimeB()的最坏...**：正确答案。
-            - **C isPrimeA()的最坏时间复杂度是 O(sqrt(N))，isPrimeB(...**：不是本题答案。复杂度分析有误，
-            - **D isPrimeA()的最坏时间复杂度是 O(logN)，isPrimeB()的最...**：不是本题答案。复杂度分析有误，
+            - **A**：错误。isPrimeB 的循环上界是 √N 而不是 logN，二者增长速度完全不同（N=10000 时 logN≈13，√N=100）。
+            - **B**：正确。isPrimeA 为 $O(N)$，isPrimeB 为 O(√N)，isPrimeB 优于 isPrimeA。
+            - **C**：错误。把两个函数的复杂度正好说反了：isPrimeA 才是 $O(N)$。
+            - **D**：错误。两个复杂度都说错，isPrimeA 不是 O(logN)，isPrimeB 也不是 $O(N)$。
 
-            **考点：** 筛法
+            **考点：** 素数判定 / 试除法复杂度
+            **验证：** 题面代码为官方 PDF 原卷转写，g++ 编译运行输出 true true（13 均判定为素数）。
             `,
             tags: [
                 "客观题",
@@ -530,9 +578,69 @@ int main() {
         {
             id: 12,
             type: "single",
-            sourceIntegrity: "missing-code",
-            integrityNote: "原卷此题引用的程序代码在录入时未收录，仅凭当前题面无法推导答案。本题已排除出计分与考点练习，待补齐原卷代码后恢复。",
-            question: `下面代码用于归并排序，其中merge()函数被调用次数为（ ）。`,
+            question: `下面代码用于归并排序，其中merge()函数被调用次数为（ ）。
+
+\`\`\`cpp
+#include <iostream>
+using namespace std;
+
+void merge(int * listData, int start, int middle, int end);
+void mergeSort(int * listData, int start, int middle, int end);
+
+void mergeSort(int * listData, int start, int end) {
+    if (start >= end)
+        return;
+    int middle = (start + end) / 2;
+    mergeSort(listData, start, middle);
+    mergeSort(listData, middle + 1, end);
+    merge(listData, start, middle, end);
+}
+void merge(int * listData, int start, int middle, int end) {
+    int leftSize = middle - start + 1;
+    int rightSize = end - middle;
+    int * left = new int[leftSize];
+    int * right = new int[rightSize];
+    for (int i = 0; i < leftSize; i++)
+        left[i] = listData[start + i];
+    for (int j = 0; j < rightSize; j++)
+        right[j] = listData[middle + 1 + j];
+    int i = 0, j = 0, k = start;
+    while (i < leftSize && j < rightSize) {
+        if (left[i] <= right[j]) {
+            listData[k] = left[i];
+            i++;
+        } else {
+            listData[k] = right[j];
+            j++;
+        }
+        k++;
+    }
+    while (i < leftSize) {
+        listData[k] = left[i];
+        i++;
+        k++;
+    }
+    while (j < rightSize) {
+        listData[k] = right[j];
+        j++;
+        k++;
+    }
+    delete[] left;
+    delete[] right;
+}
+int main() {
+    int lstA[] = {1, 3, 2, 7, 11, 5, 3};
+    int size = sizeof(lstA) / sizeof(lstA[0]);
+
+    mergeSort(lstA, 0, size - 1);  // 对lstA执行归并排序
+
+    for (int i = 0; i < size; i++)
+        cout << lstA[i] << " ";
+    cout << endl;
+    return 0;
+}
+\`\`\`
+`,
             options: [
                 "0",
                 "1",
@@ -544,14 +652,15 @@ int main() {
             explanation: `**答案：C**
 
             **解析：**
-            归并排序的合并次数等于子区间个数减1。对于长度为 7 的数组，合并次数为 6。
+            mergeSort 在 start < end 时才会调 merge()，所以 merge() 的调用次数 = 递归树上"非叶子节点"的个数。数组长度 7，区间划分过程：[0,6] → [0,3] 和 [4,6] → [0,3] 再分成 [0,1] 和 [2,3]，[4,6] 再分成 [4,5] 和 [6,6]。其中 start < end 的区间有 [0,6]、[0,3]、[4,6]、[0,1]、[2,3]、[4,5] 共 6 个，每个触发一次 merge()，共 6 次。
 
-            - **A 0**：错误。该数值与正确计算结果不符，请重新验算。
-            - **B 1**：错误。该数值与正确计算结果不符，请重新验算。
-            - **C 6**：正确答案。
-            - **D 7**：错误。该数值与正确计算结果不符，请重新验算。
+            - **A 0**：错误。merge() 在每次有效拆分后都会被调用，不会一次都不执行。
+            - **B 1**：错误。只有当数组无需拆分时 merge() 才会只调 1 次，长度 7 的数组要递归到单个元素。
+            - **C 6**：正确。递归树上有 6 个非叶子区间，每次各调一次 merge()。
+            - **D 7**：错误。7 是元素个数；merge() 次数等于区间拆分节点数 6，不是元素个数。
 
             **考点：** 归并排序
+            **验证：** 题面代码为官方 PDF 原卷转写，插入 mergeCount 计数器后编译运行，输出 merge calls: 6。
             `,
             tags: [
                 "客观题",
