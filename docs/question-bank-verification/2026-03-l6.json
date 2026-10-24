@@ -7,57 +7,41 @@
     "mirrorSha": "440d30834c0e6bdec700375405ca7f7094c60505",
     "shaVerified": true,
     "fetchedAt": "2026-10-24",
-    "pages": { "单选题": "pp.1-6（Q1-Q15）", "判断题": "pp.6-8（Q1-Q10）", "编程题": "pp.8-12" }
+    "pages": { "单选题": "pp.1-6（Q1-Q15，p.1 含官方单选答案表）", "判断题": "pp.6-8（Q1-Q10，p.6 含官方判断答案表）", "编程题": "pp.8-12（3.1 选数、3.2 完全二叉树，各含参考程序）" }
+  },
+  "rebuild": {
+    "executedAt": "2026-10-24",
+    "method": "官方 PDF 逐页转写整卷重建",
+    "summary": "旧版题库存在严重串卷污染：Q6/Q7/Q10/Q16/Q18 共 5 题在官方原卷中不存在（系 2025-12-l6 同号题串入，其中 Q7/Q16/Q18 答案还与串入源相反），编程题 2 道（路径覆盖/道具商店）实为 2025-12-l6 的题目，原卷真实题目大量缺失。本次以 git-blob SHA 校验通过的官方 PDF（tmp/2026-03-l6.pdf，SHA1=440d30834c0e6bdec700375405ca7f7094c60505）渲染页 tmp/pages/2026-03-l6/p01.png ~ p12.png 为唯一依据，整卷重建 src/data/gesp/level6/2026-03-l6.js：单选 15 题 + 判断 10 题 + 编程 2 题，共 27 题，全部按原卷转写；每题答案与 p.1/p.6 官方答案表逐题核对一致；编程题采用原卷 3.1.6/3.2.6 参考程序，已用 g++ 编译并通过全部 4 个官方样例（输出 7/11/4/3）。本卷无图形题（判断第 3 题的树形为字符画，以 ASCII 代码块呈现，无需裁图）。重建后不再保留 sourceIntegrity/integrityNote 标记。"
   },
   "questions": [
-    {
-      "id": 6,
-      "dimensions": ["existence", "statement"],
-      "method": ["原卷逐页渲染人工核对（pp.1-8 全部客观题页面）"],
-      "findings": "官方原卷不含此题。2026-03-l6 原卷单选 15 题依次为：Q1 虚函数、Q2 Shape/Circle/Rectangle、Q3 Pet 编译错误、Q4 过山车循环队列、Q5 循环队列应用场景、Q6 BST 中序+先序推断、Q7 先序+中序推后序、Q8 树遍历说法、Q9 哈夫曼 WPL、Q10 哈夫曼结点数、Q11 格雷码、Q12 BFS 右视图、Q13 DFS 说法、Q14 打糖果 DP、Q15 石板路 dp 含义。题库所录「check() 判断完全二叉树」题与 2025-12-l6 第 6 题题干/选项完全相同，疑为录入时从 2025-12-l6 串入，官方 2026-03 卷中不存在，无从取得『原卷代码』。",
-      "fix": "未修改。按『不确定不猜造』原则保留 sourceIntegrity: missing-code 标记与排除计分状态。",
-      "evidence": "tmp/pdf/2026-03-l6_p01.png ~ p08.png 逐页查看；check() 代码实际出自 2025-12-l6 原卷 p.4（已在 2025-12-l6.json 中恢复）。",
-      "resolved": false
-    },
-    {
-      "id": 7,
-      "dimensions": ["existence", "statement", "answer"],
-      "method": ["原卷逐页渲染人工核对（pp.1-8 全部客观题页面）"],
-      "findings": "官方原卷不含此题。题库所录「以下代码实现了二叉树的（ ）」与 2025-12-l6 第 7 题同题干同选项，但答案不一致：2025-12 原卷代码（打印在两次递归之后）为后序遍历、录 C；本条却录 A（前序）。两卷不可能同时正确，进一步印证本条是从 2025-12-l6 串入后答案录入有误。",
-      "fix": "未修改。保留 missing-code 标记。",
-      "evidence": "原卷 pp.1-6 单选题逐页核对无此题；2025-12-l6 原卷 p.4 有同题（后序，答案 C）。",
-      "resolved": false
-    },
-    {
-      "id": 10,
-      "dimensions": ["existence", "statement"],
-      "method": ["原卷逐页渲染人工核对（pp.1-8 全部客观题页面）"],
-      "findings": "官方原卷不含此题。原卷 Q10 是「对 n 个不同符号进行哈夫曼编码，哈夫曼树共 115 个结点，求 n」。题库所录「BST 的（ ）操作」与 2025-12-l6 第 10 题相同，疑为串题。",
-      "fix": "未修改。保留 missing-code 标记。",
-      "evidence": "tmp/pdf/2026-03-l6_p04.png（原卷 Q10 哈夫曼 115 结点题）；BST 操作题实为 2025-12-l6 原卷 p.7 题目（已在 2025-12-l6.json 中恢复）。",
-      "resolved": false
-    },
-    {
-      "id": 16,
-      "dimensions": ["existence", "statement", "answer"],
-      "method": ["原卷逐页渲染人工核对（pp.6-8 判断题全部页面）"],
-      "findings": "官方原卷不含此题。2026-03 判断题 10 题依次为：Point 默认构造、继承私有成员、travel 输出、哈夫曼满二叉树、哈夫曼前缀、tree[2i+2]、栈实现前序、preorderTraversal 复杂度、0-1 背包正序内层循环、DP 递推/递归复杂度——没有 Test 类构造函数题。题库所录 Test 类题与 2025-12-l6 第 16 题相同，但答案相反（本条录「错误」，2025-12 录「正确」；按代码推导应为「错误」）。原 integrityNote 称该代码出现在本卷第 22 题，核对原卷后确认本卷任何题目均无 Test 类代码。",
-      "fix": "未修改。保留 missing-code 标记。",
-      "evidence": "tmp/pdf/2026-03-l6_p06.png ~ p08.png 逐页核对；Test 类代码实为 2025-12-l6 原卷 p.9 判断第 1 题（已在 2025-12-l6.json 中恢复并记录答案冲突）。",
-      "resolved": false
-    },
-    {
-      "id": 18,
-      "dimensions": ["existence", "statement", "answer"],
-      "method": ["原卷逐页渲染人工核对（pp.6-8 判断题全部页面）"],
-      "findings": "官方原卷不含此题。题库所录「countLeaf 统计叶子结点」与 2025-12-l6 第 18 题相同（题干、选项一致；本条录「错误」，2025-12 录「正确」，且 2025-12 原卷答案表为 √ 即「正确」），疑为串题且答案录入有误。",
-      "fix": "未修改。保留 missing-code 标记。",
-      "evidence": "原卷 pp.6-8 判断题逐页核对无此题；countLeaf 代码实为 2025-12-l6 原卷 p.9 判断第 3 题（已在 2025-12-l6.json 中恢复）。",
-      "resolved": false
-    }
+    { "id": 1, "type": "single", "answer": "A", "sourcePage": 1, "method": ["原卷转写", "答案表核对（p.1）", "独立推导一致（隐式默认构造函数规则）"] },
+    { "id": 2, "type": "single", "answer": "B", "sourcePage": 1, "method": ["原卷转写（代码 p.2）", "答案表核对（p.1）", "独立推导一致（虚函数动态绑定）"] },
+    { "id": 3, "type": "single", "answer": "C", "sourcePage": 2, "method": ["原卷转写", "答案表核对（p.1）", "独立推导一致（类外访问 private 成员编译错误）"] },
+    { "id": 4, "type": "single", "answer": "A", "sourcePage": 3, "method": ["原卷转写", "答案表核对（p.1）", "独立推导一致（循环队列手动模拟：满，rear=1）"] },
+    { "id": 5, "type": "single", "answer": "D", "sourcePage": 3, "method": ["原卷转写", "答案表核对（p.1）", "独立推导一致（生产者消费者环形缓冲区）"] },
+    { "id": 6, "type": "single", "answer": "B", "sourcePage": 3, "method": ["原卷转写", "答案表核对（p.1）", "独立推导一致（根 3，右子树 {4,5} 只能父子）"] },
+    { "id": 7, "type": "single", "answer": "A", "sourcePage": 3, "method": ["原卷转写（中序含字母 I，低分辨率下易误读为数字 1，已放大核对为 H D I B E A F J C G）", "答案表核对（p.1）", "独立推导一致（后序 H I D E B J F G C A）"] },
+    { "id": 8, "type": "single", "answer": "C", "sourcePage": 4, "method": ["原卷转写", "答案表核对（p.1）", "独立推导一致（先序+中序唯一重建）"] },
+    { "id": 9, "type": "single", "answer": "D", "sourcePage": 4, "method": ["原卷转写", "答案表核对（p.1）", "独立推导一致（合并权值和 5+7+11+15+26=64）"] },
+    { "id": 10, "type": "single", "answer": "B", "sourcePage": 4, "method": ["原卷转写", "答案表核对（p.1）", "独立推导一致（2n-1=115 → n=58）"] },
+    { "id": 11, "type": "single", "answer": "B", "sourcePage": 4, "method": ["原卷转写", "答案表核对（p.1）", "独立推导一致（格雷码相邻码距为 1）"] },
+    { "id": 12, "type": "single", "answer": "B", "sourcePage": 4, "method": ["原卷转写（代码 p.5）", "答案表核对（p.1）", "独立推导一致（子结点深度 depth+1，循环含 max_depth）"] },
+    { "id": 13, "type": "single", "answer": "C", "sourcePage": 6, "method": ["原卷转写", "答案表核对（p.1）", "独立推导一致（DFS 借助递归或栈）"] },
+    { "id": 14, "type": "single", "answer": "C", "sourcePage": 6, "method": ["原卷转写", "答案表核对（p.1）", "独立推导一致（打家劫舍转移方程）"] },
+    { "id": 15, "type": "single", "answer": "A", "sourcePage": 6, "method": ["原卷转写", "答案表核对（p.1）", "独立推导一致（爬楼梯计数 DP）"] },
+    { "id": 16, "type": "judge", "answer": "×", "sourcePage": 6, "method": ["原卷转写（代码 p.7）", "答案表核对（p.6）", "独立推导一致（有参构造函数抑制默认构造生成）"] },
+    { "id": 17, "type": "judge", "answer": "√", "sourcePage": 7, "method": ["原卷转写", "答案表核对（p.6）", "独立推导一致"] },
+    { "id": 18, "type": "judge", "answer": "×", "sourcePage": 7, "method": ["原卷转写（树形放大核对：4、5 是结点 2 的孩子）", "答案表核对（p.6）", "独立推导一致（栈模拟输出 1 2 4 5 3）"] },
+    { "id": 19, "type": "judge", "answer": "×", "sourcePage": 7, "method": ["原卷转写", "答案表核对（p.6）", "与答案表一致（等频哈夫曼树接近平衡但不保证完全二叉树结构）"] },
+    { "id": 20, "type": "judge", "answer": "√", "sourcePage": 7, "method": ["原卷转写", "答案表核对（p.6）", "独立推导一致（前缀码性质）"] },
+    { "id": 21, "type": "judge", "answer": "√", "sourcePage": 7, "method": ["原卷转写", "答案表核对（p.6）", "独立推导一致（0 起始下标右孩子 2i+2）"] },
+    { "id": 22, "type": "judge", "answer": "×", "sourcePage": 7, "method": ["原卷转写", "答案表核对（p.6）", "独立推导一致（应先压右孩子再压左孩子）"] },
+    { "id": 23, "type": "judge", "answer": "√", "sourcePage": 7, "method": ["原卷转写（代码 p.8）", "答案表核对（p.6）", "独立推导一致（O(n)/最坏递归栈 O(n)）"] },
+    { "id": 24, "type": "judge", "answer": "×", "sourcePage": 8, "method": ["原卷转写", "答案表核对（p.6）", "独立推导一致（正序退化为完全背包）"] },
+    { "id": 25, "type": "judge", "answer": "√", "sourcePage": 8, "method": ["原卷转写", "答案表核对（p.6）", "独立推导一致"] },
+    { "id": 26, "type": "programming", "answer": "样例输出 7 / 11", "title": "选数", "sourcePage": "8-10", "method": ["原卷转写题面/输入输出/数据范围/样例", "官方参考程序（p.10）逐字转写", "g++ 编译运行通过全部样例（7、11）"] },
+    { "id": 27, "type": "programming", "answer": "样例输出 4 / 3", "title": "完全二叉树", "sourcePage": "10-12", "method": ["原卷转写题面/输入输出/数据范围/样例（样例 2 输入放大核对为 2 3 / 0 0 / 4 0 / 0 0）", "官方参考程序（p.12）逐字转写", "g++ 编译运行通过全部样例（4、3）"] }
   ],
-  "unresolved": [
-    "Q6/Q7/Q10/Q16/Q18 共 5 题在官方 2026-03 原卷中不存在，与 2025-12-l6 对应题内容重复（其中 Q7、Q16、Q18 的所录答案还与 2025-12-l6 版本相反）。这 5 题应整体删除或替换为原卷真实题目（Q1-Q15/Q1-Q10 中的缺失项），超出本次『代码回填』任务范围，保留 missing 标记待人工处理。",
-    "本卷题库单选部分（15 题）与官方单选（15 题）题号错位严重：原卷 Q4-Q7、Q9-Q15 的大部分题目在题库中缺失或被外来题顶替，建议后续做整卷重对。"
-  ]
+  "unresolved": []
 }

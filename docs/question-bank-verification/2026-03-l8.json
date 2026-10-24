@@ -7,29 +7,51 @@
     "mirrorSha": "d8f9823da8c6bd363e900a039a9f0baa05b88add",
     "shaVerified": true,
     "fetchedAt": "2026-10-24",
-    "pages": { "Q9": "p.2", "Q10": "pp.2-3" }
+    "pages": {
+      "answerTables": { "single": "p.1", "judge": "p.4" },
+      "singles": "pp.1-4",
+      "judges": "p.4",
+      "P26": "pp.5-7",
+      "P27": "pp.8-9"
+    }
+  },
+  "rebuild": {
+    "date": "2026-10-24",
+    "method": "官方 PDF 逐页转写整卷重建：9 页渲染 PNG（tmp/pages/2026-03-l8/p01.png~p09.png）逐页人工查看转写；单选 15 题答案与 p.1 官方答案表（D B B C B C B B B C C B A C A）逐题核对；判断 10 题答案与 p.4 官方答案表（× √ √ × × × √ √ √ ×）逐题核对；两道编程题题面/输入输出/样例/参考程序按 PDF 逐字转写，参考程序均用 g++ 编译并通过全部 4 组官方样例（P26 样例输出 2/2/3 与 1/2/2/2/1；P27 样例输出 9 与 784）。本卷无图形题。原题库 Q2、Q5-Q14 共 10 题串卷污染（内容来自 2025-12-l8 同号题等）已随整卷重建全部清除。",
+    "filesRewritten": [
+      "src/data/gesp/level8/2026-03-l8.js",
+      "src/data/gesp/level8/programming.js（仅 '2026-03-l8' 两个编程题条目）",
+      "docs/question-bank-verification/2026-03-l8.json"
+    ]
   },
   "questions": [
-    {
-      "id": 9,
-      "dimensions": ["statement", "options", "answer"],
-      "method": ["原卷对照（页面渲染人工查看）"],
-      "findings": "官方原卷第9题为图论最短路概念题（「关于图论中的最短路算法，下列说法中严格正确的是」，四个选项为 Dijkstra/Floyd 适用性表述，无代码引用，官方答案表第9题=B）。题库当前条目（「下列代码的时间复杂度」，missing-code 标记）与官方原卷完全不符，疑为录入时混入了其他试卷（与 2025-12-l8 第9题同型）的内容。无缺失代码可恢复。",
-      "fix": "未回填任何代码（避免把外来题目内容固化成本卷真题）。sourceIntegrity 由 missing-code 更正为 contaminated-stem，integrityNote 改写为上述核验结论。题干/选项/answer 保持原样未动。",
-      "evidence": "原卷 p.2 第9题渲染对照；原卷答案表（p.1）第9题 = B。",
-      "resolved": false
-    },
-    {
-      "id": 10,
-      "dimensions": ["statement", "options", "answer"],
-      "method": ["原卷对照（页面渲染人工查看）"],
-      "findings": "官方原卷第10题为排列计数题（「有6个人排成一排照相，其中甲、乙两人必须相邻，且丙不能站在排头的不同排法有几种」，选项 A.120 B.144 C.192 D.240，无代码引用，官方答案表第10题=C；独立推导：甲乙捆绑 5!×2−4!×2=240−48=192）。题库当前条目（欧拉筛填空，missing-code 标记）与官方原卷不符，疑混入其他试卷内容。无缺失代码可恢复。",
-      "fix": "未回填任何代码。sourceIntegrity 由 missing-code 更正为 contaminated-stem，integrityNote 改写为上述核验结论。题干/选项/answer 保持原样未动。",
-      "evidence": "原卷 pp.2-3 第10题渲染对照；捆绑法推导 5!×2 − 4!×2 = 192 与原卷答案 C 一致。",
-      "resolved": false
-    }
+    { "id": 1, "type": "single", "answer": "D", "answerIndex": 3, "sourcePage": "p.1", "method": ["原卷逐页转写重建", "答案表核对（p.1 第1题=D）", "独立推导 C(14,3)-C(8,3)-C(6,3)=288 与答案表一致"] },
+    { "id": 2, "type": "single", "answer": "B", "answerIndex": 1, "sourcePage": "p.1", "method": ["原卷逐页转写重建", "答案表核对（p.1 第2题=B）", "独立推导 2^10=1024 一致"] },
+    { "id": 3, "type": "single", "answer": "B", "answerIndex": 1, "sourcePage": "p.1", "method": ["原卷逐页转写重建（代码逐字保留）", "答案表核对（p.1 第3题=B）"] },
+    { "id": 4, "type": "single", "answer": "C", "answerIndex": 2, "sourcePage": "pp.1-2", "method": ["原卷逐页转写重建", "答案表核对（p.1 第4题=C）", "独立推导 C(9,3)-C(4,3)=80 一致"] },
+    { "id": 5, "type": "single", "answer": "B", "answerIndex": 1, "sourcePage": "p.2", "method": ["原卷逐页转写重建", "答案表核对（p.1 第5题=B）", "独立推导（BST 根为3，右子树{4,5}必为父子关系）一致"] },
+    { "id": 6, "type": "single", "answer": "C", "answerIndex": 2, "sourcePage": "p.2", "method": ["原卷逐页转写重建", "答案表核对（p.1 第6题=C）", "独立推导 堆优化 Dijkstra O((V+E)logV) 一致"] },
+    { "id": 7, "type": "single", "answer": "B", "answerIndex": 1, "sourcePage": "p.2", "method": ["原卷逐页转写重建", "答案表核对（p.1 第7题=B）", "独立推导 简单路径边数上界 n-1 一致"] },
+    { "id": 8, "type": "single", "answer": "B", "answerIndex": 1, "sourcePage": "p.2", "method": ["原卷逐页转写重建", "答案表核对（p.1 第8题=B）", "独立推导（三角不等式下松弛全部失效）一致"] },
+    { "id": 9, "type": "single", "answer": "B", "answerIndex": 1, "sourcePage": "p.2", "method": ["原卷逐页转写重建", "答案表核对（p.1 第9题=B）", "独立推导（Floyd 允许负权边、禁止负权环）一致"] },
+    { "id": 10, "type": "single", "answer": "C", "answerIndex": 2, "sourcePage": "pp.2-3", "method": ["原卷逐页转写重建", "答案表核对（p.1 第10题=C）", "独立推导 5!×2-4!×2=192 一致"] },
+    { "id": 11, "type": "single", "answer": "C", "answerIndex": 2, "sourcePage": "p.3", "method": ["原卷逐页转写重建", "答案表核对（p.1 第11题=C）", "独立推导（INF 检查 + 改进判断缺一不可）一致"] },
+    { "id": 12, "type": "single", "answer": "B", "answerIndex": 1, "sourcePage": "p.3", "method": ["原卷逐页转写重建", "答案表核对（p.1 第12题=B）", "独立推导 24+18+18=60 一致"] },
+    { "id": 13, "type": "single", "answer": "A", "answerIndex": 0, "sourcePage": "p.3", "method": ["原卷逐页转写重建", "答案表核对（p.1 第13题=A）", "独立推导（Prim 更新需边存在+未入树+更优）一致"] },
+    { "id": 14, "type": "single", "answer": "C", "answerIndex": 2, "sourcePage": "pp.3-4", "method": ["原卷逐页转写重建", "答案表核对（p.1 第14题=C）", "独立推导（叉积判共线 + 浮点容差）一致"] },
+    { "id": 15, "type": "single", "answer": "A", "answerIndex": 0, "sourcePage": "p.4", "method": ["原卷逐页转写重建（与原题库一致，代码逐字核对）", "答案表核对（p.1 第15题=A）"] },
+    { "id": 16, "type": "judge", "judgeNumber": 1, "answer": "错误", "answerIndex": 1, "sourcePage": "p.4", "method": ["原卷逐页转写重建", "答案表核对（p.4 判断第1题=×）"] },
+    { "id": 17, "type": "judge", "judgeNumber": 2, "answer": "正确", "answerIndex": 0, "sourcePage": "p.4", "method": ["原卷逐页转写重建", "答案表核对（p.4 判断第2题=√）"] },
+    { "id": 18, "type": "judge", "judgeNumber": 3, "answer": "正确", "answerIndex": 0, "sourcePage": "p.4", "method": ["原卷逐页转写重建（局部放大核对「右值」用词）", "答案表核对（p.4 判断第3题=√）"] },
+    { "id": 19, "type": "judge", "judgeNumber": 4, "answer": "错误", "answerIndex": 1, "sourcePage": "p.4", "method": ["原卷逐页转写重建", "答案表核对（p.4 判断第4题=×）", "独立推导（MST 唯一 ≠ 边权互异，充分不必要）一致"] },
+    { "id": 20, "type": "judge", "judgeNumber": 5, "answer": "错误", "answerIndex": 1, "sourcePage": "p.4", "method": ["原卷逐页转写重建", "答案表核对（p.4 判断第5题=×）", "独立推导（快排最坏 O(n²)）一致"] },
+    { "id": 21, "type": "judge", "judgeNumber": 6, "answer": "错误", "answerIndex": 1, "sourcePage": "p.4", "method": ["原卷逐页转写重建", "答案表核对（p.4 判断第6题=×）", "独立推导（欧拉回路还需连通）一致"] },
+    { "id": 22, "type": "judge", "judgeNumber": 7, "answer": "正确", "answerIndex": 0, "sourcePage": "p.4", "method": ["原卷逐页转写重建", "答案表核对（p.4 判断第7题=√）"] },
+    { "id": 23, "type": "judge", "judgeNumber": 8, "answer": "正确", "answerIndex": 0, "sourcePage": "p.4", "method": ["原卷逐页转写重建", "答案表核对（p.4 判断第8题=√）", "独立推导（边权整体平移不改变 MST）一致"] },
+    { "id": 24, "type": "judge", "judgeNumber": 9, "answer": "正确", "answerIndex": 0, "sourcePage": "p.4", "method": ["原卷逐页转写重建", "答案表核对（p.4 判断第9题=√）"] },
+    { "id": 25, "type": "judge", "judgeNumber": 10, "answer": "错误", "answerIndex": 1, "sourcePage": "p.4", "method": ["原卷逐页转写重建", "答案表核对（p.4 判断第10题=×）", "独立推导（记忆化只访问可达状态，「总是相同」过于绝对）一致"] },
+    { "id": 26, "type": "programming", "title": "消息查找", "sourcePage": "pp.5-7", "method": ["原卷逐页转写重建（题面/输入输出/两组样例/参考程序逐字转写）", "参考程序 g++ 编译并通过两组官方样例（2/2/3 与 1/2/2/2/1）"] },
+    { "id": 27, "type": "programming", "title": "子图最短路", "sourcePage": "pp.8-9", "method": ["原卷逐页转写重建（题面/输入输出/两组样例/参考程序逐字转写）", "参考程序 g++ 编译并通过两组官方样例（9 与 784）"] }
   ],
-  "unresolved": [
-    "重大发现：本卷题库单选题与官方原卷大面积不符。经逐题对照官方原卷（官方答案表 1-15：D B B C B C B B B C C B A C A）：题库 Q1、Q3、Q4、Q15 与原卷一致；题库 Q2（归并排序）、Q5（Dijkstra 松弛）、Q6（LCS）、Q7（两点距离）、Q8（引用）、Q9（代码复杂度）、Q10（欧拉筛）、Q11（继承权限）、Q12（输入6求值）、Q13（数字5计数）、Q14（输入2023求值）与原卷对应题号的内容完全不同，其中 Q2/Q5-Q8/Q11/Q13 的内容实际来自 2025-12-l8 试卷的同号题，Q12 的代码（Σ√i 循环）甚至与其自身题干（输入6）不匹配。官方原卷实际题目为：Q2 杨辉三角第10行之和(512)、Q5 BST 中序/先序、Q6 Dijkstra+优先队列复杂度、Q7 简单路径边数、Q8 Floyd 对已求最短路的影响、Q9 图论最短路说法、Q10 甲乙相邻丙不站头(192)、Q11 Floyd 横线、Q12 五位无重复偶数(60)、Q13 Prim 横线、Q14 三点共线精度判断、Q15 sizeof 指针运算。此问题超出本次任务授权范围（仅允许处理名单内题目的代码回填），建议另行立项整卷重建。"
-  ]
+  "unresolved": []
 }
