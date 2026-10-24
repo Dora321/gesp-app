@@ -714,6 +714,7 @@ int visit(vector<int>& nums) {
             sourceVerified: true,
             sourcePage: 6,
             reviewedAt: "2026-10-24",
+            reviewedBy: "WorkBuddy AI（官方 PDF 逐页转写 + 答案表核对）",
         },
         {
             id: 15,
