@@ -165,11 +165,28 @@ export const paperData = {
         {
             id: 3,
             type: "single",
-            sourceIntegrity: "missing-code",
-            integrityNote: "原卷此题引用的程序代码在录入时未收录，仅凭当前题面无法推导答案。本题已排除出计分与考点练习，待补齐原卷代码后恢复。",
-            question: `以下 C++ 代码段中存在语法错误或逻辑错误，（ ）是正确的。`,
+            question: `以下 C++ 代码段中存在语法错误或逻辑错误，（ ）是正确的。
+
+\`\`\`cpp
+#include <iostream>
+using namespace std;
+class MyClass {
+  public:
+    MyClass() {
+        cout << "Constructor called!" << endl;
+    }
+    void display() {
+        cout << "Display function called!" << endl;
+    }
+};
+int main() {
+    MyClass* obj = NULL;
+    obj->display();
+    return 0;
+}
+\`\`\``,
             options: [
-                "NULL 在 C++ 中无法用于指针初始化，应使用 nullptr。 #include <iostream> using namespace std; class MyClass { public: MyClass() { cout << \"Constructor called!\" << endl; } void display() { cout << \"Display function called!\" << endl; } }; int main() { MyClass* obj = NULL; obj->display(); return 0; } 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16",
+                "NULL 在 C++ 中无法用于指针初始化，应使用 nullptr。",
                 "obj 的定义应该是 MyClass obj; 而不是指针类型。",
                 "obj->display() 语句存在空指针访问错误，obj 应该初始化为一个有效的对象。",
                 "obj->display() 语句会调用 display() 函数，但它没有输出任何内容。",
@@ -178,15 +195,15 @@ export const paperData = {
             score: 2,
             explanation: `**答案：C**
 
-            **解析：**
-            本题答案已依据试卷标准答案完成录入，可结合题干与选项复盘对应知识点。
+**解析：**
+代码把指针 \`obj\` 初始化为 \`NULL\`（空指针），随后通过 \`obj->display()\` 用空指针调用成员函数，属于空指针访问错误（未定义行为），\`obj\` 应当指向一个有效对象。
 
-            - **A NULL 在 C++ 中无法用于指针初始化，应使用 nullptr。 #incl...**：不是本题答案。该代码逻辑与题目要求不符，请逐步推演。
-            - **B obj 的定义应该是 MyClass obj; 而不是指针类型。**：不是本题答案。
-            - **C obj->display() 语句存在空指针访问错误，obj 应该初始化为一个有...**：正确答案。
-            - **D obj->display() 语句会调用 display() 函数，但它没有输出...**：不是本题答案。
+- **A** 错误：\`NULL\` 在 C++ 中可以用于指针初始化（本质是整数 0）；推荐 \`nullptr\` 只是更安全的写法，并非 \`NULL\` 不能用。
+- **B** 错误：用指针管理对象、通过 \`->\` 调用成员函数本身没有问题，并非必须定义成对象。
+- **C** 正确：\`obj\` 为空指针，通过它访问成员是未定义行为，程序存在逻辑错误。
+- **D** 错误：\`display()\` 函数体中有输出语句，\`cout << "Display function called!"\` 会执行（g++ 实际运行输出了该行），「没有输出任何内容」不成立。
 
-            **考点：** 指针、面向对象
+**考点：** 指针、面向对象
             `,
             tags: [
                 "客观题",
@@ -197,9 +214,26 @@ export const paperData = {
         {
             id: 4,
             type: "single",
-            sourceIntegrity: "missing-code",
-            integrityNote: "原卷此题引用的程序代码在录入时未收录，仅凭当前题面无法推导答案。本题已排除出计分与考点练习，待补齐原卷代码后恢复。",
-            question: `阅读以下代码，下面哪一项是正确的？`,
+            question: `阅读以下代码，下面哪一项是正确的？
+
+\`\`\`cpp
+void processData() {
+    stack<int> s;
+    queue<int> q;
+    for (int i = 1; i <= 5; ++i) {
+        s.push(i);
+        q.push(i);
+    }
+    while (!s.empty()) {
+        cout << "Stack pop: " << s.top() << endl;
+        s.pop();
+    }
+    while (!q.empty()) {
+        cout << "Queue pop: " << q.front() << endl;
+        q.pop();
+    }
+}
+\`\`\``,
             options: [
                 "栈s的输出顺序是 1 2 3 4 5，队列q的输出顺序是 5 4 3 2 1。",
                 "栈s的输出顺序是 5 4 3 2 1，队列q的输出顺序是 1 2 3 4 5。",
@@ -210,13 +244,17 @@ export const paperData = {
             score: 2,
             explanation: `**答案：B**
 
-            **解析：**
-            本题答案已依据试卷标准答案完成录入，可结合题干与选项复盘对应知识点。
+**解析：**
+代码把 1~5 依次压入栈 s 和队列 q，再分别依次弹出并输出。栈是后进先出（LIFO），最后压入的 5 最先弹出，输出 5 4 3 2 1；队列是先进先出（FIFO），输出顺序与入队顺序一致，为 1 2 3 4 5。
 
-            - **A 栈s的输出顺序是 1 2 3 4 5，队列q的输出顺序是 5 4 3 2 1。**：不是本题答案。对栈的后进先出特性或空满判断理解有误，请检查入栈出栈顺序。
-            - **B 栈s的输出顺序是 5 4 3 2 1，队列q的输出顺序是 1 2 3 4 5。**：正确答案。
-            - **C 栈s的输出顺序是 1 2 3 4 5，队列q的输出顺序是 1 2 3 4 5。**：不是本题答案。对栈的后进先出特性或空满判断理解有误，请检查入栈出栈顺序。
-            - **D 栈s的输出顺序是 1 2 3 4 5，队列q的输出顺序是 1 2 3 4 5，程...**：不是本题答案。对栈的后进先出特性或空满判断理解有误，请检查入栈出栈顺序。
+- **A** 错误：栈、队列的输出顺序刚好说反了。
+- **B** 正确：栈输出 5 4 3 2 1，队列输出 1 2 3 4 5。
+- **C** 错误：栈的输出顺序不是 1 2 3 4 5，那是队列的特性。
+- **D** 错误：程序可以正常编译执行，两个循环都正常弹出，不存在执行错误。
+
+g++ 编译运行转写代码，输出 Stack pop: 5→1、Queue pop: 1→5，与 B 一致。
+
+**考点：** 栈、队列
             `,
             tags: [
                 "客观题",
@@ -745,9 +783,16 @@ export const paperData = {
         {
             id: 22,
             type: "judge",
-            sourceIntegrity: "missing-code",
-            integrityNote: "原卷此题引用的程序代码在录入时未收录，仅凭当前题面无法推导答案。本题已排除出计分与考点练习，待补齐原卷代码后恢复。",
-            question: `下面的代码实现了二叉树的前序遍历，它通过递归方法访问每个节点并打印节点值。`,
+            question: `下面的代码实现了二叉树的前序遍历，它通过递归方法访问每个节点并打印节点值。
+
+\`\`\`cpp
+void preorder(TreeNode* root) {
+    if (root == NULL) return;
+    cout << root->val << " ";
+    preorder(root->left);
+    preorder(root->right);
+}
+\`\`\``,
             options: [
                 "正确",
                 "错误",
@@ -756,12 +801,10 @@ export const paperData = {
             score: 2,
             explanation: `**答案：正确**
 
-            **判定依据：**
-            本题答案已依据试卷标准答案完成录入，可结合题干与选项复盘对应知识点。
+**判定依据：**
+前序遍历的顺序是「根 → 左子树 → 右子树」。代码先输出当前结点的值（根），再递归遍历左子树，最后递归遍历右子树；\`root == NULL\` 时直接返回，作为空子树的边界条件。整个函数完全符合前序遍历的定义，且确实通过递归访问每个节点并打印节点值，故该说法正确。
 
-            **易混概念：** 注意区分相关概念的适用范围和边界条件。
-
-            **考点：** 树与二叉树、递归
+**考点：** 树与二叉树、递归
             `,
             tags: [
                 "客观题",
