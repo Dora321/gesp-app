@@ -1,0 +1,45 @@
+{
+  "paperId": "2023-09-l5",
+  "reviewedAt": "2026-10-24",
+  "reviewedBy": { "type": "AI", "executor": "WorkBuddy (GLM)", "session": "codex/question-bank-verification" },
+  "source": {
+    "mirrorUrl": "https://raw.githubusercontent.com/Dora321/gesp-official-pdfs/main/pdfs/2023%E5%B9%B49%E6%9C%88-C%2B%2B5%E7%BA%A7.pdf",
+    "mirrorSha": "7d1cb9e5cd39d721f9b483e377e54be55733be21",
+    "shaVerified": true,
+    "fetchedAt": "2026-10-24",
+    "pages": { "Q8": "pp.4-5", "Q11": "pp.6-7", "Q12": "pp.7-8" }
+  },
+  "questions": [
+    {
+      "id": 8,
+      "dimensions": ["statement", "options", "answer", "explanation"],
+      "method": ["原卷对照（页面渲染人工查看）", "程序执行"],
+      "findings": "题面缺失函数指针代码（原卷为图片）。官方答案 C。",
+      "fix": "按原卷 pp.4-5 逐行转写 checkNum/isEven 代码，以 fenced cpp 块回填题面；移除 sourceIntegrity/integrityNote；解析中参数 8 修正为 10，并补充逐选项理由。",
+      "evidence": "g++ 编译运行转写代码，实际输出 1，与答案 C（执行后输出1）一致。tmp/verify/2023-09-l5/q8.cpp",
+      "resolved": true
+    },
+    {
+      "id": 11,
+      "dimensions": ["statement", "options", "answer", "explanation"],
+      "method": ["原卷对照（页面渲染人工查看）", "程序执行", "独立推导"],
+      "findings": "题面缺失 isPrimeA/isPrimeB 代码；四个选项均缺原卷末尾从句「isPrimeB()/isPrimeA() 优于 isPrimeA()/isPrimeB()」；解析套话化。",
+      "fix": "按原卷 pp.6-7 转写代码回填；选项按原卷补齐末尾从句（答案仍指向 B 文本）；解析重写为具体推导（试除范围 N-2 vs √N-1），逐选项给出错误原因。",
+      "evidence": "独立推导：isPrimeA 循环 2..N-1 → O(N)；isPrimeB 循环 2..int(sqrt(N)) → O(√N)。g++ 运行 isPrimeA(13)/isPrimeB(13) 均输出 true。tmp/verify/2023-09-l5/q11.cpp",
+      "resolved": true
+    },
+    {
+      "id": 12,
+      "dimensions": ["statement", "options", "answer", "explanation"],
+      "method": ["原卷对照（页面渲染人工查看）", "程序执行", "独立推导"],
+      "findings": "题面缺失归并排序代码；解析为模板套话（「该数值与正确计算结果不符，请重新验算」×3）。",
+      "fix": "按原卷 pp.7-8 转写 mergeSort/merge 代码回填；解析重写为递归树推导（start<end 的区间恰 6 个），并附运行计数证据。",
+      "evidence": "g++ 编译插入 mergeCount 计数器的转写代码，输出 merge calls: 6，与答案 C(6) 一致；排序输出 1 2 3 3 5 7 11。tmp/verify/2023-09-l5/q12.cpp",
+      "resolved": true
+    }
+  ],
+  "unresolved": [
+    "判断题答案为 PDF 图形符号，文本审计不覆盖，本卷判断题答案仍按录入值保留，未对照官方（需渲染答案页逐题核对）。",
+    "官方答案页为「试题+答案」合订版式；本卷单选答案已于 2026-07-19 机器审计通过（audit-answers-2026-07-19），本次对 Q8/Q11/Q12 独立推导与运行结果一致，构成双重印证。"
+  ]
+}

@@ -1,0 +1,33 @@
+{
+  "paperId": "2024-12-l7",
+  "reviewedAt": "2026-10-24",
+  "reviewedBy": { "type": "AI", "executor": "WorkBuddy 子代理", "session": "codex/question-bank-verification" },
+  "source": {
+    "mirrorUrl": "https://raw.githubusercontent.com/Dora321/gesp-official-pdfs/main/pdfs/2024%E5%B9%B412%E6%9C%88-C%2B%2B7%E7%BA%A7.pdf",
+    "mirrorSha": "aae095353c3673f6500fe504d5309c6ae7f1f1bd",
+    "shaVerified": true,
+    "fetchedAt": "2026-10-24",
+    "pages": { "Q11": "p.3", "Q12": "p.3" }
+  },
+  "questions": [
+    {
+      "id": 11,
+      "dimensions": ["statement", "answer", "explanation"],
+      "method": ["原卷对照（页面渲染人工查看）", "程序执行"],
+      "findings": "题面缺失程序代码（原卷为图片，p.3）。原卷代码为 cout << (int)exp(2)，与解析描述一致。",
+      "fix": "按原卷 p.3 转写 7 行代码回填题面；移除 sourceIntegrity/integrityNote。解析与原卷一致，保留。",
+      "evidence": "g++ 编译运行转写代码，实际输出 7（e²≈7.389 截断），与答案 B（7）一致。tmp/verify/2024-12-l7/q11.cpp",
+      "resolved": true
+    },
+    {
+      "id": 12,
+      "dimensions": ["statement", "answer", "explanation"],
+      "method": ["原卷对照（页面渲染人工查看）", "程序执行"],
+      "findings": "题面缺失卡特兰数递推程序（原卷为图片，p.3）。原卷代码为 h[0]=h[1]=1、h[n]=Σh[j]*h[n-j-1]、输出 h[6]，与解析一致。",
+      "fix": "按原卷 p.3 转写 12 行代码回填题面；移除 sourceIntegrity/integrityNote。解析与原卷一致，保留。",
+      "evidence": "g++ 编译运行转写代码，实际输出 132（Catalan(6)），与答案 A（132）一致。tmp/verify/2024-12-l7/q12.cpp",
+      "resolved": true
+    }
+  ],
+  "unresolved": []
+}

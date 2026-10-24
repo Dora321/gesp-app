@@ -1,0 +1,60 @@
+{
+  "paperId": "2025-03-l6",
+  "reviewedAt": "2026-10-24",
+  "reviewedBy": { "type": "AI", "executor": "WorkBuddy 子代理", "session": "codex/question-bank-verification" },
+  "source": {
+    "mirrorUrl": "https://raw.githubusercontent.com/Dora321/gesp-official-pdfs/main/pdfs/2025%E5%B9%B43%E6%9C%88-C%2B%2B6%E7%BA%A7.pdf",
+    "mirrorSha": "549348b62047e9004972fbb988faed13dd5ecb74",
+    "shaVerified": true,
+    "fetchedAt": "2026-10-24",
+    "pages": { "Q3": "p.1", "Q5": "p.2", "Q9": "p.3", "Q13": "pp.5-6", "Q19": "p.8" }
+  },
+  "questions": [
+    {
+      "id": 3,
+      "dimensions": ["statement", "answer", "explanation"],
+      "method": ["原卷对照（页面渲染人工查看）", "程序执行"],
+      "findings": "题面缺失 traverse 递归遍历代码（原卷 p.1 为图片）。代码打印语句在两次递归之前，为前序遍历，与答案 A 一致。",
+      "fix": "按原卷 p.1 逐行转写 traverse 代码，以 fenced cpp 块回填题面；移除 sourceIntegrity/integrityNote；解析由模板占位重写为「访问根的时机」判定 + 逐选项理由。",
+      "evidence": "g++ 编译运行转写代码，示例树输出 1 2 4 5 3（根最先访问），确证前序遍历。tmp/verify/2025-03-l6/q3q5q9q19.cpp",
+      "resolved": true
+    },
+    {
+      "id": 5,
+      "dimensions": ["statement", "answer", "explanation"],
+      "method": ["原卷对照（页面渲染人工查看）", "程序执行"],
+      "findings": "题面缺失 BST 操作函数 op 代码（原卷 p.2 为图片）。代码在空指针处 new 新节点，为插入操作，与答案 B 一致。",
+      "fix": "按原卷 p.2 转写 op 代码回填；移除 sourceIntegrity/integrityNote；解析重写为「new TreeNode 是插入的决定性证据」+ 逐选项理由。",
+      "evidence": "g++ 编译运行转写代码，依次插入 8,3,10,1,6 后中序输出 1 3 6 8 10（有序），确证插入。tmp/verify/2025-03-l6/q3q5q9q19.cpp",
+      "resolved": true
+    },
+    {
+      "id": 9,
+      "dimensions": ["statement", "answer", "explanation"],
+      "method": ["原卷对照（页面渲染人工查看）", "程序执行"],
+      "findings": "题面缺失 CircularQueue 类代码（原卷 p.3 为图片）。展示的 enQueue 函数写入 arr[rear] 并循环后移队尾指针，为入队操作，与答案 A 一致。",
+      "fix": "按原卷 p.3 转写 CircularQueue 类（17 行）回填题面（题面代码与原卷一致，不含 isFull/isEmpty 实现）；移除 sourceIntegrity/integrityNote；解析重写为 enQueue 逐行逻辑 + 逐选项理由。",
+      "evidence": "g++ 编译运行转写代码（补实现 isFull/isEmpty 以通过编译），容量 3 连续入队前 3 次返回 true、第 4 次返回 false，确证 enQueue 为入队。tmp/verify/2025-03-l6/q3q5q9q19.cpp",
+      "resolved": true
+    },
+    {
+      "id": 13,
+      "dimensions": ["statement", "options", "answer", "explanation"],
+      "method": ["原卷对照（页面渲染人工查看）", "程序执行"],
+      "findings": "题面缺失 knapsack 函数代码（原卷 pp.5-6 为图片，代码跨页拼接）。填入答案 B 的转移方程后为标准 0/1 背包。",
+      "fix": "按原卷 pp.5-6 转写 knapsack 代码（含跨页的 return dp[n][W]）回填；移除 sourceIntegrity/integrityNote；解析由模板占位重写为「不装 vs 装」两分支推导 + 逐选项错误原因。",
+      "evidence": "g++ 编译填入选项 B 的转写代码：weights{1,2,3}/values{6,10,12}/W=5 输出 22，weights{1,3,4}/values{15,20,30}/W=4 输出 35，均与手算 0/1 背包最优值一致。tmp/verify/2025-03-l6/q13.cpp",
+      "resolved": true
+    },
+    {
+      "id": 19,
+      "dimensions": ["statement", "answer", "explanation"],
+      "method": ["原卷对照（页面渲染人工查看）", "程序执行"],
+      "findings": "判断题题面缺失 traverse 代码（原卷 p.8 为图片）。代码打印语句在两次递归之间，为中序遍历，命题成立，与答案「正确」一致（原卷判断题答案表第 4 题亦为 √）。",
+      "fix": "按原卷 p.8 转写 traverse 代码回填；移除 sourceIntegrity/integrityNote；解析重写为「打印语句在两次递归之间即中序」+ 前序/中序/后序对比。",
+      "evidence": "g++ 编译运行转写代码，示例树输出 4 2 5 1 3（左根右），确证中序遍历。tmp/verify/2025-03-l6/q3q5q9q19.cpp",
+      "resolved": true
+    }
+  ],
+  "unresolved": []
+}

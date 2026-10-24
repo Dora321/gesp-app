@@ -1,0 +1,24 @@
+{
+  "paperId": "2024-09-l5",
+  "reviewedAt": "2026-10-24",
+  "reviewedBy": { "type": "AI", "executor": "WorkBuddy 子代理", "session": "codex/question-bank-verification" },
+  "source": {
+    "mirrorUrl": "https://raw.githubusercontent.com/Dora321/gesp-official-pdfs/main/pdfs/2024%E5%B9%B49%E6%9C%88-C%2B%2B5%E7%BA%A7.pdf",
+    "mirrorSha": "2f34fe1eb88c1930e94ce4c0a7c446356b558ddc",
+    "shaVerified": true,
+    "fetchedAt": "2026-10-24",
+    "pages": { "Q4": "p.2" }
+  },
+  "questions": [
+    {
+      "id": 4,
+      "dimensions": ["statement", "explanation"],
+      "method": ["原卷对照（页面渲染人工查看）", "程序执行"],
+      "findings": "题面缺失 fun 辗转相除代码（原卷 p.2 为图片）；解析仅有「依据官方答案表」一句，无实际推导。",
+      "fix": "按原卷 p.2 转写 fun 递归代码回填题面；移除 sourceIntegrity/integrityNote；解析补全为逐步跟踪推导 + 逐选项理由 + 考点。",
+      "evidence": "g++ 编译运行转写代码，fun(20,12) 输出 4。跟踪：fun(20,12)→20%12=8→fun(12,8)→12%8=4→fun(8,4)→8%4=0 返回 4，即 gcd(20,12)=4，与答案 C 一致。tmp/verify/2024-09-l5/q4.cpp",
+      "resolved": true
+    }
+  ],
+  "unresolved": []
+}

@@ -1,0 +1,42 @@
+{
+  "paperId": "2025-09-l8",
+  "reviewedAt": "2026-10-24",
+  "reviewedBy": { "type": "AI", "executor": "WorkBuddy 子代理", "session": "codex/question-bank-verification" },
+  "source": {
+    "mirrorUrl": "https://raw.githubusercontent.com/Dora321/gesp-official-pdfs/main/pdfs/2025%E5%B9%B49%E6%9C%88-C%2B%2B8%E7%BA%A7.pdf",
+    "mirrorSha": "c6da91b93a1a0fae405678e5bc23726f4691edee",
+    "shaVerified": true,
+    "fetchedAt": "2026-10-24",
+    "pages": { "Q9": "p.2", "Q10": "pp.2-3", "Q15": "p.6" }
+  },
+  "questions": [
+    {
+      "id": 9,
+      "dimensions": ["statement", "answer", "explanation"],
+      "method": ["原卷对照（页面渲染人工查看）", "程序执行"],
+      "findings": "题面缺失非降三元组计数代码（x 从 1 起，与 2024-12 卷 x 从 0 起的同型题区分）。",
+      "fix": "按原卷 p.2 转写代码回填；移除标记；解析重写并点明与 2024-12 卷的差异（起点 1 → 102，起点 0 → 174）。",
+      "evidence": "g++ 编译运行转写代码，输出 102，与答案 B（102）一致。tmp/verify/2025-09-l8/q9.cpp",
+      "resolved": true
+    },
+    {
+      "id": 10,
+      "dimensions": ["statement", "options", "answer", "explanation"],
+      "method": ["原卷对照（页面渲染人工查看）", "独立推导"],
+      "findings": "题面缺失线性筛代码；题库选项（O(N)/O(N²)/O(N³)/O(N log N)）与原卷不符，且按题库原选项 answer 索引 2 指向 O(N³)，与官方答案 C=O(n) 矛盾。原卷选项为 A.O(n log n) B.O(n log log n) C.O(n) D.O(log n)。",
+      "fix": "按原卷 pp.2-3 转写代码回填；选项按原卷恢复；移除标记；解析重写为线性筛均摊推导。answer 索引 2 无需改动（恢复后 C=O(n)）。",
+      "evidence": "独立推导：每个合数只被最小质因子标记一次，总工作量 O(n)，与原卷答案 C 一致。题库原选项文本下 answer 索引所指量级（O(N³)）与官方答案矛盾，已通过恢复原卷选项消解。",
+      "resolved": true
+    },
+    {
+      "id": 15,
+      "dimensions": ["statement", "answer", "explanation"],
+      "method": ["原卷对照（页面渲染人工查看）", "独立推导"],
+      "findings": "题面缺失 Graph/Edge 类建图代码。原卷第 18 行 vve[d].emplace_back(s, w) 末尾缺分号，系原卷排版笔误，按原样转写并在解析中注明。",
+      "fix": "按原卷 p.6 转写代码回填；移除标记；解析重写为逐路径枚举推导。",
+      "evidence": "独立推导：边 0-1(8)、0-2(5)、1-2(1)、1-3(3)、2-3(7)，0-2-1-3 = 5+1+3 = 9 为最短，与答案 D（9）一致。",
+      "resolved": true
+    }
+  ],
+  "unresolved": []
+}

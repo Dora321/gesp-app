@@ -1,0 +1,35 @@
+{
+  "paperId": "2026-03-l8",
+  "reviewedAt": "2026-10-24",
+  "reviewedBy": { "type": "AI", "executor": "WorkBuddy 子代理", "session": "codex/question-bank-verification" },
+  "source": {
+    "mirrorUrl": "https://raw.githubusercontent.com/Dora321/gesp-official-pdfs/main/pdfs/2026%E5%B9%B43%E6%9C%88-C%2B%2B8%E7%BA%A7.pdf",
+    "mirrorSha": "d8f9823da8c6bd363e900a039a9f0baa05b88add",
+    "shaVerified": true,
+    "fetchedAt": "2026-10-24",
+    "pages": { "Q9": "p.2", "Q10": "pp.2-3" }
+  },
+  "questions": [
+    {
+      "id": 9,
+      "dimensions": ["statement", "options", "answer"],
+      "method": ["原卷对照（页面渲染人工查看）"],
+      "findings": "官方原卷第9题为图论最短路概念题（「关于图论中的最短路算法，下列说法中严格正确的是」，四个选项为 Dijkstra/Floyd 适用性表述，无代码引用，官方答案表第9题=B）。题库当前条目（「下列代码的时间复杂度」，missing-code 标记）与官方原卷完全不符，疑为录入时混入了其他试卷（与 2025-12-l8 第9题同型）的内容。无缺失代码可恢复。",
+      "fix": "未回填任何代码（避免把外来题目内容固化成本卷真题）。sourceIntegrity 由 missing-code 更正为 contaminated-stem，integrityNote 改写为上述核验结论。题干/选项/answer 保持原样未动。",
+      "evidence": "原卷 p.2 第9题渲染对照；原卷答案表（p.1）第9题 = B。",
+      "resolved": false
+    },
+    {
+      "id": 10,
+      "dimensions": ["statement", "options", "answer"],
+      "method": ["原卷对照（页面渲染人工查看）"],
+      "findings": "官方原卷第10题为排列计数题（「有6个人排成一排照相，其中甲、乙两人必须相邻，且丙不能站在排头的不同排法有几种」，选项 A.120 B.144 C.192 D.240，无代码引用，官方答案表第10题=C；独立推导：甲乙捆绑 5!×2−4!×2=240−48=192）。题库当前条目（欧拉筛填空，missing-code 标记）与官方原卷不符，疑混入其他试卷内容。无缺失代码可恢复。",
+      "fix": "未回填任何代码。sourceIntegrity 由 missing-code 更正为 contaminated-stem，integrityNote 改写为上述核验结论。题干/选项/answer 保持原样未动。",
+      "evidence": "原卷 pp.2-3 第10题渲染对照；捆绑法推导 5!×2 − 4!×2 = 192 与原卷答案 C 一致。",
+      "resolved": false
+    }
+  ],
+  "unresolved": [
+    "重大发现：本卷题库单选题与官方原卷大面积不符。经逐题对照官方原卷（官方答案表 1-15：D B B C B C B B B C C B A C A）：题库 Q1、Q3、Q4、Q15 与原卷一致；题库 Q2（归并排序）、Q5（Dijkstra 松弛）、Q6（LCS）、Q7（两点距离）、Q8（引用）、Q9（代码复杂度）、Q10（欧拉筛）、Q11（继承权限）、Q12（输入6求值）、Q13（数字5计数）、Q14（输入2023求值）与原卷对应题号的内容完全不同，其中 Q2/Q5-Q8/Q11/Q13 的内容实际来自 2025-12-l8 试卷的同号题，Q12 的代码（Σ√i 循环）甚至与其自身题干（输入6）不匹配。官方原卷实际题目为：Q2 杨辉三角第10行之和(512)、Q5 BST 中序/先序、Q6 Dijkstra+优先队列复杂度、Q7 简单路径边数、Q8 Floyd 对已求最短路的影响、Q9 图论最短路说法、Q10 甲乙相邻丙不站头(192)、Q11 Floyd 横线、Q12 五位无重复偶数(60)、Q13 Prim 横线、Q14 三点共线精度判断、Q15 sizeof 指针运算。此问题超出本次任务授权范围（仅允许处理名单内题目的代码回填），建议另行立项整卷重建。"
+  ]
+}

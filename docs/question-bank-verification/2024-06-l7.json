@@ -1,0 +1,24 @@
+{
+  "paperId": "2024-06-l7",
+  "reviewedAt": "2026-10-24",
+  "reviewedBy": { "type": "AI", "executor": "WorkBuddy 子代理", "session": "codex/question-bank-verification" },
+  "source": {
+    "mirrorUrl": "https://raw.githubusercontent.com/Dora321/gesp-official-pdfs/main/pdfs/2024%E5%B9%B46%E6%9C%88-C%2B%2B7%E7%BA%A7.pdf",
+    "mirrorSha": "047a7cc0e239607506b06057396e76c78b6c21de",
+    "shaVerified": true,
+    "fetchedAt": "2026-10-24",
+    "pages": { "Q13": "p.5" }
+  },
+  "questions": [
+    {
+      "id": 13,
+      "dimensions": ["statement", "answer", "explanation"],
+      "method": ["原卷对照（页面渲染人工查看）", "程序执行"],
+      "findings": "题面缺失 fib 递归程序代码（原卷为图片，p.5）。官方代码为标准斐波那契递归，main 输出 fib(6) << endl。",
+      "fix": "按原卷 p.5 逐行转写 11 行代码，以 fenced cpp 块回填题面；移除 sourceIntegrity/integrityNote。解析中示意代码与原卷等价（同样为 fib(6)=8），保留不动。",
+      "evidence": "g++ 编译运行转写代码，实际输出 8，与答案 B（8）一致。tmp/verify/2024-06-l7/q13.cpp",
+      "resolved": true
+    }
+  ],
+  "unresolved": []
+}

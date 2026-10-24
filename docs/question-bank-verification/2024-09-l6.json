@@ -1,0 +1,24 @@
+{
+  "paperId": "2024-09-l6",
+  "reviewedAt": "2026-10-24",
+  "reviewedBy": { "type": "AI", "executor": "WorkBuddy 子代理", "session": "codex/question-bank-verification" },
+  "source": {
+    "mirrorUrl": "https://raw.githubusercontent.com/Dora321/gesp-official-pdfs/main/pdfs/2024%E5%B9%B49%E6%9C%88-C%2B%2B6%E7%BA%A7.pdf",
+    "mirrorSha": "d05c63cea3f3b907deacb509406c8024d5a02e90",
+    "shaVerified": true,
+    "fetchedAt": "2026-10-24",
+    "pages": { "Q2": "p.1" }
+  },
+  "questions": [
+    {
+      "id": 2,
+      "dimensions": ["statement", "options", "answer", "explanation"],
+      "method": ["原卷对照（页面渲染人工查看）", "程序执行"],
+      "findings": "题面缺失 Base/Derived 类代码（原卷为图片，共 21 行）；录入时该代码被整段串入了选项 C 文本，并夹带行号残留「1 2 3 … 21」，原卷选项 C 仅为「Line 3」。解析为占位模板。",
+      "fix": "按原卷 p.1 逐行转写 Base/Derived 代码（保持 private/protected/public 分段与 // Line 1/2/3 注释），以 fenced cpp 块回填题面；选项 C 恢复为原卷原文「Line 3」；移除 sourceIntegrity/integrityNote；解析重写为访问控制推导 + 逐选项理由。",
+      "evidence": "g++ 编译转写代码，仅 Line 1 报错：'int Base::a' is private within this context；Line 2（protected）与 Line 3（public）无错误，与答案 A（Line 1）一致。tmp/verify/2024-l6/q2_derived.cpp",
+      "resolved": true
+    }
+  ],
+  "unresolved": []
+}

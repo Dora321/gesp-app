@@ -1,0 +1,27 @@
+{
+  "paperId": "2025-09-l5",
+  "reviewedAt": "2026-10-24",
+  "reviewedBy": { "type": "AI", "executor": "WorkBuddy 子代理", "session": "codex/question-bank-verification" },
+  "source": {
+    "mirrorUrl": "https://raw.githubusercontent.com/Dora321/gesp-official-pdfs/main/pdfs/2025%E5%B9%B49%E6%9C%88-C%2B%2B5%E7%BA%A7.pdf",
+    "mirrorSha": "b3473fc3d25bc5196961b041c72417f5dcd74cdc",
+    "shaVerified": true,
+    "fetchedAt": "2026-10-24",
+    "pages": { "Q23（原卷判断题第8题）": "pp.8-9" }
+  },
+  "questions": [
+    {
+      "id": 23,
+      "dimensions": ["statement", "answer", "explanation"],
+      "method": ["原卷对照（页面渲染人工查看，含 5 倍放大核对题干公式与答案表）", "程序执行", "独立推导"],
+      "findings": "题面缺失 move/dfs/solveHanota 汉诺塔代码（原卷 p.9 为图片）。另发现两处与原卷的偏差：① 录入题干写「其时间复杂度为 O(2^n)」，原卷题干（p.9，5 倍放大核对）实为「时间复杂度为 O(n log n)」；② 原卷判断题答案表（p.8）第 8 题为 ×（错误），录入 answer 为 0（正确）。",
+      "fix": "按原卷 p.9 转写汉诺塔分治代码回填题面；移除 sourceIntegrity/integrityNote；解析由套话（「可结合题干与选项复盘对应知识点」+无关易混概念）重写为递推式 T(n)=2T(n-1)+1=2^n-1 推导。按任务约束未改动 question 题干文字与 answer 字段，偏差仅在此记录。",
+      "evidence": "g++ 编译运行转写代码，n=1..6 均能把全部盘按汉诺塔规则移到目标柱（C.size()==n），标准分治实现；独立推导 T(n)=2T(n-1)+1 → O(2^n)。答案冲突：按题库现有题干（O(2^n)）判定，说法正确，answer=0 自洽；但按原卷题干（O(n log n)）该说法错误，且原卷答案表第 8 题为 ×，故官方应判「错误」。题库 answer=0 与官方答案表存在矛盾（疑似录入题干时把 O(n log n) 误写为 O(2^n) 导致判定翻转），需维护方经 verifiedQuestionCorrections 流程处理。tmp/verify/2025-09-l5/q23.cpp",
+      "resolved": true
+    }
+  ],
+  "unresolved": [
+    "ANSWER-CONFLICT（高亮）：Q23 题库 answer=0（正确）与原卷答案表 ×（错误）矛盾。原卷题干为「时间复杂度为 O(n log n)」（错误说法，应判错误）；题库题干误录为 O(2^n)（正确说法，判正确）。二者其一需改：若忠实原卷应改题干公式并置 answer=1；本次任务禁止改 answer，故维持现状并在此记录。",
+    "Q16-Q22、Q24、Q25 的 answer-key-suspect 标记不在本次任务范围，未处理。"
+  ]
+}

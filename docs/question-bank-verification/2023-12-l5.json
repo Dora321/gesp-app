@@ -1,0 +1,24 @@
+{
+  "paperId": "2023-12-l5",
+  "reviewedAt": "2026-10-24",
+  "reviewedBy": { "type": "AI", "executor": "WorkBuddy 子代理", "session": "codex/question-bank-verification" },
+  "source": {
+    "mirrorUrl": "https://raw.githubusercontent.com/Dora321/gesp-official-pdfs/main/pdfs/2023%E5%B9%B412%E6%9C%88-C%2B%2B5%E7%BA%A7.pdf",
+    "mirrorSha": "f3e051516312e58303a5cd7130dc59b6b388cf9f",
+    "shaVerified": true,
+    "fetchedAt": "2026-10-24",
+    "pages": { "Q1": "p.1" }
+  },
+  "questions": [
+    {
+      "id": 1,
+      "dimensions": ["statement", "explanation"],
+      "method": ["原卷对照（页面渲染人工查看）", "程序执行", "独立推导"],
+      "findings": "题面缺失 fiboA/fiboB 斐波那契代码（原卷 p.1 为图片）。原卷选项文字与录入略有出入（录入为节选），不在本次修复范围。",
+      "fix": "按原卷 p.1 逐行转写 fiboA（递归）/fiboB（循环）代码，以 fenced cpp 块回填题面；移除 sourceIntegrity/integrityNote。",
+      "evidence": "g++ 编译运行转写代码，fiboA/fiboB 在 n=1,2,3,5,10,20 时输出完全一致（1 1 2 5 55 6765），fiboA 为指数级重复计算的递归、fiboB 为 O(N) 循环，选项 C 称 fiboA 效率更高为错误说法，与答案 C 一致。tmp/verify/2023-12-l5/q1.cpp",
+      "resolved": true
+    }
+  ],
+  "unresolved": []
+}

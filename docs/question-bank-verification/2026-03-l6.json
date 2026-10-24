@@ -1,0 +1,63 @@
+{
+  "paperId": "2026-03-l6",
+  "reviewedAt": "2026-10-24",
+  "reviewedBy": { "type": "AI", "executor": "WorkBuddy 子代理", "session": "codex/question-bank-verification" },
+  "source": {
+    "mirrorUrl": "https://raw.githubusercontent.com/Dora321/gesp-official-pdfs/main/pdfs/2026%E5%B9%B43%E6%9C%88-C%2B%2B6%E7%BA%A7.pdf",
+    "mirrorSha": "440d30834c0e6bdec700375405ca7f7094c60505",
+    "shaVerified": true,
+    "fetchedAt": "2026-10-24",
+    "pages": { "单选题": "pp.1-6（Q1-Q15）", "判断题": "pp.6-8（Q1-Q10）", "编程题": "pp.8-12" }
+  },
+  "questions": [
+    {
+      "id": 6,
+      "dimensions": ["existence", "statement"],
+      "method": ["原卷逐页渲染人工核对（pp.1-8 全部客观题页面）"],
+      "findings": "官方原卷不含此题。2026-03-l6 原卷单选 15 题依次为：Q1 虚函数、Q2 Shape/Circle/Rectangle、Q3 Pet 编译错误、Q4 过山车循环队列、Q5 循环队列应用场景、Q6 BST 中序+先序推断、Q7 先序+中序推后序、Q8 树遍历说法、Q9 哈夫曼 WPL、Q10 哈夫曼结点数、Q11 格雷码、Q12 BFS 右视图、Q13 DFS 说法、Q14 打糖果 DP、Q15 石板路 dp 含义。题库所录「check() 判断完全二叉树」题与 2025-12-l6 第 6 题题干/选项完全相同，疑为录入时从 2025-12-l6 串入，官方 2026-03 卷中不存在，无从取得『原卷代码』。",
+      "fix": "未修改。按『不确定不猜造』原则保留 sourceIntegrity: missing-code 标记与排除计分状态。",
+      "evidence": "tmp/pdf/2026-03-l6_p01.png ~ p08.png 逐页查看；check() 代码实际出自 2025-12-l6 原卷 p.4（已在 2025-12-l6.json 中恢复）。",
+      "resolved": false
+    },
+    {
+      "id": 7,
+      "dimensions": ["existence", "statement", "answer"],
+      "method": ["原卷逐页渲染人工核对（pp.1-8 全部客观题页面）"],
+      "findings": "官方原卷不含此题。题库所录「以下代码实现了二叉树的（ ）」与 2025-12-l6 第 7 题同题干同选项，但答案不一致：2025-12 原卷代码（打印在两次递归之后）为后序遍历、录 C；本条却录 A（前序）。两卷不可能同时正确，进一步印证本条是从 2025-12-l6 串入后答案录入有误。",
+      "fix": "未修改。保留 missing-code 标记。",
+      "evidence": "原卷 pp.1-6 单选题逐页核对无此题；2025-12-l6 原卷 p.4 有同题（后序，答案 C）。",
+      "resolved": false
+    },
+    {
+      "id": 10,
+      "dimensions": ["existence", "statement"],
+      "method": ["原卷逐页渲染人工核对（pp.1-8 全部客观题页面）"],
+      "findings": "官方原卷不含此题。原卷 Q10 是「对 n 个不同符号进行哈夫曼编码，哈夫曼树共 115 个结点，求 n」。题库所录「BST 的（ ）操作」与 2025-12-l6 第 10 题相同，疑为串题。",
+      "fix": "未修改。保留 missing-code 标记。",
+      "evidence": "tmp/pdf/2026-03-l6_p04.png（原卷 Q10 哈夫曼 115 结点题）；BST 操作题实为 2025-12-l6 原卷 p.7 题目（已在 2025-12-l6.json 中恢复）。",
+      "resolved": false
+    },
+    {
+      "id": 16,
+      "dimensions": ["existence", "statement", "answer"],
+      "method": ["原卷逐页渲染人工核对（pp.6-8 判断题全部页面）"],
+      "findings": "官方原卷不含此题。2026-03 判断题 10 题依次为：Point 默认构造、继承私有成员、travel 输出、哈夫曼满二叉树、哈夫曼前缀、tree[2i+2]、栈实现前序、preorderTraversal 复杂度、0-1 背包正序内层循环、DP 递推/递归复杂度——没有 Test 类构造函数题。题库所录 Test 类题与 2025-12-l6 第 16 题相同，但答案相反（本条录「错误」，2025-12 录「正确」；按代码推导应为「错误」）。原 integrityNote 称该代码出现在本卷第 22 题，核对原卷后确认本卷任何题目均无 Test 类代码。",
+      "fix": "未修改。保留 missing-code 标记。",
+      "evidence": "tmp/pdf/2026-03-l6_p06.png ~ p08.png 逐页核对；Test 类代码实为 2025-12-l6 原卷 p.9 判断第 1 题（已在 2025-12-l6.json 中恢复并记录答案冲突）。",
+      "resolved": false
+    },
+    {
+      "id": 18,
+      "dimensions": ["existence", "statement", "answer"],
+      "method": ["原卷逐页渲染人工核对（pp.6-8 判断题全部页面）"],
+      "findings": "官方原卷不含此题。题库所录「countLeaf 统计叶子结点」与 2025-12-l6 第 18 题相同（题干、选项一致；本条录「错误」，2025-12 录「正确」，且 2025-12 原卷答案表为 √ 即「正确」），疑为串题且答案录入有误。",
+      "fix": "未修改。保留 missing-code 标记。",
+      "evidence": "原卷 pp.6-8 判断题逐页核对无此题；countLeaf 代码实为 2025-12-l6 原卷 p.9 判断第 3 题（已在 2025-12-l6.json 中恢复）。",
+      "resolved": false
+    }
+  ],
+  "unresolved": [
+    "Q6/Q7/Q10/Q16/Q18 共 5 题在官方 2026-03 原卷中不存在，与 2025-12-l6 对应题内容重复（其中 Q7、Q16、Q18 的所录答案还与 2025-12-l6 版本相反）。这 5 题应整体删除或替换为原卷真实题目（Q1-Q15/Q1-Q10 中的缺失项），超出本次『代码回填』任务范围，保留 missing 标记待人工处理。",
+    "本卷题库单选部分（15 题）与官方单选（15 题）题号错位严重：原卷 Q4-Q7、Q9-Q15 的大部分题目在题库中缺失或被外来题顶替，建议后续做整卷重对。"
+  ]
+}

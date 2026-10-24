@@ -1,0 +1,69 @@
+{
+  "paperId": "2025-12-l8",
+  "reviewedAt": "2026-10-24",
+  "reviewedBy": { "type": "AI", "executor": "WorkBuddy 子代理", "session": "codex/question-bank-verification" },
+  "source": {
+    "mirrorUrl": "https://raw.githubusercontent.com/Dora321/gesp-official-pdfs/main/pdfs/2025%E5%B9%B412%E6%9C%88-C%2B%2B8%E7%BA%A7.pdf",
+    "mirrorSha": "d4fb8f9888b28b550465399bece5b2254cfc7aeb",
+    "shaVerified": true,
+    "fetchedAt": "2026-10-24",
+    "pages": { "Q2": "p.1", "Q6": "p.2", "Q9": "p.3", "Q10": "p.3", "Q12": "p.4", "Q14": "p.4" }
+  },
+  "questions": [
+    {
+      "id": 2,
+      "dimensions": ["statement"],
+      "method": ["原卷对照（页面渲染人工查看）"],
+      "findings": "题面缺失归并排序分治代码（含横线与合并注释）。",
+      "fix": "按原卷 p.1 转写代码回填；移除标记。选项与答案 B 与原卷一致，解析已具体，未改动。",
+      "evidence": "原卷对照：第二处递归调用应处理右半区间 [mid+1, right]，与原卷官方答案表（第2题 B）一致。",
+      "resolved": true
+    },
+    {
+      "id": 6,
+      "dimensions": ["statement", "options"],
+      "method": ["原卷对照（页面渲染人工查看）"],
+      "findings": "题面缺失 LCS 记忆化版代码；题库四个选项中的 dp[i][j] 均被录成损坏格式「$dp[i]$[j]」。",
+      "fix": "按原卷 p.2 转写代码回填；选项恢复为正常文本 dp[i][j] = ...；移除标记。answer 索引 2（C）与原卷一致，解析已具体，未改动。",
+      "evidence": "原卷对照：LCS 转移 else 分支取 max(dp[i-1][j], dp[i][j-1])，原卷答案表第6题 C。",
+      "resolved": true
+    },
+    {
+      "id": 9,
+      "dimensions": ["statement", "options", "answer", "explanation"],
+      "method": ["原卷对照（页面渲染人工查看）", "独立推导"],
+      "findings": "题面缺失 Σ√i 双重循环代码；题库选项（O(1)/O(n)/O(n^2)/O(n log n)）与原卷不符，且按题库原选项 answer 索引 2 指向 O(n^2)，与官方答案 C=O(n√n) 矛盾。原卷选项为 A.O(n) B.O(n log n) C.O(n√n) D.O(n²)。",
+      "fix": "按原卷 p.3 转写代码回填；题干补回「以 n 为自变量」缺字；选项按原卷恢复；移除标记；解析重写为 Σ√i = Θ(n^1.5) 推导。answer 索引 2 无需改动（恢复后 C=O(n√n)）。",
+      "evidence": "独立推导：内层 ⌊√i⌋ 次，Σᵢ√i ≈ (2/3)n^1.5 = O(n√n)，与原卷答案 C 一致。题库原选项文本下 answer 索引所指量级（O(n^2)）与官方答案矛盾，已通过恢复原卷选项消解。",
+      "resolved": true
+    },
+    {
+      "id": 10,
+      "dimensions": ["statement"],
+      "method": ["原卷对照（页面渲染人工查看）"],
+      "findings": "题面缺失欧拉筛片段代码；题干原缺失「O(n)」「1～n」两处数值（文本提取丢失），已按原卷补回。",
+      "fix": "按原卷 p.3 转写代码回填；移除标记。选项与答案 C（i % primes[j] == 0）与原卷一致，解析已具体，未改动。",
+      "evidence": "原卷对照：欧拉筛 break 条件即 i % primes[j] == 0，原卷答案表第10题 C。",
+      "resolved": true
+    },
+    {
+      "id": 12,
+      "dimensions": ["statement", "answer", "explanation"],
+      "method": ["原卷对照（页面渲染人工查看）", "程序执行"],
+      "findings": "题面缺失 f(n)=f(n-1)+f(n-2)+2f(n-3) 递归代码。",
+      "fix": "按原卷 p.4 转写代码回填；移除标记；解析重写为逐层递推（f(4)=7、f(5)=14、f(6)=27）。",
+      "evidence": "g++ 编译运行转写代码（输入 6），输出 27，与答案 B（27）一致。tmp/verify/2025-12-l8/q12.cpp",
+      "resolved": true
+    },
+    {
+      "id": 14,
+      "dimensions": ["statement", "answer", "explanation"],
+      "method": ["原卷对照（页面渲染人工查看）", "程序执行"],
+      "findings": "题面缺失 lowbit 消位循环代码。",
+      "fix": "按原卷 p.4 转写代码回填；移除标记；解析重写为 popcount(2023)=9 推导（2023 = 11111100111₂）。",
+      "evidence": "g++ 编译运行转写代码（输入 2023），输出 9，与答案 C（9）一致。tmp/verify/2025-12-l8/q14.cpp",
+      "resolved": true
+    }
+  ],
+  "unresolved": []
+}
