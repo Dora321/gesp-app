@@ -1,0 +1,231 @@
+/* Application surfaces share the homepage's learning-line system.
+ * Tailwind aliases are scoped to opted-in surfaces, never :root. Semantic
+ * red/green/amber feedback and embedded course documents keep their colors.
+ */
+.mw-surface,
+.mw-chrome {
+    --color-slate-50: var(--mw-canvas);
+    --color-slate-100: var(--mw-surface-sunk);
+    --color-slate-200: var(--mw-rule);
+    --color-slate-300: var(--mw-rule-strong);
+    --color-slate-400: #818594;
+    --color-slate-500: var(--mw-ink-3);
+    --color-slate-600: var(--mw-ink-2);
+    --color-slate-700: #363c54;
+    --color-slate-800: var(--mw-night-2);
+    --color-slate-900: var(--mw-ink);
+    --color-slate-950: var(--mw-night);
+    --color-blue-50: var(--mw-line-wash);
+    --color-blue-100: var(--mw-line-wash);
+    --color-blue-200: var(--mw-rule-strong);
+    --color-blue-300: #bac3db;
+    --color-blue-400: #818ba7;
+    --color-blue-500: var(--mw-line-ink);
+    --color-blue-600: var(--mw-line-ink);
+    --color-blue-700: var(--mw-line-ink);
+    --color-blue-800: var(--mw-ink);
+    --color-blue-900: var(--mw-ink);
+    --color-indigo-50: var(--mw-line-wash);
+    --color-indigo-100: var(--mw-line-wash);
+    --color-indigo-200: var(--mw-rule-strong);
+    --color-indigo-300: #bac3db;
+    --color-indigo-400: #818ba7;
+    --color-indigo-500: var(--mw-line-ink);
+    --color-indigo-600: var(--mw-line-ink);
+    --color-indigo-700: var(--mw-line-ink);
+    --color-indigo-800: var(--mw-ink);
+    --color-indigo-900: var(--mw-night-2);
+    --radius-lg: var(--mw-radius-m);
+    --radius-xl: var(--mw-radius-m);
+    --radius-2xl: var(--mw-radius-m);
+    --radius-3xl: var(--mw-radius-m);
+    --font-sans: var(--mw-font-sans);
+    --font-mono: var(--mw-font-code);
+    --shadow-sm: 0 0 #0000;
+    --shadow-md: 0 0 #0000;
+    --shadow-lg: 0 0 #0000;
+    --shadow-xl: 0 0 #0000;
+    font-family: var(--mw-font-sans);
+}
+
+.mw-surface :is(button, a, input, textarea, select):focus-visible,
+.mw-course-shell :is(button, a):focus-visible {
+    outline: 2px solid var(--mw-line, var(--mw-ink));
+    outline-offset: 3px;
+}
+
+.mw-page-banner,
+.mw-course-hero,
+.mw-panel-heading {
+    background: var(--mw-night);
+    color: var(--mw-on-night);
+    border-radius: var(--mw-radius-m);
+    box-shadow: none;
+}
+
+.mw-page-banner {
+    border-bottom: 4px solid var(--mw-line, var(--mw-brand-mustard));
+    border-radius: 0;
+    padding-block: clamp(32px, 5vw, 64px);
+}
+
+.mw-page-banner :is(p, [class*="text-indigo-"], [class*="text-emerald-"]),
+.mw-course-hero p {
+    color: var(--mw-on-night-2);
+}
+
+.mw-page-banner [class*="backdrop-blur"] {
+    backdrop-filter: none;
+    border: 1px solid var(--mw-night-rule);
+    background: var(--mw-night-2);
+}
+
+.mw-page-banner h1,
+.mw-course-hero :is(h1, h2) {
+    letter-spacing: -.025em;
+    line-height: 1.3;
+}
+
+.mw-exam-entry {
+    background: var(--mw-night);
+    --color-indigo-200: var(--mw-on-night-2);
+    --color-indigo-300: var(--mw-on-night-2);
+}
+
+.mw-exam-entry button[class*="bg-white/"] {
+    background: var(--mw-night-2);
+    border: 1px solid var(--mw-night-rule);
+    box-shadow: none;
+    backdrop-filter: none;
+}
+
+.mw-course-shell {
+    --radius-xl: var(--mw-radius-m);
+    --radius-2xl: var(--mw-radius-m);
+    --radius-3xl: var(--mw-radius-m);
+    font-family: var(--mw-font-sans);
+    background: var(--mw-canvas);
+    color: var(--mw-ink);
+}
+
+.mw-surface :is(.shadow-sm, .shadow-md, .shadow-lg, .shadow-xl),
+.mw-course-shell :is(.shadow-sm, .shadow-md, .shadow-lg, .shadow-xl) {
+    box-shadow: none;
+}
+
+.mw-course-shell > div:last-child {
+    min-width: 0;
+    background: var(--mw-canvas);
+}
+
+.mw-course-shell .mw-chrome {
+    background: var(--mw-surface);
+    border-color: var(--mw-rule);
+    box-shadow: none;
+    backdrop-filter: none;
+}
+
+.mw-course-shell aside > div:first-child {
+    background: var(--mw-surface);
+    border-top: 4px solid var(--mw-line);
+    backdrop-filter: none;
+}
+
+.mw-course-shell .mw-course-hero {
+    border-left: 4px solid var(--mw-line);
+}
+
+.mw-course-shell[data-theme="dark"],
+.mw-course-shell[data-theme="dark"] > div:last-child {
+    background: var(--mw-night);
+    color: var(--mw-on-night);
+}
+
+.mw-course-shell[data-theme="dark"] .mw-chrome,
+.mw-course-shell[data-theme="dark"] aside > div:first-child {
+    background: var(--mw-night-2);
+    border-color: var(--mw-night-rule);
+    --color-slate-400: var(--mw-on-night-2);
+    --color-slate-500: var(--mw-on-night-2);
+    --color-blue-600: var(--mw-line-python-text);
+}
+
+.mw-course-shell[data-theme="dark"] aside > div:first-child {
+    border-top-color: var(--mw-line);
+}
+
+.mw-course-shell[data-theme="dark"] aside a,
+.mw-course-shell[data-theme="dark"] .mw-course-eyebrow {
+    color: var(--mw-on-night-ok);
+}
+
+.mw-course-shell[data-theme="dark"] .text-slate-500 { color: var(--mw-on-night-2); }
+.mw-surface .mw-data-manager { --color-slate-400: var(--mw-on-night-2); }
+
+.mw-retired-decoration { display: none; }
+
+.mw-course-overview > aside,
+.mw-course-overview > div > aside {
+    border-top: 4px solid var(--mw-line);
+    box-shadow: none;
+}
+
+.mw-course-overview aside [class*="bg-gradient-"],
+.mw-course-overview > aside {
+    background-image: none;
+}
+
+.mw-course-overview main { min-width: 0; }
+
+.mw-chat-panel,
+.mw-points-panel {
+    border: 1px solid var(--mw-rule-strong);
+    border-radius: var(--mw-radius-m);
+    box-shadow: var(--mw-shadow-overlay);
+}
+
+.mw-chat-panel .mw-panel-heading {
+    border-radius: 0;
+    border-bottom: 3px solid var(--mw-brand-mustard);
+}
+
+.mw-points-panel > header {
+    border-top: 4px solid var(--mw-brand-mustard);
+}
+
+.mw-loading { font-family: var(--mw-font-sans); }
+
+.mw-code-tracer { border-radius: var(--mw-radius-m); box-shadow: none; }
+.mw-code-tracer[data-theme="light"] { border-color: var(--mw-rule); }
+.mw-code-tracer[data-theme="dark"] { background: var(--mw-night-2); border-color: var(--mw-night-rule); }
+.mw-science-viewer > header { border-top: 4px solid var(--mw-brand-mustard); }
+.mw-science-viewer { --color-slate-400: var(--mw-on-night-2); }
+.mw-science-viewer > header a { color: var(--mw-brand-mustard); min-height: 44px; }
+
+.mw-hardware {
+    background: var(--mw-canvas);
+    color: var(--mw-ink);
+    --color-stone-200: var(--mw-rule);
+    --color-stone-300: var(--mw-rule-strong);
+    --color-stone-600: var(--mw-ink-2);
+    --color-stone-950: var(--mw-ink);
+}
+
+.mw-hardware .mw-page-banner {
+    border-radius: var(--mw-radius-m);
+    padding: clamp(24px, 4vw, 40px);
+}
+
+.mw-hardware main :is(article, aside) { background: var(--mw-surface); }
+
+.mw-museum main > section:first-child {
+    border-bottom: 4px solid var(--mw-brand-mustard);
+}
+
+@media (max-width: 639px) {
+    .mw-page-banner { padding-inline: 20px; }
+    .mw-page-banner h1 { font-size: 1.75rem; }
+    .mw-course-shell > div:last-child > :is(header, footer) { padding-inline: 16px; }
+    .mw-course-shell main { min-width: 0; }
+    .mw-course-shell main > div { max-width: 100%; }
+}

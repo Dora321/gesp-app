@@ -6,6 +6,7 @@ import LessonMobileHeader from '../../components/LessonMobileHeader';
 import { recordLessonVisit } from '../../utils/lessonProgress';
 import { GoalCards, Prerequisites } from './CppLessonComponents';
 import { accentMap } from './cppLessonTheme';
+import { courseChrome } from '../../styles/courseChrome';
 
 export {
     Callout,
@@ -45,7 +46,7 @@ export default function CppLessonShell({
     const [activeSection, setActiveSection] = useState(sections[0]?.id ?? 1);
     const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
     const scrollRef = useRef(null);
-    const color = accentMap[accent] ?? accentMap.blue;
+    const color = { ...(accentMap[accent] ?? accentMap.blue), ...courseChrome };
 
     const currentIndex = sections.findIndex((section) => section.id === activeSection);
     const currentSection = sections[currentIndex] || sections[0];
@@ -92,7 +93,7 @@ export default function CppLessonShell({
     };
 
     return (
-        <div className="flex h-screen overflow-hidden bg-slate-50 font-sans text-slate-800">
+        <div className="mw-course-shell mw-line-cpp flex h-screen overflow-hidden bg-slate-50 font-sans text-slate-800">
             <LessonMobileHeader
                 label={`${levelTitle} · ${levelCode}-${lessonNumber}`}
                 labelClass={`${color.solid} text-white`}
@@ -109,7 +110,7 @@ export default function CppLessonShell({
                 />
             )}
 
-            <aside className={`fixed inset-y-0 left-0 z-50 flex h-full w-72 flex-col border-r border-slate-200 bg-white shadow-lg transition-transform md:relative md:visible md:translate-x-0 ${isMobileMenuOpen ? 'visible translate-x-0' : 'invisible -translate-x-full'}`}>
+            <aside className={`mw-chrome fixed inset-y-0 left-0 z-50 flex h-full w-72 flex-col border-r border-slate-200 bg-white shadow-lg transition-transform md:relative md:visible md:translate-x-0 ${isMobileMenuOpen ? 'visible translate-x-0' : 'invisible -translate-x-full'}`}>
                 <div className="border-b border-slate-100 p-6">
                     <Link to={homePath} className={`inline-flex items-center gap-2 font-black ${color.text}`}>
                         <Home size={16} />
@@ -135,7 +136,7 @@ export default function CppLessonShell({
             </aside>
 
             <div className="flex h-full flex-1 flex-col pt-16 md:pt-0">
-                <header className="flex h-16 items-center justify-between border-b border-slate-200 bg-white px-6">
+                <header className="mw-chrome flex h-16 items-center justify-between border-b border-slate-200 bg-white px-6">
                     <div>
                         <h2 className="text-lg font-black text-slate-950">第 {lessonNumber} 课：{lessonTitle}</h2>
                         <p className="text-xs font-bold text-slate-500">{currentSection.category} / {currentSection.title}</p>
@@ -149,7 +150,7 @@ export default function CppLessonShell({
                     <div className="mx-auto max-w-5xl space-y-8 p-6 sm:p-10">
                         {isFirst && (
                             <section className="space-y-6">
-                                <div className={`rounded-3xl bg-gradient-to-br ${color.gradient} p-8 text-white shadow-xl`}>
+                                <div className={`mw-course-hero rounded-3xl bg-gradient-to-br ${color.gradient} p-8 text-white shadow-xl`}>
                                     <div className="mb-4 inline-flex rounded-full bg-white/15 px-3 py-1 text-xs font-black uppercase tracking-wider">
                                         Lesson {lessonNumber}
                                     </div>
@@ -178,7 +179,7 @@ export default function CppLessonShell({
                     </div>
                 </main>
 
-                <footer className="flex h-20 items-center justify-between border-t border-slate-200 bg-white px-6">
+                <footer className="mw-chrome flex h-20 items-center justify-between border-t border-slate-200 bg-white px-6">
                     <button
                         onClick={goPrev}
                         disabled={isFirst && !previousPath}

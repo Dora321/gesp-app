@@ -5,12 +5,12 @@ const TONES = {
     light: {
         card: 'border-slate-200 bg-white shadow-sm',
         title: 'text-slate-800',
-        titleIcon: 'text-indigo-600',
-        next: 'bg-indigo-600 text-white hover:bg-indigo-700',
+        titleIcon: 'text-[var(--mw-line-python-text)]',
+        next: 'bg-[var(--mw-line-python-text)] text-white hover:brightness-110',
         reset: 'border-2 border-slate-100 bg-white text-slate-600 hover:bg-slate-50',
         chip: 'border-slate-200 bg-slate-50',
         chipName: 'text-slate-400',
-        chipVal: 'text-indigo-700',
+        chipVal: 'text-[var(--mw-line-python-text)]',
         hint: 'bg-amber-50 text-amber-700',
         tableWrap: 'border-slate-200',
         tableHead: 'bg-slate-100 text-slate-500',
@@ -22,7 +22,7 @@ const TONES = {
         card: 'border-green-500/30 bg-slate-900 shadow-xl',
         title: 'text-green-400',
         titleIcon: 'text-green-400',
-        next: 'bg-green-600 text-white hover:bg-green-500',
+        next: 'bg-[var(--mw-line-python-text)] text-white hover:brightness-110',
         reset: 'border-2 border-slate-700 bg-slate-800 text-slate-300 hover:bg-slate-700',
         chip: 'border-slate-700 bg-slate-800',
         chipName: 'text-slate-500',
@@ -77,7 +77,7 @@ export default function PyCodeTracer({
     const varCols = varOrder.length >= 3 ? 'grid-cols-3' : 'grid-cols-2';
 
     return (
-        <div className={`rounded-2xl border p-5 ${t.card}`}>
+        <div className={`mw-code-tracer rounded-2xl border p-5 ${t.card}`} data-theme={tone}>
             <div className="mb-4 flex flex-wrap items-center justify-between gap-3">
                 <div className={`flex items-center gap-2 font-black ${t.title}`}>
                     <Terminal size={18} className={t.titleIcon} />

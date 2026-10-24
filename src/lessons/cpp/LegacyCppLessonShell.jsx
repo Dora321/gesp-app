@@ -70,7 +70,11 @@ export default function LegacyCppLessonShell({
   const activeSectionMeta = sections[currentIndex] || sections[0];
   const isFirst = currentIndex <= 0;
   const isLast = currentIndex === sections.length - 1;
-  const theme = accentClasses[accent] || accentClasses.blue;
+  const theme = {
+    ...(accentClasses[accent] || accentClasses.blue),
+    progress: 'bg-[var(--mw-line)]',
+    next: 'bg-[var(--mw-line-ink)] text-white hover:brightness-110',
+  };
 
   useEffect(() => {
     recordLessonVisit(location.pathname);
@@ -105,7 +109,7 @@ export default function LegacyCppLessonShell({
   };
 
   return (
-    <div className="flex h-screen overflow-hidden bg-slate-50 text-slate-800 font-sans">
+    <div className="mw-course-shell mw-line-cpp flex h-screen overflow-hidden bg-slate-50 text-slate-800 font-sans">
       <style>{`
         .slide-enter { animation: slideIn 0.5s ease-out; }
         @keyframes slideIn { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
@@ -127,7 +131,7 @@ export default function LegacyCppLessonShell({
       )}
 
       <aside
-        className={`fixed inset-y-0 left-0 z-50 w-64 bg-white border-r border-slate-200 flex flex-col h-full shadow-lg transition-transform duration-300 md:relative md:translate-x-0 ${
+        className={`mw-chrome fixed inset-y-0 left-0 z-50 w-64 bg-white border-r border-slate-200 flex flex-col h-full shadow-lg transition-transform duration-300 md:relative md:translate-x-0 ${
           isMobileMenuOpen ? 'visible translate-x-0' : 'invisible -translate-x-full md:visible'
         }`}
       >
@@ -184,10 +188,10 @@ export default function LegacyCppLessonShell({
       </aside>
 
       <div className="flex-1 flex flex-col h-full overflow-hidden bg-slate-50 relative pt-16 md:pt-0">
-        <div className={`absolute top-0 right-0 w-96 h-96 ${theme.topBlob} rounded-full blur-3xl pointer-events-none`} />
-        <div className={`absolute bottom-0 left-0 w-96 h-96 ${theme.bottomBlob} rounded-full blur-3xl pointer-events-none`} />
+        <div className={`mw-retired-decoration absolute top-0 right-0 w-96 h-96 ${theme.topBlob} rounded-full blur-3xl pointer-events-none`} />
+        <div className={`mw-retired-decoration absolute bottom-0 left-0 w-96 h-96 ${theme.bottomBlob} rounded-full blur-3xl pointer-events-none`} />
 
-        <header className="h-16 bg-white/90 backdrop-blur-md border-b border-gray-200 flex items-center justify-between px-8 shadow-sm z-10">
+        <header className="mw-chrome h-16 bg-white/90 backdrop-blur-md border-b border-gray-200 flex items-center justify-between px-8 shadow-sm z-10">
           <h2 className="flex min-w-0 items-center gap-2 text-lg font-bold text-gray-800">
             <span className="shrink-0 rounded bg-gray-100 px-2 py-0.5 text-xs text-gray-600">Section {activeSection}</span>
             <span className="hidden min-w-0 truncate sm:inline">{activeSectionMeta?.title}</span>
@@ -217,7 +221,7 @@ export default function LegacyCppLessonShell({
           </div>
         </main>
 
-        <footer className="h-20 bg-white border-t border-gray-200 flex items-center justify-between px-8 z-20">
+        <footer className="mw-chrome h-20 bg-white border-t border-gray-200 flex items-center justify-between px-8 z-20">
           <button
             type="button"
             onClick={prevSection}

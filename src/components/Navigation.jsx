@@ -16,10 +16,9 @@ import { usePrefersReducedMotion } from '../hooks/useShouldRunDecorativeMotion';
 import '../styles/design-tokens.css';
 import '../styles/site-chrome.css';
 
-// variant="home" 使用「学习线路图」设计语言（见 docs/site-design-language.md）；
-// 其他页面不传 variant，保持原来的样式，等逐页迁移。
-export default function Navigation({ darkMode = false, afterLogo = null, mobileActions = null, className = '', variant = 'default' }) {
-    const isHome = variant === 'home';
+// 全站默认使用「学习线路图」导航；home 是旧调用方的兼容名称。
+export default function Navigation({ darkMode = false, afterLogo = null, mobileActions = null, className = '', variant = 'site' }) {
+    const isHome = variant === 'home' || variant === 'site';
     const navigate = useNavigate();
     const location = useLocation();
     const prefersReducedMotion = usePrefersReducedMotion();
@@ -63,10 +62,7 @@ export default function Navigation({ darkMode = false, afterLogo = null, mobileA
         if (item.scrollTo && location.pathname === '/') {
             scrollToSection(item.scrollTo);
         } else if (item.scrollTo) {
-            navigate('/');
-            setTimeout(() => {
-                scrollToSection(item.scrollTo);
-            }, 100);
+            navigate({ pathname: '/', hash: `#${item.scrollTo}` });
         } else {
             navigate(item.path);
         }

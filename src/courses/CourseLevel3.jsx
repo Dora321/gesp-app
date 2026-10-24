@@ -26,7 +26,7 @@ export default function CourseLevel3() {
     const activeTabInfo = menuItems.find(item => item.id === activeTab);
 
     return (
-        <div className="flex h-screen bg-slate-50 overflow-hidden font-sans text-slate-900">
+        <div className="mw-surface mw-line-cpp mw-course-overview flex h-screen bg-slate-50 overflow-hidden font-sans text-slate-900">
             {/* Mobile Menu Button - Fixed Top */}
             <div className="md:hidden fixed top-0 left-0 w-full z-50 bg-white border-b border-slate-200 p-4 flex items-center justify-between shadow-sm">
                 <h1 className="text-lg font-bold text-slate-800 flex items-center gap-2">

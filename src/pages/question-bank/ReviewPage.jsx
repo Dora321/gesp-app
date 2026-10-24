@@ -96,8 +96,8 @@ export default function ReviewPage() {
     };
 
     return (
-        <div className="min-h-screen bg-slate-50 text-slate-800 font-sans pb-20">
-            <div className="bg-gradient-to-r from-indigo-600 to-blue-600 p-8 text-white shadow-lg">
+        <div className="mw-surface mw-line-bank min-h-screen bg-slate-50 text-slate-800 font-sans pb-20">
+            <div className="mw-page-banner bg-gradient-to-r from-indigo-600 to-blue-600 p-8 text-white shadow-lg">
                 <div className="mx-auto max-w-5xl">
                     <button
                         type="button"

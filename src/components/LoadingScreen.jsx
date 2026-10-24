@@ -10,7 +10,7 @@ export default function LoadingScreen({ message = '正在为您加载...', varia
 
   return (
     <div
-      className={`fixed inset-0 z-[9999] flex items-center justify-center ${surface}`}
+      className={`mw-surface mw-line-bank mw-loading fixed inset-0 z-[9999] flex items-center justify-center ${surface}`}
       role="status"
       aria-live="polite"
       aria-busy="true"

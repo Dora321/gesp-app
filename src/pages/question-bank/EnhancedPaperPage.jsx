@@ -235,7 +235,7 @@ export default function EnhancedPaperPage({ forcedPaperId }) {
 
     if (!paperData) {
         return (
-            <div className="min-h-screen flex items-center justify-center bg-slate-50 text-slate-500">
+            <div className="mw-surface mw-line-bank min-h-screen flex items-center justify-center bg-slate-50 text-slate-500">
                 <div className="text-center max-w-lg p-6">
                     <AlertTriangle size={48} className="mx-auto text-red-400 mb-4" />
                     <h2 className="text-xl font-bold text-slate-700">无法加载试卷</h2>
@@ -250,7 +250,7 @@ export default function EnhancedPaperPage({ forcedPaperId }) {
 
     if (!questions.length) {
         return (
-            <div className="min-h-screen bg-slate-50 flex items-center justify-center p-6">
+            <div className="mw-surface mw-line-bank min-h-screen bg-slate-50 flex items-center justify-center p-6">
                 <div className="max-w-md text-center space-y-4">
                     <h2 className="text-xl font-bold text-slate-800">试卷数据不可用</h2>
                     <p className="text-slate-500 text-sm">未找到对应试卷，请返回题库后重试。</p>
@@ -324,7 +324,7 @@ export default function EnhancedPaperPage({ forcedPaperId }) {
         : '';
 
     return (
-        <div className="min-h-screen bg-slate-100">
+        <div className="mw-surface mw-line-bank min-h-screen bg-slate-100">
             <header className="sticky top-0 z-20 bg-white border-b border-slate-200">
                 <div className={`h-1 w-full bg-gradient-to-r ${levelMeta.color}`} />
                 <div className="max-w-6xl mx-auto px-4 py-4 flex items-center gap-3">

@@ -179,7 +179,7 @@ export function CodeBlock({ children }) {
     const highlightedCode = useMemo(() => highlightCppCode(children), [children]);
 
     return (
-        <pre className="overflow-x-auto rounded-xl bg-slate-950 p-4 text-sm leading-7 shadow-inner ring-1 ring-white/10">
+        <pre tabIndex={0} className="overflow-x-auto rounded-xl bg-slate-950 p-4 text-sm leading-7 shadow-inner ring-1 ring-white/10">
             <code className="font-mono">{highlightedCode}</code>
         </pre>
     );
@@ -752,7 +752,7 @@ export function CompareTable({ headers, rows }) {
 
 function TracerCode({ lines, activeLines }) {
     return (
-        <pre className="overflow-x-auto rounded-xl bg-slate-950 p-4 text-sm leading-7 shadow-inner ring-1 ring-white/10">
+        <pre tabIndex={0} className="overflow-x-auto rounded-xl bg-slate-950 p-4 text-sm leading-7 shadow-inner ring-1 ring-white/10">
             <code className="font-mono">
                 {lines.map((tokens, lineIndex) => {
                     const active = activeLines.includes(lineIndex);

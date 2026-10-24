@@ -71,7 +71,7 @@ export default function LearningDataManager() {
     ];
 
     return (
-        <div className="mt-14 rounded-xl border border-slate-700 bg-slate-900 p-5 shadow-xl sm:p-6">
+        <div className="mw-data-manager mt-14 rounded-xl border border-slate-700 bg-slate-900 p-5 shadow-xl sm:p-6">
             <div className="flex flex-col gap-5 lg:flex-row lg:items-center lg:justify-between">
                 <div className="min-w-0">
                     <div className="mb-2 flex items-center gap-2 text-sm font-black text-blue-300">

@@ -82,7 +82,7 @@ export default function InteractiveAnalysisPage({ paperData, paperId }) {
 
     if (!paperData || !questions.length) {
         return (
-            <div className="min-h-screen bg-slate-50 flex items-center justify-center p-6">
+            <div className="mw-surface mw-line-bank min-h-screen bg-slate-50 flex items-center justify-center p-6">
                 <div className="max-w-md text-center space-y-4">
                     <h2 className="text-xl font-bold text-slate-800">暂无可用增强解析资源</h2>
                     <p className="text-slate-500 text-sm">该试卷暂未完成交互解析页，已自动回退到基础模式。</p>
@@ -111,7 +111,7 @@ export default function InteractiveAnalysisPage({ paperData, paperId }) {
         : richAnalysis;
 
     return (
-        <div className="min-h-screen bg-slate-100">
+        <div className="mw-surface mw-line-bank min-h-screen bg-slate-100">
             <header className="sticky top-0 z-20 bg-white border-b border-slate-200">
                 <div className="max-w-6xl mx-auto px-4 py-3 flex items-center gap-3">
                     <button onClick={() => navigate(-1)} className="p-2 rounded-lg hover:bg-slate-100">

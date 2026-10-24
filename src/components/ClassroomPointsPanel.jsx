@@ -94,7 +94,7 @@ const ClassroomPointsPanel = ({ onClose }) => {
     // Modal Mode
     return (
         <div className="fixed inset-0 z-[100] flex items-center justify-center bg-black/60 backdrop-blur-sm p-4 animate-in fade-in duration-200">
-            <div className="bg-slate-50 w-full max-w-6xl max-h-[90vh] rounded-2xl shadow-2xl flex flex-col overflow-hidden animate-in zoom-in-95 duration-200">
+            <div className="mw-surface mw-line-bank mw-points-panel bg-slate-50 w-full max-w-6xl max-h-[90vh] rounded-2xl shadow-2xl flex flex-col overflow-hidden animate-in zoom-in-95 duration-200">
                 {/* Header */}
                 <header className="flex justify-between items-center p-4 bg-white border-b border-slate-200 shrink-0">
                     <div className="flex items-center gap-3">

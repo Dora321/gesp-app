@@ -9,6 +9,7 @@ import {
 } from '../../../utils/lessonEvidence';
 import { ArrowRight, CheckCircle2, Flag, HelpCircle, Home, PlayCircle, Repeat2, RotateCcw } from 'lucide-react';
 import LessonMobileHeader from '../../../components/LessonMobileHeader';
+import { courseChrome } from '../../../styles/courseChrome';
 
 // 与 CppLessonShell 共用同一套配色 token，保证 C++ / Python 两套课视觉统一
 const accentMap = {
@@ -522,7 +523,7 @@ export default function PythonLessonShell({
     const location = useLocation();
     const [activeSection, setActiveSection] = useState(sections[0]?.id ?? 1);
     const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
-    const color = getAccent(accent);
+    const color = { ...getAccent(accent), ...courseChrome };
     const scrollRef = React.useRef(null);
 
     const currentIndex = sections.findIndex((s) => s.id === activeSection);
@@ -549,7 +550,7 @@ export default function PythonLessonShell({
     };
 
     return (
-        <div className={`flex h-screen overflow-hidden font-sans ${t.outer}`}>
+        <div className={`mw-course-shell mw-line-python flex h-screen overflow-hidden font-sans ${t.outer}`} data-theme={theme}>
             {/* 移动端顶栏 */}
             <LessonMobileHeader
                 label={`Python · ${lessonCode}`}
@@ -568,13 +569,13 @@ export default function PythonLessonShell({
             )}
 
             {/* 侧边栏 */}
-            <aside className={`fixed inset-y-0 left-0 z-50 flex h-full min-h-0 w-72 flex-col border-r ${t.aside} shadow-lg transition-transform md:relative md:visible md:translate-x-0 ${isMobileMenuOpen ? 'visible translate-x-0' : 'invisible -translate-x-full'}`}>
+            <aside className={`mw-chrome fixed inset-y-0 left-0 z-50 flex h-full min-h-0 w-72 flex-col border-r ${t.aside} shadow-lg transition-transform md:relative md:visible md:translate-x-0 ${isMobileMenuOpen ? 'visible translate-x-0' : 'invisible -translate-x-full'}`}>
                 <div className={`border-b ${t.divider} p-6`}>
                     <Link to={homePath} className={`inline-flex min-h-11 items-center gap-2 rounded-lg px-2 text-sm font-black ${color.text}`}>
                         <Home size={16} />
                         {homeLabel}
                     </Link>
-                    <div className={`mt-3 text-xs font-black uppercase tracking-wider ${color.text}`}>{eyebrow}</div>
+                    <div className={`mw-course-eyebrow mt-3 text-xs font-black uppercase tracking-wider ${color.text}`}>{eyebrow}</div>
                     <h1 className={`mt-1 text-lg font-black ${t.title}`}>{lessonCode}：{lessonTitle}</h1>
                     {lessonSubtitle && <p className={`mt-1 text-xs font-semibold ${t.subtitle}`}>{lessonSubtitle}</p>}
                 </div>
@@ -603,7 +604,7 @@ export default function PythonLessonShell({
 
             {/* 主区 */}
             <div className="flex h-full flex-1 flex-col pt-16 md:pt-0">
-                <header className={`flex h-16 items-center justify-between border-b ${t.header} px-6`}>
+                <header className={`mw-chrome flex h-16 items-center justify-between border-b ${t.header} px-6`}>
                     <div className="min-w-0">
                         <h2 className={`truncate text-lg font-black ${t.headerTitle}`}>{lessonCode}：{lessonTitle}</h2>
                         <p className={`truncate text-xs font-bold ${t.headerSub}`}>{currentSection?.category || ''} / {currentSection?.title}</p>
@@ -616,7 +617,7 @@ export default function PythonLessonShell({
                 <main ref={scrollRef} className="flex-1 overflow-y-auto">
                     <div className="mx-auto max-w-5xl space-y-8 p-4 sm:p-8 lg:p-10">
                         {isFirst && hero && (
-                            <section className={`rounded-3xl bg-gradient-to-br ${color.gradient} p-8 text-white shadow-xl`}>
+                            <section className={`mw-course-hero rounded-3xl bg-gradient-to-br ${color.gradient} p-8 text-white shadow-xl`}>
                                 <div className="mb-4 inline-flex rounded-full bg-white/15 px-3 py-1 text-xs font-black uppercase tracking-wider">
                                     {lessonCode} · {eyebrow}
                                 </div>
@@ -640,7 +641,7 @@ export default function PythonLessonShell({
                     </div>
                 </main>
 
-                <footer className={`flex h-20 shrink-0 items-center justify-between border-t ${t.footer} px-6`}>
+                <footer className={`mw-chrome flex h-20 shrink-0 items-center justify-between border-t ${t.footer} px-6`}>
                     <button
                         onClick={goPrev}
                         disabled={isFirst && !previousPath}

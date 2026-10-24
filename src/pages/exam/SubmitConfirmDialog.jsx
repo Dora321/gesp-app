@@ -1,4 +1,5 @@
 import React from 'react';
+import useDialogFocus from '../../hooks/useDialogFocus';
 
 /**
  * Submit confirmation dialog
@@ -11,10 +12,11 @@ const SubmitConfirmDialog = ({
   onCancel,
   onConfirm,
 }) => {
+  const dialogRef = useDialogFocus(onCancel);
   return (
     <div className="fixed inset-0 bg-black/60 z-50 flex items-center justify-center p-4 backdrop-blur-sm animate-in fade-in">
-      <div className="bg-white rounded-2xl shadow-2xl max-w-md w-full p-6">
-        <h3 className="text-xl font-bold text-slate-800 mb-2">确认交卷？</h3>
+      <div ref={dialogRef} role="dialog" aria-modal="true" aria-labelledby="exam-submit-title" tabIndex={-1} className="bg-white rounded-2xl shadow-2xl max-w-md w-full max-h-[calc(100dvh-32px)] overflow-y-auto p-6">
+        <h3 id="exam-submit-title" className="text-xl font-bold text-slate-800 mb-2">确认交卷？</h3>
         <p className="text-sm text-slate-500 mb-4">交卷后将无法修改答案。客观题会自动判分，编程题仅保留完成标记。</p>
 
         <div className="grid grid-cols-2 gap-3 mb-6 sm:grid-cols-4">

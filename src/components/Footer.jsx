@@ -19,8 +19,8 @@ const courseLinks = [
     { name: '算法竞赛之路', path: algorithmStart.path },
 ];
 
-// variant="home" 使用「学习线路图」设计语言；其他页面保持原样，等逐页迁移。
-export default function Footer({ variant = 'default' }) {
+// 与导航共用全站设计语言，保留 home 名称兼容首页。
+export default function Footer({ variant = 'site' }) {
     const navigate = useNavigate();
     const location = useLocation();
     const prefersReducedMotion = usePrefersReducedMotion();
@@ -44,16 +44,13 @@ export default function Footer({ variant = 'default' }) {
                 scrollToSection(item.scrollTo);
                 return;
             }
-            navigate('/');
-            setTimeout(() => {
-                scrollToSection(item.scrollTo);
-            }, 150);
+            navigate({ pathname: '/', hash: `#${item.scrollTo}` });
         } else if (item.path) {
             navigate(item.path);
         }
     };
 
-    if (variant === 'home') {
+    if (variant === 'home' || variant === 'site') {
         const renderLink = (link) => (
             <li key={link.name}>
                 {link.path ? (

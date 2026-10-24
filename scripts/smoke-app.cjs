@@ -1,7 +1,8 @@
 const { spawn } = require('child_process');
+const { checkSiteFlows } = require('./smoke/site-flows.cjs');
 
 const DEFAULT_PORT = 4176;
-const baseUrl = process.env.SMOKE_BASE_URL || `http://127.0.0.1:${DEFAULT_PORT}`;
+const baseUrl = (process.env.SMOKE_BASE_URL || `http://127.0.0.1:${DEFAULT_PORT}`).replace(/\/+$/, '');
 const shouldStartServer = !process.env.SMOKE_BASE_URL;
 
 // Representative course routes covering every C++ level (L1-L6) and the core
@@ -195,7 +196,7 @@ async function run() {
     throw new Error(`Unverified paper ${unverifiedPaper.id} must not render inferred option-by-option analysis.`);
   }
 
-  await page.goto(baseUrl, { waitUntil: 'domcontentloaded' });
+  await page.goto(`${baseUrl}/`, { waitUntil: 'domcontentloaded' });
   await page.waitForTimeout(2500);
   await page.getByText('魔丸聚集地').first().waitFor({ timeout: 10000 });
   const homeCurrentNavLabels = await page.locator('nav button[aria-current="page"]').allTextContents();
@@ -324,7 +325,7 @@ async function run() {
   // asserted at the end of the run.
   for (const route of COURSE_ROUTES) {
     await page.goto(`${baseUrl}${route}`, { waitUntil: 'domcontentloaded' });
-    await page.waitForTimeout(900);
+    await page.waitForFunction(() => document.body.innerText.trim().length >= 200, null, { timeout: 15000 });
     const textLength = await page.evaluate(() => document.body.innerText.trim().length);
     if (textLength < 200) {
       throw new Error(`Course route ${route} rendered almost no content (text length ${textLength}).`);
@@ -348,7 +349,7 @@ async function run() {
     }
   });
 
-  await mobilePage.goto(baseUrl, { waitUntil: 'domcontentloaded' });
+  await mobilePage.goto(`${baseUrl}/`, { waitUntil: 'domcontentloaded' });
   await mobilePage.waitForTimeout(1500);
   const mobileInitial = await mobilePage.evaluate(() => ({
     innerWidth: window.innerWidth,
@@ -409,7 +410,7 @@ async function run() {
   const OVERFLOW_TOLERANCE = 2;
   for (const route of COURSE_ROUTES) {
     await mobilePage.goto(`${baseUrl}${route}`, { waitUntil: 'domcontentloaded' });
-    await mobilePage.waitForTimeout(900);
+    await mobilePage.locator('main').first().waitFor({ timeout: 15000 });
     const metrics = await mobilePage.evaluate(() => ({
       innerWidth: window.innerWidth,
       scrollWidth: document.documentElement.scrollWidth,
@@ -423,7 +424,7 @@ async function run() {
 
   for (const route of ['/level7', '/python/f2']) {
     await mobilePage.goto(`${baseUrl}${route}`, { waitUntil: 'domcontentloaded' });
-    await mobilePage.waitForTimeout(700);
+    await mobilePage.locator('h1').first().waitFor({ state: 'attached', timeout: 15000 });
     const headingCount = await mobilePage.locator('h1').count();
     if (headingCount !== 1) {
       throw new Error(`${route} should render exactly one h1, found ${headingCount}.`);
@@ -431,7 +432,7 @@ async function run() {
   }
 
   await mobilePage.goto(`${baseUrl}/hardware`, { waitUntil: 'domcontentloaded' });
-  await mobilePage.waitForTimeout(700);
+  await mobilePage.locator('h1').first().waitFor({ timeout: 15000 });
   const nestedMainCount = await mobilePage.locator('main main').count();
   if (nestedMainCount !== 0) {
     throw new Error(`Hardware routes should not nest main landmarks, found ${nestedMainCount}.`);
@@ -482,6 +483,8 @@ async function run() {
   if (messages.length > 0) {
     throw new Error(`Browser console produced warnings/errors:\n${messages.join('\n')}`);
   }
+
+  await checkSiteFlows(browser, baseUrl);
 
   await browser.close();
   browser = null;

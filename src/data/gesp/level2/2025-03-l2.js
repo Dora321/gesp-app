@@ -789,6 +789,7 @@ export const paperData = {
             tags: ['编程题', '构造', '嵌套循环'],
             template: "#include <iostream>\nusing namespace std;\nint main() {\n    // 在此编写代码\n    return 0;\n}",
             referenceCode: `#include <bits/stdc++.h>
+#include <cassert>
 
 using namespace std;
 

@@ -478,7 +478,7 @@ const AIChatWidget = ({ onClose }) => {
     // Chat window when open
     return (
         <div
-            className="fixed bottom-24 right-6 z-[100] bg-white rounded-2xl shadow-2xl flex flex-col overflow-hidden animate-in zoom-in-95 duration-200 border border-slate-200"
+            className="mw-surface mw-line-bank mw-chat-panel fixed bottom-24 right-6 z-[100] bg-white rounded-2xl shadow-2xl flex flex-col overflow-hidden animate-in zoom-in-95 duration-200 border border-slate-200"
             role="dialog"
             aria-label="AI 问答助手"
             style={{
@@ -490,7 +490,7 @@ const AIChatWidget = ({ onClose }) => {
         >
             {/* Header */}
             <header
-                className="flex justify-between items-center p-3 bg-gradient-to-r from-indigo-500 to-purple-600 text-white shrink-0"
+                className="mw-panel-heading flex justify-between items-center p-3 bg-gradient-to-r from-indigo-500 to-purple-600 text-white shrink-0"
             >
                 <div className="flex items-center gap-2 select-none">
                     <span className="text-xl">{currentPersonaInfo?.emoji}</span>

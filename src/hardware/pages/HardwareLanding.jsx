@@ -30,10 +30,10 @@ export default function HardwareLanding({ courseId = 'advanced' }) {
     // 四条课程线互相导流：主线、Arduino UNO、竞赛延伸包、初阶科创。
     const related = Object.values(scienceCourses).filter((item) => item.path !== course.path);
     return (
-        <div className="min-h-screen bg-[#f6f3ec] text-stone-950">
+        <div className="mw-surface mw-line-maker mw-hardware min-h-screen bg-[#f6f3ec] text-stone-950">
             <Navigation />
             <main className="mx-auto max-w-6xl px-4 pb-20 pt-28 sm:px-6 lg:px-8">
-                <header className="rounded-3xl bg-stone-950 p-6 text-[#f6f3ec] sm:p-10">
+                <header className="mw-page-banner rounded-3xl bg-stone-950 p-6 text-[#f6f3ec] sm:p-10">
                     <span className="inline-flex items-center gap-2 text-sm font-bold text-amber-200"><Icon size={20} />动手实践 · 科创课程</span>
                     <h1 className="mt-5 text-3xl font-black leading-tight sm:text-5xl">{course.title}</h1>
                     <p className="mt-5 max-w-2xl text-base leading-8 text-stone-300">{course.description}</p>

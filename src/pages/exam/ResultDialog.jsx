@@ -1,5 +1,6 @@
 import React from 'react';
 import { Trophy } from 'lucide-react';
+import useDialogFocus from '../../hooks/useDialogFocus';
 
 /**
  * Exam result dialog — shows objective score and stats after submission
@@ -16,6 +17,7 @@ const ResultDialog = ({
   onBackToBank,
   onOpenReview,
 }) => {
+  const dialogRef = useDialogFocus(onViewAnalysis);
   const formatTime = (seconds) => {
     const m = Math.floor(seconds / 60);
     const s = seconds % 60;
@@ -24,20 +26,20 @@ const ResultDialog = ({
 
   return (
     <div className="fixed inset-0 bg-black/60 z-50 flex items-center justify-center p-4 backdrop-blur-sm animate-in fade-in">
-      <div className="bg-white rounded-2xl shadow-2xl max-w-md w-full p-8 text-center relative overflow-hidden">
-        <div className="absolute top-0 left-0 w-full h-2 bg-gradient-to-r from-blue-500 to-purple-600"></div>
+      <div ref={dialogRef} role="dialog" aria-modal="true" aria-labelledby="exam-result-title" tabIndex={-1} className="bg-white rounded-2xl shadow-2xl max-w-md w-full max-h-[calc(100dvh-32px)] overflow-y-auto p-6 sm:p-8 text-center relative">
+        <div className="absolute top-0 left-0 w-full h-1 bg-[var(--mw-brand-mustard)]"></div>
         <div className="mb-6 inline-flex items-center justify-center w-20 h-20 rounded-full bg-yellow-100 text-yellow-500 mx-auto">
           <Trophy size={40} />
         </div>
-        <h2 className="text-2xl font-bold text-slate-800 mb-2">考试结束</h2>
+        <h2 id="exam-result-title" className="text-2xl font-bold text-slate-800 mb-2">考试结束</h2>
         <p className="text-slate-500 mb-6">已完成整卷练习，以下为客观题自动判分结果</p>
         <div className="text-6xl font-black text-indigo-600 mb-2 font-mono tracking-tighter">
           {objectiveScore} <span className="text-2xl text-slate-400 font-normal">/ {objectiveScoreTotal}</span>
         </div>
         <div className="grid grid-cols-2 gap-2 mb-6 mt-6 sm:grid-cols-5">
-          <div className="bg-slate-50 p-3 rounded-lg"><div className="text-xs text-slate-400 uppercase">用时</div><div className="font-bold text-slate-700 font-mono">{formatTime(timeElapsed)}</div></div>
-          <div className="bg-green-50 p-3 rounded-lg"><div className="text-xs text-green-600 uppercase">客观正确</div><div className="font-bold text-green-700">{objectiveCorrectCount}</div></div>
-          <div className="bg-red-50 p-3 rounded-lg"><div className="text-xs text-red-600 uppercase">客观错误</div><div className="font-bold text-red-700">{objectiveWrongCount}</div></div>
+          <div className="bg-slate-50 p-3 rounded-lg"><div className="text-xs text-slate-600 uppercase">用时</div><div className="font-bold text-slate-700 font-mono">{formatTime(timeElapsed)}</div></div>
+          <div className="bg-green-50 p-3 rounded-lg"><div className="text-xs text-green-700 uppercase">客观正确</div><div className="font-bold text-green-700">{objectiveCorrectCount}</div></div>
+          <div className="bg-red-50 p-3 rounded-lg"><div className="text-xs text-red-700 uppercase">客观错误</div><div className="font-bold text-red-700">{objectiveWrongCount}</div></div>
           <div className="bg-violet-50 p-3 rounded-lg"><div className="text-xs text-violet-700 uppercase">编程已标记</div><div className="font-bold text-violet-700">{programmingMarkedCount}</div></div>
           <div className="bg-orange-50 p-3 rounded-lg"><div className="text-xs text-orange-700 uppercase">不计分题</div><div className="font-bold text-orange-700">{excludedObjectiveCount}</div></div>
         </div>

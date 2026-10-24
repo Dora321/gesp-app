@@ -64,8 +64,8 @@ export default function TopicPracticePage() {
     }
 
     return (
-        <div className="min-h-screen bg-slate-50 text-slate-800 font-sans pb-20">
-            <div className="bg-gradient-to-r from-emerald-600 to-teal-600 text-white p-8 shadow-lg">
+        <div className="mw-surface mw-line-bank min-h-screen bg-slate-50 text-slate-800 font-sans pb-20">
+            <div className="mw-page-banner bg-gradient-to-r from-emerald-600 to-teal-600 text-white p-8 shadow-lg">
                 <div className="max-w-5xl mx-auto">
                     <button
                         onClick={() => navigate('/question-bank')}

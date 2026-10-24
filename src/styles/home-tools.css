@@ -1,6 +1,5 @@
-/* Shared tools live outside Home in App. Match the homepage only while it is
-   mounted; navigating to a lesson or exam automatically restores its styling. */
-body:has(.learning-home) :is(
+/* Shared tools use the same controls on every route. Imported once by main.jsx. */
+body :is(
     button[aria-label="打开 AI 问答助手"],
     button[aria-label="打开课堂积分榜"],
     button[aria-label="Back to Top"],
@@ -15,7 +14,7 @@ body:has(.learning-home) :is(
     transform: none;
 }
 
-body:has(.learning-home) :is(
+body :is(
     button[aria-label="打开 AI 问答助手"],
     button[aria-label="打开课堂积分榜"],
     button[aria-label="Back to Top"],
@@ -25,7 +24,7 @@ body:has(.learning-home) :is(
     background: var(--mw-canvas);
 }
 
-body:has(.learning-home) :is(
+body :is(
     button[aria-label="打开 AI 问答助手"],
     button[aria-label="打开课堂积分榜"],
     button[aria-label="Back to Top"]
@@ -34,7 +33,7 @@ body:has(.learning-home) :is(
     height: 44px;
 }
 
-body:has(.learning-home) :is(
+body :is(
     button[aria-label="打开 AI 问答助手"],
     button[aria-label="打开课堂积分榜"],
     button[aria-label="Back to Top"]
@@ -45,7 +44,7 @@ body:has(.learning-home) :is(
     transform: none;
 }
 
-body:has(.learning-home) :is(
+body :is(
     button[aria-label="打开 AI 问答助手"],
     button[aria-label="打开课堂积分榜"],
     button[aria-label="Back to Top"],
@@ -56,13 +55,13 @@ body:has(.learning-home) :is(
     outline-offset: 3px;
 }
 
-body:has(.learning-home) .annotation-tools .annotation-launcher {
+body .annotation-tools .annotation-launcher {
     min-height: 44px;
     padding: 8px 12px;
     font-size: var(--mw-text-small);
 }
 
-body:has(.learning-home) .annotation-panel {
+body .annotation-panel {
     border-color: var(--mw-rule-strong);
     border-radius: var(--mw-radius-m);
     background: var(--mw-surface);
@@ -71,29 +70,34 @@ body:has(.learning-home) .annotation-panel {
     font-family: var(--mw-font-sans);
 }
 
-body:has(.learning-home) .annotation-panel :is(button, select) {
+body .annotation-panel :is(button, select) {
     border-color: var(--mw-rule-strong);
     border-radius: var(--mw-radius-s);
     background: var(--mw-surface);
     color: var(--mw-ink);
 }
 
-body:has(.learning-home) .annotation-panel button[aria-pressed="true"] {
+body .annotation-panel button[aria-pressed="true"] {
     border-color: var(--mw-ink);
     background: var(--mw-canvas);
     box-shadow: inset 0 0 0 1px var(--mw-ink);
 }
 
-body:has(.learning-home) .annotation-panel p {
+body .annotation-panel p {
     color: var(--mw-ink-2);
 }
 
-body:has(.learning-home) .annotation-panel .annotation-color span {
+body .annotation-panel .annotation-color span {
     border-color: var(--mw-rule-strong);
 }
 
+/* A modal owns the interaction layer, including on short phone screens. */
+body:has([role="dialog"][aria-modal="true"], .mw-nav-sheet[data-open="true"], button[aria-label="关闭课程目录"], button[aria-label="关闭题号面板"]) :is(.annotation-tools, .annotation-layer, button[aria-label="Back to Top"]) {
+    visibility: hidden;
+}
+
 @media (prefers-reduced-motion: reduce) {
-    body:has(.learning-home) :is(
+    body :is(
         button[aria-label="打开 AI 问答助手"],
         button[aria-label="打开课堂积分榜"],
         button[aria-label="Back to Top"],

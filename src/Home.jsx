@@ -1,4 +1,5 @@
 import React, { Suspense, lazy, useEffect } from 'react';
+import { useLocation } from 'react-router-dom';
 import Navigation from './components/Navigation';
 import Footer from './components/Footer';
 
@@ -11,7 +12,6 @@ import ClassroomPoints from './components/ClassroomPoints';
 import AIChat from './components/AIChat';
 import './styles/design-tokens.css';
 import './home.css';
-import './styles/home-tools.css';
 
 const LessonCatalog = lazy(() => import('./components/LessonCatalog'));
 const FeaturedProjects = lazy(() => import('./components/FeaturedProjects'));
@@ -23,11 +23,18 @@ const SectionFallback = ({ minHeight = 480 }) => (
 );
 
 export default function Home() {
+    const { hash, search } = useLocation();
     useEffect(() => {
-        if (['innovation', 'arduino', 'science-foundation', 'python'].includes(new URLSearchParams(window.location.search).get('subject'))) {
-            document.getElementById('lesson-catalog')?.scrollIntoView();
+        const subject = new URLSearchParams(search).get('subject');
+        const sectionId = hash.slice(1) || (
+            ['innovation', 'arduino', 'science-foundation', 'python'].includes(subject) ? 'lesson-catalog' : ''
+        );
+        if (sectionId) {
+            document.getElementById(sectionId)?.scrollIntoView({
+                behavior: window.matchMedia('(prefers-reduced-motion: reduce)').matches ? 'auto' : 'smooth',
+            });
         }
-    }, []);
+    }, [hash, search]);
 
     return (
         <div className="learning-home">

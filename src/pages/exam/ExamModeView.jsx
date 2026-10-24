@@ -31,7 +31,7 @@ const ExamModeView = ({
   const isLastQuestion = currentQuestionIndex === questions.length - 1;
 
   return (
-    <main className="flex-1 overflow-y-auto p-4 md:p-8">
+    <main className="min-w-0 flex-1 overflow-y-auto p-4 pb-24 md:p-8">
       <div className="max-w-3xl mx-auto space-y-8">
         {/* Question Card */}
         <div className="bg-white rounded-2xl shadow-sm border border-slate-200 p-6 md:p-10 animate-fade-in relative overflow-hidden">

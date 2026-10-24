@@ -38,7 +38,7 @@ const GESPCourseware = () => {
   };
 
   return (
-    <div className="flex h-screen bg-slate-50 text-slate-800 font-sans">
+    <div className="mw-surface mw-line-cpp mw-course-overview flex h-screen bg-slate-50 text-slate-800 font-sans">
       {/* Sidebar */}
       {/* Mobile Menu Button - Fixed Top */}
       <div className="md:hidden fixed top-0 left-0 w-full z-50 bg-white border-b border-slate-200 p-4 flex items-center justify-between shadow-sm">

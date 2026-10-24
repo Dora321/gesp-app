@@ -110,7 +110,7 @@ export default function ComputingMuseum() {
     };
 
     return (
-        <div className="flex min-h-screen flex-col bg-slate-50 font-sans text-brand-slate">
+        <div className="mw-surface mw-line-bank mw-museum flex min-h-screen flex-col bg-slate-50 font-sans text-brand-slate">
             <Navigation
                 mobileActions={(
                     <div className="flex items-center gap-1" role="toolbar" aria-label="快捷工具">

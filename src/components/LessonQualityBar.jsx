@@ -149,7 +149,15 @@ const columns = [
 ];
 
 export function LessonStartCard({ goal, task, accent = 'blue', className = '' }) {
-  const styles = accentStyles[accent] || accentStyles.blue;
+  const styles = {
+    ...(accentStyles[accent] || accentStyles.blue),
+    solid: 'bg-[var(--mw-line-ink,var(--mw-ink))]',
+    border: 'border-[var(--mw-rule)]',
+    bg: 'bg-[var(--mw-line-wash,var(--mw-canvas))]',
+    icon: 'text-[var(--mw-line-ink,var(--mw-ink))]',
+    bullet: 'bg-[var(--mw-line,var(--mw-ink))]',
+    heading: 'text-[var(--mw-ink)]',
+  };
 
   const startLesson = () => {
     const content = document.querySelector('[data-lesson-active-content="true"]');
@@ -189,7 +197,15 @@ export default function LessonQualityBar({
   bare = false,
   phase = 'overview',
 }) {
-  const styles = accentStyles[accent] || accentStyles.blue;
+  const styles = {
+    ...(accentStyles[accent] || accentStyles.blue),
+    solid: 'bg-[var(--mw-line-ink,var(--mw-ink))]',
+    border: 'border-[var(--mw-rule)]',
+    bg: 'bg-[var(--mw-line-wash,var(--mw-canvas))]',
+    icon: 'text-[var(--mw-line-ink,var(--mw-ink))]',
+    bullet: 'bg-[var(--mw-line,var(--mw-ink))]',
+    heading: 'text-[var(--mw-ink)]',
+  };
   const data = { goals, deliverables, checks };
   const immediateTask = deliverables[0] || goals[0] || null;
   const immediateCheck = checks[0] || null;

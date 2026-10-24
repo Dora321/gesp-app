@@ -221,27 +221,33 @@
 
 ## 9. 迁移范围
 
-### 已完成（本次）
+### 已完成
 
-| 范围 | 文件 |
+| 范围 | 实现 |
 | --- | --- |
-| 设计 token 与基础元件 | `src/styles/design-tokens.css` |
-| 导航 / 页脚的 `variant="home"` | `src/styles/site-chrome.css`、`Navigation.jsx`、`Footer.jsx` |
-| 首页浮动工具入口与标注面板 | `src/styles/home-tools.css`；仅在首页存在时应用，离开首页自动恢复原样 |
-| 首页全部区块 | `src/Home.jsx`、`src/home.css`、`HeroSection`、`HomeRouteMap`（新增）、`ContinueLearning`、`LearningPaths`、`QuestionBankHighlight`、`LessonCatalog`、`FeaturedProjects`、`TheLab`、`ExploreMore` |
+| 基础变量与元件 | `design-tokens.css` 在 `main.jsx` 全局加载；`site-surfaces.css` 仅作用于明确标记的页面 |
+| 导航与页脚 | `Navigation` / `Footer` 默认 `variant="site"`，兼容原有 `home` 名称 |
+| 首页 | 课程线路图、课程目录、题库、项目和执行演示 |
+| 全局工具 | AI、积分、返回顶部、标注入口；AI 面板、积分面板、标注面板和加载页 |
+| 练习中心 | 题库首页、按考点练习、错题记录、考试模式选择、答题与解析页面 |
+| C++ 课程 | 一级至八级课程入口；两套 C++ 课件外壳的目录、页眉、导入区、页脚 |
+| Python 课程 | 共享课件外壳的浅色 / 深色主题、课程目录与导航；单步追踪器 |
+| 教学辅助 | 学习目标卡与课程质量清单使用课程线路色；正确 / 错误反馈保留语义色 |
+| 科创与探索 | 科创课程目录、嵌入课件外框、计算博物馆；E-Kart 导航与首页 |
 
-### 尚未迁移
+### 实现约定
 
-- 其他页面的导航和页脚（不传 `variant`，仍是旧样式）：计算博物馆、科创课程页、E-Kart。
-- 其他页面的全局浮动组件，以及 AI 问答和课堂积分的面板内容。首页工具入口与标注面板已统一；全站其他场景仍需逐步迁移。
-- 题库、考试、错题本页面；各级课程页与课件外壳（`CppLessonShell`、`LegacyCppLessonShell`、`PythonLessonShell`）；`LessonQualityBar`、`PyCodeTracer` 等教学组件；`LoadingScreen`。
-- Tailwind 主题仍是旧的 `brand.blue/orange`，没有接入 `--mw-*`。
+- `.mw-surface` 给应用页面提供基础灰阶、字体、圆角与线路色的 Tailwind 变量映射；不覆盖全局 `:root` 的 Tailwind 色表。
+- `.mw-course-shell` 与 `.mw-chrome` 区分课件内容和导航。外壳按 C++ 朱橙、Python 松绿标记，课堂示例与状态颜色独立保留。
+- `courseChrome.js` 保存共享导航的类名。新课程直接使用现有外壳即可继承，不必复制颜色。
+- 深色面使用藏青背景、浅色文字和芥黄导视。色彩区分必须同时带文字或图标；焦点轮廓与触控目标保留。
+- E-Kart 首页按工程系统拆解、课程内容、学习顺序与资源入口组织，不使用随机统计、装饰进度条或外部背景图片。
+- E-Kart 专属样式放在 `src/ekart/ekart.css`，随课程路由加载，避免增加首页 CSS 负担。
+- 首页浮动工具样式已提升为全站共用，文件名 `home-tools.css` 暂保留以避免破坏已有引用。
 
-### 建议迁移顺序
+### 后续逐课整理范围
 
-1. 把 `design-tokens.css` 改为在 `main.jsx` 全局引入（变量和 `mw-` 类不影响旧页面，可以先放）。
-2. 统一全局浮动组件与 `LoadingScreen`（每个页面都看得到）。
-3. 题库首页与考试页（第 7.2 节）。
-4. 三个课件外壳与教学组件（第 7.3–7.5 节），一次改外壳即可覆盖几百节课，不需要逐课重写。
-5. 博物馆、科创、E-Kart 子站：传入 `variant="home"` 或抽象成 `variant="site"`，并按线路色归属。
-6. 最后在 Tailwind 主题里把 `--mw-*` 映射成工具类，逐步替换 `slate/blue/indigo` 写死的颜色。
+- 各课自定义演示、游戏和插图保持内容自身配色；没有逐节重排教学内容。
+- `public/courseware/` 的独立 HTML 课件和 Arduino 3D 应用拥有独立样式，不受站点 CSS 影响。
+- E-Kart 学习地图、工具箱、作品和学习记录已继承导航与基础色；内部专有组件仍可继续细化。
+- 旧 `brand.blue/orange` 工具类继续兼容；新组件优先使用 `--mw-*` 语义变量。

@@ -1,5 +1,5 @@
 import React, { useMemo, useState } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { BookOpen, Trophy, Clock, ChevronRight, Search, Award, Tag, BadgeCheck, CircleDashed, FileCheck2, NotebookPen } from 'lucide-react';
 import { paperIds, paperMeta } from '../data/gesp';
 import { paperStats } from '../data/gesp/_stats';
@@ -109,10 +109,11 @@ const QuestionBankHome = () => {
     const selectedStats = levelStats[selectedLevel] || { paperCount: 0, questionCount: 0, verifiedCount: 0, partialCount: 0, unverifiedCount: 0, latestLabel: '暂无' };
 
     return (
-        <div className="min-h-screen bg-slate-50 text-slate-800 font-sans pb-20">
+        <div className="mw-surface mw-line-bank min-h-screen bg-slate-50 text-slate-800 font-sans pb-20">
             {/* Header Banner */}
-            <div className="bg-gradient-to-r from-indigo-600 to-blue-600 text-white p-8 md:p-12 shadow-lg">
+            <div className="mw-page-banner bg-gradient-to-r from-indigo-600 to-blue-600 text-white p-8 md:p-12 shadow-lg">
                 <div className="max-w-6xl mx-auto">
+                    <Link to="/" className="mb-5 inline-flex min-h-11 items-center gap-2 text-sm text-white underline-offset-4 hover:underline">← 返回学习首页</Link>
                     <div className="flex flex-col md:flex-row justify-between items-start md:items-center gap-6">
                         <div>
                             <h1 className="text-3xl md:text-4xl font-bold flex items-center gap-3 mb-2">
@@ -146,7 +147,7 @@ const QuestionBankHome = () => {
                 </div>
             </div>
 
-            <main className="max-w-6xl mx-auto px-4 py-8 -mt-8">
+            <main className="max-w-6xl mx-auto px-4 py-8">
                 <div className="flex flex-col md:flex-row gap-8">
 
                     {/* Level Sidebar */}
@@ -166,7 +167,7 @@ const QuestionBankHome = () => {
                                         }`}
                                 >
                                     <span className="flex items-center gap-3">
-                                        <span className={`w-6 h-6 rounded-full flex items-center justify-center text-xs text-white ${level.badgeClass} font-bold`}>
+                                        <span className="w-6 h-6 rounded-full flex items-center justify-center text-xs text-white bg-[var(--mw-ink)] font-bold">
                                             {level.id}
                                         </span>
                                         <span>
@@ -188,10 +189,10 @@ const QuestionBankHome = () => {
                     </div>
 
                     {/* Main Content Area */}
-                    <div className="flex-1 space-y-6">
+                    <div className="min-w-0 flex-1 space-y-6">
 
                         {/* Filters & Search */}
-                        <div className="bg-white p-4 rounded-xl shadow-sm border border-slate-200 flex flex-col md:flex-row gap-4 items-center justify-between">
+                        <div className="bg-white p-4 rounded-xl shadow-sm border border-slate-200 flex flex-col xl:flex-row gap-4 items-stretch xl:items-center justify-between">
                             <div>
                                 <h2 className="text-xl font-bold text-slate-800 flex items-center gap-2">
                                     <BookOpen className="text-blue-500" />
@@ -205,20 +206,20 @@ const QuestionBankHome = () => {
                                 </p>
                             </div>
 
-                            <div className="flex w-full flex-col gap-3 md:w-auto md:flex-row md:items-center">
+                            <div className="flex w-full flex-wrap gap-3 xl:w-auto xl:items-center">
                                 <button
                                     onClick={() => navigate(`/question-bank/topics/${selectedLevel}`)}
-                                    className="inline-flex items-center justify-center gap-2 rounded-lg bg-emerald-700 px-4 py-2 text-sm font-bold text-white shadow-sm transition hover:bg-emerald-800"
+                                    className="inline-flex min-h-11 items-center justify-center gap-2 whitespace-nowrap rounded-lg bg-emerald-700 px-4 py-2 text-sm font-bold text-white shadow-sm transition hover:bg-emerald-800"
                                 >
                                     <Tag size={15} /> 按考点练习
                                 </button>
                                 <button
                                     onClick={() => navigate('/question-bank/review')}
-                                    className="inline-flex items-center justify-center gap-2 rounded-lg border border-indigo-200 bg-indigo-50 px-4 py-2 text-sm font-bold text-indigo-700 shadow-sm transition hover:bg-indigo-100"
+                                    className="inline-flex min-h-11 items-center justify-center gap-2 whitespace-nowrap rounded-lg border border-indigo-200 bg-indigo-50 px-4 py-2 text-sm font-bold text-indigo-700 shadow-sm transition hover:bg-indigo-100"
                                 >
                                     <NotebookPen size={15} /> 错题本
                                 </button>
-                                <div className="relative w-full md:w-64">
+                                <div className="relative w-full xl:w-56">
                                     <Search className="absolute left-3 top-1/2 -translate-y-1/2 text-slate-400" size={16} />
                                     <input
                                         type="text"
@@ -248,7 +249,7 @@ const QuestionBankHome = () => {
                         )}
 
                         {/* Paper Grid */}
-                        <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                        <div className="grid grid-cols-1 lg:grid-cols-2 gap-4">
                             {filteredPapers.map(paper => {
                                 const status = reviewStatusMeta[paper.reviewStatus];
                                 const StatusIcon = status.Icon;

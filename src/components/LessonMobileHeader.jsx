@@ -4,7 +4,7 @@ import { Menu, X } from 'lucide-react';
 
 export default function LessonMobileHeader({ label, labelClass = 'bg-blue-600 text-white', open, onToggle }) {
     return (
-        <header className="fixed left-0 top-0 z-50 flex h-16 w-full items-center justify-between border-b border-slate-200 bg-white px-4 shadow-sm md:hidden">
+        <header className="mw-chrome fixed left-0 top-0 z-50 flex h-16 w-full items-center justify-between border-b border-slate-200 bg-white px-4 shadow-sm md:hidden">
             <div className="flex min-w-0 items-center gap-2">
                 <Link to="/" aria-label="返回魔丸聚集地首页" className="flex shrink-0 items-center gap-2 rounded-lg focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-blue-500">
                     <span className="h-9 w-9 overflow-hidden rounded-lg border border-slate-200 bg-white shadow-sm">

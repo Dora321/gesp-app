@@ -3,6 +3,7 @@ import { Outlet, Link, useLocation } from 'react-router-dom';
 import { ClipboardList, Home, Images, Map, Wrench } from 'lucide-react';
 import Navigation from '../components/Navigation';
 import Footer from '../components/Footer';
+import './ekart.css';
 
 const navItems = [
     { path: '/ekart', label: '课程首页', icon: Home },
@@ -16,10 +17,10 @@ export default function EkartLayout() {
     const location = useLocation();
 
     return (
-        <div className="min-h-screen bg-slate-950 font-sans text-white selection:bg-blue-500 selection:text-white">
+        <div className="mw-surface mw-line-maker mw-ekart min-h-screen bg-slate-950 font-sans text-white selection:bg-blue-500 selection:text-white">
             <Navigation
                 darkMode
-                className="bg-slate-950/80 backdrop-blur-xl"
+                className="mw-ekart-nav"
                 afterLogo={(
                     <span className="inline-flex rounded-md border border-blue-400/30 bg-blue-500/10 px-2 py-1 text-xs font-black text-blue-300">
                         E-Kart
@@ -28,7 +29,7 @@ export default function EkartLayout() {
             />
 
             <div className="pt-20">
-                <nav aria-label="E-Kart 课程导航" className="sticky top-16 z-40 border-y border-slate-800 bg-slate-950/95 backdrop-blur-xl">
+                <nav aria-label="E-Kart 课程导航" className="sticky top-16 z-30 border-y border-slate-800 bg-slate-950/95 backdrop-blur-xl">
                     <div className="mx-auto flex max-w-7xl gap-1 overflow-x-auto px-4 py-2 sm:px-6 lg:px-8">
                         {navItems.map((item) => {
                             const Icon = item.icon;

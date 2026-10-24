@@ -43,7 +43,7 @@ export default function InnovationLesson({ courseId = 'advanced', redirectLegacy
     const next = innovationLessons[index + 1];
     const url = innovationLessonUrl(lesson, courseId);
     return (
-        <main className="flex min-h-screen flex-col bg-slate-950 text-white">
+        <main className="mw-surface mw-line-maker mw-science-viewer flex min-h-screen flex-col bg-slate-950 text-white">
             <header className="flex flex-wrap items-center justify-between gap-3 border-b border-white/10 px-4 py-3">
                 <Link to={course.path} className="inline-flex items-center gap-2 text-sm text-teal-200">
                     <ArrowLeft size={16} />课程体系

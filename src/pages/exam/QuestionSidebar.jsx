@@ -17,11 +17,11 @@ const QuestionSidebar = ({
 }) => {
   return (
     <>
-      <aside className={`w-72 bg-white border-r border-slate-200 flex flex-col z-20 transition-transform duration-300 absolute h-full md:relative ${showSidebar ? 'translate-x-0' : '-translate-x-full md:translate-x-0'}`}>
+      <aside aria-label="题号面板" className={`w-72 max-w-[calc(100vw-32px)] bg-white border-r border-slate-200 flex flex-col z-20 transition-transform duration-300 fixed top-16 bottom-0 left-0 md:relative md:top-auto md:bottom-auto md:visible md:translate-x-0 ${showSidebar ? 'visible translate-x-0' : 'invisible -translate-x-full'}`}>
         <div className="p-4 border-b border-slate-100">
           <div className="flex items-center justify-between mb-2">
             <div className="text-sm font-bold text-slate-700">题号面板</div>
-            <button className="md:hidden text-xs px-2 py-1 rounded bg-slate-100 text-slate-600" onClick={onClose}>收起</button>
+            <button className="md:hidden min-h-11 text-sm px-3 py-2 rounded bg-slate-100 text-slate-600" onClick={onClose}>收起</button>
           </div>
           <div className="text-sm font-bold text-slate-700 mb-2">答题进度</div>
           <div className="w-full bg-slate-100 rounded-full h-2 mb-1">
@@ -39,10 +39,10 @@ const QuestionSidebar = ({
               let statusColor = 'bg-white border-slate-200 text-slate-600';
               if (isSubmitted) {
                 if (isProgramming) {
-                  statusColor = isAnswered ? 'bg-violet-100 border-violet-300 text-violet-700' : 'bg-slate-100 border-slate-200 text-slate-400';
+                  statusColor = isAnswered ? 'bg-violet-100 border-violet-300 text-violet-700' : 'bg-slate-100 border-slate-200 text-slate-600';
                 } else {
                   const isCorrect = answers[q.id] === q.answer;
-                  statusColor = isCorrect ? 'bg-green-100 border-green-300 text-green-700' : answers[q.id] !== undefined ? 'bg-red-100 border-red-300 text-red-700' : 'bg-slate-100 border-slate-200 text-slate-400';
+                  statusColor = isCorrect ? 'bg-green-100 border-green-300 text-green-700' : answers[q.id] !== undefined ? 'bg-red-100 border-red-300 text-red-700' : 'bg-slate-100 border-slate-200 text-slate-600';
                 }
               } else {
                 if (isCurrent) statusColor = 'bg-blue-600 text-white border-blue-600 shadow-md transform scale-105';
@@ -51,6 +51,8 @@ const QuestionSidebar = ({
               return (
                 <button
                   key={q.id}
+                  aria-label={`第 ${idx + 1} 题`}
+                  aria-current={isCurrent ? 'step' : undefined}
                   onClick={() => onQuestionSelect(idx)}
                   className={`relative aspect-square rounded-lg border flex items-center justify-center text-sm font-semibold transition-all ${statusColor}`}
                 >

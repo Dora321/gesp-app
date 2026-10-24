@@ -1,4 +1,5 @@
 const { spawn } = require('child_process');
+const path = require('node:path');
 
 const DEFAULT_PORT = 4179;
 const baseUrl = (process.env.A11Y_BASE_URL || `http://127.0.0.1:${DEFAULT_PORT}/gesp-app/`).replace(/\/?$/, '/');
@@ -139,8 +140,9 @@ function formatViolation(route, viewport, violation) {
 
 async function run() {
   if (shouldStartServer) {
-    server = spawn('npm', [
-      'run', 'preview', '--', '--host', '127.0.0.1', '--port', String(DEFAULT_PORT), '--strictPort', '--base', '/gesp-app/'
+    server = spawn(process.execPath, [
+      path.join(__dirname, '../node_modules/vite/bin/vite.js'),
+      'preview', '--host', '127.0.0.1', '--port', String(DEFAULT_PORT), '--strictPort', '--base', '/gesp-app/'
     ], {
       stdio: ['ignore', 'pipe', 'pipe'],
       shell: false,
@@ -186,6 +188,20 @@ async function run() {
         const undersizedButtons = await findUndersizedIconButtons(page);
         for (const button of undersizedButtons) {
           failures.push(`${route} [mobile] icon button "${button.name}" is ${button.size}px; minimum target is 44x44px.`);
+        }
+      }
+
+      if (route === '/question-bank/2/2026-03-l2') {
+        await page.getByRole('button', { name: '现在交卷', exact: true }).click();
+        for (const title of ['确认交卷？', '考试结束']) {
+          await page.getByRole('dialog', { name: title, exact: true }).waitFor();
+          const dialogResults = await new AxeBuilder({ page })
+            .withTags(['wcag2a', 'wcag2aa', 'wcag21a', 'wcag21aa', 'wcag22aa'])
+            .analyze();
+          for (const violation of dialogResults.violations.filter(({ impact }) => ['serious', 'critical'].includes(impact))) {
+            failures.push(formatViolation(`${route} ${title}`, viewport.name, violation));
+          }
+          if (title === '确认交卷？') await page.getByRole('button', { name: '确认交卷', exact: true }).click();
         }
       }
 
