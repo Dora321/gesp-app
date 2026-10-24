@@ -1,0 +1,209 @@
+{
+  "paperId": "2023-03-l2",
+  "reviewedAt": "2026-10-24",
+  "reviewedBy": {
+    "type": "AI",
+    "executor": "WorkBuddy 子代理",
+    "session": "codex/question-bank-verification"
+  },
+  "source": {
+    "mirrorUrl": "https://raw.githubusercontent.com/Dora321/gesp-official-pdfs/main/pdfs/2023%E5%B9%B43%E6%9C%88-C%2B%2B2%E7%BA%A7.pdf",
+    "mirrorSha": "10fcac8bd8af9d36a17f8f14ae5a4d48821b801d",
+    "shaVerified": true,
+    "fetchedAt": "2026-10-24"
+  },
+  "answerTable": {
+    "location": "解析版 PDF，无集中答案表；每题题干后内嵌红色【答案】行（pp.1-11）",
+    "content": {
+      "single": "DCADBACCBBADCDC",
+      "judge": "××√××××√√√"
+    }
+  },
+  "questions": [
+    {
+      "id": 1,
+      "type": "single",
+      "official": "D",
+      "bank": 3,
+      "modified": false
+    },
+    {
+      "id": 2,
+      "type": "single",
+      "official": "C",
+      "bank": 2,
+      "modified": false
+    },
+    {
+      "id": 3,
+      "type": "single",
+      "official": "A",
+      "bank": 0,
+      "modified": false
+    },
+    {
+      "id": 4,
+      "type": "single",
+      "official": "D",
+      "bank": 3,
+      "modified": false
+    },
+    {
+      "id": 5,
+      "type": "single",
+      "official": "B",
+      "bank": 1,
+      "modified": false
+    },
+    {
+      "id": 6,
+      "type": "single",
+      "official": "D",
+      "bank": 3,
+      "modified": false
+    },
+    {
+      "id": 7,
+      "type": "single",
+      "official": "C",
+      "bank": 2,
+      "modified": false
+    },
+    {
+      "id": 8,
+      "type": "single",
+      "official": "C",
+      "bank": 2,
+      "modified": false
+    },
+    {
+      "id": 9,
+      "type": "single",
+      "official": "B",
+      "bank": 1,
+      "modified": false
+    },
+    {
+      "id": 10,
+      "type": "single",
+      "official": "B",
+      "bank": 1,
+      "modified": false
+    },
+    {
+      "id": 11,
+      "type": "single",
+      "official": "A",
+      "bank": 0,
+      "modified": false
+    },
+    {
+      "id": 12,
+      "type": "single",
+      "official": "D",
+      "bank": 3,
+      "modified": false
+    },
+    {
+      "id": 13,
+      "type": "single",
+      "official": "C",
+      "bank": 2,
+      "modified": false
+    },
+    {
+      "id": 14,
+      "type": "single",
+      "official": "D",
+      "bank": 3,
+      "modified": false
+    },
+    {
+      "id": 15,
+      "type": "single",
+      "official": "C",
+      "bank": 2,
+      "modified": false
+    },
+    {
+      "id": 16,
+      "type": "judge",
+      "official": "√",
+      "bank": 0,
+      "modified": false
+    },
+    {
+      "id": 17,
+      "type": "judge",
+      "official": "√",
+      "bank": 0,
+      "modified": false
+    },
+    {
+      "id": 18,
+      "type": "judge",
+      "official": "√",
+      "bank": 0,
+      "modified": false
+    },
+    {
+      "id": 19,
+      "type": "judge",
+      "official": "×",
+      "bank": 1,
+      "modified": false
+    },
+    {
+      "id": 20,
+      "type": "judge",
+      "official": "×",
+      "bank": 1,
+      "modified": false
+    },
+    {
+      "id": 21,
+      "type": "judge",
+      "official": "×",
+      "bank": 1,
+      "modified": false
+    },
+    {
+      "id": 22,
+      "type": "judge",
+      "official": "×",
+      "bank": 1,
+      "modified": false
+    },
+    {
+      "id": 23,
+      "type": "judge",
+      "official": "√",
+      "bank": 0,
+      "modified": false
+    },
+    {
+      "id": 24,
+      "type": "judge",
+      "official": "√",
+      "bank": 0,
+      "modified": false
+    },
+    {
+      "id": 25,
+      "type": "judge",
+      "official": "√",
+      "bank": 0,
+      "modified": false
+    }
+  ],
+  "notes": [
+    "官方卷为「试卷解析」版，答案逐题内嵌；单选官方答案与题库完全一致（Q1-Q15）。",
+    "Q6：官方选项为 A.\\= B./= C.-= D.!=（答案 A 即 \\=）；题库选项集不同（=,==,/=,\\=），答案指向同一运算符 \\=，内容一致，未修改。",
+    "Q8-Q10、Q12-Q14：题库题面与原卷不同（原卷依次为：四数平均值表达式答C、char a 值为 2 哪条语句执行后 a 不会变为 3 答B、a-=3 后值为 6 答B、判断小写字母表达式答D、填空使输出 50 10 答C、统计数字字符 cnt 答D），题库为自编替换题，答案经独立推导均自洽正确，未修改。",
+    "判断 J1/J2/J6 题库为改写表述（如「4GB 和 4096MB 容量一样」答√，对应原卷「容量大的是笑笑的」答×），判定值与官方答案表一致。",
+    "Q15 题库题面 for 循环为 i<=n，与原卷 i<n 不同；两种写法下 17 均会被自身整除置 false，输出 0，答案不受影响。"
+  ],
+  "unresolved": [
+    "原卷单选 Q8-Q14 共 6 题未按原题录入题库（以替换题占位）。原卷官方答案：Q8=C((a+b+c+d)/4.0)、Q9=B(a+1)、Q10=B(6)、Q12=D(a>='a'&&a<='z')、Q13=C(a=b-a)、Q14=D(ch%2==1)。如需还原原卷需另行补录，本次未臆造改写。"
+  ]
+}
