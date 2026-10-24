@@ -96,9 +96,25 @@ export const paperData = {
         {
             id: 1,
             type: "single",
-            sourceIntegrity: "missing-code",
-            integrityNote: "原卷此题引用的程序代码在录入时未收录，仅凭当前题面无法推导答案。本题已排除出计分与考点练习，待补齐原卷代码后恢复。",
-            question: `下面 C++ 代码用于求斐波那契数列，该数列第 1、2 项为 1，以后各项均是前两项之和。函数 fibo() 属于 ( ) 。`,
+            question: `下面 C++ 代码用于求斐波那契数列，该数列第 1、2 项为 1，以后各项均是前两项之和。函数 fibo() 属于 ( ) 。
+
+\`\`\`cpp
+int fibo(int n) {
+    if (n <= 0)
+        return 0;
+    if (n == 1 || n == 2)
+        return 1;
+
+    int a = 1, b = 1, next;
+    for (int i = 3; i <= n; i++) {
+        next = a + b;
+        a = b;
+        b = next;
+    }
+    return next;
+}
+\`\`\`
+`,
             options: ["枚举算法", "贪心算法", "迭代算法", "递归算法"],
             answer: 2,
             score: 2,
@@ -118,9 +134,35 @@ export const paperData = {
         {
             id: 2,
             type: "single",
-            sourceIntegrity: "missing-code",
-            integrityNote: "原卷此题引用的程序代码在录入时未收录，仅凭当前题面无法推导答案。本题已排除出计分与考点练习，待补齐原卷代码后恢复。",
-            question: `下面 C++ 代码用于将输入金额换成最少币种组合方案，其实现算法是 ( ) 。`,
+            question: `下面 C++ 代码用于将输入金额换成最少币种组合方案，其实现算法是 ( ) 。
+
+\`\`\`cpp
+#include <iostream>
+using namespace std;
+
+#define N_COINS 7
+int coins[N_COINS] = {100, 50, 20, 10, 5, 2, 1};  //货币面值，单位相同
+int coins_used[N_COINS];
+
+void find_coins(int money) {
+    for (int i = 0; i < N_COINS; i++) {
+        coins_used[i] = money / coins[i];
+        money = money % coins[i];
+    }
+    return;
+}
+int main() {
+    int money;
+    cin >> money;  //输入要换算的金额
+
+    find_coins(money);
+    for (int i = 0; i < N_COINS; i++)
+        cout << coins_used[i] << endl;
+
+    return 0;
+}
+\`\`\`
+`,
             options: ["分治算法", "贪心算法", "动态规划", "枚举算法"],
             answer: 1,
             score: 2,
