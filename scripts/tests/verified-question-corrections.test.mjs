@@ -53,11 +53,14 @@ test('verified corrections restore the official code and options for damaged que
   assert.deepEqual(l8q14.tags, ['排序算法']);
 });
 
-test('L8 topic tags keep sorting, combinatorics, and dynamic programming distinct', () => {
+test('L8 topic tags keep knowledge domains distinct (no generic catch-all)', () => {
   const tagOf = (paper, id) => paper.questions.find(question => question.id === id).tags;
-  assert.deepEqual(tagOf(rawL8March2026, 2), ['分治']);
-  assert.deepEqual(tagOf(rawL8March2026, 4), ['组合数学']);
-  assert.deepEqual(tagOf(rawL8March2026, 18), ['排序算法']);
+  // 2026-10-24 整卷重建后按官方原卷的真实题目更新断言：
+  // Q2 杨辉三角行和（组合数学）、Q4 计数选书（排列组合）、
+  // Q18 const 引用绑定（参数传递）、Q25 DP 两种实现对比（动态规划）。
+  assert.deepEqual(tagOf(rawL8March2026, 2), ['组合数学']);
+  assert.deepEqual(tagOf(rawL8March2026, 4), ['排列组合']);
+  assert.deepEqual(tagOf(rawL8March2026, 18), ['参数传递']);
   assert.deepEqual(tagOf(rawL8March2026, 25), ['动态规划']);
 });
 
@@ -115,7 +118,8 @@ const restoredOfficialQuestionCases = [
   ['2024-06-l6', 14, 0, 7],
   ['2024-09-l6', 15, 2, 7],
   ['2024-12-l6', 13, 2, 5],
-  ['2026-03-l6', 14, 2, 6],
+  // 2026-03-l6 整卷重建（2026-10-24），Q14 打家劫舍 DP 按官方原卷 p.6 重录
+  ['2026-03-l6', 14, 2, 6, '2026-10-24'],
   ['2024-06-l7', 14, 1, 5],
   ['2025-06-l7', 4, 3, 1],
   ['2025-06-l7', 5, 0, 2],
@@ -136,7 +140,7 @@ const restoredOfficialQuestionCases = [
 ];
 
 test('restored official questions keep their source-backed content', async () => {
-  for (const [paperId, questionId, answer, sourcePage] of restoredOfficialQuestionCases) {
+  for (const [paperId, questionId, answer, sourcePage, reviewedAt = '2026-07-27'] of restoredOfficialQuestionCases) {
     const paper = await getPaper(paperId);
     const question = paper.questions.find(item => item.id === questionId);
 
@@ -146,7 +150,7 @@ test('restored official questions keep their source-backed content', async () =>
     assert.equal(question.sourceVerified, true, `${paperId}:Q${questionId} lost verification status`);
     assert.equal(question.sourceIntegrity, undefined, `${paperId}:Q${questionId} regained an integrity warning`);
     assert.equal(question.integrityNote, undefined, `${paperId}:Q${questionId} regained an integrity note`);
-    assert.equal(question.reviewedAt, '2026-07-27', `${paperId}:Q${questionId} review date drifted`);
+    assert.equal(question.reviewedAt, reviewedAt, `${paperId}:Q${questionId} review date drifted`);
     const sourceUrl = question.sourceUrl || paper.source?.officialPdf || paper.sourceUrl;
     assert.match(sourceUrl, /^https:\/\//, `${paperId}:Q${questionId} lost its source URL`);
     assert.ok(question.question.trim().length >= 20, `${paperId}:Q${questionId} has a truncated stem`);

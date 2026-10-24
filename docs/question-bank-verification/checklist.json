@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-10-24T10:13:14.470Z",
+  "generatedAt": "2026-10-24T11:36:00.896Z",
   "papers": [
     {
       "paperId": "2023-03-l1",
@@ -3610,63 +3610,11 @@
         ]
       },
       "gaps": {
-        "integrityFlagged": 17,
+        "integrityFlagged": 0,
         "explanationPlaceholder": 0,
         "referenceCodePlaceholder": 0,
         "boilerplate": 0,
-        "perQuestion": {
-          "1": [
-            "sourceIntegrity:answer-key-suspect"
-          ],
-          "2": [
-            "sourceIntegrity:contaminated-stem"
-          ],
-          "3": [
-            "sourceIntegrity:options-reconstructed"
-          ],
-          "4": [
-            "sourceIntegrity:contaminated-stem"
-          ],
-          "6": [
-            "sourceIntegrity:missing-code"
-          ],
-          "7": [
-            "sourceIntegrity:missing-code"
-          ],
-          "9": [
-            "sourceIntegrity:answer-key-suspect"
-          ],
-          "10": [
-            "sourceIntegrity:missing-code"
-          ],
-          "12": [
-            "sourceIntegrity:options-reconstructed"
-          ],
-          "13": [
-            "sourceIntegrity:missing-formula"
-          ],
-          "15": [
-            "sourceIntegrity:answer-key-suspect"
-          ],
-          "16": [
-            "sourceIntegrity:missing-code"
-          ],
-          "18": [
-            "sourceIntegrity:missing-code"
-          ],
-          "21": [
-            "sourceIntegrity:answer-key-suspect"
-          ],
-          "22": [
-            "sourceIntegrity:contaminated-stem"
-          ],
-          "23": [
-            "sourceIntegrity:answer-key-suspect"
-          ],
-          "25": [
-            "sourceIntegrity:missing-formula"
-          ]
-        }
+        "perQuestion": {}
       },
       "priority": "P2",
       "processingState": "pending"
@@ -4132,16 +4080,13 @@
         "questionIds": []
       },
       "gaps": {
-        "integrityFlagged": 2,
+        "integrityFlagged": 1,
         "explanationPlaceholder": 0,
         "referenceCodePlaceholder": 0,
         "boilerplate": 0,
         "perQuestion": {
           "5": [
             "sourceIntegrity:missing-formula"
-          ],
-          "10": [
-            "sourceIntegrity:contaminated-stem"
           ]
         }
       },
@@ -4647,18 +4592,11 @@
         ]
       },
       "gaps": {
-        "integrityFlagged": 2,
+        "integrityFlagged": 0,
         "explanationPlaceholder": 0,
         "referenceCodePlaceholder": 0,
         "boilerplate": 0,
-        "perQuestion": {
-          "9": [
-            "sourceIntegrity:contaminated-stem"
-          ],
-          "10": [
-            "sourceIntegrity:contaminated-stem"
-          ]
-        }
+        "perQuestion": {}
       },
       "priority": "P2",
       "processingState": "pending"
