@@ -205,9 +205,56 @@ export const paperData = {
         {
             id: 7,
             type: "single",
-            sourceIntegrity: "missing-code",
-            integrityNote: "原卷此题引用的程序代码在录入时未收录，仅凭当前题面无法推导答案。本题已排除出计分与考点练习，待补齐原卷代码后恢复。",
-            question: `下面程序的运行结果为（ ）。`,
+            question: `下面程序的运行结果为（ ）。
+
+\`\`\`cpp
+#include <iostream>
+#include <algorithm>
+
+bool check(int n, int a[], int k, int dist) {
+    int cnt = 1;
+    int last = a[0];
+
+    for (int i = 1; i < n; i++) {
+        if (a[i] - last >= dist) {
+            cnt++;
+            last = a[i];
+        }
+    }
+
+    return cnt >= k;
+}
+
+
+int solve(int n, int a[], int k) {
+    std::sort(a, a + n);
+
+    int l = 0;
+    int r = a[n - 1] - a[0];
+
+    while (l < r) {
+        int mid = (l + r + 1) / 2;
+
+        if (check(n, a, k, mid))
+            l = mid;
+        else
+            r = mid - 1;
+    }
+
+    return l;
+
+}
+
+int main() {
+    int a[] = {1, 2, 8, 4, 9};
+    int n = 5;
+    int k = 3;
+
+    std::cout << solve(n, a, k) << std::endl;
+
+    return 0;
+}
+\`\`\``,
             options: [
                 "2",
                 "3",
@@ -230,22 +277,71 @@ export const paperData = {
         {
             id: 8,
             type: "single",
-            sourceIntegrity: "missing-code",
-            integrityNote: "原卷此题引用的程序代码在录入时未收录，仅凭当前题面无法推导答案。本题已排除出计分与考点练习，待补齐原卷代码后恢复。",
-            question: `下面程序中，函数 query 的时间复杂度是（ ）。`,
+            question: `下面程序的时间复杂度为（ ）。假设数组 $a$ 的值域范围是 $D$。
+
+\`\`\`cpp
+#include <iostream>
+#include <algorithm>
+
+bool check(int n, int a[], int k, int dist) {
+    int cnt = 1;
+    int last = a[0];
+
+    for (int i = 1; i < n; i++) {
+        if (a[i] - last >= dist) {
+            cnt++;
+            last = a[i];
+        }
+    }
+
+    return cnt >= k;
+}
+
+
+int solve(int n, int a[], int k) {
+    std::sort(a, a + n);
+
+    int l = 0;
+    int r = a[n - 1] - a[0];
+
+    while (l < r) {
+        int mid = (l + r + 1) / 2;
+
+        if (check(n, a, k, mid))
+            l = mid;
+        else
+            r = mid - 1;
+    }
+
+    return l;
+
+}
+
+int main() {
+    int a[] = {1, 2, 8, 4, 9};
+    int n = 5;
+    int k = 3;
+
+    std::cout << solve(n, a, k) << std::endl;
+
+    return 0;
+}
+\`\`\``,
             options: [
+                "O(n log n + n log D)",
+                "O(n log n log D)",
                 "O(n log n)",
-                "O(n)",
-                "O(log n)",
-                "O(n^2)",
-],
+                "O(n log D)",
+            ],
             answer: 0,
             score: 2,
-            explanation: `**答案：（选项文本缺失，…；复杂度见下）**
+            explanation: `**答案：A（O(n log n + n log D)）**
 
-**解析：** 本题在题库中缺失程序代码与选项（选项中出现“…”占位符），无法将答案对应到具体选项。按其对应的 \`solve()\` + \`check()\` 二分查找函数估算复杂度：排序 \`O(n log n)\`；二分区间长度 \`O(V)\`（V 为值域）迭代 \`O(log V)\` 次，每次 \`check\` 为 \`O(n)\`，故总时间复杂度约 \`O(n log n + n·log V)\`，值域有界时常记为 \`O(n log n)\`。因选项缺失，请补全题目后再确定选项字母。
-
-**考点**：二分答案的时间复杂度分析（本题数据缺陷待补）。`,
+**解析：** 程序分两段计费：\`solve\` 先对数组排序 \`std::sort\`，为 O(n log n)；随后在值域区间 [0, a[n-1]−a[0]]（长度不超过 D）上二分答案，共 O(log D) 轮，每轮调用 \`check\` 一次，\`check\` 为线性扫描 O(n)，合计 O(n log D)。两部分相加，总时间复杂度 O(n log n + n log D)。
+- B. O(n log n log D)：多乘了一个 log n，\`check\` 只扫一遍数组，错误。
+- C. O(n log n)：遗漏了二分答案 × check 的开销（仅当 D 有界且可忽略时才近似成立，题面已明确值域 D 为变量），不精确。
+- D. O(n log D)：遗漏了排序的 O(n log n)，错误。
+**考点**：二分答案的复杂度分析——排序 + 值域二分 × 线性 check。`,
             tags: [
                 "客观题",
                 "单选题",
@@ -305,8 +401,8 @@ int main() {
         {
             id: 10,
             type: "single",
-            sourceIntegrity: "missing-code",
-            integrityNote: "原卷此题引用的程序代码在录入时未收录，仅凭当前题面无法推导答案。本题已排除出计分与考点练习，待补齐原卷代码后恢复。",
+            sourceIntegrity: "contaminated-stem",
+            integrityNote: "原卷此题（第 10 题）为「下图深度优先遍历序列」的图形选择题，不引用任何程序代码；当前题面与选项（10/16/26/30）系录入时错放的另一份试卷的程序题（同 2025-12-l7 第 10 题）。待按原卷图题重建题面与配图后方可恢复计分。",
             question: `下面程序的运行结果为（ ）。`,
             options: [
                 "10",

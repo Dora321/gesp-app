@@ -425,9 +425,17 @@ C(10, 2) = 10 × 9 / 2 = **45**
         {
             id: 11,
             type: "single",
-            sourceIntegrity: "missing-code",
-            integrityNote: "原卷此题引用的程序代码在录入时未收录，仅凭当前题面无法推导答案。本题已排除出计分与考点练习，待补齐原卷代码后恢复。",
-            question: `下面程序的输出为（ ）。`,
+            question: `下面程序的输出为（ ）。
+
+\`\`\`cpp
+#include <iostream>
+#include <cmath>
+using namespace std;
+int main() {
+    cout << (int)log(8) << endl;
+    return 0;
+}
+\`\`\``,
             options: [
                 "2",
                 "3",
@@ -467,9 +475,25 @@ int main() {
         {
             id: 12,
             type: "single",
-            sourceIntegrity: "missing-code",
-            integrityNote: "原卷此题引用的程序代码在录入时未收录，仅凭当前题面无法推导答案。本题已排除出计分与考点练习，待补齐原卷代码后恢复。",
-            question: `下面程序的输出为（ ）。`,
+            question: `下面程序的输出为（ ）。
+
+\`\`\`cpp
+#include <iostream>
+#define N 10
+using namespace std;
+int path[N][N];
+int main() {
+    for (int i = 1; i < N; i++)
+        path[i][0] = i;
+    for (int j = 1; j < N; j++)
+        path[0][j] = j;
+    for (int i = 1; i < N; i++)
+        for (int j = 1; j < N; j++)
+            path[i][j] = path[i - 1][j] + path[i][j - 1];
+    cout << path[8][4] << endl;
+    return 0;
+}
+\`\`\``,
             options: [
                 "84",
                 "495",

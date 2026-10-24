@@ -242,9 +242,32 @@ export const paperData = {
         {
             id: 7,
             type: "single",
-            sourceIntegrity: "missing-code",
-            integrityNote: "原卷此题引用的程序代码在录入时未收录，仅凭当前题面无法推导答案。本题已排除出计分与考点练习，待补齐原卷代码后恢复。",
-            question: `下面程序的运行结果为（ ）。`,
+            question: `下面程序的运行结果为（ ）。
+
+\`\`\`cpp
+#include <iostream>
+
+int query(int n, int *a, int x) {
+    int l = 0, r = n;
+    while (l < r) {
+        int mid = l + (r - l) / 2;
+        if (a[mid] >= x) r = mid;
+        else l = mid + 1;
+    }
+
+    if (l == n) return -1;
+    return l;
+}
+
+int main() {
+    int n = 10;
+    int x = 3;
+    int num[] = {1, 2, 2, 3, 3, 4, 5, 5, 6, 7};
+
+    std::cout << query(n, num, x) << "\\n";
+    return 0;
+}
+\`\`\``,
             options: [
                 "2",
                 "3",
@@ -253,9 +276,10 @@ export const paperData = {
             ],
             answer: 1,
             score: 2,
-            explanation: `**答案：B**
-**解析：**本题主要考查一段 C++ 程序的执行结果推导，官方答案为 3（选项 B）。由于原题程序以图片形式嵌入、无法从文本恢复具体代码，此处依据官方答案给出结论。建议对照原卷代码逐步模拟变量变化，确认输出为 3。
-**考点**：程序阅读与执行结果推导。`,
+            explanation: `**答案：B（3）**
+**解析：**\`query\` 是二分查找实现的 lower_bound：在 [0, n) 上每次取中点 mid，若 \`a[mid] >= x\` 则 \`r = mid\`（答案在左半含 mid），否则 \`l = mid + 1\`，循环结束时 \`l\` 即第一个满足 \`a[l] >= x\` 的下标；若不存在则返回 -1。
+对 \`num = {1, 2, 2, 3, 3, 4, 5, 5, 6, 7}\`、\`x = 3\`：首个 ≥ 3 的元素值 3 在下标 3，故 \`query\` 返回 3，程序输出 3。
+**考点**：二分查找（lower_bound 语义）的手动模拟。`,
             tags: [
                 "客观题",
                 "单选题",
@@ -265,9 +289,32 @@ export const paperData = {
         {
             id: 8,
             type: "single",
-            sourceIntegrity: "missing-code",
-            integrityNote: "原卷此题引用的程序代码在录入时未收录，仅凭当前题面无法推导答案。本题已排除出计分与考点练习，待补齐原卷代码后恢复。",
-            question: `下面程序中，函数 query 的时间复杂度是（ ）。`,
+            question: `下面程序中，函数 query 的时间复杂度是（ ）。
+
+\`\`\`cpp
+#include <iostream>
+
+int query(int n, int *a, int x) {
+    int l = 0, r = n;
+    while (l < r) {
+        int mid = l + (r - l) / 2;
+        if (a[mid] >= x) r = mid;
+        else l = mid + 1;
+    }
+
+    if (l == n) return -1;
+    return l;
+}
+
+int main() {
+    int n = 10;
+    int x = 3;
+    int num[] = {1, 2, 2, 3, 3, 4, 5, 5, 6, 7};
+
+    std::cout << query(n, num, x) << "\\n";
+    return 0;
+}
+\`\`\``,
             options: [
                 "O(1)",
                 "O(log n)",
@@ -314,9 +361,20 @@ WPL = 所有合并产生的中间结点权值之和 = 4+6+9+15 = 34。故选 B�
         {
             id: 10,
             type: "single",
-            sourceIntegrity: "missing-code",
-            integrityNote: "原卷此题引用的程序代码在录入时未收录，仅凭当前题面无法推导答案。本题已排除出计分与考点练习，待补齐原卷代码后恢复。",
-            question: `下面程序的运行结果为（ ）。`,
+            question: `下面程序的运行结果为（ ）。
+
+\`\`\`cpp
+#include <iostream>
+using namespace std;
+int f(int n) {
+    if (n <= 2) return n * 2;
+    return f(n - 1) + f(n - 2);
+}
+int main() {
+    cout << f(5) << endl;
+    return 0;
+}
+\`\`\``,
             options: [
                 "10",
                 "16",
