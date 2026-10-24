@@ -19,7 +19,7 @@ export const VERIFICATION_DIMENSIONS = [
 ];
 
 export const DIMENSION_STATUS = {
-  verified: { label: '已人工核验', tone: 'emerald' },
+  verified: { label: '已核验', tone: 'emerald' },
   partial: { label: '部分核验', tone: 'blue' },
   unverified: { label: '未核验', tone: 'slate' },
 };
