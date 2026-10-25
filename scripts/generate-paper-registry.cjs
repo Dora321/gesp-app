@@ -139,6 +139,9 @@ function readVerifiedCorrectionMeta() {
 
 async function generateRegistry() {
   const papers = [];
+  const { buildVerificationProgress, dimensionKeys } = await import('./lib/verification-progress.mjs');
+  const { applyVerifiedQuestionCorrections } = await import('../src/data/gesp/verifiedQuestionCorrections.js');
+  const { paperSources } = await import('../src/data/gesp/paperSources.js');
   const verifiedCorrectionMeta = readVerifiedCorrectionMeta();
 
   for (const levelDir of LEVELS) {
@@ -188,7 +191,21 @@ async function generateRegistry() {
 
       const correctionMeta = verifiedCorrectionMeta.get(paperId);
       const useCorrectionReview = correctionMeta && !explicitStatus;
+      const evidencePath = path.resolve(__dirname, '../docs/question-bank-verification', `${paperId}.json`);
+      const evidence = fs.existsSync(evidencePath) ? JSON.parse(fs.readFileSync(evidencePath, 'utf8')) : undefined;
+      const verification = buildVerificationProgress({
+        paper: applyVerifiedQuestionCorrections(module.paperData),
+        legacy: {
+          status: useCorrectionReview ? 'partial' : reviewStatus,
+          scope: reviewScope || (useCorrectionReview ? '部分题面代码已校订' : ''),
+          reviewedBy, reviewedAt,
+          dimensions: module.paperData.verification?.dimensions,
+        },
+        evidence,
+        source: paperSources[paperId],
+      });
       papers.push({
+        verification,
         id: paperId,
         level: parseInt(level, 10),
         year: parseInt(year, 10),
@@ -248,7 +265,7 @@ papers.sort((a, b) => a.level - b.level || a.year - b.year || a.month - b.month)
 
 const paperIdsLine = papers.map(p => `  '${p.id}',`).join('\n');
 const paperMetaLines = papers.map(p =>
-  `  '${p.id}': { level: ${p.level}, year: ${p.year}, month: ${p.month}, title: ${jsString(p.title)}, questionCount: ${p.questionCount}, placeholderCount: ${p.placeholderCount}, integrityFlaggedCount: ${p.integrityFlaggedCount}, needsReview: ${p.placeholderCount > 0}, unofficial: ${p.unofficial}, reviewStatus: ${jsString(p.reviewStatus)}, reviewedBy: ${jsString(p.reviewedBy)}, reviewedAt: ${jsString(p.reviewedAt)}, reviewScope: ${jsString(p.reviewScope)}, sourceUrl: ${jsString(p.sourceUrl)}, officialUrl: ${jsString(p.officialUrl)}, mirrorUrl: ${jsString(p.mirrorUrl)} },`
+  `  '${p.id}': { level: ${p.level}, year: ${p.year}, month: ${p.month}, title: ${jsString(p.title)}, questionCount: ${p.questionCount}, placeholderCount: ${p.placeholderCount}, integrityFlaggedCount: ${p.integrityFlaggedCount}, needsReview: ${p.placeholderCount > 0}, unofficial: ${p.unofficial}, reviewStatus: ${jsString(p.reviewStatus)}, reviewedBy: ${jsString(p.reviewedBy)}, reviewedAt: ${jsString(p.reviewedAt)}, reviewScope: ${jsString(p.reviewScope)}, verification: ${JSON.stringify(p.verification)}, sourceUrl: ${jsString(p.sourceUrl)}, officialUrl: ${jsString(p.officialUrl)}, mirrorUrl: ${jsString(p.mirrorUrl)} },`
 ).join('\n');
 const loadersLines = papers.map(p =>
   `    '${p.id}': () => import('${p.relativePath}').then(m => m.paperData),`
@@ -283,9 +300,14 @@ const stats = {
   practicePaperCount: practicePapers.length,
   practiceQuestionCount: practicePapers.reduce((sum, p) => sum + p.questionCount, 0),
   reviewPaperCount: officialPapers.filter(p => p.placeholderCount > 0).length,
-  verifiedPaperCount: officialPapers.filter(p => p.reviewStatus === 'verified').length,
-  partialPaperCount: officialPapers.filter(p => p.reviewStatus === 'partial').length,
-  unverifiedPaperCount: officialPapers.filter(p => p.reviewStatus === 'unverified').length,
+  verifiedPaperCount: officialPapers.filter(p => p.verification.status === 'verified').length,
+  partialPaperCount: officialPapers.filter(p => p.verification.status === 'partial').length,
+  unverifiedPaperCount: officialPapers.filter(p => p.verification.status === 'unverified').length,
+  verificationDimensions: Object.fromEntries(dimensionKeys.map(key => [key, {
+    verified: officialPapers.filter(p => p.verification.dimensions[key] === 'verified').length,
+    partial: officialPapers.filter(p => p.verification.dimensions[key] === 'partial').length,
+    unverified: officialPapers.filter(p => p.verification.dimensions[key] === 'unverified').length,
+  }])),
   // 主页把这个数字当作可信度的证据展示。生成出来而不是手写，否则每次继续核验
   // 题库都要记得去改主页，很快就会对不上。
   integrityFlaggedQuestionCount: officialPapers.reduce((sum, p) => sum + p.integrityFlaggedCount, 0),
@@ -308,6 +330,7 @@ export const paperStats = {
   verifiedPaperCount: ${stats.verifiedPaperCount},
   partialPaperCount: ${stats.partialPaperCount},
   unverifiedPaperCount: ${stats.unverifiedPaperCount},
+  verificationDimensions: ${JSON.stringify(stats.verificationDimensions)},
   integrityFlaggedQuestionCount: ${stats.integrityFlaggedQuestionCount},
   levelCount: ${stats.levelCount},
   firstYear: ${stats.firstYear},

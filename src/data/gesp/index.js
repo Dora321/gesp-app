@@ -24,6 +24,7 @@ export async function getPaper(paperId) {
 
   return {
     ...paper,
+    verification: meta.verification || paper.verification,
     reviewStatus: meta.reviewStatus || 'unverified',
     reviewedBy: meta.reviewedBy || '',
     reviewedAt: meta.reviewedAt || '',
