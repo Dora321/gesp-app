@@ -21,6 +21,14 @@ const TRUNCATION_PATTERNS = [
   /\*\*[A-D][^*\n]{0,100}\.\.\.\*\*/,
 ];
 
+// 早期批量增强脚本给每个非答案选项自动补的一句免责话。它不携带任何信息，
+// 而且常常和后一句「错误（说法正确）。」直接打架，读起来像自我否定。
+// 注意不要把「因此不是本题要选的错误项」也算进来——那是有信息量的收尾句。
+const FILLER_PATTERNS = [
+  /该项本身符合规则，因此不是本题要选的项/,
+  /该项本身正确\/错误？/,
+];
+
 const CONTRADICTION_PATTERNS = [
   /错误（(?:说法|叙述|逻辑)正确）/,
   /❌\s*错误[^。\n]{0,80}(?:该项|说法|叙述|逻辑)(?:本身)?正确/,
@@ -51,6 +59,9 @@ export function classifyExplanation(question) {
   if (CONTRADICTION_PATTERNS.some(pattern => pattern.test(explanation))) {
     categories.push('contradictory');
   }
+  if (FILLER_PATTERNS.some(pattern => pattern.test(explanation))) {
+    categories.push('filler');
+  }
   if (explanation.length > 1500) {
     categories.push('overlong');
   }
@@ -65,6 +76,7 @@ export async function collectExplanationIssues() {
     short: [],
     truncated: [],
     contradictory: [],
+    filler: [],
     overlong: [],
   };
 
