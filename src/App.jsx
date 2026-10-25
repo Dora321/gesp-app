@@ -66,6 +66,7 @@ const HardwareLanding = lazy(() => import('./hardware/pages/HardwareLanding'));
 
 // Floating widgets are useful outside focus flows, but should not tax deep links.
 const ClassroomPoints = lazy(() => import('./components/ClassroomPoints'));
+const LearningStorageNotice = lazy(() => import('./components/LearningStorageNotice'));
 const AIChat = lazy(() => import('./components/AIChat'));
 
 // Loading fallback
@@ -184,6 +185,7 @@ function App() {
             <Route path="/*" element={<LegacyLessonRedirect />} />
           </Routes>
         </Suspense>
+        <Suspense fallback={null}><LearningStorageNotice /></Suspense>
         <GlobalWidgets />
         <PageAnnotations />
       </ErrorBoundary>

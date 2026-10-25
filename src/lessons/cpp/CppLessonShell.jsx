@@ -1,3 +1,4 @@
+import CourseScopeNote from '../../components/CourseScopeNote';
 import useLessonPracticeAnchor from '../../hooks/useLessonPracticeAnchor';
 import { useEffect, useMemo, useRef, useState } from 'react';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
@@ -166,6 +167,7 @@ export default function CppLessonShell({
                                 </div>
                                 {prerequisites && <Prerequisites items={prerequisites} />}
                                 <GoalCards goals={goals} />
+                                <CourseScopeNote />
                                 {topSupport}
                                 <div data-lesson-active-content="true">{activeContent}</div>
                             </section>

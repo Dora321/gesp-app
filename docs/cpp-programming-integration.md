@@ -31,9 +31,15 @@
 
 - 每题包含题面、输入输出格式、数据范围、思路提示、边界要求和折叠参考实现。
 - 67 道输入题各有两组样例；L1 第 1 课为固定输出任务，提供一组无输入样例，共 135 组。
-- 学生可下载不含答案的 Markdown 题目单；L1～L3 参考实现已按 C++11 验证，其他等级沿用 C++17，并优先使用本课已学方法。
+- 学生可下载不含答案的 Markdown 题目单；全部 68 道参考实现已按 C++11 严格编译验证，并优先使用本课已学方法。
 - 真题入口来自项目现有题库，与题号、题名和所属试卷交叉验证。原题与课堂题的格式、范围可能不同，迁移前须重新读题。
-- 可运行 `node scripts/validate-cpp-practice.mjs` 编译所有参考程序并逐一验证样例。L1～L3 的 C++11 兼容性可设置 `CPP_PRACTICE_STD=c++11`、`CPP_PRACTICE_LEVELS=1,2,3` 后运行同一脚本（PowerShell 使用 `$env:CPP_PRACTICE_STD='c++11'` 和 `$env:CPP_PRACTICE_LEVELS='1,2,3'`）。需要本机 C++ 编译器。
+- 可运行 `node scripts/validate-cpp-practice.mjs` 编译所有参考程序并逐一验证样例。默认以 C++11 严格模式验证所有等级；需要筛选 L1～L3 时可设置 `CPP_PRACTICE_STD=c++11`、`CPP_PRACTICE_LEVELS=1,2,3` 后运行同一脚本（PowerShell 使用 `$env:CPP_PRACTICE_STD='c++11'` 和 `$env:CPP_PRACTICE_LEVELS='1,2,3'`）。需要本机 C++ 编译器。
 - 运行开发服务后，用 `CPP_PRACTICE_BASE_URL=http://127.0.0.1:4187 node scripts/check-cpp-practice-ui.mjs` 检查课次入口、首页路线、移动布局、折叠答案、题单下载和自查记录。
 
 新增题目统一维护在 `src/data/cppProgrammingPractice.js`，无需逐个修改课程页面。新增节点时要同步检查前置知识、边界样例和真题迁移说明。
+
+## 发布检查与学习记录
+
+GitHub Actions 已接入课堂参考实现编译、135 组样例，以及 68 个上机入口的浏览器检查。原先高于 C++11 的结构化绑定和泛型 lambda 已改为兼容写法。依据为 [CCF 2026-01-28 修订说明](https://gesp.ccf.org.cn/101/1002/10255.html)。本轮未修改用户正在独立核验的真题数据。
+
+上机自查已纳入学习数据 v4 的导出、导入和重置；v1–v3 备份仍可导入。本机已有独立自查键会迁移到规范存储，旧键仅在显式重置时清理。

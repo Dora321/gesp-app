@@ -39,6 +39,9 @@ jobs:
       - name: Validate programming questions (compile + run samples)
         run: npm run validate:programming:run
 
+      - name: Validate classroom C++11 programs and samples
+        run: node scripts/validate-cpp-practice.mjs
+
       - name: Check paper source registry
         run: npm run check:sources
 
@@ -96,6 +99,10 @@ jobs:
             command: npm run smoke
           - name: Accessibility checks
             command: npm run check:a11y
+          - name: Classroom programming UI checks
+            command: node scripts/with-preview.cjs scripts/check-cpp-practice-ui.mjs
+          - name: Learning experience checks
+            command: node scripts/with-preview.cjs scripts/check-learning-experience.cjs
           - name: Visual and layout regression
             command: npm run visual
 

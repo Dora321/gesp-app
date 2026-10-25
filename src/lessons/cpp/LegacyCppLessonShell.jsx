@@ -1,3 +1,4 @@
+import CourseScopeNote from '../../components/CourseScopeNote';
 import useLessonPracticeAnchor from '../../hooks/useLessonPracticeAnchor';
 import React, { useEffect, useRef, useState } from 'react';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
@@ -213,6 +214,7 @@ export default function LegacyCppLessonShell({
                 <Prerequisites items={prerequisites} />
               </div>
             )}
+            {isFirst && <CourseScopeNote />}
             {isFirst && topSupport}
             <div data-lesson-active-content="true">
               {children}

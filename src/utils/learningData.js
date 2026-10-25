@@ -1,11 +1,14 @@
 export const LEARNING_DATA_SCHEMA = 'gesp-learning-data';
-export const LEARNING_DATA_VERSION = 3;
+export const LEARNING_DATA_VERSION = 4;
 
 // 每张卷保留最近若干次交卷记录。备考期一张卷刷十几遍是常态，但更早的记录对
 // 复盘没有价值，无上限增长只会把 localStorage 撑爆。
 export const MAX_ATTEMPTS_PER_PAPER = 20;
 export const LEARNING_DATA_STORAGE_KEY = 'gesp_learning_data';
 export const LEARNING_DATA_EVENT = 'gesp:learning-data';
+export const PRACTICE_PREFIX = 'gesp:cpp-practice:v1:';
+let storageFailed = false;
+export const hasLearningStorageError = () => storageFailed;
 
 const LEGACY_KEYS = {
     lessons: 'gesp_lesson_progress',
@@ -23,6 +26,7 @@ const emptyLearningData = () => ({
     version: LEARNING_DATA_VERSION,
     updatedAt: null,
     lessons: {},
+    practice: {},
     exams: {},
     attempts: {},
     hardware: { esp32Ai: null },
@@ -156,6 +160,7 @@ export function normalizeLearningData(value) {
         version: LEARNING_DATA_VERSION,
         updatedAt: finiteNumber(source.updatedAt) ?? null,
         lessons: normalizeLessons(lessons),
+        practice: cleanEntries(source.practice, value => Array.isArray(value) ? [0, 1, 2].map(index => value[index] === true) : null),
         exams: normalizeExams(exams),
         // v1/v2 没有 attempts，缺省为空即可——旧数据里本来就没有成绩历史。
         attempts: normalizeAttempts(source.attempts),
@@ -169,16 +174,27 @@ const emitChange = (detail) => {
     window.dispatchEvent(new CustomEvent(LEARNING_DATA_EVENT, { detail }));
 };
 
+const reportStorageFailure = () => {
+    const firstFailure = !storageFailed;
+    storageFailed = true;
+    if (firstFailure) queueMicrotask(() => emitChange({ reason: 'storage-error' }));
+};
+
 const writeCanonical = (data, reason = 'update') => {
     const storage = getStorage();
-    if (!storage) return false;
+    if (!storage) { reportStorageFailure(); return false; }
     const normalized = normalizeLearningData(data);
     normalized.updatedAt = Date.now();
     try {
+        const existing = parseJson(storage.getItem(LEARNING_DATA_STORAGE_KEY));
+        if (Number(existing?.version) > LEARNING_DATA_VERSION) { reportStorageFailure(); return false; }
         storage.setItem(LEARNING_DATA_STORAGE_KEY, JSON.stringify(normalized));
-        emitChange({ reason, data: normalized });
+        storageFailed = false;
+        if (reason.startsWith('migrate')) queueMicrotask(() => emitChange({ reason, data: normalized }));
+        else emitChange({ reason, data: normalized });
         return true;
     } catch {
+        reportStorageFailure();
         return false;
     }
 };
@@ -219,20 +235,36 @@ const collectLegacyData = (storage) => {
     return { data, migratedKeys };
 };
 
+const readLegacyPractice = storage => {
+    const practice = {};
+    for (let index = 0; index < storage.length; index++) {
+        const key = storage.key(index);
+        if (key?.startsWith(PRACTICE_PREFIX)) {
+            const value = parseJson(storage.getItem(key));
+            if (Array.isArray(value)) practice[key.slice(PRACTICE_PREFIX.length)] = value;
+        }
+    }
+    return practice;
+};
+
 export function readLearningData() {
     const storage = getStorage();
     if (!storage) return emptyLearningData();
 
-    const canonical = parseJson(storage.getItem(LEARNING_DATA_STORAGE_KEY));
+    let canonical;
+    try { canonical = parseJson(storage.getItem(LEARNING_DATA_STORAGE_KEY)); } catch { return emptyLearningData(); }
     if (isRecord(canonical)) {
-        const normalized = normalizeLearningData(canonical);
-        if (canonical.version !== LEARNING_DATA_VERSION) writeCanonical(normalized, 'migrate-version');
+        let practice = canonical.practice;
+        if (canonical.version < 4) { try { practice = { ...readLegacyPractice(storage), ...practice }; } catch { /* Keep readable data. */ } }
+        const normalized = normalizeLearningData({ ...canonical, practice });
+        if (canonical.version < LEARNING_DATA_VERSION) writeCanonical(normalized, 'migrate-version');
         return normalized;
     }
 
     try {
         const { data, migratedKeys } = collectLegacyData(storage);
-        if (migratedKeys.length === 0) return data;
+        data.practice = readLegacyPractice(storage);
+        if (migratedKeys.length === 0 && Object.keys(data.practice).length === 0) return data;
         if (writeCanonical(data, 'migrate-legacy')) {
             migratedKeys.forEach((key) => storage.removeItem(key));
         }
@@ -259,7 +291,7 @@ export function createLearningDataExport() {
     };
 }
 
-export function importLearningData(payload) {
+export function previewLearningDataImport(payload) {
     const parsed = typeof payload === 'string' ? parseJson(payload) : payload;
     if (!isRecord(parsed) || parsed.schema !== LEARNING_DATA_SCHEMA) {
         throw new Error('不是有效的 GESP 学习数据文件');
@@ -268,7 +300,11 @@ export function importLearningData(payload) {
     if (!Number.isInteger(version) || version < 1 || version > LEARNING_DATA_VERSION) {
         throw new Error(`不支持的学习数据版本：${parsed.version}`);
     }
-    const normalized = normalizeLearningData({ ...parsed, version });
+    return normalizeLearningData({ ...parsed, version });
+}
+
+export function importLearningData(payload) {
+    const normalized = previewLearningDataImport(payload);
     if (!writeCanonical(normalized, 'import')) throw new Error('浏览器无法保存学习数据');
     return normalized;
 }
@@ -284,9 +320,10 @@ export function resetLearningData() {
         const examKeys = [];
         for (let index = 0; index < storage.length; index += 1) {
             const key = storage.key(index);
-            if (key?.startsWith(LEGACY_KEYS.examPrefix)) examKeys.push(key);
+            if (key?.startsWith(LEGACY_KEYS.examPrefix) || key?.startsWith(PRACTICE_PREFIX)) examKeys.push(key);
         }
         examKeys.forEach((key) => storage.removeItem(key));
+        storageFailed = false;
         emitChange({ reason: 'reset', data: emptyLearningData() });
         return true;
     } catch {

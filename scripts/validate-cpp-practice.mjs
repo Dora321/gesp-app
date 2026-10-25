@@ -7,7 +7,7 @@ import { cppProgrammingExercises } from '../src/data/cppProgrammingPractice.js';
 
 // 一次编译所有参考实现，隔离命名空间后逐样例运行，避免反复编译头文件。
 const work = mkdtempSync(join(tmpdir(), 'gesp-cpp-practice-'));
-const standard = process.env.CPP_PRACTICE_STD || 'c++17';
+const standard = process.env.CPP_PRACTICE_STD || 'c++11';
 assert.match(standard, /^c\+\+(11|14|17|20|23)$/, 'CPP_PRACTICE_STD 必须是受支持的 C++ 标准');
 const levelFilter = process.env.CPP_PRACTICE_LEVELS
   ? new Set(process.env.CPP_PRACTICE_LEVELS.split(',').map(value => Number(value.trim())))
@@ -28,7 +28,7 @@ try {
   const file = join(work, 'practice.cpp');
   const binary = join(work, 'practice');
   writeFileSync(file, source);
-  const compile = spawnSync(process.env.CXX || 'c++', [`-std=${standard}`, '-O2', '-Wall', '-Wextra', file, '-o', binary], { encoding: 'utf8', timeout: 60000 });
+  const compile = spawnSync(process.env.CXX || 'c++', [`-std=${standard}`, '-O2', '-Wall', '-Wextra', '-pedantic-errors', file, '-o', binary], { encoding: 'utf8', timeout: 60000 });
   assert.equal(compile.status, 0, compile.error?.message || compile.stderr);
   let checked = 0;
   for (const [index, exercise] of selectedExercises.entries()) {

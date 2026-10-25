@@ -1,28 +1,28 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { Code2, Download, ExternalLink } from 'lucide-react';
 import { cppProgrammingBridges, cppProgrammingExercises, getCppProgrammingExercise } from '../data/cppProgrammingPractice';
 
+import { LEARNING_DATA_EVENT, readLearningData, updateLearningData, hasLearningStorageError } from '../utils/learningData';
+
 const checks = ['已在本机编译并运行程序', '已逐组核对题目样例', '已补测边界，并能解释解题思路'];
 
 function PracticeCard({ exercise }) {
-  const storageKey = `gesp:cpp-practice:v1:${exercise.id}`;
-  const [completed, setCompleted] = useState(() => {
-    try {
-      const saved = JSON.parse(localStorage.getItem(storageKey));
-      return checks.map((_, index) => saved?.[index] === true);
-    } catch { return checks.map(() => false); }
-  });
+  const readChecks = () => checks.map((_, index) => readLearningData().practice[exercise.id]?.[index] === true);
+  const [completed, setCompleted] = useState(readChecks);
   const [storageError, setStorageError] = useState(false);
   const bridge = cppProgrammingBridges[exercise.level];
-
+  useEffect(() => {
+    const refresh = () => setCompleted(checks.map((_, index) => readLearningData().practice[exercise.id]?.[index] === true));
+    window.addEventListener(LEARNING_DATA_EVENT, refresh);
+    window.addEventListener('storage', refresh);
+    return () => { window.removeEventListener(LEARNING_DATA_EVENT, refresh); window.removeEventListener('storage', refresh); };
+  }, [exercise.id]);
   const toggleCheck = index => {
     const next = completed.map((value, i) => i === index ? !value : value);
-    setCompleted(next);
-    try {
-      localStorage.setItem(storageKey, JSON.stringify(next));
-      setStorageError(false);
-    } catch { setStorageError(true); }
+    updateLearningData(data => ({ ...data, practice: { ...data.practice, [exercise.id]: next } }), 'practice');
+    setStorageError(hasLearningStorageError());
+    if (!hasLearningStorageError()) setCompleted(next);
   };
 
   const downloadTask = () => {
@@ -85,7 +85,7 @@ function PracticeCard({ exercise }) {
         <p className="mt-2 text-xs text-slate-600" aria-live="polite">自查 {completed.filter(Boolean).length}/{checks.length} · {storageError ? '当前浏览器无法保存，刷新后记录可能丢失。' : '记录保存在当前浏览器，不代表评测通过或考级达标。'}</p>
       </div>
       <details className="mt-4 rounded-lg border border-slate-200 p-3">
-        <summary className="cursor-pointer py-1 font-bold">完成尝试后对照：参考实现（{exercise.level <= 3 ? 'C++11' : 'C++17'}）</summary>
+        <summary className="cursor-pointer py-1 font-bold">完成尝试后对照：参考实现（C++11）</summary>
         <p className="mt-2 text-sm text-slate-600">先保留自己的代码，比较思路与边界处理；能够重新独立写出才算掌握。</p>
         <pre className="mt-3 max-h-96 overflow-auto rounded-lg bg-slate-900 p-4 text-xs leading-relaxed text-slate-100"><code>{exercise.referenceCode}</code></pre>
       </details>
