@@ -1,34 +1,537 @@
 {
-  "paperId": "2026-03-l4",
+ "paperId": "2026-03-l4",
+ "executedAt": "2026-10-25",
+ "reviewedBy": {
+  "type": "AI",
+  "executor": "WorkBuddy 子代理",
+  "session": "codex/question-bank-verification"
+ },
+ "source": {
+  "mirrorUrl": "https://raw.githubusercontent.com/Dora321/gesp-official-pdfs/main/pdfs/2026%E5%B9%B43%E6%9C%88-C%2B%2B4%E7%BA%A7.pdf",
+  "mirrorSha": "a36dbca17e0e80c30dc3bf22bcc1d7f15d4dfd7b",
+  "shaVerified": true,
+  "fetchedAt": "2026-10-25",
+  "pages": 11,
+  "renderedDir": "tmp/pages/2026-03-l4/"
+ },
+ "answerTable": {
+  "format": "官方试卷版：单选节首 p.1 有一张 1-15 的答案表；判断题节首 p.6 有一张 1-10 的答案表，√/× 为矢量图形，按 get_charbox 文本坐标裁剪并 6 倍渲染读图确认。",
+  "single": "B B B B A B B B B B B C B B A",
+  "singlePage": "p.1（表位于单选节首）",
+  "judge": "√√××√×√×××",
+  "judgePage": "p.6（表位于判断题节首）"
+ },
+ "questions": [
+  {
+   "id": 1,
+   "official": "B",
+   "answerTableValue": "B",
+   "bank": "B",
+   "changed": false,
+   "resolved": true,
+   "textMatch": true,
+   "dimensions": [
+    "statement",
+    "options",
+    "answer"
+   ],
+   "method": [
+    "逐题并排比对官方 PDF 原文，题面与选项一致",
+    "单选答案表逐位核对"
+   ],
+   "note": "官方 p.1 第1题：默认参数 int f(int x = 2)，输出 6 12"
+  },
+  {
+   "id": 2,
+   "official": "B",
+   "answerTableValue": "B",
+   "bank": "B",
+   "changed": false,
+   "resolved": true,
+   "textMatch": true,
+   "dimensions": [
+    "statement",
+    "options",
+    "answer"
+   ],
+   "method": [
+    "逐题并排比对官方 PDF 原文，题面与选项一致",
+    "单选答案表逐位核对"
+   ],
+   "note": "官方 p.2 第2题：二级指针 **q += 7，输出 12 12"
+  },
+  {
+   "id": 3,
+   "official": "B",
+   "answerTableValue": "B",
+   "bank": "B",
+   "changed": true,
+   "resolved": true,
+   "textMatch": true,
+   "dimensions": [
+    "statement",
+    "options",
+    "answer"
+   ],
+   "method": [
+    "按官方 PDF 逐页渲染读图，题面与选项逐字录入",
+    "单选答案表逐位核对"
+   ],
+   "note": "官方 p.1-p.2 第3题：数组指针 *(*(p+2)+1) = 10。原题库选项 C 误作 7，官方为 9，已改"
+  },
+  {
+   "id": 4,
+   "official": "B",
+   "answerTableValue": "B",
+   "bank": "B",
+   "changed": true,
+   "resolved": true,
+   "textMatch": true,
+   "dimensions": [
+    "statement",
+    "options",
+    "answer"
+   ],
+   "method": [
+    "按官方 PDF 逐页渲染读图，题面与选项逐字录入",
+    "单选答案表逐位核对"
+   ],
+   "note": "官方 p.2 第4题：值传递 / 引用传递 / 指针传递三路对比，输出 1 3 4。原题库是「int* p = a+1; p[2]」指针算术仿写题，整题重录"
+  },
+  {
+   "id": 5,
+   "official": "A",
+   "answerTableValue": "A",
+   "bank": "A",
+   "changed": true,
+   "resolved": true,
+   "textMatch": true,
+   "dimensions": [
+    "statement",
+    "options",
+    "answer"
+   ],
+   "method": [
+    "按官方 PDF 逐页渲染读图，题面与选项逐字录入",
+    "单选答案表逐位核对"
+   ],
+   "note": "官方 p.2 第5题：全局 x=3 被局部 x=10 遮蔽 + ::x，输出 12 3。原题库是 char* s+2 字符串仿写题，整题重录"
+  },
+  {
+   "id": 6,
+   "official": "B",
+   "answerTableValue": "B",
+   "bank": "B",
+   "changed": true,
+   "resolved": true,
+   "textMatch": true,
+   "dimensions": [
+    "statement",
+    "options",
+    "answer"
+   ],
+   "method": [
+    "按官方 PDF 逐页渲染读图，题面与选项逐字录入",
+    "单选答案表逐位核对"
+   ],
+   "note": "官方 p.2-p.3 第6题：结构体初始化四种写法，正确项 {1,2}。原题库是 delete 运算符题，整题重录"
+  },
+  {
+   "id": 7,
+   "official": "B",
+   "answerTableValue": "B",
+   "bank": "B",
+   "changed": true,
+   "resolved": true,
+   "textMatch": true,
+   "dimensions": [
+    "statement",
+    "options",
+    "answer"
+   ],
+   "method": [
+    "按官方 PDF 逐页渲染读图，题面与选项逐字录入",
+    "单选答案表逐位核对"
+   ],
+   "note": "官方 p.3 第7题：结构体值传递 g(s) 与引用传递 h(S& s)，输出 1 12。原题库是阶乘递归仿写题，整题重录"
+  },
+  {
+   "id": 8,
+   "official": "B",
+   "answerTableValue": "B",
+   "bank": "B",
+   "changed": true,
+   "resolved": true,
+   "textMatch": true,
+   "dimensions": [
+    "statement",
+    "options",
+    "answer"
+   ],
+   "method": [
+    "按官方 PDF 逐页渲染读图，题面与选项逐字录入",
+    "单选答案表逐位核对"
+   ],
+   "note": "官方 p.3 第8题：递推算法的定义（初值 + 递推关系 + 逐步推进）。原题库是「递归说法」仿写题，整题重录"
+  },
+  {
+   "id": 9,
+   "official": "B",
+   "answerTableValue": "B",
+   "bank": "B",
+   "changed": true,
+   "resolved": true,
+   "textMatch": true,
+   "dimensions": [
+    "statement",
+    "options",
+    "answer"
+   ],
+   "method": [
+    "按官方 PDF 逐页渲染读图，题面与选项逐字录入",
+    "单选答案表逐位核对"
+   ],
+   "note": "官方 p.3 第9题：climb(6) 滚动数组求斐波那契，返回 13。原题库是插入排序第一轮结果题，整题重录"
+  },
+  {
+   "id": 10,
+   "official": "B",
+   "answerTableValue": "B",
+   "bank": "B",
+   "changed": true,
+   "resolved": true,
+   "textMatch": true,
+   "dimensions": [
+    "statement",
+    "options",
+    "answer"
+   ],
+   "method": [
+    "按官方 PDF 逐页渲染读图，题面与选项逐字录入",
+    "单选答案表逐位核对"
+   ],
+   "note": "官方 p.4 第10题：按 score 升序后相同分数的相对顺序保持，判定为稳定。原题库是折半查找比较次数题，整题重录"
+  },
+  {
+   "id": 11,
+   "official": "B",
+   "answerTableValue": "B",
+   "bank": "B",
+   "changed": false,
+   "resolved": true,
+   "textMatch": true,
+   "dimensions": [
+    "statement",
+    "options",
+    "answer"
+   ],
+   "method": [
+    "逐题并排比对官方 PDF 原文，题面与选项一致",
+    "单选答案表逐位核对"
+   ],
+   "note": "官方 p.4 第11题：插入排序 while 条件 a[j] > key，题库与官方一致"
+  },
+  {
+   "id": 12,
+   "official": "C",
+   "answerTableValue": "C",
+   "bank": "C",
+   "changed": false,
+   "resolved": true,
+   "textMatch": true,
+   "dimensions": [
+    "statement",
+    "options",
+    "answer"
+   ],
+   "method": [
+    "逐题并排比对官方 PDF 原文，题面与选项一致",
+    "单选答案表逐位核对"
+   ],
+   "note": "官方 p.4 第12题：双重循环 if((i+j)%3==0)，复杂度 O(n^2)"
+  },
+  {
+   "id": 13,
+   "official": "B",
+   "answerTableValue": "B",
+   "bank": "B",
+   "changed": true,
+   "resolved": true,
+   "textMatch": true,
+   "dimensions": [
+    "statement",
+    "options",
+    "answer"
+   ],
+   "method": [
+    "按官方 PDF 逐页渲染读图，题面与选项逐字录入",
+    "单选答案表逐位核对"
+   ],
+   "note": "官方 p.4-p.5 第13题：哪种方式不能把 Welcome to 2026! 重定向到 log.txt，答案 B（ofstream 打开了却仍用 cout）。原题库是 O(n log n) 算法题，整题重录"
+  },
+  {
+   "id": 14,
+   "official": "B",
+   "answerTableValue": "B",
+   "bank": "B",
+   "changed": true,
+   "resolved": true,
+   "textMatch": true,
+   "dimensions": [
+    "statement",
+    "options",
+    "answer"
+   ],
+   "method": [
+    "按官方 PDF 逐页渲染读图，题面与选项逐字录入",
+    "单选答案表逐位核对"
+   ],
+   "note": "官方 p.5 第14题：divi(10,0) 抛 int 0，由 catch(int) 接住输出 B。原题库是选择排序比较次数题，整题重录"
+  },
+  {
+   "id": 15,
+   "official": "A",
+   "answerTableValue": "A",
+   "bank": "A",
+   "changed": true,
+   "resolved": true,
+   "textMatch": true,
+   "dimensions": [
+    "statement",
+    "options",
+    "answer"
+   ],
+   "method": [
+    "按官方 PDF 逐页渲染读图，题面与选项逐字录入",
+    "单选答案表逐位核对"
+   ],
+   "note": "官方 p.5 第15题：排行榜元素前移的 while 条件 i > 0 && cur.score > players[i-1].score。原题库是 vector push_back 题，整题重录"
+  },
+  {
+   "id": 16,
+   "official": "√",
+   "answerTableValue": "√",
+   "bank": "√",
+   "changed": true,
+   "resolved": true,
+   "textMatch": true,
+   "dimensions": [
+    "statement",
+    "answer"
+   ],
+   "method": [
+    "按官方 PDF 逐页渲染读图，题面逐字录入",
+    "判断题答案表逐位核对"
+   ],
+   "note": "官方 p.6 判断第1题：add10(int &x) 使 a 变成 15。题面「结束后」已按官方改为「结束时」"
+  },
+  {
+   "id": 17,
+   "official": "√",
+   "answerTableValue": "√",
+   "bank": "√",
+   "changed": false,
+   "resolved": true,
+   "textMatch": true,
+   "dimensions": [
+    "statement",
+    "answer"
+   ],
+   "method": [
+    "逐题并排比对官方 PDF 原文，题面一致",
+    "判断题答案表逐位核对"
+   ],
+   "note": "官方 p.6 判断第2题：引用不可重新绑定"
+  },
+  {
+   "id": 18,
+   "official": "×",
+   "answerTableValue": "×",
+   "bank": "×",
+   "changed": false,
+   "resolved": true,
+   "textMatch": true,
+   "dimensions": [
+    "statement",
+    "answer"
+   ],
+   "method": [
+    "逐题并排比对官方 PDF 原文，题面一致",
+    "判断题答案表逐位核对"
+   ],
+   "note": "官方 p.6 判断第3题：&a[1][2] - &a[0][1] 为 4，不是 5"
+  },
+  {
+   "id": 19,
+   "official": "×",
+   "answerTableValue": "×",
+   "bank": "×",
+   "changed": false,
+   "resolved": true,
+   "textMatch": true,
+   "dimensions": [
+    "statement",
+    "answer"
+   ],
+   "method": [
+    "逐题并排比对官方 PDF 原文，题面一致",
+    "判断题答案表逐位核对"
+   ],
+   "note": "官方 p.6 判断第4题：重载 calc(int x) 与带默认参数的 calc(int,int) 造成二义性，编译失败"
+  },
+  {
+   "id": 20,
+   "official": "√",
+   "answerTableValue": "√",
+   "bank": "√",
+   "changed": false,
+   "resolved": true,
+   "textMatch": true,
+   "dimensions": [
+    "statement",
+    "answer"
+   ],
+   "method": [
+    "逐题并排比对官方 PDF 原文，题面一致",
+    "判断题答案表逐位核对"
+   ],
+   "note": "官方 p.6 判断第5题：局部 x=20 遮蔽全局 x=10，输出 2010"
+  },
+  {
+   "id": 21,
+   "official": "×",
+   "answerTableValue": "×",
+   "bank": "×",
+   "changed": false,
+   "resolved": true,
+   "textMatch": true,
+   "dimensions": [
+    "statement",
+    "answer"
+   ],
+   "method": [
+    "逐题并排比对官方 PDF 原文，题面一致",
+    "判断题答案表逐位核对"
+   ],
+   "note": "官方 p.6 判断第6题：未初始化的指针不会自动置 nullptr"
+  },
+  {
+   "id": 22,
+   "official": "√",
+   "answerTableValue": "√",
+   "bank": "√",
+   "changed": true,
+   "resolved": true,
+   "textMatch": true,
+   "dimensions": [
+    "statement",
+    "answer"
+   ],
+   "method": [
+    "按官方 PDF 逐页渲染读图，题面逐字录入",
+    "判断题答案表逐位核对"
+   ],
+   "note": "官方 p.6-p.7 判断第7题：嵌套结构体定义合法。原题库代码缺 float position_x / position_y 两行，已按官方补全"
+  },
+  {
+   "id": 23,
+   "official": "×",
+   "answerTableValue": "×",
+   "bank": "×",
+   "changed": false,
+   "resolved": true,
+   "textMatch": true,
+   "dimensions": [
+    "statement",
+    "answer"
+   ],
+   "method": [
+    "逐题并排比对官方 PDF 原文，题面一致",
+    "判断题答案表逐位核对"
+   ],
+   "note": "官方 p.7 判断第8题：ofstream 打开了 data.txt 但内容用 cout 输出，文件为空"
+  },
+  {
+   "id": 24,
+   "official": "×",
+   "answerTableValue": "×",
+   "bank": "×",
+   "changed": false,
+   "resolved": true,
+   "textMatch": true,
+   "dimensions": [
+    "statement",
+    "answer"
+   ],
+   "method": [
+    "逐题并排比对官方 PDF 原文，题面一致",
+    "判断题答案表逐位核对"
+   ],
+   "note": "官方 p.7 判断第9题：同为 O(n^2) 不代表任何场景可互相替代"
+  },
+  {
+   "id": 25,
+   "official": "×",
+   "answerTableValue": "×",
+   "bank": "×",
+   "changed": true,
+   "resolved": true,
+   "textMatch": true,
+   "dimensions": [
+    "statement",
+    "answer"
+   ],
+   "method": [
+    "按官方 PDF 逐页渲染读图，题面逐字录入",
+    "判断题答案表逐位核对"
+   ],
+   "note": "官方 p.7 判断第10题：官方原文是「递推方式」，题库误作「递归方式」，已按官方更正；答案仍为×（单层循环是 O(n)）"
+  }
+ ],
+ "summary": {
+  "singleTotal": 15,
+  "judgeTotal": 10,
+  "singleChanged": 11,
+  "judgeChanged": 3
+ },
+ "unresolved": [],
+ "rebuild": true,
+ "rebuildNote": "2026-10-25 按官方 PDF 重建：原题库 Q4-Q10、Q13-Q15 共 10 道单选是仿写题（阶乘递归、插入排序第一轮、折半查找、vector、delete 运算符等），与官方卷无关；Q3 选项 C 误作 7（官方 9）；Q22 代码缺 position_x / position_y；Q25 官方原文为「递推」而题库写作「递归」。本轮 13 题重录或补正，25 道客观题答案与官方答案表逐位一致。",
+ "singleRebuild": {
   "executedAt": "2026-10-25",
-  "reviewedBy": { "type": "AI", "executor": "WorkBuddy 子代理", "session": "codex/question-bank-verification" },
-  "source": {
-    "mirrorUrl": "https://raw.githubusercontent.com/Dora321/gesp-official-pdfs/main/pdfs/2026%E5%B9%B43%E6%9C%88-C%2B%2B4%E7%BA%A7.pdf",
-    "mirrorSha": "a36dbca17e0e80c30dc3bf22bcc1d7f15d4dfd7b",
-    "shaVerified": true,
-    "fetchedAt": "2026-10-25",
-    "pages": 11,
-    "renderedDir": "tmp/pages/2026-03-l4/"
-  },
-  "answerTable": {
-    "judge": {
-      "location": "p.6 判断题节首",
-      "content": "题号 1-10：√ √ × × √ × √ × × ×"
-    },
-    "singleChoice": "本卷 PDF 未附单选答案表"
-  },
-  "questions": [
-    { "id": 16, "official": "√", "bank": "√", "changed": false },
-    { "id": 17, "official": "√", "bank": "√", "changed": false },
-    { "id": 18, "official": "×", "bank": "×", "changed": false },
-    { "id": 19, "official": "×", "bank": "×", "changed": false },
-    { "id": 20, "official": "√", "bank": "√", "changed": false },
-    { "id": 21, "official": "×", "bank": "×", "changed": false },
-    { "id": 22, "official": "√", "bank": "√", "changed": false },
-    { "id": 23, "official": "×", "bank": "×", "changed": false },
-    { "id": 24, "official": "×", "bank": "×", "changed": false },
-    { "id": 25, "official": "×", "bank": "×", "changed": false }
+  "questionIds": [
+   3,
+   4,
+   5,
+   6,
+   7,
+   8,
+   9,
+   10,
+   13,
+   14,
+   15
   ],
-  "summary": { "judgeTotal": 10, "judgeChanged": 0 },
-  "unresolved": []
+  "answerTable": [
+   "B",
+   "B",
+   "B",
+   "B",
+   "A",
+   "B",
+   "B",
+   "B",
+   "B",
+   "B",
+   "B",
+   "C",
+   "B",
+   "B",
+   "A"
+  ],
+  "answerTablePage": "p.1",
+  "reason": "Q4-Q10、Q13-Q15 与官方卷逐题不符：官方 Q4 是三路传参、Q5 是全局变量遮蔽、Q6 是结构体初始化、Q7 是结构体值/引用传参、Q8 是递推定义、Q9 是 climb(6)、Q10 是排序稳定性、Q13 是输出重定向、Q14 是异常捕获、Q15 是排行榜前移条件；题库对应位置分别是指针算术、char* 字符串、delete 运算符、阶乘递归、递归说法、插入排序第一轮、折半查找、O(n log n) 算法、选择排序比较次数、vector push_back。",
+  "method": "公式与代码块在 PDF 中为图片，文本层顺序错乱（代码块被甩到页尾），逐页渲染读图转录。",
+  "note": "Q3 题目本身一致，只是选项 C 由 9 被误抄成 7，属勘误而非换题。"
+ }
 }
