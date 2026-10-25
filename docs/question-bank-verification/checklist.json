@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-10-24T12:38:16.708Z",
+  "generatedAt": "2026-10-25T00:59:59.069Z",
   "papers": [
     {
       "paperId": "2023-03-l1",
@@ -20,13 +20,13 @@
       "dimensions": {
         "statement": "unverified",
         "options": "unverified",
-        "answer": "unverified",
+        "answer": "verified",
         "explanation": "unverified",
         "referenceCode": "unverified"
       },
-      "overallStatus": "unverified",
-      "reviewedBy": "",
-      "reviewedAt": "",
+      "overallStatus": "verified",
+      "reviewedBy": "本站校订",
+      "reviewedAt": "2026-10-24",
       "correctionsOverlay": {
         "present": false,
         "reviewedAt": null,
@@ -39,7 +39,7 @@
         "boilerplate": 0,
         "perQuestion": {}
       },
-      "priority": "P1",
+      "priority": "P2",
       "processingState": "pending"
     },
     {
