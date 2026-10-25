@@ -1,32 +1,56 @@
 {
   "paperId": "2024-12-l1",
-  "reviewedAt": "2026-10-24",
+  "reviewedAt": "2026-10-25",
   "reviewedBy": { "type": "AI", "executor": "WorkBuddy 子代理", "session": "codex/question-bank-verification" },
   "source": {
     "mirrorUrl": "https://raw.githubusercontent.com/Dora321/gesp-official-pdfs/main/pdfs/2024%E5%B9%B412%E6%9C%88-C%2B%2B1%E7%BA%A7.pdf",
     "mirrorSha": "251c7430ba844abf8e6595b10b94e997a4a18e57",
     "shaVerified": true,
     "fetchedAt": "2026-10-24",
-    "pages": { "total": 8, "note": "官方卷式：单选答案表在 p1 顶部，判断答案表在 p5（判断题节首），编程题解析 pp.6-8" }
+    "pages": { "total": 8, "note": "官方卷式：单选答案表在 p1 顶部，判断答案表在 p5（判断题节首），编程题 pp.6-8" }
   },
   "answerTable": {
-    "location": "单选：p1 顶部答案表；判断：p5 判断题节首答案表（均经裁剪放大人工核对）",
+    "location": "单选：p1 顶部答案表；判断：p5 判断题节首答案表（均经裁剪放大人工核对 √/× 与 A/D 形近字符）",
     "content": {
       "single": ["C", "C", "D", "B", "B", "D", "B", "C", "C", "C", "D", "C", "D", "B", "D"],
       "judge": ["√", "√", "×", "×", "×", "×", "×", "√", "×", "×"]
     }
   },
   "questions": [
-    {
-      "note": "答案串比对：单选 15 题官方串与题库 answer 序号完全一致（C C D B B D B C C C D C D B D），无修改。判断题官方串 √√×××××√××，与题库（√√×√√×√√×√）在第 4/5/6/7/10 题不一致——但这 5 题不可修改：题库判断题题面与官方原卷完全不同（题库为重建占位题：ENIAC、鼠标输入设备、bool 存储、break、for 三部分、a&&b、数组连续存储、void main、// 注释等；官方原卷判断题为：Ctrl+C/Ctrl+V 建立副本、8/3 与 8%3、cin/cout 原样输出、continue 死循环输出 0、i<=100 输出 100、i+=3 执行次数、cout<<(3,2)、studentName 合法性、float 2e-1 输出 0、break/continue 抵消）。题库每题 answer 与其自身题面自洽（如 Q20 break 跳出循环确为正确、Q25 编译器忽略 // 注释确为正确），照官方串改写将造成答案与题文错配。",
-      "action": "未修改任何 answer 字段，按占位卷规则如实记录。",
-      "programmingCheck": "编程题两道与官方一致：Q26 温度转换（样例 412.00→Temperature is too high!、173.56→-99.59 -147.26，与原卷 p6 一致）；Q27 奇数和偶数（与原卷 p8 参考程序奇偶计数逻辑一致），无需修改。",
-      "resolved": false
-    }
+    { "id": 1, "type": "single", "officialAnswer": "C", "bankAnswer": 2, "match": true, "method": ["官方原卷逐页转写重录（2026-10-25 整卷重建）", "答案表核对一致（p1 表第 1 列 C）"] },
+    { "id": 2, "type": "single", "officialAnswer": "C", "bankAnswer": 2, "match": true, "method": ["官方原卷逐页转写重录（2026-10-25 整卷重建）", "答案表核对一致（p1 表第 2 列 C）"] },
+    { "id": 3, "type": "single", "officialAnswer": "D", "bankAnswer": 3, "match": true, "method": ["官方原卷逐页转写重录（2026-10-25 整卷重建）", "答案表核对一致（p1 表第 3 列 D）"] },
+    { "id": 4, "type": "single", "officialAnswer": "B", "bankAnswer": 1, "match": true, "method": ["官方原卷逐页转写重录（2026-10-25 整卷重建）", "答案表核对一致（p1 表第 4 列 B）"] },
+    { "id": 5, "type": "single", "officialAnswer": "B", "bankAnswer": 1, "match": true, "method": ["官方原卷逐页转写重录（2026-10-25 整卷重建）", "答案表核对一致（p1 表第 5 列 B）；题干按原卷转录为「假设N为正整数2」（原卷如此，按 N=2 解释自洽）"] },
+    { "id": 6, "type": "single", "officialAnswer": "D", "bankAnswer": 3, "match": true, "method": ["官方原卷逐页转写重录（2026-10-25 整卷重建）", "答案表核对一致（p1 表第 6 列 D）"] },
+    { "id": 7, "type": "single", "officialAnswer": "B", "bankAnswer": 1, "match": true, "method": ["官方原卷逐页转写重录（2026-10-25 整卷重建）", "答案表核对一致（p1 表第 7 列 B）"] },
+    { "id": 8, "type": "single", "officialAnswer": "C", "bankAnswer": 2, "match": true, "method": ["官方原卷逐页转写重录（2026-10-25 整卷重建）", "答案表核对一致（p1 表第 8 列 C）；循环体经 PDF 文本层确认为 N += 1（9+10=19）"] },
+    { "id": 9, "type": "single", "officialAnswer": "C", "bankAnswer": 2, "match": true, "method": ["官方原卷逐页转写重录（2026-10-25 整卷重建）", "答案表核对一致（p1 表第 9 列 C）"] },
+    { "id": 10, "type": "single", "officialAnswer": "C", "bankAnswer": 2, "match": true, "method": ["官方原卷逐页转写重录（2026-10-25 整卷重建）", "答案表核对一致（p1 表第 10 列 C）"] },
+    { "id": 11, "type": "single", "officialAnswer": "D", "bankAnswer": 3, "match": true, "method": ["官方原卷逐页转写重录（2026-10-25 整卷重建）", "答案表核对一致（p1 表第 11 列 D）"] },
+    { "id": 12, "type": "single", "officialAnswer": "C", "bankAnswer": 2, "match": true, "method": ["官方原卷逐页转写重录（2026-10-25 整卷重建）", "答案表核对一致（p1 表第 12 列 C）"] },
+    { "id": 13, "type": "single", "officialAnswer": "D", "bankAnswer": 3, "match": true, "method": ["官方原卷逐页转写重录（2026-10-25 整卷重建）", "答案表核对一致（p1 表第 13 列 D）", "正方形示意图裁自 p4 原卷，存 public/question-assets/2024-12-l1/q13-square.png"] },
+    { "id": 14, "type": "single", "officialAnswer": "B", "bankAnswer": 1, "match": true, "method": ["官方原卷逐页转写重录（2026-10-25 整卷重建）", "答案表核对一致（p1 表第 14 列 B）"] },
+    { "id": 15, "type": "single", "officialAnswer": "D", "bankAnswer": 3, "match": true, "method": ["官方原卷逐页转写重录（2026-10-25 整卷重建）", "答案表核对一致（p1 表第 15 列 D）"] },
+    { "id": 16, "type": "judge", "officialAnswer": "√", "bankAnswer": 0, "match": true, "method": ["官方原卷逐页转写重录（2026-10-25 整卷重建）", "答案表核对一致（p5 节首表第 1 列 √）"] },
+    { "id": 17, "type": "judge", "officialAnswer": "√", "bankAnswer": 0, "match": true, "method": ["官方原卷逐页转写重录（2026-10-25 整卷重建）", "答案表核对一致（p5 节首表第 2 列 √）"] },
+    { "id": 18, "type": "judge", "officialAnswer": "×", "bankAnswer": 1, "match": true, "method": ["官方原卷逐页转写重录（2026-10-25 整卷重建）", "答案表核对一致（p5 节首表第 3 列 ×）"] },
+    { "id": 19, "type": "judge", "officialAnswer": "×", "bankAnswer": 1, "match": true, "method": ["官方原卷逐页转写重录（2026-10-25 整卷重建）", "答案表核对一致（p5 节首表第 4 列 ×）"] },
+    { "id": 20, "type": "judge", "officialAnswer": "×", "bankAnswer": 1, "match": true, "method": ["官方原卷逐页转写重录（2026-10-25 整卷重建）", "答案表核对一致（p5 节首表第 5 列 ×）"] },
+    { "id": 21, "type": "judge", "officialAnswer": "×", "bankAnswer": 1, "match": true, "method": ["官方原卷逐页转写重录（2026-10-25 整卷重建）", "答案表核对一致（p5 节首表第 6 列 ×）"] },
+    { "id": 22, "type": "judge", "officialAnswer": "×", "bankAnswer": 1, "match": true, "method": ["官方原卷逐页转写重录（2026-10-25 整卷重建）", "答案表核对一致（p5 节首表第 7 列 ×）"] },
+    { "id": 23, "type": "judge", "officialAnswer": "√", "bankAnswer": 0, "match": true, "method": ["官方原卷逐页转写重录（2026-10-25 整卷重建）", "答案表核对一致（p5 节首表第 8 列 √）"] },
+    { "id": 24, "type": "judge", "officialAnswer": "×", "bankAnswer": 1, "match": true, "method": ["官方原卷逐页转写重录（2026-10-25 整卷重建）", "答案表核对一致（p5 节首表第 9 列 ×）"] },
+    { "id": 25, "type": "judge", "officialAnswer": "×", "bankAnswer": 1, "match": true, "method": ["官方原卷逐页转写重录（2026-10-25 整卷重建）", "答案表核对一致（p5 节首表第 10 列 ×）"] },
+    { "id": 26, "type": "programming", "match": true, "method": ["官方原卷逐页转写重录（2026-10-25 整卷重建）", "题面/样例/数据范围/参考程序按原卷 pp.6-7 核对，参考程序采用原卷 3.1.10 版本"] },
+    { "id": 27, "type": "programming", "match": true, "method": ["官方原卷逐页转写重录（2026-10-25 整卷重建）", "题面/样例/数据范围/参考程序按原卷 pp.7-8 核对，参考程序采用原卷 3.2.5 版本"] }
   ],
-  "unresolved": [
-    "题库该卷 25 道客观题为与官方原卷不对应的重建占位题（单选答案串与官方恰好一致，判断题 5 处不一致源于题文不同），需另行整卷按原卷重录（官方题面见 tmp/pages/2024-12-l1/ 渲染图，官方答案串已录于本文件 answerTable）。",
-    "题库 Q1 题面存在事实性转录错误：官方原卷为「2024 年 10 月 8 日，诺贝尔物理学奖授予两位计算机科学家 John Hopfield 和 Geoffrey Hinton」，题库写成「授予了三位科学家」。因该卷整卷待重录，未单独修改。"
-  ],
-  "executedAt": "2026-10-24"
+  "unresolved": [],
+  "executedAt": "2026-10-25",
+  "pages": 8,
+  "rebuildNote": {
+    "date": "2026-10-25",
+    "action": "整卷重录：原 25 道客观题系早期占位重建题（单选答案串与官方恰好一致、判断题 5 处不一致，题面与官方原卷不对应，如题库 Q1「三位科学家」vs 原卷「两位」），已按官方原卷逐页转写重录为 15 单选 + 10 判断 + 2 编程共 27 题；答案串与官方答案表逐题一致，source.type 改为 official 并补 verification.verified，placeholder 状态经 npm run generate:papers 消除",
+    "verifiedBy": "WorkBuddy AI（渲染页+PDF 文本层双通道转写、mirrorSha 251c7430 校验、答案表裁图放大核对 + validate:bank/test 通过）"
+  }
 }
