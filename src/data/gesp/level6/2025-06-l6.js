@@ -614,16 +614,14 @@ export const paperData = {
                 "正确",
                 "错误",
             ],
-            answer: 0,
+            answer: 1,
             score: 2,
-            explanation: `**答案：正确**
+            explanation: `**答案：错误**
 
-            **判定依据：**
-            本题答案已依据试卷标准答案完成录入，可结合题干与选项复盘对应知识点。
+**解析：**
+构造函数不能声明为 virtual。虚函数机制依赖虚函数表（vtable），而虚表指针是在构造过程中由构造函数初始化的——对象尚未构造完成时无法通过虚机制确定该调用哪个类的构造函数。需要多态「克隆」时常用虚工厂函数（如 clone()）替代，析构函数则通常应当声明为 virtual。
 
-            **易混概念：** 注意区分相关概念的适用范围和边界条件。
-
-            **考点：** 面向对象
+**考点：** 面向对象、构造函数
         `,
             tags: [
                 "客观题",
@@ -639,16 +637,14 @@ export const paperData = {
                 "正确",
                 "错误",
             ],
-            answer: 0,
+            answer: 1,
             score: 2,
-            explanation: `**答案：正确**
+            explanation: `**答案：错误**
 
-            **判定依据：**
-            本题答案已依据试卷标准答案完成录入，可结合题干与选项复盘对应知识点。
+**解析：**
+哈夫曼树不唯一。存在多个频率相同的最小节点时，选取顺序可以不同；同一父节点下的左右子树也可以互换。虽然不同构造方式得到的 WPL（带权路径长度）相同，但树形结构和编码可以不同，因此哈夫曼树不唯一。
 
-            **易混概念：** 注意区分相关概念的适用范围和边界条件。
-
-            **考点：** 哈夫曼编码
+**考点：** 哈夫曼编码
         `,
             tags: [
                 "客观题",
@@ -659,7 +655,7 @@ export const paperData = {
         {
             id: 18,
             type: "judge",
-            question: `为了实现一个队列，使其出队操作（ pop ）的时间复杂度为 并且避免数组删除首元素的 问题，一 种常见且有效的方法是使用环形数组，通过调整队首和队尾指针来实现。 if (key < root->val) insert(root->right, key); else if (key > root->val) insert(root->left, key); 1 2 3 4 insert(root->left, key); insert(root->right, key); 1 2 insert(root->right, key); insert(root->left, key); 1 2 int knapsack1D(int W, vector<int>& wt, vector<int>& val, int n) { vector<int> dp(W+1, 0); for (int i = 0; i < n; ++i) { for (int w = W; w >= wt[i]; --w) { dp[w] = max(dp[w], dp[w-wt[i]]+val[i]); } } return dp[W]; } 1 2 3 4 5 6 7 8 9`,
+            question: `为了实现一个队列，使其出队操作（ pop ）的时间复杂度为 O(1) 并且避免数组删除首元素的 O(n) 问题，一 种常见且有效的方法是使用环形数组，通过调整队首和队尾指针来实现。`,
             options: [
                 "正确",
                 "错误",
@@ -668,12 +664,10 @@ export const paperData = {
             score: 2,
             explanation: `**答案：正确**
 
-            **判定依据：**
-            本题答案已依据试卷标准答案完成录入，可结合题干与选项复盘对应知识点。
+**解析：**
+普通数组队列出队要整体前移后续元素，代价 O(n)。环形数组把数组首尾逻辑相连，出队只需 front = (front + 1) % capacity 移动队首指针，入队同理移动 rear 指针，两者都是 O(1)；配合留空位或计数区分队空与队满即可。std::deque 的底层分块结构、许多题解中的循环队列也正是这一思路。
 
-            **易混概念：** 队列是先进先出（FIFO）。循环队列用 (rear+1)%cap 判断满，注意区分空与满（常留一个空位或计数）。
-
-            **考点：** 队列
+**考点：** 队列、循环队列
             `,
             tags: [
                 "客观题",
@@ -693,12 +687,10 @@ export const paperData = {
             score: 2,
             explanation: `**答案：正确**
 
-            **判定依据：**
-            本题答案已依据试卷标准答案完成录入，可结合题干与选项复盘对应知识点。
+**解析：**
+二叉排序树（BST）满足「左子树 < 根 < 右子树」。中序遍历的顺序是「左 → 根 → 右」，先输出比根小的、再输出根、最后输出比根大的，递归下去恰好得到递增有序序列，这也是验证一棵树是否为 BST 的经典方法。
 
-            **易混概念：** 注意区分相关概念的适用范围和边界条件。
-
-            **考点：** 树与二叉树
+**考点：** 树与二叉树、中序遍历
             `,
             tags: [
                 "客观题",
@@ -709,21 +701,19 @@ export const paperData = {
         {
             id: 20,
             type: "judge",
-            question: `如果二叉搜索树在连续的插入和删除操作后，所有节点都偏向一侧，导致其退化为类似于链表的结构，这时 其查找、插入、删除操作的时间复杂度会从理想情况下的 退化到 。`,
+            question: `如果二叉搜索树在连续的插入和删除操作后，所有节点都偏向一侧，导致其退化为类似于链表的结构，这时 其查找、插入、删除操作的时间复杂度会从理想情况下的 O(log n) 退化到 O(n log n)。`,
             options: [
                 "正确",
                 "错误",
             ],
-            answer: 0,
+            answer: 1,
             score: 2,
-            explanation: `**答案：正确**
+            explanation: `**答案：错误**
 
-            **判定依据：**
-            本题答案已依据试卷标准答案完成录入，可结合题干与选项复盘对应知识点。
+**解析：**
+BST 退化为链表后，操作需要沿唯一的路径逐个节点比较，查找、插入、删除都是 O(n)——链表是线性结构，不存在对数级别的分支削减。题干说退化到 O(n log n)，实际应为 O(n)，退化程度说法错误。
 
-            **易混概念：** 常见复杂度：O(1)<O(log n)<O(n)<O(n log n)<O(n²)<O(2^n)。1e5 规模下 O(n²) 通常超时，需优化到 O(n log n) 或更低；DP 注意状态数×转移复杂度。
-
-            **考点：** 时间复杂度
+**考点：** 时间复杂度、二叉搜索树
             `,
             tags: [
                 "客观题",
@@ -734,7 +724,21 @@ export const paperData = {
         {
             id: 21,
             type: "judge",
-            question: `执行下列代码， my_dog.name 的最终值是 Charlie 。`,
+            question: `执行下列代码， my_dog.name 的最终值是 Charlie 。
+
+\`\`\`cpp
+#include <iostream>
+class Dog {
+public:
+    std::string name;
+    Dog(std::string str) : name(str) {}
+};
+int main() {
+    Dog my_dog("Buddy");
+    my_dog.name = "Charlie";
+    return 0;
+}
+\`\`\``,
             options: [
                 "正确",
                 "错误",
@@ -743,10 +747,10 @@ export const paperData = {
             score: 2,
             explanation: `**答案：正确**
 
-            **判定依据：**
-            本题答案已依据试卷标准答案完成录入，可结合题干与选项复盘对应知识点。
+**解析：**
+构造时 name 初始化为 "Buddy"，随后 main 中执行 my_dog.name = "Charlie"; 直接给公有成员赋值，最终 my_dog.name 的值是 "Charlie"。name 是 public 成员，类外可以直接访问。
 
-            **易混概念：** 注意区分相关概念的适用范围和边界条件。
+**考点：** 面向对象、构造函数
             `,
             tags: [
                 "客观题",
@@ -757,21 +761,32 @@ export const paperData = {
         {
             id: 22,
             type: "judge",
-            question: `下列 C++ 代码可以成功编译，并且子类 Child 的实例能通过其成员函数访问父类 Parent 的属性 value 。`,
+            question: `下列 C++ 代码可以成功编译，并且子类 Child 的实例能通过其成员函数访问父类 Parent 的属性 value 。
+
+\`\`\`cpp
+class Parent {
+private:
+    int value = 100;
+};
+class Child : public Parent {
+public:
+    int get_private_val() {
+        return value; // 尝试访问父类的私有成员
+    }
+};
+\`\`\``,
             options: [
                 "正确",
                 "错误",
             ],
-            answer: 0,
+            answer: 1,
             score: 2,
-            explanation: `**答案：正确**
+            explanation: `**答案：错误**
 
-            **判定依据：**
-            本题答案已依据试卷标准答案完成录入，可结合题干与选项复盘对应知识点。
+**解析：**
+Parent 中的 value 是 private 成员，私有成员只对类自身（及其友元）可见，即使像本例这样 public 继承，子类也不能直接访问父类的私有成员——get_private_val() 中的 return value 无法通过编译。若要允许子类访问，应把 value 声明为 protected。
 
-            **易混概念：** 注意区分相关概念的适用范围和边界条件。
-
-            **考点：** 面向对象
+**考点：** 面向对象、访问控制
             `,
             tags: [
                 "客观题",

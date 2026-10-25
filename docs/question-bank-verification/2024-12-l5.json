@@ -1,0 +1,43 @@
+{
+  "paperId": "2024-12-l5",
+  "executedAt": "2026-10-25",
+  "reviewedBy": { "type": "AI", "executor": "WorkBuddy 子代理", "session": "codex/question-bank-verification" },
+  "source": {
+    "mirrorUrl": "https://raw.githubusercontent.com/Dora321/gesp-official-pdfs/main/pdfs/2024%E5%B9%B412%E6%9C%88-C%2B%2B5%E7%BA%A7.pdf",
+    "mirrorSha": "a3d578872aa225f6fdedd08fe341b17d0227f61a",
+    "shaVerified": true,
+    "fetchedAt": "2026-10-25",
+    "pages": 12,
+    "renderedDir": "tmp/pages/2024-12-l5/"
+  },
+  "answerTable": {
+    "judge": {
+      "location": "p.8 判断题节首",
+      "content": "题号 1-10：× √ × × √ × × √ √ √"
+    },
+    "singleChoice": "本卷 PDF 未附单选答案表"
+  },
+  "questions": [
+    { "id": 16, "official": "×", "bank": "×", "changed": false },
+    { "id": 17, "official": "√", "bank": "√", "changed": false },
+    { "id": 18, "official": "×", "bank": "×", "changed": false },
+    { "id": 19, "official": "×", "bank": "×", "changed": false },
+    { "id": 20, "official": "√", "bank": "√", "changed": false },
+    { "id": 21, "official": "×", "bank": "×", "changed": false },
+    { "id": 22, "official": "×", "bank": "×", "changed": false },
+    { "id": 23, "official": "√", "bank": "√", "changed": false },
+    {
+      "id": 24,
+      "official": "√",
+      "bank": "×",
+      "changed": true,
+      "method": ["答案表对照", "独立推导"],
+      "findings": "官方判断第 9 题：对 {5,13,19,21,37,56,64,75,88,92,100} 二分查找 19，比较次数是 2。独立推导：mid=(0+10)/2=5→56>19；mid=(0+4)/2=2→19 命中，共 2 次，官方 √ 正确。题库 answer=1（×）且旧解析误推为『56→21→13→19 需 4 次』（第二步 mid 应为下标 2 即 19，而非 21）。",
+      "fix": "answer 1→0，重写解析（逐步模拟二分过程）。",
+      "resolved": true
+    },
+    { "id": 25, "official": "√", "bank": "√", "changed": false }
+  ],
+  "summary": { "judgeTotal": 10, "judgeChanged": 1 },
+  "unresolved": []
+}

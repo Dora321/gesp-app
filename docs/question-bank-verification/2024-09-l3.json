@@ -1,0 +1,36 @@
+{
+  "paperId": "2024-09-l3",
+  "reviewedAt": "2026-10-25",
+  "reviewedBy": { "type": "AI", "executor": "WorkBuddy 子代理", "session": "codex/question-bank-verification" },
+  "source": {
+    "mirrorUrl": "https://raw.githubusercontent.com/Dora321/gesp-official-pdfs/main/pdfs/2024%E5%B9%B49%E6%9C%88-C%2B%2B3%E7%BA%A7.pdf",
+    "mirrorSha": "b24fa856150b7751d986562d76d1438402e43241",
+    "shaVerified": true,
+    "fetchedAt": "2026-10-25",
+    "pages": { "singleAnswerTable": "p.1", "judgeAnswerTable": "p.5" }
+  },
+  "answerTable": {
+    "single": { "content": "B C A D C B C C A D D C D C B", "page": "p.1" },
+    "judge": { "content": "√ √ √ √ × √ × √ √ ×", "page": "p.5", "note": "红色 √/× 字形，按「答案」行坐标 6 倍放大裁剪逐一核对（tmp/crops/2024-09-l3-judge.png），第 1 题为 √ 已放大确认非 ×" }
+  },
+  "questions": [
+    { "id": 16, "type": "judge", "official": "√", "bank": "×(改前)", "modified": true, "fix": "answer 1→0，解析重写：+1 原码 00000001 与 -1 原码 10000001 直接按二进制相加（符号位参与）得 10000010，按原码解释为 -2，题干说法正确；独立推导与官方 √ 一致" },
+    { "id": 17, "type": "judge", "official": "√", "bank": "√", "modified": false },
+    { "id": 18, "type": "judge", "official": "√", "bank": "√", "modified": false },
+    { "id": 19, "type": "judge", "official": "√", "bank": "√", "modified": false },
+    { "id": 20, "type": "judge", "official": "×", "bank": "×", "modified": false },
+    { "id": 21, "type": "judge", "official": "√", "bank": "√", "modified": false },
+    { "id": 22, "type": "judge", "official": "×", "bank": "×", "modified": false },
+    { "id": 23, "type": "judge", "official": "√", "bank": "√", "modified": false },
+    { "id": 24, "type": "judge", "official": "√", "bank": "√", "modified": false },
+    { "id": 25, "type": "judge", "official": "×", "bank": "×", "modified": false }
+  ],
+  "secondaryCheck": {
+    "singleChoice": "题库单选 15 题与官方答案表逐题比对全部一致",
+    "result": "all-match"
+  },
+  "unresolved": [
+    "Q16（判断第 1 题）考点本身有歧义空间：若按「原码运算规则」（异号相加取大绝对值符号做减法）则 1+(-1)=0，题干说法为错；官方答案表判为 √（正确），取的是「原码位串直接相加得 10000010 = -2」的解释。已按红线以官方答案表为准改为 √。"
+  ],
+  "executedAt": "2026-10-25"
+}

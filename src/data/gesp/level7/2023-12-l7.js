@@ -21,7 +21,7 @@ const programmingQuestions = [
 
 第二行 $N$ 个用单个空格隔开的正整数 $v_0,v_1,…,v_{N-1}$ ，依次表示每种商品的价值。保证 $1≤v_i≤10^9$。
 
-接下来 $M$ 行，每行两个整数 $x_j,y_j$ ，表示在第 $j$ 个商人这，你可以使用第 $x_j$ 种商品交换第 $y_j$ 种商品。保证 $0≤x_j,y_j
+接下来 $M$ 行，每行两个整数 $x_j,y_j$ ，表示在第 $j$ 个商人这，你可以使用第 $x_j$ 种商品交换第 $y_j$ 种商品。保证 $0 \\le x_j,y_j < N$ ，保证 $x_j \\ne y_j$。
 
 ## 输出格式
 
@@ -29,16 +29,26 @@ const programmingQuestions = [
 `,
       score: 25,
       samples: [
+        { input: `3 5 0 2
+1 2 4
+1 0
+2 0
+0 1
+2 1
+1 2`, output: `5` },
         { input: `3 3 0 2
-5 3 10
+100 2 4
 0 1
 1 2
-0 2`, output: `6` },
-        { input: `2 1 0 1
-1 2
-1 0`, output: `No solution` }
+0 2`, output: `-95` },
+        { input: `4 4 3 0
+1 2 3 4
+1 0
+0 1
+3 2
+2 3`, output: `No solution` }
       ],
-      explanation: "把每种商品看作图上的点，每次交易看作一条有向边，边权为手续费加上换货需要补的差价（若得到更贵商品则补差，得到更便宜商品则相当于负代价）。任何一条 a→b 路径的总花费 = 交易次数 + v_b - v_a，因此最优解等价于求 a 到 b 的最少交易次数。样例说明：样例 1 中直接用商品 0 换商品 2，花费 1 + 10 - 5 = 6，比经商品 1 中转（-1 + 8 = 7）更优。注：官方样例缺失，此处样例为本站按题意构造并经参考程序验证，待官方 PDF 复核。",
+      explanation: "把每种商品看作图上的点，每次交易看作一条有向边，边权为 1 元手续费加上换货需要补的差价，即 w(x→y) = 1 + v_y - v_x。任何一条 a→b 路径的总花费 = 交易次数 + v_b - v_a，其中 v_b - v_a 是定值，因此最优解等价于求 a 到 b 的最少交易次数（边权可负但无负环，最短路以 SPFA / 带势 Dijkstra 求解）。样例说明：样例 1 中先找 2 号商人用商品 0 换商品 1（差价 2-1=1 加 1 元手续费），再找 4 号商人用商品 1 换商品 2（差价 4-2=2 加 1 元手续费），共 1+1+2+1 = 5；样例 2 中直接找 2 号商人用商品 0 换商品 2，赚取 100-4=96 元差价，再付 1 元手续费，净赚 95 元，故输出 -95；样例 3 中从商品 3 只能到达商品 2 或回到商品 3，无法到达商品 0，输出 No solution。",
       tags: ["编程题", "图论", "最短路"],
       template: "#include <bits/stdc++.h>\nusing namespace std;\n\nint main() {\n    ios::sync_with_stdio(false);\n    cin.tie(nullptr);\n    return 0;\n}",
       referenceCode: "#include <bits/stdc++.h>\nusing namespace std;\n\nint main() {\n    ios::sync_with_stdio(false);\n    cin.tie(nullptr);\n\n    int n, m, s, t;\n    cin >> n >> m >> s >> t;\n    vector<long long> val(n);\n    for (int i = 0; i < n; ++i) cin >> val[i];\n    vector<vector<pair<int,long long>>> g(n);\n    for (int i = 0; i < m; ++i) {\n        int x, y;\n        cin >> x >> y;\n        long long w = 1+val[y]-val[x];\n        g[x].push_back({y, w});\n    }\n\n    const long long INF = (1LL << 60);\n    vector<long long> dist(n, INF);\n    vector<int> inq(n, 0), cnt(n, 0);\n    queue<int> q;\n    dist[s] = 0;\n    q.push(s);\n    inq[s] = 1;\n    while (!q.empty()) {\n        int u = q.front(); q.pop();\n        inq[u] = 0;\n        for (auto [v, w] : g[u]) {\n            if (dist[u] != INF && dist[v] > dist[u]+w) {\n                dist[v] = dist[u]+w;\n                if (!inq[v]) {\n                    q.push(v);\n                    inq[v] = 1;\n                }\n            }\n        }\n    }\n    if (dist[t] == INF) cout << \"No solution\\n\";\n    else cout << dist[t] << '\\n';\n    return 0;\n}",

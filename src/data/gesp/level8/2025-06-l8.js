@@ -1,5 +1,24 @@
 import { l8ProgrammingByPaper } from './programming.js';
 
+// 编程题 1「树上旅行」按官方 PDF（2025 年 6 月 C++ 八级，第 8 页）补录官方样例 2：
+// 原录入只有样例 1，缺少 8 个结点 / 3 次旅行的第二组样例。
+const programmingQuestions = l8ProgrammingByPaper['2025-06-l8'].map((q) => {
+    if (q.id !== 26) return q;
+    return {
+        ...q,
+        samples: [
+            {
+                input: '5 4\n1 1 2 2\n3 3\n1 -1 -1\n2 5\n1 -1 1 -1 1\n5 8\n1 1 1 -1 -1 -1 -1 -1\n5 3\n-1 -1 1',
+                output: '4\n1\n4\n2',
+            },
+            {
+                input: '8 3\n5 4 2 1 3 6 6\n8 1\n8\n8 2\n8 -8\n8 3\n8 -8 8',
+                output: '1\n7\n1',
+            },
+        ],
+    };
+});
+
 // 2025年6月 GESP C++ 八级真题
 export const paperData = {
     id: '2025-06-l8',
@@ -10,7 +29,7 @@ export const paperData = {
     session: 10,
     timeLimit: 5400,
     questions: [
-        ...l8ProgrammingByPaper['2025-06-l8'],
+        ...programmingQuestions,
         {
             id: 1,
             type: "single",

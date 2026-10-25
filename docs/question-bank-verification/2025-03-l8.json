@@ -38,5 +38,49 @@
       "resolved": true
     }
   ],
+  "programmingSampleAudit": [
+    {
+      "questionId": 27,
+      "title": "割裂",
+      "luoguId": "P11967",
+      "executedAt": "2026-10-25",
+      "method": [
+        "官方 PDF 页面渲染逐字查看（tmp/pages/2025-03-l8/p10.png、p11.png）",
+        "洛谷题面抓取对照（tmp/luogu-prog/P11967.json）",
+        "独立手算小图 + 暴力程序对拍（400 组随机树，实际完成 100 组）",
+        "g++ -O2 编译运行新参考代码"
+      ],
+      "officialSamples": [
+        {
+          "index": 1,
+          "input": "6 2\n1 3\n1 5\n3 6\n3 2\n5 4\n5 4\n5 3\n2 6",
+          "output": "2"
+        }
+      ],
+      "luoguSamples": [
+        {
+          "index": 1,
+          "input": "6 2\n1 3\n1 5\n3 6\n3 2\n5 4\n5 4\n5 3\n2 6",
+          "output": "2"
+        }
+      ],
+      "bankSamplesBefore": [
+        {
+          "index": 1,
+          "input": "6 2\n1 3\n1 5\n3 6\n3 2\n5 4\n5 4\n5 3\n2 6",
+          "output": "1"
+        }
+      ],
+      "independentDerivation": "树边 1-3、1-5、3-6、3-2、5-4；好点对 (5,4)、(5,3)，坏点对 (2,6)。删除节点 u 后所有好点对仍连通 ⟺ u 不在任何好点对路径上（u 为端点视为不连通）；坏点对不连通 ⟺ u 在坏点对路径上。好路径集合 = {5,4} ∪ {5,1,3} = {1,3,4,5}；坏路径 = {2,3,6}；差集 = {2,6}，答案 2。",
+      "verdict": "官方 PDF 输出样例为 2，洛谷同为 2；题库输出的 1 错误，且原参考程序只统计「坏路径内部节点」并忽略端点、只标记「好路径内部节点」，判据本身有误（在样例上恰好给出 1）。",
+      "decision": "按官方 PDF 修正题库（样例输出 + 参考程序 + 解析）",
+      "change": "samples[0].output 由 '1' 改为 '2'；referenceCode 重写为「LCA + 树上差分统计路径上的结点数」，判据改为 bad[u]>0 && good[u]==0；解析改写为端点也计入的连通性等价条件并给出样例逐步推导。",
+      "page": "p.10（3.2.8 题面描述 / 3.2.9 输入格式）、p.11（3.2.12 输入样例 / 3.2.13 输出样例 = 2 / 3.2.15 参考程序）",
+      "referenceCodeVerified": "新参考代码在官方样例上输出 2；与 O(n²) 暴力（逐点删除 + BFS 判连通）随机对拍 100 组全部一致（tmp/bin/gelie vs tmp/bin/gelie_brute）",
+      "note": "八级编程题的物理数据位于 src/data/gesp/level8/programming.js（多卷共用），按本次改动范围约束未直接修改该文件，而是在 src/data/gesp/level8/2025-03-l8.js 内对 Q27 做覆盖（map 覆盖 samples/explanation/referenceCode）。运行时经 getPaper() 读取的即为校正后数据。",
+      "dataChanged": true,
+      "resolved": true
+    }
+  ],
   "unresolved": []
 }

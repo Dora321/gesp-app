@@ -1,0 +1,34 @@
+{
+  "paperId": "2025-12-l4",
+  "executedAt": "2026-10-25",
+  "reviewedBy": { "type": "AI", "executor": "WorkBuddy 子代理", "session": "codex/question-bank-verification" },
+  "source": {
+    "mirrorUrl": "https://raw.githubusercontent.com/Dora321/gesp-official-pdfs/main/pdfs/2025%E5%B9%B412%E6%9C%88-C%2B%2B4%E7%BA%A7.pdf",
+    "mirrorSha": "fb429390b3f113346374c2dfa1ed9968b857e471",
+    "shaVerified": true,
+    "fetchedAt": "2026-10-25",
+    "pages": 12,
+    "renderedDir": "tmp/pages/2025-12-l4/"
+  },
+  "answerTable": {
+    "judge": {
+      "location": "p.7 判断题节首",
+      "content": "题号 1-10：√ × √ √ × √ √ × × √"
+    },
+    "singleChoice": "本卷 PDF 未附单选答案表"
+  },
+  "questions": [
+    { "id": 16, "official": "√", "bank": "√", "changed": false },
+    { "id": 17, "official": "×", "bank": "×", "changed": false },
+    { "id": 18, "official": "√", "bank": "√", "changed": false },
+    { "id": 19, "official": "√", "bank": "√", "changed": false },
+    { "id": 20, "official": "×", "bank": "×", "changed": false },
+    { "id": 21, "official": "√", "bank": "√", "changed": false },
+    { "id": 22, "official": "√", "bank": "√", "changed": false },
+    { "id": 23, "official": "×", "bank": "×", "changed": false },
+    { "id": 24, "official": "×", "bank": "×", "changed": false },
+    { "id": 25, "official": "√", "bank": "√", "changed": false }
+  ],
+  "summary": { "judgeTotal": 10, "judgeChanged": 0 },
+  "unresolved": []
+}

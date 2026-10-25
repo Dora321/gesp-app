@@ -1,0 +1,34 @@
+{
+  "paperId": "2024-12-l4",
+  "executedAt": "2026-10-25",
+  "reviewedBy": { "type": "AI", "executor": "WorkBuddy 子代理" },
+  "source": {
+    "mirrorUrl": "https://raw.githubusercontent.com/Dora321/gesp-official-pdfs/main/pdfs/2024%E5%B9%B412%E6%9C%88-C%2B%2B4%E7%BA%A7.pdf",
+    "mirrorSha": "8c4bd1cdf4f051915eb6913c38592e35e72234ff",
+    "shaVerified": true,
+    "fetchedAt": "2026-10-25",
+    "pages": { "judge": "p7", "single": "p1" }
+  },
+  "answerTable": {
+    "format": "官方试卷版，判断题节首集中答案表（题号 1-10 / 答案行，√/× 为红色图片，已放大并含题号行对齐核对）",
+    "judge": "××××√√√√××",
+    "judgePage": "p7（表位于判断题节首）",
+    "single": "A B B B D D D D A C B B A C A（p1 表，与题库 1-15 题一致）"
+  },
+  "questions": [
+    { "id": 16, "official": "官方第1题代码为 int* ptr; *ptr = 10;（野指针解引用，未初始化指针）→ ×；题库16被改写为 int *p = nullptr; → √", "bank": "√", "changed": false, "note": "题面被改写为 nullptr 版本，答案对自身题面事实正确；官方表位置1=× 与题库16 表面不一致不构成答案错误" },
+    { "id": 17, "official": "×", "bank": "×", "changed": false, "note": "对应官方第2题，函数可先声明后定义" },
+    { "id": 18, "official": "×", "bank": "×", "changed": false, "note": "对应官方第3题，值传递不修改传入变量" },
+    { "id": 19, "official": "×", "bank": "×", "changed": false, "note": "对应官方第4题，int arr[3][] 非法" },
+    { "id": 20, "official": "√", "bank": "√", "changed": false, "note": "对应官方第5题，递推定义" },
+    { "id": 21, "official": "√", "bank": "√", "changed": false, "note": "对应官方第7题（冒泡平均 O(n²) 最优 O(n)）；官方第6题（T(n)=T(n-1)+n 时间复杂度 O(n²)，√）在题库中缺失" },
+    { "id": 22, "official": "√", "bank": "√", "changed": false, "note": "对应官方第8题，冒泡与插入均稳定" },
+    { "id": 23, "official": "×", "bank": "×", "changed": false, "note": "对应官方第9题，选择排序不稳定（此前按位置直比曾误判为不符，实际官方第8题√对应题库22）" },
+    { "id": 24, "official": "×", "bank": "×", "changed": false, "note": "对应官方第10题，不一定要在 try 子句里调用" },
+    { "id": 25, "official": "官方共10道判断题，题库25为超出原卷的替换题『GESP 认证分为 1 到 8 级』√", "bank": "√", "changed": false, "note": "题面为替换题（答案恰为常识正确）" }
+  ],
+  "unresolved": [
+    "题库判断题 16 的题面被改写（官方原题为 int* ptr; *ptr = 10; 野指针题，官方答案×；题库改为 int *p = nullptr; 后答案√ 对自身题面成立）。建议按官方原卷回填题面并将答案改为×（本次仅核对答案，未动题面）。",
+    "官方第6题（T(n) = T(n-1) + n 且 T(0)=1，时间复杂度 O(n²)，√）在题库中缺失：题库 21-24 依次对应官方第 7-10 题，错位一位；题库25为替换题。建议补齐官方第6题并回填题面。"
+  ]
+}

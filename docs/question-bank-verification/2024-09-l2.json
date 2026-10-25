@@ -1,0 +1,204 @@
+{
+  "paperId": "2024-09-l2",
+  "reviewedAt": "2026-10-25",
+  "reviewedBy": {
+    "type": "AI",
+    "executor": "WorkBuddy 子代理",
+    "session": "codex/question-bank-verification"
+  },
+  "source": {
+    "mirrorUrl": "https://raw.githubusercontent.com/Dora321/gesp-official-pdfs/main/pdfs/2024%E5%B9%B49%E6%9C%88-C%2B%2B2%E7%BA%A7.pdf",
+    "mirrorSha": "df9f341ee4b71f50cc465df91b04c240dd9f8c78",
+    "shaVerified": true,
+    "fetchedAt": "2026-10-25"
+  },
+  "answerTable": {
+    "location": "单选答案表 p.1 顶部；判断答案表 p.6「2 判断题」标题下方",
+    "content": {
+      "single": "ACACCDAACBCAABA",
+      "judge": "√×√××√×√√×"
+    }
+  },
+  "questions": [
+    {
+      "id": 1,
+      "type": "single",
+      "official": "A",
+      "bank": 0,
+      "modified": false
+    },
+    {
+      "id": 2,
+      "type": "single",
+      "official": "C",
+      "bank": 2,
+      "modified": false
+    },
+    {
+      "id": 3,
+      "type": "single",
+      "official": "A",
+      "bank": 0,
+      "modified": false
+    },
+    {
+      "id": 4,
+      "type": "single",
+      "official": "C",
+      "bank": 2,
+      "modified": false
+    },
+    {
+      "id": 5,
+      "type": "single",
+      "official": "C",
+      "bank": 2,
+      "modified": false
+    },
+    {
+      "id": 6,
+      "type": "single",
+      "official": "D",
+      "bank": 3,
+      "modified": false
+    },
+    {
+      "id": 7,
+      "type": "single",
+      "official": "A",
+      "bank": 0,
+      "modified": false
+    },
+    {
+      "id": 8,
+      "type": "single",
+      "official": "A",
+      "bank": 0,
+      "modified": false
+    },
+    {
+      "id": 9,
+      "type": "single",
+      "official": "C",
+      "bank": 2,
+      "modified": false
+    },
+    {
+      "id": 10,
+      "type": "single",
+      "official": "B",
+      "bank": 1,
+      "modified": false
+    },
+    {
+      "id": 11,
+      "type": "single",
+      "official": "C",
+      "bank": 2,
+      "modified": false
+    },
+    {
+      "id": 12,
+      "type": "single",
+      "official": "A",
+      "bank": 0,
+      "modified": false
+    },
+    {
+      "id": 13,
+      "type": "single",
+      "official": "A",
+      "bank": 0,
+      "modified": false
+    },
+    {
+      "id": 14,
+      "type": "single",
+      "official": "B",
+      "bank": 1,
+      "modified": false
+    },
+    {
+      "id": 15,
+      "type": "single",
+      "official": "A",
+      "bank": 0,
+      "modified": false
+    },
+    {
+      "id": 16,
+      "type": "judge",
+      "official": "√",
+      "bank": 0,
+      "modified": false
+    },
+    {
+      "id": 17,
+      "type": "judge",
+      "official": "×",
+      "bank": 1,
+      "modified": false
+    },
+    {
+      "id": 18,
+      "type": "judge",
+      "official": "√",
+      "bank": 0,
+      "modified": false
+    },
+    {
+      "id": 19,
+      "type": "judge",
+      "official": "×",
+      "bank": 1,
+      "modified": false
+    },
+    {
+      "id": 20,
+      "type": "judge",
+      "official": "×",
+      "bank": 1,
+      "modified": false
+    },
+    {
+      "id": 21,
+      "type": "judge",
+      "official": "√",
+      "bank": 0,
+      "modified": false
+    },
+    {
+      "id": 22,
+      "type": "judge",
+      "official": "×",
+      "bank": 1,
+      "modified": false
+    },
+    {
+      "id": 23,
+      "type": "judge",
+      "official": "√",
+      "bank": 0,
+      "modified": false
+    },
+    {
+      "id": 24,
+      "type": "judge",
+      "official": "√",
+      "bank": 0,
+      "modified": false
+    },
+    {
+      "id": 25,
+      "type": "judge",
+      "official": "×",
+      "bank": 1,
+      "modified": false
+    }
+  ],
+  "unresolved": [],
+  "summary": {
+    "singleMatch": true,
+    "judgeModified": 0
+  }
+}

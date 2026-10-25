@@ -1,0 +1,73 @@
+{
+  "paperId": "2024-03-l1",
+  "reviewedAt": "2026-10-25",
+  "reviewedBy": { "type": "AI", "executor": "WorkBuddy 子代理", "session": "codex/question-bank-verification" },
+  "source": {
+    "mirrorUrl": "https://raw.githubusercontent.com/Dora321/gesp-official-pdfs/main/pdfs/2024%E5%B9%B43%E6%9C%88-C%2B%2B1%E7%BA%A7.pdf",
+    "mirrorSha": "8a8149980a38ea0c59b47dc0280d4d2a0e9f478b",
+    "shaVerified": true,
+    "localFile": "tmp/official-2024-03-l1.pdf",
+    "fetchedAt": "2026-10-25",
+    "pages": { "单选答案表": "p.1", "判断答案表+判断题1-8": "p.4", "判断题9-10": "p.5" }
+  },
+  "answerTable": {
+    "single": {
+      "page": 1,
+      "content": "B D D A B A C D B B D B C C C",
+      "matchesBank": true
+    },
+    "judge": {
+      "page": 4,
+      "content": "√ √ × √ × × × √ √ √",
+      "note": "答案表为图片（红色 √/×），已 4 倍放大逐位核对"
+    }
+  },
+  "questions": [
+    { "id": 16, "paperJudgeNo": 1, "official": "√", "bank": "√", "textMatch": true, "changed": false },
+    { "id": 17, "paperJudgeNo": 2, "official": "√", "bank": "√", "textMatch": true, "changed": false },
+    { "id": 18, "paperJudgeNo": 3, "official": "×", "bank": "×", "textMatch": true, "changed": false },
+    { "id": 19, "paperJudgeNo": 4, "official": "√", "bank": "√", "textMatch": true, "changed": false },
+    { "id": 20, "paperJudgeNo": 5, "official": "×", "bank": "×", "textMatch": true, "changed": false },
+    { "id": 21, "paperJudgeNo": 6, "official": "×", "bank": "×", "textMatch": true, "changed": false },
+    { "id": 22, "paperJudgeNo": 7, "official": "×", "bank": "×", "textMatch": true, "changed": false },
+    { "id": 23, "paperJudgeNo": 8, "official": "√", "bank": "√", "textMatch": true, "changed": false },
+    { "id": 24, "paperJudgeNo": 9, "official": "√", "bank": "√", "textMatch": true, "changed": false },
+    { "id": 25, "paperJudgeNo": 10, "official": "√", "bank": "√", "textMatch": true, "changed": false }
+  ],
+  "programmingSampleAudit": [
+    {
+      "questionId": 27,
+      "title": "找因数",
+      "luoguId": "B3953",
+      "executedAt": "2026-10-25",
+      "method": [
+        "官方 PDF 页面渲染逐字查看（tmp/pages/2024-03-l1/p06.png）",
+        "洛谷题面抓取对照（tmp/luogu-prog/B3953.json）",
+        "g++ -O2 编译运行参考代码逐样例比对"
+      ],
+      "officialSamples": [
+        { "index": 1, "input": "1", "output": "1" },
+        { "index": 2, "input": "6", "output": "1\n2\n3\n6" },
+        { "index": 3, "input": "10", "output": "1\n2\n5\n10" }
+      ],
+      "luoguSamples": [
+        { "index": 1, "input": "1", "output": "1" },
+        { "index": 2, "input": "6", "output": "1\n2\n3\n6" },
+        { "index": 3, "input": "10", "output": "1\n2\n5\n10" }
+      ],
+      "bankSamplesBefore": [
+        { "index": 1, "input": "11", "output": "1\n11" },
+        { "index": 2, "input": "6", "output": "1\n2\n3\n6" },
+        { "index": 3, "input": "10", "output": "1\n2\n5\n10" }
+      ],
+      "verdict": "官方与洛谷完全一致：样例 1 的输入是 1、输出是 1（a=1 的因数只有 1）。题库把输入误录成 11（并顺手补了输出 11），属题库录入错误，而非洛谷 OCR 丢字。",
+      "decision": "按官方 PDF 修正题库",
+      "change": "samples[0] 由 { input: '11', output: '1\\n11' } 改为 { input: '1', output: '1' }；题面、参考代码、解析无需改动。",
+      "page": "p.6（3.2.5 样例输入 1 / 3.2.6 样例输出 1）",
+      "referenceCodeVerified": "samples 1-3 全部通过（g++ -O2 编译执行，输出逐字节一致）",
+      "dataChanged": true,
+      "resolved": true
+    }
+  ],
+  "unresolved": []
+}

@@ -1,0 +1,31 @@
+{
+  "paperId": "2023-06-l4",
+  "executedAt": "2026-10-25",
+  "reviewedBy": { "type": "AI", "executor": "WorkBuddy 子代理" },
+  "source": {
+    "mirrorUrl": "https://raw.githubusercontent.com/Dora321/gesp-official-pdfs/main/pdfs/2023%E5%B9%B46%E6%9C%88-C%2B%2B4%E7%BA%A7.pdf",
+    "mirrorSha": "e56797ac791cc0ee858102eb4e9919e0bd516353",
+    "shaVerified": true,
+    "fetchedAt": "2026-10-25",
+    "pages": { "judge": "pp.8-10（解析版内联【答案】）", "single": "pp.1-7" }
+  },
+  "answerTable": {
+    "format": "真题解析版，逐题内联【答案】（判断题答案以红色文本/图片标注），无集中答案表",
+    "judge": "×√××√×××√√",
+    "judgePage": "pp.8-10（第1-8题在 p8-9，第9-10题在 p10）",
+    "single": "D C C D A D D B C C A A B C A（逐题内联，与题库一致）"
+  },
+  "questions": [
+    { "id": 16, "official": "×", "bank": "×", "changed": false, "note": "顶级域名是 gesp → 错（应为 cn）" },
+    { "id": 17, "official": "√", "bank": "√", "changed": false, "note": "斐波那契递推思想" },
+    { "id": 18, "official": "×", "bank": "×", "changed": false, "note": "函数参数默认值传递" },
+    { "id": 19, "official": "×", "bank": "×", "changed": false, "note": "四维数组可能用到" },
+    { "id": 20, "official": "√", "bank": "√", "changed": false, "note": "未调用的函数参数不占内存" },
+    { "id": 21, "official": "×", "bank": "×", "changed": false, "note": "不一定要在 try 子句里调用" },
+    { "id": 22, "official": "×", "bank": "×", "changed": false, "note": "应为 char s[10][100]" },
+    { "id": 23, "official": "×", "bank": "×", "changed": false, "note": "'0' 与 '\\0' 不等价" },
+    { "id": 24, "official": "√", "bank": "√", "changed": false, "note": ">= 与 >>= 都是运算符" },
+    { "id": 25, "official": "√", "bank": "√", "changed": false, "note": "文件重定向导致输出目标不确定" }
+  ],
+  "unresolved": []
+}

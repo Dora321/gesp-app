@@ -1,0 +1,77 @@
+{
+  "paperId": "2023-12-l7",
+  "reviewedAt": "2026-10-25",
+  "reviewedBy": {
+    "type": "AI",
+    "executor": "WorkBuddy 子代理",
+    "session": "codex/question-bank-verification"
+  },
+  "scope": "本文件仅记录编程题样例三源对照（官方 PDF / 题库 / 洛谷）裁决结果；客观题 25 题的五维核验尚未在本文件中展开。",
+  "source": {
+    "mirrorUrl": "https://raw.githubusercontent.com/Dora321/gesp-official-pdfs/main/pdfs/2023%E5%B9%B412%E6%9C%88-C%2B%2B7%E7%BA%A7.pdf",
+    "mirrorFile": "2023年12月-C++7级.pdf",
+    "mirrorSha": "e1902f47973b200a76de0078d308c6eec55e7c05",
+    "shaVerified": true,
+    "fetchedAt": "2026-10-25",
+    "pages": { "Q26 商品交易": "pp.8-9", "Q27 纸牌游戏": "pp.10-13" }
+  },
+  "programmingSampleAudit": [
+    {
+      "questionId": 26,
+      "title": "商品交易",
+      "luoguId": "P10110",
+      "executedAt": "2026-10-25",
+      "method": [
+        "官方 PDF 页面渲染逐字查看（tmp/pages/2023-12-l7/p08.png、p09.png）",
+        "洛谷题面抓取对照（tmp/luogu-prog/P10110.json）",
+        "g++ -O2 编译运行参考代码逐样例比对"
+      ],
+      "officialSamples": [
+        {
+          "index": 1,
+          "input": "3 5 0 2\n1 2 4\n1 0\n2 0\n0 1\n2 1\n1 2",
+          "output": "5"
+        },
+        {
+          "index": 2,
+          "input": "3 3 0 2\n100 2 4\n0 1\n1 2\n0 2",
+          "output": "-95"
+        },
+        {
+          "index": 3,
+          "input": "4 4 3 0\n1 2 3 4\n1 0\n0 1\n3 2\n2 3",
+          "output": "No solution"
+        }
+      ],
+      "luoguSamples": [
+        {
+          "index": 1,
+          "input": "3 5 0 2\n1 2 4\n1 0\n2 0\n0 1\n2 1\n1 2",
+          "output": "5"
+        },
+        {
+          "index": 2,
+          "input": "3 3 0 2\n100 2 4\n0 1\n1 2\n0 2",
+          "output": "-95"
+        },
+        {
+          "index": 3,
+          "input": "4 4 3 0\n1 2 3 4\n1 0\n0 1\n3 2\n2 3",
+          "output": "No solution"
+        }
+      ],
+      "bankSamplesBefore": [
+        { "index": 1, "input": "3 3 0 2\n5 3 10\n0 1\n1 2\n0 2", "output": "6" },
+        { "index": 2, "input": "2 1 0 1\n1 2\n1 0", "output": "No solution" }
+      ],
+      "verdict": "题库该题的样例与官方原卷完全不符（原录入为「本站按题意构造」的两组自造样例，且题面输入描述在「保证 0≤x_j,y_j」处被截断）。官方原卷确认本题为 2023 年 12 月七级编程题 1「商品交易」，样例共 3 组；洛谷 P10110 与原卷逐字一致，第三信源无误。",
+      "decision": "以官方 PDF 为准重录样例，并补全被截断的输入描述",
+      "change": "samples 由 2 组自造样例替换为原卷 3 组样例；输入格式末句补全为「保证 0 ≤ x_j,y_j < N，保证 x_j ≠ y_j」；解析删除「官方样例缺失……待复核」说明，改为原卷样例解释（5 / -95 / No solution 的推导）。题面 3.1.1 问题描述、输出格式与原卷逐字一致，未改动。",
+      "page": "p.8（3.1.5 样例输入 1）、p.9（3.1.6 样例输出 1 / 3.1.7 样例解释 1 / 3.1.8-3.1.10 样例 2 / 3.1.11-3.1.12 样例 3）",
+      "referenceCodeVerified": "原有 SPFA 参考代码无需重写：边权 1+v_y-v_x，任意环权为边数≥1 无负环，3 组新样例全部通过（g++ -O2 编译执行，输出逐字节一致）",
+      "dataChanged": true,
+      "resolved": true
+    }
+  ],
+  "unresolved": []
+}

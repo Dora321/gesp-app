@@ -1,0 +1,30 @@
+{
+  "paperId": "2023-03-l3",
+  "reviewedAt": "2026-10-25",
+  "reviewedBy": { "type": "AI", "executor": "WorkBuddy 子代理", "session": "codex/question-bank-verification" },
+  "source": {
+    "note": "2023 年 3 月并无正式 GESP C++ 三级认证。paperSources.js 中该卷标记 unofficial: true，officialUrl/mirrorUrl/mirrorSha 均为 null，无官方 PDF 可作答案依据。数据文件 src/data/gesp/level3/2023-03-l3.js 首行自述为「历史占位文件……非正式真题」，note 字段注明不应纳入正式题库入口。",
+    "mirrorSha": null,
+    "shaVerified": false,
+    "fetchedAt": null,
+    "pages": null
+  },
+  "answerTable": null,
+  "questions": [
+    { "id": 16, "type": "judge", "official": null, "bank": "√", "modified": false, "note": "无官方答案可比对，仅如实记录题库现状" },
+    { "id": 17, "type": "judge", "official": null, "bank": "×", "modified": false, "note": "同上" },
+    { "id": 18, "type": "judge", "official": null, "bank": "√", "modified": false, "note": "同上" },
+    { "id": 19, "type": "judge", "official": null, "bank": "×", "modified": false, "note": "同上" },
+    { "id": 20, "type": "judge", "official": null, "bank": "√", "modified": false, "note": "同上" },
+    { "id": 21, "type": "judge", "official": null, "bank": "×", "modified": false, "note": "同上" },
+    { "id": 22, "type": "judge", "official": null, "bank": "√", "modified": false, "note": "同上" },
+    { "id": 23, "type": "judge", "official": null, "bank": "×", "modified": false, "note": "同上" },
+    { "id": 24, "type": "judge", "official": null, "bank": "√", "modified": false, "note": "同上" },
+    { "id": 25, "type": "judge", "official": null, "bank": "×", "modified": false, "note": "同上" }
+  ],
+  "secondaryCheck": null,
+  "unresolved": [
+    "整卷为历史占位数据（非正式真题），10 道判断题呈 √/× 交替的模式，无官方来源可核对。按任务红线未做任何补全或臆造，仅记录现状。"
+  ],
+  "executedAt": "2026-10-25"
+}

@@ -1,0 +1,31 @@
+{
+  "paperId": "2023-12-l4",
+  "executedAt": "2026-10-25",
+  "reviewedBy": { "type": "AI", "executor": "WorkBuddy 子代理" },
+  "source": {
+    "mirrorUrl": "https://raw.githubusercontent.com/Dora321/gesp-official-pdfs/main/pdfs/2023%E5%B9%B412%E6%9C%88-C%2B%2B4%E7%BA%A7.pdf",
+    "mirrorSha": "35a12a9b23ece4c7477614c2e862ab8233af8612",
+    "shaVerified": true,
+    "fetchedAt": "2026-10-25",
+    "pages": { "judge": "p5", "single": "p1" }
+  },
+  "answerTable": {
+    "format": "官方试卷版，判断题节首集中答案表（题号 1-10 / 答案行，√/× 为红色图片，已放大视觉核对）",
+    "judge": "√√×××√√√×√",
+    "judgePage": "p5（表位于判断题节首）",
+    "single": "A B D C C C A B A A D A C B B（p1 表，与题库 1-15 题一致）"
+  },
+  "questions": [
+    { "id": 16, "official": "√", "bank": "√", "changed": false, "note": "sort(a,a+5) 局部排序" },
+    { "id": 17, "official": "√", "bank": "√", "changed": false, "note": "递归求阶乘 O(n)" },
+    { "id": 18, "official": "×", "bank": "√→×", "changed": true, "note": "[(1,2)*2]*3：[] 是下标运算符，左侧无数组/指针，表达式非法。原解析误按『[] 隐含数组上下文』论证为合法，与官方答案×矛盾。已改 answer 并重写解析" },
+    { "id": 19, "official": "×", "bank": "×", "changed": false, "note": "fileout 未关联文件，写入失败" },
+    { "id": 20, "official": "×", "bank": "×", "changed": false, "note": "01234 读入为数值 1234，重写后长度变化" },
+    { "id": 21, "official": "√", "bank": "√", "changed": false, "note": "5||2 输出 1" },
+    { "id": 22, "official": "√", "bank": "√", "changed": false, "note": "string 相加合并" },
+    { "id": 23, "official": "√", "bank": "√", "changed": false, "note": "sort 支持整数/浮点/字符数组排序" },
+    { "id": 24, "official": "×", "bank": "×", "changed": false, "note": "Dev C++ 是 IDE 不是操作系统" },
+    { "id": 25, "official": "√", "bank": "√", "changed": false, "note": "while 可与 for 互转" }
+  ],
+  "unresolved": []
+}

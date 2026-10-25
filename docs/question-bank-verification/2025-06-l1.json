@@ -1,0 +1,74 @@
+{
+  "paperId": "2025-06-l1",
+  "reviewedAt": "2026-10-25",
+  "reviewedBy": { "type": "AI", "executor": "WorkBuddy 子代理", "session": "codex/question-bank-verification" },
+  "source": {
+    "mirrorUrl": "https://raw.githubusercontent.com/Dora321/gesp-official-pdfs/main/pdfs/2025%E5%B9%B46%E6%9C%88-C%2B%2B1%E7%BA%A7.pdf",
+    "mirrorSha": "6db00b1b0e08ad52afae2ace659ac6ec63160f15",
+    "shaVerified": true,
+    "localFile": "tmp/2025年6月-C++1级.pdf",
+    "fetchedAt": "2026-10-25",
+    "pages": { "单选答案表": "p.1", "判断答案表+判断题1-5": "p.5", "判断题6-10": "p.6" }
+  },
+  "answerTable": {
+    "single": {
+      "page": 1,
+      "content": "C A D D C B D C A B A C D C B",
+      "matchesBank": true
+    },
+    "judge": {
+      "page": 5,
+      "content": "√ × √ × × × × × √ ×",
+      "note": "答案表为图片（红色 √/×），已 5-7 倍放大逐位核对（含右半 6-10 位单独放大复核）"
+    }
+  },
+  "questions": [
+    {
+      "id": 16, "paperJudgeNo": 1, "official": "√", "bank": "√", "textMatch": false, "changed": true,
+      "findings": "题库题文（简化的禁带设备陈述）非原卷题；原卷第 1 题为「智能手表因具有嵌入式操作系统及通信等功能，所以也不允许随身携带」。独立推导：智能手表具备嵌入式 OS 与通信能力，与禁带理由一致，命题为真，官方 √ 正确。答案相同，题文解析按原卷替换。",
+      "fix": "question 按原卷逐字转写替换，answer 不变（√），解析重写（嵌入式系统能力判断标准）"
+    },
+    { "id": 17, "paperJudgeNo": 2, "official": "×", "bank": "×", "textMatch": true, "changed": false, "note": "N=5，!N=0，N+!N=5≠4，官方 × 与题库一致" },
+    {
+      "id": 18, "paperJudgeNo": 3, "official": "√", "bank": "√", "textMatch": false, "changed": true,
+      "findings": "题库题文（while 必须含修改条件语句）非原卷题；原卷第 3 题为「删除 break 语句对程序执行结果没有影响」（代码中 continue 无条件执行，break 位于 continue 之后不可达）。独立推导：break 永远不执行，删除不影响输出（仍为 END），命题为真，官方 √ 正确。答案相同，一并替换。",
+      "fix": "question 按原卷逐字转写（含代码），answer 不变（√），解析重写（不可达代码分析）"
+    },
+    {
+      "id": 19, "paperJudgeNo": 4, "official": "×", "bank": "×", "textMatch": false, "changed": true,
+      "findings": "题库题文（变量可多次定义）非原卷题；原卷第 4 题为「删除 continue 后其输出是 0#2#4#6#8#」。独立推导：continue 是 if 块内最后一条语句，删除后偶数输出不变，但循环结束后 i=10 仍输出 END，实际输出 0#2#4#6#8#END ≠ 0#2#4#6#8#，命题为假，官方 × 正确。答案相同，一并替换。",
+      "fix": "question 按原卷逐字转写（含代码），answer 不变（×），解析重写（完整执行路径含循环后 if）"
+    },
+    {
+      "id": 20, "paperJudgeNo": 5, "official": "×", "bank": "√", "textMatch": false, "changed": true,
+      "findings": "题库题文（1.0/2.0=0.5）非原卷题；原卷第 5 题为「将 i<100; i=i+1 修改为 i<200; i+=i+1，输出相同」。独立推导：i+=i+1 即 i=2i+1，i 序列 0,1,3,7,15,31,63,127 共 8 轮输出 8；原代码输出 100。100≠8，命题为假，官方 × 正确。",
+      "fix": "question 按原卷逐字转写（含代码），answer 0→1，解析重写（逐轮列表跟踪 i 取值）"
+    },
+    {
+      "id": 21, "paperJudgeNo": 6, "official": "×", "bank": "√", "textMatch": false, "changed": true,
+      "findings": "题库题文（if(x=0) 恒 false）非原卷题；原卷第 6 题为「交换 i += 2 和 cnt += 1，交换前后两次输出相同」。独立推导：代码 int i, cnt = 0; 中 i 未初始化，while(i<10) 读取未初始化变量属未定义行为，两次独立运行的输出不保证相同，命题断言不成立，官方 × 正确（若 i 正确初始化，交换两条无条件语句确不改变输出，但原卷代码未初始化 i 是命题不成立的根源）。",
+      "fix": "question 按原卷逐字转写（含代码），answer 0→1，解析重写（未初始化变量与未定义行为，并注明条件交换本身不影响）"
+    },
+    {
+      "id": 22, "paperJudgeNo": 7, "official": "×", "bank": "√", "textMatch": false, "changed": true,
+      "findings": "题库题文（&& 是逻辑与）非原卷题；原卷第 7 题为「代码执行后将输出45」（for(i=0;i<10;i++) cnt+=1; 且 int cnt; 未初始化）。独立推导：即便 cnt 初值按 0 计，循环 10 轮 cnt=10，输出 10 而非 45（45 是 cnt+=i 的结果）；且 cnt 未初始化本身是未定义行为。命题为假，官方 × 正确。",
+      "fix": "question 按原卷逐字转写（含代码），answer 0→1，解析重写（cnt+=1 计数 vs cnt+=i 累加、变量初始化）"
+    },
+    {
+      "id": 23, "paperJudgeNo": 8, "official": "×", "bank": "√", "textMatch": false, "changed": true,
+      "findings": "题库题文（for 循环执行 10 次）非原卷题；原卷第 8 题为「cout << (12 + 12.12) 将报错，不同类型不能直接运算」。独立推导：int 与 double 混合运算自动类型提升，12+12.12=24.12 合法输出，不报错，命题为假，官方 × 正确。",
+      "fix": "question 按原卷逐字转写，answer 0→1，解析重写（隐式类型转换）"
+    },
+    {
+      "id": 24, "paperJudgeNo": 9, "official": "√", "bank": "√", "textMatch": false, "changed": true,
+      "findings": "题库题文（cin/cout 是标准输入输出流）非原卷题；原卷第 9 题为「不可以将变量命名为 false，因为 false 是C++的关键字」。独立推导：false 是 C++ 布尔字面量关键字，不能作标识符，命题为真，官方 √ 正确。答案相同，一并替换。",
+      "fix": "question 按原卷逐字转写，answer 不变（√），解析重写（关键字保留性）"
+    },
+    {
+      "id": 25, "paperJudgeNo": 10, "official": "×", "bank": "×", "textMatch": false, "changed": true,
+      "findings": "题库题文（3<x<5 是检查区间的正确语法）与原卷第 10 题相近但不同；原卷命题为「3 < X < 5 求值结果是4」。独立推导：左结合，(3<X) 为 0/1，再 <5 恒为 1，求值结果不可能是 4，命题为假，官方 × 正确。答案相同，题文按原卷替换。",
+      "fix": "question 按原卷逐字转写，answer 不变（×），解析重写（关系运算符结合性与 bool 取值）"
+    }
+  ],
+  "unresolved": []
+}
