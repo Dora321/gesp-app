@@ -1908,11 +1908,11 @@ a.home-lesson:hover .home-lesson-title {
         border-bottom: 0;
     }
 
-    .home-explore-item:first-child {
+    .home-explore-item:nth-child(3n + 1) {
         padding-left: 0;
     }
 
-    .home-explore-item + .home-explore-item {
+    .home-explore-item:not(:nth-child(3n + 1)) {
         border-left: 1px solid var(--mw-rule);
     }
 }
