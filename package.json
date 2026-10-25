@@ -16,6 +16,7 @@
     "checklist": "node scripts/generate-verification-checklist.mjs --write",
     "audit:answers": "node scripts/audit-answers-against-pdf.mjs",
     "audit:explanations": "node scripts/audit-explanation-quality.mjs",
+    "audit:judge": "node scripts/audit-judge-alignment.mjs",
     "check:sources": "node scripts/check-paper-sources.mjs",
     "check:sources:online": "node scripts/check-paper-sources.mjs --online",
     "validate:programming": "node scripts/validate-programming-questions.js",
