@@ -1,205 +1,529 @@
 {
-  "paperId": "2024-06-l2",
-  "reviewedAt": "2026-10-25",
-  "reviewedBy": {
-    "type": "AI",
-    "executor": "WorkBuddy 子代理",
-    "session": "codex/question-bank-verification"
+ "paperId": "2024-06-l2",
+ "reviewedAt": "2026-10-25",
+ "reviewedBy": {
+  "type": "AI",
+  "executor": "WorkBuddy 子代理",
+  "session": "codex/question-bank-verification"
+ },
+ "source": {
+  "mirrorUrl": "https://raw.githubusercontent.com/Dora321/gesp-official-pdfs/main/pdfs/2024%E5%B9%B46%E6%9C%88-C%2B%2B2%E7%BA%A7.pdf",
+  "mirrorSha": "04389cfdd33cd4c46669f65b40a2a4e8a8c765d5",
+  "shaVerified": true,
+  "fetchedAt": "2026-10-25"
+ },
+ "answerTable": {
+  "location": "单选答案表 p.1 顶部；判断答案表 p.6「2 判断题」标题下方",
+  "content": {
+   "single": [
+    "C",
+    "B",
+    "A",
+    "A",
+    "A",
+    "C",
+    "D",
+    "B",
+    "C",
+    "C",
+    "D",
+    "D",
+    "A",
+    "B",
+    "D"
+   ],
+   "judge": [
+    "×",
+    "×",
+    "×",
+    "√",
+    "×",
+    "×",
+    "×",
+    "√",
+    "√",
+    "√"
+   ]
   },
-  "source": {
-    "mirrorUrl": "https://raw.githubusercontent.com/Dora321/gesp-official-pdfs/main/pdfs/2024%E5%B9%B46%E6%9C%88-C%2B%2B2%E7%BA%A7.pdf",
-    "mirrorSha": "04389cfdd33cd4c46669f65b40a2a4e8a8c765d5",
-    "shaVerified": true,
-    "fetchedAt": "2026-10-25"
+  "note": "判断题 √/× 为矢量图形，文本层只有「题号 1..10 / 答案」表头，用 get_charbox 定位后 6 倍放大裁剪读图逐位抄写。"
+ },
+ "questions": [
+  {
+   "id": 1,
+   "official": "C",
+   "answerTableValue": "C",
+   "bank": "C",
+   "changed": false,
+   "resolved": true,
+   "textMatch": true,
+   "dimensions": [
+    "statement",
+    "options",
+    "answer"
+   ],
+   "method": [
+    "按官方 PDF 逐页渲染读图，题面与选项逐字录入",
+    "单选答案表逐位核对"
+   ],
+   "note": "官方第1题：GESP 认证语言有 C++、Python、图形化共 3 种（C）"
   },
-  "answerTable": {
-    "location": "单选答案表 p.1 顶部；判断答案表 p.6「2 判断题」标题下方",
-    "content": {
-      "single": "CBAAACDBCCDDABD",
-      "judge": "×××√×××√√√"
-    }
+  {
+   "id": 2,
+   "official": "B",
+   "answerTableValue": "B",
+   "bank": "B",
+   "changed": false,
+   "resolved": true,
+   "textMatch": true,
+   "dimensions": [
+    "statement",
+    "options",
+    "answer"
+   ],
+   "method": [
+    "按官方 PDF 逐页渲染读图，题面与选项逐字录入",
+    "单选答案表逐位核对"
+   ],
+   "note": "官方第2题：闰年判定应为 (yr%400==0) || (yr%4==0 && yr%100!=0)（B）"
   },
-  "questions": [
-    {
-      "id": 1,
-      "type": "single",
-      "official": "C",
-      "bank": 2,
-      "modified": false
-    },
-    {
-      "id": 2,
-      "type": "single",
-      "official": "B",
-      "bank": 1,
-      "modified": false
-    },
-    {
-      "id": 3,
-      "type": "single",
-      "official": "A",
-      "bank": 0,
-      "modified": false
-    },
-    {
-      "id": 4,
-      "type": "single",
-      "official": "A",
-      "bank": 0,
-      "modified": false
-    },
-    {
-      "id": 5,
-      "type": "single",
-      "official": "A",
-      "bank": 0,
-      "modified": false
-    },
-    {
-      "id": 6,
-      "type": "single",
-      "official": "C",
-      "bank": 2,
-      "modified": false
-    },
-    {
-      "id": 7,
-      "type": "single",
-      "official": "D",
-      "bank": 3,
-      "modified": false
-    },
-    {
-      "id": 8,
-      "type": "single",
-      "official": "B",
-      "bank": 1,
-      "modified": false
-    },
-    {
-      "id": 9,
-      "type": "single",
-      "official": "C",
-      "bank": 2,
-      "modified": false
-    },
-    {
-      "id": 10,
-      "type": "single",
-      "official": "C",
-      "bank": 0,
-      "modified": false,
-      "note": "单选第 10 题官方答案 C(10) 与题库 A(10) 仅选项排列顺序不同，答案值一致，无需修改。"
-    },
-    {
-      "id": 11,
-      "type": "single",
-      "official": "D",
-      "bank": 3,
-      "modified": false
-    },
-    {
-      "id": 12,
-      "type": "single",
-      "official": "D",
-      "bank": 3,
-      "modified": false
-    },
-    {
-      "id": 13,
-      "type": "single",
-      "official": "A",
-      "bank": 0,
-      "modified": false
-    },
-    {
-      "id": 14,
-      "type": "single",
-      "official": "B",
-      "bank": 1,
-      "modified": false
-    },
-    {
-      "id": 15,
-      "type": "single",
-      "official": "D",
-      "bank": 3,
-      "modified": false
-    },
-    {
-      "id": 16,
-      "type": "judge",
-      "official": "×",
-      "bank": 1,
-      "modified": false
-    },
-    {
-      "id": 17,
-      "type": "judge",
-      "official": "×",
-      "bank": 1,
-      "modified": false
-    },
-    {
-      "id": 18,
-      "type": "judge",
-      "official": "×",
-      "bank": 1,
-      "modified": false
-    },
-    {
-      "id": 19,
-      "type": "judge",
-      "official": "√",
-      "bank": 0,
-      "modified": false
-    },
-    {
-      "id": 20,
-      "type": "judge",
-      "official": "×",
-      "bank": 1,
-      "modified": false
-    },
-    {
-      "id": 21,
-      "type": "judge",
-      "official": "×",
-      "bank": 1,
-      "modified": false
-    },
-    {
-      "id": 22,
-      "type": "judge",
-      "official": "×",
-      "bank": 1,
-      "modified": false
-    },
-    {
-      "id": 23,
-      "type": "judge",
-      "official": "√",
-      "bank": 0,
-      "modified": false
-    },
-    {
-      "id": 24,
-      "type": "judge",
-      "official": "√",
-      "bank": 0,
-      "modified": false
-    },
-    {
-      "id": 25,
-      "type": "judge",
-      "official": "√",
-      "bank": 0,
-      "modified": false
-    }
-  ],
-  "unresolved": [],
-  "summary": {
-    "singleMatch": true,
-    "judgeModified": 0
+  {
+   "id": 3,
+   "official": "A",
+   "answerTableValue": "A",
+   "bank": "A",
+   "changed": false,
+   "resolved": true,
+   "textMatch": true,
+   "dimensions": [
+    "statement",
+    "options",
+    "answer"
+   ],
+   "method": [
+    "按官方 PDF 逐页渲染读图，题面与选项逐字录入",
+    "单选答案表逐位核对"
+   ],
+   "note": "官方第3题：five-Star 含连字符，不可作变量名（A）"
+  },
+  {
+   "id": 4,
+   "official": "A",
+   "answerTableValue": "A",
+   "bank": "A",
+   "changed": false,
+   "resolved": true,
+   "textMatch": true,
+   "dimensions": [
+    "statement",
+    "options",
+    "answer"
+   ],
+   "method": [
+    "按官方 PDF 逐页渲染读图，题面与选项逐字录入",
+    "单选答案表逐位核对"
+   ],
+   "note": "官方第4题：与 for(i=0;i<10;i++) 等价的是 i+=1（A）"
+  },
+  {
+   "id": 5,
+   "official": "A",
+   "answerTableValue": "A",
+   "bank": "A",
+   "changed": false,
+   "resolved": true,
+   "textMatch": true,
+   "dimensions": [
+    "statement",
+    "options",
+    "answer"
+   ],
+   "method": [
+    "按官方 PDF 逐页渲染读图，题面与选项逐字录入",
+    "单选答案表逐位核对"
+   ],
+   "note": "官方第5题：5%2 && 5%3 即 1 && 2，逻辑与得 true，输出1（A）"
+  },
+  {
+   "id": 6,
+   "official": "C",
+   "answerTableValue": "C",
+   "bank": "C",
+   "changed": false,
+   "resolved": true,
+   "textMatch": true,
+   "dimensions": [
+    "statement",
+    "options",
+    "answer"
+   ],
+   "method": [
+    "按官方 PDF 逐页渲染读图，题面与选项逐字录入",
+    "单选答案表逐位核对"
+   ],
+   "note": "官方第6题：switch 缺 break，month=1 会贯穿输出 Jan 与 Mar（C）"
+  },
+  {
+   "id": 7,
+   "official": "D",
+   "answerTableValue": "D",
+   "bank": "D",
+   "changed": false,
+   "resolved": true,
+   "textMatch": true,
+   "dimensions": [
+    "statement",
+    "options",
+    "answer"
+   ],
+   "method": [
+    "按官方 PDF 逐页渲染读图，题面与选项逐字录入",
+    "单选答案表逐位核对"
+   ],
+   "note": "官方第7题：先后输入 0 和 0 时输出 2，故「输出 4」的说法错误（D）"
+  },
+  {
+   "id": 8,
+   "official": "B",
+   "answerTableValue": "B",
+   "bank": "B",
+   "changed": true,
+   "resolved": true,
+   "textMatch": true,
+   "dimensions": [
+    "statement",
+    "options",
+    "answer"
+   ],
+   "method": [
+    "按官方 PDF 逐页渲染读图，题面与选项逐字录入",
+    "单选答案表逐位核对"
+   ],
+   "note": "官方第8题：货币 5/2/1 最少枚数，两空为 (N-M5*5)/2 与 N-M5*5-M2*2（B）。原题库题干被改写、代码块被简化成三行，已按官方补全"
+  },
+  {
+   "id": 9,
+   "official": "C",
+   "answerTableValue": "C",
+   "bank": "C",
+   "changed": false,
+   "resolved": true,
+   "textMatch": true,
+   "dimensions": [
+    "statement",
+    "options",
+    "answer"
+   ],
+   "method": [
+    "按官方 PDF 逐页渲染读图，题面与选项逐字录入",
+    "单选答案表逐位核对"
+   ],
+   "note": "官方第9题：双层循环累加 loopCount 得 36（C）"
+  },
+  {
+   "id": 10,
+   "official": "C",
+   "answerTableValue": "C",
+   "bank": "C",
+   "changed": true,
+   "resolved": true,
+   "textMatch": true,
+   "dimensions": [
+    "statement",
+    "options",
+    "answer"
+   ],
+   "method": [
+    "按官方 PDF 逐页渲染读图，题面与选项逐字录入",
+    "单选答案表逐位核对"
+   ],
+   "note": "官方第10题：loopCount 每轮外层加 1，共 10 次（C）。原题库代码一致，但选项集被换成 10/45/18/25，与官方 25/16/10/9 不同，答案字母随之错位（题库记 A），已恢复官方选项"
+  },
+  {
+   "id": 11,
+   "official": "D",
+   "answerTableValue": "D",
+   "bank": "D",
+   "changed": false,
+   "resolved": true,
+   "textMatch": true,
+   "dimensions": [
+    "statement",
+    "options",
+    "answer"
+   ],
+   "method": [
+    "按官方 PDF 逐页渲染读图，题面与选项逐字录入",
+    "单选答案表逐位核对"
+   ],
+   "note": "官方第11题：while(N) 遇 0 终止，故「会死循环、应改 while(N==0)」的说法错误（D）"
+  },
+  {
+   "id": 12,
+   "official": "D",
+   "answerTableValue": "D",
+   "bank": "D",
+   "changed": true,
+   "resolved": true,
+   "textMatch": true,
+   "dimensions": [
+    "statement",
+    "options",
+    "answer"
+   ],
+   "method": [
+    "按官方 PDF 逐页渲染读图，题面与选项逐字录入",
+    "单选答案表逐位核对"
+   ],
+   "note": "官方第12题：质数判定程序，初值改为 Flag = N>=2?true:false 才能覆盖负数与 0（D）。原题库是「关于质数判定的说法」自编题，整题重录"
+  },
+  {
+   "id": 13,
+   "official": "A",
+   "answerTableValue": "A",
+   "bank": "A",
+   "changed": true,
+   "resolved": true,
+   "textMatch": true,
+   "dimensions": [
+    "statement",
+    "options",
+    "answer"
+   ],
+   "method": [
+    "按官方 PDF 逐页渲染读图，题面与选项逐字录入",
+    "单选答案表逐位核对"
+   ],
+   "note": "官方第13题：双层循环输出乘法表，当前代码无需调整（A）。原题库是输出星号三角形的自编题，整题重录"
+  },
+  {
+   "id": 14,
+   "official": "B",
+   "answerTableValue": "B",
+   "bank": "B",
+   "changed": true,
+   "resolved": true,
+   "textMatch": true,
+   "dimensions": [
+    "statement",
+    "options",
+    "answer"
+   ],
+   "method": [
+    "按官方 PDF 逐页渲染读图，题面与选项逐字录入",
+    "单选答案表逐位核对"
+   ],
+   "note": "官方第14题：continue 挡住全部偶数，cnt2 的 else 分支不可达，输出 5 0（B）。原题库是 a=5,b=2 的 if 自编题，整题重录"
+  },
+  {
+   "id": 15,
+   "official": "D",
+   "answerTableValue": "D",
+   "bank": "D",
+   "changed": false,
+   "resolved": true,
+   "textMatch": true,
+   "dimensions": [
+    "statement",
+    "options",
+    "answer"
+   ],
+   "method": [
+    "按官方 PDF 逐页渲染读图，题面与选项逐字录入",
+    "单选答案表逐位核对"
+   ],
+   "note": "官方第15题：N=3、M=63 时输出 63是3的超级幸运数（D）"
+  },
+  {
+   "id": 16,
+   "official": "×",
+   "answerTableValue": "×",
+   "bank": "×",
+   "changed": false,
+   "resolved": true,
+   "textMatch": true,
+   "dimensions": [
+    "statement",
+    "answer"
+   ],
+   "method": [
+    "按官方 PDF 逐页渲染读图，题面逐字录入",
+    "判断题答案表逐位核对"
+   ],
+   "note": "官方判断第1题：'9'+'1' 是两个 ASCII 码相加得 106，不是 10（×）"
+  },
+  {
+   "id": 17,
+   "official": "×",
+   "answerTableValue": "×",
+   "bank": "×",
+   "changed": false,
+   "resolved": true,
+   "textMatch": true,
+   "dimensions": [
+    "statement",
+    "answer"
+   ],
+   "method": [
+    "按官方 PDF 逐页渲染读图，题面逐字录入",
+    "判断题答案表逐位核对"
+   ],
+   "note": "官方判断第2题：-12 % 10 结果为 -2，与除数同号（×）"
+  },
+  {
+   "id": 18,
+   "official": "×",
+   "answerTableValue": "×",
+   "bank": "×",
+   "changed": false,
+   "resolved": true,
+   "textMatch": true,
+   "dimensions": [
+    "statement",
+    "answer"
+   ],
+   "method": [
+    "按官方 PDF 逐页渲染读图，题面逐字录入",
+    "判断题答案表逐位核对"
+   ],
+   "note": "官方判断第3题：int(12.56) 是截断取整得 12，不是 13（×）"
+  },
+  {
+   "id": 19,
+   "official": "√",
+   "answerTableValue": "√",
+   "bank": "√",
+   "changed": false,
+   "resolved": true,
+   "textMatch": true,
+   "dimensions": [
+    "statement",
+    "answer"
+   ],
+   "method": [
+    "按官方 PDF 逐页渲染读图，题面逐字录入",
+    "判断题答案表逐位核对"
+   ],
+   "note": "官方判断第4题：N=10 时 N/3=3、N%3=1，输出 3-1（√）"
+  },
+  {
+   "id": 20,
+   "official": "×",
+   "answerTableValue": "×",
+   "bank": "×",
+   "changed": false,
+   "resolved": true,
+   "textMatch": true,
+   "dimensions": [
+    "statement",
+    "answer"
+   ],
+   "method": [
+    "按官方 PDF 逐页渲染读图，题面逐字录入",
+    "判断题答案表逐位核对"
+   ],
+   "note": "官方判断第5题：scanf 是库函数不是关键字，可以作变量名（×）"
+  },
+  {
+   "id": 21,
+   "official": "×",
+   "answerTableValue": "×",
+   "bank": "×",
+   "changed": true,
+   "resolved": true,
+   "textMatch": true,
+   "dimensions": [
+    "statement",
+    "answer"
+   ],
+   "method": [
+    "按官方 PDF 逐页渲染读图，题面逐字录入",
+    "判断题答案表逐位核对"
+   ],
+   "note": "官方判断第6题：幸运数程序中 M /= 10 会推到 0，不会死循环（×）。原题库是「for 循环里 continue」的自编题，整题重录"
+  },
+  {
+   "id": 22,
+   "official": "×",
+   "answerTableValue": "×",
+   "bank": "×",
+   "changed": false,
+   "resolved": true,
+   "textMatch": true,
+   "dimensions": [
+    "statement",
+    "answer"
+   ],
+   "method": [
+    "按官方 PDF 逐页渲染读图，题面逐字录入",
+    "判断题答案表逐位核对"
+   ],
+   "note": "官方判断第7题：代码只加外层、break 只跳内层，输出 10 的说法错误（×）"
+  },
+  {
+   "id": 23,
+   "official": "√",
+   "answerTableValue": "√",
+   "bank": "√",
+   "changed": false,
+   "resolved": true,
+   "textMatch": true,
+   "dimensions": [
+    "statement",
+    "answer"
+   ],
+   "method": [
+    "按官方 PDF 逐页渲染读图，题面逐字录入",
+    "判断题答案表逐位核对"
+   ],
+   "note": "官方判断第8题：i 取 1~4、j 从 i 起以 i 为步长，累加得 5（√）"
+  },
+  {
+   "id": 24,
+   "official": "√",
+   "answerTableValue": "√",
+   "bank": "√",
+   "changed": true,
+   "resolved": true,
+   "textMatch": true,
+   "dimensions": [
+    "statement",
+    "answer"
+   ],
+   "method": [
+    "按官方 PDF 逐页渲染读图，题面逐字录入",
+    "判断题答案表逐位核对"
+   ],
+   "note": "官方判断第9题：while(N) 逐位取模累加，可实现各位数字之和（√）。题面已按官方原文对齐"
+  },
+  {
+   "id": 25,
+   "official": "√",
+   "answerTableValue": "√",
+   "bank": "√",
+   "changed": true,
+   "resolved": true,
+   "textMatch": true,
+   "dimensions": [
+    "statement",
+    "answer"
+   ],
+   "method": [
+    "按官方 PDF 逐页渲染读图，题面逐字录入",
+    "判断题答案表逐位核对"
+   ],
+   "note": "官方判断第10题：GESP 同级能力要求跨语言一致（√）。原题库是「cout<<(5/2+5%3) 输出4」的自编题，整题重录"
   }
+ ],
+ "unresolved": [],
+ "summary": {
+  "singleTotal": 15,
+  "judgeTotal": 10,
+  "changed": 8
+ },
+ "rebuild": true,
+ "rebuildNote": "2026-10-25 按官方 PDF 重建：Q12/Q13/Q14 三道单选为自编替换题、Q21/Q25 两道判断为自编替换题，共 5 题按原文重录；Q10 代码一致但选项集被换、答案字母错位，已恢复官方选项；Q8 题干与代码块按官方补全；Q24 题面对齐官方措辞。",
+ "priorReviewCorrection": {
+  "foundAt": "2026-10-25",
+  "note": "本文件 2026-10-25 早前的 summary 写作 {\"singleMatch\": true, \"judgeModified\": 0}、unresolved 为空，但实际 Q12/Q13/Q14/Q21/Q25 是自编替换题，与官方卷无关；Q10 的选项集也被换过，题库记 A、官方记 C（两者指向同一个数值 10，只是选项顺序不同）。上次复核只比对了答案字母或数值，没有核对选项内容与题面，属于误判。教训：选择题必须同时核对「题面 + 选项集 + 答案位置」三项，只对答案值不够。"
+ }
 }
