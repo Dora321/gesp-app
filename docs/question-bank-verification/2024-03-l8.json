@@ -65,5 +65,27 @@
       "resolved": true
     }
   ],
+  "judgeAnswerAudit": {
+    "executedAt": "2026-10-25",
+    "executor": "WorkBuddy 子代理",
+    "method": "回官方 PDF 判断题答案表（p.5 表头『题号 1..10 / 答案』）逐列 4 倍放大核对（tmp/crop-2024-03-l8-judge.png），洛谷仅作线索（A=√、B=×）。",
+    "officialSequence": "Q16→Q25 = × × √ × × × √ √ √ √（对应表内第 1..10 列）",
+    "items": [
+      {
+        "qid": 20,
+        "bankAnswer": "√",
+        "luoguAnswer": "×（B）",
+        "officialAnswer": "×",
+        "officialLocation": "p.5 判断题答案表第 5 列（第5题：链地址法处理哈希冲突，则该哈希表内查找元素的最差时间复杂度为 O(1)）",
+        "derivation": "链地址法平均查找 O(1+α)；最差时 n 个元素全落入同一桶，链表长度 n，查找退化为顺序比较，为 O(n)。命题把平均当最差，故错。",
+        "changed": true,
+        "changeDetail": "answer 0→1；题面补回官方原文的空缺表述『O(1)』并修正 OCR 断行（『最差时 间复杂度为 。』→『最差时间复杂度为 O(1)。』）；移除 sourceIntegrity=missing-formula 标记（恢复计分）；解析重写为平均 vs 最差对比。"
+      }
+    ],
+    "outOfScopeFindings": [
+      "Q19（表内第 4 列）官方为 ×（N 个顶点的无向完全图边数应为 N(N−1)/2，不是 N(N−1)），题库为 √；但该题题干缺『N』与公式片段（sourceIntegrity=missing-formula），不属本次 11 题裁决清单，未改数据。",
+      "Q21（表内第 6 列）官方为 ×（Prim 朴素实现 O(v²)，堆优化 O(e log v)，均非 O(v×e)），题库为 √；题干缺复杂度片段，同样待补题干后处理。"
+    ]
+  },
   "unresolved": []
 }

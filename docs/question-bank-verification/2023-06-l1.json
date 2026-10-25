@@ -46,6 +46,44 @@
       "resolved": true
     }
   ],
+  "judgeAnswerAudit": {
+    "executedAt": "2026-10-25",
+    "executor": "WorkBuddy 子代理",
+    "method": "回官方 PDF 内嵌【答案】逐题核对（tmp/pages/2023-06-l1/p10-p12.png），洛谷仅作线索。洛谷判断题以 A=正确(√)、B=错误(×) 编码，比对时已换算。",
+    "officialSequence": "Q16→Q25 = √ √ × × √ √ √ × × √（p.10 第1-4题、p.11 第5-8题、p.12 第9-10题）",
+    "items": [
+      {
+        "qid": 19,
+        "bankAnswer": "×",
+        "luoguAnswer": "√（A）",
+        "officialAnswer": "×",
+        "officialLocation": "p.10 判断题第4题，题面『在 C++语言中，标识符的命名不能完全由数字组成，至少有一个字母就可以。』后【答案】×",
+        "derivation": "C++ 标识符只要求『不以数字开头』，_123 无任何字母也合法，故『至少有一个字母就可以』为假；反之 2ab 有字母仍非法。命题错误。",
+        "changed": false,
+        "verdict": "洛谷错（AI OCR 录入把 × 抬成 A=正确），题库正确"
+      },
+      {
+        "qid": 22,
+        "bankAnswer": "√",
+        "luoguAnswer": "×（B）",
+        "officialAnswer": "√",
+        "officialLocation": "p.11 判断题第7题，题面『do ... while 语句的循环体至少会执行一次。』后【答案】√",
+        "derivation": "do...while 先执行循环体再判断条件，条件首次为假也至少执行一次。命题正确。",
+        "changed": false,
+        "verdict": "洛谷错，题库正确"
+      },
+      {
+        "qid": 24,
+        "bankAnswer": "×",
+        "luoguAnswer": "√（A）",
+        "officialAnswer": "×",
+        "officialLocation": "p.12 判断题第9题，题面『如果 a 为 int 类型的变量，则表达式(a % 4 == 2)可以判断 a 的值是否为偶数。』后【答案】×",
+        "derivation": "a=4 时 4%4==0，表达式为假，而 4 是偶数；该式只覆盖 4k+2 形式的偶数，遗漏全部 4 的倍数，不能用于判偶。命题错误。",
+        "changed": false,
+        "verdict": "洛谷错，题库正确"
+      }
+    ]
+  },
   "unresolved": [
     "轻度转录偏差（答案不受影响，未修改）：Q2 选项与官方不同（官方 A发邮件/B写剧本/C擦地板/D写代码，题库为 编写程序/翻译语言/炒菜/写诗，正确项均为 C）；Q4/Q5/Q6/Q8/Q9/Q12 干扰项为改写版本（正确项字母与官方一致）；Q15 官方代码为 1..20 中 3或5 的倍数累加且 sum 未初始化，题库为 1..10 累加且 sum 未初始化，考点与答案（D 无法确定）一致。如需与原卷逐字一致，可另行整卷重录。"
   ],

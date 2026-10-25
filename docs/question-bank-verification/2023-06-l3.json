@@ -45,6 +45,24 @@
     { "id": 24, "type": "judge", "official": "×", "bank": "×", "changed": false },
     { "id": 25, "type": "judge", "official": "√", "bank": "√", "changed": false }
   ],
+  "judgeAnswerAudit": {
+    "executedAt": "2026-10-25",
+    "executor": "WorkBuddy 子代理",
+    "method": "回官方 PDF 内嵌【答案】核对（tmp/pages/2023-06-l3/p09.png），洛谷仅作线索（A=√、B=×）。",
+    "officialSequence": "Q16→Q25 = × × × × √ √ √ × × √（本卷无独立答案表，逐题内嵌【答案】；本次重点复核 p.9 第9题）",
+    "items": [
+      {
+        "qid": 24,
+        "bankAnswer": "×",
+        "luoguAnswer": "√（A）",
+        "officialAnswer": "×",
+        "officialLocation": "p.9 判断题第9题，题面『在 C++语言中，表达式(0xf == 015)的值为 true。』后【答案】×",
+        "derivation": "0xf 是十六进制 =15；015 是八进制 =13。15≠13，表达式为 false，命题错误。",
+        "changed": false,
+        "verdict": "洛谷错（把八进制 015 当十进制或标记错位），题库正确"
+      }
+    ]
+  },
   "notes": "题库 judge 约定 answer 0=√、1=×，比对时已换算。单选 15 题、判断 10 题与官方答案全部一致，未做任何修改。编程题（春游、密码合规）不在本次答案核对范围。",
   "unresolved": []
 }

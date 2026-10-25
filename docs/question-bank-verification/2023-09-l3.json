@@ -25,6 +25,24 @@
     { "id": 24, "type": "judge", "official": "√", "bank": "√", "modified": false },
     { "id": 25, "type": "judge", "official": "√", "bank": "√", "modified": false }
   ],
+  "judgeAnswerAudit": {
+    "executedAt": "2026-10-25",
+    "executor": "WorkBuddy 子代理",
+    "method": "回官方 PDF 判断题答案表（p.5 表头『题号 1..10 / 答案』）逐列放大核对（4 倍裁剪 tmp/crop-2023-09-l3-p05-top.png），洛谷仅作线索（A=√、B=×）。",
+    "officialSequence": "Q16→Q25 = × √ × × √ × × × √ √（对应表内第 1..10 列）",
+    "items": [
+      {
+        "qid": 20,
+        "bankAnswer": "√",
+        "luoguAnswer": "×（B）",
+        "officialAnswer": "√",
+        "officialLocation": "p.5 判断题答案表第 5 列（第5题：『所有 int 类型的值，经过若干次左移操作（<<）后，它们的值总会变为 0。』）",
+        "derivation": "int 为有限位宽（通常 32 位），每次左移整体左移一位并补 0，不断丢失最高位；左移足够多次（≤32 次）后所有位均为 0，结果必为 0。命题正确（有符号溢出属标准未定义行为，但本题按位模式理解且官方判 √）。",
+        "changed": false,
+        "verdict": "洛谷错，题库正确"
+      }
+    ]
+  },
   "secondaryCheck": {
     "singleChoice": "题库单选 15 题与官方答案表逐题比对全部一致（含 p.1 表格放大复核第 13 题 = B）",
     "result": "all-match"
