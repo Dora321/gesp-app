@@ -1,0 +1,33 @@
+{
+  "paperId": "2024-06-l8",
+  "reviewedAt": "2026-10-24",
+  "reviewedBy": { "type": "AI", "executor": "WorkBuddy 子代理", "session": "codex/question-bank-verification" },
+  "source": {
+    "mirrorUrl": "https://raw.githubusercontent.com/Dora321/gesp-official-pdfs/main/pdfs/2024%E5%B9%B46%E6%9C%88-C%2B%2B8%E7%BA%A7.pdf",
+    "mirrorSha": "54ccd4ebb2a727660430cc61848022d91d4b3c9b",
+    "shaVerified": true,
+    "fetchedAt": "2026-10-24",
+    "pages": { "Q13": "p.3", "Q14": "p.3" }
+  },
+  "questions": [
+    {
+      "id": 13,
+      "dimensions": ["statement", "options", "answer", "explanation"],
+      "method": ["原卷对照（页面渲染人工查看）", "独立推导"],
+      "findings": "题面缺失埃氏筛代码；题库选项（O(1)/O(log n)/O(n)/O(n²)）与原卷不符。原卷选项为 A.O(N) B.O(N×log N) C.O(N×log log N) D.O(N²)。",
+      "fix": "按原卷 p.3 转写代码回填；选项按原卷恢复；移除标记；解析重写为质数倒数和（Mertens 定理）推导。answer 索引 2 无需改动（原卷 C=O(N×log log N)）。",
+      "evidence": "独立推导：总标记次数 N·Σ(1/p) ≈ N·ln ln N，埃氏筛 O(N log log N)，与原卷答案 C 一致。",
+      "resolved": true
+    },
+    {
+      "id": 14,
+      "dimensions": ["statement", "options", "answer", "explanation"],
+      "method": ["原卷对照（页面渲染人工查看）", "独立推导"],
+      "findings": "题面缺失 gcd 递归代码；题库选项（O(n)/O(n²)/O(n log n)/O(V+E)）与原卷不符。原卷选项为 A.O(√n) B.O(log(n)) C.O(n) D.O(1)。",
+      "fix": "按原卷 p.3 转写代码回填；选项按原卷恢复；移除标记；解析重写为欧几里得递归深度推导。answer 索引 1 无需改动（原卷 B=O(log(n))）。",
+      "evidence": "独立推导：每轮参数 (n mod m, m)，连续两轮至少减半，递归深度 O(log min(m,n))（Lamé 定理，最坏为相邻斐波那契数），与原卷答案 B 一致。",
+      "resolved": true
+    }
+  ],
+  "unresolved": []
+}

@@ -365,9 +365,17 @@ export const paperData = {
         {
             id: 11,
             type: "single",
-            sourceIntegrity: "missing-code",
-            integrityNote: "原卷此题引用的程序代码在录入时未收录，仅凭当前题面无法推导答案。本题已排除出计分与考点练习，待补齐原卷代码后恢复。",
-            question: `下面程序的输出为（ ）。`,
+            question: `下面程序的输出为（ ）。
+
+\`\`\`cpp
+#include <iostream>
+#include <cmath>
+using namespace std;
+int main() {
+    cout << (int)exp(2) << endl;
+    return 0;
+}
+\`\`\``,
             options: [
                 "4",
                 "7",
@@ -392,9 +400,22 @@ export const paperData = {
         {
             id: 12,
             type: "single",
-            sourceIntegrity: "missing-code",
-            integrityNote: "原卷此题引用的程序代码在录入时未收录，仅凭当前题面无法推导答案。本题已排除出计分与考点练习，待补齐原卷代码后恢复。",
-            question: `下面程序的输出为（ ）。`,
+            question: `下面程序的输出为（ ）。
+
+\`\`\`cpp
+#include <iostream>
+#define N 10
+using namespace std;
+int h[N];
+int main() {
+    h[0] = h[1] = 1;
+    for (int n = 2; n < N; n++)
+        for (int j = 0; j < n; j++)
+            h[n] += h[j] * h[n - j - 1];
+    cout << h[6] << endl;
+    return 0;
+}
+\`\`\``,
             options: [
                 "132",
                 "1430",

@@ -205,9 +205,56 @@ export const paperData = {
         {
             id: 7,
             type: "single",
-            sourceIntegrity: "missing-code",
-            integrityNote: "原卷此题引用的程序代码在录入时未收录，仅凭当前题面无法推导答案。本题已排除出计分与考点练习，待补齐原卷代码后恢复。",
-            question: `下面程序的运行结果为（ ）。`,
+            question: `下面程序的运行结果为（ ）。
+
+\`\`\`cpp
+#include <iostream>
+#include <algorithm>
+
+bool check(int n, int a[], int k, int dist) {
+    int cnt = 1;
+    int last = a[0];
+
+    for (int i = 1; i < n; i++) {
+        if (a[i] - last >= dist) {
+            cnt++;
+            last = a[i];
+        }
+    }
+
+    return cnt >= k;
+}
+
+
+int solve(int n, int a[], int k) {
+    std::sort(a, a + n);
+
+    int l = 0;
+    int r = a[n - 1] - a[0];
+
+    while (l < r) {
+        int mid = (l + r + 1) / 2;
+
+        if (check(n, a, k, mid))
+            l = mid;
+        else
+            r = mid - 1;
+    }
+
+    return l;
+
+}
+
+int main() {
+    int a[] = {1, 2, 8, 4, 9};
+    int n = 5;
+    int k = 3;
+
+    std::cout << solve(n, a, k) << std::endl;
+
+    return 0;
+}
+\`\`\``,
             options: [
                 "2",
                 "3",
@@ -230,22 +277,71 @@ export const paperData = {
         {
             id: 8,
             type: "single",
-            sourceIntegrity: "missing-code",
-            integrityNote: "原卷此题引用的程序代码在录入时未收录，仅凭当前题面无法推导答案。本题已排除出计分与考点练习，待补齐原卷代码后恢复。",
-            question: `下面程序中，函数 query 的时间复杂度是（ ）。`,
+            question: `下面程序的时间复杂度为（ ）。假设数组 $a$ 的值域范围是 $D$。
+
+\`\`\`cpp
+#include <iostream>
+#include <algorithm>
+
+bool check(int n, int a[], int k, int dist) {
+    int cnt = 1;
+    int last = a[0];
+
+    for (int i = 1; i < n; i++) {
+        if (a[i] - last >= dist) {
+            cnt++;
+            last = a[i];
+        }
+    }
+
+    return cnt >= k;
+}
+
+
+int solve(int n, int a[], int k) {
+    std::sort(a, a + n);
+
+    int l = 0;
+    int r = a[n - 1] - a[0];
+
+    while (l < r) {
+        int mid = (l + r + 1) / 2;
+
+        if (check(n, a, k, mid))
+            l = mid;
+        else
+            r = mid - 1;
+    }
+
+    return l;
+
+}
+
+int main() {
+    int a[] = {1, 2, 8, 4, 9};
+    int n = 5;
+    int k = 3;
+
+    std::cout << solve(n, a, k) << std::endl;
+
+    return 0;
+}
+\`\`\``,
             options: [
+                "O(n log n + n log D)",
+                "O(n log n log D)",
                 "O(n log n)",
-                "O(n)",
-                "O(log n)",
-                "O(n^2)",
-],
+                "O(n log D)",
+            ],
             answer: 0,
             score: 2,
-            explanation: `**答案：（选项文本缺失，…；复杂度见下）**
+            explanation: `**答案：A（O(n log n + n log D)）**
 
-**解析：** 本题在题库中缺失程序代码与选项（选项中出现“…”占位符），无法将答案对应到具体选项。按其对应的 \`solve()\` + \`check()\` 二分查找函数估算复杂度：排序 \`O(n log n)\`；二分区间长度 \`O(V)\`（V 为值域）迭代 \`O(log V)\` 次，每次 \`check\` 为 \`O(n)\`，故总时间复杂度约 \`O(n log n + n·log V)\`，值域有界时常记为 \`O(n log n)\`。因选项缺失，请补全题目后再确定选项字母。
-
-**考点**：二分答案的时间复杂度分析（本题数据缺陷待补）。`,
+**解析：** 程序分两段计费：\`solve\` 先对数组排序 \`std::sort\`，为 O(n log n)；随后在值域区间 [0, a[n-1]−a[0]]（长度不超过 D）上二分答案，共 O(log D) 轮，每轮调用 \`check\` 一次，\`check\` 为线性扫描 O(n)，合计 O(n log D)。两部分相加，总时间复杂度 O(n log n + n log D)。
+- B. O(n log n log D)：多乘了一个 log n，\`check\` 只扫一遍数组，错误。
+- C. O(n log n)：遗漏了二分答案 × check 的开销（仅当 D 有界且可忽略时才近似成立，题面已明确值域 D 为变量），不精确。
+- D. O(n log D)：遗漏了排序的 O(n log n)，错误。
+**考点**：二分答案的复杂度分析——排序 + 值域二分 × 线性 check。`,
             tags: [
                 "客观题",
                 "单选题",
@@ -255,47 +351,20 @@ export const paperData = {
         {
             id: 9,
             type: "single",
-            question: `某二叉树共有 10 个结点，记为 A~J ，已知它的先序遍历序列为：A B D H I E C F J G，中序遍历序列为：H 
-D I B E A F J C G，则该二叉树的后序遍历序列是（ ）。
-#include <iostream>
-#include <algorithm>
-bool check(int n, int a[], int k, int dist) {
-    int cnt = 1;
-    int last = a[0];
-    for (int i = 1; i < n; i++) {
-        if (a[i] - last >= dist) {
-            cnt++;
-            last = a[i];
-       }
-   }
-    return cnt >= k;
-}
-int solve(int n, int a[], int k) {
-    std::sort(a, a + n);
-    int l = 0;
-    int r = a[n - 1] - a[0];
-    while (l < r) {
-        int mid = (l + r + 1) / 2;
-        if (check(n, a, k, mid))
-            l = mid;
-        else
-            r = mid - 1;
-   }
-    return l;
-}
-int main() {
-    int a[] = {1, 2, 8, 4, 9};
-    int n = 5;
-    int k = 3;
-    std::cout << solve(n, a, k) << std::endl;
-    return 0;
-}`,
+            question: `某二叉树共有 10 个结点，记为 A~J，已知它的先序遍历序列为：A B D H I E C F J G，中序遍历序列为：H D I B E A F J C G，则该二叉树的后序遍历序列是（ ）。`,
             options: ["H I D E B J F G C A", "H I D B E J F G C A", "I H D E B J F G C A", "H I D E B F J G C A"],
             answer: 0,
             score: 2,
             explanation: `**答案：A（H I D E B J F G C A）**
 
-**依据**：官方真题 PDF 第 1 页答案表；题干与选项已按官方原卷回填。`,
+**解析：** 由先序 + 中序重建二叉树：
+- 先序首结点 A 为根；中序中 A 左侧 \`H D I B E\` 为左子树、右侧 \`F J C G\` 为右子树。
+- 左子树：先序 \`B D H I E\` 首结点 B 为根，中序 \`H D I | B | E\`，故 B 的左子树含 {H,D,I}、右孩子为 E；先序 \`D H I\` 首结点 D 为根，中序 \`H | D | I\`，故 D 左孩子 H、右孩子 I。
+- 右子树：先序 \`C F J G\` 首结点 C 为根，中序 \`F J | C | G\`，故 C 的左子树含 {F,J}、右孩子为 G；先序 \`F J\` 首结点 F 为根，中序 \`J | F\`，故 J 是 F 的左孩子。
+
+树形：A（B（D（H, I）, E）, C（F（J, —）, G））。后序遍历（左右根）：H I D E B ｜ J F G C ｜ A，即 \`H I D E B J F G C A\`。
+
+**考点**：由先序 + 中序序列重建二叉树并求后序遍历。`,
             tags: [
                 "客观题",
                 "单选题",
@@ -305,22 +374,38 @@ int main() {
         {
             id: 10,
             type: "single",
-            sourceIntegrity: "missing-code",
-            integrityNote: "原卷此题引用的程序代码在录入时未收录，仅凭当前题面无法推导答案。本题已排除出计分与考点练习，待补齐原卷代码后恢复。",
-            question: `下面程序的运行结果为（ ）。`,
+            question: `下面哪一个可能是下图的深度优先遍历序列（ ）。
+
+![有向图：9 个结点，边为 1→4、1→5、1→7、2→1、2→5、2→9、3→1、3→2、4→7、5→4、5→8、6→3、8→4、8→7、8→9、9→6](/question-assets/2026-03-l7/q10-dfs.png)`,
             options: [
-                "10",
-                "16",
-                "26",
-                "30",
+                "1, 5, 4, 8, 7, 9, 6, 3, 2",
+                "1, 5, 8, 4, 7, 9, 6, 3, 2",
+                "2, 5, 8, 7, 9, 6, 3, 4, 1",
+                "8, 9, 6, 3, 2, 5, 1, 4, 7",
             ],
             answer: 1,
             score: 2,
-            explanation: `**答案：（程序代码缺失，无法独立判定；库内标注为 16）**
+            explanation: `**答案：B（1, 5, 8, 4, 7, 9, 6, 3, 2）**
 
-**解析：** 本题在题库中缺失程序代码，仅保留选项 \`{10,16,26,30}\`，无法独立推导运行结果。若以库内标注答案计为 16，但须经原题代码复核确认。请补全代码后核对。
+**解析：** 由图读出各结点的出边邻接表：
 
-**考点**：程序运行结果分析（本题数据缺陷待补）。`,
+- 1 → 4, 5, 7
+- 2 → 1, 5, 9
+- 3 → 1, 2
+- 4 → 7
+- 5 → 4, 8
+- 6 → 3
+- 8 → 4, 7, 9
+- 9 → 6
+
+DFS 从某点出发，每次沿一条边访问未访问的邻接点，无路可走时回溯。逐项判定：
+
+- **A**：\`1, 5, 4, …\` 访问 4 后，4 有未访问出边 4→7，DFS 必须先深入 7，而序列下一项是 8，矛盾，排除。
+- **B**：\`1 → 5 → 8 → 4 → 7\`（7 为叶，回溯到 8）\`→ 9 → 6 → 3 → 2\`（2 的出边全已访问，结束）。每一步都是沿合法出边深入或回溯后继续，9 个结点全部访问，是合法 DFS 序列。
+- **C**：\`…, 6, 3, 4, …\` 结点 3 的出边只有 3→1、3→2，没有 3→4，从 3 无法直接到达 4，排除。
+- **D**：\`…, 2, 5, 1, …\` 访问 5 时，5 有未访问出边 5→4，DFS 必须先访问 4，而序列下一项是 1，矛盾，排除。
+
+**考点**：图的深度优先遍历（DFS）序列的判定——沿出边深入、无路回溯；有向图中「可能」的序列指存在某种邻接点访问次序使 DFS 产生该序列。`,
             tags: [
                 "客观题",
                 "单选题",

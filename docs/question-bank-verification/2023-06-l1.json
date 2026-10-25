@@ -1,0 +1,53 @@
+{
+  "paperId": "2023-06-l1",
+  "reviewedAt": "2026-10-24",
+  "reviewedBy": { "type": "AI", "executor": "WorkBuddy 子代理", "session": "codex/question-bank-verification" },
+  "source": {
+    "mirrorUrl": "https://raw.githubusercontent.com/Dora321/gesp-official-pdfs/main/pdfs/2023%E5%B9%B46%E6%9C%88-C%2B%2B1%E7%BA%A7.pdf",
+    "mirrorSha": "ebf0c1dc93583d82b4ed9b05703dafa744d1d99d",
+    "shaVerified": true,
+    "fetchedAt": "2026-10-24",
+    "pages": { "total": 16, "note": "《2023年6月 GESP C++ 一级真题解析》，答案以【答案】标记内嵌于每题之后（pp.1-12），编程题解析 pp.12-16" }
+  },
+  "answerTable": {
+    "location": "逐题内嵌【答案】（p1-p12 渲染图人工读取）",
+    "content": {
+      "single": ["A", "C", "C", "D", "A", "D", "D", "C", "C", "B", "B", "A", "C", "B", "D"],
+      "judge": ["√", "√", "×", "×", "√", "√", "√", "×", "×", "√"]
+    }
+  },
+  "questions": [
+    {
+      "id": 11,
+      "officialAnswer": "B",
+      "bankAnswerBefore": 3,
+      "changed": true,
+      "findings": "题库原题面为改写版（选项 A a==0||b==0、B !(a||b)、C a+b==0、D a==0&&b==0），其中 B 与 D 均正确（!(a||b) ≡ a==0&&b==0），题面存在双正确选项缺陷，且文件内注释自认与官方提取结果（B）冲突后擅改答案为 D。官方原卷（p6）选项为 A.(a==b==0) B.!(a||b) C.(a+b==0) D.(a==0)+(b==0)，唯一正确答案 B。",
+      "fix": "按原卷恢复题干与四个选项；answer 3→1；解析整体重写（逐选项：A 链式比较陷阱、B 德摩根定律判定、C 和为零反例、D 只能判『或』的个数），并补充官方答案表出处。",
+      "evidence": "独立推导：A 中 a=1,b=2 时 a==b 为 0 再 ==0 为真，错；B 德摩根展开 !a&&!b 即两变量均为 0，对；C a=5,b=-5 反例；D 表达式值为判零个数，a=0,b=1 时为 1 为真，判的是『或』，错。与官方答案 B 一致。tmp/pages/2023-06-l1/p06.png",
+      "resolved": true
+    },
+    {
+      "id": 13,
+      "officialAnswer": "C",
+      "bankAnswerBefore": 1,
+      "changed": true,
+      "findings": "题库原题为整题改写（代码变为 a=b; 后填空使输出 20 10，选项 b=a;/b=10;/b=a-b;/b=20;，答案 B），与官方原题结构完全不同。官方原题（pp.7-8）：int a=10,b=20; a=____; b=a+b; a=b-a; 输出 20 10，选项 A.a+b B.b C.a-b D.b-a，官方答案 C。",
+      "fix": "按原卷恢复题面代码（含注释）、四个选项；answer 1→2；解析按官方思路重写（倒推法：输出 20 10 → 第 7 行前 a=-10 → 第 5 行需使 a=10-20=-10），并逐选项给出输出结果（A 20 50、B 20 40、C 20 10、D 20 30）。",
+      "evidence": "独立推导：a=a-b=-10 → b=-10+20=10 → a=10-(-10)=20，输出 20 10，选 C。其余选项分别得 20 50 / 20 40 / 20 30。与官方答案 C 一致。tmp/pages/2023-06-l1/p07.png、p08.png",
+      "resolved": true
+    },
+    {
+      "id": 14,
+      "officialAnswer": "B",
+      "bankAnswerBefore": 1,
+      "changed": false,
+      "findings": "答案字母一致（均为 B），未改。但题面存在轻度转录偏差：官方为 for(i=1;i<=8;i++) 且选项 C 为 i=i+3、D 为 i+3；题库为 i<=9 且选项 C 为 i%4==1、D 为 i%7==1。题库版本自洽（i%3==1 在 1..9 内输出 147），保留题库文本，仅记录。",
+      "resolved": true
+    }
+  ],
+  "unresolved": [
+    "轻度转录偏差（答案不受影响，未修改）：Q2 选项与官方不同（官方 A发邮件/B写剧本/C擦地板/D写代码，题库为 编写程序/翻译语言/炒菜/写诗，正确项均为 C）；Q4/Q5/Q6/Q8/Q9/Q12 干扰项为改写版本（正确项字母与官方一致）；Q15 官方代码为 1..20 中 3或5 的倍数累加且 sum 未初始化，题库为 1..10 累加且 sum 未初始化，考点与答案（D 无法确定）一致。如需与原卷逐字一致，可另行整卷重录。"
+  ],
+  "executedAt": "2026-10-24"
+}

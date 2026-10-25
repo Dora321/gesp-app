@@ -1,0 +1,44 @@
+{
+  "paperId": "2025-09-l6",
+  "reviewedAt": "2026-10-24",
+  "reviewedBy": { "type": "AI", "executor": "WorkBuddy 子代理", "session": "codex/question-bank-verification" },
+  "source": {
+    "mirrorUrl": "https://raw.githubusercontent.com/Dora321/gesp-official-pdfs/main/pdfs/2025%E5%B9%B49%E6%9C%88-C%2B%2B6%E7%BA%A7.pdf",
+    "mirrorSha": "4a394061035a728cbebd82c14f41c2731d5b9ce0",
+    "shaVerified": true,
+    "fetchedAt": "2026-10-24",
+    "pages": { "Q12": "p.5", "Q23": "p.7", "Q24": "p.7", "judgeAnswerKey": "p.6" }
+  },
+  "questions": [
+    {
+      "id": 12,
+      "dimensions": ["statement", "answer", "explanation"],
+      "method": ["原卷对照（页面渲染人工查看）", "程序执行", "独立推导"],
+      "findings": "题面缺失 bfs 函数代码（原卷 p.5 为图片）。代码为标准队列层序遍历，每节点恰好入队/出队一次，复杂度 O(n)，与答案 A 一致。",
+      "fix": "按原卷 p.5 逐行转写 bfs 代码回填；移除 sourceIntegrity/integrityNote；解析由模板占位重写为「每节点进出队各一次」推导 + 逐选项理由。",
+      "evidence": "g++ 编译运行转写代码，示例树层序输出 1 2 3 4 5，行为与 BFS 一致；复杂度独立推导 O(n)。tmp/verify/2025-09-l6/q12q23q24.cpp",
+      "resolved": true
+    },
+    {
+      "id": 23,
+      "dimensions": ["statement", "answer", "explanation"],
+      "method": ["原卷对照（页面渲染人工查看）", "程序执行", "独立推导"],
+      "findings": "题面缺失 searchBST 代码（原卷 p.7 为图片），且题干中「O(h)」在录入时丢失（原文：时间复杂度是 O(h)，其中 h 为树高）。原卷判断题答案表该题为 √，与所录答案「正确」一致。",
+      "fix": "按原卷 p.7 转写 searchBST 代码回填；题干补回缺失的「O(h)」字样；移除 sourceIntegrity/integrityNote；解析重写为「每轮丢弃一棵子树、比较次数 ≤ 树高」推导。",
+      "evidence": "独立推导：每轮循环只走左/右子树之一，最坏比较 h 次 → O(h)，命题成立。g++ 运行转写代码可正常查找。原卷答案表 p.6 第 8 题为 √。tmp/verify/2025-09-l6/q12q23q24.cpp",
+      "resolved": true
+    },
+    {
+      "id": 24,
+      "dimensions": ["statement", "answer", "explanation"],
+      "method": ["原卷对照（页面渲染人工查看）", "程序执行", "独立推导"],
+      "findings": "题面缺失 fib_dp 代码（原卷 p.7 为图片），且题干中「O(2^n)」在录入时丢失。代码为迭代 DP，实际复杂度 O(n)，命题「时间复杂度是 O(2^n)」不成立，应判「错误」。原卷判断题答案表该题为 ×；本条数据所录答案为「正确」，两者矛盾。",
+      "fix": "按原卷 p.7 转写 fib_dp 代码回填；题干补回缺失的「O(2^n)」字样；移除 sourceIntegrity/integrityNote；解析重写为 O(n) 推导，并在解析中显式记录与所录答案的冲突。answer 字段按规则未改动。",
+      "evidence": "g++ 编译运行 fib_dp(10) 输出 55（正确）；主循环 n-1 次、每步 O(1) → O(n) ≠ O(2^n)。原卷答案表 p.6 第 9 题为 ×。冲突已高亮，待人工核对。tmp/verify/2025-09-l6/q12q23q24.cpp",
+      "resolved": true
+    }
+  ],
+  "unresolved": [
+    "Q24：官方答案表为「错误」（×），数据库所录 answer 为「正确」（0），存在答案冲突。按任务规则未修改 answer 字段，仅在解析与本题证据中记录，建议人工核对后改判。"
+  ]
+}

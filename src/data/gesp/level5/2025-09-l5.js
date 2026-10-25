@@ -771,23 +771,48 @@ Node* removeElements(Node* head, int val) {
         {
             id: 23,
             type: "judge",
-            sourceIntegrity: "missing-code",
-            integrityNote: "原卷此题引用的程序代码在录入时未收录，仅凭当前题面无法推导答案。本题已排除出计分与考点练习，待补齐原卷代码后恢复。",
-            question: `下面代码采用分治算法求解标准 3 柱汉诺塔问题，其时间复杂度为 O($2^n$)。`,
+            question: `下面代码采用分治算法求解标准 3 柱汉诺塔问题，其时间复杂度为 O(n log n)。
+
+\`\`\`cpp
+void move(vector<int> &src, vector<int> &tar) {
+    int pan = src.back();
+    src.pop_back();
+    tar.push_back(pan);
+}
+
+void dfs(int n, vector<int> &src, vector<int> &buf, vector<int> &tar) {
+    if (n == 1) {
+        move(src, tar);
+        return;
+    }
+
+    dfs(n - 1, src, tar, buf);
+    move(src, tar);
+    dfs(n - 1, buf, src, tar);
+}
+
+void solveHanota(vector<int> &A, vector<int> &B, vector<int> &C) {
+    int n = A.size();
+    dfs(n, A, B, C);
+}
+\`\`\`
+`,
             options: [
                 "正确",
                 "错误",
             ],
-            answer: 0,
+            answer: 1,
             score: 2,
-            explanation: `**答案：正确**
+            explanation: `**答案：错误**
 
-            **判定依据：**
-            本题答案已依据试卷标准答案完成录入，可结合题干与选项复盘对应知识点。
+            **解析：**
+            dfs(n) 的移动次数满足递推式 T(n) = 2T(n-1) + 1：先把 n-1 个盘从 src 借助 tar 移到 buf，再把最大的盘移到 tar，最后把 n-1 个盘从 buf 借助 src 移到 tar。由 T(n) = 2T(n-1) + 1 解得 T(n) = 2^n - 1，时间复杂度为 O(2^n)，不是 O(n log n)，题目说法错误。
 
-            **易混概念：** 常见排序复杂度：快排/归并/堆排 O(n log n)，冒泡/选择/插入 O(n²)。稳定：冒泡、插入、归并；不稳定：快排、选择、堆排。
+            - 代码结构是典型的分治：把规模为 n 的问题分解为两个规模为 n-1 的子问题加上一次常数时间的移动。
+            - 注意区分：O(n log n) 是归并排序一类的递推式 T(n) = 2T(n/2) + O(n) 的结果；汉诺塔的子问题规模是 n-1 而非 n/2，指数级不可避免——汉诺塔本身必须完成 2^n - 1 次移动。
 
-            **考点：** 分治
+            **考点：** 分治、递归复杂度分析（汉诺塔）
+            **勘误：** 录入时题干误写为「O(2^n)」导致判定翻转；官方原卷（p.9）题干为「O(n log n)」，官方答案表（p.8）本题答案为 ×，已于 2026-10-24 按原卷更正。
             `,
             tags: [
                 "客观题",

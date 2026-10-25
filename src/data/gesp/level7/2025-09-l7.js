@@ -370,9 +370,21 @@ BFS 对每个顶点入队出队各一次、对每条边考察一次，最优时�
         {
             id: 11,
             type: "single",
-            sourceIntegrity: "missing-code",
-            integrityNote: "原卷此题引用的程序代码在录入时未收录，仅凭当前题面无法推导答案。本题已排除出计分与考点练习，待补齐原卷代码后恢复。",
-            question: `下面程序的输出为（ ）。`,
+            question: `下面程序的输出为（ ）。
+
+\`\`\`cpp
+#include <iostream>
+using namespace std;
+int fib(int n) {
+    if (n == 0)
+        return 1;
+    return fib(n - 1) + fib(n - 2);
+}
+int main() {
+    cout << fib(6) << endl;
+    return 0;
+}
+\`\`\``,
             options: [
                 "8",
                 "13",
@@ -402,33 +414,37 @@ int fib(int n) {
         {
             id: 12,
             type: "single",
-            sourceIntegrity: "missing-code",
-            integrityNote: "原卷此题引用的程序代码在录入时未收录，仅凭当前题面无法推导答案。本题已排除出计分与考点练习，待补齐原卷代码后恢复。",
-            question: `下面程序的时间复杂度为（ ）。`,
-            options: [
-                "O(n²)",
-                "O(n)",
-                "O(n log n)",
-                "O(2ⁿ)",
-],
-            answer: 0,
-            score: 2,
-            explanation: `**答案：A（O(n)）**
-
-题中带记忆化数组 \`rec_fib\` 的斐波那契：
+            question: `下面程序的时间复杂度为（ ）。
 
 \`\`\`cpp
 int rec_fib[MAX_N];
 int fib(int n) {
-    if (n <= 1) return n;
-    if (rec_fib[n] != 0) return rec_fib[n];
+    if (n <= 1)
+        return n;
+    if (rec_fib[n] != 0)
+        return rec_fib[n];
     return fib(n - 1) + fib(n - 2);
 }
-\`\`\`
+\`\`\``,
+            options: [
+                "O(φⁿ)，φ = (√5+1)/2",
+                "O(2ⁿ)",
+                "O(n²)",
+                "O(n)",
+            ],
+            answer: 0,
+            score: 2,
+            explanation: `**答案：A（O(φⁿ)）**
 
-每个 \`n\` 只会被真正计算一次并存入 \`rec_fib\`，之后直接返回，共 O(n) 次递归调用，每次 O(1)，总时间复杂度 O(n)。
+这段代码看似带 \`rec_fib\` 记忆化，实为**陷阱题**：第 7 行 \`return fib(n - 1) + fib(n - 2);\` **没有把计算结果存入 \`rec_fib[n]\`**，\`rec_fib\` 全程保持 0，第 5 行的 \`if (rec_fib[n] != 0)\` 永远不成立，记忆化完全失效。程序退化为纯斐波那契递归 \`T(n) = T(n-1) + T(n-2)\`，调用次数以黄金比 φ ≈ 1.618 指数增长，故时间复杂度为 **O(φⁿ)**。
 
-**考点**：记忆化（Memoization）递归的时间复杂度。`,
+实测调用次数（g++ -O0）：n=20 为 21891 次，n=25 为 242785 次，n=30 为 2692537 次——每增加 5 层约乘 φ⁵ ≈ 11.09 倍，与 φⁿ 同阶。
+
+- B. O(2ⁿ)：朴素递归的粗上界，但因两棵子树重叠，实际增长比 2ⁿ 慢，不如 A 精确。
+- C. O(n²)：代码无双重循环，不符。
+- D. O(n)：只有当第 7 行写成 \`rec_fib[n] = fib(n-1) + fib(n-2);\`（结果真正写入缓存）时才成立，这正是本题设置的迷惑点。
+
+**考点**：记忆化的正确写法——递归结果必须写入缓存数组才会生效；斐波那契递归调用树按黄金比 φⁿ 增长。`,
             tags: [
                 "客观题",
                 "单选题",

@@ -1,0 +1,42 @@
+{
+  "paperId": "2024-12-l6",
+  "reviewedAt": "2026-10-24",
+  "reviewedBy": { "type": "AI", "executor": "WorkBuddy 子代理", "session": "codex/question-bank-verification" },
+  "source": {
+    "mirrorUrl": "https://raw.githubusercontent.com/Dora321/gesp-official-pdfs/main/pdfs/2024%E5%B9%B412%E6%9C%88-C%2B%2B6%E7%BA%A7.pdf",
+    "mirrorSha": "36b4c8dbecd7e59147f38a35056dddb9b6f71f8c",
+    "shaVerified": true,
+    "fetchedAt": "2026-10-24",
+    "pages": { "Q3": "pp.1-2", "Q4": "p.2", "Q22": "p.7" }
+  },
+  "questions": [
+    {
+      "id": 3,
+      "dimensions": ["statement", "options", "answer", "explanation"],
+      "method": ["原卷对照（页面渲染人工查看）", "程序执行"],
+      "findings": "题面缺失 MyClass/NULL 空指针代码（原卷为图片，共 16 行）；录入时该代码被整段串入了选项 A 文本，并夹带行号残留「1 2 3 … 16」，原卷选项 A 仅为「NULL 在 C++ 中无法用于指针初始化，应使用 nullptr。」。解析为占位模板。官方答案页 p.1 题号 3 对应 C，与所录答案一致。",
+      "fix": "按原卷 pp.1-2 逐行转写代码（保持 2 空格缩进与字符串字面量），以 fenced cpp 块回填题面；选项 A 恢复为原卷原文；移除 sourceIntegrity/integrityNote；解析重写为逐选项理由。",
+      "evidence": "g++ 编译运行转写代码：实际输出 Display function called! 且正常退出——因 display() 非虚函数且不访问成员变量，空指针调用在多数实现中可执行，但按 C++ 标准属未定义行为，官方答案 C「存在空指针访问错误」在概念层面成立；选项 D「没有输出任何内容」被运行结果直接否定。不构成答案冲突。tmp/verify/2024-l6/q3_nullptr.cpp",
+      "resolved": true
+    },
+    {
+      "id": 4,
+      "dimensions": ["statement", "answer", "explanation"],
+      "method": ["原卷对照（页面渲染人工查看）", "程序执行"],
+      "findings": "题面缺失 processData 栈/队列代码（原卷为图片，共 16 行）。解析为占位模板。官方答案页 p.1 题号 4 对应 B，与所录答案一致。",
+      "fix": "按原卷 p.2 逐行转写 processData 代码（原卷仅给出函数体，无 #include <stack>/<queue>，转写保持原样），以 fenced cpp 块回填题面；移除 sourceIntegrity/integrityNote；解析重写为 LIFO/FIFO 推导 + 逐选项理由。",
+      "evidence": "g++ 编译运行转写代码（补标准头文件），输出 Stack pop: 5 4 3 2 1、Queue pop: 1 2 3 4 5，与答案 B 一致。tmp/verify/2024-l6/q4_stackqueue.cpp",
+      "resolved": true
+    },
+    {
+      "id": 22,
+      "dimensions": ["statement", "answer", "explanation"],
+      "method": ["原卷对照（页面渲染人工查看）", "独立推导"],
+      "findings": "题面缺失 preorder 前序遍历代码（原卷为图片，共 6 行，位于判断题第 7 题下方）。解析为占位模板。",
+      "fix": "按原卷 p.7 逐行转写 preorder 代码，以 fenced cpp 块回填题面；移除 sourceIntegrity/integrityNote；解析重写为前序遍历定义（根→左→右）与代码的逐步对应。",
+      "evidence": "独立推导：代码先输出当前结点（根），再递归左子树、右子树，root==NULL 时返回，恰为前序遍历定义，且递归+打印与题干描述一致，判断「正确」成立，与所录答案一致。",
+      "resolved": true
+    }
+  ],
+  "unresolved": []
+}

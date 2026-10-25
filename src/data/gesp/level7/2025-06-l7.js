@@ -434,9 +434,24 @@ int main() {
         {
             id: 11,
             type: "single",
-            sourceIntegrity: "missing-code",
-            integrityNote: "原卷此题引用的程序代码在录入时未收录，仅凭当前题面无法推导答案。本题已排除出计分与考点练习，待补齐原卷代码后恢复。",
-            question: `下面程序的输出为（ ）。`,
+            question: `下面程序的输出为（ ）。
+
+\`\`\`cpp
+#include <iostream>
+using namespace std;
+int rec_fib[100];
+int fib(int n) {
+    if (n <= 1)
+        return n;
+    if (rec_fib[n] == 0)
+        rec_fib[n] = fib(n - 1) + fib(n - 2);
+    return rec_fib[n];
+}
+int main() {
+    cout << fib(6) << endl;
+    return 0;
+}
+\`\`\``,
             options: [
                 "8",
                 "13",

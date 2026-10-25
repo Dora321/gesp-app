@@ -1,0 +1,24 @@
+{
+  "paperId": "2025-06-l7",
+  "reviewedAt": "2026-10-24",
+  "reviewedBy": { "type": "AI", "executor": "WorkBuddy 子代理", "session": "codex/question-bank-verification" },
+  "source": {
+    "mirrorUrl": "https://raw.githubusercontent.com/Dora321/gesp-official-pdfs/main/pdfs/2025%E5%B9%B46%E6%9C%88-C%2B%2B7%E7%BA%A7.pdf",
+    "mirrorSha": "063d5d528396e0d970687d6c78e65b94ef3703ae",
+    "shaVerified": true,
+    "fetchedAt": "2026-10-24",
+    "pages": { "Q11": "p.3" }
+  },
+  "questions": [
+    {
+      "id": 11,
+      "dimensions": ["statement", "answer", "explanation"],
+      "method": ["原卷对照（页面渲染人工查看）", "程序执行"],
+      "findings": "题面缺失记忆化斐波那契程序（原卷为图片，p.3）。原卷代码与解析描述的 rec_fib 记忆化实现一致。",
+      "fix": "按原卷 p.3 转写 14 行代码回填题面；移除 sourceIntegrity/integrityNote。解析与原卷一致，保留。",
+      "evidence": "g++ 编译运行转写代码，实际输出 8（fib(6)，记忆化不影响结果），与答案 A（8）一致。tmp/verify/2025-06-l7/q11.cpp",
+      "resolved": true
+    }
+  ],
+  "unresolved": []
+}

@@ -539,9 +539,21 @@ A 使用商 \`a / b\` 而不是余数；B 的赋值方向和除法都不符合�
         {
             id: 15,
             type: "single",
-            sourceIntegrity: "missing-code",
-            integrityNote: "原卷此题引用的程序代码在录入时未收录，仅凭当前题面无法推导答案。本题已排除出计分与考点练习，待补齐原卷代码后恢复。",
-            question: `下面的代码片段用于反转单链表，请进行（ ）修改，使其能正确实现相应功能。`,
+            question: `下面的代码片段用于反转单链表，请进行（ ）修改，使其能正确实现相应功能。
+
+\`\`\`cpp
+ListNode* reverseLinkedList(ListNode* head) {
+    ListNode* prev = nullptr;
+    ListNode* current = head;
+    while (current != nullptr) {
+        ListNode* next = current->next;
+        current->next = next;
+        prev = current;
+        current = next;
+    }
+    return prev;
+}
+\`\`\``,
             options: [
                 "current->next = next; 应该改为 current->next = prev;",
                 "ListNode* next = current->next; 应该改为 ListNode* next = prev->next;",
@@ -552,16 +564,18 @@ A 使用商 \`a / b\` 而不是余数；B 的赋值方向和除法都不符合�
             score: 2,
             explanation: `**答案：A**
 
-            **解析：**
-            本题答案已依据试卷标准答案完成录入，可结合题干与选项复盘对应知识点。
+**推导过程：**
 
-            - **A current->next = next; 应该改为 current->next...**：正确答案。
-            - **B ListNode* next = current->next; 应该改为 Lis...**：不是本题答案。
-            - **C current != nullptr 应该改为 current->next !=...**：不是本题答案。
-            - **D ListNode* prev = nullptr; 应该改为 ListNode*...**：不是本题答案。
+反转单链表的核心是逐个把结点的 \`next\` 指针指向前驱：循环中先用 \`next\` 保存后继，再修改指针方向（\`current->next = prev\`），最后 \`prev = current; current = next;\` 前移。原代码 \`current->next = next;\` 只是把结点又指向自己的后继，指针方向从未反转，循环结束后返回的 prev 只有最后一个结点。
 
-            **考点：** 链表、指针
-            `,
+- **A** 正确：把 \`current->next = next;\` 改为 \`current->next = prev;\`，才真正完成指针反转。
+- **B** 错误：\`next\` 必须在修改 \`current->next\` 之前取其后继，若取 \`prev->next\` 会破坏已反转的部分，遍历无法继续。
+- **C** 错误：\`current != nullptr\` 保证最后一个结点也被处理，改为 \`current->next != nullptr\` 会漏掉尾结点（且对空指针解引用有风险）。
+- **D** 错误：\`prev\` 初始化为 \`nullptr\` 是为了让原头结点反转后 \`next\` 置空，若初始化为 \`head\` 会在链表头形成环。
+
+g++ 编译运行修改后代码，输入 1→2→3，输出 \`3 2 1\`，反转成功。
+
+**考点：** 链表、指针`,
             tags: [
                 "客观题",
                 "单选题",
