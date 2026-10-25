@@ -1,24 +1,535 @@
 {
-  "paperId": "2024-09-l5",
-  "reviewedAt": "2026-10-24",
-  "reviewedBy": { "type": "AI", "executor": "WorkBuddy 子代理", "session": "codex/question-bank-verification" },
-  "source": {
-    "mirrorUrl": "https://raw.githubusercontent.com/Dora321/gesp-official-pdfs/main/pdfs/2024%E5%B9%B49%E6%9C%88-C%2B%2B5%E7%BA%A7.pdf",
-    "mirrorSha": "2f34fe1eb88c1930e94ce4c0a7c446356b558ddc",
-    "shaVerified": true,
-    "fetchedAt": "2026-10-24",
-    "pages": { "Q4": "p.2" }
+ "paperId": "2024-09-l5",
+ "reviewedAt": "2026-10-26",
+ "reviewedBy": {
+  "type": "AI",
+  "executor": "WorkBuddy 子代理",
+  "session": "codex/question-bank-verification"
+ },
+ "source": {
+  "mirrorUrl": "https://raw.githubusercontent.com/Dora321/gesp-official-pdfs/main/pdfs/2024%E5%B9%B49%E6%9C%88-C%2B%2B5%E7%BA%A7.pdf",
+  "mirrorSha": "2f34fe1eb88c1930e94ce4c0a7c446356b558ddc",
+  "shaVerified": true,
+  "fetchedAt": "2026-10-26",
+  "pages": {
+   "Q4": "p.2",
+   "Q5": "p.2",
+   "Q7": "p.3-4",
+   "Q13/Q14": "p.6",
+   "Q15": "p.7"
   },
-  "questions": [
-    {
-      "id": 4,
-      "dimensions": ["statement", "explanation"],
-      "method": ["原卷对照（页面渲染人工查看）", "程序执行"],
-      "findings": "题面缺失 fun 辗转相除代码（原卷 p.2 为图片）；解析仅有「依据官方答案表」一句，无实际推导。",
-      "fix": "按原卷 p.2 转写 fun 递归代码回填题面；移除 sourceIntegrity/integrityNote；解析补全为逐步跟踪推导 + 逐选项理由 + 考点。",
-      "evidence": "g++ 编译运行转写代码，fun(20,12) 输出 4。跟踪：fun(20,12)→20%12=8→fun(12,8)→12%8=4→fun(8,4)→8%4=0 返回 4，即 gcd(20,12)=4，与答案 C 一致。tmp/verify/2024-09-l5/q4.cpp",
-      "resolved": true
-    }
-  ],
-  "unresolved": []
+  "note": "本地 PDF 的 git hash-object 结果与镜像记录完全一致。"
+ },
+ "answerTable": {
+  "location": "单选答案表 p.1 顶部；判断答案表 p.7「2 判断题」标题下方",
+  "content": {
+   "single": "CDCCCACACBBACCC",
+   "judge": "√√××××√√√×"
+  }
+ },
+ "questions": [
+  {
+   "id": 1,
+   "type": "single",
+   "official": "C",
+   "answerTableValue": "C",
+   "bank": "C",
+   "changed": false,
+   "resolved": true,
+   "textMatch": true,
+   "dimensions": [
+    "statement",
+    "options",
+    "answer"
+   ],
+   "method": [
+    "题面与选项按官方文本层/渲染图逐字比对",
+    "单选答案表逐位核对"
+   ],
+   "note": "题面与四个选项与官方一致；答案 C（相同数目整数，数组比链表内存少，故 C 说「数组更多」错误）"
+  },
+  {
+   "id": 2,
+   "type": "single",
+   "official": "D",
+   "answerTableValue": "D",
+   "bank": "D",
+   "changed": false,
+   "resolved": true,
+   "textMatch": true,
+   "dimensions": [
+    "statement",
+    "options",
+    "answer"
+   ],
+   "method": [
+    "题面与选项按官方文本层/渲染图逐字比对",
+    "单选答案表逐位核对"
+   ],
+   "note": "题面与四个选项与官方一致；答案 D"
+  },
+  {
+   "id": 3,
+   "type": "single",
+   "official": "C",
+   "answerTableValue": "C",
+   "bank": "C",
+   "changed": false,
+   "resolved": true,
+   "textMatch": true,
+   "dimensions": [
+    "statement",
+    "options",
+    "answer"
+   ],
+   "method": [
+    "题面与选项按官方文本层/渲染图逐字比对",
+    "单选答案表逐位核对"
+   ],
+   "note": "题面与选项与官方一致；答案 C"
+  },
+  {
+   "id": 4,
+   "type": "single",
+   "official": "C",
+   "answerTableValue": "C",
+   "bank": "C",
+   "changed": false,
+   "resolved": true,
+   "textMatch": true,
+   "dimensions": [
+    "statement",
+    "options",
+    "answer"
+   ],
+   "method": [
+    "题面与选项按官方文本层/渲染图逐字比对",
+    "单选答案表逐位核对"
+   ],
+   "note": "题面与选项与官方一致；上轮已补回 fun 辗转相除代码块并实测 fun(20,12)=4；答案 C"
+  },
+  {
+   "id": 5,
+   "type": "single",
+   "official": "C",
+   "answerTableValue": "C",
+   "bank": "C",
+   "changed": true,
+   "resolved": true,
+   "textMatch": true,
+   "dimensions": [
+    "statement",
+    "options",
+    "answer"
+   ],
+   "method": [
+    "按原卷 PDF 渲染读图逐字重录题面与选项",
+    "单选答案表逐位核对"
+   ],
+   "note": "题库原题是「下列哪个算法的时间复杂度是 O(n log n)」（选项冒泡/选择/归并/插入），与官方埃氏筛法填空题无关；官方答案 C、题库答案也是 C，属字母巧合。已按官方代码与四个 for 选项重录。"
+  },
+  {
+   "id": 6,
+   "type": "single",
+   "official": "A",
+   "answerTableValue": "A",
+   "bank": "A",
+   "changed": false,
+   "resolved": true,
+   "textMatch": true,
+   "dimensions": [
+    "statement",
+    "options",
+    "answer"
+   ],
+   "method": [
+    "题面与选项按官方文本层/渲染图逐字比对",
+    "单选答案表逐位核对"
+   ],
+   "note": "题面与选项与官方一致；答案 A"
+  },
+  {
+   "id": 7,
+   "type": "single",
+   "official": "C",
+   "answerTableValue": "C",
+   "bank": "C",
+   "changed": true,
+   "resolved": true,
+   "textMatch": true,
+   "dimensions": [
+    "statement",
+    "options",
+    "answer"
+   ],
+   "method": [
+    "按原卷 PDF 渲染读图逐字重录题面与选项",
+    "单选答案表逐位核对"
+   ],
+   "note": "题库原题是「std::stack 遵循的原则」（选项先进先出/随机访问/后进先出/按优先级），与官方「质因数分解的时间复杂度」无关；官方答案 C、题库也是 C。已按官方 get_prime_factors 代码与 O(n²)/O(n log n)/O(√n log n)/O(n) 重录。"
+  },
+  {
+   "id": 8,
+   "type": "single",
+   "official": "A",
+   "answerTableValue": "A",
+   "bank": "A",
+   "changed": false,
+   "resolved": true,
+   "textMatch": true,
+   "dimensions": [
+    "statement",
+    "options",
+    "answer"
+   ],
+   "method": [
+    "题面与选项按官方文本层/渲染图逐字比对",
+    "单选答案表逐位核对"
+   ],
+   "note": "题面与四个选项（O(n)/O(n²)/O(log n)/O(n log n)）与官方一致；答案为 A（两次递归调用 n/2，T(n)=2T(n/2)+O(1)=O(n)）。注：audit-pdf-stem-diff 因题面含 LaTeX 记为未命中，属该工具的误报，已人工核对。"
+  },
+  {
+   "id": 9,
+   "type": "single",
+   "official": "C",
+   "answerTableValue": "C",
+   "bank": "C",
+   "changed": true,
+   "resolved": true,
+   "textMatch": true,
+   "dimensions": [
+    "statement",
+    "options",
+    "answer"
+   ],
+   "method": [
+    "按原卷 PDF 渲染读图逐字重录题面与选项",
+    "单选答案表逐位核对"
+   ],
+   "note": "题目原先带 sourceIntegrity: options-reconstructed 标记（文本层把公式吞掉，B/C 两个选项都只剩「时间复杂度是 。」）。已按官方 p.4 渲染补回 $O(n\\log n)$ / $O(n^2)$ 与题干中的「长度为 $n$」，重写解析，并解除该标记。答案 C（$O(n^2)$）不变。"
+  },
+  {
+   "id": 10,
+   "type": "single",
+   "official": "B",
+   "answerTableValue": "B",
+   "bank": "B",
+   "changed": false,
+   "resolved": true,
+   "textMatch": true,
+   "dimensions": [
+    "statement",
+    "options",
+    "answer"
+   ],
+   "method": [
+    "题面与选项按官方文本层/渲染图逐字比对",
+    "单选答案表逐位核对"
+   ],
+   "note": "题面与选项与官方一致；答案 B"
+  },
+  {
+   "id": 11,
+   "type": "single",
+   "official": "B",
+   "answerTableValue": "B",
+   "bank": "B",
+   "changed": false,
+   "resolved": true,
+   "textMatch": true,
+   "dimensions": [
+    "statement",
+    "options",
+    "answer"
+   ],
+   "method": [
+    "题面与选项按官方文本层/渲染图逐字比对",
+    "单选答案表逐位核对"
+   ],
+   "note": "题面与选项与官方一致；答案 B"
+  },
+  {
+   "id": 12,
+   "type": "single",
+   "official": "A",
+   "answerTableValue": "A",
+   "bank": "A",
+   "changed": false,
+   "resolved": true,
+   "textMatch": true,
+   "dimensions": [
+    "statement",
+    "options",
+    "answer"
+   ],
+   "method": [
+    "题面与选项按官方文本层/渲染图逐字比对",
+    "单选答案表逐位核对"
+   ],
+   "note": "题面与选项与官方一致；答案 A"
+  },
+  {
+   "id": 13,
+   "type": "single",
+   "official": "C",
+   "answerTableValue": "C",
+   "bank": "C",
+   "changed": true,
+   "resolved": true,
+   "textMatch": true,
+   "dimensions": [
+    "statement",
+    "options",
+    "answer"
+   ],
+   "method": [
+    "按原卷 PDF 渲染读图逐字重录题面与选项",
+    "单选答案表逐位核对"
+   ],
+   "note": "题库原题是「关于 static 的描述」，与官方「二分查找在数组 1,3,6,9,17,31,39,52,61,79 中查 31 的循环次数」无关；答案同为 C。已按官方 binary_search 代码重录，实测 3 次（mid=4→7→5）。"
+  },
+  {
+   "id": 14,
+   "type": "single",
+   "official": "C",
+   "answerTableValue": "C",
+   "bank": "C",
+   "changed": true,
+   "resolved": true,
+   "textMatch": true,
+   "dimensions": [
+    "statement",
+    "options",
+    "answer"
+   ],
+   "method": [
+    "按原卷 PDF 渲染读图逐字重录题面与选项",
+    "单选答案表逐位核对"
+   ],
+   "note": "题库原题是「关于双向链表的说法」，与官方「高精度运算说法错误的是」无关；答案同为 C。已按官方四个选项重录。"
+  },
+  {
+   "id": 15,
+   "type": "single",
+   "official": "C",
+   "answerTableValue": "C",
+   "bank": "C",
+   "changed": true,
+   "resolved": true,
+   "textMatch": true,
+   "dimensions": [
+    "statement",
+    "options",
+    "answer"
+   ],
+   "method": [
+    "按原卷 PDF 渲染读图逐字重录题面与选项",
+    "单选答案表逐位核对"
+   ],
+   "note": "题库原题是「GESP 5 级编程题通常考察什么」，与官方「n=7 时 fun 的返回值」无关；答案同为 C。已按官方递归代码与 105/840/210/420 重录，手算 7×5×3×2×1=210。"
+  },
+  {
+   "id": 16,
+   "type": "judge",
+   "official": "√",
+   "answerTableValue": "√",
+   "bank": "√",
+   "changed": true,
+   "resolved": true,
+   "textMatch": true,
+   "dimensions": [
+    "statement",
+    "answer"
+   ],
+   "method": [
+    "按原卷 PDF 渲染读图重录题面",
+    "判断题答案表逐位核对"
+   ],
+   "note": "题库题面是压缩改写（「CPU 时间片轮转调度可以通过环形链表来实现」），已按官方原文（进程循环、时间片用完切换 CPU）重录，判定「正确」不变。"
+  },
+  {
+   "id": 17,
+   "type": "judge",
+   "official": "√",
+   "answerTableValue": "√",
+   "bank": "√",
+   "changed": true,
+   "resolved": true,
+   "textMatch": true,
+   "dimensions": [
+    "statement",
+    "answer"
+   ],
+   "method": [
+    "按原卷 PDF 渲染读图重录题面",
+    "判断题答案表逐位核对"
+   ],
+   "note": "题库题面是压缩改写（「线性筛法的效率通常高于埃氏筛法」），已按官方「自然数 n 以内找质数，常用埃氏筛与线性筛，线性筛效率更高」重录，判定「正确」不变。"
+  },
+  {
+   "id": 18,
+   "type": "judge",
+   "official": "×",
+   "answerTableValue": "×",
+   "bank": "×",
+   "changed": false,
+   "resolved": true,
+   "textMatch": true,
+   "dimensions": [
+    "statement",
+    "answer"
+   ],
+   "method": [
+    "题面按官方文本层逐字比对",
+    "判断题答案表逐位核对"
+   ],
+   "note": "题面与官方一致；答案「错误」——唯一分解是素数之积，不是之和"
+  },
+  {
+   "id": 19,
+   "type": "judge",
+   "official": "×",
+   "answerTableValue": "×",
+   "bank": "×",
+   "changed": false,
+   "resolved": true,
+   "textMatch": true,
+   "dimensions": [
+    "statement",
+    "answer"
+   ],
+   "method": [
+    "题面按官方文本层逐字比对",
+    "判断题答案表逐位核对"
+   ],
+   "note": "题面与官方一致；答案「错误」——贪心不保证全局最优"
+  },
+  {
+   "id": 20,
+   "type": "judge",
+   "official": "×",
+   "answerTableValue": "×",
+   "bank": "×",
+   "changed": false,
+   "resolved": true,
+   "textMatch": true,
+   "dimensions": [
+    "statement",
+    "answer"
+   ],
+   "method": [
+    "题面按官方文本层逐字比对",
+    "判断题答案表逐位核对"
+   ],
+   "note": "题面与官方一致；答案「错误」——归并稳定、快排不稳定"
+  },
+  {
+   "id": 21,
+   "type": "judge",
+   "official": "×",
+   "answerTableValue": "×",
+   "bank": "×",
+   "changed": false,
+   "resolved": true,
+   "textMatch": true,
+   "dimensions": [
+    "statement",
+    "answer"
+   ],
+   "method": [
+    "题面按官方文本层逐字比对",
+    "判断题答案表逐位核对"
+   ],
+   "note": "题面与官方一致；答案「错误」"
+  },
+  {
+   "id": 22,
+   "type": "judge",
+   "official": "√",
+   "answerTableValue": "√",
+   "bank": "√",
+   "changed": false,
+   "resolved": true,
+   "textMatch": true,
+   "dimensions": [
+    "statement",
+    "answer"
+   ],
+   "method": [
+    "题面按官方文本层逐字比对",
+    "判断题答案表逐位核对"
+   ],
+   "note": "题面与官方一致；答案「正确」"
+  },
+  {
+   "id": 23,
+   "type": "judge",
+   "official": "√",
+   "answerTableValue": "√",
+   "bank": "√",
+   "changed": false,
+   "resolved": true,
+   "textMatch": true,
+   "dimensions": [
+    "statement",
+    "answer"
+   ],
+   "method": [
+    "题面按官方文本层逐字比对",
+    "判断题答案表逐位核对"
+   ],
+   "note": "题面与官方一致；答案「正确」"
+  },
+  {
+   "id": 24,
+   "type": "judge",
+   "official": "√",
+   "answerTableValue": "√",
+   "bank": "√",
+   "changed": false,
+   "resolved": true,
+   "textMatch": true,
+   "dimensions": [
+    "statement",
+    "answer"
+   ],
+   "method": [
+    "题面按官方文本层逐字比对",
+    "判断题答案表逐位核对"
+   ],
+   "note": "题面与官方一致；答案「正确」"
+  },
+  {
+   "id": 25,
+   "type": "judge",
+   "official": "×",
+   "answerTableValue": "×",
+   "bank": "×",
+   "changed": false,
+   "resolved": true,
+   "textMatch": true,
+   "dimensions": [
+    "statement",
+    "answer"
+   ],
+   "method": [
+    "题面按官方文本层逐字比对",
+    "判断题答案表逐位核对"
+   ],
+   "note": "题面与官方一致；答案「错误」——sin(sin(x)) 是函数嵌套调用，不是递归"
+  }
+ ],
+ "unresolved": [],
+ "summary": {
+  "singleTotal": 15,
+  "judgeTotal": 10,
+  "changed": 8
+ },
+ "rebuild": true,
+ "rebuildNote": "2026-10-26 按官方 PDF 重建：Q5/Q7/Q13/Q14/Q15 五道单选的题库内容与官方卷无关（分别是「哪个算法 O(n log n)」「std::stack 的原则」「static 的描述」「双向链表的说法」「GESP 5 级编程题考什么」），全部按官方原文重录；Q16/Q17 两道判断题题面由压缩改写恢复为官方原句。",
+ "methodologyNote": "本卷是「答案表比对失效」的典型：官方 15 道单选里有 8 道答案为 C，五道替换题恰好也都落在 C，因此按答案串比对的体检 100% 通过，但实际有 1/3 的题目与官方卷无关。教训：答案字母分布越集中（重复字母越多），答案串比对的判别力越弱，必须逐题核对题面与选项。",
+ "priorReviewCorrection": {
+  "foundAt": "2026-10-26",
+  "note": "本文件此前只记录了 Q4 一条（题面缺代码块），其余题目无逐题记录，等同于默认一致。实际复核发现 Q5/Q7/Q13/Q14/Q15 五道是替换题，Q16/Q17 题面被压缩改写。上一轮之所以没发现，是因为替换题的答案字母与官方完全相同、且官方答案高度集中在 C。"
+ }
 }
