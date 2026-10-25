@@ -1,0 +1,42 @@
+{
+  "paperId": "2025-03-l1",
+  "reviewedAt": "2026-10-25",
+  "reviewedBy": { "type": "AI", "executor": "WorkBuddy 子代理", "session": "codex/question-bank-verification" },
+  "source": {
+    "mirrorUrl": "https://raw.githubusercontent.com/Dora321/gesp-official-pdfs/main/pdfs/2025%E5%B9%B43%E6%9C%88-C%2B%2B1%E7%BA%A7.pdf",
+    "mirrorSha": "73dcbdb76e08af3211536ada0b83076da9ae440c",
+    "shaVerified": true,
+    "localFile": "tmp/2025年3月-C++1级.pdf",
+    "fetchedAt": "2026-10-25",
+    "pages": { "单选答案表": "p.1", "判断答案表+判断题1": "p.4", "判断题2-10": "p.5" }
+  },
+  "answerTable": {
+    "single": {
+      "page": 1,
+      "content": "D D D C C B C D D D D C A A C",
+      "matchesBank": true
+    },
+    "judge": {
+      "page": 4,
+      "content": "√ × × √ × × × × × ×",
+      "note": "答案表为图片（红色 √/×），已 4 倍放大逐位核对"
+    }
+  },
+  "questions": [
+    { "id": 16, "paperJudgeNo": 1, "official": "√", "bank": "√", "textMatch": true, "changed": false },
+    { "id": 17, "paperJudgeNo": 2, "official": "×", "bank": "×", "textMatch": true, "changed": false },
+    { "id": 18, "paperJudgeNo": 3, "official": "×", "bank": "×", "textMatch": true, "changed": false },
+    { "id": 19, "paperJudgeNo": 4, "official": "√", "bank": "√", "textMatch": true, "changed": false },
+    { "id": 20, "paperJudgeNo": 5, "official": "×", "bank": "×", "textMatch": true, "changed": false },
+    { "id": 21, "paperJudgeNo": 6, "official": "×", "bank": "×", "textMatch": true, "changed": false },
+    { "id": 22, "paperJudgeNo": 7, "official": "×", "bank": "×", "textMatch": true, "changed": false },
+    { "id": 23, "paperJudgeNo": 8, "official": "×", "bank": "×", "textMatch": true, "changed": false },
+    { "id": 24, "paperJudgeNo": 9, "official": "×", "bank": "×", "textMatch": true, "changed": false },
+    {
+      "id": 25, "paperJudgeNo": 10, "official": "×", "bank": "√", "textMatch": false, "changed": true,
+      "findings": "题库题文与原卷有出入：原卷命题为「输入 3.6，则输出是 6」，题库被改写为「则输出是 5」（使命题为真）。按原卷恢复题文。独立推导：scanf(\"%d\") 读 \"3.6\" 时遇小数点停止，N=3；N/3*5 = 3/3*5 = 5，实际输出 5 而非 6，原卷命题为假，官方 × 正确。",
+      "fix": "question 恢复原卷表述「则输出是6」，answer 0→1，解析第三步改为『输出 5 而命题称 6，命题错误』，易错提醒补充 3.6/3*5=6 的错误推导来源"
+    }
+  ],
+  "unresolved": []
+}

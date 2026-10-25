@@ -1,0 +1,38 @@
+{
+  "paperId": "2024-06-l1",
+  "reviewedAt": "2026-10-25",
+  "reviewedBy": { "type": "AI", "executor": "WorkBuddy 子代理", "session": "codex/question-bank-verification" },
+  "source": {
+    "mirrorUrl": "https://raw.githubusercontent.com/Dora321/gesp-official-pdfs/main/pdfs/2024%E5%B9%B46%E6%9C%88-C%2B%2B1%E7%BA%A7.pdf",
+    "mirrorSha": "49006abdf763539afdbe8aed200cab4540e5ee0b",
+    "shaVerified": true,
+    "localFile": "tmp/official-2024-06-l1.pdf",
+    "fetchedAt": "2026-10-25",
+    "pages": { "单选答案表": "p.1", "判断答案表+判断题全文": "p.5" }
+  },
+  "answerTable": {
+    "single": {
+      "page": 1,
+      "content": "A D B C B C B C C C C D C C B",
+      "matchesBank": true
+    },
+    "judge": {
+      "page": 5,
+      "content": "× × √ × √ √ × × × √",
+      "note": "答案表为图片（红色 √/×），已 4 倍放大逐位核对"
+    }
+  },
+  "questions": [
+    { "id": 16, "paperJudgeNo": 1, "official": "×", "bank": "×", "textMatch": true, "changed": false },
+    { "id": 17, "paperJudgeNo": 2, "official": "×", "bank": "×", "textMatch": true, "changed": false },
+    { "id": 18, "paperJudgeNo": 3, "official": "√", "bank": "√", "textMatch": true, "changed": false },
+    { "id": 19, "paperJudgeNo": 4, "official": "×", "bank": "×", "textMatch": true, "changed": false },
+    { "id": 20, "paperJudgeNo": 5, "official": "√", "bank": "√", "textMatch": true, "changed": false },
+    { "id": 21, "paperJudgeNo": 6, "official": "√", "bank": "√", "textMatch": true, "changed": false },
+    { "id": 22, "paperJudgeNo": 7, "official": "×", "bank": "×", "textMatch": true, "changed": false },
+    { "id": 23, "paperJudgeNo": 8, "official": "×", "bank": "×", "textMatch": true, "changed": false },
+    { "id": 24, "paperJudgeNo": 9, "official": "×", "bank": "×", "textMatch": true, "changed": false },
+    { "id": 25, "paperJudgeNo": 10, "official": "√", "bank": "√", "textMatch": true, "changed": false }
+  ],
+  "unresolved": []
+}

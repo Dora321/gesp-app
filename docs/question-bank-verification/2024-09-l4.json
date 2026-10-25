@@ -1,0 +1,34 @@
+{
+  "paperId": "2024-09-l4",
+  "executedAt": "2026-10-25",
+  "reviewedBy": { "type": "AI", "executor": "WorkBuddy 子代理" },
+  "source": {
+    "mirrorUrl": "https://raw.githubusercontent.com/Dora321/gesp-official-pdfs/main/pdfs/2024%E5%B9%B49%E6%9C%88-C%2B%2B4%E7%BA%A7.pdf",
+    "mirrorSha": "6c01612a8d079f90937bb52ba207b054e28fdbdd",
+    "shaVerified": true,
+    "fetchedAt": "2026-10-25",
+    "pages": { "judge": "p6", "single": "p1" }
+  },
+  "answerTable": {
+    "format": "官方试卷版，判断题节首集中答案表（题号 1-10 / 答案行，√/× 为红色图片，已放大并含题号行对齐核对）",
+    "judge": "√√××√××××√",
+    "judgePage": "p6（表位于判断题节首）",
+    "single": "A B A B D A B D A B C A A A C（p1 表，与题库 1-15 题一致）"
+  },
+  "questions": [
+    { "id": 16, "official": "√", "bank": "√", "changed": false, "note": "int* p = &a 正确定义并初始化" },
+    { "id": 17, "official": "√", "bank": "√", "changed": false, "note": "引用传递可修改实参" },
+    { "id": 18, "official": "×", "bank": "×", "changed": false, "note": "指针大小与所指向类型大小无关" },
+    { "id": 19, "official": "×", "bank": "×", "changed": false, "note": "二维数组行列大小均须定义时确定" },
+    { "id": 20, "official": "√", "bank": "√", "changed": false, "note": "递推算法定义" },
+    { "id": 21, "official": "×", "bank": "×", "changed": false, "note": "选择排序不稳定" },
+    { "id": 22, "official": "×", "bank": "×", "changed": false, "note": "插入排序复杂度并非总比冒泡低" },
+    { "id": 23, "official": "×", "bank": "×", "changed": false, "note": "未捕获异常会调用 std::terminate 终止" },
+    { "id": 24, "official": "官方第9题为『以下代码用递推法求斐波那契第n项，时间复杂度为指数级』（代码为迭代 O(n)）→ ×；题库24为改写题『递推法时间复杂度为 O(N)』→ √", "bank": "√", "changed": false, "note": "题面被改写为肯定式（O(N)），答案对自身题面事实正确；官方表位置9=× 与题库24 表面不一致不构成答案错误" },
+    { "id": 25, "official": "官方第10题为 point() 代码输出 20 判断题 √；题库25为替换题『GESP 4 级要求掌握二维数组』√", "bank": "√", "changed": false, "note": "题面被替换（答案恰好同为√）" }
+  ],
+  "unresolved": [
+    "题库判断题 24 的题面与官方原题（『时间复杂度为指数级』）不一致，系被改写为肯定式『递推法时间复杂度为 O(N)』；官方答案×对应原题表述，题库√对应改写表述，两者各自成立。建议后续按官方原卷回填题面并改答案为×（本次仅核对答案，未动题面）。",
+    "题库判断题 25 为替换题（官方第10题是 point(int* p) 返回 *p*2 后输出 p 判断题），建议按官方原卷回填。"
+  ]
+}

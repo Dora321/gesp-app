@@ -1,0 +1,34 @@
+{
+  "paperId": "2024-06-l4",
+  "executedAt": "2026-10-25",
+  "reviewedBy": { "type": "AI", "executor": "WorkBuddy 子代理" },
+  "source": {
+    "mirrorUrl": "https://raw.githubusercontent.com/Dora321/gesp-official-pdfs/main/pdfs/2024%E5%B9%B46%E6%9C%88-C%2B%2B4%E7%BA%A7.pdf",
+    "mirrorSha": "de1b8f090ae293b7b4a35de7ba767963c89ff42c",
+    "shaVerified": true,
+    "fetchedAt": "2026-10-25",
+    "pages": { "judge": "p8（表+题面1-7）/ p9（题面7-10）", "single": "p1" }
+  },
+  "answerTable": {
+    "format": "官方试卷版，判断题节首集中答案表（题号 1-10 / 答案行，√/× 为红色图片，已放大并含题号行对齐核对）",
+    "judge": "×√√√×√√√√√",
+    "judgePage": "p8（表位于判断题节首）",
+    "single": "B B B D B D D A A B A D A B D（p1 表，与题库 1-15 题一致）"
+  },
+  "questions": [
+    { "id": 16, "official": "×", "bank": "×", "changed": false, "note": "题面对应官方第1题（int& a 和 &a 取地址说法错）" },
+    { "id": 17, "official": "官方第2题为『以下代码不能被正确执行』√；题库17为改写题『引用一旦初始化就不能再绑定』√", "bank": "√", "changed": false, "note": "题面非官方原题，答案对自身题面成立" },
+    { "id": 18, "official": "√", "bank": "√", "changed": false, "note": "题面对应官方第3题（引用是一个指针常量）" },
+    { "id": 19, "official": "官方第5题为『函数不可以调用自己』×；题库19为否定改写『函数可以调用自己』√", "bank": "√", "changed": false, "note": "互为否定表述，两者各自事实正确，不构成冲突" },
+    { "id": 20, "official": "官方第5题位置答案×；题库20为替换题『静态变量在程序运行结束前不会被销毁』√", "bank": "√", "changed": false, "note": "题面被替换，官方表位置5=× 与题库20 表面不一致不构成答案错误；官方原题为『函数不可以调用自己』" },
+    { "id": 21, "official": "官方第6题为常量值/常量引用/常量指针题 √；题库21为替换题『构造函数可重载』√", "bank": "√", "changed": false, "note": "题面被替换" },
+    { "id": 22, "official": "官方第7题为 int *p=NULL; cout<<p 输出0题 √；题库22为替换题『冒泡总是O(N^2)』×", "bank": "×", "changed": false, "note": "题面被替换" },
+    { "id": 23, "official": "官方第8题为 a[i][j] 如普通整型变量题 √；题库23为替换题『分治核心』√", "bank": "√", "changed": false, "note": "题面被替换" },
+    { "id": 24, "official": "官方第9题为『一维数组末尾加 M 构成合法数列，N=6 有 6 种』√；题库24为替换题『指针修改 const 局部变量』×", "bank": "×", "changed": false, "note": "题面被替换，官方表位置9=√ 与题库24 表面不一致不构成答案错误" },
+    { "id": 25, "official": "官方第10题为『插入排序平均 O(n²)，最坏情况达到最大时间复杂度』√；题库25为替换题『客观题包括单选和判断』√", "bank": "√", "changed": false, "note": "题面被替换" }
+  ],
+  "unresolved": [
+    "题库判断题 17、19-25 的题面与官方原卷不对应（疑为早期重建时被改写/替换）：官方原卷判断题为 1)int& a 和 &a 取地址、2)int& ra; ra=&a 代码不能正确执行、3)引用是指针常量、4)cout<<a 与 cout<<&a[0][0] 输出相同、5)函数不可以调用自己、6)常量值/常量引用/常量指针防修改、7)int *p=NULL 输出 0、8)a[i][j] 如普通整型变量、9)一维数组末尾加 M 合法数列(N=6 有 6 种)、10)插入排序平均 O(n²) 最坏最大。建议后续按官方原卷回填题面（本次仅核对答案，未动题面）。",
+    "官方答案表位置 5=×、9=√ 与题库 20=√、24=× 的表面差异源于题面替换，非答案错误；按题面替换后的语义两题答案均事实正确，故不修改。"
+  ]
+}

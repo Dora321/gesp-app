@@ -1,0 +1,34 @@
+{
+  "paperId": "2024-09-l8",
+  "reviewedAt": "2026-10-25",
+  "reviewedBy": { "type": "AI", "executor": "WorkBuddy 子代理", "session": "codex/question-bank-verification" },
+  "source": {
+    "mirrorUrl": "https://raw.githubusercontent.com/Dora321/gesp-official-pdfs/main/pdfs/2024%E5%B9%B49%E6%9C%88-C%2B%2B8%E7%BA%A7.pdf",
+    "mirrorSha": "dfea37a6f9f6f8662bade0682410d1175a10e5d9",
+    "shaVerified": true,
+    "fetchedAt": "2026-10-25",
+    "pages": { "singleAnswerTable": "p.1", "judgeAnswerTable": "p.8" }
+  },
+  "answerTable": {
+    "single": { "content": "D B C D A A C A A C D B B A B", "page": "p.1" },
+    "judge": { "content": "× × × √ × √ × √ √ √", "page": "p.8", "note": "红色 √/× 字形，按「答案」行坐标 6 倍放大裁剪逐一核对（tmp/crops/2024-09-l8-judge.png）" }
+  },
+  "questions": [
+    { "id": 16, "type": "judge", "official": "×", "bank": "×", "modified": false },
+    { "id": 17, "type": "judge", "official": "×", "bank": "×", "modified": false },
+    { "id": 18, "type": "judge", "official": "×", "bank": "×", "modified": false },
+    { "id": 19, "type": "judge", "official": "√", "bank": "√", "modified": false },
+    { "id": 20, "type": "judge", "official": "×", "bank": "×", "modified": false },
+    { "id": 21, "type": "judge", "official": "√", "bank": "√", "modified": false },
+    { "id": 22, "type": "judge", "official": "×", "bank": "×", "modified": false },
+    { "id": 23, "type": "judge", "official": "√", "bank": "√", "modified": false },
+    { "id": 24, "type": "judge", "official": "√", "bank": "√", "modified": false },
+    { "id": 25, "type": "judge", "official": "√", "bank": "√", "modified": false }
+  ],
+  "secondaryCheck": {
+    "singleChoice": "题库单选 15 题与官方答案表逐题比对全部一致",
+    "result": "all-match"
+  },
+  "unresolved": [],
+  "executedAt": "2026-10-25"
+}

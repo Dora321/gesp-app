@@ -1,0 +1,77 @@
+{
+  "paperId": "2023-12-l1",
+  "reviewedAt": "2026-10-25",
+  "reviewedBy": { "type": "AI", "executor": "WorkBuddy 子代理", "session": "codex/question-bank-verification" },
+  "source": {
+    "mirrorUrl": "https://raw.githubusercontent.com/Dora321/gesp-official-pdfs/main/pdfs/2023%E5%B9%B412%E6%9C%88-C%2B%2B1%E7%BA%A7.pdf",
+    "mirrorSha": "fc1710d0b0364bfaf1f8e2a963828b643690fdd3",
+    "shaVerified": true,
+    "fetchedAt": "2026-10-25",
+    "pages": { "单选答案表": "p.1", "判断答案表+判断题全文": "p.5" }
+  },
+  "answerTable": {
+    "single": {
+      "page": 1,
+      "content": "A B B A B C A C D D B D B C B",
+      "matchesBank": true
+    },
+    "judge": {
+      "page": 5,
+      "content": "√ × × × √ √ × × × √",
+      "note": "答案表为图片（红色 √/×），已 4 倍放大逐位核对"
+    }
+  },
+  "questions": [
+    {
+      "id": 16, "paperJudgeNo": 1, "official": "√", "bank": "√", "textMatch": false, "changed": true,
+      "findings": "题库题文（强类型语言先定义后使用）非原卷题；原卷第 1 题为「int(3.14) 的值为 3」。独立推导：浮点转整型向零截断，int(3.14)=3，命题为真，官方 √ 正确。答案碰巧相同，但题文与解析整体错置，一并替换。",
+      "fix": "question 按原卷逐字转写替换，answer 不变（√），解析重写（截断规则）"
+    },
+    {
+      "id": 17, "paperJudgeNo": 2, "official": "×", "bank": "×", "textMatch": false, "changed": true,
+      "findings": "题库题文（true && false）非原卷题；原卷第 2 题为「cout << (2*3, 3%10, 2+3) 的输出为 6,3,5」。独立推导：括号内为逗号表达式，整体值只取最后一项 5，输出为 5 而非 6,3,5，命题为假，官方 × 正确。答案碰巧相同，一并替换。",
+      "fix": "question 按原卷逐字转写替换，answer 不变（×），解析重写（逗号表达式）"
+    },
+    {
+      "id": 18, "paperJudgeNo": 3, "official": "×", "bank": "√", "textMatch": false, "changed": true,
+      "findings": "题库题文（语句必须分号结尾）非原卷题；原卷第 3 题为「for(int i=1;i<10;i+=3) 表示 i 从 1 开始到 10 结束间隔为 3，相当于 1、4、7、10」。独立推导：i 实际取 1、4、7，i=10 时条件 i<10 不成立取不到 10，命题为假，官方 × 正确。",
+      "fix": "question 按原卷逐字转写替换，answer 0→1，解析重写（循环边界取值）"
+    },
+    {
+      "id": 19, "paperJudgeNo": 4, "official": "×", "bank": "√", "textMatch": false, "changed": true,
+      "findings": "题库题文（010 表示八进制数）非原卷题；原卷第 4 题为「010+100+001 的值为 111」。独立推导：010 是八进制 8、001 是八进制 1，8+100+1=109≠111，命题为假，官方 × 正确。",
+      "fix": "question 按原卷逐字转写替换，answer 0→1，解析重写（八进制字面值求和）"
+    },
+    {
+      "id": 20, "paperJudgeNo": 5, "official": "√", "bank": "√", "textMatch": false, "changed": true,
+      "findings": "题库题文（for 循环一定有结束条件）非原卷题；原卷第 5 题为「if 语句中的条件表达式的结果可以为 int 类型」。独立推导：if 条件允许算术类型，非零即真，int 合法，命题为真，官方 √ 正确。答案相同，一并替换。",
+      "fix": "question 按原卷逐字转写替换，answer 不变（√），解析重写（if 条件类型要求）"
+    },
+    {
+      "id": 21, "paperJudgeNo": 6, "official": "√", "bank": "×", "textMatch": false, "changed": true,
+      "findings": "题库题文（continue 跳出整个循环）非原卷题；原卷第 6 题为「while(1) continue; 由于 continue 无条件被执行将导致死循环」。独立推导：while 条件恒真且无 for 式更新子句，continue 跳回后无任何变量变化，确实死循环，命题为真，官方 √ 正确。",
+      "fix": "question 按原卷逐字转写替换，answer 1→0，解析重写（while 死循环构成，并与 for(i++) continue 对照）"
+    },
+    {
+      "id": 22, "paperJudgeNo": 7, "official": "×", "bank": "×", "textMatch": false, "changed": true,
+      "findings": "题库题文（数组下标从 1 开始）非原卷题；原卷第 7 题为「('1'+'1'=='2') ? flag=1 : flag=2 的结果值和 (flag==2) 的相同」。独立推导：'1'+'1'=98≠'2'(50) 条件为假 → flag=2，三元表达式值为 2；而 (flag==2) 值为 true(1)。2≠1，不相同，命题为假，官方 × 正确。答案相同，一并替换。",
+      "fix": "question 按原卷逐字转写替换，answer 不变（×），解析重写（字符运算+三元+赋值表达式值）"
+    },
+    {
+      "id": 23, "paperJudgeNo": 8, "official": "×", "bank": "×", "textMatch": false, "changed": true,
+      "findings": "题库题文（Name 和 name 相同）非原卷题；原卷第 8 题为「不能用 scanf 作变量名」。独立推导：scanf 是标准库函数名非关键字，可用作变量名（遮蔽），命题为假，官方 × 正确。答案相同，一并替换。",
+      "fix": "question 按原卷逐字转写替换，answer 不变（×），解析重写（关键字 vs 库函数名）"
+    },
+    {
+      "id": 24, "paperJudgeNo": 9, "official": "×", "bank": "√", "textMatch": false, "changed": true,
+      "findings": "题库题文（!(10>5) 为 false）非原卷题；原卷第 9 题为「Dev C++ 也是一个小型操作系统」。独立推导：Dev C++ 是 IDE（应用软件），不是操作系统，命题为假，官方 × 正确。",
+      "fix": "question 按原卷逐字转写替换，answer 0→1，解析重写（操作系统 vs IDE）"
+    },
+    {
+      "id": 25, "paperJudgeNo": 10, "official": "√", "bank": "√", "textMatch": false, "changed": true,
+      "findings": "题库题文（编译器翻译高级语言）非原卷题；原卷第 10 题为「任何一个 while 循环都可以转化为等价的 for 循环」。独立推导：while/for 三要素可互相移动，for 子句可留空，表达力等价，命题为真，官方 √ 正确。答案相同，一并替换。",
+      "fix": "question 按原卷逐字转写替换，answer 不变（√），解析重写（while/for 等价转换）"
+    }
+  ],
+  "unresolved": []
+}
