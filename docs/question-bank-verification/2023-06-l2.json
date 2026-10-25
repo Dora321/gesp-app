@@ -199,5 +199,34 @@
   "notes": [
     "官方卷为「试卷解析」版，答案逐题内嵌；题库 25 题题面与原卷一一对应，单选与判断答案全部一致，无修改。"
   ],
+  "programmingSampleAudit": [
+    {
+      "questionId": 27,
+      "title": "自幂数判断",
+      "luoguId": "B3841",
+      "executedAt": "2026-10-25",
+      "method": [
+        "官方 PDF 页面渲染逐字查看（tmp/pages/2023-06-l2/p14.png）",
+        "洛谷题面抓取对照（tmp/luogu-prog/B3841.json）",
+        "g++ -O2 编译运行参考代码逐样例比对"
+      ],
+      "officialSamples": [
+        { "index": 1, "input": "3\n152\n111\n153", "output": "F\nF\nT" },
+        { "index": 2, "input": "5\n8208\n548834\n88593477\n12345\n5432", "output": "T\nT\nT\nF\nF" }
+      ],
+      "luoguSamples": [
+        { "index": 1, "input": "3\n152\n111\n153", "output": "F\nF\nT" },
+        { "index": 2, "input": "5\n8208\n548834\n88593477\n12345\n5432", "output": "T\nT\nT\nF\nF" }
+      ],
+      "bankSamplesBefore": [{ "index": 1, "input": "3\n152\n111\n153", "output": "F\nF\nT" }],
+      "verdict": "官方原卷共有两组样例，题库只录入了第 1 组，缺失第 2 组；洛谷与官方一致（含第 2 组）。",
+      "decision": "按官方 PDF 补录样例 2",
+      "change": "samples 追加官方样例 2；样例 1 与原卷一致不动；参考代码不改。",
+      "page": "p.14（【样例输入 2】/【样例输出 2】，3.2 编程题 2）",
+      "referenceCodeVerified": "samples 1-2 全部通过（g++ -O2 编译执行，输出逐字节一致）",
+      "dataChanged": true,
+      "resolved": true
+    }
+  ],
   "unresolved": []
 }

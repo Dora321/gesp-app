@@ -1,5 +1,115 @@
 import { l8ProgrammingByPaper } from './programming.js';
 
+// 编程题 2「割裂」按官方 PDF（2025 年 3 月 C++ 八级，第 10–11 页）校正：
+// 官方输出样例为 2（可删除结点为 2 与 6），原录入的 1 与参考程序判据均有误。
+const programmingQuestions = l8ProgrammingByPaper['2025-03-l8'].map((q) => {
+    if (q.id !== 27) return q;
+    return {
+        ...q,
+        samples: [
+            {
+                input: '6 2\n1 3\n1 5\n3 6\n3 2\n5 4\n5 4\n5 3\n2 6',
+                output: '2',
+            },
+        ],
+        explanation:
+            '删掉结点 u 后，树上任意两点仍然连通当且仅当 u 不在它们的路径上（u 本身是端点时视为不连通）。因此：坏点对必须被切断 → u 必须落在坏点对的路径上；好点对必须全部保持连通 → u 不能落在任何一个好点对的路径上。答案为「坏点对路径上的结点数」减去「同时出现在某个好点对路径上的结点数」。用 LCA + 树上差分统计每条路径覆盖的结点（`d[u]++, d[v]++, d[lca]--, d[par[lca]]--`，按 DFS 序自底向上累加），复杂度 O((n+a) log n)。样例中好点对路径为 5–4 与 5–1–3，坏点对路径为 2–3–6，坏路径上只有结点 2 和 6 未被好路径覆盖，故答案为 2。',
+        referenceCode: `#include <bits/stdc++.h>
+using namespace std;
+
+int main() {
+    ios::sync_with_stdio(false);
+    cin.tie(nullptr);
+
+    int n, k;
+    if (!(cin >> n >> k)) return 0;
+
+    vector<vector<int>> g(n + 1);
+    for (int i = 1; i < n; ++i) {
+        int u, v;
+        cin >> u >> v;
+        g[u].push_back(v);
+        g[v].push_back(u);
+    }
+
+    // 迭代 DFS 确定父子关系与深度（n 可达 1e6，避免递归爆栈）
+    vector<int> par(n + 1, 0), dep(n + 1, 0), order;
+    order.reserve(n);
+    vector<char> vis(n + 1, 0);
+    vector<int> st;
+    st.push_back(1);
+    vis[1] = 1;
+    while (!st.empty()) {
+        int u = st.back();
+        st.pop_back();
+        order.push_back(u);
+        for (int v : g[u]) {
+            if (!vis[v]) {
+                vis[v] = 1;
+                par[v] = u;
+                dep[v] = dep[u] + 1;
+                st.push_back(v);
+            }
+        }
+    }
+
+    // 倍增表求 LCA
+    int LOG = 1;
+    while ((1 << LOG) <= n) ++LOG;
+    vector<vector<int>> up(LOG, vector<int>(n + 1, 0));
+    for (int i = 1; i <= n; ++i) up[0][i] = par[i];
+    for (int j = 1; j < LOG; ++j)
+        for (int i = 1; i <= n; ++i) up[j][i] = up[j - 1][up[j - 1][i]];
+
+    auto lca = [&](int u, int v) {
+        if (dep[u] < dep[v]) swap(u, v);
+        int d = dep[u] - dep[v];
+        for (int j = 0; j < LOG; ++j)
+            if ((d >> j) & 1) u = up[j][u];
+        if (u == v) return u;
+        for (int j = LOG - 1; j >= 0; --j)
+            if (up[j][u] != up[j][v]) { u = up[j][u]; v = up[j][v]; }
+        return up[0][u];
+    };
+
+    // 树上差分：给路径 (u,v) 上的每个结点计数
+    vector<int> good(n + 1, 0), bad(n + 1, 0);
+    auto addPath = [&](vector<int> &d, int u, int v) {
+        int l = lca(u, v);
+        ++d[u];
+        ++d[v];
+        --d[l];
+        if (par[l]) --d[par[l]];
+    };
+
+    for (int i = 0; i < k; ++i) {
+        int u, v;
+        cin >> u >> v;
+        addPath(good, u, v);
+    }
+    int bu, bv;
+    cin >> bu >> bv;
+    addPath(bad, bu, bv);
+
+    // 自底向上累加差分
+    for (int i = (int)order.size() - 1; i >= 0; --i) {
+        int u = order[i];
+        if (par[u]) {
+            good[par[u]] += good[u];
+            bad[par[u]] += bad[u];
+        }
+    }
+
+    // 可删除：坏点对路径上的结点（bad>0），且不在任何好点对路径上（good==0）
+    int ans = 0;
+    for (int u = 1; u <= n; ++u)
+        if (bad[u] > 0 && good[u] == 0) ++ans;
+    cout << ans << '\\n';
+    return 0;
+}`,
+    };
+});
+
 // 2025年3月 GESP C++ 八级真题
 export const paperData = {
     id: '2025-03-l8',
@@ -10,7 +120,7 @@ export const paperData = {
     session: 9,
     timeLimit: 5400,
     questions: [
-        ...l8ProgrammingByPaper['2025-03-l8'],
+        ...programmingQuestions,
         {
             id: 1,
             type: "single",

@@ -405,7 +405,7 @@ int main() {
 
 输出若干行，为 $a$ 的所有因数，从小到大排列。`,
       samples: [
-        { input: `11`, output: `1\n11` },
+        { input: `1`, output: `1` },
         { input: `6`, output: `1\n2\n3\n6` },
         { input: `10`, output: `1\n2\n5\n10` },
       ],

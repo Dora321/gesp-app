@@ -4,50 +4,232 @@ const programmingQuestions = [
     {
       id: 26,
       type: 'programming',
-      title: '城市规划',
+      title: '拆分',
       problemNumber: 'P15802',
       score: 25,
-      description: 'A 国有 n 座城市、m 条双向道路，题目保证整张图连通。对于任意两座城市 u、v，它们的连通度定义为从 u 到 v 需要经过的最少道路条数。城市 u 的建设难度定义为它到其它所有城市的连通度最大值。请你找出建设难度最小的城市；若有多个答案，输出编号最小的那个。',
-      inputDescription: '第一行两个正整数 n、m，表示城市数量与道路数量。接下来 m 行，每行两个正整数 u、v，表示一条连接城市 u 和 v 的双向道路。',
-      outputDescription: '输出一个整数，表示建设难度最小的城市编号；若有多个最优解，输出编号最小者。',
+      description: `小 A 想将正整数 $n$ 拆分成若干个正整数之和，并最大化拆分后的正整数之积。小 A 希望你帮他计算出拆分后正整数之积的最大值。由于答案可能很大，你只需要求出答案对 $10^9$ 取模的结果。
+
+形式化地，$n$ 的拆分是满足 $a_1+\\cdots+a_k=n$ 的若干个正整数 $a_1,\\ldots,a_k$，其中 $1\\le k\\le n$。你需要求出 $n$ 的所有拆分中 $a_1\\times\\cdots\\times a_k$ 的最大值对 $10^9$ 取模的结果。
+
+**数据范围**：对于 40% 的测试点，保证 $n\\le 50$；对于所有测试点，保证 $1\\le t\\le 10^4$，$1\\le n\\le 10^6$。`,
+      inputDescription: '第一行，一个正整数 $t$，表示数据组数。\n\n对于每组数据：一行，一个整数 $n$，表示给定的正整数。',
+      outputDescription: '对于每组数据：输出一行，一个整数，表示 $n$ 拆分后正整数之积的最大值对 $10^9$ 取模的结果。',
       samples: [
         {
-          input: '3 3\n1 2\n1 3\n2 3',
-          output: '1'
-        },
-        {
-          input: '4 4\n1 2\n2 3\n3 4\n2 4',
-          output: '2'
+          input: '3\n5\n8\n100',
+          output: '6\n18\n755407364'
         }
       ],
-      explanation: "对每个城市都做一次 BFS，得到它到所有城市的最短距离，并取其中最大值作为该城市的建设难度（也就是图论中的离心率）。最后在所有城市中选离心率最小的，若并列则取编号最小的。由于图无权且连通，BFS 可以在 $O(n+m)$ 时间求出单源最短路。",
-      tags: ["编程题", "图论", "BFS", "最短路"],
-      template: "#include <bits/stdc++.h>\nusing namespace std;\n\nint main() {\n    ios::sync_with_stdio(false);\n    cin.tie(nullptr);\n\n    int n, m;\n    cin >> n >> m;\n    // 在此编写代码\n    return 0;\n}",
-      referenceCode: "#include <bits/stdc++.h>\nusing namespace std;\n\nint main() {\n    ios::sync_with_stdio(false);\n    cin.tie(nullptr);\n\n    int n, m;\n    cin >> n >> m;\n    vector<vector<int>> g(n + 1);\n    for (int i = 0; i < m; ++i) {\n        int u, v;\n        cin >> u >> v;\n        g[u].push_back(v);\n        g[v].push_back(u);\n    }\n\n    int bestCity = 1;\n    int bestEcc = INT_MAX;\n    vector<int> dist(n + 1);\n    queue<int> q;\n\n    for (int s = 1; s <= n; ++s) {\n        fill(dist.begin(), dist.end(), -1);\n        while (!q.empty()) q.pop();\n        dist[s] = 0;\n        q.push(s);\n        while (!q.empty()) {\n            int u = q.front();\n            q.pop();\n            for (int v : g[u]) {\n                if (dist[v] == -1) {\n                    dist[v] = dist[u] + 1;\n                    q.push(v);\n                }\n            }\n        }\n\n        int ecc = 0;\n        for (int i = 1; i <= n; ++i) ecc = max(ecc, dist[i]);\n        if (ecc < bestEcc) {\n            bestEcc = ecc;\n            bestCity = s;\n        }\n    }\n\n    cout << bestCity << '\\n';\n    return 0;\n}",
+      explanation: `**考点**：整数拆分（数学贪心结论）+ 递推预处理，注意「取模后无法比较大小」。
+
+**1. 最优拆分只含 2 和 3。** 若某个加数 $a\\ge 5$，把它换成 $3$ 与 $a-3$ 乘积会变大（$3(a-3)-a=2a-9>0$）；若出现加数 $1$，把它与任意加数 $a$ 合并为 $a+1$ 也更优（$a+1>a$）。故所有加数都在 $\\{2,3,4\\}$ 中。
+
+**2. 三个 2 不如两个 3。** $3\\times 3=9>2\\times 2\\times 2=8$，所以 $2$ 至多出现两个；$4=2+2$ 保留即可。
+
+由此得到结论：
+- $n\\bmod 3=0$：全拆成 3，答案 $3^{n/3}$；
+- $n\\bmod 3=1$：留一个 $4$（$3+1$ 不如 $2+2$），答案 $4\\times 3^{(n-4)/3}$；
+- $n\\bmod 3=2$：留一个 $2$，答案 $2\\times 3^{(n-2)/3}$；
+- 特判 $n=1,2,3,4$，答案分别为 $1,2,3,4$。
+
+**3. 取模的坑。** 取模之后数值大小关系被破坏，不能写 \`f[n]=max(3*f[n-3], 2*f[n-2])\` 这类 DP。必须先把「用几个 3、留 2 还是留 4」的结构定下来，再在模意义下递推。由上述结论对 $n\\ge 5$ 恒有 $f[n]=3\\times f[n-3]$（最优拆分里一定含加数 3），因此可以 $O(n)$ 预处理出所有 $f$。
+
+**参考实现**：预处理 $f[1..10^6]$（\`f[i] = 3 * f[i-3] % 10^9\`），每组询问 $O(1)$ 回答，总复杂度 $O(10^6+t)$。`,
+      tags: ["编程题", "数学", "贪心"],
+      template: `#include <bits/stdc++.h>
+using namespace std;
+
+int main() {
+    ios::sync_with_stdio(false);
+    cin.tie(nullptr);
+
+    int t;
+    cin >> t;
+    // 在此编写代码
+    return 0;
+}`,
+      referenceCode: `#include <bits/stdc++.h>
+using namespace std;
+
+const int MOD = 1000000000;
+const int MAXN = 1000000;
+
+int f[MAXN + 1];
+
+int main() {
+    ios::sync_with_stdio(false);
+    cin.tie(nullptr);
+
+    // 最优拆分只由 2 和 3 组成：n>=5 时取一个 3 一定不亏，故 f[n] = 3 * f[n-3]
+    f[1] = 1;
+    f[2] = 2;
+    f[3] = 3;
+    f[4] = 4;
+    for (int i = 5; i <= MAXN; ++i) {
+        f[i] = (int)(3LL * f[i - 3] % MOD);
+    }
+
+    int t;
+    cin >> t;
+    while (t--) {
+        int n;
+        cin >> n;
+        cout << f[n] << '\\n';
+    }
+    return 0;
+}`,
     },
     {
       id: 27,
       type: 'programming',
-      title: '学习小组',
+      title: '物流网络',
       problemNumber: 'P15803',
       score: 25,
-      description: '班里有 n 名同学，第 i 名同学的发言积极度为 c_i。你需要把全部同学划分为若干个学习小组。若一个小组恰好有 s 人，则它的基础讨论积极度为 a_s；该小组的综合讨论积极度等于基础讨论积极度再加上组内发言积极度最大值与最小值之差。请在所有分组方案中，求综合讨论积极度之和的最大值。',
-      inputDescription: '第一行一个正整数 n。第二行包含 n 个非负整数 c_1..c_n，表示每位同学的发言积极度。第三行包含 n 个非负整数 a_1..a_n，其中 a_s 表示人数为 s 的学习小组的基础讨论积极度。',
-      outputDescription: '输出一个整数，表示所有分组方案中的最大综合讨论积极度之和。',
+      description: `一个物流网络由 $n$ 个城市和 $m$ 条双向公路组成。每条公路都有两个属性：
+
+- 运输费用 $w_i$
+- 景观评分 $b_i$
+
+当一辆运输车从城市 $1$ 运送货物到城市 $n$ 时，需要支付经过道路的运输费用之和。
+
+为了推广旅游线路，物流公司推出了一项优惠政策：在运输路径上，可以免除景观评分最高的那条公路的运输费用。如果有多条公路的景观评分同为最大值，则只免除其中一条的费用。
+
+请你计算，从城市 $1$ 到城市 $n$ 的最小运输费用。
+
+**数据范围**：$1\\le n\\le 5000$，$1\\le m\\le 5000$，$1\\le w_i,b_i\\le 10^9$。`,
+      inputDescription: '第一行两个整数 $n,m$，分别表示城市数量和公路数量。\n\n接下来 $m$ 行，每行四个整数 $u,v,w,b$，表示存在一条连接城市 $u$ 和城市 $v$ 的双向公路，其中 $w$ 为运输费用，$b$ 为景观评分。',
+      outputDescription: '输出一个整数，表示从城市 $1$ 到城市 $n$ 的最小费用。\n\n如果无法到达，输出 -1。',
       samples: [
         {
-          input: '4\n2 1 3 2\n1 5 6 3',
-          output: '12'
-        },
-        {
-          input: '8\n1 3 2 4 3 5 4 6\n0 2 5 6 4 3 3 4',
-          output: '21'
+          input: '3 3\n1 2 10 5\n2 3 20 6\n1 3 100 1',
+          output: '0'
         }
       ],
-      explanation: "先将所有积极度从小到大排序。一个人数大于 1 的小组对“最大值减最小值”的贡献，本质上是在所有学生中取一个当前最小值和一个当前最大值配成一组；组内其余成员只影响人数，不影响这部分差值。于是可以按“已经取走了多少对最小/最大值”做动态规划。设 $f[j][k]$ 表示已经形成 $j$ 个小组、共使用了 $k$ 名同学时的最大总收益。若新建一个大小为 $s$ 的小组，则会使用 1 个新的最小值、1 个新的最大值以及 $s-2$ 个中间值，转移增量为 $a_s+(sorted[n-j+1]-sorted[j])$（当 $s=1$ 时差值部分为 0）。枚举小组大小即可求得最优划分。",
-      tags: ["编程题", "动态规划", "排序", "区间贪心思想"],
-      template: "#include <bits/stdc++.h>\nusing namespace std;\n\nint main() {\n    ios::sync_with_stdio(false);\n    cin.tie(nullptr);\n\n    int n;\n    cin >> n;\n    // 在此编写代码\n    return 0;\n}",
-      referenceCode: "#include <bits/stdc++.h>\nusing namespace std;\n\nint main() {\n    ios::sync_with_stdio(false);\n    cin.tie(nullptr);\n\n    int n;\n    cin >> n;\n    vector<int> c(n + 1), a(n + 1);\n    for (int i = 1; i <= n; ++i) cin >> c[i];\n    for (int i = 1; i <= n; ++i) cin >> a[i];\n\n    sort(c.begin() + 1, c.end());\n\n    const int NEG = -1000000000;\n    vector<vector<int>> f(n + 1, vector<int>(n + 1, NEG));\n    f[0][0] = 0;\n    int ans = 0;\n\n    for (int groups = 1; groups <= n; ++groups) {\n        int diff = c[n - groups + 1] - c[groups];\n        for (int used = 1; used <= n; ++used) {\n            for (int sz = 1; sz <= used; ++sz) {\n                if (f[groups - 1][used - sz] <= NEG / 2) continue;\n                int add = a[sz] + (sz == 1 ? 0 : diff);\n                f[groups][used] = max(f[groups][used], f[groups - 1][used - sz] + add);\n                if (used == n) ans = max(ans, f[groups][used]);\n            }\n        }\n    }\n\n    cout << ans << '\\n';\n    return 0;\n}",
+      explanation: `**考点**：单源最短路（Dijkstra）+ 双属性处理（按景观评分排序、增量加边）。
+
+**样例理解**：路径 $1\\to2\\to3$ 费用 $10+20$，$b$ 的最大值为 $6$（边 $2-3$），免除 $20$，总花费 $10$；路径 $1\\to3$ 费用 $100$，$b$ 的最大值为 $1$，免除 $100$，总花费 $0$。取最小值，答案为 $0$。
+
+**关键观察**：设路径 $P$ 上被免除的边为 $e$，则 $e$ 必是 $P$ 上 $b$ 值最大的边，因此 $P$ 的其余边都满足 $b\\le b_e$。于是「固定被免除的边 $e=(u,v)$」后，问题变成：在只保留 $b\\le b_e$ 的边的子图中，求 $1\\to u$ 与 $v\\to n$ 的最短路，代价为 \`d1[u] + dn[v]\`（反向走则取 \`d1[v] + dn[u]\`）。对每条边都算一次并取最小值即得答案；若始终不可达则输出 -1。
+
+**实现技巧**：把所有公路按 $b$ 升序排序，逐条加边并做增量 Dijkstra——加入一条边只会让 $d_1$、$d_n$ 变小，把两个端点的新距离压入堆继续松弛即可，无需每次重跑。处理到评分为 $b$ 的一组时，子图恰好是 $b'\\le b$ 的全部公路。
+
+**易错点**：$b$ 相同时必须先把整组边都加入、再统计答案。如果写成「先用旧距离算答案、再加当前边」，当最优路径上景观评分最大的边不止一条（并列）时，会漏掉「免除其中较贵那条」的方案。
+
+**复杂度**：排序 $O(m\\log m)$，增量松弛的总体量约为 $O(m\\log n)$，在 $n,m\\le 5000$ 下远快于时限。费用之和最大可达约 $5\\times10^{12}$，距离必须用 \`long long\`。`,
+      tags: ["编程题", "图论", "最短路"],
+      template: `#include <bits/stdc++.h>
+using namespace std;
+
+int main() {
+    ios::sync_with_stdio(false);
+    cin.tie(nullptr);
+
+    int n, m;
+    cin >> n >> m;
+    // 在此编写代码
+    return 0;
+}`,
+      referenceCode: `#include <bits/stdc++.h>
+using namespace std;
+
+typedef long long ll;
+const ll INF = (ll)4e18;
+
+struct Edge {
+    int u, v;
+    ll w, b;
+};
+
+typedef priority_queue<pair<ll, int>, vector<pair<ll, int>>, greater<pair<ll, int>>> MinHeap;
+
+// 把队列里的松弛信息传播完（dist 数组在加边过程中单调不增）
+void drain(vector<ll> &d, const vector<vector<pair<int, ll>>> &g, MinHeap &q) {
+    while (!q.empty()) {
+        pair<ll, int> top = q.top();
+        q.pop();
+        ll du = top.first;
+        int u = top.second;
+        if (du != d[u]) continue;
+        for (size_t i = 0; i < g[u].size(); ++i) {
+            int v = g[u][i].first;
+            ll w = g[u][i].second;
+            if (du + w < d[v]) {
+                d[v] = du + w;
+                q.push(make_pair(d[v], v));
+            }
+        }
+    }
+}
+
+void addEdge(vector<vector<pair<int, ll>>> &g, vector<ll> &d1, vector<ll> &dn,
+             MinHeap &q1, MinHeap &qn, int u, int v, ll w) {
+    g[u].push_back(make_pair(v, w));
+    g[v].push_back(make_pair(u, w));
+
+    if (d1[u] + w < d1[v]) { d1[v] = d1[u] + w; q1.push(make_pair(d1[v], v)); }
+    if (d1[v] + w < d1[u]) { d1[u] = d1[v] + w; q1.push(make_pair(d1[u], u)); }
+    if (dn[u] + w < dn[v]) { dn[v] = dn[u] + w; qn.push(make_pair(dn[v], v)); }
+    if (dn[v] + w < dn[u]) { dn[u] = dn[v] + w; qn.push(make_pair(dn[u], u)); }
+}
+
+int main() {
+    ios::sync_with_stdio(false);
+    cin.tie(nullptr);
+
+    int n, m;
+    cin >> n >> m;
+
+    vector<Edge> e(m);
+    for (int i = 0; i < m; ++i) {
+        int u, v;
+        ll w, b;
+        cin >> u >> v >> w >> b;
+        e[i].u = u;
+        e[i].v = v;
+        e[i].w = w;
+        e[i].b = b;
+    }
+
+    if (n == 1) {
+        cout << 0 << '\\n';
+        return 0;
+    }
+
+    // 按景观评分升序加边：处理评分为 b 的一组时，图中恰好包含评分不超过 b 的公路
+    sort(e.begin(), e.end(), [](const Edge &a, const Edge &b) { return a.b < b.b; });
+
+    vector<vector<pair<int, ll>>> g(n + 1);
+    vector<ll> d1(n + 1, INF), dn(n + 1, INF);
+    MinHeap q1, qn;
+    d1[1] = 0;
+    q1.push(make_pair(0, 1));
+    dn[n] = 0;
+    qn.push(make_pair(0, n));
+
+    ll ans = INF;
+    int i = 0;
+    while (i < m) {
+        int j = i;
+        while (j < m && e[j].b == e[i].b) ++j;
+
+        // 先把评分同为 e[i].b 的公路全部加入，再做最短路松弛
+        for (int k = i; k < j; ++k) addEdge(g, d1, dn, q1, qn, e[k].u, e[k].v, e[k].w);
+        drain(d1, g, q1);
+        drain(dn, g, qn);
+
+        // 组内任一条公路都可能作为被免除费用的「景观评分最大」的公路
+        for (int k = i; k < j; ++k) {
+            int u = e[k].u, v = e[k].v;
+            if (d1[u] < INF && dn[v] < INF) ans = min(ans, d1[u] + dn[v]);
+            if (d1[v] < INF && dn[u] < INF) ans = min(ans, d1[v] + dn[u]);
+        }
+
+        i = j;
+    }
+
+    cout << (ans == INF ? -1LL : ans) << '\\n';
+    return 0;
+}`,
     }
 ];
 

@@ -933,6 +933,10 @@ bool isPrime(int x) {
                 {
                     input: `3\n152\n111\n153`,
                     output: `F\nF\nT`
+                },
+                {
+                    input: `5\n8208\n548834\n88593477\n12345\n5432`,
+                    output: `T\nT\nT\nF\nF`
                 }
             ],
             question: `
