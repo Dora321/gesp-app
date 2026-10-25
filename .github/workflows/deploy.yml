@@ -36,6 +36,11 @@ jobs:
       - name: Validate question bank
         run: npm run validate:bank
 
+      - name: Verify evidence-derived paper metadata is current
+        run: |
+          node scripts/generate-paper-registry.cjs
+          git diff --exit-code -- src/data/gesp/_generated.js src/data/gesp/_stats.js
+
       - name: Validate programming questions (compile + run samples)
         run: npm run validate:programming:run
 

@@ -25,11 +25,11 @@ export const DIMENSION_STATUS = {
 };
 
 const SCOPE_KEYWORDS = {
-  statement: ['题面', '题干'],
+  statement: ['题面', '题干', '代码'],
   options: ['选项'],
   answer: ['答案'],
   explanation: ['解析', '讲解'],
-  referenceCode: ['代码', '参考程序'],
+  referenceCode: ['参考代码', '参考程序'],
 };
 
 const emptyDimensions = (value) => Object.fromEntries(
@@ -48,12 +48,18 @@ export function resolveVerification(source) {
   const scope = String(verification.scope || source.reviewScope || '');
 
   if (verification.dimensions) {
+    const dimensions = Object.fromEntries(VERIFICATION_DIMENSIONS.map(({ key }) => [
+      key, ['verified', 'partial'].includes(verification.dimensions[key]) ? verification.dimensions[key] : 'unverified',
+    ]));
     return {
-      status,
+      status: summarizeVerification(dimensions),
       scope,
+      coverage: verification.coverage,
+      evidence: verification.evidence,
+      conflicts: verification.conflicts,
       reviewedBy: verification.reviewedBy || source.reviewedBy || '',
       reviewedAt: verification.reviewedAt || source.reviewedAt || '',
-      dimensions: { ...emptyDimensions('unverified'), ...verification.dimensions },
+      dimensions,
     };
   }
 
@@ -71,7 +77,7 @@ export function resolveVerification(source) {
   }
 
   return {
-    status,
+    status: summarizeVerification(dimensions),
     scope,
     reviewedBy: verification.reviewedBy || source.reviewedBy || '',
     reviewedAt: verification.reviewedAt || source.reviewedAt || '',
@@ -87,4 +93,11 @@ export function isAnswerVerified(source) {
 /** True only when explanations were reviewed as their own pass. */
 export function isExplanationVerified(source) {
   return resolveVerification(source).dimensions.explanation === 'verified';
+}
+
+/** A legacy paper badge cannot certify unreviewed dimensions. */
+export function summarizeVerification(dimensions) {
+  const states = VERIFICATION_DIMENSIONS.map(({ key }) => dimensions[key]);
+  return states.every(state => state === 'verified') ? 'verified'
+    : states.some(state => state === 'verified' || state === 'partial') ? 'partial' : 'unverified';
 }
