@@ -12,7 +12,7 @@ export const paperStats = {
   verifiedPaperCount: 12,
   partialPaperCount: 52,
   unverifiedPaperCount: 28,
-  integrityFlaggedQuestionCount: 120,
+  integrityFlaggedQuestionCount: 97,
   levelCount: 8,
   firstYear: 2023,
   latestYear: 2026,

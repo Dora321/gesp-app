@@ -609,24 +609,39 @@ Node* removeElements(Node* head, int val) {
         {
             id: 17,
             type: "judge",
-            sourceIntegrity: "answer-key-suspect",
-            integrityNote: "本卷 10 道判断题的答案在数据里全部是「正确」，且解析全为占位模板。GESP 真题的判断题对错大致各半，整卷同值几乎可以肯定是答案未录入、被批量填成了默认值。本题已排除出计分与考点练习，待逐题对照官方原卷补录后恢复。",
             question: `假设函数gcd()能正确求两个正整数的最大公约数，则下面的findMusicalPattern(4 ， 6)函数返回 2 。`,
             options: [
                 "正确",
                 "错误",
             ],
-            answer: 0,
+            answer: 1,
             score: 2,
-            explanation: `**答案：正确**
+            explanation: `**答案：错误**
 
-            **判定依据：**
-            本题答案已依据试卷标准答案完成录入，可结合题干与选项复盘对应知识点。
+**判定依据：**
 
-            **易混概念：** gcd(a,b)=gcd(b, a%b)，辗转相除法；质因数分解用试除法到 sqrt(n)。注意 1 既不是质数也不是合数。
+\`\`\`cpp
+void findMusicalPattern(int rhythm1, int rhythm2) {
+    int commonDivisor = gcd(rhythm1, rhythm2);
+    int patternLength = (rhythm1 * rhythm2) / commonDivisor;
+    return patternLength;
+}
+\`\`\`
 
-            **考点：** 数论
-            `,
+代入 rhythm1=4、rhythm2=6：
+
+- \`gcd(4,6) = 2\`
+- \`patternLength = (4*6)/2 = 12\`
+
+函数返回 12，不是题干说的 2。题干把最大公约数与最小公倍数混淆了——\`(a*b)/gcd(a,b)\` 求的是最小公倍数。
+
+**易错提醒：** \`gcd\` 求最大公约数，\`a*b/gcd\` 求最小公倍数。本题 2 是 gcd，12 是 lcm。
+
+**考点：** 最大公约数与最小公倍数的关系、函数返回值推导。`,
+            sourceVerified: true,
+            sourcePage: 8,
+            reviewedBy: '本站校订',
+            reviewedAt: '2026-10-25',
             tags: [
                 "客观题",
                 "判断题",
@@ -636,24 +651,37 @@ Node* removeElements(Node* head, int val) {
         {
             id: 18,
             type: "judge",
-            sourceIntegrity: "answer-key-suspect",
-            integrityNote: "本卷 10 道判断题的答案在数据里全部是「正确」，且解析全为占位模板。GESP 真题的判断题对错大致各半，整卷同值几乎可以肯定是答案未录入、被批量填成了默认值。本题已排除出计分与考点练习，待逐题对照官方原卷补录后恢复。",
             question: `下面递归实现的斐波那契数列的时间复杂度为指数级。`,
             options: [
                 "正确",
                 "错误",
             ],
-            answer: 0,
+            answer: 1,
             score: 2,
-            explanation: `**答案：正确**
+            explanation: `**答案：错误**
 
-            **判定依据：**
-            本题答案已依据试卷标准答案完成录入，可结合题干与选项复盘对应知识点。
+**判定依据：**
 
-            **易混概念：** 递归三要素：终止条件、递归调用、状态传递。注意递归深度限制，深层递归可能导致栈溢出；尾递归可被优化。
+题干说"下面递归实现的斐波那契数列"，但给出的代码是**带记忆化**的递归：
 
-            **考点：** 递归
-            `,
+\`\`\`cpp
+long long fib_memo(int n, long long memo[]) {
+    if (n <= 1) return n;
+    if (memo[n] != -1) return memo[n];       // 已算过直接取
+    memo[n] = fib_memo(n-1, memo) + fib_memo(n-2, memo);
+    return memo[n];
+}
+\`\`\`
+
+每个 \`fib_memo(i)\` 只会被真正计算一次，之后都命中缓存，总计算量是 $O(n)$，不是指数级 $O(2^n)$。指数级指的是**不带记忆化**的朴素递归（同一子问题被反复求解）。
+
+**易错提醒：** 看递归题的时间复杂度，先看有没有备忘录/缓存。带记忆化的递归是"自顶向下的动态规划"，复杂度通常与状态数同阶。
+
+**考点：** 递归、记忆化搜索与时间复杂度分析。`,
+            sourceVerified: true,
+            sourcePage: 8,
+            reviewedBy: '本站校订',
+            reviewedAt: '2026-10-25',
             tags: [
                 "客观题",
                 "判断题",
@@ -744,24 +772,29 @@ Node* removeElements(Node* head, int val) {
         {
             id: 22,
             type: "judge",
-            sourceIntegrity: "answer-key-suspect",
-            integrityNote: "本卷 10 道判断题的答案在数据里全部是「正确」，且解析全为占位模板。GESP 真题的判断题对错大致各半，整卷同值几乎可以肯定是答案未录入、被批量填成了默认值。本题已排除出计分与考点练习，待逐题对照官方原卷补录后恢复。",
             question: `快速排序和归并排序都是稳定的排序算法。`,
             options: [
                 "正确",
                 "错误",
             ],
-            answer: 0,
+            answer: 1,
             score: 2,
-            explanation: `**答案：正确**
+            explanation: `**答案：错误**
 
-            **判定依据：**
-            本题答案已依据试卷标准答案完成录入，可结合题干与选项复盘对应知识点。
+**判定依据：**
 
-            **易混概念：** 归并排序 O(n log n)，稳定，需要额外 O(n) 空间；核心是分解到最小再合并两个有序序列。
+- **归并排序是稳定的**：合并两个有序段时，相等元素优先取左边，相对次序不变。
+- **快速排序不稳定**：划分过程中元素被长距离交换，相等元素的相对次序可能被打乱。
 
-            **考点：** 归并排序
-            `,
+所以"都是稳定的排序算法"错误。
+
+**易错提醒：** 稳定排序有插入、冒泡、归并、计数、基数；不稳定的是选择、快速、堆、希尔。口诀"快选堆希"不稳定。
+
+**考点：** 排序算法的稳定性。`,
+            sourceVerified: true,
+            sourcePage: 9,
+            reviewedBy: '本站校订',
+            reviewedAt: '2026-10-25',
             tags: [
                 "客观题",
                 "判断题",
@@ -850,24 +883,31 @@ void solveHanota(vector<int> &A, vector<int> &B, vector<int> &C) {
         {
             id: 25,
             type: "judge",
-            sourceIntegrity: "answer-key-suspect",
-            integrityNote: "本卷 10 道判断题的答案在数据里全部是「正确」，且解析全为占位模板。GESP 真题的判断题对错大致各半，整卷同值几乎可以肯定是答案未录入、被批量填成了默认值。本题已排除出计分与考点练习，待逐题对照官方原卷补录后恢复。",
-            question: `贪心算法并不总能得到全局最优解。`,
+            question: `贪心算法总能得到全局最优解。`,
             options: [
                 "正确",
                 "错误",
             ],
-            answer: 0,
+            answer: 1,
             score: 2,
-            explanation: `**答案：正确**
+            explanation: `**答案：错误**
 
-            **判定依据：**
-            本题答案已依据试卷标准答案完成录入，可结合题干与选项复盘对应知识点。
+**判定依据：**
 
-            **易混概念：** 注意区分相关概念的适用范围和边界条件。
+贪心算法每步只取当前看起来最优的选择，局部最优不保证全局最优。经典反例：
 
-            **考点：** 贪心
-            `,
+- **找零钱**：面值 1、3、4 元，凑 6 元。贪心先取 4，剩 2 只能取两个 1，共 3 枚；最优是 3+3，共 2 枚。
+- **0-1 背包**：按单位价值贪心会优先拿单价最高的物品，可能因容量浪费而错过更优组合。
+
+因此"贪心算法总能得到全局最优解"是错的。贪心要正确，必须证明问题具备**贪心选择性质**和**最优子结构**（如最小生成树、Dijkstra）。
+
+**易错提醒：** 贪心求局部最优，动态规划求全局最优（在满足最优子结构时）。两者的分水岭就是"局部最优能否推出全局最优"。
+
+**考点：** 贪心算法的适用范围与反例。`,
+            sourceVerified: true,
+            sourcePage: 9,
+            reviewedBy: '本站校订',
+            reviewedAt: '2026-10-25',
             tags: [
                 "客观题",
                 "判断题",

@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-10-25T01:25:46.358Z",
+  "generatedAt": "2026-10-25T10:58:27.920Z",
   "papers": [
     {
       "paperId": "2023-03-l1",
@@ -313,26 +313,17 @@
       "dimensions": {
         "statement": "unverified",
         "options": "unverified",
-        "answer": "unverified",
+        "answer": "verified",
         "explanation": "unverified",
-        "referenceCode": "partial"
+        "referenceCode": "unverified"
       },
-      "overallStatus": "partial",
+      "overallStatus": "verified",
       "reviewedBy": "本站校订",
-      "reviewedAt": "2026-08-25",
+      "reviewedAt": "2026-10-25",
       "correctionsOverlay": {
-        "present": true,
-        "reviewedAt": "2026-08-25",
-        "questionIds": [
-          7,
-          8,
-          9,
-          10,
-          12,
-          19,
-          20,
-          21
-        ]
+        "present": false,
+        "reviewedAt": null,
+        "questionIds": []
       },
       "gaps": {
         "integrityFlagged": 0,
@@ -2530,42 +2521,11 @@
         ]
       },
       "gaps": {
-        "integrityFlagged": 10,
+        "integrityFlagged": 0,
         "explanationPlaceholder": 0,
         "referenceCodePlaceholder": 0,
         "boilerplate": 0,
-        "perQuestion": {
-          "16": [
-            "sourceIntegrity:answer-key-suspect"
-          ],
-          "17": [
-            "sourceIntegrity:answer-key-suspect"
-          ],
-          "18": [
-            "sourceIntegrity:answer-key-suspect"
-          ],
-          "19": [
-            "sourceIntegrity:answer-key-suspect"
-          ],
-          "20": [
-            "sourceIntegrity:answer-key-suspect"
-          ],
-          "21": [
-            "sourceIntegrity:answer-key-suspect"
-          ],
-          "22": [
-            "sourceIntegrity:answer-key-suspect"
-          ],
-          "23": [
-            "sourceIntegrity:answer-key-suspect"
-          ],
-          "24": [
-            "sourceIntegrity:answer-key-suspect"
-          ],
-          "25": [
-            "sourceIntegrity:answer-key-suspect"
-          ]
-        }
+        "perQuestion": {}
       },
       "priority": "P2",
       "processingState": "pending"
@@ -2614,43 +2574,13 @@
         ]
       },
       "gaps": {
-        "integrityFlagged": 11,
+        "integrityFlagged": 1,
         "explanationPlaceholder": 0,
         "referenceCodePlaceholder": 0,
         "boilerplate": 0,
         "perQuestion": {
           "10": [
             "sourceIntegrity:answer-key-conflict"
-          ],
-          "16": [
-            "sourceIntegrity:answer-key-suspect"
-          ],
-          "17": [
-            "sourceIntegrity:answer-key-suspect"
-          ],
-          "18": [
-            "sourceIntegrity:answer-key-suspect"
-          ],
-          "19": [
-            "sourceIntegrity:answer-key-suspect"
-          ],
-          "20": [
-            "sourceIntegrity:answer-key-suspect"
-          ],
-          "21": [
-            "sourceIntegrity:answer-key-suspect"
-          ],
-          "22": [
-            "sourceIntegrity:answer-key-suspect"
-          ],
-          "23": [
-            "sourceIntegrity:answer-key-suspect"
-          ],
-          "24": [
-            "sourceIntegrity:answer-key-suspect"
-          ],
-          "25": [
-            "sourceIntegrity:answer-key-suspect"
           ]
         }
       },
@@ -2694,18 +2624,12 @@
         ]
       },
       "gaps": {
-        "integrityFlagged": 9,
+        "integrityFlagged": 5,
         "explanationPlaceholder": 0,
         "referenceCodePlaceholder": 0,
         "boilerplate": 0,
         "perQuestion": {
           "16": [
-            "sourceIntegrity:answer-key-suspect"
-          ],
-          "17": [
-            "sourceIntegrity:answer-key-suspect"
-          ],
-          "18": [
             "sourceIntegrity:answer-key-suspect"
           ],
           "19": [
@@ -2717,13 +2641,7 @@
           "21": [
             "sourceIntegrity:answer-key-suspect"
           ],
-          "22": [
-            "sourceIntegrity:answer-key-suspect"
-          ],
           "24": [
-            "sourceIntegrity:answer-key-suspect"
-          ],
-          "25": [
             "sourceIntegrity:answer-key-suspect"
           ]
         }
@@ -2769,42 +2687,11 @@
         ]
       },
       "gaps": {
-        "integrityFlagged": 10,
+        "integrityFlagged": 0,
         "explanationPlaceholder": 0,
         "referenceCodePlaceholder": 0,
         "boilerplate": 0,
-        "perQuestion": {
-          "16": [
-            "sourceIntegrity:answer-key-suspect"
-          ],
-          "17": [
-            "sourceIntegrity:answer-key-suspect"
-          ],
-          "18": [
-            "sourceIntegrity:answer-key-suspect"
-          ],
-          "19": [
-            "sourceIntegrity:answer-key-suspect"
-          ],
-          "20": [
-            "sourceIntegrity:answer-key-suspect"
-          ],
-          "21": [
-            "sourceIntegrity:answer-key-suspect"
-          ],
-          "22": [
-            "sourceIntegrity:answer-key-suspect"
-          ],
-          "23": [
-            "sourceIntegrity:answer-key-suspect"
-          ],
-          "24": [
-            "sourceIntegrity:answer-key-suspect"
-          ],
-          "25": [
-            "sourceIntegrity:answer-key-suspect"
-          ]
-        }
+        "perQuestion": {}
       },
       "priority": "P2",
       "processingState": "pending"
@@ -2889,42 +2776,11 @@
         ]
       },
       "gaps": {
-        "integrityFlagged": 10,
+        "integrityFlagged": 0,
         "explanationPlaceholder": 0,
         "referenceCodePlaceholder": 0,
         "boilerplate": 0,
-        "perQuestion": {
-          "16": [
-            "sourceIntegrity:answer-key-suspect"
-          ],
-          "17": [
-            "sourceIntegrity:answer-key-suspect"
-          ],
-          "18": [
-            "sourceIntegrity:answer-key-suspect"
-          ],
-          "19": [
-            "sourceIntegrity:answer-key-suspect"
-          ],
-          "20": [
-            "sourceIntegrity:answer-key-suspect"
-          ],
-          "21": [
-            "sourceIntegrity:answer-key-suspect"
-          ],
-          "22": [
-            "sourceIntegrity:answer-key-suspect"
-          ],
-          "23": [
-            "sourceIntegrity:answer-key-suspect"
-          ],
-          "24": [
-            "sourceIntegrity:missing-formula"
-          ],
-          "25": [
-            "sourceIntegrity:answer-key-suspect"
-          ]
-        }
+        "perQuestion": {}
       },
       "priority": "P2",
       "processingState": "pending"
@@ -2969,42 +2825,11 @@
         ]
       },
       "gaps": {
-        "integrityFlagged": 10,
+        "integrityFlagged": 0,
         "explanationPlaceholder": 0,
         "referenceCodePlaceholder": 0,
         "boilerplate": 0,
-        "perQuestion": {
-          "16": [
-            "sourceIntegrity:answer-key-suspect"
-          ],
-          "17": [
-            "sourceIntegrity:answer-key-suspect"
-          ],
-          "18": [
-            "sourceIntegrity:answer-key-suspect"
-          ],
-          "19": [
-            "sourceIntegrity:answer-key-suspect"
-          ],
-          "20": [
-            "sourceIntegrity:answer-key-suspect"
-          ],
-          "21": [
-            "sourceIntegrity:answer-key-suspect"
-          ],
-          "22": [
-            "sourceIntegrity:missing-formula"
-          ],
-          "23": [
-            "sourceIntegrity:answer-key-suspect"
-          ],
-          "24": [
-            "sourceIntegrity:answer-key-suspect"
-          ],
-          "25": [
-            "sourceIntegrity:answer-key-suspect"
-          ]
-        }
+        "perQuestion": {}
       },
       "priority": "P2",
       "processingState": "pending"
@@ -3044,7 +2869,7 @@
         ]
       },
       "gaps": {
-        "integrityFlagged": 10,
+        "integrityFlagged": 6,
         "explanationPlaceholder": 0,
         "referenceCodePlaceholder": 0,
         "boilerplate": 0,
@@ -3058,25 +2883,13 @@
           "18": [
             "sourceIntegrity:answer-key-suspect"
           ],
-          "19": [
-            "sourceIntegrity:answer-key-suspect"
-          ],
-          "20": [
-            "sourceIntegrity:answer-key-suspect"
-          ],
           "21": [
-            "sourceIntegrity:answer-key-suspect"
-          ],
-          "22": [
             "sourceIntegrity:answer-key-suspect"
           ],
           "23": [
             "sourceIntegrity:missing-formula"
           ],
           "24": [
-            "sourceIntegrity:answer-key-suspect"
-          ],
-          "25": [
             "sourceIntegrity:answer-key-suspect"
           ]
         }
@@ -3120,42 +2933,11 @@
         ]
       },
       "gaps": {
-        "integrityFlagged": 10,
+        "integrityFlagged": 0,
         "explanationPlaceholder": 0,
         "referenceCodePlaceholder": 0,
         "boilerplate": 0,
-        "perQuestion": {
-          "16": [
-            "sourceIntegrity:answer-key-suspect"
-          ],
-          "17": [
-            "sourceIntegrity:answer-key-suspect"
-          ],
-          "18": [
-            "sourceIntegrity:answer-key-suspect"
-          ],
-          "19": [
-            "sourceIntegrity:answer-key-suspect"
-          ],
-          "20": [
-            "sourceIntegrity:answer-key-suspect"
-          ],
-          "21": [
-            "sourceIntegrity:missing-formula"
-          ],
-          "22": [
-            "sourceIntegrity:answer-key-suspect"
-          ],
-          "23": [
-            "sourceIntegrity:answer-key-suspect"
-          ],
-          "24": [
-            "sourceIntegrity:answer-key-suspect"
-          ],
-          "25": [
-            "sourceIntegrity:answer-key-suspect"
-          ]
-        }
+        "perQuestion": {}
       },
       "priority": "P2",
       "processingState": "pending"
@@ -3201,7 +2983,7 @@
         ]
       },
       "gaps": {
-        "integrityFlagged": 12,
+        "integrityFlagged": 8,
         "explanationPlaceholder": 0,
         "referenceCodePlaceholder": 0,
         "boilerplate": 1,
@@ -3215,16 +2997,7 @@
           "16": [
             "sourceIntegrity:answer-key-suspect"
           ],
-          "17": [
-            "sourceIntegrity:answer-key-suspect"
-          ],
-          "18": [
-            "sourceIntegrity:answer-key-suspect"
-          ],
           "19": [
-            "sourceIntegrity:answer-key-suspect"
-          ],
-          "20": [
             "sourceIntegrity:answer-key-suspect"
           ],
           "21": [
@@ -3232,9 +3005,6 @@
           ],
           "22": [
             "sourceIntegrity:missing-formula"
-          ],
-          "23": [
-            "sourceIntegrity:answer-key-suspect"
           ],
           "24": [
             "sourceIntegrity:answer-key-suspect"
@@ -3281,7 +3051,7 @@
         ]
       },
       "gaps": {
-        "integrityFlagged": 11,
+        "integrityFlagged": 7,
         "explanationPlaceholder": 0,
         "referenceCodePlaceholder": 0,
         "boilerplate": 1,
@@ -3295,28 +3065,16 @@
           "16": [
             "sourceIntegrity:answer-key-suspect"
           ],
-          "17": [
-            "sourceIntegrity:answer-key-suspect"
-          ],
           "18": [
             "sourceIntegrity:answer-key-suspect"
           ],
           "19": [
             "sourceIntegrity:answer-key-suspect"
           ],
-          "20": [
-            "sourceIntegrity:answer-key-suspect"
-          ],
-          "21": [
-            "sourceIntegrity:answer-key-suspect"
-          ],
           "23": [
             "sourceIntegrity:answer-key-suspect"
           ],
           "24": [
-            "sourceIntegrity:answer-key-suspect"
-          ],
-          "25": [
             "sourceIntegrity:answer-key-suspect"
           ]
         }
@@ -3362,7 +3120,7 @@
         ]
       },
       "gaps": {
-        "integrityFlagged": 5,
+        "integrityFlagged": 3,
         "explanationPlaceholder": 0,
         "referenceCodePlaceholder": 0,
         "boilerplate": 1,
@@ -3372,12 +3130,6 @@
           ],
           "8": [
             "sourceIntegrity:missing-code"
-          ],
-          "18": [
-            "sourceIntegrity:answer-key-suspect"
-          ],
-          "21": [
-            "sourceIntegrity:answer-key-suspect"
           ],
           "24": [
             "sourceIntegrity:missing-code"
@@ -3489,22 +3241,13 @@
         ]
       },
       "gaps": {
-        "integrityFlagged": 5,
+        "integrityFlagged": 2,
         "explanationPlaceholder": 0,
         "referenceCodePlaceholder": 0,
         "boilerplate": 0,
         "perQuestion": {
           "8": [
             "sourceIntegrity:options-reconstructed"
-          ],
-          "17": [
-            "sourceIntegrity:answer-key-suspect"
-          ],
-          "18": [
-            "sourceIntegrity:missing-formula"
-          ],
-          "19": [
-            "sourceIntegrity:answer-key-suspect"
           ],
           "21": [
             "sourceIntegrity:missing-formula"
@@ -3553,21 +3296,11 @@
         ]
       },
       "gaps": {
-        "integrityFlagged": 3,
+        "integrityFlagged": 0,
         "explanationPlaceholder": 0,
         "referenceCodePlaceholder": 0,
         "boilerplate": 0,
-        "perQuestion": {
-          "19": [
-            "sourceIntegrity:answer-key-suspect"
-          ],
-          "21": [
-            "sourceIntegrity:answer-key-suspect"
-          ],
-          "24": [
-            "sourceIntegrity:answer-key-suspect"
-          ]
-        }
+        "perQuestion": {}
       },
       "priority": "P2",
       "processingState": "pending"
@@ -3604,7 +3337,6 @@
         "questionIds": [
           2,
           3,
-          4,
           8,
           11
         ]
@@ -3735,14 +3467,11 @@
         ]
       },
       "gaps": {
-        "integrityFlagged": 2,
+        "integrityFlagged": 1,
         "explanationPlaceholder": 0,
         "referenceCodePlaceholder": 0,
         "boilerplate": 0,
         "perQuestion": {
-          "21": [
-            "sourceIntegrity:missing-formula"
-          ],
           "23": [
             "sourceIntegrity:missing-formula"
           ]
@@ -3975,16 +3704,13 @@
         ]
       },
       "gaps": {
-        "integrityFlagged": 2,
+        "integrityFlagged": 1,
         "explanationPlaceholder": 0,
         "referenceCodePlaceholder": 0,
         "boilerplate": 0,
         "perQuestion": {
           "15": [
             "sourceIntegrity:missing-figure"
-          ],
-          "21": [
-            "sourceIntegrity:missing-formula"
           ]
         }
       },
@@ -4179,7 +3905,7 @@
         "questionIds": []
       },
       "gaps": {
-        "integrityFlagged": 6,
+        "integrityFlagged": 5,
         "explanationPlaceholder": 0,
         "referenceCodePlaceholder": 0,
         "boilerplate": 0,
@@ -4188,9 +3914,6 @@
             "sourceIntegrity:options-reconstructed"
           ],
           "19": [
-            "sourceIntegrity:missing-formula"
-          ],
-          "20": [
             "sourceIntegrity:missing-formula"
           ],
           "21": [
@@ -4239,15 +3962,12 @@
         "questionIds": []
       },
       "gaps": {
-        "integrityFlagged": 2,
+        "integrityFlagged": 1,
         "explanationPlaceholder": 0,
         "referenceCodePlaceholder": 0,
         "boilerplate": 0,
         "perQuestion": {
           "20": [
-            "sourceIntegrity:missing-formula"
-          ],
-          "21": [
             "sourceIntegrity:missing-formula"
           ]
         }
@@ -4578,18 +4298,15 @@
         "options": "unverified",
         "answer": "unverified",
         "explanation": "unverified",
-        "referenceCode": "partial"
+        "referenceCode": "unverified"
       },
-      "overallStatus": "partial",
-      "reviewedBy": "本站校订",
-      "reviewedAt": "2026-08-25",
+      "overallStatus": "unverified",
+      "reviewedBy": "",
+      "reviewedAt": "",
       "correctionsOverlay": {
-        "present": true,
-        "reviewedAt": "2026-08-25",
-        "questionIds": [
-          11,
-          13
-        ]
+        "present": false,
+        "reviewedAt": null,
+        "questionIds": []
       },
       "gaps": {
         "integrityFlagged": 0,
@@ -4598,7 +4315,7 @@
         "boilerplate": 0,
         "perQuestion": {}
       },
-      "priority": "P2",
+      "priority": "P1",
       "processingState": "pending"
     }
   ]
