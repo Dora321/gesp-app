@@ -133,8 +133,61 @@ npm run checklist -- --write # 重生成核验清单
 **注意**：覆盖率低不必然等于题库错。2023-06-l2 的 PDF 是「真题解析」讲义而非官方试卷，
 排版不同，指标天然偏低。判定前必须打开 PDF 看。
 
-### 未做
+## 9. 2026-10-25 补充：三卷 L4 已整卷重建（上一节的「未做」已补一半）
+
+### 已完成
+
+**2024-06-l4 / 2024-09-l4 / 2024-12-l4 三卷共 75 道客观题按官方 PDF 整卷重录。**
+
+| 卷 | 原覆盖率 | 重建后 | 说明 |
+|---|---|---|---|
+| 2024-06-l4 | 2/15 | 17/17 | PDF 有 9 页题面是图形，文本层几乎为空，只能整页读图 |
+| 2024-09-l4 | 9/20 | 18/18 | 第 3 题起为仿写题，已按官方重录 |
+| 2024-12-l4 | 10/21 | 17/19 | 第 3 题起为仿写题；2 项未命中是 Unicode 减号导致的假阴性 |
+
+- 每题带 `sourceVerified` / `sourcePage` / `reviewedBy` / `reviewedAt` 溯源字段。
+- 三卷证据 JSON 的 `answerTable` 拆成 `single`/`judge` 双表并标页码，
+  `questions` 段按 25 题逐条重写，`unresolved` 清零，加 `rebuild: true`。
+- 三卷编程题补「数据范围」章节（6 处，按官方原文），题面与样例原本就正确。
+
+### 重建中发现的两处官方答案问题
+
+1. **2024-12 L4 Q13**：官方答案表标 **B**（`j = i`），实测 B 会把数组写成
+   `5 2 2 2 2 2`，A（`j = i - 1`）才得到 `1 2 3 4 5 6`。
+   题库按 **A** 收录，解析首行标注官方表有误，证据里同时保留
+   `answerTableValue: 'B'` 与 `official: 'A'`。
+2. **2024-09 L4 Q11**：官方程序 `swap(arr, i, j)` 按冒泡语义应为 `swap(arr, j, j+1)`，
+   属原卷笔误。代码照录，解析加注。
+
+### 复现方式
+
+```bash
+# 1. 下载官方 PDF（本仓库不存 PDF）
+#    https://raw.githubusercontent.com/Dora321/gesp-official-pdfs/main/pdfs/2024年6月-C++4级.pdf
+# 2. 逐页渲染读图
+python tmp/render-rebuild.py 2024-06-l4          # 输出到 %TEMP%/rebuild/*.jpg
+# 3. 判断题答案表裁剪（√/× 是矢量图形，文本层只有表头）
+#    见 tmp/l4-2024-06-data.py 中的 get_charbox 裁剪逻辑说明
+# 4. 生成题库数据并组装
+python tmp/l4-2024-06-data.py                    # -> tmp/l4-2024-06-rebuild.json
+python tmp/assemble-paper.py src/data/gesp/level4/2024-06-l4.js tmp/l4-2024-06-rebuild.json
+```
+
+### 踩坑
+
+- **Python 写 JS 模板字符串必须转义反斜杠**：`$1 \leq n$` 写入时若只转义反引号，
+  `\l` 在 JS 模板字符串里是无效转义，会静默变成 `l`，最终显示 `$1 leq n$`。
+  正确做法是 `s.replace('\\','\\\\').replace('`','\\`')`。
+- **选项里含换行时必须转成 `\n`**：`js_str` 用双引号字符串，真实换行会让 JS 语法报错。
+- **改动 `sourceIntegrity` / `reviewedAt` 后必须重跑 `npm run generate:papers`**，
+  否则 `paper-registry-generation` 与 `verified-question-corrections` 两个测试会失败。
+- 改动 2024-12-l4 的 `sourcePage`（Q15 由 p6 改 p7）时，需同步更新
+  `scripts/tests/verified-question-corrections.test.mjs` 里的 `restoredOfficialQuestionCases`。
+
+### 仍未做
 
 - 2026-06 八卷未收录：官方 PDF 已在 `gesp-official-pdfs` 仓库（`2026年6月-C++1..8级.pdf`），
-  但整卷转写（每卷 15 单选 + 10 判断 + 2 编程）未开工。
+  整卷转写（每卷 15 单选 + 10 判断 + 2 编程）未开工。
 - 2026-09 官方 PDF 尚未发布，暂不可收录。
+- PDF-CONSISTENCY-AUDIT.md 里 14 卷覆盖率 <0.7 的卷尚未逐题确认（其中 2023-06-l2
+  的 PDF 是「真题解析」讲义，属指标假阴性）。

@@ -1,34 +1,485 @@
 {
   "paperId": "2024-06-l4",
   "executedAt": "2026-10-25",
-  "reviewedBy": { "type": "AI", "executor": "WorkBuddy 子代理" },
+  "reviewedBy": {
+    "type": "整卷重建",
+    "executor": "官方 PDF 逐页转写 + 答案表比对"
+  },
   "source": {
     "mirrorUrl": "https://raw.githubusercontent.com/Dora321/gesp-official-pdfs/main/pdfs/2024%E5%B9%B46%E6%9C%88-C%2B%2B4%E7%BA%A7.pdf",
     "mirrorSha": "de1b8f090ae293b7b4a35de7ba767963c89ff42c",
     "shaVerified": true,
     "fetchedAt": "2026-10-25",
-    "pages": { "judge": "p8（表+题面1-7）/ p9（题面7-10）", "single": "p1" }
+    "pages": {
+      "judge": "p8（表+题面1-7）/ p9（题面7-10）",
+      "single": "p1"
+    }
   },
   "answerTable": {
-    "format": "官方试卷版，判断题节首集中答案表（题号 1-10 / 答案行，√/× 为红色图片，已放大并含题号行对齐核对）",
+    "format": "官方试卷版：单选节首与判断题节首各有一张答案表；判断题 √/× 为矢量图形，已按 get_charbox 文本坐标裁剪并 6 倍渲染读图。",
+    "single": "B B B D B D D A A B A D A B D（p1（表位于单选节首），与题库 1-15 题逐位对齐）",
+    "singlePage": "p1（表位于单选节首）",
     "judge": "×√√√×√√√√√",
-    "judgePage": "p8（表位于判断题节首）",
-    "single": "B B B D B D D A A B A D A B D（p1 表，与题库 1-15 题一致）"
+    "judgePage": "p8（表位于判断题节首）"
   },
   "questions": [
-    { "id": 16, "official": "×", "bank": "×", "changed": false, "note": "题面对应官方第1题（int& a 和 &a 取地址说法错）" },
-    { "id": 17, "official": "官方第2题为『以下代码不能被正确执行』√；题库17为改写题『引用一旦初始化就不能再绑定』√", "bank": "√", "changed": false, "note": "题面非官方原题，答案对自身题面成立" },
-    { "id": 18, "official": "√", "bank": "√", "changed": false, "note": "题面对应官方第3题（引用是一个指针常量）" },
-    { "id": 19, "official": "官方第5题为『函数不可以调用自己』×；题库19为否定改写『函数可以调用自己』√", "bank": "√", "changed": false, "note": "互为否定表述，两者各自事实正确，不构成冲突" },
-    { "id": 20, "official": "官方第5题位置答案×；题库20为替换题『静态变量在程序运行结束前不会被销毁』√", "bank": "√", "changed": false, "note": "题面被替换，官方表位置5=× 与题库20 表面不一致不构成答案错误；官方原题为『函数不可以调用自己』" },
-    { "id": 21, "official": "官方第6题为常量值/常量引用/常量指针题 √；题库21为替换题『构造函数可重载』√", "bank": "√", "changed": false, "note": "题面被替换" },
-    { "id": 22, "official": "官方第7题为 int *p=NULL; cout<<p 输出0题 √；题库22为替换题『冒泡总是O(N^2)』×", "bank": "×", "changed": false, "note": "题面被替换" },
-    { "id": 23, "official": "官方第8题为 a[i][j] 如普通整型变量题 √；题库23为替换题『分治核心』√", "bank": "√", "changed": false, "note": "题面被替换" },
-    { "id": 24, "official": "官方第9题为『一维数组末尾加 M 构成合法数列，N=6 有 6 种』√；题库24为替换题『指针修改 const 局部变量』×", "bank": "×", "changed": false, "note": "题面被替换，官方表位置9=√ 与题库24 表面不一致不构成答案错误" },
-    { "id": 25, "official": "官方第10题为『插入排序平均 O(n²)，最坏情况达到最大时间复杂度』√；题库25为替换题『客观题包括单选和判断』√", "bank": "√", "changed": false, "note": "题面被替换" }
+    {
+      "id": 1,
+      "official": "B",
+      "answerTableValue": "B",
+      "bank": "B",
+      "changed": true,
+      "resolved": true,
+      "textMatch": true,
+      "dimensions": [
+        "statement",
+        "options",
+        "answer"
+      ],
+      "method": [
+        "按官方 PDF 逐页渲染读图，题面与选项逐字录入",
+        "单选答案表逐位核对"
+      ],
+      "note": "官方 p1 第1题：func(int x, int y) 值传递交换，输出 24 12 12 24。原题库为指针交换仿写题，已整题重录"
+    },
+    {
+      "id": 2,
+      "official": "B",
+      "answerTableValue": "B",
+      "bank": "B",
+      "changed": true,
+      "resolved": true,
+      "textMatch": true,
+      "dimensions": [
+        "statement",
+        "options",
+        "answer"
+      ],
+      "method": [
+        "按官方 PDF 逐页渲染读图，题面与选项逐字录入",
+        "单选答案表逐位核对"
+      ],
+      "note": "官方 p2 第2题：四个函数定义方案，B 因调用先于声明而编译失败"
+    },
+    {
+      "id": 3,
+      "official": "B",
+      "answerTableValue": "B",
+      "bank": "B",
+      "changed": true,
+      "resolved": true,
+      "textMatch": true,
+      "dimensions": [
+        "statement",
+        "options",
+        "answer"
+      ],
+      "method": [
+        "按官方 PDF 逐页渲染读图，题面与选项逐字录入",
+        "单选答案表逐位核对"
+      ],
+      "note": "官方 p3 第3题：for 循环体内 int i=10 遮蔽外层，输出 2 10 3 9。原题库为引用仿写题，已重录"
+    },
+    {
+      "id": 4,
+      "official": "D",
+      "answerTableValue": "D",
+      "bank": "D",
+      "changed": true,
+      "resolved": true,
+      "textMatch": true,
+      "dimensions": [
+        "statement",
+        "options",
+        "answer"
+      ],
+      "method": [
+        "按官方 PDF 逐页渲染读图，题面与选项逐字录入",
+        "单选答案表逐位核对"
+      ],
+      "note": "官方 p3 第4题：int* p 自增 4 字节，0x6ffe14 → 0x6ffe18"
+    },
+    {
+      "id": 5,
+      "official": "B",
+      "answerTableValue": "B",
+      "bank": "B",
+      "changed": true,
+      "resolved": true,
+      "textMatch": true,
+      "dimensions": [
+        "statement",
+        "options",
+        "answer"
+      ],
+      "method": [
+        "按官方 PDF 逐页渲染读图，题面与选项逐字录入",
+        "单选答案表逐位核对"
+      ],
+      "note": "官方 p4 第5题：int a[2][3] 的 a+1 跳过一行 12 字节 → 0x6ffe0C。原题库为引用/指针辨析仿写题，已重录"
+    },
+    {
+      "id": 6,
+      "official": "D",
+      "answerTableValue": "D",
+      "bank": "D",
+      "changed": true,
+      "resolved": true,
+      "textMatch": true,
+      "dimensions": [
+        "statement",
+        "options",
+        "answer"
+      ],
+      "method": [
+        "按官方 PDF 逐页渲染读图，题面与选项逐字录入",
+        "单选答案表逐位核对"
+      ],
+      "note": "官方 p4 第6题：绝对路径与相对路径辨析，D 说法错误"
+    },
+    {
+      "id": 7,
+      "official": "D",
+      "answerTableValue": "D",
+      "bank": "D",
+      "changed": true,
+      "resolved": true,
+      "textMatch": true,
+      "dimensions": [
+        "statement",
+        "options",
+        "answer"
+      ],
+      "method": [
+        "按官方 PDF 逐页渲染读图，题面与选项逐字录入",
+        "单选答案表逐位核对"
+      ],
+      "note": "官方 p4 第7题：插入排序空间复杂度应为 O(1)，D 说法错误"
+    },
+    {
+      "id": 8,
+      "official": "A",
+      "answerTableValue": "A",
+      "bank": "A",
+      "changed": true,
+      "resolved": true,
+      "textMatch": true,
+      "dimensions": [
+        "statement",
+        "options",
+        "answer"
+      ],
+      "method": [
+        "按官方 PDF 逐页渲染读图，题面与选项逐字录入",
+        "单选答案表逐位核对"
+      ],
+      "note": "官方 p5 第8题：冒泡排序内层边界 j<i，填 swap(a[j], a[j+1])"
+    },
+    {
+      "id": 9,
+      "official": "A",
+      "answerTableValue": "A",
+      "bank": "A",
+      "changed": true,
+      "resolved": true,
+      "textMatch": true,
+      "dimensions": [
+        "statement",
+        "options",
+        "answer"
+      ],
+      "method": [
+        "按官方 PDF 逐页渲染读图，题面与选项逐字录入",
+        "单选答案表逐位核对"
+      ],
+      "note": "官方 p5 第9题：递推与递归的概念区别，A（自己调用自己）是递归特征"
+    },
+    {
+      "id": 10,
+      "official": "B",
+      "answerTableValue": "B",
+      "bank": "B",
+      "changed": true,
+      "resolved": true,
+      "textMatch": true,
+      "dimensions": [
+        "statement",
+        "options",
+        "answer"
+      ],
+      "method": [
+        "按官方 PDF 逐页渲染读图，题面与选项逐字录入",
+        "单选答案表逐位核对"
+      ],
+      "note": "官方 p5 第10题：冒泡排序稳定，B 说法错误"
+    },
+    {
+      "id": 11,
+      "official": "A",
+      "answerTableValue": "A",
+      "bank": "A",
+      "changed": true,
+      "resolved": true,
+      "textMatch": true,
+      "dimensions": [
+        "statement",
+        "options",
+        "answer"
+      ],
+      "method": [
+        "按官方 PDF 逐页渲染读图，题面与选项逐字录入",
+        "单选答案表逐位核对"
+      ],
+      "note": "官方 p5 第11题：一遍冒泡后 97 到末尾，{45,23,1,10,66,52,88,5,33,97}"
+    },
+    {
+      "id": 12,
+      "official": "D",
+      "answerTableValue": "D",
+      "bank": "D",
+      "changed": true,
+      "resolved": true,
+      "textMatch": true,
+      "dimensions": [
+        "statement",
+        "options",
+        "answer"
+      ],
+      "method": [
+        "按官方 PDF 逐页渲染读图，题面与选项逐字录入",
+        "单选答案表逐位核对"
+      ],
+      "note": "官方 p6 第12题：插入排序腾位语句 a[j+1]=a[j]"
+    },
+    {
+      "id": 13,
+      "official": "A",
+      "answerTableValue": "A",
+      "bank": "A",
+      "changed": true,
+      "resolved": true,
+      "textMatch": true,
+      "dimensions": [
+        "statement",
+        "options",
+        "answer"
+      ],
+      "method": [
+        "按官方 PDF 逐页渲染读图，题面与选项逐字录入",
+        "单选答案表逐位核对"
+      ],
+      "note": "官方 p7 第13题：throw 字符串字面量（const char*）被同名 catch 捕获"
+    },
+    {
+      "id": 14,
+      "official": "B",
+      "answerTableValue": "B",
+      "bank": "B",
+      "changed": true,
+      "resolved": true,
+      "textMatch": true,
+      "dimensions": [
+        "statement",
+        "options",
+        "answer"
+      ],
+      "method": [
+        "按官方 PDF 逐页渲染读图，题面与选项逐字录入",
+        "单选答案表逐位核对"
+      ],
+      "note": "官方 p7 第14题：10 条直线最多分割平面 1+n(n+1)/2 = 56"
+    },
+    {
+      "id": 15,
+      "official": "D",
+      "answerTableValue": "D",
+      "bank": "D",
+      "changed": true,
+      "resolved": true,
+      "textMatch": true,
+      "dimensions": [
+        "statement",
+        "options",
+        "answer"
+      ],
+      "method": [
+        "按官方 PDF 逐页渲染读图，题面与选项逐字录入",
+        "单选答案表逐位核对"
+      ],
+      "note": "官方 p8 第15题：int* 自增 4 字节，0x6ffe00 → 0x6ffe04"
+    },
+    {
+      "id": 16,
+      "official": "×",
+      "bank": "×",
+      "changed": true,
+      "resolved": true,
+      "textMatch": true,
+      "dimensions": [
+        "statement",
+        "answer"
+      ],
+      "method": [
+        "按官方 PDF 逐页渲染读图，题面逐字录入",
+        "判断题答案表逐位核对"
+      ],
+      "note": "官方 p8 判断第1题：int& 与 &a 概念不同"
+    },
+    {
+      "id": 17,
+      "official": "√",
+      "bank": "√",
+      "changed": true,
+      "resolved": true,
+      "textMatch": true,
+      "dimensions": [
+        "statement",
+        "answer"
+      ],
+      "method": [
+        "按官方 PDF 逐页渲染读图，题面逐字录入",
+        "判断题答案表逐位核对"
+      ],
+      "note": "官方 p8 判断第2题：引用必须初始化，int& ra; 编译失败"
+    },
+    {
+      "id": 18,
+      "official": "√",
+      "bank": "√",
+      "changed": true,
+      "resolved": true,
+      "textMatch": true,
+      "dimensions": [
+        "statement",
+        "answer"
+      ],
+      "method": [
+        "按官方 PDF 逐页渲染读图，题面逐字录入",
+        "判断题答案表逐位核对"
+      ],
+      "note": "官方 p8 判断第3题：引用等价于指针常量（T* const）"
+    },
+    {
+      "id": 19,
+      "official": "√",
+      "bank": "√",
+      "changed": true,
+      "resolved": true,
+      "textMatch": true,
+      "dimensions": [
+        "statement",
+        "answer"
+      ],
+      "method": [
+        "按官方 PDF 逐页渲染读图，题面逐字录入",
+        "判断题答案表逐位核对"
+      ],
+      "note": "官方 p8 判断第4题：a 与 &a[0][0] 地址值相同（类型不同）"
+    },
+    {
+      "id": 20,
+      "official": "×",
+      "bank": "×",
+      "changed": true,
+      "resolved": true,
+      "textMatch": true,
+      "dimensions": [
+        "statement",
+        "answer"
+      ],
+      "method": [
+        "按官方 PDF 逐页渲染读图，题面逐字录入",
+        "判断题答案表逐位核对"
+      ],
+      "note": "官方 p9 判断第5题：函数可以调用自己（递归）"
+    },
+    {
+      "id": 21,
+      "official": "√",
+      "bank": "√",
+      "changed": true,
+      "resolved": true,
+      "textMatch": true,
+      "dimensions": [
+        "statement",
+        "answer"
+      ],
+      "method": [
+        "按官方 PDF 逐页渲染读图，题面逐字录入",
+        "判断题答案表逐位核对"
+      ],
+      "note": "官方 p9 判断第6题：const 形参的写保护"
+    },
+    {
+      "id": 22,
+      "official": "√",
+      "bank": "√",
+      "changed": true,
+      "resolved": true,
+      "textMatch": true,
+      "dimensions": [
+        "statement",
+        "answer"
+      ],
+      "method": [
+        "按官方 PDF 逐页渲染读图，题面逐字录入",
+        "判断题答案表逐位核对"
+      ],
+      "note": "官方 p9 判断第7题：空指针输出 0"
+    },
+    {
+      "id": 23,
+      "official": "√",
+      "bank": "√",
+      "changed": true,
+      "resolved": true,
+      "textMatch": true,
+      "dimensions": [
+        "statement",
+        "answer"
+      ],
+      "method": [
+        "按官方 PDF 逐页渲染读图，题面逐字录入",
+        "判断题答案表逐位核对"
+      ],
+      "note": "官方 p9 判断第8题：a[i][j] 可作普通整型变量使用"
+    },
+    {
+      "id": 24,
+      "official": "√",
+      "bank": "√",
+      "changed": true,
+      "resolved": true,
+      "textMatch": true,
+      "dimensions": [
+        "statement",
+        "answer"
+      ],
+      "method": [
+        "按官方 PDF 逐页渲染读图，题面逐字录入",
+        "判断题答案表逐位核对"
+      ],
+      "note": "官方 p9 判断第9题：N=6 共 6 个合法数组（[6]、[6,1]、[6,2]、[6,2,1]、[6,3]、[6,3,1]）"
+    },
+    {
+      "id": 25,
+      "official": "√",
+      "bank": "√",
+      "changed": true,
+      "resolved": true,
+      "textMatch": true,
+      "dimensions": [
+        "statement",
+        "answer"
+      ],
+      "method": [
+        "按官方 PDF 逐页渲染读图，题面逐字录入",
+        "判断题答案表逐位核对"
+      ],
+      "note": "官方 p9 判断第10题：插入排序平均 O(n²)、逆序取最坏"
+    }
   ],
-  "unresolved": [
-    "题库判断题 17、19-25 的题面与官方原卷不对应（疑为早期重建时被改写/替换）：官方原卷判断题为 1)int& a 和 &a 取地址、2)int& ra; ra=&a 代码不能正确执行、3)引用是指针常量、4)cout<<a 与 cout<<&a[0][0] 输出相同、5)函数不可以调用自己、6)常量值/常量引用/常量指针防修改、7)int *p=NULL 输出 0、8)a[i][j] 如普通整型变量、9)一维数组末尾加 M 合法数列(N=6 有 6 种)、10)插入排序平均 O(n²) 最坏最大。建议后续按官方原卷回填题面（本次仅核对答案，未动题面）。",
-    "官方答案表位置 5=×、9=√ 与题库 20=√、24=× 的表面差异源于题面替换，非答案错误；按题面替换后的语义两题答案均事实正确，故不修改。"
-  ]
+  "unresolved": [],
+  "rebuild": true,
+  "rebuildNote": "本卷 25 道客观题按官方 PDF 逐页渲染读图整卷重录（题面/选项/答案/解析），编程题仅补数据范围章节。"
 }

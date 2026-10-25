@@ -1,34 +1,485 @@
 {
   "paperId": "2024-09-l4",
   "executedAt": "2026-10-25",
-  "reviewedBy": { "type": "AI", "executor": "WorkBuddy 子代理" },
+  "reviewedBy": {
+    "type": "整卷重建",
+    "executor": "官方 PDF 逐页转写 + 答案表比对"
+  },
   "source": {
     "mirrorUrl": "https://raw.githubusercontent.com/Dora321/gesp-official-pdfs/main/pdfs/2024%E5%B9%B49%E6%9C%88-C%2B%2B4%E7%BA%A7.pdf",
     "mirrorSha": "6c01612a8d079f90937bb52ba207b054e28fdbdd",
     "shaVerified": true,
     "fetchedAt": "2026-10-25",
-    "pages": { "judge": "p6", "single": "p1" }
+    "pages": {
+      "judge": "p6",
+      "single": "p1"
+    }
   },
   "answerTable": {
-    "format": "官方试卷版，判断题节首集中答案表（题号 1-10 / 答案行，√/× 为红色图片，已放大并含题号行对齐核对）",
+    "format": "官方试卷版：单选节首与判断题节首各有一张答案表；判断题 √/× 为矢量图形，已按 get_charbox 文本坐标裁剪并 6 倍渲染读图。",
+    "single": "A B A B D A B D A B C A A A C（p1（表位于单选节首），与题库 1-15 题逐位对齐）",
+    "singlePage": "p1（表位于单选节首）",
     "judge": "√√××√××××√",
-    "judgePage": "p6（表位于判断题节首）",
-    "single": "A B A B D A B D A B C A A A C（p1 表，与题库 1-15 题一致）"
+    "judgePage": "p6（表位于判断题节首）"
   },
   "questions": [
-    { "id": 16, "official": "√", "bank": "√", "changed": false, "note": "int* p = &a 正确定义并初始化" },
-    { "id": 17, "official": "√", "bank": "√", "changed": false, "note": "引用传递可修改实参" },
-    { "id": 18, "official": "×", "bank": "×", "changed": false, "note": "指针大小与所指向类型大小无关" },
-    { "id": 19, "official": "×", "bank": "×", "changed": false, "note": "二维数组行列大小均须定义时确定" },
-    { "id": 20, "official": "√", "bank": "√", "changed": false, "note": "递推算法定义" },
-    { "id": 21, "official": "×", "bank": "×", "changed": false, "note": "选择排序不稳定" },
-    { "id": 22, "official": "×", "bank": "×", "changed": false, "note": "插入排序复杂度并非总比冒泡低" },
-    { "id": 23, "official": "×", "bank": "×", "changed": false, "note": "未捕获异常会调用 std::terminate 终止" },
-    { "id": 24, "official": "官方第9题为『以下代码用递推法求斐波那契第n项，时间复杂度为指数级』（代码为迭代 O(n)）→ ×；题库24为改写题『递推法时间复杂度为 O(N)』→ √", "bank": "√", "changed": false, "note": "题面被改写为肯定式（O(N)），答案对自身题面事实正确；官方表位置9=× 与题库24 表面不一致不构成答案错误" },
-    { "id": 25, "official": "官方第10题为 point() 代码输出 20 判断题 √；题库25为替换题『GESP 4 级要求掌握二维数组』√", "bank": "√", "changed": false, "note": "题面被替换（答案恰好同为√）" }
+    {
+      "id": 1,
+      "official": "A",
+      "answerTableValue": "A",
+      "bank": "A",
+      "changed": true,
+      "resolved": true,
+      "textMatch": true,
+      "dimensions": [
+        "statement",
+        "options",
+        "answer"
+      ],
+      "method": [
+        "按官方 PDF 逐页渲染读图，题面与选项逐字录入",
+        "单选答案表逐位核对"
+      ],
+      "note": "官方 p1 第1题：函数定义四要素，A 正确"
+    },
+    {
+      "id": 2,
+      "official": "B",
+      "answerTableValue": "B",
+      "bank": "B",
+      "changed": true,
+      "resolved": true,
+      "textMatch": true,
+      "dimensions": [
+        "statement",
+        "options",
+        "answer"
+      ],
+      "method": [
+        "按官方 PDF 逐页渲染读图，题面与选项逐字录入",
+        "单选答案表逐位核对"
+      ],
+      "note": "官方 p1 第2题：形参在定义时指定、实参在调用时传递"
+    },
+    {
+      "id": 3,
+      "official": "A",
+      "answerTableValue": "A",
+      "bank": "A",
+      "changed": true,
+      "resolved": true,
+      "textMatch": true,
+      "dimensions": [
+        "statement",
+        "options",
+        "answer"
+      ],
+      "method": [
+        "按官方 PDF 逐页渲染读图，题面与选项逐字录入",
+        "单选答案表逐位核对"
+      ],
+      "note": "官方 p1-p2 第3题：全局/局部遮蔽 + ::var，输出 100 200 100 200。原题库代码被简化为单行版且答案错为 100 100，已整题重录"
+    },
+    {
+      "id": 4,
+      "official": "B",
+      "answerTableValue": "B",
+      "bank": "B",
+      "changed": true,
+      "resolved": true,
+      "textMatch": true,
+      "dimensions": [
+        "statement",
+        "options",
+        "answer"
+      ],
+      "method": [
+        "按官方 PDF 逐页渲染读图，题面与选项逐字录入",
+        "单选答案表逐位核对"
+      ],
+      "note": "官方 p2 第4题：p++ 后 *p = arr[1] = 9。原题库为常量题，已重录"
+    },
+    {
+      "id": 5,
+      "official": "D",
+      "answerTableValue": "D",
+      "bank": "D",
+      "changed": true,
+      "resolved": true,
+      "textMatch": true,
+      "dimensions": [
+        "statement",
+        "options",
+        "answer"
+      ],
+      "method": [
+        "按官方 PDF 逐页渲染读图，题面与选项逐字录入",
+        "单选答案表逐位核对"
+      ],
+      "note": "官方 p2 第5题：p=q 使 p 指向 y 的地址"
+    },
+    {
+      "id": 6,
+      "official": "A",
+      "answerTableValue": "A",
+      "bank": "A",
+      "changed": true,
+      "resolved": true,
+      "textMatch": true,
+      "dimensions": [
+        "statement",
+        "options",
+        "answer"
+      ],
+      "method": [
+        "按官方 PDF 逐页渲染读图，题面与选项逐字录入",
+        "单选答案表逐位核对"
+      ],
+      "note": "官方 p2 第6题：struct student 定义，A 正确"
+    },
+    {
+      "id": 7,
+      "official": "B",
+      "answerTableValue": "B",
+      "bank": "B",
+      "changed": true,
+      "resolved": true,
+      "textMatch": true,
+      "dimensions": [
+        "statement",
+        "options",
+        "answer"
+      ],
+      "method": [
+        "按官方 PDF 逐页渲染读图，题面与选项逐字录入",
+        "单选答案表逐位核对"
+      ],
+      "note": "官方 p2-p3 第7题：int arr[3][4] 的声明语法"
+    },
+    {
+      "id": 8,
+      "official": "D",
+      "answerTableValue": "D",
+      "bank": "D",
+      "changed": true,
+      "resolved": true,
+      "textMatch": true,
+      "dimensions": [
+        "statement",
+        "options",
+        "answer"
+      ],
+      "method": [
+        "按官方 PDF 逐页渲染读图，题面与选项逐字录入",
+        "单选答案表逐位核对"
+      ],
+      "note": "官方 p3 第8题：sizeof(arr[0]) = 4×4 = 16 字节"
+    },
+    {
+      "id": 9,
+      "official": "A",
+      "answerTableValue": "A",
+      "bank": "A",
+      "changed": true,
+      "resolved": true,
+      "textMatch": true,
+      "dimensions": [
+        "statement",
+        "options",
+        "answer"
+      ],
+      "method": [
+        "按官方 PDF 逐页渲染读图，题面与选项逐字录入",
+        "单选答案表逐位核对"
+      ],
+      "note": "官方 p3 第9题：阶乘递推填 result *= i"
+    },
+    {
+      "id": 10,
+      "official": "B",
+      "answerTableValue": "B",
+      "bank": "B",
+      "changed": true,
+      "resolved": true,
+      "textMatch": true,
+      "dimensions": [
+        "statement",
+        "options",
+        "answer"
+      ],
+      "method": [
+        "按官方 PDF 逐页渲染读图，题面与选项逐字录入",
+        "单选答案表逐位核对"
+      ],
+      "note": "官方 p3 第10题：稳定性的定义"
+    },
+    {
+      "id": 11,
+      "official": "C",
+      "answerTableValue": "C",
+      "bank": "C",
+      "changed": true,
+      "resolved": true,
+      "textMatch": true,
+      "dimensions": [
+        "statement",
+        "options",
+        "answer"
+      ],
+      "method": [
+        "按官方 PDF 逐页渲染读图，题面与选项逐字录入",
+        "单选答案表逐位核对"
+      ],
+      "note": "官方 p3-p4 第11题：冒泡内层边界 j<i。官方原程序 swap(arr, i, j) 按语义应为 (arr, j, j+1)，属原卷笔误，已在解析注明"
+    },
+    {
+      "id": 12,
+      "official": "A",
+      "answerTableValue": "A",
+      "bank": "A",
+      "changed": true,
+      "resolved": true,
+      "textMatch": true,
+      "dimensions": [
+        "statement",
+        "options",
+        "answer"
+      ],
+      "method": [
+        "按官方 PDF 逐页渲染读图，题面与选项逐字录入",
+        "单选答案表逐位核对"
+      ],
+      "note": "官方 p4 第12题：冒泡最坏 O(n²)"
+    },
+    {
+      "id": 13,
+      "official": "A",
+      "answerTableValue": "A",
+      "bank": "A",
+      "changed": true,
+      "resolved": true,
+      "textMatch": true,
+      "dimensions": [
+        "statement",
+        "options",
+        "answer"
+      ],
+      "method": [
+        "按官方 PDF 逐页渲染读图，题面与选项逐字录入",
+        "单选答案表逐位核对"
+      ],
+      "note": "官方 p4 第13题：插入排序填 while (j >= 0 && nums[j] > base)"
+    },
+    {
+      "id": 14,
+      "official": "A",
+      "answerTableValue": "A",
+      "bank": "A",
+      "changed": true,
+      "resolved": true,
+      "textMatch": true,
+      "dimensions": [
+        "statement",
+        "options",
+        "answer"
+      ],
+      "method": [
+        "按官方 PDF 逐页渲染读图，题面与选项逐字录入",
+        "单选答案表逐位核对"
+      ],
+      "note": "官方 p4-p5 第14题：rdbuf 重定向后仍写 cout"
+    },
+    {
+      "id": 15,
+      "official": "C",
+      "answerTableValue": "C",
+      "bank": "C",
+      "changed": true,
+      "resolved": true,
+      "textMatch": true,
+      "dimensions": [
+        "statement",
+        "options",
+        "answer"
+      ],
+      "method": [
+        "按官方 PDF 逐页渲染读图，题面与选项逐字录入",
+        "单选答案表逐位核对"
+      ],
+      "note": "官方 p5 第15题：异常捕获输出 caught an exception: division by zero error"
+    },
+    {
+      "id": 16,
+      "official": "√",
+      "bank": "√",
+      "changed": true,
+      "resolved": true,
+      "textMatch": true,
+      "dimensions": [
+        "statement",
+        "answer"
+      ],
+      "method": [
+        "按官方 PDF 逐页渲染读图，题面逐字录入",
+        "判断题答案表逐位核对"
+      ],
+      "note": "官方 p6 判断第1题：指针定义与初始化"
+    },
+    {
+      "id": 17,
+      "official": "√",
+      "bank": "√",
+      "changed": true,
+      "resolved": true,
+      "textMatch": true,
+      "dimensions": [
+        "statement",
+        "answer"
+      ],
+      "method": [
+        "按官方 PDF 逐页渲染读图，题面逐字录入",
+        "判断题答案表逐位核对"
+      ],
+      "note": "官方 p6 判断第2题：引用传递可修改实参"
+    },
+    {
+      "id": 18,
+      "official": "×",
+      "bank": "×",
+      "changed": true,
+      "resolved": true,
+      "textMatch": true,
+      "dimensions": [
+        "statement",
+        "answer"
+      ],
+      "method": [
+        "按官方 PDF 逐页渲染读图，题面逐字录入",
+        "判断题答案表逐位核对"
+      ],
+      "note": "官方 p6 判断第3题：指针大小与所指类型无关（原题库题干多「单位」二字，已修正）"
+    },
+    {
+      "id": 19,
+      "official": "×",
+      "bank": "×",
+      "changed": true,
+      "resolved": true,
+      "textMatch": true,
+      "dimensions": [
+        "statement",
+        "answer"
+      ],
+      "method": [
+        "按官方 PDF 逐页渲染读图，题面逐字录入",
+        "判断题答案表逐位核对"
+      ],
+      "note": "官方 p6 判断第4题：二维数组行列都必须在定义时确定"
+    },
+    {
+      "id": 20,
+      "official": "√",
+      "bank": "√",
+      "changed": true,
+      "resolved": true,
+      "textMatch": true,
+      "dimensions": [
+        "statement",
+        "answer"
+      ],
+      "method": [
+        "按官方 PDF 逐页渲染读图，题面逐字录入",
+        "判断题答案表逐位核对"
+      ],
+      "note": "官方 p6 判断第5题：递推的定义"
+    },
+    {
+      "id": 21,
+      "official": "×",
+      "bank": "×",
+      "changed": true,
+      "resolved": true,
+      "textMatch": true,
+      "dimensions": [
+        "statement",
+        "answer"
+      ],
+      "method": [
+        "按官方 PDF 逐页渲染读图，题面逐字录入",
+        "判断题答案表逐位核对"
+      ],
+      "note": "官方 p6 判断第6题：选择排序不稳定"
+    },
+    {
+      "id": 22,
+      "official": "×",
+      "bank": "×",
+      "changed": true,
+      "resolved": true,
+      "textMatch": true,
+      "dimensions": [
+        "statement",
+        "answer"
+      ],
+      "method": [
+        "按官方 PDF 逐页渲染读图，题面逐字录入",
+        "判断题答案表逐位核对"
+      ],
+      "note": "官方 p6 判断第7题：插入排序并非总比冒泡快"
+    },
+    {
+      "id": 23,
+      "official": "×",
+      "bank": "×",
+      "changed": true,
+      "resolved": true,
+      "textMatch": true,
+      "dimensions": [
+        "statement",
+        "answer"
+      ],
+      "method": [
+        "按官方 PDF 逐页渲染读图，题面逐字录入",
+        "判断题答案表逐位核对"
+      ],
+      "note": "官方 p6 判断第8题：未捕获异常会终止程序"
+    },
+    {
+      "id": 24,
+      "official": "×",
+      "bank": "×",
+      "changed": true,
+      "resolved": true,
+      "textMatch": true,
+      "dimensions": [
+        "statement",
+        "answer"
+      ],
+      "method": [
+        "按官方 PDF 逐页渲染读图，题面逐字录入",
+        "判断题答案表逐位核对"
+      ],
+      "note": "官方 p6 判断第9题：该代码为迭代递推 O(n)，非指数级。原题库为「递推法 O(N)」自编题，已按官方代码题重录"
+    },
+    {
+      "id": 25,
+      "official": "√",
+      "bank": "√",
+      "changed": true,
+      "resolved": true,
+      "textMatch": true,
+      "dimensions": [
+        "statement",
+        "answer"
+      ],
+      "method": [
+        "按官方 PDF 逐页渲染读图，题面逐字录入",
+        "判断题答案表逐位核对"
+      ],
+      "note": "官方 p6 判断第10题：point(p) 返回 20，*p 赋值为 20，输出 20。原题库为 GESP 等级自编题，已重录"
+    }
   ],
-  "unresolved": [
-    "题库判断题 24 的题面与官方原题（『时间复杂度为指数级』）不一致，系被改写为肯定式『递推法时间复杂度为 O(N)』；官方答案×对应原题表述，题库√对应改写表述，两者各自成立。建议后续按官方原卷回填题面并改答案为×（本次仅核对答案，未动题面）。",
-    "题库判断题 25 为替换题（官方第10题是 point(int* p) 返回 *p*2 后输出 p 判断题），建议按官方原卷回填。"
-  ]
+  "unresolved": [],
+  "rebuild": true,
+  "rebuildNote": "本卷 25 道客观题按官方 PDF 逐页渲染读图整卷重录（题面/选项/答案/解析），编程题仅补数据范围章节。"
 }
