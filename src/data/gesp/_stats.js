@@ -13,7 +13,7 @@ export const paperStats = {
   partialPaperCount: 90,
   unverifiedPaperCount: 0,
   verificationDimensions: {"statement":{"verified":8,"partial":62,"unverified":22},"options":{"verified":9,"partial":22,"unverified":61},"answer":{"verified":25,"partial":58,"unverified":9},"explanation":{"verified":2,"partial":36,"unverified":54},"referenceCode":{"verified":10,"partial":1,"unverified":81}},
-  integrityFlaggedQuestionCount: 120,
+  integrityFlaggedQuestionCount: 97,
   levelCount: 8,
   firstYear: 2023,
   latestYear: 2026,

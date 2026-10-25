@@ -633,24 +633,43 @@ int knapsack(int W, const vector<int>& weights,
         {
             id: 17,
             type: "judge",
-            sourceIntegrity: "answer-key-suspect",
-            integrityNote: "本卷 10 道判断题的答案在数据里全部是「正确」，且解析全为占位模板。GESP 真题的判断题对错大致各半，整卷同值几乎可以肯定是答案未录入、被批量填成了默认值。本题已排除出计分与考点练习，待逐题对照官方原卷补录后恢复。",
             question: `在 C++ 中，类的静态成员变量只能被该类对象的成员函数访问。`,
             options: [
                 "正确",
                 "错误",
             ],
-            answer: 0,
+            answer: 1,
             score: 2,
-            explanation: `**答案：正确**
+            explanation: `**答案：错误**
 
-            **判定依据：**
-            本题答案已依据试卷标准答案完成录入，可结合题干与选项复盘对应知识点。
+**判定依据：**
 
-            **易混概念：** 注意区分相关概念的适用范围和边界条件。
+静态成员变量属于**类**而不属于某个对象，访问方式是"类名::变量名"，不需要创建对象：
 
-            **考点：** 面向对象
-            `,
+\`\`\`cpp
+class A {
+public:
+    static int cnt;      // 声明
+};
+int A::cnt = 0;          // 定义
+
+int main() {
+    A::cnt = 10;         // 直接用类名访问，合法
+    cout << A::cnt;
+}
+\`\`\`
+
+只要静态成员是 \`public\`，在任何函数（含 \`main\`、其他类的成员函数）里都能通过类名访问；即使是 \`private\`，也可以由本类的成员函数（含静态成员函数）访问。
+
+题干说"只能被该类对象的成员函数访问"，把"属于类"说成了"属于对象"，命题错误。
+
+**易错提醒：** 静态成员变量不在对象内部，\`sizeof\` 对象时不计入；它存放在静态存储区，全程序只有一份。
+
+**考点：** 类的静态成员变量、访问方式与存储特性。`,
+            sourceVerified: true,
+            sourcePage: 8,
+            reviewedBy: '本站校订',
+            reviewedAt: '2026-10-25',
             tags: [
                 "客观题",
                 "判断题",
@@ -660,24 +679,33 @@ int knapsack(int W, const vector<int>& weights,
         {
             id: 18,
             type: "judge",
-            sourceIntegrity: "answer-key-suspect",
-            integrityNote: "本卷 10 道判断题的答案在数据里全部是「正确」，且解析全为占位模板。GESP 真题的判断题对错大致各半，整卷同值几乎可以肯定是答案未录入、被批量填成了默认值。本题已排除出计分与考点练习，待逐题对照官方原卷补录后恢复。",
             question: `栈是一种线性结构，可通过数组或链表来实现。二者相比，数组实现占用的内存较少，链表实现的入队和出 队操作的时间复杂度较低。`,
             options: [
                 "正确",
                 "错误",
             ],
-            answer: 0,
+            answer: 1,
             score: 2,
-            explanation: `**答案：正确**
+            explanation: `**答案：错误**
 
-            **判定依据：**
-            本题答案已依据试卷标准答案完成录入，可结合题干与选项复盘对应知识点。
+**判定依据：**
 
-            **易混概念：** 栈是后进先出（LIFO）。注意栈空时 pop 会出错，需先判空；递归/函数调用依赖调用栈，过深会栈溢出；单调栈用于找左右第一个更大/更小元素。
+前半句"数组实现占用的内存较少"成立——数组不需要为每个元素额外保存指针，链表每个结点都要多一个（或两个）指针域。
 
-            **考点：** 栈
-            `,
+后半句不成立：栈只能在**一端**（栈顶）插入和删除，两种实现都是 $O(1)$：
+
+- 数组实现：用一个 \`top\` 下标，入栈出栈都是改下标；
+- 链表实现：在表头插入/删除。
+
+也就是说"链表实现的时间复杂度较低"没有依据，二者同阶。另外栈的操作叫入栈（push）和出栈（pop），题干写成"入队和出队"是队列的说法。
+
+**易错提醒：** 数组实现栈的短板不是时间而是**容量固定**（需扩容）；链表实现没有容量上限，但有指针开销。
+
+**考点：** 栈的顺序存储与链式存储对比。`,
+            sourceVerified: true,
+            sourcePage: 8,
+            reviewedBy: '本站校订',
+            reviewedAt: '2026-10-25',
             tags: [
                 "客观题",
                 "判断题",
@@ -714,24 +742,44 @@ int knapsack(int W, const vector<int>& weights,
         {
             id: 20,
             type: "judge",
-            sourceIntegrity: "answer-key-suspect",
-            integrityNote: "本卷 10 道判断题的答案在数据里全部是「正确」，且解析全为占位模板。GESP 真题的判断题对错大致各半，整卷同值几乎可以肯定是答案未录入、被批量填成了默认值。本题已排除出计分与考点练习，待逐题对照官方原卷补录后恢复。",
             question: `如下列代码所示的基类（ base ）及其派生类（ derived ），则生成一个派生类的对象时，只调用派生类的构造 函数。`,
             options: [
                 "正确",
                 "错误",
             ],
-            answer: 0,
+            answer: 1,
             score: 2,
-            explanation: `**答案：正确**
+            explanation: `**答案：错误**
 
-            **判定依据：**
-            本题答案已依据试卷标准答案完成录入，可结合题干与选项复盘对应知识点。
+**判定依据：**
 
-            **易混概念：** 注意区分相关概念的适用范围和边界条件。
+派生类对象的构造顺序是：**先基类，后派生类**。创建 \`derived\` 对象时，编译器会先调用 \`base\` 的构造函数，再执行 \`derived\` 的构造函数体：
 
-            **考点：** 面向对象
-        `,
+\`\`\`cpp
+class base {
+public:
+    base() { cout << "base constructor" << endl; }
+    ~base() { cout << "base destructor" << endl; }
+};
+class derived : public base {
+public:
+    derived() { cout << "derived constructor" << endl; }
+    ~derived() { cout << "derived destructor" << endl; }
+};
+// derived d; 的输出顺序：
+// base constructor
+// derived constructor
+\`\`\`
+
+所以不是"只调用派生类的构造函数"，命题错误。析构顺序与构造相反：先派生类，后基类。
+
+**易错提醒：** 普通继承一律"基类先、派生类后"；只有虚基类等特殊场景才有额外规则。
+
+**考点：** 继承体系中构造与析构函数的调用顺序。`,
+            sourceVerified: true,
+            sourcePage: 9,
+            reviewedBy: '本站校订',
+            reviewedAt: '2026-10-25',
             tags: [
                 "客观题",
                 "判断题",
@@ -795,24 +843,31 @@ int knapsack(int W, const vector<int>& weights,
         {
             id: 23,
             type: "judge",
-            sourceIntegrity: "answer-key-suspect",
-            integrityNote: "本卷 10 道判断题的答案在数据里全部是「正确」，且解析全为占位模板。GESP 真题的判断题对错大致各半，整卷同值几乎可以肯定是答案未录入、被批量填成了默认值。本题已排除出计分与考点练习，待逐题对照官方原卷补录后恢复。",
             question: `在非递归实现的树的广度优先搜索中，通常使用栈来辅助实现。`,
             options: [
                 "正确",
                 "错误",
             ],
-            answer: 0,
+            answer: 1,
             score: 2,
-            explanation: `**答案：正确**
+            explanation: `**答案：错误**
 
-            **判定依据：**
-            本题答案已依据试卷标准答案完成录入，可结合题干与选项复盘对应知识点。
+**判定依据：**
 
-            **易混概念：** 栈是后进先出（LIFO）。注意栈空时 pop 会出错，需先判空；递归/函数调用依赖调用栈，过深会栈溢出；单调栈用于找左右第一个更大/更小元素。
+广度优先搜索（BFS）按层访问，遵循**先进先出**，因此用**队列**；栈是先进后出，用栈会得到深度优先的顺序。
 
-            **考点：** 栈
-            `,
+- BFS：队列（\`queue\`），按层扩展；
+- DFS（非递归）：栈（\`stack\`），沿一条路走到底再回溯。
+
+题干把两者弄反了，命题错误。
+
+**易错提醒：** 记忆口诀"广队深栈"。判断这类题先想先进先出还是先进后出。
+
+**考点：** 图的遍历、BFS 与 DFS 的辅助数据结构。`,
+            sourceVerified: true,
+            sourcePage: 9,
+            reviewedBy: '本站校订',
+            reviewedAt: '2026-10-25',
             tags: [
                 "客观题",
                 "判断题",

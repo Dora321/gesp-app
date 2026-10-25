@@ -1,24 +1,90 @@
 {
   "paperId": "2024-06-l7",
   "reviewedAt": "2026-10-24",
-  "reviewedBy": { "type": "AI", "executor": "WorkBuddy 子代理", "session": "codex/question-bank-verification" },
+  "reviewedBy": {
+    "type": "AI",
+    "executor": "WorkBuddy 子代理",
+    "session": "codex/question-bank-verification"
+  },
   "source": {
     "mirrorUrl": "https://raw.githubusercontent.com/Dora321/gesp-official-pdfs/main/pdfs/2024%E5%B9%B46%E6%9C%88-C%2B%2B7%E7%BA%A7.pdf",
     "mirrorSha": "047a7cc0e239607506b06057396e76c78b6c21de",
     "shaVerified": true,
     "fetchedAt": "2026-10-24",
-    "pages": { "Q13": "p.5" }
+    "pages": {
+      "Q13": "p.5"
+    }
   },
   "questions": [
     {
       "id": 13,
-      "dimensions": ["statement", "answer", "explanation"],
-      "method": ["原卷对照（页面渲染人工查看）", "程序执行"],
+      "dimensions": [
+        "statement",
+        "answer",
+        "explanation"
+      ],
+      "method": [
+        "原卷对照（页面渲染人工查看）",
+        "程序执行"
+      ],
       "findings": "题面缺失 fib 递归程序代码（原卷为图片，p.5）。官方代码为标准斐波那契递归，main 输出 fib(6) << endl。",
       "fix": "按原卷 p.5 逐行转写 11 行代码，以 fenced cpp 块回填题面；移除 sourceIntegrity/integrityNote。解析中示意代码与原卷等价（同样为 fib(6)=8），保留不动。",
       "evidence": "g++ 编译运行转写代码，实际输出 8，与答案 B（8）一致。tmp/verify/2024-06-l7/q13.cpp",
       "resolved": true
     }
   ],
-  "unresolved": []
+  "unresolved": [],
+  "judgeAnswerAudit": {
+    "executedAt": "2026-10-25",
+    "executor": "WorkBuddy",
+    "method": "下载官方 PDF（mirrorUrl）后用 pypdfium2 提取文本层定位判断题答案表页，按「题号/答案」表头文本坐标裁剪该页并 4 倍渲染读图（√/× 为矢量图形，文本层只有表头）。题面顺序经 PDF 判断题 10 段题面与题库 dice 相似度校验，对角线最优（offdiag=0）后才按 qid=15+i 套用。洛谷答案仅作疑点雷达，不作为答案来源。",
+    "officialSequence": "判断题第1-10题 = × √ × √ × × × √ √ √（对应题库 Q16-Q25）",
+    "items": [
+      {
+        "qid": 16,
+        "bankAnswerBefore": "×",
+        "luoguAnswer": "√（A）",
+        "officialAnswer": "×",
+        "derivation": "6&5 = 110₂ & 101₂ = 100₂ = 4，结果类型为 int，命题正确",
+        "changed": false,
+        "verdict": "洛谷错，题库正确，不改"
+      },
+      {
+        "qid": 17,
+        "bankAnswerBefore": "√",
+        "luoguAnswer": "×（B）",
+        "officialAnswer": "√",
+        "derivation": "冒泡排序只在逆序时交换，相等元素不换位，稳定",
+        "changed": false,
+        "verdict": "洛谷错，题库正确，不改"
+      },
+      {
+        "qid": 19,
+        "bankAnswerBefore": "√",
+        "luoguAnswer": "×（B）",
+        "officialAnswer": "√",
+        "derivation": "同一个类可定义多个参数列表不同的重载构造函数",
+        "changed": false,
+        "verdict": "洛谷错，题库正确，不改"
+      },
+      {
+        "qid": 21,
+        "bankAnswerBefore": "√",
+        "luoguAnswer": "—",
+        "officialAnswer": "×",
+        "derivation": "链式二叉树 N 层只需 N 个结点；N=3 时 3 < 2^2=4，2^(N-1) 不是下界",
+        "changed": true,
+        "verdict": "题库错，官方表为准，已改"
+      },
+      {
+        "qid": 22,
+        "bankAnswerBefore": "×",
+        "luoguAnswer": "√（A）",
+        "officialAnswer": "×",
+        "derivation": "非连通图可逐个未访问连通分量调用 BFS，仍能完成遍历",
+        "changed": false,
+        "verdict": "洛谷错，题库正确，不改"
+      }
+    ]
+  }
 }

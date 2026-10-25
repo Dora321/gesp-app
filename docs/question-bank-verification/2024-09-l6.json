@@ -1,24 +1,100 @@
 {
   "paperId": "2024-09-l6",
   "reviewedAt": "2026-10-24",
-  "reviewedBy": { "type": "AI", "executor": "WorkBuddy 子代理", "session": "codex/question-bank-verification" },
+  "reviewedBy": {
+    "type": "AI",
+    "executor": "WorkBuddy 子代理",
+    "session": "codex/question-bank-verification"
+  },
   "source": {
     "mirrorUrl": "https://raw.githubusercontent.com/Dora321/gesp-official-pdfs/main/pdfs/2024%E5%B9%B49%E6%9C%88-C%2B%2B6%E7%BA%A7.pdf",
     "mirrorSha": "d05c63cea3f3b907deacb509406c8024d5a02e90",
     "shaVerified": true,
     "fetchedAt": "2026-10-24",
-    "pages": { "Q2": "p.1" }
+    "pages": {
+      "Q2": "p.1"
+    }
   },
   "questions": [
     {
       "id": 2,
-      "dimensions": ["statement", "options", "answer", "explanation"],
-      "method": ["原卷对照（页面渲染人工查看）", "程序执行"],
+      "dimensions": [
+        "statement",
+        "options",
+        "answer",
+        "explanation"
+      ],
+      "method": [
+        "原卷对照（页面渲染人工查看）",
+        "程序执行"
+      ],
       "findings": "题面缺失 Base/Derived 类代码（原卷为图片，共 21 行）；录入时该代码被整段串入了选项 C 文本，并夹带行号残留「1 2 3 … 21」，原卷选项 C 仅为「Line 3」。解析为占位模板。",
       "fix": "按原卷 p.1 逐行转写 Base/Derived 代码（保持 private/protected/public 分段与 // Line 1/2/3 注释），以 fenced cpp 块回填题面；选项 C 恢复为原卷原文「Line 3」；移除 sourceIntegrity/integrityNote；解析重写为访问控制推导 + 逐选项理由。",
       "evidence": "g++ 编译转写代码，仅 Line 1 报错：'int Base::a' is private within this context；Line 2（protected）与 Line 3（public）无错误，与答案 A（Line 1）一致。tmp/verify/2024-l6/q2_derived.cpp",
       "resolved": true
     }
   ],
-  "unresolved": []
+  "unresolved": [],
+  "judgeAnswerAudit": {
+    "executedAt": "2026-10-25",
+    "executor": "WorkBuddy",
+    "method": "下载官方 PDF（mirrorUrl）后用 pypdfium2 提取文本层定位判断题答案表页，按「题号/答案」表头文本坐标裁剪该页并 4 倍渲染读图（√/× 为矢量图形，文本层只有表头）。题面顺序经 PDF 判断题 10 段题面与题库 dice 相似度校验，对角线最优（offdiag=0）后才按 qid=15+i 套用。洛谷答案仅作疑点雷达，不作为答案来源。",
+    "officialSequence": "判断题第1-10题 = √ × × √ × √ √ × √ √（对应题库 Q16-Q25）",
+    "items": [
+      {
+        "qid": 16,
+        "bankAnswerBefore": "√",
+        "luoguAnswer": "×（B）",
+        "officialAnswer": "√",
+        "derivation": "C++、Python、Java 均为面向对象编程语言",
+        "changed": false,
+        "verdict": "洛谷错，题库正确，不改"
+      },
+      {
+        "qid": 17,
+        "bankAnswerBefore": "√",
+        "luoguAnswer": "×（B）",
+        "officialAnswer": "×",
+        "derivation": "静态成员属于类，可直接用类名访问，不限于\"该对象成员函数\"",
+        "changed": true,
+        "verdict": "题库错（洛谷与官方一致），已改"
+      },
+      {
+        "qid": 18,
+        "bankAnswerBefore": "√",
+        "luoguAnswer": "—",
+        "officialAnswer": "×",
+        "derivation": "数组与链表实现栈的 push/pop 都是 O(1)；链表只是没有容量上限",
+        "changed": true,
+        "verdict": "题库错，官方表为准，已改"
+      },
+      {
+        "qid": 19,
+        "bankAnswerBefore": "√",
+        "luoguAnswer": "×（B）",
+        "officialAnswer": "√",
+        "derivation": "b 指向 derived 对象且 show 为虚函数，动态绑定输出 derived class",
+        "changed": false,
+        "verdict": "洛谷错，题库正确，不改"
+      },
+      {
+        "qid": 20,
+        "bankAnswerBefore": "√",
+        "luoguAnswer": "—",
+        "officialAnswer": "×",
+        "derivation": "派生类对象构造必先调用基类构造函数",
+        "changed": true,
+        "verdict": "题库错，官方表为准，已改"
+      },
+      {
+        "qid": 23,
+        "bankAnswerBefore": "√",
+        "luoguAnswer": "—",
+        "officialAnswer": "×",
+        "derivation": "BFS 用队列（先进先出），栈对应 DFS",
+        "changed": true,
+        "verdict": "题库错，官方表为准，已改"
+      }
+    ]
+  }
 }

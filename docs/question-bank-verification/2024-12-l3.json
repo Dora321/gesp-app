@@ -1,24 +1,73 @@
 {
   "paperId": "2024-12-l3",
   "reviewedAt": "2026-10-24",
-  "reviewedBy": { "type": "AI", "executor": "WorkBuddy 子代理", "session": "codex/question-bank-verification" },
+  "reviewedBy": {
+    "type": "AI",
+    "executor": "WorkBuddy 子代理",
+    "session": "codex/question-bank-verification"
+  },
   "source": {
     "mirrorUrl": "https://raw.githubusercontent.com/Dora321/gesp-official-pdfs/main/pdfs/2024%E5%B9%B412%E6%9C%88-C%2B%2B3%E7%BA%A7.pdf",
     "mirrorSha": "1111967effffbf7b1db46dd43dfcb2e03a8b8ac2",
     "shaVerified": true,
     "fetchedAt": "2026-10-24",
-    "pages": { "Q12": "pp.3-4" }
+    "pages": {
+      "Q12": "pp.3-4"
+    }
   },
   "questions": [
     {
       "id": 12,
-      "dimensions": ["options", "answer", "explanation"],
-      "method": ["原卷对照（页面渲染人工查看）", "程序执行", "独立推导"],
+      "dimensions": [
+        "options",
+        "answer",
+        "explanation"
+      ],
+      "method": [
+        "原卷对照（页面渲染人工查看）",
+        "程序执行",
+        "独立推导"
+      ],
       "findings": "题干完整，缺失的是四个选项的原卷完整程序（原卷为图片，跨 pp.3-4）：A 为 res 未初始化且 for 从 n+1 起漏统计 n；B 判断条件误写 if(temp % 10 = d)；C 为正确实现；D 缺 int temp = i; 导致 temp 未定义。题库此前以四句概括文字替代了选项代码。",
       "fix": "按原卷 pp.3-4 逐字转写 A/B/C/D 四段完整程序，替换四个选项（fenced cpp 块 + \\n 转义写法，与全库题面代码写法一致）；删除 sourceIntegrity/integrityNote。题干、answer(2/C)、解析未改动——解析中的概括描述与恢复后的代码逐项对应且一致。",
       "evidence": "独立计数：1~100 中数字 1 出现 21 次（python 复核同为 21）。g++ 编译运行选项 C，输入 1 100 1 输出 21，正确；选项 A 编译通过但 res 未初始化，同输入输出垃圾值 32779；选项 B 编译报错「lvalue required as left operand of assignment」；选项 D 编译报错「'temp' was not declared in this scope」。四项验证与 answer 2（C）一致。tmp/verify/2024-12-l3/q12a-d.cpp",
       "resolved": true
     }
   ],
-  "unresolved": []
+  "unresolved": [],
+  "judgeAnswerAudit": {
+    "executedAt": "2026-10-25",
+    "executor": "WorkBuddy",
+    "method": "下载官方 PDF（mirrorUrl）后用 pypdfium2 提取文本层定位判断题答案表页，按「题号/答案」表头文本坐标裁剪该页并 4 倍渲染读图（√/× 为矢量图形，文本层只有表头）。题面顺序经 PDF 判断题 10 段题面与题库 dice 相似度校验，对角线最优（offdiag=0）后才按 qid=15+i 套用。洛谷答案仅作疑点雷达，不作为答案来源。",
+    "officialSequence": "判断题第1-10题 = √ √ √ × √ √ × √ √ √（对应题库 Q16-Q25）",
+    "items": [
+      {
+        "qid": 19,
+        "bankAnswerBefore": "√",
+        "luoguAnswer": "×（B）",
+        "officialAnswer": "×",
+        "derivation": "除2取余须逆序读出；题干\"从前往后\"方法描述错误（本题余数全为1，结果巧合相同）",
+        "changed": true,
+        "verdict": "题库错（洛谷与官方一致），已改"
+      },
+      {
+        "qid": 20,
+        "bankAnswerBefore": "×",
+        "luoguAnswer": "√（A）",
+        "officialAnswer": "√",
+        "derivation": "00001111 是八进制 585，65&585=65，输出字符 A",
+        "changed": true,
+        "verdict": "题库错（洛谷与官方一致），已改"
+      },
+      {
+        "qid": 21,
+        "bankAnswerBefore": "×",
+        "luoguAnswer": "√（A）",
+        "officialAnswer": "√",
+        "derivation": "find('D')=5，--pos 后为 4；&11 只计算不赋值，pos 保持 4",
+        "changed": true,
+        "verdict": "题库错（洛谷与官方一致），已改"
+      }
+    ]
+  }
 }

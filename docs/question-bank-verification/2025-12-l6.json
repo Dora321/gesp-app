@@ -1,19 +1,38 @@
 {
   "paperId": "2025-12-l6",
   "reviewedAt": "2026-10-24",
-  "reviewedBy": { "type": "AI", "executor": "WorkBuddy 子代理", "session": "codex/question-bank-verification" },
+  "reviewedBy": {
+    "type": "AI",
+    "executor": "WorkBuddy 子代理",
+    "session": "codex/question-bank-verification"
+  },
   "source": {
     "mirrorUrl": "https://raw.githubusercontent.com/Dora321/gesp-official-pdfs/main/pdfs/2025%E5%B9%B412%E6%9C%88-C%2B%2B6%E7%BA%A7.pdf",
     "mirrorSha": "478f8674c2e44c24013ec032f869af850422433f",
     "shaVerified": true,
     "fetchedAt": "2026-10-24",
-    "pages": { "Q6": "p.4", "Q7": "p.4", "Q10": "p.7", "Q16": "p.9", "Q18": "p.9", "Q22": "p.9", "judgeAnswerKey": "p.9" }
+    "pages": {
+      "Q6": "p.4",
+      "Q7": "p.4",
+      "Q10": "p.7",
+      "Q16": "p.9",
+      "Q18": "p.9",
+      "Q22": "p.9",
+      "judgeAnswerKey": "p.9"
+    }
   },
   "questions": [
     {
       "id": 6,
-      "dimensions": ["statement", "answer", "explanation"],
-      "method": ["原卷对照（页面渲染人工查看）", "程序执行"],
+      "dimensions": [
+        "statement",
+        "answer",
+        "explanation"
+      ],
+      "method": [
+        "原卷对照（页面渲染人工查看）",
+        "程序执行"
+      ],
       "findings": "题面缺失 check() 函数代码（原卷 p.4 为图片）。代码为层序遍历 + hasNull 标记，判断完全二叉树，与答案 B 一致。",
       "fix": "按原卷 p.4 逐行转写 check() 代码（18 行）回填；移除 sourceIntegrity/integrityNote；解析重写为 hasNull 机制推导 + 逐选项理由。",
       "evidence": "g++ 编译运行转写代码：完全二叉树返回 1、深层缺右孩子的树返回 0，确证判完全二叉树。tmp/verify/2025-12-l6/q6q7q10q18q22.cpp",
@@ -21,8 +40,15 @@
     },
     {
       "id": 7,
-      "dimensions": ["statement", "answer", "explanation"],
-      "method": ["原卷对照（页面渲染人工查看）", "程序执行"],
+      "dimensions": [
+        "statement",
+        "answer",
+        "explanation"
+      ],
+      "method": [
+        "原卷对照（页面渲染人工查看）",
+        "程序执行"
+      ],
       "findings": "题面缺失 traverse 代码（原卷 p.4 为图片）。打印语句在两次递归之后，为后序遍历，与答案 C 一致。",
       "fix": "按原卷 p.4 转写 traverse 代码回填；移除 sourceIntegrity/integrityNote；解析重写为「访问根的时机」判定 + 逐选项理由。",
       "evidence": "g++ 编译运行转写代码，示例树输出 4 5 2 3 1（根最后访问），确证后序遍历。tmp/verify/2025-12-l6/q6q7q10q18q22.cpp",
@@ -30,8 +56,15 @@
     },
     {
       "id": 10,
-      "dimensions": ["statement", "answer", "explanation"],
-      "method": ["原卷对照（页面渲染人工查看）", "程序执行"],
+      "dimensions": [
+        "statement",
+        "answer",
+        "explanation"
+      ],
+      "method": [
+        "原卷对照（页面渲染人工查看）",
+        "程序执行"
+      ],
       "findings": "题面缺失 BST 操作函数 op 代码（原卷 p.7 为图片）。空指针处 new 新节点，为插入操作，与答案 B 一致。",
       "fix": "按原卷 p.7 转写 op 代码（8 行）回填；移除 sourceIntegrity/integrityNote；解析重写为「new TreeNode 是插入的决定性证据」+ 逐选项理由。",
       "evidence": "g++ 编译运行转写代码，依次插入 8,3,10,1,6 后中序有序、叶子数 3，确证插入。tmp/verify/2025-12-l6/q6q7q10q18q22.cpp",
@@ -39,8 +72,16 @@
     },
     {
       "id": 16,
-      "dimensions": ["statement", "answer", "explanation"],
-      "method": ["原卷对照（页面渲染人工查看）", "程序执行", "独立推导"],
+      "dimensions": [
+        "statement",
+        "answer",
+        "explanation"
+      ],
+      "method": [
+        "原卷对照（页面渲染人工查看）",
+        "程序执行",
+        "独立推导"
+      ],
       "findings": "题面缺失 Test 类代码（原卷 p.9 为图片）。代码中 Test a; 调用默认构造 1 次，Test b = a; 为拷贝初始化、调用隐式拷贝构造 1 次，构造函数共调用 2 次，命题「1 次」不成立，应判「错误」。原卷判断题答案表该题为 ×；本条数据所录答案为「正确」，两者矛盾。",
       "fix": "按原卷 p.9 转写 Test 类代码回填；移除 sourceIntegrity/integrityNote；解析重写为拷贝构造推导，并显式记录与所录答案的冲突。answer 字段按规则未改动。",
       "evidence": "g++ 运行转写代码输出 T 一次（拷贝构造隐式发生不打印）；构造函数共 2 次（默认 1 + 拷贝 1）。原卷答案表 p.9 第 1 题为 ×。冲突已高亮，待人工核对。tmp/verify/2025-12-l6/q6q7q10q18q22.cpp",
@@ -48,8 +89,15 @@
     },
     {
       "id": 18,
-      "dimensions": ["statement", "answer", "explanation"],
-      "method": ["原卷对照（页面渲染人工查看）", "程序执行"],
+      "dimensions": [
+        "statement",
+        "answer",
+        "explanation"
+      ],
+      "method": [
+        "原卷对照（页面渲染人工查看）",
+        "程序执行"
+      ],
       "findings": "题面缺失 countLeaf 代码（原卷 p.9 为图片）。代码三分支（空/叶/内部）正确，命题成立，与答案「正确」一致（原卷答案表第 3 题为 √）。",
       "fix": "按原卷 p.9 转写 countLeaf 代码回填；移除 sourceIntegrity/integrityNote；解析重写为逐行核对 + 递归正确性论证。",
       "evidence": "g++ 编译运行转写代码，示例树 1(2(4,5),3) 返回叶子数 3，与人工计数一致。tmp/verify/2025-12-l6/q6q7q10q18q22.cpp",
@@ -57,8 +105,16 @@
     },
     {
       "id": 22,
-      "dimensions": ["statement", "answer", "explanation"],
-      "method": ["原卷对照（页面渲染人工查看）", "程序执行", "独立推导"],
+      "dimensions": [
+        "statement",
+        "answer",
+        "explanation"
+      ],
+      "method": [
+        "原卷对照（页面渲染人工查看）",
+        "程序执行",
+        "独立推导"
+      ],
       "findings": "题面缺失 isBST 代码（原卷 p.9 为图片）。代码用 (minVal, maxVal) 开区间约束每个节点，是正确的 BST 判法，命题成立，与答案「正确」一致（原卷答案表第 7 题为 √）。",
       "fix": "按原卷 p.9 转写 isBST 代码（7 行）回填；移除 sourceIntegrity/integrityNote；解析重写为区间约束推导，并说明「只比较直接孩子」的错误写法作对比。",
       "evidence": "独立推导：区间约束等价于 BST 全局有序性质；g++ 运行转写代码对 BST 返回 1。原卷答案表 p.9 第 7 题为 √。tmp/verify/2025-12-l6/q6q7q10q18q22.cpp",
@@ -67,5 +123,40 @@
   ],
   "unresolved": [
     "Q16：官方答案表为「错误」（×），数据库所录 answer 为「正确」（0），存在答案冲突。按任务规则未修改 answer 字段，仅在解析与本题证据中记录，建议人工核对后改判。"
-  ]
+  ],
+  "judgeAnswerAudit": {
+    "executedAt": "2026-10-25",
+    "executor": "WorkBuddy",
+    "method": "下载官方 PDF（mirrorUrl）后用 pypdfium2 提取文本层定位判断题答案表页，按「题号/答案」表头文本坐标裁剪该页并 4 倍渲染读图（√/× 为矢量图形，文本层只有表头）。题面顺序经 PDF 判断题 10 段题面与题库 dice 相似度校验，对角线最优（offdiag=0）后才按 qid=15+i 套用。洛谷答案仅作疑点雷达，不作为答案来源。",
+    "officialSequence": "判断题第1-10题 = × √ √ × √ × √ × × √（对应题库 Q16-Q25）",
+    "items": [
+      {
+        "qid": 19,
+        "bankAnswerBefore": "√",
+        "luoguAnswer": "×（B）",
+        "officialAnswer": "×",
+        "derivation": "BFS 按层扩展需队列；用栈会得到 DFS 顺序",
+        "changed": true,
+        "verdict": "题库错（洛谷与官方一致），已改"
+      },
+      {
+        "qid": 21,
+        "bankAnswerBefore": "√",
+        "luoguAnswer": "×（B）",
+        "officialAnswer": "×",
+        "derivation": "左子树为空不等于全树最小，最左结点才最小",
+        "changed": true,
+        "verdict": "题库错（洛谷与官方一致），已改"
+      },
+      {
+        "qid": 24,
+        "bankAnswerBefore": "√",
+        "luoguAnswer": "×（B）",
+        "officialAnswer": "×",
+        "derivation": "1→3→4 消耗 2+4=6，最小为 6 不是 7",
+        "changed": true,
+        "verdict": "题库错（洛谷与官方一致），已改"
+      }
+    ]
+  }
 }
