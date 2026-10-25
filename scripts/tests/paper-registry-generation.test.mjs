@@ -64,6 +64,7 @@ test('generated question counts match runtime papers and the official total', as
     for (const paperId of paperIds) {
       const paper = await getPaper(paperId);
       const actualQuestionCount = countUniqueQuestions(paper);
+      assert.deepEqual(paperMeta[paperId].verification, paper.verification, `${paperId}: regenerate metadata after evidence changes`);
 
       assert.equal(
         paperMeta[paperId].questionCount,

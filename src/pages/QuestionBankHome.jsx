@@ -17,9 +17,9 @@ const levels = [
 ];
 
 const reviewStatusMeta = {
-    verified: { label: '已对照原卷核验', className: 'bg-emerald-50 text-emerald-700', Icon: BadgeCheck, priority: 0 },
+    verified: { label: '五项均已核验', className: 'bg-emerald-50 text-emerald-700', Icon: BadgeCheck, priority: 0 },
     partial: { label: '部分内容已核验', className: 'bg-blue-50 text-blue-700', Icon: FileCheck2, priority: 1 },
-    unverified: { label: '尚未完成原卷校验', className: 'bg-slate-100 text-slate-600', Icon: CircleDashed, priority: 2 },
+    unverified: { label: '尚无可用核验记录', className: 'bg-slate-100 text-slate-600', Icon: CircleDashed, priority: 2 },
 };
 
 const QuestionBankHome = () => {
@@ -39,7 +39,8 @@ const QuestionBankHome = () => {
                 // High-level papers with very few questions are placeholders
                 const isPlaceholder = meta.level >= 3 && questionCount <= 4;
                 const needsReview = Boolean(meta.needsReview);
-                const reviewStatus = meta.reviewStatus || 'unverified';
+                const verification = resolveVerification(meta);
+                const reviewStatus = verification.status;
                 const displayTitle = isPlaceholder
                     ? meta.title.replace('真题', '练习卷（待补全）')
                     : meta.title;
@@ -56,15 +57,17 @@ const QuestionBankHome = () => {
                     isPlaceholder,
                     needsReview,
                     reviewStatus,
-                    reviewedBy: meta.reviewedBy,
-                    reviewedAt: meta.reviewedAt,
-                    reviewScope: meta.reviewScope,
+                    reviewedBy: verification.reviewedBy,
+                    reviewedAt: verification.reviewedAt,
+                    reviewScope: verification.scope,
                     sourceUrl: meta.sourceUrl,
                     officialUrl: meta.officialUrl,
                     mirrorUrl: meta.mirrorUrl,
                     unofficial: Boolean(meta.unofficial),
                     integrityFlaggedCount: meta.integrityFlaggedCount || 0,
-                    dimensions: resolveVerification(meta).dimensions,
+                    dimensions: verification.dimensions,
+                    coverage: verification.coverage,
+                    evidence: verification.evidence,
                 };
             })
             .filter(Boolean)
@@ -132,15 +135,15 @@ const QuestionBankHome = () => {
                             </div>
                             <div className="min-w-0 rounded-lg bg-white/10 p-3 text-center backdrop-blur-sm sm:min-w-[100px]">
                                 <div className="text-2xl font-bold">{paperStats.verifiedPaperCount}</div>
-                                <div className="text-xs text-indigo-200">完整核验</div>
+                                <div className="text-xs text-indigo-200">五项均已核验</div>
                             </div>
                             <div className="min-w-0 rounded-lg bg-white/10 p-3 text-center backdrop-blur-sm sm:min-w-[100px]">
                                 <div className="text-2xl font-bold">{paperStats.partialPaperCount}</div>
-                                <div className="text-xs text-indigo-200">部分核验</div>
+                                <div className="text-xs text-indigo-200">已有核验进展</div>
                             </div>
                             <div className="min-w-0 rounded-lg bg-white/10 p-3 text-center backdrop-blur-sm sm:min-w-[100px]">
                                 <div className="text-2xl font-bold">{paperStats.unverifiedPaperCount}</div>
-                                <div className="text-xs text-indigo-200">尚未核验</div>
+                                <div className="text-xs text-indigo-200">尚无可用核验记录</div>
                             </div>
                         </div>
                     </div>
@@ -328,7 +331,7 @@ const QuestionBankHome = () => {
                                                 <span
                                                     key={key}
                                                     className={`rounded border px-1.5 py-0.5 text-[11px] font-medium ${tone}`}
-                                                    title={`${label}：${DIMENSION_STATUS[state].label}`}
+                                                    title={`${label}：${DIMENSION_STATUS[state].label}${paper.coverage?.[key]?.reviewed ? `；已登记核验覆盖 ${paper.coverage[key].reviewed}/${paper.coverage[key].total} 题` : state === 'partial' ? '；已有局部核验记录，尚无完整逐题覆盖计数' : ''}`}
                                                 >
                                                     {label}
                                                     {state === 'verified' ? ' ✓' : state === 'partial' ? ' ~' : ' —'}
@@ -337,6 +340,7 @@ const QuestionBankHome = () => {
                                         })}
                                     </div>
 
+                                    {paper.evidence && <a className="mb-3 inline-flex min-h-11 items-center text-xs font-semibold text-blue-700 underline" href={`https://github.com/Dora321/gesp-app/blob/main/docs/question-bank-verification/${paper.id}.json`} target="_blank" rel="noreferrer" onClick={event => event.stopPropagation()}>查看核验证据（AI 审校记录）</a>}
                                     <div className="flex items-center gap-4 text-xs text-slate-500 mb-4">
                                         <span className="flex items-center gap-1">
                                             <Clock size={14} /> {paper.time}

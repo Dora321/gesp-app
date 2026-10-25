@@ -2,6 +2,7 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import { ArrowRight, FileText, NotebookPen, ShieldAlert, Tag } from 'lucide-react';
 
+import { VERIFICATION_DIMENSIONS } from '../data/gesp/verificationModel';
 import { paperStats } from '../data/gesp/_stats';
 
 // 题库是全站最难被复制的资产：官方真题、逐卷标注核验状态、按考点聚合、
@@ -45,21 +46,21 @@ const figures = [
 const verification = [
     {
         key: 'verified',
-        label: '完整核验',
+        label: '五项均已核验',
         count: paperStats.verifiedPaperCount,
-        detail: '题面、选项、答案、解析逐项对照过官方 PDF。',
+        detail: '题面、选项、答案、解析、参考代码均完成适用范围的核验。',
     },
     {
         key: 'partial',
-        label: '部分核验',
+        label: '已有核验进展',
         count: paperStats.partialPaperCount,
-        detail: '每套卷子的卡片上都写明当前核验到哪一步。',
+        detail: '部分题目或维度已有证据，不代表整卷全部核验完成。',
     },
     {
         key: 'unverified',
-        label: '待核验',
+        label: '尚无可用核验记录',
         count: paperStats.unverifiedPaperCount,
-        detail: '可以练，题目页会提示答案尚未完成核验。',
+        detail: '尚未登记可计入统计的核验证据。',
     },
 ];
 
@@ -121,7 +122,7 @@ export default function QuestionBankHighlight() {
                             <span>共 {paperStats.paperCount} 套</span>
                         </figcaption>
                         <div className="home-audit-bar" role="img" aria-label={verificationSummary}>
-                            {verification.map((item) => (
+                            {verification.filter(item => item.count > 0).map((item) => (
                                 <span
                                     key={item.key}
                                     data-status={item.key}
@@ -145,6 +146,14 @@ export default function QuestionBankHighlight() {
                                 </div>
                             ))}
                         </dl>
+                        <div className="home-audit-dimensions">
+                            <table>
+                                <caption>分项核验进度（按卷）</caption>
+                                <thead><tr><th scope="col">核验维度</th><th scope="col">已完成</th><th scope="col">部分完成</th></tr></thead>
+                                <tbody>{VERIFICATION_DIMENSIONS.map(({ key, label }) => <tr key={key}><th scope="row">{label}</th><td>{paperStats.verificationDimensions[key].verified} 套</td><td>{paperStats.verificationDimensions[key].partial} 套</td></tr>)}</tbody>
+                            </table>
+                            <p>答案统计仅含客观题，参考代码仅含编程题。AI 审校记录按证据同步；样例通过不等于完整核验。<Link to="/question-bank">查看每卷进度与证据 →</Link></p>
+                        </div>
                         <p className="home-audit-flag">
                             <ShieldAlert size={18} aria-hidden="true" />
                             <span>

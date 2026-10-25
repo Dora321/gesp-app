@@ -2028,3 +2028,11 @@ a.home-lesson:hover .home-lesson-title {
         animation: none !important;
     }
 }
+
+.home-audit-dimensions { margin-top: 24px; padding-top: 20px; border-top: 1px solid var(--mw-night-rule); font-size: 0.8125rem; line-height: 1.75; }
+.home-audit-dimensions table { width: 100%; margin-bottom: 16px; border-collapse: collapse; }
+.home-audit-dimensions caption { padding-bottom: 12px; text-align: left; font-weight: 700; }
+.home-audit-dimensions th, .home-audit-dimensions td { padding: 5px 0; text-align: right; font-weight: 400; }
+.home-audit-dimensions th:first-child { text-align: left; }
+.home-audit-dimensions thead { color: var(--mw-night-muted); }
+.home-audit-dimensions a { display: block; padding-top: 8px; text-decoration: underline; color: inherit; }
