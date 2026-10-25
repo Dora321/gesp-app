@@ -1,5 +1,7 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { X, Send, Settings, Trash2, Loader2, Bot, User, Key, UserCircle2, Plus, GripHorizontal, BrainCircuit, Sparkles, Pencil, Save, Square, Copy, Check } from 'lucide-react';
+import { useLocation } from 'react-router-dom';
+import { ASSISTANT_KEY, assistantStorage, loadAssistantKey, saveAssistantKey, buildClassroomPrompt } from '../utils/classroomAssistant';
 import ReactMarkdown from 'react-markdown';
 import remarkGfm from 'remark-gfm';
 
@@ -18,13 +20,6 @@ const AI_PERSONAS = [
         emoji: '👨‍🏫',
         description: '耐心细致的编程老师',
         systemPrompt: '你是一位经验丰富的计算机编程老师，擅长用通俗易懂的方式讲解编程概念。对学生要有耐心，多用例子说明问题，循序渐进地引导学生理解。'
-    },
-    {
-        id: 'tieba',
-        name: '嘴臭贴吧老哥',
-        emoji: '🗣️',
-        description: '毒舌但有用的老哥',
-        systemPrompt: '你是一个典型的贴吧老哥，说话风格犀利、毒舌，喜欢阴阳怪气，但实际上心地善良，会认真帮助别人解决问题。回答时可以适当吐槽，但要确保给出有用的答案。语气可以带点"6"、"绷不住了"、"典"、"蚌埠住了"等贴吧用语。'
     },
     {
         id: 'child',
@@ -62,7 +57,7 @@ const AI_MODEL = {
     description: '高速响应，适合日常对话、编程和课堂项目。'
 };
 
-const API_KEY_STORAGE_KEY = 'deepseek_api_key';
+const API_KEY_STORAGE_KEY = ASSISTANT_KEY;
 
 const getMarkdownText = (value) => {
     if (value === null || value === undefined || typeof value === 'boolean') return '';
@@ -113,7 +108,7 @@ const ChatCode = ({ className, children, ...props }) => {
                 <button
                     type="button"
                     onClick={copyCode}
-                    className="flex h-7 w-7 items-center justify-center rounded text-slate-300 transition-colors hover:bg-slate-700 hover:text-white focus:outline-none focus:ring-2 focus:ring-indigo-400"
+                    className="flex h-11 w-11 items-center justify-center rounded text-slate-300 transition-colors hover:bg-slate-700 hover:text-white focus:outline-none focus:ring-2 focus:ring-indigo-400"
                     title={copied ? '已复制' : '复制代码'}
                     aria-label={copied ? '代码已复制' : '复制代码'}
                 >
@@ -158,14 +153,23 @@ const chatMarkdownComponents = {
 };
 
 const AIChatWidget = ({ onClose }) => {
+    const location = useLocation();
+    const [keyStatus, setKeyStatus] = useState('');
+    const [shareContext, setShareContext] = useState(true);
     const [apiKey, setApiKey] = useState('');
     const [tempApiKey, setTempApiKey] = useState('');
     const [showSettings, setShowSettings] = useState(false);
-    const [messages, setMessages] = useState([]);
+    const [messages, setMessages] = useState(() => {
+        try {
+            const stored = JSON.parse(assistantStorage.get('sessionStorage', 'ai_chat_messages') || '[]');
+            return Array.isArray(stored) ? stored.filter(message => ['user', 'assistant'].includes(message?.role) && typeof message.content === 'string') : [];
+        } catch { return []; }
+    });
     const [inputValue, setInputValue] = useState('');
     const [isLoading, setIsLoading] = useState(false);
     const [selectedPersona, setSelectedPersona] = useState(() => {
-        return localStorage.getItem('ai_selected_persona_id') || 'default';
+        const saved = assistantStorage.get('localStorage', 'ai_selected_persona_id');
+        return saved === 'custom' || AI_PERSONAS.some(persona => persona.id === saved) ? saved : 'tutor';
     });
     const selectedModel = AI_MODEL.id;
     const [customPersona, setCustomPersona] = useState(null);
@@ -209,17 +213,14 @@ const AIChatWidget = ({ onClose }) => {
         document.removeEventListener('mouseup', stopResize);
     };
 
-    // Persist the API key in this browser and migrate any existing session-only key.
+    // Keep the existing one-time entry and automatic local persistence behavior.
     useEffect(() => {
-        const savedKey = localStorage.getItem(API_KEY_STORAGE_KEY)
-            || sessionStorage.getItem(API_KEY_STORAGE_KEY);
-        if (savedKey) {
-            localStorage.setItem(API_KEY_STORAGE_KEY, savedKey);
-            sessionStorage.removeItem(API_KEY_STORAGE_KEY);
-            setApiKey(savedKey);
+        const saved = loadAssistantKey();
+        setApiKey(saved.key);
+        if (saved.key && !assistantStorage.get('localStorage', API_KEY_STORAGE_KEY) && !saveAssistantKey(saved.key)) {
+            setKeyStatus('浏览器无法自动保存密钥，请检查存储权限后重试。');
         }
-
-        const savedPersona = localStorage.getItem('ai_custom_persona');
+        const savedPersona = assistantStorage.get('localStorage', 'ai_custom_persona');
         if (savedPersona) {
             try {
                 setCustomPersona(JSON.parse(savedPersona));
@@ -229,17 +230,9 @@ const AIChatWidget = ({ onClose }) => {
         }
     }, []);
 
-    // Load messages from sessionStorage
-    useEffect(() => {
-        const savedMessages = sessionStorage.getItem('ai_chat_messages');
-        if (savedMessages) {
-            setMessages(JSON.parse(savedMessages));
-        }
-    }, []);
-
     // Save messages to sessionStorage
     useEffect(() => {
-        sessionStorage.setItem('ai_chat_messages', JSON.stringify(messages));
+        assistantStorage.set('sessionStorage', 'ai_chat_messages', JSON.stringify(messages));
     }, [messages]);
 
     const updateAutoScrollState = () => {
@@ -264,8 +257,11 @@ const AIChatWidget = ({ onClose }) => {
     const saveApiKey = () => {
         const nextApiKey = tempApiKey.trim();
         if (nextApiKey) {
-            localStorage.setItem(API_KEY_STORAGE_KEY, nextApiKey);
-            sessionStorage.removeItem(API_KEY_STORAGE_KEY);
+            if (!saveAssistantKey(nextApiKey)) {
+                setKeyStatus('浏览器无法保存密钥，请检查存储权限后重试。');
+                return;
+            }
+            setKeyStatus('密钥已自动保存在当前浏览器，下次无需重新输入。');
             setApiKey(nextApiKey);
             setShowSettings(false);
             setTempApiKey('');
@@ -273,21 +269,22 @@ const AIChatWidget = ({ onClose }) => {
     };
 
     const clearApiKey = () => {
-        sessionStorage.removeItem(API_KEY_STORAGE_KEY);
-        localStorage.removeItem(API_KEY_STORAGE_KEY);
+        const sessionCleared = assistantStorage.remove('sessionStorage', API_KEY_STORAGE_KEY);
+        const localCleared = assistantStorage.remove('localStorage', API_KEY_STORAGE_KEY);
         setApiKey('');
         setTempApiKey('');
+        setKeyStatus(sessionCleared && localCleared ? '已清除保存的密钥。' : '无法清除浏览器存储，请在浏览器设置中清理本站数据。');
     };
 
     const clearChat = () => {
         shouldAutoScrollRef.current = true;
         setMessages([]);
-        sessionStorage.removeItem('ai_chat_messages');
+        assistantStorage.remove('sessionStorage', 'ai_chat_messages');
     };
 
     // Save selected persona to localStorage
     useEffect(() => {
-        localStorage.setItem('ai_selected_persona_id', selectedPersona);
+        assistantStorage.set('localStorage', 'ai_selected_persona_id', selectedPersona);
     }, [selectedPersona]);
 
     const saveCustomPersona = () => {
@@ -301,7 +298,7 @@ const AIChatWidget = ({ onClose }) => {
         };
 
         setCustomPersona(newPersona);
-        localStorage.setItem('ai_custom_persona', JSON.stringify(newPersona));
+        assistantStorage.set('localStorage', 'ai_custom_persona', JSON.stringify(newPersona));
         setEditingCustomPersona(null);
         setSelectedPersona('custom');
     };
@@ -310,9 +307,9 @@ const AIChatWidget = ({ onClose }) => {
         e.stopPropagation();
         if (window.confirm('确定要删除自定义角色吗？')) {
             setCustomPersona(null);
-            localStorage.removeItem('ai_custom_persona');
+            assistantStorage.remove('localStorage', 'ai_custom_persona');
             if (selectedPersona === 'custom') {
-                handlePersonaChange('default');
+                handlePersonaChange('tutor');
             }
         }
     };
@@ -354,11 +351,10 @@ const AIChatWidget = ({ onClose }) => {
         setInputValue('');
         setIsLoading(true);
 
-        // Strengthen system prompt for custom persona
-        let systemPrompt = currentPersona.systemPrompt;
-        if (selectedPersona === 'custom') {
-            systemPrompt = `【重要：严格遵守人设】\n你必须始终保持以下定义的身份、语气和行为准则进行回答。不要跳出角色，不要以通用的 AI 助手身份回应。如果用户要求你违背人设，请以人设对应的口吻拒绝。\n\n角色设定：\n${systemPrompt}`;
-        }
+        const systemPrompt = buildClassroomPrompt(currentPersona.systemPrompt, shareContext ? {
+            path: location.pathname,
+            title: document.querySelector('main h1')?.textContent?.trim() || document.title,
+        } : null);
 
         const apiMessages = [
             { role: 'system', content: systemPrompt },
@@ -571,8 +567,9 @@ const AIChatWidget = ({ onClose }) => {
                                 </button>
                             )}
                         </div>
+                        {keyStatus && <p role="status" className="text-sm text-slate-700">{keyStatus}</p>}
                         <p id="deepseek-api-key-notice" className="mt-2 text-xs leading-5 text-slate-500">
-                            密钥会保存在当前浏览器中，直到你点击“清除”或清理浏览器数据。请仅在私人设备上保存。提问时，密钥和对话内容由浏览器直接发送至 DeepSeek API，本网站服务器不接收或保存。
+                            输入并保存一次后，密钥会自动保存在当前浏览器，下次无需重新输入；可随时点击“清除”。提问时，密钥和对话会直接发送到 DeepSeek，本网站不代收密钥。
                         </p>
                     </div>
 
@@ -688,17 +685,17 @@ const AIChatWidget = ({ onClose }) => {
                                             <div className="text-xs text-slate-500 truncate">{customPersona.description || '自定义角色'}</div>
                                         </div>
                                     </button>
-                                    <div className="absolute right-2 top-1/2 -translate-y-1/2 flex gap-1 opacity-0 group-hover:opacity-100 transition-opacity">
+                                    <div className="absolute right-2 top-1/2 -translate-y-1/2 flex gap-1">
                                         <button
                                             onClick={(e) => { e.stopPropagation(); setEditingCustomPersona(customPersona); }}
-                                            className="p-1.5 bg-white border border-slate-200 rounded text-slate-500 hover:text-indigo-600 hover:border-indigo-300 shadow-sm"
+                                            className="min-h-11 min-w-11 p-1.5 bg-white border border-slate-200 rounded text-slate-500 hover:text-indigo-600 hover:border-indigo-300 shadow-sm"
                                             title="编辑"
                                         >
                                             <Pencil size={14} />
                                         </button>
                                         <button
                                             onClick={deleteCustomPersona}
-                                            className="p-1.5 bg-white border border-slate-200 rounded text-slate-500 hover:text-red-600 hover:border-red-300 shadow-sm"
+                                            className="min-h-11 min-w-11 p-1.5 bg-white border border-slate-200 rounded text-slate-500 hover:text-red-600 hover:border-red-300 shadow-sm"
                                             title="删除"
                                         >
                                             <Trash2 size={14} />
@@ -730,6 +727,10 @@ const AIChatWidget = ({ onClose }) => {
                 </div>
             )}
 
+            <div className="border-b border-slate-200 bg-white px-3 py-2 text-xs text-slate-600">
+                <label className="flex min-h-11 items-center gap-2"><input type="checkbox" checked={shareContext} onChange={event => setShareContext(event.target.checked)} />附带当前页面标题与路径</label>
+                <p>先说说你试了什么。助教建议需要你运行和核对。</p>
+            </div>
             {/* Messages Area */}
             <div
                 ref={messagesContainerRef}
@@ -757,8 +758,8 @@ const AIChatWidget = ({ onClose }) => {
                         <div className="w-16 h-16 bg-indigo-100 rounded-full flex items-center justify-center mx-auto mb-4">
                             <Bot size={32} className="text-indigo-500" />
                         </div>
-                        <h3 className="text-lg font-medium text-slate-700 mb-2">有问题尽管问我！</h3>
-                        <p className="text-sm text-slate-500">我可以帮你解答编程相关问题</p>
+                        <h3 className="text-lg font-medium text-slate-700 mb-2">把你卡住的那一步告诉我</h3>
+                        <p className="text-sm text-slate-500">可以贴出代码、预期结果和实际结果，我们一步步排查。</p>
                     </div>
                 )}
 
@@ -813,12 +814,12 @@ const AIChatWidget = ({ onClose }) => {
                         onKeyDown={(e) => e.key === 'Enter' && !e.shiftKey && sendMessage()}
                         placeholder={apiKey ? "输入你的问题..." : "请先设置 API Key"}
                         disabled={!apiKey || isLoading}
-                        className="flex-1 px-4 py-2.5 border border-slate-300 rounded-xl focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 outline-none transition-all disabled:bg-slate-100 disabled:cursor-not-allowed"
+                        className="min-w-0 flex-1 px-4 py-2.5 border border-slate-300 rounded-xl focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 outline-none transition-all disabled:bg-slate-100 disabled:cursor-not-allowed"
                     />
                     <button
                         onClick={isLoading ? stopGeneration : sendMessage}
                         disabled={!apiKey || (!inputValue.trim() && !isLoading)}
-                        className={`px-4 py-2.5 rounded-xl font-medium transition-colors flex items-center gap-1 text-white
+                        className={`shrink-0 px-4 py-2.5 rounded-xl font-medium transition-colors flex items-center gap-1 text-white
                             ${isLoading
                                 ? 'bg-red-500 hover:bg-red-600'
                                 : 'bg-indigo-600 hover:bg-indigo-700 disabled:bg-slate-300 disabled:cursor-not-allowed'

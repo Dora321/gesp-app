@@ -7,6 +7,9 @@ import {
   createLearningDataExport,
   importLearningData,
   readLearningData,
+  updateLearningData,
+  hasLearningStorageError,
+  previewLearningDataImport,
   resetLearningData,
   summarizeLearningData,
 } from '../../src/utils/learningData.js';
@@ -261,4 +264,46 @@ test('imported attempt records are sanitised', () => {
   assert.deepEqual(Object.keys(imported.attempts), ['2025-03-l6']);
   assert.equal(imported.attempts['2025-03-l6'].length, 1);
   assert.deepEqual(imported.attempts['2025-03-l6'][0].wrongIds, [3, 'x']);
+});
+
+
+test('v3 records and separate practice checks migrate and round-trip without credentials', () => {
+  const storage = installStorage();
+  storage.setItem(LEARNING_DATA_STORAGE_KEY, JSON.stringify({ version: 3, lessons: { '/lesson/1/4': { status: 'learning' } } }));
+  storage.setItem('gesp:cpp-practice:v1:cpp-1-4', '[true,false,true]');
+  storage.setItem('deepseek_api_key', 'private-key');
+  assert.deepEqual(readLearningData().practice['cpp-1-4'], [true, false, true]);
+  const backup = createLearningDataExport();
+  assert.ok(!JSON.stringify(backup).includes('private-key'));
+  resetLearningData();
+  assert.equal(storage.getItem('gesp:cpp-practice:v1:cpp-1-4'), null);
+  importLearningData(backup);
+  assert.deepEqual(readLearningData().practice['cpp-1-4'], [true, false, true]);
+  assert.equal(storage.getItem('deepseek_api_key'), 'private-key');
+});
+test('import preview does not mutate records and failed writes preserve saved data', () => {
+  const storage = installStorage();
+  updateLearningData(data => ({ ...data, practice: { 'cpp-1-1': [true, false, false] } }));
+  const before = storage.getItem(LEARNING_DATA_STORAGE_KEY);
+  previewLearningDataImport({ schema: LEARNING_DATA_SCHEMA, version: 3, data: { lessons: {} } });
+  assert.equal(storage.getItem(LEARNING_DATA_STORAGE_KEY), before);
+  const original = storage.setItem.bind(storage);
+  storage.setItem = () => { throw new Error('quota'); };
+  updateLearningData(data => ({ ...data, practice: {} }));
+  assert.ok(hasLearningStorageError());
+  assert.equal(storage.getItem(LEARNING_DATA_STORAGE_KEY), before);
+  storage.setItem = original;
+  updateLearningData(data => data);
+  assert.equal(hasLearningStorageError(), false);
+});
+
+
+test('a future storage version is not silently downgraded by reading or saving', () => {
+  const storage = installStorage();
+  const future = JSON.stringify({ version: LEARNING_DATA_VERSION + 1, futureField: 'preserve-me', lessons: {} });
+  storage.setItem(LEARNING_DATA_STORAGE_KEY, future);
+  readLearningData();
+  updateLearningData(data => data);
+  assert.equal(storage.getItem(LEARNING_DATA_STORAGE_KEY), future);
+  assert.ok(hasLearningStorageError());
 });

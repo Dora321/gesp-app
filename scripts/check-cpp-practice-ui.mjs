@@ -3,7 +3,7 @@ import assert from 'node:assert/strict';
 import { mkdirSync, readFileSync } from 'node:fs';
 import { cppProgrammingExercises } from '../src/data/cppProgrammingPractice.js';
 
-const base = process.env.CPP_PRACTICE_BASE_URL || 'http://127.0.0.1:4187';
+const base = (process.env.CPP_PRACTICE_BASE_URL || 'http://127.0.0.1:4187').replace(/\/+$/, '');
 let browser;
 try { browser = await chromium.launch({ headless: true }); }
 catch { browser = await chromium.launch({ channel: 'chrome', headless: true }); }

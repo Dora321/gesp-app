@@ -1,158 +1,19 @@
-
-import React from 'react';
-import { motion } from 'framer-motion';
-import { CheckCircle, Circle, Lock, ArrowRight, Zap, Target, Flag } from 'lucide-react';
-
-const RoadmapNode = ({ level, title, desc, status, delay }) => {
-    const isLocked = status === 'locked';
-    const isCompleted = status === 'completed';
-    const isActive = status === 'active';
-
-    return (
-        <motion.div
-            initial={{ opacity: 0, x: -50 }}
-            whileInView={{ opacity: 1, x: 0 }}
-            viewport={{ once: true }}
-            transition={{ delay, duration: 0.5 }}
-            className="relative pl-12 pb-12 last:pb-0 group"
-        >
-            {/* Circuit Line */}
-            <div className={`absolute left-[19px] top-10 bottom-0 w-[2px] ${isCompleted ? 'bg-cyan-500' : 'bg-gray-800'} group-last:hidden`}>
-                <div className={`absolute inset-0 bg-cyan-400 blur-[2px] opacity-0 ${isCompleted && 'group-hover:opacity-100'} transition-opacity`} />
-            </div>
-
-            {/* Node Point */}
-            <div className={`absolute left-0 top-0 w-10 h-10 rounded-full border-2 flex items-center justify-center z-10 transition-all duration-500
-                ${isCompleted ? 'bg-black border-cyan-500 shadow-[0_0_15px_rgba(6,182,212,0.5)]' :
-                    isActive ? 'bg-cyan-900/20 border-cyan-400 shadow-[0_0_20px_rgba(34,211,238,0.3)]' :
-                        'bg-black border-gray-800 opacity-50'}`}
-            >
-                {isCompleted ? <CheckCircle className="w-5 h-5 text-cyan-500" /> :
-                    isActive ? <Zap className="w-5 h-5 text-cyan-400 animate-pulse" /> :
-                        <Lock className="w-4 h-4 text-gray-600" />}
-            </div>
-
-            {/* Content Card */}
-            <div className={`relative p-6 rounded-2xl border transition-all duration-300 group-hover:translate-x-2
-                ${isActive ? 'bg-cyan-950/10 border-cyan-500/50 shadow-[0_0_30px_rgba(6,182,212,0.1)]' :
-                    isLocked ? 'bg-gray-900/50 border-white/5 opacity-60 grayscale' :
-                        'bg-gray-900 border-white/10'}`}
-            >
-                {/* Connector Trace */}
-                <div className={`absolute top-5 left-[-26px] w-[26px] h-[2px] ${isActive || isCompleted ? 'bg-cyan-500' : 'bg-gray-800'}`} />
-
-                <div className="flex justify-between items-start mb-2">
-                    <span className={`text-xs font-mono font-bold px-2 py-1 rounded ${isActive ? 'bg-cyan-500/20 text-cyan-400' : 'bg-white/5 text-gray-500'}`}>
-                        LEVEL_0{level}
-                    </span>
-                    {isActive && <span className="text-[10px] font-mono text-green-400 animate-pulse">&gt;&gt;&gt; CURRENT_MISSION</span>}
-                </div>
-
-                <h3 className={`text-2xl font-black italic uppercase mb-2 ${isActive ? 'text-white' : 'text-gray-300'}`}>{title}</h3>
-                <p className="text-gray-400 text-sm leading-relaxed mb-4">{desc}</p>
-
-                {/* Tech Skills Tags */}
-                <div className="flex flex-wrap gap-2">
-                    {['CAD建模', '电路焊接', 'Python编程'].map((tag, i) => ( // Example tags, in reality would be dynamic
-                        <span key={i} className="text-[10px] uppercase font-mono border border-white/10 px-2 py-1 rounded text-gray-500">
-                            {tag}
-                        </span>
-                    ))}
-                </div>
-            </div>
-        </motion.div>
-    );
-};
-
-const EkartRoadmap = () => {
-    const levels = [
-        {
-            level: 1,
-            title: "MECHANICAL",
-            titleCn: "机械基础",
-            desc: "学习工具使用、材料科学及卡丁车底盘结构组装。完成第一个无动力滑行底盘。",
-            status: "completed"
-        },
-        {
-            level: 2,
-            title: "POWERTRAIN",
-            titleCn: "电力驱动",
-            desc: "掌握直流电机原理、电池组装及电机控制器接线。实现卡丁车的电力驱动。",
-            status: "completed"
-        },
-        {
-            level: 3,
-            title: "CONTROL",
-            titleCn: "电子控制",
-            desc: "引入 ESP32 控制器，编写 PWM 调速程序，制作电子油门与仪表盘。",
-            status: "active"
-        },
-        {
-            level: 4,
-            title: "TELEMETRY",
-            titleCn: "遥测数据",
-            desc: "加装传感器（速度、电压、温度），通过 Wi-Fi 将数据实时传输至 Web 端。",
-            status: "locked"
-        },
-        {
-            level: 5,
-            title: "AUTOPILOT",
-            titleCn: "辅助驾驶",
-            desc: "探索计算机视觉，实现简单的车道保持辅助或自动避障功能。",
-            status: "locked"
-        }
-    ];
-
-    return (
-        <div className="min-h-screen bg-[#050505] text-white pt-24 pb-20 relative overflow-hidden">
-            {/* Background Circuit Grid */}
-            <div className="absolute inset-0 bg-[linear-gradient(rgba(34,211,238,0.03)_1px,transparent_1px),linear-gradient(90deg,rgba(34,211,238,0.03)_1px,transparent_1px)] bg-[size:40px_40px] [mask-image:radial-gradient(ellipse_at_center,black_60%,transparent_100%)] pointer-events-none" />
-
-            <div className="max-w-4xl mx-auto px-4 relative z-10">
-                <div className="text-center mb-16">
-                    <motion.div
-                        initial={{ opacity: 0, y: 20 }}
-                        animate={{ opacity: 1, y: 0 }}
-                        className="inline-block"
-                    >
-                        <h1 className="text-5xl md:text-6xl font-black italic tracking-tighter mb-4 text-transparent bg-clip-text bg-gradient-to-r from-white to-gray-500">
-                            工程进阶路线
-                        </h1>
-                        <div className="h-1 w-full bg-gradient-to-r from-transparent via-cyan-500 to-transparent opacity-50" />
-                        <p className="text-cyan-400 font-mono mt-4 tracking-widest text-sm">S.E.M.P 计划 // ENGINEERING PATH</p>
-                    </motion.div>
-                </div>
-
-                <div className="max-w-2xl mx-auto">
-                    {levels.map((lvl, index) => (
-                        <RoadmapNode
-                            key={index}
-                            level={lvl.level}
-                            title={`${lvl.titleCn} ${lvl.title}`}
-                            desc={lvl.desc}
-                            status={lvl.status}
-                            delay={index * 0.1}
-                        />
-                    ))}
-
-                    {/* Final Flag */}
-                    <motion.div
-                        initial={{ opacity: 0, scale: 0 }}
-                        whileInView={{ opacity: 1, scale: 1 }}
-                        transition={{ delay: 0.6 }}
-                        className="pl-12 relative"
-                    >
-                        <div className="absolute left-0 top-0 w-10 h-10 rounded-full border-2 border-dashed border-gray-700 flex items-center justify-center bg-gray-900 text-gray-600">
-                            <Flag className="w-4 h-4" />
-                        </div>
-                        <div className="p-4 border border-white/5 rounded-xl bg-white/5">
-                            <div className="text-gray-400 font-mono text-center text-sm">所有任务目标已达成 // MISSION COMPLETE</div>
-                        </div>
-                    </motion.div>
-                </div>
-            </div>
-        </div>
-    );
-};
-
-export default EkartRoadmap;
+import { Link } from 'react-router-dom';
+import { ArrowRight } from 'lucide-react';
+const stages = [
+  { title: '机械基础', prerequisite: '认识工具与材料，能画出结构草图。', task: '描述底盘各部件的作用，记录装配检查结果。', path: '/innovation-foundation', link: '初阶科创课程' },
+  { title: '电力驱动', prerequisite: '理解电路、供电与电机的基本作用。', task: '在教师指导下辨认现有设备的供电、控制与执行部件，绘制系统关系图。', path: '/hardware/arduino', link: 'Arduino 电子基础' },
+  { title: '电子控制', prerequisite: '会使用变量、条件、循环，理解输入与输出。', task: '先在课堂实验板上验证输入与输出逻辑，再记录测试结果。', path: '/hardware/esp32-curriculum', link: 'ESP32 项目课' },
+  { title: '遥测数据', prerequisite: '会记录传感器读数，并区分测量值和估计值。', task: '记录一组数据，注明单位、采样条件和异常读数。', path: '/python/f3', link: '列表与字典' },
+  { title: '辅助驾驶探索', prerequisite: '能够解释控制程序的状态与边界，已完成基础测试。', task: '先用模型或模拟情境分析感知与决策，整理误判案例。', path: '/python/ai', link: 'AI 入门项目' },
+];
+export default function Roadmap() {
+  return <div className="mw-lab-page">
+    <header><p className="mw-engineering-eyebrow">工程实践 / 阶段指南</p><h1>学习地图</h1><p>按已有基础选择起点。下面是项目准备与产出建议，不代表你已经完成这些阶段；整车实践由教师安排。</p></header>
+    <ol className="mw-lab-stages">{stages.map((stage, index) => <li className="mw-lab-card" key={stage.title}>
+      <span className="mw-lab-step">阶段 {index + 1}</span><h2>{stage.title}</h2><p><strong>开始前：</strong>{stage.prerequisite}</p><p><strong>这一阶段留下：</strong>{stage.task}</p>
+      <Link className="mw-lab-action" to={stage.path}>{stage.link}<ArrowRight size={18} aria-hidden="true" /></Link>
+    </li>)}</ol>
+    <Link className="mw-lab-action" to="/ekart/toolbox">下载项目记录单<ArrowRight size={18} /></Link>
+  </div>;
+}

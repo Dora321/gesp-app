@@ -5,21 +5,28 @@ import {
     LEARNING_DATA_VERSION,
     createLearningDataExport,
     importLearningData,
+    previewLearningDataImport,
+    readLearningData,
     resetLearningData,
     summarizeLearningData,
 } from '../utils/learningData';
 
 const getSummary = () => summarizeLearningData();
+const backupKey = 'gesp_last_export_at';
+const readExportAt = () => { try { return Number(localStorage.getItem(backupKey)) || 0; } catch { return 0; } };
 
 export default function LearningDataManager() {
     const fileInputRef = useRef(null);
     const [summary, setSummary] = useState(getSummary);
     const [status, setStatus] = useState('');
+    const [exportAt, setExportAt] = useState(readExportAt);
+    const updatedAt = readLearningData().updatedAt;
 
     useEffect(() => {
         const refresh = () => setSummary(getSummary());
         window.addEventListener(LEARNING_DATA_EVENT, refresh);
-        return () => window.removeEventListener(LEARNING_DATA_EVENT, refresh);
+        window.addEventListener('storage', refresh);
+        return () => { window.removeEventListener(LEARNING_DATA_EVENT, refresh); window.removeEventListener('storage', refresh); };
     }, []);
 
     const exportData = () => {
@@ -32,18 +39,24 @@ export default function LearningDataManager() {
         document.body.appendChild(link);
         link.click();
         link.remove();
-        URL.revokeObjectURL(url);
-        setStatus('学习数据已导出');
+        setTimeout(() => URL.revokeObjectURL(url), 1000);
+        const now = Date.now();
+        setExportAt(now);
+        try { localStorage.setItem(backupKey, String(now)); } catch { /* Download remains available. */ }
+        setStatus('已生成备份，请确认浏览器已下载文件。');
     };
 
     const importData = async (event) => {
         const [file] = event.target.files || [];
         event.target.value = '';
         if (!file) return;
-        if (!window.confirm('导入会替换当前学习进度，是否继续？')) return;
 
         try {
-            const imported = importLearningData(await file.text());
+            const text = await file.text();
+            const preview = previewLearningDataImport(text);
+            const counts = summarizeLearningData(preview);
+            if (!window.confirm(`此备份包含 ${counts.lessons} 条课程记录、${counts.examAttempts} 次交卷记录、${Object.keys(preview.practice).length} 道上机自查。导入将替换当前学习数据，建议先导出备份。是否继续？`)) return;
+            const imported = importLearningData(text);
             setSummary(summarizeLearningData(imported));
             setStatus('学习数据已导入，下次打开课程时生效');
         } catch (error) {
@@ -52,7 +65,7 @@ export default function LearningDataManager() {
     };
 
     const resetData = () => {
-        if (!window.confirm('确定重置所有课程、试卷、硬件课和博物馆进度吗？')) return;
+        if (!window.confirm('确定重置所有课程、上机自查、试卷、硬件课和博物馆进度吗？此操作不可撤销，建议先导出备份。')) return;
         if (!resetLearningData()) {
             setStatus('浏览器无法重置学习数据');
             return;
@@ -77,7 +90,7 @@ export default function LearningDataManager() {
                     <div className="mb-2 flex items-center gap-2 text-sm font-black text-blue-300">
                         <Database size={18} aria-hidden="true" />
                         学习数据
-                        <span className="rounded bg-slate-800 px-2 py-0.5 text-xs text-slate-300">v{LEARNING_DATA_VERSION}</span>
+                        <span className="rounded bg-slate-800 px-2 py-0.5 text-xs text-white">v{LEARNING_DATA_VERSION}</span>
                     </div>
                     <h3 className="text-xl font-black text-white">管理我的学习进度</h3>
                 </div>
@@ -128,8 +141,9 @@ export default function LearningDataManager() {
             </dl>
 
             <p className="mt-4 text-xs leading-5 text-slate-400">
-                导出范围仅包含课程、试卷、硬件课与博物馆进度，不包含 API Key、聊天或课堂积分数据。
+                进度只保存在当前浏览器，不会自动同步到其他设备。清理网站数据会移除记录。导出包含课程、上机自查、试卷、硬件课和博物馆进度，不包含 API Key、聊天、课堂积分或本次课内临时作答证据。
             </p>
+            <p className="mt-2 text-xs text-slate-300">{exportAt ? '最近发起导出：' + new Date(exportAt).toLocaleString('zh-CN') : '尚未导出备份'}{updatedAt && updatedAt > exportAt ? ' · 有新的学习记录，建议导出。' : ''}</p>
             <p className="mt-2 min-h-5 text-sm font-semibold text-blue-200" role="status" aria-live="polite">{status}</p>
         </div>
     );

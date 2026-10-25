@@ -1,3 +1,4 @@
+import CourseScopeNote from '../../../components/CourseScopeNote';
 import React, { useEffect, useState } from 'react';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { recordLessonMastered, recordLessonVisit } from '../../../utils/lessonProgress';
@@ -631,7 +632,8 @@ export default function PythonLessonShell({
 
                         {isFirst && prerequisites && <Prerequisites items={prerequisites} theme={theme} />}
 
-                        {isFirst && topSupport}
+                        {isFirst && <CourseScopeNote />}
+            {isFirst && topSupport}
 
                         <section className="space-y-6" data-lesson-active-content="true">
                             {Active && <Active />}

@@ -1,24 +1,33 @@
 import assert from 'node:assert/strict';
-import { readFile } from 'node:fs/promises';
 import test from 'node:test';
-
-const source = await readFile(new URL('../../src/components/AIChatWidget.jsx', import.meta.url), 'utf8');
-
-test('DeepSeek API key persists locally and clears legacy session copies', () => {
-  assert.match(source, /localStorage\.getItem\(API_KEY_STORAGE_KEY\)/);
-  assert.match(source, /localStorage\.setItem\(API_KEY_STORAGE_KEY, savedKey\)/);
-  assert.match(source, /localStorage\.setItem\(API_KEY_STORAGE_KEY, nextApiKey\)/);
-  assert.match(source, /sessionStorage\.getItem\(API_KEY_STORAGE_KEY\)/);
-  assert.match(source, /sessionStorage\.removeItem\(API_KEY_STORAGE_KEY\)/);
-  assert.match(source, /localStorage\.removeItem\(API_KEY_STORAGE_KEY\)/);
-  assert.doesNotMatch(source, /localStorage\.(?:getItem|setItem)\(['"]deepseek_api_key['"]/);
+import { ASSISTANT_KEY, loadAssistantKey, saveAssistantKey, buildClassroomPrompt } from '../../src/utils/classroomAssistant.js';
+const storage = () => { const data = new Map(); return { getItem: key => data.get(key) ?? null, setItem: (key, value) => data.set(key, value), removeItem: key => data.delete(key) }; };
+function setup() { globalThis.localStorage = storage(); globalThis.sessionStorage = storage(); }
+test('keys persist automatically after one entry and load in later sessions', () => {
+  setup(); assert.deepEqual(loadAssistantKey(), { key: '' });
+  assert.ok(saveAssistantKey(' test-key '));
+  assert.equal(localStorage.getItem(ASSISTANT_KEY), 'test-key');
+  assert.equal(sessionStorage.getItem(ASSISTANT_KEY), null);
+  globalThis.sessionStorage = storage();
+  assert.deepEqual(loadAssistantKey(), { key: 'test-key' });
 });
 
-test('API key settings explain data handling and expose an explicit clear action', () => {
-  assert.match(source, /密钥会保存在当前浏览器中/);
-  assert.match(source, /请仅在私人设备上保存/);
-  assert.match(source, /由浏览器直接发送至 DeepSeek API/);
-  assert.match(source, /本网站服务器不接收或保存/);
-  assert.match(source, /onClick=\{clearApiKey\}/);
-  assert.match(source, /htmlFor="deepseek-api-key"/);
+test('saving replaces a temporary key with persistent storage', () => {
+  setup(); sessionStorage.setItem(ASSISTANT_KEY, 'temporary');
+  assert.equal(loadAssistantKey().key, 'temporary');
+  assert.ok(saveAssistantKey('persistent'));
+  assert.equal(sessionStorage.getItem(ASSISTANT_KEY), null);
+  assert.equal(loadAssistantKey().key, 'persistent');
+});
+
+test('blocked storage does not lose the previous key or claim a successful save', () => {
+  setup(); localStorage.setItem(ASSISTANT_KEY, 'previous'); localStorage.setItem = () => { throw new Error('blocked'); };
+  assert.equal(saveAssistantKey('new'), false); assert.equal(loadAssistantKey().key, 'previous');
+});
+
+test('classroom guidance stays present for custom roles and context is optional', () => {
+  const prompt = buildClassroomPrompt('使用简短语言', { title: '列表', path: '/python/f3', answers: 'private-answer', token: 'private-key' });
+  assert.ok(prompt.includes('一个提示') && prompt.includes('/python/f3'));
+  assert.ok(!prompt.includes('private-answer') && !prompt.includes('private-key'));
+  assert.ok(!buildClassroomPrompt('使用简短语言', null).includes('/python/f3'));
 });
