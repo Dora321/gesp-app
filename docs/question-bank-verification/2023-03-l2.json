@@ -1,209 +1,531 @@
 {
-  "paperId": "2023-03-l2",
-  "reviewedAt": "2026-10-24",
-  "reviewedBy": {
-    "type": "AI",
-    "executor": "WorkBuddy 子代理",
-    "session": "codex/question-bank-verification"
+ "paperId": "2023-03-l2",
+ "reviewedAt": "2026-10-24",
+ "reviewedBy": {
+  "type": "AI",
+  "executor": "WorkBuddy 子代理",
+  "session": "codex/question-bank-verification"
+ },
+ "source": {
+  "mirrorUrl": "https://raw.githubusercontent.com/Dora321/gesp-official-pdfs/main/pdfs/2023%E5%B9%B43%E6%9C%88-C%2B%2B2%E7%BA%A7.pdf",
+  "mirrorSha": "10fcac8bd8af9d36a17f8f14ae5a4d48821b801d",
+  "shaVerified": true,
+  "fetchedAt": "2026-10-24"
+ },
+ "answerTable": {
+  "location": "解析版 PDF，无集中答案表；每题题干后内嵌红色【答案】行（pp.1-11）",
+  "content": {
+   "single": [
+    "D",
+    "C",
+    "A",
+    "D",
+    "B",
+    "A",
+    "C",
+    "C",
+    "B",
+    "B",
+    "A",
+    "D",
+    "C",
+    "D",
+    "C"
+   ],
+   "judge": [
+    "×",
+    "×",
+    "√",
+    "×",
+    "×",
+    "×",
+    "×",
+    "√",
+    "√",
+    "√"
+   ]
   },
-  "source": {
-    "mirrorUrl": "https://raw.githubusercontent.com/Dora321/gesp-official-pdfs/main/pdfs/2023%E5%B9%B43%E6%9C%88-C%2B%2B2%E7%BA%A7.pdf",
-    "mirrorSha": "10fcac8bd8af9d36a17f8f14ae5a4d48821b801d",
-    "shaVerified": true,
-    "fetchedAt": "2026-10-24"
+  "note": "本题库不是标准试卷版，而是「2023 年 3 月 GESP C++ 二级试卷解析」，答案与解析逐题内嵌。"
+ },
+ "questions": [
+  {
+   "id": 1,
+   "official": "D",
+   "answerTableValue": "D",
+   "bank": "D",
+   "changed": false,
+   "resolved": true,
+   "textMatch": true,
+   "dimensions": [
+    "statement",
+    "options",
+    "answer"
+   ],
+   "method": [
+    "按官方解析版 PDF 逐题对照，题干与选项逐字录入",
+    "每题内嵌的【答案】行逐条核对"
+   ],
+   "note": "官方第1题：以下存储器中不受强磁场干扰的是光盘（D）"
   },
-  "answerTable": {
-    "location": "解析版 PDF，无集中答案表；每题题干后内嵌红色【答案】行（pp.1-11）",
-    "content": {
-      "single": "DCADBACCBBADCDC",
-      "judge": "××√××××√√√"
-    }
+  {
+   "id": 2,
+   "official": "C",
+   "answerTableValue": "C",
+   "bank": "C",
+   "changed": false,
+   "resolved": true,
+   "textMatch": true,
+   "dimensions": [
+    "statement",
+    "options",
+    "answer"
+   ],
+   "method": [
+    "按官方解析版 PDF 逐题对照，题干与选项逐字录入",
+    "每题内嵌的【答案】行逐条核对"
+   ],
+   "note": "官方第2题：流程图按是否按下空格键分成两支，属分支结构（C）"
   },
-  "questions": [
-    {
-      "id": 1,
-      "type": "single",
-      "official": "D",
-      "bank": 3,
-      "modified": false
-    },
-    {
-      "id": 2,
-      "type": "single",
-      "official": "C",
-      "bank": 2,
-      "modified": false
-    },
-    {
-      "id": 3,
-      "type": "single",
-      "official": "A",
-      "bank": 0,
-      "modified": false
-    },
-    {
-      "id": 4,
-      "type": "single",
-      "official": "D",
-      "bank": 3,
-      "modified": false
-    },
-    {
-      "id": 5,
-      "type": "single",
-      "official": "B",
-      "bank": 1,
-      "modified": false
-    },
-    {
-      "id": 6,
-      "type": "single",
-      "official": "D",
-      "bank": 3,
-      "modified": false
-    },
-    {
-      "id": 7,
-      "type": "single",
-      "official": "C",
-      "bank": 2,
-      "modified": false
-    },
-    {
-      "id": 8,
-      "type": "single",
-      "official": "C",
-      "bank": 2,
-      "modified": false
-    },
-    {
-      "id": 9,
-      "type": "single",
-      "official": "B",
-      "bank": 1,
-      "modified": false
-    },
-    {
-      "id": 10,
-      "type": "single",
-      "official": "B",
-      "bank": 1,
-      "modified": false
-    },
-    {
-      "id": 11,
-      "type": "single",
-      "official": "A",
-      "bank": 0,
-      "modified": false
-    },
-    {
-      "id": 12,
-      "type": "single",
-      "official": "D",
-      "bank": 3,
-      "modified": false
-    },
-    {
-      "id": 13,
-      "type": "single",
-      "official": "C",
-      "bank": 2,
-      "modified": false
-    },
-    {
-      "id": 14,
-      "type": "single",
-      "official": "D",
-      "bank": 3,
-      "modified": false
-    },
-    {
-      "id": 15,
-      "type": "single",
-      "official": "C",
-      "bank": 2,
-      "modified": false
-    },
-    {
-      "id": 16,
-      "type": "judge",
-      "official": "√",
-      "bank": 0,
-      "modified": false
-    },
-    {
-      "id": 17,
-      "type": "judge",
-      "official": "√",
-      "bank": 0,
-      "modified": false
-    },
-    {
-      "id": 18,
-      "type": "judge",
-      "official": "√",
-      "bank": 0,
-      "modified": false
-    },
-    {
-      "id": 19,
-      "type": "judge",
-      "official": "×",
-      "bank": 1,
-      "modified": false
-    },
-    {
-      "id": 20,
-      "type": "judge",
-      "official": "×",
-      "bank": 1,
-      "modified": false
-    },
-    {
-      "id": 21,
-      "type": "judge",
-      "official": "×",
-      "bank": 1,
-      "modified": false
-    },
-    {
-      "id": 22,
-      "type": "judge",
-      "official": "×",
-      "bank": 1,
-      "modified": false
-    },
-    {
-      "id": 23,
-      "type": "judge",
-      "official": "√",
-      "bank": 0,
-      "modified": false
-    },
-    {
-      "id": 24,
-      "type": "judge",
-      "official": "√",
-      "bank": 0,
-      "modified": false
-    },
-    {
-      "id": 25,
-      "type": "judge",
-      "official": "√",
-      "bank": 0,
-      "modified": false
-    }
-  ],
-  "notes": [
-    "官方卷为「试卷解析」版，答案逐题内嵌；单选官方答案与题库完全一致（Q1-Q15）。",
-    "Q6：官方选项为 A.\\= B./= C.-= D.!=（答案 A 即 \\=）；题库选项集不同（=,==,/=,\\=），答案指向同一运算符 \\=，内容一致，未修改。",
-    "Q8-Q10、Q12-Q14：题库题面与原卷不同（原卷依次为：四数平均值表达式答C、char a 值为 2 哪条语句执行后 a 不会变为 3 答B、a-=3 后值为 6 答B、判断小写字母表达式答D、填空使输出 50 10 答C、统计数字字符 cnt 答D），题库为自编替换题，答案经独立推导均自洽正确，未修改。",
-    "判断 J1/J2/J6 题库为改写表述（如「4GB 和 4096MB 容量一样」答√，对应原卷「容量大的是笑笑的」答×），判定值与官方答案表一致。",
-    "Q15 题库题面 for 循环为 i<=n，与原卷 i<n 不同；两种写法下 17 均会被自身整除置 false，输出 0，答案不受影响。"
-  ],
-  "unresolved": [
-    "原卷单选 Q8-Q14 共 6 题未按原题录入题库（以替换题占位）。原卷官方答案：Q8=C((a+b+c+d)/4.0)、Q9=B(a+1)、Q10=B(6)、Q12=D(a>='a'&&a<='z')、Q13=C(a=b-a)、Q14=D(ch%2==1)。如需还原原卷需另行补录，本次未臆造改写。"
-  ]
+  {
+   "id": 3,
+   "official": "A",
+   "answerTableValue": "A",
+   "bank": "A",
+   "changed": false,
+   "resolved": true,
+   "textMatch": true,
+   "dimensions": [
+    "statement",
+    "options",
+    "answer"
+   ],
+   "method": [
+    "按官方解析版 PDF 逐题对照，题干与选项逐字录入",
+    "每题内嵌的【答案】行逐条核对"
+   ],
+   "note": "官方第3题：double 类型占用内存大小是浮动的，说法错误（A）"
+  },
+  {
+   "id": 4,
+   "official": "D",
+   "answerTableValue": "D",
+   "bank": "D",
+   "changed": false,
+   "resolved": true,
+   "textMatch": true,
+   "dimensions": [
+    "statement",
+    "options",
+    "answer"
+   ],
+   "method": [
+    "按官方解析版 PDF 逐题对照，题干与选项逐字录入",
+    "每题内嵌的【答案】行逐条核对"
+   ],
+   "note": "官方第4题：合法标识符不可以以数字开始，故 D 不正确"
+  },
+  {
+   "id": 5,
+   "official": "B",
+   "answerTableValue": "B",
+   "bank": "B",
+   "changed": false,
+   "resolved": true,
+   "textMatch": true,
+   "dimensions": [
+    "statement",
+    "options",
+    "answer"
+   ],
+   "method": [
+    "按官方解析版 PDF 逐题对照，题干与选项逐字录入",
+    "每题内嵌的【答案】行逐条核对"
+   ],
+   "note": "官方第5题：max 是库函数不是关键字（B）"
+  },
+  {
+   "id": 6,
+   "official": "A",
+   "answerTableValue": "A",
+   "bank": "A",
+   "changed": true,
+   "resolved": true,
+   "textMatch": true,
+   "dimensions": [
+    "statement",
+    "options",
+    "answer"
+   ],
+   "method": [
+    "按官方解析版 PDF 逐题对照，题干与选项逐字录入",
+    "每题内嵌的【答案】行逐条核对"
+   ],
+   "note": "官方第6题：选项为 A.\\=  B./=  C.-=  D.!=，答案 A。原题库把选项集换成了 =、==、/=、\\=，虽指向同一运算符，但干扰项失真，已按官方恢复"
+  },
+  {
+   "id": 7,
+   "official": "C",
+   "answerTableValue": "C",
+   "bank": "C",
+   "changed": false,
+   "resolved": true,
+   "textMatch": true,
+   "dimensions": [
+    "statement",
+    "options",
+    "answer"
+   ],
+   "method": [
+    "按官方解析版 PDF 逐题对照，题干与选项逐字录入",
+    "每题内嵌的【答案】行逐条核对"
+   ],
+   "note": "官方第7题：'a'++ 对常量自增，不符合 C++ 语法（C）"
+  },
+  {
+   "id": 8,
+   "official": "C",
+   "answerTableValue": "C",
+   "bank": "C",
+   "changed": true,
+   "resolved": true,
+   "textMatch": true,
+   "dimensions": [
+    "statement",
+    "options",
+    "answer"
+   ],
+   "method": [
+    "按官方解析版 PDF 逐题对照，题干与选项逐字录入",
+    "每题内嵌的【答案】行逐条核对"
+   ],
+   "note": "官方第8题：求四数平均值须用 (a+b+c+d)/4.0（C）。原题库是「a=1 执行 a+1 后 cout<<a」自编题，整题重录"
+  },
+  {
+   "id": 9,
+   "official": "B",
+   "answerTableValue": "B",
+   "bank": "B",
+   "changed": true,
+   "resolved": true,
+   "textMatch": true,
+   "dimensions": [
+    "statement",
+    "options",
+    "answer"
+   ],
+   "method": [
+    "按官方解析版 PDF 逐题对照，题干与选项逐字录入",
+    "每题内嵌的【答案】行逐条核对"
+   ],
+   "note": "官方第9题：char a 值为 '2' 时，仅 a+1; 不会改变 a（B）。原题库占位的是官方第10题（a-=3），整题重录"
+  },
+  {
+   "id": 10,
+   "official": "B",
+   "answerTableValue": "B",
+   "bank": "B",
+   "changed": true,
+   "resolved": true,
+   "textMatch": true,
+   "dimensions": [
+    "statement",
+    "options",
+    "answer"
+   ],
+   "method": [
+    "按官方解析版 PDF 逐题对照，题干与选项逐字录入",
+    "每题内嵌的【答案】行逐条核对"
+   ],
+   "note": "官方第10题：a=9 执行 a-=3 后为 6（B）。原题库是「小写字母 a 到 z 的 ASCII 码范围」，整题重录"
+  },
+  {
+   "id": 11,
+   "official": "A",
+   "answerTableValue": "A",
+   "bank": "A",
+   "changed": false,
+   "resolved": true,
+   "textMatch": true,
+   "dimensions": [
+    "statement",
+    "options",
+    "answer"
+   ],
+   "method": [
+    "按官方解析版 PDF 逐题对照，题干与选项逐字录入",
+    "每题内嵌的【答案】行逐条核对"
+   ],
+   "note": "官方第11题：判断 a 等于 0 或 b 等于 0 应为 (!a)||(!b)（A）"
+  },
+  {
+   "id": 12,
+   "official": "D",
+   "answerTableValue": "D",
+   "bank": "D",
+   "changed": true,
+   "resolved": true,
+   "textMatch": true,
+   "dimensions": [
+    "statement",
+    "options",
+    "answer"
+   ],
+   "method": [
+    "按官方解析版 PDF 逐题对照，题干与选项逐字录入",
+    "每题内嵌的【答案】行逐条核对"
+   ],
+   "note": "官方第12题：判断小写字母应为 a >= 'a' && a <= 'z'（D）。原题库是「执行 100 次循环的 for 头部」，整题重录"
+  },
+  {
+   "id": 13,
+   "official": "C",
+   "answerTableValue": "C",
+   "bank": "C",
+   "changed": true,
+   "resolved": true,
+   "textMatch": true,
+   "dimensions": [
+    "statement",
+    "options",
+    "answer"
+   ],
+   "method": [
+    "按官方解析版 PDF 逐题对照，题干与选项逐字录入",
+    "每题内嵌的【答案】行逐条核对"
+   ],
+   "note": "官方第13题：填空使输出 50 10，应填 a = b - a（C）。原题库是「判断 a 是否大于 b 并交换」，整题重录"
+  },
+  {
+   "id": 14,
+   "official": "D",
+   "answerTableValue": "D",
+   "bank": "D",
+   "changed": true,
+   "resolved": true,
+   "textMatch": true,
+   "dimensions": [
+    "statement",
+    "options",
+    "answer"
+   ],
+   "method": [
+    "按官方解析版 PDF 逐题对照，题干与选项逐字录入",
+    "每题内嵌的【答案】行逐条核对"
+   ],
+   "note": "官方第14题：统计 '1'-'9' 中 ASCII 码为奇数的字符，应填 ch % 2 == 1（D）。原题库是 for 循环输出题，整题重录"
+  },
+  {
+   "id": 15,
+   "official": "C",
+   "answerTableValue": "C",
+   "bank": "C",
+   "changed": false,
+   "resolved": true,
+   "textMatch": true,
+   "dimensions": [
+    "statement",
+    "options",
+    "answer"
+   ],
+   "method": [
+    "按官方解析版 PDF 逐题对照，题干与选项逐字录入",
+    "每题内嵌的【答案】行逐条核对"
+   ],
+   "note": "官方第15题：isprime 循环到 i=n 必被自身整除置 false，bool 输出为 0（C）"
+  },
+  {
+   "id": 16,
+   "official": "×",
+   "answerTableValue": "×",
+   "bank": "×",
+   "changed": true,
+   "resolved": true,
+   "textMatch": true,
+   "dimensions": [
+    "statement",
+    "answer"
+   ],
+   "method": [
+    "按官方解析版 PDF 逐题对照，题干逐字录入",
+    "每题内嵌的【答案】行逐条核对"
+   ],
+   "note": "官方判断第1题：4GB 与 4096MB 容量相同，故「容量大的是笑笑的」错误（×）。原题库改写为「容量大小一样」并答√，答案被改反，已按原文还原"
+  },
+  {
+   "id": 17,
+   "official": "×",
+   "answerTableValue": "×",
+   "bank": "×",
+   "changed": true,
+   "resolved": true,
+   "textMatch": true,
+   "dimensions": [
+    "statement",
+    "answer"
+   ],
+   "method": [
+    "按官方解析版 PDF 逐题对照，题干逐字录入",
+    "每题内嵌的【答案】行逐条核对"
+   ],
+   "note": "官方判断第2题：IPv4 点分十进制每段范围是 0~255，题干写 1~255 故错误（×）。原题库改写为「0 到 255」并答√，答案被改反，已按原文还原"
+  },
+  {
+   "id": 18,
+   "official": "√",
+   "answerTableValue": "√",
+   "bank": "√",
+   "changed": false,
+   "resolved": true,
+   "textMatch": true,
+   "dimensions": [
+    "statement",
+    "answer"
+   ],
+   "method": [
+    "按官方解析版 PDF 逐题对照，题干逐字录入",
+    "每题内嵌的【答案】行逐条核对"
+   ],
+   "note": "官方判断第3题：一个程序不能有多个 main 函数（√）"
+  },
+  {
+   "id": 19,
+   "official": "×",
+   "answerTableValue": "×",
+   "bank": "×",
+   "changed": false,
+   "resolved": true,
+   "textMatch": true,
+   "dimensions": [
+    "statement",
+    "answer"
+   ],
+   "method": [
+    "按官方解析版 PDF 逐题对照，题干逐字录入",
+    "每题内嵌的【答案】行逐条核对"
+   ],
+   "note": "官方判断第4题：标识符可以下划线开头，题干说不能故错误（×）"
+  },
+  {
+   "id": 20,
+   "official": "×",
+   "answerTableValue": "×",
+   "bank": "×",
+   "changed": true,
+   "resolved": true,
+   "textMatch": true,
+   "dimensions": [
+    "statement",
+    "answer"
+   ],
+   "method": [
+    "按官方解析版 PDF 逐题对照，题干逐字录入",
+    "每题内嵌的【答案】行逐条核对"
+   ],
+   "note": "官方判断第5题：'a' 是字符常量，与 int 变量 a 无关（×）。题面已按官方原文对齐"
+  },
+  {
+   "id": 21,
+   "official": "×",
+   "answerTableValue": "×",
+   "bank": "×",
+   "changed": true,
+   "resolved": true,
+   "textMatch": true,
+   "dimensions": [
+    "statement",
+    "answer"
+   ],
+   "method": [
+    "按官方解析版 PDF 逐题对照，题干逐字录入",
+    "每题内嵌的【答案】行逐条核对"
+   ],
+   "note": "官方判断第6题：if 子句同样可以嵌套 if...else（×）。题面已按官方原文对齐"
+  },
+  {
+   "id": 22,
+   "official": "×",
+   "answerTableValue": "×",
+   "bank": "×",
+   "changed": false,
+   "resolved": true,
+   "textMatch": true,
+   "dimensions": [
+    "statement",
+    "answer"
+   ],
+   "method": [
+    "按官方解析版 PDF 逐题对照，题干逐字录入",
+    "每题内嵌的【答案】行逐条核对"
+   ],
+   "note": "官方判断第7题：while 循环体可能一次都不执行（×）"
+  },
+  {
+   "id": 23,
+   "official": "√",
+   "answerTableValue": "√",
+   "bank": "√",
+   "changed": false,
+   "resolved": true,
+   "textMatch": true,
+   "dimensions": [
+    "statement",
+    "answer"
+   ],
+   "method": [
+    "按官方解析版 PDF 逐题对照，题干逐字录入",
+    "每题内嵌的【答案】行逐条核对"
+   ],
+   "note": "官方判断第8题：>= 是运算符，=> 不是（√）"
+  },
+  {
+   "id": 24,
+   "official": "√",
+   "answerTableValue": "√",
+   "bank": "√",
+   "changed": true,
+   "resolved": true,
+   "textMatch": true,
+   "dimensions": [
+    "statement",
+    "answer"
+   ],
+   "method": [
+    "按官方解析版 PDF 逐题对照，题干逐字录入",
+    "每题内嵌的【答案】行逐条核对"
+   ],
+   "note": "官方判断第9题：a = a - 'a' + 'A' 可把小写转大写（√）。题面已按官方原文对齐"
+  },
+  {
+   "id": 25,
+   "official": "√",
+   "answerTableValue": "√",
+   "bank": "√",
+   "changed": true,
+   "resolved": true,
+   "textMatch": true,
+   "dimensions": [
+    "statement",
+    "answer"
+   ],
+   "method": [
+    "按官方解析版 PDF 逐题对照，题干逐字录入",
+    "每题内嵌的【答案】行逐条核对"
+   ],
+   "note": "官方判断第10题：(10.0 / 2) 结果为 5.0 且类型为 double（√）。题面已按官方原文对齐"
+  }
+ ],
+ "notes": [
+  "官方卷为「试卷解析」版，答案逐题内嵌；单选官方答案与题库完全一致（Q1-Q15）。",
+  "Q6：官方选项为 A.\\= B./= C.-= D.!=（答案 A 即 \\=）；题库选项集不同（=,==,/=,\\=），答案指向同一运算符 \\=，内容一致，未修改。",
+  "Q8-Q10、Q12-Q14：题库题面与原卷不同（原卷依次为：四数平均值表达式答C、char a 值为 2 哪条语句执行后 a 不会变为 3 答B、a-=3 后值为 6 答B、判断小写字母表达式答D、填空使输出 50 10 答C、统计数字字符 cnt 答D），题库为自编替换题，答案经独立推导均自洽正确，未修改。",
+  "判断 J1/J2/J6 题库为改写表述（如「4GB 和 4096MB 容量一样」答√，对应原卷「容量大的是笑笑的」答×），判定值与官方答案表一致。",
+  "Q15 题库题面 for 循环为 i<=n，与原卷 i<n 不同；两种写法下 17 均会被自身整除置 false，输出 0，答案不受影响。"
+ ],
+ "unresolved": [],
+ "rebuild": true,
+ "rebuildNote": "2026-10-25 按官方解析版 PDF 重建：Q6 恢复官方选项集（\\=、/=、-=、!=），Q8-Q10 与 Q12-Q14 共 6 道错位/自编题按原文重录，Q16/Q17 两判断题按原文还原，Q20/Q21/Q24/Q25 题面对齐官方措辞。",
+ "priorReviewCorrection": {
+  "foundAt": "2026-10-25",
+  "note": "本文件 2026-10-24 的 notes 曾写明「判断 J1/J2/J6 题库为改写表述…判定值与官方答案表一致」，该判断有误：官方 J1「容量大的是笑笑的」答案为×，题库改写为「容量大小一样」后答√，语义已反转；官方 J2「每段 1~255」答案为×，题库改写为「0 到 255」后答√，同样反了。本轮已按原文还原题干并改正答案。教训：改写式题面不能只比对答案字母，必须比对题面语义方向。"
+ }
 }
