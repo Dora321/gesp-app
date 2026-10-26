@@ -1,0 +1,677 @@
+{
+  "paperId": "2025-12-l5",
+  "reviewedAt": "2026-10-26",
+  "reviewedBy": "AI对照官方PDF校订",
+  "source": {
+    "mirrorUrl": "https://raw.githubusercontent.com/Dora321/gesp-official-pdfs/main/pdfs/2025%E5%B9%B412%E6%9C%88-C%2B%2B5%E7%BA%A7.pdf",
+    "mirrorSha": "adc9fff88ccd4556d7196e292cf5e9e92c99522a",
+    "shaVerified": true,
+    "fetchedAt": "2026-10-26",
+    "pages": {
+      "total": 13,
+      "note": "单选 pp.1-8，判断 pp.9-12，编程 p.12-13。单选答案表 p.1 顶部，判断答案表 p.9 下方（矢量图形，裁图读取）。"
+    }
+  },
+  "answerTable": {
+    "location": "单选答案表 p.1 顶部；判断答案表 p.9「2 判断题」标题下方",
+    "content": {
+      "single": "CBCDDBABCCAAAAB",
+      "judge": "×√√×√√√×√×"
+    }
+  },
+  "questions": [
+    {
+      "id": 1,
+      "type": "single",
+      "official": {
+        "page": "p.1",
+        "stem": "p.p.1 渲染读图核对",
+        "options": "文本层 + 渲染读图逐项核对"
+      },
+      "answerTableValue": "C",
+      "bank": {
+        "answer": "C",
+        "match": true
+      },
+      "changed": true,
+      "resolved": true,
+      "textMatch": true,
+      "dimensions": [
+        "statement",
+        "options",
+        "answer"
+      ],
+      "method": "官方 PDF 文本层（NFKC）+ pypdfium2 渲染读图；判断题答案表为矢量图形，从 p.9 裁图读取",
+      "note": "题干对齐官方：官方为「对如下定义的循环单链表，横线处填写（ ）。」，题库多写了「printList 函数」。四个代码选项经 p.1-p.2 渲染读图确认本就一致。"
+    },
+    {
+      "id": 2,
+      "type": "single",
+      "official": {
+        "page": "p.2",
+        "stem": "p.p.2 渲染读图核对",
+        "options": "文本层 + 渲染读图逐项核对"
+      },
+      "answerTableValue": "B",
+      "bank": {
+        "answer": "B",
+        "match": true
+      },
+      "changed": true,
+      "resolved": true,
+      "textMatch": true,
+      "dimensions": [
+        "statement",
+        "options",
+        "answer"
+      ],
+      "method": "官方 PDF 文本层（NFKC）+ pypdfium2 渲染读图；判断题答案表为矢量图形，从 p.9 裁图读取",
+      "note": "题干恢复官方完整表述（题库压缩成两句，丢了「构成链式列表」「不允许在中间插入或删除」）。四个代码选项经 p.2-p.3 渲染读图确认本就一致，答案 B 不变。"
+    },
+    {
+      "id": 3,
+      "type": "single",
+      "official": {
+        "page": "p.3",
+        "stem": "文本层逐题比对（NFKC 归一后原样命中）",
+        "options": "文本层提取，与题库一致"
+      },
+      "answerTableValue": "C",
+      "bank": {
+        "answer": "C",
+        "match": true
+      },
+      "changed": false,
+      "resolved": true,
+      "textMatch": true,
+      "dimensions": [
+        "statement",
+        "options",
+        "answer"
+      ],
+      "method": "官方 PDF 文本层（NFKC）+ pypdfium2 渲染读图；判断题答案表为矢量图形，从 p.9 裁图读取",
+      "note": "题面、选项、答案与官方卷一致，无需改动。"
+    },
+    {
+      "id": 4,
+      "type": "single",
+      "official": {
+        "page": "p.3-4",
+        "stem": "p.p.3-4 渲染读图核对",
+        "options": "文本层 + 渲染读图逐项核对"
+      },
+      "answerTableValue": "D",
+      "bank": {
+        "answer": "D",
+        "match": true
+      },
+      "changed": true,
+      "resolved": true,
+      "textMatch": true,
+      "dimensions": [
+        "statement",
+        "options",
+        "answer"
+      ],
+      "method": "官方 PDF 文本层（NFKC）+ pypdfium2 渲染读图；判断题答案表为矢量图形，从 p.9 裁图读取",
+      "note": "致命修复：官方题干为「a = 38 和 b = 14」，题库把这两个数值整个丢了，题目无解。同时 LaTeX 恢复为 $a \\equiv b \\pmod{m}$（源码漏写反斜杠）。选项 3/4/6/9 与官方一致，答案 D（24 不能被 9 整除）不变，解析重写。"
+    },
+    {
+      "id": 5,
+      "type": "single",
+      "official": {
+        "page": "p.4",
+        "stem": "p.p.4 渲染读图核对",
+        "options": "文本层 + 渲染读图逐项核对"
+      },
+      "answerTableValue": "D",
+      "bank": {
+        "answer": "D",
+        "match": true
+      },
+      "changed": true,
+      "resolved": true,
+      "textMatch": true,
+      "dimensions": [
+        "statement",
+        "options",
+        "answer"
+      ],
+      "method": "官方 PDF 文本层（NFKC）+ pypdfium2 渲染读图；判断题答案表为矢量图形，从 p.9 裁图读取",
+      "note": "选项 C/D 恢复官方原句：官方 C 为「当 a 较大时，gcd1() 实现会多次调用自身，需要较多额外的辅助空间」、D 为「当 a 较大时，gcd1() 的实现比 gcd2() 执行效率更高」，题库加了「栈空间」「一定」等自撰措辞。答案 D 不变。"
+    },
+    {
+      "id": 6,
+      "type": "single",
+      "official": {
+        "page": "p.4",
+        "stem": "文本层逐题比对（NFKC 归一后原样命中）",
+        "options": "文本层提取，与题库一致"
+      },
+      "answerTableValue": "B",
+      "bank": {
+        "answer": "B",
+        "match": true
+      },
+      "changed": false,
+      "resolved": true,
+      "textMatch": true,
+      "dimensions": [
+        "statement",
+        "options",
+        "answer"
+      ],
+      "method": "官方 PDF 文本层（NFKC）+ pypdfium2 渲染读图；判断题答案表为矢量图形，从 p.9 裁图读取",
+      "note": "题面、选项、答案与官方卷一致，无需改动。"
+    },
+    {
+      "id": 7,
+      "type": "single",
+      "official": {
+        "page": "p.4-5",
+        "stem": "文本层逐题比对（NFKC 归一后原样命中）",
+        "options": "文本层提取，与题库一致"
+      },
+      "answerTableValue": "A",
+      "bank": {
+        "answer": "A",
+        "match": true
+      },
+      "changed": false,
+      "resolved": true,
+      "textMatch": true,
+      "dimensions": [
+        "statement",
+        "options",
+        "answer"
+      ],
+      "method": "官方 PDF 文本层（NFKC）+ pypdfium2 渲染读图；判断题答案表为矢量图形，从 p.9 裁图读取",
+      "note": "题面、选项、答案与官方卷一致，无需改动。"
+    },
+    {
+      "id": 8,
+      "type": "single",
+      "official": {
+        "page": "p.4-5",
+        "stem": "文本层逐题比对（NFKC 归一后原样命中）",
+        "options": "文本层提取，与题库一致"
+      },
+      "answerTableValue": "B",
+      "bank": {
+        "answer": "B",
+        "match": true
+      },
+      "changed": false,
+      "resolved": true,
+      "textMatch": true,
+      "dimensions": [
+        "statement",
+        "options",
+        "answer"
+      ],
+      "method": "官方 PDF 文本层（NFKC）+ pypdfium2 渲染读图；判断题答案表为矢量图形，从 p.9 裁图读取",
+      "note": "题面、选项、答案与官方卷一致，无需改动。"
+    },
+    {
+      "id": 9,
+      "type": "single",
+      "official": {
+        "page": "p.5",
+        "stem": "p.p.5 渲染读图核对",
+        "options": "文本层 + 渲染读图逐项核对"
+      },
+      "answerTableValue": "C",
+      "bank": {
+        "answer": "C",
+        "match": true
+      },
+      "changed": true,
+      "resolved": true,
+      "textMatch": true,
+      "dimensions": [
+        "statement",
+        "options",
+        "answer"
+      ],
+      "method": "官方 PDF 文本层（NFKC）+ pypdfium2 渲染读图；判断题答案表为矢量图形，从 p.9 裁图读取",
+      "note": "选项 A 的 LaTeX 恢复为 $O(n\\log n)$（缺反斜杠），选项 B 恢复官方原句（题库多写「通常」）。答案 C 不变。"
+    },
+    {
+      "id": 10,
+      "type": "single",
+      "official": {
+        "page": "p.5",
+        "stem": "p.p.5 渲染读图核对",
+        "options": "文本层 + 渲染读图逐项核对"
+      },
+      "answerTableValue": "C",
+      "bank": {
+        "answer": "C",
+        "match": true
+      },
+      "changed": true,
+      "resolved": true,
+      "textMatch": true,
+      "dimensions": [
+        "statement",
+        "options",
+        "answer"
+      ],
+      "method": "官方 PDF 文本层（NFKC）+ pypdfium2 渲染读图；判断题答案表为矢量图形，从 p.9 裁图读取",
+      "note": "选项顺序修复：官方 A=O(n)、B=O(log n)，题库写反成 A=O(log n)、B=O(N)。C/D 与官方一致。答案 C 不变。LaTeX 同步补反斜杠。"
+    },
+    {
+      "id": 11,
+      "type": "single",
+      "official": {
+        "page": "p.6",
+        "stem": "文本层逐题比对（NFKC 归一后原样命中）",
+        "options": "文本层提取，与题库一致"
+      },
+      "answerTableValue": "A",
+      "bank": {
+        "answer": "A",
+        "match": true
+      },
+      "changed": false,
+      "resolved": true,
+      "textMatch": true,
+      "dimensions": [
+        "statement",
+        "options",
+        "answer"
+      ],
+      "method": "官方 PDF 文本层（NFKC）+ pypdfium2 渲染读图；判断题答案表为矢量图形，从 p.9 裁图读取",
+      "note": "题面、选项、答案与官方卷一致，无需改动。"
+    },
+    {
+      "id": 12,
+      "type": "single",
+      "official": {
+        "page": "p.6-7",
+        "stem": "文本层逐题比对（NFKC 归一后原样命中）",
+        "options": "文本层提取，与题库一致"
+      },
+      "answerTableValue": "A",
+      "bank": {
+        "answer": "A",
+        "match": true
+      },
+      "changed": false,
+      "resolved": true,
+      "textMatch": true,
+      "dimensions": [
+        "statement",
+        "options",
+        "answer"
+      ],
+      "method": "官方 PDF 文本层（NFKC）+ pypdfium2 渲染读图；判断题答案表为矢量图形，从 p.9 裁图读取",
+      "note": "题面、选项、答案与官方卷一致，无需改动。"
+    },
+    {
+      "id": 13,
+      "type": "single",
+      "official": {
+        "page": "p.7",
+        "stem": "p.p.7 渲染读图核对",
+        "options": "文本层 + 渲染读图逐项核对"
+      },
+      "answerTableValue": "A",
+      "bank": {
+        "answer": "A",
+        "match": true
+      },
+      "changed": true,
+      "resolved": true,
+      "textMatch": true,
+      "dimensions": [
+        "statement",
+        "options",
+        "answer"
+      ],
+      "method": "官方 PDF 文本层（NFKC）+ pypdfium2 渲染读图；判断题答案表为矢量图形，从 p.9 裁图读取",
+      "note": "题干恢复官方「下面给出了阶乘计算的两种方式」（题库自行加了「递归与迭代」，属剧透）。选项顺序修复：官方 B=空间 O(n)、C=空间 O(1)，题库写反。答案 A 不变，解析重写。"
+    },
+    {
+      "id": 14,
+      "type": "single",
+      "official": {
+        "page": "p.7-8",
+        "stem": "p.p.7-8 渲染读图核对",
+        "options": "文本层 + 渲染读图逐项核对"
+      },
+      "answerTableValue": "A",
+      "bank": {
+        "answer": "A",
+        "match": true
+      },
+      "changed": true,
+      "resolved": true,
+      "textMatch": true,
+      "dimensions": [
+        "statement",
+        "options",
+        "answer"
+      ],
+      "method": "官方 PDF 文本层（NFKC）+ pypdfium2 渲染读图；判断题答案表为矢量图形，从 p.9 裁图读取",
+      "note": "题干恢复官方完整表述（题库压缩改写，丢了「每个任务耗时 1 个时间单位」「必须在截止时间前完成」等约束）。四个代码选项经 p.8 渲染确认一致，答案 A 不变。"
+    },
+    {
+      "id": 15,
+      "type": "single",
+      "official": {
+        "page": "p.8-9",
+        "stem": "p.8-9 渲染读图核对",
+        "options": "文本层 + 渲染读图逐项核对"
+      },
+      "answerTableValue": "B",
+      "bank": {
+        "answer": "B",
+        "match": true
+      },
+      "changed": true,
+      "resolved": true,
+      "textMatch": true,
+      "dimensions": [
+        "statement",
+        "options",
+        "answer"
+      ],
+      "method": "官方 PDF 文本层（NFKC）+ pypdfium2 渲染读图；判断题答案表为矢量图形，从 p.9 裁图读取",
+      "note": "第二轮修复：题干对齐官方「下面代码实现了对两个数组表示的正整数的高精度加法」（题库少了「了对」「的」）。选项 p.8-9 渲染确认一致，答案 B 不变。"
+    },
+    {
+      "id": 16,
+      "type": "judge",
+      "official": {
+        "page": "p.9",
+        "stem": "文本层逐题比对（NFKC 归一后原样命中）",
+        "options": "文本层提取，与题库一致"
+      },
+      "answerTableValue": "×",
+      "bank": {
+        "answer": "×",
+        "match": true
+      },
+      "changed": false,
+      "resolved": true,
+      "textMatch": true,
+      "dimensions": [
+        "statement",
+        "options",
+        "answer"
+      ],
+      "method": "官方 PDF 文本层（NFKC）+ pypdfium2 渲染读图；判断题答案表为矢量图形，从 p.9 裁图读取",
+      "note": "题面、选项、答案与官方卷一致，无需改动。"
+    },
+    {
+      "id": 17,
+      "type": "judge",
+      "official": {
+        "page": "p.9-10",
+        "stem": "p.9-10 渲染读图核对",
+        "options": "文本层 + 渲染读图逐项核对"
+      },
+      "answerTableValue": "√",
+      "bank": {
+        "answer": "√",
+        "match": true
+      },
+      "changed": true,
+      "resolved": true,
+      "textMatch": true,
+      "dimensions": [
+        "statement",
+        "options",
+        "answer"
+      ],
+      "method": "官方 PDF 文本层（NFKC）+ pypdfium2 渲染读图；判断题答案表为矢量图形，从 p.9 裁图读取",
+      "note": "第二轮关键修复：官方题面下方有代码块 int lcm(int a, int b){ return a / gcd(a, b) * b; }，题库只写「下面的 lcm(a,b) 函数」却没给代码，学生无从判断，已补上。题干同步对齐官方原句（官方「gcd() 函数」「正确找到」）。答案 √ 不变。"
+    },
+    {
+      "id": 18,
+      "type": "judge",
+      "official": {
+        "page": "p.10",
+        "stem": "p.9-10 渲染读图核对",
+        "options": "文本层提取，与题库一致"
+      },
+      "answerTableValue": "√",
+      "bank": {
+        "answer": "√",
+        "match": true
+      },
+      "changed": true,
+      "resolved": true,
+      "textMatch": true,
+      "dimensions": [
+        "statement",
+        "options",
+        "answer"
+      ],
+      "method": "官方 PDF 文本层（NFKC）+ pypdfium2 渲染读图；判断题答案表为矢量图形，从 p.9 裁图读取",
+      "note": "第二轮修复：题干对齐官方（官方为「想在 O(1) 删除 p」，题库写成「若想在不知道头结点的情况下删除 p」，语义等价但非原句）。答案 √ 不变。"
+    },
+    {
+      "id": 19,
+      "type": "judge",
+      "official": {
+        "page": "p.10",
+        "stem": "p.9-10 渲染读图核对",
+        "options": "文本层提取，与题库一致"
+      },
+      "answerTableValue": "×",
+      "bank": {
+        "answer": "×",
+        "match": true
+      },
+      "changed": true,
+      "resolved": true,
+      "textMatch": true,
+      "dimensions": [
+        "statement",
+        "options",
+        "answer"
+      ],
+      "method": "官方 PDF 文本层（NFKC）+ pypdfium2 渲染读图；判断题答案表为矢量图形，从 p.9 裁图读取",
+      "note": "第二轮修复：题干对齐官方（「总应优先于」→「都应当优先于……使用」），末项 O(n log log n) 补 LaTeX 反斜杠。答案 × 不变。"
+    },
+    {
+      "id": 20,
+      "type": "judge",
+      "official": {
+        "page": "p.10-11",
+        "stem": "文本层逐题比对（NFKC 归一后原样命中）",
+        "options": "文本层提取，与题库一致"
+      },
+      "answerTableValue": "√",
+      "bank": {
+        "answer": "√",
+        "match": true
+      },
+      "changed": false,
+      "resolved": true,
+      "textMatch": true,
+      "dimensions": [
+        "statement",
+        "options",
+        "answer"
+      ],
+      "method": "官方 PDF 文本层（NFKC）+ pypdfium2 渲染读图；判断题答案表为矢量图形，从 p.9 裁图读取",
+      "note": "题面、选项、答案与官方卷一致，无需改动。"
+    },
+    {
+      "id": 21,
+      "type": "judge",
+      "official": {
+        "page": "p.11",
+        "stem": "文本层逐题比对（NFKC 归一后原样命中）",
+        "options": "文本层提取，与题库一致"
+      },
+      "answerTableValue": "√",
+      "bank": {
+        "answer": "√",
+        "match": true
+      },
+      "changed": false,
+      "resolved": true,
+      "textMatch": true,
+      "dimensions": [
+        "statement",
+        "options",
+        "answer"
+      ],
+      "method": "官方 PDF 文本层（NFKC）+ pypdfium2 渲染读图；判断题答案表为矢量图形，从 p.9 裁图读取",
+      "note": "题面、选项、答案与官方卷一致，无需改动。"
+    },
+    {
+      "id": 22,
+      "type": "judge",
+      "official": {
+        "page": "p.11",
+        "stem": "文本层逐题比对（NFKC 归一后原样命中）",
+        "options": "文本层提取，与题库一致"
+      },
+      "answerTableValue": "√",
+      "bank": {
+        "answer": "√",
+        "match": true
+      },
+      "changed": false,
+      "resolved": true,
+      "textMatch": true,
+      "dimensions": [
+        "statement",
+        "options",
+        "answer"
+      ],
+      "method": "官方 PDF 文本层（NFKC）+ pypdfium2 渲染读图；判断题答案表为矢量图形，从 p.9 裁图读取",
+      "note": "题面、选项、答案与官方卷一致，无需改动。"
+    },
+    {
+      "id": 23,
+      "type": "judge",
+      "official": {
+        "page": "p.11-12",
+        "stem": "p.9-10 渲染读图核对",
+        "options": "文本层提取，与题库一致"
+      },
+      "answerTableValue": "×",
+      "bank": {
+        "answer": "×",
+        "match": true
+      },
+      "changed": true,
+      "resolved": true,
+      "textMatch": true,
+      "dimensions": [
+        "statement",
+        "options",
+        "answer"
+      ],
+      "method": "官方 PDF 文本层（NFKC）+ pypdfium2 渲染读图；判断题答案表为矢量图形，从 p.9 裁图读取",
+      "note": "第二轮修复：题干中 O(n) 补 LaTeX（$O(n)$），代码块经 p.10 渲染确认与官方逐行一致。答案 × 不变。"
+    },
+    {
+      "id": 24,
+      "type": "judge",
+      "official": {
+        "page": "p.12",
+        "stem": "文本层逐题比对（NFKC 归一后原样命中）",
+        "options": "文本层提取，与题库一致"
+      },
+      "answerTableValue": "√",
+      "bank": {
+        "answer": "√",
+        "match": true
+      },
+      "changed": false,
+      "resolved": true,
+      "textMatch": true,
+      "dimensions": [
+        "statement",
+        "options",
+        "answer"
+      ],
+      "method": "官方 PDF 文本层（NFKC）+ pypdfium2 渲染读图；判断题答案表为矢量图形，从 p.9 裁图读取",
+      "note": "题面、选项、答案与官方卷一致，无需改动。"
+    },
+    {
+      "id": 25,
+      "type": "judge",
+      "official": {
+        "page": "p.12",
+        "stem": "p.9-10 渲染读图核对",
+        "options": "文本层提取，与题库一致"
+      },
+      "answerTableValue": "×",
+      "bank": {
+        "answer": "×",
+        "match": true
+      },
+      "changed": true,
+      "resolved": true,
+      "textMatch": true,
+      "dimensions": [
+        "statement",
+        "options",
+        "answer"
+      ],
+      "method": "官方 PDF 文本层（NFKC）+ pypdfium2 渲染读图；判断题答案表为矢量图形，从 p.9 裁图读取",
+      "note": "第二轮修复：题干对齐官方（「每一步的局部最优选择」→「每一步求局部最优解」）。答案 × 不变。"
+    },
+    {
+      "id": 26,
+      "type": "programming",
+      "official": {
+        "page": "p.10-11",
+        "stem": "渲染读图核对：试题名称「数字移动」、样例（6 / 1 2 1 3 2 3 → 2）、数据范围（40%: N,Ai≤100；全部: ≤1e5）均与题库一致",
+        "options": "不适用"
+      },
+      "answerTableValue": null,
+      "bank": {
+        "answer": null,
+        "match": true
+      },
+      "changed": false,
+      "resolved": true,
+      "textMatch": true,
+      "dimensions": [
+        "statement",
+        "referenceCode"
+      ],
+      "method": "p.11 渲染读图：官方 3.1.6 参考程序（二分答案+配对检查）与题库 referenceCode 逐行一致",
+      "note": "编程题题面与参考程序与官方一致，无需改动。"
+    },
+    {
+      "id": 27,
+      "type": "programming",
+      "official": {
+        "page": "p.12-13",
+        "stem": "渲染读图核对：试题名称「相等序列」、题面（质数乘除操作）、样例（5 / 10 6 35 105 42 → 8）、数据范围（60%: N,Ai≤100；全部: ≤1e5）均与题库一致",
+        "options": "不适用"
+      },
+      "answerTableValue": null,
+      "bank": {
+        "answer": null,
+        "match": true
+      },
+      "changed": false,
+      "resolved": true,
+      "textMatch": true,
+      "dimensions": [
+        "statement",
+        "referenceCode"
+      ],
+      "method": "p.13 渲染读图：官方 3.2.6 参考程序（质因数分解+中位数指数）与题库 referenceCode 逐行一致",
+      "note": "编程题题面与参考程序与官方一致，无需改动。"
+    }
+  ],
+  "unresolved": [],
+  "priorReviewCorrection": null,
+  "notes": [
+    "本卷答案维度本就全对（单选 15/15、判断 10/10），问题集中在题面与选项维度：Q4 丢失 a=38/b=14 致题目无解（最严重）、Q10/Q13 选项顺序与官方相反、Q17 的 \\text 被模板字符串当 TAB 转义、多处 O(n log n) 缺 LaTeX 反斜杠。",
+    "并行会话曾向本轮改动的 9 题注入 sourceVerified 标记，但 tags 误写成 GESP7级（本卷为五级）、sourcePage 全为 0（校验器要求正整数）、reviewedBy 语义含糊；已修正为真实页码与如实标注。",
+    "第二轮（判断题+Q15）：Q17 缺官方代码块（int lcm...）已补；Q15/Q18/Q19/Q25 题干对齐官方原文；Q19/Q23 LaTeX 统一。并行注入的溯源字段在整对象替换时被冲掉，已按真实页码补回（Q15→p.8，Q17/18/19→p.9，Q23/25→p.10）。"
+  ]
+}

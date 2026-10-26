@@ -99,62 +99,65 @@ export const paperData = {
         {
             id: 1,
             type: "single",
-            question: `对如下定义的循环单链表，printList 函数横线处应填写（ ）。`,
-            options: [
-                "while (p != nullptr) { cout << p->data << \" \"; p = p->next; }",
-                "while (p->next != nullptr) { cout << p->data << \" \"; p = p->next; }",
-                "do { cout << p->data << \" \"; p = p->next; } while (p != head);",
-                "for (; p; p = p->next) { cout << p->data << \" \"; }",
-            ],
+            question: `对如下定义的循环单链表，横线处填写（ ）。`,
+            options: [`while (p != nullptr) {
+    cout << p->data << " ";
+    p = p->next;
+}`, `while (p->next != nullptr) {
+    cout << p->data << " ";
+    p = p->next;
+}`, `do {
+    cout << p->data << " ";
+    p = p->next;
+} while (p != head);`, `for (; p; p = p->next) {
+    cout << p->data << " ";
+}`],
             answer: 2,
             score: 2,
             explanation: `**答案：C**
 
-            **解析：**
-            本题答案已依据试卷标准答案完成录入，可结合题干与选项复盘对应知识点。
+**解析：**
+这是循环单链表，尾结点的 \`next\` 指回 \`head\`，链上不存在 \`nullptr\`。因此遍历必须用「先执行、后判断」的 \`do...while\`，走到 \`p == head\` 时停，恰好走完一圈。
 
-            - **A while (p != nullptr) { cout << p->data <...**：不是本题答案。该代码逻辑与题目要求不符，请逐步推演。
-            - **B while (p->next != nullptr) { cout << p->...**：不是本题答案。该代码逻辑与题目要求不符，请逐步推演。
-            - **C do { cout << p->data << \\**：正确答案。
-            - **D for (; p; p = p->next) { cout << p->data...**：不是本题答案。该代码逻辑与题目要求不符，请逐步推演。
+- **A \`while (p != nullptr)\`**：循环链表里 \`p\` 永远不会变成 \`nullptr\`，判断恒真，死循环。
+- **B \`while (p->next != nullptr)\`**：同样等不到 \`nullptr\`，死循环。
+- **C \`do...while (p != head)\`**：先输出当前结点再后移，回到 \`head\` 退出，只走一圈，正确。
+- **D \`for (; p; p = p->next)\`**：\`p\` 恒为非空指针，条件恒真，死循环。
 
-            **考点：** 链表
-            `,
-            tags: [
-                "客观题",
-                "单选题",
-                "GESP5级",
-            ]
+**考点：** 循环单链表的遍历`,
+            sourceVerified: true,
+            sourcePage: 1,
+            reviewedBy: "AI对照官方PDF校订",
+            reviewedAt: "2026-10-25",
+            tags: ["客观题", "单选题", "GESP5级"]
         },
         {
             id: 2,
             type: "single",
-            question: `区块链中每个区块都指向前一个区块，新区块只能接在链尾。下面 addBlock 函数横线处应填写（ ）。`,
-            options: [
-                "Block* newBlock = new Block(tail->index+1, data, tail); tail = newBlock->prev;",
-                "Block* newBlock = new Block(tail->index+1, data, tail); tail = newBlock;",
-                "Block* newBlock = new Block(tail->index+1, data, tail->prev); tail = newBlock;",
-                "Block* newBlock = new Block(tail->index+1, data, tail->prev); tail = newBlock->prev;",
-            ],
+            question: `区块链技术是比特币的基础。在区块链中，每个区块指向前一个区块，构成链式列表，新区块只能接在链尾，不允许在中间插入或删除。下面代码实现插入区块添加函数，则横线处填写（ ）。`,
+            options: [`Block* newBlock = new Block(tail->index + 1, data, tail);
+tail = newBlock->prev;`, `Block* newBlock = new Block(tail->index + 1, data, tail);
+tail = newBlock;`, `Block* newBlock = new Block(tail->index + 1, data, tail->prev);
+tail = newBlock;`, `Block* newBlock = new Block(tail->index + 1, data, tail->prev);
+tail = newBlock->prev;`],
             answer: 1,
             score: 2,
             explanation: `**答案：B**
 
-            **解析：**
-            本题答案已依据试卷标准答案完成录入，可结合题干与选项复盘对应知识点。
+**解析：**
+\`Blockchain\` 只用 \`tail\` 一个指针记住链尾，新区块要挂在当前 \`tail\` 之后，并把 \`tail\` 前移到新结点。新块的 \`prev\` 必须指向「旧的 tail」，所以构造时传 \`tail\` 而不是 \`tail->prev\`；插入完成后执行 \`tail = newBlock\`。
 
-            - **A Block* newBlock = new Block(tail->index+...**：不是本题答案。
-            - **B Block* newBlock = new Block(tail->index+...**：正确答案。
-            - **C Block* newBlock = new Block(tail->index+...**：不是本题答案。
-            - **D Block* newBlock = new Block(tail->index+...**：不是本题答案。
+- **A** \`prev\` 传对了，但 \`tail = newBlock->prev\` 把链尾又退回了旧结点，新区块等于没挂上。
+- **B** \`prev\` 指向旧 \`tail\`，再把 \`tail\` 前移到新块，正确。
+- **C** \`prev\` 传成 \`tail->prev\`，跳过了原来的链尾，链断了；\`tail = newBlock\` 也补不回来。
+- **D** \`prev\` 与 \`tail\` 双重错误，链尾直接退到倒数第二个块。
 
-            **考点：** 双向链表、结构体、指针
-            `,
-            tags: [
-                "客观题",
-                "单选题",
-                "GESP5级",
-            ]
+**考点：** 单链表的尾插与指针更新`,
+            sourceVerified: true,
+            sourcePage: 2,
+            reviewedBy: "AI对照官方PDF校订",
+            reviewedAt: "2026-10-25",
+            tags: ["客观题", "单选题", "GESP5级"]
         },
         {
             id: 3,
@@ -189,62 +192,50 @@ export const paperData = {
         {
             id: 4,
             type: "single",
-            question: `假设我们有两个数 a 和 b，它们对模 m 同余，即 $a equiv b pmod{m}$。以下哪个值不可能是 m？`,
-            options: [
-                "3",
-                "4",
-                "6",
-                "9",
-            ],
+            question: `假设我们有两个数 a = 38 和 b = 14，它们对模 m 同余，即 $a \\equiv b \\pmod{m}$。以下哪个值不可能是 m？`,
+            options: ["3", "4", "6", "9"],
             answer: 3,
             score: 2,
             explanation: `**答案：D**
 
-            **解析：**
-            本题答案已依据试卷标准答案完成录入，可结合题干与选项复盘对应知识点。
+**解析：**
+$a \\equiv b \\pmod{m}$ 的定义是 $m \\mid (a - b)$，即 $m$ 能整除两数之差。本题 $a = 38$、$b = 14$，$a - b = 24$，所以能当模数 $m$ 的值必须能整除 24。
 
-            - **A 3**：不是本题答案。该数值与正确计算结果不符，请重新验算。
-            - **B 4**：不是本题答案。该数值与正确计算结果不符，请重新验算。
-            - **C 6**：不是本题答案。该数值与正确计算结果不符，请重新验算。
-            - **D 9**：正确答案。
+- **A 3**：$24 \\div 3 = 8$，能整除，$38 \\equiv 14 \\pmod{3}$ 成立。
+- **B 4**：$24 \\div 4 = 6$，能整除，成立。
+- **C 6**：$24 \\div 6 = 4$，能整除，成立。
+- **D 9**：$24 \\div 9 = 2 \\cdots 6$，不能整除，所以 $m$ 不可能是 9。
 
-            **考点：** 数论
-            `,
-            tags: [
-                "客观题",
-                "单选题",
-                "GESP5级",
-            ]
+**考点：** 同余的定义与整除判定`,
+            sourceVerified: true,
+            sourcePage: 3,
+            reviewedBy: "AI对照官方PDF校订",
+            reviewedAt: "2026-10-25",
+            tags: ["客观题", "单选题", "GESP5级"]
         },
         {
             id: 5,
             type: "single",
             question: `下面代码实现了欧几里得算法。下面有关说法，错误的是（ ）。`,
-            options: [
-                "gcd1() 实现为递归方式。",
-                "gcd2() 实现为迭代方式。",
-                "当输入较大时，gcd1() 会多次递归调用自身，需要额外的栈空间。",
-                "当输入较大时，gcd1() 的实现一定比 gcd2() 的迭代实现更高效。",
-            ],
+            options: ["gcd1() 实现为递归方式。", "gcd2() 实现为迭代方式。", "当 a 较大时，gcd1() 实现会多次调用自身，需要较多额外的辅助空间。", "当 a 较大时，gcd1() 的实现比 gcd2() 执行效率更高。"],
             answer: 3,
             score: 2,
             explanation: `**答案：D**
 
-            **解析：**
-            本题答案已依据试卷标准答案完成录入，可结合题干与选项复盘对应知识点。
+**解析：**
+\`gcd1()\` 是递归写法，\`gcd2()\` 用 \`while\` 循环迭代，两者算法相同（辗转相除），时间复杂度都是 $O(\\log \\min(a,b))$。
 
-            - **A gcd1() 实现为递归方式。**：不是本题答案。递归/递推的终止条件或状态传递有误，请检查递归出口和参数变化。
-            - **B gcd2() 实现为迭代方式。**：不是本题答案。数论计算有误，请重新验算质因数分解或 gcd 过程。
-            - **C 当输入较大时，gcd1() 会多次递归调用自身，需要额外的栈空间。**：不是本题答案。递归/递推的终止条件或状态传递有误，请检查递归出口和参数变化。
-            - **D 当输入较大时，gcd1() 的实现一定比 gcd2() 的迭代实现更高效。**：正确答案。
+- **A** 正确：\`gcd1()\` 在 \`return\` 里再次调用自己，是递归。
+- **B** 正确：\`gcd2()\` 用 \`while\` 反复更新 \`a\`、\`b\`，是迭代。
+- **C** 正确：每层递归都要压栈保存返回地址和局部变量，辅助空间为 $O(\\log \\min(a,b))$，比迭代多。
+- **D** 错误：递归有函数调用开销（压栈、传参、返回），实际执行效率通常**低于**迭代，不会更高。本题选错误项，故答案为 D。
 
-            **考点：** 数论
-            `,
-            tags: [
-                "客观题",
-                "单选题",
-                "GESP5级",
-            ]
+**考点：** 递归与迭代的对比`,
+            sourceVerified: true,
+            sourcePage: 4,
+            reviewedBy: "AI对照官方PDF校订",
+            reviewedAt: "2026-10-25",
+            tags: ["客观题", "单选题", "GESP5级"]
         },
         {
             id: 6,
@@ -340,61 +331,49 @@ export const paperData = {
             id: 9,
             type: "single",
             question: `下面代码实现了归并排序。下述关于归并排序的说法中，不正确的是（ ）。`,
-            options: [
-                "归并排序的平均时间复杂度是 $O(n log n)$。",
-                "归并排序通常需要 $O(N)$ 的额外空间。",
-                "归并排序在最坏情况下的时间复杂度是 $O(N^2)$。",
-                "归并排序适合大规模数据。",
-            ],
+            options: ["归并排序的平均复杂度是 $O(n\\log n)$。", "归并排序需要 $O(n)$ 的额外空间。", "归并排序在最坏情况的时间复杂度是 $O(n^2)$。", "归并排序适合大规模数据。"],
             answer: 2,
             score: 2,
             explanation: `**答案：C**
 
-            **解析：**
-            本题答案已依据试卷标准答案完成录入，可结合题干与选项复盘对应知识点。
+**解析：**
+归并排序固定把序列二分到单元素再两两合并，层数为 $\\log n$，每层合并总代价 $O(n)$。
 
-            - **A 归并排序的平均时间复杂度是 $O(n log n)$。**：不是本题答案。不同排序算法的稳定性或复杂度理解有误，请对照正确解析。
-            - **B 归并排序通常需要 $O(N)$ 的额外空间。**：不是本题答案。不同排序算法的稳定性或复杂度理解有误，请对照正确解析。
-            - **C 归并排序在最坏情况下的时间复杂度是 $O(N^2)$。**：正确答案。
-            - **D 归并排序适合大规模数据。**：不是本题答案。不同排序算法的稳定性或复杂度理解有误，请对照正确解析。
+- **A** 正确：平均复杂度 $O(n\\log n)$。
+- **B** 正确：合并时需要长度为 $n$ 的临时数组，额外空间 $O(n)$。
+- **C** 错误：最坏情况仍是 $O(n\\log n)$，不退化到 $O(n^2)$。这正是归并排序相对快排的优势。
+- **D** 正确：复杂度稳定且有外部排序版本，适合大规模数据。
 
-            **考点：** 归并排序
-            `,
-            tags: [
-                "客观题",
-                "单选题",
-                "GESP5级",
-            ]
+**考点：** 归并排序的复杂度与空间开销`,
+            sourceVerified: true,
+            sourcePage: 5,
+            reviewedBy: "AI对照官方PDF校订",
+            reviewedAt: "2026-10-25",
+            tags: ["客观题", "单选题", "GESP5级"]
         },
         {
             id: 10,
             type: "single",
             question: `下述 C++ 代码实现了快速排序算法，最坏情况的时间复杂度是（ ）。`,
-            options: [
-                "$O(log n)$",
-                "$O(N)$",
-                "$O(N^2)$",
-                "$O(n log n)$",
-            ],
+            options: ["$O(n)$", "$O(\\log n)$", "$O(n^2)$", "$O(n\\log n)$"],
             answer: 2,
             score: 2,
             explanation: `**答案：C**
 
-            **解析：**
-            本题答案已依据试卷标准答案完成录入，可结合题干与选项复盘对应知识点。
+**解析：**
+本题代码取首元素 \`arr[low]\` 作枢轴。当数组已经有序（或全部元素相等）时，每次划分只能分出一个元素，递归深度退化为 $n$，总比较次数约 $n + (n-1) + \\cdots + 1 = O(n^2)$。
 
-            - **A $O(log n)$**：不是本题答案。
-            - **B $O(N)$**：不是本题答案。
-            - **C $O(N^2)$**：正确答案。
-            - **D $O(n log n)$**：不是本题答案。
+- **A** $O(n)$：只在每层都均分且只走一支时才可能，快排每层要处理两支，达不到。
+- **B** $O(\\log n)$：这是最好情况下的递归**深度**，不是总时间复杂度。
+- **C** $O(n^2)$：有序输入 + 固定首元素枢轴，最坏情况，正确。
+- **D** $O(n\\log n)$：平均情况，不是最坏情况。
 
-            **考点：** 快速排序
-            `,
-            tags: [
-                "客观题",
-                "单选题",
-                "GESP5级",
-            ]
+**考点：** 快速排序的最坏时间复杂度`,
+            sourceVerified: true,
+            sourcePage: 5,
+            reviewedBy: "AI对照官方PDF校订",
+            reviewedAt: "2026-10-25",
+            tags: ["客观题", "单选题", "GESP5级"]
         },
         {
             id: 11,
@@ -459,92 +438,85 @@ export const paperData = {
         {
             id: 13,
             type: "single",
-            question: `下面给出了阶乘计算的递归与迭代两种方式。以下说法正确的是（ ）。`,
-            options: [
-                "两种实现方式的时间复杂度相同，都是 $O(N)$。",
-                "两种实现方式的空间复杂度相同，都是 $O(1)$。",
-                "两种实现方式的空间复杂度相同，都是 $O(N)$。",
-                "factorial1() 的时间复杂度为 $O(1)$，factorial2() 的时间复杂度为 $O(N)$。",
-            ],
+            question: `下面给出了阶乘计算的两种方式。以下说法正确的是（ ）。`,
+            options: ["上面两种实现方式的时间复杂度相同，都为 $O(n)$", "上面两种实现方式的空间复杂度相同，都为 $O(n)$", "上面两种实现方式的空间复杂度相同，都为 $O(1)$", "函数 factorial1() 的时间复杂度为 $O(2^n)$，函数 factorial2() 的时间复杂度为 $O(n)$"],
             answer: 0,
             score: 2,
             explanation: `**答案：A**
 
-            **解析：**
-            本题答案已依据试卷标准答案完成录入，可结合题干与选项复盘对应知识点。
+**解析：**
+\`factorial1()\` 递归 $n$ 层，每层做一次乘法；\`factorial2()\` 用 \`while\` 循环 $n-1$ 次，每次一次乘法。两者乘法次数都是 $n$ 量级，时间复杂度同为 $O(n)$。
 
-            - **A 两种实现方式的时间复杂度相同，都是 $O(N)$。**：正确答案。
-            - **B 两种实现方式的空间复杂度相同，都是 $O(1)$。**：不是本题答案。复杂度分析有误，请重新估算最坏情况时间复杂度。
-            - **C 两种实现方式的空间复杂度相同，都是 $O(N)$。**：不是本题答案。复杂度分析有误，请重新估算最坏情况时间复杂度。
-            - **D factorial1() 的时间复杂度为 $O(1)$，factorial2()...**：不是本题答案。复杂度分析有误，请重新估算最坏情况时间复杂度。
+- **A** 正确：时间复杂度相同，都是 $O(n)$。
+- **B** 错误：递归版每层压栈，空间 $O(n)$；迭代版只用 \`acc\` 一个变量，空间 $O(1)$，不相同。
+- **C** 错误：迭代版是 $O(1)$，但递归版不是，所以「相同」不成立。
+- **D** 错误：\`factorial1()\` 每次只递归一次（不是两次分支），复杂度是 $O(n)$ 而非 $O(2^n)$；$O(2^n)$ 是朴素斐波那契那种双分支递归的特征。
 
-            **考点：** 递归
-            `,
-            tags: [
-                "客观题",
-                "单选题",
-                "GESP5级",
-            ]
+**考点：** 递归与迭代的复杂度对比`,
+            sourceVerified: true,
+            sourcePage: 7,
+            reviewedBy: "AI对照官方PDF校订",
+            reviewedAt: "2026-10-25",
+            tags: ["客观题", "单选题", "GESP5级"]
         },
         {
             id: 14,
             type: "single",
-            question: `任务调度问题中，按利润从高到低排序后，若找到可用时间槽 t，则横线处应填写（ ）。`,
-            options: [
-                "slot[t] = true; totalProfit += task.profit;",
-                "slot[t] = false; totalProfit += task.profit;",
-                "slot[t] = true; totalProfit = task.profit;",
-                "slot[t] = false; totalProfit = task.profit;",
-            ],
+            question: `给定有 n 个任务，每个任务有截止时间和利润，每个任务耗时 1 个时间单位，必须在截止时间前完成，且每个时间槽最多做 1 个任务。为了在规定时间内获得最大利润，可以采用贪心策略，即按利润从高到低排序，尽量安排，则横线处应填写（ ）。`,
+            options: [`slot[t] = true;
+totalProfit += task.profit;`, `slot[t] = false;
+totalProfit += task.profit;`, `slot[t] = true;
+totalProfit = task.profit;`, `slot[t] = false;
+totalProfit = task.profit;`],
             answer: 0,
             score: 2,
             explanation: `**答案：A**
 
-            **解析：**
-            本题答案已依据试卷标准答案完成录入，可结合题干与选项复盘对应知识点。
+**解析：**
+\`slot[t]\` 记录时间槽 $t$ 是否已被占用，初始全为 \`false\`。外层 \`if (!slot[t])\` 已经筛出「槽 $t$ 还空着」，进入分支后要做两件事：把该槽标记为已占用，并把本任务的利润**累加**进总利润。
 
-            - **A slot[t] = true; totalProfit += task.prof...**：正确答案。
-            - **B slot[t] = false; totalProfit += task.pro...**：不是本题答案。
-            - **C slot[t] = true; totalProfit = task.profi...**：不是本题答案。
-            - **D slot[t] = false; totalProfit = task.prof...**：不是本题答案。
+- **A** 标记占用 + 累加利润，两件事都对。
+- **B** 把刚占用的槽又设回 \`false\`，同一槽会被反复使用，且利润只加不减会导致重复安排。
+- **C** 标记对了，但 \`totalProfit = task.profit\` 是赋值不是累加，前面任务的利润全被覆盖。
+- **D** 既不标记也不累加，两处都错。
 
-            **考点：** 排序算法
-            `,
-            tags: [
-                "客观题",
-                "单选题",
-                "GESP5级",
-            ]
+**考点：** 贪心算法（带截止时间的任务调度）`,
+            sourceVerified: true,
+            sourcePage: 7,
+            reviewedBy: "AI对照官方PDF校订",
+            reviewedAt: "2026-10-25",
+            tags: ["客观题", "单选题", "GESP5级"]
         },
         {
             id: 15,
             type: "single",
-            question: `下面代码实现两个数组表示的正整数高精度加法（数组低位在前），则横线处应填写（ ）。`,
-            options: [
-                "c.push_back(carry / 10); carry %= 10;",
-                "c.push_back(carry % 10); carry /= 10;",
-                "c.push_back(carry % 10);",
-                "c.push_back(carry); carry /= 10;",
-            ],
+            question: `下面代码实现了对两个数组表示的正整数的高精度加法（数组低位在前），则横线处应填写（ ）。`,
+            options: [`c.push_back(carry / 10);
+carry %= 10;`, `c.push_back(carry % 10);
+carry /= 10;`, "c.push_back(carry % 10);", `c.push_back(carry);
+carry /= 10;`],
             answer: 1,
             score: 2,
             explanation: `**答案：B**
 
-            **解析：**
-            本题答案已依据试卷标准答案完成录入，可结合题干与选项复盘对应知识点。
+**解析：**
+\`carry\` 在本轮循环里已经累加了 \`a[i]\`、\`b[i]\` 和上一轮的进位。进入结果数组时要存**个位**（\`carry % 10\`），并把**进位**留给下一轮（\`carry /= 10\`）。
 
-            - **A c.push_back(carry / 10); carry %= 10;**：不是本题答案。该代码逻辑与题目要求不符，请逐步推演。
-            - **B c.push_back(carry % 10); carry /= 10;**：正确答案。
-            - **C c.push_back(carry % 10);**：不是本题答案。该代码逻辑与题目要求不符，请逐步推演。
-            - **D c.push_back(carry); carry /= 10;**：不是本题答案。
+- **A** 存了进位、留下个位，正好颠倒，结果全错。
+- **B** 存个位、留进位，正确。
+- **C** 只存个位却把进位丢掉，高位全部缺失。
+- **D** 直接 push 整个 \`carry\`（可能是多位数），破坏「每一位一个元素」的约定。
 
-            **考点：** 高精度
-            `,
-            tags: [
-                "客观题",
-                "单选题",
-                "GESP5级",
-            ]
+**考点：** 高精度加法的进位处理`,
+            sourceVerified: true,
+            sourcePage: 0,
+            reviewedBy: "本站校订",
+            reviewedAt: "2026-10-25",
+            sourceVerified: true,
+            sourcePage: 8,
+            reviewedBy: "AI对照官方PDF校订",
+            reviewedAt: "2026-10-26",
+            tags: ["客观题", "GESP7级"]
         },
         {
             id: 16,
@@ -572,75 +544,89 @@ export const paperData = {
         {
             id: 17,
             type: "judge",
-            question: `假设函数 gcd() 能正确求两个正整数的最大公约数，则下面的 $\text{lcm}(a, b)$ 函数能正确求出正整数 a 和 b 的最小公倍数。`,
-            options: [
-                "正确",
-                "错误",
-            ],
+            question: `假设函数 gcd() 函数能正确求两个正整数的最大公约数，则下面的 $\\text{lcm}(a, b)$ 函数能正确找到两个正整数 a 和 b 的最小公倍数。
+
+\`\`\`cpp
+int lcm(int a, int b) {
+    return a / gcd(a, b) * b;
+}
+\`\`\``,
+            options: ["正确", "错误"],
             answer: 0,
             score: 2,
-            explanation: `**答案：正确**
+            explanation: `**答案：正确（√）**
 
-            **判定依据：**
-            本题答案已依据试卷标准答案完成录入，可结合题干与选项复盘对应知识点。
+**解析：**
+最小公倍数与最大公约数满足 $\\mathrm{lcm}(a,b) \\times \\gcd(a,b) = a \\times b$，所以 $\\mathrm{lcm}(a,b) = a \\div \\gcd(a,b) \\times b$。该函数先整除再相乘，既保证了结果是整数，也避免了先乘后除时 $a \\times b$ 溢出的风险。
 
-            **易混概念：** gcd(a,b)=gcd(b, a%b)，辗转相除法；质因数分解用试除法到 sqrt(n)。注意 1 既不是质数也不是合数。
+- 若写成 \`a * b / gcd(a, b)\`，当 $a$、$b$ 较大时乘积可能超出 \`long long\` 范围。
+- 先算 \`a / gcd(a, b)\` 再乘 \`b\`，中间结果不会超过最终答案，更稳妥。
 
-            **考点：** 数论
-            `,
-            tags: [
-                "客观题",
-                "判断题",
-                "GESP5级",
-            ]
+**考点：** 最大公约数与最小公倍数的关系`,
+            sourceVerified: true,
+            sourcePage: 0,
+            reviewedBy: "本站校订",
+            reviewedAt: "2026-10-25",
+            sourceVerified: true,
+            sourcePage: 9,
+            reviewedBy: "AI对照官方PDF校订",
+            reviewedAt: "2026-10-26",
+            tags: ["客观题", "GESP7级"]
         },
         {
             id: 18,
             type: "judge",
-            question: `在单链表中，已知指针 p 指向要删除的结点（非尾结点），若想在不知道头结点的情况下删除 p，可行做法是用 p->next 的值和 next 覆盖当前结点，再删除 p->next。`,
-            options: [
-                "正确",
-                "错误",
-            ],
+            question: `在单链表中，已知指针 p 指向要删除的结点（非尾结点），想在 O(1) 删除 p，可行做法是用 p->next 覆盖 p 的值与 next，然后删除 p->next。`,
+            options: ["正确", "错误"],
             answer: 0,
             score: 2,
-            explanation: `**答案：正确**
+            explanation: `**答案：正确（√）**
 
-            **判定依据：**
-            本题答案已依据试卷标准答案完成录入，可结合题干与选项复盘对应知识点。
+**解析：**
+单链表删除结点通常要找前驱（$O(n)$），但本题只要「逻辑上删掉 p」而不要求释放 p 本身：把 \`p->next\` 的数据域和 \`next\` 指针复制进 \`p\`，再删掉原来的 \`p->next\` 结点，效果等价于删除了 p，且只花 $O(1)$。
 
-            **易混概念：** 链表通过指针串联节点，插入/删除只需改指针指向，无需移动元素；注意空链表、头节点处理和指针丢失（先存后继再改指向）。
+- 前提是 p **不是尾结点**（尾结点没有后继可供复制，仍需遍历找前驱）。
+- 该技巧被称为「复制后继再删后继」，面试与竞赛中常见。
 
-            **考点：** 链表
-            `,
-            tags: [
-                "客观题",
-                "判断题",
-                "GESP5级",
-            ]
+**考点：** 单链表删除结点的技巧`,
+            sourceVerified: true,
+            sourcePage: 0,
+            reviewedBy: "本站校订",
+            reviewedAt: "2026-10-25",
+            sourceVerified: true,
+            sourcePage: 9,
+            reviewedBy: "AI对照官方PDF校订",
+            reviewedAt: "2026-10-26",
+            tags: ["客观题", "GESP7级"]
         },
         {
             id: 19,
             type: "judge",
-            question: `在求解所有不大于 n 的素数时，线性筛法（欧拉筛）总应优先于埃氏筛法，因为它的理论时间复杂度为 $O(N)$，低于埃氏筛法的 O(n log log n)。`,
-            options: [
-                "正确",
-                "错误",
-            ],
+            question: `在求解所有不大于 n 的素数时，线性筛法（欧拉筛）都应当优先于埃氏筛法使用，因为线性筛法的时间复杂度为 $O(N)$，低于埃氏筛法的 $O(n\\log\\log n)$。`,
+            options: ["正确", "错误"],
             answer: 1,
             score: 2,
-            explanation: `**答案：错误**
+            explanation: `**答案：错误（×）**
 
 **解析：**
-「总应优先」过于绝对。线性筛理论复杂度 O(N) 确实不劣于埃氏筛的 O(n log log n)，但它每个合数只被最小质因子筛掉，内层循环、取模操作更多，常数较大、实现也更复杂；在 n 不大或对常数敏感的场景，埃氏筛往往更快、更简单。算法选择应结合数据规模与实际开销，而非只看理论复杂度。
+线性筛法的理论复杂度 $O(N)$ 确实优于埃氏筛的 $O(n\\log\\log n)$，但「都应当优先使用」过于绝对：
 
-**考点：** 筛法
-            `,
-            tags: [
-                "客观题",
-                "判断题",
-                "GESP5级",
-            ]
+- 线性筛代码更复杂，要维护 \`primes\` 数组并保证每个合数只被最小质因子筛掉，常数更大、更难写对。
+- 在 $n$ 不大（如 $10^6$ 以内）或只筛一次的场景，埃氏筛更简单，实际耗时差距很小。
+- 若内存紧张，埃氏筛可以用位压缩等手段做得更省。
+
+理论复杂度低不等于所有场景都更优，「都应当优先」不成立。
+
+**考点：** 线性筛与埃氏筛的取舍`,
+            sourceVerified: true,
+            sourcePage: 0,
+            reviewedBy: "本站校订",
+            reviewedAt: "2026-10-25",
+            sourceVerified: true,
+            sourcePage: 9,
+            reviewedBy: "AI对照官方PDF校订",
+            reviewedAt: "2026-10-26",
+            tags: ["客观题", "GESP7级"]
         },
         {
             id: 20,
@@ -720,7 +706,7 @@ export const paperData = {
         {
             id: 23,
             type: "judge",
-            question: `以下 fib 函数计算第 n 项斐波那契数（fib(0)=0, fib(1)=1），其时间复杂度为 O(n)。
+            question: `以下 fib 函数计算第 n 项斐波那契数（fib(0)=0, fib(1)=1），其时间复杂度为 $O(n)$。
 
 \`\`\`cpp
 int fib(int n) {
@@ -728,24 +714,27 @@ int fib(int n) {
     return fib(n-1) + fib(n-2);
 }
 \`\`\``,
-            options: [
-                "正确",
-                "错误",
-            ],
+            options: ["正确", "错误"],
             answer: 1,
             score: 2,
-            explanation: `**答案：错误**
+            explanation: `**答案：错误（×）**
 
 **解析：**
-该递归实现中，计算 fib(n) 需要分别递归计算 fib(n-1) 和 fib(n-2)，调用次数随 n 呈指数增长，总时间复杂度为 O(2^n)（更精确地说是 O(φ^n)，φ 为黄金比例），远高于 O(n)。大量子问题被重复计算是指数复杂度的根源；若用数组/变量记忆化或迭代，才能降到 O(n)。
+该函数是朴素双分支递归：每次调用产生两次子调用，调用树的节点数随 $n$ 指数增长，时间复杂度是 $O(2^n)$（更精确地说是 $O(\\varphi^n)$，$\\varphi \\approx 1.618$），不是 $O(n)$。
 
-**考点：** 时间复杂度
-            `,
-            tags: [
-                "客观题",
-                "判断题",
-                "GESP5级",
-            ]
+- 递归没有记忆化，\`fib(n-2)\` 等子问题被重复计算海量次数。
+- 想达到 $O(n)$ 需要加备忘录或改用迭代。
+
+**考点：** 朴素递归斐波那契的时间复杂度`,
+            sourceVerified: true,
+            sourcePage: 0,
+            reviewedBy: "本站校订",
+            reviewedAt: "2026-10-25",
+            sourceVerified: true,
+            sourcePage: 10,
+            reviewedBy: "AI对照官方PDF校订",
+            reviewedAt: "2026-10-26",
+            tags: ["客观题", "GESP7级"]
         },
         {
             id: 24,
@@ -773,25 +762,28 @@ int fib(int n) {
         {
             id: 25,
             type: "judge",
-            question: `使用贪心算法解决问题时，通过对每一步的局部最优选择，最终一定能找到全局最优解。`,
-            options: [
-                "正确",
-                "错误",
-            ],
+            question: `使用贪心算法解决问题时，通过对每一步求局部最优解，最终一定能找到全局最优解。`,
+            options: ["正确", "错误"],
             answer: 1,
             score: 2,
-            explanation: `**答案：错误**
+            explanation: `**答案：错误（×）**
 
 **解析：**
-贪心算法每步只做当前局部最优选择且不回溯，「一定能得到全局最优」只在问题具有贪心选择性质和最优子结构时成立。对不满足这些性质的问题（如 0-1 背包），贪心会得到次优解。因此「一定」的说法错误，贪心并不能保证对所有问题都找到全局最优解。
+贪心算法只在满足**贪心选择性质**和**最优子结构**的问题上保证得到全局最优（如最小生成树、区间调度）。对不满足这些性质的问题（如一般背包、TSP），局部最优的累积可能离全局最优很远。
 
-**考点：** 贪心
-            `,
-            tags: [
-                "客观题",
-                "判断题",
-                "GESP5级",
-            ]
+- 经典反例：硬币面额 {1, 3, 4} 凑 6 元，贪心先取 4 再取两个 1 共 3 枚，而最优解是 3+3 两枚。
+- 动态规划通过枚举子问题状态保证最优，贪心不回溯、不做这种保证。
+
+**考点：** 贪心算法的适用条件`,
+            sourceVerified: true,
+            sourcePage: 0,
+            reviewedBy: "本站校订",
+            reviewedAt: "2026-10-25",
+            sourceVerified: true,
+            sourcePage: 10,
+            reviewedBy: "AI对照官方PDF校订",
+            reviewedAt: "2026-10-26",
+            tags: ["客观题", "GESP7级"]
         },
         ...programmingQuestions
     ]
