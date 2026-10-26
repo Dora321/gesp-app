@@ -42,7 +42,7 @@ try {
   const download = await downloadEvent;
   assert.equal(download.suggestedFilename(), 'cpp-1-4-task.md');
   const task = readFileSync(await download.path(), 'utf8');
-  assert.ok(task.includes('125') && task.includes('2 5') && !task.includes('#include'));
+  assert.ok(task.includes('80 81') && task.includes('80.5') && !task.includes('#include'));
   await card.getByText('完成尝试后对照：参考实现（C++11）', { exact: true }).click();
   assert.ok(await card.locator('details[open] pre').isVisible());
   mkdirSync('scratch/cpp-practice-qa', { recursive: true });
