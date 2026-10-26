@@ -7,7 +7,7 @@ import { CodeTracer } from '../CppLessonShell';
 // while (1) 追踪（InfiniteBreakTracer）和混合追踪表（LogicTable）改写而来；嵌套循环演示不再使用。
 
 const OutputPanel = ({ children }) => (
-  <pre className="overflow-x-auto rounded-xl bg-slate-900 p-5 font-mono text-sm leading-relaxed text-green-400 shadow-inner"><code>{children}</code></pre>
+  <pre tabIndex={0} className="overflow-x-auto rounded-xl bg-slate-900 p-5 font-mono text-sm leading-relaxed text-green-400 shadow-inner"><code>{children}</code></pre>
 );
 
 const parseIntInRange = (raw, min, max) => {
@@ -180,7 +180,7 @@ export const FirstMultipleLab = () => {
         <label className="flex items-center gap-2">n = <input aria-label="起点 n" type="text" inputMode="numeric" value={nRaw} onChange={(e) => setNRaw(e.target.value)} className={inputClass} /></label>
         <label className="flex items-center gap-2">k = <input aria-label="倍数 k" type="text" inputMode="numeric" value={kRaw} onChange={(e) => setKRaw(e.target.value)} className={inputClass} /></label>
       </div>
-      <pre className="mb-4 overflow-x-auto rounded-lg border border-indigo-100 bg-white p-4 font-mono text-sm text-slate-800"><code>{`for (int d = n; ; d++) {
+      <pre tabIndex={0} className="mb-4 overflow-x-auto rounded-lg border border-indigo-100 bg-white p-4 font-mono text-sm text-slate-800"><code>{`for (int d = n; ; d++) {
     if (d % k == 0) {
         ans = d;
         break;   // 找到第一个就停

@@ -4,7 +4,7 @@ import { ArrowRight, RotateCw } from 'lucide-react';
 // 第 10 课的互动实验。课页 Lesson10.jsx 只负责编排，实验组件放在这里。
 
 const OutputPanel = ({ children }) => (
-  <pre className="overflow-x-auto rounded-xl bg-slate-900 p-5 font-mono text-sm leading-relaxed text-green-400 shadow-inner"><code>{children}</code></pre>
+  <pre tabIndex={0} className="overflow-x-auto rounded-xl bg-slate-900 p-5 font-mono text-sm leading-relaxed text-green-400 shadow-inner"><code>{children}</code></pre>
 );
 
 // for (int i = 1; i <= 3; i++) 的逐步执行：初始化只做一次，之后“判断 → 循环体 → 更新”反复。

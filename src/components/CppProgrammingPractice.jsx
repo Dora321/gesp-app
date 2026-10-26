@@ -65,8 +65,8 @@ function PracticeCard({ exercise }) {
           <div key={index} className="rounded-lg border border-slate-200 p-3">
             <h3 className="mb-2 text-sm font-bold">样例 {index + 1}</h3>
             <div className="grid min-w-0 gap-3 sm:grid-cols-2">
-              <div className="min-w-0"><p className="mb-1 text-xs text-slate-500">输入</p><pre className="overflow-x-auto rounded bg-slate-50 p-3 text-sm"><code>{sample.input || '（无输入）'}</code></pre></div>
-              <div className="min-w-0"><p className="mb-1 text-xs text-slate-500">输出</p><pre className="overflow-x-auto rounded bg-slate-50 p-3 text-sm"><code>{sample.output}</code></pre></div>
+              <div className="min-w-0"><p className="mb-1 text-xs text-slate-500">输入</p><pre tabIndex={0} className="overflow-x-auto rounded bg-slate-50 p-3 text-sm"><code>{sample.input || '（无输入）'}</code></pre></div>
+              <div className="min-w-0"><p className="mb-1 text-xs text-slate-500">输出</p><pre tabIndex={0} className="overflow-x-auto rounded bg-slate-50 p-3 text-sm"><code>{sample.output}</code></pre></div>
             </div>
           </div>
         ))}
@@ -87,7 +87,7 @@ function PracticeCard({ exercise }) {
       <details className="mt-4 rounded-lg border border-slate-200 p-3">
         <summary className="cursor-pointer py-1 font-bold">完成尝试后对照：参考实现（C++11）</summary>
         <p className="mt-2 text-sm text-slate-600">先保留自己的代码，比较思路与边界处理；能够重新独立写出才算掌握。</p>
-        <pre className="mt-3 max-h-96 overflow-auto rounded-lg bg-slate-900 p-4 text-xs leading-relaxed text-slate-100"><code>{exercise.referenceCode}</code></pre>
+        <pre tabIndex={0} className="mt-3 max-h-96 overflow-auto rounded-lg bg-slate-900 p-4 text-xs leading-relaxed text-slate-100"><code>{exercise.referenceCode}</code></pre>
       </details>
       <div className="mt-5 rounded-lg border border-indigo-100 bg-indigo-50 p-4">
         <h3 className="font-bold text-indigo-900">学完后迁移到 GESP 真题</h3>

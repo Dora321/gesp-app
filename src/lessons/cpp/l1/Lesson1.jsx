@@ -443,11 +443,11 @@ const FirstProgramSlide = () => (
           <div className="h-3 w-3 rounded-full bg-green-500"></div>
           <span className="ml-2 font-sans text-xs text-slate-400">源文件 hello.cpp</span>
         </div>
-        <pre className="overflow-x-auto p-6 font-mono text-sm leading-relaxed text-slate-100 md:text-base"><code>{helloProgram}</code></pre>
+        <pre tabIndex={0} className="overflow-x-auto p-6 font-mono text-sm leading-relaxed text-slate-100 md:text-base"><code>{helloProgram}</code></pre>
       </div>
       <div className="min-w-0 rounded-2xl border border-slate-100 bg-white p-6 shadow-lg">
         <p className="mb-3 text-sm font-bold text-slate-600">运行结果</p>
-        <pre className="overflow-x-auto rounded-xl bg-slate-900 p-5 font-mono text-lg text-green-400 shadow-inner"><code>Hello, GESP!</code></pre>
+        <pre tabIndex={0} className="overflow-x-auto rounded-xl bg-slate-900 p-5 font-mono text-lg text-green-400 shadow-inner"><code>Hello, GESP!</code></pre>
         <ul className="mt-5 space-y-3 text-sm text-slate-700">
           <li className="rounded-lg border border-slate-100 bg-slate-50 p-3"><code>endl</code> 表示换行；也可以把换行写进字符串：<code>cout &lt;&lt; "Hello, GESP!\n";</code></li>
           <li className="rounded-lg border border-slate-100 bg-slate-50 p-3">要输出两行，就写两条输出语句，或在中间换行。</li>
@@ -696,12 +696,12 @@ const MathSlide = () => (
       <div className="grid gap-6 md:grid-cols-2">
         <div className="min-w-0 rounded-xl border border-slate-200 bg-slate-50 p-5 text-center">
           <p className="mb-3 text-sm font-bold text-slate-600">带双引号：原样输出文字</p>
-          <pre className="overflow-x-auto rounded-xl bg-slate-900 p-4 font-mono text-base text-green-400 shadow-inner md:text-lg"><code>{'cout << "12 - 3 * 2";'}</code></pre>
+          <pre tabIndex={0} className="overflow-x-auto rounded-xl bg-slate-900 p-4 font-mono text-base text-green-400 shadow-inner md:text-lg"><code>{'cout << "12 - 3 * 2";'}</code></pre>
           <p className="mt-4 text-sm text-slate-700">输出：<code className="rounded-lg border border-slate-200 bg-white px-3 py-1 text-xl font-bold text-slate-800">12 - 3 * 2</code></p>
         </div>
         <div className="min-w-0 rounded-xl border border-green-200 bg-green-50 p-5 text-center">
           <p className="mb-3 text-sm font-bold text-green-800">不带双引号：先计算，再输出结果</p>
-          <pre className="overflow-x-auto rounded-xl bg-slate-900 p-4 font-mono text-base text-green-400 shadow-inner md:text-lg"><code>{'cout << 12 - 3 * 2;'}</code></pre>
+          <pre tabIndex={0} className="overflow-x-auto rounded-xl bg-slate-900 p-4 font-mono text-base text-green-400 shadow-inner md:text-lg"><code>{'cout << 12 - 3 * 2;'}</code></pre>
           <p className="mt-4 text-sm text-slate-700">输出：<code className="rounded-lg border border-green-200 bg-white px-3 py-1 text-xl font-bold text-green-700">6</code></p>
         </div>
       </div>
