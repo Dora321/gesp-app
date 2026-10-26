@@ -150,14 +150,18 @@ async function assertNoHorizontalOverflow(page, route, viewportName) {
   }
 }
 
+// C++ L1 progress is stored under a versioned key (src/utils/lessonProgress.js toLessonProgressKey):
+// route /lesson/1/9 -> key /lesson/1/v2/9. Other routes are stored as-is.
+const toProgressKey = (route) => route.replace(/^\/lesson\/1\/(\d+)$/, '/lesson/1/v2/$1');
+
 async function waitForProgressStatus(page, route, expected, timeoutMs = 10000) {
   const startedAt = Date.now();
 
   while (Date.now() - startedAt < timeoutMs) {
-    const status = await page.evaluate(({ storageKey, lessonRoute }) => {
+    const status = await page.evaluate(({ storageKey, lessonKey }) => {
       const learningData = JSON.parse(localStorage.getItem(storageKey) || '{}');
-      return learningData.lessons?.[lessonRoute]?.status;
-    }, { storageKey: 'gesp_learning_data', lessonRoute: route });
+      return learningData.lessons?.[lessonKey]?.status;
+    }, { storageKey: 'gesp_learning_data', lessonKey: toProgressKey(route) });
 
     if (status === expected) return;
     await wait(100);

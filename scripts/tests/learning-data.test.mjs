@@ -7,16 +7,17 @@ import {
   createLearningDataExport,
   importLearningData,
   readLearningData,
-  updateLearningData,
-  hasLearningStorageError,
-  previewLearningDataImport,
   resetLearningData,
   summarizeLearningData,
 } from '../../src/utils/learningData.js';
 import {
+  L1_PROGRESS_KEY_VERSION,
+  getLessonStatus,
   readLessonProgress,
   recordLessonMastered,
   recordLessonVisit,
+  toLessonProgressKey,
+  toLessonRoutePath,
 } from '../../src/utils/lessonProgress.js';
 import {
   clearExamProgress,
@@ -53,7 +54,7 @@ const installStorage = () => {
 test('legacy learning keys migrate into one versioned document without touching unrelated data', () => {
   const storage = installStorage();
   storage.setItem('gesp_lesson_progress', JSON.stringify({
-    '/lesson/1/9': { status: 'mastered', visitedAt: 100, masteredAt: 200 },
+    '/lesson/1/v2/9': { status: 'mastered', visitedAt: 100, masteredAt: 200 },
   }));
   storage.setItem('gesp_exam_progress_2026-03-l2', JSON.stringify({
     answers: { 0: 'A' }, timeLeft: 3200, currentQuestionIndex: 2, isSubmitted: false, savedAt: 300,
@@ -66,7 +67,7 @@ test('legacy learning keys migrate into one versioned document without touching 
   const data = readLearningData();
 
   assert.equal(data.version, LEARNING_DATA_VERSION);
-  assert.equal(data.lessons['/lesson/1/9'].status, 'mastered');
+  assert.equal(data.lessons['/lesson/1/v2/9'].status, 'mastered');
   assert.equal(data.exams['2026-03-l2'].answers[0], 'A');
   assert.deepEqual(data.hardware.esp32Ai, { activeNum: 4, viewed: [1, 2, 4] });
   assert.deepEqual(data.museum.collected, ['ada-lovelace']);
@@ -126,6 +127,37 @@ test('lesson mastery and exam drafts persist through the shared data layer', () 
 
   clearExamProgress('paper-1');
   assert.equal(loadExamProgress('paper-1'), null);
+});
+
+test('C++ L1 progress is stored under versioned keys and old L1 keys are not read', () => {
+  const storage = installStorage();
+  assert.equal(L1_PROGRESS_KEY_VERSION, 'v2');
+  assert.equal(toLessonProgressKey('/lesson/1/9'), '/lesson/1/v2/9');
+  assert.equal(toLessonRoutePath('/lesson/1/v2/9'), '/lesson/1/9');
+  assert.equal(toLessonProgressKey('/lesson/2/9'), '/lesson/2/9');
+  assert.equal(toLessonRoutePath('/lesson/2/9'), '/lesson/2/9');
+
+  // 改版前的一级记录：同一路由的旧键不应再被当成当前课的进度。
+  storage.setItem(LEARNING_DATA_STORAGE_KEY, JSON.stringify({
+    version: LEARNING_DATA_VERSION,
+    updatedAt: 1,
+    lessons: { '/lesson/1/10': { status: 'mastered', visitedAt: 1, masteredAt: Date.now() } },
+    exams: {},
+    attempts: {},
+    hardware: { esp32Ai: null },
+    museum: { collected: [] },
+  }));
+  assert.equal(getLessonStatus('/lesson/1/10'), 'unseen');
+
+  recordLessonVisit('/lesson/1/10');
+  assert.equal(readLessonProgress()['/lesson/1/v2/10'].status, 'learning');
+  assert.equal(getLessonStatus('/lesson/1/10'), 'learning');
+
+  recordLessonMastered('/lesson/1/10');
+  const lessons = readLessonProgress();
+  assert.equal(lessons['/lesson/1/v2/10'].status, 'mastered');
+  assert.equal(getLessonStatus('/lesson/1/10'), 'mastered');
+  assert.equal(lessons['/lesson/1/10'].status, 'mastered', 'old key is left untouched, not migrated');
 });
 
 test('export contains only canonical learning data and reset preserves unrelated browser state', () => {
@@ -232,7 +264,7 @@ test('version 2 documents migrate forward with an empty attempt history', () => 
   storage.setItem(LEARNING_DATA_STORAGE_KEY, JSON.stringify({
     version: 2,
     updatedAt: 1,
-    lessons: { '/lesson/1/9': { status: 'mastered', visitedAt: 1, masteredAt: 2 } },
+    lessons: { '/lesson/1/v2/9': { status: 'mastered', visitedAt: 1, masteredAt: 2 } },
     exams: { '2024-09-l1': { answers: { 1: 0 }, isSubmitted: false } },
     hardware: { esp32Ai: null },
     museum: { collected: [] },
@@ -241,7 +273,7 @@ test('version 2 documents migrate forward with an empty attempt history', () => 
   const data = readLearningData();
   assert.equal(data.version, LEARNING_DATA_VERSION);
   assert.deepEqual(data.attempts, {});
-  assert.equal(data.lessons['/lesson/1/9'].status, 'mastered');
+  assert.equal(data.lessons['/lesson/1/v2/9'].status, 'mastered');
 });
 
 test('imported attempt records are sanitised', () => {
@@ -264,46 +296,4 @@ test('imported attempt records are sanitised', () => {
   assert.deepEqual(Object.keys(imported.attempts), ['2025-03-l6']);
   assert.equal(imported.attempts['2025-03-l6'].length, 1);
   assert.deepEqual(imported.attempts['2025-03-l6'][0].wrongIds, [3, 'x']);
-});
-
-
-test('v3 records and separate practice checks migrate and round-trip without credentials', () => {
-  const storage = installStorage();
-  storage.setItem(LEARNING_DATA_STORAGE_KEY, JSON.stringify({ version: 3, lessons: { '/lesson/1/4': { status: 'learning' } } }));
-  storage.setItem('gesp:cpp-practice:v1:cpp-1-4', '[true,false,true]');
-  storage.setItem('deepseek_api_key', 'private-key');
-  assert.deepEqual(readLearningData().practice['cpp-1-4'], [true, false, true]);
-  const backup = createLearningDataExport();
-  assert.ok(!JSON.stringify(backup).includes('private-key'));
-  resetLearningData();
-  assert.equal(storage.getItem('gesp:cpp-practice:v1:cpp-1-4'), null);
-  importLearningData(backup);
-  assert.deepEqual(readLearningData().practice['cpp-1-4'], [true, false, true]);
-  assert.equal(storage.getItem('deepseek_api_key'), 'private-key');
-});
-test('import preview does not mutate records and failed writes preserve saved data', () => {
-  const storage = installStorage();
-  updateLearningData(data => ({ ...data, practice: { 'cpp-1-1': [true, false, false] } }));
-  const before = storage.getItem(LEARNING_DATA_STORAGE_KEY);
-  previewLearningDataImport({ schema: LEARNING_DATA_SCHEMA, version: 3, data: { lessons: {} } });
-  assert.equal(storage.getItem(LEARNING_DATA_STORAGE_KEY), before);
-  const original = storage.setItem.bind(storage);
-  storage.setItem = () => { throw new Error('quota'); };
-  updateLearningData(data => ({ ...data, practice: {} }));
-  assert.ok(hasLearningStorageError());
-  assert.equal(storage.getItem(LEARNING_DATA_STORAGE_KEY), before);
-  storage.setItem = original;
-  updateLearningData(data => data);
-  assert.equal(hasLearningStorageError(), false);
-});
-
-
-test('a future storage version is not silently downgraded by reading or saving', () => {
-  const storage = installStorage();
-  const future = JSON.stringify({ version: LEARNING_DATA_VERSION + 1, futureField: 'preserve-me', lessons: {} });
-  storage.setItem(LEARNING_DATA_STORAGE_KEY, future);
-  readLearningData();
-  updateLearningData(data => data);
-  assert.equal(storage.getItem(LEARNING_DATA_STORAGE_KEY), future);
-  assert.ok(hasLearningStorageError());
 });

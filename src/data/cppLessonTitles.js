@@ -4,22 +4,22 @@
 // 30KB 以上的 gzip。课程流文件从这里 import 并 re-export，标题仍是单一来源。
 
 export const cppL1Lessons = [
-  { id: 1, title: '第 1 课：你好，计算机' },
+  { id: 1, title: '第 1 课：计算机与第一个程序' },
   { id: 2, title: '第 2 课：变量与数据' },
-  { id: 3, title: '第 3 课：数字的魔法' },
-  { id: 4, title: '第 4 课：余数的妙用' },
-  { id: 5, title: '第 5 课：字符与真假值（ASCII 预览）' },
-  { id: 6, title: '第 6 课：逻辑运算' },
-  { id: 7, title: '第 7 课：条件判断' },
-  { id: 8, title: '第 8 课：多重选择结构' },
-  { id: 9, title: '第 9 课：for 循环' },
-  { id: 10, title: '第 10 课：while 循环' },
-  { id: 11, title: '第 11 课：循环控制' },
-  { id: 12, title: '第 12 课：多重循环' },
-  { id: 13, title: '第 13 课：数学应用' },
-  { id: 14, title: '第 14 课：模拟与逻辑' },
-  { id: 15, title: '第 15 课：筛选与统计' },
-  { id: 16, title: '第 16 课：考前冲刺' },
+  { id: 3, title: '第 3 课：整除、取余与优先级' },
+  { id: 4, title: '第 4 课：数据类型与类型转换' },
+  { id: 5, title: '第 5 课：赋值与自增自减' },
+  { id: 6, title: '第 6 课：格式化输入输出' },
+  { id: 7, title: '第 7 课：关系与逻辑运算' },
+  { id: 8, title: '第 8 课：if 与 if-else' },
+  { id: 9, title: '第 9 课：多分支与 switch' },
+  { id: 10, title: '第 10 课：for 循环' },
+  { id: 11, title: '第 11 课：while 与 do-while' },
+  { id: 12, title: '第 12 课：break 与 continue' },
+  { id: 13, title: '第 13 课：数位分离' },
+  { id: 14, title: '第 14 课：循环读入与统计' },
+  { id: 15, title: '第 15 课：因数、质数与平方数' },
+  { id: 16, title: '第 16 课：一级综合复盘' },
 ];
 
 export const cppL2Lessons = [
