@@ -652,7 +652,7 @@ export const LogicTable = () => {
                 先跳过偶数，再给奇数计数；若该奇数达到 50，计数后立即退出。
             </p>
 
-            <pre className="overflow-x-auto rounded-lg bg-stone-900 p-4 text-sm text-stone-50 mb-4"><code>{`int tnt = 0;
+            <pre tabIndex={0} className="overflow-x-auto rounded-lg bg-stone-900 p-4 text-sm text-stone-50 mb-4"><code>{`int tnt = 0;
 for (int i = 5; i <= 60; i += 5) {
     if (i % 2 == 0) continue;
     tnt += 1;

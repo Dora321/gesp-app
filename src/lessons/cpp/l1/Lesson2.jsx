@@ -110,7 +110,7 @@ const Button = ({ onClick, children, variant = 'primary', disabled = false, clas
 };
 
 const CodePanel = ({ children }) => (
-  <pre className="overflow-x-auto rounded-xl bg-gray-800 p-5 font-mono text-sm leading-relaxed text-gray-100"><code>{children}</code></pre>
+  <pre tabIndex={0} className="overflow-x-auto rounded-xl bg-gray-800 p-5 font-mono text-sm leading-relaxed text-gray-100"><code>{children}</code></pre>
 );
 
 // 1. 问题导入：为什么需要变量

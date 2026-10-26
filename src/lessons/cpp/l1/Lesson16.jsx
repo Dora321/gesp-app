@@ -97,11 +97,11 @@ const Button = ({ onClick, children, variant = 'primary', disabled = false, clas
 };
 
 const CodePanel = ({ children }) => (
-  <pre className="overflow-x-auto rounded-xl bg-gray-800 p-5 font-mono text-sm leading-relaxed text-gray-100"><code>{children}</code></pre>
+  <pre tabIndex={0} className="overflow-x-auto rounded-xl bg-gray-800 p-5 font-mono text-sm leading-relaxed text-gray-100"><code>{children}</code></pre>
 );
 
 const OutputPanel = ({ children }) => (
-  <pre className="overflow-x-auto rounded-xl bg-slate-900 p-5 font-mono text-sm leading-relaxed text-green-400 shadow-inner"><code>{children}</code></pre>
+  <pre tabIndex={0} className="overflow-x-auto rounded-xl bg-slate-900 p-5 font-mono text-sm leading-relaxed text-green-400 shadow-inner"><code>{children}</code></pre>
 );
 
 // 编程题卡片：题面 + 样例 + 写完后才显示参考程序。
