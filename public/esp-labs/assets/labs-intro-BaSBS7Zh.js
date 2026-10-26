@@ -1,0 +1,2 @@
+var e={usb:{caption:`Your real result. esptool confirmed an ESP32-S3 rev v0.2 with 8 MB PSRAM and 16 MB flash behind this port.`},hello:{caption:`The RGB LED on the board drawing cycles just like the real one.`},led:{diagram:`Breadboard: GPIO 4 to a resistor to the LED, LED to ground`,gndRail:`GND rail`,legs:`LED: long leg (+) left, short leg (−) to GND`,duty:`duty {{duty}} / 255`,terminal:`$ uv run pio device monitor   (try typing)`,quick:`Quick commands`}};export{e as default};
+//# sourceMappingURL=labs-intro-BaSBS7Zh.js.map

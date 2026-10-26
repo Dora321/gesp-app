@@ -1,0 +1,2 @@
+import{n as e}from"./react-DDlm69aD.js";import{t}from"./useTranslation-BOVvIk4x.js";import{t as n}from"./overlay-DL9L7JnJ.js";function r(e,t){if(!t?.length)return e;let n=Object.fromEntries(t.flatMap(t=>e[t]?[[t,e[t]]]:[]));return Object.keys(n).length?n:e}var i=e(),a={text:new Set([`label`,`lanes`,`msg`,`title`,`text`]),itemKey:[]};function o(e,r){let o=(0,i.c)(4),{t:s}=t(`labs-ble`),c;return o[0]!==r||o[1]!==e||o[2]!==s?(c=n(r,s(`flows.${e}`,{returnObjects:!0}),a),o[0]=r,o[1]=e,o[2]=s,o[3]=c):c=o[3],c}export{r as n,o as t};
+//# sourceMappingURL=use-flows-BrXCQ-AU.js.map

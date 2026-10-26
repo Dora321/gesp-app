@@ -1,0 +1,2 @@
+import{n as e,t}from"./react-DDlm69aD.js";var n=e(),r={scroll:`_scroll_kasov_1`},i=t();function a(e){let t=(0,n.c)(3),{label:a,children:o}=e,s;return t[0]!==o||t[1]!==a?(s=(0,i.jsx)(`div`,{className:r.scroll,tabIndex:0,role:`region`,"aria-label":a,children:o}),t[0]=o,t[1]=a,t[2]=s):s=t[2],s}export{a as t};
+//# sourceMappingURL=ScrollBox-C91p4pdi.js.map

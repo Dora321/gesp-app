@@ -1,0 +1,2 @@
+var e=e=>typeof e==`object`&&!!e&&!Array.isArray(e);function t(t,n,r){if(e(t))for(let e of r.itemKey){let n=t[e];if(typeof n==`string`)return n}return String(n)}function n(e,t){return typeof e==`string`?typeof t==`string`:Array.isArray(e)&&Array.isArray(t)&&e.length===t.length&&e.every((e,r)=>n(e,t[r]))}function r(i,a,o){if(!e(a))return i;if(Array.isArray(i))return i.map((e,n)=>r(e,a[t(e,n,o)],o));if(!e(i))return i;let s={};for(let[e,t]of Object.entries(i)){let i=a[e];s[e]=o.text.has(e)?n(t,i)?i:t:r(t,i,o)}return s}export{r as t};
+//# sourceMappingURL=overlay-DL9L7JnJ.js.map

@@ -1,0 +1,1 @@
+{"id":"32.3.6","doc":"T","title":"Transaction and Transfer Level Operation","words":20,"blocks":[{"t":"p","s":[{"n":1,"c":[{"t":"text","v":"When operating in either Host or Device mode, communication can operate either at the transaction level or the transfer level."}]}]}]}

@@ -1,0 +1,1 @@
+{"id":"31.4","doc":"T","title":"Architectural Overview","words":23,"blocks":[{"t":"p","s":[{"n":1,"c":[{"t":"text","v":"The major functional blocks of the "},{"t":"block","v":"TWAI","id":"twai"},{"t":"text","v":" controller are shown in Figure 31.4-1."}]}]},{"t":"fig","src":"images/trm-fig-31_4-1.png","alt":"Figure 31.4-1. TWAI Overview Diagram"}]}

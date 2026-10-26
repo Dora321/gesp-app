@@ -1,0 +1,1 @@
+{"id":"39.4.1","doc":"T","title":"Overview","words":16,"blocks":[{"t":"p","s":[{"n":1,"c":[{"t":"text","v":"ESP32-S3 provides a "},{"t":"block","v":"temperature sensor","id":"temp-sensor"},{"t":"text","v":" to monitor temperature changes inside the chip in real time."}]}]}]}

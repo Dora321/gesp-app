@@ -1,0 +1,2 @@
+import{a as e,n as t,t as n}from"./locales-CW4p_l41.js";function r(r,a){let o=new Intl.DisplayNames([t[r].tag],{type:`language`}),s=(e,n)=>{let r=t[n].nativeName,a=o.of(t[n].tag)??``;return{choice:e,locale:n,native:r,translated:i(a,r)?``:a}};return[s(`auto`,e(a)),...n.map(e=>s(e,e))]}var i=(e,t)=>e.localeCompare(t,void 0,{sensitivity:`base`})===0;export{r as t};
+//# sourceMappingURL=language-options-BBBWGPJ4.js.map

@@ -1,0 +1,1 @@
+{"id":"A2.1","doc":"A","title":"Block Diagram","words":29,"blocks":[{"t":"p","s":[{"n":1,"c":[{"t":"text","v":"The block diagram below shows the components of ESP32-S3-DevKitC-1 and their interconnections."}]}]},{"t":"fig","src":"images/board-ESP32-S3-DevKitC-1_v2-SystemBlock.png","alt":"Figure A-3. ESP32-S3-DevKitC-1 block diagram"}]}

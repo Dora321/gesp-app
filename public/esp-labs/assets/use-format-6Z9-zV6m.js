@@ -1,0 +1,2 @@
+import{n as e}from"./react-DDlm69aD.js";import{t}from"./use-locale-BBxszkmL.js";var n=e();function r(){let e=(0,n.c)(2),r=t(),i;return e[0]===r?i=e[1]:(i=(e,t)=>{let n=t===void 0?3:t;return new Intl.NumberFormat(r,{maximumFractionDigits:n}).format(e)},e[0]=r,e[1]=i),i}export{r as t};
+//# sourceMappingURL=use-format-6Z9-zV6m.js.map

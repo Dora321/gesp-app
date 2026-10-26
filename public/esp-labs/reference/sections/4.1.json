@@ -1,0 +1,1 @@
+{"id":"4.1","doc":"T","title":"Overview","words":28,"blocks":[{"t":"p","s":[{"n":1,"c":[{"t":"text","v":"The ESP32-S3 is a dual-core system with two Harvard Architecture Xtensa® LX7 CPUs."}]},{"n":2,"c":[{"t":"text","v":"All internal memory, external memory, and peripherals are located on the CPU buses."}]}]}]}

@@ -1,0 +1,1 @@
+{"id":"13.2.2","doc":"T","title":"Functional Description","words":32,"blocks":[{"t":"fig","src":"images/trm-fig-13_2-1.png","alt":"Figure 13.2-1. Watchdog Timers in ESP32-S3","caption":"Figure 13.2-1. Watchdog Timers in ESP32-S3"},{"t":"p","s":[{"n":1,"c":[{"t":"text","v":"Figure 13.2-1 shows the three watchdog timers in ESP32-S3 digital systems."}]}]}]}

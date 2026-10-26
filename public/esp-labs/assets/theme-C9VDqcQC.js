@@ -1,0 +1,2 @@
+import{n as e,t}from"./storage-Lg7_YUda.js";var n=[`system`,`light`,`dark`],r=t(`esp-theme`,`system`),i=0,a=new Set,o=()=>{i++,a.forEach(e=>e())};function s(e){let t=document.documentElement;e===`system`?t.removeAttribute(`data-theme`):t.setAttribute(`data-theme`,e)}function c(){s(r.get()),r.subscribe(()=>{s(r.get()),o()}),matchMedia(`(prefers-color-scheme: dark)`).addEventListener(`change`,o)}var l=r,u=()=>e(r),d=()=>i;export{u as a,l as i,c as n,d as r,n as t};
+//# sourceMappingURL=theme-C9VDqcQC.js.map

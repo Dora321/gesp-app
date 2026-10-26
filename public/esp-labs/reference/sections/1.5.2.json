@@ -1,0 +1,1 @@
+{"id":"1.5.2","doc":"T","title":"Fast GPIO Interface","words":28,"blocks":[{"t":"p","s":[{"n":1,"c":[{"t":"text","v":"ESP32-S3’s Xtensa processor adds two signal ports, i.e., GPIO_OUT and GPIO_IN."}]},{"n":2,"c":[{"t":"text","v":"You can route signals from the two ports to specified GPIO pins via the GPIO Matrix."}]}]}]}

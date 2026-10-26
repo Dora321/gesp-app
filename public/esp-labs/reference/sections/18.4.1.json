@@ -1,0 +1,1 @@
+{"id":"18.4.1","doc":"T","title":"Preprocessing","words":20,"blocks":[{"t":"p","s":[{"n":1,"c":[{"t":"text","v":"Preprocessing consists of three steps: padding the message, parsing the message into message blocks and setting the initial hash value."}]}]}]}

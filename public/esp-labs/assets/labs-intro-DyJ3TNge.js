@@ -1,0 +1,2 @@
+var e={usb:{caption:`Tu resultado real. esptool confirmó un ESP32-S3 rev v0.2 con 8 MB de PSRAM y 16 MB de flash tras este puerto.`},hello:{caption:`El LED RGB del dibujo de la placa cambia de color igual que el real.`},led:{diagram:`Protoboard: GPIO 4 a una resistencia, de ahí al LED, y del LED a masa`,gndRail:`Carril GND`,legs:`LED: pata larga (+) a la izquierda, pata corta (−) a GND`,duty:`ciclo {{duty}} / 255`,terminal:`$ uv run pio device monitor   (prueba a escribir)`,quick:`Comandos rápidos`}};export{e as default};
+//# sourceMappingURL=labs-intro-DyJ3TNge.js.map

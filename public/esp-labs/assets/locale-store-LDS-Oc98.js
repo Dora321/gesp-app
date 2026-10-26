@@ -1,0 +1,2 @@
+import{n as e,t}from"./storage-Lg7_YUda.js";import{i as n}from"./locales-CW4p_l41.js";var r=t(`esp-locale`,`auto`),i={get:()=>{let e=r.get();return n(e)?e:`auto`},subscribe:r.subscribe,set:e=>r.set(e)},a=()=>e(i),o=()=>typeof navigator>`u`?[]:navigator.languages??[navigator.language];export{i as n,a as r,o as t};
+//# sourceMappingURL=locale-store-LDS-Oc98.js.map

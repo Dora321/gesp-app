@@ -1,0 +1,2 @@
+import{n as e,t}from"./react-DDlm69aD.js";import{t as n}from"./useTranslation-BOVvIk4x.js";import{t as r}from"./Caption-DizCypil.js";import{t as i}from"./screens-DCpRaSiI.js";var a=e(),o=t();function s(e){let t=(0,a.c)(4),{lesson:s}=e,{t:c}=n(`labs-sound`),l=i[s.id],u;return t[0]!==l||t[1]!==s||t[2]!==c?(u=l?l.preview(s):(0,o.jsx)(r,{children:c(`kit.previewSoon`)}),t[0]=l,t[1]=s,t[2]=c,t[3]=u):u=t[3],u}export{s as SoundPreview};
+//# sourceMappingURL=SoundPreview-tP7mcw0-.js.map

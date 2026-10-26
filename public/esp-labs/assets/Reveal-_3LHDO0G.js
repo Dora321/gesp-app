@@ -1,0 +1,2 @@
+import{n as e,t}from"./react-DDlm69aD.js";import{i as n,t as r}from"./page.module-CMWQiSEo.js";var i=e(),a=t();function o(e){let t=(0,i.c)(6),{children:o,className:s,labelledBy:c}=e,[l,u]=n(.1),d=`${r.reveal} ${s??``}`,f=u||void 0,p;return t[0]!==o||t[1]!==c||t[2]!==l||t[3]!==d||t[4]!==f?(p=(0,a.jsx)(`section`,{ref:l,className:d,"data-shown":f,"aria-labelledby":c,children:o}),t[0]=o,t[1]=c,t[2]=l,t[3]=d,t[4]=f,t[5]=p):p=t[5],p}export{o as t};
+//# sourceMappingURL=Reveal-_3LHDO0G.js.map

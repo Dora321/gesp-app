@@ -1,0 +1,1 @@
+{"id":"8","doc":"T","title":"Chip Boot Control","words":27,"blocks":[{"t":"p","s":[{"n":1,"c":[{"t":"text","v":"For the strapping pins and boot configurations as described in the chip datasheet, see "},{"t":"xref","id":"C3","c":[{"t":"text","v":"C3 Boot Configurations"}]},{"t":"text","v":"."}]},{"n":2,"c":[{"t":"text","v":"This chapter is the register-level reference."}]}]}]}

@@ -1,0 +1,2 @@
+var e={usb:{caption:`نتيجتك الحقيقية. أكّدت esptool وجود ESP32-S3 بإصدار rev v0.2 مع 8 MB من PSRAM و16 MB من الفلاش خلف هذا المنفذ.`},hello:{caption:`يتنقّل LED الملوّن في رسم اللوحة بين الألوان تمامًا مثل اللوحة الحقيقية.`},led:{diagram:`لوحة التجارب: من GPIO 4 إلى مقاومة ثم إلى LED، ومن LED إلى الأرضي`,gndRail:`سكة GND`,legs:`LED: الساق الطويلة (+) على اليسار، والقصيرة (−) نحو GND`,duty:`دورة العمل {{duty}} / 255`,terminal:`$ uv run pio device monitor   (جرّب أن تكتب)`,quick:`أوامر سريعة`}};export{e as default};
+//# sourceMappingURL=labs-intro-BfWqYna6.js.map

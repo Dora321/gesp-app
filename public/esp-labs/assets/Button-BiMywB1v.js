@@ -1,0 +1,2 @@
+import{n as e,t}from"./react-DDlm69aD.js";var n=e(),r={btn:`_btn_yt27t_1`,row:`_row_yt27t_24`},i=t();function a({pressed:e,className:t,type:n=`button`,...a}){return(0,i.jsx)(`button`,{type:n,"aria-pressed":e,className:`${r.btn} ${t??``}`,...a})}function o(e){let t=(0,n.c)(6),a,o;t[0]===e?(a=t[1],o=t[2]):({className:a,...o}=e,t[0]=e,t[1]=a,t[2]=o);let s=`${r.row} ${a??``}`,c;return t[3]!==o||t[4]!==s?(c=(0,i.jsx)(`div`,{className:s,...o}),t[3]=o,t[4]=s,t[5]=c):c=t[5],c}export{o as n,a as t};
+//# sourceMappingURL=Button-BiMywB1v.js.map

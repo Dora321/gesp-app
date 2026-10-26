@@ -1,0 +1,1 @@
+{"id":"16.4","doc":"T","title":"CPU's World Switch","words":18,"blocks":[{"t":"p","s":[{"n":1,"c":[{"t":"text","v":"CPU can switch from Secure World to Non-secure World, and from Non-secure World to Secure World."}]}]}]}

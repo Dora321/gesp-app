@@ -1,0 +1,2 @@
+var e={screen:{previewSoon:`Podgląd pojawi się wraz z tym laboratorium.`,nextView:`przycisk: następny widok`,label:`Symulowany ekran: {{lesson}}, widoków: {{views}}`,withHint:`{{label}}. {{hint}}`},gallery:{soon:`Pojawi się wraz z tym laboratorium.`,views:`Widok ekranu`,example:`Przykład widoku: {{view}}`}};export{e as default};
+//# sourceMappingURL=labs-shared-BUegDhsp.js.map

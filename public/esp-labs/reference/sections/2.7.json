@@ -1,0 +1,1 @@
+{"id":"2.7","doc":"T","title":"RTC I2C Controller","words":15,"blocks":[{"t":"p","s":[{"n":1,"c":[{"t":"block","v":"ULP","id":"ulp"},{"t":"text","v":" coprocessor reads from or writes to external "},{"t":"block","v":"I2C","id":"i2c"},{"t":"text","v":" slave devices via RTC I2C controller."}]}]}]}

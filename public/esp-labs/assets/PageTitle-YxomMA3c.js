@@ -1,0 +1,2 @@
+import{n as e,t}from"./react-DDlm69aD.js";import{t as n}from"./useTranslation-BOVvIk4x.js";var r=e(),i=t();function a(e){let t=(0,r.c)(5),{page:a}=e,{t:o}=n(),s;t[0]!==a||t[1]!==o?(s=o(`titles.chip`,{page:a}),t[0]=a,t[1]=o,t[2]=s):s=t[2];let c;return t[3]===s?c=t[4]:(c=(0,i.jsx)(`title`,{children:s}),t[3]=s,t[4]=c),c}export{a as t};
+//# sourceMappingURL=PageTitle-YxomMA3c.js.map

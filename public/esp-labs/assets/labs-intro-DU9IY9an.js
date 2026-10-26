@@ -1,0 +1,2 @@
+var e={usb:{caption:`你的真实结果。esptool 确认这个接口后面是一块 ESP32-S3 rev v0.2，带 8 MB PSRAM 和 16 MB flash。`},hello:{caption:`图中开发板上的 RGB LED 会和真实的一样循环变色。`},led:{diagram:`面包板：GPIO 4 接电阻，电阻接 LED，LED 接地`,gndRail:`GND 电源轨`,legs:`LED：长脚 (+) 在左，短脚 (−) 接 GND`,duty:`占空比 {{duty}} / 255`,terminal:`$ uv run pio device monitor   （试着输入）`,quick:`快捷命令`}};export{e as default};
+//# sourceMappingURL=labs-intro-DU9IY9an.js.map

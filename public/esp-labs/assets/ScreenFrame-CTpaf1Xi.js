@@ -1,0 +1,2 @@
+import{n as e,t}from"./react-DDlm69aD.js";var n=e(),r={frame:`_frame_2k9qj_1`},i=t();function a(e){let t=(0,n.c)(2),{children:a}=e,o;return t[0]===a?o=t[1]:(o=(0,i.jsx)(`div`,{className:r.frame,children:a}),t[0]=a,t[1]=o),o}export{a as t};
+//# sourceMappingURL=ScreenFrame-CTpaf1Xi.js.map

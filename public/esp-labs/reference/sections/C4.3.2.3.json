@@ -1,0 +1,1 @@
+{"id":"C4.3.2.3","doc":"C","title":"Networking Features","words":25,"blocks":[{"t":"p","s":[{"n":1,"c":[{"t":"text","v":"Users are provided with libraries for TCP/IP networking, ESP-WIFI-MESH networking, and other networking protocols over "},{"t":"block","v":"Wi-Fi","id":"wifi"},{"t":"text","v":"."}]},{"n":2,"c":[{"t":"text","v":"TLS 1.2 support is also provided."}]}]}]}

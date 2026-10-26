@@ -1,0 +1,1 @@
+{"id":"31.5.3.5","doc":"T","title":"Error Passive Interrupt (TXI)","words":21,"blocks":[{"t":"p","s":[{"n":1,"c":[{"t":"text","v":"The Error Passive Interrupt (EPI) is triggered whenever the "},{"t":"block","v":"TWAI","id":"twai"},{"t":"text","v":" controller switches from Error Active to Error Passive, or vice versa."}]}]}]}

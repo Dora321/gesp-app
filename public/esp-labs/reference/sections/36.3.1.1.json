@@ -1,0 +1,1 @@
+{"id":"36.3.1.1","doc":"T","title":"Prescaler Submodule","words":13,"blocks":[{"t":"fig","src":"images/trm-fig-36_3-1.png","alt":"Figure 36.3-1. Prescaler Submodule"},{"t":"p","s":[{"n":1,"c":[{"t":"text","v":"Configuration option:"}]}]},{"t":"list","ordered":false,"items":[[{"t":"p","s":[{"n":2,"c":[{"t":"text","v":"Scale the CRYPTO_PWM_CLK."}]}]}]]}]}

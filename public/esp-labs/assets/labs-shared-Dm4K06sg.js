@@ -1,0 +1,2 @@
+var e={screen:{previewSoon:`プレビューはこのラボと一緒に追加されます。`,nextView:`ボタン：次の画面`,label:`シミュレートした{{lesson}}の画面：{{views}}画面`,withHint:`{{label}}。{{hint}}`},gallery:{soon:`このラボと一緒に追加されます。`,views:`画面の種類`,example:`{{view}}画面の例`}};export{e as default};
+//# sourceMappingURL=labs-shared-Dm4K06sg.js.map
