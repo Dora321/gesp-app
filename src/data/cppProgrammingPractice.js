@@ -7,7 +7,7 @@ const referenceCode = (code, helpers) => {
     ['iomanip', /setprecision/], ['string', /\bstring\b/], ['vector', /\bvector\b/],
     ['cstdio', /\b(printf|scanf)\b/], ['cstdlib', /\b(abs|rand|srand)\b/],
     ['algorithm', /\b(sort|stable_sort|reverse|max|min|max_element|count)\b/],
-    ['queue', /\bqueue\b/], ['functional', /\bfunction\b/], ['utility', /\b(pair|swap)\b/],
+    ['queue', /\bqueue\b/], ['functional', /\bfunction\b/], ['utility', /\b(pair|swap|make_pair)\b/],
   ]) {
     if (pattern.test(source)) headers.push(header);
   }
@@ -317,7 +317,7 @@ export const cppProgrammingExercises = [
     '从 n×m 网格左上角走到右下角，每步上下左右移动一格。0 可走，1 为墙；端点为墙或无法到达时输出 -1。',
     '第一行 n、m（1 ≤ n,m ≤ 50）；接下来 n 行，每行一个长度 m 的 01 字符串。', '输出最少移动步数，或 -1。',
     [['3 3\n000\n110\n000', '4'], ['1 1\n0', '0']], '用队列按距离扩展，入队时就记录访问状态。', '自行补测起点为墙和终点被包围。',
-    "    int n, m;\n    cin >> n >> m;\n    vector<string> a(n);\n    for (auto &s : a) {\n        cin >> s;\n    }\n    vector<vector<int>> d(n, vector<int>(m, -1));\n    queue<pair<int, int>> q;\n    if (a[0][0] == '0') {\n        d[0][0] = 0;\n        q.push({0, 0});\n    }\n    int dx[] = {1, -1, 0, 0}, dy[] = {0, 0, 1, -1};\n    while (!q.empty()) {\n        auto [x, y] = q.front();\n        q.pop();\n        for (int k = 0; k < 4; k++) {\n            int u = x + dx[k], v = y + dy[k];\n            if (u >= 0 && u < n && v >= 0 && v < m && a[u][v] == '0' &&\n                d[u][v] == -1) {\n                d[u][v] = d[x][y] + 1;\n                q.push({u, v});\n            }\n        }\n    }\n    cout << d[n - 1][m - 1] << \"\\n\";"),
+    "    int n, m;\n    cin >> n >> m;\n    vector<string> a(n);\n    for (auto &s : a) {\n        cin >> s;\n    }\n    vector<vector<int>> d(n, vector<int>(m, -1));\n    queue<pair<int, int>> q;\n    if (a[0][0] == '0') {\n        d[0][0] = 0;\n        q.push(make_pair(0, 0));\n    }\n    int dx[] = {1, -1, 0, 0}, dy[] = {0, 0, 1, -1};\n    while (!q.empty()) {\n        pair<int, int> cur = q.front();\n        int x = cur.first, y = cur.second;\n        q.pop();\n        for (int k = 0; k < 4; k++) {\n            int u = x + dx[k], v = y + dy[k];\n            if (u >= 0 && u < n && v >= 0 && v < m && a[u][v] == '0' &&\n                d[u][v] == -1) {\n                d[u][v] = d[x][y] + 1;\n                q.push(make_pair(u, v));\n            }\n        }\n    }\n    cout << d[n - 1][m - 1] << \"\\n\";"),
   exercise(6, 12, '背包只选一次', '0/1 背包与更新顺序',
     '背包容量 W，有 n 件物品，每件最多选一次。总重量不超过 W，求最大价值。',
     '第一行 n、W（1 ≤ n ≤ 100，1 ≤ W ≤ 1000）；接下来 n 行各为重量 w 和价值 v，1 ≤ w ≤ 1000，1 ≤ v ≤ 10000。', '输出最大价值。',
@@ -347,7 +347,7 @@ export const cppProgrammingExercises = [
     '按成绩从高到低排列参赛者，同分者保持输入时的先后顺序。输出姓名。',
     '第一行 n（1 ≤ n ≤ 10000）；接下来 n 行各有姓名和成绩。姓名是长度 1 到 20 的英文字母串，无空格，成绩为 0 到 100 的整数。', '每行输出一名参赛者姓名。',
     [['3\nBo 90\nAn 90\nCy 100', 'Cy\nBo\nAn'], ['1\nLi 0', 'Li']], '使用稳定排序，或保存报名序号作为第二关键字。', '同分不能按姓名排序。',
-    "    int n;\n    cin >> n;\n    vector<pair<string, int>> a(n);\n    for (auto &p : a) {\n        cin >> p.first >> p.second;\n    }\n    stable_sort(a.begin(), a.end(),\n                [](const auto &x, const auto &y) { return x.second > y.second; });\n    for (auto p : a) {\n        cout << p.first << \"\\n\";\n    }"),
+    "    int n;\n    cin >> n;\n    vector<pair<string, int>> a(n);\n    for (auto &p : a) {\n        cin >> p.first >> p.second;\n    }\n    stable_sort(a.begin(), a.end(),\n                [](const pair<string, int> &x, const pair<string, int> &y) { return x.second > y.second; });\n    for (auto p : a) {\n        cout << p.first << \"\\n\";\n    }"),
   exercise(8, 2, '选出代表队', '组合数与杨辉三角',
     '从 n 人中选 k 人组成队伍，不考虑顺序。求不同队伍的数量。',
     '一行两个整数 n、k，0 ≤ k ≤ n ≤ 50。', '输出组合数，使用 64 位整数。',
