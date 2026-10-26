@@ -1,0 +1,1 @@
+function e(e,t,n){let r=document.createElementNS(`http://www.w3.org/2000/svg`,e);for(let[e,n]of Object.entries(t))r.setAttribute(e,String(n));return n!==void 0&&(r.textContent=n),r}var t=class{#e;constructor(e){this.#e=e}clear(){this.#e.replaceChildren()}add(t,n,r){let i=e(t,n,r);return this.#e.append(i),i}};export{t};
