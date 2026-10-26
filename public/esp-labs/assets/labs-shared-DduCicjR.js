@@ -1,0 +1,2 @@
+var e={screen:{previewSoon:`L'aperçu arrive avec ce labo.`,nextView:`bouton : vue suivante`,label:`Écran {{lesson}} simulé : {{views}} vues`,withHint:`{{label}}. {{hint}}`},gallery:{soon:`Arrive avec ce labo.`,views:`Vue de l'écran`,example:`Exemple de la vue {{view}}`}};export{e as default};
+//# sourceMappingURL=labs-shared-DduCicjR.js.map

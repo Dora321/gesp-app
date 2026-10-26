@@ -1,1 +1,0 @@
-import{t as e}from"./react-0qE1dtjs.js";import{t}from"./panels.module-hNWsMoo-.js";var n=e();function r({title:e,text:r,token:i=`--copper`}){return(0,n.jsxs)(`div`,{className:t.cap,"aria-live":`polite`,style:{"--sw":`var(${i})`},children:[(0,n.jsx)(`span`,{className:t.sw,"aria-hidden":`true`}),(0,n.jsx)(`strong`,{children:e}),(0,n.jsx)(`span`,{children:r})]})}export{r as t};

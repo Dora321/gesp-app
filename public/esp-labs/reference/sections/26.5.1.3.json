@@ -1,0 +1,1 @@
+{"id":"26.5.1.3","doc":"T","title":"Immediate Registers","words":32,"blocks":[{"t":"p","s":[{"n":1,"c":[{"t":"text","v":"Except those listed in Table 26.5-1 and Table 26.5-2, registers that can be configured by software are immediate registers read in APB_CLK domain, such as interrupt and FIFO configuration registers."}]}]}]}

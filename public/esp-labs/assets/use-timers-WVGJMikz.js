@@ -1,0 +1,2 @@
+import{n as e}from"./rolldown-runtime-WkwZ5CU-.js";import{a as t,n}from"./react-DDlm69aD.js";var r=n(),i=e(t(),1);function a(){let e=(0,r.c)(5),[t]=(0,i.useState)(o),n,a;e[0]===t?(n=e[1],a=e[2]):(n=()=>()=>t.forEach(clearTimeout),a=[t],e[0]=t,e[1]=n,e[2]=a),(0,i.useEffect)(n,a);let s;return e[3]===t?s=e[4]:(s=(e,n)=>{let r=setTimeout(()=>{t.delete(r),n()},e);t.add(r)},e[3]=t,e[4]=s),s}function o(){return new Set}export{a as t};
+//# sourceMappingURL=use-timers-WVGJMikz.js.map

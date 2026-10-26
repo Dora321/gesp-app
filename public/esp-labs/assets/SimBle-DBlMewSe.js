@@ -1,0 +1,2 @@
+import{n as e,t}from"./react-DDlm69aD.js";import{t as n}from"./useTranslation-BOVvIk4x.js";import{t as r}from"./Caption-DizCypil.js";import{t as i}from"./screens-4H_EofJ5.js";var a=e(),o=t();function s(e){let t=(0,a.c)(7),{lesson:s}=e,{t:c}=n(`labs-ble`),l=i[s.id];if(!l){let e;t[0]===c?e=t[1]:(e=c(`kit.previewComing`),t[0]=c,t[1]=e);let n;return t[2]===e?n=t[3]:(n=(0,o.jsx)(r,{children:e}),t[2]=e,t[3]=n),n}let u;return t[4]!==l||t[5]!==s?(u=l.preview(s),t[4]=l,t[5]=s,t[6]=u):u=t[6],u}export{s as SimBle};
+//# sourceMappingURL=SimBle-DBlMewSe.js.map

@@ -73,10 +73,10 @@ export default function HardwareLanding({ courseId = 'advanced' }) {
                 {advanced && <aside className="rounded-2xl border border-stone-300 bg-[#fffdf8] p-6"><h2 className="flex items-center gap-2 text-lg font-bold"><Trophy size={20} />竞赛延伸包</h2><p className="mt-2 text-sm text-stone-600">选修 · 与主线并行。{scienceCourses.contest.lessons.length} 节网页课，从选题到赛前冲刺。</p><Link to={scienceCourses.contest.path} className="mt-3 inline-flex min-h-11 items-center gap-2 font-bold text-amber-800">查看竞赛课程<ArrowRight size={18} /></Link></aside>}
                 {advanced && (
                     <aside className="mt-6 rounded-2xl border border-stone-300 bg-[#fffdf8] p-6" data-esp-labs-entry>
-                        <h2 className="flex items-center gap-2 text-lg font-bold"><CircuitBoard size={20} />ESP32 互动实验室（汉化版）</h2>
-                        <p className="mt-2 text-sm text-stone-600">交互式引脚图、分步实验与在线模拟器。目前已汉化「入门引导」3 课，其余章节陆续翻译中。</p>
-                        <a href={`${import.meta.env.BASE_URL}esp-labs/`} className="mt-3 inline-flex min-h-11 items-center gap-2 font-bold text-amber-800">进入 ESP32 互动实验室<ArrowRight size={18} /></a>
-                        <p className="mt-3 text-xs text-stone-500">改编自 Abderrahmen Gharsallah 的开源项目 <a href="https://github.com/agharsallah/esp-labs-web" target="_blank" rel="noopener noreferrer" className="underline hover:text-amber-800">agharsallah/esp-labs-web</a>，感谢原作者。</p>
+                        <h2 className="flex items-center gap-2 text-lg font-bold"><CircuitBoard size={20} />ESP32 互动实验室</h2>
+                        <p className="mt-2 text-sm text-stone-600">开源 ESP32-S3 互动实验指南（中文）：引脚图、分步实验、模拟器与数据手册。</p>
+                        <a href={`${import.meta.env.BASE_URL}esp-labs/index.html#/?lang=zh`} className="mt-3 inline-flex min-h-11 items-center gap-2 font-bold text-amber-800">进入 ESP32 互动实验室<ArrowRight size={18} /></a>
+                        <p className="mt-3 text-xs text-stone-500">基于 Abderrahmen Gharsallah 的开源项目 <a href="https://github.com/agharsallah/esp-labs-web" target="_blank" rel="noopener noreferrer" className="underline hover:text-amber-800">agharsallah/esp-labs-web</a>（上游 i18n 中文），感谢原作者。</p>
                     </aside>
                 )}
                 <aside className="mt-6 flex flex-wrap items-center justify-between gap-4 rounded-2xl border border-stone-300 bg-[#fffdf8] p-6">

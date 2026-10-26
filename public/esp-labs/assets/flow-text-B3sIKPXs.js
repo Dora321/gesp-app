@@ -1,0 +1,2 @@
+function e(e,t){let n=t.lanes.names.map((e,n)=>[e,t.lanes.subs[n]??``]),r={};for(let[i,a]of Object.entries(e)){let e=t.flows[i];r[i]={label:e?.label??i,lanes:n,...a.wait?{wait:a.wait}:{},steps:a.steps.map((t,n)=>{let r=e?.steps[n];return{...t,msg:r?.msg??t.msg??``,title:r?.title??``,text:r?.text??``}})}}return r}export{e as t};
+//# sourceMappingURL=flow-text-B3sIKPXs.js.map

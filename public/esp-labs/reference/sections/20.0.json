@@ -1,0 +1,1 @@
+{"id":"20.0","doc":"T","title":"Overview (from the chip datasheet)","words":30,"blocks":[{"t":"p","s":[{"n":1,"c":[{"t":"text","v":"The chip datasheet (§4.1.4.3) states the size limits for the supported operations: large-number modular multiplication up to 4096 bits, and large-number multiplication with operands up to 2048 bits."}]}]}]}

@@ -1,0 +1,1 @@
+{"id":"33.3","doc":"T","title":"Functional Description","words":32,"blocks":[{"t":"p","s":[{"n":1,"c":[{"t":"text","v":"The "},{"t":"block","v":"USB Serial/JTAG","id":"usb-serial-jtag"},{"t":"text","v":" Controller interfaces with an USB host processor on one side, and the CPU debug hardware as well as the software running on the USB port on the other side."}]}]}]}

@@ -1,0 +1,2 @@
+var e={facts:`_facts_4910c_2`,fact:`_fact_4910c_2`,body:`_body_4910c_17`,dot:`_dot_4910c_20`,gotcha:`_gotcha_4910c_31`,gotchaTitle:`_gotchaTitle_4910c_43`,gotchaFoot:`_gotchaFoot_4910c_50`,more:`_more_4910c_57`,coverage:`_coverage_4910c_62`,notYet:`_notYet_4910c_69`};export{e as t};
+//# sourceMappingURL=cards.module-ChcCCAT5.js.map

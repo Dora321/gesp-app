@@ -1,0 +1,1 @@
+{"id":"4.3.5","doc":"T","title":"Modules/Peripherals","words":14,"blocks":[{"t":"p","s":[{"n":1,"c":[{"t":"text","v":"The CPU can access modules/peripherals via 0x6000_0000 ~ 0x600D_0FFF shared by the data/instruction bus."}]}]}]}

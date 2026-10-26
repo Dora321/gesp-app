@@ -1,0 +1,1 @@
+export{t as ReactQueryDevtools}from"./query-BiFgkIwP.js";

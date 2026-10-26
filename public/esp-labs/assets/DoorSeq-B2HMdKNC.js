@@ -1,1 +1,0 @@
-import{n as e,t}from"./react-0qE1dtjs.js";import{t as n}from"./SequenceDiagram-BOafaGaA.js";import{n as r,r as i,t as a}from"./door-flows-DZzQD8FU.js";var o=e(),s=t();function c(e){let t=(0,o.c)(1),c;return t[0]===Symbol.for(`react.memo_cache_sentinel`)?(c=(0,s.jsx)(n,{flows:r,legend:a,waitLane:0,live:i}),t[0]=c):c=t[0],c}export{c as DoorSeq};

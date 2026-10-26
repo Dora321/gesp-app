@@ -1,0 +1,2 @@
+import{t as e}from"./react-DDlm69aD.js";var t={caption:`_caption_r20xd_1`},n=e();function r({children:e,live:r=!1}){return(0,n.jsx)(`p`,{className:t.caption,"aria-live":r?`polite`:void 0,children:e})}export{r as t};
+//# sourceMappingURL=Caption-DizCypil.js.map

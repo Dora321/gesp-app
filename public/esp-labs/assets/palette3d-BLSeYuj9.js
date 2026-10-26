@@ -1,0 +1,2 @@
+import{t as e}from"./palette-DI0lq8M0.js";var t={f3d:`_f3d_1q3n4_2`,ctl:`_ctl_1q3n4_8`,pills:`_pills_1q3n4_33`,yes:`_yes_1q3n4_55`,no:`_no_1q3n4_62`,bitstrip:`_bitstrip_1q3n4_69`,now:`_now_1q3n4_84`,legend:`_legend_1q3n4_94`,select:`_select_1q3n4_111`,labels:`_labels_1q3n4_121`},n=e({rc522:`--rc522`,copper:`--copper`,rfid:`--rfid`,pcb:`--pcb`,silkDim:`--silk-dim`,gold:`--gold`,cardWhite:`--card-white`,wSda:`--w-sda`,ok:`--ok`,warn:`--warn`,line:`--line`,danger:`--danger`});export{t as n,n as t};
+//# sourceMappingURL=palette3d-BLSeYuj9.js.map

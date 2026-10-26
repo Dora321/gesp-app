@@ -1,0 +1,1 @@
+{"id":"25.1","doc":"T","title":"Introduction","words":25,"blocks":[{"t":"p","s":[{"n":1,"c":[{"t":"text","v":"The ESP32-S3 contains a true random number generator, which generates "},{"t":"num","v":"32-bit","k":"size"},{"t":"text","v":" random numbers that can be used for cryptographical operations, among other things."}]}]}]}

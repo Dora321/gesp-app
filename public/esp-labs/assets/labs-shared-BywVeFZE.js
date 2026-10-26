@@ -1,0 +1,2 @@
+var e={screen:{previewSoon:`预览将随这个实验推出。`,nextView:`按键：下一个视图`,label:`模拟的{{lesson}}屏幕：{{views}} 个视图`,withHint:`{{label}}。{{hint}}`},gallery:{soon:`将随这个实验推出。`,views:`屏幕视图`,example:`{{view}}视图示例`}};export{e as default};
+//# sourceMappingURL=labs-shared-BywVeFZE.js.map

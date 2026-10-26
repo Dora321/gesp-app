@@ -1,0 +1,1 @@
+{"id":"2.6.3.1","doc":"T","title":"Introduction","words":31,"blocks":[{"t":"p","s":[{"n":1,"c":[{"t":"text","v":"The interrupt controller of "},{"t":"block","v":"ULP-RISC-V","id":"ulp"},{"t":"text","v":" is implemented by using a customized instruction set, instead of RISC-V Privileged ISA specification, aiming to reduce the size of ULP-RISC-V."}]}]}]}

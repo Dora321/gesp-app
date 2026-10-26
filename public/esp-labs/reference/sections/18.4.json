@@ -1,0 +1,1 @@
+{"id":"18.4","doc":"T","title":"Function Description","words":14,"blocks":[{"t":"p","s":[{"n":1,"c":[{"t":"block","v":"SHA","id":"crypto"},{"t":"text","v":" accelerator can generate the message digest via two steps: Preprocessing and Hash operation."}]}]}]}

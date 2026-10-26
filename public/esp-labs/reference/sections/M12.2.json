@@ -1,0 +1,1 @@
+{"id":"M12.2","doc":"M","title":"Electrostatic Discharge (ESD)","words":12,"blocks":[{"t":"list","ordered":false,"items":[[{"t":"p","s":[{"n":1,"c":[{"t":"text","v":"Human body model (HBM): "},{"t":"num","v":"±2000 V","k":"voltage"}]}]}],[{"t":"p","s":[{"n":2,"c":[{"t":"text","v":"Charged-device model (CDM): "},{"t":"num","v":"±500 V","k":"voltage"}]}]}]]}]}

@@ -1,0 +1,2 @@
+var e={screen:{previewSoon:`L'anteprima arriva con questo lab.`,nextView:`pulsante: vista successiva`,label:`Schermo {{lesson}} simulato: {{views}} viste`,withHint:`{{label}}. {{hint}}`},gallery:{soon:`In arrivo con questo lab.`,views:`Vista dello schermo`,example:`Esempio della vista {{view}}`}};export{e as default};
+//# sourceMappingURL=labs-shared-2eLagiO6.js.map

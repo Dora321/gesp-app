@@ -1,0 +1,1 @@
+{"id":"6.10.1","doc":"T","title":"Power Supply of GPIO Pins","words":25,"blocks":[{"t":"p","s":[{"n":1,"c":[{"t":"text","v":"For more information on the power supply for GPIO pins, please refer to Pin Definition in the ESP32-S3 Datasheet; see "},{"t":"xref","id":"C2","c":[{"t":"text","v":"C2 Pins"}]},{"t":"text","v":"."}]}]}]}

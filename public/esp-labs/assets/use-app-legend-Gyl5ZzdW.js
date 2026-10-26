@@ -1,0 +1,2 @@
+import{n as e}from"./react-DDlm69aD.js";import{n as t}from"./use-rfid-text-DfsIfH2w.js";var n=e();function r(){let e=(0,n.c)(11),{t:r}=t(),i;e[0]===r?i=e[1]:(i=r(`doorSeq.legend.msg`),e[0]=r,e[1]=i);let a;e[2]===i?a=e[3]:(a={kind:`msg`,label:i},e[2]=i,e[3]=a);let o;e[4]===r?o=e[5]:(o=r(`doorSeq.legend.wait`),e[4]=r,e[5]=o);let s;e[6]===o?s=e[7]:(s={kind:`wait`,label:o},e[6]=o,e[7]=s);let c;return e[8]!==a||e[9]!==s?(c=[a,s],e[8]=a,e[9]=s,e[10]=c):c=e[10],c}export{r as t};
+//# sourceMappingURL=use-app-legend-Gyl5ZzdW.js.map

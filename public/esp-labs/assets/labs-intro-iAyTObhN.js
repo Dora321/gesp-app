@@ -1,0 +1,2 @@
+var e={usb:{caption:`あなたの実際の結果です。esptoolが、このポートの先にある、8 MB PSRAMと16 MBフラッシュを備えたESP32-S3 rev v0.2を確認しました。`},hello:{caption:`ボードの図にあるRGB LEDも、本物と同じように色が巡ります。`},led:{diagram:`ブレッドボード：GPIO 4から抵抗、LED、グランドへ`,gndRail:`GNDレール`,legs:`LED：長い足（+）が左、短い足（−）はGNDへ`,duty:`デューティ {{duty}} / 255`,terminal:`$ uv run pio device monitor   （入力してみましょう）`,quick:`クイックコマンド`}};export{e as default};
+//# sourceMappingURL=labs-intro-iAyTObhN.js.map

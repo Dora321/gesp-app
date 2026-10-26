@@ -1,1 +1,0 @@
-import{n as e,t}from"./react-0qE1dtjs.js";import{p as n}from"./index-D1eTmICj.js";import{t as r}from"./screens-JeLT-90D.js";var i=e(),a=t();function o(e){let t=(0,i.c)(3),{lesson:o}=e,s=r[o.id],c;return t[0]!==s||t[1]!==o?(c=s?s.preview(o):(0,a.jsx)(n,{children:`Preview coming with this lab.`}),t[0]=s,t[1]=o,t[2]=c):c=t[2],c}export{o as SoundPreview};

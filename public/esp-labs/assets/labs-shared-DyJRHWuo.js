@@ -1,0 +1,2 @@
+var e={screen:{previewSoon:`Die Vorschau kommt mit diesem Lab.`,nextView:`Taster: nächste Ansicht`,label:`Simulierter {{lesson}}-Bildschirm: {{views}} Ansichten`,withHint:`{{label}}. {{hint}}`},gallery:{soon:`Kommt mit diesem Lab.`,views:`Bildschirmansicht`,example:`Beispiel für die Ansicht „{{view}}“`}};export{e as default};
+//# sourceMappingURL=labs-shared-DyJRHWuo.js.map

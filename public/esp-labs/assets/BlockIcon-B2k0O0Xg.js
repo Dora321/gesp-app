@@ -1,0 +1,2 @@
+import{n as e,t}from"./react-DDlm69aD.js";import{n,t as r}from"./ChipPartIcon-gbgfYwSo.js";var i=e(),a=t(),o=e=>n.includes(e);function s(e){let t=(0,i.c)(3),{icon:n,size:s}=e,c;return t[0]!==n||t[1]!==s?(c=o(n)?(0,a.jsx)(r,{name:n,size:s}):null,t[0]=n,t[1]=s,t[2]=c):c=t[2],c}export{s as t};
+//# sourceMappingURL=BlockIcon-B2k0O0Xg.js.map

@@ -1,0 +1,1 @@
+{"id":"32.3.5","doc":"T","title":"DMA Modes and Slave Mode","words":19,"blocks":[{"t":"p","s":[{"n":1,"c":[{"t":"text","v":"USB On-The-Go supports three ways to access memory: Scatter/Gather DMA mode, Buffer DMA mode, and Slave mode."}]}]}]}

@@ -1,0 +1,2 @@
+import{n as e}from"./react-DDlm69aD.js";import{t}from"./useTranslation-BOVvIk4x.js";import{n,r}from"./locales-CW4p_l41.js";var i=e();function a(){let e=(0,i.c)(2),{i18n:n}=t(),a=n.resolvedLanguage??n.language,o;return e[0]===a?o=e[1]:(o=r(a)?a:`en`,e[0]=a,e[1]=o),o}function o(){let e=(0,i.c)(3),t=a(),r=n[t],o;return e[0]!==t||e[1]!==r?(o={locale:t,...r},e[0]=t,e[1]=r,e[2]=o):o=e[2],o}export{o as n,a as t};
+//# sourceMappingURL=use-locale-BBxszkmL.js.map

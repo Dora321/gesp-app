@@ -1,0 +1,2 @@
+var e={screen:{previewSoon:`المعاينة قادمة مع هذا المختبر.`,nextView:`الزر: العرض التالي`,label:`شاشة {{lesson}} المحاكاة: {{views}} عروض`,withHint:`{{label}}. {{hint}}`},gallery:{soon:`قادم مع هذا المختبر.`,views:`عرض الشاشة`,example:`مثال على عرض {{view}}`}};export{e as default};
+//# sourceMappingURL=labs-shared-BauS-lCY.js.map

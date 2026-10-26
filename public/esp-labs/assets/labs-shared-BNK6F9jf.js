@@ -1,0 +1,2 @@
+var e={screen:{previewSoon:`Önizleme bu deneyle birlikte gelecek.`,nextView:`düğme: sonraki görünüm`,label:`Simüle edilmiş {{lesson}} ekranı: {{views}} görünüm`,withHint:`{{label}}. {{hint}}`},gallery:{soon:`Bu deneyle birlikte gelecek.`,views:`Ekran görünümü`,example:`{{view}} görünümü örneği`}};export{e as default};
+//# sourceMappingURL=labs-shared-BNK6F9jf.js.map

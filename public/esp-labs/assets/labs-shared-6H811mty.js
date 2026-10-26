@@ -1,0 +1,2 @@
+var e={screen:{previewSoon:`預覽將隨這個實驗推出。`,nextView:`按鍵：下一個檢視`,label:`模擬的{{lesson}}螢幕：{{views}} 個檢視`,withHint:`{{label}}。{{hint}}`},gallery:{soon:`將隨這個實驗推出。`,views:`螢幕檢視`,example:`{{view}}檢視範例`}};export{e as default};
+//# sourceMappingURL=labs-shared-6H811mty.js.map
