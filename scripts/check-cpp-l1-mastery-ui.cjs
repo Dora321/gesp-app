@@ -225,7 +225,8 @@ async function verifyRoute(page, routeCase, viewportName) {
   await waitForProgressStatus(page, route, 'learning');
   await page.getByText(/自我勾选只是反思/).waitFor({ state: 'visible', timeout: 10000 });
   await recordObjectiveEvidence(page, route);
-  await page.getByText(/本课自查已完成，可以进入下一课/).waitFor({ state: 'visible', timeout: 10000 });
+  // Priority L1–L3 banner, non-priority C++ banner, and Python banner — not lesson goal copy.
+  await check.getByText(/本课自查已完成，可以进入下一课|可以进入下一课：你已经能用自己的/).waitFor({ state: 'visible', timeout: 10000 });
   await waitForProgressStatus(page, route, 'mastered');
   await assertNoHorizontalOverflow(page, route, viewportName);
 }
