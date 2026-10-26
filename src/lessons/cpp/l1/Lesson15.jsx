@@ -1,916 +1,787 @@
-import React, { useState, useEffect } from 'react';
-import LegacyCppLessonShell from '../LegacyCppLessonShell';
+import React, { useState } from 'react';
 import {
-    Filter,
-    Calculator,
-    ShoppingBasket,
-    CheckCircle2,
-    XCircle,
-    ArrowRight,
-    HelpCircle,
-    Play,
-    RotateCcw,
-    Terminal,
-    BookOpen,
-    Glasses,
-    Footprints,
-    Trash2,
-    ListFilter,
-
-    Binary,
-    Radar,
-    AlertTriangle,
-    Search,
-    Menu,
-    X
+  ArrowRight,
+  BookOpen,
+  CheckCircle2,
+  Flag,
+  Hash,
+  HelpCircle,
+  ListOrdered,
+  Search,
+  Square,
+  AlertTriangle,
+  Terminal,
+  XCircle
 } from 'lucide-react';
 import CppL1LessonSupport from '../../../components/CppL1LessonSupport';
-import { MasteryCheck, TransferCheck } from '../CppLessonShell';
-import CodeSnippet from '../CodeSnippet';
+import LegacyCppLessonShell from '../LegacyCppLessonShell';
+import { MasteryCheck, PredictCheck, TransferCheck } from '../CppLessonShell';
+import { FactorScanner, PowerChecker } from './Lesson15Activities';
 
-// --- 图标映射组件 ---
-const Icon = ({ name, size = 24, color = "currentColor", className = "" }) => {
-    const icons = {
-        "filter": <Filter size={size} color={color} className={className} />,
-        "calc": <Calculator size={size} color={color} className={className} />,
-        "basket": <ShoppingBasket size={size} color={color} className={className} />,
-        "check": <CheckCircle2 size={size} color={color} className={className} />,
-        "x": <XCircle size={size} color={color} className={className} />,
-        "arrow": <ArrowRight size={size} color={color} className={className} />,
-        "help": <HelpCircle size={size} color={color} className={className} />,
-        "play": <Play size={size} color={color} className={className} />,
-        "reset": <RotateCcw size={size} color={color} className={className} />,
-        "terminal": <Terminal size={size} color={color} className={className} />,
-        "book": <BookOpen size={size} color={color} className={className} />,
-        "glasses": <Glasses size={size} color={color} className={className} />,
-        "shoes": <Footprints size={size} color={color} className={className} />,
-        "trash": <Trash2 size={size} color={color} className={className} />,
-        "list": <ListFilter size={size} color={color} className={className} />,
-
-        "binary": <Binary size={size} color={color} className={className} />,
-        "radar": <Radar size={size} color={color} className={className} />,
-        "alert": <AlertTriangle size={size} color={color} className={className} />,
-        "search": <Search size={size} color={color} className={className} />
-    };
-    return icons[name] || null;
+// --- 图标组件 ---
+const Icon = ({ name, size = 24, className = "" }) => {
+  const icons = {
+    "help": <HelpCircle size={size} className={className} />,
+    "search": <Search size={size} className={className} />,
+    "hash": <Hash size={size} className={className} />,
+    "flag": <Flag size={size} className={className} />,
+    "square": <Square size={size} className={className} />,
+    "alert": <AlertTriangle size={size} className={className} />,
+    "list": <ListOrdered size={size} className={className} />,
+    "check": <CheckCircle2 size={size} className={className} />,
+    "x": <XCircle size={size} className={className} />,
+    "terminal": <Terminal size={size} className={className} />,
+    "book": <BookOpen size={size} className={className} />
+  };
+  return icons[name] || null;
 };
 
 const lesson15MasteryItems = [
-    {
-        label: '能先初始化计数器。',
-        evidence: '知道 cnt、sum、ans 这类统计变量进入循环前通常要设为 0。',
-        retryHint: '回到“计数器的秘密”，先清空篮子再开始装。',
-    },
-    {
-        label: '能写出“遍历每个候选”的循环。',
-        evidence: '能根据题目范围写出 for (int i = 1; i <= n; i++) 这类扫描结构。',
-        retryHint: '回到“代码流水线”，先确定从谁扫到谁。',
-    },
-    {
-        label: '能把筛选条件放进 if。',
-        evidence: '能用 i % 2 == 0、N % i == 0 等条件判断是否计数。',
-        retryHint: '回到“因数扫描仪”，把符合条件的 i 圈出来。',
-    },
-    {
-        label: '能手推计数变量最终值。',
-        evidence: '能逐轮记录 i、条件真假、cnt 是否加一，并得到最终答案。',
-        retryHint: '回到两道真题，把每轮写成表格。',
-    },
+  {
+    label: '能按定义找出 n 的全部因数。',
+    evidence: 'for (i = 1; i <= n; i++) if (n % i == 0) …，i 从 1 开始（从 0 开始会除以 0），一直试到 n 本身；12 的因数是 1、2、3、4、6、12，共 6 个。',
+    retryHint: '回到“因数：从 1 试到 n”，在因数扫描里输入 12 和 1，逐个试一遍。',
+  },
+  {
+    label: '能用计数法和标志法判断质数。',
+    evidence: '计数法：因数恰有 2 个才是质数，1 只有 1 个因数，不是质数。标志法：n >= 2 时先设 flag = true，在 2～n−1 中找到因数就置 false 并 break；输入 2 时循环一次不执行，仍是质数。',
+    retryHint: '回到“质数：计数法”和“质数：标志法与 break”，分别用 1、2、9 手推两种写法。',
+  },
+  {
+    label: '能用 i * i <= n 判断完全平方数。',
+    evidence: '存在 i 使 i * i == n 就是完全平方数，循环条件写 i * i <= n，超过 n 就不用再试；立方数同理写 x * x * x <= n。例 3 输入 49 输出 1；8 是立方数，9 不是。',
+    retryHint: '回到“完全平方数与立方数”，在实验里输入 49、50，再切到立方数输入 8、9。',
+  },
+  {
+    label: '能识别整数除法造成的误判。',
+    evidence: '用 N / (i + 1) == i 判断兄弟数时，N = 7、i = 2 也成立（7 / 3 = 2），而 7 不是兄弟数；判断乘积关系要直接写 N == i * (i + 1)。',
+    retryHint: '回到“整数除法的误判”，对 N = 7 把四个表达式各算一遍。',
+  },
 ];
-
-const oddEvenCode = `#include <iostream>
-using namespace std;
-
-int main() {
-    int n, odd = 0, even = 0;
-    cin >> n;
-    for (int i = 0; i < n; ++i) {
-        int x;
-        cin >> x;
-        if (x % 2 != 0) ++odd;
-        else ++even;
-    }
-    cout << odd << ' ' << even << '\\n';
-    return 0;
-}`;
-
-const countOffCode = `#include <iostream>
-using namespace std;
-
-int main() {
-    int n, m;
-    cin >> n >> m;
-    for (int i = 1; i <= n; ++i) {
-        if (i % m != 0) cout << i << '\\n';
-    }
-    return 0;
-}`;
 
 // --- 章节数据 ---
 const sections = [
-    { id: 1, title: "课程导入：体育老师的点名册", icon: "list", category: "计数与筛选" },
-    { id: 2, title: "核心概念：计数器的秘密", icon: "basket", category: "计数与筛选" },
-    { id: 3, title: "逻辑结构：代码流水线", icon: "filter", category: "计数与筛选" },
-    { id: 4, title: "模拟实验室：因数扫描仪", icon: "radar", category: "计数与筛选" },
-    { id: 5, title: "避坑指南：统计误区", icon: "alert", category: "实战与总结" },
-    { id: 6, title: "真题实战 1：奇偶大比拼", icon: "binary", category: "实战与总结" },
-    { id: 7, title: "真题实战 2：小杨报数", icon: "terminal", category: "实战与总结" },
-    { id: 8, title: "代码实验室", icon: "calc", category: "实战与总结" },
-    { id: 9, title: "总结与作业", icon: "check", category: "实战与总结" },
-    { id: 10, title: "离开前检查", icon: "check", category: "实战与总结" }
+  { id: 1, title: "问题导入：按定义逐个试", icon: "help", category: "因数与质数" },
+  { id: 2, title: "因数：从 1 试到 n", icon: "search", category: "因数与质数" },
+  { id: 3, title: "质数：计数法", icon: "hash", category: "因数与质数" },
+  { id: 4, title: "质数：标志法与 break", icon: "flag", category: "因数与质数" },
+  { id: 5, title: "完全平方数与立方数", icon: "square", category: "平方数" },
+  { id: 6, title: "整数除法的误判", icon: "alert", category: "平方数" },
+  { id: 7, title: "因数的筛选与输出顺序", icon: "list", category: "真题" },
+  { id: 8, title: "真题编程：找因数 / 立方数 / 长方形面积", icon: "check", category: "真题" },
+  { id: 9, title: "常见错误", icon: "x", category: "真题" },
+  { id: 10, title: "上机：因数个数 / 质数判断", icon: "terminal", category: "真题" },
+  { id: 11, title: "小结与课后任务", icon: "book", category: "小结与检查" },
+  { id: 12, title: "离开前检查", icon: "check", category: "小结与检查" }
 ];
 
-// --- 互动组件 1：体育课点名模拟器 ---
-const ClassroomSimulator = () => {
-    // 模拟学生数据：id, hasGlasses, hasWhiteShoes
-    const students = [
-        { id: 1, hasGlasses: true, hasWhiteShoes: false, emoji: "🤓" },
-        { id: 2, hasGlasses: false, hasWhiteShoes: true, emoji: "👟" },
-        { id: 3, hasGlasses: false, hasWhiteShoes: false, emoji: "👦" },
-        { id: 4, hasGlasses: true, hasWhiteShoes: true, emoji: "🤓👟" },
-        { id: 5, hasGlasses: false, hasWhiteShoes: true, emoji: "👟" },
-    ];
+// --- 通用小组件（沿用第 1、2 课样板） ---
+const Button = ({ onClick, children, variant = 'primary', disabled = false, className = '' }) => {
+  const baseStyle = "px-6 py-2 rounded-lg font-bold transition-all duration-200 transform active:scale-95 flex items-center justify-center gap-2";
+  const variants = {
+    primary: "bg-blue-600 text-white hover:bg-blue-700 shadow-blue-200",
+    secondary: "bg-green-500 text-white hover:bg-green-600 shadow-green-200",
+    outline: "border-2 border-gray-300 text-gray-600 hover:border-blue-400 hover:text-blue-500"
+  };
 
-    const [mode, setMode] = useState("none"); // none, filter, count
-    const [highlightIds, setHighlightIds] = useState([]);
-    const [countResult, setCountResult] = useState(0);
-
-    const handleFilterGlasses = () => {
-        setMode("filter");
-        const ids = students.filter(s => s.hasGlasses).map(s => s.id);
-        setHighlightIds(ids);
-        setCountResult(ids.length);
-    };
-
-    const handleCountShoes = () => {
-        setMode("count");
-        const ids = students.filter(s => s.hasWhiteShoes).map(s => s.id);
-        setHighlightIds(ids);
-        setCountResult(ids.length);
-    };
-
-    return (
-        <div className="bg-blue-50 p-6 rounded-xl border-2 border-blue-200 my-4 shadow-sm">
-            <h3 className="font-bold text-lg text-blue-700 mb-4 flex items-center gap-2">
-                <ListFilter className="text-blue-600" /> 体育课场景模拟
-            </h3>
-
-            <div className="flex justify-center gap-4 mb-6">
-                {students.map(s => (
-                    <div
-                        key={s.id}
-                        className={`w-16 h-16 rounded-full flex items-center justify-center text-3xl border-4 transition-all duration-500
-              ${highlightIds.includes(s.id)
-                                ? (mode === 'filter' ? 'border-purple-500 bg-purple-100 scale-110 shadow-lg' : 'border-green-500 bg-green-100 scale-110 shadow-lg')
-                                : 'border-gray-200 bg-white opacity-70'}
-            `}
-                    >
-                        {s.emoji}
-                    </div>
-                ))}
-            </div>
-
-            <div className="flex gap-4">
-                <button
-                    onClick={handleFilterGlasses}
-                    className="flex-1 py-3 bg-purple-100 text-purple-800 rounded-lg font-bold hover:bg-purple-200 border border-purple-300 flex items-center justify-center gap-2 transition"
-                >
-                    <Glasses size={20} /> 筛选：戴眼镜出列！
-                </button>
-                <button
-                    onClick={handleCountShoes}
-                    className="flex-1 py-3 bg-green-100 text-green-800 rounded-lg font-bold hover:bg-green-200 border border-green-300 flex items-center justify-center gap-2 transition"
-                >
-                    <Footprints size={20} /> 统计：穿白鞋有几个？
-                </button>
-            </div>
-
-            {mode !== "none" && (
-                <div className="mt-4 p-3 bg-white rounded-lg border border-gray-200 text-center animate-pulse">
-                    <span className="text-gray-500 font-mono text-sm">{mode === 'filter' ? '筛选结果 (Filter)' : '计数器 (Count)'}: </span>
-                    <span className="text-2xl font-bold text-blue-600">{countResult}</span>
-                    <span className="text-sm text-gray-500"> 人</span>
-                </div>
-            )}
-        </div>
-    );
+  return (
+    <button
+      type="button"
+      onClick={onClick}
+      disabled={disabled}
+      className={`${baseStyle} ${variants[variant]} ${disabled ? 'opacity-50 cursor-not-allowed' : 'hover:-translate-y-1 shadow-md'} ${className}`}
+    >
+      {children}
+    </button>
+  );
 };
 
-// --- 互动组件 2：计数器初始化演示 ---
-const CounterDemo = () => {
-    const [count, setCount] = useState(null);
-    const [isInitialized, setIsInitialized] = useState(false);
-    const [attemptedWithoutInit, setAttemptedWithoutInit] = useState(false);
+const CodePanel = ({ children }) => (
+  <pre className="overflow-x-auto rounded-xl bg-gray-800 p-5 font-mono text-sm leading-relaxed text-gray-100"><code>{children}</code></pre>
+);
 
-    const initialize = () => {
-        setCount(0);
-        setIsInitialized(true);
-        setAttemptedWithoutInit(false);
-    };
+const OutputPanel = ({ children }) => (
+  <pre className="overflow-x-auto rounded-xl bg-slate-900 p-5 font-mono text-sm leading-relaxed text-green-400 shadow-inner"><code>{children}</code></pre>
+);
 
-    const increment = () => {
-        if (isInitialized) {
-            setCount(prev => prev + 1);
-        } else {
-            setAttemptedWithoutInit(true);
+// 作答后才显示解析；选项锁定，避免反复试选。
+const QuizCard = ({ source, badge = '站内真题', question, options, explanation, mono = false }) => {
+  const [selected, setSelected] = useState(null);
+  const correctOption = options.find((opt) => opt.isCorrect);
+
+  return (
+    <div className="w-full overflow-hidden rounded-xl border border-slate-200 bg-white shadow-md transition-shadow hover:shadow-lg">
+      <div className="flex flex-wrap items-center justify-between gap-2 border-b border-slate-200 bg-slate-50 px-6 py-3">
+        <span className="flex items-center gap-1 text-xs font-bold tracking-wider text-slate-600">
+          <BookOpen size={14} className="text-yellow-500" /> {badge}
+        </span>
+        <span className="rounded-full bg-blue-100 px-2 py-1 text-xs text-blue-800">{source}</span>
+      </div>
+      <div className="p-6">
+        <h3 className="mb-6 whitespace-pre-line text-lg font-medium leading-relaxed text-slate-800">{question}</h3>
+        <div className="grid grid-cols-1 gap-3">
+          {options.map((opt) => {
+            const isChosen = selected?.id === opt.id;
+            const stateClass = selected === null
+              ? 'border-slate-200 hover:border-blue-400 hover:bg-blue-50'
+              : isChosen
+                ? (opt.isCorrect ? 'border-green-500 bg-green-50 ring-2 ring-green-200 ring-offset-1' : 'border-red-500 bg-red-50 ring-2 ring-red-200 ring-offset-1')
+                : (opt.isCorrect ? 'border-green-500 bg-green-50' : 'border-slate-100 opacity-50');
+            return (
+              <button
+                key={opt.id}
+                type="button"
+                aria-pressed={isChosen}
+                onClick={() => setSelected(opt)}
+                disabled={selected !== null}
+                className={`relative rounded-lg border-2 p-4 pr-12 text-left transition-all ${stateClass}`}
+              >
+                <span className="mr-2 inline-block w-6 font-bold">{opt.id}.</span>
+                <span className={mono ? 'break-all font-mono text-sm' : ''}>{opt.text}</span>
+                {selected && opt.isCorrect && <CheckCircle2 className="absolute right-4 top-1/2 h-5 w-5 -translate-y-1/2 text-green-600" />}
+                {isChosen && !opt.isCorrect && <XCircle className="absolute right-4 top-1/2 h-5 w-5 -translate-y-1/2 text-red-500" />}
+              </button>
+            );
+          })}
+        </div>
+
+        {selected && (
+          <div role="status" className="mt-6 space-y-3">
+            <div className={`flex items-start gap-3 rounded-xl p-4 ${selected.isCorrect ? 'bg-green-100 text-green-800' : 'bg-red-100 text-red-800'}`}>
+              {selected.isCorrect ? <CheckCircle2 className="mt-0.5 shrink-0" /> : <XCircle className="mt-0.5 shrink-0" />}
+              <p className="text-lg font-bold">{selected.isCorrect ? '回答正确' : `回答错误，正确答案是 ${correctOption?.id}`}</p>
+            </div>
+            <div className="flex items-start gap-2 rounded-xl border border-blue-100 bg-blue-50 p-4 text-sm leading-relaxed text-blue-900">
+              <ArrowRight size={16} className="mt-0.5 shrink-0 text-blue-600" />
+              <p><strong>解析：</strong>{explanation}</p>
+            </div>
+          </div>
+        )}
+      </div>
+    </div>
+  );
+};
+
+// 编程题卡片：题面 + 样例 + 写完后才显示参考程序。上机题和真题编程共用。
+const PracticeProblem = ({ problem }) => {
+  const [showCode, setShowCode] = useState(false);
+
+  return (
+    <div className="grid w-full gap-6 md:grid-cols-2">
+      <div className="min-w-0 rounded-2xl border border-gray-100 bg-white p-6 shadow-lg">
+        <span className="mb-3 inline-block rounded bg-blue-100 px-2 py-1 text-xs font-bold text-blue-800">{problem.tag}</span>
+        <h2 className="mb-3 text-2xl font-bold text-gray-800">{problem.title}</h2>
+        <p className="text-sm leading-relaxed text-gray-700">{problem.statement}</p>
+        <div className="mt-4 grid grid-cols-2 gap-2 font-mono text-sm">
+          {problem.samples.map(([input, output]) => (
+            <React.Fragment key={input}>
+              <div className="whitespace-pre-line rounded-lg border border-gray-200 bg-gray-50 p-2">输入：{'\n'}{input}</div>
+              <div className="whitespace-pre-line rounded-lg border border-green-200 bg-green-50 p-2 font-bold text-green-800">输出：{'\n'}{output}</div>
+            </React.Fragment>
+          ))}
+        </div>
+        <p className="mt-4 rounded-xl border border-amber-200 bg-amber-50 p-3 text-sm leading-relaxed text-amber-950">提示：{problem.hint}</p>
+      </div>
+      <div className="flex min-w-0 flex-col gap-4 rounded-2xl border border-green-200 bg-green-50 p-6 shadow-sm">
+        <h3 className="flex items-center gap-2 font-bold text-green-800"><Terminal size={18} /> 参考程序</h3>
+        <p className="text-sm text-green-900">先在本机写出程序，用样例核对输出，再打开参考程序对照。</p>
+        <Button onClick={() => setShowCode(!showCode)} variant={showCode ? 'outline' : 'secondary'}>
+          {showCode ? '收起参考程序' : '我写完了，显示参考程序'}
+        </Button>
+        {showCode && <CodePanel>{problem.code}</CodePanel>}
+      </div>
+    </div>
+  );
+};
+
+// --- 1. 问题导入 ---
+const IntroSlide = () => (
+  <div className="flex flex-col items-center justify-center h-full gap-8">
+    <div className="text-center space-y-4">
+      <h2 className="text-3xl font-bold text-gray-800">按定义逐个试</h2>
+      <p className="text-lg text-gray-600">12 有哪些因数？97 是不是质数？49 是不是完全平方数？人可以背结论，程序只能照着定义，把 1、2、3……每个候选数都检验一遍。</p>
+    </div>
+
+    <div className="grid w-full gap-4 md:grid-cols-3">
+      {[
+        ['因数', 'i 能整除 n', 'n % i == 0'],
+        ['质数', '大于 1，且因数只有 1 和它本身', '因数个数 == 2'],
+        ['完全平方数', '存在整数 i，i × i 等于 n', 'i * i == n'],
+      ].map(([title, meaning, code]) => (
+        <div key={title} className="min-w-0 rounded-2xl border border-gray-100 bg-white p-6 shadow-lg">
+          <h3 className="mb-2 text-lg font-bold text-gray-800">{title}</h3>
+          <p className="mb-3 text-sm text-slate-700">{meaning}</p>
+          <code className="block rounded-lg bg-slate-100 px-3 py-2 font-mono text-sm text-slate-800">{code}</code>
+        </div>
+      ))}
+    </div>
+
+    <div className="grid w-full gap-6 md:grid-cols-2">
+      <div className="min-w-0 rounded-2xl border border-green-200 bg-green-50 p-6 shadow-sm">
+        <p className="mb-2 text-sm font-bold text-green-800">共同的骨架：for 枚举 + if 检验</p>
+        <CodePanel>{`for (int i = 1; i <= n; i++) {
+    if (按定义写出的条件) {
+        // 计数、累加、输出或置标志
+    }
+}`}</CodePanel>
+      </div>
+      <div className="min-w-0 rounded-2xl border border-blue-200 bg-blue-50 p-6 text-sm leading-relaxed text-blue-950 shadow-sm">
+        <strong className="mb-2 block text-base text-blue-900">和第 14 课的区别</strong>
+        第 14 课检验的是读进来的 n 个数；本课检验的是 1～n 这些候选数本身，它们由循环变量 i 产生，不用输入。if 里的条件照着定义写，计数器、标志变量、break 都是前几课的工具。
+      </div>
+    </div>
+
+    <PredictCheck
+      className="w-full"
+      prompt="按定义找 12 的全部因数，i 至少要试到几？"
+      options={['6', '12', '144']}
+      correctIndex={1}
+      explanation="n 本身也是 n 的因数，按定义写 i <= n，要试到 12。一级只要求按定义逐个试；“试到 √n 就够”的写法在二级 L2-9 再学。"
+      misconception="以为最大的因数是 n / 2，漏掉 n 本身。"
+    />
+
+    <div className="w-full rounded-2xl border border-blue-200 bg-blue-50 p-6 text-sm leading-relaxed text-blue-950 shadow-sm">
+      <strong className="mb-2 block text-base text-blue-900">本课主线</strong>
+      <strong>因数 → 质数（计数法、标志法）→ 完全平方数与立方数 → 整数除法的误判 → 因数的筛选与输出顺序</strong>，再做三道真题编程，最后完成“因数个数”和“质数判断”两道上机题。
+    </div>
+  </div>
+);
+
+// --- 2. 因数 ---
+const FactorSlide = () => (
+  <div className="flex flex-col items-center justify-center h-full gap-8">
+    <div className="grid w-full gap-4 md:grid-cols-2">
+      <div className="min-w-0">
+        <p className="mb-2 text-sm font-bold text-slate-600">例 1：12 有几个因数</p>
+        <CodePanel>{`int n = 12, cnt = 0;
+for (int i = 1; i <= n; i++) {
+    if (n % i == 0) cnt++;
+}
+cout << cnt << endl;`}</CodePanel>
+      </div>
+      <div className="min-w-0">
+        <p className="mb-2 text-sm font-bold text-slate-600">输出</p>
+        <OutputPanel>{'6'}</OutputPanel>
+        <p className="mt-2 text-sm text-slate-700">i = 1、2、3、4、6、12 时余数为 0，共 6 个。i 从 1 开始：从 0 开始的第一轮是 12 % 0，除数为 0，程序会出错。</p>
+      </div>
+    </div>
+
+    <FactorScanner />
+
+    <PredictCheck
+      className="w-full"
+      prompt="把例 1 的 n 改成 1，输出几？"
+      options={['0', '1', '2']}
+      correctIndex={1}
+      explanation="i 只取 1，1 % 1 == 0，cnt = 1。1 只有一个因数，这也是 1 不是质数的原因。"
+      misconception="以为每个数都至少有 1 和它本身两个因数。n = 1 时这两个是同一个数。"
+    />
+  </div>
+);
+
+// --- 3. 质数：计数法 ---
+const PrimeCountSlide = () => (
+  <div className="flex flex-col items-center justify-center h-full gap-8">
+    <div className="grid w-full gap-4 md:grid-cols-2">
+      <div className="min-w-0">
+        <p className="mb-2 text-sm font-bold text-slate-600">例 2：数因数，恰好 2 个就是质数</p>
+        <CodePanel>{`int n = 7, cnt = 0;
+for (int i = 1; i <= n; i++)
+    if (n % i == 0) cnt++;
+if (cnt == 2) cout << "Yes" << endl;
+else cout << "No" << endl;`}</CodePanel>
+      </div>
+      <div className="min-w-0">
+        <p className="mb-2 text-sm font-bold text-slate-600">输出</p>
+        <OutputPanel>{'Yes'}</OutputPanel>
+        <p className="mt-2 text-sm text-slate-700">7 只有 1 和 7 两个因数，cnt = 2。计数法不用单独处理 1：n = 1 时 cnt = 1，不等于 2，自动输出 No。</p>
+      </div>
+    </div>
+
+    <QuizCard
+      source="2024 年 3 月 GESP C++ 一级第 10 题"
+      question={'下面 C++ 代码用于判断键盘输入的整数是否为质数。质数是只能被 1 和它本身整除的数。在横线处应填入代码是（ ）。\nint N;\ncin >> N;\nint cnt = 0; // 记录N被整除的次数\nfor(int i=1; i<N+1; i++)\n    if(________________)\n        cnt += 1;\nif(cnt == 2)\n    cout << N << "是质数";\nelse\n    cout << N << "不是质数";'}
+      mono
+      options={[
+        { id: 'A', text: 'N % i' },
+        { id: 'B', text: 'N % i == 0', isCorrect: true },
+        { id: 'C', text: 'N / i == 0' },
+        { id: 'D', text: 'N / i' },
+      ]}
+      explanation="要数的是能整除 N 的 i，条件是 N % i == 0。A 正好相反（不能整除时为真）。C、D 用的是整数除法：i <= N 时 N / i 至少是 1，C 一次也不计数，D 每个 i 都计数。i < N+1 就是 i <= N。"
+    />
+    <QuizCard
+      badge="课堂练习"
+      source="站内题库 · 来源待核（2023 年 12 月一级第 9 题）"
+      question={'下面 C++ 代码用于判断一个数是否为质数（素数），在横线处应填入代码是（　）。\ncin >> N;\ncnt = 0;\nfor (int i = 1; i < N + 1; i++)\n    if (N % i == 0)\n        ________;\nif (cnt == 2)\n    cout << N << "是质数。";\nelse\n    cout << N << "不是质数。";'}
+      mono
+      options={[
+        { id: 'A', text: 'cnt = 1' },
+        { id: 'B', text: 'cnt = 2' },
+        { id: 'C', text: 'cnt =+ 1' },
+        { id: 'D', text: 'cnt += 1', isCorrect: true },
+      ]}
+      explanation="每找到一个因数，计数器加 1，写 cnt += 1。A、B 是赋值；C 的 =+ 1 其实是 cnt = +1，也只是赋值成 1（编译器会警告“可能想写 +=”）。只有 D 能把因数个数数出来。"
+    />
+  </div>
+);
+
+// --- 4. 质数：标志法 ---
+const PrimeFlagSlide = () => (
+  <div className="flex flex-col items-center justify-center h-full gap-8">
+    <div className="grid w-full gap-4 md:grid-cols-2">
+      <div className="min-w-0">
+        <p className="mb-2 text-sm font-bold text-slate-600">标志法：先假设是质数，找到反例就推翻</p>
+        <CodePanel>{`bool flag = false;
+if (n >= 2) {
+    flag = true;
+    for (int i = 2; i < n; i++) {
+        if (n % i == 0) {
+            flag = false;
+            break;
         }
-    };
+    }
+}
+if (flag) cout << "Yes" << endl;
+else cout << "No" << endl;`}</CodePanel>
+      </div>
+      <div className="min-w-0 space-y-3">
+        <p className="rounded-lg border border-slate-100 bg-slate-50 p-3 text-sm text-slate-700">只在 2～n−1 中找因数：找到一个就说明不是质数，flag = false 并 break，剩下的不必再试（第 12 课“找到就停”）。</p>
+        <p className="rounded-lg border border-slate-100 bg-slate-50 p-3 text-sm text-slate-700">n &lt; 2（0、1、负数）不进 if，flag 保持 false，直接判为不是质数。</p>
+        <p className="rounded-lg border border-amber-200 bg-amber-50 p-3 text-sm text-amber-950">n = 2 时循环条件 2 &lt; 2 一开始就为假，循环体一次也不执行；flag 保持 true，2 是质数。这正是下面这道真题考的点。</p>
+      </div>
+    </div>
 
-    const reset = () => {
-        setCount(null);
-        setIsInitialized(false);
-        setAttemptedWithoutInit(false);
-    };
+    <QuizCard
+      source="2024 年 6 月 GESP C++ 一级第 10 题"
+      question={'下面 C++ 代码用于判断 N 是否为质数（只能被 1 和它本身整除的正整数）。程序执行后，下面有关描述正确的是（ ）。\nint N;\ncout << "请输入整数：";\ncin >> N;\nbool Flag = false;\nif (N >= 2){\n    Flag = true;\n    for (int i=2; i < N; i++)\n        if (N % i == 0){\n            Flag = false;\n            break;\n        }\n}\nif(Flag)\n    cout << "是质数";\nelse\n    cout << "不是质数";'}
+      mono
+      options={[
+        { id: 'A', text: '如果输入负整数，可能输出“是质数”' },
+        { id: 'B', text: '如果输入 2，将输出“不是质数”，因为此时循环不起作用' },
+        { id: 'C', text: '如果输入 2，将输出“是质数”，即便此时循环体没有被执行', isCorrect: true },
+        { id: 'D', text: '如果将 if (N >= 2) 改为 if (N > 2) 将能正确判断 N 是否质数' },
+      ]}
+      explanation="负整数不满足 N >= 2，Flag 保持 false，只会输出“不是质数”（A 错）。输入 2 时 Flag 先被设为 true，循环 2 < 2 为假、一次不执行，Flag 不变，输出“是质数”（C 对，B 错）。改成 N > 2 后，2 进不了 if，会被误判为不是质数（D 错）。"
+    />
 
-    return (
-        <div className="bg-yellow-50 p-6 rounded-xl border-2 border-yellow-200 my-4">
-            <h3 className="font-bold text-lg text-yellow-800 mb-4 flex items-center gap-2">
-                <ShoppingBasket className="text-yellow-600" /> 计数器的秘密：空篮子原理
-            </h3>
+    <PredictCheck
+      className="w-full"
+      prompt="用标志法判断 n = 9，for 循环的循环体执行几次？"
+      options={['1 次', '2 次', '7 次']}
+      correctIndex={1}
+      explanation="i = 2：9 % 2 = 1，继续；i = 3：9 % 3 == 0，flag = false，break。循环体执行 2 次就结束了，4～8 不再试。"
+      misconception="忘了 break，以为一定要试完 2～n−1。"
+    />
+  </div>
+);
 
-            <div className="flex flex-col items-center gap-4">
-                <div className={`relative w-32 h-32 border-4 rounded-full flex items-center justify-center bg-white shadow-inner transition-colors duration-300
-          ${isInitialized ? 'border-green-500' : 'border-red-400 border-dashed'}
-        `}>
-                    {count === null ? (
-                        <div className="text-red-300 text-6xl font-bold">?</div>
-                    ) : (
-                        <div className={`text-5xl font-mono font-bold ${isInitialized ? 'text-green-600' : 'text-red-500'}`}>
-                            {count}
-                        </div>
-                    )}
+// --- 5. 完全平方数与立方数 ---
+const SquareSlide = () => (
+  <div className="flex flex-col items-center justify-center h-full gap-8">
+    <div className="grid w-full gap-4 md:grid-cols-2">
+      <div className="min-w-0">
+        <p className="mb-2 text-sm font-bold text-slate-600">例 3：49 是不是完全平方数</p>
+        <CodePanel>{`int n = 49;
+bool found = false;
+for (int i = 1; i * i <= n; i++) {
+    if (i * i == n) {
+        found = true;
+        break;
+    }
+}
+cout << found << endl;`}</CodePanel>
+      </div>
+      <div className="min-w-0">
+        <p className="mb-2 text-sm font-bold text-slate-600">输出</p>
+        <OutputPanel>{'1'}</OutputPanel>
+        <p className="mt-2 text-sm text-slate-700">i = 7 时 7 × 7 == 49，found = true，break；bool 用 cout 输出是 1（第 4 课）。i * i 已经大于 n 时，后面的 i 只会更大，不可能再相等，所以条件写 i * i &lt;= n 就能提前停。立方数同理：x * x * x &lt;= n。</p>
+      </div>
+    </div>
 
-                    <div className="absolute -bottom-8 text-sm font-bold text-gray-500">
-                        变量 cnt
-                    </div>
-                </div>
+    <PowerChecker />
 
-                <div className="bg-white p-3 rounded text-sm text-gray-600 w-full text-center">
-                    {isInitialized
-                        ? "✅ 已清空篮子 (int cnt = 0;)，可以开始计数了！"
-                        : attemptedWithoutInit
-                            ? "⚠️ 未初始化的局部变量被读取是未定义行为，不能预测或假定某个数值；先执行 int cnt = 0;。"
-                            : "⚠️ int cnt; 尚未初始化，先设为 0 再计数。"}
-                </div>
+    <QuizCard
+      source="2024 年 6 月 GESP C++ 一级第 12 题"
+      question={'如果一个整数 N 能够表示为 X*X 的形式，那么它就是一个完全平方数，下面 C++ 代码用于完成判断 N 是否为一个完全平方数，在横线处应填入的代码是（ ）。\nint N;\ncin >> N;\nfor(int i = 0; i <= N; i++)\n    if(___________________)\n        cout << N << "是一个完全平方数\\n";'}
+      mono
+      options={[
+        { id: 'A', text: 'i == N*N' },
+        { id: 'B', text: 'i*10 == N' },
+        { id: 'C', text: 'i+i == N' },
+        { id: 'D', text: 'i*i == N', isCorrect: true },
+      ]}
+      explanation="完全平方数的定义是存在整数 i 使 i × i 等于 N，条件写 i*i == N。A 是“i 等于 N 的平方”，B、C 是 10 倍和 2 倍。这段代码一直试到 N、也没有 break，结果正确但做了很多无用的检验；例 3 的写法更快。"
+    />
+  </div>
+);
 
-                <div className="flex gap-3 w-full">
-                    <button
-                        onClick={initialize}
-                        className="flex-1 py-2 bg-green-500 text-white rounded font-bold hover:bg-green-600 shadow-sm"
-                    >
-                        1. 初始化 = 0
-                    </button>
-                    <button
-                        onClick={increment}
-                        className="flex-1 py-2 bg-blue-500 text-white rounded font-bold hover:bg-blue-600 shadow-sm"
-                    >
-                        2. 放入一个 (+1)
-                    </button>
-                    <button
-                        onClick={reset}
-                        aria-label="重置计数器演示"
-                        className="px-3 py-2 bg-gray-200 text-gray-600 rounded font-bold hover:bg-gray-300"
-                    >
-                        <RotateCcw size={18} />
-                    </button>
-                </div>
-            </div>
-        </div>
-    );
-};
+// --- 6. 整数除法的误判 ---
+const DivisionTrapSlide = () => (
+  <div className="flex flex-col items-center justify-center h-full gap-8">
+    <div className="w-full rounded-2xl border border-slate-100 bg-white p-8 shadow-lg">
+      <h3 className="mb-4 text-center text-xl font-bold text-slate-800">a / b == c 不能推出 a == b * c</h3>
+      <div className="grid gap-4 md:grid-cols-2">
+        <ul className="space-y-2 text-sm text-slate-700">
+          <li className="rounded-lg border border-slate-100 bg-slate-50 p-3">整数除法会丢掉余数：6 / 3、7 / 3、8 / 3 都等于 2。</li>
+          <li className="rounded-lg border border-slate-100 bg-slate-50 p-3">所以“N 除以 3 得 2”说明不了 N 就是 6。要判断乘积关系，直接用乘法写 N == 2 * 3。</li>
+          <li className="rounded-lg border border-amber-200 bg-amber-50 p-3">用除法还有除数为 0 的风险，比如 i 从 1 开始时的 N / (i − 1)。</li>
+        </ul>
+        <OutputPanel>{`6 / 3 = 2   6 == 2 * 3 成立
+7 / 3 = 2   7 == 2 * 3 不成立
+8 / 3 = 2   8 == 2 * 3 不成立`}</OutputPanel>
+      </div>
+    </div>
 
-// --- 互动组件 3：奇偶分拣机 ---
-const OddEvenSorter = () => {
-    const [numbers, setNumbers] = useState([]);
-    const [currentIdx, setCurrentIdx] = useState(-1);
-    const [oddCount, setOddCount] = useState(0);
-    const [evenCount, setEvenCount] = useState(0);
-    const [isRunning, setIsRunning] = useState(false);
+    <QuizCard
+      source="2024 年 9 月 GESP C++ 一级第 15 题"
+      question={'如果一个正整数 N 能够表示成 X * (X + 1) 的形式，就称它是一个“兄弟数”。用来判断 N 是否为兄弟数，在 if() 中可选的表达式有几个？\ni) N == i * (i + 1)\nii) N == i * (i - 1)\niii) N / (i + 1) == i\niv) N / (i - 1) == i'}
+      mono
+      options={[
+        { id: 'A', text: '1' },
+        { id: 'B', text: '2', isCorrect: true },
+        { id: 'C', text: '3' },
+        { id: 'D', text: '4' },
+      ]}
+      explanation="i) 就是定义。ii) 的 i * (i − 1) 就是 X = i − 1 时的 X * (X + 1)，逐个枚举 i 时同样能找到，也可用。iii) 用整数除法：N = 7、i = 2 时 7 / 3 = 2 == i 成立，但 7 不是兄弟数（2 × 3 = 6）；iv) 同样会误判，i = 1 时还会除以 0。可用的是 i) 和 ii)，共 2 个（已用 g++ 对 N = 6、7、8 运行核对）。"
+    />
+  </div>
+);
 
-    useEffect(() => {
-        let interval;
-        if (isRunning && currentIdx < numbers.length) {
-            interval = setInterval(() => {
-                const num = numbers[currentIdx];
-                if (num % 2 !== 0) {
-                    setOddCount(c => c + 1);
-                } else {
-                    setEvenCount(c => c + 1);
-                }
+// --- 7. 因数的筛选与输出顺序 ---
+const FactorFilterSlide = () => (
+  <div className="flex flex-col items-center justify-center h-full gap-8">
+    <div className="w-full rounded-2xl border border-blue-200 bg-blue-50 p-6 text-sm leading-relaxed text-blue-950 shadow-sm">
+      <strong className="mb-2 block text-base text-blue-900">在“是因数”上再加条件，或者换个方向输出</strong>
+      “奇因数”就是“是因数 并且 是奇数”，两个条件用 {'&&'} 连接（第 7 课）。题目要求从小到大输出，i 从 1 往上；要求从大到小，i 从 n 往下。
+    </div>
 
-                if (currentIdx < numbers.length - 1) {
-                    setCurrentIdx(c => c + 1);
-                } else {
-                    setIsRunning(false);
-                }
-            }, 800);
+    <QuizCard
+      source="2025 年 12 月 GESP C++ 一级第 14 题"
+      question={'如果正整数N的所有奇因数（即能平整除N的奇数）的和是27的倍数，则称N为27的神秘数。下面的C++代码用于判断输入的N是否为27的神秘数。L2横线处应填入的代码是（ ）。\nint i, N, cnt = 0;\ncin >> N;\nfor (i=1; i <= N; i++) {\n if (____________) // L2\n cnt += i;\n}\nif (cnt % 27 == 0) cout << \'Y\';\nelse cout << \'N\';'}
+      mono
+      options={[
+        { id: 'A', text: '(N % i == 0) || (i % 2 == 0)' },
+        { id: 'B', text: '(N % i == 0) || (i % 2 != 0)' },
+        { id: 'C', text: '(N % i == 0) && (i % 2 != 0)', isCorrect: true },
+        { id: 'D', text: '(N % i == 0) && (i % 2 == 0)' },
+      ]}
+      explanation="要累加的 i 必须同时是 N 的因数（N % i == 0）和奇数（i % 2 != 0），用 &&。A、B 用 || 会把不是因数的数也加进去；D 加的是偶因数。注意这里的 cnt 是累加器，名字叫 cnt 但做的是 += i。"
+    />
+    <QuizCard
+      badge="课堂练习"
+      source="站内题库 · 来源待核（2023 年 9 月一级第 13 题）"
+      question={'下面C++代码用于求正整数的所有因数。在横线处应填写（ ）。\nint n; cin >> n;\nfor (______) {\n if (n % i == 0) cout << i << endl;\n}'}
+      mono
+      options={[
+        { id: 'A', text: 'int i = 1; i < n; i+1' },
+        { id: 'B', text: 'int i = 1; i < n+1; i+1' },
+        { id: 'C', text: 'int i = 1; i < n; i = i+1' },
+        { id: 'D', text: 'int i = 1; i <= n; i = i+1', isCorrect: true },
+      ]}
+      explanation="A、B 的更新段写成 i+1，只算出一个值，并没有改变 i，i 永远是 1，死循环。C 的条件 i < n 漏掉了 n 本身。D 从 1 试到 n（含 n），每轮 i 加 1。"
+    />
+    <QuizCard
+      badge="课堂练习"
+      source="站内题库 · 来源待核（2025 年 6 月一级第 12 题）"
+      question={'下面的 C++ 代码用于求 N 的所有因数（即能将 N 整除的数），如输入 12 则将输出 12,6,4,3,2,1。横线处应填入（　）。\nint i, N;\ncin >> N;\ni = N;\nwhile (_______){\n    if (N % i == 0)\n        printf("%d,", i);\n    i -= 1;\n}\nprintf("1");'}
+      mono
+      options={[
+        { id: 'A', text: 'i -= 1' },
+        { id: 'B', text: 'i == 1' },
+        { id: 'C', text: 'i > 1', isCorrect: true },
+        { id: 'D', text: 'i >= 1' },
+      ]}
+      explanation="循环外还有一句 printf 单独输出 1，所以循环只处理 N 到 2，条件是 i > 1。写成 i >= 1 会把 1 输出两次（12,6,4,3,2,1,1）；B 的 i == 1 第一次就为假，只输出 1。这是从大到小输出因数的写法。"
+    />
+  </div>
+);
+
+// --- 8. 真题编程 ---
+const examProblems = [
+  {
+    tag: '2024 年 3 月 GESP C++ 一级编程题第 2 题',
+    title: '《找因数》',
+    statement: '从小到大输出正整数 a 的所有因数，每个一行（a ≤ 1000）。',
+    samples: [['6', '1\n2\n3\n6'], ['10', '1\n2\n5\n10']],
+    hint: '例 1 把 cnt++ 换成输出 i。另测 1（只输出 1）。从小到大，i 就从 1 往上。',
+    code: `#include <iostream>
+using namespace std;
+
+int main() {
+    int a;
+    cin >> a;
+    for (int i = 1; i <= a; i++) {
+        if (a % i == 0) cout << i << endl;
+    }
+    return 0;
+}`,
+  },
+  {
+    tag: '2024 年 6 月 GESP C++ 一级编程题第 2 题',
+    title: '《立方数》',
+    statement: '输入一个正整数 n，如果存在正整数 x 使 x × x × x = n，输出 Yes，否则输出 No。（站内题面未给数据范围，待核。）',
+    samples: [['8', 'Yes'], ['9', 'No']],
+    hint: '例 3 的写法把 i * i 换成 x * x * x。另测 1（Yes）和 27（Yes）。n 很大时 x * x * x 可能超出 int 的范围，二级再讨论。',
+    code: `#include <iostream>
+using namespace std;
+
+int main() {
+    int n;
+    cin >> n;
+    bool ok = false;
+    for (int x = 1; x * x * x <= n; x++) {
+        if (x * x * x == n) {
+            ok = true;
+            break;
         }
-        return () => clearInterval(interval);
-    }, [isRunning, currentIdx, numbers]);
+    }
+    if (ok) cout << "Yes" << endl;
+    else cout << "No" << endl;
+    return 0;
+}`,
+  },
+  {
+    tag: '2023 年 3 月 GESP C++ 一级编程题第 1 题',
+    title: '《长方形面积》',
+    statement: '长方形的长和宽都是整数，约定长大于等于宽（正方形也算）。给定面积 A（2 ≤ A ≤ 1000），输出有多少种不同的长方形。',
+    samples: [['4', '2'], ['6', '2']],
+    hint: '枚举宽 w：w 能整除 A，长就是 A / w。长大于等于宽，等价于 w * w <= A，所以循环条件写 w * w <= A。4 = 1×4 = 2×2；6 = 1×6 = 2×3。',
+    code: `#include <iostream>
+using namespace std;
 
-    const startSort = () => {
-        const nums = Array.from({ length: 6 }, () => Math.floor(Math.random() * 10) + 1);
-        setNumbers(nums);
-        setOddCount(0);
-        setEvenCount(0);
-        setCurrentIdx(0);
-        setIsRunning(true);
-    };
+int main() {
+    int A, cnt = 0;
+    cin >> A;
+    for (int w = 1; w * w <= A; w++) {
+        if (A % w == 0) cnt++;
+    }
+    cout << cnt << endl;
+    return 0;
+}`,
+  },
+];
 
-    return (
-        <div className="bg-indigo-50 p-6 rounded-xl border-2 border-indigo-200 my-4">
-            <h3 className="font-bold text-lg text-indigo-700 mb-4 flex items-center gap-2">
-                <Binary className="text-indigo-600" /> 真题实战：奇偶统计
-            </h3>
-            <div className="bg-gray-100 text-xs text-gray-500 mb-4 px-2 py-1 rounded inline-block font-mono">2024年12月 GESP 一级 编程题第2题</div>
+const ExamCodingSlide = () => (
+  <div className="flex flex-col items-center justify-center h-full gap-8">
+    <div className="text-center">
+      <h3 className="text-2xl font-bold text-slate-800">真题编程：按定义枚举</h3>
+      <p className="mt-1 text-slate-500">三道题都是“for 枚举 + if 检验”，区别只在条件和找到后做什么。</p>
+    </div>
+    {examProblems.map((problem) => (
+      <PracticeProblem key={problem.title} problem={problem} />
+    ))}
+  </div>
+);
 
-            <div className="flex justify-center gap-2 mb-6 h-12 items-center">
-                {numbers.length === 0 ? (
-                    <span className="text-gray-400 text-sm">点击开始生成数据...</span>
-                ) : (
-                    numbers.map((num, idx) => (
-                        <div
-                            key={idx}
-                            className={`w-10 h-10 flex items-center justify-center rounded font-bold border-2 transition-all duration-300
-                ${idx === currentIdx && isRunning ? 'scale-125 bg-yellow-100 border-yellow-500 z-10' : 'bg-white border-indigo-100 text-gray-600'}
-                ${idx < currentIdx || (idx === currentIdx && !isRunning) ? (num % 2 !== 0 ? 'bg-purple-100 border-purple-300 text-purple-700' : 'bg-blue-100 border-blue-300 text-blue-700') : ''}
-              `}
-                        >
-                            {num}
-                        </div>
-                    ))
-                )}
-            </div>
+// --- 9. 常见错误 ---
+const mistakeCards = [
+  { title: 'i 从 0 开始', code: 'for (i = 0; i <= n; i++) if (n % i == 0)', detail: '第一轮就是 n % 0，除数为 0，程序出错。因数从 1 开始试。' },
+  { title: '把 1 判成质数', code: 'flag = true; for (i = 2; i < n; i++) …', detail: 'n = 1 时循环不执行，flag 还是 true。标志法要先判断 n >= 2。' },
+  { title: '以为 2 会被判错', code: 'for (int i = 2; i < 2; i++)', detail: '循环一次也不执行不代表出错：flag 保持 true，2 是质数（2024 年 6 月第 10 题）。' },
+  { title: '用除法判断乘积', code: 'N / (i + 1) == i', detail: '整数除法丢掉余数，7 / 3 == 2 成立但 7 ≠ 2 × 3。判断乘积关系用乘法。' },
+  { title: '标志法漏了 break', code: 'if (n % i == 0) flag = false;', detail: '结果不会错，但找到因数后还在白白试下去；需要“第一个因数”时，没有 break 还会被后面的覆盖。' },
+  { title: '输出顺序与题目不符', code: '从小到大 / 从大到小', detail: '从小到大 i 从 1 往上，从大到小 i 从 n 往下；1 是否单独输出也要看清。' },
+];
 
-            <div className="grid grid-cols-2 gap-6">
-                <div className="bg-white p-4 rounded-xl border-l-4 border-purple-500 shadow-sm relative overflow-hidden">
-                    <div className="text-purple-800 font-bold mb-1">奇数篮子 (a)</div>
-                    <div className="text-purple-600 text-xs mb-2">if (x % 2 != 0)</div>
-                    <div className="text-4xl font-mono font-bold text-purple-600 text-right">{oddCount}</div>
-                    <div className="absolute -right-4 -bottom-4 text-purple-100 text-6xl font-black select-none">ODD</div>
-                </div>
+const MistakesSlide = () => (
+  <div className="flex flex-col items-center justify-center h-full gap-8">
+    <div className="w-full rounded-2xl border border-slate-200 bg-white p-8 shadow-xl">
+      <h3 className="mb-6 flex items-center justify-center gap-2 text-2xl font-bold text-slate-800">
+        <AlertTriangle className="text-orange-500" /> 因数、质数与平方数常见错误
+      </h3>
+      <div className="grid grid-cols-1 gap-4 md:grid-cols-2">
+        {mistakeCards.map((card) => (
+          <div key={card.title} className="rounded-xl border border-red-100 bg-red-50 p-5 transition-colors hover:bg-red-100">
+            <div className="mb-3 flex items-center gap-2 font-bold text-red-700"><XCircle size={16} /> {card.title}</div>
+            <code className="mb-2 block break-all rounded border border-red-200 bg-white px-2 py-1 text-center font-mono text-sm">{card.code}</code>
+            <div className="text-xs font-medium leading-relaxed text-red-700">{card.detail}</div>
+          </div>
+        ))}
+      </div>
+    </div>
 
-                <div className="bg-white p-4 rounded-xl border-l-4 border-blue-500 shadow-sm relative overflow-hidden">
-                    <div className="text-blue-800 font-bold mb-1">偶数篮子 (b)</div>
-                    <div className="text-blue-600 text-xs mb-2">else</div>
-                    <div className="text-4xl font-mono font-bold text-blue-600 text-right">{evenCount}</div>
-                    <div className="absolute -right-4 -bottom-4 text-blue-100 text-6xl font-black select-none">EVEN</div>
-                </div>
-            </div>
+    <div className="w-full rounded-2xl border border-blue-200 bg-blue-50 p-6 text-sm leading-relaxed text-blue-950 shadow-sm">
+      <strong className="mb-2 block text-base text-blue-900">判断质数时必测的四个数</strong>
+      1（不是质数）、2（是质数，标志法的循环一次不执行）、9（不是质数，最小因数 3）、一个较大的质数如 97（是质数）。四个都对再提交。
+    </div>
+  </div>
+);
 
-            <p className="mt-4 text-sm text-indigo-800">原题输出格式：在同一行先输出奇数个数，再输出一个空格和偶数个数。</p>
-            {numbers.length > 0 && !isRunning && (
-                <div className="mt-2 rounded bg-white p-3 font-mono text-indigo-900" aria-label="原题格式输出示例">{oddCount} {evenCount}</div>
-            )}
+// --- 10. 上机 ---
+const practiceProblems = [
+  {
+    tag: '基础题 15-A',
+    title: '因数个数',
+    statement: '输入正整数 n（1 ≤ n ≤ 1000），输出 n 的因数个数。',
+    samples: [['12', '6'], ['1', '1']],
+    hint: 'i 从 1 试到 n，n % i == 0 时计数器加 1。另测 7（输出 2）。',
+    code: `#include <iostream>
+using namespace std;
 
-            <button
-                onClick={startSort}
-                disabled={isRunning}
-                className="mt-6 w-full py-2 bg-indigo-600 text-white rounded-lg font-bold hover:bg-indigo-700 disabled:opacity-50 transition flex items-center justify-center gap-2"
-            >
-                {isRunning ? "正在分拣..." : "🚀 生成数据并统计"}
-            </button>
+int main() {
+    int n, cnt = 0;
+    cin >> n;
+    for (int i = 1; i <= n; i++) {
+        if (n % i == 0) cnt++;
+    }
+    cout << cnt << endl;
+    return 0;
+}`,
+  },
+  {
+    tag: '提高题 15-B',
+    title: '质数判断',
+    statement: '输入正整数 n（1 ≤ n ≤ 1000）。是质数输出 Yes，否则输出 No。要求按定义统计因数个数。',
+    samples: [['7', 'Yes'], ['1', 'No']],
+    hint: '在 15-A 的基础上判断 cnt == 2。另测 2（Yes）和 9（No）。',
+    code: `#include <iostream>
+using namespace std;
+
+int main() {
+    int n, cnt = 0;
+    cin >> n;
+    for (int i = 1; i <= n; i++) {
+        if (n % i == 0) cnt++;
+    }
+    if (cnt == 2) cout << "Yes" << endl;
+    else cout << "No" << endl;
+    return 0;
+}`,
+  },
+];
+
+const PracticeSlide = () => (
+  <div className="flex flex-col items-center justify-center h-full gap-8">
+    {practiceProblems.map((problem) => (
+      <PracticeProblem key={problem.title} problem={problem} />
+    ))}
+  </div>
+);
+
+// --- 11. 小结与课后任务 ---
+const homeworkTasks = [
+  {
+    title: '因数之和',
+    source: '课堂练习',
+    detail: '输入正整数 n，输出 n 的所有因数之和。样例：6 → 12；28 → 56；1 → 1。把计数器换成累加器。',
+  },
+  {
+    title: '最大的真因数',
+    source: '课堂练习',
+    detail: '输入正整数 n（n ≥ 2），输出小于 n 的最大因数。样例：12 → 6；7 → 1；49 → 7。从 n − 1 往下试，第一个能整除的就 break。',
+  },
+  {
+    title: '完全平方数有几个',
+    source: '课堂练习',
+    detail: '输入正整数 n，输出 1～n 中完全平方数的个数。样例：20 → 4（1、4、9、16）；1 → 1。想一想：为什么只需要数满足 i * i <= n 的 i？',
+  },
+];
+
+const SummarySlide = () => (
+  <div className="flex flex-col items-center justify-center h-full">
+    <div className="w-full bg-yellow-50 border-2 border-yellow-200 rounded-3xl p-6 md:p-10 space-y-8">
+      <div className="rounded-2xl border border-yellow-100 bg-white p-8 shadow-sm">
+        <p className="mb-6 flex items-center gap-3 text-2xl font-bold text-slate-800">
+          <span className="rounded-lg bg-yellow-400 p-2 text-white"><BookOpen size={24} /></span> 本课要点
+        </p>
+        <ol className="space-y-4 text-slate-700">
+          {[
+            '骨架：for 枚举候选数 + if 按定义检验；结果用计数器、累加器、输出或标志变量记录。',
+            '因数：i 从 1 试到 n，条件 n % i == 0；从 0 开始会除以 0。',
+            '质数计数法：因数恰有 2 个；1 只有 1 个因数，不是质数。',
+            '质数标志法：n >= 2 时先设 flag = true，2～n−1 中找到因数就置 false 并 break；n = 2 时循环不执行，仍是质数。',
+            '完全平方数：i * i == n，循环条件 i * i <= n 可以提前停；立方数写 x * x * x <= n。',
+            '判断乘积关系用乘法，不用整数除法：N / (i + 1) == i 会把 7 误判成兄弟数。',
+          ].map((point, index) => (
+            <li key={point} className="flex items-start gap-4">
+              <span className="mt-0.5 rounded bg-slate-100 px-2 py-0.5 text-sm font-bold text-slate-600">{index + 1}</span>
+              <span className="leading-relaxed">{point}</span>
+            </li>
+          ))}
+        </ol>
+      </div>
+
+      <div>
+        <strong className="mb-6 flex items-center gap-2 text-xl text-yellow-900">
+          <Terminal size={20} /> 课后任务
+        </strong>
+        <div className="grid gap-4 md:grid-cols-2">
+          {homeworkTasks.map((task) => (
+            <label key={task.title} className="flex cursor-pointer items-start gap-4 rounded-xl border border-yellow-100 bg-white/60 p-4 transition-colors hover:bg-white">
+              <input type="checkbox" className="mt-1 h-6 w-6 shrink-0 accent-yellow-600" />
+              <div>
+                <strong className="mb-1 block text-yellow-900">{task.title}</strong>
+                <p className="mb-1 text-xs text-yellow-800">{task.source}</p>
+                <p className="text-sm text-yellow-900">{task.detail}</p>
+              </div>
+            </label>
+          ))}
         </div>
-    );
-};
+      </div>
 
-// --- 互动组件 4：倍数跳过演示 ---
-const NumberSkipper = () => {
-    const [mInput, setMInput] = useState('3');
-    const [nInput, setNInput] = useState('10');
-    const m = Number(mInput);
-    const n = Number(nInput);
-    const validInput = /^\d+$/.test(nInput) && /^\d+$/.test(mInput)
-        && Number.isSafeInteger(n) && Number.isSafeInteger(m) && n >= 1 && n <= 20 && m >= 2 && m <= 100;
-    const output = validInput
-        ? Array.from({ length: n }, (_, index) => {
-            const value = index + 1;
-            return { val: value, action: value % m === 0 ? 'skip' : 'print' };
-        })
-        : [];
-
-    return (
-        <div className="bg-red-50 p-6 rounded-xl border-2 border-red-200 my-4">
-            <h3 className="font-bold text-lg text-red-700 mb-4 flex items-center gap-2">
-                <XCircle className="text-red-600" /> 真题实战：小杨报数 (跳过倍数)
-            </h3>
-            <div className="bg-gray-100 text-xs text-gray-500 mb-4 px-2 py-1 rounded inline-block font-mono">2023年12月 GESP 一级 编程题第2题</div>
-
-            <div className="flex gap-6 mb-6">
-                <div className="flex flex-col">
-                    <label className="text-xs font-bold text-gray-600 mb-1">总数 N:</label>
-                    <input
-                        type="number" min="1" max="20" value={nInput} onChange={(e) => setNInput(e.target.value)}
-                        aria-label="演示总数 N，1 到 20"
-                        className="border-2 border-red-200 rounded px-2 py-1 w-16 text-center font-bold"
-                    />
-                </div>
-                <div className="flex flex-col">
-                    <label className="text-xs font-bold text-gray-600 mb-1">倍数 M:</label>
-                    <input
-                        type="number" min="2" max="100" value={mInput} onChange={(e) => setMInput(e.target.value)}
-                        aria-label="跳过的倍数 M，2 到 100"
-                        className="border-2 border-red-200 rounded px-2 py-1 w-16 text-center font-bold text-red-600"
-                    />
-                </div>
-            </div>
-            <p className="text-sm text-red-700 mb-4">演示范围：1 ≤ N ≤ 20，2 ≤ M ≤ 100。原题允许 N 到 1000；页面缩小范围便于逐个观察。</p>
-            {!validInput && <p role="status" className="text-sm text-red-700 mb-4">请输入范围内的整数，再观察报数结果。</p>}
-
-            <div className="flex flex-wrap gap-2">
-                {output.map((item, idx) => (
-                    <div key={idx} className="relative group">
-                        <div
-                            className={`w-10 h-10 flex items-center justify-center rounded-lg font-bold border-2 transition-all
-                ${item.action === 'skip'
-                                    ? 'bg-red-100 border-red-400 text-red-400 opacity-50 decoration-red-600'
-                                    : 'bg-white border-green-400 text-green-700 shadow-sm'}
-              `}
-                        >
-                            {item.action === 'skip' ? <span className="line-through">{item.val}</span> : item.val}
-                        </div>
-                        {item.action === 'skip' && (
-                            <div className="absolute -top-2 -right-2 bg-red-600 text-white rounded-full w-4 h-4 flex items-center justify-center text-[10px]">
-                                ✕
-                            </div>
-                        )}
-                    </div>
-                ))}
-            </div>
-
-            {validInput && <div className="mt-4 bg-gray-800 text-gray-300 p-3 rounded font-mono text-sm">
-                <span className="text-purple-400">if</span> (i % {m} == 0) <span className="text-yellow-400">continue</span>; <span className="text-gray-500">// 跳过倍数</span><br />
-                cout &lt;&lt; i &lt;&lt; "\n"; <span className="text-gray-500">// 原题要求每个数字单独一行</span>
-            </div>}
-        </div>
-    );
-};
-
-// --- 互动组件 5：因数扫描仪 (FactorFinder) ---
-const FactorFinder = () => {
-    const [nInput, setNInput] = useState('6');
-    const n = Number(nInput);
-    const validN = /^\d+$/.test(nInput) && Number.isSafeInteger(n) && n >= 1 && n <= 20;
-    const [currentI, setCurrentI] = useState(0);
-    const [factors, setFactors] = useState([]);
-    const [scanning, setScanning] = useState(false);
-
-    useEffect(() => {
-        let timer;
-        if (scanning && currentI <= n) {
-            timer = setTimeout(() => {
-                if (currentI > 0 && n % currentI === 0) {
-                    setFactors(prev => [...prev, currentI]);
-                }
-
-                if (currentI < n) {
-                    setCurrentI(c => c + 1);
-                } else {
-                    setScanning(false);
-                }
-            }, 800);
-        }
-        return () => clearTimeout(timer);
-    }, [scanning, currentI, n]);
-
-    const startScan = () => {
-        if (!validN) return;
-        setFactors([]);
-        setCurrentI(1);
-        setScanning(true);
-    };
-
-    return (
-        <div className="bg-teal-50 p-6 rounded-xl border-2 border-teal-200 my-6 shadow-sm">
-            <h3 className="font-bold text-lg text-teal-800 mb-4 flex items-center gap-2">
-                <Radar className="text-teal-600" /> 模拟实验室：因数扫描仪
-            </h3>
-
-            <div className="flex flex-col items-center gap-6">
-                <div className="flex items-center gap-4">
-                    <label htmlFor="lesson15-factor-n" className="font-bold text-teal-700">输入数字 N:</label>
-                    <input
-                        id="lesson15-factor-n" type="number" min="1" max="20"
-                        value={nInput}
-                        onChange={(e) => { setNInput(e.target.value); setFactors([]); setCurrentI(0); }}
-                        disabled={scanning}
-                        className="w-20 text-center font-bold text-xl border-2 border-teal-300 rounded p-1 focus:outline-none focus:border-teal-500"
-                    />
-                    <button
-                        onClick={startScan}
-                        disabled={scanning || !validN}
-                        className="bg-teal-600 text-white px-4 py-2 rounded-lg font-bold hover:bg-teal-700 disabled:opacity-50 transition flex items-center gap-2"
-                    >
-                        {scanning ? "正在扫描..." : <><Search size={18} /> 开始扫描</>}
-                    </button>
-                </div>
-
-                {!validN && <p className="text-sm text-red-700" role="alert">请输入 1～20 的整数，再开始扫描；不能把 0 当除数。</p>}
-
-                {/* 扫描可视化区域 */}
-                <div className="bg-white p-4 rounded-xl border border-teal-100 w-full">
-                    <div className="flex flex-wrap gap-2 justify-center">
-                        {Array.from({ length: validN ? n : 0 }, (_, i) => i + 1).map(num => {
-                            const isCurrent = num === currentI && scanning;
-                            const isFactor = factors.includes(num);
-
-                            return (
-                                <div
-                                    key={num}
-                                    className={`w-10 h-10 rounded-lg flex items-center justify-center font-bold text-sm transition-all duration-300
-                                        ${isCurrent ? 'bg-yellow-300 scale-125 border-2 border-yellow-500 z-10' : ''}
-                                        ${isFactor ? 'bg-green-500 text-white shadow-md' : 'bg-gray-100 text-gray-400'}
-                                        ${!isCurrent && !isFactor ? 'opacity-60' : ''}
-                                    `}
-                                >
-                                    {num}
-                                </div>
-                            );
-                        })}
-                    </div>
-                </div>
-
-                {/* 代码解释区域 */}
-                {validN && <div className="bg-slate-800 text-white p-4 rounded-lg font-mono text-sm w-full max-w-md">
-                    <div className="text-gray-400 mb-2">// 扫描过程</div>
-                    <div><span className="text-purple-400">for</span> (int i=1; i&lt;={n}; i++) &#123;</div>
-                    <div className="pl-4">
-                        <span className="text-gray-500">// i 现在是 {currentI === 0 ? '...' : currentI}</span>
-                    </div>
-                    <div className="pl-4">
-                        <span className="text-purple-400">if</span> ({n} % i == 0) &#123;
-                        {currentI > 0 && n % currentI === 0 && <span className="text-green-400 font-bold ml-2">✔ 是因数!</span>}
-                        {currentI > 0 && n % currentI !== 0 && <span className="text-red-400 font-bold ml-2">✘ 不是</span>}
-                    </div>
-                    <div className="pl-8">cnt++;</div>
-                    <div className="pl-4">&#125;</div>
-                    <div>&#125;</div>
-                    <div className="mt-2 text-yellow-400 font-bold border-t border-gray-600 pt-2">
-                        找到因数个数 (cnt): {factors.length}
-                    </div>
-                </div>}
-            </div>
-        </div>
-    );
-};
-
-// --- 互动组件 6：避坑指南 (PitfallGuide) ---
-const PitfallGuide = () => {
-    const [activeTab, setActiveTab] = useState(0);
-
-    const pitfalls = [
-        {
-            title: "1. 忘记初始化",
-            bad: "int cnt;\nfor(...) {\n  if(...) cnt++;\n}",
-            good: "int cnt = 0; // 必须清零！\nfor(...) {\n  if(...) cnt++;\n}",
-            desc: "计数器就像个空篮子。如果一开始不把篮子倒空（赋值为0），里面原来的垃圾值会让结果完全错误！"
-        },
-        {
-            title: "2. 判断符号写错",
-            bad: "if (i % 2 = 1) { // 左边不是可赋值变量，编译失败\n  ...\n}",
-            good: "if (i % 2 != 0) { // 判断奇数，负奇数也适用\n  ...\n}",
-            desc: "这里把 == 写成 = 会编译失败，因为 i % 2 的结果不能被赋值。若写成 if (x = 1)，则是在给变量 x 赋值，条件为真；应按题意使用 == 或 !=。"
-        },
-        {
-            title: "3. 范围与除0",
-            bad: "for (int i=0; i<=n; i++) {\n  if (n % i == 0) ... // 0不能做除数！\n}",
-            good: "for (int i=1; i<=n; i++) { // 从1开始\n  if (n % i == 0) ...\n}",
-            desc: "找因数或者取模时，千万注意除数（分母）不能是 0。循环通常要从 1 开始，而不是 0。"
-        }
-    ];
-
-    const current = pitfalls[activeTab];
-
-    return (
-        <div className="bg-orange-50 p-6 rounded-xl border-2 border-orange-200 my-6">
-            <h3 className="font-bold text-lg text-orange-800 mb-4 flex items-center gap-2">
-                <AlertTriangle className="text-orange-600" /> 避坑指南：统计误区
-            </h3>
-
-            <div className="flex gap-2 mb-4 overflow-x-auto pb-2">
-                {pitfalls.map((p, i) => (
-                    <button
-                        key={i}
-                        onClick={() => setActiveTab(i)}
-                        className={`px-3 py-1 rounded-full text-sm font-bold whitespace-nowrap transition ${activeTab === i ? 'bg-orange-500 text-white' : 'bg-orange-200 text-orange-800 hover:bg-orange-300'
-                            }`}
-                    >
-                        {p.title}
-                    </button>
-                ))}
-            </div>
-
-            <div className="bg-white p-5 rounded-lg border border-orange-100 shadow-sm transition-all duration-300">
-                <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mb-4">
-                    <div className="bg-red-50 p-3 rounded border border-red-100">
-                        <div className="text-red-600 font-bold text-xs mb-1">❌ 错误写法</div>
-                        <CodeSnippet code={current.bad} />
-                    </div>
-                    <div className="bg-green-50 p-3 rounded border border-green-100">
-                        <div className="text-green-600 font-bold text-xs mb-1">✅ 正确写法</div>
-                        <CodeSnippet code={current.good} />
-                    </div>
-                </div>
-                <div className="flex items-start gap-2 text-sm text-gray-600 bg-orange-50 p-3 rounded">
-                    <div className="mt-1 min-w-[16px]"><BookOpen size={16} className="text-orange-500" /></div>
-                    <p>{current.desc}</p>
-                </div>
-            </div>
-        </div>
-    );
-};
+      <p className="rounded-xl border border-blue-100 bg-blue-50 p-4 text-sm leading-relaxed text-blue-950">
+        下一课：一级综合复盘。一级编程题的两种主型——“读 n 个数统计”和“按定义检验”——到此齐了；下一课用 2026 年 3 月整卷测评，按错因回到对应的课复习。二级 L2-9 会在本课基础上学“试到 √n 就够”。
+      </p>
+    </div>
+  </div>
+);
 
 // --- 主应用 ---
 export default function App() {
-    const [activeSection, setActiveSection] = useState(1);
+  const [activeSection, setActiveSection] = useState(1);
 
-    const renderContent = () => {
-        switch (activeSection) {
-            case 1:
-                return (
-                    <div className="slide-enter text-center">
-                        <div className="bg-gradient-to-r from-blue-600 to-indigo-600 text-white p-12 rounded-2xl shadow-xl mb-8">
-                            <div className="flex justify-center gap-4 mb-6">
-                                <ListFilter size={60} className="text-yellow-300 animate-pulse" />
-                                <Calculator size={60} className="text-green-300 animate-bounce" />
-                            </div>
-                            <h2 className="text-3xl font-extrabold mb-2 text-blue-100">GESP C++ 一级 第15课</h2>
-                            <h1 className="text-5xl font-bold mb-6 drop-shadow-md">筛选与统计</h1>
-                            <div className="inline-block bg-white/20 px-6 py-2 rounded-full backdrop-blur-sm border border-white/30">
-                                <span className="font-bold tracking-wide text-lg">🔍 副标题：挑西瓜与数豆子</span>
-                            </div>
-                        </div>
+  const renderContent = () => {
+    switch (activeSection) {
+      case 1: return <IntroSlide />;
+      case 2: return <FactorSlide />;
+      case 3: return <PrimeCountSlide />;
+      case 4: return <PrimeFlagSlide />;
+      case 5: return <SquareSlide />;
+      case 6: return <DivisionTrapSlide />;
+      case 7: return <FactorFilterSlide />;
+      case 8: return <ExamCodingSlide />;
+      case 9: return <MistakesSlide />;
+      case 10: return <PracticeSlide />;
+      case 11: return <SummarySlide />;
+      case 12:
+        return (
+          <div className="slide-enter py-6">
+            <TransferCheck
+                prompt="换个例子：输入正整数 n，按从小到大的顺序输出 n 的所有偶因数，空格分隔。写出核心代码，并手推 n = 12 时的输出。"
+                hint="“偶因数”= 是因数 并且 是偶数，两个条件用什么连接？"
+                answer="for (int i = 1; i <= n; i++) if (n % i == 0 && i % 2 == 0) cout << i << ' ';  n = 12 时输出 2 4 6 12。"
+                steps={[
+                    '枚举 i 从 1 到 n（含 n），从小到大输出。',
+                    '条件：n % i == 0 && i % 2 == 0，两个都要满足。',
+                    '12 的因数 1、2、3、4、6、12 中偶数是 2、4、6、12。',
+                ]}
+            />
+            <MasteryCheck
+              title="C++ L1-15 因数、质数与平方数离开前检查"
+              description="如果能按定义找出全部因数、用计数法和标志法判断质数、用 i * i <= n 判断完全平方数，并识别整数除法造成的误判，就可以进入第 16 课：一级综合复盘。"
+              items={lesson15MasteryItems}
+            />
+          </div>
+        );
+      default: return <div>Content Not Found</div>;
+    }
+  };
 
-                        <div className="bg-white p-8 rounded-xl shadow-sm border border-gray-100 text-left">
-                            <h3 className="text-xl font-bold text-gray-800 mb-4 flex items-center gap-2 border-b pb-2">
-                                <ArrowRight className="text-blue-600" /> 教学目标
-                            </h3>
-                            <ul className="space-y-4 text-gray-600">
-                                <li className="flex items-center gap-3">
-                                    <span className="bg-blue-100 text-blue-600 p-2 rounded"><ShoppingBasket size={18} /></span>
-                                    掌握计数器的初始化与使用（空篮子原理）。
-                                </li>
-                                <li className="flex items-center gap-3">
-                                    <span className="bg-indigo-100 text-indigo-600 p-2 rounded"><Filter size={18} /></span>
-                                    学会结合 <code>for</code> 循环与 <code>if</code> 判断进行筛选。
-                                </li>
-                                <li className="flex items-center gap-3">
-                                    <span className="bg-purple-100 text-purple-600 p-2 rounded"><Terminal size={18} /></span>
-                                    解决 GESP 真题中的统计类编程题。
-                                </li>
-                            </ul>
-                        </div>
-                    </div>
-                );
-            case 2:
-                return (
-                    <div className="slide-enter">
-                        <h2 className="text-3xl font-bold text-gray-800 mb-6 flex items-center gap-3">
-                            <ShoppingBasket className="text-yellow-600" size={32} /> 核心概念：计数器的秘密
-                        </h2>
-                        <div className="bg-white p-6 rounded-xl shadow-sm border border-gray-100 mb-6">
-                            <p className="text-lg text-gray-600 mb-4">
-                                要数清楚有多少个豆子，最重要的一步是什么？
-                                <br />
-                                <strong className="text-red-600">先把篮子倒空！</strong> 如果篮子里原来就有垃圾，数出来的数就不对啦。
-                            </p>
-                            <CounterDemo />
-                        </div>
-
-                        <div className="bg-slate-900 text-white p-4 rounded-xl font-mono text-sm">
-                            <div className="text-gray-500 mb-2">// 标准代码模版</div>
-                            <div><span className="text-purple-400">int</span> cnt = 0; <span className="text-green-400">// 1. 准备空篮子</span></div>
-                            <div><span className="text-purple-400">if</span> ( 条件 ) &#123;</div>
-                            <div className="pl-4">cnt = cnt + 1; <span className="text-green-400">// 2. 扔进去一个</span></div>
-                            <div>&#125;</div>
-                            <div>cout &lt;&lt; cnt; <span className="text-green-400">// 3. 汇报结果</span></div>
-                        </div>
-                    </div>
-                );
-            case 3:
-                return (
-                    <div className="slide-enter">
-                        <h2 className="text-3xl font-bold text-gray-800 mb-6 flex items-center gap-3">
-                            <ListFilter className="text-blue-600" size={32} /> 逻辑结构：代码流水线
-                        </h2>
-                        <ClassroomSimulator />
-                        <div className="mt-6 grid grid-cols-1 md:grid-cols-3 gap-4 text-center">
-                            <div className="bg-gray-100 p-4 rounded-lg border border-gray-200">
-                                <div className="text-2xl mb-2">🔄</div>
-                                <div className="font-bold text-gray-700">for 循环</div>
-                                <div className="text-sm text-gray-500">挨个拿起来看</div>
-                            </div>
-                            <div className="text-gray-300 flex items-center justify-center"><ArrowRight /></div>
-                            <div className="bg-gray-100 p-4 rounded-lg border border-gray-200">
-                                <div className="text-2xl mb-2">🔍</div>
-                                <div className="font-bold text-gray-700">if 判断</div>
-                                <div className="text-sm text-gray-500">符合条件吗？</div>
-                            </div>
-                            <div className="text-gray-300 flex items-center justify-center"><ArrowRight /></div>
-                            <div className="bg-gray-100 p-4 rounded-lg border border-gray-200">
-                                <div className="text-2xl mb-2">🧺</div>
-                                <div className="font-bold text-gray-700">cnt++</div>
-                                <div className="text-sm text-gray-500">扔进篮子</div>
-                            </div>
-                        </div>
-                    </div>
-                );
-            case 4:
-                return (
-                    <div className="slide-enter">
-                        <h2 className="text-3xl font-bold text-gray-800 mb-6 flex items-center gap-3">
-                            <Radar className="text-teal-600" size={32} /> 模拟实验室：因数扫描仪
-                        </h2>
-                        <FactorFinder />
-                        <div className="bg-blue-50 text-blue-800 p-4 rounded-lg mt-4 text-sm">
-                            <strong>🤔 原理分析：</strong>
-                            <p>找因数就像“过安检”。我们让 1 到 N 所有的数字依次排队，如果是 N 的因数（能整除），安检灯就亮绿灯（计数器+1），否则直接通过。</p>
-                        </div>
-                    </div>
-                );
-            case 5:
-                return (
-                    <div className="slide-enter">
-                        <h2 className="text-3xl font-bold text-gray-800 mb-6 flex items-center gap-3">
-                            <AlertTriangle className="text-orange-600" size={32} /> 避坑指南：统计误区
-                        </h2>
-                        <PitfallGuide />
-                    </div>
-                );
-            case 6:
-                return (
-                    <div className="slide-enter">
-                        <h2 className="text-3xl font-bold text-gray-800 mb-6 flex items-center gap-3">
-                            <Binary className="text-indigo-600" size={32} /> 真题实战 1：奇偶大比拼
-                        </h2>
-                        <OddEvenSorter />
-                        <p className="mt-5 mb-2 text-sm text-gray-600">完整 C++11 程序。输入 <code>5</code> 和 <code>1 2 3 4 5</code>，应在同一行输出 <code>3 2</code>。</p>
-                        <CodeSnippet code={oddEvenCode} />
-                        <div className="bg-white p-4 rounded-lg shadow-sm border-l-4 border-indigo-500 mt-6">
-                            <h4 className="font-bold text-indigo-800 mb-2">💡 解题思路</h4>
-                            <p className="text-sm text-gray-600 mb-2">
-                                1. 准备两个篮子：<code>int a = 0;</code> (奇数) 和 <code>int b = 0;</code> (偶数)。<br />
-                                2. 怎么分奇偶？看余数：<code>x % 2</code>。<br />
-                                3. 如果余数不等于 0 &rarr; 奇数篮子 +1；这样写也能处理负奇数。<br />
-                                4. 否则 (else) &rarr; 偶数篮子 +1。
-                            </p>
-                        </div>
-                    </div>
-                );
-            case 7:
-                return (
-                    <div className="slide-enter">
-                        <h2 className="text-3xl font-bold text-gray-800 mb-6 flex items-center gap-3">
-                            <Terminal className="text-red-600" size={32} /> 真题实战 2：小杨报数
-                        </h2>
-                        <NumberSkipper />
-                        <p className="mt-5 mb-2 text-sm text-gray-600">完整 C++11 程序。输入 <code>5 2</code>，应依次按行输出 1、3、5；原题 N 可到 1000。</p>
-                        <CodeSnippet code={countOffCode} />
-                        <div className="bg-white p-6 rounded-xl shadow-sm border border-gray-200 mt-6">
-                            <h4 className="font-bold text-gray-700 mb-3 border-b pb-2">写法对比：正向筛选 vs 反向剔除</h4>
-                            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                                <div className="bg-green-50 p-4 rounded-lg">
-                                    <div className="text-green-800 font-bold text-sm mb-2">写法 A：只放行好人</div>
-                                    <code className="text-xs text-green-700">
-                                        if (i % m != 0) &#123;<br />
-                                        &nbsp;&nbsp;cout &lt;&lt; i &lt;&lt; "\n";<br />
-                                        &#125;
-                                    </code>
-                                </div>
-                                <div className="bg-red-50 p-4 rounded-lg">
-                                    <div className="text-red-800 font-bold text-sm mb-2">写法 B：坏人踢出去 (continue)</div>
-                                    <code className="text-xs text-red-700">
-                                        if (i % m == 0) &#123;<br />
-                                        &nbsp;&nbsp;continue; <span className="opacity-50">// 闭嘴</span><br />
-                                        &#125;<br />
-                                        cout &lt;&lt; i &lt;&lt; "\n";
-                                    </code>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                );
-            case 8:
-                return (
-                    <div className="slide-enter">
-                        <h2 className="text-3xl font-bold text-gray-800 mb-6 flex items-center gap-3">
-                            <Calculator className="text-teal-600" size={32} /> 代码实验室
-                        </h2>
-                        <div className="bg-white p-8 rounded-xl shadow-lg border border-teal-100">
-                            <div className="flex items-center gap-4 mb-6">
-                                <div className="bg-teal-100 p-3 rounded-full text-teal-600">
-                                    <Terminal size={32} />
-                                </div>
-                                <div>
-                                    <h3 className="text-xl font-bold text-gray-800">Hands-on Practice</h3>
-                                    <p className="text-gray-500">请打开 Dev-C++ 完成以下任务：</p>
-                                </div>
-                            </div>
-
-                            <ul className="space-y-4">
-                                <li className="flex items-center gap-3 p-3 bg-gray-50 rounded-lg hover:bg-gray-100 transition cursor-pointer group">
-                                    <span className="w-6 h-6 rounded-full bg-teal-600 text-white flex items-center justify-center text-sm font-bold">1</span>
-                                    <span className="font-medium text-gray-700 group-hover:text-teal-700">练习 1：上机完成“奇偶统计”代码。</span>
-                                </li>
-                                <li className="flex items-center gap-3 p-3 bg-gray-50 rounded-lg hover:bg-gray-100 transition cursor-pointer group">
-                                    <span className="w-6 h-6 rounded-full bg-teal-600 text-white flex items-center justify-center text-sm font-bold">2</span>
-                                    <span className="font-medium text-gray-700 group-hover:text-teal-700">练习 2：上机完成“小杨报数”代码。</span>
-                                </li>
-                            </ul>
-
-                            <div className="mt-6 pt-4 border-t border-gray-100">
-                                <h4 className="font-bold text-red-500 mb-2 flex items-center gap-2"><XCircle size={16} /> 注意细节：</h4>
-                                <ul className="list-disc list-inside text-sm text-gray-600 space-y-1">
-                                    <li>变量要先定义后使用 (<code>int n;</code>)。</li>
-                                    <li>计数器别忘了归零 (<code>int cnt = 0;</code>)。</li>
-                                    <li>输出格式要注意空格和换行。</li>
-                                </ul>
-                            </div>
-                        </div>
-                    </div>
-                );
-            case 9:
-                return (
-                    <div className="slide-enter">
-                        <h2 className="text-3xl font-bold text-gray-800 mb-6">🎓 总结与作业</h2>
-
-                        <div className="grid grid-cols-1 md:grid-cols-2 gap-6 mb-8">
-                            <div className="bg-white p-6 rounded-xl shadow-md border border-gray-100">
-                                <h3 className="font-bold text-lg mb-4 flex items-center gap-2 text-indigo-700 border-b pb-2">
-                                    <CheckCircle2 size={20} /> 今日口诀
-                                </h3>
-                                <div className="bg-indigo-50 p-4 rounded-lg text-indigo-900 font-medium leading-loose italic">
-                                    “统计要想做对，<br />
-                                    篮子先要清退（初始化0）。<br />
-                                    循环挨个排队，<br />
-                                    符合条件入柜（++）。”
-                                </div>
-                            </div>
-
-                            <div className="bg-gradient-to-br from-teal-500 to-green-600 text-white p-6 rounded-xl shadow-lg flex flex-col justify-center">
-                                <h3 className="font-bold text-xl mb-4 flex items-center gap-2">
-                                    <BookOpen size={24} /> 课后挑战
-                                </h3>
-                                <div className="space-y-2">
-                                    <p className="font-bold text-lg">题目：统计因数个数</p>
-                                    <p className="text-teal-100 text-sm">
-                                        描述：输入一个数 N，统计它一共有多少个因数？<br />
-                                        （例如 6 有 1, 2, 3, 6 共 4 个）
-                                    </p>
-                                    <div className="bg-white/20 p-2 rounded text-xs mt-2 border border-white/30">
-                                        提示：循环从 1 到 N，判断 <code>N % i == 0</code>。
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div className="mt-8 text-center">
-                            <button onClick={() => setActiveSection(1)} className="px-8 py-3 bg-gray-200 text-gray-700 rounded-full hover:bg-gray-300 transition font-bold shadow-sm flex items-center gap-2 mx-auto">
-                                <RotateCcw size={18} /> 重新开始学习
-                            </button>
-                        </div>
-                    </div>
-                );
-            case 10:
-                return (
-                    <div className="slide-enter py-6">
-                        <TransferCheck
-                            prompt="换个例子：统计 1~10 里 3 的倍数有几个。怎么用计数器和循环？列出这些数。"
-                            hint="设 cnt=0，遍历 i=1..10，i%3==0 就 cnt++。"
-                            answer="3 个：3、6、9。"
-                            steps={[
-                                'cnt=0，遍历 1 到 10。',
-                                'i % 3 == 0 的有 3、6、9。',
-                                'cnt 累加到 3。',
-                            ]}
-                        />
-                        <MasteryCheck
-                            title="C++ L1-15 计数与筛选离开前检查"
-                            description="如果能初始化计数器、遍历候选、筛选条件、手推 cnt 变化，就可以进入一级总复习。"
-                            items={lesson15MasteryItems}
-                        />
-                    </div>
-                );
-            default:
-                return <div>Content Not Found</div>;
-        }
-    };
-
-    return (
-        <LegacyCppLessonShell
-            prerequisites={['会用循环遍历一批数据', '会用 if 挑出符合条件的数', '会用计数器和累加器']}
-            lessonNumber={15}
-            lessonTitle="筛选与统计"
-            accent="blueIndigo"
-            sections={sections}
-            activeSection={activeSection}
-            setActiveSection={setActiveSection}
-            nextLessonPath="/lesson/1/16"
-            renderIcon={(name, size) => <Icon name={name} size={size} />}
-            topSupport={<CppL1LessonSupport lessonId={15} />}
-            bottomSupport={<CppL1LessonSupport lessonId={15} placement="bottom" />}
-        >
-            {renderContent()}
-        </LegacyCppLessonShell>
-    );
+  return (
+    <LegacyCppLessonShell
+        prerequisites={['会用 for 计数并选对初值（第 10 课）', '会用 break 找到就停（第 12 课）', '知道 bool 变量输出 1 或 0（第 4 课）']}
+      lessonNumber={15}
+      lessonTitle="因数、质数与平方数"
+      sections={sections}
+      activeSection={activeSection}
+      setActiveSection={setActiveSection}
+      nextLessonPath="/lesson/1/16"
+      renderIcon={(name, size) => <Icon name={name} size={size} />}
+      topSupport={<CppL1LessonSupport lessonId={15} />}
+      bottomSupport={<CppL1LessonSupport lessonId={15} placement="bottom" />}
+    >
+      {renderContent()}
+    </LegacyCppLessonShell>
+  );
 }

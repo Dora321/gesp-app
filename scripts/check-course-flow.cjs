@@ -678,10 +678,10 @@ function assertCppLoopLessonKeepsExecutionTrace() {
 
   assert(
     lesson.includes('CodeTracer') &&
-      lesson.includes('陷阱追踪器：循环结束时 i 到底是多少？') &&
-      lesson.includes('再次判断 10 < 10 为假') &&
-      lesson.includes('N + i = 9 + 10 = 19'),
-    'C++ L1 lesson 9 should keep the step-by-step execution trace for the for-loop boundary trap.'
+      lesson.includes('分档追踪器：s = 85 逐条检查') &&
+      lesson.includes('已经命中第 2 支') &&
+      lesson.includes('85 >= 80'),
+    'C++ L1 lesson 9 should keep the step-by-step else-if trace that stops at the first true branch.'
   );
 }
 
@@ -734,11 +734,11 @@ function assertCppLessonsKeepPredictionChecks() {
   const bubbleLesson = read('src/lessons/cpp/l4/Lesson9.jsx');
 
   assert(
-    loopLesson.includes('ForLoopPredictionChecks') &&
-      loopLesson.includes('for (i = 1; i < 10; i++) 结束后') &&
-      loopLesson.includes('把最后一次执行的 i 值，当成循环结束后的 i 值') &&
-      loopLesson.includes('for (int i = 0; i < 5; i++) 最后一次进入循环体时 i 是多少？'),
-    'C++ L1 lesson 9 should keep for-loop prediction checks for execution count and final i traps.'
+    loopLesson.includes('ElseIfStepper') &&
+      loopLesson.includes('如果先判 s >= 60') &&
+      loopLesson.includes('其实只命中从上往下第一个成立的分支') &&
+      loopLesson.includes('例 2 中把 k 改成 1，输出什么？'),
+    'C++ L1 lesson 9 should keep prediction checks for else-if ordering and switch fall-through.'
   );
   assert(
     arrayLesson.includes('ArrayPredictionChecks') &&
@@ -757,12 +757,12 @@ function assertCppLessonsKeepPredictionChecks() {
     'C++ L4 lesson 9 should keep bubble-sort prediction checks for pass outcome, shrinking bounds, and swap condition.'
   );
   assert(
-    loopLesson.includes('forLoopMasteryItems') &&
-      loopLesson.includes('C++ L1-9 for 循环离开前检查') &&
-      loopLesson.includes('能手推循环结束后 i 的值') &&
-      loopLesson.includes('把“最后一次进入”和“循环结束后”分成两列写') &&
+    loopLesson.includes('lesson9MasteryItems') &&
+      loopLesson.includes('C++ L1-9 多分支与 switch 离开前检查') &&
+      loopLesson.includes('能预测漏写 break 时的输出') &&
+      loopLesson.includes('切换“顺序写反”再输入 95') &&
       loopLesson.includes('nextLessonPath="/lesson/1/10"'),
-    'C++ L1 lesson 9 should keep the before-next-lesson mastery check for loop boundaries.'
+    'C++ L1 lesson 9 should keep the before-next-lesson mastery check for else-if order, range grading, break fall-through, and merged cases.'
   );
   assert(
     arrayLesson.includes('arrayMasteryItems') &&
@@ -798,45 +798,45 @@ function assertCppLevel1IntroLessonsKeepMasteryChecks() {
     },
     {
       path: 'src/lessons/cpp/l1/Lesson3.jsx',
-      title: 'C++ L1-3 数字的魔法离开前检查',
-      concepts: ['int 和 double', '整数除法', '5.0 / 2', '3 - 3 * 3 / 5'],
+      title: 'C++ L1-3 整除、取余与优先级离开前检查',
+      concepts: ['能区分 / 求商和 % 求余数', '9 / 4 - 6 % (6 - 2) * 10', '/ 100、/ 10 % 10、% 10', '3 - 3 * 3 / 5'],
       nextPath: '/lesson/1/4',
-      message: 'C++ L1 lesson 3 should keep a mastery check for numeric types, integer division, decimal-preserving division, and expression tracing.',
+      message: 'C++ L1 lesson 3 should keep a mastery check for quotient/remainder meaning, priority tracing, fixed-digit splitting, and the 2024-06 priority exam item.',
     },
     {
       path: 'src/lessons/cpp/l1/Lesson4.jsx',
-      title: 'C++ L1-4 余数的妙用离开前检查',
-      concepts: ['/ 求商和 % 求余数', '17 / 5', '生活问题翻译成商和余数', 'n % 2 == 0'],
+      title: 'C++ L1-4 数据类型与类型转换离开前检查',
+      concepts: ['能写出常见字面量的类型', '0.0 + 7 / 2', '-2.9 存入 int 得 -2', 'fixed << setprecision(2)', 'char 用单引号、cin 只读一个字符'],
       nextPath: '/lesson/1/5',
-      message: 'C++ L1 lesson 4 should keep a mastery check for quotient/remainder meaning, life translation, priority tracing, and parity checks.',
+      message: 'C++ L1 lesson 4 should keep a mastery check for literal types, int/double division, truncation toward zero, fixed decimals, and the char/bool core.',
     },
     {
       path: 'src/lessons/cpp/l1/Lesson5.jsx',
-      title: 'C++ L1-5 字符与真假值离开前检查',
-      concepts: ['能区分单引号字符和双引号字符串', '能读入并输出一个英文字母', '能说明 bool、true、false 和 0/1 的关系', 'ASCII 速查和字符运算是二级前瞻选学'],
+      title: 'C++ L1-5 赋值与自增自减离开前检查',
+      concepts: ['a op= x 等价于 a = a op (x)', 'cout << x++ 与 cout << ++x', '(X = 3, X++, ++X) 的值是 5', 't = a; a = b; b = t;'],
       nextPath: '/lesson/1/6',
-      message: 'C++ L1 lesson 5 should assess char/string differences, char input/output, and bool output while keeping ASCII optional.',
+      message: 'C++ L1 lesson 5 should assess compound assignment, postfix/prefix increment, comma expressions, and swapping with a temporary variable.',
     },
     {
       path: 'src/lessons/cpp/l1/Lesson6.jsx',
-      title: 'C++ L1-6 逻辑运算离开前检查',
-      concepts: ['&&、||、!', '只有 0 是 false', 'x > 1 && x < 10', '含逻辑运算的表达式', '能解释 && 与 || 的短路求值'],
+      title: 'C++ L1-6 格式化输入输出离开前检查',
+      concepts: ['%d、%.2f、%% 的作用', '%2d、%02d、%-5d', 'scanf("%d%d", &a, &b)', '读 double 用 %lf', '输入 14+7 时'],
       nextPath: '/lesson/1/7',
-      message: 'C++ L1 lesson 6 should assess logical operators, truthiness, chained-comparison traps, expression tracing, and short-circuit evaluation.',
+      message: 'C++ L1 lesson 6 should assess printf placeholders, width and zero padding, scanf with &, %lf, and input that stops at non-digit characters.',
     },
     {
       path: 'src/lessons/cpp/l1/Lesson7.jsx',
-      title: 'C++ L1-7 条件判断离开前检查',
-      concepts: ['if 和 else 的分工', 'if (条件);', '==、!=、>、>=、<、<=', 'n % 2 == 0'],
+      title: 'C++ L1-7 关系与逻辑运算离开前检查',
+      concepts: ['能区分 = 与 ==', '只有 0 是 false', '能解释 && 与 || 的短路求值', 'x > 1 && x < 10', '(y % 4 == 0 && y % 100 != 0) || y % 400 == 0'],
       nextPath: '/lesson/1/8',
-      message: 'C++ L1 lesson 7 should keep a mastery check for if/else flow, semicolon traps, comparison operators, and parity branching.',
+      message: 'C++ L1 lesson 7 should assess = vs ==, truthiness, short-circuit evaluation, chained-comparison traps, and the leap-year condition.',
     },
     {
       path: 'src/lessons/cpp/l1/Lesson8.jsx',
-      title: 'C++ L1-8 多重选择结构离开前检查',
-      concepts: ['if / else if / else 的顺序', '只会命中第一个成立分支', '被 3 整除', '互斥且有兜底'],
+      title: 'C++ L1-8 if 与 if-else 离开前检查',
+      concepts: ['if 和 else 的分工', 'if (条件);', 'int mx = a; if (b > mx) mx = b;', 'if (d == 0) d = 7;'],
       nextPath: '/lesson/1/9',
-      message: 'C++ L1 lesson 8 should keep a mastery check for else-if order, first-match behavior, ordering traps, and exhaustive categorization.',
+      message: 'C++ L1 lesson 8 should keep a mastery check for if/else flow, semicolon and brace traps, max/absolute-difference code, and remainder-zero correction.',
     },
   ];
 
@@ -856,94 +856,102 @@ function assertCppLevel1IntroLessonsKeepMasteryChecks() {
 }
 
 function assertCppWhileLessonKeepsDigitTrace() {
-  const lesson = read('src/lessons/cpp/l1/Lesson10.jsx');
+  const lesson = read('src/lessons/cpp/l1/Lesson13.jsx');
 
   assert(
     lesson.includes('CodeTracer') &&
       lesson.includes('数位分离追踪器：n 怎样一位一位消失？') &&
       lesson.includes('再次判断 0 > 0 为假') &&
       lesson.includes('123 一共有 3 位'),
-    'C++ L1 lesson 10 should keep the step-by-step digit-splitting trace for while-loop state changes.'
+    'C++ L1 lesson 13 should keep the step-by-step digit-splitting trace for while-loop state changes.'
   );
   assert(
     lesson.includes('MasteryCheck') &&
-      lesson.includes('C++ L1-10 while 循环离开前检查') &&
-      lesson.includes('能说清 while 是先判断再执行') &&
-      lesson.includes('能指出循环变量必须变化') &&
+      lesson.includes('C++ L1-13 数位分离离开前检查') &&
+      lesson.includes('能用 % 10 取个位、/ 10 去掉个位') &&
       lesson.includes('能手推数位分离过程') &&
-      lesson.includes('能判断什么时候用 while 而不是 for') &&
-      lesson.includes('nextLessonPath="/lesson/1/11"'),
-    'C++ L1 lesson 10 should keep a mastery check for while flow, loop progress, digit splitting, and while-vs-for choice.'
+      lesson.includes('能先备份原数再处理') &&
+      lesson.includes('能写出反转与按位重建') &&
+      lesson.includes('nextLessonPath="/lesson/1/14"'),
+    'C++ L1 lesson 13 should keep a mastery check for digit extraction, digit-splitting trace, backing up the original number, and reverse/rebuild.'
   );
 }
 
 function assertCppNestedLoopLessonKeepsExecutionTrace() {
-  const lesson = read('src/lessons/cpp/l1/Lesson12.jsx');
+  // 嵌套循环已移到二级 L2-5；L1 改为锁定第 10 课 for 循环的同等强度执行追踪。
+  const lesson = read('src/lessons/cpp/l1/Lesson10.jsx');
 
   assert(
     lesson.includes('CodeTracer') &&
-      lesson.includes('嵌套循环追踪器：外层定一行，内层跑全套') &&
-      lesson.includes('j 会重新初始化为 1') &&
-      lesson.includes('再次判断 4 <= 3 为假') &&
-      lesson.includes('输出顺序：1-1 1-2 1-3 1-4'),
-    'C++ L1 lesson 12 should keep the step-by-step nested-loop trace for outer/inner loop execution order.'
+      lesson.includes('陷阱追踪器：循环结束时 i 到底是多少？') &&
+      lesson.includes('i 留在 10') &&
+      lesson.includes('再次判断 10 < 10 为假') &&
+      lesson.includes('N + i = 9 + 10 = 19'),
+    'C++ L1 lesson 10 should keep the step-by-step for-loop trace showing i stops at the first value that makes the condition false.'
   );
   assert(
     lesson.includes('MasteryCheck') &&
-      lesson.includes('C++ L1-12 嵌套循环离开前检查') &&
-      lesson.includes('能说清外层循环和内层循环各负责什么') &&
-      lesson.includes('能手推内层每次都会重新开始') &&
-      lesson.includes('能计算双层循环总执行次数') &&
-      lesson.includes('能把图形题拆成行数、列数和换行') &&
-      (lesson.includes("navigate('/lesson/1/13')") || lesson.includes('nextLessonPath="/lesson/1/13"')),
-    'C++ L1 lesson 12 should keep a mastery check for nested loop roles, inner-loop reset, execution counts, and pattern decomposition.'
+      lesson.includes('C++ L1-10 for 循环离开前检查') &&
+      lesson.includes('能说出 for 三段的执行顺序') &&
+      lesson.includes('能手推循环结束后 i 的值') &&
+      lesson.includes('能写出计数、累加、累乘并选对初值') &&
+      lesson.includes('能识别空循环体分号和循环内改 i') &&
+      (lesson.includes("navigate('/lesson/1/11')") || lesson.includes('nextLessonPath="/lesson/1/11"')),
+    'C++ L1 lesson 10 should keep a mastery check for for-loop order, end values, accumulator initial values, and empty-body/in-loop-update traps.'
   );
 }
 
 function assertCppBreakContinueLessonKeepsMasteryCheck() {
-  const lesson = read('src/lessons/cpp/l1/Lesson11.jsx');
+  const lesson = read('src/lessons/cpp/l1/Lesson12.jsx');
 
   assert(
     lesson.includes('MasteryCheck') &&
-      lesson.includes('C++ L1-11 break 和 continue 离开前检查') &&
+      lesson.includes('C++ L1-12 break 与 continue 离开前检查') &&
       lesson.includes('能区分 break 和 continue') &&
       lesson.includes('能手推 continue 后下一步去哪') &&
-      lesson.includes('能判断 break 在嵌套循环里只跳出一层') &&
+      lesson.includes('能说出 break 后循环变量停在哪个值') &&
       lesson.includes('能手推含 break/continue 的输出') &&
-      lesson.includes('nextLessonPath="/lesson/1/12"'),
-    'C++ L1 lesson 11 should keep a mastery check for break/continue differences, continue flow, nested break scope, and output tracing.'
+      lesson.includes('nextLessonPath="/lesson/1/13"'),
+    'C++ L1 lesson 12 should keep a mastery check for break/continue differences, continue flow, the loop variable after break, and output tracing.'
   );
 }
 
 function assertCppLevel1FinalLessonsKeepMasteryChecks() {
   const lessons = [
     {
+      path: 'src/lessons/cpp/l1/Lesson11.jsx',
+      title: 'C++ L1-11 while 与 do-while 离开前检查',
+      concepts: ['能说清 while 先判断后执行', '能指出循环体里让条件变假的语句', '能写出“读到 0 为止”的循环', '能说明 do-while 至少执行一次'],
+      nextPath: '/lesson/1/12',
+      message: 'C++ L1 lesson 11 should keep a mastery check for while-before-body flow, loop progress, read-until-zero input, and do-while running at least once.',
+    },
+    {
       path: 'src/lessons/cpp/l1/Lesson13.jsx',
-      title: 'C++ L1-13 数学与取模综合离开前检查',
-      concepts: ['能用 % 判断倍数和个位', '能写出完整闰年条件', '能把 && 和 || 用在分类条件里', '能把数学规则改写成程序判断'],
+      title: 'C++ L1-13 数位分离离开前检查',
+      concepts: ['r = r * 10 + n % 10', 'b += d * p', 'n0 = n', 'while (N > 10)'],
       nextPath: '/lesson/1/14',
-      message: 'C++ L1 lesson 13 should keep a mastery check for modulo math, leap years, logical composition, and rule-to-code translation.',
+      message: 'C++ L1 lesson 13 should keep a mastery check plus digit reversal, positional rebuild, backing up n, and the N > 10 boundary trap.',
     },
     {
       path: 'src/lessons/cpp/l1/Lesson14.jsx',
-      title: 'C++ L1-14 模拟题离开前检查',
-      concepts: ['能把模拟题拆成输入、状态、规则三部分', '能逐步更新变量而不是凭感觉算答案', '能处理条件分支对状态的影响', '能用取模解决周期模拟'],
+      title: 'C++ L1-14 循环读入与统计离开前检查',
+      concepts: ['能写出先读 n 再循环读 n 个数的模板', '能选对计数器、累加器的初值和位置', '能用第一个数作最值初值', '能处理多组数据并在每组重新初始化'],
       nextPath: '/lesson/1/15',
-      message: 'C++ L1 lesson 14 should keep a mastery check for simulation inputs, state updates, branch effects, and cyclic modulo modeling.',
+      message: 'C++ L1 lesson 14 should keep a mastery check for the read-n-then-n-values template, counter placement, max/min initialization, and multi-case resets.',
     },
     {
       path: 'src/lessons/cpp/l1/Lesson15.jsx',
-      title: 'C++ L1-15 计数与筛选离开前检查',
-      concepts: ['能先初始化计数器', '能写出“遍历每个候选”的循环', '能把筛选条件放进 if', '能手推计数变量最终值'],
+      title: 'C++ L1-15 因数、质数与平方数离开前检查',
+      concepts: ['能按定义找出 n 的全部因数', '能用计数法和标志法判断质数', '能用 i * i <= n 判断完全平方数', '能识别整数除法造成的误判'],
       nextPath: '/lesson/1/16',
-      message: 'C++ L1 lesson 15 should keep a mastery check for counter initialization, candidate traversal, filter conditions, and count tracing.',
+      message: 'C++ L1 lesson 15 should keep a mastery check for factor enumeration, prime counting/flag methods, perfect squares, and integer-division traps.',
     },
     {
       path: 'src/lessons/cpp/l1/Lesson16.jsx',
-      title: 'C++ L1-16 一级总复习离开前检查',
-      concepts: ['能审题后先列变量和类型', '能按优先级手推综合表达式', '能选择合适的分支或循环结构', '能用样例和边界值自查答案'],
+      title: 'C++ L1-16 一级综合复盘离开前检查',
+      concepts: ['能按读题—手算—编码—测试完成一级编程题', '能把错题归入读题、算法、边界、格式四类', '能按回学表回到对应的课复习', '能独立完成两种编程主型'],
       nextPath: '/',
-      message: 'C++ L1 lesson 16 should keep a final mastery check for variable modeling, expression tracing, control-flow choice, and boundary testing.',
+      message: 'C++ L1 lesson 16 should keep a final mastery check for the four-step programming method, error categories, review routing, and both programming patterns.',
     },
   ];
 

@@ -1,8 +1,27 @@
 // Best-effort, client-side tracking of per-lesson learning status so the course
 // catalog can show 未学 / 学习中 / 已过关 / 建议复习. Keyed by the lesson's route
 // pathname (e.g. "/lesson/3/7" or "/python/f3"), which matches the catalog links.
+// Exception: C++ L1 was re-sequenced, so its keys carry a content version
+// ("/lesson/1/v2/9" for route "/lesson/1/9"); old "/lesson/1/9" entries describe
+// the previous lesson order and are deliberately never read.
 
 import { readLearningData, updateLearningData } from './learningData.js';
+
+export const L1_PROGRESS_KEY_VERSION = 'v2';
+const L1_ROUTE_PATTERN = /^\/lesson\/1\/(\d+)$/;
+const L1_KEY_PATTERN = new RegExp(`^/lesson/1/${L1_PROGRESS_KEY_VERSION}/(\\d+)$`);
+
+// Route pathname -> storage key. Only C++ L1 routes change.
+export function toLessonProgressKey(routePath) {
+    const match = typeof routePath === 'string' ? routePath.match(L1_ROUTE_PATTERN) : null;
+    return match ? `/lesson/1/${L1_PROGRESS_KEY_VERSION}/${match[1]}` : routePath;
+}
+
+// Storage key -> route pathname, for links built from stored progress.
+export function toLessonRoutePath(progressKey) {
+    const match = typeof progressKey === 'string' ? progressKey.match(L1_KEY_PATTERN) : null;
+    return match ? `/lesson/1/${match[1]}` : progressKey;
+}
 
 // A mastered lesson older than this many days is surfaced as "建议复习".
 export const REVIEW_AFTER_DAYS = 30;
@@ -19,10 +38,11 @@ function writeLessonProgress(progress) {
 // Mark a lesson as opened. Never downgrades a mastered lesson back to learning.
 export function recordLessonVisit(path) {
     if (!path) return;
+    const key = toLessonProgressKey(path);
     const progress = readLessonProgress();
-    const entry = progress[path];
+    const entry = progress[key];
     if (entry?.status === 'mastered') return;
-    progress[path] = { status: 'learning', visitedAt: entry?.visitedAt ?? Date.now() };
+    progress[key] = { status: 'learning', visitedAt: entry?.visitedAt ?? Date.now() };
     writeLessonProgress(progress);
 }
 
@@ -30,16 +50,17 @@ export function recordLessonVisit(path) {
 // timestamp so a re-completed lesson clears its "建议复习" flag.
 export function recordLessonMastered(path) {
     if (!path) return;
+    const key = toLessonProgressKey(path);
     const progress = readLessonProgress();
-    const entry = progress[path];
-    progress[path] = { status: 'mastered', visitedAt: entry?.visitedAt ?? Date.now(), masteredAt: Date.now() };
+    const entry = progress[key];
+    progress[key] = { status: 'mastered', visitedAt: entry?.visitedAt ?? Date.now(), masteredAt: Date.now() };
     writeLessonProgress(progress);
 }
 
 // Derive the display status for one lesson from a progress snapshot.
 // Returns 'unseen' | 'learning' | 'mastered' | 'review'.
 export function getLessonStatus(path, progress = readLessonProgress()) {
-    const entry = progress[path];
+    const entry = progress[toLessonProgressKey(path)];
     if (!entry) return 'unseen';
     if (entry.status === 'mastered') {
         const aged = entry.masteredAt && Date.now() - entry.masteredAt > REVIEW_AFTER_DAYS * DAY_MS;

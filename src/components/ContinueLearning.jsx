@@ -7,7 +7,7 @@ import { pythonFoundationLessons, pythonProjects } from '../data/pythonCourseCat
 import { arduinoLessons, contestLessons, foundationLessons, innovationLessons } from '../data/innovationCourseCatalog';
 import { paperMeta } from '../data/gesp';
 import { LEARNING_DATA_EVENT } from '../utils/learningData';
-import { readLessonProgress } from '../utils/lessonProgress';
+import { readLessonProgress, toLessonProgressKey, toLessonRoutePath } from '../utils/lessonProgress';
 import { latestWrongIdsByPaper, readExamAttempts } from '../utils/examHistory';
 
 // 主页原本只有「营销页」的三层入口：学习路径、课程目录、探索内容。回访的学生
@@ -46,9 +46,12 @@ const formatDate = (timestamp) => new Date(timestamp).toLocaleDateString('zh-CN'
 });
 
 // 挑一节「最该继续」的课：优先没过关的，其次最近看过的。
+// 记录的键可能是带版本的 /lesson/1/v2/N，path 统一转回真实路由；
+// 旧版一级键 /lesson/1/N 对应的是改版前的课序，直接跳过。
 const pickLesson = (progress) => {
     const entries = Object.entries(progress)
-        .map(([path, entry]) => ({ path, ...entry }))
+        .filter(([key]) => toLessonProgressKey(key) === key)
+        .map(([key, entry]) => ({ ...entry, path: toLessonRoutePath(key) }))
         .filter((entry) => Number.isFinite(entry.visitedAt));
     if (entries.length === 0) return null;
 
