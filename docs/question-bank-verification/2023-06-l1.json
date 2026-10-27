@@ -1,19 +1,53 @@
 {
   "paperId": "2023-06-l1",
   "reviewedAt": "2026-10-24",
-  "reviewedBy": { "type": "AI", "executor": "WorkBuddy 子代理", "session": "codex/question-bank-verification" },
+  "reviewedBy": {
+    "type": "AI",
+    "executor": "WorkBuddy 子代理",
+    "session": "codex/question-bank-verification"
+  },
   "source": {
     "mirrorUrl": "https://raw.githubusercontent.com/Dora321/gesp-official-pdfs/main/pdfs/2023%E5%B9%B46%E6%9C%88-C%2B%2B1%E7%BA%A7.pdf",
     "mirrorSha": "ebf0c1dc93583d82b4ed9b05703dafa744d1d99d",
     "shaVerified": true,
     "fetchedAt": "2026-10-24",
-    "pages": { "total": 16, "note": "《2023年6月 GESP C++ 一级真题解析》，答案以【答案】标记内嵌于每题之后（pp.1-12），编程题解析 pp.12-16" }
+    "pages": {
+      "total": 16,
+      "note": "《2023年6月 GESP C++ 一级真题解析》，答案以【答案】标记内嵌于每题之后（pp.1-12），编程题解析 pp.12-16"
+    }
   },
   "answerTable": {
     "location": "逐题内嵌【答案】（p1-p12 渲染图人工读取）",
     "content": {
-      "single": ["A", "C", "C", "D", "A", "D", "D", "C", "C", "B", "B", "A", "C", "B", "D"],
-      "judge": ["√", "√", "×", "×", "√", "√", "√", "×", "×", "√"]
+      "single": [
+        "A",
+        "C",
+        "C",
+        "D",
+        "A",
+        "D",
+        "D",
+        "C",
+        "C",
+        "B",
+        "B",
+        "A",
+        "C",
+        "B",
+        "D"
+      ],
+      "judge": [
+        "√",
+        "√",
+        "×",
+        "×",
+        "√",
+        "√",
+        "√",
+        "×",
+        "×",
+        "√"
+      ]
     }
   },
   "questions": [
@@ -87,5 +121,8 @@
   "unresolved": [
     "轻度转录偏差（答案不受影响，未修改）：Q2 选项与官方不同（官方 A发邮件/B写剧本/C擦地板/D写代码，题库为 编写程序/翻译语言/炒菜/写诗，正确项均为 C）；Q4/Q5/Q6/Q8/Q9/Q12 干扰项为改写版本（正确项字母与官方一致）；Q15 官方代码为 1..20 中 3或5 的倍数累加且 sum 未初始化，题库为 1..10 累加且 sum 未初始化，考点与答案（D 无法确定）一致。如需与原卷逐字一致，可另行整卷重录。"
   ],
-  "executedAt": "2026-10-24"
+  "executedAt": "2026-10-24",
+  "notes": [
+    "2026-10-27 复核：本卷官方 PDF 为「真题解析」版（N. 题干 +【答案】格式），audit-pdf-stem-diff 低分属结构性假阳性。从解析版文本层提取 25 个【答案】（含判断题√×）与题库逐位比对，25/25 完全一致，确认无需修改。"
+  ]
 }
