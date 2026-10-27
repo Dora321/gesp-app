@@ -186,8 +186,30 @@ export const getUnrecoverableAdmissionErrors = (question, questionId = question?
  *
  * 这类题最危险：题面完整、看不出任何异常，学生照着做、照着对答案，
  * 却有近一半会被判反。
+ *
+ * 例外：个别卷子的官方答案表（PDF 渲染读图）确实全是同一个值，例如
+ * 2025-12-l1 十道判断题官方答案全是「错误」。这类卷子在
+ * docs/question-bank-verification/<paperId>.json 里写入
+ * judgeAnswerKeyVerified: true 即可豁免本规则。
  */
+const verifiedUniformJudgePapers = (() => {
+  const ids = new Set();
+  try {
+    const dir = path.join(__dirname, '..', 'docs', 'question-bank-verification');
+    for (const f of fs.readdirSync(dir)) {
+      if (!f.endsWith('.json')) continue;
+      try {
+        const data = JSON.parse(fs.readFileSync(path.join(dir, f), 'utf8'));
+        if (data?.judgeAnswerKeyVerified === true) ids.add(data.paperId || f.replace('.json', ''));
+      } catch {}
+    }
+  } catch {}
+  return ids;
+})();
+
 export const getUniformJudgeAnswerErrors = (paper, paperId = paper?.id || '?') => {
+  if (verifiedUniformJudgePapers.has(paperId)) return [];
+
   const judges = (paper?.questions || []).filter(question => question.type === 'judge');
   if (judges.length < 6) return [];
 

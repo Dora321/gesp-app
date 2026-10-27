@@ -157,27 +157,50 @@ export const paperData = {
         {
             id: 3,
             type: "single",
-            question: `假设双向链表包含头、尾两个哨兵结点（不存储实际内容），分别为 head 和 tail，链表中每个结点有 prev 和 next 两个指针域。下面代码用于初始化一个空链表，横线上应填的最佳代码是（ ）。`,
+            question: `假设双向循环链表包含头尾哨兵结点（不存储实际内容），分别为 head 和 tail，链表中每个结点有两个指针域 prev 和 next，分别指向该结点的前驱及后继结点。下面代码实现了一个空的双向循环链表，横线上应填的最佳代码是（ ）。
+
+\`\`\`cpp
+// 链表结点
+template <typename T>
+struct ListNode {
+    T data;
+    ListNode* prev;
+    ListNode* next;
+    // 构造函数
+    explicit ListNode(const T& val = T())
+        : data(val), prev(nullptr), next(nullptr) {}
+};
+
+struct LinkedList {
+    ListNode<T>* head;
+    ListNode<T>* tail;
+};
+
+void InitLinkedList(LinkedList* list) {
+    list->head = new ListNode<T>;
+    list->tail = new ListNode<T>;
+    ________________________________ // 在此处填入代码
+};
+\`\`\``,
             options: [
-                "list->head->prev = list->head; list->tail->prev = list->head;",
-                "list->head->next = list->tail; list->tail->prev = list->head;",
-                "list->head->next = list->tail; list->tail->next = list->head;",
-                "list->head->next = list->tail; list->tail->next = nullptr;",
+                "list->head->prev = list->head;\nlist->tail->prev = list->head;",
+                "list->head->next = list->tail;\nlist->tail->prev = list->head;",
+                "list->head->next = list->tail;\nlist->tail->next = list->head;",
+                "list->head->next = list->tail;\nlist->tail->next = nullptr;",
             ],
             answer: 1,
             score: 2,
             explanation: `**答案：B**
 
             **解析：**
-            本题答案已依据试卷标准答案完成录入，可结合题干与选项复盘对应知识点。
+            空的双向循环链表只有 head 和 tail 两个哨兵结点，初始化的核心是让两个哨兵**互相链接**：\`head->next = tail\`（head 的后继是 tail）、\`tail->prev = head\`（tail 的前驱是 head）。这两条指针建立后，任意后续插入的结点都能挂在这条骨架上。
 
-            - **A list->head->prev = list->head; list->tai...**：不是本题答案。
-            - **B list->head->next = list->tail; list->tai...**：正确答案。
-            - **C list->head->next = list->tail; list->tai...**：不是本题答案。
-            - **D list->head->next = list->tail; list->tai...**：不是本题答案。
+            - **A**：错误。\`head->prev = list->head\` 让头哨兵的前驱指向自己，且没有设置 \`head->next\`，前向链接断裂，后续从 head 遍历无法到达任何结点。
+            - **B**：正确。前向 \`head->next = tail\`、后向 \`tail->prev = head\` 两条关键指针都建立，是初始化空表的最佳代码。
+            - **C**：错误。第二条写成了 \`tail->next = list->head\`——用 next 指针反向指回 head，而真正的后向链接 \`tail->prev\` 没有设置，prev 链是断的。
+            - **D**：错误。\`tail->next = nullptr\` 把循环特性破坏了，且同样没有设置 \`tail->prev\`。
 
-            **考点：** 链表
-            `,
+            **考点：** 双向链表初始化、哨兵结点的指针设置`,
             tags: [
                 "客观题",
                 "单选题",
@@ -187,7 +210,7 @@ export const paperData = {
         {
             id: 4,
             type: "single",
-            question: `用辗转相除法（欧几里得算法）求 gcd(84, 60) 时，第二步计算的是哪一对数（ ）。`,
+            question: `用以下辗转相除法（欧几里得算法）求 gcd(84, 60) 的步骤中，第二步计算的数是（ ）。`,
             options: [
                 "84 和 60",
                 "60 和 24",
@@ -199,15 +222,18 @@ export const paperData = {
             explanation: `**答案：B**
 
             **解析：**
-            本题答案已依据试卷标准答案完成录入，可结合题干与选项复盘对应知识点。
+            辗转相除法：gcd(a, b) = gcd(b, a % b)，每一步用"除数"和"余数"作为下一轮的新数对，直到余数为 0，此时的除数就是最大公约数。
 
-            - **A 84 和 60**：不是本题答案。
-            - **B 60 和 24**：正确答案。
-            - **C 24 和 12**：不是本题答案。
-            - **D 12 和 0**：不是本题答案。
+            - **第一步**：84 ÷ 60 = 1 余 24，得到数对 (60, 24)；
+            - **第二步**：计算 60 和 24 这一对——60 ÷ 24 = 2 余 12，得到数对 (24, 12)；
+            - **第三步**：24 ÷ 12 = 2 余 0，结束，gcd(84, 60) = 12。
 
-            **考点：** 数论
-            `,
+            - **A (84 和 60)**：这是第一步计算的数对，不是第二步。
+            - **B (60 和 24)**：正确。第一步算出余数 24 后，第二步计算的就是"上一轮的除数 60"和"余数 24"。
+            - **C (24 和 12)**：这是第三步的数对。
+            - **D (12 和 0)**：这是最后判断终止时的状态，gcd 已经求出。
+
+            **考点：** 辗转相除法（欧几里得算法）的执行步骤`,
             tags: [
                 "客观题",
                 "单选题",
@@ -309,7 +335,22 @@ export const paperData = {
         {
             id: 8,
             type: "single",
-            question: `对下面两个求阶乘的函数，说法错误的是（ ）。`,
+            question: `对下面两个函数，说法错误的是（ ）。
+
+\`\`\`cpp
+int factorialA(int n) {
+    if (n <= 1) return 1;
+    return n * factorialA(n - 1);
+}
+
+int factorialB(int n) {
+    if (n <= 1) return 1;
+    int res = 1;
+    for (int i = 2; i <= n; i++)
+        res *= i;
+    return res;
+}
+\`\`\``,
             options: [
                 "两个函数的实现的功能相同。",
                 "两个函数的时间复杂度均为 $O(N)$。",
@@ -321,15 +362,14 @@ export const paperData = {
             explanation: `**答案：D**
 
             **解析：**
-            本题答案已依据试卷标准答案完成录入，可结合题干与选项复盘对应知识点。
+            两个函数都在计算 n!，但实现方式不同：factorialA 在函数体内调用自身（\`return n * factorialA(n - 1)\`），是**递归**实现；factorialB 用 for 循环累乘，是**迭代（循环）**实现。
 
-            - **A 两个函数的实现的功能相同。**：不是本题答案。
-            - **B 两个函数的时间复杂度均为 $O(N)$。**：不是本题答案。复杂度分析有误，请重新估算最坏情况时间复杂度。
-            - **C factorialA采用递归方式。**：不是本题答案。递归/递推的终止条件或状态传递有误，请检查递归出口和参数变化。
-            - **D factorialB采用递归方式。**：正确答案。
+            - **A**：说法正确。两者都返回 n!（factorialA 由递归定义相乘，factorialB 由循环累乘），功能相同。
+            - **B**：说法正确。factorialA 递归 n-1 层、factorialB 循环 n-1 次，都是线性次数的乘法，时间复杂度均为 $O(N)$。
+            - **C**：说法正确。factorialA 调用了自身，属于递归方式。
+            - **D**：**说法错误**。factorialB 没有调用自身，用的是循环，不是递归——本题选"错误的"，故选 D。
 
-            **考点：** 组合数学
-            `,
+            **考点：** 递归与迭代的区别、时间复杂度分析`,
             tags: [
                 "客观题",
                 "单选题",
@@ -551,35 +591,7 @@ export const paperData = {
         {
             id: 16,
             type: "judge",
-            question: `快速排序算法的时间复杂度与输入是否有序无关，始终稳定为 $O(n\\log n)$。`,
-            options: [
-                "正确",
-                "错误",
-            ],
-            answer: 1,
-            score: 2,
-            explanation: `**答案：错误**
-
-**判定依据：**
-快速排序的性能高度依赖基准（pivot）的选取与输入数据的分布。在已有序（或逆序）的数组上，若每次选取端点元素作为基准，partition 会极度不平衡，划分出的两个子区间长度为 0 和 n-1，递归深度达到 n 层，此时时间复杂度退化为 $O(n^2)$。只有在每次划分都大致均衡的理想情况下，复杂度才为 $O(n\\log n)$。
-
-因此"与输入是否有序无关、始终稳定为 $O(n\\log n)$"的说法不成立。
-
-**易错提醒：**
-- 归并排序的时间复杂度才与输入无关，始终为 $O(n\\log n)$；快排不是。
-- 随机选取基准、三数取中等策略可以避免快排在有序输入上退化，但这是工程优化，不改变其最坏复杂度 $O(n^2)$ 的事实。
-
-**考点：** 快速排序的时间复杂度分析、最坏情况的产生条件。`,
-            tags: [
-                "客观题",
-                "判断题",
-                "GESP5级",
-            ]
-        },
-        {
-            id: 17,
-            type: "judge",
-            question: `要删除单链表中某个结点 p（非尾结点），但不知道头结点，可行的操作是将 p->next 的数据拷贝到 p，再跳过并删除 p->next。`,
+            question: `要删除单链表中某个结点 p（非尾结点），但不知道头结点，可行的操作是将 p->next 的数据拷贝到 p 的数据部分，将 p->next 设置为 p->next->next，然后删除 p->next。`,
             options: [
                 "正确",
                 "错误",
@@ -612,7 +624,7 @@ delete t;                  // 删除原后继结点
             ]
         },
         {
-            id: 18,
+            id: 17,
             type: "judge",
             question: `链表存储线性表时要求内存中可用存储单元地址是连续的。`,
             options: [
@@ -640,7 +652,7 @@ delete t;                  // 删除原后继结点
             ]
         },
         {
-            id: 19,
+            id: 18,
             type: "judge",
             question: `线性筛相对于埃拉托斯特尼筛法，每个合数只会被它的最小质因数筛去一次，因此效率更高。`,
             options: [
@@ -669,7 +681,7 @@ for (int i = 2; i <= n; i++) {
 
 **易错提醒：**
 - \`if (i % p == 0) break;\` 是线性筛的灵魂：它保证更大的质数留到后续轮次再配对，避免重复。
-- 线性筛还需额外数组记录最小质因数时，可在筛的同时一并求出，常用于欧拉函数、积性函数的线性求解。
+- 线性筛还可额外记录最小质因数，常用于欧拉函数、积性函数的线性求解。
 
 **考点：** 线性筛（欧拉筛）的原理与复杂度、与埃氏筛的对比。`,
             tags: [
@@ -679,7 +691,7 @@ for (int i = 2; i <= n; i++) {
             ]
         },
         {
-            id: 20,
+            id: 19,
             type: "judge",
             question: `贪心算法通过每一步选择当前最优解，从而一定能获得全局最优解。`,
             options: [
@@ -710,9 +722,9 @@ for (int i = 2; i <= n; i++) {
             ]
         },
         {
-            id: 21,
+            id: 20,
             type: "judge",
-            question: `递归函数必须具有终止条件，以防止无限递归。`,
+            question: `递归函数必须具有一个终止条件，以防止无限递归。`,
             options: [
                 "正确",
                 "错误",
@@ -736,6 +748,34 @@ int fact(int n) {
 - 递归深度过深（即使有终止条件）也可能爆栈，此时应改写为迭代或增大栈空间。
 
 **考点：** 递归的三要素、终止条件与无限递归的成因。`,
+            tags: [
+                "客观题",
+                "判断题",
+                "GESP5级",
+            ]
+        },
+        {
+            id: 21,
+            type: "judge",
+            question: `快速排序算法的时间复杂度与输入是否有序无关，始终稳定为 $O(n\\log n)$。`,
+            options: [
+                "正确",
+                "错误",
+            ],
+            answer: 1,
+            score: 2,
+            explanation: `**答案：错误**
+
+**判定依据：**
+快速排序的性能高度依赖基准（pivot）的选取与输入数据的分布。在已有序（或逆序）的数组上，若每次选取端点元素作为基准，partition 会极度不平衡，划分出的两个子区间长度为 0 和 n-1，递归深度达到 n 层，此时时间复杂度退化为 $O(n^2)$。只有在每次划分都大致均衡的理想情况下，复杂度才为 $O(n\\log n)$。
+
+因此"与输入是否有序无关、始终稳定为 $O(n\\log n)$"的说法不成立。
+
+**易错提醒：**
+- 归并排序的时间复杂度才与输入无关，始终为 $O(n\\log n)$；快排不是。
+- 随机选取基准、三数取中等策略可以避免快排在有序输入上退化，但这是工程优化，不改变其最坏复杂度 $O(n^2)$ 的事实。
+
+**考点：** 快速排序的时间复杂度分析、最坏情况的产生条件。`,
             tags: [
                 "客观题",
                 "判断题",

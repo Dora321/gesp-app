@@ -1,7 +1,11 @@
 {
   "paperId": "2025-03-l5",
   "executedAt": "2026-10-25",
-  "reviewedBy": { "type": "AI", "executor": "WorkBuddy 子代理", "session": "codex/question-bank-verification" },
+  "reviewedBy": {
+    "type": "AI",
+    "executor": "WorkBuddy 子代理",
+    "session": "codex/question-bank-verification"
+  },
   "source": {
     "mirrorUrl": "https://raw.githubusercontent.com/Dora321/gesp-official-pdfs/main/pdfs/2025%E5%B9%B43%E6%9C%88-C%2B%2B5%E7%BA%A7.pdf",
     "mirrorSha": "f03dad621e5f613829e8aefc49865ea00ead7212",
@@ -23,41 +27,84 @@
       "official": "×",
       "bank": "√",
       "changed": true,
-      "method": ["答案表对照", "独立推导"],
-      "findings": "对应官方判断第 6 题（题库顺序与官方不同，按内容映射）：快排时间复杂度与输入是否有序无关、始终 O(n log n)。有序输入 + 端点基准会退化 O(n²)，官方 × 正确。题库 answer=0 且题干截断（缺『为 O(n log n)』）。",
-      "fix": "answer 0→1，补全题干，重写解析（最坏退化机理）。",
-      "resolved": true
+      "method": [
+        "官方PDF对照",
+        "页面渲染人工查看"
+      ],
+      "findings": "判断题顺序错位：官方 judge1=删除单链表结点、judge6=快速排序复杂度，题库把两者位置对调（Q16=快排、Q17=删除单链表），并连锁影响 Q17-Q21 的对齐。审计探针只查包含不查位置，故未发现。",
+      "fix": "将 Q16-Q21 按官方顺序轮转：Q16=删除单链表(√)、Q17=链表连续(×)、Q18=线性筛(√)、Q19=贪心(×)、Q20=递归终止(√)、Q21=快排(×)，答案与解析随题走。官方 judge1 题干按渲染图补全（「将 p->next 设置为 p->next->next，然后删除 p->next」），judge5 补「一个」。",
+      "resolved": true,
+      "dimensions": [
+        "statement",
+        "ordering"
+      ],
+      "evidence": "tmp/verify/2025-03-l5/pg-08.png（官方判断题整页+答案表）",
+      "reviewedAt2": "2026-10-27",
+      "reviewedBy2": "AI对照官方PDF校订"
     },
-    { "id": 17, "official": "√", "bank": "√", "changed": false, "note": "对应官方判断第 1 题（链表删除结点 p），答案一致；同步移除 answer-key-suspect 标志并补写正式解析。" },
+    {
+      "id": 17,
+      "official": "√",
+      "bank": "√",
+      "changed": false,
+      "note": "对应官方判断第 1 题（链表删除结点 p），答案一致；同步移除 answer-key-suspect 标志并补写正式解析。"
+    },
     {
       "id": 18,
       "official": "×",
       "bank": "√",
       "changed": true,
-      "method": ["答案表对照", "独立推导"],
+      "method": [
+        "答案表对照",
+        "独立推导"
+      ],
       "findings": "对应官方判断第 2 题：链表存储要求内存单元连续。链表靠指针链接、物理位置可分散，官方 × 正确。题库 answer=0。",
       "fix": "answer 0→1，重写解析。",
       "resolved": true
     },
-    { "id": 19, "official": "√", "bank": "√", "changed": false, "note": "对应官方判断第 3 题（线性筛），答案一致；移除 suspect 标志并补写正式解析。" },
+    {
+      "id": 19,
+      "official": "√",
+      "bank": "√",
+      "changed": false,
+      "note": "对应官方判断第 3 题（线性筛），答案一致；移除 suspect 标志并补写正式解析。"
+    },
     {
       "id": 20,
       "official": "×",
       "bank": "√",
       "changed": true,
-      "method": ["答案表对照", "独立推导"],
+      "method": [
+        "答案表对照",
+        "独立推导"
+      ],
       "findings": "对应官方判断第 4 题：贪心每步当前最优一定能得全局最优。贪心不保证全局最优（0-1 背包、硬币反例），官方 × 正确。题库 answer=0。",
       "fix": "answer 0→1，重写解析。",
       "resolved": true
     },
-    { "id": 21, "official": "√", "bank": "√", "changed": false, "note": "对应官方判断第 5 题（递归终止条件），答案一致；移除 suspect 标志并补写正式解析。" },
-    { "id": 22, "official": "√", "bank": "√", "changed": false, "note": "对应官方判断第 7 题（归并复杂度稳定），答案一致；移除 suspect 标志并补写正式解析。" },
+    {
+      "id": 21,
+      "official": "√",
+      "bank": "√",
+      "changed": false,
+      "note": "对应官方判断第 5 题（递归终止条件），答案一致；移除 suspect 标志并补写正式解析。"
+    },
+    {
+      "id": 22,
+      "official": "√",
+      "bank": "√",
+      "changed": false,
+      "note": "对应官方判断第 7 题（归并复杂度稳定），答案一致；移除 suspect 标志并补写正式解析。"
+    },
     {
       "id": 23,
       "official": "×",
       "bank": "√",
       "changed": true,
-      "method": ["答案表对照", "独立推导"],
+      "method": [
+        "答案表对照",
+        "独立推导"
+      ],
       "findings": "对应官方判断第 8 题：二分查找适用于无序数组和有序数组。二分前提是有序，官方 × 正确。题库 answer=0。",
       "fix": "answer 0→1，重写解析。",
       "resolved": true
@@ -67,13 +114,77 @@
       "official": "×",
       "bank": "√",
       "changed": true,
-      "method": ["答案表对照", "独立推导"],
+      "method": [
+        "答案表对照",
+        "独立推导"
+      ],
       "findings": "对应官方判断第 9 题：买最便宜商品『体现了分治思想』（官方表述），× 正确（是贪心非分治）。题库把题干改写为『体现贪心思想』使陈述变真（√），与官方答案位相反。",
       "fix": "恢复官方题干表述（分治思想），answer 0→1，重写解析（贪心与分治的区分）。",
       "resolved": true
     },
-    { "id": 25, "official": "√", "bank": "√", "changed": false, "note": "对应官方判断第 10 题（归并体现分治），答案一致；移除 suspect 标志并补写正式解析。" }
+    {
+      "id": 25,
+      "official": "√",
+      "bank": "√",
+      "changed": false,
+      "note": "对应官方判断第 10 题（归并体现分治），答案一致；移除 suspect 标志并补写正式解析。"
+    },
+    {
+      "id": 3,
+      "dimensions": [
+        "statement",
+        "explanation"
+      ],
+      "method": [
+        "官方PDF对照",
+        "页面渲染人工查看"
+      ],
+      "findings": "题干为改写版（「双向链表」应为「双向循环链表」，指针域描述顺序不同），且缺少官方 InitLinkedList 代码块（模板结构图文本层乱序）。解析为占位模板。",
+      "fix": "恢复官方题干，按官方 p.2-3 渲染图转写代码块（ListNode 模板 + InitLinkedList 空表初始化），选项改为官方两行代码形式（\n 换行）；解析从占位模板重写为逐项具体分析。官方答案 B。",
+      "evidence": "tmp/verify/2025-03-l5/q8-04.png 同页方法",
+      "resolved": true,
+      "reviewedAt": "2026-10-27",
+      "reviewedBy": "AI对照官方PDF校订"
+    },
+    {
+      "id": 4,
+      "dimensions": [
+        "statement",
+        "explanation"
+      ],
+      "method": [
+        "官方PDF对照"
+      ],
+      "findings": "题干为改写版（「第二步计算的是哪一对数」官方为「第二步计算的数是」，官方有「用以下辗转相除法」提示代码图）。解析为占位模板。",
+      "fix": "恢复官方题干，解析重写为三步推演（84÷60余24 → 60与24 → 24与12 → 12和0）。官方答案 B 一致。",
+      "resolved": true,
+      "reviewedAt": "2026-10-27",
+      "reviewedBy": "AI对照官方PDF校订"
+    },
+    {
+      "id": 8,
+      "dimensions": [
+        "statement",
+        "explanation"
+      ],
+      "method": [
+        "官方PDF对照",
+        "页面渲染人工查看",
+        "代码逻辑验证"
+      ],
+      "findings": "题干「对下面两个求阶乘的函数」官方为「对下面两个函数」，且缺少官方双函数代码图。解析为占位模板。",
+      "fix": "恢复官方题干，按官方 p.4 渲染图转写 factorialA（递归）/factorialB（循环）代码，解析重写（factorialB 未调用自身，D 说法错误）。官方答案 D 一致。",
+      "evidence": "tmp/verify/2025-03-l5/q8-04.png",
+      "resolved": true,
+      "reviewedAt": "2026-10-27",
+      "reviewedBy": "AI对照官方PDF校订"
+    }
   ],
-  "summary": { "judgeTotal": 10, "judgeChanged": 5, "note": "本卷 10 道判断题此前整卷带 answer-key-suspect 标志（答案全 √、解析占位）。现已逐题对照官方原卷核验，答案修正后移除全部 suspect 标志并补齐解析。" },
-  "unresolved": []
+  "summary": {
+    "judgeTotal": 10,
+    "judgeChanged": 5,
+    "note": "本卷 10 道判断题此前整卷带 answer-key-suspect 标志（答案全 √、解析占位）。现已逐题对照官方原卷核验，答案修正后移除全部 suspect 标志并补齐解析。"
+  },
+  "unresolved": [],
+  "answerKey": "单选答案串 A A B B D C A D A B C A A D B，题库比对全部一致；判断题答案表 √ × √ × × × √ × × √ 与题库（轮转后）10/10 一致。"
 }

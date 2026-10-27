@@ -1,24 +1,131 @@
 {
   "paperId": "2023-12-l5",
   "reviewedAt": "2026-10-24",
-  "reviewedBy": { "type": "AI", "executor": "WorkBuddy 子代理", "session": "codex/question-bank-verification" },
+  "reviewedBy": {
+    "type": "AI",
+    "executor": "WorkBuddy 子代理",
+    "session": "codex/question-bank-verification"
+  },
   "source": {
     "mirrorUrl": "https://raw.githubusercontent.com/Dora321/gesp-official-pdfs/main/pdfs/2023%E5%B9%B412%E6%9C%88-C%2B%2B5%E7%BA%A7.pdf",
     "mirrorSha": "f3e051516312e58303a5cd7130dc59b6b388cf9f",
     "shaVerified": true,
     "fetchedAt": "2026-10-24",
-    "pages": { "Q1": "p.1" }
+    "pages": {
+      "Q1": "p.1"
+    }
   },
   "questions": [
     {
       "id": 1,
-      "dimensions": ["statement", "explanation"],
-      "method": ["原卷对照（页面渲染人工查看）", "程序执行", "独立推导"],
+      "dimensions": [
+        "statement",
+        "explanation"
+      ],
+      "method": [
+        "原卷对照（页面渲染人工查看）",
+        "程序执行",
+        "独立推导"
+      ],
       "findings": "题面缺失 fiboA/fiboB 斐波那契代码（原卷 p.1 为图片）。原卷选项文字与录入略有出入（录入为节选），不在本次修复范围。",
       "fix": "按原卷 p.1 逐行转写 fiboA（递归）/fiboB（循环）代码，以 fenced cpp 块回填题面；移除 sourceIntegrity/integrityNote。",
       "evidence": "g++ 编译运行转写代码，fiboA/fiboB 在 n=1,2,3,5,10,20 时输出完全一致（1 1 2 5 55 6765），fiboA 为指数级重复计算的递归、fiboB 为 O(N) 循环，选项 C 称 fiboA 效率更高为错误说法，与答案 C 一致。tmp/verify/2023-12-l5/q1.cpp",
       "resolved": true
+    },
+    {
+      "id": 11,
+      "dimensions": [
+        "statement"
+      ],
+      "method": [
+        "官方PDF对照",
+        "页面渲染人工查看",
+        "代码逻辑验证"
+      ],
+      "findings": "题库题面为改写版（「数组模拟整数加法处理超出大整数范围的运算」），且缺少官方代码块。官方代码为图片，文本层无代码。",
+      "fix": "按官方 p.5 渲染图逐行转写 operator+ 大整数加法代码回填题面，题干恢复官方原文；解析选项分析从套话改为逐项具体分析（t%10 取位、t/10 留进位）。官方答案 D 与 if(t) c.push_back(t) 逻辑吻合。",
+      "evidence": "tmp/verify/2023-12-l5/single-05.png（官方代码图）",
+      "resolved": true,
+      "reviewedAt": "2026-10-27",
+      "reviewedBy": "AI对照官方PDF校订"
+    },
+    {
+      "id": 17,
+      "dimensions": [
+        "statement"
+      ],
+      "method": [
+        "官方PDF对照"
+      ],
+      "findings": "题面被截断为「小杨分巧克力最大边长可以使用二分法」，官方题面完整描述 H*W 巧克力分 K 个小朋友的语境。",
+      "fix": "恢复官方完整题干。官方答案表 judge2=×，题库 ans=1（错误）一致；解析已注明官方判定与工程实践的张力。",
+      "evidence": "tmp/verify/2023-12-l5/answer-table.png（300dpi 答案表）",
+      "resolved": true,
+      "reviewedAt": "2026-10-27",
+      "reviewedBy": "AI对照官方PDF校订"
+    },
+    {
+      "id": 20,
+      "dimensions": [
+        "statement"
+      ],
+      "method": [
+        "官方PDF对照"
+      ],
+      "findings": "题面为改写节选版。",
+      "fix": "恢复官方完整题干（拆数程序…可以设计出来的）。",
+      "evidence": "tmp/pdf-all/2023-12-l5.pdf.txt",
+      "resolved": true,
+      "reviewedAt": "2026-10-27",
+      "reviewedBy": "AI对照官方PDF校订"
+    },
+    {
+      "id": 23,
+      "dimensions": [
+        "statement"
+      ],
+      "method": [
+        "官方PDF对照"
+      ],
+      "findings": "题面被截断为「对数组 arr 执行 sort 后，数据调整为有序」，丢失了官方的具体数组和目标序列。",
+      "fix": "恢复官方完整题干（int arr[] = {2,6,3,5,4,8,1,0,9,10}，sort 后 {0,1,2,3,4,5,6,8,9,10}，注意无 7）。答案 √ 一致。",
+      "evidence": "tmp/pdf-all/2023-12-l5.pdf.txt",
+      "resolved": true,
+      "reviewedAt": "2026-10-27",
+      "reviewedBy": "AI对照官方PDF校订"
+    },
+    {
+      "id": 24,
+      "dimensions": [
+        "statement"
+      ],
+      "method": [
+        "官方PDF对照"
+      ],
+      "findings": "题面为改写节选版。",
+      "fix": "恢复官方完整题干（小杨想写一个程序…就能够算出来了）。官方答案表 judge9=√，题库 ans=0 一致。",
+      "evidence": "tmp/verify/2023-12-l5/answer-table.png",
+      "resolved": true,
+      "reviewedAt": "2026-10-27",
+      "reviewedBy": "AI对照官方PDF校订"
+    },
+    {
+      "id": 16,
+      "dimensions": [
+        "statement"
+      ],
+      "method": [
+        "官方PDF对照",
+        "页面渲染人工查看"
+      ],
+      "findings": "假阴性说明：官方 PDF 中 O(NlogN) 公式为图片，文本层丢失，审计探针 14 字窗无法命中。题库题面 (n log n)$ 语义正确（渲染图确认公式为 O(NlogN)，记法差异不影响）。",
+      "fix": "无需修复，保留记录。",
+      "evidence": "tmp/verify/2023-12-l5/pg-07.png",
+      "resolved": true,
+      "reviewedAt": "2026-10-27",
+      "reviewedBy": "AI对照官方PDF校订"
     }
   ],
-  "unresolved": []
+  "unresolved": [],
+  "answerKey": "单选答案串 C C D A B A C B D B D B B C B 与题库 15/15 一致；判断题答案表（矢量图，300dpi 渲染读图）√ × × √ √ √ × √ √ √ 与题库 10/10 一致。"
 }

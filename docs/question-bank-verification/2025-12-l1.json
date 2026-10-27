@@ -1,19 +1,53 @@
 {
   "paperId": "2025-12-l1",
   "reviewedAt": "2026-10-24",
-  "reviewedBy": { "type": "AI", "executor": "WorkBuddy 子代理", "session": "codex/question-bank-verification" },
+  "reviewedBy": {
+    "type": "AI",
+    "executor": "WorkBuddy 子代理",
+    "session": "codex/question-bank-verification"
+  },
   "source": {
     "mirrorUrl": "https://raw.githubusercontent.com/Dora321/gesp-official-pdfs/main/pdfs/2025%E5%B9%B412%E6%9C%88-C%2B%2B1%E7%BA%A7.pdf",
     "mirrorSha": "1f798b8619325cbf9c9178b067276e921ecb1c4f",
     "shaVerified": true,
     "fetchedAt": "2026-10-24",
-    "pages": { "total": 9, "note": "官方卷式：单选答案表在 p1 顶部，判断答案表在 p5 判断题节首（均裁剪放大核对），编程题解析 pp.7-9" }
+    "pages": {
+      "total": 9,
+      "note": "官方卷式：单选答案表在 p1 顶部，判断答案表在 p5 判断题节首（均裁剪放大核对），编程题解析 pp.7-9"
+    }
   },
   "answerTable": {
     "location": "单选：p1 顶部答案表；判断：p5 判断题节首答案表",
     "content": {
-      "single": ["B", "A", "A", "C", "B", "A", "C", "A", "D", "B", "C", "A", "D", "C", "C"],
-      "judge": ["×", "×", "×", "×", "×", "×", "×", "×", "×", "×"]
+      "single": [
+        "B",
+        "A",
+        "A",
+        "C",
+        "B",
+        "A",
+        "C",
+        "A",
+        "D",
+        "B",
+        "C",
+        "A",
+        "D",
+        "C",
+        "C"
+      ],
+      "judge": [
+        "×",
+        "×",
+        "×",
+        "×",
+        "×",
+        "×",
+        "×",
+        "×",
+        "×",
+        "×"
+      ]
     }
   },
   "questions": [
@@ -22,8 +56,80 @@
       "action": "无需修改。",
       "programmingCheck": "编程题两道与官方一致：Q26 小杨的爱心快递（样例 100.4/300.2/60.6/70.5→50.2、99.8/200.9/60.2/70.1→49.9，与原卷 p7 一致）；Q27 手机电量显示（与原卷 p8 一致），无需修改。",
       "resolved": true
+    },
+    {
+      "id": 10,
+      "dimensions": [
+        "statement",
+        "options"
+      ],
+      "method": [
+        "官方PDF对照"
+      ],
+      "findings": "题干「有关下面C++代码的发展」为错别字，官方为「有关下面C++代码的说法」；选项 C/D「结果相同」官方为「效果相同」。",
+      "fix": "恢复官方措辞。官方答案行 Q10=B 一致（i=0 时序列变 0,2,4,6,8，和 20≠25）。",
+      "resolved": true,
+      "reviewedAt": "2026-10-27",
+      "reviewedBy": "AI对照官方PDF校订"
+    },
+    {
+      "id": 21,
+      "dimensions": [
+        "statement",
+        "options",
+        "explanation"
+      ],
+      "method": [
+        "官方PDF对照",
+        "页面渲染人工查看",
+        "代码逻辑验证"
+      ],
+      "findings": "整题错位：题库为仿写题「输出为 N%10」，官方 judge6 是对称数判断题（while 循环反序后 n 已被破坏为 0，n==new_number 永假，永远输出「非对称数」）。",
+      "fix": "按官方 p.6 渲染图整题重建。官方答案表 judge6=×，题库 ans=1 一致。",
+      "evidence": "tmp/verify/2025-12-l1/pg-6.png",
+      "resolved": true,
+      "reviewedAt": "2026-10-27",
+      "reviewedBy": "AI对照官方PDF校订"
+    },
+    {
+      "id": 22,
+      "dimensions": [
+        "statement",
+        "options",
+        "explanation"
+      ],
+      "method": [
+        "官方PDF对照",
+        "页面渲染人工查看",
+        "代码逻辑验证"
+      ],
+      "findings": "整题错位：题库为仿写题（输入7输出Y/输入8输出N），官方 judge7 是 for(i=-100;i<100) 求和题，输出 -100 非 0。",
+      "fix": "按官方 p.6 渲染图整题重建。官方答案表 judge7=×，题库 ans=1 一致。",
+      "resolved": true,
+      "reviewedAt": "2026-10-27",
+      "reviewedBy": "AI对照官方PDF校订"
+    },
+    {
+      "id": 23,
+      "dimensions": [
+        "statement",
+        "options",
+        "explanation"
+      ],
+      "method": [
+        "官方PDF对照",
+        "页面渲染人工查看"
+      ],
+      "findings": "整题错位：题库为仿写题（cout 改 printf(&a)），官方 judge8 是 %g 格式题（6.14159 为 %g 默认 6 位有效数字的正常行为）。",
+      "fix": "按官方 p.6 渲染图整题重建。官方答案表 judge8=×，题库 ans=1 一致。",
+      "resolved": true,
+      "reviewedAt": "2026-10-27",
+      "reviewedBy": "AI对照官方PDF校订"
     }
   ],
   "unresolved": [],
-  "executedAt": "2026-10-24"
+  "executedAt": "2026-10-24",
+  "answerKey": "单选答案串 B A A C B A C A D B C A D C C，题库比对全部一致；判断题答案表 × × × × × × × × × × 与题库 10/10 一致。",
+  "priorReviewCorrection": "此前 review 给本卷 10 道判断题全部加了 sourceIntegrity:answer-key-suspect（怀疑答案未录入全为默认值）。2026-10-27 渲染官方 PDF 答案表（tmp/verify/2025-12-l1/pg-5.png，300dpi 级别可读）：10 题官方答案确实全部为 ×。嫌疑不成立，已移除全部标记并恢复计分；同步为校验器增加 judgeAnswerKeyVerified 豁免机制。",
+  "judgeAnswerKeyVerified": true
 }
