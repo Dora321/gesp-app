@@ -109,21 +109,30 @@
       "type": "single",
       "official": "D",
       "bank": 3,
-      "modified": false
+      "modified": false,
+      "changed": true,
+      "resolved": true,
+      "note": "题干与代码对齐官方解析版 p.7（官方完整程序含头文件与注释「// 在此处填入代码」）；四个选项与官方逐字一致，原已正确。"
     },
     {
       "id": 14,
       "type": "single",
       "official": "B",
       "bank": 1,
-      "modified": false
+      "modified": false,
+      "changed": true,
+      "resolved": true,
+      "note": "关键修复：题库把官方代码 i <= 20 改成 i <= 10、输出声明 42 改成 22（内部自洽但非官方原题）。已按官方 p.7-8 渲染还原：sum 从 1 累加到 20，20 的因数和 1+2+4+5+10+20=42，答案 B 不变。解析按官方「63/42/36/57」重写。"
     },
     {
       "id": 15,
       "type": "single",
       "official": "B",
       "bank": 1,
-      "modified": false
+      "modified": false,
+      "changed": true,
+      "resolved": true,
+      "note": "答案修正+整题重建：官方 Q15 是 for(char x=A..D) 四布尔条件之和==3 的题（p.8 渲染读图），答案 C；题库原是一段 a=5,b=2 的交换程序（自答 B=22），与官方毫无关系。选项为 A./B./C./D. 四个字母。这是本卷唯一答案不一致处（官方表第15位 C、题库原 B）。"
     },
     {
       "id": 16,
@@ -197,7 +206,8 @@
     }
   ],
   "notes": [
-    "官方卷为「试卷解析」版，答案逐题内嵌；题库 25 题题面与原卷一一对应，单选与判断答案全部一致，无修改。"
+    "官方卷为「试卷解析」版，答案逐题内嵌；题库 25 题题面与原卷一一对应，单选与判断答案全部一致，无修改。",
+    "2026-10-27 复核：本卷官方 PDF 是「真题解析」版（N. 题干 +【答案】格式），无「第 N 题」标记与标准答案表，audit-pdf-stem-diff 的 0.190 属结构性假阳性。经解析版文本层提取 25 个答案逐位比对：24/25 一致，唯一不一致 Q15（官方 C、题库 B）已修复；Q13/Q14/Q15 代码块经 p.7-8 渲染读图核对。其余 22 题答案维度全部一致。"
   ],
   "programmingSampleAudit": [
     {
@@ -211,14 +221,36 @@
         "g++ -O2 编译运行参考代码逐样例比对"
       ],
       "officialSamples": [
-        { "index": 1, "input": "3\n152\n111\n153", "output": "F\nF\nT" },
-        { "index": 2, "input": "5\n8208\n548834\n88593477\n12345\n5432", "output": "T\nT\nT\nF\nF" }
+        {
+          "index": 1,
+          "input": "3\n152\n111\n153",
+          "output": "F\nF\nT"
+        },
+        {
+          "index": 2,
+          "input": "5\n8208\n548834\n88593477\n12345\n5432",
+          "output": "T\nT\nT\nF\nF"
+        }
       ],
       "luoguSamples": [
-        { "index": 1, "input": "3\n152\n111\n153", "output": "F\nF\nT" },
-        { "index": 2, "input": "5\n8208\n548834\n88593477\n12345\n5432", "output": "T\nT\nT\nF\nF" }
+        {
+          "index": 1,
+          "input": "3\n152\n111\n153",
+          "output": "F\nF\nT"
+        },
+        {
+          "index": 2,
+          "input": "5\n8208\n548834\n88593477\n12345\n5432",
+          "output": "T\nT\nT\nF\nF"
+        }
       ],
-      "bankSamplesBefore": [{ "index": 1, "input": "3\n152\n111\n153", "output": "F\nF\nT" }],
+      "bankSamplesBefore": [
+        {
+          "index": 1,
+          "input": "3\n152\n111\n153",
+          "output": "F\nF\nT"
+        }
+      ],
       "verdict": "官方原卷共有两组样例，题库只录入了第 1 组，缺失第 2 组；洛谷与官方一致（含第 2 组）。",
       "decision": "按官方 PDF 补录样例 2",
       "change": "samples 追加官方样例 2；样例 1 与原卷一致不动；参考代码不改。",
