@@ -1,24 +1,40 @@
 {
   "paperId": "2023-12-l3",
   "reviewedAt": "2026-10-24",
-  "reviewedBy": { "type": "AI", "executor": "WorkBuddy 子代理", "session": "codex/question-bank-verification" },
+  "reviewedBy": {
+    "type": "AI",
+    "executor": "WorkBuddy 子代理",
+    "session": "codex/question-bank-verification"
+  },
   "source": {
     "mirrorUrl": "https://raw.githubusercontent.com/Dora321/gesp-official-pdfs/main/pdfs/2023%E5%B9%B412%E6%9C%88-C%2B%2B3%E7%BA%A7.pdf",
     "mirrorSha": "71be70512154a513b84196e753fd37621a509a86",
     "shaVerified": true,
     "fetchedAt": "2026-10-24",
-    "pages": { "Q17": "p.4" }
+    "pages": {
+      "Q17": "p.4"
+    }
   },
   "questions": [
     {
       "id": 17,
-      "dimensions": ["statement", "answer", "explanation"],
-      "method": ["原卷对照（页面渲染人工查看）", "程序执行"],
+      "dimensions": [
+        "statement",
+        "answer",
+        "explanation"
+      ],
+      "method": [
+        "原卷对照（页面渲染人工查看）",
+        "程序执行"
+      ],
       "findings": "题面缺失程序代码（原卷为图片，位于 p.4 判断题第 2 题下方）。原卷代码为三行：string str; cin>>str; cout<<str;。题干原句「C++程序执行后，输入 chen a dai 输出应该为： chen。（ ）」此前按公开解析还原并带【题面按公开解析还原】标记。",
       "fix": "按原卷 p.4 逐字转写三行代码，以 fenced cpp 块回填题面；题干恢复为原卷表述并移除【题面按公开解析还原】前缀；删除 sourceIntegrity/integrityNote；解析中「根据题面还原」措辞改为「根据题面代码」，其余解析与代码一致，未改动。",
       "evidence": "g++ 编译运行转写代码，输入「chen a dai」实际输出 chen，与题库 answer 0（正确）一致；亦与原卷 p.4 判断题答案表第 2 题 √ 一致。tmp/verify/2023-12-l3/q17.cpp",
       "resolved": true
     }
   ],
-  "unresolved": []
+  "unresolved": [],
+  "notes": [
+    "2026-10-27 官方 PDF 复核（镜像 sha 71be70512154a513b84196e753fd37621a509a86，本地与镜像一致）：渲染读图核对 p.1-5，Q4-Q8/Q11/Q12 单选代码块与官方逐行一致，Q19-Q23 判断题代码块与官方逐行一致；单选答案表渲染裁图 CDCCCAADCCABACB、判断答案表 √√√√××√√×√，与题库 25/25 一致。本轮改动：移除 12 题的「【题面按公开解析还原】」自标标签（内容经官方 PDF 确认后该标签已无必要），题干对齐官方原文，Q19 代码围栏错位修复（原把前两行代码放在围栏外）。题面比对覆盖率 0.680 → 1.000。之前的「按公开解析还原」标记升级为「官方 PDF 已核对」。"
+  ]
 }
