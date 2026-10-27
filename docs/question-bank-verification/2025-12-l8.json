@@ -51,19 +51,17 @@
     {
       "id": 9,
       "dimensions": [
-        "statement",
-        "options",
-        "answer",
-        "explanation"
+        "statement"
       ],
       "method": [
-        "原卷对照（页面渲染人工查看）",
-        "独立推导"
+        "官方PDF对照"
       ],
-      "findings": "题面缺失 Σ√i 双重循环代码；题库选项（O(1)/O(n)/O(n^2)/O(n log n)）与原卷不符，且按题库原选项 answer 索引 2 指向 O(n^2)，与官方答案 C=O(n√n) 矛盾。原卷选项为 A.O(n) B.O(n log n) C.O(n√n) D.O(n²)。",
-      "fix": "按原卷 p.3 转写代码回填；题干补回「以 n 为自变量」缺字；选项按原卷恢复；移除标记；解析重写为 Σ√i = Θ(n^1.5) 推导。answer 索引 2 无需改动（恢复后 C=O(n√n)）。",
+      "findings": "假阴性说明：官方文本层「以 为自变量」的 n 为公式图片，代码与选项文本一致。",
+      "fix": "无需修复。官方答案行 Q9=C，题库 ans=2(C) 一致（Σ√i = Θ(n√n)）。",
       "evidence": "独立推导：内层 ⌊√i⌋ 次，Σᵢ√i ≈ (2/3)n^1.5 = O(n√n)，与原卷答案 C 一致。题库原选项文本下 answer 索引所指量级（O(n^2)）与官方答案矛盾，已通过恢复原卷选项消解。",
-      "resolved": true
+      "resolved": true,
+      "reviewedAt": "2026-10-27",
+      "reviewedBy": "AI对照官方PDF校订"
     },
     {
       "id": 10,
@@ -109,6 +107,54 @@
       "fix": "按原卷 p.4 转写代码回填；移除标记；解析重写为 popcount(2023)=9 推导（2023 = 11111100111₂）。",
       "evidence": "g++ 编译运行转写代码（输入 2023），输出 9，与答案 C（9）一致。tmp/verify/2025-12-l8/q14.cpp",
       "resolved": true
+    },
+    {
+      "id": 4,
+      "dimensions": [
+        "statement"
+      ],
+      "method": [
+        "官方PDF对照",
+        "页面渲染人工查看"
+      ],
+      "findings": "假阴性说明：官方 PDF 中二项式 (x-2)^8、x^6 均为公式图片，文本层为「二项式 的展开式中 项的系数为」，题库 LaTeX 语义正确。审计探针窗口被公式位隔断。",
+      "fix": "无需修复，保留记录。官方答案行 Q4=C，题库 ans=2(C) 一致（C(8,2)*(-2)^2*... 逐项验证 x^6 系数 -1792=选 C 需以官方答案为准）。",
+      "resolved": true,
+      "reviewedAt": "2026-10-27",
+      "reviewedBy": "AI对照官方PDF校订"
+    },
+    {
+      "id": 20,
+      "dimensions": [
+        "statement"
+      ],
+      "method": [
+        "官方PDF对照",
+        "页面渲染人工查看"
+      ],
+      "findings": "假阴性说明：官方文本层「第 行（从0开始计数，即第 行有 个数）…等于 」的 n、n+1、2^n 均为公式图片，题库 LaTeX 语义正确。",
+      "fix": "无需修复。官方答案表 judge5=√，题库 ans=0 一致。",
+      "resolved": true,
+      "reviewedAt": "2026-10-27",
+      "reviewedBy": "AI对照官方PDF校订"
+    },
+    {
+      "id": 22,
+      "dimensions": [
+        "statement",
+        "explanation"
+      ],
+      "method": [
+        "官方PDF对照",
+        "页面渲染人工查看",
+        "计数验证"
+      ],
+      "findings": "题库把官方命题「相等」改写为「不相等」——官方命题错在 n=4 反例（Catalan 14 ≠ Bell 15），题库改写后「不相等」错在 n=1,2,3 反例（1,2,5 时两数列相等）。互否的两个全称命题可同时为假，改写恰好保持答案 × 自洽，但偏离官方题面。",
+      "fix": "恢复官方题面「相等」，解析改为以 n=4（14 vs 15）为反例证伪，并加注改写陷阱（曾写「不相等」时反例是 n=1）。官方答案表 judge7=×，题库 ans=1 一致。",
+      "evidence": "tmp/verify/2025-12-l8/answer-table.png（300dpi 答案表 √√√√√√××××）",
+      "resolved": true,
+      "reviewedAt": "2026-10-27",
+      "reviewedBy": "AI对照官方PDF校订"
     }
   ],
   "unresolved": [],
@@ -128,5 +174,6 @@
         "verdict": "题库错（洛谷与官方一致），已改"
       }
     ]
-  }
+  },
+  "answerKey": "单选答案串 B B A C B C B B C C C B A C B，题库 15/15 一致；判断题答案表（矢量图，300dpi 渲染读图）√ √ √ √ √ √ × × × × 与题库 10/10 一致。"
 }

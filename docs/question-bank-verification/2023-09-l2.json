@@ -32,7 +32,21 @@
       "type": "single",
       "official": "B",
       "bank": 1,
-      "modified": false
+      "modified": false,
+      "dimensions": [
+        "statement"
+      ],
+      "method": [
+        "官方PDF对照",
+        "页面渲染人工查看",
+        "代码逻辑验证"
+      ],
+      "findings": "官方题干仅「下列流程图的输出结果是（ ）？」11 个汉字（流程图为图片，x=5,y=12 硬编码在图中）。题库题干把图内容改写进文字（「如果输入的 x 和 y 分别是 5 和 12…」）。审计残留 miss 属结构性假阴性：官方题干不足 14 字，探针窗口必然溢出到选项文本。",
+      "fix": "题干改为自包含流程图文字描述（开始→x=5,y=12→判断 x>y：是则 a=x、b=y；否则 a=y、b=x→输出 a、b），解析按官方图重写（5>12 为假走否分支，输出 12 5=B）。官方答案 B 一致。",
+      "evidence": "tmp/verify/2023-09-l2/pg1-01.png",
+      "resolved": true,
+      "reviewedAt": "2026-10-27",
+      "reviewedBy": "AI对照官方PDF校订"
     },
     {
       "id": 3,
@@ -116,14 +130,43 @@
       "type": "single",
       "official": "A",
       "bank": 0,
-      "modified": false
+      "modified": false,
+      "dimensions": [
+        "statement"
+      ],
+      "method": [
+        "官方PDF对照",
+        "页面渲染人工查看"
+      ],
+      "findings": "题库题干「输入行数 lineCount，输出金字塔图形」与官方「输入行数，约定 1 ≤ lineCount ≤ 9，输出以下图形」有差异；官方的 1≤lineCount≤9 是公式图片、文本层丢失。代码与选项一致。",
+      "fix": "恢复官方题干并把公式转写为文本「约定 1 ≤ lineCount ≤ 9，输出以下数字金字塔图形」。审计残留 miss 属公式图片假阴性（文本层无约束式，探针窗口被转写文本隔断）。官方答案 A 一致（(lineCount-i-1)*2 空格）。",
+      "evidence": "tmp/verify/2023-09-l2/pg6-06.png",
+      "resolved": true,
+      "reviewedAt": "2026-10-27",
+      "reviewedBy": "AI对照官方PDF校订"
     },
     {
       "id": 15,
       "type": "single",
       "official": "A",
       "bank": 0,
-      "modified": false
+      "modified": false,
+      "dimensions": [
+        "statement",
+        "options",
+        "explanation"
+      ],
+      "method": [
+        "官方PDF对照",
+        "页面渲染人工查看",
+        "代码逻辑验证"
+      ],
+      "findings": "整题错位：题库为仿写题「判断 M 是否为 N 的相关数」，官方 Q15 是「班级成绩统计」题——while 横线填入循环条件，选项 true/false/True/False。题库答案 A 恰与官方字母撞车。",
+      "fix": "按官方 p.6 渲染图整题重建：官方题干+代码（totalScore/studCount 累加，score<0 break）+官方选项。官方答案 A(true)：恒真循环由 break 退出；True/False 不是 C++ 关键字。解析全部重写。",
+      "evidence": "tmp/verify/2023-09-l2/pg6-06.png",
+      "resolved": true,
+      "reviewedAt": "2026-10-27",
+      "reviewedBy": "AI对照官方PDF校订"
     },
     {
       "id": 16,
@@ -202,5 +245,6 @@
   "summary": {
     "singleMatch": true,
     "judgeModified": 2
-  }
+  },
+  "answerKey": "单选答案串 D B C B D C D A D A B B D A A，题库 15/15 一致（含重建的 Q15）；判断题答案表（矢量图，300dpi 渲染读图）√ √ × × √ × × × × √ 与题库 10/10 一致。"
 }
