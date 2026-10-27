@@ -2,7 +2,11 @@
   "paperId": "2023-06-l3",
   "reviewedAt": "2026-10-24",
   "executedAt": "2026-10-24",
-  "reviewedBy": { "type": "AI", "executor": "WorkBuddy 子代理", "session": "codex/question-bank-verification" },
+  "reviewedBy": {
+    "type": "AI",
+    "executor": "WorkBuddy 子代理",
+    "session": "codex/question-bank-verification"
+  },
   "source": {
     "mirrorUrl": "https://raw.githubusercontent.com/Dora321/gesp-official-pdfs/main/pdfs/2023%E5%B9%B46%E6%9C%88-C%2B%2B3%E7%BA%A7.pdf",
     "mirrorSha": "8ce76e5847382b18cafa0052ff9f89d8b77dfbe2",
@@ -19,31 +23,181 @@
     }
   },
   "questions": [
-    { "id": 1,  "type": "single", "official": "D", "bank": "D", "changed": false },
-    { "id": 2,  "type": "single", "official": "D", "bank": "D", "changed": false },
-    { "id": 3,  "type": "single", "official": "A", "bank": "A", "changed": false },
-    { "id": 4,  "type": "single", "official": "D", "bank": "D", "changed": false },
-    { "id": 5,  "type": "single", "official": "C", "bank": "C", "changed": false },
-    { "id": 6,  "type": "single", "official": "A", "bank": "A", "changed": false },
-    { "id": 7,  "type": "single", "official": "B", "bank": "B", "changed": false },
-    { "id": 8,  "type": "single", "official": "B", "bank": "B", "changed": false },
-    { "id": 9,  "type": "single", "official": "C", "bank": "C", "changed": false },
-    { "id": 10, "type": "single", "official": "D", "bank": "D", "changed": false },
-    { "id": 11, "type": "single", "official": "C", "bank": "C", "changed": false },
-    { "id": 12, "type": "single", "official": "A", "bank": "A", "changed": false },
-    { "id": 13, "type": "single", "official": "B", "bank": "B", "changed": false },
-    { "id": 14, "type": "single", "official": "D", "bank": "D", "changed": false },
-    { "id": 15, "type": "single", "official": "B", "bank": "B", "changed": false },
-    { "id": 16, "type": "judge", "official": "×", "bank": "×", "changed": false },
-    { "id": 17, "type": "judge", "official": "×", "bank": "×", "changed": false },
-    { "id": 18, "type": "judge", "official": "×", "bank": "×", "changed": false },
-    { "id": 19, "type": "judge", "official": "×", "bank": "×", "changed": false },
-    { "id": 20, "type": "judge", "official": "√", "bank": "√", "changed": false },
-    { "id": 21, "type": "judge", "official": "√", "bank": "√", "changed": false },
-    { "id": 22, "type": "judge", "official": "√", "bank": "√", "changed": false },
-    { "id": 23, "type": "judge", "official": "×", "bank": "×", "changed": false },
-    { "id": 24, "type": "judge", "official": "×", "bank": "×", "changed": false },
-    { "id": 25, "type": "judge", "official": "√", "bank": "√", "changed": false }
+    {
+      "id": 1,
+      "type": "single",
+      "official": "D",
+      "bank": "D",
+      "changed": false
+    },
+    {
+      "id": 2,
+      "type": "single",
+      "official": "D",
+      "bank": "D",
+      "changed": false
+    },
+    {
+      "id": 3,
+      "type": "single",
+      "official": "A",
+      "bank": "A",
+      "changed": false
+    },
+    {
+      "id": 4,
+      "type": "single",
+      "official": "D",
+      "bank": "D",
+      "changed": false
+    },
+    {
+      "id": 5,
+      "type": "single",
+      "official": "C",
+      "bank": "C",
+      "changed": false
+    },
+    {
+      "id": 6,
+      "type": "single",
+      "official": "A",
+      "bank": "A",
+      "changed": false
+    },
+    {
+      "id": 7,
+      "type": "single",
+      "official": "B",
+      "bank": "B",
+      "changed": false
+    },
+    {
+      "id": 8,
+      "type": "single",
+      "official": "B",
+      "bank": "B",
+      "changed": false
+    },
+    {
+      "id": 9,
+      "type": "single",
+      "official": "C",
+      "bank": "C",
+      "changed": false
+    },
+    {
+      "id": 10,
+      "type": "single",
+      "official": "D",
+      "bank": "D",
+      "changed": false
+    },
+    {
+      "id": 11,
+      "type": "single",
+      "official": "C",
+      "bank": "C",
+      "changed": false
+    },
+    {
+      "id": 12,
+      "type": "single",
+      "official": "A",
+      "bank": "A",
+      "changed": false
+    },
+    {
+      "id": 13,
+      "type": "single",
+      "official": "B",
+      "bank": "B",
+      "changed": false
+    },
+    {
+      "id": 14,
+      "type": "single",
+      "official": "D",
+      "bank": "D",
+      "changed": false
+    },
+    {
+      "id": 15,
+      "type": "single",
+      "official": "B",
+      "bank": "B",
+      "changed": false
+    },
+    {
+      "id": 16,
+      "type": "judge",
+      "official": "×",
+      "bank": "×",
+      "changed": false
+    },
+    {
+      "id": 17,
+      "type": "judge",
+      "official": "×",
+      "bank": "×",
+      "changed": false
+    },
+    {
+      "id": 18,
+      "type": "judge",
+      "official": "×",
+      "bank": "×",
+      "changed": false
+    },
+    {
+      "id": 19,
+      "type": "judge",
+      "official": "×",
+      "bank": "×",
+      "changed": false
+    },
+    {
+      "id": 20,
+      "type": "judge",
+      "official": "√",
+      "bank": "√",
+      "changed": false
+    },
+    {
+      "id": 21,
+      "type": "judge",
+      "official": "√",
+      "bank": "√",
+      "changed": false
+    },
+    {
+      "id": 22,
+      "type": "judge",
+      "official": "√",
+      "bank": "√",
+      "changed": false
+    },
+    {
+      "id": 23,
+      "type": "judge",
+      "official": "×",
+      "bank": "×",
+      "changed": false
+    },
+    {
+      "id": 24,
+      "type": "judge",
+      "official": "×",
+      "bank": "×",
+      "changed": false
+    },
+    {
+      "id": 25,
+      "type": "judge",
+      "official": "√",
+      "bank": "√",
+      "changed": false
+    }
   ],
   "judgeAnswerAudit": {
     "executedAt": "2026-10-25",
@@ -63,6 +217,9 @@
       }
     ]
   },
-  "notes": "题库 judge 约定 answer 0=√、1=×，比对时已换算。单选 15 题、判断 10 题与官方答案全部一致，未做任何修改。编程题（春游、密码合规）不在本次答案核对范围。",
+  "notes": [
+    "题库 judge 约定 answer 0=√、1=×，比对时已换算。单选 15 题、判断 10 题与官方答案全部一致，未做任何修改。编程题（春游、密码合规）不在本次答案核对范围。",
+    "2026-10-27 复核：本卷官方 PDF 为「真题解析」版（N. 题干 +【答案】格式），audit-pdf-stem-diff 低分属结构性假阳性。从解析版文本层提取 25 个【答案】（含判断题√×）与题库逐位比对，25/25 完全一致，确认无需修改。"
+  ],
   "unresolved": []
 }
