@@ -79,6 +79,14 @@ export default function HardwareLanding({ courseId = 'advanced' }) {
                         <p className="mt-3 text-xs text-stone-500">基于 Abderrahmen Gharsallah 的开源项目 <a href="https://github.com/agharsallah/esp-labs-web" target="_blank" rel="noopener noreferrer" className="underline hover:text-amber-800">agharsallah/esp-labs-web</a>（上游 i18n 中文），感谢原作者。</p>
                     </aside>
                 )}
+                {advanced && (
+                    <aside className="mt-6 rounded-2xl border border-stone-300 bg-[#fffdf8] p-6" data-esp32-3d-entry>
+                        <h2 className="flex items-center gap-2 text-lg font-bold"><Box size={20} aria-hidden="true" />ESP32 3D 互动课程</h2>
+                        <p className="mt-2 text-sm text-stone-600">在 3D ESP32 开发板上连接 LED、触摸键、传感器、电机和步进电机，用 Wi-Fi、蓝牙、ESP-NOW 通信，运行代码观察效果。20 节入门课程，与 Arduino 3D 互动课程同一作者。</p>
+                        <a href={`${import.meta.env.BASE_URL}courseware/esp32/3d-course/index.html`} className="mt-3 inline-flex min-h-11 items-center gap-2 font-bold text-amber-800">进入 ESP32 3D 互动课程<ArrowRight size={18} aria-hidden="true" /></a>
+                        <p className="mt-3 text-xs text-stone-500">作者 Dilum Sanjaya（<a href="https://x.com/DilumSanjaya" target="_blank" rel="noopener noreferrer" className="underline hover:text-amber-800">x.com/DilumSanjaya</a>），原站 <a href="https://learn-esp32.vercel.app/" target="_blank" rel="noopener noreferrer" className="underline hover:text-amber-800">learn-esp32.vercel.app</a>；离线镜像供课堂使用，默认简体中文，感谢原作者。</p>
+                    </aside>
+                )}
                 <aside className="mt-6 flex flex-wrap items-center justify-between gap-4 rounded-2xl border border-stone-300 bg-[#fffdf8] p-6">
                     <div><h2 className="font-bold">继续探索</h2><p className="mt-2 text-sm text-stone-600">{related.map((item) => `${item.title} · ${item.lessons.length} 课`).join('　／　')}</p></div>
                     <div className="flex flex-wrap gap-4">{related.map((item) => <Link key={item.path} to={item.path} className="inline-flex min-h-11 items-center gap-2 font-bold text-amber-800">{item.shortTitle}<ArrowRight size={18} /></Link>)}</div>
