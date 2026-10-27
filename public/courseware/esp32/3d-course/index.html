@@ -1,0 +1,301 @@
+<!doctype html>
+<html lang="zh-Hans" class="is-loading">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
+    <script>
+      // The layout, chosen before anything is drawn (fit() in src/main.js
+      // decides the same way, and keeps deciding as the window changes):
+      // a phone never lays out the wide artboard first, which would widen
+      // the page and make the loading screen jump.
+      (() => {
+        const d = document.documentElement;
+        const vw = d.clientWidth || innerWidth;
+        const vh = d.clientHeight || innerHeight;
+        let s = Math.min(vw / 1672, vh / 941);
+        if (s < 0.8) s = Math.min(vw / 1280, vh / 941, 0.8);
+        if (s < 0.62 || vw / vh < 0.95) d.classList.add('compact');
+      })();
+    </script>
+    <title>Learn ESP32 — interactive 3D lessons for beginners</title>
+    <meta name="description" content="Learn the ESP32 on an interactive 3D board: wire sensors and motors, use Wi-Fi and Bluetooth, then run the code and watch it work. 20 free beginner lessons." />
+    <meta name="author" content="Dilum Sanjaya" />
+    <meta name="robots" content="index, follow, max-image-preview:large" />
+    <meta name="theme-color" content="#f8f1e6" />
+    <meta name="color-scheme" content="light" />
+    <meta name="application-name" content="Learn ESP32" />
+    <meta name="apple-mobile-web-app-title" content="Learn ESP32" />
+    <link rel="icon" href="favicon.ico" sizes="48x48" />
+    <link rel="icon" type="image/svg+xml" href="favicon.svg" />
+    <link rel="apple-touch-icon" href="apple-touch-icon.png" />
+    <link rel="manifest" href="site.webmanifest" />
+
+    <!-- link previews (Open Graph, X) -->
+    <meta property="og:type" content="website" />
+    <meta property="og:site_name" content="Learn ESP32" />
+    <meta property="og:locale" content="en_US" />
+    <meta property="og:title" content="Learn ESP32 — interactive 3D lessons" />
+    <meta property="og:description" content="Wire up LEDs, buttons, touch keys, sensors, motors, servos and a stepper on a 3D ESP32, talk to it over Wi-Fi, Bluetooth and ESP-NOW, then run the code and watch it work. 20 free beginner lessons." />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:creator" content="@DilumSanjaya" />
+    <link rel="canonical" href="./" />
+    <meta property="og:url" content="./" />
+    <meta property="og:image" content="./og-image.png" />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:image:alt" content="An illustrated 3D ESP32 board wired on a breadboard to a distance sensor and a traffic light, with a toy car in front of it" />
+    <meta name="twitter:image" content="./og-image.png" />
+    <meta name="twitter:image:alt" content="An illustrated 3D ESP32 board wired on a breadboard to a distance sensor and a traffic light, with a toy car in front of it" />
+    <script type="application/ld+json">{"@context":"https://schema.org","@type":["WebApplication","LearningResource"],"name":"Learn ESP32","url":"./","description":"Learn the ESP32 on an interactive 3D board: wire sensors and motors, use Wi-Fi and Bluetooth, then run the code and watch it work. 20 free beginner lessons.","image":"./og-image.png","applicationCategory":"EducationalApplication","operatingSystem":"Any (runs in a web browser with WebGL)","browserRequirements":"Requires JavaScript and WebGL.","inLanguage":"en","isAccessibleForFree":true,"offers":{"@type":"Offer","price":"0","priceCurrency":"USD"},"educationalLevel":"Beginner","learningResourceType":"Interactive lesson","teaches":["Meet the ESP32","Flash two LEDs","Guard the fridge","Use Wi-Fi","Sound a siren","Build a mini piano","Fill a ring of LEDs","Make a mood lamp","Light up in the dark","Distance meter","Drive a wheel","Laser barrier gate","Talk over Bluetooth","Board to board","Smart parking bay","Automatic water pump","Keypad door lock","Sun-tracking solar panel","Ultrasonic radar","Pick and place"],"about":["ESP32","Electronics","Microcontrollers","Wi-Fi","Bluetooth","Programming"],"author":{"@type":"Person","name":"Dilum Sanjaya","url":"https://x.com/DilumSanjaya"}}</script>
+    <!-- linked here rather than imported from main.js, so the first paint
+         (the loading screen) is already styled, on the dev server too -->
+    <link rel="preload" href="assets/barlow-semi-condensed-latin-600-normal-BkLiAYu4.woff2" as="font" type="font/woff2" crossorigin />
+    <link rel="preload" href="assets/barlow-semi-condensed-latin-500-normal-G0uxJNrM.woff2" as="font" type="font/woff2" crossorigin />
+    <!-- the loading screen's title: there before it's drawn, so it doesn't
+         swap fonts (and jump) in front of the visitor -->
+    <link rel="preload" href="assets/barlow-semi-condensed-latin-700-normal-BpqDG8I9.woff2" as="font" type="font/woff2" crossorigin />
+    <script type="module" crossorigin src="assets/index-DO8QxAnQ.js"></script>
+    <link rel="stylesheet" crossorigin href="assets/index-BjWEalAT.css">
+  </head>
+  <body>
+    <!-- Covers the page until the board is built and every lesson card has
+         its picture (src/ui/loader.js) -->
+    <div class="loader" id="loader" role="status" aria-live="polite">
+      <div class="loader-inner">
+        <svg class="loader-logo" viewBox="0 0 88 70" aria-hidden="true">
+          <g>
+            <path class="waves" d="M32.5 48.9a16 16 0 0 1 23 0M22.4 39.2a30 30 0 0 1 43.2 0M12.4 29.4a44 44 0 0 1 63.2 0" />
+            <circle class="dot" cx="44" cy="60" r="6" />
+          </g>
+        </svg>
+        <p class="loader-title">Learn <span>ESP32</span></p>
+        <div class="loader-track" aria-hidden="true"><span class="loader-fill"></span><span class="loader-shine"></span></div>
+        <p class="loader-step">Loading</p>
+        <noscript>
+          <style>.loader{overflow:auto}.loader-inner{padding:40px 16px}.loader-track,.loader-step{display:none}</style>
+          <div class="noscript">
+            <p>An interactive 3D course in your browser. Turn on JavaScript to start.</p>
+            <ol class="noscript-lessons"><li><b>1. Meet the ESP32</b> — The ESP32 is a tiny, powerful microcontroller with Wi-Fi and Bluetooth built in.</li><li><b>2. Flash two LEDs</b> — Your first circuit: two LEDs that take turns, like the lights at a level crossing.</li><li><b>3. Guard the fridge</b> — Left the fridge open again? A reed switch is a pair of springy contacts in a glass tube that touch when a magnet comes close.</li><li><b>4. Use Wi-Fi</b> — The ESP32 can join your Wi-Fi and serve a tiny web page. Open it on your phone and tap the button: the phone asks for /toggle, and the board switches the LED.</li><li><b>5. Sound a siren</b> — A passive buzzer clicks every time its pin flips; flip it hundreds of times a second and you hear a note.</li><li><b>6. Build a mini piano</b> — Eight of the ESP32’s pins can feel a fingertip. Wire each one to a copper key and the board plays a note with tone() when you touch it — no buttons needed.</li><li><b>7. Fill a ring of LEDs</b> — 3 V, and the ESP32’s 12-bit ADC reads that as 0 to 4095. Here the reading fills a ring of twelve RGB LEDs like a gauge — all of them driven by one data wire.</li><li><b>8. Make a mood lamp</b> — An RGB LED is three LEDs — red, green and blue — in one. Put it inside a frosted ball and the whole ball glows in their mix.</li><li><b>9. Light up in the dark</b> — A light-dependent resistor (LDR) lets more current through the more light falls on it.</li><li><b>10. Distance meter</b> — A pocket tape measure with no tape. The HC-SR04P times an ultrasonic echo, and a little OLED screen on its own stand shows the distance in big digits over a bar that grows as the obstacle moves away.</li><li><b>11. Drive a wheel</b> — A pin can’t power a motor, and a single transistor can only turn it one way.</li><li><b>12. Laser barrier gate</b> — A red laser shines across the road onto a receiver. When a car drives into the beam, the receiver goes dark and the ESP32 swings a servo’s striped boom up.</li><li><b>13. Talk over Bluetooth</b> — No router needed: the ESP32 can pair with your phone directly.</li><li><b>14. Board to board</b> — ESP-NOW lets ESP32 boards message each other directly: no router, no pairing, and a message lands in milliseconds.</li><li><b>15. Smart parking bay</b> — Put it all together. The distance sensor watches a parking bay, a traffic light guides the driver in — green, then yellow, then red to stop — and the bay tells your phone whether it is free or taken, over Wi-Fi.</li><li><b>16. Automatic water pump</b> — A tank that fills itself. A probe in the lid measures the water; at the low mark the ESP32 clicks a relay that runs a mains pump, and at the high mark it stops.</li><li><b>17. Keypad door lock</b> — Type the right code and the safe opens. A keypad is a grid of buttons wired in rows and columns: the ESP32 drives one column at a time and listens on the rows, so seven wires read twelve keys.</li><li><b>18. Sun-tracking solar panel</b> — A solar panel makes the most power when it faces the sun, so this one turns to follow it.</li><li><b>19. Ultrasonic radar</b> — An HC-SR04P tells you how far away something is, but only straight ahead.</li><li><b>20. Pick and place</b> — A stepper motor doesn’t just spin: every pulse turns it exactly one step, 200 to a turn.</li></ol>
+          </div>
+        </noscript>
+      </div>
+    </div>
+
+    <!-- inert (not hidden) while the loading screen covers it -->
+    <div id="app" class="artboard" inert>
+      <svg class="scenery" id="scenery" aria-hidden="true"></svg>
+
+      <!-- Sidebar -->
+      <nav class="sidebar" aria-label="Main" data-i18n-attr="aria-label">
+        <ul class="side-nav">
+          <li class="is-active">
+            <a href="#" data-nav="home" title="Home" data-i18n-attr="title">
+              <svg viewBox="0 0 32 32" class="fill" aria-hidden="true"><path d="M16 4.2 3.6 15.1c-.7.6-.3 1.7.6 1.7H6v9.4c0 1 .8 1.8 1.8 1.8h5.4v-7.3h5.6V28h5.4c1 0 1.8-.8 1.8-1.8v-9.4h1.8c.9 0 1.3-1.1.6-1.7z" /></svg>
+              <span class="side-label" data-i18n>Home</span>
+            </a>
+          </li>
+          <li>
+            <a href="#" data-nav="lessons" title="Lessons" data-i18n-attr="title">
+              <svg viewBox="0 0 32 32" aria-hidden="true"><path d="M16 9.2C13.4 7.3 9.6 6.6 5 6.8v17.6c4.6-.2 8.4.5 11 2.4 2.6-1.9 6.4-2.6 11-2.4V6.8c-4.6-.2-8.4.5-11 2.4zM16 9.2v17.6" /><path d="M3 9.4v17.4c5-.4 9.6.2 13 2.2 3.4-2 8-2.6 13-2.2V9.4" /></svg>
+              <span class="side-label" data-i18n>Lessons</span>
+            </a>
+          </li>
+          <li>
+            <a href="#" data-nav="parts" title="Components" data-i18n-attr="title">
+              <svg viewBox="0 0 32 32" aria-hidden="true"><rect x="8.5" y="8.5" width="15" height="15" rx="1.6" /><rect x="12.2" y="12.2" width="7.6" height="7.6" rx=".8" /><path d="M14.6 14.4v3.2h3M12.5 4v4.5M16 4v4.5M19.5 4v4.5M12.5 23.5V28M16 23.5V28M19.5 23.5V28M4 12.5h4.5M4 16h4.5M4 19.5h4.5M23.5 12.5H28M23.5 16H28M23.5 19.5H28" /></svg>
+              <span class="side-label" data-i18n>Components</span>
+            </a>
+          </li>
+          <li>
+            <a href="#" data-nav="reference" title="Reference: controls and shortcuts" data-i18n-attr="title">
+              <svg viewBox="0 0 32 32" aria-hidden="true"><path d="M8.5 3.8h10.2l6 6v17a1.5 1.5 0 0 1-1.5 1.5H8.5A1.5 1.5 0 0 1 7 26.8V5.3a1.5 1.5 0 0 1 1.5-1.5z" /><path d="M18.5 4v6h6M11.2 15.5h9.6M11.2 19.4h9.6M11.2 23.3h6.4" /></svg>
+              <span class="side-label" data-i18n>Reference</span>
+            </a>
+          </li>
+          <li>
+            <a href="#" data-nav="settings" title="Settings" data-i18n-attr="title">
+              <svg viewBox="0 0 32 32" aria-hidden="true"><path d="M18.1 4.3h-4.2l-.7 3.3a9.2 9.2 0 0 0-2.5 1.4l-3.2-1.1-2.1 3.6 2.5 2.2a9.4 9.4 0 0 0 0 2.9l-2.5 2.2 2.1 3.6 3.2-1.1c.8.6 1.6 1.1 2.5 1.4l.7 3.3h4.2l.7-3.3c.9-.3 1.7-.8 2.5-1.4l3.2 1.1 2.1-3.6-2.5-2.2a9.4 9.4 0 0 0 0-2.9l2.5-2.2-2.1-3.6-3.2 1.1a9.2 9.2 0 0 0-2.5-1.4z" /><circle cx="16" cy="16" r="4.2" /></svg>
+              <span class="side-label" data-i18n>Settings</span>
+            </a>
+          </li>
+          <li>
+            <a href="#" data-nav="language" title="Language" data-i18n-attr="title">
+              <svg viewBox="0 0 32 32" aria-hidden="true"><circle cx="16" cy="16" r="11.5" /><path d="M4.5 16h23M6.2 10h19.6M6.2 22h19.6M16 4.5c-3.3 3.1-5 7-5 11.5s1.7 8.4 5 11.5c3.3-3.1 5-7 5-11.5s-1.7-8.4-5-11.5z" /></svg>
+              <span class="side-label" data-i18n>Language</span>
+            </a>
+          </li>
+        </ul>
+        <!-- the desert the credit stands in, at the foot of the nav -->
+        <svg class="side-desert" viewBox="0 0 104 220" aria-hidden="true">
+          <clipPath id="desert-clip"><path d="M10 0h94v210H34q-24 0-24-24z" /></clipPath>
+          <g clip-path="url(#desert-clip)">
+            <path class="hill" d="M56 150c10-24 38-28 48-12v72H56z" />
+            <path class="cactus" d="M80 76v122M84.5 140h3.5a5 5 0 0 0 5-5v-16M75.5 157H73a5 5 0 0 1-5-5v-11" />
+            <path class="cactus-shade" d="M82.6 82v112" />
+            <path class="sand" d="M10 194c30-17 66-14 94 4v12H10z" />
+          </g>
+        </svg>
+        <a class="credit credit-side" href="https://x.com/DilumSanjaya" target="_blank" rel="noopener noreferrer" title="Designed by x.com/DilumSanjaya" data-i18n-attr="title">
+          <span class="credit-text"><small data-i18n>Designed by</small><b>x.com/DilumSanjaya</b></span>
+          <span class="credit-rule" aria-hidden="true"></span>
+          <svg class="credit-x" viewBox="0 0 24 24" aria-hidden="true"><path d="M18.9 1.15h3.68l-8.04 9.19L24 22.85h-7.4l-5.8-7.59-6.64 7.59H.47l8.6-9.83L0 1.15h7.6l5.24 6.93zm-1.29 19.5h2.04L6.49 3.24H4.3z" /></svg>
+        </a>
+      </nav>
+      <aside class="flyout" id="flyout" aria-live="polite"></aside>
+
+      <!-- Brand -->
+      <header class="brand">
+        <svg class="brand-logo" viewBox="0 0 88 70" aria-hidden="true">
+          <g>
+            <path class="waves" d="M32.5 48.9a16 16 0 0 1 23 0M22.4 39.2a30 30 0 0 1 43.2 0M12.4 29.4a44 44 0 0 1 63.2 0" />
+            <circle class="dot" cx="44" cy="60" r="6" />
+          </g>
+        </svg>
+        <div class="brand-text">
+          <h1>Learn <span>ESP32</span></h1>
+          <p><span data-i18n>Explore</span> <i>·</i> <span data-i18n>Build</span> <i>·</i> <span data-i18n>Connect</span> <i>·</i> <span data-i18n>Create</span></p>
+        </div>
+      </header>
+
+      <!-- Stage: three.js board + callouts -->
+      <main class="stage" id="stage">
+        <canvas id="board-canvas" aria-label="Interactive 3D view. Drag or use WASD to pan, Q and E to rotate, scroll to zoom." data-i18n-attr="aria-label"></canvas>
+        <svg class="leaders" id="leaders" aria-hidden="true"></svg>
+        <div class="rig" id="rig"></div>
+        <div class="tags" id="tags"></div>
+        <svg class="insp-lines" id="insp-lines" aria-hidden="true"></svg>
+        <div class="inspector" id="inspector" role="dialog" aria-label="Part inspector" data-i18n-attr="aria-label"></div>
+        <!-- what the pointer is over: for the eyes only (the parts are drawn in the 3D view) -->
+        <div class="tip" id="tip" aria-hidden="true"><b></b><span></span></div>
+
+        <div class="viewbar" id="viewbar" role="toolbar" aria-label="3D view" data-i18n-attr="aria-label">
+          <p class="view-hint" data-i18n>Drag or WASD to pan · Q / E to rotate · Scroll to zoom</p>
+          <button data-view="left" title="Turn left (Q)" aria-label="Turn left" data-i18n-attr="title aria-label">
+            <svg viewBox="0 0 24 24"><path d="M4.5 10.5A8 8 0 1 1 6 17" /><path d="M4 5v5.8h5.8" /></svg>
+          </button>
+          <button data-view="right" title="Turn right (E)" aria-label="Turn right" data-i18n-attr="title aria-label">
+            <svg viewBox="0 0 24 24"><path d="M19.5 10.5A8 8 0 1 0 18 17" /><path d="M20 5v5.8h-5.8" /></svg>
+          </button>
+          <span class="viewbar-sep"></span>
+          <button data-view="out" title="Zoom out (−)" aria-label="Zoom out" data-i18n-attr="title aria-label">
+            <svg viewBox="0 0 24 24"><path d="M5 12h14" /></svg>
+          </button>
+          <button data-view="in" title="Zoom in (+)" aria-label="Zoom in" data-i18n-attr="title aria-label">
+            <svg viewBox="0 0 24 24"><path d="M12 5v14M5 12h14" /></svg>
+          </button>
+          <span class="viewbar-sep sch-sep"></span>
+          <!-- shows or hides the schematic card, lesson by lesson -->
+          <button data-view="schematic" class="sch-toggle" title="Hide the schematic" aria-label="Schematic" aria-pressed="true" data-i18n-attr="aria-label">
+            <svg viewBox="0 0 24 24"><rect x="3.5" y="5" width="17" height="14" rx="2.5" /><path d="M6.5 12h2.2l1.3-2.6 2 5.2 2-5.2 1.3 2.6h2.2" /></svg>
+          </button>
+          <span class="viewbar-sep"></span>
+          <button data-view="reset" class="compass" title="Reset view (R)" aria-label="Reset view" data-i18n-attr="title aria-label">
+            <svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="8.5" /><g class="compass-needle"><path d="M12 5.2 14.2 12h-4.4z" class="fill" /><path d="M12 18.8 9.8 12h4.4z" /></g></svg>
+          </button>
+        </div>
+
+        <!-- the lesson's circuit; the grip at its top-left corner scales it,
+             a drag anywhere else moves it, the × hides it -->
+        <section class="schematic-card" id="schematic-card" aria-label="Schematic" data-i18n-attr="aria-label">
+          <header class="sch-head">
+            <button class="sch-grip" type="button" title="Drag to resize" data-i18n-attr="title">
+              <svg viewBox="0 0 12 12" aria-hidden="true"><path d="M1.5 6.5 6.5 1.5M1.5 10.5 10.5 1.5" /></svg>
+            </button>
+            <h2 data-i18n>Schematic</h2>
+            <button class="sch-close" type="button" title="Hide the schematic" aria-label="Hide the schematic" data-i18n-attr="title aria-label">
+              <svg viewBox="0 0 12 12" aria-hidden="true"><path d="M2.5 2.5l7 7M9.5 2.5l-7 7" /></svg>
+            </button>
+          </header>
+          <div class="sch-view schematic"></div>
+          <div class="sch-notes"></div>
+        </section>
+      </main>
+
+      <!-- Top-right status -->
+      <section class="status" aria-label="Progress" data-i18n-attr="aria-label">
+        <div class="progress-card">
+          <svg viewBox="0 0 40 40" class="progress-icon" aria-hidden="true"><path d="M20 10.6c-3.3-2.4-8.2-3.2-14-3v21.2c5.8-.2 10.7.6 14 3 3.3-2.4 8.2-3.2 14-3V7.6c-5.8-.2-10.7.6-14 3zM20 10.6v21.2" /><path d="M3 11v21c6.3-.5 12.6.2 17 2.6 4.4-2.4 10.7-3.1 17-2.6V11" /></svg>
+          <div class="progress-body">
+            <span class="progress-label" data-i18n>Basics</span>
+            <div class="progress-row">
+              <span class="progress-track" role="progressbar" aria-label="Progress" data-i18n-attr="aria-label" aria-valuemin="0" aria-valuemax="20" aria-valuenow="0"><span class="progress-fill" id="progress-fill"></span></span>
+              <span class="progress-count" id="progress-count">0/20</span>
+            </div>
+          </div>
+        </div>
+        <time class="clock" id="clock">
+          <span id="clock-date">APR 24, 2025</span>
+          <span id="clock-time">14:32:18</span>
+        </time>
+        <svg class="status-cactus" viewBox="0 0 30 50" aria-hidden="true">
+          <path class="cactus" d="M15 47V9M18 30h2.5a3.5 3.5 0 0 0 3.5-3.5v-9M12 36H9.5A3.5 3.5 0 0 1 6 32.5V25" />
+          <path class="cactus-shade" d="M16.6 12v33" />
+        </svg>
+      </section>
+
+      <!-- Right info panel -->
+      <section class="info-card" aria-label="Lesson information" data-i18n-attr="aria-label">
+        <div class="tabs" role="tablist" aria-label="Lesson information" data-i18n-attr="aria-label">
+          <button role="tab" aria-selected="true" class="is-active" data-i18n>Overview</button>
+          <button role="tab" aria-selected="false" data-i18n>Pinout</button>
+          <button role="tab" aria-selected="false" data-i18n>Example</button>
+          <button role="tab" aria-selected="false" data-i18n>Specifications</button>
+        </div>
+        <div class="info-body" role="tabpanel">
+          <button class="expand" aria-label="Expand panel">
+            <svg viewBox="0 0 24 24"><path d="M3 8V3h5M16 3h5v5M21 16v5h-5M8 21H3v-5" /><circle cx="12" cy="12" r="1.3" class="fill" /></svg>
+          </button>
+          <div class="info-content"></div>
+        </div>
+      </section>
+
+      <!-- Code card -->
+      <section class="code-card" aria-label="Try it yourself" data-i18n-attr="aria-label" data-state="idle">
+        <header>
+          <h2 data-i18n>Try it yourself</h2>
+          <div class="code-actions">
+            <button class="btn-ghost btn-expand" aria-label="Expand code" title="Expand code" aria-expanded="false">
+              <svg viewBox="0 0 24 24"><path d="M3 8V3h5M16 3h5v5M21 16v5h-5M8 21H3v-5" /><circle cx="12" cy="12" r="1.3" class="fill" /></svg>
+            </button>
+            <button class="btn-ghost btn-copy" aria-label="Copy code" title="Copy code" data-i18n-attr="aria-label title">
+              <svg viewBox="0 0 24 24"><rect x="8" y="8" width="11.5" height="12.5" rx="1.6" /><path d="M15.5 5.2V4.8c0-.9-.7-1.6-1.6-1.6H6.1c-.9 0-1.6.7-1.6 1.6v9.6c0 .9.7 1.6 1.6 1.6h.4" /></svg>
+            </button>
+            <button class="btn-run" aria-label="Run sketch" title="Run sketch (Space)">
+              <svg viewBox="0 0 24 24"><path d="M7.5 4.8v14.4L19 12z" class="fill" /></svg>
+            </button>
+          </div>
+        </header>
+        <div class="code-wrap">
+          <pre class="code"><code></code></pre>
+          <div class="console">
+            <div class="console-grip" role="separator" aria-orientation="horizontal" aria-label="Resize serial monitor" data-i18n-attr="aria-label" tabindex="-1"></div>
+            <div class="console-head">
+              <span class="console-dot"></span>
+              <span class="console-title" data-i18n>Serial monitor</span>
+              <span class="console-status">Stopped</span>
+              <button class="console-close" aria-label="Stop sketch" data-i18n-attr="aria-label">
+                <svg viewBox="0 0 24 24"><path d="m7 7 10 10M17 7 7 17" /></svg>
+              </button>
+            </div>
+            <div class="console-lines" aria-live="polite"></div>
+          </div>
+        </div>
+      </section>
+
+      <!-- Lessons -->
+      <section class="lessons" aria-label="Lessons" data-i18n-attr="aria-label">
+        <h2 data-i18n>Lessons</h2>
+        <div class="lesson-list" id="lesson-list" role="group" aria-label="Lessons" data-i18n-attr="aria-label"></div>
+      </section>
+
+      <!-- Footer (compact layout; the wide layout keeps these in the side nav) -->
+      <footer class="app-foot">
+        <a class="credit credit-row" href="https://x.com/DilumSanjaya" target="_blank" rel="noopener noreferrer" title="Designed by x.com/DilumSanjaya" data-i18n-attr="title">
+          <svg class="credit-x" viewBox="0 0 24 24" aria-hidden="true"><path d="M18.9 1.15h3.68l-8.04 9.19L24 22.85h-7.4l-5.8-7.59-6.64 7.59H.47l8.6-9.83L0 1.15h7.6l5.24 6.93zm-1.29 19.5h2.04L6.49 3.24H4.3z" /></svg>
+          <span class="credit-rule" aria-hidden="true"></span>
+          <span class="credit-text"><small data-i18n>Designed by</small><b>x.com/DilumSanjaya</b></span>
+        </a>
+      </footer>
+    </div>
+  </body>
+</html>
