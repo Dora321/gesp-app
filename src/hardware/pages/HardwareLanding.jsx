@@ -51,6 +51,7 @@ export default function HardwareLanding({ courseId = 'advanced' }) {
                         <h2 id="arduino-3d-title" className="flex items-center gap-2 text-xl font-bold"><Box size={24} aria-hidden="true" />Arduino 3D 互动课程</h2>
                         <p className="mt-3 text-sm leading-7 text-stone-600">在 3D 电路板上连接 LED、按键、传感器和电机，运行代码观察效果。16 节入门课程，适合配合下面的网页课件动手练习。</p>
                         <a href="https://dora321.github.io/gesp-app/courseware/arduino/3d-course/" className="mt-4 inline-flex min-h-11 items-center gap-2 rounded-xl bg-stone-950 px-5 py-3 font-bold text-amber-100 hover:bg-stone-800">进入 3D 互动课程<ArrowRight size={18} aria-hidden="true" /></a>
+                        <p className="mt-3 text-xs text-stone-500">作者 Dilum Sanjaya（<a href="https://x.com/DilumSanjaya" target="_blank" rel="noopener noreferrer" className="underline hover:text-amber-800">x.com/DilumSanjaya</a>），原站 <a href="https://learn-arduino-red.vercel.app/" target="_blank" rel="noopener noreferrer" className="underline hover:text-amber-800">learn-arduino-red.vercel.app</a>；离线镜像供课堂使用，感谢原作者。</p>
                     </aside>
                 )}
                 <section className="mt-10" aria-labelledby="science-lessons-title" data-course-lessons>
