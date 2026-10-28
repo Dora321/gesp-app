@@ -401,14 +401,18 @@
       "resolved": true,
       "textMatch": true,
       "dimensions": [
-        "statement",
-        "answer"
+        "statement"
       ],
       "method": [
-        "按官方 PDF 逐页渲染读图，题面逐字录入",
-        "判断题答案表逐位核对"
+        "官方PDF对照",
+        "页面渲染人工查看"
       ],
-      "note": "官方 p7 判断第6题：T(n)=T(n-1)+n 展开为 1+n(n+1)/2 = O(n²)（原题库缺此题，已补齐）"
+      "note": "官方 p7 判断第6题：T(n)=T(n-1)+n 展开为 1+n(n+1)/2 = O(n²)（原题库缺此题，已补齐）",
+      "findings": "假阴性说明：官方 judge6（=题库 Q21，无错位）中 T(n)=T(n-1)+n、T(0)=1、O(n²) 均为公式图片，文本层为「递推关系式为 （ 为正整数）及 ，则该算法的时间复杂度为 」。题库 LaTeX 语义正确。",
+      "fix": "无需修复。官方答案表（p.7 渲染图）× × × × √ √ √ √ × ×，judge6=√，题库 ans=0 一致（T(n)=1+Σn = n(n+1)/2+1 = Θ(n²)）。",
+      "evidence": "tmp/verify/2024-12-l4/answer-table.png",
+      "reviewedAt": "2026-10-28",
+      "reviewedBy": "AI对照官方PDF校订"
     },
     {
       "id": 22,
@@ -418,14 +422,17 @@
       "resolved": true,
       "textMatch": true,
       "dimensions": [
-        "statement",
-        "answer"
+        "statement"
       ],
       "method": [
-        "按官方 PDF 逐页渲染读图，题面逐字录入",
-        "判断题答案表逐位核对"
+        "官方PDF对照",
+        "页面渲染人工查看"
       ],
-      "note": "官方 p7 判断第7题：冒泡平均 O(n²)、最优 O(n)"
+      "note": "官方 p7 判断第7题：冒泡平均 O(n²)、最优 O(n)",
+      "findings": "假阴性说明：官方 judge7 的 O(n²)、O(n) 为公式图片。题库语义正确。",
+      "fix": "无需修复。官方答案表 judge7=√，题库 ans=0 一致（冒泡有序段优化最优 O(n)）。",
+      "reviewedAt": "2026-10-28",
+      "reviewedBy": "AI对照官方PDF校订"
     },
     {
       "id": 23,
@@ -481,5 +488,6 @@
   ],
   "unresolved": [],
   "rebuild": true,
-  "rebuildNote": "本卷 25 道客观题按官方 PDF 逐页渲染读图整卷重录（题面/选项/答案/解析），编程题仅补数据范围章节。"
+  "rebuildNote": "本卷 25 道客观题按官方 PDF 逐页渲染读图整卷重录（题面/选项/答案/解析），编程题仅补数据范围章节。",
+  "answerKey": "单选答案串 A B B B D D D D A C B B A C A，题库 15/15 一致；判断题答案表（矢量图，300dpi 渲染读图）× × × × √ √ √ √ × × 与题库 10/10 一致。"
 }

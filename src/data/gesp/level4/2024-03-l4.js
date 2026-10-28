@@ -610,8 +610,8 @@ struct pass {
         {
             id: 11,
             type: "single",
-            question: `如果文件 1.txt 中的内容为 \`50 2024 3.16 I love GESP!\`，则执行下面 C++ 代码时输出的 x 的值为（ ）。\n\`\`\`cpp\nint main() {\n ifstream fin;\n string line; int x;\n fin.open("1.txt", ios::in);\n for (int i=0; i<2; i++) fin >> line;\n fin >> x;\n cout << x << endl;\n return 0;\n}\n\`\`\``,
-            options: ["50", "2024", "3", "0"],
+            question: `如果文件 1.txt 中的内容如下，则执行下面 C++ 代码时，注释了 #### 那行代码所输出的 x 的值为（ ）。\n\`\`\`\n50 2024 3.16 I\nlove\nGESP!\n\`\`\`\n\`\`\`cpp\nint main() {\n ifstream fin;\n string line; int x;\n fin.open("1.txt", ios::in);\n for (int i=0; i<2; i++){\n   fin >> line;\n   cout << line << endl;\n }\n fin>>x;\n cout << x << endl; //####\n\n cout << endl;\n return 0;\n}\n\`\`\``,
+            options: ["5", "2024", "3", "0"],
             answer: 2,
             score: 2,
             explanation: `**答案：C (3)**
@@ -623,7 +623,7 @@ struct pass {
 4. 输出 \`x\` 的值为 \`3\`。
 
 **选项逐项分析：**
-- **A 50**：❌ 错误。该项本身是文件中第一个数据，但已被第一次 \`fin >> line\` 读取并消耗，不会被赋值给 \`x\`。
+- **A 5**：❌ 错误。该项是文件中第一个数据 50 的个位（或 2024 的部分），不可能是 x 的值：前两次读取已消耗 50 和 2024，x 读到的是 3.16 的整数前缀。
 - **B 2024**：❌ 错误。该项本身是文件中第二个数据，但已被第二次 \`fin >> line\` 读取并消耗，不会被赋值给 \`x\`。
 - **C 3**：✅ 正确。第三次读取时，数据 \`"3.16"\` 被读取，小数点前的整数部分 \`3\` 被正确提取到 \`int\` 变量 \`x\` 中。
 - **D 0**：❌ 错误。该项本身是 \`int\` 类型默认初始化的可能值，但 \`fin >> x\` 成功读取了有效数据 \`3\`，不会得到默认值 \`0\`。

@@ -499,7 +499,7 @@ int main() {
         {
             id: 14,
             type: 'single',
-            question: `如果要使得下面代码输出 120，则横线处应填入（ ）。\n\`\`\`cpp\n#include <iostream>\nusing namespace std;\n\nint main() {\n int array[5] = {1, 2, 3, 4, 5};\n int res = 0;\n for (int i = 0; i < 5; i++)\n _______; // 在此处填入代码\n cout << res << endl;\n return 0;\n}\n\`\`\``,
+            question: `在下列代码的横线处填写（ ），可以使得输出是“120”。\n\`\`\`cpp\n#include <iostream>\nusing namespace std;\n\nint main() {\n int array[5] = {1, 2, 3, 4, 5};\n int res = 0;\n for (int i = 0; i < 5; i++)\n _______; // 在此处填入代码\n cout << res << endl;\n return 0;\n}\n\`\`\``,
             options: ['res += array[i];', 'res *= array[i]', 'res = array[i]', '以上均不对'],
             answer: 3,
             score: 2,

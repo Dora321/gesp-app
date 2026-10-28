@@ -494,7 +494,7 @@ Node* removeElements(Node* head, int val) {
         {
             id: 13,
             type: "single",
-            question: `电影院排片问题中，按结束时间从小到大排序并维护 lastEnd，才能贪心选出最多部不重叠电影。则两处横线应分别填写（ ）。`,
+            question: `假设你是一家电影院的排片经理，只有一个放映厅。你有一个电影列表 movies，其中 movies[i] = [start_i, end_i] 表示第 i 部电影的开始和结束时间。请你找出最多能安排多少部不重叠的电影，则横线上应分别填写的代码为（ ）。\n\`\`\`cpp\nint maxMovies(vector<vector<int>>& movies) {\n    if (movies.empty()) return 0;\n\n    sort(movies.begin(), movies.end(), [](const vector<int>& a, const vector<int>& b) {\n        return ________; // 在此处填入代码\n    });\n\n    int count = 1;\n    int lastEnd = movies[0][1];\n\n    for (int i = 1; i < movies.size(); i++) {\n        if (movies[i][0] >= lastEnd) {\n            count++;\n            ________ = movies[i][1]; // 在此处填入代码\n        }\n    }\n\n    return count;\n}\n\`\`\``,
             options: [
                 "a[0] < b[0] 和 lastEnd",
                 "a[1] < b[1] 和 lastEnd",

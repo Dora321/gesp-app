@@ -31,6 +31,53 @@
       "fix": "按原卷 p.3 转写代码回填；移除标记；解析重写为枚举结构说明（x ≤ y ≤ z 且 x+y+z ≤ 15）。",
       "evidence": "g++ 编译运行转写代码，输出 174，与答案 A（174）一致。tmp/verify/2024-12-l8/q10.cpp",
       "resolved": true
+    },
+    {
+      "id": 7,
+      "dimensions": [
+        "statement"
+      ],
+      "method": [
+        "官方PDF对照"
+      ],
+      "findings": "假阴性说明：官方 PDF 中二项式 (x+y)^6、x^3y^3 均为公式图片，文本层为「二项式 的展开式中 项的系数是」，题库 LaTeX 语义正确。",
+      "fix": "无需修复。官方答案行 Q7=C，题库 ans=2(C) 一致（C(6,3)=20）。",
+      "resolved": true,
+      "reviewedAt": "2026-10-28",
+      "reviewedBy": "AI对照官方PDF校订"
+    },
+    {
+      "id": 13,
+      "dimensions": [
+        "statement",
+        "options"
+      ],
+      "method": [
+        "官方PDF对照",
+        "页面渲染人工查看"
+      ],
+      "findings": "假阴性说明：官方选项为公式图片（p.5 渲染图读出 A.O(e) / B.O(v²) / C.O(v log v + e) / D.O((v+e) log v)），与题库四选项完全一致；题干「假设图graph中顶点数v、边数e」的 v/e 也是公式字符。",
+      "fix": "无需修复。官方答案行 Q13=B，题库 ans=1(B) 一致（邻接矩阵 Dijkstra O(v²)）。",
+      "evidence": "tmp/verify/2024-12-l8/pg-05.png",
+      "resolved": true,
+      "reviewedAt": "2026-10-28",
+      "reviewedBy": "AI对照官方PDF校订"
+    },
+    {
+      "id": 23,
+      "dimensions": [
+        "statement"
+      ],
+      "method": [
+        "官方PDF对照",
+        "页面渲染人工查看"
+      ],
+      "findings": "假阴性说明：官方 judge8（=题库 Q23，无错位）中 n、m、(a+b)^n、a^{n-m}b^m 均为公式图片，题库 LaTeX 语义正确。官方命题用「第 m 项」计数约定与题库一致。",
+      "fix": "无需修复。官方答案表（p.6 渲染图）× √ √ × × √ × × √ ×，judge8=×，题库 ans=1 一致。",
+      "evidence": "tmp/verify/2024-12-l8/mid.png",
+      "resolved": true,
+      "reviewedAt": "2026-10-28",
+      "reviewedBy": "AI对照官方PDF校订"
     }
   ],
   "unresolved": [],
@@ -59,5 +106,6 @@
         "verdict": "题库错，官方表为准，已改"
       }
     ]
-  }
+  },
+  "answerKey": "单选答案串 B A D D C C C B D A C B B A D，题库 15/15 一致；判断题答案表（矢量图，300dpi 渲染读图）× √ √ × × √ × × √ × 与题库 10/10 一致。"
 }

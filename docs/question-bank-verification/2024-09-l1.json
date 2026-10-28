@@ -1,14 +1,21 @@
 {
   "paperId": "2024-09-l1",
   "reviewedAt": "2026-10-25",
-  "reviewedBy": { "type": "AI", "executor": "WorkBuddy 子代理", "session": "codex/question-bank-verification" },
+  "reviewedBy": {
+    "type": "AI",
+    "executor": "WorkBuddy 子代理",
+    "session": "codex/question-bank-verification"
+  },
   "source": {
     "mirrorUrl": "https://raw.githubusercontent.com/Dora321/gesp-official-pdfs/main/pdfs/2024%E5%B9%B49%E6%9C%88-C%2B%2B1%E7%BA%A7.pdf",
     "mirrorSha": "013db5576f8e687d6bf7a167e48f8621190e6d15",
     "shaVerified": true,
     "localFile": "tmp/official-2024-09-l1.pdf",
     "fetchedAt": "2026-10-25",
-    "pages": { "单选答案表": "p.1", "判断答案表+判断题全文": "p.5" }
+    "pages": {
+      "单选答案表": "p.1",
+      "判断答案表+判断题全文": "p.5"
+    }
   },
   "answerTable": {
     "single": {
@@ -23,16 +30,119 @@
     }
   },
   "questions": [
-    { "id": 16, "paperJudgeNo": 1, "official": "√", "bank": "√", "textMatch": true, "changed": false },
-    { "id": 17, "paperJudgeNo": 2, "official": "×", "bank": "×", "textMatch": true, "changed": false },
-    { "id": 18, "paperJudgeNo": 3, "official": "×", "bank": "×", "textMatch": true, "changed": false },
-    { "id": 19, "paperJudgeNo": 4, "official": "×", "bank": "×", "textMatch": true, "changed": false },
-    { "id": 20, "paperJudgeNo": 5, "official": "×", "bank": "×", "textMatch": true, "changed": false },
-    { "id": 21, "paperJudgeNo": 6, "official": "×", "bank": "×", "textMatch": true, "changed": false },
-    { "id": 22, "paperJudgeNo": 7, "official": "×", "bank": "×", "textMatch": true, "changed": false },
-    { "id": 23, "paperJudgeNo": 8, "official": "√", "bank": "√", "textMatch": true, "changed": false },
-    { "id": 24, "paperJudgeNo": 9, "official": "√", "bank": "√", "textMatch": true, "changed": false },
-    { "id": 25, "paperJudgeNo": 10, "official": "×", "bank": "×", "textMatch": true, "changed": false }
+    {
+      "id": 16,
+      "paperJudgeNo": 1,
+      "official": "√",
+      "bank": "√",
+      "textMatch": true,
+      "changed": false
+    },
+    {
+      "id": 17,
+      "paperJudgeNo": 2,
+      "official": "×",
+      "bank": "×",
+      "textMatch": true,
+      "changed": false
+    },
+    {
+      "id": 18,
+      "paperJudgeNo": 3,
+      "official": "×",
+      "bank": "×",
+      "textMatch": true,
+      "changed": false
+    },
+    {
+      "id": 19,
+      "paperJudgeNo": 4,
+      "official": "×",
+      "bank": "×",
+      "textMatch": true,
+      "changed": false
+    },
+    {
+      "id": 20,
+      "paperJudgeNo": 5,
+      "official": "×",
+      "bank": "×",
+      "textMatch": true,
+      "changed": false
+    },
+    {
+      "id": 21,
+      "paperJudgeNo": 6,
+      "official": "×",
+      "bank": "×",
+      "textMatch": true,
+      "changed": false
+    },
+    {
+      "id": 22,
+      "paperJudgeNo": 7,
+      "official": "×",
+      "bank": "×",
+      "textMatch": true,
+      "changed": false
+    },
+    {
+      "id": 23,
+      "paperJudgeNo": 8,
+      "official": "√",
+      "bank": "√",
+      "textMatch": true,
+      "changed": false
+    },
+    {
+      "id": 24,
+      "paperJudgeNo": 9,
+      "official": "√",
+      "bank": "√",
+      "textMatch": true,
+      "changed": false
+    },
+    {
+      "id": 25,
+      "paperJudgeNo": 10,
+      "official": "×",
+      "bank": "×",
+      "textMatch": true,
+      "changed": false
+    },
+    {
+      "id": 2,
+      "dimensions": [
+        "statement",
+        "options"
+      ],
+      "method": [
+        "官方PDF对照"
+      ],
+      "findings": "题干多一个「时」字（官方「C++程序执行出现错误，不太常见的调试手段是」）；选项 D 官方为「跟踪汇编码」，题库写「跟踪汇编代码」。",
+      "fix": "按官方措辞对齐题干与选项 D。官方答案行 Q2=D，题库 ans=3 一致。",
+      "resolved": true,
+      "reviewedAt": "2026-10-28",
+      "reviewedBy": "AI对照官方PDF校订"
+    },
+    {
+      "id": 15,
+      "dimensions": [
+        "statement"
+      ],
+      "method": [
+        "官方PDF对照",
+        "页面渲染人工查看",
+        "代码逻辑验证"
+      ],
+      "findings": "题库为简化表述（无官方 for 循环代码块）。官方代码：for(int i=0; i<=N; i++) if(____) 输出兄弟数；候选 i) N==i*(i+1) ii) N==i*(i-1) iii) N/(i+1)==i iv) N/(i-1)==i。",
+      "fix": "按官方 p.5 渲染图补全题干与代码块。逻辑验证：i) i=X 时命中；ii) i=X+1 时 X(X+1)=(X+1)X 命中；iii) 整除截断误判（N=13: 13/4==3 成立但非兄弟数）；iv) i=1 时除零崩溃。共 2 个能完成 → B。官方答案行 Q15=B 一致。",
+      "evidence": "tmp/verify/2024-09-l1/pg5-5.png",
+      "resolved": true,
+      "reviewedAt": "2026-10-28",
+      "reviewedBy": "AI对照官方PDF校订"
+    }
   ],
-  "unresolved": []
+  "unresolved": [],
+  "answerKey": "单选答案串 A D D B C D D B C D A D C D B，题库 15/15 一致（含补代码块的 Q15）；判断题答案表（矢量图，300dpi 渲染读图）√ × × × × × × √ √ × 与题库 10/10 一致。"
 }

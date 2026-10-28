@@ -32,6 +32,39 @@
       "fix": "按原卷 p.9 转写汉诺塔分治代码回填题面；移除 sourceIntegrity/integrityNote；解析由套话（「可结合题干与选项复盘对应知识点」+无关易混概念）重写为递推式 T(n)=2T(n-1)+1=2^n-1 推导。按任务约束未改动 question 题干文字与 answer 字段，偏差仅在此记录。",
       "evidence": "g++ 编译运行转写代码，n=1..6 均能把全部盘按汉诺塔规则移到目标柱（C.size()==n），标准分治实现；独立推导 T(n)=2T(n-1)+1 → O(2^n)。答案冲突：按题库现有题干（O(2^n)）判定，说法正确，answer=0 自洽；但按原卷题干（O(n log n)）该说法错误，且原卷答案表第 8 题为 ×，故官方应判「错误」。题库 answer=0 与官方答案表存在矛盾（疑似录入题干时把 O(n log n) 误写为 O(2^n) 导致判定翻转），需维护方经 verifiedQuestionCorrections 流程处理。tmp/verify/2025-09-l5/q23.cpp",
       "resolved": true
+    },
+    {
+      "id": 13,
+      "dimensions": [
+        "statement",
+        "code"
+      ],
+      "method": [
+        "官方PDF对照",
+        "页面渲染人工查看"
+      ],
+      "findings": "题库为概括改写版题干（把解题思路「按结束时间从小到大排序并维护 lastEnd」直接写进题干），且缺官方 maxMovies 完整代码块（sort lambda 横线1 + ______ = movies[i][1] 横线2）。选项四个与官方完全一致。",
+      "fix": "恢复官方题干并按 p.6 渲染图补全 maxMovies 代码块。官方答案行 Q13=B 一致（按结束时间 a[1]<b[1] 排序 + lastEnd 更新）。",
+      "evidence": "tmp/verify/2025-09-l5/pg-06.png",
+      "resolved": true,
+      "reviewedAt": "2026-10-28",
+      "reviewedBy": "AI对照官方PDF校订"
+    },
+    {
+      "id": 21,
+      "dimensions": [
+        "statement"
+      ],
+      "method": [
+        "官方PDF对照",
+        "页面渲染人工查看"
+      ],
+      "findings": "假阴性说明：官方 judge6（=题库 Q21，无错位）「线性筛关键是…因此为 。」末尾的 O(N) 为公式图片，文本层丢失。题库语义正确。",
+      "fix": "无需修复。官方答案表（p.8 渲染图）√ × × √ √ √ × × × ×，judge6=√，题库 ans=0 一致。",
+      "evidence": "tmp/verify/2025-09-l5/full.png",
+      "resolved": true,
+      "reviewedAt": "2026-10-28",
+      "reviewedBy": "AI对照官方PDF校订"
     }
   ],
   "unresolved": [
@@ -81,5 +114,6 @@
         "verdict": "题库错，官方表为准，已改"
       }
     ]
-  }
+  },
+  "answerKey": "单选答案串 B C A B B D A B B C D D B B A，题库 15/15 一致（含补代码块的 Q13）；判断题答案表（矢量图，300dpi 渲染读图）√ × × √ √ √ × × × × 与题库 10/10 一致。"
 }

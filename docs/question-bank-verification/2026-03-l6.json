@@ -1,13 +1,21 @@
 {
   "paperId": "2026-03-l6",
   "reviewedAt": "2026-10-24",
-  "reviewedBy": { "type": "AI", "executor": "WorkBuddy 子代理", "session": "codex/question-bank-verification" },
+  "reviewedBy": {
+    "type": "AI",
+    "executor": "WorkBuddy 子代理",
+    "session": "codex/question-bank-verification"
+  },
   "source": {
     "mirrorUrl": "https://raw.githubusercontent.com/Dora321/gesp-official-pdfs/main/pdfs/2026%E5%B9%B43%E6%9C%88-C%2B%2B6%E7%BA%A7.pdf",
     "mirrorSha": "440d30834c0e6bdec700375405ca7f7094c60505",
     "shaVerified": true,
     "fetchedAt": "2026-10-24",
-    "pages": { "单选题": "pp.1-6（Q1-Q15，p.1 含官方单选答案表）", "判断题": "pp.6-8（Q1-Q10，p.6 含官方判断答案表）", "编程题": "pp.8-12（3.1 选数、3.2 完全二叉树，各含参考程序）" }
+    "pages": {
+      "单选题": "pp.1-6（Q1-Q15，p.1 含官方单选答案表）",
+      "判断题": "pp.6-8（Q1-Q10，p.6 含官方判断答案表）",
+      "编程题": "pp.8-12（3.1 选数、3.2 完全二叉树，各含参考程序）"
+    }
   },
   "rebuild": {
     "executedAt": "2026-10-24",
@@ -15,33 +23,320 @@
     "summary": "旧版题库存在严重串卷污染：Q6/Q7/Q10/Q16/Q18 共 5 题在官方原卷中不存在（系 2025-12-l6 同号题串入，其中 Q7/Q16/Q18 答案还与串入源相反），编程题 2 道（路径覆盖/道具商店）实为 2025-12-l6 的题目，原卷真实题目大量缺失。本次以 git-blob SHA 校验通过的官方 PDF（tmp/2026-03-l6.pdf，SHA1=440d30834c0e6bdec700375405ca7f7094c60505）渲染页 tmp/pages/2026-03-l6/p01.png ~ p12.png 为唯一依据，整卷重建 src/data/gesp/level6/2026-03-l6.js：单选 15 题 + 判断 10 题 + 编程 2 题，共 27 题，全部按原卷转写；每题答案与 p.1/p.6 官方答案表逐题核对一致；编程题采用原卷 3.1.6/3.2.6 参考程序，已用 g++ 编译并通过全部 4 个官方样例（输出 7/11/4/3）。本卷无图形题（判断第 3 题的树形为字符画，以 ASCII 代码块呈现，无需裁图）。重建后不再保留 sourceIntegrity/integrityNote 标记。"
   },
   "questions": [
-    { "id": 1, "type": "single", "answer": "A", "sourcePage": 1, "method": ["原卷转写", "答案表核对（p.1）", "独立推导一致（隐式默认构造函数规则）"] },
-    { "id": 2, "type": "single", "answer": "B", "sourcePage": 1, "method": ["原卷转写（代码 p.2）", "答案表核对（p.1）", "独立推导一致（虚函数动态绑定）"] },
-    { "id": 3, "type": "single", "answer": "C", "sourcePage": 2, "method": ["原卷转写", "答案表核对（p.1）", "独立推导一致（类外访问 private 成员编译错误）"] },
-    { "id": 4, "type": "single", "answer": "A", "sourcePage": 3, "method": ["原卷转写", "答案表核对（p.1）", "独立推导一致（循环队列手动模拟：满，rear=1）"] },
-    { "id": 5, "type": "single", "answer": "D", "sourcePage": 3, "method": ["原卷转写", "答案表核对（p.1）", "独立推导一致（生产者消费者环形缓冲区）"] },
-    { "id": 6, "type": "single", "answer": "B", "sourcePage": 3, "method": ["原卷转写", "答案表核对（p.1）", "独立推导一致（根 3，右子树 {4,5} 只能父子）"] },
-    { "id": 7, "type": "single", "answer": "A", "sourcePage": 3, "method": ["原卷转写（中序含字母 I，低分辨率下易误读为数字 1，已放大核对为 H D I B E A F J C G）", "答案表核对（p.1）", "独立推导一致（后序 H I D E B J F G C A）"] },
-    { "id": 8, "type": "single", "answer": "C", "sourcePage": 4, "method": ["原卷转写", "答案表核对（p.1）", "独立推导一致（先序+中序唯一重建）"] },
-    { "id": 9, "type": "single", "answer": "D", "sourcePage": 4, "method": ["原卷转写", "答案表核对（p.1）", "独立推导一致（合并权值和 5+7+11+15+26=64）"] },
-    { "id": 10, "type": "single", "answer": "B", "sourcePage": 4, "method": ["原卷转写", "答案表核对（p.1）", "独立推导一致（2n-1=115 → n=58）"] },
-    { "id": 11, "type": "single", "answer": "B", "sourcePage": 4, "method": ["原卷转写", "答案表核对（p.1）", "独立推导一致（格雷码相邻码距为 1）"] },
-    { "id": 12, "type": "single", "answer": "B", "sourcePage": 4, "method": ["原卷转写（代码 p.5）", "答案表核对（p.1）", "独立推导一致（子结点深度 depth+1，循环含 max_depth）"] },
-    { "id": 13, "type": "single", "answer": "C", "sourcePage": 6, "method": ["原卷转写", "答案表核对（p.1）", "独立推导一致（DFS 借助递归或栈）"] },
-    { "id": 14, "type": "single", "answer": "C", "sourcePage": 6, "method": ["原卷转写", "答案表核对（p.1）", "独立推导一致（打家劫舍转移方程）"] },
-    { "id": 15, "type": "single", "answer": "A", "sourcePage": 6, "method": ["原卷转写", "答案表核对（p.1）", "独立推导一致（爬楼梯计数 DP）"] },
-    { "id": 16, "type": "judge", "answer": "×", "sourcePage": 6, "method": ["原卷转写（代码 p.7）", "答案表核对（p.6）", "独立推导一致（有参构造函数抑制默认构造生成）"] },
-    { "id": 17, "type": "judge", "answer": "√", "sourcePage": 7, "method": ["原卷转写", "答案表核对（p.6）", "独立推导一致"] },
-    { "id": 18, "type": "judge", "answer": "×", "sourcePage": 7, "method": ["原卷转写（树形放大核对：4、5 是结点 2 的孩子）", "答案表核对（p.6）", "独立推导一致（栈模拟输出 1 2 4 5 3）"] },
-    { "id": 19, "type": "judge", "answer": "×", "sourcePage": 7, "method": ["原卷转写", "答案表核对（p.6）", "与答案表一致（等频哈夫曼树接近平衡但不保证完全二叉树结构）"] },
-    { "id": 20, "type": "judge", "answer": "√", "sourcePage": 7, "method": ["原卷转写", "答案表核对（p.6）", "独立推导一致（前缀码性质）"] },
-    { "id": 21, "type": "judge", "answer": "√", "sourcePage": 7, "method": ["原卷转写", "答案表核对（p.6）", "独立推导一致（0 起始下标右孩子 2i+2）"] },
-    { "id": 22, "type": "judge", "answer": "×", "sourcePage": 7, "method": ["原卷转写", "答案表核对（p.6）", "独立推导一致（应先压右孩子再压左孩子）"] },
-    { "id": 23, "type": "judge", "answer": "√", "sourcePage": 7, "method": ["原卷转写（代码 p.8）", "答案表核对（p.6）", "独立推导一致（O(n)/最坏递归栈 O(n)）"] },
-    { "id": 24, "type": "judge", "answer": "×", "sourcePage": 8, "method": ["原卷转写", "答案表核对（p.6）", "独立推导一致（正序退化为完全背包）"] },
-    { "id": 25, "type": "judge", "answer": "√", "sourcePage": 8, "method": ["原卷转写", "答案表核对（p.6）", "独立推导一致"] },
-    { "id": 26, "type": "programming", "answer": "样例输出 7 / 11", "title": "选数", "sourcePage": "8-10", "method": ["原卷转写题面/输入输出/数据范围/样例", "官方参考程序（p.10）逐字转写", "g++ 编译运行通过全部样例（7、11）"] },
-    { "id": 27, "type": "programming", "answer": "样例输出 4 / 3", "title": "完全二叉树", "sourcePage": "10-12", "method": ["原卷转写题面/输入输出/数据范围/样例（样例 2 输入放大核对为 2 3 / 0 0 / 4 0 / 0 0）", "官方参考程序（p.12）逐字转写", "g++ 编译运行通过全部样例（4、3）"] }
+    {
+      "id": 1,
+      "type": "single",
+      "answer": "A",
+      "sourcePage": 1,
+      "method": [
+        "原卷转写",
+        "答案表核对（p.1）",
+        "独立推导一致（隐式默认构造函数规则）"
+      ]
+    },
+    {
+      "id": 2,
+      "type": "single",
+      "answer": "B",
+      "sourcePage": 1,
+      "method": [
+        "原卷转写（代码 p.2）",
+        "答案表核对（p.1）",
+        "独立推导一致（虚函数动态绑定）"
+      ]
+    },
+    {
+      "id": 3,
+      "type": "single",
+      "answer": "C",
+      "sourcePage": 2,
+      "method": [
+        "原卷转写",
+        "答案表核对（p.1）",
+        "独立推导一致（类外访问 private 成员编译错误）"
+      ]
+    },
+    {
+      "id": 4,
+      "type": "single",
+      "answer": "A",
+      "sourcePage": 3,
+      "method": [
+        "原卷转写",
+        "答案表核对（p.1）",
+        "独立推导一致（循环队列手动模拟：满，rear=1）"
+      ]
+    },
+    {
+      "id": 5,
+      "type": "single",
+      "answer": "D",
+      "sourcePage": 3,
+      "method": [
+        "原卷转写",
+        "答案表核对（p.1）",
+        "独立推导一致（生产者消费者环形缓冲区）"
+      ]
+    },
+    {
+      "id": 6,
+      "type": "single",
+      "answer": "B",
+      "sourcePage": 3,
+      "method": [
+        "原卷转写",
+        "答案表核对（p.1）",
+        "独立推导一致（根 3，右子树 {4,5} 只能父子）"
+      ]
+    },
+    {
+      "id": 7,
+      "type": "single",
+      "answer": "A",
+      "sourcePage": 3,
+      "method": [
+        "原卷转写（中序含字母 I，低分辨率下易误读为数字 1，已放大核对为 H D I B E A F J C G）",
+        "答案表核对（p.1）",
+        "独立推导一致（后序 H I D E B J F G C A）"
+      ]
+    },
+    {
+      "id": 8,
+      "type": "single",
+      "answer": "C",
+      "sourcePage": 4,
+      "method": [
+        "原卷转写",
+        "答案表核对（p.1）",
+        "独立推导一致（先序+中序唯一重建）"
+      ]
+    },
+    {
+      "id": 9,
+      "type": "single",
+      "answer": "D",
+      "sourcePage": 4,
+      "method": [
+        "原卷转写",
+        "答案表核对（p.1）",
+        "独立推导一致（合并权值和 5+7+11+15+26=64）"
+      ]
+    },
+    {
+      "id": 10,
+      "type": "single",
+      "answer": "B",
+      "sourcePage": 4,
+      "method": [
+        "官方PDF对照"
+      ],
+      "dimensions": [
+        "statement"
+      ],
+      "findings": "假阴性说明：官方题干「对 个不同符号的符号进行哈夫曼编码。若生成的哈夫曼树共有 个结点，则 的值是」中 n、115 均为公式/数字字符，文本层丢失。题库语义正确（哈夫曼树 2n-1=115 → n=58）。",
+      "fix": "无需修复。官方答案行 Q10=B，题库 ans=1 一致。",
+      "resolved": true,
+      "reviewedAt": "2026-10-28",
+      "reviewedBy": "AI对照官方PDF校订"
+    },
+    {
+      "id": 11,
+      "type": "single",
+      "answer": "B",
+      "sourcePage": 4,
+      "method": [
+        "原卷转写",
+        "答案表核对（p.1）",
+        "独立推导一致（格雷码相邻码距为 1）"
+      ]
+    },
+    {
+      "id": 12,
+      "type": "single",
+      "answer": "B",
+      "sourcePage": 4,
+      "method": [
+        "原卷转写（代码 p.5）",
+        "答案表核对（p.1）",
+        "独立推导一致（子结点深度 depth+1，循环含 max_depth）"
+      ]
+    },
+    {
+      "id": 13,
+      "type": "single",
+      "answer": "C",
+      "sourcePage": 6,
+      "method": [
+        "原卷转写",
+        "答案表核对（p.1）",
+        "独立推导一致（DFS 借助递归或栈）"
+      ]
+    },
+    {
+      "id": 14,
+      "type": "single",
+      "answer": "C",
+      "sourcePage": 6,
+      "method": [
+        "原卷转写",
+        "答案表核对（p.1）",
+        "独立推导一致（打家劫舍转移方程）"
+      ]
+    },
+    {
+      "id": 15,
+      "type": "single",
+      "answer": "A",
+      "sourcePage": 6,
+      "method": [
+        "原卷转写",
+        "答案表核对（p.1）",
+        "独立推导一致（爬楼梯计数 DP）"
+      ]
+    },
+    {
+      "id": 16,
+      "type": "judge",
+      "answer": "×",
+      "sourcePage": 6,
+      "method": [
+        "原卷转写（代码 p.7）",
+        "答案表核对（p.6）",
+        "独立推导一致（有参构造函数抑制默认构造生成）"
+      ]
+    },
+    {
+      "id": 17,
+      "type": "judge",
+      "answer": "√",
+      "sourcePage": 7,
+      "method": [
+        "原卷转写",
+        "答案表核对（p.6）",
+        "独立推导一致"
+      ]
+    },
+    {
+      "id": 18,
+      "type": "judge",
+      "answer": "×",
+      "sourcePage": 7,
+      "method": [
+        "原卷转写（树形放大核对：4、5 是结点 2 的孩子）",
+        "答案表核对（p.6）",
+        "独立推导一致（栈模拟输出 1 2 4 5 3）"
+      ]
+    },
+    {
+      "id": 19,
+      "type": "judge",
+      "answer": "×",
+      "sourcePage": 7,
+      "method": [
+        "原卷转写",
+        "答案表核对（p.6）",
+        "与答案表一致（等频哈夫曼树接近平衡但不保证完全二叉树结构）"
+      ]
+    },
+    {
+      "id": 20,
+      "type": "judge",
+      "answer": "√",
+      "sourcePage": 7,
+      "method": [
+        "原卷转写",
+        "答案表核对（p.6）",
+        "独立推导一致（前缀码性质）"
+      ]
+    },
+    {
+      "id": 21,
+      "type": "judge",
+      "answer": "√",
+      "sourcePage": 7,
+      "method": [
+        "原卷转写",
+        "答案表核对（p.6）",
+        "独立推导一致（0 起始下标右孩子 2i+2）"
+      ]
+    },
+    {
+      "id": 22,
+      "type": "judge",
+      "answer": "×",
+      "sourcePage": 7,
+      "method": [
+        "原卷转写",
+        "答案表核对（p.6）",
+        "独立推导一致（应先压右孩子再压左孩子）"
+      ]
+    },
+    {
+      "id": 23,
+      "type": "judge",
+      "answer": "√",
+      "sourcePage": 7,
+      "method": [
+        "官方PDF对照",
+        "页面渲染人工查看"
+      ],
+      "dimensions": [
+        "statement"
+      ],
+      "findings": "假阴性说明：官方 judge8（=题库 Q23，无错位）「设二叉树共有 个结点…时间复杂度为 ，空间复杂度为 」中 n、O(n) 为公式字符，文本层丢失（p.7 渲染图确认符号实际存在）。题库语义正确。",
+      "fix": "无需修复。官方答案表（p.6 渲染图）× √ × × √ √ × √ × √，judge8=√，题库 ans=0 一致（递归访问每结点一次 O(n) 时间、递归栈 O(n) 空间）。",
+      "evidence": "tmp/verify/2026-03-l6/answer-table2.png",
+      "resolved": true,
+      "reviewedAt": "2026-10-28",
+      "reviewedBy": "AI对照官方PDF校订"
+    },
+    {
+      "id": 24,
+      "type": "judge",
+      "answer": "×",
+      "sourcePage": 8,
+      "method": [
+        "原卷转写",
+        "答案表核对（p.6）",
+        "独立推导一致（正序退化为完全背包）"
+      ]
+    },
+    {
+      "id": 25,
+      "type": "judge",
+      "answer": "√",
+      "sourcePage": 8,
+      "method": [
+        "原卷转写",
+        "答案表核对（p.6）",
+        "独立推导一致"
+      ]
+    },
+    {
+      "id": 26,
+      "type": "programming",
+      "answer": "样例输出 7 / 11",
+      "title": "选数",
+      "sourcePage": "8-10",
+      "method": [
+        "原卷转写题面/输入输出/数据范围/样例",
+        "官方参考程序（p.10）逐字转写",
+        "g++ 编译运行通过全部样例（7、11）"
+      ]
+    },
+    {
+      "id": 27,
+      "type": "programming",
+      "answer": "样例输出 4 / 3",
+      "title": "完全二叉树",
+      "sourcePage": "10-12",
+      "method": [
+        "原卷转写题面/输入输出/数据范围/样例（样例 2 输入放大核对为 2 3 / 0 0 / 4 0 / 0 0）",
+        "官方参考程序（p.12）逐字转写",
+        "g++ 编译运行通过全部样例（4、3）"
+      ]
+    }
   ],
-  "unresolved": []
+  "unresolved": [],
+  "answerKey": "单选答案串 A B C A D B A C D B B B C C A，题库 15/15 一致；判断题答案表（矢量图，300dpi 渲染读图）× √ × × √ √ × √ × √ 与题库 10/10 一致。"
 }

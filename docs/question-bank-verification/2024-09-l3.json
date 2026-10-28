@@ -1,29 +1,135 @@
 {
   "paperId": "2024-09-l3",
   "reviewedAt": "2026-10-25",
-  "reviewedBy": { "type": "AI", "executor": "WorkBuddy 子代理", "session": "codex/question-bank-verification" },
+  "reviewedBy": {
+    "type": "AI",
+    "executor": "WorkBuddy 子代理",
+    "session": "codex/question-bank-verification"
+  },
   "source": {
     "mirrorUrl": "https://raw.githubusercontent.com/Dora321/gesp-official-pdfs/main/pdfs/2024%E5%B9%B49%E6%9C%88-C%2B%2B3%E7%BA%A7.pdf",
     "mirrorSha": "b24fa856150b7751d986562d76d1438402e43241",
     "shaVerified": true,
     "fetchedAt": "2026-10-25",
-    "pages": { "singleAnswerTable": "p.1", "judgeAnswerTable": "p.5" }
+    "pages": {
+      "singleAnswerTable": "p.1",
+      "judgeAnswerTable": "p.5"
+    }
   },
   "answerTable": {
-    "single": { "content": "B C A D C B C C A D D C D C B", "page": "p.1" },
-    "judge": { "content": "√ √ √ √ × √ × √ √ ×", "page": "p.5", "note": "红色 √/× 字形，按「答案」行坐标 6 倍放大裁剪逐一核对（tmp/crops/2024-09-l3-judge.png），第 1 题为 √ 已放大确认非 ×" }
+    "single": {
+      "content": "B C A D C B C C A D D C D C B",
+      "page": "p.1"
+    },
+    "judge": {
+      "content": "√ √ √ √ × √ × √ √ ×",
+      "page": "p.5",
+      "note": "红色 √/× 字形，按「答案」行坐标 6 倍放大裁剪逐一核对（tmp/crops/2024-09-l3-judge.png），第 1 题为 √ 已放大确认非 ×"
+    }
   },
   "questions": [
-    { "id": 16, "type": "judge", "official": "√", "bank": "×(改前)", "modified": true, "fix": "answer 1→0，解析重写：+1 原码 00000001 与 -1 原码 10000001 直接按二进制相加（符号位参与）得 10000010，按原码解释为 -2，题干说法正确；独立推导与官方 √ 一致" },
-    { "id": 17, "type": "judge", "official": "√", "bank": "√", "modified": false },
-    { "id": 18, "type": "judge", "official": "√", "bank": "√", "modified": false },
-    { "id": 19, "type": "judge", "official": "√", "bank": "√", "modified": false },
-    { "id": 20, "type": "judge", "official": "×", "bank": "×", "modified": false },
-    { "id": 21, "type": "judge", "official": "√", "bank": "√", "modified": false },
-    { "id": 22, "type": "judge", "official": "×", "bank": "×", "modified": false },
-    { "id": 23, "type": "judge", "official": "√", "bank": "√", "modified": false },
-    { "id": 24, "type": "judge", "official": "√", "bank": "√", "modified": false },
-    { "id": 25, "type": "judge", "official": "×", "bank": "×", "modified": false }
+    {
+      "id": 16,
+      "type": "judge",
+      "official": "√",
+      "bank": "×(改前)",
+      "modified": true,
+      "fix": "answer 1→0，解析重写：+1 原码 00000001 与 -1 原码 10000001 直接按二进制相加（符号位参与）得 10000010，按原码解释为 -2，题干说法正确；独立推导与官方 √ 一致"
+    },
+    {
+      "id": 17,
+      "type": "judge",
+      "official": "√",
+      "bank": "√",
+      "modified": false
+    },
+    {
+      "id": 18,
+      "type": "judge",
+      "official": "√",
+      "bank": "√",
+      "modified": false
+    },
+    {
+      "id": 19,
+      "type": "judge",
+      "official": "√",
+      "bank": "√",
+      "modified": false
+    },
+    {
+      "id": 20,
+      "type": "judge",
+      "official": "×",
+      "bank": "×",
+      "modified": false
+    },
+    {
+      "id": 21,
+      "type": "judge",
+      "official": "√",
+      "bank": "√",
+      "modified": false
+    },
+    {
+      "id": 22,
+      "type": "judge",
+      "official": "×",
+      "bank": "×",
+      "modified": false
+    },
+    {
+      "id": 23,
+      "type": "judge",
+      "official": "√",
+      "bank": "√",
+      "modified": false
+    },
+    {
+      "id": 24,
+      "type": "judge",
+      "official": "√",
+      "bank": "√",
+      "modified": false
+    },
+    {
+      "id": 25,
+      "type": "judge",
+      "official": "×",
+      "bank": "×",
+      "modified": false
+    },
+    {
+      "id": 9,
+      "dimensions": [
+        "statement",
+        "options"
+      ],
+      "method": [
+        "官方PDF对照",
+        "代码逻辑验证"
+      ],
+      "findings": "题库选项 D 被旧脚本改写为「a 的值变为 1011 1000（高位移出，低位补 0 后按 8 位观察应为 1011 1000）」——与选项 A 实质重复的畸形干扰项；官方 D 为「a 的值变为 0101 1100」。题干措辞也有差异（官方「a=1010 1110,a<<2,下面关于这个说法正确的是」）。",
+      "fix": "恢复官方题干与选项 D=0101 1100；解析 D 项改写为「左移 2 位、右移、循环移位都得不到该值」，C 项更正为循环左移 1 位的结果（官方 C=0101 1101 系最高位绕回）。官方答案 A 一致（1010 1110<<2 = 1011 1000，8 位截断）。",
+      "resolved": true,
+      "reviewedAt": "2026-10-28",
+      "reviewedBy": "AI对照官方PDF校订"
+    },
+    {
+      "id": 14,
+      "dimensions": [
+        "statement",
+        "explanation"
+      ],
+      "method": [
+        "官方PDF对照"
+      ],
+      "findings": "题干措辞与官方有差异（「其中 1 个是小偷」vs 官方「其中一个是小偷」、分行 vs 连排），导致探针窗口不命中。另解析 C 选项一行被旧脚本污染（混入「该项不符合题目限定…a[3] = {2, 1, 4, 3}」他卷乱码）。",
+      "fix": "题干按官方连排措辞对齐；清除解析污染文本。官方答案 C 一致（假设-验证：仅 C 为小偷时四人陈述自洽）。",
+      "resolved": true,
+      "reviewedAt": "2026-10-28",
+      "reviewedBy": "AI对照官方PDF校订"
+    }
   ],
   "secondaryCheck": {
     "singleChoice": "题库单选 15 题与官方答案表逐题比对全部一致",
@@ -32,5 +138,6 @@
   "unresolved": [
     "Q16（判断第 1 题）考点本身有歧义空间：若按「原码运算规则」（异号相加取大绝对值符号做减法）则 1+(-1)=0，题干说法为错；官方答案表判为 √（正确），取的是「原码位串直接相加得 10000010 = -2」的解释。已按红线以官方答案表为准改为 √。"
   ],
-  "executedAt": "2026-10-25"
+  "executedAt": "2026-10-25",
+  "answerKey": "单选答案串 B C A D C B C C A D D C D C B，题库 15/15 一致；判断题答案表（矢量图，300dpi 渲染读图）√ √ √ √ × √ × √ √ × 与题库 10/10 一致。"
 }
