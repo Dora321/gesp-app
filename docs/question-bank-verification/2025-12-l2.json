@@ -194,10 +194,17 @@
       "official": "×",
       "bank": 1,
       "modified": false
+    },
+    {
+      "questionId": 10,
+      "issue": "审计低分：官方文本层Q10区域串入相邻题代码块（Q8/Q9代码），探针匹配失败",
+      "fix": "定性为假阴性，无需修改——渲染p.3-4确认官方Q10题面/主代码/四个while选项与题库完全一致，答案B一致",
+      "evidence": "官方单选答案串 BBA BB DAD CBB BBB BC(程序化提取) 题库15/15对；判断题答案表(p.6底部300dpi) ×√×√√×√×√× 题库10/10对"
     }
   ],
   "notes": [
     "题库 25 题题面与原卷一一对应，单选与判断答案全部一致，无修改。"
   ],
-  "unresolved": []
+  "unresolved": [],
+  "lastReviewedAt": "2026-10-28"
 }

@@ -1,123 +1,130 @@
 {
- "paperId": "2025-06-l4",
- "executedAt": "2026-10-25",
- "reviewedBy": {
-  "type": "AI",
-  "executor": "WorkBuddy 子代理",
-  "session": "codex/question-bank-verification"
- },
- "source": {
-  "mirrorUrl": "https://raw.githubusercontent.com/Dora321/gesp-official-pdfs/main/pdfs/2025%E5%B9%B46%E6%9C%88-C%2B%2B4%E7%BA%A7.pdf",
-  "mirrorSha": "32d30f90dba97cc941be04cefa80002a1cb16eb1",
-  "shaVerified": true,
-  "fetchedAt": "2026-10-25",
-  "pages": 9,
-  "renderedDir": "tmp/pages/2025-06-l4/"
- },
- "answerTable": {
-  "judge": {
-   "location": "p.5 判断题节首",
-   "content": "题号 1-10：√ × × √ × × √ √ × √"
-  },
-  "singleChoice": "本卷 PDF 未附单选答案表"
- },
- "questions": [
-  {
-   "id": 16,
-   "official": "√",
-   "bank": "√",
-   "changed": false
-  },
-  {
-   "id": 17,
-   "official": "×",
-   "bank": "√",
-   "changed": true,
-   "method": [
-    "答案表对照",
-    "独立推导"
-   ],
-   "findings": "官方判断第 2 题为代码题：void foo(int x){x+=5;} int main(){int a=10; foo(a); cout<<a;}，问『输出是 15』。按值传递不改变实参，输出为 10，官方 × 正确。题库将该题改写为概念陈述『值传递不影响外部变量』（恒真 √），与官方答案位相反。",
-   "fix": "恢复官方原题（含代码），answer 0→1，重写针对性解析（传值调用推导）。",
-   "resolved": true
-  },
-  {
-   "id": 18,
-   "official": "×",
-   "bank": "×",
-   "changed": false
-  },
-  {
-   "id": 19,
-   "official": "√",
-   "bank": "√",
-   "changed": false
-  },
-  {
-   "id": 20,
-   "official": "×",
-   "bank": "×",
-   "changed": false
-  },
-  {
-   "id": 21,
-   "official": "×",
-   "bank": "×",
-   "changed": false
-  },
-  {
-   "id": 22,
-   "official": "√",
-   "bank": "√",
-   "changed": false
-  },
-  {
-   "id": 23,
-   "official": "√",
-   "bank": "√",
-   "changed": false
-  },
-  {
-   "id": 24,
-   "official": "×",
-   "bank": "×",
-   "changed": false
-  },
-  {
-   "id": 25,
-   "official": "√",
-   "bank": "√",
-   "changed": false
-  }
- ],
- "summary": {
-  "judgeTotal": 10,
-  "judgeChanged": 1
- },
- "unresolved": [],
- "judgeRebuild": {
+  "paperId": "2025-06-l4",
   "executedAt": "2026-10-25",
-  "answerTable": "√××√××√√×√",
-  "answerTablePage": "p.5",
-  "statementPages": [
-   "p.5",
-   "p.6"
+  "reviewedBy": {
+    "type": "AI",
+    "executor": "WorkBuddy 子代理",
+    "session": "codex/question-bank-verification"
+  },
+  "source": {
+    "mirrorUrl": "https://raw.githubusercontent.com/Dora321/gesp-official-pdfs/main/pdfs/2025%E5%B9%B46%E6%9C%88-C%2B%2B4%E7%BA%A7.pdf",
+    "mirrorSha": "32d30f90dba97cc941be04cefa80002a1cb16eb1",
+    "shaVerified": true,
+    "fetchedAt": "2026-10-25",
+    "pages": 9,
+    "renderedDir": "tmp/pages/2025-06-l4/"
+  },
+  "answerTable": {
+    "judge": {
+      "location": "p.5 判断题节首",
+      "content": "题号 1-10：√ × × √ × × √ √ × √"
+    },
+    "singleChoice": "本卷 PDF 未附单选答案表"
+  },
+  "questions": [
+    {
+      "id": 16,
+      "official": "√",
+      "bank": "√",
+      "changed": false
+    },
+    {
+      "id": 17,
+      "official": "×",
+      "bank": "√",
+      "changed": true,
+      "method": [
+        "答案表对照",
+        "独立推导"
+      ],
+      "findings": "官方判断第 2 题为代码题：void foo(int x){x+=5;} int main(){int a=10; foo(a); cout<<a;}，问『输出是 15』。按值传递不改变实参，输出为 10，官方 × 正确。题库将该题改写为概念陈述『值传递不影响外部变量』（恒真 √），与官方答案位相反。",
+      "fix": "恢复官方原题（含代码），answer 0→1，重写针对性解析（传值调用推导）。",
+      "resolved": true
+    },
+    {
+      "id": 18,
+      "official": "×",
+      "bank": "×",
+      "changed": false
+    },
+    {
+      "id": 19,
+      "official": "√",
+      "bank": "√",
+      "changed": false
+    },
+    {
+      "id": 20,
+      "official": "×",
+      "bank": "×",
+      "changed": false
+    },
+    {
+      "id": 21,
+      "official": "×",
+      "bank": "×",
+      "changed": false
+    },
+    {
+      "id": 22,
+      "official": "√",
+      "bank": "√",
+      "changed": false
+    },
+    {
+      "id": 23,
+      "official": "√",
+      "bank": "√",
+      "changed": false
+    },
+    {
+      "id": 24,
+      "official": "×",
+      "bank": "×",
+      "changed": false
+    },
+    {
+      "id": 25,
+      "official": "√",
+      "bank": "√",
+      "changed": false
+    },
+    {
+      "questionId": 11,
+      "issue": "题库改写题：官方原题外层循环为 for (int i = 0; i < n; i++)（O(n²)，选项 O(n)/O(n²)/O(n³)/O(2ⁿ)，官方答案B），题库被改写为 i < (1 << n) 并配自编选项 O(n·2ⁿ)，答案语义偏离官方",
+      "fix": "按官方原卷恢复Q11：题干去掉「当输入n=10时」，代码改回 i < n，选项改为 O(n)/O(n²)/O(n³)/O(2ⁿ)，答案B=O(n²)，重写解析",
+      "evidence": "300dpi渲染p.3确认官方代码第2行为 i < n、选项A O(n) B O(n²) C O(n³) D O(2ⁿ)；官方答案表程序化提取 Q11=B；全卷复核：单选15/15对、判断表√××√××√√×√ 题库10/10对"
+    }
   ],
-  "questionIds": [
-   16,
-   17,
-   18,
-   19,
-   20,
-   21,
-   22,
-   23,
-   24,
-   25
-  ],
-  "answerEncoding": "0 = 正确(√)，1 = 错误(×)",
-  "method": "判断题答案表在 PDF 里是矢量图形，文本层只有「题号 1..10 / 答案」表头；用 pypdfium2 的 get_charbox 定位「题号」二字坐标后按 6 倍放大裁剪读图逐位核对。题面取自官方文本层，公式或图缺失处渲染整页读图补全。",
-  "reason": "原题库第 16-25 题是打散改写的题（如把官方「下面 C++ 代码正确声明了…」改写成「函数声明 int add(int, int); 是合法的」），与官方判断题逐题不符；官方第 1 题即函数声明题，第 2 题是值传递输出题。"
- },
- "reviewedAt": "2026-10-25"
+  "summary": {
+    "judgeTotal": 10,
+    "judgeChanged": 1
+  },
+  "unresolved": [],
+  "judgeRebuild": {
+    "executedAt": "2026-10-25",
+    "answerTable": "√××√××√√×√",
+    "answerTablePage": "p.5",
+    "statementPages": [
+      "p.5",
+      "p.6"
+    ],
+    "questionIds": [
+      16,
+      17,
+      18,
+      19,
+      20,
+      21,
+      22,
+      23,
+      24,
+      25
+    ],
+    "answerEncoding": "0 = 正确(√)，1 = 错误(×)",
+    "method": "判断题答案表在 PDF 里是矢量图形，文本层只有「题号 1..10 / 答案」表头；用 pypdfium2 的 get_charbox 定位「题号」二字坐标后按 6 倍放大裁剪读图逐位核对。题面取自官方文本层，公式或图缺失处渲染整页读图补全。",
+    "reason": "原题库第 16-25 题是打散改写的题（如把官方「下面 C++ 代码正确声明了…」改写成「函数声明 int add(int, int); 是合法的」），与官方判断题逐题不符；官方第 1 题即函数声明题，第 2 题是值传递输出题。"
+  },
+  "reviewedAt": "2026-10-25",
+  "lastReviewedAt": "2026-10-28"
 }

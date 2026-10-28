@@ -1,34 +1,116 @@
 {
   "paperId": "2025-03-l3",
   "reviewedAt": "2026-10-25",
-  "reviewedBy": { "type": "AI", "executor": "WorkBuddy 子代理", "session": "codex/question-bank-verification" },
+  "reviewedBy": {
+    "type": "AI",
+    "executor": "WorkBuddy 子代理",
+    "session": "codex/question-bank-verification"
+  },
   "source": {
     "mirrorUrl": "https://raw.githubusercontent.com/Dora321/gesp-official-pdfs/main/pdfs/2025%E5%B9%B43%E6%9C%88-C%2B%2B3%E7%BA%A7.pdf",
     "mirrorSha": "445d3959a5bc36b2425e573b813fd69a17c730c9",
     "shaVerified": true,
     "fetchedAt": "2026-10-25",
-    "pages": { "singleAnswerTable": "p.1", "judgeAnswerTable": "p.6" }
+    "pages": {
+      "singleAnswerTable": "p.1",
+      "judgeAnswerTable": "p.6"
+    }
   },
   "answerTable": {
-    "single": { "content": "D B A A B A C A C D D D B D C", "page": "p.1" },
-    "judge": { "content": "× √ √ √ √ √ √ √ × ×", "page": "p.6", "note": "红色 √/× 字形，按「答案」行坐标 6 倍放大裁剪逐一核对（tmp/crops/2025-03-l3-judge.png），第 9、10 题均为 ×" }
+    "single": {
+      "content": "D B A A B A C A C D D D B D C",
+      "page": "p.1"
+    },
+    "judge": {
+      "content": "× √ √ √ √ √ √ √ × ×",
+      "page": "p.6",
+      "note": "红色 √/× 字形，按「答案」行坐标 6 倍放大裁剪逐一核对（tmp/crops/2025-03-l3-judge.png），第 9、10 题均为 ×"
+    }
   },
   "questions": [
-    { "id": 16, "type": "judge", "official": "×", "bank": "×", "modified": false },
-    { "id": 17, "type": "judge", "official": "√", "bank": "√", "modified": false },
-    { "id": 18, "type": "judge", "official": "√", "bank": "√", "modified": false },
-    { "id": 19, "type": "judge", "official": "√", "bank": "√", "modified": false },
-    { "id": 20, "type": "judge", "official": "√", "bank": "√", "modified": false },
-    { "id": 21, "type": "judge", "official": "√", "bank": "√", "modified": false },
-    { "id": 22, "type": "judge", "official": "√", "bank": "√", "modified": false },
-    { "id": 23, "type": "judge", "official": "√", "bank": "√", "modified": false },
-    { "id": 24, "type": "judge", "official": "×", "bank": "√(改前)", "modified": true, "fix": "answer 0→1，解析重写：k 进制正确规则是「逢 k 进一位」，不存在「逢 k 进第二位」；「百位/千位」是十进制位名，不能套用于任意 k 进制。原卷题面（p.6 判断第 9 题）与独立推导均支持 ×" },
-    { "id": 25, "type": "judge", "official": "×", "bank": "×", "modified": false }
+    {
+      "id": 16,
+      "type": "judge",
+      "official": "×",
+      "bank": "×",
+      "modified": false
+    },
+    {
+      "id": 17,
+      "type": "judge",
+      "official": "√",
+      "bank": "√",
+      "modified": false
+    },
+    {
+      "id": 18,
+      "type": "judge",
+      "official": "√",
+      "bank": "√",
+      "modified": false
+    },
+    {
+      "id": 19,
+      "type": "judge",
+      "official": "√",
+      "bank": "√",
+      "modified": false
+    },
+    {
+      "id": 20,
+      "type": "judge",
+      "official": "√",
+      "bank": "√",
+      "modified": false
+    },
+    {
+      "id": 21,
+      "type": "judge",
+      "official": "√",
+      "bank": "√",
+      "modified": false
+    },
+    {
+      "id": 22,
+      "type": "judge",
+      "official": "√",
+      "bank": "√",
+      "modified": false
+    },
+    {
+      "id": 23,
+      "type": "judge",
+      "official": "√",
+      "bank": "√",
+      "modified": false
+    },
+    {
+      "id": 24,
+      "type": "judge",
+      "official": "×",
+      "bank": "√(改前)",
+      "modified": true,
+      "fix": "answer 0→1，解析重写：k 进制正确规则是「逢 k 进一位」，不存在「逢 k 进第二位」；「百位/千位」是十进制位名，不能套用于任意 k 进制。原卷题面（p.6 判断第 9 题）与独立推导均支持 ×"
+    },
+    {
+      "id": 25,
+      "type": "judge",
+      "official": "×",
+      "bank": "×",
+      "modified": false
+    },
+    {
+      "questionId": 24,
+      "issue": "审计低分：官方判断题第9题「k进制，逢k进第二位，k²进百位，k³进千位」中 k²/k³ 为上标公式，pdftotext 文本层丢失",
+      "fix": "定性为假阴性，无需修改——渲染 p.6 @200/300dpi 确认官方原文与题库题面一致",
+      "evidence": "官方判断题答案表（p.6顶部，300dpi渲染）：×√√√√√√√××，题库Q16-Q25全对（10/10）；单选答案表程序化提取 DBAABACACDDDBDC，题库15/15全对"
+    }
   ],
   "secondaryCheck": {
     "singleChoice": "题库单选 15 题与官方答案表逐题比对全部一致",
     "result": "all-match"
   },
   "unresolved": [],
-  "executedAt": "2026-10-25"
+  "executedAt": "2026-10-25",
+  "lastReviewedAt": "2026-10-28"
 }

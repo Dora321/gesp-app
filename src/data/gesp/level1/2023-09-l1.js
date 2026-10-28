@@ -116,8 +116,13 @@ C++中的逻辑运算符 \`&&\`（与）、\`||\`（或）、\`!\`（非）遵�
     {
       id: 4,
       type: 'single',
-      question: `假设 a = 3, b = 4，执行 cout << "a+b=" << a+b; 后输出为（ ）。`,
-      options: ['3+4=7', '7', 'a+b=7', 'a+b=a+b'],
+      question: `下面C++代码段执行后的输出是（ ）。
+
+\`\`\`cpp
+int a = 3, b = 4;
+cout << "a+b=" << a+b;
+\`\`\``,
+      options: ['3+4= 7', '3+4=7', 'a+b=7', 'a+b=a+b'],
       answer: 2,
       score: 2,
       explanation: `**答案：C (a+b=7)**

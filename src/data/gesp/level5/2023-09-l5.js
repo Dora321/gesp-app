@@ -671,7 +671,7 @@ int main() {
         {
             id: 13,
             type: "single",
-            question: `在上题的归并排序算法中，涉及到的算法为（ ）。`,
+            question: `在上题的归并排序算法中， mergeSort(listData, start, middle); 和 mergeSort(listData, middle + 1, end); 涉及到的算法为（ ）。`,
             options: [
                 "搜索算法",
                 "分治算法",

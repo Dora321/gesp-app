@@ -1,13 +1,20 @@
 {
   "paperId": "2023-09-l1",
   "reviewedAt": "2026-10-25",
-  "reviewedBy": { "type": "AI", "executor": "WorkBuddy 子代理", "session": "codex/question-bank-verification" },
+  "reviewedBy": {
+    "type": "AI",
+    "executor": "WorkBuddy 子代理",
+    "session": "codex/question-bank-verification"
+  },
   "source": {
     "mirrorUrl": "https://raw.githubusercontent.com/Dora321/gesp-official-pdfs/main/pdfs/2023%E5%B9%B49%E6%9C%88-C%2B%2B1%E7%BA%A7.pdf",
     "mirrorSha": "799df3436d987adf8ecbb6ec1513d1dd02fcb66b",
     "shaVerified": true,
     "fetchedAt": "2026-10-25",
-    "pages": { "单选答案表": "p.1", "判断答案表+判断题全文": "p.5" }
+    "pages": {
+      "单选答案表": "p.1",
+      "判断答案表+判断题全文": "p.5"
+    }
   },
   "answerTable": {
     "single": {
@@ -22,32 +29,101 @@
     }
   },
   "questions": [
-    { "id": 16, "paperJudgeNo": 1, "official": "√", "bank": "√", "textMatch": true, "changed": false },
-    { "id": 17, "paperJudgeNo": 2, "official": "√", "bank": "√", "textMatch": true, "changed": false },
-    { "id": 18, "paperJudgeNo": 3, "official": "√", "bank": "√", "textMatch": true, "changed": false },
-    { "id": 19, "paperJudgeNo": 4, "official": "×", "bank": "×", "textMatch": true, "changed": false },
-    { "id": 20, "paperJudgeNo": 5, "official": "√", "bank": "√", "textMatch": true, "changed": false },
-    { "id": 21, "paperJudgeNo": 6, "official": "×", "bank": "×", "textMatch": true, "changed": false },
     {
-      "id": 22, "paperJudgeNo": 7, "official": "×", "bank": "√", "textMatch": false, "changed": true,
+      "id": 16,
+      "paperJudgeNo": 1,
+      "official": "√",
+      "bank": "√",
+      "textMatch": true,
+      "changed": false
+    },
+    {
+      "id": 17,
+      "paperJudgeNo": 2,
+      "official": "√",
+      "bank": "√",
+      "textMatch": true,
+      "changed": false
+    },
+    {
+      "id": 18,
+      "paperJudgeNo": 3,
+      "official": "√",
+      "bank": "√",
+      "textMatch": true,
+      "changed": false
+    },
+    {
+      "id": 19,
+      "paperJudgeNo": 4,
+      "official": "×",
+      "bank": "×",
+      "textMatch": true,
+      "changed": false
+    },
+    {
+      "id": 20,
+      "paperJudgeNo": 5,
+      "official": "√",
+      "bank": "√",
+      "textMatch": true,
+      "changed": false
+    },
+    {
+      "id": 21,
+      "paperJudgeNo": 6,
+      "official": "×",
+      "bank": "×",
+      "textMatch": true,
+      "changed": false
+    },
+    {
+      "id": 22,
+      "paperJudgeNo": 7,
+      "official": "×",
+      "bank": "√",
+      "textMatch": false,
+      "changed": true,
       "findings": "题库题文（cin 空白分隔）非原卷第 7 题，属错置；原卷第 7 题为「do-while 循环不可能导致死循环，但 while 有可能」。独立推导：do{}while(1) 即死循环，do-while 仅是先执行后判断，不免疫死循环，命题为假，官方 × 正确。",
       "fix": "question 按原卷 p.5 逐字转写替换，answer 0→1，解析重写（do-while 执行顺序 + 死循环成因）"
     },
     {
-      "id": 23, "paperJudgeNo": 8, "official": "×", "bank": "√", "textMatch": false, "changed": true,
+      "id": 23,
+      "paperJudgeNo": 8,
+      "official": "×",
+      "bank": "√",
+      "textMatch": false,
+      "changed": true,
       "findings": "题库题文（变量先声明后使用）非原卷第 8 题，属错置；原卷第 8 题为「for (int i = 1; i < 10; i++) continue; 因 continue 无条件被执行将导致死循环」。独立推导：continue 只跳过循环体剩余语句，不跳过 for 的更新表达式 i++，循环 9 轮后正常终止，不构成死循环，命题为假，官方 × 正确。",
       "fix": "question 按原卷逐字转写（含代码块），answer 0→1，解析重写（continue 与 for 更新表达式关系）"
     },
     {
-      "id": 24, "paperJudgeNo": 9, "official": "×", "bank": "×", "textMatch": false, "changed": true,
+      "id": 24,
+      "paperJudgeNo": 9,
+      "official": "×",
+      "bank": "×",
+      "textMatch": false,
+      "changed": true,
       "findings": "题库题文（单双引号界定）非原卷第 9 题，属错置；原卷第 9 题为「不可以将变量命名为 cout，因为 cout 是C++的关键字」。独立推导：cout 是 std 命名空间中的流对象而非关键字，变量命名 cout 合法（using namespace std 下也仅发生名字遮蔽），命题为假，官方 × 正确。答案相同但题文与解析整体错置，一并替换。",
       "fix": "question 按原卷逐字转写替换，answer 不变（×），解析重写（关键字 vs 标准库标识符）"
     },
     {
-      "id": 25, "paperJudgeNo": 10, "official": "√", "bank": "×", "textMatch": false, "changed": true,
+      "id": 25,
+      "paperJudgeNo": 10,
+      "official": "√",
+      "bank": "×",
+      "textMatch": false,
+      "changed": true,
       "findings": "题库题文（if 必须带 else）非原卷第 10 题，属错置；原卷第 10 题为「C++ 是一种高级程序设计语言」。独立推导：C++ 具备高级语言全部特征（抽象类型、控制结构、面向对象），属典型高级语言，命题为真，官方 √ 正确。",
       "fix": "question 按原卷逐字转写替换，answer 1→0，解析重写（语言分类）"
+    },
+    {
+      "questionId": 4,
+      "issue": "题面偏差：官方Q4为题干+两行代码块（int a = 3, b = 4; / cout << \"a+b=\" << a+b;），选项A「3+4= 7」(=与7之间有空格)、B「3+4=7」；题库把代码内嵌题干且B选项误写为「7」，导致A/B选项文字重复",
+      "fix": "按官方原卷恢复Q4：题干还原+代码块，选项A补空格、B改回「3+4=7」；答案C不变",
+      "evidence": "200dpi渲染p.1确认官方代码块与选项空格；官方答案表程序化提取 CDB CDBACACB BDDA，Q4=C 题库一致"
     }
   ],
-  "unresolved": []
+  "unresolved": [],
+  "lastReviewedAt": "2026-10-28"
 }

@@ -444,12 +444,69 @@ export const paperData = {
         {
             id: 12,
             type: "single",
-            question: `有关下面使用二分法求平方根的 C++ 代码的说法，错误的是（ ）。`,
+            question: `有关下面C++代码的说法，错误的是（ ）。
+
+\`\`\`cpp
+double sqrt_binary(long long n, double epsilon = 1e-10) {
+    if (n < 0) {
+        throw invalid_argument("输入必须为非负整数");
+    }
+
+    if (n == 0 || n == 1) return n;
+
+    // 阶段 1
+    long long low = 1, high = n;
+    long long k = 0;
+
+    while (low <= high) {
+        long long mid = (low + high) / 2;
+        long long mid_sq = mid * mid;
+
+        if (mid_sq == n) {
+            return mid;
+        } else if (mid_sq < n) {
+            k = mid;
+            low = mid + 1;
+        } else {
+            high = mid - 1;
+        }
+    }
+
+    long long next_k = k + 1;
+    if (next_k * next_k == n) {
+        return next_k;
+    }
+
+    // 阶段 2
+    double low_d = (double)k;
+    double high_d = (double)(k + 1);
+    double mid;
+
+    while (high_d - low_d >= epsilon) {
+        mid = (low_d + high_d) / 2;
+        double mid_sq = mid * mid;
+
+        if (mid_sq < n) {
+            low_d = mid;
+        } else {
+            high_d = mid;
+        }
+    }
+
+    double result = (low_d + high_d) / 2;
+    long long check_int = (long long)(result + 0.5);
+    if (check_int * check_int == n) {
+        return check_int;
+    }
+
+    return result;
+}
+\`\`\``,
             options: [
-                "“阶段 1”的目标是先判断正整数 n 是否有整数平方根",
-                "“阶段 2”的目标是当 n 不是完全平方数时，在相邻整数平方根之间继续二分逼近",
-                "代码 check_int = (long long)(result+0.5) 用于消除浮点误差，检查结果是否恰好是整数平方根",
-                "阶段 2 中用 high_d-low_d >= epsilon 作为停止条件完全不能用于浮点数比较，否则一定会死循环",
+                "“阶段 1”的目标是寻找正整数 n 可能的正完全平方根",
+                "“阶段 2”的目标是如果正整数 n 没有正完全平方根，则在可能产生完全平方根附近寻找带小数点的平方根",
+                "代码 check_int = (long long)(result + 0.5) 是检查因浮点误差是否为正完全平方根",
+                "阶段2的二分法中 high_d - low_d >= epsilon 不能用于浮点数比较，会进入死循环",
             ],
             answer: 3,
             score: 2,

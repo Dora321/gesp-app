@@ -477,22 +477,47 @@ void quickSort(vector<int>& arr, int left, int right) {
         {
             id: 12,
             type: "single",
-            question: `在 C++ 中，\`std::vector\` 的内存分配方式是（ ）。`,
-            options: ["静态分配", "按需动态分配，通常预留额外空间", "固定大小", "按链表方式存储"],
+            question: `给定一个长度为 n 的有序数组 nums，其中可能包含重复元素。下面的函数返回数组中某个元素 target 的左边界，若数组中不包含该元素，则返回 -1。例如在数组 nums = [5,7,7,8,8,10] 中查找 target=8，函数返回 8 在数组中的左边界的索引为 3。则横线上应填写的代码为（ ）。
+
+\`\`\`cpp
+int getLeftBoundary(vector<int>& nums, int target) {
+    int left = 0;
+    int right = nums.size() - 1;
+
+    while (left < right) {
+        int middle = left + ((right - left) / 2);
+        if (target <= nums[middle])
+            ________________________________ // 在此处填入代码
+        else
+            left = middle+1;
+    }
+
+    return nums[left]==target?left:-1;
+}
+\`\`\``,
+            options: ["right = middle - 1;", "right = middle;", "right = middle + 1;", "以上都不对"],
             answer: 1,
             score: 2,
-            explanation: `**答案：B**
+            sourceVerified: true,
+            sourcePage: 6,
+            sourcePages: [6, 7],
+            sourceUrl: 'https://gesp.ccf.org.cn/101/attach/1733577765027904.pdf',
+            reviewedBy: '本站校订',
+            reviewedAt: '2026-10-28',
+            explanation: `**答案：B（right = middle;）**
 
-            **解析：**
-            vector 使用动态数组并在容量不足时自动扩容。
+**推导过程：**
 
-            - **A 静态分配**：不是本题答案。
-            - **B 按需动态分配，通常预留额外空间**：正确答案。
-            - **C 固定大小**：不是本题答案。
-            - **D 按链表方式存储**：不是本题答案。
-            **考点：** 指针与内存
-            `,
-            tags: ["客观题", "单选题", "GESP5级"]
+- 循环条件是 \`left < right\`，目标是求 target 的**左边界**（第一个等于 target 的位置）。
+- 当 \`target <= nums[middle]\` 时，middle 位置本身可能就是左边界，因此**不能排除 middle**，只能收缩右边界到 middle，即 \`right = middle\`。
+- 若填 A（\`right = middle - 1\`）：当区间只剩两个元素且 middle 恰为左边界时，会把左边界排除掉，导致漏解。
+- 若填 C（\`right = middle + 1\`）：右边界不减反增，\`while (left < right)\` 可能永远无法缩小，造成死循环。
+- 循环结束时 left == right，用 \`nums[left]==target?left:-1\` 判断是否存在。
+
+**易错点：** 求左边界与求精确位置的二分写法区别在于——命中 \`nums[middle] == target\` 时不能立即返回，而是继续向左收缩，因此收缩右边界时必须保留 middle。
+
+**依据**：官方真题 PDF 第 6-7 页（2024年12月C++五级真题），题面与选项按官方原卷重建；答案取自官方答案表第 12 题（B）。`,
+            tags: ["客观题", "单选题", "GESP5级", "二分查找"]
         },
         {
             id: 13,
