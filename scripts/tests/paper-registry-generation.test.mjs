@@ -9,7 +9,7 @@ import { pathToFileURL, fileURLToPath } from 'node:url';
 import { getPaper } from '../../src/data/gesp/index.js';
 
 const root = fileURLToPath(new URL('../..', import.meta.url));
-const EXPECTED_OFFICIAL_QUESTION_COUNT = 2484;
+const EXPECTED_OFFICIAL_QUESTION_COUNT = 2700;
 const L8_EXTERNAL_PROGRAMMING_PAPER_IDS = [
   '2024-06-l8',
   '2024-09-l8',

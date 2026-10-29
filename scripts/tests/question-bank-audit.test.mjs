@@ -11,7 +11,7 @@ test('question-bank audit scans papers only and separates programming questions'
     encoding: 'utf8',
   });
 
-  assert.match(output, /\| L8 \| 10 \| 250 \| 20 \|/);
+  assert.match(output, /\| L8 \| 11 \| 275 \| 22 \|/);
   assert.doesNotMatch(output, /\| programming \|/);
   assert.doesNotMatch(output, /undefined/);
 });
