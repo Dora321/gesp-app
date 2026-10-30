@@ -1,10 +1,10 @@
 {
   "paperId": "2026-03-l2",
-  "reviewedAt": "2026-10-24",
+  "reviewedAt": "2026-10-30",
   "reviewedBy": {
     "type": "AI",
-    "executor": "WorkBuddy 子代理",
-    "session": "codex/question-bank-verification"
+    "executor": "agy gemini-3.8-flash-medium + Grok/executor 校对",
+    "session": "verify/explanations-2026-03-l2"
   },
   "source": {
     "mirrorUrl": "https://raw.githubusercontent.com/Dora321/gesp-official-pdfs/main/pdfs/2026%E5%B9%B43%E6%9C%88-C%2B%2B2%E7%BA%A7.pdf",
@@ -25,7 +25,20 @@
       "type": "single",
       "official": "B",
       "bank": 1,
-      "modified": false
+      "modified": false,
+      "dimensions": [
+        "explanation"
+      ],
+      "resolved": true,
+      "method": [
+        "官方答案对照",
+        "解析质量审校",
+        "Gemini 3.8 Flash 草稿校对落地"
+      ],
+      "reviewedBy": "AI · agy gemini-3.8-flash-medium + 校对",
+      "reviewedAt": "2026-10-30",
+      "evidence": "官方答案表/解析审校；答案未改",
+      "note": "Q1 explanation 升级；答案未改"
     },
     {
       "id": 2,
@@ -46,14 +59,40 @@
       "type": "single",
       "official": "C",
       "bank": 2,
-      "modified": false
+      "modified": false,
+      "dimensions": [
+        "explanation"
+      ],
+      "resolved": true,
+      "method": [
+        "官方答案对照",
+        "解析质量审校",
+        "Gemini 3.8 Flash 草稿校对落地"
+      ],
+      "reviewedBy": "AI · agy gemini-3.8-flash-medium + 校对",
+      "reviewedAt": "2026-10-30",
+      "evidence": "官方答案表/解析审校；答案未改",
+      "note": "Q4 explanation 升级；答案未改"
     },
     {
       "id": 5,
       "type": "single",
       "official": "B",
       "bank": 1,
-      "modified": false
+      "modified": false,
+      "dimensions": [
+        "explanation"
+      ],
+      "resolved": true,
+      "method": [
+        "官方答案对照",
+        "解析质量审校",
+        "Gemini 3.8 Flash 草稿校对落地"
+      ],
+      "reviewedBy": "AI · agy gemini-3.8-flash-medium + 校对",
+      "reviewedAt": "2026-10-30",
+      "evidence": "官方答案表/解析审校；答案未改",
+      "note": "Q5 explanation 升级；答案未改"
     },
     {
       "id": 6,
@@ -67,21 +106,60 @@
       "type": "single",
       "official": "A",
       "bank": 0,
-      "modified": false
+      "modified": false,
+      "dimensions": [
+        "explanation"
+      ],
+      "resolved": true,
+      "method": [
+        "官方答案对照",
+        "解析质量审校",
+        "Gemini 3.8 Flash 草稿校对落地"
+      ],
+      "reviewedBy": "AI · agy gemini-3.8-flash-medium + 校对",
+      "reviewedAt": "2026-10-30",
+      "evidence": "官方答案表/解析审校；答案未改",
+      "note": "Q7 explanation 升级；答案未改"
     },
     {
       "id": 8,
       "type": "single",
       "official": "C",
       "bank": 2,
-      "modified": false
+      "modified": false,
+      "dimensions": [
+        "explanation"
+      ],
+      "resolved": true,
+      "method": [
+        "官方答案对照",
+        "解析质量审校",
+        "Gemini 3.8 Flash 草稿校对落地"
+      ],
+      "reviewedBy": "AI · agy gemini-3.8-flash-medium + 校对",
+      "reviewedAt": "2026-10-30",
+      "evidence": "官方答案表/解析审校；答案未改",
+      "note": "Q8 explanation 升级；答案未改"
     },
     {
       "id": 9,
       "type": "single",
       "official": "C",
       "bank": 2,
-      "modified": false
+      "modified": false,
+      "dimensions": [
+        "explanation"
+      ],
+      "resolved": true,
+      "method": [
+        "官方答案对照",
+        "解析质量审校",
+        "Gemini 3.8 Flash 草稿校对落地"
+      ],
+      "reviewedBy": "AI · agy gemini-3.8-flash-medium + 校对",
+      "reviewedAt": "2026-10-30",
+      "evidence": "官方答案表/解析审校；答案未改",
+      "note": "Q9 explanation 升级；答案未改"
     },
     {
       "id": 10,
@@ -95,7 +173,20 @@
       "type": "single",
       "official": "B",
       "bank": 1,
-      "modified": false
+      "modified": false,
+      "dimensions": [
+        "explanation"
+      ],
+      "resolved": true,
+      "method": [
+        "官方答案对照",
+        "解析质量审校",
+        "Gemini 3.8 Flash 草稿校对落地"
+      ],
+      "reviewedBy": "AI · agy gemini-3.8-flash-medium + 校对",
+      "reviewedAt": "2026-10-30",
+      "evidence": "官方答案表/解析审校；答案未改",
+      "note": "Q11 explanation 升级；答案未改"
     },
     {
       "id": 12,
@@ -109,7 +200,20 @@
       "type": "single",
       "official": "B",
       "bank": 1,
-      "modified": false
+      "modified": false,
+      "dimensions": [
+        "explanation"
+      ],
+      "resolved": true,
+      "method": [
+        "官方答案对照",
+        "解析质量审校",
+        "Gemini 3.8 Flash 草稿校对落地"
+      ],
+      "reviewedBy": "AI · agy gemini-3.8-flash-medium + 校对",
+      "reviewedAt": "2026-10-30",
+      "evidence": "官方答案表/解析审校；答案未改",
+      "note": "Q13 explanation 升级；答案未改"
     },
     {
       "id": 14,
