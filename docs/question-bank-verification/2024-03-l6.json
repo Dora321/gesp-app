@@ -1,19 +1,32 @@
 {
   "paperId": "2024-03-l6",
   "reviewedAt": "2026-10-24",
-  "reviewedBy": { "type": "AI", "executor": "WorkBuddy 子代理", "session": "codex/question-bank-verification" },
+  "reviewedBy": {
+    "type": "AI",
+    "executor": "WorkBuddy 子代理",
+    "session": "codex/question-bank-verification"
+  },
   "source": {
     "mirrorUrl": "https://raw.githubusercontent.com/Dora321/gesp-official-pdfs/main/pdfs/2024%E5%B9%B43%E6%9C%88-C%2B%2B6%E7%BA%A7.pdf",
     "mirrorSha": "5e0d648726a396dbde60a40d4ad987dccbb07494",
     "shaVerified": true,
     "fetchedAt": "2026-10-24",
-    "pages": { "Q15": "p.5" }
+    "pages": {
+      "Q15": "p.5"
+    }
   },
   "questions": [
     {
       "id": 15,
-      "dimensions": ["statement", "answer", "explanation"],
-      "method": ["原卷对照（页面渲染人工查看）", "程序执行"],
+      "dimensions": [
+        "statement",
+        "answer",
+        "explanation"
+      ],
+      "method": [
+        "原卷对照（页面渲染人工查看）",
+        "程序执行"
+      ],
       "findings": "题面缺失 reverseLinkedList 代码（原卷为图片）。原卷代码共 11 行，其中第 6 行为 current->next = next;（即题干所指的待修改处）。解析为占位模板。",
       "fix": "按原卷 p.5 逐行转写 reverseLinkedList 代码（保持原缩进与 nullptr 写法），以 fenced cpp 块回填题面；移除 sourceIntegrity/integrityNote；解析重写为具体推导（核心修改行 + 逐选项错误原因），并附编译运行证据。",
       "evidence": "g++ 编译运行转写代码并把第 6 行按选项 A 修复为 current->next = prev;，输入 1→2→3 输出 3 2 1，反转成功，与答案 A（该修改才正确）一致。tmp/verify/2024-l6/q15_reverse.cpp",
@@ -72,5 +85,17 @@
       "Q16/Q17/Q18/Q21/Q24 官方分别为 √ √ √ √ √，与题库当前值一致；但其解析仍是占位模板且保留 sourceIntegrity=answer-key-suspect，不在本次清单内，未处理。"
     ]
   },
-  "unresolved": []
+  "unresolved": [],
+  "lastUpdated": "2026-10-30",
+  "answerCorrection": {
+    "question": "judge-8(题库id23)",
+    "official": "×",
+    "was": "√",
+    "now": "×",
+    "evidence": "官方 p.4 判断题答案表 400dpi 渲染复核：√√√××√××√×，J8=×（普通 BST 最坏退化 O(n)，说法不严谨）"
+  },
+  "explanationUpgrade": {
+    "date": "2026-10-30",
+    "scope": "19题模板解析替换+5题题干结构修复(Q4/Q5/Q7/Q8/J23 恢复官方代码块/树图/清页码污染)"
+  }
 }
