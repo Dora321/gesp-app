@@ -5,7 +5,7 @@
     "template": 0,
     "fabricated-verdict": 0,
     "short": 53,
-    "truncated": 9,
+    "truncated": 10,
     "contradictory": 0,
     "filler": 0,
     "overlong": 0
@@ -77,7 +77,8 @@
       "2024-12-l5:Q1",
       "2026-03-l5:Q1",
       "2026-03-l5:Q2",
-      "2026-03-l5:Q4"
+      "2026-03-l5:Q4",
+      "2026-06-l3:Q10"
     ],
     "contradictory": [],
     "filler": [],
