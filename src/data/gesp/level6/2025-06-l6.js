@@ -127,27 +127,33 @@ export const paperData = {
             type: "single",
             sourceIntegrity: "contaminated-stem",
             integrityNote: "选项 A 的末尾串入了题干的类定义代码（「class Animal { public: std::string name; …」），说明抓取时把代码块混进了选项文本。答案本身可辨认，但选项文本已不是原卷原文。",
-            question: `为了让 Dog 类的构造函数能正确地调用其父类 Animal 的构造方法，横线线处应填入（ ）。`,
+            question: `为了让 Dog 类的构造函数能正确地调用其父类 Animal 的构造方法，横线处应填入（ ）。\n\n\`\`\`cpp\nclass Animal {\npublic:\n    std::string name;\n    Animal(std::string str) : name(str) {\n        std::cout << "Animal created\\n";\n    }\n    virtual void speak() {\n        cout << "Animal speaks" << endl;\n    }\n};\n\nclass Dog : public Animal {\n    std::string breed;\npublic:\n    Dog(std::string name, std::string b) : ______________, breed(b) {\n        std::cout << "Dog created\\n";\n    }\n    void speak() override {\n        cout << "Dog barks" << endl;\n    }\n};\n\nint main() {\n    Animal* p = new Dog("Rex", "Labrador");\n    p->speak();\n    delete p;\n    return 0;\n}\n\`\`\`\n`,
             options: [
-                "Animal(name) class Animal { public: std::string name; Animal(std::string str) : name(str) { std::cout << \"Animal created\n\"; } virtual void speak() { cout << \"Animal speaks\" << endl; } }; class Dog : public Animal { std::string breed; public: Dog(std::string name, std::string b) : _________________, breed(b) { std::cout << \"Dog created\n\"; } void speak() override { cout << \"Dog barks\" << endl; } }; int main() { Animal* p = new Dog(\"Rex\", \"Labrador\"); p->speak(); delete p; return 0; } 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27 28 29",
+                "Animal(name)",
                 "super(name)",
                 "Animal::Animal(name)",
                 "Animal()",
             ],
             answer: 0,
             score: 2,
-            explanation: `**答案：A**
+            explanation: `
+**答案：A**
 
-            **解析：**
-            本题答案已依据试卷标准答案完成录入，可结合题干与选项复盘对应知识点。
+**解析：**
+派生类构造函数通过**成员初始化列表**调用基类构造函数：\`Dog(...) : Animal(name), breed(b) { }\`——横线在初始化列表中，应填 **\`Animal(name)\`**，把 name 传给基类 Animal 的构造函数。
 
-            - **A Animal(name) class Animal { public: std:...**：正确答案。
-            - **B super(name)**：不是本题答案。
-            - **C Animal::Animal(name)**：不是本题答案。
-            - **D Animal()**：不是本题答案。
+执行流程：\`new Dog("Rex", "Labrador")\` → 先调用 Animal("Rex") 输出 \`Animal created\` → 再初始化 breed → 执行 Dog 构造体输出 \`Dog created\`。
 
-            **考点：** 内存管理、面向对象
-            `,
+逐项分析：
+- **A \`Animal(name)\`**：正确，初始化列表中调用基类构造的标准写法。
+- **B \`super(name)\`**：错误，super 是 Java/Python 的语法，C++ 没有该关键字。
+- **C \`Animal::Animal(name)\`**：错误，不能显式限定调用基类构造函数（初始化列表里直接写类名即可）。
+- **D \`Animal()\`**：错误，Animal 没有无参构造函数（定义了带参构造后编译器不再生成默认构造），且没有把 name 传下去，编译报错。
+
+**易错点：** 若基类只有带参构造，派生类构造函数**必须**在初始化列表中显式调用它，否则编译错误——这一点与 Java 的隐式 super() 不同。
+
+**考点：** 派生类构造函数与基类构造的调用
+        `,
             tags: [
                 "客观题",
                 "单选题",
@@ -166,16 +172,24 @@ export const paperData = {
             ],
             answer: 1,
             score: 2,
-            explanation: `**答案：B**
+            explanation: `
+**答案：B**
 
-            **解析：**
-            本题答案已依据试卷标准答案完成录入，可结合题干与选项复盘对应知识点。
+**解析：**
+关键点：\`Animal* p = new Dog(...)\`，且 Animal 的 \`speak()\` 是 **virtual**，Dog 用 \`override\` 重写——通过基类指针调用时发生**动态绑定**。
 
-            - **A 输出 Animal speaks**：不是本题答案。
-            - **B 输出 Dog barks**：正确答案。
-            - **C 编译错误**：不是本题答案。
-            - **D 程序崩溃**：不是本题答案。
-            `,
+执行 \`p->speak()\`：实际对象是 Dog，调用 Dog::speak()，输出 **\`Dog barks\`**。
+
+逐项分析：
+- **A 输出 Animal speaks**：错误，只有 speak() 不是虚函数时才会静态绑定到基类版本。
+- **B 输出 Dog barks**：正确。
+- **C 编译错误**：错误，虚函数+override 是标准的多态写法。
+- **D 程序崩溃**：错误，delete p 时因基类析构非虚会有警告隐患，但不影响本次输出（且选项问的是执行结果）。
+
+**易错点：** 判断输出看三点——指针类型是基类、函数是 virtual、实际对象是派生类 → 调派生类版本；去掉 virtual 任一条件，答案就变 A。
+
+**考点：** 虚函数与多态的运行结果分析
+        `,
             tags: [
                 "客观题",
                 "单选题",
@@ -288,27 +302,33 @@ export const paperData = {
             type: "single",
             sourceIntegrity: "options-reconstructed",
             integrityNote: "题干的索引公式在提取时丢失（「索引为 （从 开始计数）」），选项 A 是另一道题的栈/队列代码，选项 B、C、D 仍是占位符，本题内容基本未收录。",
-            question: `在使用数组表示完全二叉树时，如果一个节点的索引为 （从 开始计数），那么其左子节点的索引通常是（ ）。`,
+            question: `在使用数组表示完全二叉树时，如果一个节点的索引为 i（从 0 开始计数），那么其左子节点的索引通常是（ ）。`,
             options: [
-                "stack<int> s; queue<int> q; for (int i = 1; i <= 3; ++i) { s.push(i); q.push(i); } cout << s.top() << \" \" << q.front() << endl; 1 2 3 4 5 6 7 8",
-                "选项B",
-                "选项C",
-                "选项D",
+                "(i-1)/2",
+                "i+1",
+                "i*2",
+                "2*i+1",
             ],
             answer: 3,
             score: 2,
-            explanation: `**答案：D**
+            explanation: `
+**答案：D**
 
-            **解析：**
-            本题答案已依据试卷标准答案完成录入，可结合题干与选项复盘对应知识点。
+**解析：**
+数组表示完全二叉树、**从 0 开始编号**时：节点 i 的左孩子是 **2i+1**，右孩子是 2i+2，父节点是 ⌊(i−1)/2⌋。
 
-            - **A stack<int> s; queue<int> q; for (int i =...**：不是本题答案。对队列的先进先出特性或循环队列满判断理解有误。
-            - **B 选项B**：不是本题答案。
-            - **C 选项C**：不是本题答案。
-            - **D 选项D**：正确答案。
+验证：根 i=0 → 左孩子 1、右孩子 2；节点 1 → 孩子 3、4——与层序编号 0,1,2,3,4… 完全一致。
 
-            **考点：** 数组
-            `,
+逐项分析：
+- **A (i−1)/2**：错误，这是**父节点**索引。
+- **B i+1**：错误，i+1 是 i 的右兄弟（若存在）。
+- **C i*2**：错误，这是**从 1 开始编号**时的左孩子公式。
+- **D 2*i+1**：正确，0 起点编号的左孩子。
+
+**易错点：** 与 2024 年真题「从 1 开始编号：左孩子 2i、右孩子 2i+1」对照记忆——起点差 1，公式差 1，审题先看起点。
+
+**考点：** 完全二叉树的数组存储（0 起点编号）
+        `,
             tags: [
                 "客观题",
                 "单选题",
@@ -452,27 +472,39 @@ export const paperData = {
             type: "single",
             sourceIntegrity: "contaminated-stem",
             integrityNote: "题干与代码是二叉树的深度优先遍历（参数为 TreeNode* root），四个选项却全是图遍历的判断条件（visited[v]、adj[u].size()），两者来自不同的题目，无法对应作答。",
-            question: `请将下列 C++ 实现的深度优先搜索（DFS）代码补充完整，横线处应填入（ ）。`,
+            question: `请将下列 C++ 实现的深度优先搜索（DFS）代码补充完整，横线处应填入（ ）。\n\n\`\`\`cpp\nstruct TreeNode {\n    int val;\n    TreeNode* left;\n    TreeNode* right;\n    TreeNode(int x) : val(x), left(nullptr), right(nullptr) {}\n};\n\nvoid dfs(TreeNode* root, vector<int>& result) {\n    if (root == nullptr) return;\n    ____________________\n}\n\`\`\`\n`,
             options: [
-                "!visited[v]",
-                "visited[v]",
-                "adj[u].size() > 0",
-                "v != u",
-],
+                "result.push_back(root->val);\ndfs(root->left);\ndfs(root->right);",
+                "result.push_back(root->left->val);\ndfs(root->right);\ndfs(root->left);",
+                "result.push_back(root->left->val);\ndfs(root->left);\ndfs(root->right);",
+                "result.push_back(root->right->val);\ndfs(root->right);\ndfs(root->left);",
+            ],
             answer: 0,
             score: 2,
-            explanation: `**答案：A**
+            explanation: `
+**答案：A**
 
-            **解析：**
-            本题答案已依据试卷标准答案完成录入，可结合题干与选项复盘对应知识点。
+**解析：**
+函数框架是递归 DFS（先序）：空树直接返回；非空时要**先记录当前节点的值，再递归左右子树**。
 
-            - **A !visited[v]**：正确答案。
-            - **B visited[v]**：不是本题答案。
-            - **C adj[u].size() > 0**：不是本题答案。
-            - **D v != u**：不是本题答案。
+\`\`\`cpp
+result.push_back(root->val);   // 访问根
+dfs(root->left);               // 递归左
+dfs(root->right);              // 递归右
+\`\`\`
 
-            **考点：** 结构体、STL容器、指针
-            `,
+这正是**先序遍历**（根→左→右）的收集过程，选 A。
+
+逐项分析：
+- **A push root->val，先左后右**：正确，先序遍历。
+- **B push root->left->val（左孩子的值）**：错误，没有访问根，且若 root->left 为空会解引用空指针。
+- **C 同 B**：错误，同上。
+- **D push root->right->val**：错误，先访问右孩子且跳过根，不符合任何标准遍历。
+
+**易错点：** DFS 遍历三序的区别只在于「访问根」的位置：先序（根左右）、中序（左根右）、后序（左右根）；选项 B/C/D 连根都没访问，直接排除。
+
+**考点：** 递归 DFS（先序遍历）的补全
+        `,
             tags: [
                 "客观题",
                 "单选题",
@@ -484,27 +516,38 @@ export const paperData = {
             type: "single",
             sourceIntegrity: "options-reconstructed",
             integrityNote: "题干要求「返回每一层中最大的节点值」，这需要层序遍历并逐层取最大；四个选项却都是前序遍历的写法，且所录答案 D 会在叶子节点解引用空指针。选项与题意不匹配。",
-            question: `给定一个二叉树，返回每一层中最大的节点值，结果以数组形式返回，横线处应填入（ ）。 struct TreeNode { int val; TreeNode* left; TreeNode* right; TreeNode(int x): val(x), left(nullptr), right(nullptr) {} }; void dfs(TreeNode* root, vector<int>& result) { if (root == nullptr) return; __________________________ } 1 2 3 4 5 6 7 8 9 10 11 12 result.push_back(root->val); dfs(root->left); dfs(root->right); 1 2 3 result.push_back(root->left->val); dfs(root->right); dfs(root->left); 1 2 3 result.push_back(root->left->val); dfs(root->left); dfs(root->right); 1 2 3 result.push_back(root->right->val); dfs(root->right); dfs(root->left); 1 2 3 #include <vector> #include <queue> #include <algorithm> struct TreeNode { int val; TreeNode* left; TreeNode* right; TreeNode(int x): val(x), left(nullptr), right(nullptr) {} }; vector<int> largestValues(TreeNode* root) { vector<int> result; if (!root) return result; queue<TreeNode*> q; q.push(root); while (!q.empty()) { int sz = q.size(); 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20`,
+            question: `给定一个二叉树，返回每一层中最大的节点值，结果以数组形式返回，横线处应填入（ ）。\n\n\`\`\`cpp\n#include <vector>\n#include <queue>\n#include <algorithm>\nstruct TreeNode {\n    int val;\n    TreeNode* left;\n    TreeNode* right;\n    TreeNode(int x): val(x), left(nullptr), right(nullptr) {}\n};\nvector<int> largestValues(TreeNode* root) {\n    vector<int> result;\n    if (!root) return result;\n    queue<TreeNode*> q;\n    q.push(root);\n    while (!q.empty()) {\n        int sz = q.size();\n        int maxVal = INT_MIN;\n        for (int i = 0; i < sz; ++i) {\n            TreeNode* node;\n            ______________________ // 在此处填入代码\n            maxVal = max(maxVal, node->val);\n            if (node->left) q.push(node->left);\n            if (node->right) q.push(node->right);\n        }\n        result.push_back(maxVal);\n    }\n    return result;\n}\n\`\`\`\n`,
             options: [
-                "result.push_back(root->val); dfs(root->left); dfs(root->right);",
-                "result.push_back(root->left->val); dfs(root->right); dfs(root->left);",
-                "result.push_back(root->left->val); dfs(root->left); dfs(root->right);",
-                "result.push_back(root->right->val); dfs(root->right); dfs(root->left);",
-],
+                "node = q.end();",
+                "node = q.front();",
+                "q.pop();\nnode = q.front();",
+                "node = q.front();\nq.pop();",
+            ],
             answer: 3,
             score: 2,
-            explanation: `**答案：D**
+            explanation: `
+**答案：D**
 
-            **解析：**
-            本题答案已依据试卷标准答案完成录入，可结合题干与选项复盘对应知识点。
+**解析：**
+算法逐层处理：外层 while 每轮取当前层节点数 sz，内层 for 循环 sz 次，逐个出队取值求最大值，层末把 maxVal 存入 result。
 
-            - **A result.push_back(root->val); dfs(root->left); dfs(root->right);**：不是本题答案。
-            - **B result.push_back(root->left->val); dfs(root->right); dfs(root->left);**：不是本题答案。
-            - **C result.push_back(root->left->val); dfs(root->left); dfs(root->right);**：不是本题答案。
-            - **D result.push_back(root->right->val); dfs(root->right); dfs(root->left);**：正确答案。
+横线处需要对队首节点完成「**取出并移除**」两步：
 
-            **考点：** 数组
-            `,
+\`\`\`cpp
+node = q.front();   // 取队首
+q.pop();            // 移出队列
+\`\`\`
+
+逐项分析：
+- **A \`node = q.end();\`**：错误，std::queue 没有 end() 接口（那是容器的迭代器接口）。
+- **B \`node = q.front();\`**：错误，只取不弹，队列永远不减，while 死循环。
+- **C 先 pop 再 front**：错误，先弹出后队首已变，取到的是下一个节点，且丢失当前节点。
+- **D \`node = q.front(); q.pop();\`**：正确，先取后弹，顺序不能反。
+
+**易错点：** front/pop 的先后顺序是队列操作的高频陷阱——pop 无返回值，必须先用 front 取值再 pop。
+
+**考点：** BFS 层序处理（front + pop 配合）
+        `,
             tags: [
                 "客观题",
                 "单选题",
@@ -516,27 +559,40 @@ export const paperData = {
             type: "single",
             sourceIntegrity: "options-reconstructed",
             integrityNote: "代码中插入函数的参数名为 key，四个选项却一律写作 val；且横线处缺少 key 与 root->val 的比较条件，仅凭选项无法判断该走左子树还是右子树。",
-            question: `下面代码实现一个二叉排序树的插入函数（没有相同的数值），横线处应填入（ ）。 struct TreeNode { int val; TreeNode* left; TreeNode* right; TreeNode(int x): val(x), left(nullptr), right(nullptr) {} }; void insert(TreeNode*& root, int key) { if (!root) { root = new TreeNode(key); return; } _______________________________ } 1 2 3 4 5 6 7 8 9 10 11 12 13 14 if (key < root->val) insert(root->left, key); else if (key > root->val) insert(root->right, key); 1 2 3 4`,
+            question: `下面代码实现一个二叉排序树的插入函数（没有相同的数值），横线处应填入（ ）。\n\n\`\`\`cpp\nstruct TreeNode {\n    int val;\n    TreeNode* left;\n    TreeNode* right;\n    TreeNode(int x): val(x), left(nullptr), right(nullptr) {}\n};\n\nvoid insert(TreeNode*& root, int key) {\n    if (!root) {\n        root = new TreeNode(key);\n        return;\n    }\n    _______________________________\n}\n\`\`\`\n`,
             options: [
-                "insert(root->left, val)",
-                "insert(root->right, val)",
-                "root->left = new Node(val)",
-                "root = root->left",
-],
+                "if (key < root->val)\n    insert(root->left, key);\nelse if (key > root->val)\n    insert(root->right, key);",
+                "if (key < root->val)\n    insert(root->right, key);\nelse if (key > root->val)\n    insert(root->left, key);",
+                "insert(root->left, key);\ninsert(root->right, key);",
+                "insert(root->right, key);\ninsert(root->left, key);",
+            ],
             answer: 0,
             score: 2,
-            explanation: `**答案：A**
+            explanation: `
+**答案：A**
 
-            **解析：**
-            本题答案已依据试卷标准答案完成录入，可结合题干与选项复盘对应知识点。
+**解析：**
+BST 插入规则：**小于根走左，大于根走右**（题目保证无重复值，无需处理相等）。
 
-            - **A insert(root->left, val)**：正确答案。
-            - **B insert(root->right, val)**：不是本题答案。
-            - **C root->left = new Node(val)**：不是本题答案。
-            - **D root = root->left**：不是本题答案。
+\`\`\`cpp
+if (key < root->val)
+    insert(root->left, key);
+else if (key > root->val)
+    insert(root->right, key);
+\`\`\`
 
-            **考点：** 树与二叉树、结构体、指针
-            `,
+注意参数是 \`TreeNode*&\`（引用传递），递归到空位时 \`root = new TreeNode(key)\` 直接把新节点**挂到父节点的孩子指针上**。
+
+逐项分析：
+- **A**：正确，左小右大。
+- **B**：错误，小于根反而插到右子树，破坏 BST 性质。
+- **C**：错误，不比较大小就两边都插，节点会重复出现且树膨胀。
+- **D**：错误，无条俸地两侧都插，完全错误。
+
+**易错点：** 「没有相同的数值」意味着不需要 else 分支处理 key == root->val 的情形；若允许重复，通常约定相等值插入右子树并明确写出。
+
+**考点：** 二叉排序树的插入
+        `,
             tags: [
                 "客观题",
                 "单选题",
@@ -831,15 +887,20 @@ tree = {1, 2, 3, 4, -1, 6, 7}，按层序还原：节点 1 的孩子是 2、3；
             ],
             answer: 0,
             score: 2,
-            explanation: `**答案：正确**
+            explanation: `
+**答案：√**
 
-            **判定依据：**
-            本题答案已依据试卷标准答案完成录入，可结合题干与选项复盘对应知识点。
+**解析：**
+DFS 的非递归实现确实用**栈**：出栈访问当前节点，把它的孩子（后访问的先压）压栈——栈的**后进先出（LIFO）**保证「一条路走到黑、走不通再回头」的深度优先语义。
 
-            **易混概念：** 栈是后进先出（LIFO）。注意栈空时 pop 会出错，需先判空；递归/函数调用依赖调用栈，过深会栈溢出；单调栈用于找左右第一个更大/更小元素。
+与 BFS 对比：BFS 用**队列**（FIFO）实现逐层扩展。栈 vs 队列正是 DFS/BFS 最本质的实现差异。
 
-            **考点：** 栈
-            `,
+递归版 DFS 虽然没写显式的栈，但函数调用栈本质上就是那个栈。
+
+**易错点：** 「先进后出」与「后进先出」是同一特性；若题干说 BFS 用栈则错误（那变成 DFS 了）。
+
+**考点：** DFS 与栈的对应关系
+        `,
             tags: [
                 "客观题",
                 "判断题",
