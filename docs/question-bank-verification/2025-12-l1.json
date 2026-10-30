@@ -1,10 +1,10 @@
 {
   "paperId": "2025-12-l1",
-  "reviewedAt": "2026-10-24",
+  "reviewedAt": "2026-10-30",
   "reviewedBy": {
     "type": "AI",
-    "executor": "WorkBuddy 子代理",
-    "session": "codex/question-bank-verification"
+    "executor": "agy gemini-3.8-flash-medium + Grok/executor 校对",
+    "session": "verify/explanations-2025-12-l1"
   },
   "source": {
     "mirrorUrl": "https://raw.githubusercontent.com/Dora321/gesp-official-pdfs/main/pdfs/2025%E5%B9%B412%E6%9C%88-C%2B%2B1%E7%BA%A7.pdf",
@@ -61,16 +61,22 @@
       "id": 10,
       "dimensions": [
         "statement",
-        "options"
+        "options",
+        "explanation"
       ],
       "method": [
-        "官方PDF对照"
+        "官方PDF对照",
+        "官方答案对照",
+        "解析质量审校",
+        "Gemini 3.8 Flash 草稿校对落地"
       ],
       "findings": "题干「有关下面C++代码的发展」为错别字，官方为「有关下面C++代码的说法」；选项 C/D「结果相同」官方为「效果相同」。",
       "fix": "恢复官方措辞。官方答案行 Q10=B 一致（i=0 时序列变 0,2,4,6,8，和 20≠25）。",
       "resolved": true,
-      "reviewedAt": "2026-10-27",
-      "reviewedBy": "AI对照官方PDF校订"
+      "reviewedAt": "2026-10-30",
+      "reviewedBy": "AI · agy gemini-3.8-flash-medium + 校对",
+      "evidence": "官方答案表/解析审校；答案未改",
+      "note": "Q10 explanation 升级；答案未改"
     },
     {
       "id": 21,
@@ -125,6 +131,38 @@
       "resolved": true,
       "reviewedAt": "2026-10-27",
       "reviewedBy": "AI对照官方PDF校订"
+    },
+    {
+      "id": 26,
+      "resolved": true,
+      "dimensions": [
+        "explanation"
+      ],
+      "method": [
+        "官方答案对照",
+        "解析质量审校",
+        "Gemini 3.8 Flash 草稿校对落地"
+      ],
+      "reviewedBy": "AI · agy gemini-3.8-flash-medium + 校对",
+      "reviewedAt": "2026-10-30",
+      "evidence": "官方答案表/解析审校；答案未改",
+      "note": "Q26 explanation 升级；答案未改"
+    },
+    {
+      "id": 27,
+      "resolved": true,
+      "dimensions": [
+        "explanation"
+      ],
+      "method": [
+        "官方答案对照",
+        "解析质量审校",
+        "Gemini 3.8 Flash 草稿校对落地"
+      ],
+      "reviewedBy": "AI · agy gemini-3.8-flash-medium + 校对",
+      "reviewedAt": "2026-10-30",
+      "evidence": "官方答案表/解析审校；答案未改",
+      "note": "Q27 explanation 升级；答案未改"
     }
   ],
   "unresolved": [],
