@@ -1,10 +1,10 @@
 {
   "paperId": "2023-09-l1",
-  "reviewedAt": "2026-10-25",
+  "reviewedAt": "2026-10-30",
   "reviewedBy": {
     "type": "AI",
-    "executor": "WorkBuddy 子代理",
-    "session": "codex/question-bank-verification"
+    "executor": "agy gemini-3.8-flash-medium + Grok/executor 校对",
+    "session": "verify/explanations-2023-09-l1"
   },
   "source": {
     "mirrorUrl": "https://raw.githubusercontent.com/Dora321/gesp-official-pdfs/main/pdfs/2023%E5%B9%B49%E6%9C%88-C%2B%2B1%E7%BA%A7.pdf",
@@ -29,6 +29,44 @@
     }
   },
   "questions": [
+    {
+      "questionId": 4,
+      "issue": "题面偏差：官方Q4为题干+两行代码块（int a = 3, b = 4; / cout << \"a+b=\" << a+b;），选项A「3+4= 7」(=与7之间有空格)、B「3+4=7」；题库把代码内嵌题干且B选项误写为「7」，导致A/B选项文字重复",
+      "fix": "按官方原卷恢复Q4：题干还原+代码块，选项A补空格、B改回「3+4=7」；答案C不变",
+      "evidence": "200dpi渲染p.1确认官方代码块与选项空格；官方答案表程序化提取 CDB CDBACACB BDDA，Q4=C 题库一致"
+    },
+    {
+      "id": 6,
+      "resolved": true,
+      "dimensions": [
+        "explanation"
+      ],
+      "method": [
+        "官方答案对照",
+        "解析质量审校",
+        "Gemini 3.8 Flash 草稿校对落地"
+      ],
+      "reviewedBy": "AI · agy gemini-3.8-flash-medium + 校对",
+      "reviewedAt": "2026-10-30",
+      "evidence": "官方答案表/解析审校；答案未改",
+      "note": "Q6 explanation 升级；答案未改"
+    },
+    {
+      "id": 7,
+      "resolved": true,
+      "dimensions": [
+        "explanation"
+      ],
+      "method": [
+        "官方答案对照",
+        "解析质量审校",
+        "Gemini 3.8 Flash 草稿校对落地"
+      ],
+      "reviewedBy": "AI · agy gemini-3.8-flash-medium + 校对",
+      "reviewedAt": "2026-10-30",
+      "evidence": "官方答案表/解析审校；答案未改",
+      "note": "Q7 explanation 升级；答案未改"
+    },
     {
       "id": 16,
       "paperJudgeNo": 1,
@@ -118,10 +156,36 @@
       "fix": "question 按原卷逐字转写替换，answer 1→0，解析重写（语言分类）"
     },
     {
-      "questionId": 4,
-      "issue": "题面偏差：官方Q4为题干+两行代码块（int a = 3, b = 4; / cout << \"a+b=\" << a+b;），选项A「3+4= 7」(=与7之间有空格)、B「3+4=7」；题库把代码内嵌题干且B选项误写为「7」，导致A/B选项文字重复",
-      "fix": "按官方原卷恢复Q4：题干还原+代码块，选项A补空格、B改回「3+4=7」；答案C不变",
-      "evidence": "200dpi渲染p.1确认官方代码块与选项空格；官方答案表程序化提取 CDB CDBACACB BDDA，Q4=C 题库一致"
+      "id": 26,
+      "resolved": true,
+      "dimensions": [
+        "explanation"
+      ],
+      "method": [
+        "官方答案对照",
+        "解析质量审校",
+        "Gemini 3.8 Flash 草稿校对落地"
+      ],
+      "reviewedBy": "AI · agy gemini-3.8-flash-medium + 校对",
+      "reviewedAt": "2026-10-30",
+      "evidence": "官方答案表/解析审校；答案未改",
+      "note": "Q26 explanation 升级；答案未改"
+    },
+    {
+      "id": 27,
+      "resolved": true,
+      "dimensions": [
+        "explanation"
+      ],
+      "method": [
+        "官方答案对照",
+        "解析质量审校",
+        "Gemini 3.8 Flash 草稿校对落地"
+      ],
+      "reviewedBy": "AI · agy gemini-3.8-flash-medium + 校对",
+      "reviewedAt": "2026-10-30",
+      "evidence": "官方答案表/解析审校；答案未改",
+      "note": "Q27 explanation 升级；答案未改"
     }
   ],
   "unresolved": [],
