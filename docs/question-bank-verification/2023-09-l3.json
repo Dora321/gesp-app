@@ -1,10 +1,10 @@
 {
   "paperId": "2023-09-l3",
-  "reviewedAt": "2026-10-25",
+  "reviewedAt": "2026-10-30",
   "reviewedBy": {
     "type": "AI",
-    "executor": "WorkBuddy 子代理",
-    "session": "codex/question-bank-verification"
+    "executor": "agy gemini-3.8-flash-medium + Grok/executor 校对",
+    "session": "verify/explanations-2023-09-l3"
   },
   "source": {
     "mirrorUrl": "https://raw.githubusercontent.com/Dora321/gesp-official-pdfs/main/pdfs/2023%E5%B9%B49%E6%9C%88-C%2B%2B3%E7%BA%A7.pdf",
@@ -28,6 +28,38 @@
     }
   },
   "questions": [
+    {
+      "id": 11,
+      "resolved": true,
+      "dimensions": [
+        "explanation"
+      ],
+      "method": [
+        "官方答案对照",
+        "解析质量审校",
+        "Gemini 3.8 Flash 草稿校对落地"
+      ],
+      "reviewedBy": "AI · agy gemini-3.8-flash-medium + 校对",
+      "reviewedAt": "2026-10-30",
+      "evidence": "官方答案表/解析审校；答案未改",
+      "note": "Q11 explanation 升级；答案未改"
+    },
+    {
+      "id": 14,
+      "dimensions": [
+        "statement"
+      ],
+      "method": [
+        "官方PDF对照",
+        "页面渲染人工查看"
+      ],
+      "findings": "题干为改写版（「如果要使得下面代码输出 120，则横线处应填入」），官方为「在下列代码的横线处填写（ ），可以使得输出是“120”」。代码与选项与官方一致。",
+      "fix": "恢复官方题干。官方答案行 Q14=D 一致（res=0 时 += 得 15、*= 得 0、= 得 5，均得不到 120）。",
+      "evidence": "tmp/verify/2023-09-l3/pg4-4.png",
+      "resolved": true,
+      "reviewedAt": "2026-10-28",
+      "reviewedBy": "AI对照官方PDF校订"
+    },
     {
       "id": 16,
       "type": "judge",
@@ -112,20 +144,36 @@
       "modified": false
     },
     {
-      "id": 14,
+      "id": 26,
+      "resolved": true,
       "dimensions": [
-        "statement"
+        "explanation"
       ],
       "method": [
-        "官方PDF对照",
-        "页面渲染人工查看"
+        "官方答案对照",
+        "解析质量审校",
+        "Gemini 3.8 Flash 草稿校对落地"
       ],
-      "findings": "题干为改写版（「如果要使得下面代码输出 120，则横线处应填入」），官方为「在下列代码的横线处填写（ ），可以使得输出是“120”」。代码与选项与官方一致。",
-      "fix": "恢复官方题干。官方答案行 Q14=D 一致（res=0 时 += 得 15、*= 得 0、= 得 5，均得不到 120）。",
-      "evidence": "tmp/verify/2023-09-l3/pg4-4.png",
+      "reviewedBy": "AI · agy gemini-3.8-flash-medium + 校对",
+      "reviewedAt": "2026-10-30",
+      "evidence": "官方答案表/解析审校；答案未改",
+      "note": "Q26 explanation 升级；答案未改"
+    },
+    {
+      "id": 27,
       "resolved": true,
-      "reviewedAt": "2026-10-28",
-      "reviewedBy": "AI对照官方PDF校订"
+      "dimensions": [
+        "explanation"
+      ],
+      "method": [
+        "官方答案对照",
+        "解析质量审校",
+        "Gemini 3.8 Flash 草稿校对落地"
+      ],
+      "reviewedBy": "AI · agy gemini-3.8-flash-medium + 校对",
+      "reviewedAt": "2026-10-30",
+      "evidence": "官方答案表/解析审校；答案未改",
+      "note": "Q27 explanation 升级；答案未改"
     }
   ],
   "judgeAnswerAudit": {
