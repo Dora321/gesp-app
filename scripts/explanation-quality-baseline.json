@@ -2,7 +2,7 @@
   "generatedAt": "2026-10-30",
   "policy": "棘轮：既不允许出现新的问题条目，也不允许修好之后不收紧基线。数量下降时 --check 会失败并提示重新记录，使 limits 只降不升，债务趋势留在 git 历史里。",
   "limits": {
-    "template": 1,
+    "template": 0,
     "fabricated-verdict": 0,
     "short": 68,
     "truncated": 9,
@@ -11,9 +11,7 @@
     "overlong": 15
   },
   "issues": {
-    "template": [
-      "2025-06-l5:Q25"
-    ],
+    "template": [],
     "fabricated-verdict": [],
     "short": [
       "2023-09-l6:Q5",
