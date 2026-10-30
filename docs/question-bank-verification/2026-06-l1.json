@@ -9,8 +9,16 @@
   "session": 14,
   "answerTable": {
     "content": {
-      "single": "CDDCBDCCBABABBB",
+      "single": "CDDCBDCCAABABBB",
       "judge": "√√××√√××××"
+    },
+    "correction": {
+      "executedAt": "2026-10-30",
+      "field": "content.single 第 9 位",
+      "from": "B",
+      "to": "A",
+      "evidence": "官方 PDF（mirrorUrl，git blob sha e771e576ce589f0c1c56efd0da05d815fe35c62a 本地复算一致）p.1 答案表 150dpi 渲染读图：题号 9 对应 A；文本层同为 `C D D C B D C C A A B A B B B`。逐项模拟题干代码 35 次循环，仅 A（> /= +=）输出与题干序列一致。",
+      "note": "此前 answerTable 第 9 位误抄为 B，导致扫描报 Q9 mismatch；题库答案 A 本就正确，未改答案。"
     }
   },
   "verification": {
@@ -54,6 +62,24 @@
       "reviewedAt": "2026-10-30",
       "evidence": "官方答案表/解析审校；答案未改",
       "note": "Q8 explanation 升级；答案未改"
+    },
+    {
+      "id": 9,
+      "resolved": true,
+      "dimensions": [
+        "explanation"
+      ],
+      "method": [
+        "官方答案对照",
+        "解析质量审校",
+        "Gemini 3.8 Flash 草稿校对落地"
+      ],
+      "reviewedBy": "AI · agy gemini-3.8-flash-medium + 校对",
+      "reviewedAt": "2026-10-30",
+      "evidence": "官方 PDF p.1 答案表第 9 位 = A（渲染读图 + 文本层）；35 次循环逐项模拟，仅 A 与题干输出一致；答案未改",
+      "note": "Q9 explanation 重写（修正原 D 项分析把 `=+` 错放到第二空的问题）；answerTable 第 9 位误抄 B 已更正为 A；答案未改",
+      "official": "A",
+      "bank": "A"
     },
     {
       "id": 12,
