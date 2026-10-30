@@ -3,8 +3,8 @@
   "executedAt": "2026-10-25",
   "reviewedBy": {
     "type": "AI",
-    "executor": "WorkBuddy 子代理",
-    "session": "codex/question-bank-verification"
+    "executor": "agy gemini-3.8-flash-medium + Grok/executor 校对",
+    "session": "verify/explanations-2025-09-l4"
   },
   "source": {
     "mirrorUrl": "https://raw.githubusercontent.com/Dora321/gesp-official-pdfs/main/pdfs/2025%E5%B9%B49%E6%9C%88-C%2B%2B4%E7%BA%A7.pdf",
@@ -22,6 +22,60 @@
     "singleChoice": "本卷 PDF 未附单选答案表"
   },
   "questions": [
+    {
+      "questionId": 17,
+      "issue": "审计低分：官方文本层J2区域代码块串位/丢失，题面探针匹配失败",
+      "fix": "定性为假阴性，无需修改——渲染p.6确认官方J2代码（int x=10; void f(){ int x=x+1; cout<<x<<endl;} int main(){f();}）与题库Q17完全一致",
+      "evidence": "官方判断答案表（p.6顶部）××√√×√√××× 题库10/10对；单选15/15对（程序化提取BCDADC BBCAABBCD）；判断题J1-J10与题库Q16-Q25逐位对齐，Q17=J2输出11(UB)题"
+    },
+    {
+      "id": 2,
+      "resolved": true,
+      "dimensions": [
+        "explanation"
+      ],
+      "method": [
+        "官方答案对照",
+        "解析质量审校",
+        "Gemini 3.8 Flash 草稿校对落地"
+      ],
+      "reviewedBy": "AI · agy gemini-3.8-flash-medium + 校对",
+      "reviewedAt": "2026-10-30",
+      "evidence": "官方答案表/解析审校；答案未改",
+      "note": "Q2 explanation 升级；答案未改"
+    },
+    {
+      "id": 9,
+      "resolved": true,
+      "dimensions": [
+        "explanation"
+      ],
+      "method": [
+        "官方答案对照",
+        "解析质量审校",
+        "Gemini 3.8 Flash 草稿校对落地"
+      ],
+      "reviewedBy": "AI · agy gemini-3.8-flash-medium + 校对",
+      "reviewedAt": "2026-10-30",
+      "evidence": "官方答案表/解析审校；答案未改",
+      "note": "Q9 explanation 升级；答案未改"
+    },
+    {
+      "id": 15,
+      "resolved": true,
+      "dimensions": [
+        "explanation"
+      ],
+      "method": [
+        "官方答案对照",
+        "解析质量审校",
+        "Gemini 3.8 Flash 草稿校对落地"
+      ],
+      "reviewedBy": "AI · agy gemini-3.8-flash-medium + 校对",
+      "reviewedAt": "2026-10-30",
+      "evidence": "官方答案表/解析审校；答案未改",
+      "note": "Q15 explanation 升级；答案未改"
+    },
     {
       "id": 16,
       "official": "×",
@@ -97,10 +151,36 @@
       "resolved": true
     },
     {
-      "questionId": 17,
-      "issue": "审计低分：官方文本层J2区域代码块串位/丢失，题面探针匹配失败",
-      "fix": "定性为假阴性，无需修改——渲染p.6确认官方J2代码（int x=10; void f(){ int x=x+1; cout<<x<<endl;} int main(){f();}）与题库Q17完全一致",
-      "evidence": "官方判断答案表（p.6顶部）××√√×√√××× 题库10/10对；单选15/15对（程序化提取BCDADC BBCAABBCD）；判断题J1-J10与题库Q16-Q25逐位对齐，Q17=J2输出11(UB)题"
+      "id": 26,
+      "resolved": true,
+      "dimensions": [
+        "explanation"
+      ],
+      "method": [
+        "官方答案对照",
+        "解析质量审校",
+        "Gemini 3.8 Flash 草稿校对落地"
+      ],
+      "reviewedBy": "AI · agy gemini-3.8-flash-medium + 校对",
+      "reviewedAt": "2026-10-30",
+      "evidence": "官方答案表/解析审校；答案未改",
+      "note": "Q26 explanation 升级；答案未改"
+    },
+    {
+      "id": 27,
+      "resolved": true,
+      "dimensions": [
+        "explanation"
+      ],
+      "method": [
+        "官方答案对照",
+        "解析质量审校",
+        "Gemini 3.8 Flash 草稿校对落地"
+      ],
+      "reviewedBy": "AI · agy gemini-3.8-flash-medium + 校对",
+      "reviewedAt": "2026-10-30",
+      "evidence": "官方答案表/解析审校；答案未改",
+      "note": "Q27 explanation 升级；答案未改"
     }
   ],
   "summary": {
@@ -108,5 +188,6 @@
     "judgeChanged": 2
   },
   "unresolved": [],
-  "lastReviewedAt": "2026-10-28"
+  "lastReviewedAt": "2026-10-28",
+  "reviewedAt": "2026-10-30"
 }
