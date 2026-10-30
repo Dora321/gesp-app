@@ -1,23 +1,101 @@
 {
   "paperId": "2023-09-l4",
-  "reviewedAt": "2026-10-24",
-  "reviewedBy": { "type": "AI", "executor": "WorkBuddy 子代理", "session": "codex/question-bank-verification" },
+  "reviewedAt": "2026-10-30",
+  "reviewedBy": {
+    "type": "AI",
+    "executor": "agy gemini-3.8-flash-medium + Grok/executor 校对",
+    "session": "verify/explanations-2023-09-l4"
+  },
   "source": {
     "mirrorUrl": "https://raw.githubusercontent.com/Dora321/gesp-official-pdfs/main/pdfs/2023%E5%B9%B49%E6%9C%88-C%2B%2B4%E7%BA%A7.pdf",
     "mirrorSha": "c9e841fe71e1503f99b1666642a6cd26734d254b",
     "shaVerified": true,
     "fetchedAt": "2026-10-24",
-    "pages": { "Q14": "pp.3-4" }
+    "pages": {
+      "Q14": "pp.3-4"
+    }
   },
   "questions": [
     {
+      "id": 5,
+      "resolved": true,
+      "dimensions": [
+        "explanation"
+      ],
+      "method": [
+        "官方答案对照",
+        "解析质量审校",
+        "Gemini 3.8 Flash 草稿校对落地"
+      ],
+      "reviewedBy": "AI · agy gemini-3.8-flash-medium + 校对",
+      "reviewedAt": "2026-10-30",
+      "evidence": "官方答案表/解析审校；答案未改",
+      "note": "Q5 explanation 升级；答案未改"
+    },
+    {
+      "id": 7,
+      "resolved": true,
+      "dimensions": [
+        "explanation"
+      ],
+      "method": [
+        "官方答案对照",
+        "解析质量审校",
+        "Gemini 3.8 Flash 草稿校对落地"
+      ],
+      "reviewedBy": "AI · agy gemini-3.8-flash-medium + 校对",
+      "reviewedAt": "2026-10-30",
+      "evidence": "官方答案表/解析审校；答案未改",
+      "note": "Q7 explanation 升级；答案未改"
+    },
+    {
       "id": 14,
-      "dimensions": ["statement", "answer", "explanation"],
-      "method": ["原卷对照（页面渲染人工查看）", "程序执行", "独立推导"],
+      "dimensions": [
+        "statement",
+        "answer",
+        "explanation"
+      ],
+      "method": [
+        "原卷对照（页面渲染人工查看）",
+        "程序执行",
+        "独立推导"
+      ],
       "findings": "题面缺失完整程序（原卷为图片，位于 p.4 顶部）：计算斐波那契数列存入 int fib[10]，随后输出 fib[10]。fib[10] 越界（合法下标 0~9），属未定义行为，故输出「无法确定」，官方答案 D 与题库 answer 3 一致，无冲突。原解析围绕「代码缺失」撰写，与恢复后的代码矛盾（声称「题干未附代码」）。",
       "fix": "按原卷 pp.3-4 逐字转写 12 行完整程序，以本文件既有带代码题目（第 15 题）同款 code 字段回填（渲染层 buildQuestionContent 自动加 fenced 块）；删除 sourceIntegrity/integrityNote；解析整体重写为：越界访问推导 + 逐选项（0=fib[0]、5=fib[5]、55=假想 fib[11]）错误理由 + 未定义行为考点。",
       "evidence": "独立推导：fib[0..9] = 0,1,1,2,3,5,8,13,21,34，fib[10] 越界。g++ 编译运行转写代码（WinLibs GCC 16.1.0，x86_64），实际输出 -1006020888（垃圾值），既非 0/5/55 也非稳定值，直接印证「无法确定」，与 answer 3（D）一致。注：-fsanitize=address 在该 MinGW 工具链不可用（缺 -lasan），未影响结论。tmp/verify/2023-09-l4/q14.cpp",
       "resolved": true
+    },
+    {
+      "id": 26,
+      "resolved": true,
+      "dimensions": [
+        "explanation"
+      ],
+      "method": [
+        "官方答案对照",
+        "解析质量审校",
+        "Gemini 3.8 Flash 草稿校对落地"
+      ],
+      "reviewedBy": "AI · agy gemini-3.8-flash-medium + 校对",
+      "reviewedAt": "2026-10-30",
+      "evidence": "官方答案表/解析审校；答案未改",
+      "note": "Q26 explanation 升级；答案未改"
+    },
+    {
+      "id": 27,
+      "resolved": true,
+      "dimensions": [
+        "explanation"
+      ],
+      "method": [
+        "官方答案对照",
+        "解析质量审校",
+        "Gemini 3.8 Flash 草稿校对落地"
+      ],
+      "reviewedBy": "AI · agy gemini-3.8-flash-medium + 校对",
+      "reviewedAt": "2026-10-30",
+      "evidence": "官方答案表/解析审校；答案未改",
+      "note": "Q27 explanation 升级；答案未改"
     }
   ],
   "unresolved": [
