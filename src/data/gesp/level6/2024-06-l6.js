@@ -122,18 +122,26 @@ export const paperData = {
             ],
             answer: 3,
             score: 2,
-            explanation: `**答案：D**
+            explanation: `
+**答案：D**
 
-            **解析：**
-            本题答案已依据试卷标准答案完成录入，可结合题干与选项复盘对应知识点。
+**解析：**
+面向对象编程（OOP）的三大核心原则是**封装、继承、多态**：
 
-            - **A 贪心、动态规划、回溯**：不是本题答案。动态规划的状态或转移方程有误，请检查边界初始化。
-            - **B 并发、并行、异步**：不是本题答案。
-            - **C 递归、循环、分治**：不是本题答案。
-            - **D 封装、继承、多态**：正确答案。
+- **封装**：把数据和操作数据的方法绑定在类中，通过访问控制（private/protected/public）隐藏内部实现细节。
+- **继承**：子类复用父类的成员，建立 is-a 关系，实现代码复用与层次化设计。
+- **多态**：同一接口在不同派生类中有不同实现（如虚函数重写），运行时按实际类型绑定。
 
-            **考点：** 面向对象
-            `,
+逐项分析：
+- **A 贪心、动态规划、回溯**：这是三种**算法设计策略**，与 OOP 思想无关。
+- **B 并发、并行、异步**：这是程序**执行模型**的概念。
+- **C 递归、循环、分治**：这是**程序控制结构/算法技巧**。
+- **D 封装、继承、多态**：正确，OOP 三大特性。
+
+**易错点：** 贪心/动态规划属于算法范畴，容易与「面向对象」的概念混淆——区分「语言特性/设计思想」与「算法策略」两类概念。
+
+**考点：** 面向对象基本思想
+        `,
             tags: [
                 "客观题",
                 "单选题",
@@ -143,27 +151,40 @@ export const paperData = {
         {
             id: 2,
             type: "single",
-            question: `运行下列代码，屏幕上输出（ ）。`,
+            question: `运行下列代码，屏幕上输出（ ）。\n\n\`\`\`cpp\n#include <iostream>\nusing namespace std;\nclass my_class {\npublic:\n    static int count;\n    my_class() {\n        count++;\n    }\n    ~my_class() {\n        count--;\n    }\n    static void print_count() {\n        cout << count << " ";\n    }\n};\nint my_class::count = 0;\nint main() {\n    my_class obj1;\n    my_class::print_count();\n    my_class obj2;\n    obj2.print_count();\n    my_class obj3;\n    obj3.print_count();\n    return 0;\n}\n\`\`\`\n`,
             options: [
-                "1 1 1 #include <iostream> using namespace std; class my_class { public: static int count; my_class() { count++; } ~my_class() { count--; } static void print_count() { cout << count << \" \"; } }; int my_class::count = 0; int main() { my_class obj1; my_class::print_count(); my_class obj2; obj2.print_count(); my_class obj3; obj3.print_count(); return 0; } 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26",
+                "1 1 1",
                 "1 2 3",
                 "1 1 2",
                 "1 2 2",
             ],
             answer: 1,
             score: 2,
-            explanation: `**答案：B**
+            explanation: `
+**答案：B**
 
-            **解析：**
-            本题答案已依据试卷标准答案完成录入，可结合题干与选项复盘对应知识点。
+**解析：**
+关键点：\`count\` 是**静态成员变量**，被该类所有对象共享；构造函数 \`count++\`、析构函数 \`count--\`。
 
-            - **A 1 1 1 #include <iostream> using namespac...**：错误。该代码逻辑与题目要求不符，请逐步推演。
-            - **B 1 2 3**：正确答案。
-            - **C 1 1 2**：错误。
-            - **D 1 2 2**：错误。
+程序执行流程：
+1. \`int my_class::count = 0;\` —— 静态成员在类外初始化为 0。
+2. 构造 \`obj1\` → count = 1，调用 \`my_class::print_count()\` 输出 **1**。
+3. 构造 \`obj2\` → count = 2，调用 \`obj2.print_count()\` 输出 **2**。
+4. 构造 \`obj3\` → count = 3，调用 \`obj3.print_count()\` 输出 **3**。
+5. main 返回时三个对象依次析构，count 递减为 0，但已不再输出。
 
-            **考点：** C++基础
-            `,
+屏幕输出：\`1 2 3\`。
+
+逐项分析：
+- **A 1 1 1**：错误，若每个对象有独立的 count 才可能这样，但 count 是静态共享的。
+- **B 1 2 3**：正确。
+- **C 1 1 2**：错误，构造次数与输出一一对应。
+- **D 1 2 2**：错误，第三次构造后 count 必为 3。
+
+**易错点：** 静态成员函数 \`print_count()\` 既可以用类名调用（\`my_class::print_count()\`），也可以用对象调用（\`obj2.print_count()\`），两者等价——不要以为后者会出错。
+
+**考点：** 类的静态成员、构造与析构函数
+        `,
             tags: [
                 "客观题",
                 "单选题",
@@ -173,7 +194,7 @@ export const paperData = {
         {
             id: 3,
             type: "single",
-            question: `运行下列代码，屏幕上输出（ ）。 #include <iostream> using namespace std; class shape { protected: int width, height; public: shape(int a = 0, int b = 0) { width = a; height = b; } virtual int area() { cout << "parent class area: " <<endl; return 0; } }; class rectangle: public shape { public: rectangle(int a = 0, int b = 0) : shape(a, b) { } int area () { cout << "rectangle area: "; return (width * height); } }; class triangle: public shape { public: triangle(int a = 0, int b = 0) : shape(a, b) { } int area () { cout << "triangle area: "; return (width * height / 2); } }; int main() { shape *pshape; rectangle rec(10, 7); triangle tri(10, 5); pshape = &rec; pshape->area(); pshape = &tri; pshape->area(); return 0; 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27 28 29 30 31 32 33 34 35 36 37 38 39 40 41 42 43 44 45 46 47 48`,
+            question: `运行下列代码，屏幕上输出（ ）。\n\n\`\`\`cpp\n#include <iostream>\nusing namespace std;\nclass shape {\nprotected:\n    int width, height;\npublic:\n    shape(int a = 0, int b = 0) {\n        width = a;\n        height = b;\n    }\n    virtual int area() {\n        cout << "parent class area: " << endl;\n        return 0;\n    }\n};\nclass rectangle : public shape {\npublic:\n    rectangle(int a = 0, int b = 0) : shape(a, b) { }\n    int area() {\n        cout << "rectangle area: ";\n        return (width * height);\n    }\n};\nclass triangle : public shape {\npublic:\n    triangle(int a = 0, int b = 0) : shape(a, b) { }\n    int area() {\n        cout << "triangle area: ";\n        return (width * height / 2);\n    }\n};\nint main() {\n    shape *pshape;\n    rectangle rec(10, 7);\n    triangle tri(10, 5);\n    pshape = &rec;\n    pshape->area();\n    pshape = &tri;\n    pshape->area();\n    return 0;\n}\n\`\`\`\n`,
             options: [
                 "rectangle area: triangle area:",
                 "parent class area: parent class area:",
@@ -182,18 +203,28 @@ export const paperData = {
             ],
             answer: 0,
             score: 2,
-            explanation: `**答案：A**
+            explanation: `
+**答案：A**
 
-            **解析：**
-            本题答案已依据试卷标准答案完成录入，可结合题干与选项复盘对应知识点。
+**解析：**
+关键点：基类 \`shape\` 的 \`area()\` 声明为 **virtual（虚函数）**，通过基类指针 \`pshape\` 调用时发生**动态绑定（多态）**——实际执行的是指针所指对象自己的 \`area()\`。
 
-            - **A rectangle area: triangle area:**：正确答案。
-            - **B parent class area: parent class area:**：不是本题答案。
-            - **C 运行时报错**：不是本题答案。
-            - **D 编译时报错**：不是本题答案。
+程序执行流程：
+1. \`pshape = &rec; pshape->area();\` —— 实际对象是 rectangle，先输出 \`rectangle area: \`，再返回 \`10*7=70\`（返回值未使用）。
+2. \`pshape = &tri; pshape->area();\` —— 实际对象是 triangle，先输出 \`triangle area: \`，再返回 \`10*5/2=25\`。
 
-            **考点：** 面向对象
-            `,
+屏幕输出：\`rectangle area: triangle area: \`，选 A。
+
+逐项分析：
+- **A**：正确，两次调用都动态绑定到派生类的 area()。
+- **B**：错误，只有当 area() **不是**虚函数时才会静态绑定调用基类版本。
+- **C 运行时报错**：错误，虚函数机制合法且正常运行。
+- **D 编译时报错**：错误，基类指针指向派生类对象是合法的向上转型。
+
+**易错点：** 派生类的 \`area()\` 即使不写 \`virtual\` 关键字，也自动继承虚函数属性（C++ 规定重写基类虚函数时隐含 virtual）。
+
+**考点：** 虚函数与多态、动态绑定
+        `,
             tags: [
                 "客观题",
                 "单选题",
@@ -212,18 +243,26 @@ export const paperData = {
             ],
             answer: 1,
             score: 2,
-            explanation: `**答案：B**
+            explanation: `
+**答案：B**
 
-            **解析：**
-            本题答案已依据试卷标准答案完成录入，可结合题干与选项复盘对应知识点。
+**解析：**
+链式栈的插入（push）发生在**栈顶**：新结点 s 要成为新的栈顶，原栈顶 hs 变为 s 的直接后继。
 
-            - **A hs->next = s;**：不是本题答案。
-            - **B s->next = hs; hs = s;**：正确答案。
-            - **C s->next = hs->next; hs->next = s;**：不是本题答案。
-            - **D s->next = hs; hs = hs->next;**：不是本题答案。
+两步操作（顺序不能颠倒）：
+1. \`s->next = hs;\` —— 新结点的 next 指向原栈顶。
+2. \`hs = s;\` —— 栈顶指针更新为 s。
 
-            **考点：** 栈
-            `,
+逐项分析：
+- **A \`hs->next = s;\`**：错误，这是把 s 挂到栈顶**之后**（栈顶下方），s 没有成为栈顶。
+- **B \`s->next = hs; hs = s;\`**：正确，标准头插法。
+- **C \`s->next = hs->next; hs->next = s;\`**：错误，这是在栈顶**后面**插入结点，s 位于第二个位置，不是新栈顶。
+- **D \`s->next = hs; hs = hs->next;\`**：错误，第二条语句让 hs 又指回原栈顶，栈顶指针没有更新为 s。
+
+**易错点：** 若先执行 \`hs = s;\` 再执行 \`s->next = hs;\`，s 会指向自己，链表断裂——「先接链、后移指针」是链式栈/链表头插的铁律。
+
+**考点：** 链式栈的插入操作
+        `,
             tags: [
                 "客观题",
                 "单选题",
@@ -242,18 +281,22 @@ export const paperData = {
             ],
             answer: 1,
             score: 2,
-            explanation: `**答案：B**
+            explanation: `
+**答案：B**
 
-            **解析：**
-            本题答案已依据试卷标准答案完成录入，可结合题干与选项复盘对应知识点。
+**解析：**
+栈（stack）是一种**后进先出（LIFO，Last In First Out）**的线性数据结构：入栈（push）和出栈（pop）都发生在**栈顶**一端。最后压入的元素最先弹出，就像叠盘子。
 
-            - **A 先进先出**：不是本题答案。
-            - **B 先进后出**：正确答案。
-            - **C 最小值先出**：不是本题答案。
-            - **D 随机顺序**：不是本题答案。
+逐项分析：
+- **A 先进先出**：错误，这是**队列（queue）**的原则。
+- **B 先进后出**：正确，即后进先出（LIFO）。
+- **C 最小值先出**：错误，这是**优先队列（小根堆）**的行为。
+- **D 随机顺序**：错误，栈的出入顺序是确定的。
 
-            **考点：** 栈
-            `,
+**易错点：** 「先进后出」和「后进先出」是同一件事的两种说法，考试中两者都可能作为正确选项出现，注意与队列的 FIFO 区分。
+
+**考点：** 栈的特性
+        `,
             tags: [
                 "客观题",
                 "单选题",
@@ -263,7 +306,7 @@ export const paperData = {
         {
             id: 6,
             type: "single",
-            question: `要实现将一个输入的十进制正整数转化为二进制表示，下面横线上应填入的代码为（ ）。 }49 #include <iostream> using namespace std; stack<int> ten2bin(int n) { stack<int> st; int r, m; r = n % 2; m = n / 2; st.push(r); while (m != 1) { r = m % 2; st.push(r); m = m / 2; } st.push(m); return st; } int main() { int n; cin >> n; stack<int> bin; bin = ten2bin(n); while (!bin.empty()) { 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26`,
+            question: `要实现将一个输入的十进制正整数转化为二进制表示，下面横线上应填入的代码为（ ）。\n\n\`\`\`cpp\n#include <iostream>\n#include <stack>\nusing namespace std;\nstack<int> ten2bin(int n) {\n    stack<int> st;\n    int r, m;\n    r = n % 2;\n    m = n / 2;\n    st.push(r);\n    while (m != 1) {\n        r = m % 2;\n        st.push(r);\n        m = m / 2;\n    }\n    st.push(m);\n    return st;\n}\nint main() {\n    int n;\n    cin >> n;\n    stack<int> bin;\n    bin = ten2bin(n);\n    while (!bin.empty()) {\n        ____________________ // 在此处填入代码\n    }\n    return 0;\n}\n\`\`\`\n`,
             options: [
                 "cout << bin.top(); bin.pop();",
                 "bin.pop(); cout << bin.top();",
@@ -272,18 +315,24 @@ export const paperData = {
             ],
             answer: 0,
             score: 2,
-            explanation: `**答案：A**
+            explanation: `
+**答案：A**
 
-            **解析：**
-            本题答案已依据试卷标准答案完成录入，可结合题干与选项复盘对应知识点。
+**解析：**
+\`ten2bin()\` 用栈保存每次取模得到的余数：\`r = n % 2\` 是**最低位**，最先入栈，压在**栈底**；不断除以 2，**最高位**最后 \`st.push(m)\` 压入，位于**栈顶**。
 
-            - **A cout << bin.top(); bin.pop();**：正确答案。
-            - **B bin.pop(); cout << bin.top();**：不是本题答案。该代码逻辑与题目要求不符，请逐步推演。
-            - **C cout << bin.back(); bin.pop();**：不是本题答案。该代码逻辑与题目要求不符，请逐步推演。
-            - **D cout << bin.front(); bin.pop();**：不是本题答案。该代码逻辑与题目要求不符，请逐步推演。
+因此输出二进制时必须**从栈顶开始**（最高位在前）：先 \`cout << bin.top()\` 输出当前栈顶，再 \`bin.pop()\` 弹出，循环直到栈空。
 
-            **考点：** 栈
-            `,
+逐项分析：
+- **A \`cout << bin.top(); bin.pop();\`**：正确，先取栈顶输出再弹出。
+- **B \`bin.pop(); cout << bin.top();\`**：错误，先弹出会**跳过最高位**，且最后一步对空栈 top() 是未定义行为。
+- **C \`cout << bin.back(); bin.pop();\`**：错误，\`back()\` 不是 std::stack 的接口（栈只有 top）。
+- **D \`cout << bin.front(); bin.pop();\`**：错误，\`front()\` 也不是 std::stack 的接口（那是 queue/list 的）。
+
+**易错点：** std::stack 的适配器只暴露 \`top()\`，不提供 \`front()\`/\`back()\`；顺序颠倒（先 pop 后 top）会漏掉最高位。
+
+**考点：** 栈的应用（进制转换）、std::stack 接口
+        `,
             tags: [
                 "客观题",
                 "单选题",
@@ -293,7 +342,7 @@ export const paperData = {
         {
             id: 7,
             type: "single",
-            question: `下面定义了一个循环队列的类，请补全判断队列是否满的函数，横向上应填写（ ）。 _____________________ // 在此处填入代码 } return 0; } 27 28 29 30 #include <iostream> using namespace std; class circular_queue { private: int *arr; // 数组用于存储队列元素 int capacity; // 队列容量 int front; // 队头指针 int rear; // 队尾指针 public: circular_queue(int size) { capacity = size+1; // 为了避免队列满时与队列空时指针相等的情况，多预留一个空间 arr = new int[capacity]; front = 0; rear = 0; } ~circular_queue() { delete[] arr; } bool is_empty() { return front == rear; } bool is_full() { ________________ // 在此处填入代码 } void en_queue(int data) { if (is_full()) { cout << " 队列已满，无法入队！ " << endl; return -1; } arr[rear] = data; rear = (rear+1) % capacity; return 1; } 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26 27 28 29 30 31 32 33 34 35 36 37 38 39 40 41`,
+            question: `下面定义了一个循环队列的类，请补全判断队列是否满的函数，横线上应填写（ ）。\n\n\`\`\`cpp\n#include <iostream>\nusing namespace std;\nclass circular_queue {\nprivate:\n    int *arr;      // 数组用于存储队列元素\n    int capacity;  // 队列容量\n    int front;     // 队头指针\n    int rear;      // 队尾指针\npublic:\n    circular_queue(int size) {\n        capacity = size + 1; // 为避免队列满与队列空时指针相等，多预留一个空间\n        arr = new int[capacity];\n        front = 0;\n        rear = 0;\n    }\n    ~circular_queue() {\n        delete[] arr;\n    }\n    bool is_empty() {\n        return front == rear;\n    }\n    bool is_full() {\n        ________________ // 在此处填入代码\n    }\n    void en_queue(int data) {\n        if (is_full()) {\n            cout << "队列已满，无法入队！" << endl;\n            return -1;\n        }\n        arr[rear] = data;\n        rear = (rear + 1) % capacity;\n        return 1;\n    }\n    int de_queue() {\n        if (is_empty()) {\n            cout << "队列为空，无法出队！" << endl;\n            return -1; // 出队失败，返回一个特殊值\n        }\n        int data = arr[front];\n        front = (front + 1) % capacity;\n        return data;\n    }\n};\n\`\`\`\n`,
             options: [
                 "return (rear+1) % capacity == front;",
                 "return rear % capacity == front;",
@@ -302,18 +351,27 @@ export const paperData = {
             ],
             answer: 0,
             score: 2,
-            explanation: `**答案：A**
+            explanation: `
+**答案：A**
 
-            **解析：**
-            本题答案已依据试卷标准答案完成录入，可结合题干与选项复盘对应知识点。
+**解析：**
+该实现**多预留一个空位**来区分「队满」和「队空」（否则两者都满足 \`front == rear\`，无法区分）：
 
-            - **A return (rear+1) % capacity == front;**：正确答案。
-            - **B return rear % capacity == front;**：不是本题答案。该代码逻辑与题目要求不符，请逐步推演。
-            - **C return rear == front;**：不是本题答案。该代码逻辑与题目要求不符，请逐步推演。
-            - **D return (rear+1) == front;**：不是本题答案。该代码逻辑与题目要求不符，请逐步推演。
+- 队空条件：\`front == rear\`（is_empty 已给出）。
+- 队满条件：rear 再前进一格就会追上 front，即 **\`(rear + 1) % capacity == front\`**。
 
-            **考点：** 队列
-            `,
+\`% capacity\` 保证 rear 越过数组末尾后回绕到开头，这正是「循环」队列的关键。
+
+逐项分析：
+- **A \`return (rear + 1) % capacity == front;\`**：正确，牺牲一个空位的标准判满。
+- **B \`return rear % capacity == front;\`**：错误，rear 本身指向下一个插入位置，rear==front 表示队**空**，这会把空队误判为满。
+- **C \`return rear == front;\`**：错误，这是判空条件。
+- **D \`return (rear + 1) == front;\`**：错误，缺少取模回绕，当 rear 在数组末尾、front 在开头时会漏判。
+
+**易错点：** 判满和判空只差一个「+1 取模」，选项 A/C 极易混淆；记住构造函数注释「capacity = size + 1，多预留一个空间」就是为这套判满逻辑服务的。
+
+**考点：** 循环队列的判满条件
+        `,
             tags: [
                 "客观题",
                 "单选题",
@@ -332,19 +390,32 @@ export const paperData = {
             ],
             answer: 2,
             score: 2,
-            explanation: `**答案：C**
+            explanation: `
+**答案：C**
 
-            **解析：**
-            本题答案已依据试卷标准答案完成录入，可结合题干与选项复盘对应知识点。
+**解析：**
+字符串 \`classmycls\` 共 10 个字符，统计频率：s×3、c×2、l×2、a×1、m×1、y×1。
 
-            - **A 10**：不是本题答案。该数值与正确计算结果不符，请重新验算。
-            - **B 20**：不是本题答案。该数值与正确计算结果不符，请重新验算。
-            - **C 25**：正确答案。
-            - **D 30**：不是本题答案。该数值与正确计算结果不符，请重新验算。
+构造哈夫曼树（每次合并频率最小的两棵）：
+1. a(1) + m(1) = 2
+2. y(1) + 2 = 3
+3. s(3) + 3 = 6
+4. c(2) + l(2) = 4
+5. 6 + 4 = 10（根）
 
+各字符编码长度（深度）：s=2，c=2，l=2，y=3，a=4，m=4。
 
-            **考点：** 哈夫曼编码
+总比特数 = WPL = 3×2 + 2×2 + 2×2 + 1×3 + 1×4 + 1×4 = 6+4+4+3+4+4 = **25 比特**。
 
+逐项分析：
+- **A 10**：错误，这是字符总数，若每个字符定长编码才需要 ceil(log2(6))=3 位×10=30 位。
+- **B 20**：错误。
+- **C 25**：正确，WPL 最小值。
+- **D 30**：错误，这是 3 位定长编码的总位数，哈夫曼编码必须不劣于定长编码，25 < 30。
+
+**易错点：** 哈夫曼编码是**最优前缀码**，合并顺序必须严格取当前最小两个权值；算 WPL 时「频率 × 编码长度」逐字符累加，别漏掉重复字符。
+
+**考点：** 哈夫曼树与哈夫曼编码
         `,
             tags: [
                 "客观题",
@@ -364,18 +435,25 @@ export const paperData = {
             ],
             answer: 0,
             score: 2,
-            explanation: `**答案：A**
+            explanation: `
+**答案：A**
 
-            **解析：**
-            本题答案已依据试卷标准答案完成录入，可结合题干与选项复盘对应知识点。
+**解析：**
+三种遍历中根节点的访问次序：
+- **先序遍历**：根 → 左子树 → 右子树，**根第一个被访问**。
+- **中序遍历**：左子树 → 根 → 右子树，根在中间访问。
+- **后序遍历**：左子树 → 右子树 → 根，根**最后**被访问。
 
-            - **A 先序遍历**：正确答案。
-            - **B 中序遍历**：不是本题答案。
-            - **C 后序遍历**：不是本题答案。
-            - **D 以上都是**：不是本题答案。
+逐项分析：
+- **A 先序遍历**：正确。
+- **B 中序遍历**：错误，根第二个（若左子树非空）被访问。
+- **C 后序遍历**：错误，根最后被访问。
+- **D 以上都是**：错误，三种遍历访问根的时机各不相同。
 
-            **考点：** 树与二叉树
-            `,
+**易错点：** 若根的左子树为空，中序遍历根也是第一个被访问的——但题目问的是「（某种遍历）第一个访问的节点是根节点」的一般性质，只有先序遍历**无条件**满足。
+
+**考点：** 二叉树的三种遍历次序
+        `,
             tags: [
                 "客观题",
                 "单选题",
@@ -394,18 +472,26 @@ export const paperData = {
             ],
             answer: 0,
             score: 2,
-            explanation: `**答案：A**
+            explanation: `
+**答案：A**
 
-            **解析：**
-            本题答案已依据试卷标准答案完成录入，可结合题干与选项复盘对应知识点。
+**解析：**
+满二叉树（此处指每层都满的二叉树）：第 i 层有 2^(i-1) 个节点，k 层满二叉树节点总数为 **2^k − 1**。
 
-            - **A 31**：正确答案。
-            - **B 32**：不是本题答案。该数值与正确计算结果不符，请重新验算。
-            - **C 33**：不是本题答案。该数值与正确计算结果不符，请重新验算。
-            - **D 16**：不是本题答案。该数值与正确计算结果不符，请重新验算。
+5 层：2^5 − 1 = 32 − 1 = **31**。
 
-            **考点：** 树与二叉树
-            `,
+逐项验证：1+2+4+8+16 = 31。
+
+逐项分析：
+- **A 31**：正确。
+- **B 32**：错误，32 = 2^5 是第 5 层节点数的两倍加一之误（2^5−1 才对）。
+- **C 33**：错误。
+- **D 16**：错误，16 = 2^4 只是第 5 层的节点数（2^5=32 的下一层）。
+
+**易错点：** 严格说 GESP 教材中「满二叉树」指每层结点都达到最大的二叉树，总数 2^k−1；不要与「完全二叉树」混淆——完全二叉树的节点数只保证在 [2^(k-1), 2^k) 范围内。
+
+**考点：** 满二叉树的节点数公式
+        `,
             tags: [
                 "客观题",
                 "单选题",
@@ -424,18 +510,24 @@ export const paperData = {
             ],
             answer: 0,
             score: 2,
-            explanation: `**答案：A**
+            explanation: `
+**答案：A**
 
-            **解析：**
-            本题答案已依据试卷标准答案完成录入，可结合题干与选项复盘对应知识点。
+**解析：**
+动态规划（DP）适用的两个标志性性质：
+1. **最优子结构**：问题的最优解包含子问题最优解。
+2. **重叠子问题**：递归求解时同一子问题被反复计算，DP 用表格（memoization/自底向上）把每个子问题只算一次。
 
-            - **A 重叠子问题**：正确答案。
-            - **B 分治法**：不是本题答案。
-            - **C 贪心策略**：不是本题答案。
-            - **D 回溯算法 int de_queue() { if (is_empty()) { ...**：不是本题答案。对队列的先进先出特性或循环队列满判断理解有误。
+逐项分析：
+- **A 重叠子问题**：正确。
+- **B 分治法**：错误，分治是另一种算法策略（子问题相互独立，如归并排序），恰恰**不具备**重叠子问题性质。
+- **C 贪心策略**：错误，贪心每步取局部最优且不回退，与 DP 的全局枚举思想不同。
+- **D 回溯算法**：错误，回溯用于搜索所有解/满足约束的解，与 DP 的两大性质无关。
 
-            **考点：** 动态规划
-            `,
+**易错点：** 分治 vs DP 的本质区别就在「子问题是否重叠」——分治子问题独立不重复，DP 子问题重叠需要记忆化。
+
+**考点：** 动态规划的两个基本性质
+        `,
             tags: [
                 "客观题",
                 "单选题",
@@ -445,7 +537,7 @@ export const paperData = {
         {
             id: 12,
             type: "single",
-            question: `青蛙每次能跳 1 或 2 步，下面代码计算青蛙跳到第 n 步台阶有多少种不同跳法。则下列说法，错误的是 ( ) 。`,
+            question: `青蛙每次能跳 1 或 2 步，下面代码计算青蛙跳到第 n 步台阶有多少种不同跳法。则下列说法，错误的是 ( ) 。\n\n\`\`\`cpp\nint jump_recur(int n) {\n    if (n == 1) return 1;\n    if (n == 2) return 2;\n    return jump_recur(n - 1) + jump_recur(n - 2);\n}\nint jump_dp(int n) {\n    vector<int> dp(n + 1); // 创建一个动态规划数组，用于保存已计算的值\n    // 初始化前两个数\n    dp[1] = 1;\n    dp[2] = 2;\n    // 从第三个数开始计算斐波那契数列\n    for (int i = 3; i <= n; ++i) {\n        dp[i] = dp[i - 1] + dp[i - 2];\n    }\n    return dp[n];\n}\n\`\`\`\n`,
             options: [
                 "函数 jump_recur() 采用递归方式。",
                 "函数 jump_dp() 采用动态规划方法。",
@@ -454,18 +546,21 @@ export const paperData = {
             ],
             answer: 3,
             score: 2,
-            explanation: `**答案：D**
+            explanation: `
+**答案：D**
 
-            **解析：**
-            本题答案已依据试卷标准答案完成录入，可结合题干与选项复盘对应知识点。
+**解析：**
+题目要求选出**错误**的说法。
 
-            - **A 函数 jump_recur() 采用递归方式。**：不是本题答案。
-            - **B 函数 jump_dp() 采用动态规划方法。**：不是本题答案。动态规划的状态或转移方程有误，请检查边界初始化。
-            - **C 当 n 较大时，函数 jump_recur() 存在大量重复计算，执行效率低。**：不是本题答案。
-            - **D 函数 jump_recur() 代码量小，执行效率高。**：正确答案。
+- **A 函数 jump_recur() 采用递归方式**：说法正确，函数体内调用自身（jump_recur(n-1)+jump_recur(n-2)）。
+- **B 函数 jump_dp() 采用动态规划方法**：说法正确，用 dp 数组自底向上递推，每个子问题只算一次。
+- **C 当 n 较大时，jump_recur() 存在大量重复计算，执行效率低**：说法正确，递归树中 jump_recur(k) 会被重复计算指数次，时间复杂度约 O(φ^n)（斐波那契式增长），而 jump_dp 是 O(n)。
+- **D 函数 jump_recur() 代码量小，执行效率高**：**错误**，代码量小是真，但效率**低**——大量重复子计算正是递归版的致命短板。
 
-            **考点：** STL容器、动态规划
-            `,
+**易错点：** 「代码简洁」≠「执行高效」。递归版没有记忆化，n=40 左右就已明显卡顿；对比 dp 版用空间换时间（O(n) 数组 + O(n) 时间）。
+
+**考点：** 递归与动态规划的效率对比、重叠子问题
+        `,
             tags: [
                 "客观题",
                 "单选题",
@@ -475,7 +570,7 @@ export const paperData = {
         {
             id: 13,
             type: "single",
-            question: `阅读以下二叉树的广度优先搜索代码 : int jump_recur(int n) { if (n == 1) return 1; if (n == 2) return 2; return jump_recur(n-1)+jump_recur(n-2); } int jump_dp(int n) { vector<int> dp(n+1); // 创建一个动态规划数组，用于保存已计算的值 // 初始化前两个数 dp[1] = 1; dp[2] = 2; // 从第三个数开始计算斐波那契数列 for (int i = 3; i <= n; ++i) { dp[i] = dp[i-1]+dp[i-2]; } return dp[n]; } 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 #include <iostream> #include <queue> using namespace std; // 二叉树节点的定义 struct TreeNode { int val; TreeNode* left; TreeNode* right; TreeNode(int x) : val(x), left(nullptr), right(nullptr) {} }; // 宽度优先搜索（ BFS ）迭代实现 TreeNode* bfs(TreeNode* root, int a) { if (root == nullptr) return nullptr; queue<TreeNode*> q; q.push(root); while (!q.empty()) { TreeNode* node = q.front(); q.pop(); if (node->val == a) return node; 1 2 3 4 5 6 7 8 9 10 11 12 13 14 15 16 17 18 19 20 21 22 23 24 25 26 使用以上算法，在以下这棵树搜索数值 时，可能的输出是 ( ) 。`,
+            question: `阅读以下二叉树的广度优先搜索代码，在这棵树中搜索数值 20 时，可能的输出是（ ）。\n\n\`\`\`text\n        5\n       / \\\n      2   17\n     / \\  /\n   -4   3 9\n\`\`\`\n\n\`\`\`cpp\n#include <iostream>\n#include <queue>\nusing namespace std;\n// 二叉树节点的定义\nstruct TreeNode {\n    int val;\n    TreeNode* left;\n    TreeNode* right;\n    TreeNode(int x) : val(x), left(nullptr), right(nullptr) {}\n};\n// 宽度优先搜索（BFS）迭代实现\nTreeNode* bfs(TreeNode* root, int a) {\n    if (root == nullptr) return nullptr;\n    queue<TreeNode*> q;\n    q.push(root);\n    while (!q.empty()) {\n        TreeNode* node = q.front();\n        q.pop();\n        if (node->val == a)\n            return node;\n        cout << node->val << " "; // 先访问当前节点\n        if (node->left) q.push(node->left);   // 将左子节点入队\n        if (node->right) q.push(node->right); // 将右子节点入队\n    }\n    return nullptr;\n}\n\`\`\`\n`,
             options: [
                 "5 2 -4 3 17 9",
                 "-4 2 3 5 9 17",
@@ -484,18 +579,30 @@ export const paperData = {
             ],
             answer: 2,
             score: 2,
-            explanation: `**答案：C**
+            explanation: `
+**答案：C**
 
-            **解析：**
-            本题答案已依据试卷标准答案完成录入，可结合题干与选项复盘对应知识点。
+**解析：**
+BFS 用**队列**实现：出队访问节点时，若未命中目标，就把其输出并按「先左后右」把子节点入队。
 
-            - **A 5 2 -4 3 17 9**：不是本题答案。
-            - **B -4 2 3 5 9 17**：不是本题答案。该数值与正确计算结果不符，请重新验算。
-            - **C 5 2 17 -4 3 9**：正确答案。
-            - **D 以上都不对**：不是本题答案。
+搜索数值 20（树中不存在），所有节点都会被访问并输出，访问顺序即层序：
+1. 出队 5 → 输出，子节点 2、17 入队
+2. 出队 2 → 输出，子节点 -4、3 入队
+3. 出队 17 → 输出，子节点 9 入队
+4. 依次出队 -4、3、9 → 输出
 
-            **考点：** 动态规划
-            `,
+输出序列：\`5 2 17 -4 3 9\`，选 C。
+
+逐项分析：
+- **A \`5 2 -4 3 17 9\`**：错误，这是**深度优先**（先左子树走到底）的访问顺序。
+- **B \`-4 2 3 5 9 17\`**：错误，这是中序遍历顺序。
+- **C \`5 2 17 -4 3 9\`**：正确，逐层从左到右。
+- **D 以上都不对**：错误。
+
+**易错点：** 20 不在树中时 BFS 会**遍历完所有节点**才返回 nullptr，因此输出的是完整层序序列；注意区分 BFS（队列，层序）与 DFS（栈，深度优先）的输出差异。
+
+**考点：** 二叉树的广度优先搜索（层序遍历）
+        `,
             tags: [
                 "客观题",
                 "单选题",
@@ -577,7 +684,7 @@ B 是中序遍历结果；C 在访问根后先走右子树，与实际压栈顺�
         {
             id: 15,
             type: "single",
-            question: `在上题的树中搜索数值 时，采用深度优先搜索一共比较的节点数为（ ）。`,
+            question: `在上题的树中搜索数值 3 时，采用深度优先搜索一共比较的节点数为（ ）。`,
             options: [
                 "2",
                 "3",
@@ -586,18 +693,30 @@ B 是中序遍历结果；C 在访问根后先走右子树，与实际压栈顺�
             ],
             answer: 2,
             score: 2,
-            explanation: `**答案：C**
+            explanation: `
+**答案：C**
 
-            **解析：**
-            本题答案已依据试卷标准答案完成录入，可结合题干与选项复盘对应知识点。
+**解析：**
+DFS 用**栈**实现：出栈时先与目标值比较，然后「先压右子、再压左子」（保证左子先出栈，等效先访问左子树）。
 
-            - **A 2**：不是本题答案。该数值与正确计算结果不符，请重新验算。
-            - **B 3**：不是本题答案。该数值与正确计算结果不符，请重新验算。
-            - **C 4**：正确答案。
-            - **D 5**：不是本题答案。该数值与正确计算结果不符，请重新验算。
+搜索数值 3（存在于树中），逐次比较过程：
+1. 出栈 5，比较 5≠3（**第 1 次比较**），压入右子 17、左子 2
+2. 出栈 2，比较 2≠3（**第 2 次比较**），压入右子 3、左子 -4
+3. 出栈 -4，比较 -4≠3（**第 3 次比较**），无子节点
+4. 出栈 3，比较 3==3（**第 4 次比较**），命中返回
 
-            **考点：** 深度优先搜索
-            `,
+共比较 **4** 个节点（5、2、-4、3），选 C。
+
+逐项分析：
+- **A 2**：错误，只比较根和 2 不够，3 还在其 deeper 层。
+- **B 3**：错误，比较到 -4 仍未命中。
+- **C 4**：正确，5→2→-4→3。
+- **D 5**：错误，命中 3 后立即返回，不需要访问 17/9 分支。
+
+**易错点：** DFS 找到目标就立即返回，**不会**继续搜索右子树（17、9 不会被比较）；比较次数 = 根到目标节点的路径上的节点数（先序位置）。
+
+**考点：** 二叉树的深度优先搜索（非递归栈实现）
+        `,
             tags: [
                 "客观题",
                 "单选题",
