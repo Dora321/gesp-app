@@ -1,10 +1,10 @@
 {
  "paperId": "2025-09-l1",
- "reviewedAt": "2026-10-25",
+ "reviewedAt": "2026-10-30",
  "reviewedBy": {
   "type": "AI",
-  "executor": "WorkBuddy 子代理",
-  "session": "codex/question-bank-verification"
+  "executor": "agy gemini-3.8-flash-medium + Grok/executor 校对",
+  "session": "verify/explanations-2025-09-l1"
  },
  "source": {
   "mirrorUrl": "https://raw.githubusercontent.com/Dora321/gesp-official-pdfs/main/pdfs/2025%E5%B9%B49%E6%9C%88-C%2B%2B1%E7%BA%A7.pdf",
@@ -111,22 +111,35 @@
   },
   {
    "id": 4,
-   "official": "B",
+   "official": "C",
    "answerTableValue": "C",
-   "bank": "B",
+   "bank": "C",
    "changed": true,
    "resolved": true,
    "textMatch": true,
    "dimensions": [
     "statement",
     "options",
-    "answer"
+    "answer",
+    "explanation"
    ],
    "method": [
     "按官方 PDF 逐页渲染读图，题面与选项逐字录入",
-    "单选答案表逐位核对"
+    "单选答案表逐位核对",
+    "2026-10-30 复核：按 PDF 原样（含 `%//` 与第 4 行 `a*b;`）用 clang++ 编译运行，输出 20",
+    "官方答案对照",
+    "解析质量审校",
+    "Gemini 3.8 Flash 草稿校对落地"
    ],
-   "note": "官方 p.1 第4题：整数除法与取余。PDF 原行印作 `a %// b`（多出的 `//` 使该行无法编译），答案表标 C（20）但推不出 20；按最可能原意取 B（23），解析首行已标注"
+   "note": "官方 p.1 第4题。`//` 把第 3 行的 `b << a % b;` 变成注释，语句延续到第 4 行，实际为 `cout << a / b << a % a*b;`；`13/5=2`，`(13%13)*5=0`，输出 `20`，与官方答案表 C 一致。原先「无法编译、取 B」的判断有误，已于 2026-10-30 改回 C",
+   "evidence": {
+    "pdf": "mirrorUrl（git blob sha 41a17a499b75ee176ccf1b1e8666e8dde9cd7b21 本地复算一致）",
+    "page": "p.1 答案表第4位 = C；p.1–p.2 第4题代码与选项（150dpi 渲染读图）",
+    "compileRun": "clang++ -Wall 编译通过，运行输出 20",
+    "checkedAt": "2026-10-30"
+   },
+   "reviewedBy": "AI · agy gemini-3.8-flash-medium + 校对",
+   "reviewedAt": "2026-10-30"
   },
   {
    "id": 5,
@@ -272,13 +285,20 @@
    "dimensions": [
     "statement",
     "options",
-    "answer"
+    "answer",
+    "explanation"
    ],
    "method": [
     "按官方 PDF 逐页渲染读图，题面与选项逐字录入",
-    "单选答案表逐位核对"
+    "单选答案表逐位核对",
+    "官方答案对照",
+    "解析质量审校",
+    "Gemini 3.8 Flash 草稿校对落地"
    ],
-   "note": "官方 p.3-p.4 第12题：四种交换写法，不能实现的是 `a, b = b, a;`。原题库是 continue 打印奇数题，整题重录"
+   "note": "官方 p.3-p.4 第12题：四种交换写法，不能实现的是 `a, b = b, a;`。原题库是 continue 打印奇数题，整题重录",
+   "reviewedBy": "AI · agy gemini-3.8-flash-medium + 校对",
+   "reviewedAt": "2026-10-30",
+   "evidence": "官方答案表/解析审校；答案未改"
   },
   {
    "id": 13,
@@ -329,13 +349,20 @@
    "dimensions": [
     "statement",
     "options",
-    "answer"
+    "answer",
+    "explanation"
    ],
    "method": [
     "按官方 PDF 逐页渲染读图，题面与选项逐字录入",
-    "单选答案表逐位核对"
+    "单选答案表逐位核对",
+    "官方答案对照",
+    "解析质量审校",
+    "Gemini 3.8 Flash 草稿校对落地"
    ],
-   "note": "官方 p.5 第15题：最大值/最小值哨兵程序，错误说法是 D（把读入移到循环体首行会改变结果）。原题库是空指针/野指针仿写题，整题重录"
+   "note": "官方 p.5 第15题：最大值/最小值哨兵程序，错误说法是 D（把读入移到循环体首行会改变结果）。原题库是空指针/野指针仿写题，整题重录",
+   "reviewedBy": "AI · agy gemini-3.8-flash-medium + 校对",
+   "reviewedAt": "2026-10-30",
+   "evidence": "官方答案表/解析审校；答案未改"
   },
   {
    "id": 16,
@@ -516,11 +543,41 @@
     "判断题答案表逐位核对"
    ],
    "note": "官方 p.6 判断第10题：递推求斐波那契（第1项 0、第2项 1），代码正确"
+  },
+  {
+   "id": 26,
+   "resolved": true,
+   "dimensions": [
+    "explanation"
+   ],
+   "method": [
+    "官方答案对照",
+    "解析质量审校",
+    "Gemini 3.8 Flash 草稿校对落地"
+   ],
+   "reviewedBy": "AI · agy gemini-3.8-flash-medium + 校对",
+   "reviewedAt": "2026-10-30",
+   "evidence": "官方答案表/解析审校；答案未改",
+   "note": "Q26 explanation 升级；答案未改"
+  },
+  {
+   "id": 27,
+   "resolved": true,
+   "dimensions": [
+    "explanation"
+   ],
+   "method": [
+    "官方答案对照",
+    "解析质量审校",
+    "Gemini 3.8 Flash 草稿校对落地"
+   ],
+   "reviewedBy": "AI · agy gemini-3.8-flash-medium + 校对",
+   "reviewedAt": "2026-10-30",
+   "evidence": "官方答案表/解析审校；答案未改",
+   "note": "Q27 explanation 升级；答案未改"
   }
  ],
- "unresolved": [
-  "2025-09-l1 Q4：官方 PDF 第 3 行印作 `cout << a / b << a %// b << a % b;`，多出的 `//` 会使该行后半段成为注释、程序无法通过编译；官方答案表标 C（20），但 13/5=2、13%5=3，任何改法都得不到 20。题库按技术正确项 B（23）收录并已标注，待官方勘误后复核。"
- ],
+ "unresolved": [],
  "executedAt": "2026-10-24",
  "judgeRebuild": {
   "executedAt": "2026-10-25",
@@ -585,8 +642,17 @@
   "answerTablePage": "p.1",
   "reason": "原题库 15 道单选全部是改写版：Q1/Q2/Q6/Q7 措辞被压缩，Q3 代码块被拆散、Q4 代码抄错成 `cout << a / b << a % a * b;`，Q10-Q15 更是完全不同题的仿写（if/赋值、while 逆序、continue 奇数、15 % 4 + 7 / 2、while + break 求和）。",
   "method": "官方文本层顺序错乱（代码块被甩到页尾），逐页渲染读图转录。",
-  "note": "Q4 为官方卷缺陷，见 questions[3]。"
+  "note": "Q4 答案已于 2026-10-30 按官方答案表改为 C（见 questions[3].evidence）。"
  },
  "rebuild": true,
- "rebuildNote": "2026-10-25 按官方 PDF 整卷重建：15 道单选 + 10 道判断全部逐字重录，题面/选项/答案/解析回到原文。"
+ "rebuildNote": "2026-10-25 按官方 PDF 整卷重建：15 道单选 + 10 道判断全部逐字重录，题面/选项/答案/解析回到原文。",
+ "answerFix": {
+  "executedAt": "2026-10-30",
+  "questionIds": [
+   4
+  ],
+  "from": "B",
+  "to": "C",
+  "reason": "复核发现 `//` 注释使第 3、4 行拼成 `cout << a / b << a % a*b;`，可编译且输出 20，官方答案 C 正确；题库原收 B 有误。"
+ }
 }
