@@ -1,10 +1,10 @@
 {
   "paperId": "2024-09-l3",
-  "reviewedAt": "2026-10-25",
+  "reviewedAt": "2026-10-30",
   "reviewedBy": {
     "type": "AI",
-    "executor": "WorkBuddy 子代理",
-    "session": "codex/question-bank-verification"
+    "executor": "agy gemini-3.8-flash-medium + Grok/executor 校对",
+    "session": "verify/explanations-2024-09-l3"
   },
   "source": {
     "mirrorUrl": "https://raw.githubusercontent.com/Dora321/gesp-official-pdfs/main/pdfs/2024%E5%B9%B49%E6%9C%88-C%2B%2B3%E7%BA%A7.pdf",
@@ -28,6 +28,37 @@
     }
   },
   "questions": [
+    {
+      "id": 9,
+      "dimensions": [
+        "statement",
+        "options"
+      ],
+      "method": [
+        "官方PDF对照",
+        "代码逻辑验证"
+      ],
+      "findings": "题库选项 D 被旧脚本改写为「a 的值变为 1011 1000（高位移出，低位补 0 后按 8 位观察应为 1011 1000）」——与选项 A 实质重复的畸形干扰项；官方 D 为「a 的值变为 0101 1100」。题干措辞也有差异（官方「a=1010 1110,a<<2,下面关于这个说法正确的是」）。",
+      "fix": "恢复官方题干与选项 D=0101 1100；解析 D 项改写为「左移 2 位、右移、循环移位都得不到该值」，C 项更正为循环左移 1 位的结果（官方 C=0101 1101 系最高位绕回）。官方答案 A 一致（1010 1110<<2 = 1011 1000，8 位截断）。",
+      "resolved": true,
+      "reviewedAt": "2026-10-28",
+      "reviewedBy": "AI对照官方PDF校订"
+    },
+    {
+      "id": 14,
+      "dimensions": [
+        "statement",
+        "explanation"
+      ],
+      "method": [
+        "官方PDF对照"
+      ],
+      "findings": "题干措辞与官方有差异（「其中 1 个是小偷」vs 官方「其中一个是小偷」、分行 vs 连排），导致探针窗口不命中。另解析 C 选项一行被旧脚本污染（混入「该项不符合题目限定…a[3] = {2, 1, 4, 3}」他卷乱码）。",
+      "fix": "题干按官方连排措辞对齐；清除解析污染文本。官方答案 C 一致（假设-验证：仅 C 为小偷时四人陈述自洽）。",
+      "resolved": true,
+      "reviewedAt": "2026-10-28",
+      "reviewedBy": "AI对照官方PDF校订"
+    },
     {
       "id": 16,
       "type": "judge",
@@ -100,35 +131,36 @@
       "modified": false
     },
     {
-      "id": 9,
-      "dimensions": [
-        "statement",
-        "options"
-      ],
-      "method": [
-        "官方PDF对照",
-        "代码逻辑验证"
-      ],
-      "findings": "题库选项 D 被旧脚本改写为「a 的值变为 1011 1000（高位移出，低位补 0 后按 8 位观察应为 1011 1000）」——与选项 A 实质重复的畸形干扰项；官方 D 为「a 的值变为 0101 1100」。题干措辞也有差异（官方「a=1010 1110,a<<2,下面关于这个说法正确的是」）。",
-      "fix": "恢复官方题干与选项 D=0101 1100；解析 D 项改写为「左移 2 位、右移、循环移位都得不到该值」，C 项更正为循环左移 1 位的结果（官方 C=0101 1101 系最高位绕回）。官方答案 A 一致（1010 1110<<2 = 1011 1000，8 位截断）。",
+      "id": 26,
       "resolved": true,
-      "reviewedAt": "2026-10-28",
-      "reviewedBy": "AI对照官方PDF校订"
-    },
-    {
-      "id": 14,
       "dimensions": [
-        "statement",
         "explanation"
       ],
       "method": [
-        "官方PDF对照"
+        "官方答案对照",
+        "解析质量审校",
+        "Gemini 3.8 Flash 草稿校对落地"
       ],
-      "findings": "题干措辞与官方有差异（「其中 1 个是小偷」vs 官方「其中一个是小偷」、分行 vs 连排），导致探针窗口不命中。另解析 C 选项一行被旧脚本污染（混入「该项不符合题目限定…a[3] = {2, 1, 4, 3}」他卷乱码）。",
-      "fix": "题干按官方连排措辞对齐；清除解析污染文本。官方答案 C 一致（假设-验证：仅 C 为小偷时四人陈述自洽）。",
+      "reviewedBy": "AI · agy gemini-3.8-flash-medium + 校对",
+      "reviewedAt": "2026-10-30",
+      "evidence": "官方答案表/解析审校；答案未改",
+      "note": "Q26 explanation 升级；答案未改"
+    },
+    {
+      "id": 27,
       "resolved": true,
-      "reviewedAt": "2026-10-28",
-      "reviewedBy": "AI对照官方PDF校订"
+      "dimensions": [
+        "explanation"
+      ],
+      "method": [
+        "官方答案对照",
+        "解析质量审校",
+        "Gemini 3.8 Flash 草稿校对落地"
+      ],
+      "reviewedBy": "AI · agy gemini-3.8-flash-medium + 校对",
+      "reviewedAt": "2026-10-30",
+      "evidence": "官方答案表/解析审校；答案未改",
+      "note": "Q27 explanation 升级；答案未改"
     }
   ],
   "secondaryCheck": {

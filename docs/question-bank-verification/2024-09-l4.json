@@ -2,8 +2,9 @@
   "paperId": "2024-09-l4",
   "executedAt": "2026-10-25",
   "reviewedBy": {
-    "type": "整卷重建",
-    "executor": "官方 PDF 逐页转写 + 答案表比对"
+    "type": "AI",
+    "executor": "agy gemini-3.8-flash-medium + Grok/executor 校对",
+    "session": "verify/explanations-2024-09-l4"
   },
   "source": {
     "mirrorUrl": "https://raw.githubusercontent.com/Dora321/gesp-official-pdfs/main/pdfs/2024%E5%B9%B49%E6%9C%88-C%2B%2B4%E7%BA%A7.pdf",
@@ -477,9 +478,42 @@
         "判断题答案表逐位核对"
       ],
       "note": "官方 p6 判断第10题：point(p) 返回 20，*p 赋值为 20，输出 20。原题库为 GESP 等级自编题，已重录"
+    },
+    {
+      "id": 26,
+      "resolved": true,
+      "dimensions": [
+        "explanation"
+      ],
+      "method": [
+        "官方答案对照",
+        "解析质量审校",
+        "Gemini 3.8 Flash 草稿校对落地"
+      ],
+      "reviewedBy": "AI · agy gemini-3.8-flash-medium + 校对",
+      "reviewedAt": "2026-10-30",
+      "evidence": "官方答案表/解析审校；答案未改",
+      "note": "Q26 explanation 升级；答案未改"
+    },
+    {
+      "id": 27,
+      "resolved": true,
+      "dimensions": [
+        "explanation"
+      ],
+      "method": [
+        "官方答案对照",
+        "解析质量审校",
+        "Gemini 3.8 Flash 草稿校对落地"
+      ],
+      "reviewedBy": "AI · agy gemini-3.8-flash-medium + 校对",
+      "reviewedAt": "2026-10-30",
+      "evidence": "官方答案表/解析审校；答案未改",
+      "note": "Q27 explanation 升级；答案未改"
     }
   ],
   "unresolved": [],
   "rebuild": true,
-  "rebuildNote": "本卷 25 道客观题按官方 PDF 逐页渲染读图整卷重录（题面/选项/答案/解析），编程题仅补数据范围章节。"
+  "rebuildNote": "本卷 25 道客观题按官方 PDF 逐页渲染读图整卷重录（题面/选项/答案/解析），编程题仅补数据范围章节。",
+  "reviewedAt": "2026-10-30"
 }
