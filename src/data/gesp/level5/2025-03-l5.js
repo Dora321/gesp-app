@@ -106,18 +106,21 @@ export const paperData = {
             ],
             answer: 0,
             score: 2,
-            explanation: `**答案：A**
+            explanation: `
+**答案：A**
 
-            **解析：**
-            本题答案已依据试卷标准答案完成录入，可结合题干与选项复盘对应知识点。
+**解析：**
+链表用指针把结点串起来，内存中不连续存放，访问第 i 个元素只能从头结点沿指针逐个走过去（O(n)），因此**不具备随机访问能力**。「可随机访问任何一个元素」是数组的特点。
 
-            - **A 可随机访问任何一个元素**：正确答案。
-            - **B 插入、删除操作不需要移动元素**：不是本题答案。
-            - **C 无需事先估计存储空间大小**：不是本题答案。
-            - **D 所需存储空间与存储元素个数成正比**：不是本题答案。
+其余三项都是链表的真实特点：
+- **B**：插入/删除只需修改相邻结点的指针，无需像数组那样整体搬移元素；
+- **C**：结点按需分配，不必像静态数组那样事先估计存储空间；
+- **D**：每个结点恰好服务于一个元素，存储空间与元素个数成正比。
 
-            **考点：** 链表
-            `,
+**易错点：** 「链表插入删除快」不等于「链表什么都快」，随机访问正是它的短板。
+
+**考点：** 链表
+        `,
             tags: [
                 "客观题",
                 "单选题",
@@ -136,18 +139,20 @@ export const paperData = {
             ],
             answer: 0,
             score: 2,
-            explanation: `**答案：A**
+            explanation: `
+**答案：A**
 
-            **解析：**
-            本题答案已依据试卷标准答案完成录入，可结合题干与选项复盘对应知识点。
+**解析：**
+删除结点 p 的标准操作是：让**前驱的 next 绕过 p**、**后继的 prev 绕过 p**，再释放 p：先执行 p->prev->next = p->next，再执行 p->next->prev = p->prev，最后 delete p——这正是 B，正确。
 
-            - **A p->next->prev = p->next; p->prev->next =...**：正确答案。
-            - **B p->prev->next = p->next; p->next->prev =...**：不是本题答案。
-            - **C p->next->prev = p->prev; p->next->prev->...**：不是本题答案。
-            - **D p->prev->next = p->next; p->prev->next->...**：不是本题答案。
+- **A 错误：** 第一句把后继的 prev 指向了**后继自己**（应为 p->prev）；第二句把前驱的 next 指向了**前驱自己**（应为 p->next）。两条指针全部改错，链表断裂且形成自环，delete p 后无法再访问到 p 的前后结点。
+- **C 正确：** 第一句让后继的 prev 指向前驱，此时 p->next->prev 就是 p->prev，第二句等价于 p->prev->next = p->next，绕行成功。
+- **D 正确：** 第一句接好前驱，此时 p->prev->next 就是 p->next，第二句等价于 p->next->prev = p->prev，绕行成功。
 
-            **考点：** 链表
-            `,
+**易错点：** C/D 用「改完一条立刻沿新指针访问」的链式写法，容易误判为错——要逐步代入跟踪指针值。
+
+**考点：** 双向链表、指针操作
+        `,
             tags: [
                 "客观题",
                 "单选题",
@@ -252,19 +257,19 @@ void InitLinkedList(LinkedList* list) {
             ],
             answer: 3,
             score: 2,
-            explanation: `**答案：D**
+            explanation: `
+**答案：D**
 
-            **解析：**
-            本题答案已依据试卷标准答案完成录入，可结合题干与选项复盘对应知识点。
+**解析：**
+唯一分解定理：任何大于 1 的整数都能**唯一**分解成若干**质数**的乘积。逐项检查每个因子是否全为质数：
+- **A** 18 = 3 × 6：6 = 2 × 3 不是质数，正确写法 18 = 2 × 3²；
+- **B** 28 = 4 × 7：4 不是质数，正确写法 28 = 2² × 7；
+- **C** 36 = 2 × 3 × 6：6 不是质数，正确写法 36 = 2² × 3²；
+- **D** 30 = 2 × 3 × 5：三个因子全是质数 ✓。
 
-            - **A 18 = 3 × 6**：不是本题答案。
-            - **B 28 = 4 × 7**：不是本题答案。
-            - **C 36 = 2 × 3 × 6**：不是本题答案。
-            - **D 30 = 2 × 3 × 5**：正确答案。
+**易错点：** 因子分解 ≠ 质因数分解——必须把每个合数因子继续拆下去，直到全部是质数为止。
 
-
-            **考点：** 数论
-
+**考点：** 质数、唯一分解定理
         `,
             tags: [
                 "客观题",
@@ -275,7 +280,30 @@ void InitLinkedList(LinkedList* list) {
         {
             id: 6,
             type: "single",
-            question: `下述代码实现素数表的线性筛法，筛选出所有小于等于 n 的素数，横线上应填的最佳代码是（ ）。`,
+            question: `下述代码实现素数表的线性筛法，筛选出所有小于等于 n 的素数，横线上应填的最佳代码是（ ）。
+
+\`\`\`cpp
+vector<int> sieve_linear(int n) {
+    vector<bool> is_prime(n + 1, true);
+    vector<int> primes;
+    if (n < 2) return primes;
+    is_prime[0] = is_prime[1] = false;
+    for (int i = 2; i <= n/2; i++) {
+        if (is_prime[i])
+            primes.push_back(i);
+        for (int j = 0; ______________________________ ; j++) {   // 在此处填入代码
+            is_prime[i * primes[j]] = false;
+            if (i % primes[j] == 0)
+                break;
+        }
+    }
+    for (int i = n/2 + 1; i <= n; i++) {
+        if (is_prime[i])
+            primes.push_back(i);
+    }
+    return primes;
+}
+\`\`\``,
             options: [
                 "j < primes.size()",
                 "i * primes[j] <= n",
@@ -284,18 +312,20 @@ void InitLinkedList(LinkedList* list) {
             ],
             answer: 2,
             score: 2,
-            explanation: `**答案：C**
+            explanation: `
+**答案：C**
 
-            **解析：**
-            本题答案已依据试卷标准答案完成录入，可结合题干与选项复盘对应知识点。
+**解析：**
+线性筛的内层循环必须同时满足两个边界：
+- **j < primes.size()**：j 是 primes 数组的下标，越界访问未定义；
+- **i * primes[j] <= n**：要筛掉的合数 i * primes[j] 必须落在 [2, n] 内，否则 is_prime[i * primes[j]] 越界写。
 
-            - **A j < primes.size()**：不是本题答案。
-            - **B i * primes[j] <= n**：不是本题答案。
-            - **C j < primes.size() && i * primes[j] <= n**：正确答案。
-            - **D j <= n**：不是本题答案。
+两个条件缺一不可：只写 A 时 i * primes[j] 可能超过 n 导致越界；只写 B 时 j 可能越过 primes 末尾（break 只在 i % primes[j] == 0 时触发）。所以最佳代码是 **C：j < primes.size() && i * primes[j] <= n**。
 
-            **考点：** 筛法
-            `,
+**知识点：** 线性筛保证每个合数只被**最小质因数**筛一次——\`i % primes[j] == 0\` 时 break，正是为了保证这一点，总时间 O(n)。
+
+**考点：** 筛法、线性筛
+        `,
             tags: [
                 "客观题",
                 "单选题",
@@ -314,18 +344,18 @@ void InitLinkedList(LinkedList* list) {
             ],
             answer: 0,
             score: 2,
-            explanation: `**答案：A**
+            explanation: `
+**答案：A**
 
-            **解析：**
-            本题答案已依据试卷标准答案完成录入，可结合题干与选项复盘对应知识点。
+**解析：**
+每次函数调用都会在**调用栈**上压入一个栈帧（返回地址、参数、局部变量），递归每深入一层就多占一份栈空间。系统给栈的配额通常只有几 MB，递归层数过多时栈空间被耗尽，触发**栈溢出**（stack overflow）。
+- **B** 堆是 new/malloc 动态分配内存的区域，与函数调用深度无关；
+- **C/D** 队列、链表是数据结构，系统并不为函数调用分配「队列空间/链表空间」。
 
-            - **A 系统分配的栈空间溢出**：正确答案。
-            - **B 系统分配的堆空间溢出**：不是本题答案。
-            - **C 系统分配的队列空间溢出**：不是本题答案。
-            - **D 系统分配的链表空间溢出**：不是本题答案。对链表结构的理解有误，请重新分析节点的指针指向与边界情况。
+**易错点：** 递归爆的是栈不是堆；反过来，new 出来的大数组耗尽的是堆。
 
-            **考点：** 递归
-            `,
+**考点：** 递归、栈
+        `,
             tags: [
                 "客观题",
                 "单选题",
@@ -388,18 +418,17 @@ int factorialB(int n) {
             ],
             answer: 0,
             score: 2,
-            explanation: `**答案：A**
+            explanation: `
+**答案：A**
 
-            **解析：**
-            本题答案已依据试卷标准答案完成录入，可结合题干与选项复盘对应知识点。
+**解析：**
+稳定性 = 相等元素的相对先后顺序在排序后是否保持。**选择排序不稳定**：每轮选出最小元素后与当前位置**远距离交换**，可能跨越相等元素打乱顺序。例：[5ₐ, 5ᵦ, 2] 第一轮 2 与 5ₐ 交换 → [2, 5ᵦ, 5ₐ]，两个 5 的相对顺序变了。
+- **B 插入排序**：只把元素在已排序前缀中逐位后移比较，相等时不再前插，稳定；
+- **C 归并排序**：合并时左右相等优先取左半边的，稳定；
+- **D 冒泡排序**：只在相邻元素间交换，相等不交换，稳定。
 
-            - **A 选择排序**：正确答案。
-            - **B 插入排序**：不是本题答案。不同排序算法的稳定性或复杂度理解有误，请对照正确解析。
-            - **C 归并排序**：不是本题答案。不同排序算法的稳定性或复杂度理解有误，请对照正确解析。
-            - **D 冒泡排序**：不是本题答案。不同排序算法的稳定性或复杂度理解有误，请对照正确解析。
-
-            **考点：** 排序算法
-            `,
+**考点：** 排序稳定性
+        `,
             tags: [
                 "客观题",
                 "单选题",
@@ -409,27 +438,38 @@ int factorialB(int n) {
         {
             id: 10,
             type: "single",
-            question: `考虑以下 C++ 代码实现的快速排序算法，将数据从小到大排序，则 partition 中横线上应填的最佳代码是（ ）。`,
+            question: `考虑以下 C++ 代码实现的快速排序算法，将数据从小到大排序，则 partition 中横线上应填的最佳代码是（ ）。
+\`\`\`cpp
+int partition(vector<int>& arr, int low, int high) {
+    int pivot = arr[high]; // 基准值
+    int i = low - 1;
+    for (int j = low; j < high; j++) {
+        ______________________________          // 在此处填入代码
+    }
+    swap(arr[i + 1], arr[high]);
+    return i + 1;
+}
+\`\`\``,
             options: [
                 "if (arr[j] > pivot) { i++; swap(arr[i], arr[j]); }",
                 "if (arr[j] < pivot) { i++; swap(arr[i], arr[j]); }",
                 "if (arr[j] < pivot) { swap(arr[i], arr[j]); }",
-                "if (arr[j] <= pivot) { i++; swap(arr[i], arr[j]); }",
+                "if (arr[j] == pivot) { i++; swap(arr[i], arr[j]); }",
 ],
             answer: 1,
             score: 2,
-            explanation: `**答案：B**
+            explanation: `
+**答案：B**
 
-            **解析：**
-            本题答案已依据试卷标准答案完成录入，可结合题干与选项复盘对应知识点。
+**解析：**
+partition 的目标：以 arr[high] 为基准 pivot，把**小于 pivot 的元素划到左边**。变量 i 维护「小于区」的右边界（初始 low-1），扫描中遇到比 pivot 小的元素就把小于区扩大一格并把这个元素换进去：\`if (arr[j] < pivot) { i++; swap(arr[i], arr[j]); }\` 即 **B**。循环结束后 swap(arr[i+1], arr[high]) 把 pivot 放到分界点。
 
-            - **A if (arr[j] > pivot) { i++; swap(arr[i], arr[j]); }**：不是本题答案。
-            - **B if (arr[j] < pivot) { i++; swap(arr[i], arr[j]); }**：正确答案。
-            - **C if (arr[j] < pivot) { swap(arr[i], arr[j]); }**：不是本题答案。
-            - **D if (arr[j] <= pivot) { i++; swap(arr[i], arr[j]); }**：不是本题答案。
+- **A**：条件写成 \`> pivot\`，把大元素换到前面，划反了方向；
+- **C**：交换时没有 \`i++\`，i 永不前进，小于区无法扩张，扫描结束后 i+1 位置错乱；
+- **D**：条件写成 \`== pivot\`，小于 pivot 的元素永远不会被换到左边，划分结果错误。
 
-            **考点：** 快速排序
-            `,
+**考点：** 快速排序、partition
+        `,
             tags: [
                 "客观题",
                 "单选题",
@@ -448,18 +488,16 @@ int factorialB(int n) {
             ],
             answer: 2,
             score: 2,
-            explanation: `**答案：C**
+            explanation: `
+**答案：C**
 
-            **解析：**
-            本题答案已依据试卷标准答案完成录入，可结合题干与选项复盘对应知识点。
+**解析：**
+二分猜测每次排除一半可能值，n 个值最多需要 ⌈log₂n⌉ 次。100 个数：2⁶ = 64 < 100 ≤ 2⁷ = 128，所以最多 **7** 次必能锁定。
 
-            - **A 100**：不是本题答案。该数值与正确计算结果不符，请重新验算。
-            - **B 10**：不是本题答案。该数值与正确计算结果不符，请重新验算。
-            - **C 7**：正确答案。
-            - **D 5**：不是本题答案。该数值与正确计算结果不符，请重新验算。
+**易错点：** 选 B（10 次）是把「100 ≈ 1024 = 2¹⁰」的直觉套了上来；log₂100 ≈ 6.64，向上取整是 7 而不是 10。
 
-            **考点：** 二分查找
-            `,
+**考点：** 二分查找
+        `,
             tags: [
                 "客观题",
                 "单选题",
@@ -469,7 +507,22 @@ int factorialB(int n) {
         {
             id: 12,
             type: "single",
-            question: `下面代码实现了二分查找算法，在数组 arr 中查找目标元素 target 的位置，则横线上能填写的最佳代码是（ ）。`,
+            question: `下面代码实现了二分查找算法，在数组 arr 中查找目标元素 target 的位置，则横线上能填写的最佳代码是（ ）。
+
+\`\`\`cpp
+int binarySearch(int arr[], int left, int right, int target) {
+    while (left <= right) {
+        ______________________________          // 在此处填入代码
+        if (arr[mid] == target)
+            return mid;
+        else if (arr[mid] < target)
+            left = mid + 1;
+        else
+            right = mid - 1;
+    }
+    return -1;
+}
+\`\`\``,
             options: [
                 "int mid = left+(right-left) / 2;",
                 "int mid = left;",
@@ -478,18 +531,17 @@ int factorialB(int n) {
             ],
             answer: 0,
             score: 2,
-            explanation: `**答案：A**
+            explanation: `
+**答案：A**
 
-            **解析：**
-            本题答案已依据试卷标准答案完成录入，可结合题干与选项复盘对应知识点。
+**解析：**
+\`int mid = left + (right - left) / 2;\` 与 \`(left + right) / 2\` 数学上等价，但**先减后加避免了 left + right 相加时的整型溢出**——当 left、right 都接近 INT_MAX 时，left + right 会溢出为负数导致程序出错，而 (right - left) 不会。题目问「最佳代码」，**A** 胜出。
 
-            - **A int mid = left+(right-left) / 2;**：正确答案。
-            - **B int mid = left;**：不是本题答案。
-            - **C int mid = (left+right) / 2;**：不是本题答案。该代码逻辑与题目要求不符，请逐步推演。
-            - **D int mid = right;**：不是本题答案。
+- **B/D**：mid 恒为 left/right，区间每次只缩一格，退化成顺序查找 O(n)；
+- **C**：逻辑正确但不防溢出，不是「最佳」。
 
-            **考点：** 二分查找
-            `,
+**考点：** 二分查找、整型溢出
+        `,
             tags: [
                 "客观题",
                 "单选题",
@@ -508,19 +560,18 @@ int factorialB(int n) {
             ],
             answer: 0,
             score: 2,
-            explanation: `**答案：A**
+            explanation: `
+**答案：A**
 
-            **解析：**
-            本题答案已依据试卷标准答案完成录入，可结合题干与选项复盘对应知识点。
+**解析：**
+贪心算法的核心特征：把问题分成若干步，**每一步都选择当前看起来最优的解**（局部最优），不回头。
+- **B** 是回溯法的特征（尝试所有可能并撤销）；
+- **C**「分阶段解决子问题」更接近分治/动态规划；
+- **D** 错误：贪心只有当问题具有贪心选择性质与最优子结构时才保证全局最优，一般情况下**不保证**（反例：0-1 背包按性价比贪心会错）。
 
-            - **A 总是选择当前最优解**：正确答案。
-            - **B 回溯尝试所有可能**：不是本题答案。
-            - **C 分阶段解决子问题**：不是本题答案。
-            - **D 总能找到最优解**：不是本题答案。
+**易错点：** 「贪心 = 一定找到最优解」是最常见的概念混淆。
 
-
-            **考点：** 贪心
-
+**考点：** 贪心算法
         `,
             tags: [
                 "客观题",
@@ -533,25 +584,27 @@ int factorialB(int n) {
             type: "single",
             question: `函数 int findMax(int arr[], int low, int high) 计算数组从索引 low 到 high 范围内的最大元素，以下哪项正确实现了分治逻辑（ ）。`,
             options: [
-                "if (low > high) return 0; int mid = (low+high) / 2; return max(findMax(arr, low, mid-1), findMax(arr, mid+1, high));",
-                "if (low == high) return arr[low]; int mid = (low+high) / 2; return arr[mid];",
-                "if (low >= high) return arr[low]; int mid = (low+high) / 2; int leftMax = findMax(arr, low, mid-1); int rightMax = findMax(arr, mid, high); return leftMax+rightMax;",
-                "if (low == high) return arr[low]; int mid = low+(high-low) / 2; int leftMax = findMax(arr, low, mid); int rightMax = findMax(arr, mid+1, high); return (leftMax > rightMax) ? leftMax : rightMax;",
+                "if (low == high) return arr[low]; int mid = (low + high) / 2; return arr[mid];",
+                "if (low >= high) return arr[low]; int mid = (low + high) / 2; int leftMax = findMax(arr, low, mid - 1); int rightMax = findMax(arr, mid, high); return leftMax + rightMax;",
+                "if (low > high) return 0; int mid = low + (high - low) / 2; int leftMax = findMax(arr, low, mid); int rightMax = findMax(arr, mid + 1, high); return leftMax * rightMax;",
+                "if (low == high) return arr[low]; int mid = low + (high - low) / 2; int leftMax = findMax(arr, low, mid); int rightMax = findMax(arr, mid + 1, high); return (leftMax > rightMax) ? leftMax : rightMax;",
             ],
             answer: 3,
             score: 2,
-            explanation: `**答案：D**
+            explanation: `
+**答案：D**
 
-            **解析：**
-            本题答案已依据试卷标准答案完成录入，可结合题干与选项复盘对应知识点。
+**解析：**
+分治求最大值：基例（区间只剩一个元素直接返回）+ 把区间**不重不漏**地分成两半递归求解 + 合并（取 max）。
+- **D 正确：** \`low == high\` 返回 arr[low]；\`mid = low + (high-low)/2\` 把 [low, mid] 与 [mid+1, high] 分成两半，两半合起来恰好是原区间；最后返回两者较大值。
+- **A**：\`return arr[mid]\` 直接返回中点元素，**没有递归、没有比较**，算出来的是中位数位置的值不是最大值；
+- **B**：把左右两半的**最大值相加**，求最大值变成了求和；
+- **C**：基例写成 \`low > high\` 返回 0，且合并用**乘积**，语义完全错误。
 
-            - **A if (low > high) return 0; int mid = (low...**：不是本题答案。该代码逻辑与题目要求不符，请逐步推演。
-            - **B if (low == high) return arr[low]; int mi...**：不是本题答案。该代码逻辑与题目要求不符，请逐步推演。
-            - **C if (low >= high) return arr[low]; int mi...**：不是本题答案。该代码逻辑与题目要求不符，请逐步推演。
-            - **D if (low == high) return arr[low]; int mi...**：正确答案。
+**易错点：** 分治区间划分要么 [low, mid]/[mid+1, high]，要么 [low, mid-1]/[mid, high]，绝不能重复或遗漏 mid。
 
-            **考点：** 分治
-            `,
+**考点：** 分治、递归
+        `,
             tags: [
                 "客观题",
                 "单选题",
@@ -561,7 +614,30 @@ int factorialB(int n) {
         {
             id: 15,
             type: "single",
-            question: `小杨编写了一个如下的高精度乘法函数，则处理进位时横线上应填写的代码为（ ）。`,
+            question: `小杨编写了一个如下的高精度乘法函数，则处理进位时横线上应填写的代码为（ ）。
+
+\`\`\`cpp
+vector<int> multiply(vector<int>& a, vector<int>& b) {
+    int m = a.size(), n = b.size();
+    vector<int> c(m + n, 0);
+    // 逐位相乘，逆序存储
+    for (int i = 0; i < m; i++) {
+        for (int j = 0; j < n; j++) {
+            c[i + j] += a[i] * b[j];
+        }
+    }
+    // 处理进位
+    int carry = 0;
+    for (int k = 0; k < c.size(); ++k) {
+        ______________________________      // 在此处填入代码
+        c[k] = temp % 10;
+        carry = temp / 10;
+    }
+    while (c.size() > 1 && c.back() == 0)
+        c.pop_back();
+    return c;
+}
+\`\`\``,
             options: [
                 "int temp = c[k];",
                 "int temp = c[k]+carry;",
@@ -570,18 +646,21 @@ int factorialB(int n) {
             ],
             answer: 1,
             score: 2,
-            explanation: `**答案：B**
+            explanation: `
+**答案：B**
 
-            **解析：**
-            本题答案已依据试卷标准答案完成录入，可结合题干与选项复盘对应知识点。
+**解析：**
+高精度乘法分两步：先逐位相乘把 a[i]*b[j] 累加到 c[i+j]（此时 c[k] 存的是「未进位的和」），再统一处理进位。进位时每一位的总量 = **本位累加值 + 来自低位的进位**：
+\`int temp = c[k] + carry;\` 然后本位留 \`temp % 10\`，向高位进 \`carry = temp / 10\`。
 
-            - **A int temp = c[k];**：不是本题答案。
-            - **B int temp = c[k]+carry;**：正确答案。
-            - **C int temp = c[k]-carry;**：不是本题答案。
-            - **D int temp = c[k] * carry;**：不是本题答案。
+- **A**：丢掉了低位传来的进位 carry，结果偏小；
+- **C**：进位只会使数值增大，减法毫无道理；
+- **D**：进位是「除留余数」的配套量，与 c[k] 是相加关系不是相乘。
 
-            **考点：** 高精度
-            `,
+**易错点：** carry 必须在处理本位**之前**加进来，处理完再重新计算——顺序不能颠倒。
+
+**考点：** 高精度乘法、进位处理
+        `,
             tags: [
                 "客观题",
                 "单选题",
