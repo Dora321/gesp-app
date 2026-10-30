@@ -2,6 +2,7 @@ import React, { useState, useEffect, useRef } from 'react';
 import { X, Send, Settings, Trash2, Loader2, Bot, User, Key, UserCircle2, Plus, GripHorizontal, BrainCircuit, Sparkles, Pencil, Save, Square, Copy, Check } from 'lucide-react';
 import { useLocation } from 'react-router-dom';
 import { ASSISTANT_KEY, assistantStorage, loadAssistantKey, saveAssistantKey, buildClassroomPrompt } from '../utils/classroomAssistant';
+import { truncateChatHistory, isHistoryNearLimit, mapHttpErrorMessage, mapCatchErrorMessage } from '../utils/aiChatHelpers';
 import ReactMarkdown from 'react-markdown';
 import remarkGfm from 'remark-gfm';
 
@@ -52,8 +53,8 @@ const AI_PERSONAS = [
 ];
 
 const AI_MODEL = {
-    id: 'deepseek-v4-flash',
-    name: 'DeepSeek V4 Flash',
+    id: 'deepseek-flash',
+    name: 'DeepSeek Flash',
     description: '高速响应，适合日常对话、编程和课堂项目。'
 };
 
@@ -180,6 +181,7 @@ const AIChatWidget = ({ onClose }) => {
     const messagesEndRef = useRef(null);
     const shouldAutoScrollRef = useRef(true);
     const abortControllerRef = useRef(null);
+    const inputRef = useRef(null);
 
     // Initial resize handler
     const startResize = () => {
@@ -287,6 +289,24 @@ const AIChatWidget = ({ onClose }) => {
         assistantStorage.set('localStorage', 'ai_selected_persona_id', selectedPersona);
     }, [selectedPersona]);
 
+    // Open: focus the composer. Escape closes the dialog.
+    useEffect(() => {
+        const frame = window.requestAnimationFrame(() => {
+            inputRef.current?.focus();
+        });
+        return () => window.cancelAnimationFrame(frame);
+    }, []);
+
+    useEffect(() => {
+        const onKeyDown = (event) => {
+            if (event.key !== 'Escape') return;
+            event.stopPropagation();
+            onClose?.();
+        };
+        window.addEventListener('keydown', onKeyDown);
+        return () => window.removeEventListener('keydown', onKeyDown);
+    }, [onClose]);
+
     const saveCustomPersona = () => {
         if (!editingCustomPersona?.name || !editingCustomPersona?.systemPrompt) return;
 
@@ -356,9 +376,10 @@ const AIChatWidget = ({ onClose }) => {
             title: document.querySelector('main h1')?.textContent?.trim() || document.title,
         } : null);
 
+        const historyForApi = truncateChatHistory(newMessages);
         const apiMessages = [
             { role: 'system', content: systemPrompt },
-            ...newMessages.map(m => ({ role: m.role, content: m.content }))
+            ...historyForApi.map(m => ({ role: m.role, content: m.content }))
         ];
 
         // Create new AbortController
@@ -380,7 +401,7 @@ const AIChatWidget = ({ onClose }) => {
             });
 
             if (!response.ok) {
-                throw new Error(`API 请求失败: ${response.status}`);
+                throw new Error(await mapHttpErrorMessage(response));
             }
 
             if (!response.body) {
@@ -456,9 +477,10 @@ const AIChatWidget = ({ onClose }) => {
                     return updatedMessages;
                 });
             } else {
+                const friendly = mapCatchErrorMessage(error) || '出错了，请稍后再试。';
                 setMessages(prev => [...prev, {
                     role: 'assistant',
-                    content: `❌ 错误: ${error.message}。请检查 API Key 是否正确。`
+                    content: `❌ ${friendly}`
                 }]);
             }
         } finally {
@@ -476,6 +498,7 @@ const AIChatWidget = ({ onClose }) => {
         <div
             className="mw-surface mw-line-bank mw-chat-panel fixed bottom-24 right-6 z-[100] bg-white rounded-2xl shadow-2xl flex flex-col overflow-hidden animate-in zoom-in-95 duration-200 border border-slate-200"
             role="dialog"
+            aria-modal="true"
             aria-label="AI 问答助手"
             style={{
                 width: `${size.width}px`,
@@ -589,7 +612,7 @@ const AIChatWidget = ({ onClose }) => {
                             </div>
                         </div>
                         <p className="text-xs text-slate-400 mt-1.5 px-1">
-                            固定使用 V4 Flash，不再提供 V3 / R1 切换。
+                            固定使用 DeepSeek Flash，不再提供 V3 / R1 切换。
                         </p>
                     </div>
 
@@ -806,25 +829,39 @@ const AIChatWidget = ({ onClose }) => {
 
             {/* Input Area */}
             <div className="p-3 bg-white border-t border-slate-200 shrink-0">
-                <div className="flex gap-2">
-                    <input
-                        type="text"
+                {isHistoryNearLimit(messages) && (
+                    <p role="status" className="mb-2 text-xs leading-5 text-amber-700 bg-amber-50 border border-amber-200 rounded-lg px-3 py-2">
+                        对话已经比较长，发送时只会带上最近几轮。建议点左上角「新对话」再问，回答更稳、也更省额度。
+                    </p>
+                )}
+                <div className="flex gap-2 items-end">
+                    <textarea
+                        ref={inputRef}
+                        rows={2}
                         value={inputValue}
                         onChange={(e) => setInputValue(e.target.value)}
-                        onKeyDown={(e) => e.key === 'Enter' && !e.shiftKey && sendMessage()}
-                        placeholder={apiKey ? "输入你的问题..." : "请先设置 API Key"}
+                        onKeyDown={(e) => {
+                            if (e.key === 'Enter' && !e.shiftKey) {
+                                e.preventDefault();
+                                sendMessage();
+                            }
+                        }}
+                        placeholder={apiKey ? "输入你的问题…（Enter 发送，Shift+Enter 换行）" : "请先设置 API Key"}
                         disabled={!apiKey || isLoading}
-                        className="min-w-0 flex-1 px-4 py-2.5 border border-slate-300 rounded-xl focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 outline-none transition-all disabled:bg-slate-100 disabled:cursor-not-allowed"
+                        aria-label="对话输入"
+                        className="min-h-11 max-h-36 min-w-0 flex-1 resize-y px-4 py-2.5 border border-slate-300 rounded-xl focus:ring-2 focus:ring-indigo-500 focus:border-indigo-500 outline-none transition-all disabled:bg-slate-100 disabled:cursor-not-allowed text-sm leading-6"
                     />
                     <button
+                        type="button"
                         onClick={isLoading ? stopGeneration : sendMessage}
                         disabled={!apiKey || (!inputValue.trim() && !isLoading)}
-                        className={`shrink-0 px-4 py-2.5 rounded-xl font-medium transition-colors flex items-center gap-1 text-white
+                        className={`shrink-0 min-h-11 px-4 py-2.5 rounded-xl font-medium transition-colors flex items-center gap-1 text-white
                             ${isLoading
                                 ? 'bg-red-500 hover:bg-red-600'
                                 : 'bg-indigo-600 hover:bg-indigo-700 disabled:bg-slate-300 disabled:cursor-not-allowed'
                             }`}
                         title={isLoading ? "停止生成" : "发送"}
+                        aria-label={isLoading ? "停止生成" : "发送"}
                     >
                         {isLoading ? <Square size={18} fill="currentColor" /> : <Send size={18} />}
                     </button>
